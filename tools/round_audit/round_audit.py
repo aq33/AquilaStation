@@ -73,7 +73,8 @@ def parse_runtimes(entries):
 		if source.startswith("code/__HELPERS/stack_trace.dm") and len(stack) > 1:
 			# stack_trace() zawsze wskazuje na siebie, ważne jest, kto go wywołał
 			caller = stack[1]
-		key = (source, normalize(message))
+		# z wywołującym: ten sam komunikat stack_trace() z dwóch miejsc to dwa różne błędy
+		key = (source, normalize(message), caller)
 		item = runtimes.setdefault(key, {"source": source, "message": message, "proc": proc, "src": src, "stack": stack, "caller": caller, "count": 0, "first": stamp, "last": stamp})
 		item["count"] += 1
 		item["last"] = stamp
@@ -170,9 +171,23 @@ def log_lines(path, skip=("Loading config file", "Starting up round ID", "------
 	return result
 
 
+def round_started(round_dir):
+	"""Czas startu rundy z pierwszego wpisu runtime.log. Nazwa folderu to round-GG.MM.SS albo round-<ID z bazy>,
+	więc sama nazwa nie daje kolejności (round-99 przed round-100), a mtime folderu bywa nadpisany."""
+	path = os.path.join(round_dir, "runtime.log")
+	try:
+		with open(path, encoding="utf-8", errors="replace") as f:
+			m = TIMESTAMP.match(f.readline().strip())
+		if m:
+			return m.group(1)
+	except OSError:
+		pass
+	return ""
+
+
 def find_rounds(logs_root):
-	# data/logs/RRRR/MM/DD/round-GG.MM.SS: kolejność nazw to kolejność czasu (mtime folderu bywa nadpisany)
-	return sorted(os.path.abspath(p) for p in glob.glob(os.path.join(logs_root, "*", "*", "*", "round-*")))
+	rounds = (os.path.abspath(p) for p in glob.glob(os.path.join(logs_root, "*", "*", "*", "round-*")))
+	return sorted(rounds, key=lambda p: (round_started(p), p))
 
 
 def audit(round_dir):
@@ -317,7 +332,8 @@ def main():
 		raise SystemExit(f"Nie znalazłem rundy (szukałem w {args.logi}).")
 	previous_dir = None
 	if args.porownaj == "poprzednia":
-		older = [r for r in rounds if r < round_dir]
+		started = round_started(round_dir)
+		older = [r for r in rounds if r != round_dir and (round_started(r), r) < (started, round_dir)]
 		previous_dir = older[-1] if older else None
 		if not previous_dir:
 			print("Brak wcześniejszej rundy do porównania.", file=sys.stderr)
@@ -334,7 +350,9 @@ def main():
 		print(f"Raport zapisany: {args.out}")
 	else:
 		print(report)
-	return 1 if new_keys else 0
+	# „uncaught runtime error” to też błąd: bez porównania liczy się każdy, z porównaniem tylko nowy
+	new_uncaught = set(data["uncaught"]) - set(previous["uncaught"]) if previous else set(data["uncaught"])
+	return 1 if new_keys or new_uncaught else 0
 
 
 if __name__ == "__main__":

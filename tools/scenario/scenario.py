@@ -143,9 +143,15 @@ def main():
 			world.call("stop", "--kill", timeout=60)
 	rounds = round_audit.find_rounds(os.path.join(os.getcwd(), "data", "logs"))
 	if rounds:
-		report, _ = round_audit.render(round_audit.audit(rounds[-1]), None, 15)
+		data = round_audit.audit(rounds[-1])
+		report, new_keys = round_audit.render(data, None, 15)
 		print()
 		print(report)
+		# runtime w tle (start świata, podsystemy) to też porażka, nawet gdy sam scenariusz zwrócił "OK"
+		if new_keys or data["uncaught"]:
+			if ok:
+				print("Wynik zmieniony na PORAŻKA: w logu są runtime'y (szczegóły w audycie wyżej).")
+			ok = False
 	return 0 if ok else 1
 
 

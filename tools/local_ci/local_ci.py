@@ -7,7 +7,8 @@ Użycie (z katalogu repo, Windows):
     tools\\local_ci\\local_ci.bat --tylko grep,dm # wybrane kroki (nazwy: --lista)
 
 Kompilacja idzie do kopii .dme (ci_local_*.dme), więc nsv13.dmb i działający serwer zostają nietknięte.
-dreamchecker i jq są pobierane do tools/bootstrap/.cache w wersjach z dependencies.sh.
+Do tools/bootstrap/.cache pobiera dreamcheckera w wersji z dependencies.sh (SPACEMAN_DMM_VERSION)
+i jq w wersji ze stałej JQ_VERSION poniżej.
 """
 
 import argparse
