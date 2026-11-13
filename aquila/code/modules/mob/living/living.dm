@@ -27,7 +27,8 @@
 	bodily_disgust(DISGUST_LEVEL_VERYGROSS, TRUE)
 
 	bodily_playsound(src, 'aquila/sound/creatures/fart.ogg', 100)
-	new /obj/effect/decal/cleanable/feces(get_turf(src))
+	var/feces_path = feces_type()
+	new feces_path(get_turf(src))
 	var/datum/reagent/consumable/castor_oil/oil = reagents?.get_reagent(/datum/reagent/consumable/castor_oil)
 	oil?.purge(src)
 	return TRUE
@@ -92,7 +93,8 @@
 		"<span class='notice'><i>Ale ulga...</i></span>")
 	bodily_disgust(DISGUST_LEVEL_GROSS, FALSE)
 	bodily_playsound(src, 'aquila/sound/creatures/fart.ogg', 100)
-	new /obj/effect/decal/cleanable/feces(get_turf(src))
+	var/feces_path = feces_type()
+	new feces_path(get_turf(src))
 	var/datum/reagent/consumable/castor_oil/oil = reagents?.get_reagent(/datum/reagent/consumable/castor_oil)
 	oil?.purge(src)
 	report_public_bodily_function("Publiczne wypróżnianie się", "załatwiała się")

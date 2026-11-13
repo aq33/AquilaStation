@@ -1,4 +1,5 @@
-// Sprite'y: grudki z Azure Peak (humpoo, horsepoo, cowpoo z icons/roguetown/items/natural.dmi, CC BY-SA 3.0), odbite i złożone w 7 wariantów
+// Sprite'y z Civ13 (icons/effects/pooeffect.dmi, AGPL v3): grudki poop1-7 jako floor1-7, plamy floor1 i floor3 jako diarrhea1-2.
+// Fioletowy kopczyk felinidów to przemalowany poop6.
 /obj/effect/decal/cleanable/feces
 	name = "odchody"
 	desc = "Brązowe, śmierdzące i śliskie. Równie dobrze mogłoby to być danie kucharza."
@@ -11,3 +12,25 @@
 /obj/effect/decal/cleanable/feces/Initialize(mapload, list/datum/disease/diseases)
 	. = ..()
 	AddComponent(/datum/component/slippery, BLOOD_SLIPPERY_KNOCKDOWN, NO_SLIP_WHEN_WALKING)
+
+/// Biegunka (typ 6-7 w skali bristolskiej, stoperan): rozbryzg zamiast grudek
+/obj/effect/decal/cleanable/feces/proc/make_diarrhea()
+	random_icon_states = list("diarrhea1", "diarrhea2")
+	icon_state = pick(random_icon_states)
+
+/// Felinidzi robią fioletowe kopczyki
+/obj/effect/decal/cleanable/feces/felinid
+	icon_state = "felinid"
+	random_icon_states = list("felinid")
+
+/obj/effect/decal/cleanable/feces/felinid/make_diarrhea()
+	return
+
+/// Typ kupy, którą zostawia mob
+/mob/living/proc/feces_type()
+	return /obj/effect/decal/cleanable/feces
+
+/mob/living/carbon/human/feces_type()
+	if(iscatperson(src))
+		return /obj/effect/decal/cleanable/feces/felinid
+	return ..()

@@ -65,4 +65,24 @@
 	TEST_ASSERT(length(belt.contents) == 9, "Pas ma [length(belt.contents)] zamiast 9 nabojów")
 	TEST_ASSERT(length(box2.contents) + length(box3.contents) == in_box * 3 - 9, "Nadmiarowe naboje zniknęły z pudełek")
 
+/// Kupa: felinid zostawia fioletowy kopczyk, biegunka zmienia grudki w rozbryzg (a fioletowy kopczyk zostaje)
+/datum/unit_test/aquila_feces_look
+
+/datum/unit_test/aquila_feces_look/Run()
+	var/mob/living/carbon/human/cat = allocate(/mob/living/carbon/human)
+	cat.set_species(/datum/species/human/felinid)
+	cat.set_defecation(DEFECATION_SHIT_YOURSELF)
+	cat.finish_defecate_here(FALSE)
+	var/obj/effect/decal/cleanable/feces/felinid/purple = locate() in get_turf(cat)
+	TEST_ASSERT(purple && purple.icon_state == "felinid", "Felinid nie zostawił fioletowego kopczyka")
+	purple.make_diarrhea()
+	TEST_ASSERT(purple.icon_state == "felinid", "Biegunka zmieniła fioletowy kopczyk")
+
+	var/mob/living/carbon/human/human = allocate(/mob/living/carbon/human, run_loc_floor_top_right)
+	TEST_ASSERT(human.feces_type() == /obj/effect/decal/cleanable/feces, "Człowiek ma inny typ kupy niż zwykły")
+	var/obj/effect/decal/cleanable/feces/stool = allocate(/obj/effect/decal/cleanable/feces, run_loc_floor_top_right)
+	TEST_ASSERT(findtext(stool.icon_state, "floor") == 1, "Zwykła kupa nie jest grudkami: [stool.icon_state]")
+	stool.make_diarrhea()
+	TEST_ASSERT(findtext(stool.icon_state, "diarrhea") == 1, "Biegunka nie zmieniła wyglądu: [stool.icon_state]")
+
 #undef TEST_ASSERT
