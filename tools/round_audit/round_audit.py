@@ -5,6 +5,7 @@ Użycie (z katalogu repo):
     python tools/round_audit/round_audit.py data/logs/2026/11/12/round-21.33.49
     python tools/round_audit/round_audit.py --porownaj poprzednia  # różnica względem poprzedniej rundy
     python tools/round_audit/round_audit.py --porownaj <folder> --out raport/audyt_rundy_01.md
+    python tools/round_audit/round_audit.py --ci                 # ostatni przebieg testów z tools/local_ci
 
 Raport jest po polsku, w Markdownie. Kod wyjścia 1, gdy są nowe runtime'y względem porównywanej rundy
 (albo jakiekolwiek runtime'y bez porównania), więc skrypt nadaje się też do pętli testowych.
@@ -304,9 +305,13 @@ def main():
 	parser.add_argument("--porownaj", help="folder rundy do porównania albo „poprzednia”")
 	parser.add_argument("--top", type=int, default=30, help="ile pozycji pokazać w listach (domyślnie 30)")
 	parser.add_argument("--out", help="zapisz raport do pliku zamiast wypisywać")
+	parser.add_argument("--ci", action="store_true", help="ostatni przebieg testów lokalnego CI (tools/local_ci, osobna kopia świata)")
 	args = parser.parse_args()
 
 	rounds = [r for r in find_rounds(args.logi) if os.path.exists(os.path.join(r, "runtime.log"))]
+	if args.ci:
+		# testy local_ci działają w kopii świata, z log-directory=ci (jak run_server.sh), poza data/logs/RRRR/MM/DD
+		args.runda = args.runda or os.path.join(REPO, "tools", "bootstrap", ".cache", "ci_test", "data", "logs", "ci")
 	round_dir = os.path.abspath(args.runda) if args.runda else (rounds[-1] if rounds else None)
 	if not round_dir or not os.path.isdir(round_dir):
 		raise SystemExit(f"Nie znalazłem rundy (szukałem w {args.logi}).")

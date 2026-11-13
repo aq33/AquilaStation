@@ -1,6 +1,6 @@
 """Scenariusze w działającym świecie przez debugger auxtools 3: odtworzenie zgłoszonego błędu bez klienta.
 
-Scenariusz to plik z ciałem procki DM (bez nagłówka), np. tools/scenario/examples/strzal.txt. Działa jako kod świata
+Scenariusz to plik z ciałem procki DM (bez nagłówka), np. tools/scenario/examples/smoke.txt. Działa jako kod świata
 (eval --spawn), więc może wołać procki, tworzyć obiekty i czekać przez sleep(). Zwrócenie TRUE albo "OK" oznacza
 sukces; każda inna wartość albo runtime to porażka, a zwrócony tekst trafia do wyniku.
 
@@ -11,6 +11,9 @@ Użycie (z katalogu repo, po zbudowaniu nsv13.dmb):
     python tools/scenario/scenario.py moj.txt -D UNIT_TESTS    # flagi, z którymi zbudowano .dmb
 
 Po scenariuszu skrypt dołącza audyt logów rundy (tools/round_audit) i kończy z kodem 1, gdy scenariusz się nie udał.
+
+Świat startuje z hot-reloadem, bo tylko wtedy eval zna makra #define projektu (ITEM_SLOT_*, COMSIG_* itp.).
+Nie edytuj więc plików .dm w tym folderze w trakcie scenariusza: zapis podmieni procki w działającym świecie.
 """
 
 import argparse
