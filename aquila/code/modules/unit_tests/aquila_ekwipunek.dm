@@ -43,11 +43,11 @@
 	var/obj/item/ammo_box/magazine/m556/mag = allocate(/obj/item/ammo_box/magazine/m556)
 	var/obj/item/grenade/barrier/grenade = allocate(/obj/item/grenade/barrier)
 	var/obj/item/storage/firstaid/regular/kit = allocate(/obj/item/storage/firstaid/regular)
-	var/obj/item/ammo_box/magazine/nsv/light_cannon/shell = allocate(/obj/item/ammo_box/magazine/nsv/light_cannon)
 	TEST_ASSERT(STR.can_be_inserted(mag, TRUE, user), "Magazynek nie wchodzi do pasa amunicyjnego")
 	TEST_ASSERT(STR.can_be_inserted(grenade, TRUE, user), "Granat nie wchodzi do pasa amunicyjnego")
 	TEST_ASSERT(!STR.can_be_inserted(kit, TRUE, user), "Apteczka weszła do pasa amunicyjnego")
-	TEST_ASSERT(!STR.can_be_inserted(shell, TRUE, user), "Pocisk działa okrętowego wszedł do pasa amunicyjnego")
+	// sam typ, bez instancji: usuwanie magazynka lekkiego działa sypie runtime w update_icon (nsv13, pdc_overlay)
+	TEST_ASSERT(STR.cant_hold?[/obj/item/ammo_box/magazine/nsv/light_cannon], "Pocisk działa okrętowego wchodzi do pasa amunicyjnego")
 	TEST_ASSERT(!belt.is_shell_source(mag), "Magazynek jest traktowany jak pudełko nabojów do strzelby")
 
 	var/obj/item/storage/box/lethalshot/box = allocate(/obj/item/storage/box/lethalshot)
