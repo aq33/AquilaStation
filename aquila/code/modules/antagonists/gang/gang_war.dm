@@ -29,30 +29,6 @@
 	objectives += objective
 	update_gang_cap()
 
-// Podczas przejęcia gang nie zdobywa wpływów (ostrzeżenie przy włączaniu dominatora)
-/datum/team/gang/update_influence()
-	if(domination_time != NOT_DOMINATING)
-		return 0
-	return ..()
-
-/// Liczba terenów do zajęcia na stacji; liczona raz na 10 s, bo panel i okno pytają co chwilę
-/datum/team/gang/proc/claimable_territories_cached()
-	var/static/cached_total = 0
-	var/static/cached_at = -INFINITY
-	if(world.time - cached_at > 10 SECONDS)
-		cached_total = total_claimable_territories()
-		cached_at = world.time
-	return max(1, cached_total)
-
-/// Procent terenu stacji pod kontrolą gangu
-/datum/team/gang/proc/territory_percent()
-	return round(LAZYLEN(territories) / claimable_territories_cached() * 100, 1)
-
-/// Czas przejęcia w sekundach: im więcej terenu gang kontroluje, tym krócej (3-8 minut)
-/datum/team/gang/proc/determine_domination_time()
-	var/total = claimable_territories_cached()
-	return max(180, 480 - round(LAZYLEN(territories) / total * 100, 1) * 9)
-
 /datum/team/gang/proc/domination(modifier = 1)
 	domination_time = world.time + determine_domination_time() * modifier * 10
 	set_security_level("delta")
@@ -145,7 +121,9 @@
 	data["cap"] = gang.gang_cap
 	data["leaders"] = length(gang.leaders & living)
 	data["territory"] = gang.territory_percent()
-	data["influence"] = gang.influence
+	data["points"] = gang.get_points(owner)
+	data["score"] = gang.total_score()
+	data["has_locker"] = !!gang.locker
 	data["dom_attempts"] = gang.dom_attempts
 	data["dominating"] = gang.domination_time != NOT_DOMINATING
 	data["dom_remaining"] = gang.domination_time_remaining()
@@ -154,7 +132,7 @@
 	for(var/datum/team/gang/rival in GLOB.gangs)
 		if(rival == gang)
 			continue
-		rivals += list(list("name" = rival.name, "color" = rival.color, "territory" = rival.territory_percent(), "dominating" = rival.domination_time != NOT_DOMINATING))
+		rivals += list(list("name" = rival.name, "color" = rival.color, "territory" = rival.territory_percent(), "score" = rival.total_score(), "dominating" = rival.domination_time != NOT_DOMINATING))
 	data["rivals"] = rivals
 	var/list/member_list = list()
 	for(var/datum/mind/member as anything in living)
@@ -169,16 +147,28 @@
 
 /datum/game_mode/gang/set_round_result()
 	. = ..()
-	// Przejęcie dominatorem wygrywa niezależnie od terenu
+	// Przejęcie dominatorem wygrywa niezależnie od wyniku
 	for(var/datum/team/gang/G in GLOB.gangs)
 		if(G.dominated)
 			for(var/datum/team/gang/other in GLOB.gangs)
 				other.winner = (other == G)
 			return
+	// Bez przejęcia wygrywa najwyższy wynik gangu (jak w Goonie), remis to brak zwycięzcy
+	var/datum/team/gang/best
+	var/tie = FALSE
+	for(var/datum/team/gang/G in GLOB.gangs)
+		G.winner = FALSE
+		if(!best || G.total_score() > best.total_score())
+			best = G
+			tie = FALSE
+		else if(G.total_score() == best.total_score())
+			tie = TRUE
+	if(best && !tie)
+		best.winner = TRUE
 
 /datum/objective/gang_dominate
 	name = "przejęcie stacji"
-	explanation_text = "Przejmijcie stację Dominatorem: kupcie go w gangtoolu, postawcie na swoim terenie i brońcie, aż skończy przejęcie."
+	explanation_text = "Przejmijcie stację Dominatorem: kupcie go w gangtoolu za punkty, postawcie na swoim terenie i brońcie, aż skończy przejęcie. Bez przejęcia wygrywa gang z najwyższym wynikiem."
 	martyr_compatible = TRUE
 
 /datum/objective/gang_dominate/check_completion()
@@ -189,7 +179,9 @@
 /datum/gang_item/equipment/dominator
 	name = "Dominator stacji"
 	id = "dominator"
-	cost = 30
+	category = "Kup niezbędne przedmioty:"
+	locker_item = FALSE
+	cost = GANG_DOMINATOR_COST
 	item_path = /obj/machinery/dominator
 	spawn_msg = "<span class='notice'><b>Dominator</b> zapewni twojemu gangowi władzę nad stacją. Włącz go, kiedy będziecie gotowi go bronić.</span>"
 
@@ -213,9 +205,8 @@
 		return "(szacowany czas przejęcia: [round(gang.determine_domination_time() / 60, 0.1)] min)"
 
 /datum/gang_item/equipment/dominator/purchase(mob/living/carbon/user, datum/team/gang/gang, obj/item/device/gangtool/gangtool, check_canbuy = TRUE)
-	var/area/user_area = get_area(user)
 	var/turf/user_turf = get_turf(user)
-	if(!user_turf || isspaceturf(user_turf) || !is_station_level(user_turf.z))
+	if(!user_turf || isspaceturf(user_turf) || !aq_gang_station_turf(user_turf))
 		to_chat(user, "<span class='warning'>Dominator działa tylko na stacji!</span>")
 		return FALSE
 	for(var/obj/thing in user_turf)
@@ -225,7 +216,7 @@
 	if(aq_dominator_walls_check(user_turf))
 		to_chat(user, "<span class='warning'><b>Dominator</b> tu nie zadziała! W promieniu trzech jednostek potrzebuje sporo otwartej przestrzeni, żeby ściany nie zagłuszały sygnału.</span>")
 		return FALSE
-	if(!gang || !(user_area.type in (gang.territories | gang.new_territories)))
+	if(!gang || !gang.owns_turf(user_turf))
 		to_chat(user, "<span class='warning'><b>Dominator</b> można postawić tylko na terenie kontrolowanym przez twój gang!</span>")
 		return FALSE
 	return ..()
@@ -259,3 +250,13 @@
 #undef GANG_MIN_CAP
 #undef GANG_MAX_CAP
 #undef DOM_REQUIRED_TURFS
+
+// Posiłki z gangtoola też liczą się do limitu członków
+/obj/item/antag_spawner/gangster/check_usability(mob/user)
+	. = ..()
+	if(!.)
+		return
+	var/datum/antagonist/gang/GA = user.mind.has_antag_datum(/datum/antagonist/gang)
+	if(GA?.gang && !GA.gang.can_recruit())
+		GA.gang.cap_reached_message(user)
+		return FALSE

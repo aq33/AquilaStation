@@ -3464,6 +3464,11 @@ Oznaczenia w kolumnie uwag:
 | Hivemind Host | Nosiciel roju | m; istniejące |
 | Awakened Vessel | Przebudzone naczynie | n; istniejące |
 | Gang / Gangster | gang / gangster | m; istniejące |
+| Salvager | złomiarz | m; nowe (antag z Goonstation, wariant piratów) |
+| Salvage reclaimer | reklamator | m; nowe |
+| Dualconstruction device | urządzenie dwukonstrukcyjne | n; nowe |
+| M4GP13 / Magpie (salvager trader) | S.R.O.K.A. | ż; nowe (System Rozliczeń Odzysku i Kupna Asortymentu) |
+| Gang locker | szafka gangu | ż; nowe |
 | Survivalist | Survivalowiec | m; istniejące |
 | Separatists | Separatyści | mnoga; istniejące |
 | Paradox Clone | Klon paradoksu | m; istniejące |
