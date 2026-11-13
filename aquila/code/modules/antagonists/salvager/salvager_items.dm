@@ -58,17 +58,21 @@ GLOBAL_LIST_EMPTY(salvager_teleport_points)
 		charge = min(max_charge, charge + 5)
 		playsound(src, 'sound/items/ratchet.ogg', 30, TRUE)
 
-/obj/item/salvage_reclaimer/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
-	. = ..()
-	if(!proximity_flag || !isliving(user) || working)
-		return
-	var/mob/living/L = user
-	if(L.combat_mode)
-		return
+// Rozbiórka idzie przed attackby: poza trybem walki reklamator nie uderza w to, co rozbiera
+/obj/item/salvage_reclaimer/pre_attack(atom/A, mob/living/user, params)
+	if(!istype(user) || user.combat_mode)
+		return ..()
+	if(working)
+		return FALSE
+	if(!salvage_time(A, user))
+		return ..()
+	try_salvage(A, user)
+	return FALSE
+
+/obj/item/salvage_reclaimer/proc/try_salvage(atom/target, mob/living/user)
 	var/time = salvage_time(target, user)
 	if(!time)
 		return
-	. = TRUE
 	if(!salvager_can_work_at(target))
 		to_chat(user, "<span class='warning'>[src] z jakiegoś powodu tu nie działa.</span>")
 		return
@@ -206,15 +210,14 @@ GLOBAL_LIST_EMPTY(salvager_teleport_points)
 	playsound(src, 'sound/items/screwdriver2.ogg', 40, TRUE)
 	to_chat(user, "<span class='notice'>Przełączasz [src] na [deconstruct_mode ? "rozkładanie" : "składanie"].</span>")
 
-/obj/item/salvage_dualconstructor/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
-	. = ..()
-	if(!proximity_flag || !deconstruct_mode || !istype(target, /obj/machinery))
-		return
-	var/mob/living/L = user
-	if(istype(L) && L.combat_mode)
-		return
-	. = TRUE
-	var/obj/machinery/M = target
+// Pakowanie idzie przed attackby: poza trybem walki urządzenie nie uderza w maszynę
+/obj/item/salvage_dualconstructor/pre_attack(atom/A, mob/living/user, params)
+	if(!deconstruct_mode || !istype(A, /obj/machinery) || !istype(user) || user.combat_mode)
+		return ..()
+	try_pack(A, user)
+	return FALSE
+
+/obj/item/salvage_dualconstructor/proc/try_pack(obj/machinery/M, mob/living/user)
 	if(!salvage_packable(M))
 		to_chat(user, "<span class='warning'>[M] nie da się spakować.</span>")
 		return
