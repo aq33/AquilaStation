@@ -144,6 +144,22 @@
 	},
 /turf/open/floor/durasteel/alt,
 /area/hallway/nsv/deck2/primary)
+"ap" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/ship/yellow/orlen{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/ship/yellow/orlen{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/ship/yellow/orlen{
+	dir = 4
+	},
+/obj/machinery/flatpacker,
+/turf/open/floor/durasteel/techfloor_grid,
+/area/engine/break_room)
 "aq" = (
 /obj/effect/turf_decal/tile/ship/yellow/orlen{
 	dir = 4
@@ -194,6 +210,24 @@
 /obj/structure/extinguisher_cabinet/north,
 /turf/open/floor/monotile/steel,
 /area/science/robotics/lab)
+"aw" = (
+/obj/effect/turf_decal/tile/ship/half/yellow/orlen{
+	dir = 1
+	},
+/obj/effect/spawner/lootdrop/techstorage/engineering,
+/obj/machinery/airalarm/directional/north,
+/obj/structure/table/reinforced,
+/obj/item/machine_scanner{
+	pixel_x = -6;
+	pixel_y = 6
+	},
+/obj/item/machine_packer{
+	pixel_x = 6;
+	pixel_y = 2
+	},
+/obj/item/flatpack/schematic_reader,
+/turf/open/floor/monotile/dark,
+/area/engine/engine_room)
 "ax" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 4
@@ -45599,7 +45633,7 @@ DN
 jo
 jC
 ys
-Hl
+ap
 DN
 Lz
 Lz
@@ -46372,7 +46406,7 @@ rR
 bE
 YQ
 YQ
-WJ
+aw
 En
 En
 gf

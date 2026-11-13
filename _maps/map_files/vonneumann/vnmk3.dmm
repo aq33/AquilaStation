@@ -103,6 +103,17 @@
 	},
 /turf/open/floor/carpet/ship/blue,
 /area/bridge/cic)
+"aao" = (
+/obj/machinery/flatpacker,
+/turf/open/floor/carpet/ship/orange_carpet,
+/area/engine/engineering)
+"aap" = (
+/obj/structure/closet/crate/engineering/electrical,
+/obj/item/machine_scanner,
+/obj/item/machine_packer,
+/obj/item/flatpack/schematic_reader,
+/turf/open/floor/carpet/ship/orange_carpet,
+/area/engine/engineering)
 "aat" = (
 /obj/structure/table,
 /obj/item/food/grown/tomato,
@@ -41934,8 +41945,8 @@ xmR
 qQC
 ovF
 tBt
-jfh
-oSx
+aap
+aao
 tGF
 cdO
 btS
