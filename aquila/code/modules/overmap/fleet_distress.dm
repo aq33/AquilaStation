@@ -15,6 +15,8 @@
 #define FLEET_RETREAT_FEAR 65
 /// How far (in jumps) a distress call reaches
 #define FLEET_DISTRESS_JUMPS 2
+/// Na mapie hex: posiłki szukane w tylu kaflach drogi (mniej więcej dwa dawne skoki między układami)
+#define FLEET_DISTRESS_HEXES 6
 /// Help arrives after this, plus FLEET_DISTRESS_PER_JUMP for each jump past the first
 #define FLEET_DISTRESS_DELAY_MIN (2 MINUTES)
 #define FLEET_DISTRESS_DELAY_MAX (3 MINUTES)
@@ -105,6 +107,8 @@
 		if(istype(OM) && OM.is_crewed_ship())
 			return TRUE
 	var/datum/star_system/player_system = SSstar_system.find_main_overmap()?.current_system
+	if(GLOB.hexmap?.built && current_system?.hex && player_system?.hex) // mapa hex: ten sam albo sąsiedni kafel
+		return GLOB.hexmap.distance(current_system.hex, player_system.hex) <= 1
 	return player_system && (current_system == player_system || (current_system.name in player_system.adjacency_list))
 
 /// list(ships in the fight, average fear, share of the fleet lost)
@@ -149,6 +153,8 @@
 
 /// Allied fleets within FLEET_DISTRESS_JUMPS that can answer, as fleet => jumps
 /datum/fleet/proc/find_ai_distress_responders()
+	if(GLOB.hexmap?.built && current_system?.hex)
+		return find_ai_distress_responders_hex()
 	. = list()
 	var/list/visited = list()
 	visited[current_system] = 0
@@ -210,9 +216,13 @@
 			answering = other
 	var/jumps = responders[answering]
 	var/delay = rand(FLEET_DISTRESS_DELAY_MIN, FLEET_DISTRESS_DELAY_MAX) + (jumps - 1) * FLEET_DISTRESS_PER_JUMP
+	var/eta = delay
+	if(GLOB.hexmap?.built) // mapa hex: po reakcji posiłki idą kafel po kaflu (jumps to tu liczba kafli)
+		delay = rand(FLEET_DISTRESS_DELAY_MIN, FLEET_DISTRESS_DELAY_MAX)
+		eta = delay + (jumps - 1) * (HEX_FLEET_STEP_MIN + HEX_FLEET_STEP_MAX) / 2
 	answering.ai_answering = TRUE
-	ai_help_eta = world.time + delay
-	var/minutes = max(1, round(delay / (1 MINUTES)))
+	ai_help_eta = world.time + eta
+	var/minutes = max(1, round(eta / (1 MINUTES)))
 	answering.broadcast_ai_fleet(list(
 		"Tu [answering.name]. Słyszymy was, [name]. Będziemy na miejscu za około [minutes] min.",
 		"[answering.name] do [name]: idziemy z pomocą, wytrzymajcie jeszcze około [minutes] min.",
@@ -229,6 +239,8 @@
 /datum/fleet/proc/warn_ai_distress_arrival(datum/star_system/target, ally)
 	if(!ai_answering || !length(all_ships) || target == current_system)
 		return
+	if(GLOB.hexmap?.built && current_system?.hex && target?.hex && GLOB.hexmap.distance(current_system.hex, target.hex) > 1)
+		return // mapa hex: posiłki dopiero ruszają, ostrzeżenie przyjdzie przed ostatnim krokiem (hex_next_step)
 	if(SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CHECK_INTERDICT, pick(all_ships)) & (WEAK_INTERDICT|STRONG_INTERDICT))
 		return // It will not get through, so there is nothing to warn about
 	target.warn_player_ships(ally ? "Sojusznicze posiłki za chwilę wyjdą z nadprzestrzeni." : "Wykryto zbliżające się sygnatury napędu FTL.")
@@ -265,6 +277,8 @@
 
 /// Neighbouring system to fall back to: our own territory first, never where the players' main ship is
 /datum/fleet/proc/pick_ai_retreat_system()
+	if(GLOB.hexmap?.built && current_system?.hex)
+		return pick_ai_retreat_hex()
 	var/datum/star_system/player_system = SSstar_system.find_main_overmap()?.current_system
 	var/list/own = list()
 	var/list/other = list()

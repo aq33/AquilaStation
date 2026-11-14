@@ -165,9 +165,9 @@
 
 
 /obj/structure/overmap/proc/begin_jump(datum/star_system/target_system, force=FALSE, misjump = FALSE)
-	relay(ftl_drive.ftl_start, channel = CHANNEL_IMPORTANT_SHIP_ALERT)
+	relay(hex_startup_sound(), channel = CHANNEL_IMPORTANT_SHIP_ALERT) // AQ EDIT - mapa hex: krótszy rozruch skoku po hexach
 	desired_angle = 90 //90 degrees AKA face EAST to match the FTL parallax.
-	addtimer(CALLBACK(src, PROC_REF(jump_start), target_system, force, misjump), ftl_drive.ftl_startup_time)
+	addtimer(CALLBACK(src, PROC_REF(jump_start), target_system, force, misjump), hex_startup_time()) // AQ EDIT - mapa hex: krótszy rozruch skoku po hexach
 
 /obj/structure/overmap/proc/force_return_jump()
 	SIGNAL_HANDLER
@@ -247,6 +247,7 @@
 	if(drive_speed <= 0) //Assumption: If we got into this proc with speed 0, we want it to jump anyways, as it should be caught before otherwise. Using very slow speed in this case.
 		drive_speed = 1 //Div-by-0s are not fun.
 	var/speed = (curr.dist(target_system) / (drive_speed * 10)) //TODO: FTL drive speed upgrades.
+	speed = hex_travel_minutes(speed) // AQ EDIT - mapa hex: czas lotu liczony w hexach trasy
 	if(misjump)
 		speed = max(speed, 3)
 	SSstar_system.ships[src]["to_time"] = world.time + speed MINUTES
@@ -263,7 +264,8 @@
 	SSstar_system.ships[src]["from_time"] = world.time
 	SSstar_system.ships[src]["current_system"] = null
 	addtimer(CALLBACK(src, PROC_REF(jump_end), target_system, misjump), speed MINUTES)
-	ftl_drive.depower(ftl_drive.auto_spool_enabled)
+	if(!hex_on_departure(misjump)) // AQ EDIT - mapa hex: skok zużywa część ładunku; poza tym depower() bez argumentu, bo depower(auto_spool_enabled) nigdy nie wyłączał pylonów
+		ftl_drive.depower()
 	jump_handle_shake()
 	if(misjump)
 		on_misjump_start(target_system, (speed MINUTES))
