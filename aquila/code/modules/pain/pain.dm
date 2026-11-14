@@ -138,7 +138,8 @@ GLOBAL_LIST_INIT(aq_painkillers, list(
 		aq_pain = 0 // anaesthesia numbs at once, it does not wear the pain off slowly
 	if(aq_pain < 1)
 		aq_pain = target < 1 ? 0 : aq_pain
-	var/sharp = aq_pain_raw - aq_pain_last_raw >= AQ_PAIN_SHARP_JUMP && target > 10
+	// błysk tylko przy bólu, który już daje winietę (> 20), nie przy draśnięciu tuż nad progiem odczuwania
+	var/sharp = aq_pain_raw - aq_pain_last_raw >= AQ_PAIN_SHARP_JUMP && target > 20
 	aq_pain_last_raw = aq_pain_raw
 	aq_update_pain_slowdown()
 	aq_update_pain_stamina()
@@ -189,7 +190,7 @@ GLOBAL_LIST_INIT(aq_painkillers, list(
 	. = ..()
 	if(!client)
 		return
-	var/hurt = aq_pain + aq_pain_flash + damageoverlaytemp
+	var/hurt = aq_pain_vignette_level()
 	if(stat != CONSCIOUS || hurt < 10)
 		clear_fullscreen("brute")
 		return
@@ -206,6 +207,11 @@ GLOBAL_LIST_INIT(aq_painkillers, list(
 		if(110 to INFINITY)
 			severity = 6
 	overlay_fullscreen("brute", /atom/movable/screen/fullscreen/brute, severity)
+
+/// Strength of the red vignette. The flash of a fresh hit (damageoverlaytemp, 20 on every brute/burn hit) counts only
+/// when the pain is already felt, otherwise a scratch for 1 point pulsed the screen red
+/mob/living/carbon/human/proc/aq_pain_vignette_level()
+	return aq_pain + aq_pain_flash + (aq_pain >= 10 ? damageoverlaytemp : 0)
 
 /// The limb that hurts most, null if none feels pain
 /mob/living/carbon/human/proc/aq_worst_pain_zone()

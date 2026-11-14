@@ -17,3 +17,7 @@
 #define DEEPL_LANG_EN "EN"
 /// DeepL przyjmuje "EN" tylko jako język źródłowy, docelowy musi mieć wariant
 #define DEEPL_LANG_EN_TARGET "EN-GB"
+/// message_mods: mowa już przetłumaczona dla tego słuchacza, nie wraca do tłumacza
+#define MODE_AQ_TRANSLATED "aq_translated"
+/// Źródło wbudowanego tłumacza (silikony, obcokrajowcy spoza prac); siedzi w umyśle i przechodzi z nim na nowe ciało
+#define AQ_TRANSLATOR_BUILTIN "wbudowany"

@@ -167,7 +167,10 @@
 	ship.role = MAIN_MINING_SHIP
 	TEST_ASSERT(console.has_communication(), "The console on the mining ship shows no connection to the ship")
 	ship.role = MAIN_OVERMAP
-	TEST_ASSERT(console.has_communication(), "The console on the main ship loaded off the station level shows no connection")
+	var/main_ship_ok = console.has_communication()
+	// Rola wraca przed sprzątaniem: usunięty statek z MAIN_OVERMAP to zniszczony okręt gracza i koniec rundy w środku testów
+	ship.role = NORMAL_OVERMAP
+	TEST_ASSERT(main_ship_ok, "The console on the main ship loaded off the station level shows no connection")
 	console.probe_ship = null
 
 /datum/unit_test/aquila_comms_console_on_crew_ship/Destroy()

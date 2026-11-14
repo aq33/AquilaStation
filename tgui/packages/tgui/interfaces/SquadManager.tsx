@@ -55,7 +55,6 @@ export type SquadConsoleData = {
   has_camera: BooleanLike;
   camera_target: { ref: string; name: string; active: BooleanLike } | null;
   map_ref: string | null;
-  order_cooldown: number;
 };
 
 export const SquadManager = () => {
@@ -225,10 +224,17 @@ const SquadColumn = (props: { squad: SquadInfo }) => {
           <Button
             icon="bullhorn"
             tooltip="Rozkaz na ekran drużyny, z twoim portretem i głosem"
-            disabled={data.order_cooldown > 0}
+            disabled={squad.order_cooldown > 0}
             onClick={() => act('order', { squad_id: squad.id })}
           >
-            {data.order_cooldown > 0 ? `${data.order_cooldown} s` : 'Rozkaz'}
+            {squad.order_cooldown > 0 ? `${squad.order_cooldown} s` : 'Rozkaz'}
+          </Button>
+          <Button
+            icon="box-open"
+            tooltip="Każdy członek drużyny dostaje własny znacznik przy najbliższym automacie drużyny"
+            onClick={() => act('aq_gear_ping', { squad_id: squad.id })}
+          >
+            Po sprzęt
           </Button>
         </>
       }
@@ -300,6 +306,15 @@ const SquadColumn = (props: { squad: SquadInfo }) => {
             onClick={() => act('aq_print_pass', { squad_id: squad.id })}
           >
             Smycz
+          </Button>
+        </Stack.Item>
+        <Stack.Item>
+          <Button
+            icon="pager"
+            tooltip="Pager przypisany do tej drużyny"
+            onClick={() => act('aq_print_pager', { squad_id: squad.id })}
+          >
+            Pager
           </Button>
         </Stack.Item>
       </Stack>

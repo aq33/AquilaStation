@@ -217,7 +217,8 @@
 /obj/effect/abstract/liquid_turf/proc/update_liquid_overlays()
 	cut_overlays()
 	var/number = liquid_state - 1
-	if(number > 0)
+	// Gęsta ciecz (krew) leży plamą bez fali: pełne kafelki nakładek głębokości dawały czerwony kwadrat
+	if(number > 0 && !liquid_group?.is_viscous())
 		var/list/stage_overlays = depth_overlays["[number]"]
 		if(!stage_overlays)
 			// Dół fali przykrywa nogi moba, góra leży pod mobami

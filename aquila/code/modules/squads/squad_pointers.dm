@@ -132,7 +132,7 @@ GLOBAL_LIST_EMPTY(aq_marker_pointer_icons)
 
 /datum/squad/proc/aq_on_member_moved(mob/living/carbon/human/source)
 	SIGNAL_HANDLER
-	if(source.client && length(aq_markers))
+	if(source.client && (length(aq_markers) || aq_gear_markers?[source]))
 		aq_update_pointers(source)
 
 /datum/squad/aq_add_marker_images(mob/living/carbon/human/member)

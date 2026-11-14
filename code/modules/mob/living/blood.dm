@@ -294,8 +294,6 @@ bleedsuppress has been replaced for is_bandaged(). Note that is_bleeding() retur
 		// AQ EDIT END
 
 		//Effects of bloodloss
-		var/word = pick("dizzy","woozy","faint")
-
 		// How much oxyloss we want to be on
 		var/desired_damage = (getMaxHealth() * 1.2) * CLAMP01((blood_volume - BLOOD_VOLUME_SURVIVE) / (BLOOD_VOLUME_NORMAL - BLOOD_VOLUME_SURVIVE))
 		// Make it so we only go unconcious at 25% blood remaining
@@ -317,16 +315,16 @@ bleedsuppress has been replaced for is_bandaged(). Note that is_bleeding() retur
 		switch(blood_volume)
 			if(BLOOD_VOLUME_OKAY to BLOOD_VOLUME_SAFE)
 				if(prob(5))
-					to_chat(src, "<span class='warning'>Czujesz się [word].</span>")
+					to_chat(src, "<span class='warning'>[pick("Kręci ci się w głowie.", "Robi ci się słabo.", "Lekko mroczy ci się przed oczami.")]</span>")
 			if(BLOOD_VOLUME_BAD to BLOOD_VOLUME_OKAY)
 				if(prob(5))
 					blur_eyes(6)
-					to_chat(src, "<span class='warning'>Czujesz się bardzo [word].</span>")
+					to_chat(src, "<span class='warning'>[pick("Mocno kręci ci się w głowie.", "Robi ci się bardzo słabo.", "Ciemnieje ci przed oczami.")]</span>")
 			if(BLOOD_VOLUME_SURVIVE to BLOOD_VOLUME_BAD)
 				if(prob(30))
 					blur_eyes(6)
 					Unconscious(rand(3,6))
-					to_chat(src, "<span class='warning'>Czujesz się skrajnie [word].</span>")
+					to_chat(src, "<span class='warning'>[pick("Świat wiruje ci przed oczami.", "Zaraz zemdlejesz.", "Prawie tracisz przytomność.")]</span>")
 			if(-INFINITY to BLOOD_VOLUME_SURVIVE)
 				desired_damage = getMaxHealth() * 2.0
 				// Rapidly die with no saving you

@@ -23,12 +23,14 @@
 #define SQUAD_MARKER_RETREAT "retreat"
 #define SQUAD_MARKER_RALLY "rally"
 #define SQUAD_MARKER_TARGET "target"
+/// Osobisty znacznik najbliższego automatu drużyny („Po sprzęt” z konsoli XO), poza listą SQUAD_MARKER_TYPES
+#define SQUAD_MARKER_GEAR "gear"
 
 #define SQUAD_MARKER_TYPES list(SQUAD_MARKER_MOVE, SQUAD_MARKER_ATTACK, SQUAD_MARKER_DEFEND, SQUAD_MARKER_RETREAT, SQUAD_MARKER_RALLY, SQUAD_MARKER_TARGET)
 
 /// Jak długo znacznik wisi w świecie i na mapie
 #define SQUAD_MARKER_DURATION (90 SECONDS)
-/// Odstęp między rozkazami na ekranie jednego nadawcy
+/// Odstęp między rozkazami na ekranie jednej drużyny (wspólny dla dowódcy i XO)
 #define SQUAD_ORDER_COOLDOWN (30 SECONDS)
 /// Odstęp między znacznikami jednego nadawcy
 #define SQUAD_MARKER_COOLDOWN (3 SECONDS)

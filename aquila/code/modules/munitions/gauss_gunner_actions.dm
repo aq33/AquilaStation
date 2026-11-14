@@ -1,6 +1,12 @@
 // Przyciski akcji strzelca działa Gaussa (po lewej, na pasku akcji) zamiast werbu „Access gun camera”:
 // „Kamera działa” włącza i wyłącza widok na mapę kosmosu bez wychodzenia z działa, „Wyjdź z działa” opuszcza kabinę.
 
+/// Czy obserwator okrętu dostaje przycisk „Przestań obserwować” (CreateEye w nsv13/code/modules/overmap/camera.dm).
+/// Nie dostaje go tylko strzelec siedzący w dziale Gaussa (ma „Kamera działa” i „Wyjdź z działa”). Laser obrony
+/// punktowej i wieżyczka przeciwlotnicza też wpisują strzelca do gauss_gunners, a bez tego przycisku nie da się wyjść.
+/obj/structure/overmap/proc/gives_observer_off_action(mob/user)
+	return !LAZYFIND(gauss_gunners, user) || !istype(user.loc, /obj/machinery/ship_weapon/gauss_gun)
+
 /obj/machinery/ship_weapon/gauss_gun
 	/// Przyciski strzelca, tworzone przy pierwszym strzelcu
 	var/list/datum/action/gunner_actions

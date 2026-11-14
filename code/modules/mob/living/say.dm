@@ -126,7 +126,7 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 		say_dead(original_message)
 		return
 
-	if(is_muted(original_message, ignore_spam, forced) || check_emote(original_message, forced))
+	if(is_muted(original_message, ignore_spam, forced) || (!aq_translated && check_emote(original_message, forced))) // AQ EDIT - powtórka tłumacza: gwiazdka w treści to nie emotka
 		return
 
 	if(in_critical) //There are cheaper ways to do this, but they're less flexible, and this isn't ran all that often
@@ -155,12 +155,12 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 		to_chat(src, "<span class='warning'>Nie jesteś w stanie mówić!</span>")
 		return
 
-	// AQ EDIT START - sygnał przed mową; tłumacz obcokrajowca przejmuje angielski i oddaje go we Wspólnym (aquila/code/modules/i18n/foreigner.dm)
+	// AQ EDIT START - sygnał przed mową; tłumacz obcokrajowca przejmuje wypowiedź i oddaje ją przetłumaczoną we Wspólnym albo w języku antagonisty (aquila/code/modules/i18n/foreigner.dm)
 	var/aq_pre_say = SEND_SIGNAL(src, COMSIG_LIVING_AQ_PRE_SAY, original_message, message, message_mods, language, bubble_type, spans, forced)
 	if(aq_pre_say & COMPONENT_AQ_SAY_INTERCEPTED)
 		return TRUE
-	if(aq_pre_say & COMPONENT_AQ_SAY_AS_COMMON)
-		language = /datum/language/common
+	if(aq_pre_say & COMPONENT_AQ_SAY_LANGUAGE_FROM_MODS)
+		language = message_mods[LANGUAGE_EXTENSION]
 	// AQ EDIT END
 
 	var/message_range = 7

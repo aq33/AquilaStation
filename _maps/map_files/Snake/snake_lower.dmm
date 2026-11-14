@@ -9489,8 +9489,8 @@
 /obj/item/multitool{
 	pixel_x = 3
 	},
-/obj/item/storage/belt/utility/atmostech,
-/obj/item/storage/belt/utility/atmostech,
+/obj/item/storage/belt/utility,
+/obj/item/storage/belt/utility,
 /obj/structure/cable,
 /obj/machinery/power/apc/auto_name/west,
 /turf/open/floor/plasteel,

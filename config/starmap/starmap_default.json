@@ -1,7 +1,7 @@
 [
 	{
 	  "name": "Staging",
-	  "desc": "Used for round initialisation and admin event staging",
+	  "desc": "Służy do inicjalizacji rundy i przygotowywania eventów przez adminów",
 	  "threat_level": 0,
 	  "alignment": "unaligned",
 	  "owner": "unaligned",
@@ -24,7 +24,7 @@
 	},
 	{
 	  "name": "Sol",
-	  "desc": "The heart and home of humanity, the centerfold of the technological singularity. Even after the disaster, Earth stands as a veritable stronghold, sprawling cityscape, and absolute paradise. Billions of people live here, the beating heart of the Federation houses wormgates, hypergates, and hyperlanes to the rest of the Federation but you have no business there right now.",
+	  "desc": "Serce i dom ludzkości, centrum technologicznej osobliwości. Nawet po katastrofie Ziemia pozostaje prawdziwą twierdzą, rozległą metropolią i absolutnym rajem. Żyją tu miliardy ludzi, a to bijące serce Federacji mieści bramy tunelowe, hiperbramy i hiperlinie prowadzące do reszty Federacji, ale teraz nie masz tam nic do roboty.",
 	  "threat_level": 0,
 	  "alignment": "solgov",
 	  "owner": "solgov",
@@ -47,7 +47,7 @@
 	},
 	{
 	  "name": "Ross 154",
-	  "desc": "Ross, being one of humanity's earliest colonies, is a massive world rivaling the old moon before it was destroyed. The planet has sprawling orbital drydocks and asteroid mines, while the fertile surface produces a significant quantity of food and organic matter like wood. Ross 154, like many other systems in SolGov space, is one of high importance and as such has a fleet guarding it, though its proximity to Sol means that the Earth Defense Force could detach a Battlegroup to aid the defenders if need be.",
+	  "desc": "Ross, jedna z najwcześniejszych kolonii ludzkości, to ogromny świat, który rozmiarami dorównuje dawnemu Księżycowi sprzed jego zniszczenia. Planeta ma rozległe orbitalne suche doki i kopalnie na asteroidach, a jej żyzna powierzchnia daje sporo żywności i materii organicznej, na przykład drewna. Ross 154, jak wiele innych układów w przestrzeni SolGovu, ma duże znaczenie, dlatego strzeże go flota, a bliskość Sol sprawia, że w razie potrzeby Siły Obrony Ziemi mogą wysłać obrońcom na pomoc grupę bojową.",
 	  "threat_level": 0,
 	  "alignment": "solgov",
 	  "owner": "solgov",
@@ -93,7 +93,7 @@
 	},
 	{
 	  "name": "Alpha Centauri",
-	  "desc": "The edge of the inner systems is a hive of civilian activity. Freighters, transports and all manner of civilian craft arrive and depart from the system's hyperlane from the direction of Sol every few minutes.",
+	  "desc": "Skraj układów wewnętrznych tętni cywilnym ruchem. Frachtowce, transportowce i wszelkiego rodzaju cywilne jednostki co kilka minut przylatują i odlatują hiperlinią prowadzącą od strony Sol.",
 	  "threat_level": 0,
 	  "alignment": "solgov",
 	  "owner": "solgov",
@@ -116,7 +116,7 @@
 	},
 	{
 	  "name": "Sirius",
-	  "desc": "After SolGov realized how badly they had damaged Earth's ecosystem they asked for many industrial plants to shut down. During that time Sirius was only just being colonized and had no proper regulation yet which made moving industry there a very attractive option. Nowadays Sirius serves as the largest industrial system in the Sol Sector.",
+	  "desc": "Gdy SolGov zrozumiał, jak bardzo zniszczył ekosystem Ziemi, wezwał do zamknięcia wielu zakładów przemysłowych. Sirius był wtedy dopiero kolonizowany i nie miał jeszcze właściwych przepisów, więc przeniesienie tam przemysłu było bardzo kuszące. Dziś Sirius jest największym układem przemysłowym w Sektorze Sol.",
 	  "threat_level": 0,
 	  "alignment": "solgov",
 	  "owner": "solgov",
@@ -139,7 +139,7 @@
 	},
 	{
 	  "name": "Wolf 359",
-	  "desc": "The Wolf star system is most notable as the birthplace of the Felinid subspecies of humans. The blue main sequence star in which the system is named serves as a major source of power and study for the stations that orbit it. Without any planets to call its own, Wolf was an excellent testing ground for experimental technology with plenty of room for high population O'Neill Cylinders and research stations",
+	  "desc": "Układ Wolf jest znany przede wszystkim jako miejsce narodzin felinidów, podgatunku ludzi. Niebieska gwiazda ciągu głównego, od której układ wziął nazwę, jest głównym źródłem energii i obiektem badań krążących wokół niej stacji. Bez własnych planet Wolf okazał się doskonałym poligonem dla eksperymentalnych technologii, z mnóstwem miejsca na gęsto zaludnione cylindry O'Neilla i stacje badawcze.",
 	  "threat_level": 0,
 	  "alignment": "solgov",
 	  "owner": "solgov",
@@ -162,7 +162,7 @@
 	},
 	{
 	  "name": "Lalande 21185",
-	  "desc": "Lalande has always held hypergates for Federation travel. From the Delphic Expanse to the Rosetta Cluster, this system is always seeing ships come and go to aid in the war effort and provide corporate and civilian travel alike.",
+	  "desc": "W Lalande od zawsze działały hiperbramy dla ruchu w Federacji. Od Przestworza Delfickiego po Gromadę Rosetta statki ciągle tu przylatują i odlatują, by wspierać wysiłek wojenny oraz obsługiwać ruch korporacyjny i cywilny.",
 	  "threat_level": 0,
 	  "alignment": "solgov",
 	  "owner": "solgov",
@@ -185,7 +185,7 @@
 	},
 	{
 	  "name": "Outpost 45",
-	  "desc": "The rally point for all ships returning from patrols, deliveries, and shakedowns. Here Whiterapids personnel are stripped of their gear, turn in contraband, and allowed to take leave.",
+	  "desc": "Punkt zborny wszystkich okrętów wracających z patroli, dostaw i rejsów próbnych. Tutaj personel WhiteRapids zdaje sprzęt, oddaje kontrabandę i dostaje przepustkę.",
 	  "threat_level": 0,
 	  "alignment": "whiterapids",
 	  "owner": "whiterapids",
@@ -208,7 +208,7 @@
 	},
 	{
 	  "name": "Feliciana",
-	  "desc": "Feliciana is a truly enormous tradeport, being both a connection point between two hypergates but also the point where the routes to all federation members intersect; as such nobody should be surprised at just how well the primary station 'Felicity station' is defended. The station even has robust military docks that any Federation vessel can dock into and resupply",
+	  "desc": "Feliciana to naprawdę ogromny port handlowy: łączy dwie hiperbramy, a do tego krzyżują się tu szlaki do wszystkich członków Federacji, więc nikogo nie powinno dziwić, jak dobrze broniona jest główna stacja, „Stacja Felicity”. Stacja ma nawet solidne doki wojskowe, w których każdy okręt Federacji może zacumować i uzupełnić zapasy.",
 	  "threat_level": 0,
 	  "alignment": "solgov",
 	  "owner": "solgov",
@@ -231,7 +231,7 @@
 	},
 	{
 	  "name": "Argo",
-	  "desc": "A quiet system unfortunately made famous by a popular space shanty, Argo's inhabitants prefer to keep their doors shut from the conflict outside and rarely allow traders or visitors in. Thankfully the planet is orbited by a Czanekcorp station which does in fact happily allow both.",
+	  "desc": "Spokojny układ, który niestety rozsławiła popularna kosmiczna szanta. Mieszkańcy Argo wolą trzymać drzwi zamknięte przed konfliktem na zewnątrz i rzadko wpuszczają handlarzy czy gości. Na szczęście wokół planety krąży stacja CzanekCorp, która chętnie wpuszcza jednych i drugich.",
 	  "threat_level": 0,
 	  "alignment": "nanotrasen",
 	  "owner": "nanotrasen",
@@ -254,7 +254,7 @@
 	},
 	{
 	  "name": "Orion's Arm",
-	  "desc": "Named such for the arm of the tragic hunter who fell to a scorpion, this system along with Outpost 73 keeps surprise attacks at bay and acts as a retreat point for damaged vessels.",
+	  "desc": "Nazwany na cześć ramienia tragicznego myśliwego, który zginął od skorpiona, ten układ razem z Outpost 73 chroni przed atakami z zaskoczenia i służy uszkodzonym okrętom za punkt odwrotu.",
 	  "threat_level": 0,
 	  "alignment": "nanotrasen",
 	  "owner": "nanotrasen",
@@ -277,7 +277,7 @@
 	},
 	{
 	  "name": "Keid",
-	  "desc": "Sometimes called the system of plastic, Keid is the number one producer of plastic in the galaxy and subsequently the number one killer of space life through waste products jettisoned out into the vastness of space. Many space eco-'enthusiasts' have attempted to slow or even halt Keid's main industry to no avail.",
+	  "desc": "Keid, nazywany czasem układem plastiku, jest największym producentem plastiku w galaktyce, a przez to także największym zabójcą kosmicznego życia, bo odpady wyrzuca w bezmiar kosmosu. Wielu kosmicznych „entuzjastów” ekologii próbowało spowolnić albo nawet zatrzymać główny przemysł Keid, ale bez skutku.",
 	  "threat_level": 0,
 	  "alignment": "nanotrasen",
 	  "owner": "nanotrasen",
@@ -300,7 +300,7 @@
 	},
 	{
 	  "name": "Caph",
-	  "desc": "A site of interest to some researchers, ships in Caph are known to experience mysterious, unexplainable anomalies that have puzzled the scientific community for ages.",
+	  "desc": "Miejsce interesujące dla niektórych badaczy. Statki w Caph doświadczają tajemniczych, niewytłumaczalnych anomalii, które od wieków są zagadką dla świata nauki.",
 	  "threat_level": 0,
 	  "alignment": "nanotrasen",
 	  "owner": "nanotrasen",
@@ -323,7 +323,7 @@
 	},
 	{
 	  "name": "Alpha Carinae",
-	  "desc": "Usually visited only briefly by travelers on their routes or merchants traversing to the independent regions, Alpha Carinae has focused itself entirely on tourist attractions, providing some of the best maintenance for civilian vessels and mindless entertainment.",
+	  "desc": "Podróżni zaglądają tu zwykle tylko na chwilę po drodze, a kupcy przelotem w drodze do regionów niezależnych, więc Alpha Carinae postawiła wyłącznie na atrakcje turystyczne: oferuje jeden z najlepszych serwisów cywilnych statków i bezmyślną rozrywkę.",
 	  "threat_level": 0,
 	  "alignment": "nanotrasen",
 	  "owner": "nanotrasen",
@@ -346,7 +346,7 @@
 	},
 	{
 	  "name": "Helios Sigma",
-	  "desc": "Though the system itself is relatively empty, it acts as a major supply highway to both Medea and Gliese 581-G. Of all the systems named after Helios, it is the only one with a brilliant blue star.",
+	  "desc": "Choć sam układ jest dość pusty, stanowi ważny szlak zaopatrzeniowy zarówno do układu Medea, jak i do Gliese 581-G. Ze wszystkich układów nazwanych na cześć Heliosa tylko ten ma jaskrawoniebieską gwiazdę.",
 	  "threat_level": 0,
 	  "alignment": "nanotrasen",
 	  "owner": "nanotrasen",
@@ -369,7 +369,7 @@
 	},
 	{
 	  "name": "Medea",
-	  "desc": "The base of operations for the majority of Nanotrasen's endeavors in combating the Syndicate. Dozens if not hundreds of attacks by Syndicate fleets have uselessly thrashed and flailed against Medea's defenses. Orbital cannons, mine fields, and a fleet always a jump away. No attack has ever been successful which has left the Syndicate more insidious means of attacking the inner systems behind Medea.",
+	  "desc": "Baza operacyjna większości działań Nanotrasen przeciwko Syndykatowi. Dziesiątki, jeśli nie setki ataków flot Syndykatu na próżno rozbiły się o obronę układu Medea: działa orbitalne, pola minowe i flotę zawsze o jeden skok stąd. Żaden atak nigdy się nie powiódł, więc Syndykatowi zostały tylko bardziej podstępne sposoby atakowania układów wewnętrznych leżących za Medeą.",
 	  "threat_level": 0,
 	  "alignment": "nanotrasen",
 	  "owner": "nanotrasen",
@@ -392,7 +392,7 @@
 	},
 	{
 	  "name": "Gliese 581-G",
-	  "desc": "Known as a budget vacation spot, its one inhabitable planet is tidally locked. Which leaves travelers to choose whether they want to spend their time in daylight or experience the nightlife. Recent conflicts have lengthened the list of contraband goods allowed on the planet. ",
+	  "desc": "Znany jako tani cel wakacyjny. Jedyna nadająca się do zamieszkania planeta jest w obrocie synchronicznym, więc podróżni muszą wybrać, czy wolą spędzać czas w świetle dnia, czy poznać nocne życie. Ostatnie konflikty wydłużyły listę kontrabandy dozwolonej na planecie.",
 	  "threat_level": 0,
 	  "alignment": "nanotrasen",
 	  "owner": "nanotrasen",
@@ -415,7 +415,7 @@
 	},
 	{
 	  "name": "Tortuga",
-	  "desc": "Home to the titular Tortuga raiders, the system has long endured internal conflict which gave way to the currently residing raiding group's rise to power. Tortuga itself bears all the scars of its rough history, what little there is anyhow. It serves as a home away from home for all of the pirates and privateers in the sector.",
+	  "desc": "Dom tytułowych Najeźdźców z Tortugi. Układ długo zmagał się z wewnętrznymi konfliktami, które utorowały drogę do władzy obecnej grupie najeźdźców. Sama Tortuga, a raczej to, co z niej zostało, nosi wszystkie blizny swojej burzliwej historii. Jest drugim domem dla wszystkich piratów i korsarzy w sektorze.",
 	  "threat_level": 2,
 	  "alignment": "pirate",
 	  "owner": "pirate",
@@ -438,7 +438,7 @@
 	},
 	{
 	  "name": "Feaf",
-	  "desc": "A housing system for the Tortugan Raiders. They launch most of their raids from this system and protect Tortuga with it. Many weary failed clones and walking genetic defects find their way here to join up with the only people that will give them the time of day. ",
+	  "desc": "Układ mieszkalny Najeźdźców z Tortugi. Stąd wyruszają na większość rajdów i stąd chronią Tortugę. Trafia tu wiele zmęczonych, nieudanych klonów i chodzących wad genetycznych, by przyłączyć się do jedynych ludzi, którzy w ogóle zwrócą na nich uwagę.",
 	  "threat_level": 1,
 	  "alignment": "pirate",
 	  "owner": "pirate",
@@ -460,7 +460,7 @@
 	},
 	{
 	  "name": "Chalawan",
-	  "desc": "An intermediary between Medea and Gliese 581-G. As such it sees both military and civilian travel into the greater reaches of the Rosetta Cluster, though more military than civilian lately.",
+	  "desc": "Pośrednik między układami Medea i Gliese 581-G. Przechodzi tędy zarówno ruch wojskowy, jak i cywilny w głąb Gromady Rosetta, choć ostatnio bardziej wojskowy niż cywilny.",
 	  "threat_level": 1,
 	  "alignment": "unaligned",
 	  "owner": "unaligned",
@@ -483,7 +483,7 @@
 	},
 	{
 	  "name": "Atik",
-	  "desc": "An unremarkable system. A relay for greater Rosetta Cluster travel.",
+	  "desc": "Niczym niewyróżniający się układ. Przekaźnik dla ruchu w dalszych rejonach Gromady Rosetta.",
 	  "threat_level": 1,
 	  "alignment": "unaligned",
 	  "owner": "unaligned",
@@ -506,7 +506,7 @@
 	},
 	{
 	  "name": "Outpost 73",
-	  "desc": "A forward operating base for Whiterapids operations. Well guarded and well organized",
+	  "desc": "Wysunięta baza operacyjna WhiteRapids. Dobrze strzeżona i dobrze zorganizowana.",
 	  "threat_level": 0,
 	  "alignment": "whiterapids",
 	  "owner": "whiterapids",
@@ -529,7 +529,7 @@
 	},
 	{
 	  "name": "Abious II",
-	  "desc": "Abious II was founded by a wealthy individual who tried to turn it into their own private star system. Though their first attempt nearly ruined them it hasn't kept them from trying again.",
+	  "desc": "Abious II założył bogacz, który chciał zrobić z niego swój prywatny układ gwiezdny. Pierwsza próba prawie go zrujnowała, ale nie powstrzymała go przed kolejną.",
 	  "threat_level": 1,
 	  "alignment": "unaligned",
 	  "owner": "unaligned",
@@ -552,7 +552,7 @@
 	},
 	{
 	  "name": "Beta Centauri",
-	  "desc": "Not much can be said about Beta Centauri. The only remarkable thing being how far away it is from its supposed sister system.",
+	  "desc": "O Beta Centauri niewiele można powiedzieć. Jedyne, co się tu wyróżnia, to odległość od rzekomego siostrzanego układu.",
 	  "threat_level": 1,
 	  "alignment": "unaligned",
 	  "owner": "unaligned",
@@ -575,7 +575,7 @@
 	},
 	{
 	  "name": "Abious I",
-	  "desc": "Once upon a time, Abious was founded by a wealthy individual with dreams of establishing their own private stellar system. This dream was shortly crushed by the rude neighbors.",
+	  "desc": "Dawno, dawno temu Abious założył bogacz marzący o własnym prywatnym układzie gwiezdnym. Niegrzeczni sąsiedzi szybko zniweczyli to marzenie.",
 	  "threat_level": 1,
 	  "alignment": "pirate",
 	  "owner": "pirate",
@@ -598,7 +598,7 @@
 	},
 	{
 	  "name": "Ethor",
-	  "desc": "Ethor came under control of pirates shortly after Zurs. Ravaged for its civilian mining equipment, this is where the Tortugan raiders acquire most of their supplies and materials.",
+	  "desc": "Ethor wpadł w ręce piratów wkrótce po układzie Zurs. Złupiony z cywilnego sprzętu górniczego, jest dziś głównym źródłem zaopatrzenia i materiałów Najeźdźców z Tortugi.",
 	  "threat_level": 1,
 	  "alignment": "pirate",
 	  "owner": "pirate",
@@ -621,7 +621,7 @@
 	},
 	{
 	  "name": "Zurs",
-	  "desc": "What was once a prime vacation spot and resort was taken over by pirates. They've pillaged this place dry and now use it as their forward base in the heart of the Rosetta Custer.",
+	  "desc": "Niegdyś znakomite miejsce na wakacje i kurort, dziś przejęte przez piratów. Złupili je do cna i teraz trzymają tu wysuniętą bazę w sercu Gromady Rosetta.",
 	  "threat_level": 1,
 	  "alignment": "pirate",
 	  "owner": "pirate",
@@ -644,7 +644,7 @@
 	},
 	{
 	  "name": "Priar",
-	  "desc": "An unclaimed system, too close to pirate outposts for comfort. Thankfully pirates haven't had much reason to come and claim it, though that may change in the immediate future.",
+	  "desc": "Niczyj układ, nieprzyjemnie blisko pirackich placówek. Na szczęście piraci nie mieli dotąd powodu, by po niego sięgnąć, choć wkrótce może się to zmienić.",
 	  "threat_level": 1,
 	  "alignment": "unaligned",
 	  "owner": "unaligned",
@@ -667,7 +667,7 @@
 	},
 	{
 	  "name": "Viiman",
-	  "desc": "Viiman sees a lot of Nanotrasen traffic, being the shortest route to Karip.",
+	  "desc": "Przez Viiman przechodzi duży ruch Nanotrasen, bo prowadzi tędy najkrótsza droga do układu Karip.",
 	  "threat_level": 0,
 	  "alignment": "unaligned",
 	  "owner": "unaligned",
@@ -690,7 +690,7 @@
 	},
 	{
 	  "name": "Karip",
-	  "desc": "The current hot spot for combat between NT and Syndicate. Wave after wave from both sides meet here to throw themselves at one another in hopes of leaving the other in a worse state.",
+	  "desc": "Obecne ognisko walk między NT a Syndykatem. Fala za falą obie strony rzucają się tu na siebie w nadziei, że przeciwnik wyjdzie z tego w gorszym stanie.",
 	  "threat_level": 0,
 	  "alignment": "nanotrasen",
 	  "owner": "nanotrasen",
@@ -713,7 +713,7 @@
 	},
 	{
 	  "name": "Arbeia",
-	  "desc": "Arbeia sees a lot of Syndicate traffic, it has the shortest route to Karip from the Syndicate-controlled systems.",
+	  "desc": "Przez układ Arbeia przechodzi duży ruch Syndykatu: to najkrótsza droga do układu Karip z układów kontrolowanych przez Syndykat.",
 	  "threat_level": 0,
 	  "alignment": "unaligned",
 	  "owner": "unaligned",
@@ -736,7 +736,7 @@
 	},
 	{
 	  "name": "Zharkov",
-	  "desc": "Zharkov is rumored to have housed an illegal cloning facility at some point during its history. All that's left now are derelict stations and abandoned mining equipment from the last corporate operation.",
+	  "desc": "Według plotek w układzie Zharkov działała kiedyś nielegalna klonownia. Zostały po niej tylko opuszczone stacje i porzucony sprzęt górniczy z ostatniej korporacyjnej operacji.",
 	  "threat_level": 1,
 	  "alignment": "unaligned",
 	  "owner": "unaligned",
@@ -759,7 +759,7 @@
 	},
 	{
 	  "name": "Bemike",
-	  "desc": "Were Bemike uninhabited, it would be a great highway for either side to send more ships straight to the front line. It does however host a variety of small independent mining stations open to trade with either side.",
+	  "desc": "Gdyby Bemike był niezamieszkany, byłby świetną autostradą, którą każda ze stron mogłaby słać kolejne okręty prosto na front. Działa tu jednak wiele małych, niezależnych stacji górniczych, które handlują z obiema stronami.",
 	  "threat_level": 0,
 	  "alignment": "unaligned",
 	  "owner": "unaligned",
@@ -782,7 +782,7 @@
 	},
 	{
 	  "name": "UY Scuti",
-	  "desc": "UY Scuti doesn't see much action, the largest star in the known universe makes it difficult to navigate let alone perform combat maneuvers. Constant pulses of intense radiation and solar flares leave the system extremely dangerous.",
+	  "desc": "W układzie UY Scuti niewiele się dzieje: największa gwiazda znanego wszechświata utrudnia nawigację, nie mówiąc już o manewrach bojowych. Ciągłe impulsy silnego promieniowania i rozbłyski słoneczne czynią układ skrajnie niebezpiecznym.",
 	  "threat_level": 2,
 	  "alignment": "unaligned",
 	  "owner": "unaligned",
@@ -805,7 +805,7 @@
 	},
 	{
 	  "name": "Rubicon",
-	  "desc": "The Rubicon system is in complete control of the Syndicate. It bridges several systems together Rubicon has always stood as a massive stronghold and a hole in the hive so to speak, paving the way to the deeper reaches of Syndicate space.",
+	  "desc": "Układ Rubicon jest w całości pod kontrolą Syndykatu. Łączy ze sobą kilka układów i od zawsze jest potężną twierdzą, że tak powiem, dziurą w ulu, otwierającą drogę w głąb przestrzeni Syndykatu.",
 	  "threat_level": 2,
 	  "alignment": "syndicate",
 	  "owner": "syndicate",
@@ -828,7 +828,7 @@
 	},
 	{
 	  "name": "Veneto",
-	  "desc": "Veneto contains a menacing black hole that keeps it free of any immediate syndicate presence but it makes it a foolhardy task to try and navigate around Rubicon.",
+	  "desc": "W układzie Veneto znajduje się groźna czarna dziura, która trzyma Syndykat z dala od układu, ale przez nią próba ominięcia układu Rubicon to nierozważne przedsięwzięcie.",
 	  "threat_level": 4,
 	  "alignment": "uncharted",
 	  "owner": "uncharted",
@@ -851,7 +851,7 @@
 	},
 	{
 	  "name": "Remus",
-	  "desc": "As an odd break from form, Remus hosts only a few but resilient vessels meant to slow down coming invaders. Buying time for the more industrial regions of Syndicate territory to evacuate the civilians, and brace for a fight.",
+	  "desc": "Wbrew zwyczajowi układu Remus strzeże tylko kilka, za to wytrzymałych okrętów, które mają spowolnić najeźdźców. Zyskują czas, by bardziej uprzemysłowione rejony terytorium Syndykatu mogły ewakuować cywilów i przygotować się do walki.",
 	  "threat_level": 2,
 	  "alignment": "syndicate",
 	  "owner": "syndicate",
@@ -874,7 +874,7 @@
 	},
 	{
 	  "name": "Lombard",
-	  "desc": "The Lombard system is nestled deep in Syndicate territory, safe from much of the traffic of attacking enemy forces. Though if you're here, that's about to change.",
+	  "desc": "Układ Lombard leży głęboko na terytorium Syndykatu, z dala od większości ruchu atakujących sił wroga. Ale skoro tu jesteś, to właśnie się zmienia.",
 	  "threat_level": 2,
 	  "alignment": "syndicate",
 	  "owner": "syndicate",
@@ -897,7 +897,7 @@
 	},
 	{
 	  "name": "Economus",
-	  "desc": "Being so close to the Rubicon has led this system to be somewhat of a staging ground for Syndicate ships. Numerous discarded supply stations drift aimlessly through the void, each one twisted and melted in ways that make your stomach churn. You can only hope they were unmanned stations.",
+	  "desc": "Bliskość układu Rubicon sprawiła, że ten układ stał się czymś w rodzaju punktu zbornego okrętów Syndykatu. Liczne porzucone stacje zaopatrzeniowe dryfują bez celu w pustce, każda powykręcana i stopiona tak, że ściska cię w żołądku. Możesz tylko mieć nadzieję, że nie było na nich załogi.",
 	  "threat_level": 2,
 	  "alignment": "syndicate",
 	  "owner": "syndicate",
@@ -920,7 +920,7 @@
 	},
 	{
 	  "name": "Volsci",
-	  "desc": "Volsci has never been anything more than an area of space for Syndicate scouts to keep watch over their territory. With no resources to be had, no star to orbit, the empty cold space makes for an excellent listening outpost for Syndicate ships to give the Gatewatchers at Rubicon a heads up if there are any unwanted guests.",
+	  "desc": "Układ Volsci zawsze był tylko skrawkiem przestrzeni, z którego zwiadowcy Syndykatu pilnują swojego terytorium. Bez surowców i bez gwiazdy, wokół której można krążyć, pusta, zimna przestrzeń to doskonała placówka nasłuchowa, z której okręty Syndykatu ostrzegają Strażników Bramy w układzie Rubicon przed nieproszonymi gośćmi.",
 	  "threat_level": 2,
 	  "alignment": "syndicate",
 	  "owner": "syndicate",
@@ -943,7 +943,7 @@
 	},
 	{
 	  "name": "Lesziru",
-	  "desc": "The syndicate have only used this system as a last resort fallback point. There's just enough infrastructure to house a few retreating fleets and nothing more.",
+	  "desc": "Syndykat używał tego układu tylko jako ostatniego punktu odwrotu. Infrastruktury starcza tu akurat na kilka wycofujących się flot i nic więcej.",
 	  "threat_level": 1,
 	  "alignment": "syndicate",
 	  "owner": "syndicate",
@@ -966,7 +966,7 @@
 	},
 	{
 	  "name": "Zeta Reticuli",
-	  "desc": "There are two reasons the Syndicate haven't taken Zeta Reticuli yet. One, it's inhabited by the infamous Randy Random. That comes with its own array of problems. The more public issue is the thick nebula that makes it challenging to capture, hold, and even find anything useful unless someone wants billions of cubic kilometers of inert space dust.",
+	  "desc": "Są dwa powody, dla których Syndykat jeszcze nie zajął układu Zeta Reticuli. Po pierwsze, mieszka tu osławiony Randy Random, a to oznacza własny zestaw problemów. Bardziej znanym problemem jest gęsta mgławica, przez którą trudno ten układ zdobyć, utrzymać, a nawet znaleźć w nim cokolwiek przydatnego, chyba że ktoś potrzebuje miliardów kilometrów sześciennych obojętnego pyłu kosmicznego.",
 	  "threat_level": 0,
 	  "alignment": "unaligned",
 	  "owner": "unaligned",
@@ -989,7 +989,7 @@
 	},
 	{
 	  "name": "Zalosi",
-	  "desc": "Zalosi stands as a guardian for the back door to the Syndicate systems. Heavily guarded and ever vigilant, they regularly patrol this sector along with Gunniibuu.",
+	  "desc": "Układ Zalosi strzeże tylnych drzwi do układów Syndykatu. Jest silnie broniony i zawsze czujny, a jego siły regularnie patrolują ten sektor razem z siłami z Guriibuu.",
 	  "threat_level": 2,
 	  "alignment": "syndicate",
 	  "owner": "syndicate",
@@ -1012,7 +1012,7 @@
 	},
 	{
 	  "name": "Guriibuu",
-	  "desc": "Though Guniibuu is no longer the only tertiary star system known by the Federation, it still stands as a great landmark and tourist destination were it not for the constant Syndicate patrols.",
+	  "desc": "Choć Guriibuu nie jest już jedynym znanym Federacji układem potrójnym, nadal byłby wspaniałym punktem orientacyjnym i celem turystów, gdyby nie ciągłe patrole Syndykatu.",
 	  "threat_level": 1,
 	  "alignment": "unaligned",
 	  "owner": "unaligned",
@@ -1127,7 +1127,7 @@
 	},
 	{
 	  "name": "Dolos Remnants",
-	  "desc": "A place where giants fell. You feel nothing save for an odd sense of unease and an eerie silence.",
+	  "desc": "Miejsce, w którym upadli giganci. Nie czujesz nic poza dziwnym niepokojem i upiorną ciszą.",
 	  "threat_level": 4,
 	  "alignment": "syndicate",
 	  "owner": "syndicate",

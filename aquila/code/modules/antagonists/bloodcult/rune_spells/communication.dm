@@ -128,13 +128,14 @@
 		if (mind.current == speaker)//echoes are annoying
 			continue
 		if (IS_CULTIST(mind.current))//failsafe for cultist brains put in MMIs
-			to_chat(mind.current, "<span class='game say'>Głos <b>[speaker_name]</b> odbija się echem w twojej głowie: [span_cultlarge(raw_message)]</span>")
+			// obcokrajowiec dostaje treść po angielsku, a Polak mowę obcokrajowca po polsku (aquila/code/modules/i18n/foreigner.dm)
+			aq_to_chat_speech(mind.current, "<span class='game say'>Głos <b>[speaker_name]</b> odbija się echem w twojej głowie: [span_cultlarge(raw_message)]</span>", raw_message, speaker)
 
 	for(var/mob/living/simple_animal/astral_projection/astral in GLOB.astral_projections)
-		to_chat(astral, "<span class='game say'><b>[speaker_name]</b> przekazuje: [span_cultlarge(raw_message)]</span>")
+		aq_to_chat_speech(astral, "<span class='game say'><b>[speaker_name]</b> przekazuje: [span_cultlarge(raw_message)]</span>", raw_message, speaker)
 
 	for(var/mob/dead/observer/observer in GLOB.player_list)
-		to_chat(observer, "<span class='game say'><b>[speaker_name]</b> przekazuje: [span_cultlarge(raw_message)]</span>")
+		aq_to_chat_speech(observer, "<span class='game say'><b>[speaker_name]</b> przekazuje: [span_cultlarge(raw_message)]</span>", raw_message, speaker)
 	L.log_talk(raw_message, LOG_SAY, tag = "cult communication rune")
 
 /obj/effect/cult_ritual/cult_communication/HasProximity(atom/movable/AM)

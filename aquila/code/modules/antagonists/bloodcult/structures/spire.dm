@@ -234,8 +234,9 @@ GLOBAL_LIST_INIT(cult_spires, list())
 		if(!found_z)
 			continue
 
-		to_chat(cult_member, msg)
+		// obcokrajowiec dostaje treść po angielsku, a Polak mowę obcokrajowca po polsku (aquila/code/modules/i18n/foreigner.dm)
+		aq_to_chat_speech(cult_member, msg, message, user)
 
 	for(var/mob/dead/ghost in GLOB.dead_mob_list)
-		to_chat(ghost, "[FOLLOW_LINK(ghost, user)] [msg]")
+		aq_to_chat_speech(ghost, "[FOLLOW_LINK(ghost, user)] [msg]", message, user)
 	return FALSE

@@ -9,6 +9,8 @@
 #define SHUTTLE_CRAFT_SEARCH_RANGE 60
 /// Jak długo komputer dokowania czeka na wczytanie wnętrza asteroidy
 #define SHUTTLE_CRAFT_ASTEROID_WAIT (30 SECONDS)
+/// Jak długo po starcie prom nie dokuje z powrotem do gospodarza, na którego jeszcze nachodzi
+#define SHUTTLE_CRAFT_LAUNCH_GRACE (15 SECONDS)
 
 /// Miejsce lądowania wybrane przez komputer dokowania albo parking w rezerwacji; wymiary i kierunek jak u promu
 /obj/docking_port/stationary/shuttle_craft_spot
@@ -28,6 +30,11 @@
 	var/list/hull_offsets
 	/// Przesunięcia pól przed wyjściem z promu względem mobilnego portu
 	var/list/exit_offsets
+	/// Okręt, z którego prom ostatnio wystartował, i kiedy (żeby od razu do niego nie wrócić)
+	var/obj/structure/overmap/shuttle_launch_host
+	var/shuttle_launched_at = 0
+	/// Podpowiedź dla pilota, czemu prom nie dokuje, najwyżej co 5 sekund
+	COOLDOWN_DECLARE(shuttle_dock_hint_cooldown)
 
 /obj/structure/overmap/small_craft/transport/Destroy()
 	if(!shuttle_port)
@@ -35,6 +42,9 @@
 	var/obj/docking_port/mobile/interior = shuttle_port
 	var/obj/docking_port/stationary/parking = shuttle_parking
 	var/datum/turf_reservation/parking_reservation = shuttle_parking_reservation
+	if(shuttle_landing_eye)
+		shuttle_manual_landing_end(shuttle_landing_eye)
+	shuttle_launch_host = null
 	// Najpierw small_craft/Destroy ewakuuje załogę; rezerwacja z wnętrzem w locie znika dopiero potem
 	. = ..()
 	// Wnętrze w locie stoi na parkingu: bez jednostki nie ma dokąd wrócić, więc znika razem z nią
@@ -70,6 +80,8 @@
 	linked_virtual_z = get_new_virtual_z()
 	interior_status = INTERIOR_READY
 	shuttle_dock_hide(port.docked)
+	// Napęd FTL wiąże się z okrętem w LateInitialize tylko przy wczytaniu mapy: prom tworzony przez port robi to tutaj
+	set_ftl_tether(ftl_home_overmap())
 
 /// Pole, przy którym czeka ukryta jednostka, kiedy wnętrze stoi w doku
 /obj/structure/overmap/small_craft/transport/proc/shuttle_anchor_turf()
@@ -132,10 +144,10 @@
 		for(var/mob/M in A)
 			M.update_overmap()
 
-/// Nowy port dla tego wnętrza: te same wymiary i kierunek, więc wnętrze nigdy się nie obraca
-/obj/structure/overmap/small_craft/transport/proc/shuttle_new_spot(turf/T, spot_name)
+/// Nowy port dla tego wnętrza: te same wymiary i kierunek (chyba że pilot obrócił miejsce lądowania kamerą)
+/obj/structure/overmap/small_craft/transport/proc/shuttle_new_spot(turf/T, spot_name, spot_dir)
 	var/obj/docking_port/stationary/shuttle_craft_spot/spot = new(T)
-	spot.dir = shuttle_port.dir
+	spot.dir = spot_dir || shuttle_port.dir
 	spot.width = shuttle_port.width
 	spot.height = shuttle_port.height
 	spot.dwidth = shuttle_port.dwidth
@@ -189,9 +201,22 @@
 	shuttle_cache_offsets()
 	shuttle_unhide()
 	last_overmap = host
+	if(old_port == shuttle_home_port)
+		set_ftl_tether(host)
+	else if(!get_ftl_tether())
+		set_ftl_tether(ftl_home_overmap())
 	check_overmap_elegibility(ignore_position = TRUE, ignore_cooldown = TRUE)
+	shuttle_launch_host = host
+	shuttle_launched_at = world.time
+	// Pilot siada za sterem dopiero po starcie, więc podpowiedź o trybie dokowania z check_overmap_elegibility do nikogo
+	// nie dociera: prom z wnętrzem od razu jest gotowy do dokowania
+	var/obj/item/fighter_component/docking_computer/DC = loadout.get_slot(HARDPOINT_SLOT_DOCKING)
+	if(DC)
+		DC.docking_mode = TRUE
 	shuttle_refresh_occupants()
 	relay('nsv13/sound/effects/ship/boarding_pod.ogg', "<span class='notice'>Zaczepy dokowania zwalniają się i [src] odrywa się od [host].</span>")
+	if(DC)
+		relay(null, "<span class='notice'>Tryb dokowania włączony: wleć w sojuszniczy okręt albo asteroidę, żeby zadokować.</span>")
 	if(istype(old_port, /obj/docking_port/stationary/shuttle_craft_spot))
 		qdel(old_port, TRUE)
 	log_game("[key_name(user)] launched [src] from [old_port] ([host])")
@@ -200,15 +225,24 @@
 /obj/structure/overmap/small_craft/transport/docking_act(obj/structure/overmap/OM)
 	if(!shuttle_port)
 		return ..()
-	if(shuttle_docked_at || OM == src)
+	if(shuttle_docked_at || OM == src || shuttle_landing_eye)
 		return FALSE
-	if(is_docking_on_cooldown())
-		return FALSE
-	var/obj/item/fighter_component/docking_computer/DC = loadout.get_slot(HARDPOINT_SLOT_DOCKING)
-	if(!DC || !DC.docking_mode)
+	// Tuż po starcie prom wciąż nachodzi na gospodarza: bez tego od razu by do niego wrócił
+	if(OM == shuttle_launch_host && world.time < shuttle_launched_at + SHUTTLE_CRAFT_LAUNCH_GRACE)
 		return FALSE
 	if(istype(OM, /obj/structure/overmap/asteroid/shipbreak_wreck))
 		return FALSE // Wnętrze wraku istnieje tylko w klatce magnesu (jak w small_craft/docking_act)
+	var/obj/item/fighter_component/docking_computer/DC = loadout.get_slot(HARDPOINT_SLOT_DOCKING)
+	if(!DC)
+		shuttle_dock_hint(OM, "[src] nie ma komputera dokowania, więc nie zadokuje przy [OM]. Zamontuj go, kiedy prom stoi w doku.")
+		return FALSE
+	if(DC.docking_cooldown)
+		if(!isasteroid(OM) || OM.interior_status == INTERIOR_READY) // Przy wczytywanej asteroidzie czeka się na skan
+			shuttle_dock_hint(OM, "Komputer dokowania [src] jeszcze się przygotowuje. Spróbuj ponownie za kilka sekund.")
+		return FALSE
+	if(!DC.docking_mode)
+		shuttle_dock_hint(OM, "Tryb dokowania jest wyłączony. Włącz go przyciskiem „Tryb dokowania” w panelu jednostki i wleć w [OM].")
+		return FALSE
 	if(istype(OM, /obj/structure/overmap/asteroid) && OM.interior_status != INTERIOR_READY)
 		var/obj/structure/overmap/asteroid/AS = OM
 		AS.interior_mode = INTERIOR_DYNAMIC
@@ -216,19 +250,30 @@
 		RegisterSignal(AS, COMSIG_INTERIOR_DONE_LOADING, PROC_REF(shuttle_asteroid_loaded))
 		SSstar_system.queue_for_interior_load(AS)
 		addtimer(CALLBACK(src, PROC_REF(shuttle_asteroid_timeout), AS), SHUTTLE_CRAFT_ASTEROID_WAIT)
+		if(pilot)
+			to_chat(pilot, span_notice("Komputer dokowania skanuje [AS]. To potrwa chwilę, zostań w pobliżu."))
 		return TRUE
 	DC.docking_cooldown = TRUE
-	INVOKE_ASYNC(src, PROC_REF(shuttle_try_land), OM)
+	INVOKE_ASYNC(src, PROC_REF(shuttle_begin_landing), OM)
 	return TRUE
+
+/// Pilot wleciał w sojuszniczy okręt albo asteroidę, a prom nie może zadokować: mówi mu, co zrobić
+/obj/structure/overmap/small_craft/transport/proc/shuttle_dock_hint(obj/structure/overmap/OM, message)
+	if(!pilot || !COOLDOWN_FINISHED(src, shuttle_dock_hint_cooldown))
+		return
+	if(!isasteroid(OM) && OM.faction != faction)
+		return
+	COOLDOWN_START(src, shuttle_dock_hint_cooldown, 5 SECONDS)
+	to_chat(pilot, span_warning(message))
 
 /obj/structure/overmap/small_craft/transport/proc/shuttle_asteroid_loaded(obj/structure/overmap/asteroid/AS)
 	SIGNAL_HANDLER
 	UnregisterSignal(AS, COMSIG_INTERIOR_DONE_LOADING)
-	INVOKE_ASYNC(src, PROC_REF(shuttle_try_land), AS)
+	INVOKE_ASYNC(src, PROC_REF(shuttle_begin_landing), AS)
 
 /// Asteroida zniknęła albo jej wnętrze się nie wczytało: komputer dokowania nie może czekać w nieskończoność
 /obj/structure/overmap/small_craft/transport/proc/shuttle_asteroid_timeout(obj/structure/overmap/asteroid/AS)
-	if(QDELETED(src) || shuttle_docked_at)
+	if(QDELETED(src) || shuttle_docked_at || shuttle_landing_eye)
 		return
 	if(!QDELETED(AS))
 		UnregisterSignal(AS, COMSIG_INTERIOR_DONE_LOADING)
@@ -287,26 +332,30 @@
 	if(length(OM.docking_points))
 		return get_turf(OM.docking_points[1])
 
-/// Czy wnętrze zmieści się z mobilnym portem na polu (x, y, z)
-/obj/structure/overmap/small_craft/transport/proc/shuttle_spot_free(obj/structure/overmap/OM, x, y, z)
-	for(var/list/offset as anything in hull_offsets)
-		var/tx = x + offset[1]
-		var/ty = y + offset[2]
-		if(tx <= TRANSITIONEDGE || ty <= TRANSITIONEDGE || tx > world.maxx - TRANSITIONEDGE || ty > world.maxy - TRANSITIONEDGE)
+/// Czy wnętrze zmieści się z mobilnym portem na polu (x, y, z); offsets to kształt kadłuba (domyślnie bez obrotu)
+/obj/structure/overmap/small_craft/transport/proc/shuttle_spot_free(obj/structure/overmap/OM, x, y, z, list/offsets)
+	for(var/list/offset as anything in (offsets || hull_offsets))
+		if(!shuttle_landing_turf_free(OM, locate(x + offset[1], y + offset[2], z)))
 			return FALSE
-		var/turf/T = locate(tx, ty, z)
-		if(!isspaceturf(T) || istype(T, /turf/open/space/transit) || istype(T.loc, /area/shuttle))
-			return FALSE
-		if(OM.roomReservation && SSmapping.used_turfs[T] != OM.roomReservation)
-			return FALSE
-		if(OM.boarding_interior && OM.interior_mode == INTERIOR_EXCLUSIVE && tx <= OM.boarding_interior.width && ty <= OM.boarding_interior.height)
-			return FALSE // To wnętrze zniknie razem z poziomem abordażu
-		for(var/atom/movable/AM as anything in T)
-			if(AM.density)
-				return FALSE
 	return TRUE
 
-/// Najpierw miejsca, z których wyjście prowadzi prosto na podłogę celu, potem wolny kosmos najbliżej środka
+/// Czy na tym polu może stanąć kawałek kadłuba: wolny kosmos w obrębie wnętrza celu
+/obj/structure/overmap/small_craft/transport/proc/shuttle_landing_turf_free(obj/structure/overmap/OM, turf/T)
+	if(!T || T.x <= TRANSITIONEDGE || T.y <= TRANSITIONEDGE || T.x > world.maxx - TRANSITIONEDGE || T.y > world.maxy - TRANSITIONEDGE)
+		return FALSE
+	if(!isspaceturf(T) || istype(T, /turf/open/space/transit) || istype(T.loc, /area/shuttle))
+		return FALSE
+	if(OM.roomReservation && SSmapping.used_turfs[T] != OM.roomReservation)
+		return FALSE
+	if(OM.boarding_interior && OM.interior_mode == INTERIOR_EXCLUSIVE && T.x <= OM.boarding_interior.width && T.y <= OM.boarding_interior.height)
+		return FALSE // To wnętrze zniknie razem z poziomem abordażu
+	for(var/atom/movable/AM as anything in T)
+		if(AM.density)
+			return FALSE
+	return TRUE
+
+/// Najpierw miejsca, z których wyjście prowadzi prosto na podłogę celu, potem takie, z których wychodzi się na kosmos
+/// tuż przy skale (górnik od razu kopie), a na końcu wolny kosmos najbliżej środka
 /obj/structure/overmap/small_craft/transport/proc/shuttle_find_spot(obj/structure/overmap/OM, turf/center)
 	var/z = center.z
 	var/best_distance = INFINITY
@@ -330,6 +379,26 @@
 			if(shuttle_spot_free(OM, x, y, z))
 				best = locate(x, y, z)
 				best_distance = distance
+				break
+		CHECK_TICK
+	if(best)
+		return best
+	for(var/turf/closed/mineral/rock in RANGE_TURFS(SHUTTLE_CRAFT_SEARCH_RANGE, center))
+		var/distance = get_dist(rock, center)
+		if(distance >= best_distance)
+			continue
+		for(var/dir in GLOB.cardinals)
+			var/turf/outside = get_step(rock, dir)
+			if(!isspaceturf(outside) || istype(outside, /turf/open/space/transit))
+				continue
+			for(var/list/offset as anything in exit_offsets)
+				var/x = outside.x - offset[1]
+				var/y = outside.y - offset[2]
+				if(shuttle_spot_free(OM, x, y, z))
+					best = locate(x, y, z)
+					best_distance = distance
+					break
+			if(best_distance == distance)
 				break
 		CHECK_TICK
 	if(best)
@@ -362,6 +431,8 @@
 		DC.docking_cooldown = TRUE
 		addtimer(VARSET_CALLBACK(DC, docking_cooldown, FALSE), 20 SECONDS)
 		DC.docking_mode = FALSE
+	if(port == shuttle_home_port)
+		set_ftl_tether(OM)
 	resize = 0
 	pixel_w = initial(pixel_w)
 	pixel_z = initial(pixel_z)
@@ -380,6 +451,9 @@
 	relay('nsv13/sound/effects/ship/boarding_pod.ogg', "<span class='notice'>[src] dokuje przy [OM]. Zaczepy zablokowane.</span>")
 	for(var/mob/living/M in operators)
 		stop_piloting(M)
+	// Po lądowaniu ludzie należą do gospodarza: nikt już nie wyłączy im pętli alarmu promu ani dźwięku skoku
+	set_master_caution(FALSE)
+	stop_relay(CHANNEL_SHIP_ALERT)
 	shuttle_refresh_occupants()
 	return TRUE
 
@@ -409,6 +483,9 @@
 	if(pulled)
 		user.start_pulling(pulled)
 	mobs_in_ship -= AM
+	if(user)
+		user.stop_sound_channel(CHANNEL_HEARTBEAT)
+		user.stop_sound_channel(CHANNEL_SHIP_ALERT)
 	return TRUE
 
 /// Wyjście zastawione tylko zamkniętą, zasilaną i nieryglowaną śluzą (właz przy drzwiach śluzy statku), do której
@@ -435,3 +512,4 @@
 
 #undef SHUTTLE_CRAFT_SEARCH_RANGE
 #undef SHUTTLE_CRAFT_ASTEROID_WAIT
+#undef SHUTTLE_CRAFT_LAUNCH_GRACE

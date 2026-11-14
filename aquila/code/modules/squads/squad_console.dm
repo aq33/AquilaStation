@@ -48,8 +48,6 @@
 	data["has_camera"] = has_camera
 	data["camera_target"] = bodycam?.target ? list("ref" = REF(bodycam.target), "name" = bodycam.target.real_name, "active" = bodycam.target.aq_has_squad_bodycam()) : null
 	data["map_ref"] = bodycam?.map_name
-	var/mob/living/living_user = user
-	data["order_cooldown"] = istype(living_user) ? round(max(0, living_user.aq_next_squad_order - world.time) / 10) : 0
 	return data
 
 /// Wspólna obsługa akcji; zwraca TRUE, gdy coś się zmieniło. state to lista stanu okna (wybrany poziom mapy, odstęp drukowania).
@@ -123,12 +121,16 @@
 					to_chat(squad_member, "<span class='sciradio'>Dodatkowy cel drużyny: [orders]</span>")
 			return TRUE
 		if("order")
-			if(!squad || !user.aq_can_issue_order())
+			if(!squad || !squad.aq_can_issue_order(user))
 				return FALSE
 			var/message = tgui_input_text(user, "Rozkaz dla drużyny [squad] (do [SQUAD_ORDER_MAX_LEN] znaków). Drużyna zobaczy go na ekranie z twoim portretem.", "Rozkaz z CIC", max_length = SQUAD_ORDER_MAX_LEN, multiline = TRUE, encode = FALSE)
 			if(!message)
 				return FALSE
 			return squad.aq_issue_order(user, message, from_console = TRUE)
+		if("aq_gear_ping")
+			if(!squad)
+				return FALSE
+			return !isnull(squad.aq_ping_gear(user))
 		if("aq_toggle_access")
 			if(!squad)
 				return FALSE
@@ -152,6 +154,14 @@
 				return FALSE
 			state["next_print"] = world.time + 5 SECONDS
 			new /obj/item/clothing/neck/squad(get_turf(source), squad)
+			playsound(source, 'sound/machines/terminal_insert_disc.ogg', 100, 0)
+			return TRUE
+		if("aq_print_pager")
+			if(!squad || !source || world.time < state["next_print"])
+				return FALSE
+			state["next_print"] = world.time + 5 SECONDS
+			new /obj/item/squad_pager(get_turf(source), squad)
+			log_game("[key_name(user)] printed a squad pager for squad [squad]")
 			playsound(source, 'sound/machines/terminal_insert_disc.ogg', 100, 0)
 			return TRUE
 		if("aq_create_squad")

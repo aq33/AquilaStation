@@ -34,6 +34,8 @@
 		return
 	if(!lobby_hud || lobby_hud.client_ref != client)
 		QDEL_NULL(lobby_hud)
+		// podpowiedź zawieszona z poprzedniego ekranu zostawała w lobby białym prostokątem
+		closeToolTip(src)
 		lobby_hud = new(src)
 	lobby_hud.refresh()
 
@@ -59,6 +61,8 @@
 	var/atom/movable/screen/aq_lobby/shutter
 	var/atom/movable/screen/aq_lobby/button/collapse/collapse_button
 	var/atom/movable/screen/aq_lobby/tv/tv
+	/// Napis na telewizorku: osobny obiekt, żeby zmiana tekstu co sekundę nie zmieniała wyglądu telewizora z liniami skanowania
+	var/atom/movable/screen/aq_lobby/tv_text/tv_text
 	var/collapsed = FALSE
 	var/animating = FALSE
 
@@ -82,6 +86,7 @@
 	collapse_button = add_element(/atom/movable/screen/aq_lobby/button/collapse, lobby_icon, -54, 82, FALSE)
 	// telewizorek przy prawej krawędzi widoku; ma własny plik 128x96, żeby płótno nie wystawało poza widok
 	tv = add_element(/atom/movable/screen/aq_lobby/tv, 'aquila/icons/hud/lobby_tv.dmi', -132, 32, FALSE, "RIGHT", 96)
+	tv_text = add_element(/atom/movable/screen/aq_lobby/tv_text, null, -132, 32, FALSE, "RIGHT", 96)
 	client_ref.screen += elements
 	START_PROCESSING(SSprocessing, src)
 
@@ -94,6 +99,7 @@
 	shutter = null
 	collapse_button = null
 	tv = null
+	tv_text = null
 	owner = null
 	client_ref = null
 	return ..()
@@ -261,6 +267,8 @@
 	var/shown = TRUE
 	/// Czy grafika ma wariant _disabled
 	var/has_disabled_state = FALSE
+	/// Stan nakładek z ostatniego update_overlays_lobby() (przebudowa tylko przy zmianie)
+	var/shown_overlay
 
 /atom/movable/screen/aq_lobby/button/update_state()
 	shown = should_show()
@@ -367,8 +375,13 @@
 	return lobby.owner?.lobby_polls_available
 
 /atom/movable/screen/aq_lobby/button/small/poll/update_overlays_lobby()
+	// odświeżanie co sekundę: nakładki przebudowujemy tylko przy zmianie, inaczej przycisk migał
+	var/new_polls = lobby.owner?.lobby_new_polls ? "new" : "none"
+	if(new_polls == shown_overlay)
+		return
+	shown_overlay = new_polls
 	cut_overlays()
-	if(lobby.owner?.lobby_new_polls)
+	if(new_polls == "new")
 		add_overlay(mutable_appearance(icon, "new_poll"))
 		name = "Ankiety (nowe!)"
 	else
@@ -417,12 +430,15 @@
 
 /// Lampka gotowości na sznurku rolety
 /atom/movable/screen/aq_lobby/button/collapse/update_overlays_lobby()
-	cut_overlays()
 	var/blip
 	if(lobby.game_phase() != "pregame" && lobby.game_phase() != "startup")
 		blip = "ready_blip_disabled"
 	else
 		blip = lobby.owner?.ready == PLAYER_READY_TO_PLAY ? "ready_blip_ready" : "ready_blip_not_ready"
+	if(blip == shown_overlay)
+		return
+	shown_overlay = blip
+	cut_overlays()
 	add_overlay(mutable_appearance(icon, blip))
 
 /atom/movable/screen/aq_lobby/tv
@@ -430,10 +446,6 @@
 	icon = 'aquila/icons/hud/lobby_tv.dmi'
 	icon_state = "newplayer"
 	layer = SPLASHSCREEN_LAYER + 3
-	maptext_x = 14
-	maptext_y = 96 - 28 - 50
-	maptext_width = 80
-	maptext_height = 50
 
 /atom/movable/screen/aq_lobby/tv/Initialize(mapload, datum/aq_lobby_hud/new_lobby)
 	. = ..()
@@ -445,10 +457,27 @@
 	scanlines.alpha = 20
 	add_overlay(scanlines)
 
-/atom/movable/screen/aq_lobby/tv/update_state()
+/// Napis odliczania nad telewizorkiem. Nowy maptext na samym telewizorze zmieniał co sekundę jego wygląd
+/// i restartował animowane linie skanowania (zacinanie ekranu lobby)
+/atom/movable/screen/aq_lobby/tv_text
+	name = "Stan serwera"
+	layer = SPLASHSCREEN_LAYER + 4
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	maptext_x = 14
+	maptext_y = 96 - 28 - 50
+	maptext_width = 80
+	maptext_height = 50
+	/// Ostatni ustawiony tekst (maptext zmieniamy tylko przy zmianie)
+	var/shown_text
+
+/atom/movable/screen/aq_lobby/tv_text/update_state()
 	if(!lobby)
 		return
-	maptext = MAPTEXT("<span style='color:#FFFFFF;text-align:center;font-size:6px'>[jointext(lobby.tv_lines(), "<br>")]</span>")
+	var/text = jointext(lobby.tv_lines(), "<br>")
+	if(text == shown_text)
+		return
+	shown_text = text
+	maptext = MAPTEXT("<span style='color:#FFFFFF;text-align:center;font-size:6px'>[text]</span>")
 
 #undef LOBBY_CANVAS_HEIGHT
 #undef LOBBY_COLLAPSE_SLIDE

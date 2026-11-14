@@ -1,8 +1,9 @@
 // AQUILA: mapa taktyczna drużyn (pager i konsola XO).
 // Podkład to plan poziomu z serwera (JSON: rodzaje pól i obszary), rysowany tu na canvasie
 // z siatką sektorów; kropki członków i znaczniki rysujemy na nim.
+// Przybliżoną mapę przesuwa się przeciąganiem myszą.
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { Box, Button, Stack } from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
 
@@ -61,6 +62,8 @@ export type SquadInfo = {
   /** Blipy członków: klucz -> data URI, raz na drużynę */
   blips: Record<string, string>;
   markers: SquadMarker[];
+  /** Sekundy do następnego rozkazu dla drużyny (odstęp wspólny dla dowódcy i XO) */
+  order_cooldown: number;
 };
 
 export type MapLevel = { z: number; name: string };
@@ -137,6 +140,9 @@ const DEPARTMENTS: Record<string, string> = {
   '#ec7701': 'Uzbrojenie',
   '#2681a5': 'Hangar',
 };
+
+/** Od tylu pikseli ruchu myszy wciśnięcie przycisku to przeciąganie mapy, a nie kliknięcie */
+const DRAG_THRESHOLD = 4;
 
 /** Podpisy tylko dla obszarów z co najmniej tyloma polami */
 const LABEL_MIN_TILES = 30;
@@ -339,6 +345,7 @@ export const SquadTacticalMap = (props: MapProps) => {
   );
   // po pierwszym rysowaniu dopasowujemy zoom do szerokości panelu (konsola XO ma go dużo więcej niż pager)
   const containerRef = useRef<HTMLDivElement>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
   const [fitted, setFitted] = useState(false);
   useEffect(() => {
     const width = containerRef.current?.clientWidth;
@@ -359,6 +366,70 @@ export const SquadTacticalMap = (props: MapProps) => {
       drawLayout(canvasRef.current, layout, zoom);
     }
   }, [layout, zoom]);
+  // przy zmianie zoomu zostaje ten sam środek widoku (w polach planu)
+  const pendingCentre = useRef<{ x: number; y: number } | null>(null);
+  const changeZoom = (newZoom: number) => {
+    const scroller = scrollRef.current;
+    if (scroller && newZoom !== zoom) {
+      pendingCentre.current = {
+        x: (scroller.scrollLeft + scroller.clientWidth / 2) / zoom,
+        y: (scroller.scrollTop + scroller.clientHeight / 2) / zoom,
+      };
+    }
+    setZoom(newZoom);
+  };
+  useLayoutEffect(() => {
+    const scroller = scrollRef.current;
+    const centre = pendingCentre.current;
+    if (!scroller || !centre) {
+      return;
+    }
+    pendingCentre.current = null;
+    scroller.scrollLeft = centre.x * zoom - scroller.clientWidth / 2;
+    scroller.scrollTop = centre.y * zoom - scroller.clientHeight / 2;
+  }, [zoom]);
+
+  // przeciąganie mapy: moved odróżnia przeciągnięcie od kliknięcia stawiającego znacznik
+  const drag = useRef({ moved: false, stop: null as (() => void) | null });
+  const [dragging, setDragging] = useState(false);
+  useEffect(() => () => drag.current.stop?.(), []);
+  const handleMouseDown = (e) => {
+    const scroller = scrollRef.current;
+    if (e.button !== 0 || !scroller) {
+      return;
+    }
+    // bez zaznaczania tekstu i przeciągania obrazków znaczników
+    e.preventDefault();
+    drag.current.stop?.();
+    drag.current.moved = false;
+    const startX = e.clientX;
+    const startY = e.clientY;
+    const startLeft = scroller.scrollLeft;
+    const startTop = scroller.scrollTop;
+    const mousemove = (event: MouseEvent) => {
+      const dx = event.clientX - startX;
+      const dy = event.clientY - startY;
+      if (!drag.current.moved) {
+        if (Math.hypot(dx, dy) <= DRAG_THRESHOLD) {
+          return;
+        }
+        drag.current.moved = true;
+        setDragging(true);
+      }
+      scroller.scrollLeft = startLeft - dx;
+      scroller.scrollTop = startTop - dy;
+    };
+    const stop = () => {
+      document.removeEventListener('mousemove', mousemove);
+      document.removeEventListener('mouseup', stop);
+      drag.current.stop = null;
+      setDragging(false);
+    };
+    drag.current.stop = stop;
+    document.addEventListener('mousemove', mousemove);
+    document.addEventListener('mouseup', stop);
+  };
+
   const toLeft = (x: number) => (x - map.origin_x + 0.5) * zoom;
   const toTop = (y: number) => (map.height - (y - map.origin_y) - 0.5) * zoom;
 
@@ -391,7 +462,7 @@ export const SquadTacticalMap = (props: MapProps) => {
   };
 
   const handleClick = (e) => {
-    if (!placing || !onPlace || map.z === null) {
+    if (drag.current.moved || !placing || !onPlace || map.z === null) {
       return;
     }
     const { column, row } = cellAt(e);
@@ -433,109 +504,123 @@ export const SquadTacticalMap = (props: MapProps) => {
               icon="search-minus"
               tooltip="Oddal"
               disabled={zoom <= 1}
-              onClick={() => setZoom(Math.max(1, zoom - 1))}
+              onClick={() => changeZoom(Math.max(1, zoom - 1))}
             />
             <Button
               icon="search-plus"
               tooltip="Przybliż"
               disabled={zoom >= 10}
-              onClick={() => setZoom(Math.min(10, zoom + 1))}
+              onClick={() => changeZoom(Math.min(10, zoom + 1))}
             />
           </Stack.Item>
         </Stack>
       </Stack.Item>
-      <Stack.Item grow basis={0} style={{ overflow: 'auto' }}>
-        <div ref={containerRef} style={{ width: '100%', height: 0 }} />
-        {!map.url || !layout ? (
-          <Box color="label" p={2}>
-            Wczytywanie mapy poziomu...
-          </Box>
-        ) : (
-          <div
-            style={{
-              position: 'relative',
-              width: `${scaledWidth}px`,
-              height: `${scaledHeight}px`,
-              cursor: placing ? 'crosshair' : 'default',
-            }}
-            onClick={handleClick}
-            onMouseMove={handleHover}
-            onMouseLeave={() => setHover(null)}
-          >
-            <canvas
-              ref={canvasRef}
-              width={scaledWidth}
-              height={scaledHeight}
-              style={{ display: 'block' }}
-            />
-            {markersHere.map(({ squad, marker }) => (
-              <img
-                key={`${squad.id}-${marker.type}`}
-                src={marker.icon}
-                title={`${squad.name}: ${marker.label} (${marker.placer}, ${marker.time_left} s)`}
-                onClick={(e) => {
-                  if (onClearMarker && e.ctrlKey) {
-                    e.stopPropagation();
-                    onClearMarker(squad, marker);
-                  }
-                }}
-                style={{
-                  position: 'absolute',
-                  left: `${toLeft(marker.x) - 16}px`,
-                  top: `${toTop(marker.y) - 28}px`,
-                  width: '32px',
-                  height: '32px',
-                  imageRendering: 'pixelated',
-                  filter: `drop-shadow(0 2px 0 ${squad.colour})`,
-                }}
+      <Stack.Item grow basis={0} style={{ position: 'relative' }}>
+        <div
+          ref={scrollRef}
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            overflow: 'auto',
+            userSelect: 'none',
+          }}
+        >
+          <div ref={containerRef} style={{ width: '100%', height: 0 }} />
+          {!map.url || !layout ? (
+            <Box color="label" p={2}>
+              Wczytywanie mapy poziomu...
+            </Box>
+          ) : (
+            <div
+              style={{
+                position: 'relative',
+                width: `${scaledWidth}px`,
+                height: `${scaledHeight}px`,
+                cursor: dragging ? 'grabbing' : placing ? 'crosshair' : 'grab',
+              }}
+              onMouseDown={handleMouseDown}
+              onClick={handleClick}
+              onMouseMove={handleHover}
+              onMouseLeave={() => setHover(null)}
+            >
+              <canvas
+                ref={canvasRef}
+                width={scaledWidth}
+                height={scaledHeight}
+                style={{ display: 'block' }}
               />
-            ))}
-            {membersHere.map(({ squad, member }) => {
-              const size = member.leader ? 24 : 21;
-              const isUser = member.ref === userRef;
-              return (
+              {markersHere.map(({ squad, marker }) => (
                 <img
-                  key={member.ref}
-                  src={squad.blips?.[member.blip]}
-                  title={`${member.name} (${squad.name}, ${member.position_name}): ${member.status_name}${member.area ? `, ${member.area}` : ''}`}
+                  key={`${squad.id}-${marker.type}`}
+                  src={marker.icon}
+                  title={`${squad.name}: ${marker.label} (${marker.placer}, ${marker.time_left} s)`}
+                  onClick={(e) => {
+                    if (onClearMarker && e.ctrlKey && !drag.current.moved) {
+                      e.stopPropagation();
+                      onClearMarker(squad, marker);
+                    }
+                  }}
                   style={{
                     position: 'absolute',
-                    left: `${toLeft(member.x as number) - size / 2}px`,
-                    top: `${toTop(member.y as number) - size / 2}px`,
-                    width: `${size}px`,
-                    height: `${size}px`,
+                    left: `${toLeft(marker.x) - 16}px`,
+                    top: `${toTop(marker.y) - 28}px`,
+                    width: '32px',
+                    height: '32px',
                     imageRendering: 'pixelated',
-                    filter:
-                      'drop-shadow(1px 0 0 #000) drop-shadow(-1px 0 0 #000) drop-shadow(0 1px 0 #000) drop-shadow(0 -1px 0 #000)',
-                    opacity: member.status === 'ssd' ? 0.6 : 1,
-                    outline: isUser
-                      ? '2px solid #ffffff'
-                      : member.status === 'injured' ||
-                          member.status === 'critical'
-                        ? `2px solid ${STATUS_RING[member.status]}`
-                        : 'none',
-                    pointerEvents: placing ? 'none' : 'auto',
+                    filter: `drop-shadow(0 2px 0 ${squad.colour})`,
                   }}
                 />
-              );
-            })}
-            {map.user_z === map.z && map.user_x !== null && (
-              <div
-                title="Tu jesteś"
-                style={{
-                  position: 'absolute',
-                  left: `${toLeft(map.user_x as number) - 7}px`,
-                  top: `${toTop(map.user_y as number) - 7}px`,
-                  width: '10px',
-                  height: '10px',
-                  border: '2px dashed #ffffff',
-                  borderRadius: '50%',
-                  pointerEvents: 'none',
-                }}
-              />
-            )}
-          </div>
-        )}
+              ))}
+              {membersHere.map(({ squad, member }) => {
+                const size = member.leader ? 24 : 21;
+                const isUser = member.ref === userRef;
+                return (
+                  <img
+                    key={member.ref}
+                    src={squad.blips?.[member.blip]}
+                    title={`${member.name} (${squad.name}, ${member.position_name}): ${member.status_name}${member.area ? `, ${member.area}` : ''}`}
+                    style={{
+                      position: 'absolute',
+                      left: `${toLeft(member.x as number) - size / 2}px`,
+                      top: `${toTop(member.y as number) - size / 2}px`,
+                      width: `${size}px`,
+                      height: `${size}px`,
+                      imageRendering: 'pixelated',
+                      filter:
+                        'drop-shadow(1px 0 0 #000) drop-shadow(-1px 0 0 #000) drop-shadow(0 1px 0 #000) drop-shadow(0 -1px 0 #000)',
+                      opacity: member.status === 'ssd' ? 0.6 : 1,
+                      outline: isUser
+                        ? '2px solid #ffffff'
+                        : member.status === 'injured' ||
+                            member.status === 'critical'
+                          ? `2px solid ${STATUS_RING[member.status]}`
+                          : 'none',
+                      pointerEvents: placing ? 'none' : 'auto',
+                    }}
+                  />
+                );
+              })}
+              {map.user_z === map.z && map.user_x !== null && (
+                <div
+                  title="Tu jesteś"
+                  style={{
+                    position: 'absolute',
+                    left: `${toLeft(map.user_x as number) - 7}px`,
+                    top: `${toTop(map.user_y as number) - 7}px`,
+                    width: '10px',
+                    height: '10px',
+                    border: '2px dashed #ffffff',
+                    borderRadius: '50%',
+                    pointerEvents: 'none',
+                  }}
+                />
+              )}
+            </div>
+          )}
+        </div>
       </Stack.Item>
       {!!layout?.area_colours && (
         <Stack.Item>

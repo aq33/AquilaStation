@@ -132,7 +132,7 @@
 /obj/item/grenade/barrier
 	alt_click_loot = FALSE
 
-/obj/item/gun/ballistic
+/obj/item/gun
 	alt_click_loot = FALSE
 
 /obj/item/healthanalyzer
