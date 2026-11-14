@@ -258,11 +258,15 @@
 	landing_zone_turfs = list()
 	if(planet?.roomReservation == reservation)
 		planet.roomReservation = null
-	if(reservation)
-		for(var/turf/T as anything in reservation.reserved_turfs)
+	// Najpierw odpinamy rezerwację: jej zwalnianie usypia, a w tym czasie ktoś inny mógłby ją usunąć drugi raz
+	var/datum/turf_reservation/old_reservation = reservation
+	reservation = null
+	state = PLANET_SURFACE_NONE
+	if(old_reservation)
+		for(var/turf/T as anything in old_reservation.reserved_turfs)
 			for(var/obj/effect/landmark/L in T)
 				qdel(L)
-		QDEL_NULL(reservation)
+		qdel(old_reservation)
 	// Puste obszary nie wiszą na listach obszarów (teleporty, admin)
 	for(var/area/A as anything in list(surface_area, cave_area))
 		if(!A)

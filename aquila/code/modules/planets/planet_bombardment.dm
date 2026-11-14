@@ -28,7 +28,7 @@ GLOBAL_LIST_EMPTY(planet_laser_targets)
 	var/turf/target_turf = pick_strike_turf(P)
 	if(target_turf)
 		new /obj/effect/temp_visual/planet_strike(target_turf, P.type, P.damage)
-		log_combat(P.firer, target_turf, "bombarded [src] with", P)
+		log_game("[P] fired by [key_name(P.firer)] bombarded [src] at [AREACOORD(target_turf)]")
 	return BULLET_ACT_HIT
 
 /// Rozrzut w polach dla broni
@@ -89,6 +89,8 @@ GLOBAL_LIST_EMPTY(planet_laser_targets)
 	return ..()
 
 /obj/effect/temp_visual/planet_strike/proc/strike(turf/T)
+	if(!projectile_type && damage <= 0)
+		return // Rozbrojony (testy, admin)
 	if(ispath(projectile_type, /obj/item/projectile/guided_munition))
 		// Głowica torpedy albo rakiety robi swoje (plazma, EMP, viscerators)
 		var/obj/item/projectile/guided_munition/warhead = new projectile_type(T)

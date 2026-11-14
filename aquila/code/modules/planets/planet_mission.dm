@@ -173,8 +173,8 @@
 	if(SSovermap_mode.mode)
 		INVOKE_ASYNC(SSovermap_mode.mode, TYPE_PROC_REF(/datum/overmap_gamemode, check_completion))
 
-/// Czy przedmiot albo mob jest na okręcie (a nie na planecie)
-/proc/is_on_main_ship(atom/movable/AM)
+/// Czy przedmiot albo mob dotarł na okręt (a nie został na planecie)
+/datum/overmap_objective/planet/proc/is_delivered(atom/movable/AM)
 	var/obj/structure/overmap/main_ship = SSstar_system.find_main_overmap()
 	return main_ship && AM.get_overmap() == main_ship
 
@@ -207,7 +207,7 @@
 		return
 	var/list/delivered = list()
 	for(var/obj/item/planet_sample/sample as anything in GLOB.planet_samples)
-		if(sample.planet_ref == target_planet && is_on_main_ship(sample))
+		if(sample.planet_ref == target_planet && is_delivered(sample))
 			delivered |= sample.sample_type
 	if(length(delivered) >= length(PLANET_SAMPLE_TYPES))
 		complete_mission()
@@ -431,7 +431,7 @@ GLOBAL_LIST_EMPTY(planet_samples)
 		if(QDELETED(colonist) || colonist.stat == DEAD)
 			continue
 		alive++
-		if(is_on_main_ship(colonist))
+		if(is_delivered(colonist))
 			rescued++
 	if(rescued >= PLANET_COLONISTS_REQUIRED)
 		complete_mission()
