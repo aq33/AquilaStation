@@ -21,3 +21,17 @@
 		return Fail("Obrys obszaru testowego bez poziomu albo pól pomiarowych")
 	if(dc_area_pressure(bounds) <= 0)
 		return Fail("Przedział testowy z powietrzem ma ciśnienie [dc_area_pressure(bounds)]")
+	// Przedział w kształcie L: prostokąty pokrywają dokładnie jego pola, nie róg obrysu obok
+	var/list/cells = list()
+	for(var/x in 1 to 4)
+		cells["[x],1"] = TRUE
+	for(var/y in 2 to 3)
+		cells["1,[y]"] = TRUE
+	var/list/rects = dc_area_rects(cells, 1, 1, 4, 3)
+	var/area_sum = 0
+	for(var/list/rect as anything in rects)
+		area_sum += (rect[3] - rect[1] + 1) * (rect[4] - rect[2] + 1)
+		if(rect[3] > 1 && rect[4] > 1)
+			return Fail("Prostokąt [json_encode(rect)] przedziału w kształcie L wchodzi w puste pola")
+	if(area_sum != 6)
+		return Fail("Prostokąty przedziału w kształcie L pokrywają [area_sum] pól zamiast 6 ([json_encode(rects)])")

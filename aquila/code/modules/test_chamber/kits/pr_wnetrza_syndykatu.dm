@@ -11,3 +11,17 @@
 		/obj/item/flashlight/seclite = 1,
 		/obj/item/multitool = 1,
 	)
+
+/datum/test_chamber_kit/pr_wnetrza_konsole
+	name = "Konsole okrętu: scalone okna i nowy wygląd"
+	pr = "aq33/AquilaStation (numer po założeniu PR)"
+	description = "Konsole stoją na mostku i w inżynierii okrętu (Padalec, Atlas, Von Neumann, Trawnik). \
+		Stanowisko rozpoznania: wszystko jak dotąd plus „Wywołaj” w karcie kontaktu; usiądź przy sterze, a otworzy się to samo okno tylko do podglądu (bez sterowania sensorami). \
+		Konsola taktyczna: sekcja „Obrona punktowa (AMS)” pod uzbrojeniem (źródło celów, tryby, liczba strzałów). \
+		Nawigacja: zakładka „Napęd FTL” rozkręca stary napęd tylko z dostępem inżynierii; komputer FTL w maszynowni otwiera to samo okno na tej zakładce. \
+		Lotnictwo (kontrola lotów i konsola katapult) i Odzysk i abordaż (zakłócacz i magnes) mają po dwie zakładki, każda konsola otwiera swoją. \
+		Kontrola uszkodzeń: przedziały na schemacie mają prawdziwy kształt, korytarze nie zasłaniają pomieszczeń. \
+		Wszystkie okna konsol okrętu mają wygląd stanowiska rozpoznania."
+	items = list(
+		/obj/item/card/id/captains_spare = 1,
+	)

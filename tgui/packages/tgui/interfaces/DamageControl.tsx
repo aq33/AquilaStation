@@ -24,6 +24,8 @@ type DCArea = {
   y0: number;
   x1: number;
   y1: number;
+  // kształt przedziału: prostokąty [x0, y0, x1, y1] (dc_area_rects w dc_console.dm)
+  rects?: [number, number, number, number][];
   pressure: number;
   state: 'breach' | 'fire' | 'low' | 'ok';
   power: boolean;
@@ -96,9 +98,19 @@ const DeckMap = (props: { deck: Deck }) => {
     >
       {deck.areas.map((area) => {
         const colour = STATE_COLOUR[area.state];
-        return (
+        // Przedział rysujemy z jego prawdziwego kształtu; podpis trafia do największego prostokąta
+        const rects =
+          area.rects && area.rects.length
+            ? area.rects
+            : [[area.x0, area.y0, area.x1, area.y1]];
+        const size = (r: number[]) => (r[2] - r[0] + 1) * (r[3] - r[1] + 1);
+        const labelled = rects.reduce(
+          (best, r, i) => (size(r) > size(rects[best]) ? i : best),
+          0,
+        );
+        return rects.map((r, i) => (
           <div
-            key={area.id}
+            key={area.id + '-' + i}
             title={
               area.name +
               ': ' +
@@ -115,14 +127,17 @@ const DeckMap = (props: { deck: Deck }) => {
             }
             style={{
               position: 'absolute',
-              left: ((area.x0 - x0) / spanX) * 100 + '%',
-              top: ((y1 - area.y1) / spanY) * 100 + '%',
-              width: ((area.x1 - area.x0 + 1) / spanX) * 100 + '%',
-              height: ((area.y1 - area.y0 + 1) / spanY) * 100 + '%',
+              left: ((r[0] - x0) / spanX) * 100 + '%',
+              top: ((y1 - r[3]) / spanY) * 100 + '%',
+              width: ((r[2] - r[0] + 1) / spanX) * 100 + '%',
+              height: ((r[3] - r[1] + 1) / spanY) * 100 + '%',
               background: colour + (area.state === 'ok' ? '1f' : '55'),
-              border:
-                (area.priority ? '2px solid ' + COLOR.desig : '1px solid ') +
-                (area.priority ? '' : colour),
+              outline: area.priority
+                ? '1px solid ' + COLOR.desig
+                : '1px solid ' +
+                  colour +
+                  // szwy między prostokątami jednego przedziału mają być ledwo widoczne
+                  (area.state === 'ok' ? '30' : '80'),
               cursor: 'pointer',
               overflow: 'hidden',
               fontSize: '9px',
@@ -131,10 +146,14 @@ const DeckMap = (props: { deck: Deck }) => {
               padding: '1px',
             }}
           >
-            {area.priority ? 'P' + area.priority + ' ' : ''}
-            {area.name}
+            {i === labelled && (
+              <>
+                {area.priority ? 'P' + area.priority + ' ' : ''}
+                {area.name}
+              </>
+            )}
           </div>
-        );
+        ));
       })}
     </div>
   );

@@ -10,7 +10,8 @@
 #define DC_LOW_PRESSURE 70
 #define DC_BROADCAST_COOLDOWN (3 SECONDS)
 
-/// Obrys obszaru i pola do pomiaru ciśnienia: list(z, x0, y0, x1, y1, list(pola)); liczony raz na obszar
+/// Obrys obszaru, pola do pomiaru ciśnienia i kształt: list(z, x0, y0, x1, y1, list(pola), list(prostokąty));
+/// liczony raz na obszar
 GLOBAL_LIST_EMPTY(dc_area_bounds)
 
 /proc/dc_area_bounds(area/A)
@@ -22,6 +23,7 @@ GLOBAL_LIST_EMPTY(dc_area_bounds)
 	var/x1 = 0
 	var/y1 = 0
 	var/list/open = list()
+	var/list/cells = list()
 	for(var/turf/T in A)
 		if(!z)
 			z = T.z
@@ -31,6 +33,7 @@ GLOBAL_LIST_EMPTY(dc_area_bounds)
 		y0 = min(y0, T.y)
 		x1 = max(x1, T.x)
 		y1 = max(y1, T.y)
+		cells["[T.x],[T.y]"] = TRUE
 		if(isopenturf(T) && !isspaceturf(T))
 			open += T
 	if(!z)
@@ -38,8 +41,34 @@ GLOBAL_LIST_EMPTY(dc_area_bounds)
 	var/list/samples = list()
 	for(var/i in 1 to min(5, length(open)))
 		samples += open[round(1 + (i - 1) * (length(open) - 1) / max(1, min(5, length(open)) - 1))]
-	GLOB.dc_area_bounds[A] = list(z, x0, y0, x1, y1, samples)
+	GLOB.dc_area_bounds[A] = list(z, x0, y0, x1, y1, samples, dc_area_rects(cells, x0, y0, x1, y1))
 	return GLOB.dc_area_bounds[A]
+
+/// Kształt obszaru jako prostokąty list(x0, y0, x1, y1): ciągłe odcinki pól w wierszu, sklejane z takim samym
+/// odcinkiem w wierszu niżej. Obrys całego obszaru (korytarz w kształcie L) zasłaniał na schemacie sąsiednie przedziały.
+/proc/dc_area_rects(list/cells, x0, y0, x1, y1)
+	var/list/rects = list()
+	var/list/open_runs = list()
+	for(var/y in y0 to y1)
+		var/list/next_runs = list()
+		var/x = x0
+		while(x <= x1)
+			if(!cells["[x],[y]"])
+				x++
+				continue
+			var/start = x
+			while(x <= x1 && cells["[x],[y]"])
+				x++
+			var/run = "[start],[x - 1]"
+			var/list/rect = open_runs[run]
+			if(rect)
+				rect[4] = y
+			else
+				rect = list(start, y, x - 1, y)
+				rects += list(rect)
+			next_runs[run] = rect
+		open_runs = next_runs
+	return rects
 
 /// Najniższe ciśnienie (kPa) w polach pomiarowych obszaru; wyłom w jednym miejscu przedziału widać od razu
 /proc/dc_area_pressure(list/bounds)
@@ -114,6 +143,7 @@ GLOBAL_LIST_EMPTY(dc_area_bounds)
 			"y0" = bounds[3],
 			"x1" = bounds[4],
 			"y1" = bounds[5],
+			"rects" = bounds[7],
 			"pressure" = round(pressure),
 			"state" = dc_area_state(A, pressure),
 			"power" = A.powered(AREA_USAGE_EQUIP),
