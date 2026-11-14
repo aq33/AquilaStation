@@ -117,11 +117,25 @@
 	data["harpoon"] = linked.has_harpoon
 	var/datum/overmap_tether/tether = linked.harpoon_tether
 	data["tether"] = tether ? list("name" = tether.target.name, "length" = round(tether.length, 0.5), "rope" = max(0, tether.rope_hp), "reeling" = tether.reeling, "boarded" = tether.boarded) : null
+	// obrona punktowa: ustawienia z dawnej osobnej konsoli AMS (autonomy.dm)
+	var/list/ams_modes = list()
+	for(var/datum/ams_mode/mode as anything in linked.ams_modes)
+		ams_modes += list(list("id" = "\ref[mode]", "name" = mode.name, "desc" = mode.desc, "enabled" = mode.enabled))
+	data["ams"] = length(ams_modes) ? list("modes" = ams_modes, "painted" = linked.ams_data_source == AMS_PAINTED_TARGETS, "shot_limit" = linked.ams_shot_limit) : null
 
 /obj/machinery/computer/ship/tactical/ui_act(action, params, datum/tgui/ui)
 	. = ..()
-	if(!. && linked && (action in list("fc_flares", "fc_chaff", "fc_jammer", "fc_reel", "fc_cut")))
+	if(!. && linked && (action in list("fc_flares", "fc_chaff", "fc_jammer", "fc_reel", "fc_cut", "fc_ams_source", "fc_ams_mode", "fc_ams_limit")))
 		switch(action)
+			if("fc_ams_source")
+				linked.ams_data_source = linked.ams_data_source == AMS_LOCKED_TARGETS ? AMS_PAINTED_TARGETS : AMS_LOCKED_TARGETS
+			if("fc_ams_mode")
+				var/datum/ams_mode/mode = locate(params["id"])
+				if(mode in linked.ams_modes)
+					linked.ams_shots_fired = 0
+					mode.enabled = !mode.enabled
+			if("fc_ams_limit")
+				linked.ams_shot_limit = sanitize_integer(params["shot_limit"], 1, 100, 5)
 			if("fc_flares")
 				linked.deploy_decoy("flare")
 			if("fc_chaff")

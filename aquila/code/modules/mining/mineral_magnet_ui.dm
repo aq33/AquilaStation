@@ -1,20 +1,14 @@
 // Okno magnesu na asteroidy w TGUI (zamiast HTML i input() z nsv13/code/modules/mining/asteroid.dm).
 // Asteroidy w zasięgu są w oknie razem ze składem rdzenia, wypchnięcie potwierdza się w oknie.
+// Okno jest wspólne z zakłócaczem EWAR (SalvageConsole.tsx, zakładka „Magnes”).
 
 // Konsole przy klatce (Atlas, Snake) stoją na pomoście w kosmosie, gdzie nie ma prądu.
 // Maszyna bez prądu daje w TGUI tylko podgląd, więc magnes ma własne zasilanie.
 /obj/machinery/computer/ship/mineral_magnet
 	use_power = NO_POWER_USE
 
+// Bez dostępu górnika okno otwiera się do podglądu (zakładki odzysku: aquila/code/modules/overmap/consoles/salvage_console.dm)
 /obj/machinery/computer/ship/mineral_magnet/attack_hand(mob/user)
-	if(!allowed(user))
-		var/sound = pick('nsv13/sound/effects/computer/error.ogg','nsv13/sound/effects/computer/error2.ogg','nsv13/sound/effects/computer/error3.ogg')
-		playsound(src, sound, 100, 1)
-		to_chat(user, "<span class='warning'>Odmowa dostępu</span>")
-		return
-	if(!target_location)
-		to_chat(user, "<span class='warning'>[src] nie ma przypisanej klatki na asteroidy.</span>")
-		return
 	ui_interact(user)
 
 /obj/machinery/computer/ship/mineral_magnet/ui_interact(mob/user, datum/tgui/ui)
@@ -23,12 +17,18 @@
 		return
 	if(!..())
 		return
-	ui = new(user, src, "AsteroidMagnet", name)
+	ui = new(user, src, "SalvageConsole", name)
 	ui.set_autoupdate(TRUE)
 	ui.open()
 
 /obj/machinery/computer/ship/mineral_magnet/ui_data(mob/user)
+	var/obj/machinery/computer/ship/salvage/salvage = get_salvage_console()
+	return salvage_console_data(user, salvage?.boarding_tab_data(user), salvage, src, "magnet")
+
+/// Dane zakładki „Magnes” okna odzysku
+/obj/machinery/computer/ship/mineral_magnet/proc/magnet_tab_data(mob/user)
 	var/list/data = list()
+	data["has_cage"] = !!target_location
 	data["cooldown"] = cooldown
 	data["has_asteroid"] = !!current_asteroid
 	data["has_wreck"] = !!current_wreck
@@ -36,7 +36,7 @@
 	data["wreck_health"] = get_wreck_health()
 	var/list/asteroids = list()
 	var/list/wrecks = list()
-	if(linked && !current_asteroid && !current_wreck)
+	if(linked && target_location && !current_asteroid && !current_wreck)
 		for(var/obj/structure/overmap/asteroid/shipbreak_wreck/wreck in orange(5, linked))
 			wrecks += list(list("name" = wreck.name, "ref" = REF(wreck)))
 		for(var/obj/structure/overmap/asteroid/asteroid in orange(5, linked))
@@ -51,31 +51,47 @@
 	data["wrecks"] = wrecks
 	return data
 
-/obj/machinery/computer/ship/mineral_magnet/ui_act(action, list/params)
+/obj/machinery/computer/ship/mineral_magnet/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
 	if(.)
 		return
-	if(!allowed(usr))
-		return
+	switch(action)
+		if("pull", "pull_wreck", "push")
+			if(!allowed(usr))
+				salvage_console_denied(usr)
+				return FALSE
+			return magnet_act(action, params, usr)
+		if("salvage", "stop_salvage")
+			// Zakłócacz sam sprawdza swój dostęp i nadaje komunikaty swoim radiem
+			var/obj/machinery/computer/ship/salvage/salvage = get_salvage_console()
+			if(!salvage)
+				return FALSE
+			return salvage.ui_act(action, params, ui, state)
+
+/// Akcja zakładki „Magnes” (dostęp sprawdza wywołujący); TRUE, gdy okno trzeba odświeżyć
+/obj/machinery/computer/ship/mineral_magnet/proc/magnet_act(action, list/params, mob/user)
+	if(!target_location)
+		return FALSE
 	switch(action)
 		if("pull")
 			if(current_asteroid || current_wreck)
-				return
+				return FALSE
 			var/obj/structure/overmap/asteroid/target = locate(params["ref"]) in orange(5, linked)
 			if(target && !istype(target, /obj/structure/overmap/asteroid/shipbreak_wreck))
-				pull_in_asteroid(usr, target)
+				pull_in_asteroid(user, target)
 			return TRUE
 		if("pull_wreck")
 			if(current_asteroid || current_wreck)
-				return
+				return FALSE
 			var/obj/structure/overmap/asteroid/shipbreak_wreck/wreck = locate(params["ref"]) in orange(5, linked)
 			if(wreck)
-				pull_in_wreck(usr, wreck)
+				pull_in_wreck(user, wreck)
 			return TRUE
 		if("push")
 			if(current_asteroid || current_wreck)
 				start_push()
 			return TRUE
+	return FALSE
 
 /// Z celem wybranym w oknie: przyciąga od razu ten, bez listy input(); bez celu działa jak dawniej
 /obj/machinery/computer/ship/mineral_magnet/pull_in_asteroid(mob/user, obj/structure/overmap/asteroid/target)

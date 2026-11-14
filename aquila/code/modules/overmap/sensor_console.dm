@@ -102,6 +102,9 @@
 
 /obj/machinery/computer/ship/dradis/sensors/set_position(obj/structure/overmap/OM)
 	OM.sensor_console = src
+	// Mostki bez osobnego DRADIS: stanowisko rozpoznania jest DRADIS-em okrętu (okno pilota, komunikaty, zasięg śledzenia)
+	if(!OM.dradis)
+		OM.dradis = src
 	RegisterSignal(OM, COMSIG_FTL_STATE_CHANGE, PROC_REF(on_ftl_state_change), override = TRUE)
 
 /obj/machinery/computer/ship/dradis/sensors/proc/on_ftl_state_change()
@@ -136,7 +139,16 @@
 	if(can_radar_pulse())
 		send_radar_pulse()
 
+/// Okno otwarte ze steru albo z daleka (pilot dostaje je zamiast DRADIS) jest tylko do podglądu: sensorami steruje
+/// się na samym stanowisku. Wywołanie okrętu zostaje, jak na DRADIS.
+/obj/machinery/computer/ship/dradis/sensors/proc/is_sensor_readonly(mob/user)
+	if(!user || issilicon(user) || IsAdminGhost(user))
+		return FALSE
+	return !in_range(src, user)
+
 /obj/machinery/computer/ship/dradis/sensors/ui_act(action, params)
+	if(action != "hail" && is_sensor_readonly(usr))
+		return TRUE
 	. = ..()
 	if(. || isobserver(usr) || !linked)
 		return
@@ -192,6 +204,7 @@
 /obj/machinery/computer/ship/dradis/sensors/ui_data(mob/user)
 	. = ..()
 	var/list/data = .
+	data["readonly"] = is_sensor_readonly(user)
 	if(!linked)
 		return
 	data["radar_mode"] = sensor_mode == SENSOR_MODE_RADAR

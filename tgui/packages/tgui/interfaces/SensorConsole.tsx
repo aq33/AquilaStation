@@ -54,6 +54,7 @@ type Marker = {
 };
 
 type Data = {
+  readonly?: boolean;
   radar_mode: boolean;
   radar_delay: number;
   radar_delay_min: number;
@@ -1489,7 +1490,24 @@ const ContactCard = (props: { contact: Contact | undefined }) => {
           })}
         </>
       )}
-      {!!contact.hostile && (
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: '6px',
+          marginTop: '8px',
+          flexWrap: 'wrap',
+        }}
+      >
+        <Button
+          icon="phone"
+          tooltip="Połączenie z okrętem w zasięgu 50 pól (jak z DRADIS)."
+          onClick={() => act('hail', { target: contact.id })}
+        >
+          Wywołaj
+        </Button>
+      </div>
+      {!!contact.hostile && !data.readonly && (
         <div
           style={{
             display: 'flex',
@@ -1750,7 +1768,13 @@ export const SensorConsole = (props) => {
                 overflowY: 'auto',
               }}
             >
-              <Sensors contacts={contacts} onAimTarget={setAimTarget} />
+              {data.readonly ? (
+                <Box style={{ ...card, color: COLOR.warn }}>
+                  Podgląd: sensorami steruje operator na stanowisku rozpoznania.
+                </Box>
+              ) : (
+                <Sensors contacts={contacts} onAimTarget={setAimTarget} />
+              )}
               <ContactList
                 contacts={contacts}
                 selected={selected}

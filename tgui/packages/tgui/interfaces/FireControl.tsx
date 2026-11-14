@@ -108,6 +108,14 @@ type Data = {
   chaff: number;
   max_chaff: number;
   jammer: boolean;
+  ams: Ams | null;
+};
+
+// Obrona punktowa: ustawienia z dawnej osobnej konsoli AMS (autonomy.dm)
+type Ams = {
+  modes: { id: string; name: string; desc: string; enabled: boolean }[];
+  painted: boolean;
+  shot_limit: number;
 };
 
 const FIRE = {
@@ -676,6 +684,69 @@ const FireScope = (props: ScopeProps) => {
         transform={`translate(${CENTER},${CENTER}) rotate(${heading})`}
       />
     </svg>
+  );
+};
+
+const AmsPanel = () => {
+  const { act, data } = useBackend<Data>();
+  const ams = data.ams;
+  if (!ams) {
+    return null;
+  }
+  const label: CSSProperties = { color: COLOR.muted, minWidth: '120px' };
+  const row: CSSProperties = {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '6px',
+    flexWrap: 'wrap',
+    marginBottom: '5px',
+  };
+  return (
+    <Box style={card}>
+      <div style={sectionTitle}>Obrona punktowa (AMS)</div>
+      <div style={row}>
+        <span style={label}>źródło celów</span>
+        <Button
+          selected={!ams.painted}
+          tooltip="Tryb przeciwokrętowy strzela tylko do obecnego celu ognia."
+          onClick={() => ams.painted && act('fc_ams_source')}
+        >
+          Cel ognia
+        </Button>
+        <Button
+          selected={ams.painted}
+          tooltip="Tryb przeciwokrętowy strzela do każdego śledzonego wroga."
+          onClick={() => !ams.painted && act('fc_ams_source')}
+        >
+          Wszystkie śledzone
+        </Button>
+      </div>
+      <div style={row}>
+        <span style={label}>tryby</span>
+        {ams.modes.map((mode) => (
+          <Button
+            key={mode.id}
+            icon={mode.enabled ? 'check-circle' : 'times'}
+            selected={mode.enabled}
+            tooltip={mode.desc}
+            onClick={() => act('fc_ams_mode', { id: mode.id })}
+          >
+            {mode.name}
+          </Button>
+        ))}
+      </div>
+      <div style={{ ...row, marginBottom: 0 }}>
+        <span style={label}>strzałów na cel</span>
+        <NumberInput
+          value={ams.shot_limit}
+          width="60px"
+          minValue={1}
+          maxValue={100}
+          step={1}
+          onChange={(value) => act('fc_ams_limit', { shot_limit: value })}
+        />
+      </div>
+    </Box>
   );
 };
 
@@ -1368,6 +1439,7 @@ export const FireControl = (props) => {
             >
               <OwnShip />
               <Weapons />
+              <AmsPanel />
               <ContactList
                 contacts={contacts}
                 selected={selected}

@@ -1,10 +1,21 @@
 // AQUILA - konsola kontroli uszkodzeń (aquila/code/modules/overmap/damage_control/dc_console.dm): schemat pokładów
 // z wyłomami, pożarami i ciśnieniem w przedziałach, pancerz ćwiartek i nanopompy. Priorytet przedziału idzie na PDA ekip.
 import { useState } from 'react';
-import { Box, Button, Section, Stack } from 'tgui-core/components';
+import { Box, Button } from 'tgui-core/components';
 
 import { useBackend } from '../backend';
-import { Window } from '../layouts';
+import {
+  COLOR,
+  ConsoleBar,
+  ConsoleBody,
+  ConsoleEmpty,
+  ConsoleMeter,
+  ConsolePanel,
+  ConsoleRow,
+  ConsoleTabs,
+  ConsoleWindow,
+  MONO,
+} from './common/ShipConsole';
 
 type DCArea = {
   id: string;
@@ -38,10 +49,10 @@ type Data = {
 };
 
 const STATE_COLOUR = {
-  breach: '#e0463c',
-  fire: '#f08a24',
-  low: '#d8c43a',
-  ok: '#3f9e5a',
+  breach: COLOR.bad,
+  fire: COLOR.ir,
+  low: COLOR.warn,
+  ok: COLOR.good,
 };
 
 const STATE_NAME = {
@@ -78,9 +89,9 @@ const DeckMap = (props: { deck: Deck }) => {
         position: 'relative',
         width: width + 'px',
         height: height + 'px',
-        background: '#0e141c',
-        border: '1px solid #2c3a4a',
-        borderRadius: '6px',
+        background: COLOR.bg,
+        border: '1px solid ' + COLOR.line,
+        borderRadius: '4px',
       }}
     >
       {deck.areas.map((area) => {
@@ -110,13 +121,13 @@ const DeckMap = (props: { deck: Deck }) => {
               height: ((area.y1 - area.y0 + 1) / spanY) * 100 + '%',
               background: colour + (area.state === 'ok' ? '1f' : '55'),
               border:
-                (area.priority ? '2px solid #ffffff' : '1px solid ') +
+                (area.priority ? '2px solid ' + COLOR.desig : '1px solid ') +
                 (area.priority ? '' : colour),
               cursor: 'pointer',
               overflow: 'hidden',
               fontSize: '9px',
               lineHeight: '10px',
-              color: '#c9d4df',
+              color: COLOR.ink2,
               padding: '1px',
             }}
           >
@@ -136,38 +147,58 @@ const Problems = () => {
     .filter((area) => area.state !== 'ok' || area.priority)
     .sort((a, b) => SEVERITY[a.state] - SEVERITY[b.state]);
   return (
-    <Section title="Przedziały z problemami">
+    <ConsolePanel
+      title="Przedziały z problemami"
+      right={<span style={{ fontFamily: MONO }}>{problems.length}</span>}
+    >
       {!problems.length && (
-        <Box color="good">Wszystkie przedziały szczelne, bez pożarów.</Box>
+        <Box style={{ color: COLOR.good }}>
+          Wszystkie przedziały szczelne, bez pożarów.
+        </Box>
       )}
       {problems.map((area) => (
-        <Stack key={area.id} align="center" mb={0.5}>
-          <Stack.Item grow>
+        <Box
+          key={area.id}
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '4px',
+            padding: '4px 0',
+            borderTop: '1px solid ' + COLOR.line,
+          }}
+        >
+          <Box style={{ flex: 1, minWidth: 0 }}>
             <b style={{ color: STATE_COLOUR[area.state] }}>
               {STATE_NAME[area.state]}
             </b>
-            {' · ' + area.name + ' · ' + area.deck + ' · '}
-            {area.pressure + ' kPa'}
-            {!area.power && ' · bez zasilania'}
-          </Stack.Item>
+            <span style={{ color: COLOR.ink }}>{' · ' + area.name}</span>
+            <span style={{ color: COLOR.muted }}>
+              {' · ' + area.deck + ' · '}
+            </span>
+            <span style={{ fontFamily: MONO, color: COLOR.ink2 }}>
+              {area.pressure + ' kPa'}
+            </span>
+            {!area.power && (
+              <span style={{ color: COLOR.warn }}>{' · bez zasilania'}</span>
+            )}
+          </Box>
           {[1, 2, 3].map((priority) => (
-            <Stack.Item key={priority}>
-              <Button
-                selected={area.priority === priority}
-                onClick={() =>
-                  act('set_priority', {
-                    id: area.id,
-                    priority: area.priority === priority ? 0 : priority,
-                  })
-                }
-              >
-                {'P' + priority}
-              </Button>
-            </Stack.Item>
+            <Button
+              key={priority}
+              selected={area.priority === priority}
+              onClick={() =>
+                act('set_priority', {
+                  id: area.id,
+                  priority: area.priority === priority ? 0 : priority,
+                })
+              }
+            >
+              {'P' + priority}
+            </Button>
           ))}
-        </Stack>
+        </Box>
       ))}
-    </Section>
+    </ConsolePanel>
   );
 };
 
@@ -181,32 +212,34 @@ const Armour = () => {
     'rufa, prawa burta',
   ];
   return (
-    <Section title="Pancerz i nanopompy">
-      <Stack wrap>
-        {quadrants.map((name, index) => (
-          <Stack.Item key={name} basis="48%">
-            {name + ': '}
-            <b>{(armour[index] ?? 0) + '%'}</b>
-          </Stack.Item>
-        ))}
-      </Stack>
-      <Box mt={0.5}>{'Kadłub: ' + (armour[4] ?? 0) + '%'}</Box>
-      <Box mt={0.5}>
-        {!data.pumps.length && 'Brak nanopomp połączonych z okrętem.'}
+    <ConsolePanel title="Pancerz i nanopompy">
+      {quadrants.map((name, index) => (
+        <ConsoleRow key={name} label={name}>
+          <ConsoleMeter value={(armour[index] ?? 0) / 100} />
+        </ConsoleRow>
+      ))}
+      <ConsoleRow label="Kadłub">
+        <ConsoleMeter value={(armour[4] ?? 0) / 100} />
+      </ConsoleRow>
+      <Box mt={1}>
+        {!data.pumps.length && (
+          <ConsoleEmpty>Brak nanopomp połączonych z okrętem.</ConsoleEmpty>
+        )}
         {data.pumps.map((pump, index) => (
-          <Box key={index}>
-            {(QUADRANT_NAME[pump.quadrant] || pump.quadrant) + ': '}
-            <b style={{ color: pump.online ? '#3f9e5a' : '#e0463c' }}>
-              {pump.stress
-                ? 'przeciążona'
-                : pump.online
-                  ? 'pracuje'
-                  : 'wyłączona'}
-            </b>
-          </Box>
+          <ConsoleRow
+            key={index}
+            label={QUADRANT_NAME[pump.quadrant] || pump.quadrant}
+            colour={pump.online ? COLOR.good : COLOR.bad}
+          >
+            {pump.stress
+              ? 'przeciążona'
+              : pump.online
+                ? 'pracuje'
+                : 'wyłączona'}
+          </ConsoleRow>
         ))}
       </Box>
-    </Section>
+    </ConsolePanel>
   );
 };
 
@@ -214,34 +247,51 @@ export const DamageControl = () => {
   const { data } = useBackend<Data>();
   const [deckIndex, setDeckIndex] = useState(0);
   const deck = data.decks[Math.min(deckIndex, data.decks.length - 1)];
+  const areas = data.decks.flatMap((d) => d.areas);
+  const count = (state: DCArea['state']) =>
+    areas.filter((area) => area.state === state).length;
+  const hull = data.armour?.[4] ?? 0;
   return (
-    <Window width={760} height={720}>
-      <Window.Content scrollable>
-        <Section
-          title="Schemat pokładu"
-          buttons={data.decks.map((d, index) => (
-            <Button
-              key={d.z}
-              selected={index === deckIndex}
-              onClick={() => setDeckIndex(index)}
+    <ConsoleWindow width={760} height={720}>
+      <ConsoleBar>
+        {(['breach', 'fire', 'low'] as const).map((state) => (
+          <span key={state}>
+            <span style={{ color: COLOR.muted }}>
+              {STATE_NAME[state] + ': '}
+            </span>
+            <span
+              style={{
+                fontFamily: MONO,
+                color: count(state) ? STATE_COLOUR[state] : COLOR.ink2,
+              }}
             >
-              {d.name}
-            </Button>
-          ))}
-        >
-          <Box mb={0.5} color="label">
+              {count(state)}
+            </span>
+          </span>
+        ))}
+        <span style={{ marginLeft: 'auto', color: COLOR.muted }}>Kadłub</span>
+        <ConsoleMeter value={hull / 100} width="160px" />
+      </ConsoleBar>
+      <ConsoleTabs<string>
+        tabs={data.decks.map((d, index) => [String(index), d.name])}
+        active={String(deckIndex)}
+        onChange={(tab) => setDeckIndex(Number(tab))}
+      />
+      <ConsoleBody>
+        <ConsolePanel title="Schemat pokładu">
+          <Box mb={1} style={{ color: COLOR.muted }}>
             Kliknij przedział, żeby zmienić jego priorytet (P1 najważniejszy).
             Priorytet idzie na PDA inżynierii.
           </Box>
           {deck ? (
             <DeckMap deck={deck} />
           ) : (
-            <Box>Konsola nie widzi przedziałów okrętu.</Box>
+            <ConsoleEmpty>Konsola nie widzi przedziałów okrętu.</ConsoleEmpty>
           )}
-        </Section>
+        </ConsolePanel>
         <Problems />
         <Armour />
-      </Window.Content>
-    </Window>
+      </ConsoleBody>
+    </ConsoleWindow>
   );
 };
