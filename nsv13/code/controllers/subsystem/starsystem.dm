@@ -1273,20 +1273,21 @@ Random starsystem. Excluded from starmap saving, as they're generated at init.
 
 	for(var/I=0;I<amount;I++){
 		var/datum/star_system/random/randy = new /datum/star_system/random()
+		// AQ EDIT - waga przed wartością w tej samej linii: OpenDream nie przyjmuje końca linii po `0.5;`
 		randy.system_type = pick(
 			list(
 				tag = "radioactive",
 				label = "Promieniowanie",
-			), 0.5;
-			list(
+			),
+			0.5; list(
 				tag = "blackhole",
 				label = "Blackhole",
 			),
 			list(
 				tag = "quasar",
 				label = "Kwazar",
-			), 0.75;
-			list(
+			),
+			0.75; list(
 				tag = "accretiondisk",
 				label = "Dysk akrecyjny",
 			),
@@ -1304,7 +1305,7 @@ Random starsystem. Excluded from starmap saving, as they're generated at init.
 			),
 		)
 		randy.apply_system_effects()
-		randy.name = (randy.system_type[tag] != "nebula") ? "S-[rand(0,10000)]" : "N-[rand(0,10000)]"
+		randy.name = (randy.system_type["tag"] != "nebula") ? "S-[rand(0,10000)]" : "N-[rand(0,10000)]" // AQ EDIT - było system_type[tag] (zmienna tag = null), mgławice dostawały S-
 		var/randy_valid = FALSE
 
 		while(!randy_valid)
@@ -1469,20 +1470,21 @@ Random starsystem. Excluded from starmap saving, as they're generated at init.
 
 	for(var/I=0;I<amount;I++){
 		var/datum/star_system/random/randy = new /datum/star_system/random()
+		// AQ EDIT - waga przed wartością w tej samej linii: OpenDream nie przyjmuje końca linii po `0.5;`
 		randy.system_type = pick(
 			list(
 				tag = "radioactive",
 				label = "Promieniowanie",
-			), 0.5;
-			list(
+			),
+			0.5; list(
 				tag = "blackhole",
 				label = "Blackhole",
 			),
 			list(
 				tag = "quasar",
 				label = "Kwazar",
-			), 0.75;
-			list(
+			),
+			0.75; list(
 				tag = "accretiondisk",
 				label = "Dysk akrecyjny",
 			),
@@ -1500,7 +1502,7 @@ Random starsystem. Excluded from starmap saving, as they're generated at init.
 			),
 		)
 		randy.apply_system_effects()
-		randy.name = (randy.system_type[tag] != "nebula") ? "S-[rand(0,10000)]" : "N-[rand(0,10000)]"
+		randy.name = (randy.system_type["tag"] != "nebula") ? "S-[rand(0,10000)]" : "N-[rand(0,10000)]" // AQ EDIT - było system_type[tag] (zmienna tag = null), mgławice dostawały S-
 		var/randy_valid = FALSE
 
 		while(!randy_valid)

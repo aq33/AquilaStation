@@ -2,7 +2,7 @@
 // The upstream assert macros are #undef'd at the end of code/modules/unit_tests/_unit_tests.dm, so this modular test carries its own copies
 #define TEST_ASSERT(assertion, reason) if (!(assertion)) { return Fail("Assertion failed: [reason || "No reason"]") }
 
-#define LEFT_CLICK "icon-x=16;icon-y=16;left=1;button=left"
+#define TEST_LEFT_CLICK "icon-x=16;icon-y=16;left=1;button=left"
 #define CTRL_LEFT_CLICK "icon-x=16;icon-y=16;left=1;button=left;ctrl=1"
 
 /// Feeding a tamed dog from the hand (ClickOn, both control modes) keeps the friendship; a real hit with a weapon still ends it
@@ -27,7 +27,7 @@
 			user.put_in_active_hand(bone)
 			user.next_click = 0
 			user.next_move = 0
-			user.ClickOn(corgi, LEFT_CLICK)
+			user.ClickOn(corgi, TEST_LEFT_CLICK)
 			TEST_ASSERT(QDELETED(bone) || bone.loc != user, "[mode]: the tamed corgi did not eat the bone from the hand")
 			TEST_ASSERT(user in corgi.ai_controller.blackboard[BB_FRIENDS_LIST], "[mode]: feeding a bone (force [initial(bone.force)]) counted as an attack and unfriended the user")
 			TEST_ASSERT(("[REF(user)]" in corgi.faction), "[mode]: feeding a bone removed the friend faction")
@@ -42,7 +42,7 @@
 			user.set_combat_mode(TRUE, silent = TRUE)
 		user.next_click = 0
 		user.next_move = 0
-		user.ClickOn(corgi, LEFT_CLICK)
+		user.ClickOn(corgi, TEST_LEFT_CLICK)
 		TEST_ASSERT(corgi.health < corgi.maxHealth, "[mode]: the toolbox did not hit the corgi")
 		TEST_ASSERT(!(user in corgi.ai_controller.blackboard[BB_FRIENDS_LIST]), "[mode]: hitting the corgi with a toolbox did not reach unfriend_attacker")
 		user.drop_all_held_items()
@@ -50,7 +50,7 @@
 		qdel(corgi)
 		qdel(user)
 
-#undef LEFT_CLICK
+#undef TEST_LEFT_CLICK
 
 /// Animal attacks on living mobs and projectiles reach relay_attackers (retaliation, hiding)
 /datum/unit_test/aquila_relay_animals_and_projectiles

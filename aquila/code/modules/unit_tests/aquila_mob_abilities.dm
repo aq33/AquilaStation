@@ -12,7 +12,7 @@
 	} \
 } while (FALSE)
 
-#define LEFT_CLICK "icon-x=16;icon-y=16;left=1;button=left"
+#define TEST_LEFT_CLICK "icon-x=16;icon-y=16;left=1;button=left"
 #define RIGHT_CLICK_PARAMS "icon-x=16;icon-y=16;right=1;button=right"
 
 /// Test ability: burns the target a little and remembers it
@@ -292,7 +292,7 @@
 		COOLDOWN_RESET(ranged, fire_cooldown)
 		shooter.next_click = 0
 		shooter.next_move = 0
-		shooter.ClickOn(victim, LEFT_CLICK)
+		shooter.ClickOn(victim, TEST_LEFT_CLICK)
 		TEST_ASSERT(aquila_wait_for_hit(recorder), "[shooter_type]: a player click on a far target did not shoot")
 		qdel(recorder)
 		qdel(shooter)
@@ -325,7 +325,7 @@
 			TEST_ASSERT(zap.is_action_active(), "[mode], [click_kind]: the aimed ability does not show as active")
 			tester.next_click = 0
 			tester.next_move = 0
-			tester.ClickOn(victim, (click_kind == "secondary" && !legacy) ? RIGHT_CLICK_PARAMS : LEFT_CLICK)
+			tester.ClickOn(victim, (click_kind == "secondary" && !legacy) ? RIGHT_CLICK_PARAMS : TEST_LEFT_CLICK)
 			TEST_ASSERT_EQUAL(zap.uses, uses_before + 1, "[mode], [click_kind]: the click did not use the aimed ability")
 			TEST_ASSERT_EQUAL(zap.last_target, victim, "[mode], [click_kind]: the ability was not used on the clicked mob")
 			TEST_ASSERT(isnull(tester.click_intercept), "[mode], [click_kind]: the ability kept aiming after it was used")
@@ -338,7 +338,7 @@
 		zap.Trigger()
 		TEST_ASSERT(isnull(tester.click_intercept), "[mode]: pressing the button again did not put the ability away")
 		tester.next_click = 0
-		tester.ClickOn(victim, LEFT_CLICK)
+		tester.ClickOn(victim, TEST_LEFT_CLICK)
 		TEST_ASSERT_EQUAL(zap.uses, uses_before, "[mode]: the ability was used after it was put away")
 
 		// A spell and a mob ability take the click over from each other
@@ -385,7 +385,7 @@
 	TEST_ASSERT(istype(command), "The pet has no \"Użyj zdolności\" command")
 	command.try_activate_command(owner, radial_command = TRUE)
 	owner.next_click = 0
-	owner.ClickOn(victim, LEFT_CLICK)
+	owner.ClickOn(victim, TEST_LEFT_CLICK)
 	TEST_ASSERT_EQUAL(controller.blackboard[BB_CURRENT_PET_TARGET], victim, "Clicking a mob after the menu command did not give the pet a target")
 	controller.SelectBehaviors(1)
 	TEST_ASSERT(controller.current_behaviors[use_ability], "The pet with an ability command and a target did not plan to use the ability")
@@ -449,7 +449,7 @@
 	SIGNAL_HANDLER
 	last_act = act
 
-#undef LEFT_CLICK
+#undef TEST_LEFT_CLICK
 #undef RIGHT_CLICK_PARAMS
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL

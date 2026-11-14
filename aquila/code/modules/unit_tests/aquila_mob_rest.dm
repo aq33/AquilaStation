@@ -11,7 +11,7 @@
 	} \
 } while (FALSE)
 
-#define LEFT_CLICK "icon-x=16;icon-y=16;left=1;button=left"
+#define TEST_LEFT_CLICK "icon-x=16;icon-y=16;left=1;button=left"
 #define RIGHT_CLICK_PARAMS "icon-x=16;icon-y=16;right=1;button=right"
 
 /// Lets the controller plan and run one behaviour of the given type; returns TRUE if it was planned
@@ -31,7 +31,7 @@
 		clicker.set_combat_mode(harm, silent = TRUE)
 	clicker.next_click = 0
 	clicker.next_move = 0
-	clicker.ClickOn(target, (right && !clicker.uses_legacy_intents()) ? RIGHT_CLICK_PARAMS : LEFT_CLICK)
+	clicker.ClickOn(target, (right && !clicker.uses_legacy_intents()) ? RIGHT_CLICK_PARAMS : TEST_LEFT_CLICK)
 
 /// The lightgeist with the legacy intents
 /mob/living/basic/lightgeist/aquila_legacy
@@ -223,7 +223,7 @@
 	attacker.set_combat_mode(TRUE, silent = TRUE)
 	attacker.next_click = 0
 	attacker.next_move = 0
-	attacker.ClickOn(clown, LEFT_CLICK)
+	attacker.ClickOn(clown, TEST_LEFT_CLICK)
 	TEST_ASSERT(attacker in controller.blackboard[BB_BASIC_MOB_RETALIATE_LIST], "The punched clown does not remember its attacker")
 	sleep(1) // the retaliation callback runs asynchronously
 	TEST_ASSERT(attacker in buddy.ai_controller.blackboard[BB_BASIC_MOB_RETALIATE_LIST], "The other clown did not join the fight")
@@ -257,12 +257,12 @@
 	attacker.put_in_active_hand(knife)
 	attacker.next_click = 0
 	attacker.next_move = 0
-	attacker.ClickOn(glutton, LEFT_CLICK)
+	attacker.ClickOn(glutton, TEST_LEFT_CLICK)
 	TEST_ASSERT_EQUAL(glutton.health, glutton.maxHealth, "A weak hit got through the glutton's fat")
 	knife.force = 20
 	attacker.next_click = 0
 	attacker.next_move = 0
-	attacker.ClickOn(glutton, LEFT_CLICK)
+	attacker.ClickOn(glutton, TEST_LEFT_CLICK)
 	TEST_ASSERT(glutton.health < glutton.maxHealth, "A strong hit did not hurt the glutton")
 
 /// Mimics: a crate mimic sleeps until someone tries to open it, then bites through its AI; a copy mimic takes the look of
@@ -278,7 +278,7 @@
 	victim.set_combat_mode(FALSE, silent = TRUE)
 	victim.next_click = 0
 	victim.next_move = 0
-	victim.ClickOn(crate, LEFT_CLICK)
+	victim.ClickOn(crate, TEST_LEFT_CLICK)
 	TEST_ASSERT(!HAS_TRAIT(crate, TRAIT_AI_PAUSED), "Trying to open the crate mimic did not wake it up")
 	TEST_ASSERT(aquila_rest_run_behavior(controller, /datum/ai_behavior/find_potential_targets), "The awake crate did not look for targets")
 	TEST_ASSERT_EQUAL(controller.blackboard[BB_BASIC_MOB_CURRENT_TARGET], victim, "The awake crate did not pick the human")
@@ -406,7 +406,7 @@
 	eater.forceMove(get_step(wall_turf, SOUTH))
 	eater.next_click = 0
 	eater.next_move = 0
-	eater.ClickOn(wall_turf, LEFT_CLICK)
+	eater.ClickOn(wall_turf, TEST_LEFT_CLICK)
 	sleep(4.5 SECONDS)
 	TEST_ASSERT(!iswallturf(wall_turf), "The dragon did not tear down the wall")
 	wall_turf.ChangeTurf(old_wall_type)
@@ -432,7 +432,7 @@
 	antag_dragon.mind.remove_antag_datum(/datum/antagonist/space_dragon)
 
 // --- end of the "rest" group tests
-#undef LEFT_CLICK
+#undef TEST_LEFT_CLICK
 #undef RIGHT_CLICK_PARAMS
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL

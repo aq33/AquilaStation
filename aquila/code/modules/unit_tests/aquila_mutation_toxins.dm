@@ -118,7 +118,7 @@
 /datum/unit_test/aquila_pirate_shuttle_destinations
 
 /datum/unit_test/aquila_pirate_shuttle_destinations/Run()
-	var/list/destinations = splittext(initial(/obj/machinery/computer/shuttle_flight/pirate::possible_destinations), ";")
+	var/list/destinations = splittext(/obj/machinery/computer/shuttle_flight/pirate::possible_destinations, ";")
 	destinations -= "pirateship_home"
 	TEST_ASSERT(length(destinations), "The pirate shuttle has no destination besides its home port")
 	// Unit tests do not load the ship maps (CI runs on the default map only), so they are read from disk

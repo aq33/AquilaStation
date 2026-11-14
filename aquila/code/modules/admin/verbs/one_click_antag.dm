@@ -66,7 +66,7 @@
 	var/list/outfits = list()
 	for(var/datum/outfit/outfit_type as anything in subtypesof(/datum/outfit))
 		outfits["[initial(outfit_type.name)] ([outfit_type])"] = outfit_type
-	var/default_outfit = "[initial(/datum/outfit/centcom/commander::name)] ([/datum/outfit/centcom/commander])"
+	var/default_outfit = "[/datum/outfit/centcom/commander::name] ([/datum/outfit/centcom/commander])"
 	var/picked = tgui_input_list(user, "Strój oficera odprawy", "Oficer odprawy", sort_list(outfits), default_outfit)
 	if(!picked || !isobserver(user) || !user.client)
 		return
