@@ -2249,6 +2249,7 @@
 #include "code\modules\unit_tests\aquila_ai_tts.dm"
 #include "code\modules\unit_tests\aquila_squads_rework.dm"
 #include "code\modules\unit_tests\aquila_squad_orders_cooldown.dm"
+#include "code\modules\unit_tests\aquila_squad_order_translation.dm"
 #include "code\modules\unit_tests\aquila_squad_gear_ping.dm"
 #include "code\modules\unit_tests\aquila_zgloszenia_0711.dm"
 #include "code\modules\unit_tests\aquila_zgloszenia_1211_grafika.dm"
@@ -2501,7 +2502,7 @@
 #include "bloodcult.dm"
 
 // Wersja angielska (aquila/code/modules/i18n/): same nadpisania procedur, dołączane na samym końcu,
-// żeby szły po oryginałach. Odpięcie: usunąć ten blok, testy aquila_game_language i aquila_foreigner w bloku UNIT_TESTS
+// żeby szły po oryginałach. Odpięcie: usunąć ten blok, testy aquila_game_language, aquila_foreigner i aquila_squad_order_translation w bloku UNIT_TESTS
 // i loader i18n-jsx.cjs z tgui/webpack.config.js (definicje w code/__DEFINES/i18n.dm mogą zostać).
 #include "code\modules\i18n\game_language.dm"
 #include "code\modules\i18n\translate.dm"
@@ -2514,6 +2515,7 @@
 #include "code\modules\i18n\translator_chip.dm"
 #include "code\modules\i18n\chat_translation.dm"
 #include "code\modules\i18n\foreigner_names.dm"
+#include "code\modules\i18n\squad_orders.dm"
 // Komora testowa dla obcokrajowca (zestaw używa przedmiotu z modułu, więc odpina się razem z nim)
 #include "code\modules\test_chamber\kits\pr_565_obcokrajowiec.dm"
 #include "code\modules\test_chamber\kits\pr_608_ekonomia_malf_statystyki.dm"
