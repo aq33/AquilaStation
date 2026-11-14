@@ -62,10 +62,12 @@ GLOBAL_LIST_INIT(ship_thruster_oxidizers, list(
 /obj/structure/overmap/proc/recalculate_engine_thrust()
 	var/total = 0
 	var/active = 0
+	// AQUILA - limit napędu z podziału mocy (ship_power.dm)
+	var/power_limit = ship_power ? ship_power.limits[SHIP_POWER_ENGINES] : 1
 	for(var/obj/machinery/ship_thruster/thruster as anything in ship_thrusters)
 		total += thruster.thrust_power
 		if(thruster.can_fire)
-			active += thruster.thrust_power * thruster.fuel_quality
+			active += thruster.thrust_power * thruster.fuel_quality * power_limit
 	engine_thrust_design = max(engine_thrust_design, total)
 	engine_thrust_active = active
 
@@ -218,6 +220,9 @@ GLOBAL_LIST_INIT(ship_thruster_oxidizers, list(
 	if(firing)
 		burn_fuel(fuel_per_second * delta_time, heaters)
 	use_power = firing ? ACTIVE_POWER_USE : IDLE_POWER_USE
+	var/datum/ship_power/power = linked_ship?.ship_power
+	active_power_usage = initial(active_power_usage) * (power ? power.limits[SHIP_POWER_ENGINES] : 1)
+	power?.record(SHIP_POWER_ENGINES, firing ? active_power_usage : 0, src, initial(active_power_usage))
 	if(new_can_fire != can_fire || abs(new_quality - fuel_quality) > 0.01)
 		can_fire = new_can_fire
 		fuel_quality = new_quality

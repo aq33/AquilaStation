@@ -21329,5 +21329,18 @@
 "<span class='notice'>Proporcje paliwa i utleniacza są idealne.</span>": "<span class='notice'>The fuel to oxidizer ratio is ideal.</span>",
 "podgrzewacz dyszy okrętowej": "ship thruster heater",
 "Podgrzewacz plazmy dla dyszy okrętowej tuż obok. Paliwo dostaje rurą z atmosu.": "A plasma heater for the ship thruster next to it. It gets fuel through a pipe from atmospherics.",
-"podgrzewacz dyszy okrętowej (płytka maszyny)": "ship thruster heater (machine board)"
+"podgrzewacz dyszy okrętowej (płytka maszyny)": "ship thruster heater (machine board)",
+"Napęd": "Propulsion",
+"Napęd FTL": "FTL drive",
+"Naprawa pancerza": "Armour repair",
+"Równowaga": "Balanced",
+"<span class='warning'>[src] wydaje metaliczny jęk: inżynieria odcięła mu zasilanie.</span>": "<span class='warning'>[src] lets out a metallic groan: engineering has cut its power.</span>",
+"[key_name(usr)] zmienił podział mocy statku [ship] ([action] [params[\"system\"] || params[\"preset\"]] [params[\"value\"]]) w [AREACOORD(src)]": "[key_name(usr)] changed the power allocation of [ship] ([action] [params[\"system\"] || params[\"preset\"]] [params[\"value\"]]) at [AREACOORD(src)]",
+"Podział mocy": "Power allocation",
+"Zmiany wymagają dostępu do inżynierii.": "Changes require engineering access.",
+"Systemy okrętu": "Ship systems",
+"Pobór / zapotrzebowanie": "Draw / demand",
+"Priorytet 1 dostaje prąd pierwszy.": "Priority 1 gets power first.",
+"Przy braku mocy najpierw odcinane są niższe priorytety.": "When power runs short, lower priorities are cut first.",
+"Napęd bierze prąd z APC, więc działa u niego tylko limit.": "Propulsion draws from the APC, so only the limit applies to it."
 }
