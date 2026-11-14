@@ -89,7 +89,7 @@ GLOBAL_VAR_INIT(pirates_spawned, FALSE)
 			else
 				notify_ghosts("Statek piratów ma ciekawy obiekt: [spawner]!", source=spawner, action=NOTIFY_ORBIT, header="Coś ciekawego!")
 
-	priority_announce("W pobliżu statku wykryto niezidentyfikowaną uzbrojoną jednostkę.", sound = SSstation.announcer.get_rand_alert_sound())
+	priority_announce("W pobliżu statku wykryto niezidentyfikowaną uzbrojoną jednostkę.", sound = 'aquila/sound/ai/events/pirates_armed_vessel.ogg') // AQ EDIT - własne nagranie ogłoszenia
 
 //Shuttle equipment
 
@@ -158,7 +158,7 @@ GLOBAL_VAR_INIT(pirates_spawned, FALSE)
 		to_chat(user,"<span class='notice'>Nie ma czego wypłacić.</span>")
 
 /obj/machinery/shuttle_scrambler/proc/send_notification()
-	priority_announce("Wykryto sygnał kradzieży danych, źródło zarejestrowano w lokalnych jednostkach GPS.", sound = SSstation.announcer.get_rand_alert_sound())
+	priority_announce("Wykryto sygnał kradzieży danych, źródło zarejestrowano w lokalnych jednostkach GPS.", sound = 'aquila/sound/ai/events/pirates_data_theft.ogg') // AQ EDIT - własne nagranie ogłoszenia
 
 /obj/machinery/shuttle_scrambler/proc/toggle_off(mob/user)
 	SSshuttle.clearTradeBlockade(src)

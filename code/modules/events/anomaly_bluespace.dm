@@ -11,4 +11,4 @@
 	anomaly_path = /obj/effect/anomaly/bluespace
 
 /datum/round_event/anomaly/anomaly_bluespace/announce(fake)
-	priority_announce("Niestabilna anomalia bluespace zlokalizowana na skanerach dalekiego zasięgu. Spodziewana lokalizacja: [impact_area.name].", "Alarm: Anomalia", SSstation.announcer.get_rand_alert_sound())
+	priority_announce("Niestabilna anomalia bluespace zlokalizowana na skanerach dalekiego zasięgu. Spodziewana lokalizacja: [impact_area.name].", "Alarm: Anomalia", 'aquila/sound/ai/events/anomaly_bluespace.ogg') // AQ EDIT - własne nagranie ogłoszenia

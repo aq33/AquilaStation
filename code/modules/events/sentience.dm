@@ -36,7 +36,7 @@ GLOBAL_LIST_INIT(high_priority_sentience, typecacheof(list(
 
 	sentience_report += "W oparciu o [data] sądzimy, że [one] z [pets] na statku [one == "wszystkie" ? "osiągnęły" : "osiągnęło"] poziom inteligencji: [strength], oraz zdolność komunikacji."
 
-	priority_announce(sentience_report,"Komunikat średniego priorytetu: [command_name()]", SSstation.announcer.get_rand_alert_sound())
+	priority_announce(sentience_report,"Komunikat średniego priorytetu: [command_name()]", 'aquila/sound/ai/events/sentience.ogg') // AQ EDIT - własne nagranie ogłoszenia
 
 /datum/round_event/ghost_role/sentience/spawn_role()
 	var/list/mob/dead/observer/candidates

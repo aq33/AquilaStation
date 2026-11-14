@@ -32,4 +32,4 @@
 /datum/round_event/radioactive_sludge/announce(fake)
 	if(fake)
 		selected_area = pick(GLOB.the_station_areas)
-	priority_announce("Wykryto wyciek materiałów niebezpiecznych w [initial(selected_area.name)]. Zaleca się opuszczenie tego obszaru.", "Alarm strukturalny")
+	priority_announce("Wykryto wyciek materiałów niebezpiecznych w [initial(selected_area.name)]. Zaleca się opuszczenie tego obszaru.", "Alarm strukturalny", sound = 'aquila/sound/ai/events/radioactive_sludge.ogg') // AQ EDIT - własne nagranie ogłoszenia

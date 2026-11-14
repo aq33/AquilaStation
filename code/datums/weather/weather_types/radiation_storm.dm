@@ -87,7 +87,7 @@
 	GLOB.rad_storm_sounds -= playlist
 	if(..())
 		return
-	priority_announce("Zagrożenie promieniotwórcze minęło. Proszę powrócić na stanowiska pracy.", "Alarm: Anomalia", SSstation.announcer.get_rand_alert_sound())
+	priority_announce("Zagrożenie promieniotwórcze minęło. Proszę powrócić na stanowiska pracy.", "Alarm: Anomalia", 'aquila/sound/ai/events/radiation_storm_end.ogg') // AQ EDIT - własne nagranie ogłoszenia
 	status_alarm(FALSE)
 // AQ EDIT END
 

@@ -22,7 +22,7 @@
 
 
 /datum/round_event/beer_clog/announce()
-	priority_announce("W sieci filtrów powietrza wystąpił niespodziewany przypływ sprężonego piwa. Możliwe wyrzuty zawartości.", "Alarm atmosferyczny", SSstation.announcer.get_rand_alert_sound())
+	priority_announce("W sieci filtrów powietrza wystąpił niespodziewany przypływ sprężonego piwa. Możliwe wyrzuty zawartości.", "Alarm atmosferyczny", 'aquila/sound/ai/events/beer_clog.ogg') // AQ EDIT - własne nagranie ogłoszenia
 
 
 /datum/round_event/beer_clog/start()

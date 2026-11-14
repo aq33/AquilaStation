@@ -39,7 +39,7 @@
 		impact_area = find_event_area()
 	else if(!landing_zone)
 		return
-	priority_announce("Skanery dalekiego zasięgu wykryły zabłąkaną kapsułę zaopatrzeniową. Przewidywane miejsce uderzenia: [impact_area?.name || "nieznane"].", "Ostrzeżenie przed kolizją")
+	priority_announce("Skanery dalekiego zasięgu wykryły zabłąkaną kapsułę zaopatrzeniową. Przewidywane miejsce uderzenia: [impact_area?.name || "nieznane"].", "Ostrzeżenie przed kolizją", sound = 'aquila/sound/ai/events/stray_cargo.ogg')
 
 /datum/round_event/aquila_stray_cargo/start()
 	if(!landing_zone)

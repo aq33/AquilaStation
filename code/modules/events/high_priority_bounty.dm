@@ -6,7 +6,7 @@
 	earliest_start = 10
 
 /datum/round_event/high_priority_bounty/announce(fake)
-	priority_announce("Centralne dowództwo wydało priorytetowe oświadczenia o pożądanych towarach. Szczegóły zostały rozesłane do komputerów.", "Program Nagród Nanotrasenu", SSstation.announcer.get_rand_alert_sound())
+	priority_announce("Centralne dowództwo wydało priorytetowe oświadczenia o pożądanych towarach. Szczegóły zostały rozesłane do komputerów.", "Program Nagród Nanotrasenu", 'aquila/sound/ai/events/high_priority_bounty.ogg') // AQ EDIT - własne nagranie ogłoszenia
 
 /datum/round_event/high_priority_bounty/start()
 	var/datum/bounty/B
