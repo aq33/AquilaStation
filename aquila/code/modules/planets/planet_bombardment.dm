@@ -2,7 +2,7 @@
 // okrętu (NAC, railgun, burty, działa fazowe, torpedy, rakiety) wycelowane w planetę spadają na jej powierzchnię:
 // przy znaczniku z lornetki taktycznej w jego okolicy (rozrzut zależy od broni), bez znacznika w losowe miejsce.
 // Przed uderzeniem na ziemi widać cel i słychać świst, potem wybuch zależny od siły pocisku. Torpedy wybuchają
-// swoją głowicą (plazma, EMP, viscerators).
+// swoją głowicą (plazma, EMP), a torpedy z osobnym ładunkiem (opancerzona, hellfire) uwalniają go jak we wnętrzu okrętu.
 
 /// Ile pól od środka sprite'a planety pocisk musi przelecieć, żeby w nią trafić
 #define PLANET_HIT_RADIUS 3
@@ -21,8 +21,10 @@ GLOBAL_LIST_EMPTY(planet_laser_targets)
 	return z && z == planet.z && get_dist(src, planet.center_turf()) <= PLANET_HIT_RADIUS
 
 /obj/structure/overmap/planet/bullet_act(obj/item/projectile/P)
-	if(P.flag == "overmap_light" || P.nodamage || !P.damage && !istype(P, /obj/item/projectile/guided_munition))
-		return BULLET_ACT_HIT // Lekkie działka nie przebijają się przez atmosferę
+	// Lekkie działka nie przebijają się przez atmosferę. Bez obrażeń przechodzą tylko pociski z osobnym ładunkiem
+	// (pluszaki), a niewybuch i wabik po prostu giną
+	if(P.flag == "overmap_light" || P.nodamage || !P.damage && !ispath(P.relay_projectile_type, /obj/item/projectile/bullet/delayed_prime))
+		return BULLET_ACT_HIT
 	if(surface?.state != PLANET_SURFACE_READY)
 		return BULLET_ACT_HIT // Nikogo tam nie ma: pocisk ginie w atmosferze
 	var/turf/target_turf = pick_strike_turf(P)
@@ -91,8 +93,19 @@ GLOBAL_LIST_EMPTY(planet_laser_targets)
 /obj/effect/temp_visual/planet_strike/proc/strike(turf/T)
 	if(!projectile_type && damage <= 0)
 		return // Rozbrojony (testy, admin)
+	var/obj/item/projectile/projectile_path = projectile_type
+	var/payload_type = projectile_path ? initial(projectile_path.relay_projectile_type) : null
+	if(ispath(payload_type, /obj/item/projectile/bullet/delayed_prime))
+		// Ładunek z osobnego pocisku, jak przy trafieniu we wnętrze okrętu (visceratory, płonąca plazma, pluszaki)
+		var/obj/item/projectile/bullet/delayed_prime/payload = new payload_type(T)
+		payload.release_payload(T)
+		if(!QDELETED(payload))
+			qdel(payload)
+		return
 	if(ispath(projectile_type, /obj/item/projectile/guided_munition))
-		// Głowica torpedy albo rakiety robi swoje (plazma, EMP, viscerators)
+		if(damage <= 0)
+			return // Niewybuch i wabik nie mają głowicy
+		// Głowica torpedy albo rakiety robi swoje (plazma, EMP)
 		var/obj/item/projectile/guided_munition/warhead = new projectile_type(T)
 		warhead.detonate(T)
 		if(!QDELETED(warhead))

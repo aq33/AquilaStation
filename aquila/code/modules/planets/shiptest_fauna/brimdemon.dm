@@ -313,6 +313,8 @@
 
 /// Disappear
 /obj/effect/brimbeam/proc/disperse()
+	// Wygasający promień już nie parzy (w tg parzył jeszcze przez pół sekundy po przerwaniu)
+	STOP_PROCESSING(SSfastprocess, src)
 	animate(src, time = 0.5 SECONDS, alpha = 0)
 	QDEL_IN(src, 0.5 SECONDS)
 

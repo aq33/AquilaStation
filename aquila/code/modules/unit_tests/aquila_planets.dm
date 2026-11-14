@@ -110,6 +110,10 @@
 		for(var/list/spawn_list in list(biome.flora_spawn_list, biome.feature_spawn_list, biome.mob_spawn_list))
 			atom_types |= spawn_list
 	var/turf/T = run_loc_floor_bottom_left
+	// Plamy z wcześniejszych testów (sprzątanie testu ich nie rusza): lawa usuwa je w trakcie ChangeTurf, a ten przywraca
+	// sygnały starego turfu, więc na podłodze zostałaby martwa rejestracja plamy (runtime u następnego, kto tu wejdzie)
+	for(var/obj/effect/decal/cleanable/stain in T)
+		qdel(stain)
 	var/turf_type_before = T.type
 	for(var/turf_type in turf_types)
 		T = T.ChangeTurf(turf_type)
@@ -186,6 +190,31 @@
 	strike.projectile_type = null
 	strike.damage = 0
 	qdel(strike)
+
+	// Niewybuch nie ma głowicy: ginie w atmosferze bez ostrzału
+	var/obj/item/projectile/guided_munition/torpedo/dud/dud = new(planet.center_turf())
+	planet.bullet_act(dud)
+	var/dud_strikes = 0
+	for(var/obj/effect/temp_visual/planet_strike/candidate in range(planet.strike_spread(dud), ground))
+		dud_strikes++
+		candidate.projectile_type = null
+		candidate.damage = 0
+		qdel(candidate)
+	qdel(dud)
+	TEST_ASSERT_EQUAL(dud_strikes, 0, "A dud torpedo bombarded the planet")
+
+	// Torpeda opancerzona uwalnia na ziemi swój ładunek (visceratory), jak we wnętrzu okrętu
+	var/obj/effect/temp_visual/planet_strike/viscerator_strike = new(ground, /obj/item/projectile/guided_munition/torpedo/viscerator, 75)
+	viscerator_strike.strike(ground)
+	viscerator_strike.projectile_type = null
+	viscerator_strike.damage = 0
+	qdel(viscerator_strike)
+	var/viscerators = 0
+	for(var/mob/living/basic/viscerator/V in ground)
+		viscerators++
+		qdel(V)
+	TEST_ASSERT(viscerators > 0, "The armoured torpedo didn't release its viscerators on the planet")
+
 	qdel(laser)
 	qdel(shell)
 	planet.surface.unload()

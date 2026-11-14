@@ -18,7 +18,7 @@
 	if(!istype(OM, /obj/structure/overmap/planet) || !shuttle_port)
 		return ..()
 	var/obj/structure/overmap/planet/planet = OM
-	if(shuttle_docked_at || shuttle_landing_eye)
+	if(shuttle_docked_at || shuttle_landing_eye || shuttle_just_launched_from(planet))
 		return FALSE
 	var/obj/item/fighter_component/docking_computer/DC = loadout.get_slot(HARDPOINT_SLOT_DOCKING)
 	if(!DC?.docking_mode || DC.docking_cooldown)
@@ -62,17 +62,29 @@
 	if(!istype(OM, /obj/structure/overmap/planet))
 		return ..()
 	var/obj/structure/overmap/planet/planet = OM
+	// Powierzchnia budowała się kilkanaście sekund: prom mógł w tym czasie odlecieć albo wyłączyć tryb dokowania
+	if(!planet.craft_over_planet(src))
+		planet_landing_cancelled(planet)
+		return
 	planet_landing_zone = choose_planet_landing_zone(planet)
 	if(QDELETED(src) || QDELETED(planet) || shuttle_docked_at)
 		return
-	if(!planet_landing_zone)
-		var/obj/item/fighter_component/docking_computer/DC = loadout.get_slot(HARDPOINT_SLOT_DOCKING)
-		if(DC)
-			DC.docking_cooldown = FALSE
+	// Okno wyboru lądowiska czeka na pilota do 30 s: sprawdzamy jeszcze raz
+	if(!planet_landing_zone || !planet.craft_over_planet(src))
+		planet_landing_cancelled(planet)
 		return
 	if(shuttle_manual_landing(planet))
 		return
 	shuttle_try_land(planet)
+
+/// Lądowanie przerwane: komputer dokowania znów jest gotowy
+/obj/structure/overmap/small_craft/transport/proc/planet_landing_cancelled(obj/structure/overmap/planet/planet)
+	planet_landing_zone = null
+	var/obj/item/fighter_component/docking_computer/DC = loadout.get_slot(HARDPOINT_SLOT_DOCKING)
+	if(DC)
+		DC.docking_cooldown = FALSE
+	if(pilot)
+		to_chat(pilot, span_warning("Lądowanie przerwane: prom nie jest już nad [planet] w trybie dokowania."))
 
 /// Pilot wybiera lądowisko (pierwsze, jeśli nie ma pilota albo nie odpowie)
 /obj/structure/overmap/small_craft/transport/proc/choose_planet_landing_zone(obj/structure/overmap/planet/planet)

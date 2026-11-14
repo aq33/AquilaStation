@@ -2334,6 +2334,7 @@
 #include "code\modules\unit_tests\aquila_planets.dm"
 #include "code\modules\unit_tests\aquila_vein_drill.dm"
 #include "code\modules\unit_tests\aquila_anomaly_cores.dm"
+#include "code\modules\unit_tests\aquila_crystal_reagent.dm"
 #include "code\modules\unit_tests\aquila_sabre_shuttle.dm"
 #include "code\modules\unit_tests\aquila_sabre_tether.dm"
 #include "code\modules\unit_tests\aquila_custom_shuttle_overmap.dm"

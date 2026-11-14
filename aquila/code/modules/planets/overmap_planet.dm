@@ -115,14 +115,21 @@ GLOBAL_LIST_EMPTY(overmap_planets)
 	if(!center)
 		return
 	for(var/obj/structure/overmap/small_craft/transport/craft in current_system.system_contents)
-		if(!craft.shuttle_port || craft.shuttle_docked_at || craft.z != z)
+		if(!craft.shuttle_port || craft.shuttle_docked_at)
 			continue
-		if(get_dist(craft, center) > PLANET_LANDING_RADIUS)
-			continue
-		var/obj/item/fighter_component/docking_computer/DC = craft.loadout?.get_slot(HARDPOINT_SLOT_DOCKING)
-		if(!DC?.docking_mode)
+		if(!craft_over_planet(craft))
 			continue
 		craft.docking_act(src)
+
+/// Czy prom wisi nad planetą w trybie dokowania (może na niej wylądować)
+/obj/structure/overmap/planet/proc/craft_over_planet(obj/structure/overmap/small_craft/transport/craft)
+	if(QDELETED(craft) || !current_system || !z || craft.z != z)
+		return FALSE
+	var/turf/center = center_turf()
+	if(!center || get_dist(craft, center) > PLANET_LANDING_RADIUS)
+		return FALSE
+	var/obj/item/fighter_component/docking_computer/DC = craft.loadout?.get_slot(HARDPOINT_SLOT_DOCKING)
+	return DC?.docking_mode
 
 /datum/planet_surface/proc/landing_zones_names()
 	. = list()

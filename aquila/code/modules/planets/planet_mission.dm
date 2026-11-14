@@ -455,7 +455,9 @@ GLOBAL_LIST_EMPTY(planet_samples)
 	suit = /obj/item/clothing/suit/hooded/explorer
 	shoes = /obj/item/clothing/shoes/workboots/mining
 	mask = /obj/item/clothing/mask/gas/explorer
-	l_hand = /obj/item/tank/internals/emergency_oxygen/engi
+	r_pocket = /obj/item/tank/internals/emergency_oxygen/engi
+	// Butla podłączona od razu: KNPC bez plecaka sam jej nie włączy
+	internals_slot = ITEM_SLOT_RPOCKET
 
 /// Kolonista KNPC idzie za najbliższym człowiekiem z załogi (z umysłem), którego widzi
 /datum/ai_goal/human/follow_rescuer

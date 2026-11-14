@@ -122,31 +122,43 @@
 		var/best_score = -1
 		for(var/attempt in 1 to 60)
 			var/turf/candidate = locate(bl.x + rand(min_coord, max_coord), bl.y + rand(min_coord, max_coord), bl.z)
-			var/too_close = FALSE
-			for(var/turf/other as anything in landing_zones)
-				if(get_dist(other, candidate) < PLANET_LANDING_ZONE_SIZE + 4)
-					too_close = TRUE
-					break
-			if(too_close)
-				continue
-			var/score = 0
-			var/hits_ruin = FALSE
-			for(var/turf/T as anything in RANGE_TURFS(radius + 2, candidate))
-				if(T.flags_1 & NO_RUINS_1)
-					hits_ruin = TRUE
-					break
-				if(isopenturf(T) && !islava(T))
-					score++
-			if(hits_ruin)
-				continue
+			var/score = landing_zone_score(candidate, radius)
 			if(score > best_score)
 				best = candidate
 				best_score = score
 			CHECK_TICK
+		// Losowe próby nie trafiły w wolne miejsce (duża ruina, ciasno między lądowiskami): przegląd całej siatki
 		if(!best)
+			for(var/x_offset = min_coord; x_offset <= max_coord; x_offset += 5)
+				for(var/y_offset = min_coord; y_offset <= max_coord; y_offset += 5)
+					var/turf/candidate = locate(bl.x + x_offset, bl.y + y_offset, bl.z)
+					var/score = landing_zone_score(candidate, radius)
+					if(score > best_score)
+						best = candidate
+						best_score = score
+					CHECK_TICK
+		if(!best)
+			log_mapping("Planet [planet]: no room for landing zone [i] of [PLANET_LANDING_ZONES]")
 			continue
 		clear_landing_zone(best, radius)
 		landing_zones[best] = zone_names[i]
+	if(length(landing_zones) < PLANET_LANDING_ZONES)
+		message_admins("Planeta [planet]: wyznaczono tylko [length(landing_zones)] z [PLANET_LANDING_ZONES] lądowisk.")
+
+/// Ocena miejsca na lądowisko: ile pól jest już przejezdnych, -1 gdy za blisko innego lądowiska albo nachodzi na ruinę
+/datum/planet_surface/proc/landing_zone_score(turf/candidate, radius)
+	if(!candidate)
+		return -1
+	for(var/turf/other as anything in landing_zones)
+		if(get_dist(other, candidate) < PLANET_LANDING_ZONE_SIZE + 4)
+			return -1
+	var/score = 0
+	for(var/turf/T as anything in RANGE_TURFS(radius + 2, candidate))
+		if(T.flags_1 & NO_RUINS_1)
+			return -1
+		if(isopenturf(T) && !islava(T))
+			score++
+	return score
 
 /// Czyści lądowisko: skały i lawa zamieniają się w grunt, rośliny i obiekty bez właściciela znikają
 /datum/planet_surface/proc/clear_landing_zone(turf/zone_center, radius)
@@ -297,6 +309,10 @@
 	// Najpierw odpinamy rezerwację: jej zwalnianie usypia, a w tym czasie ktoś inny mógłby ją usunąć drugi raz
 	var/datum/turf_reservation/old_reservation = reservation
 	reservation = null
+	// Obszary też odpinamy przed uśpieniem: w tym czasie może ruszyć nowa generacja z własnymi obszarami
+	var/list/old_areas = list(surface_area, cave_area)
+	surface_area = null
+	cave_area = null
 	state = PLANET_SURFACE_NONE
 	if(old_reservation)
 		for(var/turf/T as anything in old_reservation.reserved_turfs)
@@ -304,12 +320,9 @@
 				qdel(L)
 		qdel(old_reservation)
 	// Puste obszary nie wiszą na listach obszarów (teleporty, admin)
-	for(var/area/A as anything in list(surface_area, cave_area))
+	for(var/area/A as anything in old_areas)
 		if(!A)
 			continue
 		GLOB.sortedAreas -= A
 		for(var/z_key in SSmapping.areas_in_z)
 			SSmapping.areas_in_z[z_key] -= A
-	surface_area = null
-	cave_area = null
-	state = PLANET_SURFACE_NONE

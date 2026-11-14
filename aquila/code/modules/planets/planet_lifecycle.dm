@@ -35,12 +35,4 @@
 	if(stranded)
 		relay(message = "<span class='warning'>Na powierzchni planet tego układu zostało [stranded] osób z załogi.</span>")
 
-/// Z planety poza mapą nie ma dokąd wystartować
-/obj/structure/overmap/small_craft/transport/shuttle_can_launch(mob/user)
-	var/obj/structure/overmap/planet/planet = get_overmap()
-	if(istype(planet) && !planet.z)
-		to_chat(user, span_warning("Okręt opuścił układ, a komputer nawigacyjny [src] nie ma do czego się odnieść na orbicie. Trzeba czekać, aż okręt wróci."))
-		return FALSE
-	return ..()
-
 #undef PLANET_UNLOAD_CHECK_EVERY

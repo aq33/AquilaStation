@@ -87,7 +87,8 @@ GLOBAL_LIST_EMPTY(planet_biomes)
 	created_features = list()
 	created_mobs = list()
 	for(var/turf/T as anything in turfs)
-		if(skip?[T])
+		// Pola ruin i lądowisk (NO_RUINS_1) zostają takie, jak je zaprojektowano
+		if(skip?[T] || (T.flags_1 & NO_RUINS_1))
 			continue
 		var/datum/planet_biome/biome = turf_biome_cache[T]
 		biome?.populate_turf(T, created_features, created_mobs)

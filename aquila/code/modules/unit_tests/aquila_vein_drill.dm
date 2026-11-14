@@ -91,6 +91,17 @@
 	sampler.start_mining()
 	TEST_ASSERT(!sampler.active, "Wiertło misji ruszyło na żyle za niskiej klasy")
 	sampler.mission_class = 1
+	// Żyła poza planetą wskazaną w misji się nie liczy
+	var/obj/structure/overmap/planet/other_planet = new(run_loc_floor_top_right, /datum/planet_type/lava)
+	var/datum/overmap_objective/planet/drill_samples/wrong_site = new
+	wrong_site.target_planet = other_planet
+	sampler.mission = wrong_site
+	sampler.start_mining()
+	TEST_ASSERT(!sampler.active, "Wiertło misji ruszyło na żyle spoza planety wskazanej w misji")
+	sampler.mission = null
+	wrong_site.target_planet = null
+	qdel(wrong_site)
+	qdel(other_planet, TRUE)
 	sampler.start_mining()
 	TEST_ASSERT(sampler.active, "Wiertło misji nie ruszyło")
 	var/ore_before = 0

@@ -159,7 +159,16 @@
 	if(num_current >= num_wanted)
 		. += span_notice("Dodatkowe próbki (do [num_wanted + PLANET_DRILL_EXTRA_SAMPLES]) są warte po [PLANET_DRILL_EXTRA_SAMPLE_PAYOUT * mission_class] kr. Dowieźcie wiertło na okręt.")
 
+/// Czy żyła pod wiertłem leży na planecie wskazanej w misji (misja bez planety, np. z testu: wszystko jedno)
+/obj/machinery/drill/proc/vein_on_planet(obj/structure/overmap/planet/target)
+	if(!target || !our_vein)
+		return TRUE
+	return target.surface?.contains(get_turf(our_vein))
+
 /obj/machinery/drill/mission/start_mining()
+	if(!vein_on_planet(mission?.target_planet))
+		say("Błąd: ta żyła nie leży na planecie wskazanej w misji ([mission.target_planet]).")
+		return
 	if(our_vein && orevein_wanted && !istype(our_vein, orevein_wanted))
 		say("Błąd: zły rodzaj planety dla tej operacji.")
 		return

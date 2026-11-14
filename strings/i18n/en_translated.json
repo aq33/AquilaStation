@@ -21874,5 +21874,8 @@
 "zepsuta prasa": "Malfunctioning Presser",
 "zepsute drzwi okienne": "broken windoor",
 "Łazienka": "Bathroom",
-"łazienka": "bathroom"
+"łazienka": "bathroom",
+"Błąd: ta żyła nie leży na planecie wskazanej w misji ([mission.target_planet]).": "Error: this vein isn't on the planet named in the mission ([mission.target_planet]).",
+"Lądowanie przerwane: prom nie jest już nad [planet] w trybie dokowania.": "Landing aborted: the shuttle is no longer over [planet] in docking mode.",
+"Planeta [planet]: wyznaczono tylko [length(landing_zones)] z [PLANET_LANDING_ZONES] lądowisk.": "Planet [planet]: only [length(landing_zones)] of [PLANET_LANDING_ZONES] landing zones were marked."
 }

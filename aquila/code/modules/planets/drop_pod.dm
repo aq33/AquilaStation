@@ -167,7 +167,8 @@
 	if(machine_stat & (NOPOWER|BROKEN))
 		to_chat(user, span_warning("Wyrzutnia nie ma zasilania."))
 		return
-	if(!target_turf || QDELETED(target_planet) || !target_planet.z || target_planet.surface?.state != PLANET_SURFACE_READY || !target_planet.surface.contains(target_turf))
+	var/obj/structure/overmap/ship = get_overmap()
+	if(!target_turf || QDELETED(target_planet) || target_planet.current_system != ship?.current_system || !target_planet.z || target_planet.surface?.state != PLANET_SURFACE_READY || !target_planet.surface.contains(target_turf))
 		to_chat(user, span_warning("Najpierw wybierz cel zrzutu na planecie w tym układzie."))
 		return
 	var/list/landing_spots = list()

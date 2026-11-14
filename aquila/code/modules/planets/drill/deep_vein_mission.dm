@@ -163,6 +163,9 @@
 		. += span_notice("Wiertło dotarło do [round(num_current / samples_required * 100)]% wymaganej głębokości.")
 
 /obj/machinery/drill/sampler_mission/start_mining()
+	if(!vein_on_planet(mission?.target_planet))
+		say("Błąd: ta żyła nie leży na planecie wskazanej w misji ([mission.target_planet]).")
+		return
 	if(our_vein && our_vein.vein_class < 4)
 		say("Błąd: za płytka żyła. Znajdźcie żyłę klasy 4.")
 		return
