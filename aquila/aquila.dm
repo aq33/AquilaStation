@@ -1000,6 +1000,7 @@
 #include "code\modules\planets\shiptest_flora\_index.dm"
 #include "code\modules\planets\shiptest_fauna\_index.dm"
 #include "code\modules\planets\anomalies\_index.dm"
+#include "code\modules\planets\ruins\_index.dm"
 #include "code\modules\planets\planet_generator.dm"
 #include "code\modules\planets\biomes\lava.dm"
 #include "code\modules\planets\planet_type.dm"

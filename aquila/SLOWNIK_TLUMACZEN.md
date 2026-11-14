@@ -3697,6 +3697,9 @@ Oznaczenia w kolumnie uwag:
 | brimdust | siarkowy pył | m; nowe |
 | ore sensor | czujnik rud | m; nowe |
 | plasma soul (anomaly) | dusza plazmy | ż; nowe |
+| Ramzi Clique | Klika Ramziego | ż; nowe (frakcja z ruin Shiptesta) |
+| Hardliners | Twardogłowi | m mn.; nowe (frakcja z ruin Shiptesta) |
+| Reisehund (Ramzi hound) | rajzehund | m; nowe |
 | dwarf legion | karłowaty legion | m; nowe |
 | legionnaire | legionista | m; istniejące |
 | watcher | obserwator | m; nowe |

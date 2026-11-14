@@ -171,13 +171,14 @@
 			T.change_area(old_area, surface_area)
 		CHECK_TICK
 
-/// Główna ruina jak w Shiptest: jedna, losowa (z wagami), przy górnej krawędzi w losowym miejscu w poziomie. Mieści
+/// Główna ruina jak w Shiptest: jedna, losowa (z wagami) z ruin głównych typu planety, przy górnej krawędzi w losowym miejscu w poziomie. Mieści
 /// się każda ruina do szerokości wnętrza bez marginesów i do połowy jego wysokości.
 /datum/planet_surface/proc/place_main_ruin()
 	var/inner_size = PLANET_SURFACE_SIZE - 2 * PLANET_EDGE_WIDTH
 	var/list/available = list()
-	for(var/key in planet_type.get_ruin_templates())
-		var/datum/map_template/ruin/ruin = planet_type.get_ruin_templates()[key]
+	var/list/templates = planet_type.get_main_ruin_templates()
+	for(var/key in templates)
+		var/datum/map_template/ruin/ruin = templates[key]
 		if(!istype(ruin) || ruin.unpickable || ruin.always_place || ruin.cost <= 0)
 			continue
 		if(ruin.width > inner_size - 12 || ruin.height > inner_size / 2)
@@ -216,8 +217,9 @@
 	if(budget <= 0)
 		return
 	var/list/available = list()
-	for(var/key in planet_type.get_ruin_templates())
-		var/datum/map_template/ruin/ruin = planet_type.get_ruin_templates()[key]
+	var/list/templates = planet_type.get_ruin_templates()
+	for(var/key in templates)
+		var/datum/map_template/ruin/ruin = templates[key]
 		if(!istype(ruin) || ruin.unpickable || ruin.always_place || ruin.cost <= 0 || ruin.cost > budget)
 			continue
 		if(ruin.width > PLANET_SURFACE_SIZE / 2.5 || ruin.height > PLANET_SURFACE_SIZE / 2.5)

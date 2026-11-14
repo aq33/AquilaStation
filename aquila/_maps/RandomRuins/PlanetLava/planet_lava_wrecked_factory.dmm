@@ -1,0 +1,7836 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"an" = (
+/obj/effect/turf_decal/siding/white,
+/obj/item/ammo_box/magazine/m10mm{
+	start_empty = 1
+	},
+/obj/item/ammo_casing/spent{
+	projectile_type = null
+	},
+/obj/item/ammo_casing/spent{
+	projectile_type = null
+	},
+/obj/item/ammo_casing/spent{
+	projectile_type = null
+	},
+/obj/item/ammo_casing/spent{
+	projectile_type = null
+	},
+/obj/item/ammo_casing/spent{
+	projectile_type = null
+	},
+/turf/open/floor/concrete/pavement/lava,
+/area/lavaland/surface/outdoors)
+"av" = (
+/obj/structure/flora/ash/cacti,
+/turf/open/floor/plating/moss,
+/area/ruin/unpowered/planet_lava/cave)
+"ax" = (
+/turf/closed/mineral/volcanic,
+/area/ruin/unpowered/planet_lava/cave)
+"aH" = (
+/obj/effect/turf_decal/trimline/brown/warning{
+	dir = 1;
+	color = "#CEB689";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"aR" = (
+/obj/structure/floodlight_frame,
+/obj/effect/decal/cleanable/glass,
+/obj/item/light/tube/broken,
+/turf/open/floor/concrete/slab_1/lava,
+/area/lavaland/surface/outdoors)
+"aZ" = (
+/obj/effect/turf_decal/trimline/darkblue/warning{
+	color = "#32426b";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/monotile/light,
+/area/ruin/powered/planet_lava/factory/lobby)
+"bd" = (
+/obj/machinery/door/airlock/security,
+/obj/machinery/door/poddoor/shutters{
+	id = "sec"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/administrative)
+"be" = (
+/obj/effect/decal/cleanable/generic,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/light/built{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=5;co2=13;TEMP=300"
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"bf" = (
+/obj/structure/fence/door{
+	dir = 4
+	},
+/turf/open/floor/concrete/slab_1/lava,
+/area/lavaland/surface/outdoors)
+"bh" = (
+/obj/item/stack/rods,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/unpowered/planet_lava/cave)
+"bj" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/administrative)
+"bq" = (
+/obj/structure/fence,
+/turf/open/floor/concrete/slab_1/lava,
+/area/lavaland/surface/outdoors)
+"bw" = (
+/obj/effect/turf_decal/trimline/brown/warning{
+	dir = 8;
+	color = "#CEB689";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"bx" = (
+/obj/effect/turf_decal/caution/stand_clear,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/monotile/steel,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"bD" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/machinery/door/poddoor/shutters{
+	dir = 4;
+	id = "foreman"
+	},
+/turf/open/floor/plating,
+/area/ruin/powered/planet_lava/factory/manager_office)
+"bH" = (
+/obj/item/reagent_containers/food/drinks/beer,
+/turf/open/floor/plating,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"bO" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 10
+	},
+/obj/effect/decal/cleanable/blood,
+/obj/effect/mob_spawn/human/corpse/syndicatesoldier,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_lava/factory/manager_office)
+"bS" = (
+/mob/living/basic/hivebot/rapid{
+	faction = list("nanotrasenprivate")
+	},
+/turf/open/floor/circuit/red,
+/area/ruin/powered/planet_lava/factory/manager_office)
+"bU" = (
+/obj/item/stack/sheet/iron,
+/obj/structure/railing,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_lava/cave)
+"ci" = (
+/obj/structure/cable/yellow,
+/mob/living/basic/trooper/syndicate/ranged/shotgun/space/stormtrooper,
+/turf/open/floor/plasteel/white,
+/area/ruin/powered/planet_lava/factory/administrative)
+"ck" = (
+/obj/effect/turf_decal/trimline/green/warning{
+	dir = 4;
+	color = "#B7D993";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/blood,
+/obj/item/spear,
+/obj/item/bodypart/l_arm,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/dorms)
+"cl" = (
+/obj/structure/table_frame,
+/turf/open/floor/plating/lavaland,
+/area/ruin/unpowered/planet_lava/cave)
+"ct" = (
+/obj/effect/turf_decal/box/corners{
+	dir = 8
+	},
+/turf/open/floor/monotile/steel,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"cx" = (
+/obj/effect/turf_decal/trimline/green/line{
+	dir = 9;
+	color = "#B7D993";
+	alpha = 255
+	},
+/obj/machinery/door/airlock{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/dorms)
+"cA" = (
+/obj/structure/fence{
+	dir = 4
+	},
+/turf/open/floor/concrete/slab_1/lava,
+/area/lavaland/surface/outdoors)
+"cB" = (
+/obj/structure/fence{
+	dir = 4
+	},
+/turf/open/floor/concrete/pavement/lava,
+/area/lavaland/surface/outdoors)
+"dg" = (
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_lava/factory/manager_office)
+"dp" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/caution/stand_clear,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/monotile/steel,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"dq" = (
+/obj/structure/frame/computer{
+	anchored = 1
+	},
+/turf/open/floor/plating/rust{
+	initial_gas_mix = "o2=14;n2=5;co2=13;TEMP=300"
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"ds" = (
+/obj/effect/turf_decal/stripes/line,
+/obj/effect/turf_decal/caution/stand_clear{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 1
+	},
+/turf/open/floor/concrete/pavement/lava,
+/area/lavaland/surface/outdoors)
+"dv" = (
+/obj/machinery/button/door{
+	dir = 4;
+	id = "sec";
+	name = "blokada ochrony";
+	pixel_x = -22
+	},
+/turf/open/floor/carpet/black,
+/area/ruin/powered/planet_lava/factory/manager_office)
+"dy" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 6
+	},
+/obj/effect/decal/cleanable/blood{
+	dir = 10
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_lava/factory/manager_office)
+"dA" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/manager_office)
+"dB" = (
+/obj/item/reagent_containers/food/drinks/flask/gold,
+/obj/effect/turf_decal/siding/wood{
+	dir = 9
+	},
+/obj/item/clothing/gloves/color/black,
+/obj/item/storage/belt/sabre,
+/obj/item/clothing/under/rank/captain/skirt,
+/obj/structure/closet/cabinet,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_lava/factory/administrative)
+"dD" = (
+/obj/effect/turf_decal/tile/green{
+	dir = 1;
+	color = "#B7D993";
+	alpha = 255
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 8;
+	color = "#B4696A";
+	alpha = 255
+	},
+/obj/structure/cable/yellow,
+/obj/machinery/power/apc/auto_name/west,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/white,
+/area/ruin/powered/planet_lava/factory/administrative)
+"dE" = (
+/obj/effect/turf_decal/trimline/brown/warning{
+	dir = 8;
+	color = "#CEB689";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/closet/crate,
+/obj/item/stack/sheet/glass{
+	amount = 20
+	},
+/obj/item/stack/sheet/iron/twenty,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"dN" = (
+/obj/effect/decal/cleanable/blood/footprints{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/glass,
+/obj/effect/turf_decal/trimline/brown/arrow_cw{
+	dir = 6;
+	color = "#CEB689";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=5;co2=13;TEMP=300"
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"dP" = (
+/obj/structure/table/wood,
+/obj/effect/turf_decal/siding/wood,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_lava/factory/manager_office)
+"dS" = (
+/obj/structure/chair/greyscale{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/white,
+/area/ruin/powered/planet_lava/factory/dorms)
+"dZ" = (
+/obj/structure/grille,
+/obj/structure/window/shuttle,
+/turf/open/floor/plating,
+/area/ruin/powered/planet_lava/factory/manager_office)
+"eb" = (
+/obj/effect/turf_decal/trimline/green/warning{
+	dir = 4;
+	color = "#B7D993";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/dorms)
+"em" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 10
+	},
+/turf/open/floor/concrete/pavement/lava,
+/area/lavaland/surface/outdoors)
+"eq" = (
+/turf/open/floor/plating/asteroid/dirt/grass/lavaland,
+/area/lavaland/surface/outdoors)
+"es" = (
+/obj/structure/table_frame,
+/turf/open/floor/plasteel/white,
+/area/ruin/powered/planet_lava/factory/dorms)
+"eu" = (
+/obj/structure/closet/secure_closet/personal,
+/obj/effect/turf_decal/tile/darkblue{
+	color = "#32426b";
+	alpha = 255
+	},
+/obj/effect/turf_decal/tile/darkblue{
+	dir = 1;
+	color = "#32426b";
+	alpha = 255
+	},
+/obj/item/modular_computer/laptop,
+/obj/effect/spawner/lootdrop/maintenance,
+/turf/open/floor/plasteel/white,
+/area/ruin/powered/planet_lava/factory/dorms)
+"eC" = (
+/obj/structure/cable/yellow,
+/obj/machinery/power/apc/auto_name/west,
+/turf/open/floor/carpet/blue,
+/area/ruin/powered/planet_lava/factory/manager_office)
+"eF" = (
+/obj/effect/decal/cleanable/blood/footprints{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=5;co2=13;TEMP=300"
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"eI" = (
+/obj/structure/grille,
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/poddoor/shutters{
+	dir = 4;
+	id = "foreman"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/manager_office)
+"eK" = (
+/obj/effect/turf_decal/box/corners{
+	dir = 8
+	},
+/mob/living/basic/trooper/syndicate/ranged/shotgun/space,
+/turf/open/floor/monotile/steel,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"eL" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/turf/open/floor/plating,
+/area/ruin/powered/planet_lava/factory/administrative)
+"eM" = (
+/obj/effect/decal/cleanable/ash,
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=5;co2=13;TEMP=300"
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"eP" = (
+/obj/effect/turf_decal/tile/red/half{
+	dir = 1;
+	color = "#B4696A";
+	alpha = 255
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/administrative)
+"eT" = (
+/obj/structure/flora/ausbushes/fullgrass/hell,
+/turf/open/floor/plating/asteroid/purple,
+/area/lavaland/surface/outdoors)
+"eU" = (
+/obj/structure/table,
+/obj/effect/turf_decal/trimline/green/line{
+	dir = 6;
+	color = "#B7D993";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/dorms)
+"eV" = (
+/obj/structure/frame/machine{
+	anchored = 1
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=5;co2=13;TEMP=300"
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"fb" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 5
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_lava/factory/manager_office)
+"ff" = (
+/obj/structure/table_frame,
+/obj/effect/decal/cleanable/glass,
+/obj/item/shard,
+/turf/open/floor/carpet/royalblue,
+/area/ruin/powered/planet_lava/factory/lobby)
+"fh" = (
+/obj/effect/turf_decal/tile/red/half{
+	dir = 8;
+	color = "#B4696A";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/administrative)
+"fm" = (
+/obj/effect/mob_spawn/human/corpse/cargo_tech,
+/obj/effect/turf_decal/trimline/red/filled/warning{
+	color = "#B4696A";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/plasteel/white,
+/area/ruin/powered/planet_lava/factory/administrative)
+"fv" = (
+/obj/effect/turf_decal/trimline/darkblue/warning{
+	dir = 8;
+	color = "#32426b";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/monotile/light,
+/area/ruin/powered/planet_lava/factory/lobby)
+"fC" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/mecha_parts/mecha_equipment/hydraulic_clamp,
+/turf/open/floor/monotile/steel,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"fG" = (
+/obj/structure/cable/yellow,
+/obj/effect/turf_decal/siding/white,
+/turf/open/floor/concrete/pavement/lava,
+/area/lavaland/surface/outdoors)
+"fH" = (
+/obj/machinery/door/airlock/command{
+	dir = 4
+	},
+/obj/machinery/door/poddoor/shutters{
+	dir = 4;
+	id = "sec"
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/carpet/black,
+/area/ruin/powered/planet_lava/factory/administrative)
+"fI" = (
+/obj/structure/flora/rock/lava,
+/turf/open/floor/plating/moss,
+/area/ruin/unpowered/planet_lava/cave)
+"fK" = (
+/obj/effect/turf_decal/trimline/brown/corner{
+	dir = 8;
+	color = "#CEB689";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/generic,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"fQ" = (
+/obj/effect/turf_decal/box/corners{
+	dir = 1
+	},
+/turf/open/floor/monotile/steel,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"fZ" = (
+/obj/structure/toilet{
+	dir = 8;
+	pixel_x = 5
+	},
+/obj/effect/decal/cleanable/vomit/old,
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/ruin/powered/planet_lava/factory/administrative)
+"ge" = (
+/obj/structure/cable/yellow,
+/obj/item/ammo_casing/spent,
+/turf/open/floor/plasteel/white,
+/area/ruin/powered/planet_lava/factory/administrative)
+"gl" = (
+/obj/structure/cable/yellow,
+/mob/living/basic/viscerator,
+/turf/open/floor/plasteel/white,
+/area/ruin/powered/planet_lava/factory/administrative)
+"gn" = (
+/obj/effect/decal/cleanable/blood/footprints{
+	dir = 4
+	},
+/turf/open/floor/plating/lavaland,
+/area/ruin/unpowered/planet_lava/cave)
+"gr" = (
+/obj/effect/turf_decal/trimline/green/corner{
+	dir = 4;
+	color = "#B7D993";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/dorms)
+"gt" = (
+/obj/effect/turf_decal/trimline/red/filled/warning{
+	dir = 1;
+	color = "#B4696A";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/administrative)
+"gz" = (
+/obj/item/reagent_containers/hypospray/medipen{
+	list_reagents = null;
+	pixel_x = -5;
+	pixel_y = 4
+	},
+/obj/item/reagent_containers/hypospray/medipen{
+	list_reagents = null;
+	pixel_x = 8;
+	pixel_y = -2
+	},
+/obj/item/reagent_containers/hypospray/medipen{
+	list_reagents = null;
+	pixel_x = 2;
+	pixel_y = -7
+	},
+/turf/open/floor/carpet/blue,
+/area/ruin/powered/planet_lava/factory/manager_office)
+"gC" = (
+/obj/item/rack_parts,
+/turf/open/floor/monotile/steel,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"gE" = (
+/obj/structure/chair,
+/obj/machinery/computer/security/telescreen/entertainment{
+	pixel_y = 28
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_lava/factory/administrative)
+"gJ" = (
+/obj/effect/turf_decal/trimline/brown/warning{
+	dir = 8;
+	color = "#CEB689";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"gK" = (
+/obj/effect/turf_decal/trimline/green/warning{
+	color = "#B7D993";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/blood{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/dorms)
+"gM" = (
+/obj/structure/sink{
+	dir = 8;
+	pixel_x = 12
+	},
+/obj/structure/mirror{
+	pixel_x = 28
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/ruin/powered/planet_lava/factory/administrative)
+"gW" = (
+/obj/effect/turf_decal/trimline/brown/warning{
+	color = "#CEB689";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/blood/splatter,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"gX" = (
+/obj/item/stack/ore/iron,
+/turf/open/floor/plating/moss,
+/area/ruin/unpowered/planet_lava/cave)
+"hg" = (
+/obj/item/stock_parts/cell/empty,
+/turf/open/floor/plasteel/white,
+/area/ruin/powered/planet_lava/factory/lobby)
+"hl" = (
+/obj/effect/turf_decal/trimline/brown/line{
+	dir = 6;
+	color = "#CEB689";
+	alpha = 255
+	},
+/obj/machinery/door/airlock/mining{
+	dir = 4;
+	name = "Magazyn"
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"hm" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/light/broken{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=5;co2=13;TEMP=300"
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"hn" = (
+/obj/structure/railing{
+	dir = 9
+	},
+/obj/effect/turf_decal/trimline/red/arrow_cw{
+	dir = 4;
+	color = "#B4696A";
+	alpha = 255
+	},
+/obj/structure/cable/yellow,
+/obj/machinery/light/broken{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/monotile/dark,
+/area/ruin/powered/planet_lava/factory/lobby)
+"hp" = (
+/obj/item/shard,
+/obj/effect/decal/cleanable/glass,
+/obj/structure/railing,
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=5;co2=13;TEMP=300"
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"hC" = (
+/obj/effect/turf_decal/trimline/brown/warning{
+	color = "#CEB689";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"hE" = (
+/obj/effect/turf_decal/trimline/darkblue/corner{
+	dir = 8;
+	color = "#32426b";
+	alpha = 255
+	},
+/turf/open/floor/monotile/light,
+/area/ruin/powered/planet_lava/factory/lobby)
+"hL" = (
+/obj/effect/turf_decal/tile/red/half{
+	dir = 5;
+	color = "#B4696A";
+	alpha = 255
+	},
+/obj/structure/guncase,
+/obj/item/gun/energy/laser/retro,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/administrative)
+"hM" = (
+/obj/effect/turf_decal/trimline/green/filled/warning{
+	color = "#B7D993";
+	alpha = 255
+	},
+/obj/effect/turf_decal/siding{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/white,
+/area/ruin/powered/planet_lava/factory/administrative)
+"hN" = (
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/manager_office)
+"hO" = (
+/obj/machinery/light/broken{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/powered/planet_lava/factory/manager_office)
+"hQ" = (
+/obj/effect/turf_decal/trimline/red/filled/warning{
+	color = "#B4696A";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/white,
+/area/ruin/powered/planet_lava/factory/administrative)
+"hW" = (
+/obj/effect/turf_decal/stripes/line,
+/obj/effect/turf_decal/siding/white{
+	dir = 1
+	},
+/turf/open/floor/concrete/pavement/lava,
+/area/lavaland/surface/outdoors)
+"hY" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/concrete/lava,
+/area/lavaland/surface/outdoors)
+"hZ" = (
+/turf/open/floor/plating/asteroid/basalt/lava,
+/area/lavaland/surface/outdoors)
+"ik" = (
+/obj/structure/sign/warning/fire,
+/turf/closed/wall/mineral/titanium,
+/area/lavaland/surface/outdoors)
+"iG" = (
+/obj/structure/sink{
+	pixel_y = 10
+	},
+/obj/effect/turf_decal/trimline/green/line{
+	dir = 9;
+	color = "#B7D993";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/dorms)
+"iH" = (
+/obj/effect/turf_decal/trimline/green/warning{
+	color = "#B7D993";
+	alpha = 255
+	},
+/obj/structure/cable/yellow,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/ammo_casing/spent,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/dorms)
+"iI" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/oil,
+/obj/item/storage/bag/ore,
+/turf/open/floor/monotile/steel,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"iM" = (
+/obj/effect/turf_decal/trimline/brown/arrow_cw{
+	color = "#CEB689";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=5;co2=13;TEMP=300"
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"iN" = (
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/unpowered/planet_lava/cave)
+"iS" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/ammo_casing/spent{
+	projectile_type = null
+	},
+/turf/open/floor/plasteel/white{
+	initial_gas_mix = "o2=14;n2=5;co2=13;TEMP=300"
+	},
+/area/lavaland/surface/outdoors)
+"iU" = (
+/obj/machinery/door/airlock,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_lava/cave)
+"iX" = (
+/obj/structure/flora/rock/pile,
+/turf/open/floor/plating/asteroid/dirt/grass/lavaland,
+/area/lavaland/surface/outdoors)
+"jc" = (
+/obj/structure/chair/greyscale{
+	dir = 8
+	},
+/turf/open/floor/carpet/royalblue,
+/area/ruin/powered/planet_lava/factory/lobby)
+"jj" = (
+/obj/effect/turf_decal/trimline/brown/warning{
+	color = "#CEB689";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/basic/trooper/syndicate/ranged/smg/space,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"jp" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 6
+	},
+/turf/open/floor/concrete/pavement/lava,
+/area/lavaland/surface/outdoors)
+"js" = (
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=5;co2=13;TEMP=300"
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"ju" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/ammo_casing/spent{
+	projectile_type = null
+	},
+/obj/item/ammo_casing/spent{
+	projectile_type = null
+	},
+/turf/open/floor/plasteel/white{
+	initial_gas_mix = "o2=14;n2=5;co2=13;TEMP=300"
+	},
+/area/lavaland/surface/outdoors)
+"jy" = (
+/turf/open/floor/monotile/steel,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"jC" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/clothing/mask/gas/explorer,
+/obj/effect/decal/cleanable/generic,
+/turf/open/floor/monotile/steel,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"jO" = (
+/obj/machinery/disposal/deliveryChute{
+	dir = 8
+	},
+/obj/structure/disposalpipe/trunk{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=5;co2=13;TEMP=300"
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"jQ" = (
+/obj/effect/turf_decal/stripes/red/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 4
+	},
+/turf/open/floor/concrete/pavement/lava,
+/area/lavaland/surface/outdoors)
+"jT" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/gibspawner/human,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=5;co2=13;TEMP=300"
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"jW" = (
+/obj/effect/turf_decal/trimline/green/warning{
+	color = "#B7D993";
+	alpha = 255
+	},
+/obj/structure/cable/yellow,
+/obj/effect/decal/cleanable/blood,
+/obj/item/toy/cards/deck,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/dorms)
+"jX" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 5
+	},
+/obj/item/ammo_casing/spent{
+	projectile_type = null
+	},
+/turf/open/floor/concrete/pavement/lava,
+/area/lavaland/surface/outdoors)
+"kn" = (
+/obj/item/bedsheet/qm{
+	dir = 4
+	},
+/obj/structure/bed{
+	dir = 1
+	},
+/obj/item/toy/plush/lizardplushie,
+/turf/open/floor/carpet/blue,
+/area/ruin/powered/planet_lava/factory/administrative)
+"ks" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_lava/factory/administrative)
+"kz" = (
+/obj/structure/table/wood,
+/obj/machinery/microwave,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_lava/factory/administrative)
+"kB" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 10
+	},
+/obj/effect/turf_decal/siding/wood,
+/obj/machinery/light,
+/obj/structure/chair/fancy/sofa/corp/left{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_lava/factory/manager_office)
+"kD" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/carpet/royalblue,
+/area/ruin/powered/planet_lava/factory/lobby)
+"kG" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/monotile/steel,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"kK" = (
+/obj/effect/turf_decal/trimline/green/line{
+	dir = 5;
+	color = "#B7D993";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/dorms)
+"kM" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/mob_spawn/human/engineer,
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/floor/monotile/steel,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"kT" = (
+/obj/effect/turf_decal/trimline/brown/warning{
+	dir = 4;
+	color = "#CEB689";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/power/apc/auto_name/east,
+/obj/structure/cable/yellow,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"kU" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/carpet/royalblue,
+/area/ruin/powered/planet_lava/factory/lobby)
+"kV" = (
+/obj/effect/turf_decal/trimline/green/warning{
+	color = "#B7D993";
+	alpha = 255
+	},
+/obj/structure/cable/yellow,
+/obj/structure/barricade/wooden/crude{
+	dir = 8
+	},
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/dorms)
+"kY" = (
+/obj/effect/decal/cleanable/blood{
+	dir = 4
+	},
+/turf/open/floor/plating/rust{
+	initial_gas_mix = "o2=14;n2=5;co2=13;TEMP=300"
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"lh" = (
+/obj/structure/flora/tree/dead/hell,
+/turf/open/floor/plating/asteroid/dirt/grass/lavaland,
+/area/lavaland/surface/outdoors)
+"lo" = (
+/obj/effect/turf_decal/box/corners{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/closet/crate/secure/engineering{
+	name = "skrzynia górnicza"
+	},
+/obj/item/gun/energy/kinetic_accelerator,
+/obj/item/mining_scanner,
+/turf/open/floor/monotile/steel,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"lp" = (
+/obj/effect/turf_decal/trimline/brown/warning{
+	color = "#CEB689";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/blood/gibs/down,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"ly" = (
+/obj/structure/flora/ausbushes/genericbush/hell,
+/turf/open/floor/plating/asteroid/dirt/grass/lavaland,
+/area/lavaland/surface/outdoors)
+"lz" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_lava/factory/manager_office)
+"lC" = (
+/obj/structure/barricade/wooden/crude,
+/obj/item/gun/energy/laser/retro,
+/turf/open/floor/plasteel/white,
+/area/ruin/powered/planet_lava/factory/lobby)
+"lD" = (
+/obj/effect/turf_decal/trimline/brown/warning{
+	color = "#CEB689";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/clothing/head/hardhat{
+	pixel_x = -2;
+	pixel_y = 5
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"lN" = (
+/obj/item/toy/cards/singlecard,
+/obj/machinery/light/broken{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/plasteel/white,
+/area/ruin/powered/planet_lava/factory/dorms)
+"lP" = (
+/obj/effect/turf_decal/trimline/green/warning{
+	dir = 8;
+	color = "#B7D993";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/dorms)
+"lQ" = (
+/obj/structure/table/wood,
+/obj/item/storage/fancy/cigarettes/cigars,
+/obj/item/lighter{
+	pixel_x = 4;
+	pixel_y = 7
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_lava/factory/manager_office)
+"lS" = (
+/obj/structure/flora/ausbushes/sparsegrass/hell,
+/obj/structure/flora/rock/pile,
+/turf/open/floor/plating/asteroid/dirt/grass/lavaland,
+/area/lavaland/surface/outdoors)
+"lX" = (
+/obj/structure/table,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1;
+	color = "#791500";
+	alpha = 255
+	},
+/obj/effect/turf_decal/tile/bar{
+	color = "#791500";
+	alpha = 255
+	},
+/obj/item/storage/bag/tray,
+/obj/item/storage/bag/tray,
+/obj/item/storage/bag/tray{
+	pixel_y = 2
+	},
+/obj/item/storage/bag/tray{
+	pixel_y = 4
+	},
+/obj/item/storage/bag/tray{
+	pixel_y = 6
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/ruin/powered/planet_lava/factory/dorms)
+"lY" = (
+/obj/item/storage/toolbox/electrical,
+/obj/structure/table,
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/cable/yellow,
+/turf/open/floor/plating,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"lZ" = (
+/obj/structure/mirror,
+/turf/closed/wall/mineral/titanium,
+/area/ruin/powered/planet_lava/factory/dorms)
+"ma" = (
+/obj/structure/flora/ausbushes/fullgrass/hell,
+/turf/open/floor/plating/asteroid/dirt/grass/lavaland,
+/area/lavaland/surface/outdoors)
+"md" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 10;
+	color = "#B4696A";
+	alpha = 255
+	},
+/obj/machinery/light,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/white,
+/area/ruin/powered/planet_lava/factory/administrative)
+"mh" = (
+/obj/structure/girder/reinforced,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/unpowered/planet_lava/cave)
+"mk" = (
+/obj/structure/cable/yellow,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/mob_spawn/human/corpse/nanotrasensoldier,
+/obj/effect/gibspawner/human/bodypartless,
+/turf/open/floor/plasteel/white{
+	initial_gas_mix = "o2=14;n2=5;co2=13;TEMP=300"
+	},
+/area/lavaland/surface/outdoors)
+"mm" = (
+/obj/structure/cable/yellow,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/white{
+	initial_gas_mix = "o2=14;n2=5;co2=13;TEMP=300"
+	},
+/area/lavaland/surface/outdoors)
+"mn" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/gun/ballistic/automatic/pistol/no_mag,
+/turf/open/floor/plasteel/white{
+	initial_gas_mix = "o2=14;n2=5;co2=13;TEMP=300"
+	},
+/area/lavaland/surface/outdoors)
+"mq" = (
+/obj/effect/turf_decal/trimline/green/line{
+	dir = 6;
+	color = "#B7D993";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/dorms)
+"ms" = (
+/obj/structure/flora/ash/leaf_shroom,
+/turf/open/floor/plating/moss,
+/area/ruin/unpowered/planet_lava/cave)
+"mx" = (
+/obj/structure/table/wood,
+/obj/structure/cable/yellow,
+/obj/item/reagent_containers/hypospray/medipen{
+	list_reagents = null;
+	pixel_x = 8;
+	pixel_y = -2
+	},
+/obj/item/reagent_containers/hypospray/medipen{
+	list_reagents = null
+	},
+/turf/open/floor/carpet/blue,
+/area/ruin/powered/planet_lava/factory/manager_office)
+"mC" = (
+/obj/structure/railing,
+/obj/effect/turf_decal/trimline/red/arrow_cw{
+	dir = 10;
+	color = "#B4696A";
+	alpha = 255
+	},
+/obj/structure/sign/poster/official/safety_report{
+	pixel_x = -32
+	},
+/turf/open/floor/monotile/dark,
+/area/ruin/powered/planet_lava/factory/lobby)
+"mD" = (
+/obj/item/trash/canned{
+	pixel_x = -7;
+	pixel_y = 10
+	},
+/turf/open/floor/plasteel/white,
+/area/ruin/powered/planet_lava/factory/dorms)
+"mK" = (
+/obj/machinery/door/airlock/command{
+	dir = 1
+	},
+/turf/open/floor/plasteel/white,
+/area/ruin/powered/planet_lava/factory/administrative)
+"mN" = (
+/obj/item/trash/can,
+/obj/item/trash/canned/beans{
+	pixel_x = 5;
+	pixel_y = 10
+	},
+/obj/item/trash/canned/beans{
+	pixel_x = -4;
+	pixel_y = 7
+	},
+/turf/open/floor/plasteel/tech,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"mO" = (
+/obj/item/stack/ore/iron{
+	pixel_x = -15;
+	pixel_y = -10
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=5;co2=13;TEMP=300"
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"mT" = (
+/obj/effect/turf_decal/trimline/green/corner{
+	dir = 8;
+	color = "#B7D993";
+	alpha = 255
+	},
+/obj/structure/cable/yellow,
+/obj/effect/decal/cleanable/blood/gibs/down,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/dorms)
+"mX" = (
+/obj/structure/flora/rock/hell,
+/turf/open/floor/plating/asteroid/purple,
+/area/lavaland/surface/outdoors)
+"ng" = (
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_lava/factory/manager_office)
+"nh" = (
+/obj/machinery/door/poddoor/shutters{
+	id = "warehouse"
+	},
+/turf/open/floor/plasteel,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"nt" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_lava/factory/administrative)
+"nu" = (
+/obj/structure/chair,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_lava/factory/administrative)
+"nv" = (
+/obj/structure/toilet{
+	dir = 8;
+	pixel_x = 5
+	},
+/obj/machinery/light/small{
+	dir = 4
+	},
+/mob/living/basic/viscerator,
+/mob/living/basic/viscerator,
+/mob/living/basic/viscerator,
+/obj/effect/gibspawner/human,
+/obj/item/clothing/under/rank/cargo/tech,
+/obj/effect/decal/cleanable/blood{
+	dir = 4
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/ruin/powered/planet_lava/factory/dorms)
+"nw" = (
+/obj/effect/turf_decal/trimline/green/warning{
+	dir = 1;
+	color = "#B7D993";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/dorms)
+"nC" = (
+/obj/effect/turf_decal/trimline/green/warning{
+	dir = 1;
+	color = "#B7D993";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/dorms)
+"nE" = (
+/obj/effect/turf_decal/siding/wood,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_lava/factory/administrative)
+"nF" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=5;co2=13;TEMP=300"
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"nK" = (
+/obj/machinery/door/poddoor/shutters{
+	dir = 4;
+	id = "foreman"
+	},
+/obj/effect/decal/cleanable/blood{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_lava/cave)
+"nL" = (
+/obj/machinery/shower{
+	dir = 4
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/ruin/powered/planet_lava/factory/dorms)
+"nM" = (
+/obj/structure/sign/warning/securearea,
+/turf/closed/wall,
+/area/lavaland/surface/outdoors)
+"nN" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/oil/streak,
+/turf/open/floor/monotile/steel,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"nP" = (
+/obj/structure/flora/ausbushes/hell,
+/turf/open/floor/plating/asteroid/dirt/grass/lavaland,
+/area/lavaland/surface/outdoors)
+"nV" = (
+/obj/machinery/shower{
+	dir = 1;
+	pixel_y = -5
+	},
+/obj/structure/curtain,
+/obj/item/bikehorn/rubberducky,
+/turf/open/floor/plasteel/showroomfloor,
+/area/ruin/powered/planet_lava/factory/administrative)
+"nW" = (
+/obj/effect/turf_decal/trimline/brown/arrow_cw{
+	dir = 4;
+	color = "#CEB689";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/disposalpipe/segment{
+	dir = 1
+	},
+/obj/item/ammo_casing/spent{
+	projectile_type = null
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=5;co2=13;TEMP=300"
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"oa" = (
+/mob/living/basic/trooper/syndicate/ranged/space,
+/turf/open/floor/carpet/royalblue,
+/area/ruin/powered/planet_lava/factory/lobby)
+"ob" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 5
+	},
+/turf/open/floor/concrete/pavement/lava,
+/area/lavaland/surface/outdoors)
+"oc" = (
+/obj/effect/decal/cleanable/blood/footprints{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/glass,
+/obj/structure/table/reinforced,
+/obj/item/paper_bin,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/manager_office)
+"oj" = (
+/obj/effect/turf_decal/trimline/brown/corner{
+	dir = 4;
+	color = "#CEB689";
+	alpha = 255
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"ol" = (
+/obj/effect/turf_decal/tile/bar{
+	color = "#791500";
+	alpha = 255
+	},
+/obj/effect/turf_decal/tile/bar{
+	dir = 1;
+	color = "#791500";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+/area/ruin/powered/planet_lava/factory/administrative)
+"om" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 5
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_lava/factory/administrative)
+"or" = (
+/obj/effect/turf_decal/trimline/green/warning{
+	dir = 8;
+	color = "#B7D993";
+	alpha = 255
+	},
+/obj/structure/closet{
+	name = "szafka przy prysznicu"
+	},
+/obj/item/soap/nanotrasen,
+/obj/item/soap/nanotrasen,
+/obj/item/soap/nanotrasen,
+/obj/item/soap/nanotrasen,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/dorms)
+"oy" = (
+/obj/effect/turf_decal/trimline/brown/warning{
+	dir = 1;
+	color = "#CEB689";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"oB" = (
+/obj/effect/turf_decal/stripes/red/line{
+	dir = 1
+	},
+/obj/structure/lattice/catwalk/over/ship,
+/obj/structure/cable/yellow,
+/obj/machinery/power/floodlight,
+/turf/open/floor/plating/lavaland,
+/area/lavaland/surface/outdoors)
+"oG" = (
+/obj/structure/frame/machine{
+	anchored = 1
+	},
+/obj/structure/lattice,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/unpowered/planet_lava/cave)
+"oJ" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/structure/bookcase/random,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_lava/factory/administrative)
+"oN" = (
+/obj/machinery/shower{
+	dir = 4
+	},
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/ruin/powered/planet_lava/factory/dorms)
+"oY" = (
+/obj/machinery/newscaster/directional/west,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/noticeboard{
+	pixel_y = -28;
+	dir = 1
+	},
+/turf/open/floor/plasteel/white,
+/area/ruin/powered/planet_lava/factory/dorms)
+"oZ" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 4
+	},
+/obj/item/ammo_box/magazine/pistolm9mm{
+	start_empty = 1
+	},
+/obj/item/ammo_casing/spent{
+	projectile_type = null
+	},
+/obj/item/ammo_casing/spent{
+	projectile_type = null
+	},
+/turf/open/floor/concrete/pavement/lava,
+/area/lavaland/surface/outdoors)
+"pc" = (
+/obj/structure/flora/ausbushes/ywflowers/hell,
+/turf/open/floor/plating/asteroid/purple,
+/area/lavaland/surface/outdoors)
+"pi" = (
+/turf/open/floor/plasteel/stairs{
+	dir = 1
+	},
+/area/ruin/powered/planet_lava/factory/administrative)
+"pp" = (
+/obj/structure/lattice,
+/obj/item/stack/sheet/iron,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/unpowered/planet_lava/cave)
+"pv" = (
+/obj/machinery/door/airlock/command{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_lava/factory/administrative)
+"pw" = (
+/obj/structure/closet/secure_closet/personal,
+/obj/effect/turf_decal/tile/darkblue{
+	color = "#32426b";
+	alpha = 255
+	},
+/obj/effect/turf_decal/tile/darkblue{
+	dir = 1;
+	color = "#32426b";
+	alpha = 255
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/item/kitchen/knife/hunting,
+/obj/item/clothing/suit/hooded/cloak/goliath,
+/obj/effect/spawner/lootdrop/maintenance,
+/turf/open/floor/plasteel/white,
+/area/ruin/powered/planet_lava/factory/dorms)
+"px" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/effect/turf_decal/caution/stand_clear{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 8
+	},
+/turf/open/floor/concrete/pavement/lava,
+/area/lavaland/surface/outdoors)
+"pA" = (
+/obj/item/ammo_casing/spent,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=5;co2=13;TEMP=300"
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"pC" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 4
+	},
+/turf/closed/wall/r_wall,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"pE" = (
+/obj/effect/decal/cleanable/ash,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/unpowered/planet_lava/cave)
+"pF" = (
+/obj/item/trash/pistachios,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/plasteel/tech,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"pN" = (
+/obj/effect/turf_decal/box/corners,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/floor/monotile/steel,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"pP" = (
+/obj/effect/turf_decal/trimline/brown/warning{
+	dir = 4;
+	color = "#CEB689";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/cable/yellow,
+/obj/effect/decal/cleanable/glass,
+/obj/machinery/light/broken{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"pQ" = (
+/obj/effect/decal/cleanable/glass,
+/obj/structure/table_frame,
+/obj/item/stack/sheet/plasteel,
+/obj/machinery/door/poddoor/shutters{
+	id = "foreman"
+	},
+/turf/open/floor/plating,
+/area/ruin/powered/planet_lava/factory/manager_office)
+"pW" = (
+/obj/effect/decal/cleanable/blood/footprints{
+	dir = 1
+	},
+/obj/item/pen/fourcolor,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/manager_office)
+"qh" = (
+/obj/effect/turf_decal/trimline/brown/warning{
+	dir = 4;
+	color = "#CEB689";
+	alpha = 255
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"qi" = (
+/obj/item/shard,
+/obj/effect/decal/cleanable/glass,
+/obj/item/stack/rods,
+/obj/machinery/door/poddoor/shutters{
+	dir = 4;
+	id = "foreman"
+	},
+/turf/open/floor/plating,
+/area/ruin/powered/planet_lava/factory/manager_office)
+"qj" = (
+/obj/effect/turf_decal/tile/bar{
+	dir = 1;
+	color = "#791500";
+	alpha = 255
+	},
+/obj/effect/turf_decal/tile/bar{
+	color = "#791500";
+	alpha = 255
+	},
+/turf/open/floor/plasteel,
+/area/ruin/powered/planet_lava/factory/dorms)
+"ql" = (
+/obj/structure/table,
+/obj/item/reagent_containers/glass/waterbottle/empty{
+	pixel_x = -7
+	},
+/obj/item/reagent_containers/glass/waterbottle/empty,
+/obj/item/reagent_containers/glass/waterbottle/empty{
+	pixel_x = 7;
+	pixel_y = 5
+	},
+/obj/item/reagent_containers/glass/waterbottle/empty{
+	pixel_x = -7;
+	pixel_y = 5
+	},
+/obj/item/reagent_containers/glass/waterbottle/empty{
+	pixel_y = 5
+	},
+/obj/item/reagent_containers/glass/waterbottle/empty{
+	pixel_x = 7
+	},
+/turf/open/floor/plasteel/tech,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"qm" = (
+/obj/machinery/conveyor{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=5;co2=13;TEMP=300"
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"qo" = (
+/obj/structure/flora/tree/dead/tall,
+/turf/open/floor/plating/asteroid/purple,
+/area/lavaland/surface/outdoors)
+"qp" = (
+/obj/effect/turf_decal/box/corners{
+	dir = 8
+	},
+/obj/structure/closet/crate/large,
+/obj/machinery/portable_atmospherics/canister/oxygen,
+/turf/open/floor/monotile/steel,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"qr" = (
+/obj/effect/turf_decal/trimline/darkblue/warning{
+	color = "#32426b";
+	alpha = 255
+	},
+/obj/structure/cable/yellow,
+/obj/machinery/power/apc/auto_name/north,
+/turf/open/floor/monotile/light,
+/area/ruin/powered/planet_lava/factory/lobby)
+"qH" = (
+/obj/effect/turf_decal/trimline/brown/warning{
+	color = "#CEB689";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=5;co2=13;TEMP=300"
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"qL" = (
+/obj/structure/table,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/storage/toolbox/mechanical,
+/obj/item/weldingtool/largetank,
+/obj/item/clothing/glasses/welding,
+/obj/structure/sign/poster/official/safety_eye_protection{
+	pixel_x = -32
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/monotile/steel,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"qQ" = (
+/obj/effect/decal/cleanable/blood/gibs/core,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/stamp/quartermaster{
+	pixel_x = 7;
+	pixel_y = 10
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/manager_office)
+"qT" = (
+/obj/effect/mapping_helpers/airlock/locked,
+/obj/machinery/door/airlock/maintenance,
+/obj/structure/cable/yellow,
+/turf/open/floor/plasteel,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"qX" = (
+/obj/item/ammo_casing/spent{
+	projectile_type = null
+	},
+/turf/open/floor/plating/moss,
+/area/ruin/unpowered/planet_lava/cave)
+"rb" = (
+/turf/open/floor/concrete/pavement/lava,
+/area/lavaland/surface/outdoors)
+"rf" = (
+/obj/structure/flora/ash/stem_shroom,
+/turf/open/floor/plating/moss,
+/area/ruin/unpowered/planet_lava/cave)
+"rn" = (
+/obj/structure/bed,
+/obj/item/bedsheet/random,
+/obj/structure/curtain,
+/obj/effect/turf_decal/tile/darkblue{
+	color = "#32426b";
+	alpha = 255
+	},
+/obj/effect/turf_decal/tile/darkblue{
+	dir = 1;
+	color = "#32426b";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/white,
+/area/ruin/powered/planet_lava/factory/dorms)
+"rp" = (
+/mob/living/basic/trooper/syndicate/ranged/space,
+/turf/open/floor/plating/moss,
+/area/ruin/unpowered/planet_lava/cave)
+"rs" = (
+/obj/effect/mob_spawn/human/corpse/cargo_tech,
+/turf/open/floor/plasteel/tech,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"rv" = (
+/obj/structure/flora/tree/dead/barren,
+/turf/open/floor/plating/asteroid/dirt/grass/lavaland,
+/area/lavaland/surface/outdoors)
+"rB" = (
+/obj/item/ammo_casing/spent,
+/turf/open/floor/monotile/steel,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"rD" = (
+/obj/effect/turf_decal/trimline/green/warning{
+	dir = 4;
+	color = "#B7D993";
+	alpha = 255
+	},
+/obj/machinery/door/airlock,
+/obj/effect/decal/cleanable/blood/footprints{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/dorms)
+"rK" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/tech,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"rL" = (
+/obj/structure/flora/rock/pile/lava,
+/turf/open/floor/plating/moss,
+/area/ruin/unpowered/planet_lava/cave)
+"rR" = (
+/obj/effect/turf_decal/siding/white,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/turf/open/floor/concrete/pavement/lava,
+/area/lavaland/surface/outdoors)
+"rV" = (
+/obj/item/kitchen/knife/combat/survival,
+/obj/item/kitchen/knife/combat/survival,
+/obj/structure/closet/crate/secure/gear,
+/turf/open/floor/monotile/steel,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"rW" = (
+/obj/effect/turf_decal/trimline/green/line{
+	dir = 10;
+	color = "#B7D993";
+	alpha = 255
+	},
+/obj/machinery/door/airlock{
+	dir = 4
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/dorms)
+"se" = (
+/obj/effect/turf_decal/trimline/green/warning{
+	dir = 4;
+	color = "#B7D993";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/robot_debris,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/dorms)
+"sh" = (
+/obj/structure/filingcabinet,
+/turf/open/floor/carpet/blue,
+/area/ruin/powered/planet_lava/factory/manager_office)
+"sj" = (
+/obj/structure/lattice,
+/obj/structure/frame/machine{
+	anchored = 1
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/unpowered/planet_lava/cave)
+"so" = (
+/obj/machinery/door/airlock/command/glass,
+/obj/machinery/door/poddoor/shutters{
+	id = "foreman"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/manager_office)
+"sr" = (
+/obj/structure/fence{
+	dir = 4
+	},
+/obj/structure/fence{
+	dir = 4
+	},
+/turf/open/floor/concrete/slab_1/lava,
+/area/lavaland/surface/outdoors)
+"sE" = (
+/obj/structure/cable/yellow,
+/obj/structure/chair/fancy/comfy,
+/mob/living/basic/trooper/nanotrasen/ranged/smg{
+	name = "kierownik"
+	},
+/obj/effect/decal/cleanable/vomit/old,
+/turf/open/floor/carpet/blue,
+/area/ruin/powered/planet_lava/factory/manager_office)
+"sI" = (
+/obj/structure/sink{
+	pixel_y = 10
+	},
+/obj/effect/turf_decal/trimline/green/line{
+	dir = 5;
+	color = "#B7D993";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/dorms)
+"sN" = (
+/obj/structure/curtain,
+/turf/open/floor/plasteel/showroomfloor,
+/area/ruin/powered/planet_lava/factory/dorms)
+"sR" = (
+/obj/structure/frame/computer{
+	anchored = 1
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=5;co2=13;TEMP=300"
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"sV" = (
+/obj/effect/turf_decal/siding{
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/ruin/powered/planet_lava/factory/administrative)
+"ta" = (
+/obj/machinery/door/airlock{
+	dir = 4;
+	id_tag = "sgi_bolt";
+	name = "Łazienka"
+	},
+/obj/effect/decal/cleanable/blood{
+	dir = 4
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/ruin/powered/planet_lava/factory/dorms)
+"tb" = (
+/obj/machinery/light/floor,
+/obj/effect/turf_decal/siding/white{
+	dir = 9
+	},
+/turf/open/floor/concrete/pavement/lava,
+/area/lavaland/surface/outdoors)
+"tk" = (
+/turf/open/floor/plating/asteroid/purple,
+/area/lavaland/surface/outdoors)
+"tq" = (
+/obj/structure/table/glass,
+/obj/item/phone,
+/obj/structure/sign/poster/contraband/space_cola{
+	pixel_y = 32
+	},
+/turf/open/floor/carpet/royalblue,
+/area/ruin/powered/planet_lava/factory/lobby)
+"tu" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_lava/factory/administrative)
+"tv" = (
+/turf/open/floor/concrete/lava,
+/area/lavaland/surface/outdoors)
+"tw" = (
+/obj/machinery/conveyor{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_lava/cave)
+"tz" = (
+/obj/structure/flora/ash/leaf_shroom,
+/turf/open/floor/plating/moss,
+/area/lavaland/surface/outdoors)
+"tA" = (
+/obj/item/broken_bottle,
+/obj/effect/decal/cleanable/oil,
+/turf/open/floor/plasteel/white,
+/area/ruin/powered/planet_lava/factory/dorms)
+"tB" = (
+/obj/effect/turf_decal/siding/white/corner,
+/turf/open/floor/concrete/pavement/lava,
+/area/lavaland/surface/outdoors)
+"tI" = (
+/obj/effect/turf_decal/trimline/green/warning{
+	dir = 4;
+	color = "#B7D993";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/blood{
+	dir = 9
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/dorms)
+"tM" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/carpet/black,
+/area/ruin/powered/planet_lava/factory/manager_office)
+"tS" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/caution/stand_clear,
+/turf/open/floor/concrete/lava,
+/area/lavaland/surface/outdoors)
+"tY" = (
+/obj/effect/turf_decal/trimline/green/warning{
+	dir = 1;
+	color = "#B7D993";
+	alpha = 255
+	},
+/mob/living/basic/viscerator,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/dorms)
+"uh" = (
+/obj/structure/lattice/catwalk/over/ship,
+/turf/open/floor/plating/rust{
+	initial_gas_mix = "o2=14;n2=5;co2=13;TEMP=300"
+	},
+/area/lavaland/surface/outdoors)
+"uq" = (
+/obj/structure/girder/reinforced,
+/turf/open/floor/concrete/pavement/lava,
+/area/ruin/unpowered/planet_lava/cave)
+"uv" = (
+/obj/machinery/photocopier,
+/obj/effect/turf_decal/siding/wood{
+	dir = 6
+	},
+/obj/machinery/light,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_lava/factory/manager_office)
+"uw" = (
+/obj/structure/flora/ash/cacti,
+/turf/open/floor/plating/moss,
+/area/lavaland/surface/outdoors)
+"uz" = (
+/obj/effect/turf_decal/trimline/red/arrow_cw{
+	dir = 4;
+	color = "#B4696A";
+	alpha = 255
+	},
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/monotile/dark,
+/area/ruin/powered/planet_lava/factory/lobby)
+"uA" = (
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=5;co2=13;TEMP=300"
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"uD" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/ammo_casing/spent,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=5;co2=13;TEMP=300"
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"uE" = (
+/obj/effect/turf_decal/trimline/brown/warning{
+	dir = 1;
+	color = "#CEB689";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/ammo_casing/spent{
+	projectile_type = null
+	},
+/obj/item/ammo_casing/spent{
+	projectile_type = null
+	},
+/obj/item/ammo_casing/spent,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"uH" = (
+/obj/item/stack/sheet/iron,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/cable/yellow,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=5;co2=13;TEMP=300"
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"uK" = (
+/obj/structure/sign/poster/official/cleanliness,
+/turf/closed/wall/mineral/titanium,
+/area/ruin/powered/planet_lava/factory/dorms)
+"uN" = (
+/obj/effect/turf_decal/tile/red/half{
+	color = "#B4696A";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/administrative)
+"uW" = (
+/obj/item/reagent_containers/hypospray/medipen/stimpack{
+	list_reagents = null;
+	pixel_x = -5;
+	pixel_y = 7
+	},
+/obj/item/reagent_containers/hypospray/medipen{
+	list_reagents = null
+	},
+/turf/open/floor/carpet/blue,
+/area/ruin/powered/planet_lava/factory/manager_office)
+"uX" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/structure/dresser,
+/obj/item/clothing/accessory/medal/gold/captain{
+	pixel_x = -8;
+	pixel_y = 5
+	},
+/obj/item/clothing/accessory/medal/gold/heroism{
+	pixel_y = 5
+	},
+/obj/item/clothing/accessory/medal/bronze_heart{
+	pixel_x = 10;
+	pixel_y = 5
+	},
+/obj/structure/sign/poster/official/enlist{
+	pixel_y = 32
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_lava/factory/administrative)
+"uZ" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/drinks/bottle/champagne{
+	pixel_x = -5;
+	pixel_y = 20
+	},
+/obj/item/storage/bag/tray,
+/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass{
+	pixel_x = 5;
+	pixel_y = 5
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass{
+	pixel_x = -5;
+	pixel_y = 5
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 9
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_lava/factory/manager_office)
+"va" = (
+/obj/effect/turf_decal/trimline/darkblue/warning{
+	dir = 4;
+	color = "#32426b";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/monotile/light,
+/area/ruin/powered/planet_lava/factory/lobby)
+"vc" = (
+/obj/machinery/light/floor,
+/obj/effect/turf_decal/siding/white{
+	dir = 5
+	},
+/turf/open/floor/concrete/pavement/lava,
+/area/lavaland/surface/outdoors)
+"vd" = (
+/mob/living/basic/viscerator,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_lava/cave)
+"vk" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/white,
+/area/ruin/powered/planet_lava/factory/lobby)
+"vm" = (
+/obj/effect/turf_decal/siding/wood,
+/obj/structure/chair/fancy/sofa/corp/right{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_lava/factory/manager_office)
+"vp" = (
+/obj/machinery/door/airlock{
+	name = "Toaleta"
+	},
+/obj/machinery/door/poddoor/shutters{
+	id = "sec"
+	},
+/turf/open/floor/plasteel/white,
+/area/ruin/powered/planet_lava/factory/administrative)
+"vu" = (
+/obj/effect/turf_decal/trimline/green/warning{
+	dir = 4;
+	color = "#B7D993";
+	alpha = 255
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/blood/footprints{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/dorms)
+"vz" = (
+/turf/open/floor/plasteel/white,
+/area/ruin/powered/planet_lava/factory/dorms)
+"vD" = (
+/obj/item/ammo_casing/spent{
+	projectile_type = null
+	},
+/turf/closed/mineral/volcanic,
+/area/ruin/unpowered/planet_lava/cave)
+"vF" = (
+/obj/structure/closet/secure_closet/freezer/fridge,
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/item/reagent_containers/food/drinks/beer,
+/obj/item/reagent_containers/food/drinks/beer,
+/obj/item/reagent_containers/food/drinks/beer,
+/obj/item/food/meat/slab,
+/obj/item/food/meat/slab,
+/obj/item/food/meat/slab,
+/obj/item/reagent_containers/food/condiment/flour,
+/obj/item/reagent_containers/food/condiment/rice,
+/obj/item/storage/fancy/egg_box,
+/obj/item/reagent_containers/food/condiment/soymilk,
+/obj/item/reagent_containers/food/condiment/milk,
+/obj/item/storage/box/ingredients/vegetarian,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_lava/factory/administrative)
+"vR" = (
+/obj/machinery/power/port_gen/pacman/super,
+/obj/machinery/power/terminal{
+	dir = 4
+	},
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/cable/green,
+/turf/open/floor/plating,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"vT" = (
+/obj/machinery/power/floodlight,
+/obj/structure/cable/yellow,
+/obj/effect/turf_decal/siding/white,
+/turf/open/floor/concrete/pavement/lava,
+/area/lavaland/surface/outdoors)
+"vW" = (
+/obj/effect/turf_decal/trimline/brown/line{
+	dir = 5;
+	color = "#CEB689";
+	alpha = 255
+	},
+/obj/machinery/door/airlock/mining{
+	dir = 4;
+	name = "Magazyn"
+	},
+/obj/effect/decal/cleanable/blood{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"vX" = (
+/obj/structure/falsewall/reinforced,
+/turf/open/floor/plating,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"wc" = (
+/obj/structure/sign/departments/engineering,
+/turf/closed/wall/r_wall,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"wd" = (
+/obj/structure/frame/machine,
+/obj/item/stack/ore/iron{
+	pixel_x = -10;
+	pixel_y = 2
+	},
+/obj/item/stack/ore/iron{
+	pixel_x = -10;
+	pixel_y = 2
+	},
+/obj/item/stack/cable_coil/cut,
+/obj/structure/sign/poster/official/build{
+	pixel_y = 32
+	},
+/obj/item/circuitboard/machine/stacking_machine,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=5;co2=13;TEMP=300"
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"we" = (
+/obj/effect/turf_decal/trimline/brown/warning{
+	dir = 4;
+	color = "#CEB689";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"wg" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/stack/ore/iron{
+	amount = 5
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=5;co2=13;TEMP=300"
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"wi" = (
+/obj/structure/lattice,
+/obj/item/stack/cable_coil/cut,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/unpowered/planet_lava/cave)
+"wj" = (
+/obj/effect/turf_decal/trimline/green/warning{
+	dir = 1;
+	color = "#B7D993";
+	alpha = 255
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/dorms)
+"wl" = (
+/obj/effect/turf_decal/trimline/darkblue/corner{
+	color = "#32426b";
+	alpha = 255
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/monotile/light,
+/area/ruin/powered/planet_lava/factory/lobby)
+"wm" = (
+/obj/structure/flora/ausbushes/fernybush/hell,
+/turf/open/floor/plating/asteroid/purple,
+/area/lavaland/surface/outdoors)
+"wp" = (
+/turf/open/lava/smooth,
+/area/lavaland/surface/outdoors)
+"wD" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 5
+	},
+/obj/structure/dresser,
+/obj/item/toy/figure/assistant{
+	pixel_x = -10;
+	pixel_y = 12
+	},
+/obj/item/toy/figure/cargotech{
+	pixel_y = 12
+	},
+/obj/item/toy/figure/ian{
+	pixel_y = 5
+	},
+/obj/item/toy/figure/syndie{
+	pixel_x = -10;
+	pixel_y = 5
+	},
+/obj/item/toy/figure/hop{
+	pixel_x = 10;
+	pixel_y = 5
+	},
+/obj/machinery/button/door{
+	id = "foreman";
+	name = "blokada biura";
+	pixel_y = 22
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_lava/factory/administrative)
+"wE" = (
+/obj/effect/turf_decal/siding/white,
+/turf/open/floor/concrete/pavement/lava,
+/area/lavaland/surface/outdoors)
+"wF" = (
+/obj/effect/turf_decal/trimline/green/warning{
+	dir = 8;
+	color = "#B7D993";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/dorms)
+"wH" = (
+/obj/structure/flora/ausbushes/grassybush/hell,
+/turf/open/floor/plating/asteroid/purple,
+/area/lavaland/surface/outdoors)
+"wJ" = (
+/obj/effect/turf_decal/trimline/brown/warning{
+	dir = 1;
+	color = "#CEB689";
+	alpha = 255
+	},
+/obj/structure/barricade/wooden/crude{
+	dir = 4
+	},
+/obj/item/reagent_containers/food/drinks/bottle/molotov,
+/obj/item/lighter/greyscale{
+	pixel_x = -8;
+	pixel_y = -7
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"wP" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 10;
+	color = "#B4696A";
+	alpha = 255
+	},
+/obj/structure/reagent_dispensers/water_cooler,
+/obj/effect/turf_decal/tile/red{
+	dir = 1;
+	color = "#B4696A";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/white,
+/area/ruin/powered/planet_lava/factory/administrative)
+"wT" = (
+/obj/effect/decal/cleanable/generic,
+/obj/item/stack/cable_coil/cut,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"xi" = (
+/obj/item/stack/cable_coil/cut,
+/turf/open/floor/plating/rust{
+	initial_gas_mix = "o2=14;n2=5;co2=13;TEMP=300"
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"xp" = (
+/obj/machinery/door/airlock{
+	dir = 4;
+	id_tag = "sgi_bolt";
+	name = "Łazienka"
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/ruin/powered/planet_lava/factory/dorms)
+"xu" = (
+/obj/item/shovel,
+/turf/open/floor/plating/moss,
+/area/ruin/unpowered/planet_lava/cave)
+"xy" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/caution/stand_clear,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=5;co2=13;TEMP=300"
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"xI" = (
+/obj/effect/turf_decal/trimline/brown/corner{
+	dir = 8;
+	color = "#CEB689";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"xK" = (
+/obj/structure/flora/ausbushes/sparsegrass/hell,
+/turf/open/floor/plating/asteroid/dirt/grass/lavaland,
+/area/lavaland/surface/outdoors)
+"yd" = (
+/obj/item/chair{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/toy/cards/singlecard,
+/turf/open/floor/plasteel/white,
+/area/ruin/powered/planet_lava/factory/dorms)
+"ye" = (
+/obj/effect/turf_decal/trimline/brown/corner{
+	color = "#CEB689";
+	alpha = 255
+	},
+/obj/item/ammo_casing/spent,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"yp" = (
+/obj/item/radio/intercom/directional/north,
+/mob/living/basic/trooper/syndicate/ranged/shotgun/space,
+/turf/open/floor/carpet/black,
+/area/ruin/powered/planet_lava/factory/manager_office)
+"yz" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/concrete/lava,
+/area/lavaland/surface/outdoors)
+"yB" = (
+/obj/item/trash/sosjerky,
+/turf/open/floor/plasteel/tech,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"yU" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 8
+	},
+/obj/item/ammo_casing/spent{
+	projectile_type = null
+	},
+/obj/item/ammo_casing/spent{
+	projectile_type = null
+	},
+/obj/item/ammo_casing/spent{
+	projectile_type = null
+	},
+/obj/item/ammo_casing/spent{
+	projectile_type = null
+	},
+/obj/item/ammo_casing/spent{
+	projectile_type = null
+	},
+/turf/open/floor/concrete/pavement/lava,
+/area/lavaland/surface/outdoors)
+"yW" = (
+/obj/effect/turf_decal/siding{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/white,
+/area/ruin/powered/planet_lava/factory/administrative)
+"za" = (
+/obj/structure/lattice/catwalk/over/ship,
+/obj/structure/cable/yellow,
+/turf/open/floor/plating/rust,
+/area/lavaland/surface/outdoors)
+"ze" = (
+/obj/structure/cable/yellow,
+/obj/effect/turf_decal/siding/white{
+	dir = 8
+	},
+/turf/open/floor/concrete/pavement/lava,
+/area/lavaland/surface/outdoors)
+"zf" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 1
+	},
+/turf/open/floor/concrete/pavement/lava,
+/area/lavaland/surface/outdoors)
+"zh" = (
+/obj/effect/turf_decal/siding/wood/corner,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_lava/factory/administrative)
+"zj" = (
+/obj/structure/toilet{
+	dir = 8;
+	pixel_x = 5
+	},
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/ruin/powered/planet_lava/factory/dorms)
+"zl" = (
+/obj/structure/barricade/wooden/crude,
+/obj/effect/mob_spawn/human/corpse/nanotrasensoldier,
+/obj/structure/cable/yellow,
+/obj/effect/gibspawner/human/bodypartless,
+/turf/open/floor/plasteel/white,
+/area/ruin/powered/planet_lava/factory/lobby)
+"zq" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"zx" = (
+/obj/effect/turf_decal/trimline/brown/warning{
+	dir = 8;
+	color = "#CEB689";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"zA" = (
+/turf/closed/wall/mineral/titanium,
+/area/ruin/powered/planet_lava/factory/administrative)
+"zD" = (
+/obj/structure/closet/secure_closet/personal,
+/obj/effect/turf_decal/tile/darkblue{
+	color = "#32426b";
+	alpha = 255
+	},
+/obj/effect/turf_decal/tile/darkblue{
+	dir = 1;
+	color = "#32426b";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/white,
+/area/ruin/powered/planet_lava/factory/dorms)
+"zI" = (
+/obj/effect/turf_decal/stripes/line,
+/obj/effect/turf_decal/caution/stand_clear{
+	dir = 1
+	},
+/turf/open/floor/concrete/lava,
+/area/lavaland/surface/outdoors)
+"zJ" = (
+/obj/machinery/light/floor,
+/obj/effect/turf_decal/stripes/corner,
+/turf/open/floor/concrete/lava,
+/area/lavaland/surface/outdoors)
+"zT" = (
+/obj/structure/closet/crate/secure/engineering{
+	name = "skrzynia z Ripleyem"
+	},
+/obj/item/mecha_parts/chassis/ripley,
+/obj/item/circuitboard/mecha/ripley/main,
+/obj/item/circuitboard/mecha/ripley/peripherals,
+/obj/item/mecha_parts/part/ripley_left_arm,
+/obj/item/mecha_parts/part/ripley_left_leg,
+/obj/item/mecha_parts/part/ripley_right_arm,
+/obj/item/mecha_parts/part/ripley_right_leg,
+/obj/item/mecha_parts/part/ripley_torso,
+/obj/item/mecha_parts/mecha_equipment/drill,
+/turf/open/floor/monotile/steel,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"zW" = (
+/turf/open/floor/plating/rust{
+	initial_gas_mix = "o2=14;n2=5;co2=13;TEMP=300"
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"zX" = (
+/obj/item/stock_parts/matter_bin,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/disposalpipe/segment{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=5;co2=13;TEMP=300"
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"zY" = (
+/obj/structure/flora/ausbushes/ywflowers/hell,
+/turf/open/floor/plating/asteroid/dirt/grass/lavaland,
+/area/lavaland/surface/outdoors)
+"Ae" = (
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=5;co2=13;TEMP=300"
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"Ao" = (
+/obj/structure/sink{
+	pixel_y = 10
+	},
+/obj/item/storage/pill_bottle{
+	pixel_x = 5;
+	pixel_y = -4
+	},
+/obj/item/storage/pill_bottle{
+	pixel_x = 12;
+	pixel_y = -2
+	},
+/obj/item/storage/pill_bottle{
+	pixel_x = 10;
+	pixel_y = 10
+	},
+/obj/item/reagent_containers/pill/morphine{
+	pixel_x = -15
+	},
+/obj/item/reagent_containers/pill/morphine{
+	pixel_x = -10;
+	pixel_y = 5
+	},
+/obj/structure/mirror{
+	icon_state = "mirror_broke";
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/ruin/powered/planet_lava/factory/administrative)
+"Ar" = (
+/obj/effect/turf_decal/trimline/green/warning{
+	dir = 1;
+	color = "#B7D993";
+	alpha = 255
+	},
+/obj/effect/mob_spawn/human/corpse/assistant,
+/obj/item/stack/sheet/iron,
+/obj/item/stack/rods,
+/obj/item/stack/rods,
+/obj/effect/decal/cleanable/generic,
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/dorms)
+"As" = (
+/obj/effect/turf_decal/tile/green{
+	dir = 5;
+	color = "#B7D993";
+	alpha = 255
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/white,
+/area/ruin/powered/planet_lava/factory/administrative)
+"At" = (
+/obj/item/stack/cable_coil/cut,
+/turf/open/floor/plating/lavaland,
+/area/ruin/unpowered/planet_lava/cave)
+"Au" = (
+/obj/structure/flora/ausbushes/fernybush/hell,
+/turf/open/floor/plating/asteroid/dirt/grass/lavaland,
+/area/lavaland/surface/outdoors)
+"Av" = (
+/obj/structure/table/reinforced,
+/obj/item/flashlight/lamp{
+	pixel_x = -10;
+	pixel_y = 12
+	},
+/obj/item/paper_bin{
+	pixel_x = 6;
+	pixel_y = 2
+	},
+/obj/item/pen{
+	pixel_x = 5;
+	pixel_y = 4
+	},
+/obj/item/folder/blue{
+	pixel_x = -10;
+	pixel_y = -5
+	},
+/obj/effect/turf_decal/tile/red/half{
+	dir = 8;
+	color = "#B4696A";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/administrative)
+"Ay" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 10;
+	color = "#B4696A";
+	alpha = 255
+	},
+/obj/machinery/button/door{
+	dir = 1;
+	id = "sec";
+	name = "blokada ochrony";
+	pixel_y = -22
+	},
+/obj/item/ammo_casing/spent,
+/turf/open/floor/plasteel/white,
+/area/ruin/powered/planet_lava/factory/administrative)
+"AC" = (
+/obj/structure/table,
+/obj/machinery/microwave,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1;
+	color = "#791500";
+	alpha = 255
+	},
+/obj/effect/turf_decal/tile/bar{
+	color = "#791500";
+	alpha = 255
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/ruin/powered/planet_lava/factory/dorms)
+"AD" = (
+/obj/effect/turf_decal/trimline/green/warning{
+	dir = 8;
+	color = "#B7D993";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/robot_debris/down,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/dorms)
+"AE" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 10;
+	color = "#B4696A";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/blood,
+/obj/machinery/light/built,
+/obj/item/light/tube/broken,
+/turf/open/floor/plasteel/white,
+/area/ruin/powered/planet_lava/factory/administrative)
+"AF" = (
+/obj/effect/turf_decal/box/corners,
+/obj/structure/reagent_dispensers/fueltank,
+/turf/open/floor/monotile/steel,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"AI" = (
+/obj/effect/turf_decal/tile/red/half{
+	dir = 6;
+	color = "#B4696A";
+	alpha = 255
+	},
+/obj/structure/bed,
+/obj/item/bedsheet/hos,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/administrative)
+"AO" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/stack/ore/iron,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=5;co2=13;TEMP=300"
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"AQ" = (
+/obj/structure/railing{
+	dir = 6
+	},
+/obj/effect/turf_decal/trimline/red/arrow_cw{
+	dir = 6;
+	color = "#B4696A";
+	alpha = 255
+	},
+/turf/open/floor/monotile/dark,
+/area/ruin/powered/planet_lava/factory/lobby)
+"AS" = (
+/obj/structure/toilet{
+	dir = 4
+	},
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/ruin/powered/planet_lava/factory/administrative)
+"AU" = (
+/obj/structure/ore_box,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/unpowered/planet_lava/cave)
+"Bc" = (
+/obj/effect/turf_decal/tile/green{
+	dir = 5;
+	color = "#B7D993";
+	alpha = 255
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel/white,
+/area/ruin/powered/planet_lava/factory/administrative)
+"Bk" = (
+/obj/structure/flora/ausbushes/genericbush/hell,
+/turf/open/floor/plating/asteroid/purple,
+/area/lavaland/surface/outdoors)
+"Bt" = (
+/obj/machinery/shower{
+	dir = 4
+	},
+/obj/machinery/light/small,
+/turf/open/floor/plasteel/showroomfloor,
+/area/ruin/powered/planet_lava/factory/dorms)
+"Bx" = (
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/turf/open/floor/monotile/steel,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"Cc" = (
+/obj/effect/turf_decal/box/corners{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/monotile/steel,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"Ch" = (
+/obj/effect/turf_decal/trimline/red/arrow_cw{
+	dir = 8;
+	color = "#B4696A";
+	alpha = 255
+	},
+/turf/open/floor/monotile/dark,
+/area/ruin/powered/planet_lava/factory/lobby)
+"Cj" = (
+/obj/structure/lattice,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/unpowered/planet_lava/cave)
+"Cm" = (
+/obj/effect/turf_decal/trimline/brown/warning{
+	dir = 4;
+	color = "#CEB689";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"Co" = (
+/obj/machinery/modular_computer/console/preset/command{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/manager_office)
+"Cp" = (
+/obj/effect/turf_decal/box/corners{
+	dir = 1
+	},
+/obj/item/rack_parts,
+/turf/open/floor/monotile/steel,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"Ct" = (
+/obj/effect/turf_decal/trimline/green/warning{
+	color = "#B7D993";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/dorms)
+"Cy" = (
+/obj/effect/turf_decal/tile/bar{
+	dir = 1;
+	color = "#791500";
+	alpha = 255
+	},
+/obj/effect/turf_decal/tile/bar{
+	color = "#791500";
+	alpha = 255
+	},
+/obj/structure/closet/crate/bin,
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+/area/ruin/powered/planet_lava/factory/dorms)
+"CB" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/machinery/door/poddoor/shutters{
+	id = "foreman"
+	},
+/turf/open/floor/plating,
+/area/ruin/powered/planet_lava/factory/manager_office)
+"CD" = (
+/turf/open/floor/plating/moss,
+/area/ruin/unpowered/planet_lava/cave)
+"CL" = (
+/obj/item/toy/plush/nukeplushie,
+/turf/open/floor/plating/moss,
+/area/lavaland/surface/outdoors)
+"CT" = (
+/obj/effect/decal/cleanable/robot_debris/old,
+/turf/open/floor/circuit/red,
+/area/ruin/powered/planet_lava/factory/manager_office)
+"CU" = (
+/obj/effect/decal/cleanable/ash,
+/obj/structure/disposalpipe/segment{
+	dir = 1
+	},
+/turf/open/floor/plating/rust{
+	initial_gas_mix = "o2=14;n2=5;co2=13;TEMP=300"
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"CY" = (
+/obj/structure/cable/yellow,
+/turf/open/floor/carpet/black,
+/area/ruin/powered/planet_lava/factory/manager_office)
+"De" = (
+/obj/effect/turf_decal/trimline/darkblue/warning{
+	dir = 4;
+	color = "#32426b";
+	alpha = 255
+	},
+/turf/open/floor/monotile/light,
+/area/ruin/powered/planet_lava/factory/lobby)
+"Df" = (
+/obj/effect/turf_decal/stripes/red/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 8
+	},
+/turf/open/floor/concrete/pavement/lava,
+/area/lavaland/surface/outdoors)
+"Dg" = (
+/obj/machinery/light/floor,
+/obj/effect/turf_decal/stripes/corner{
+	dir = 4
+	},
+/turf/open/floor/concrete/lava,
+/area/lavaland/surface/outdoors)
+"Dh" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/blood,
+/obj/item/gun/ballistic/automatic/pistol,
+/obj/effect/mob_spawn/human/corpse/syndicatesoldier,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_lava/factory/manager_office)
+"Dl" = (
+/obj/machinery/light/floor,
+/obj/effect/turf_decal/siding/white{
+	dir = 6
+	},
+/turf/open/floor/concrete/pavement/lava,
+/area/lavaland/surface/outdoors)
+"Dp" = (
+/obj/item/chair{
+	dir = 8
+	},
+/turf/open/floor/carpet/royalblue,
+/area/ruin/powered/planet_lava/factory/lobby)
+"Dr" = (
+/turf/open/floor/wood,
+/area/ruin/powered/planet_lava/factory/manager_office)
+"Dx" = (
+/obj/effect/turf_decal/tile/red/half{
+	dir = 9;
+	color = "#B4696A";
+	alpha = 255
+	},
+/obj/machinery/button/door{
+	id = "sec";
+	name = "blokada ochrony";
+	pixel_y = 22
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/administrative)
+"DB" = (
+/obj/structure/table_frame,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/lavaland,
+/area/ruin/unpowered/planet_lava/cave)
+"DC" = (
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/red/arrow_cw{
+	dir = 4;
+	color = "#B4696A";
+	alpha = 255
+	},
+/turf/open/floor/monotile/dark,
+/area/ruin/powered/planet_lava/factory/lobby)
+"DH" = (
+/obj/structure/rack,
+/obj/item/pickaxe,
+/obj/item/pickaxe,
+/turf/open/floor/monotile/steel,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"DP" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 1
+	},
+/turf/open/floor/concrete/pavement/lava,
+/area/lavaland/surface/outdoors)
+"Eg" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/concrete/lava,
+/area/lavaland/surface/outdoors)
+"Eh" = (
+/obj/machinery/vending/cola/shamblers,
+/turf/open/floor/monotile/light,
+/area/ruin/powered/planet_lava/factory/lobby)
+"Ej" = (
+/turf/open/floor/carpet/black,
+/area/ruin/powered/planet_lava/factory/manager_office)
+"El" = (
+/obj/effect/turf_decal/tile/bar{
+	dir = 1;
+	color = "#791500";
+	alpha = 255
+	},
+/obj/effect/turf_decal/tile/bar{
+	color = "#791500";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/trash/canned,
+/turf/open/floor/plasteel,
+/area/ruin/powered/planet_lava/factory/dorms)
+"Ew" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille/broken,
+/obj/machinery/door/poddoor/shutters{
+	id = "foreman"
+	},
+/turf/open/floor/plating,
+/area/ruin/powered/planet_lava/factory/manager_office)
+"Ex" = (
+/obj/item/plate,
+/obj/item/trash/canned/beans{
+	pixel_x = -4;
+	pixel_y = 7
+	},
+/turf/open/floor/plasteel/tech,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"EB" = (
+/turf/open/floor/plasteel/white,
+/area/ruin/powered/planet_lava/factory/lobby)
+"EC" = (
+/obj/effect/turf_decal/trimline/red/filled/warning{
+	dir = 1;
+	color = "#B4696A";
+	alpha = 255
+	},
+/obj/structure/cable/yellow,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/monotile/dark,
+/area/ruin/powered/planet_lava/factory/lobby)
+"ED" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/monotile/steel,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"EF" = (
+/obj/item/camera,
+/turf/open/floor/plating/moss,
+/area/lavaland/surface/outdoors)
+"EN" = (
+/obj/effect/turf_decal/box/corners,
+/obj/effect/decal/cleanable/blood{
+	dir = 8
+	},
+/turf/open/floor/monotile/steel,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"EO" = (
+/obj/effect/turf_decal/tile/red/half{
+	dir = 9;
+	color = "#B4696A";
+	alpha = 255
+	},
+/obj/structure/closet/secure_closet/security,
+/obj/item/clothing/suit/armor/vest,
+/obj/item/clothing/head/helmet,
+/obj/item/clothing/glasses/hud/security/sunglasses,
+/obj/item/radio/headset/headset_sec/alt,
+/obj/item/restraints/handcuffs,
+/obj/item/flashlight/seclite,
+/obj/machinery/button/door{
+	id = "sec";
+	name = "blokada ochrony";
+	pixel_y = 22
+	},
+/obj/item/stock_parts/cell/empty,
+/obj/item/stock_parts/cell/empty,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/administrative)
+"EP" = (
+/obj/machinery/door/poddoor/shutters{
+	id = "foreman"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_lava/cave)
+"ES" = (
+/obj/structure/table/wood,
+/obj/item/paper_bin{
+	pixel_x = 5
+	},
+/obj/item/pen/fountain/captain{
+	pixel_x = 5
+	},
+/obj/item/stamp{
+	pixel_x = -8
+	},
+/turf/open/floor/carpet/blue,
+/area/ruin/powered/planet_lava/factory/manager_office)
+"EU" = (
+/obj/effect/turf_decal/trimline/red/filled/warning{
+	color = "#B4696A";
+	alpha = 255
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/plasteel/white,
+/area/ruin/powered/planet_lava/factory/administrative)
+"Fh" = (
+/mob/living/basic/viscerator,
+/turf/open/floor/plating/moss,
+/area/ruin/unpowered/planet_lava/cave)
+"Fk" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/cable/yellow,
+/turf/open/floor/plating/rust,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"Fq" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/item/chair,
+/turf/open/floor/plasteel/white,
+/area/ruin/powered/planet_lava/factory/dorms)
+"Ft" = (
+/obj/item/stack/ore/gold,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=5;co2=13;TEMP=300"
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"Fv" = (
+/obj/structure/table/wood,
+/obj/item/radio/off{
+	dir = 4;
+	pixel_x = 4
+	},
+/turf/open/floor/carpet/blue,
+/area/ruin/powered/planet_lava/factory/manager_office)
+"Fz" = (
+/obj/machinery/light/broken{
+	dir = 4
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/powered/planet_lava/factory/manager_office)
+"FJ" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/table/reinforced,
+/obj/item/radio/off{
+	dir = 4;
+	pixel_x = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/manager_office)
+"FM" = (
+/obj/effect/turf_decal/trimline/green/warning{
+	color = "#B7D993";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/blood{
+	dir = 4
+	},
+/obj/item/chair{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/dorms)
+"FR" = (
+/obj/machinery/door/airlock/command,
+/obj/machinery/door/poddoor/shutters{
+	id = "management"
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/carpet/blue,
+/area/ruin/powered/planet_lava/factory/manager_office)
+"FS" = (
+/obj/effect/turf_decal/tile/bar{
+	dir = 1;
+	color = "#791500";
+	alpha = 255
+	},
+/obj/effect/turf_decal/tile/bar{
+	color = "#791500";
+	alpha = 255
+	},
+/obj/structure/table,
+/obj/item/kitchen/fork{
+	pixel_x = -10;
+	pixel_y = 3
+	},
+/obj/item/kitchen/fork{
+	pixel_x = -8;
+	pixel_y = 2
+	},
+/obj/item/kitchen/fork{
+	pixel_x = -6;
+	pixel_y = 1
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass{
+	pixel_x = 10;
+	pixel_y = 10
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass{
+	pixel_x = 10;
+	pixel_y = 2
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass{
+	pixel_x = 2;
+	pixel_y = 10
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass{
+	pixel_x = 2;
+	pixel_y = 2
+	},
+/turf/open/floor/plasteel,
+/area/ruin/powered/planet_lava/factory/dorms)
+"FZ" = (
+/obj/machinery/door/airlock/glass_large,
+/obj/structure/cable/yellow,
+/turf/open/floor/plasteel/white,
+/area/ruin/powered/planet_lava/factory/lobby)
+"Ga" = (
+/obj/machinery/door/airlock/glass,
+/obj/machinery/door/poddoor/shutters{
+	id = "sec"
+	},
+/turf/open/floor/plasteel/white,
+/area/ruin/powered/planet_lava/factory/administrative)
+"Ge" = (
+/turf/open/floor/carpet/royalblue,
+/area/ruin/powered/planet_lava/factory/lobby)
+"Gg" = (
+/obj/machinery/door/airlock,
+/obj/structure/cable/yellow,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_lava/cave)
+"Gm" = (
+/obj/structure/cable/yellow,
+/turf/open/floor/plasteel/white,
+/area/ruin/powered/planet_lava/factory/administrative)
+"Go" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/plating,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"Gq" = (
+/obj/structure/table_frame,
+/obj/effect/decal/cleanable/blood/gibs/old,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/manager_office)
+"Gs" = (
+/obj/machinery/conveyor{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_lava/cave)
+"Gt" = (
+/turf/open/floor/plating/moss,
+/area/lavaland/surface/outdoors)
+"GB" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_lava/factory/manager_office)
+"GP" = (
+/turf/closed/wall/mineral/titanium,
+/area/ruin/powered/planet_lava/factory/manager_office)
+"GQ" = (
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/concrete/lava,
+/area/lavaland/surface/outdoors)
+"Ha" = (
+/obj/effect/turf_decal/tile/bar{
+	dir = 1;
+	color = "#791500";
+	alpha = 255
+	},
+/obj/effect/turf_decal/tile/bar{
+	color = "#791500";
+	alpha = 255
+	},
+/obj/machinery/button/door{
+	dir = 1;
+	id = "sec";
+	name = "blokada ochrony";
+	pixel_y = -22
+	},
+/turf/open/floor/plasteel,
+/area/ruin/powered/planet_lava/factory/administrative)
+"Hg" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/button/door{
+	dir = 4;
+	id = "foreman";
+	name = "blokada biura";
+	pixel_x = -22
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/manager_office)
+"Hm" = (
+/obj/effect/decal/cleanable/dirt,
+/mob/living/basic/trooper/syndicate/ranged/shotgun,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=5;co2=13;TEMP=300"
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"Hs" = (
+/obj/structure/flora/rock/hell,
+/turf/open/floor/plating/asteroid/dirt/grass/lavaland,
+/area/lavaland/surface/outdoors)
+"Ht" = (
+/obj/item/stack/ore/iron{
+	pixel_x = -15;
+	pixel_y = -10
+	},
+/obj/effect/decal/cleanable/blood/drip,
+/turf/open/floor/plating/rust{
+	initial_gas_mix = "o2=14;n2=5;co2=13;TEMP=300"
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"Hw" = (
+/obj/effect/turf_decal/trimline/brown/warning{
+	color = "#CEB689";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"HE" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/ammo_casing/spent,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=5;co2=13;TEMP=300"
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"HI" = (
+/obj/effect/turf_decal/trimline/green/corner{
+	dir = 1;
+	color = "#B7D993";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/dorms)
+"HP" = (
+/obj/effect/turf_decal/siding/white,
+/obj/effect/decal/cleanable/generic,
+/turf/open/floor/concrete/pavement/lava,
+/area/lavaland/surface/outdoors)
+"HS" = (
+/obj/machinery/mineral/unloading_machine{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=5;co2=13;TEMP=300"
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"HW" = (
+/obj/effect/turf_decal/trimline/green/warning{
+	dir = 8;
+	color = "#B7D993";
+	alpha = 255
+	},
+/mob/living/basic/trooper/syndicate/ranged,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/dorms)
+"Ia" = (
+/obj/structure/toilet{
+	dir = 8;
+	pixel_x = 5
+	},
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/ruin/powered/planet_lava/factory/administrative)
+"Ic" = (
+/obj/effect/turf_decal/trimline/red/filled/warning{
+	dir = 1;
+	color = "#B4696A";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/administrative)
+"Ih" = (
+/obj/effect/turf_decal/trimline/green/filled/warning{
+	dir = 1;
+	color = "#B7D993";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/white,
+/area/ruin/powered/planet_lava/factory/administrative)
+"Ij" = (
+/obj/effect/turf_decal/trimline/green/warning{
+	color = "#B7D993";
+	alpha = 255
+	},
+/obj/effect/mob_spawn/human/corpse/nanotrasensoldier,
+/obj/effect/decal/cleanable/blood{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/dorms)
+"Il" = (
+/obj/effect/turf_decal/trimline/green/warning{
+	color = "#B7D993";
+	alpha = 255
+	},
+/obj/machinery/door/airlock{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/blood{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/dorms)
+"In" = (
+/obj/machinery/door/airlock/freezer{
+	dir = 1;
+	name = "łazienka"
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/ruin/powered/planet_lava/factory/administrative)
+"Io" = (
+/obj/effect/turf_decal/trimline/brown/warning{
+	color = "#CEB689";
+	alpha = 255
+	},
+/obj/structure/barricade/wooden/crude{
+	dir = 4
+	},
+/obj/effect/mob_spawn/human/miner,
+/obj/item/gun/energy/kinetic_accelerator,
+/obj/effect/decal/cleanable/blood/gibs/bubblegum,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"Iu" = (
+/turf/open/floor/wood,
+/area/ruin/powered/planet_lava/factory/administrative)
+"Ix" = (
+/obj/effect/turf_decal/tile/green{
+	dir = 5;
+	color = "#B7D993";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/white,
+/area/ruin/powered/planet_lava/factory/administrative)
+"IA" = (
+/obj/structure/closet/secure_closet/personal,
+/obj/effect/turf_decal/tile/darkblue{
+	color = "#32426b";
+	alpha = 255
+	},
+/obj/effect/turf_decal/tile/darkblue{
+	dir = 1;
+	color = "#32426b";
+	alpha = 255
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/item/poster/random_contraband,
+/obj/item/toy/eightball,
+/obj/item/toy/cards/deck,
+/obj/effect/spawner/lootdrop/maintenance,
+/turf/open/floor/plasteel/white,
+/area/ruin/powered/planet_lava/factory/dorms)
+"ID" = (
+/obj/effect/turf_decal/tile/bar{
+	dir = 1;
+	color = "#791500";
+	alpha = 255
+	},
+/obj/effect/turf_decal/tile/bar{
+	color = "#791500";
+	alpha = 255
+	},
+/obj/item/wrench,
+/turf/open/floor/plasteel,
+/area/ruin/powered/planet_lava/factory/dorms)
+"IE" = (
+/obj/item/folder/yellow{
+	pixel_x = -7;
+	pixel_y = -4
+	},
+/obj/structure/fluff/paper/stack{
+	dir = 1
+	},
+/obj/structure/fluff/paper/stack,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/manager_office)
+"IF" = (
+/obj/effect/decal/cleanable/glass,
+/obj/item/shard,
+/turf/open/floor/monotile/dark,
+/area/ruin/powered/planet_lava/factory/lobby)
+"IG" = (
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_lava/factory/administrative)
+"IH" = (
+/obj/effect/turf_decal/tile/red/half{
+	dir = 1;
+	color = "#B4696A";
+	alpha = 255
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/administrative)
+"IM" = (
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/unpowered/planet_lava/cave)
+"IQ" = (
+/obj/effect/turf_decal/trimline/brown/corner{
+	dir = 1;
+	color = "#CEB689";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"IS" = (
+/turf/closed/wall/r_wall,
+/area/ruin/unpowered/planet_lava/cave)
+"Jb" = (
+/obj/effect/turf_decal/siding/white/corner{
+	dir = 8
+	},
+/turf/open/floor/concrete/pavement/lava,
+/area/lavaland/surface/outdoors)
+"Jg" = (
+/obj/machinery/mech_bay_recharge_port{
+	dir = 1
+	},
+/turf/open/floor/monotile/steel,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"Jl" = (
+/obj/effect/turf_decal/trimline/brown/warning{
+	dir = 4;
+	color = "#CEB689";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/generic,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"Jm" = (
+/turf/closed/wall/mineral/titanium,
+/area/ruin/powered/planet_lava/factory/lobby)
+"Jt" = (
+/obj/effect/turf_decal/trimline/brown/arrow_cw{
+	dir = 4;
+	color = "#CEB689";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=5;co2=13;TEMP=300"
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"Jv" = (
+/obj/effect/decal/cleanable/generic,
+/obj/structure/railing,
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=5;co2=13;TEMP=300"
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"Jy" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/carpet/blue,
+/area/ruin/powered/planet_lava/factory/manager_office)
+"JD" = (
+/obj/structure/flora/ausbushes/hell,
+/turf/open/floor/plating/asteroid/purple,
+/area/lavaland/surface/outdoors)
+"JG" = (
+/obj/structure/bed{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red/half{
+	dir = 10;
+	color = "#B4696A";
+	alpha = 255
+	},
+/obj/item/bedsheet/hos{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/administrative)
+"JI" = (
+/obj/structure/table,
+/obj/item/stack/ore/titanium,
+/turf/open/floor/plating/lavaland,
+/area/ruin/unpowered/planet_lava/cave)
+"JP" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/concrete/pavement/lava,
+/area/lavaland/surface/outdoors)
+"JS" = (
+/obj/structure/lattice/catwalk/over/ship,
+/obj/structure/cable/yellow,
+/obj/effect/decal/cleanable/blood{
+	dir = 4
+	},
+/turf/open/floor/plating/lavaland,
+/area/lavaland/surface/outdoors)
+"JX" = (
+/obj/structure/flora/ausbushes/fullgrass/hell,
+/turf/open/floor/plating/moss,
+/area/lavaland/surface/outdoors)
+"JY" = (
+/obj/effect/turf_decal/trimline/green/warning{
+	color = "#B7D993";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/blood{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/basic/trooper/syndicate/ranged/smg/space/stormtrooper,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/dorms)
+"Kj" = (
+/obj/structure/table/wood,
+/obj/item/flashlight/lamp/green{
+	pixel_x = -6;
+	pixel_y = 10
+	},
+/obj/item/toy/figure/captain{
+	pixel_x = 10
+	},
+/turf/open/floor/carpet/blue,
+/area/ruin/powered/planet_lava/factory/manager_office)
+"Kk" = (
+/turf/closed/indestructible/riveted,
+/area/ruin/powered/planet_lava/factory/manager_office)
+"Ko" = (
+/obj/effect/turf_decal/trimline/darkblue/warning{
+	dir = 4;
+	color = "#32426b";
+	alpha = 255
+	},
+/obj/machinery/light,
+/turf/open/floor/monotile/light,
+/area/ruin/powered/planet_lava/factory/lobby)
+"Kp" = (
+/obj/machinery/door/airlock/security/glass,
+/obj/machinery/door/poddoor/shutters{
+	id = "sec"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/administrative)
+"Kr" = (
+/obj/effect/turf_decal/trimline/brown/warning{
+	dir = 4;
+	color = "#CEB689";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/light,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"Kw" = (
+/obj/structure/flora/ausbushes/grassybush/hell,
+/turf/open/floor/plating/asteroid/dirt/grass/lavaland,
+/area/lavaland/surface/outdoors)
+"Kx" = (
+/obj/structure/closet/crate/freezer,
+/obj/item/food/donkpocket,
+/obj/item/food/donkpocket,
+/obj/item/food/donkpocket,
+/obj/item/food/donkpocket,
+/obj/item/food/donkpocket,
+/obj/item/reagent_containers/glass/waterbottle/large,
+/obj/item/reagent_containers/glass/waterbottle/large,
+/obj/item/reagent_containers/glass/waterbottle/large,
+/obj/item/reagent_containers/glass/waterbottle/large,
+/obj/item/reagent_containers/glass/waterbottle/large,
+/turf/open/floor/monotile/steel,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"KP" = (
+/obj/item/stack/cable_coil/cut,
+/obj/structure/frame/machine{
+	anchored = 1
+	},
+/turf/open/floor/plating/rust{
+	initial_gas_mix = "o2=14;n2=5;co2=13;TEMP=300"
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"KS" = (
+/obj/item/stack/ore/iron{
+	pixel_x = -10;
+	pixel_y = 2
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/unpowered/planet_lava/cave)
+"KU" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 5
+	},
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/drinks/trophy/gold_cup,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_lava/factory/manager_office)
+"Lb" = (
+/obj/structure/table/reinforced,
+/obj/machinery/door/window{
+	dir = 8
+	},
+/obj/structure/windoor_assembly{
+	dir = 4;
+	name = "zepsute drzwi okienne"
+	},
+/turf/open/floor/monotile/dark,
+/area/ruin/powered/planet_lava/factory/administrative)
+"Le" = (
+/obj/structure/cable/yellow,
+/obj/item/kitchen/knife,
+/turf/open/floor/plasteel/white,
+/area/ruin/powered/planet_lava/factory/administrative)
+"Lg" = (
+/obj/effect/turf_decal/caution/stand_clear{
+	dir = 8
+	},
+/mob/living/basic/trooper/syndicate/ranged/shotgun/space,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/powered/planet_lava/factory/manager_office)
+"Ll" = (
+/obj/effect/turf_decal/stripes/corner,
+/obj/effect/turf_decal/siding/white{
+	dir = 8
+	},
+/obj/item/ammo_casing/spent{
+	projectile_type = null
+	},
+/turf/open/floor/concrete/pavement/lava,
+/area/lavaland/surface/outdoors)
+"Ls" = (
+/obj/effect/turf_decal/trimline/brown/corner{
+	color = "#CEB689";
+	alpha = 255
+	},
+/obj/structure/cable/yellow,
+/obj/effect/decal/cleanable/generic,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"Lx" = (
+/turf/closed/wall/r_wall,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"LF" = (
+/obj/structure/cable/yellow,
+/obj/effect/turf_decal/siding/white{
+	dir = 4
+	},
+/turf/open/floor/concrete/pavement/lava,
+/area/lavaland/surface/outdoors)
+"LG" = (
+/obj/effect/turf_decal/trimline/darkblue/warning{
+	dir = 8;
+	color = "#32426b";
+	alpha = 255
+	},
+/obj/machinery/light/broken,
+/obj/effect/decal/cleanable/glass,
+/mob/living/basic/viscerator,
+/turf/open/floor/monotile/light,
+/area/ruin/powered/planet_lava/factory/lobby)
+"LH" = (
+/obj/structure/table,
+/obj/item/storage/pill_bottle/dice{
+	pixel_x = -8;
+	pixel_y = 8
+	},
+/obj/item/paper_bin{
+	pixel_x = 6;
+	pixel_y = 2
+	},
+/obj/item/pen{
+	pixel_x = 6;
+	pixel_y = 2
+	},
+/obj/effect/turf_decal/trimline/green/line{
+	dir = 10;
+	color = "#B7D993";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/dorms)
+"LI" = (
+/obj/structure/reagent_dispensers/water_cooler,
+/turf/open/floor/plasteel/white,
+/area/ruin/powered/planet_lava/factory/dorms)
+"LJ" = (
+/obj/effect/turf_decal/box/corners,
+/turf/open/floor/monotile/steel,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"LL" = (
+/obj/structure/lattice/catwalk/over/ship,
+/obj/structure/cable/yellow,
+/turf/open/floor/plating/rust{
+	initial_gas_mix = "o2=14;n2=5;co2=13;TEMP=300"
+	},
+/area/lavaland/surface/outdoors)
+"LO" = (
+/obj/structure/closet/secure_closet/personal,
+/obj/effect/turf_decal/tile/darkblue{
+	color = "#32426b";
+	alpha = 255
+	},
+/obj/effect/turf_decal/tile/darkblue{
+	dir = 1;
+	color = "#32426b";
+	alpha = 255
+	},
+/obj/item/storage/wallet/random,
+/obj/item/instrument/guitar,
+/obj/effect/spawner/lootdrop/maintenance,
+/turf/open/floor/plasteel/white,
+/area/ruin/powered/planet_lava/factory/dorms)
+"LP" = (
+/obj/effect/turf_decal/trimline/green/warning{
+	dir = 1;
+	color = "#B7D993";
+	alpha = 255
+	},
+/obj/item/gun/ballistic/automatic/wt550{
+	spawnwithmagazine = 0
+	},
+/obj/item/ammo_box/magazine/smgm9mm{
+	start_empty = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/dorms)
+"LW" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 10;
+	color = "#B4696A";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/white,
+/area/ruin/powered/planet_lava/factory/administrative)
+"Mh" = (
+/obj/effect/turf_decal/siding/white/corner{
+	dir = 4
+	},
+/turf/open/floor/concrete/pavement/lava,
+/area/lavaland/surface/outdoors)
+"Ml" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/concrete/slab_1/lava,
+/area/lavaland/surface/outdoors)
+"Mn" = (
+/obj/machinery/computer/mech_bay_power_console{
+	dir = 4
+	},
+/turf/open/floor/monotile/steel,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"Ms" = (
+/obj/effect/turf_decal/trimline/brown/corner{
+	dir = 4;
+	color = "#CEB689";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"Mv" = (
+/obj/machinery/light/floor,
+/obj/effect/turf_decal/stripes/corner{
+	dir = 1
+	},
+/turf/open/floor/concrete/lava,
+/area/lavaland/surface/outdoors)
+"Mx" = (
+/obj/effect/turf_decal/trimline/green/warning{
+	dir = 4;
+	color = "#B7D993";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/dorms)
+"My" = (
+/obj/structure/flora/tree/dead/tall/grey,
+/turf/open/floor/plating/asteroid/purple,
+/area/lavaland/surface/outdoors)
+"MC" = (
+/obj/machinery/door/poddoor/shutters{
+	dir = 4;
+	id = "management"
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/powered/planet_lava/factory/manager_office)
+"MJ" = (
+/turf/template_noop,
+/area/template_noop)
+"MT" = (
+/obj/effect/turf_decal/caution/stand_clear{
+	dir = 8
+	},
+/obj/machinery/button/door{
+	id = "management";
+	name = "dzwonek do drzwi";
+	pixel_y = 22
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/powered/planet_lava/factory/manager_office)
+"MU" = (
+/turf/open/floor/concrete/slab_1/lava,
+/area/lavaland/surface/outdoors)
+"Na" = (
+/obj/structure/lattice/catwalk/over/ship,
+/obj/structure/cable/yellow,
+/turf/open/floor/plating/lavaland,
+/area/lavaland/surface/outdoors)
+"Nb" = (
+/obj/structure/lattice/catwalk/over/ship,
+/obj/structure/cable/yellow,
+/obj/item/ammo_casing/spent{
+	projectile_type = null
+	},
+/turf/open/floor/plating/lavaland,
+/area/lavaland/surface/outdoors)
+"Np" = (
+/obj/effect/turf_decal/caution/stand_clear{
+	dir = 8
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/powered/planet_lava/factory/manager_office)
+"Nt" = (
+/obj/machinery/button/door{
+	dir = 8;
+	id = "management";
+	name = "blokada biura";
+	pixel_x = 22
+	},
+/turf/open/floor/carpet/blue,
+/area/ruin/powered/planet_lava/factory/manager_office)
+"Nu" = (
+/obj/structure/table/reinforced,
+/obj/item/megaphone/cargo,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/manager_office)
+"Nw" = (
+/obj/structure/lattice/catwalk/over/ship,
+/obj/structure/cable/yellow,
+/obj/item/ammo_casing/spent{
+	projectile_type = null
+	},
+/obj/item/ammo_casing/spent{
+	projectile_type = null
+	},
+/turf/open/floor/plating/lavaland,
+/area/lavaland/surface/outdoors)
+"Ny" = (
+/obj/effect/turf_decal/siding/wood,
+/obj/structure/chair/fancy/comfy{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_lava/factory/administrative)
+"NH" = (
+/obj/effect/decal/cleanable/glass,
+/obj/machinery/light/broken{
+	dir = 1
+	},
+/obj/machinery/door/poddoor{
+	name = "zepsuta prasa"
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/unpowered/planet_lava/cave)
+"NI" = (
+/obj/item/stack/sheet/iron,
+/turf/open/floor/plating/rust{
+	initial_gas_mix = "o2=14;n2=5;co2=13;TEMP=300"
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"NJ" = (
+/obj/item/stack/spacecash/c1000,
+/obj/item/stack/spacecash/c1000,
+/obj/item/stack/spacecash/c1000,
+/obj/structure/safe,
+/obj/item/stock_parts/cell/high/plus,
+/turf/open/floor/carpet/blue,
+/area/ruin/powered/planet_lava/factory/manager_office)
+"NK" = (
+/obj/effect/turf_decal/trimline/brown/warning{
+	dir = 8;
+	color = "#CEB689";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"NP" = (
+/obj/structure/flora/ausbushes/fullgrass/hell,
+/turf/open/floor/plating/moss,
+/area/ruin/unpowered/planet_lava/cave)
+"NY" = (
+/obj/effect/turf_decal/trimline/brown/corner{
+	dir = 1;
+	color = "#CEB689";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/blood{
+	dir = 10
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"Od" = (
+/turf/closed/wall/r_wall,
+/area/ruin/powered/planet_lava/factory/manager_office)
+"Oe" = (
+/obj/structure/cable/yellow,
+/turf/open/floor/carpet/blue,
+/area/ruin/powered/planet_lava/factory/manager_office)
+"Ok" = (
+/obj/structure/chair/office{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_lava/factory/administrative)
+"On" = (
+/obj/effect/turf_decal/trimline/green/warning{
+	color = "#B7D993";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/blood{
+	dir = 4
+	},
+/obj/item/ammo_box/magazine/smgm9mm{
+	start_empty = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/dorms)
+"Os" = (
+/obj/effect/turf_decal/tile/green{
+	dir = 5;
+	color = "#B7D993";
+	alpha = 255
+	},
+/obj/structure/closet/crate/bin,
+/obj/effect/turf_decal/tile/green{
+	dir = 8;
+	color = "#B7D993";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/white,
+/area/ruin/powered/planet_lava/factory/administrative)
+"Ot" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/effect/turf_decal/caution/stand_clear{
+	dir = 4
+	},
+/turf/open/floor/concrete/lava,
+/area/lavaland/surface/outdoors)
+"Ou" = (
+/obj/effect/turf_decal/trimline/brown/warning{
+	dir = 4;
+	color = "#CEB689";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"OB" = (
+/obj/effect/turf_decal/trimline/brown/warning{
+	dir = 8;
+	color = "#CEB689";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"OK" = (
+/obj/machinery/computer/security{
+	dir = 1
+	},
+/turf/open/floor/carpet/red,
+/area/ruin/powered/planet_lava/factory/administrative)
+"OM" = (
+/obj/structure/railing{
+	dir = 1
+	},
+/obj/item/ammo_casing/spent{
+	projectile_type = null
+	},
+/turf/open/floor/plating/rust{
+	initial_gas_mix = "o2=14;n2=5;co2=13;TEMP=300"
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"OT" = (
+/obj/structure/cable/yellow,
+/mob/living/basic/trooper/syndicate/ranged/smg/space,
+/turf/open/floor/plasteel/white,
+/area/ruin/powered/planet_lava/factory/lobby)
+"OV" = (
+/obj/effect/turf_decal/trimline/green/warning{
+	color = "#B7D993";
+	alpha = 255
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/dorms)
+"Pe" = (
+/obj/effect/turf_decal/tile/green{
+	dir = 5;
+	color = "#B7D993";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/white,
+/area/ruin/powered/planet_lava/factory/administrative)
+"Pk" = (
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"Pm" = (
+/obj/effect/turf_decal/trimline/brown/warning{
+	dir = 4;
+	color = "#CEB689";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/light/broken{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"Po" = (
+/obj/effect/mob_spawn/human/doctor,
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/monotile/steel,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"Pq" = (
+/obj/effect/turf_decal/trimline/brown/warning{
+	dir = 8;
+	color = "#CEB689";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/button/door{
+	id = "warehouse";
+	name = "rolety magazynu";
+	pixel_y = 24
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"Pr" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_lava/factory/administrative)
+"PB" = (
+/obj/effect/decal/cleanable/generic,
+/obj/effect/turf_decal/trimline/brown/warning{
+	color = "#CEB689";
+	alpha = 255
+	},
+/mob/living/basic/viscerator,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=5;co2=13;TEMP=300"
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"PD" = (
+/obj/effect/turf_decal/siding/white/corner{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete/pavement/lava,
+/area/lavaland/surface/outdoors)
+"PG" = (
+/obj/item/ammo_casing/spent{
+	projectile_type = null
+	},
+/turf/open/floor/plating/rust{
+	initial_gas_mix = "o2=14;n2=5;co2=13;TEMP=300"
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"PL" = (
+/obj/structure/closet/secure_closet/personal,
+/obj/effect/turf_decal/tile/darkblue{
+	color = "#32426b";
+	alpha = 255
+	},
+/obj/effect/turf_decal/tile/darkblue{
+	dir = 1;
+	color = "#32426b";
+	alpha = 255
+	},
+/obj/item/storage/fancy/cigarettes/cigpack_cannabis,
+/obj/item/lighter/greyscale,
+/obj/item/reagent_containers/food/drinks/bottle/whiskey,
+/obj/effect/spawner/lootdrop/maintenance,
+/turf/open/floor/plasteel/white,
+/area/ruin/powered/planet_lava/factory/dorms)
+"PM" = (
+/obj/structure/closet/secure_closet/freezer/fridge,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1;
+	color = "#791500";
+	alpha = 255
+	},
+/obj/effect/turf_decal/tile/bar{
+	color = "#791500";
+	alpha = 255
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/item/storage/box/ingredients/vegetarian,
+/obj/item/reagent_containers/food/condiment/milk,
+/obj/item/reagent_containers/food/condiment/soymilk,
+/obj/item/storage/fancy/egg_box,
+/obj/item/reagent_containers/food/condiment/flour,
+/obj/item/reagent_containers/food/condiment/rice,
+/obj/item/food/meat/slab,
+/obj/item/food/meat/slab,
+/obj/item/food/meat/slab,
+/turf/open/floor/plasteel,
+/area/ruin/powered/planet_lava/factory/dorms)
+"PX" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/effect/turf_decal/caution/stand_clear{
+	dir = 8
+	},
+/turf/open/floor/concrete/lava,
+/area/lavaland/surface/outdoors)
+"Qa" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 6
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_lava/factory/administrative)
+"Qb" = (
+/obj/effect/turf_decal/siding/white/corner{
+	dir = 1
+	},
+/turf/open/floor/concrete/pavement/lava,
+/area/lavaland/surface/outdoors)
+"Qf" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_lava/factory/administrative)
+"Qh" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/cable/yellow,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=5;co2=13;TEMP=300"
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"Qi" = (
+/obj/structure/chair/greyscale{
+	dir = 1
+	},
+/turf/open/floor/plasteel/white,
+/area/ruin/powered/planet_lava/factory/dorms)
+"Ql" = (
+/obj/effect/turf_decal/siding/white/corner,
+/obj/effect/mob_spawn/human/corpse/cargo_tech,
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/concrete/pavement/lava,
+/area/lavaland/surface/outdoors)
+"Qn" = (
+/obj/structure/table/wood,
+/obj/machinery/computer/secure_data/laptop{
+	dir = 4;
+	pixel_x = -5;
+	pixel_y = 5
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/carpet/blue,
+/area/ruin/powered/planet_lava/factory/manager_office)
+"Qq" = (
+/obj/structure/flora/ash/fern,
+/turf/open/floor/plating/moss,
+/area/ruin/unpowered/planet_lava/cave)
+"Qy" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 9
+	},
+/turf/open/floor/concrete/pavement/lava,
+/area/lavaland/surface/outdoors)
+"QK" = (
+/obj/effect/turf_decal/box/corners{
+	dir = 1
+	},
+/obj/structure/reagent_dispensers/watertank,
+/turf/open/floor/monotile/steel,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"QO" = (
+/obj/structure/bed,
+/obj/item/bedsheet/random,
+/obj/structure/curtain,
+/obj/effect/turf_decal/tile/darkblue{
+	color = "#32426b";
+	alpha = 255
+	},
+/obj/effect/turf_decal/tile/darkblue{
+	dir = 1;
+	color = "#32426b";
+	alpha = 255
+	},
+/mob/living/basic/viscerator,
+/turf/open/floor/plasteel/white,
+/area/ruin/powered/planet_lava/factory/dorms)
+"QP" = (
+/obj/structure/cable/yellow,
+/obj/effect/turf_decal/siding/white{
+	dir = 1
+	},
+/turf/open/floor/concrete/pavement/lava,
+/area/lavaland/surface/outdoors)
+"QT" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 8
+	},
+/turf/open/floor/concrete/pavement/lava,
+/area/lavaland/surface/outdoors)
+"QV" = (
+/obj/effect/turf_decal/trimline/brown/warning{
+	dir = 4;
+	color = "#CEB689";
+	alpha = 255
+	},
+/obj/structure/cable/yellow,
+/mob/living/basic/trooper/syndicate/melee/space,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"QW" = (
+/obj/structure/closet/crate/engineering/electrical,
+/obj/item/circuitboard/machine/cell_charger,
+/obj/item/stock_parts/cell/high/empty,
+/obj/item/stock_parts/cell/high/empty,
+/obj/item/stock_parts/cell/high/empty,
+/turf/open/floor/monotile/steel,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"QX" = (
+/obj/effect/turf_decal/tile/bar{
+	color = "#791500";
+	alpha = 255
+	},
+/obj/effect/turf_decal/tile/bar{
+	dir = 1;
+	color = "#791500";
+	alpha = 255
+	},
+/turf/open/floor/plasteel,
+/area/ruin/powered/planet_lava/factory/administrative)
+"QZ" = (
+/obj/structure/table/wood,
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_lava/factory/administrative)
+"Rj" = (
+/obj/effect/decal/cleanable/ash/large,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/unpowered/planet_lava/cave)
+"Rk" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/light/broken{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=5;co2=13;TEMP=300"
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"Rp" = (
+/obj/effect/turf_decal/trimline/brown/corner{
+	dir = 4;
+	color = "#CEB689";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood,
+/obj/item/ammo_casing/spent{
+	projectile_type = null
+	},
+/obj/item/ammo_casing/spent{
+	projectile_type = null
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"Rs" = (
+/obj/structure/table/wood,
+/obj/item/storage/fancy/donut_box,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_lava/factory/administrative)
+"Rt" = (
+/obj/effect/turf_decal/tile/bar{
+	dir = 1;
+	color = "#791500";
+	alpha = 255
+	},
+/obj/effect/turf_decal/tile/bar{
+	color = "#791500";
+	alpha = 255
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/plasteel,
+/area/ruin/powered/planet_lava/factory/dorms)
+"RG" = (
+/obj/effect/turf_decal/trimline/green/warning{
+	color = "#B7D993";
+	alpha = 255
+	},
+/obj/structure/cable/yellow,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/dorms)
+"RR" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/caution/stand_clear{
+	dir = 1
+	},
+/obj/item/ammo_casing/spent{
+	projectile_type = null
+	},
+/obj/item/ammo_casing/spent{
+	projectile_type = null
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=5;co2=13;TEMP=300"
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"RX" = (
+/obj/effect/turf_decal/trimline/brown/warning{
+	dir = 8;
+	color = "#CEB689";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/blood{
+	dir = 5
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"RY" = (
+/obj/effect/decal/cleanable/blood/footprints{
+	dir = 8
+	},
+/turf/open/floor/plating/rust{
+	initial_gas_mix = "o2=14;n2=5;co2=13;TEMP=300"
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"RZ" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=5;co2=13;TEMP=300"
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"Se" = (
+/obj/item/wallframe/apc,
+/turf/open/floor/plating/rust{
+	initial_gas_mix = "o2=14;n2=5;co2=13;TEMP=300"
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"Sf" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 4
+	},
+/turf/open/floor/concrete/pavement/lava,
+/area/lavaland/surface/outdoors)
+"Sg" = (
+/obj/structure/curtain,
+/obj/machinery/shower{
+	pixel_y = 15
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/ruin/powered/planet_lava/factory/administrative)
+"Sh" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/effect/turf_decal/caution/stand_clear{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/blood,
+/obj/item/ammo_casing/spent{
+	projectile_type = null
+	},
+/obj/item/ammo_casing/spent{
+	projectile_type = null
+	},
+/turf/open/floor/concrete/pavement/lava,
+/area/lavaland/surface/outdoors)
+"Sl" = (
+/obj/machinery/vending/snack/orange,
+/turf/open/floor/monotile/light,
+/area/ruin/powered/planet_lava/factory/lobby)
+"Sn" = (
+/obj/structure/cable/yellow,
+/obj/item/stack/rods,
+/turf/open/floor/plating/rust{
+	initial_gas_mix = "o2=14;n2=5;co2=13;TEMP=300"
+	},
+/area/lavaland/surface/outdoors)
+"St" = (
+/obj/machinery/light/built{
+	dir = 8
+	},
+/obj/item/light/tube/broken,
+/turf/open/floor/mech_bay_recharge_floor,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"SD" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/effect/turf_decal/caution/stand_clear{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=5;co2=13;TEMP=300"
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"ST" = (
+/obj/effect/gibspawner/human,
+/obj/effect/decal/remains/human,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=5;co2=13;TEMP=300"
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"Tf" = (
+/obj/effect/decal/cleanable/blood/old,
+/obj/effect/turf_decal/siding/white,
+/obj/item/ammo_box/magazine/m10mm{
+	start_empty = 1
+	},
+/obj/effect/mob_spawn/human/corpse/syndicatesoldier,
+/turf/open/floor/concrete/pavement/lava,
+/area/lavaland/surface/outdoors)
+"Ty" = (
+/obj/item/rack_parts,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=5;co2=13;TEMP=300"
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"TE" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/frame/computer{
+	dir = 1;
+	anchored = 1
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=5;co2=13;TEMP=300"
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"TK" = (
+/obj/structure/flora/tree/dead/tall,
+/turf/open/floor/plating/asteroid/dirt/grass/lavaland,
+/area/lavaland/surface/outdoors)
+"TN" = (
+/obj/machinery/computer/secure_data,
+/turf/open/floor/carpet/red,
+/area/ruin/powered/planet_lava/factory/administrative)
+"TT" = (
+/obj/effect/decal/cleanable/oil,
+/turf/open/floor/monotile/steel,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"Uh" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/machinery/newscaster/directional/west,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_lava/factory/administrative)
+"Uo" = (
+/obj/structure/table/wood,
+/obj/item/modular_computer/laptop/preset/civillian,
+/turf/open/floor/carpet/blue,
+/area/ruin/powered/planet_lava/factory/administrative)
+"Up" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/effect/turf_decal/caution/stand_clear{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/blood{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=5;co2=13;TEMP=300"
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"Ut" = (
+/obj/structure/table/reinforced,
+/obj/machinery/recharger,
+/obj/item/stamp{
+	pixel_x = 11
+	},
+/obj/effect/turf_decal/tile/red/half{
+	dir = 10;
+	color = "#B4696A";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/administrative)
+"Uv" = (
+/turf/closed/wall/r_wall/rust,
+/area/ruin/unpowered/planet_lava/cave)
+"Uz" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/cable/yellow,
+/obj/effect/decal/cleanable/glass,
+/obj/item/ammo_casing/spent{
+	projectile_type = null
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=5;co2=13;TEMP=300"
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"UB" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete/pavement/lava,
+/area/lavaland/surface/outdoors)
+"UD" = (
+/obj/effect/turf_decal/box/corners{
+	dir = 4
+	},
+/obj/structure/rack,
+/obj/item/clothing/head/hardhat{
+	pixel_x = -2;
+	pixel_y = 5
+	},
+/obj/item/clothing/head/hardhat{
+	pixel_x = 10;
+	pixel_y = 5
+	},
+/turf/open/floor/monotile/steel,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"UE" = (
+/obj/structure/closet/crate/trashcart,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/storage/bag/trash,
+/obj/item/reagent_containers/glass/bucket,
+/obj/item/mop,
+/turf/open/floor/plasteel/tech,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"UF" = (
+/obj/structure/chair/greyscale{
+	dir = 4
+	},
+/mob/living/basic/trooper/syndicate/ranged/smg/space,
+/turf/open/floor/plasteel/white,
+/area/ruin/powered/planet_lava/factory/dorms)
+"UH" = (
+/obj/structure/cable/yellow,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/carpet/black,
+/area/ruin/powered/planet_lava/factory/manager_office)
+"UK" = (
+/obj/structure/railing,
+/obj/effect/turf_decal/stripes/line,
+/mob/living/basic/trooper/syndicate/ranged/smg,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=5;co2=13;TEMP=300"
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"UR" = (
+/obj/item/stack/rods,
+/obj/structure/disposalpipe/broken{
+	dir = 1
+	},
+/obj/structure/disposalpipe/broken{
+	dir = 8
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/unpowered/planet_lava/cave)
+"US" = (
+/obj/effect/turf_decal/trimline/green/warning{
+	dir = 1;
+	color = "#B7D993";
+	alpha = 255
+	},
+/obj/machinery/door/airlock{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/dorms)
+"UT" = (
+/obj/structure/girder/reinforced,
+/turf/open/floor/plating/rust{
+	initial_gas_mix = "o2=14;n2=5;co2=13;TEMP=300"
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"UX" = (
+/obj/machinery/mineral/processing_unit{
+	input_dir = 8;
+	output_dir = 1
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=5;co2=13;TEMP=300"
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"Vh" = (
+/obj/effect/turf_decal/trimline/green/filled/warning{
+	dir = 1;
+	color = "#B7D993";
+	alpha = 255
+	},
+/mob/living/basic/viscerator,
+/turf/open/floor/plasteel/white,
+/area/ruin/powered/planet_lava/factory/administrative)
+"Vj" = (
+/obj/item/trash/chips,
+/turf/open/floor/plasteel/tech,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"Vm" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 9
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_lava/factory/manager_office)
+"Vn" = (
+/obj/effect/turf_decal/trimline/green/warning{
+	dir = 8;
+	color = "#B7D993";
+	alpha = 255
+	},
+/obj/machinery/door/airlock,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/dorms)
+"Vo" = (
+/obj/effect/turf_decal/stripes/line,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=5;co2=13;TEMP=300"
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"Vq" = (
+/obj/effect/turf_decal/trimline/brown/warning{
+	dir = 4;
+	color = "#CEB689";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"Vx" = (
+/obj/machinery/light/floor,
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/concrete/lava,
+/area/lavaland/surface/outdoors)
+"Vy" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/cable/yellow,
+/obj/machinery/power/smes/engineering,
+/turf/open/floor/plating,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"VA" = (
+/obj/effect/turf_decal/trimline/green/warning{
+	dir = 1;
+	color = "#B7D993";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/generic,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/dorms)
+"VE" = (
+/obj/structure/lattice,
+/obj/structure/disposalpipe/broken,
+/obj/structure/disposalpipe/broken{
+	dir = 1
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/unpowered/planet_lava/cave)
+"VL" = (
+/obj/structure/flora/ausbushes/sparsegrass/hell,
+/turf/open/floor/plating/asteroid/purple,
+/area/lavaland/surface/outdoors)
+"VP" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/lavaland,
+/area/ruin/unpowered/planet_lava/cave)
+"VQ" = (
+/obj/effect/turf_decal/trimline/darkblue/warning{
+	dir = 4;
+	color = "#32426b";
+	alpha = 255
+	},
+/mob/living/basic/viscerator,
+/turf/open/floor/monotile/light,
+/area/ruin/powered/planet_lava/factory/lobby)
+"VT" = (
+/obj/item/clothing/head/beret/supply,
+/obj/item/clothing/under/rank/cargo/quartermaster,
+/obj/effect/turf_decal/siding/wood{
+	dir = 10
+	},
+/obj/structure/closet/cabinet,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_lava/factory/administrative)
+"VX" = (
+/obj/effect/turf_decal/tile/bar{
+	dir = 1;
+	color = "#791500";
+	alpha = 255
+	},
+/obj/effect/turf_decal/tile/bar{
+	color = "#791500";
+	alpha = 255
+	},
+/obj/structure/table,
+/obj/machinery/reagentgrinder,
+/obj/structure/cable/yellow,
+/obj/machinery/power/apc/auto_name/north,
+/turf/open/floor/plasteel,
+/area/ruin/powered/planet_lava/factory/dorms)
+"VY" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/obj/item/kirbyplants/random,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_lava/factory/manager_office)
+"Wd" = (
+/obj/effect/turf_decal/trimline/brown/warning{
+	dir = 4;
+	color = "#CEB689";
+	alpha = 255
+	},
+/obj/effect/turf_decal/stripes/corner{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"Wj" = (
+/obj/effect/turf_decal/trimline/brown/warning{
+	dir = 4;
+	color = "#CEB689";
+	alpha = 255
+	},
+/obj/effect/turf_decal/stripes/corner{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"Wt" = (
+/obj/effect/turf_decal/box/corners{
+	dir = 8
+	},
+/obj/structure/closet/crate/internals,
+/obj/item/tank/internals/emergency_oxygen/engi,
+/obj/item/storage/toolbox/emergency,
+/obj/item/storage/toolbox/emergency,
+/obj/item/clothing/mask/breath,
+/turf/open/floor/monotile/steel,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"Wu" = (
+/obj/item/stack/rods,
+/obj/item/stack/cable_coil/cut,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"Wx" = (
+/obj/structure/table/wood,
+/obj/item/kitchen/knife,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_lava/factory/administrative)
+"Wz" = (
+/obj/structure/bed/roller,
+/obj/effect/mob_spawn/human/corpse/cargo_tech,
+/obj/effect/decal/cleanable/blood,
+/obj/item/reagent_containers/hypospray/medipen{
+	icon_state = "medipen0";
+	list_reagents = null;
+	pixel_y = 10
+	},
+/turf/open/floor/monotile/steel,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"WI" = (
+/obj/structure/closet/secure_closet{
+	icon_state = "qm"
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/item/clipboard,
+/obj/item/storage/box,
+/obj/item/clothing/suit/space/hardsuit/mining,
+/obj/item/gun/energy/e_gun/mini,
+/obj/item/stock_parts/cell,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/manager_office)
+"WJ" = (
+/obj/effect/turf_decal/trimline/brown/warning{
+	dir = 1;
+	color = "#CEB689";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"WL" = (
+/obj/machinery/door/airlock/command/glass,
+/obj/machinery/door/poddoor/shutters{
+	id = "sec"
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/plasteel/white,
+/area/ruin/powered/planet_lava/factory/administrative)
+"WS" = (
+/obj/structure/chair/office{
+	dir = 4
+	},
+/turf/open/floor/carpet/red,
+/area/ruin/powered/planet_lava/factory/administrative)
+"WU" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/monotile/steel,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"WW" = (
+/obj/structure/displaycase{
+	open = 1;
+	alert = 0
+	},
+/turf/open/floor/carpet/blue,
+/area/ruin/powered/planet_lava/factory/manager_office)
+"Xe" = (
+/turf/closed/wall/mineral/titanium,
+/area/ruin/powered/planet_lava/factory/dorms)
+"Xi" = (
+/obj/effect/turf_decal/trimline/green/warning{
+	dir = 8;
+	color = "#B7D993";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/dorms)
+"Xo" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/chair/office,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/manager_office)
+"Xu" = (
+/obj/structure/bed,
+/obj/item/bedsheet/random,
+/obj/structure/curtain,
+/obj/effect/turf_decal/tile/darkblue{
+	color = "#32426b";
+	alpha = 255
+	},
+/obj/effect/turf_decal/tile/darkblue{
+	dir = 1;
+	color = "#32426b";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/white,
+/area/ruin/powered/planet_lava/factory/dorms)
+"Xw" = (
+/obj/machinery/light/floor,
+/obj/effect/turf_decal/stripes/corner{
+	dir = 8
+	},
+/turf/open/floor/concrete/lava,
+/area/lavaland/surface/outdoors)
+"XF" = (
+/turf/open/floor/carpet/blue,
+/area/ruin/powered/planet_lava/factory/manager_office)
+"XJ" = (
+/obj/effect/decal/cleanable/oil,
+/obj/item/rack_parts,
+/obj/item/clothing/mask/gas/explorer,
+/turf/open/floor/monotile/steel,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"XK" = (
+/obj/effect/mob_spawn/human/corpse/charredskeleton,
+/obj/item/clothing/neck/cloak/qm,
+/obj/structure/closet/crate/secure/loot,
+/turf/open/floor/plating/moss,
+/area/ruin/unpowered/planet_lava/cave)
+"XN" = (
+/obj/structure/chair{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_lava/factory/administrative)
+"XO" = (
+/obj/structure/table/wood,
+/obj/item/newspaper{
+	desc = "Numer „The Griffon” z 497 FS, gazety krążącej po stacjach kosmicznych Makosso-Warra. Większość artykułów wyrwano.";
+	name = "podarta gazeta"
+	},
+/obj/item/photo{
+	desc = "Wytarte zdjęcie. Ledwo widać na nim kilka postaci. Wszystkie się uśmiechają.";
+	name = "wytarte zdjęcie";
+	pixel_x = -5
+	},
+/obj/item/cane,
+/obj/item/flashlight/lamp/green{
+	pixel_x = -6;
+	pixel_y = 13
+	},
+/turf/open/floor/carpet/blue,
+/area/ruin/powered/planet_lava/factory/administrative)
+"XQ" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 6
+	},
+/obj/machinery/suit_storage_unit/open,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_lava/factory/administrative)
+"XV" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/mecha_wreckage/ripley,
+/obj/effect/decal/cleanable/robot_debris/old,
+/turf/open/floor/monotile/steel,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"Yc" = (
+/obj/machinery/light/floor,
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/concrete/lava,
+/area/lavaland/surface/outdoors)
+"Yd" = (
+/obj/structure/lattice,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"Yh" = (
+/obj/effect/decal/cleanable/generic,
+/obj/structure/closet/crate/medical,
+/obj/item/reagent_containers/glass/bottle/morphine,
+/obj/item/reagent_containers/syringe,
+/obj/item/reagent_containers/glass/bottle/charcoal,
+/obj/item/clothing/neck/stethoscope,
+/obj/item/storage/firstaid/medical,
+/turf/open/floor/monotile/steel,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"Yr" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/white{
+	initial_gas_mix = "o2=14;n2=5;co2=13;TEMP=300"
+	},
+/area/lavaland/surface/outdoors)
+"YC" = (
+/obj/effect/decal/cleanable/generic,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"YD" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/railing,
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=5;co2=13;TEMP=300"
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"YF" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 8
+	},
+/turf/open/floor/concrete/pavement/lava,
+/area/lavaland/surface/outdoors)
+"YL" = (
+/obj/machinery/light/floor,
+/obj/effect/turf_decal/siding/white{
+	dir = 10
+	},
+/turf/open/floor/concrete/pavement/lava,
+/area/lavaland/surface/outdoors)
+"YO" = (
+/obj/item/stack/rods,
+/obj/item/stack/rods,
+/obj/item/stack/rods,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/unpowered/planet_lava/cave)
+"YP" = (
+/obj/effect/turf_decal/trimline/green/corner{
+	color = "#B7D993";
+	alpha = 255
+	},
+/obj/structure/cable/yellow,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/dorms)
+"YV" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/carpet/blue,
+/area/ruin/powered/planet_lava/factory/manager_office)
+"YX" = (
+/obj/structure/bed/double{
+	dir = 1
+	},
+/obj/item/bedsheet/double/captain{
+	dir = 1
+	},
+/turf/open/floor/carpet/blue,
+/area/ruin/powered/planet_lava/factory/administrative)
+"Zf" = (
+/obj/effect/turf_decal/trimline/green/warning{
+	dir = 4;
+	color = "#B7D993";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/dorms)
+"Zg" = (
+/obj/machinery/door/poddoor/shutters{
+	dir = 4;
+	id = "foreman"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_lava/cave)
+"Zh" = (
+/obj/effect/turf_decal/trimline/brown/corner{
+	color = "#CEB689";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/item/storage/bag/ore,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"Zl" = (
+/turf/open/floor/plating/lavaland,
+/area/lavaland/surface/outdoors)
+"Zp" = (
+/obj/structure/cable/yellow,
+/turf/open/floor/plasteel/white,
+/area/ruin/powered/planet_lava/factory/lobby)
+"Zu" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/cable/yellow,
+/turf/open/floor/plating,
+/area/ruin/powered/planet_lava/factory/warehouse)
+"ZM" = (
+/mob/living/basic/viscerator,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/unpowered/planet_lava/cave)
+"ZP" = (
+/obj/structure/sink{
+	pixel_y = 10
+	},
+/obj/structure/mirror{
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/ruin/powered/planet_lava/factory/administrative)
+"ZS" = (
+/obj/effect/turf_decal/tile/green{
+	dir = 5;
+	color = "#B7D993";
+	alpha = 255
+	},
+/obj/structure/sign/poster/official/random{
+	pixel_y = 32
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/white,
+/area/ruin/powered/planet_lava/factory/administrative)
+"ZV" = (
+/obj/item/radio,
+/turf/open/floor/plating/moss,
+/area/lavaland/surface/outdoors)
+"ZW" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 6
+	},
+/obj/item/kirbyplants/photosynthetic,
+/obj/structure/sign/poster/official/soft_cap_pop_art{
+	pixel_y = -32
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_lava/factory/administrative)
+
+(1,1,1) = {"
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+nM
+bq
+bq
+bq
+bq
+bq
+bq
+bq
+bq
+bq
+nM
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+"}
+(2,1,1) = {"
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+ma
+eq
+eq
+MJ
+eq
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+cA
+zJ
+Eg
+Eg
+PX
+Yc
+PX
+Eg
+Eg
+Dg
+cA
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+"}
+(3,1,1) = {"
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+ax
+ax
+ax
+eq
+eq
+eq
+eq
+ma
+Kw
+eq
+eq
+eq
+nP
+eq
+eq
+zY
+eq
+eq
+MJ
+cA
+zI
+tv
+tv
+tv
+tv
+tv
+tv
+tv
+tS
+cA
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+"}
+(4,1,1) = {"
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+iX
+zY
+eq
+rv
+eq
+eq
+ly
+eq
+eq
+eq
+eq
+ma
+xK
+ma
+eq
+cA
+GQ
+tv
+tv
+tv
+tv
+tv
+tv
+tv
+hY
+cA
+eq
+nP
+eq
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+"}
+(5,1,1) = {"
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+ax
+ax
+ax
+ax
+ax
+zA
+zA
+zA
+zA
+zA
+zA
+zA
+zA
+zA
+zA
+zA
+lS
+ma
+eq
+iX
+Au
+eq
+ly
+cA
+GQ
+tv
+tv
+tv
+tv
+tv
+tv
+tv
+hY
+cA
+ma
+eq
+xK
+eq
+eq
+MJ
+MJ
+MJ
+MJ
+MJ
+"}
+(6,1,1) = {"
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+ax
+ax
+ax
+ax
+ax
+zA
+zA
+XO
+YX
+zA
+kn
+Uo
+Ok
+VT
+zA
+AS
+zA
+zA
+xK
+eq
+eq
+eq
+TK
+ma
+cA
+zI
+tv
+tv
+tv
+tv
+tv
+tv
+tv
+tS
+cA
+ma
+ly
+ma
+eq
+zY
+MJ
+MJ
+MJ
+MJ
+MJ
+"}
+(7,1,1) = {"
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+ax
+ax
+ax
+ax
+ax
+zA
+dB
+IG
+nE
+zA
+tu
+Iu
+zh
+Qa
+In
+gM
+nV
+zA
+zY
+eq
+ly
+Hs
+xK
+ma
+sr
+Xw
+yz
+yz
+Ot
+Vx
+Ot
+yz
+yz
+Mv
+cA
+Hs
+ma
+xK
+eq
+Au
+eq
+MJ
+MJ
+MJ
+MJ
+"}
+(8,1,1) = {"
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+ax
+ax
+ax
+ax
+zA
+zA
+zA
+oJ
+Iu
+Ny
+zA
+wD
+ks
+ZW
+zA
+zA
+zA
+zA
+zA
+zA
+zA
+zA
+zA
+eq
+ma
+nM
+bq
+bf
+bq
+bq
+bq
+bq
+bq
+bq
+bq
+nM
+xK
+ma
+xK
+eq
+iX
+eq
+MJ
+MJ
+MJ
+MJ
+"}
+(9,1,1) = {"
+MJ
+MJ
+MJ
+MJ
+MJ
+ax
+ax
+ax
+ax
+ax
+zA
+Sg
+zA
+uX
+zh
+XQ
+zA
+zA
+pv
+zA
+zA
+Os
+dD
+wP
+zA
+EO
+IH
+JG
+zA
+eq
+Au
+eq
+vT
+Na
+DP
+ma
+eq
+Kw
+zY
+eq
+eq
+eq
+eq
+wm
+xK
+Kw
+eq
+tk
+MJ
+MJ
+MJ
+MJ
+"}
+(10,1,1) = {"
+MJ
+MJ
+MJ
+MJ
+ax
+ax
+ax
+ax
+ax
+ax
+zA
+Ao
+In
+om
+Qa
+pi
+mK
+sV
+yW
+hM
+Ga
+Vh
+Gm
+hQ
+bd
+gt
+bj
+fh
+zA
+ma
+eq
+eq
+wE
+LL
+DP
+lh
+Lx
+Lx
+Lx
+Lx
+Lx
+Lx
+Lx
+Lx
+tk
+tk
+tk
+tk
+MJ
+MJ
+MJ
+MJ
+"}
+(11,1,1) = {"
+MJ
+MJ
+MJ
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+zA
+fZ
+zA
+zA
+zA
+zA
+zA
+QX
+ol
+Ha
+zA
+As
+Gm
+md
+zA
+hL
+uN
+AI
+zA
+ma
+eq
+nP
+wE
+LL
+DP
+Lx
+pC
+gJ
+St
+Jg
+Mn
+qL
+zx
+Lx
+Lx
+Bk
+tk
+mX
+MJ
+MJ
+MJ
+MJ
+"}
+(12,1,1) = {"
+MJ
+MJ
+MJ
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+zA
+zA
+zA
+vF
+Pr
+nt
+Uh
+Qf
+nt
+nt
+zA
+Ix
+ci
+LW
+zA
+zA
+zA
+zA
+zA
+iX
+eq
+ma
+wE
+LL
+DP
+Lx
+Vq
+Wd
+qh
+oj
+Zh
+Ou
+Wj
+Cm
+Lx
+VL
+tk
+VL
+VL
+eT
+MJ
+MJ
+"}
+(13,1,1) = {"
+MJ
+MJ
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+wp
+zA
+zA
+kz
+Wx
+Iu
+nu
+Rs
+XN
+zA
+ZS
+ge
+Ay
+zA
+Dx
+eP
+Ut
+zA
+lh
+eq
+eq
+wE
+Na
+ds
+nh
+dp
+WU
+eK
+aH
+Hw
+Cp
+iI
+ct
+Lx
+eT
+tk
+tk
+pc
+eT
+MJ
+MJ
+"}
+(14,1,1) = {"
+MJ
+MJ
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+wp
+wp
+wp
+wp
+zA
+zA
+zA
+zA
+gE
+QZ
+XN
+zA
+Pe
+Le
+fm
+Kp
+Ic
+bj
+Av
+zA
+Au
+eq
+eq
+wE
+Na
+hW
+nh
+kG
+kM
+Bx
+WJ
+Hw
+DH
+rV
+gC
+Lx
+VL
+My
+JD
+eT
+VL
+MJ
+MJ
+"}
+(15,1,1) = {"
+MJ
+MJ
+ax
+ax
+ax
+ax
+ax
+wp
+wp
+wp
+wp
+wp
+wp
+wp
+wp
+wp
+zA
+zA
+zA
+zA
+zA
+Bc
+Gm
+AE
+zA
+TN
+WS
+OK
+zA
+xK
+eq
+eq
+wE
+Na
+hW
+nh
+nN
+XV
+jy
+oy
+lD
+XJ
+ED
+ED
+Lx
+wH
+tk
+eT
+tk
+VL
+MJ
+MJ
+"}
+(16,1,1) = {"
+MJ
+ax
+ax
+ax
+ax
+ax
+wp
+wp
+wp
+wp
+wp
+wp
+wp
+wp
+wp
+Gt
+wp
+wp
+zA
+ZP
+vp
+Ih
+gl
+LW
+zA
+eL
+Lb
+eL
+zA
+Jm
+ma
+ma
+wE
+LL
+ds
+nh
+bx
+fC
+pN
+oy
+jj
+UD
+jC
+LJ
+Lx
+tk
+tk
+tk
+tk
+qo
+MJ
+MJ
+"}
+(17,1,1) = {"
+ax
+ax
+ax
+ax
+ax
+ax
+wp
+wp
+wp
+wp
+wp
+wp
+wp
+Kk
+Kk
+Kk
+Kk
+Kk
+Kk
+Ia
+zA
+Pe
+Gm
+EU
+WL
+EC
+IF
+Ch
+mC
+Jm
+Jm
+Hs
+wE
+LL
+DP
+Lx
+Pq
+NK
+bw
+IQ
+fK
+OB
+OB
+OB
+Lx
+pc
+wm
+tk
+tk
+eT
+MJ
+MJ
+"}
+(18,1,1) = {"
+MJ
+ax
+ax
+ax
+ax
+ax
+wp
+wp
+wp
+wp
+dZ
+dZ
+Kk
+Kk
+uZ
+lQ
+lz
+kB
+Kk
+zA
+zA
+zA
+fH
+zA
+zA
+hn
+DC
+uz
+AQ
+Eh
+Jm
+Jm
+Tf
+Na
+DP
+Lx
+Pm
+Vq
+Cm
+Ms
+ye
+Cm
+Jl
+Kr
+Lx
+Lx
+Lx
+tk
+tk
+tk
+eq
+eq
+"}
+(19,1,1) = {"
+MJ
+ax
+ax
+ax
+ax
+ax
+wp
+wp
+wp
+dZ
+dZ
+XF
+eC
+YV
+fb
+dg
+Dr
+vm
+Kk
+Ej
+Ej
+tM
+CY
+dv
+GP
+wl
+De
+va
+va
+VQ
+Ko
+Jm
+rR
+Na
+UB
+Lx
+fQ
+Yh
+Wt
+WJ
+hC
+QK
+jy
+qp
+Lx
+bH
+Lx
+Lx
+eq
+tk
+eq
+zY
+"}
+(20,1,1) = {"
+MJ
+ax
+ax
+ax
+EF
+Gt
+Gt
+wp
+wp
+dZ
+NJ
+uW
+Qn
+Kj
+XF
+fb
+Dh
+dy
+Kk
+yp
+Ej
+tM
+CY
+tM
+GP
+qr
+OT
+Zp
+zl
+Zp
+Zp
+FZ
+fG
+Na
+DP
+Lx
+Kx
+WU
+Po
+uE
+gW
+jy
+jy
+QW
+Lx
+vX
+Lx
+Lx
+Lx
+zY
+eq
+eq
+"}
+(21,1,1) = {"
+ax
+ax
+ax
+ZV
+CL
+Gt
+wp
+wp
+wp
+dZ
+WW
+gz
+sE
+mx
+Oe
+Oe
+Oe
+Oe
+FR
+CY
+UH
+CY
+UH
+Ej
+GP
+aZ
+vk
+hg
+lC
+vk
+vk
+EB
+wE
+LL
+DP
+Lx
+jy
+jy
+Wz
+WJ
+lp
+rB
+zT
+TT
+Lx
+pF
+UE
+ql
+Lx
+Lx
+xK
+eq
+"}
+(22,1,1) = {"
+MJ
+ax
+ax
+ax
+ax
+ax
+wp
+wp
+wp
+dZ
+sh
+XF
+Fv
+ES
+XF
+Vm
+lz
+bO
+Kk
+MT
+hO
+Np
+Fz
+Lg
+GP
+hE
+fv
+fv
+fv
+fv
+LG
+Jm
+an
+LL
+DP
+Lx
+lo
+jy
+EN
+wJ
+Io
+Cc
+jy
+AF
+Lx
+mN
+Ex
+rK
+vR
+Lx
+nP
+eq
+"}
+(23,1,1) = {"
+ax
+ax
+ax
+ax
+ax
+ax
+wp
+wp
+wp
+dZ
+dZ
+XF
+Nt
+Jy
+Vm
+ng
+Dr
+dP
+Kk
+MC
+GP
+MC
+GP
+MC
+GP
+kD
+Ge
+kU
+oa
+Sl
+Jm
+Jm
+HP
+Na
+DP
+Lx
+Lx
+dE
+RX
+NY
+xI
+OB
+NK
+NK
+wc
+Vj
+yB
+rs
+Vy
+Lx
+xK
+eq
+"}
+(24,1,1) = {"
+MJ
+ax
+ax
+ax
+ax
+Gt
+wp
+wp
+wp
+wp
+dZ
+dZ
+Kk
+Kk
+KU
+VY
+GB
+uv
+Kk
+bS
+GP
+bS
+GP
+CT
+GP
+tq
+jc
+Dp
+ff
+Jm
+Jm
+tB
+jp
+mm
+ob
+Mh
+Lx
+Lx
+we
+Rp
+Ls
+pP
+kT
+QV
+qT
+Fk
+Zu
+Go
+lY
+Lx
+eq
+eq
+"}
+(25,1,1) = {"
+MJ
+ax
+ax
+ax
+ax
+tz
+wp
+wp
+wp
+wp
+wp
+wp
+wp
+Kk
+Kk
+Kk
+Kk
+Kk
+Kk
+GP
+GP
+GP
+GP
+GP
+GP
+Jm
+Jm
+Jm
+Jm
+Jm
+Ql
+Dl
+Yr
+mm
+Yr
+vc
+Mh
+Lx
+Lx
+vW
+hl
+Lx
+Lx
+Lx
+Lx
+Lx
+Lx
+Lx
+Lx
+Lx
+eq
+ly
+"}
+(26,1,1) = {"
+MJ
+ax
+ax
+ax
+ax
+wp
+wp
+wp
+wp
+wp
+wp
+wp
+wp
+wp
+wp
+wp
+wp
+wp
+wp
+wp
+wp
+cB
+jQ
+Sf
+Sf
+Sf
+Sf
+Sf
+Sf
+Sf
+jp
+Yr
+Yr
+mm
+mn
+ju
+jX
+oZ
+Sf
+JP
+LF
+Sf
+Sf
+Sf
+Sf
+Sf
+YC
+Sf
+Sf
+Kw
+rv
+eq
+"}
+(27,1,1) = {"
+MJ
+MJ
+ax
+ax
+ax
+ax
+wp
+wp
+wp
+wp
+wp
+wp
+wp
+wp
+wp
+wp
+wp
+wp
+hZ
+wp
+wp
+ik
+oB
+LL
+Na
+LL
+Na
+Na
+LL
+LL
+mm
+mm
+mm
+mk
+mm
+mm
+mm
+Nb
+Nw
+JS
+Na
+Na
+Sn
+Na
+Na
+Na
+Na
+Wu
+uh
+ma
+ma
+eq
+"}
+(28,1,1) = {"
+MJ
+ax
+ax
+ax
+ax
+ax
+Gt
+wp
+wp
+wp
+wp
+wp
+wp
+wp
+wp
+uw
+wp
+hZ
+ax
+ax
+ax
+cB
+Df
+QT
+QT
+yU
+QT
+ze
+yU
+QT
+em
+Yr
+Yr
+mm
+Yr
+iS
+Qy
+QT
+Ll
+Sh
+px
+YF
+rb
+QT
+wT
+QT
+QT
+YC
+Pk
+ma
+ma
+eq
+"}
+(29,1,1) = {"
+MJ
+MJ
+ax
+ax
+ax
+ax
+ax
+wp
+wp
+wp
+wp
+wp
+wp
+wp
+wp
+Gt
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+Xe
+Xe
+cx
+rW
+Xe
+Xe
+PD
+YL
+Yr
+mm
+Yr
+tb
+Qb
+IS
+IS
+nK
+Zg
+IS
+IS
+IS
+IS
+IS
+IS
+aR
+MU
+eq
+ly
+eq
+"}
+(30,1,1) = {"
+MJ
+MJ
+ax
+ax
+ax
+ax
+ax
+wp
+wp
+wp
+wp
+wp
+wp
+wp
+wp
+ax
+ax
+Xe
+Xe
+Xe
+Xe
+Xe
+ax
+Xe
+Xe
+Cy
+nw
+OV
+Fq
+Xe
+Xe
+Jb
+em
+mm
+Qy
+Qb
+IS
+IS
+hm
+Up
+SD
+Rk
+zW
+Ty
+eM
+Ae
+EP
+Ml
+MU
+MU
+zY
+eq
+"}
+(31,1,1) = {"
+MJ
+MJ
+MJ
+ax
+ax
+ax
+ax
+wp
+wp
+wp
+wp
+wp
+wp
+ax
+ax
+ax
+ax
+Xe
+oN
+nL
+Bt
+Xe
+Xe
+Xe
+FS
+ID
+Ar
+kV
+tA
+Qi
+Xe
+Xe
+wE
+Na
+DP
+IS
+IS
+be
+mO
+kY
+PB
+AO
+js
+vd
+RZ
+VP
+EP
+Ml
+Zl
+Zl
+MU
+eq
+"}
+(32,1,1) = {"
+MJ
+MJ
+ax
+ax
+ax
+ax
+ax
+wp
+wp
+wp
+wp
+wp
+ax
+ax
+ax
+ax
+Xe
+Xe
+sN
+Xe
+sN
+Xe
+Xe
+lX
+qj
+qj
+nw
+iH
+dS
+mD
+oY
+Xe
+wE
+za
+QP
+Gg
+uH
+Qh
+Hm
+pE
+qH
+RR
+AU
+xy
+uA
+Vo
+EP
+Ml
+Yd
+zq
+Yd
+Yd
+"}
+(33,1,1) = {"
+MJ
+MJ
+ax
+ax
+ax
+ax
+Gt
+wp
+wp
+wp
+wp
+wp
+wp
+wp
+ax
+ax
+lZ
+iG
+lP
+or
+AD
+Xi
+Vn
+wF
+Xi
+HW
+HI
+mT
+Xi
+Xi
+LH
+Xe
+wE
+za
+UB
+iU
+RZ
+At
+iN
+pp
+wi
+bU
+HS
+dq
+pA
+Kk
+Od
+bD
+bD
+Kk
+Yd
+YC
+"}
+(34,1,1) = {"
+MJ
+MJ
+ax
+ax
+ax
+ax
+Gt
+JX
+wp
+wp
+wp
+wp
+wp
+wp
+ax
+ax
+lZ
+sI
+tI
+vu
+ck
+se
+rD
+Zf
+eb
+Mx
+gr
+YP
+Mx
+eb
+eU
+Xe
+wE
+Na
+DP
+uq
+oG
+wg
+cl
+iN
+Uz
+UK
+qm
+YO
+HE
+so
+Hg
+dA
+Nu
+Kk
+Kk
+MU
+"}
+(35,1,1) = {"
+MJ
+MJ
+MJ
+ax
+ax
+ax
+ax
+ax
+wp
+wp
+wp
+wp
+wp
+wp
+ax
+ax
+Xe
+uK
+ta
+Xe
+xp
+Xe
+Xe
+AC
+El
+qj
+nw
+RG
+UF
+vz
+LI
+Xe
+wE
+Na
+DP
+Uv
+tw
+nF
+JI
+ST
+KP
+Jv
+qm
+Cj
+zW
+Kk
+WI
+dA
+Xo
+Co
+CB
+MU
+"}
+(36,1,1) = {"
+MJ
+MJ
+MJ
+ax
+ax
+ax
+ax
+wp
+wp
+wp
+wp
+wp
+wp
+wp
+ax
+ax
+ax
+Xe
+nv
+Xe
+zj
+Xe
+Xe
+Xe
+VX
+Rt
+wj
+jW
+es
+yd
+Xe
+Xe
+wE
+Na
+DP
+Uv
+NH
+uD
+DB
+RZ
+iN
+hp
+UX
+OM
+js
+pQ
+hN
+qQ
+pW
+Gq
+CB
+MU
+"}
+(37,1,1) = {"
+MJ
+MJ
+ax
+ax
+ax
+ax
+ax
+ax
+wp
+wp
+wp
+wp
+wp
+wp
+ax
+ax
+ax
+Xe
+Xe
+Xe
+Xe
+Xe
+ax
+Xe
+Xe
+PM
+VA
+FM
+lN
+Xe
+Xe
+ax
+ax
+ax
+rb
+Uv
+Gs
+iN
+sj
+pE
+ZM
+YD
+Cj
+bh
+iM
+Ew
+FJ
+oc
+IE
+Kk
+Kk
+MU
+"}
+(38,1,1) = {"
+MJ
+MJ
+ax
+ax
+ax
+ax
+ax
+Gt
+wp
+wp
+wp
+wp
+wp
+wp
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+Xe
+Xe
+US
+Il
+Xe
+Xe
+ax
+ax
+wE
+za
+zf
+IS
+Gs
+Ft
+jT
+NI
+Cj
+PG
+jO
+iN
+RY
+Kk
+Kk
+qi
+eI
+Kk
+MU
+MU
+"}
+(39,1,1) = {"
+MJ
+MJ
+ax
+ax
+ax
+ax
+ax
+ax
+wp
+wp
+wp
+wp
+JX
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+Xe
+IA
+tY
+On
+pw
+Xe
+ax
+ax
+ax
+ax
+DP
+IS
+IS
+wd
+zX
+VE
+CU
+nW
+UR
+Jt
+dN
+TE
+Uv
+MU
+MU
+MU
+MU
+MJ
+"}
+(40,1,1) = {"
+MJ
+MJ
+MJ
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+Xe
+Xu
+nC
+gK
+QO
+Xe
+ax
+ax
+ax
+ax
+ax
+ax
+IS
+IS
+sR
+IM
+ZM
+Ht
+xi
+Se
+eF
+eV
+IS
+MU
+MU
+MU
+ax
+MJ
+"}
+(41,1,1) = {"
+MJ
+MJ
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+Xe
+eu
+nC
+JY
+LO
+Xe
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+mh
+IS
+bh
+KS
+Rj
+zW
+UT
+gn
+Uv
+Uv
+MU
+MU
+ax
+ax
+MJ
+"}
+(42,1,1) = {"
+MJ
+MJ
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+Xe
+Xu
+LP
+Ij
+Xu
+Xe
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+CD
+CD
+CD
+CD
+NP
+Fh
+CD
+CD
+Qq
+ax
+ax
+ax
+ax
+ax
+MJ
+"}
+(43,1,1) = {"
+MJ
+MJ
+MJ
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+Xe
+PL
+nw
+Ct
+zD
+Xe
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ms
+NP
+av
+NP
+NP
+NP
+rL
+ax
+ax
+ax
+ax
+ax
+ax
+MJ
+"}
+(44,1,1) = {"
+MJ
+MJ
+MJ
+MJ
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+vD
+ax
+ax
+ax
+ax
+ax
+Xe
+Xu
+kK
+mq
+rn
+Xe
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+NP
+CD
+ax
+rf
+gX
+NP
+CD
+ax
+ax
+ax
+ax
+ax
+MJ
+MJ
+"}
+(45,1,1) = {"
+MJ
+MJ
+MJ
+MJ
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+MJ
+ax
+ax
+ax
+ax
+Xe
+Xe
+Xe
+Xe
+Xe
+Xe
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+fI
+rf
+NP
+rp
+qX
+CD
+ax
+ax
+ax
+MJ
+MJ
+MJ
+"}
+(46,1,1) = {"
+MJ
+MJ
+MJ
+MJ
+MJ
+ax
+MJ
+MJ
+MJ
+MJ
+MJ
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+MJ
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+CD
+NP
+CD
+XK
+xu
+ax
+ax
+MJ
+MJ
+MJ
+MJ
+"}
+(47,1,1) = {"
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+ax
+ax
+ax
+MJ
+MJ
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+MJ
+MJ
+MJ
+MJ
+ax
+ax
+ax
+ax
+ax
+CD
+NP
+NP
+NP
+CD
+CD
+ax
+MJ
+MJ
+MJ
+MJ
+MJ
+"}

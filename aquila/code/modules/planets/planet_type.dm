@@ -30,9 +30,14 @@
 	/// Budżet ruin (koszt ruin z ich szablonów)
 	var/ruin_budget = 0
 
-/// Szablony ruin, które mogą stanąć na tym typie planety (nazwa -> szablon)
+/// Szablony małych ruin z budżetu (nazwa -> szablon)
 /datum/planet_type/proc/get_ruin_templates()
 	return list()
+
+/// Szablony ruiny głównej przy górnej krawędzi, jak w Shiptest (nazwa -> szablon). Bez nich ruina główna jest losowana
+/// z małych ruin.
+/datum/planet_type/proc/get_main_ruin_templates()
+	return get_ruin_templates()
 
 /// Pełny opis dla skanu
 /datum/planet_type/proc/scan_text()
@@ -53,6 +58,9 @@
 
 /datum/planet_type/lava/get_ruin_templates()
 	return SSmapping.lava_ruins_templates
+
+/datum/planet_type/lava/get_main_ruin_templates()
+	return get_planet_lava_ruin_templates()
 
 // Obszary powierzchni. Nie są UNIQUE_AREA, więc każda planeta tworzy własne instancje (pogoda i lądowiska działają
 // na obszarze jednej planety). Stałe, lekko zabarwione światło jak w Shiptest, jaskinie ciemne.

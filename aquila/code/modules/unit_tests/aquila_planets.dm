@@ -125,6 +125,27 @@
 	for(var/obj/effect/anomaly/anomaly in run_loc_floor_top_right)
 		qdel(anomaly)
 
+/// AQUILA - planety: każda ruina Shiptesta z puli ruin głównych planety wulkanicznej mieści się na planecie i się wczytuje
+/datum/unit_test/planet_lava_ruins
+
+/datum/unit_test/planet_lava_ruins/Run()
+	var/list/templates = get_planet_lava_ruin_templates()
+	TEST_ASSERT(length(templates) >= 5, "Only [length(templates)] Shiptest lava ruins are registered")
+	var/inner_size = PLANET_SURFACE_SIZE - 2 * PLANET_EDGE_WIDTH
+	var/obj/structure/overmap/planet/planet = new(run_loc_floor_top_right, /datum/planet_type/lava)
+	TEST_ASSERT(planet.surface.generate(), "The surface didn't generate")
+	var/turf/bl = planet.surface.bottom_left()
+	// Każda ruina w miejscu ruiny głównej (lewy górny róg wnętrza z marginesem jak w place_main_ruin)
+	for(var/name in templates)
+		var/datum/map_template/ruin/ruin = templates[name]
+		TEST_ASSERT(ruin.width <= inner_size - 12 && ruin.height <= inner_size / 2, "[name] ([ruin.width]x[ruin.height]) doesn't fit as a main ruin")
+		var/turf/corner = locate(bl.x + PLANET_EDGE_WIDTH + 6, bl.y + PLANET_SURFACE_SIZE - PLANET_EDGE_WIDTH - 6 - ruin.height, bl.z)
+		planet.surface.load_ruin(ruin, corner, FALSE)
+		for(var/turf/T as anything in ruin.get_affected_turfs(corner, FALSE))
+			TEST_ASSERT(planet.surface.contains(T), "[name] spills outside the planet surface")
+	planet.surface.unload()
+	qdel(planet, TRUE)
+
 // Misje w teście: „okręt” to okolica podłogi testowej (mapa testowa nie należy do głównego okrętu)
 /datum/overmap_objective/planet/survey/test
 	var/turf/home_turf
@@ -253,9 +274,6 @@
 	QDEL_LIST(colonists)
 	planet.surface.unload()
 	qdel(planet, TRUE)
-
-
-
 
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL
