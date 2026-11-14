@@ -74,6 +74,16 @@
 /// Punkt na obrysie kadłuba najbliższy kierunkowi, z którego przyleciał pocisk, w pikselach względem lewego dolnego
 /// rogu pola okrętu. Kadłub przybliżony elipsą o półosiach z obrysu sprite'a; pocisk już w środku zostaje na miejscu.
 /obj/structure/overmap/proc/overmap_hull_point(px, py)
+	var/list/local = overmap_hull_local(px, py)
+	if(!local)
+		return null
+	var/c = cos(angle)
+	var/s = sin(angle)
+	return list(local[5] + local[1] * c + local[2] * s, local[6] - local[1] * s + local[2] * c)
+
+/// Ten sam punkt obrysu w układzie okrętu (dziób = +y, prawa burta = +x):
+/// list(x, y, półoś szerokości, półoś długości, środek kadłuba x, środek kadłuba y)
+/obj/structure/overmap/proc/overmap_hull_local(px, py)
 	var/list/disp = overmap_display_bounds()
 	var/list/ref = overmap_hitbox_bounds()
 	if(!disp || !ref)
@@ -85,7 +95,6 @@
 	var/cy = ref[2] / 2 - ref[5] * s + ref[6] * c + pixel_y
 	var/dx = px - cx
 	var/dy = py - cy
-	// do układu okrętu (dziób w górę)
 	var/lx = dx * c - dy * s
 	var/ly = dx * s + dy * c
 	var/a = max(4, disp[3] * k / 2)
@@ -94,7 +103,7 @@
 	if(r > 1)
 		lx /= r
 		ly /= r
-	return list(cx + lx * c + ly * s, cy - lx * s + ly * c)
+	return list(lx, ly, a, b, cx, cy)
 
 /obj/structure/overmap/bullet_act(obj/item/projectile/P)
 	. = ..()

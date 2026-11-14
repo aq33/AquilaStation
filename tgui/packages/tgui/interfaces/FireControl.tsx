@@ -8,7 +8,7 @@ import {
   useRef,
   useState,
 } from 'react';
-import { Box, Button, NumberInput } from 'tgui-core/components';
+import { Box, Button, Icon, NumberInput } from 'tgui-core/components';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
@@ -31,9 +31,31 @@ import {
   Tag,
 } from './SensorConsole';
 
+// Moduł okrętu = pomieszczenie jego wnętrza (aquila/code/modules/overmap/modules/module_targeting.dm)
+type ShipModule = {
+  index: number;
+  name: string;
+  kind: string;
+  x0: number;
+  y0: number;
+  x1: number;
+  y1: number;
+  pct: number;
+  fire: number;
+  breached: boolean;
+};
+
+type ModuleReport = {
+  length: number;
+  width: number;
+  modules: ShipModule[];
+};
+
 type FireContact = Contact & {
   targetable: boolean;
   armour?: number[];
+  modules?: ModuleReport;
+  aim?: number;
 };
 
 type Weapon = {
@@ -71,6 +93,11 @@ type Data = {
   target_name: string;
   sensor_station: boolean;
   designated_targets: Designated[];
+  flares: number;
+  max_flares: number;
+  chaff: number;
+  max_chaff: number;
+  jammer: boolean;
 };
 
 const FIRE = {
@@ -230,6 +257,30 @@ const TopBar = () => {
           {locked ? shortOf(locked) + ' ' + locked.name : 'brak'}
         </b>
       </span>
+      <Button
+        icon="fire-alt"
+        disabled={!data.flares}
+        tooltip="Flary odciągają torpedy lecące w okręt."
+        onClick={() => act('fc_flares')}
+      >
+        {'Flary ' + data.flares + '/' + data.max_flares}
+      </Button>
+      <Button
+        icon="cloud"
+        disabled={!data.chaff}
+        tooltip="Chaff zrywa rakiety naprowadzane radarem."
+        onClick={() => act('fc_chaff')}
+      >
+        {'Chaff ' + data.chaff + '/' + data.max_chaff}
+      </Button>
+      <Button
+        icon="broadcast-tower"
+        selected={!!data.jammer}
+        tooltip="Zagłuszacz utrudnia namierzanie nas z daleka, ale zdradza naszą pozycję."
+        onClick={() => act('fc_jammer')}
+      >
+        Zagłuszacz
+      </Button>
       <span style={{ marginLeft: 'auto', color: COLOR.ink2 }}>
         Obraz z:{' '}
         <b style={{ color: COLOR.ink }}>
@@ -855,6 +906,86 @@ const ContactList = (props: {
   );
 };
 
+// Siatka modułów celu (pomieszczenia jego wnętrza): rufa z lewej, dziób z prawej, lewa burta u góry.
+// Kliknięcie modułu ustawia punkt celowania pocisków niekierowanych, drugie kliknięcie wraca do środka kadłuba.
+const ModuleGrid = (props: { contact: FireContact }) => {
+  const { act } = useBackend<Data>();
+  const { contact } = props;
+  const report = contact.modules;
+  if (!report || !report.modules.length) {
+    return null;
+  }
+  const width = 300;
+  const height = Math.max(
+    60,
+    Math.round((width * report.width) / report.length),
+  );
+  const aimed = report.modules.find((module) => module.index === contact.aim);
+  return (
+    <div style={{ marginTop: '8px' }}>
+      <div style={sectionTitle}>Moduły celu</div>
+      <div
+        style={{ fontSize: '11px', color: COLOR.muted, marginBottom: '4px' }}
+      >
+        Kliknij moduł, żeby w niego celować. Rufa z lewej, dziób z prawej.
+      </div>
+      <div
+        style={{
+          position: 'relative',
+          width: width + 'px',
+          height: height + 'px',
+          background: '#10161f',
+          border: '1px solid ' + FIRE.ring,
+          borderRadius: '6px',
+        }}
+      >
+        {report.modules.map((module) => {
+          const colour = healthColour(module.pct);
+          const selected = module.index === contact.aim;
+          return (
+            <div
+              key={module.index}
+              title={module.name + ': ' + module.pct + '%'}
+              onClick={() =>
+                act('fc_aim_module', { id: contact.id, index: module.index })
+              }
+              style={{
+                position: 'absolute',
+                left: (module.x0 / report.length) * 100 + '%',
+                top: (module.y0 / report.width) * 100 + '%',
+                width:
+                  ((module.x1 - module.x0 + 1) / report.length) * 100 + '%',
+                height:
+                  ((module.y1 - module.y0 + 1) / report.width) * 100 + '%',
+                background: colour + (module.pct <= 0 ? '66' : '2e'),
+                border:
+                  (module.breached ? '1px dashed ' : '1px solid ') +
+                  (selected ? FIRE.lock : colour),
+                boxShadow: selected ? '0 0 0 2px ' + FIRE.lock : undefined,
+                cursor: 'pointer',
+                overflow: 'hidden',
+                fontSize: '9px',
+                lineHeight: '10px',
+                color: COLOR.ink2,
+                padding: '1px',
+              }}
+            >
+              {module.fire > 0 && <Icon name="fire" color="orange" />}
+              {module.name}
+            </div>
+          );
+        })}
+      </div>
+      <div style={{ fontSize: '11.5px', marginTop: '4px' }}>
+        <span style={{ color: COLOR.muted }}>celujesz w: </span>
+        <b style={{ color: aimed ? FIRE.lock : COLOR.ink2 }}>
+          {aimed ? aimed.name : 'środek kadłuba'}
+        </b>
+      </div>
+    </div>
+  );
+};
+
 const ContactCard = (props: { contact: FireContact | undefined }) => {
   const { act, data } = useBackend<Data>();
   const { contact } = props;
@@ -909,6 +1040,7 @@ const ContactCard = (props: { contact: FireContact | undefined }) => {
         </span>
       </div>
       {!!contact.armour && <ArmourDiagram armour={contact.armour} />}
+      {!!contact.modules && <ModuleGrid contact={contact} />}
       <div
         style={{
           display: 'flex',

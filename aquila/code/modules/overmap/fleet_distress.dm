@@ -248,6 +248,8 @@
 	for(var/obj/structure/overmap/OM as anything in all_ships)
 		if(!QDELETED(OM) && (!OM.ai_controlled || length(OM.operators)))
 			return FALSE
+		if(!QDELETED(OM) && OM.ship_modules?.ftl_disabled) // zniszczony napęd FTL (moduły): flota nie zostawia okrętu
+			return FALSE
 	return !!pick_ai_retreat_system()
 
 /datum/fleet/proc/start_ai_retreat()
