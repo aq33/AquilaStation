@@ -59,6 +59,13 @@ GLOBAL_VAR_INIT(hex_last_ship_event, 0)
 		var/datum/hex_terrain/T = GLOB.hex_terrains[id]
 		for(var/path in T.events)
 			env_types[path] = TRUE
+	// Te są w pulach kafli, ale zdarzają się też jako zwykłe eventy statkowe (decyzja 14.11)
+	for(var/path in list(
+		/datum/round_event_control/aquila_hex_apc_damage,
+		/datum/round_event_control/aquila_hex_sensor_jamming,
+		/datum/round_event_control/aquila_hex_gravity_failure,
+	))
+		env_types -= path
 	return env_types
 
 /// Czy SSevents może wylosować ten event (hook AQ EDIT w spawnEvent())

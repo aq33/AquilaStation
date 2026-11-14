@@ -39,6 +39,8 @@ GLOBAL_LIST_EMPTY(hex_terrains)
 	events = list(
 		/datum/round_event_control/aquila_stray_cargo,
 		/datum/round_event_control/dolphin_migration,
+		/datum/round_event_control/aquila_hex_rescue_pod,
+		/datum/round_event_control/aquila_hex_economic_news,
 	)
 
 /datum/hex_terrain/asteroids
@@ -54,6 +56,7 @@ GLOBAL_LIST_EMPTY(hex_terrains)
 		/datum/round_event_control/meteor_wave/threatening,
 		/datum/round_event_control/meteor_wave/catastrophic,
 		/datum/round_event_control/immovable_rod,
+		/datum/round_event_control/aquila_hex_comet_expulsion,
 	)
 	antags = list(
 		/datum/round_event_control/spider_infestation,
@@ -70,6 +73,9 @@ GLOBAL_LIST_EMPTY(hex_terrains)
 		/datum/round_event_control/aquila_stray_cargo/syndicate,
 		/datum/round_event_control/meteor_wave/meaty,
 		/datum/round_event_control/immovable_rod,
+		/datum/round_event_control/aquila_hex_rogue_drone_swarm,
+		/datum/round_event_control/aquila_hex_wreck_graveyard,
+		/datum/round_event_control/aquila_hex_loot_pod,
 	)
 	antags = list(
 		/datum/round_event_control/spawn_swarmer,
@@ -90,6 +96,7 @@ GLOBAL_LIST_EMPTY(hex_terrains)
 	events = list(
 		/datum/round_event_control/anomaly/anomaly_hallucination,
 		/datum/round_event_control/aurora_caelus,
+		/datum/round_event_control/aquila_hex_nebula_flicker,
 	)
 	antags = list(
 		/datum/round_event_control/pirates,
@@ -105,6 +112,9 @@ GLOBAL_LIST_EMPTY(hex_terrains)
 	events = list(
 		/datum/round_event_control/electrical_storm,
 		/datum/round_event_control/processor_overload,
+		/datum/round_event_control/aquila_hex_storm_discharge,
+		/datum/round_event_control/aquila_hex_apc_damage,
+		/datum/round_event_control/aquila_hex_sensor_jamming,
 	)
 	antags = list(
 		/datum/round_event_control/pulse_demon,
@@ -121,6 +131,8 @@ GLOBAL_LIST_EMPTY(hex_terrains)
 		/datum/round_event_control/ion_storm,
 		/datum/round_event_control/communications_blackout,
 		/datum/round_event_control/anomaly,
+		/datum/round_event_control/aquila_hex_emp_storm,
+		/datum/round_event_control/aquila_hex_computer_damage,
 	)
 	antags = list(
 		HEX_POOL_MALF,
@@ -149,6 +161,11 @@ GLOBAL_LIST_EMPTY(hex_terrains)
 	name = "Aktywność gwiazdy"
 	desc = "Rozbłyski przy gwiazdach i supernowych."
 	parallax = "supernova_planet"
+	events = list(
+		/datum/round_event_control/aquila_hex_solar_flare,
+		/datum/round_event_control/aquila_hex_solar_storm,
+		/datum/round_event_control/aquila_hex_emp_storm,
+	)
 	antags = list(
 		/datum/round_event_control/pulse_demon,
 		/datum/round_event_control/shadow_demon,
@@ -174,6 +191,9 @@ GLOBAL_LIST_EMPTY(hex_terrains)
 		/datum/round_event_control/anomaly/anomaly_vortex,
 		/datum/round_event_control/anomaly/anomaly_fluid,
 		/datum/round_event_control/aquila_magnetic_field,
+		/datum/round_event_control/aquila_hex_drive_instability,
+		/datum/round_event_control/aquila_hex_bluespace_interphase,
+		/datum/round_event_control/aquila_hex_bluespace_rifts,
 	)
 	antags = list(
 		/datum/round_event_control/aquila_chrono_legionnaire,
@@ -187,6 +207,12 @@ GLOBAL_LIST_EMPTY(hex_terrains)
 	name = "Anomalia grawitacyjna"
 	desc = "Wahania grawitacji wokół czarnych dziur i dysków akrecyjnych."
 	parallax = "accretiondisk_planet"
+	events = list(
+		/datum/round_event_control/aquila_hex_gravity_failure,
+		/datum/round_event_control/aquila_hex_dark_matter_influx,
+		/datum/round_event_control/aquila_hex_harmonic_surge,
+		/datum/round_event_control/aquila_hex_damper_recalibration,
+	)
 	antags = list(
 		/datum/round_event_control/bingle,
 		/datum/round_event_control/voidwalker,
@@ -212,6 +238,7 @@ GLOBAL_LIST_EMPTY(hex_terrains)
 	events = list(
 		/datum/round_event_control/wormholes,
 		/datum/round_event_control/anomaly/anomaly_bluespace,
+		/datum/round_event_control/aquila_hex_bluespace_interphase,
 	)
 	antags = list(
 		/datum/round_event_control/aquila_chrono_legionnaire,
@@ -234,6 +261,9 @@ GLOBAL_LIST_EMPTY(hex_terrains)
 	events = list(
 		/datum/round_event_control/space_dust,
 		/datum/round_event_control/meteor_wave/major_dust,
+		/datum/round_event_control/aquila_hex_comet_expulsion,
+		/datum/round_event_control/aquila_hex_comet_tail,
+		/datum/round_event_control/aquila_hex_rich_comet,
 	)
 	antags = list(
 		/datum/round_event_control/blob,
@@ -259,6 +289,10 @@ GLOBAL_LIST_EMPTY(hex_terrains)
 	events = list(
 		/datum/round_event_control/aquila_stray_cargo,
 		/datum/round_event_control/aquila_stray_cargo/syndicate,
+		/datum/round_event_control/aquila_hex_rescue_pod,
+		/datum/round_event_control/aquila_hex_freighter_attack,
+		/datum/round_event_control/aquila_hex_wreck_graveyard,
+		/datum/round_event_control/aquila_hex_loot_pod,
 	)
 	antags = list(
 		/datum/round_event_control/fugitives,
