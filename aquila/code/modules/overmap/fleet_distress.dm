@@ -247,13 +247,33 @@
 
 /datum/fleet/proc/answer_ai_distress(datum/star_system/target)
 	ai_answering = FALSE
-	if(QDELETED(src) || !target || target == current_system || !length(all_ships))
+	if(QDELETED(src) || QDELETED(target) || target == current_system || !length(all_ships))
 		return
 	if(SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CHECK_INTERDICT, pick(all_ships)) & (WEAK_INTERDICT|STRONG_INTERDICT))
 		note_ai_fleet_event("could not answer a distress call: interdicted")
 		return
 	ai_is_reinforcement = TRUE
 	move(target, force = TRUE)
+	// Mapa hex: posiłki idą kafel po kaflu w tempie przyjętym w ETA i do przylotu nie odpowiadają na inne wezwania
+	if(GLOB.hexmap?.built && current_system != target)
+		ai_answering = TRUE
+		addtimer(CALLBACK(src, PROC_REF(hex_reinforcement_step), target), (HEX_FLEET_STEP_MIN + HEX_FLEET_STEP_MAX) / 2)
+
+/datum/fleet/proc/hex_reinforcement_step(datum/star_system/target)
+	if(QDELETED(src) || !ai_answering)
+		return
+	if(QDELETED(target) || current_system == target || !length(all_ships))
+		ai_answering = FALSE
+		return
+	if(SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CHECK_INTERDICT, pick(all_ships)) & (WEAK_INTERDICT|STRONG_INTERDICT))
+		ai_answering = FALSE
+		note_ai_fleet_event("reinforcements stopped on the way: interdicted")
+		return
+	move(target, force = TRUE)
+	if(current_system == target)
+		ai_answering = FALSE
+		return
+	addtimer(CALLBACK(src, PROC_REF(hex_reinforcement_step), target), (HEX_FLEET_STEP_MIN + HEX_FLEET_STEP_MAX) / 2)
 
 /// The fleet can fall back: no ship of it is crewed by players (it would be dragged along, crew and all) and there is somewhere to go
 /datum/fleet/proc/can_ai_fleet_retreat()

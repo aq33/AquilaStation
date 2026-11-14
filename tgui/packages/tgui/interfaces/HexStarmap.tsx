@@ -464,6 +464,9 @@ export const HexStarmap = () => {
   const [view, setView] = useState<View>(ship.sector || 2);
   const [zoom, setZoom] = useState(1);
   const mapRef = useRef<HTMLDivElement>(null);
+  // Kafel do wyśrodkowania po zmianie sektora („Pokaż” przy bramie); bez niego mapa wraca do okrętu
+  const focusRef = useRef<string | null>(null);
+  const [focusTick, setFocusTick] = useState(0);
 
   const { cells, bounds } = useMemo(() => buildCells(sectors), [sectors]);
   const zoneKey = systems.map((s) => `${s.hex}=${s.alignment}`).join('|');
@@ -485,8 +488,9 @@ export const HexStarmap = () => {
   };
 
   useEffect(() => {
-    centerOn(ship.hex);
-  }, [view, zoom, Object.keys(cells).length]);
+    centerOn(focusRef.current || ship.hex);
+    focusRef.current = null;
+  }, [view, zoom, focusTick, Object.keys(cells).length]);
 
   const showSector = (target: View, focus?: string) => {
     setView(target);
@@ -494,6 +498,8 @@ export const HexStarmap = () => {
     setZoom(target === 'all' ? 0.6 : 1);
     if (focus) {
       act('hex_select', { hex: focus });
+      focusRef.current = focus;
+      setFocusTick((tick) => tick + 1);
     }
   };
 
@@ -1242,6 +1248,7 @@ export const HexStarmap = () => {
                         style={{ whiteSpace: 'nowrap', marginRight: '8px' }}
                       >
                         <img
+                          alt=""
                           src={HEX_FACILITY_ICONS[fac]}
                           width={14}
                           height={14}
@@ -1267,6 +1274,7 @@ export const HexStarmap = () => {
                           style={{ whiteSpace: 'nowrap', marginRight: '8px' }}
                         >
                           <img
+                            alt=""
                             src={HEX_TERRAIN_ICONS[t.id]}
                             width={14}
                             height={14}
@@ -1366,6 +1374,7 @@ const SelectedPanel = (props: SelectedPanelProps) => {
             <div key={fac} title={FACILITY_DESC[fac]}>
               {!!HEX_FACILITY_ICONS[fac] && (
                 <img
+                  alt=""
                   src={HEX_FACILITY_ICONS[fac]}
                   width={20}
                   height={20}
@@ -1395,6 +1404,7 @@ const SelectedPanel = (props: SelectedPanelProps) => {
         <Box mt={1}>
           {!!HEX_TERRAIN_ICONS[terrain.id] && (
             <img
+              alt=""
               src={HEX_TERRAIN_ICONS[terrain.id]}
               width={32}
               height={32}

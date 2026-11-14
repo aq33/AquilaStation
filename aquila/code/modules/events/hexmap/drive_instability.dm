@@ -35,10 +35,19 @@ GLOBAL_VAR_INIT(aquila_hex_teleport_interference, 0)
 		log_game("Drive Instability drained [round(drained, 0.1)]% of the FTL drive charge of [main].")
 
 /datum/round_event/aquila_hex_drive_instability/end()
-	if(interference_active)
-		GLOB.aquila_hex_teleport_interference = max(0, GLOB.aquila_hex_teleport_interference - 1)
-		interference_active = FALSE
+	release_interference()
 	priority_announce("Napęd FTL wrócił do stabilnej pracy. Systemy teleportacji działają normalnie.", "Monitoring napędu FTL")
+
+/datum/round_event/aquila_hex_drive_instability/kill()
+	release_interference() // zatrzymany przez admina przed end()
+	return ..()
+
+/// Zdejmuje udział tego eventu w zakłóceniach teleportacji, najwyżej raz
+/datum/round_event/aquila_hex_drive_instability/proc/release_interference()
+	if(!interference_active)
+		return
+	GLOB.aquila_hex_teleport_interference = max(0, GLOB.aquila_hex_teleport_interference - 1)
+	interference_active = FALSE
 
 /**
  * Zabiera napędowi okrętu podaną część obecnego ładunku (0–1). Nie rusza napędu w czasie skoku.

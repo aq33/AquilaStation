@@ -30,8 +30,13 @@
 /datum/round_event/aquila_hex_economic_news/setup()
 	endWhen = rand(600, 1200) // 20-40 minutes in 2 second event ticks
 	var/list/possible_traders = list()
+	// Jedna aktywna wiadomość na stację: druga zapisałaby już zmienione ceny jako bazowe
+	var/list/busy_traders = list()
+	for(var/datum/round_event/aquila_hex_economic_news/other in SSevents.running)
+		if(other != src && other.affected_trader)
+			busy_traders += other.affected_trader
 	for(var/datum/trader/T as anything in SSstar_system.traders)
-		if(QDELETED(T) || istype(T, /datum/trader/randy) || !T.system)
+		if(QDELETED(T) || istype(T, /datum/trader/randy) || !T.system || (T in busy_traders))
 			continue
 		possible_traders += T
 	if(!length(possible_traders))

@@ -343,9 +343,13 @@ GLOBAL_LIST_EMPTY(hex_terrains)
 /datum/hex/proc/set_terrain(new_terrain)
 	terrain = new_terrain || HEX_TERRAIN_EMPTY
 	if(terrain != HEX_TERRAIN_WORMHOLE && wormhole_pair)
-		if(wormhole_pair.wormhole_pair == src)
-			wormhole_pair.wormhole_pair = null
+		// Tunel ma dwa końce: drugi koniec bez pary prowadziłby donikąd, więc znika razem z tym
+		var/datum/hex/other_end = wormhole_pair
 		wormhole_pair = null
+		if(other_end.wormhole_pair == src)
+			other_end.wormhole_pair = null
+			if(other_end.terrain == HEX_TERRAIN_WORMHOLE)
+				other_end.set_terrain(HEX_TERRAIN_EMPTY)
 	if(istype(system, /datum/star_system/random/hex_empty))
 		system.parallax_property = terrain_datum().parallax
 

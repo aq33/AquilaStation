@@ -145,5 +145,32 @@
 			return TRUE
 	return FALSE
 
+/// Zatrzymany przez admina event sprząta tylko po sobie: burza nie gasi paneli innej burzy, niestabilność oddaje swoje zakłócenia raz
+/datum/unit_test/hexmap_event_kill_cleanup
+
+/datum/unit_test/hexmap_event_kill_cleanup/Run()
+	var/datum/round_event/aquila_hex_solar_storm/first = new(FALSE)
+	var/datum/round_event/aquila_hex_solar_storm/second = new(FALSE)
+	first.set_solar_level(5)
+	second.set_solar_level(1.5)
+	first.kill()
+	var/after_first = GLOB.aquila_hex_solar_multiplier
+	second.kill()
+	var/after_both = GLOB.aquila_hex_solar_multiplier
+	TEST_ASSERT_EQUAL(after_first, 1.5, "Stopping one solar storm reset the panels boosted by another one")
+	TEST_ASSERT_EQUAL(after_both, 1, "The panels stayed boosted after both solar storms stopped")
+
+	var/saved_interference = GLOB.aquila_hex_teleport_interference
+	var/datum/round_event/aquila_hex_drive_instability/instability = new(FALSE)
+	GLOB.aquila_hex_teleport_interference++
+	instability.interference_active = TRUE
+	instability.kill()
+	var/after_kill = GLOB.aquila_hex_teleport_interference
+	instability.end()
+	var/after_end = GLOB.aquila_hex_teleport_interference
+	GLOB.aquila_hex_teleport_interference = saved_interference
+	TEST_ASSERT_EQUAL(after_kill, saved_interference, "A stopped drive instability left the teleporters jammed")
+	TEST_ASSERT_EQUAL(after_end, saved_interference, "A drive instability released its interference twice")
+
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL

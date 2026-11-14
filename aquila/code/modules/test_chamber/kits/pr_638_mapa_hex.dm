@@ -51,9 +51,11 @@
 		return
 	var/list/free = GLOB.hexmap.free_neighbours(here)
 	var/list/kinds = list(HEX_TERRAIN_SIGNAL, HEX_TERRAIN_ASTEROIDS, HEX_TERRAIN_WORMHOLE, HEX_TERRAIN_BLACK_HOLE)
+	var/list/missing = list()
 	for(var/kind in kinds)
 		if(!length(free))
-			break
+			missing += hex_terrain(kind).name
+			continue
 		var/datum/hex/H = pick_n_take(free)
 		if(kind != HEX_TERRAIN_WORMHOLE)
 			H.set_terrain(kind)
@@ -64,6 +66,12 @@
 				far += other
 		if(length(far))
 			GLOB.hexmap.link_wormhole(H, pick(far))
+		else
+			missing += hex_terrain(kind).name
+			free += H // kafel nie został zajęty
+	if(length(missing))
+		to_chat(user, "<span class='warning'>Nie wszystko się zmieściło obok okrętu (brak wolnych kafli): [english_list(missing)]. Przeleć okrętem w inne miejsce i użyj zestawu jeszcze raz.</span>")
+		return
 	to_chat(user, "<span class='notice'>Teren obok okrętu gotowy, otwórz konsolę nawigacji.</span>")
 
 /datum/test_chamber_kit/pr_638/wojna

@@ -38,7 +38,7 @@ GLOBAL_LIST_INIT(hex_axial_dirs, list(list(1, 0), list(1, -1), list(0, -1), list
 
 /// Nazwa do okna i komunikatów
 /datum/hex/proc/display_name()
-	if(system && !istype(system, /datum/star_system/random/hex_empty))
+	if(system && !istype(system, /datum/star_system/random/hex_empty) && !system.hidden) // ukryty układ wygląda jak jego kafel
 		return system.name
 	if(terrain != HEX_TERRAIN_EMPTY)
 		return "[terrain_datum().name] [col],[row]"

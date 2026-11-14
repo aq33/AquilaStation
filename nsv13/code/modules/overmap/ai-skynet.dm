@@ -249,6 +249,8 @@ Adding tasks is easy! Just define a datum for it.
 	var/datum/star_system/hex_final_target = target
 	var/datum/star_system/hex_left_system = current_system
 	target = hex_next_step(target)
+	if(!target) // brak trasy na mapie (np. zamknięta brama): flota zostaje, zamiast przeskoczyć bramę
+		return FALSE
 	// AQ EDIT END
 	current_system.fleets -= src
 	if(current_system.fleets?.len)

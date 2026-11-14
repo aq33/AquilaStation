@@ -177,7 +177,8 @@
 	if(!H)
 		return null
 	var/datum/star_system/S = H.system
-	var/is_real = S && !istype(S, /datum/star_system/random/hex_empty)
+	// Ukryty układ (niepokazany na liście układów) wygląda jak zwykły kafel, inaczej zaznaczenie zdradziłoby jego dane
+	var/is_real = S && !istype(S, /datum/star_system/random/hex_empty) && !S.hidden
 	var/list/out = list(
 		"hex" = H.id,
 		"sector" = H.sector,
@@ -225,7 +226,12 @@
 	return out
 
 /obj/machinery/computer/ship/navigation/ui_act(action, params, datum/tgui/ui)
-	if(!uses_hex_map() || !(action in list("hex_select", "hex_jump", "hex_cancel", "hex_nuke")))
+	if(!uses_hex_map())
+		return ..()
+	// Stare akcje skoku ominęłyby trasę, koszt i chłodzenie mapy hex
+	if(action in list("select_system", "jump", "cancel_jump"))
+		return TRUE
+	if(!(action in list("hex_select", "hex_jump", "hex_cancel", "hex_nuke")))
 		return ..()
 	if(!linked)
 		return

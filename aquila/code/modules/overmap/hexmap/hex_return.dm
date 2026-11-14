@@ -28,12 +28,17 @@
 			best = S
 	return best
 
+/datum/controller/subsystem/star_system
+	/// Układ powrotu z mapy (Outpost 45), gdy żadna przyjazna stacja nie jest osiągalna
+	var/datum/star_system/hex_default_return
+
 /obj/structure/overmap/proc/hex_update_return_station()
 	if(role != MAIN_OVERMAP || !GLOB.hexmap?.built)
 		return
+	if(!SSstar_system.hex_default_return && !GLOB.hexmap.is_friendly_station(SSstar_system.return_system))
+		SSstar_system.hex_default_return = SSstar_system.return_system
 	var/datum/star_system/station = GLOB.hexmap.nearest_friendly_station(current_hex(), faction)
-	if(station)
-		SSstar_system.return_system = station
+	SSstar_system.return_system = station || SSstar_system.hex_default_return || SSstar_system.return_system
 
 /datum/star_system/after_enter(obj/structure/overmap/OM)
 	. = ..()
@@ -43,10 +48,17 @@
 /obj/structure/overmap/force_return_jump()
 	if(role != MAIN_OVERMAP || !GLOB.hexmap?.built)
 		return ..()
+	// W locie: powrót dopiero po wyjściu z nadprzestrzeni, inaczej drugi skok ruszyłby z układu null
+	if(SSstar_system.ships[src]?["target_system"])
+		RegisterSignal(src, COMSIG_SHIP_ARRIVED, PROC_REF(hex_retry_return), override = TRUE)
+		return
 	var/datum/star_system/station = SSstar_system.return_system
 	if(!GLOB.hexmap.is_friendly_station(station))
 		hex_update_return_station()
 		station = SSstar_system.return_system
+	// Żadnej przyjaznej stacji w zasięgu: powrót jak dotąd, do układu powrotu z mapy (Outpost 45 kończy rundę przy wejściu)
+	if(!GLOB.hexmap.is_friendly_station(station))
+		return ..()
 	var/datum/hex/here = current_hex()
 	if(here && station && station.hex == here && ftl_drive?.ftl_state != FTL_STATE_JUMPING)
 		SSovermap_mode.already_ended = TRUE
@@ -59,6 +71,11 @@
 		hex_set_pending(0, route ? route["hexes"] : 0)
 		RegisterSignal(station, COMSIG_STAR_SYSTEM_AFTER_ENTER, PROC_REF(hex_return_arrived), override = TRUE)
 	return ..()
+
+/obj/structure/overmap/proc/hex_retry_return()
+	SIGNAL_HANDLER
+	UnregisterSignal(src, COMSIG_SHIP_ARRIVED)
+	INVOKE_ASYNC(src, PROC_REF(force_return_jump))
 
 /obj/structure/overmap/proc/hex_return_arrived(datum/star_system/source, obj/structure/overmap/entering)
 	SIGNAL_HANDLER

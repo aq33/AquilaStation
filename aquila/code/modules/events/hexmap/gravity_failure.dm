@@ -38,11 +38,19 @@
 			generator.set_power()
 
 /datum/round_event/aquila_hex_gravity_failure/end()
+	restore_all()
+	priority_announce("Generatory grawitacji znów działają w normalnych parametrach. Przepraszamy za utrudnienia.", "Podsystem grawitacji")
+
+/datum/round_event/aquila_hex_gravity_failure/kill()
+	restore_all() // zatrzymany przez admina przed end(): grawitacja i tak wraca
+	return ..()
+
+/// Włącza z powrotem wszystkie wyłączone generatory; lista jest czyszczona, więc drugie wywołanie nic nie robi
+/datum/round_event/aquila_hex_gravity_failure/proc/restore_all()
 	for(var/obj/machinery/gravity_generator/main/generator as anything in disabled_generators.Copy())
 		if(!QDELETED(generator))
 			restore_generator(generator)
 	disabled_generators.Cut()
-	priority_announce("Generatory grawitacji znów działają w normalnych parametrach. Przepraszamy za utrudnienia.", "Podsystem grawitacji")
 
 /// Wyłącza działający generator od razu (jak w Bay, bez rozładowania) i zapamiętuje go. Zwraca TRUE, jeśli go wyłączył.
 /datum/round_event/aquila_hex_gravity_failure/proc/disable_generator(obj/machinery/gravity_generator/main/generator)

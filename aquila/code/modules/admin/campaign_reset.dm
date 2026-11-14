@@ -69,7 +69,11 @@
 	if(alert(usr, "Czy na pewno? Każdy układ, właściciel i zmiana kampanii na mapie gwiezdnej wróci do początku.", "Nowa kampania – ostatnie ostrzeżenie", "Tak, zresetuj i zrestartuj", "Anuluj") != "Tak, zresetuj i zrestartuj")
 		return
 
-	SSstar_system.campaign_backup("przed-resetem") // kopia, żeby reset dało się cofnąć (Campaign Backups)
+	// Kopia, żeby reset dało się cofnąć (Campaign Backups). Bez niej reset nie rusza kampanii, bo potwierdzenie obiecuje kopię.
+	if(GLOB.hexmap?.built && !SSstar_system.campaign_backup("przed-resetem"))
+		log_admin("[key_name(usr)] tried Hard Restart + New Campaign; the campaign backup FAILED. Restart aborted, campaign kept.")
+		to_chat(usr, "<span class='warning'>Nie udało się zapisać kopii kampanii. Reset przerwany, kampania pozostała bez zmian.</span>")
+		return
 	var/list/result = reset_campaign_starmap(path)
 	if(!result["success"])
 		log_admin("[key_name(usr)] tried Hard Restart + New Campaign; the starmap reset FAILED ([result["error"]]). Starmap: [path]. Restart aborted, campaign kept.")

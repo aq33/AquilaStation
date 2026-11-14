@@ -165,7 +165,10 @@
 	ship.hex_cooldown_until = 0
 	ship.hex_pending_cost = 0
 	ship.hex_pending_hexes = 0
-	if(!was_processing)
+	// hex_on_departure() może zgasić napęd (depower), więc przetwarzanie wraca do stanu sprzed testu w obie strony
+	if(was_processing)
+		START_PROCESSING(SSmachines, drive)
+	else
 		STOP_PROCESSING(SSmachines, drive)
 	if(fail)
 		return Fail(fail)
@@ -245,23 +248,34 @@
 	fleet.hide_movements = TRUE
 	fleet.current_system = home
 	home.fleets += fleet
-	var/moved = fleet.move(target, TRUE)
-	var/datum/star_system/step = fleet.current_system
 	var/fail
-	if(!moved)
-		fail = "The fleet did not move"
-	else if(step == target)
-		fail = "The fleet jumped [GLOB.hexmap.distance(home.hex, target.hex)] hexes at once"
-	else if(GLOB.hexmap.distance(home.hex, step.hex) != 1)
-		fail = "The fleet's step was not to a neighbouring hex"
-	else if(GLOB.hexmap.distance(step.hex, target.hex) >= GLOB.hexmap.distance(home.hex, target.hex))
-		fail = "The fleet's step did not bring it closer to its target"
-	else if(fleet.hex_heading != target)
-		fail = "The fleet forgot where it was going"
-	else if(!(fleet in step.fleets) || (fleet in home.fleets))
-		fail = "The fleet lists were not updated by the step"
-	else if(fleet.hex_continue_heading() != target)
-		fail = "The next move would not continue to the target"
+	// Bez trasy (tu: cel zablokowany czarną dziurą) flota zostaje, zamiast przeskoczyć wprost do celu
+	var/saved_terrain = target.hex.terrain
+	target.hex.terrain = HEX_TERRAIN_BLACK_HOLE
+	var/moved_blocked = fleet.move(target, TRUE)
+	target.hex.terrain = saved_terrain
+	if(moved_blocked || fleet.current_system != home)
+		fail = "A fleet with no route jumped to [fleet.current_system] instead of staying"
+	var/list/route = GLOB.hexmap.route(home.hex, target.hex, fleet.alignment, 5000)
+	var/list/full = route?["full"]
+	var/datum/hex/expected = length(full) >= 2 ? full[2] : null
+	var/moved = fail ? FALSE : fleet.move(target, TRUE)
+	var/datum/star_system/step = fleet.current_system
+	if(!fail)
+		if(!moved)
+			fail = "The fleet did not move"
+		else if(step == target)
+			fail = "The fleet jumped [GLOB.hexmap.distance(home.hex, target.hex)] hexes at once"
+		else if(GLOB.hexmap.distance(home.hex, step.hex) != 1)
+			fail = "The fleet's step was not to a neighbouring hex"
+		else if(step.hex != expected) // objazd wokół zagrożeń nie musi zmniejszać odległości, więc porównujemy z trasą
+			fail = "The fleet's step was not the next hex of its route"
+		else if(fleet.hex_heading != target)
+			fail = "The fleet forgot where it was going"
+		else if(!(fleet in step.fleets) || (fleet in home.fleets))
+			fail = "The fleet lists were not updated by the step"
+		else if(fleet.hex_continue_heading() != target)
+			fail = "The next move would not continue to the target"
 	step?.fleets -= fleet
 	home.fleets -= fleet
 	fleet.current_system = null
@@ -583,6 +597,24 @@
 	H.set_terrain(HEX_TERRAIN_EMPTY)
 	TEST_ASSERT_EQUAL(after_signal, HEX_TERRAIN_EMPTY, "An explored signal stayed on the map")
 	TEST_ASSERT_EQUAL(after_radiation, HEX_TERRAIN_RADIATION, "Radiation disappeared after the ship left")
+
+/// Zajęcie jednego końca tunelu (np. przez nowy układ) usuwa też drugi koniec, zamiast zostawić tunel donikąd
+/datum/unit_test/hexmap_wormhole_both_ends
+
+/datum/unit_test/hexmap_wormhole_both_ends/Run()
+	var/list/free = GLOB.hexmap?.free_hexes(1, FALSE)
+	if(length(free) < 2)
+		return // No hex map or no free hexes on this map
+	var/datum/hex/end_a = free[1]
+	var/datum/hex/end_b = free[length(free)]
+	GLOB.hexmap.link_wormhole(end_a, end_b)
+	end_a.set_terrain(HEX_TERRAIN_EMPTY)
+	var/b_terrain = end_b.terrain
+	var/b_pair = end_b.wormhole_pair
+	end_b.set_terrain(HEX_TERRAIN_EMPTY)
+	TEST_ASSERT(!b_pair, "The other end of a cleared wormhole still points at it")
+	TEST_ASSERT_EQUAL(b_terrain, HEX_TERRAIN_EMPTY, "The other end of a cleared wormhole stayed a wormhole")
+
 
 #undef HEXMAP_TEST_SAVE
 #undef HEXMAP_TEST_MAP_CONFIG

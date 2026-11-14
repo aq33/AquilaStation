@@ -167,7 +167,7 @@
 /obj/structure/overmap/proc/begin_jump(datum/star_system/target_system, force=FALSE, misjump = FALSE)
 	relay(hex_startup_sound(), channel = CHANNEL_IMPORTANT_SHIP_ALERT) // AQ EDIT - mapa hex: krótszy rozruch skoku po hexach
 	desired_angle = 90 //90 degrees AKA face EAST to match the FTL parallax.
-	addtimer(CALLBACK(src, PROC_REF(jump_start), target_system, force, misjump), hex_startup_time()) // AQ EDIT - mapa hex: krótszy rozruch skoku po hexach
+	hex_startup_timer = addtimer(CALLBACK(src, PROC_REF(jump_start), target_system, force, misjump), hex_startup_time(), TIMER_STOPPABLE) // AQ EDIT - mapa hex: krótszy rozruch skoku po hexach, uchwyt do odwołania skoku
 
 /obj/structure/overmap/proc/force_return_jump()
 	SIGNAL_HANDLER

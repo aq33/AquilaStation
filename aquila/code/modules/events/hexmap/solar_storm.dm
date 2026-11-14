@@ -11,6 +11,8 @@
 
 /// Solar panel output multiplier while a solar storm is close (1 = normal)
 GLOBAL_VAR_INIT(aquila_hex_solar_multiplier, 1)
+/// Burze słoneczne, które teraz działają na panele; mnożnik to najsilniejsza z nich
+GLOBAL_LIST_EMPTY(aquila_hex_solar_storms)
 
 /datum/round_event_control/aquila_hex_solar_storm
 	name = "Solar Storm"
@@ -23,6 +25,8 @@ GLOBAL_VAR_INIT(aquila_hex_solar_multiplier, 1)
 /datum/round_event/aquila_hex_solar_storm
 	announceWhen = 1
 	startWhen = 45 // 90 s warning
+	/// Mnożnik paneli od tej burzy (1 = nie działa)
+	var/solar_level = 1
 
 /datum/round_event/aquila_hex_solar_storm/setup()
 	endWhen = startWhen + rand(30, 90) + rand(30, 90) // 2-6 minutes
@@ -30,11 +34,11 @@ GLOBAL_VAR_INIT(aquila_hex_solar_multiplier, 1)
 /datum/round_event/aquila_hex_solar_storm/announce(fake)
 	priority_announce("Wykryto burzę słoneczną zbliżającą się do statku. Natychmiast przerwać wszelkie EVA i wrócić do środka.", "Sensory statku")
 	if(!fake)
-		GLOB.aquila_hex_solar_multiplier = 1.5
+		set_solar_level(1.5)
 
 /datum/round_event/aquila_hex_solar_storm/start()
 	priority_announce("Burza słoneczna dotarła do statku. Nie wychodzić na EVA i pozostać wewnątrz, dopóki nie minie.", "Sensory statku")
-	GLOB.aquila_hex_solar_multiplier = 5
+	set_solar_level(5)
 
 /datum/round_event/aquila_hex_solar_storm/tick()
 	if(activeFor % SOLAR_STORM_INTERVAL == 0)
@@ -42,12 +46,23 @@ GLOBAL_VAR_INIT(aquila_hex_solar_multiplier, 1)
 
 /datum/round_event/aquila_hex_solar_storm/end()
 	priority_announce("Burza słoneczna minęła statek. Można bezpiecznie wznowić EVA.", "Sensory statku")
-	GLOB.aquila_hex_solar_multiplier = 1
+	set_solar_level(1)
 
 /datum/round_event/aquila_hex_solar_storm/kill()
-	if(activeFor < endWhen) // stopped before end(), panels go back to normal
-		GLOB.aquila_hex_solar_multiplier = 1
+	set_solar_level(1) // stopped before end(): this storm stops boosting the panels, another one still running keeps its boost
 	return ..()
+
+/// Ustawia udział tej burzy i liczy wspólny mnożnik paneli od nowa
+/datum/round_event/aquila_hex_solar_storm/proc/set_solar_level(level)
+	solar_level = level
+	if(level > 1)
+		GLOB.aquila_hex_solar_storms |= src
+	else
+		GLOB.aquila_hex_solar_storms -= src
+	var/multiplier = 1
+	for(var/datum/round_event/aquila_hex_solar_storm/storm as anything in GLOB.aquila_hex_solar_storms)
+		multiplier = max(multiplier, storm.solar_level)
+	GLOB.aquila_hex_solar_multiplier = multiplier
 
 /// Heats up everyone in space on the ship's levels
 /datum/round_event/aquila_hex_solar_storm/proc/radiate()

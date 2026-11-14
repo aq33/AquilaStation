@@ -26,7 +26,7 @@
 		var/datum/star_system/best
 		var/best_d = INFINITY
 		for(var/datum/star_system/S as anything in SSstar_system.systems)
-			if(!S.hex || S.hidden || S.hex.sector != here?.sector || istype(S, /datum/star_system/random/hex_empty))
+			if(!S.hex || S.hidden || S.hex.sector != here?.sector || istype(S, /datum/star_system/random/hex_empty) || !hex_heading_allowed(S))
 				continue
 			var/d = GLOB.hexmap.distance(here, S.hex)
 			if(d < best_d)
@@ -50,7 +50,7 @@
 			return S.owner != alignment
 	return TRUE
 
-/// Następny kafel na trasie do celu. Bez mapy albo bez trasy (np. zamknięta brama) flota skacze wprost, jak dotąd.
+/// Następny kafel na trasie do celu. Bez mapy flota skacze wprost, jak dotąd; bez trasy (np. zamknięta brama) null, czyli zostaje.
 /datum/fleet/proc/hex_next_step(datum/star_system/target)
 	if(!GLOB.hexmap?.built || !target)
 		return target
@@ -62,7 +62,7 @@
 	var/list/route = GLOB.hexmap.route(here, goal, alignment, 5000)
 	if(!route)
 		hex_heading = null
-		return target
+		return null
 	var/list/full = route["full"]
 	var/datum/hex/next = full[2]
 	hex_heading = (next == goal) ? null : target

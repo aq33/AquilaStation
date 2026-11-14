@@ -97,8 +97,10 @@
 
 /datum/controller/subsystem/star_system/proc/prune_auto_backups()
 	var/list/autos = list()
+	// Rodzaj kopii stoi zaraz po dacie: ręczna kopia z opisem „auto” (…_manual_auto/) nie jest kopią automatyczną
+	var/static/regex/auto_backup = regex(@"^\d{4}-\d{2}-\d{2}_\d{2}-\d{2}-\d{2}_auto/$")
 	for(var/entry in flist(CAMPAIGN_BACKUP_DIR))
-		if(findtext(entry, "_auto") && copytext(entry, -1) == "/")
+		if(auto_backup.Find(entry))
 			autos += entry
 	autos = sort_list(autos) // nazwy zaczynają się datą, więc to kolejność od najstarszej
 	while(length(autos) > CAMPAIGN_BACKUP_AUTO_KEEP)
@@ -119,12 +121,21 @@
 	var/starmap_path = campaign_starmap_path()
 	if(!starmap_path || !fexists("[dir]starmap.json"))
 		return FALSE
-	campaign_backup("przed-przywroceniem")
+	// Bieżący stan idzie do kopii przed przywróceniem; bez niej nic nie nadpisujemy
+	var/before = campaign_backup("przed-przywroceniem")
+	if(!before)
+		return FALSE
+	var/before_dir = "[CAMPAIGN_BACKUP_DIR][before]/"
 	if(!fcopy("[dir]starmap.json", starmap_path))
+		fcopy("[before_dir]starmap.json", starmap_path)
 		return FALSE
 	fdel(HEXMAP_SAVE_PATH)
-	if(fexists("[dir]hexmap.json"))
-		fcopy("[dir]hexmap.json", HEXMAP_SAVE_PATH)
+	if(fexists("[dir]hexmap.json") && !fcopy("[dir]hexmap.json", HEXMAP_SAVE_PATH))
+		// Połowa kopii to gorzej niż nic: przywracamy poprzedni zestaw plików
+		fcopy("[before_dir]starmap.json", starmap_path)
+		if(fexists("[before_dir]hexmap.json"))
+			fcopy("[before_dir]hexmap.json", HEXMAP_SAVE_PATH)
+		return FALSE
 	campaign_restore_pending = TRUE
 	return TRUE
 

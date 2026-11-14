@@ -12,6 +12,8 @@
 	var/hex_cooldown_until = 0
 	/// Kiedy zaplanowano skok: plan przerwany przez interdykcję nie może przejść na następny, niezwiązany skok
 	var/hex_pending_time = 0
+	/// Timer rozruchu skoku (begin_jump, hook w ftl_jump.dm): odwołanie skoku go kasuje
+	var/hex_startup_timer
 
 /// Plan skoku po hexach na najbliższy jump_start()
 /obj/structure/overmap/proc/hex_set_pending(cost, hexes)
@@ -106,6 +108,10 @@
 /obj/structure/overmap/proc/hex_cancel_jump()
 	if(!hex_pending_cost || ftl_drive?.ftl_state != FTL_STATE_JUMPING)
 		return FALSE
+	// Callback rozruchu odwołanego skoku nie może potem wystartować kolejnego skoku z cudzym planem
+	if(hex_startup_timer)
+		deltimer(hex_startup_timer)
+		hex_startup_timer = null
 	hex_clear_pending()
 	hex_resume_charging()
 	return TRUE
@@ -136,8 +142,11 @@
 	hex_cooldown_until = world.time + HEX_FTL_COOLDOWN
 	var/empty = FALSE
 	if(istype(ftl_drive, /obj/machinery/computer/ship/ftl_core))
-		ftl_drive.progress = max(0, ftl_drive.progress - ftl_drive.req_charge * cost / 100)
-		empty = ftl_drive.progress < 0.01 * ftl_drive.req_charge
+		var/left = max(0, ftl_drive.progress - ftl_drive.req_charge * cost / 100)
+		empty = left < 0.01 * ftl_drive.req_charge
+		// Przy pustym rdzeniu ładunek zeruje dopiero depower(): z progress = 0 wróciłby od razu, bez wyłączenia pylonów i dźwięku
+		if(!empty)
+			ftl_drive.progress = left
 	else
 		var/obj/machinery/computer/ship/ftl_computer/legacy = ftl_drive
 		if(istype(legacy))
@@ -176,6 +185,8 @@
 // W cooldownie po skoku po hexach napędy się nie ładują. Komputer Seegson nie może też ładować w czasie rozruchu skoku:
 // jego process() ustawia SPOOLING i przerwałby skok, który ruszył z niepełnym ładunkiem.
 /obj/machinery/computer/ship/ftl_computer/process()
+	if(!is_operational) // bez zasilania napęd gaśnie także w rozruchu i cooldownie (depower() w process() bazowym)
+		return ..()
 	if(ftl_state == FTL_STATE_JUMPING)
 		return
 	if(linked && world.time < linked.hex_cooldown_until)

@@ -20,16 +20,17 @@
 /datum/round_event/aquila_hex_solar_flare/announce(fake)
 	priority_announce("UWAGA: przygotować się na nadchodzący rozbłysk słoneczny.", "Rozbłysk słoneczny")
 
+/// The engine, magazines and the AI core would turn a small fire into a disaster, so the flare skips them (epicentre and fire alike)
+GLOBAL_LIST_INIT(aquila_hex_flare_unsafe_areas, typecacheof(list(
+	/area/ai_monitored/turret_protected,
+	/area/engine,
+	/area/nsv/engine,
+	/area/nsv/magazine,
+	/area/nsv/weapons,
+)))
+
 /datum/round_event/aquila_hex_solar_flare/start()
-	// The engine, magazines and the AI core would turn a small fire into a disaster, so the flare skips them
-	var/static/list/unsafe_area_types = typecacheof(list(
-		/area/ai_monitored/turret_protected,
-		/area/engine,
-		/area/nsv/engine,
-		/area/nsv/magazine,
-		/area/nsv/weapons,
-	))
-	var/turf/epicenter = aquila_hex_random_ship_turf(unsafe_area_types)
+	var/turf/epicenter = aquila_hex_random_ship_turf(GLOB.aquila_hex_flare_unsafe_areas)
 	if(epicenter)
 		flare(epicenter)
 
@@ -38,7 +39,8 @@
 	var/radius = clamp(round(rand(strength / 2, strength)), 1, 50)
 	var/power = rand(strength, strength * 2)
 	for(var/turf/open/T in circlerangeturfs(epicenter, radius))
-		T.IgniteTurf(power)
+		if(!GLOB.aquila_hex_flare_unsafe_areas[T.loc.type])
+			T.IgniteTurf(power)
 	for(var/mob/living/carbon/victim in range(round(strength * 2), epicenter))
 		victim.flash_act(1, 1)
 	for(var/mob/living/crew as anything in aquila_hex_ship_crew())
