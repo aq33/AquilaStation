@@ -33,6 +33,7 @@
 		"ship_system" = (S && !istype(S, /datum/star_system/random)) ? S.name : null,
 		"saved_at" = time2text(world.realtime, "YYYY-MM-DD hh:mm:ss"),
 		"terrain" = GLOB.hexmap.save_terrain(),
+		"war" = GLOB.hex_war?.ready ? GLOB.hex_war.serialize() : null,
 	)
 	fdel(path)
 	rustg_file_write(json_encode(data), path)

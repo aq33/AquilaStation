@@ -100,25 +100,16 @@
 			"type" = S.system_type?["label"],
 			"gates" = gate_names,
 			"badlands" = istype(S, /datum/star_system/random),
+			"facilities" = S.trader ? (S.war_facilities || list()) + HEX_FAC_TRADE : S.war_facilities,
+			"raided" = S.war_raided_until > world.time,
+			"ore" = S.war_ore,
+			"parts" = S.war_parts,
 		))
 	data["systems"] = systems_out
 
-	// Floty AI na kaflach, także w drodze przez puste kafle (mgła wojny dopiero w PR D)
-	var/list/fleets_out = list()
-	for(var/datum/star_system/S as anything in SSstar_system.systems)
-		if(!S.hex || !length(S.fleets))
-			continue
-		if(S.hidden && !istype(S, /datum/star_system/random/hex_empty))
-			continue
-		for(var/datum/fleet/F as anything in S.fleets)
-			fleets_out += list(list(
-				"hex" = S.hex.id,
-				"name" = F.name,
-				"alignment" = F.alignment,
-				"ships" = F.instantiated ? length(F.all_ships) : F.size,
-				"heading" = F.hex_heading?.hex?.id,
-			))
-	data["fleets"] = fleets_out
+	// Floty AI na kaflach przez mgłę wojny (war_fog.dm) i dowódcy, których flotę załoga widziała
+	data["fleets"] = hex_fog_fleet_data(linked)
+	data["commanders"] = hex_commander_data()
 
 	var/list/gates = list()
 	for(var/datum/star_system/S as anything in SSstar_system.systems)

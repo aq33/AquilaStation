@@ -1,0 +1,392 @@
+// AQUILA - wojna frakcji na mapie hex (raport/ftl_mapa_06_plan_pr.md, część D). Co HEX_WAR_TICK: ekonomia
+// (kopalnia -> konwój -> fabryka -> konwój -> stocznia), depoty, napady piratów, powroty dowódców i rozkazy sztabów.
+// Floty to zwykłe floty NSV (prawdziwe okręty, walka kośćmi poza okiem graczy); sztab tylko wybiera im cel.
+
+GLOBAL_DATUM(hex_war, /datum/hex_war)
+/// Frakcje ze sztabem (alignment flot)
+GLOBAL_LIST_INIT(hex_war_factions, list("nanotrasen", "solgov", "syndicate", "pirate"))
+
+/datum/star_system
+	/// Obiekty strategiczne (HEX_FAC_*); stacja handlowa wynika z obecności handlarza
+	var/list/war_facilities
+	var/war_ore = 0
+	var/war_parts = 0
+	/// Do kiedy stacja handlowa nie handluje po napadzie piratów
+	var/war_raided_until = 0
+
+/datum/star_system/proc/has_facility(id)
+	if(id == HEX_FAC_TRADE)
+		return !!trader
+	return (id in war_facilities)
+
+/// Nazwa obiektu dla graczy
+/proc/hex_facility_name(id)
+	switch(id)
+		if(HEX_FAC_MINE)
+			return "Kopalnia"
+		if(HEX_FAC_FACTORY)
+			return "Fabryka"
+		if(HEX_FAC_YARD)
+			return "Stocznia"
+		if(HEX_FAC_DEPOT)
+			return "Depot"
+		if(HEX_FAC_POST)
+			return "Placówka nasłuchowa"
+		if(HEX_FAC_HQ)
+			return "Kwatera główna"
+		if(HEX_FAC_TRADE)
+			return "Stacja handlowa"
+
+/// Ta sama strona konfliktu (NT, SolGov i WhiteRapids to jeden blok)
+/proc/hex_factions_allied(a, b)
+	if(a == b)
+		return TRUE
+	var/static/list/nt_bloc = list("nanotrasen" = TRUE, "solgov" = TRUE, "whiterapids" = TRUE)
+	return nt_bloc[a] && nt_bloc[b]
+
+/// Rozmieszczenie obiektów jak w makiecie v4
+/datum/hexmap/proc/place_facilities()
+	var/static/list/layout = list(
+		"Argo" = list(HEX_FAC_YARD),
+		"Orion's Arm" = list(HEX_FAC_DEPOT),
+		"Caph" = list(HEX_FAC_MINE),
+		"Keid" = list(HEX_FAC_MINE),
+		"Alpha Carinae" = list(HEX_FAC_FACTORY),
+		"Helios Sigma" = list(HEX_FAC_MINE),
+		"Medea" = list(HEX_FAC_FACTORY, HEX_FAC_DEPOT),
+		"Gliese 581-G" = list(HEX_FAC_MINE),
+		"Karip" = list(HEX_FAC_MINE),
+		"Feliciana" = list(HEX_FAC_POST),
+		"Sol" = list(HEX_FAC_FACTORY, HEX_FAC_YARD, HEX_FAC_HQ),
+		"Alpha Centauri" = list(HEX_FAC_MINE),
+		"Ross 154" = list(HEX_FAC_DEPOT),
+		"Sirius" = list(HEX_FAC_YARD),
+		"Wolf 359" = list(HEX_FAC_MINE),
+		"Barnard's Star" = list(HEX_FAC_MINE),
+		"Lalande 21185" = list(HEX_FAC_POST),
+		"Rubicon" = list(HEX_FAC_FACTORY, HEX_FAC_DEPOT),
+		"Remus" = list(HEX_FAC_MINE),
+		"Lombard" = list(HEX_FAC_MINE),
+		"Economus" = list(HEX_FAC_YARD),
+		"Volsci" = list(HEX_FAC_DEPOT),
+		"Lesziru" = list(HEX_FAC_POST),
+		"Zalosi" = list(HEX_FAC_MINE),
+		"Phobos" = list(HEX_FAC_DEPOT),
+		"Deimos" = list(HEX_FAC_FACTORY),
+		"Romulus" = list(HEX_FAC_YARD, HEX_FAC_POST),
+		"Abassi" = list(HEX_FAC_FACTORY, HEX_FAC_HQ),
+		"Dolos Remnants" = list(HEX_FAC_MINE),
+		"Oasis Fidei" = list(HEX_FAC_MINE),
+		"Tortuga" = list(HEX_FAC_YARD, HEX_FAC_DEPOT, HEX_FAC_HQ),
+		"Feaf" = list(HEX_FAC_DEPOT),
+		"Zharkov" = list(HEX_FAC_MINE),
+		"Arbeia" = list(HEX_FAC_MINE),
+	)
+	for(var/datum/star_system/S as anything in SSstar_system.systems)
+		var/list/facilities = layout[S.name]
+		if(facilities)
+			S.war_facilities = facilities.Copy()
+
+/datum/hex_war
+	/// Wszyscy dowódcy kampanii (także ranni i polegli, do zakładki w konsoli)
+	var/list/commanders = list()
+	var/next_commander_id = 1
+	var/ready = FALSE
+
+/// Start wojny: po spawnie flot układów przejmuje floty (pierwsza runda) albo odtwarza zapis kampanii
+/datum/hex_war/proc/setup(list/saved)
+	addtimer(CALLBACK(src, PROC_REF(late_setup), saved), HEX_WAR_SETUP_DELAY)
+
+/datum/hex_war/proc/late_setup(list/saved)
+	if(!GLOB.hexmap?.built)
+		return
+	if(!(islist(saved) && restore(saved)))
+		for(var/datum/fleet/F as anything in hex_all_fleets())
+			if(F.hex_war_adoptable())
+				F.hex_war_adopt()
+	ready = TRUE
+	addtimer(CALLBACK(src, PROC_REF(tick)), HEX_WAR_TICK)
+
+/// Wszystkie floty na mapie
+/proc/hex_all_fleets()
+	. = list()
+	for(var/datum/star_system/S as anything in SSstar_system.systems)
+		for(var/datum/fleet/F as anything in S.fleets)
+			if(!QDELETED(F))
+				. += F
+
+/datum/hex_war/proc/tick()
+	addtimer(CALLBACK(src, PROC_REF(tick)), HEX_WAR_TICK)
+	run_turn()
+
+/// Jedna tura sztabów (zestaw komory testowej woła ją od razu, bez drugiego timera)
+/datum/hex_war/proc/run_turn()
+	if(!GLOB.hexmap?.built || !SSstar_system.enable_npc_combat)
+		return
+	economy()
+	depots()
+	raids()
+	commander_returns()
+	for(var/faction in GLOB.hex_war_factions)
+		staff(faction)
+
+/// Floty sztabu frakcji (bez konwojów)
+/datum/hex_war/proc/faction_fleets(faction, convoys = FALSE)
+	. = list()
+	for(var/datum/fleet/F as anything in hex_all_fleets())
+		if(F.war_controlled && F.alignment == faction && (!!F.war_cargo == convoys))
+			. += F
+
+/// Wrogie floty w układzie
+/proc/hex_hostile_fleets_in(datum/star_system/S, faction)
+	. = list()
+	for(var/datum/fleet/F as anything in S.fleets)
+		if(!QDELETED(F) && hex_factions_hostile(faction, F.alignment))
+			. += F
+
+/// Układy frakcji z danym obiektem, od najbliższego
+/datum/hex_war/proc/faction_sites(faction, facility, datum/star_system/from)
+	. = list()
+	for(var/datum/star_system/S as anything in SSstar_system.systems)
+		if(!S.hex || S.hidden || S.owner != faction || !S.has_facility(facility))
+			continue
+		if(hex_factions_hostile(faction, S.alignment))
+			continue
+		. += S
+	if(from?.hex)
+		var/list/by_distance = list()
+		for(var/datum/star_system/S as anything in .)
+			by_distance[S] = GLOB.hexmap.war_distance(from.hex, S.hex)
+		sortTim(by_distance, GLOBAL_PROC_REF(cmp_numeric_asc), associative = TRUE)
+		. = by_distance.Copy()
+
+// ===== ekonomia =====
+
+/datum/hex_war/proc/economy()
+	for(var/datum/star_system/S as anything in SSstar_system.systems)
+		if(!S.hex || !length(S.war_facilities) || !(S.owner in GLOB.hex_war_factions))
+			continue
+		var/faction = S.owner
+		// Zajęty albo atakowany układ nie produkuje
+		if(S.alignment != faction || length(hex_hostile_fleets_in(S, faction)))
+			continue
+		if(S.has_facility(HEX_FAC_MINE))
+			S.war_ore = min(S.war_ore + 2, 30) // magazyn kopalni, gdy konwoje są w drodze
+			if(S.war_ore >= 6 && !S.has_facility(HEX_FAC_FACTORY) && send_convoy(S, faction, "ore", 6, HEX_FAC_FACTORY))
+				S.war_ore -= 6
+		if(S.has_facility(HEX_FAC_FACTORY) && S.war_ore >= 3)
+			S.war_ore -= 3
+			S.war_parts += 1
+			if(S.war_parts >= 4 && !S.has_facility(HEX_FAC_YARD) && send_convoy(S, faction, "parts", 4, HEX_FAC_YARD))
+				S.war_parts -= 4
+		if(S.has_facility(HEX_FAC_YARD) && S.war_parts >= 4)
+			if(shipyard_build(S, faction))
+				S.war_parts -= 4
+	// Piraci nie mają kopalń ani fabryk: ich stocznia co jakiś czas wodowuje rajdowców, a łupy dozbrajają floty
+	if(length(faction_fleets("pirate")) < HEX_WAR_MAX_PIRATE_FLEETS && prob(25))
+		var/list/pirate_yards = faction_sites("pirate", HEX_FAC_YARD)
+		if(length(pirate_yards) && launch_fleet("pirate", pirate_yards[1]))
+			log_game("HEXWAR: pirates launch raiders from [pirate_yards[1]]")
+	for(var/datum/fleet/F as anything in faction_fleets("pirate"))
+		if(F.war_loot >= 6 && F.current_system?.owner == "pirate" && F.current_system.has_facility(HEX_FAC_YARD))
+			F.war_loot -= 6
+			F.hex_war_add_ships(1)
+			log_game("HEXWAR: pirates refit [F.name] with their loot")
+
+/// Stocznia: 2 okręty dla floty w stoczni albo nowa flota, jeśli frakcja ma ich mniej niż limit
+/datum/hex_war/proc/shipyard_build(datum/star_system/yard, faction)
+	for(var/datum/fleet/F as anything in yard.fleets)
+		if(F.war_controlled && F.alignment == faction && !F.war_cargo && F.hex_war_ship_count() < F.war_max_ships + 2)
+			F.hex_war_add_ships(2)
+			log_game("HEXWAR: [yard] shipyard adds 2 ships to [F.name]")
+			return TRUE
+	var/limit = faction == "pirate" ? HEX_WAR_MAX_PIRATE_FLEETS : HEX_WAR_MAX_FLEETS
+	if(length(faction_fleets(faction)) >= limit)
+		return FALSE
+	var/datum/fleet/F = launch_fleet(faction, yard)
+	if(!F)
+		return FALSE
+	log_game("HEXWAR: [yard] shipyard launches [F.name]")
+	return TRUE
+
+/// Typy flot, które sztab frakcji wodowuje
+/proc/hex_war_fleet_types(faction)
+	switch(faction)
+		if("nanotrasen")
+			return list(/datum/fleet/nanotrasen/light = 2, /datum/fleet/nanotrasen = 1)
+		if("solgov")
+			return list(/datum/fleet/solgov = 1)
+		if("syndicate")
+			var/datum/faction/F = SSstar_system.faction_by_id(FACTION_ID_SYNDICATE)
+			return F?.fleet_types?.Copy() || list(/datum/fleet/neutral = 1)
+		if("pirate")
+			return list(/datum/fleet/pirate/raiding = 1)
+
+/// Nowa flota sztabu z nowym dowódcą (albo z podanym, gdy dowódca wraca)
+/datum/hex_war/proc/launch_fleet(faction, datum/star_system/where, datum/hex_commander/C, size = 2)
+	var/list/types = hex_war_fleet_types(faction)
+	if(!length(types) || !where)
+		return
+	var/fleet_type = pickweight(types)
+	var/datum/fleet/F = where.spawn_fleet(fleet_type, size)
+	if(!F)
+		return
+	F.hex_war_adopt(C)
+	return F
+
+/// Konwój: mała flota frachtowców, która idzie po kaflach do obiektu docelowego swojej frakcji
+/datum/hex_war/proc/send_convoy(datum/star_system/from, faction, cargo, amount, facility, datum/star_system/forced_destination)
+	if(faction == "pirate" || length(faction_fleets(faction, TRUE)) >= HEX_WAR_MAX_CONVOYS)
+		return FALSE
+	var/datum/star_system/dest = forced_destination
+	if(!dest)
+		var/list/sites = faction_sites(faction, facility, from)
+		sites -= from
+		if(!length(sites))
+			return FALSE
+		dest = sites[1]
+	if(!GLOB.hexmap.route(from.hex, dest.hex, faction, 5000))
+		return FALSE
+	var/datum/fleet/aquila_convoy/C = new
+	C.alignment = faction
+	C.faction_id = (faction == "syndicate") ? FACTION_ID_SYNDICATE : FACTION_ID_NT
+	C.faction = SSstar_system.faction_by_id(C.faction_id)
+	C.destroyer_types = list(faction == "syndicate" ? /obj/structure/overmap/syndicate/ai/carrier : /obj/structure/overmap/nanotrasen/mining_cruiser/aquila_hex_freighter)
+	C.name = "konwój [cargo == "ore" ? "rudy" : "części"] ([hex_war_faction_name(faction)])"
+	C.current_system = from
+	from.fleets += C
+	C.assemble(from, 2)
+	C.war_controlled = TRUE
+	C.war_order = HEX_ORDER_CONVOY
+	C.war_cargo = cargo
+	C.war_cargo_amount = amount
+	C.war_destination = dest
+	C.war_target = dest
+	C.war_max_ships = C.hex_war_ship_count()
+	log_game("HEXWAR: [faction] convoy of [amount] [cargo] leaves [from] for [dest]")
+	return TRUE
+
+/// Nazwa frakcji dla graczy
+/proc/hex_war_faction_name(faction)
+	switch(faction)
+		if("nanotrasen")
+			return "Nanotrasen"
+		if("solgov")
+			return "SolGov"
+		if("syndicate")
+			return "Syndykat"
+		if("pirate")
+			return "Piraci"
+		if("unaligned")
+			return "niezależni"
+	return faction
+
+/datum/fleet/aquila_convoy
+	name = "konwój"
+	fighter_types = list()
+	destroyer_types = list(/obj/structure/overmap/nanotrasen/mining_cruiser/aquila_hex_freighter)
+	battleship_types = list()
+	supply_types = list()
+	hide_movements = TRUE
+	allow_difficulty_scaling = FALSE
+	threat_elevation_allowed = FALSE
+	can_reinforce = FALSE
+	size = 2
+	reward = 0
+	taunts = list("Konwój zaopatrzeniowy, nie mamy z wami sporu. Zejdźcie z kursu.")
+	greetings = list("Konwój zaopatrzeniowy pozdrawia. Dziękujemy za osłonę.")
+
+/// Konwój dotarł: ładunek trafia do magazynu, frachtowce się rozładowują i znikają z mapy
+/datum/fleet/proc/hex_war_deliver()
+	var/datum/star_system/S = war_destination
+	if(war_cargo == "ore")
+		S.war_ore += war_cargo_amount
+	else
+		S.war_parts += war_cargo_amount
+	log_game("HEXWAR: convoy [name] delivered [war_cargo_amount] [war_cargo] to [S]")
+	war_cargo = null
+	hex_war_dispose()
+
+/// Usuwa flotę razem z okrętami (konwój po rozładunku, floty zastąpione zapisem kampanii)
+/datum/fleet/proc/hex_war_dispose()
+	for(var/obj/structure/overmap/OM as anything in all_ships.Copy())
+		if(!QDELETED(OM))
+			qdel(OM)
+	current_system?.fleets -= src
+	if(current_system && !length(current_system.fleets))
+		current_system.alignment = current_system.owner
+	qdel(src)
+
+// ===== depoty i napady =====
+
+/// Flota w sojuszniczym depocie: naprawa 30% kadłubów, a przy brakach okręt więcej
+/datum/hex_war/proc/depots()
+	for(var/datum/fleet/F as anything in hex_all_fleets())
+		if(!F.war_controlled || F.war_cargo)
+			continue
+		var/datum/star_system/S = F.current_system
+		if(!S?.has_facility(HEX_FAC_DEPOT) || !hex_factions_allied(S.owner, F.alignment) || hex_factions_hostile(F.alignment, S.alignment))
+			continue
+		for(var/obj/structure/overmap/OM as anything in F.all_ships)
+			if(!QDELETED(OM))
+				OM.obj_integrity = min(OM.max_integrity, OM.obj_integrity + OM.max_integrity * 0.3)
+		if(F.hex_war_ship_count() < F.war_max_ships && prob(50))
+			F.hex_war_add_ships(1)
+		if(F.war_order == HEX_ORDER_REPAIR && F.hex_war_strength() >= 0.9)
+			F.hex_war_set_order(HEX_ORDER_IDLE)
+
+/// Piraci na stacji handlowej bez obrońców łupią ją: handel stoi przez HEX_WAR_RAID_TIME
+/datum/hex_war/proc/raids()
+	for(var/datum/fleet/F as anything in faction_fleets("pirate"))
+		var/datum/star_system/S = F.current_system
+		if(!S?.trader || S.owner == "pirate" || S.war_raided_until > world.time)
+			continue
+		if(length(hex_hostile_fleets_in(S, "pirate")))
+			continue
+		S.war_raided_until = world.time + HEX_WAR_RAID_TIME
+		F.war_loot += 3
+		if(!S.hidden)
+			mini_announce("Piraci napadli stację handlową w układzie [S]. Handel wstrzymany na co najmniej 20 minut.", "White Rapids EAS")
+		log_game("HEXWAR: [F.name] raids the trade station in [S]")
+
+/datum/trader/attempt_purchase(datum/trader_item/item, mob/living/carbon/user)
+	if(system?.war_raided_until > world.time)
+		to_chat(user, "<span class='warning'>[name] nie handluje: stację niedawno złupili piraci.</span>")
+		return FALSE
+	return ..()
+
+/// Losowe floty frakcji z send_fleet() zastępują stocznie; misje (override, force) dalej mogą tworzyć floty
+/datum/faction/send_fleet(datum/star_system/override = null, custom_difficulty = null, force = FALSE)
+	if(GLOB.hexmap?.built && !override && !force)
+		return
+	return ..()
+
+/// Odległość po kaflach, także między sektorami: przez jedną albo dwie bramy (jak hd() w makiecie)
+/datum/hexmap/proc/war_distance(datum/hex/a, datum/hex/b)
+	if(!a || !b)
+		return INFINITY
+	if(a.sector == b.sector)
+		return distance(a, b)
+	. = INFINITY
+	for(var/name in system_hexes)
+		var/datum/hex/G = system_hexes[name]
+		if(G.sector != a.sector || !LAZYLEN(G.gates))
+			continue
+		var/to_gate = distance(a, G) + 1
+		for(var/datum/hex/G2 as anything in G.gates)
+			if(G2.sector == b.sector)
+				. = min(., to_gate + distance(G2, b))
+				continue
+			for(var/datum/hex/K as anything in system_hexes_in_sector(G2.sector))
+				if(!LAZYLEN(K.gates))
+					continue
+				for(var/datum/hex/K2 as anything in K.gates)
+					if(K2.sector == b.sector)
+						. = min(., to_gate + distance(G2, K) + 1 + distance(K2, b))
+
+/datum/hexmap/proc/system_hexes_in_sector(sector)
+	. = list()
+	for(var/name in system_hexes)
+		var/datum/hex/H = system_hexes[name]
+		if(H.sector == sector)
+			. += H

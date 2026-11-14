@@ -10,12 +10,14 @@ import {
   ProgressBar,
   Section,
   Stack,
+  Tabs,
 } from 'tgui-core/components';
 
 import { resolveAsset } from '../assets';
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
 import {
+  HEX_FACILITY_ICONS,
   HEX_TERRAIN_COLORS,
   HEX_TERRAIN_ICONS,
 } from './common/hexTerrainIcons';
@@ -36,6 +38,10 @@ type StarSystem = {
   type: string | null;
   gates: string[];
   badlands: boolean;
+  facilities?: string[] | null;
+  raided?: boolean;
+  ore?: number;
+  parts?: number;
 };
 
 type Fleet = {
@@ -44,6 +50,33 @@ type Fleet = {
   alignment: string;
   ships: number;
   heading: string | null;
+  convoy?: boolean;
+  ghost?: boolean;
+  seen_ago?: number;
+  order?: string | null;
+  commander?: number | null;
+};
+
+type CommanderTrait = {
+  name: string | null;
+  kind: string | null;
+  desc: string | null;
+};
+
+type Commander = {
+  id: number;
+  name: string;
+  rank: string;
+  stars: number;
+  faction: string;
+  status: string;
+  wins: number;
+  losses: number;
+  grudge: number;
+  traits: CommanderTrait[];
+  scars: string[];
+  history: string[];
+  fleet_hex: string | null;
 };
 
 type Ship = {
@@ -120,6 +153,46 @@ type Data = {
   terrains: Terrain[];
   terrain: Record<string, string>;
   wormholes: { a: string; b: string }[];
+  commanders: Commander[];
+};
+
+const FACILITY_NAME: Record<string, string> = {
+  mine: 'Kopalnia',
+  factory: 'Fabryka',
+  yard: 'Stocznia',
+  depot: 'Depot',
+  post: 'Placówka nasłuchowa',
+  hq: 'Kwatera główna',
+  trade: 'Stacja handlowa',
+};
+
+const FACILITY_DESC: Record<string, string> = {
+  mine: 'ruda +2 co 5 min, nadmiar jedzie konwojem do fabryki',
+  factory: '3 rudy → 1 część, części jadą konwojem do stoczni',
+  yard: '4 części → 2 okręty albo nowa flota',
+  depot: 'naprawia i uzupełnia floty strony, która go trzyma',
+  post: 'widok floty w promieniu 3 kafli',
+  hq: 'kwatera sztabu frakcji',
+  trade: 'handel; piraci mogą ją złupić',
+};
+
+const ORDER_NAME: Record<string, string> = {
+  idle: 'bez rozkazu',
+  hold: 'trzyma układ',
+  defend: 'obrona',
+  attack: 'natarcie',
+  escort: 'eskorta konwoju',
+  repair: 'naprawa w depocie',
+  raid: 'łupieżczy rajd',
+  home: 'powrót z łupem',
+  hunt: 'polowanie na okręt',
+  convoy: 'konwój',
+};
+
+const STATUS_NAME: Record<string, string> = {
+  active: 'w służbie',
+  wounded: 'ranny, wróci',
+  dead: 'poległ',
 };
 
 type View = number | 'all';
@@ -360,7 +433,9 @@ export const HexStarmap = () => {
     terrains = [],
     terrain = {},
     wormholes = [],
+    commanders = [],
   } = data;
+  const [panelTab, setPanelTab] = useState<'hex' | 'commanders'>('hex');
 
   const [view, setView] = useState<View>(ship.sector || 2);
   const [zoom, setZoom] = useState(1);
@@ -819,6 +894,32 @@ export const HexStarmap = () => {
                             >
                               {system.name}
                             </text>
+                            {(system.facilities || [])
+                              .filter((fac) => !!HEX_FACILITY_ICONS[fac])
+                              .slice(0, 3)
+                              .map((fac, i, list) => {
+                                const size = R * 0.62;
+                                return (
+                                  <image
+                                    key={fac}
+                                    href={HEX_FACILITY_ICONS[fac]}
+                                    x={
+                                      cell.x -
+                                      (list.length * size) / 2 +
+                                      i * size
+                                    }
+                                    y={cell.y - R * 0.98}
+                                    width={size}
+                                    height={size}
+                                    opacity={
+                                      fac === 'trade' && system.raided
+                                        ? 0.35
+                                        : 1
+                                    }
+                                    style={{ imageRendering: 'pixelated' }}
+                                  />
+                                );
+                              })}
                           </g>
                         );
                       })}
@@ -835,23 +936,37 @@ export const HexStarmap = () => {
                           : '#ff3030';
                         const x = cell.x + R * 0.42 - k * 12;
                         const y = cell.y + R * 0.12;
+                        const shape = fleet.convoy
+                          ? `M${x - 5.5} ${y - 5.5}h11v11h-11z`
+                          : `M${x} ${y - 7}l7 7-7 7-7-7z`;
                         return (
-                          <g key={`fleet-${id}-${k}`} pointerEvents="none">
-                            <title>{fleet.name}</title>
+                          <g
+                            key={`fleet-${id}-${k}`}
+                            pointerEvents="none"
+                            opacity={fleet.ghost ? 0.45 : 1}
+                          >
+                            <title>
+                              {fleet.ghost
+                                ? `${fleet.name} (ostatnio widziana ${fleet.seen_ago} min temu)`
+                                : fleet.order
+                                  ? `${fleet.name}: ${ORDER_NAME[fleet.order] || fleet.order}`
+                                  : fleet.name}
+                            </title>
                             <path
-                              d={`M${x} ${y - 7}l7 7-7 7-7-7z`}
+                              d={shape}
                               fill="#000a"
-                              stroke={ring}
+                              stroke={fleet.ghost ? '#9aa4b2' : ring}
                               strokeWidth={1.4}
+                              strokeDasharray={fleet.ghost ? '2 2' : undefined}
                             />
                             <text
                               x={x}
                               y={y + 3.5}
                               textAnchor="middle"
                               fontSize={8.5}
-                              fill={ring}
+                              fill={fleet.ghost ? '#9aa4b2' : ring}
                             >
-                              {fleet.ships}
+                              {fleet.ghost ? '?' : fleet.ships}
                             </text>
                           </g>
                         );
@@ -960,8 +1075,29 @@ export const HexStarmap = () => {
                 </Section>
               </Stack.Item>
               <Stack.Item grow basis={0}>
-                <Section title="Kafel" fill scrollable>
-                  {!selected ? (
+                <Section
+                  fill
+                  scrollable
+                  title={
+                    <Tabs>
+                      <Tabs.Tab
+                        selected={panelTab === 'hex'}
+                        onClick={() => setPanelTab('hex')}
+                      >
+                        Kafel
+                      </Tabs.Tab>
+                      <Tabs.Tab
+                        selected={panelTab === 'commanders'}
+                        onClick={() => setPanelTab('commanders')}
+                      >
+                        {`Dowódcy (${commanders.length})`}
+                      </Tabs.Tab>
+                    </Tabs>
+                  }
+                >
+                  {panelTab === 'commanders' ? (
+                    <CommandersPanel commanders={commanders} />
+                  ) : !selected ? (
                     <Box color="label">
                       Kliknij kafel na mapie, żeby zobaczyć trasę i koszt skoku.
                     </Box>
@@ -972,6 +1108,7 @@ export const HexStarmap = () => {
                       canControl={can_control}
                       routeOk={routeOk}
                       terrain={terrainById[selected.terrain]}
+                      system={systems.find((s) => s.hex === selected.hex)}
                       onJump={() => act('hex_jump')}
                       onShowGate={(gate) => showSector(gate.sector, gate.hex)}
                     />
@@ -986,6 +1123,27 @@ export const HexStarmap = () => {
                     hiperbrama · ◇ flota (zielona: sojusz, żółta: neutralna,
                     czerwona: wróg) · przerywany pierścień: układ okupowany ·
                     czerwona linia: front
+                  </Box>
+                  <Box mt={0.5} fontSize="10px" color="label">
+                    {Object.keys(HEX_FACILITY_ICONS).map((fac) => (
+                      <span
+                        key={fac}
+                        title={FACILITY_DESC[fac]}
+                        style={{ whiteSpace: 'nowrap', marginRight: '8px' }}
+                      >
+                        <img
+                          src={HEX_FACILITY_ICONS[fac]}
+                          width={14}
+                          height={14}
+                          style={{
+                            verticalAlign: 'middle',
+                            imageRendering: 'pixelated',
+                          }}
+                        />{' '}
+                        {FACILITY_NAME[fac]}
+                      </span>
+                    ))}
+                    {' · □ konwój · szary romb: ostatnia znana pozycja floty'}
                   </Box>
                   <Box mt={0.5} fontSize="10px" color="label">
                     {terrains
@@ -1025,13 +1183,22 @@ type SelectedPanelProps = {
   canControl: boolean;
   routeOk: boolean;
   terrain?: Terrain;
+  system?: StarSystem;
   onJump: () => void;
   onShowGate: (gate: GateInfo) => void;
 };
 
 const SelectedPanel = (props: SelectedPanelProps) => {
-  const { selected, ship, canControl, routeOk, terrain, onJump, onShowGate } =
-    props;
+  const {
+    selected,
+    ship,
+    canControl,
+    routeOk,
+    terrain,
+    system,
+    onJump,
+    onShowGate,
+  } = props;
   const route = selected.route;
   const showTerrain = !!terrain && terrain.id !== 'empty';
   return (
@@ -1074,6 +1241,37 @@ const SelectedPanel = (props: SelectedPanelProps) => {
       {!!selected.desc && (
         <Box mt={1} color="label" italic>
           {selected.desc}
+        </Box>
+      )}
+      {!!system?.facilities?.length && (
+        <Box mt={1}>
+          {system.facilities.map((fac) => (
+            <div key={fac} title={FACILITY_DESC[fac]}>
+              {!!HEX_FACILITY_ICONS[fac] && (
+                <img
+                  src={HEX_FACILITY_ICONS[fac]}
+                  width={20}
+                  height={20}
+                  style={{
+                    verticalAlign: 'middle',
+                    imageRendering: 'pixelated',
+                    marginRight: '4px',
+                  }}
+                />
+              )}
+              {FACILITY_NAME[fac] || fac}
+              {fac === 'trade' && !!system.raided && (
+                <Box inline color="bad" ml={1}>
+                  złupiona, nie handluje
+                </Box>
+              )}
+            </div>
+          ))}
+          {(!!system.ore || !!system.parts) && (
+            <Box color="label">
+              {`Magazyn: ruda ${system.ore || 0}, części ${system.parts || 0}`}
+            </Box>
+          )}
         </Box>
       )}
       {showTerrain && (
@@ -1137,6 +1335,75 @@ const SelectedPanel = (props: SelectedPanelProps) => {
           {ship.safety_override ? 'Skok awaryjny' : 'Skok'}
         </Button>
       )}
+    </>
+  );
+};
+
+const CommandersPanel = (props: { commanders: Commander[] }) => {
+  const { commanders } = props;
+  if (!commanders.length) {
+    return (
+      <Box color="label">
+        Załoga nie widziała jeszcze żadnej floty z dowódcą. Dowódca pojawia się
+        tu, gdy jego flota znajdzie się w zasięgu sensorów.
+      </Box>
+    );
+  }
+  return (
+    <>
+      {commanders.map((c) => (
+        <Box
+          key={c.id}
+          mb={1}
+          p={0.5}
+          style={{
+            borderLeft: `3px solid ${FACTION_COLOR[c.faction] || '#888'}`,
+            opacity: c.status === 'dead' ? 0.55 : 1,
+          }}
+        >
+          <Box bold>{`${'★'.repeat(c.stars) || '·'} ${c.rank} ${c.name}`}</Box>
+          <Box color="label">
+            {`${FACTION_NAME[c.faction] || c.faction}, ${STATUS_NAME[c.status] || c.status}, zwycięstwa ${c.wins}, porażki ${c.losses}`}
+          </Box>
+          {c.grudge > 0 && (
+            <Box color="bad">Poprzysiągł zemstę naszemu okrętowi.</Box>
+          )}
+          <Box>
+            {c.traits.map((t, i) => (
+              <span
+                key={i}
+                title={t.desc || 'Cecha nieznana: spotkaj jego flotę.'}
+                style={{
+                  display: 'inline-block',
+                  marginRight: '4px',
+                  padding: '0 4px',
+                  borderRadius: '3px',
+                  backgroundColor:
+                    t.kind === 's'
+                      ? '#2c5f2d'
+                      : t.kind === 'w'
+                        ? '#6b2a2a'
+                        : t.kind === 'x'
+                          ? '#4a3f6b'
+                          : '#333',
+                }}
+              >
+                {t.name || '?'}
+              </span>
+            ))}
+          </Box>
+          {c.scars.map((scar, i) => (
+            <Box key={i} color="average" fontSize="11px">
+              {`Blizna: ${scar}`}
+            </Box>
+          ))}
+          {c.history.slice(0, 3).map((h, i) => (
+            <Box key={i} color="label" fontSize="10px">
+              {h}
+            </Box>
+          ))}
+        </Box>
+      ))}
     </>
   );
 };

@@ -12,6 +12,10 @@
 /datum/fleet/proc/hex_continue_heading()
 	if(!GLOB.hexmap?.built || !current_system)
 		return
+	if(war_controlled) // rozkaz sztabu (war_staff.dm) ma pierwszeństwo przed wędrówką
+		var/datum/star_system/war_destination_system = hex_war_move_target()
+		if(war_destination_system)
+			return war_destination_system
 	if(hex_heading && (QDELETED(hex_heading) || hex_heading == current_system || !hex_heading_allowed(hex_heading)))
 		hex_heading = null
 	if(hex_heading)
@@ -33,7 +37,7 @@
 
 /// Te same warunki cech floty co w move(): cel, którego flota już by nie wybrała (np. zajęty przez swoich), przestaje być celem
 /datum/fleet/proc/hex_heading_allowed(datum/star_system/S)
-	if(ai_is_reinforcement) // posiłki idą do sojuszniczej floty, choćby do układu swojej frakcji
+	if(ai_is_reinforcement || war_controlled) // posiłki idą do sojuszniczej floty, a floty sztabu tam, gdzie każe rozkaz
 		return TRUE
 	switch(fleet_trait)
 		if(FLEET_TRAIT_DEFENSE)

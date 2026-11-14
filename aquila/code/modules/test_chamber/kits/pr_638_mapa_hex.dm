@@ -65,3 +65,32 @@
 		if(length(far))
 			GLOB.hexmap.link_wormhole(H, pick(far))
 	to_chat(user, "<span class='notice'>Teren obok okrętu gotowy, otwórz konsolę nawigacji.</span>")
+
+/datum/test_chamber_kit/pr_638/wojna
+	name = "Mapa FTL: wojna frakcji"
+	description = "Zestaw ładuje napęd, stawia flotę Syndykatu z dowódcą dwa kafle od okrętu i od razu odpala turę sztabów (zwykle co 5 min). Testuj na konsoli nawigacji na mostku. \
+		1) Przy układach są ikony obiektów (kopalnie, fabryki, stocznie, depoty, placówki, kwatery, stacje handlowe), w panelu kafla ich opis i magazyn. \
+		2) Wrogie floty widać w zasięgu 3 kafli od okrętu, kafla od sojuszniczych układów i flot oraz 3 kafli od placówek; poza nim szary romb z ostatnią znaną pozycją. \
+		3) Zakładka „Dowódcy”: dowódca floty Syndykatu z rangą; cechy są „?”, dopóki nie spotkasz jego floty. \
+		4) Konwoje (kwadraty) jadą z kopalń do fabryk i ze fabryk do stoczni; piraci je łupią i napadają stacje handlowe (stacja nie handluje 20 min). \
+		5) Zniszcz flotę Syndykatu: dowódca może uciec z blizną i urazą, po 15–25 min wraca z nową flotą i poluje na okręt. \
+		6) Floty sztabów, magazyny i dowódcy przechodzą do następnej rundy."
+
+/datum/test_chamber_kit/pr_638/wojna/setup(list/spawned, list/turfs, turf/center, mob/user)
+	. = ..()
+	if(!user || !GLOB.hex_war)
+		return
+	var/obj/structure/overmap/main = SSstar_system.find_main_overmap()
+	var/datum/hex/here = main?.current_hex()
+	if(!here)
+		return
+	var/datum/hex/spot
+	for(var/datum/hex/H as anything in GLOB.hexmap.hexes_in_range(here, 2))
+		if(GLOB.hexmap.distance(here, H) == 2 && !H.system && !GLOB.hexmap.blocks(H))
+			spot = H
+			break
+	if(spot)
+		var/datum/fleet/F = GLOB.hex_war.launch_fleet("syndicate", GLOB.hexmap.system_for(spot))
+		if(F)
+			to_chat(user, "<span class='notice'>Flota [F.name] stoi dwa kafle od okrętu.</span>")
+	GLOB.hex_war.run_turn()

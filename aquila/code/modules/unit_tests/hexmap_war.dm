@@ -1,0 +1,276 @@
+// AQUILA - wojna frakcji na mapie hex (część D): obiekty, ekonomia z konwojami, sztab, dowódcy, zapis floty, mgła wojny.
+// The upstream assert macros are #undef'd at the end of code/modules/unit_tests/_unit_tests.dm, so this modular test carries its own copies
+#define TEST_ASSERT(assertion, reason) if (!(assertion)) { return Fail("Assertion failed: [reason || "No reason"]") }
+
+#define TEST_ASSERT_EQUAL(a, b, message) do { \
+	var/lhs = ##a; \
+	var/rhs = ##b; \
+	if (lhs != rhs) { \
+		return Fail("Expected [isnull(lhs) ? "null" : lhs] to be equal to [isnull(rhs) ? "null" : rhs].[message ? " [message]" : ""]"); \
+	} \
+} while (FALSE)
+
+/// Dwa widoczne układy z mapy w jednym sektorze, połączone trasą (do testów ekonomii i sztabu)
+/proc/hexmap_war_test_pair()
+	for(var/datum/star_system/A as anything in SSstar_system.systems)
+		if(!A.hex || A.hidden || istype(A, /datum/star_system/random) || length(A.fleets) || A.trader)
+			continue
+		for(var/datum/star_system/B as anything in SSstar_system.systems)
+			if(B == A || !B.hex || B.hidden || istype(B, /datum/star_system/random) || length(B.fleets) || B.trader)
+				continue
+			if(B.hex.sector != A.hex.sector || GLOB.hexmap.distance(A.hex, B.hex) > 6)
+				continue
+			if(GLOB.hexmap.route(A.hex, B.hex, "nanotrasen", 5000))
+				return list(A, B)
+
+/proc/hexmap_war_test_save(datum/star_system/S)
+	return list(S.owner, S.alignment, S.war_facilities, S.war_ore, S.war_parts, S.war_raided_until)
+
+/proc/hexmap_war_test_restore(datum/star_system/S, list/saved)
+	S.owner = saved[1]
+	S.alignment = saved[2]
+	S.war_facilities = saved[3]
+	S.war_ore = saved[4]
+	S.war_parts = saved[5]
+	S.war_raided_until = saved[6]
+
+/// Obiekty z makiety leżą przy układach, a stacja handlowa wynika z handlarza
+/datum/unit_test/hexmap_war_facilities
+
+/datum/unit_test/hexmap_war_facilities/Run()
+	var/placed = 0
+	for(var/datum/star_system/S as anything in SSstar_system.systems)
+		if(length(S.war_facilities))
+			placed++
+			for(var/id in S.war_facilities)
+				TEST_ASSERT(hex_facility_name(id), "[S] has an unknown facility [id]")
+		if(S.trader)
+			TEST_ASSERT(S.has_facility(HEX_FAC_TRADE), "[S] has a trader but no trade station")
+	var/datum/star_system/sol = SSstar_system.system_by_id("Sol")
+	if(sol) // mapa testowa może nie mieć tych układów
+		TEST_ASSERT(sol.has_facility(HEX_FAC_YARD) && sol.has_facility(HEX_FAC_HQ), "Sol lost its shipyard or headquarters")
+		TEST_ASSERT(placed >= 10, "Only [placed] systems have strategic facilities")
+
+/// Kopalnia daje rudę, a nadmiar rudy wyjeżdża konwojem do fabryki tej frakcji
+/datum/unit_test/hexmap_war_economy
+
+/datum/unit_test/hexmap_war_economy/Run()
+	var/list/pair = hexmap_war_test_pair()
+	if(!pair)
+		return // brak dwóch układów z trasą na tej mapie
+	var/datum/star_system/mine = pair[1]
+	var/datum/star_system/factory = pair[2]
+	var/list/saved_mine = hexmap_war_test_save(mine)
+	var/list/saved_factory = hexmap_war_test_save(factory)
+	mine.owner = "nanotrasen"
+	mine.alignment = "nanotrasen"
+	mine.war_facilities = list(HEX_FAC_MINE)
+	mine.war_ore = 5
+	factory.owner = "nanotrasen"
+	factory.alignment = "nanotrasen"
+	factory.war_facilities = list(HEX_FAC_FACTORY)
+	factory.war_ore = 0
+	factory.war_parts = 0
+	var/list/convoys_before = GLOB.hex_war.faction_fleets("nanotrasen", TRUE)
+	GLOB.hex_war.economy()
+	var/datum/fleet/convoy
+	for(var/datum/fleet/F as anything in GLOB.hex_war.faction_fleets("nanotrasen", TRUE) - convoys_before)
+		convoy = F
+	var/ore_left = mine.war_ore
+	var/fail
+	if(!convoy)
+		fail = "7 ore at a mine sent no convoy to the faction's factory"
+	else if(convoy.war_destination != factory)
+		fail = "The convoy went to [convoy.war_destination] instead of the factory in [factory]"
+	else if(ore_left != 1)
+		fail = "The mine kept [ore_left] ore after sending 6 (expected 1)"
+	else
+		convoy.current_system.fleets -= convoy
+		convoy.current_system = factory
+		factory.fleets += convoy
+		convoy.hex_war_deliver()
+		if(factory.war_ore != 6)
+			fail = "A delivered convoy left [factory.war_ore] ore at the factory instead of 6"
+	if(convoy && !QDELETED(convoy))
+		convoy.hex_war_dispose()
+	hexmap_war_test_restore(mine, saved_mine)
+	hexmap_war_test_restore(factory, saved_factory)
+	if(fail)
+		return Fail(fail)
+
+/// Sztab wysyła wolną flotę na słabo bronioną wrogą stocznię w zasięgu, a rozbitą flotę do depotu
+/datum/unit_test/hexmap_war_staff
+
+/datum/unit_test/hexmap_war_staff/Run()
+	var/list/pair = hexmap_war_test_pair()
+	if(!pair)
+		return
+	var/datum/star_system/home = pair[1]
+	var/datum/star_system/enemy = pair[2]
+	var/list/saved_home = hexmap_war_test_save(home)
+	var/list/saved_enemy = hexmap_war_test_save(enemy)
+	home.owner = "nanotrasen"
+	home.alignment = "nanotrasen"
+	home.war_facilities = list(HEX_FAC_DEPOT)
+	enemy.owner = "syndicate"
+	enemy.alignment = "syndicate"
+	enemy.war_facilities = list(HEX_FAC_YARD, HEX_FAC_FACTORY)
+	var/datum/fleet/F = home.spawn_fleet(/datum/fleet/nanotrasen/light, 2)
+	F.hex_war_adopt()
+	F.commander.traits -= list("fanatic", "coward") // fanatyk nie wraca do depotu
+	var/fail
+	GLOB.hex_war.offensive("nanotrasen", list(F))
+	if(F.war_order != HEX_ORDER_ATTACK)
+		fail = "A free fleet did not attack an undefended enemy shipyard [GLOB.hexmap.war_distance(home.hex, enemy.hex)] hexes away"
+	if(!fail)
+		for(var/obj/structure/overmap/OM as anything in F.all_ships)
+			OM.obj_integrity = OM.max_integrity * 0.1
+		F.hex_war_set_order(HEX_ORDER_IDLE)
+		F.current_system.fleets -= F
+		F.current_system = enemy
+		enemy.fleets += F
+		GLOB.hex_war.staff("nanotrasen")
+		if(F.war_order != HEX_ORDER_REPAIR || F.war_target != home)
+			fail = "A fleet at 10% strength got [F.war_order] ([F.war_target]) instead of going to the depot in [home]"
+	if(fail)
+		F.commander = null
+	F.hex_war_dispose()
+	hexmap_war_test_restore(home, saved_home)
+	hexmap_war_test_restore(enemy, saved_enemy)
+	if(fail)
+		return Fail(fail)
+
+/// Dowódca: awans po zwycięstwach, a po utracie floty ucieczka z blizną (słabość zamienia się w zaletę) i urazą
+/datum/unit_test/hexmap_war_commander
+
+/datum/unit_test/hexmap_war_commander/Run()
+	var/datum/hex_commander/C = GLOB.hex_war.new_commander("syndicate")
+	GLOB.hex_war.commanders -= C
+	C.rank = 0
+	C.traits = list("thin_hull", "aggressive")
+	C.add_win()
+	C.add_win()
+	TEST_ASSERT_EQUAL(C.rank, 1, "Two wins did not promote a captain")
+	var/escaped = FALSE
+	for(var/i in 1 to 100)
+		C.status = HEX_CMD_ACTIVE
+		C.traits = list("thin_hull", "aggressive")
+		C.scars = list()
+		C.grudge = 0
+		C.fleet_lost(TRUE)
+		if(C.status == HEX_CMD_WOUNDED)
+			escaped = TRUE
+			break
+		TEST_ASSERT_EQUAL(C.status, HEX_CMD_DEAD, "A commander who lost his fleet is neither wounded nor dead")
+	TEST_ASSERT(escaped, "A commander never escaped in 100 lost fleets")
+	TEST_ASSERT(!C.has_trait("thin_hull") && C.has_trait("armored"), "The weakness did not turn into a scar: [english_list(C.traits)]")
+	TEST_ASSERT_EQUAL(length(C.scars), 1, "The scar was not recorded")
+	TEST_ASSERT_EQUAL(C.grudge, 1, "Losing to the player's ship gave no grudge")
+	TEST_ASSERT(C.return_at > world.time, "A wounded commander has no return time")
+	TEST_ASSERT(hex_commander_defence(null, null) == 1, "A fleet without a commander got a defence modifier")
+
+/// Flota sztabu przechodzi przez zapis kampanii z tą samą liczbą okrętów, rozkazem i dowódcą
+/datum/unit_test/hexmap_war_save_fleet
+
+/datum/unit_test/hexmap_war_save_fleet/Run()
+	var/list/pair = hexmap_war_test_pair()
+	if(!pair)
+		return
+	var/datum/star_system/home = pair[1]
+	var/datum/star_system/target = pair[2]
+	var/datum/fleet/F = home.spawn_fleet(/datum/fleet/nanotrasen/light, 2)
+	F.hex_war_adopt()
+	F.hex_war_set_order(HEX_ORDER_DEFEND, target)
+	var/ships = F.hex_war_ship_count()
+	var/datum/hex_commander/C = F.commander
+	var/list/entry
+	for(var/list/candidate in GLOB.hex_war.serialize()["fleets"])
+		if(candidate["commander"] == C.id)
+			entry = candidate
+	F.commander = null
+	F.hex_war_dispose()
+	TEST_ASSERT(entry, "The war save has no entry for an adopted fleet")
+	var/list/by_id = list("[C.id]" = C)
+	var/list/before = home.fleets.Copy()
+	GLOB.hex_war.restore_fleet(entry, by_id)
+	var/datum/fleet/restored
+	for(var/datum/fleet/R as anything in home.fleets - before)
+		restored = R
+	TEST_ASSERT(restored, "The saved fleet did not come back")
+	var/restored_ships = restored.hex_war_ship_count()
+	var/restored_order = restored.war_order
+	var/restored_target = restored.war_target
+	var/restored_commander = restored.commander
+	restored.commander = null
+	restored.hex_war_dispose()
+	GLOB.hex_war.commanders -= C
+	TEST_ASSERT_EQUAL(restored_ships, ships, "The restored fleet has another ship count")
+	TEST_ASSERT_EQUAL(restored_order, HEX_ORDER_DEFEND, "The restored fleet lost its order")
+	TEST_ASSERT_EQUAL(restored_target, target, "The restored fleet lost its target")
+	TEST_ASSERT_EQUAL(restored_commander, C, "The restored fleet lost its commander")
+
+/// Regresja: konwój bez wyznaczonego kursu (plotted_course = FALSE) dochodzi do celu i rozładowuje się bez runtime'u
+/datum/unit_test/hexmap_war_convoy_arrival
+
+/datum/unit_test/hexmap_war_convoy_arrival/Run()
+	var/list/pair = hexmap_war_test_pair()
+	if(!pair)
+		return
+	var/datum/star_system/from = pair[1]
+	var/datum/star_system/dest = pair[2]
+	var/datum/hex/goal = dest.hex
+	var/datum/hex/next
+	for(var/datum/hex/N as anything in GLOB.hexmap.neighbours(goal))
+		if(!N.system && N.terrain == HEX_TERRAIN_EMPTY)
+			next = N
+			break
+	if(!next)
+		return
+	var/list/saved_from = hexmap_war_test_save(from)
+	var/list/saved_dest = hexmap_war_test_save(dest)
+	from.owner = "nanotrasen"
+	from.alignment = "nanotrasen"
+	dest.owner = "nanotrasen"
+	dest.alignment = "nanotrasen"
+	dest.war_ore = 0
+	var/datum/star_system/start = GLOB.hexmap.system_for(next)
+	var/sent = GLOB.hex_war.send_convoy(start, "nanotrasen", "ore", 6, null, dest)
+	var/datum/fleet/convoy
+	for(var/datum/fleet/F as anything in start.fleets)
+		if(F.war_cargo)
+			convoy = F
+	var/fail
+	if(!sent || !convoy)
+		fail = "No convoy was sent next to [dest]"
+	else
+		convoy.plotted_course = FALSE
+		convoy.last_encounter_time = 0
+		convoy.move(null, TRUE)
+		if(!QDELETED(convoy))
+			fail = "A convoy one hex from its destination did not arrive and unload (now in [convoy.current_system])"
+			convoy.hex_war_dispose()
+		else if(dest.war_ore != 6)
+			fail = "The convoy unloaded [dest.war_ore] ore instead of 6"
+	hexmap_war_test_restore(from, saved_from)
+	hexmap_war_test_restore(dest, saved_dest)
+	if(fail)
+		return Fail(fail)
+
+/// Mgła wojny: kafel okrętu i jego otoczenie są widoczne, sojusznicza flota nigdy nie jest „ostatnio widziana”
+/datum/unit_test/hexmap_war_fog
+
+/datum/unit_test/hexmap_war_fog/Run()
+	var/obj/structure/overmap/ship = SSstar_system.find_main_overmap()
+	var/datum/hex/here = ship?.current_hex()
+	if(!here)
+		return // okręt w locie albo poza mapą
+	var/list/visible = hex_fog_visible(ship)
+	TEST_ASSERT(visible[here], "The ship does not see its own hex")
+	for(var/datum/hex/H as anything in GLOB.hexmap.hexes_in_range(here, HEX_FOG_SHIP))
+		TEST_ASSERT(visible[H], "The ship does not see [H.id], [GLOB.hexmap.distance(here, H)] hexes away")
+	for(var/list/entry in hex_fog_fleet_data(ship))
+		if(hex_factions_allied(ship.faction, entry["alignment"]))
+			TEST_ASSERT(!entry["ghost"], "An allied fleet is shown at its last known position")
+
+#undef TEST_ASSERT
+#undef TEST_ASSERT_EQUAL

@@ -57,3 +57,6 @@
 	var/list/save = campaign_reset_pending ? null : hexmap_read_save(HEXMAP_SAVE_PATH)
 	GLOB.hexmap.generate_terrain(save?["terrain"])
 	GLOB.hexmap.start_terrain_timers()
+	GLOB.hexmap.place_facilities()
+	GLOB.hex_war = new
+	GLOB.hex_war.setup(save?["war"])

@@ -64,6 +64,56 @@
 /// Znacznik w puli kafla: wadliwa SI z istniejącej SI zamiast eventu
 #define HEX_POOL_MALF "malf"
 
+/// Wojna frakcji (część D): sztaby, ekonomia i depoty co tyle
+#define HEX_WAR_TICK (5 MINUTES)
+/// Pierwsze przejęcie flot ze startu rundy: po spawnie losowych flot układów (generate_anomaly po 15 s)
+#define HEX_WAR_SETUP_DELAY (30 SECONDS)
+/// Najwięcej flot sztabu na frakcję (bez konwojów)
+#define HEX_WAR_MAX_FLEETS 5
+#define HEX_WAR_MAX_PIRATE_FLEETS 3
+/// Najwięcej konwojów naraz na frakcję
+#define HEX_WAR_MAX_CONVOYS 2
+/// Stacja handlowa po napadzie piratów nie handluje przez tyle
+#define HEX_WAR_RAID_TIME (20 MINUTES)
+/// Ranny dowódca wraca z nową flotą po tylu minutach
+#define HEX_WAR_RETURN_MIN (15 MINUTES)
+#define HEX_WAR_RETURN_MAX (25 MINUTES)
+/// Zasięg sztabu: cele i floty dalej niż tyle kafli nie wchodzą w plan
+#define HEX_WAR_REACH 8
+/// Natarcie tylko przy takiej przewadze sił
+#define HEX_WAR_ADVANTAGE 1.2
+
+/// Obiekty strategiczne układów
+#define HEX_FAC_MINE "mine"
+#define HEX_FAC_FACTORY "factory"
+#define HEX_FAC_YARD "yard"
+#define HEX_FAC_DEPOT "depot"
+#define HEX_FAC_POST "post"
+#define HEX_FAC_HQ "hq"
+#define HEX_FAC_TRADE "trade"
+
+/// Rozkazy flot sztabu
+#define HEX_ORDER_IDLE "idle"
+#define HEX_ORDER_HOLD "hold"
+#define HEX_ORDER_DEFEND "defend"
+#define HEX_ORDER_ATTACK "attack"
+#define HEX_ORDER_ESCORT "escort"
+#define HEX_ORDER_REPAIR "repair"
+#define HEX_ORDER_RAID "raid"
+#define HEX_ORDER_HOME "home"
+#define HEX_ORDER_HUNT "hunt"
+#define HEX_ORDER_CONVOY "convoy"
+
+/// Los dowódcy
+#define HEX_CMD_ACTIVE "active"
+#define HEX_CMD_WOUNDED "wounded"
+#define HEX_CMD_DEAD "dead"
+
+/// Mgła wojny: zasięg widoku w kaflach
+#define HEX_FOG_SHIP 3
+#define HEX_FOG_ALLY 1
+#define HEX_FOG_POST 3
+
 /// Zapis stanu mapy hex obok starmap.json
 #define HEXMAP_SAVE_PATH "config/starmap/hexmap.json"
 #define HEXMAP_SAVE_VERSION 1
