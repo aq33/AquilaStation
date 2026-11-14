@@ -137,6 +137,7 @@ GLOBAL_LIST_INIT(ship_power_presets, list(
 	var/datum/ship_power/ship_power
 
 /obj/structure/overmap/proc/get_ship_power()
+	RETURN_TYPE(/datum/ship_power)
 	if(!ship_power)
 		ship_power = new
 	return ship_power
