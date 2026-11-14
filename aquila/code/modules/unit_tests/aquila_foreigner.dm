@@ -83,7 +83,7 @@
 	// Spóźnione tłumaczenie po śmierci nie wychodzi (say() puściłby je na czat duchów)
 	heard_raw = null
 	foreigner.death()
-	foreigner.aq_translator_say("", FALSE, FALSE, list("Too late"), null, list(), /datum/language/english, list("Za późno"))
+	foreigner.aq_translator_say("", FALSE, FALSE, list("Too late"), null, list(), /datum/language/english, null, list("Za późno"))
 	TEST_ASSERT(isnull(heard_raw), "Dead foreigner still spoke the late translation: [heard_raw]")
 
 	UnregisterSignal(crew, COMSIG_MOVABLE_HEAR)

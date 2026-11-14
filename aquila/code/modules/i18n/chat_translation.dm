@@ -1,5 +1,6 @@
 // OOC, adminhelpy i PW z adminami zawsze w języku odbiorcy (haki z aquila/code/__HELPERS/chat_translation.dm).
-// OOC: odbiorca z innym językiem niż autor widzi samo tłumaczenie.
+// OOC: odbiorca z innym językiem niż autor od razu widzi oryginał z „…”, a gdy przyjdzie tłumaczenie, linijka zmienia się w nie
+// (live_translation.dm). Tłumaczenie z pamięci idzie od razu, a przy błędzie zostaje oryginał.
 // Adminhelp i PW: odbiorca widzi oryginał z dopiskiem tłumaczenia, żeby admin mógł sprawdzić, co gracz naprawdę napisał.
 // Admini czytają po polsku, więc adminhelp obcokrajowca idzie do nich z polskim tłumaczeniem.
 
@@ -58,13 +59,22 @@ GLOBAL_LIST_EMPTY(aq_chat_translation_failures)
 			readers += C
 	if(!length(readers))
 		return null
-	var/translated = aq_translate_wait(html_decode(raw_msg), from_english ? DEEPL_LANG_EN : DEEPL_LANG_PL, from_english ? DEEPL_LANG_PL : DEEPL_LANG_EN)
-	if(!translated)
+	var/source = html_decode(raw_msg)
+	var/source_lang = from_english ? DEEPL_LANG_EN : DEEPL_LANG_PL
+	var/target_lang = from_english ? DEEPL_LANG_PL : DEEPL_LANG_EN
+	var/text
+	var/cached = SStranslation.cache_get(source_lang, target_lang, source)
+	if(!isnull(cached))
+		text = sanitize(cached)
+	else if(SStranslation.will_request(list(source), source_lang, target_lang))
+		var/id = aq_live_translation_id()
+		text = aq_live_translation_wrap(raw_msg, id)
+		SStranslation.translate(list(source), source_lang, target_lang, CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(aq_ooc_live_translated), readers, id))
+	else
 		return null
-	translated = sanitize(translated)
 	. = list()
 	for(var/client/C as anything in readers)
-		.[C] = translated
+		.[C] = text
 
 /client/aq_admin_msg_for(client/recipient, msg, sanitized = TRUE, html = FALSE)
 	var/from_english = wants_english()
