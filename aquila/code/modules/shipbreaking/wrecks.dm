@@ -176,6 +176,7 @@ GLOBAL_LIST_EMPTY(shipbreaker_templates)
 	var/obj/structure/overmap/asteroid/shipbreak_wreck/wreck = new(death_turf)
 	wreck.copy_ship(src)
 	current_system.add_ship(wreck, death_turf)
+	current_system.prune_shipbreak_wrecks() // najwyżej 8 wraków w systemie (overmap/modules/wreck_interiors.dm)
 	wreck.forceMove(death_turf) // add_ship rozrzuca w promieniu 15 pól, a wrak ma zostać tam, gdzie okręt zginął
 
 // Czasem w systemie dryfuje wrak bez walki
