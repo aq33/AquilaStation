@@ -472,7 +472,7 @@
 		for(var/mob/M as() in hearers)
 			if(M?.should_show_chat_message(speaker, message_language, TRUE))
 				clients += M.client
-		new /datum/chatmessage(handled_message, speaker, clients, message_language, list("emote"))
+		. = new /datum/chatmessage(handled_message, speaker, clients, message_language, list("emote")) // AQ EDIT - zwraca dymek (tłumaczenie na żywo podmienia go, aquila/code/modules/i18n/live_translation.dm)
 	else
 		//4 Possible chat message states:
 		//Show Icon, Understand (Most other languages)
@@ -502,16 +502,16 @@
 
 		//Show the correct message to people who should not see the icon but understand the language (SHORTEST)
 		if(LAZYLEN(hide_icon_understand))
-			new /datum/chatmessage(handled_message, speaker, hide_icon_understand, message_language, spans)
+			. = new /datum/chatmessage(handled_message, speaker, hide_icon_understand, message_language, spans) // AQ EDIT - zwraca dymek
 		//Show the correct message to people who don't understand the language but no icon should be displayed (SHORTEST)
 		if(LAZYLEN(hide_icon_scrambled))
-			new /datum/chatmessage(scrambled_message, speaker, hide_icon_scrambled, message_language, spans)
+			. = new /datum/chatmessage(scrambled_message, speaker, hide_icon_scrambled, message_language, spans) // AQ EDIT - zwraca dymek
 		//Show the correct message to people who should see the icon and understand the language (LONGEST)
 		if(LAZYLEN(show_icon_understand))
-			new /datum/chatmessage(handled_message, speaker, show_icon_understand, message_language, spans)
+			. = new /datum/chatmessage(handled_message, speaker, show_icon_understand, message_language, spans) // AQ EDIT - zwraca dymek
 		//Show the correct message to people who don't understand the language and should see the icon (LONGEST)
 		if(LAZYLEN(show_icon_scrambled))
-			new /datum/chatmessage(scrambled_message, speaker, show_icon_scrambled, message_language, spans)
+			. = new /datum/chatmessage(scrambled_message, speaker, show_icon_scrambled, message_language, spans) // AQ EDIT - zwraca dymek
 
 /**
   * Creates a message overlay at a defined location for a given speaker

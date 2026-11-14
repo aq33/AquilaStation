@@ -12,6 +12,10 @@ import { isTranslating, translateHtml } from 'tgui/i18n';
 import { createLogger } from 'tgui/logging';
 
 import {
+  applyAqTranslation,
+  MESSAGE_TYPE_AQ_TRANSLATION,
+} from './aqLiveTranslation'; // AQUILA EDIT - tłumaczenie na żywo
+import {
   COMBINE_MAX_MESSAGES,
   COMBINE_MAX_TIME_WINDOW,
   IMAGE_RETRY_DELAY,
@@ -429,6 +433,12 @@ class ChatRenderer {
     const countByType = {};
     let node;
     for (let payload of batch) {
+      // AQUILA EDIT START - tłumaczenie na żywo podmienia istniejącą linijkę zamiast dodawać nową
+      if (payload?.type === MESSAGE_TYPE_AQ_TRANSLATION) {
+        applyAqTranslation(this.messages, payload);
+        continue;
+      }
+      // AQUILA EDIT END
       const message = createMessage(payload);
       // Combine messages
       const combinable = this.getCombinableMessage(message);

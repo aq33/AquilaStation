@@ -218,14 +218,17 @@
 	if(!erase)
 		texts += html_decode(message)
 	log_talk(message, LOG_SAY, tag = "przed tłumaczeniem", custom_say_emote = emote)
-	SStranslation.translate(texts, DEEPL_LANG_EN, DEEPL_LANG_PL, CALLBACK(src, PROC_REF(aq_translator_say), prefix, !!emote, erase, texts, bubble_type, spans?.Copy(), language))
+	// Odpowiedź z API chwilę potrwa: w tym czasie nad głową wisi „…” (live_translation.dm)
+	var/datum/weakref/wait_bubble = SStranslation.will_request(texts, DEEPL_LANG_EN, DEEPL_LANG_PL) ? aq_translator_wait_bubble(message_mods) : null
+	SStranslation.translate(texts, DEEPL_LANG_EN, DEEPL_LANG_PL, CALLBACK(src, PROC_REF(aq_translator_say), prefix, !!emote, erase, texts, bubble_type, spans?.Copy(), language, wait_bubble))
 	return TRUE
 
 /**
  * Wypowiedź po tłumaczeniu (albo bez niego, gdy translations jest null). Język i własny czasownik idą prosto do message_mods
  * (aq_on_pre_say), a nie przez tekst z gwiazdką, więc gwiazdki w treści zostają, a czasownik nie wpada do treści.
  */
-/mob/living/proc/aq_translator_say(prefix, has_emote, erase, list/originals, bubble_type, list/spans, datum/language/language, list/translations)
+/mob/living/proc/aq_translator_say(prefix, has_emote, erase, list/originals, bubble_type, list/spans, datum/language/language, datum/weakref/wait_bubble, list/translations)
+	aq_remove_chat_bubble(wait_bubble)
 	// Martwy w trakcie zapytania: say() wysłałby mowę IC na czat duchów
 	if(QDELETED(src) || stat == DEAD)
 		return
@@ -276,6 +279,9 @@
 	var/emote = message_mods?[MODE_CUSTOM_SAY_EMOTE]
 	if(emote)
 		texts += html_decode(emote)
+	// Oryginał od razu, tłumaczenie potem w tym samym miejscu (live_translation.dm)
+	if(aq_hear_live(message, speaker, message_language, raw_message, radio_freq, spans, message_mods, texts))
+		return
 	SStranslation.translate(texts, DEEPL_LANG_PL, DEEPL_LANG_EN, CALLBACK(src, PROC_REF(aq_hear_translated), message, speaker, message_language, radio_freq, spans?.Copy(), message_mods ? message_mods.Copy() : list(), texts))
 
 /// Polska mowa po tłumaczeniu na angielski: czat (przez zwykłe Hear) i dymek nad głową.
@@ -289,14 +295,10 @@
 		message_mods[MODE_CUSTOM_SAY_EMOTE] = sanitize(texts[2])
 	message_mods[MODE_AQ_TRANSLATED] = TRUE
 	var/datum/language/shown_language = message_language == /datum/language/common ? /datum/language/english : message_language
-	// Flaga trwa także w create_chat_message(), które sprawdza dymek drugi raz (inaczej znany język antagonisty go blokuje)
-	aq_hearing_translation = TRUE
-	if(should_show_chat_message(speaker, shown_language, FALSE, is_heard = TRUE))
-		create_chat_message(speaker, shown_language, list(src), message_mods[MODE_CUSTOM_SAY_ERASE_INPUT] ? message_mods[MODE_CUSTOM_SAY_EMOTE] : heard, spans, message_mods)
-	aq_hearing_translation = FALSE
+	aq_translation_bubble(speaker, shown_language, message_mods[MODE_CUSTOM_SAY_ERASE_INPUT] ? message_mods[MODE_CUSTOM_SAY_EMOTE] : heard, spans, message_mods)
 	Hear(message, speaker, shown_language, heard, radio_freq, spans, message_mods)
 
-// Dymek z oryginałem nie wychodzi, bo zaraz przyjdzie przetłumaczony (aq_hear_translated)
+// Zwykły dymek nie wychodzi: oryginał z „…” albo tłumaczenie pokazuje aq_translation_bubble() (live_translation.dm)
 /mob/living/should_show_chat_message(atom/movable/speaker, datum/language/message_language, is_emote = FALSE, is_heard = FALSE)
 	if(!is_emote && aq_hears_via_translator(message_language))
 		return FALSE // CHATMESSAGE_CANNOT_HEAR
@@ -315,7 +317,8 @@
  * html to cała linijka, a message to treść wypowiedzi tak, jak w niej stoi (po sanitize).
  * Obcokrajowiec dostaje polską treść po angielsku, a Polak angielską treść obcokrajowca po polsku; reszta linijki zostaje.
  * Mowa obcokrajowca przetłumaczona już przy mówieniu (TRAIT_AQ_TRANSLATED_SPEECH na czas powtórki) liczy się jako polska.
- * Tłumaczenie jest asynchroniczne, a bez klucza API albo przy błędzie odbiorca dostaje oryginał.
+ * Oryginał przychodzi od razu, a tłumaczenie podmienia go w czacie (live_translation.dm). Z pamięci tłumaczeń linijka idzie od razu
+ * przetłumaczona, a bez klucza API albo przy błędzie zostaje oryginał.
  */
 /proc/aq_to_chat_speech(mob/target, html, message, atom/movable/speaker)
 	if(!target)
@@ -330,7 +333,15 @@
 		to_chat(target, html)
 		return
 	var/list/texts = list(html_decode(message))
-	SStranslation.translate(texts, from_english ? DEEPL_LANG_EN : DEEPL_LANG_PL, to_english ? DEEPL_LANG_EN : DEEPL_LANG_PL, CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(aq_to_chat_speech_translated), target, html, cut, length(message), texts))
+	var/source_lang = from_english ? DEEPL_LANG_EN : DEEPL_LANG_PL
+	var/target_lang = to_english ? DEEPL_LANG_EN : DEEPL_LANG_PL
+	// Oryginał od razu, tłumaczenie potem w tym samym miejscu (live_translation.dm)
+	if(SStranslation.will_request(texts, source_lang, target_lang))
+		var/id = aq_live_translation_id()
+		to_chat(target, "[copytext(html, 1, cut)][aq_live_translation_wrap(message, id)][copytext(html, cut + length(message))]")
+		SStranslation.translate(texts, source_lang, target_lang, CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(aq_to_chat_speech_live_translated), target, id))
+		return
+	SStranslation.translate(texts, source_lang, target_lang, CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(aq_to_chat_speech_translated), target, html, cut, length(message), texts))
 
 /// Linijka z kanału telepatycznego po tłumaczeniu: treść podmieniona w tym samym miejscu
 /proc/aq_to_chat_speech_translated(mob/target, html, cut, cut_length, list/originals, list/translations)
