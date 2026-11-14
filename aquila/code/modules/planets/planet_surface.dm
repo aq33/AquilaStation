@@ -91,6 +91,8 @@
 	for(var/turf/T as anything in all_turfs)
 		T.AfterChange(CHANGETURF_IGNORE_AIR)
 		CHECK_TICK
+	// Jak w Shiptest: najpierw główna ruina przy górnej krawędzi, potem lądowiska z dala od niej, potem małe ruiny
+	place_main_ruin()
 	make_landing_zones(inner)
 	place_ruins(inner)
 	generator.populate_turfs(inner, landing_zone_turfs)
@@ -118,7 +120,7 @@
 	for(var/i in 1 to PLANET_LANDING_ZONES)
 		var/turf/best
 		var/best_score = -1
-		for(var/attempt in 1 to 20)
+		for(var/attempt in 1 to 60)
 			var/turf/candidate = locate(bl.x + rand(min_coord, max_coord), bl.y + rand(min_coord, max_coord), bl.z)
 			var/too_close = FALSE
 			for(var/turf/other as anything in landing_zones)
@@ -128,9 +130,15 @@
 			if(too_close)
 				continue
 			var/score = 0
-			for(var/turf/T as anything in RANGE_TURFS(radius, candidate))
+			var/hits_ruin = FALSE
+			for(var/turf/T as anything in RANGE_TURFS(radius + 2, candidate))
+				if(T.flags_1 & NO_RUINS_1)
+					hits_ruin = TRUE
+					break
 				if(isopenturf(T) && !islava(T))
 					score++
+			if(hits_ruin)
+				continue
 			if(score > best_score)
 				best = candidate
 				best_score = score
@@ -163,7 +171,46 @@
 			T.change_area(old_area, surface_area)
 		CHECK_TICK
 
-/// Stawia ruiny z puli typu planety w środku kwadratu, z dala od lądowisk
+/// Główna ruina jak w Shiptest: jedna, losowa (z wagami), przy górnej krawędzi w losowym miejscu w poziomie. Mieści
+/// się każda ruina do szerokości wnętrza bez marginesów i do połowy jego wysokości.
+/datum/planet_surface/proc/place_main_ruin()
+	var/inner_size = PLANET_SURFACE_SIZE - 2 * PLANET_EDGE_WIDTH
+	var/list/available = list()
+	for(var/key in planet_type.get_ruin_templates())
+		var/datum/map_template/ruin/ruin = planet_type.get_ruin_templates()[key]
+		if(!istype(ruin) || ruin.unpickable || ruin.always_place || ruin.cost <= 0)
+			continue
+		if(ruin.width > inner_size - 12 || ruin.height > inner_size / 2)
+			continue
+		available[ruin] = ruin.placement_weight
+	if(!length(available))
+		return
+	var/datum/map_template/ruin/ruin = pickweight(available)
+	var/turf/bl = bottom_left()
+	var/low_x = bl.x + PLANET_EDGE_WIDTH + 6
+	var/high_x = bl.x + PLANET_SURFACE_SIZE - PLANET_EDGE_WIDTH - 6 - ruin.width
+	var/top_y = bl.y + PLANET_SURFACE_SIZE - PLANET_EDGE_WIDTH - 6 - ruin.height
+	var/turf/corner = locate(rand(low_x, max(low_x, high_x)), top_y, bl.z)
+	load_ruin(ruin, corner, FALSE)
+
+/// Wczytuje ruinę i oznacza jej pola (bez nowych roślin, zwierząt i lądowisk)
+/datum/planet_surface/proc/load_ruin(datum/map_template/ruin/ruin, turf/where, centered)
+	for(var/turf/T as anything in ruin.get_affected_turfs(where, centered))
+		for(var/atom/movable/AM as anything in T)
+			if(isanimal_or_basicmob(AM) || istype(AM, /obj/structure/flora) || istype(AM, /obj/structure/spawner))
+				qdel(AM)
+	ruin.load(where, centered = centered)
+	ruin.loaded++
+	for(var/turf/T as anything in ruin.get_affected_turfs(where, centered))
+		T.flags_1 |= NO_RUINS_1
+		// Ruiny Lavalandu mają kawałki pustkowi Lavalandu: na planecie to jej powierzchnia (światło, pogoda)
+		if(istype(T.loc, /area/lavaland/surface/outdoors) || istype(T.loc, /area/space))
+			var/area/old_area = T.loc
+			surface_area.contents += T
+			T.change_area(old_area, surface_area)
+	log_game("Planet [planet] ruin [ruin.name] placed at [AREACOORD(where)]")
+
+/// Małe ruiny z budżetu typu planety w wolnych miejscach, z dala od lądowisk i głównej ruiny
 /datum/planet_surface/proc/place_ruins(list/inner)
 	var/budget = planet_type.ruin_budget
 	if(budget <= 0)
@@ -201,20 +248,7 @@
 				break
 		if(!valid)
 			continue
-		for(var/turf/T as anything in affected)
-			for(var/atom/movable/AM as anything in T)
-				if(isanimal_or_basicmob(AM) || istype(AM, /obj/structure/flora) || istype(AM, /obj/structure/spawner))
-					qdel(AM)
-		ruin.load(central, centered = TRUE)
-		ruin.loaded++
-		for(var/turf/T as anything in ruin.get_affected_turfs(central, TRUE))
-			T.flags_1 |= NO_RUINS_1
-			// Ruiny Lavalandu mają kawałki pustkowi Lavalandu: na planecie to jej powierzchnia (światło, pogoda)
-			if(istype(T.loc, /area/lavaland/surface/outdoors) || istype(T.loc, /area/space))
-				var/area/old_area = T.loc
-				surface_area.contents += T
-				T.change_area(old_area, surface_area)
-		log_game("Planet [planet] ruin [ruin.name] placed at [AREACOORD(central)]")
+		load_ruin(ruin, central, TRUE)
 		return TRUE
 	return FALSE
 

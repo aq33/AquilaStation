@@ -1,8 +1,8 @@
 // AQUILA - planety z lądowaniem (aquila/code/modules/planets/)
 
-/// Bok kwadratu powierzchni planety w polach. Dwie planety mieszczą się obok siebie na jednym poziomie rezerwacji
-/// (użyteczne jest ok. 239 pól między krawędziami tranzytu), więc cztery planety zajmują jeden poziom Z
-#define PLANET_SURFACE_SIZE 117
+/// Bok kwadratu powierzchni planety w polach, jak w Shiptest (QUADRANT_MAP_SIZE). Na poziomie rezerwacji użyteczne jest
+/// ok. 239 pól między krawędziami tranzytu, więc każda odwiedzona planeta zajmuje własny poziom Z
+#define PLANET_SURFACE_SIZE 127
 /// Grubość niezniszczalnej krawędzi wokół powierzchni
 #define PLANET_EDGE_WIDTH 3
 /// Bok kwadratu lądowiska (jak w Bayu: 31 × 31)
