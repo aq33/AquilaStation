@@ -1,10 +1,10 @@
 /**
  * AQUILA: tłumaczenie na żywo (aquila/code/modules/i18n/live_translation.dm).
  *
- * Serwer wysyła najpierw zwykłą linijkę z oryginałem w znaczniku
+ * Serwer wysyła najpierw zwykłą linijkę z bełkotem (w OOC z oryginałem) w znaczniku
  * `<span class="aq-tr aq-tr-pending" data-aq-tr="id">`, a gdy tłumacz odpowie,
  * wiadomość `internal/aq_translation` z tym samym id i gotowym HTML-em
- * tłumaczenia (po sanitize na serwerze) albo z null, gdy się nie udało.
+ * tłumaczenia (po sanitize na serwerze; bez tłumaczenia oryginał zamiast bełkotu) albo z null (OOC zostaje jak było).
  * Panel podmienia treść znacznika z krótką animacją litera po literze i
  * zapisuje wynik w historii, więc po przebudowie czatu zostaje tłumaczenie.
  */
@@ -13,7 +13,7 @@ export const MESSAGE_TYPE_AQ_TRANSLATION = 'internal/aq_translation';
 
 const PENDING_CLASS = 'aq-tr-pending';
 /** Czas całej animacji i jednej klatki (ms) */
-const MORPH_DURATION = 500;
+const MORPH_DURATION = 800;
 const MORPH_FRAME = 50;
 /** Ile znaków przed miejscem odsłonięcia miga losowymi literami */
 const MORPH_SCRAMBLE = 3;
@@ -56,7 +56,7 @@ const rewriteHtml = (html: string, payload: TranslationPayload) => {
   return template.innerHTML;
 };
 
-/** Oryginał przechodzi w tłumaczenie od lewej, z kilkoma migającymi literami na granicy */
+/** Bełkot przechodzi w tłumaczenie od lewej, z kilkoma migającymi literami na granicy */
 const morph = (element: Element, html: string) => {
   const source = element.textContent || '';
   const target = htmlToText(html);

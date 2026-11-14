@@ -56,14 +56,14 @@
 	foreigner.aq_translate_heard("", crew, /datum/language/common, "Dzień dobry.", null, list(), list())
 	TEST_ASSERT(heard_raw == "Good morning.", "Cached translation was not heard at once: [heard_raw]")
 
-	// Na żywo: oryginał od razu, w Angielskim, którego obcokrajowiec nie musi rozumieć po polsku
+	// Na żywo: od razu bełkot w miejscu treści, w Angielskim (bez ikony języka)
 	heard_raw = null
 	var/datum/translation_job/job = fake_job("Cześć.")
 	TEST_ASSERT(SStranslation.will_request(list("Cześć."), DEEPL_LANG_PL, DEEPL_LANG_EN), "Uncached text with a key would not go to the API")
 	foreigner.aq_translate_heard("", crew, /datum/language/common, "Cześć.", null, list(), list())
-	TEST_ASSERT(heard_raw == "Cześć.", "Original was not heard before the translation: [heard_raw]")
-	TEST_ASSERT(heard_language == /datum/language/english, "Original came in a language the foreigner does not read: [heard_language]")
-	TEST_ASSERT(heard_mods?[MODE_AQ_TRANSLATED], "Original went back to the translator (no MODE_AQ_TRANSLATED)")
+	TEST_ASSERT(length(heard_raw) && heard_raw != "Cześć.", "Gibberish was not heard before the translation: [heard_raw]")
+	TEST_ASSERT(heard_language == /datum/language/english, "Gibberish came in a language the foreigner does not read: [heard_language]")
+	TEST_ASSERT(heard_mods?[MODE_AQ_TRANSLATED], "Gibberish went back to the translator (no MODE_AQ_TRANSLATED)")
 	TEST_ASSERT(length(job.callbacks) == 1, "Live hearing did not wait for the translation: [length(job.callbacks)] callbacks")
 	TEST_ASSERT(isnull(foreigner.aq_live_wrap_id), "Wrap id stayed set after hearing")
 
@@ -72,13 +72,13 @@
 	finish_job(job, list("Hi."))
 	TEST_ASSERT(heard_raw == "Hi.", "Translation of an unwrapped line was not heard: [heard_raw]")
 
-	// Błąd API: nic więcej nie przychodzi, oryginał już był
+	// Błąd API: zamiast bełkotu przychodzi oryginał
 	heard_raw = null
 	job = fake_job("Na razie.")
 	foreigner.aq_translate_heard("", crew, /datum/language/common, "Na razie.", null, list(), list())
 	heard_raw = null
 	finish_job(job, null)
-	TEST_ASSERT(isnull(heard_raw), "Failed translation sent another line: [heard_raw]")
+	TEST_ASSERT(heard_raw == "Na razie.", "Failed translation did not fall back to the original: [heard_raw]")
 
 	// Owinięcie treści w linijce, także z formatowaniem mowy
 	foreigner.aq_live_wrap_id = "aqtr-test"

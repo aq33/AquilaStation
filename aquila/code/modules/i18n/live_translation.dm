@@ -1,6 +1,8 @@
-// Tłumaczenie na żywo: odbiorca od razu widzi oryginał z „…”, a gdy DeepL odpowie, ta sama linijka w czacie
-// zamienia się w tłumaczenie (panel: tgui/packages/tgui-panel/chat/aqLiveTranslation.ts), a dymek nad głową w przetłumaczony.
-// Przy błędzie, braku odpowiedzi albo przepełnionej kolejce zostaje oryginał. Tekst z pamięci tłumaczeń idzie od razu przetłumaczony.
+// Tłumaczenie na żywo: w mowie (słyszenie obcokrajowca, kanały telepatyczne) odbiorca od razu widzi bełkot języka z „…”,
+// a gdy DeepL odpowie, bełkot w tej samej linijce czatu przechodzi animacją w tłumaczenie (panel: tgui/packages/tgui-panel/chat/aqLiveTranslation.ts),
+// a dymek nad głową zmienia się w przetłumaczony. W OOC zamiast bełkotu stoi oryginał.
+// Przy błędzie, braku odpowiedzi albo przepełnionej kolejce bełkot przechodzi w oryginał, a w OOC zostaje oryginał.
+// Tekst z pamięci tłumaczeń idzie od razu przetłumaczony.
 // Korzystają z tego: słyszenie obcokrajowca (foreigner.dm), kanały telepatyczne (aq_to_chat_speech) i OOC (chat_translation.dm).
 // Mowa samego obcokrajowca dalej czeka na tłumaczenie, a w tym czasie nad jego głową wisi dymek „…”.
 
@@ -12,9 +14,9 @@ GLOBAL_VAR_INIT(aq_live_translation_count, 0)
 GLOBAL_VAR_INIT(aq_live_translation_prefix, "[world.timeofday]-[rand(1000, 9999)]")
 
 /mob/living
-	/// Na czas Hear() z oryginałem: identyfikator, którym compose_message() owija treść w linijce czatu
+	/// Na czas Hear() z bełkotem: identyfikator, którym compose_message() owija treść w linijce czatu
 	var/aq_live_wrap_id
-	/// Treść do owinięcia (raw_message tej wypowiedzi)
+	/// Treść do owinięcia (bełkot, który idzie jako raw_message)
 	var/aq_live_wrap_text
 	/// compose_message() znalazło treść w linijce i ją owinęło
 	var/aq_live_wrapped = FALSE
@@ -22,16 +24,21 @@ GLOBAL_VAR_INIT(aq_live_translation_prefix, "[world.timeofday]-[rand(1000, 9999)
 /proc/aq_live_translation_id()
 	return "aqtr-[GLOB.aq_live_translation_prefix]-[++GLOB.aq_live_translation_count]"
 
-/// Oryginał w znaczniku, który panel znajdzie po identyfikatorze, gdy przyjdzie tłumaczenie
+/// Treść (bełkot albo oryginał) w znaczniku, który panel znajdzie po identyfikatorze, gdy przyjdzie tłumaczenie
 /proc/aq_live_translation_wrap(html, id)
 	return "<span class=\"aq-tr aq-tr-pending\" data-aq-tr=\"[id]\">[html]</span>"
 
 /**
- * Wysyła panelowi wynik: HTML tłumaczenia (po sanitize) albo null, gdy się nie udało (panel zdejmuje „…” i zostawia oryginał).
+ * Wysyła panelowi wynik: HTML tłumaczenia albo oryginału (po sanitize) albo null, gdy w OOC się nie udało (panel zdejmuje „…” i zostawia oryginał).
  * Idzie przez SSchat jak zwykłe linijki, więc nie przepada i nie wyprzedza linijki, której dotyczy.
  */
 /proc/aq_live_translation_send(clients, id, translated_html)
 	SSchat.queue(clients, list("type" = AQ_LIVE_TRANSLATION_PANEL_TYPE, "id" = id, "html" = translated_html))
+
+/// Bełkot języka w miejscu treści, zanim przyjdzie tłumaczenie (sylaby jak u kogoś, kto języka nie zna)
+/proc/aq_live_translation_gibberish(language_type, text)
+	var/datum/language/language = GLOB.language_datum_instances[language_type]
+	return language ? language.scramble(text) : stars(text)
 
 /// TRUE, gdy tłumaczenie przyjdzie dopiero z API: jest klucz, a nie wszystko jest w pamięci (z pamięci callback rusza od razu)
 /datum/controller/subsystem/translation/proc/will_request(list/texts, source_lang, target_lang)
@@ -85,7 +92,7 @@ GLOBAL_VAR_INIT(aq_live_translation_prefix, "[world.timeofday]-[rand(1000, 9999)
 	return TRUE
 
 /**
- * Obcokrajowiec słyszy polską mowę: oryginał od razu w czacie (owinięty) i w dymku z „…”, tłumaczenie potem w tym samym miejscu.
+ * Obcokrajowiec słyszy polską mowę: bełkot od razu w czacie (owinięty) i w dymku z „…”, tłumaczenie potem w tym samym miejscu.
  * FALSE, gdy na żywo się nie da (własny czasownik, wszystko w pamięci, brak klucza) i trzeba czekać jak dotąd.
  */
 /mob/living/proc/aq_hear_live(message, atom/movable/speaker, datum/language/message_language, raw_message, radio_freq, list/spans, list/message_mods, list/texts)
@@ -94,12 +101,13 @@ GLOBAL_VAR_INIT(aq_live_translation_prefix, "[world.timeofday]-[rand(1000, 9999)
 	var/datum/language/shown_language = message_language == /datum/language/common ? /datum/language/english : message_language
 	var/list/mods = message_mods ? message_mods.Copy() : list()
 	mods[MODE_AQ_TRANSLATED] = TRUE
-	var/datum/weakref/bubble = aq_translation_bubble(speaker, shown_language, "[raw_message] …", spans, mods)
+	var/gibberish = aq_live_translation_gibberish(message_language, raw_message)
+	var/datum/weakref/bubble = aq_translation_bubble(speaker, shown_language, "[gibberish] …", spans, mods)
 	var/id = aq_live_translation_id()
 	aq_live_wrap_id = id
-	aq_live_wrap_text = raw_message
+	aq_live_wrap_text = gibberish
 	aq_live_wrapped = FALSE
-	Hear(message, speaker, shown_language, raw_message, radio_freq, spans, mods)
+	Hear(message, speaker, shown_language, gibberish, radio_freq, spans, mods)
 	var/wrapped = aq_live_wrapped
 	aq_live_wrap_id = null
 	aq_live_wrap_text = null
@@ -107,7 +115,8 @@ GLOBAL_VAR_INIT(aq_live_translation_prefix, "[world.timeofday]-[rand(1000, 9999)
 	SStranslation.translate(texts, DEEPL_LANG_PL, DEEPL_LANG_EN, CALLBACK(src, PROC_REF(aq_hear_live_translated), id, wrapped, bubble, message, speaker, shown_language, radio_freq, spans?.Copy(), mods, texts))
 	return TRUE
 
-/// Wynik dla aq_hear_live(): podmiana linijki i dymka. Gdy linijki nie dało się owinąć (głuchota, nietypowy format), tłumaczenie idzie nową linijką.
+/// Wynik dla aq_hear_live(): podmiana linijki i dymka, a bez tłumaczenia oryginał zamiast bełkotu.
+/// Gdy linijki nie dało się owinąć (głuchota, nietypowy format), wynik idzie nową linijką.
 /mob/living/proc/aq_hear_live_translated(id, wrapped, datum/weakref/bubble, message, atom/movable/speaker, datum/language/shown_language, radio_freq, list/spans, list/message_mods, list/originals, list/translations)
 	if(QDELETED(src))
 		return
@@ -116,14 +125,14 @@ GLOBAL_VAR_INIT(aq_live_translation_prefix, "[world.timeofday]-[rand(1000, 9999)
 		aq_translation_bubble(speaker, shown_language, heard, spans, message_mods)
 	if(wrapped)
 		if(client)
-			aq_live_translation_send(client, id, translations ? say_emphasis(heard) : null)
-	else if(translations && !QDELETED(speaker))
+			aq_live_translation_send(client, id, say_emphasis(heard))
+	else if(!QDELETED(speaker))
 		Hear(message, speaker, shown_language, heard, radio_freq, spans, message_mods)
 
-/// Linijka z kanału telepatycznego po tłumaczeniu na żywo
-/proc/aq_to_chat_speech_live_translated(mob/target, id, list/translations)
+/// Linijka z kanału telepatycznego po tłumaczeniu na żywo; bez tłumaczenia bełkot przechodzi w oryginał (message, już po sanitize)
+/proc/aq_to_chat_speech_live_translated(mob/target, id, message, list/translations)
 	if(target?.client)
-		aq_live_translation_send(target.client, id, translations ? sanitize(translations[1]) : null)
+		aq_live_translation_send(target.client, id, translations ? sanitize(translations[1]) : message)
 
 /// OOC po tłumaczeniu na żywo. Z opóźnieniem, bo przy przepełnionej kolejce null przychodzi od razu, jeszcze przed rozesłaniem linijek.
 /proc/aq_ooc_live_translated(list/readers, id, list/translations)

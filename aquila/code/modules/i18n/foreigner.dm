@@ -279,7 +279,7 @@
 	var/emote = message_mods?[MODE_CUSTOM_SAY_EMOTE]
 	if(emote)
 		texts += html_decode(emote)
-	// Oryginał od razu, tłumaczenie potem w tym samym miejscu (live_translation.dm)
+	// Bełkot od razu, tłumaczenie potem w tym samym miejscu (live_translation.dm)
 	if(aq_hear_live(message, speaker, message_language, raw_message, radio_freq, spans, message_mods, texts))
 		return
 	SStranslation.translate(texts, DEEPL_LANG_PL, DEEPL_LANG_EN, CALLBACK(src, PROC_REF(aq_hear_translated), message, speaker, message_language, radio_freq, spans?.Copy(), message_mods ? message_mods.Copy() : list(), texts))
@@ -317,8 +317,8 @@
  * html to cała linijka, a message to treść wypowiedzi tak, jak w niej stoi (po sanitize).
  * Obcokrajowiec dostaje polską treść po angielsku, a Polak angielską treść obcokrajowca po polsku; reszta linijki zostaje.
  * Mowa obcokrajowca przetłumaczona już przy mówieniu (TRAIT_AQ_TRANSLATED_SPEECH na czas powtórki) liczy się jako polska.
- * Oryginał przychodzi od razu, a tłumaczenie podmienia go w czacie (live_translation.dm). Z pamięci tłumaczeń linijka idzie od razu
- * przetłumaczona, a bez klucza API albo przy błędzie zostaje oryginał.
+ * Od razu przychodzi bełkot, a tłumaczenie podmienia go w czacie (live_translation.dm). Z pamięci tłumaczeń linijka idzie od razu
+ * przetłumaczona, bez klucza API zostaje oryginał, a przy błędzie bełkot przechodzi w oryginał.
  */
 /proc/aq_to_chat_speech(mob/target, html, message, atom/movable/speaker)
 	if(!target)
@@ -335,11 +335,12 @@
 	var/list/texts = list(html_decode(message))
 	var/source_lang = from_english ? DEEPL_LANG_EN : DEEPL_LANG_PL
 	var/target_lang = to_english ? DEEPL_LANG_EN : DEEPL_LANG_PL
-	// Oryginał od razu, tłumaczenie potem w tym samym miejscu (live_translation.dm)
+	// Bełkot od razu, tłumaczenie potem w tym samym miejscu (live_translation.dm)
 	if(SStranslation.will_request(texts, source_lang, target_lang))
 		var/id = aq_live_translation_id()
-		to_chat(target, "[copytext(html, 1, cut)][aq_live_translation_wrap(message, id)][copytext(html, cut + length(message))]")
-		SStranslation.translate(texts, source_lang, target_lang, CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(aq_to_chat_speech_live_translated), target, id))
+		var/gibberish = aq_live_translation_gibberish(from_english ? /datum/language/english : /datum/language/common, texts[1])
+		to_chat(target, "[copytext(html, 1, cut)][aq_live_translation_wrap(gibberish, id)][copytext(html, cut + length(message))]")
+		SStranslation.translate(texts, source_lang, target_lang, CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(aq_to_chat_speech_live_translated), target, id, message))
 		return
 	SStranslation.translate(texts, source_lang, target_lang, CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(aq_to_chat_speech_translated), target, html, cut, length(message), texts))
 
