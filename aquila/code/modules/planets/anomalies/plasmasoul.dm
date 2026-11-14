@@ -28,14 +28,6 @@
 /obj/effect/anomaly/plasmasoul/Initialize(mapload, new_lifespan)
 	. = ..()
 	pulse_delay = rand(pulse_delay * 0.5, pulse_delay * 1.5)
-	var/obj/item/assembly/signaler/anomaly/generic_core = aSignal
-	if(!generic_core || istype(generic_core, /obj/item/assembly/signaler/anomaly/plasmasoul))
-		return
-	aSignal = new /obj/item/assembly/signaler/anomaly/plasmasoul(src)
-	aSignal.code = generic_core.code
-	aSignal.anomaly_type = generic_core.anomaly_type
-	aSignal.set_frequency(generic_core.frequency)
-	qdel(generic_core)
 
 /obj/effect/anomaly/plasmasoul/anomalyEffect(delta_time)
 	..()
@@ -94,8 +86,3 @@
 	icon = 'aquila/icons/planets/anomalies.dmi'
 	icon_state = "plasmasoul core"
 	anomaly_type = /obj/effect/anomaly/plasmasoul
-
-// Punkty badań są przypisane do dokładnego typu przedmiotu, więc rdzeń duszy plazmy dostaje tyle samo co ogólny
-/datum/controller/subsystem/research/Initialize()
-	techweb_point_items[/obj/item/assembly/signaler/anomaly/plasmasoul] = list(TECHWEB_POINT_TYPE_GENERIC = 10000)
-	return ..()

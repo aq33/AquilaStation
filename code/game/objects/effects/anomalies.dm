@@ -42,8 +42,11 @@
 	START_PROCESSING(SSobj, src)
 	impact_area = get_area(src)
 
-	aSignal = new(src)
-	aSignal.name = "rdzeń anomalii: [name]"
+	// AQ EDIT START - rdzeń własnego typu: new() bez typu brał zadeklarowany typ zmiennej, czyli zawsze ogólny rdzeń
+	aSignal = new aSignal(src)
+	if(aSignal.type == /obj/item/assembly/signaler/anomaly)
+		aSignal.name = "rdzeń anomalii: [name]"
+	// AQ EDIT END
 	aSignal.code = rand(1,100)
 	aSignal.anomaly_type = type
 
