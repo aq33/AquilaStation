@@ -514,6 +514,10 @@
 	TEST_ASSERT(!hex_random_event_allowed(dust), "SSevents can still roll an environment event from the tiles")
 	TEST_ASSERT(hex_random_event_allowed(grid), "SSevents can no longer roll a ship event")
 	TEST_ASSERT(!hex_random_event_allowed(blob), "SSevents can still roll a midround antagonist")
+	var/datum/round_event_control/clown = hex_event_control(/datum/round_event_control/floor_cluwne)
+	var/datum/round_event_control/zombies = hex_event_control(/datum/round_event_control/zombie_outbreak)
+	TEST_ASSERT(!clown || !hex_random_event_allowed(clown), "SSevents can still roll the floor clown")
+	TEST_ASSERT(!zombies || !hex_random_event_allowed(zombies), "SSevents can still roll a zombie outbreak")
 
 	// Minuta startu nie liczy się na kaflu, minimum graczy tak
 	var/saved_start = dust.earliest_start

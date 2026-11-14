@@ -102,6 +102,8 @@ GLOBAL_LIST_EMPTY(hex_terrains)
 		/datum/round_event_control/pirates,
 		/datum/round_event_control/revenant,
 		/datum/round_event_control/shadow_demon,
+		/datum/round_event_control/obsessed,
+		/datum/round_event_control/ninja,
 	)
 
 /datum/hex_terrain/electrical
@@ -200,6 +202,7 @@ GLOBAL_LIST_EMPTY(hex_terrains)
 		/datum/round_event_control/paradox_clone,
 		/datum/round_event_control/portal_storm_kurwinox,
 		/datum/round_event_control/portal_storm_syndicate,
+		/datum/round_event_control/obsessed,
 	)
 
 /datum/hex_terrain/gravity
@@ -301,6 +304,7 @@ GLOBAL_LIST_EMPTY(hex_terrains)
 		/datum/round_event_control/horror,
 		/datum/round_event_control/morph,
 		/datum/round_event_control/paradox_clone,
+		/datum/round_event_control/ninja,
 	)
 
 /datum/hex

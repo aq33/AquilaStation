@@ -68,12 +68,20 @@ GLOBAL_VAR_INIT(hex_last_ship_event, 0)
 		env_types -= path
 	return env_types
 
+/// Eventy, których na mapie hex nie ma wcale: ani z kafli, ani statkowych (decyzje użytkownika 14.11)
+/proc/hex_disabled_events()
+	var/static/list/disabled = list(
+		/datum/round_event_control/zombie_outbreak = TRUE,
+		/datum/round_event_control/floor_cluwne = TRUE,
+	)
+	return disabled
+
 /// Czy SSevents może wylosować ten event (hook AQ EDIT w spawnEvent())
 /proc/hex_random_event_allowed(datum/round_event_control/E)
 	var/is_antag = hex_midround_antag_events()[E.type]
 	if(!GLOB.hexmap?.built)
 		return TRUE
-	return !is_antag && !hex_tile_environment_events()[E.type]
+	return !is_antag && !hex_tile_environment_events()[E.type] && !hex_disabled_events()[E.type]
 
 /datum/controller/subsystem/events/spawnEvent()
 	. = ..()
