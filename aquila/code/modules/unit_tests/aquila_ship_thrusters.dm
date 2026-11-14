@@ -9,7 +9,7 @@
 	} \
 } while (FALSE)
 
-/// AQUILA - dysze okrętowe: ciąg statku zależy od dysz, które mają prąd, paliwo w zbiornikach statku i nie są rozbite
+/// AQUILA - dysze okrętowe: ciąg statku zależy od dysz, które mają prąd, plazmę w podgrzewaczach za sobą i nie są rozbite
 /datum/unit_test/ship_thrusters
 	var/datum/turf_reservation/site
 	var/obj/machinery/ship_thruster/large/thruster
@@ -17,16 +17,12 @@
 	var/obj/structure/overmap/ship
 	var/old_design
 	var/old_forward
-	var/list/old_tanks
-	var/old_tanks_refresh
 
 /datum/unit_test/ship_thrusters/Run()
 	ship = SSstar_system.find_main_overmap()
 	TEST_ASSERT(ship, "No main ship to attach the thruster to")
 	old_design = ship.engine_thrust_design
 	old_forward = ship.last_thrust_forward
-	old_tanks = ship.engine_fuel_tanks
-	old_tanks_refresh = ship.engine_fuel_tanks_refresh
 
 	// Statek bez dysz okrętowych ma pełny ciąg, a przy samych zepsutych dyszach zostaje ciąg awaryjny
 	ship.engine_thrust_design = 0
@@ -48,45 +44,42 @@
 	for(var/turf/T as anything in block(locate(x0, y0, z), locate(x0 + 5, y0 + 2, z)))
 		T.ChangeTurf(/turf/open/floor/plasteel)
 
-	// Zbiornik zbudowany w trakcie rundy nie daje darmowej plazmy
-	tank = new(locate(x0 + 4, y0, z))
+	// Dysza 2x2 z wylotem na zachód, podgrzewacz dwa kafle za nią (jak za ścianą rufy)
+	tank = new(locate(x0 + 3, y0 + 1, z))
 	var/datum/gas_mixture/air_contents = tank.airs[1]
-	TEST_ASSERT_EQUAL(air_contents.get_moles(tank.gas_type), 0, "A fuel tank built mid-round came with free plasma")
+	TEST_ASSERT_EQUAL(air_contents.get_moles(tank.gas_type), 0, "A heater built mid-round came with free plasma")
 	air_contents.set_moles(tank.gas_type, 100)
-	// Zbiornik stoi poza statkiem (rezerwacja), więc podpinamy go do statku na czas testu
-	ship.engine_fuel_tanks = list(tank)
-	ship.engine_fuel_tanks_refresh = world.time + 1 HOURS
-	TEST_ASSERT_EQUAL(ship.get_engine_fuel(), 100, "The ship doesn't see the plasma in its fuel tank")
-
 	thruster = new(locate(x0, y0, z))
 	thruster.link_to_ship(ship)
 	thruster.set_machine_stat(thruster.machine_stat & ~NOPOWER)
+	TEST_ASSERT(tank in thruster.get_heaters(), "The thruster doesn't find the heater two tiles behind it")
+	TEST_ASSERT_EQUAL(thruster.get_fuel(), 100, "The thruster doesn't see the plasma in its heater")
 	var/design_with_ours = ship.engine_thrust_design
 	TEST_ASSERT(design_with_ours >= thruster.thrust_power, "The registered thruster isn't counted in the ship's design thrust")
 
 	thruster.process(2)
-	TEST_ASSERT(thruster.can_fire, "A powered thruster on a fuelled ship can't fire")
+	TEST_ASSERT(thruster.can_fire, "A powered thruster with a fuelled heater can't fire")
 	var/active_with_ours = ship.engine_thrust_active
 
 	// Paliwo schodzi tylko przy ciągu
 	thruster.process(2)
-	TEST_ASSERT_EQUAL(ship.get_engine_fuel(), 100, "The thruster burned plasma while the ship wasn't thrusting")
+	TEST_ASSERT_EQUAL(thruster.get_fuel(), 100, "The thruster burned plasma while the ship wasn't thrusting")
 	ship.last_thrust_forward = 1
 	thruster.process(2)
 	ship.last_thrust_forward = old_forward
-	TEST_ASSERT_EQUAL(round(ship.get_engine_fuel(), 0.01), round(100 - thruster.fuel_per_second * 2, 0.01), "The thruster didn't burn plasma while the ship was thrusting")
+	TEST_ASSERT(abs((thruster.get_fuel()) - (100 - thruster.fuel_per_second * 2)) < 0.01, "The thruster didn't burn plasma while the ship was thrusting")
 
 	// Bez plazmy dysza nie odpala i statek traci jej ciąg, ale nie ciąg projektowy
 	air_contents.set_moles(tank.gas_type, 0)
 	thruster.process(2)
-	TEST_ASSERT(!thruster.can_fire, "A thruster can still fire with empty fuel tanks")
+	TEST_ASSERT(!thruster.can_fire, "A thruster can still fire with an empty heater")
 	TEST_ASSERT_EQUAL(ship.engine_thrust_active, active_with_ours - thruster.thrust_power, "An unfuelled thruster still gives the ship thrust")
 	TEST_ASSERT_EQUAL(ship.engine_thrust_design, design_with_ours, "An unfuelled thruster lowered the ship's design thrust")
 
-	// Rozkręcony zbiornik nie daje paliwa
+	// Rozkręcony podgrzewacz nie daje paliwa
 	air_contents.set_moles(tank.gas_type, 100)
 	tank.panel_open = TRUE
-	TEST_ASSERT_EQUAL(ship.get_engine_fuel(), 0, "A fuel tank with an open panel still feeds the thrusters")
+	TEST_ASSERT_EQUAL(thruster.get_fuel(), 0, "A heater with an open panel still feeds the thruster")
 	tank.panel_open = FALSE
 
 	// Zniszczona dysza zostaje jako wrak i po naprawie znowu działa
@@ -102,13 +95,43 @@
 	TEST_ASSERT(thruster.can_fire, "A repaired thruster can't fire")
 	TEST_ASSERT_EQUAL(thruster.obj_integrity, thruster.max_integrity, "A repaired thruster isn't at full integrity")
 
+	// Mieszanka: czysta plazma daje pełny ciąg, utleniacz dokłada premię do limitu, nadmiar nie daje więcej
+	TEST_ASSERT_EQUAL(ship_thruster_mix_quality(1, 1, 0), 1, "Pure plasma doesn't give full thrust")
+	TEST_ASSERT(abs((ship_thruster_mix_quality(1, 1, 1)) - (1.15)) < 0.001, "Half the ideal oxygen doesn't give half the bonus")
+	TEST_ASSERT(abs((ship_thruster_mix_quality(1, 1, 2)) - (1.3)) < 0.001, "Plasma with ideal oxygen doesn't give the full bonus")
+	TEST_ASSERT(abs((ship_thruster_mix_quality(1, 1, 4)) - (1.3)) < 0.001, "Extra oxygen gives more than the full bonus")
+	TEST_ASSERT(abs((ship_thruster_mix_quality(1, 1.15, 2)) - (1.495)) < 0.001, "Tritium with ideal oxygen isn't the best mix")
+	TEST_ASSERT_EQUAL(ship_thruster_mix_quality(0, 0, 5), 0, "A mix without fuel gives thrust")
+
+	// Podtlenek azotu liczy się za dwa mole tlenu, a dysza z lepszą mieszanką daje statkowi więcej ciągu
+	air_contents.set_moles(tank.gas_type, 100)
+	air_contents.set_moles(GAS_NITROUS, 100)
+	thruster.process(2)
+	TEST_ASSERT(abs((thruster.fuel_quality) - (1.3)) < 0.001, "Nitrous oxide doesn't count as twice the oxygen")
+	TEST_ASSERT(abs((ship.engine_thrust_active) - (active_with_ours + thruster.thrust_power * 0.3)) < 0.001, "A better mix doesn't give the ship more thrust")
+
+	// Dysza spala całą mieszankę: utleniacz i gaz obojętny schodzą razem z paliwem
+	air_contents.set_moles(GAS_NITROUS, 0)
+	air_contents.set_moles(GAS_O2, 200)
+	air_contents.set_moles(GAS_N2, 50)
+	ship.last_thrust_forward = 1
+	thruster.process(2)
+	ship.last_thrust_forward = old_forward
+	var/burned_part = thruster.fuel_per_second * 2 / 100
+	TEST_ASSERT(abs((air_contents.get_moles(GAS_O2)) - (200 * (1 - burned_part))) < 0.01, "The thruster didn't burn the oxidizer with the fuel")
+	TEST_ASSERT(abs((air_contents.get_moles(GAS_N2)) - (50 * (1 - burned_part))) < 0.01, "Inert gas stays in the heater and clogs it")
+
+	// Sam gaz obojętny nie jest paliwem
+	air_contents.set_moles(tank.gas_type, 0)
+	air_contents.set_moles(GAS_O2, 0)
+	thruster.process(2)
+	TEST_ASSERT(!thruster.can_fire, "A thruster fires on inert gas alone")
+
 /datum/unit_test/ship_thrusters/Destroy()
 	QDEL_NULL(thruster)
 	QDEL_NULL(tank)
 	if(ship)
 		ship.last_thrust_forward = old_forward
-		ship.engine_fuel_tanks = old_tanks
-		ship.engine_fuel_tanks_refresh = old_tanks_refresh
 		ship.engine_thrust_design = old_design
 		ship.recalculate_engine_thrust()
 	QDEL_NULL(site)

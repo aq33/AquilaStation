@@ -21309,7 +21309,6 @@
 "Rozłóż multitoolem paczki z flatpackerem i czytnikiem schematów (połóż je na podłodze, maszyna staje przodem tam, gdzie patrzysz). \\": "Unfold the flatpacks with the flatpacker and the schematic reader using a multitool (put them on the floor, the machine faces where you look). \\",
 "Czapka na hardsuicie, barykady TGMC, odchody": "Hat on a hardsuit, TGMC barricades, feces",
 "dysza okrętowa": "ship thruster",
-"Wielka dysza napędowa okrętu. Spala plazmę ze zbiorników paliwa statku i potrzebuje prądu do zapłonu.": "A huge main thruster of the ship. It burns plasma from the ship's fuel tanks and needs power to ignite.",
 "<span class='warning'>[src] jest już załatana, teraz trzeba ją zespawać.</span>": "<span class='warning'>[src] is already patched, now it needs welding.</span>",
 "<span class='warning'>Potrzebujesz [SHIP_THRUSTER_REPAIR_SHEETS] arkuszy plastali, żeby załatać [src].</span>": "<span class='warning'>You need [SHIP_THRUSTER_REPAIR_SHEETS] plasteel sheets to patch [src].</span>",
 "<span class='notice'>Zaczynasz łatać rozbitą [src]...</span>": "<span class='notice'>You start patching the wrecked [src]...</span>",
@@ -21321,8 +21320,14 @@
 "<span class='warning'>Dysza jest rozbita. Załataj ją [SHIP_THRUSTER_REPAIR_SHEETS] arkuszami plastali, a potem zespawaj.</span>": "<span class='warning'>The thruster is wrecked. Patch it with [SHIP_THRUSTER_REPAIR_SHEETS] plasteel sheets, then weld it.</span>",
 "<span class='notice'>Osłona jest uszkodzona ([round(obj_integrity / max_integrity * 100)]%). Spawarka ją naprawi.</span>": "<span class='notice'>The casing is damaged ([round(obj_integrity / max_integrity * 100)]%). A welder will fix it.</span>",
 "<span class='warning'>Dysza nie ma prądu.</span>": "<span class='warning'>The thruster has no power.</span>",
-"<span class='notice'>Plazma w zbiornikach paliwa statku: [round(linked_ship.get_engine_fuel(), 0.1)] mol.</span>": "<span class='notice'>Plasma in the ship's fuel tanks: [round(linked_ship.get_engine_fuel(), 0.1)] mol.</span>",
-"zbiornik paliwa silników": "engine fuel tank",
-"Zbiornik plazmy, z którego spalają paliwo dysze okrętu. Napełnia się go z kanistra przez port przyłączeniowy.": "A plasma tank that feeds the ship's thrusters. Fill it from a canister through a connector port.",
-"zbiornik paliwa silników (płytka maszyny)": "engine fuel tank (machine board)"
+"Wielka dysza napędowa okrętu. Spala mieszankę paliwową z podgrzewaczy za nią i potrzebuje prądu do zapłonu.": "A huge main thruster of the ship. It burns the fuel mix from the heaters behind it and needs power to ignite.",
+"<span class='warning'>Za dyszą nie ma podgrzewacza paliwa.</span>": "<span class='warning'>There is no fuel heater behind the thruster.</span>",
+"<span class='notice'>Paliwo w podgrzewaczach: [round(mix[2], 0.1)] mol, jakość mieszanki: [round(quality * 100)]%.</span>": "<span class='notice'>Fuel in the heaters: [round(mix[2], 0.1)] mol, mix quality: [round(quality * 100)]%.</span>",
+"<span class='notice'>Bez utleniacza. Tlen albo podtlenek azotu w rurze paliwowej da premię do ciągu.</span>": "<span class='notice'>No oxidizer. Oxygen or nitrous oxide in the fuel line gives a thrust bonus.</span>",
+"<span class='notice'>Za mało utleniacza: mieszanka spala się niecałkowicie.</span>": "<span class='notice'>Too little oxidizer: the mix doesn't burn completely.</span>",
+"<span class='notice'>Za dużo utleniacza: nadmiar ucieka z wylotem.</span>": "<span class='notice'>Too much oxidizer: the excess escapes through the exhaust.</span>",
+"<span class='notice'>Proporcje paliwa i utleniacza są idealne.</span>": "<span class='notice'>The fuel to oxidizer ratio is ideal.</span>",
+"podgrzewacz dyszy okrętowej": "ship thruster heater",
+"Podgrzewacz plazmy dla dyszy okrętowej tuż obok. Paliwo dostaje rurą z atmosu.": "A plasma heater for the ship thruster next to it. It gets fuel through a pipe from atmospherics.",
+"podgrzewacz dyszy okrętowej (płytka maszyny)": "ship thruster heater (machine board)"
 }
