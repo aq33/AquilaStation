@@ -27,4 +27,11 @@
 	TEST_ASSERT(prints.blood_state == BLOOD_STATE_POOP, "Ślady mają stan [prints?.blood_state] zamiast odchodów")
 	TEST_ASSERT(prints.get_footprint_icon_state(TRUE) in icon_states(prints.icon), "Brak ikony [prints.get_footprint_icon_state(TRUE)] w [prints.icon]")
 
+/// Ślady nie są alokowane przez test, więc zostałyby na sali dla kolejnych testów (np. aquila_review_paw_prints szuka śladów na tej samej kratce)
+/datum/unit_test/aquila_feces_footprints/Destroy()
+	for(var/turf/room_turf as anything in block(run_loc_floor_bottom_left, run_loc_floor_top_right))
+		for(var/obj/effect/decal/cleanable/leftover in room_turf)
+			qdel(leftover)
+	return ..()
+
 #undef TEST_ASSERT

@@ -38,6 +38,7 @@
 	weapon.process_heat()
 	TEST_ASSERT(weapon.weapon_state == 2, "Broń z ciepłem ponad próg nie przegrzała się")
 	TEST_ASSERT(!weapon.can_fire(null, 0), "Przegrzana broń może strzelać")
+	reset_room_air() // przegrzanie wypuszcza gorącą parę, a kolejne testy (np. kwiat trupi) sprawdzają ciśnienie na tej sali
 	weapon.heat = 0
 	weapon.process_heat()
 	TEST_ASSERT(weapon.weapon_state == 0 && weapon.icon == initial(weapon.icon), "Ostygnięta broń nie wróciła do pracy")
@@ -53,5 +54,12 @@
 	weapon.process_heat()
 	TEST_ASSERT(weapon.weapon_state == 0, "Odprowadzanie nie skończyło się poniżej 1/4 progu")
 	TEST_ASSERT(weapon.can_fire(null, 0), "Sprawna broń nie może strzelać")
+	reset_room_air()
+
+/// Przywraca sali testowej początkowe powietrze (overload() wypuszcza 200 moli pary o 1000 K)
+/datum/unit_test/aquila_energy_weapon_heat/proc/reset_room_air()
+	for(var/turf/open/room_turf in block(run_loc_floor_bottom_left, run_loc_floor_top_right))
+		room_turf.air.copy_from_turf(room_turf)
+		room_turf.update_visuals()
 
 #undef TEST_ASSERT
