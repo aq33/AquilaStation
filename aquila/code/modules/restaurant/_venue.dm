@@ -80,6 +80,12 @@ SUBSYSTEM_DEF(restaurant)
 	var/list/linked_seats = list()
 	///Kto ostatnio otworzył lokal (ćmy zamawiają jego ubrania)
 	var/datum/weakref/opened_by
+	///Hologram miejsca stawiany przez automat
+	var/obj/structure/holosign/robot_seat/seat_type = /obj/structure/holosign/robot_seat/restaurant
+	///Ile tylu od portalu szukamy krzeseł przy automatycznym rozstawianiu (tyle samo widzi robot)
+	var/auto_seat_range = 7
+	///Ile miejsc najwyżej rozstawia automat
+	var/max_auto_seats = 10
 
 /datum/venue/Destroy()
 	close()
@@ -213,6 +219,7 @@ SUBSYSTEM_DEF(restaurant)
 	if(user)
 		opened_by = WEAKREF(user)
 	COOLDOWN_START(src, visit_cooldown, 4 SECONDS) //Pierwszy gość przychodzi szybciej
+	auto_place_seats() //Miejsc nie rozstawia już nikt ręcznie
 	START_PROCESSING(SSobj, src)
 	update_machines()
 	return TRUE
@@ -245,3 +252,49 @@ SUBSYSTEM_DEF(restaurant)
 	for(var/seat in linked_seats)
 		if(!linked_seats[seat])
 			.++
+
+/**
+ * Stawia miejsca w pomieszczeniu z portalem, w zasięgu jego wzroku.
+ * Najpierw krzesła przy stołach. Jeśli takich nie ma, wolne pola obok stołów, a na końcu dowolne krzesła.
+ */
+/datum/venue/proc/auto_place_seats()
+	var/obj/machinery/restaurant_portal/portal = restaurant_portal
+	if(!portal)
+		return 0
+	var/area/dining_area = get_area(portal)
+	var/list/facing_table = list()
+	var/list/next_to_table = list()
+	var/list/floor_by_table = list()
+	var/list/other_chairs = list()
+	for(var/turf/open/candidate in view(auto_seat_range, get_turf(portal)))
+		if(get_area(candidate) != dining_area || candidate == get_turf(portal))
+			continue
+		if(locate(/obj/structure/holosign/robot_seat) in candidate)
+			continue
+		if(is_blocked_turf(candidate, TRUE))
+			continue
+		var/obj/structure/chair/chair = locate() in candidate
+		var/table_dir = robot_seat_table_dir(candidate)
+		if(chair)
+			if(table_dir == chair.dir)
+				facing_table += candidate
+			else if(table_dir)
+				next_to_table += candidate
+			else
+				other_chairs += candidate
+		else if(table_dir && !(locate(/obj/machinery) in candidate) && !(locate(/obj/structure) in candidate))
+			floor_by_table += candidate
+	// Pola przy stołach i krzesła bez stołu tylko wtedy, gdy nie ma lepszych miejsc
+	var/list/targets = facing_table + next_to_table
+	if(!length(targets))
+		targets = floor_by_table
+	if(!length(targets))
+		targets = other_chairs
+	var/limit = max(max_auto_seats - length(linked_seats), 0)
+	var/placed = 0
+	for(var/turf/target as anything in targets)
+		if(placed >= limit)
+			break
+		new seat_type(target)
+		placed++
+	return placed
