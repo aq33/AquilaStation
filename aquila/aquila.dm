@@ -1207,7 +1207,7 @@
 #include "code\modules\test_chamber\kits\pr_622_potrzeby.dm"
 #include "code\modules\test_chamber\kits\pr_621_gangi_zlomiarze.dm"
 #include "code\modules\test_chamber\kits\pr_634_mechanik.dm"
-#include "code\modules\test_chamber\kits\pr_wnetrza_syndykatu.dm"
+#include "code\modules\test_chamber\kits\pr_643_overmapa.dm"
 #include "code\modules\test_chamber\kits\pr_625_zolnierze.dm"
 #include "code\modules\test_chamber\kits\pr_625_rodziny.dm"
 #include "code\modules\test_chamber\kits\pr_625_gornicze.dm"
