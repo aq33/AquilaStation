@@ -34,7 +34,7 @@
 	TEST_ASSERT(weapon.cooling_amount == 1, "Wyłączona chłodnica dalej chłodzi")
 
 	// Przegrzanie: blokada strzału i stygnięcie w trybie awaryjnym
-	weapon.heat = weapon.max_heat
+	weapon.heat = weapon.max_heat + 100 // chłodzenie zbija ciepło przed sprawdzeniem progu
 	weapon.process_heat()
 	TEST_ASSERT(weapon.weapon_state == 2, "Broń z ciepłem ponad próg nie przegrzała się")
 	TEST_ASSERT(!weapon.can_fire(null, 0), "Przegrzana broń może strzelać")

@@ -360,6 +360,8 @@ GLOBAL_LIST_INIT(energy_weapon_heat_states, icon_states('aquila/icons/obj/muniti
 					playsound(src, malfunction_sound, 100, TRUE)
 					freq = max(freq - rand(1, freq_max), 0)
 					explosion(detonation_turf, 0, 0, 2, 3, flame_range = 2)
+				if(11 to 20)
+					pass() // tym razem bez usterki
 		if(0 to 25)
 			switch(rand(1, 4))
 				if(1)

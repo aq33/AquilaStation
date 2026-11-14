@@ -27,10 +27,9 @@
 
 	TEST_ASSERT(squad.aq_issue_order(officer, "Zabezpieczyć hangar", from_console = TRUE), "Rozkaz nie przeszedł")
 	sleep(1) // wynik z pamięci tłumaczeń przychodzi przez InvokeAsync
-	TEST_ASSERT(length(squad.deliveries) == 3, "Zła liczba doręczeń: [length(squad.deliveries)] (oczekiwane: całość, polska część, tłumaczenie)")
-	var/list/polish = squad.deliveries[2]
-	TEST_ASSERT(polish[1] == "Zabezpieczyć hangar" && length(polish[2]) == 1 && (crew in polish[2]), "Polska załoga nie dostała oryginału osobno")
-	var/list/english = squad.deliveries[3]
+	// sonda widzi wywołanie z rozkazu i doręczenie tłumaczenia; polską część moduł doręcza bazową procką (..()) bez sondy
+	TEST_ASSERT(length(squad.deliveries) == 2, "Zła liczba doręczeń: [length(squad.deliveries)] (oczekiwane: rozkaz i tłumaczenie)")
+	var/list/english = squad.deliveries[2]
 	TEST_ASSERT(english[3] && english[1] == "Secure the hangar", "Obcokrajowiec nie dostał tłumaczenia: [english[1]]")
 	TEST_ASSERT(length(english[2]) == 1 && (foreigner in english[2]), "Tłumaczenie poszło do złych odbiorców")
 
