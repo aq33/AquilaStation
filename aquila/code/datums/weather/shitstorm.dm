@@ -55,7 +55,7 @@
 /datum/weather/shit_storm/end()
 	if(..())
 		return
-	priority_announce("Zagrożenie rozstrajające minęło. Proszę powrócić na stanowiska pracy.", "Alarm: Anomalia", SSstation.announcer.get_rand_alert_sound())
+	priority_announce("Zagrożenie rozstrajające minęło. Proszę powrócić na stanowiska pracy.", "Alarm: Anomalia", 'aquila/sound/ai/events/shitstorm_end.ogg')
 	status_alarm(FALSE)
 
 /datum/weather/shit_storm/proc/status_alarm(active)	//Makes the status displays show the radiation warning for those who missed the announcement.

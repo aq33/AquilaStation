@@ -13,7 +13,7 @@
 	announceWhen	= 1
 
 /datum/round_event/electrical_storm/announce(fake)
-	priority_announce("Burza elektryczna została wykryta w okolicy stacji, proszę naprawić skutki potencjalnych przeciążeń elektrycznych.", "Ostrzeżenie: Burza elektryczna", SSstation.announcer.get_rand_alert_sound())
+	priority_announce("Burza elektryczna została wykryta w okolicy stacji, proszę naprawić skutki potencjalnych przeciążeń elektrycznych.", "Ostrzeżenie: Burza elektryczna", 'aquila/sound/ai/events/electrical_storm.ogg') // AQ EDIT - własne nagranie ogłoszenia
 
 
 /datum/round_event/electrical_storm/start()

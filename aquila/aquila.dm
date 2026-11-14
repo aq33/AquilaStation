@@ -2247,6 +2247,7 @@
 #include "code\modules\unit_tests\aquila_liquids_review.dm"
 #include "code\modules\unit_tests\aquila_ai_hud_in_view.dm"
 #include "code\modules\unit_tests\aquila_ai_tts.dm"
+#include "code\modules\unit_tests\aquila_event_announcement_title.dm"
 #include "code\modules\unit_tests\aquila_squads_rework.dm"
 #include "code\modules\unit_tests\aquila_squad_orders_cooldown.dm"
 #include "code\modules\unit_tests\aquila_squad_gear_ping.dm"

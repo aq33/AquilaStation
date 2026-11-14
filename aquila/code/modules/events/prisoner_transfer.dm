@@ -75,7 +75,7 @@ GLOBAL_LIST_INIT(aquila_prisoner_crimes, list(
 
 	priority_announce("Centrala przekazuje na pokład osadzonego [prisoner.real_name], skazanego za [crime]. \
 		Wyrok: [sentence_minutes] minut. Kapsuła z więźniem wyląduje w obszarze [get_area_name(landing, TRUE)]. \
-		Ochrona proszona jest o przejęcie osadzonego.", "Transfer więźnia")
+		Ochrona proszona jest o przejęcie osadzonego.", "Transfer więźnia", sound = 'aquila/sound/ai/events/prisoner_transfer.ogg')
 
 	message_admins("[ADMIN_LOOKUPFLW(prisoner)] zostaje przeniesionym więźniem w wyniku eventu.")
 	log_game("[key_name(prisoner)] was spawned as a transferred prisoner by an event at [AREACOORD(landing)].")

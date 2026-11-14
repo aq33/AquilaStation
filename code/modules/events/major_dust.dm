@@ -17,4 +17,4 @@
 		możliwe niewielkie odłamki.",
 		"Sąsiednia stacja rzuca w was kamieniami. (Może mają \
 		dość waszych wiadomości.)")
-	priority_announce(pick(reason), "Alarm kolizyjny", SSstation.announcer.get_rand_alert_sound())
+	priority_announce(pick(reason), "Alarm kolizyjny", 'aquila/sound/ai/events/major_dust.ogg') // AQ EDIT - własne nagranie ogłoszenia
