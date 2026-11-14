@@ -15,6 +15,13 @@ type Data = {
   powerAlloc: any;
   progress: any;
   regenPriority: any;
+  // AQ EDIT START - maskowanie (aquila/code/modules/overmap/shield_cloak.dm)
+  cloaked?: boolean;
+  cloak_left?: number;
+  cloak_cooldown?: number;
+  cloak_power?: number;
+  can_cloak?: boolean;
+  // AQ EDIT END
 };
 
 export const ShieldGenerator = (props) => {
@@ -109,6 +116,29 @@ export const ShieldGenerator = (props) => {
             }
           />
         </Section>
+        {/* AQ EDIT START - maskowanie (aquila/code/modules/overmap/shield_cloak.dm) */}
+        <Section
+          title="Maskowanie:"
+          buttons={
+            <Button
+              icon="eye-slash"
+              selected={!!data.cloaked}
+              disabled={!data.cloaked && !data.can_cloak}
+              onClick={() => act('cloakToggle')}
+            >
+              {data.cloaked ? 'Zdejmij maskę' : 'Włącz maskę'}
+            </Button>
+          }
+        >
+          {data.cloaked
+            ? `Maska aktywna, zostało ${data.cloak_left} s.`
+            : data.cloak_cooldown
+              ? `Generator stygnie, maska gotowa za ${data.cloak_cooldown} s.`
+              : 'Maska gotowa.'}
+          <br />
+          {`Pobór w masce: ${data.cloak_power} MW. Tarcza nie chroni, gdy maska jest włączona.`}
+        </Section>
+        {/* AQ EDIT END */}
       </Window.Content>
     </Window>
   );
