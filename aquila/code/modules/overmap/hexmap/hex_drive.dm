@@ -42,6 +42,15 @@
 /proc/hex_percent_text(value)
 	return "[CEILING(value - 0.001, 1)]%"
 
+/// Ładunek do pokazania graczom: w górę jak koszty skoków (2/3 to 67%), ale nigdy nie pokazuje kosztu, którego jeszcze nie pokrywa.
+/// To samo liczy chargeText() w HexStarmap.tsx
+/proc/hex_charge_text(charge)
+	var/shown = CEILING(charge - 0.001, 1)
+	for(var/threshold in list(HEX_FTL_COST_HEX, HEX_FTL_COST_GATE, HEX_FTL_FULL_CHARGE))
+		if(charge + 0.001 < threshold)
+			shown = min(shown, CEILING(threshold - 0.001, 1) - 1)
+	return "[max(shown, 0)]%"
+
 /// Ile sekund cooldownu zostało
 /obj/structure/overmap/proc/hex_cooldown_left()
 	return max(0, round((hex_cooldown_until - world.time) / 10, 1))
@@ -63,7 +72,7 @@
 	if(world.time < hex_cooldown_until)
 		return "Napęd stygnie po skoku: jeszcze [hex_cooldown_left()] s."
 	if(hex_charge() + 0.001 < cost)
-		return "Za mało naładowania napędu: [round(hex_charge(), 1)]% z potrzebnych [hex_percent_text(cost)]."
+		return "Za mało naładowania napędu: [hex_charge_text(hex_charge())] z potrzebnych [hex_percent_text(cost)]."
 	return null
 
 /**

@@ -14,6 +14,17 @@
 #define HEXMAP_TEST_SAVE "data/unit_test_hexmap.json"
 #define HEXMAP_TEST_MAP_CONFIG "data/unit_test_map_config.json"
 
+/// Ładunek po skoku pokazuje się tak samo jak koszt skoku, który jeszcze pokrywa (po jednym kaflu 67%, nie 66%)
+/datum/unit_test/hexmap_charge_text
+
+/datum/unit_test/hexmap_charge_text/Run()
+	TEST_ASSERT_EQUAL(hex_charge_text(HEX_FTL_FULL_CHARGE - HEX_FTL_COST_HEX), hex_percent_text(HEX_FTL_COST_GATE), "Charge left after one hex")
+	TEST_ASSERT_EQUAL(hex_charge_text(HEX_FTL_FULL_CHARGE - HEX_FTL_COST_GATE), hex_percent_text(HEX_FTL_COST_HEX), "Charge left after two hexes")
+	TEST_ASSERT_EQUAL(hex_charge_text(66.5), "66%", "Charge just below a two hex jump")
+	TEST_ASSERT_EQUAL(hex_charge_text(99.6), "99%", "Charge just below full")
+	TEST_ASSERT_EQUAL(hex_charge_text(HEX_FTL_FULL_CHARGE), "100%", "Full charge")
+	TEST_ASSERT_EQUAL(hex_charge_text(0), "0%", "Empty charge")
+
 /// Każdy układ z mapy leży na własnym hexie swojego sektora, a szlaki między sektorami są bramami
 /datum/unit_test/hexmap_grid
 
