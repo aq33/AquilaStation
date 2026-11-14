@@ -28,7 +28,7 @@ GLOBAL_LIST_EMPTY(hex_terrains)
 	var/parallax
 	/// Eventy środowiska z puli kafla (typy /datum/round_event_control)
 	var/list/events = list()
-	/// Antagoniści z puli kafla (bramka: HEX_ANTAG_GATE_TIME i brak żywych antagonistów)
+	/// Antagoniści z puli kafla (losują się razem z eventami, z minimum graczy eventu)
 	var/list/antags = list()
 
 /datum/hex_terrain/empty

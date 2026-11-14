@@ -61,8 +61,6 @@
 #define HEX_STAY_EVENT_MAX (12 MINUTES)
 /// Event z kafla i event statkowy nie wypadają bliżej siebie niż tyle
 #define HEX_EVENT_SPACING (4 MINUTES)
-/// Antagoniści midround dopiero od tej minuty rundy i tylko, gdy nie ma żywych antagonistów
-#define HEX_ANTAG_GATE_TIME (60 MINUTES)
 /// Znacznik w puli kafla: wadliwa SI z istniejącej SI zamiast eventu
 #define HEX_POOL_MALF "malf"
 

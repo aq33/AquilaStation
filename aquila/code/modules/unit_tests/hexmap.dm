@@ -466,7 +466,6 @@
 
 /datum/unit_test/hexmap_terrain_route/proc/check_terrain_route()
 	var/datum/hex/start
-	var/datum/hex/middle
 	var/datum/hex/far_end
 	for(var/id in GLOB.hexmap.hexes)
 		var/datum/hex/H = GLOB.hexmap.hexes[id]
@@ -477,7 +476,6 @@
 			var/datum/hex/F = M && GLOB.hexmap.hex_axial(H.sector, H.q + dir[1] * 2, H.r + dir[2] * 2)
 			if(M && F && !M.system && !F.system)
 				start = H
-				middle = M
 				far_end = F
 				break
 		if(start)
@@ -505,11 +503,10 @@
 	if(GLOB.hexmap.reachable(start, null, HEX_FTL_FULL_CHARGE)[far_end])
 		return "A black hole is in jump range"
 
-/// Pula kafla: środowisko z puli bez minuty startu, antagoniści dopiero po bramce, SSevents bierze tylko eventy statkowe
+/// Pula kafla: środowisko i antagoniści z puli bez minuty startu, ale z minimum graczy; SSevents bierze tylko eventy statkowe
 /datum/unit_test/hexmap_tile_events
 
 /datum/unit_test/hexmap_tile_events/Run()
-	TEST_ASSERT(!hex_antag_gate_open(), "The midround antagonist gate is open [DisplayTimeText(world.time - SSticker.round_start_time)] into the round")
 	var/datum/round_event_control/dust = hex_event_control(/datum/round_event_control/space_dust)
 	var/datum/round_event_control/grid = hex_event_control(/datum/round_event_control/grid_check)
 	var/datum/round_event_control/blob = hex_event_control(/datum/round_event_control/blob)
@@ -554,9 +551,9 @@
 		var/datum/round_event_control/picked = hex_pick_tile_event(field, TRUE)
 		if(!picked)
 			return "An asteroid field rolled nothing, not even a ship event"
-		if(picked.type in antags)
-			return "A tile rolled the antagonist [picked.name] with the gate closed"
-		if(!(picked.type in allowed) && !hex_random_event_allowed(picked))
+		if((picked.type in antags) && picked.min_players > get_active_player_count(alive_check = TRUE, afk_check = TRUE, human_check = TRUE))
+			return "A tile rolled the antagonist [picked.name] with too few players"
+		if(!(picked.type in allowed) && !(picked.type in antags) && !hex_random_event_allowed(picked))
 			return "An asteroid field rolled [picked.name], which is neither from its pool nor a ship event"
 	var/datum/round_event_control/last = hex_pick_tile_event(field, TRUE)
 	for(var/i in 1 to 10)

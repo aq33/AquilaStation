@@ -39,7 +39,7 @@
 		3) Trasa przez pole asteroid kończy się na nim, mgławica przepuszcza. Czarnej dziury nie da się wybrać jako celu. \
 		4) Skok na sygnał: event, a po odlocie sygnał znika z mapy. \
 		5) Skok do tunelu: po 5 s okręt wylatuje na drugim końcu bez zużycia ładunku i bez drugiego eventu. \
-		6) Antagoniści z kafli i oferty dla duchów dopiero po 60 min rundy i tylko bez żywych antagonistów; wcześniej kafel daje event środowiska albo statkowy."
+		6) Antagoniści z puli kafla losują się razem z eventami od początku rundy, jeśli starcza graczy; na jednym postoju najwyżej jeden."
 
 /datum/test_chamber_kit/pr_638/teren/setup(list/spawned, list/turfs, turf/center, mob/user)
 	. = ..()

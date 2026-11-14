@@ -1,10 +1,11 @@
-// AQUILA - eventy z kafli mapy hex i bramka antagonistów midround (raport/ftl_mapa_06_plan_pr.md, PR B).
+// AQUILA - eventy z kafli mapy hex (raport/ftl_mapa_06_plan_pr.md, PR B).
 // Decyzje 14.11:
 // - wejście na kafel (przylot okrętu gracza) zawsze odpala jeden event z puli kafla, bez minuty startu eventu, z minimum graczy;
 // - okręt stojący na kaflu zagrożenia dostaje kolejny event co 8–12 min, nie bliżej niż 4 min od eventu statkowego,
 //   a antagonista wypada najwyżej raz na jeden postój;
 // - SSevents losuje już tylko eventy statkowe (środowisko i antagoniści przychodzą z kafli);
-// - antagoniści midround (kafle i oferty trybu weighted) dopiero po 60 min rundy i tylko, gdy nie ma żywych antagonistów.
+// - antagoniści z puli kafla losują się razem z eventami od początku rundy, liczy się tylko minimum graczy eventu
+//   (bramkę 60 min i braku żywych antagonistów usunięto 14.11 na prośbę użytkownika).
 
 /// Kiedy SSevents ostatnio losował event statkowy
 GLOBAL_VAR_INIT(hex_last_ship_event, 0)
@@ -60,28 +61,12 @@ GLOBAL_VAR_INIT(hex_last_ship_event, 0)
 			env_types[path] = TRUE
 	return env_types
 
-/// Żywi antagoniści z klientem (lista trybu gry, którą uzupełnia mob przy zalogowaniu i zmianie ról)
-/proc/hex_living_antag_count()
-	. = 0
-	var/list/antags = SSticker.mode?.current_players?[CURRENT_LIVING_ANTAGS]
-	for(var/mob/living/M in antags)
-		if(!QDELETED(M) && M.stat != DEAD)
-			.++
-
-/// Bramka antagonistów midround: po 60 min rundy i tylko bez żywych antagonistów
-/proc/hex_antag_gate_open()
-	if(!SSticker.HasRoundStarted())
-		return FALSE
-	if(world.time - SSticker.round_start_time < HEX_ANTAG_GATE_TIME)
-		return FALSE
-	return !hex_living_antag_count()
-
 /// Czy SSevents może wylosować ten event (hook AQ EDIT w spawnEvent())
 /proc/hex_random_event_allowed(datum/round_event_control/E)
 	var/is_antag = hex_midround_antag_events()[E.type]
-	if(GLOB.hexmap?.built)
-		return !is_antag && !hex_tile_environment_events()[E.type]
-	return !is_antag || hex_antag_gate_open()
+	if(!GLOB.hexmap?.built)
+		return TRUE
+	return !is_antag && !hex_tile_environment_events()[E.type]
 
 /datum/controller/subsystem/events/spawnEvent()
 	. = ..()
@@ -126,7 +111,7 @@ GLOBAL_VAR_INIT(hex_last_ship_event, 0)
 		var/datum/round_event_control/E = hex_event_control(path)
 		if(E && E != last_event && hex_event_can_spawn(E, players))
 			options += E
-	if(allow_antags && hex_antag_gate_open())
+	if(allow_antags)
 		for(var/entry in T?.antags)
 			if(entry == HEX_POOL_MALF)
 				if(length(hex_malf_candidates()))
