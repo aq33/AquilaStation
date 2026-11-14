@@ -6254,6 +6254,10 @@
 /obj/machinery/duct,
 /turf/open/floor/carpet/ship,
 /area/hallway/primary/port)
+"eXH" = (
+/obj/machinery/drop_pod_bay,
+/turf/open/floor/engine/airless,
+/area/nsv/hanger)
 "eXJ" = (
 /obj/effect/turf_decal/tile/yellow/flat_side{
 	dir = 4
@@ -60710,9 +60714,9 @@ oLI
 jCR
 oLI
 oLI
+eXH
 oLI
-oLI
-oLI
+eXH
 oLI
 vcm
 jMR

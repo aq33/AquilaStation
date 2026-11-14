@@ -13,7 +13,9 @@
 	desc = "Kapsuła na jedną osobę osadzona w luku zrzutowym. Usiądź w niej, wybierz cel na powierzchni planety w układzie i odpal. Wraca się promem."
 	icon = 'icons/obj/supplypods.dmi'
 	icon_state = "darkpod"
+	// Sprite kapsuły ma 64 × 64: zmniejszony do 3/4 i wyśrodkowany na polu (Initialize)
 	pixel_x = -16
+	pixel_y = -16
 	density = TRUE
 	anchored = TRUE
 	can_buckle = TRUE
@@ -34,6 +36,9 @@
 
 /obj/machinery/drop_pod_bay/Initialize(mapload)
 	. = ..()
+	var/matrix/scaled = matrix()
+	scaled.Scale(0.75)
+	transform = scaled
 	for(var/action_type in list(/datum/action/innate/drop_pod/target, /datum/action/innate/drop_pod/launch))
 		var/datum/action/innate/drop_pod/action = new action_type
 		action.bay = src

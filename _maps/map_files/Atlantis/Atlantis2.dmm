@@ -1,4 +1,14 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aaa" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/machinery/suit_storage_unit/medical/trauma,
+/turf/open/floor/monotile/steel,
+/area/medical/storage)
 "aab" = (
 /obj/machinery/computer/ship/dradis/sensors/console{
 	dir = 4
@@ -1004,16 +1014,6 @@
 	},
 /turf/open/floor/monotile/steel,
 /area/security)
-"aaa" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/machinery/suit_storage_unit/medical/trauma,
-/turf/open/floor/monotile/steel,
-/area/medical/storage)
 "aZA" = (
 /obj/machinery/door/airlock/ship/station/mining{
 	name = "Cargo Bay";
@@ -9502,6 +9502,10 @@
 /obj/effect/turf_decal/stripes/white/line{
 	dir = 6
 	},
+/turf/open/floor/monotile/dark/airless,
+/area/nsv/hanger/deck2)
+"juA" = (
+/obj/machinery/drop_pod_bay,
 /turf/open/floor/monotile/dark/airless,
 /area/nsv/hanger/deck2)
 "jvc" = (
@@ -69287,7 +69291,7 @@ uNn
 kKv
 uNn
 ulQ
-uyj
+juA
 uyj
 pgd
 pHm
@@ -69801,7 +69805,7 @@ jDi
 faI
 fdb
 gTv
-uyj
+juA
 jum
 rbw
 mJC
