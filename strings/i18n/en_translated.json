@@ -21414,5 +21414,7 @@
 "Kadłub": "Body",
 "Silnik": "Engine",
 "Naprowadzanie": "Guidance",
-"Zapisane projekty": "Saved designs"
+"Zapisane projekty": "Saved designs",
+"<span class='warning'>Echo ma już tylu członków, ile myśliwców ma okręt.</span>": "<span class='warning'>Echo already has as many members as the ship has fighters.</span>",
+"Piloci i ochotnicy na myśliwcach okrętu.": "Pilots and volunteers flying the ship's fighters."
 }

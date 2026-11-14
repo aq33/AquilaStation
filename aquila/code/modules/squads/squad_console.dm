@@ -67,6 +67,10 @@
 				return FALSE
 			if(member.squad == squad)
 				return FALSE
+			// Echo: tylu członków, ile myśliwców bojowych ma statek (squad_echo.dm)
+			if(squad.aq_is_echo && length(squad.members) >= squad.aq_echo_limit())
+				to_chat(user, "<span class='warning'>Echo ma już tylu członków, ile myśliwców ma okręt.</span>")
+				return FALSE
 			log_game("[key_name(user)] assigned [key_name(member)] to squad [squad]")
 			if(member.squad)
 				member.squad.remove_member(member)
@@ -264,6 +268,7 @@
 	aq_bodycam.unregister_viewer(user)
 
 /obj/machinery/computer/squad_manager/ui_data(mob/user)
+	GLOB.squad_manager.aq_get_echo() // Echo powstaje przy pierwszym użyciu (squad_echo.dm)
 	if(aq_bodycam.target)
 		aq_bodycam.update_view()
 	return aq_squad_console_data(user, aq_state["z"], TRUE, aq_bodycam)

@@ -25,7 +25,7 @@ GLOBAL_LIST_EMPTY(aq_squad_pagers)
 	return ..()
 
 /datum/squad/aq_custom
-	name = "Echo"
+	name = "Nowa drużyna"
 	desc = "Drużyna utworzona przez oficera wykonawczego."
 	role = DC_SQUAD
 	colour = "#3cb371"
