@@ -4,7 +4,7 @@
 // Przy błędzie, braku odpowiedzi albo przepełnionej kolejce bełkot przechodzi w oryginał, a w OOC zostaje oryginał.
 // Tekst z pamięci tłumaczeń idzie od razu przetłumaczony.
 // Korzystają z tego: słyszenie obcokrajowca (foreigner.dm), kanały telepatyczne (aq_to_chat_speech) i OOC (chat_translation.dm).
-// Mowa samego obcokrajowca dalej czeka na tłumaczenie, a w tym czasie nad jego głową wisi dymek „…”.
+// Mowa obcokrajowca w języku antagonisty dalej czeka na tłumaczenie, a w tym czasie nad jego głową wisi dymek „…”.
 
 /// Typ wiadomości panelu: typy internal/ trafiają do każdej karty i nie są sklejane z sąsiednimi
 #define AQ_LIVE_TRANSLATION_PANEL_TYPE "internal/aq_translation"
@@ -92,13 +92,13 @@ GLOBAL_VAR_INIT(aq_live_translation_prefix, "[world.timeofday]-[rand(1000, 9999)
 	return TRUE
 
 /**
- * Obcokrajowiec słyszy polską mowę: bełkot od razu w czacie (owinięty) i w dymku z „…”, tłumaczenie potem w tym samym miejscu.
+ * Słuchacz z tłumaczem (obcokrajowiec albo Polak) słyszy mowę drugiej strony: bełkot od razu w czacie (owinięty) i w dymku z „…”, tłumaczenie potem w tym samym miejscu.
  * FALSE, gdy na żywo się nie da (własny czasownik, wszystko w pamięci, brak klucza) i trzeba czekać jak dotąd.
  */
 /mob/living/proc/aq_hear_live(message, atom/movable/speaker, datum/language/message_language, raw_message, radio_freq, list/spans, list/message_mods, list/texts)
-	if(message_mods?[MODE_CUSTOM_SAY_EMOTE] || !SStranslation.will_request(texts, DEEPL_LANG_PL, DEEPL_LANG_EN))
+	if(message_mods?[MODE_CUSTOM_SAY_EMOTE] || !SStranslation.will_request(texts, aq_heard_source_lang(), aq_heard_target_lang()))
 		return FALSE
-	var/datum/language/shown_language = message_language == /datum/language/common ? /datum/language/english : message_language
+	var/datum/language/shown_language = aq_translation_shown_language(message_language)
 	var/list/mods = message_mods ? message_mods.Copy() : list()
 	mods[MODE_AQ_TRANSLATED] = TRUE
 	var/gibberish = aq_live_translation_gibberish(message_language, raw_message)
@@ -112,7 +112,7 @@ GLOBAL_VAR_INIT(aq_live_translation_prefix, "[world.timeofday]-[rand(1000, 9999)
 	aq_live_wrap_id = null
 	aq_live_wrap_text = null
 	aq_live_wrapped = FALSE
-	SStranslation.translate(texts, DEEPL_LANG_PL, DEEPL_LANG_EN, CALLBACK(src, PROC_REF(aq_hear_live_translated), id, wrapped, bubble, message, speaker, shown_language, radio_freq, spans?.Copy(), mods, texts))
+	SStranslation.translate(texts, aq_heard_source_lang(), aq_heard_target_lang(), CALLBACK(src, PROC_REF(aq_hear_live_translated), id, wrapped, bubble, message, speaker, shown_language, radio_freq, spans?.Copy(), mods, texts))
 	return TRUE
 
 /// Wynik dla aq_hear_live(): podmiana linijki i dymka, a bez tłumaczenia oryginał zamiast bełkotu.

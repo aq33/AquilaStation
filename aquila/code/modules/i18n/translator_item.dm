@@ -1,5 +1,5 @@
 // Tłumacz kieszonkowy obcokrajowca (foreigner.dm). Działa w ręce, w kieszeni i na pasku, w plecaku nic nie słyszy.
-// Polak z tłumaczem rozumie Angielski. Obcokrajowcowi tłumacz przekłada mowę w obie strony przez API.
+// Tłumaczy to, co słyszy właściciel, przez API: obcokrajowcowi polską mowę, Polakowi angielską.
 // EMP wyłącza go na minutę, a silny EMP może go spalić na stałe (dotyczy też czipu w słuchawkach, translator_chip.dm).
 
 #define AQ_TRANSLATOR_REBOOT_TIME (60 SECONDS)

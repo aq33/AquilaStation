@@ -19,13 +19,13 @@
 	heard_mods = hearing_args[7]
 
 /// Zapytanie, które translate() zastanie w toku: dopisze do niego callback i nie pójdzie do sieci
-/datum/unit_test/aquila_live_translation/proc/fake_job(text)
+/datum/unit_test/aquila_live_translation/proc/fake_job(text, source_lang = DEEPL_LANG_PL, target_lang = DEEPL_LANG_EN)
 	var/datum/translation_job/job = new
 	job.texts = list(text)
-	job.source_lang = DEEPL_LANG_PL
-	job.target_lang = DEEPL_LANG_EN
+	job.source_lang = source_lang
+	job.target_lang = target_lang
 	job.started = world.time
-	SStranslation.pending["[DEEPL_LANG_PL]>[DEEPL_LANG_EN]|[json_encode(list(text))]"] = job
+	SStranslation.pending["[source_lang]>[target_lang]|[json_encode(list(text))]"] = job
 	return job
 
 /datum/unit_test/aquila_live_translation/proc/finish_job(datum/translation_job/job, list/translations)
@@ -79,6 +79,21 @@
 	heard_raw = null
 	finish_job(job, null)
 	TEST_ASSERT(heard_raw == "Na razie.", "Failed translation did not fall back to the original: [heard_raw]")
+
+	// Polak z czipem słyszy obcokrajowca: bełkot we Wspólnym, potem polskie tłumaczenie
+	var/obj/item/aquila_translator/crew_translator = allocate(/obj/item/aquila_translator, run_loc_floor_bottom_left)
+	TEST_ASSERT(crew.put_in_hands(crew_translator), "Crew could not pick up the translator")
+	RegisterSignal(crew, COMSIG_MOVABLE_HEAR, PROC_REF(on_hear))
+	heard_raw = null
+	job = fake_job("Hello.", DEEPL_LANG_EN, DEEPL_LANG_PL)
+	crew.aq_translate_heard("", foreigner, /datum/language/english, "Hello.", null, list(), list())
+	TEST_ASSERT(length(heard_raw) && heard_raw != "Hello.", "Crew did not hear gibberish first: [heard_raw]")
+	TEST_ASSERT(heard_language == /datum/language/common, "Crew gibberish was not in Common: [heard_language]")
+	TEST_ASSERT(length(job.callbacks) == 1, "Crew hearing did not wait for the translation")
+	heard_raw = null
+	finish_job(job, list("Cześć."))
+	TEST_ASSERT(heard_raw == "Cześć.", "Crew did not get the Polish translation: [heard_raw]")
+	UnregisterSignal(crew, COMSIG_MOVABLE_HEAR)
 
 	// Owinięcie treści w linijce, także z formatowaniem mowy
 	foreigner.aq_live_wrap_id = "aqtr-test"
