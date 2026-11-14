@@ -5,6 +5,13 @@ import { Window } from '../layouts';
 
 type Data = {
   active: any;
+  alignment: number;
+  frequency: number;
+  heat: number;
+  maintainable: boolean;
+  maxheat: number;
+  overloaded: boolean;
+  venting: boolean;
   chargeRate: any;
   goal: any;
   maxChargeRate: any;
@@ -26,7 +33,7 @@ export const EnergyWeapons = (props) => {
   const powerAlloc = data.powerAlloc;
   const maxPower = data.maxPower;
   return (
-    <Window theme="ntos" width={600} height={350}>
+    <Window theme="ntos" width={600} height={data.maintainable ? 560 : 350}>
       <Window.Content scrollable>
         <Section
           title="Stan ładowania:"
@@ -63,6 +70,57 @@ export const EnergyWeapons = (props) => {
             }}
           />
         </Section>
+        {!!data.maintainable && (
+          <Section
+            title="Ciepło:"
+            buttons={
+              <Button
+                content="Odprowadź ciepło"
+                icon="exclamation-triangle"
+                color="bad"
+                disabled={data.overloaded || data.venting}
+                onClick={() => act('vent')}
+              />
+            }
+          >
+            <ProgressBar
+              value={data.maxheat ? data.heat / data.maxheat : 0}
+              ranges={{
+                good: [-Infinity, 0.2],
+                average: [0.2, 0.5],
+                bad: [0.5, Infinity],
+              }}
+            >
+              {data.heat + ' / ' + data.maxheat}
+            </ProgressBar>
+            {!!data.overloaded && 'Przegrzanie: broń stygnie w trybie awaryjnym.'}
+            {!!data.venting && 'Odprowadzanie ciepła: broń nie strzela.'}
+          </Section>
+        )}
+        {!!data.maintainable && (
+          <Section title="Ustawienie soczewek:">
+            <ProgressBar
+              value={data.alignment * 0.01}
+              ranges={{
+                good: [0.5, Infinity],
+                average: [0.15, 0.5],
+                bad: [-Infinity, 0.15],
+              }}
+            />
+          </Section>
+        )}
+        {!!data.maintainable && (
+          <Section title="Strojenie częstotliwości:">
+            <ProgressBar
+              value={data.frequency * 0.01}
+              ranges={{
+                good: [0.5, Infinity],
+                average: [0.15, 0.5],
+                bad: [-Infinity, 0.15],
+              }}
+            />
+          </Section>
+        )}
         <Section title="Ustawienia:">
           Poziom poboru mocy:
           <Slider

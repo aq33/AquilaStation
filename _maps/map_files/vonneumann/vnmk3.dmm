@@ -3975,6 +3975,14 @@
 	},
 /turf/open/floor/carpet/ship/orange_carpet,
 /area/engine/atmos/port_atmos)
+"dca" = (
+/obj/structure/cable/yellow,
+/obj/machinery/cooling/cooler,
+/turf/open/floor/carpet/ship/beige_carpet{
+	color = "#CC8899";
+	name = "nanoweave carpet (puce)"
+	},
+/area/nsv/weapons/fore)
 "ddf" = (
 /obj/machinery/conveyor{
 	dir = 8;
@@ -8762,6 +8770,14 @@
 	},
 /turf/open/floor/carpet/ship,
 /area/hallway/nsv/deck1/frame2/port)
+"gVt" = (
+/obj/structure/cable/yellow,
+/obj/machinery/cooling/storage,
+/turf/open/floor/carpet/ship/beige_carpet{
+	color = "#CC8899";
+	name = "nanoweave carpet (puce)"
+	},
+/area/nsv/weapons/fore)
 "gVV" = (
 /obj/machinery/recharge_station,
 /turf/open/floor/engine,
@@ -10160,6 +10176,13 @@
 	},
 /turf/open/floor/carpet/ship,
 /area/hallway/primary/starboard)
+"ian" = (
+/obj/machinery/cooling/cooler,
+/turf/open/floor/carpet/ship/beige_carpet{
+	color = "#CC8899";
+	name = "nanoweave carpet (puce)"
+	},
+/area/nsv/weapons/fore)
 "iat" = (
 /obj/machinery/airalarm/directional/south,
 /obj/effect/turf_decal/tile/purple/tile_side{
@@ -11553,10 +11576,6 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/durasteel/techfloor_grid,
 /area/science/robotics)
-"jfh" = (
-/obj/structure/closet/crate/engineering/electrical,
-/turf/open/floor/carpet/ship/orange_carpet,
-/area/engine/engineering)
 "jfs" = (
 /obj/machinery/computer/ship/viewscreen,
 /turf/open/floor/carpet/ship/orange_carpet,
@@ -58721,9 +58740,9 @@ bwd
 vYy
 grk
 sOW
-ncr
-dGs
-ncr
+dca
+gVt
+dca
 hUL
 gtc
 bwd
@@ -58924,7 +58943,7 @@ bwd
 fvW
 ncr
 gkg
-ncr
+dGs
 ncr
 wHQ
 bwd
@@ -62558,8 +62577,8 @@ lfF
 lfF
 bwd
 apS
-hUL
-hUL
+ian
+ian
 bwd
 oqd
 wEM
