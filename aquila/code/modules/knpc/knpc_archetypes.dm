@@ -67,8 +67,9 @@
 	mask = /obj/item/clothing/mask/gas/syndicate
 	suit_store = /obj/item/tank/internals/oxygen
 	internals_slot = ITEM_SLOT_SUITSTORE
+	r_hand = /obj/item/gun/ballistic/shotgun/automatic/combat // za duża do torby
 	back = /obj/item/storage/backpack/duffelbag/syndie
-	backpack_contents = list(/obj/item/gun/ballistic/shotgun/automatic/combat = 1, /obj/item/ammo_box/magazine/m10mm = 3)
+	backpack_contents = list(/obj/item/ammo_box/magazine/m10mm = 3)
 	tc = 0
 	can_be_admin_equipped = FALSE
 

@@ -29,6 +29,7 @@
 
 	// Segment hamulca przełącza hamulec i zmienia napis
 	var/brakes_before = fighter.brakes
+	usr = dummy // czasowniki statku sprawdzają usr, a w grze ustawia go kliknięcie w segment
 	hud.use_segment("brakes")
 	TEST_ASSERT(fighter.brakes != brakes_before, "Segment hamulca nie przełączył hamulca")
 	TEST_ASSERT(hud.bar_contents()["brakes"] != contents["brakes"], "Napis hamulca się nie zmienił")
