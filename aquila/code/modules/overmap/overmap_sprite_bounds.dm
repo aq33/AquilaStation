@@ -1,6 +1,9 @@
 // GENEROWANE przez tools/overmap_scale/sprite_bounds.py - nie edytować ręcznie.
 // "ikona|stan" = list(szerokość klatki, wysokość klatki, szerokość kadłuba, wysokość kadłuba, przesunięcie środka x, y)
 GLOBAL_LIST_INIT(overmap_sprite_bounds, list(
+	"aquila/icons/overmap/antag/hunter_ship.dmi|hunter_ship" = list(96, 160, 96, 142, 0.0, 0.0),
+	"aquila/icons/overmap/antag/pirate_raider.dmi|pirate_raider" = list(64, 64, 42, 59, 0.0, 0.5),
+	"aquila/icons/overmap/antag/salvager_ship.dmi|salvager_ship" = list(64, 64, 36, 38, 0.0, 0.0),
 	"aquila/icons/overmap/custom_shuttle.dmi|shuttle" = list(96, 96, 48, 75, 0.0, 5.5),
 	"nsv13/icons/overmap/alicorn.dmi|alicorn" = list(96, 96, 62, 79, 0.0, -1.5),
 	"nsv13/icons/overmap/alicorn.dmi|alifighter" = list(96, 96, 29, 29, 0.5, 3.5),
