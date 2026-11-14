@@ -18,7 +18,7 @@
 	max_occurrences = 10
 
 /datum/round_event/rabbitrelease/announce(fake)
-	priority_announce("Wykryto niezidentyfikowane puchate obiekty wchodzące na pokład [station_name()]. Uwaga na uroczość.", "Puchaty alarm", ANNOUNCER_ALIENS)
+	priority_announce("Wykryto niezidentyfikowane puchate obiekty wchodzące na pokład [station_name()]. Uwaga na uroczość.", "Puchaty alarm", 'aquila/sound/ai/events/easter_bunnies.ogg') // AQ EDIT - własne nagranie ogłoszenia
 
 
 /datum/round_event/rabbitrelease/start()

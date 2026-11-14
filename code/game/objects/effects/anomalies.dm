@@ -260,7 +260,7 @@
 			var/turf/TO = get_turf(chosen) // the turf of origin we're travelling TO
 
 			playsound(TO, 'sound/effects/phasein.ogg', 100, 1)
-			priority_announce("Wykryto masową translokację bluespace.", "Alarm anomalii", SSstation.announcer.get_rand_alert_sound())
+			priority_announce("Wykryto masową translokację bluespace.", "Alarm anomalii", 'aquila/sound/ai/events/bluespace_translocation.ogg') // AQ EDIT - własne nagranie ogłoszenia
 
 			var/list/flashers = list()
 			for(var/mob/living/carbon/C in viewers(TO))

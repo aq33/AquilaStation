@@ -86,7 +86,7 @@
 	if(stat != DEAD && is_station_level(T.z))
 		SSshuttle.clearHostileEnvironment(src)
 		if(EMERGENCY_IDLE_OR_RECALLED)
-			priority_announce("Wykryto inwazję ksenomorfów: aktywowano kryzysowe protokoły promu – sygnały odwołania są zagłuszane na wszystkich częstotliwościach.", SSstation.announcer.get_rand_alert_sound())
+			priority_announce("Wykryto inwazję ksenomorfów: aktywowano kryzysowe protokoły promu – sygnały odwołania są zagłuszane na wszystkich częstotliwościach.", sound = SSstation.announcer.get_rand_alert_sound()) // AQ EDIT - dźwięk szedł jako tytuł
 			SSshuttle.emergency.request(null, set_coefficient=0.5)
 			SSshuttle.emergencyNoRecall = TRUE
 			UnregisterSignal(src, COMSIG_MOVABLE_Z_CHANGED) // we don't care anymore
