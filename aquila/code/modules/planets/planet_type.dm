@@ -58,7 +58,7 @@
 // na obszarze jednej planety). Stałe, lekko zabarwione światło jak w Shiptest, jaskinie ciemne.
 
 /area/planet/surface
-	name = "Powierzchnia planety"
+	name = "Powierzchnia Planety"
 	icon_state = "explored"
 	outdoors = TRUE
 	area_flags = CAVES_ALLOWED | FLORA_ALLOWED | MOB_SPAWN_ALLOWED
@@ -66,17 +66,17 @@
 	lighting_overlay_opacity = 90
 
 /area/planet/surface/lava
-	name = "Pustkowia wulkaniczne"
+	name = "Pustkowia Wulkaniczne"
 	lighting_overlay_colour = "#cfa98a"
 	sound_environment = SOUND_AREA_LAVALAND
 
 /area/planet/surface/cave
-	name = "Jaskinie planety"
+	name = "Jaskinie Planety"
 	outdoors = FALSE
 	lighting_overlay_opacity = 0
 
 /area/planet/surface/cave/lava
-	name = "Jaskinie wulkaniczne"
+	name = "Jaskinie Wulkaniczne"
 
 /// Krawędź powierzchni planety: dalej nie ma nic
 /turf/closed/indestructible/rock/planet_edge

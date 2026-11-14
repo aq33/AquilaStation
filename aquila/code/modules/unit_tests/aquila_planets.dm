@@ -95,6 +95,31 @@
 	for(var/turf/zone as anything in surface.landing_zones)
 		return zone
 
+/// AQUILA - planety: każdy typ z biomów planety wulkanicznej (teren, rośliny, obiekty, fauna) da się postawić i usunąć
+/datum/unit_test/planet_lava_content
+
+/datum/unit_test/planet_lava_content/Run()
+	var/list/atom_types = list()
+	var/list/turf_types = list()
+	for(var/biome_type in subtypesof(/datum/planet_biome/lava) + typesof(/datum/planet_biome/cave/lava))
+		var/datum/planet_biome/biome = get_planet_biome(biome_type)
+		turf_types |= biome.open_turf_types
+		if(istype(biome, /datum/planet_biome/cave))
+			var/datum/planet_biome/cave/cave = biome
+			turf_types |= cave.closed_turf_types
+		for(var/list/spawn_list in list(biome.flora_spawn_list, biome.feature_spawn_list, biome.mob_spawn_list))
+			atom_types |= spawn_list
+	var/turf/T = run_loc_floor_bottom_left
+	var/turf_type_before = T.type
+	for(var/turf_type in turf_types)
+		T = T.ChangeTurf(turf_type)
+		TEST_ASSERT(istype(T, turf_type), "Couldn't place [turf_type]")
+	T = T.ChangeTurf(turf_type_before)
+	for(var/atom_type in atom_types)
+		var/atom/movable/thing = new atom_type(run_loc_floor_top_right)
+		TEST_ASSERT(!QDELETED(thing), "[atom_type] deleted itself right after spawning")
+		qdel(thing)
+
 // Misje w teście: „okręt” to okolica podłogi testowej (mapa testowa nie należy do głównego okrętu)
 /datum/overmap_objective/planet/survey/test
 	var/turf/home_turf
@@ -163,10 +188,10 @@
 	bay.set_target(trooper, planet, ground, "test")
 	bay.machine_stat = NONE
 	bay.launch(trooper)
-	TEST_ASSERT(istype(trooper.loc, /obj/structure/closet/supplypod/drop_pod), "The trooper isn't in the falling pod ([trooper.loc?.type])")
+	TEST_ASSERT(istype(trooper.loc, /obj/structure/drop_pod), "The trooper isn't in the drop pod ([trooper.loc?.type])")
 	TEST_ASSERT(!bay.ready, "The bay is ready right after launching")
 	// Kapsuła leci kilka sekund (tranzyt, spadanie, otwarcie): żołnierz ma wysiąść na planecie
-	sleep(10 SECONDS)
+	sleep(15 SECONDS)
 	TEST_ASSERT(planet.surface.contains(get_turf(trooper)), "The trooper didn't land on the planet ([AREACOORD(trooper)])")
 	TEST_ASSERT(get_dist(trooper, ground) <= 3, "The trooper landed too far from the target")
 	trooper.forceMove(run_loc_floor_bottom_left)
@@ -223,6 +248,7 @@
 	QDEL_LIST(colonists)
 	planet.surface.unload()
 	qdel(planet, TRUE)
+
 
 
 #undef TEST_ASSERT

@@ -3670,6 +3670,23 @@ Oznaczenia w kolumnie uwag:
 | ancient goliath | pradawny goliat | m; nowe |
 | legion | legion | m; istniejące |
 | legion skull | czaszka legionu | ż; nowe |
+| brimdemon | siarkodemon | m; nowe (planety, port tg) |
+| lavagrub | lawowy pędrak | m; nowe (planety, Shiptest) |
+| crystal goliath | kryształowy goliat | m; nowe (planety, Shiptest) |
+| forgotten watcher | zapomniany obserwator | m; nowe (planety, Shiptest) |
+| disfigured legion | zniekształcony legion | m; nowe (planety, Shiptest) |
+| burrow | nora | ż; nowe (spawner fauny na planetach) |
+| volcanic sand | wulkaniczny piasek | m; nowe (turf planety) |
+| crimson grass | szkarłatna trawa | ż; nowe (turf planety) |
+| moss carpet | mszysty dywan | m; nowe (turf planety) |
+| obsidian | obsydian | m; nowe (turf planety) |
+| cave fern | paproć jaskiniowa | ż; nowe (roślina Lavalandu) |
+| fireblossom | ogniokwiat | m; nowe (roślina Lavalandu) |
+| pucetal | pucestal | m; nowe, spolszczenie brzmieniowe |
+| drop pod | kapsuła desantowa | ż; nowe |
+| drop pod bay | wyrzutnia kapsuł desantowych | ż; nowe |
+| tactical binoculars | lornetka taktyczna | ż; nowe |
+| landing zone | lądowisko | n; nowe (Lądowisko Alfa/Bravo/Charlie) |
 | dwarf legion | karłowaty legion | m; nowe |
 | legionnaire | legionista | m; istniejące |
 | watcher | obserwator | m; nowe |
