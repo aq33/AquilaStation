@@ -142,7 +142,7 @@ GLOBAL_LIST_INIT(aquila_independence_common_reasons, list(
 		return
 	priority_announce("Zarząd związku zawodowego działu [department["name"]] ogłosił strajk generalny, ponieważ [reason]. \
 		Strajkujący proklamowali niepodległe państwo [nation_name] i nie wrócą do pracy bez [demand]. \
-		Dowództwo proszone jest o podjęcie negocjacji.", "Strajk generalny")
+		Dowództwo proszone jest o podjęcie negocjacji.", "Strajk generalny", sound = 'aquila/sound/ai/events/department_strike.ogg')
 
 /datum/round_event/aquila_department_independence/start()
 	if(!department)

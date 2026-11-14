@@ -34,7 +34,7 @@
 		CRASH("Anomaly : No valid turfs found for [impact_area] - [impact_area.type]")
 
 /datum/round_event/anomaly/announce(fake)
-	priority_announce("Fala strumieni energetycznych zlokalizowana na skanerach dalekiego zasięgu. Spodziewany punkt uderzenia: [impact_area.name].", "Alarm: Anomalia", SSstation.announcer.get_rand_alert_sound())
+	priority_announce("Fala strumieni energetycznych zlokalizowana na skanerach dalekiego zasięgu. Spodziewany punkt uderzenia: [impact_area.name].", "Alarm: Anomalia", 'aquila/sound/ai/events/anomaly_energy.ogg') // AQ EDIT - własne nagranie ogłoszenia
 
 /datum/round_event/anomaly/start()
 	var/turf/T = safepick(get_area_turfs(impact_area))

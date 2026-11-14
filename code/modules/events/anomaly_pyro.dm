@@ -11,4 +11,4 @@
 	anomaly_path = /obj/effect/anomaly/pyro
 
 /datum/round_event/anomaly/anomaly_pyro/announce(fake)
-	priority_announce("Anomalia piroklastyczna wykryta na skanerach długiego zasięgu. Spodziewany punkt uderzenia: [impact_area.name].", "Alarm: Anomalia", SSstation.announcer.get_rand_alert_sound())
+	priority_announce("Anomalia piroklastyczna wykryta na skanerach długiego zasięgu. Spodziewany punkt uderzenia: [impact_area.name].", "Alarm: Anomalia", 'aquila/sound/ai/events/anomaly_pyro.ogg') // AQ EDIT - własne nagranie ogłoszenia

@@ -1077,3 +1077,10 @@
       hardsuitami, dojście do Experimentora, pasy w robotyce.'
   - bugfix: 'Von Neumann: recykler przyjmuje śmieci z taśmy, maszyna stertująca działa,
       przycisk zsypu odpala mass driver; pasy w robotyce na Shrike i Padalcu.'
+  - soundadd: 'Ogłoszenia random eventów mają własne nagrania głosu SI zamiast ogólnego
+      „Uwaga!”: anomalie, migracje, burze, piraci, pożyczka promu, kryształowa inwazja,
+      zorza i inne.'
+  - soundadd: Ogłoszenia, które grały nagranie o czymś innym (bariera, anomalia magnetyczna,
+      fale rozstrajające, binglowie i inne), mają pasujące nagrania.
+  - bugfix: Ogłoszenie fali mięsoroidów i inwazji ksenomorfów ma znowu poprawny tytuł
+      zamiast nazwy dźwięku.

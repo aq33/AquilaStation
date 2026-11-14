@@ -74,7 +74,7 @@
 	// kill() w setup() nie zatrzymuje eventu (round_event/New dodaje go do SSevents.running po setup), więc bez oczyszczaczy milczymy tutaj
 	if(!fake && !length(scrubbers))
 		return
-	priority_announce("W sieci oczyszczaczy powietrza wystąpił skok ciśnienia zwrotnego. Możliwe wyrzuty zawartości.", "Dział inżynierii [command_name()]")
+	priority_announce("W sieci oczyszczaczy powietrza wystąpił skok ciśnienia zwrotnego. Możliwe wyrzuty zawartości.", "Dział inżynierii [command_name()]", sound = 'aquila/sound/ai/events/liquid_backpressure.ogg')
 
 /datum/round_event/scrubber_overflow/setup()
 	for(var/obj/machinery/atmospherics/components/unary/vent_scrubber/temp_vent in GLOB.machines)
@@ -163,7 +163,7 @@
 	anomaly_path = /obj/effect/anomaly/fluid
 
 /datum/round_event/anomaly/anomaly_fluid/announce(fake)
-	priority_announce("Anomalia płynów wykryta na skanerach długiego zasięgu. Spodziewany punkt uderzenia: [impact_area.name].", "Alarm: Anomalia", SSstation.announcer.get_rand_alert_sound())
+	priority_announce("Anomalia płynów wykryta na skanerach długiego zasięgu. Spodziewany punkt uderzenia: [impact_area.name].", "Alarm: Anomalia", 'aquila/sound/ai/events/liquid_anomaly.ogg')
 
 //fully automated piss floods
 /obj/effect/anomaly/fluid

@@ -54,7 +54,7 @@
 
 /proc/power_restore_quick()
 
-	priority_announce("Wszystkie kondesatory w [station_name()] zostały naładowane. Przepraszamy za wszelkie niedogodności.", "Standardowy tryb pracy systemów elektroenergetycznych", ANNOUNCER_POWERON) //AQ EDIT
+	priority_announce("Wszystkie kondesatory w [station_name()] zostały naładowane. Przepraszamy za wszelkie niedogodności.", "Standardowy tryb pracy systemów elektroenergetycznych", 'aquila/sound/ai/events/power_capacitors.ogg') //AQ EDIT
 	for(var/obj/machinery/power/smes/S in GLOB.machines)
 		if(!is_station_level(S.z))
 			continue
