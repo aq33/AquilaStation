@@ -56,9 +56,11 @@
 	var/obj/item/drill_core_container/container
 	/// Wydobyta próbka
 	var/obj/item/drill_sample/sample
+	/// Żyła klasy 4 postawiona przez misję (generator ich nie stawia, więc innej na planecie nie ma)
+	var/obj/structure/vein/target_vein
 
 /datum/overmap_objective/planet/deep_vein/Destroy()
-	for(var/atom/movable/tracked as anything in list(sampler, container, sample))
+	for(var/atom/movable/tracked as anything in list(sampler, container, sample, target_vein))
 		if(tracked)
 			UnregisterSignal(tracked, COMSIG_PARENT_QDELETING)
 	if(sampler)
@@ -66,6 +68,7 @@
 	sampler = null
 	container = null
 	sample = null
+	target_vein = null
 	return ..()
 
 /datum/overmap_objective/planet/deep_vein/update_brief()
@@ -94,7 +97,8 @@
 	var/turf/T = pick_site_turf()
 	if(!T)
 		return
-	new /obj/structure/vein/lavaland/classfour(T)
+	target_vein = new /obj/structure/vein/lavaland/classfour(T)
+	RegisterSignal(target_vein, COMSIG_PARENT_QDELETING, PROC_REF(on_tracked_deleted))
 	log_game("Planet [target_planet] deep vein mission vein placed at [AREACOORD(T)]")
 
 /// Wiertło wydobyło próbkę
@@ -104,7 +108,8 @@
 	sample = new_sample
 	RegisterSignal(sample, COMSIG_PARENT_QDELETING, PROC_REF(on_tracked_deleted))
 
-/// Zniszczony pojemnik albo próbka, albo wiertło przed wydobyciem próbki: misja oblana (lost_name w bierniku)
+/// Zniszczony pojemnik albo próbka, albo wiertło lub żyła przed wydobyciem próbki: misja oblana (lost_name w bierniku).
+/// Żyła zawala się razem z wiertłem zniszczonym w trakcie pracy, a zepsute wiertło zostaje, więc pilnujemy też żyły.
 /datum/overmap_objective/planet/deep_vein/proc/on_tracked_deleted(atom/movable/source)
 	SIGNAL_HANDLER
 	var/lost_name
@@ -113,6 +118,11 @@
 		if(sample)
 			return
 		lost_name = "wiertło do próbek głębinowych"
+	else if(source == target_vein)
+		target_vein = null
+		if(sample)
+			return
+		lost_name = "żyłę klasy 4"
 	else if(source == container)
 		container = null
 		lost_name = "pojemnik na próbkę"

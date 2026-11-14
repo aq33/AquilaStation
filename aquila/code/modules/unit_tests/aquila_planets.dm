@@ -144,7 +144,7 @@
 		var/datum/map_template/ruin/ruin = templates[name]
 		TEST_ASSERT(ruin.width <= inner_size - 12 && ruin.height <= inner_size / 2, "[name] ([ruin.width]x[ruin.height]) doesn't fit as a main ruin")
 		var/turf/corner = locate(bl.x + PLANET_EDGE_WIDTH + 6, bl.y + PLANET_SURFACE_SIZE - PLANET_EDGE_WIDTH - 6 - ruin.height, bl.z)
-		planet.surface.load_ruin(ruin, corner, FALSE)
+		TEST_ASSERT(planet.surface.load_ruin(ruin, corner, FALSE), "[name] didn't load")
 		for(var/turf/T as anything in ruin.get_affected_turfs(corner, FALSE))
 			TEST_ASSERT(planet.surface.contains(T), "[name] spills outside the planet surface")
 	planet.surface.unload()

@@ -191,6 +191,23 @@
 	qdel(deep_objective)
 	qdel(deep)
 
+	// Pracujące wiertło zniszczone przez faunę zawala żyłę klasy 4, a innej na planecie nie ma: misja oblana
+	var/obj/structure/vein/lavaland/classfour/lost_vein = allocate(/obj/structure/vein/lavaland/classfour)
+	var/datum/overmap_objective/planet/deep_vein/lost_objective = new
+	lost_objective.target_vein = lost_vein
+	lost_objective.RegisterSignal(lost_vein, COMSIG_PARENT_QDELETING, TYPE_PROC_REF(/datum/overmap_objective/planet/deep_vein, on_tracked_deleted))
+	var/obj/machinery/drill/sampler_mission/doomed = allocate(/obj/machinery/drill/sampler_mission)
+	doomed.our_vein = lost_vein
+	lost_vein.our_drill = doomed
+	doomed.mission = lost_objective
+	doomed.setAnchored(TRUE)
+	doomed.start_mining()
+	TEST_ASSERT(doomed.active, "The deep core drill didn't start on the class 4 vein")
+	doomed.deconstruct(FALSE)
+	TEST_ASSERT(QDELETED(lost_vein), "The class 4 vein didn't collapse under the destroyed drill")
+	TEST_ASSERT_EQUAL(lost_objective.status, 2, "The deep vein mission isn't failed after losing its only class 4 vein")
+	qdel(lost_objective)
+
 	for(var/obj/effect/drill_spawner/leftover in range(8, T))
 		qdel(leftover)
 	for(var/mob/living/basic/mining/mob in range(8, T))

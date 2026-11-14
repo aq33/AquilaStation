@@ -206,13 +206,15 @@
 	var/turf/corner = locate(rand(low_x, max(low_x, high_x)), top_y, bl.z)
 	load_ruin(ruin, corner, FALSE)
 
-/// Wczytuje ruinę i oznacza jej pola (bez nowych roślin, zwierząt i lądowisk)
+/// Wczytuje ruinę i oznacza jej pola (bez nowych roślin, zwierząt i lądowisk). Zwraca, czy szablon się wczytał.
 /datum/planet_surface/proc/load_ruin(datum/map_template/ruin/ruin, turf/where, centered)
 	for(var/turf/T as anything in ruin.get_affected_turfs(where, centered))
 		for(var/atom/movable/AM as anything in T)
 			if(isanimal_or_basicmob(AM) || istype(AM, /obj/structure/flora) || istype(AM, /obj/structure/spawner))
 				qdel(AM)
-	ruin.load(where, centered = centered)
+	if(!ruin.load(where, centered = centered))
+		log_mapping("Planet [planet] ruin [ruin.name] failed to load at [AREACOORD(where)]")
+		return FALSE
 	ruin.loaded++
 	for(var/turf/T as anything in ruin.get_affected_turfs(where, centered))
 		T.flags_1 |= NO_RUINS_1
@@ -222,6 +224,7 @@
 			surface_area.contents += T
 			T.change_area(old_area, surface_area)
 	log_game("Planet [planet] ruin [ruin.name] placed at [AREACOORD(where)]")
+	return TRUE
 
 /// Małe ruiny z budżetu typu planety w wolnych miejscach, z dala od lądowisk i głównej ruiny
 /datum/planet_surface/proc/place_ruins(list/inner)
@@ -262,8 +265,7 @@
 				break
 		if(!valid)
 			continue
-		load_ruin(ruin, central, TRUE)
-		return TRUE
+		return load_ruin(ruin, central, TRUE)
 	return FALSE
 
 /// Następna burza za kilka minut
