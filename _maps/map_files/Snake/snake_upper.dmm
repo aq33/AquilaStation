@@ -776,6 +776,10 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/carpet/royalblack,
 /area/crew_quarters/heads/chief)
+"cH" = (
+/obj/machinery/drop_pod_bay,
+/turf/open/floor/plating/airless,
+/area/nsv/hanger/notkmcstupidhanger)
 "cO" = (
 /obj/effect/turf_decal/tile/ship/purple{
 	dir = 1
@@ -48976,7 +48980,7 @@ ak
 ak
 ak
 Sl
-ak
+cH
 gm
 Vm
 gp
@@ -50004,7 +50008,7 @@ DZ
 DZ
 DZ
 bi
-ak
+cH
 gm
 lE
 gp

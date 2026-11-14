@@ -5249,6 +5249,10 @@
 /obj/machinery/computer/ship/munitions_computer/west,
 /turf/open/floor/monotile/dark,
 /area/nsv/weapons)
+"kT" = (
+/obj/machinery/drop_pod_bay,
+/turf/open/floor/monotile/steel/airless,
+/area/nsv/hanger/notkmcstupidhanger)
 "kU" = (
 /obj/machinery/computer/ship/viewscreen,
 /turf/open/floor/plasteel/techmaint{
@@ -63616,9 +63620,9 @@ xX
 xX
 IT
 xX
-xX
+kT
 IT
-xX
+kT
 xX
 oX
 jx
