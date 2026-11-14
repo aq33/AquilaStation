@@ -104,6 +104,7 @@ GLOBAL_LIST_INIT(hex_war_factions, list("nanotrasen", "solgov", "syndicate", "pi
 		for(var/datum/fleet/F as anything in hex_all_fleets())
 			if(F.hex_war_adoptable())
 				F.hex_war_adopt()
+	restore_nuclear(saved)
 	ready = TRUE
 	addtimer(CALLBACK(src, PROC_REF(tick)), HEX_WAR_TICK)
 
@@ -129,6 +130,7 @@ GLOBAL_LIST_INIT(hex_war_factions, list("nanotrasen", "solgov", "syndicate", "pi
 	commander_returns()
 	for(var/faction in GLOB.hex_war_factions)
 		staff(faction)
+	nuclear_turn()
 
 /// Floty sztabu frakcji (bez konwojów)
 /datum/hex_war/proc/faction_fleets(faction, convoys = FALSE)
@@ -345,6 +347,7 @@ GLOBAL_LIST_INIT(hex_war_factions, list("nanotrasen", "solgov", "syndicate", "pi
 			continue
 		S.war_raided_until = world.time + HEX_WAR_RAID_TIME
 		F.war_loot += 3
+		add_tension(1)
 		if(!S.hidden)
 			mini_announce("Piraci napadli stację handlową w układzie [S]. Handel wstrzymany na co najmniej 20 minut.", "White Rapids EAS")
 		log_game("HEXWAR: [F.name] raids the trade station in [S]")

@@ -272,5 +272,104 @@
 		if(hex_factions_allied(ship.faction, entry["alignment"]))
 			TEST_ASSERT(!entry["ghost"], "An allied fleet is shown at its last known position")
 
+/// DEFCON z napięcia wojny, a każda detonacja to DEFCON 1
+/datum/unit_test/hexmap_war_defcon
+
+/datum/unit_test/hexmap_war_defcon/Run()
+	var/datum/hex_war/W = GLOB.hex_war
+	var/saved_tension = W.tension
+	var/saved_lock = W.defcon_lock_until
+	var/list/results = list()
+	W.defcon_lock_until = 0
+	for(var/value in list(0, 7, 15, 25))
+		W.tension = value
+		W.update_defcon()
+		results += W.defcon
+	W.nuclear_detonation(null)
+	var/after_blast = W.defcon
+	W.tension = saved_tension
+	W.defcon_lock_until = saved_lock
+	W.update_defcon()
+	TEST_ASSERT_EQUAL(jointext(results, ","), "5,4,3,2", "DEFCON from tension 0/7/15/25")
+	TEST_ASSERT_EQUAL(after_blast, 1, "A nuclear detonation did not set DEFCON 1")
+
+/// Wybuch pocisku strategicznego: flota w kaflu traci 3 okręty, flota obok 1, pusty kafel zostaje skażony
+/datum/unit_test/hexmap_war_strategic_nuke
+
+/datum/unit_test/hexmap_war_strategic_nuke/Run()
+	var/datum/hex/blast
+	var/datum/hex/beside
+	for(var/id in GLOB.hexmap.hexes)
+		var/datum/hex/H = GLOB.hexmap.hexes[id]
+		if(H.system || H.terrain != HEX_TERRAIN_EMPTY || length(GLOB.hexmap.neighbours(H)) != 6)
+			continue
+		for(var/datum/hex/N as anything in GLOB.hexmap.neighbours(H))
+			if(!N.system && N.terrain == HEX_TERRAIN_EMPTY)
+				beside = N
+				break
+		if(beside)
+			blast = H
+			break
+	TEST_ASSERT(blast, "No two empty neighbouring hexes")
+	var/datum/star_system/blast_system = GLOB.hexmap.system_for(blast)
+	var/datum/star_system/beside_system = GLOB.hexmap.system_for(beside)
+	var/datum/fleet/A = blast_system.spawn_fleet(/datum/fleet/nanotrasen, 8)
+	var/datum/fleet/B = beside_system.spawn_fleet(/datum/fleet/nanotrasen, 8)
+	var/ships_a = A.hex_war_ship_count()
+	var/ships_b = B.hex_war_ship_count()
+	var/saved_tension = GLOB.hex_war.tension
+	var/saved_lock = GLOB.hex_war.defcon_lock_until
+	var/datum/hex_nuke/N = new
+	N.faction = "syndicate"
+	N.hex = blast
+	N.target_hex = blast
+	N.trail = list(blast.id)
+	N.impact(null, null)
+	var/left_a = QDELETED(A) ? 0 : A.hex_war_ship_count()
+	var/left_b = QDELETED(B) ? 0 : B.hex_war_ship_count()
+	var/terrain = blast.terrain
+	blast.set_terrain(HEX_TERRAIN_EMPTY)
+	if(!QDELETED(A))
+		A.hex_war_dispose()
+	if(!QDELETED(B))
+		B.hex_war_dispose()
+	GLOB.hex_war.tension = saved_tension
+	GLOB.hex_war.defcon_lock_until = saved_lock
+	GLOB.hex_war.update_defcon()
+	TEST_ASSERT_EQUAL(left_a, max(0, ships_a - 3), "The fleet in the blast hex lost [ships_a - left_a] ships instead of 3")
+	TEST_ASSERT_EQUAL(left_b, max(0, ships_b - 1), "The fleet next to the blast lost [ships_b - left_b] ships instead of 1")
+	TEST_ASSERT_EQUAL(terrain, HEX_TERRAIN_RADIATION, "An empty hex was not irradiated by the blast")
+
+/// Strzał strategiczny gracza wymaga DEFCON 2 i atomówki w wyrzutni; skrzynia startowa ma atomówkę
+/datum/unit_test/hexmap_war_player_nuke
+
+/datum/unit_test/hexmap_war_player_nuke/Run()
+	var/obj/structure/overmap/ship = SSstar_system.find_main_overmap()
+	var/datum/hex/here = ship?.current_hex()
+	var/obj/structure/closet/crate/secure/weapon/aquila_nuke/crate = allocate(/obj/structure/closet/crate/secure/weapon/aquila_nuke)
+	TEST_ASSERT(locate(/obj/item/ship_weapon/ammunition/torpedo/nuke) in crate.contents, "The starting crate has no nuclear torpedo")
+	if(!here)
+		return
+	var/datum/hex/target
+	for(var/datum/hex/H as anything in GLOB.hexmap.hexes_in_range(here, 3))
+		target = H
+		break
+	var/saved_tension = GLOB.hex_war.tension
+	var/saved_lock = GLOB.hex_war.defcon_lock_until
+	GLOB.hex_war.defcon_lock_until = 0
+	GLOB.hex_war.tension = 0
+	GLOB.hex_war.update_defcon()
+	var/peace = ship.hex_nuke_blocker(target)
+	GLOB.hex_war.defcon_lock_until = world.time + 1 MINUTES
+	GLOB.hex_war.update_defcon()
+	var/war = ship.hex_nuke_blocker(target)
+	var/loaded = length(ship.hex_loaded_nukes())
+	GLOB.hex_war.tension = saved_tension
+	GLOB.hex_war.defcon_lock_until = saved_lock
+	GLOB.hex_war.update_defcon()
+	TEST_ASSERT(findtext(peace, "DEFCON"), "Firing at DEFCON 5 was not blocked by DEFCON: [peace]")
+	if(!loaded)
+		TEST_ASSERT(findtext(war, "wyrzutnia"), "Firing without a loaded nuke at DEFCON 1 gave: [war]")
+
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL

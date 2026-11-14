@@ -193,6 +193,8 @@ GLOBAL_LIST_INIT(hex_commander_names, list(
 				W.commander.add_win(commander)
 	commander?.fleet_lost(player_caused)
 	commander = null
+	if(!war_cargo)
+		GLOB.hex_war?.add_tension(3)
 	return ..()
 
 /datum/fleet/encounter(obj/structure/overmap/OM)

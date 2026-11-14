@@ -94,3 +94,19 @@
 		if(F)
 			to_chat(user, "<span class='notice'>Flota [F.name] stoi dwa kafle od okrętu.</span>")
 	GLOB.hex_war.run_turn()
+
+/datum/test_chamber_kit/pr_638/atomowka
+	name = "Mapa FTL: atomówka i DEFCON"
+	description = "Zestaw daje dwie torpedy termojądrowe, ładuje napęd i ustawia DEFCON 1 na 30 min. Załaduj atomówkę do wyrzutni torped albo VLS. \
+		1) Taktycznie: strzał w okręt na overmapie jak zwykłą torpedą, wybuch nuke_impact; w okręcie z załogą błysk, huk, wstrząs, pożary i promieniowanie. \
+		2) Strategicznie: na konsoli nawigacji kliknij kafel w zasięgu 9, przycisk „Odpal atomówkę w ten kafel” i potwierdź. Pocisk leci kafel co 30 s (czerwony ślad ☢), floty wroga po drodze mogą go zestrzelić; w celu floty tracą 3 okręty, obok 1, pusty kafel zostaje skażony na 50 min. \
+		3) Atomówka AI w okręt: dwa kafle przed celem alarm i komunikat „Nieuchronne trafienie pociskiem”, w kaflu okrętu torpeda z krawędzi overmapy – zestrzel ją PD albo flakiem. \
+		4) Na starcie rundy przy wyrzutni torped stoi skrzynia z atomówką (dostęp kapitana albo XO). DEFCON w konsoli, ogłoszenia przy zmianie."
+	items = list(/obj/item/ship_weapon/ammunition/torpedo/nuke = 2)
+
+/datum/test_chamber_kit/pr_638/atomowka/setup(list/spawned, list/turfs, turf/center, mob/user)
+	. = ..()
+	if(!user || !GLOB.hex_war)
+		return
+	GLOB.hex_war.nuclear_detonation(null)
+	to_chat(user, "<span class='notice'>DEFCON 1 na 30 minut.</span>")

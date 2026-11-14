@@ -60,3 +60,4 @@
 	GLOB.hexmap.place_facilities()
 	GLOB.hex_war = new
 	GLOB.hex_war.setup(save?["war"])
+	SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(hex_spawn_nuke_crate)))

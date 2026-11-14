@@ -128,6 +128,14 @@ type Selected = {
   stops: boolean;
   blocks: boolean;
   wormhole_to: string | null;
+  nuke_blocker?: string | null;
+};
+
+type Missile = {
+  faction: string;
+  hex: string;
+  target: string | null;
+  trail: string[];
 };
 
 type Terrain = {
@@ -154,6 +162,17 @@ type Data = {
   terrain: Record<string, string>;
   wormholes: { a: string; b: string }[];
   commanders: Commander[];
+  defcon: number;
+  nukes_loaded: number;
+  missiles: Missile[];
+};
+
+const DEFCON_COLOR: Record<number, string> = {
+  5: '#5fb35f',
+  4: '#9fc95f',
+  3: '#e0c040',
+  2: '#ff8a2a',
+  1: '#ff3030',
 };
 
 const FACILITY_NAME: Record<string, string> = {
@@ -434,6 +453,9 @@ export const HexStarmap = () => {
     terrain = {},
     wormholes = [],
     commanders = [],
+    defcon = 5,
+    nukes_loaded = 0,
+    missiles = [],
   } = data;
   const [panelTab, setPanelTab] = useState<'hex' | 'commanders'>('hex');
 
@@ -589,6 +611,19 @@ export const HexStarmap = () => {
                 >
                   Do okrętu
                 </Button>
+                <Box
+                  inline
+                  ml={1}
+                  px={1}
+                  bold
+                  style={{
+                    border: `1px solid ${DEFCON_COLOR[defcon] || '#888'}`,
+                    color: DEFCON_COLOR[defcon] || '#888',
+                    borderRadius: '3px',
+                  }}
+                >
+                  {`DEFCON ${defcon}`}
+                </Box>
                 <Button
                   icon="search-minus"
                   onClick={() => setZoom(Math.max(0.4, zoom - 0.2))}
@@ -972,6 +1007,47 @@ export const HexStarmap = () => {
                         );
                       });
                     })}
+                    {missiles.map((m, i) => {
+                      const head = cells[m.hex];
+                      return (
+                        <g key={`missile-${i}`} pointerEvents="none">
+                          <path
+                            d={pathD(m.trail)}
+                            stroke="#ff3030"
+                            strokeWidth={2}
+                            strokeDasharray="2 3"
+                            fill="none"
+                          />
+                          {!!m.target &&
+                            cells[m.target] &&
+                            inView(cells[m.target].sector) && (
+                              <circle
+                                cx={cells[m.target].x}
+                                cy={cells[m.target].y}
+                                r={R * 0.9}
+                                fill="none"
+                                stroke="#ff3030"
+                                strokeWidth={1.5}
+                                strokeDasharray="4 3"
+                              />
+                            )}
+                          {!!head && inView(head.sector) && (
+                            <text
+                              x={head.x}
+                              y={head.y + 5}
+                              textAnchor="middle"
+                              fontSize={15}
+                              fill="#ff3030"
+                              stroke="#000"
+                              strokeWidth={2.6}
+                              paintOrder="stroke"
+                            >
+                              ☢
+                            </text>
+                          )}
+                        </g>
+                      );
+                    })}
                     {shipCell && inView(shipCell.sector) && (
                       <g pointerEvents="none">
                         <circle
@@ -1039,6 +1115,9 @@ export const HexStarmap = () => {
                     <LabeledList.Item label="Stan">
                       {ship.state}
                       {ship.cooldown > 0 && ` (${ship.cooldown} s)`}
+                    </LabeledList.Item>
+                    <LabeledList.Item label="Atomówki w wyrzutniach">
+                      {nukes_loaded}
                     </LabeledList.Item>
                     <LabeledList.Item label="Koszt skoku">
                       {`kafel ${percent(cost_hex)}, brama ${percent(cost_gate)}`}
@@ -1109,6 +1188,8 @@ export const HexStarmap = () => {
                       routeOk={routeOk}
                       terrain={terrainById[selected.terrain]}
                       system={systems.find((s) => s.hex === selected.hex)}
+                      nukesLoaded={nukes_loaded}
+                      onNuke={() => act('hex_nuke')}
                       onJump={() => act('hex_jump')}
                       onShowGate={(gate) => showSector(gate.sector, gate.hex)}
                     />
@@ -1184,6 +1265,8 @@ type SelectedPanelProps = {
   routeOk: boolean;
   terrain?: Terrain;
   system?: StarSystem;
+  nukesLoaded: number;
+  onNuke: () => void;
   onJump: () => void;
   onShowGate: (gate: GateInfo) => void;
 };
@@ -1196,9 +1279,12 @@ const SelectedPanel = (props: SelectedPanelProps) => {
     routeOk,
     terrain,
     system,
+    nukesLoaded,
+    onNuke,
     onJump,
     onShowGate,
   } = props;
+  const [nukeArmed, setNukeArmed] = useState(false);
   const route = selected.route;
   const showTerrain = !!terrain && terrain.id !== 'empty';
   return (
@@ -1334,6 +1420,33 @@ const SelectedPanel = (props: SelectedPanelProps) => {
         >
           {ship.safety_override ? 'Skok awaryjny' : 'Skok'}
         </Button>
+      )}
+      {!!canControl && nukesLoaded > 0 && selected.hex !== ship.hex && (
+        <Box mt={1}>
+          {selected.nuke_blocker ? (
+            <Box color="label" fontSize="11px">
+              {`Atomówka: ${selected.nuke_blocker}`}
+            </Box>
+          ) : (
+            <Button
+              fluid
+              icon="radiation"
+              color={nukeArmed ? 'bad' : 'average'}
+              onClick={() => {
+                if (!nukeArmed) {
+                  setNukeArmed(true);
+                  return;
+                }
+                setNukeArmed(false);
+                onNuke();
+              }}
+            >
+              {nukeArmed
+                ? 'Potwierdź odpalenie atomówki'
+                : 'Odpal atomówkę w ten kafel'}
+            </Button>
+          )}
+        </Box>
       )}
     </>
   );

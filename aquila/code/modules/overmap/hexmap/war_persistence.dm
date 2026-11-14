@@ -48,7 +48,20 @@
 	for(var/datum/star_system/S as anything in SSstar_system.systems)
 		if(S.war_ore || S.war_parts)
 			stores[S.name] = list(S.war_ore, S.war_parts)
-	return list("commanders" = commander_data, "fleets" = fleet_data, "stores" = stores, "next_id" = next_commander_id)
+	return list("commanders" = commander_data, "fleets" = fleet_data, "stores" = stores, "next_id" = next_commander_id, "tension" = tension, "nuke_stocks" = nuke_stocks)
+
+/// Napięcie i zapasy atomówek z zapisu (niezależnie od tego, czy floty dało się odtworzyć)
+/datum/hex_war/proc/restore_nuclear(list/saved)
+	if(!islist(saved))
+		return
+	if(isnum(saved["tension"]))
+		tension = saved["tension"]
+	var/list/stocks = saved["nuke_stocks"]
+	if(islist(stocks))
+		for(var/faction in nuke_stocks)
+			if(isnum(stocks[faction]))
+				nuke_stocks[faction] = stocks[faction]
+	update_defcon()
 
 /// Odtwarza wojnę z zapisu. Zwraca FALSE, gdy zapisu nie da się użyć (wtedy sztab przejmuje floty ze startu rundy).
 /datum/hex_war/proc/restore(list/saved)

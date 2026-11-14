@@ -111,6 +111,14 @@
 	data["fleets"] = hex_fog_fleet_data(linked)
 	data["commanders"] = hex_commander_data()
 
+	// Atomówki i DEFCON (war_nuke.dm)
+	data["defcon"] = GLOB.hex_war?.defcon || 5
+	data["nukes_loaded"] = length(linked.hex_loaded_nukes())
+	var/list/missiles = list()
+	for(var/datum/hex_nuke/N as anything in GLOB.hex_war?.missiles)
+		missiles += list(list("faction" = N.faction, "hex" = N.hex?.id, "target" = N.target_hex?.id, "trail" = N.trail))
+	data["missiles"] = missiles
+
 	var/list/gates = list()
 	for(var/datum/star_system/S as anything in SSstar_system.systems)
 		if(!S.hex || !LAZYLEN(S.hex.gates))
@@ -181,6 +189,7 @@
 		"stops" = GLOB.hexmap.stops(H),
 		"blocks" = GLOB.hexmap.blocks(H),
 		"wormhole_to" = H.wormhole_pair?.display_name(),
+		"nuke_blocker" = here ? linked.hex_nuke_blocker(H) : "Okręt jest w locie.",
 	)
 	var/list/gate_names = list()
 	for(var/datum/hex/G as anything in H.gates)
@@ -210,7 +219,7 @@
 	return out
 
 /obj/machinery/computer/ship/navigation/ui_act(action, params, datum/tgui/ui)
-	if(!uses_hex_map() || !(action in list("hex_select", "hex_jump", "hex_cancel")))
+	if(!uses_hex_map() || !(action in list("hex_select", "hex_jump", "hex_cancel", "hex_nuke")))
 		return ..()
 	if(!linked)
 		return
@@ -237,6 +246,12 @@
 				return TRUE
 			if(linked.hex_jump(hex_selected, usr))
 				playsound(src, 'nsv13/sound/effects/computer/scroll_start.ogg', 50, TRUE)
+			return TRUE
+		if("hex_nuke")
+			if(!can_control_ship || linked.ftl_drive?.lockout)
+				return
+			if(linked.hex_fire_strategic_nuke(hex_selected, usr))
+				playsound(src, 'nsv13/sound/effects/computer/alarm_3.ogg', 50, FALSE)
 			return TRUE
 		if("hex_cancel")
 			if(!can_control_ship || linked.ftl_drive?.lockout)
