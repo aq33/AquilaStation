@@ -21342,5 +21342,20 @@
 "Pobór / zapotrzebowanie": "Draw / demand",
 "Priorytet 1 dostaje prąd pierwszy.": "Priority 1 gets power first.",
 "Przy braku mocy najpierw odcinane są niższe priorytety.": "When power runs short, lower priorities are cut first.",
-"Napęd bierze prąd z APC, więc działa u niego tylko limit.": "Propulsion draws from the APC, so only the limit applies to it."
+"Napęd bierze prąd z APC, więc działa u niego tylko limit.": "Propulsion draws from the APC, so only the limit applies to it.",
+"matryca sensorów": "sensor array",
+"<span class='danger'>[src] sypie iskrami i wyłącza się z przegrzania!</span>": "<span class='danger'>[src] sparks and shuts down from overheating!</span>",
+"<span class='notice'>[user] naprawia [src].</span>": "<span class='notice'>[user] repairs [src].</span>",
+"ZNISZCZONA": "DESTROYED",
+"BRAK ZASILANIA": "NO POWER",
+"NIESZCZELNA WNĘKA": "ALCOVE NOT SEALED",
+"<span class='notice'>Stan: [status_text()], zasięg [range]/[SENSOR_ARRAY_MAX_RANGE], ciepło [round(heat)]/[SENSOR_ARRAY_CRITICAL_HEAT].</span>": "<span class='notice'>Status: [status_text()], range [range]/[SENSOR_ARRAY_MAX_RANGE], heat [round(heat)]/[SENSOR_ARRAY_CRITICAL_HEAT].</span>",
+"<span class='notice'>Obudowa jest uszkodzona ([round(obj_integrity / max_integrity * 100)]%). Spawarka ją naprawi.</span>": "<span class='notice'>The casing is damaged ([round(obj_integrity / max_integrity * 100)]%). A welder will fix it.</span>",
+"BRAK MATRYCY": "NO ARRAY",
+"Ciepło matrycy": "Array heat",
+"prawa burta": "starboard",
+"rufa": "stern",
+"lewa burta": "port",
+"Anteny i czujniki okrętu na kadłubie. Obejmuje jedną ćwiartkę wokół statku: bez niej radar, teleskop i podczerwień są tam ślepe.": "The ship's antennas and sensors on the hull. It covers one quarter around the ship: without it the radar, telescope and infrared are blind there.",
+"${unit.status}, ${unit.power}, ciepło ${unit.heat}/${array.critical_heat}": "${unit.status}, ${unit.power}, heat ${unit.heat}/${array.critical_heat}"
 }

@@ -122,17 +122,17 @@ GLOBAL_VAR_INIT(player_sensor_suites_enabled, TRUE)
 		var/state
 		switch(suite)
 			if(SENSOR_TELESCOPE)
-				reach = get_telescope_reach(target) * mult * (ai_controlled ? 1 : PLAYER_TELESCOPE_MULT)
+				reach = get_telescope_reach(target) * mult * (ai_controlled ? 1 : PLAYER_TELESCOPE_MULT) * get_sensor_array_mult(suite, target)
 				state = !is_in_telescope_cone(target) ? "cone" : (reach >= dist ? "sees" : "far")
 			if(SENSOR_INFRARED)
-				reach = get_infrared_reach(target) * mult
+				reach = get_infrared_reach(target) * mult * get_sensor_array_mult(suite, target)
 				state = is_infrared_blinded_toward(target) ? "blind" : (reach >= dist ? "sees" : "far")
 			if(SENSOR_LIDAR)
 				if(ai_controlled)
 					reach = pulse ? max_tracking_range : 0
 					state = pulse ? (reach >= dist ? "sees" : "far") : "off"
 				else
-					reach = get_radar_reach(pulse ? radar_pulse_width : radar_beam_width)
+					reach = get_radar_reach(pulse ? radar_pulse_width : radar_beam_width) * get_sensor_array_mult(SENSOR_LIDAR, target)
 					if(!pulse)
 						state = "off"
 					else if(radar_pulse_width && !is_in_radar_pulse_beam(target))
@@ -181,7 +181,7 @@ GLOBAL_VAR_INIT(player_sensor_suites_enabled, TRUE)
 		return FALSE
 	OM.radar_pulse_width = GLOB.ai_sensor_cones_enabled ? OM.radar_beam_width : 0
 	OM.radar_pulse_bearing = OM.get_radar_beam_bearing()
-	var/reach = OM.get_radar_reach(OM.radar_pulse_width)
+	var/reach = OM.get_radar_reach(OM.radar_pulse_width) * OM.get_sensor_array_mult(SENSOR_LIDAR)
 	addtimer(VARSET_CALLBACK(src, sensor_range, base_sensor_range), RADAR_VISIBILITY_PENALTY)
 	sensor_range = reach
 	// Śledzenie namierzonego celu (physics.dm) liczy zasięg z DRADIS okrętu: na czas impulsu też go poszerzamy,
@@ -216,14 +216,14 @@ GLOBAL_VAR_INIT(player_sensor_suites_enabled, TRUE)
 	data["telescope_target"] = aim ? "\ref[aim]" : null
 	data["ir_blind"] = cones && linked.is_infrared_rear_blind()
 	data["ir_blind_half"] = INFRARED_BLIND_HALF_ANGLE
-	data["camera_reach"] = round(linked.get_optical_reach(1) * PLAYER_SUITE_RANGE_MULT)
+	data["camera_reach"] = round(linked.get_optical_reach(1) * PLAYER_SUITE_RANGE_MULT * linked.get_sensor_array_mult(SENSOR_OPTICAL))
 	data["radar_beam"] = cones ? linked.radar_beam_width : 0
 	data["radar_beam_mode"] = linked.radar_beam_mode
 	data["radar_beam_bearing"] = round(linked.get_radar_beam_bearing())
-	data["radar_reach"] = linked.get_radar_reach(data["radar_beam"])
+	data["radar_reach"] = round(linked.get_radar_reach(data["radar_beam"]) * linked.get_sensor_array_mult(SENSOR_LIDAR))
 	data["pulse_width"] = linked.radar_pulse_width
 	data["pulse_bearing"] = round(linked.radar_pulse_bearing)
-	data["pulse_reach"] = linked.get_radar_reach(linked.radar_pulse_width)
+	data["pulse_reach"] = round(linked.get_radar_reach(linked.radar_pulse_width) * linked.get_sensor_array_mult(SENSOR_LIDAR))
 	// Ile sekund temu poszedł impuls: okno liczy z tego promień fali, więc animacja zgadza się z prawdziwym impulsem
 	data["pulse_age"] = round((world.time - linked.last_radar_pulse) / 10, 0.1)
 	if(!suites)
