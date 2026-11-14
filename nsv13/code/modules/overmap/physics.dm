@@ -286,13 +286,14 @@ This proc is to be used when someone gets stuck in an overmap ship, gauss, WHATE
 				last_thrust_right = -side_maxthrust
 
 	//Stops you yeeting off at lightspeed. This made AI ships really frustrating to play against.
-	// AQ EDIT START - overmap scale: slower ships on the overmap (aquila/code/modules/overmap/overmap_scale.dm)
+	// AQ EDIT START - overmap scale: slower ships on the overmap (aquila/code/modules/overmap/overmap_scale.dm); ship engines scale thrust (aquila/code/modules/overmap/ship_thrusters.dm)
 	var/speed_mult = get_overmap_speed_mult()
 	velocity.a = clamp(velocity.a, -speed_limit * speed_mult, speed_limit * speed_mult)
 	velocity.e = clamp(velocity.e, -speed_limit * speed_mult, speed_limit * speed_mult)
 
-	velocity.a += thrust_x * speed_mult * time //And speed us up based on how long we've been thrusting (up to a point)
-	velocity.e += thrust_y * speed_mult * time
+	var/engine_mult = get_engine_thrust_mult()
+	velocity.a += thrust_x * speed_mult * engine_mult * time //And speed us up based on how long we've been thrusting (up to a point)
+	velocity.e += thrust_y * speed_mult * engine_mult * time
 	// AQ EDIT END
 	if(inertial_dampeners) //An optional toggle to make capital ships more "fly by wire" and help you steer in only the direction you want to go.
 		var/side_movement = (sx*velocity.a) + (sy*velocity.e)
