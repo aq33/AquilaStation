@@ -21308,8 +21308,14 @@
 "Zamknij właz serwisowy.": "Close the maintenance panel.",
 "Rozłóż multitoolem paczki z flatpackerem i czytnikiem schematów (połóż je na podłodze, maszyna staje przodem tam, gdzie patrzysz). \\": "Unfold the flatpacks with the flatpacker and the schematic reader using a multitool (put them on the floor, the machine faces where you look). \\",
 "Czapka na hardsuicie, barykady TGMC, odchody": "Hat on a hardsuit, TGMC barricades, feces",
-"Wnętrza Syndykatu: Barracuda, fregata przeciwlotnicza, Kadesh": "Syndicate interiors: Barracuda, flak frigate, Kadesh",
+"Wnętrza abordażu: Syndykat i piraci": "Boarding interiors: Syndicate and pirates",
 "krążownik taktyczny klasy Barracuda (wnętrze)": "Barracuda class tactical cruiser (interior)",
 "fregata przeciwlotnicza Syndykatu (wnętrze)": "Syndicate flak frigate (interior)",
-"zaawansowany krążownik klasy Kadesh (wnętrze)": "Kadesh class advanced cruiser (interior)"
+"zaawansowany krążownik klasy Kadesh (wnętrze)": "Kadesh class advanced cruiser (interior)",
+"krążownik szturmowy klasy Inquisitor (wnętrze)": "Inquisitor class assault cruiser (interior)",
+"okręt podprzestrzenny klasy Aspala (wnętrze)": "Aspala class subspace vessel (interior)",
+"piracki frachtowiec (wnętrze)": "pirate freighter (interior)",
+"piracki ścigacz rakietowy (wnętrze)": "pirate missile runner (interior)",
+"piracka kanonierka (wnętrze)": "pirate gunboat (interior)",
+"piracki drednot (wnętrze)": "pirate dreadnought (interior)"
 }

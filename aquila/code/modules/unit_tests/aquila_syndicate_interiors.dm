@@ -12,7 +12,13 @@
 		"/obj/effect/landmark/nuclear_waste_spawner",
 		"/obj/machinery/door/airlock/ship/external/glass",
 	)
-	for(var/template_type in list(/datum/map_template/boarding/barracuda, /datum/map_template/boarding/flak_frigate, /datum/map_template/boarding/kadesh))
+	var/list/templates = list(
+		/datum/map_template/boarding/barracuda, /datum/map_template/boarding/flak_frigate, /datum/map_template/boarding/kadesh,
+		/datum/map_template/boarding/inquisitor, /datum/map_template/boarding/aspala,
+		/datum/map_template/boarding/pirate_hauler, /datum/map_template/boarding/pirate_raider,
+		/datum/map_template/boarding/pirate_gunboat, /datum/map_template/boarding/pirate_dreadnought,
+	)
+	for(var/template_type in templates)
 		var/datum/map_template/template = SSmapping.boarding_templates[template_type]
 		if(!template)
 			return Fail("[template_type] nie trafił do SSmapping.boarding_templates")
