@@ -220,6 +220,14 @@ export const widescreen: FeatureToggle = {
   important: true,
 };
 
+export const ship_hud_classic: FeatureToggle = {
+  name: 'Klasyczny panel sterowania',
+  category: 'GAMEPLAY',
+  description:
+    'Za sterami statku duży panel konsoli i samootwierające się okno DRADIS zamiast radaru w rogu i niskiego paska.',
+  component: CheckboxInput,
+};
+
 export const walk_animation: FeatureToggle = {
   name: 'Animacja chodu',
   category: 'GRAPHICS',
