@@ -1039,3 +1039,41 @@
   - balance: Drut kolczasty na barykadzie uniemożliwia przeskok. Barykadę poniżej
       30% wytrzymałości wzmacniają 2 arkusze, potem naprawia spawarka. Metalowa barykada
       ma 250 wytrzymałości, z plastali 550.
+'2026-11-14':
+  Joker66613:
+  - rscadd: 'XO może wysłać drużynę „Po sprzęt”: każdy członek dostaje znacznik przy
+      najbliższym automacie drużyny.'
+  - rscadd: Pager drużyny w szafce XO, do wydrukowania w autolathe i z konsoli drużyn
+      XO.
+  - rscadd: Mapę taktyczną w pagerze i konsoli XO można przesuwać przeciąganiem po
+      przybliżeniu.
+  - rscadd: Alt+klik na broni w ręce zabezpiecza ją albo odbezpiecza.
+  - rscadd: Prom Sabre na asteroidzie ląduje tam, gdzie wskaże pilot (kamera z obrysem),
+      a bez wyboru ląduje sam.
+  - rscadd: Tłumacz obcokrajowca tłumaczy języki antagonistów i kanały telepatyczne,
+      także bez słuchawki i po zmianie ciała.
+  - tweak: Odstęp między rozkazami liczy się osobno dla każdej drużyny.
+  - tweak: Sabre sam włącza tryb dokowania przy starcie, podpowiada, czemu nie dokuje,
+      i ostrzega przed skokiem okrętu.
+  - tweak: Drobne trafienie nie wywołuje już czerwonego pulsu bólu.
+  - bugfix: Prom Sabre zawsze wraca napędem FTL do swojego okrętu, także po skoku
+      okrętu.
+  - bugfix: Wybudzanie z kriostazy i inne ankiety duchów bez opcji „nigdy” znów przyjmują
+      zgłoszenia.
+  - bugfix: Z konsoli lasera obrony punktowej i wieżyczki przeciwlotniczej da się
+      wyjść.
+  - bugfix: Alarm promu nie gra już w kółko po lądowaniu.
+  - bugfix: Mniejsze lagi przy ruchu myszy z bronią w ręce.
+  - bugfix: Kałuża krwi nie jest już czerwonym kwadratem.
+  - bugfix: Na ekranie lobby nie zostaje biały prostokąt, a telewizor się nie zacina.
+  - bugfix: Augmentacja kończyny nie zostawia krwawienia na protezie, narzędzia mechaniczne
+      podpowiadają operacje.
+  - bugfix: Formatowanie mowy działa przy słuchawkach dowództwa.
+  - spellcheck: Opisy układów gwiezdnych, komunikaty utraty krwi i ogłoszenie starcia
+      flot po polsku; księga kultu po angielsku w wersji angielskiej.
+  - imageadd: Zbroja kultu z kapturem i szaty z runy mają sprite założonego kaptura;
+      nowy znacznik „Po sprzęt”.
+  - bugfix: 'Trawnik: drabina donikąd, śluzy i dostęp w cargo, szafy górników z nowymi
+      hardsuitami, dojście do Experimentora, pasy w robotyce.'
+  - bugfix: 'Von Neumann: recykler przyjmuje śmieci z taśmy, maszyna stertująca działa,
+      przycisk zsypu odpala mass driver; pasy w robotyce na Shrike i Padalcu.'
