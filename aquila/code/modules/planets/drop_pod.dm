@@ -1,7 +1,15 @@
 // AQUILA - wyrzutnia kapsuł desantowych, na wzór /obj/structure/droppod z TGMC (tgstation/TerraGov-Marine-Corps,
-// AGPLv3): siadasz w kapsule, wybierasz cel na planecie w układzie i lecisz w dół. Zamiast tranzytu i minimapy TGMC
-// lot robi nasza kapsuła zaopatrzeniowa (animacja spadania i znacznik lądowiska), a cel wybiera się z listy lądowisk
-// i znaczników albo kamerą nad powierzchnią. Powrót tylko promem. Po zrzucie wyrzutnia ładuje kolejną kapsułę.
+// AGPLv3): siadasz w kapsule, wybierasz cel na planecie w układzie i lecisz w dół. Zamiast minimapy TGMC cel wybiera
+// się z listy lądowisk i znaczników albo kamerą nad powierzchnią. Lot jak w TGMC: kapsuła zamyka się, znika w górze,
+// po kilku sekundach spada na cel i otwiera się, a jej skorupa zostaje na planecie. Powrót tylko promem. Po zrzucie
+// wyrzutnia ładuje kolejną kapsułę.
+// Sprite'y kapsuły i luku (aquila/icons/planets/droppod.dmi) i dźwięki (aquila/sound/planets/) z TGMC, licencja
+// CC BY-NC-SA 3.0, tak jak barykady TGMC u nas.
+
+/// Czas lotu kapsuły (od startu do pojawienia się nad celem)
+#define DROP_POD_TRANSIT_TIME (8 SECONDS)
+/// Czas spadania na cel
+#define DROP_POD_FALL_TIME (0.6 SECONDS)
 
 /// Czas przygotowania kolejnej kapsuły
 #define DROP_POD_RECHARGE (2 MINUTES)
@@ -11,11 +19,8 @@
 /obj/machinery/drop_pod_bay
 	name = "wyrzutnia kapsuł desantowych"
 	desc = "Kapsuła na jedną osobę osadzona w luku zrzutowym. Usiądź w niej, wybierz cel na powierzchni planety w układzie i odpal. Wraca się promem."
-	icon = 'icons/obj/supplypods.dmi'
-	icon_state = "darkpod"
-	// Sprite kapsuły ma 64 × 64: zmniejszony do 3/4 i wyśrodkowany na polu (Initialize)
-	pixel_x = -16
-	pixel_y = -16
+	icon = 'aquila/icons/planets/droppod.dmi'
+	icon_state = "launch_bay"
 	density = TRUE
 	anchored = TRUE
 	can_buckle = TRUE
@@ -36,9 +41,6 @@
 
 /obj/machinery/drop_pod_bay/Initialize(mapload)
 	. = ..()
-	var/matrix/scaled = matrix()
-	scaled.Scale(0.75)
-	transform = scaled
 	for(var/action_type in list(/datum/action/innate/drop_pod/target, /datum/action/innate/drop_pod/launch))
 		var/datum/action/innate/drop_pod/action = new action_type
 		action.bay = src
@@ -52,13 +54,15 @@
 	target_turf = null
 	return ..()
 
+/// Na luku stoi kapsuła: otwarta, a z celem i siedzącym w środku z zielonymi światłami gotowości
 /obj/machinery/drop_pod_bay/update_overlays()
 	. = ..()
 	if(!ready)
-		. += "pod_door"
-		. += "pod_glow_red"
-	else
-		. += "pod_glow_green"
+		return
+	var/armed = length(buckled_mobs) && target_turf
+	. += mutable_appearance(icon, armed ? "singlepod_green_active" : "singlepod_green_inactive", ABOVE_MOB_LAYER)
+	if(armed)
+		. += emissive_appearance(icon, "singlepod_green_active_emissive", ABOVE_MOB_LAYER)
 
 /obj/machinery/drop_pod_bay/examine(mob/user)
 	. = ..()
@@ -82,6 +86,7 @@
 	. = ..()
 	for(var/datum/action/innate/drop_pod/action as anything in pod_actions)
 		action.Grant(M)
+	update_icon()
 	to_chat(M, span_notice("Siedzisz w kapsule desantowej. „Cel zrzutu” wybiera miejsce na planecie, „Zrzut” odpala kapsułę."))
 
 /obj/machinery/drop_pod_bay/post_unbuckle_mob(mob/living/M)
@@ -90,6 +95,7 @@
 		action.Remove(M)
 	if(target_eye?.eye_user == M)
 		QDEL_NULL(target_eye)
+	update_icon()
 
 /// Planety z powierzchnią, na które można zrzucić kapsułę (układ, w którym jest okręt z wyrzutnią)
 /obj/machinery/drop_pod_bay/proc/available_planets()
@@ -134,6 +140,8 @@
 	target_planet = planet
 	target_turf = T
 	target_name = new_name
+	update_icon()
+	playsound(src, 'sound/machines/twobeep.ogg', 30, TRUE)
 	to_chat(user, span_notice("Cel zrzutu: [target_name]. Odpal kapsułę akcją „Zrzut”."))
 
 /// Czy kapsuła może tu wylądować: grunt pod niebem planety, bez lawy i przeszkód
@@ -172,14 +180,12 @@
 	var/turf/landing = pick(landing_spots)
 	ready = FALSE
 	use_power(active_power_usage)
-	update_icon()
 	unbuckle_mob(user, TRUE)
-	var/obj/structure/closet/supplypod/drop_pod/pod = new
-	pod.forceMove(GLOB.areas_by_type[/area/centcom/supplypod/supplypod_temp_holding])
+	var/obj/structure/drop_pod/pod = new(get_turf(src))
 	user.forceMove(pod)
-	new /obj/effect/pod_landingzone(landing, pod)
-	playsound(src, 'sound/effects/bang.ogg', 70, TRUE)
-	visible_message(span_notice("Luk zrzutowy [src] otwiera się z hukiem i kapsuła znika w dole."))
+	update_icon()
+	pod.launch(landing)
+	visible_message(span_notice("Kapsuła w [src] zamyka się i z hukiem wylatuje przez luk zrzutowy."))
 	log_game("[key_name(user)] launched a drop pod from [AREACOORD(src)] to [target_planet] at [AREACOORD(landing)]")
 	target_planet = null
 	target_turf = null
@@ -191,21 +197,108 @@
 	update_icon()
 	visible_message(span_notice("[src] ma gotową nową kapsułę."))
 
-/// Kapsuła w locie: spada jak kapsuła zaopatrzeniowa i zostaje na planecie jako wrak
-/obj/structure/closet/supplypod/drop_pod
+/// Kapsuła w locie i jej skorupa po wylądowaniu. Pasażer siedzi w jej zawartości aż do otwarcia.
+/obj/structure/drop_pod
 	name = "kapsuła desantowa"
 	desc = "Jednoosobowa kapsuła desantowa. Po wylądowaniu nadaje się już tylko na złom."
-	style = STYLE_STANDARD
-	specialised = TRUE
-	explosionSize = list(0, 0, 0, 2)
-	delays = list(POD_TRANSIT = 30, POD_FALLING = 20, POD_OPENING = 20, POD_LEAVING = 30)
-	stay_after_drop = TRUE
-	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
+	icon = 'aquila/icons/planets/droppod.dmi'
+	icon_state = "singlepod_green"
+	density = TRUE
+	anchored = TRUE
+	layer = ABOVE_MOB_LAYER
+	max_integrity = 300
+	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF | INDESTRUCTIBLE
+	/// Już wylądowała i stoi otwarta
+	var/landed = FALSE
+	/// Pole startu: tam wraca kapsuła, jeśli cel zniknie w trakcie lotu
+	var/turf/origin
+	/// Powietrze w kabinie: w locie kapsuła jest poza mapą, a pasażer dalej oddycha
+	var/datum/gas_mixture/cabin_air
 
-/obj/structure/closet/supplypod/drop_pod/Initialize(mapload)
+/obj/structure/drop_pod/Initialize(mapload)
 	. = ..()
-	name = initial(name)
-	desc = initial(desc)
+	cabin_air = new
+	cabin_air.set_temperature(T20C)
+	cabin_air.set_volume(200)
+	cabin_air.set_moles(GAS_O2, O2STANDARD * cabin_air.return_volume() / (R_IDEAL_GAS_EQUATION * cabin_air.return_temperature()))
+	cabin_air.set_moles(GAS_N2, N2STANDARD * cabin_air.return_volume() / (R_IDEAL_GAS_EQUATION * cabin_air.return_temperature()))
+
+/obj/structure/drop_pod/return_air()
+	return cabin_air
+
+/obj/structure/drop_pod/remove_air_ratio(ratio)
+	return cabin_air.remove_ratio(ratio)
+
+/obj/structure/drop_pod/remove_air(amount)
+	return cabin_air.remove(amount)
+
+/obj/structure/drop_pod/Destroy()
+	origin = null
+	cabin_air = null
+	// Kapsuła zniknęła w locie (np. razem z planetą): pasażer nie może przepaść razem z nią
+	var/turf/T = get_turf(src)
+	for(var/atom/movable/AM as anything in contents)
+		if(T)
+			AM.forceMove(T)
+		else if(ismob(AM))
+			var/mob/M = AM
+			M.ghostize()
+	return ..()
+
+/obj/structure/drop_pod/contents_explosion(severity, target)
+	return // Pasażer jest osłonięty pancerzem kapsuły
+
+/// Start: zamyka się na luku, wylatuje w górę i po czasie lotu spada na cel
+/obj/structure/drop_pod/proc/launch(turf/landing)
+	origin = get_turf(src)
+	flick("singlepod_green_closing", src)
+	playsound(src, 'aquila/sound/planets/escape_pod_launch.ogg', 70)
+	playsound(src, 'aquila/sound/planets/droppod_launch.ogg', 70)
+	addtimer(CALLBACK(src, PROC_REF(leave), landing), 2 SECONDS)
+
+/obj/structure/drop_pod/proc/leave(turf/landing)
+	animate(src, pixel_z = 500, alpha = 0, time = 0.8 SECONDS, easing = QUAD_EASING | EASE_IN)
+	addtimer(CALLBACK(src, PROC_REF(in_transit), landing), 0.8 SECONDS)
+
+/obj/structure/drop_pod/proc/in_transit(turf/landing)
+	moveToNullspace()
+	new /obj/effect/temp_visual/drop_pod_target(landing)
+	addtimer(CALLBACK(src, PROC_REF(fall), landing), DROP_POD_TRANSIT_TIME)
+
+/obj/structure/drop_pod/proc/fall(turf/landing)
+	if(!landing || !get_planet_of(landing))
+		// Powierzchnia zniknęła w trakcie lotu: kapsuła przerywa zrzut i wraca na pole startu
+		landing = origin
+	forceMove(landing)
+	pixel_z = 500
+	alpha = 255
+	animate(src, pixel_z = 0, time = DROP_POD_FALL_TIME, easing = LINEAR_EASING)
+	addtimer(CALLBACK(src, PROC_REF(impact)), DROP_POD_FALL_TIME)
+
+/obj/structure/drop_pod/proc/impact()
+	var/turf/T = get_turf(src)
+	playsound(T, 'aquila/sound/planets/droppod_impact.ogg', 100, FALSE, 10)
+	explosion(T, 0, 0, 1, 3)
+	for(var/mob/living/crushed in T)
+		if(crushed.loc == T)
+			crushed.adjustBruteLoss(60)
+	addtimer(CALLBACK(src, PROC_REF(open)), 0.7 SECONDS)
+
+/obj/structure/drop_pod/proc/open()
+	landed = TRUE
+	icon_state = "singlepod_green_inactive"
+	var/turf/T = get_turf(src)
+	for(var/atom/movable/AM as anything in contents)
+		AM.forceMove(T)
+
+/// Znacznik lądowiska kapsuły na celu (jak w naszych kapsułach zaopatrzeniowych)
+/obj/effect/temp_visual/drop_pod_target
+	name = "znacznik lądowania kapsuły"
+	icon = 'icons/obj/supplypods_32x32.dmi'
+	icon_state = "LZ"
+	layer = PROJECTILE_HIT_THRESHHOLD_LAYER
+	duration = DROP_POD_TRANSIT_TIME + DROP_POD_FALL_TIME
+	randomdir = FALSE
 
 /obj/item/circuitboard/machine/drop_pod_bay
 	name = "wyrzutnia kapsuł desantowych (płytka maszyny)"
@@ -354,4 +447,6 @@
 		qdel(eye)
 
 #undef DROP_POD_RECHARGE
+#undef DROP_POD_TRANSIT_TIME
+#undef DROP_POD_FALL_TIME
 #undef DROP_POD_SCATTER
