@@ -1369,6 +1369,7 @@
 #include "code\modules\squads\squad_cleanup.dm"
 #include "code\modules\squads\squad_names.dm"
 #include "code\modules\squads\squad_positions.dm"
+#include "code\modules\squads\squad_preference.dm"
 #include "code\modules\squads\squad_screen_alert.dm"
 #include "code\modules\squads\squad_orders.dm"
 #include "code\modules\squads\squad_markers.dm"

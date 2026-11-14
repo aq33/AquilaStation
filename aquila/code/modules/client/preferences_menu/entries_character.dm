@@ -872,11 +872,15 @@
 	character_var = "preferred_squad"
 
 /datum/preference/choiced/squad/init_possible_values()
-	var/list/squads = list()
-	for(var/datum/squad/squad_type as anything in subtypesof(/datum/squad))
+	var/list/squads = list(SQUAD_PREF_AUTO)
+	// aq_custom to szablon drużyn tworzonych przez XO w trakcie rundy, nie stała drużyna
+	for(var/datum/squad/squad_type as anything in subtypesof(/datum/squad) - typesof(/datum/squad/aq_custom))
 		if(initial(squad_type.name))
 			squads += initial(squad_type.name)
 	return squads
+
+/datum/preference/choiced/squad/get_display_names()
+	return list(SQUAD_PREF_AUTO = "Automatycznie")
 
 /datum/preference/choiced/lizard_hiss_style
 	db_key = "lizard_hiss_style"

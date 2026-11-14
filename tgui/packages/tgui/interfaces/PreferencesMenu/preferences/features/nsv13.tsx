@@ -31,7 +31,9 @@ export const preferred_pilot_role: FeatureChoiced = {
 };
 
 export const preferred_squad: FeatureChoiced = {
-  name: 'Preferowana drużyna (GQ)',
+  name: 'Przydział do drużyny',
+  description:
+    'Automatycznie: drużyna według zawodu, a bez niej najmniej liczna. Wybrana drużyna ma pierwszeństwo, o ile nie jest pełna.',
   component: FeatureButtonedDropdownInput,
 };
 
