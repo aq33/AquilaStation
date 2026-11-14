@@ -16123,6 +16123,20 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/nsv/deck2/port/fore)
+"Sr" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/effect/turf_decal/tile/ship/yellow/orlen{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/ship/blue/orlen,
+/obj/machinery/computer/ship/damage_control{
+	dir = 4
+	},
+/turf/open/floor/durasteel/techfloor_grid,
+/area/engine/break_room)
 "Ss" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -45117,7 +45131,7 @@ ej
 ML
 DN
 KC
-Il
+Sr
 aq
 GU
 DN

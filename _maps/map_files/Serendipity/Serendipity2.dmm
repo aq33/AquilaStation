@@ -4959,6 +4959,10 @@
 /obj/structure/cable,
 /turf/open/floor/plasteel/dark,
 /area/nsv/weapons/access_corridor)
+"zb" = (
+/obj/machinery/computer/ship/damage_control,
+/turf/closed/wall/r_wall/ship,
+/area/engine/armour_pump)
 "zg" = (
 /obj/structure/grille,
 /turf/open/floor/plating,
@@ -47295,7 +47299,7 @@ Ks
 Ks
 dD
 MZ
-MZ
+zb
 zk
 DH
 zk

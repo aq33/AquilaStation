@@ -7307,6 +7307,23 @@
 	dir = 1
 	},
 /area/hallway/primary/fore)
+"wi" = (
+/obj/machinery/requests_console{
+	department = "Reactor Control";
+	departmentType = 3;
+	name = "Reactor Control RC";
+	pixel_y = 26
+	},
+/obj/item/pipe_dispenser,
+/obj/item/pipe_dispenser{
+	pixel_y = 5
+	},
+/obj/item/pipe_dispenser{
+	pixel_y = -5
+	},
+/obj/machinery/computer/ship/damage_control,
+/turf/open/floor/plasteel/dark,
+/area/engine/engineering/reactor_control)
 "wj" = (
 /obj/machinery/duct,
 /turf/open/floor/wood,
@@ -7754,6 +7771,23 @@
 	dir = 1
 	},
 /area/security/warden)
+"xR" = (
+/obj/structure/table/reinforced,
+/obj/item/modular_computer/tablet/preset/advanced,
+/obj/machinery/firealarm/directional/west,
+/obj/structure/sign/poster/official/random{
+	pixel_y = 32
+	},
+/obj/item/pipe_dispenser{
+	pixel_x = 6;
+	pixel_y = 6
+	},
+/obj/item/pipe_dispenser{
+	pixel_x = 6;
+	pixel_y = -4
+	},
+/turf/open/floor/plasteel/dark,
+/area/engine/engineering/reactor_control)
 "xV" = (
 /obj/item/radio/intercom/directional/west,
 /obj/machinery/computer/ams{
@@ -9629,6 +9663,21 @@
 /obj/effect/landmark/latejoin,
 /turf/open/floor/plasteel,
 /area/crew_quarters/cryopods)
+"Fx" = (
+/obj/machinery/computer/ship/viewscreen{
+	pixel_x = 32;
+	pixel_y = 1
+	},
+/obj/effect/turf_decal/tile/ship/blue{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/ship/blue{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark/side{
+	dir = 8
+	},
+/area/bridge/cic)
 "Fz" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock/ship/hatch{
@@ -10123,6 +10172,22 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/gravity_generator)
+"Hu" = (
+/obj/structure/table/reinforced,
+/obj/machinery/camera/autoname,
+/obj/item/geiger_counter{
+	desc = "It's capped at 3.6 Roentgen. Not great, not terrible.";
+	name = "\improper Dossimiter"
+	},
+/obj/item/binoculars{
+	pixel_x = 11
+	},
+/obj/item/pipe_dispenser{
+	pixel_x = -6;
+	pixel_y = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/engine/engineering/reactor_control)
 "Hv" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/droneDispenser/preloaded,
@@ -11438,6 +11503,16 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/crew_quarters/bar)
+"MA" = (
+/obj/machinery/requests_console{
+	department = "Reactor Control";
+	departmentType = 3;
+	name = "Reactor Control RC";
+	pixel_y = 26
+	},
+/obj/machinery/computer/ship/damage_control,
+/turf/open/floor/plasteel/dark,
+/area/engine/engineering/reactor_control)
 "MB" = (
 /obj/structure/chair/fancy/shuttle{
 	color = "#696969";
@@ -14392,6 +14467,22 @@
 /obj/structure/extinguisher_cabinet/north,
 /turf/open/floor/plasteel,
 /area/crew_quarters/cryopods)
+"Xf" = (
+/obj/machinery/computer/ship/viewscreen{
+	pixel_x = -32;
+	pixel_y = 1
+	},
+/obj/effect/turf_decal/tile/ship/red{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/ship/blue,
+/obj/machinery/computer/ship/damage_control{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark/side{
+	dir = 4
+	},
+/area/bridge/cic)
 "Xl" = (
 /obj/structure/cable,
 /obj/machinery/pdapainter,
@@ -34133,7 +34224,7 @@ cj
 aJ
 aJ
 Bw
-nR
+xR
 EV
 EV
 pw
@@ -34390,7 +34481,7 @@ cj
 aJ
 aJ
 Bw
-HW
+Hu
 dm
 Fb
 Fd
@@ -34647,7 +34738,7 @@ cj
 aJ
 aJ
 Bw
-Df
+MA
 dm
 lC
 pI
@@ -59593,7 +59684,7 @@ tV
 dv
 Vb
 bk
-KC
+Xf
 bD
 Hp
 pN
@@ -61649,7 +61740,7 @@ JB
 zA
 mU
 QM
-Rh
+Fx
 Yt
 Iv
 Gj

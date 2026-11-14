@@ -8346,6 +8346,18 @@
 	},
 /turf/open/floor/monotile/steel,
 /area/crew_quarters/heads/xo)
+"AD" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/railing,
+/obj/machinery/computer/ship/damage_control,
+/turf/open/floor/carpet/royalblack,
+/area/bridge/cic)
 "AE" = (
 /obj/machinery/door/airlock/ship/maintenance,
 /obj/machinery/door/firedoor/border_only{
@@ -10460,6 +10472,23 @@
 	},
 /turf/open/floor/carpet/ship/beige_carpet,
 /area/crew_quarters/heads/hor)
+"Il" = (
+/obj/structure/table/reinforced,
+/obj/structure/railing{
+	dir = 1
+	},
+/obj/item/paper_bin,
+/obj/item/pen,
+/obj/item/dest_tagger{
+	pixel_x = 6;
+	pixel_y = 4
+	},
+/obj/item/stack/package_wrap{
+	pixel_x = 6;
+	pixel_y = -6
+	},
+/turf/open/floor/carpet/royalblack,
+/area/bridge/cic)
 "Iq" = (
 /obj/item/stack/cable_coil/cut,
 /turf/open/floor/plating,
@@ -13043,6 +13072,15 @@
 	},
 /turf/open/floor/durasteel/lino,
 /area/ai_monitored/nuke_storage)
+"Qz" = (
+/obj/structure/railing{
+	dir = 5
+	},
+/obj/machinery/computer/ship/fighter_controller{
+	dir = 8
+	},
+/turf/open/floor/carpet/royalblack,
+/area/bridge/cic)
 "QD" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment{
@@ -47633,9 +47671,9 @@ Am
 Tc
 vj
 Sf
-bv
+AD
 qT
-gN
+Il
 YK
 ei
 Tc
@@ -47888,7 +47926,7 @@ wu
 Sc
 Tc
 Tc
-KD
+Qz
 Li
 NI
 fa

@@ -7665,6 +7665,13 @@
 	},
 /turf/open/floor/engine,
 /area/maintenance/nsv/bunker)
+"fUc" = (
+/obj/item/storage/secure/safe/caps_spare{
+	pixel_y = 28
+	},
+/obj/machinery/computer/ship/damage_control,
+/turf/open/floor/circuit,
+/area/bridge/cic)
 "fUi" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
@@ -10873,6 +10880,15 @@
 /obj/structure/frame/machine,
 /turf/open/floor/durasteel/techfloor_grid,
 /area/science/robotics)
+"iHj" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/machinery/computer/ship/fighter_controller{
+	dir = 8
+	},
+/turf/open/floor/circuit,
+/area/bridge/cic)
 "iHC" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 8
@@ -22542,6 +22558,19 @@
 "sDd" = (
 /turf/closed/wall/r_wall/ship,
 /area/maintenance/fore/secondary)
+"sDi" = (
+/obj/structure/cable/yellow,
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 4
+	},
+/obj/machinery/computer/ship/damage_control{
+	dir = 4
+	},
+/turf/open/floor/carpet/ship/orange_carpet,
+/area/engine/engineering/reactor_control)
 "sDj" = (
 /obj/machinery/light,
 /obj/item/storage/toolbox/mechanical{
@@ -40726,7 +40755,7 @@ lSv
 jWT
 asL
 asL
-tcS
+sDi
 iQf
 bAX
 jSL
@@ -59511,7 +59540,7 @@ quY
 spP
 jlr
 quY
-dGf
+fUc
 kRa
 txd
 fsr
@@ -60725,7 +60754,7 @@ aiP
 gfN
 dmN
 feZ
-dDp
+iHj
 mmu
 siw
 acE

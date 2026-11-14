@@ -1689,9 +1689,6 @@
 "dz" = (
 /turf/open/floor/circuit/telecomms,
 /area/science/xenobiology)
-"dA" = (
-/turf/closed/wall/r_wall/ship,
-/area/crew_quarters/heads/hor)
 "dB" = (
 /obj/machinery/chem_master/condimaster,
 /obj/machinery/newscaster/directional/north,
@@ -2305,6 +2302,18 @@
 /area/medical/medbay/lobby)
 "fx" = (
 /turf/closed/wall/r_wall/ship,
+/area/bridge/cic)
+"fy" = (
+/obj/effect/turf_decal/tile/yellow{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/yellow{
+	dir = 1
+	},
+/obj/machinery/computer/ship/damage_control{
+	dir = 8
+	},
+/turf/open/floor/plasteel/tiled/light,
 /area/bridge/cic)
 "fz" = (
 /obj/structure/cable,
@@ -44532,7 +44541,7 @@ bH
 tq
 aA
 aA
-dA
+aA
 Te
 az
 zP
@@ -55816,7 +55825,7 @@ fx
 fx
 My
 by
-bx
+fy
 Jl
 fx
 fx
