@@ -113,10 +113,14 @@
 	data["chaff"] = linked.chaff
 	data["max_chaff"] = linked.max_chaff
 	data["jammer"] = linked.jammer_active
+	// harpun (overmap/modules/harpoon.dm)
+	data["harpoon"] = linked.has_harpoon
+	var/datum/overmap_tether/tether = linked.harpoon_tether
+	data["tether"] = tether ? list("name" = tether.target.name, "length" = round(tether.length, 0.5), "rope" = max(0, tether.rope_hp), "reeling" = tether.reeling, "boarded" = tether.boarded) : null
 
 /obj/machinery/computer/ship/tactical/ui_act(action, params, datum/tgui/ui)
 	. = ..()
-	if(!. && linked && (action in list("fc_flares", "fc_chaff", "fc_jammer")))
+	if(!. && linked && (action in list("fc_flares", "fc_chaff", "fc_jammer", "fc_reel", "fc_cut")))
 		switch(action)
 			if("fc_flares")
 				linked.deploy_decoy("flare")
@@ -124,6 +128,19 @@
 				linked.deploy_decoy("chaff")
 			if("fc_jammer")
 				linked.toggle_jammer()
+			if("fc_reel")
+				if(linked.harpoon_tether)
+					linked.harpoon_tether.reeling = !linked.harpoon_tether.reeling
+			if("fc_cut")
+				linked.harpoon_tether?.snap("Lina harpuna odcięta.")
+		return TRUE
+	if(!. && linked && action == "fc_harpoon")
+		var/obj/structure/overmap/harpoon_target = locate(params["id"])
+		var/reason = linked.harpoon_blocked(harpoon_target)
+		if(reason)
+			to_chat(usr, "<span class='warning'>[reason]</span>")
+		else
+			linked.fire_harpoon(harpoon_target)
 		return TRUE
 	if(. || !linked || !(action in list("fc_lockon", "fc_fire_target", "fc_dump", "fc_hail", "fc_aim_module")))
 		return

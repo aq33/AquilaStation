@@ -78,7 +78,17 @@ type Designated = {
   locked: boolean;
 };
 
+type Tether = {
+  name: string;
+  length: number;
+  rope: number;
+  reeling: boolean;
+  boarded: boolean;
+};
+
 type Data = {
+  harpoon: boolean;
+  tether: Tether | null;
   own_armour: number[];
   heading: number;
   turn: number;
@@ -273,6 +283,27 @@ const TopBar = () => {
       >
         {'Chaff ' + data.chaff + '/' + data.max_chaff}
       </Button>
+      {!!data.tether && (
+        <span style={{ color: COLOR.ink2 }}>
+          {'Lina: ' +
+            data.tether.name +
+            ' · ' +
+            data.tether.length +
+            ' pól · ' +
+            data.tether.rope +
+            '%'}{' '}
+          <Button
+            icon="sync"
+            selected={data.tether.reeling}
+            onClick={() => act('fc_reel')}
+          >
+            Zwijaj
+          </Button>
+          <Button icon="cut" color="bad" onClick={() => act('fc_cut')}>
+            Odetnij
+          </Button>
+        </span>
+      )}
       <Button
         icon="broadcast-tower"
         selected={!!data.jammer}
@@ -1077,6 +1108,16 @@ const ContactCard = (props: { contact: FireContact | undefined }) => {
             <Button icon="times" onClick={() => doIt('fc_dump')}>
               Przestań śledzić
             </Button>
+            {!!data.harpoon && !data.tether && (
+              <Button
+                icon="anchor"
+                color="bad"
+                tooltip="Harpun z bliska (do 8 pól), gdy cel nie ma tarcz. Lina trzyma cel i nie pozwala mu skoczyć FTL."
+                onClick={() => doIt('fc_harpoon')}
+              >
+                Harpun
+              </Button>
+            )}
           </>
         )}
         <Button
