@@ -64,11 +64,12 @@
 	if(!check_rights(R_SERVER))
 		return
 	var/path = SSmapping.config.starmap_path
-	if(alert(usr, "To twardo zrestartuje serwer i ZRESETUJE trwałą kampanię mapy gwiezdnej ([path]) do mapy domyślnej. Nie zostanie zachowana żadna kopia zapasowa, tego nie da się cofnąć. Kontynuować?", "Nowa kampania", "Zresetuj kampanię", "Anuluj") != "Zresetuj kampanię")
+	if(alert(usr, "To twardo zrestartuje serwer i ZRESETUJE trwałą kampanię mapy gwiezdnej ([path]) do mapy domyślnej. Obecna kampania zostanie zachowana jako kopia (Server → Campaign Backups). Kontynuować?", "Nowa kampania", "Zresetuj kampanię", "Anuluj") != "Zresetuj kampanię")
 		return
 	if(alert(usr, "Czy na pewno? Każdy układ, właściciel i zmiana kampanii na mapie gwiezdnej wróci do początku.", "Nowa kampania – ostatnie ostrzeżenie", "Tak, zresetuj i zrestartuj", "Anuluj") != "Tak, zresetuj i zrestartuj")
 		return
 
+	SSstar_system.campaign_backup("przed-resetem") // kopia, żeby reset dało się cofnąć (Campaign Backups)
 	var/list/result = reset_campaign_starmap(path)
 	if(!result["success"])
 		log_admin("[key_name(usr)] tried Hard Restart + New Campaign; the starmap reset FAILED ([result["error"]]). Starmap: [path]. Restart aborted, campaign kept.")

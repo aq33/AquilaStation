@@ -1,22 +1,24 @@
 /// AQUILA - fleet distress calls and retreat (aquila/code/modules/overmap/fleet_distress.dm): an allied fleet next door answers a call,
-/// one busy with its own fight does not, a retreating fleet picks a neighbouring system, and losses are counted from the fleet's peak
+/// one busy with its own fight does not, a retreating fleet picks a neighbouring system, and losses are counted from the fleet's peak.
+/// On the hex map (aquila/code/modules/overmap/hexmap/) "next door" is the neighbouring hex and help is found by hexes of travel.
 /datum/unit_test/aquila_fleet_distress
 	var/datum/fleet/caller_fleet
 	var/datum/fleet/helper
 	var/datum/star_system/home
 	var/datum/star_system/next_door
+	var/list/empty_hexes_before
 
 /datum/unit_test/aquila_fleet_distress/Run()
 	var/radio_fail = check_transmission() // Needs no star systems
 	if(radio_fail)
 		return Fail(radio_fail)
-	for(var/datum/star_system/system as anything in SSstar_system.systems)
-		if(length(system.adjacency_list) && !system.hidden)
-			var/datum/star_system/adjacent = SSstar_system.system_by_id(system.adjacency_list[1])
-			if(adjacent && !adjacent.hidden && !length(adjacent.fleets)) // An empty system, so no fight there keeps our helper busy
-				home = system
-				next_door = adjacent
-				break
+	empty_hexes_before = list()
+	for(var/datum/star_system/random/hex_empty/E in SSstar_system.systems)
+		empty_hexes_before += E
+	if(GLOB.hexmap?.built)
+		pick_hex_neighbours()
+	else
+		pick_lane_neighbours()
 	if(!home)
 		return // No connected star systems loaded in this run
 	caller_fleet = new /datum/fleet
@@ -33,8 +35,38 @@
 	caller_fleet.all_ships = list()
 	helper.current_system = null
 	caller_fleet.current_system = null
+	release_empty_hexes()
 	if(fail)
 		return Fail(fail)
+
+/// A real system on the hex map and its empty neighbouring hex (empty, so no fight there keeps our helper busy)
+/datum/unit_test/aquila_fleet_distress/proc/pick_hex_neighbours()
+	var/datum/star_system/player_system = SSstar_system.find_main_overmap()?.current_system
+	for(var/datum/star_system/system as anything in SSstar_system.systems)
+		if(!system.hex || system.hidden || system == player_system || length(system.fleets) || istype(system, /datum/star_system/random))
+			continue
+		for(var/datum/hex/neighbour as anything in GLOB.hexmap.neighbours(system.hex))
+			if(neighbour.system || GLOB.hexmap.blocks(neighbour))
+				continue
+			home = system
+			next_door = GLOB.hexmap.system_for(neighbour)
+			return
+
+/// Without the hex map: a system and the first system on its lanes
+/datum/unit_test/aquila_fleet_distress/proc/pick_lane_neighbours()
+	for(var/datum/star_system/system as anything in SSstar_system.systems)
+		if(length(system.adjacency_list) && !system.hidden)
+			var/datum/star_system/adjacent = SSstar_system.system_by_id(system.adjacency_list[1])
+			if(adjacent && !adjacent.hidden && !length(adjacent.fleets)) // An empty system, so no fight there keeps our helper busy
+				home = system
+				next_door = adjacent
+				return
+
+/// Empty hex systems made during the test go away again
+/datum/unit_test/aquila_fleet_distress/proc/release_empty_hexes()
+	for(var/datum/star_system/random/hex_empty/E in SSstar_system.systems)
+		if(!(E in empty_hexes_before))
+			E.try_release()
 
 /datum/unit_test/aquila_fleet_distress/proc/check_responders()
 	// Regression: a fleet that never fought has last_encounter_time 0 and used to count as busy for the first 10 minutes of the round
@@ -67,7 +99,10 @@
 /datum/unit_test/aquila_fleet_distress/proc/check_retreat_system()
 	var/datum/star_system/target = caller_fleet.pick_ai_retreat_system()
 	var/datum/star_system/player_system = SSstar_system.find_main_overmap()?.current_system
-	if(target && !(target.name in home.adjacency_list))
+	if(GLOB.hexmap?.built)
+		if(!target || GLOB.hexmap.distance(target.hex, home.hex) != 1)
+			return "A retreating fleet did not pick a neighbouring hex ([target], [target?.hex?.id] from [home.hex.id])"
+	else if(target && !(target.name in home.adjacency_list))
 		return "A retreating fleet picked a system that is not next door ([target])"
 	if(target && target == player_system)
 		return "A retreating fleet ran into the players' system"
@@ -90,6 +125,8 @@
 	var/datum/star_system/far
 	for(var/datum/star_system/system as anything in SSstar_system.systems)
 		if(system == player_system || (system.name in player_system.adjacency_list))
+			continue
+		if(GLOB.hexmap?.built && (!system.hex || !player_system.hex || GLOB.hexmap.distance(system.hex, player_system.hex) <= 1))
 			continue
 		var/has_players = FALSE
 		for(var/obj/structure/overmap/OM in system.system_contents)

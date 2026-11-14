@@ -7,6 +7,8 @@
 #Ignore byond config folder.
 /cfg/**/*
 config/starmap/starmap.json
+# AQ EDIT - położenie okrętu na mapie hex, zapisywane przez serwer na koniec rundy
+config/starmap/hexmap.json
 
 # NSV13 - leave the linux, actually
 # Ignore compiled linux libs in the root folder, e.g. librust_g.so

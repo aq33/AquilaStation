@@ -145,6 +145,7 @@ GLOBAL_PROTECT(admin_verbs_server)
 	/datum/admins/proc/toggleaban,
 	/datum/admins/proc/reloadwhitelist, // aquila edit
 	/datum/admins/proc/ship_structure_admin, // AQ EDIT - trwała struktura statku
+	/datum/admins/proc/campaign_backups_admin, // AQ EDIT - kopie kampanii mapy gwiezdnej
 	/client/proc/weighted_settings, // aquila edit
 	/client/proc/everyone_random,
 	/datum/admins/proc/toggleAI,
