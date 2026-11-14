@@ -23,7 +23,7 @@
 	// whether it's, say, a tesla zapping tcomms, or some selective
 	// modification of the tcomms bus
 	if(prob(80) || fake)
-		priority_announce(alert, sound = SSstation.announcer.get_rand_alert_sound())
+		priority_announce(alert, sound = 'aquila/sound/ai/events/processor_overload.ogg') // AQ EDIT - własne nagranie ogłoszenia
 
 
 /datum/round_event/processor_overload/start()

@@ -190,7 +190,7 @@
 	if(charge_state < CHARGE_FINALWARNING && time_charged >= (max_charge * 0.5))
 		charge_state = CHARGE_FINALWARNING
 		var/area/A = get_area(src)
-		priority_announce("Szczelina wywołuje nienaturalnie duży strumień energii w [initial(A.name)]. Powstrzymajcie ją za wszelką cenę!", "Obserwacja Fauny Centrali", ANNOUNCER_SPANOMALIES)
+		priority_announce("Szczelina wywołuje nienaturalnie duży strumień energii w [initial(A.name)]. Powstrzymajcie ją za wszelką cenę!", "Obserwacja Fauny Centrali", 'aquila/sound/ai/events/carp_rift.ogg') // AQ EDIT - własne nagranie ogłoszenia
 
 /**
   * Used to create carp controlled by ghosts when the option is available.

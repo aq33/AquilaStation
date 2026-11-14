@@ -1182,6 +1182,7 @@
 // #include "code\modules\test_chamber\kits\pr_420_traitor_cele.dm"
 #include "code\modules\test_chamber\kits\test_subjects.dm"
 // Komora testowa - zestawy PR-ów niżej (usuwać razem z plikiem zestawu po przetestowaniu)
+#include "code\modules\test_chamber\kits\pr_640_glos_si_eventy.dm"
 #include "code\modules\test_chamber\kits\pr_633_zgloszenia_1211.dm"
 #include "code\modules\test_chamber\kits\pr_627_ekwipunek.dm"
 #include "code\modules\test_chamber\kits\pr_622_skala_bristolska.dm"
@@ -2247,6 +2248,7 @@
 #include "code\modules\unit_tests\aquila_liquids_review.dm"
 #include "code\modules\unit_tests\aquila_ai_hud_in_view.dm"
 #include "code\modules\unit_tests\aquila_ai_tts.dm"
+#include "code\modules\unit_tests\aquila_event_announcement_title.dm"
 #include "code\modules\unit_tests\aquila_squads_rework.dm"
 #include "code\modules\unit_tests\aquila_squad_orders_cooldown.dm"
 #include "code\modules\unit_tests\aquila_squad_gear_ping.dm"

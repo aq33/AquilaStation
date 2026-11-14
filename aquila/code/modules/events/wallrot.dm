@@ -55,7 +55,7 @@
 	if(!rot_area)
 		return
 	priority_announce("Czujniki wykryły szkodliwy grzyb na ścianach w rejonie: [rot_area.name]. Zaatakowane ściany mogą się kruszyć. \
-		Inżynieria proszona jest o wypalenie grzyba spawarką albo zneutralizowanie go środkiem Plant-B-Gone.", "Zagrożenie biologiczne")
+		Inżynieria proszona jest o wypalenie grzyba spawarką albo zneutralizowanie go środkiem Plant-B-Gone.", "Zagrożenie biologiczne", sound = 'aquila/sound/ai/events/wallrot.ogg')
 
 /turf/closed/wall
 	/// AQUILA - TRUE while wallrot fungus grows on this wall

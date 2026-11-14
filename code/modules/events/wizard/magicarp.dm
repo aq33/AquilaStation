@@ -13,7 +13,7 @@
 	startWhen = rand(40, 60)
 
 /datum/round_event/wizard/magicarp/announce(fake)
-	priority_announce("W pobliżu [station_name()] wykryto nieznane magiczne istoty, prosimy czekać na dalsze informacje.", "Alarm - formy życia", SSstation.announcer.get_rand_alert_sound())
+	priority_announce("W pobliżu [station_name()] wykryto nieznane magiczne istoty, prosimy czekać na dalsze informacje.", "Alarm - formy życia", 'aquila/sound/ai/events/magicarp.ogg') // AQ EDIT - własne nagranie ogłoszenia
 
 /datum/round_event/wizard/magicarp/start()
 	for(var/obj/effect/landmark/carpspawn/C in GLOB.landmarks_list)
