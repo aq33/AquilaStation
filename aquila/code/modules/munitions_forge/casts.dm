@@ -18,7 +18,7 @@
 	possible_products = subtypesof(product_root)
 	for(var/path in possible_products)
 		var/obj/item/munition_part/body/B = path
-		if(ispath(path, /obj/item/munition_part/body) && !initial(B.product_path))
+		if(ispath(path, /obj/item/munition_part/body) && !initial(B.product_path) && !initial(B.forge_standalone))
 			possible_products -= path
 	if(length(possible_products))
 		selected_product = possible_products[1]
@@ -97,3 +97,4 @@
 	new /obj/item/munition_cast/shell(src)
 	new /obj/item/munition_cast/filler(src)
 	new /obj/item/munition_cast/fuze(src)
+	new /obj/item/munition_cast/armor_insert(src)

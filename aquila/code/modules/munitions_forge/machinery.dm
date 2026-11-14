@@ -617,6 +617,9 @@
 	if(!part.is_finished())
 		to_chat(user, "<span class='warning'>[part] trzeba jeszcze wykuć na kowadle.</span>")
 		return TRUE
+	if(part.forge_standalone)
+		to_chat(user, "<span class='notice'>[part] to gotowy wyrób, nie trzeba go montować.</span>")
+		return TRUE
 	if(!user.transferItemToLoc(part, src))
 		return TRUE
 	var/obj/item/munition_part/old_part

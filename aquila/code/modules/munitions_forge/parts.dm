@@ -18,6 +18,8 @@
 	/// Jak równo wykuto (0-1), null przed kuciem
 	var/forging_accuracy
 	var/cool_time = 10 SECONDS
+	/// Gotowy wyrób zaraz po kuciu (wkładka pancerza), bez stołu montażowego
+	var/forge_standalone = FALSE
 
 /obj/item/munition_part/Initialize(mapload)
 	. = ..()

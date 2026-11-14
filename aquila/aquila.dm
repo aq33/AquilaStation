@@ -853,6 +853,7 @@
 #include "code\modules\munitions_forge\electroplater.dm"
 #include "code\modules\munitions_forge\export.dm"
 #include "code\modules\munitions_forge\hammer.dm"
+#include "code\modules\munitions_forge\armor_insert.dm"
 // Mechanik: skaner maszyn, czytnik schematów, flatpacker z tg i paczki
 #include "code\modules\mechanic\schematics.dm"
 #include "code\modules\mechanic\scanner.dm"
@@ -2339,6 +2340,7 @@
 #include "code\modules\unit_tests\aquila_soft_lighting.dm"
 #include "code\modules\unit_tests\aquila_spesstv.dm"
 #include "code\modules\unit_tests\aquila_munitions_forge.dm"
+#include "code\modules\unit_tests\aquila_armor_insert.dm"
 #include "code\modules\unit_tests\aquila_mechanic.dm"
 #include "code\modules\unit_tests\aquila_spiders.dm"
 #include "code\modules\unit_tests\aquila_spy.dm"
