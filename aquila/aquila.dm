@@ -2261,6 +2261,7 @@
 #include "code\modules\unit_tests\aquila_squad_order_translation.dm"
 #include "code\modules\unit_tests\aquila_munitions_trolley_stack.dm"
 #include "code\modules\unit_tests\aquila_energy_weapon_heat.dm"
+#include "code\modules\unit_tests\aquila_feces_footprints.dm"
 #include "code\modules\unit_tests\aquila_squad_gear_ping.dm"
 #include "code\modules\unit_tests\aquila_zgloszenia_0711.dm"
 #include "code\modules\unit_tests\aquila_zgloszenia_1211_grafika.dm"
