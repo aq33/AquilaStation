@@ -21392,5 +21392,12 @@
 "Zwijaj": "Reel in",
 "Odetnij": "Cut",
 "Harpun": "Harpoon",
-"Harpun z bliska (do 8 pól), gdy cel nie ma tarcz. Lina trzyma cel i nie pozwala mu skoczyć FTL.": "Close-range harpoon (up to 8 tiles) against a target without shields. The line holds the target and stops it from jumping FTL."
+"Harpun z bliska (do 8 pól), gdy cel nie ma tarcz. Lina trzyma cel i nie pozwala mu skoczyć FTL.": "Close-range harpoon (up to 8 tiles) against a target without shields. The line holds the target and stops it from jumping FTL.",
+"prom": "shuttle",
+"Mały prom, który trzyma się blisko okrętu.": "A small shuttle that keeps close to the ship.",
+"prom piracki": "pirate shuttle",
+"Przerobiona korweta piratów. Ostrzał trafia w ich prom.": "A converted pirate corvette. Fire hits their shuttle.",
+"Poskładany ze złomu statek, który trzyma się śladu FTL okrętu.": "A ship cobbled together from scrap that follows the ship's FTL trail.",
+"statek łowców nagród": "bounty hunter ship",
+"Długi okręt pościgowy łowców nagród.": "A long pursuit ship of the bounty hunters."
 }

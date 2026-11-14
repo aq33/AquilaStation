@@ -19,6 +19,7 @@
 	overmap_hitbox_icon = source.overmap_hitbox_icon || source.icon
 	overmap_hitbox_state = source.overmap_hitbox_state || initial(source.icon_state)
 	apply_overmap_hitbox()
+	start_vfx() // obrys sprite'a jest dopiero po skopiowaniu okrętu (ship_vfx.dm)
 	if(!length(source.possible_interior_maps))
 		return
 	possible_interior_maps = source.possible_interior_maps.Copy()
