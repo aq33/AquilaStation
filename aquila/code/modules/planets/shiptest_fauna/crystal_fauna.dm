@@ -6,8 +6,7 @@
 // aquila/icons/planets/fauna/lava_fauna.dmi, icons/mob/lavaland/watcher.dmi to watcher_forgotten.dmi, the crystal spire of
 // icons/effects/32x64.dmi to crystal_spire.dmi.
 // Changes against Shiptest:
-// - no strange crystals in the butcher results and no crystal heart from the legion (we have neither item; the disfigured
-//   legion drops the normal regenerative core);
+// - strange crystals, the crystal heart and their reagents are in loot.dm;
 // - the crystal spires are our goliath tentacles with the crystal sprite (they stun, Shiptest's legcuff); the crystal
 //   goliath's main tentacle attack raises crystal spires and fires shards, its tentacle burst and tentacle line (tg
 //   abilities of our goliath) keep the normal tentacles;
@@ -32,7 +31,7 @@
 	speed = 8
 	tameable = FALSE
 	crusher_drop_chance = 30
-	butcher_results = list(/obj/item/food/meat/slab/goliath = 2, /obj/item/stack/sheet/bone = 2, /obj/item/stack/sheet/sinew = 2, /obj/item/stack/ore/silver = 10)
+	butcher_results = list(/obj/item/food/meat/slab/goliath = 2, /obj/item/stack/sheet/bone = 2, /obj/item/stack/sheet/sinew = 2, /obj/item/stack/ore/silver = 10, /obj/item/strange_crystal = 2)
 	guaranteed_butcher_results = list()
 	/// Is a spiral of shards being fired
 	var/spiral_attack_inprogress = FALSE
@@ -197,6 +196,7 @@
 	ranged_cooldown = 1 SECONDS
 	projectile_type = /obj/item/projectile/temp/basilisk/forgotten
 	crusher_drop_chance = 30
+	butcher_results = list(/obj/item/stack/ore/diamond = 2, /obj/item/stack/sheet/sinew = 2, /obj/item/stack/sheet/bone = 1, /obj/item/strange_crystal = 1)
 
 /// Colder frost blast that also makes you shake
 /obj/item/projectile/temp/basilisk/forgotten
@@ -219,6 +219,11 @@
 	icon_living = "disfigured_legion"
 	icon_dead = "disfigured_legion"
 	brood_type = /mob/living/basic/mining/legion_brood/crystal
+
+/// Drops the crystal heart (loot.dm) instead of the legion core
+/mob/living/basic/mining/legion/crystal/get_loot_list()
+	var/static/list/death_loot = list(/obj/item/organ/regenerative_core/legion/crystal)
+	return death_loot
 
 /// Skull of the disfigured legion
 /mob/living/basic/mining/legion_brood/crystal

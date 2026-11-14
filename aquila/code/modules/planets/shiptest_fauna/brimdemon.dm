@@ -9,7 +9,8 @@
 //   was aimed in;
 // - the AI is the pre-behaviour-tree tg controller (planning subtrees) with a port of tg's move_to_cardinal behaviour:
 //   bite when adjacent, fire when lined up on a cardinal direction, otherwise walk to a tile in line with the target;
-// - no brimdust decal, brimdust sac (monster cores) and ore sensor: we have no monster core system, the demon gives meat;
+// - no brimdust sac (monster cores): we have no monster core system; as in Shiptest the demon gives meat and a brimdust
+//   decal (loot.dm), the ore sensor is crafted from that dust (tg recipe, loot.dm);
 // - no emissive overlays, no crusher trophy (Shiptest's brimdemon fang), no claw footsteps (our footstep component);
 // - the beam sound is our laser cannon (tg's brimdemon.ogg is not in our sound files).
 
@@ -41,7 +42,7 @@
 	light_range = 1.4
 	discovery_points = 2000
 	ai_controller = /datum/ai_controller/basic_controller/brimdemon
-	butcher_results = list(/obj/item/food/meat/slab = 2)
+	butcher_results = list(/obj/item/food/meat/slab = 2, /obj/effect/decal/cleanable/brimdust = 1)
 	/// How we get blasting
 	var/datum/action/cooldown/mob_cooldown/brimbeam/beam
 	/// Icon state used when the brimbeam ability is being fired
