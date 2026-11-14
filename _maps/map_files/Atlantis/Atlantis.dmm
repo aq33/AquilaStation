@@ -455,6 +455,12 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/science)
+"asz" = (
+/obj/machinery/ship_sensor_array{
+	dir = 1
+	},
+/turf/open/floor/plating/airless,
+/area/maintenance/nsv/deck2/port)
 "asZ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 9
@@ -15644,6 +15650,12 @@
 	},
 /turf/open/floor/plasteel/grid/techfloor,
 /area/engine/stormdrive)
+"mYp" = (
+/obj/machinery/ship_sensor_array{
+	dir = 4
+	},
+/turf/open/floor/plating/airless,
+/area/maintenance/nsv/deck2/starboard/fore)
 "mYU" = (
 /obj/effect/turf_decal/tile/ship/purple,
 /obj/effect/turf_decal/tile/ship/purple{
@@ -23597,6 +23609,10 @@
 /obj/item/pen,
 /turf/open/floor/monotile/steel,
 /area/science/research)
+"tzw" = (
+/obj/machinery/ship_sensor_array,
+/turf/open/floor/plating/airless,
+/area/hallway/secondary/exit)
 "tzW" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -27758,6 +27774,12 @@
 	},
 /turf/closed/wall/steel,
 /area/maintenance/nsv/deck2/starboard)
+"xcI" = (
+/obj/machinery/ship_sensor_array{
+	dir = 8
+	},
+/turf/open/floor/plating/airless,
+/area/storage/tech)
 "xcV" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/toolbox/mechanical{
@@ -49895,7 +49917,7 @@ jBa
 jBa
 jBa
 jBa
-jBa
+xcI
 jLV
 ahQ
 ahQ
@@ -58355,7 +58377,7 @@ wdB
 wdB
 wdB
 dIM
-dIM
+asz
 nWI
 nWI
 nWI
@@ -60740,7 +60762,7 @@ dQr
 dQr
 avP
 pKh
-dIM
+tzw
 wdB
 wdB
 wdB
@@ -77392,7 +77414,7 @@ wdB
 wdB
 wdB
 dIM
-wdB
+mYp
 bYU
 bYU
 ldM

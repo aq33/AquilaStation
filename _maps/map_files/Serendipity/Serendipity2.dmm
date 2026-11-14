@@ -2387,6 +2387,12 @@
 /obj/structure/cable,
 /turf/open/floor/plasteel/dark,
 /area/engine/engine_room)
+"jY" = (
+/obj/machinery/ship_sensor_array{
+	dir = 4
+	},
+/turf/open/floor/plating/airless,
+/area/nsv/weapons/gauss/battery/deck2)
 "ke" = (
 /obj/docking_port/stationary{
 	dwidth = 14;
@@ -6103,6 +6109,12 @@
 	dir = 4
 	},
 /area/engine/engine_room)
+"Fb" = (
+/obj/machinery/ship_sensor_array{
+	dir = 1
+	},
+/turf/open/floor/plating/airless,
+/area/maintenance/department/electrical)
 "Fe" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
 	dir = 4
@@ -7552,6 +7564,10 @@
 	},
 /turf/open/floor/engine,
 /area/nsv/engine/engine_room/core)
+"Nx" = (
+/obj/machinery/ship_sensor_array,
+/turf/open/floor/plating/airless,
+/area/maintenance/starboard)
 "Nz" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 9
@@ -8078,6 +8094,12 @@
 "PN" = (
 /turf/open/floor/engine/airless/light,
 /area/space/nearstation)
+"PR" = (
+/obj/machinery/ship_sensor_array{
+	dir = 8
+	},
+/turf/open/floor/plating/airless,
+/area/maintenance/disposal)
 "PU" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 9;
@@ -35932,7 +35954,7 @@ Sg
 PN
 PN
 PN
-dD
+PR
 dD
 wV
 jj
@@ -41557,7 +41579,7 @@ Ks
 Ks
 Ks
 Ks
-dD
+Fb
 Kn
 YZ
 Rz
@@ -42631,7 +42653,7 @@ BQ
 DR
 DF
 DR
-dD
+Nx
 Ks
 Ks
 Ks
@@ -49038,7 +49060,7 @@ Sg
 Sg
 Sg
 Sg
-Sg
+jY
 zG
 zG
 MI

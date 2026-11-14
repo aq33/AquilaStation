@@ -267,6 +267,10 @@
 	},
 /turf/open/floor/plasteel/grid/steel,
 /area/security/checkpoint/escape)
+"aG" = (
+/obj/machinery/ship_sensor_array,
+/turf/open/floor/plating/airless,
+/area/nsv/hanger/mining)
 "aH" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
@@ -6537,6 +6541,12 @@
 /obj/structure/lattice/catwalk/over/ship,
 /turf/open/floor/monotile/steel,
 /area/nsv/weapons)
+"ph" = (
+/obj/machinery/ship_sensor_array{
+	dir = 1
+	},
+/turf/open/floor/plating/airless,
+/area/maintenance/nsv/deck2/port)
 "pj" = (
 /obj/structure/window/reinforced/spawner,
 /obj/machinery/modular_fabricator/autolathe,
@@ -11023,6 +11033,12 @@
 /obj/machinery/status_display/ai/north,
 /turf/open/floor/monotile/dark,
 /area/nsv/weapons)
+"Cz" = (
+/obj/machinery/ship_sensor_array{
+	dir = 8
+	},
+/turf/open/floor/plating/airless,
+/area/engine/atmospherics_engine)
 "CA" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /turf/open/floor/monotile/dark,
@@ -15057,6 +15073,12 @@
 	},
 /turf/open/floor/monotile/steel,
 /area/quartermaster/storage)
+"Oz" = (
+/obj/machinery/ship_sensor_array{
+	dir = 4
+	},
+/turf/open/floor/plating/airless,
+/area/nsv/hanger/notkmcstupidhanger)
 "OA" = (
 /turf/open/floor/durasteel/techfloor_grid,
 /area/engine/atmospherics_engine)
@@ -40770,7 +40792,7 @@ HX
 HX
 Nh
 an
-Nh
+Cz
 Nh
 Nh
 jy
@@ -53345,7 +53367,7 @@ Nh
 Nh
 Nh
 Nh
-HX
+ph
 kH
 Kh
 LU
@@ -58289,7 +58311,7 @@ LV
 IK
 VA
 Pm
-aE
+aG
 Nh
 Nh
 Nh
@@ -64416,7 +64438,7 @@ be
 be
 be
 be
-be
+Oz
 be
 be
 Nh

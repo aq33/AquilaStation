@@ -2911,6 +2911,10 @@
 	},
 /turf/open/floor/monotile/steel/airless,
 /area/nsv/hanger/mining)
+"cgy" = (
+/obj/machinery/ship_sensor_array,
+/turf/open/floor/plating/airless,
+/area/nsv/hanger/mining)
 "cgR" = (
 /obj/structure/closet,
 /obj/effect/spawner/lootdrop/nac_ammo,
@@ -4132,11 +4136,6 @@
 /obj/machinery/restaurant_portal/bar,
 /turf/open/floor/wood,
 /area/crew_quarters/cafeteria)
-"dhY" = (
-/obj/structure/shuttle/engine/huge,
-/obj/structure/hull_plate/end,
-/turf/open/floor/engine/airless,
-/area/space/nearstation)
 "diB" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -9656,6 +9655,12 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
+"huc" = (
+/obj/machinery/ship_sensor_array{
+	dir = 4
+	},
+/turf/open/floor/plating/airless,
+/area/nsv/weapons/fore)
 "huv" = (
 /obj/structure/cable/yellow,
 /obj/machinery/door/airlock/highsecurity/ship{
@@ -9701,6 +9706,12 @@
 	},
 /turf/open/floor/carpet/ship/blue,
 /area/crew_quarters/cryopods)
+"hwI" = (
+/obj/machinery/ship_sensor_array{
+	dir = 1
+	},
+/turf/open/floor/plating/airless,
+/area/maintenance/port/fore)
 "hxc" = (
 /obj/structure/cable,
 /obj/effect/turf_decal/stripes/red/full,
@@ -26851,6 +26862,12 @@
 /obj/structure/cable,
 /turf/open/floor/circuit,
 /area/bridge/cic)
+"vtz" = (
+/obj/machinery/ship_sensor_array{
+	dir = 8
+	},
+/turf/open/floor/plating/airless,
+/area/maintenance/aft)
 "vtQ" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/structure/cable/yellow,
@@ -36886,7 +36903,7 @@ lfF
 lfF
 lfF
 lfF
-lfF
+vtz
 lfF
 lfF
 lfF
@@ -42593,7 +42610,7 @@ mkz
 jgk
 xSG
 xSG
-dhY
+eFN
 lfF
 lfF
 lfF
@@ -43401,7 +43418,7 @@ gjg
 jgk
 xSG
 xSG
-dhY
+eFN
 lfF
 lfF
 lfF
@@ -44209,7 +44226,7 @@ mkz
 jgk
 xSG
 xSG
-dhY
+eFN
 lfF
 lfF
 lfF
@@ -45017,7 +45034,7 @@ uif
 jgk
 xSG
 xSG
-dhY
+eFN
 lfF
 lfF
 lfF
@@ -52028,7 +52045,7 @@ lfF
 lfF
 lfF
 vYj
-wEM
+hwI
 nJc
 gqg
 fVD
@@ -53701,7 +53718,7 @@ aLh
 aLh
 fTk
 jPC
-mxi
+cgy
 lfF
 lfF
 lfF
@@ -64184,7 +64201,7 @@ lfF
 lfF
 lfF
 lfF
-lfF
+huc
 vej
 vej
 vej

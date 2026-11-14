@@ -3457,6 +3457,12 @@
 /obj/structure/closet/secure_closet/munitions_technician,
 /turf/open/floor/engine,
 /area/nsv/weapons/fore)
+"iP" = (
+/obj/machinery/ship_sensor_array{
+	dir = 4
+	},
+/turf/open/floor/plating/airless,
+/area/nsv/weapons/fore)
 "iR" = (
 /obj/machinery/computer/rdconsole/robotics{
 	dir = 4
@@ -9230,6 +9236,12 @@
 /obj/effect/landmark/latejoin,
 /turf/open/floor/plasteel,
 /area/crew_quarters/cryopods)
+"Do" = (
+/obj/machinery/ship_sensor_array{
+	dir = 8
+	},
+/turf/open/floor/plating/airless,
+/area/engine/engineering)
 "Dp" = (
 /turf/open/floor/engine/n2o,
 /area/engine/atmos)
@@ -14932,6 +14944,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
+"Zl" = (
+/obj/machinery/ship_sensor_array{
+	dir = 1
+	},
+/turf/open/floor/plating/airless,
+/area/maintenance/department/crew_quarters/bar)
 "Zm" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 10
@@ -15091,6 +15109,10 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/engine/atmos)
+"ZZ" = (
+/obj/machinery/ship_sensor_array,
+/turf/open/floor/plating/airless,
+/area/engine/storage)
 
 (1,1,1) = {"
 aJ
@@ -32185,7 +32207,7 @@ wQ
 DH
 DH
 Ub
-oe
+Do
 oe
 aJ
 aJ
@@ -34508,7 +34530,7 @@ eU
 lN
 si
 IM
-oe
+ZZ
 aJ
 aJ
 cj
@@ -50675,7 +50697,7 @@ aJ
 aJ
 aJ
 aJ
-aJ
+Zl
 AZ
 Tm
 fk
@@ -68934,7 +68956,7 @@ oe
 oe
 oe
 oe
-oe
+iP
 oe
 oe
 oe
