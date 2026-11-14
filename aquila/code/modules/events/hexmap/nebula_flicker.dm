@@ -4,7 +4,7 @@
 #define NEBULA_FLICKER_SHARE 0.04
 
 /datum/round_event_control/aquila_hex_nebula_flicker
-	name = "Nebula Light Flicker"
+	name = "Migotanie świateł w mgławicy"
 	typepath = /datum/round_event/aquila_hex_nebula_flicker
 	weight = 10
 	min_players = 0

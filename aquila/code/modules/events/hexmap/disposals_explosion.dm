@@ -4,7 +4,7 @@
 // 200 integrity and no repair, so the pipe drops to 20-35% integrity and bursts if it is still at most half way repaired.
 
 /datum/round_event_control/aquila_hex_disposals_explosion
-	name = "Disposals Explosion"
+	name = "Wybuch w zsypie"
 	typepath = /datum/round_event/aquila_hex_disposals_explosion
 	weight = 10
 	min_players = 2

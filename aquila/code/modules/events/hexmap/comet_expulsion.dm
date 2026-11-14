@@ -80,7 +80,7 @@
 	return
 
 /datum/round_event_control/aquila_hex_comet_expulsion
-	name = "Comet Expulsion"
+	name = "Wyrzut materii z komety"
 	typepath = /datum/round_event/aquila_hex_comet_expulsion
 	weight = 10
 	min_players = 10

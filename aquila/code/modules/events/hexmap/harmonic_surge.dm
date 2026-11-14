@@ -7,7 +7,7 @@
 #define HARMONIC_SURGE_MIN_DRAIN 5
 
 /datum/round_event_control/aquila_hex_harmonic_surge
-	name = "Harmonic Feedback Surge"
+	name = "Harmoniczne fale grawitacyjne"
 	typepath = /datum/round_event/aquila_hex_harmonic_surge
 	weight = 10
 	min_players = 0

@@ -6,7 +6,7 @@
 // at least 5 tiles away from space, so the impact does not breach the hull. Unlike Eris the crew is warned, like by our stray pods.
 
 /datum/round_event_control/aquila_hex_loot_pod
-	name = "Loot Drop Pod"
+	name = "Kapsuła z łupem"
 	typepath = /datum/round_event/aquila_hex_loot_pod
 	weight = 10
 	min_players = 10

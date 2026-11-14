@@ -7,7 +7,7 @@ GLOBAL_VAR_INIT(aquila_hex_teleport_interference, 0)
 #define AQUILA_HEX_TELEPORT_MISFIRE_CHANCE 50
 
 /datum/round_event_control/aquila_hex_drive_instability
-	name = "Drive Instability"
+	name = "Niestabilność napędu"
 	typepath = /datum/round_event/aquila_hex_drive_instability
 	weight = 10
 	min_players = 5

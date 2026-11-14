@@ -5,7 +5,7 @@
 	name = "Nadawanie awaryjne"
 
 /datum/round_event_control/aquila_hex_wreck_graveyard
-	name = "Wreck Graveyard"
+	name = "Cmentarzysko wraków"
 	typepath = /datum/round_event/aquila_hex_wreck_graveyard
 	weight = 10
 	min_players = 0

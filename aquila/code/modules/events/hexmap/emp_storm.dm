@@ -1,7 +1,7 @@
 // AQUILA - burza elektromagnetyczna: ostrzeżenie, a po 2 sekundach impuls EMP w losowym miejscu statku (port z Shiptest code/modules/overmap/objects/events/emp_storm.dm)
 
 /datum/round_event_control/aquila_hex_emp_storm
-	name = "EMP Storm"
+	name = "Burza EMP"
 	typepath = /datum/round_event/aquila_hex_emp_storm
 	weight = 10
 	min_players = 5

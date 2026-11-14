@@ -1,7 +1,7 @@
 // AQUILA - rozbłysk słoneczny: ostrzeżenie, a po 2 sekundach pożar w losowym miejscu statku i błysk dla załogi w pobliżu (port z Shiptest code/modules/overmap/objects/events/solar_flare.dm)
 
 /datum/round_event_control/aquila_hex_solar_flare
-	name = "Solar Flare"
+	name = "Rozbłysk słoneczny"
 	typepath = /datum/round_event/aquila_hex_solar_flare
 	weight = 10
 	min_players = 5

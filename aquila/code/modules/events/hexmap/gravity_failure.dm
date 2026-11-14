@@ -1,7 +1,7 @@
 // AQUILA - awaria grawitacji: generatory grawitacji okrętu wyłączają się na 3–12 min, potem wracają te, które działały (port z Baystation12 code/modules/events/gravity.dm)
 
 /datum/round_event_control/aquila_hex_gravity_failure
-	name = "Gravity Failure"
+	name = "Awaria grawitacji"
 	typepath = /datum/round_event/aquila_hex_gravity_failure
 	weight = 10
 	min_players = 5

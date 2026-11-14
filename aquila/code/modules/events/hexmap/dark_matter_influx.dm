@@ -5,7 +5,7 @@
 #define DARK_MATTER_MAX_CONFUSION 30
 
 /datum/round_event_control/aquila_hex_dark_matter_influx
-	name = "Dark Matter Influx"
+	name = "Napływ ciemnej materii"
 	typepath = /datum/round_event/aquila_hex_dark_matter_influx
 	weight = 10
 	min_players = 5

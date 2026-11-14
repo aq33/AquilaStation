@@ -6,7 +6,7 @@
 // This is not the antag event /datum/round_event_control/aquila_rogue_drone (one Syndicate drone from a dispenser).
 
 /datum/round_event_control/aquila_hex_rogue_drone_swarm
-	name = "Rogue Drone Swarm"
+	name = "Rój zbuntowanych dronów"
 	typepath = /datum/round_event/aquila_hex_rogue_drone_swarm
 	weight = 10
 	min_players = 5

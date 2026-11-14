@@ -11,7 +11,7 @@
 	new /datum/overmap_ship_weapon/pdc_mount(src)
 
 /datum/round_event_control/aquila_hex_freighter_attack
-	name = "Freighter Under Attack"
+	name = "Atak na frachtowiec"
 	typepath = /datum/round_event/aquila_hex_freighter_attack
 	weight = 10
 	min_players = 5

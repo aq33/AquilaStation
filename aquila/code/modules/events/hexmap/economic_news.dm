@@ -8,7 +8,7 @@
 #define AQUILA_HEX_ECONOMY_CHANNEL "Wiadomości Gospodarcze"
 
 /datum/round_event_control/aquila_hex_economic_news
-	name = "Economic News"
+	name = "Wiadomości gospodarcze"
 	typepath = /datum/round_event/aquila_hex_economic_news
 	weight = 10
 	max_occurrences = 4

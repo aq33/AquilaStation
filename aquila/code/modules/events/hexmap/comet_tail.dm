@@ -2,7 +2,7 @@
 // Lodowe meteory są w comet_expulsion.dm.
 
 /datum/round_event_control/aquila_hex_comet_tail
-	name = "Comet Tail"
+	name = "Warkocz komety"
 	typepath = /datum/round_event/aquila_hex_comet_tail
 	weight = 10
 	min_players = 5

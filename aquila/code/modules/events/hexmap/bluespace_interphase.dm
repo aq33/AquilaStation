@@ -2,7 +2,7 @@
 // Wiadomości bierzemy z logów serwerów telekomunikacji (log_entries), więc nic w core nie musi ich zapamiętywać.
 
 /datum/round_event_control/aquila_hex_bluespace_interphase
-	name = "Bluespace Interphase"
+	name = "Interfaza bluespace"
 	typepath = /datum/round_event/aquila_hex_bluespace_interphase
 	weight = 10
 	min_players = 0

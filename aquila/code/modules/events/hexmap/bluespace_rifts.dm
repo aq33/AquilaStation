@@ -1,7 +1,7 @@
 // AQUILA - szczeliny bluespace: 1–5 par dwukierunkowych portali między tunelami technicznymi okrętu, każda para znika po kilku przejściach (port z CEV-Eris code/game/gamemodes/events/hidden_events/bluespace_rift.dm)
 
 /datum/round_event_control/aquila_hex_bluespace_rifts
-	name = "Bluespace Rifts"
+	name = "Szczeliny bluespace"
 	typepath = /datum/round_event/aquila_hex_bluespace_rifts
 	weight = 10
 	min_players = 0

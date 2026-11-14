@@ -1,7 +1,7 @@
 // AQUILA - uszkodzenie komputerów: w części włączonych komputerów modułowych (PDA, laptopy, konsole) psuje się dysk twardy (port z Baystation12 code/modules/events/computer_damage.dm)
 
 /datum/round_event_control/aquila_hex_computer_damage
-	name = "Computer Damage"
+	name = "Uszkodzenie komputerów"
 	typepath = /datum/round_event/aquila_hex_computer_damage
 	weight = 10
 	min_players = 3

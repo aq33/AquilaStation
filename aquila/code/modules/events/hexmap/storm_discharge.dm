@@ -4,7 +4,7 @@
 #define STORM_DISCHARGE_RANGE 12
 
 /datum/round_event_control/aquila_hex_storm_discharge
-	name = "Storm Discharge"
+	name = "Wyładowania burzy jonowej"
 	typepath = /datum/round_event/aquila_hex_storm_discharge
 	weight = 10
 	min_players = 3

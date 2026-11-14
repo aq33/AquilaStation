@@ -1,7 +1,7 @@
 // AQUILA - uszkodzenie APC: przepięcie pali interfejs jednego APC na statku albo kilku w okolicy, APC w tunelach serwisowych obrywają najczęściej (port z Baystation12 code/modules/events/apc_damage.dm)
 
 /datum/round_event_control/aquila_hex_apc_damage
-	name = "APC Damage"
+	name = "Uszkodzenie APC"
 	typepath = /datum/round_event/aquila_hex_apc_damage
 	weight = 10
 	min_players = 3

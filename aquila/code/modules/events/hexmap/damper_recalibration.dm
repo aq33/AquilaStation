@@ -6,7 +6,7 @@
 #define DAMPER_RECALIBRATION_KEPT 0.25
 
 /datum/round_event_control/aquila_hex_damper_recalibration
-	name = "Inertial Damper Recalibration"
+	name = "Rekalibracja tłumików bezwładności"
 	typepath = /datum/round_event/aquila_hex_damper_recalibration
 	weight = 10
 	min_players = 0

@@ -4,7 +4,7 @@
 // overflows every clogged toilet now and then (every ~30 s for 3 minutes) until someone plunges it. No announcement, like Bay.
 
 /datum/round_event_control/aquila_hex_toilet_clog
-	name = "Toilet Clog"
+	name = "Zatkane toalety"
 	typepath = /datum/round_event/aquila_hex_toilet_clog
 	weight = 10
 	min_players = 2
@@ -53,7 +53,7 @@
 		log_game("[control?.name || "Toilet Clog"]: clogged [.] toilet(s).")
 
 /datum/round_event_control/aquila_hex_toilet_clog/flood
-	name = "Toilet Flood"
+	name = "Zalane toalety"
 	typepath = /datum/round_event/aquila_hex_toilet_clog/flood
 	weight = 5
 	min_players = 5

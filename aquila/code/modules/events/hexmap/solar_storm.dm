@@ -15,7 +15,7 @@ GLOBAL_VAR_INIT(aquila_hex_solar_multiplier, 1)
 GLOBAL_LIST_EMPTY(aquila_hex_solar_storms)
 
 /datum/round_event_control/aquila_hex_solar_storm
-	name = "Solar Storm"
+	name = "Burza słoneczna"
 	typepath = /datum/round_event/aquila_hex_solar_storm
 	weight = 10
 	min_players = 0

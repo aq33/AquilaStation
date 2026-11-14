@@ -40,7 +40,7 @@
 	)
 
 /datum/round_event_control/aquila_hex_rich_comet
-	name = "Rich Comet Flyby"
+	name = "Przelot bogatej komety"
 	typepath = /datum/round_event/aquila_hex_rich_comet
 	weight = 10
 	min_players = 0

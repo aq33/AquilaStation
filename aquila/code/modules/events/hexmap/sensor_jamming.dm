@@ -4,7 +4,7 @@
 GLOBAL_VAR_INIT(aquila_hex_sensor_jams, 0)
 
 /datum/round_event_control/aquila_hex_sensor_jamming
-	name = "Suit Sensor Jamming"
+	name = "Zakłócenie czujników kombinezonów"
 	typepath = /datum/round_event/aquila_hex_sensor_jamming
 	weight = 10
 	min_players = 5

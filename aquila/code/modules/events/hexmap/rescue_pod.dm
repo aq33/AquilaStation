@@ -6,7 +6,7 @@
 // Announced 66% of the time, the burglar pod only 22% (33% of 66%, like Aurora). Once per round, like Aurora.
 
 /datum/round_event_control/aquila_hex_rescue_pod
-	name = "Rescue Pod"
+	name = "Kapsuła ratunkowa"
 	typepath = /datum/round_event/aquila_hex_rescue_pod
 	weight = 10
 	min_players = 5
