@@ -44,3 +44,24 @@
 	if(length(get_planets()))
 		return
 	add_planet(pick(subtypesof(/datum/planet_type)))
+
+/// Stałe planety układów z mapy gwiezdnej: nazwa układu -> typy planet. Na razie tylko planety wulkaniczne tam, gdzie
+/// pasują do opisu układu; kolejne typy (lodowe, ziemiopodobne) dojdą razem z nimi.
+GLOBAL_LIST_INIT(fixed_planets_by_system, list(
+	"Tortuga" = list(/datum/planet_type/lava),
+	"Ethor" = list(/datum/planet_type/lava),
+	"Bemike" = list(/datum/planet_type/lava),
+	"Demon's Maw" = list(/datum/planet_type/lava),
+))
+
+/datum/controller/subsystem/star_system/Initialize(start_timeofday)
+	. = ..()
+	add_fixed_planets()
+
+/datum/controller/subsystem/star_system/proc/add_fixed_planets()
+	for(var/datum/star_system/system as anything in systems)
+		var/list/planet_types = GLOB.fixed_planets_by_system[system.name]
+		if(!length(planet_types) || length(system.get_planets()))
+			continue
+		for(var/planet_type in planet_types)
+			system.add_planet(planet_type)
