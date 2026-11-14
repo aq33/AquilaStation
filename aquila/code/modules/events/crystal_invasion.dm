@@ -175,12 +175,10 @@ This section is for the event controller
 	for(var/area/A as anything in center_areas)
 		area_names += A.name
 	priority_announce("OSTRZEŻENIE - Po namierzeniu skoków mocy na waszym statku ustaliliśmy, że ogromne portale otworzyły się w następujących miejscach: [area_names.Join(", ")]. \
-		Zamknijcie je, zanim spróbujecie ustabilizować kryształ.", "Alarm", sound = 'aquila/sound/ai/events/crystal_portals.ogg')
-	sound_to_playing_players('sound/misc/notice1.ogg')
+		Zamknijcie je, zanim spróbujecie ustabilizować kryształ.", "Alarm", sound = ANNOUNCER_EVENT("crystal_portals"))
 
 /datum/round_event/crystal_invasion/announce(fake)
-	priority_announce("OSTRZEŻENIE - Wykryto destabilizację macierzy kryształu supermaterii. Czekajcie na dalsze instrukcje.", "Alarm", sound = 'aquila/sound/ai/events/crystal_destabilized.ogg')
-	sound_to_playing_players('sound/misc/notice1.ogg')
+	priority_announce("OSTRZEŻENIE - Wykryto destabilizację macierzy kryształu supermaterii. Czekajcie na dalsze instrukcje.", "Alarm", sound = ANNOUNCER_EVENT("crystal_destabilized"))
 
 /// Picks the wave and announces what the crew has to do
 /datum/round_event/crystal_invasion/proc/choose_wave_type()
@@ -205,8 +203,7 @@ This section is for the event controller
 
 	priority_announce("OSTRZEŻENIE - Wykryliśmy liczne fluktuacje energii pochodzące z kryształu. Szacujemy [GLOB.crystal_invasion_wave_names[wave_name]] krystalicznych istot \
 		przybywających z \[UTAJNIONO]; na statku otworzy się [portal_numbers] głównych portali, które musicie zamknąć. Pozyskajcie kryształ \[UTAJNIONO] \
-		z portalu za pomocą neutralizatora anomalii, umieśćcie go w stabilizatorze supermaterii i wstrzyknijcie go w kryształ, aby zapobiec Scenariuszowi Kosmicznej Fragmentacji klasy ZK-Lambda.", "Alarm", sound = 'aquila/sound/ai/events/crystal_wave.ogg')
-	sound_to_playing_players('sound/misc/notice1.ogg')
+		z portalu za pomocą neutralizatora anomalii, umieśćcie go w stabilizatorze supermaterii i wstrzyknijcie go w kryształ, aby zapobiec Scenariuszowi Kosmicznej Fragmentacji klasy ZK-Lambda.", "Alarm", sound = ANNOUNCER_EVENT("crystal_wave"))
 
 /// Spawns one portal at a random event spawn
 /datum/round_event/crystal_invasion/proc/spawn_portal(list/wave_type, list/spawners)
@@ -219,8 +216,7 @@ This section is for the event controller
 /// If the crystal is not stabilized in time, more portals open and the event escalates
 /datum/round_event/crystal_invasion/proc/more_portals()
 	priority_announce("OSTRZEŻENIE - Wykryto kolejny skok mocy zdestabilizowanego kryształu. Na całym statku otwierają się nowe portale. Następny skok może \
-		wywołać zdarzenie klasy \[UTAJNIONO]; zakładamy, że macie jeszcze pięć minut do całkowitej anihilacji kryształu.", "Alarm", sound = 'aquila/sound/ai/events/crystal_surge.ogg')
-	sound_to_playing_players('sound/misc/notice1.ogg')
+		wywołać zdarzenie klasy \[UTAJNIONO]; zakładamy, że macie jeszcze pięć minut do całkowitej anihilacji kryształu.", "Alarm", sound = ANNOUNCER_EVENT("crystal_surge"))
 	var/list/spawners = crystal_invasion_spawners()
 	for(var/i in 1 to rand(10, 15))
 		spawn_portal(GLOB.crystal_invasion_waves["medium wave"], spawners)
@@ -250,14 +246,14 @@ This section is for the event controller
 /datum/round_event/crystal_invasion/proc/zk_event_announcement()
 	dest_crystal.active = FALSE
 	priority_announce("OSTRZEŻENIE - Kryształ osiągnął punkt krytycznej niestabilności. Nadchodzi zdarzenie klasy ZK. Prosimy nie panikować, każdy panikujący \
-		zostanie zlikwidowany na miejscu. Miłego dnia.", "Alarm", sound = 'aquila/sound/ai/events/crystal_critical.ogg')
-	sound_to_playing_players('sound/machines/alarm.ogg')
-	addtimer(CALLBACK(src, PROC_REF(do_zk_event)), 10 SECONDS)
+		zostanie zlikwidowany na miejscu. Miłego dnia.", "Alarm", sound = ANNOUNCER_EVENT("crystal_critical"))
+	addtimer(CALLBACK(src, PROC_REF(do_zk_event)), 12 SECONDS) // nagranie ostrzeżenia trwa 11,3 s
 
 /// The ZK-class event itself: portals everywhere and a huge explosion
 /datum/round_event/crystal_invasion/proc/do_zk_event()
 	if(QDELETED(dest_crystal) || dest_crystal.is_stabilized)
 		return
+	sound_to_playing_players('sound/machines/alarm.ogg') // po nagraniu ostrzeżenia, nie w jego trakcie
 	var/list/spawners = crystal_invasion_spawners()
 	for(var/i in 1 to rand(15, 25))
 		spawn_portal(GLOB.crystal_invasion_waves["huge wave"], spawners)
@@ -265,13 +261,12 @@ This section is for the event controller
 	UnregisterSignal(dest_crystal, COMSIG_PARENT_QDELETING)
 	QDEL_NULL(dest_crystal)
 	explosion(crystal_turf, 15, 26, 33, 35, 1, 1) //a bit smaller than max supermatter explosion
-	priority_announce("OSTRZEŻENIE - Portale otwierają się wszędzie, nie udało się wam opanować zdarzenia. Powinniście się wstydzić!", "Alarm", sound = 'aquila/sound/ai/events/crystal_failed.ogg')
+	priority_announce("OSTRZEŻENIE - Portale otwierają się wszędzie, nie udało się wam opanować zdarzenia. Powinniście się wstydzić!", "Alarm", sound = ANNOUNCER_EVENT("crystal_failed"))
 
 /// Puts the crystal back the way it was
 /datum/round_event/crystal_invasion/proc/restore()
 	priority_announce("Kryształ został przywrócony i jest znowu stabilny. Wasz sektor jest bezpieczny od Scenariusza klasy ZK-Lambda. \
-		Zabijcie pozostałe krystaliczne potwory i wracajcie do pracy.", sound = 'aquila/sound/ai/events/crystal_restored.ogg')
-	sound_to_playing_players('sound/misc/notice2.ogg')
+		Zabijcie pozostałe krystaliczne potwory i wracajcie do pracy.", sound = ANNOUNCER_EVENT("crystal_restored"))
 	var/turf/loc_turf = get_turf(dest_crystal)
 	if(supermatter_type)
 		new supermatter_type(loc_turf)
@@ -452,8 +447,7 @@ This section is for the destabilized crystal
 		user.dust(force = TRUE)
 	for(var/obj/structure/crystal_portal/portal as anything in GLOB.crystal_portals)
 		portal.slow_down()
-	priority_announce("Poświęcenie członka załogi (miejmy nadzieję, że klauna) najwyraźniej osłabiło portale i spowolniło napływ potworów!", sound = 'aquila/sound/ai/events/crystal_sacrifice.ogg')
-	sound_to_playing_players('sound/misc/notice2.ogg')
+	priority_announce("Poświęcenie członka załogi (miejmy nadzieję, że klauna) najwyraźniej osłabiło portale i spowolniło napływ potworów!", sound = ANNOUNCER_EVENT("crystal_sacrifice"))
 
 /datum/looping_sound/destabilized_crystal
 	mid_sounds = list('sound/machines/sm/loops/delamming.ogg' = 1)

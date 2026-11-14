@@ -281,7 +281,7 @@ GLOBAL_DATUM_INIT(weighted_rotation, /datum/weighted_rotation, new)
 
 /// Wizard starts in weighted rounds without a warning of its own, so the crew gets a heads up
 /datum/weighted_rotation/proc/warn_about_wizard()
-	priority_announce("Czujniki dalekiego zasięgu wykryły zaburzenia bluespace typowe dla teleportów Federacji Czarodziejów. Na pokładzie [station_name()] może pojawić się czarodziej. Zachowajcie ostrożność.", "Anomalia magiczna", 'aquila/sound/ai/events/wizard_teleports.ogg')
+	priority_announce("Czujniki dalekiego zasięgu wykryły zaburzenia bluespace typowe dla teleportów Federacji Czarodziejów. Na pokładzie [station_name()] może pojawić się czarodziej. Zachowajcie ostrożność.", "Anomalia magiczna", ANNOUNCER_EVENT("wizard_teleports"))
 
 /// Lobby chances of every pool for the players that are ready now, counted the same way as the real draw
 /datum/weighted_rotation/proc/lobby_odds()

@@ -19,7 +19,7 @@
 		to_chat(A, "<br><span class='warning'><b>[alert]</b></span><br>")
 
 	if(prob(30) || fake)	//most of the time, we don't want an announcement, so as to allow AIs to fake blackouts.
-		priority_announce(alert, sound = 'aquila/sound/ai/events/communications_blackout.ogg') // AQ EDIT - własne nagranie ogłoszenia
+		priority_announce(alert, sound = ANNOUNCER_EVENT("communications_blackout")) // AQ EDIT - własne nagranie ogłoszenia
 
 
 /datum/round_event/communications_blackout/start()

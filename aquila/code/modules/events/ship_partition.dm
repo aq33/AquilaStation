@@ -20,7 +20,7 @@
 
 /datum/round_event/aquila_ship_partition/announce(fake)
 	priority_announce("Usterka emiterów pola siłowego: statek został tymczasowo przedzielony nieprzekraczalną barierą energetyczną. \
-		Bariera powinna zniknąć w ciągu kilku minut.", "Alarm: Bariera energetyczna", 'aquila/sound/ai/events/ship_partition.ogg')
+		Bariera powinna zniknąć w ciągu kilku minut.", "Alarm: Bariera energetyczna", ANNOUNCER_EVENT("ship_partition"))
 
 /datum/round_event/aquila_ship_partition/start()
 	var/list/line = aquila_partition_line()

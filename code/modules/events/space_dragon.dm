@@ -13,7 +13,7 @@
 	announceWhen = 10
 
 /datum/round_event/ghost_role/space_dragon/announce(fake)
-	priority_announce("Wygląda na to, że istota o magicznej sygnaturze zbliża się do [station_name()], Zachować ostrożność.", "Alarm biologiczny", 'aquila/sound/ai/events/space_dragon.ogg') // AQ EDIT - własne nagranie ogłoszenia
+	priority_announce("Wygląda na to, że istota o magicznej sygnaturze zbliża się do [station_name()], Zachować ostrożność.", "Alarm biologiczny", ANNOUNCER_EVENT("space_dragon")) // AQ EDIT - własne nagranie ogłoszenia
 
 /datum/round_event/ghost_role/space_dragon/spawn_role()
 	var/list/spawn_locs = list()

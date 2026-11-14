@@ -19,7 +19,7 @@
 
 /datum/round_event/aurora_caelus/announce()
 	priority_announce("[station_name()]: Nieszkodliwa chmura jonowa zbliża się do stacji i spowoduje wyładowania swojej energii obijając się o kadłub. Nanotrasen zezwala wszystkim pracownikom na krótką przerwę, by mogli się odprężyć i obserwować to rzadkie wydarzenie. Podczas jego trwania jasne gwiezdne światło będzie mienić się kolorami niebieskim i zielonym. Personel chcący oglądać światła może udać się w miejsca, z których kosmos widać najlepiej. Życzymy wspaniałych wrażeń.",
-	sound = 'aquila/sound/ai/events/aurora_start.ogg',
+	sound = ANNOUNCER_EVENT("aurora_start"),
 	sender_override = "Wydział Meteorologii Nanotrasen") // AQ EDIT - własne nagranie ogłoszenia
 	for(var/V in GLOB.player_list)
 		var/mob/M = V
@@ -50,7 +50,7 @@
 			for(var/turf/open/space/S in A)
 				fade_to_black(S)
 	priority_announce("Zorza kosmiczna właśnie się kończy. Właściwości światła gwiezdnego będą powoli wracać do normy. Gdy tak się stanie, prosimy powrócić do swoich miejsc pracy i kontynuować wykonywanie obowiązków. Życzymy udanej zmiany, [station_name()], i dziękujemy za wspólny seans.",
-	sound = 'aquila/sound/ai/events/aurora_end.ogg',
+	sound = ANNOUNCER_EVENT("aurora_end"),
 	sender_override = "Wydział Meteorologii Nanotrasen") // AQ EDIT - własne nagranie ogłoszenia
 
 /datum/round_event/aurora_caelus/proc/fade_to_black(turf/open/space/S)

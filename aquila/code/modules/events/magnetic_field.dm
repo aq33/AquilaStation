@@ -21,7 +21,7 @@
 
 /datum/round_event/aquila_magnetic_field/announce(fake)
 	priority_announce("Statek wleciał w anomalię magnetyczną, która spolaryzowała część załogi. \
-		Osoby o tym samym biegunie będą się wzajemnie odpychać, a o przeciwnych przyciągać. Efekt powinien ustąpić w ciągu kilku minut.", "Anomalia magnetyczna", 'aquila/sound/ai/events/magnetic_field.ogg')
+		Osoby o tym samym biegunie będą się wzajemnie odpychać, a o przeciwnych przyciągać. Efekt powinien ustąpić w ciągu kilku minut.", "Anomalia magnetyczna", ANNOUNCER_EVENT("magnetic_field"))
 
 /datum/round_event/aquila_magnetic_field/start()
 	var/list/players = list()

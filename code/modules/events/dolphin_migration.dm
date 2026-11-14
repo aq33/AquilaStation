@@ -13,7 +13,7 @@
 	startWhen = rand(40, 60)
 
 /datum/round_event/dolphin_migration/announce()
-	priority_announce("W pobliżu [station_name()] wykryto nieznane formy biologiczne, prosimy czekać na dalsze informacje.", "Alarm - formy życia", 'aquila/sound/ai/events/dolphin_migration.ogg') // AQ EDIT - własne nagranie ogłoszenia
+	priority_announce("W pobliżu [station_name()] wykryto nieznane formy biologiczne, prosimy czekać na dalsze informacje.", "Alarm - formy życia", ANNOUNCER_EVENT("dolphin_migration")) // AQ EDIT - własne nagranie ogłoszenia
 
 
 /datum/round_event/dolphin_migration/start()

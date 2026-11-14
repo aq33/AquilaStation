@@ -30,7 +30,7 @@
 		"niefortunnego upadku sieci społecznościowej Nanotrasen+",
 		"no, pecha, chyba",
 	)
-	priority_announce("Z powodu [pick(possible_reasons)] ceny w automatach na statku przez krótki czas wzrosną.", "Dział Księgowości Nanotrasen", sound = 'aquila/sound/ai/events/market_crash.ogg')
+	priority_announce("Z powodu [pick(possible_reasons)] ceny w automatach na statku przez krótki czas wzrosną.", "Dział Księgowości Nanotrasen", sound = ANNOUNCER_EVENT("market_crash"))
 
 /datum/round_event/aquila_market_crash/start()
 	SSeconomy.market_crashing = TRUE
@@ -50,4 +50,4 @@
 	SSeconomy.inflation_value()
 	SSeconomy.update_vending_prices()
 	SSeconomy.price_update()
-	priority_announce("Ceny w automatach na statku ustabilizowały się.", "Dział Księgowości Nanotrasen", sound = 'aquila/sound/ai/events/market_stable.ogg')
+	priority_announce("Ceny w automatach na statku ustabilizowały się.", "Dział Księgowości Nanotrasen", sound = ANNOUNCER_EVENT("market_stable"))

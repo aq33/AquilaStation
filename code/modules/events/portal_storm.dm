@@ -59,8 +59,8 @@
 	set waitfor = 0
 	sound_to_playing_players('sound/magic/lightning_chargeup.ogg')
 	sleep(80)
-	priority_announce("Wykryto potężną anomalię bluespace zmierzającą w stronę [station_name()]. Przygotować się na uderzenie.", sound = 'aquila/sound/ai/events/portal_storm.ogg') // AQ EDIT - własne nagranie ogłoszenia
-	sleep(20)
+	priority_announce("Wykryto potężną anomalię bluespace zmierzającą w stronę [station_name()]. Przygotować się na uderzenie.", sound = ANNOUNCER_EVENT("portal_storm")) // AQ EDIT - własne nagranie ogłoszenia
+	sleep(70) // AQ EDIT - grzmot po nagraniu (7 s), nie w jego trakcie
 	sound_to_playing_players('sound/magic/lightningbolt.ogg')
 
 /datum/round_event/portal_storm/tick()

@@ -7,6 +7,7 @@
 	var/announcement = "" // AQ EDIT - bez <meta> w środku ramki
 	if(sound == DEFAULT_ALERT)
 		sound = SSstation.announcer.get_rand_alert_sound()
+	sound = aquila_event_announcement_sound(sound) // AQ EDIT - nagranie eventu albo alert wariantu announcera
 
 	if(sound && SSstation.announcer.event_sounds[sound])
 		sound = SSstation.announcer.event_sounds[sound]

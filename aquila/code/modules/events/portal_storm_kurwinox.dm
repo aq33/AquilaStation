@@ -49,8 +49,8 @@
 		return
 	sound_to_playing_players('sound/magic/lightning_chargeup.ogg')
 	sleep(80)
-	priority_announce("Wykryto potężną anomalię bluespace zmierzającą w stronę [station_name()]. Skanery rejestrują sygnatury biologiczne z galaktyki Kurwix. Przygotować się na kontakt.", "Alarm: Anomalia", 'aquila/sound/ai/events/portal_storm_kurwinox.ogg')
-	sleep(20)
+	priority_announce("Wykryto potężną anomalię bluespace zmierzającą w stronę [station_name()]. Skanery rejestrują sygnatury biologiczne z galaktyki Kurwix. Przygotować się na kontakt.", "Alarm: Anomalia", ANNOUNCER_EVENT("portal_storm_kurwinox"))
+	sleep(100) // grzmot po nagraniu (9,9 s), nie w jego trakcie
 	sound_to_playing_players('sound/magic/lightningbolt.ogg')
 
 /// Nothing to spawn: end on the first process() without announcing

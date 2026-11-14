@@ -15,7 +15,7 @@
 /datum/round_event/shit_storm/announce(fake)
 	if(!CONFIG_GET(flag/shitting_enabled))
 		return
-	priority_announce("Fale rozstrajające wykryte wokół statku. Prosimy udać się do tuneli serwisowych.", "Alarm: Anomalia", 'aquila/sound/ai/events/shitstorm.ogg')
+	priority_announce("Fale rozstrajające wykryte wokół statku. Prosimy udać się do tuneli serwisowych.", "Alarm: Anomalia", ANNOUNCER_EVENT("shitstorm"))
 	//sound not longer matches the text, but an audible warning is probably good
 
 /datum/round_event/shit_storm/start()

@@ -31,7 +31,7 @@
 
 /datum/round_event/grey_tide/announce(fake)
 	if(areasToOpen && areasToOpen.len > 0)
-		priority_announce("Gr3y.T1d3 wirus wykryty na [station_name()] . Poziom zagrożenia [severity]. RRekomendowane jest wkroczenie sztucznej inteligencji stacji.", "Alarm bezpieczeństwa", 'aquila/sound/ai/events/prison_break.ogg') // AQ EDIT - własne nagranie ogłoszenia
+		priority_announce("Gr3y.T1d3 wirus wykryty na [station_name()] . Poziom zagrożenia [severity]. RRekomendowane jest wkroczenie sztucznej inteligencji stacji.", "Alarm bezpieczeństwa", ANNOUNCER_EVENT("prison_break")) // AQ EDIT - własne nagranie ogłoszenia
 	else
 		log_world("ERROR: Could not initiate grey-tide. No areas in the list!")
 		kill()

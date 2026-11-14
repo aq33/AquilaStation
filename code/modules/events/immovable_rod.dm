@@ -29,7 +29,7 @@ In my current plan for it, 'solid' will be defined as anything with density == 1
 	announceWhen = 5
 
 /datum/round_event/immovable_rod/announce(fake)
-	priority_announce("Co to, kurwa, było?!", "Alarm ogólny", 'aquila/sound/ai/events/immovable_rod.ogg') // AQ EDIT - własne nagranie ogłoszenia
+	priority_announce("Co to, kurwa, było?!", "Alarm ogólny", ANNOUNCER_EVENT("immovable_rod")) // AQ EDIT - własne nagranie ogłoszenia
 
 /datum/round_event/immovable_rod/start()
 	var/datum/round_event_control/immovable_rod/C = control

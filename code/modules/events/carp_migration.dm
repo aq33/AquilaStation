@@ -23,7 +23,7 @@
 	startWhen = rand(40, 60)
 
 /datum/round_event/carp_migration/announce(fake)
-	priority_announce("Wykryto nieznane formy życia w okolicy [station_name()], zaleca się ostrożność.", "Ostrzeżenie biologiczne", 'aquila/sound/ai/events/carp_migration.ogg') // AQ EDIT - własne nagranie ogłoszenia
+	priority_announce("Wykryto nieznane formy życia w okolicy [station_name()], zaleca się ostrożność.", "Ostrzeżenie biologiczne", ANNOUNCER_EVENT("carp_migration")) // AQ EDIT - własne nagranie ogłoszenia
 
 
 // AQ EDIT START - basic moby: basic carp, and from tgstation the migration through the ship (a turf in a station area, then out to space)

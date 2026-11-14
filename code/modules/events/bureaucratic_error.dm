@@ -8,7 +8,7 @@
 	announceWhen = 1
 
 /datum/round_event/bureaucratic_error/announce(fake)
-	priority_announce("Dokonana niedawno biurorkatyczna pomyłka w dziale Zarządzania Środkami Ludzkimi i Nieludzkimi może spowodować deficyty personelu w niektórych działach i nadwyżkę w innych.", "Ostrzeżenie administracyjne", 'aquila/sound/ai/events/bureaucratic_error.ogg') // AQ EDIT - własne nagranie ogłoszenia
+	priority_announce("Dokonana niedawno biurorkatyczna pomyłka w dziale Zarządzania Środkami Ludzkimi i Nieludzkimi może spowodować deficyty personelu w niektórych działach i nadwyżkę w innych.", "Ostrzeżenie administracyjne", ANNOUNCER_EVENT("bureaucratic_error")) // AQ EDIT - własne nagranie ogłoszenia
 
 /datum/round_event/bureaucratic_error/start()
 	// AQ EDIT - only jobs that exist on this map and allow it, GetJob() returns null for the rest

@@ -12,4 +12,4 @@
 	anomaly_path = /obj/effect/anomaly/flux
 
 /datum/round_event/anomaly/anomaly_flux/announce(fake)
-	priority_announce("Fala strumieni hiperenergetycznych zlokalizowana na skanerach dalekiego zasięgu. Spodziewany punkt uderzenia: [impact_area.name].", "Alarm: Anomalia", 'aquila/sound/ai/events/anomaly_flux.ogg') // AQ EDIT - własne nagranie ogłoszenia
+	priority_announce("Fala strumieni hiperenergetycznych zlokalizowana na skanerach dalekiego zasięgu. Spodziewany punkt uderzenia: [impact_area.name].", "Alarm: Anomalia", ANNOUNCER_EVENT("anomaly_flux")) // AQ EDIT - własne nagranie ogłoszenia

@@ -2,9 +2,12 @@
 
 Użycie:
     python tools/tts/make_event_announcements.py --key-file ŚCIEŻKA [--only id1,id2] [--force]
+    python tools/tts/make_event_announcements.py --lista   (tylko lista nagrań w DM, bez klucza)
 
 Teksty: tools/tts/event_announcements.tsv (kolumny plik, tekst).
 Wynik: aquila/sound/ai/events/<plik>.ogg. Istniejące pliki są pomijane bez --force.
+Za każdym razem przepisuje też GLOB.aquila_event_announcement_sounds w DM_LIST z kolejności TSV,
+żeby lista kluczy ANNOUNCER_EVENT w grze była zawsze taka jak lista tekstów.
 Wymaga ffmpeg w PATH albo w --ffmpeg. Klucz ElevenLabs czytany z pierwszej linii pliku,
 nigdy nie trafia do repo.
 """
@@ -21,6 +24,9 @@ ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)
 TSV = os.path.join(ROOT, "tools", "tts", "event_announcements.tsv")
 OUT_DIR = os.path.join(ROOT, "aquila", "sound", "ai", "events")
 IR = os.path.join(ROOT, "aquila", "sound", "ai", "ai_tts_ir.wav")
+DM_LIST = os.path.join(ROOT, "aquila", "code", "datums", "announcers", "event_announcements.dm")
+DM_LIST_START = "GLOBAL_LIST_INIT(aquila_event_announcement_sounds, list(\n"
+DM_LIST_END = "\n))\n"
 # Ten sam głos co polski dubbing sound/ai/default (AI_TTS_VOICE w config/squad_tts.txt).
 VOICE = "r43lnMEVUzxMWMYz9JXK"
 MODEL = "eleven_multilingual_v2"
@@ -45,20 +51,37 @@ def tts(key, text, dest):
         f.write(resp.read())
 
 
+def write_dm_list(rows):
+    with open(DM_LIST, encoding="utf-8", newline="") as f:
+        dm = f.read()
+    start = dm.index(DM_LIST_START) + len(DM_LIST_START)
+    end = dm.index(DM_LIST_END, start)
+    body = ",\n".join(f"\t\"{r['plik']}\" = 'aquila/sound/ai/events/{r['plik']}.ogg'" for r in rows)
+    with open(DM_LIST, "w", encoding="utf-8", newline="") as f:
+        f.write(dm[:start] + body + dm[end:])
+
+
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--key-file", required=True)
+    ap.add_argument("--key-file")
+    ap.add_argument("--lista", action="store_true", help="tylko przepisz listę nagrań w DM")
     ap.add_argument("--ffmpeg", default="ffmpeg")
     ap.add_argument("--only", default="")
     ap.add_argument("--force", action="store_true")
     args = ap.parse_args()
 
+    with open(TSV, encoding="utf-8", newline="") as f:
+        rows = list(csv.DictReader(f, delimiter="\t"))
+    write_dm_list(rows)
+    if args.lista:
+        print(f"lista w DM: {len(rows)} nagrań")
+        return 0
+    if not args.key_file:
+        ap.error("--key-file jest wymagany do generowania nagrań")
     with open(args.key_file, encoding="utf-8") as f:
         key = f.readline().strip()
     only = set(filter(None, args.only.split(",")))
     os.makedirs(OUT_DIR, exist_ok=True)
-    with open(TSV, encoding="utf-8", newline="") as f:
-        rows = list(csv.DictReader(f, delimiter="\t"))
     done = 0
     with tempfile.TemporaryDirectory() as tmp:
         for row in rows:

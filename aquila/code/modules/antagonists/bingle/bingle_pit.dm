@@ -426,7 +426,7 @@ GLOBAL_VAR_INIT(bingle_pit_loading, FALSE)
 					item_value_consumed++
 				if(!announcement_made)
 					announcement_made = TRUE
-					priority_announce("Na pokładzie [station_name()] wykryto niebieską falę. Cała załoga ma natychmiast powstrzymać pożeranie statku.", "Alarm biologiczny", 'aquila/sound/ai/events/bingle_wave.ogg')
+					priority_announce("Na pokładzie [station_name()] wykryto niebieską falę. Cała załoga ma natychmiast powstrzymać pożeranie statku.", "Alarm biologiczny", ANNOUNCER_EVENT("bingle_wave"))
 	current_pit_size = new_size
 	healing_range = max(round(new_size / 2, 1) + 2, 3)
 

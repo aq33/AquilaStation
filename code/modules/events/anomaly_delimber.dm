@@ -12,4 +12,4 @@
 	anomaly_path = /obj/effect/anomaly/delimber
 
 /datum/round_event/anomaly/anomaly_delimber/announce(fake)
-	priority_announce("Anomalia dekapitacyjna wykryta. Spodziewana lokalizacja: [impact_area.name]. Należy odziać się w skafandry biologiczne w celu uchronienia się przed utratą kończyny.", "Alarm: Anomalia", sound = 'aquila/sound/ai/events/anomaly_delimber.ogg') // AQ EDIT - własne nagranie ogłoszenia
+	priority_announce("Anomalia dekapitacyjna wykryta. Spodziewana lokalizacja: [impact_area.name]. Należy odziać się w skafandry biologiczne w celu uchronienia się przed utratą kończyny.", "Alarm: Anomalia", sound = ANNOUNCER_EVENT("anomaly_delimber")) // AQ EDIT - własne nagranie ogłoszenia

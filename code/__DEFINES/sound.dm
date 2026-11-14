@@ -117,6 +117,8 @@
 #define ANNOUNCER_SHUTTLEDOCK		"announcer_shuttledock"
 #define ANNOUNCER_SHUTTLERECALLED	"announcer_shuttlerecalled"
 #define ANNOUNCER_SPANOMALIES		"announcer_spanomalies"
+/// AQ EDIT - klucz nagrania ogłoszenia eventu (aquila/code/datums/announcers/event_announcements.dm); announcer bez tego klucza gra swój alert
+#define ANNOUNCER_EVENT(name) ("announcer_event_" + name)
 
 ///Client volume preferences, passed to playsound() as volume_pref
 #define VOLUME_PREF_TESLA "tesla"

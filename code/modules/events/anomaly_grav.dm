@@ -11,4 +11,4 @@
 	anomaly_path = /obj/effect/anomaly/grav
 
 /datum/round_event/anomaly/anomaly_grav/announce(fake)
-	priority_announce("Anomalia grawitacyjna wykryta na skanerach dalekiego zasięgu. Spodziewany punkt uderzenia: [impact_area.name].", "Alarm: Anomalia", 'aquila/sound/ai/events/anomaly_grav.ogg') // AQ EDIT - własne nagranie ogłoszenia
+	priority_announce("Anomalia grawitacyjna wykryta na skanerach dalekiego zasięgu. Spodziewany punkt uderzenia: [impact_area.name].", "Alarm: Anomalia", ANNOUNCER_EVENT("anomaly_grav")) // AQ EDIT - własne nagranie ogłoszenia

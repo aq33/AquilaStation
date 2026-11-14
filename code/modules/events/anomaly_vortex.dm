@@ -12,4 +12,4 @@
 	anomaly_path = /obj/effect/anomaly/bhole
 
 /datum/round_event/anomaly/anomaly_vortex/announce(fake)
-	priority_announce("Anomalia wirowa o dużej intensywności wykryta na skanerach długiego zasięgu. Spodziewany punkt uderzenia: [impact_area.name]", "Alarm: Anomalia", 'aquila/sound/ai/events/anomaly_vortex.ogg') // AQ EDIT - własne nagranie ogłoszenia
+	priority_announce("Anomalia wirowa o dużej intensywności wykryta na skanerach długiego zasięgu. Spodziewany punkt uderzenia: [impact_area.name]", "Alarm: Anomalia", ANNOUNCER_EVENT("anomaly_vortex")) // AQ EDIT - własne nagranie ogłoszenia

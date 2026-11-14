@@ -117,4 +117,4 @@
 	for(var/turf/A in ship.get_affected_turfs(T))
 		for(var/obj/effect/mob_spawn/human/fugitive/spawner in A)
 			announce_to_ghosts(spawner)
-	priority_announce("W pobliżu statku wykryto niezidentyfikowaną jednostkę.", sound = 'aquila/sound/ai/events/unknown_vessel.ogg') // AQ EDIT - własne nagranie ogłoszenia
+	priority_announce("W pobliżu statku wykryto niezidentyfikowaną jednostkę.", sound = ANNOUNCER_EVENT("unknown_vessel")) // AQ EDIT - własne nagranie ogłoszenia
