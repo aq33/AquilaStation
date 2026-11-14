@@ -35,3 +35,10 @@
 			return Fail("Prostokąt [json_encode(rect)] przedziału w kształcie L wchodzi w puste pola")
 	if(area_sum != 6)
 		return Fail("Prostokąty przedziału w kształcie L pokrywają [area_sum] pól zamiast 6 ([json_encode(rects)])")
+	// Szafka kontroli uszkodzeń (dc_locker.dm): gaśnice, łatki, uszczelniacz i taśma
+	var/obj/structure/closet/damage_control/locker = allocate(/obj/structure/closet/damage_control)
+	var/inflatables = 0
+	for(var/obj/item/inflatable/patch in locker)
+		inflatables++
+	if(!(locate(/obj/item/extinguisher) in locker) || inflatables < 3 || !(locate(/obj/item/sealant) in locker) || !(locate(/obj/item/stack/sticky_tape) in locker))
+		return Fail("Szafka kontroli uszkodzeń nie ma gaśnicy, trzech łatek, uszczelniacza i taśmy")

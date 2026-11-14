@@ -20149,6 +20149,14 @@
 /obj/machinery/door/firedoor/border_only/directional/south,
 /turf/open/floor/durasteel/techfloor_grid,
 /area/science/robotics)
+"qtQ" = (
+/obj/structure/cable/yellow,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/closet/damage_control,
+/turf/open/floor/carpet/ship,
+/area/hallway/upper/primary/starboard)
 "quw" = (
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple,
 /turf/open/floor/engine/light,
@@ -23644,6 +23652,11 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
+"ttV" = (
+/obj/machinery/newscaster/directional/east,
+/obj/structure/closet/damage_control,
+/turf/open/floor/carpet/ship,
+/area/hallway/primary/port)
 "tuO" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment{
@@ -26837,6 +26850,12 @@
 /obj/machinery/smartfridge/chemistry,
 /turf/open/floor/monotile/light,
 /area/medical/medbay)
+"wcc" = (
+/obj/structure/cable/yellow,
+/obj/machinery/light,
+/obj/structure/closet/damage_control,
+/turf/open/floor/carpet/ship,
+/area/hallway/primary/starboard)
 "wcd" = (
 /obj/effect/landmark/event_spawn,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
@@ -42789,7 +42808,7 @@ wKR
 pCR
 oGo
 fUZ
-wut
+wcc
 mvd
 jGy
 cMk
@@ -43578,7 +43597,7 @@ hVM
 agr
 xgG
 jnP
-wzb
+ttV
 ujg
 loy
 pLJ
@@ -56720,7 +56739,7 @@ xpy
 hXj
 eVX
 ehf
-rPL
+qtQ
 aIn
 wkt
 pyQ

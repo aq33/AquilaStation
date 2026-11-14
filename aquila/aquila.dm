@@ -1034,6 +1034,7 @@
 #include "code\modules\overmap\consoles\aviation_console.dm"
 #include "code\modules\overmap\consoles\salvage_console.dm"
 #include "code\modules\overmap\damage_control\dc_console.dm"
+#include "code\modules\overmap\damage_control\dc_locker.dm"
 #include "code\modules\paperwork\contract.dm"
 #include "code\modules\monke\desk_bell.dm"
 #include "code\modules\monke\loafer.dm"

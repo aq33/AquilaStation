@@ -14790,6 +14790,16 @@
 	icon_state = "platingdmg3"
 	},
 /area/maintenance/nsv/deck2/port/fore)
+"Os" = (
+/obj/effect/turf_decal/tile/ship/half/green{
+	dir = 1
+	},
+/obj/structure/sign/poster/official/random{
+	pixel_y = 32
+	},
+/obj/structure/closet/damage_control,
+/turf/open/floor/monotile/steel,
+/area/hallway/nsv/deck2/primary)
 "Ot" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating{
@@ -17356,6 +17366,16 @@
 /obj/machinery/missile_builder/welder,
 /turf/open/floor/engine,
 /area/nsv/weapons)
+"Wf" = (
+/obj/effect/turf_decal/tile/ship/green{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/ship/green{
+	dir = 8
+	},
+/obj/structure/closet/damage_control,
+/turf/open/floor/durasteel/alt,
+/area/hallway/nsv/deck2/primary)
 "Wg" = (
 /obj/effect/turf_decal/tile/ship/half/orange{
 	dir = 4
@@ -47198,7 +47218,7 @@ vm
 vm
 FU
 jt
-jt
+Wf
 jt
 uk
 rS
@@ -51299,7 +51319,7 @@ hL
 mO
 Pu
 wd
-tC
+Os
 un
 ny
 rh

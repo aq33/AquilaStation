@@ -3607,6 +3607,18 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plating,
 /area/maintenance/department/medical)
+"kj" = (
+/obj/structure/cable,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 1
+	},
+/obj/machinery/status_display/ai/north,
+/obj/structure/closet/damage_control,
+/turf/open/floor/plasteel/tiled/light,
+/area/hallway/secondary/exit)
 "kl" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -39889,7 +39901,7 @@ tt
 HY
 Af
 Hr
-NB
+kj
 da
 nk
 KS

@@ -10245,6 +10245,17 @@
 	},
 /turf/open/floor/monotile/dark,
 /area/hallway/nsv/deck1/hallway)
+"Hw" = (
+/obj/effect/turf_decal/tile/ship/green,
+/obj/effect/turf_decal/tile/ship/green{
+	dir = 8
+	},
+/obj/machinery/computer/ship/viewscreen{
+	pixel_y = -32
+	},
+/obj/structure/closet/damage_control,
+/turf/open/floor/durasteel/alt,
+/area/hallway/nsv/deck1/hallway)
 "Hx" = (
 /obj/machinery/camera/motion{
 	c_tag = "Vault";
@@ -13234,6 +13245,16 @@
 	},
 /turf/open/floor/carpet/royalblack,
 /area/bridge/cic)
+"Rn" = (
+/obj/effect/turf_decal/tile/ship/green{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/ship/green{
+	dir = 1
+	},
+/obj/structure/closet/damage_control,
+/turf/open/floor/durasteel/alt,
+/area/hallway/nsv/deck1/hallway)
 "Ro" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 1
@@ -45365,7 +45386,7 @@ uj
 uj
 JD
 Pm
-MQ
+Rn
 JR
 su
 af
@@ -49208,7 +49229,7 @@ BB
 kF
 ar
 zK
-ry
+Hw
 Tc
 Tc
 VV

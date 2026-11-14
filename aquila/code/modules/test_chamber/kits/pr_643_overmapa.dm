@@ -21,7 +21,9 @@
 		Nawigacja: zakładka „Napęd FTL” rozkręca stary napęd tylko z dostępem inżynierii; komputer FTL w maszynowni otwiera to samo okno na tej zakładce. \
 		Lotnictwo (kontrola lotów i konsola katapult) i Odzysk i abordaż (zakłócacz i magnes) mają po dwie zakładki, każda konsola otwiera swoją. \
 		Kontrola uszkodzeń: przedziały na schemacie mają prawdziwy kształt, korytarze nie zasłaniają pomieszczeń. \
-		Wszystkie okna konsol okrętu mają wygląd stanowiska rozpoznania."
+		Wszystkie okna konsol okrętu mają wygląd stanowiska rozpoznania. \
+		Szafka kontroli uszkodzeń (szara z żółtymi drzwiami) stoi w korytarzach przy drzwiach pożarowych; w środku gaśnice, nadmuchiwane ściany, uszczelniacz i taśma."
 	items = list(
 		/obj/item/card/id/captains_spare = 1,
+		/obj/structure/closet/damage_control = 1,
 	)
