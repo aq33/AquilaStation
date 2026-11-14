@@ -1007,6 +1007,7 @@
 #include "code\modules\planets\planet_spawning.dm"
 #include "code\modules\planets\planet_bombardment.dm"
 #include "code\modules\planets\tactical_binoculars.dm"
+#include "code\modules\planets\drop_pod.dm"
 #include "code\modules\overmap\sabre_shuttle.dm"
 #include "code\modules\overmap\custom_shuttle_overmap.dm"
 #include "code\modules\overmap\ai_tuning.dm"
