@@ -95,6 +95,8 @@
 	return !hex_war_move_target()
 
 /datum/fleet/move(datum/star_system/target, force = FALSE)
+	if(istype(src, /datum/fleet/aquila_escort)) // eskorta skacze tylko razem z okrętem gracza (war_trade.dm)
+		return FALSE
 	if(war_controlled && !target && !force && hex_war_holds())
 		addtimer(CALLBACK(src, PROC_REF(move)), rand(minimum_random_move_delay, maximum_random_move_delay))
 		return FALSE

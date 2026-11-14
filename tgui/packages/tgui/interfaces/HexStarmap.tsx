@@ -165,6 +165,7 @@ type Data = {
   defcon: number;
   nukes_loaded: number;
   missiles: Missile[];
+  objective_hexes: string[];
 };
 
 const DEFCON_COLOR: Record<number, string> = {
@@ -456,6 +457,7 @@ export const HexStarmap = () => {
     defcon = 5,
     nukes_loaded = 0,
     missiles = [],
+    objective_hexes = [],
   } = data;
   const [panelTab, setPanelTab] = useState<'hex' | 'commanders'>('hex');
 
@@ -1007,6 +1009,33 @@ export const HexStarmap = () => {
                         );
                       });
                     })}
+                    {objective_hexes
+                      .filter((id) => !!cells[id] && inView(cells[id].sector))
+                      .map((id) => (
+                        <g key={`objective-${id}`} pointerEvents="none">
+                          <title>Cel misji</title>
+                          <polygon
+                            points={polygon(cells[id])}
+                            fill="none"
+                            stroke="#ffd56a"
+                            strokeWidth={2.4}
+                            strokeDasharray="6 3"
+                          />
+                          <text
+                            x={cells[id].x + R * 0.55}
+                            y={cells[id].y - R * 0.45}
+                            textAnchor="middle"
+                            fontSize={13}
+                            fontWeight="bold"
+                            fill="#ffd56a"
+                            stroke="#000"
+                            strokeWidth={2.6}
+                            paintOrder="stroke"
+                          >
+                            !
+                          </text>
+                        </g>
+                      ))}
                     {missiles.map((m, i) => {
                       const head = cells[m.hex];
                       return (
@@ -1224,7 +1253,9 @@ export const HexStarmap = () => {
                         {FACILITY_NAME[fac]}
                       </span>
                     ))}
-                    {' · □ konwój · szary romb: ostatnia znana pozycja floty'}
+                    {
+                      ' · □ konwój · szary romb: ostatnia znana pozycja floty · żółte „!”: cel misji · ☢ pocisk termojądrowy'
+                    }
                   </Box>
                   <Box mt={0.5} fontSize="10px" color="label">
                     {terrains

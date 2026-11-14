@@ -630,6 +630,8 @@ GLOBAL_LIST_EMPTY(hex_terrains)
 		return
 	var/datum/hex/H = pick(options)
 	H.set_terrain(terrain)
+	if(terrain == HEX_TERRAIN_ANOMALIES)
+		H.hex_spawn_anomaly_cluster() // skupisko do skanowania od razu (misja skanowania, war_missions.dm)
 	return H
 
 /// Zmiany terenu w trakcie rundy: nowe sygnały i anomalie, dryf burz, karpi i komet

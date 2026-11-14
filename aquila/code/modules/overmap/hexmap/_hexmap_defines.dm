@@ -83,6 +83,12 @@
 /// Natarcie tylko przy takiej przewadze sił
 #define HEX_WAR_ADVANTAGE 1.2
 
+/// Najwięcej okrętów eskorty kupionej na stacjach (część F)
+#define HEX_ESCORT_MAX 4
+
+/// Części na nową atomówkę w fabryce frakcji z działającą kwaterą główną
+#define HEX_WAR_NUKE_PARTS 8
+
 /// Obiekty strategiczne układów
 #define HEX_FAC_MINE "mine"
 #define HEX_FAC_FACTORY "factory"

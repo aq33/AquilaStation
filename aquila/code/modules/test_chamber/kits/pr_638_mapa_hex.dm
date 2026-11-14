@@ -110,3 +110,21 @@
 		return
 	GLOB.hex_war.nuclear_detonation(null)
 	to_chat(user, "<span class='notice'>DEFCON 1 na 30 minut.</span>")
+
+/datum/test_chamber_kit/pr_638/stacje
+	name = "Mapa FTL: eskorta, oferta stacji i misje"
+	description = "Zestaw ładuje napęd, dodaje 30 000 kr na konto zaopatrzenia i od razu daje okrętowi fregatę eskorty. \
+		1) Stocznie CzanekCorp i Minsky sprzedają fregatę i krążownik eskorty, zbrojownia White Rapids także torpedę termojądrową; najwyżej 4 okręty eskorty, piąty zakup jest odrzucany przed pobraniem pieniędzy. \
+		2) Skocz o kafel: eskorta wychodzi z nadprzestrzeni razem z okrętem, trzyma się przy nim i bije jego cele. \
+		3) Misje abordażu i Opuszczona stacja stoją na losowych pustych kaflach sektora neutralnego (żółty „!” na mapie); część z nich ma w nagrodę atomówkę (dopisane w opisie misji), którą przysyła kapsuła po wykonaniu. \
+		4) Pola anomalii mają skupiska anomalii do skanowania (misja skanowania może je wybrać)."
+
+/datum/test_chamber_kit/pr_638/stacje/setup(list/spawned, list/turfs, turf/center, mob/user)
+	. = ..()
+	if(!user)
+		return
+	var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
+	D?.adjust_money(30000)
+	var/obj/structure/overmap/main = SSstar_system.find_main_overmap()
+	if(main?.current_system && main.hex_add_escort(/obj/structure/overmap/nanotrasen/frigate/ai))
+		to_chat(user, "<span class='notice'>Fregata eskorty dołączyła do okrętu głównego.</span>")

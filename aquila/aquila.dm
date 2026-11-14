@@ -1026,6 +1026,8 @@
 #include "code\modules\overmap\hexmap\war_persistence.dm"
 #include "code\modules\overmap\hexmap\war_fog.dm"
 #include "code\modules\overmap\hexmap\war_nuke.dm"
+#include "code\modules\overmap\hexmap\war_trade.dm"
+#include "code\modules\overmap\hexmap\war_missions.dm"
 // Porty eventów z innych kodów do pul kafli mapy hex (rework mapy FTL, część C)
 #include "code\modules\events\hexmap\ship_hazard_helpers.dm"
 #include "code\modules\events\hexmap\comet_expulsion.dm"

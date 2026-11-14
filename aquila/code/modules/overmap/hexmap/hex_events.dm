@@ -177,6 +177,7 @@ GLOBAL_VAR_INIT(hex_last_ship_event, 0)
 /obj/structure/overmap/jump_end(datum/star_system/target_system, misjump = FALSE)
 	. = ..()
 	if(role == MAIN_OVERMAP)
+		hex_move_escorts(target_system)
 		hex_on_arrival(target_system)
 
 /// Przylot okrętu gracza na kafel: event z puli, kolejne przy postoju na zagrożeniu, tunel

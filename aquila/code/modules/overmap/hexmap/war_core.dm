@@ -53,7 +53,7 @@ GLOBAL_LIST_INIT(hex_war_factions, list("nanotrasen", "solgov", "syndicate", "pi
 		"Keid" = list(HEX_FAC_MINE),
 		"Alpha Carinae" = list(HEX_FAC_FACTORY),
 		"Helios Sigma" = list(HEX_FAC_MINE),
-		"Medea" = list(HEX_FAC_FACTORY, HEX_FAC_DEPOT),
+		"Medea" = list(HEX_FAC_FACTORY, HEX_FAC_DEPOT, HEX_FAC_HQ), // makieta nie dawała NT kwatery, a bez niej NT nie złoży atomówki
 		"Gliese 581-G" = list(HEX_FAC_MINE),
 		"Karip" = list(HEX_FAC_MINE),
 		"Feliciana" = list(HEX_FAC_POST),
@@ -131,6 +131,7 @@ GLOBAL_LIST_INIT(hex_war_factions, list("nanotrasen", "solgov", "syndicate", "pi
 	for(var/faction in GLOB.hex_war_factions)
 		staff(faction)
 	nuclear_turn()
+	mission_rewards()
 
 /// Floty sztabu frakcji (bez konwojów)
 /datum/hex_war/proc/faction_fleets(faction, convoys = FALSE)
@@ -176,10 +177,19 @@ GLOBAL_LIST_INIT(hex_war_factions, list("nanotrasen", "solgov", "syndicate", "pi
 			S.war_ore = min(S.war_ore + 2, 30) // magazyn kopalni, gdy konwoje są w drodze
 			if(S.war_ore >= 6 && !S.has_facility(HEX_FAC_FACTORY) && send_convoy(S, faction, "ore", 6, HEX_FAC_FACTORY))
 				S.war_ore -= 6
-		if(S.has_facility(HEX_FAC_FACTORY) && S.war_ore >= 3)
-			S.war_ore -= 3
-			S.war_parts += 1
-			if(S.war_parts >= 4 && !S.has_facility(HEX_FAC_YARD) && send_convoy(S, faction, "parts", 4, HEX_FAC_YARD))
+		if(S.has_facility(HEX_FAC_FACTORY))
+			if(S.war_ore >= 3)
+				S.war_ore -= 3
+				S.war_parts += 1
+			if(needs_nuke(faction))
+				// Fabryka zbiera części na atomówkę zamiast wysyłać je do stoczni
+				if(S.war_parts >= HEX_WAR_NUKE_PARTS)
+					S.war_parts -= HEX_WAR_NUKE_PARTS
+					nuke_stocks[faction] = 1
+					log_game("HEXWAR: [faction] builds a nuclear missile in [S]")
+					if(!S.hidden)
+						minor_announce("Wywiad: fabryka w układzie [S] ([hex_war_faction_name(faction)]) złożyła głowicę termojądrową.", "White Rapids EAS")
+			else if(S.war_parts >= 4 && !S.has_facility(HEX_FAC_YARD) && send_convoy(S, faction, "parts", 4, HEX_FAC_YARD))
 				S.war_parts -= 4
 		if(S.has_facility(HEX_FAC_YARD) && S.war_parts >= 4)
 			if(shipyard_build(S, faction))
@@ -194,6 +204,15 @@ GLOBAL_LIST_INIT(hex_war_factions, list("nanotrasen", "solgov", "syndicate", "pi
 			F.war_loot -= 6
 			F.hex_war_add_ships(1)
 			log_game("HEXWAR: pirates refit [F.name] with their loot")
+
+/// Frakcja bez atomówki z działającą kwaterą główną buduje nową w fabryce (8 części, najwyżej jedna w zapasie)
+/datum/hex_war/proc/needs_nuke(faction)
+	if(!(faction in nuke_stocks) || nuke_stocks[faction] >= 1)
+		return FALSE
+	for(var/datum/star_system/S as anything in SSstar_system.systems)
+		if(S.owner == faction && S.alignment == faction && S.has_facility(HEX_FAC_HQ) && !length(hex_hostile_fleets_in(S, faction)))
+			return TRUE
+	return FALSE
 
 /// Stocznia: 2 okręty dla floty w stoczni albo nowa flota, jeśli frakcja ma ich mniej niż limit
 /datum/hex_war/proc/shipyard_build(datum/star_system/yard, faction)
@@ -355,6 +374,11 @@ GLOBAL_LIST_INIT(hex_war_factions, list("nanotrasen", "solgov", "syndicate", "pi
 /datum/trader/attempt_purchase(datum/trader_item/item, mob/living/carbon/user)
 	if(system?.war_raided_until > world.time)
 		to_chat(user, "<span class='warning'>[name] nie handluje: stację niedawno złupili piraci.</span>")
+		return FALSE
+	// Limit eskorty sprawdzamy przed pobraniem pieniędzy (war_trade.dm)
+	var/obj/structure/overmap/OM = user?.get_overmap()
+	if(istype(item, /datum/trader_item/aquila_escort) && OM && OM.hex_escort_count() >= HEX_ESCORT_MAX)
+		to_chat(user, "<span class='warning'>Eskorta jest pełna: najwyżej [HEX_ESCORT_MAX] okręty naraz.</span>")
 		return FALSE
 	return ..()
 

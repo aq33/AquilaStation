@@ -118,6 +118,12 @@
 	for(var/datum/hex_nuke/N as anything in GLOB.hex_war?.missiles)
 		missiles += list(list("faction" = N.faction, "hex" = N.hex?.id, "target" = N.target_hex?.id, "trail" = N.trail))
 	data["missiles"] = missiles
+	// Cele misji na mapie (także na pustych kaflach, war_missions.dm)
+	var/list/objective_hexes = list()
+	for(var/datum/star_system/S as anything in SSstar_system.systems)
+		if(S.objective_sector && S.hex)
+			objective_hexes += S.hex.id
+	data["objective_hexes"] = objective_hexes
 
 	var/list/gates = list()
 	for(var/datum/star_system/S as anything in SSstar_system.systems)

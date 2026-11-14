@@ -371,5 +371,95 @@
 	if(!loaded)
 		TEST_ASSERT(findtext(war, "wyrzutnia"), "Firing without a loaded nuke at DEFCON 1 gave: [war]")
 
+/// Frakcja bez atomówki, z kwaterą główną i fabryką, składa nową z 8 części zamiast wysyłać części do stoczni
+/datum/unit_test/hexmap_war_ai_builds_nuke
+
+/datum/unit_test/hexmap_war_ai_builds_nuke/Run()
+	var/list/pair = hexmap_war_test_pair()
+	if(!pair)
+		return
+	var/datum/star_system/hq = pair[1]
+	var/datum/star_system/factory = pair[2]
+	var/list/saved_hq = hexmap_war_test_save(hq)
+	var/list/saved_factory = hexmap_war_test_save(factory)
+	var/saved_stock = GLOB.hex_war.nuke_stocks["syndicate"]
+	hq.owner = "syndicate"
+	hq.alignment = "syndicate"
+	hq.war_facilities = list(HEX_FAC_HQ)
+	factory.owner = "syndicate"
+	factory.alignment = "syndicate"
+	factory.war_facilities = list(HEX_FAC_FACTORY)
+	factory.war_ore = 3
+	factory.war_parts = HEX_WAR_NUKE_PARTS - 1
+	GLOB.hex_war.nuke_stocks["syndicate"] = 0
+	GLOB.hex_war.economy()
+	var/stock = GLOB.hex_war.nuke_stocks["syndicate"]
+	var/parts = factory.war_parts
+	GLOB.hex_war.nuke_stocks["syndicate"] = saved_stock
+	hexmap_war_test_restore(hq, saved_hq)
+	hexmap_war_test_restore(factory, saved_factory)
+	TEST_ASSERT_EQUAL(stock, 1, "A factory with [HEX_WAR_NUKE_PARTS] parts did not build a nuke for a faction with a headquarters")
+	TEST_ASSERT_EQUAL(parts, 0, "Building the nuke did not use up the parts")
+
+/// Misje trafiają na losowy pusty kafel sektora neutralnego, z dala od okrętu gracza
+/datum/unit_test/hexmap_war_missions
+
+/datum/unit_test/hexmap_war_missions/Run()
+	var/datum/star_system/S = hex_mission_system(null)
+	TEST_ASSERT(istype(S, /datum/star_system/random/hex_empty), "A mission got [S] instead of an empty hex system")
+	TEST_ASSERT_EQUAL(S.hex.sector, SECTOR_NEUTRAL, "A mission hex is outside the neutral sector")
+	TEST_ASSERT_EQUAL(S.hex.terrain, HEX_TERRAIN_EMPTY, "A mission hex has a hazard on it")
+	var/datum/hex/player_hex = SSstar_system.find_main_overmap()?.current_hex()
+	if(player_hex?.sector == SECTOR_NEUTRAL)
+		TEST_ASSERT(GLOB.hexmap.distance(player_hex, S.hex) >= 3, "A mission hex is right next to the player's ship")
+	var/datum/star_system/random/hex_empty/E = S
+	E.try_release()
+	var/clusters = 0
+	for(var/id in GLOB.hexmap.hexes)
+		var/datum/hex/H = GLOB.hexmap.hexes[id]
+		if(H.terrain != HEX_TERRAIN_ANOMALIES)
+			continue
+		TEST_ASSERT(H.system, "Anomaly field [id] has no system with a scannable anomaly cluster")
+		for(var/obj/effect/overmap_anomaly/aquila_anomaly_cluster/A in H.system.system_contents)
+			clusters++
+	TEST_ASSERT(clusters, "No anomaly cluster to scan in any anomaly field")
+
+/// Eskorta ze stacji: okręt dołącza do eskorty, skacze za okrętem gracza, a stacja nie sprzedaje ponad limit
+/datum/unit_test/hexmap_war_escort
+
+/datum/unit_test/hexmap_war_escort/Run()
+	var/obj/structure/overmap/ship = SSstar_system.find_main_overmap()
+	if(!ship?.current_system)
+		return
+	var/datum/star_system/home = ship.current_system
+	var/obj/structure/overmap/member = ship.hex_add_escort(/obj/structure/overmap/nanotrasen/frigate/ai)
+	TEST_ASSERT(member, "Buying an escort gave no ship")
+	TEST_ASSERT_EQUAL(ship.hex_escort_count(), 1, "The escort count is off after one purchase")
+	var/datum/fleet/aquila_escort/F = member.fleet
+	TEST_ASSERT(istype(F) && F.escorting == ship, "The escort ship is not in an escort fleet of the player's ship")
+	TEST_ASSERT(!F.move(null, TRUE), "The escort fleet moved on its own")
+	var/datum/hex/elsewhere
+	for(var/datum/hex/N as anything in GLOB.hexmap.neighbours(home.hex))
+		if(!N.system && N.terrain == HEX_TERRAIN_EMPTY)
+			elsewhere = N
+			break
+	var/fail
+	if(elsewhere)
+		var/datum/star_system/target = GLOB.hexmap.system_for(elsewhere)
+		ship.hex_move_escorts(target)
+		if(F.current_system != target || !(F in target.fleets) || (F in home.fleets))
+			fail = "The escort did not follow the player's ship to [target]"
+		ship.hex_move_escorts(home)
+	var/datum/trader_item/aquila_escort/item = new
+	var/saved_count_ok = ship.hex_escort_count() < HEX_ESCORT_MAX
+	for(var/i in 1 to HEX_ESCORT_MAX)
+		ship.hex_add_escort(/obj/structure/overmap/nanotrasen/frigate/ai)
+	var/full = ship.hex_escort_count() >= HEX_ESCORT_MAX
+	qdel(item)
+	F.hex_war_dispose()
+	if(fail)
+		return Fail(fail)
+	TEST_ASSERT(saved_count_ok && full, "The escort limit check is off")
+
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL
