@@ -2520,3 +2520,4 @@
 #include "code\modules\test_chamber\kits\pr_565_obcokrajowiec.dm"
 #include "code\modules\test_chamber\kits\pr_608_ekonomia_malf_statystyki.dm"
 #include "code\modules\test_chamber\kits\pr_610_zbiorczy_1011.dm"
+#include "code\modules\test_chamber\kits\pr_637_tlumacz_na_zywo.dm"
