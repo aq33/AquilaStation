@@ -70,6 +70,25 @@
 		target.warn_player_ships(is_player_ally() ? "Sojusznicze posiłki za chwilę wyjdą z nadprzestrzeni." : "Wykryto zbliżające się sygnatury napędu FTL.")
 	return GLOB.hexmap.system_for(next)
 
+/// Mapa hex: flota zajmuje układ dopiero, gdy nie ma w nim wrogiej floty. Przy wrogu układ zostaje przy dotychczasowej
+/// stronie, a zajmie go ten, kto wygra walkę (handle_combat() niżej, a przy walce z graczem defeat() pokonanej floty).
+/datum/fleet/proc/hex_occupation_blocked(datum/star_system/target)
+	if(!GLOB.hexmap?.built)
+		return FALSE
+	for(var/datum/fleet/other as anything in target.fleets)
+		if(other != src && !QDELETED(other) && other.faction_id != faction_id)
+			return TRUE
+	return FALSE
+
+/// Koniec walki flot AI: układ zajmuje strona, która w nim została (owner bez zmian, jak dotąd)
+/datum/star_system/handle_combat()
+	. = ..()
+	if(!GLOB.hexmap?.built || !length(fleets) || (src in SSstar_system.contested_systems))
+		return
+	var/datum/fleet/winner = fleets[length(fleets)]
+	alignment = winner.alignment
+	mission_sector = winner.alignment != owner && !winner.federation_check(src)
+
 /// Pusty kafel, z którego flota wyszła, oddaje układ, gdy nic w nim nie zostało
 /datum/fleet/proc/hex_after_step(datum/star_system/left)
 	var/datum/star_system/random/hex_empty/E = left

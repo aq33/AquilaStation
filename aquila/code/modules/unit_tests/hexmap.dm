@@ -616,6 +616,74 @@
 	TEST_ASSERT_EQUAL(b_terrain, HEX_TERRAIN_EMPTY, "The other end of a cleared wormhole stayed a wormhole")
 
 
+/// Flota wlatuje do układu z wrogą flotą: układ zostaje przy wrogu, a zajmuje go dopiero strona, która wygra walkę
+/datum/unit_test/hexmap_fleet_occupation
+
+/datum/unit_test/hexmap_fleet_occupation/Run()
+	if(!GLOB.hexmap?.built)
+		return
+	var/datum/star_system/player_system = SSstar_system.find_main_overmap()?.current_system
+	var/datum/star_system/target
+	var/datum/hex/entry
+	for(var/datum/star_system/S as anything in SSstar_system.systems)
+		if(!S.hex || S.hidden || S == player_system || length(S.fleets) || istype(S, /datum/star_system/random) || S.occupying_z)
+			continue
+		for(var/datum/hex/N as anything in GLOB.hexmap.neighbours(S.hex))
+			if(!N.system && !GLOB.hexmap.blocks(N))
+				entry = N
+				break
+		if(entry)
+			target = S
+			break
+	if(!target)
+		return // No system with a free neighbouring hex on this map
+	var/datum/star_system/home = GLOB.hexmap.system_for(entry)
+	var/saved_alignment = target.alignment
+	var/saved_mission = target.mission_sector
+	var/list/saved_contested = SSstar_system.contested_systems.Copy()
+
+	var/datum/fleet/enemy = new
+	enemy.alignment = "syndicate"
+	enemy.faction_id = FACTION_ID_SYNDICATE
+	enemy.hide_movements = TRUE
+	enemy.can_reinforce = FALSE
+	enemy.current_system = target
+	target.fleets += enemy
+	target.alignment = "syndicate"
+
+	var/datum/fleet/attacker = new
+	attacker.alignment = "nanotrasen"
+	attacker.faction_id = FACTION_ID_NT
+	attacker.hide_movements = TRUE
+	attacker.can_reinforce = FALSE
+	attacker.current_system = home
+	home.fleets += attacker
+
+	attacker.move(target, TRUE)
+	var/arrived = attacker.current_system == target
+	var/during_fight = target.alignment
+	// Wróg pokonany: zostaje tylko atakujący, walka się kończy
+	target.fleets -= enemy
+	enemy.current_system = null
+	qdel(enemy)
+	target.handle_combat()
+	var/after_fight = target.alignment
+
+	target.fleets -= attacker
+	home.fleets -= attacker
+	attacker.current_system = null
+	qdel(attacker)
+	target.alignment = saved_alignment
+	target.mission_sector = saved_mission
+	SSstar_system.contested_systems = saved_contested
+	var/datum/star_system/random/hex_empty/E = home
+	if(istype(E))
+		E.try_release()
+	TEST_ASSERT(arrived, "The attacking fleet did not reach the neighbouring system")
+	TEST_ASSERT_EQUAL(during_fight, "syndicate", "A fleet took a system while an enemy fleet was still in it")
+	TEST_ASSERT_EQUAL(after_fight, "nanotrasen", "The fleet left alone after the fight did not take the system")
+
+
 #undef HEXMAP_TEST_SAVE
 #undef HEXMAP_TEST_MAP_CONFIG
 #undef TEST_ASSERT

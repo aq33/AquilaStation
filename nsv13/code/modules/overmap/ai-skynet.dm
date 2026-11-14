@@ -269,7 +269,8 @@ Adding tasks is easy! Just define a datum for it.
 	target.fleets += src
 	shared_targets = list() // We just got here and don't know where anything is
 	current_system = target
-	target.alignment = alignment //We're occupying it
+	if(!hex_occupation_blocked(target)) // AQ EDIT - mapa hex: przy wrogiej flocie układ zajmie dopiero zwycięzca walki
+		target.alignment = alignment //We're occupying it
 	if(target.fleets?.len)
 		for(var/datum/fleet/F as() in target.fleets)
 			if(alignment != target.owner && !federation_check(target))
