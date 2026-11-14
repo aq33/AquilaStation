@@ -117,8 +117,13 @@
 	T = T.ChangeTurf(turf_type_before)
 	for(var/atom_type in atom_types)
 		var/atom/movable/thing = new atom_type(run_loc_floor_top_right)
+		if(ispath(atom_type, /obj/effect/spawner))
+			continue // Spawner stawia swoją zawartość i sam znika
 		TEST_ASSERT(!QDELETED(thing), "[atom_type] deleted itself right after spawning")
 		qdel(thing)
+	// Sprzątanie po spawnerach (anomalie)
+	for(var/obj/effect/anomaly/anomaly in run_loc_floor_top_right)
+		qdel(anomaly)
 
 // Misje w teście: „okręt” to okolica podłogi testowej (mapa testowa nie należy do głównego okrętu)
 /datum/overmap_objective/planet/survey/test
@@ -248,6 +253,7 @@
 	QDEL_LIST(colonists)
 	planet.surface.unload()
 	qdel(planet, TRUE)
+
 
 
 

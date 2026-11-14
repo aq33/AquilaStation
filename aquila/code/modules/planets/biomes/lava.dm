@@ -1,6 +1,6 @@
 // AQUILA - planeta wulkaniczna: tabela biomów LavaGenerator.dm z Shiptesta. Turfy i rośliny z Shiptesta
-// (shiptest_flora/), fauna na naszych basic mobach (shiptest_fauna/). Pominięte: żyły rud do wiertła (u nas nie ma
-// misji wiertniczych, rudy są w ścianach) i spawnery anomalii.
+// (shiptest_flora/), fauna na naszych basic mobach (shiptest_fauna/), żyły rud do wiertła (drill/), anomalie
+// planetarne (anomalies/).
 
 /// Fauna powierzchni i jaskiń (wagi z Shiptesta)
 #define PLANET_LAVA_SURFACE_FAUNA list(\
@@ -118,6 +118,12 @@
 	feature_spawn_list = list(
 		/obj/structure/flora/rock/hell = 34,
 		/obj/structure/geyser/random = 6,
+		/obj/effect/spawner/lootdrop/planetary_anomaly/lava = 3,
+		/obj/structure/vein/lavaland = 5,
+		/obj/structure/vein/lavaland/classtwo = 4,
+		/obj/structure/vein/lavaland/classtwo/rare = 2,
+		/obj/structure/vein/lavaland/classthree = 2,
+		/obj/structure/vein/lavaland/classthree/rare = 1,
 	)
 	mob_spawn_chance = 1.5
 	mob_spawn_list = PLANET_LAVA_SURFACE_FAUNA
@@ -162,6 +168,10 @@
 	feature_spawn_list = list(
 		/obj/structure/flora/tree/dead/barren = 50,
 		/obj/structure/flora/tree/dead/tall/grey = 45,
+		/obj/effect/spawner/lootdrop/planetary_anomaly/lava = 10,
+		/obj/structure/vein/lavaland = 5,
+		/obj/structure/vein/lavaland/classtwo = 2,
+		/obj/structure/vein/lavaland/classthree = 1,
 	)
 
 /datum/planet_biome/lava/plains/dense/mixed

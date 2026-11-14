@@ -3687,6 +3687,16 @@ Oznaczenia w kolumnie uwag:
 | drop pod bay | wyrzutnia kapsuł desantowych | ż; nowe |
 | tactical binoculars | lornetka taktyczna | ż; nowe |
 | landing zone | lądowisko | n; nowe (Lądowisko Alfa/Bravo/Charlie) |
+| ore vein | żyła rudy | ż; nowe (planety, Shiptest) |
+| laser mining drill | laserowe wiertło górnicze | n; nowe |
+| sampling drill | wiertło do próbek geologicznych | n; nowe |
+| ground penetrating mining scanner | georadarowy skaner górniczy | m; nowe |
+| seismic disturbance | wyrwa sejsmiczna | ż; nowe (spawner fauny przy żyle) |
+| strange crystal | dziwny kryształ | m; nowe |
+| crystal heart | kryształowe serce | n; nowe (rdzeń legionu) |
+| brimdust | siarkowy pył | m; nowe |
+| ore sensor | czujnik rud | m; nowe |
+| plasma soul (anomaly) | dusza plazmy | ż; nowe |
 | dwarf legion | karłowaty legion | m; nowe |
 | legionnaire | legionista | m; istniejące |
 | watcher | obserwator | m; nowe |
