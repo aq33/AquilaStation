@@ -15,6 +15,10 @@ import {
 import { resolveAsset } from '../assets';
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
+import {
+  HEX_TERRAIN_COLORS,
+  HEX_TERRAIN_ICONS,
+} from './common/hexTerrainIcons';
 
 type Sector = { id: number; name: string; cols: number; rows: number };
 
@@ -87,6 +91,18 @@ type Selected = {
   capital: boolean;
   gates: GateInfo[];
   route?: Route;
+  terrain: string;
+  stops: boolean;
+  blocks: boolean;
+  wormhole_to: string | null;
+};
+
+type Terrain = {
+  id: string;
+  name: string;
+  desc: string;
+  stops: boolean;
+  blocks: boolean;
 };
 
 type Data = {
@@ -101,6 +117,9 @@ type Data = {
   cost_hex: number;
   cost_gate: number;
   cooldown: number;
+  terrains: Terrain[];
+  terrain: Record<string, string>;
+  wormholes: { a: string; b: string }[];
 };
 
 type View = number | 'all';
@@ -338,6 +357,9 @@ export const HexStarmap = () => {
     cost_hex,
     cost_gate,
     cooldown,
+    terrains = [],
+    terrain = {},
+    wormholes = [],
   } = data;
 
   const [view, setView] = useState<View>(ship.sector || 2);
@@ -461,6 +483,10 @@ export const HexStarmap = () => {
   };
 
   const selectedCell = selected ? cells[selected.hex] : undefined;
+  const terrainById: Record<string, Terrain> = {};
+  for (const t of terrains) {
+    terrainById[t.id] = t;
+  }
 
   return (
     <Window
@@ -534,6 +560,52 @@ export const HexStarmap = () => {
                           stroke="#7fa6d6"
                           strokeOpacity={0.15}
                           style={{ cursor: 'pointer' }}
+                        />
+                      );
+                    })}
+                    {visibleCells
+                      .filter((cell) => !!terrain[cell.id])
+                      .map((cell) => {
+                        const kind = terrain[cell.id];
+                        const size = R * 1.25;
+                        return (
+                          <g key={`terrain-${cell.id}`} pointerEvents="none">
+                            <polygon
+                              points={polygon(cell)}
+                              fill={HEX_TERRAIN_COLORS[kind] || '#888'}
+                              fillOpacity={0.2}
+                            />
+                            {!!HEX_TERRAIN_ICONS[kind] && (
+                              <image
+                                href={HEX_TERRAIN_ICONS[kind]}
+                                x={cell.x - size / 2}
+                                y={cell.y - size / 2}
+                                width={size}
+                                height={size}
+                                opacity={0.85}
+                                style={{ imageRendering: 'pixelated' }}
+                              />
+                            )}
+                          </g>
+                        );
+                      })}
+                    {wormholes.map((pair) => {
+                      const a = cells[pair.a];
+                      const b = cells[pair.b];
+                      if (!a || !b || !inView(a.sector) || !inView(b.sector)) {
+                        return null;
+                      }
+                      return (
+                        <line
+                          key={`wormhole-${pair.a}-${pair.b}`}
+                          x1={a.x}
+                          y1={a.y}
+                          x2={b.x}
+                          y2={b.y}
+                          stroke={HEX_TERRAIN_COLORS.wh}
+                          strokeOpacity={0.45}
+                          strokeDasharray="2 6"
+                          pointerEvents="none"
                         />
                       );
                     })}
@@ -867,7 +939,9 @@ export const HexStarmap = () => {
                       <LabeledList.Item label="Położenie">
                         {shipCell
                           ? (systems.find((s) => s.hex === ship.hex)?.name ??
-                            `Pusty kafel ${shipCell.col},${shipCell.row}`)
+                            (terrainById[terrain[shipCell.id]]
+                              ? `${terrainById[terrain[shipCell.id]].name} ${shipCell.col},${shipCell.row}`
+                              : `Pusty kafel ${shipCell.col},${shipCell.row}`))
                           : 'nieznane'}
                       </LabeledList.Item>
                     )}
@@ -897,6 +971,7 @@ export const HexStarmap = () => {
                       ship={ship}
                       canControl={can_control}
                       routeOk={routeOk}
+                      terrain={terrainById[selected.terrain]}
                       onJump={() => act('hex_jump')}
                       onShowGate={(gate) => showSector(gate.sector, gate.hex)}
                     />
@@ -911,6 +986,28 @@ export const HexStarmap = () => {
                     hiperbrama · ◇ flota (zielona: sojusz, żółta: neutralna,
                     czerwona: wróg) · przerywany pierścień: układ okupowany ·
                     czerwona linia: front
+                  </Box>
+                  <Box mt={0.5} fontSize="10px" color="label">
+                    {terrains
+                      .filter((t) => !!HEX_TERRAIN_ICONS[t.id])
+                      .map((t) => (
+                        <span
+                          key={t.id}
+                          title={t.desc}
+                          style={{ whiteSpace: 'nowrap', marginRight: '8px' }}
+                        >
+                          <img
+                            src={HEX_TERRAIN_ICONS[t.id]}
+                            width={14}
+                            height={14}
+                            style={{
+                              verticalAlign: 'middle',
+                              imageRendering: 'pixelated',
+                            }}
+                          />{' '}
+                          {t.name}
+                        </span>
+                      ))}
                   </Box>
                 </Section>
               </Stack.Item>
@@ -927,13 +1024,16 @@ type SelectedPanelProps = {
   ship: Ship;
   canControl: boolean;
   routeOk: boolean;
+  terrain?: Terrain;
   onJump: () => void;
   onShowGate: (gate: GateInfo) => void;
 };
 
 const SelectedPanel = (props: SelectedPanelProps) => {
-  const { selected, ship, canControl, routeOk, onJump, onShowGate } = props;
+  const { selected, ship, canControl, routeOk, terrain, onJump, onShowGate } =
+    props;
   const route = selected.route;
+  const showTerrain = !!terrain && terrain.id !== 'empty';
   return (
     <>
       <Box bold fontSize="14px" mb={1}>
@@ -974,6 +1074,36 @@ const SelectedPanel = (props: SelectedPanelProps) => {
       {!!selected.desc && (
         <Box mt={1} color="label" italic>
           {selected.desc}
+        </Box>
+      )}
+      {showTerrain && (
+        <Box mt={1}>
+          {!!HEX_TERRAIN_ICONS[terrain.id] && (
+            <img
+              src={HEX_TERRAIN_ICONS[terrain.id]}
+              width={32}
+              height={32}
+              style={{
+                float: 'left',
+                marginRight: '6px',
+                imageRendering: 'pixelated',
+              }}
+            />
+          )}
+          <Box bold>{terrain.name}</Box>
+          <Box color="label">{terrain.desc}</Box>
+          {selected.blocks ? (
+            <Box color="bad">Nie da się tu wlecieć.</Box>
+          ) : selected.stops ? (
+            <Box color="average">
+              Zagrożenie: okręt i floty zatrzymują się na tym kaflu.
+            </Box>
+          ) : (
+            <Box color="good">Przelot bez zatrzymania.</Box>
+          )}
+          {!!selected.wormhole_to && (
+            <Box>{`Tunel prowadzi do: ${selected.wormhole_to}.`}</Box>
+          )}
         </Box>
       )}
       <Box mt={1}>

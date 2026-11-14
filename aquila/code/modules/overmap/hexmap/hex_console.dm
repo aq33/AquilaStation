@@ -38,6 +38,12 @@
 	data["cost_hex"] = HEX_FTL_COST_HEX
 	data["cost_gate"] = HEX_FTL_COST_GATE
 	data["cooldown"] = HEX_FTL_COOLDOWN / 10
+	var/list/terrains = list()
+	hex_terrain(HEX_TERRAIN_EMPTY)
+	for(var/id in GLOB.hex_terrains)
+		var/datum/hex_terrain/T = GLOB.hex_terrains[id]
+		terrains += list(list("id" = T.id, "name" = T.name, "desc" = T.desc, "stops" = T.stops, "blocks" = T.blocks))
+	data["terrains"] = terrains
 	return data
 
 /obj/machinery/computer/ship/navigation/ui_data(mob/user)
@@ -123,6 +129,19 @@
 				gates += list(list("a" = S.hex.id, "b" = G.id))
 	data["gates"] = gates
 
+	// Teren: tylko kafle z terenem (sygnały, anomalie i burze zmieniają się w trakcie rundy)
+	var/list/terrain = list()
+	var/list/wormholes = list()
+	for(var/id in GLOB.hexmap.hexes)
+		var/datum/hex/H = GLOB.hexmap.hexes[id]
+		if(H.terrain == HEX_TERRAIN_EMPTY)
+			continue
+		terrain[id] = H.terrain
+		if(H.wormhole_pair && H.id < H.wormhole_pair.id)
+			wormholes += list(list("a" = H.id, "b" = H.wormhole_pair.id))
+	data["terrain"] = terrain
+	data["wormholes"] = wormholes
+
 	// Zasięg: kafle, na które okręt może skoczyć teraz
 	var/list/reach = list()
 	if(here && !ship["in_transit"] && !linked.hex_cooldown_left() && !ship["jumping"])
@@ -167,6 +186,10 @@
 		"trader" = is_real ? S.trader?.name : null,
 		"type" = is_real ? S.system_type?["label"] : null,
 		"capital" = is_real && S.is_capital,
+		"terrain" = H.terrain,
+		"stops" = GLOB.hexmap.stops(H),
+		"blocks" = GLOB.hexmap.blocks(H),
+		"wormhole_to" = H.wormhole_pair?.display_name(),
 	)
 	var/list/gate_names = list()
 	for(var/datum/hex/G as anything in H.gates)

@@ -60,6 +60,14 @@
 /datum/unit_test/hexmap_route
 
 /datum/unit_test/hexmap_route/Run()
+	// Trasa przez pustą przestrzeń: teren (zagrożenia, czarne dziury) sprawdza hexmap_terrain_route
+	var/list/saved_terrain = hexmap_test_clear_terrain()
+	var/fail = check_route()
+	hexmap_test_restore_terrain(saved_terrain)
+	if(fail)
+		return Fail(fail)
+
+/datum/unit_test/hexmap_route/proc/check_route()
 	var/datum/hex/start
 	var/datum/hex/three_away
 	var/datum/hex/four_away
@@ -112,7 +120,7 @@
 	var/datum/hex/empty
 	for(var/id in GLOB.hexmap.hexes)
 		var/datum/hex/H = GLOB.hexmap.hexes[id]
-		if(!H.system)
+		if(!H.system && H.terrain == HEX_TERRAIN_EMPTY)
 			empty = H
 			break
 	TEST_ASSERT(empty, "The hex map has no empty hex")
@@ -292,7 +300,7 @@
 	var/datum/hex/empty
 	for(var/id in GLOB.hexmap.hexes)
 		var/datum/hex/H = GLOB.hexmap.hexes[id]
-		if(!H.system)
+		if(!H.system && H.terrain == HEX_TERRAIN_EMPTY)
 			empty = H
 			break
 	write_save(map_name, empty.id, null)
@@ -385,6 +393,195 @@
 			found = TRUE
 			TEST_ASSERT(entry["hidden"], "The hidden system [hidden_system] was saved as visible")
 	TEST_ASSERT(found, "[hidden_system] is missing from the save")
+
+/// Zdejmuje cały teren z mapy (testy tras po pustej przestrzeni); zwraca, co było, dla hexmap_test_restore_terrain()
+/proc/hexmap_test_clear_terrain()
+	var/list/saved = list()
+	for(var/id in GLOB.hexmap.hexes)
+		var/datum/hex/H = GLOB.hexmap.hexes[id]
+		if(H.terrain != HEX_TERRAIN_EMPTY)
+			saved[H] = list(H.terrain, H.wormhole_pair)
+			H.terrain = HEX_TERRAIN_EMPTY
+			H.wormhole_pair = null
+	return saved
+
+/proc/hexmap_test_restore_terrain(list/saved)
+	for(var/id in GLOB.hexmap.hexes)
+		var/datum/hex/H = GLOB.hexmap.hexes[id]
+		var/list/entry = saved[H]
+		H.terrain = entry ? entry[1] : HEX_TERRAIN_EMPTY
+		H.wormhole_pair = entry ? entry[2] : null
+
+/// Teren leży tylko poza układami, tunele mają pary w tym samym sektorze, a stały teren przechodzi przez zapis kampanii
+/datum/unit_test/hexmap_terrain
+
+/datum/unit_test/hexmap_terrain/Run()
+	var/list/kinds = list()
+	for(var/id in GLOB.hexmap.hexes)
+		var/datum/hex/H = GLOB.hexmap.hexes[id]
+		if(H.terrain == HEX_TERRAIN_EMPTY)
+			continue
+		TEST_ASSERT(hex_terrain(H.terrain), "Hex [id] has an unknown terrain [H.terrain]")
+		TEST_ASSERT(!H.system || istype(H.system, /datum/star_system/random/hex_empty), "The system hex [id] ([H.system]) has terrain [H.terrain]")
+		kinds[H.terrain] = TRUE
+		if(H.terrain == HEX_TERRAIN_WORMHOLE)
+			TEST_ASSERT(H.wormhole_pair, "Wormhole [id] has no other end")
+			TEST_ASSERT_EQUAL(H.wormhole_pair.wormhole_pair, H, "Wormhole [id] and its other end do not point at each other")
+			TEST_ASSERT_EQUAL(H.wormhole_pair.sector, H.sector, "Wormhole [id] leads to another sector")
+	TEST_ASSERT(length(kinds) >= 5, "Only [length(kinds)] kinds of terrain on the map: [english_list(kinds)]")
+	TEST_ASSERT(kinds[HEX_TERRAIN_SIGNAL], "No unknown signal at the start of the round")
+
+	var/list/saved = GLOB.hexmap.save_terrain()
+	var/list/before = hexmap_test_clear_terrain()
+	var/loaded = GLOB.hexmap.load_terrain(saved)
+	var/fail
+	if(!loaded)
+		fail = "The saved terrain did not load"
+	else
+		for(var/datum/hex/H as anything in before)
+			var/list/entry = before[H]
+			var/datum/hex_terrain/T = hex_terrain(entry[1])
+			if(T.moving)
+				if(H.terrain != HEX_TERRAIN_EMPTY)
+					fail = "Moving terrain [T.id] on [H.id] was saved with the campaign"
+					break
+			else if(H.terrain != T.id)
+				fail = "[H.id] was [T.id] before saving, [H.terrain] after loading"
+				break
+	hexmap_test_clear_terrain()
+	hexmap_test_restore_terrain(before)
+	if(fail)
+		return Fail(fail)
+
+/// Czarna dziura blokuje, zagrożenie zatrzymuje skok na sobie, mgławica przepuszcza
+/datum/unit_test/hexmap_terrain_route
+
+/datum/unit_test/hexmap_terrain_route/Run()
+	var/list/saved = hexmap_test_clear_terrain()
+	var/fail = check_terrain_route()
+	hexmap_test_clear_terrain()
+	hexmap_test_restore_terrain(saved)
+	if(fail)
+		return Fail(fail)
+
+/datum/unit_test/hexmap_terrain_route/proc/check_terrain_route()
+	var/datum/hex/start
+	var/datum/hex/middle
+	var/datum/hex/far_end
+	for(var/id in GLOB.hexmap.hexes)
+		var/datum/hex/H = GLOB.hexmap.hexes[id]
+		if(H.system || length(GLOB.hexmap.neighbours(H)) != 6)
+			continue
+		for(var/list/dir as anything in GLOB.hex_axial_dirs)
+			var/datum/hex/M = GLOB.hexmap.hex_axial(H.sector, H.q + dir[1], H.r + dir[2])
+			var/datum/hex/F = M && GLOB.hexmap.hex_axial(H.sector, H.q + dir[1] * 2, H.r + dir[2] * 2)
+			if(M && F && !M.system && !F.system)
+				start = H
+				middle = M
+				far_end = F
+				break
+		if(start)
+			break
+	if(!start)
+		return "No straight line of three empty hexes"
+	// Zagrożenie dookoła startu: każda trasa dwa kafle dalej musi stanąć na pierwszym kaflu
+	for(var/datum/hex/N as anything in GLOB.hexmap.neighbours(start))
+		N.terrain = HEX_TERRAIN_ASTEROIDS
+	var/list/route = GLOB.hexmap.route(start, far_end, null)
+	if(!route)
+		return "No route past an asteroid field"
+	if(!route["stopped"] || route["hexes"] != 1)
+		return "A jump through an asteroid field did not stop on its first hex ([route["hexes"]] hexes, stopped: [route["stopped"]])"
+	if(length(GLOB.hexmap.reachable(start, null, HEX_FTL_FULL_CHARGE)) != 6)
+		return "Hexes behind a ring of hazards are in jump range"
+	for(var/datum/hex/N as anything in GLOB.hexmap.neighbours(start))
+		N.terrain = HEX_TERRAIN_NEBULA
+	route = GLOB.hexmap.route(start, far_end, null)
+	if(!route || route["stopped"])
+		return "A nebula stopped the jump"
+	far_end.terrain = HEX_TERRAIN_BLACK_HOLE
+	if(GLOB.hexmap.route(start, far_end, null))
+		return "There is a route into a black hole"
+	if(GLOB.hexmap.reachable(start, null, HEX_FTL_FULL_CHARGE)[far_end])
+		return "A black hole is in jump range"
+
+/// Pula kafla: środowisko z puli bez minuty startu, antagoniści dopiero po bramce, SSevents bierze tylko eventy statkowe
+/datum/unit_test/hexmap_tile_events
+
+/datum/unit_test/hexmap_tile_events/Run()
+	TEST_ASSERT(!hex_antag_gate_open(), "The midround antagonist gate is open [DisplayTimeText(world.time - SSticker.round_start_time)] into the round")
+	var/datum/round_event_control/dust = hex_event_control(/datum/round_event_control/space_dust)
+	var/datum/round_event_control/grid = hex_event_control(/datum/round_event_control/grid_check)
+	var/datum/round_event_control/blob = hex_event_control(/datum/round_event_control/blob)
+	TEST_ASSERT(dust && grid && blob, "Missing event controls")
+	TEST_ASSERT(!hex_random_event_allowed(dust), "SSevents can still roll an environment event from the tiles")
+	TEST_ASSERT(hex_random_event_allowed(grid), "SSevents can no longer roll a ship event")
+	TEST_ASSERT(!hex_random_event_allowed(blob), "SSevents can still roll a midround antagonist")
+
+	// Minuta startu nie liczy się na kaflu, minimum graczy tak
+	var/saved_start = dust.earliest_start
+	var/saved_players = dust.min_players
+	dust.earliest_start = 10 HOURS
+	dust.min_players = 0
+	var/players = get_active_player_count(alive_check = TRUE, afk_check = TRUE, human_check = TRUE)
+	var/plain = dust.canSpawnEvent(players, SSticker.mode?.config_tag)
+	var/from_tile = hex_event_can_spawn(dust, players)
+	dust.min_players = 1000
+	var/too_few = hex_event_can_spawn(dust, players)
+	dust.earliest_start = saved_start
+	dust.min_players = saved_players
+	TEST_ASSERT(!plain, "Space dust can spawn before its earliest start outside a tile")
+	TEST_ASSERT(from_tile, "A tile did not skip the earliest start of space dust")
+	TEST_ASSERT(!too_few, "A tile skipped the minimum player count")
+
+	var/datum/hex/field
+	for(var/id in GLOB.hexmap.hexes)
+		var/datum/hex/H = GLOB.hexmap.hexes[id]
+		if(!H.system)
+			field = H
+			break
+	var/saved_terrain = field.terrain
+	field.terrain = HEX_TERRAIN_ASTEROIDS
+	var/fail = check_picks(field)
+	field.terrain = saved_terrain
+	if(fail)
+		return Fail(fail)
+
+/datum/unit_test/hexmap_tile_events/proc/check_picks(datum/hex/field)
+	var/list/allowed = hex_terrain(HEX_TERRAIN_ASTEROIDS).events
+	var/list/antags = hex_terrain(HEX_TERRAIN_ASTEROIDS).antags
+	for(var/i in 1 to 20)
+		var/datum/round_event_control/picked = hex_pick_tile_event(field, TRUE)
+		if(!picked)
+			return "An asteroid field rolled nothing, not even a ship event"
+		if(picked.type in antags)
+			return "A tile rolled the antagonist [picked.name] with the gate closed"
+		if(!(picked.type in allowed) && !hex_random_event_allowed(picked))
+			return "An asteroid field rolled [picked.name], which is neither from its pool nor a ship event"
+	var/datum/round_event_control/last = hex_pick_tile_event(field, TRUE)
+	for(var/i in 1 to 10)
+		if(hex_pick_tile_event(field, TRUE, last) == last)
+			return "A tile rolled [last.name] twice in a row"
+
+/// Zbadany sygnał znika, gdy okręt odlatuje z kafla; zagrożenie zostaje
+/datum/unit_test/hexmap_signal_explored
+
+/datum/unit_test/hexmap_signal_explored/Run()
+	var/datum/hex/H
+	for(var/id in GLOB.hexmap.hexes)
+		var/datum/hex/candidate = GLOB.hexmap.hexes[id]
+		if(!candidate.system && candidate.terrain == HEX_TERRAIN_EMPTY)
+			H = candidate
+			break
+	H.set_terrain(HEX_TERRAIN_SIGNAL)
+	H.on_player_left()
+	var/after_signal = H.terrain
+	H.set_terrain(HEX_TERRAIN_RADIATION)
+	H.on_player_left()
+	var/after_radiation = H.terrain
+	H.set_terrain(HEX_TERRAIN_EMPTY)
+	TEST_ASSERT_EQUAL(after_signal, HEX_TERRAIN_EMPTY, "An explored signal stayed on the map")
+	TEST_ASSERT_EQUAL(after_radiation, HEX_TERRAIN_RADIATION, "Radiation disappeared after the ship left")
 
 #undef HEXMAP_TEST_SAVE
 #undef HEXMAP_TEST_MAP_CONFIG

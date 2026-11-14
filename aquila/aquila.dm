@@ -1018,6 +1018,8 @@
 #include "code\modules\overmap\hexmap\hex_persistence.dm"
 #include "code\modules\overmap\hexmap\hex_return.dm"
 #include "code\modules\overmap\hexmap\hex_fleets.dm"
+#include "code\modules\overmap\hexmap\hex_terrain.dm"
+#include "code\modules\overmap\hexmap\hex_events.dm"
 #include "code\modules\overmap\ship_console_hud.dm"
 #include "code\modules\overmap\fighter_manual_eject.dm"
 #include "code\modules\overmap\fighter_component_cleanup.dm"

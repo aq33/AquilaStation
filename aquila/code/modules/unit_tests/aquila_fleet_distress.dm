@@ -46,7 +46,7 @@
 		if(!system.hex || system.hidden || system == player_system || length(system.fleets) || istype(system, /datum/star_system/random))
 			continue
 		for(var/datum/hex/neighbour as anything in GLOB.hexmap.neighbours(system.hex))
-			if(neighbour.system || GLOB.hexmap.blocks(neighbour))
+			if(neighbour.system || neighbour.terrain != HEX_TERRAIN_EMPTY) // teren (asteroidy, miny) zostawiłby zawartość w układzie kafla
 				continue
 			home = system
 			next_door = GLOB.hexmap.system_for(neighbour)

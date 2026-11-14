@@ -86,6 +86,9 @@
 	if(!(GLOB.ghost_role_flags & GHOSTROLE_MIDROUND_EVENT))
 		log_game("WEIGHTED: midround antagonist skipped, ghost roles are disabled")
 		return
+	if(!hex_antag_gate_open()) // mapa hex: antagoniści midround po 60 min i tylko bez żywych antagonistów (decyzja 14.11)
+		log_game("WEIGHTED: midround antagonist skipped, the round is younger than an hour or antagonists are still alive")
+		return
 	var/ratio = crew_alive_ratio()
 	if(ratio < WEIGHTED_MIDROUND_ALIVE_RATIO)
 		log_game("WEIGHTED: midround antagonist skipped, only [round(ratio * 100)]% of the crew is alive")

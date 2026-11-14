@@ -28,8 +28,43 @@
 /// Pusty hex bez nikogo i bez zawartości oddaje swój układ po tym czasie
 #define HEX_EMPTY_CLEANUP_DELAY (2 MINUTES)
 
-/// Typy terenu (PR B dokłada resztę)
+/// Typy terenu (identyfikatory jak w makiecie v4; zapisywane w hexmap.json)
 #define HEX_TERRAIN_EMPTY "empty"
+#define HEX_TERRAIN_ASTEROIDS "meteor"
+#define HEX_TERRAIN_JUNK "junk"
+#define HEX_TERRAIN_NEBULA "nebula"
+#define HEX_TERRAIN_ELECTRICAL "estorm"
+#define HEX_TERRAIN_ION "storm"
+#define HEX_TERRAIN_RADIATION "rad"
+#define HEX_TERRAIN_FLARE "flare"
+#define HEX_TERRAIN_ANOMALIES "anom"
+#define HEX_TERRAIN_GRAVITY "grav"
+#define HEX_TERRAIN_CARP "carp"
+#define HEX_TERRAIN_WORMHOLE "wh"
+#define HEX_TERRAIN_BLACK_HOLE "bh"
+#define HEX_TERRAIN_COMET "comet"
+#define HEX_TERRAIN_MINES "mines"
+#define HEX_TERRAIN_SIGNAL "signal"
+
+/// Nowy nieznany sygnał albo pole anomalii pojawia się co tyle (decyzja: losowo na całej mapie, co jakiś czas)
+#define HEX_RANDOM_TERRAIN_MIN (10 MINUTES)
+#define HEX_RANDOM_TERRAIN_MAX (20 MINUTES)
+/// Najwięcej sygnałów i pól anomalii naraz na całej mapie
+#define HEX_MAX_SIGNALS 10
+#define HEX_MAX_ANOMALY_FIELDS 12
+/// Burze, kometa i karpie przesuwają się o kafel co tyle
+#define HEX_DRIFT_MIN (10 MINUTES)
+#define HEX_DRIFT_MAX (15 MINUTES)
+
+/// Kolejny event, gdy okręt stoi na kaflu zagrożenia
+#define HEX_STAY_EVENT_MIN (8 MINUTES)
+#define HEX_STAY_EVENT_MAX (12 MINUTES)
+/// Event z kafla i event statkowy nie wypadają bliżej siebie niż tyle
+#define HEX_EVENT_SPACING (4 MINUTES)
+/// Antagoniści midround dopiero od tej minuty rundy i tylko, gdy nie ma żywych antagonistów
+#define HEX_ANTAG_GATE_TIME (60 MINUTES)
+/// Znacznik w puli kafla: wadliwa SI z istniejącej SI zamiast eventu
+#define HEX_POOL_MALF "malf"
 
 /// Zapis stanu mapy hex obok starmap.json
 #define HEXMAP_SAVE_PATH "config/starmap/hexmap.json"

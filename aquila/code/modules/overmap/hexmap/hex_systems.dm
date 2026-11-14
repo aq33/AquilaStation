@@ -17,6 +17,19 @@
 	visitable = FALSE
 	system_traits = STARSYSTEM_NO_ANOMALIES | STARSYSTEM_NO_ASTEROIDS | STARSYSTEM_NO_WORMHOLE
 
+/// Teren kafla widać taktycznie: tło, asteroidy w polu asteroid, miny w polu minowym
+/datum/star_system/random/hex_empty/proc/apply_hex_terrain()
+	var/datum/hex_terrain/T = hex?.terrain_datum()
+	parallax_property = T?.parallax
+	switch(T?.id)
+		if(HEX_TERRAIN_ASTEROIDS)
+			spawn_asteroids()
+		if(HEX_TERRAIN_MINES)
+			// jak spawn_mines(), ale bez jego drugiej pętli, która dla układu bez Z tworzy miny w nicości
+			for(var/i in 1 to rand(6, 10))
+				var/obj/structure/space_mine/M = new /obj/structure/space_mine(null, "syndicate", src)
+				contents_positions[M] = list("x" = rand(5, world.maxx - 5), "y" = rand(5, world.maxy - 5))
+
 /datum/star_system/random/hex_empty/remove_ship(obj/structure/overmap/OM, turf/new_location, is_ftl_jump = TRUE)
 	. = ..()
 	if(!occupying_z)
@@ -41,3 +54,6 @@
 	. = ..()
 	GLOB.hexmap = new
 	GLOB.hexmap.build(systems)
+	var/list/save = campaign_reset_pending ? null : hexmap_read_save(HEXMAP_SAVE_PATH)
+	GLOB.hexmap.generate_terrain(save?["terrain"])
+	GLOB.hexmap.start_terrain_timers()

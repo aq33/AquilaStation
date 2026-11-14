@@ -30,3 +30,38 @@
 	main.hex_cooldown_until = 0
 	main.hex_resume_charging()
 	to_chat(user, "<span class='notice'>Napęd FTL okrętu głównego naładowany do pełna.</span>")
+
+/datum/test_chamber_kit/pr_638/teren
+	name = "Mapa FTL: teren kafli i eventy"
+	description = "Zestaw ładuje napęd i kładzie obok okrętu nieznany sygnał, pole asteroid, wlot tunelu (drugi koniec kilka kafli dalej) i czarną dziurę. Testuj na konsoli nawigacji na mostku. \
+		1) Okno pokazuje teren ikonami, panel kafla podaje jego opis i czy zatrzymuje skok. \
+		2) Skok na pole asteroid: od razu event z jego puli (admin widzi „Losowy event uruchomi się za 10 s”). Na postoju co 8–12 min kolejny, nie bliżej niż 4 min od eventu statkowego. \
+		3) Trasa przez pole asteroid kończy się na nim, mgławica przepuszcza. Czarnej dziury nie da się wybrać jako celu. \
+		4) Skok na sygnał: event, a po odlocie sygnał znika z mapy. \
+		5) Skok do tunelu: po 5 s okręt wylatuje na drugim końcu bez zużycia ładunku i bez drugiego eventu. \
+		6) Antagoniści z kafli i oferty dla duchów dopiero po 60 min rundy i tylko bez żywych antagonistów; wcześniej kafel daje event środowiska albo statkowy."
+
+/datum/test_chamber_kit/pr_638/teren/setup(list/spawned, list/turfs, turf/center, mob/user)
+	. = ..()
+	if(!user)
+		return
+	var/datum/hex/here = SSstar_system.find_main_overmap()?.current_hex()
+	if(!here)
+		to_chat(user, "<span class='warning'>Okręt główny nie stoi na kaflu mapy hex.</span>")
+		return
+	var/list/free = GLOB.hexmap.free_neighbours(here)
+	var/list/kinds = list(HEX_TERRAIN_SIGNAL, HEX_TERRAIN_ASTEROIDS, HEX_TERRAIN_WORMHOLE, HEX_TERRAIN_BLACK_HOLE)
+	for(var/kind in kinds)
+		if(!length(free))
+			break
+		var/datum/hex/H = pick_n_take(free)
+		if(kind != HEX_TERRAIN_WORMHOLE)
+			H.set_terrain(kind)
+			continue
+		var/list/far = list()
+		for(var/datum/hex/other as anything in GLOB.hexmap.free_hexes(here.sector, FALSE))
+			if(GLOB.hexmap.distance(H, other) >= 4)
+				far += other
+		if(length(far))
+			GLOB.hexmap.link_wormhole(H, pick(far))
+	to_chat(user, "<span class='notice'>Teren obok okrętu gotowy, otwórz konsolę nawigacji.</span>")

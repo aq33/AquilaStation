@@ -40,6 +40,8 @@ GLOBAL_LIST_INIT(hex_axial_dirs, list(list(1, 0), list(1, -1), list(0, -1), list
 /datum/hex/proc/display_name()
 	if(system && !istype(system, /datum/star_system/random/hex_empty))
 		return system.name
+	if(terrain != HEX_TERRAIN_EMPTY)
+		return "[terrain_datum().name] [col],[row]"
 	return "Pusty kafel [col],[row]"
 
 /datum/hexmap
@@ -167,6 +169,7 @@ GLOBAL_LIST_INIT(hex_axial_dirs, list(list(1, 0), list(1, -1), list(0, -1), list
 				queue += N
 	if(!free)
 		return
+	free.set_terrain(HEX_TERRAIN_EMPTY) // układ wypiera teren (Badlands Lite kładzione co rundę)
 	free.system = S
 	S.hex = free
 	system_hexes[S.name] = free
@@ -228,13 +231,13 @@ GLOBAL_LIST_INIT(hex_axial_dirs, list(list(1, 0), list(1, -1), list(0, -1), list
 /datum/hexmap/proc/step_cost(datum/hex/from_hex, datum/hex/to_hex)
 	return from_hex.sector != to_hex.sector ? HEX_FTL_COST_GATE : HEX_FTL_COST_HEX
 
-/// Teren, przez który nikt nie przelatuje (PR B: czarna dziura)
+/// Teren, przez który nikt nie przelatuje (czarna dziura)
 /datum/hexmap/proc/blocks(datum/hex/H)
-	return FALSE
+	return H.terrain_datum().blocks
 
-/// Teren, który zatrzymuje skok gracza (PR B: zagrożenia)
+/// Teren, który zatrzymuje skok (zagrożenia); układ z mapy nie zatrzymuje, bo nie ma terenu
 /datum/hexmap/proc/stops(datum/hex/H)
-	return FALSE
+	return H.terrain_datum().stops
 
 /**
  * Najkrótsza trasa skoku. Zagrożeń nie da się przeskoczyć: trasę liczymy po wszystkich kaflach,
@@ -323,10 +326,11 @@ GLOBAL_LIST_INIT(hex_axial_dirs, list(list(1, 0), list(1, -1), list(0, -1), list
 	RETURN_TYPE(/datum/star_system)
 	if(H.system)
 		return H.system
-	var/datum/star_system/random/hex_empty/S = new(name = "Pusty kafel [H.col],[H.row] ([hex_sector_name(H.sector)])", x = H.approx_x, y = H.approx_y, sector = H.sector)
+	var/datum/star_system/random/hex_empty/S = new(name = "[H.display_name()] ([hex_sector_name(H.sector)])", x = H.approx_x, y = H.approx_y, sector = H.sector)
 	S.hex = H
 	H.system = S
 	SSstar_system.systems += S
+	S.apply_hex_terrain()
 	return S
 
 /// Czy frakcje są sobie wrogie (NT, SolGov i WhiteRapids to jeden blok; piraci wrodzy wszystkim; niezależni nikomu)
