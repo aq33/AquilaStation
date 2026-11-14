@@ -3,3 +3,4 @@
 #include "drill.dm"
 #include "vein_scanner.dm"
 #include "drill_mission.dm"
+#include "deep_vein_mission.dm"

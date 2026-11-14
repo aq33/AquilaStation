@@ -1,4 +1,4 @@
-// AQUILA - test wiertła, żył rud i misji „Próbki geologiczne”. Bez czekania na czas gry: cykle wydobycia i wyjścia
+// AQUILA - test wiertła, żył rud (klasy 1-4) i misji „Próbki geologiczne” i „Głęboki odwiert”. Bez czekania na czas gry: cykle wydobycia i wyjścia
 // mobów z wyrw są wywoływane wprost.
 
 // Upstreamowe makra asercji są #undef na końcu code/modules/unit_tests/_unit_tests.dm, więc test ma własne kopie
@@ -128,6 +128,57 @@
 	TEST_ASSERT(scanner.scan_for_target(), "Skaner nie znalazł żyły")
 	TEST_ASSERT(istype(scanner.target, /obj/structure/vein), "Skaner wskazuje coś innego niż żyłę")
 	qdel(vein3)
+
+	// Żyła klasy 4: 30 ±2 ładunków, sam bluespace, do 4 wyrw naraz po 6 mobów
+	var/obj/structure/vein/lavaland/classfour/vein4 = allocate(/obj/structure/vein/lavaland/classfour)
+	TEST_ASSERT(vein4.mining_charges >= 28 && vein4.mining_charges <= 32, "Zły zakres ładunków żyły klasy 4: [vein4.mining_charges]")
+	TEST_ASSERT(length(vein4.vein_contents) == 1 && vein4.vein_contents[1] == /obj/item/stack/ore/bluespace_crystal, "Żyła klasy 4 ma inne rudy niż bluespace")
+	vein4.try_spawning_spawner()
+	TEST_ASSERT(length(vein4.active_spawners) >= 1 && length(vein4.active_spawners) <= 4, "Zła liczba wyrw żyły klasy 4: [length(vein4.active_spawners)]")
+	var/obj/effect/drill_spawner/breach4 = vein4.active_spawners[1]
+	var/datum/component/spawner/vein_breach/spawner4 = breach4.GetComponent(/datum/component/spawner/vein_breach)
+	TEST_ASSERT_EQUAL(spawner4?.max_mobs, 6, "Wyrwa żyły klasy 4 ma zły limit mobów")
+
+	// Wiertło do próbek głębinowych: tylko żyła klasy 4, po samples_required cyklach jedna próbka
+	var/obj/structure/vein/lavaland/classtwo/shallow = allocate(/obj/structure/vein/lavaland/classtwo)
+	var/obj/machinery/drill/sampler_mission/deep = allocate(/obj/machinery/drill/sampler_mission)
+	TEST_ASSERT(deep.samples_required >= 6 && deep.samples_required <= 10, "Zła liczba cykli do próbki: [deep.samples_required]")
+	TEST_ASSERT(deep.cell, "Wiertło do próbek głębinowych nie ma ogniwa")
+	deep.our_vein = shallow
+	shallow.our_drill = deep
+	deep.setAnchored(TRUE)
+	deep.start_mining()
+	TEST_ASSERT(!deep.active, "Wiertło do próbek głębinowych ruszyło na płytkiej żyle")
+	shallow.our_drill = null
+	deep.our_vein = vein4
+	vein4.our_drill = deep
+	deep.samples_required = 2
+	var/datum/overmap_objective/planet/deep_vein/deep_objective = new
+	deep.mission = deep_objective
+	deep_objective.sampler = deep
+	deep.start_mining()
+	TEST_ASSERT(deep.active, "Wiertło do próbek głębinowych nie ruszyło na żyle klasy 4")
+	deltimer(deep.current_timerid)
+	deep.mine()
+	TEST_ASSERT(deep.active && !deep_objective.sample, "Próbka wypadła za wcześnie")
+	deltimer(deep.current_timerid)
+	deep.mine()
+	var/obj/item/drill_sample/drill_sample = deep_objective.sample
+	TEST_ASSERT(istype(drill_sample) && !QDELETED(drill_sample), "Wiertło nie wyrzuciło próbki")
+	TEST_ASSERT(!deep.active, "Wiertło nie stanęło po wydobyciu próbki")
+	deep.start_mining()
+	TEST_ASSERT(!deep.active, "Wiertło ruszyło drugi raz po wydobyciu próbki")
+	var/obj/item/drill_core_container/core_container = allocate(/obj/item/drill_core_container)
+	TEST_ASSERT(core_container.load(drill_sample), "Próbka nie weszła do pojemnika")
+	TEST_ASSERT(drill_sample.loc == core_container && core_container.core == drill_sample, "Próbka nie jest w pojemniku")
+	// Zniszczenie pojemnika z próbką oblewa misję
+	deep_objective.container = core_container
+	deep_objective.RegisterSignal(core_container, COMSIG_PARENT_QDELETING, TYPE_PROC_REF(/datum/overmap_objective/planet/deep_vein, on_tracked_deleted))
+	qdel(core_container)
+	TEST_ASSERT_EQUAL(deep_objective.status, 2, "Cel nie jest oblany po zniszczeniu pojemnika")
+	TEST_ASSERT(QDELETED(drill_sample), "Próbka przetrwała zniszczenie pojemnika")
+	qdel(deep_objective)
+	qdel(deep)
 
 	for(var/obj/effect/drill_spawner/leftover in range(8, T))
 		qdel(leftover)

@@ -5,8 +5,8 @@
 // Wiertło na żyle co jakiś czas otwiera wokół niej wyrwy, z których przez kilkadziesiąt sekund wychodzi fauna planety
 // (fale). Po waves_per_break falach z rzędu przychodzi przerwa.
 // Zmiany względem Shiptesta:
-// - tylko żyły planety wulkanicznej (klasy 1-3 i rzadkie odmiany); klasa 4 i żyły innych planet pominięte, bo mamy
-//   tylko ten typ planety, a misja klasy 4 (industrial_drill.dm) nie jest portowana;
+// - tylko żyły planety wulkanicznej (klasy 1-4 i rzadkie odmiany); żyły innych planet pominięte, bo mamy tylko ten
+//   typ planety. Klasa 4 (sam kryształ bluespace, 30 ładunków) to cel misji głębokiego odwiertu (deep_vein_mission.dm);
 // - fauna to nasze basic moby: goliat z tg za goliath/beast/nest, pradawny goliat za goliath/beast/ancient, legion
 //   i karłowaty legion w odmianie spawner_made (zostawiają zwęglony szkielet, jak legion/nest w Shiptest bez łupów),
 //   brimdemon z shiptest_fauna/;
@@ -270,6 +270,23 @@ GLOBAL_LIST_EMPTY(ore_veins)
 		/obj/item/stack/ore/gold = 10,
 		/obj/item/stack/ore/diamond = 8,
 		/obj/item/stack/ore/bluespace_crystal = 5,
+		)
+
+/// Żyła klasy 4: głębokie złoże samego kryształu bluespace, cel misji głębokiego odwiertu
+/obj/structure/vein/lavaland/classfour
+	mining_charges = 30
+	vein_class = 4
+	mob_types = list(
+		/mob/living/basic/mining/goliath = 60,
+		/mob/living/basic/mining/legion/spawner_made = 30,
+		/mob/living/basic/mining/brimdemon = 20,
+		/mob/living/basic/mining/goliath/ancient/immortal = 5,
+		/mob/living/basic/mining/legion/dwarf/spawner_made = 10,
+		)
+	max_mobs = 6
+	spawn_time = 8 SECONDS
+	ore_list = list(
+		/obj/item/stack/ore/bluespace_crystal = 10,
 		)
 
 /// Karłowaty legion z wyrwy: jak legion z wyrwy zostawia tylko zwęglony szkielet
