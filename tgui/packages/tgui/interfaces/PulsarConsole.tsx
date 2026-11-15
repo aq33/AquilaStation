@@ -161,7 +161,7 @@ export const PulsarConsole = (props) => {
                   nie grozi burzą ani przeciążeniem.
                 </NoticeBox>
               )}
-              {storm_active && (
+              {!!storm_active && (
                 <NoticeBox danger>
                   Burza promieniowania! Wyprowadź satelitę z głównej wiązki.
                 </NoticeBox>
@@ -171,7 +171,7 @@ export const PulsarConsole = (props) => {
                   Satelita w głównej wiązce: burza za {storm_eta} s.
                 </NoticeBox>
               )}
-              {overcharge_active && (
+              {!!overcharge_active && (
                 <NoticeBox danger>
                   Przeciążenie! Podnieś osłonę, żeby zamknąć szczeliny.
                 </NoticeBox>

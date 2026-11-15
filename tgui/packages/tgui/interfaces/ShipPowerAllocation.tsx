@@ -66,8 +66,10 @@ export function ShipPowerAllocation() {
               <Table.Cell>
                 <Box bold>{system.name}</Box>
                 <Box color="label" fontSize="0.9em">
-                  {system.max ? `Maks. ${system.max}` : 'Brak aktywnych urządzeń'}
-                  {system.apc && ' (z APC)'}
+                  {system.max
+                    ? `Maks. ${system.max}`
+                    : 'Brak aktywnych urządzeń'}
+                  {!!system.apc && ' (z APC)'}
                 </Box>
               </Table.Cell>
               <Table.Cell>
