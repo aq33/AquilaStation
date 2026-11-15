@@ -102,4 +102,23 @@
 	account?.adjust_money(-contract.reward)
 	GLOB.department_commission_pending[contract.account] -= contract.reward
 
+/// AQUILA - zlecenie uzbrojenia liczy tylko pełne pojemniki zamówionego typu
+/datum/unit_test/station_contracts_ammo
+
+/datum/unit_test/station_contracts_ammo/Run()
+	var/datum/aq_contract/delivery/ammo/contract = new
+	contract.item_type = /obj/item/ammo_box/c9mm
+	contract.amount = 2
+	var/obj/item/ammo_box/c9mm/full = allocate(/obj/item/ammo_box/c9mm)
+	var/obj/item/ammo_box/c9mm/full2 = allocate(/obj/item/ammo_box/c9mm)
+	var/obj/item/ammo_box/c9mm/partial = allocate(/obj/item/ammo_box/c9mm)
+	var/obj/item/ammo_box/c45/other = allocate(/obj/item/ammo_box/c45)
+	qdel(partial.get_round())
+	TEST_ASSERT(contract.item_value(full) == 1, "A full ammo box of the ordered type doesn't count")
+	TEST_ASSERT(contract.item_value(partial) == 0, "A partly used ammo box counts")
+	TEST_ASSERT(contract.item_value(other) == 0, "An ammo box of another calibre counts")
+	TEST_ASSERT(!contract.check_shipment(list(full, partial, other)), "The shipment passed with one full box of two")
+	TEST_ASSERT(contract.check_shipment(list(full, full2)), "Two full boxes didn't complete the shipment")
+	qdel(contract)
+
 #undef TEST_ASSERT

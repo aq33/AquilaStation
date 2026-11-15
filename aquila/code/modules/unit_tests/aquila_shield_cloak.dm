@@ -1,7 +1,7 @@
 // The upstream assert macros are #undef'd at the end of code/modules/unit_tests/_unit_tests.dm, so this modular test carries its own copies
 #define TEST_ASSERT(assertion, reason) if (!(assertion)) { return Fail("Assertion failed: [reason || "No reason"]") }
 
-/// AQUILA - maskowanie generatora tarcz: sygnatura i radar wroga spadają, tarcza nie chroni, po zdjęciu generator stygnie
+/// AQUILA - maskowanie generatora tarcz: sygnatura i radar wroga spadają, tarcza nie chroni, po zdjęciu tarcza wraca
 /datum/unit_test/shield_cloak
 	var/obj/machinery/shield_generator/gen
 	var/obj/structure/overmap/ship
@@ -47,8 +47,7 @@
 	// Zdjęcie maski: koniec ukrycia, bez stygnięcia (jak tarcza)
 	gen.end_cloak("test")
 	TEST_ASSERT(!ship.is_cloaked(), "The ship stayed cloaked after the cloak ended")
-	if(gen.powered() && !(gen.machine_stat & BROKEN))
-		TEST_ASSERT(gen.can_cloak(), "The cloak can't be restarted right after it ended")
+	TEST_ASSERT(!gen.cloaked, "The generator stayed in the cloak mode after the cloak ended")
 
 	// Regresja: tarcza podniesiona przed maską wraca po jej zdjęciu
 	gen.cloaked = TRUE
