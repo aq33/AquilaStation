@@ -220,7 +220,7 @@
 		if("syndicate")
 			return hex_factions_hostile(faction, S.alignment) || S.alignment == "unaligned"
 		if("nanotrasen")
-			return hex_factions_hostile(faction, S.alignment) && S.hex.sector != SECTOR_SYNDICATE
+			return hex_factions_hostile(faction, S.alignment) // także w sektorze Syndykatu, inaczej NT tylko się broni (raport/ftl_mapa_07)
 		if("solgov")
 			if(!hex_factions_hostile(faction, S.alignment))
 				return FALSE
@@ -315,7 +315,7 @@
 		var/datum/star_system/station
 		var/station_d = 11
 		for(var/datum/star_system/S as anything in SSstar_system.systems)
-			if(!S.trader || !S.hex || S.hidden || S.owner == "pirate" || S.war_raided_until > world.time)
+			if(!S.trader || !S.hex || S.hidden || S.owner == "pirate" || S.war_raided_until > world.time || S.war_raid_ready_at > world.time)
 				continue
 			var/d = dist(F, S)
 			if(d < station_d)

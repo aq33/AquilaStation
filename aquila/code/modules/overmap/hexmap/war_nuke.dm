@@ -61,6 +61,8 @@
 	/// Po każdym odpaleniu DEFCON 1 do tej chwili
 	var/defcon_lock_until = 0
 	var/list/nuke_stocks = list("nanotrasen" = 1, "solgov" = 1, "syndicate" = 1)
+	/// Kiedy frakcja złożyła ostatnią atomówkę (HEX_WAR_NUKE_COOLDOWN)
+	var/list/nuke_built_at = list()
 	/// Pociski strategiczne w locie
 	var/list/missiles = list()
 	/// Zajęte układy w poprzedniej turze (nowe okupacje podnoszą napięcie)
@@ -71,7 +73,7 @@
 
 /// Napięcie z tej tury, DEFCON i decyzje AI o atomówkach (wołane w run_turn)
 /datum/hex_war/proc/nuclear_turn()
-	add_tension(2 * length(SSstar_system.contested_systems))
+	add_tension(length(SSstar_system.contested_systems))
 	var/list/occupied = list()
 	for(var/datum/star_system/S as anything in SSstar_system.systems)
 		if(S.hex && (S.owner in GLOB.hex_war_factions) && hex_factions_hostile(S.owner, S.alignment))
@@ -79,12 +81,12 @@
 			if(!(S.name in occupied_last))
 				add_tension(2)
 	occupied_last = occupied
-	tension *= 0.85
+	tension *= 0.75
 	update_defcon()
 	if(defcon > 2)
 		return
 	for(var/faction in nuke_stocks)
-		if(nuke_stocks[faction] > 0 && prob(defcon == 1 ? 20 : 8))
+		if(nuke_stocks[faction] > 0 && prob(defcon == 1 ? 5 : 2))
 			ai_launch(faction)
 
 /datum/hex_war/proc/update_defcon()
@@ -107,10 +109,10 @@
 	else
 		minor_announce("Stan gotowości sektora: DEFCON [defcon].", "Dowództwo Floty White Rapids")
 
-/// Każda detonacja jądrowa: DEFCON 1 na 30 min
+/// Każda detonacja jądrowa: DEFCON 1 na HEX_WAR_DEFCON_LOCK
 /datum/hex_war/proc/nuclear_detonation(datum/hex/where)
 	tension = max(tension, 30)
-	defcon_lock_until = world.time + 30 MINUTES
+	defcon_lock_until = world.time + HEX_WAR_DEFCON_LOCK
 	update_defcon()
 
 /// AI wybiera cel: najliczniejsza wroga flota albo okręt gracza w zasięgu 9 kafli od układu frakcji
@@ -163,7 +165,7 @@
 
 /// Odpalenie: DEFCON 1 od razu, ogłoszenie dla całego sektora
 /datum/hex_war/proc/nuclear_detonation_warning(datum/hex_nuke/N)
-	defcon_lock_until = world.time + 30 MINUTES
+	defcon_lock_until = world.time + HEX_WAR_DEFCON_LOCK
 	tension = max(tension, 30)
 	update_defcon()
 	priority_announce("Wykryto odpalenie pocisku termojądrowego ([hex_war_faction_name(N.faction)]) w [N.hex.display_name()]. Cel: [N.target_hex?.display_name() || "nieznany"].", "Dowództwo Floty White Rapids", 'nsv13/sound/effects/ship/incoming_missile.ogg')

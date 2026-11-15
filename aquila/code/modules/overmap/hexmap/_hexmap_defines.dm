@@ -71,10 +71,12 @@
 /// Najwięcej flot sztabu na frakcję (bez konwojów)
 #define HEX_WAR_MAX_FLEETS 5
 #define HEX_WAR_MAX_PIRATE_FLEETS 3
-/// Najwięcej konwojów naraz na frakcję
-#define HEX_WAR_MAX_CONVOYS 2
+/// Najwięcej konwojów naraz na frakcję (przy 2 kopalnie stały pełne: symulacja w raport/ftl_mapa_07)
+#define HEX_WAR_MAX_CONVOYS 3
 /// Stacja handlowa po napadzie piratów nie handluje przez tyle
-#define HEX_WAR_RAID_TIME (20 MINUTES)
+#define HEX_WAR_RAID_TIME (10 MINUTES)
+/// Ta sama stacja może być złupiona najwyżej raz na tyle
+#define HEX_WAR_RAID_COOLDOWN (60 MINUTES)
 /// Ranny dowódca wraca z nową flotą po tylu minutach
 #define HEX_WAR_RETURN_MIN (15 MINUTES)
 #define HEX_WAR_RETURN_MAX (25 MINUTES)
@@ -86,8 +88,16 @@
 /// Najwięcej okrętów eskorty kupionej na stacjach (część F)
 #define HEX_ESCORT_MAX 4
 
-/// Części na nową atomówkę w fabryce frakcji z działającą kwaterą główną
-#define HEX_WAR_NUKE_PARTS 8
+/// Części na nową atomówkę w fabryce przy kwaterze głównej (tylko nadwyżka, której nie wysłano do stoczni)
+#define HEX_WAR_NUKE_PARTS 24
+/// Frakcja składa nową atomówkę najwyżej raz na tyle
+#define HEX_WAR_NUKE_COOLDOWN (3 HOURS)
+/// Po odpaleniu lub detonacji DEFCON 1 przez tyle
+#define HEX_WAR_DEFCON_LOCK (15 MINUTES)
+/// Tyle rund z rzędu bez kwatery głównej na koniec rundy kończy wojnę
+#define HEX_WAR_END_ROUNDS 3
+/// Wynik zakończonej wojny, ogłaszany na starcie następnej rundy (nowej kampanii)
+#define HEX_WAR_END_FILE "data/hex_war_end.json"
 
 /// Obiekty strategiczne układów
 #define HEX_FAC_MINE "mine"

@@ -128,7 +128,7 @@ GLOBAL_LIST_INIT(hex_commander_names, list(
 /datum/hex_commander/proc/fleet_lost(player_caused)
 	losses++
 	fleet = null
-	var/escape = has_trait("coward") ? 75 : (has_trait("fanatic") ? 15 : 45)
+	var/escape = has_trait("coward") ? 85 : (has_trait("fanatic") ? 25 : 60)
 	if(!prob(escape))
 		status = HEX_CMD_DEAD
 		add_history(player_caused ? "zginął w walce z okrętem [station_name()]" : "zginął razem z flotą")
@@ -155,6 +155,9 @@ GLOBAL_LIST_INIT(hex_commander_names, list(
 /datum/hex_war/proc/commander_returns()
 	for(var/datum/hex_commander/C as anything in commanders)
 		if(C.status != HEX_CMD_WOUNDED || C.return_at > world.time)
+			continue
+		// Dowódca czeka na wolne miejsce: powroty też liczą się do limitu flot frakcji
+		if(length(faction_fleets(C.faction)) >= (C.faction == "pirate" ? HEX_WAR_MAX_PIRATE_FLEETS : HEX_WAR_MAX_FLEETS))
 			continue
 		var/datum/star_system/home
 		for(var/facility in list(HEX_FAC_YARD, HEX_FAC_DEPOT, HEX_FAC_HQ))

@@ -383,23 +383,43 @@
 	var/list/saved_hq = hexmap_war_test_save(hq)
 	var/list/saved_factory = hexmap_war_test_save(factory)
 	var/saved_stock = GLOB.hex_war.nuke_stocks["syndicate"]
+	var/saved_built = GLOB.hex_war.nuke_built_at["syndicate"]
 	hq.owner = "syndicate"
 	hq.alignment = "syndicate"
 	hq.war_facilities = list(HEX_FAC_HQ)
+	// Atomówka powstaje tylko w fabryce przy kwaterze i tylko z części, których nie wysłano do stoczni
 	factory.owner = "syndicate"
 	factory.alignment = "syndicate"
-	factory.war_facilities = list(HEX_FAC_FACTORY)
-	factory.war_ore = 3
-	factory.war_parts = HEX_WAR_NUKE_PARTS - 1
+	factory.war_facilities = list(HEX_FAC_FACTORY, HEX_FAC_HQ)
+	factory.war_ore = 6
+	factory.war_parts = HEX_WAR_NUKE_PARTS + 2 // +2 z rudy, ewentualny konwój zabiera 4
 	GLOB.hex_war.nuke_stocks["syndicate"] = 0
+	GLOB.hex_war.nuke_built_at -= "syndicate"
 	GLOB.hex_war.economy()
 	var/stock = GLOB.hex_war.nuke_stocks["syndicate"]
 	var/parts = factory.war_parts
+	// Druga atomówka nie wcześniej niż po HEX_WAR_NUKE_COOLDOWN
+	GLOB.hex_war.nuke_stocks["syndicate"] = 0
+	factory.war_parts = HEX_WAR_NUKE_PARTS * 2
+	GLOB.hex_war.economy()
+	var/stock_cooldown = GLOB.hex_war.nuke_stocks["syndicate"]
+	// Fabryka bez kwatery nie składa atomówek
+	GLOB.hex_war.nuke_built_at -= "syndicate"
+	factory.war_facilities = list(HEX_FAC_FACTORY)
+	factory.war_parts = HEX_WAR_NUKE_PARTS * 2
+	GLOB.hex_war.economy()
+	var/stock_no_hq = GLOB.hex_war.nuke_stocks["syndicate"]
 	GLOB.hex_war.nuke_stocks["syndicate"] = saved_stock
+	if(saved_built)
+		GLOB.hex_war.nuke_built_at["syndicate"] = saved_built
+	else
+		GLOB.hex_war.nuke_built_at -= "syndicate"
 	hexmap_war_test_restore(hq, saved_hq)
 	hexmap_war_test_restore(factory, saved_factory)
-	TEST_ASSERT_EQUAL(stock, 1, "A factory with [HEX_WAR_NUKE_PARTS] parts did not build a nuke for a faction with a headquarters")
-	TEST_ASSERT_EQUAL(parts, 0, "Building the nuke did not use up the parts")
+	TEST_ASSERT_EQUAL(stock, 1, "A headquarters factory with [HEX_WAR_NUKE_PARTS] spare parts did not build a nuke")
+	TEST_ASSERT(parts <= 4, "Building the nuke did not use up [HEX_WAR_NUKE_PARTS] parts ([parts] left)")
+	TEST_ASSERT_EQUAL(stock_cooldown, 0, "A faction built a second nuke right after the first one")
+	TEST_ASSERT_EQUAL(stock_no_hq, 0, "A factory away from the headquarters built a nuke")
 
 /// Misje trafiają na losowy pusty kafel sektora neutralnego, z dala od okrętu gracza
 /datum/unit_test/hexmap_war_missions
@@ -460,6 +480,35 @@
 	if(fail)
 		return Fail(fail)
 	TEST_ASSERT(saved_count_ok && full, "The escort limit check is off")
+
+/// Strona, która HEX_WAR_END_ROUNDS rund z rzędu kończy bez kwatery głównej, przegrywa wojnę; odbita kwatera zeruje licznik
+/datum/unit_test/hexmap_war_campaign_end
+
+/datum/unit_test/hexmap_war_campaign_end/Run()
+	var/datum/hex_war/W = GLOB.hex_war
+	var/datum/star_system/hq
+	for(var/datum/star_system/S as anything in SSstar_system.systems)
+		if(S.owner == "syndicate" && S.has_facility(HEX_FAC_HQ))
+			hq = S
+			break
+	if(!hq)
+		return // No Syndicate headquarters on this map
+	var/list/saved_lost = W.hq_lost_rounds.Copy()
+	var/saved_alignment = hq.alignment
+	W.hq_lost_rounds = list("syndicate" = HEX_WAR_END_ROUNDS - 2)
+	hq.alignment = "nanotrasen"
+	var/first = W.round_end_tally()
+	var/second = W.round_end_tally()
+	hq.alignment = "syndicate"
+	W.round_end_tally()
+	var/after_retake = W.hq_lost_rounds["syndicate"]
+	W.hq_lost_rounds = saved_lost
+	hq.alignment = saved_alignment
+	TEST_ASSERT(first != "syndicate", "The war ended one round too early")
+	TEST_ASSERT_EQUAL(second, "syndicate", "Losing the headquarters for [HEX_WAR_END_ROUNDS] rounds did not end the war")
+	TEST_ASSERT_EQUAL(after_retake, 0, "Retaking the headquarters did not reset the count")
+	TEST_ASSERT(findtext(hex_war_end_text("syndicate"), "Nanotrasen wygrywa"), "The end of the war names the wrong winner")
+
 
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL

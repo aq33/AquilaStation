@@ -13,6 +13,8 @@ GLOBAL_LIST_INIT(hex_war_factions, list("nanotrasen", "solgov", "syndicate", "pi
 	var/war_parts = 0
 	/// Do kiedy stacja handlowa nie handluje po napadzie piratów
 	var/war_raided_until = 0
+	/// Od kiedy piraci mogą ją złupić znowu
+	var/war_raid_ready_at = 0
 
 /datum/star_system/proc/has_facility(id)
 	if(id == HEX_FAC_TRADE)
@@ -53,7 +55,7 @@ GLOBAL_LIST_INIT(hex_war_factions, list("nanotrasen", "solgov", "syndicate", "pi
 		"Keid" = list(HEX_FAC_MINE),
 		"Alpha Carinae" = list(HEX_FAC_FACTORY),
 		"Helios Sigma" = list(HEX_FAC_MINE),
-		"Medea" = list(HEX_FAC_FACTORY, HEX_FAC_DEPOT, HEX_FAC_HQ), // makieta nie dawała NT kwatery, a bez niej NT nie złoży atomówki
+		"Medea" = list(HEX_FAC_FACTORY, HEX_FAC_YARD, HEX_FAC_DEPOT, HEX_FAC_HQ), // makieta nie dawała NT kwatery ani drugiej stoczni; bez stoczni NT nie odbudowywało flot (raport/ftl_mapa_07)
 		"Gliese 581-G" = list(HEX_FAC_MINE),
 		"Karip" = list(HEX_FAC_MINE),
 		"Feliciana" = list(HEX_FAC_POST),
@@ -104,8 +106,16 @@ GLOBAL_LIST_INIT(hex_war_factions, list("nanotrasen", "solgov", "syndicate", "pi
 		for(var/datum/fleet/F as anything in hex_all_fleets())
 			if(F.hex_war_adoptable())
 				F.hex_war_adopt()
+		// Nowa kampania: frakcja bez floty do przejęcia (SolGov ma na starcie tylko garnizon Sol) dostaje jedną w stoczni albo kwaterze
+		for(var/faction in list("nanotrasen", "solgov", "syndicate"))
+			if(length(faction_fleets(faction)))
+				continue
+			var/list/sites = faction_sites(faction, HEX_FAC_YARD) + faction_sites(faction, HEX_FAC_HQ)
+			if(length(sites))
+				launch_fleet(faction, sites[1])
 	restore_nuclear(saved)
 	ready = TRUE
+	announce_war_end()
 	addtimer(CALLBACK(src, PROC_REF(tick)), HEX_WAR_TICK)
 
 /// Wszystkie floty na mapie
@@ -178,22 +188,25 @@ GLOBAL_LIST_INIT(hex_war_factions, list("nanotrasen", "solgov", "syndicate", "pi
 			if(S.war_ore >= 6 && !S.has_facility(HEX_FAC_FACTORY) && send_convoy(S, faction, "ore", 6, HEX_FAC_FACTORY))
 				S.war_ore -= 6
 		if(S.has_facility(HEX_FAC_FACTORY))
-			if(S.war_ore >= 3)
+			// 3 rudy na część, najwyżej 2 części na turę
+			for(var/i in 1 to 2)
+				if(S.war_ore < 3)
+					break
 				S.war_ore -= 3
 				S.war_parts += 1
-			if(needs_nuke(faction))
-				// Fabryka zbiera części na atomówkę zamiast wysyłać je do stoczni
-				if(S.war_parts >= HEX_WAR_NUKE_PARTS)
-					S.war_parts -= HEX_WAR_NUKE_PARTS
-					nuke_stocks[faction] = 1
-					log_game("HEXWAR: [faction] builds a nuclear missile in [S]")
-					if(!S.hidden)
-						minor_announce("Wywiad: fabryka w układzie [S] ([hex_war_faction_name(faction)]) złożyła głowicę termojądrową.", "White Rapids EAS")
-			else if(S.war_parts >= 4 && !S.has_facility(HEX_FAC_YARD) && send_convoy(S, faction, "parts", 4, HEX_FAC_YARD))
+			if(S.war_parts >= 4 && !S.has_facility(HEX_FAC_YARD) && send_convoy(S, faction, "parts", 4, HEX_FAC_YARD))
 				S.war_parts -= 4
 		if(S.has_facility(HEX_FAC_YARD) && S.war_parts >= 4)
 			if(shipyard_build(S, faction))
 				S.war_parts -= 4
+		// Atomówka tylko z nadwyżki: części, które zostały w fabryce przy kwaterze, bo stocznia i konwoje ich nie wzięły
+		if(S.has_facility(HEX_FAC_FACTORY) && S.has_facility(HEX_FAC_HQ) && S.war_parts >= HEX_WAR_NUKE_PARTS && needs_nuke(faction))
+			S.war_parts -= HEX_WAR_NUKE_PARTS
+			nuke_stocks[faction] = 1
+			nuke_built_at[faction] = world.time
+			log_game("HEXWAR: [faction] builds a nuclear missile in [S]")
+			if(!S.hidden)
+				minor_announce("Wywiad: fabryka w układzie [S] ([hex_war_faction_name(faction)]) złożyła głowicę termojądrową.", "White Rapids EAS")
 	// Piraci nie mają kopalń ani fabryk: ich stocznia co jakiś czas wodowuje rajdowców, a łupy dozbrajają floty
 	if(length(faction_fleets("pirate")) < HEX_WAR_MAX_PIRATE_FLEETS && prob(25))
 		var/list/pirate_yards = faction_sites("pirate", HEX_FAC_YARD)
@@ -205,9 +218,11 @@ GLOBAL_LIST_INIT(hex_war_factions, list("nanotrasen", "solgov", "syndicate", "pi
 			F.hex_war_add_ships(1)
 			log_game("HEXWAR: pirates refit [F.name] with their loot")
 
-/// Frakcja bez atomówki z działającą kwaterą główną buduje nową w fabryce (8 części, najwyżej jedna w zapasie)
+/// Frakcja bez atomówki z działającą kwaterą główną buduje nową w fabryce przy kwaterze (najwyżej jedna w zapasie, raz na HEX_WAR_NUKE_COOLDOWN)
 /datum/hex_war/proc/needs_nuke(faction)
 	if(!(faction in nuke_stocks) || nuke_stocks[faction] >= 1)
+		return FALSE
+	if(nuke_built_at[faction] && world.time - nuke_built_at[faction] < HEX_WAR_NUKE_COOLDOWN)
 		return FALSE
 	for(var/datum/star_system/S as anything in SSstar_system.systems)
 		if(S.owner == faction && S.alignment == faction && S.has_facility(HEX_FAC_HQ) && !length(hex_hostile_fleets_in(S, faction)))
@@ -360,15 +375,16 @@ GLOBAL_LIST_INIT(hex_war_factions, list("nanotrasen", "solgov", "syndicate", "pi
 /datum/hex_war/proc/raids()
 	for(var/datum/fleet/F as anything in faction_fleets("pirate"))
 		var/datum/star_system/S = F.current_system
-		if(!S?.trader || S.owner == "pirate" || S.war_raided_until > world.time)
+		if(!S?.trader || S.owner == "pirate" || S.war_raided_until > world.time || S.war_raid_ready_at > world.time)
 			continue
 		if(length(hex_hostile_fleets_in(S, "pirate")))
 			continue
 		S.war_raided_until = world.time + HEX_WAR_RAID_TIME
+		S.war_raid_ready_at = world.time + HEX_WAR_RAID_COOLDOWN
 		F.war_loot += 3
 		add_tension(1)
 		if(!S.hidden)
-			mini_announce("Piraci napadli stację handlową w układzie [S]. Handel wstrzymany na co najmniej 20 minut.", "White Rapids EAS")
+			mini_announce("Piraci napadli stację handlową w układzie [S]. Handel wstrzymany na co najmniej 10 minut.", "White Rapids EAS")
 		log_game("HEXWAR: [F.name] raids the trade station in [S]")
 
 /datum/trader/attempt_purchase(datum/trader_item/item, mob/living/carbon/user)

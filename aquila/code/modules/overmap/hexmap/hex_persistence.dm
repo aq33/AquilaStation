@@ -18,8 +18,15 @@
 	// Tylko po udanym zapisie kampanii (save() zwraca 0) i tylko pliku kampanii, nie pliku tymczasowego kopii
 	if(. != 0 || !campaign_file || !initialized || !GLOB.hexmap?.built)
 		return
+	// Koniec rundy liczy się raz: rundy bez kwatery głównej rozstrzygają wojnę (war_end.dm)
+	var/loser
+	if(GLOB.hex_war?.ready && !GLOB.hex_war.round_tallied)
+		GLOB.hex_war.round_tallied = TRUE
+		loser = GLOB.hex_war.round_end_tally()
 	if(hexmap_write(HEXMAP_SAVE_PATH))
 		campaign_backup("auto")
+	if(loser)
+		hex_war_end_campaign(loser)
 
 /// Zapisuje stan mapy hex do pliku. Zwraca TRUE przy powodzeniu.
 /datum/controller/subsystem/star_system/proc/hexmap_write(path)

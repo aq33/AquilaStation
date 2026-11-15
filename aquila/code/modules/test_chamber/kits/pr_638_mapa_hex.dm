@@ -80,7 +80,7 @@
 		1) Przy układach są ikony obiektów (kopalnie, fabryki, stocznie, depoty, placówki, kwatery, stacje handlowe), w panelu kafla ich opis i magazyn. \
 		2) Wrogie floty widać w zasięgu 3 kafli od okrętu, kafla od sojuszniczych układów i flot oraz 3 kafli od placówek; poza nim szary romb z ostatnią znaną pozycją. \
 		3) Zakładka „Dowódcy”: dowódca floty Syndykatu z rangą; cechy są „?”, dopóki nie spotkasz jego floty. \
-		4) Konwoje (kwadraty) jadą z kopalń do fabryk i ze fabryk do stoczni; piraci je łupią i napadają stacje handlowe (stacja nie handluje 20 min). \
+		4) Konwoje (kwadraty) jadą z kopalń do fabryk i ze fabryk do stoczni; piraci je łupią i napadają stacje handlowe (stacja nie handluje 10 min, ta sama stacja najwyżej raz na godzinę). \
 		5) Zniszcz flotę Syndykatu: dowódca może uciec z blizną i urazą, po 15–25 min wraca z nową flotą i poluje na okręt. \
 		6) Floty sztabów, magazyny i dowódcy przechodzą do następnej rundy."
 
@@ -105,7 +105,7 @@
 
 /datum/test_chamber_kit/pr_638/atomowka
 	name = "Mapa FTL: atomówka i DEFCON"
-	description = "Zestaw daje dwie torpedy termojądrowe, ładuje napęd i ustawia DEFCON 1 na 30 min. Załaduj atomówkę do wyrzutni torped albo VLS. \
+	description = "Zestaw daje dwie torpedy termojądrowe, ładuje napęd i ustawia DEFCON 1 na 15 min. Załaduj atomówkę do wyrzutni torped albo VLS. \
 		1) Taktycznie: strzał w okręt na overmapie jak zwykłą torpedą, wybuch nuke_impact; w okręcie z załogą błysk, huk, wstrząs, pożary i promieniowanie. \
 		2) Strategicznie: na konsoli nawigacji kliknij kafel w zasięgu 9, przycisk „Odpal atomówkę w ten kafel” i potwierdź. Pocisk leci kafel co 30 s (czerwony ślad ☢), floty wroga po drodze mogą go zestrzelić; w celu floty tracą 3 okręty, obok 1, pusty kafel zostaje skażony na 50 min. \
 		3) Atomówka AI w okręt: dwa kafle przed celem alarm i komunikat „Nieuchronne trafienie pociskiem”, w kaflu okrętu torpeda z krawędzi overmapy – zestrzel ją PD albo flakiem. \
@@ -117,7 +117,7 @@
 	if(!user || !GLOB.hex_war)
 		return
 	GLOB.hex_war.nuclear_detonation(null)
-	to_chat(user, "<span class='notice'>DEFCON 1 na 30 minut.</span>")
+	to_chat(user, "<span class='notice'>DEFCON 1 na 15 minut.</span>")
 
 /datum/test_chamber_kit/pr_638/stacje
 	name = "Mapa FTL: eskorta, oferta stacji i misje"

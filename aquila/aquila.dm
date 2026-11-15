@@ -1024,6 +1024,7 @@
 #include "code\modules\overmap\hexmap\war_staff.dm"
 #include "code\modules\overmap\hexmap\war_commanders.dm"
 #include "code\modules\overmap\hexmap\war_persistence.dm"
+#include "code\modules\overmap\hexmap\war_end.dm"
 #include "code\modules\overmap\hexmap\war_fog.dm"
 #include "code\modules\overmap\hexmap\war_nuke.dm"
 #include "code\modules\overmap\hexmap\war_trade.dm"
