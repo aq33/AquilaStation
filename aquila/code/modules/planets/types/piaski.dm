@@ -238,28 +238,28 @@
 
 /obj/effect/greeble_spawner/whitesands_oasis
 	name = "spawner oazy"
-	greeble_maps = list("aquila/_maps/greebles/whitesands/oasis_1.dmm" = 1)
+	greeble_maps = list('aquila/_maps/greebles/whitesands/oasis_1.dmm' = 1)
 
 /obj/effect/greeble_spawner/whitesands_sulfurpool
 	name = "spawner kałuży siarki"
 	greeble_maps = list(
-		"aquila/_maps/greebles/whitesands/sulfur_pool_1.dmm" = 5,
-		"aquila/_maps/greebles/whitesands/sulfur_pool_2.dmm" = 5,
-		"aquila/_maps/greebles/whitesands/sulfur_pool_3.dmm" = 5,
-		"aquila/_maps/greebles/whitesands/sulfur_pool_4.dmm" = 5,
-		"aquila/_maps/greebles/whitesands/sulfur_pool_5.dmm" = 5,
-		"aquila/_maps/greebles/whitesands/sulfur_pool_6.dmm" = 5,
-		"aquila/_maps/greebles/whitesands/sulfur_pool_7.dmm" = 5,
-		"aquila/_maps/greebles/whitesands/sulfur_pool_8.dmm" = 5,
-		"aquila/_maps/greebles/whitesands/sulfur_pool_9.dmm" = 5,
-		"aquila/_maps/greebles/whitesands/sulfur_pool_10.dmm" = 5,
-		"aquila/_maps/greebles/whitesands/sulfur_pool_11.dmm" = 5,
-		"aquila/_maps/greebles/whitesands/sulfur_pool_12.dmm" = 5,
-		"aquila/_maps/greebles/whitesands/sulfur_pool_13.dmm" = 5,
-		"aquila/_maps/greebles/whitesands/sulfur_pool_14.dmm" = 5,
-		"aquila/_maps/greebles/whitesands/sulfur_pool_15.dmm" = 5,
-		"aquila/_maps/greebles/whitesands/sulfur_pool_16.dmm" = 5,
-		"aquila/_maps/greebles/whitesands/sulfur_pool_17.dmm" = 5,
-		"aquila/_maps/greebles/whitesands/sulfur_pool_18.dmm" = 5,
-		"aquila/_maps/greebles/whitesands/sulfur_pool_19.dmm" = 5,
+		'aquila/_maps/greebles/whitesands/sulfur_pool_1.dmm' = 5,
+		'aquila/_maps/greebles/whitesands/sulfur_pool_2.dmm' = 5,
+		'aquila/_maps/greebles/whitesands/sulfur_pool_3.dmm' = 5,
+		'aquila/_maps/greebles/whitesands/sulfur_pool_4.dmm' = 5,
+		'aquila/_maps/greebles/whitesands/sulfur_pool_5.dmm' = 5,
+		'aquila/_maps/greebles/whitesands/sulfur_pool_6.dmm' = 5,
+		'aquila/_maps/greebles/whitesands/sulfur_pool_7.dmm' = 5,
+		'aquila/_maps/greebles/whitesands/sulfur_pool_8.dmm' = 5,
+		'aquila/_maps/greebles/whitesands/sulfur_pool_9.dmm' = 5,
+		'aquila/_maps/greebles/whitesands/sulfur_pool_10.dmm' = 5,
+		'aquila/_maps/greebles/whitesands/sulfur_pool_11.dmm' = 5,
+		'aquila/_maps/greebles/whitesands/sulfur_pool_12.dmm' = 5,
+		'aquila/_maps/greebles/whitesands/sulfur_pool_13.dmm' = 5,
+		'aquila/_maps/greebles/whitesands/sulfur_pool_14.dmm' = 5,
+		'aquila/_maps/greebles/whitesands/sulfur_pool_15.dmm' = 5,
+		'aquila/_maps/greebles/whitesands/sulfur_pool_16.dmm' = 5,
+		'aquila/_maps/greebles/whitesands/sulfur_pool_17.dmm' = 5,
+		'aquila/_maps/greebles/whitesands/sulfur_pool_18.dmm' = 5,
+		'aquila/_maps/greebles/whitesands/sulfur_pool_19.dmm' = 5,
 	)
