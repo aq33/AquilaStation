@@ -894,3 +894,62 @@ for p, n in {
 }.items():
 	rep(p, n)
 DECISIONS['tace hydroponiczne i ekstraktor nasion'] = 'nasza botanika: taca /obj/item/plant_tray i siewnik przemysłowy'
+
+# ---------------------------------------------------------------- rury na warstwach 1 i 5
+# Shiptest ma podtypy /layer1 i /layer5 rur i urządzeń; u nas są tylko /layer2 i /layer4, ale piping_layer 1-5 działa.
+# Ścieżka bez końcówki + edycja piping_layer.
+import re as _re
+
+_original_convert_atom = cm.convert_atom
+
+
+def _convert_atom(a, mapname, stat):
+	path = a.split('{')[0]
+	m = _re.match(r'(/obj/machinery/atmospherics/.+)/layer([15])$', path)
+	if m:
+		rest = a[len(path):]
+		inner = rest.strip('{}')
+		edits = 'piping_layer = ' + m.group(2) + ('; ' + inner if inner else '')
+		return [m.group(1) + '{' + edits + '}']
+	return _original_convert_atom(a, mapname, stat)
+
+
+cm.convert_atom = _convert_atom
+DECISIONS['/obj/machinery/atmospherics/*/layer1, /layer5'] = 'rury i urządzenia na skrajnych warstwach -> nasz typ z piping_layer 1 albo 5'
+
+
+# Puste ramy maszyn (elektrolizer, wraki) nie mają zmiennych maszyn Shiptesta (input_dir, output_dir)
+_convert_atom_layers = cm.convert_atom
+_FRAME_DROP = _re.compile(r'\s*(input_dir|output_dir) = [^;}]*;?')
+
+
+def _convert_atom_frames(a, mapname, stat):
+	out = []
+	for atom in _convert_atom_layers(a, mapname, stat):
+		if atom.startswith('/obj/structure/frame') and '{' in atom:
+			atom = _re.sub(r';\s*}', '}', _FRAME_DROP.sub('', atom))
+			atom = atom.replace('{}', '').replace('{ ', '{').rstrip()
+			if atom.endswith('{}'):
+				atom = atom[:-2]
+		out.append(atom)
+	return out
+
+
+cm.convert_atom = _convert_atom_frames
+
+# Zmienne Shiptesta, których nasze typy nie mają (sprawdzone skryptem edycji zmiennych na mapach)
+cm.DROP_VARS |= {'dry_fire_text', 'dx', 'dy'}
+_FRAME_DROP = _re.compile(r'\s*(input_dir|output_dir|empty) = [^;}]*;?')
+_convert_atom_frames2 = cm.convert_atom
+
+
+def _convert_atom_turretid(a, mapname, stat):
+	out = []
+	for atom in _convert_atom_frames2(a, mapname, stat):
+		if atom.startswith('/obj/machinery/turretid{'):
+			atom = _re.sub(r';\s*}', '}', _re.sub(r'\s*\bid = [^;}]*;?', '', atom)).replace('{}', '')
+		out.append(atom)
+	return out
+
+
+cm.convert_atom = _convert_atom_turretid

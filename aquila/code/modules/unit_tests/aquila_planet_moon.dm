@@ -82,31 +82,39 @@
 	surface.unload()
 	qdel(planet, TRUE)
 
-/// AQUILA - planety: każda ruina księżyca i kosmiczna z Shiptesta mieści się na dużej powierzchni i się wczytuje,
-/// a kratery (greeble) księżyca wczytują się na powierzchni
+/// AQUILA - planety: każda ruina księżyca i kosmiczna z Shiptesta ma plik mapy, mieści się na dużej powierzchni i wczytuje
+/// się (każda we własnej pustej rezerwacji, żeby ruiny nie nachodziły na siebie), a kratery (greeble) księżyca wczytują się
+/// na powierzchni księżyca
 /datum/unit_test/planet_moon_ruins
 
 /datum/unit_test/planet_moon_ruins/Run()
 	var/list/templates = planet_ruin_templates_of(/datum/map_template/ruin/planet_moon) + planet_ruin_templates_of(/datum/map_template/ruin/planet_space)
 	TEST_ASSERT_EQUAL(length(templates), 8, "Wrong number of moon and space ruins registered")
-	var/obj/structure/overmap/planet/planet = new(run_loc_floor_top_right, /datum/planet_type/moon)
-	planet.planet_type.surface_size = PLANET_SURFACE_SIZE_LARGE
-	var/datum/planet_surface/surface = planet.surface
-	TEST_ASSERT(surface.generate(), "The large moon surface didn't generate")
-	var/side = surface.size
-	var/turf/bl = surface.bottom_left()
+	var/obj/structure/overmap/planet/fit_planet = new(run_loc_floor_top_right, /datum/planet_type/moon)
+	var/datum/planet_surface/fit_check = fit_planet.surface
 	for(var/name in templates)
 		var/datum/map_template/ruin/ruin = templates[name]
-		TEST_ASSERT(surface.main_ruin_fits(ruin, PLANET_SURFACE_SIZE_LARGE), "[name] ([ruin.width]x[ruin.height]) doesn't fit as a main ruin even on a large surface")
-		var/turf/corner = locate(bl.x + PLANET_EDGE_WIDTH + 6, bl.y + side - PLANET_EDGE_WIDTH - 6 - ruin.height, bl.z)
-		TEST_ASSERT(surface.load_ruin(ruin, corner, FALSE), "[name] didn't load")
+		// Bez pliku mapy szablon ma rozmiar 0 i „wczytuje się” jako pusta mapa
+		TEST_ASSERT(ruin.width && ruin.height, "[name] map file didn't preload ([ruin.mappath], fexists: [fexists(ruin.mappath)])")
+		TEST_ASSERT(fit_check.main_ruin_fits(ruin, PLANET_SURFACE_SIZE_LARGE), "[name] ([ruin.width]x[ruin.height]) doesn't fit as a main ruin even on a large surface")
+		var/datum/turf_reservation/reservation = SSmapping.RequestBlockReservation(ruin.width, ruin.height)
+		TEST_ASSERT(reservation, "No room to load [name]")
+		var/turf/corner = locate(reservation.bottom_left_coords[1], reservation.bottom_left_coords[2], reservation.bottom_left_coords[3])
+		TEST_ASSERT(ruin.load(corner), "[name] didn't load")
+		qdel(reservation)
+	qdel(fit_planet, TRUE)
+
+	var/obj/structure/overmap/planet/planet = new(run_loc_floor_top_right, /datum/planet_type/moon)
+	var/datum/planet_surface/surface = planet.surface
+	TEST_ASSERT(surface.generate(), "The moon surface didn't generate")
 	var/obj/effect/greeble_spawner/moon/crater_spawner = new(surface.center())
 	var/list/crater_maps = crater_spawner.greeble_maps.Copy()
 	qdel(crater_spawner)
-	var/turf/crater_spot = locate(bl.x + round(side / 2), bl.y + PLANET_EDGE_WIDTH + 10, bl.z)
+	var/turf/bl = surface.bottom_left()
+	var/turf/crater_spot = locate(bl.x + round(surface.size / 2), bl.y + PLANET_EDGE_WIDTH + 10, bl.z)
 	for(var/map_path in crater_maps)
 		var/datum/map_template/crater = new(map_path, "test crater", TRUE)
-		TEST_ASSERT(crater.width, "Crater map [map_path] didn't preload")
+		TEST_ASSERT(crater.width, "Crater map [map_path] didn't preload (fexists: [fexists(map_path)])")
 		TEST_ASSERT(crater.load(crater_spot, centered = TRUE), "Crater map [map_path] didn't load")
 	surface.unload()
 	qdel(planet, TRUE)

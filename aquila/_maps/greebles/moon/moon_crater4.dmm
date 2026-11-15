@@ -1,91 +1,91 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"h" = (
-/turf/open/floor/plating/asteroid/moon_coarse/dark,
-/area/template_noop)
-"H" = (
+"o" = (
 /turf/template_noop,
 /area/template_noop)
-"M" = (
+"U" = (
+/turf/open/floor/plating/asteroid/moon_coarse/dark,
+/area/template_noop)
+"Y" = (
 /turf/closed/mineral/random/moon,
 /area/template_noop)
 
 (1,1,1) = {"
-H
-H
-M
-M
-M
-H
-H
-H
+o
+o
+Y
+Y
+Y
+o
+o
+o
 "}
 (2,1,1) = {"
-H
-M
-M
-h
-h
-h
-M
-H
+o
+Y
+Y
+U
+U
+U
+Y
+o
 "}
 (3,1,1) = {"
-H
-M
-M
-h
-h
-h
-h
-M
+o
+Y
+Y
+U
+U
+U
+U
+Y
 "}
 (4,1,1) = {"
-M
-h
-h
-h
-h
-h
-h
-M
+Y
+U
+U
+U
+U
+U
+U
+Y
 "}
 (5,1,1) = {"
-M
-h
-h
-h
-h
-h
-h
-H
+Y
+U
+U
+U
+U
+U
+U
+o
 "}
 (6,1,1) = {"
-H
-M
-h
-h
-h
-h
-M
-H
+o
+Y
+U
+U
+U
+U
+Y
+o
 "}
 (7,1,1) = {"
-H
-H
-M
-h
-h
-M
-H
-H
+o
+o
+Y
+U
+U
+Y
+o
+o
 "}
 (8,1,1) = {"
-H
-H
-H
-H
-H
-H
-H
-H
+o
+o
+o
+o
+o
+o
+o
+o
 "}
