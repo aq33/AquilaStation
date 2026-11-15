@@ -116,10 +116,10 @@
 /obj/effect/greeble_spawner/moon
 	name = "spawner krateru księżycowego"
 	greeble_maps = list(
-		"aquila/_maps/greebles/moon/moon_crater1.dmm" = 5,
-		"aquila/_maps/greebles/moon/moon_crater2.dmm" = 5,
-		"aquila/_maps/greebles/moon/moon_crater3.dmm" = 5,
-		"aquila/_maps/greebles/moon/moon_crater4.dmm" = 5,
-		"aquila/_maps/greebles/moon/moon_crater5.dmm" = 5,
-		"aquila/_maps/greebles/moon/moon_crater6.dmm" = 5,
+		'aquila/_maps/greebles/moon/moon_crater1.dmm' = 5,
+		'aquila/_maps/greebles/moon/moon_crater2.dmm' = 5,
+		'aquila/_maps/greebles/moon/moon_crater3.dmm' = 5,
+		'aquila/_maps/greebles/moon/moon_crater4.dmm' = 5,
+		'aquila/_maps/greebles/moon/moon_crater5.dmm' = 5,
+		'aquila/_maps/greebles/moon/moon_crater6.dmm' = 5,
 	)

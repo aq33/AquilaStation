@@ -274,9 +274,7 @@
 	color = "#730622";
 	alpha = 140
 	},
-/obj/item/storage/fancy/egg_box{
-	spawn_type = null
-	},
+/obj/item/storage/fancy/egg_box,
 /obj/item/reagent_containers/food/condiment/milk{
 	list_reagents = null;
 	pixel_x = 10;
@@ -585,9 +583,7 @@
 	color = "#730622";
 	alpha = 140
 	},
-/obj/item/storage/fancy/egg_box{
-	spawn_type = null
-	},
+/obj/item/storage/fancy/egg_box,
 /obj/item/reagent_containers/food/condiment/milk{
 	list_reagents = null;
 	pixel_x = -9;

@@ -1,8 +1,8 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"p" = (
+"f" = (
 /turf/template_noop,
 /area/template_noop)
-"P" = (
+"K" = (
 /turf/open/floor/plating/asteroid/moon_coarse/dark,
 /area/template_noop)
 "V" = (
@@ -10,26 +10,26 @@
 /area/template_noop)
 
 (1,1,1) = {"
-p
+f
 V
-P
+K
 V
 "}
 (2,1,1) = {"
 V
-P
-P
-P
+K
+K
+K
 "}
 (3,1,1) = {"
-P
-P
-P
+K
+K
+K
 V
 "}
 (4,1,1) = {"
 V
-P
+K
 V
-p
+f
 "}
