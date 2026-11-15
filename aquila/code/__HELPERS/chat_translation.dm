@@ -2,7 +2,7 @@
 // Bez modułu wersji angielskiej nic nie zmieniają. Moduł nadpisuje je w aquila/code/modules/i18n/chat_translation.dm.
 
 /// Przed rozesłaniem OOC: client -> treść (po sanitize) w języku odbiorcy, tylko dla tych, którzy wiadomość zobaczą
-/// i mówią innym językiem niż autor. null, gdy nikomu nie trzeba tłumaczyć. Może czekać na API (raz na całą wiadomość).
+/// i mówią innym językiem niż autor. null, gdy nikomu nie trzeba tłumaczyć. Nie czeka na API: oryginał z „…” podmienia potem panel.
 /client/proc/aq_ooc_prepare(raw_msg)
 	return null
 
