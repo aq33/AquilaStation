@@ -602,6 +602,63 @@
 	TEST_ASSERT_EQUAL(stock_cooldown, 0, "A faction built a second nuke right after the first one")
 	TEST_ASSERT_EQUAL(stock_no_hq, 0, "A factory away from the headquarters built a nuke")
 
+/// Rozmieszczenie misji: abordaż okrętu na froncie po stronie wroga, placówka w głębi terenu wroga, wrak z dala od wroga,
+/// odstęp między celami, stacje ładunkowe trzymane przez NT i cel Armady przy froncie
+/datum/unit_test/hexmap_mission_rules
+
+/datum/unit_test/hexmap_mission_rules/Run()
+	if(!GLOB.hexmap?.built)
+		return
+	var/list/sides = hex_mission_sides()
+	var/list/enemy = sides[1]
+	var/list/friendly = sides[2]
+	var/datum/hex/ship_hex = hex_mission_pick("board_ship")
+	if(ship_hex)
+		var/to_enemy = hex_mission_min_distance(ship_hex, enemy)
+		var/to_friendly = hex_mission_min_distance(ship_hex, friendly)
+		TEST_ASSERT(to_enemy <= 2 && to_enemy < to_friendly, "The boarding ship is not on the enemy side of the front ([to_enemy] to the enemy, [to_friendly] to NT)")
+	var/datum/hex/outpost = hex_mission_pick("board_station")
+	if(outpost)
+		var/to_friendly = hex_mission_min_distance(outpost, friendly)
+		TEST_ASSERT(hex_mission_min_distance(outpost, enemy) <= 2 && to_friendly >= 5, "The station to board is not behind the enemy lines")
+	var/datum/hex/wreck = hex_mission_pick("derelict")
+	if(wreck)
+		TEST_ASSERT(hex_mission_min_distance(wreck, enemy) >= 4, "The derelict is closer than 4 hexes to the enemy")
+		TEST_ASSERT(wreck.terrain == HEX_TERRAIN_SIGNAL || wreck.terrain == HEX_TERRAIN_EMPTY, "The derelict landed on [wreck.terrain]")
+	// Odstęp: z zajętym pierwszym celem drugi wypada co najmniej HEX_MISSION_SPACING kafli dalej
+	if(ship_hex)
+		var/datum/star_system/first = GLOB.hexmap.system_for(ship_hex)
+		var/was_objective = first.objective_sector
+		first.objective_sector = TRUE
+		var/datum/hex/second = hex_mission_pick("board_ship")
+		first.objective_sector = was_objective
+		if(!was_objective && istype(first, /datum/star_system/random/hex_empty))
+			var/datum/star_system/random/hex_empty/E = first
+			E.try_release()
+		if(second)
+			TEST_ASSERT(GLOB.hexmap.war_distance(ship_hex, second) >= HEX_MISSION_SPACING, "Two missions landed [GLOB.hexmap.war_distance(ship_hex, second)] hexes apart")
+	// Ładunki tylko do stacji trzymanych przez blok NT (jeśli jakaś taka jest)
+	var/list/stations = list()
+	for(var/datum/trader/T as anything in SSstar_system.traders)
+		if(T.faction_type == FACTION_ID_NT && T.current_location)
+			stations += T.current_location
+	var/list/kept = hex_mission_stations(stations)
+	if(kept != stations)
+		for(var/obj/structure/overmap/station as anything in kept)
+			TEST_ASSERT(hex_factions_allied("nanotrasen", station.current_system?.alignment), "A cargo mission went to [station] in a system held by [station.current_system?.alignment]")
+	// Armada: układ NT najbliżej wroga
+	var/list/names = list()
+	for(var/datum/star_system/S as anything in SSstar_system.systems)
+		if(S.alignment == "nanotrasen" && S.hex && !S.hidden && !S.has_facility(HEX_FAC_HQ) && !(S.system_traits & STARSYSTEM_END_ON_ENTER))
+			names += S.name
+	var/target_name = hex_armada_target(names)
+	if(target_name)
+		var/datum/star_system/target = SSstar_system.system_by_id(target_name)
+		var/target_distance = hex_mission_min_distance(target.hex, enemy)
+		for(var/name in names)
+			var/datum/star_system/other = SSstar_system.system_by_id(name)
+			TEST_ASSERT(hex_mission_min_distance(other.hex, enemy) >= target_distance, "The Armada picked [target_name] ([target_distance] from the enemy) over [name]")
+
 /// Misje trafiają na losowy pusty kafel sektora neutralnego, z dala od okrętu gracza
 /datum/unit_test/hexmap_war_missions
 

@@ -32,7 +32,7 @@
 			continue
 		candidates += S
 	target_system = pick(candidates)
-	target_system = hex_mission_system(target_system) // AQ EDIT - mapa hex: okręt do abordażu na losowym pustym kaflu (war_missions.dm)
+	target_system = hex_mission_system(target_system, "board_ship") // AQ EDIT - mapa hex: okręt do abordażu na froncie, po stronie wroga (war_missions.dm)
 	brief = "Przejmijcie jednostkę Syndykatu [target_ship] w systemie [target_system]: wejdźcie na pokład, pokonajcie wrogów i zmieńcie jej kody IFF."
 	target_system.add_ship(target_ship)
 	target_system.enemies_in_system += target_ship
