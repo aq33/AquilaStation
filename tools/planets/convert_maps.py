@@ -77,7 +77,9 @@ WALL_PIX = {'north': ('pixel_y', '28'), 'south': ('pixel_y', '-28'), 'east': ('p
 OPP = {'north': 2, 'south': 1, 'east': 8, 'west': 4}
 DROP_VARS = {'populate', 'req_ship_access', 'turret_flags', 'spawn_no_ammo', 'gps_active', 'subship_template',
              'weapon_drop_chance', 'burst_interval', 'aggro_say_chance', 'holds_post', 'on_aggro_say', 'verb_exclaim',
-             'verb_yell', 'icon_state'}  # icon_state zostawiamy tylko tam, gdzie typ docelowy jest ten sam
+             'verb_yell', 'icon_state', 'empty', 'table_type', 'name_override', 'close_exception', 'set_dir_on_move',
+             'auto_scatter', 'auto_rotate', 'default_ammo_type', 'spawn_arm_delay', 'search_alarms', 'drops_core',
+             'melee_damage_lower', 'melee_damage_upper'}  # icon_state zostawiamy tylko tam, gdzie typ docelowy jest ten sam
 
 
 def atom(path, vars_):
@@ -270,12 +272,25 @@ def parse_atom(atom):
 
 MISSING = set()
 OURS = set()
+MISSING_VALUES = set()
 
 def clean_vars(vars_, keep_icon_state):
     out = collections.OrderedDict()
     for k, v in vars_.items():
         if (k in DROP_VARS or k in common.DROP_VARS_EXTRA) and not (k == 'icon_state' and keep_icon_state):
             continue
+        # parser map rozcina listy asocjacyjne (list(a = 1, b = 2)) na kawałki: takie zmienne (skład jedzenia, pancerz
+        # kanistra) pomijamy w całości, zostaje wartość domyślna typu
+        if not re.match(r'^[A-Za-z_][A-Za-z0-9_]*$', k) or (v.count('(') != v.count(')')):
+            continue
+        # wartość będąca ścieżką typu, którego nie mamy (strój zwłok, broń na stojaku): zamiennik albo bez zmiennej
+        if v in MISSING_VALUES:
+            target = R.get(v)
+            if isinstance(target, tuple):
+                target = target[0]
+            if not target:
+                continue
+            v = target
         if v == '/datum/species/spider':  # rachnidzi z Shiptesta, u nas brak tej rasy
             v = '/datum/species/human'
         if v == '/obj/item/gem/amber':  # klejnot w gablocie -> złoto
@@ -313,7 +328,11 @@ def convert_atom(a, mapname, stat):
         return [atom(layered.group(1), nv)]
     # obszary
     if path.startswith('/area'):
-        return [AREAS.get(path, path)]
+        if path in AREAS:
+            return [AREAS[path]]
+        if path in MISSING:
+            raise KeyError(path)
+        return [path]
     # łuski z ikoną "empty" to w Shiptescie zużyte łuski, u nas byłyby to żywe naboje
     if path in ('/obj/item/ammo_casing/c10mm', '/obj/item/ammo_casing/c9mm') and 'empty' in vars_.get('icon_state', ''):
         nv = clean_vars(vars_, False)
@@ -484,6 +503,18 @@ def collect_missing(maps, ours):
     return missing
 
 
+def collect_missing_values(maps, ours):
+    """Ścieżki typów użyte jako wartości zmiennych na mapach, których u nas nie ma."""
+    missing = set()
+    for m in maps:
+        for tile in m.dictionary.values():
+            for a in tile:
+                for value in dmmlib.parse_map_atom(a)[1].values():
+                    if re.match(r'^/[\w/]+$', value) and value not in ours and not value.startswith(MACRO_PREFIXES):
+                        missing.add(value)
+    return missing
+
+
 def main():
     global MISSING, OURS
     parser = argparse.ArgumentParser(description='Konwersja map Shiptesta na nasz kod')
@@ -493,8 +524,9 @@ def main():
     parser.add_argument('--root', default='.', help='katalog repo (nsv13.dme)')
     parser.add_argument('maps', nargs='+', help='źródło.dmm=nowa_nazwa')
     args = parser.parse_args()
+    modules = []
     for name in filter(None, args.mappings.split(',')):
-        importlib.import_module('mappings.' + name.strip())
+        modules.append(importlib.import_module('mappings.' + name.strip()))
     ours = defined_types(args.root)
     OURS = ours
     pairs = []
@@ -503,6 +535,11 @@ def main():
         pairs.append((src, dst or os.path.splitext(os.path.basename(src))[0]))
     loaded = [(dmmlib.DMM.from_file(src), src, dst) for src, dst in pairs]
     MISSING = collect_missing([m for m, _, _ in loaded], ours)
+    MISSING_VALUES.update(collect_missing_values([m for m, _, _ in loaded], ours))
+    # Moduły zamienników mogą same dobrać zamienniki dla brakujących ścieżek (resolve(missing, ours), np. mappings/auto.py)
+    for module in modules:
+        if hasattr(module, 'resolve'):
+            module.resolve(MISSING, ours)
     errors = collections.defaultdict(set)
     results = []
     report = {}

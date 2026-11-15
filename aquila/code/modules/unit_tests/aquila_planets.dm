@@ -242,6 +242,20 @@
 	surface.unload()
 	qdel(planet, TRUE)
 
+/// Czy ruina mieści się jako ruina główna na kwadracie o boku side, w miejscu z place_main_ruin (przy górnej krawędzi)
+/proc/planet_ruin_fits_surface(datum/map_template/ruin/ruin, side)
+	var/inner_size = side - 2 * PLANET_EDGE_WIDTH
+	return ruin.width <= inner_size - 12 && ruin.height <= inner_size / 2
+
+/// Wczytuje ruinę w osobnej, czystej rezerwacji i ją zwalnia. TRUE, jeśli szablon się wczytał.
+/proc/planet_test_load_ruin(datum/map_template/ruin/ruin)
+	var/datum/turf_reservation/reservation = SSmapping.RequestBlockReservation(ruin.width + 2, ruin.height + 2)
+	if(!reservation)
+		return FALSE
+	var/turf/corner = locate(reservation.bottom_left_coords[1] + 1, reservation.bottom_left_coords[2] + 1, reservation.bottom_left_coords[3])
+	. = ruin.load(corner, centered = FALSE)
+	qdel(reservation)
+
 /// AQUILA - planety: każda ruina Shiptesta z puli ruin głównych planety wulkanicznej mieści się na planecie i się wczytuje
 /datum/unit_test/planet_lava_ruins
 

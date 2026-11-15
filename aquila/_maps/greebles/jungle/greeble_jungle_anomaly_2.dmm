@@ -1,0 +1,114 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"j" = (
+/obj/structure/flora/ausbushes/sparsegrass/hell,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"n" = (
+/turf/closed/mineral/random/planet_jungle,
+/area/template_noop)
+"q" = (
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"A" = (
+/obj/structure/flora/ausbushes/sparsegrass/hell,
+/turf/open/water/planet/jungle/blood,
+/area/template_noop)
+"J" = (
+/obj/effect/anomaly/transfusion/planetary,
+/turf/open/water/planet/jungle/blood,
+/area/template_noop)
+"O" = (
+/turf/open/water/planet/jungle/blood,
+/area/template_noop)
+"Q" = (
+/turf/template_noop,
+/area/template_noop)
+
+(1,1,1) = {"
+Q
+Q
+Q
+n
+n
+n
+Q
+j
+Q
+"}
+(2,1,1) = {"
+Q
+n
+n
+n
+n
+n
+n
+q
+j
+"}
+(3,1,1) = {"
+n
+n
+n
+n
+O
+O
+j
+q
+q
+"}
+(4,1,1) = {"
+n
+n
+J
+A
+O
+j
+q
+q
+j
+"}
+(5,1,1) = {"
+Q
+n
+n
+O
+O
+n
+q
+j
+Q
+"}
+(6,1,1) = {"
+Q
+n
+n
+n
+n
+n
+n
+j
+Q
+"}
+(7,1,1) = {"
+n
+n
+n
+n
+n
+n
+n
+n
+Q
+"}
+(8,1,1) = {"
+Q
+n
+Q
+Q
+Q
+n
+n
+Q
+Q
+"}

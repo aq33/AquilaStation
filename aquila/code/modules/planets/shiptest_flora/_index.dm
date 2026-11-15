@@ -3,3 +3,5 @@
 #include "flora.dm"
 #include "ash_flora.dm"
 #include "piaski.dm"
+#include "ice.dm"
+#include "jungle.dm"

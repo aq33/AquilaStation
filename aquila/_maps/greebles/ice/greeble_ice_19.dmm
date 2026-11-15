@@ -1,0 +1,128 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"j" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"s" = (
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
+"v" = (
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"A" = (
+/mob/living/basic/mining/goliath/crystal,
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
+"F" = (
+/obj/structure/flora/rock/pile/lava{
+	pixel_x = 6;
+	 pixel_y = 6
+	},
+/turf/open/floor/plating/ice/planet_ice,
+/area/template_noop)
+"H" = (
+/obj/structure/flora/rock/pile/lava{
+	pixel_x = 4;
+	 pixel_y = 5
+	},
+/turf/open/floor/plating/ice/planet_ice,
+/area/template_noop)
+"L" = (
+/obj/structure/flora/tree/dead/tall,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"M" = (
+/obj/structure/flora/rock/pile/lava{
+	pixel_x = 3;
+	 pixel_y = -5
+	},
+/turf/open/floor/plating/ice/planet_ice,
+/area/template_noop)
+"P" = (
+/turf/template_noop,
+/area/template_noop)
+"X" = (
+/turf/open/floor/plating/ice/planet_ice,
+/area/template_noop)
+
+(1,1,1) = {"
+P
+P
+v
+j
+s
+X
+P
+"}
+(2,1,1) = {"
+P
+P
+L
+v
+s
+F
+X
+"}
+(3,1,1) = {"
+P
+j
+v
+v
+X
+X
+s
+"}
+(4,1,1) = {"
+P
+v
+v
+H
+X
+A
+s
+"}
+(5,1,1) = {"
+v
+v
+s
+X
+X
+s
+s
+"}
+(6,1,1) = {"
+v
+L
+s
+s
+M
+v
+j
+"}
+(7,1,1) = {"
+P
+v
+s
+s
+s
+v
+L
+"}
+(8,1,1) = {"
+P
+j
+v
+L
+v
+v
+v
+"}
+(9,1,1) = {"
+P
+P
+v
+j
+P
+P
+P
+"}

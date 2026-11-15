@@ -1,0 +1,60 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"g" = (
+/obj/effect/anomaly/hallucination/planetary,
+/turf/open/floor/carpet/royalblack{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"o" = (
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"D" = (
+/turf/open/floor/carpet/royalblack{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"F" = (
+/obj/structure/flora/rock/jungle,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"H" = (
+/turf/template_noop,
+/area/template_noop)
+
+(1,1,1) = {"
+H
+F
+o
+o
+H
+"}
+(2,1,1) = {"
+o
+o
+D
+D
+H
+"}
+(3,1,1) = {"
+F
+D
+g
+D
+D
+"}
+(4,1,1) = {"
+o
+D
+D
+D
+o
+"}
+(5,1,1) = {"
+H
+H
+D
+F
+H
+"}

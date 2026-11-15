@@ -3,3 +3,5 @@
 #include "ruin_objects.dm"
 #include "planet_piaski_areas.dm"
 #include "planet_piaski_ruins.dm"
+#include "planet_ice_ruins.dm"
+#include "planet_jungle_ruins.dm"
