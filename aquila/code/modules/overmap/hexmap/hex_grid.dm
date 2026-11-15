@@ -152,8 +152,11 @@ GLOBAL_LIST_INIT(hex_axial_dirs, list(list(1, 0), list(1, -1), list(0, -1), list
 	col = clamp(col, 0, dims["cols"] - 1)
 	row = clamp(row, 0, dims["rows"] - 1)
 	var/datum/hex/start = hex_at(S.sector || SECTOR_NEUTRAL, col, row)
+	// Po budowie mapy (Badlands Lite co rundę, układy admina) teren już leży: układ szuka kafla bez terenu, bo wyparty
+	// teren nie wraca (zapis kampanii pomija kafle z układem), a koniec tunelu kasowałby też drugi koniec
 	var/datum/hex/free = start
-	if(start.system)
+	var/datum/hex/fallback
+	if(start.system || (built && start.terrain != HEX_TERRAIN_EMPTY))
 		free = null
 		var/list/queue = list(start)
 		var/list/seen = list()
@@ -162,16 +165,22 @@ GLOBAL_LIST_INIT(hex_axial_dirs, list(list(1, 0), list(1, -1), list(0, -1), list
 			var/datum/hex/H = queue[1]
 			queue.Cut(1, 2)
 			if(!H.system)
-				free = H
-				break
+				if(!built || H.terrain == HEX_TERRAIN_EMPTY)
+					free = H
+					break
+				if(!fallback)
+					fallback = H
 			for(var/datum/hex/N as anything in neighbours(H))
 				if(seen[N])
 					continue
 				seen[N] = TRUE
 				queue += N
 	if(!free)
+		free = fallback
+	if(!free)
 		return
-	free.set_terrain(HEX_TERRAIN_EMPTY) // układ wypiera teren (Badlands Lite kładzione co rundę)
+	if(free.terrain != HEX_TERRAIN_EMPTY)
+		free.set_terrain(HEX_TERRAIN_EMPTY) // tylko gdy w sektorze nie ma już kafla bez terenu
 	free.system = S
 	S.hex = free
 	system_hexes[S.name] = free
@@ -238,7 +247,9 @@ GLOBAL_LIST_INIT(hex_axial_dirs, list(list(1, 0), list(1, -1), list(0, -1), list
 
 /// Teren, przez który nikt nie przelatuje (czarna dziura)
 /datum/hexmap/proc/blocks(datum/hex/H)
-	return H.terrain_datum().blocks
+	// Ukryty Outpost 45 też leży na siatce: wejście do niego kończy rundę (after_enter), więc kafel jest nieprzelotny.
+	// Powrót na koniec rundy idzie do niego starym skokiem (force_return_jump), nie trasą po kaflach.
+	return H.terrain_datum().blocks || (H.system && (H.system.system_traits & STARSYSTEM_END_ON_ENTER))
 
 /// Teren, który zatrzymuje skok (zagrożenia); układ z mapy nie zatrzymuje, bo nie ma terenu
 /datum/hexmap/proc/stops(datum/hex/H)

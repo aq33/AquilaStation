@@ -6,8 +6,18 @@
  * Domyślnie wschód albo północ: obiekt stoi wtedy lewym dolnym rogiem w tej odległości i nie nachodzi na okręt,
  * a magnes na asteroidy (orange(5) od okrętu) wciąż go widzi.
  */
-/proc/aquila_hex_overmap_spot_beside(obj/structure/overmap/near, distance, list/dirs = list(EAST, NORTH))
+/// Okręt stoi w układzie gwiezdnym (nie w nadprzestrzeni). W locie `current_system` wciąż wskazuje stary układ, a okręt
+/// jest na płaszczyźnie tranzytu, więc obiekt dodany „do jego układu” trafiłby do starego układu na płaszczyznę gracza.
+/proc/aquila_hex_ship_settled(obj/structure/overmap/near)
 	if(!near?.current_system || !near.z)
+		return FALSE
+	var/list/info = SSstar_system.ships[near]
+	if(!info) // okręt spoza rejestru skoków (mała jednostka, test): nie skacze FTL, więc stoi tam, gdzie jest
+		return TRUE
+	return !info["target_system"] && info["current_system"] == near.current_system
+
+/proc/aquila_hex_overmap_spot_beside(obj/structure/overmap/near, distance, list/dirs = list(EAST, NORTH))
+	if(!aquila_hex_ship_settled(near))
 		return null
 	for(var/dir in shuffle(dirs.Copy()))
 		var/turf/spot = get_turf(near)
@@ -73,7 +83,7 @@
 
 /// Stawia kometę w zasięgu magnesu okrętu. Bez okrętu w układzie gwiezdnym nic nie robi.
 /datum/round_event/aquila_hex_rich_comet/proc/spawn_comet(obj/structure/overmap/near)
-	if(!near?.current_system || !near.z)
+	if(!aquila_hex_ship_settled(near))
 		return null
 	var/turf/spot = aquila_hex_overmap_spot_beside(near, aquila_hex_magnet_distance(near))
 	if(!spot)

@@ -255,6 +255,9 @@
 				to_chat(usr, "<span class='warning'>[icon2html(src, viewers(src))] Nie można wykonać. Nieprawidłowy klucz autoryzacji do odblokowania kodu nadpisania.</span>")
 				return
 			if(linked.ftl_safety_override)
+				if(linked.hex_in_flight())
+					say("Okręt jest w nadprzestrzeni. Skok awaryjny niedostępny.")
+					return TRUE
 				if(linked.next_emergency_jump > world.time)
 					say("Awaryjny kondensator napędu wciąż się ładuje. Skok awaryjny niedostępny.")
 					return TRUE

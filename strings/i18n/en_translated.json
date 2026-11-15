@@ -21705,7 +21705,6 @@
 "Napięcie między frakcjami rośnie.": "Tension between the factions is rising.",
 "Stan gotowości sektora: DEFCON [defcon].": "Sector readiness: DEFCON [defcon].",
 "Flota [F.name] zestrzeliła pocisk termojądrowy w [next.display_name()].": "The fleet [F.name] shot down a thermonuclear missile at [next.display_name()].",
-"Detonacja jądrowa w [hex.display_name()].": "Nuclear detonation at [hex.display_name()].",
 "Brak łączności ze sztabem.": "No link to fleet command.",
 "Użycie broni jądrowej wymaga DEFCON 2 albo niższego (teraz [GLOB.hex_war.defcon]).": "Nuclear weapons require DEFCON 2 or lower (now [GLOB.hex_war.defcon]).",
 "Żadna wyrzutnia nie ma załadowanej atomówki.": "No launcher has a nuclear torpedo loaded.",
@@ -21791,5 +21790,8 @@
 "Kwatera główna Nanotrasen w układzie [target_system] odbita. Za udział okrętu na konto zaopatrzenia przelano [HEX_WAR_RETAKE_REWARD] kr.": "The Nanotrasen headquarters in [target_system] has been retaken. [HEX_WAR_RETAKE_REWARD] cr has been transferred to the supply account for the ship's part in it.",
 "Przywracanie kopii kampanii [name] nie powiodło się i nie udało się odtworzyć poprzednich plików kampanii. Sprawdź [starmap_path] i [HEXMAP_SAVE_PATH].": "Restoring the campaign backup [name] failed and the previous campaign files could not be put back. Check [starmap_path] and [HEXMAP_SAVE_PATH].",
 "<span class='warning'>Ktoś zmienił zaznaczony kafel. Sprawdź cel i spróbuj jeszcze raz.</span>": "<span class='warning'>Someone changed the selected tile. Check the target and try again.</span>",
-"Wykryto odpalenie pocisku termojądrowego ([hex_war_faction_name(N.faction)]) w [N.hex.display_name()]. Cel: [target_name].": "Thermonuclear missile launch detected ([hex_war_faction_name(N.faction)]) at [N.hex.display_name()]. Target: [target_name]."
+"Wykryto odpalenie pocisku termojądrowego ([hex_war_faction_name(N.faction)]) w [N.hex.display_name()]. Cel: [target_name].": "Thermonuclear missile launch detected ([hex_war_faction_name(N.faction)]) at [N.hex.display_name()]. Target: [target_name].",
+"Detonacja jądrowa w [where.display_name()].": "Nuclear detonation at [where.display_name()].",
+"Okręt jest w nadprzestrzeni. Skok awaryjny niedostępny.": "The ship is in hyperspace. Emergency jump unavailable.",
+"Pocisk nie doleci do tego kafla.": "The missile cannot reach this tile."
 }

@@ -75,7 +75,7 @@
  * Bez okrętu w układzie gwiezdnym nic nie robi i zwraca FALSE.
  */
 /datum/round_event/aquila_hex_freighter_attack/proc/spawn_attack(obj/structure/overmap/near)
-	if(!near?.current_system || !near.z)
+	if(!aquila_hex_ship_settled(near))
 		return FALSE
 	var/turf/spot = aquila_hex_overmap_spot_beside(near, rand(14, 18), GLOB.alldirs)
 	if(!spot)

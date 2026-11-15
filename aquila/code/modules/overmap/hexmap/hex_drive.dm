@@ -207,6 +207,11 @@
 
 /// Skok awaryjny na mapie hex: losowy kafel w promieniu 1–2 w tym samym sektorze (jak dotąd: z obrażeniami i bez celu)
 /obj/structure/overmap/emergency_jump()
+	// Po skoku po hexach napęd zachowuje ładunek, więc potwierdzenie na rdzeniu przechodzi też w locie: bazowy skok
+	// ruszyłby wtedy z układu null (runtime w jump_start) i zostawił napęd w stanie skoku
+	if(hex_in_flight())
+		ftl_drive?.radio?.talk_into(ftl_drive, "Okręt jest w nadprzestrzeni. Skok awaryjny niedostępny.", ftl_drive.radio_channel)
+		return FALSE
 	var/datum/hex/here = current_hex()
 	if(!here)
 		return ..()
@@ -236,4 +241,8 @@
 	if(!OM)
 		return
 	return ..()
+
+/// Okręt jest w nadprzestrzeni albo w rozruchu skoku
+/obj/structure/overmap/proc/hex_in_flight()
+	return SSstar_system.ships[src]?["target_system"] || ftl_drive?.ftl_state == FTL_STATE_JUMPING
 

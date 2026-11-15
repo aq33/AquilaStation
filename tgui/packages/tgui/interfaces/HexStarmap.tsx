@@ -515,7 +515,10 @@ export const HexStarmap = () => {
   };
 
   const onMapClick = (e: MouseEvent<SVGSVGElement>) => {
-    const id = (e.target as SVGElement).getAttribute('data-hex');
+    // Floty i cele misji leżą nad kaflem (mają podpowiedzi), więc kafel bierzemy z najbliższego elementu z data-hex
+    const id = (e.target as SVGElement)
+      .closest('[data-hex]')
+      ?.getAttribute('data-hex');
     if (id) {
       act('hex_select', { hex: id });
     }
@@ -1000,7 +1003,8 @@ export const HexStarmap = () => {
                         return (
                           <g
                             key={`fleet-${id}-${k}`}
-                            pointerEvents="none"
+                            data-hex={id}
+                            style={{ cursor: 'pointer' }}
                             opacity={fleet.ghost ? 0.45 : 1}
                           >
                             <title>
@@ -1033,7 +1037,11 @@ export const HexStarmap = () => {
                     {objective_hexes
                       .filter((id) => !!cells[id] && inView(cells[id].sector))
                       .map((id) => (
-                        <g key={`objective-${id}`} pointerEvents="none">
+                        <g
+                          key={`objective-${id}`}
+                          data-hex={id}
+                          style={{ cursor: 'pointer' }}
+                        >
                           <title>Cel misji</title>
                           <polygon
                             points={polygon(cells[id])}

@@ -222,7 +222,7 @@
 		trail += next.id
 	var/obj/structure/overmap/player = SSstar_system.find_main_overmap()
 	var/datum/hex/player_hex = player?.current_hex()
-	if(!warned && player_hex && (target_ship == player || dest == player_hex) && GLOB.hexmap.war_distance(hex, player_hex) <= 2)
+	if(!warned && player_hex && hex_factions_hostile(faction, player.faction) && (target_ship == player || dest == player_hex) && GLOB.hexmap.war_distance(hex, player_hex) <= 2)
 		warned = TRUE
 		player.relay('nsv13/sound/effects/ship/incoming_missile.ogg', message = "<h1>Nieuchronne trafienie pociskiem</h1><br/><span class='danger'>Wykryto odpalenie głowicy termojądrowej. Cała załoga, przygotować się na uderzenie.</span>")
 	if(hex == dest)
@@ -232,7 +232,9 @@
 
 /// Wybuch w kaflu: floty tracą okręty (3 w kaflu, 1 obok), pusty kafel zostaje skażony; okręt gracza dostaje prawdziwą torpedę
 /datum/hex_nuke/proc/impact(obj/structure/overmap/player, datum/hex/player_hex)
-	if(player && player_hex == hex)
+	// Tylko wrogi pocisk schodzi do walki taktycznej z okrętem gracza. Własny pocisk gracza (śledzi flotę celu, która
+	// mogła wejść w jego kafel) wybucha strategicznie: niszczy floty w kaflu, okrętu gracza nie dotyka.
+	if(hits_player(player, player_hex))
 		// Okręt gracza w kaflu: rakieta schodzi do walki taktycznej jako prawdziwa torpeda, którą da się zestrzelić.
 		// Skutki strategiczne (floty, skażenie, DEFCON) liczy dopiero jej trafienie, nie samo wejście do kafla.
 		player.hex_incoming_nuke(faction)
@@ -241,6 +243,10 @@
 		return
 	hex_nuke_blast(hex, faction)
 	finish()
+
+/// Pocisk schodzi do walki taktycznej z okrętem gracza: tylko wrogi i tylko w jego kaflu
+/datum/hex_nuke/proc/hits_player(obj/structure/overmap/player, datum/hex/player_hex)
+	return player && player_hex == hex && hex_factions_hostile(faction, player.faction)
 
 /// Skutki wybuchu na mapie: floty tracą okręty (3 w kaflu, 1 obok), pusty kafel zostaje skażony, DEFCON i napięcie
 /proc/hex_nuke_blast(datum/hex/where, faction)
@@ -287,6 +293,13 @@
 	proj.firer = null
 	proj.def_zone = "chest"
 	proj.original = src
+	proj.faction = faction
+	proj.spread = 0
+	if(physics2d?.collider2d)
+		proj.setup_collider()
+	// Naprowadzanie jak przy fire_projectile() (physics.dm): bez niego torpeda leci w miejsce, gdzie okręt stał,
+	// i chybia każdy manewrujący okręt, a skutki strategiczne liczy dopiero trafienie
+	proj.set_homing_target(src)
 	proj.fire(get_angle(start, goal))
 
 // ===== strzał strategiczny gracza =====
@@ -312,6 +325,8 @@
 /obj/structure/overmap/proc/hex_nuke_blocker(datum/hex/target, cached = FALSE)
 	if(!GLOB.hex_war?.ready)
 		return "Brak łączności ze sztabem."
+	if(target && GLOB.hexmap.blocks(target)) // czarna dziura: trasy nie ma, a pocisk przepadłby po cichu po odpaleniu
+		return "Pocisk nie doleci do tego kafla."
 	if(GLOB.hex_war.defcon > 2)
 		return "Użycie broni jądrowej wymaga DEFCON 2 albo niższego (teraz [GLOB.hex_war.defcon])."
 	if(!(cached ? hex_loaded_nuke_count() : length(hex_loaded_nukes())))

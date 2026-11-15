@@ -52,7 +52,13 @@
 	var/list/nuke_cooldown = list()
 	for(var/faction in nuke_built_at)
 		nuke_cooldown[faction] = max(0, nuke_built_at[faction] + HEX_WAR_NUKE_COOLDOWN - world.time)
-	return list("commanders" = commander_data, "fleets" = fleet_data, "stores" = stores, "next_id" = next_commander_id, "tension" = tension, "nuke_stocks" = nuke_stocks, "nuke_cooldown" = nuke_cooldown, "hq_lost" = hq_lost_rounds, "fortunes" = fortunes, "syndicate_defeated" = syndicate_defeated, "hq_relocations" = hq_relocations, "evac_announce" = pending_evac_announce)
+	// Kto trzyma który układ: odtworzenie flot (spawn_fleet → assemble) przestawia alignment na stronę ostatnio
+	// postawionej floty, więc oblężony układ wyglądałby po restarcie na zdobyty i tracił garnizon bez walki
+	var/list/occupied = list()
+	for(var/datum/star_system/S as anything in SSstar_system.systems)
+		if(S.hex && !istype(S, /datum/star_system/random/hex_empty) && S.alignment != S.owner)
+			occupied[S.name] = S.alignment
+	return list("occupied" = occupied, "commanders" = commander_data, "fleets" = fleet_data, "stores" = stores, "next_id" = next_commander_id, "tension" = tension, "nuke_stocks" = nuke_stocks, "nuke_cooldown" = nuke_cooldown, "hq_lost" = hq_lost_rounds, "fortunes" = fortunes, "syndicate_defeated" = syndicate_defeated, "hq_relocations" = hq_relocations, "evac_announce" = pending_evac_announce)
 
 /// Napięcie i zapasy atomówek z zapisu (niezależnie od tego, czy floty dało się odtworzyć)
 /datum/hex_war/proc/restore_nuclear(list/saved)
@@ -124,6 +130,7 @@
 			F.hex_war_dispose()
 	for(var/list/entry in fleet_data)
 		restore_fleet(entry, by_id)
+	restore_occupation(saved["occupied"])
 	var/list/stores = saved["stores"]
 	if(islist(stores))
 		for(var/name in stores)
@@ -184,3 +191,16 @@
 	var/datum/hex/target_hex = GLOB.hexmap.hex_by_id(entry["target"])
 	if(!entry["cargo"])
 		F.hex_war_set_order(entry["order"] || HEX_ORDER_IDLE, target_hex ? GLOB.hexmap.system_for(target_hex) : null)
+
+/// Zajęcia układów z zapisu (serialize: "occupied"). Starszy zapis bez tej listy zostawia stan po odtworzeniu flot.
+/datum/hex_war/proc/restore_occupation(list/occupied)
+	if(!islist(occupied))
+		return
+	for(var/datum/star_system/S as anything in SSstar_system.systems)
+		if(!S.hex || istype(S, /datum/star_system/random/hex_empty))
+			continue
+		var/held = occupied[S.name] || S.owner
+		if(S.alignment != held)
+			log_game("HEXWAR: [S] restored as held by [held] (fleets restored it to [S.alignment])")
+			S.alignment = held
+

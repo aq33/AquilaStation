@@ -89,7 +89,7 @@
 
 /// Stawia wrak w zasięgu magnesu okrętu. Bez okrętu w układzie gwiezdnym nic nie robi.
 /datum/round_event/aquila_hex_wreck_graveyard/proc/spawn_wreck(obj/structure/overmap/near)
-	if(!near?.current_system || !near.z)
+	if(!aquila_hex_ship_settled(near))
 		return null
 	var/turf/spot = aquila_hex_overmap_spot_beside(near, aquila_hex_magnet_distance(near))
 	if(!spot)

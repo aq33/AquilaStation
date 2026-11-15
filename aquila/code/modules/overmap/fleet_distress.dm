@@ -360,7 +360,12 @@
 /// Station boarding: the counterattack is repelled when its fleet is destroyed or when it retreats (it would never come back on its own,
 /// and the objective only waited for the fleet to be deleted)
 /datum/overmap_objective/board_station/send_counterattack()
-	. = ..()
+	// Mapa hex: placówka stoi na pustym kaflu bez szlaków (adjacency_list), a bazowy kontratak losuje z niej sąsiada
+	// (pick z pustej listy = runtime, misja nie do ukończenia). Flota rusza wtedy z sąsiedniego kafla.
+	if(GLOB.hexmap?.built && target_system?.hex && !length(target_system.adjacency_list))
+		hex_send_counterattack()
+	else
+		. = ..()
 	watch_counterattack_retreat()
 
 /datum/overmap_objective/board_station/proc/watch_counterattack_retreat()

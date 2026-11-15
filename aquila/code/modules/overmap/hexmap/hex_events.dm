@@ -129,7 +129,7 @@ GLOBAL_VAR_INIT(hex_last_ship_event, 0)
 	if(allow_antags)
 		for(var/entry in T?.antags)
 			if(entry == HEX_POOL_MALF)
-				if(length(hex_malf_candidates()))
+				if((GLOB.ghost_role_flags & GHOSTROLE_MIDROUND_EVENT) && length(hex_malf_candidates())) // jak w weighted_ghost_midround
 					options += HEX_POOL_MALF
 				continue
 			var/datum/round_event_control/E = hex_event_control(entry)
@@ -204,6 +204,9 @@ GLOBAL_VAR_INIT(hex_last_ship_event, 0)
 		hex_stay_timer = addtimer(CALLBACK(src, PROC_REF(hex_stay_tick), H), rand(HEX_STAY_EVENT_MIN, HEX_STAY_EVENT_MAX), TIMER_STOPPABLE)
 
 /obj/structure/overmap/proc/hex_fire_tile_event(datum/hex/H, allow_antags)
+	// Wyłącznik losowych eventów (werb admina, sandbox) dotyczy też eventów z kafli: to one przejęły meteory, burze i antagonistów
+	if(!CONFIG_GET(flag/allow_random_events))
+		return
 	var/entry = hex_pick_tile_event(H, allow_antags && !hex_stay_antag, hex_last_tile_event)
 	if(!entry)
 		return

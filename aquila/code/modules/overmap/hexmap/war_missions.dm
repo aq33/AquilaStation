@@ -318,3 +318,18 @@
 
 #undef HEX_MISSION_NUKE_CHANCE
 #undef HEX_OBJECTIVE_COMPLETED
+
+/// Kontratak Syndykatu na odbitą placówkę z sąsiedniego kafla (send_counterattack w fleet_distress.dm)
+/datum/overmap_objective/board_station/proc/hex_send_counterattack()
+	var/list/candidates = list()
+	for(var/datum/hex/N as anything in GLOB.hexmap.neighbours(target_system.hex))
+		if(!GLOB.hexmap.blocks(N) && (!N.system || istype(N.system, /datum/star_system/random/hex_empty)))
+			candidates += N
+	var/datum/star_system/origin = length(candidates) ? GLOB.hexmap.system_for(pick(candidates)) : target_system
+	reinforcements = origin.spawn_fleet(/datum/fleet/boarding, 5) //Harder fight
+	if(!reinforcements)
+		return
+	RegisterSignal(reinforcements, COMSIG_PARENT_QDELETING, PROC_REF(fleet_destroyed))
+	if(origin != target_system)
+		reinforcements.move(target_system, TRUE)
+

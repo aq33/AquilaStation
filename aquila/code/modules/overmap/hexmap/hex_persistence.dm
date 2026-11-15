@@ -34,15 +34,23 @@
 	var/obj/structure/overmap/main_ship = find_main_overmap()
 	var/datum/star_system/S = main_ship ? ships[main_ship]?["current_system"] : null
 	var/datum/hex/H = GLOB.hexmap.hex_of_system(S)
+	// Przed startem rundy (restart w lobby) wojna jeszcze nie ruszyła (SStimer stoi w lobby), a okręt nie przeleciał do
+	// układu kampanii: wojna i pozycja zostają z poprzedniego zapisu tej mapy, inaczej restart kasowałby kampanię
+	var/list/previous
+	if(!GLOB.hex_war?.ready || SSticker.current_state < GAME_STATE_SETTING_UP)
+		previous = hexmap_read_save(HEXMAP_SAVE_PATH)
+		if(previous?["map_name"] != SSmapping.config?.map_name)
+			previous = null
+	var/keep_position = previous && SSticker.current_state < GAME_STATE_SETTING_UP
 	var/list/data = list(
 		"version" = HEXMAP_SAVE_VERSION,
 		"map_name" = SSmapping.config?.map_name,
-		"ship_hex" = H?.id,
-		"ship_system" = (S && !istype(S, /datum/star_system/random)) ? S.name : null,
+		"ship_hex" = keep_position ? previous["ship_hex"] : H?.id,
+		"ship_system" = keep_position ? previous["ship_system"] : ((S && !istype(S, /datum/star_system/random)) ? S.name : null),
 		"saved_at" = time2text(world.realtime, "YYYY-MM-DD hh:mm:ss"),
 		"terrain" = GLOB.hexmap.save_terrain(),
 		"contamination" = GLOB.hexmap.save_contamination(),
-		"war" = GLOB.hex_war?.ready ? GLOB.hex_war.serialize() : null,
+		"war" = GLOB.hex_war?.ready ? GLOB.hex_war.serialize() : previous?["war"],
 	)
 	fdel(path)
 	rustg_file_write(json_encode(data), path)
@@ -76,13 +84,22 @@
 	var/datum/star_system/named = data["ship_system"] ? system_by_id(data["ship_system"]) : null
 	if(named && (named.system_traits & STARSYSTEM_END_ON_ENTER))
 		return fallback // runda skończyła się w Outpost 45: start w nim od razu znów kończyłby rundę
-	if(named)
-		return named
-	var/datum/hex/H = GLOB.hexmap.hex_by_id(data["ship_hex"])
+	var/datum/hex/H = named ? GLOB.hexmap.hex_of_system(named) : GLOB.hexmap.hex_by_id(data["ship_hex"])
 	if(!H || GLOB.hexmap.blocks(H))
 		return fallback
-	log_game("Campaign: [SSmapping.config.map_name] starts where it ended the last round, hex [H.id].")
-	return GLOB.hexmap.system_for(H)
+	var/datum/star_system/start = named || GLOB.hexmap.system_for(H)
+	// Okręt bez załogi nie może zacząć rundy przy wrogu (restart w trakcie rundy, koniec rundy bez powrotu): flota
+	// w układzie od razu by go ostrzelała. Wtedy start przy najbliższej przyjaznej stacji.
+	if(hex_factions_hostile("nanotrasen", start.alignment) || length(hex_hostile_fleets_in(start, "nanotrasen")))
+		var/datum/star_system/station = GLOB.hexmap.nearest_friendly_station(H)
+		log_game("Campaign: [start] is held by the enemy, the ship starts at [station || fallback] instead.")
+		if(!named && istype(start, /datum/star_system/random/hex_empty))
+			var/datum/star_system/random/hex_empty/E = start
+			E.try_release()
+		return station || fallback
+	if(!named)
+		log_game("Campaign: [SSmapping.config.map_name] starts where it ended the last round, hex [H.id].")
+	return start
 
 // ===== kopie kampanii =====
 

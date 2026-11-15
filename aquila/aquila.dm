@@ -2441,6 +2441,7 @@
 #include "code\modules\unit_tests\hexmap_events_bluespace.dm"
 #include "code\modules\unit_tests\hexmap_events_pods.dm"
 #include "code\modules\unit_tests\hexmap_war.dm"
+#include "code\modules\unit_tests\hexmap_review.dm"
 #include "code\modules\unit_tests\aquila_sensor_signature.dm"
 #include "code\modules\unit_tests\aquila_sensor_console.dm"
 #include "code\modules\unit_tests\aquila_ai_sensors.dm"

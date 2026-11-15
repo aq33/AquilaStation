@@ -62,6 +62,10 @@
 	var/list/route = GLOB.hexmap.route(here, goal, alignment, 5000)
 	if(!route)
 		hex_heading = null
+		// Cel nieosiągalny dla tej frakcji (np. za bramą w układzie wroga): flota sztabu wraca do puli, zamiast co ruch
+		// liczyć trasę bez wyniku z rozkazem, który nigdy nie wygaśnie
+		if(war_controlled && !war_cargo && war_order != HEX_ORDER_IDLE)
+			hex_war_set_order(HEX_ORDER_IDLE)
 		return null
 	var/list/full = route["full"]
 	var/datum/hex/next = full[2]
@@ -145,3 +149,13 @@
 			if(GLOB.hexmap.distance(N, home.hex) < GLOB.hexmap.distance(best, home.hex))
 				best = N
 	return GLOB.hexmap.system_for(best)
+
+/// Mapa hex: pusty kafel (hex_empty) nie ma szlaków i jest ukryty, więc find_route() do okrętu gracza na nim nie znajdzie
+/// trasy i floty pościgowe (hotdrop DEFCON 1, łowcy) gubiłyby go. Wtedy kursem jest sam cel: move() idzie do niego krokami
+/// po kaflach (hex_next_step), a pościg po każdym kroku przelicza cel na nowo.
+/datum/fleet/navigate_to(datum/star_system/target)
+	. = ..()
+	if(!. && GLOB.hexmap?.built && target && current_system && target != current_system && GLOB.hexmap.hex_of_system(target))
+		plotted_course = list(target)
+		. = plotted_course
+

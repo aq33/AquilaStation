@@ -103,6 +103,10 @@
 	if(ai_answering && !force)
 		addtimer(CALLBACK(src, PROC_REF(move)), rand(minimum_random_move_delay, maximum_random_move_delay))
 		return FALSE
+	// Rozkaz ataku na układ, w którym flota już stoi: zamiana na HOLD dzieje się zwykle po dojściu (niżej), a tu flota
+	// nigdzie nie idzie, więc bez tego stałaby z ATTACK do końca kampanii, poza pulą sztabu
+	if(war_controlled && war_order == HEX_ORDER_ATTACK && war_target == current_system)
+		hex_war_set_order(HEX_ORDER_HOLD, war_target)
 	if(war_controlled && !target && !force && hex_war_holds())
 		addtimer(CALLBACK(src, PROC_REF(move)), rand(minimum_random_move_delay, maximum_random_move_delay))
 		return FALSE
