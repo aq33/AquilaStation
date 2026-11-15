@@ -1,0 +1,6453 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aa" = (
+/obj/structure/closet/cabinet,
+/obj/item/clothing/under/costume/pirate,
+/obj/item/clothing/under/costume/pirate,
+/obj/item/clothing/shoes/combat{
+	pixel_y = -10
+	},
+/obj/item/clothing/head/soft/black{
+	pixel_y = 5
+	},
+/obj/item/storage/backpack/duffelbag,
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/item/clothing/mask/cigarette/rollie/cannabis{
+	pixel_x = -10;
+	pixel_y = 5
+	},
+/obj/item/clothing/mask/cigarette/rollie/cannabis{
+	pixel_x = 13;
+	pixel_y = 13
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_water/village/dorm)
+"ac" = (
+/obj/structure/cable,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_water/village/officers)
+"aE" = (
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_water/village/officers)
+"aL" = (
+/obj/effect/turf_decal/siding/thinplating/corner,
+/turf/open/floor/plasteel/techmaint,
+/area/ruin/unpowered/planet_water/village/armory)
+"aM" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 1
+	},
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_water/village/armory)
+"aQ" = (
+/obj/effect/turf_decal/siding/wood,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_water/village/officers)
+"aT" = (
+/obj/effect/decal/cleanable/blood/splatter{
+	icon_state = "floor4"
+	},
+/obj/effect/mob_spawn/human/corpse/nanotrasensoldier,
+/turf/open/floor/plating/asteroid/sand{
+	initial_gas_mix = "o2=22;n2=82;TEMP=255.37"
+	},
+/area/lavaland/surface/outdoors)
+"aW" = (
+/obj/machinery/door/airlock/wood{
+	dir = 4;
+	name = "Kwatery oficerów"
+	},
+/obj/structure/cable,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_water/village/officers)
+"be" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_water/village/armory)
+"bZ" = (
+/obj/structure/cable,
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_water/village/dorm)
+"ca" = (
+/obj/machinery/button/door{
+	dir = 4;
+	pixel_x = -20;
+	pixel_y = 2;
+	id = "villagesecure";
+	name = "odblokowanie szopy"
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_water/village/officers)
+"cw" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/lattice/catwalk/over/ship/dark,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_water/village/armory)
+"cD" = (
+/obj/structure/chair/fancy/sofa/old{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_water/village/kitchen)
+"cE" = (
+/obj/machinery/griddle,
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_water/village/kitchen)
+"cY" = (
+/obj/structure/flora/tree/jungle/small,
+/turf/open/floor/plating/asteroid/dirt/grass/beach{
+	initial_gas_mix = "o2=22;n2=82;TEMP=255.37"
+	},
+/area/lavaland/surface/outdoors)
+"dd" = (
+/obj/structure/closet/cabinet,
+/obj/item/clothing/suit/armor/vest,
+/obj/item/clothing/under/syndicate/camo,
+/obj/item/clothing/head/pirate,
+/obj/item/clothing/shoes/sandal,
+/obj/item/clothing/under/shorts,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_water/village/officers)
+"dl" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/clothing/suit/armor/vest{
+	pixel_x = -8;
+	pixel_y = 6
+	},
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_water/village/armory)
+"do" = (
+/turf/open/floor/plasteel/freezer,
+/area/ruin/unpowered/planet_water/village/armory)
+"ds" = (
+/obj/structure/closet/cabinet,
+/obj/item/clothing/under/costume/pirate,
+/obj/item/clothing/under/costume/pirate,
+/obj/item/clothing/shoes/combat{
+	pixel_y = -10
+	},
+/obj/item/clothing/head/soft/black{
+	pixel_y = 5
+	},
+/obj/item/storage/backpack/duffelbag,
+/obj/item/clothing/under/shorts,
+/obj/item/clothing/under/shorts,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_water/village/dorm)
+"dz" = (
+/mob/living/basic/trooper/pirate/ranged,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/carpet/green,
+/area/ruin/unpowered/planet_water/village/dorm)
+"dB" = (
+/obj/structure/chair/fancy/plastic,
+/obj/effect/mob_spawn/human/corpse/pirate,
+/turf/open/floor/plating/asteroid/sand{
+	initial_gas_mix = "o2=22;n2=82;TEMP=255.37"
+	},
+/area/lavaland/surface/outdoors)
+"dH" = (
+/obj/structure/lattice/catwalk/over/ship,
+/obj/machinery/power/rtg,
+/obj/structure/cable/yellow,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_water/village/armory)
+"dJ" = (
+/obj/item/ammo_casing/spent,
+/turf/open/floor/plating/asteroid/dirt/beach{
+	initial_gas_mix = "o2=22;n2=82;TEMP=255.37"
+	},
+/area/lavaland/surface/outdoors)
+"dK" = (
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=82;TEMP=255.37";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"dM" = (
+/obj/structure/cable,
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_water/village/infirmary)
+"dQ" = (
+/obj/structure/chair/fancy/sofa/old/right{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_water/village/kitchen)
+"dS" = (
+/turf/open/floor/plating/asteroid/dirt/grass/beach{
+	initial_gas_mix = "o2=22;n2=82;TEMP=255.37"
+	},
+/area/lavaland/surface/outdoors)
+"ei" = (
+/obj/structure/rack,
+/obj/item/storage/firstaid/regular,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_water/village/infirmary)
+"eC" = (
+/obj/structure/closet/crate/bin,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_water/village/dorm)
+"eI" = (
+/obj/machinery/door/airlock/wood{
+	name = "Sypialnia szefa"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_water/village/officers)
+"eU" = (
+/obj/structure/railing/corner,
+/obj/structure/railing/corner{
+	dir = 4
+	},
+/turf/open/floor/plating/asteroid/dirt/grass/beach{
+	initial_gas_mix = "o2=22;n2=82;TEMP=255.37"
+	},
+/area/lavaland/surface/outdoors)
+"fb" = (
+/obj/structure/rack,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_water/village/armory)
+"fm" = (
+/obj/structure/chair{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/thinplating{
+	dir = 8
+	},
+/turf/open/floor/plasteel/techmaint,
+/area/ruin/unpowered/planet_water/village/armory)
+"fr" = (
+/turf/open/floor/plating/asteroid/sand/dense{
+	initial_gas_mix = "o2=22;n2=82;TEMP=255.37"
+	},
+/area/lavaland/surface/outdoors)
+"fv" = (
+/obj/structure/cable,
+/turf/open/floor/carpet,
+/area/ruin/unpowered/planet_water/village/kitchen)
+"fw" = (
+/mob/living/basic/trooper/pirate/ranged,
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_water/village/infirmary)
+"fx" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/techmaint,
+/area/ruin/unpowered/planet_water/village/armory)
+"fz" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_water/village/armory)
+"fB" = (
+/obj/effect/overlay/palmtree_l,
+/turf/open/floor/plating/asteroid/dirt/grass/beach{
+	initial_gas_mix = "o2=22;n2=82;TEMP=255.37"
+	},
+/area/lavaland/surface/outdoors)
+"fG" = (
+/turf/open/floor/plasteel/techmaint,
+/area/ruin/unpowered/planet_water/village/armory)
+"fK" = (
+/obj/machinery/light,
+/turf/open/floor/plasteel/techmaint,
+/area/ruin/unpowered/planet_water/village/kitchen)
+"fR" = (
+/obj/structure/window/fulltile,
+/obj/structure/grille,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_water/village/infirmary)
+"fS" = (
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_water/village/armory)
+"fV" = (
+/obj/item/clothing/suit/armor/vest{
+	pixel_x = 7;
+	pixel_y = 1
+	},
+/turf/open/water/planet/stormy,
+/area/lavaland/surface/outdoors)
+"gr" = (
+/obj/structure/table/optable,
+/obj/effect/decal/cleanable/blood/splatter{
+	icon_state = "floor4"
+	},
+/obj/effect/mob_spawn/human/corpse/pirate/ranged,
+/turf/open/floor/plasteel/showroomfloor,
+/area/ruin/unpowered/planet_water/village/infirmary)
+"gA" = (
+/mob/living/basic/trooper/pirate/ranged,
+/turf/open/floor/plating/asteroid/sand{
+	initial_gas_mix = "o2=22;n2=82;TEMP=255.37"
+	},
+/area/lavaland/surface/outdoors)
+"gB" = (
+/obj/machinery/power/terminal,
+/obj/structure/lattice/catwalk/over/ship,
+/obj/structure/cable/yellow,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_water/village/armory)
+"gJ" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_water/village/dorm)
+"gV" = (
+/turf/closed/wall/mineral/wood,
+/area/lavaland/surface/outdoors)
+"hE" = (
+/obj/structure/closet/crate/trashcart,
+/obj/effect/turf_decal/siding/thinplating,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/techmaint,
+/area/ruin/unpowered/planet_water/village/armory)
+"hF" = (
+/obj/structure/table,
+/obj/item/food/candyheart{
+	pixel_x = 5;
+	pixel_y = 4
+	},
+/turf/open/floor/plating/asteroid/sand{
+	initial_gas_mix = "o2=22;n2=82;TEMP=255.37"
+	},
+/area/lavaland/surface/outdoors)
+"hN" = (
+/turf/open/floor/carpet/orange,
+/area/ruin/unpowered/planet_water/village/dorm)
+"hS" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/turf/open/floor/plating/asteroid/dirt/beach{
+	initial_gas_mix = "o2=22;n2=82;TEMP=255.37"
+	},
+/area/lavaland/surface/outdoors)
+"ig" = (
+/obj/machinery/door/airlock/wood/glass{
+	dir = 4;
+	name = "Sypialnia"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_water/village/dorm)
+"ii" = (
+/mob/living/basic/trooper/pirate/ranged{
+	desc = "Członek brutalnej terrorystycznej floty Pograniczników! W wojskowym pancerzu, pewnie celuje w ciebie z zadbanego karabinu wyborowego."
+	},
+/turf/open/floor/plating/asteroid/dirt/grass/beach{
+	initial_gas_mix = "o2=22;n2=82;TEMP=255.37"
+	},
+/area/lavaland/surface/outdoors)
+"iw" = (
+/obj/effect/turf_decal/siding/thinplating{
+	dir = 4
+	},
+/turf/open/floor/plasteel/techmaint,
+/area/ruin/unpowered/planet_water/village/armory)
+"iJ" = (
+/obj/structure/toilet{
+	dir = 1
+	},
+/obj/machinery/light/small,
+/obj/effect/decal/cleanable/vomit/old,
+/turf/open/floor/plasteel/techmaint,
+/area/ruin/unpowered/planet_water/village/armory)
+"iN" = (
+/obj/effect/decal/cleanable/crayon{
+	color = "#FF3333";
+	icon_state = "o";
+	pixel_y = 12;
+	pixel_x = 5
+	},
+/obj/effect/decal/cleanable/crayon{
+	color = "#FF3333";
+	icon_state = "shotgun";
+	pixel_y = -6;
+	pixel_x = -8
+	},
+/obj/effect/decal/cleanable/crayon{
+	color = "#FF3333";
+	icon_state = "h";
+	pixel_y = 14;
+	pixel_x = -7
+	},
+/turf/open/floor/plating/asteroid/sand{
+	initial_gas_mix = "o2=22;n2=82;TEMP=255.37"
+	},
+/area/lavaland/surface/outdoors)
+"iU" = (
+/obj/effect/turf_decal/siding/wideplating{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_water/village/infirmary)
+"iV" = (
+/obj/effect/turf_decal/siding/thinplating/corner{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/floor/plasteel/techmaint,
+/area/ruin/unpowered/planet_water/village/armory)
+"jo" = (
+/obj/structure/cable,
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_water/village/officers)
+"js" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_water/village/dorm)
+"jG" = (
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/plating/asteroid/sand{
+	initial_gas_mix = "o2=22;n2=82;TEMP=255.37"
+	},
+/area/lavaland/surface/outdoors)
+"kd" = (
+/obj/machinery/door/airlock/wood{
+	dir = 4;
+	name = "Sypialnia"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_water/village/dorm)
+"kI" = (
+/obj/item/fishing_rod{
+	pixel_x = 5;
+	pixel_y = -3
+	},
+/obj/item/storage/backpack/duffelbag{
+	pixel_x = -17;
+	pixel_y = -11
+	},
+/obj/structure/railing{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_water/village/officers)
+"kK" = (
+/obj/structure/cable,
+/turf/open/floor/plasteel/techmaint,
+/area/ruin/unpowered/planet_water/village/armory)
+"kS" = (
+/obj/structure/cable,
+/obj/machinery/door/poddoor/shutters{
+	id = "villagesecure"
+	},
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_water/village/armory)
+"kW" = (
+/obj/effect/turf_decal/siding/thinplating{
+	dir = 6
+	},
+/turf/open/floor/plasteel/techmaint,
+/area/ruin/unpowered/planet_water/village/armory)
+"lq" = (
+/obj/structure/chair/fancy/bench{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_water/village/armory)
+"lt" = (
+/obj/structure/chair/fancy/sofa/old/right{
+	dir = 4
+	},
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_water/village/dorm)
+"lu" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/thinplating{
+	dir = 8
+	},
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/techmaint,
+/area/ruin/unpowered/planet_water/village/armory)
+"lw" = (
+/obj/effect/turf_decal/siding/wideplating/dark,
+/obj/structure/cable,
+/turf/open/floor/plasteel/showroomfloor,
+/area/ruin/unpowered/planet_water/village/infirmary)
+"lC" = (
+/obj/structure/chair/fancy/plastic{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_water/village/officers)
+"lF" = (
+/mob/living/basic/trooper/pirate/ranged,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/carpet/black,
+/area/ruin/unpowered/planet_water/village/officers)
+"lP" = (
+/obj/structure/chair/fancy/comfy{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_water/village/officers)
+"mm" = (
+/obj/structure/cable,
+/obj/effect/turf_decal/siding/thinplating/dark,
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_water/village/armory)
+"mp" = (
+/obj/structure/flora/ausbushes/reedbush,
+/turf/open/floor/plating/asteroid/sand{
+	initial_gas_mix = "o2=22;n2=82;TEMP=255.37"
+	},
+/area/lavaland/surface/outdoors)
+"mu" = (
+/obj/effect/turf_decal/siding/thinplating/dark,
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_water/village/armory)
+"mz" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/thinplating{
+	dir = 8
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/plasteel/techmaint,
+/area/ruin/unpowered/planet_water/village/armory)
+"mD" = (
+/obj/structure/chair/fancy/comfy{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood{
+	icon_state = "wood-broken6"
+	},
+/area/ruin/unpowered/planet_water/village/officers)
+"mE" = (
+/obj/structure/flora/stump,
+/turf/open/floor/plating/asteroid/dirt/beach{
+	initial_gas_mix = "o2=22;n2=82;TEMP=255.37"
+	},
+/area/lavaland/surface/outdoors)
+"mQ" = (
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=82;TEMP=255.37";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_water/village/armory)
+"nb" = (
+/obj/structure/cable,
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_water/village/armory)
+"nt" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/thinplating/dark,
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_water/village/armory)
+"ny" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 8
+	},
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_water/village/armory)
+"nE" = (
+/turf/open/floor/carpet/black,
+/area/ruin/unpowered/planet_water/village/officers)
+"nK" = (
+/obj/structure/window/fulltile,
+/obj/structure/grille,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_water/village/dorm)
+"nM" = (
+/obj/structure/cable,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=82;TEMP=255.37";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"nV" = (
+/turf/template_noop,
+/area/template_noop)
+"of" = (
+/obj/structure/table,
+/obj/item/food/candyheart{
+	pixel_x = -5;
+	pixel_y = 4
+	},
+/turf/open/floor/plating/asteroid/sand{
+	initial_gas_mix = "o2=22;n2=82;TEMP=255.37"
+	},
+/area/lavaland/surface/outdoors)
+"oi" = (
+/obj/structure/closet/cabinet,
+/obj/item/clothing/suit/armor/vest,
+/obj/item/clothing/under/syndicate/camo,
+/obj/item/clothing/head/pirate,
+/obj/item/clothing/shoes/sandal,
+/obj/item/clothing/under/shorts,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_water/village/officers)
+"oA" = (
+/obj/effect/turf_decal/siding/wood,
+/turf/open/floor/wood{
+	icon_state = "wood-broken5"
+	},
+/area/ruin/unpowered/planet_water/village/officers)
+"oC" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/carpet/orange,
+/area/ruin/unpowered/planet_water/village/dorm)
+"pn" = (
+/obj/structure/closet/secure_closet/engineering_electrical,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_water/village/armory)
+"po" = (
+/obj/structure/curtain,
+/obj/effect/turf_decal/siding/thinplating/dark/corner{
+	dir = 1
+	},
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_water/village/armory)
+"pz" = (
+/obj/structure/table,
+/obj/item/clothing/mask/cigarette,
+/obj/item/clothing/mask/cigarette{
+	pixel_x = -3;
+	pixel_y = 8
+	},
+/obj/item/clothing/mask/cigarette{
+	pixel_x = 6;
+	pixel_y = 5
+	},
+/obj/item/lighter{
+	pixel_x = -7;
+	pixel_y = 4
+	},
+/obj/machinery/light,
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_water/village/officers)
+"pD" = (
+/obj/effect/mob_spawn/human/corpse/nanotrasensoldier,
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_water/village/armory)
+"pE" = (
+/obj/machinery/button/door{
+	dir = 1;
+	pixel_y = -22;
+	id = "villagesecure";
+	name = "drzwi szopy"
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 1
+	},
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_water/village/armory)
+"pF" = (
+/obj/machinery/door/airlock/maintenance/external/glass{
+	name = "Zbrojownia"
+	},
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_water/village/armory)
+"pP" = (
+/obj/structure/cable,
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_water/village/kitchen)
+"pV" = (
+/obj/item/kitchen/rollingpin{
+	pixel_x = 12;
+	pixel_y = 6
+	},
+/obj/effect/decal/cleanable/food/flour,
+/obj/effect/turf_decal/ship/techfloor{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/techmaint,
+/area/ruin/unpowered/planet_water/village/kitchen)
+"pW" = (
+/obj/machinery/door/airlock/wood/glass{
+	dir = 4;
+	name = "Sypialnia"
+	},
+/obj/structure/cable,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_water/village/dorm)
+"pY" = (
+/obj/structure/cable,
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_water/village/kitchen)
+"qd" = (
+/obj/structure/table,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/carpet,
+/area/ruin/unpowered/planet_water/village/kitchen)
+"qe" = (
+/obj/structure/window/fulltile,
+/obj/structure/grille,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_water/village/officers)
+"qk" = (
+/obj/structure/flora/stump,
+/turf/open/floor/plating/asteroid/dirt/grass/beach{
+	initial_gas_mix = "o2=22;n2=82;TEMP=255.37"
+	},
+/area/lavaland/surface/outdoors)
+"qo" = (
+/obj/effect/turf_decal/siding/thinplating{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/techmaint,
+/area/ruin/unpowered/planet_water/village/armory)
+"qq" = (
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_water/village/armory)
+"qE" = (
+/obj/structure/railing,
+/turf/open/floor/plating/asteroid/dirt/grass/beach{
+	initial_gas_mix = "o2=22;n2=82;TEMP=255.37"
+	},
+/area/lavaland/surface/outdoors)
+"qF" = (
+/obj/structure/barricade/sandbags,
+/turf/open/floor/plating/asteroid/sand/dense{
+	initial_gas_mix = "o2=22;n2=82;TEMP=255.37"
+	},
+/area/lavaland/surface/outdoors)
+"qM" = (
+/obj/structure/table/wood/fancy,
+/obj/item/paper_bin{
+	pixel_y = 5
+	},
+/obj/item/pen{
+	pixel_x = 4;
+	pixel_y = 5
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_water/village/officers)
+"qN" = (
+/obj/effect/turf_decal/ship/techfloor{
+	dir = 1
+	},
+/turf/open/floor/plasteel/techmaint,
+/area/ruin/unpowered/planet_water/village/kitchen)
+"qO" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_water/village/armory)
+"rh" = (
+/obj/structure/railing{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_water/village/officers)
+"rj" = (
+/obj/effect/turf_decal/siding/wideplating/dark{
+	dir = 1
+	},
+/mob/living/basic/trooper/pirate/ranged,
+/turf/open/floor/plasteel/showroomfloor,
+/area/ruin/unpowered/planet_water/village/infirmary)
+"rt" = (
+/obj/machinery/power/apc/auto_name/west,
+/obj/structure/cable,
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_water/village/armory)
+"rX" = (
+/turf/open/floor/plasteel/techmaint,
+/area/ruin/unpowered/planet_water/village/kitchen)
+"sj" = (
+/obj/machinery/power/smes/engineering,
+/obj/structure/lattice/catwalk/over/ship,
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_water/village/armory)
+"sl" = (
+/obj/machinery/door/airlock/hatch,
+/obj/structure/cable,
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_water/village/armory)
+"sq" = (
+/obj/structure/bed,
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 1
+	},
+/obj/machinery/light,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_water/village/dorm)
+"sr" = (
+/obj/structure/table/reinforced,
+/obj/item/storage/bag/tray,
+/obj/item/storage/bag/tray{
+	pixel_y = 6
+	},
+/obj/item/storage/bag/tray{
+	pixel_y = 9
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_water/village/kitchen)
+"sx" = (
+/obj/structure/bed,
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_water/village/dorm)
+"sB" = (
+/obj/structure/railing/corner,
+/obj/machinery/power/apc/auto_name/north,
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_water/village/kitchen)
+"sI" = (
+/obj/effect/decal/cleanable/crayon{
+	color = "#FF3333";
+	icon_state = "o";
+	pixel_y = 12;
+	pixel_x = -10
+	},
+/obj/effect/decal/cleanable/crayon{
+	color = "#FF3333";
+	icon_state = "t";
+	pixel_y = 12;
+	pixel_x = 5
+	},
+/obj/effect/decal/cleanable/crayon{
+	color = "#FF3333";
+	icon_state = "e";
+	pixel_y = -5;
+	pixel_x = 9
+	},
+/obj/effect/decal/cleanable/crayon{
+	color = "#FF3333";
+	icon_state = "m";
+	pixel_y = -4;
+	pixel_x = -8
+	},
+/turf/open/floor/plating/asteroid/dirt/beach{
+	initial_gas_mix = "o2=22;n2=82;TEMP=255.37"
+	},
+/area/lavaland/surface/outdoors)
+"sS" = (
+/obj/structure/cable,
+/turf/open/floor/plating/asteroid/dirt/grass/beach{
+	initial_gas_mix = "o2=22;n2=82;TEMP=255.37"
+	},
+/area/lavaland/surface/outdoors)
+"tb" = (
+/obj/item/gun/ballistic/automatic/pistol,
+/obj/structure/guncase,
+/obj/effect/turf_decal/siding/thinplating/corner{
+	dir = 8
+	},
+/turf/open/floor/plasteel/techmaint,
+/area/ruin/unpowered/planet_water/village/armory)
+"tg" = (
+/obj/structure/cable,
+/turf/open/floor/plating/asteroid/dirt/beach{
+	initial_gas_mix = "o2=22;n2=82;TEMP=255.37"
+	},
+/area/lavaland/surface/outdoors)
+"to" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_water/village/infirmary)
+"tR" = (
+/obj/effect/turf_decal/siding/wideplating{
+	dir = 10
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_water/village/infirmary)
+"tS" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_water/village/dorm)
+"tY" = (
+/turf/open/floor/wood{
+	icon_state = "wood-broken6"
+	},
+/area/ruin/unpowered/planet_water/village/officers)
+"ud" = (
+/obj/structure/chair/fancy/plastic{
+	dir = 4
+	},
+/turf/open/floor/plating/asteroid/sand{
+	initial_gas_mix = "o2=22;n2=82;TEMP=255.37"
+	},
+/area/lavaland/surface/outdoors)
+"uk" = (
+/obj/machinery/door/airlock/engineering{
+	name = "Generator"
+	},
+/obj/structure/cable,
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_water/village/armory)
+"up" = (
+/mob/living/basic/cow{
+	faction = list("Frontiersmen");
+	name = "krowa pograniczników";
+	desc = "Masz wrażenie, że ta krowa marzy, żeby znowu zabawić w Księżycowym Mieście."
+	},
+/turf/open/floor/plating/asteroid/dirt/grass/beach{
+	initial_gas_mix = "o2=22;n2=82;TEMP=255.37"
+	},
+/area/lavaland/surface/outdoors)
+"ut" = (
+/turf/open/floor/carpet/red,
+/area/ruin/unpowered/planet_water/village/officers)
+"uI" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_water/village/kitchen)
+"uN" = (
+/mob/living/basic/trooper/pirate/ranged,
+/obj/structure/cable,
+/turf/open/floor/plating/asteroid/dirt/beach{
+	initial_gas_mix = "o2=22;n2=82;TEMP=255.37"
+	},
+/area/lavaland/surface/outdoors)
+"uP" = (
+/obj/effect/mob_spawn/human/corpse/nanotrasensoldier,
+/obj/machinery/light/small,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_water/village/armory)
+"ve" = (
+/obj/structure/table,
+/obj/item/binoculars{
+	pixel_x = -6;
+	pixel_y = -3
+	},
+/turf/open/floor/plating/asteroid/sand/dense{
+	initial_gas_mix = "o2=22;n2=82;TEMP=255.37"
+	},
+/area/lavaland/surface/outdoors)
+"vf" = (
+/obj/structure/toilet{
+	dir = 1
+	},
+/obj/machinery/light/small,
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/floor/plasteel/techmaint,
+/area/ruin/unpowered/planet_water/village/armory)
+"vv" = (
+/obj/structure/chair/office,
+/obj/structure/cable,
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_water/village/infirmary)
+"vA" = (
+/obj/structure/table/reinforced,
+/obj/item/reagent_containers/glass/beaker/plastic{
+	pixel_x = -6;
+	pixel_y = 4
+	},
+/obj/item/bodybag{
+	pixel_x = 8;
+	pixel_y = 13
+	},
+/obj/item/bodybag{
+	pixel_x = 8;
+	pixel_y = 5
+	},
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_water/village/infirmary)
+"vE" = (
+/obj/item/ammo_casing/spent,
+/turf/open/floor/plating/asteroid/dirt/grass/beach{
+	initial_gas_mix = "o2=22;n2=82;TEMP=255.37"
+	},
+/area/lavaland/surface/outdoors)
+"vR" = (
+/obj/structure/bonfire/prelit,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_water/village/kitchen)
+"vT" = (
+/obj/machinery/door/airlock/hatch{
+	dir = 4;
+	name = "Łazienka"
+	},
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_water/village/armory)
+"vW" = (
+/obj/structure/bed{
+	dir = 4
+	},
+/obj/item/bedsheet/black{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/wideplating,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_water/village/infirmary)
+"wj" = (
+/obj/structure/table/reinforced,
+/obj/item/storage/firstaid/medical{
+	pixel_y = 13
+	},
+/obj/item/screwdriver{
+	pixel_x = -12;
+	pixel_y = 2
+	},
+/obj/effect/turf_decal/siding/wideplating{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_water/village/infirmary)
+"wm" = (
+/obj/structure/railing/corner{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/cable,
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_water/village/kitchen)
+"wv" = (
+/obj/structure/closet,
+/turf/open/floor/plasteel/techmaint,
+/area/ruin/unpowered/planet_water/village/armory)
+"wz" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_water/village/kitchen)
+"wF" = (
+/obj/structure/flora/ausbushes/leafybush,
+/turf/open/floor/plating/asteroid/dirt/grass/beach{
+	initial_gas_mix = "o2=22;n2=82;TEMP=255.37"
+	},
+/area/lavaland/surface/outdoors)
+"wN" = (
+/obj/structure/bed,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_water/village/dorm)
+"wP" = (
+/obj/effect/decal/cleanable/crayon{
+	color = "#FF3333";
+	icon_state = "!";
+	pixel_y = -4;
+	pixel_x = -10
+	},
+/turf/open/floor/plating/asteroid/dirt/beach{
+	initial_gas_mix = "o2=22;n2=82;TEMP=255.37"
+	},
+/area/lavaland/surface/outdoors)
+"xe" = (
+/obj/effect/overlay/palmtree_r,
+/turf/open/floor/plating/asteroid/sand{
+	initial_gas_mix = "o2=22;n2=82;TEMP=255.37"
+	},
+/area/lavaland/surface/outdoors)
+"xj" = (
+/obj/structure/lattice/catwalk/over/ship,
+/obj/machinery/power/rtg,
+/obj/structure/cable/yellow,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_water/village/armory)
+"xm" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_water/village/armory)
+"xn" = (
+/turf/closed/wall/mineral/wood,
+/area/ruin/unpowered/planet_water/village/officers)
+"xr" = (
+/obj/effect/decal/cleanable/food/flour,
+/obj/item/reagent_containers/glass/bowl{
+	pixel_x = 5;
+	pixel_y = -6
+	},
+/obj/item/reagent_containers/glass/bowl{
+	pixel_x = -9;
+	pixel_y = 8
+	},
+/obj/item/reagent_containers/food/condiment/milk{
+	pixel_x = -12;
+	pixel_y = -8;
+	list_reagents = null
+	},
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_water/village/kitchen)
+"xv" = (
+/obj/effect/turf_decal/siding/wideplating/dark,
+/turf/open/floor/plasteel/showroomfloor,
+/area/ruin/unpowered/planet_water/village/infirmary)
+"xB" = (
+/turf/closed/wall/mineral/sandstone,
+/area/lavaland/surface/outdoors)
+"xC" = (
+/obj/effect/decal/cleanable/blood/splatter{
+	icon_state = "gib4";
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_water/village/armory)
+"xJ" = (
+/obj/structure/curtain,
+/turf/open/floor/plasteel/techmaint,
+/area/ruin/unpowered/planet_water/village/armory)
+"xR" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/techmaint,
+/area/ruin/unpowered/planet_water/village/kitchen)
+"yd" = (
+/turf/open/floor/carpet,
+/area/ruin/unpowered/planet_water/village/kitchen)
+"yl" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_water/village/armory)
+"yt" = (
+/turf/closed/wall/mineral/wood,
+/area/ruin/unpowered/planet_water/village/dorm)
+"yB" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_water/village/kitchen)
+"yC" = (
+/obj/structure/chair/fancy/plastic,
+/turf/open/floor/carpet,
+/area/ruin/unpowered/planet_water/village/kitchen)
+"yG" = (
+/obj/structure/chair/fancy/comfy{
+	dir = 1
+	},
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_water/village/officers)
+"yS" = (
+/obj/structure/chair/fancy/sofa/old/left{
+	dir = 8
+	},
+/turf/open/floor/carpet/green,
+/area/ruin/unpowered/planet_water/village/dorm)
+"yT" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/turf/open/floor/plasteel/techmaint,
+/area/ruin/unpowered/planet_water/village/kitchen)
+"yV" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plasteel/techmaint,
+/area/ruin/unpowered/planet_water/village/armory)
+"yX" = (
+/obj/structure/table,
+/obj/item/fishing_rod{
+	pixel_x = 4;
+	pixel_y = 6
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_water/village/officers)
+"yY" = (
+/obj/structure/railing/corner{
+	dir = 1
+	},
+/obj/structure/railing/corner{
+	dir = 8
+	},
+/turf/open/floor/plating/asteroid/dirt/grass/beach{
+	initial_gas_mix = "o2=22;n2=82;TEMP=255.37"
+	},
+/area/lavaland/surface/outdoors)
+"zm" = (
+/obj/effect/turf_decal/ship/techfloor{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/techmaint,
+/area/ruin/unpowered/planet_water/village/kitchen)
+"zs" = (
+/obj/structure/cable,
+/obj/machinery/door/airlock/wood{
+	name = "Ambulatorium"
+	},
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_water/village/infirmary)
+"zv" = (
+/turf/closed/wall/mineral/wood,
+/area/ruin/unpowered/planet_water/village/kitchen)
+"zJ" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_water/village/officers)
+"zU" = (
+/obj/structure/railing{
+	dir = 5
+	},
+/turf/open/floor/plating/asteroid/dirt/grass/beach{
+	initial_gas_mix = "o2=22;n2=82;TEMP=255.37"
+	},
+/area/lavaland/surface/outdoors)
+"zX" = (
+/obj/structure/chair{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/thinplating{
+	dir = 4
+	},
+/turf/open/floor/plasteel/techmaint,
+/area/ruin/unpowered/planet_water/village/armory)
+"Al" = (
+/obj/structure/rack,
+/obj/item/pickaxe{
+	pixel_x = -6;
+	pixel_y = 9
+	},
+/obj/item/pickaxe{
+	pixel_x = -2;
+	pixel_y = 6
+	},
+/obj/item/pickaxe,
+/obj/item/pickaxe{
+	pixel_x = 6;
+	pixel_y = -1
+	},
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_water/village/armory)
+"Am" = (
+/obj/structure/closet/cabinet,
+/obj/item/clothing/under/costume/pirate,
+/obj/item/clothing/under/costume/pirate,
+/obj/item/clothing/shoes/combat{
+	pixel_y = -10
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_water/village/dorm)
+"Ao" = (
+/obj/effect/turf_decal/siding/thinplating,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/techmaint,
+/area/ruin/unpowered/planet_water/village/armory)
+"Ay" = (
+/obj/machinery/door/airlock/wood{
+	name = "Pokład"
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_water/village/officers)
+"AC" = (
+/obj/machinery/light/small,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_water/village/armory)
+"AE" = (
+/obj/item/clothing/suit/armor/vest{
+	pixel_x = -9;
+	pixel_y = 8
+	},
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_water/village/armory)
+"AK" = (
+/obj/effect/overlay/palmtree_l,
+/turf/open/floor/plating/asteroid/sand{
+	initial_gas_mix = "o2=22;n2=82;TEMP=255.37"
+	},
+/area/lavaland/surface/outdoors)
+"AM" = (
+/mob/living/basic/trooper/pirate/melee{
+	name = "kucharz Pograniczników";
+	desc = "Członek brutalnej terrorystycznej floty Pograniczników! Ściska zwykły nóż kuchenny i wygląda na mocno sfrustrowanego."
+	},
+/obj/effect/decal/cleanable/food/flour,
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_water/village/kitchen)
+"AU" = (
+/obj/item/clothing/head/chefhat{
+	pixel_x = 7;
+	pixel_y = 6
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_water/village/kitchen)
+"AV" = (
+/obj/machinery/light,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_water/village/officers)
+"Bl" = (
+/obj/item/ammo_casing/spent,
+/obj/structure/cable,
+/turf/open/floor/plating/asteroid/dirt/beach{
+	initial_gas_mix = "o2=22;n2=82;TEMP=255.37"
+	},
+/area/lavaland/surface/outdoors)
+"Bp" = (
+/obj/structure/dresser{
+	dir = 8;
+	pixel_x = 5
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_water/village/officers)
+"Bq" = (
+/obj/structure/table/reinforced,
+/obj/item/storage/box/emptysandbags{
+	pixel_x = -10;
+	pixel_y = 1
+	},
+/obj/item/storage/box/emptysandbags{
+	pixel_x = 6;
+	pixel_y = 2
+	},
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_water/village/armory)
+"BL" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_water/village/kitchen)
+"BP" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/carpet/red,
+/area/ruin/unpowered/planet_water/village/officers)
+"BQ" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/structure/cable,
+/turf/open/floor/plating/asteroid/dirt/grass/beach{
+	initial_gas_mix = "o2=22;n2=82;TEMP=255.37"
+	},
+/area/lavaland/surface/outdoors)
+"BT" = (
+/obj/machinery/door/airlock/hatch,
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_water/village/armory)
+"BV" = (
+/obj/machinery/power/apc/auto_name/north,
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_water/village/officers)
+"BW" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=82;TEMP=255.37";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"BY" = (
+/obj/machinery/shower{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/freezer,
+/area/ruin/unpowered/planet_water/village/armory)
+"Cb" = (
+/obj/structure/chair{
+	dir = 4
+	},
+/turf/open/floor/carpet/black,
+/area/ruin/unpowered/planet_water/village/officers)
+"Ce" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=82;TEMP=255.37";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Co" = (
+/obj/structure/dresser{
+	dir = 8;
+	pixel_x = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_water/village/officers)
+"Cw" = (
+/obj/structure/table/reinforced,
+/obj/item/food/pancakes,
+/obj/item/food/pancakes{
+	pixel_y = 4
+	},
+/obj/item/kitchen/knife/butcher{
+	pixel_x = -5;
+	pixel_y = 9
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/food/grown/banana{
+	pixel_x = 10;
+	pixel_y = -8
+	},
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_water/village/kitchen)
+"Cy" = (
+/obj/structure/chair/fancy/sofa/old/left{
+	dir = 4
+	},
+/obj/item/bedsheet/black{
+	dir = 4;
+	pixel_x = -2;
+	pixel_y = -11
+	},
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_water/village/dorm)
+"CD" = (
+/obj/structure/table/wood/fancy,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_water/village/officers)
+"CN" = (
+/obj/structure/cable/yellow,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_water/village/armory)
+"CS" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_water/village/infirmary)
+"Dh" = (
+/turf/open/floor/carpet/green,
+/area/ruin/unpowered/planet_water/village/dorm)
+"Dn" = (
+/obj/effect/turf_decal/siding/wideplating{
+	dir = 6
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_water/village/infirmary)
+"Dp" = (
+/obj/effect/decal/cleanable/blood/drip{
+	pixel_x = -9;
+	pixel_y = -2
+	},
+/obj/effect/decal/cleanable/blood/splatter{
+	icon_state = "floor4"
+	},
+/obj/item/clothing/head/helmet/alt{
+	pixel_x = 6;
+	pixel_y = -5
+	},
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_water/village/armory)
+"Du" = (
+/obj/structure/chair/fancy/plastic{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/carpet,
+/area/ruin/unpowered/planet_water/village/kitchen)
+"DB" = (
+/obj/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_water/village/armory)
+"DI" = (
+/obj/structure/chair/fancy/sofa/old/right{
+	dir = 8
+	},
+/turf/open/floor/carpet/green,
+/area/ruin/unpowered/planet_water/village/dorm)
+"DR" = (
+/turf/open/water/planet/stormy,
+/area/lavaland/surface/outdoors)
+"DS" = (
+/obj/effect/turf_decal/ship/techfloor{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/techmaint,
+/area/ruin/unpowered/planet_water/village/kitchen)
+"DY" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/drinks/beer{
+	pixel_y = 3
+	},
+/obj/item/fishing_rod,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_water/village/kitchen)
+"DZ" = (
+/obj/structure/cable,
+/obj/structure/lattice/catwalk/over/ship/dark,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_water/village/armory)
+"Ev" = (
+/turf/closed/wall/mineral/wood,
+/area/ruin/unpowered/planet_water/village/infirmary)
+"Ey" = (
+/obj/structure/table/glass,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/clothing/mask/cigarette/rollie/trippy{
+	pixel_x = 6;
+	pixel_y = -9
+	},
+/turf/open/floor/carpet/green,
+/area/ruin/unpowered/planet_water/village/dorm)
+"Ez" = (
+/obj/structure/chair{
+	dir = 8
+	},
+/turf/open/floor/carpet/red,
+/area/ruin/unpowered/planet_water/village/officers)
+"EF" = (
+/obj/structure/barricade/sandbags,
+/turf/open/floor/plating/asteroid/dirt/grass/beach{
+	initial_gas_mix = "o2=22;n2=82;TEMP=255.37"
+	},
+/area/lavaland/surface/outdoors)
+"EG" = (
+/obj/structure/table/wood,
+/obj/item/clothing/mask/cigarette/rollie/cannabis{
+	pixel_x = 8;
+	pixel_y = 2
+	},
+/obj/item/clothing/mask/cigarette/rollie/trippy{
+	pixel_x = 3;
+	pixel_y = 12
+	},
+/turf/open/floor/plating/asteroid/sand{
+	initial_gas_mix = "o2=22;n2=82;TEMP=255.37"
+	},
+/area/lavaland/surface/outdoors)
+"EY" = (
+/obj/structure/bed/double,
+/obj/item/bedsheet/double/red,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_water/village/officers)
+"Fo" = (
+/obj/effect/turf_decal/siding/thinplating{
+	dir = 10
+	},
+/obj/structure/cable,
+/turf/open/floor/plasteel/techmaint,
+/area/ruin/unpowered/planet_water/village/armory)
+"Fs" = (
+/obj/effect/decal/cleanable/blood/drip{
+	pixel_x = 11;
+	pixel_y = 11
+	},
+/obj/effect/decal/cleanable/blood/tracks,
+/obj/item/clothing/head/helmet{
+	pixel_x = -10;
+	pixel_y = -9
+	},
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_water/village/armory)
+"Fu" = (
+/obj/structure/flora/tree/dead/barren,
+/turf/open/floor/plating/asteroid/dirt/grass/beach{
+	initial_gas_mix = "o2=22;n2=82;TEMP=255.37"
+	},
+/area/lavaland/surface/outdoors)
+"FA" = (
+/obj/structure/table/glass,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_water/village/kitchen)
+"Gc" = (
+/obj/structure/table/reinforced,
+/obj/item/shovel{
+	pixel_x = -3;
+	pixel_y = 3
+	},
+/obj/item/shovel{
+	pixel_x = 4;
+	pixel_y = -2
+	},
+/obj/item/shovel,
+/obj/item/hatchet{
+	pixel_x = -9;
+	pixel_y = 6
+	},
+/obj/item/hatchet{
+	pixel_x = -3;
+	pixel_y = 9
+	},
+/obj/item/reagent_containers/food/drinks/bottle/molotov{
+	pixel_x = 9;
+	pixel_y = -4
+	},
+/obj/item/lighter/greyscale{
+	pixel_x = 2;
+	pixel_y = -16
+	},
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 1
+	},
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_water/village/armory)
+"Gd" = (
+/obj/effect/decal/cleanable/blood/tracks,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/white{
+	dir = 4;
+	color = "#474747"
+	},
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_water/village/armory)
+"Gf" = (
+/obj/effect/decal/cleanable/blood/tracks,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/white{
+	dir = 4;
+	color = "#474747"
+	},
+/obj/effect/turf_decal/siding/thinplating/dark/corner{
+	dir = 1
+	},
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_water/village/armory)
+"GE" = (
+/obj/structure/closet/secure_closet{
+	req_access = null;
+	icon_state = "armory"
+	},
+/obj/item/ammo_box/a762,
+/obj/item/storage/box/lethalshot,
+/obj/item/ammo_box/c10mm,
+/obj/effect/turf_decal/siding/thinplating,
+/obj/item/ammo_box/a762,
+/obj/item/ammo_box/a762,
+/obj/item/ammo_box/c9mm,
+/obj/item/ammo_box/c9mm,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/plasteel/techmaint,
+/area/ruin/unpowered/planet_water/village/armory)
+"GF" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 1
+	},
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_water/village/armory)
+"GK" = (
+/obj/effect/turf_decal/siding/wideplating/dark{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/ruin/unpowered/planet_water/village/infirmary)
+"GO" = (
+/obj/machinery/vending/cigarette,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_water/village/dorm)
+"GQ" = (
+/obj/structure/barricade/sandbags,
+/turf/open/floor/plating/asteroid/dirt/beach{
+	initial_gas_mix = "o2=22;n2=82;TEMP=255.37"
+	},
+/area/lavaland/surface/outdoors)
+"GS" = (
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_water/village/kitchen)
+"GV" = (
+/turf/closed/wall,
+/area/ruin/unpowered/planet_water/village/armory)
+"GY" = (
+/obj/structure/cable,
+/obj/machinery/door/airlock/wood{
+	dir = 4;
+	name = "Kuchnia"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_water/village/kitchen)
+"HW" = (
+/obj/structure/barricade/sandbags,
+/turf/open/floor/plating/asteroid/sand{
+	initial_gas_mix = "o2=22;n2=82;TEMP=255.37"
+	},
+/area/lavaland/surface/outdoors)
+"Ib" = (
+/mob/living/basic/cow{
+	faction = list("Frontiersmen");
+	name = "krowa pograniczników";
+	desc = "Masz wrażenie, że ta krowa marzy, żeby znowu zabawić w Księżycowym Mieście."
+	},
+/obj/structure/railing{
+	dir = 1
+	},
+/turf/open/floor/plating/asteroid/dirt/grass/beach{
+	initial_gas_mix = "o2=22;n2=82;TEMP=255.37"
+	},
+/area/lavaland/surface/outdoors)
+"Ig" = (
+/obj/structure/closet/cabinet,
+/obj/item/clothing/under/costume/pirate,
+/obj/item/clothing/under/costume/pirate,
+/obj/item/clothing/shoes/combat{
+	pixel_y = -10
+	},
+/obj/item/clothing/head/soft/black{
+	pixel_y = 5
+	},
+/obj/item/storage/backpack/duffelbag,
+/obj/item/storage/fancy/cigarettes,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_water/village/dorm)
+"IH" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_water/village/kitchen)
+"IK" = (
+/obj/structure/closet/secure_closet/freezer/fridge,
+/obj/item/food/fishmeat,
+/obj/item/food/fishmeat,
+/obj/item/food/fishmeat,
+/obj/item/food/fishmeat,
+/obj/item/food/fishmeat,
+/obj/item/food/fishmeat,
+/obj/item/food/fishmeat,
+/obj/item/food/fishmeat,
+/obj/item/food/fishmeat,
+/obj/item/reagent_containers/food/condiment/milk,
+/obj/item/reagent_containers/food/condiment/milk,
+/obj/item/reagent_containers/food/condiment/milk,
+/obj/item/reagent_containers/food/condiment/milk,
+/obj/item/reagent_containers/food/condiment/milk,
+/obj/item/reagent_containers/food/condiment/milk,
+/obj/item/reagent_containers/food/condiment/milk,
+/obj/item/reagent_containers/food/condiment/milk,
+/obj/item/food/cheese/wheel,
+/obj/item/food/cheese/wheel,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_water/village/kitchen)
+"IR" = (
+/obj/machinery/light,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_water/village/kitchen)
+"IU" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_water/village/dorm)
+"IV" = (
+/obj/structure/table/reinforced,
+/obj/item/defibrillator/loaded{
+	pixel_y = 4
+	},
+/obj/effect/turf_decal/siding/wideplating{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_water/village/infirmary)
+"IW" = (
+/turf/open/floor/wood{
+	icon_state = "wood-broken4"
+	},
+/area/ruin/unpowered/planet_water/village/officers)
+"Jg" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/carpet/black,
+/area/ruin/unpowered/planet_water/village/officers)
+"Jy" = (
+/obj/structure/chair/fancy/plastic{
+	dir = 1
+	},
+/turf/open/floor/carpet,
+/area/ruin/unpowered/planet_water/village/kitchen)
+"JH" = (
+/obj/effect/decal/cleanable/crayon{
+	color = "#FF3333";
+	icon_state = "getout";
+	pixel_y = -3;
+	pixel_x = -5
+	},
+/turf/open/water/planet/stormy,
+/area/lavaland/surface/outdoors)
+"JI" = (
+/obj/machinery/light,
+/turf/open/floor/plasteel/freezer,
+/area/ruin/unpowered/planet_water/village/armory)
+"Kg" = (
+/obj/effect/turf_decal/siding/wideplating/dark{
+	dir = 1
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/ruin/unpowered/planet_water/village/infirmary)
+"Km" = (
+/obj/structure/cable,
+/turf/open/floor/plating/asteroid/sand/dense{
+	initial_gas_mix = "o2=22;n2=82;TEMP=255.37"
+	},
+/area/lavaland/surface/outdoors)
+"Ko" = (
+/obj/structure/rack,
+/turf/open/floor/plasteel/techmaint,
+/area/ruin/unpowered/planet_water/village/armory)
+"Kp" = (
+/obj/structure/chair/fancy/plastic,
+/turf/open/floor/plating/asteroid/sand{
+	initial_gas_mix = "o2=22;n2=82;TEMP=255.37"
+	},
+/area/lavaland/surface/outdoors)
+"KB" = (
+/obj/structure/railing{
+	dir = 6
+	},
+/obj/structure/flora/ausbushes/grassybush,
+/turf/open/floor/plating/asteroid/dirt/grass/beach{
+	initial_gas_mix = "o2=22;n2=82;TEMP=255.37"
+	},
+/area/lavaland/surface/outdoors)
+"KD" = (
+/mob/living/basic/trooper/pirate/melee,
+/turf/open/floor/plating/asteroid/sand/dense{
+	initial_gas_mix = "o2=22;n2=82;TEMP=255.37"
+	},
+/area/lavaland/surface/outdoors)
+"KR" = (
+/obj/structure/mirror{
+	pixel_y = -24
+	},
+/obj/structure/table/reinforced,
+/obj/structure/sink/kitchen{
+	dir = 1;
+	pixel_y = 12
+	},
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_water/village/armory)
+"KU" = (
+/obj/structure/cable,
+/turf/open/floor/plating/asteroid/sand{
+	initial_gas_mix = "o2=22;n2=82;TEMP=255.37"
+	},
+/area/lavaland/surface/outdoors)
+"KX" = (
+/mob/living/basic/trooper/pirate/melee,
+/turf/open/floor/carpet/orange,
+/area/ruin/unpowered/planet_water/village/dorm)
+"Lu" = (
+/obj/effect/turf_decal/siding/wood,
+/obj/structure/cable,
+/turf/open/floor/wood{
+	icon_state = "wood-broken5"
+	},
+/area/ruin/unpowered/planet_water/village/dorm)
+"Ly" = (
+/obj/structure/chair{
+	dir = 1
+	},
+/obj/machinery/light,
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_water/village/infirmary)
+"LH" = (
+/obj/structure/bed{
+	dir = 4
+	},
+/obj/item/bedsheet/black{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_water/village/infirmary)
+"LI" = (
+/obj/machinery/firealarm/directional/south{
+	pixel_x = 8;
+	pixel_y = -32
+	},
+/obj/structure/extinguisher_cabinet/south{
+	pixel_x = -6;
+	pixel_y = -28
+	},
+/turf/open/floor/wood{
+	icon_state = "wood-broken4"
+	},
+/area/ruin/unpowered/planet_water/village/dorm)
+"LK" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_water/village/infirmary)
+"LP" = (
+/obj/structure/bed,
+/obj/item/bedsheet/brown,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_water/village/officers)
+"LR" = (
+/obj/structure/punji_sticks,
+/obj/structure/flora/ausbushes/leafybush,
+/turf/open/floor/plating/asteroid/dirt/grass/beach{
+	initial_gas_mix = "o2=22;n2=82;TEMP=255.37"
+	},
+/area/lavaland/surface/outdoors)
+"Mf" = (
+/obj/structure/closet/cabinet,
+/obj/item/clothing/under/costume/pirate,
+/obj/item/clothing/under/costume/pirate,
+/obj/item/clothing/shoes/combat{
+	pixel_y = -10
+	},
+/obj/item/clothing/head/soft/black{
+	pixel_y = 5
+	},
+/obj/item/storage/backpack/duffelbag,
+/obj/effect/turf_decal/siding/wood,
+/obj/item/storage/fancy/cigarettes/cigars/havana,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_water/village/dorm)
+"Mr" = (
+/mob/living/basic/trooper/pirate/ranged,
+/obj/structure/chair/fancy/bench{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_water/village/armory)
+"Ms" = (
+/obj/structure/cable,
+/obj/machinery/power/apc/auto_name/north,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_water/village/dorm)
+"MC" = (
+/obj/structure/curtain,
+/obj/effect/turf_decal/siding/thinplating/dark/corner{
+	dir = 8
+	},
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_water/village/armory)
+"MK" = (
+/turf/open/floor/plating/asteroid/dirt/beach{
+	initial_gas_mix = "o2=22;n2=82;TEMP=255.37"
+	},
+/area/lavaland/surface/outdoors)
+"Nl" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/turf/open/floor/plating/asteroid/dirt/grass/beach{
+	initial_gas_mix = "o2=22;n2=82;TEMP=255.37"
+	},
+/area/lavaland/surface/outdoors)
+"Nn" = (
+/obj/effect/decal/cleanable/crayon{
+	color = "#FF3333";
+	icon_state = "getout";
+	pixel_y = 1;
+	pixel_x = 2
+	},
+/turf/open/floor/plating/asteroid/sand{
+	initial_gas_mix = "o2=22;n2=82;TEMP=255.37"
+	},
+/area/lavaland/surface/outdoors)
+"NW" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_water/village/armory)
+"NZ" = (
+/obj/structure/railing/corner{
+	dir = 8
+	},
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_water/village/kitchen)
+"Oi" = (
+/obj/structure/closet/crate/internals,
+/obj/item/clothing/mask/gas,
+/obj/item/clothing/mask/gas,
+/obj/item/clothing/mask/gas/sechailer,
+/obj/item/clothing/mask/gas/sechailer,
+/obj/item/tank/internals/emergency_oxygen/engi,
+/obj/item/tank/internals/emergency_oxygen/engi,
+/obj/effect/turf_decal/siding/thinplating,
+/turf/open/floor/plasteel/techmaint,
+/area/ruin/unpowered/planet_water/village/armory)
+"OG" = (
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_water/village/dorm)
+"OI" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/turf/open/floor/plating/asteroid/dirt/grass/beach{
+	initial_gas_mix = "o2=22;n2=82;TEMP=255.37"
+	},
+/area/lavaland/surface/outdoors)
+"OK" = (
+/obj/structure/chair{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_water/village/infirmary)
+"OZ" = (
+/obj/structure/cable,
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_water/village/infirmary)
+"Pa" = (
+/obj/structure/table,
+/obj/item/storage/box/fishing_worms{
+	pixel_x = 11;
+	pixel_y = 4
+	},
+/obj/item/storage/box/fishing_worms{
+	pixel_x = -5;
+	pixel_y = 15
+	},
+/obj/item/storage/box/fishing_worms{
+	pixel_x = -4;
+	pixel_y = 6
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_water/village/officers)
+"Pb" = (
+/obj/structure/table,
+/turf/open/floor/carpet,
+/area/ruin/unpowered/planet_water/village/kitchen)
+"Pc" = (
+/obj/structure/table/glass,
+/turf/open/floor/carpet/green,
+/area/ruin/unpowered/planet_water/village/dorm)
+"Pn" = (
+/obj/structure/rack,
+/obj/item/ammo_box/magazine/m556{
+	pixel_x = -8;
+	start_empty = 1
+	},
+/obj/item/ammo_box/magazine/m556{
+	pixel_x = 5;
+	start_empty = 1
+	},
+/obj/effect/turf_decal/siding/thinplating,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/plasteel/techmaint,
+/area/ruin/unpowered/planet_water/village/armory)
+"Pz" = (
+/obj/structure/closet/crate/freezer/blood,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_water/village/infirmary)
+"PE" = (
+/obj/structure/ore_box,
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_water/village/armory)
+"PL" = (
+/obj/machinery/door/poddoor/shutters{
+	id = "villagesecure"
+	},
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_water/village/armory)
+"PN" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_water/village/infirmary)
+"PO" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_water/village/dorm)
+"PT" = (
+/obj/structure/closet/secure_closet/engineering_welding,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_water/village/armory)
+"Qm" = (
+/obj/machinery/door/airlock/freezer{
+	name = "Przechowalnia zwłok"
+	},
+/obj/effect/decal/cleanable/blood/tracks,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_water/village/armory)
+"Qp" = (
+/obj/structure/flora/ausbushes/grassybush,
+/turf/open/floor/plating/asteroid/dirt/grass/beach{
+	initial_gas_mix = "o2=22;n2=82;TEMP=255.37"
+	},
+/area/lavaland/surface/outdoors)
+"Qt" = (
+/obj/machinery/door/airlock/wood{
+	dir = 4;
+	name = "Kuchnia"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_water/village/kitchen)
+"Qx" = (
+/obj/structure/closet/cabinet,
+/obj/item/clothing/suit/armor/vest,
+/obj/item/clothing/under/syndicate/camo,
+/obj/item/clothing/head/pirate,
+/obj/item/clothing/shoes/sandal,
+/obj/item/clothing/under/shorts/red,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_water/village/officers)
+"QA" = (
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/structure/lattice/catwalk/over/ship/dark,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_water/village/armory)
+"QD" = (
+/obj/item/clothing/under/syndicate/camo{
+	pixel_x = -10;
+	pixel_y = 2
+	},
+/turf/open/water/planet/stormy,
+/area/lavaland/surface/outdoors)
+"QE" = (
+/obj/structure/closet/crate/freezer,
+/obj/item/fish,
+/obj/item/fish,
+/obj/item/fish,
+/obj/item/fish,
+/obj/item/fish,
+/obj/item/fish,
+/obj/item/fish,
+/obj/item/fish,
+/obj/item/fish,
+/obj/item/fish,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_water/village/kitchen)
+"QS" = (
+/obj/machinery/shower{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/floor/plasteel/freezer,
+/area/ruin/unpowered/planet_water/village/armory)
+"QU" = (
+/obj/machinery/door/airlock/engineering{
+	dir = 8;
+	name = "Inżynieria"
+	},
+/obj/structure/cable,
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_water/village/armory)
+"Rh" = (
+/obj/structure/table/reinforced,
+/obj/machinery/microwave,
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_water/village/kitchen)
+"RF" = (
+/obj/structure/rack,
+/obj/item/ammo_box/magazine/m10mm{
+	pixel_x = 5
+	},
+/obj/item/ammo_box/magazine/m10mm{
+	pixel_x = -5
+	},
+/obj/item/stock_parts/cell,
+/obj/effect/turf_decal/siding/thinplating/corner,
+/turf/open/floor/plasteel/techmaint,
+/area/ruin/unpowered/planet_water/village/armory)
+"RJ" = (
+/obj/effect/turf_decal/siding/thinplating{
+	dir = 4
+	},
+/obj/structure/closet{
+	name = "szafa z pancerzami"
+	},
+/obj/item/clothing/head/helmet/alt,
+/obj/item/clothing/head/helmet/alt,
+/obj/item/clothing/suit/armor/vest/alt,
+/obj/item/clothing/suit/armor/vest/alt,
+/turf/open/floor/plasteel/techmaint,
+/area/ruin/unpowered/planet_water/village/armory)
+"RY" = (
+/obj/machinery/vending/cola/starkist,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood{
+	icon_state = "wood-broken"
+	},
+/area/ruin/unpowered/planet_water/village/dorm)
+"Sd" = (
+/obj/structure/railing{
+	dir = 1
+	},
+/turf/open/floor/plating/asteroid/dirt/grass/beach{
+	initial_gas_mix = "o2=22;n2=82;TEMP=255.37"
+	},
+/area/lavaland/surface/outdoors)
+"Sh" = (
+/obj/structure/flora/tree/jungle,
+/turf/open/floor/plating/asteroid/dirt/grass/beach{
+	initial_gas_mix = "o2=22;n2=82;TEMP=255.37"
+	},
+/area/lavaland/surface/outdoors)
+"Sq" = (
+/obj/structure/bonfire/prelit,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_water/village/officers)
+"Sw" = (
+/obj/structure/closet/crate/bin,
+/obj/machinery/light,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_water/village/dorm)
+"SC" = (
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_water/village/dorm)
+"SF" = (
+/obj/structure/table/wood/fancy,
+/obj/item/storage/fancy/heart_box{
+	pixel_x = 2;
+	pixel_y = 2
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_water/village/officers)
+"SK" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_water/village/kitchen)
+"SW" = (
+/obj/machinery/door/airlock/wood{
+	dir = 4;
+	name = "Sypialnia głównego szefa"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_water/village/officers)
+"Tf" = (
+/obj/structure/chair/fancy/sofa/old/left{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_water/village/kitchen)
+"Ti" = (
+/obj/structure/flora/ausbushes/reedbush,
+/turf/open/floor/plating/asteroid/dirt/grass/beach{
+	initial_gas_mix = "o2=22;n2=82;TEMP=255.37"
+	},
+/area/lavaland/surface/outdoors)
+"Tq" = (
+/obj/structure/urinal{
+	dir = 4;
+	pixel_x = -18;
+	pixel_y = -2
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_water/village/armory)
+"TV" = (
+/obj/machinery/firealarm/directional/north{
+	pixel_x = 7;
+	pixel_y = 33
+	},
+/obj/structure/extinguisher_cabinet/north{
+	pixel_x = -6;
+	pixel_y = 28
+	},
+/obj/item/clothing/head/chefhat{
+	pixel_x = -8;
+	pixel_y = -9
+	},
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_water/village/kitchen)
+"Ud" = (
+/turf/open/floor/plasteel/showroomfloor,
+/area/ruin/unpowered/planet_water/village/infirmary)
+"Uq" = (
+/obj/structure/chair/office{
+	dir = 8
+	},
+/obj/machinery/light,
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_water/village/armory)
+"UA" = (
+/obj/structure/window/fulltile,
+/obj/structure/grille,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_water/village/armory)
+"UE" = (
+/obj/item/ammo_casing/spent,
+/turf/open/floor/plating/asteroid/sand{
+	initial_gas_mix = "o2=22;n2=82;TEMP=255.37"
+	},
+/area/lavaland/surface/outdoors)
+"UF" = (
+/obj/effect/turf_decal/siding/wood,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_water/village/officers)
+"UN" = (
+/turf/open/floor/plating/asteroid/sand{
+	initial_gas_mix = "o2=22;n2=82;TEMP=255.37"
+	},
+/area/lavaland/surface/outdoors)
+"UP" = (
+/obj/item/restraints/legcuffs/beartrap{
+	armed = 1
+	},
+/turf/open/floor/plating/asteroid/dirt/beach{
+	initial_gas_mix = "o2=22;n2=82;TEMP=255.37"
+	},
+/area/lavaland/surface/outdoors)
+"UQ" = (
+/obj/structure/cable,
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_water/village/officers)
+"UT" = (
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_water/village/officers)
+"Vo" = (
+/obj/structure/closet/crate,
+/turf/open/floor/plasteel/techmaint,
+/area/ruin/unpowered/planet_water/village/armory)
+"VI" = (
+/obj/machinery/light,
+/turf/open/floor/carpet/red,
+/area/ruin/unpowered/planet_water/village/officers)
+"VP" = (
+/turf/open/floor/carpet/red,
+/area/lavaland/surface/outdoors)
+"Wc" = (
+/obj/structure/chair/fancy/plastic,
+/mob/living/basic/trooper/pirate/ranged,
+/turf/open/floor/plating/asteroid/sand{
+	initial_gas_mix = "o2=22;n2=82;TEMP=255.37"
+	},
+/area/lavaland/surface/outdoors)
+"Wf" = (
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_water/village/kitchen)
+"Wv" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/freezer,
+/area/ruin/unpowered/planet_water/village/armory)
+"WD" = (
+/turf/open/water/planet/beach{
+	initial_gas_mix = "o2=22;n2=82;TEMP=255.37"
+	},
+/area/lavaland/surface/outdoors)
+"WG" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/carpet/green,
+/area/ruin/unpowered/planet_water/village/dorm)
+"WP" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel/techmaint,
+/area/ruin/unpowered/planet_water/village/armory)
+"Xg" = (
+/obj/structure/table/reinforced,
+/obj/item/reagent_containers/glass/beaker/large{
+	pixel_x = 6;
+	pixel_y = 4
+	},
+/obj/item/reagent_containers/hypospray/combat{
+	pixel_x = -10;
+	pixel_y = 5
+	},
+/obj/item/reagent_containers/hypospray/combat{
+	pixel_x = -4;
+	pixel_y = 2
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_water/village/infirmary)
+"Xi" = (
+/obj/machinery/vending/cigarette,
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_water/village/officers)
+"Xm" = (
+/mob/living/basic/trooper/pirate/ranged,
+/turf/open/floor/plating/asteroid/dirt/grass/beach{
+	initial_gas_mix = "o2=22;n2=82;TEMP=255.37"
+	},
+/area/lavaland/surface/outdoors)
+"Xp" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 8
+	},
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_water/village/armory)
+"Xt" = (
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_water/village/kitchen)
+"Xw" = (
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 5
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 4;
+	color = "#474747"
+	},
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 8
+	},
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_water/village/armory)
+"Xy" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood{
+	icon_state = "wood-broken4"
+	},
+/area/ruin/unpowered/planet_water/village/dorm)
+"XH" = (
+/obj/effect/decal/cleanable/crayon{
+	color = "#FF3333";
+	icon_state = "s";
+	pixel_y = 13;
+	pixel_x = 14
+	},
+/turf/open/floor/plating/asteroid/sand{
+	initial_gas_mix = "o2=22;n2=82;TEMP=255.37"
+	},
+/area/lavaland/surface/outdoors)
+"XI" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_water/village/dorm)
+"XZ" = (
+/obj/effect/decal/cleanable/blood/gibs/core,
+/obj/effect/mob_spawn/human/corpse/nanotrasensoldier,
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_water/village/armory)
+"Yc" = (
+/obj/structure/chair/fancy/plastic{
+	dir = 8
+	},
+/turf/open/floor/plating/asteroid/sand{
+	initial_gas_mix = "o2=22;n2=82;TEMP=255.37"
+	},
+/area/lavaland/surface/outdoors)
+"Yp" = (
+/obj/structure/railing/corner{
+	dir = 1
+	},
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_water/village/kitchen)
+"Yt" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=82;TEMP=255.37";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_water/village/armory)
+"YR" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/techmaint,
+/area/ruin/unpowered/planet_water/village/armory)
+"YT" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 1
+	},
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_water/village/armory)
+"YV" = (
+/obj/machinery/firealarm/directional/north{
+	pixel_x = 7;
+	pixel_y = 33
+	},
+/obj/structure/extinguisher_cabinet/north{
+	pixel_x = -6;
+	pixel_y = 28
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_water/village/officers)
+"Za" = (
+/mob/living/basic/cow{
+	faction = list("Frontiersmen");
+	name = "krowa pograniczników";
+	desc = "Masz wrażenie, że ta krowa marzy, żeby znowu zabawić w Księżycowym Mieście. Do tego trzyma w pysku naleśnika."
+	},
+/obj/item/grown/bananapeel{
+	pixel_x = -8;
+	pixel_y = -13
+	},
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_water/village/kitchen)
+"Zh" = (
+/obj/structure/closet/cabinet,
+/obj/item/clothing/under/costume/pirate,
+/obj/item/clothing/under/costume/pirate,
+/obj/item/clothing/shoes/combat{
+	pixel_y = -10
+	},
+/obj/item/clothing/head/soft/black{
+	pixel_y = 5
+	},
+/obj/item/storage/backpack/duffelbag,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_water/village/dorm)
+"Zn" = (
+/obj/machinery/shower{
+	dir = 8
+	},
+/turf/open/floor/plasteel/freezer,
+/area/ruin/unpowered/planet_water/village/armory)
+"Zy" = (
+/obj/effect/turf_decal/siding/thinplating{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/techmaint,
+/area/ruin/unpowered/planet_water/village/armory)
+"ZB" = (
+/obj/effect/turf_decal/siding/wideplating,
+/obj/machinery/power/apc/auto_name/east,
+/obj/structure/cable,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_water/village/infirmary)
+
+(1,1,1) = {"
+nV
+nV
+nV
+nV
+UN
+UN
+UN
+UN
+UN
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+"}
+(2,1,1) = {"
+nV
+nV
+nV
+UN
+UN
+UN
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+UN
+UN
+UN
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+"}
+(3,1,1) = {"
+nV
+nV
+UN
+UN
+UN
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+UN
+UN
+UN
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+"}
+(4,1,1) = {"
+nV
+nV
+UN
+UN
+UN
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+UN
+UN
+UN
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+"}
+(5,1,1) = {"
+nV
+nV
+UN
+UN
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+UN
+UN
+UN
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+"}
+(6,1,1) = {"
+nV
+nV
+UN
+UN
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+UN
+UN
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+"}
+(7,1,1) = {"
+nV
+nV
+UN
+UN
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+UN
+UN
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+"}
+(8,1,1) = {"
+nV
+nV
+UN
+UN
+UN
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+UN
+UN
+UN
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+"}
+(9,1,1) = {"
+nV
+nV
+UN
+UN
+UN
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+UN
+UN
+UN
+UN
+UN
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+dS
+dS
+nV
+nV
+nV
+nV
+nV
+"}
+(10,1,1) = {"
+nV
+nV
+UN
+UN
+UN
+UN
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+dS
+dS
+dS
+nV
+nV
+nV
+nV
+nV
+nV
+"}
+(11,1,1) = {"
+nV
+nV
+UN
+UN
+UN
+UN
+UN
+UN
+WD
+WD
+DR
+DR
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+WD
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+nV
+nV
+nV
+nV
+nV
+MK
+MK
+MK
+MK
+dS
+dS
+dS
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+"}
+(12,1,1) = {"
+nV
+nV
+UN
+UN
+UN
+UN
+UN
+UN
+DR
+DR
+DR
+DR
+DR
+DR
+WD
+WD
+WD
+DR
+DR
+DR
+DR
+DR
+UN
+UN
+UN
+UN
+UN
+UN
+MK
+MK
+UN
+UN
+MK
+UN
+UN
+UN
+UN
+UN
+nV
+MK
+MK
+MK
+MK
+dS
+dS
+cY
+dS
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+"}
+(13,1,1) = {"
+nV
+nV
+nV
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+DR
+WD
+WD
+WD
+DR
+UN
+UN
+UN
+UN
+UN
+UN
+MK
+MK
+MK
+MK
+MK
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+dS
+dS
+dS
+dS
+dS
+dS
+nV
+nV
+nV
+nV
+nV
+nV
+"}
+(14,1,1) = {"
+nV
+nV
+nV
+nV
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+DR
+WD
+WD
+WD
+DR
+UN
+UN
+UN
+UN
+UN
+MK
+LR
+dS
+MK
+UN
+UN
+UN
+MK
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+MK
+MK
+MK
+OI
+dS
+dS
+dS
+nV
+nV
+nV
+nV
+nV
+nV
+"}
+(15,1,1) = {"
+nV
+nV
+nV
+nV
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+DR
+DR
+WD
+WD
+DR
+UN
+UN
+UN
+UN
+UN
+MK
+MK
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+MK
+MK
+UN
+dS
+dS
+dS
+dS
+dS
+dS
+dS
+nV
+nV
+nV
+nV
+nV
+nV
+"}
+(16,1,1) = {"
+nV
+nV
+nV
+nV
+UN
+UN
+UN
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+WD
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+MK
+MK
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+MK
+UP
+DR
+DR
+DR
+dS
+dS
+dS
+dS
+dS
+nV
+nV
+nV
+nV
+nV
+nV
+"}
+(17,1,1) = {"
+nV
+nV
+nV
+nV
+UN
+UN
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+dS
+MK
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+MK
+MK
+DR
+DR
+DR
+DR
+dS
+dS
+dS
+dS
+dS
+dS
+nV
+nV
+nV
+nV
+"}
+(18,1,1) = {"
+nV
+nV
+nV
+nV
+UN
+UN
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+LR
+MK
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+UP
+MK
+DR
+DR
+DR
+DR
+dS
+dS
+OI
+dS
+dS
+nV
+nV
+nV
+nV
+nV
+"}
+(19,1,1) = {"
+nV
+nV
+nV
+UN
+UN
+UN
+DR
+DR
+DR
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+mp
+UN
+UN
+UN
+UN
+MK
+MK
+UN
+UN
+UN
+UN
+UN
+DR
+DR
+DR
+UN
+UN
+UN
+UN
+UN
+MK
+MK
+UN
+DR
+DR
+DR
+dS
+dS
+dS
+dS
+dS
+nV
+dS
+dS
+nV
+nV
+"}
+(20,1,1) = {"
+nV
+nV
+nV
+UN
+UN
+UN
+DR
+DR
+DR
+UN
+Ev
+fR
+fR
+fR
+Ev
+UN
+UN
+UN
+UN
+MK
+MK
+MK
+MK
+MK
+MK
+MK
+UN
+UN
+MK
+MK
+MK
+MK
+MK
+MK
+MK
+MK
+UN
+UN
+MK
+HW
+HW
+DR
+DR
+DR
+dS
+dS
+dS
+dS
+dS
+OI
+dS
+nV
+nV
+nV
+"}
+(21,1,1) = {"
+nV
+nV
+nV
+UN
+UN
+UN
+DR
+DR
+DR
+UN
+Ev
+LH
+ei
+vW
+Ev
+Ev
+Ev
+UN
+MK
+MK
+MK
+MK
+dS
+Ti
+MK
+MK
+MK
+MK
+MK
+MK
+MK
+MK
+MK
+MK
+MK
+MK
+dJ
+mp
+MK
+gA
+HW
+DR
+DR
+DR
+dS
+dS
+dS
+fB
+dS
+dS
+dS
+dS
+nV
+nV
+"}
+(22,1,1) = {"
+nV
+nV
+nV
+UN
+UN
+UN
+DR
+DR
+DR
+MK
+Ev
+iU
+iU
+Dn
+CS
+OK
+Ev
+MK
+MK
+MK
+dS
+dS
+dS
+dS
+dS
+Qp
+dS
+fr
+fr
+fr
+DR
+DR
+DR
+UN
+UN
+MK
+dJ
+MK
+MK
+EG
+HW
+DR
+DR
+DR
+dS
+dS
+dS
+dS
+dS
+MK
+MK
+MK
+nV
+nV
+"}
+(23,1,1) = {"
+nV
+UN
+UN
+UN
+UN
+UN
+DR
+DR
+DR
+MK
+Ev
+Kg
+Ud
+xv
+fw
+Ly
+Ev
+to
+MK
+dS
+dS
+dS
+Qp
+dS
+dS
+dS
+dS
+dS
+dS
+fr
+DR
+DR
+DR
+UN
+UN
+UN
+MK
+MK
+UE
+HW
+HW
+DR
+DR
+DR
+dS
+dS
+dS
+dS
+MK
+MK
+MK
+MK
+nV
+nV
+"}
+(24,1,1) = {"
+nV
+UN
+UN
+UN
+UN
+UN
+DR
+DR
+DR
+MK
+fR
+rj
+gr
+xv
+PN
+OZ
+zs
+dM
+MK
+dS
+dS
+dS
+GV
+GV
+GV
+GV
+GV
+GV
+GV
+GV
+GV
+GV
+GV
+GV
+UN
+UN
+MK
+MK
+UN
+UN
+UN
+DR
+JH
+DR
+UN
+Sh
+dS
+MK
+MK
+MK
+MK
+MK
+MK
+nV
+"}
+(25,1,1) = {"
+nV
+UN
+UN
+UN
+UN
+UN
+DR
+DR
+DR
+MK
+Ev
+GK
+Ud
+lw
+PN
+CS
+Ev
+LK
+tg
+dS
+dS
+dS
+GV
+wv
+Ko
+GV
+Tq
+Tq
+Tq
+GV
+NW
+xJ
+vf
+GV
+UN
+fr
+MK
+mE
+XH
+HW
+HW
+DR
+DR
+DR
+UN
+UN
+UN
+MK
+MK
+MK
+MK
+MK
+MK
+nV
+"}
+(26,1,1) = {"
+nV
+UN
+UN
+UN
+UN
+UN
+DR
+DR
+DR
+MK
+Ev
+IV
+wj
+tR
+OZ
+Xg
+Ev
+dS
+sS
+dS
+dS
+GV
+GV
+Zy
+iw
+MC
+Xp
+ny
+ny
+po
+AC
+GV
+GV
+GV
+fr
+fr
+MK
+MK
+iN
+Nn
+HW
+DR
+DR
+DR
+UN
+UN
+UN
+UN
+UN
+MK
+MK
+MK
+MK
+MK
+"}
+(27,1,1) = {"
+UN
+UN
+UN
+UN
+UN
+UN
+DR
+DR
+DR
+dS
+Ev
+Ev
+Pz
+ZB
+vv
+vA
+Ev
+MK
+sS
+dS
+dS
+GV
+do
+Wv
+JI
+GV
+qO
+be
+KR
+GV
+NW
+xJ
+iJ
+GV
+fr
+fr
+fr
+MK
+sI
+dB
+HW
+DR
+DR
+DR
+UN
+UN
+UN
+UN
+UN
+UN
+MK
+MK
+MK
+MK
+"}
+(28,1,1) = {"
+UN
+UN
+UN
+UN
+UN
+UN
+DR
+DR
+DR
+dS
+dS
+Ev
+Ev
+Ev
+Ev
+Ev
+Ev
+MK
+BQ
+dS
+qk
+GV
+QS
+BY
+Zn
+GV
+fS
+fS
+KR
+GV
+GV
+GV
+GV
+GV
+GV
+fr
+MK
+dS
+wP
+HW
+HW
+QD
+DR
+DR
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+MK
+MK
+"}
+(29,1,1) = {"
+UN
+UN
+UN
+UN
+UN
+UN
+DR
+DR
+DR
+dS
+dS
+Ib
+dS
+dS
+dS
+qE
+dS
+MK
+sS
+dS
+dS
+GV
+GV
+GV
+GV
+GV
+vT
+GV
+GV
+GV
+Vo
+WP
+hE
+Al
+GV
+fz
+MK
+dS
+dS
+UN
+UN
+fV
+DR
+DR
+UN
+UN
+UN
+UN
+dS
+dS
+dS
+dS
+dS
+dS
+"}
+(30,1,1) = {"
+UN
+UN
+UN
+UN
+UN
+dS
+DR
+DR
+DR
+dS
+dS
+Sd
+dS
+up
+OI
+qE
+dS
+dS
+sS
+Qp
+dS
+GV
+RF
+RJ
+zX
+GV
+mu
+lq
+YT
+BT
+YR
+aL
+kW
+qq
+PL
+mQ
+dK
+dK
+dK
+dK
+dK
+dK
+dK
+dK
+dK
+dK
+dK
+dK
+Ce
+Ce
+dK
+dK
+dK
+dS
+"}
+(31,1,1) = {"
+UN
+UN
+UN
+UN
+UN
+dS
+DR
+DR
+DR
+dS
+dS
+Sd
+dS
+dS
+dS
+qE
+dS
+qk
+tg
+dS
+dS
+GV
+GE
+NW
+NW
+UA
+nt
+yl
+YT
+GV
+fx
+Ao
+nb
+xm
+kS
+Yt
+nM
+dK
+dK
+Ce
+Ce
+Ce
+Ce
+Ce
+dK
+dK
+dK
+Ce
+Ce
+dK
+dK
+dK
+dK
+dS
+"}
+(32,1,1) = {"
+nV
+UN
+UN
+UN
+dS
+dS
+DR
+DR
+DR
+dS
+dS
+Ib
+dS
+OI
+dS
+qE
+dS
+dS
+tg
+dS
+dS
+GV
+Pn
+NW
+qq
+pF
+mm
+cw
+pE
+GV
+fG
+Ao
+xm
+NW
+PL
+mQ
+BW
+Ce
+Ce
+dK
+dK
+dK
+dK
+dK
+Ce
+Ce
+Ce
+Ce
+dK
+dK
+dK
+dK
+dS
+dS
+"}
+(33,1,1) = {"
+nV
+nV
+UN
+UN
+dS
+dS
+DR
+DR
+DR
+UN
+UN
+zU
+Nl
+eU
+hS
+KB
+dS
+MK
+tg
+dS
+dS
+GV
+tb
+qo
+fm
+UA
+mm
+Mr
+aM
+sl
+kK
+iV
+Fo
+NW
+PL
+mQ
+nM
+dK
+dK
+dK
+dK
+dK
+dK
+dK
+dK
+Ce
+Ce
+dK
+dK
+dK
+dS
+dS
+dS
+dS
+"}
+(34,1,1) = {"
+nV
+nV
+nV
+dS
+dS
+dS
+DR
+DR
+DR
+UN
+UN
+UN
+dS
+yY
+MK
+dS
+dS
+tg
+sS
+dS
+dS
+GV
+GV
+GV
+GV
+GV
+QU
+GV
+GV
+GV
+fG
+yV
+Oi
+PE
+GV
+fz
+KU
+UN
+UN
+UN
+UN
+DR
+DR
+DR
+UN
+UN
+UN
+dS
+dS
+dS
+dS
+dS
+dS
+UN
+"}
+(35,1,1) = {"
+nV
+nV
+dS
+dS
+dS
+dS
+DR
+DR
+DR
+UN
+UN
+gA
+MK
+dS
+dS
+dS
+dS
+MK
+sS
+MK
+dS
+GV
+dH
+CN
+rt
+GV
+DZ
+Gc
+Bq
+GV
+GV
+GV
+GV
+GV
+GV
+MK
+tg
+UN
+UN
+UN
+UN
+DR
+DR
+DR
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+"}
+(36,1,1) = {"
+nV
+nV
+dS
+dS
+dS
+dS
+DR
+DR
+DR
+UN
+UN
+UN
+MK
+MK
+dS
+dS
+dS
+dS
+sS
+tg
+dS
+GV
+xj
+CN
+xm
+uk
+QA
+GF
+Uq
+GV
+pD
+dl
+xC
+GV
+fr
+MK
+tg
+UN
+UN
+UN
+UN
+DR
+DR
+DR
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+nV
+nV
+nV
+"}
+(37,1,1) = {"
+nV
+nV
+dS
+dS
+dS
+UN
+DR
+DR
+UN
+ud
+UN
+UN
+UN
+MK
+dS
+dS
+dS
+dS
+dS
+tg
+tg
+GV
+GV
+mz
+lu
+GV
+Xw
+Gf
+Gd
+Qm
+Fs
+DB
+uP
+GV
+Km
+tg
+sS
+dS
+UN
+UN
+UN
+DR
+DR
+DR
+UN
+UN
+xe
+UN
+UN
+UN
+nV
+nV
+nV
+nV
+"}
+(38,1,1) = {"
+nV
+nV
+UN
+dS
+UN
+UN
+DR
+DR
+Wc
+hF
+UN
+UN
+UN
+MK
+dS
+qk
+dS
+dS
+dS
+dS
+tg
+MK
+GV
+gB
+sj
+GV
+pn
+fb
+PT
+GV
+Dp
+XZ
+AE
+GV
+Km
+xB
+UE
+xB
+UN
+UN
+UN
+DR
+DR
+DR
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+nV
+nV
+nV
+"}
+(39,1,1) = {"
+nV
+nV
+UN
+UN
+UN
+UN
+DR
+DR
+Kp
+of
+UN
+VP
+UN
+MK
+gV
+EF
+EF
+EF
+EF
+gV
+tg
+MK
+GV
+GV
+GV
+GV
+GV
+GV
+GV
+GV
+GV
+GV
+GV
+GV
+Km
+xB
+UN
+UN
+HW
+HW
+UN
+DR
+DR
+DR
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+nV
+"}
+(40,1,1) = {"
+nV
+nV
+nV
+UN
+UN
+UN
+DR
+DR
+UN
+Yc
+UN
+VP
+UN
+MK
+gV
+dS
+dS
+Xm
+dS
+gV
+tg
+MK
+fr
+fr
+fr
+fr
+fr
+fr
+fr
+dS
+DR
+DR
+DR
+dS
+sS
+xB
+vE
+UE
+gA
+HW
+UN
+DR
+DR
+DR
+UN
+UN
+UN
+UN
+UN
+aT
+jG
+UN
+UN
+nV
+"}
+(41,1,1) = {"
+nV
+nV
+nV
+nV
+UN
+UN
+DR
+DR
+DR
+UN
+UN
+UN
+UN
+MK
+MK
+MK
+dS
+dS
+dS
+dS
+tg
+fr
+fr
+fr
+fr
+fr
+fr
+fr
+MK
+dS
+DR
+DR
+DR
+dS
+sS
+xB
+vE
+UN
+HW
+EF
+UN
+DR
+DR
+DR
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+nV
+"}
+(42,1,1) = {"
+nV
+nV
+nV
+nV
+UN
+UN
+DR
+DR
+DR
+UN
+UN
+UN
+MK
+MK
+MK
+MK
+MK
+MK
+dS
+dS
+tg
+fr
+fr
+xB
+fr
+fr
+qF
+EF
+MK
+MK
+DR
+DR
+DR
+dS
+sS
+xB
+dS
+xB
+dS
+dS
+UN
+DR
+DR
+DR
+UN
+VP
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+nV
+"}
+(43,1,1) = {"
+nV
+nV
+nV
+nV
+UN
+UN
+DR
+DR
+DR
+UN
+VP
+UN
+MK
+dS
+gV
+MK
+MK
+MK
+MK
+gV
+tg
+MK
+fr
+xB
+fr
+fr
+ve
+EF
+MK
+MK
+DR
+DR
+DR
+dS
+sS
+dS
+MK
+dS
+dS
+UN
+UN
+DR
+DR
+DR
+UN
+VP
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+nV
+"}
+(44,1,1) = {"
+nV
+nV
+nV
+nV
+nV
+UN
+DR
+DR
+DR
+UN
+VP
+UN
+MK
+dS
+EF
+GQ
+MK
+dS
+GQ
+EF
+tg
+MK
+fr
+xB
+fr
+fr
+ii
+EF
+MK
+MK
+DR
+DR
+DR
+sS
+sS
+dS
+dS
+wF
+dS
+UN
+UN
+DR
+DR
+DR
+UN
+UN
+UN
+AK
+UN
+UN
+UN
+UN
+nV
+nV
+"}
+(45,1,1) = {"
+nV
+nV
+nV
+nV
+nV
+UN
+DR
+DR
+DR
+UN
+UN
+UN
+MK
+dS
+dS
+EF
+GQ
+EF
+EF
+dS
+tg
+MK
+fr
+xB
+MK
+fr
+EF
+EF
+dS
+MK
+DR
+DR
+DR
+sS
+Sh
+dS
+Ti
+MK
+dS
+UN
+UN
+DR
+DR
+DR
+UN
+UN
+UN
+UN
+UN
+dS
+dS
+dS
+nV
+nV
+"}
+(46,1,1) = {"
+nV
+nV
+nV
+nV
+nV
+UN
+DR
+DR
+DR
+UN
+UN
+UN
+MK
+MK
+MK
+dS
+dS
+dS
+dS
+dS
+tg
+MK
+KD
+fr
+MK
+dS
+dS
+dS
+MK
+MK
+DR
+DR
+DR
+sS
+dS
+dS
+MK
+MK
+dS
+UN
+UN
+DR
+DR
+DR
+xe
+UN
+UN
+UN
+UN
+UN
+UN
+dS
+dS
+nV
+"}
+(47,1,1) = {"
+nV
+nV
+nV
+nV
+nV
+UN
+DR
+DR
+DR
+UN
+UN
+UN
+dS
+dS
+MK
+MK
+dS
+dS
+dS
+sS
+tg
+MK
+MK
+MK
+MK
+dS
+wF
+dS
+MK
+MK
+DR
+DR
+DR
+sS
+wF
+dS
+MK
+dS
+qk
+dS
+UN
+DR
+DR
+DR
+UN
+UN
+UN
+UN
+UN
+MK
+MK
+MK
+dS
+dS
+"}
+(48,1,1) = {"
+nV
+nV
+nV
+nV
+UN
+UN
+DR
+DR
+DR
+UN
+UN
+dS
+dS
+dS
+dS
+MK
+MK
+MK
+MK
+MK
+tg
+MK
+MK
+MK
+MK
+MK
+MK
+MK
+MK
+MK
+MK
+MK
+MK
+tg
+dJ
+MK
+MK
+MK
+MK
+MK
+UN
+MK
+MK
+MK
+MK
+MK
+MK
+MK
+MK
+MK
+dS
+dS
+dS
+nV
+"}
+(49,1,1) = {"
+nV
+nV
+nV
+nV
+UN
+UN
+DR
+DR
+DR
+dS
+dS
+IH
+pP
+pP
+pP
+pY
+tg
+tg
+MK
+MK
+tg
+MK
+dS
+dS
+MK
+MK
+MK
+MK
+MK
+MK
+MK
+tg
+Bl
+tg
+MK
+dJ
+MK
+dS
+dS
+MK
+MK
+MK
+MK
+MK
+MK
+MK
+MK
+MK
+dS
+dS
+dS
+dS
+nV
+nV
+"}
+(50,1,1) = {"
+nV
+nV
+nV
+nV
+UN
+UN
+DR
+DR
+DR
+dS
+dS
+zv
+GY
+zv
+Qt
+zv
+dS
+sS
+sS
+tg
+tg
+tg
+sS
+sS
+sS
+jo
+UQ
+jo
+tg
+sS
+tg
+tg
+tg
+uN
+MK
+MK
+dS
+dS
+MK
+MK
+MK
+MK
+MK
+MK
+MK
+MK
+MK
+MK
+dS
+dS
+dS
+dS
+dS
+nV
+"}
+(51,1,1) = {"
+nV
+nV
+nV
+nV
+UN
+UN
+DR
+DR
+DR
+zv
+zv
+zv
+fv
+yd
+yd
+zv
+zv
+zv
+dS
+dS
+dS
+dS
+xn
+xn
+xn
+xn
+aW
+xn
+xn
+dS
+DR
+DR
+DR
+sS
+tg
+MK
+MK
+MK
+MK
+dS
+MK
+DR
+DR
+DR
+dS
+dS
+dS
+MK
+MK
+MK
+MK
+dS
+nV
+nV
+"}
+(52,1,1) = {"
+nV
+nV
+nV
+UN
+UN
+UN
+DR
+DR
+DR
+zv
+yB
+Wf
+wz
+qN
+rX
+xR
+fK
+zv
+DR
+DR
+DR
+xn
+xn
+SF
+qM
+xn
+ac
+UF
+xn
+xn
+DR
+DR
+DR
+dS
+PO
+bZ
+OG
+OG
+OG
+gJ
+dS
+DR
+DR
+DR
+dS
+dS
+MK
+MK
+dS
+dS
+dS
+dS
+nV
+nV
+"}
+(53,1,1) = {"
+nV
+nV
+nV
+UN
+UN
+UN
+DR
+DR
+DR
+zv
+sB
+BL
+wm
+zm
+yC
+qd
+Jy
+zv
+DR
+DR
+DR
+xn
+oi
+ut
+Ez
+xn
+BV
+aQ
+Xi
+xn
+DR
+DR
+DR
+yt
+yt
+pW
+nK
+nK
+ig
+yt
+yt
+DR
+DR
+DR
+dS
+dS
+dS
+dS
+dS
+nV
+nV
+nV
+nV
+nV
+"}
+(54,1,1) = {"
+nV
+nV
+nV
+UN
+UN
+UN
+DR
+DR
+DR
+zv
+NZ
+Xt
+Yp
+pV
+yC
+qd
+Du
+zv
+DR
+DR
+DR
+xn
+dd
+BP
+VI
+xn
+YV
+UF
+pz
+xn
+DR
+DR
+DR
+yt
+Ms
+Lu
+tS
+tS
+Xy
+LI
+yt
+DR
+DR
+DR
+dS
+dS
+OI
+dS
+nV
+nV
+nV
+nV
+nV
+nV
+"}
+(55,1,1) = {"
+nV
+nV
+nV
+nV
+UN
+UN
+DR
+DR
+DR
+zv
+Rh
+Cw
+sr
+zm
+yC
+Pb
+Du
+zv
+DR
+DR
+DR
+qe
+UT
+BP
+ut
+eI
+tY
+UF
+yG
+xn
+DR
+DR
+DR
+yt
+eC
+dz
+Ey
+Pc
+Dh
+Sw
+yt
+DR
+DR
+DR
+Fu
+dS
+dS
+dS
+nV
+nV
+nV
+nV
+nV
+nV
+"}
+(56,1,1) = {"
+nV
+nV
+nV
+nV
+UN
+UN
+DR
+DR
+DR
+zv
+TV
+AM
+Za
+DS
+yT
+yT
+yT
+zv
+DR
+DR
+DR
+qe
+UT
+zJ
+mD
+xn
+IW
+oA
+aE
+xn
+DR
+DR
+DR
+yt
+GO
+WG
+DI
+yS
+WG
+RY
+yt
+DR
+DR
+DR
+dS
+dS
+dS
+dS
+nV
+nV
+nV
+nV
+nV
+nV
+"}
+(57,1,1) = {"
+nV
+nV
+nV
+nV
+nV
+UN
+DR
+DR
+DR
+zv
+IK
+cE
+xr
+AU
+SK
+GS
+IR
+zv
+DR
+DR
+DR
+xn
+EY
+Co
+xn
+xn
+xn
+SW
+xn
+xn
+DR
+DR
+DR
+yt
+yt
+kd
+yt
+yt
+kd
+yt
+yt
+DR
+DR
+DR
+dS
+dS
+dS
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+"}
+(58,1,1) = {"
+nV
+nV
+nV
+nV
+nV
+UN
+DR
+DR
+DR
+zv
+zv
+uI
+uI
+vR
+SK
+QE
+zv
+zv
+DR
+DR
+DR
+xn
+xn
+xn
+xn
+Qx
+ca
+UT
+lP
+xn
+DR
+DR
+DR
+yt
+Mf
+tS
+Cy
+lt
+OG
+aa
+yt
+DR
+DR
+DR
+dS
+dS
+dS
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+"}
+(59,1,1) = {"
+nV
+nV
+nV
+nV
+nV
+UN
+DR
+DR
+DR
+DR
+DR
+Tf
+cD
+dQ
+GS
+DY
+DR
+DR
+DR
+DR
+DR
+rh
+Sq
+UT
+Ay
+nE
+Jg
+Jg
+UT
+xn
+DR
+DR
+DR
+yt
+sx
+js
+KX
+hN
+IU
+sq
+yt
+DR
+DR
+DR
+dS
+OI
+dS
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+"}
+(60,1,1) = {"
+nV
+nV
+nV
+nV
+nV
+UN
+DR
+DR
+DR
+DR
+DR
+FA
+FA
+GS
+GS
+GS
+DR
+DR
+DR
+DR
+DR
+rh
+zJ
+zJ
+xn
+lF
+Cb
+Jg
+AV
+xn
+DR
+DR
+DR
+yt
+ds
+XI
+oC
+oC
+SC
+Am
+yt
+DR
+DR
+DR
+dS
+dS
+UN
+UN
+UN
+UN
+UN
+UN
+nV
+nV
+"}
+(61,1,1) = {"
+nV
+nV
+nV
+nV
+UN
+UN
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+rh
+zJ
+Pa
+xn
+CD
+qM
+Bp
+LP
+xn
+DR
+DR
+DR
+yt
+yt
+wN
+Ig
+Zh
+wN
+yt
+yt
+DR
+DR
+DR
+dS
+dS
+UN
+UN
+UN
+UN
+UN
+UN
+nV
+nV
+"}
+(62,1,1) = {"
+nV
+nV
+nV
+nV
+UN
+UN
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+kI
+lC
+yX
+xn
+xn
+qe
+qe
+xn
+xn
+DR
+DR
+DR
+DR
+yt
+nK
+yt
+yt
+nK
+yt
+DR
+DR
+DR
+DR
+dS
+dS
+UN
+UN
+UN
+UN
+UN
+UN
+nV
+nV
+"}
+(63,1,1) = {"
+nV
+nV
+nV
+nV
+UN
+UN
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+dS
+UN
+UN
+UN
+UN
+UN
+nV
+nV
+nV
+nV
+"}
+(64,1,1) = {"
+nV
+nV
+nV
+nV
+UN
+UN
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+dS
+UN
+UN
+UN
+UN
+UN
+nV
+nV
+nV
+nV
+"}
+(65,1,1) = {"
+nV
+nV
+nV
+nV
+UN
+UN
+UN
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+DR
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+nV
+nV
+nV
+nV
+"}
+(66,1,1) = {"
+nV
+nV
+nV
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+"}
+(67,1,1) = {"
+nV
+nV
+nV
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+UN
+nV
+nV
+nV
+UN
+UN
+UN
+UN
+UN
+nV
+nV
+nV
+UN
+UN
+UN
+UN
+nV
+nV
+nV
+UN
+UN
+UN
+nV
+nV
+UN
+UN
+UN
+UN
+UN
+UN
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+"}
+(68,1,1) = {"
+nV
+nV
+nV
+UN
+UN
+nV
+nV
+nV
+nV
+nV
+UN
+UN
+UN
+UN
+UN
+UN
+nV
+nV
+nV
+nV
+nV
+nV
+UN
+UN
+nV
+nV
+nV
+nV
+UN
+UN
+UN
+UN
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+UN
+UN
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+"}
+(69,1,1) = {"
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+UN
+UN
+UN
+UN
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+"}

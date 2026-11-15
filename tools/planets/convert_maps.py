@@ -90,11 +90,16 @@ ST_COLORS = {
     'neutral': None, 'black': '#444547', 'blue': '#75A2BB', 'green': '#99BB76', 'lime': '#B7D993', 'yellow': '#BA9F6D',
     'beige': '#CEB689', 'red': '#B4696A', 'bar': '#791500', 'grey': '#a3a2a0', 'syndiered': '#730622',
     'warrablue': '#32426b', 'white': '#FFFFFF',
+    'tan': '#c59973', 'lightgrey': '#a8b2b6', 'bottlegreen': '#57967f', 'navyblue': '#334059', 'warrabluelight': '#2270d0',
+    'nsorange': '#f97016', 'vired': '#c92020', 'solgovblue': '#2d2a4e', 'solgovgold': '#eeac2e', 'inteqbrown': '#4b2a18',
+    'inteqbrownlight': '#804433', 'cybersunteal': '#4C9C9C', 'orange': '#C3630C',
 }
 # nasz najbliższy kolor (podtyp), kolor Shiptesta nadpisujemy edycją
 OUR_COLOR = {'neutral': 'neutral', 'black': 'black', 'blue': 'blue', 'green': 'green', 'lime': 'green', 'yellow': 'yellow',
              'beige': 'brown', 'red': 'red', 'bar': 'bar', 'grey': 'neutral', 'syndiered': 'red', 'warrablue': 'darkblue',
-             'white': 'white'}
+             'white': 'white', 'tan': 'brown', 'lightgrey': 'neutral', 'bottlegreen': 'green', 'navyblue': 'darkblue',
+             'warrabluelight': 'blue', 'nsorange': 'yellow', 'vired': 'red', 'solgovblue': 'darkblue', 'solgovgold': 'yellow',
+             'inteqbrown': 'brown', 'inteqbrownlight': 'brown', 'cybersunteal': 'blue', 'orange': 'yellow'}
 OUR_TRIM_COLORS = {'black', 'blue', 'brown', 'darkblue', 'green', 'neutral', 'purple', 'red', 'white', 'yellow'}
 
 # kształty narożników Shiptesta (corner/<kolor>/<kształt>) -> nasz /tile/<kolor>/<kształt> + przeliczenie kierunku
@@ -117,7 +122,11 @@ def decal(path, vars_, mapname):
     if m:
         op, col, shape = m.group(1), m.group(2), m.group(3) or ''
         target, dirmap = CORNER_SHAPES[shape]
-        our = '/obj/effect/turf_decal/tile/' + OUR_COLOR[col] + ('/' + target if target else '')
+        base_colour = OUR_COLOR[col]
+        # nasz darkblue nie ma kształtów anticorner/fourcorners/opposingcorners: kolor i tak nadpisuje edycja
+        if base_colour == 'darkblue' and target:
+            base_colour = 'blue'
+        our = '/obj/effect/turf_decal/tile/' + base_colour + ('/' + target if target else '')
         nv = {}
         if dirmap:
             nd = dirmap.get(d, d)
@@ -213,7 +222,7 @@ def clean_vars(vars_, keep_icon_state):
             v = '/obj/item/stack/sheet/mineral/gold'
         if k in ('pixel_x', 'pixel_y') and v == '0':
             continue
-        if k in ('name', 'desc') and v.startswith('"'):
+        if k in ('name', 'desc', 'default_raw_text') and v.startswith('"'):
             v = tr(v)
         out[k] = v
     return out
@@ -249,7 +258,7 @@ def convert_atom(a, mapname, stat):
             raise KeyError(path)
         return [atom(path, clean_vars(vars_, True))]
     # dekale
-    if path.startswith('/obj/effect/turf_decal') and path in MISSING:
+    if path.startswith('/obj/effect/turf_decal') and path in MISSING and path not in R:
         res = decal(path, vars_, mapname)
         stat['dropped' if res is None else 'replaced'] += 1
         return res or []

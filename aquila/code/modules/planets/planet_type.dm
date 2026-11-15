@@ -48,6 +48,8 @@
 	var/scenery = FALSE
 	/// Czy misje planetarne (kolonia, rozpoznanie) mogą wybrać ten typ
 	var/mission_target = TRUE
+	/// Typ, który jest tylko wspólnym rodzicem (np. planety karłowate): bez prototypu, nie pojawia się w układach
+	var/abstract_type = /datum/planet_type
 
 /// Szablony małych ruin z budżetu (nazwa -> szablon)
 /datum/planet_type/proc/get_ruin_templates()
@@ -74,7 +76,9 @@ GLOBAL_LIST_INIT(planet_type_prototypes, init_planet_type_prototypes())
 
 /proc/init_planet_type_prototypes()
 	. = list()
-	for(var/planet_type in subtypesof(/datum/planet_type))
+	for(var/datum/planet_type/planet_type as anything in subtypesof(/datum/planet_type))
+		if(planet_type == initial(planet_type.abstract_type))
+			continue
 		.[planet_type] = new planet_type
 
 /// Pole, na którym nie da się stać ani wylądować: ściana, lawa, przepaść, głęboka woda (planet_landing_hazard)

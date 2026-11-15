@@ -1,0 +1,8386 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aa" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 9;
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 8;
+	color = "#474747"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/cable,
+/mob/living/basic/hivebot/rapid{
+	faction = list("pirate")
+	},
+/turf/open/floor/monotile/dark{
+	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"ac" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 6
+	},
+/obj/structure/cable,
+/mob/living/basic/viscerator{
+	faction = list("hostile")
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/csunpad/medical)
+"ap" = (
+/obj/effect/turf_decal/tile/blue/half{
+	color = "#4C9C9C";
+	alpha = 255
+	},
+/obj/effect/turf_decal/trimline/blue/line{
+	dir = 8;
+	color = "#4C9C9C";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/tile/neutral/fourcorners{
+	color = "#a8b2b6";
+	alpha = 140
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/turf/open/floor/monotile/light,
+/area/ruin/unpowered/planet_beach/csunpad/medical)
+"aq" = (
+/obj/machinery/power/smes/engineering{
+	dir = 8
+	},
+/obj/structure/cable/yellow,
+/obj/structure/window/reinforced/survival_pod{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "midwich_blast4";
+	dir = 4
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_beach/csunpad/june)
+"ar" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/structure/bed/roller,
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_beach/csunpad/medical)
+"as" = (
+/obj/item/ammo_casing/spent,
+/obj/effect/turf_decal/tile/blue{
+	dir = 5;
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 1;
+	color = "#474747"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/turf/open/floor/monotile/dark{
+	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"aw" = (
+/obj/structure/safe,
+/obj/item/tank/internals/emergency_oxygen/double{
+	pixel_x = -4;
+	pixel_y = -8
+	},
+/obj/item/clothing/mask/breath,
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_beach/csunpad)
+"aF" = (
+/obj/structure/closet/cabinet{
+	name = "szafa kapitana";
+	anchored = 1
+	},
+/obj/item/clothing/suit/toggle/labcoat{
+	pixel_x = -4;
+	pixel_y = 2
+	},
+/obj/item/clothing/under/syndicate{
+	pixel_y = -7;
+	pixel_x = 3
+	},
+/obj/item/clothing/under/syndicate{
+	pixel_y = -7;
+	pixel_x = 8
+	},
+/obj/item/clothing/shoes/combat{
+	pixel_y = -9;
+	pixel_x = -11
+	},
+/obj/item/clothing/head/HoS/beret/syndicate{
+	pixel_x = -8;
+	pixel_y = 11
+	},
+/obj/item/clothing/shoes/laceup{
+	pixel_x = -12;
+	pixel_y = -3
+	},
+/obj/item/clothing/suit/armor/vest{
+	pixel_y = 2;
+	pixel_x = -13
+	},
+/obj/item/storage/backpack/satchel/leather{
+	pixel_x = 11;
+	pixel_y = 12
+	},
+/obj/item/storage/backpack/duffelbag/syndie{
+	pixel_y = 16;
+	name = "Pan Torba";
+	pixel_x = 11
+	},
+/obj/item/clothing/under/shorts/red{
+	name = "dżinsowe szorty Cybersun";
+	pixel_y = -11;
+	pixel_x = 9
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/csunpad/director)
+"aK" = (
+/obj/effect/turf_decal/trimline/blue/line{
+	dir = 5;
+	color = "#4C9C9C";
+	alpha = 255
+	},
+/obj/effect/turf_decal/tile/neutral/fourcorners{
+	color = "#a8b2b6";
+	alpha = 140
+	},
+/turf/open/floor/monotile/light,
+/area/ruin/unpowered/planet_beach/csunpad/medical)
+"aQ" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 9;
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 8;
+	color = "#474747"
+	},
+/obj/structure/extinguisher_cabinet/west,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_beach/csunpad)
+"aR" = (
+/obj/effect/mob_spawn/human/corpse/assistant,
+/obj/effect/turf_decal/tile/blue{
+	dir = 6;
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 4;
+	color = "#474747"
+	},
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/monotile/dark{
+	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"aS" = (
+/obj/structure/grille,
+/obj/structure/window/plastitanium,
+/obj/machinery/door/poddoor/shutters{
+	id = "midwich_blast3";
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_beach/csunpad/june)
+"aV" = (
+/obj/machinery/door/airlock/public{
+	name = "Łazienka"
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_beach/csunpad)
+"aW" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 5;
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 1;
+	color = "#474747"
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/mine/explosive,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/turf/open/floor/monotile/dark{
+	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"aX" = (
+/obj/effect/turf_decal/tile/red/half{
+	dir = 1;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/tile/blue/half{
+	color = "#4C9C9C";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/monotile/light,
+/area/ruin/unpowered/planet_beach/csunpad/security)
+"aZ" = (
+/mob/living/basic/hivebot/range{
+	faction = list("pirate")
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8;
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white/corner{
+	dir = 8;
+	color = "#474747"
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/monotile/dark{
+	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"bg" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 5
+	},
+/obj/machinery/modular_computer/console/preset/command,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/csunpad/medical)
+"bo" = (
+/obj/structure/table/glass,
+/obj/machinery/button/door{
+	pixel_x = 20;
+	pixel_y = 2;
+	dir = 8;
+	id = "checkpointbot";
+	name = "automatyczne zwolnienie zabezpieczeń"
+	},
+/obj/item/paper_bin{
+	pixel_x = -3;
+	pixel_y = 2
+	},
+/obj/item/pen{
+	pixel_x = 3;
+	pixel_y = -5
+	},
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_beach/csunpad)
+"bF" = (
+/obj/effect/turf_decal/tile/neutral/fourcorners{
+	color = "#a8b2b6";
+	alpha = 140
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 6
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/monotile/light,
+/area/ruin/unpowered/planet_beach/csunpad)
+"bH" = (
+/obj/structure/filingcabinet/chestdrawer{
+	dir = 1
+	},
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_beach/csunpad)
+"cd" = (
+/obj/structure/rack,
+/obj/effect/turf_decal/siding/white{
+	dir = 1;
+	color = "#444547"
+	},
+/obj/item/storage/firstaid/medical{
+	pixel_x = -3;
+	pixel_y = 5
+	},
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_beach/csunpad/medical)
+"ci" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/csunpad/medical)
+"cp" = (
+/obj/item/food/deadmouse/moldy,
+/obj/structure/lattice/catwalk/over/ship/dark,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_beach/csunpad/engineering)
+"ct" = (
+/obj/machinery/firealarm/directional/west,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/csunpad)
+"cy" = (
+/obj/structure/table/glass,
+/obj/item/reagent_containers/food/drinks/soda_cans/cola{
+	pixel_y = 6
+	},
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_beach/csunpad/canteen)
+"cI" = (
+/obj/structure/extinguisher_cabinet/west,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/csunpad)
+"cN" = (
+/obj/effect/turf_decal/ship/techfloor{
+	dir = 1
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_beach/csunpad/june)
+"dg" = (
+/obj/structure/table/glass,
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_beach/csunpad)
+"do" = (
+/turf/closed/wall/mineral/titanium/nodiagonal,
+/area/ruin/unpowered/planet_beach/csunpad/security)
+"dp" = (
+/obj/structure/fluff/paper/stack{
+	pixel_x = 4;
+	pixel_y = -8
+	},
+/obj/structure/fluff/paper/stack,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/csunpad)
+"dq" = (
+/obj/effect/turf_decal/trimline/red/filled/warning{
+	dir = 1;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 1;
+	color = "#474747"
+	},
+/mob/living/basic/hivebot/rapid{
+	faction = list("pirate")
+	},
+/turf/open/floor/monotile/dark{
+	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"dv" = (
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 4
+	},
+/obj/machinery/button/door{
+	pixel_y = -20;
+	id = "midwich_blast3";
+	name = "sterowanie oknami zewnętrznymi";
+	dir = 1
+	},
+/obj/structure/chair/fancy/shuttle{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/light/small/broken{
+	pixel_x = -13;
+	pixel_y = 28;
+	dir = 1
+	},
+/obj/item/radio/intercom/directional/north{
+	pixel_y = 31;
+	pixel_x = 2
+	},
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_beach/csunpad/june)
+"dP" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 10;
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 4;
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 6;
+	color = "#474747"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/monotile/dark{
+	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"ed" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 8;
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white/corner{
+	dir = 8;
+	color = "#474747"
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/cable,
+/turf/open/floor/monotile/dark{
+	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"ei" = (
+/obj/effect/turf_decal/trimline/red/filled/warning{
+	dir = 1;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 1;
+	color = "#474747"
+	},
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_beach/csunpad)
+"ek" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 10;
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white{
+	color = "#474747"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/monotile/dark{
+	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"ep" = (
+/obj/effect/turf_decal/siding/wood,
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/components/unary/passive_vent/layer2{
+	dir = 4
+	},
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_beach/csunpad/dorm)
+"et" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/airlock/command{
+	name = "Biuro operacji";
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_beach/csunpad)
+"eB" = (
+/obj/structure/chair/fancy/bench{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/light,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/csunpad/dorm)
+"eF" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 9;
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 8;
+	color = "#474747"
+	},
+/obj/effect/mine/explosive,
+/turf/open/floor/monotile/dark{
+	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"eM" = (
+/obj/structure/bed/double,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/csunpad/director)
+"fc" = (
+/mob/living/basic/viscerator{
+	faction = list("hostile")
+	},
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_beach/csunpad/security)
+"fd" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 5;
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 1;
+	color = "#474747"
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 1
+	},
+/obj/machinery/light{
+	pixel_y = 23
+	},
+/turf/open/floor/monotile/dark{
+	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"fi" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/csunpad)
+"fk" = (
+/obj/effect/turf_decal/ship/techfloor,
+/obj/structure/closet/emcloset/anchored,
+/obj/item/clothing/suit/space/orange,
+/obj/item/clothing/suit/space/orange{
+	pixel_x = 4
+	},
+/obj/item/clothing/head/helmet/space/fragile,
+/obj/item/clothing/head/helmet/space/fragile{
+	pixel_x = 4
+	},
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_beach/csunpad/june)
+"fB" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 6
+	},
+/obj/structure/fluff/paper/stack{
+	pixel_x = 10;
+	pixel_y = -1
+	},
+/obj/structure/fluff/paper/stack{
+	pixel_x = -9;
+	pixel_y = 2
+	},
+/obj/machinery/washing_machine{
+	pixel_x = -8;
+	pixel_y = 1
+	},
+/obj/structure/extinguisher_cabinet/south,
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_beach/csunpad/director)
+"fJ" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/csunpad/security)
+"fQ" = (
+/obj/structure/table/glass,
+/obj/item/storage/firstaid/toxin{
+	pixel_x = -9;
+	pixel_y = 5
+	},
+/obj/effect/turf_decal/siding/white{
+	color = "#444547"
+	},
+/obj/machinery/firealarm/directional/east,
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_beach/csunpad/medical)
+"fY" = (
+/obj/structure/chair/stool{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/csunpad/canteen)
+"ga" = (
+/obj/structure/table/glass,
+/obj/machinery/atmospherics/components/unary/passive_vent/layer2{
+	dir = 4
+	},
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/csunpad/security)
+"gf" = (
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/csunpad/dorm)
+"gu" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 5
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/firealarm/directional/west,
+/obj/structure/cable,
+/obj/machinery/power/apc/auto_name/north{
+	start_charge = 0
+	},
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_beach/csunpad/director)
+"gw" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_beach/csunpad/june)
+"gy" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 9;
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 8;
+	color = "#474747"
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/floor/monotile/dark{
+	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"gJ" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 10;
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white{
+	color = "#474747"
+	},
+/obj/structure/rack,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_beach/csunpad)
+"gR" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_beach/csunpad/engineering)
+"gS" = (
+/obj/structure/filingcabinet,
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_beach/csunpad/medical)
+"gX" = (
+/turf/closed/wall/mineral/titanium/nodiagonal,
+/area/ruin/unpowered/planet_beach/csunpad/medical)
+"hd" = (
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/wood/corner,
+/obj/structure/fluff/paper/stack{
+	pixel_x = 4;
+	pixel_y = -8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/fluff/paper/stack{
+	pixel_x = 12;
+	pixel_y = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_beach/csunpad/director)
+"hq" = (
+/obj/effect/turf_decal/siding/wood,
+/obj/machinery/light,
+/obj/structure/cable,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/csunpad/medical)
+"hv" = (
+/obj/structure/frame/computer{
+	dir = 4;
+	anchored = 1
+	},
+/obj/effect/turf_decal/ship/techfloor{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 4
+	},
+/turf/open/floor/plasteel/telecomms,
+/area/ruin/unpowered/planet_beach/csunpad/june)
+"hy" = (
+/obj/structure/table/reinforced,
+/obj/machinery/recharger{
+	pixel_x = 7;
+	pixel_y = 4
+	},
+/obj/machinery/recharger{
+	pixel_x = -3;
+	pixel_y = 4
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 9;
+	color = "#730622";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_beach/csunpad/security)
+"hE" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 8;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/tile/blue/half{
+	dir = 5;
+	color = "#4C9C9C";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/closet,
+/obj/item/clothing/suit/armor/vest/alt{
+	pixel_x = 8;
+	pixel_y = 3
+	},
+/obj/item/clothing/head/helmet{
+	pixel_x = -7;
+	pixel_y = 5
+	},
+/obj/item/storage/belt/military,
+/turf/open/floor/monotile/light,
+/area/ruin/unpowered/planet_beach/csunpad/security)
+"hP" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 1;
+	color = "#474747"
+	},
+/obj/effect/turf_decal/tile/red{
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 8;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer2,
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_beach/csunpad/security)
+"hV" = (
+/turf/closed/wall/mineral/titanium/nodiagonal,
+/area/ruin/unpowered/planet_beach/csunpad/dorm)
+"ic" = (
+/obj/item/food/deadmouse,
+/obj/effect/turf_decal/siding/wood,
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_beach/csunpad/canteen)
+"id" = (
+/obj/machinery/computer/security/telescreen/entertainment{
+	pixel_y = 28
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/csunpad/director)
+"ih" = (
+/obj/structure/table/glass,
+/obj/item/plate{
+	pixel_x = 3;
+	pixel_y = 2
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/csunpad/canteen)
+"iy" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/csunpad/medical)
+"iB" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/csunpad/medical)
+"iG" = (
+/obj/structure/chair/office{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/red/half{
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/tile/blue/half{
+	dir = 1;
+	color = "#4C9C9C";
+	alpha = 255
+	},
+/turf/open/floor/monotile/light,
+/area/ruin/unpowered/planet_beach/csunpad/security)
+"iH" = (
+/obj/structure/flora/junglebush,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
+/area/lavaland/surface/outdoors)
+"iQ" = (
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/ruin/unpowered/planet_beach/csunpad/june)
+"iV" = (
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
+/area/lavaland/surface/outdoors)
+"iW" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 8;
+	color = "#474747"
+	},
+/obj/effect/turf_decal/tile/red/half{
+	color = "#730622";
+	alpha = 255
+	},
+/obj/structure/extinguisher_cabinet/east,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_beach/csunpad/security)
+"jl" = (
+/obj/structure/fluff/paper/stack,
+/obj/structure/fluff/paper/stack{
+	pixel_x = -6;
+	pixel_y = -11
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/csunpad/director)
+"jm" = (
+/obj/structure/chair/fancy/bench{
+	dir = 4
+	},
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_beach/csunpad/medical)
+"jp" = (
+/obj/structure/chair/stool,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/csunpad/canteen)
+"js" = (
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"jA" = (
+/obj/effect/turf_decal/tile/neutral/fourcorners{
+	color = "#a8b2b6";
+	alpha = 140
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
+/turf/open/floor/monotile/light,
+/area/ruin/unpowered/planet_beach/csunpad)
+"jO" = (
+/obj/effect/turf_decal/trimline/red/filled/warning{
+	dir = 1;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 1;
+	color = "#474747"
+	},
+/turf/open/floor/monotile/dark{
+	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"jX" = (
+/obj/structure/flora/tree/palm,
+/turf/open/floor/plating/asteroid/sand,
+/area/lavaland/surface/outdoors)
+"ka" = (
+/obj/effect/turf_decal/trimline/red/filled/warning{
+	dir = 8;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"kF" = (
+/mob/living/basic/hivebot/rapid{
+	faction = list("Syndicate")
+	},
+/obj/effect/turf_decal/siding/white/corner{
+	color = "#474747"
+	},
+/obj/effect/turf_decal/tile/red/half{
+	dir = 1;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 1;
+	color = "#474747"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_beach/csunpad/security)
+"kS" = (
+/obj/structure/table/wood,
+/obj/item/flashlight/lamp{
+	pixel_x = -5;
+	pixel_y = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/csunpad/director)
+"kT" = (
+/obj/effect/turf_decal/tile/neutral/fourcorners{
+	color = "#a8b2b6";
+	alpha = 140
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/monotile/light{
+	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"kX" = (
+/obj/machinery/door/airlock/hatch{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_beach/csunpad/june)
+"lj" = (
+/obj/effect/turf_decal/trimline/red/filled/warning{
+	dir = 1;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/trimline/red/filled/warning{
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/tile/neutral/fourcorners{
+	color = "#a8b2b6";
+	alpha = 140
+	},
+/obj/machinery/atmospherics/components/unary/passive_vent/layer2,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/monotile/light,
+/area/ruin/unpowered/planet_beach/csunpad/security)
+"lu" = (
+/obj/effect/turf_decal/trimline/red/filled/warning{
+	dir = 1;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/trimline/red/filled/warning{
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/tile/neutral/fourcorners{
+	color = "#a8b2b6";
+	alpha = 140
+	},
+/obj/machinery/atmospherics/components/unary/passive_vent/layer2,
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/basic/viscerator{
+	faction = list("hostile")
+	},
+/turf/open/floor/monotile/light,
+/area/ruin/unpowered/planet_beach/csunpad/security)
+"lw" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/structure/cable,
+/obj/machinery/power/apc/auto_name/north{
+	start_charge = 0
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_beach/csunpad/engineering)
+"lN" = (
+/obj/structure/table/optable,
+/obj/effect/turf_decal/siding/white{
+	dir = 1;
+	color = "#444547"
+	},
+/obj/machinery/light,
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_beach/csunpad/medical)
+"lU" = (
+/obj/structure/table/reinforced,
+/obj/machinery/chem_dispenser/drinks{
+	dir = 1;
+	layer = 2.8
+	},
+/obj/machinery/light/small/broken,
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_beach/csunpad/canteen)
+"lV" = (
+/mob/living/basic/viscerator{
+	faction = list("hostile")
+	},
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_beach/csunpad)
+"mj" = (
+/obj/effect/turf_decal/tile/blue/anticorner/contrasted{
+	dir = 8;
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 10;
+	color = "#474747"
+	},
+/turf/open/floor/monotile/dark{
+	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"mo" = (
+/obj/structure/table,
+/obj/machinery/door/window/brigdoor/southleft,
+/obj/item/paper_bin{
+	pixel_x = -4;
+	pixel_y = 4
+	},
+/obj/item/pen{
+	pixel_x = -5;
+	pixel_y = 5
+	},
+/obj/structure/cable,
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_beach/csunpad/medical)
+"mq" = (
+/obj/structure/flora/ausbushes/grassybush,
+/obj/structure/flora/junglebush,
+/turf/open/floor/plating/asteroid/dirt/beach,
+/area/lavaland/surface/outdoors)
+"mr" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/firealarm/directional/north,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/csunpad/medical)
+"mt" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/wood/corner,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/csunpad/security)
+"mu" = (
+/obj/structure/closet/crate/bin,
+/obj/effect/turf_decal/siding/wood,
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_beach/csunpad/canteen)
+"my" = (
+/obj/structure/table/wood,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/csunpad/dorm)
+"mB" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 4;
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white/corner{
+	dir = 4;
+	color = "#474747"
+	},
+/turf/open/floor/monotile/dark{
+	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"mF" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "checkpointbot"
+	},
+/mob/living/basic/hivebot/rapid{
+	faction = list("Syndicate")
+	},
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_beach/csunpad)
+"mJ" = (
+/obj/effect/turf_decal/tile/blue/anticorner/contrasted{
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 6;
+	color = "#474747"
+	},
+/turf/open/floor/monotile/dark{
+	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"mN" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 5
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/csunpad/medical)
+"mV" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 10;
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 4;
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 6;
+	color = "#474747"
+	},
+/obj/structure/cable,
+/turf/open/floor/monotile/dark{
+	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"na" = (
+/obj/effect/turf_decal/trimline/red/filled/warning{
+	dir = 1;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 1;
+	color = "#474747"
+	},
+/obj/effect/decal/cleanable/robot_debris,
+/turf/open/floor/monotile/dark{
+	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"nc" = (
+/turf/closed/wall/mineral/plastitanium,
+/area/ruin/unpowered/planet_beach/csunpad/june)
+"nd" = (
+/obj/machinery/door/airlock/medical{
+	dir = 4;
+	name = "Izba chorych"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_beach/csunpad/medical)
+"nl" = (
+/obj/structure/chair/fancy/bench{
+	dir = 4
+	},
+/obj/effect/anomaly/tvstatic/planetary,
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_beach/csunpad)
+"nn" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 10;
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white{
+	color = "#474747"
+	},
+/obj/machinery/firealarm/directional/south,
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_beach/csunpad)
+"np" = (
+/obj/structure/fluff/paper/stack{
+	pixel_x = 10;
+	pixel_y = -1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/csunpad)
+"ny" = (
+/obj/structure/fluff/paper/stack{
+	pixel_x = -6;
+	pixel_y = -11
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
+/obj/machinery/holopad/secure,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/csunpad)
+"nK" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_beach/csunpad/canteen)
+"nN" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/csunpad/medical)
+"nP" = (
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_beach/csunpad/medical)
+"nQ" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 5;
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 1;
+	color = "#474747"
+	},
+/mob/living/basic/hivebot/rapid{
+	faction = list("pirate")
+	},
+/obj/machinery/atmospherics/components/unary/passive_vent/layer2,
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_beach/csunpad)
+"nS" = (
+/obj/effect/turf_decal/ship/techfloor,
+/obj/machinery/light,
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_beach/csunpad/june)
+"nW" = (
+/obj/machinery/holopad{
+	pixel_x = 1
+	},
+/obj/effect/turf_decal/box/white,
+/obj/structure/railing,
+/obj/machinery/button/door{
+	pixel_y = 37;
+	id = "midwich_blast5";
+	name = "zewnętrzny właz magazynu";
+	pixel_x = -12
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_beach/csunpad/june)
+"ob" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 9;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/firealarm/directional/west,
+/obj/structure/closet/crate/bin,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_beach/csunpad/security)
+"om" = (
+/obj/effect/turf_decal/siding/wood,
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/machinery/atmospherics/components/unary/passive_vent/layer2{
+	dir = 8
+	},
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_beach/csunpad/director)
+"ov" = (
+/obj/structure/door_assembly/door_assembly_vault,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_beach/csunpad)
+"oy" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "checkpointbot"
+	},
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_beach/csunpad)
+"oG" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 6;
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 4;
+	color = "#474747"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_beach/csunpad)
+"oJ" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/basic/viscerator{
+	faction = list("hostile")
+	},
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_beach/csunpad/medical)
+"pa" = (
+/obj/item/ammo_casing/spent,
+/obj/effect/turf_decal/tile/blue{
+	dir = 10;
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white{
+	color = "#474747"
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
+/obj/structure/cable,
+/turf/open/floor/monotile/dark{
+	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"pc" = (
+/obj/effect/turf_decal/siding/wood,
+/obj/structure/closet/crate/bin,
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_beach/csunpad/canteen)
+"ph" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/machinery/firealarm/directional/east,
+/obj/machinery/atmospherics/components/unary/passive_vent/layer2,
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_beach/csunpad/engineering)
+"pk" = (
+/obj/effect/turf_decal/siding/white{
+	color = "#474747"
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 1;
+	color = "#474747"
+	},
+/obj/structure/cable,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_beach/csunpad/security)
+"pm" = (
+/obj/machinery/door/window/northleft{
+	dir = 4
+	},
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 4
+	},
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_beach/csunpad)
+"pq" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 6;
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 1;
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 5;
+	color = "#474747"
+	},
+/turf/open/floor/monotile/dark{
+	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"pv" = (
+/obj/effect/turf_decal/ship/techfloor{
+	dir = 5
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_beach/csunpad/june)
+"pw" = (
+/obj/effect/turf_decal/tile/neutral/fourcorners{
+	color = "#a8b2b6";
+	alpha = 140
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/cable,
+/turf/open/floor/monotile/light{
+	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"py" = (
+/obj/effect/turf_decal/trimline/blue/line{
+	dir = 6;
+	color = "#4C9C9C";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/tile/neutral/fourcorners{
+	color = "#a8b2b6";
+	alpha = 140
+	},
+/obj/structure/cable,
+/turf/open/floor/monotile/light,
+/area/ruin/unpowered/planet_beach/csunpad/medical)
+"pz" = (
+/obj/effect/turf_decal/tile/red/opposingcorners{
+	dir = 8;
+	color = "#730622";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 10;
+	color = "#474747"
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_beach/csunpad/canteen)
+"pG" = (
+/obj/structure/dresser{
+	dir = 4
+	},
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/csunpad/dorm)
+"pI" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 10;
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white{
+	color = "#474747"
+	},
+/obj/structure/chair/fancy/bench{
+	dir = 1
+	},
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_beach/csunpad)
+"pP" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 5;
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 1;
+	color = "#474747"
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/turf/open/floor/monotile/dark{
+	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"pS" = (
+/obj/structure/bed{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/csunpad/dorm)
+"qc" = (
+/obj/effect/turf_decal/ship/techfloor{
+	dir = 1
+	},
+/obj/structure/cable,
+/obj/machinery/light_switch{
+	pixel_y = 22
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_beach/csunpad/june)
+"qe" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 10
+	},
+/turf/open/floor/carpet/red,
+/area/ruin/unpowered/planet_beach/csunpad/security)
+"qk" = (
+/obj/machinery/vending/boozeomat,
+/obj/machinery/light/small/broken{
+	dir = 1
+	},
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_beach/csunpad/canteen)
+"qs" = (
+/obj/effect/turf_decal/siding/white{
+	color = "#474747"
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 1;
+	color = "#474747"
+	},
+/obj/structure/cable,
+/obj/machinery/power/apc/auto_name/north{
+	start_charge = 0
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_beach/csunpad/security)
+"qw" = (
+/obj/machinery/griddle,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_beach/csunpad/canteen)
+"qy" = (
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_beach/csunpad/june)
+"qF" = (
+/obj/effect/turf_decal/delivery,
+/obj/machinery/door/poddoor/shutters{
+	dir = 4;
+	id = "midwich_blast2"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_beach/csunpad/june)
+"qG" = (
+/obj/effect/turf_decal/tile/neutral/fourcorners{
+	color = "#a8b2b6";
+	alpha = 140
+	},
+/turf/open/floor/monotile/light{
+	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"qR" = (
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_beach/csunpad/canteen)
+"qS" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 9;
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 8;
+	color = "#474747"
+	},
+/obj/machinery/light{
+	dir = 4;
+	pixel_x = -13
+	},
+/turf/open/floor/monotile/dark{
+	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"rd" = (
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 1
+	},
+/turf/open/floor/plasteel/stairs/old,
+/area/ruin/unpowered/planet_beach/csunpad/june)
+"rh" = (
+/obj/item/food/deadmouse,
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 5
+	},
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_beach/csunpad/canteen)
+"rt" = (
+/obj/effect/turf_decal/delivery,
+/obj/effect/turf_decal/siding/white{
+	color = "#444547"
+	},
+/obj/structure/ore_box,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "midwich_blast5"
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_beach/csunpad/june)
+"rI" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_beach/csunpad/medical)
+"rS" = (
+/turf/closed/wall/mineral/titanium/nodiagonal,
+/area/ruin/unpowered/planet_beach/csunpad/engineering)
+"rV" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 10
+	},
+/obj/structure/chair/office,
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/csunpad/medical)
+"rZ" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 5
+	},
+/obj/structure/cable,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/csunpad/medical)
+"sa" = (
+/obj/structure/table/glass,
+/obj/item/storage/firstaid/brute{
+	pixel_x = 5;
+	pixel_y = 5
+	},
+/obj/effect/turf_decal/siding/white{
+	color = "#444547"
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/item/reagent_containers/dropper{
+	pixel_x = -10;
+	pixel_y = 4
+	},
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_beach/csunpad/medical)
+"sm" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"sn" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 5;
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8;
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 9;
+	color = "#474747"
+	},
+/obj/structure/chair/office{
+	dir = 8
+	},
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_beach/csunpad)
+"su" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "midwich_blast4"
+	},
+/obj/effect/turf_decal/ship/techfloor,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_beach/csunpad/june)
+"sD" = (
+/obj/structure/toilet{
+	pixel_y = 15
+	},
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 5;
+	color = "#474747"
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_beach/csunpad)
+"sF" = (
+/obj/effect/mob_spawn/human/corpse/assistant,
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_beach/csunpad/medical)
+"sI" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 9;
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 8;
+	color = "#474747"
+	},
+/obj/effect/decal/cleanable/blood,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/cable,
+/turf/open/floor/monotile/dark{
+	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"sS" = (
+/obj/machinery/power/rtg,
+/obj/structure/cable/yellow,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_beach/csunpad/engineering)
+"sW" = (
+/obj/machinery/stasis{
+	dir = 4
+	},
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_beach/csunpad/medical)
+"sZ" = (
+/obj/effect/turf_decal/siding/white{
+	color = "#474747"
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 1;
+	color = "#474747"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_beach/csunpad/security)
+"tf" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 5;
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 1;
+	color = "#474747"
+	},
+/obj/item/ammo_casing/spent,
+/turf/open/floor/monotile/dark{
+	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"ts" = (
+/obj/effect/turf_decal/tile/red/half{
+	dir = 1;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/tile/blue/half{
+	color = "#4C9C9C";
+	alpha = 255
+	},
+/turf/open/floor/monotile/light,
+/area/ruin/unpowered/planet_beach/csunpad/security)
+"tE" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 6;
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 4;
+	color = "#474747"
+	},
+/obj/effect/decal/cleanable/blood,
+/obj/machinery/light{
+	dir = 8;
+	pixel_x = 12;
+	pixel_y = 2
+	},
+/turf/open/floor/monotile/dark{
+	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"tF" = (
+/turf/closed/wall/mineral/titanium/nodiagonal,
+/area/ruin/unpowered/planet_beach/csunpad/canteen)
+"tG" = (
+/obj/effect/turf_decal/siding/wood,
+/obj/machinery/light/broken{
+	dir = 1
+	},
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_beach/csunpad/canteen)
+"tV" = (
+/turf/template_noop,
+/area/template_noop)
+"ua" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 10;
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white{
+	color = "#474747"
+	},
+/obj/structure/cable,
+/turf/open/floor/monotile/dark{
+	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"uc" = (
+/obj/machinery/door/airlock/security{
+	name = "Posterunek zespołu urazowego"
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/effect/mapping_helpers/airlock/locked,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_beach/csunpad/security)
+"uf" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 10;
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white{
+	color = "#474747"
+	},
+/obj/structure/filingcabinet{
+	dir = 1;
+	pixel_x = -7
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_beach/csunpad)
+"uh" = (
+/obj/structure/table/wood,
+/obj/item/modular_computer/laptop/preset/civillian{
+	pixel_y = 5
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/csunpad/dorm)
+"uj" = (
+/obj/effect/turf_decal/ship/techfloor,
+/obj/machinery/light/small{
+	pixel_x = 9
+	},
+/obj/effect/turf_decal/ship/techfloor,
+/obj/effect/turf_decal/siding/white{
+	dir = 8;
+	color = "#444547"
+	},
+/obj/effect/turf_decal/ship/techfloor/corner{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_beach/csunpad/june)
+"uo" = (
+/turf/open/floor/plasteel/stairs/left{
+	dir = 4
+	},
+/area/lavaland/surface/outdoors)
+"uv" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 6;
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 4;
+	color = "#474747"
+	},
+/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer2,
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_beach/csunpad)
+"uD" = (
+/obj/machinery/oven,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_beach/csunpad/canteen)
+"uG" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_beach/csunpad/june)
+"vg" = (
+/obj/machinery/washing_machine,
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_beach/csunpad/security)
+"vI" = (
+/obj/effect/turf_decal/tile/red/opposingcorners{
+	dir = 8;
+	color = "#730622";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 9;
+	color = "#474747"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_beach/csunpad/canteen)
+"vK" = (
+/obj/effect/turf_decal/trimline/blue/line{
+	dir = 4;
+	color = "#4C9C9C";
+	alpha = 255
+	},
+/obj/structure/extinguisher_cabinet/east,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_beach/csunpad/medical)
+"vL" = (
+/turf/open/floor/plating/asteroid/dirt/beach,
+/area/ruin/unpowered/planet_beach/cave)
+"vX" = (
+/obj/effect/turf_decal/tile/red/opposingcorners{
+	dir = 8;
+	color = "#730622";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 5;
+	color = "#474747"
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_beach/csunpad/canteen)
+"wa" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/cable,
+/obj/item/food/deadmouse/moldy,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_beach/csunpad/engineering)
+"wp" = (
+/obj/structure/table/glass,
+/obj/item/food/tofu/prison{
+	pixel_x = -4;
+	pixel_y = 12
+	},
+/obj/item/food/tofu/prison{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_beach/csunpad/canteen)
+"wv" = (
+/obj/effect/turf_decal/box,
+/obj/structure/closet/crate/secure{
+	name = "skrzynia zaopatrzenia promu wyprawowego"
+	},
+/obj/item/pickaxe,
+/obj/item/pickaxe,
+/obj/item/flashlight/flare,
+/obj/item/flashlight/flare,
+/obj/item/grenade/plastic/c4,
+/obj/item/grenade/plastic/c4,
+/obj/item/flashlight/seclite,
+/obj/item/flashlight/seclite,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_beach/csunpad/june)
+"wz" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_beach/csunpad/canteen)
+"wA" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 5;
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 1;
+	color = "#474747"
+	},
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_beach/csunpad)
+"wF" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/item/stack/cable_coil/cut,
+/obj/structure/cable/green,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_beach/csunpad/engineering)
+"wG" = (
+/obj/structure/flora/ausbushes/grassybush,
+/turf/open/floor/plating/asteroid/dirt/beach,
+/area/lavaland/surface/outdoors)
+"wK" = (
+/obj/machinery/power/rtg,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_beach/csunpad/engineering)
+"wM" = (
+/obj/structure/flora/tree/jungle,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
+/area/lavaland/surface/outdoors)
+"wN" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 10;
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 4;
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 6;
+	color = "#474747"
+	},
+/obj/structure/chair/fancy/bench{
+	dir = 1
+	},
+/obj/item/radio/intercom/directional/south,
+/obj/machinery/firealarm/directional/east,
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_beach/csunpad)
+"wP" = (
+/obj/machinery/door/airlock/security{
+	name = "Posterunek zespołu urazowego"
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/cable,
+/obj/effect/mapping_helpers/airlock/locked,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_beach/csunpad/security)
+"xh" = (
+/obj/structure/table/glass,
+/obj/item/food/tofu/prison{
+	pixel_x = 1;
+	pixel_y = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_beach/csunpad/canteen)
+"xD" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 6
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/csunpad/medical)
+"xI" = (
+/obj/structure/window/reinforced/survival_pod{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "midwich_blast4";
+	dir = 4
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_beach/csunpad/june)
+"xL" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 5;
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 1;
+	color = "#474747"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/turf/open/floor/monotile/dark{
+	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"yt" = (
+/obj/effect/turf_decal/ship/techfloor{
+	dir = 1
+	},
+/obj/machinery/computer/security{
+	icon_state = "computer-right"
+	},
+/turf/open/floor/plasteel/telecomms,
+/area/ruin/unpowered/planet_beach/csunpad/june)
+"yu" = (
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"yz" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 9;
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 4;
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 9;
+	color = "#474747"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/cable,
+/turf/open/floor/monotile/dark{
+	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"yH" = (
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer2,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/csunpad/security)
+"yL" = (
+/turf/open/floor/plating/asteroid/sand/dense,
+/area/lavaland/surface/outdoors)
+"yN" = (
+/obj/structure/table/reinforced,
+/obj/item/kitchen/knife{
+	pixel_y = 4
+	},
+/obj/machinery/light/small/broken,
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_beach/csunpad/canteen)
+"yQ" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 6;
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 4;
+	color = "#474747"
+	},
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/monotile/dark{
+	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"yX" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 9;
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 8;
+	color = "#474747"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/cable,
+/obj/item/ammo_casing/spent,
+/turf/open/floor/monotile/dark{
+	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"ze" = (
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_beach/csunpad/security)
+"zg" = (
+/obj/effect/turf_decal/siding/wood/end{
+	dir = 8
+	},
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_beach/csunpad/dorm)
+"zp" = (
+/obj/effect/turf_decal/tile/red/half{
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/tile/blue/half{
+	dir = 1;
+	color = "#4C9C9C";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/monotile/light,
+/area/ruin/unpowered/planet_beach/csunpad/security)
+"zy" = (
+/obj/machinery/door/airlock/public{
+	dir = 4;
+	name = "Sypialnia dyrektora"
+	},
+/obj/effect/mapping_helpers/airlock/locked,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_beach/csunpad/director)
+"zE" = (
+/obj/machinery/door/airlock/command{
+	name = "Operacje";
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_beach/csunpad)
+"zI" = (
+/obj/structure/closet/crate/bin,
+/obj/effect/turf_decal/siding/wood{
+	dir = 10
+	},
+/obj/machinery/firealarm/directional/east,
+/obj/structure/extinguisher_cabinet/south,
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_beach/csunpad/dorm)
+"zK" = (
+/turf/open/floor/plating/asteroid/dirt/beach,
+/area/lavaland/surface/outdoors)
+"zO" = (
+/obj/effect/turf_decal/tile/red/opposingcorners{
+	dir = 8;
+	color = "#730622";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 6;
+	color = "#474747"
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_beach/csunpad/canteen)
+"zR" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 9;
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 4;
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 9;
+	color = "#474747"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 10
+	},
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_beach/csunpad)
+"zS" = (
+/obj/structure/table/reinforced,
+/obj/item/kitchen/rollingpin{
+	pixel_x = 7;
+	pixel_y = 2
+	},
+/obj/item/kitchen/rollingpin{
+	pixel_x = -1;
+	pixel_y = 4
+	},
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_beach/csunpad/canteen)
+"zT" = (
+/obj/structure/chair/office{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/csunpad/director)
+"zV" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 10;
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white{
+	color = "#474747"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/monotile/dark{
+	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"zW" = (
+/obj/effect/turf_decal/tile/blue{
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white/corner{
+	color = "#474747"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/monotile/dark{
+	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"zZ" = (
+/obj/effect/turf_decal/ship/techfloor,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_beach/csunpad/june)
+"Ad" = (
+/obj/structure/bed,
+/obj/structure/dresser,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/csunpad/security)
+"Ao" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 6;
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 4;
+	color = "#474747"
+	},
+/obj/effect/decal/cleanable/robot_debris,
+/turf/open/floor/monotile/dark{
+	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Ay" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 6;
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8;
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 6;
+	color = "#474747"
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_beach/csunpad)
+"AB" = (
+/obj/effect/turf_decal/tile/red{
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/tile/blue/half{
+	dir = 9;
+	color = "#4C9C9C";
+	alpha = 255
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/item/ammo_box/c9mm{
+	pixel_x = 5;
+	pixel_y = 4
+	},
+/turf/open/floor/monotile/light,
+/area/ruin/unpowered/planet_beach/csunpad/security)
+"AM" = (
+/obj/item/ammo_casing/spent,
+/obj/effect/turf_decal/tile/blue{
+	dir = 10;
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white{
+	color = "#474747"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/monotile/dark{
+	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"AS" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 4;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/tile/blue/half{
+	dir = 10;
+	color = "#4C9C9C";
+	alpha = 255
+	},
+/obj/item/ammo_box/c9mm{
+	pixel_x = -1;
+	pixel_y = 12
+	},
+/obj/machinery/light,
+/turf/open/floor/monotile/light,
+/area/ruin/unpowered/planet_beach/csunpad/security)
+"AV" = (
+/obj/effect/turf_decal/ship/techfloor{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_beach/csunpad/june)
+"AY" = (
+/obj/machinery/light,
+/obj/structure/closet/crate/bin,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/csunpad/director)
+"Ba" = (
+/obj/structure/dresser{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/csunpad/director)
+"Bd" = (
+/obj/machinery/power/smes,
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/cable/green,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_beach/csunpad/engineering)
+"Bo" = (
+/obj/item/radio/intercom/directional/north,
+/obj/machinery/modular_computer/console/preset/command{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_beach/csunpad)
+"Br" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/cable/yellow,
+/obj/structure/cable/green,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_beach/csunpad/engineering)
+"Bs" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer2,
+/obj/item/crowbar{
+	pixel_x = -6;
+	pixel_y = -12
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/csunpad/medical)
+"Bt" = (
+/obj/structure/table/glass,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/csunpad/canteen)
+"Bu" = (
+/obj/structure/fluff/paper/stack{
+	pixel_x = 10;
+	pixel_y = -1
+	},
+/obj/structure/fluff/paper/stack{
+	pixel_x = -4;
+	pixel_y = -2
+	},
+/obj/structure/fluff/paper/stack{
+	pixel_x = 1;
+	pixel_y = -1
+	},
+/obj/structure/fluff/paper/stack{
+	pixel_x = 5;
+	pixel_y = -15
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/csunpad)
+"Bv" = (
+/obj/structure/chair/fancy/bench{
+	dir = 4
+	},
+/obj/structure/railing{
+	dir = 8
+	},
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_beach/csunpad/medical)
+"Bz" = (
+/obj/machinery/door/airlock/public/glass,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_beach/csunpad/canteen)
+"BA" = (
+/obj/effect/turf_decal/ship/techfloor{
+	dir = 9
+	},
+/obj/machinery/computer/crew,
+/turf/open/floor/plasteel/telecomms,
+/area/ruin/unpowered/planet_beach/csunpad/june)
+"BD" = (
+/obj/machinery/door/airlock/public{
+	name = "Sypialnia"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_beach/csunpad/security)
+"BH" = (
+/obj/structure/table/wood,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/switchblade{
+	pixel_x = 5;
+	pixel_y = 9
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/csunpad/director)
+"BN" = (
+/obj/effect/turf_decal/siding/white/corner{
+	dir = 4;
+	color = "#474747"
+	},
+/obj/effect/turf_decal/tile/red/half{
+	dir = 8;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 1;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_beach/csunpad/security)
+"BS" = (
+/obj/machinery/door/airlock/public{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_beach/csunpad)
+"Cf" = (
+/obj/machinery/door/airlock/medical{
+	dir = 4;
+	name = "Izba chorych"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_beach/csunpad/medical)
+"Ck" = (
+/obj/effect/turf_decal/tile/blue/half{
+	dir = 8;
+	color = "#4C9C9C";
+	alpha = 255
+	},
+/obj/effect/turf_decal/trimline/blue/line{
+	dir = 1;
+	color = "#4C9C9C";
+	alpha = 255
+	},
+/obj/effect/turf_decal/tile/neutral/fourcorners{
+	color = "#a8b2b6";
+	alpha = 140
+	},
+/mob/living/basic/hivebot/rapid{
+	faction = list("Syndicate")
+	},
+/turf/open/floor/monotile/light,
+/area/ruin/unpowered/planet_beach/csunpad/medical)
+"Cp" = (
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/cable,
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_beach/csunpad/canteen)
+"CA" = (
+/obj/effect/turf_decal/tile/blue/anticorner/contrasted{
+	dir = 1;
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 9;
+	color = "#474747"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/turf/open/floor/monotile/dark{
+	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"CD" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 6;
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 4;
+	color = "#474747"
+	},
+/obj/effect/decal/cleanable/blood{
+	dir = 10
+	},
+/obj/machinery/light{
+	dir = 8;
+	pixel_x = 13;
+	pixel_y = 3
+	},
+/turf/open/floor/monotile/dark{
+	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"CE" = (
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal/siding/white{
+	dir = 4;
+	color = "#444547"
+	},
+/obj/item/reagent_containers/hypospray/CMO{
+	pixel_x = 3;
+	pixel_y = 2
+	},
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_beach/csunpad/medical)
+"CH" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 5
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/csunpad/security)
+"CQ" = (
+/obj/effect/mob_spawn/human/corpse/assistant,
+/obj/effect/turf_decal/tile/blue{
+	dir = 9;
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 8;
+	color = "#474747"
+	},
+/obj/effect/decal/cleanable/blood/splatter,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/cable,
+/obj/machinery/light{
+	dir = 4;
+	pixel_x = -14;
+	pixel_y = 1
+	},
+/turf/open/floor/monotile/dark{
+	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"CS" = (
+/obj/structure/chair/stool,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/csunpad/canteen)
+"De" = (
+/obj/effect/turf_decal/trimline/blue/line{
+	dir = 8;
+	color = "#4C9C9C";
+	alpha = 255
+	},
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_beach/csunpad/medical)
+"Dg" = (
+/obj/structure/cable,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_beach/csunpad/june)
+"Dn" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/power/terminal{
+	dir = 8
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_beach/csunpad/engineering)
+"Dq" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 6;
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 1;
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 5;
+	color = "#474747"
+	},
+/obj/machinery/firealarm/directional/east,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_beach/csunpad)
+"DD" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 9;
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 8;
+	color = "#474747"
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_beach/csunpad)
+"DH" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/airlock/command/glass{
+	dir = 4;
+	name = "Kokpit"
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_beach/csunpad/june)
+"DL" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 4;
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white/corner{
+	dir = 4;
+	color = "#474747"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/turf/open/floor/monotile/dark{
+	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"DZ" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/csunpad/director)
+"Ed" = (
+/obj/effect/turf_decal/box/red,
+/obj/machinery/power/apc/auto_name/north{
+	start_charge = 0
+	},
+/obj/structure/cable,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_beach/csunpad/june)
+"Ef" = (
+/obj/structure/table/glass,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_beach/csunpad)
+"El" = (
+/obj/structure/table/reinforced,
+/obj/machinery/chem_dispenser/drinks/beer{
+	dir = 1;
+	layer = 2.8
+	},
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_beach/csunpad/canteen)
+"Eq" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 10;
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white{
+	color = "#474747"
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
+/obj/structure/cable,
+/turf/open/floor/monotile/dark{
+	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Er" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 9
+	},
+/obj/machinery/computer/crew,
+/obj/structure/cable,
+/obj/machinery/power/apc/auto_name/north{
+	start_charge = 0
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/csunpad/medical)
+"Ex" = (
+/obj/effect/turf_decal/trimline/red/filled/warning{
+	dir = 1;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/trimline/red/filled/warning{
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/tile/neutral/fourcorners{
+	color = "#a8b2b6";
+	alpha = 140
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/monotile/light,
+/area/ruin/unpowered/planet_beach/csunpad/security)
+"Ey" = (
+/obj/effect/turf_decal/trimline/blue/line{
+	dir = 4;
+	color = "#4C9C9C";
+	alpha = 255
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_beach/csunpad/medical)
+"EB" = (
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_beach/csunpad/dorm)
+"EK" = (
+/obj/machinery/atmospherics/components/unary/passive_vent/layer2,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/food/donkpocket,
+/obj/item/food/donkpocket,
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_beach/csunpad)
+"EL" = (
+/obj/machinery/atmospherics/components/unary/passive_vent/layer2{
+	dir = 4
+	},
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_beach/csunpad/medical)
+"EM" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 6;
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 4;
+	color = "#474747"
+	},
+/obj/structure/extinguisher_cabinet/east,
+/obj/machinery/atmospherics/components/unary/passive_vent/layer2{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_beach/csunpad)
+"ER" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 6;
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 4;
+	color = "#474747"
+	},
+/obj/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/floor/monotile/dark{
+	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Fg" = (
+/obj/effect/turf_decal/tile/red/opposingcorners{
+	dir = 8;
+	color = "#730622";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 1;
+	color = "#474747"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_beach/csunpad/canteen)
+"Fn" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 9
+	},
+/obj/structure/cable,
+/obj/machinery/washing_machine{
+	pixel_x = 8;
+	pixel_y = 1
+	},
+/obj/machinery/power/apc/auto_name/north{
+	start_charge = 0
+	},
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_beach/csunpad/dorm)
+"Fx" = (
+/turf/open/floor/plasteel/stairs/left,
+/area/lavaland/surface/outdoors)
+"Fy" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 1;
+	color = "#474747"
+	},
+/obj/effect/turf_decal/tile/red{
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 8;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_beach/csunpad/security)
+"Fz" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 4;
+	color = "#474747"
+	},
+/obj/effect/turf_decal/tile/red/half{
+	dir = 1;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/machinery/firealarm/directional/west,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_beach/csunpad/security)
+"FF" = (
+/obj/effect/turf_decal/tile/red/opposingcorners{
+	dir = 8;
+	color = "#730622";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white{
+	color = "#474747"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_beach/csunpad/canteen)
+"FI" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "checkpointbot"
+	},
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_beach/csunpad/security)
+"FK" = (
+/obj/structure/chair/office{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/unary/passive_vent/layer2{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/csunpad)
+"FL" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 10;
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white{
+	color = "#474747"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/cable,
+/turf/open/floor/monotile/dark{
+	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"FP" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 6
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/csunpad/security)
+"FQ" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 1;
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white/corner{
+	dir = 1;
+	color = "#474747"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 9
+	},
+/obj/structure/cable,
+/turf/open/floor/monotile/dark{
+	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"FT" = (
+/obj/machinery/door/airlock/security{
+	name = "Zbrojownia";
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_beach/csunpad/security)
+"Gd" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 5;
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/tile/blue{
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 5;
+	color = "#474747"
+	},
+/obj/effect/mine/explosive,
+/turf/open/floor/monotile/dark{
+	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Gg" = (
+/obj/machinery/door/airlock/public{
+	dir = 4;
+	name = "Sypialnia pomocników"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_beach/csunpad/dorm)
+"Gk" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 9;
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 8;
+	color = "#474747"
+	},
+/turf/open/floor/monotile/dark{
+	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Go" = (
+/obj/machinery/door/airlock/public/glass,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/effect/mapping_helpers/airlock/abandoned,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/cable,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_beach/csunpad/canteen)
+"Gr" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 5;
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/tile/blue{
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 5;
+	color = "#474747"
+	},
+/turf/open/floor/monotile/dark{
+	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"GI" = (
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 1
+	},
+/turf/open/floor/plasteel/stairs/right,
+/area/ruin/unpowered/planet_beach/csunpad/june)
+"GJ" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 10
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/csunpad/security)
+"GM" = (
+/obj/structure/sink{
+	dir = 8;
+	pixel_y = 4;
+	pixel_x = 15
+	},
+/obj/structure/mirror{
+	pixel_x = 26;
+	pixel_y = 5
+	},
+/obj/machinery/atmospherics/components/unary/passive_vent/layer2,
+/obj/effect/turf_decal/siding/white{
+	dir = 6;
+	color = "#474747"
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_beach/csunpad)
+"GP" = (
+/obj/effect/turf_decal/ship/techfloor{
+	dir = 1
+	},
+/obj/structure/table,
+/obj/item/radio/intercom/directional/north{
+	pixel_y = 7;
+	pixel_x = 3
+	},
+/obj/machinery/light/broken{
+	dir = 1
+	},
+/turf/open/floor/plasteel/telecomms,
+/area/ruin/unpowered/planet_beach/csunpad/june)
+"Hb" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/machinery/light/broken,
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_beach/csunpad/canteen)
+"Hp" = (
+/obj/effect/turf_decal/ship/techfloor{
+	dir = 1
+	},
+/obj/effect/turf_decal/ship/techfloor{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 8;
+	color = "#444547"
+	},
+/obj/effect/turf_decal/ship/techfloor/corner{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_beach/csunpad/june)
+"Hx" = (
+/obj/structure/grille,
+/obj/structure/window/shuttle,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_beach/csunpad/canteen)
+"HA" = (
+/obj/structure/closet/crate/bin,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_beach/csunpad)
+"HT" = (
+/obj/effect/turf_decal/tile/blue{
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white/corner{
+	color = "#474747"
+	},
+/obj/structure/cable,
+/turf/open/floor/monotile/dark{
+	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"HV" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/structure/extinguisher_cabinet/east,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_beach/csunpad/engineering)
+"Ib" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/item/stack/cable_coil/cut,
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_beach/csunpad/engineering)
+"Id" = (
+/turf/open/water/planet/beach,
+/area/lavaland/surface/outdoors)
+"Ik" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/csunpad/dorm)
+"Io" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 9;
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 8;
+	color = "#474747"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/cable,
+/turf/open/floor/monotile/dark{
+	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"It" = (
+/obj/structure/chair/fancy/bench{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_beach/csunpad/medical)
+"Iz" = (
+/obj/machinery/door/window/brigdoor/southright,
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_beach/csunpad/medical)
+"IE" = (
+/obj/structure/grille,
+/obj/structure/window/shuttle,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_beach/csunpad)
+"IF" = (
+/obj/machinery/vending/cigarette/syndicate,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_beach/csunpad)
+"II" = (
+/obj/effect/turf_decal/siding/wood/end{
+	dir = 4
+	},
+/obj/structure/fluff/paper/stack{
+	pixel_x = -9;
+	pixel_y = -4
+	},
+/obj/structure/fluff/paper/stack{
+	pixel_x = 5;
+	pixel_y = -6
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_beach/csunpad/director)
+"IL" = (
+/obj/structure/guncase,
+/obj/effect/turf_decal/box/white,
+/obj/effect/turf_decal/tile/red{
+	dir = 6;
+	color = "#730622";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_beach/csunpad/security)
+"IU" = (
+/turf/open/floor/plating/asteroid/sand,
+/area/lavaland/surface/outdoors)
+"Jc" = (
+/obj/structure/table/glass,
+/obj/effect/turf_decal/siding/white{
+	color = "#444547"
+	},
+/obj/item/reagent_containers/glass/beaker/large{
+	pixel_x = -5;
+	pixel_y = 6
+	},
+/obj/item/reagent_containers/glass/beaker/large{
+	pixel_x = 7;
+	pixel_y = 6
+	},
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_beach/csunpad/medical)
+"Jf" = (
+/obj/machinery/power/terminal{
+	dir = 4
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "midwich_blast4"
+	},
+/obj/structure/cable/yellow,
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/effect/turf_decal/ship/techfloor,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_beach/csunpad/june)
+"Jl" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_beach/csunpad/medical)
+"Jv" = (
+/obj/effect/anomaly/phantom/planetary,
+/obj/effect/turf_decal/tile/red/opposingcorners{
+	dir = 8;
+	color = "#730622";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 1;
+	color = "#474747"
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_beach/csunpad/canteen)
+"JE" = (
+/mob/living/basic/hivebot/rapid{
+	faction = list("Syndicate")
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "checkpointbot"
+	},
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_beach/csunpad/medical)
+"JF" = (
+/obj/machinery/power/terminal{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/structure/lattice/catwalk/over/ship/dark,
+/turf/open/floor/plating/airless,
+/area/ruin/unpowered/planet_beach/csunpad/june)
+"JJ" = (
+/obj/structure/chair/stool{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/csunpad/canteen)
+"JM" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 10
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/components/unary/passive_vent/layer2{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/csunpad/medical)
+"JO" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	dir = 4;
+	id = "midwich_blast"
+	},
+/obj/effect/turf_decal/ship/techfloor,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 8;
+	color = "#fb9700"
+	},
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 4;
+	color = "#fb9700"
+	},
+/obj/structure/cable,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_beach/csunpad/june)
+"JP" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 6;
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 4;
+	color = "#474747"
+	},
+/obj/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood{
+	dir = 10
+	},
+/turf/open/floor/monotile/dark{
+	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"JX" = (
+/obj/effect/turf_decal/siding/wood/corner,
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_beach/csunpad/canteen)
+"Ka" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 6;
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 4;
+	color = "#474747"
+	},
+/obj/effect/decal/cleanable/blood{
+	dir = 10
+	},
+/turf/open/floor/monotile/dark{
+	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Kc" = (
+/turf/open/floor/plasteel/stairs/right,
+/area/lavaland/surface/outdoors)
+"Kl" = (
+/obj/machinery/smartfridge/food,
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_beach/csunpad/canteen)
+"Kr" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/item/ammo_casing/spent,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Ks" = (
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_beach/csunpad)
+"KF" = (
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal/tile/red{
+	dir = 9;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/item/gun/ballistic/automatic/pistol/no_mag{
+	pixel_x = 5;
+	pixel_y = 4
+	},
+/obj/machinery/button/door{
+	pixel_x = -19;
+	pixel_y = 4;
+	dir = 4;
+	id = "checkpointbot";
+	name = "automatyczne zwolnienie zabezpieczeń"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_beach/csunpad/security)
+"KG" = (
+/obj/effect/turf_decal/tile/red/half{
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/tile/blue/half{
+	dir = 1;
+	color = "#4C9C9C";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/components/unary/passive_vent/layer2{
+	dir = 8
+	},
+/turf/open/floor/monotile/light,
+/area/ruin/unpowered/planet_beach/csunpad/security)
+"KK" = (
+/obj/structure/table/reinforced,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_beach/csunpad/canteen)
+"KM" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 1;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/tile/blue/half{
+	dir = 6;
+	color = "#4C9C9C";
+	alpha = 255
+	},
+/obj/structure/closet,
+/obj/item/clothing/suit/armor/vest/alt{
+	pixel_x = 8;
+	pixel_y = 1
+	},
+/obj/item/clothing/head/helmet{
+	pixel_x = -7;
+	pixel_y = 5
+	},
+/obj/item/storage/belt/military,
+/turf/open/floor/monotile/light,
+/area/ruin/unpowered/planet_beach/csunpad/security)
+"KP" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/unary/passive_vent/layer2{
+	dir = 8
+	},
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_beach/csunpad/canteen)
+"KS" = (
+/obj/structure/railing/corner,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_beach/csunpad/june)
+"KY" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 10;
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 1;
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 10;
+	color = "#474747"
+	},
+/obj/item/radio/intercom/directional/south,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_beach/csunpad)
+"Ll" = (
+/obj/item/food/deadmouse,
+/obj/effect/turf_decal/tile/red/opposingcorners{
+	dir = 8;
+	color = "#730622";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white{
+	color = "#474747"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_beach/csunpad/canteen)
+"Ls" = (
+/obj/effect/turf_decal/trimline/red/filled/warning{
+	dir = 1;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/tile/blue{
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 5;
+	color = "#474747"
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_beach/csunpad)
+"Lv" = (
+/obj/machinery/button/door{
+	pixel_x = -3;
+	id = "midwich_blast2";
+	name = "sterowanie roletami warsztatu";
+	pixel_y = 23
+	},
+/obj/machinery/button/door{
+	pixel_x = 8;
+	id = "midwich_blast4";
+	name = "sterowanie roletami dostępu technicznego";
+	pixel_y = 23
+	},
+/obj/structure/cable,
+/obj/effect/turf_decal/box/red,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_beach/csunpad/june)
+"Lw" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 6
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/carpet/red,
+/area/ruin/unpowered/planet_beach/csunpad/security)
+"LE" = (
+/obj/structure/fluff/paper/stack{
+	pixel_x = 13;
+	pixel_y = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/csunpad/director)
+"LN" = (
+/turf/closed/mineral/random/beach,
+/area/ruin/unpowered/planet_beach/cave)
+"LY" = (
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal/tile/red{
+	dir = 9;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/item/ammo_box/magazine/pistolm9mm{
+	pixel_x = -8;
+	pixel_y = 1;
+	start_empty = 1
+	},
+/obj/item/ammo_box/magazine/pistolm9mm{
+	pixel_x = 4;
+	pixel_y = -2;
+	start_empty = 1
+	},
+/obj/machinery/computer/security/telescreen/entertainment{
+	pixel_x = -28
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_beach/csunpad/security)
+"Mn" = (
+/obj/effect/turf_decal/trimline/red/filled/warning{
+	dir = 1;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 1;
+	color = "#474747"
+	},
+/obj/item/ammo_casing/spent,
+/turf/open/floor/monotile/dark{
+	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Mr" = (
+/obj/effect/turf_decal/box/white,
+/obj/effect/turf_decal/tile/red{
+	dir = 6;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/suit_storage_unit{
+	suit_type = /obj/item/clothing/suit/space/hardsuit/medical
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_beach/csunpad/security)
+"Mt" = (
+/obj/machinery/atmospherics/components/unary/passive_vent/layer2,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
+/area/lavaland/surface/outdoors)
+"MC" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 6;
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 4;
+	color = "#474747"
+	},
+/turf/open/floor/monotile/dark{
+	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"MH" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 8
+	},
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_beach/csunpad/canteen)
+"MK" = (
+/obj/structure/window/reinforced/tinted/frosted{
+	dir = 4
+	},
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 4
+	},
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/machinery/shower{
+	pixel_y = 16
+	},
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_beach/csunpad)
+"MR" = (
+/obj/structure/grille,
+/obj/structure/window/plastitanium,
+/obj/structure/cable,
+/obj/machinery/door/poddoor{
+	id = "midwich_blast3"
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_beach/csunpad/june)
+"MY" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 5;
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 1;
+	color = "#474747"
+	},
+/obj/machinery/atmospherics/components/unary/passive_vent/layer2{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_beach/csunpad)
+"Nj" = (
+/obj/effect/turf_decal/tile/blue{
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white/corner{
+	color = "#474747"
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/cable,
+/turf/open/floor/monotile/dark{
+	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Nm" = (
+/obj/structure/flora/tree/palm,
+/turf/open/floor/plating/asteroid/sand/dense,
+/area/lavaland/surface/outdoors)
+"Nt" = (
+/obj/item/ammo_casing/spent,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_beach/csunpad)
+"NK" = (
+/obj/effect/turf_decal/tile/red/half{
+	dir = 1;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/tile/blue/half{
+	color = "#4C9C9C";
+	alpha = 255
+	},
+/obj/item/ammo_box/c9mm{
+	pixel_x = 4;
+	pixel_y = -8
+	},
+/turf/open/floor/monotile/light,
+/area/ruin/unpowered/planet_beach/csunpad/security)
+"NQ" = (
+/obj/machinery/atmospherics/components/unary/passive_vent/layer2,
+/turf/open/floor/plating/asteroid/dirt/beach,
+/area/lavaland/surface/outdoors)
+"NY" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 10
+	},
+/obj/structure/cable,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/csunpad/medical)
+"On" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Op" = (
+/obj/structure/cable,
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/thinplating/dark/corner{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/light/broken{
+	dir = 8
+	},
+/turf/open/floor/plasteel/stairs/left,
+/area/ruin/unpowered/planet_beach/csunpad/june)
+"Oq" = (
+/obj/effect/turf_decal/tile/blue{
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white/corner{
+	color = "#474747"
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
+/turf/open/floor/monotile/dark{
+	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Ot" = (
+/obj/structure/grille,
+/obj/structure/window/plastitanium,
+/obj/machinery/door/poddoor/shutters{
+	id = "midwich_blast3"
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_beach/csunpad/june)
+"Ou" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 10;
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white{
+	color = "#474747"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 9
+	},
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_beach/csunpad)
+"Ow" = (
+/obj/effect/turf_decal/trimline/red/filled/warning{
+	dir = 1;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8;
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 9;
+	color = "#474747"
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_beach/csunpad)
+"OQ" = (
+/obj/structure/cable,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"OT" = (
+/obj/effect/turf_decal/tile/blue/half{
+	dir = 4;
+	color = "#4C9C9C";
+	alpha = 255
+	},
+/obj/effect/turf_decal/trimline/blue/line{
+	color = "#4C9C9C";
+	alpha = 255
+	},
+/obj/effect/turf_decal/tile/neutral/fourcorners{
+	color = "#a8b2b6";
+	alpha = 140
+	},
+/obj/structure/cable,
+/turf/open/floor/monotile/light,
+/area/ruin/unpowered/planet_beach/csunpad/medical)
+"PF" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_beach/csunpad/medical)
+"PG" = (
+/obj/structure/flora/tree/jungle/small,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
+/area/lavaland/surface/outdoors)
+"PS" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 9
+	},
+/obj/machinery/atmospherics/components/unary/passive_vent/layer2,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/csunpad/medical)
+"PY" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 9;
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 8;
+	color = "#474747"
+	},
+/obj/effect/decal/cleanable/blood,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/monotile/dark{
+	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Ql" = (
+/obj/effect/turf_decal/delivery,
+/obj/machinery/door/poddoor/shutters{
+	dir = 4;
+	id = "midwich_blast2"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_beach/csunpad/june)
+"Qr" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 9;
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 8;
+	color = "#474747"
+	},
+/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer2,
+/obj/structure/cable,
+/turf/open/floor/monotile/dark{
+	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"QL" = (
+/turf/open/floor/monotile/dark{
+	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"QO" = (
+/obj/item/clothing/suit/toggle/labcoat{
+	pixel_y = -3;
+	pixel_x = 12
+	},
+/obj/item/clothing/suit/toggle/labcoat{
+	pixel_y = -3;
+	pixel_x = 12
+	},
+/obj/item/storage/backpack/satchel/leather{
+	pixel_x = -7;
+	pixel_y = 10
+	},
+/obj/item/storage/backpack/satchel/leather{
+	pixel_x = -7;
+	pixel_y = 10
+	},
+/obj/item/clothing/shoes/combat{
+	pixel_y = -9;
+	pixel_x = -11
+	},
+/obj/item/clothing/shoes/combat{
+	pixel_y = -9;
+	pixel_x = -11
+	},
+/obj/item/clothing/shoes/laceup{
+	pixel_x = -12;
+	pixel_y = -3
+	},
+/obj/item/clothing/shoes/laceup{
+	pixel_x = -12;
+	pixel_y = -3
+	},
+/obj/structure/closet,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/item/clothing/under/rank/medical/doctor{
+	pixel_x = -3;
+	pixel_y = -6
+	},
+/obj/item/clothing/under/rank/medical/doctor/skirt{
+	pixel_x = 6;
+	pixel_y = -6
+	},
+/obj/item/clothing/head/soft{
+	pixel_y = 9;
+	pixel_x = 9
+	},
+/obj/item/clothing/head/soft{
+	pixel_y = 9;
+	pixel_x = 9
+	},
+/obj/item/clothing/under/syndicate{
+	pixel_y = -9;
+	pixel_x = 1
+	},
+/turf/open/floor/carpet/red,
+/area/ruin/unpowered/planet_beach/csunpad/security)
+"QQ" = (
+/obj/effect/turf_decal/siding/wood,
+/obj/structure/cable,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/csunpad/medical)
+"QR" = (
+/obj/effect/turf_decal/siding/wood,
+/obj/machinery/firealarm/directional/south,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/csunpad/security)
+"Ra" = (
+/obj/machinery/power/smes/engineering,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "midwich_blast4"
+	},
+/obj/structure/cable,
+/obj/effect/turf_decal/ship/techfloor,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_beach/csunpad/june)
+"Rn" = (
+/obj/structure/table/glass,
+/obj/item/plate{
+	pixel_x = 1;
+	pixel_y = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/csunpad/canteen)
+"Ro" = (
+/obj/item/clothing/suit/toggle/labcoat{
+	pixel_y = -3;
+	pixel_x = 12
+	},
+/obj/item/clothing/suit/toggle/labcoat{
+	pixel_y = -3;
+	pixel_x = 12
+	},
+/obj/item/storage/backpack/satchel/leather{
+	pixel_x = -7;
+	pixel_y = 10
+	},
+/obj/item/storage/backpack/satchel/leather{
+	pixel_x = -7;
+	pixel_y = 10
+	},
+/obj/item/clothing/shoes/combat{
+	pixel_y = -9;
+	pixel_x = -11
+	},
+/obj/item/clothing/shoes/combat{
+	pixel_y = -9;
+	pixel_x = -11
+	},
+/obj/item/clothing/shoes/laceup{
+	pixel_x = -12;
+	pixel_y = -3
+	},
+/obj/item/clothing/shoes/laceup{
+	pixel_x = -12;
+	pixel_y = -3
+	},
+/obj/structure/closet,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/item/clothing/under/rank/medical/doctor{
+	pixel_x = -3;
+	pixel_y = -5
+	},
+/obj/item/clothing/under/rank/medical/doctor/skirt{
+	pixel_x = 5;
+	pixel_y = -5
+	},
+/obj/item/clothing/head/soft{
+	pixel_y = 9;
+	pixel_x = 9
+	},
+/obj/item/clothing/head/soft{
+	pixel_y = 9;
+	pixel_x = 9
+	},
+/obj/item/clothing/under/syndicate{
+	pixel_y = -8
+	},
+/turf/open/floor/carpet/red,
+/area/ruin/unpowered/planet_beach/csunpad/security)
+"Rs" = (
+/obj/effect/turf_decal/tile/blue/half{
+	dir = 1;
+	color = "#4C9C9C";
+	alpha = 255
+	},
+/obj/effect/turf_decal/trimline/blue/line{
+	dir = 4;
+	color = "#4C9C9C";
+	alpha = 255
+	},
+/obj/effect/gibspawner/human,
+/obj/item/clothing/suit/captunic{
+	pixel_x = -9;
+	pixel_y = 3;
+	name = "podarte kapitańskie futro";
+	desc = "Długi, sztywny płaszcz dowódcy na mrozy. Cały jest pocięty."
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/tile/neutral/fourcorners{
+	color = "#a8b2b6";
+	alpha = 140
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/turf/open/floor/monotile/light,
+/area/ruin/unpowered/planet_beach/csunpad/medical)
+"Rt" = (
+/turf/closed/wall/mineral/titanium/nodiagonal,
+/area/ruin/unpowered/planet_beach/csunpad/director)
+"RH" = (
+/obj/item/clothing/under/suit/black{
+	pixel_x = 10;
+	pixel_y = -10
+	},
+/obj/item/clothing/under/misc/overalls{
+	pixel_x = 4;
+	pixel_y = -9
+	},
+/obj/item/clothing/under/syndicate{
+	pixel_y = -9;
+	pixel_x = -1
+	},
+/obj/item/clothing/suit/toggle/labcoat{
+	pixel_y = -3;
+	pixel_x = 12
+	},
+/obj/item/clothing/under/suit/black{
+	pixel_x = 10;
+	pixel_y = -10
+	},
+/obj/item/clothing/under/misc/overalls{
+	pixel_x = 4;
+	pixel_y = -9
+	},
+/obj/item/clothing/under/syndicate{
+	pixel_y = -9;
+	pixel_x = -1
+	},
+/obj/item/clothing/suit/toggle/labcoat{
+	pixel_y = -3;
+	pixel_x = 12
+	},
+/obj/item/clothing/head/soft/black{
+	pixel_x = 10;
+	pixel_y = 5
+	},
+/obj/item/clothing/head/soft/black{
+	pixel_x = 10;
+	pixel_y = 5
+	},
+/obj/item/storage/backpack/satchel/leather{
+	pixel_x = -7;
+	pixel_y = 10
+	},
+/obj/item/storage/backpack/satchel/leather{
+	pixel_x = -7;
+	pixel_y = 10
+	},
+/obj/item/clothing/shoes/combat{
+	pixel_y = -9;
+	pixel_x = -11
+	},
+/obj/item/clothing/shoes/combat{
+	pixel_y = -9;
+	pixel_x = -11
+	},
+/obj/item/clothing/shoes/laceup{
+	pixel_x = -12;
+	pixel_y = -3
+	},
+/obj/item/clothing/shoes/laceup{
+	pixel_x = -12;
+	pixel_y = -3
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/csunpad/dorm)
+"RQ" = (
+/obj/structure/railing,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_beach/csunpad/june)
+"Se" = (
+/obj/structure/table/wood,
+/obj/machinery/button/door{
+	pixel_x = 20;
+	pixel_y = 6;
+	dir = 8;
+	id = "checkpointbot";
+	name = "automatyczne zwolnienie zabezpieczeń"
+	},
+/obj/item/paper_bin{
+	pixel_x = 1;
+	pixel_y = 3
+	},
+/obj/item/pen{
+	pixel_x = -7;
+	pixel_y = 2
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/csunpad/director)
+"Sf" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 9;
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 8;
+	color = "#474747"
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
+/obj/structure/cable,
+/obj/item/crowbar{
+	pixel_x = 5;
+	pixel_y = 14
+	},
+/turf/open/floor/monotile/dark{
+	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Sj" = (
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_beach/csunpad/canteen)
+"So" = (
+/obj/item/ammo_casing/spent,
+/obj/machinery/atmospherics/components/unary/passive_vent/layer2,
+/turf/open/floor/plating/asteroid/dirt/beach,
+/area/lavaland/surface/outdoors)
+"Ss" = (
+/obj/structure/table,
+/obj/structure/window/reinforced,
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_beach/csunpad/medical)
+"Sv" = (
+/obj/effect/turf_decal/trimline/blue/line{
+	dir = 8;
+	color = "#4C9C9C";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_beach/csunpad/medical)
+"Sz" = (
+/obj/machinery/door/airlock/medical{
+	dir = 4;
+	name = "Izba chorych"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/effect/mapping_helpers/airlock/abandoned,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_beach/csunpad/medical)
+"SI" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 6;
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 4;
+	color = "#474747"
+	},
+/obj/machinery/light{
+	dir = 8;
+	pixel_x = 13;
+	pixel_y = 3
+	},
+/turf/open/floor/monotile/dark{
+	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"SM" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 5;
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 1;
+	color = "#474747"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/turf/open/floor/monotile/dark{
+	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"SR" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 9;
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 8;
+	color = "#474747"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/cable,
+/obj/machinery/light{
+	dir = 4;
+	pixel_x = -13
+	},
+/turf/open/floor/monotile/dark{
+	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"SY" = (
+/obj/machinery/door/airlock/public{
+	dir = 4;
+	name = "Sypialnia"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_beach/csunpad/security)
+"Ta" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 10;
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white{
+	color = "#474747"
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
+/turf/open/floor/monotile/dark{
+	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Td" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_beach/csunpad/canteen)
+"Tj" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 9;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_beach/csunpad/security)
+"Tm" = (
+/obj/effect/turf_decal/trimline/blue/line{
+	dir = 9;
+	color = "#4C9C9C";
+	alpha = 255
+	},
+/obj/effect/turf_decal/tile/neutral/fourcorners{
+	color = "#a8b2b6";
+	alpha = 140
+	},
+/turf/open/floor/monotile/light,
+/area/ruin/unpowered/planet_beach/csunpad/medical)
+"Tn" = (
+/obj/effect/turf_decal/box,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_beach/csunpad/june)
+"Tp" = (
+/obj/machinery/power/rtg,
+/obj/machinery/light,
+/obj/structure/cable/yellow,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_beach/csunpad/engineering)
+"Tx" = (
+/obj/structure/fluff/paper/stack{
+	pixel_x = 5
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/csunpad)
+"Ty" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 10;
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white{
+	color = "#474747"
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/cable,
+/turf/open/floor/monotile/dark{
+	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"TP" = (
+/obj/structure/table/glass,
+/obj/machinery/atmospherics/components/unary/passive_vent/layer2{
+	dir = 8
+	},
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/csunpad/security)
+"TW" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 9;
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 8;
+	color = "#474747"
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/cable,
+/turf/open/floor/monotile/dark{
+	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"TX" = (
+/obj/structure/grille,
+/obj/structure/window/shuttle,
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_beach/csunpad)
+"Ud" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_beach/csunpad/canteen)
+"Uu" = (
+/obj/effect/turf_decal/trimline/red/filled/warning{
+	dir = 4;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"UJ" = (
+/obj/structure/frame/computer{
+	dir = 1;
+	anchored = 1
+	},
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_beach/csunpad)
+"UL" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_beach/csunpad/engineering)
+"UO" = (
+/obj/effect/turf_decal/trimline/blue/line{
+	dir = 10;
+	color = "#4C9C9C";
+	alpha = 255
+	},
+/obj/item/bodypart/l_leg{
+	pixel_x = 5;
+	pixel_y = 7
+	},
+/obj/effect/decal/cleanable/blood,
+/obj/effect/turf_decal/tile/neutral/fourcorners{
+	color = "#a8b2b6";
+	alpha = 140
+	},
+/obj/structure/cable,
+/turf/open/floor/monotile/light,
+/area/ruin/unpowered/planet_beach/csunpad/medical)
+"UR" = (
+/obj/structure/flora/tree/jungle/small,
+/turf/open/floor/plating/asteroid/dirt/beach,
+/area/lavaland/surface/outdoors)
+"Vd" = (
+/turf/closed/wall/mineral/titanium/nodiagonal,
+/area/ruin/unpowered/planet_beach/csunpad)
+"Vf" = (
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_beach/csunpad/canteen)
+"Vj" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 5;
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 1;
+	color = "#474747"
+	},
+/turf/open/floor/monotile/dark{
+	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Vk" = (
+/obj/structure/cable,
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 5
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_beach/csunpad/june)
+"Vv" = (
+/obj/structure/grille,
+/obj/structure/window/shuttle,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_beach/csunpad/medical)
+"Vw" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/cable,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Vz" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 5;
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/tile/blue{
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 5;
+	color = "#474747"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/structure/cable,
+/obj/machinery/power/apc/auto_name/north{
+	start_charge = 0
+	},
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_beach/csunpad)
+"VG" = (
+/obj/structure/flora/junglebush,
+/turf/open/floor/plating/asteroid/dirt/beach,
+/area/lavaland/surface/outdoors)
+"VW" = (
+/obj/machinery/stasis{
+	dir = 4
+	},
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_beach/csunpad/medical)
+"Wc" = (
+/obj/effect/turf_decal/trimline/red/filled/warning{
+	dir = 8;
+	color = "#730622";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Wj" = (
+/obj/machinery/modular_computer/console/preset/command{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_beach/csunpad)
+"Wl" = (
+/obj/structure/chair/fancy/bench{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/csunpad/dorm)
+"Wp" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 9;
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 8;
+	color = "#474747"
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_beach/csunpad)
+"Ws" = (
+/obj/effect/turf_decal/siding/white/corner{
+	dir = 8;
+	color = "#474747"
+	},
+/obj/effect/turf_decal/tile/red/half{
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 1;
+	color = "#474747"
+	},
+/mob/living/basic/hivebot/range{
+	faction = list("Syndicate")
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_beach/csunpad/security)
+"Wv" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 5
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_beach/csunpad/engineering)
+"WH" = (
+/obj/structure/table/glass,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/csunpad/canteen)
+"Xk" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	dir = 4;
+	id = "midwich_blast"
+	},
+/obj/effect/turf_decal/ship/techfloor{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 8;
+	color = "#fb9700"
+	},
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 4;
+	color = "#fb9700"
+	},
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_beach/csunpad/june)
+"Xl" = (
+/obj/effect/turf_decal/siding/wood,
+/obj/structure/extinguisher_cabinet/south,
+/obj/structure/cable,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/csunpad/medical)
+"Xm" = (
+/obj/effect/turf_decal/box,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_beach/csunpad/june)
+"Xt" = (
+/obj/structure/bed{
+	dir = 4
+	},
+/obj/structure/dresser,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/csunpad/security)
+"Xx" = (
+/obj/effect/turf_decal/siding/wood,
+/obj/structure/extinguisher_cabinet/south,
+/obj/machinery/atmospherics/components/unary/passive_vent/layer2{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/csunpad/security)
+"XA" = (
+/obj/effect/turf_decal/siding/wood,
+/obj/structure/cable,
+/obj/machinery/power/apc/auto_name/north{
+	start_charge = 0
+	},
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_beach/csunpad/canteen)
+"XB" = (
+/obj/machinery/door/airlock/command{
+	name = "Operacje";
+	dir = 4
+	},
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_beach/csunpad)
+"XJ" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 10;
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 4;
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 6;
+	color = "#474747"
+	},
+/obj/structure/extinguisher_cabinet/east,
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_beach/csunpad)
+"XK" = (
+/obj/effect/turf_decal/ship/techfloor,
+/obj/machinery/button/door{
+	dir = 1;
+	pixel_y = -20;
+	id = "midwich_blast";
+	name = "sterowanie wrotami hangaru desantowca"
+	},
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_beach/csunpad/june)
+"XM" = (
+/obj/effect/turf_decal/ship/techfloor{
+	dir = 6
+	},
+/obj/structure/cable,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_beach/csunpad/june)
+"XP" = (
+/obj/structure/table/glass,
+/obj/item/plate{
+	pixel_x = -7
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/csunpad/canteen)
+"XU" = (
+/obj/structure/flora/ausbushes/grassybush,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
+/area/lavaland/surface/outdoors)
+"XZ" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 1;
+	color = "#474747"
+	},
+/obj/effect/turf_decal/tile/red/half{
+	dir = 8;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/light,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_beach/csunpad/security)
+"Yj" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_beach/csunpad/medical)
+"Yv" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 1;
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white/corner{
+	dir = 1;
+	color = "#474747"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/cable,
+/turf/open/floor/monotile/dark{
+	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"YF" = (
+/obj/item/stack/cable_coil/cut,
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_beach/csunpad/engineering)
+"YH" = (
+/obj/effect/turf_decal/tile/neutral/fourcorners{
+	color = "#a8b2b6";
+	alpha = 140
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/mob/living/basic/viscerator{
+	faction = list("hostile")
+	},
+/turf/open/floor/monotile/light,
+/area/ruin/unpowered/planet_beach/csunpad)
+"YS" = (
+/obj/structure/table/reinforced,
+/obj/item/reagent_containers/glass/bottle/morphine{
+	pixel_x = -6;
+	pixel_y = 4
+	},
+/obj/item/reagent_containers/glass/bottle{
+	pixel_x = 6;
+	pixel_y = 4
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 4;
+	color = "#444547"
+	},
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_beach/csunpad/medical)
+"YV" = (
+/obj/effect/turf_decal/trimline/red/filled/warning{
+	dir = 4;
+	color = "#730622";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Zb" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 10;
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 1;
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 10;
+	color = "#474747"
+	},
+/obj/structure/table/glass,
+/obj/machinery/light,
+/obj/item/paper_bin{
+	pixel_x = 6;
+	pixel_y = 4
+	},
+/obj/item/pen{
+	pixel_x = 5;
+	pixel_y = 5
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_beach/csunpad)
+"Zp" = (
+/mob/living/basic/hivebot/rapid{
+	faction = list("pirate")
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 10;
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white{
+	color = "#474747"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/monotile/dark{
+	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Zq" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 9;
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 8;
+	color = "#474747"
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/monotile/dark{
+	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Zr" = (
+/obj/machinery/door/airlock/hatch{
+	dir = 4;
+	name = "Przedział inżynieryjny"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_beach/csunpad/engineering)
+"Zs" = (
+/obj/machinery/computer/operating{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 1;
+	color = "#444547"
+	},
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_beach/csunpad/medical)
+"Zy" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 9;
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/tile/blue{
+	color = "#4C9C9C";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 10;
+	color = "#474747"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 9
+	},
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_beach/csunpad)
+"Zz" = (
+/obj/effect/turf_decal/siding/white/corner{
+	dir = 1;
+	color = "#474747"
+	},
+/obj/effect/turf_decal/tile/red/half{
+	dir = 8;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 4;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_beach/csunpad/security)
+"ZE" = (
+/turf/open/floor/plasteel/stairs/right{
+	dir = 4
+	},
+/area/lavaland/surface/outdoors)
+"ZK" = (
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_beach/csunpad/medical)
+"ZQ" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "checkpointbot"
+	},
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_beach/csunpad/medical)
+"ZT" = (
+/obj/effect/turf_decal/tile/blue/fourcorners{
+	color = "#4C9C9C";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/tile/neutral/fourcorners{
+	color = "#a8b2b6";
+	alpha = 140
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/item/flashlight/seclite{
+	light_on = 1;
+	on = 1
+	},
+/turf/open/floor/monotile/light,
+/area/ruin/unpowered/planet_beach/csunpad/medical)
+"ZW" = (
+/obj/machinery/door/airlock/public{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_beach/csunpad)
+
+(1,1,1) = {"
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+LN
+LN
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+"}
+(2,1,1) = {"
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+LN
+LN
+LN
+gX
+gX
+gX
+gX
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+"}
+(3,1,1) = {"
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+LN
+LN
+gX
+gX
+CE
+YS
+gX
+gX
+LN
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+"}
+(4,1,1) = {"
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+LN
+LN
+LN
+gX
+Jc
+De
+Sv
+cd
+gX
+LN
+LN
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+"}
+(5,1,1) = {"
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+LN
+LN
+LN
+gX
+sa
+EL
+Yj
+lN
+gX
+LN
+LN
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+"}
+(6,1,1) = {"
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+iV
+iV
+iV
+iV
+tV
+zK
+LN
+LN
+LN
+LN
+gX
+fQ
+Ey
+vK
+Zs
+gX
+LN
+LN
+LN
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+"}
+(7,1,1) = {"
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+zK
+zK
+PG
+XU
+iV
+iV
+zK
+zK
+zK
+LN
+LN
+gX
+gX
+gX
+gX
+nd
+gX
+gX
+gX
+gX
+gX
+LN
+tV
+tV
+IU
+IU
+IU
+IU
+IU
+IU
+IU
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+"}
+(8,1,1) = {"
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+zK
+iV
+iV
+iV
+iV
+wG
+zK
+zK
+zK
+zK
+LN
+gX
+Er
+rV
+mo
+NY
+rZ
+QQ
+sW
+VW
+gX
+IU
+tV
+IU
+IU
+IU
+IU
+IU
+IU
+IU
+IU
+IU
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+"}
+(9,1,1) = {"
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+zK
+zK
+iV
+iV
+iV
+rS
+rS
+rS
+rS
+zK
+zK
+zK
+gX
+bg
+xD
+Ss
+mN
+iy
+ac
+sF
+ZK
+Vv
+IU
+IU
+IU
+IU
+IU
+IU
+IU
+IU
+IU
+IU
+IU
+IU
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+"}
+(10,1,1) = {"
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+zK
+zK
+iV
+iV
+iV
+rS
+rS
+Bd
+Bd
+rS
+rS
+zK
+zK
+gX
+gS
+rI
+Iz
+Tm
+ap
+UO
+ar
+ar
+gX
+IU
+IU
+IU
+jX
+IU
+IU
+IU
+IU
+IU
+IU
+IU
+IU
+IU
+IU
+IU
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+"}
+(11,1,1) = {"
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+zK
+iV
+wM
+XU
+iV
+rS
+UL
+Dn
+Br
+UL
+rS
+zK
+zK
+gX
+gX
+gX
+gX
+Ck
+ZT
+OT
+Bv
+Bv
+gX
+IU
+IU
+IU
+IU
+IU
+IU
+IU
+IU
+IU
+IU
+IU
+IU
+IU
+IU
+IU
+IU
+tV
+tV
+tV
+tV
+tV
+tV
+"}
+(12,1,1) = {"
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+iV
+iV
+iV
+iV
+iV
+rS
+sS
+cp
+wF
+sS
+rS
+zK
+yL
+gX
+Jl
+nP
+ZQ
+aK
+Rs
+py
+oJ
+ZK
+Vv
+yL
+IU
+IU
+IU
+IU
+IU
+IU
+IU
+IU
+jX
+IU
+IU
+IU
+IU
+IU
+IU
+Id
+tV
+tV
+tV
+tV
+tV
+"}
+(13,1,1) = {"
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+iV
+XU
+iV
+yL
+iV
+rS
+wK
+gR
+Ib
+Tp
+rS
+zK
+yL
+gX
+PF
+nP
+JE
+PS
+Bs
+JM
+It
+jm
+gX
+yL
+IU
+jX
+IU
+IU
+IU
+IU
+IU
+IU
+IU
+IU
+IU
+IU
+IU
+IU
+Id
+Id
+Id
+tV
+tV
+tV
+tV
+"}
+(14,1,1) = {"
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+iV
+iV
+PG
+yL
+yL
+rS
+sS
+YF
+wa
+sS
+rS
+zK
+yL
+gX
+gX
+gX
+gX
+iB
+nN
+hq
+gX
+gX
+gX
+yL
+yL
+yL
+IU
+IU
+IU
+IU
+IU
+IU
+IU
+IU
+IU
+IU
+IU
+IU
+Id
+Id
+Id
+Id
+Id
+tV
+tV
+"}
+(15,1,1) = {"
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+iV
+iV
+iV
+yL
+yL
+rS
+lw
+ph
+Wv
+HV
+rS
+zK
+yL
+yL
+yL
+yL
+gX
+mr
+ci
+Xl
+gX
+zK
+zK
+zK
+yL
+yL
+yL
+yL
+IU
+IU
+IU
+IU
+yL
+yL
+yL
+IU
+IU
+IU
+Id
+Id
+Id
+Id
+Id
+tV
+tV
+"}
+(16,1,1) = {"
+tV
+tV
+tV
+LN
+LN
+tV
+iV
+wM
+iV
+yL
+yL
+yL
+rS
+rS
+rS
+Zr
+rS
+rS
+zK
+zK
+yL
+yL
+yL
+gX
+gX
+Sz
+Cf
+gX
+zK
+zK
+zK
+zK
+zK
+yL
+yL
+yL
+Nm
+yL
+yL
+yL
+Id
+yL
+yL
+IU
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+tV
+"}
+(17,1,1) = {"
+tV
+tV
+LN
+LN
+LN
+tV
+iV
+XU
+iV
+yL
+yL
+yL
+yL
+zK
+js
+Kr
+zK
+zK
+zK
+zK
+zK
+zK
+zK
+zK
+zK
+sm
+OQ
+zK
+zK
+zK
+zK
+zK
+zK
+zK
+yL
+yL
+yL
+yL
+Id
+Id
+Id
+yL
+yL
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+tV
+"}
+(18,1,1) = {"
+tV
+tV
+LN
+do
+do
+do
+do
+do
+do
+do
+yL
+yL
+zK
+NQ
+CA
+Qr
+yX
+aa
+Io
+Io
+gy
+Io
+Io
+Io
+Io
+Sf
+TW
+Zq
+Gk
+Gk
+Gk
+Gk
+mj
+Fx
+yL
+yL
+yL
+yL
+yL
+Id
+Id
+Id
+yL
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+tV
+"}
+(19,1,1) = {"
+tV
+LN
+LN
+do
+Xt
+ga
+do
+vg
+vg
+do
+yL
+Vd
+Vd
+Vd
+Vj
+zW
+MC
+tE
+JP
+JP
+ER
+aR
+Ka
+CD
+yQ
+DL
+HT
+MC
+MC
+MC
+SI
+MC
+mJ
+Kc
+yL
+yL
+yL
+yL
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+tV
+"}
+(20,1,1) = {"
+tV
+LN
+LN
+do
+Ro
+qe
+BD
+CH
+GJ
+do
+yL
+Vd
+Nt
+oy
+na
+zV
+zK
+zK
+zK
+YV
+Uu
+YV
+zK
+zK
+zK
+xL
+ua
+zK
+zK
+zK
+zK
+zK
+zK
+zK
+yL
+yL
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+tV
+"}
+(21,1,1) = {"
+tV
+LN
+LN
+do
+do
+do
+do
+fJ
+QR
+do
+yL
+Vd
+Ks
+oy
+jO
+zV
+zK
+zK
+Rt
+Rt
+zy
+Rt
+Rt
+zK
+zK
+xL
+ua
+zK
+zK
+zK
+yL
+yL
+yL
+yL
+yL
+yL
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+tV
+"}
+(22,1,1) = {"
+tV
+tV
+LN
+do
+QO
+Lw
+BD
+yH
+Xx
+do
+yL
+Vd
+Nt
+oy
+Mn
+Zp
+zK
+Rt
+Rt
+gu
+hd
+fB
+Rt
+Rt
+zK
+xL
+ua
+zK
+zK
+yL
+yL
+yL
+yL
+yL
+yL
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+tV
+"}
+(23,1,1) = {"
+tV
+tV
+LN
+do
+Ad
+TP
+do
+mt
+FP
+do
+yL
+Vd
+Vd
+Vd
+Vj
+zV
+zK
+Rt
+aF
+LE
+om
+jl
+AY
+Rt
+zK
+xL
+ua
+zK
+tF
+tF
+Hx
+Hx
+Hx
+tF
+tF
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+tV
+"}
+(24,1,1) = {"
+tV
+tV
+do
+do
+do
+do
+do
+SY
+do
+do
+yL
+yL
+UR
+NQ
+SM
+pa
+zK
+Rt
+id
+DZ
+II
+zT
+BH
+Rt
+zK
+aW
+ua
+zK
+tF
+mu
+jp
+ih
+fY
+wz
+tF
+tF
+Hx
+tF
+tF
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+tV
+"}
+(25,1,1) = {"
+tV
+LN
+do
+ze
+FI
+kF
+Fz
+BN
+do
+yL
+yL
+wG
+zK
+zK
+tf
+zV
+zK
+Rt
+Ba
+eM
+Rt
+Se
+kS
+Rt
+zK
+pP
+ua
+zK
+tF
+tG
+CS
+Bt
+fY
+Hb
+tF
+uD
+qw
+KK
+tF
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+tV
+"}
+(26,1,1) = {"
+tV
+LN
+do
+ze
+FI
+pk
+lu
+hP
+wP
+Vw
+yz
+Io
+Io
+Io
+Yv
+Eq
+zK
+Rt
+Rt
+Rt
+Rt
+Rt
+Rt
+Rt
+zK
+pP
+ua
+zK
+tF
+XA
+CS
+XP
+fY
+wz
+cy
+vI
+pz
+yN
+tF
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+tV
+"}
+(27,1,1) = {"
+LN
+LN
+do
+do
+do
+qs
+Ex
+XZ
+do
+js
+Vj
+kT
+kT
+kT
+qG
+ek
+zK
+VG
+iV
+XU
+iH
+XU
+VG
+mq
+zK
+fd
+FL
+Vw
+Go
+Cp
+MH
+nK
+rh
+Vf
+wp
+Jv
+FF
+zS
+Hx
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+tV
+"}
+(28,1,1) = {"
+LN
+LN
+do
+ze
+FI
+sZ
+lj
+Fy
+uc
+js
+pq
+MC
+MC
+MC
+mB
+zV
+zK
+hV
+hV
+hV
+hV
+hV
+hV
+hV
+zK
+xL
+ua
+js
+Bz
+JX
+KP
+Ud
+KP
+Sj
+xh
+Fg
+Ll
+Kl
+Hx
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+tV
+"}
+(29,1,1) = {"
+LN
+LN
+do
+fc
+FI
+Ws
+iW
+Zz
+do
+yL
+yL
+yL
+iV
+iV
+Vj
+zV
+iV
+hV
+pS
+pG
+hV
+pS
+pG
+hV
+zK
+xL
+ua
+zK
+tF
+ic
+CS
+WH
+fY
+wz
+qR
+vX
+zO
+lU
+tF
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+tV
+"}
+(30,1,1) = {"
+LN
+LN
+do
+do
+do
+do
+do
+FT
+do
+do
+yL
+zK
+XU
+iV
+Vj
+zV
+iV
+hV
+RH
+RH
+hV
+RH
+RH
+hV
+zK
+xL
+ua
+zK
+tF
+tG
+CS
+Rn
+JJ
+Hb
+tF
+qk
+Td
+El
+tF
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+tV
+"}
+(31,1,1) = {"
+tV
+LN
+LN
+do
+hy
+LY
+KF
+Tj
+ob
+do
+zK
+zK
+zK
+Mt
+as
+Ta
+XU
+hV
+Wl
+Ik
+zg
+gf
+eB
+hV
+wG
+xL
+ua
+zK
+tF
+pc
+jp
+Bt
+JJ
+wz
+tF
+tF
+Hx
+tF
+tF
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+tV
+"}
+(32,1,1) = {"
+tV
+LN
+LN
+do
+AB
+iG
+zp
+KG
+AS
+do
+zK
+Vd
+Vd
+Vd
+Vj
+AM
+zK
+hV
+uh
+Ik
+ep
+gf
+my
+hV
+zK
+xL
+ua
+zK
+tF
+tF
+Hx
+Hx
+Hx
+tF
+tF
+yL
+yL
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+tV
+tV
+"}
+(33,1,1) = {"
+tV
+tV
+LN
+do
+hE
+aX
+NK
+ts
+KM
+do
+zK
+Vd
+Ks
+oy
+dq
+zV
+zK
+hV
+hV
+Fn
+EB
+zI
+hV
+hV
+zK
+xL
+ua
+zK
+zK
+yL
+yL
+yL
+yL
+yL
+yL
+yL
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+tV
+tV
+"}
+(34,1,1) = {"
+tV
+tV
+LN
+do
+Mr
+IL
+do
+Mr
+IL
+do
+zK
+Vd
+Ks
+oy
+jO
+zV
+zK
+zK
+hV
+hV
+Gg
+hV
+hV
+XU
+iV
+xL
+ua
+zK
+zK
+zK
+zK
+zK
+yL
+yL
+yL
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+tV
+tV
+"}
+(35,1,1) = {"
+tV
+tV
+LN
+do
+do
+do
+do
+do
+do
+do
+zK
+Vd
+Ks
+oy
+jO
+zV
+zK
+zK
+zK
+Wc
+ka
+Wc
+iV
+iV
+zK
+xL
+Ty
+zK
+zK
+zK
+zK
+zK
+zK
+zK
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+tV
+tV
+"}
+(36,1,1) = {"
+tV
+LN
+LN
+LN
+vL
+vL
+vL
+zK
+zK
+zK
+zK
+Vd
+Vd
+Vd
+Vj
+aZ
+Io
+CQ
+sI
+sI
+PY
+Io
+Io
+SR
+Io
+FQ
+ed
+Gk
+Gk
+Gk
+Gk
+eF
+qS
+Gk
+Gk
+mj
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+tV
+tV
+"}
+(37,1,1) = {"
+tV
+LN
+LN
+LN
+LN
+vL
+vL
+zK
+zK
+zK
+zK
+zK
+zK
+So
+as
+Oq
+MC
+Ao
+MC
+MC
+MC
+MC
+MC
+MC
+MC
+mB
+Nj
+MC
+MC
+MC
+MC
+MC
+MC
+MC
+MC
+mJ
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+tV
+tV
+tV
+"}
+(38,1,1) = {"
+tV
+LN
+LN
+LN
+LN
+LN
+vL
+zK
+zK
+zK
+zK
+zK
+zK
+zK
+Vj
+zV
+zK
+zK
+zK
+zK
+zK
+zK
+zK
+zK
+zK
+Vj
+ua
+zK
+zK
+zK
+zK
+zK
+zK
+ZE
+uo
+zK
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+tV
+tV
+tV
+"}
+(39,1,1) = {"
+tV
+tV
+LN
+LN
+LN
+LN
+vL
+zK
+zK
+zK
+zK
+yL
+zK
+zK
+Gr
+dP
+zK
+zK
+yL
+zK
+zK
+zK
+zK
+zK
+zK
+Gd
+mV
+zK
+zK
+zK
+zK
+zK
+zK
+zK
+zK
+zK
+yL
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+tV
+tV
+tV
+"}
+(40,1,1) = {"
+tV
+tV
+LN
+LN
+LN
+LN
+LN
+zK
+zK
+yL
+yL
+yL
+yL
+zK
+js
+On
+zK
+yL
+yL
+yL
+yu
+yu
+yu
+yu
+yu
+qG
+pw
+yu
+yu
+yu
+yu
+yu
+zK
+zK
+zK
+yL
+yL
+IU
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+tV
+tV
+tV
+"}
+(41,1,1) = {"
+tV
+tV
+tV
+LN
+LN
+LN
+LN
+zK
+yL
+yL
+Vd
+Vd
+Vd
+Vd
+XB
+zE
+Vd
+Vd
+Vd
+Vd
+yu
+qG
+qG
+qG
+qG
+qG
+pw
+qG
+qG
+qG
+qG
+yu
+zK
+yL
+yL
+yL
+IU
+IU
+IU
+IU
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+tV
+tV
+tV
+"}
+(42,1,1) = {"
+tV
+tV
+tV
+tV
+LN
+LN
+yL
+yL
+yL
+yL
+Vd
+Ks
+oy
+Ow
+DD
+KY
+Vd
+Bo
+Ef
+Vd
+yu
+qG
+qG
+Ot
+aS
+Ot
+Hp
+uj
+nc
+qG
+qG
+yu
+yL
+yL
+yL
+yL
+IU
+jX
+IU
+IU
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+tV
+tV
+tV
+"}
+(43,1,1) = {"
+tV
+tV
+tV
+tV
+tV
+yL
+yL
+yL
+yL
+yL
+Vd
+lV
+oy
+ei
+bF
+Ou
+TX
+sn
+Zb
+Vd
+yu
+qG
+QL
+Ot
+hv
+Ot
+AV
+zZ
+iQ
+QL
+qG
+yu
+yL
+IU
+IU
+IU
+IU
+IU
+IU
+IU
+IU
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+tV
+tV
+tV
+"}
+(44,1,1) = {"
+tV
+tV
+tV
+tV
+tV
+tV
+yL
+yL
+yL
+yL
+Vd
+Vd
+Vd
+nQ
+jA
+pI
+TX
+wA
+uf
+Vd
+yu
+qG
+qG
+iQ
+dv
+iQ
+Xk
+JO
+nc
+qG
+qG
+yu
+IU
+IU
+IU
+IU
+IU
+IU
+IU
+IU
+IU
+IU
+Id
+Id
+Id
+Id
+Id
+Id
+tV
+tV
+tV
+tV
+"}
+(45,1,1) = {"
+tV
+tV
+tV
+tV
+tV
+tV
+yL
+yL
+yL
+yL
+Vd
+Ks
+oy
+ei
+YH
+gJ
+TX
+MY
+nn
+Vd
+yu
+qG
+nc
+iQ
+DH
+iQ
+qc
+XK
+nc
+nc
+qG
+yu
+IU
+IU
+IU
+IU
+IU
+IU
+IU
+IU
+IU
+IU
+Id
+Id
+Id
+Id
+Id
+Id
+tV
+tV
+tV
+tV
+"}
+(46,1,1) = {"
+tV
+tV
+tV
+tV
+tV
+tV
+yL
+yL
+yL
+yL
+Vd
+Ks
+mF
+Ls
+oG
+wN
+Vd
+Vz
+XJ
+Vd
+yu
+qG
+nc
+BA
+KS
+rd
+cN
+fk
+nc
+rt
+qG
+yu
+IU
+IU
+IU
+IU
+IU
+IU
+IU
+IU
+IU
+IU
+Id
+Id
+Id
+Id
+Id
+tV
+tV
+tV
+tV
+tV
+"}
+(47,1,1) = {"
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+yL
+yL
+yL
+Vd
+Vd
+Vd
+Vd
+BS
+Vd
+Vd
+ZW
+Vd
+Vd
+yu
+kT
+nc
+GP
+nW
+wv
+cN
+nS
+nc
+rt
+qG
+yu
+IU
+IU
+IU
+IU
+IU
+IU
+IU
+IU
+jX
+IU
+Id
+Id
+Id
+Id
+Id
+tV
+tV
+tV
+tV
+tV
+"}
+(48,1,1) = {"
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+yL
+yL
+yL
+Vd
+MK
+pm
+Vd
+zR
+aQ
+Wp
+Zy
+HA
+IE
+yu
+kT
+nc
+yt
+RQ
+Tn
+pv
+XM
+nc
+nc
+qG
+yu
+IU
+IU
+IU
+IU
+IU
+IU
+IU
+IU
+IU
+IU
+Id
+Id
+Id
+Id
+Id
+tV
+tV
+tV
+tV
+tV
+"}
+(49,1,1) = {"
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+yL
+yL
+Vd
+sD
+GM
+aV
+Dq
+uv
+EM
+Ay
+IF
+IE
+yu
+qG
+nc
+nc
+kX
+nc
+Ql
+qF
+nc
+su
+qG
+yu
+jX
+IU
+IU
+IU
+IU
+IU
+IU
+IU
+IU
+IU
+Id
+Id
+Id
+Id
+Id
+tV
+tV
+tV
+tV
+tV
+"}
+(50,1,1) = {"
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+yL
+yL
+yL
+Vd
+Vd
+Vd
+Vd
+Vd
+et
+Vd
+Vd
+Vd
+Vd
+yu
+qG
+nc
+Lv
+Vk
+Op
+gw
+Dg
+MR
+Jf
+qG
+yu
+IU
+IU
+IU
+IU
+IU
+IU
+IU
+IU
+IU
+IU
+Id
+Id
+Id
+Id
+tV
+tV
+tV
+tV
+tV
+tV
+"}
+(51,1,1) = {"
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+yL
+yL
+yL
+yL
+Vd
+nl
+Vd
+ct
+np
+cI
+bH
+Vd
+yL
+yu
+qG
+nc
+Ed
+JF
+GI
+Xm
+JF
+MR
+Ra
+qG
+yu
+IU
+IU
+IU
+IU
+IU
+IU
+IU
+IU
+IU
+Id
+Id
+Id
+Id
+Id
+tV
+tV
+tV
+tV
+tV
+tV
+"}
+(52,1,1) = {"
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+yL
+yL
+yL
+yL
+Vd
+EK
+ov
+Bu
+ny
+dp
+UJ
+IE
+yL
+yu
+qG
+nc
+nc
+aq
+nc
+xI
+aq
+nc
+nc
+qG
+yu
+IU
+IU
+jX
+IU
+IU
+IU
+IU
+IU
+IU
+Id
+Id
+Id
+Id
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+"}
+(53,1,1) = {"
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+yL
+yL
+yL
+Vd
+aw
+Vd
+fi
+FK
+Tx
+Wj
+Vd
+yL
+yu
+qG
+qG
+nc
+uG
+nc
+qy
+uG
+nc
+qG
+qG
+yu
+IU
+IU
+IU
+IU
+IU
+IU
+IU
+IU
+Id
+Id
+Id
+Id
+Id
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+"}
+(54,1,1) = {"
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+yL
+yL
+yL
+Vd
+Vd
+Vd
+bo
+dg
+dg
+Vd
+Vd
+yL
+yu
+qG
+qG
+qG
+qG
+qG
+qG
+qG
+qG
+qG
+qG
+yu
+yL
+IU
+IU
+IU
+Id
+IU
+IU
+Id
+Id
+Id
+Id
+Id
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+"}
+(55,1,1) = {"
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+yL
+yL
+yL
+yL
+yL
+Vd
+Vd
+Vd
+IE
+Vd
+Vd
+yL
+yL
+yu
+yu
+yu
+yu
+yu
+yu
+yu
+yu
+yu
+yu
+yu
+yu
+yL
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+"}
+(56,1,1) = {"
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+yL
+yL
+yL
+yL
+yL
+yL
+yL
+yL
+yL
+yL
+yL
+yL
+yL
+yL
+yL
+tV
+tV
+yL
+yL
+yL
+yL
+yL
+yL
+yL
+yL
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+Id
+tV
+Id
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+"}
+(57,1,1) = {"
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+yL
+yL
+yL
+yL
+tV
+yL
+yL
+yL
+yL
+yL
+yL
+yL
+yL
+tV
+tV
+tV
+tV
+yL
+yL
+yL
+yL
+tV
+tV
+Id
+Id
+Id
+Id
+Id
+Id
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+"}
+(58,1,1) = {"
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+tV
+"}
