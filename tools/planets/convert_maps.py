@@ -217,12 +217,54 @@ def decal(path, vars_, mapname):
     raise KeyError(path)
 
 
+
+def parse_atom(atom):
+    """Jak dmm.parse_map_atom, ale znaki ; i = wewnątrz nawiasów (list(... = ...)) nie dzielą zmiennych."""
+    if '{' not in atom:
+        return atom, {}
+    i = atom.index('{')
+    path, rest = atom[:i], atom[i + 1:]
+    if rest.endswith('}'):
+        rest = rest[:-1]
+    out = collections.OrderedDict()
+    depth = 0
+    in_string = False
+    escaping = False
+    current = ''
+    parts = []
+    for ch in rest:
+        if escaping:
+            escaping = False
+        elif ch == chr(92):
+            # jak dmm.parse_map_atom: znak ucieczki znika, następny znak przechodzi dosłownie
+            escaping = True
+            continue
+        elif ch == '"':
+            in_string = not in_string
+        elif not in_string and ch == '(':
+            depth += 1
+        elif not in_string and ch == ')':
+            depth -= 1
+        elif not in_string and depth == 0 and ch == ';':
+            parts.append(current)
+            current = ''
+            continue
+        current += ch
+    if current.strip():
+        parts.append(current)
+    for part in parts:
+        if '=' not in part:
+            continue
+        key, value = part.split('=', 1)
+        out[key.strip()] = value.strip()
+    return path, out
+
 MISSING = set()
 
 def clean_vars(vars_, keep_icon_state):
     out = collections.OrderedDict()
     for k, v in vars_.items():
-        if k in DROP_VARS and not (k == 'icon_state' and keep_icon_state):
+        if (k in DROP_VARS or k in common.DROP_VARS_EXTRA) and not (k == 'icon_state' and keep_icon_state):
             continue
         if v == '/datum/species/spider':  # rachnidzi z Shiptesta, u nas brak tej rasy
             v = '/datum/species/human'
@@ -237,7 +279,7 @@ def clean_vars(vars_, keep_icon_state):
     return out
 
 def convert_atom(a, mapname, stat):
-    path, vars_ = dmmlib.parse_map_atom(a)
+    path, vars_ = parse_atom(a)
     vars_ = collections.OrderedDict(vars_)
     # kable zostają w starym formacie, przerabia je tools/smartwires/convert.py (kolory blue/cyan/white zna)
     if path.startswith('/obj/structure/cable'):

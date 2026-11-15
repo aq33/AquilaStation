@@ -249,7 +249,7 @@ for p, n in {
 	'/obj/machinery/porta_turret/ruin/ramzi/heavy': '/obj/machinery/porta_turret/syndicate/energy/heavy',
 	'/obj/machinery/portable_atmospherics/canister/chlorine': '/obj/machinery/portable_atmospherics/canister/toxins',
 	'/obj/machinery/portable_atmospherics/canister/hydrogen': '/obj/machinery/portable_atmospherics/canister/nitrogen',
-	'/obj/machinery/power/shieldwallgen/atmos': '/obj/machinery/shieldwallgen',
+	'/obj/machinery/power/shieldwallgen/atmos': None,
 	'/obj/machinery/suit_storage_unit/independent/engineering': '/obj/machinery/suit_storage_unit/engine',
 	'/obj/machinery/telecomms/relay/preset/frontiersmen': '/obj/machinery/telecomms/relay/preset/ruskie',
 	'/obj/machinery/telecomms/relay/preset/syndicate': '/obj/machinery/telecomms/relay/preset/ruskie',
@@ -440,8 +440,9 @@ for sub in ('', '/barracks', '/center', '/warehouse'):
 	AREAS['/area/ruin/wasteplanet/tradepost' + sub] = '/area/ruin/unpowered/planet_waste/tradepost' + sub
 for sub in ('/bay', '/canteen', '/dorms', '/ship'):
 	AREAS['/area/ruin/wasteplanet/wasteplanet_shipbreaking' + sub] = '/area/ruin/unpowered/planet_waste/shipbreaking' + sub
-for sub in ('/cic', '/cybersun', '/eng', '/hab', '/tcom', '/tcommoni', '/vault', '/warehouse'):
+for sub in ('/cic', '/cybersun', '/eng', '/hab', '/tcommoni', '/vault', '/warehouse'):
 	AREAS['/area/ruin/wasteplanet/wasteplanet_icwbase' + sub] = '/area/ruin/unpowered/planet_waste/icwbase' + sub
+AREAS['/area/ruin/wasteplanet/wasteplanet_icwbase/tcom1'] = '/area/ruin/unpowered/planet_waste/icwbase/tcom'
 for sub in ('', '/crew', '/eastbay', '/northwing', '/southwing', '/westbay'):
 	AREAS['/area/ruin/wasteplanet/facility' + sub] = '/area/ruin/unpowered/planet_waste/facility' + sub
 for sub in ('/armory', '/atmospherics', '/dorms', '/engineering', '/eva', '/officers', '/officers_dorms', '/salvage_bay', '/security',
@@ -802,3 +803,6 @@ from mappings.common import ICON_STATE_DROP  # noqa: E402
 ICON_STATE_DROP.update({'/obj/machinery/computer/cargo', '/obj/machinery/computer/security/telescreen/entertainment'})
 for turf in ('/turf/open/floor/concrete/wasteplanet', '/turf/open/floor/concrete/pavement/wasteplanet'):
 	TURFS[turf] = turf
+# Szafka Shiptesta ma zmienną open, nasza szafka nazywa ją inaczej: zostaje zamknięta
+from mappings.common import DROP_VARS_EXTRA  # noqa: E402
+DROP_VARS_EXTRA.add('open')
