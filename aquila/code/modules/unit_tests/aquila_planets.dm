@@ -271,8 +271,10 @@
 	// Atmosfera wstrzymana jak przy generowaniu planety: podmuch z rozszczelnionych wraków nie rusza rzeczy przed Initialize
 	lazy_template_load_started()
 	. = ruin.load(corner, centered = FALSE)
-	qdel(reservation)
 	lazy_template_load_finished()
+	// Rezerwacja zwalniana przy działającej atmosferze, jak przy znikaniu powierzchni w grze (zwalnianie przy wstrzymanej
+	// atmosferze wywracało auxmos w process_atmos_callbacks)
+	qdel(reservation)
 
 /// AQUILA - planety: każda ruina Shiptesta z puli ruin głównych planety wulkanicznej mieści się na planecie i się wczytuje
 /datum/unit_test/planet_lava_ruins
@@ -294,8 +296,10 @@
 		var/turf/corner = locate(reservation.bottom_left_coords[1], reservation.bottom_left_coords[2], reservation.bottom_left_coords[3])
 		lazy_template_load_started()
 		var/loaded = ruin.load(corner)
-		qdel(reservation)
 		lazy_template_load_finished()
+		// Rezerwacja zwalniana przy działającej atmosferze, jak przy znikaniu powierzchni w grze (zwalnianie przy wstrzymanej
+		// atmosferze wywracało auxmos w process_atmos_callbacks)
+		qdel(reservation)
 		TEST_ASSERT(loaded, "[name] didn't load")
 	qdel(fit_planet, TRUE)
 

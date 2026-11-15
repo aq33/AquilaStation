@@ -103,8 +103,10 @@
 		// Jak przy generowaniu planety: atmosfera stoi, póki ruina się nie wczyta (wraki są celowo rozszczelnione)
 		lazy_template_load_started()
 		var/loaded = ruin.load(corner)
-		qdel(reservation)
 		lazy_template_load_finished()
+		// Rezerwacja zwalniana przy działającej atmosferze, jak przy znikaniu powierzchni w grze (zwalnianie przy wstrzymanej
+		// atmosferze wywracało auxmos w process_atmos_callbacks)
+		qdel(reservation)
 		TEST_ASSERT(loaded, "[name] didn't load")
 	qdel(fit_planet, TRUE)
 
