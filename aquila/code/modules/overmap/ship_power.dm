@@ -13,6 +13,10 @@
 #define SHIP_POWER_ARMOUR "armour"
 /// Długość cyklu rozliczania mocy (tyle trwa tick SSmachines)
 #define SHIP_POWER_CYCLE (2 SECONDS)
+/// Powody odmowy podziału mocy
+#define SHIP_POWER_REFUSED_LIMIT "limit"
+#define SHIP_POWER_REFUSED_RESERVE "rezerwa"
+#define SHIP_POWER_REFUSED_SURPLUS "brak prądu"
 
 /// Kolejność systemów w konsoli: id = nazwa
 GLOBAL_LIST_INIT(ship_power_systems, list(
@@ -53,6 +57,12 @@ GLOBAL_LIST_INIT(ship_power_presets, list(
 	var/list/net_requested = list()
 	var/list/net_drawn = list()
 	var/list/last_net_requested = list()
+	/// Prośby i zgody w bieżącym cyklu po maszynie: REF(maszyna) = list(system, W, klucz sieci). Maszyna przetworzona
+	/// drugi raz w tym samym oknie cyklu (SSmachines z SS_KEEP_TIMING po opóźnieniu) zastępuje swoją prośbę, a nie dokłada.
+	var/list/source_asked = list()
+	var/list/source_granted = list()
+	/// Powód ostatniej odmowy: SHIP_POWER_REFUSED_*
+	var/last_refusal
 	/// Numer bieżącego cyklu
 	var/cycle = 0
 
@@ -82,6 +92,14 @@ GLOBAL_LIST_INIT(ship_power_presets, list(
 	requested = list()
 	net_requested = list()
 	net_drawn = list()
+	source_asked = list()
+	source_granted = list()
+	// Rozebrane maszyny wypadają co cykl, a nie dopiero przy capacity() ich systemu (twarde referencje)
+	for(var/system in machines)
+		var/list/L = machines[system]
+		for(var/obj/machinery/M as anything in L)
+			if(QDELETED(M))
+				L -= M
 
 /// Klucz sieci w listach rezerw (maszyny bez kabla, np. na APC, liczą się razem)
 /datum/ship_power/proc/net_key(net)
@@ -131,35 +149,76 @@ GLOBAL_LIST_INIT(ship_power_presets, list(
 			remaining = min(remaining, limit - drawn[other])
 		. += max(0, remaining)
 
-/// Maszyna pyta o pobór `amount` W z sieci `net`, w której jest `surplus` W wolnych. Zwraca TRUE, jeśli może pobrać.
+/// Cofa prośbę i zgodę tej samej maszyny z bieżącego cyklu (drugie przetworzenie w jednym oknie)
+/datum/ship_power/proc/forget_source(source_key)
+	var/list/asked = source_asked[source_key]
+	if(asked)
+		requested[asked[1]] -= asked[2]
+		var/list/per_net = net_requested[asked[1]]
+		if(per_net)
+			per_net[asked[3]] -= asked[2]
+		source_asked -= source_key
+	var/list/granted = source_granted[source_key]
+	if(granted)
+		drawn[granted[1]] -= granted[2]
+		var/list/per_net = net_drawn[granted[1]]
+		if(per_net)
+			per_net[granted[3]] -= granted[2]
+		source_granted -= source_key
+
+/// Maszyna pyta o pobór `amount` W z sieci `net`, w której jest `surplus` W wolnych. Zwraca TRUE, jeśli może pobrać;
+/// przy odmowie last_refusal mówi dlaczego.
 /datum/ship_power/proc/request(system, amount, surplus, obj/machinery/source, max_draw, net)
 	roll_cycle()
+	last_refusal = null
+	var/source_key = source ? REF(source) : null
 	if(source)
 		LAZYINITLIST(machines[system])
 		machines[system][source] = max(max_draw, amount)
+		forget_source(source_key)
 	if(amount <= 0)
 		return TRUE
 	requested[system] += amount
-	add_net(net_requested, system, net, amount)
+	// Prośba większa niż cały wolny prąd sieci i tak nie przejdzie (pobór jest wszystko albo nic): nie rezerwujemy
+	// jej dla następnego cyklu, bo zagłodziłaby niższe priorytety
+	if(surplus >= amount)
+		add_net(net_requested, system, net, amount)
+		if(source_key)
+			source_asked[source_key] = list(system, amount, net_key(net))
+	else if(source_key)
+		source_asked[source_key] = list(system, amount, null)
 	var/limit = limits[system] * max(capacity(system), amount)
-	if(drawn[system] + amount > limit + 1)
+	// Limit 0% odcina system całkowicie (tolerancja 1 W tylko na błędy zaokrągleń przy niezerowym limicie)
+	if(limit <= 0 || drawn[system] + amount > limit + 1)
+		last_refusal = SHIP_POWER_REFUSED_LIMIT
+		return FALSE
+	if(surplus < amount)
+		last_refusal = SHIP_POWER_REFUSED_SURPLUS
 		return FALSE
 	if(surplus - reserved_above(system, net) < amount)
+		last_refusal = SHIP_POWER_REFUSED_RESERVE
 		return FALSE
 	drawn[system] += amount
 	add_net(net_drawn, system, net, amount)
+	if(source_key)
+		source_granted[source_key] = list(system, amount, net_key(net))
 	return TRUE
 
 /// Zapis poboru, którego nie odcinamy (np. PDSR: odcięcie groziłoby utratą zabezpieczenia reaktora)
 /datum/ship_power/proc/record(system, amount, obj/machinery/source, max_draw, net)
 	roll_cycle()
+	var/source_key = source ? REF(source) : null
 	if(source)
 		LAZYINITLIST(machines[system])
 		machines[system][source] = max(max_draw, amount)
+		forget_source(source_key)
 	requested[system] += amount
 	drawn[system] += amount
 	add_net(net_requested, system, net, amount)
 	add_net(net_drawn, system, net, amount)
+	if(source_key)
+		source_asked[source_key] = list(system, amount, net_key(net))
+		source_granted[source_key] = list(system, amount, net_key(net))
 
 /obj/structure/overmap
 	/// AQUILA - podział mocy okrętu (tworzony przy pierwszym użyciu)
@@ -196,18 +255,39 @@ GLOBAL_LIST_INIT(ship_power_presets, list(
 
 // --- Tarcza: moc obcięta do limitu zamiast gaśnięcia ---
 
+/obj/machinery/shield_generator
+	/// Pobór już zatwierdzony przez podział mocy w tym ticku (try_use_power nie pyta drugi raz)
+	var/aq_power_pregranted = 0
+
 /obj/machinery/shield_generator/process()
 	var/obj/structure/overmap/ship = get_overmap()
 	if(!istype(ship))
 		return ..()
-	var/cap = ship.get_ship_power().cap(SHIP_POWER_SHIELD)
+	var/datum/ship_power/power = ship.get_ship_power()
+	var/cap = power.cap(SHIP_POWER_SHIELD)
 	var/wanted = power_input
 	if(!isnull(cap))
 		power_input = min(power_input, cap)
+	// Upstream przy każdej odmowie opuszcza tarczę (active = FALSE) do ręcznego włączenia. Odmowa z podziału mocy
+	// (limit 0%, rezerwa wyższego priorytetu) to tylko przygaszenie: tarcza słabnie, ale zostaje podniesiona.
+	// Prawdziwy brak prądu w sieci obsługuje dalej upstream.
+	if(wanted > 0 && powered())
+		if(power_input <= 0 || !ship_power_request(SHIP_POWER_SHIELD, power_input, max_power_input))
+			if(power_input <= 0 || power.last_refusal != SHIP_POWER_REFUSED_SURPLUS)
+				if(shield["integrity"] > 0)
+					shield["integrity"] = max(0, shield["integrity"] - 2)
+				power_input = wanted
+				return FALSE
+		else
+			aq_power_pregranted = power_input
 	. = ..()
+	aq_power_pregranted = 0
 	power_input = wanted
 
 /obj/machinery/shield_generator/try_use_power(amount)
+	if(aq_power_pregranted && amount == aq_power_pregranted)
+		aq_power_pregranted = 0
+		return ..()
 	if(!ship_power_request(SHIP_POWER_SHIELD, amount, max_power_input))
 		return FALSE
 	return ..()
@@ -221,7 +301,9 @@ GLOBAL_LIST_INIT(ship_power_presets, list(
 // --- FTL ---
 
 /obj/machinery/atmospherics/components/binary/drive_pylon/power_drain()
-	if(power_draw > 0 && !ship_power_request(SHIP_POWER_FTL, power_draw * (1 + power_failure_counter), 100000))
+	var/amount = power_draw * (1 + power_failure_counter)
+	// Brak kabla albo prądu w sieci obsługuje upstream (ostrzeżenie, częściowy pobór); tu tylko odmowa z podziału mocy
+	if(power_draw > 0 && ship_power_surplus() >= amount && !ship_power_request(SHIP_POWER_FTL, amount, 100000))
 		power_failure_counter++
 		if(power_failure_counter > 3)
 			visible_message("<span class='warning'>[src] wydaje metaliczny jęk: inżynieria odcięła mu zasilanie.</span>")
@@ -232,7 +314,8 @@ GLOBAL_LIST_INIT(ship_power_presets, list(
 // --- Broń energetyczna ---
 
 /obj/machinery/ship_weapon/energy/try_use_power(amount)
-	if(!ship_power_request(SHIP_POWER_WEAPONS, amount, initial(charge_rate) * power_modifier_cap))
+	// Bez prądu w obszarze upstream odmawia bez poboru: zgoda zjadałaby limit broni sprawnym działom
+	if(powered() && !ship_power_request(SHIP_POWER_WEAPONS, amount, initial(charge_rate) * power_modifier_cap))
 		return FALSE
 	return ..()
 
@@ -269,7 +352,7 @@ GLOBAL_LIST_INIT(ship_power_presets, list(
 		systems += list(list(
 			"id" = system,
 			"name" = GLOB.ship_power_systems[system],
-			"limit" = round(power.limits[system] * 100),
+			"limit" = round(power.limits[system] * 100, 1),
 			"priority" = power.priorities[system],
 			"draw" = display_power(power.last_drawn[system] || 0),
 			"demand" = display_power(power.last_requested[system] || 0),
@@ -300,12 +383,18 @@ GLOBAL_LIST_INIT(ship_power_presets, list(
 			var/system = params["system"]
 			if(!(system in GLOB.ship_power_systems))
 				return
-			power.limits[system] = clamp(round(text2num(params["value"])), 0, 100) / 100
+			var/value = text2num(params["value"])
+			if(!isnum_safe(value))
+				return
+			power.limits[system] = clamp(round(value), 0, 100) / 100
 		if("ship_power_priority")
 			var/system = params["system"]
 			if(!(system in GLOB.ship_power_systems))
 				return
-			power.priorities[system] = clamp(round(text2num(params["value"])), 1, 5)
+			var/value = text2num(params["value"])
+			if(!isnum_safe(value))
+				return
+			power.priorities[system] = clamp(round(value), 1, 5)
 		if("ship_power_preset")
 			if(!power.apply_preset(params["preset"]))
 				return
