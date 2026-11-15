@@ -101,6 +101,8 @@
 	var/server_delta = elapsed_ms() - note["time"]
 	var/good = (key == note["key"]) && isnum(delta) && abs(delta) <= hit_window && server_delta > -1500 && server_delta < hit_window + 1500
 	results["[index]"] = good
+	// tłok zjeżdża przy każdym uderzeniu, także pudle
+	flick("power_hammer_hit", anvil)
 	if(good)
 		playsound(anvil, 'sound/effects/clang.ogg', 25, TRUE)
 		if(prob(30))
