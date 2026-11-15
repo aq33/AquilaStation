@@ -95,7 +95,7 @@
 		result += list(requests_console_bounty_entry(bounty, "CentCom", "konsola zleceń zaopatrzenia", bounty.reward_string()))
 	// Przyjęte zlecenia stacji handlowych (aquila/code/modules/overmap/station_contracts.dm)
 	for(var/datum/aq_contract/contract as anything in GLOB.aq_ship_contracts)
-		if(contract.state != "w toku")
+		if(!contract.is_active())
 			continue
 		result += list(list(
 			"name" = contract.name,

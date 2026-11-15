@@ -190,9 +190,8 @@ GLOBAL_LIST_INIT(ship_thruster_oxidizers, list(
 	return mix[2]
 
 /// Spala tyle mieszanki, żeby zużyć podaną ilość paliwa. Mieszanka schodzi w całości (utleniacz i gazy
-/// obojętne razem z paliwem), w tej samej proporcji ze wszystkich podgrzewaczy.
-/obj/machinery/ship_thruster/proc/burn_fuel(amount, list/heaters = get_heaters())
-	var/list/mix = analyze_mix(heaters)
+/// obojętne razem z paliwem), w tej samej proporcji ze wszystkich podgrzewaczy. mix: wynik analyze_mix(heaters)
+/obj/machinery/ship_thruster/proc/burn_fuel(amount, list/heaters = get_heaters(), list/mix = analyze_mix(heaters))
 	var/fuel = mix[2]
 	if(fuel <= 0)
 		return
@@ -202,23 +201,24 @@ GLOBAL_LIST_INIT(ship_thruster_oxidizers, list(
 		air_contents.remove_ratio(ratio)
 		heater.update_parents()
 
-/obj/machinery/ship_thruster/proc/check_can_fire(delta_time, list/heaters = get_heaters())
+/obj/machinery/ship_thruster/proc/check_can_fire(delta_time, list/heaters = get_heaters(), list/mix = analyze_mix(heaters))
 	if(machine_stat & (BROKEN|NOPOWER))
 		return FALSE
 	if(!anchored || !linked_ship)
 		return FALSE
-	return get_fuel(heaters) >= fuel_per_second * delta_time
+	return mix[2] >= fuel_per_second * delta_time
 
 /obj/machinery/ship_thruster/process(delta_time)
 	if(!linked_ship || QDELETED(linked_ship))
 		link_to_ship(get_overmap())
+	// Jedna analiza mieszanki na tick: wspólna dla sprawdzenia paliwa, jakości i spalania
 	var/list/heaters = get_heaters()
-	var/new_can_fire = check_can_fire(delta_time, heaters)
 	var/list/mix = analyze_mix(heaters)
+	var/new_can_fire = check_can_fire(delta_time, heaters, mix)
 	var/new_quality = ship_thruster_mix_quality(mix[2], mix[3], mix[4])
 	var/firing = new_can_fire && linked_ship.is_thrusting()
 	if(firing)
-		burn_fuel(fuel_per_second * delta_time, heaters)
+		burn_fuel(fuel_per_second * delta_time, heaters, mix)
 	use_power = firing ? ACTIVE_POWER_USE : IDLE_POWER_USE
 	var/datum/ship_power/power = linked_ship?.ship_power
 	active_power_usage = initial(active_power_usage) * (power ? power.limits[SHIP_POWER_ENGINES] : 1)

@@ -532,8 +532,8 @@ GLOBAL_LIST_EMPTY(pulsar_consoles)
 	name = "burza z pulsara"
 	desc = "Wiązka promieniowania pulsara omiata okręt."
 	telegraph_duration = 300
-	weather_duration_lower = 1 HOURS
-	weather_duration_upper = 1 HOURS
+	// Trwa, dopóki konsola jej nie wygasi (end_storm); wcześniej sama gasła po czasie, a storm_active zostawał TRUE
+	perpetual = TRUE
 	probability = 0
 
 /// Szczelina energii przy przeciążeniu: strzela wiązkami jak emiter

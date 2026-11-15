@@ -35,6 +35,30 @@
 	TEST_ASSERT(gen.cloak_ready_at > world.time, "The shield generator didn't start cooling down after the cloak")
 	TEST_ASSERT(!gen.can_cloak(), "The cloak can be restarted while the generator cools down")
 
+	// Regresja: tarcza podniesiona przed maską wraca po jej zdjęciu
+	gen.cloaked = TRUE
+	gen.cloak_restore_active = TRUE
+	gen.active = FALSE
+	gen.end_cloak("test")
+	TEST_ASSERT(gen.active, "The shield stayed down after the cloak ended")
+
+	// Regresja: maskę przełącza tylko inżynieria albo dowództwo
+	var/mob/living/carbon/human/stranger = allocate(/mob/living/carbon/human, run_loc_floor_bottom_left)
+	TEST_ASSERT(!gen.can_toggle_cloak(stranger), "Someone without engineering or command access can toggle the cloak")
+
+	// Regresja: zniszczony generator w masce nie zostawia okrętu zamaskowanego
+	gen.cloaked = TRUE
+	TEST_ASSERT(ship.is_cloaked(), "The ship didn't count as cloaked")
+	var/obj/machinery/shield_generator/destroyed = gen
+	gen = null
+	qdel(destroyed)
+	TEST_ASSERT(!ship.is_cloaked(), "The ship stayed cloaked after its shield generator was destroyed")
+	TEST_ASSERT(ship.shields != destroyed, "The ship still points at its destroyed shield generator")
+
+	// Regresja: burza z pulsara trwa, dopóki konsola jej nie wygasi
+	var/datum/weather/rad_storm/pulsar/storm_type = /datum/weather/rad_storm/pulsar
+	TEST_ASSERT(initial(storm_type.perpetual), "The pulsar storm still ends on its own timer")
+
 /datum/unit_test/shield_cloak/Destroy()
 	if(ship)
 		ship.shields = old_shields

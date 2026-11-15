@@ -33,6 +33,8 @@ GLOBAL_LIST_EMPTY(aq_ship_contracts)
 	var/amount = 1
 	var/static/next_id = 0
 	var/id
+	/// Dlaczego zlecenie się nie udało
+	var/fail_reason
 
 /datum/aq_contract/New(obj/structure/overmap/trader/station)
 	. = ..()
@@ -99,9 +101,20 @@ GLOBAL_LIST_EMPTY(aq_ship_contracts)
 	if(state != CONTRACT_ACTIVE)
 		return
 	state = CONTRACT_FAILED
+	fail_reason = reason
 	STOP_PROCESSING(SSprocessing, src)
 	announce("Zlecenie nieudane: [name] ([reason]).")
 	on_end()
+
+/// Stany do sprawdzania spoza tego pliku (konsola zgłoszeń, testy): define'y stanów są tu #undef
+/datum/aq_contract/proc/is_active()
+	return state == CONTRACT_ACTIVE
+
+/datum/aq_contract/proc/is_done()
+	return state == CONTRACT_DONE
+
+/datum/aq_contract/proc/is_failed()
+	return state == CONTRACT_FAILED
 
 /// Sprzątanie po zakończeniu (zamknięcie restauracji itp.)
 /datum/aq_contract/proc/on_end()
@@ -372,16 +385,13 @@ GLOBAL_LIST_EMPTY(aq_ship_contracts)
 	var/obj/structure/overmap/ship = SSstar_system.find_main_overmap()
 	if(!ship)
 		return null
-	var/list/candidates = list()
+	var/list/medical_areas = list()
 	for(var/area/medical/A in GLOB.sortedAreas)
-		if(A.get_overmap() != ship)
-			continue
-		for(var/turf/open/T in A)
-			if(!is_blocked_turf(T, TRUE))
-				candidates += T
-		if(length(candidates) > 40)
-			break
-	return length(candidates) ? pick(candidates) : null
+		if(A.get_overmap() == ship)
+			medical_areas += A
+	if(!length(medical_areas))
+		return null
+	return get_safe_random_station_turfs(medical_areas)
 
 /datum/aq_contract/wounded/accept_error()
 	return find_medbay_turf() ? null : "Okręt nie ma ambulatorium."
@@ -562,6 +572,10 @@ GLOBAL_LIST_INIT(aq_contract_types, list(
 		aq_contract_offers -= C
 		if(!C.accept(user))
 			return "Nie udało się przyjąć zlecenia."
+		// on_accept mógł od razu zakończyć zlecenie porażką (np. portal albo ambulatorium zniknęły po sprawdzeniu)
+		if(C.is_failed())
+			log_game("[key_name(user)] przyjął zlecenie [C.name] od [src], ale nie mogło się zacząć: [C.fail_reason]")
+			return "Zlecenie nie mogło się zacząć: [C.fail_reason]."
 		log_game("[key_name(user)] przyjął zlecenie [C.name] od [src]")
 		return null
 	return "Ta oferta już wygasła."

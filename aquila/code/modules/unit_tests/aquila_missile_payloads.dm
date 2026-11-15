@@ -43,6 +43,17 @@
 	qdel(buoy)
 	qdel(probe)
 
+	// Regresja: sonda trafiająca w okręt z podniesioną tarczą też zostawia boję (tarcza kończy bullet_act przed spec_overmap_hit)
+	gen.active = TRUE
+	gen.shield["integrity"] = 1000
+	var/obj/item/projectile/guided_munition/missile/sensor_probe/shielded_probe = new(get_turf(ship))
+	shielded_probe.overmap_firer = ship
+	ship.bullet_act(shielded_probe)
+	var/obj/effect/overmap_sensor_probe/shield_buoy = locate() in get_turf(ship)
+	TEST_ASSERT(shield_buoy, "A sensor probe hitting a shielded ship didn't drop a buoy")
+	qdel(shield_buoy)
+	qdel(shielded_probe)
+
 	// Głowice składają się w swoją amunicję
 	var/list/expected = list(
 		/obj/item/ship_weapon/parts/missile/warhead/emp = /obj/item/ship_weapon/ammunition/missile/emp,

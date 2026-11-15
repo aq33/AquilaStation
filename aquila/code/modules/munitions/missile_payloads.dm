@@ -15,10 +15,15 @@
 
 /// Jaka część pełnej tarczy celu znika przy trafieniu (0 = pocisk nie jest dyfuzorem)
 /obj/item/projectile/var/aq_shield_diffuse = 0
+/// Pocisk z sondą: przy trafieniu w okręt zostawia boję
+/obj/item/projectile/var/aq_sensor_probe = FALSE
 
 /obj/structure/overmap/bullet_act(obj/item/projectile/P)
 	if(P.aq_shield_diffuse && shields)
 		aq_diffuse_shields(P.aq_shield_diffuse)
+	// Przed ..(): tarcza pochłania trafienie i kończy bullet_act, zanim dojdzie do spec_overmap_hit()
+	if(P.aq_sensor_probe)
+		P.drop_sensor_probe(get_turf(src))
 	return ..()
 
 /// Drenuje tarczę okrętu (generator, PDSR albo tarcza myśliwca) o część jej pełnej integralności
@@ -156,9 +161,7 @@
 	color = "#9cffb0"
 	damage = 0
 	projectile_relaying_allowed = FALSE
-
-/obj/item/projectile/guided_munition/torpedo/sensor_probe/spec_overmap_hit(obj/structure/overmap/target)
-	drop_sensor_probe(get_turf(target))
+	aq_sensor_probe = TRUE
 
 /obj/item/projectile/guided_munition/torpedo/sensor_probe/on_range()
 	drop_sensor_probe(get_turf(src))
@@ -185,9 +188,7 @@
 	color = "#9cffb0"
 	damage = 0
 	projectile_relaying_allowed = FALSE
-
-/obj/item/projectile/guided_munition/missile/sensor_probe/spec_overmap_hit(obj/structure/overmap/target)
-	drop_sensor_probe(get_turf(target))
+	aq_sensor_probe = TRUE
 
 /obj/item/projectile/guided_munition/missile/sensor_probe/on_range()
 	drop_sensor_probe(get_turf(src))

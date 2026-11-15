@@ -30,7 +30,7 @@
 	materials.accept()
 	TEST_ASSERT(materials in GLOB.aq_ship_contracts, "An accepted contract isn't on the ship's list")
 	materials.complete()
-	TEST_ASSERT(materials.state == "wykonane", "A completed contract isn't marked as done")
+	TEST_ASSERT(materials.is_done(), "A completed contract isn't marked as done")
 	TEST_ASSERT(cargo.account_balance >= old_balance + materials.reward, "The department budget didn't get the reward")
 	cargo.adjust_money(-materials.reward)
 	GLOB.department_commission_pending[ACCOUNT_CAR] -= materials.reward
@@ -45,10 +45,10 @@
 	corpse.state = "w toku"
 	corpse.deadline = world.time + 10 MINUTES
 	corpse.check_progress()
-	TEST_ASSERT(corpse.state == "w toku", "A dead, unexamined body completed the corpse contract")
+	TEST_ASSERT(corpse.is_active(), "A dead, unexamined body completed the corpse contract")
 	ADD_TRAIT(body, "autopsied", "test")
 	corpse.check_progress()
-	TEST_ASSERT(corpse.state == "wykonane", "An autopsy didn't complete the corpse contract")
+	TEST_ASSERT(corpse.is_done(), "An autopsy didn't complete the corpse contract")
 	qdel(corpse)
 
 	// Goście: zlecenie otwiera lokal, a po wykonaniu go zamyka
@@ -67,7 +67,7 @@
 	qdel(second)
 	venue.customers_served += 2
 	customers.check_progress()
-	TEST_ASSERT(customers.state == "wykonane", "Serving enough customers didn't complete the contract")
+	TEST_ASSERT(customers.is_done(), "Serving enough customers didn't complete the contract")
 	TEST_ASSERT(!venue.open, "The restaurant stayed open after the contract was done")
 	venue.customers_served -= 2
 	qdel(customers)

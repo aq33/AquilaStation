@@ -25,10 +25,12 @@
 	var/cloak_z = 0
 	/// Ostatnia jasność bańki, żeby nie odświeżać filtra bez potrzeby
 	var/bubble_level = -1
+	/// Czy tarcza była podniesiona przed maską (koniec maski ją przywraca)
+	var/cloak_restore_active = FALSE
 
 /obj/structure/overmap/proc/is_cloaked()
 	var/obj/machinery/shield_generator/gen = shields
-	return istype(gen) && gen.cloaked
+	return istype(gen) && !QDELETED(gen) && gen.cloaked
 
 /obj/structure/overmap/get_signature_size()
 	. = ..()
@@ -60,6 +62,7 @@
 	cloaked = TRUE
 	cloak_until = world.time + SHIELD_CLOAK_DURATION
 	cloak_z = ship.z
+	cloak_restore_active = active
 	active = FALSE
 	animate(ship, 1.5 SECONDS, alpha = SHIELD_CLOAK_ALPHA)
 	ship.relay(null, "<span class='notice'>Generator tarczy przechodzi w tryb maskowania. Sygnatura okrętu gaśnie.</span>", FALSE)
@@ -73,11 +76,33 @@
 		return
 	cloaked = FALSE
 	cloak_ready_at = world.time + SHIELD_CLOAK_COOLDOWN
+	// Tarcza wraca do stanu sprzed maski (zniszczony generator już jej nie podniesie)
+	if(!QDELETED(src) && !(machine_stat & BROKEN))
+		active = cloak_restore_active
+	cloak_restore_active = FALSE
 	var/obj/structure/overmap/ship = get_overmap()
 	if(istype(ship))
 		animate(ship, 1.5 SECONDS, alpha = 255)
-		ship.relay(null, "<span class='warning'>Maskowanie zdjęte[reason ? ": [reason]" : ""]. Generator tarczy stygnie.</span>", FALSE)
+		ship.relay(null, "<span class='warning'>Maskowanie zdjęte[reason ? ": [reason]" : ""]. Generator tarczy stygnie[active ? ", tarcza wraca" : ""].</span>", FALSE)
 	update_bubble(TRUE)
+
+/// Zniszczony albo rozebrany generator zdejmuje maskę i przestaje być tarczą okrętu
+/obj/machinery/shield_generator/Destroy()
+	if(cloaked)
+		end_cloak("generator zniszczony")
+	// Szukamy po okrętach, a nie przez get_overmap(): generator mógł już być poza statkiem (wyniesiony, przeniesiony)
+	for(var/obj/structure/overmap/ship as anything in GLOB.overmap_objects)
+		if(ship.shields == src)
+			ship.shields = null
+	return ..()
+
+/// Maskę włącza i zdejmuje inżynieria albo dowództwo
+/obj/machinery/shield_generator/proc/can_toggle_cloak(mob/user)
+	if(issilicon(user) || IsAdminGhost(user))
+		return TRUE
+	var/obj/item/card/id/card = user?.get_idcard(TRUE)
+	var/list/access = card?.GetAccess()
+	return (ACCESS_ENGINE in access) || (ACCESS_HEADS in access)
 
 /obj/machinery/shield_generator/process()
 	if(!cloaked)
@@ -142,13 +167,18 @@
 	.["can_cloak"] = can_cloak()
 
 /obj/machinery/shield_generator/ui_act(action, params)
-	if(action == "cloakToggle")
-		if(cloaked)
-			end_cloak("na rozkaz")
-		else
-			start_cloak(usr)
+	if(action != "cloakToggle")
+		return ..()
+	if(machine_stat & (BROKEN|NOPOWER))
 		return TRUE
-	return ..()
+	if(!can_toggle_cloak(usr))
+		to_chat(usr, "<span class='warning'>Brak dostępu. Maskowanie włącza inżynieria albo dowództwo.</span>")
+		return TRUE
+	if(cloaked)
+		end_cloak("na rozkaz")
+	else
+		start_cloak(usr)
+	return TRUE
 
 #undef SHIELD_CLOAK_POWER
 #undef SHIELD_CLOAK_DURATION
