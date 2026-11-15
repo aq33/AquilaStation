@@ -1,0 +1,118 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"g" = (
+/obj/effect/decal/remains/human,
+/obj/structure/closet/crate/coffin{
+	desc = "Oznaczony kawałek ziemi z krzyżem. W drewnie wyryto prosty kwiat.";
+	 opened = 0
+	},
+/obj/item/clothing/under/syndicate,
+/obj/effect/decal/cleanable/shreds,
+/obj/effect/decal/cleanable/shreds{
+	pixel_x = 9;
+	 pixel_y = 12
+	},
+/obj/effect/decal/cleanable/shreds{
+	pixel_y = 4;
+	 pixel_x = -8
+	},
+/obj/item/toy/plush/nukeplushie{
+	name = "wystrzępiony pluszak agenta";
+	 desc = "Pluszak przypominający agenta nuklearnego Syndykatu. Widział lepsze dni."
+	},
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
+/area/template_noop)
+"p" = (
+/obj/structure/flora/rock,
+/obj/item/food/grown/ash_flora/fireblossom{
+	pixel_y = 9;
+	 pixel_x = 6;
+	 desc = "Kiedy odejdę, obiecasz, że będziesz pamiętać? Że po mnie wrócisz? Że wszystko będzie dobrze?"
+	},
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/template_noop)
+"y" = (
+/obj/structure/flora/ausbushes/lavendergrass,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/template_noop)
+"B" = (
+/obj/structure/flora/ausbushes/ywflowers/hell,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/template_noop)
+"E" = (
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
+/area/template_noop)
+"I" = (
+/obj/structure/flora/ausbushes/ppflowers,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/template_noop)
+"K" = (
+/turf/template_noop,
+/area/template_noop)
+"T" = (
+/obj/structure/flora/ausbushes/ywflowers,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/template_noop)
+
+(1,1,1) = {"
+K
+y
+K
+K
+y
+K
+I
+"}
+(2,1,1) = {"
+K
+K
+T
+I
+K
+T
+K
+"}
+(3,1,1) = {"
+T
+K
+I
+B
+T
+y
+T
+"}
+(4,1,1) = {"
+K
+I
+B
+p
+g
+E
+K
+"}
+(5,1,1) = {"
+K
+T
+y
+I
+B
+T
+y
+"}
+(6,1,1) = {"
+y
+K
+K
+T
+K
+y
+K
+"}
+(7,1,1) = {"
+K
+K
+I
+K
+I
+K
+K
+"}

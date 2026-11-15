@@ -1,0 +1,135 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"h" = (
+/turf/closed/mineral/random/planet_jungle,
+/area/template_noop)
+"i" = (
+/obj/structure/flora/rock,
+/turf/open/water/planet/jungle,
+/area/template_noop)
+"m" = (
+/turf/template_noop,
+/area/template_noop)
+"E" = (
+/obj/structure/flora/rock,
+/obj/effect/decal/cleanable/greenglow,
+/turf/open/water/planet/jungle,
+/area/template_noop)
+"H" = (
+/obj/structure/glowshroom,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"J" = (
+/obj/structure/flora/rock/pile,
+/turf/open/water/planet/jungle,
+/area/template_noop)
+"K" = (
+/turf/open/water/planet/jungle,
+/area/template_noop)
+"M" = (
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"U" = (
+/obj/structure/flora/ash/puce,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"X" = (
+/obj/effect/decal/cleanable/greenglow,
+/turf/open/water/planet/jungle,
+/area/template_noop)
+
+(1,1,1) = {"
+m
+m
+m
+h
+M
+K
+K
+M
+h
+m
+"}
+(2,1,1) = {"
+m
+m
+h
+U
+K
+J
+K
+K
+U
+m
+"}
+(3,1,1) = {"
+m
+m
+m
+K
+X
+K
+K
+K
+H
+h
+"}
+(4,1,1) = {"
+m
+h
+M
+J
+X
+E
+J
+M
+h
+m
+"}
+(5,1,1) = {"
+h
+H
+K
+X
+X
+K
+K
+m
+m
+m
+"}
+(6,1,1) = {"
+m
+M
+K
+i
+X
+K
+U
+h
+m
+m
+"}
+(7,1,1) = {"
+m
+m
+K
+J
+K
+K
+m
+m
+m
+m
+"}
+(8,1,1) = {"
+m
+h
+U
+K
+K
+H
+h
+m
+m
+m
+"}

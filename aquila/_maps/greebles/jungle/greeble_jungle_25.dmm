@@ -1,0 +1,509 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"bn" = (
+/obj/structure/spacevine/dense,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/yellow,
+/area/template_noop)
+"cW" = (
+/obj/structure/spacevine,
+/obj/structure/flora/tree/jungle,
+/obj/structure/flora/grass/jungle/b,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/yellow,
+/area/template_noop)
+"fH" = (
+/obj/structure/spacevine,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"fP" = (
+/obj/structure/spacevine/dense,
+/obj/structure/spacevine,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"hR" = (
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/yellow,
+/area/template_noop)
+"hV" = (
+/obj/structure/spacevine/dense,
+/obj/structure/flora/grass/jungle/b,
+/obj/structure/flora/junglebush/large,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/yellow,
+/area/template_noop)
+"kL" = (
+/obj/structure/flora/junglebush/b,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/yellow,
+/area/template_noop)
+"ln" = (
+/obj/structure/spacevine/dense,
+/obj/structure/spacevine,
+/obj/structure/flora/grass/jungle/b,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/yellow,
+/area/template_noop)
+"mb" = (
+/obj/structure/flora/grass/jungle/b,
+/obj/structure/flora/junglebush/b,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"mm" = (
+/obj/structure/spacevine/dense,
+/obj/structure/flora/tree/jungle,
+/obj/structure/flora/grass/jungle/b,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"nr" = (
+/obj/structure/spacevine,
+/obj/structure/flora/junglebush/b,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"nz" = (
+/obj/structure/flora/grass/jungle/b,
+/obj/structure/flora/junglebush/c,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/yellow,
+/area/template_noop)
+"rC" = (
+/obj/structure/spacevine,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/yellow,
+/area/template_noop)
+"rM" = (
+/obj/structure/spacevine,
+/obj/structure/flora/grass/jungle,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/yellow,
+/area/template_noop)
+"sf" = (
+/obj/structure/spacevine,
+/obj/structure/flora/grass/jungle/b,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/yellow,
+/area/template_noop)
+"tk" = (
+/obj/structure/spacevine,
+/obj/structure/flora/junglebush/large,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/yellow,
+/area/template_noop)
+"tt" = (
+/obj/structure/spacevine,
+/obj/structure/flora/junglebush/b,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/yellow,
+/area/template_noop)
+"uZ" = (
+/obj/structure/flora/grass/jungle/b,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"vl" = (
+/obj/structure/flora/junglebush/large,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/yellow,
+/area/template_noop)
+"vt" = (
+/obj/structure/spacevine,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"vu" = (
+/obj/structure/spacevine/dense,
+/obj/structure/flora/grass/jungle/b,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"vP" = (
+/obj/structure/flora/grass/jungle,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/yellow,
+/area/template_noop)
+"vU" = (
+/obj/structure/spacevine,
+/obj/structure/flora/grass/jungle/b,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"vW" = (
+/obj/structure/spacevine,
+/obj/structure/flora/grass/jungle/b,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"we" = (
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"wu" = (
+/obj/structure/spacevine/dense,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"wK" = (
+/obj/structure/spacevine,
+/obj/structure/flora/grass/jungle,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"yP" = (
+/turf/template_noop,
+/area/template_noop)
+"zG" = (
+/obj/structure/spacevine/dense,
+/obj/structure/flora/grass/jungle,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"Bi" = (
+/turf/open/floor/concrete/slab_4{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"BH" = (
+/obj/structure/flora/grass/jungle/b,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/yellow,
+/area/template_noop)
+"BK" = (
+/obj/structure/flora/grass/jungle/b,
+/obj/structure/flora/junglebush/large,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"Fa" = (
+/obj/structure/spacevine,
+/turf/open/floor/concrete/slab_4{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"Gr" = (
+/obj/structure/spacevine/dense,
+/turf/open/floor/concrete/slab_4{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"Gu" = (
+/obj/structure/spacevine/dense,
+/obj/structure/flora/grass/jungle/b,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"HE" = (
+/obj/structure/flora/grass/jungle/b,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"Ie" = (
+/obj/structure/flora/grass/jungle/b,
+/obj/structure/flora/junglebush/large,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"LA" = (
+/obj/structure/spacevine,
+/obj/structure/flora/tree/jungle,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/yellow,
+/area/template_noop)
+"OW" = (
+/obj/structure/spacevine,
+/obj/structure/flora/junglebush/large,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"QE" = (
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"Rl" = (
+/obj/structure/flora/tree/jungle,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/yellow,
+/area/template_noop)
+"RA" = (
+/obj/structure/spacevine/dense,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"Xt" = (
+/obj/structure/spacevine,
+/obj/structure/flora/junglebush/c,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/yellow,
+/area/template_noop)
+"YJ" = (
+/obj/structure/flora/tree/jungle,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"ZT" = (
+/obj/structure/flora/grass/jungle,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+
+(1,1,1) = {"
+yP
+yP
+yP
+vU
+vU
+hR
+hR
+kL
+hR
+hR
+hR
+hR
+hR
+yP
+"}
+(2,1,1) = {"
+yP
+yP
+vt
+vU
+nr
+vt
+hR
+hR
+Rl
+hR
+kL
+uZ
+nz
+BH
+"}
+(3,1,1) = {"
+yP
+uZ
+sf
+bn
+bn
+bn
+hR
+hR
+bn
+bn
+QE
+QE
+mb
+QE
+"}
+(4,1,1) = {"
+yP
+sf
+sf
+hR
+rC
+bn
+bn
+bn
+hR
+RA
+RA
+RA
+uZ
+hR
+"}
+(5,1,1) = {"
+sf
+Xt
+tk
+vP
+rC
+hR
+vP
+hR
+vu
+Gu
+RA
+RA
+uZ
+hR
+"}
+(6,1,1) = {"
+rC
+LA
+tt
+hR
+vP
+hR
+hR
+wu
+RA
+mm
+RA
+vt
+QE
+hR
+"}
+(7,1,1) = {"
+vl
+tt
+rM
+hR
+hR
+hR
+bn
+wu
+RA
+BK
+uZ
+vt
+QE
+QE
+"}
+(8,1,1) = {"
+yP
+hR
+rM
+vP
+hR
+bn
+wu
+wu
+wu
+fH
+vt
+vt
+QE
+yP
+"}
+(9,1,1) = {"
+yP
+hR
+vP
+hR
+bn
+wu
+we
+we
+fH
+fH
+fH
+vt
+yP
+yP
+"}
+(10,1,1) = {"
+yP
+hR
+QE
+Bi
+we
+we
+we
+we
+we
+we
+fH
+QE
+yP
+yP
+"}
+(11,1,1) = {"
+yP
+QE
+uZ
+Bi
+we
+we
+HE
+we
+we
+fH
+fH
+QE
+yP
+yP
+"}
+(12,1,1) = {"
+QE
+QE
+vt
+Fa
+we
+Ie
+HE
+we
+we
+fH
+we
+QE
+QE
+yP
+"}
+(13,1,1) = {"
+QE
+QE
+vt
+Fa
+sf
+cW
+vW
+we
+we
+we
+QE
+QE
+QE
+yP
+"}
+(14,1,1) = {"
+yP
+QE
+zG
+Gr
+hV
+ln
+fH
+fH
+fH
+QE
+QE
+QE
+vt
+QE
+"}
+(15,1,1) = {"
+yP
+hR
+rM
+hR
+BH
+fP
+wu
+fH
+fH
+vt
+QE
+YJ
+wK
+ZT
+"}
+(16,1,1) = {"
+yP
+hR
+hR
+hR
+hR
+hR
+hR
+Fa
+Fa
+vt
+QE
+vt
+vt
+wK
+"}
+(17,1,1) = {"
+yP
+yP
+hR
+hR
+yP
+zG
+wK
+yP
+yP
+yP
+yP
+ZT
+wK
+OW
+"}

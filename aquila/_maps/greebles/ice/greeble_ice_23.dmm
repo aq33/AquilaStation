@@ -1,0 +1,95 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/structure/flora/rock/pile/icy{
+	pixel_x = 11;
+	 pixel_y = -6
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"d" = (
+/turf/template_noop,
+/area/template_noop)
+"j" = (
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"n" = (
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"y" = (
+/obj/structure/flora/rock/pile/icy{
+	pixel_y = 8
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"B" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"C" = (
+/obj/structure/flora/tree/pine,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"F" = (
+/obj/structure/flora/rock/pile/icy{
+	pixel_y = 11
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"R" = (
+/mob/living/basic/mining/wolf{
+	name = "słabowity wilk";
+	 faction = list("neutral");
+	 desc = "Biały wilk, który wygląda na mocno niedożywionego. Ktoś go tu zostawił?"
+	},
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+
+(1,1,1) = {"
+d
+d
+n
+n
+n
+d
+"}
+(2,1,1) = {"
+d
+B
+j
+y
+n
+n
+"}
+(3,1,1) = {"
+d
+j
+R
+B
+F
+a
+"}
+(4,1,1) = {"
+j
+B
+C
+j
+j
+n
+"}
+(5,1,1) = {"
+d
+j
+B
+j
+B
+d
+"}
+(6,1,1) = {"
+d
+j
+j
+d
+d
+d
+"}

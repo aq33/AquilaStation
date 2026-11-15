@@ -1,0 +1,266 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"b" = (
+/obj/structure/flora/rock/pile/icy{
+	pixel_x = -5;
+	 pixel_y = 6
+	},
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
+"d" = (
+/obj/structure/flora/rock/pile/icy{
+	pixel_x = 14;
+	 pixel_y = 16
+	},
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
+"e" = (
+/turf/template_noop,
+/area/template_noop)
+"o" = (
+/turf/closed/mineral/random/planet_ice,
+/area/template_noop)
+"p" = (
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
+"r" = (
+/obj/structure/flora/rock/pile/icy{
+	pixel_x = 2;
+	 pixel_y = 8
+	},
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
+"u" = (
+/obj/structure/flora/rock/pile/icy{
+	pixel_x = 14;
+	 pixel_y = 9
+	},
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
+"y" = (
+/obj/structure/flora/rock/pile/icy{
+	pixel_x = 7;
+	 pixel_y = -6
+	},
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
+"z" = (
+/obj/structure/flora/rock/pile/icy{
+	pixel_x = 11;
+	 pixel_y = 4
+	},
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
+"P" = (
+/obj/structure/flora/rock/pile/icy{
+	pixel_x = -2;
+	 pixel_y = 7
+	},
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
+"Q" = (
+/obj/effect/anomaly/grav/planetary,
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
+"S" = (
+/obj/structure/flora/rock/pile/icy{
+	pixel_x = 6;
+	 pixel_y = 7
+	},
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
+
+(1,1,1) = {"
+e
+e
+e
+o
+o
+o
+o
+e
+e
+e
+e
+e
+e
+"}
+(2,1,1) = {"
+e
+e
+e
+o
+o
+o
+r
+p
+p
+e
+e
+e
+e
+"}
+(3,1,1) = {"
+e
+e
+e
+e
+p
+p
+p
+p
+o
+o
+e
+e
+e
+"}
+(4,1,1) = {"
+e
+o
+o
+S
+p
+p
+p
+o
+o
+o
+o
+e
+e
+"}
+(5,1,1) = {"
+o
+o
+o
+o
+o
+o
+p
+o
+o
+o
+o
+o
+e
+"}
+(6,1,1) = {"
+o
+o
+p
+o
+o
+p
+u
+d
+p
+p
+p
+e
+e
+"}
+(7,1,1) = {"
+e
+o
+p
+o
+p
+y
+Q
+p
+p
+o
+P
+e
+e
+"}
+(8,1,1) = {"
+e
+e
+p
+p
+p
+p
+b
+p
+p
+o
+o
+o
+e
+"}
+(9,1,1) = {"
+e
+o
+o
+o
+o
+p
+p
+p
+p
+o
+o
+o
+o
+"}
+(10,1,1) = {"
+e
+o
+o
+o
+o
+o
+z
+p
+o
+o
+o
+o
+e
+"}
+(11,1,1) = {"
+e
+o
+o
+o
+o
+o
+o
+p
+o
+o
+o
+e
+e
+"}
+(12,1,1) = {"
+e
+e
+o
+o
+o
+o
+o
+p
+o
+o
+o
+e
+e
+"}
+(13,1,1) = {"
+e
+e
+e
+o
+o
+o
+o
+e
+e
+e
+e
+e
+e
+"}

@@ -1,0 +1,102 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"g" = (
+/obj/structure/flora/ausbushes/fullgrass/hell,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"k" = (
+/obj/structure/flora/ausbushes/grassybush/hell,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
+/area/template_noop)
+"u" = (
+/obj/structure/flora/grass/green,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"x" = (
+/obj/effect/anomaly/hallucination/planetary,
+/obj/structure/flora/grass/jungle,
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"H" = (
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"I" = (
+/obj/structure/flora/grass/green,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
+/area/template_noop)
+"R" = (
+/obj/structure/flora/grass/green,
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"V" = (
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
+/area/template_noop)
+"W" = (
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"Y" = (
+/turf/template_noop,
+/area/template_noop)
+
+(1,1,1) = {"
+W
+k
+H
+Y
+H
+V
+W
+"}
+(2,1,1) = {"
+I
+W
+V
+g
+V
+R
+k
+"}
+(3,1,1) = {"
+H
+V
+W
+u
+W
+V
+H
+"}
+(4,1,1) = {"
+Y
+g
+H
+x
+H
+g
+Y
+"}
+(5,1,1) = {"
+H
+V
+W
+H
+R
+V
+H
+"}
+(6,1,1) = {"
+k
+R
+V
+g
+V
+W
+V
+"}
+(7,1,1) = {"
+W
+V
+H
+Y
+H
+k
+W
+"}

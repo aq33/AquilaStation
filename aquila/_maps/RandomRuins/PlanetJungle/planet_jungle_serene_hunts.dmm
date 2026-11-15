@@ -1,0 +1,12066 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"ad" = (
+/obj/structure/sink{
+	dir = 4;
+	pixel_x = -12
+	},
+/obj/structure/mirror{
+	pixel_x = -27;
+	pixel_y = 3
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/toilet)
+"ah" = (
+/obj/structure/chair/fancy/shuttle{
+	dir = 4
+	},
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/ruin/powered/planet_jungle/hunts/shuttle)
+"aj" = (
+/obj/structure/spacevine,
+/obj/structure/cable,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"al" = (
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/yellow,
+/area/ruin/unpowered/planet_lava/cave)
+"ao" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/pipe/manifold4w/orange,
+/obj/machinery/power/floodlight,
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/ruin/powered/planet_jungle/hunts/barn)
+"ar" = (
+/obj/effect/turf_decal/siding/white/corner,
+/mob/living/simple_animal/hostile/spider/giant/nurse,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"as" = (
+/obj/structure/sign/departments/custodian{
+	pixel_x = -32
+	},
+/obj/structure/spacevine,
+/obj/structure/cable,
+/obj/structure/spacevine{
+	pixel_x = -32
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"au" = (
+/obj/machinery/light/floor,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/gate)
+"ay" = (
+/obj/item/wrench,
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/pipe/simple/orange{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/ruin/powered/planet_jungle/hunts/barn)
+"az" = (
+/obj/structure/chair/fancy/shuttle{
+	dir = 8
+	},
+/mob/living/basic/mining/legion,
+/turf/open/floor/plasteel,
+/area/ruin/powered/planet_jungle/hunts/shuttle)
+"aI" = (
+/obj/structure/closet/secure_closet/medical1{
+	icon_door = "med_wall";
+	name = "szafka pierwszej pomocy"
+	},
+/obj/item/stack/medical,
+/obj/item/reagent_containers/glass/bottle/ethanol{
+	name = "butelka środka dezynfekującego";
+	desc = "Mała butelka środka dezynfekującego na bazie alkoholu. Wygląda na w połowie pustą.";
+	list(/datum/reagent/consumable/ethanol = 15);
+	pixel_y = 7;
+	pixel_x = 10
+	},
+/obj/item/stack/medical/suture{
+	pixel_y = 9
+	},
+/obj/item/storage/pill_bottle,
+/turf/open/floor/concrete,
+/area/ruin/powered/planet_jungle/hunts/gate)
+"aJ" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"aK" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/structure/spacevine,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"aN" = (
+/obj/structure/filingcabinet{
+	dir = 4
+	},
+/turf/open/floor/carpet/green{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"aO" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 10
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"aS" = (
+/obj/structure/table/wood,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/item/melee/classic_baton,
+/obj/structure/spider/stickyweb,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/sec)
+"aV" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/light/small,
+/turf/open/floor/concrete,
+/area/ruin/powered/planet_jungle/hunts/barn)
+"aW" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/mob/living/simple_animal/hostile/jungle/seedling,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"bg" = (
+/obj/structure/spider/stickyweb,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete,
+/area/ruin/powered/planet_jungle/hunts/barn)
+"bi" = (
+/obj/item/stack/spacecash/c1,
+/obj/item/stack/spacecash/c10{
+	pixel_x = -6;
+	pixel_y = 10
+	},
+/obj/item/stack/spacecash/c20{
+	pixel_y = 9;
+	pixel_x = 10
+	},
+/turf/open/water/planet/jungle,
+/area/lavaland/surface/outdoors)
+"bn" = (
+/obj/structure/spacevine/dense,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"bp" = (
+/turf/open/floor/engine,
+/area/ruin/powered/planet_jungle/hunts/shuttle)
+"bs" = (
+/obj/structure/table/reinforced,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/canteen)
+"bu" = (
+/obj/structure/fireplace,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/toilet)
+"bC" = (
+/obj/structure/spacevine/weak,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"bE" = (
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"bF" = (
+/obj/item/paper_bin,
+/obj/item/pen/fountain,
+/obj/structure/table/wood,
+/obj/effect/turf_decal/siding/wood{
+	dir = 9
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/canteen)
+"bH" = (
+/obj/structure/rack,
+/obj/structure/rack,
+/obj/item/clothing/under/pants/camo{
+	pixel_x = -9
+	},
+/obj/item/clothing/under/pants/camo{
+	pixel_x = 4
+	},
+/obj/structure/sign/poster/official/foam_force_ad{
+	pixel_x = -32
+	},
+/turf/open/floor/carpet/royalblack{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/gun_shop)
+"bM" = (
+/obj/structure/fence{
+	dir = 4
+	},
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/lavaland/surface/outdoors)
+"bS" = (
+/obj/effect/turf_decal/siding/wood,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/gun_shop)
+"bU" = (
+/obj/structure/closet,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/toilet)
+"bV" = (
+/obj/structure/windoor_assembly{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/carpet/green{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"bW" = (
+/obj/structure/flora/grass/jungle/b,
+/obj/structure/flora/junglebush,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/ruin/unpowered/planet_lava/cave)
+"bX" = (
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"cd" = (
+/obj/effect/turf_decal/siding/white/corner{
+	dir = 4
+	},
+/mob/living/basic/bear/cave,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"ci" = (
+/obj/machinery/vending/cigarette,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/gun_shop)
+"cj" = (
+/obj/structure/flora/grass/jungle/b,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/yellow,
+/area/ruin/unpowered/planet_lava/cave)
+"cl" = (
+/obj/item/shard,
+/obj/structure/spider/stickyweb,
+/turf/open/floor/engine,
+/area/ruin/powered/planet_jungle/hunts/barn)
+"cp" = (
+/obj/item/stack/spacecash/c10{
+	pixel_y = 3;
+	pixel_x = -13
+	},
+/turf/open/water/planet/jungle,
+/area/lavaland/surface/outdoors)
+"ct" = (
+/mob/living/basic/mining/brimdemon,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/canteen)
+"cF" = (
+/obj/structure/flora/grass/jungle,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"cN" = (
+/obj/structure/chair/fancy/shuttle{
+	dir = 4
+	},
+/mob/living/basic/mining/legion,
+/turf/open/floor/plasteel,
+/area/ruin/powered/planet_jungle/hunts/shuttle)
+"cO" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/toilet)
+"db" = (
+/obj/structure/spider/stickyweb,
+/turf/open/floor/concrete,
+/area/ruin/powered/planet_jungle/hunts/barn)
+"df" = (
+/obj/effect/turf_decal/siding/white,
+/obj/structure/spider/stickyweb,
+/obj/structure/cable,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"di" = (
+/obj/structure/flora/ash/garden,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/lavaland/surface/outdoors)
+"dl" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/drinks/bottle/champagne{
+	pixel_x = 4;
+	pixel_y = 18
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"du" = (
+/obj/structure/spider/stickyweb,
+/mob/living/simple_animal/hostile/spider/giant/hunter,
+/obj/structure/cable,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/sec)
+"dv" = (
+/obj/structure/chair/fancy/plastic{
+	dir = 4
+	},
+/obj/structure/spacevine,
+/obj/structure/cable,
+/obj/machinery/power/apc/auto_name/north,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/shed)
+"dw" = (
+/obj/effect/turf_decal/siding/wood/corner,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/canteen)
+"dx" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/carpet/green{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"dA" = (
+/turf/open/floor/carpet/royalblue,
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"dD" = (
+/obj/structure/spacevine/weak,
+/obj/structure/flora/junglebush,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/ruin/unpowered/planet_lava/cave)
+"dE" = (
+/obj/structure/bed/double,
+/obj/item/bedsheet/random,
+/turf/open/floor/carpet/royalblue,
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"dI" = (
+/obj/item/stack/spacecash/c10{
+	pixel_y = 3;
+	pixel_x = -13
+	},
+/obj/item/stack/spacecash/c10,
+/obj/item/stack/spacecash/c20{
+	pixel_x = -7;
+	pixel_y = -6
+	},
+/turf/open/water/planet/jungle,
+/area/lavaland/surface/outdoors)
+"dJ" = (
+/obj/structure/table/wood,
+/obj/item/instrument/piano_synth{
+	pixel_y = -4
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"dK" = (
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/gate)
+"dQ" = (
+/obj/item/stack/ore/iron,
+/obj/item/stack/ore/iron,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/carpet{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/canteen)
+"dR" = (
+/obj/structure/spacevine/weak,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/ruin/unpowered/planet_lava/cave)
+"ed" = (
+/obj/structure/flora/tree/jungle/small,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
+/area/ruin/unpowered/planet_lava/cave)
+"ee" = (
+/obj/structure/flora/grass/jungle,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
+/area/ruin/unpowered/planet_lava/cave)
+"ei" = (
+/obj/structure/chair/office{
+	dir = 4
+	},
+/turf/open/floor/concrete,
+/area/ruin/powered/planet_jungle/hunts/gate)
+"en" = (
+/obj/structure/flora/junglebush/c,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/ruin/unpowered/planet_lava/cave)
+"eo" = (
+/mob/living/basic/mining/watcher,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/lavaland/surface/outdoors)
+"ep" = (
+/obj/effect/turf_decal/siding/white/corner,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"ev" = (
+/obj/item/stack/spacecash/c1{
+	pixel_x = 8
+	},
+/obj/item/stack/spacecash/c20{
+	pixel_x = -7;
+	pixel_y = -6
+	},
+/obj/item/stack/spacecash/c20{
+	pixel_y = -5;
+	pixel_x = 10
+	},
+/turf/open/water/planet/jungle,
+/area/lavaland/surface/outdoors)
+"ew" = (
+/obj/structure/fence/cut/large{
+	dir = 4
+	},
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"ez" = (
+/obj/structure/spacevine,
+/obj/structure/cable,
+/obj/structure/spacevine{
+	pixel_x = -32
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"eB" = (
+/obj/effect/turf_decal/siding/white/corner,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"eC" = (
+/obj/effect/turf_decal/siding/white/corner{
+	dir = 8
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"eF" = (
+/obj/structure/spacevine/dense,
+/obj/structure/spacevine{
+	pixel_x = 32
+	},
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/lavaland/surface/outdoors)
+"eG" = (
+/obj/effect/turf_decal/siding/white,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/spider/stickyweb,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"eI" = (
+/obj/structure/sign/warning/securearea{
+	pixel_y = 29
+	},
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"eJ" = (
+/obj/structure/flora/stump,
+/obj/structure/spider/stickyweb,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"eK" = (
+/obj/structure/closet{
+	color = "#50C878";
+	name = "przybory ogrodnicze"
+	},
+/obj/item/cultivator,
+/obj/item/shovel/spade,
+/obj/item/reagent_containers/spray/pestspray,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/shed)
+"eL" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/cable,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/gun_shop)
+"eP" = (
+/obj/structure/rack,
+/obj/item/stack/sheet/mineral/wood,
+/obj/structure/sink/kitchen{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/toilet)
+"eS" = (
+/obj/structure/sink{
+	dir = 8;
+	pixel_x = 12;
+	pixel_y = 3
+	},
+/obj/structure/mirror{
+	pixel_x = 24;
+	pixel_y = 6
+	},
+/obj/machinery/light/small,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"eT" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete,
+/area/ruin/powered/planet_jungle/hunts/gate)
+"eW" = (
+/obj/structure/barricade/wooden/crude{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/carpet{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/canteen)
+"eX" = (
+/turf/closed/wall/mineral/wood,
+/area/lavaland/surface/outdoors)
+"fa" = (
+/obj/structure/flora/junglebush/c,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"fd" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/carpet/green{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"fl" = (
+/turf/open/floor/carpet/green{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/gun_shop)
+"fs" = (
+/obj/structure/table/wood,
+/obj/item/trash/boritos,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/gun_shop)
+"ft" = (
+/obj/structure/flora/junglebush,
+/obj/item/flashlight/flare,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/ruin/unpowered/planet_lava/cave)
+"fu" = (
+/obj/structure/chair/wood{
+	dir = 4
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"fA" = (
+/turf/closed/wall/r_wall,
+/area/ruin/powered/planet_jungle/hunts/gate)
+"fD" = (
+/obj/effect/turf_decal/siding/white,
+/obj/structure/cable,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"fM" = (
+/obj/machinery/atmospherics/pipe/manifold/orange{
+	dir = 1
+	},
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/ruin/powered/planet_jungle/hunts/barn)
+"fO" = (
+/obj/structure/window/reinforced/tinted{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/toilet)
+"fT" = (
+/obj/structure/spacevine/dense,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"fU" = (
+/obj/structure/flora/grass/jungle,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/yellow,
+/area/lavaland/surface/outdoors)
+"fV" = (
+/obj/structure/cable/yellow,
+/obj/structure/lattice/catwalk/over/ship/dark,
+/turf/open/floor/plating,
+/area/ruin/powered/planet_jungle/hunts/shuttle)
+"fX" = (
+/obj/machinery/door/airlock/wood{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/carpet,
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"gh" = (
+/obj/structure/spacevine/weak,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/yellow,
+/area/ruin/unpowered/planet_lava/cave)
+"gi" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/obj/structure/spacevine,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"gp" = (
+/obj/structure/spacevine{
+	pixel_x = -32
+	},
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/lavaland/surface/outdoors)
+"gv" = (
+/obj/structure/flora/junglebush,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
+/area/lavaland/surface/outdoors)
+"gx" = (
+/obj/machinery/door/poddoor/shutters{
+	id = "hunt"
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/gate)
+"gB" = (
+/obj/structure/railing,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"gE" = (
+/obj/structure/spider/stickyweb,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/lavaland/surface/outdoors)
+"gG" = (
+/obj/item/stack/spacecash/c10,
+/obj/item/stack/spacecash/c20{
+	pixel_x = -7;
+	pixel_y = -6
+	},
+/turf/open/water/planet/jungle,
+/area/lavaland/surface/outdoors)
+"gJ" = (
+/obj/structure/railing,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/toilet)
+"gQ" = (
+/obj/machinery/light/broken{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/toilet)
+"gS" = (
+/obj/item/screwdriver,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/gun_shop)
+"gT" = (
+/obj/machinery/button/door{
+	dir = 8;
+	pixel_x = 24;
+	name = "rolety izolatki";
+	id = "cell6"
+	},
+/obj/structure/spider/stickyweb,
+/turf/open/floor/concrete,
+/area/ruin/powered/planet_jungle/hunts/barn)
+"gV" = (
+/obj/structure/chair/wood{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/vomit,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"hb" = (
+/obj/structure/reagent_dispensers/watertank,
+/turf/open/floor/plasteel/freezer,
+/area/ruin/powered/planet_jungle/hunts/canteen)
+"hg" = (
+/obj/item/soap/deluxe,
+/obj/machinery/light/small,
+/turf/open/floor/plasteel/freezer,
+/area/ruin/powered/planet_jungle/hunts/toilet)
+"hi" = (
+/obj/effect/turf_decal/siding/white/corner{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"hl" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 9
+	},
+/mob/living/basic/mining/goliath,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"ht" = (
+/obj/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/toilet)
+"hu" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 4
+	},
+/obj/structure/spacevine/dense,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"hv" = (
+/obj/structure/railing,
+/obj/item/chair/wood{
+	dir = 1
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/canteen)
+"hy" = (
+/obj/structure/railing{
+	dir = 10
+	},
+/obj/structure/chair/wood{
+	dir = 4
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/canteen)
+"hz" = (
+/obj/effect/turf_decal/siding/white/corner{
+	dir = 1
+	},
+/mob/living/simple_animal/hostile/spider/giant/hunter,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"hA" = (
+/obj/effect/turf_decal/siding/white/corner{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"hD" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 6
+	},
+/obj/structure/spacevine/dense,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"hG" = (
+/obj/structure/fence,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"hH" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/drinks/coffee,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/gun_shop)
+"hL" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/white{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/canteen)
+"hN" = (
+/obj/structure/cable,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/gun_shop)
+"hQ" = (
+/obj/structure/spacevine/dense,
+/obj/structure/spacevine{
+	pixel_x = -32
+	},
+/obj/structure/spacevine/dense{
+	pixel_y = -32
+	},
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/lavaland/surface/outdoors)
+"hV" = (
+/obj/structure/cable,
+/obj/item/paper/crumpled/bloody,
+/turf/open/floor/plasteel,
+/area/ruin/powered/planet_jungle/hunts/shuttle)
+"hW" = (
+/obj/structure/table/wood,
+/obj/structure/noticeboard{
+	pixel_x = -28;
+	dir = 4
+	},
+/turf/open/floor/carpet/green{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"hY" = (
+/obj/structure/chair/fancy/bench{
+	dir = 8
+	},
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"ia" = (
+/obj/structure/table/reinforced,
+/obj/machinery/reagentgrinder{
+	pixel_y = 5
+	},
+/obj/item/reagent_containers/food/drinks/bottle/wine{
+	pixel_x = -10;
+	pixel_y = 12
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/canteen)
+"ib" = (
+/obj/item/ammo_casing/spent,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"ic" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"id" = (
+/turf/closed/wall,
+/area/lavaland/surface/outdoors)
+"if" = (
+/obj/structure/railing,
+/obj/structure/barricade/wooden/crude{
+	dir = 8
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/canteen)
+"ii" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 10
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/canteen)
+"ik" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/cable,
+/turf/open/floor/concrete,
+/area/ruin/powered/planet_jungle/hunts/barn)
+"ir" = (
+/obj/machinery/computer/monitor,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_jungle/hunts/shuttle)
+"is" = (
+/obj/structure/spacevine/dense,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"iw" = (
+/obj/item/shard,
+/turf/open/floor/engine,
+/area/ruin/powered/planet_jungle/hunts/barn)
+"ix" = (
+/obj/structure/spacevine/dense,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/yellow,
+/area/lavaland/surface/outdoors)
+"iA" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 4
+	},
+/mob/living/basic/mining/watcher,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"iB" = (
+/obj/machinery/power/smes{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced,
+/obj/machinery/door/poddoor/shutters{
+	id = "cargo bay";
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/ruin/powered/planet_jungle/hunts/shuttle)
+"iC" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/cable,
+/obj/item/electronics/airlock,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"iI" = (
+/turf/open/floor/plasteel/freezer,
+/area/ruin/powered/planet_jungle/hunts/canteen)
+"iR" = (
+/obj/effect/turf_decal/siding/white,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"iU" = (
+/obj/structure/chair/fancy/shuttle{
+	dir = 1
+	},
+/mob/living/basic/mining/legion/crystal,
+/obj/effect/decal/cleanable/blood,
+/obj/structure/cable/yellow,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_jungle/hunts/shuttle)
+"iW" = (
+/obj/machinery/processor,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/canteen)
+"iY" = (
+/obj/structure/closet/crate/trashcart,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"jb" = (
+/obj/item/stack/spacecash/c10{
+	pixel_x = 5;
+	pixel_y = -1
+	},
+/obj/item/stack/spacecash/c10{
+	pixel_x = -3;
+	pixel_y = -8
+	},
+/obj/item/stack/spacecash/c1{
+	pixel_x = 8;
+	pixel_y = 7
+	},
+/obj/item/stack/spacecash/c20{
+	pixel_x = -7;
+	pixel_y = -6
+	},
+/turf/open/water/planet/jungle,
+/area/lavaland/surface/outdoors)
+"jc" = (
+/obj/structure/sign/plaques{
+	pixel_y = 30;
+	desc = "M-11 Buckmaster to nasza najlepsza strzelba: osiągi broni wojskowej za ułamek ceny.";
+	name = "M-11 BUCKMASTER"
+	},
+/obj/structure/displaycase,
+/obj/item/shard,
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/carpet/royalblack{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/gun_shop)
+"je" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 8
+	},
+/obj/structure/fence{
+	dir = 4
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"jg" = (
+/obj/machinery/door/airlock/wood,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"jh" = (
+/obj/structure/spacevine/dense,
+/obj/machinery/light/broken{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/shed)
+"jj" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/storage/box/lethalshot{
+	pixel_x = 10;
+	pixel_y = -6
+	},
+/obj/item/storage/box/lethalshot{
+	pixel_x = -9;
+	pixel_y = -6
+	},
+/obj/item/storage/box/lethalshot{
+	pixel_x = -9;
+	pixel_y = 2
+	},
+/obj/item/storage/box/lethalshot{
+	pixel_x = -9;
+	pixel_y = -6
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/gun_shop)
+"jl" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete,
+/area/ruin/powered/planet_jungle/hunts/barn)
+"jn" = (
+/obj/structure/chair/wood{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"jo" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/pipe/simple/orange{
+	dir = 4
+	},
+/obj/structure/spider/stickyweb,
+/turf/open/floor/plating,
+/area/ruin/powered/planet_jungle/hunts/barn)
+"jq" = (
+/obj/structure/flora/ausbushes/grassybush,
+/turf/open/floor/carpet/black{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/canteen)
+"jr" = (
+/obj/structure/flora/grass/jungle,
+/obj/structure/flora/junglebush,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/yellow,
+/area/ruin/unpowered/planet_lava/cave)
+"js" = (
+/obj/structure/table/wood,
+/obj/item/newspaper{
+	pixel_y = -9
+	},
+/obj/item/clothing/mask/cigarette/pipe{
+	pixel_y = 12
+	},
+/obj/item/lighter{
+	pixel_x = 11;
+	pixel_y = 9
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"jx" = (
+/obj/structure/sign/painting/library{
+	pixel_y = 29
+	},
+/turf/open/floor/carpet/cyan,
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"jz" = (
+/obj/structure/railing/corner{
+	dir = 8
+	},
+/obj/structure/railing/corner,
+/obj/effect/decal/cleanable/blood/footprints,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/toilet)
+"jE" = (
+/obj/item/reagent_containers/glass/bucket,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/toilet)
+"jF" = (
+/obj/structure/noticeboard{
+	name = "tablica z trofeami";
+	desc = "Tablica do wieszania trofeów.";
+	pixel_y = 28
+	},
+/turf/open/floor/carpet/green{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/gun_shop)
+"jH" = (
+/obj/item/stack/spacecash/c10{
+	pixel_y = 10
+	},
+/obj/item/stack/spacecash/c1{
+	pixel_x = 8;
+	pixel_y = 7
+	},
+/obj/item/stack/spacecash/c1{
+	pixel_y = -7
+	},
+/turf/open/water/planet/jungle,
+/area/lavaland/surface/outdoors)
+"jI" = (
+/obj/structure/flora/tree/jungle,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/yellow,
+/area/ruin/unpowered/planet_lava/cave)
+"jK" = (
+/obj/item/reagent_containers/glass/bucket{
+	name = "wiadro z paszą"
+	},
+/obj/structure/table/reinforced,
+/turf/open/floor/concrete,
+/area/ruin/powered/planet_jungle/hunts/barn)
+"jL" = (
+/turf/open/floor/carpet/black{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/gun_shop)
+"jM" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 9
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/extinguisher_cabinet/north,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/gun_shop)
+"jN" = (
+/obj/structure/spider/stickyweb,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/cable,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"jQ" = (
+/obj/structure/extinguisher_cabinet/north,
+/turf/open/floor/plasteel/white{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/canteen)
+"jR" = (
+/obj/structure/bed{
+	icon_state = "dirty_mattress"
+	},
+/obj/structure/safe/floor{
+	open = 1
+	},
+/turf/open/floor/plating{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/gun_shop)
+"jS" = (
+/obj/structure/flora/junglebush/b,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"jV" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/spider/stickyweb,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"ke" = (
+/obj/structure/spacevine,
+/obj/structure/barricade/wooden,
+/turf/open/floor/plating,
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"ks" = (
+/obj/structure/fence{
+	dir = 4
+	},
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"kt" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/blood/footprints,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/stairs,
+/area/ruin/powered/planet_jungle/hunts/toilet)
+"ky" = (
+/obj/structure/rack,
+/obj/item/ammo_box/magazine/m10mm{
+	pixel_y = -2;
+	pixel_x = -12;
+	start_empty = 1
+	},
+/obj/item/ammo_box/magazine/m10mm{
+	pixel_y = -2;
+	pixel_x = -6;
+	start_empty = 1
+	},
+/obj/item/ammo_box/magazine/m10mm{
+	pixel_y = -2;
+	pixel_x = 1;
+	start_empty = 1
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/gun_shop)
+"kA" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/ammo_casing/shotgun,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/gun_shop)
+"kE" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/pipe/simple/orange,
+/obj/structure/spider/stickyweb,
+/turf/open/floor/plating,
+/area/ruin/powered/planet_jungle/hunts/barn)
+"kF" = (
+/obj/machinery/button/door{
+	dir = 1;
+	pixel_y = -23;
+	id = "hunt";
+	name = "rolety bramy"
+	},
+/obj/structure/table/reinforced,
+/obj/item/clothing/head/soft/red{
+	pixel_y = 8
+	},
+/obj/item/flashlight/seclite,
+/turf/open/floor/concrete,
+/area/ruin/powered/planet_jungle/hunts/gate)
+"kH" = (
+/obj/machinery/door/airlock{
+	dir = 4;
+	name = "Szopa Gajowego"
+	},
+/obj/structure/spacevine,
+/obj/structure/cable,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/shed)
+"kO" = (
+/obj/structure/spacevine,
+/obj/structure/fence{
+	dir = 4
+	},
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/lavaland/surface/outdoors)
+"kS" = (
+/obj/structure/spider/stickyweb,
+/mob/living/simple_animal/hostile/spider/giant/tarantula,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/sec)
+"kX" = (
+/obj/structure/chair/stool{
+	dir = 4
+	},
+/mob/living/basic/mining/legion,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/toilet)
+"la" = (
+/obj/structure/flora/rock/pile/largejungle,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"le" = (
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/gun_shop)
+"lf" = (
+/obj/structure/spider/stickyweb,
+/obj/structure/cable,
+/obj/machinery/power/apc/auto_name/west,
+/turf/open/floor/concrete,
+/area/ruin/powered/planet_jungle/hunts/barn)
+"lh" = (
+/obj/machinery/vending/cigarette,
+/obj/effect/turf_decal/siding/wood{
+	dir = 10
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"lj" = (
+/obj/machinery/atmospherics/components/binary/pump{
+	dir = 8
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	dir = 4;
+	id = "cell2"
+	},
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/engine,
+/area/ruin/powered/planet_jungle/hunts/barn)
+"lk" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
+/obj/structure/curtain,
+/turf/open/floor/plating,
+/area/ruin/powered/planet_jungle/hunts/canteen)
+"ls" = (
+/obj/structure/chair/fancy/bench{
+	dir = 4
+	},
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"lw" = (
+/obj/structure/table/wood,
+/turf/open/floor/carpet/green{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"lF" = (
+/obj/machinery/griddle,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/canteen)
+"lJ" = (
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/structure/chair/wood{
+	dir = 4
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/canteen)
+"lM" = (
+/obj/item/paper_bin,
+/obj/item/pen,
+/obj/structure/spider/stickyweb,
+/obj/machinery/light/broken{
+	dir = 1
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/sec)
+"lN" = (
+/obj/item/ammo_casing/spent,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"lX" = (
+/turf/closed/wall/mineral/wood,
+/area/ruin/powered/planet_jungle/hunts/shed)
+"ma" = (
+/obj/structure/chair/fancy/bench{
+	dir = 8
+	},
+/turf/open/floor/carpet{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/canteen)
+"mb" = (
+/obj/structure/rack,
+/obj/item/ammo_box/magazine/m10mm{
+	pixel_x = -10;
+	start_empty = 1
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/gun_shop)
+"md" = (
+/obj/structure/chair/fancy/bench,
+/obj/machinery/light/broken{
+	dir = 1
+	},
+/turf/open/floor/carpet,
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"mf" = (
+/obj/structure/flora/grass/jungle/b,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"mh" = (
+/obj/structure/sign/warning/securearea{
+	pixel_y = 29
+	},
+/obj/structure/flora/junglebush/c,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"mi" = (
+/obj/structure/table/wood,
+/turf/open/floor/carpet/green{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/gun_shop)
+"mq" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 6
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"mr" = (
+/obj/item/reagent_containers/food/condiment/milk,
+/turf/open/floor/plasteel/freezer,
+/area/ruin/powered/planet_jungle/hunts/canteen)
+"mA" = (
+/mob/living/basic/mining/brimdemon,
+/obj/structure/cable,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"mE" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 6
+	},
+/obj/item/ammo_casing/spent,
+/obj/effect/gibspawner/generic/animal,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"mI" = (
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/ruin/unpowered/planet_lava/cave)
+"mK" = (
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/structure/cable,
+/turf/open/floor/carpet{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/gun_shop)
+"mO" = (
+/obj/effect/decal/remains/human,
+/obj/effect/gibspawner/generic/animal,
+/obj/structure/sign/painting/library{
+	pixel_y = 29
+	},
+/turf/open/floor/carpet/red{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"mQ" = (
+/obj/machinery/door/poddoor/shutters{
+	id = "cargo bay"
+	},
+/turf/open/floor/plasteel,
+/area/ruin/powered/planet_jungle/hunts/shuttle)
+"mV" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"mY" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/carpet/black{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/gun_shop)
+"mZ" = (
+/obj/structure/spacevine/dense,
+/obj/structure/flora/tree/jungle,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"na" = (
+/obj/effect/turf_decal/siding/white/corner,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/gate)
+"nb" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"nc" = (
+/turf/open/floor/concrete,
+/area/ruin/powered/planet_jungle/hunts/gate)
+"ng" = (
+/obj/structure/flora/tree/jungle,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
+/area/ruin/unpowered/planet_lava/cave)
+"nh" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 10
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"ni" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/flashlight/flare,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/gate)
+"nj" = (
+/obj/structure/table/wood,
+/obj/item/pen/fountain,
+/obj/item/paper_bin,
+/obj/machinery/power/apc/auto_name/west,
+/obj/structure/cable,
+/turf/open/floor/carpet/green{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"nr" = (
+/obj/structure/spacevine/dense,
+/turf/open/floor/engine,
+/area/ruin/powered/planet_jungle/hunts/barn)
+"ns" = (
+/obj/structure/spacevine/dense,
+/obj/structure/spacevine{
+	pixel_x = -32
+	},
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/lavaland/surface/outdoors)
+"nv" = (
+/obj/machinery/door/airlock/wood{
+	dir = 4
+	},
+/turf/open/floor/carpet,
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"ny" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/pipe/simple/orange,
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/ruin/powered/planet_jungle/hunts/barn)
+"nB" = (
+/obj/structure/railing,
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/toilet)
+"nE" = (
+/obj/machinery/door/airlock{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/barn)
+"nJ" = (
+/obj/machinery/door/airlock/wood{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/toilet)
+"nK" = (
+/obj/machinery/light/broken{
+	dir = 1
+	},
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/cable,
+/obj/machinery/power/port_gen/pacman,
+/obj/item/stack/sheet/mineral/plasma/five,
+/turf/open/floor/plating,
+/area/ruin/powered/planet_jungle/hunts/barn)
+"nM" = (
+/obj/structure/flora/grass/jungle,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/ruin/unpowered/planet_lava/cave)
+"nN" = (
+/obj/structure/sign/warning/xeno_mining{
+	pixel_y = 31
+	},
+/obj/structure/spider/stickyweb,
+/turf/open/floor/concrete,
+/area/ruin/powered/planet_jungle/hunts/barn)
+"nO" = (
+/obj/structure/bed{
+	dir = 4
+	},
+/obj/item/bedsheet/random{
+	dir = 4
+	},
+/turf/open/floor/carpet/red{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"nP" = (
+/obj/structure/toilet{
+	dir = 4;
+	pixel_x = -10
+	},
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/toilet)
+"nT" = (
+/obj/structure/closet/crate/trashcart,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/spacevine{
+	pixel_x = -32
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"nW" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 1
+	},
+/mob/living/simple_animal/hostile/spider/giant,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"oa" = (
+/obj/structure/spacevine/weak,
+/obj/structure/flora/tree/jungle,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"ob" = (
+/turf/closed/wall/mineral/titanium,
+/area/ruin/powered/planet_jungle/hunts/shuttle)
+"og" = (
+/obj/structure/spacevine,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"oi" = (
+/obj/item/chair/wood{
+	dir = 1
+	},
+/turf/open/floor/carpet{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/canteen)
+"ok" = (
+/obj/structure/toilet{
+	pixel_y = 12
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"on" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 8
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/gate)
+"or" = (
+/obj/structure/spacevine/weak,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/yellow,
+/area/lavaland/surface/outdoors)
+"ov" = (
+/obj/structure/closet/cabinet,
+/obj/item/clothing/under/misc/pj/blue,
+/obj/item/clothing/suit/toggle/labcoat{
+	pixel_x = 7;
+	pixel_y = -3
+	},
+/obj/item/clothing/shoes/jackboots{
+	pixel_y = -8
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"ow" = (
+/obj/structure/table/reinforced,
+/obj/item/food/meat/slab,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/canteen)
+"oy" = (
+/obj/structure/table/wood,
+/obj/machinery/light/broken{
+	dir = 4
+	},
+/turf/open/floor/carpet{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/canteen)
+"oz" = (
+/obj/machinery/portable_atmospherics/canister/nitrous_oxide,
+/obj/machinery/atmospherics/components/unary/portables_connector{
+	dir = 4
+	},
+/obj/machinery/light/broken{
+	dir = 1
+	},
+/turf/open/floor/concrete,
+/area/ruin/powered/planet_jungle/hunts/barn)
+"oA" = (
+/obj/item/stack/spacecash/c10{
+	pixel_y = 10;
+	pixel_x = -9
+	},
+/obj/item/stack/spacecash/c1{
+	pixel_y = -2;
+	pixel_x = 7
+	},
+/obj/item/stack/spacecash/c10{
+	pixel_y = 6;
+	pixel_x = -4
+	},
+/turf/open/water/planet/jungle,
+/area/lavaland/surface/outdoors)
+"oB" = (
+/obj/structure/chair/fancy/bench{
+	dir = 1
+	},
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"oD" = (
+/obj/structure/spacevine/weak,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"oE" = (
+/obj/structure/flora/tree/jungle,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"oI" = (
+/obj/structure/cable,
+/obj/machinery/power/smes/engineering,
+/turf/open/floor/plasteel/tech,
+/area/ruin/powered/planet_jungle/hunts/shuttle)
+"oK" = (
+/obj/structure/table/reinforced,
+/obj/item/storage/bag/tray{
+	pixel_y = 12;
+	pixel_x = -10
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/canteen)
+"oO" = (
+/mob/living/basic/bear/cave,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/canteen)
+"oR" = (
+/obj/item/ammo_casing/spent,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/cable,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"oW" = (
+/obj/machinery/shower{
+	dir = 8
+	},
+/turf/open/floor/plasteel/freezer,
+/area/ruin/powered/planet_jungle/hunts/toilet)
+"ph" = (
+/obj/structure/flora/tree/jungle,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/ruin/unpowered/planet_lava/cave)
+"pn" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"po" = (
+/obj/structure/flora/tree/jungle/small,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
+/area/lavaland/surface/outdoors)
+"ps" = (
+/obj/structure/spacevine,
+/obj/structure/cable,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/shed)
+"pv" = (
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"py" = (
+/obj/structure/spacevine,
+/turf/closed/wall/mineral/wood,
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"pA" = (
+/obj/structure/bed{
+	dir = 4
+	},
+/obj/item/bedsheet/random{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/carpet/black,
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"pI" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 5
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"pL" = (
+/obj/machinery/paystand{
+	desc = "Stojak do płacenia";
+	name = "stojak do płacenia"
+	},
+/turf/open/floor/carpet/green{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/gun_shop)
+"pQ" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/cable,
+/obj/item/ammo_box/a762{
+	pixel_y = -2;
+	pixel_x = -7
+	},
+/obj/item/ammo_box/a762{
+	pixel_y = -2;
+	pixel_x = 7
+	},
+/obj/item/ammo_box/a762{
+	pixel_y = 7;
+	layer = 3.1
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/gun_shop)
+"pR" = (
+/mob/living/simple_animal/hostile/jungle/seedling,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/canteen)
+"qc" = (
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"qe" = (
+/obj/structure/table/wood,
+/obj/item/ammo_box/a762{
+	pixel_y = 5
+	},
+/turf/open/floor/carpet/green{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/gun_shop)
+"qf" = (
+/obj/structure/table/wood,
+/obj/machinery/coffeemaker{
+	pixel_y = 9
+	},
+/obj/item/coffee_cartridge/bootleg{
+	pixel_y = -1;
+	pixel_x = 8
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/gun_shop)
+"qi" = (
+/obj/machinery/power/rtg,
+/obj/machinery/power/terminal,
+/obj/structure/cable,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/powered/planet_jungle/hunts/shed)
+"qj" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/cable,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/gun_shop)
+"qk" = (
+/obj/structure/frame/computer{
+	anchored = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_jungle/hunts/shuttle)
+"qo" = (
+/obj/machinery/light/broken,
+/turf/open/floor/plasteel/white{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/canteen)
+"qv" = (
+/obj/machinery/button/door{
+	pixel_x = -6;
+	pixel_y = 23;
+	name = "rolety ładowni";
+	id = "cargo bay"
+	},
+/turf/open/floor/engine,
+/area/ruin/powered/planet_jungle/hunts/shuttle)
+"qC" = (
+/obj/structure/rack,
+/obj/structure/window/reinforced,
+/obj/item/gun/ballistic/automatic/pistol,
+/obj/structure/sign/plaques{
+	pixel_y = 30;
+	name = "M-17 MICROTARGET";
+	desc = "Pistolet M-17 Microtarget to świetny, wszechstronny wybór do wszystkiego, od polowania na drobną zwierzynę po samoobronę. Charakterystyczna odczepiana lufa ułatwia noszenie bez utraty celności."
+	},
+/turf/open/floor/carpet/royalblack{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/gun_shop)
+"qD" = (
+/obj/structure/spacevine/weak,
+/obj/structure/spacevine/weak,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/lavaland/surface/outdoors)
+"qF" = (
+/obj/structure/flora/grass/jungle/b,
+/obj/structure/flora/tree/jungle,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"qJ" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 5
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"qK" = (
+/obj/machinery/camera/autoname,
+/obj/structure/spider/stickyweb,
+/obj/structure/spider/stickyweb,
+/turf/open/floor/engine,
+/area/ruin/powered/planet_jungle/hunts/barn)
+"qO" = (
+/turf/closed/wall/mineral/wood,
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"qT" = (
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 4
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/gun_shop)
+"qW" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 1
+	},
+/obj/structure/spider/stickyweb,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"qZ" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/spider/stickyweb,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"re" = (
+/obj/machinery/door/airlock/command,
+/obj/structure/cable/yellow,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_jungle/hunts/shuttle)
+"rh" = (
+/obj/structure/cable,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"rl" = (
+/obj/machinery/modular_computer/console/preset/civilian{
+	dir = 1
+	},
+/turf/open/floor/concrete,
+/area/ruin/powered/planet_jungle/hunts/barn)
+"ro" = (
+/obj/effect/turf_decal/siding/wood/corner,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"rs" = (
+/obj/machinery/atmospherics/components/binary/pump{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/glass,
+/obj/machinery/door/poddoor/shutters{
+	dir = 8;
+	id = "cell4"
+	},
+/turf/open/floor/engine,
+/area/ruin/powered/planet_jungle/hunts/barn)
+"rv" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/cable,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"rx" = (
+/obj/effect/decal/remains/human,
+/obj/effect/gibspawner/human/bodypartless,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/canteen)
+"rA" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
+/obj/machinery/door/poddoor/shutters/preopen{
+	dir = 4;
+	id = "cell1"
+	},
+/turf/open/floor/plating,
+/area/ruin/powered/planet_jungle/hunts/barn)
+"rO" = (
+/obj/machinery/atmospherics/components/unary/outlet_injector{
+	dir = 8
+	},
+/obj/item/trash/canned,
+/turf/open/floor/engine,
+/area/ruin/powered/planet_jungle/hunts/barn)
+"sa" = (
+/turf/open/floor/carpet{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/gun_shop)
+"sc" = (
+/obj/structure/sign/painting/library{
+	pixel_y = -25
+	},
+/turf/open/floor/carpet/black,
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"se" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/glass/bowl{
+	name = "WEŹ JEDEN"
+	},
+/obj/item/food/candy_corn{
+	pixel_x = 6;
+	pixel_y = 5
+	},
+/obj/item/food/candy_corn{
+	pixel_y = 5;
+	pixel_x = 3
+	},
+/obj/item/food/candy_corn{
+	pixel_y = 5
+	},
+/obj/item/food/candy_corn{
+	pixel_y = 5;
+	pixel_x = -3
+	},
+/obj/structure/cable,
+/turf/open/floor/carpet/green{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"sj" = (
+/obj/machinery/light/broken{
+	dir = 8
+	},
+/mob/living/simple_animal/hostile/spider/giant/midwife,
+/obj/structure/spider/stickyweb,
+/turf/open/floor/engine,
+/area/ruin/powered/planet_jungle/hunts/barn)
+"sk" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 4
+	},
+/mob/living/simple_animal/hostile/spider/giant/nurse,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"sl" = (
+/obj/structure/table/wood,
+/obj/item/modular_computer/laptop/preset/civillian,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"ss" = (
+/obj/structure/window/reinforced/tinted{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/toilet)
+"sx" = (
+/obj/item/cigbutt/cigarbutt,
+/obj/structure/cable,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/shed)
+"sy" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"sC" = (
+/obj/structure/flora/grass/jungle/b,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
+/area/lavaland/surface/outdoors)
+"sI" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/white{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/canteen)
+"sS" = (
+/obj/structure/table/reinforced,
+/obj/item/reagent_containers/food/condiment/saltshaker{
+	pixel_y = 13;
+	pixel_x = 4
+	},
+/obj/item/reagent_containers/food/condiment/peppermill{
+	pixel_y = 13;
+	pixel_x = 11
+	},
+/obj/item/reagent_containers/condiment{
+	pixel_x = -10;
+	pixel_y = 15
+	},
+/obj/item/reagent_containers/condiment{
+	pixel_x = -2;
+	pixel_y = 18
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/canteen)
+"ta" = (
+/obj/structure/spacevine,
+/obj/structure/spacevine{
+	pixel_x = -32
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"tc" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/gun_shop)
+"te" = (
+/obj/structure/fence/corner{
+	dir = 1
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"tj" = (
+/obj/structure/closet/crate/bin,
+/obj/item/trash/energybar,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/gun_shop)
+"tk" = (
+/obj/machinery/power/smes/engineering,
+/obj/structure/cable,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/powered/planet_jungle/hunts/shed)
+"tl" = (
+/obj/structure/sign/plaques{
+	pixel_y = 30;
+	name = "M-23 WOODSMAN";
+	desc = "Zostań królem lasu z naszym nowym karabinem M-23 Woodsman. Zasilanie z magazynka i mocny nabój dają świetną przebijalność w łatwej w obsłudze broni."
+	},
+/obj/structure/displaycase_chassis{
+	name = "otwarta gablota"
+	},
+/turf/open/floor/carpet/royalblack{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/gun_shop)
+"tm" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/pipe/simple/orange{
+	dir = 4
+	},
+/obj/item/shard,
+/turf/open/floor/plating,
+/area/ruin/powered/planet_jungle/hunts/barn)
+"tn" = (
+/obj/machinery/button/door{
+	dir = 4;
+	pixel_x = -24;
+	name = "rolety izolatki";
+	id = "cell3"
+	},
+/obj/structure/spider/stickyweb,
+/turf/open/floor/concrete,
+/area/ruin/powered/planet_jungle/hunts/barn)
+"tv" = (
+/obj/structure/railing{
+	dir = 1
+	},
+/obj/structure/spacevine{
+	pixel_x = -32
+	},
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"ty" = (
+/mob/living/basic/mining/goliath,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"tH" = (
+/obj/structure/closet,
+/obj/item/taperecorder,
+/obj/item/kitchen/knife/hunting,
+/obj/item/clothing/under/misc/pj/red,
+/obj/item/binoculars,
+/obj/item/clothing/suit/jacket/leather{
+	pixel_x = 9;
+	pixel_y = -2
+	},
+/obj/item/clothing/head/fedora/curator{
+	pixel_x = 9;
+	pixel_y = 9
+	},
+/obj/item/clothing/shoes/workboots{
+	pixel_y = -2;
+	pixel_x = -4
+	},
+/obj/item/clothing/under/suit/tan{
+	pixel_x = -2;
+	pixel_y = 7
+	},
+/obj/machinery/light/small/broken{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"tI" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/lavaland/surface/outdoors)
+"tN" = (
+/obj/structure/flora/grass/jungle/b,
+/obj/structure/flora/tree/jungle/small,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/ruin/unpowered/planet_lava/cave)
+"tQ" = (
+/obj/structure/spider/stickyweb,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/cable,
+/turf/open/floor/concrete,
+/area/ruin/powered/planet_jungle/hunts/barn)
+"tS" = (
+/obj/machinery/button/door{
+	dir = 4;
+	pixel_x = -24;
+	name = "rolety izolatki";
+	id = "cell2"
+	},
+/obj/structure/spider/stickyweb,
+/turf/open/floor/concrete,
+/area/ruin/powered/planet_jungle/hunts/barn)
+"tT" = (
+/obj/item/stack/spacecash/c10{
+	pixel_y = 10
+	},
+/obj/item/stack/spacecash/c20{
+	pixel_x = 9
+	},
+/turf/open/water/planet/jungle,
+/area/lavaland/surface/outdoors)
+"tV" = (
+/obj/structure/chair/fancy/shuttle{
+	dir = 8
+	},
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/ruin/powered/planet_jungle/hunts/shuttle)
+"tX" = (
+/obj/machinery/atmospherics/components/unary/outlet_injector{
+	dir = 8
+	},
+/obj/structure/spacevine,
+/turf/open/floor/engine,
+/area/ruin/powered/planet_jungle/hunts/barn)
+"ud" = (
+/mob/living/simple_animal/hostile/jungle/seedling,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"ug" = (
+/obj/item/chair/wood{
+	dir = 1
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/canteen)
+"uh" = (
+/obj/machinery/atmospherics/components/binary/pump{
+	dir = 8
+	},
+/obj/item/shard,
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/engine,
+/area/ruin/powered/planet_jungle/hunts/barn)
+"us" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/pipe/manifold4w/orange,
+/turf/open/floor/plating,
+/area/ruin/powered/planet_jungle/hunts/barn)
+"uu" = (
+/obj/item/ammo_casing/shotgun/buckshot,
+/obj/item/stack/sheet/cardboard{
+	pixel_x = 13;
+	pixel_y = -11;
+	layer = 2.9
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/gun_shop)
+"uv" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/spacevine,
+/obj/structure/cable,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"uy" = (
+/obj/structure/chair/office,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete,
+/area/ruin/powered/planet_jungle/hunts/barn)
+"uz" = (
+/obj/machinery/vending/snack,
+/obj/effect/turf_decal/siding/wood{
+	dir = 5
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"uC" = (
+/obj/item/stack/spacecash/c1,
+/turf/open/water/planet/jungle,
+/area/lavaland/surface/outdoors)
+"uE" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/carpet{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/gun_shop)
+"uF" = (
+/obj/structure/fence/door,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"uH" = (
+/obj/structure/flora/grass/jungle,
+/obj/structure/spider/stickyweb,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"uI" = (
+/obj/structure/cable,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"uN" = (
+/obj/machinery/atmospherics/components/unary/outlet_injector{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/ruin/powered/planet_jungle/hunts/barn)
+"uP" = (
+/obj/structure/railing,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/toilet)
+"uR" = (
+/obj/structure/table/wood,
+/obj/item/restraints/legcuffs/beartrap{
+	pixel_y = 9
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 6
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/gun_shop)
+"uT" = (
+/obj/structure/spacevine/weak,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
+/area/ruin/unpowered/planet_lava/cave)
+"uZ" = (
+/obj/structure/spider/stickyweb,
+/obj/structure/spider/cocoon,
+/turf/open/floor/concrete,
+/area/ruin/powered/planet_jungle/hunts/barn)
+"va" = (
+/obj/structure/sink/kitchen{
+	pixel_y = 25
+	},
+/turf/open/floor/plasteel/white{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/canteen)
+"vi" = (
+/obj/structure/flora/rock/jungle,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"vj" = (
+/obj/machinery/door/airlock{
+	dir = 4
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/barn)
+"vn" = (
+/turf/closed/wall,
+/area/ruin/powered/planet_jungle/hunts/barn)
+"vp" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/cable,
+/turf/open/floor/plasteel/white{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/canteen)
+"vu" = (
+/obj/machinery/light/broken{
+	dir = 4
+	},
+/obj/structure/barricade/wooden/crude{
+	dir = 4
+	},
+/turf/open/floor/carpet{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/canteen)
+"vv" = (
+/obj/item/stack/sheet/mineral/wood,
+/obj/effect/turf_decal/siding/white{
+	dir = 1
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"vz" = (
+/obj/structure/rack,
+/obj/structure/window/reinforced,
+/obj/item/gun/ballistic/automatic{
+	pixel_y = 9;
+	pixel_x = -2
+	},
+/obj/structure/sign/plaques{
+	pixel_y = 30;
+	name = "M-12 SPORTER";
+	desc = "Przystępny, skuteczny, sprawdzony. M-12 Sporter to nasz najpopularniejszy karabin myśliwski i nie bez powodu. Najlepszy huk za te pieniądze."
+	},
+/turf/open/floor/carpet/royalblack{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/gun_shop)
+"vB" = (
+/obj/structure/fence{
+	dir = 8
+	},
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"vD" = (
+/obj/structure/flora/junglebush/b,
+/obj/structure/flora/tree/jungle/small,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
+/area/lavaland/surface/outdoors)
+"vH" = (
+/obj/structure/flora/junglebush,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"vI" = (
+/obj/structure/table/reinforced,
+/obj/item/book/granter/crafting_recipe/cooking_sweets_101,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/canteen)
+"vJ" = (
+/obj/structure/flora/grass/jungle,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
+/area/lavaland/surface/outdoors)
+"vN" = (
+/turf/closed/mineral/random/planet_jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"vR" = (
+/obj/machinery/power/terminal{
+	dir = 8
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/plasteel,
+/area/ruin/powered/planet_jungle/hunts/shuttle)
+"vS" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"vX" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/light/small/broken{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"vY" = (
+/obj/item/radio/intercom/directional/east,
+/obj/effect/turf_decal/siding/white{
+	dir = 4
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/gate)
+"vZ" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/spider/stickyweb,
+/obj/structure/cable,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"wf" = (
+/obj/structure/spider/stickyweb,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/sec)
+"wm" = (
+/obj/effect/turf_decal/siding/wood,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/gun_shop)
+"wq" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/cable/yellow,
+/turf/open/floor/plating,
+/area/ruin/powered/planet_jungle/hunts/shuttle)
+"wt" = (
+/obj/effect/turf_decal/siding/white/corner{
+	dir = 4
+	},
+/obj/item/ammo_casing/spent,
+/obj/structure/cable,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"wv" = (
+/obj/effect/decal/cleanable/blood/footprints,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/toilet)
+"wy" = (
+/obj/structure/table/wood,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/canteen)
+"wA" = (
+/obj/structure/closet/cabinet,
+/obj/item/clothing/under/misc/pj/blue,
+/obj/item/storage/pill_bottle/aranesp,
+/obj/item/storage/pill_bottle{
+	pixel_x = 6;
+	pixel_y = -5
+	},
+/obj/item/storage/pill_bottle{
+	pixel_x = -3;
+	pixel_y = -8
+	},
+/obj/item/clothing/mask/cigarette/rollie/cannabis,
+/obj/item/clothing/suit/ianshirt,
+/obj/item/clothing/shoes/laceup{
+	pixel_y = -14;
+	pixel_x = 4
+	},
+/obj/item/clothing/under/suit/black_really{
+	pixel_x = 10;
+	pixel_y = -2
+	},
+/obj/item/clothing/suit/armor/vest,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"wC" = (
+/obj/structure/cable,
+/turf/open/floor/plasteel/stairs{
+	dir = 4;
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"wI" = (
+/turf/closed/wall/mineral/wood,
+/area/ruin/powered/planet_jungle/hunts/sec)
+"wK" = (
+/obj/item/radio/intercom/directional/east,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/gate)
+"wN" = (
+/obj/structure/flora/tree/jungle/small,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/yellow,
+/area/ruin/unpowered/planet_lava/cave)
+"wO" = (
+/obj/structure/chair/office,
+/turf/open/floor/concrete,
+/area/ruin/powered/planet_jungle/hunts/barn)
+"wP" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
+/obj/machinery/door/poddoor/shutters/preopen{
+	dir = 4;
+	id = "cell3"
+	},
+/turf/open/floor/plating,
+/area/ruin/powered/planet_jungle/hunts/barn)
+"wV" = (
+/obj/structure/table/reinforced,
+/obj/item/reagent_containers/condiment{
+	pixel_x = -6;
+	pixel_y = 17
+	},
+/obj/item/reagent_containers/condiment{
+	pixel_x = 6;
+	pixel_y = 19
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/canteen)
+"wW" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 10
+	},
+/obj/structure/spacevine/dense,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"xd" = (
+/obj/structure/table/wood,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/machinery/computer/secure_data/laptop{
+	dir = 8
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/sec)
+"xf" = (
+/obj/structure/rack,
+/obj/structure/sign/plaques{
+	pixel_y = 30;
+	name = "M-20 AUTO ELITE";
+	desc = "Idealne połączenie siły i poręczności: M-20 Auto Elite był kiedyś standardowym pistoletem policji Star City. Na nabój .44 Roumain, świetna siła obalająca w małej broni. Na dole naklejono dużą naklejkę: PRZEPRASZAMY, BRAK NA STANIE."
+	},
+/obj/machinery/door/window/brigdoor,
+/turf/open/floor/carpet/royalblack{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/gun_shop)
+"xm" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
+/obj/structure/curtain{
+	dir = 4
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"xp" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/lavaland/surface/outdoors)
+"xr" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 9
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"xz" = (
+/obj/machinery/light/broken{
+	dir = 1
+	},
+/obj/structure/spider/stickyweb,
+/turf/open/floor/concrete,
+/area/ruin/powered/planet_jungle/hunts/barn)
+"xB" = (
+/obj/structure/rack,
+/obj/item/ammo_box/magazine/m12g{
+	pixel_x = -7;
+	start_empty = 1
+	},
+/obj/item/ammo_box/magazine/m12g{
+	pixel_x = -2;
+	start_empty = 1
+	},
+/obj/item/ammo_box/magazine/m12g{
+	pixel_x = 4;
+	start_empty = 1
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/gun_shop)
+"xJ" = (
+/obj/structure/flora/ash/garden,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"xO" = (
+/obj/effect/turf_decal/siding/white,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"xU" = (
+/turf/closed/wall/mineral/wood,
+/area/ruin/powered/planet_jungle/hunts/gun_shop)
+"xV" = (
+/obj/machinery/door/airlock/wood{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"xZ" = (
+/obj/structure/fence{
+	dir = 4
+	},
+/obj/structure/sign/warning,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"yj" = (
+/obj/structure/spacevine/weak,
+/obj/structure/flora/grass/jungle/b,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"yk" = (
+/obj/machinery/camera/autoname,
+/turf/open/floor/engine,
+/area/ruin/powered/planet_jungle/hunts/barn)
+"ym" = (
+/obj/item/stack/spacecash/c1,
+/obj/item/stack/spacecash/c10{
+	pixel_x = -3;
+	pixel_y = -8
+	},
+/obj/item/stack/spacecash/c10{
+	pixel_y = 1;
+	pixel_x = -9
+	},
+/turf/open/water/planet/jungle,
+/area/lavaland/surface/outdoors)
+"yx" = (
+/obj/item/clothing/suit/apron,
+/obj/item/storage/wallet/random,
+/obj/item/clothing/gloves/botanic_leather,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/toilet)
+"yC" = (
+/obj/structure/table/wood,
+/obj/structure/showcase/machinery/tv{
+	name = "miniaturowy telewizor";
+	desc = "Trochę obity telewizor."
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/gun_shop)
+"yE" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/pipe/simple/orange{
+	dir = 9
+	},
+/obj/structure/spider/stickyweb,
+/turf/open/floor/plating,
+/area/ruin/powered/planet_jungle/hunts/barn)
+"yI" = (
+/turf/open/floor/plasteel/tech,
+/area/ruin/powered/planet_jungle/hunts/shuttle)
+"yK" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/cable,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"yP" = (
+/obj/structure/spacevine{
+	pixel_y = 31
+	},
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"yQ" = (
+/mob/living/simple_animal/hostile/spider/giant/viper,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/lavaland/surface/outdoors)
+"yU" = (
+/obj/machinery/door/airlock{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/gate)
+"zd" = (
+/obj/structure/chair/stool{
+	dir = 8
+	},
+/mob/living/basic/mining/legion,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/toilet)
+"zi" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/canteen)
+"zn" = (
+/mob/living/simple_animal/hostile/jungle/seedling,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"zt" = (
+/turf/template_noop,
+/area/lavaland/surface/outdoors)
+"zu" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/basic/mining/brimdemon,
+/obj/structure/cable,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"zv" = (
+/turf/open/floor/concrete,
+/area/ruin/powered/planet_jungle/hunts/barn)
+"zI" = (
+/obj/structure/table/wood,
+/obj/item/flashlight/lamp{
+	pixel_x = 2;
+	pixel_y = 16
+	},
+/obj/item/camera{
+	pixel_y = -3
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"zM" = (
+/obj/structure/flora/rock/jungle,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/yellow,
+/area/ruin/unpowered/planet_lava/cave)
+"zN" = (
+/obj/structure/barricade/wooden,
+/obj/structure/spacevine,
+/obj/item/stack/sheet/mineral/wood,
+/turf/open/floor/plating,
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"zQ" = (
+/obj/structure/flora/grass/jungle,
+/obj/structure/flora/grass/jungle/b,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/ruin/unpowered/planet_lava/cave)
+"zV" = (
+/obj/machinery/door/window/southleft{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/toilet)
+"zX" = (
+/obj/machinery/power/apc/auto_name/north,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/toilet)
+"zZ" = (
+/obj/machinery/camera/autoname,
+/obj/machinery/light/broken{
+	dir = 4
+	},
+/obj/structure/spacevine/dense,
+/turf/open/floor/engine,
+/area/ruin/powered/planet_jungle/hunts/barn)
+"Aa" = (
+/obj/structure/fence/door{
+	name = "TYLKO DLA PRACOWNIKÓW"
+	},
+/obj/structure/cable,
+/turf/open/floor/wood,
+/area/lavaland/surface/outdoors)
+"Al" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
+/obj/machinery/door/poddoor/shutters{
+	dir = 8;
+	id = "cell4"
+	},
+/turf/open/floor/plating,
+/area/ruin/powered/planet_jungle/hunts/barn)
+"An" = (
+/obj/machinery/camera/autoname,
+/obj/machinery/light/broken{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/ruin/powered/planet_jungle/hunts/barn)
+"Ao" = (
+/obj/structure/flora/grass/jungle/b,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/lavaland/surface/outdoors)
+"At" = (
+/obj/structure/curtain,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/canteen)
+"Ay" = (
+/obj/structure/spider/stickyweb,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"AB" = (
+/mob/living/basic/mining/goliath,
+/obj/machinery/light/broken,
+/turf/open/floor/carpet/green{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"AF" = (
+/obj/effect/turf_decal/siding/white/corner{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"AM" = (
+/turf/open/floor/plasteel/white{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/canteen)
+"AQ" = (
+/obj/structure/spider/cocoon,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete,
+/area/ruin/powered/planet_jungle/hunts/barn)
+"AW" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/structure/spacevine,
+/obj/structure/spacevine{
+	pixel_x = -32
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"Bb" = (
+/obj/structure/sign/painting/library{
+	pixel_y = 29
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"Be" = (
+/obj/structure/table/reinforced,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/item/phone,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete,
+/area/ruin/powered/planet_jungle/hunts/gate)
+"Bf" = (
+/obj/structure/flora/junglebush/b,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/ruin/unpowered/planet_lava/cave)
+"Bo" = (
+/obj/structure/fence{
+	dir = 4
+	},
+/obj/structure/sign/warning,
+/turf/open/floor/wood,
+/area/lavaland/surface/outdoors)
+"Bq" = (
+/obj/item/kirbyplants,
+/obj/effect/turf_decal/siding/wood{
+	dir = 5
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/gun_shop)
+"Bx" = (
+/obj/item/chair/wood{
+	dir = 8
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/canteen)
+"Bz" = (
+/obj/structure/table/reinforced,
+/obj/item/kitchen/knife/butcher{
+	pixel_y = 6
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/canteen)
+"BA" = (
+/obj/structure/spacevine/dense,
+/obj/structure/flora/junglebush,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
+/area/lavaland/surface/outdoors)
+"BD" = (
+/obj/structure/door_assembly/door_assembly_wood,
+/obj/structure/spacevine/dense,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"BH" = (
+/turf/closed/wall/mineral/wood,
+/area/ruin/powered/planet_jungle/hunts/toilet)
+"BK" = (
+/obj/machinery/button/door{
+	dir = 8;
+	pixel_x = 24;
+	name = "rolety izolatki";
+	id = "cell4"
+	},
+/mob/living/simple_animal/hostile/spider/giant/hunter,
+/turf/open/floor/concrete,
+/area/ruin/powered/planet_jungle/hunts/barn)
+"BT" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/shuttle)
+"BU" = (
+/turf/open/floor/carpet,
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"BV" = (
+/obj/item/flashlight/flare,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
+/area/ruin/unpowered/planet_lava/cave)
+"BW" = (
+/obj/structure/filingcabinet{
+	dir = 4
+	},
+/turf/open/floor/concrete,
+/area/ruin/powered/planet_jungle/hunts/gate)
+"BX" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/mob/living/basic/mining/goliath,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"Cd" = (
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"Cg" = (
+/obj/structure/spacevine/dense,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/ruin/unpowered/planet_lava/cave)
+"Ch" = (
+/obj/effect/turf_decal/siding/white/corner{
+	dir = 4
+	},
+/obj/effect/gibspawner/generic/animal,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Cq" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/obj/structure/spacevine/dense,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"Cx" = (
+/obj/structure/window/reinforced/tinted,
+/obj/item/soap/deluxe,
+/turf/open/floor/plasteel/freezer,
+/area/ruin/powered/planet_jungle/hunts/toilet)
+"Cz" = (
+/obj/structure/spacevine/dense,
+/obj/structure/flora/rock/pile/largejungle,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/lavaland/surface/outdoors)
+"CE" = (
+/obj/structure/flora/junglebush/c,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/lavaland/surface/outdoors)
+"CI" = (
+/obj/structure/spider/stickyweb,
+/obj/structure/spider/stickyweb,
+/turf/open/floor/engine,
+/area/ruin/powered/planet_jungle/hunts/barn)
+"CK" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 9
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"CM" = (
+/obj/structure/chair/fancy/plastic{
+	dir = 1
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/gun_shop)
+"CY" = (
+/obj/structure/flora/grass/jungle/b,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/ruin/unpowered/planet_lava/cave)
+"Dc" = (
+/obj/structure/spider/stickyweb,
+/obj/structure/spider/cocoon,
+/obj/machinery/power/apc/auto_name/west,
+/obj/structure/cable,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/sec)
+"Dg" = (
+/obj/structure/flora/grass/jungle/b,
+/obj/structure/flora/rock/pile/largejungle,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"Dh" = (
+/obj/structure/reagent_dispensers/watertank,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/shed)
+"Di" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
+/obj/machinery/door/poddoor/shutters/preopen{
+	dir = 4;
+	id = "cell6"
+	},
+/turf/open/floor/plating,
+/area/ruin/powered/planet_jungle/hunts/barn)
+"Dm" = (
+/obj/structure/railing,
+/obj/structure/table/wood,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/canteen)
+"Dn" = (
+/obj/structure/spacevine/dense,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
+/area/ruin/unpowered/planet_lava/cave)
+"Ds" = (
+/obj/structure/flora/rock/pile/largejungle,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/yellow,
+/area/lavaland/surface/outdoors)
+"Du" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/mob/living/basic/mining/legion,
+/obj/structure/cable,
+/obj/structure/cable/yellow,
+/turf/open/floor/plating,
+/area/ruin/powered/planet_jungle/hunts/shuttle)
+"Dw" = (
+/obj/effect/turf_decal/siding/white,
+/obj/structure/spacevine,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Dx" = (
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/shuttle)
+"DB" = (
+/obj/structure/closet/crate/critter{
+	opened = 1
+	},
+/obj/machinery/power/terminal{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/floor/plasteel/tech,
+/area/ruin/powered/planet_jungle/hunts/shuttle)
+"DF" = (
+/turf/closed/mineral/random/planet_jungle,
+/area/lavaland/surface/outdoors)
+"DH" = (
+/obj/structure/flora/junglebush/b,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
+/area/lavaland/surface/outdoors)
+"DI" = (
+/obj/machinery/door/airlock/wood,
+/turf/open/floor/noslip,
+/area/ruin/powered/planet_jungle/hunts/toilet)
+"DM" = (
+/obj/structure/cable,
+/turf/open/floor/plasteel/stairs{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"DO" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/structure/spacevine/dense,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"DP" = (
+/mob/living/simple_animal/hostile/spider/giant/nurse,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/lavaland/surface/outdoors)
+"DT" = (
+/obj/machinery/door/airlock/maintenance,
+/obj/structure/cable,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/shed)
+"Ea" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/remains/human,
+/turf/open/floor/plasteel/white{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/canteen)
+"Eh" = (
+/obj/structure/curtain,
+/obj/structure/cable,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/gun_shop)
+"Ek" = (
+/obj/item/trash/chips,
+/turf/open/floor/engine,
+/area/ruin/powered/planet_jungle/hunts/barn)
+"El" = (
+/obj/structure/chair/fancy/bench,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/carpet,
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"Ep" = (
+/obj/item/rack_parts,
+/obj/item/attachment/scope{
+	pixel_y = 5;
+	pixel_x = -5
+	},
+/obj/structure/noticeboard{
+	name = "tablica z trofeami";
+	desc = "Tablica do wieszania trofeów.";
+	pixel_y = 28
+	},
+/obj/item/clothing/mask/rat/fox{
+	pixel_y = 29;
+	desc = "Wypchana głowa lisa do powieszenia nad łóżkiem. Mógłbyś przysiąc, że wciąż się na ciebie gapi.";
+	name = "głowa lisa"
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/gun_shop)
+"Ev" = (
+/mob/living/simple_animal/hostile/asteroid/elite/broodmother,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/ruin/unpowered/planet_lava/cave)
+"Ex" = (
+/obj/structure/spacevine,
+/obj/structure/cable,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Ey" = (
+/obj/machinery/atmospherics/components/binary/pump{
+	dir = 4
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	dir = 4;
+	id = "cell6"
+	},
+/obj/effect/decal/cleanable/glass,
+/obj/item/shard,
+/obj/structure/spacevine,
+/turf/open/floor/engine,
+/area/ruin/powered/planet_jungle/hunts/barn)
+"EA" = (
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/gun_shop)
+"EF" = (
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"ER" = (
+/obj/structure/flora/tree/jungle,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/lavaland/surface/outdoors)
+"EW" = (
+/turf/open/floor/plasteel,
+/area/ruin/powered/planet_jungle/hunts/shuttle)
+"EX" = (
+/obj/machinery/door/airlock/wood,
+/turf/open/floor/carpet{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/gun_shop)
+"EY" = (
+/obj/structure/flora/tree/jungle/small,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"Ff" = (
+/obj/structure/closet/cabinet,
+/obj/item/clothing/under/misc/pj/red,
+/obj/item/clothing/under/suit/charcoal{
+	pixel_y = -2;
+	pixel_x = 7
+	},
+/obj/item/clothing/shoes/workboots{
+	pixel_y = -8
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"Fg" = (
+/obj/structure/spacevine/dense,
+/obj/structure/spacevine/dense{
+	pixel_y = 32
+	},
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/lavaland/surface/outdoors)
+"Fn" = (
+/obj/structure/rack,
+/obj/item/storage/bag/trash{
+	pixel_x = -6;
+	pixel_y = 9
+	},
+/obj/item/reagent_containers/glass/bucket{
+	pixel_x = 7
+	},
+/obj/item/mop/cyborg,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/shed)
+"Fo" = (
+/obj/structure/spacevine/dense,
+/obj/structure/flora/grass/jungle/b,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/ruin/unpowered/planet_lava/cave)
+"Fu" = (
+/obj/item/flashlight/flare,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/ruin/unpowered/planet_lava/cave)
+"Fv" = (
+/obj/item/flashlight/lantern,
+/obj/structure/table/wood,
+/obj/structure/spacevine,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/shed)
+"FC" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
+/obj/machinery/door/poddoor/shutters/preopen{
+	dir = 4;
+	id = "cell2"
+	},
+/turf/open/floor/plating,
+/area/ruin/powered/planet_jungle/hunts/barn)
+"FI" = (
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/yellow,
+/area/lavaland/surface/outdoors)
+"FJ" = (
+/obj/machinery/vending/cola,
+/obj/effect/turf_decal/siding/wood{
+	dir = 6
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"FL" = (
+/obj/structure/cable,
+/turf/open/floor/plasteel,
+/area/ruin/powered/planet_jungle/hunts/shuttle)
+"FP" = (
+/obj/structure/table/wood,
+/obj/item/paper/crumpled/bloody,
+/turf/open/floor/carpet/green{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/gun_shop)
+"FW" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/structure/spacevine/dense,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"Gb" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/turf/closed/wall/mineral/wood,
+/area/ruin/powered/planet_jungle/hunts/shed)
+"Gc" = (
+/obj/item/food/meat/slab/goliath,
+/mob/living/basic/mining/wolf,
+/turf/open/floor/plasteel/freezer,
+/area/ruin/powered/planet_jungle/hunts/canteen)
+"Gd" = (
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 8
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/canteen)
+"Ge" = (
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/gun_shop)
+"Gf" = (
+/obj/structure/railing,
+/obj/item/chair/wood{
+	dir = 8
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/canteen)
+"Gj" = (
+/obj/structure/flora/grass/jungle/b,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
+/area/ruin/unpowered/planet_lava/cave)
+"Gk" = (
+/obj/structure/flora/grass/jungle,
+/obj/structure/spacevine/dense{
+	pixel_y = 32
+	},
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/lavaland/surface/outdoors)
+"Gr" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Gt" = (
+/obj/structure/chair/fancy/bench{
+	dir = 4
+	},
+/turf/open/floor/carpet{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/canteen)
+"Gw" = (
+/obj/machinery/door/airlock/wood,
+/obj/structure/cable,
+/turf/open/floor/carpet{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/gun_shop)
+"Gx" = (
+/obj/machinery/light/broken{
+	dir = 8
+	},
+/obj/structure/spider/stickyweb,
+/turf/open/floor/engine,
+/area/ruin/powered/planet_jungle/hunts/barn)
+"Gz" = (
+/obj/structure/spacevine,
+/obj/structure/fence/corner{
+	dir = 1
+	},
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"GD" = (
+/obj/machinery/door/poddoor/shutters{
+	id = "cargo bay"
+	},
+/obj/structure/cable,
+/turf/open/floor/plasteel,
+/area/ruin/powered/planet_jungle/hunts/shuttle)
+"GE" = (
+/obj/structure/flora/rock/pile/largejungle,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/lavaland/surface/outdoors)
+"GJ" = (
+/obj/structure/spacevine,
+/mob/living/simple_animal/hostile/jungle/seedling,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"GN" = (
+/obj/machinery/button/door{
+	pixel_x = -22;
+	pixel_y = 6;
+	name = "rolety ładowni";
+	id = "cargo bay";
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/plasteel,
+/area/ruin/powered/planet_jungle/hunts/shuttle)
+"GP" = (
+/obj/machinery/atmospherics/components/binary/pump{
+	dir = 8
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	dir = 4;
+	id = "cell3"
+	},
+/obj/item/shard,
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/engine,
+/area/ruin/powered/planet_jungle/hunts/barn)
+"GQ" = (
+/obj/structure/spacevine/dense,
+/obj/structure/cable,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"GR" = (
+/obj/structure/sign/painting/library{
+	pixel_y = -25
+	},
+/obj/item/cigbutt/cigarbutt{
+	pixel_y = -3
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"GU" = (
+/obj/structure/cable,
+/obj/machinery/power/apc/auto_name/east,
+/turf/open/floor/plasteel,
+/area/ruin/powered/planet_jungle/hunts/shuttle)
+"GV" = (
+/obj/structure/flora/grass/jungle,
+/obj/structure/flora/grass/jungle,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/lavaland/surface/outdoors)
+"GX" = (
+/mob/living/basic/mining/wolf,
+/turf/open/floor/plasteel/freezer,
+/area/ruin/powered/planet_jungle/hunts/canteen)
+"GZ" = (
+/obj/structure/rack,
+/obj/machinery/light/broken,
+/turf/open/floor/carpet/royalblack{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/gun_shop)
+"He" = (
+/obj/item/ammo_casing/spent,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/carpet{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/gun_shop)
+"Hh" = (
+/obj/structure/spacevine/dense,
+/obj/structure/flora/grass/jungle,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"Hi" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Hj" = (
+/obj/structure/spacevine/dense,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/yellow,
+/area/ruin/unpowered/planet_lava/cave)
+"Hl" = (
+/obj/structure/spacevine/weak,
+/obj/structure/spacevine/weak,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/ruin/unpowered/planet_lava/cave)
+"Hn" = (
+/obj/structure/rack,
+/obj/item/clothing/under/syndicate/camo{
+	pixel_x = -7
+	},
+/obj/item/clothing/under/syndicate/camo{
+	pixel_x = 7
+	},
+/turf/open/floor/carpet/royalblack{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/gun_shop)
+"Ho" = (
+/obj/structure/spider/stickyweb,
+/obj/structure/cable,
+/turf/open/floor/concrete,
+/area/ruin/powered/planet_jungle/hunts/barn)
+"Hp" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/pipe/simple/orange,
+/obj/structure/cable,
+/obj/structure/spider/stickyweb,
+/turf/open/floor/plating,
+/area/ruin/powered/planet_jungle/hunts/barn)
+"Hq" = (
+/obj/item/shard,
+/obj/effect/decal/cleanable/glass,
+/obj/structure/spider/stickyweb,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/sec)
+"Hs" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/canteen)
+"Hw" = (
+/obj/structure/table/reinforced,
+/obj/item/reagent_containers/food/drinks/coffee,
+/turf/open/floor/concrete,
+/area/ruin/powered/planet_jungle/hunts/barn)
+"Hx" = (
+/obj/machinery/power/smes{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced,
+/obj/machinery/door/poddoor/shutters{
+	id = "cargo bay";
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/ruin/powered/planet_jungle/hunts/shuttle)
+"Hz" = (
+/obj/structure/rack,
+/obj/machinery/light/broken{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/gun_shop)
+"HA" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 6
+	},
+/obj/machinery/light,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/gun_shop)
+"HC" = (
+/obj/structure/flora/grass/jungle/b,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"HE" = (
+/obj/structure/flora/ausbushes/grassybush,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/carpet/black{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/canteen)
+"HG" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"HI" = (
+/obj/structure/spacevine{
+	pixel_x = -33
+	},
+/obj/structure/spacevine,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/lavaland/surface/outdoors)
+"HK" = (
+/obj/structure/table/reinforced,
+/obj/item/kitchen/rollingpin,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/canteen)
+"HO" = (
+/obj/structure/fence{
+	dir = 4
+	},
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"HQ" = (
+/obj/machinery/power/terminal{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/structure/closet/crate/critter{
+	opened = 1;
+	name = "uszkodzony pojemnik na formy życia";
+	desc = "Pojemnik do łapania wrogich form życia na badania. Wnętrze jest mocno opancerzone, więc zwierzęta się nie wydostaną. Tyle że zamek w tym wygląda na trochę luźny.";
+	secure = 0;
+	locked = 0
+	},
+/turf/open/floor/plasteel/tech,
+/area/ruin/powered/planet_jungle/hunts/shuttle)
+"HU" = (
+/obj/structure/flora/junglebush,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/yellow,
+/area/lavaland/surface/outdoors)
+"HX" = (
+/obj/machinery/light,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete,
+/area/ruin/powered/planet_jungle/hunts/gate)
+"HY" = (
+/obj/machinery/button/door{
+	dir = 4;
+	pixel_x = -24;
+	name = "rolety izolatki";
+	id = "cell1"
+	},
+/obj/structure/spider/stickyweb,
+/turf/open/floor/concrete,
+/area/ruin/powered/planet_jungle/hunts/barn)
+"HZ" = (
+/obj/structure/spacevine,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/lavaland/surface/outdoors)
+"Ic" = (
+/obj/structure/table_frame/wood,
+/obj/item/stack/sheet/mineral/wood,
+/obj/item/food/salad/fruit,
+/turf/open/floor/carpet{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/canteen)
+"Ik" = (
+/obj/structure/spacevine/dense,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
+/area/lavaland/surface/outdoors)
+"Il" = (
+/obj/structure/table/wood,
+/obj/item/pen/edagger,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"Ip" = (
+/obj/structure/curtain,
+/obj/item/shard,
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/plating,
+/area/ruin/powered/planet_jungle/hunts/canteen)
+"It" = (
+/obj/structure/curtain,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/canteen)
+"Iy" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/pipe/simple/orange,
+/turf/open/floor/plating,
+/area/ruin/powered/planet_jungle/hunts/barn)
+"IA" = (
+/obj/structure/flora/junglebush,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
+/area/ruin/unpowered/planet_lava/cave)
+"IG" = (
+/obj/item/clothing/suit/armor/vest,
+/obj/item/clothing/glasses/sunglasses{
+	pixel_x = 7;
+	pixel_y = 4
+	},
+/obj/item/clothing/shoes/combat,
+/obj/item/clothing/under/rank/security/officer,
+/obj/item/storage/wallet/random,
+/obj/item/gun/ballistic/automatic/pistol,
+/obj/item/ammo_box/magazine/m10mm{
+	pixel_x = 2
+	},
+/obj/item/ammo_box/magazine/m10mm{
+	pixel_x = -9
+	},
+/obj/item/clothing/head/helmet,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/toilet)
+"IJ" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"IO" = (
+/obj/structure/spacevine/weak,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/lavaland/surface/outdoors)
+"IR" = (
+/obj/structure/spacevine,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"IS" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 10
+	},
+/mob/living/basic/mining/legion,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"IX" = (
+/obj/machinery/computer/security{
+	dir = 1
+	},
+/turf/open/floor/concrete,
+/area/ruin/powered/planet_jungle/hunts/barn)
+"Jc" = (
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/gate)
+"Je" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/canteen)
+"Jr" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 8
+	},
+/obj/structure/spider/stickyweb,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Jt" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/cable,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Jv" = (
+/mob/living/basic/mining/goliath,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Jx" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/carpet,
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"JD" = (
+/mob/living/basic/mining/wolf,
+/turf/open/floor/plasteel/white{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/canteen)
+"JE" = (
+/obj/structure/rack,
+/obj/item/storage/toolbox/drone,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/powered/planet_jungle/hunts/shed)
+"JH" = (
+/obj/item/stack/spacecash/c10,
+/obj/item/stack/spacecash/c10{
+	pixel_x = -3;
+	pixel_y = -8
+	},
+/turf/open/water/planet/jungle,
+/area/lavaland/surface/outdoors)
+"JJ" = (
+/obj/structure/flora/stump,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"JN" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
+/obj/machinery/door/poddoor/shutters{
+	dir = 4;
+	id = "cell5"
+	},
+/turf/open/floor/plating,
+/area/ruin/powered/planet_jungle/hunts/barn)
+"JV" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 9
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"JY" = (
+/obj/structure/spacevine,
+/obj/structure/spacevine{
+	pixel_x = -32
+	},
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/lavaland/surface/outdoors)
+"Kc" = (
+/obj/structure/table/reinforced,
+/obj/item/radio/intercom{
+	dir = 8;
+	pixel_x = -6;
+	layer = 2.9
+	},
+/obj/item/paper/crumpled/bloody{
+	pixel_x = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_jungle/hunts/shuttle)
+"Ke" = (
+/obj/structure/flora/grass/jungle,
+/obj/structure/flora/junglebush,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/ruin/unpowered/planet_lava/cave)
+"Kl" = (
+/obj/structure/sign/departments/restroom{
+	pixel_x = 31
+	},
+/obj/structure/spacevine/dense,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Km" = (
+/obj/effect/turf_decal/siding/white/corner{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Kr" = (
+/obj/effect/gibspawner/generic/animal,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Ku" = (
+/turf/template_noop,
+/area/template_noop)
+"Kv" = (
+/obj/item/ammo_casing/spent,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/ruin/unpowered/planet_lava/cave)
+"KC" = (
+/obj/structure/kitchenspike,
+/obj/effect/gibspawner/generic/animal,
+/turf/open/floor/plasteel/freezer,
+/area/ruin/powered/planet_jungle/hunts/canteen)
+"KD" = (
+/obj/structure/noticeboard{
+	name = "tablica z trofeami";
+	desc = "Tablica do wieszania trofeów.";
+	pixel_y = 28
+	},
+/obj/item/clothing/mask/rat/bear{
+	pixel_y = 26;
+	name = "głowa niedźwiedzia";
+	desc = "Wypchana głowa niedźwiedzia do powieszenia nad łóżkiem. Mógłbyś przysiąc, że wciąż się na ciebie gapi."
+	},
+/turf/open/floor/carpet/green{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/gun_shop)
+"KL" = (
+/obj/item/chair/wood{
+	dir = 8
+	},
+/turf/open/floor/carpet{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/canteen)
+"KS" = (
+/mob/living/basic/mining/goliath,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"KT" = (
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/powered/planet_jungle/hunts/shed)
+"KV" = (
+/obj/structure/railing{
+	dir = 8
+	},
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"KX" = (
+/obj/structure/grille,
+/obj/structure/window/shuttle,
+/obj/machinery/door/poddoor/shutters{
+	dir = 4;
+	id = "bridge"
+	},
+/turf/open/floor/plating,
+/area/ruin/powered/planet_jungle/hunts/shuttle)
+"KY" = (
+/mob/living/basic/mining/goliath,
+/obj/structure/cable,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"KZ" = (
+/obj/structure/spacevine,
+/obj/structure/fence{
+	dir = 4
+	},
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"Lb" = (
+/obj/machinery/computer/security/telescreen/entertainment{
+	pixel_x = -28
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"Lc" = (
+/obj/machinery/door/airlock/wood,
+/obj/structure/cable,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/sec)
+"Lg" = (
+/obj/structure/flora/grass/jungle/b,
+/obj/structure/spider/stickyweb,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"Lh" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/gun_shop)
+"Li" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/ruin/powered/planet_jungle/hunts/shuttle)
+"Lj" = (
+/obj/structure/spacevine/weak,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
+/area/lavaland/surface/outdoors)
+"Lm" = (
+/obj/structure/spacevine/dense{
+	pixel_y = 31
+	},
+/obj/structure/spacevine/dense,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/lavaland/surface/outdoors)
+"Lo" = (
+/obj/structure/table/reinforced,
+/obj/item/radio/off{
+	dir = 8;
+	pixel_y = 17;
+	pixel_x = -6
+	},
+/obj/item/strange_crystal{
+	pixel_x = 13;
+	name = "„szczęśliwy” kryształ kapitana"
+	},
+/obj/machinery/button/door{
+	dir = 4;
+	pixel_x = -23;
+	id = "bridge";
+	name = "rolety okienne"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_jungle/hunts/shuttle)
+"Lr" = (
+/obj/item/ammo_box/c9mm{
+	pixel_x = -9;
+	pixel_y = 3
+	},
+/obj/item/ammo_box/c9mm{
+	pixel_x = 10;
+	pixel_y = 3
+	},
+/obj/item/ammo_box/c9mm{
+	pixel_x = -9;
+	pixel_y = -6
+	},
+/obj/item/ammo_box/c9mm{
+	pixel_x = 10;
+	pixel_y = -6
+	},
+/obj/item/ammo_box/c9mm{
+	pixel_y = 6;
+	layer = 3.1
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/gun_shop)
+"Lt" = (
+/obj/structure/chair/wood{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/ash,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"Lv" = (
+/obj/structure/spacevine/dense,
+/obj/structure/flora/grass/jungle,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/ruin/unpowered/planet_lava/cave)
+"Lw" = (
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/gun_shop)
+"Ly" = (
+/obj/structure/spacevine/dense,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Lz" = (
+/obj/item/ammo_casing/shotgun,
+/obj/item/ammo_casing/shotgun,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/gun_shop)
+"LA" = (
+/obj/structure/chair/fancy/bench{
+	dir = 1
+	},
+/obj/machinery/light,
+/turf/open/floor/carpet,
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"LB" = (
+/obj/structure/table/wood,
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/canteen)
+"LG" = (
+/obj/machinery/light/small/broken{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"LH" = (
+/obj/structure/spacevine{
+	pixel_y = -32
+	},
+/obj/structure/spacevine{
+	pixel_y = -32
+	},
+/obj/structure/spacevine,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"LJ" = (
+/obj/item/stack/sheet/mineral/wood,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"LO" = (
+/obj/item/flashlight/flare,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"LT" = (
+/obj/structure/closet/crate/trashcart,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"LX" = (
+/obj/structure/bed{
+	dir = 4
+	},
+/obj/item/bedsheet/random{
+	dir = 4
+	},
+/obj/item/toy/plush/lizardplushie,
+/turf/open/floor/carpet/cyan,
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"LY" = (
+/obj/structure/janitorialcart,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/shed)
+"Me" = (
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"Mj" = (
+/obj/item/crowbar/large,
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/gun_shop)
+"Ml" = (
+/obj/structure/extinguisher_cabinet/north,
+/turf/open/floor/carpet,
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"Mo" = (
+/obj/structure/flora/grass/jungle,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/lavaland/surface/outdoors)
+"Mp" = (
+/obj/structure/sign/plaques{
+	pixel_y = 30;
+	name = "M-15 SUPER SPORTER";
+	desc = "M-15 Super Sporter to starszy brat naszej słynnej linii M-12 Sporter i naprawdę mocno kopie. Na nabój 5,56 CLIP, standard CMM, przebije najtwardszą skórę."
+	},
+/obj/structure/displaycase{
+	start_showpiece_type = /obj/item/gun/ballistic/automatic/m15;
+	req_access_txt = "101"
+	},
+/turf/open/floor/carpet/royalblack{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/gun_shop)
+"Mq" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 1
+	},
+/mob/living/simple_animal/hostile/spider/giant/viper,
+/obj/structure/spacevine,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Ms" = (
+/obj/machinery/camera/autoname,
+/obj/item/trash/canned,
+/turf/open/floor/engine,
+/area/ruin/powered/planet_jungle/hunts/barn)
+"Mt" = (
+/obj/structure/grille,
+/obj/structure/window/shuttle,
+/obj/machinery/door/poddoor/shutters{
+	dir = 1;
+	id = "bridge"
+	},
+/turf/open/floor/plating,
+/area/ruin/powered/planet_jungle/hunts/shuttle)
+"Mu" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/mob/living/basic/mining/goliath,
+/obj/structure/cable,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"Mv" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 8
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Mw" = (
+/obj/effect/turf_decal/siding/wood,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/canteen)
+"MH" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/toilet)
+"MM" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 4
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/gate)
+"MN" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/item/chair/wood{
+	dir = 8
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/canteen)
+"MW" = (
+/obj/structure/chair/wood,
+/turf/open/floor/carpet{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/canteen)
+"MX" = (
+/obj/structure/spacevine,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"MY" = (
+/obj/structure/spacevine,
+/turf/open/floor/engine,
+/area/ruin/powered/planet_jungle/hunts/barn)
+"MZ" = (
+/obj/structure/fence,
+/mob/living/basic/mining/goliath,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Na" = (
+/obj/item/stack/tile/wood,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/gun_shop)
+"Nb" = (
+/obj/machinery/button/door{
+	dir = 8;
+	pixel_x = 24;
+	name = "rolety izolatki";
+	id = "cell5"
+	},
+/obj/structure/spider/stickyweb,
+/turf/open/floor/concrete,
+/area/ruin/powered/planet_jungle/hunts/barn)
+"Nc" = (
+/obj/structure/spacevine/dense,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Ng" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Ni" = (
+/obj/structure/cable,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/shed)
+"Nm" = (
+/obj/structure/flora/tree/jungle,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/yellow,
+/area/lavaland/surface/outdoors)
+"No" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"Nr" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"Ns" = (
+/obj/structure/spider/stickyweb,
+/obj/structure/cable,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Nz" = (
+/obj/machinery/door/airlock/wood{
+	dir = 4
+	},
+/obj/effect/mapping_helpers/airlock/locked,
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/toilet)
+"NA" = (
+/obj/structure/flora/grass/jungle,
+/obj/structure/flora/junglebush/b,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/lavaland/surface/outdoors)
+"NF" = (
+/obj/effect/turf_decal/siding/white/corner{
+	dir = 8
+	},
+/mob/living/basic/mining/brimdemon,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"NM" = (
+/obj/structure/rack,
+/obj/item/clothing/head/soft{
+	pixel_x = -11
+	},
+/obj/item/clothing/head/soft{
+	pixel_x = 6
+	},
+/turf/open/floor/carpet/royalblack{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/gun_shop)
+"NN" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 4
+	},
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"NQ" = (
+/obj/structure/closet,
+/obj/item/clothing/under/misc/pj/blue,
+/obj/item/clothing/under/suit{
+	pixel_x = 8;
+	pixel_y = 6
+	},
+/obj/item/clothing/shoes/laceup{
+	pixel_y = -7;
+	pixel_x = 4
+	},
+/obj/item/clothing/glasses/sunglasses{
+	pixel_x = -2;
+	pixel_y = 7
+	},
+/obj/item/clothing/suit/toggle,
+/obj/machinery/light/small/broken{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"NR" = (
+/obj/item/attachment/scope{
+	pixel_y = -11;
+	pixel_x = 9
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/gun_shop)
+"NU" = (
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/canteen)
+"NV" = (
+/obj/structure/fence{
+	dir = 4
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"NX" = (
+/obj/structure/chair/stool{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/toilet)
+"NZ" = (
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/lavaland/surface/outdoors)
+"Ob" = (
+/obj/structure/flora/rock/jungle,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/ruin/unpowered/planet_lava/cave)
+"Og" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/computer/security/telescreen/entertainment{
+	pixel_x = -28
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"Oj" = (
+/obj/structure/spacevine/weak,
+/obj/structure/flora/junglebush/b,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"On" = (
+/obj/structure/flora/tree/jungle,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"Op" = (
+/obj/structure/bed{
+	dir = 4
+	},
+/obj/item/bedsheet/random{
+	dir = 4
+	},
+/turf/open/floor/carpet/orange,
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"Oq" = (
+/obj/item/trash/pistachios,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/gun_shop)
+"Or" = (
+/mob/living/simple_animal/hostile/morph{
+	melee_damage_lower = 30;
+	melee_damage_upper = 40;
+	vision_range = 5
+	},
+/turf/open/floor/engine,
+/area/ruin/powered/planet_jungle/hunts/barn)
+"OD" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/light/small/broken{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"OG" = (
+/obj/item/clothing/shoes/galoshes{
+	pixel_x = 8;
+	pixel_y = -8
+	},
+/obj/structure/sign/warning/electricshock{
+	pixel_y = -24
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/shed)
+"OI" = (
+/obj/machinery/power/apc/auto_name/south,
+/obj/structure/cable,
+/turf/open/floor/plasteel/white{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/canteen)
+"OJ" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/cable,
+/turf/open/floor/carpet{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/gun_shop)
+"OK" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 6
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"OP" = (
+/obj/structure/flora/grass/jungle,
+/obj/structure/flora/tree/jungle,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"OU" = (
+/obj/structure/flora/junglebush/b,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/lavaland/surface/outdoors)
+"OY" = (
+/obj/item/stack/spacecash/c10,
+/obj/item/stack/spacecash/c1{
+	pixel_x = 8;
+	pixel_y = 7
+	},
+/obj/item/stack/spacecash/c20{
+	pixel_x = 9
+	},
+/obj/item/stack/spacecash/c20{
+	pixel_x = -7;
+	pixel_y = -6
+	},
+/turf/open/water/planet/jungle,
+/area/lavaland/surface/outdoors)
+"Pb" = (
+/obj/structure/fence{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/lavaland/surface/outdoors)
+"Pn" = (
+/mob/living/simple_animal/hostile/spider/giant/tarantula,
+/obj/structure/spacevine,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"Po" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 4
+	},
+/obj/structure/fence{
+	dir = 4
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Py" = (
+/obj/structure/chair/wood{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"PB" = (
+/obj/structure/flora/junglebush,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/ruin/unpowered/planet_lava/cave)
+"PG" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/canteen)
+"PL" = (
+/obj/effect/turf_decal/siding/white/corner{
+	dir = 1
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"PN" = (
+/obj/structure/table/wood,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"PS" = (
+/obj/structure/fence{
+	dir = 8
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Qc" = (
+/obj/structure/closet/cabinet,
+/obj/item/clothing/under/misc/pj/red,
+/obj/item/toy/plush/lizardplushie{
+	pixel_x = -6
+	},
+/obj/item/toy/plush{
+	pixel_x = 6;
+	pixel_y = -6
+	},
+/obj/item/toy/plush{
+	pixel_x = 11;
+	pixel_y = 8
+	},
+/obj/item/clothing/suit/hooded,
+/obj/item/clothing/shoes/kindleKicks{
+	pixel_y = -12
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"Qk" = (
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
+/area/ruin/unpowered/planet_lava/cave)
+"Ql" = (
+/obj/structure/closet/secure_closet/freezer/fridge/open{
+	opened = 1
+	},
+/obj/item/reagent_containers/food/condiment/flour,
+/obj/item/reagent_containers/food/condiment/rice,
+/obj/item/storage/fancy/egg_box,
+/turf/open/floor/plasteel/freezer,
+/area/ruin/powered/planet_jungle/hunts/canteen)
+"Qs" = (
+/obj/item/stack/spacecash/c10{
+	pixel_y = 10
+	},
+/obj/item/stack/spacecash/c1{
+	pixel_x = 8;
+	pixel_y = 7
+	},
+/turf/open/water/planet/jungle,
+/area/lavaland/surface/outdoors)
+"QA" = (
+/obj/structure/table/reinforced,
+/obj/machinery/microwave,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/canteen)
+"QC" = (
+/obj/structure/table/wood,
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/canteen)
+"QH" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/gun_shop)
+"QI" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/spacevine,
+/obj/structure/cable,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"QL" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 4
+	},
+/obj/structure/spider/stickyweb,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"QV" = (
+/obj/structure/spider/stickyweb,
+/obj/structure/spider/stickyweb,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"QW" = (
+/obj/effect/turf_decal/siding/wood,
+/obj/machinery/light/broken,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/canteen)
+"Rg" = (
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
+/area/lavaland/surface/outdoors)
+"Ri" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/canteen)
+"Ro" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 6
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/canteen)
+"Rq" = (
+/obj/structure/spacevine/dense,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"Rs" = (
+/obj/structure/chair/wood{
+	dir = 1
+	},
+/turf/open/floor/carpet{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/canteen)
+"RB" = (
+/obj/structure/flora/tree/jungle/small,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/ruin/unpowered/planet_lava/cave)
+"RD" = (
+/obj/structure/spider/stickyweb,
+/obj/structure/cable,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/sec)
+"RL" = (
+/obj/item/ammo_box/magazine/m10mm{
+	start_empty = 1
+	},
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/ruin/unpowered/planet_lava/cave)
+"RM" = (
+/obj/machinery/washing_machine{
+	pixel_y = 3;
+	pixel_x = -8
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/shed)
+"RU" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"RZ" = (
+/obj/structure/chair/fancy/bench{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/carpet{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/canteen)
+"Sa" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 4
+	},
+/obj/structure/spider/stickyweb,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Sc" = (
+/obj/structure/spacevine,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"Se" = (
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/toilet)
+"Sq" = (
+/obj/structure/door_assembly/door_assembly_wood{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/effect/decal/cleanable/oil,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/white{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/canteen)
+"St" = (
+/obj/structure/chair/fancy/bench,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Sx" = (
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/effect/mob_spawn/human/corpse/assistant,
+/obj/effect/gibspawner/human/bodypartless,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/ruin/unpowered/planet_lava/cave)
+"SE" = (
+/obj/structure/cable,
+/obj/machinery/power/apc/auto_name/south,
+/obj/structure/lattice/catwalk/over/ship/dark,
+/turf/open/floor/plating,
+/area/ruin/powered/planet_jungle/hunts/gate)
+"SF" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/basic/mining/legion,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"SH" = (
+/obj/structure/spacevine/dense,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/lavaland/surface/outdoors)
+"SI" = (
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"SL" = (
+/obj/structure/railing{
+	dir = 8
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/canteen)
+"SU" = (
+/obj/structure/rack,
+/turf/open/floor/concrete,
+/area/ruin/powered/planet_jungle/hunts/barn)
+"Te" = (
+/obj/item/stack/spacecash/c1{
+	pixel_x = 8;
+	pixel_y = 7
+	},
+/obj/item/stack/spacecash/c1{
+	pixel_x = -2;
+	pixel_y = -10
+	},
+/turf/open/water/planet/jungle,
+/area/lavaland/surface/outdoors)
+"Tf" = (
+/obj/machinery/atmospherics/components/unary/outlet_injector{
+	dir = 4
+	},
+/obj/structure/spider/stickyweb,
+/turf/open/floor/engine,
+/area/ruin/powered/planet_jungle/hunts/barn)
+"Tk" = (
+/obj/structure/flora/junglebush,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/yellow,
+/area/ruin/unpowered/planet_lava/cave)
+"Tm" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 10
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Tn" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 4
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Tu" = (
+/obj/machinery/vending/snack,
+/obj/structure/noticeboard{
+	name = "tablica z trofeami";
+	desc = "Tablica do wieszania trofeów.";
+	pixel_y = 28
+	},
+/obj/item/stack/sheet/animalhide/xeno{
+	pixel_y = 28;
+	auto_scatter = 0
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 9
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/gun_shop)
+"Tx" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 9
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"TB" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/gibspawner/generic/animal,
+/obj/structure/cable,
+/turf/open/floor/carpet{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/gun_shop)
+"TC" = (
+/obj/structure/flora/junglebush,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/lavaland/surface/outdoors)
+"TE" = (
+/turf/open/water/planet/jungle,
+/area/lavaland/surface/outdoors)
+"TF" = (
+/obj/structure/chair/fancy/bench{
+	dir = 1
+	},
+/turf/open/floor/carpet,
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"TG" = (
+/mob/living/simple_animal/hostile/spider/giant/hunter,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"TI" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/pipe/simple/orange{
+	dir = 4
+	},
+/mob/living/simple_animal/hostile/spider/giant/nurse,
+/turf/open/floor/plating,
+/area/ruin/powered/planet_jungle/hunts/barn)
+"TK" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"TU" = (
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/toilet)
+"TW" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete,
+/area/ruin/powered/planet_jungle/hunts/gate)
+"TY" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 1
+	},
+/obj/structure/spacevine,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"TZ" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Ub" = (
+/obj/structure/table/wood,
+/obj/item/modular_computer/laptop/preset/civillian,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/shed)
+"Ud" = (
+/obj/structure/spacevine,
+/obj/structure/cable,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Ue" = (
+/obj/item/stack/spacecash/c10{
+	pixel_x = -8;
+	pixel_y = 11
+	},
+/obj/item/stack/spacecash/c20{
+	pixel_y = 4;
+	pixel_x = 2
+	},
+/turf/open/water/planet/jungle,
+/area/lavaland/surface/outdoors)
+"Ui" = (
+/obj/structure/flora/junglebush/b,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"Uj" = (
+/obj/effect/turf_decal/siding/white/corner,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/gibspawner/generic/animal,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Uo" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/gate)
+"Uu" = (
+/obj/machinery/shower{
+	dir = 8
+	},
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/plasteel/freezer,
+/area/ruin/powered/planet_jungle/hunts/toilet)
+"Uw" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Uy" = (
+/turf/open/floor/plasteel/stairs{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Uz" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/ammo_casing/shotgun/buckshot,
+/obj/item/ammo_casing/shotgun/buckshot,
+/obj/item/ammo_casing/shotgun/buckshot,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/gun_shop)
+"UF" = (
+/obj/structure/sign/painting/library{
+	pixel_y = -25
+	},
+/turf/open/floor/carpet/orange,
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"UG" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/white{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/canteen)
+"UH" = (
+/obj/machinery/light/broken{
+	dir = 4
+	},
+/obj/item/stack/spacecash/c20,
+/turf/open/floor/engine,
+/area/ruin/powered/planet_jungle/hunts/barn)
+"UO" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"UX" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/gun_shop)
+"UY" = (
+/obj/item/ammo_casing/shotgun/buckshot,
+/obj/item/stack/sheet/cardboard{
+	pixel_x = 5;
+	pixel_y = 2;
+	layer = 2.9
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/gun_shop)
+"Va" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 10
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/light/broken,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/gun_shop)
+"Vh" = (
+/obj/effect/turf_decal/siding/white/corner{
+	dir = 8
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/gate)
+"Vk" = (
+/obj/structure/spacevine,
+/mob/living/simple_animal/hostile/jungle/seedling,
+/obj/structure/cable,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Vo" = (
+/obj/structure/rack,
+/obj/item/clothing/shoes/jackboots{
+	pixel_y = -1;
+	pixel_x = -10
+	},
+/obj/item/clothing/shoes/jackboots{
+	pixel_y = -1;
+	pixel_x = 4
+	},
+/turf/open/floor/carpet/royalblack{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/gun_shop)
+"Vr" = (
+/obj/structure/fence/door/opened{
+	name = "TEREN PRYWATNY"
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Vs" = (
+/obj/structure/flora/junglebush/b,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"Vw" = (
+/obj/structure/table/wood,
+/obj/item/ammo_casing/shotgun,
+/turf/open/floor/carpet/green{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/gun_shop)
+"Vy" = (
+/obj/effect/turf_decal/siding/white/corner{
+	dir = 4
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"VA" = (
+/obj/machinery/atmospherics/components/binary/pump{
+	dir = 4
+	},
+/obj/machinery/door/poddoor/shutters{
+	dir = 4;
+	id = "cell5"
+	},
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/engine,
+/area/ruin/powered/planet_jungle/hunts/barn)
+"VC" = (
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/structure/cable,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"VD" = (
+/obj/structure/table/reinforced,
+/obj/item/storage/fancy/donut_box,
+/turf/open/floor/concrete,
+/area/ruin/powered/planet_jungle/hunts/barn)
+"VE" = (
+/obj/structure/closet/secure_closet/freezer/fridge,
+/obj/item/reagent_containers/food/drinks/beer,
+/obj/item/food/energybar,
+/obj/item/food/energybar,
+/obj/item/food/energybar,
+/obj/item/pizzabox/meat,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/gun_shop)
+"VF" = (
+/obj/item/food/meat/slab/goliath,
+/obj/machinery/light/broken{
+	dir = 4
+	},
+/turf/open/floor/plasteel/freezer,
+/area/ruin/powered/planet_jungle/hunts/canteen)
+"VG" = (
+/obj/item/food/meat/slab/goliath,
+/turf/open/floor/plasteel/freezer,
+/area/ruin/powered/planet_jungle/hunts/canteen)
+"VH" = (
+/obj/structure/flora/grass/jungle,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"VJ" = (
+/obj/effect/turf_decal/siding/white,
+/mob/living/simple_animal/hostile/spider/giant,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"VL" = (
+/obj/structure/closet/crate/bin,
+/obj/item/stack/sheet/animalhide,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/canteen)
+"VM" = (
+/obj/structure/spacevine,
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"VT" = (
+/obj/structure/closet,
+/obj/item/gun/ballistic/shotgun/doublebarrel/improvised{
+	name = "Pora Drzemki";
+	desc = "Kawałek rury i różne odpady złożone w prymitywną jednostrzałową strzelbę. Na lufie nabazgrano „Pora Drzemki”."
+	},
+/obj/item/reagent_containers/glass/bottle,
+/obj/item/reagent_containers/glass/bottle/curare,
+/obj/item/reagent_containers/glass/bottle/amanitin,
+/obj/item/reagent_containers/glass/bottle/sodium_thiopental,
+/obj/item/storage/box/lethalshot,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/planet_jungle/hunts/shuttle)
+"Wi" = (
+/mob/living/simple_animal/hostile/spider/giant/hunter,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/cable,
+/turf/open/floor/concrete,
+/area/ruin/powered/planet_jungle/hunts/barn)
+"Wl" = (
+/obj/effect/turf_decal/siding/white,
+/obj/structure/spider/stickyweb,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Wt" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/mob/living/basic/mining/goliath,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/lavaland/surface/outdoors)
+"Wz" = (
+/obj/structure/spacevine,
+/obj/structure/flora/junglebush,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/lavaland/surface/outdoors)
+"WA" = (
+/obj/structure/flora/grass/jungle,
+/obj/structure/spacevine{
+	pixel_x = 32
+	},
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/lavaland/surface/outdoors)
+"WG" = (
+/obj/structure/flora/junglebush,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"WK" = (
+/turf/open/floor/engine,
+/area/ruin/powered/planet_jungle/hunts/barn)
+"WO" = (
+/obj/machinery/atmospherics/components/binary/pump{
+	dir = 4
+	},
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/spider/stickyweb,
+/turf/open/floor/plating,
+/area/ruin/powered/planet_jungle/hunts/barn)
+"WP" = (
+/obj/machinery/light/small/broken{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/toilet)
+"WU" = (
+/obj/structure/table/reinforced,
+/obj/machinery/door/window/brigdoor{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete,
+/area/ruin/powered/planet_jungle/hunts/gate)
+"Xb" = (
+/obj/structure/chair/office{
+	dir = 4
+	},
+/obj/structure/spider/stickyweb,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/sec)
+"Xf" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/canteen)
+"Xh" = (
+/obj/effect/turf_decal/siding/wood/corner,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/gun_shop)
+"Xl" = (
+/obj/machinery/light/floor,
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/shuttle)
+"Xn" = (
+/obj/item/gun/ballistic/automatic,
+/obj/item/ammo_casing/spent,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"Xq" = (
+/obj/structure/spider/stickyweb,
+/turf/open/floor/engine,
+/area/ruin/powered/planet_jungle/hunts/barn)
+"Xy" = (
+/obj/structure/closet/secure_closet/freezer/fridge{
+	name = "maszyna do lodu";
+	desc = "Maszyna do lodu zamykana na kartę."
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"XA" = (
+/obj/structure/spacevine,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/shed)
+"XD" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/cable,
+/obj/machinery/light/small/broken,
+/turf/open/floor/plating,
+/area/ruin/powered/planet_jungle/hunts/shed)
+"XF" = (
+/obj/structure/table_frame/wood,
+/obj/item/stack/sheet/mineral/wood,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/canteen)
+"XK" = (
+/obj/structure/spacevine/weak,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"XL" = (
+/obj/structure/fence,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"XO" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/gun_shop)
+"XT" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/structure/spacevine{
+	pixel_x = -32
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"XW" = (
+/obj/structure/spacevine/weak,
+/obj/structure/spacevine/weak,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"Ya" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/ruin/powered/planet_jungle/hunts/shed)
+"Yg" = (
+/obj/structure/rack,
+/obj/item/kitchen/knife/hunting,
+/turf/open/floor/concrete,
+/area/ruin/powered/planet_jungle/hunts/barn)
+"Yl" = (
+/obj/machinery/door/airlock/freezer{
+	dir = 4
+	},
+/turf/open/floor/plasteel/freezer,
+/area/ruin/powered/planet_jungle/hunts/canteen)
+"Ym" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/mob/living/basic/mining/goliath,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"YB" = (
+/obj/structure/closet,
+/obj/item/clothing/under/suit/charcoal,
+/obj/item/clothing/shoes/winterboots{
+	name = "buty trekkingowe"
+	},
+/obj/item/storage/wallet/random,
+/obj/item/modular_computer/tablet,
+/obj/item/stack/spacecash/c500,
+/obj/item/stack/spacecash/c20,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/toilet)
+"YE" = (
+/mob/living/basic/bear/cave,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"YF" = (
+/turf/open/floor/plasteel/stairs{
+	dir = 4;
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"YH" = (
+/mob/living/simple_animal/hostile/spider/giant/nurse,
+/obj/structure/cable,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"YK" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"YP" = (
+/obj/structure/toilet{
+	dir = 4;
+	pixel_x = -8
+	},
+/mob/living/basic/bear/cave,
+/obj/effect/mob_spawn/human/corpse/damaged,
+/obj/item/stack/spacecash/c20,
+/obj/machinery/light/small/broken{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood{
+	pixel_y = 28
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/toilet)
+"YS" = (
+/obj/structure/table/wood,
+/obj/item/flashlight/lamp,
+/obj/item/reagent_containers/food/drinks/mug/tea{
+	pixel_x = 12;
+	pixel_y = 14
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"YV" = (
+/obj/structure/sign/poster/contraband/random{
+	pixel_x = 28
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/gun_shop)
+"Zb" = (
+/obj/effect/turf_decal/siding/white/corner{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/cable,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Zg" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/pipe/simple/orange{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/ruin/powered/planet_jungle/hunts/barn)
+"Zh" = (
+/obj/structure/table/wood,
+/obj/machinery/light/broken{
+	dir = 1
+	},
+/turf/open/floor/carpet{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/canteen)
+"Zi" = (
+/obj/machinery/door/window/southleft{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_jungle/hunts/toilet)
+"Zu" = (
+/obj/structure/cable,
+/turf/open/floor/carpet,
+/area/ruin/powered/planet_jungle/hunts/hotel)
+"Zv" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/basic/mining/goliath,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Zz" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/power/apc/auto_name/south,
+/obj/structure/cable,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/gun_shop)
+"ZA" = (
+/obj/structure/railing{
+	dir = 6
+	},
+/obj/structure/chair/wood{
+	dir = 8
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/canteen)
+"ZB" = (
+/turf/closed/wall/mineral/wood,
+/area/ruin/powered/planet_jungle/hunts/canteen)
+"ZG" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 1
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"ZP" = (
+/obj/structure/spider/stickyweb,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"ZR" = (
+/obj/structure/flora/tree/jungle/small,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/lavaland/surface/outdoors)
+"ZT" = (
+/obj/structure/table/reinforced,
+/turf/open/floor/concrete,
+/area/ruin/powered/planet_jungle/hunts/barn)
+"ZU" = (
+/obj/structure/flora/junglebush/c,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
+/area/lavaland/surface/outdoors)
+"ZW" = (
+/obj/effect/turf_decal/siding/wood,
+/obj/effect/decal/remains/human,
+/obj/effect/gibspawner/human/bodypartless,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_jungle/hunts/canteen)
+"ZX" = (
+/obj/structure/flora/grass/jungle/b,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/yellow,
+/area/lavaland/surface/outdoors)
+"ZY" = (
+/obj/machinery/light/broken{
+	dir = 4
+	},
+/mob/living/basic/mining/ice_whelp,
+/turf/open/floor/engine,
+/area/ruin/powered/planet_jungle/hunts/barn)
+
+(1,1,1) = {"
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+DF
+Ku
+Ku
+Ku
+DF
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+"}
+(2,1,1) = {"
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+XK
+XK
+DF
+DF
+DF
+DF
+DF
+DF
+DF
+Ku
+DF
+DF
+DF
+DF
+DF
+DF
+Ku
+DF
+DF
+DF
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+DF
+DF
+Ku
+Ku
+Ku
+"}
+(3,1,1) = {"
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+qc
+HC
+ZU
+Lj
+XK
+Rg
+DF
+DF
+DF
+DF
+DF
+DF
+DF
+DF
+DF
+DF
+DF
+DF
+DF
+DF
+DF
+DF
+DF
+DF
+DF
+DF
+Ku
+Ku
+DF
+DF
+DF
+DF
+DF
+Ku
+Ku
+"}
+(4,1,1) = {"
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+qc
+XK
+Rg
+Rg
+Ik
+po
+VH
+DF
+DF
+DF
+DF
+DF
+DF
+DF
+DF
+DF
+DF
+DF
+DF
+DF
+DF
+DF
+DF
+DF
+DF
+DF
+DF
+DF
+DF
+DF
+DF
+DF
+DF
+Ku
+Ku
+Ku
+"}
+(5,1,1) = {"
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+qc
+Rq
+Rg
+DH
+Rg
+VH
+qO
+qO
+qO
+qO
+qO
+qO
+qO
+qO
+qO
+DF
+DF
+DF
+qO
+qO
+qO
+qO
+qO
+qO
+qO
+qO
+qO
+DF
+DF
+DF
+DF
+DF
+DF
+DF
+Ku
+Ku
+"}
+(6,1,1) = {"
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+qc
+Rq
+vD
+Ik
+Ik
+qc
+qO
+wA
+LG
+pA
+qO
+nO
+VM
+ov
+qO
+qO
+qO
+qO
+qO
+Ff
+vX
+Op
+qO
+LX
+YK
+Qc
+qO
+DF
+DF
+DF
+DF
+DF
+DF
+DF
+Ku
+Ku
+"}
+(7,1,1) = {"
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+qc
+Ik
+Rg
+Ik
+VH
+Sc
+qO
+gV
+bX
+sc
+qO
+mO
+ud
+fu
+qO
+nj
+hW
+aN
+qO
+jn
+bX
+UF
+qO
+jx
+aJ
+Py
+qO
+DF
+DF
+DF
+DF
+DF
+DF
+DF
+Ku
+Ku
+"}
+(8,1,1) = {"
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+qc
+Rg
+DH
+Rg
+qc
+Sc
+qO
+PN
+aJ
+bX
+qO
+MX
+Cd
+Il
+qO
+dx
+fd
+AB
+qO
+dJ
+bX
+bX
+qO
+aJ
+bX
+sl
+qO
+DF
+DF
+DF
+DF
+DF
+DF
+DF
+Ku
+Ku
+"}
+(9,1,1) = {"
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+qc
+XK
+XK
+zn
+Sc
+qO
+qO
+qO
+qO
+xV
+qO
+xV
+zN
+qO
+qO
+lw
+se
+bV
+qO
+qO
+qO
+xV
+qO
+xV
+qO
+qO
+qO
+qO
+DF
+DF
+DF
+DF
+DF
+DF
+Ku
+Ku
+"}
+(10,1,1) = {"
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+qc
+XK
+xJ
+XK
+qc
+Sc
+LJ
+xr
+vS
+DO
+XT
+AW
+XT
+wW
+BD
+hl
+ic
+UO
+ic
+nh
+jg
+CK
+ic
+Ym
+TK
+TK
+TK
+lh
+qO
+DF
+DF
+DF
+DF
+DF
+DF
+Ku
+Ku
+"}
+(11,1,1) = {"
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+qc
+qc
+vH
+XK
+HC
+LH
+qO
+uz
+Cq
+aW
+gi
+pn
+gi
+hD
+jg
+pI
+HG
+Mu
+HG
+mq
+jg
+BX
+ro
+OD
+HG
+No
+HG
+FJ
+qO
+DF
+DF
+DF
+DF
+DF
+DF
+Ku
+Ku
+"}
+(12,1,1) = {"
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+qc
+vH
+Rq
+XK
+qc
+Sc
+Gz
+qO
+qO
+qO
+qO
+xV
+qO
+qO
+xV
+qO
+El
+Jx
+Zu
+BU
+TF
+qO
+pI
+mq
+qO
+xV
+qO
+qO
+qO
+qO
+DF
+DF
+DF
+qc
+DF
+DF
+Ku
+Ku
+"}
+(13,1,1) = {"
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+qc
+VH
+VH
+VH
+jS
+Dg
+Rq
+KZ
+Rq
+qO
+NQ
+Og
+bX
+qO
+ok
+eS
+qO
+md
+BU
+Zu
+Jx
+LA
+qO
+Xy
+LT
+qO
+bX
+Lb
+tH
+qO
+DF
+DF
+DF
+DF
+VH
+DF
+DF
+Ku
+Ku
+"}
+(14,1,1) = {"
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+qc
+qc
+SH
+SH
+qF
+NZ
+NZ
+qc
+XK
+xZ
+Rq
+qO
+dA
+Lt
+GR
+qO
+ke
+py
+py
+qO
+Ml
+Zu
+BU
+qO
+qO
+qO
+qO
+qO
+Bb
+jn
+dA
+qO
+DF
+DF
+DF
+qc
+qc
+fa
+qc
+Ku
+Ku
+"}
+(15,1,1) = {"
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+qc
+qc
+xJ
+XK
+XK
+Rq
+VH
+SH
+SH
+NZ
+NZ
+SH
+Rq
+EY
+ks
+Rq
+qO
+dE
+js
+YS
+qO
+Fg
+SH
+NZ
+qO
+nv
+fX
+nv
+qO
+gp
+ns
+hQ
+qO
+zI
+dl
+dE
+qO
+DF
+DF
+DF
+Rq
+xJ
+VH
+HC
+Ku
+Ku
+"}
+(16,1,1) = {"
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+qc
+XK
+XK
+NZ
+IO
+NZ
+NZ
+XK
+jS
+qc
+qc
+NZ
+NZ
+qc
+XK
+ks
+qc
+qO
+xm
+xm
+xm
+qO
+SH
+NZ
+NZ
+gB
+YF
+wC
+YF
+tv
+HZ
+Ao
+NZ
+qO
+xm
+xm
+xm
+qO
+NZ
+ks
+qc
+fa
+IO
+qD
+IO
+Ku
+Ku
+"}
+(17,1,1) = {"
+Ku
+Ku
+Ku
+Ku
+Ku
+qc
+qc
+IO
+IO
+NZ
+NZ
+vH
+XK
+XK
+xU
+xU
+xU
+xU
+xU
+xU
+xU
+xU
+qc
+JY
+ns
+JY
+ns
+HI
+NZ
+OU
+SI
+IJ
+ZG
+uI
+iR
+IJ
+SI
+NZ
+Mo
+gp
+JY
+ns
+ns
+gp
+NZ
+ks
+VH
+qc
+NZ
+IO
+IO
+Ku
+Ku
+"}
+(18,1,1) = {"
+Ku
+Ku
+Ku
+Ku
+Ku
+VH
+VH
+NZ
+NZ
+NZ
+qF
+SH
+vH
+xU
+xU
+Tu
+tc
+Lh
+Hn
+bH
+Vo
+xU
+xU
+Lm
+SH
+SH
+HZ
+NZ
+Mo
+SI
+SI
+Tx
+hi
+KY
+eC
+aO
+SI
+SI
+NZ
+HZ
+Mo
+SH
+NZ
+SH
+SH
+ks
+Rq
+qc
+GE
+IO
+XK
+Ku
+Ku
+"}
+(19,1,1) = {"
+Ku
+Ku
+Ku
+Ku
+Ku
+qc
+qc
+Rq
+Rq
+Rq
+ix
+Rq
+qc
+xU
+jc
+Mj
+XO
+XO
+jL
+mY
+jL
+GZ
+xU
+Gk
+NZ
+Mo
+NZ
+Ao
+SI
+SI
+Tx
+hi
+uI
+bE
+bE
+eC
+aO
+SI
+SI
+NZ
+SH
+SH
+Mo
+NZ
+NZ
+ks
+qc
+IO
+NZ
+ER
+qc
+Ku
+Ku
+"}
+(20,1,1) = {"
+Ku
+Ku
+Ku
+Ku
+Ku
+qc
+HC
+qc
+Rq
+ix
+ix
+Rq
+FI
+xU
+tl
+XO
+XO
+XO
+jL
+mY
+jL
+NM
+xU
+NZ
+NZ
+NZ
+NZ
+SI
+SI
+Tx
+hi
+uI
+ty
+bE
+bE
+bE
+eC
+aO
+IJ
+SI
+SH
+NZ
+NZ
+HZ
+Mo
+ks
+qc
+FI
+FI
+XK
+vH
+Ku
+Ku
+"}
+(21,1,1) = {"
+Ku
+Ku
+Ku
+Ku
+Ku
+qc
+HC
+FI
+ix
+Rq
+ix
+FI
+qc
+xU
+Mp
+qT
+XO
+Ge
+UY
+le
+le
+bS
+xU
+OU
+NZ
+NZ
+SI
+IJ
+Tx
+hi
+uI
+SI
+ls
+ls
+ls
+SI
+bE
+eC
+IS
+SI
+SI
+HZ
+NZ
+NZ
+NZ
+ks
+vH
+qc
+ix
+ix
+Rq
+Ku
+Ku
+"}
+(22,1,1) = {"
+Ku
+Ku
+Ku
+Ku
+Ku
+qc
+Rq
+qc
+jS
+xU
+xU
+xU
+xU
+xU
+xU
+jF
+fl
+Vw
+uu
+jj
+kA
+wm
+xU
+xU
+NZ
+SI
+SI
+JV
+hi
+uI
+SI
+SI
+TE
+TE
+TE
+SI
+SI
+bE
+eC
+aO
+SI
+SI
+TC
+NZ
+NZ
+ks
+qc
+FI
+qc
+ix
+vH
+Ku
+Ku
+"}
+(23,1,1) = {"
+Ku
+Ku
+Ku
+Ku
+Ku
+qc
+Rq
+qc
+xU
+xU
+VE
+jR
+tj
+xU
+qC
+fl
+fl
+qe
+Lz
+Uz
+Uz
+EA
+Va
+xU
+Ng
+SI
+Tx
+PL
+uI
+SI
+SI
+TE
+uC
+jb
+ev
+TE
+SI
+SI
+bE
+eC
+Tm
+IJ
+IJ
+SH
+SI
+id
+eI
+qc
+qc
+ix
+vi
+Ku
+Ku
+"}
+(24,1,1) = {"
+Ku
+Ku
+Ku
+Ku
+Ku
+qc
+Rq
+XK
+xU
+yC
+Oq
+gS
+Na
+xU
+xf
+fl
+fl
+FP
+XO
+Ge
+sa
+uE
+He
+EX
+Uy
+Mv
+PL
+bE
+uI
+St
+TE
+TE
+gG
+Te
+ym
+Qs
+TE
+oB
+bE
+bE
+Km
+mV
+mV
+Nc
+Mv
+NV
+bE
+Rq
+VH
+bE
+Rq
+Ku
+Ku
+"}
+(25,1,1) = {"
+Ku
+Ku
+Ku
+Ku
+Ku
+XK
+qc
+XK
+xU
+fs
+CM
+XO
+XO
+xU
+vz
+fl
+fl
+mi
+QH
+XO
+mK
+TB
+OJ
+Gw
+DM
+uI
+uI
+rv
+uI
+St
+TE
+dI
+OY
+TE
+oA
+tT
+TE
+oB
+bE
+Uw
+Uw
+lN
+bE
+bE
+bE
+Vr
+Kr
+bE
+pv
+VH
+qc
+Ku
+Ku
+"}
+(26,1,1) = {"
+Ku
+Ku
+Ku
+Ku
+Ku
+XK
+xJ
+qc
+xU
+hH
+XO
+XO
+Zz
+xU
+xU
+KD
+fl
+pL
+Ge
+Ge
+OJ
+sa
+sa
+EX
+Uy
+NN
+Vy
+bE
+uI
+St
+TE
+TE
+uC
+JH
+jH
+Ue
+TE
+oB
+bE
+bE
+ep
+Tn
+iA
+Tn
+Tn
+NV
+bE
+Tn
+Tn
+qc
+jS
+Ku
+Ku
+"}
+(27,1,1) = {"
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+qc
+XK
+xU
+qf
+Ge
+Ge
+eL
+xU
+jM
+Lw
+Ge
+Ge
+Ge
+Ge
+eL
+Xh
+HA
+xU
+KV
+SI
+qJ
+Ch
+VC
+SI
+SI
+TE
+cp
+bi
+TE
+TE
+SI
+SI
+bE
+ep
+OK
+SI
+SI
+IJ
+IJ
+id
+mh
+SI
+Rq
+SI
+EY
+Ku
+Ku
+"}
+(28,1,1) = {"
+Ku
+Ku
+Ku
+Ku
+Ku
+qc
+qc
+XK
+xU
+xU
+ci
+XO
+eL
+Eh
+qj
+eL
+eL
+pQ
+hN
+Lr
+hN
+bS
+xU
+xU
+NZ
+SI
+SI
+qJ
+AF
+uI
+SI
+SI
+TE
+TE
+TE
+SI
+SI
+bE
+Uj
+mE
+SI
+SI
+NZ
+Ao
+NZ
+ks
+qc
+qc
+vi
+VH
+qc
+Ku
+Ku
+"}
+(29,1,1) = {"
+Ku
+Ku
+Ku
+Ku
+Ku
+qc
+qc
+XK
+XK
+xU
+xU
+xU
+xU
+xU
+Bq
+NR
+UX
+YV
+UX
+UX
+UX
+uR
+xU
+OU
+NZ
+xp
+IJ
+IJ
+qJ
+wt
+uI
+SI
+hY
+hY
+hY
+SI
+lN
+ep
+OK
+SI
+SI
+NZ
+Mo
+NZ
+NZ
+ks
+jS
+VH
+On
+qc
+vi
+Ku
+Ku
+"}
+(30,1,1) = {"
+Ku
+Ku
+Ku
+Ku
+Ku
+XK
+XK
+XK
+qc
+ix
+ix
+qc
+vH
+xU
+xU
+Ep
+Hz
+xU
+xB
+ky
+mb
+xU
+xU
+NZ
+NZ
+NZ
+NZ
+SI
+SI
+qJ
+AF
+oR
+KS
+Uw
+bE
+bE
+ep
+OK
+SI
+SI
+TC
+NZ
+NZ
+NZ
+NZ
+ks
+NZ
+NZ
+Rq
+FI
+FI
+FI
+Ku
+"}
+(31,1,1) = {"
+Ku
+Ku
+Ku
+Ku
+Ku
+XK
+XK
+la
+fU
+ix
+ix
+FI
+EY
+qc
+xU
+xU
+xU
+xU
+xU
+xU
+xU
+xU
+NZ
+GV
+NZ
+NZ
+NZ
+NZ
+SI
+SI
+qJ
+Zb
+rv
+rv
+ty
+ep
+OK
+SI
+SI
+lX
+lX
+lX
+lX
+lX
+lX
+lX
+lX
+lX
+lX
+Rq
+vi
+qc
+Ku
+"}
+(32,1,1) = {"
+Ku
+Ku
+Ku
+Ku
+Ku
+qc
+qc
+qc
+FI
+FI
+FI
+On
+Rq
+Rq
+xZ
+NZ
+NZ
+NZ
+NZ
+ns
+ns
+ns
+Mo
+NZ
+NZ
+OU
+NZ
+NZ
+NZ
+SI
+IJ
+qJ
+cd
+uI
+ep
+OK
+bn
+bn
+lX
+lX
+RM
+Dh
+eK
+Fn
+LY
+lX
+qi
+tk
+lX
+FI
+or
+fa
+Ku
+"}
+(33,1,1) = {"
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+qc
+Rq
+FI
+ix
+FI
+VH
+qc
+qc
+ew
+NZ
+NZ
+NZ
+eo
+Mo
+SH
+SH
+SH
+NZ
+NZ
+Mo
+NZ
+NZ
+NZ
+NZ
+SI
+SI
+TZ
+rv
+iR
+bn
+SI
+Rq
+lX
+dv
+sx
+ps
+Ni
+ps
+Ni
+DT
+Ya
+XD
+lX
+XK
+XK
+FI
+Ku
+"}
+(34,1,1) = {"
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+qc
+qc
+HC
+qc
+Rq
+Rq
+jS
+ZB
+ZB
+ZB
+ZB
+ZB
+ZB
+ZB
+eF
+eF
+WA
+SH
+NZ
+NZ
+NZ
+NZ
+NZ
+NZ
+NZ
+SI
+TZ
+rv
+iR
+bn
+Rq
+Rq
+lX
+Ub
+Fv
+jh
+ps
+XA
+OG
+lX
+KT
+JE
+lX
+NZ
+IO
+FI
+Ku
+"}
+(35,1,1) = {"
+Ku
+Ku
+Ku
+Ku
+Ku
+qc
+qc
+qc
+VH
+On
+Rq
+SH
+NZ
+ZB
+Ql
+Gc
+KC
+KC
+hb
+ZB
+ZB
+ZB
+ZB
+ZB
+ZB
+ZB
+ZB
+tI
+tI
+tI
+Wt
+SI
+ZG
+uI
+iR
+SI
+aK
+FW
+Gb
+lX
+lX
+lX
+kH
+lX
+lX
+lX
+lX
+lX
+lX
+qc
+IO
+FI
+Ku
+"}
+(36,1,1) = {"
+Ku
+Ku
+Ku
+Ku
+Ku
+qc
+qc
+HC
+qc
+qc
+OU
+NZ
+NZ
+ZB
+VG
+mr
+VF
+GX
+iI
+ZB
+bF
+zi
+Je
+LB
+Hs
+ii
+At
+NU
+NU
+NU
+NU
+Jv
+ZG
+uI
+fD
+Ex
+GQ
+GQ
+Ud
+Vk
+ez
+as
+Ud
+ta
+nT
+Bo
+Ik
+Rg
+vH
+qc
+FI
+HU
+FI
+"}
+(37,1,1) = {"
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+VH
+qc
+Rq
+NZ
+NZ
+OU
+NZ
+ZB
+Yl
+ZB
+ZB
+ZB
+ZB
+ZB
+QC
+NU
+NU
+wy
+dw
+Ro
+At
+NU
+NU
+NU
+NU
+SI
+ZG
+mA
+iR
+SI
+Kl
+Ly
+og
+og
+og
+GJ
+og
+GJ
+og
+Pb
+Rq
+qc
+fa
+IO
+NZ
+FI
+Ku
+"}
+(38,1,1) = {"
+Ku
+Ku
+Ku
+Ku
+Ku
+qc
+qc
+qc
+qc
+NZ
+SH
+NZ
+ZB
+ZB
+jQ
+sI
+sI
+AM
+ZB
+jq
+jq
+NU
+jq
+jq
+QW
+ZB
+ZB
+SL
+lJ
+SL
+hy
+SI
+ZG
+uI
+iR
+SI
+BH
+nJ
+BH
+BH
+BH
+BH
+BH
+BH
+BH
+BH
+BH
+BH
+vi
+VH
+vi
+Lj
+Rg
+"}
+(39,1,1) = {"
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+qc
+HC
+XK
+qc
+SH
+NZ
+ZB
+lF
+sI
+Bz
+sS
+AM
+ZB
+Gt
+Gt
+ct
+Gt
+Gt
+Gd
+ii
+lk
+NU
+wy
+Xf
+if
+SI
+ZG
+uI
+iR
+bn
+BH
+Se
+BH
+YP
+BH
+nP
+BH
+IG
+gJ
+MH
+kX
+BH
+BH
+qc
+vH
+XK
+Lj
+"}
+(40,1,1) = {"
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+qc
+qc
+VH
+qc
+NZ
+ZB
+ia
+AM
+ow
+wV
+qo
+ZB
+Zh
+Ic
+NU
+eW
+eW
+NU
+ZW
+Ip
+Bx
+Xf
+Xf
+Gf
+SI
+vv
+uI
+iR
+IJ
+BH
+cO
+BH
+Nz
+BH
+nJ
+BH
+yx
+nB
+Se
+TU
+kX
+BH
+BH
+qc
+qc
+qc
+"}
+(41,1,1) = {"
+Ku
+Ku
+Ku
+Ku
+Ku
+XK
+qc
+Rq
+Rq
+qc
+la
+qc
+ZB
+QA
+AM
+vI
+bs
+OI
+ZB
+ma
+ma
+NU
+RZ
+dQ
+NU
+Mw
+It
+NU
+NU
+pR
+NU
+SI
+ZG
+uI
+iR
+SI
+BH
+zX
+ad
+TU
+ad
+ht
+BH
+bU
+uP
+Se
+cO
+jE
+bu
+BH
+VH
+NZ
+Ku
+"}
+(42,1,1) = {"
+Ku
+Ku
+Ku
+Ku
+Ku
+qc
+XK
+Rq
+Rq
+qc
+vH
+qc
+ZB
+iW
+JD
+HK
+oK
+vp
+ZB
+jq
+jq
+NU
+HE
+HE
+oO
+Mw
+lk
+NU
+ug
+NU
+hv
+SI
+ZG
+uI
+iR
+SI
+BH
+gQ
+Se
+cO
+cO
+cO
+DI
+wv
+jz
+kt
+Se
+TU
+eP
+BH
+NZ
+NZ
+qc
+"}
+(43,1,1) = {"
+Ku
+Ku
+Ku
+Ku
+Ku
+qc
+qc
+XK
+XK
+Lj
+Rq
+Rq
+ZB
+ZB
+va
+Ea
+vp
+vp
+It
+PG
+rx
+NU
+NU
+NU
+NU
+Mw
+lk
+NU
+XF
+Xf
+Dm
+SI
+ZG
+uI
+iR
+YE
+BH
+BH
+ss
+zV
+fO
+Zi
+BH
+YB
+gJ
+TU
+Se
+zd
+BH
+BH
+NZ
+NZ
+qc
+"}
+(44,1,1) = {"
+Ku
+Ku
+Ku
+Ku
+Ku
+qc
+yj
+qc
+sC
+Rg
+Lj
+Rq
+XK
+ZB
+VL
+hL
+UG
+sI
+It
+PG
+NU
+oO
+NU
+Xf
+Xf
+Mw
+ZB
+Ri
+MN
+Ri
+ZA
+SI
+ZG
+rv
+xO
+IJ
+SI
+BH
+Uu
+Cx
+oW
+hg
+BH
+Se
+uP
+WP
+NX
+BH
+BH
+xJ
+jS
+qc
+Ku
+"}
+(45,1,1) = {"
+Ku
+Ku
+Ku
+Ku
+qc
+qc
+qc
+qc
+Ik
+Ik
+Lj
+XK
+qc
+ZB
+ZB
+ZB
+Sq
+ZB
+ZB
+MW
+oy
+Rs
+jq
+oi
+vu
+KL
+ZB
+ZB
+NZ
+NZ
+NZ
+SI
+ZG
+rv
+Km
+Tm
+SI
+BH
+BH
+BH
+BH
+BH
+BH
+BH
+BH
+BH
+BH
+BH
+VH
+qc
+XW
+qc
+Ku
+"}
+(46,1,1) = {"
+Ku
+Ku
+Ku
+Ku
+qc
+qc
+XK
+XK
+Ik
+Ik
+sC
+XK
+qc
+PS
+bE
+sy
+iC
+iY
+ZB
+ZB
+ZB
+ZB
+ZB
+ZB
+ZB
+ZB
+ZB
+MZ
+hG
+hG
+te
+SI
+ZG
+rv
+Uw
+xO
+SI
+SI
+TC
+NZ
+TC
+NZ
+NZ
+TC
+NZ
+NZ
+ks
+NZ
+jS
+XK
+XW
+qc
+Ku
+"}
+(47,1,1) = {"
+Ku
+Ku
+Ku
+qc
+Rq
+qc
+XK
+XK
+Rg
+Rg
+Ik
+Ik
+Rg
+PS
+bE
+SF
+rv
+bE
+bE
+bE
+bE
+bE
+bE
+bE
+bE
+Uw
+Zv
+Uw
+bE
+bE
+Bo
+SI
+ZG
+rv
+Uw
+NF
+aO
+SI
+SI
+NZ
+NZ
+SH
+NZ
+Ao
+SH
+NZ
+ks
+qc
+CE
+ER
+qc
+qc
+Ku
+"}
+(48,1,1) = {"
+Ku
+Ku
+Ku
+qc
+qc
+qc
+qc
+qc
+Rg
+VH
+qc
+Rg
+qc
+PS
+bE
+bE
+uI
+rv
+rv
+rv
+zu
+rv
+uI
+uI
+uI
+KY
+uI
+uI
+uI
+uI
+Aa
+rh
+RU
+uI
+uI
+bE
+eC
+aO
+SI
+SI
+NZ
+NZ
+NZ
+NZ
+NZ
+NZ
+ks
+NZ
+CE
+NZ
+NZ
+Ku
+Ku
+"}
+(49,1,1) = {"
+Ku
+Ku
+qc
+qc
+XK
+Rq
+Rq
+Rq
+qc
+qc
+vN
+qc
+XK
+vB
+bE
+bE
+bE
+bE
+bE
+bE
+bE
+bE
+bE
+bE
+bE
+bE
+bE
+bE
+bE
+bE
+NV
+SI
+ZG
+ty
+uI
+KY
+bE
+eC
+aO
+SI
+IJ
+NZ
+Ao
+NZ
+NZ
+NZ
+ks
+On
+SH
+SH
+HC
+Ku
+Ku
+"}
+(50,1,1) = {"
+Ku
+Ku
+qc
+Ik
+Ik
+qc
+Rq
+Rq
+XK
+vN
+vN
+XK
+XK
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+SI
+qJ
+Vy
+bE
+uI
+uI
+ty
+eC
+aO
+SI
+SI
+NZ
+NZ
+NZ
+NZ
+ks
+vH
+Rq
+Rq
+qc
+Ku
+Ku
+"}
+(51,1,1) = {"
+Ku
+qc
+XK
+XK
+Rg
+Lj
+Rg
+Rg
+Rg
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+SI
+SI
+qJ
+Vy
+bE
+uI
+uI
+bE
+eC
+aO
+SI
+NZ
+SH
+NZ
+NZ
+ks
+VH
+fa
+Ik
+Rg
+Ku
+Ku
+"}
+(52,1,1) = {"
+Ku
+qc
+Lj
+XK
+vN
+XK
+Rg
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+SI
+SI
+qJ
+Vy
+bE
+KY
+uI
+bE
+iR
+SI
+NZ
+NZ
+NZ
+NZ
+ks
+qc
+BA
+po
+HC
+Ku
+Ku
+"}
+(53,1,1) = {"
+Ku
+Rg
+Rg
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+SI
+SI
+qJ
+Vy
+bE
+uI
+uI
+iR
+SI
+OU
+NZ
+NZ
+SH
+ks
+vi
+Rg
+Rg
+qc
+Ku
+Ku
+"}
+(54,1,1) = {"
+qc
+Ik
+jS
+Rq
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+mI
+RB
+CY
+dR
+mI
+dR
+Bf
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+SI
+SI
+qJ
+Vy
+bE
+uI
+iR
+SI
+NZ
+NZ
+NZ
+NZ
+ks
+XK
+Rq
+DH
+Ik
+Ku
+Ku
+"}
+(55,1,1) = {"
+qc
+la
+qc
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+mI
+en
+dR
+oD
+mI
+EF
+mI
+Bf
+CY
+mI
+dR
+mI
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+SI
+SI
+qJ
+Vy
+rv
+xO
+SI
+NZ
+NZ
+HZ
+Ao
+ks
+XK
+xJ
+XK
+XK
+Ku
+Ku
+"}
+(56,1,1) = {"
+qc
+XK
+XK
+XK
+XK
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+Me
+bC
+bC
+CY
+en
+EF
+EF
+EF
+dR
+dR
+mI
+Fo
+mI
+nM
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+SI
+SI
+ZG
+rv
+xO
+SI
+NZ
+NZ
+NZ
+NZ
+ks
+XK
+XK
+XK
+qc
+Ku
+Ku
+"}
+(57,1,1) = {"
+qc
+XK
+XK
+On
+XK
+vN
+vN
+vN
+vN
+vN
+vN
+mI
+gh
+al
+al
+jI
+nM
+mI
+uT
+Qk
+RB
+mI
+dR
+dR
+EF
+en
+WG
+mI
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+qc
+SI
+ZG
+rv
+xO
+SI
+HZ
+NZ
+NZ
+NZ
+ks
+XK
+vH
+NZ
+SH
+Ku
+Ku
+"}
+(58,1,1) = {"
+Rq
+Rq
+qc
+XK
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+dR
+al
+al
+al
+cj
+mI
+Cg
+Cg
+Cg
+mI
+EF
+EF
+EF
+mI
+PB
+CY
+PB
+mI
+vN
+vN
+vN
+bE
+bE
+bE
+bE
+bE
+SI
+ZG
+rv
+xO
+SI
+NZ
+NZ
+NZ
+HZ
+ks
+qc
+SH
+NZ
+SH
+Ku
+Ku
+"}
+(59,1,1) = {"
+qc
+qc
+XK
+jS
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+mI
+Tk
+jr
+EF
+EF
+WG
+Cg
+Cg
+mI
+mf
+PB
+mI
+en
+zQ
+fT
+Cg
+fT
+EF
+vN
+vN
+vN
+bE
+uI
+uI
+uI
+uI
+rh
+RU
+uI
+iR
+SI
+IJ
+IJ
+SI
+SI
+ks
+NZ
+SH
+NZ
+SH
+Ku
+Ku
+"}
+(60,1,1) = {"
+qc
+gv
+vJ
+XK
+vN
+vN
+vN
+vN
+mI
+mI
+mI
+RB
+fT
+EF
+EF
+fT
+EF
+jI
+al
+zM
+al
+Dn
+Dn
+Qk
+Qk
+mI
+Qk
+EF
+EF
+vN
+vN
+vN
+fA
+yU
+fA
+fA
+bE
+SI
+ZG
+rv
+xO
+SI
+wI
+wI
+wI
+SI
+HO
+EY
+HC
+SH
+SH
+NZ
+Ku
+"}
+(61,1,1) = {"
+jS
+Rg
+Rg
+XK
+vN
+vN
+vN
+vN
+dR
+PB
+Cg
+Lv
+EF
+Hj
+EF
+EF
+mI
+Qk
+BV
+Qk
+Ob
+Dn
+Dn
+ee
+Qk
+mI
+ng
+Cg
+Cg
+mI
+vN
+vN
+fA
+TW
+SE
+fA
+fA
+SI
+ZG
+rv
+xO
+IJ
+wI
+Dc
+wI
+wI
+HO
+bn
+qc
+SH
+NZ
+Ku
+Ku
+"}
+(62,1,1) = {"
+qc
+Rq
+jS
+qc
+vN
+vN
+vN
+vN
+mI
+dD
+al
+mI
+nM
+al
+mI
+Cg
+Cg
+Qk
+uT
+uT
+EF
+EF
+EF
+mI
+EF
+oD
+mI
+Cg
+Cg
+Gj
+vN
+vN
+fA
+eT
+nc
+BW
+fA
+SI
+TZ
+Jt
+xO
+IJ
+wI
+du
+wf
+wI
+wI
+SI
+On
+Rq
+qc
+Ku
+Ku
+"}
+(63,1,1) = {"
+qc
+Rq
+Rq
+qc
+vN
+vN
+vN
+mI
+mI
+al
+wN
+Cg
+al
+EF
+EF
+Dn
+Cg
+PB
+nM
+Qk
+Qk
+mI
+Ob
+CY
+EF
+EF
+mI
+Gj
+mI
+RB
+vN
+vN
+fA
+nc
+eT
+HX
+fA
+SI
+TZ
+rv
+fD
+yK
+Lc
+RD
+kS
+wf
+wI
+SI
+Rq
+XK
+XK
+Ku
+Ku
+"}
+(64,1,1) = {"
+qc
+EY
+qc
+IO
+IO
+vN
+vN
+vN
+Bf
+Hj
+Hj
+nM
+mI
+cF
+Ui
+ph
+mI
+IA
+en
+Bf
+PB
+nM
+dR
+Qk
+PB
+dR
+dR
+mI
+dR
+mI
+vN
+vN
+fA
+aI
+ei
+kF
+fA
+SI
+TZ
+rv
+iR
+IJ
+wI
+lM
+Xb
+wf
+wI
+SI
+fa
+Rq
+qc
+Ku
+Ku
+"}
+(65,1,1) = {"
+qc
+NZ
+TC
+IO
+EF
+vN
+vN
+vN
+en
+Hj
+Hj
+mI
+al
+EF
+EF
+mI
+Cg
+fT
+fT
+oE
+oD
+mI
+mI
+Ob
+ph
+Fu
+dR
+mI
+mI
+au
+fA
+fA
+fA
+fA
+WU
+Be
+fA
+SI
+TZ
+rv
+iR
+SI
+wI
+aS
+Hq
+xd
+wI
+SI
+qc
+qc
+Rq
+qc
+Ku
+"}
+(66,1,1) = {"
+qc
+XK
+NZ
+NZ
+vN
+vN
+vN
+vN
+mI
+Cg
+Lv
+Kv
+RL
+EF
+EF
+dR
+Cg
+EF
+EF
+Ui
+EF
+mI
+dR
+EF
+EF
+PB
+dR
+Cg
+dK
+dK
+dK
+dK
+gx
+Vh
+on
+on
+on
+Mv
+hA
+rv
+iR
+SI
+SI
+Ay
+Ay
+Ay
+Ay
+SI
+qc
+SI
+vi
+qc
+SI
+"}
+(67,1,1) = {"
+qc
+qc
+di
+vN
+vN
+vN
+vN
+mI
+mI
+en
+mI
+Cg
+Sx
+Kv
+mI
+PB
+ph
+EF
+EF
+EF
+EF
+CY
+bW
+mI
+EF
+is
+mI
+dK
+Uo
+Uo
+Uo
+Uo
+gx
+dK
+dK
+dK
+dK
+bE
+Uw
+rv
+eC
+Mv
+Mv
+Mv
+Mv
+Mv
+Mv
+qc
+Mv
+qc
+vi
+vH
+qc
+"}
+(68,1,1) = {"
+qc
+qc
+qc
+XK
+vN
+vN
+vN
+vN
+mI
+mI
+mI
+Kv
+Kv
+Kv
+mI
+CY
+mI
+Ob
+mI
+Qk
+uT
+Qk
+ee
+mI
+EF
+mI
+al
+dK
+Uo
+ni
+Uo
+dK
+gx
+dK
+dK
+dK
+dK
+bE
+bE
+rv
+Uw
+bE
+bE
+bE
+bE
+bE
+qc
+bE
+qc
+bE
+bE
+qc
+qc
+"}
+(69,1,1) = {"
+xJ
+qc
+qc
+ZR
+IO
+vN
+vN
+vN
+mI
+Ev
+nM
+ib
+Xn
+mI
+RL
+Cg
+EF
+dD
+dR
+Qk
+Qk
+Qk
+Qk
+mI
+ph
+mI
+al
+dK
+dK
+dK
+dK
+dK
+gx
+dK
+dK
+dK
+dK
+bE
+bE
+rv
+eB
+Tn
+Tn
+hu
+Tn
+Tn
+qc
+qc
+Tn
+vH
+Tn
+qc
+qc
+"}
+(70,1,1) = {"
+qc
+XK
+NZ
+NZ
+vN
+vN
+vN
+vN
+mI
+mI
+mI
+LO
+EF
+RL
+mI
+mI
+EF
+bW
+mI
+dR
+EF
+mI
+Cg
+cF
+EF
+mI
+al
+mI
+dK
+dK
+wK
+dK
+gx
+na
+vY
+MM
+MM
+Tn
+Vy
+uI
+iR
+bn
+Ay
+Ay
+bn
+bn
+bn
+bn
+qc
+SI
+SI
+SI
+Ku
+"}
+(71,1,1) = {"
+qc
+XK
+NZ
+NZ
+vN
+vN
+vN
+Bf
+mI
+PB
+dR
+EF
+oD
+EF
+EF
+en
+CY
+RB
+Qk
+Qk
+EF
+dR
+mI
+EF
+EF
+dR
+bC
+mI
+Qk
+au
+fA
+fA
+fA
+fA
+fA
+au
+Jc
+SI
+ZG
+vZ
+Wl
+Ay
+HZ
+gE
+HZ
+HZ
+eX
+yP
+HC
+vH
+qc
+Ku
+Ku
+"}
+(72,1,1) = {"
+qc
+qc
+NZ
+NZ
+vN
+vN
+vN
+mI
+RB
+mI
+mI
+EF
+EF
+dR
+dR
+mI
+Dn
+mI
+Cg
+mI
+mI
+uT
+Cg
+Bf
+dR
+Ob
+al
+mI
+mI
+mI
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+Ay
+qW
+vZ
+Dw
+IR
+HZ
+gE
+SH
+HZ
+bM
+SI
+fa
+vH
+On
+Ku
+Ku
+"}
+(73,1,1) = {"
+qc
+qc
+XK
+TC
+IO
+vN
+vN
+vN
+vN
+mI
+Cg
+Bf
+mI
+dR
+mI
+dR
+ph
+CY
+dR
+dR
+Ob
+ph
+Cg
+dR
+mI
+mI
+is
+Dn
+Qk
+Bf
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+IJ
+TZ
+rv
+iR
+IR
+gE
+yQ
+HZ
+DP
+kO
+SI
+qc
+XK
+XK
+Ku
+Ku
+"}
+(74,1,1) = {"
+qc
+qc
+qc
+NZ
+IO
+vN
+vN
+vN
+vN
+mI
+Ke
+mI
+EF
+EF
+oD
+Hl
+oD
+mf
+EF
+al
+Cg
+mI
+Bf
+Qk
+ed
+al
+Hj
+Cg
+mI
+Qk
+vN
+vN
+vN
+vN
+vN
+vN
+qc
+IJ
+qZ
+uI
+Dw
+SI
+NZ
+HZ
+NZ
+HZ
+bM
+SI
+NZ
+IO
+XK
+Ku
+Ku
+"}
+(75,1,1) = {"
+qc
+qc
+FI
+fU
+XK
+vN
+vN
+vN
+vN
+mI
+al
+al
+ph
+mI
+dR
+dR
+EF
+fT
+fT
+nM
+CY
+EF
+Hh
+Qk
+Qk
+al
+al
+mI
+tN
+mI
+vN
+vN
+vN
+vN
+vN
+qc
+ZP
+SI
+TY
+aj
+Dw
+SI
+HZ
+NZ
+NZ
+HZ
+eX
+SI
+xJ
+IO
+XK
+qc
+Ku
+"}
+(76,1,1) = {"
+IO
+qD
+XK
+FI
+fU
+vN
+vN
+vN
+vN
+vN
+CY
+dR
+mI
+Cg
+mI
+en
+EF
+EF
+EF
+nM
+ft
+mI
+mI
+Cg
+Qk
+Cg
+Vs
+mI
+mI
+vN
+vN
+vN
+vN
+vN
+vN
+ZP
+qc
+SI
+Mq
+rv
+xO
+SI
+NZ
+NZ
+HZ
+SI
+HO
+NZ
+NZ
+IO
+XK
+fa
+Ku
+"}
+(77,1,1) = {"
+IO
+qD
+IO
+FI
+FI
+FI
+vN
+vN
+vN
+vN
+mI
+mI
+dR
+Bf
+nM
+al
+al
+al
+al
+al
+al
+Cg
+PB
+dR
+Qk
+mI
+mI
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+Sc
+JJ
+SI
+ZG
+rv
+xO
+SI
+Wz
+HZ
+SI
+SI
+ks
+qc
+NZ
+ER
+XK
+qc
+Ku
+"}
+(78,1,1) = {"
+NZ
+qD
+XK
+qc
+XK
+FI
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+mI
+en
+al
+gh
+gh
+dR
+mI
+Bf
+Cg
+Cg
+Ob
+mI
+dR
+mI
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+Sc
+Sc
+SI
+ZG
+YH
+iR
+SI
+IJ
+IJ
+SI
+qc
+ks
+NZ
+NZ
+NZ
+fa
+XK
+Ku
+"}
+(79,1,1) = {"
+Ku
+qc
+qc
+qc
+FI
+XK
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+Sc
+Ay
+ZG
+Ns
+iR
+SI
+qc
+qc
+HC
+qc
+ks
+NZ
+ER
+NZ
+HC
+qc
+Ku
+"}
+(80,1,1) = {"
+Ku
+Ku
+qc
+qc
+FI
+FI
+XK
+XK
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+Sc
+Sc
+IR
+ZG
+uv
+xO
+SI
+qc
+VH
+Sc
+qc
+ks
+XK
+IO
+SH
+XK
+Ku
+Ku
+"}
+(81,1,1) = {"
+Ku
+Ku
+Ku
+qc
+FI
+ZX
+mZ
+XK
+XK
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+ZP
+ZP
+ZP
+ZP
+ZP
+HC
+qc
+SI
+qW
+uv
+xO
+IR
+qc
+JJ
+qc
+VH
+ks
+XK
+NZ
+IO
+XK
+qc
+Ku
+"}
+(82,1,1) = {"
+Ku
+Ku
+Ku
+qc
+FI
+FI
+VH
+jS
+Rq
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+ZP
+ZP
+ZP
+ZP
+QV
+qc
+qc
+Sc
+SI
+ZG
+Jt
+xO
+SI
+Sc
+qc
+Sc
+Sc
+ks
+XK
+Rq
+EY
+qc
+XK
+XK
+"}
+(83,1,1) = {"
+Ku
+Ku
+Ku
+qc
+fU
+VH
+qc
+NZ
+NZ
+NZ
+XK
+NZ
+XK
+qc
+vn
+vn
+vn
+vn
+vn
+vn
+vn
+vn
+vn
+vn
+vn
+vn
+vn
+vn
+vn
+vn
+vn
+ZP
+ZP
+ZP
+qc
+qc
+qc
+SI
+TZ
+Jt
+iR
+SI
+qc
+qc
+vH
+qc
+ks
+XK
+XK
+XK
+Lj
+Ik
+xJ
+"}
+(84,1,1) = {"
+Ku
+Ku
+Ku
+Ku
+qc
+qc
+IO
+NZ
+Cz
+NZ
+Mo
+NZ
+Rq
+vn
+vn
+An
+Xq
+vn
+yk
+Gx
+iw
+vn
+qK
+sj
+CI
+vn
+oz
+ZT
+jK
+lf
+vn
+vn
+ZP
+ZP
+xJ
+qc
+Sc
+SI
+TZ
+QI
+iR
+Ay
+VH
+qc
+vi
+qc
+ks
+XK
+XK
+Lj
+Lj
+XK
+qc
+"}
+(85,1,1) = {"
+Ku
+Ku
+Ku
+Ku
+qc
+qc
+qc
+NZ
+NZ
+OU
+NZ
+XK
+XK
+vn
+Xq
+Tf
+Xq
+vn
+cl
+Tf
+WK
+vn
+Xq
+Tf
+Xq
+vn
+ay
+db
+Ho
+Ho
+SU
+vn
+ZP
+ZP
+qc
+Sc
+qc
+SI
+ZG
+uI
+xO
+SI
+qc
+qc
+VH
+qc
+ks
+EY
+Ik
+Lj
+Rg
+ZU
+qc
+"}
+(86,1,1) = {"
+Ku
+Ku
+Ku
+Ku
+qc
+XK
+XK
+NZ
+NZ
+SH
+NZ
+EY
+qc
+vn
+wP
+GP
+wP
+vn
+FC
+lj
+FC
+vn
+FC
+uh
+rA
+vn
+WO
+jl
+ik
+uy
+IX
+vn
+ZP
+ZP
+qc
+qc
+vi
+SI
+nW
+Ns
+Wl
+SI
+qc
+HC
+Sc
+qc
+ks
+XK
+Rg
+Rg
+Rg
+Rg
+Ku
+"}
+(87,1,1) = {"
+Ku
+Ku
+Ku
+Ku
+qc
+XK
+XK
+Rq
+qc
+VH
+XK
+vH
+XK
+vn
+db
+jo
+db
+tn
+db
+TI
+db
+tS
+zv
+jo
+db
+HY
+Zg
+jl
+Wi
+AQ
+VD
+vn
+ZP
+qc
+Pn
+qc
+qc
+SI
+qW
+rv
+VJ
+SI
+qc
+Sc
+qc
+qc
+ks
+qc
+XK
+Lj
+Oj
+Ku
+Ku
+"}
+(88,1,1) = {"
+Ku
+Ku
+Ku
+Ku
+Ku
+qc
+qc
+Rq
+XK
+Rq
+Rq
+xJ
+qc
+vn
+nK
+fM
+ny
+Hp
+Hp
+ao
+Iy
+Iy
+kE
+us
+Iy
+Iy
+yE
+bg
+ik
+aV
+vn
+vn
+qc
+qc
+qc
+qc
+qc
+SI
+ZG
+rv
+iR
+SI
+vi
+qc
+qc
+HC
+ks
+Rq
+Rq
+qc
+xJ
+Ku
+Ku
+"}
+(89,1,1) = {"
+Ku
+Ku
+Ku
+Ku
+Ku
+qc
+qc
+Rq
+FI
+ix
+ix
+FI
+fa
+vn
+zv
+TI
+db
+gT
+db
+tm
+zv
+Nb
+zv
+TI
+db
+BK
+db
+db
+ik
+db
+Yg
+vn
+qc
+qc
+JJ
+qc
+Sc
+SI
+qW
+uI
+xO
+SI
+qc
+vH
+VH
+qc
+ks
+Rq
+Rq
+oa
+VH
+Rq
+Ku
+"}
+(90,1,1) = {"
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+qc
+qc
+HC
+FI
+FI
+VH
+qc
+vn
+Di
+Ey
+Di
+vn
+JN
+VA
+JN
+vn
+Al
+rs
+Al
+vn
+db
+bg
+tQ
+wO
+rl
+vn
+Sc
+Nr
+qc
+qc
+qc
+SI
+qW
+Ns
+eG
+Ay
+Sc
+vH
+ZP
+Sc
+ks
+qc
+ix
+XK
+qc
+Rq
+fa
+"}
+(91,1,1) = {"
+Ku
+Ku
+Ku
+Ku
+Ku
+qc
+Rq
+qc
+FI
+FI
+Ds
+Nm
+XK
+vn
+MY
+tX
+nr
+vn
+WK
+uN
+WK
+vn
+WK
+rO
+Or
+vn
+nN
+bg
+Ho
+uZ
+Hw
+vn
+qc
+qc
+qc
+vi
+xJ
+SI
+ZG
+uI
+xO
+SI
+uH
+ZP
+VH
+ZP
+ks
+qc
+FI
+or
+Rq
+qc
+Ku
+"}
+(92,1,1) = {"
+Ku
+Ku
+Ku
+Ku
+Ku
+qc
+qc
+VH
+FI
+FI
+HC
+mZ
+qc
+vn
+vn
+zZ
+MY
+vn
+yk
+ZY
+WK
+vn
+Ms
+UH
+Ek
+vn
+xz
+zv
+ik
+db
+vn
+vn
+Sc
+Nr
+vH
+qc
+qc
+SI
+ZG
+uI
+iR
+SI
+qc
+qc
+qc
+qc
+ks
+FI
+or
+FI
+zt
+Ku
+Ku
+"}
+(93,1,1) = {"
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+qc
+qc
+Rq
+qc
+qc
+qc
+qc
+qc
+vn
+vn
+vn
+vn
+vn
+vn
+vn
+vn
+vn
+vn
+vn
+vn
+vj
+vn
+nE
+vn
+vn
+qc
+qc
+qc
+qc
+qc
+qc
+SI
+ZG
+uI
+iR
+SI
+Sc
+Sc
+HC
+qc
+ks
+jS
+or
+FI
+FI
+Rq
+Ku
+"}
+(94,1,1) = {"
+Ku
+Ku
+Ku
+Ku
+Ku
+qc
+Rg
+Rg
+Rg
+mZ
+Rq
+Rq
+qc
+XK
+qc
+qc
+vH
+vi
+xJ
+qc
+jS
+ks
+qc
+qc
+ZP
+Ay
+qZ
+vZ
+df
+jV
+qc
+qc
+qc
+qc
+qc
+qc
+JJ
+SI
+ZG
+uI
+iR
+SI
+qc
+VH
+qc
+qc
+ks
+qc
+OP
+XK
+qc
+qc
+Ku
+"}
+(95,1,1) = {"
+Ku
+Ku
+Ku
+Ku
+Rg
+Ik
+Rg
+Rg
+Rg
+HC
+qc
+qc
+XK
+qc
+fa
+qc
+EY
+qc
+jS
+qc
+qc
+ks
+JJ
+qc
+HC
+Ay
+qZ
+vZ
+Wl
+IJ
+Sc
+qc
+vH
+HC
+Sc
+qc
+SI
+SI
+ZG
+rv
+iR
+SI
+qc
+qc
+qc
+qc
+ks
+VH
+qc
+XK
+fa
+qc
+Ku
+"}
+(96,1,1) = {"
+Ku
+Ku
+Ku
+Ku
+Rg
+Rg
+Xl
+BT
+BT
+Dx
+Dx
+Dx
+Dx
+Dx
+Dx
+Dx
+Dx
+Dx
+BT
+BT
+Xl
+id
+qc
+HC
+qc
+SI
+ZG
+Ns
+xO
+IJ
+vi
+qc
+qc
+qc
+qc
+SI
+SI
+Tx
+PL
+rv
+iR
+SI
+Pn
+qc
+qc
+qc
+ks
+qc
+CE
+EY
+qc
+FI
+Ku
+"}
+(97,1,1) = {"
+Ku
+Ku
+Ku
+Ku
+Rq
+Ik
+Dx
+BT
+Dx
+Dx
+Dx
+ob
+ob
+ob
+ob
+iB
+Li
+Dx
+BT
+BT
+BT
+ks
+qc
+qc
+vi
+IJ
+TZ
+rv
+xO
+SI
+qc
+qc
+qc
+Sc
+SI
+SI
+Tx
+PL
+bE
+rv
+iR
+SI
+HC
+qc
+qc
+vH
+ks
+NZ
+SH
+SH
+FI
+FI
+Ku
+"}
+(98,1,1) = {"
+Ku
+Ku
+Ku
+Ku
+qc
+Ik
+Dx
+BT
+KX
+KX
+ob
+ob
+cN
+ah
+oI
+DB
+ob
+ob
+qv
+Dx
+Dx
+HO
+SI
+SI
+SI
+IJ
+ZG
+uI
+xO
+SI
+SI
+SI
+SI
+SI
+SI
+Tx
+hz
+bE
+rv
+uI
+iR
+SI
+qc
+TG
+HC
+qc
+ks
+NZ
+SH
+Rq
+FI
+FI
+Ku
+"}
+(99,1,1) = {"
+Ku
+Ku
+Ku
+Ku
+qc
+qc
+Dx
+Dx
+Mt
+Kc
+Lo
+ob
+EW
+EW
+vR
+FL
+GN
+GD
+bp
+Dx
+Dx
+je
+Mv
+mV
+mV
+Gr
+hA
+uI
+eC
+Mv
+Mv
+mV
+mV
+Jr
+Mv
+hA
+bE
+uI
+rv
+ep
+OK
+SI
+qc
+qc
+HC
+qc
+ks
+NZ
+NZ
+NZ
+qc
+FI
+Ku
+"}
+(100,1,1) = {"
+Ku
+Ku
+Ku
+Ku
+qc
+Rq
+Dx
+Dx
+Mt
+qk
+iU
+re
+wq
+wq
+fV
+Du
+wq
+mQ
+bp
+BT
+BT
+uF
+bE
+Uw
+Uw
+nb
+nb
+rv
+uI
+uI
+uI
+rv
+rv
+uI
+uI
+jN
+Ns
+uI
+ar
+OK
+SI
+SI
+qc
+vi
+ZP
+ZP
+ks
+vi
+SH
+SH
+Rq
+xJ
+NZ
+"}
+(101,1,1) = {"
+Ku
+Ku
+Ku
+Ku
+qc
+XK
+BT
+BT
+Mt
+ir
+VT
+ob
+EW
+EW
+EW
+hV
+GU
+GD
+bp
+BT
+BT
+Po
+Tn
+Tn
+Tn
+Tn
+Tn
+Tn
+Tn
+Tn
+QL
+Sa
+Hi
+sk
+Tn
+Tn
+Tn
+Tn
+OK
+SI
+SI
+qc
+qc
+Lg
+ZP
+ZP
+ks
+On
+SH
+SH
+qc
+SH
+SH
+"}
+(102,1,1) = {"
+Ku
+Ku
+Ku
+Ku
+XK
+qc
+BT
+BT
+KX
+KX
+ob
+ob
+az
+tV
+yI
+HQ
+ob
+ob
+bp
+Dx
+Dx
+HO
+SI
+IJ
+IJ
+IJ
+SI
+SI
+SI
+Ay
+Ay
+Ay
+Ay
+Ay
+SI
+SI
+SI
+Ay
+SI
+SI
+qc
+vH
+ZP
+ZP
+ZP
+ZP
+ks
+NZ
+NZ
+qc
+Rq
+SH
+NZ
+"}
+(103,1,1) = {"
+Ku
+Ku
+Ku
+Ku
+XK
+qc
+BT
+BT
+Dx
+Dx
+Dx
+ob
+ob
+ob
+ob
+Hx
+Li
+Dx
+Dx
+Dx
+BT
+ks
+qc
+qc
+vi
+qc
+qc
+qc
+vH
+ZP
+ZP
+ZP
+eJ
+ZP
+qc
+vH
+qc
+vi
+qc
+qc
+HC
+qc
+JJ
+ZP
+uH
+ZP
+ks
+Rq
+IO
+XK
+EY
+fa
+NZ
+"}
+(104,1,1) = {"
+Ku
+Ku
+Ku
+Ku
+qc
+XK
+Xl
+BT
+BT
+Dx
+Dx
+Dx
+Dx
+Dx
+Dx
+Dx
+Dx
+BT
+BT
+BT
+Xl
+id
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+id
+qc
+XK
+Oj
+qc
+Rq
+Ku
+"}
+(105,1,1) = {"
+Ku
+Ku
+Ku
+Ku
+qc
+qc
+XK
+qc
+Rq
+HC
+Rq
+qc
+XK
+XK
+EY
+XK
+qc
+VH
+XK
+XK
+XK
+Rq
+Rq
+VH
+Rq
+qc
+mZ
+HC
+CE
+EY
+NZ
+IO
+NZ
+SH
+NZ
+di
+FI
+fU
+FI
+Rq
+Rq
+NA
+Mo
+fa
+NZ
+Rq
+VH
+Rq
+jS
+qc
+fa
+qc
+Ku
+"}
+(106,1,1) = {"
+Ku
+Ku
+Ku
+Ku
+Ku
+qc
+Rq
+Rq
+Rq
+Dg
+qc
+Rq
+XW
+qc
+VH
+qc
+HC
+XK
+XK
+Rq
+HC
+On
+XK
+XK
+Rq
+jS
+HC
+NZ
+CE
+NZ
+NZ
+SH
+NZ
+IO
+or
+or
+FI
+Rq
+qc
+mZ
+Rq
+ZR
+Mo
+SH
+SH
+SH
+fa
+XK
+qc
+XK
+qc
+qc
+Ku
+"}
+(107,1,1) = {"
+Ku
+Ku
+Ku
+Ku
+Ku
+Ku
+qc
+qc
+Ku
+qc
+qc
+zt
+qc
+Rq
+On
+qc
+Ku
+qc
+qc
+VH
+qc
+Ku
+XK
+XK
+Ku
+zt
+EY
+xJ
+XK
+XK
+qc
+vH
+Rq
+qc
+or
+FI
+qc
+qc
+fa
+qc
+NZ
+NZ
+qc
+Rq
+Rq
+qc
+jS
+qc
+VH
+qc
+qc
+Ku
+Ku
+"}

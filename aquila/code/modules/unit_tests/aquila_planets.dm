@@ -145,6 +145,8 @@
 /datum/unit_test/planet_type_selection/Run()
 	for(var/planet_type in GLOB.planet_type_prototypes)
 		var/datum/planet_type/prototype = GLOB.planet_type_prototypes[planet_type]
+		if(!prototype.name)
+			continue // Wspólny rodzic kilku typów (np. planety karłowate), sam się nie pojawia
 		TEST_ASSERT(length(prototype.system_tags) || prototype.type == /datum/planet_type/lava, "[planet_type] never appears in random systems (no system_tags)")
 		if(length(prototype.mission_veins))
 			TEST_ASSERT(prototype.vein_root, "[planet_type] has mission veins but no vein_root for the mission drill")

@@ -1,0 +1,113 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"d" = (
+/turf/template_noop,
+/area/template_noop)
+"f" = (
+/turf/open/water/planet/jungle,
+/area/template_noop)
+"h" = (
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"t" = (
+/obj/effect/decal/cleanable/greenglow,
+/turf/open/water/planet/jungle,
+/area/template_noop)
+"u" = (
+/obj/structure/flora/rock/pile,
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"F" = (
+/turf/closed/mineral/random/planet_jungle,
+/area/template_noop)
+"L" = (
+/obj/structure/flora/rock,
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"N" = (
+/turf/closed/mineral/random/planet_jungle/polluted,
+/area/template_noop)
+"X" = (
+/obj/structure/glowshroom,
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+
+(1,1,1) = {"
+F
+F
+N
+X
+F
+d
+d
+d
+"}
+(2,1,1) = {"
+F
+N
+h
+h
+N
+F
+d
+d
+"}
+(3,1,1) = {"
+d
+X
+f
+t
+X
+N
+F
+d
+"}
+(4,1,1) = {"
+N
+u
+t
+t
+f
+h
+F
+F
+"}
+(5,1,1) = {"
+N
+h
+h
+f
+t
+L
+X
+d
+"}
+(6,1,1) = {"
+F
+N
+u
+t
+h
+N
+F
+d
+"}
+(7,1,1) = {"
+F
+N
+N
+X
+N
+F
+F
+d
+"}
+(8,1,1) = {"
+d
+F
+F
+d
+F
+F
+d
+d
+"}

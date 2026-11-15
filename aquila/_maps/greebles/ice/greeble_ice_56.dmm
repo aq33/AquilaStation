@@ -1,0 +1,99 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"s" = (
+/turf/template_noop,
+/area/template_noop)
+"t" = (
+/turf/open/floor/plating/asteroid/iceberg,
+/area/template_noop)
+"N" = (
+/turf/closed/mineral/planet_ice_wall,
+/area/template_noop)
+
+(1,1,1) = {"
+s
+N
+N
+t
+s
+N
+N
+N
+s
+"}
+(2,1,1) = {"
+s
+N
+N
+t
+t
+t
+t
+N
+N
+"}
+(3,1,1) = {"
+s
+t
+t
+t
+N
+N
+t
+t
+N
+"}
+(4,1,1) = {"
+N
+N
+N
+t
+t
+t
+N
+t
+N
+"}
+(5,1,1) = {"
+s
+t
+N
+t
+N
+t
+N
+t
+s
+"}
+(6,1,1) = {"
+N
+t
+N
+t
+t
+t
+t
+t
+s
+"}
+(7,1,1) = {"
+N
+t
+t
+t
+N
+s
+t
+s
+s
+"}
+(8,1,1) = {"
+s
+t
+N
+N
+N
+s
+s
+s
+s
+"}

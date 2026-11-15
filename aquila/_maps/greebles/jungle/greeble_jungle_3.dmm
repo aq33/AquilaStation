@@ -1,0 +1,254 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/structure/girder,
+/turf/open/floor/plating/asteroid/dirt,
+/area/template_noop)
+"b" = (
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
+/area/template_noop)
+"c" = (
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"e" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"g" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 6
+	},
+/obj/machinery/light/broken{
+	dir = 4
+	},
+/obj/effect/spawner/lootdrop/maintenance/four,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"j" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/structure/closet/crate/wooden,
+/obj/item/trash/canned/beans,
+/obj/item/trash/canned/beans,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"o" = (
+/obj/structure/barricade/wooden/crude,
+/obj/effect/turf_decal/siding/wood{
+	dir = 6
+	},
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"p" = (
+/obj/effect/turf_decal/siding/wood,
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/structure/girder,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"q" = (
+/obj/structure/bed/double/maint,
+/obj/item/toy/plush/snakeplushie,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"r" = (
+/obj/structure/frame/machine{
+	anchored = 1
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"s" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/item/trash/canned{
+	pixel_y = -10;
+	 pixel_x = -10
+	},
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
+/area/template_noop)
+"v" = (
+/obj/structure/table/wood,
+/obj/item/stack/ore/iron,
+/obj/item/stack/cable_coil/cut,
+/obj/item/stack/ore/gold{
+	amount = 5
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"x" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/obj/structure/girder,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"z" = (
+/obj/item/gun/ballistic/rifle,
+/obj/item/clothing/head/beret/black,
+/obj/effect/decal/remains/human,
+/obj/structure/closet/crate/coffin{
+	desc = "Oznaczony kawałek ziemi z krzyżem. W drewnie wyryto prosty kwiat.";
+	 opened = 0
+	},
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
+/area/template_noop)
+"A" = (
+/obj/effect/turf_decal/siding/wood,
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"D" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"H" = (
+/turf/closed/wall/mineral/wood,
+/area/template_noop)
+"I" = (
+/obj/item/chair/plastic,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"J" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 6
+	},
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
+/area/template_noop)
+"K" = (
+/obj/effect/turf_decal/siding/wood,
+/obj/item/trash/canned,
+/obj/item/trash/canned{
+	pixel_y = 5;
+	 pixel_x = -10
+	},
+/obj/item/trash/canned{
+	pixel_y = 11;
+	 pixel_x = 10
+	},
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
+/area/template_noop)
+"O" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/turf/closed/wall/mineral/wood,
+/area/template_noop)
+"P" = (
+/obj/effect/turf_decal/siding/wood,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"S" = (
+/turf/template_noop,
+/area/template_noop)
+"V" = (
+/obj/machinery/light/broken{
+	dir = 8
+	},
+/obj/item/trash/candy,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"X" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 6
+	},
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+
+(1,1,1) = {"
+S
+S
+S
+S
+S
+S
+S
+"}
+(2,1,1) = {"
+H
+H
+H
+A
+H
+H
+S
+"}
+(3,1,1) = {"
+H
+q
+V
+s
+j
+H
+S
+"}
+(4,1,1) = {"
+p
+e
+z
+J
+K
+O
+c
+"}
+(5,1,1) = {"
+D
+P
+b
+I
+c
+o
+c
+"}
+(6,1,1) = {"
+e
+X
+g
+v
+r
+H
+c
+"}
+(7,1,1) = {"
+H
+x
+a
+H
+H
+H
+S
+"}

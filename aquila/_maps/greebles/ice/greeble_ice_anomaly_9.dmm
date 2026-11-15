@@ -1,0 +1,328 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"d" = (
+/obj/effect/anomaly/grav/planetary,
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
+"e" = (
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"h" = (
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"i" = (
+/obj/structure/flora/rock/icy,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"l" = (
+/obj/structure/flora/rock/icy{
+	pixel_x = -6;
+	 pixel_y = -4
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"n" = (
+/obj/item/stack/sheet/mineral/snow{
+	pixel_x = -9;
+	 pixel_y = 7
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"o" = (
+/obj/structure/flora/rock/icy{
+	pixel_x = -6;
+	 pixel_y = 14
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"s" = (
+/obj/item/stack/sheet/mineral/snow{
+	pixel_x = 5;
+	 pixel_y = -3
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"x" = (
+/obj/item/stack/sheet/mineral/snow{
+	pixel_y = -4
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"y" = (
+/obj/item/stack/sheet/mineral/snow{
+	pixel_x = 8;
+	 pixel_y = -3
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"z" = (
+/obj/structure/flora/rock/icy{
+	pixel_x = 7;
+	 pixel_y = 9
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"A" = (
+/obj/structure/flora/grass/brown,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"B" = (
+/obj/structure/flora/grass/both,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"F" = (
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
+"I" = (
+/obj/item/stack/sheet/mineral/snow{
+	pixel_x = 10;
+	 pixel_y = 10
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"J" = (
+/obj/item/stack/sheet/mineral/snow{
+	pixel_x = -7;
+	 pixel_y = 8
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"L" = (
+/obj/item/stack/sheet/mineral/snow{
+	pixel_x = 14;
+	 pixel_y = -2
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"M" = (
+/obj/item/stack/sheet/mineral/snow{
+	pixel_x = -13;
+	 pixel_y = 11
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"N" = (
+/turf/closed/wall/mineral/snow,
+/area/template_noop)
+"O" = (
+/obj/structure/flora/rock/icy{
+	pixel_y = 8
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"T" = (
+/obj/structure/flora/grass/green,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"U" = (
+/obj/item/stack/sheet/mineral/snow{
+	pixel_x = 9;
+	 pixel_y = -1
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"W" = (
+/turf/template_noop,
+/area/template_noop)
+"Y" = (
+/obj/structure/flora/rock/icy{
+	pixel_x = 10;
+	 pixel_y = 9
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+
+(1,1,1) = {"
+W
+W
+W
+W
+e
+e
+e
+e
+e
+W
+W
+W
+W
+"}
+(2,1,1) = {"
+W
+W
+e
+e
+e
+Y
+h
+U
+A
+e
+W
+W
+W
+"}
+(3,1,1) = {"
+W
+W
+T
+e
+h
+h
+L
+h
+h
+e
+e
+W
+W
+"}
+(4,1,1) = {"
+W
+e
+e
+h
+y
+N
+N
+N
+h
+I
+T
+e
+W
+"}
+(5,1,1) = {"
+W
+e
+s
+h
+N
+N
+F
+N
+N
+h
+e
+z
+W
+"}
+(6,1,1) = {"
+e
+e
+h
+N
+N
+F
+F
+F
+N
+N
+h
+e
+e
+"}
+(7,1,1) = {"
+e
+O
+x
+N
+F
+F
+d
+F
+F
+F
+h
+e
+B
+"}
+(8,1,1) = {"
+e
+e
+h
+N
+N
+F
+F
+F
+N
+N
+h
+h
+W
+"}
+(9,1,1) = {"
+T
+e
+i
+h
+N
+N
+F
+N
+N
+h
+h
+o
+W
+"}
+(10,1,1) = {"
+W
+e
+e
+h
+h
+N
+N
+N
+h
+h
+J
+h
+W
+"}
+(11,1,1) = {"
+W
+W
+A
+e
+e
+h
+n
+h
+M
+h
+e
+h
+e
+"}
+(12,1,1) = {"
+W
+W
+W
+l
+e
+e
+e
+h
+h
+e
+e
+e
+e
+"}
+(13,1,1) = {"
+W
+W
+W
+W
+W
+e
+e
+e
+e
+e
+e
+e
+W
+"}

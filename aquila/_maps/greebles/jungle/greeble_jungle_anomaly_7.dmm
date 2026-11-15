@@ -1,0 +1,122 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"b" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"f" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/yellow,
+/area/template_noop)
+"h" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"i" = (
+/obj/effect/decal/cleanable/vomit/old,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/yellow,
+/area/template_noop)
+"t" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/yellow,
+/area/template_noop)
+"v" = (
+/obj/effect/anomaly/tvstatic/blackbox,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/flora/rock/pile,
+/obj/effect/decal/cleanable/glass,
+/obj/effect/decal/cleanable/robot_debris/down,
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"C" = (
+/turf/template_noop,
+/area/template_noop)
+"K" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/vomit/old,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/yellow,
+/area/template_noop)
+"R" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/flora/rock/pile/largejungle,
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"T" = (
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/yellow,
+/area/template_noop)
+"U" = (
+/obj/structure/flora/tree/dead/tall,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/yellow,
+/area/template_noop)
+"W" = (
+/obj/structure/flora/tree/dead/tall,
+/obj/effect/decal/cleanable/glass,
+/obj/effect/decal/cleanable/vomit/old,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/yellow,
+/area/template_noop)
+
+(1,1,1) = {"
+U
+K
+t
+T
+T
+C
+C
+"}
+(2,1,1) = {"
+T
+R
+b
+h
+T
+i
+C
+"}
+(3,1,1) = {"
+C
+t
+h
+h
+b
+C
+C
+"}
+(4,1,1) = {"
+C
+K
+h
+v
+h
+T
+C
+"}
+(5,1,1) = {"
+C
+C
+h
+h
+f
+t
+T
+"}
+(6,1,1) = {"
+C
+C
+C
+C
+T
+W
+C
+"}
+(7,1,1) = {"
+C
+C
+C
+C
+C
+T
+C
+"}

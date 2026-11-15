@@ -1,0 +1,119 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"c" = (
+/obj/structure/flora/tree/pine,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"l" = (
+/turf/template_noop,
+/area/template_noop)
+"o" = (
+/obj/structure/flora/ash/garden/frigid,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"p" = (
+/obj/structure/geyser/random,
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
+"u" = (
+/obj/structure/flora/ausbushes/lavendergrass,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"y" = (
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"F" = (
+/obj/structure/flora/rock/icy,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"J" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"U" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"Z" = (
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
+
+(1,1,1) = {"
+l
+y
+J
+y
+J
+u
+l
+l
+"}
+(2,1,1) = {"
+u
+o
+y
+F
+u
+U
+J
+l
+"}
+(3,1,1) = {"
+c
+y
+Z
+Z
+Z
+y
+y
+J
+"}
+(4,1,1) = {"
+J
+y
+Z
+p
+Z
+Z
+y
+J
+"}
+(5,1,1) = {"
+y
+U
+F
+Z
+Z
+F
+y
+l
+"}
+(6,1,1) = {"
+l
+J
+J
+y
+y
+U
+l
+l
+"}
+(7,1,1) = {"
+l
+l
+J
+y
+J
+o
+l
+l
+"}
+(8,1,1) = {"
+l
+l
+l
+u
+y
+J
+J
+l
+"}

@@ -1,0 +1,85 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"i" = (
+/obj/structure/flora/ausbushes/reedbush{
+	pixel_x = -3;
+	 pixel_y = 8;
+	 layer = 2.91
+	},
+/turf/open/water/planet/jungle,
+/area/template_noop)
+"l" = (
+/obj/structure/flora/grass/jungle/b,
+/turf/open/floor/plating/asteroid/river_sand,
+/area/template_noop)
+"o" = (
+/obj/structure/flora/ausbushes/reedbush{
+	pixel_x = 8;
+	 pixel_y = -8
+	},
+/turf/open/water/planet/jungle,
+/area/template_noop)
+"q" = (
+/turf/open/water/planet/jungle,
+/area/template_noop)
+"J" = (
+/turf/open/floor/plating/asteroid/river_sand,
+/area/template_noop)
+"K" = (
+/obj/structure/flora/ausbushes/reedbush{
+	pixel_x = -3;
+	 pixel_y = -2
+	},
+/turf/open/water/planet/jungle,
+/area/template_noop)
+"O" = (
+/turf/template_noop,
+/area/template_noop)
+
+(1,1,1) = {"
+O
+O
+J
+J
+l
+O
+"}
+(2,1,1) = {"
+O
+l
+J
+q
+J
+l
+"}
+(3,1,1) = {"
+O
+J
+o
+q
+J
+J
+"}
+(4,1,1) = {"
+J
+J
+K
+i
+J
+O
+"}
+(5,1,1) = {"
+l
+J
+J
+J
+J
+l
+"}
+(6,1,1) = {"
+J
+J
+l
+J
+O
+O
+"}

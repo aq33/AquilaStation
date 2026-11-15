@@ -1,0 +1,90 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"i" = (
+/mob/living/basic/mining/ice_demon,
+/turf/open/floor/plating/ice/planet_ice,
+/area/template_noop)
+"n" = (
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"p" = (
+/turf/template_noop,
+/area/template_noop)
+"D" = (
+/turf/open/floor/plating/ice/planet_ice,
+/area/template_noop)
+"J" = (
+/obj/structure/flora/grass/green,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"T" = (
+/obj/structure/flora/grass/brown,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"V" = (
+/obj/structure/flora/grass/both,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+
+(1,1,1) = {"
+p
+V
+n
+n
+J
+p
+p
+"}
+(2,1,1) = {"
+n
+T
+D
+n
+n
+n
+p
+"}
+(3,1,1) = {"
+n
+n
+i
+D
+V
+n
+p
+"}
+(4,1,1) = {"
+J
+n
+D
+D
+D
+n
+n
+"}
+(5,1,1) = {"
+n
+n
+V
+D
+i
+D
+J
+"}
+(6,1,1) = {"
+V
+n
+n
+n
+D
+V
+n
+"}
+(7,1,1) = {"
+p
+n
+J
+n
+n
+T
+p
+"}

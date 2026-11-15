@@ -1,0 +1,111 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"b" = (
+/obj/structure/spacevine/dead,
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"k" = (
+/obj/structure/flora/tree/dead/tall,
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"o" = (
+/turf/template_noop,
+/area/template_noop)
+"p" = (
+/obj/effect/anomaly/heartbeat/planetary,
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"q" = (
+/obj/structure/flora/tree/dead/tall,
+/obj/structure/spacevine/dead,
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"C" = (
+/obj/structure/flora/tree/dead/tall,
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"E" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"J" = (
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"O" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/obj/structure/spacevine/dead,
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+
+(1,1,1) = {"
+o
+J
+E
+J
+o
+o
+"}
+(2,1,1) = {"
+J
+E
+E
+E
+o
+o
+"}
+(3,1,1) = {"
+o
+J
+k
+J
+b
+o
+"}
+(4,1,1) = {"
+o
+b
+J
+J
+b
+b
+"}
+(5,1,1) = {"
+b
+b
+J
+p
+b
+o
+"}
+(6,1,1) = {"
+o
+b
+J
+J
+b
+J
+"}
+(7,1,1) = {"
+O
+C
+J
+b
+q
+J
+"}
+(8,1,1) = {"
+b
+E
+J
+O
+O
+J
+"}
+(9,1,1) = {"
+J
+J
+o
+b
+J
+J
+"}

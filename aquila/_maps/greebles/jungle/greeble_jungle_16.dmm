@@ -1,0 +1,149 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"b" = (
+/obj/item/shovel,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"e" = (
+/obj/structure/flora/ash/garden,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"g" = (
+/obj/structure/flora/grass/jungle/b,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"h" = (
+/obj/structure/flora/tree/jungle/small,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"i" = (
+/obj/item/pickaxe,
+/obj/structure/flora/grass/jungle/b,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"j" = (
+/obj/structure/flora/grass/jungle/b,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"k" = (
+/obj/structure/flora/rock/pile,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"l" = (
+/obj/structure/flora/grass/jungle,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"m" = (
+/obj/effect/decal/cleanable/generic,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"n" = (
+/obj/structure/flora/grass/jungle/b,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"r" = (
+/obj/structure/flora/rock/jungle,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"v" = (
+/obj/structure/flora/grass/jungle/b,
+/obj/structure/flora/junglebush,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"x" = (
+/obj/structure/flora/junglebush/c,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"G" = (
+/obj/structure/flora/rock,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"K" = (
+/turf/template_noop,
+/area/template_noop)
+"L" = (
+/obj/structure/flora/junglebush/large,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"M" = (
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"S" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+
+(1,1,1) = {"
+K
+r
+n
+G
+K
+"}
+(2,1,1) = {"
+K
+n
+S
+k
+x
+"}
+(3,1,1) = {"
+h
+m
+n
+l
+e
+"}
+(4,1,1) = {"
+L
+k
+S
+b
+r
+"}
+(5,1,1) = {"
+K
+g
+m
+g
+j
+"}
+(6,1,1) = {"
+r
+M
+n
+v
+K
+"}
+(7,1,1) = {"
+l
+i
+M
+g
+l
+"}
+(8,1,1) = {"
+K
+G
+m
+L
+K
+"}

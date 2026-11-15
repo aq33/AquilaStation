@@ -1,0 +1,96 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"k" = (
+/turf/template_noop,
+/area/template_noop)
+"n" = (
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"p" = (
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
+"t" = (
+/obj/effect/anomaly/phantom/planetary,
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"z" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"J" = (
+/obj/structure/flora/rock/jungle,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
+"L" = (
+/obj/structure/flora/rock/pile,
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"P" = (
+/obj/effect/anomaly/phantom/planetary{
+	drops_core = 0
+	},
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+
+(1,1,1) = {"
+k
+p
+n
+p
+J
+p
+k
+"}
+(2,1,1) = {"
+p
+n
+P
+z
+p
+p
+p
+"}
+(3,1,1) = {"
+p
+z
+L
+n
+n
+P
+J
+"}
+(4,1,1) = {"
+k
+J
+n
+t
+L
+z
+p
+"}
+(5,1,1) = {"
+k
+n
+n
+z
+n
+P
+n
+"}
+(6,1,1) = {"
+n
+P
+n
+n
+J
+n
+p
+"}
+(7,1,1) = {"
+L
+z
+k
+p
+k
+k
+p
+"}

@@ -1,0 +1,480 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"d" = (
+/obj/structure/frame/computer{
+	anchored = 1
+	},
+/obj/effect/decal/cleanable/glass,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel,
+/area/template_noop)
+"e" = (
+/turf/closed/mineral/planet_ice_wall,
+/area/template_noop)
+"g" = (
+/obj/structure/grille,
+/obj/machinery/door/poddoor/shutters{
+	id = "falmouth_windows";
+	 name = "rolety przeciwwybuchowe";
+	 dir = 8
+	},
+/turf/open/floor/plating,
+/area/template_noop)
+"h" = (
+/obj/structure/closet/secure_closet{
+	anchored = 1;
+	 can_be_unanchored = 1;
+	 name = "szafka pierwszego oficera"
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/sign/poster/contraband/random{
+	pixel_y = 28
+	},
+/turf/open/floor/plasteel/dark,
+/area/template_noop)
+"i" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/item/wallframe/apc{
+	pixel_x = 11;
+	 pixel_y = -6
+	},
+/obj/effect/decal/cleanable/glass,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/stairs{
+	icon = 'icons/obj/stairs.dmi'
+	},
+/area/template_noop)
+"k" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 10
+	},
+/obj/effect/decal/cleanable/glass,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/remains/human,
+/obj/item/clothing/under/shorts{
+	pixel_y = -4;
+	 pixel_x = -6
+	},
+/obj/item/clothing/suit/jacket/miljacket{
+	pixel_y = 6;
+	 pixel_x = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/template_noop)
+"l" = (
+/obj/machinery/computer/cargo,
+/obj/item/clothing/head/soft{
+	pixel_x = -7;
+	 pixel_y = 11;
+	 name = "szczęśliwa czapka miskilamao";
+	 desc = "Legenda Pogranicza głosi, że ubrania w barwach Miskilamao bywają szczęśliwe: działa w nich duch Miski, który trzyma ich statki w kupie. Biorąc pod uwagę, gdzie tę znaleziono..."
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel,
+/area/template_noop)
+"q" = (
+/obj/machinery/holopad{
+	name_override = "SV Smooth Ride"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/structure/cable{
+	icon_state = "0-2"
+	},
+/obj/effect/decal/cleanable/glass,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/shreds,
+/turf/open/floor/plasteel/dark,
+/area/template_noop)
+"r" = (
+/obj/structure/chair/fancy/shuttle{
+	dir = 1
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/glass,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/vomit/old,
+/turf/open/floor/plasteel/dark,
+/area/template_noop)
+"u" = (
+/obj/structure/grille,
+/obj/machinery/door/poddoor/shutters{
+	id = "falmouth_windows";
+	 name = "rolety przeciwwybuchowe"
+	},
+/turf/open/floor/plating,
+/area/template_noop)
+"v" = (
+/obj/item/stack/cable_coil/cut,
+/obj/item/wallframe/airalarm{
+	pixel_x = 5;
+	 pixel_y = 8
+	},
+/obj/item/kitchen/knife/combat/survival{
+	pixel_x = -5;
+	 pixel_y = 13
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/shreds,
+/turf/open/floor/plasteel,
+/area/template_noop)
+"w" = (
+/turf/closed/wall/r_wall/rust,
+/area/template_noop)
+"x" = (
+/obj/structure/lattice/catwalk/over/ship,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/rust{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255"
+	},
+/area/template_noop)
+"y" = (
+/obj/structure/guncase{
+	anchored = 1;
+	 can_be_unanchored = 1;
+	 req_access = list(19)
+	},
+/obj/item/gun/energy/e_gun,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/shreds,
+/turf/open/floor/plasteel/dark,
+/area/template_noop)
+"z" = (
+/obj/machinery/door/airlock/command{
+	name = "Mostek";
+	 req_access_txt = "19"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/turf/open/floor/plasteel/dark,
+/area/template_noop)
+"G" = (
+/obj/machinery/modular_computer/console/preset/command,
+/obj/structure/railing{
+	dir = 5
+	},
+/obj/item/radio/intercom/directional/west{
+	pixel_y = -7
+	},
+/obj/machinery/button/door{
+	id = "falmouth_windows";
+	 name = "sterowanie roletami";
+	 pixel_x = -20;
+	 pixel_y = 7;
+	 dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel,
+/area/template_noop)
+"H" = (
+/turf/closed/wall,
+/area/template_noop)
+"I" = (
+/obj/structure/lattice/catwalk/over/ship,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/cable{
+	icon_state = "1-10"
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/shreds,
+/turf/open/floor/plating/rust{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255"
+	},
+/area/template_noop)
+"M" = (
+/turf/closed/wall/r_wall,
+/area/template_noop)
+"P" = (
+/turf/closed/mineral/random/planet_ice,
+/area/template_noop)
+"W" = (
+/obj/structure/chair/fancy/shuttle{
+	dir = 1
+	},
+/obj/machinery/firealarm/directional/south,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 4
+	},
+/obj/item/wallframe/airalarm{
+	pixel_x = -18;
+	 pixel_y = 6
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/shreds,
+/turf/open/floor/plasteel/dark,
+/area/template_noop)
+"X" = (
+/obj/structure/closet/secure_closet{
+	anchored = 1;
+	 can_be_unanchored = 1;
+	 req_access = list(1);
+	 icon_state = "armory"
+	},
+/obj/item/stock_parts/cell,
+/obj/item/stock_parts/cell,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/ammo_box/magazine/m10mm{
+	start_empty = 1
+	},
+/obj/item/ammo_box/magazine/m10mm{
+	start_empty = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/template_noop)
+"Z" = (
+/turf/template_noop,
+/area/template_noop)
+
+(1,1,1) = {"
+Z
+Z
+Z
+Z
+Z
+Z
+Z
+Z
+Z
+e
+e
+e
+P
+P
+P
+Z
+"}
+(2,1,1) = {"
+Z
+Z
+Z
+Z
+Z
+Z
+Z
+Z
+e
+e
+e
+e
+e
+P
+P
+P
+"}
+(3,1,1) = {"
+Z
+Z
+Z
+Z
+e
+e
+e
+e
+e
+e
+e
+e
+e
+P
+P
+P
+"}
+(4,1,1) = {"
+Z
+Z
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+M
+P
+P
+P
+"}
+(5,1,1) = {"
+Z
+e
+e
+e
+e
+e
+e
+e
+e
+w
+M
+M
+P
+P
+P
+Z
+"}
+(6,1,1) = {"
+Z
+e
+e
+e
+u
+g
+g
+M
+M
+M
+h
+P
+P
+P
+Z
+Z
+"}
+(7,1,1) = {"
+e
+e
+e
+e
+u
+d
+r
+G
+W
+H
+v
+P
+P
+P
+Z
+Z
+"}
+(8,1,1) = {"
+e
+e
+e
+e
+u
+l
+k
+i
+q
+z
+I
+x
+P
+P
+P
+Z
+"}
+(9,1,1) = {"
+e
+e
+e
+e
+u
+g
+g
+M
+M
+M
+X
+y
+P
+P
+P
+Z
+"}
+(10,1,1) = {"
+Z
+e
+e
+e
+e
+e
+e
+e
+e
+w
+M
+M
+M
+P
+P
+Z
+"}
+(11,1,1) = {"
+Z
+Z
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+M
+P
+P
+Z
+"}
+(12,1,1) = {"
+Z
+Z
+Z
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+P
+P
+"}
+(13,1,1) = {"
+Z
+Z
+Z
+Z
+Z
+Z
+Z
+Z
+Z
+Z
+e
+e
+e
+e
+P
+P
+"}

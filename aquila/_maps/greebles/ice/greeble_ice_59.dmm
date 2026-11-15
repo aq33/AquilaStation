@@ -1,0 +1,65 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"o" = (
+/turf/open/floor/plating/ice/planet_ice,
+/area/template_noop)
+"J" = (
+/turf/template_noop,
+/area/template_noop)
+"K" = (
+/obj/structure/flora/rock/icy,
+/turf/open/floor/plating/ice/planet_ice,
+/area/template_noop)
+"T" = (
+/obj/structure/flora/rock/pile/icy,
+/turf/open/floor/plating/ice/planet_ice,
+/area/template_noop)
+
+(1,1,1) = {"
+o
+T
+o
+J
+J
+"}
+(2,1,1) = {"
+T
+o
+o
+T
+J
+"}
+(3,1,1) = {"
+J
+o
+o
+o
+o
+"}
+(4,1,1) = {"
+J
+o
+K
+o
+o
+"}
+(5,1,1) = {"
+J
+o
+o
+o
+T
+"}
+(6,1,1) = {"
+J
+J
+o
+T
+o
+"}
+(7,1,1) = {"
+J
+J
+J
+o
+o
+"}

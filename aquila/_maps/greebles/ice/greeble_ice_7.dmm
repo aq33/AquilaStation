@@ -1,0 +1,842 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"bn" = (
+/obj/structure/sign/warning/biohazard{
+	pixel_y = -15
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"br" = (
+/obj/structure/flora/rock/pile/icy,
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
+"cm" = (
+/obj/structure/railing/corner{
+	dir = 1
+	},
+/obj/structure/lattice/catwalk/over/ship/dark,
+/turf/open/floor/plating/rust,
+/area/template_noop)
+"cE" = (
+/obj/structure/railing/corner{
+	dir = 4
+	},
+/obj/structure/lattice/catwalk/over/ship/dark,
+/turf/open/floor/plating/rust,
+/area/template_noop)
+"cJ" = (
+/turf/open/lava/plasma,
+/area/template_noop)
+"dq" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"ga" = (
+/obj/structure/railing,
+/turf/open/lava/plasma,
+/area/template_noop)
+"gx" = (
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"hH" = (
+/obj/structure/flora/rock/pile,
+/turf/open/lava/plasma,
+/area/template_noop)
+"jG" = (
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
+"kE" = (
+/obj/structure/railing/corner{
+	dir = 8
+	},
+/obj/structure/lattice/catwalk/over/ship/dark,
+/turf/open/floor/plating/rust,
+/area/template_noop)
+"mB" = (
+/obj/structure/flora/rock{
+	icon_state = "basalt2"
+	},
+/turf/open/lava/plasma,
+/area/template_noop)
+"mS" = (
+/obj/structure/railing/corner,
+/turf/open/lava/plasma,
+/area/template_noop)
+"ob" = (
+/obj/structure/railing/corner,
+/obj/structure/lattice/catwalk/over/ship/dark,
+/turf/open/floor/plating/rust,
+/area/template_noop)
+"qL" = (
+/obj/structure/flora/rock{
+	icon_state = "basalt"
+	},
+/turf/open/lava/plasma,
+/area/template_noop)
+"uk" = (
+/obj/structure/sign/warning/biohazard{
+	pixel_y = 32
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"uV" = (
+/obj/structure/flora/rock{
+	icon_state = "basalt3"
+	},
+/turf/open/lava/plasma,
+/area/template_noop)
+"xT" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"AE" = (
+/obj/structure/flora/rock/pile/icy,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"Du" = (
+/obj/structure/railing{
+	dir = 6
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"EI" = (
+/obj/structure/railing{
+	dir = 10
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"FD" = (
+/turf/closed/wall/r_wall,
+/area/template_noop)
+"FE" = (
+/obj/structure/railing,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"Kb" = (
+/turf/closed/mineral/random/planet_ice,
+/area/template_noop)
+"Lu" = (
+/obj/effect/anomaly/plasmasoul/planetary{
+	effectrange = 1;
+	 pixel_x = -12;
+	 pixel_y = 12
+	},
+/turf/open/lava/plasma,
+/area/template_noop)
+"Oi" = (
+/obj/structure/flora/rock/icy,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"Om" = (
+/obj/structure/flora/rock,
+/turf/open/lava/plasma,
+/area/template_noop)
+"Or" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/lava/plasma,
+/area/template_noop)
+"OR" = (
+/turf/template_noop,
+/area/template_noop)
+"Pb" = (
+/obj/structure/railing/corner,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"Td" = (
+/obj/structure/railing/corner{
+	dir = 8
+	},
+/obj/structure/flora/rock/pile/icy,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"Uo" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/structure/lattice/catwalk/over/ship/dark,
+/turf/open/floor/plating/rust,
+/area/template_noop)
+"VI" = (
+/obj/structure/railing,
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
+"Xa" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
+"XP" = (
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/structure/lattice/catwalk/over/ship/dark,
+/turf/open/floor/plating/rust,
+/area/template_noop)
+"Yx" = (
+/obj/structure/railing{
+	dir = 6
+	},
+/turf/open/lava/plasma,
+/area/template_noop)
+
+(1,1,1) = {"
+OR
+OR
+OR
+OR
+Kb
+Kb
+Kb
+Kb
+Kb
+Kb
+Kb
+Kb
+OR
+OR
+OR
+"}
+(2,1,1) = {"
+OR
+OR
+OR
+Kb
+Kb
+Kb
+Kb
+Kb
+Kb
+Kb
+Kb
+Kb
+Kb
+OR
+OR
+"}
+(3,1,1) = {"
+OR
+OR
+Kb
+Kb
+Kb
+Kb
+Kb
+Kb
+Kb
+Kb
+Kb
+Kb
+Kb
+OR
+OR
+"}
+(4,1,1) = {"
+OR
+OR
+Kb
+Kb
+Kb
+Kb
+Kb
+cJ
+cJ
+cJ
+Kb
+Kb
+Kb
+Kb
+OR
+"}
+(5,1,1) = {"
+OR
+OR
+Kb
+Kb
+Kb
+Kb
+cJ
+cJ
+cJ
+cJ
+cJ
+Kb
+Kb
+Kb
+Kb
+"}
+(6,1,1) = {"
+OR
+OR
+Kb
+Kb
+Kb
+Kb
+cJ
+cJ
+Lu
+cJ
+cJ
+cJ
+Kb
+Kb
+Kb
+"}
+(7,1,1) = {"
+OR
+Kb
+Kb
+Kb
+Kb
+Kb
+Kb
+cJ
+cJ
+cJ
+cJ
+cJ
+cJ
+Kb
+Kb
+"}
+(8,1,1) = {"
+OR
+Kb
+Kb
+Kb
+Kb
+Kb
+Kb
+cJ
+cJ
+cJ
+cJ
+Om
+cJ
+Kb
+Kb
+"}
+(9,1,1) = {"
+OR
+OR
+Kb
+Kb
+Kb
+Kb
+Kb
+Kb
+cJ
+cJ
+cJ
+cJ
+Kb
+Kb
+Kb
+"}
+(10,1,1) = {"
+OR
+OR
+Kb
+Kb
+Kb
+Kb
+Kb
+cJ
+cJ
+cJ
+cJ
+cJ
+FD
+Kb
+gx
+"}
+(11,1,1) = {"
+OR
+OR
+OR
+Kb
+Kb
+FD
+cJ
+cJ
+cJ
+cJ
+hH
+cJ
+ga
+gx
+xT
+"}
+(12,1,1) = {"
+OR
+OR
+OR
+OR
+jG
+VI
+cJ
+cJ
+uV
+cJ
+cJ
+mS
+Yx
+dq
+gx
+"}
+(13,1,1) = {"
+OR
+OR
+OR
+OR
+jG
+VI
+cJ
+cJ
+cJ
+cJ
+cJ
+ga
+gx
+gx
+gx
+"}
+(14,1,1) = {"
+OR
+OR
+OR
+gx
+gx
+VI
+cJ
+cJ
+Or
+cJ
+cJ
+ga
+xT
+gx
+Oi
+"}
+(15,1,1) = {"
+OR
+OR
+gx
+gx
+xT
+FE
+cJ
+cJ
+cJ
+mB
+cJ
+ga
+dq
+xT
+gx
+"}
+(16,1,1) = {"
+OR
+gx
+dq
+gx
+Pb
+Du
+cJ
+cJ
+Or
+cJ
+cJ
+ga
+xT
+xT
+gx
+"}
+(17,1,1) = {"
+gx
+xT
+gx
+gx
+Du
+cJ
+cJ
+Or
+cJ
+cJ
+Or
+ga
+gx
+gx
+gx
+"}
+(18,1,1) = {"
+gx
+gx
+bn
+FD
+cJ
+cJ
+cJ
+cJ
+cJ
+cJ
+cJ
+FD
+uk
+xT
+OR
+"}
+(19,1,1) = {"
+xT
+gx
+gx
+kE
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+cm
+gx
+gx
+OR
+"}
+(20,1,1) = {"
+gx
+AE
+gx
+ob
+Uo
+Uo
+Uo
+Uo
+Uo
+Uo
+Uo
+cE
+gx
+gx
+OR
+"}
+(21,1,1) = {"
+gx
+gx
+bn
+FD
+cJ
+cJ
+cJ
+cJ
+cJ
+cJ
+cJ
+FD
+uk
+gx
+OR
+"}
+(22,1,1) = {"
+gx
+xT
+gx
+FE
+cJ
+cJ
+cJ
+Or
+cJ
+cJ
+cJ
+ga
+xT
+gx
+gx
+"}
+(23,1,1) = {"
+gx
+gx
+dq
+FE
+cJ
+cJ
+qL
+cJ
+cJ
+Or
+cJ
+ga
+dq
+xT
+gx
+"}
+(24,1,1) = {"
+OR
+gx
+xT
+FE
+cJ
+cJ
+Or
+cJ
+cJ
+cJ
+mS
+Yx
+dq
+xT
+gx
+"}
+(25,1,1) = {"
+OR
+xT
+gx
+FE
+cJ
+cJ
+cJ
+cJ
+cJ
+uV
+ga
+Xa
+xT
+gx
+OR
+"}
+(26,1,1) = {"
+OR
+OR
+gx
+Td
+EI
+cJ
+cJ
+cJ
+Or
+cJ
+ga
+jG
+jG
+gx
+OR
+"}
+(27,1,1) = {"
+OR
+OR
+Kb
+Kb
+FD
+cJ
+cJ
+cJ
+cJ
+cJ
+ga
+jG
+br
+gx
+OR
+"}
+(28,1,1) = {"
+OR
+OR
+Kb
+Kb
+Kb
+Or
+cJ
+Or
+cJ
+cJ
+ga
+jG
+jG
+jG
+OR
+"}
+(29,1,1) = {"
+OR
+Kb
+Kb
+Kb
+cJ
+cJ
+uV
+cJ
+cJ
+Or
+FD
+Kb
+Kb
+br
+OR
+"}
+(30,1,1) = {"
+OR
+Kb
+Kb
+cJ
+cJ
+Or
+cJ
+cJ
+cJ
+cJ
+Kb
+Kb
+Kb
+Kb
+OR
+"}
+(31,1,1) = {"
+OR
+Kb
+Kb
+Kb
+cJ
+cJ
+cJ
+Or
+cJ
+cJ
+Kb
+Kb
+Kb
+Kb
+OR
+"}
+(32,1,1) = {"
+OR
+Kb
+Kb
+Kb
+Kb
+cJ
+cJ
+cJ
+cJ
+cJ
+Kb
+Kb
+Kb
+Kb
+OR
+"}
+(33,1,1) = {"
+OR
+Kb
+Kb
+Kb
+Kb
+Kb
+cJ
+mB
+cJ
+cJ
+Kb
+Kb
+Kb
+Kb
+OR
+"}
+(34,1,1) = {"
+OR
+Kb
+Kb
+Kb
+Kb
+Kb
+cJ
+cJ
+cJ
+Kb
+Kb
+Kb
+Kb
+Kb
+OR
+"}
+(35,1,1) = {"
+OR
+Kb
+Kb
+Kb
+Kb
+Kb
+Kb
+cJ
+cJ
+Kb
+Kb
+Kb
+Kb
+Kb
+OR
+"}
+(36,1,1) = {"
+OR
+Kb
+Kb
+Kb
+Kb
+Kb
+Kb
+cJ
+cJ
+Kb
+Kb
+Kb
+Kb
+Kb
+OR
+"}
+(37,1,1) = {"
+OR
+Kb
+Kb
+Kb
+Kb
+Kb
+Kb
+Kb
+Kb
+Kb
+Kb
+Kb
+Kb
+OR
+OR
+"}
+(38,1,1) = {"
+OR
+OR
+OR
+Kb
+Kb
+Kb
+Kb
+Kb
+Kb
+Kb
+Kb
+Kb
+OR
+OR
+OR
+"}
+(39,1,1) = {"
+OR
+OR
+OR
+Kb
+Kb
+Kb
+Kb
+Kb
+Kb
+Kb
+Kb
+Kb
+OR
+OR
+OR
+"}

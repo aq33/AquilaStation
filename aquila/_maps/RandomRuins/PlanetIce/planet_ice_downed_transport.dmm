@@ -1,0 +1,13190 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"ae" = (
+/obj/item/shard,
+/obj/item/shard{
+	pixel_y = -3;
+	pixel_x = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/item/trash/syndi_cakes,
+/turf/open/floor/plating/asteroid/icerock,
+/area/lavaland/surface/outdoors)
+"ag" = (
+/obj/item/storage/toolbox/mechanical{
+	pixel_y = -9;
+	pixel_x = 6
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/lavaland/surface/outdoors)
+"ah" = (
+/obj/structure/flora/tree/dead,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/lavaland/surface/outdoors)
+"an" = (
+/obj/machinery/door/airlock/external,
+/obj/structure/cable,
+/turf/open/floor/engine,
+/area/ruin/unpowered/planet_ice/downed_transport/crashed_shuttle)
+"ao" = (
+/obj/structure/lattice/catwalk/over,
+/obj/effect/decal/cleanable/glass,
+/mob/living/basic/mining/ice_demon,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_ice/downed_transport/mining_power_station)
+"ap" = (
+/obj/machinery/button/door{
+	id = "barrow_windows";
+	name = "rolety okienne";
+	dir = 8;
+	pixel_x = 20
+	},
+/obj/structure/cable,
+/obj/structure/lattice/catwalk/over/ship,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_ice/downed_transport/crashed_shuttle)
+"ay" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/turf/open/floor/plasteel{
+	icon_state = "tiled_dark"
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/barracks)
+"aH" = (
+/obj/structure/flora/tree/dead{
+	name = "roztrzaskana kłoda"
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/lavaland/surface/outdoors)
+"aJ" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/layer2{
+	dir = 1
+	},
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/atmospherics_shed)
+"aP" = (
+/obj/item/paper/crumpled{
+	pixel_y = 2;
+	pixel_x = 10
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/lavaland/surface/outdoors)
+"aZ" = (
+/obj/effect/decal/cleanable/blood/footprints{
+	icon_state = "blood2"
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/unpowered/planet_lava/cave)
+"ba" = (
+/obj/structure/flora/tree/pine{
+	icon_state = "pine_4";
+	layer = 5.1
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/lavaland/surface/outdoors)
+"bd" = (
+/obj/structure/fence/door,
+/turf/open/floor/plating/asteroid/icerock,
+/area/lavaland/surface/outdoors)
+"be" = (
+/obj/machinery/atmospherics/components/unary/portables_connector/visible/layer4{
+	dir = 4
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/powered/planet_ice/downed_transport/ramshackle_workroom)
+"bf" = (
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal/siding/white/corner{
+	dir = 4
+	},
+/obj/item/food/meat/slab{
+	pixel_y = 1;
+	pixel_x = -1
+	},
+/obj/item/food/meat/slab{
+	pixel_y = -5
+	},
+/obj/item/food/meat/slab{
+	pixel_y = -1;
+	pixel_x = 2
+	},
+/turf/open/floor/plasteel{
+	icon_state = "monotile_light"
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/crew_accomodations)
+"bg" = (
+/obj/structure/closet/secure_closet/miner,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/storage/backpack/duffelbag,
+/obj/item/clothing/shoes/winterboots{
+	pixel_y = -2;
+	pixel_x = 7
+	},
+/obj/item/storage/wallet/random{
+	pixel_x = 3;
+	pixel_y = 12
+	},
+/obj/item/clothing/neck/scarf{
+	pixel_x = 8;
+	pixel_y = -1
+	},
+/obj/item/clothing/suit/jacket{
+	pixel_y = 4;
+	pixel_x = -3
+	},
+/obj/item/clothing/under/pants/jeans{
+	pixel_y = -4;
+	pixel_x = -6
+	},
+/obj/item/trash/sosjerky{
+	pixel_x = 4
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/abandoned_mineshaft)
+"bt" = (
+/obj/structure/bonfire/prelit{
+	pixel_y = 4;
+	pixel_x = -9
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_ice/downed_transport/delapidated_cabin)
+"bw" = (
+/obj/item/stack/sheet/mineral/wood,
+/turf/open/floor/plating/asteroid/icerock,
+/area/lavaland/surface/outdoors)
+"bE" = (
+/obj/structure/flora/tree/dead{
+	pixel_x = -12;
+	pixel_y = 7;
+	layer = 5.1
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/lavaland/surface/outdoors)
+"bM" = (
+/obj/structure/flora/tree/dead{
+	icon_state = "tree_3";
+	layer = 5.04
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/lavaland/surface/outdoors)
+"bO" = (
+/obj/structure/cable/pink,
+/obj/structure/shuttle/engine/propulsion,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_ice/downed_transport/crashed_shuttle)
+"bU" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/restraints/legcuffs/beartrap{
+	armed = 1
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/unpowered/planet_ice/downed_transport/abandoned_mineshaft)
+"bV" = (
+/obj/structure/fence{
+	dir = 4
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/unpowered/planet_ice/downed_transport/abandoned_mineshaft)
+"cf" = (
+/turf/open/floor/plating/rust,
+/area/lavaland/surface/outdoors)
+"ch" = (
+/obj/machinery/door/airlock/engineering{
+	dir = 2
+	},
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/atmospherics_shed)
+"cj" = (
+/mob/living/basic/mining/polarbear,
+/turf/open/floor/plating/asteroid/icerock/smooth,
+/area/ruin/unpowered/planet_lava/cave)
+"co" = (
+/obj/machinery/computer/security{
+	dir = 4
+	},
+/turf/open/floor/concrete{
+	icon_state = "conc_slab_1"
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/security_office)
+"cr" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_ice/downed_transport/bathhouse)
+"cs" = (
+/obj/effect/decal/cleanable/blood/footprints{
+	icon_state = "blood2"
+	},
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/ruin/unpowered/planet_lava/cave)
+"cy" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
+/obj/structure/cable,
+/obj/machinery/light_switch{
+	pixel_y = 11;
+	dir = 8;
+	pixel_x = 20
+	},
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/power/apc/auto_name/east{
+	start_charge = 0
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_ice/downed_transport/crashed_shuttle)
+"cz" = (
+/obj/structure/cable,
+/obj/effect/turf_decal/siding/wood,
+/obj/machinery/light/small/broken{
+	dir = 4
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/unpowered/planet_ice/downed_transport/abandoned_mineshaft)
+"cA" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/cable,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"cC" = (
+/obj/machinery/light/small/broken{
+	dir = 2;
+	pixel_y = -28
+	},
+/obj/structure/chair{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/slab_4{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/abandoned_mineshaft)
+"cE" = (
+/obj/structure/table/wood,
+/obj/item/instrument/harmonica{
+	pixel_y = 1;
+	pixel_x = 5
+	},
+/obj/item/instrument/banjo{
+	pixel_y = 1;
+	pixel_x = 1
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_ice/downed_transport/delapidated_cabin)
+"cM" = (
+/obj/structure/bonfire/prelit{
+	pixel_y = 12;
+	pixel_x = 11
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_ice/downed_transport/delapidated_cabin)
+"cP" = (
+/obj/structure/table/reinforced,
+/obj/item/t_scanner/adv_mining_scanner{
+	pixel_x = -10;
+	pixel_y = 2
+	},
+/obj/item/clipboard{
+	pixel_x = 6
+	},
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_ice/downed_transport/the_descent)
+"cS" = (
+/turf/closed/wall/mineral/titanium/survival/pod,
+/area/ruin/unpowered/planet_ice/downed_transport/barracks)
+"cT" = (
+/obj/structure/flora/tree/pine{
+	layer = 5.1
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/lavaland/surface/outdoors)
+"cV" = (
+/obj/effect/turf_decal/siding/wideplating/dark{
+	dir = 8
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"db" = (
+/obj/effect/turf_decal/siding/wideplating/dark{
+	dir = 5
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"dd" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_ice/downed_transport/crashed_shuttle)
+"do" = (
+/obj/structure/railing{
+	dir = 6;
+	layer = 3.06
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_ice/downed_transport/delapidated_cabin)
+"dt" = (
+/obj/structure/grille,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_ice/downed_transport/crashed_shuttle)
+"du" = (
+/obj/structure/chair/fancy/bench/pew/left{
+	dir = 8
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_ice/downed_transport/delapidated_cabin)
+"dH" = (
+/obj/structure/flora/tree/pine{
+	icon_state = "pine_3";
+	layer = 5.1
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/lavaland/surface/outdoors)
+"dM" = (
+/obj/effect/turf_decal/siding/wood,
+/obj/structure/closet/crate/miningcar,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/stack/ore/glass/basalt{
+	pixel_y = -5;
+	pixel_x = -6
+	},
+/obj/item/stack/ore/glass/basalt{
+	pixel_y = -4;
+	pixel_x = 6
+	},
+/obj/item/stack/ore/glass/basalt{
+	pixel_y = -10;
+	pixel_x = -6
+	},
+/obj/item/stack/ore/glass/basalt{
+	pixel_y = -9;
+	pixel_x = 4
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/the_descent)
+"dN" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 9
+	},
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_ice/downed_transport/crashed_shuttle)
+"dX" = (
+/obj/structure/closet/crate/trashcart,
+/turf/open/floor/plating/asteroid/icerock,
+/area/lavaland/surface/outdoors)
+"ed" = (
+/obj/effect/turf_decal/siding/white,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 6
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 4
+	},
+/turf/open/floor/plasteel{
+	icon_state = "monotile_light"
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/crew_accomodations)
+"ev" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/turf_decal/box,
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/atmospherics_shed)
+"eA" = (
+/obj/structure/showcase/machinery/tv{
+	name = "telewizor";
+	desc = "Plątanina kabli i taśmy, która ledwo działa.";
+	pixel_y = 4;
+	pixel_x = 3
+	},
+/obj/structure/table/wood,
+/obj/structure/cable,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_ice/downed_transport/delapidated_cabin)
+"eB" = (
+/obj/structure/kitchenspike,
+/obj/effect/decal/cleanable/blood/splatter/over_window{
+	pixel_y = 3;
+	pixel_x = 30;
+	desc = "Jest dziwne i glutowateeee"
+	},
+/obj/effect/decal/cleanable/blood/gibs,
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/powered/planet_ice/downed_transport/leaning_shack)
+"eF" = (
+/obj/structure/cable,
+/obj/effect/turf_decal/siding/thinplating{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/plating/asteroid/icerock/smooth,
+/area/ruin/unpowered/planet_ice/downed_transport/abandoned_mineshaft)
+"eG" = (
+/obj/item/food/donkpocket,
+/turf/open/floor/plating/asteroid/icerock,
+/area/lavaland/surface/outdoors)
+"eJ" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/brown{
+	dir = 8;
+	pixel_x = -2;
+	layer = 2.46
+	},
+/obj/effect/decal/cleanable/glass,
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/techmaint,
+/area/ruin/unpowered/planet_ice/downed_transport/mining_power_station)
+"eL" = (
+/obj/item/shard{
+	pixel_y = 1;
+	pixel_x = -8
+	},
+/obj/item/shard{
+	pixel_y = -4;
+	pixel_x = -1
+	},
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/unpowered/planet_ice/downed_transport/crashed_shuttle)
+"eQ" = (
+/obj/structure/flora/tree/dead{
+	icon_state = "tree_4";
+	pixel_y = -1;
+	layer = 5.1
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/lavaland/surface/outdoors)
+"eX" = (
+/obj/item/paper/crumpled{
+	pixel_y = 10;
+	pixel_x = -6
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/lavaland/surface/outdoors)
+"eY" = (
+/obj/structure/cable,
+/obj/structure/lattice/catwalk/over,
+/obj/effect/decal/cleanable/glass,
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_ice/downed_transport/mining_power_station)
+"ff" = (
+/obj/structure/table/wood,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/item/clothing/suit/hooded/wintercoat{
+	pixel_y = 4;
+	pixel_x = 6
+	},
+/obj/structure/bedsheetbin{
+	pixel_y = 11;
+	pixel_x = -1
+	},
+/turf/open/floor/plasteel{
+	icon_state = "monotile_light"
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/crew_accomodations)
+"fg" = (
+/obj/machinery/power/apc/auto_name/west{
+	start_charge = 0
+	},
+/obj/machinery/light_switch{
+	dir = 4;
+	pixel_x = -20;
+	pixel_y = 12
+	},
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 4
+	},
+/turf/open/floor/concrete{
+	icon_state = "conc_slab_1"
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/security_office)
+"fp" = (
+/obj/structure/cable,
+/obj/item/stack/ore/gold{
+	pixel_y = 5;
+	pixel_x = 8
+	},
+/obj/effect/decal/cleanable/robot_debris{
+	pixel_x = -14
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/light/small/broken{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/blood/footprints{
+	icon_state = "blood2"
+	},
+/turf/open/floor/plasteel/techmaint,
+/area/ruin/unpowered/planet_ice/downed_transport/crashed_shuttle)
+"fr" = (
+/obj/machinery/door/airlock/security{
+	dir = 2;
+	name = "Posterunek Ochrony"
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 1
+	},
+/turf/open/floor/concrete{
+	icon_state = "conc_slab_1"
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/security_office)
+"fs" = (
+/obj/effect/turf_decal/siding/wideplating/dark/corner{
+	dir = 2
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 5
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"ft" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/plasteel/stairs{
+	icon = 'icons/obj/stairs.dmi';
+	dir = 1
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/atmospherics_shed)
+"fw" = (
+/obj/structure/window/reinforced/fulltile,
+/obj/structure/grille,
+/obj/machinery/door/poddoor/shutters{
+	id = "general_room_shutters";
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_ice/downed_transport/crew_accomodations)
+"fC" = (
+/obj/structure/cable,
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/ruin/unpowered/planet_ice/downed_transport/abandoned_mineshaft)
+"fH" = (
+/obj/structure/cable,
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/unpowered/planet_ice/downed_transport/abandoned_mineshaft)
+"fI" = (
+/obj/structure/closet/crate/large,
+/turf/open/floor/plating/asteroid/icerock,
+/area/lavaland/surface/outdoors)
+"gb" = (
+/obj/structure/flora/tree/dead{
+	layer = 5.1
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/lavaland/surface/outdoors)
+"gm" = (
+/obj/structure/flora/tree/dead{
+	icon_state = "tree_5"
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/lavaland/surface/outdoors)
+"gn" = (
+/turf/closed/wall/mineral/plastitanium,
+/area/ruin/powered/planet_ice/downed_transport/ramshackle_workroom)
+"gw" = (
+/obj/structure/cable,
+/obj/structure/lattice/catwalk/over,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_ice/downed_transport/mining_power_station)
+"gz" = (
+/obj/structure/fence{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/unpowered/planet_ice/downed_transport/abandoned_mineshaft)
+"gG" = (
+/obj/structure/chair/fancy/comfy,
+/obj/structure/cable,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_ice/downed_transport/delapidated_cabin)
+"gO" = (
+/obj/structure/window/plasma/reinforced{
+	dir = 8
+	},
+/obj/structure/cable/pink,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/poddoor/preopen{
+	dir = 4;
+	id = "barrow_starboard_nacelle"
+	},
+/obj/machinery/power/smes,
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_ice/downed_transport/crashed_shuttle)
+"gP" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/layer4{
+	dir = 8
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/powered/planet_ice/downed_transport/ramshackle_workroom)
+"gU" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/closet/crate/large,
+/obj/item/paper/crumpled{
+	pixel_y = -4;
+	pixel_x = -5
+	},
+/obj/item/paper/crumpled{
+	pixel_x = 5;
+	pixel_y = -4
+	},
+/obj/item/ammo_box/magazine/m10mm{
+	pixel_y = -5;
+	pixel_x = -6;
+	start_empty = 1
+	},
+/obj/item/ammo_box/magazine/m10mm{
+	pixel_y = -5;
+	pixel_x = 6;
+	start_empty = 1
+	},
+/obj/item/paper/crumpled{
+	pixel_x = -5;
+	pixel_y = 4
+	},
+/obj/item/paper/crumpled{
+	pixel_x = 5;
+	pixel_y = 4
+	},
+/obj/item/ammo_box/magazine/m10mm{
+	pixel_y = 5;
+	pixel_x = 6;
+	start_empty = 1
+	},
+/obj/item/ammo_box/magazine/m10mm{
+	pixel_y = 5;
+	pixel_x = -6;
+	start_empty = 1
+	},
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_ice/downed_transport/crashed_shuttle)
+"gZ" = (
+/obj/structure/window/reinforced/fulltile,
+/obj/structure/grille,
+/obj/machinery/door/poddoor/shutters{
+	id = "general_room_shutters"
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_ice/downed_transport/crew_accomodations)
+"ha" = (
+/obj/structure/bed{
+	dir = 8
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_ice/downed_transport/delapidated_cabin)
+"hb" = (
+/mob/living/basic/trooper/pirate/ranged,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_ice/downed_transport/delapidated_cabin)
+"hc" = (
+/obj/structure/window/plastitanium,
+/obj/structure/grille,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "barrow_windows"
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_ice/downed_transport/crashed_shuttle)
+"he" = (
+/obj/structure/flora/rock,
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/unpowered/planet_lava/cave)
+"hn" = (
+/obj/structure/table/wood,
+/obj/machinery/microwave{
+	pixel_y = 1
+	},
+/turf/open/floor/plasteel{
+	icon_state = "tiled_dark"
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/crew_accomodations)
+"hs" = (
+/obj/machinery/airalarm/directional/north,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/atmospherics_shed)
+"hz" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/cable,
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/abandoned_mineshaft)
+"hE" = (
+/obj/machinery/light/broken{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/glass,
+/mob/living/basic/trooper/pirate/melee{
+	desc = "Postać o dzikim spojrzeniu, w podartym sprzęcie górniczym i z powykręcanym ciałem."
+	},
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_ice/downed_transport/crashed_shuttle)
+"hI" = (
+/obj/structure/cable,
+/obj/item/stack/cable_coil/cut{
+	pixel_y = 7;
+	pixel_x = -3
+	},
+/obj/item/stock_parts/micro_laser{
+	pixel_y = -7;
+	pixel_x = 4
+	},
+/obj/item/stock_parts/manipulator{
+	pixel_x = 11;
+	pixel_y = 1
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/lavaland/surface/outdoors)
+"hQ" = (
+/obj/structure/lattice/catwalk/over,
+/mob/living/basic/mining/ice_demon/old,
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_ice/downed_transport/mining_power_station)
+"hS" = (
+/obj/machinery/light/small/broken{
+	dir = 8
+	},
+/turf/open/floor/plasteel/techmaint,
+/area/ruin/unpowered/planet_ice/downed_transport/crashed_shuttle)
+"hT" = (
+/obj/structure/window/plastitanium,
+/obj/structure/grille,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "barrow_bridge"
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_ice/downed_transport/crashed_shuttle)
+"hV" = (
+/obj/structure/cable,
+/obj/structure/cable/yellow,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/oil,
+/obj/machinery/button/door{
+	dir = 8;
+	pixel_x = 21;
+	id = "barrow_port_nacelle"
+	},
+/obj/machinery/power/apc/auto_name/south{
+	start_charge = 0
+	},
+/obj/machinery/light_switch{
+	pixel_y = 7;
+	dir = 8;
+	pixel_x = 20
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_ice/downed_transport/crashed_shuttle)
+"ib" = (
+/turf/template_noop,
+/area/template_noop)
+"il" = (
+/turf/closed/wall,
+/area/ruin/unpowered/planet_ice/downed_transport/bathhouse)
+"im" = (
+/obj/structure/shuttle/engine/propulsion,
+/obj/structure/cable/pink,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_ice/downed_transport/crashed_shuttle)
+"in" = (
+/obj/machinery/light/small{
+	pixel_y = 28
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/unpowered/planet_ice/downed_transport/abandoned_mineshaft)
+"io" = (
+/obj/effect/decal/cleanable/blood/drip{
+	pixel_y = 15;
+	pixel_x = 9
+	},
+/turf/closed/wall/rust,
+/area/ruin/unpowered/planet_ice/downed_transport/mining_power_station)
+"ip" = (
+/obj/machinery/light{
+	dir = 1;
+	pixel_y = -32
+	},
+/obj/structure/chair/stool{
+	pixel_y = -3;
+	dir = 1
+	},
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_ice/downed_transport/crashed_shuttle)
+"is" = (
+/obj/effect/decal/fakelattice,
+/obj/item/stack/cable_coil/cut,
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/unpowered/planet_ice/downed_transport/crashed_shuttle)
+"iu" = (
+/obj/item/flashlight/flare{
+	on = 1
+	},
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_ice/downed_transport/crashed_shuttle)
+"iv" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/turf/open/floor/plasteel{
+	icon_state = "tiled_dark"
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/crew_accomodations)
+"iF" = (
+/obj/item/food/energybar,
+/turf/open/floor/plating/asteroid/icerock,
+/area/lavaland/surface/outdoors)
+"iT" = (
+/obj/structure/chair/fancy/bench/pew/right{
+	dir = 8
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_ice/downed_transport/delapidated_cabin)
+"iV" = (
+/turf/closed/wall/mineral/wood,
+/area/ruin/powered/planet_ice/downed_transport/delapidated_cabin)
+"iX" = (
+/obj/item/clothing/suit/armor/vest/old{
+	pixel_x = 8;
+	pixel_y = 6
+	},
+/obj/item/clothing/head/helmet/old{
+	pixel_x = 8;
+	pixel_y = 16
+	},
+/obj/item/clothing/glasses/sunglasses{
+	pixel_y = 15;
+	pixel_x = -4
+	},
+/obj/item/flashlight/seclite{
+	pixel_y = 6
+	},
+/obj/item/melee/classic_baton{
+	pixel_x = 2;
+	pixel_y = 7
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/generic,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 10
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
+/turf/open/floor/concrete{
+	icon_state = "conc_slab_1"
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/security_office)
+"jd" = (
+/obj/item/reagent_containers/glass/bucket{
+	pixel_y = 5;
+	pixel_x = 9
+	},
+/obj/item/reagent_containers/glass/bucket,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/the_descent)
+"jg" = (
+/obj/effect/turf_decal/siding/wood/end{
+	dir = 1
+	},
+/turf/open/floor/carpet/red,
+/area/ruin/powered/planet_ice/downed_transport/delapidated_cabin)
+"jj" = (
+/obj/structure/chair/wood{
+	pixel_y = 1
+	},
+/mob/living/basic/trooper/pirate/melee{
+	desc = "Postać o dzikim spojrzeniu, w podartym sprzęcie górniczym i z powykręcanym ciałem."
+	},
+/obj/structure/railing{
+	dir = 2
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/lavaland/surface/outdoors)
+"jm" = (
+/obj/effect/turf_decal/siding/wideplating/dark/corner{
+	dir = 1
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"jt" = (
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/unpowered/planet_lava/cave)
+"ju" = (
+/obj/structure/fence/post{
+	dir = 8
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/lavaland/surface/outdoors)
+"jy" = (
+/obj/effect/decal/fakelattice,
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/unpowered/planet_ice/downed_transport/crashed_shuttle)
+"jA" = (
+/obj/structure/fence/door,
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/unpowered/planet_ice/downed_transport/abandoned_mineshaft)
+"jD" = (
+/obj/machinery/light_switch{
+	pixel_y = -17;
+	dir = 1;
+	pixel_x = -12
+	},
+/obj/effect/turf_decal/siding/brown{
+	dir = 8;
+	pixel_x = -2
+	},
+/obj/machinery/power/apc/auto_name/south{
+	start_charge = 0
+	},
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/techmaint,
+/area/ruin/unpowered/planet_ice/downed_transport/mining_power_station)
+"jR" = (
+/obj/structure/table/reinforced,
+/obj/item/radio{
+	pixel_y = 15;
+	pixel_x = -18
+	},
+/obj/item/radio/off{
+	dir = 1;
+	pixel_x = 4;
+	pixel_y = 6
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/item/paper/crumpled{
+	pixel_x = -9;
+	pixel_y = 1;
+	default_raw_text = "Keer już stamtąd nie wyszła, a Reggie zginął, próbując ją ratować. Na dole czeka nas tylko śmierć. Pakujemy się w pośpiechu i spadamy stąd. Jak chcesz swoją cholerną kaucję, to idź ją sobie wyciągnąć z tej swojej przeklętej dziury. Tylko idiota zamienia życie na pieniądze.";
+	name = "pospiesznie nabazgrana notatka"
+	},
+/turf/open/floor/concrete{
+	icon_state = "conc_slab_1"
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/security_office)
+"jW" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/bed/dogbed{
+	pixel_y = -1;
+	pixel_x = -1
+	},
+/turf/open/floor/carpet/blue,
+/area/ruin/unpowered/planet_ice/downed_transport/barracks)
+"jY" = (
+/obj/structure/chair/office{
+	dir = 4
+	},
+/obj/structure/lattice/catwalk/over,
+/obj/effect/decal/cleanable/glass,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_ice/downed_transport/mining_power_station)
+"jZ" = (
+/obj/structure/closet/cabinet,
+/obj/item/food/donkpocket,
+/obj/item/food/donkpocket,
+/obj/item/food/donkpocket,
+/obj/item/reagent_containers/food/drinks/beer,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel{
+	icon_state = "tiled_dark"
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/crew_accomodations)
+"ka" = (
+/obj/effect/decal/cleanable/blood/drip{
+	pixel_x = -4;
+	pixel_y = -5;
+	layer = 2.46
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/lavaland/surface/outdoors)
+"ky" = (
+/obj/machinery/camera{
+	status = 0
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/lavaland/surface/outdoors)
+"kG" = (
+/obj/structure/cable,
+/obj/item/flashlight/flare{
+	on = 1
+	},
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_ice/downed_transport/crashed_shuttle)
+"kM" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/turf/open/floor/plasteel{
+	icon_state = "tiled_dark"
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/barracks)
+"kR" = (
+/obj/machinery/camera{
+	status = 0;
+	dir = 8
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/lavaland/surface/outdoors)
+"kS" = (
+/obj/structure/table/reinforced,
+/obj/structure/sink{
+	dir = 1;
+	pixel_y = -4
+	},
+/obj/effect/turf_decal/siding/white/corner{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel{
+	icon_state = "monotile_light"
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/crew_accomodations)
+"kU" = (
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_ice/downed_transport/delapidated_cabin)
+"kV" = (
+/obj/structure/cable,
+/turf/closed/wall/mineral/wood,
+/area/ruin/powered/planet_ice/downed_transport/delapidated_cabin)
+"kW" = (
+/obj/structure/chair/fancy/shuttle{
+	dir = 4
+	},
+/obj/item/stack/ore/gold{
+	pixel_x = 6;
+	pixel_y = -11
+	},
+/obj/effect/decal/cleanable/glass,
+/obj/item/pen{
+	pixel_x = -6;
+	pixel_y = 1
+	},
+/obj/effect/mob_spawn/human/corpse,
+/obj/item/shard{
+	pixel_y = -2;
+	pixel_x = -2
+	},
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_ice/downed_transport/crashed_shuttle)
+"lg" = (
+/obj/structure/flora/tree/pine{
+	icon_state = "pine_4";
+	layer = 5.05
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/lavaland/surface/outdoors)
+"ln" = (
+/turf/closed/mineral/random/planet_ice,
+/area/ruin/unpowered/planet_ice/downed_transport/abandoned_mineshaft)
+"lu" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/concrete{
+	icon_state = "conc_slab_1"
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/security_office)
+"lx" = (
+/turf/closed/wall/mineral/wood,
+/area/ruin/powered/planet_ice/downed_transport/leaning_shack)
+"ly" = (
+/obj/machinery/advanced_airlock_controller{
+	pixel_x = -24;
+	pixel_y = 1
+	},
+/obj/structure/cable,
+/obj/machinery/light/small/broken{
+	dir = 4
+	},
+/obj/item/stack/ore/gold{
+	pixel_y = 10;
+	pixel_x = 8
+	},
+/turf/open/floor/engine,
+/area/ruin/unpowered/planet_ice/downed_transport/crashed_shuttle)
+"lE" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/glass,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/unpowered/planet_ice/downed_transport/abandoned_mineshaft)
+"lG" = (
+/obj/effect/turf_decal/siding/wideplating/dark{
+	dir = 1
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"lR" = (
+/obj/structure/toilet{
+	dir = 1
+	},
+/obj/structure/window/reinforced/tinted{
+	dir = 8
+	},
+/obj/structure/window/reinforced/tinted{
+	dir = 4
+	},
+/obj/structure/curtain,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete{
+	icon_state = "conc_tiles"
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/bathhouse)
+"md" = (
+/obj/machinery/portable_atmospherics/pump,
+/turf/open/floor/plating/asteroid/icerock,
+/area/lavaland/surface/outdoors)
+"mp" = (
+/obj/item/clothing/shoes/winterboots{
+	pixel_y = 10;
+	pixel_x = -6
+	},
+/obj/item/clothing/shoes/workboots{
+	pixel_y = 7;
+	pixel_x = 7
+	},
+/obj/item/clothing/shoes/workboots/mining{
+	pixel_y = 1;
+	pixel_x = -5
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_ice/downed_transport/delapidated_cabin)
+"mq" = (
+/obj/structure/lattice{
+	icon_state = "lattice-12"
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/lavaland/surface/outdoors)
+"mv" = (
+/obj/effect/mine/explosive{
+	dir = 1;
+	pixel_x = 6;
+	pixel_y = 8
+	},
+/obj/item/stack/sheet/mineral/wood{
+	pixel_x = 10
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/lavaland/surface/outdoors)
+"mE" = (
+/obj/machinery/light{
+	pixel_y = 32
+	},
+/obj/structure/chair/stool{
+	pixel_y = 18
+	},
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_ice/downed_transport/crashed_shuttle)
+"mI" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 6
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/turf/open/floor/plasteel{
+	icon_state = "monotile_light"
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/crew_accomodations)
+"mK" = (
+/obj/structure/cable,
+/obj/machinery/power/floodlight{
+	anchored = 1
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/unpowered/planet_ice/downed_transport/abandoned_mineshaft)
+"mN" = (
+/obj/structure/window/fulltile,
+/obj/structure/curtain/bounty,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/downed_transport/delapidated_cabin)
+"mO" = (
+/obj/effect/turf_decal/siding/wideplating/dark{
+	dir = 4
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"mP" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 1
+	},
+/turf/open/floor/concrete{
+	icon_state = "conc_slab_1"
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/security_office)
+"mU" = (
+/obj/structure/chair/stool{
+	pixel_y = 18
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_ice/downed_transport/crashed_shuttle)
+"mX" = (
+/obj/structure/cable,
+/obj/structure/cable/yellow,
+/obj/structure/lattice/catwalk/over/ship/dark,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_ice/downed_transport/crashed_shuttle)
+"nc" = (
+/obj/machinery/portable_atmospherics/canister/air,
+/turf/open/floor/plasteel/techmaint,
+/area/ruin/unpowered/planet_ice/downed_transport/crashed_shuttle)
+"ne" = (
+/obj/structure/grille,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/item/shard{
+	pixel_y = 2;
+	pixel_x = 2
+	},
+/obj/item/shard{
+	pixel_y = -1;
+	pixel_x = -6
+	},
+/obj/effect/decal/cleanable/glass,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "barrow_windows"
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_ice/downed_transport/crashed_shuttle)
+"nj" = (
+/obj/structure/bed,
+/obj/structure/curtain,
+/turf/open/floor/carpet/blue,
+/area/ruin/unpowered/planet_ice/downed_transport/barracks)
+"nm" = (
+/obj/structure/flora/rock{
+	icon_state = "basalt2";
+	pixel_x = 5;
+	pixel_y = 6
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/lavaland/surface/outdoors)
+"np" = (
+/obj/structure/cable,
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/abandoned_mineshaft)
+"nv" = (
+/obj/structure/cable,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/atmospherics_shed)
+"nE" = (
+/obj/effect/turf_decal/siding/wideplating/dark{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 10
+	},
+/obj/structure/cable,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"nO" = (
+/obj/structure/flora/rock,
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/unpowered/planet_ice/downed_transport/abandoned_mineshaft)
+"nR" = (
+/obj/machinery/portable_atmospherics/canister,
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/powered/planet_ice/downed_transport/ramshackle_workroom)
+"nT" = (
+/turf/closed/wall/mineral/titanium/survival/pod,
+/area/ruin/unpowered/planet_ice/downed_transport/bathhouse)
+"nU" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/unpowered/planet_ice/downed_transport/abandoned_mineshaft)
+"nX" = (
+/turf/closed/wall,
+/area/ruin/unpowered/planet_ice/downed_transport/crew_accomodations)
+"oa" = (
+/obj/structure/cable,
+/obj/effect/turf_decal/siding/wood{
+	dir = 5
+	},
+/mob/living/basic/trooper/pirate/ranged,
+/turf/open/floor/carpet/red,
+/area/ruin/powered/planet_ice/downed_transport/delapidated_cabin)
+"ob" = (
+/obj/structure/table/wood,
+/obj/item/organ/lungs{
+	pixel_y = -3;
+	pixel_x = 7
+	},
+/obj/item/organ/liver{
+	pixel_y = -2
+	},
+/obj/item/organ/tongue/lizard{
+	pixel_y = 7;
+	pixel_x = 3
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/powered/planet_ice/downed_transport/leaning_shack)
+"of" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 6
+	},
+/turf/open/floor/carpet/red,
+/area/ruin/powered/planet_ice/downed_transport/delapidated_cabin)
+"og" = (
+/obj/structure/fence,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/lavaland/surface/outdoors)
+"oi" = (
+/obj/machinery/space_heater,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/generic,
+/obj/machinery/airalarm/directional/north,
+/turf/open/floor/carpet/blue,
+/area/ruin/unpowered/planet_ice/downed_transport/barracks)
+"on" = (
+/obj/structure/flora/tree/dead{
+	name = "roztrzaskane drewno"
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/lavaland/surface/outdoors)
+"oq" = (
+/obj/structure/flora/rock,
+/turf/open/floor/plating/asteroid/icerock,
+/area/lavaland/surface/outdoors)
+"oz" = (
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/powered/planet_ice/downed_transport/ramshackle_workroom)
+"oC" = (
+/obj/structure/lattice/catwalk/over,
+/obj/effect/decal/cleanable/glass,
+/obj/machinery/space_heater{
+	pixel_y = 12
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_ice/downed_transport/mining_power_station)
+"oF" = (
+/obj/structure/flora/tree/dead/tall{
+	icon_state = "tree_2"
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/lavaland/surface/outdoors)
+"oI" = (
+/obj/effect/decal/cleanable/glass,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_ice/downed_transport/crashed_shuttle)
+"oJ" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/lavaland/surface/outdoors)
+"oP" = (
+/turf/closed/wall/mineral/titanium/survival/pod,
+/area/ruin/unpowered/planet_ice/downed_transport/security_office)
+"pd" = (
+/obj/machinery/computer/monitor{
+	dir = 8
+	},
+/obj/structure/lattice/catwalk/over,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_ice/downed_transport/mining_power_station)
+"pe" = (
+/obj/structure/table/reinforced,
+/obj/item/radio/intercom/directional/south,
+/obj/item/clipboard{
+	pixel_x = 4;
+	pixel_y = 1
+	},
+/obj/item/binoculars{
+	pixel_y = 9
+	},
+/obj/item/shard{
+	pixel_y = -2;
+	pixel_x = -2
+	},
+/obj/item/stack/cable_coil/cut{
+	pixel_y = -4
+	},
+/obj/item/stock_parts/capacitor{
+	pixel_x = 9;
+	pixel_y = 7
+	},
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_ice/downed_transport/crashed_shuttle)
+"pj" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/lavaland/surface/outdoors)
+"pl" = (
+/obj/structure/closet/secure_closet/miner,
+/obj/item/storage/belt/mining/alt,
+/obj/item/pickaxe,
+/obj/item/clothing/suit/toggle,
+/obj/item/clothing/shoes/workboots/mining{
+	pixel_y = -10
+	},
+/obj/item/clothing/glasses/meson,
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/abandoned_mineshaft)
+"pp" = (
+/obj/structure/cable,
+/obj/structure/lattice/catwalk/over/ship,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_ice/downed_transport/crashed_shuttle)
+"pr" = (
+/obj/effect/turf_decal/siding/wideplating/dark{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"pt" = (
+/obj/machinery/light{
+	dir = 1;
+	pixel_x = -33
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/lavaland/surface/outdoors)
+"py" = (
+/obj/structure/flora/grass/both,
+/obj/effect/decal/cleanable/crayon{
+	icon_state = "l";
+	pixel_y = 26;
+	pixel_x = 6;
+	paint_colour = "#FF3333"
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/lavaland/surface/outdoors)
+"pA" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/visible/layer4{
+	dir = 10
+	},
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/atmospherics_shed)
+"pC" = (
+/obj/structure/curtain/bounty,
+/obj/effect/decal/cleanable/glass,
+/obj/structure/barricade/wooden,
+/obj/structure/barricade/wooden/crude/snow,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/downed_transport/delapidated_cabin)
+"pD" = (
+/obj/machinery/light/small{
+	pixel_y = -28
+	},
+/obj/structure/table/wood,
+/obj/structure/showcase/machinery/microwave,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/abandoned_mineshaft)
+"pJ" = (
+/obj/machinery/portable_atmospherics/scrubber,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_ice/downed_transport/delapidated_cabin)
+"pM" = (
+/obj/structure/fence/door,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/lavaland/surface/outdoors)
+"qa" = (
+/obj/effect/decal/fakelattice,
+/turf/open/floor/plating/asteroid/icerock,
+/area/lavaland/surface/outdoors)
+"qd" = (
+/obj/structure/chair/stool/bar{
+	dir = 1;
+	pixel_y = 2
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel{
+	icon_state = "tiled_dark"
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/crew_accomodations)
+"qe" = (
+/obj/effect/decal/cleanable/blood/footprints{
+	icon_state = "blood2"
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/lavaland/surface/outdoors)
+"qh" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
+/obj/machinery/door/poddoor/shutters{
+	id = "general_room_shutters"
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_ice/downed_transport/crew_accomodations)
+"qk" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/glass,
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/basic/mining/legion/crystal,
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_ice/downed_transport/the_descent)
+"qo" = (
+/obj/structure/flora/tree/dead{
+	icon_state = "tree_6";
+	layer = 5.05
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/lavaland/surface/outdoors)
+"qs" = (
+/obj/structure/flora/tree/pine{
+	icon_state = "pine_4"
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/lavaland/surface/outdoors)
+"qv" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 4;
+	pixel_x = -15
+	},
+/obj/effect/decal/cleanable/glass,
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/basic/mining/goliath/crystal,
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/ruin/unpowered/planet_ice/downed_transport/abandoned_mineshaft)
+"qJ" = (
+/obj/structure/flora/tree/dead{
+	icon_state = "tree_4";
+	layer = 5.04
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/lavaland/surface/outdoors)
+"qK" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/restraints/legcuffs/beartrap{
+	armed = 1
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/unpowered/planet_ice/downed_transport/abandoned_mineshaft)
+"qN" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/atmospherics_shed)
+"qO" = (
+/obj/structure/filingcabinet{
+	dir = 2
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/documents{
+	name = "dokumentacja placówki"
+	},
+/turf/open/floor/concrete{
+	icon_state = "conc_slab_1"
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/security_office)
+"qR" = (
+/obj/structure/flora/tree/dead/tall{
+	icon_state = "tree_3";
+	layer = 5.1
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/lavaland/surface/outdoors)
+"qS" = (
+/obj/machinery/modular_fabricator/autolathe,
+/obj/structure/lattice/catwalk/over,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_ice/downed_transport/mining_power_station)
+"qZ" = (
+/obj/effect/decal/cleanable/blood/drip{
+	pixel_x = 12;
+	pixel_y = 16;
+	layer = 2.46
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/lavaland/surface/outdoors)
+"rb" = (
+/obj/structure/bed/dogbed{
+	pixel_x = -15;
+	pixel_y = 9
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_ice/downed_transport/delapidated_cabin)
+"rg" = (
+/obj/structure/window/reinforced/tinted,
+/obj/machinery/shower{
+	dir = 8;
+	layer = 3.1
+	},
+/obj/structure/curtain{
+	layer = 3.1
+	},
+/obj/item/soap,
+/turf/open/floor/concrete{
+	icon_state = "conc_tiles"
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/bathhouse)
+"rj" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/button/door{
+	dir = 8;
+	pixel_x = 21;
+	id = "barrow_starboard_nacelle"
+	},
+/obj/machinery/light_switch{
+	pixel_y = -7;
+	dir = 8;
+	pixel_x = 20
+	},
+/obj/machinery/power/terminal{
+	dir = 2
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_ice/downed_transport/crashed_shuttle)
+"rm" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/blood/footprints{
+	icon_state = "blood2";
+	dir = 8;
+	pixel_y = -3;
+	pixel_x = 16
+	},
+/obj/item/wirerod{
+	pixel_y = 8;
+	pixel_x = 17
+	},
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_ice/downed_transport/crashed_shuttle)
+"rq" = (
+/obj/effect/decal/cleanable/blood/drip{
+	pixel_y = 15;
+	pixel_x = 9
+	},
+/obj/effect/decal/cleanable/blood/drip{
+	pixel_y = 13;
+	pixel_x = -2
+	},
+/obj/effect/decal/cleanable/blood/drip{
+	pixel_y = 10;
+	pixel_x = 3
+	},
+/obj/effect/decal/cleanable/blood/gibs/bubblegum,
+/obj/effect/decal/cleanable/blood/splatter/over_window{
+	pixel_x = 27
+	},
+/obj/effect/mob_spawn/human/corpse/charredskeleton,
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/unpowered/planet_lava/cave)
+"ru" = (
+/obj/structure/closet/secure_closet/miner,
+/obj/item/storage/bag/ore,
+/obj/item/storage/belt/mining/alt,
+/obj/item/mining_scanner,
+/obj/item/pickaxe/mini,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/clothing/suit/toggle,
+/obj/item/clothing/shoes/workboots/mining{
+	pixel_y = -10
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/abandoned_mineshaft)
+"rC" = (
+/obj/structure/ladder/unbreakable{
+	pixel_y = 9;
+	desc = "Ze ścian ciemnego szybu groźnie sterczą ostre kryształy, a z otworu dobiega upiorny gwizd, jakby coś cię wołało. Dochodzisz do wniosku, że naprawdę nie chcesz tam schodzić.";
+	name = "złowieszcza drabina"
+	},
+/obj/effect/decal/cleanable/glass,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_ice/downed_transport/the_descent)
+"rF" = (
+/obj/structure/cable,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/lavaland/surface/outdoors)
+"rI" = (
+/obj/structure/flora/tree/dead{
+	icon_state = "tree_4";
+	layer = 5.05
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/lavaland/surface/outdoors)
+"rM" = (
+/obj/machinery/button/door{
+	id = "loading_door_blast";
+	name = "drzwi załadunkowe";
+	pixel_y = 21
+	},
+/obj/machinery/light_switch{
+	pixel_x = 8;
+	pixel_y = 20
+	},
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_ice/downed_transport/crashed_shuttle)
+"rN" = (
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/lavaland/surface/outdoors)
+"rV" = (
+/obj/structure/chair/stool/bar{
+	dir = 2
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/cable,
+/obj/machinery/power/apc/auto_name/north{
+	start_charge = 0
+	},
+/obj/machinery/airalarm/directional/west,
+/turf/open/floor/plasteel{
+	icon_state = "tiled_dark"
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/crew_accomodations)
+"rW" = (
+/obj/structure/cable/yellow,
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/ruin/unpowered/planet_ice/downed_transport/crashed_shuttle)
+"rY" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 2
+	},
+/turf/open/floor/plasteel{
+	icon_state = "tiled_dark"
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/barracks)
+"rZ" = (
+/obj/effect/turf_decal/siding/wideplating/dark/corner{
+	dir = 2
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"sa" = (
+/obj/structure/closet/secure_closet/freezer/kitchen,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/slab_4{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/abandoned_mineshaft)
+"sj" = (
+/obj/effect/turf_decal/siding/wideplating/dark{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/wideplating/dark{
+	dir = 1
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"sm" = (
+/obj/structure/flora/tree/dead{
+	icon_state = "tree_4";
+	layer = 5.1
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/lavaland/surface/outdoors)
+"sn" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 1
+	},
+/turf/open/floor/plasteel{
+	icon_state = "monotile_light"
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/crew_accomodations)
+"so" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/ruin/unpowered/planet_ice/downed_transport/abandoned_mineshaft)
+"ss" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_ice/downed_transport/crashed_shuttle)
+"sv" = (
+/obj/structure/flora/tree/dead/tall{
+	icon_state = "tree_stump";
+	name = "pniak"
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/lavaland/surface/outdoors)
+"sx" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 2
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 2
+	},
+/turf/open/floor/plasteel{
+	icon_state = "tiled_dark"
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/barracks)
+"sB" = (
+/obj/structure/railing{
+	dir = 1;
+	layer = 3.06
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/lavaland/surface/outdoors)
+"sC" = (
+/obj/structure/flora/rock/icy,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/lavaland/surface/outdoors)
+"sE" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/turf/open/floor/plasteel/stairs{
+	icon = 'icons/obj/stairs.dmi';
+	dir = 4
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/atmospherics_shed)
+"sM" = (
+/obj/structure/flora/grass/green,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/lavaland/surface/outdoors)
+"te" = (
+/turf/closed/wall/rust,
+/area/ruin/unpowered/planet_ice/downed_transport/crew_accomodations)
+"tk" = (
+/obj/structure/flora/rock/pile/icy{
+	pixel_y = -1;
+	pixel_x = 8
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/lavaland/surface/outdoors)
+"tl" = (
+/obj/structure/cable,
+/turf/closed/indestructible/rock,
+/area/ruin/unpowered/planet_lava/cave)
+"to" = (
+/obj/structure/cable,
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 4
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/abandoned_mineshaft)
+"tp" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 8
+	},
+/obj/structure/cable,
+/obj/effect/decal/cleanable/glass,
+/obj/item/clothing/head/helmet/space{
+	pixel_x = -7;
+	pixel_y = -7
+	},
+/obj/item/clothing/head/helmet/space{
+	pixel_x = -7;
+	pixel_y = -7
+	},
+/obj/item/clothing/suit/space{
+	pixel_x = 7;
+	pixel_y = -6
+	},
+/obj/item/clothing/suit/space{
+	pixel_x = 7;
+	pixel_y = -6
+	},
+/obj/machinery/power/apc/auto_name/east{
+	start_charge = 0
+	},
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_ice/downed_transport/crashed_shuttle)
+"tB" = (
+/obj/structure/flora/tree/dead/tall{
+	icon_state = "tree_3"
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/lavaland/surface/outdoors)
+"tG" = (
+/obj/effect/decal/cleanable/blood/drip,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/lavaland/surface/outdoors)
+"tI" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/power/apc/auto_name/west{
+	start_charge = 0
+	},
+/obj/structure/cable,
+/turf/open/floor/concrete/slab_4{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/abandoned_mineshaft)
+"tK" = (
+/obj/item/stack/cable_coil/cut{
+	pixel_y = -9
+	},
+/obj/effect/decal/fakelattice,
+/turf/open/floor/plating/asteroid/icerock,
+/area/lavaland/surface/outdoors)
+"tP" = (
+/obj/structure/table,
+/obj/structure/lattice/catwalk/over,
+/obj/item/weldingtool,
+/obj/item/clothing/glasses/welding{
+	pixel_y = 9;
+	pixel_x = 7
+	},
+/obj/item/wrench{
+	pixel_x = -14
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_ice/downed_transport/mining_power_station)
+"tQ" = (
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/unpowered/planet_ice/downed_transport/abandoned_mineshaft)
+"ua" = (
+/obj/effect/turf_decal/siding/wideplating/dark{
+	dir = 9
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"ui" = (
+/obj/structure/flora/tree/dead{
+	icon_state = "tree_3"
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/lavaland/surface/outdoors)
+"uu" = (
+/obj/structure/table/wood,
+/obj/structure/cable,
+/obj/item/stock_parts/cell{
+	pixel_x = 5;
+	pixel_y = -1
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_ice/downed_transport/delapidated_cabin)
+"uA" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_ice/downed_transport/barracks)
+"uF" = (
+/obj/structure/table,
+/obj/item/folder/yellow{
+	pixel_y = 1;
+	pixel_x = -5
+	},
+/obj/structure/lattice/catwalk/over,
+/obj/item/radio/intercom/directional/south,
+/obj/item/folder,
+/obj/item/pen{
+	pixel_x = -5;
+	pixel_y = 3
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_ice/downed_transport/mining_power_station)
+"uJ" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/spray/cleaner{
+	pixel_y = 14;
+	pixel_x = -6
+	},
+/obj/item/reagent_containers/glass/bucket{
+	pixel_y = 5;
+	pixel_x = -5
+	},
+/obj/item/mop{
+	pixel_x = 4;
+	pixel_y = 8
+	},
+/obj/item/pushbroom{
+	pixel_y = 6;
+	pixel_x = 6
+	},
+/obj/effect/turf_decal/siding/white/corner{
+	dir = 8
+	},
+/turf/open/floor/plasteel{
+	icon_state = "monotile_light"
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/crew_accomodations)
+"uU" = (
+/obj/structure/railing/corner,
+/turf/open/floor/plating/asteroid/icerock,
+/area/lavaland/surface/outdoors)
+"vj" = (
+/obj/effect/decal/cleanable/blood/drip{
+	pixel_x = 16;
+	pixel_y = 12
+	},
+/obj/effect/decal/cleanable/blood/drip{
+	pixel_x = 19;
+	pixel_y = 2
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/lavaland/surface/outdoors)
+"vk" = (
+/obj/effect/turf_decal/siding/wood/corner,
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/the_descent)
+"vl" = (
+/obj/structure/closet/crate/bin{
+	pixel_y = 16
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel{
+	icon_state = "tiled_dark"
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/crew_accomodations)
+"vv" = (
+/obj/structure/flora/tree/pine{
+	layer = 3.3;
+	pixel_x = -20
+	},
+/obj/structure/railing{
+	dir = 2;
+	layer = 3.4
+	},
+/obj/effect/decal/cleanable/glass,
+/obj/item/circuitboard/computer/shuttle{
+	pixel_y = -2;
+	pixel_x = -8
+	},
+/obj/item/stack/ore/iron{
+	pixel_y = 2;
+	pixel_x = 6
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/unpowered/planet_ice/downed_transport/crashed_shuttle)
+"vx" = (
+/obj/structure/bonfire/prelit{
+	pixel_y = 12;
+	pixel_x = -6
+	},
+/obj/effect/decal/cleanable/blood/drip{
+	pixel_x = 11;
+	pixel_y = 11
+	},
+/obj/item/clothing/neck/cloak{
+	pixel_y = 3;
+	pixel_x = -2
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/powered/planet_ice/downed_transport/leaning_shack)
+"vR" = (
+/obj/structure/flora/tree/pine{
+	icon_state = "pine_3"
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/lavaland/surface/outdoors)
+"vT" = (
+/obj/item/stack/ore/iron,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/lavaland/surface/outdoors)
+"vU" = (
+/obj/effect/turf_decal/siding/wood,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/unpowered/planet_ice/downed_transport/abandoned_mineshaft)
+"vV" = (
+/obj/machinery/power/port_gen/pacman,
+/obj/structure/cable,
+/turf/open/floor/plating/asteroid/icerock,
+/area/lavaland/surface/outdoors)
+"wa" = (
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/structure/cable,
+/obj/structure/cable/yellow,
+/obj/machinery/door/airlock/grunge{
+	name = "Lewa Gondola"
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_ice/downed_transport/crashed_shuttle)
+"we" = (
+/obj/machinery/light{
+	dir = 1;
+	pixel_x = -33
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 5
+	},
+/turf/open/floor/concrete{
+	icon_state = "conc_tiles"
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/bathhouse)
+"wf" = (
+/obj/structure/railing{
+	dir = 2;
+	layer = 3.06
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_ice/downed_transport/delapidated_cabin)
+"wg" = (
+/obj/structure/flora/tree/dead{
+	icon_state = "tree_5";
+	pixel_y = -6;
+	pixel_x = -20;
+	layer = 5.07
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/lavaland/surface/outdoors)
+"wj" = (
+/obj/structure/mirror{
+	pixel_y = 30
+	},
+/obj/structure/sink{
+	pixel_y = 18;
+	pixel_x = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/airalarm/directional/east,
+/turf/open/floor/concrete{
+	icon_state = "conc_tiles"
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/bathhouse)
+"wk" = (
+/obj/machinery/light/small/broken{
+	dir = 4
+	},
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_ice/downed_transport/the_descent)
+"wn" = (
+/obj/machinery/light{
+	dir = 1;
+	pixel_y = -32
+	},
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/atmospherics_shed)
+"wp" = (
+/obj/structure/cable,
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_ice/downed_transport/the_descent)
+"wq" = (
+/obj/structure/bed{
+	icon_state = "dirty_mattress";
+	pixel_y = -5;
+	pixel_x = 5
+	},
+/obj/item/grown/log/tree{
+	pixel_y = 13;
+	pixel_x = -8
+	},
+/obj/item/grown/log/tree{
+	pixel_y = 13;
+	pixel_x = 3
+	},
+/obj/item/grown/log/tree{
+	pixel_y = 18;
+	pixel_x = -3
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_ice/downed_transport/delapidated_cabin)
+"wA" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 9
+	},
+/turf/open/floor/plasteel{
+	icon_state = "monotile_light"
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/crew_accomodations)
+"wE" = (
+/obj/structure/marker_beacon,
+/obj/structure/lattice/catwalk,
+/turf/open/floor/engine,
+/area/lavaland/surface/outdoors)
+"wG" = (
+/obj/structure/frame/machine{
+	anchored = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/plating/asteroid/icerock,
+/area/lavaland/surface/outdoors)
+"wK" = (
+/obj/structure/chair/stool/bar{
+	dir = 8;
+	pixel_x = -1
+	},
+/obj/effect/decal/cleanable/generic,
+/turf/open/floor/plasteel{
+	icon_state = "tiled_dark"
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/crew_accomodations)
+"wP" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/concrete{
+	icon_state = "conc_tiles"
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/bathhouse)
+"wQ" = (
+/turf/closed/wall/rust,
+/area/ruin/unpowered/planet_ice/downed_transport/the_descent)
+"wU" = (
+/obj/machinery/atmospherics/components/unary/outlet_injector/layer4,
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/powered/planet_ice/downed_transport/ramshackle_workroom)
+"wY" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_ice/downed_transport/crashed_shuttle)
+"xa" = (
+/obj/structure/flora/tree/dead{
+	name = "roztrzaskana kłoda"
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/lavaland/surface/outdoors)
+"xd" = (
+/obj/effect/decal/cleanable/blood/drip{
+	pixel_x = -2;
+	pixel_y = 7
+	},
+/turf/open/floor/plating/asteroid/icerock/smooth,
+/area/ruin/unpowered/planet_lava/cave)
+"xe" = (
+/obj/machinery/door/airlock/wood,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/downed_transport/delapidated_cabin)
+"xf" = (
+/obj/structure/bed{
+	icon_state = "dirty_mattress";
+	pixel_y = 2;
+	pixel_x = 3
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_ice/downed_transport/delapidated_cabin)
+"xg" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_ice/downed_transport/crashed_shuttle)
+"xh" = (
+/obj/structure/table/reinforced,
+/obj/item/paper_bin{
+	pixel_x = -7;
+	pixel_y = 6
+	},
+/obj/item/pen{
+	pixel_x = -8;
+	pixel_y = 7
+	},
+/obj/item/folder/red{
+	pixel_x = 7
+	},
+/turf/open/floor/concrete{
+	icon_state = "conc_slab_1"
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/security_office)
+"xk" = (
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_ice/downed_transport/crashed_shuttle)
+"xn" = (
+/obj/structure/bonfire/prelit{
+	pixel_y = 1;
+	pixel_x = -10
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_ice/downed_transport/delapidated_cabin)
+"xt" = (
+/obj/structure/flora/tree/pine{
+	layer = 5.04
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/lavaland/surface/outdoors)
+"xv" = (
+/mob/living/basic/trooper/pirate/melee{
+	desc = "Postać o dzikim spojrzeniu, w podartym sprzęcie górniczym i z powykręcanym ciałem."
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_ice/downed_transport/delapidated_cabin)
+"xw" = (
+/obj/structure/fence/corner{
+	dir = 1
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/lavaland/surface/outdoors)
+"xB" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/brown{
+	dir = 8;
+	pixel_x = -2
+	},
+/obj/structure/cable,
+/obj/structure/sign/warning/electricshock{
+	pixel_y = 25
+	},
+/obj/structure/closet/crate/radiation{
+	name = "skrzynia z paliwem"
+	},
+/obj/item/stack/sheet/mineral/uranium,
+/turf/open/floor/plasteel/techmaint,
+/area/ruin/unpowered/planet_ice/downed_transport/mining_power_station)
+"xN" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/lavaland/surface/outdoors)
+"xQ" = (
+/obj/effect/turf_decal/siding/wideplating/dark{
+	dir = 2
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"xT" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 5
+	},
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_ice/downed_transport/crashed_shuttle)
+"xW" = (
+/obj/structure/closet/secure_closet/medical1{
+	name = "szafka pierwszej pomocy";
+	pixel_y = 28
+	},
+/obj/item/storage/firstaid/regular{
+	pixel_y = 6;
+	pixel_x = 5
+	},
+/obj/item/storage/firstaid/o2{
+	pixel_x = -6;
+	pixel_y = 6
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/concrete{
+	icon_state = "conc_slab_1"
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/security_office)
+"yq" = (
+/obj/machinery/portable_atmospherics/canister/air,
+/obj/machinery/atmospherics/components/unary/portables_connector/visible/layer2{
+	dir = 1
+	},
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/atmospherics_shed)
+"ys" = (
+/obj/structure/bed{
+	icon_state = "dirty_mattress";
+	dir = 4
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_ice/downed_transport/delapidated_cabin)
+"yx" = (
+/obj/machinery/portable_atmospherics/canister,
+/turf/open/floor/plating/asteroid/icerock,
+/area/lavaland/surface/outdoors)
+"yz" = (
+/obj/structure/cable/yellow,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_ice/downed_transport/crashed_shuttle)
+"yH" = (
+/obj/effect/turf_decal/siding/wideplating/dark{
+	dir = 6
+	},
+/obj/structure/cable,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"yI" = (
+/obj/structure/girder,
+/obj/structure/cable/yellow,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_ice/downed_transport/crashed_shuttle)
+"yP" = (
+/obj/structure/lattice/catwalk,
+/turf/open/floor/engine,
+/area/lavaland/surface/outdoors)
+"yU" = (
+/obj/structure/window/reinforced/tinted{
+	dir = 1
+	},
+/obj/machinery/shower{
+	dir = 8;
+	layer = 3.3
+	},
+/obj/structure/curtain,
+/turf/open/floor/concrete{
+	icon_state = "conc_tiles"
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/bathhouse)
+"yV" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/obj/item/radio/intercom/directional/south,
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/camera{
+	status = 0;
+	dir = 4
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/the_descent)
+"za" = (
+/obj/structure/flora/tree/dead/tall{
+	icon_state = "tree_2";
+	layer = 5.1
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/lavaland/surface/outdoors)
+"zd" = (
+/obj/effect/turf_decal/box,
+/turf/open/floor/concrete/slab_4{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/atmospherics_shed)
+"zu" = (
+/obj/item/stack/ore/iron{
+	pixel_y = 5;
+	pixel_x = 3
+	},
+/obj/effect/decal/remains/human{
+	pixel_y = 12;
+	pixel_x = -5
+	},
+/obj/item/gun/ballistic/rocketlauncher{
+	pixel_y = -2;
+	pixel_x = -2;
+	desc = "Jednorazowa wyrzutnia granatów rakietowych na zwykły pocisk odłamkowo-burzący. Ta jest już zużyta."
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/lavaland/surface/outdoors)
+"zB" = (
+/obj/effect/decal/cleanable/blood/drip{
+	pixel_x = 7;
+	pixel_y = 15
+	},
+/turf/open/floor/plating/asteroid/icerock/smooth,
+/area/ruin/unpowered/planet_lava/cave)
+"zI" = (
+/obj/structure/flora/tree/dead{
+	icon_state = "tree_4";
+	layer = 5.06
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/lavaland/surface/outdoors)
+"zL" = (
+/obj/effect/turf_decal/siding/wideplating/dark{
+	dir = 2
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"zS" = (
+/turf/closed/indestructible/rock,
+/area/ruin/unpowered/planet_ice/downed_transport/abandoned_mineshaft)
+"zU" = (
+/obj/structure/girder,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_ice/downed_transport/crashed_shuttle)
+"zY" = (
+/obj/structure/flora/grass/brown,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/lavaland/surface/outdoors)
+"Ac" = (
+/obj/structure/flora/rock/pile,
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/unpowered/planet_lava/cave)
+"Af" = (
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Ag" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/light/small/broken{
+	dir = 4
+	},
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/ruin/unpowered/planet_ice/downed_transport/abandoned_mineshaft)
+"Al" = (
+/obj/structure/lattice{
+	icon_state = "lattice-127"
+	},
+/obj/structure/grille/broken,
+/obj/item/shard{
+	pixel_y = -2;
+	pixel_x = -2
+	},
+/obj/effect/decal/cleanable/glass,
+/obj/effect/decal/cleanable/dirt{
+	light_range = 1
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/unpowered/planet_ice/downed_transport/crashed_shuttle)
+"Ap" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/lavaland/surface/outdoors)
+"Au" = (
+/turf/closed/wall/mineral/wood,
+/area/ruin/unpowered/planet_ice/downed_transport/abandoned_mineshaft)
+"AH" = (
+/obj/structure/chair/fancy/shuttle{
+	dir = 4
+	},
+/obj/structure/railing{
+	dir = 2
+	},
+/obj/effect/decal/cleanable/glass,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/mob_spawn/human/corpse/damaged,
+/turf/open/floor/plasteel/techmaint,
+/area/ruin/unpowered/planet_ice/downed_transport/crashed_shuttle)
+"AM" = (
+/obj/structure/fence{
+	dir = 8
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/lavaland/surface/outdoors)
+"AN" = (
+/obj/structure/barricade/wooden/crude/snow,
+/obj/structure/cable,
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/unpowered/planet_ice/downed_transport/abandoned_mineshaft)
+"AP" = (
+/obj/machinery/space_heater{
+	pixel_y = -3
+	},
+/obj/machinery/airalarm/directional/south,
+/turf/open/floor/concrete{
+	icon_state = "conc_slab_1"
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/security_office)
+"AV" = (
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/atmospherics_shed)
+"Bh" = (
+/obj/machinery/power/terminal{
+	dir = 8
+	},
+/obj/structure/cable,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_ice/downed_transport/crashed_shuttle)
+"Bx" = (
+/obj/effect/turf_decal/siding/wideplating/dark{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/cable,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"BD" = (
+/obj/structure/frame/computer{
+	dir = 1;
+	anchored = 1
+	},
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_ice/downed_transport/the_descent)
+"BG" = (
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/structure/grille/broken,
+/obj/item/shard{
+	pixel_y = -2;
+	pixel_x = -3
+	},
+/obj/effect/decal/cleanable/glass,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "barrow_windows"
+	},
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_ice/downed_transport/crashed_shuttle)
+"BL" = (
+/obj/structure/railing/corner{
+	dir = 1
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/lavaland/surface/outdoors)
+"BN" = (
+/obj/structure/bed/double/maint,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_ice/downed_transport/delapidated_cabin)
+"BO" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/structure/cable,
+/obj/machinery/door/poddoor/preopen{
+	dir = 4;
+	id = "barrow_loading_door"
+	},
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_ice/downed_transport/crashed_shuttle)
+"BV" = (
+/obj/machinery/atmospherics/components/unary/portables_connector/visible/layer4{
+	dir = 1
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/powered/planet_ice/downed_transport/ramshackle_workroom)
+"BX" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/fakelattice,
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/unpowered/planet_ice/downed_transport/crashed_shuttle)
+"Ca" = (
+/obj/structure/fireplace,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_ice/downed_transport/delapidated_cabin)
+"Cg" = (
+/obj/structure/fence/corner{
+	dir = 8
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/lavaland/surface/outdoors)
+"Ci" = (
+/obj/structure/girder,
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_ice/downed_transport/crashed_shuttle)
+"Cq" = (
+/obj/structure/closet{
+	name = "szafka na narzędzia"
+	},
+/obj/item/storage/toolbox/electrical{
+	pixel_y = 4;
+	pixel_x = 6
+	},
+/obj/item/storage/toolbox/mechanical{
+	pixel_x = 6;
+	pixel_y = -3
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/atmospherics_shed)
+"Cu" = (
+/obj/item/shard{
+	pixel_y = -3;
+	pixel_x = 8
+	},
+/obj/item/shard{
+	pixel_y = 4;
+	pixel_x = -5
+	},
+/obj/item/trash/can,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/trash/raisins{
+	pixel_x = 6;
+	pixel_y = -4
+	},
+/obj/item/trash/semki{
+	pixel_y = 4;
+	pixel_x = -6
+	},
+/obj/item/trash/popcorn{
+	pixel_x = 9;
+	pixel_y = 8
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/lavaland/surface/outdoors)
+"Cw" = (
+/obj/machinery/door/airlock/wood{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/downed_transport/delapidated_cabin)
+"CG" = (
+/obj/structure/railing/corner{
+	dir = 8
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/lavaland/surface/outdoors)
+"CI" = (
+/obj/structure/table/wood,
+/obj/item/bodypart/chest/lizard{
+	dir = 2;
+	pixel_x = -3
+	},
+/obj/item/bodypart/head/lizard{
+	pixel_y = -1;
+	dir = 8;
+	pixel_x = 8
+	},
+/obj/item/kitchen/knife/butcher{
+	pixel_y = 13
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/powered/planet_ice/downed_transport/leaning_shack)
+"CJ" = (
+/obj/machinery/door/airlock/grunge{
+	name = "Łaźnia"
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/turf/open/floor/plasteel{
+	icon_state = "grid_dark"
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/barracks)
+"CK" = (
+/obj/structure/closet/secure_closet/armory2{
+	anchored = 1;
+	name = "szafka z amunicją"
+	},
+/obj/item/storage/box/lethalshot{
+	pixel_y = -7
+	},
+/obj/item/storage/box/lethalshot{
+	pixel_y = 1
+	},
+/turf/open/floor/concrete{
+	icon_state = "conc_slab_1"
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/security_office)
+"CU" = (
+/obj/effect/decal/cleanable/blood/drip{
+	pixel_x = 11
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/unpowered/planet_lava/cave)
+"CW" = (
+/obj/machinery/door/airlock/wood{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/downed_transport/outhouse)
+"Da" = (
+/obj/machinery/holopad,
+/turf/open/floor/concrete{
+	icon_state = "conc_slab_1"
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/security_office)
+"Db" = (
+/obj/structure/fence/post{
+	dir = 4
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/lavaland/surface/outdoors)
+"Di" = (
+/obj/machinery/power/port_gen/pacman/super,
+/obj/structure/cable/yellow,
+/turf/open/floor/plasteel/techmaint,
+/area/ruin/unpowered/planet_ice/downed_transport/mining_power_station)
+"Dn" = (
+/obj/structure/cable,
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden/layer4,
+/turf/open/floor/plating{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/barracks)
+"Dr" = (
+/obj/item/stack/ore/iron{
+	pixel_x = -6
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/lavaland/surface/outdoors)
+"Du" = (
+/obj/structure/lattice/catwalk,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_ice/downed_transport/crashed_shuttle)
+"DC" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/safe{
+	name = "sejf na broń"
+	},
+/obj/item/gun/ballistic/shotgun{
+	pixel_x = -1;
+	pixel_y = -5
+	},
+/turf/open/floor/concrete{
+	icon_state = "conc_slab_1"
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/security_office)
+"DF" = (
+/obj/machinery/atmospherics/components/binary/pump/layer4,
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/powered/planet_ice/downed_transport/ramshackle_workroom)
+"DH" = (
+/obj/machinery/atmospherics/components/trinary/filter/flipped/layer4{
+	dir = 4
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/powered/planet_ice/downed_transport/ramshackle_workroom)
+"DL" = (
+/turf/closed/mineral/random/planet_ice,
+/area/ruin/unpowered/planet_lava/cave)
+"DR" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/turf/open/floor/plasteel{
+	icon_state = "tiled_dark"
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/crew_accomodations)
+"DU" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/ruin/unpowered/planet_ice/downed_transport/abandoned_mineshaft)
+"DY" = (
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/structure/cable,
+/obj/structure/cable/yellow,
+/obj/structure/door_assembly/door_assembly_grunge,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_ice/downed_transport/crashed_shuttle)
+"Ee" = (
+/obj/structure/cable,
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/item/stack/ore/iron,
+/obj/item/crowbar/large,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_ice/downed_transport/crashed_shuttle)
+"Ef" = (
+/obj/structure/rack,
+/obj/item/clothing/mask/gas/explorer{
+	pixel_x = -4
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
+/obj/structure/sign/poster/official/random{
+	pixel_y = 30
+	},
+/turf/open/floor/plasteel{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/barracks)
+"Eg" = (
+/obj/effect/decal/cleanable/blood/drip{
+	pixel_x = 7;
+	pixel_y = 15
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/unpowered/planet_lava/cave)
+"Eh" = (
+/obj/structure/chair/office{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/generic,
+/turf/open/floor/concrete{
+	icon_state = "conc_slab_1"
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/security_office)
+"El" = (
+/obj/structure/lattice{
+	icon_state = "lattice-127"
+	},
+/obj/structure/girder,
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_ice/downed_transport/crashed_shuttle)
+"Em" = (
+/obj/machinery/atmospherics/pipe/simple/cyan/visible/layer2{
+	dir = 10
+	},
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/atmospherics_shed)
+"Er" = (
+/obj/structure/table/wood,
+/obj/item/radio/off{
+	pixel_y = 1;
+	pixel_x = 3
+	},
+/obj/item/food/meat/steak{
+	pixel_y = 18;
+	pixel_x = -3;
+	desc = "Kawałek ostrego, gorącego mięsa. Spód jest trochę niedopieczony i ma lekko zielony odcień."
+	},
+/obj/item/food/kebab/monkey{
+	pixel_y = 15;
+	desc = "Kawałki lekko zielonkawego mięsa, kusząco krwiste, podane na szpikulcu."
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_ice/downed_transport/delapidated_cabin)
+"ED" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 9
+	},
+/turf/open/floor/carpet/red,
+/area/ruin/powered/planet_ice/downed_transport/delapidated_cabin)
+"EF" = (
+/obj/effect/decal/cleanable/blood/drip{
+	pixel_x = 12;
+	pixel_y = 19;
+	layer = 2.46
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/lavaland/surface/outdoors)
+"EI" = (
+/obj/structure/bonfire/prelit{
+	pixel_y = 7;
+	pixel_x = -7
+	},
+/obj/structure/railing{
+	dir = 2;
+	layer = 3.06
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_ice/downed_transport/delapidated_cabin)
+"EM" = (
+/obj/structure/closet/crate/miningcar,
+/obj/item/stack/ore/glass/basalt{
+	pixel_y = -3;
+	pixel_x = -4
+	},
+/obj/item/stack/ore/glass/basalt{
+	pixel_y = 3;
+	pixel_x = -4
+	},
+/obj/item/stack/ore/glass/basalt{
+	pixel_y = -2
+	},
+/obj/item/stack/ore/glass/basalt{
+	pixel_y = -3;
+	pixel_x = 5
+	},
+/obj/item/stack/ore/glass/basalt{
+	pixel_y = 2;
+	pixel_x = 6
+	},
+/obj/effect/decal/cleanable/crayon{
+	icon_state = "r";
+	pixel_x = -9;
+	pixel_y = 31;
+	paint_colour = "#FF3333"
+	},
+/obj/effect/decal/cleanable/crayon{
+	icon_state = "n";
+	pixel_x = 6;
+	pixel_y = 32;
+	paint_colour = "#FF3333"
+	},
+/obj/effect/decal/cleanable/crayon{
+	icon_state = "c";
+	pixel_y = 19;
+	pixel_x = -11;
+	paint_colour = "#FF3333"
+	},
+/obj/effect/decal/cleanable/crayon{
+	icon_state = "k";
+	pixel_x = 2;
+	pixel_y = 20;
+	paint_colour = "#FF3333"
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/unpowered/planet_ice/downed_transport/abandoned_mineshaft)
+"EQ" = (
+/turf/open/floor/plating/asteroid/icerock,
+/area/lavaland/surface/outdoors)
+"ER" = (
+/obj/machinery/washing_machine,
+/obj/effect/turf_decal/siding/white/corner{
+	dir = 2
+	},
+/obj/structure/extinguisher_cabinet/east,
+/turf/open/floor/plasteel{
+	icon_state = "monotile_light"
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/crew_accomodations)
+"ES" = (
+/obj/structure/chair,
+/obj/machinery/light/small/broken{
+	dir = 1
+	},
+/turf/open/floor/concrete/slab_4{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/abandoned_mineshaft)
+"Fa" = (
+/obj/structure/table/wood,
+/obj/item/screwdriver{
+	pixel_y = 17
+	},
+/obj/item/trash/can,
+/obj/item/trash/can,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_ice/downed_transport/delapidated_cabin)
+"Fg" = (
+/obj/structure/closet/cabinet,
+/obj/item/reagent_containers/food/drinks/bottle/rum,
+/obj/item/reagent_containers/food/drinks/bottle,
+/obj/item/reagent_containers/food/drinks/bottle{
+	pixel_y = -3;
+	pixel_x = 3
+	},
+/obj/item/reagent_containers/food/drinks/bottle{
+	pixel_y = 3;
+	pixel_x = 5
+	},
+/obj/item/reagent_containers/food/drinks/bottle/tequila{
+	pixel_y = -5;
+	pixel_x = -1
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_ice/downed_transport/delapidated_cabin)
+"Fh" = (
+/obj/machinery/power/terminal{
+	dir = 8
+	},
+/obj/structure/cable,
+/obj/effect/decal/cleanable/robot_debris/down{
+	pixel_y = -1;
+	pixel_x = 9
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_ice/downed_transport/crashed_shuttle)
+"Fj" = (
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 2
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_ice/downed_transport/crashed_shuttle)
+"Fk" = (
+/obj/item/reagent_containers/glass/bucket{
+	pixel_y = -5;
+	pixel_x = -6
+	},
+/obj/effect/decal/cleanable/blood{
+	pixel_y = -1
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/powered/planet_ice/downed_transport/leaning_shack)
+"Fn" = (
+/obj/structure/flora/rock/pile/icy{
+	pixel_x = 7;
+	pixel_y = 2;
+	layer = 2.89
+	},
+/obj/structure/flora/stump{
+	icon_state = "anchored_rod";
+	pixel_y = -3;
+	name = "dziwny totem";
+	desc = "Znacznik odcina się od przemysłowego tła i mierzy cię mglistym, nieodgadnionym spojrzeniem. Czujesz się obserwowany."
+	},
+/obj/structure/flora/rock/pile/icy{
+	pixel_y = -1;
+	layer = 2.91
+	},
+/obj/item/trash/candle{
+	pixel_x = -11;
+	pixel_y = -4
+	},
+/obj/item/trash/candle{
+	pixel_x = -1;
+	pixel_y = -9
+	},
+/obj/item/trash/candle{
+	pixel_x = 11;
+	pixel_y = -5
+	},
+/obj/item/clothing/head/hooded{
+	pixel_x = 1;
+	pixel_y = 26;
+	anchored = 1;
+	layer = 3.1;
+	name = "dziwny totem";
+	desc = "Znacznik odcina się od przemysłowego tła i mierzy cię mglistym, nieodgadnionym spojrzeniem. Czujesz się obserwowany."
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/lavaland/surface/outdoors)
+"Fp" = (
+/obj/structure/railing/corner,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	name = "pompa zasilająca"
+	},
+/obj/machinery/light_switch{
+	pixel_x = -4;
+	pixel_y = 20
+	},
+/obj/machinery/button/door{
+	id = "barrow_bridge";
+	name = "rolety mostka";
+	pixel_x = 3;
+	pixel_y = 21
+	},
+/obj/item/stack/ore/iron,
+/obj/item/wallframe/airalarm{
+	dir = 8;
+	pixel_x = -26
+	},
+/obj/item/stack/ore/gold{
+	pixel_y = 5;
+	pixel_x = -3
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/item/stack/cable_coil/cut,
+/obj/item/stack/cable_coil/cut{
+	pixel_y = -9
+	},
+/obj/item/blackbox,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_ice/downed_transport/crashed_shuttle)
+"Fq" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_ice/downed_transport/crashed_shuttle)
+"Fu" = (
+/obj/structure/flora/tree/dead{
+	icon_state = "tree_3";
+	pixel_x = -22;
+	pixel_y = 1
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/lavaland/surface/outdoors)
+"Fw" = (
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/ruin/unpowered/planet_lava/cave)
+"FA" = (
+/obj/structure/cable/yellow,
+/turf/closed/wall/rust,
+/area/ruin/unpowered/planet_ice/downed_transport/barracks)
+"FB" = (
+/obj/effect/decal/cleanable/crayon{
+	icon_state = "e";
+	pixel_x = -6;
+	pixel_y = 25;
+	paint_colour = "#FF3333"
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/lavaland/surface/outdoors)
+"FD" = (
+/turf/closed/wall/rust,
+/area/ruin/unpowered/planet_ice/downed_transport/abandoned_mineshaft)
+"FE" = (
+/turf/open/floor/plasteel{
+	icon_state = "tiled_dark"
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/crew_accomodations)
+"FJ" = (
+/obj/effect/turf_decal/siding/wood,
+/obj/structure/closet/crate/secure/weapon,
+/obj/item/paper/crumpled{
+	pixel_x = -8
+	},
+/obj/item/paper/crumpled{
+	pixel_y = -1;
+	pixel_x = 7
+	},
+/obj/item/grenade/plastic/c4{
+	pixel_x = -3;
+	pixel_y = -3
+	},
+/obj/item/paper/crumpled{
+	pixel_y = -4;
+	pixel_x = -1
+	},
+/obj/item/grenade/plastic/c4{
+	pixel_x = 6;
+	pixel_y = -3
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/the_descent)
+"FN" = (
+/obj/machinery/atmospherics/components/binary/pump/layer4{
+	dir = 8
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/powered/planet_ice/downed_transport/ramshackle_workroom)
+"FQ" = (
+/obj/structure/fence/post,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/lavaland/surface/outdoors)
+"Ga" = (
+/obj/structure/flora/tree/dead{
+	pixel_x = -12;
+	pixel_y = 7;
+	layer = 5.05
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/lavaland/surface/outdoors)
+"Gd" = (
+/obj/structure/fence/door,
+/obj/structure/cable,
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/unpowered/planet_ice/downed_transport/abandoned_mineshaft)
+"Gf" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/asteroid/icerock/smooth,
+/area/ruin/unpowered/planet_ice/downed_transport/abandoned_mineshaft)
+"Gg" = (
+/obj/structure/flora/ash/garden/frigid,
+/turf/open/floor/plating/asteroid/icerock,
+/area/lavaland/surface/outdoors)
+"Gm" = (
+/obj/structure/table,
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/lattice/catwalk/over,
+/obj/item/stock_parts/capacitor/adv{
+	pixel_y = 3;
+	pixel_x = -6
+	},
+/obj/item/stock_parts/manipulator/nano{
+	pixel_y = 6;
+	pixel_x = 2
+	},
+/obj/item/screwdriver{
+	pixel_y = -3;
+	pixel_x = -6
+	},
+/obj/item/stock_parts/micro_laser/high{
+	pixel_x = 5
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_ice/downed_transport/mining_power_station)
+"Gn" = (
+/obj/effect/decal/cleanable/crayon{
+	icon_state = "e";
+	pixel_x = -3;
+	pixel_y = 25;
+	paint_colour = "#FF3333"
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/lavaland/surface/outdoors)
+"Gv" = (
+/obj/structure/closet/firecloset,
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/stairs{
+	icon = 'icons/obj/stairs.dmi';
+	dir = 1
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/crashed_shuttle)
+"Gz" = (
+/obj/structure/fence/corner{
+	dir = 2
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/lavaland/surface/outdoors)
+"GG" = (
+/obj/structure/window/plasma/reinforced{
+	dir = 8
+	},
+/obj/structure/cable/yellow,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/power/smes,
+/obj/machinery/door/poddoor/preopen{
+	dir = 4;
+	id = "barrow_port_nacelle"
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_ice/downed_transport/crashed_shuttle)
+"GI" = (
+/obj/item/stack/sheet/mineral/wood,
+/obj/item/paper/crumpled{
+	pixel_y = -4;
+	pixel_x = -5
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/lavaland/surface/outdoors)
+"GJ" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/turf/open/floor/plasteel{
+	icon_state = "tiled_dark"
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/barracks)
+"GN" = (
+/turf/closed/wall,
+/area/ruin/unpowered/planet_ice/downed_transport/atmospherics_shed)
+"GS" = (
+/obj/structure/chair/fancy/sofa/old/right{
+	dir = 4
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_ice/downed_transport/delapidated_cabin)
+"GU" = (
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/ruin/unpowered/planet_ice/downed_transport/abandoned_mineshaft)
+"GV" = (
+/obj/machinery/door/airlock/security{
+	dir = 2;
+	name = "Posterunek Ochrony"
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 1
+	},
+/turf/open/floor/plasteel{
+	icon_state = "grid_dark"
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/barracks)
+"Hb" = (
+/obj/item/stack/ore/iron,
+/turf/open/floor/plating/asteroid/icerock,
+/area/lavaland/surface/outdoors)
+"Hg" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/asteroid/icerock/smooth,
+/area/ruin/unpowered/planet_ice/downed_transport/abandoned_mineshaft)
+"Ho" = (
+/obj/structure/flora/tree/dead{
+	icon_state = "tree_2"
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/lavaland/surface/outdoors)
+"Hu" = (
+/obj/machinery/door/airlock/wood{
+	dir = 4
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/powered/planet_ice/downed_transport/leaning_shack)
+"Hz" = (
+/obj/structure/flora/tree/dead/tall{
+	layer = 5.1
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/lavaland/surface/outdoors)
+"HA" = (
+/obj/structure/chair/wood{
+	pixel_y = 1;
+	dir = 8
+	},
+/obj/structure/railing{
+	dir = 8
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/lavaland/surface/outdoors)
+"HC" = (
+/obj/structure/window/plasma/reinforced{
+	dir = 8
+	},
+/obj/structure/cable/pink,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/poddoor/preopen{
+	dir = 4;
+	id = "barrow_port_nacelle"
+	},
+/obj/machinery/power/smes,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_ice/downed_transport/crashed_shuttle)
+"HD" = (
+/obj/structure/chair/stool{
+	pixel_y = -3;
+	dir = 1
+	},
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_ice/downed_transport/crashed_shuttle)
+"HH" = (
+/obj/machinery/power/smes/engineering{
+	charge = 0
+	},
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/techmaint,
+/area/ruin/unpowered/planet_ice/downed_transport/mining_power_station)
+"HN" = (
+/obj/structure/table/wood,
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/item/reagent_containers/food/drinks/soda_cans/cola{
+	pixel_y = 6;
+	pixel_x = -3
+	},
+/turf/open/floor/plasteel{
+	icon_state = "tiled_dark"
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/crew_accomodations)
+"HQ" = (
+/turf/open/floor/plasteel/stairs{
+	dir = 4;
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_ice/downed_transport/delapidated_cabin)
+"HX" = (
+/obj/item/stack/ore/iron,
+/obj/structure/lattice{
+	icon_state = "lattice-127"
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/lavaland/surface/outdoors)
+"Im" = (
+/obj/effect/turf_decal/siding/wideplating/dark{
+	dir = 10
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Iy" = (
+/obj/structure/table/wood,
+/obj/item/stack/spacecash/c20{
+	pixel_y = 5;
+	pixel_x = -4
+	},
+/obj/item/stack/spacecash/c10{
+	pixel_y = 2;
+	pixel_x = 5
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_ice/downed_transport/delapidated_cabin)
+"IG" = (
+/obj/structure/cable,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_ice/downed_transport/delapidated_cabin)
+"IN" = (
+/obj/structure/chair/stool/bar{
+	dir = 8;
+	pixel_x = -1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel{
+	icon_state = "tiled_dark"
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/crew_accomodations)
+"IQ" = (
+/turf/closed/wall/rust,
+/area/ruin/unpowered/planet_ice/downed_transport/mining_power_station)
+"IT" = (
+/obj/effect/turf_decal/siding/wideplating/dark{
+	dir = 8
+	},
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"IW" = (
+/obj/item/stack/cable_coil/cut,
+/obj/effect/decal/cleanable/ash/large,
+/turf/open/floor/plating/rust,
+/area/lavaland/surface/outdoors)
+"Jl" = (
+/obj/structure/closet/crate/large,
+/obj/item/clothing/suit/hooded/wintercoat{
+	pixel_y = 8;
+	pixel_x = -7
+	},
+/obj/item/clothing/suit/hooded/wintercoat{
+	pixel_y = 8;
+	pixel_x = 7
+	},
+/obj/item/clothing/shoes/winterboots{
+	pixel_y = -5;
+	pixel_x = -9
+	},
+/obj/item/clothing/shoes/winterboots{
+	pixel_y = -5;
+	pixel_x = 9
+	},
+/obj/item/clothing/head/beanie/darkblue{
+	pixel_y = 12;
+	pixel_x = 6
+	},
+/obj/item/clothing/head/beanie/darkblue{
+	pixel_y = 12;
+	pixel_x = -6
+	},
+/obj/item/clothing/neck/scarf/darkblue{
+	pixel_x = -7;
+	pixel_y = -2
+	},
+/obj/item/clothing/neck/scarf/darkblue{
+	pixel_x = 7;
+	pixel_y = -2
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/lavaland/surface/outdoors)
+"Jn" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_ice/downed_transport/crashed_shuttle)
+"Jr" = (
+/obj/effect/decal/cleanable/crayon{
+	icon_state = "t";
+	pixel_y = 32;
+	pixel_x = -4;
+	paint_colour = "#FF3333"
+	},
+/obj/effect/decal/cleanable/crayon{
+	icon_state = "u";
+	pixel_y = 32;
+	pixel_x = 9;
+	paint_colour = "#FF3333"
+	},
+/obj/effect/decal/cleanable/crayon{
+	icon_state = "b";
+	pixel_x = -2;
+	pixel_y = 18;
+	paint_colour = "#FF3333"
+	},
+/obj/effect/decal/cleanable/crayon{
+	icon_state = "a";
+	pixel_y = 20;
+	pixel_x = 10;
+	paint_colour = "#FF3333"
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/unpowered/planet_ice/downed_transport/abandoned_mineshaft)
+"JA" = (
+/obj/structure/frame/machine,
+/obj/item/stack/cable_coil/cut,
+/turf/open/floor/plating/asteroid/icerock,
+/area/lavaland/surface/outdoors)
+"JM" = (
+/obj/effect/decal/cleanable/blood/drip{
+	layer = 2.46;
+	pixel_y = 13;
+	pixel_x = 7
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/lavaland/surface/outdoors)
+"JT" = (
+/obj/machinery/meter/atmos,
+/obj/structure/cable,
+/obj/machinery/airalarm/directional/north{
+	dir = 8;
+	pixel_x = -26
+	},
+/obj/structure/lattice/catwalk/over/ship,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_ice/downed_transport/crashed_shuttle)
+"JV" = (
+/obj/machinery/light_switch{
+	pixel_y = 6;
+	dir = 8;
+	pixel_x = 20
+	},
+/obj/machinery/button/door{
+	dir = 8;
+	pixel_y = -1;
+	pixel_x = 21;
+	id = "general_room_shutters";
+	name = "rolety okienne"
+	},
+/turf/open/floor/plasteel{
+	icon_state = "tiled_dark"
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/crew_accomodations)
+"JW" = (
+/obj/structure/dresser{
+	dir = 1
+	},
+/obj/item/clothing/head/hardhat{
+	pixel_y = 10;
+	pixel_x = -7
+	},
+/turf/open/floor/carpet/blue,
+/area/ruin/unpowered/planet_ice/downed_transport/barracks)
+"JY" = (
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_ice/downed_transport/crashed_shuttle)
+"Kb" = (
+/obj/structure/cable,
+/obj/structure/lattice/catwalk/over/ship/dark,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_ice/downed_transport/crashed_shuttle)
+"Kf" = (
+/obj/effect/decal/cleanable/blood/drip{
+	pixel_x = 3;
+	pixel_y = 14
+	},
+/mob/living/basic/mining/polarbear/warrior,
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/unpowered/planet_lava/cave)
+"Kn" = (
+/obj/effect/turf_decal/siding/wood/end,
+/turf/open/floor/carpet/red,
+/area/ruin/powered/planet_ice/downed_transport/delapidated_cabin)
+"Kz" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/lavaland/surface/outdoors)
+"KI" = (
+/obj/item/light/tube/broken{
+	pixel_y = -5
+	},
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_ice/downed_transport/crashed_shuttle)
+"KJ" = (
+/obj/structure/lattice/catwalk/over,
+/obj/structure/rack,
+/obj/item/clothing/suit/hazardvest{
+	pixel_x = 6;
+	pixel_y = 1
+	},
+/obj/item/clothing/head/hardhat/orange{
+	pixel_x = -7;
+	pixel_y = 5
+	},
+/obj/machinery/camera{
+	status = 0
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_ice/downed_transport/mining_power_station)
+"KT" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 1
+	},
+/turf/open/floor/plasteel{
+	icon_state = "tiled_dark"
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/barracks)
+"KU" = (
+/obj/machinery/light/small/broken{
+	dir = 1;
+	pixel_y = 28
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/unpowered/planet_ice/downed_transport/abandoned_mineshaft)
+"Lb" = (
+/obj/structure/frame/machine,
+/obj/item/stack/ore/gold{
+	pixel_y = 1
+	},
+/obj/structure/cable,
+/obj/machinery/power/apc/auto_name/south{
+	start_charge = 0
+	},
+/turf/open/floor/plating,
+/area/lavaland/surface/outdoors)
+"Ld" = (
+/obj/structure/chair/stool{
+	pixel_y = -3;
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_ice/downed_transport/crashed_shuttle)
+"Li" = (
+/obj/machinery/atmospherics/pipe/simple/orange/visible/layer4{
+	dir = 1
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/powered/planet_ice/downed_transport/ramshackle_workroom)
+"Lk" = (
+/obj/item/reagent_containers/glass/waterbottle/large,
+/turf/open/floor/plating/asteroid/icerock,
+/area/lavaland/surface/outdoors)
+"Ll" = (
+/obj/structure/bonfire/prelit{
+	layer = 3.07
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/lavaland/surface/outdoors)
+"LC" = (
+/obj/structure/cable,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_ice/downed_transport/crashed_shuttle)
+"LJ" = (
+/obj/structure/lattice/catwalk/over,
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_ice/downed_transport/mining_power_station)
+"LS" = (
+/obj/structure/flora/rock/pile/icy,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/lavaland/surface/outdoors)
+"LU" = (
+/obj/item/toy/crayon/spraycan{
+	is_capped = 0;
+	paint_color = "#FF3333"
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/lavaland/surface/outdoors)
+"LV" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/unpowered/planet_ice/downed_transport/abandoned_mineshaft)
+"Mb" = (
+/obj/structure/table/wood,
+/obj/item/flashlight/lamp/green{
+	pixel_y = 8;
+	on = 1
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_ice/downed_transport/delapidated_cabin)
+"Md" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/turf/open/floor/plasteel{
+	icon_state = "tiled_dark"
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/barracks)
+"Mg" = (
+/obj/structure/reagent_dispensers/water_cooler,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/turf/open/floor/concrete/slab_4{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/abandoned_mineshaft)
+"Mi" = (
+/obj/effect/decal/cleanable/dirt{
+	pixel_y = 7;
+	pixel_x = 11
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/item/bodypart/chest/skeleton{
+	pixel_y = 6;
+	pixel_x = 6
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/asteroid/icerock,
+/area/lavaland/surface/outdoors)
+"Mr" = (
+/obj/structure/table/reinforced,
+/obj/machinery/light,
+/obj/item/reagent_containers/condiment{
+	pixel_y = 9;
+	pixel_x = 17
+	},
+/obj/item/reagent_containers/food/condiment/bbqsauce{
+	pixel_x = 17;
+	pixel_y = 2
+	},
+/obj/item/reagent_containers/food/condiment/saltshaker{
+	pixel_y = 7;
+	pixel_x = -18
+	},
+/obj/item/reagent_containers/food/condiment/peppermill{
+	pixel_y = 3;
+	pixel_x = -15
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/food/meat/slab,
+/obj/item/kitchen/knife{
+	pixel_x = -5
+	},
+/turf/open/floor/plasteel{
+	icon_state = "monotile_light"
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/crew_accomodations)
+"MA" = (
+/turf/closed/indestructible/rock,
+/area/ruin/unpowered/planet_lava/cave)
+"MB" = (
+/obj/effect/decal/cleanable/glass,
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/basic/mining/ice_demon,
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_ice/downed_transport/the_descent)
+"MD" = (
+/obj/structure/flora/rock{
+	icon_state = "basalt2";
+	pixel_x = 1;
+	pixel_y = 6
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/lavaland/surface/outdoors)
+"ME" = (
+/obj/structure/cable,
+/obj/machinery/power/apc/auto_name/south{
+	start_charge = 0
+	},
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_ice/downed_transport/the_descent)
+"MJ" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/light/broken{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/glass,
+/obj/item/taperecorder{
+	name = "rejestrator lotu z kokpitu"
+	},
+/turf/open/floor/plasteel/stairs,
+/area/ruin/unpowered/planet_ice/downed_transport/crashed_shuttle)
+"MO" = (
+/turf/closed/wall,
+/area/ruin/unpowered/planet_ice/downed_transport/mining_power_station)
+"MR" = (
+/obj/item/stack/cable_coil/cut,
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/unpowered/planet_ice/downed_transport/abandoned_mineshaft)
+"MS" = (
+/obj/structure/reagent_dispensers/watertank,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_ice/downed_transport/delapidated_cabin)
+"Na" = (
+/obj/machinery/vending/cigarette,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel{
+	icon_state = "tiled_dark"
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/crew_accomodations)
+"Nh" = (
+/obj/structure/chair/wood{
+	pixel_y = 1
+	},
+/mob/living/basic/trooper/pirate/ranged,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_ice/downed_transport/delapidated_cabin)
+"Np" = (
+/obj/item/stack/ore/iron{
+	pixel_y = 4;
+	pixel_x = 3
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/blood/drip{
+	pixel_y = 14;
+	pixel_x = -3
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_ice/downed_transport/crashed_shuttle)
+"Nw" = (
+/obj/machinery/light_switch{
+	pixel_x = 11;
+	pixel_y = 23
+	},
+/obj/machinery/power/apc/auto_name/north{
+	start_charge = 0
+	},
+/obj/structure/chair/wood{
+	dir = 8;
+	pixel_y = 3
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 2
+	},
+/turf/open/floor/carpet/blue,
+/area/ruin/unpowered/planet_ice/downed_transport/barracks)
+"Ny" = (
+/obj/structure/flora/tree/dead{
+	icon_state = "tree_4"
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/lavaland/surface/outdoors)
+"NF" = (
+/obj/machinery/light/small/broken,
+/obj/structure/flora/rock{
+	icon_state = "basalt2";
+	pixel_x = 5;
+	pixel_y = 6
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/unpowered/planet_ice/downed_transport/abandoned_mineshaft)
+"NG" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+/obj/structure/cable/yellow,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_ice/downed_transport/crashed_shuttle)
+"NI" = (
+/obj/structure/cable,
+/obj/machinery/camera{
+	status = 0;
+	dir = 8
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"NO" = (
+/obj/machinery/atmospherics/pipe/manifold/orange/visible/layer4{
+	dir = 8
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/powered/planet_ice/downed_transport/ramshackle_workroom)
+"NP" = (
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/unpowered/planet_ice/downed_transport/abandoned_mineshaft)
+"NX" = (
+/obj/structure/noticeboard{
+	pixel_y = 28
+	},
+/obj/structure/rack,
+/obj/item/clothing/head/hardhat/white{
+	pixel_y = 8;
+	pixel_x = -6
+	},
+/obj/item/clothing/head/hardhat/dblue{
+	pixel_y = -2;
+	pixel_x = 3
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/abandoned_mineshaft)
+"NY" = (
+/obj/structure/flora/rock/pile{
+	icon_state = "lavarocks2"
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/lavaland/surface/outdoors)
+"Oa" = (
+/obj/machinery/door/airlock/engineering{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/plasteel{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/atmospherics_shed)
+"Og" = (
+/obj/item/stack/cable_coil/cut{
+	pixel_y = -9
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/lavaland/surface/outdoors)
+"Oj" = (
+/obj/machinery/atmospherics/components/unary/outlet_injector/layer4{
+	dir = 4
+	},
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/atmospherics_shed)
+"Om" = (
+/obj/machinery/atmospherics/pipe/simple/orange/visible/layer4{
+	dir = 4
+	},
+/obj/machinery/airalarm/directional/north,
+/obj/item/wrench,
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/powered/planet_ice/downed_transport/ramshackle_workroom)
+"On" = (
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/ruin/unpowered/planet_ice/downed_transport/crashed_shuttle)
+"Oo" = (
+/turf/closed/wall,
+/area/ruin/unpowered/planet_ice/downed_transport/security_office)
+"Op" = (
+/obj/effect/decal/cleanable/blood/footprints{
+	icon_state = "blood2";
+	dir = 4
+	},
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/ruin/unpowered/planet_lava/cave)
+"Or" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/wideplating/dark/corner{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/wideplating/dark/corner{
+	dir = 8
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Oz" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/abandoned_mineshaft)
+"OA" = (
+/obj/machinery/light/small{
+	pixel_y = -28
+	},
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/unpowered/planet_ice/downed_transport/abandoned_mineshaft)
+"OC" = (
+/obj/effect/turf_decal/siding/wideplating/dark/corner{
+	dir = 4
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"OL" = (
+/obj/structure/flora/tree/dead/tall{
+	icon_state = "tree_2";
+	layer = 5.05
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/lavaland/surface/outdoors)
+"Pb" = (
+/obj/machinery/light/small{
+	pixel_x = -28
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/the_descent)
+"Pd" = (
+/obj/structure/table/wood,
+/obj/item/stack/sheet/mineral/plasma/five{
+	pixel_y = 8;
+	pixel_x = -4
+	},
+/obj/item/stack/sheet/mineral/gold{
+	pixel_y = 6;
+	pixel_x = 8
+	},
+/obj/item/coin/silver{
+	pixel_x = -3;
+	pixel_y = -1
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_ice/downed_transport/delapidated_cabin)
+"Pi" = (
+/obj/structure/fence{
+	dir = 2
+	},
+/obj/machinery/camera{
+	status = 0;
+	dir = 4
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/lavaland/surface/outdoors)
+"Pr" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 10
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/cable,
+/turf/open/floor/plasteel{
+	icon_state = "monotile_light"
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/crew_accomodations)
+"Pu" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_ice/downed_transport/security_office)
+"Py" = (
+/obj/machinery/light{
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_ice/downed_transport/crashed_shuttle)
+"PB" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/cable/yellow,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_ice/downed_transport/crashed_shuttle)
+"PC" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 5
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel{
+	icon_state = "monotile_light"
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/crew_accomodations)
+"PP" = (
+/obj/structure/flora/rock/pile/icy{
+	pixel_x = 6
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/lavaland/surface/outdoors)
+"PR" = (
+/obj/machinery/door/airlock{
+	dir = 4;
+	name = "Część Mieszkalna"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/turf/open/floor/plasteel{
+	icon_state = "grid_dark"
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/crew_accomodations)
+"PV" = (
+/obj/machinery/door/airlock/external/glass{
+	dir = 4;
+	name = "Koszary"
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_ice/downed_transport/barracks)
+"Qe" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel{
+	icon_state = "tiled_dark"
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/crew_accomodations)
+"Ql" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 1
+	},
+/obj/item/radio/intercom/directional/south,
+/turf/open/floor/plasteel{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/barracks)
+"Qn" = (
+/obj/structure/closet/secure_closet/miner,
+/obj/item/clothing/under/pants/track{
+	pixel_y = -5;
+	pixel_x = -5
+	},
+/obj/item/clothing/shoes/sneakers/black{
+	pixel_y = -8;
+	pixel_x = 3
+	},
+/obj/item/storage/wallet/random{
+	pixel_y = 10
+	},
+/obj/item/clothing/head/beanie/black{
+	pixel_y = 8;
+	pixel_x = -2
+	},
+/obj/item/clothing/suit/jacket/miljacket{
+	pixel_x = 3
+	},
+/obj/item/clothing/glasses/sunglasses{
+	pixel_y = 4;
+	pixel_x = 2
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/abandoned_mineshaft)
+"Qs" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/unpowered/planet_ice/downed_transport/abandoned_mineshaft)
+"Qx" = (
+/obj/structure/flora/rock/pile/icy,
+/obj/effect/decal/cleanable/blood/splatter{
+	pixel_y = -1;
+	pixel_x = 5
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/unpowered/planet_lava/cave)
+"Qz" = (
+/obj/effect/decal/cleanable/blood/drip{
+	pixel_x = 7;
+	pixel_y = 15
+	},
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/ruin/unpowered/planet_lava/cave)
+"QL" = (
+/obj/structure/toilet{
+	dir = 1
+	},
+/obj/structure/window/reinforced/tinted{
+	dir = 4
+	},
+/obj/structure/curtain,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete{
+	icon_state = "conc_tiles"
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/bathhouse)
+"QU" = (
+/mob/living/basic/trooper/pirate/melee{
+	desc = "Postać o dzikim spojrzeniu, w podartym sprzęcie górniczym i z powykręcanym ciałem."
+	},
+/obj/effect/decal/cleanable/blood/drip{
+	pixel_x = 1;
+	pixel_y = -6
+	},
+/obj/effect/decal/cleanable/blood/drip{
+	pixel_x = 21;
+	pixel_y = -1
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/powered/planet_ice/downed_transport/leaning_shack)
+"Rf" = (
+/obj/effect/turf_decal/siding/wideplating/dark/corner{
+	dir = 8
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Rp" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/generic,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 2
+	},
+/turf/open/floor/plasteel{
+	icon_state = "tiled_dark"
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/barracks)
+"Rv" = (
+/obj/effect/turf_decal/siding/wideplating/dark{
+	dir = 9
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/lavaland/surface/outdoors)
+"Ry" = (
+/turf/closed/wall/mineral/wood,
+/area/ruin/unpowered/planet_lava/cave)
+"RA" = (
+/obj/machinery/power/terminal{
+	dir = 8
+	},
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_ice/downed_transport/crashed_shuttle)
+"RB" = (
+/obj/item/stack/ore/iron,
+/obj/item/stack/ore/iron,
+/turf/open/floor/plating/asteroid/icerock,
+/area/lavaland/surface/outdoors)
+"RE" = (
+/obj/machinery/atmospherics/pipe/simple/orange/visible/layer4{
+	dir = 9
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/powered/planet_ice/downed_transport/ramshackle_workroom)
+"RF" = (
+/obj/item/flashlight/lantern{
+	pixel_x = 9;
+	on = 1
+	},
+/obj/machinery/atmospherics/components/binary/valve/layer4,
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/powered/planet_ice/downed_transport/ramshackle_workroom)
+"RL" = (
+/obj/structure/flora/tree/dead{
+	name = "roztrzaskane drewno"
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/lavaland/surface/outdoors)
+"Se" = (
+/obj/structure/flora/tree/dead/tall{
+	icon_state = "tree_stump";
+	name = "pniak"
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/lavaland/surface/outdoors)
+"Sn" = (
+/turf/open/floor/concrete/slab_4{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/atmospherics_shed)
+"So" = (
+/obj/structure/cable,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/poddoor/preopen{
+	dir = 4;
+	id = "barrow_loading_door"
+	},
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_ice/downed_transport/crashed_shuttle)
+"Sp" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/table/wood,
+/obj/item/toy/cards/deck{
+	pixel_y = 1;
+	pixel_x = 3
+	},
+/obj/item/reagent_containers/food/drinks/bottle/ale{
+	pixel_x = -8;
+	pixel_y = 9
+	},
+/turf/open/floor/carpet/blue,
+/area/ruin/unpowered/planet_ice/downed_transport/barracks)
+"Ss" = (
+/obj/effect/decal/cleanable/blood/drip{
+	pixel_x = 11
+	},
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/ruin/unpowered/planet_lava/cave)
+"SG" = (
+/obj/structure/fence/post{
+	dir = 2
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/lavaland/surface/outdoors)
+"SK" = (
+/mob/living/basic/mining/polarbear,
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/unpowered/planet_lava/cave)
+"SL" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete{
+	icon_state = "conc_tiles"
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/bathhouse)
+"SP" = (
+/turf/closed/wall,
+/area/ruin/unpowered/planet_ice/downed_transport/barracks)
+"ST" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 8
+	},
+/turf/open/floor/concrete{
+	icon_state = "conc_tiles"
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/bathhouse)
+"SU" = (
+/obj/item/paper/crumpled{
+	pixel_x = -6
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/lavaland/surface/outdoors)
+"SW" = (
+/obj/structure/cable,
+/mob/living/basic/trooper/pirate/ranged,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_ice/downed_transport/crashed_shuttle)
+"Tb" = (
+/turf/closed/wall/rust,
+/area/ruin/unpowered/planet_ice/downed_transport/barracks)
+"Tl" = (
+/obj/structure/closet/crate/large,
+/obj/item/paper/crumpled{
+	pixel_x = -5;
+	pixel_y = 4
+	},
+/obj/item/grenade/smokebomb{
+	pixel_x = -4;
+	pixel_y = 8
+	},
+/obj/item/paper/crumpled{
+	pixel_y = -4;
+	pixel_x = -5
+	},
+/obj/item/grenade/smokebomb{
+	pixel_x = -4;
+	pixel_y = -5
+	},
+/obj/item/paper/crumpled{
+	pixel_x = 5;
+	pixel_y = 4
+	},
+/obj/item/grenade/smokebomb{
+	pixel_x = 6;
+	pixel_y = 8
+	},
+/obj/item/paper/crumpled{
+	pixel_x = 5;
+	pixel_y = -4
+	},
+/obj/item/grenade/smokebomb{
+	pixel_x = 6;
+	pixel_y = -5
+	},
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_ice/downed_transport/crashed_shuttle)
+"Tm" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/machinery/door/airlock/maintenance/glass{
+	dir = 4;
+	name = "Kokpit";
+	locked = 1
+	},
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_ice/downed_transport/crashed_shuttle)
+"To" = (
+/obj/structure/girder/reinforced,
+/turf/open/floor/plating/asteroid/icerock,
+/area/lavaland/surface/outdoors)
+"Tw" = (
+/turf/open/floor/plating/asteroid/icerock/smooth,
+/area/ruin/unpowered/planet_lava/cave)
+"TB" = (
+/obj/structure/cable/yellow,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/poddoor/preopen{
+	dir = 4;
+	id = "barrow_starboard_nacelle"
+	},
+/obj/structure/frame/machine,
+/obj/effect/decal/cleanable/robot_debris/up{
+	pixel_y = 11
+	},
+/turf/open/floor/plating,
+/area/lavaland/surface/outdoors)
+"TN" = (
+/obj/structure/shuttle/engine/propulsion,
+/obj/structure/cable/yellow,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_ice/downed_transport/crashed_shuttle)
+"TP" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/the_descent)
+"TR" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/computer/security/telescreen/entertainment{
+	pixel_y = 10;
+	pixel_x = 28
+	},
+/turf/open/floor/plasteel{
+	icon_state = "tiled_dark"
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/crew_accomodations)
+"TU" = (
+/turf/closed/wall/mineral/plastitanium,
+/area/lavaland/surface/outdoors)
+"TX" = (
+/obj/structure/flora/rock/pile/icy{
+	pixel_x = 1
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/lavaland/surface/outdoors)
+"Ui" = (
+/obj/machinery/atmospherics/pipe/manifold/orange/visible/layer4{
+	dir = 1
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/powered/planet_ice/downed_transport/ramshackle_workroom)
+"Uk" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 1
+	},
+/turf/open/floor/plasteel{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/barracks)
+"Up" = (
+/obj/machinery/atmospherics/components/binary/valve/layer4,
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/powered/planet_ice/downed_transport/ramshackle_workroom)
+"Ur" = (
+/obj/structure/barricade/wooden,
+/obj/structure/barricade/wooden/crude,
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/unpowered/planet_ice/downed_transport/abandoned_mineshaft)
+"Uu" = (
+/turf/open/floor/plating/asteroid/icerock/smooth,
+/area/ruin/unpowered/planet_ice/downed_transport/abandoned_mineshaft)
+"Uw" = (
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_ice/downed_transport/the_descent)
+"Uz" = (
+/obj/item/stock_parts/cell{
+	pixel_y = -6;
+	pixel_x = 6
+	},
+/obj/item/stock_parts/cell{
+	pixel_y = -8;
+	pixel_x = -8
+	},
+/obj/item/stack/medical,
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/unpowered/planet_lava/cave)
+"UQ" = (
+/obj/structure/flora/tree/dead{
+	icon_state = "tree_6"
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/lavaland/surface/outdoors)
+"UU" = (
+/obj/structure/lattice{
+	icon_state = "lattice-127"
+	},
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/unpowered/planet_ice/downed_transport/crashed_shuttle)
+"Ve" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/power/terminal{
+	dir = 1
+	},
+/obj/structure/cable/yellow,
+/obj/structure/lattice/catwalk/over/ship,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_ice/downed_transport/mining_power_station)
+"Vi" = (
+/obj/structure/flora/stump,
+/turf/open/floor/plating/asteroid/icerock,
+/area/lavaland/surface/outdoors)
+"Vp" = (
+/obj/effect/decal/cleanable/glass,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/clothing/head/hardhat/orange{
+	pixel_x = 10;
+	pixel_y = 11;
+	name = "pogięty kask";
+	desc = "Zwykły kask z latarką. W plastiku wydarto bruzdy tak głębokie, że prześwituje przez nie światło."
+	},
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_ice/downed_transport/the_descent)
+"Vt" = (
+/obj/structure/flora/tree/dead{
+	pixel_x = 3;
+	pixel_y = 2
+	},
+/obj/structure/railing/corner{
+	dir = 4
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/lavaland/surface/outdoors)
+"Vw" = (
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_ice/downed_transport/crashed_shuttle)
+"Vy" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/the_descent)
+"Vz" = (
+/obj/structure/fence{
+	dir = 2
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/lavaland/surface/outdoors)
+"VB" = (
+/obj/effect/decal/remains/robot{
+	pixel_y = -10;
+	pixel_x = 7
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/lavaland/surface/outdoors)
+"VE" = (
+/obj/machinery/light/small{
+	pixel_x = 28
+	},
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/basic/mining/ice_demon,
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/unpowered/planet_ice/downed_transport/abandoned_mineshaft)
+"VG" = (
+/obj/machinery/door/airlock/external/glass{
+	dir = 4;
+	name = "Koszary"
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/turf/open/floor/plating{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/barracks)
+"VJ" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/visible/layer4{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/cyan/visible/layer2{
+	dir = 6
+	},
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/atmospherics_shed)
+"VN" = (
+/obj/structure/flora/tree/dead{
+	layer = 5.06
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/lavaland/surface/outdoors)
+"VO" = (
+/obj/machinery/space_heater,
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/abandoned_mineshaft)
+"Wa" = (
+/obj/machinery/atmospherics/components/trinary/mixer/layer2{
+	dir = 4
+	},
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/atmospherics_shed)
+"Wd" = (
+/obj/item/stack/sheet/mineral/wood,
+/obj/item/food/energybar,
+/turf/open/floor/plating/asteroid/icerock,
+/area/lavaland/surface/outdoors)
+"Wh" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 10
+	},
+/turf/open/floor/carpet/red,
+/area/ruin/powered/planet_ice/downed_transport/delapidated_cabin)
+"Wk" = (
+/obj/effect/decal/cleanable/blood/footprints{
+	icon_state = "blood2";
+	dir = 4
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/lavaland/surface/outdoors)
+"Wv" = (
+/obj/machinery/power/terminal{
+	dir = 8
+	},
+/obj/structure/cable,
+/obj/item/stack/ore/iron,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
+/area/lavaland/surface/outdoors)
+"WO" = (
+/obj/structure/closet/crate/wooden,
+/obj/item/reagent_containers/glass/bucket,
+/obj/item/shovel,
+/turf/open/floor/plating/asteroid/icerock,
+/area/lavaland/surface/outdoors)
+"WQ" = (
+/obj/structure/girder,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_ice/downed_transport/crashed_shuttle)
+"WU" = (
+/obj/structure/chair/fancy/sofa/old/left{
+	dir = 4
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/powered/planet_ice/downed_transport/delapidated_cabin)
+"WZ" = (
+/obj/effect/decal/cleanable/blood/drip{
+	pixel_y = 15;
+	pixel_x = 9
+	},
+/turf/closed/indestructible/rock,
+/area/ruin/unpowered/planet_ice/downed_transport/abandoned_mineshaft)
+"XL" = (
+/obj/item/shard{
+	pixel_y = -2;
+	pixel_x = -3
+	},
+/obj/effect/decal/cleanable/glass,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_ice/downed_transport/crashed_shuttle)
+"XQ" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
+/area/lavaland/surface/outdoors)
+"XU" = (
+/obj/item/stack/sheet/mineral/wood,
+/obj/item/food/donkpocket,
+/turf/open/floor/plating/asteroid/icerock,
+/area/lavaland/surface/outdoors)
+"Yd" = (
+/obj/structure/lattice/catwalk,
+/turf/open/floor/plating,
+/area/lavaland/surface/outdoors)
+"Yi" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/unpowered/planet_ice/downed_transport/abandoned_mineshaft)
+"Yp" = (
+/obj/structure/lattice/catwalk/over,
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_ice/downed_transport/mining_power_station)
+"Yv" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/condiment/saltshaker{
+	pixel_x = -8;
+	pixel_y = 7
+	},
+/obj/item/radio/off,
+/obj/item/assembly/signaler{
+	pixel_y = 13;
+	pixel_x = 13
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/slab_4{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/abandoned_mineshaft)
+"Yw" = (
+/obj/structure/closet/emcloset,
+/obj/item/tank/internals/emergency_oxygen/engi{
+	pixel_y = -4;
+	pixel_x = 1
+	},
+/obj/item/tank/internals/emergency_oxygen/engi{
+	pixel_y = -4;
+	pixel_x = -2
+	},
+/obj/item/tank/internals/emergency_oxygen/double{
+	pixel_y = 3
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
+/obj/structure/sign/poster/official/safety_internals{
+	pixel_y = 30
+	},
+/turf/open/floor/plasteel{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/barracks)
+"YD" = (
+/obj/structure/chair/wood{
+	dir = 4;
+	pixel_y = 3
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
+/turf/open/floor/carpet/blue,
+/area/ruin/unpowered/planet_ice/downed_transport/barracks)
+"YG" = (
+/turf/closed/wall/mineral/wood,
+/area/ruin/powered/planet_ice/downed_transport/outhouse)
+"YK" = (
+/obj/machinery/power/apc/auto_name/west{
+	start_charge = 0
+	},
+/obj/machinery/light_switch{
+	dir = 4;
+	pixel_x = -20;
+	pixel_y = -10
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/turf/open/floor/concrete{
+	icon_state = "conc_tiles"
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/bathhouse)
+"YN" = (
+/obj/effect/decal/cleanable/glass,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/portable_atmospherics/canister/oxygen,
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_ice/downed_transport/the_descent)
+"YP" = (
+/obj/structure/lattice{
+	icon_state = "lattice-127"
+	},
+/obj/structure/door_assembly/door_assembly_ext,
+/turf/open/floor/engine,
+/area/ruin/unpowered/planet_ice/downed_transport/crashed_shuttle)
+"YR" = (
+/turf/closed/wall/mineral/plastitanium,
+/area/ruin/unpowered/planet_ice/downed_transport/crashed_shuttle)
+"YX" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/wood{
+	dir = 5
+	},
+/obj/structure/cable,
+/turf/open/floor/concrete/slab_4{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/abandoned_mineshaft)
+"YZ" = (
+/obj/structure/cable,
+/obj/machinery/door/airlock{
+	dir = 4;
+	name = "Koszary"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/turf/open/floor/plasteel{
+	icon_state = "grid_dark"
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/barracks)
+"Zb" = (
+/obj/structure/flora/tree/pine{
+	icon_state = "pine_3";
+	layer = 5.05
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/lavaland/surface/outdoors)
+"Zc" = (
+/obj/structure/cable/yellow,
+/turf/closed/wall/rust,
+/area/ruin/unpowered/planet_ice/downed_transport/mining_power_station)
+"Zd" = (
+/obj/structure/cable,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/poddoor/preopen{
+	dir = 4;
+	id = "barrow_loading_door"
+	},
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_ice/downed_transport/crashed_shuttle)
+"Ze" = (
+/obj/item/reagent_containers/glass/bucket{
+	pixel_y = 8;
+	pixel_x = 9
+	},
+/obj/effect/decal/cleanable/vomit/old{
+	pixel_y = 1;
+	pixel_x = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/downed_transport/outhouse)
+"Zg" = (
+/obj/effect/turf_decal/siding/thinplating{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/asteroid/icerock/smooth,
+/area/ruin/unpowered/planet_ice/downed_transport/abandoned_mineshaft)
+"Zh" = (
+/obj/structure/girder,
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/powered/planet_ice/downed_transport/ramshackle_workroom)
+"Zj" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/the_descent)
+"Zo" = (
+/obj/structure/flora/tree/pine,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/lavaland/surface/outdoors)
+"Zq" = (
+/obj/effect/decal/cleanable/crayon{
+	icon_state = "a";
+	pixel_y = 26;
+	pixel_x = -15;
+	paint_colour = "#FF3333"
+	},
+/obj/effect/decal/cleanable/crayon{
+	icon_state = "v";
+	pixel_y = 25;
+	pixel_x = 4;
+	paint_colour = "#FF3333"
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/lavaland/surface/outdoors)
+"Zz" = (
+/obj/machinery/light/small/broken{
+	dir = 1;
+	pixel_y = 28
+	},
+/obj/structure/cable,
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/unpowered/planet_ice/downed_transport/abandoned_mineshaft)
+"ZB" = (
+/obj/effect/decal/cleanable/blood/drip{
+	layer = 2.46
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/lavaland/surface/outdoors)
+"ZE" = (
+/obj/structure/table/wood,
+/obj/item/radio/off{
+	pixel_y = -9;
+	pixel_x = -4
+	},
+/obj/item/plate{
+	pixel_y = 10;
+	pixel_x = -4
+	},
+/obj/item/reagent_containers/food/drinks/soda_cans/cola{
+	pixel_y = 7;
+	pixel_x = 8
+	},
+/turf/open/floor/plasteel{
+	icon_state = "tiled_dark"
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/crew_accomodations)
+"ZK" = (
+/obj/machinery/power/apc/auto_name/north{
+	start_charge = 0
+	},
+/obj/machinery/light_switch{
+	pixel_x = 11;
+	pixel_y = 20
+	},
+/obj/structure/cable,
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/atmospherics_shed)
+"ZP" = (
+/obj/structure/flora/grass/both,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/lavaland/surface/outdoors)
+"ZR" = (
+/obj/effect/decal/cleanable/blood/drip{
+	pixel_x = 6;
+	pixel_y = 2;
+	layer = 2.46
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/lavaland/surface/outdoors)
+"ZT" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_ice/downed_transport/crashed_shuttle)
+"ZU" = (
+/obj/machinery/door/airlock/grunge{
+	name = "Łaźnia"
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/turf/open/floor/concrete{
+	icon_state = "conc_tiles"
+	},
+/area/ruin/unpowered/planet_ice/downed_transport/bathhouse)
+"ZV" = (
+/obj/machinery/power/grounding_rod,
+/turf/open/floor/plating/asteroid/icerock,
+/area/lavaland/surface/outdoors)
+
+(1,1,1) = {"
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+"}
+(2,1,1) = {"
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+rN
+rN
+rN
+LS
+rN
+rN
+rN
+rN
+rN
+rN
+sM
+rN
+rN
+rN
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+rN
+rN
+rN
+rN
+rN
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+"}
+(3,1,1) = {"
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+Se
+rN
+rN
+sC
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+ib
+ib
+ib
+ib
+rN
+zY
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+"}
+(4,1,1) = {"
+ib
+ib
+ib
+ib
+ib
+ib
+rN
+rN
+rN
+sC
+rN
+rN
+ah
+rN
+rN
+rN
+rN
+rN
+rN
+sM
+EQ
+rN
+rN
+rN
+rN
+rN
+LS
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+vR
+rN
+LS
+rN
+rN
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+"}
+(5,1,1) = {"
+ib
+ib
+ib
+ib
+ib
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+EQ
+rN
+EQ
+rN
+RL
+EQ
+EQ
+EQ
+rN
+rN
+rN
+rN
+rN
+qs
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+"}
+(6,1,1) = {"
+ib
+ib
+ib
+ib
+rN
+rN
+zY
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+on
+EQ
+EQ
+rN
+EQ
+EQ
+EQ
+EQ
+EQ
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+Ny
+rN
+rN
+rN
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+"}
+(7,1,1) = {"
+ib
+ib
+ib
+ib
+rN
+rN
+rN
+rN
+rN
+vR
+rN
+LS
+rN
+zY
+rN
+rN
+rN
+rN
+EQ
+EQ
+EQ
+EQ
+EQ
+EQ
+EQ
+EQ
+EQ
+rN
+rN
+rN
+rN
+rN
+rN
+ui
+rN
+rN
+rN
+rN
+ah
+rN
+rN
+zY
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+"}
+(8,1,1) = {"
+ib
+ib
+ib
+rN
+sM
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+EQ
+EQ
+EQ
+EQ
+EQ
+EQ
+EQ
+EQ
+Vi
+EQ
+Se
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+"}
+(9,1,1) = {"
+ib
+ib
+ib
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+Ny
+rN
+rN
+rN
+rN
+EQ
+EQ
+EQ
+EQ
+oq
+EQ
+EQ
+EQ
+EQ
+EQ
+EQ
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+"}
+(10,1,1) = {"
+ib
+ib
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+EQ
+EQ
+EQ
+EQ
+EQ
+EQ
+EQ
+EQ
+EQ
+EQ
+EQ
+EQ
+EQ
+rN
+rN
+rN
+Zo
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+iV
+iV
+iV
+iV
+iV
+rN
+rN
+rN
+rN
+rN
+Zo
+rN
+rN
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+"}
+(11,1,1) = {"
+ib
+ib
+rN
+rN
+rN
+ZP
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+ZP
+EQ
+EQ
+EQ
+EQ
+EQ
+EQ
+EQ
+EQ
+NY
+EQ
+EQ
+EQ
+EQ
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+Cg
+FQ
+FQ
+iV
+Pd
+kU
+Fg
+iV
+rN
+rN
+rN
+ah
+rN
+rN
+rN
+rN
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+"}
+(12,1,1) = {"
+ib
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+qs
+rN
+rN
+rN
+rN
+rN
+EQ
+EQ
+Vi
+EQ
+on
+EQ
+EQ
+Vi
+EQ
+EQ
+on
+EQ
+EQ
+rN
+rN
+rN
+rN
+rN
+rN
+ZP
+rN
+Db
+rN
+yx
+iV
+Fa
+hb
+xn
+iV
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+"}
+(13,1,1) = {"
+ib
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+sM
+rN
+rN
+EQ
+EQ
+EQ
+EQ
+EQ
+NY
+EQ
+EQ
+EQ
+on
+EQ
+EQ
+EQ
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+pM
+ag
+hI
+kV
+uu
+IG
+kU
+iV
+rN
+rN
+rN
+rN
+rN
+sM
+rN
+rN
+rN
+rN
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+"}
+(14,1,1) = {"
+ib
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+EQ
+EQ
+EQ
+EQ
+EQ
+EQ
+EQ
+EQ
+EQ
+EQ
+Hb
+EQ
+EQ
+rN
+rN
+sM
+rN
+sC
+rN
+LS
+rN
+iV
+vV
+wG
+iV
+Iy
+IG
+MS
+iV
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+sC
+rN
+rN
+rN
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+"}
+(15,1,1) = {"
+rN
+rN
+rN
+rN
+ui
+rN
+rN
+rN
+rN
+rN
+rN
+ah
+rN
+rN
+rN
+rN
+EQ
+EQ
+EQ
+EQ
+EQ
+on
+EQ
+EQ
+EQ
+NY
+EQ
+EQ
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+iV
+iV
+iV
+iV
+iV
+Cw
+iV
+iV
+iV
+rN
+rN
+Zh
+gn
+gn
+Zh
+oz
+rN
+rN
+rN
+rN
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+"}
+(16,1,1) = {"
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+EQ
+EQ
+EQ
+EQ
+EQ
+EQ
+EQ
+on
+EQ
+EQ
+EQ
+EQ
+rN
+rN
+rN
+LS
+rN
+rN
+rN
+rN
+iV
+ha
+xf
+BN
+bt
+IG
+WU
+GS
+iV
+rN
+wU
+Up
+NO
+DF
+BV
+be
+Zh
+rN
+rN
+rN
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+"}
+(17,1,1) = {"
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+EQ
+EQ
+Hb
+EQ
+EQ
+EQ
+Hb
+EQ
+EQ
+EQ
+rN
+rN
+rN
+ui
+rN
+rN
+rN
+ui
+rN
+iV
+Ca
+xv
+kU
+kU
+gG
+ED
+Wh
+iV
+rN
+rN
+gn
+Om
+oz
+nR
+FN
+gn
+rN
+rN
+rN
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+"}
+(18,1,1) = {"
+rN
+rN
+rN
+rN
+rN
+rN
+ZP
+rN
+rN
+UQ
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+EQ
+EQ
+EQ
+xa
+EQ
+EQ
+EQ
+EQ
+EQ
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+mN
+wq
+ys
+rb
+kU
+IG
+oa
+of
+pC
+rN
+rN
+gn
+DH
+Li
+Li
+RE
+oz
+rN
+rN
+rN
+rN
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+"}
+(19,1,1) = {"
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+ZP
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+EQ
+EQ
+eG
+Wd
+Vi
+EQ
+EQ
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+iV
+cM
+kU
+kU
+pJ
+cE
+eA
+Er
+iV
+rN
+rN
+Zh
+Ui
+RF
+BV
+Zh
+rN
+rN
+vR
+rN
+rN
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+"}
+(20,1,1) = {"
+rN
+rN
+ah
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+Zo
+rN
+rN
+rN
+EQ
+EQ
+EQ
+eG
+iF
+EQ
+EQ
+EQ
+rN
+rN
+rN
+rN
+Zo
+rN
+rN
+rN
+rN
+iV
+iV
+Cw
+iV
+iV
+iV
+iV
+iV
+iV
+rN
+rN
+rN
+gP
+Zh
+gn
+gn
+rN
+rN
+rN
+rN
+rN
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+"}
+(21,1,1) = {"
+ib
+rN
+rN
+rN
+rN
+sM
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+EQ
+EQ
+Lk
+EQ
+Hb
+XU
+EQ
+EQ
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+Ny
+rN
+iV
+mp
+jg
+Kn
+xe
+kU
+kU
+kU
+EI
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+ZP
+rN
+rN
+rN
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+"}
+(22,1,1) = {"
+ib
+ib
+rN
+UQ
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+Ny
+rN
+rN
+rN
+rN
+zY
+rN
+rN
+EQ
+EQ
+EQ
+on
+EQ
+Lk
+EQ
+EQ
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+iV
+Mb
+du
+iT
+iV
+Nh
+kU
+kU
+wf
+rN
+rN
+rN
+EQ
+EQ
+rN
+rN
+rN
+rN
+rN
+rN
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+"}
+(23,1,1) = {"
+ib
+ib
+ib
+rN
+rN
+rN
+rN
+rN
+qs
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+EQ
+EQ
+iF
+EQ
+EQ
+on
+EQ
+EQ
+rN
+rN
+rN
+ZP
+rN
+rN
+rN
+rN
+rN
+iV
+iV
+mN
+iV
+iV
+do
+HQ
+HQ
+iV
+rN
+rN
+EQ
+ae
+Hb
+EQ
+rN
+rN
+rN
+rN
+rN
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+"}
+(24,1,1) = {"
+ib
+ib
+ib
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+ZP
+rN
+rN
+rN
+rN
+rN
+EQ
+EQ
+Hb
+EQ
+EQ
+EQ
+EQ
+EQ
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+ZP
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+VB
+WO
+Mi
+EQ
+rN
+rN
+ui
+rN
+rN
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+"}
+(25,1,1) = {"
+ib
+ib
+ib
+rN
+rN
+rN
+ZP
+rN
+rN
+zY
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+EQ
+EQ
+EQ
+EQ
+Hb
+xa
+EQ
+EQ
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+EQ
+EQ
+rN
+rN
+rN
+EQ
+md
+To
+fI
+EQ
+rN
+rN
+rN
+rN
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+"}
+(26,1,1) = {"
+ib
+ib
+ib
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+ZP
+rN
+rN
+EQ
+EQ
+nm
+EQ
+EQ
+EQ
+EQ
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+sM
+rN
+rN
+Gg
+uU
+oJ
+Vt
+rN
+rN
+EQ
+ZV
+Cu
+zu
+EQ
+rN
+rN
+rN
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+"}
+(27,1,1) = {"
+ib
+ib
+ib
+rN
+rN
+rN
+rN
+Zo
+rN
+rN
+rN
+oF
+rN
+rN
+rN
+ui
+rN
+rN
+rN
+rN
+EQ
+EQ
+EQ
+EQ
+EQ
+EQ
+EQ
+rN
+rN
+rN
+rN
+rN
+vR
+rN
+zY
+rN
+rN
+rN
+rN
+rN
+EQ
+jj
+Ll
+sB
+EQ
+rN
+EQ
+Dr
+JA
+EQ
+rN
+rN
+rN
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+"}
+(28,1,1) = {"
+ib
+ib
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+LS
+sM
+tk
+rN
+rN
+rN
+rN
+rN
+EQ
+EQ
+EQ
+EQ
+EQ
+EQ
+EQ
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+CG
+HA
+BL
+Gg
+rN
+rN
+EQ
+EQ
+EQ
+rN
+rN
+rN
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+"}
+(29,1,1) = {"
+ib
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+EQ
+EQ
+Vi
+EQ
+EQ
+EQ
+rN
+rN
+rN
+rN
+gm
+rN
+rN
+rN
+rN
+rN
+rN
+vj
+rN
+rN
+rN
+rN
+EQ
+EQ
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+"}
+(30,1,1) = {"
+ib
+rN
+rN
+rN
+Zo
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+sC
+rN
+LS
+rN
+rN
+rN
+EQ
+EQ
+EQ
+EQ
+EQ
+EQ
+sv
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+lx
+lx
+Hu
+lx
+lx
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+"}
+(31,1,1) = {"
+ib
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+ZP
+rN
+rN
+rN
+qs
+rN
+rN
+ZP
+rN
+rN
+EQ
+EQ
+EQ
+EQ
+EQ
+EQ
+EQ
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+lx
+vx
+QU
+Fk
+lx
+rN
+rN
+rN
+YG
+CW
+YG
+rN
+rN
+rN
+ZP
+rN
+rN
+rN
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+"}
+(32,1,1) = {"
+ib
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+EQ
+EQ
+EQ
+EQ
+on
+EQ
+EQ
+aH
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+lx
+ob
+CI
+eB
+lx
+rN
+rN
+rN
+YG
+Ze
+YG
+rN
+rN
+rN
+rN
+rN
+rN
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+"}
+(33,1,1) = {"
+ib
+ib
+rN
+zY
+rN
+rN
+rN
+gm
+rN
+rN
+rN
+zY
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+EQ
+EQ
+EQ
+EQ
+Hb
+EQ
+EQ
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+lx
+lx
+lx
+lx
+lx
+rN
+rN
+rN
+YG
+YG
+YG
+rN
+rN
+rN
+rN
+rN
+rN
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+"}
+(34,1,1) = {"
+ib
+ib
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+ah
+rN
+rN
+EQ
+Vi
+EQ
+EQ
+NY
+EQ
+EQ
+rN
+rN
+rN
+rN
+rN
+ui
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+"}
+(35,1,1) = {"
+ib
+ib
+ib
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+qs
+rN
+rN
+rN
+rN
+rN
+EQ
+EQ
+EQ
+on
+Jl
+EQ
+EQ
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+sM
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+qs
+rN
+rN
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+"}
+(36,1,1) = {"
+ib
+ib
+ib
+ZP
+rN
+rN
+ah
+rN
+rN
+rN
+gm
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+EQ
+Hb
+EQ
+EQ
+EQ
+EQ
+EQ
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+ui
+rN
+rN
+rN
+rN
+rN
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+"}
+(37,1,1) = {"
+ib
+ib
+ib
+ib
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+sM
+rN
+rN
+rN
+sv
+EQ
+EQ
+EQ
+EQ
+RB
+EQ
+EQ
+rN
+rN
+rN
+sM
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+ui
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+zY
+rN
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+"}
+(38,1,1) = {"
+ib
+ib
+ib
+ib
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+EQ
+EQ
+EQ
+EQ
+EQ
+EQ
+EQ
+EQ
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+ah
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+ZP
+rN
+rN
+rN
+rN
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+"}
+(39,1,1) = {"
+ib
+ib
+ib
+ib
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+ui
+rN
+rN
+rN
+rN
+rN
+rN
+EQ
+EQ
+EQ
+xa
+EQ
+EQ
+EQ
+rN
+rN
+rN
+Zo
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+qs
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+gm
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+"}
+(40,1,1) = {"
+ib
+ib
+ib
+ib
+rN
+rN
+qs
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+Ny
+rN
+EQ
+EQ
+EQ
+EQ
+EQ
+EQ
+EQ
+EQ
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+LS
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+"}
+(41,1,1) = {"
+ib
+ib
+ib
+ib
+rN
+zY
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+EQ
+EQ
+oq
+EQ
+EQ
+Vi
+EQ
+EQ
+rN
+rN
+rN
+rN
+rN
+rN
+zY
+rN
+sC
+rN
+rN
+rN
+ZP
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+qs
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+"}
+(42,1,1) = {"
+ib
+ib
+ib
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+ZP
+rN
+rN
+rN
+ZP
+rN
+EQ
+EQ
+EQ
+EQ
+EQ
+EQ
+EQ
+EQ
+EQ
+rN
+rN
+ZP
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+Zo
+rN
+zY
+rN
+rN
+rN
+rN
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+"}
+(43,1,1) = {"
+ib
+ib
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+EQ
+EQ
+EQ
+EQ
+EQ
+EQ
+EQ
+EQ
+EQ
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+LS
+rN
+rN
+rN
+oF
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+"}
+(44,1,1) = {"
+ib
+ib
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+Zo
+rN
+rN
+rN
+rN
+zY
+rN
+rN
+EQ
+Vi
+EQ
+EQ
+EQ
+EQ
+EQ
+EQ
+EQ
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+vR
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+"}
+(45,1,1) = {"
+ib
+ib
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+EQ
+EQ
+EQ
+on
+EQ
+EQ
+EQ
+EQ
+EQ
+EQ
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+"}
+(46,1,1) = {"
+ib
+ib
+rN
+rN
+ZP
+rN
+rN
+qs
+rN
+rN
+rN
+rN
+rN
+vR
+rN
+rN
+rN
+EQ
+EQ
+EQ
+EQ
+EQ
+EQ
+EQ
+EQ
+EQ
+Hb
+EQ
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+ah
+rN
+rN
+rN
+rN
+ui
+rN
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+"}
+(47,1,1) = {"
+ib
+ib
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+EQ
+EQ
+EQ
+Hb
+NY
+EQ
+Hb
+EQ
+EQ
+EQ
+rN
+rN
+rN
+zY
+rN
+rN
+sM
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+"}
+(48,1,1) = {"
+ib
+ib
+rN
+rN
+rN
+rN
+rN
+ZP
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+EQ
+EQ
+EQ
+EQ
+EQ
+EQ
+EQ
+EQ
+rN
+EQ
+EQ
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+"}
+(49,1,1) = {"
+ib
+ib
+ib
+rN
+rN
+rN
+rN
+rN
+rN
+sM
+rN
+rN
+rN
+ah
+rN
+rN
+rN
+rN
+EQ
+EQ
+Hb
+EQ
+EQ
+EQ
+EQ
+EQ
+rN
+EQ
+EQ
+ah
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+qs
+rN
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+"}
+(50,1,1) = {"
+ib
+ib
+ib
+ib
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+EQ
+EQ
+EQ
+on
+MD
+EQ
+EQ
+EQ
+rN
+rN
+EQ
+EQ
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+"}
+(51,1,1) = {"
+ib
+ib
+ib
+ib
+qs
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+ZP
+rN
+rN
+EQ
+EQ
+EQ
+EQ
+EQ
+EQ
+xa
+EQ
+rN
+rN
+EQ
+EQ
+rN
+rN
+rN
+rN
+wE
+rN
+rN
+rN
+Zo
+rN
+rN
+rN
+rN
+rN
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+"}
+(52,1,1) = {"
+ib
+ib
+ib
+ib
+rN
+rN
+rN
+rN
+rN
+rN
+ZP
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+EQ
+EQ
+GI
+bw
+EQ
+Hb
+EQ
+EQ
+rN
+rN
+rN
+EQ
+EQ
+EQ
+rN
+EQ
+yP
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+ZP
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+"}
+(53,1,1) = {"
+ib
+ib
+ib
+ib
+rN
+rN
+rN
+rN
+ah
+rN
+rN
+rN
+rN
+vR
+rN
+rN
+rN
+rN
+EQ
+EQ
+EQ
+aP
+EQ
+EQ
+EQ
+rN
+rN
+rN
+rN
+rN
+EQ
+EQ
+EQ
+EQ
+qa
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+"}
+(54,1,1) = {"
+ib
+ib
+ib
+ib
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+EQ
+EQ
+bw
+SU
+Vi
+EQ
+EQ
+EQ
+rN
+zY
+rN
+rN
+rN
+rN
+EQ
+EQ
+EQ
+EQ
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+zY
+rN
+rN
+rN
+rN
+rN
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+"}
+(55,1,1) = {"
+ib
+ib
+ib
+ib
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+sM
+rN
+EQ
+EQ
+on
+EQ
+bw
+EQ
+EQ
+EQ
+rN
+rN
+rN
+rN
+zY
+rN
+rN
+EQ
+EQ
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+zY
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+"}
+(56,1,1) = {"
+ib
+ib
+ib
+ib
+ib
+rN
+rN
+rN
+rN
+rN
+zY
+rN
+rN
+rN
+rN
+rN
+rN
+EQ
+EQ
+EQ
+eX
+EQ
+EQ
+EQ
+EQ
+rN
+rN
+ZP
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+ui
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+UQ
+rN
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+"}
+(57,1,1) = {"
+ib
+ib
+ib
+ib
+ib
+qs
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+EQ
+mv
+EQ
+EQ
+EQ
+EQ
+EQ
+EQ
+EQ
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+Ny
+rN
+rN
+rN
+rN
+vR
+rN
+rN
+rN
+rN
+rN
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+"}
+(58,1,1) = {"
+ib
+ib
+ib
+ib
+ib
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+EQ
+MD
+EQ
+NY
+EQ
+EQ
+EQ
+EQ
+EQ
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+"}
+(59,1,1) = {"
+ib
+ib
+ib
+ib
+ib
+sM
+rN
+rN
+rN
+ZP
+rN
+rN
+rN
+qs
+rN
+rN
+rN
+EQ
+EQ
+EQ
+EQ
+EQ
+EQ
+xa
+EQ
+EQ
+rN
+rN
+rN
+vR
+rN
+rN
+rN
+rN
+rN
+Zo
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+"}
+(60,1,1) = {"
+ib
+ib
+ib
+ib
+ib
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+EQ
+EQ
+EQ
+EQ
+EQ
+EQ
+EQ
+EQ
+sv
+rN
+rN
+rN
+rN
+sM
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+sM
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+"}
+(61,1,1) = {"
+ib
+ib
+ib
+ib
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+ZP
+rN
+EQ
+EQ
+EQ
+EQ
+EQ
+Og
+Vi
+EQ
+EQ
+EQ
+rN
+rN
+ZP
+rN
+rN
+rN
+rN
+rN
+rN
+sM
+rN
+rN
+rN
+rN
+DL
+DL
+rN
+rN
+rN
+rN
+rN
+Zo
+rN
+rN
+rN
+rN
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+"}
+(62,1,1) = {"
+ib
+ib
+ib
+ib
+rN
+ZP
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+EQ
+dt
+Du
+Du
+Yd
+EQ
+EQ
+EQ
+Hb
+EQ
+rN
+rN
+rN
+rN
+rN
+LS
+rN
+rN
+sC
+rN
+rN
+rN
+rN
+DL
+DL
+DL
+rN
+ZP
+rN
+rN
+rN
+rN
+rN
+rN
+zY
+rN
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+"}
+(63,1,1) = {"
+ib
+ib
+ib
+ah
+rN
+rN
+rN
+rN
+ui
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+EQ
+On
+Zd
+BO
+So
+qa
+tK
+tK
+EQ
+rN
+rN
+rN
+rN
+sM
+rN
+rN
+ZP
+rN
+rN
+rN
+rN
+rN
+DL
+DL
+DL
+DL
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+"}
+(64,1,1) = {"
+ib
+ib
+ib
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+zY
+rN
+rN
+On
+im
+TN
+YR
+rM
+Fq
+wY
+qa
+BX
+YR
+bO
+IW
+HX
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+DL
+DL
+DL
+DL
+DL
+DL
+rN
+rN
+rN
+rN
+rN
+ui
+rN
+rN
+rN
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+"}
+(65,1,1) = {"
+ib
+ib
+ib
+rN
+rN
+rN
+sM
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+YR
+HC
+GG
+On
+kG
+ss
+jy
+jy
+LC
+On
+gO
+TB
+XQ
+rN
+rN
+rN
+rN
+rN
+rN
+ui
+rN
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+"}
+(66,1,1) = {"
+ib
+ib
+ib
+rN
+vR
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+YR
+Bh
+RA
+wa
+NG
+yz
+mX
+is
+NG
+DY
+Fh
+Wv
+cf
+vT
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+"}
+(67,1,1) = {"
+ib
+ib
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+ah
+rN
+rN
+On
+PB
+hV
+rW
+Py
+Fq
+Kb
+Fq
+KI
+yI
+rj
+Lb
+TU
+rN
+rN
+rN
+cT
+rN
+gm
+rN
+rN
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+rN
+gm
+rN
+rN
+rN
+rN
+rN
+ZP
+rN
+rN
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+"}
+(68,1,1) = {"
+ib
+rN
+rN
+rN
+rN
+rN
+rN
+zY
+rN
+rN
+rN
+rN
+rN
+rN
+YR
+On
+On
+On
+Fq
+Vw
+Kb
+Vw
+ZT
+On
+zU
+Ci
+cf
+rN
+LS
+ah
+rN
+rN
+rN
+rN
+rN
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+rN
+rN
+UQ
+rN
+rN
+rN
+rN
+rN
+rN
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+"}
+(69,1,1) = {"
+rN
+rN
+sM
+rN
+rN
+rN
+rN
+LS
+ZP
+rN
+rN
+rN
+rN
+rN
+rN
+YP
+ly
+an
+LC
+LC
+wY
+SW
+LC
+JT
+hS
+YR
+rN
+Ny
+rN
+rN
+rN
+rN
+cT
+rN
+rN
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+rN
+rN
+rN
+rN
+rN
+rN
+ah
+rN
+rN
+rN
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+"}
+(70,1,1) = {"
+rN
+rN
+rN
+rN
+rN
+sC
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+El
+YR
+On
+hE
+XL
+xg
+gU
+Fq
+pp
+nc
+hc
+rN
+LS
+rN
+ba
+rN
+rN
+rN
+VN
+rN
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+"}
+(71,1,1) = {"
+rN
+rN
+zY
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+Ny
+rN
+rN
+rN
+BG
+dd
+xk
+Kb
+Vw
+Fq
+pp
+oI
+ne
+rN
+rN
+rN
+UQ
+rN
+Hz
+rN
+rN
+rN
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+rN
+rN
+rN
+rN
+rN
+rN
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+"}
+(72,1,1) = {"
+rN
+rN
+rN
+rN
+PP
+rN
+rN
+rN
+rN
+rN
+ZP
+rN
+rN
+rN
+rN
+rN
+vT
+Jn
+Fq
+JY
+Kb
+Vw
+rm
+ap
+fp
+Np
+rN
+ZB
+rN
+rN
+rN
+rN
+rN
+ba
+rN
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+rN
+tB
+rN
+rN
+rN
+rN
+rN
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+"}
+(73,1,1) = {"
+rN
+rN
+rN
+rN
+rN
+sM
+rN
+rN
+qs
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+WQ
+Jn
+Vw
+Kb
+iu
+HD
+On
+On
+Ci
+Ny
+rN
+Ho
+rN
+rN
+rN
+rN
+rN
+rN
+DL
+DL
+DL
+DL
+MA
+MA
+MA
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+rN
+rN
+rN
+ZP
+rN
+qs
+rN
+rN
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+"}
+(74,1,1) = {"
+ib
+rN
+rN
+Ny
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+YR
+mE
+Tl
+Ee
+Vw
+ip
+On
+YR
+rN
+tG
+rN
+rN
+bM
+Zb
+rN
+UQ
+rN
+DL
+DL
+DL
+MA
+MA
+MA
+MA
+MA
+MA
+DL
+DL
+DL
+DL
+DL
+DL
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+"}
+(75,1,1) = {"
+ib
+ib
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+qs
+rN
+sM
+rN
+rN
+rN
+YR
+mU
+Vw
+Kb
+Fq
+Ld
+YR
+rN
+rN
+rN
+ba
+JM
+rN
+rN
+rN
+rN
+rN
+DL
+DL
+DL
+MA
+MA
+Tw
+Tw
+MA
+MA
+MA
+MA
+MA
+DL
+DL
+DL
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+sC
+rN
+ZP
+rN
+rN
+rN
+ib
+ib
+ib
+ib
+ib
+ib
+"}
+(76,1,1) = {"
+ib
+ib
+rN
+rN
+rN
+zY
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+Ny
+YR
+Fj
+cy
+xT
+Gv
+Vw
+YR
+rN
+Ny
+rN
+qe
+rN
+Ho
+rN
+Ho
+rN
+rN
+DL
+DL
+DL
+MA
+MA
+Tw
+cj
+he
+MA
+MA
+MA
+MA
+MA
+MA
+DL
+DL
+rN
+rN
+rN
+Zo
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+ib
+ib
+ib
+ib
+ib
+ib
+"}
+(77,1,1) = {"
+ib
+ib
+rN
+ZP
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+qs
+eQ
+rN
+On
+YR
+YR
+Tm
+On
+On
+YR
+Zo
+sC
+rN
+rN
+rN
+EF
+rN
+rN
+rN
+rN
+DL
+DL
+MA
+MA
+Tw
+Tw
+cs
+Fw
+Qz
+MA
+MA
+MA
+MA
+MA
+MA
+DL
+DL
+DL
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+zY
+rN
+rN
+ib
+ib
+ib
+ib
+ib
+"}
+(78,1,1) = {"
+ib
+ib
+rN
+rN
+rN
+rN
+rN
+rN
+ui
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+bE
+YR
+Fp
+MJ
+dN
+On
+YR
+yP
+LS
+rN
+UQ
+rN
+cT
+Wk
+LS
+rN
+rN
+rN
+DL
+DL
+MA
+cj
+Tw
+Fw
+Fw
+MA
+Fw
+MA
+MA
+MA
+jt
+MA
+MA
+MA
+DL
+DL
+rN
+rN
+rN
+zY
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+ib
+ib
+ib
+ib
+ib
+"}
+(79,1,1) = {"
+ib
+ib
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+vR
+rN
+hT
+AH
+kW
+tp
+YR
+rN
+yP
+gm
+ba
+rN
+rN
+rN
+rN
+rN
+ui
+rN
+DL
+MA
+MA
+MA
+MA
+jt
+jt
+Qz
+MA
+Op
+MA
+MA
+jt
+Ac
+jt
+MA
+MA
+DL
+DL
+DL
+rN
+rN
+rN
+rN
+rN
+sM
+rN
+rN
+rN
+rN
+rN
+ib
+ib
+ib
+ib
+"}
+(80,1,1) = {"
+ib
+ib
+vR
+rN
+rN
+rN
+rN
+rN
+rN
+zY
+rN
+rN
+rN
+Fu
+rN
+rN
+TX
+UU
+vv
+pe
+On
+YR
+ui
+mq
+qR
+rN
+rN
+rN
+rN
+rN
+qZ
+rN
+DL
+MA
+MA
+MA
+MA
+MA
+jt
+Ac
+jt
+MA
+Fw
+Ss
+jt
+jt
+Kf
+Uz
+MA
+MA
+DL
+DL
+DL
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+ZP
+rN
+rN
+ib
+ib
+ib
+ib
+"}
+(81,1,1) = {"
+ib
+ib
+ib
+rN
+rN
+rN
+rN
+sM
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+Fu
+sm
+eL
+Al
+YR
+Ci
+rN
+qs
+gb
+rN
+qJ
+cT
+rN
+Ho
+rN
+rN
+rN
+DL
+MA
+MA
+Fw
+MA
+MA
+jt
+jt
+Eg
+MA
+MA
+MA
+jt
+CU
+jt
+rq
+MA
+MA
+DL
+DL
+DL
+og
+og
+SG
+og
+og
+SG
+og
+xw
+rN
+rN
+rN
+ib
+ib
+ib
+ib
+"}
+(82,1,1) = {"
+ib
+ib
+ib
+rN
+qs
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+Zo
+rN
+rN
+rN
+rN
+rN
+vR
+rN
+Ny
+rN
+rN
+ui
+rN
+rN
+rN
+rN
+Ny
+rN
+DL
+MA
+MA
+MA
+Fw
+Fw
+cs
+jt
+jt
+MA
+MA
+MA
+MA
+MA
+jt
+jt
+MA
+MA
+MA
+EQ
+EQ
+EQ
+EQ
+pj
+EQ
+kR
+EQ
+EQ
+EQ
+AM
+rN
+rN
+rN
+rN
+ib
+ib
+ib
+"}
+(83,1,1) = {"
+ib
+ib
+ib
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rI
+rN
+qs
+rN
+ui
+rN
+Ny
+rN
+rN
+UQ
+LS
+rN
+rN
+rN
+Zb
+rN
+rN
+ZR
+MA
+MA
+MA
+Tw
+xd
+Fw
+MA
+MA
+MA
+MA
+MA
+MA
+MA
+MA
+MA
+MA
+MA
+MA
+EQ
+EQ
+te
+nX
+fw
+nX
+fw
+te
+te
+dX
+EQ
+AM
+rN
+rN
+rN
+sM
+ib
+ib
+ib
+"}
+(84,1,1) = {"
+ib
+ib
+ib
+ib
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+vR
+rN
+rN
+rN
+rN
+UQ
+rN
+rN
+Ga
+za
+rN
+rN
+Zo
+rN
+rN
+gm
+rN
+rN
+rN
+Wk
+DL
+jt
+jt
+zB
+Tw
+Tw
+MA
+MA
+MA
+MA
+MA
+MA
+Oo
+Oo
+Oo
+Oo
+MA
+MA
+EQ
+nX
+nX
+rV
+ZE
+HN
+qd
+hn
+nX
+nX
+EQ
+ju
+rN
+rN
+rN
+rN
+ib
+ib
+ib
+"}
+(85,1,1) = {"
+ib
+ib
+ib
+ib
+rN
+rN
+rN
+ZP
+rN
+rN
+rN
+rN
+gm
+rN
+qo
+rN
+dH
+rN
+Ny
+rN
+rN
+ba
+rN
+rN
+rN
+ui
+rN
+ba
+rN
+rN
+ka
+Qx
+aZ
+jt
+MA
+MA
+jt
+MA
+MA
+MA
+MA
+MA
+MA
+Oo
+xh
+co
+Oo
+Oo
+Oo
+EQ
+nX
+uJ
+Pr
+IN
+wK
+Qe
+wA
+kS
+gZ
+EQ
+AM
+rN
+rN
+rN
+rN
+ib
+ib
+ib
+"}
+(86,1,1) = {"
+ib
+ib
+ib
+ib
+rN
+rN
+rN
+rN
+rN
+rN
+ah
+rN
+rN
+xt
+rN
+rN
+rN
+rN
+rN
+vR
+rN
+rN
+rN
+Ny
+rN
+rN
+rN
+rN
+rN
+rN
+DL
+MA
+MA
+MA
+MA
+MA
+jt
+MA
+MA
+MA
+MA
+MA
+MA
+Oo
+jR
+Eh
+fg
+CK
+Oo
+EQ
+nX
+ff
+ed
+DR
+iv
+DR
+sn
+Mr
+nX
+Kz
+AM
+rN
+rN
+zY
+rN
+rN
+ib
+ib
+"}
+(87,1,1) = {"
+ib
+ib
+ib
+ib
+ib
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+UQ
+rN
+wg
+rN
+Ny
+rN
+rN
+rN
+rN
+UQ
+rN
+Hz
+LS
+rN
+sM
+rN
+rN
+rN
+DL
+MA
+MA
+MA
+Ry
+jt
+jt
+MA
+MA
+MA
+MA
+MA
+MA
+Oo
+qO
+Da
+lu
+DC
+Oo
+EQ
+te
+ER
+mI
+JV
+TR
+FE
+PC
+bf
+qh
+EQ
+AM
+rN
+rN
+rN
+rN
+rN
+ib
+ib
+"}
+(88,1,1) = {"
+ib
+ib
+ib
+ib
+ib
+rN
+ZP
+rN
+rN
+vR
+rN
+rN
+rN
+OL
+zI
+rN
+ba
+rN
+ui
+rN
+ah
+rN
+rN
+gm
+rN
+rN
+rN
+rN
+rN
+rN
+DL
+MA
+MA
+MA
+SK
+jt
+jt
+MA
+MA
+MA
+MA
+MA
+MA
+Oo
+Oo
+Oo
+xW
+AP
+Oo
+oP
+nX
+nX
+PR
+nX
+nX
+vl
+Qe
+nX
+te
+EQ
+AM
+rN
+rN
+rN
+rN
+rN
+ib
+ib
+"}
+(89,1,1) = {"
+ib
+ib
+ib
+ib
+ib
+rN
+rN
+rN
+rN
+rN
+rN
+UQ
+rN
+rN
+LS
+rN
+ui
+rN
+rN
+rN
+rN
+Zo
+rN
+rN
+rN
+ZP
+rN
+rN
+rN
+DL
+MA
+zS
+zS
+Au
+Ur
+Ur
+Au
+MA
+MA
+MA
+MA
+MA
+MA
+MA
+MA
+Oo
+iX
+mP
+fr
+Pu
+GV
+KT
+sx
+nj
+SP
+Na
+jZ
+nX
+EQ
+EQ
+AM
+rN
+rN
+rN
+rN
+ZP
+ib
+ib
+"}
+(90,1,1) = {"
+ib
+ib
+ib
+ib
+ib
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+lg
+zI
+rN
+Ho
+rN
+LS
+gm
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+DL
+MA
+Au
+Uu
+Uu
+Uu
+NP
+zS
+MA
+MA
+MA
+MA
+MA
+MA
+MA
+MA
+Oo
+Oo
+Oo
+Oo
+oP
+Tb
+YD
+Rp
+JW
+SP
+nX
+nX
+nX
+EQ
+zY
+ju
+rN
+rN
+rN
+rN
+rN
+rN
+ib
+"}
+(91,1,1) = {"
+ib
+ib
+ib
+ib
+ib
+rN
+rN
+rN
+rN
+rN
+rN
+Ho
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+UQ
+rN
+gm
+rN
+zY
+rN
+rN
+rN
+rN
+DL
+DL
+MA
+zS
+Uu
+Uu
+NP
+Au
+zS
+MA
+MA
+MA
+MA
+MA
+Au
+FD
+Au
+MA
+MA
+DL
+DL
+EQ
+SP
+Sp
+Md
+nj
+Tb
+rN
+rN
+rN
+EQ
+EQ
+bd
+EQ
+sM
+rN
+rN
+rN
+rN
+ib
+"}
+(92,1,1) = {"
+ib
+ib
+ib
+ib
+ib
+rN
+rN
+UQ
+rN
+rN
+rN
+rN
+rN
+UQ
+rN
+Ny
+Zb
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+DL
+DL
+DL
+DL
+MA
+zS
+NP
+mK
+zS
+zS
+MA
+MA
+MA
+MA
+MA
+MA
+ru
+tI
+Qn
+MA
+MA
+DL
+DL
+EQ
+SP
+Nw
+rY
+jW
+Tb
+nT
+il
+il
+il
+il
+il
+EQ
+rN
+rN
+rN
+rN
+rN
+ib
+"}
+(93,1,1) = {"
+ib
+ib
+ib
+ib
+ib
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+ui
+rN
+rN
+rN
+ZP
+rN
+rN
+rN
+rN
+DL
+DL
+DL
+DL
+MA
+Au
+NP
+fH
+Au
+MA
+MA
+MA
+MA
+MA
+MA
+Au
+ES
+hz
+cC
+Au
+MA
+DL
+DL
+EQ
+SP
+oi
+GJ
+ay
+CJ
+cr
+ZU
+YK
+we
+QL
+il
+EQ
+rN
+rN
+rN
+rN
+rN
+ib
+"}
+(94,1,1) = {"
+ib
+ib
+ib
+ib
+ib
+ib
+rN
+rN
+rN
+rN
+rN
+zY
+rN
+rN
+sM
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+DL
+DL
+DL
+DL
+DL
+MA
+zS
+NP
+LV
+zS
+MA
+MA
+MA
+MA
+MA
+MA
+MA
+pl
+hz
+bg
+MA
+MA
+DL
+DL
+EQ
+SP
+SP
+kM
+SP
+SP
+nT
+il
+wj
+wP
+lR
+il
+EQ
+rN
+rN
+rN
+rN
+rN
+ib
+"}
+(95,1,1) = {"
+ib
+ib
+ib
+ib
+ib
+ib
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+DL
+DL
+DL
+DL
+DL
+DL
+MA
+zS
+bU
+fH
+zS
+MA
+MA
+MA
+MA
+MA
+MA
+Au
+NX
+np
+VO
+Au
+MA
+MA
+DL
+EQ
+EQ
+SP
+YZ
+Tb
+rN
+rN
+il
+il
+ST
+SL
+il
+ky
+rN
+rN
+rN
+rN
+rN
+ib
+"}
+(96,1,1) = {"
+ib
+ib
+ib
+ib
+ib
+ib
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+zY
+rN
+rN
+rN
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+MA
+Au
+nU
+OA
+Au
+zS
+zS
+Au
+zS
+zS
+Au
+MA
+Mg
+to
+sa
+MA
+MA
+MA
+DL
+EQ
+rN
+cS
+uA
+cS
+rN
+rN
+rN
+il
+rg
+yU
+il
+EQ
+rN
+rN
+ZP
+rN
+rN
+rN
+"}
+(97,1,1) = {"
+ib
+ib
+ib
+ib
+ib
+ib
+rN
+rN
+rN
+rN
+rN
+UQ
+rN
+rN
+ZP
+rN
+rN
+rN
+rN
+rN
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+MA
+zS
+Jr
+Qs
+nU
+NP
+GU
+DU
+bU
+nU
+bV
+NP
+NP
+Oz
+Yv
+MA
+MA
+MA
+rN
+rN
+SP
+SP
+PV
+Tb
+SP
+py
+rN
+il
+il
+il
+il
+EQ
+rN
+rN
+rN
+rN
+rN
+rN
+"}
+(98,1,1) = {"
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+DL
+DL
+DL
+MA
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+MA
+zS
+EM
+fH
+LV
+qK
+fH
+Ag
+fC
+fH
+Gd
+fH
+fH
+YX
+pD
+Au
+MA
+rN
+rN
+rN
+FA
+Ef
+Dn
+Uk
+Tb
+Gn
+LU
+rN
+pt
+AM
+EQ
+EQ
+rN
+rN
+rN
+rN
+sM
+rN
+"}
+(99,1,1) = {"
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+DL
+DL
+MA
+MA
+MA
+MA
+MA
+DL
+DL
+DL
+MA
+MA
+Au
+KU
+MR
+Au
+zS
+zS
+Au
+zS
+zS
+Au
+zS
+NP
+fH
+MA
+MA
+MA
+rN
+zY
+rN
+SP
+Yw
+Dn
+Ql
+Tb
+Zq
+rN
+zY
+rN
+AM
+EQ
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+"}
+(100,1,1) = {"
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+DL
+DL
+MA
+MA
+MA
+MA
+MA
+MA
+tl
+MA
+MA
+MA
+MA
+WZ
+nO
+ln
+zS
+MA
+MA
+MA
+MA
+MA
+MA
+zS
+zS
+fH
+zS
+MA
+MA
+MA
+rN
+rN
+SP
+Tb
+VG
+SP
+SP
+FB
+rN
+rN
+rN
+ju
+EQ
+rN
+Fn
+rN
+zY
+rN
+rN
+rN
+"}
+(101,1,1) = {"
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+rN
+rN
+ib
+ib
+rN
+rN
+sM
+rN
+rN
+DL
+DL
+DL
+MA
+MO
+Zc
+IQ
+MO
+MO
+MA
+MA
+MA
+MA
+zS
+ln
+ln
+zS
+MA
+MA
+MA
+MA
+MA
+MA
+MA
+Au
+fH
+Au
+zS
+zS
+Au
+Rv
+ua
+cV
+IT
+Or
+IT
+cV
+cV
+cV
+cV
+cV
+cV
+cV
+Im
+rN
+rN
+rN
+rN
+rN
+rN
+"}
+(102,1,1) = {"
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+rN
+rN
+rN
+rN
+DL
+DL
+DL
+MA
+MO
+HH
+Ve
+Di
+IQ
+MA
+MA
+MA
+MA
+Au
+ln
+NF
+Au
+MA
+MA
+MA
+MA
+MA
+MA
+MA
+zS
+fH
+zS
+FD
+in
+bV
+cV
+jm
+rZ
+pr
+nE
+Bx
+cA
+fs
+mO
+mO
+mO
+mO
+OC
+Rf
+Im
+rN
+rN
+rN
+rN
+rN
+"}
+(103,1,1) = {"
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+rN
+rN
+rN
+DL
+DL
+DL
+DL
+MA
+MO
+xB
+eJ
+jD
+IQ
+zS
+Au
+zS
+zS
+zS
+NP
+MR
+zS
+zS
+zS
+Au
+zS
+wQ
+MA
+MA
+zS
+fH
+fH
+AN
+fH
+jA
+Af
+rZ
+yH
+xN
+nv
+ft
+NI
+zL
+rN
+Ap
+rN
+ju
+db
+OC
+xQ
+rN
+rN
+rN
+rN
+rN
+"}
+(104,1,1) = {"
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+rN
+rN
+DL
+DL
+DL
+MA
+MA
+IQ
+qS
+LJ
+Yp
+ao
+Zg
+Uu
+Hg
+nU
+tQ
+nU
+fH
+qv
+so
+nU
+vU
+Vy
+Pb
+jd
+wQ
+zS
+zS
+zS
+FD
+Zz
+gz
+pr
+yH
+rF
+GN
+Oa
+GN
+GN
+sE
+Oj
+GN
+rN
+AM
+sC
+lG
+xQ
+rN
+rN
+rN
+rN
+rN
+"}
+(105,1,1) = {"
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+rN
+rN
+DL
+DL
+DL
+MA
+MA
+IQ
+KJ
+hQ
+gw
+eY
+eF
+Gf
+fH
+lE
+VE
+LV
+fC
+fC
+lE
+Yi
+cz
+vk
+Zj
+TP
+yV
+wQ
+wQ
+MA
+MA
+zS
+Au
+rN
+rN
+GN
+GN
+ZK
+zd
+GN
+pA
+VJ
+aJ
+rN
+AM
+rN
+lG
+xQ
+rN
+rN
+rN
+rN
+ib
+"}
+(106,1,1) = {"
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+rN
+DL
+DL
+DL
+MA
+MA
+IQ
+oC
+jY
+uF
+IQ
+zS
+Au
+zS
+zS
+Au
+zS
+zS
+Au
+zS
+zS
+Au
+dM
+MB
+Vp
+wp
+cP
+wQ
+MA
+MA
+MA
+MA
+rN
+GN
+GN
+ev
+AV
+wn
+GN
+hs
+Wa
+aJ
+rN
+ju
+rN
+lG
+xQ
+rN
+rN
+rN
+rN
+ib
+"}
+(107,1,1) = {"
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+DL
+DL
+DL
+MA
+MA
+MO
+pd
+Gm
+tP
+MO
+MA
+MA
+MA
+MA
+MA
+MA
+MA
+MA
+MA
+MA
+MA
+FJ
+Uw
+rC
+qk
+BD
+wQ
+MA
+MA
+MA
+MA
+rN
+GN
+AV
+Sn
+Cq
+Sn
+ch
+AV
+Em
+yq
+rN
+AM
+rN
+sj
+rN
+rN
+rN
+rN
+rN
+ib
+"}
+(108,1,1) = {"
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+DL
+DL
+DL
+MA
+MO
+io
+MO
+MO
+MO
+MA
+MA
+MA
+MA
+MA
+DL
+DL
+MA
+MA
+MA
+MA
+wQ
+YN
+wk
+ME
+wQ
+wQ
+MA
+MA
+DL
+DL
+rN
+GN
+GN
+GN
+GN
+GN
+GN
+qN
+AV
+GN
+rN
+AM
+rN
+zY
+rN
+rN
+rN
+rN
+rN
+ib
+"}
+(109,1,1) = {"
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+DL
+DL
+DL
+MA
+MA
+MA
+MA
+MA
+MA
+MA
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+MA
+MA
+MA
+wQ
+MA
+MA
+MA
+MA
+MA
+DL
+DL
+FQ
+Vz
+Vz
+FQ
+Vz
+Pi
+FQ
+Vz
+Vz
+FQ
+Vz
+Gz
+rN
+rN
+rN
+rN
+rN
+rN
+ib
+ib
+"}
+(110,1,1) = {"
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+DL
+DL
+DL
+DL
+MA
+MA
+MA
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+MA
+MA
+MA
+MA
+MA
+rN
+rN
+rN
+sM
+rN
+zY
+rN
+rN
+rN
+ZP
+rN
+rN
+rN
+sM
+rN
+LS
+rN
+rN
+rN
+rN
+rN
+ib
+ib
+ib
+ib
+"}
+(111,1,1) = {"
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+DL
+DL
+DL
+DL
+DL
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+rN
+ib
+ib
+ib
+rN
+rN
+rN
+rN
+rN
+rN
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+"}
+(112,1,1) = {"
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+DL
+DL
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+rN
+rN
+zY
+rN
+rN
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+ib
+"}

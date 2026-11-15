@@ -1,0 +1,71 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"c" = (
+/obj/structure/flora/ash/leaf_shroom,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
+"h" = (
+/obj/structure/flora/ash/tall_shroom,
+/turf/open/floor/plating/moss/jungle,
+/area/template_noop)
+"i" = (
+/obj/structure/flora/ash/cap_shroom,
+/turf/open/floor/plating/moss/jungle,
+/area/template_noop)
+"j" = (
+/obj/structure/flora/ash/stem_shroom,
+/turf/open/floor/plating/moss/jungle,
+/area/template_noop)
+"p" = (
+/turf/open/floor/plating/moss/jungle,
+/area/template_noop)
+"t" = (
+/obj/effect/mob_spawn/human/corpse/charredskeleton,
+/obj/structure/flora/ash/leaf_shroom,
+/turf/open/floor/plating/moss/jungle,
+/area/template_noop)
+"z" = (
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
+"K" = (
+/turf/template_noop,
+/area/template_noop)
+"Q" = (
+/obj/structure/flora/ash/cap_shroom,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
+
+(1,1,1) = {"
+K
+i
+c
+p
+K
+"}
+(2,1,1) = {"
+Q
+z
+j
+Q
+c
+"}
+(3,1,1) = {"
+c
+j
+t
+h
+K
+"}
+(4,1,1) = {"
+K
+z
+i
+c
+K
+"}
+(5,1,1) = {"
+K
+i
+c
+K
+i
+"}

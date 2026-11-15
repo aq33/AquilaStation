@@ -1,0 +1,123 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"j" = (
+/obj/structure/flora/rock/pile/lava{
+	pixel_x = 4;
+	 pixel_y = 8
+	},
+/turf/open/floor/plating/ice/planet_ice,
+/area/template_noop)
+"m" = (
+/turf/template_noop,
+/area/template_noop)
+"q" = (
+/obj/structure/flora/rock/pile/lava{
+	pixel_x = -12;
+	 pixel_y = 6
+	},
+/turf/open/floor/plating/ice/planet_ice,
+/area/template_noop)
+"r" = (
+/obj/structure/flora/rock/pile/lava{
+	pixel_x = -6;
+	 pixel_y = -9
+	},
+/turf/open/floor/plating/ice/planet_ice,
+/area/template_noop)
+"u" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"w" = (
+/turf/open/floor/plating/ice/planet_ice,
+/area/template_noop)
+"E" = (
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"Q" = (
+/obj/structure/flora/rock/pile/lava{
+	pixel_x = 10;
+	 pixel_y = 2
+	},
+/turf/open/floor/plating/ice/planet_ice,
+/area/template_noop)
+
+(1,1,1) = {"
+m
+m
+u
+E
+E
+m
+m
+m
+"}
+(2,1,1) = {"
+m
+m
+E
+Q
+u
+E
+m
+m
+"}
+(3,1,1) = {"
+m
+E
+E
+w
+w
+E
+E
+m
+"}
+(4,1,1) = {"
+u
+E
+w
+w
+w
+j
+E
+u
+"}
+(5,1,1) = {"
+E
+E
+r
+w
+w
+w
+E
+E
+"}
+(6,1,1) = {"
+m
+u
+E
+w
+w
+E
+E
+m
+"}
+(7,1,1) = {"
+m
+m
+u
+E
+q
+E
+u
+m
+"}
+(8,1,1) = {"
+m
+m
+m
+E
+E
+E
+m
+m
+"}

@@ -1,0 +1,192 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"d" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/asteroid/dirt{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"g" = (
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"j" = (
+/obj/structure/flora/tree/pine,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/asteroid/dirt{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"q" = (
+/obj/structure/flora/rock/icy{
+	pixel_x = -4;
+	 pixel_y = 5
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"v" = (
+/obj/structure/flora/grass/brown,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"x" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/asteroid/dirt{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"y" = (
+/turf/open/floor/plating/asteroid/dirt{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"z" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"J" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"K" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"M" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"R" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/turf/open/floor/plating/asteroid/dirt{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"S" = (
+/turf/template_noop,
+/area/template_noop)
+"W" = (
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"Z" = (
+/obj/structure/flora/rock/icy{
+	pixel_x = 4;
+	 pixel_y = 11
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+
+(1,1,1) = {"
+S
+S
+S
+S
+M
+S
+S
+S
+S
+"}
+(2,1,1) = {"
+S
+g
+v
+g
+g
+g
+J
+S
+S
+"}
+(3,1,1) = {"
+g
+g
+g
+x
+R
+v
+g
+g
+S
+"}
+(4,1,1) = {"
+g
+J
+y
+j
+y
+y
+Z
+g
+g
+"}
+(5,1,1) = {"
+v
+M
+g
+R
+x
+y
+g
+v
+g
+"}
+(6,1,1) = {"
+S
+g
+g
+W
+W
+y
+d
+g
+J
+"}
+(7,1,1) = {"
+S
+S
+q
+K
+W
+j
+y
+W
+W
+"}
+(8,1,1) = {"
+S
+S
+S
+W
+W
+W
+x
+W
+W
+"}
+(9,1,1) = {"
+S
+S
+S
+z
+K
+W
+W
+W
+S
+"}
+(10,1,1) = {"
+S
+S
+S
+S
+S
+W
+W
+S
+S
+"}

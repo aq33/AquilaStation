@@ -1,0 +1,311 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"d" = (
+/turf/template_noop,
+/area/template_noop)
+"f" = (
+/obj/structure/flora/ausbushes/lavendergrass,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"m" = (
+/obj/structure/flora/tree/pine,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"o" = (
+/obj/structure/flora/ausbushes/ppflowers,
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"q" = (
+/turf/open/water/planet/beach/ice,
+/area/template_noop)
+"w" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/obj/structure/flora/ausbushes/ppflowers,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"B" = (
+/obj/structure/flora/ausbushes/ppflowers,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"C" = (
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"N" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"O" = (
+/obj/structure/flora/ausbushes/lavendergrass,
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"P" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/obj/structure/flora/ausbushes/lavendergrass,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"Q" = (
+/mob/living/basic/mining/lobstrosity,
+/turf/open/water/planet/beach/ice,
+/area/template_noop)
+"V" = (
+/obj/structure/geyser/random,
+/turf/open/water/planet/beach/ice,
+/area/template_noop)
+"W" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+
+(1,1,1) = {"
+d
+C
+C
+C
+d
+d
+d
+d
+d
+d
+d
+d
+"}
+(2,1,1) = {"
+C
+C
+W
+C
+N
+C
+W
+C
+d
+d
+d
+d
+"}
+(3,1,1) = {"
+C
+o
+q
+Q
+q
+C
+C
+m
+d
+d
+d
+d
+"}
+(4,1,1) = {"
+C
+N
+q
+q
+q
+q
+C
+C
+C
+d
+d
+d
+"}
+(5,1,1) = {"
+d
+C
+C
+q
+V
+q
+q
+N
+C
+C
+d
+d
+"}
+(6,1,1) = {"
+d
+m
+C
+N
+q
+q
+Q
+q
+O
+N
+W
+d
+"}
+(7,1,1) = {"
+d
+d
+C
+C
+B
+q
+q
+q
+q
+f
+C
+d
+"}
+(8,1,1) = {"
+d
+d
+d
+C
+W
+q
+q
+q
+q
+P
+N
+C
+"}
+(9,1,1) = {"
+d
+d
+d
+C
+C
+w
+q
+q
+q
+q
+C
+C
+"}
+(10,1,1) = {"
+d
+d
+C
+C
+N
+q
+q
+q
+V
+q
+C
+N
+"}
+(11,1,1) = {"
+d
+C
+C
+w
+B
+q
+q
+q
+Q
+q
+N
+N
+"}
+(12,1,1) = {"
+C
+m
+C
+q
+q
+Q
+q
+q
+q
+q
+C
+C
+"}
+(13,1,1) = {"
+C
+N
+q
+q
+q
+q
+q
+q
+q
+N
+C
+C
+"}
+(14,1,1) = {"
+N
+q
+q
+q
+q
+q
+q
+f
+f
+C
+C
+d
+"}
+(15,1,1) = {"
+q
+q
+V
+q
+q
+N
+C
+C
+m
+C
+d
+d
+"}
+(16,1,1) = {"
+q
+Q
+q
+q
+N
+C
+W
+d
+d
+d
+d
+d
+"}
+(17,1,1) = {"
+d
+q
+q
+C
+W
+C
+d
+d
+d
+d
+d
+d
+"}
+(18,1,1) = {"
+d
+d
+d
+m
+C
+d
+d
+d
+d
+d
+d
+d
+"}

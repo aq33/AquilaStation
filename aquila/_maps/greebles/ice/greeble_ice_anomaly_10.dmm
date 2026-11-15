@@ -1,0 +1,338 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"g" = (
+/obj/structure/flora/rock/pile/icy{
+	pixel_x = 10;
+	 pixel_y = 7
+	},
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
+"p" = (
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
+"r" = (
+/obj/structure/flora/rock/pile/icy{
+	pixel_y = -4
+	},
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
+"u" = (
+/obj/structure/flora/rock/icy,
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
+"y" = (
+/obj/structure/flora/rock/icy{
+	pixel_x = 2;
+	 pixel_y = 6
+	},
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
+"B" = (
+/obj/structure/flora/rock/pile/icy,
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
+"D" = (
+/obj/effect/decal/remains/human,
+/obj/effect/gibspawner/human/bodypartless,
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
+"F" = (
+/obj/effect/anomaly/grav/high/big/planetary,
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
+"G" = (
+/turf/template_noop,
+/area/template_noop)
+"H" = (
+/obj/effect/decal/remains/human,
+/obj/effect/gibspawner/human/bodypartless,
+/obj/structure/flora/rock/pile/icy,
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
+"M" = (
+/obj/effect/decal/remains/human{
+	pixel_x = 6;
+	 pixel_y = -7
+	},
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
+"O" = (
+/turf/closed/mineral/random/planet_ice,
+/area/template_noop)
+"R" = (
+/obj/structure/flora/rock/icy{
+	pixel_x = -2;
+	 pixel_y = 10
+	},
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
+
+(1,1,1) = {"
+G
+G
+G
+G
+O
+O
+O
+O
+G
+G
+G
+G
+G
+"}
+(2,1,1) = {"
+G
+G
+G
+O
+O
+O
+O
+O
+p
+G
+G
+G
+G
+"}
+(3,1,1) = {"
+G
+G
+G
+O
+p
+p
+O
+p
+p
+G
+O
+G
+G
+"}
+(4,1,1) = {"
+G
+G
+G
+p
+p
+y
+p
+p
+O
+O
+O
+G
+G
+"}
+(5,1,1) = {"
+G
+O
+O
+O
+p
+p
+p
+O
+O
+O
+O
+G
+G
+"}
+(6,1,1) = {"
+G
+O
+O
+O
+O
+p
+p
+O
+O
+O
+p
+p
+O
+"}
+(7,1,1) = {"
+G
+O
+O
+O
+p
+p
+r
+p
+O
+p
+p
+O
+O
+"}
+(8,1,1) = {"
+G
+G
+O
+H
+p
+O
+p
+p
+O
+R
+p
+O
+O
+"}
+(9,1,1) = {"
+G
+G
+B
+p
+p
+O
+O
+p
+p
+p
+p
+p
+G
+"}
+(10,1,1) = {"
+G
+G
+O
+O
+p
+p
+p
+D
+O
+O
+O
+O
+O
+"}
+(11,1,1) = {"
+O
+O
+O
+p
+p
+F
+p
+O
+O
+O
+O
+O
+G
+"}
+(12,1,1) = {"
+O
+O
+M
+p
+p
+p
+p
+p
+O
+O
+O
+p
+p
+"}
+(13,1,1) = {"
+p
+O
+p
+O
+O
+O
+g
+p
+p
+p
+p
+B
+O
+"}
+(14,1,1) = {"
+p
+p
+p
+O
+O
+O
+O
+O
+p
+p
+p
+O
+O
+"}
+(15,1,1) = {"
+O
+u
+p
+p
+O
+O
+O
+O
+p
+D
+O
+O
+O
+"}
+(16,1,1) = {"
+O
+O
+O
+p
+p
+O
+O
+p
+p
+O
+O
+O
+G
+"}
+(17,1,1) = {"
+O
+O
+O
+O
+p
+p
+p
+p
+O
+O
+O
+O
+G
+"}
+(18,1,1) = {"
+G
+O
+O
+O
+G
+B
+p
+G
+G
+G
+G
+G
+G
+"}

@@ -1,0 +1,220 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"b" = (
+/obj/structure/flora/ausbushes/lavendergrass,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"c" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"e" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"l" = (
+/obj/structure/flora/ash/garden/frigid,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"m" = (
+/obj/structure/flora/rock/icy,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"q" = (
+/obj/structure/flora/tree/pine,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"r" = (
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"v" = (
+/mob/living/basic/mining/lobstrosity,
+/turf/open/water/planet/beach/ice,
+/area/template_noop)
+"x" = (
+/turf/template_noop,
+/area/template_noop)
+"z" = (
+/turf/open/water/planet/beach/ice,
+/area/template_noop)
+"C" = (
+/turf/open/water/planet/beach/deep/ice,
+/area/template_noop)
+"H" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/structure/flora/tree/pine,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"I" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/obj/structure/flora/tree/pine,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+
+(1,1,1) = {"
+x
+x
+x
+x
+x
+r
+e
+c
+x
+x
+x
+x
+"}
+(2,1,1) = {"
+x
+x
+c
+c
+b
+r
+H
+c
+r
+x
+x
+x
+"}
+(3,1,1) = {"
+x
+r
+e
+c
+z
+l
+r
+c
+c
+e
+x
+x
+"}
+(4,1,1) = {"
+x
+q
+r
+r
+z
+z
+z
+r
+b
+r
+r
+x
+"}
+(5,1,1) = {"
+b
+e
+r
+z
+z
+v
+z
+z
+m
+r
+r
+x
+"}
+(6,1,1) = {"
+e
+c
+m
+z
+z
+C
+C
+z
+z
+r
+e
+x
+"}
+(7,1,1) = {"
+c
+c
+z
+z
+v
+C
+C
+C
+z
+z
+r
+b
+"}
+(8,1,1) = {"
+c
+l
+b
+r
+z
+z
+z
+C
+v
+z
+r
+e
+"}
+(9,1,1) = {"
+e
+r
+c
+c
+r
+z
+z
+z
+z
+z
+r
+c
+"}
+(10,1,1) = {"
+x
+r
+e
+I
+e
+r
+m
+z
+z
+l
+r
+e
+"}
+(11,1,1) = {"
+x
+x
+x
+c
+b
+r
+c
+c
+c
+e
+q
+c
+"}
+(12,1,1) = {"
+x
+x
+x
+x
+r
+e
+c
+x
+x
+x
+c
+c
+"}

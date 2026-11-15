@@ -4,3 +4,5 @@
 #include "vein_scanner.dm"
 #include "drill_mission.dm"
 #include "deep_vein_mission.dm"
+#include "veins_ice.dm"
+#include "veins_jungle.dm"

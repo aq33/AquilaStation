@@ -1,0 +1,85 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"b" = (
+/obj/structure/flora/ash/garden/frigid,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"e" = (
+/turf/open/lava/plasma/planet_ice,
+/area/template_noop)
+"n" = (
+/turf/template_noop,
+/area/template_noop)
+"r" = (
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"M" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
+"U" = (
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
+
+(1,1,1) = {"
+n
+r
+U
+M
+U
+r
+r
+"}
+(2,1,1) = {"
+n
+U
+M
+e
+U
+U
+r
+"}
+(3,1,1) = {"
+n
+U
+e
+e
+e
+M
+U
+"}
+(4,1,1) = {"
+r
+U
+e
+e
+e
+e
+M
+"}
+(5,1,1) = {"
+r
+U
+M
+e
+e
+e
+U
+"}
+(6,1,1) = {"
+b
+r
+U
+U
+U
+M
+U
+"}
+(7,1,1) = {"
+n
+n
+U
+r
+r
+r
+n
+"}

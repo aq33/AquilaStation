@@ -2,3 +2,5 @@
 #include "turfs.dm"
 #include "flora.dm"
 #include "ash_flora.dm"
+#include "ice.dm"
+#include "jungle.dm"

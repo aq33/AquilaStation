@@ -1,0 +1,211 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"h" = (
+/obj/structure/flora/grass/jungle,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"i" = (
+/obj/structure/spacevine/weak,
+/turf/open/water/planet/jungle,
+/area/template_noop)
+"l" = (
+/obj/structure/flora/grass/jungle/b,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"n" = (
+/obj/structure/flora/grass/jungle/b,
+/turf/open/floor/plating/asteroid/river_sand,
+/area/template_noop)
+"p" = (
+/obj/structure/spacevine/weak,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"u" = (
+/obj/structure/flora/grass/jungle,
+/obj/structure/spacevine/weak,
+/turf/open/floor/plating/asteroid/river_sand,
+/area/template_noop)
+"v" = (
+/obj/structure/spacevine/dense,
+/turf/open/water/planet/jungle,
+/area/template_noop)
+"y" = (
+/obj/structure/flora/grass/jungle/b,
+/obj/structure/spacevine/weak,
+/turf/open/floor/plating/asteroid/river_sand,
+/area/template_noop)
+"A" = (
+/turf/open/water/planet/jungle,
+/area/template_noop)
+"B" = (
+/obj/structure/flora/grass/jungle,
+/turf/open/floor/plating/asteroid/river_sand,
+/area/template_noop)
+"E" = (
+/obj/structure/spacevine/weak,
+/turf/open/floor/plating/asteroid/river_sand,
+/area/template_noop)
+"L" = (
+/obj/structure/flora/tree/jungle/small,
+/turf/open/water/planet/jungle,
+/area/template_noop)
+"Q" = (
+/turf/template_noop,
+/area/template_noop)
+"U" = (
+/turf/open/floor/plating/asteroid/river_sand,
+/area/template_noop)
+
+(1,1,1) = {"
+Q
+E
+U
+E
+E
+n
+U
+U
+U
+B
+p
+Q
+"}
+(2,1,1) = {"
+E
+E
+n
+E
+i
+A
+A
+A
+n
+U
+E
+Q
+"}
+(3,1,1) = {"
+E
+i
+A
+i
+A
+A
+L
+A
+A
+i
+E
+l
+"}
+(4,1,1) = {"
+U
+A
+A
+L
+A
+A
+A
+A
+L
+i
+n
+B
+"}
+(5,1,1) = {"
+U
+A
+A
+A
+A
+A
+A
+A
+A
+i
+E
+n
+"}
+(6,1,1) = {"
+U
+U
+n
+A
+A
+L
+A
+A
+A
+i
+E
+U
+"}
+(7,1,1) = {"
+Q
+y
+v
+v
+A
+A
+A
+A
+A
+A
+U
+h
+"}
+(8,1,1) = {"
+Q
+E
+v
+v
+v
+v
+A
+L
+A
+U
+B
+Q
+"}
+(9,1,1) = {"
+Q
+U
+A
+L
+v
+v
+v
+A
+A
+U
+n
+Q
+"}
+(10,1,1) = {"
+Q
+U
+A
+A
+A
+v
+v
+i
+E
+B
+l
+Q
+"}
+(11,1,1) = {"
+Q
+U
+U
+U
+A
+i
+y
+u
+y
+l
+Q
+Q
+"}

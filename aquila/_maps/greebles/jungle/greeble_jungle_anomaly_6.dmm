@@ -1,0 +1,209 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/water/planet/jungle,
+/area/template_noop)
+"b" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/spacevine/dead,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"c" = (
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"e" = (
+/obj/effect/decal/cleanable/greenglow/filled,
+/turf/open/water/planet/jungle,
+/area/template_noop)
+"g" = (
+/obj/structure/spacevine/dead,
+/turf/open/water/planet/jungle,
+/area/template_noop)
+"m" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"o" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"q" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/spacevine/dead,
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"v" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/spacevine/dead,
+/turf/open/water/planet/jungle,
+/area/template_noop)
+"y" = (
+/obj/effect/anomaly/heartbeat/planetary{
+	pixel_y = 2
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/greenglow/filled,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"D" = (
+/turf/template_noop,
+/area/template_noop)
+"E" = (
+/turf/open/space/basic,
+/area/template_noop)
+"K" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/spacevine/dead,
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"L" = (
+/turf/closed/mineral/random/planet_jungle/polluted,
+/area/template_noop)
+"N" = (
+/obj/effect/decal/cleanable/greenglow/filled,
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"O" = (
+/obj/structure/spacevine/dead,
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"S" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"V" = (
+/obj/structure/spacevine/dead,
+/turf/closed/mineral/random/planet_jungle/polluted,
+/area/template_noop)
+"W" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"Y" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+
+(1,1,1) = {"
+D
+D
+L
+L
+L
+L
+L
+D
+D
+D
+"}
+(2,1,1) = {"
+D
+L
+L
+V
+L
+e
+L
+L
+D
+D
+"}
+(3,1,1) = {"
+D
+L
+V
+g
+v
+v
+a
+W
+D
+D
+"}
+(4,1,1) = {"
+L
+L
+V
+g
+v
+S
+Y
+N
+c
+D
+"}
+(5,1,1) = {"
+L
+L
+E
+g
+S
+S
+m
+Y
+c
+D
+"}
+(6,1,1) = {"
+L
+L
+L
+g
+S
+y
+S
+Y
+Y
+W
+"}
+(7,1,1) = {"
+D
+L
+L
+e
+S
+S
+S
+Y
+c
+D
+"}
+(8,1,1) = {"
+D
+D
+V
+q
+q
+b
+o
+Y
+D
+D
+"}
+(9,1,1) = {"
+D
+D
+O
+K
+Y
+Y
+Y
+D
+D
+D
+"}

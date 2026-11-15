@@ -1,0 +1,919 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aT" = (
+/obj/structure/flora/tree/dead,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"bc" = (
+/turf/closed/wall/mineral/plastitanium,
+/area/template_noop)
+"bE" = (
+/obj/effect/mapping_helpers/airlock/locked,
+/obj/machinery/door/airlock/external{
+	id_tag = "s2"
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/template_noop)
+"bQ" = (
+/obj/structure/flora/tree/dead{
+	name = "roztrzaskane drewno"
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"cT" = (
+/obj/machinery/atmospherics/components/binary/pump{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/oil,
+/turf/open/floor/plasteel/dark,
+/area/template_noop)
+"dw" = (
+/obj/structure/flora/rock/pile/icy{
+	pixel_x = 6
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"gb" = (
+/obj/structure/flora/tree/pine{
+	icon_state = "pine_4"
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"go" = (
+/obj/structure/flora/tree/pine{
+	layer = 5.04
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"gu" = (
+/obj/effect/decal/cleanable/glass/plasma,
+/obj/item/stack/cable_coil/cut,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/robot_debris/up,
+/obj/item/stack/sheet/iron,
+/turf/open/floor/plasteel/dark,
+/area/template_noop)
+"hk" = (
+/obj/structure/flora/tree/pine{
+	icon_state = "pine_3";
+	 layer = 5.05
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"jw" = (
+/obj/machinery/button/door{
+	pixel_x = -23;
+	 pixel_y = -9;
+	 dir = 4;
+	 name = "rygiel drzwi";
+	 normaldoorcontrol = 1;
+	 specialfunctions = 4;
+	 id = "s2"
+	},
+/obj/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood/footprints,
+/obj/structure/chair/fancy/shuttle{
+	name = "fotel przeciążeniowy";
+	 dir = 4;
+	 pixel_y = 5;
+	 desc = "Wygodny fotel, który nie pozwala zsunąć się siedzącemu podczas ostrych manewrów."
+	},
+/obj/item/shard{
+	pixel_x = 9
+	},
+/turf/open/floor/plasteel/dark,
+/area/template_noop)
+"kx" = (
+/turf/open/floor/engine,
+/area/template_noop)
+"mL" = (
+/obj/effect/decal/cleanable/blood/tracks{
+	layer = 2.4551
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"nB" = (
+/obj/item/stack/ore/iron,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"nE" = (
+/obj/machinery/atmospherics/pipe/manifold/orange/hidden{
+	dir = 8
+	},
+/obj/item/storage/toolbox/syndicate,
+/obj/machinery/light/broken{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/template_noop)
+"op" = (
+/obj/structure/flora/tree/pine{
+	icon_state = "pine_3"
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"oS" = (
+/obj/effect/decal/fakelattice,
+/obj/effect/decal/cleanable/shreds,
+/obj/item/stack/ore/iron,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"oV" = (
+/obj/structure/flora/tree/dead{
+	layer = 5.1
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"pw" = (
+/obj/structure/frame/computer{
+	dir = 8;
+	 anchored = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/template_noop)
+"pA" = (
+/turf/open/floor/plasteel/dark,
+/area/template_noop)
+"tr" = (
+/obj/structure/grille/broken,
+/obj/item/shard{
+	pixel_y = -4;
+	 pixel_x = -1
+	},
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/plating,
+/area/template_noop)
+"tQ" = (
+/obj/structure/flora/tree/dead{
+	icon_state = "tree_4";
+	 layer = 5.04
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"uo" = (
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/template_noop)
+"ux" = (
+/obj/structure/flora/grass/brown,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"uA" = (
+/obj/structure/flora/bush,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"vy" = (
+/obj/structure/door_assembly/door_assembly_ext,
+/turf/open/floor/plasteel/tech/grid,
+/area/template_noop)
+"wL" = (
+/obj/structure/flora/grass/both,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"yk" = (
+/obj/structure/flora/tree/dead{
+	icon_state = "tree_6"
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"zu" = (
+/obj/structure/frame/machine{
+	pixel_y = -15;
+	 anchored = 1
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"zv" = (
+/obj/item/stack/sheet/mineral/plastitanium,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"Aa" = (
+/obj/structure/flora/tree/pine{
+	layer = 5.1
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"An" = (
+/obj/structure/frame/machine{
+	pixel_x = -24;
+	 pixel_y = 8;
+	 anchored = 1
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"Bt" = (
+/obj/structure/flora/tree/dead{
+	icon_state = "tree_4"
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"CR" = (
+/obj/structure/flora/grass/green,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"Gn" = (
+/obj/structure/flora/tree/dead{
+	icon_state = "tree_3"
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"GK" = (
+/obj/structure/flora/tree/pine{
+	icon_state = "pine_3";
+	 layer = 5.1
+	},
+/obj/structure/flora/tree/pine{
+	icon_state = "pine_3";
+	 layer = 5.1
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"IA" = (
+/obj/machinery/atmospherics/pipe/manifold/orange/hidden{
+	dir = 4
+	},
+/obj/machinery/meter,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/dark,
+/area/template_noop)
+"ID" = (
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"Jf" = (
+/obj/structure/flora/grass/green,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"Jy" = (
+/obj/structure/flora/tree/pine{
+	icon_state = "pine_4";
+	 layer = 5.05
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"KA" = (
+/turf/template_noop,
+/area/template_noop)
+"LA" = (
+/obj/structure/flora/tree/pine,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"LO" = (
+/obj/structure/frame/machine,
+/obj/item/stack/ore/gold{
+	pixel_y = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/rust{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"Mw" = (
+/obj/effect/decal/cleanable/blood/splatter{
+	icon_state = "floor2";
+	 layer = 2.4551
+	},
+/obj/effect/decal/cleanable/blood/footprints{
+	dir = 1;
+	 layer = 2.4552
+	},
+/obj/effect/mob_spawn/human/corpse/syndicatecommando,
+/obj/item/gun/ballistic/automatic/pistol/no_mag{
+	pixel_y = 6
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"Nx" = (
+/obj/structure/flora/rock/pile/icy,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"NI" = (
+/obj/effect/decal/cleanable/glass,
+/obj/structure/flora/tree/pine{
+	icon_state = "pine_3";
+	 layer = 5.1
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"NK" = (
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"Oq" = (
+/obj/structure/flora/tree/dead{
+	icon_state = "tree_2"
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"Oz" = (
+/obj/structure/grille/broken,
+/obj/item/shard{
+	pixel_y = -2;
+	 pixel_x = -2
+	},
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/plating,
+/area/template_noop)
+"PJ" = (
+/obj/structure/window/plasma/reinforced{
+	dir = 8
+	},
+/obj/structure/window/plasma/reinforced,
+/turf/open/floor/plasteel/dark,
+/area/template_noop)
+"Ro" = (
+/obj/structure/girder,
+/turf/open/floor/plating/rust{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"Rx" = (
+/obj/structure/flora/stump,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"RY" = (
+/obj/machinery/atmospherics/pipe/simple/orange/hidden{
+	dir = 9
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/dark,
+/area/template_noop)
+"Sr" = (
+/obj/structure/flora/rock/pile{
+	icon_state = "lavarocks2"
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"Ti" = (
+/obj/effect/decal/fakelattice,
+/obj/effect/decal/fakelattice,
+/obj/effect/decal/cleanable/glass/plasma,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/shard/plasma{
+	pixel_x = -9;
+	 pixel_y = -6
+	},
+/turf/open/floor/plating,
+/area/template_noop)
+"Un" = (
+/obj/structure/frame/machine{
+	pixel_x = -24;
+	 pixel_y = -6;
+	 anchored = 1
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"Uo" = (
+/obj/structure/frame/machine{
+	pixel_y = 16;
+	 anchored = 1
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"UE" = (
+/obj/structure/flora/rock/pile/icy{
+	pixel_x = 1
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"Vd" = (
+/obj/structure/flora/tree/dead{
+	name = "roztrzaskana kłoda"
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"VJ" = (
+/obj/structure/flora/rock/pile,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"Xg" = (
+/obj/structure/flora/rock/icy,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"Xr" = (
+/obj/item/stack/ore/gold,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"XZ" = (
+/obj/machinery/atmospherics/pipe/simple/orange/hidden,
+/obj/structure/window/plastitanium,
+/turf/open/floor/plating,
+/area/template_noop)
+"YZ" = (
+/obj/item/stack/ore/iron{
+	amount = 5
+	},
+/obj/effect/decal/cleanable/blood/tracks{
+	layer = 2.4552
+	},
+/turf/open/floor/plating,
+/area/template_noop)
+
+(1,1,1) = {"
+KA
+KA
+KA
+zv
+Rx
+NK
+NK
+NK
+NK
+bQ
+NK
+NK
+ID
+KA
+KA
+"}
+(2,1,1) = {"
+ID
+KA
+KA
+NK
+NK
+NK
+NK
+bQ
+NK
+nB
+NK
+VJ
+KA
+KA
+ID
+"}
+(3,1,1) = {"
+ID
+ID
+ID
+ID
+NK
+NK
+NK
+Vd
+NK
+NK
+NK
+KA
+KA
+ID
+ID
+"}
+(4,1,1) = {"
+Bt
+ID
+ID
+ID
+NK
+nB
+NK
+NK
+NK
+NK
+zv
+ID
+ID
+ID
+uA
+"}
+(5,1,1) = {"
+ID
+ID
+ID
+ID
+ID
+NK
+NK
+NK
+NK
+NK
+ID
+ID
+ID
+ID
+ID
+"}
+(6,1,1) = {"
+ID
+ID
+LA
+ID
+Jf
+NK
+NK
+NK
+bQ
+NK
+ID
+ID
+ID
+dw
+ID
+"}
+(7,1,1) = {"
+ID
+ID
+ux
+ID
+ID
+NK
+NK
+NK
+NK
+NK
+ID
+LA
+ID
+ID
+ID
+"}
+(8,1,1) = {"
+KA
+ID
+ID
+ID
+ID
+Sr
+NK
+NK
+nB
+NK
+ID
+ID
+Jf
+ID
+ID
+"}
+(9,1,1) = {"
+KA
+ID
+ID
+Gn
+ID
+NK
+NK
+NK
+NK
+NK
+ID
+ID
+ID
+ID
+aT
+"}
+(10,1,1) = {"
+KA
+ID
+ID
+ID
+NK
+NK
+NK
+NK
+CR
+CR
+CR
+ID
+ID
+ID
+ID
+"}
+(11,1,1) = {"
+ID
+ID
+Xg
+ID
+NK
+NK
+NK
+NK
+NK
+bQ
+NK
+ID
+ID
+ID
+ID
+"}
+(12,1,1) = {"
+ID
+LA
+ID
+ID
+NK
+zv
+NK
+NK
+NK
+NK
+NK
+ID
+ID
+LA
+ID
+"}
+(13,1,1) = {"
+ID
+ID
+ID
+ID
+NK
+NK
+NK
+NK
+Rx
+NK
+Xr
+ID
+ID
+ID
+KA
+"}
+(14,1,1) = {"
+ID
+ID
+ID
+ID
+NK
+NK
+NK
+NK
+NK
+NK
+ID
+ID
+Gn
+ID
+KA
+"}
+(15,1,1) = {"
+ID
+yk
+Jf
+ID
+bQ
+NK
+NK
+Vd
+NK
+nB
+Jy
+ID
+ID
+ID
+KA
+"}
+(16,1,1) = {"
+ID
+ID
+ID
+ID
+ID
+nB
+LO
+bc
+kx
+NK
+ID
+ID
+ID
+ID
+ID
+"}
+(17,1,1) = {"
+KA
+ID
+ID
+ID
+ID
+Ti
+gu
+bc
+PJ
+uo
+ID
+ID
+op
+ID
+ID
+"}
+(18,1,1) = {"
+KA
+ID
+ID
+Aa
+ID
+vy
+oS
+bc
+cT
+Ro
+ID
+ID
+Xg
+ID
+ID
+"}
+(19,1,1) = {"
+ID
+tQ
+ID
+ID
+ID
+XZ
+IA
+nE
+RY
+bc
+op
+ID
+ID
+ID
+ID
+"}
+(20,1,1) = {"
+ID
+ID
+ID
+ID
+ID
+bc
+uo
+pA
+uo
+bc
+ID
+ID
+ID
+ID
+Jy
+"}
+(21,1,1) = {"
+ID
+ID
+gb
+ID
+ID
+Un
+uo
+uo
+uo
+An
+ID
+ID
+op
+ID
+ID
+"}
+(22,1,1) = {"
+ID
+ID
+ID
+Mw
+mL
+mL
+YZ
+jw
+bE
+tQ
+ID
+ID
+ID
+Jf
+KA
+"}
+(23,1,1) = {"
+Jf
+ID
+ID
+oV
+ID
+zu
+bc
+pw
+bc
+Uo
+ID
+ID
+ID
+ID
+KA
+"}
+(24,1,1) = {"
+ID
+ID
+ID
+ID
+LA
+ID
+Oz
+tr
+NI
+ID
+ID
+ID
+ID
+GK
+KA
+"}
+(25,1,1) = {"
+ID
+ID
+ID
+ID
+ID
+ID
+hk
+LA
+ID
+ID
+ID
+Nx
+ID
+ID
+UE
+"}
+(26,1,1) = {"
+ID
+go
+ID
+Nx
+ID
+ID
+ID
+ID
+wL
+ID
+Oq
+ID
+ID
+ID
+ID
+"}
+(27,1,1) = {"
+ID
+ID
+ID
+ID
+ID
+LA
+ID
+Bt
+ID
+ID
+ID
+ID
+ID
+gb
+ID
+"}
+(28,1,1) = {"
+KA
+ID
+LA
+ux
+ID
+ID
+ID
+ID
+ID
+ID
+go
+ID
+ID
+ID
+KA
+"}
+(29,1,1) = {"
+KA
+ID
+ID
+ID
+ID
+ID
+LA
+ID
+ID
+ID
+ID
+gb
+ID
+KA
+KA
+"}
+(30,1,1) = {"
+KA
+KA
+ID
+KA
+KA
+ID
+ID
+ID
+LA
+ID
+KA
+KA
+ID
+KA
+KA
+"}

@@ -1,0 +1,70 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"p" = (
+/turf/template_noop,
+/area/template_noop)
+"M" = (
+/mob/living/basic/mining/lobstrosity,
+/turf/open/water/planet/beach/ice,
+/area/template_noop)
+"V" = (
+/obj/structure/geyser/random,
+/turf/open/water/planet/beach/ice,
+/area/template_noop)
+"Z" = (
+/turf/open/water/planet/beach/ice,
+/area/template_noop)
+
+(1,1,1) = {"
+p
+Z
+Z
+Z
+Z
+Z
+p
+"}
+(2,1,1) = {"
+Z
+Z
+V
+Z
+Z
+M
+Z
+"}
+(3,1,1) = {"
+Z
+M
+Z
+M
+Z
+Z
+Z
+"}
+(4,1,1) = {"
+p
+Z
+Z
+Z
+Z
+V
+Z
+"}
+(5,1,1) = {"
+p
+p
+Z
+Z
+Z
+M
+Z
+"}
+(6,1,1) = {"
+p
+p
+p
+p
+Z
+Z
+p
+"}

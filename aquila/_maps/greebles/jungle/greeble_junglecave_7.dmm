@@ -1,0 +1,115 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/template_noop,
+/area/template_noop)
+"i" = (
+/obj/structure/sink,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
+"k" = (
+/obj/structure/flora/rock/pile,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
+"r" = (
+/turf/closed/mineral/random/planet_jungle,
+/area/template_noop)
+"t" = (
+/obj/item/stack/ore/iron{
+	amount = 5
+	},
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
+"x" = (
+/obj/structure/flora/rock,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
+"y" = (
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
+"z" = (
+/obj/effect/decal/cleanable/oil/streak,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
+"B" = (
+/obj/effect/decal/cleanable/oil,
+/obj/item/stack/cable_coil/cut,
+/obj/item/stack/ore/iron{
+	amount = 5
+	},
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
+"I" = (
+/obj/effect/decal/cleanable/oil,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
+"U" = (
+/obj/item/clothing/head/hardhat,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
+"Y" = (
+/obj/structure/sink,
+/obj/item/shovel,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
+"Z" = (
+/obj/structure/sink,
+/obj/structure/girder,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
+
+(1,1,1) = {"
+a
+a
+a
+r
+r
+a
+"}
+(2,1,1) = {"
+a
+r
+y
+k
+r
+r
+"}
+(3,1,1) = {"
+r
+r
+i
+y
+t
+y
+"}
+(4,1,1) = {"
+r
+U
+x
+I
+Y
+k
+"}
+(5,1,1) = {"
+k
+y
+B
+z
+y
+r
+"}
+(6,1,1) = {"
+r
+r
+Z
+y
+r
+r
+"}
+(7,1,1) = {"
+a
+r
+r
+I
+a
+a
+"}

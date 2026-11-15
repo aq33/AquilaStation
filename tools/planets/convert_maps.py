@@ -213,7 +213,7 @@ def clean_vars(vars_, keep_icon_state):
             v = '/obj/item/stack/sheet/mineral/gold'
         if k in ('pixel_x', 'pixel_y') and v == '0':
             continue
-        if k in ('name', 'desc') and v.startswith('"'):
+        if k in ('name', 'desc', 'default_raw_text') and v.startswith('"'):
             v = tr(v)
         out[k] = v
     return out
@@ -227,7 +227,11 @@ def convert_atom(a, mapname, stat):
         return [a]
     # obszary
     if path.startswith('/area'):
-        return [AREAS.get(path, path)]
+        if path in AREAS:
+            return [AREAS[path]]
+        if path in MISSING:
+            raise KeyError(path)
+        return [path]
     # łuski z ikoną "empty" to w Shiptescie zużyte łuski, u nas byłyby to żywe naboje
     if path in ('/obj/item/ammo_casing/c10mm', '/obj/item/ammo_casing/c9mm') and 'empty' in vars_.get('icon_state', ''):
         nv = clean_vars(vars_, False)
@@ -249,7 +253,7 @@ def convert_atom(a, mapname, stat):
             raise KeyError(path)
         return [atom(path, clean_vars(vars_, True))]
     # dekale
-    if path.startswith('/obj/effect/turf_decal') and path in MISSING:
+    if path.startswith('/obj/effect/turf_decal') and path in MISSING and path not in R:
         res = decal(path, vars_, mapname)
         stat['dropped' if res is None else 'replaced'] += 1
         return res or []
@@ -400,8 +404,9 @@ def main():
     parser.add_argument('--root', default='.', help='katalog repo (nsv13.dme)')
     parser.add_argument('maps', nargs='+', help='źródło.dmm=nowa_nazwa')
     args = parser.parse_args()
+    modules = []
     for name in filter(None, args.mappings.split(',')):
-        importlib.import_module('mappings.' + name.strip())
+        modules.append(importlib.import_module('mappings.' + name.strip()))
     ours = defined_types(args.root)
     pairs = []
     for item in args.maps:
@@ -409,6 +414,10 @@ def main():
         pairs.append((src, dst or os.path.splitext(os.path.basename(src))[0]))
     loaded = [(dmmlib.DMM.from_file(src), src, dst) for src, dst in pairs]
     MISSING = collect_missing([m for m, _, _ in loaded], ours)
+    # Moduły zamienników mogą same dobrać zamienniki dla brakujących ścieżek (resolve(missing, ours), np. mappings/auto.py)
+    for module in modules:
+        if hasattr(module, 'resolve'):
+            module.resolve(MISSING, ours)
     errors = collections.defaultdict(set)
     results = []
     report = {}

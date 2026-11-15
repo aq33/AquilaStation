@@ -1,0 +1,216 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"b" = (
+/obj/structure/flora/ausbushes/ppflowers,
+/turf/open/space/basic,
+/area/template_noop)
+"d" = (
+/obj/structure/flora/ausbushes/lavendergrass,
+/turf/open/space/basic,
+/area/template_noop)
+"e" = (
+/turf/closed/indestructible/rock/snow,
+/area/template_noop)
+"f" = (
+/turf/closed/mineral/planet_ice_wall,
+/area/template_noop)
+"g" = (
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"i" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/turf/open/space/basic,
+/area/template_noop)
+"j" = (
+/obj/structure/flora/rock/pile/icy,
+/turf/open/space/basic,
+/area/template_noop)
+"k" = (
+/mob/living/basic/mining/legion/snow,
+/turf/open/space/basic,
+/area/template_noop)
+"l" = (
+/mob/living/basic/mining/ice_demon/old,
+/turf/open/space/basic,
+/area/template_noop)
+"n" = (
+/obj/structure/flora/grass/green,
+/turf/open/space/basic,
+/area/template_noop)
+"q" = (
+/obj/structure/flora/rock/icy,
+/turf/open/space/basic,
+/area/template_noop)
+"r" = (
+/turf/closed/mineral/random/planet_ice,
+/area/template_noop)
+"t" = (
+/mob/living/basic/mining/ice_whelp,
+/turf/open/space/basic,
+/area/template_noop)
+"x" = (
+/obj/structure/geyser,
+/turf/open/space/basic,
+/area/template_noop)
+"y" = (
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"A" = (
+/obj/structure/flora/ash/garden/frigid,
+/turf/open/space/basic,
+/area/template_noop)
+"B" = (
+/obj/structure/flora/grass/brown,
+/turf/open/space/basic,
+/area/template_noop)
+"C" = (
+/turf/open/floor/plating/asteroid/iceberg,
+/area/template_noop)
+"D" = (
+/obj/structure/flora/ausbushes,
+/turf/open/space/basic,
+/area/template_noop)
+"E" = (
+/turf/open/lava/plasma/planet_ice,
+/area/template_noop)
+"G" = (
+/mob/living/basic/mining/ice_demon,
+/turf/open/space/basic,
+/area/template_noop)
+"H" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/space/basic,
+/area/template_noop)
+"I" = (
+/mob/living/basic/mining/wolf,
+/turf/open/space/basic,
+/area/template_noop)
+"J" = (
+/turf/template_noop,
+/area/template_noop)
+"K" = (
+/turf/open/space/basic,
+/area/template_noop)
+"M" = (
+/obj/structure/flora/grass/both,
+/turf/open/space/basic,
+/area/template_noop)
+"N" = (
+/turf/open/water/planet/beach/ice,
+/area/template_noop)
+"P" = (
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
+"Q" = (
+/obj/structure/flora/tree/pine,
+/turf/open/space/basic,
+/area/template_noop)
+"T" = (
+/mob/living/basic/mining/lobstrosity,
+/turf/open/space/basic,
+/area/template_noop)
+"U" = (
+/obj/structure/geyser/random,
+/turf/open/space/basic,
+/area/template_noop)
+"X" = (
+/mob/living/basic/snow_monkey,
+/turf/open/space/basic,
+/area/template_noop)
+"Y" = (
+/mob/living/basic/mining/wolf/alpha,
+/turf/open/space/basic,
+/area/template_noop)
+"Z" = (
+/turf/open/floor/plating/ice/planet_ice,
+/area/template_noop)
+
+(1,1,1) = {"
+K
+J
+g
+y
+P
+C
+Z
+"}
+(2,1,1) = {"
+K
+K
+N
+E
+e
+f
+r
+"}
+(3,1,1) = {"
+Q
+M
+B
+n
+K
+K
+K
+"}
+(4,1,1) = {"
+d
+b
+K
+K
+K
+K
+K
+"}
+(5,1,1) = {"
+H
+i
+H
+D
+K
+K
+K
+"}
+(6,1,1) = {"
+A
+K
+K
+K
+K
+K
+x
+"}
+(7,1,1) = {"
+q
+j
+K
+X
+K
+K
+U
+"}
+(8,1,1) = {"
+K
+K
+K
+K
+K
+K
+K
+"}
+(9,1,1) = {"
+T
+K
+Y
+I
+K
+l
+G
+"}
+(10,1,1) = {"
+t
+K
+k
+K
+K
+K
+K
+"}

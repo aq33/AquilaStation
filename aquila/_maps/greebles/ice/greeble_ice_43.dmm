@@ -1,0 +1,414 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"f" = (
+/turf/open/lava/plasma/planet_ice,
+/area/template_noop)
+"i" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
+"j" = (
+/obj/structure/flora/grass/both,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"m" = (
+/obj/effect/decal/cleanable/plasma,
+/obj/item/food/grown/ash_flora/shavings,
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
+"n" = (
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
+"p" = (
+/obj/structure/flora/rock/pile/icy,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"r" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"s" = (
+/obj/structure/flora/ausbushes/lavendergrass,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"v" = (
+/obj/structure/geyser,
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
+"w" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"x" = (
+/obj/structure/flora/grass/green,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"B" = (
+/obj/structure/flora/rock/icy,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"D" = (
+/obj/structure/flora/rock{
+	icon_state = "basalt2"
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"E" = (
+/obj/structure/geyser/random,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"F" = (
+/obj/item/food/grown/ash_flora/shavings,
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
+"H" = (
+/obj/structure/flora/ausbushes/ppflowers,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"I" = (
+/obj/effect/decal/cleanable/plasma,
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
+"J" = (
+/obj/structure/flora/grass/brown,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"K" = (
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"M" = (
+/obj/item/food/grown/ash_flora/mushroom_stem,
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
+"O" = (
+/obj/structure/flora/ash/garden/frigid,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"P" = (
+/turf/template_noop,
+/area/template_noop)
+"Q" = (
+/obj/item/food/grown/ash_flora/mushroom_leaf,
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
+"S" = (
+/turf/closed/mineral/random/planet_ice/high_chance,
+/area/template_noop)
+"U" = (
+/obj/structure/flora/rock,
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
+"W" = (
+/turf/closed/mineral/random/planet_ice/underground,
+/area/template_noop)
+"X" = (
+/obj/item/food/grown/ash_flora/mushroom_cap,
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
+"Y" = (
+/turf/open/floor/plating/asteroid/iceberg,
+/area/template_noop)
+"Z" = (
+/obj/item/food/grown/ash_flora/puce,
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
+
+(1,1,1) = {"
+P
+P
+K
+K
+w
+K
+K
+K
+P
+P
+K
+P
+K
+J
+P
+P
+P
+P
+K
+n
+P
+P
+P
+"}
+(2,1,1) = {"
+P
+P
+S
+D
+n
+n
+K
+O
+K
+H
+B
+x
+K
+K
+K
+K
+P
+S
+S
+S
+n
+P
+P
+"}
+(3,1,1) = {"
+P
+S
+S
+n
+Z
+i
+Z
+K
+n
+i
+n
+K
+n
+n
+n
+K
+K
+S
+S
+S
+S
+S
+P
+"}
+(4,1,1) = {"
+S
+S
+W
+f
+f
+f
+i
+n
+Z
+f
+I
+X
+E
+n
+i
+n
+n
+U
+S
+S
+S
+S
+K
+"}
+(5,1,1) = {"
+S
+S
+W
+W
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+n
+m
+f
+f
+f
+S
+S
+P
+"}
+(6,1,1) = {"
+S
+S
+S
+S
+S
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+i
+K
+"}
+(7,1,1) = {"
+S
+S
+S
+S
+S
+S
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+n
+"}
+(8,1,1) = {"
+P
+S
+S
+S
+S
+S
+S
+S
+S
+F
+f
+f
+n
+i
+M
+i
+f
+f
+f
+f
+f
+f
+n
+"}
+(9,1,1) = {"
+Y
+Y
+Y
+Y
+S
+S
+S
+S
+S
+S
+n
+Q
+n
+n
+v
+n
+Z
+f
+f
+f
+f
+n
+K
+"}
+(10,1,1) = {"
+P
+K
+Y
+Y
+Y
+S
+S
+S
+S
+B
+K
+s
+D
+n
+I
+n
+K
+Z
+f
+f
+n
+n
+P
+"}
+(11,1,1) = {"
+P
+P
+p
+Y
+Y
+Y
+Y
+j
+H
+K
+p
+w
+K
+K
+K
+K
+r
+K
+Z
+n
+O
+J
+P
+"}
+(12,1,1) = {"
+P
+P
+P
+K
+w
+H
+K
+K
+K
+P
+P
+K
+H
+K
+P
+K
+K
+P
+K
+K
+K
+P
+P
+"}

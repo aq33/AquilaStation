@@ -1,0 +1,229 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"b" = (
+/obj/effect/decal/cleanable/ash/large,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"c" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"d" = (
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"f" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/stack/ore/titanium,
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"i" = (
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"k" = (
+/obj/item/stack/ore/iron{
+	amount = 5
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"l" = (
+/obj/effect/decal/cleanable/glass,
+/obj/effect/mob_spawn/human/corpse/charredskeleton,
+/obj/structure/closet/crate/coffin{
+	opened = 0
+	},
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"m" = (
+/obj/effect/decal/cleanable/ash,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"o" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/obj/effect/decal/cleanable/glass,
+/obj/item/stack/ore/iron{
+	amount = 5
+	},
+/obj/item/stack/ore/titanium,
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"p" = (
+/obj/effect/decal/cleanable/ash,
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"q" = (
+/obj/effect/decal/cleanable/robot_debris,
+/obj/item/stack/ore/iron{
+	amount = 5
+	},
+/obj/item/stack/cable_coil/cut,
+/obj/item/stack/ore/gold,
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/plating/rust,
+/area/template_noop)
+"r" = (
+/turf/closed/wall/r_wall/rust,
+/area/template_noop)
+"s" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"t" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"v" = (
+/obj/item/stack/ore/iron{
+	amount = 5
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"x" = (
+/obj/item/stack/ore/iron{
+	amount = 5
+	},
+/obj/effect/decal/cleanable/glass,
+/obj/item/stack/ore/titanium,
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"A" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/obj/item/stack/ore/iron{
+	amount = 5
+	},
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"C" = (
+/turf/open/floor/plating/rust,
+/area/template_noop)
+"D" = (
+/turf/template_noop,
+/area/template_noop)
+"L" = (
+/obj/effect/decal/cleanable/ash/large,
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"R" = (
+/obj/structure/girder,
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"U" = (
+/obj/structure/flora/tree/dead/tall,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"X" = (
+/obj/effect/decal/cleanable/ash,
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"Y" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"Z" = (
+/obj/structure/girder,
+/turf/open/floor/plating/rust,
+/area/template_noop)
+
+(1,1,1) = {"
+D
+i
+s
+D
+i
+D
+i
+D
+D
+"}
+(2,1,1) = {"
+i
+c
+d
+d
+r
+Z
+x
+i
+D
+"}
+(3,1,1) = {"
+s
+X
+f
+t
+C
+Y
+t
+p
+i
+"}
+(4,1,1) = {"
+D
+i
+t
+Y
+o
+t
+k
+c
+s
+"}
+(5,1,1) = {"
+D
+i
+Y
+d
+q
+l
+L
+d
+D
+"}
+(6,1,1) = {"
+D
+U
+d
+m
+r
+R
+A
+d
+D
+"}
+(7,1,1) = {"
+i
+s
+b
+v
+d
+Y
+i
+D
+D
+"}
+(8,1,1) = {"
+D
+i
+i
+t
+X
+U
+i
+D
+D
+"}
+(9,1,1) = {"
+D
+D
+D
+s
+i
+i
+D
+D
+D
+"}

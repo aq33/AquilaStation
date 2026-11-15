@@ -1,0 +1,115 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"f" = (
+/obj/structure/flora/ausbushes/genericbush/hell,
+/turf/open/water/planet/jungle,
+/area/template_noop)
+"g" = (
+/obj/effect/gibspawner/human/bodypartless,
+/turf/open/water/planet/jungle,
+/area/template_noop)
+"q" = (
+/obj/structure/flora/ausbushes/genericbush/hell,
+/obj/structure/flora/ausbushes/sparsegrass/hell,
+/turf/open/water/planet/jungle,
+/area/template_noop)
+"v" = (
+/obj/effect/gibspawner/human/bodypartless,
+/obj/structure/flora/ausbushes/sparsegrass/hell,
+/turf/open/water/planet/jungle,
+/area/template_noop)
+"G" = (
+/turf/open/floor/plating/asteroid/river_sand,
+/area/template_noop)
+"L" = (
+/obj/structure/flora/ausbushes/sparsegrass/hell,
+/turf/open/floor/plating/asteroid/river_sand,
+/area/template_noop)
+"M" = (
+/obj/structure/flora/ausbushes/sparsegrass/hell,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
+/area/template_noop)
+"P" = (
+/turf/template_noop,
+/area/template_noop)
+"Q" = (
+/obj/effect/anomaly/veins/planetary,
+/obj/structure/flora/ausbushes/hell{
+	pixel_y = -6
+	},
+/turf/open/water/planet/jungle,
+/area/template_noop)
+"U" = (
+/obj/effect/gibspawner/human/bodypartless,
+/obj/structure/flora/ausbushes/genericbush/hell,
+/turf/open/water/planet/jungle,
+/area/template_noop)
+"V" = (
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
+/area/template_noop)
+"W" = (
+/turf/open/water/planet/jungle,
+/area/template_noop)
+
+(1,1,1) = {"
+W
+f
+W
+G
+L
+P
+P
+"}
+(2,1,1) = {"
+W
+g
+W
+G
+L
+G
+P
+"}
+(3,1,1) = {"
+W
+f
+W
+W
+g
+G
+L
+"}
+(4,1,1) = {"
+L
+G
+W
+Q
+q
+G
+G
+"}
+(5,1,1) = {"
+M
+G
+v
+W
+W
+W
+G
+"}
+(6,1,1) = {"
+V
+M
+G
+G
+U
+W
+G
+"}
+(7,1,1) = {"
+P
+P
+P
+G
+L
+W
+W
+"}
