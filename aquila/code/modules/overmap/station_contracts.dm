@@ -230,17 +230,23 @@ GLOBAL_LIST_EMPTY(aq_ship_contracts)
 	reward = 1500
 
 /datum/aq_contract/delivery/ammo/setup()
+	// Pojemniki, które da się zrobić na okręcie (autolat, kuźnia amunicji)
 	var/static/list/options = list(
-		/obj/item/ammo_box/magazine/wt550m9 = "magazynki WT-550",
-		/obj/item/ammo_box/magazine/wt550m9/rubber = "magazynki WT-550 z gumowymi kulami",
-		/obj/item/ammo_box/magazine/m10mm = "magazynki 10 mm",
-		/obj/item/ammo_box/magazine/pistolm9mm = "magazynki 9 mm",
-		/obj/item/ammo_box/magazine/m45 = "magazynki .45"
+		/obj/item/ammo_box/c9mm = "pełne pojemniki z amunicją 9 mm",
+		/obj/item/ammo_box/c10mm = "pełne pojemniki z amunicją 10 mm",
+		/obj/item/ammo_box/c45 = "pełne pojemniki z amunicją .45"
 	)
 	item_type = pick(options)
 	item_name = options[item_type]
-	amount = rand(4, 8)
+	amount = rand(2, 4)
 	. = ..()
+
+/// Liczy się tylko pełny pojemnik
+/datum/aq_contract/delivery/ammo/item_value(atom/movable/A)
+	var/obj/item/ammo_box/box = A
+	if(!istype(box) || !..())
+		return 0
+	return box.stored_ammo.len >= box.max_ammo ? 1 : 0
 
 /datum/aq_contract/delivery/energy
 	account = ACCOUNT_ENG
