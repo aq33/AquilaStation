@@ -17,6 +17,7 @@
 		/datum/map_template/boarding/inquisitor, /datum/map_template/boarding/aspala,
 		/datum/map_template/boarding/pirate_hauler, /datum/map_template/boarding/pirate_raider,
 		/datum/map_template/boarding/pirate_gunboat, /datum/map_template/boarding/pirate_dreadnought,
+		/datum/map_template/boarding/fist_of_sol, /datum/map_template/boarding/sols_revenge,
 	)
 	for(var/template_type in templates)
 		var/datum/map_template/template = SSmapping.boarding_templates[template_type]

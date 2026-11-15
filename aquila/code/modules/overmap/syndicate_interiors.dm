@@ -22,6 +22,14 @@
 	name = "okręt podprzestrzenny klasy Aspala (wnętrze)"
 	mappath = 'aquila/_maps/templates/boarding/syndicate/aspala.dmm'
 
+/datum/map_template/boarding/fist_of_sol
+	name = "SSV Fist of Sol (wnętrze)"
+	mappath = 'aquila/_maps/templates/boarding/syndicate/fist_of_sol.dmm'
+
+/datum/map_template/boarding/sols_revenge
+	name = "SSV Sol's Revenge (wnętrze)"
+	mappath = 'aquila/_maps/templates/boarding/syndicate/sols_revenge.dmm'
+
 // Piraci: frachtowiec dla zwykłego i abordażowego pirata, kanonierka i drednot na kadłubach Kadesha i fregaty przeciwlotniczej (te same sprite'y w pirackich barwach)
 /datum/map_template/boarding/pirate_hauler
 	name = "piracki frachtowiec (wnętrze)"
@@ -67,3 +75,10 @@
 
 /obj/structure/overmap/spacepirate/ai/dreadnought
 	possible_interior_maps = list(/datum/map_template/boarding/pirate_dreadnought)
+
+// Fist of Sol miał wnętrze małej fregaty Mako (dziedziczone z /syndicate/ai), a Sol's Revenge nie miał żadnego
+/obj/structure/overmap/syndicate/ai/fistofsol
+	possible_interior_maps = list(/datum/map_template/boarding/fist_of_sol)
+
+/obj/structure/overmap/syndicate/ai/battleship
+	possible_interior_maps = list(/datum/map_template/boarding/sols_revenge)

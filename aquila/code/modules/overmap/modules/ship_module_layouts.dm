@@ -87,6 +87,35 @@ GLOBAL_LIST_INIT(ship_module_layouts, list(
 		list("bridge", 47, 17, 53, 23, 47),
 		list("sensors", 48, 25, 50, 26, 6)
 		), 100, 146),
+	/datum/map_template/boarding/fist_of_sol = list(93, 52, list(
+		list("engine", 2, 34, 15, 48, 210),
+		list("engine", 2, 3, 15, 18, 224),
+		list("ftl", 17, 34, 24, 48, 118),
+		list("power", 17, 3, 24, 18, 126),
+		list("sensors", 19, 28, 24, 32, 30),
+		list("reactor", 19, 20, 24, 23, 24),
+		list("ammo", 29, 46, 35, 48, 21),
+		list("medbay", 29, 35, 35, 41, 49),
+		list("bridge", 29, 19, 34, 33, 90),
+		list("armory", 29, 10, 35, 17, 55),
+		list("ammo", 29, 3, 35, 5, 21),
+		list("quarters", 37, 46, 47, 48, 33),
+		list("mac", 37, 35, 47, 41, 77),
+		list("mac", 37, 10, 47, 16, 77),
+		list("quarters", 37, 3, 47, 5, 33),
+		list("flak", 49, 46, 53, 48, 15),
+		list("ammo", 49, 35, 61, 37, 39),
+		list("ammo", 49, 14, 61, 16, 39),
+		list("flak", 49, 3, 53, 5, 15),
+		list("gauss", 61, 46, 73, 48, 39),
+		list("gauss", 61, 3, 73, 5, 39),
+		list("quarters", 63, 35, 75, 37, 39),
+		list("quarters", 63, 14, 75, 16, 39),
+		list("sensors", 75, 46, 86, 48, 36),
+		list("sensors", 75, 3, 86, 5, 36),
+		list("flak", 77, 35, 86, 37, 30),
+		list("flak", 77, 14, 86, 16, 30)
+		), 81, 153),
 	/datum/map_template/boarding/flak_frigate = list(73, 27, list(
 		list("engine", 2, 7, 9, 19, 99),
 		list("reactor", 11, 16, 21, 21, 61),
@@ -245,5 +274,26 @@ GLOBAL_LIST_INIT(ship_module_layouts, list(
 		list("cargo", 34, 6, 35, 10, 10),
 		list("medbay", 37, 4, 44, 10, 42),
 		list("armory", 48, 21, 51, 26, 19)
-		), 101, 145)
+		), 101, 145),
+	/datum/map_template/boarding/sols_revenge = list(131, 36, list(
+		list("engine", 2, 8, 17, 27, 316),
+		list("reactor", 19, 20, 31, 29, 130),
+		list("reactor", 19, 6, 31, 15, 130),
+		list("ftl", 33, 20, 42, 29, 100),
+		list("power", 33, 6, 42, 15, 100),
+		list("aa", 47, 26, 57, 30, 48),
+		list("armory", 47, 20, 57, 24, 55),
+		list("ammo", 47, 12, 57, 15, 44),
+		list("aa", 47, 5, 57, 10, 59),
+		list("quarters", 59, 20, 66, 29, 80),
+		list("quarters", 59, 6, 66, 15, 80),
+		list("quarters", 71, 27, 82, 29, 36),
+		list("bridge", 71, 13, 82, 22, 120),
+		list("medbay", 71, 6, 82, 8, 36),
+		list("ammo", 87, 20, 101, 30, 154),
+		list("vls", 87, 5, 101, 15, 154),
+		list("torpedo", 103, 20, 112, 29, 100),
+		list("gauss", 103, 6, 112, 15, 100),
+		list("sensors", 117, 10, 128, 25, 192)
+		), 62, 145)
 ))
