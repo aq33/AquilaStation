@@ -4235,3 +4235,15 @@ Nazwy obszarów są w większości przetłumaczone. Nowe nazwy budujemy z tych k
 | Boringheed | Boringheed | m; nazwa własna, parodia |
 
 
+| ocean planetoid (beach) | planeta oceaniczna | ż; nowe (planety, Shiptest) |
+| aqua planetoid (water planet) | planeta wodna | ż; nowe (planety, Shiptest) |
+| waterball dwarf planetoid | wodna planeta karłowata | ż; nowe (planety, Shiptest) |
+| dwarf planetoid | planeta karłowata | ż; nowe (planety, Shiptest) |
+| sea stack | ostaniec | m; nowe (flora plaży) |
+| driftwood / driftwood log | wyrzucone drewno / wyrzucony pień | n / m; nowe (flora plaży) |
+| pebbles | kamyki | m mn.; nowe |
+| seashell | muszla | ż; nowe |
+| coastal marl | nadbrzeżny margiel | m; nowe (skała jaskiń plaży) |
+| wet rocky ground | mokre skaliste podłoże | n; nowe (planeta wodna) |
+| Frontiersmen | Pogranicznicy | m mn.; nowe (frakcja z ruin Shiptesta, u nas piraci) |
+| Corporate Resort / Cybersun Pad / Frontiersman Moat / Cave Gunsmith / Frontiersmen Depot | Kurort Korporacyjny / Lądowisko Cybersun / Fosa Pograniczników / Jaskiniowy Rusznikarz / Składnica Pograniczników | nowe (ruiny plaży) |

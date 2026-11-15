@@ -1,80 +1,54 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"ak" = (
-/obj/structure/railing/corner{
-	dir = 8
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/concrete/slab_4,
-/area/ruin/unpowered/planet_beach/gunsmith)
-"ap" = (
-/obj/effect/decal/cleanable/oil/slippery,
-/obj/structure/cable,
+"aa" = (
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/gunsmith/dorms/officer)
+"ag" = (
+/obj/structure/railing,
+/obj/effect/turf_decal/ship/techfloor,
+/mob/living/basic/trooper/syndicate/ranged,
 /turf/open/floor/concrete/slab_4,
 /area/ruin/unpowered/planet_beach/gunsmith/workshop)
-"as" = (
-/obj/effect/turf_decal/ship/borderfloor,
-/obj/effect/turf_decal/trimline/red/line{
-	dir = 1;
-	color = "#B4696A";
-	alpha = 255
+"ah" = (
+/turf/closed/wall/r_wall,
+/area/ruin/unpowered/planet_beach/gunsmith/dorms/officer)
+"av" = (
+/obj/structure/table/reinforced{
+	color = "#c1b6a5"
 	},
-/obj/machinery/atmospherics/components/unary/passive_vent/layer2{
-	dir = 4
-	},
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/ruin/unpowered/planet_beach/gunsmith/kitchen)
-"at" = (
-/obj/effect/turf_decal/siding/thinplating/dark/end{
-	dir = 4
+/obj/machinery/door/poddoor/shutters/preopen{
+	dir = 4;
+	id = "shutters"
 	},
 /turf/open/floor/concrete/slab_1,
-/area/ruin/unpowered/planet_beach/gunsmith)
-"aB" = (
-/obj/structure/cable,
-/obj/machinery/light,
-/turf/open/water/planet/beach,
-/area/ruin/unpowered/planet_beach/gunsmith)
-"aQ" = (
-/obj/structure/lattice/catwalk/over/ship/dark,
-/obj/structure/closet/crate/secure/weapon,
-/obj/item/gun/ballistic/automatic/pistol,
-/obj/item/ammo_box/magazine/m10mm,
-/obj/item/ammo_box/magazine/m10mm,
-/turf/open/floor/plating,
 /area/ruin/unpowered/planet_beach/gunsmith/workshop)
-"aU" = (
-/turf/open/floor/concrete/slab_4,
-/area/ruin/unpowered/planet_beach/gunsmith)
-"ba" = (
-/obj/effect/turf_decal/ship/borderfloor,
-/obj/effect/turf_decal/trimline/red/line{
-	dir = 1;
-	color = "#B4696A";
-	alpha = 255
-	},
-/obj/structure/cable,
-/obj/machinery/power/apc/auto_name/north,
-/obj/machinery/light_switch{
-	pixel_x = -12;
-	pixel_y = 22
-	},
-/turf/open/floor/plating,
-/area/ruin/unpowered/planet_beach/gunsmith/kitchen)
-"bf" = (
-/obj/structure/chair/fancy/sofa/old/left{
+"az" = (
+/obj/effect/turf_decal/siding/wood{
 	dir = 4
 	},
-/turf/open/floor/carpet/green,
-/area/ruin/unpowered/planet_beach/gunsmith/crewquarters)
-"bh" = (
-/obj/effect/turf_decal/ship/borderfloor/corner{
+/obj/structure/chair/office,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/gunsmith/dorms/officer)
+"aA" = (
+/obj/machinery/light{
 	dir = 8
 	},
+/turf/open/water/planet/beach,
+/area/ruin/unpowered/planet_beach/gunsmith)
+"aJ" = (
+/obj/effect/turf_decal/siding/wood,
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 5
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/gunsmith/crewquarters)
+"aO" = (
+/obj/effect/turf_decal/ship/borderfloor/corner,
 /obj/effect/turf_decal/trimline/red/line{
-	dir = 5;
+	dir = 9;
 	color = "#B4696A";
 	alpha = 255
 	},
@@ -83,128 +57,57 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/unpowered/planet_beach/gunsmith)
-"bj" = (
-/obj/effect/turf_decal/ship/techfloor{
-	dir = 1
-	},
-/obj/structure/table/reinforced{
-	color = "#c1b6a5"
-	},
-/obj/item/flashlight/lamp{
-	pixel_x = -8;
-	pixel_y = 14
-	},
-/obj/item/ammo_box/magazine/m556{
-	pixel_x = 13;
-	pixel_y = 12;
-	start_empty = 1
-	},
-/obj/item/ammo_casing/a556{
-	pixel_x = 5;
-	pixel_y = -2
-	},
-/obj/item/ammo_casing/a556{
-	pixel_x = -10;
-	pixel_y = 4
-	},
-/obj/item/stack/ore/iron{
-	pixel_y = 13
-	},
-/obj/item/weaponcrafting/stock{
-	pixel_x = -8;
-	pixel_y = -7
-	},
-/turf/open/floor/concrete/slab_4,
-/area/ruin/unpowered/planet_beach/gunsmith/workshop)
-"bP" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 4
-	},
-/turf/open/floor/wood,
-/area/ruin/unpowered/planet_beach/gunsmith/kitchen)
-"bS" = (
-/obj/structure/railing{
-	dir = 4
-	},
-/turf/open/floor/plasteel/stairs/right,
-/area/ruin/unpowered/planet_beach/gunsmith/workshop)
-"cg" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/water/planet/beach,
-/area/ruin/unpowered/planet_beach/gunsmith)
-"cj" = (
+"aU" = (
 /obj/effect/turf_decal/trimline/red/filled/warning{
 	dir = 1;
 	color = "#730622";
 	alpha = 255
 	},
-/obj/effect/decal/cleanable/dirt,
+/obj/machinery/light/floor,
 /turf/open/floor/concrete/slab_1,
 /area/ruin/unpowered/planet_beach/gunsmith)
-"cw" = (
-/obj/machinery/light/small{
-	dir = 1
-	},
+"aW" = (
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/concrete/slab_4,
 /area/ruin/unpowered/planet_beach/gunsmith)
-"cN" = (
-/obj/machinery/door/airlock,
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 1
-	},
-/turf/open/floor/plasteel/tech/grid,
-/area/ruin/unpowered/planet_beach/gunsmith/dorms)
-"da" = (
+"bG" = (
 /obj/effect/turf_decal/ship/techfloor{
-	dir = 5
-	},
-/obj/structure/chair{
-	layer = 3.09
+	dir = 1
 	},
 /obj/structure/railing{
 	dir = 1
 	},
-/obj/machinery/light/small{
-	dir = 4
-	},
+/mob/living/basic/trooper/syndicate/ranged/smg,
 /turf/open/floor/concrete/slab_4,
 /area/ruin/unpowered/planet_beach/gunsmith)
-"dO" = (
-/obj/structure/cable/yellow,
-/obj/effect/turf_decal/siding/thinplating/dark,
-/turf/open/floor/concrete,
-/area/ruin/unpowered/planet_beach/gunsmith/electrical)
-"eB" = (
-/obj/structure/window/plastitanium,
-/obj/machinery/door/poddoor/shutters{
-	dir = 4;
-	id = "exchangewindows"
+"ca" = (
+/turf/closed/wall/r_wall,
+/area/ruin/unpowered/planet_beach/gunsmith/bathroom)
+"ce" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
 	},
-/turf/open/floor/concrete/slab_1,
-/area/ruin/unpowered/planet_beach/gunsmith/workshop)
-"eI" = (
-/obj/effect/turf_decal/ship/techfloor{
-	dir = 1
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/gunsmith/crewquarters)
+"cr" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 10
 	},
-/obj/structure/cable/yellow,
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plasteel/dark,
-/area/ruin/unpowered/planet_beach/gunsmith/electrical)
-"eM" = (
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/gunsmith/crewquarters)
+"cE" = (
 /obj/effect/turf_decal/trimline/red/line{
 	dir = 8;
 	color = "#B4696A";
 	alpha = 255
 	},
-/obj/machinery/light/small{
-	dir = 8
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 4
 	},
+/obj/structure/closet/crate/bin,
 /turf/open/floor/plasteel/dark,
-/area/ruin/unpowered/planet_beach/gunsmith/electrical)
-"eX" = (
+/area/ruin/unpowered/planet_beach/gunsmith/crewquarters)
+"cU" = (
 /obj/structure/closet/crate/secure/weapon,
 /obj/item/clothing/suit/armor/vest{
 	pixel_x = -7;
@@ -231,171 +134,161 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/unpowered/planet_beach/gunsmith/workshop)
-"fe" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 8
-	},
-/turf/open/floor/wood,
-/area/ruin/unpowered/planet_beach/gunsmith/kitchen)
-"fk" = (
-/obj/effect/turf_decal/ship/techfloor{
-	dir = 1
-	},
-/obj/structure/cable/yellow,
-/obj/machinery/atmospherics/components/unary/passive_vent/layer2,
-/turf/open/floor/plasteel/dark,
-/area/ruin/unpowered/planet_beach/gunsmith/electrical)
-"fo" = (
-/turf/open/floor/concrete/slab_1,
-/area/ruin/unpowered/planet_beach/gunsmith/kitchen)
-"fs" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 5
-	},
-/obj/structure/chair/fancy/bench{
-	dir = 8
-	},
-/mob/living/basic/trooper/syndicate/ranged/smg,
-/obj/item/radio/intercom/directional/east,
-/turf/open/floor/wood,
-/area/ruin/unpowered/planet_beach/gunsmith/kitchen)
-"fu" = (
-/turf/open/floor/plasteel/stairs/left,
-/area/ruin/unpowered/planet_beach/gunsmith)
-"fy" = (
-/obj/effect/turf_decal/ship/techfloor{
-	dir = 4
-	},
-/obj/structure/table,
-/obj/item/reagent_containers/food/drinks/bottle/whiskey{
-	pixel_x = 7;
-	pixel_y = 5
-	},
-/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass{
-	pixel_x = -3;
-	pixel_y = 10
-	},
-/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass{
-	pixel_x = -10;
-	pixel_y = 6
-	},
-/turf/open/floor/concrete/slab_4,
-/area/ruin/unpowered/planet_beach/gunsmith)
-"fJ" = (
-/turf/open/floor/plasteel/stairs{
-	dir = 1
-	},
-/area/ruin/unpowered/planet_beach/gunsmith)
-"fQ" = (
-/mob/living/basic/trooper/syndicate/ranged/smg,
-/turf/open/floor/plating/asteroid/dirt/beach,
-/area/ruin/unpowered/planet_beach/gunsmith)
-"fZ" = (
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "storage"
-	},
-/turf/open/floor/concrete/slab_1,
-/area/ruin/unpowered/planet_beach/gunsmith/workshop)
-"gc" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
-	dir = 1
-	},
-/turf/open/floor/concrete/slab_4,
-/area/ruin/unpowered/planet_beach/gunsmith)
-"gh" = (
-/obj/structure/cable,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/dark,
-/area/ruin/unpowered/planet_beach/gunsmith/workshop)
-"gj" = (
-/obj/structure/lattice/catwalk/over/ship/dark,
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/ruin/unpowered/planet_beach/gunsmith/dorms)
-"gr" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 4
-	},
-/obj/structure/table/wood,
-/obj/item/reagent_containers/food/drinks/coffee{
-	pixel_x = -7;
-	pixel_y = 2
-	},
-/turf/open/floor/wood,
-/area/ruin/unpowered/planet_beach/gunsmith/dorms)
-"hh" = (
+"cW" = (
 /obj/machinery/atmospherics/components/unary/passive_vent/layer2{
 	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/unpowered/planet_beach/gunsmith/electrical)
-"hm" = (
-/obj/structure/cable/yellow,
-/obj/structure/lattice/catwalk/over/ship/dark,
-/turf/open/floor/plating,
-/area/ruin/unpowered/planet_beach/gunsmith/electrical)
-"hw" = (
-/obj/structure/cable/yellow,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/turf_decal/siding/thinplating/dark{
-	dir = 1
-	},
-/turf/open/floor/concrete,
-/area/ruin/unpowered/planet_beach/gunsmith/electrical)
-"hF" = (
-/obj/structure/lattice/catwalk/over/ship/dark,
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 10
-	},
-/turf/open/floor/plating,
-/area/ruin/unpowered/planet_beach/gunsmith/dorms/officer)
-"hN" = (
-/turf/open/floor/wood,
-/area/ruin/unpowered/planet_beach/gunsmith/dorms)
-"hY" = (
-/obj/effect/turf_decal/tile/red/half{
-	dir = 8;
-	color = "#730622";
-	alpha = 255
-	},
-/turf/open/floor/concrete/slab_1,
-/area/ruin/unpowered/planet_beach/gunsmith)
-"ik" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
+"cY" = (
+/obj/effect/turf_decal/siding/wood,
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 4
 	},
 /obj/structure/cable,
-/obj/structure/cable/yellow,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
 	},
-/obj/machinery/button/door{
-	pixel_x = -9;
-	pixel_y = -20;
-	dir = 1;
-	id = "engishutter"
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/unpowered/planet_beach/gunsmith/electrical)
-"iN" = (
-/obj/machinery/power/rtg/advanced,
-/obj/structure/cable/yellow,
-/turf/open/floor/concrete/slab_4,
-/area/ruin/unpowered/planet_beach/gunsmith/electrical)
-"iQ" = (
-/obj/structure/barricade/sandbags,
 /turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/gunsmith/dorms)
+"do" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/plasteel/stairs/left{
+	dir = 4
+	},
 /area/ruin/unpowered/planet_beach/gunsmith)
-"iS" = (
-/obj/effect/decal/cleanable/dirt,
+"dC" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 10
+	},
+/obj/structure/chair/office,
+/obj/item/radio/intercom/directional/west,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/gunsmith/workshop)
+"dO" = (
+/obj/item/clothing/shoes/sandal{
+	pixel_x = 4;
+	pixel_y = -12
+	},
+/obj/item/clothing/shoes/sandal{
+	pixel_x = 9;
+	pixel_y = -7
+	},
+/obj/item/clothing/under/misc/pj/red{
+	pixel_x = 11;
+	pixel_y = 15
+	},
+/obj/item/clothing/under/misc/pj/red{
+	pixel_x = 9;
+	pixel_y = 13
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/carpet/green,
+/area/ruin/unpowered/planet_beach/gunsmith/dorms/officer)
+"dR" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 9
+	},
+/obj/structure/noticeboard{
+	pixel_x = -28;
+	dir = 4
+	},
+/obj/item/paper/fluff/ruins{
+	pixel_x = -11;
+	pixel_y = 5;
+	default_raw_text = "<h1>DO ZROBIENIA:</h1>-Przypomnieć nowym, że kochanie jest jedną z nas<br>-Wynegocjować z szefem kochania zysk z dostawy hydr<br>-Rozejrzeć się za nowym dostawcą soli<br>-Nakleić więcej ostrzeżeń przy materiałach wybuchowych";
+	name = "Lista rzeczy do zrobienia"
+	},
+/obj/item/paper/fluff/ruins{
+	pixel_x = -11;
+	pixel_y = -9;
+	default_raw_text = "przypomnieć rei, żeby wymienił moje cholerne deski nad skrytką przy południowej ścianie";
+	name = "przypomnienie"
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/gunsmith/workshop)
+"dS" = (
+/obj/structure/dresser,
+/obj/item/clothing/under/shorts{
+	pixel_x = -6;
+	pixel_y = 10
+	},
+/obj/item/clothing/under/shorts/red{
+	pixel_x = -4;
+	pixel_y = 10
+	},
+/obj/item/lipstick/black{
+	pixel_x = 7;
+	pixel_y = 8
+	},
+/turf/open/floor/carpet/green,
+/area/ruin/unpowered/planet_beach/gunsmith/dorms/officer)
+"dU" = (
+/obj/effect/turf_decal/ship/techfloor{
+	dir = 5
+	},
+/obj/structure/chair{
+	layer = 3.09
+	},
+/obj/structure/railing{
+	dir = 1
+	},
+/obj/machinery/light/small{
+	dir = 4
+	},
 /turf/open/floor/concrete/slab_4,
 /area/ruin/unpowered/planet_beach/gunsmith)
-"iZ" = (
+"dX" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 6
+	},
+/obj/structure/chair/fancy/bench{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/gunsmith/kitchen)
+"dZ" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/gunsmith/workshop)
+"ea" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 9
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/gunsmith/dorms/officer)
+"eh" = (
+/turf/open/water/planet/beach,
+/area/ruin/unpowered/planet_beach/gunsmith)
+"el" = (
+/obj/effect/turf_decal/tile/red/half{
+	dir = 4;
+	color = "#730622";
+	alpha = 140
+	},
+/obj/structure/closet/crate/secure/weapon,
+/obj/item/attachment/scope{
+	pixel_x = -7;
+	pixel_y = -7
+	},
+/obj/item/attachment/scope{
+	pixel_x = -7;
+	pixel_y = -10
+	},
+/obj/item/flamethrower,
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_beach/gunsmith/workshop)
+"eu" = (
 /obj/effect/turf_decal/ship/techfloor{
 	dir = 8
 	},
@@ -416,259 +309,66 @@
 	},
 /turf/open/floor/concrete/slab_4,
 /area/ruin/unpowered/planet_beach/gunsmith/workshop)
-"jg" = (
-/obj/effect/turf_decal/siding/wood,
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
-/turf/open/floor/wood,
-/area/ruin/unpowered/planet_beach/gunsmith/crewquarters)
-"jz" = (
-/obj/structure/cable,
-/mob/living/basic/trooper/syndicate/ranged/smg,
-/turf/open/floor/wood,
-/area/ruin/unpowered/planet_beach/gunsmith)
-"jD" = (
-/obj/machinery/door/airlock/security,
-/turf/open/floor/plasteel/tech/grid,
-/area/ruin/unpowered/planet_beach/gunsmith/workshop)
-"jN" = (
-/obj/effect/turf_decal/siding/wood,
-/obj/effect/turf_decal/siding/wood/corner{
-	dir = 4
-	},
-/obj/structure/table/wood,
-/obj/item/paper_bin,
-/obj/item/pen,
-/obj/item/radio/intercom/directional/south,
-/turf/open/floor/wood,
-/area/ruin/unpowered/planet_beach/gunsmith/dorms/officer)
-"jQ" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/concrete/slab_4,
-/area/ruin/unpowered/planet_beach/gunsmith/electrical)
-"jR" = (
-/obj/structure/barricade/sandbags,
-/obj/structure/railing{
-	dir = 6
-	},
-/turf/open/floor/wood,
-/area/ruin/unpowered/planet_beach/gunsmith)
-"kg" = (
-/obj/effect/turf_decal/tile/red/half{
-	dir = 4;
-	color = "#730622";
+"ew" = (
+/obj/effect/turf_decal/trimline/red/line{
+	dir = 5;
+	color = "#B4696A";
 	alpha = 255
 	},
-/turf/open/floor/concrete/slab_1,
-/area/ruin/unpowered/planet_beach/gunsmith)
-"kv" = (
-/obj/effect/turf_decal/ship/techfloor/corner{
-	dir = 4
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/concrete/slab_4,
-/area/ruin/unpowered/planet_beach/gunsmith/workshop)
-"kz" = (
-/obj/effect/turf_decal/ship/techfloor{
-	dir = 4
-	},
-/obj/structure/chair{
-	dir = 1
-	},
-/turf/open/floor/concrete/slab_4,
-/area/ruin/unpowered/planet_beach/gunsmith)
-"kA" = (
-/obj/structure/table/wood,
-/obj/item/radio/intercom/directional/east{
-	pixel_y = 6
-	},
-/turf/open/floor/carpet/green,
-/area/ruin/unpowered/planet_beach/gunsmith/crewquarters)
-"kB" = (
-/mob/living/basic/trooper/syndicate/ranged,
-/obj/structure/chair/stool{
-	dir = 8
-	},
-/turf/open/floor/concrete/slab_4,
-/area/ruin/unpowered/planet_beach/gunsmith)
-"lc" = (
+/obj/structure/closet,
+/obj/item/clothing/head/radiation,
+/obj/item/clothing/head/radiation,
+/obj/item/clothing/suit/radiation,
+/obj/item/clothing/suit/radiation,
+/obj/item/geiger_counter,
+/obj/item/geiger_counter,
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_beach/gunsmith/electrical)
+"eE" = (
 /obj/effect/turf_decal/siding/thinplating/dark,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
 	},
 /turf/open/floor/concrete/slab_1,
 /area/ruin/unpowered/planet_beach/gunsmith/kitchen)
-"li" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/water/planet/beach,
-/area/ruin/unpowered/planet_beach/gunsmith)
-"lm" = (
-/obj/effect/turf_decal/ship/borderfloor/corner{
-	dir = 1
-	},
-/obj/effect/turf_decal/trimline/red/line{
-	dir = 6;
-	color = "#B4696A";
-	alpha = 255
-	},
-/obj/structure/cable,
-/turf/open/floor/plasteel/dark,
-/area/ruin/unpowered/planet_beach/gunsmith)
-"ls" = (
-/obj/effect/turf_decal/ship/techfloor{
-	dir = 1
-	},
-/obj/structure/table/reinforced{
-	color = "#c1b6a5"
-	},
-/obj/item/storage/toolbox/syndicate{
-	pixel_x = -3;
-	pixel_y = 2
-	},
-/obj/item/stock_parts/micro_laser/high{
-	pixel_x = 5;
-	pixel_y = 14
-	},
-/obj/item/stack/sticky_tape{
-	pixel_x = 7;
-	pixel_y = -6
-	},
-/turf/open/floor/concrete/slab_4,
-/area/ruin/unpowered/planet_beach/gunsmith/workshop)
-"lA" = (
-/obj/structure/table/reinforced{
-	color = "#c1b6a5"
-	},
-/obj/machinery/door/poddoor/shutters/preopen{
-	dir = 4;
-	id = "shutters"
-	},
-/turf/open/floor/concrete/slab_1,
-/area/ruin/unpowered/planet_beach/gunsmith/workshop)
-"lF" = (
-/obj/structure/railing/corner{
-	dir = 8
-	},
-/obj/structure/cable,
-/turf/open/floor/concrete/slab_4,
-/area/ruin/unpowered/planet_beach/gunsmith/workshop)
-"lH" = (
-/obj/item/ammo_box/magazine/m10mm{
-	pixel_x = -10;
-	pixel_y = 3
-	},
-/obj/item/ammo_box/magazine/m10mm{
-	pixel_x = -11;
-	pixel_y = -2
-	},
-/obj/effect/turf_decal/ship/techfloor{
+"eR" = (
+/obj/structure/barricade/sandbags,
+/obj/structure/railing{
 	dir = 6
 	},
-/obj/structure/closet/secure_closet{
-	req_access = null;
-	icon_state = "armory"
-	},
-/obj/item/ammo_box/magazine/pistolm9mm{
-	pixel_x = -1;
-	pixel_y = -1
-	},
-/obj/item/ammo_box/magazine/pistolm9mm{
-	pixel_x = -3;
-	pixel_y = -4
-	},
-/obj/item/ammo_box/magazine/m10mm{
-	pixel_x = 10;
-	pixel_y = -1
-	},
-/obj/item/ammo_box/magazine/m10mm{
-	pixel_x = 8;
-	pixel_y = -4
-	},
-/turf/open/floor/monotile/dark,
-/area/ruin/unpowered/planet_beach/gunsmith/workshop)
-"lL" = (
-/obj/structure/reagent_dispensers/fueltank,
-/obj/structure/railing{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 10;
-	color = "#C3630C";
-	alpha = 255
-	},
-/obj/effect/turf_decal/box/corners{
-	dir = 1
-	},
-/obj/structure/sign/warning{
-	pixel_y = -24
-	},
-/turf/open/floor/concrete/slab_4,
-/area/ruin/unpowered/planet_beach/gunsmith/workshop)
-"lS" = (
-/obj/machinery/light,
-/turf/open/water/planet/beach,
+/turf/open/floor/wood,
 /area/ruin/unpowered/planet_beach/gunsmith)
-"lT" = (
-/turf/closed/wall/r_wall,
-/area/ruin/unpowered/planet_beach/gunsmith/workshop)
-"mk" = (
+"eZ" = (
+/obj/machinery/power/smes/engineering,
+/obj/structure/cable,
 /obj/effect/turf_decal/tile/red/half{
-	dir = 9;
+	dir = 4;
 	color = "#730622";
 	alpha = 255
 	},
-/obj/machinery/light/floor,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/concrete/slab_1,
-/area/ruin/unpowered/planet_beach/gunsmith)
-"mn" = (
-/obj/effect/turf_decal/siding/wood/end{
-	dir = 4
+/turf/open/floor/plasteel/techmaint,
+/area/ruin/unpowered/planet_beach/gunsmith/electrical)
+"fb" = (
+/obj/structure/closet/crate/secure/weapon,
+/obj/item/clothing/suit/space/hardsuit/syndi{
+	pixel_x = -8;
+	pixel_y = 6
 	},
-/obj/structure/closet/crate/bin,
-/obj/item/paper/crumpled{
-	pixel_x = 8;
+/obj/item/clothing/suit/space/hardsuit/syndi{
+	pixel_x = -8;
+	pixel_y = 4
+	},
+/obj/item/clothing/suit/space/hardsuit/syndi{
+	pixel_x = -8;
+	pixel_y = 2
+	},
+/obj/item/clothing/glasses/hud/security/sunglasses{
+	pixel_x = 4;
 	pixel_y = 1
 	},
-/obj/item/paper/crumpled{
-	pixel_x = 7;
-	pixel_y = -10
-	},
-/obj/item/paper/crumpled{
-	pixel_x = -6;
-	pixel_y = -9
-	},
-/turf/open/floor/wood,
-/area/ruin/unpowered/planet_beach/gunsmith/dorms/officer)
-"mr" = (
-/obj/effect/decal/cleanable/oil/streak,
-/obj/item/pickaxe/drill{
-	pixel_x = 9;
-	pixel_y = 15
-	},
-/turf/open/floor/concrete/slab_4,
+/turf/open/floor/plasteel/dark,
 /area/ruin/unpowered/planet_beach/gunsmith/workshop)
-"my" = (
-/obj/structure/guncase,
-/obj/effect/turf_decal/ship/techfloor{
-	dir = 8
-	},
-/obj/item/gun/ballistic/automatic/pistol,
-/obj/item/gun/ballistic/automatic/pistol,
-/turf/open/floor/monotile/dark,
-/area/ruin/unpowered/planet_beach/gunsmith/workshop)
-"mB" = (
-/obj/structure/railing{
-	dir = 1
-	},
-/obj/structure/cable,
-/turf/open/floor/plasteel/stairs/left{
-	dir = 8
-	},
-/area/ruin/unpowered/planet_beach/gunsmith)
-"mE" = (
+"ff" = (
 /obj/effect/turf_decal/ship/borderfloor{
 	dir = 1
 	},
@@ -726,11 +426,1944 @@
 /obj/structure/closet,
 /turf/open/floor/plating,
 /area/ruin/unpowered/planet_beach/gunsmith/dorms)
-"mL" = (
+"fp" = (
+/obj/structure/guncase,
+/obj/effect/turf_decal/ship/techfloor{
+	dir = 8
+	},
+/obj/item/gun/ballistic/automatic/pistol,
+/obj/item/gun/ballistic/automatic/pistol,
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_beach/gunsmith/workshop)
+"fq" = (
+/obj/structure/window/plastitanium,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_beach/gunsmith/kitchen)
+"fx" = (
+/obj/machinery/recharger{
+	pixel_x = -9;
+	pixel_y = 8
+	},
+/obj/structure/table/reinforced{
+	color = "#c1b6a5"
+	},
+/obj/item/paper_bin{
+	pixel_x = 9;
+	pixel_y = 3
+	},
+/obj/item/pen{
+	pixel_x = 8;
+	pixel_y = 5
+	},
+/obj/item/radio/off{
+	pixel_x = -8;
+	pixel_y = -1
+	},
+/obj/machinery/light,
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_beach/gunsmith/workshop)
+"fB" = (
+/obj/structure/rack,
+/obj/effect/turf_decal/siding/thinplating/dark,
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 1
+	},
+/obj/item/ammo_box/c10mm,
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_beach/gunsmith)
+"fD" = (
+/obj/structure/cable,
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer2,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_beach/gunsmith/electrical)
+"fR" = (
+/obj/machinery/power/rtg/advanced,
+/obj/structure/cable/yellow,
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 4
+	},
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_beach/gunsmith/electrical)
+"gl" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/gunsmith/dorms/officer)
+"gs" = (
+/obj/structure/table/reinforced,
+/obj/item/reagent_containers/food/condiment/flour{
+	pixel_x = -7;
+	pixel_y = -5
+	},
+/obj/item/reagent_containers/food/condiment/flour{
+	pixel_x = -7;
+	pixel_y = -7
+	},
+/obj/item/reagent_containers/food/condiment/enzyme{
+	pixel_x = -11;
+	pixel_y = 3
+	},
+/obj/item/reagent_containers/food/condiment/sugar{
+	pixel_x = 11;
+	pixel_y = 7
+	},
+/obj/item/reagent_containers/food/condiment/rice{
+	pixel_x = 11;
+	pixel_y = -5
+	},
+/obj/item/reagent_containers/food/condiment/rice{
+	pixel_x = 11;
+	pixel_y = -7
+	},
+/obj/item/reagent_containers/food/condiment/ketchup{
+	pixel_x = 6;
+	pixel_y = 4
+	},
+/obj/item/reagent_containers/food/condiment/ketchup{
+	pixel_y = 4
+	},
+/obj/item/reagent_containers/food/condiment/hotsauce{
+	pixel_x = -5;
+	pixel_y = 3
+	},
+/obj/effect/turf_decal/siding/wood,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/gunsmith/kitchen)
+"gt" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/gunsmith/dorms)
+"gv" = (
 /obj/item/reagent_containers/food/drinks/bottle/ale,
 /turf/open/floor/wood,
 /area/ruin/unpowered/planet_beach/gunsmith)
-"mQ" = (
+"gC" = (
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/red/line{
+	color = "#B4696A";
+	alpha = 255
+	},
+/obj/structure/cable,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_beach/gunsmith)
+"gR" = (
+/obj/effect/turf_decal/ship/techfloor{
+	dir = 1
+	},
+/obj/structure/table/reinforced{
+	color = "#c1b6a5"
+	},
+/obj/item/gun/ballistic/automatic/pistol{
+	pixel_x = 16;
+	pixel_y = 3
+	},
+/obj/item/stack/ore/iron{
+	pixel_x = -5;
+	pixel_y = 3
+	},
+/obj/item/flashlight/lamp{
+	pixel_x = -8;
+	pixel_y = 14
+	},
+/obj/item/clothing/glasses/welding{
+	pixel_x = 10;
+	pixel_y = -6
+	},
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_beach/gunsmith/workshop)
+"gT" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_beach/gunsmith/dorms)
+"gV" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/structure/filingcabinet{
+	pixel_y = 19;
+	density = 0
+	},
+/obj/item/clipboard{
+	pixel_y = 2
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/gunsmith/workshop)
+"hc" = (
+/obj/structure/lattice/catwalk/over/ship,
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_beach/gunsmith/electrical)
+"hp" = (
+/obj/structure/cable/yellow,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 1
+	},
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_beach/gunsmith/electrical)
+"hy" = (
+/obj/effect/turf_decal/trimline/red/corner{
+	dir = 4;
+	color = "#B4696A";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/item/radio/intercom/directional/east,
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_beach/gunsmith/electrical)
+"hE" = (
+/obj/structure/bed,
+/turf/open/floor/carpet/green,
+/area/ruin/unpowered/planet_beach/gunsmith/dorms)
+"hG" = (
+/obj/effect/turf_decal/ship/techfloor{
+	dir = 4
+	},
+/obj/structure/table,
+/obj/item/reagent_containers/food/drinks/bottle/whiskey{
+	pixel_x = 7;
+	pixel_y = 5
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass{
+	pixel_x = -3;
+	pixel_y = 10
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass{
+	pixel_x = -10;
+	pixel_y = 6
+	},
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_beach/gunsmith)
+"hO" = (
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_beach/gunsmith/workshop)
+"hX" = (
+/obj/machinery/door/airlock/engineering{
+	dir = 4
+	},
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_beach/gunsmith/electrical)
+"ib" = (
+/obj/machinery/porta_turret/syndicate,
+/obj/structure/cable,
+/turf/closed/wall/r_wall,
+/area/ruin/unpowered/planet_beach/gunsmith)
+"ii" = (
+/turf/open/floor/carpet/green,
+/area/ruin/unpowered/planet_beach/gunsmith/crewquarters)
+"iL" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/gunsmith)
+"iS" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 10
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/gunsmith/dorms/officer)
+"iV" = (
+/turf/open/water/planet/beach/deep,
+/area/ruin/unpowered/planet_beach/gunsmith)
+"jd" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/gunsmith/dorms/officer)
+"jH" = (
+/obj/effect/turf_decal/siding/wood,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/gunsmith/crewquarters)
+"jT" = (
+/obj/structure/railing/corner{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_beach/gunsmith/workshop)
+"jU" = (
+/obj/effect/turf_decal/trimline/red/line{
+	dir = 8;
+	color = "#B4696A";
+	alpha = 255
+	},
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_beach/gunsmith/electrical)
+"ke" = (
+/obj/item/food/meat/slab,
+/obj/item/food/meat/slab,
+/obj/item/food/meat/slab,
+/obj/item/food/meat/slab,
+/obj/item/food/meat/slab/chicken,
+/obj/item/food/meat/slab/chicken,
+/obj/item/food/meat/slab/chicken,
+/obj/item/food/meat/slab/chicken,
+/obj/item/food/meat/slab,
+/obj/item/food/meat/slab,
+/obj/item/food/meat/slab,
+/obj/item/food/meat/slab,
+/obj/item/food/meat/slab/bear,
+/obj/item/food/meat/slab/bear,
+/obj/item/food/meat/rawcrab,
+/obj/item/food/meat/rawcrab,
+/obj/item/food/meat/rawcrab,
+/obj/item/food/meat/rawcrab,
+/obj/structure/closet/secure_closet/freezer,
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_beach/gunsmith/kitchen)
+"kg" = (
+/obj/effect/turf_decal/trimline/red/line{
+	dir = 8;
+	color = "#B4696A";
+	alpha = 255
+	},
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/machinery/power/apc/auto_name/west,
+/obj/machinery/light_switch{
+	dir = 4;
+	pixel_x = -20;
+	pixel_y = -12
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_beach/gunsmith/crewquarters)
+"kp" = (
+/turf/closed/wall/r_wall,
+/area/ruin/unpowered/planet_beach/gunsmith/electrical)
+"kD" = (
+/obj/structure/sink{
+	dir = 8;
+	pixel_x = 13;
+	pixel_y = -1
+	},
+/obj/structure/mirror{
+	pixel_x = 25;
+	pixel_y = 1
+	},
+/obj/structure/cable,
+/obj/machinery/power/apc/auto_name/south,
+/obj/machinery/light_switch{
+	dir = 1;
+	pixel_x = -12;
+	pixel_y = -16
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_beach/gunsmith/bathroom)
+"la" = (
+/obj/effect/turf_decal/siding/thinplating/dark,
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 1
+	},
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_beach/gunsmith)
+"le" = (
+/obj/structure/railing,
+/obj/effect/turf_decal/ship/techfloor,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_beach/gunsmith/workshop)
+"lo" = (
+/obj/structure/table/reinforced{
+	color = "#c1b6a5"
+	},
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_beach/gunsmith/workshop)
+"lw" = (
+/obj/structure/cable,
+/obj/machinery/light/small,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_beach/gunsmith)
+"lE" = (
+/turf/open/floor/plasteel/stairs/left,
+/area/ruin/unpowered/planet_beach/gunsmith)
+"lJ" = (
+/obj/effect/turf_decal/siding/wood/end,
+/obj/item/kirbyplants{
+	icon_state = "plant-05";
+	pixel_x = 8;
+	pixel_y = -1
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/gunsmith/crewquarters)
+"lW" = (
+/obj/machinery/door/airlock/engineering{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_beach/gunsmith/workshop)
+"mj" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/gunsmith/dorms)
+"ml" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 9
+	},
+/obj/structure/chair/fancy/bench{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/gunsmith/kitchen)
+"mr" = (
+/obj/structure/cable,
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_beach/gunsmith)
+"mw" = (
+/obj/structure/rack,
+/obj/effect/turf_decal/ship/techfloor{
+	dir = 4
+	},
+/obj/item/storage/toolbox/ammo{
+	pixel_x = 7;
+	pixel_y = 1
+	},
+/obj/item/storage/toolbox/ammo{
+	pixel_x = 7;
+	pixel_y = 6
+	},
+/obj/item/storage/toolbox/ammo{
+	pixel_x = 7;
+	pixel_y = 10
+	},
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_beach/gunsmith/workshop)
+"mE" = (
+/obj/structure/cable/yellow,
+/obj/effect/turf_decal/siding/thinplating/dark,
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_beach/gunsmith/electrical)
+"mH" = (
+/obj/effect/turf_decal/ship/borderfloor,
+/obj/effect/turf_decal/trimline/red/line{
+	dir = 1;
+	color = "#B4696A";
+	alpha = 255
+	},
+/obj/machinery/atmospherics/components/unary/passive_vent/layer2{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_beach/gunsmith/kitchen)
+"nd" = (
+/turf/open/floor/plasteel/stairs/left{
+	dir = 4
+	},
+/area/ruin/unpowered/planet_beach/gunsmith)
+"ne" = (
+/obj/structure/lattice/catwalk/over/ship,
+/obj/item/storage/toolbox/electrical{
+	pixel_y = -4
+	},
+/obj/item/storage/toolbox/mechanical{
+	pixel_x = -4;
+	pixel_y = 7
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_beach/gunsmith/electrical)
+"nf" = (
+/obj/item/restraints/legcuffs/beartrap{
+	armed = 1
+	},
+/turf/open/floor/plating/asteroid/dirt/beach,
+/area/ruin/unpowered/planet_beach/gunsmith)
+"ns" = (
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/gunsmith/kitchen)
+"nw" = (
+/obj/structure/frame/machine{
+	anchored = 1
+	},
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_beach/gunsmith)
+"nB" = (
+/obj/effect/turf_decal/tile/red/half{
+	dir = 8;
+	color = "#730622";
+	alpha = 140
+	},
+/obj/machinery/light,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_beach/gunsmith/workshop)
+"nM" = (
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_beach/gunsmith/electrical)
+"nS" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/effect/turf_decal/ship/techfloor{
+	dir = 1
+	},
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_beach/gunsmith/workshop)
+"nX" = (
+/obj/effect/decal/cleanable/oil/slippery,
+/obj/structure/cable,
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_beach/gunsmith/workshop)
+"ot" = (
+/obj/effect/turf_decal/trimline/red/filled/warning{
+	dir = 4;
+	color = "#730622";
+	alpha = 255
+	},
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_beach/gunsmith)
+"ov" = (
+/obj/structure/table/reinforced,
+/obj/machinery/coffeemaker,
+/obj/effect/turf_decal/siding/wood/end{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/gunsmith/kitchen)
+"oB" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/gunsmith/dorms/officer)
+"oG" = (
+/obj/structure/closet/crate/secure/weapon,
+/obj/item/ammo_box/magazine/m556{
+	pixel_x = -4;
+	start_empty = 1
+	},
+/obj/item/ammo_box/magazine/m556{
+	pixel_x = -4;
+	pixel_y = -4;
+	start_empty = 1
+	},
+/obj/effect/turf_decal/tile/red/half{
+	dir = 6;
+	color = "#730622";
+	alpha = 140
+	},
+/obj/item/ammo_box/a762,
+/obj/item/ammo_box/a762,
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_beach/gunsmith/workshop)
+"oH" = (
+/obj/structure/cable,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/gunsmith)
+"oJ" = (
+/obj/machinery/atmospherics/components/unary/passive_vent/layer2,
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_beach/gunsmith/kitchen)
+"oY" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "storage"
+	},
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_beach/gunsmith/workshop)
+"pc" = (
+/obj/item/gun/energy/plasmacutter,
+/obj/effect/decal/cleanable/oil/slippery,
+/mob/living/basic/trooper/syndicate/melee,
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_beach/gunsmith/workshop)
+"pj" = (
+/obj/structure/closet/crate/secure/weapon{
+	opened = 1
+	},
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_beach/gunsmith)
+"px" = (
+/obj/effect/turf_decal/ship/techfloor{
+	dir = 1
+	},
+/obj/structure/table/reinforced{
+	color = "#c1b6a5"
+	},
+/obj/item/ammo_box/magazine/m556{
+	pixel_x = -10;
+	pixel_y = 8;
+	start_empty = 1
+	},
+/obj/item/ammo_casing/a556{
+	pixel_x = 4;
+	pixel_y = 11
+	},
+/obj/item/stack/ore/iron,
+/obj/item/radio/intercom/directional/east,
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_beach/gunsmith/workshop)
+"pI" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_beach/gunsmith/workshop)
+"pO" = (
+/obj/structure/table/wood,
+/obj/item/radio/intercom/directional/east{
+	pixel_y = -6
+	},
+/obj/machinery/computer/security/telescreen/entertainment{
+	pixel_x = 3;
+	pixel_y = 16;
+	dir = 8
+	},
+/turf/open/floor/carpet/green,
+/area/ruin/unpowered/planet_beach/gunsmith/crewquarters)
+"pP" = (
+/obj/machinery/power/rtg/advanced,
+/obj/structure/cable/yellow,
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_beach/gunsmith/electrical)
+"pQ" = (
+/obj/effect/turf_decal/siding/thinplating/dark/corner{
+	dir = 4
+	},
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_beach/gunsmith/electrical)
+"qb" = (
+/turf/open/floor/plating/asteroid/sand/dense,
+/area/ruin/unpowered/planet_beach/gunsmith)
+"qg" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/water/planet/beach,
+/area/ruin/unpowered/planet_beach/gunsmith)
+"qh" = (
+/obj/effect/turf_decal/tile/red/half{
+	dir = 4;
+	color = "#730622";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/techmaint,
+/area/ruin/unpowered/planet_beach/gunsmith/electrical)
+"qq" = (
+/turf/closed/wall/r_wall,
+/area/ruin/unpowered/planet_beach/gunsmith/dorms)
+"qx" = (
+/turf/closed/wall/r_wall,
+/area/ruin/unpowered/planet_beach/gunsmith/crewquarters)
+"qK" = (
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_beach/gunsmith/electrical)
+"qW" = (
+/obj/structure/toilet{
+	pixel_y = 20
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/components/unary/passive_vent/layer2{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_beach/gunsmith/bathroom)
+"qY" = (
+/obj/structure/railing/corner,
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_beach/gunsmith/workshop)
+"ra" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/gunsmith/kitchen)
+"re" = (
+/obj/effect/turf_decal/ship/techfloor{
+	dir = 8
+	},
+/obj/structure/closet/secure_closet{
+	req_access = null;
+	icon_state = "armory"
+	},
+/obj/item/stack/ore/iron{
+	pixel_x = -6;
+	pixel_y = 3;
+	amount = 20
+	},
+/obj/item/stack/ore/iron{
+	pixel_x = -5;
+	pixel_y = 11;
+	amount = 20
+	},
+/obj/item/stack/ore/silver{
+	pixel_x = -11;
+	pixel_y = -3;
+	amount = 5
+	},
+/obj/item/stack/ore/silver{
+	pixel_x = -11;
+	pixel_y = 1;
+	amount = 5
+	},
+/obj/item/stack/ore/silver{
+	pixel_x = -11;
+	pixel_y = 6;
+	amount = 5
+	},
+/obj/item/stack/ore/silver{
+	pixel_x = -11;
+	pixel_y = 12;
+	amount = 5
+	},
+/obj/item/weaponcrafting/receiver{
+	pixel_x = 8;
+	pixel_y = 3
+	},
+/obj/item/weaponcrafting/receiver{
+	pixel_x = 8;
+	pixel_y = 7
+	},
+/obj/item/weaponcrafting/receiver{
+	pixel_x = 8;
+	pixel_y = 11
+	},
+/obj/item/weaponcrafting/stock{
+	pixel_x = 6;
+	pixel_y = -7
+	},
+/obj/item/weaponcrafting/stock{
+	pixel_x = 6;
+	pixel_y = -10
+	},
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_beach/gunsmith/workshop)
+"rf" = (
+/obj/structure/cable,
+/turf/open/floor/plating/asteroid/dirt/beach,
+/area/ruin/unpowered/planet_beach/gunsmith)
+"rI" = (
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/red/line{
+	dir = 8;
+	color = "#B4696A";
+	alpha = 255
+	},
+/obj/item/clothing/shoes/combat{
+	pixel_x = -11;
+	pixel_y = -5
+	},
+/obj/item/clothing/shoes/combat{
+	pixel_x = -11;
+	pixel_y = 6
+	},
+/obj/item/clothing/shoes/combat{
+	pixel_x = -11;
+	pixel_y = 1
+	},
+/obj/item/clothing/shoes/sandal{
+	pixel_x = 4;
+	pixel_y = -1
+	},
+/obj/item/clothing/shoes/sandal{
+	pixel_x = 4;
+	pixel_y = -7
+	},
+/obj/machinery/atmospherics/components/unary/passive_vent/layer2{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_beach/gunsmith/crewquarters)
+"rL" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/gunsmith/crewquarters)
+"rP" = (
+/obj/effect/turf_decal/ship/techfloor/corner{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_beach/gunsmith/workshop)
+"rX" = (
+/obj/structure/rack,
+/obj/effect/turf_decal/siding/thinplating/dark,
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 1
+	},
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_beach/gunsmith)
+"sc" = (
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/gunsmith)
+"sg" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_beach/gunsmith/workshop)
+"sp" = (
+/obj/effect/turf_decal/ship/techfloor{
+	dir = 1
+	},
+/obj/structure/sign/warning/securearea{
+	pixel_x = 26;
+	pixel_y = -6
+	},
+/obj/item/geiger_counter{
+	pixel_x = 8;
+	pixel_y = 3
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_beach/gunsmith/electrical)
+"sr" = (
+/obj/effect/turf_decal/siding/wood/end{
+	dir = 8
+	},
+/obj/machinery/button/door{
+	dir = 4;
+	pixel_x = -20;
+	pixel_y = -9;
+	id = "officelock";
+	name = "zamek sypialni <3";
+	specialfunctions = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/gunsmith/dorms/officer)
+"sy" = (
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/structure/lattice/catwalk/over/ship/dark,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_beach/gunsmith/electrical)
+"sE" = (
+/obj/effect/turf_decal/siding/thinplating/dark,
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_beach/gunsmith/electrical)
+"tu" = (
+/obj/structure/railing,
+/obj/effect/turf_decal/ship/techfloor,
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_beach/gunsmith/workshop)
+"tA" = (
+/obj/effect/turf_decal/ship/borderfloor,
+/obj/effect/turf_decal/trimline/red/line{
+	dir = 1;
+	color = "#B4696A";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_beach/gunsmith)
+"tB" = (
+/turf/open/floor/plasteel/stairs/left{
+	dir = 1
+	},
+/area/ruin/unpowered/planet_beach/gunsmith)
+"tH" = (
+/turf/template_noop,
+/area/template_noop)
+"tK" = (
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/floor/plasteel/stairs/left,
+/area/ruin/unpowered/planet_beach/gunsmith/workshop)
+"tO" = (
+/turf/open/floor/plasteel/stairs/right{
+	dir = 4
+	},
+/area/ruin/unpowered/planet_beach/gunsmith)
+"tR" = (
+/obj/effect/turf_decal/siding/thinplating/dark/end{
+	dir = 4
+	},
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_beach/gunsmith)
+"tY" = (
+/obj/structure/fermenting_barrel,
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/yellow{
+	dir = 10;
+	color = "#C3630C";
+	alpha = 255
+	},
+/obj/effect/turf_decal/box/corners{
+	dir = 4
+	},
+/obj/structure/sign/warning{
+	pixel_y = -24
+	},
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_beach/gunsmith/workshop)
+"us" = (
+/obj/structure/barricade/sandbags,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/gunsmith)
+"ut" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 8
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/gunsmith/crewquarters)
+"uu" = (
+/obj/structure/railing,
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_beach/gunsmith)
+"uv" = (
+/obj/structure/cable,
+/obj/machinery/light,
+/turf/open/water/planet/beach,
+/area/ruin/unpowered/planet_beach/gunsmith)
+"uE" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	dir = 4
+	},
+/turf/open/floor/plasteel/stairs/right{
+	dir = 4
+	},
+/area/ruin/unpowered/planet_beach/gunsmith)
+"uF" = (
+/obj/effect/turf_decal/siding/wood/end{
+	dir = 8
+	},
+/obj/machinery/button/door{
+	pixel_x = -22;
+	pixel_y = -10;
+	dir = 4;
+	id = "bedroomshutters";
+	name = "rolety prywatności"
+	},
+/obj/structure/extinguisher_cabinet/north,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/gunsmith/dorms)
+"uO" = (
+/obj/effect/turf_decal/ship/techfloor{
+	dir = 4
+	},
+/obj/structure/chair{
+	dir = 1
+	},
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_beach/gunsmith)
+"uZ" = (
+/obj/effect/turf_decal/tile/red/half{
+	dir = 1;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/structure/closet/crate/secure/weapon{
+	opened = 1
+	},
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_beach/gunsmith)
+"vc" = (
+/obj/structure/cable,
+/obj/effect/turf_decal/tile/red/half{
+	dir = 4;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/techmaint,
+/area/ruin/unpowered/planet_beach/gunsmith/electrical)
+"vs" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_beach/gunsmith/workshop)
+"vA" = (
+/obj/effect/turf_decal/siding/thinplating/dark,
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_beach/gunsmith/kitchen)
+"vD" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 6
+	},
+/obj/structure/table/reinforced,
+/obj/machinery/light,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/gunsmith/kitchen)
+"vO" = (
+/obj/machinery/light,
+/turf/open/water/planet/beach,
+/area/ruin/unpowered/planet_beach/gunsmith)
+"vP" = (
+/obj/effect/turf_decal/tile/red/half{
+	dir = 4;
+	color = "#730622";
+	alpha = 255
+	},
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_beach/gunsmith)
+"vR" = (
+/obj/structure/chair/fancy/plastic,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/gunsmith)
+"vT" = (
+/turf/closed/wall/r_wall,
+/area/ruin/unpowered/planet_beach/gunsmith/workshop)
+"vX" = (
+/turf/closed/mineral/random/beach,
+/area/ruin/unpowered/planet_beach/gunsmith)
+"wi" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 10
+	},
+/obj/structure/chair/fancy/bench{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/gunsmith/kitchen)
+"wk" = (
+/obj/structure/cable,
+/obj/machinery/power/apc/auto_name/east,
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_beach/gunsmith/workshop)
+"wm" = (
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/gunsmith/dorms/officer)
+"wr" = (
+/obj/effect/turf_decal/siding/wood/end,
+/obj/machinery/light,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/gunsmith/dorms)
+"wy" = (
+/obj/effect/turf_decal/siding/wood/end{
+	dir = 4
+	},
+/obj/structure/closet/crate/bin,
+/obj/item/paper/crumpled{
+	pixel_x = 8;
+	pixel_y = 1
+	},
+/obj/item/paper/crumpled{
+	pixel_x = 7;
+	pixel_y = -10
+	},
+/obj/item/paper/crumpled{
+	pixel_x = -6;
+	pixel_y = -9
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/gunsmith/dorms/officer)
+"wE" = (
+/obj/effect/turf_decal/trimline/red/line{
+	dir = 4;
+	color = "#B4696A";
+	alpha = 255
+	},
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_beach/gunsmith/electrical)
+"wF" = (
+/obj/effect/turf_decal/ship/techfloor/corner{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_beach/gunsmith/workshop)
+"wK" = (
+/obj/effect/turf_decal/trimline/red/filled/warning{
+	dir = 8;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/structure/table,
+/obj/item/stack/spacecash/c1000{
+	pixel_x = 6;
+	pixel_y = 10
+	},
+/obj/item/stamp{
+	pixel_x = -7;
+	pixel_y = 11
+	},
+/obj/item/documents/syndicate{
+	pixel_x = 1
+	},
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_beach/gunsmith)
+"wP" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 5
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/gunsmith/kitchen)
+"wQ" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	dir = 4
+	},
+/turf/open/floor/plasteel/stairs/left{
+	dir = 8
+	},
+/area/ruin/unpowered/planet_beach/gunsmith)
+"wY" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_beach/gunsmith/crewquarters)
+"xh" = (
+/obj/structure/chair/fancy/sofa/old/right{
+	dir = 4
+	},
+/turf/open/floor/carpet/green,
+/area/ruin/unpowered/planet_beach/gunsmith/crewquarters)
+"xo" = (
+/obj/effect/turf_decal/ship/borderfloor/corner{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/red/line{
+	dir = 6;
+	color = "#B4696A";
+	alpha = 255
+	},
+/obj/structure/cable,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_beach/gunsmith)
+"xr" = (
+/obj/effect/turf_decal/ship/techfloor{
+	dir = 9
+	},
+/obj/item/reagent_containers/food/drinks/beer{
+	pixel_x = 11;
+	pixel_y = 3;
+	layer = 3.09
+	},
+/obj/structure/railing{
+	dir = 9
+	},
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_beach/gunsmith)
+"xx" = (
+/obj/machinery/door/airlock/freezer{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_beach/gunsmith/kitchen)
+"xz" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_beach/gunsmith)
+"xB" = (
+/obj/structure/cable/yellow,
+/obj/structure/lattice/catwalk/over/ship/dark,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_beach/gunsmith/electrical)
+"xM" = (
+/mob/living/basic/trooper/syndicate/ranged,
+/obj/structure/chair/stool{
+	dir = 8
+	},
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_beach/gunsmith)
+"xP" = (
+/obj/structure/table/wood,
+/obj/item/flashlight/lamp{
+	pixel_x = -7;
+	pixel_y = 1
+	},
+/turf/open/floor/carpet/green,
+/area/ruin/unpowered/planet_beach/gunsmith/dorms/officer)
+"xR" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/gunsmith/crewquarters)
+"xT" = (
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/components/unary/passive_vent/layer2{
+	dir = 8
+	},
+/obj/structure/lattice/catwalk/over/ship/dark,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_beach/gunsmith/electrical)
+"ye" = (
+/turf/closed/wall/r_wall,
+/area/ruin/unpowered/planet_beach/gunsmith)
+"yr" = (
+/obj/machinery/light,
+/turf/open/floor/plating/asteroid/sand/dense,
+/area/ruin/unpowered/planet_beach/gunsmith)
+"ys" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/turf/open/floor/plasteel/stairs/right,
+/area/ruin/unpowered/planet_beach/gunsmith/workshop)
+"yD" = (
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/red/line{
+	dir = 8;
+	color = "#B4696A";
+	alpha = 255
+	},
+/obj/structure/rack,
+/obj/item/clothing/head/soft/black{
+	pixel_x = -8;
+	pixel_y = 8
+	},
+/obj/item/clothing/head/soft/black{
+	pixel_x = -8;
+	pixel_y = 1
+	},
+/obj/item/clothing/head/soft/black{
+	pixel_x = -8;
+	pixel_y = -6
+	},
+/obj/item/clothing/head/HoS/beret/syndicate{
+	pixel_x = 4;
+	pixel_y = 3
+	},
+/obj/item/clothing/head/HoS/beret/syndicate{
+	pixel_x = 4;
+	pixel_y = 10
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_beach/gunsmith/crewquarters)
+"yL" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/gunsmith/crewquarters)
+"za" = (
+/obj/effect/turf_decal/trimline/red/line{
+	dir = 8;
+	color = "#B4696A";
+	alpha = 255
+	},
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/unary/passive_vent/layer2{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_beach/gunsmith/crewquarters)
+"zg" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "storage"
+	},
+/obj/structure/cable,
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_beach/gunsmith/workshop)
+"zi" = (
+/obj/machinery/power/smes/engineering,
+/obj/structure/cable/green,
+/obj/effect/turf_decal/tile/red/half{
+	dir = 4;
+	color = "#730622";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/techmaint,
+/area/ruin/unpowered/planet_beach/gunsmith/electrical)
+"zn" = (
+/obj/effect/turf_decal/siding/wood/end{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/gunsmith/dorms)
+"zv" = (
+/obj/effect/turf_decal/siding/wood,
+/obj/structure/table/wood,
+/obj/item/paper/crumpled{
+	pixel_x = 3;
+	pixel_y = 5;
+	default_raw_text = "hej kochanie. pamiętaj, żeby ostrożniej przesuwać regał przy skrytce. znowu trzeba będzie prosić rei, żeby naprawił deski"
+	},
+/obj/machinery/light,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/gunsmith/dorms/officer)
+"zx" = (
+/obj/structure/rack,
+/obj/item/grenade/plastic/x4{
+	pixel_x = 7;
+	pixel_y = 3
+	},
+/obj/item/grenade/plastic/x4{
+	pixel_x = 7;
+	pixel_y = -5
+	},
+/obj/item/folder/red{
+	pixel_x = -8;
+	pixel_y = 5
+	},
+/obj/item/folder/syndicate{
+	pixel_x = -8;
+	pixel_y = -6
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_beach/gunsmith/dorms/officer)
+"zG" = (
+/obj/effect/turf_decal/tile/red/half{
+	color = "#730622";
+	alpha = 140
+	},
+/obj/structure/closet/crate/secure/weapon,
+/obj/item/storage/box/lethalshot{
+	pixel_x = -2;
+	pixel_y = -2
+	},
+/obj/item/storage/box/lethalshot{
+	pixel_x = -2;
+	pixel_y = 1
+	},
+/obj/item/reagent_containers/glass/beaker/large{
+	pixel_x = 7;
+	pixel_y = -2
+	},
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_beach/gunsmith/workshop)
+"zJ" = (
+/turf/open/floor/plasteel/stairs{
+	dir = 1
+	},
+/area/ruin/unpowered/planet_beach/gunsmith)
+"zN" = (
+/obj/effect/turf_decal/tile/red/half{
+	color = "#730622";
+	alpha = 140
+	},
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_beach/gunsmith/workshop)
+"zT" = (
+/obj/effect/turf_decal/siding/thinplating/dark,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 9
+	},
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_beach/gunsmith/kitchen)
+"zV" = (
+/obj/structure/barricade/wooden,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/gunsmith)
+"Ab" = (
+/obj/structure/dresser,
+/obj/item/flashlight/lamp{
+	pixel_x = -8;
+	pixel_y = 10;
+	layer = 3.3
+	},
+/obj/item/clothing/head/soft{
+	pixel_x = 5;
+	pixel_y = 9
+	},
+/obj/item/clothing/under/shorts/purple{
+	pixel_x = 10;
+	pixel_y = 8
+	},
+/turf/open/floor/carpet/green,
+/area/ruin/unpowered/planet_beach/gunsmith/dorms)
+"Ad" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 5
+	},
+/obj/structure/chair/fancy/bench{
+	dir = 8
+	},
+/mob/living/basic/trooper/syndicate/ranged/smg,
+/obj/item/radio/intercom/directional/east,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/gunsmith/kitchen)
+"Av" = (
+/obj/structure/cable,
+/obj/machinery/door/airlock/glass,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 1
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_beach/gunsmith/kitchen)
+"Ay" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 10
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_beach/gunsmith/dorms/officer)
+"AG" = (
+/obj/structure/railing{
+	dir = 6
+	},
+/obj/effect/turf_decal/ship/techfloor,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_beach/gunsmith/workshop)
+"AJ" = (
+/turf/closed/wall/r_wall,
+/area/ruin/unpowered/planet_beach/gunsmith/kitchen)
+"AK" = (
+/obj/item/reagent_containers/food/condiment/saltshaker{
+	pixel_x = -13;
+	pixel_y = 16
+	},
+/obj/item/reagent_containers/food/condiment/saltshaker{
+	pixel_x = -9;
+	pixel_y = 16
+	},
+/obj/item/reagent_containers/food/condiment/saltshaker{
+	pixel_x = -4;
+	pixel_y = 16
+	},
+/obj/item/reagent_containers/food/condiment/saltshaker{
+	pixel_x = 1;
+	pixel_y = 16
+	},
+/obj/item/reagent_containers/food/condiment/saltshaker{
+	pixel_x = 6;
+	pixel_y = 16
+	},
+/obj/item/reagent_containers/food/condiment/saltshaker{
+	pixel_x = 11;
+	pixel_y = 16
+	},
+/obj/item/reagent_containers/food/condiment/saltshaker{
+	pixel_x = 16;
+	pixel_y = 16
+	},
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_beach/gunsmith/kitchen)
+"AQ" = (
+/obj/structure/cable,
+/turf/open/water/planet/beach,
+/area/ruin/unpowered/planet_beach/gunsmith)
+"AS" = (
+/obj/structure/bed,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/carpet/green,
+/area/ruin/unpowered/planet_beach/gunsmith/dorms)
+"AU" = (
+/obj/structure/chair/fancy/bench{
+	dir = 1
+	},
+/turf/open/floor/carpet/green,
+/area/ruin/unpowered/planet_beach/gunsmith/crewquarters)
+"AX" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/power/apc/auto_name/north,
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_beach/gunsmith)
+"AY" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/components/unary/passive_vent/layer2{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_beach/gunsmith/electrical)
+"Bh" = (
+/obj/structure/cable,
+/turf/open/floor/plasteel/stairs/right{
+	dir = 1
+	},
+/area/ruin/unpowered/planet_beach/gunsmith)
+"By" = (
+/obj/machinery/light/small,
+/turf/open/water/planet/beach,
+/area/ruin/unpowered/planet_beach/gunsmith)
+"BG" = (
+/turf/open/floor/plating/asteroid/sand,
+/area/ruin/unpowered/planet_beach/gunsmith)
+"BJ" = (
+/obj/structure/safe/floor,
+/obj/item/stack/spacecash/c1000,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_beach/gunsmith/dorms/officer)
+"BU" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/gunsmith/crewquarters)
+"BX" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/thinplating/dark/corner,
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_beach/gunsmith/electrical)
+"Cb" = (
+/obj/machinery/door/poddoor/shutters{
+	id = "engishutter"
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_beach/gunsmith/electrical)
+"Cd" = (
+/obj/structure/chair/fancy/sofa/old/left{
+	dir = 8
+	},
+/obj/item/radio/intercom/directional/east,
+/turf/open/floor/carpet/green,
+/area/ruin/unpowered/planet_beach/gunsmith/dorms)
+"Ci" = (
+/obj/effect/turf_decal/ship/borderfloor/corner{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/red/line{
+	dir = 10;
+	color = "#B4696A";
+	alpha = 255
+	},
+/obj/structure/cable,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_beach/gunsmith)
+"Cs" = (
+/obj/effect/turf_decal/ship/techfloor{
+	dir = 1
+	},
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_beach/gunsmith/workshop)
+"Cx" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 5
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/extinguisher_cabinet/east,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/gunsmith/crewquarters)
+"CL" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_beach/gunsmith/electrical)
+"CZ" = (
+/obj/effect/turf_decal/siding/wood,
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/gunsmith/crewquarters)
+"Dg" = (
+/turf/open/floor/plating/asteroid/dirt/beach,
+/area/ruin/unpowered/planet_beach/gunsmith)
+"Dx" = (
+/obj/structure/extinguisher_cabinet/west,
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_beach/gunsmith/kitchen)
+"Dz" = (
+/obj/structure/closet/crate/bin,
+/obj/structure/extinguisher_cabinet/east,
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_beach/gunsmith/workshop)
+"DB" = (
+/obj/effect/turf_decal/trimline/red/filled/warning{
+	color = "#730622";
+	alpha = 255
+	},
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_beach/gunsmith)
+"DF" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/closet/crate/secure/weapon,
+/obj/item/gun/ballistic/automatic/pistol,
+/obj/item/ammo_box/magazine/m10mm,
+/obj/item/ammo_box/magazine/m10mm,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_beach/gunsmith/workshop)
+"DI" = (
+/turf/open/floor/plating/asteroid/dirt/beach,
+/area/ruin/unpowered/planet_beach/gunsmith/workshop)
+"DK" = (
+/obj/structure/table/reinforced,
+/obj/machinery/reagentgrinder{
+	pixel_x = -8;
+	pixel_y = 7
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 10
+	},
+/obj/item/reagent_containers/food/condiment/saltshaker{
+	pixel_x = 3;
+	pixel_y = 10
+	},
+/obj/item/reagent_containers/food/condiment/peppermill{
+	pixel_x = 9;
+	pixel_y = 10
+	},
+/obj/item/kitchen/rollingpin{
+	pixel_x = 7;
+	pixel_y = -2
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/gunsmith/kitchen)
+"DL" = (
+/obj/structure/cable,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_beach/gunsmith)
+"Ee" = (
+/obj/item/reagent_containers/food/condiment/milk,
+/obj/item/reagent_containers/food/condiment/milk,
+/obj/item/reagent_containers/food/condiment/milk,
+/obj/item/reagent_containers/food/condiment/milk,
+/obj/item/reagent_containers/food/condiment/soymilk,
+/obj/item/reagent_containers/food/condiment/soymilk,
+/obj/item/reagent_containers/food/condiment/soymilk,
+/obj/item/reagent_containers/food/condiment/soymilk,
+/obj/item/storage/fancy/egg_box,
+/obj/item/storage/fancy/egg_box,
+/obj/item/storage/fancy/egg_box,
+/obj/item/storage/fancy/egg_box,
+/obj/structure/closet/secure_closet/freezer,
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_beach/gunsmith/kitchen)
+"Eg" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 5
+	},
+/mob/living/basic/trooper/syndicate/ranged,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/gunsmith/workshop)
+"Eh" = (
+/obj/structure/cable,
+/mob/living/basic/trooper/syndicate/ranged/smg,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/gunsmith)
+"Ei" = (
+/obj/structure/lattice/catwalk/over/ship,
+/obj/machinery/power/terminal{
+	dir = 1
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_beach/gunsmith/electrical)
+"Ep" = (
+/obj/machinery/door/airlock/glass{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_beach/gunsmith/crewquarters)
+"Es" = (
+/obj/effect/turf_decal/ship/techfloor{
+	dir = 1
+	},
+/obj/structure/table/reinforced{
+	color = "#c1b6a5"
+	},
+/obj/item/flashlight/lamp{
+	pixel_x = -8;
+	pixel_y = 14
+	},
+/obj/item/ammo_box/magazine/m556{
+	pixel_x = 13;
+	pixel_y = 12;
+	start_empty = 1
+	},
+/obj/item/ammo_casing/a556{
+	pixel_x = 5;
+	pixel_y = -2
+	},
+/obj/item/ammo_casing/a556{
+	pixel_x = -10;
+	pixel_y = 4
+	},
+/obj/item/stack/ore/iron{
+	pixel_y = 13
+	},
+/obj/item/weaponcrafting/stock{
+	pixel_x = -8;
+	pixel_y = -7
+	},
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_beach/gunsmith/workshop)
+"Et" = (
+/obj/structure/chair/fancy/comfy,
+/obj/machinery/button/door{
+	pixel_x = 9;
+	pixel_y = 21;
+	name = "rolety prywatności";
+	id = "officeshutters"
+	},
+/turf/open/floor/carpet/green,
+/area/ruin/unpowered/planet_beach/gunsmith/dorms/officer)
+"EP" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_beach/gunsmith/electrical)
+"ER" = (
+/obj/effect/turf_decal/siding/wood,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 6
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/gunsmith/dorms)
+"EV" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 9
+	},
+/obj/machinery/oven,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/gunsmith/kitchen)
+"EW" = (
+/obj/effect/turf_decal/tile/red/half{
+	dir = 1;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_beach/gunsmith)
+"Fb" = (
+/obj/machinery/door/airlock/security,
+/obj/machinery/door/poddoor/shutters{
+	id = "armory"
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_beach/gunsmith/workshop)
+"Fn" = (
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_beach/gunsmith/kitchen)
+"Fy" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/structure/cable,
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/button/door{
+	pixel_x = -9;
+	pixel_y = -20;
+	dir = 1;
+	id = "engishutter"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_beach/gunsmith/electrical)
+"FA" = (
+/obj/structure/closet/crate/bin,
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_beach/gunsmith/kitchen)
+"FB" = (
+/obj/effect/turf_decal/ship/techfloor{
+	dir = 1
+	},
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/components/unary/passive_vent/layer2,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_beach/gunsmith/electrical)
+"FC" = (
+/obj/structure/closet/secure_closet{
+	req_access = null;
+	icon_state = "armory"
+	},
+/obj/machinery/light/small,
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_beach/gunsmith)
+"FD" = (
+/obj/effect/turf_decal/siding/wood/end{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/gunsmith/crewquarters)
+"FN" = (
+/obj/structure/cable,
+/turf/open/floor/plasteel/stairs/right{
+	dir = 8
+	},
+/area/ruin/unpowered/planet_beach/gunsmith)
+"FQ" = (
+/obj/item/ammo_box/magazine/m10mm{
+	pixel_x = -10;
+	pixel_y = 3
+	},
+/obj/item/ammo_box/magazine/m10mm{
+	pixel_x = -11;
+	pixel_y = -2
+	},
+/obj/effect/turf_decal/ship/techfloor{
+	dir = 6
+	},
+/obj/structure/closet/secure_closet{
+	req_access = null;
+	icon_state = "armory"
+	},
+/obj/item/ammo_box/magazine/pistolm9mm{
+	pixel_x = -1;
+	pixel_y = -1
+	},
+/obj/item/ammo_box/magazine/pistolm9mm{
+	pixel_x = -3;
+	pixel_y = -4
+	},
+/obj/item/ammo_box/magazine/m10mm{
+	pixel_x = 10;
+	pixel_y = -1
+	},
+/obj/item/ammo_box/magazine/m10mm{
+	pixel_x = 8;
+	pixel_y = -4
+	},
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_beach/gunsmith/workshop)
+"Gj" = (
+/obj/structure/barricade/sandbags,
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/item/radio/intercom/directional/north,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/gunsmith)
+"Gp" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/water/planet/beach,
+/area/ruin/unpowered/planet_beach/gunsmith)
+"GM" = (
+/obj/structure/dresser,
+/obj/item/flashlight/lamp{
+	pixel_x = -7;
+	pixel_y = 7;
+	layer = 3.3
+	},
+/obj/item/lipstick/black{
+	pixel_x = 9;
+	pixel_y = 10;
+	layer = 3.3
+	},
+/obj/item/lipstick{
+	pixel_x = 11;
+	pixel_y = 12;
+	layer = 3.3
+	},
+/obj/item/clothing/under/shorts/red{
+	pixel_x = 7;
+	pixel_y = 9;
+	layer = 3.4
+	},
+/turf/open/floor/carpet/green,
+/area/ruin/unpowered/planet_beach/gunsmith/dorms)
+"GO" = (
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/gunsmith/dorms)
+"GV" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/gunsmith/crewquarters)
+"Hf" = (
+/obj/effect/turf_decal/tile/red/half{
+	dir = 10;
+	color = "#730622";
+	alpha = 140
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_beach/gunsmith/workshop)
+"Hi" = (
+/obj/machinery/power/rtg/advanced,
+/obj/structure/cable/yellow,
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 8
+	},
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_beach/gunsmith/electrical)
+"Hn" = (
 /obj/machinery/washing_machine{
 	layer = 3.08
 	},
@@ -746,17 +2379,125 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/unpowered/planet_beach/gunsmith/bathroom)
-"mR" = (
-/obj/structure/toilet{
-	pixel_y = 20
+"Hs" = (
+/obj/structure/chair/fancy/sofa/old/left{
+	dir = 4
 	},
-/obj/structure/cable,
-/obj/machinery/atmospherics/components/unary/passive_vent/layer2{
+/turf/open/floor/carpet/green,
+/area/ruin/unpowered/planet_beach/gunsmith/crewquarters)
+"HD" = (
+/obj/effect/turf_decal/siding/wood{
 	dir = 8
 	},
-/turf/open/floor/plasteel,
-/area/ruin/unpowered/planet_beach/gunsmith/bathroom)
-"mS" = (
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/gunsmith/kitchen)
+"HJ" = (
+/obj/effect/turf_decal/tile/black/half{
+	dir = 8;
+	color = "#444547";
+	alpha = 255
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 8
+	},
+/turf/open/floor/plasteel/stairs/left,
+/area/ruin/unpowered/planet_beach/gunsmith/electrical)
+"HM" = (
+/obj/effect/turf_decal/ship/techfloor{
+	dir = 1
+	},
+/obj/machinery/button/door{
+	pixel_x = -9;
+	pixel_y = 21
+	},
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_beach/gunsmith/workshop)
+"HO" = (
+/obj/effect/turf_decal/tile/black/half{
+	dir = 8;
+	color = "#444547";
+	alpha = 255
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 10
+	},
+/turf/open/floor/plasteel/stairs/right,
+/area/ruin/unpowered/planet_beach/gunsmith/electrical)
+"Ii" = (
+/obj/effect/decal/cleanable/oil,
+/obj/structure/cable,
+/obj/machinery/door/poddoor/shutters{
+	id = "engishutter"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_beach/gunsmith/electrical)
+"Im" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 1
+	},
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_beach/gunsmith/electrical)
+"Iv" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 1
+	},
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_beach/gunsmith)
+"Iw" = (
+/obj/structure/grille,
+/obj/structure/window/plastitanium,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_beach/gunsmith)
+"IJ" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/mob/living/basic/trooper/syndicate/ranged/smg,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/gunsmith)
+"IK" = (
+/obj/structure/chair/fancy/bench{
+	dir = 1
+	},
+/obj/item/radio/intercom/directional/south,
+/turf/open/floor/carpet/green,
+/area/ruin/unpowered/planet_beach/gunsmith/crewquarters)
+"IL" = (
+/obj/structure/cable,
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_beach/gunsmith)
+"IR" = (
+/obj/structure/cable,
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_beach/gunsmith/electrical)
+"Jm" = (
+/obj/effect/turf_decal/trimline/red/line{
+	dir = 9;
+	color = "#B4696A";
+	alpha = 255
+	},
+/obj/structure/sign/warning/electricshock{
+	pixel_x = 7;
+	pixel_y = 39
+	},
+/obj/structure/sign/warning/securearea{
+	pixel_x = 7;
+	pixel_y = 25
+	},
+/obj/machinery/power/apc/auto_name/west,
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/button/door{
+	pixel_x = -9;
+	pixel_y = 21;
+	id = "engishutter"
+	},
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_beach/gunsmith/electrical)
+"Jt" = (
 /obj/effect/turf_decal/ship/techfloor{
 	dir = 1
 	},
@@ -766,7 +2507,225 @@
 /obj/machinery/modular_fabricator/autolathe,
 /turf/open/floor/monotile/dark,
 /area/ruin/unpowered/planet_beach/gunsmith/workshop)
-"nf" = (
+"Jv" = (
+/obj/effect/turf_decal/siding/thinplating/dark/corner{
+	dir = 1
+	},
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_beach/gunsmith/electrical)
+"JC" = (
+/obj/effect/turf_decal/tile/red/half{
+	dir = 10;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/machinery/light/floor,
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_beach/gunsmith)
+"JD" = (
+/obj/structure/table/wood,
+/obj/item/radio/intercom/directional/east{
+	pixel_y = 6
+	},
+/turf/open/floor/carpet/green,
+/area/ruin/unpowered/planet_beach/gunsmith/crewquarters)
+"JK" = (
+/obj/structure/cable/yellow,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/thinplating/dark,
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_beach/gunsmith/electrical)
+"JL" = (
+/obj/item/kitchen/knife{
+	pixel_x = -3;
+	pixel_y = 6
+	},
+/obj/item/plate{
+	pixel_x = 10;
+	pixel_y = -2
+	},
+/obj/item/plate{
+	pixel_x = 10;
+	pixel_y = -4
+	},
+/obj/item/plate{
+	pixel_x = 10;
+	pixel_y = -6
+	},
+/obj/item/plate{
+	pixel_x = 10;
+	pixel_y = -8
+	},
+/obj/item/plate{
+	pixel_x = 10;
+	pixel_y = -10
+	},
+/obj/item/plate{
+	pixel_x = 10;
+	pixel_y = -12
+	},
+/obj/item/plate/small{
+	pixel_x = -6;
+	pixel_y = -1
+	},
+/obj/item/plate/small{
+	pixel_x = -6;
+	pixel_y = -3
+	},
+/obj/item/plate/small{
+	pixel_x = -6;
+	pixel_y = -5
+	},
+/obj/item/plate/small{
+	pixel_x = -6;
+	pixel_y = -7
+	},
+/obj/item/plate/small{
+	pixel_x = -6;
+	pixel_y = -9
+	},
+/obj/item/plate/small{
+	pixel_x = -6;
+	pixel_y = -11
+	},
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_beach/gunsmith/kitchen)
+"JM" = (
+/obj/effect/turf_decal/tile/red/half{
+	dir = 9;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/machinery/light/floor,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_beach/gunsmith)
+"JU" = (
+/obj/structure/railing/corner{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_beach/gunsmith)
+"Kn" = (
+/obj/structure/railing,
+/obj/structure/cable,
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_beach/gunsmith)
+"Ks" = (
+/obj/effect/turf_decal/ship/techfloor{
+	dir = 8
+	},
+/obj/structure/closet/secure_closet{
+	req_access = null;
+	icon_state = "armory"
+	},
+/obj/item/stack/sheet/plastic/twenty{
+	pixel_x = -9;
+	pixel_y = 2
+	},
+/obj/item/stack/sheet/plasteel/twenty{
+	pixel_x = -9;
+	pixel_y = 8
+	},
+/obj/item/stack/sheet/mineral/plasma/twenty{
+	pixel_x = -9;
+	pixel_y = -10
+	},
+/obj/item/stack/sheet/iron/fifty{
+	pixel_x = 6;
+	pixel_y = 2
+	},
+/obj/item/stack/sheet/glass/fifty{
+	pixel_x = 6;
+	pixel_y = 8
+	},
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_beach/gunsmith/workshop)
+"KB" = (
+/obj/effect/turf_decal/trimline/red/filled/warning{
+	dir = 1;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_beach/gunsmith)
+"KC" = (
+/obj/structure/railing{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/plasteel/stairs/left{
+	dir = 8
+	},
+/area/ruin/unpowered/planet_beach/gunsmith)
+"KH" = (
+/obj/effect/turf_decal/ship/borderfloor,
+/obj/effect/turf_decal/trimline/red/line{
+	dir = 1;
+	color = "#B4696A";
+	alpha = 255
+	},
+/obj/structure/cable,
+/obj/machinery/power/apc/auto_name/north,
+/obj/machinery/light_switch{
+	pixel_x = -12;
+	pixel_y = 22
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_beach/gunsmith/kitchen)
+"KL" = (
+/obj/effect/turf_decal/ship/techfloor{
+	dir = 1
+	},
+/obj/structure/table/reinforced{
+	color = "#c1b6a5"
+	},
+/obj/item/storage/toolbox/syndicate{
+	pixel_x = -3;
+	pixel_y = 2
+	},
+/obj/item/stock_parts/micro_laser/high{
+	pixel_x = 5;
+	pixel_y = 14
+	},
+/obj/item/stack/sticky_tape{
+	pixel_x = 7;
+	pixel_y = -6
+	},
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_beach/gunsmith/workshop)
+"KP" = (
+/obj/effect/turf_decal/siding/thinplating/dark/end{
+	dir = 8
+	},
+/obj/structure/table,
+/obj/machinery/recharger{
+	pixel_x = -7;
+	pixel_y = 2
+	},
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_beach/gunsmith)
+"KR" = (
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_beach/gunsmith)
+"La" = (
+/obj/effect/turf_decal/tile/red/half{
+	dir = 8;
+	color = "#730622";
+	alpha = 140
+	},
+/obj/machinery/light,
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_beach/gunsmith/workshop)
+"Ld" = (
+/obj/structure/railing,
+/turf/open/floor/plasteel/stairs/right{
+	dir = 8
+	},
+/area/ruin/unpowered/planet_beach/gunsmith)
+"Lj" = (
 /obj/effect/turf_decal/tile/red/half{
 	dir = 4;
 	color = "#730622";
@@ -798,16 +2757,476 @@
 	},
 /turf/open/floor/monotile/dark,
 /area/ruin/unpowered/planet_beach/gunsmith/workshop)
-"nm" = (
+"Lk" = (
+/mob/living/basic/trooper/syndicate/ranged/smg,
+/turf/open/floor/plating/asteroid/dirt/beach,
+/area/ruin/unpowered/planet_beach/gunsmith)
+"Lw" = (
+/obj/structure/window/plastitanium,
+/obj/machinery/door/poddoor/shutters{
+	id = "officeshutters"
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_beach/gunsmith/dorms/officer)
+"LC" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 5
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/gunsmith/crewquarters)
+"LW" = (
+/obj/structure/barricade/sandbags,
+/obj/machinery/door/poddoor/shutters/preopen{
+	dir = 4
+	},
+/obj/structure/railing{
+	dir = 8
+	},
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_beach/gunsmith)
+"Mg" = (
 /obj/effect/turf_decal/tile/red/half{
-	dir = 8;
+	dir = 4;
 	color = "#730622";
 	alpha = 140
 	},
-/obj/machinery/light,
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_beach/gunsmith/workshop)
+"Mw" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_beach/gunsmith/kitchen)
+"Mz" = (
+/obj/machinery/door/airlock,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_beach/gunsmith/crewquarters)
+"MJ" = (
+/obj/effect/turf_decal/ship/techfloor{
+	dir = 1
+	},
+/obj/structure/cable/yellow,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_beach/gunsmith/electrical)
+"MN" = (
+/obj/machinery/door/airlock/security,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_beach/gunsmith/workshop)
+"MO" = (
+/obj/effect/decal/cleanable/oil/streak,
+/obj/item/pickaxe/drill{
+	pixel_x = 9;
+	pixel_y = 15
+	},
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_beach/gunsmith/workshop)
+"MW" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/drinks/bottle/vodka{
+	pixel_x = -7;
+	pixel_y = 9
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass{
+	pixel_x = 3;
+	pixel_y = 4
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass{
+	pixel_x = 9;
+	pixel_y = 9
+	},
+/turf/open/floor/carpet/green,
+/area/ruin/unpowered/planet_beach/gunsmith/dorms/officer)
+"Ne" = (
+/obj/structure/cable,
+/obj/machinery/light/small,
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_beach/gunsmith)
+"Nn" = (
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/wood,
+/obj/machinery/holopad,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/gunsmith/workshop)
+"Ns" = (
+/obj/structure/bookcase/random{
+	opacity = 1
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_beach/gunsmith/dorms/officer)
+"Nw" = (
+/turf/open/floor/plasteel/stairs/left{
+	dir = 8
+	},
+/area/ruin/unpowered/planet_beach/gunsmith)
+"Oe" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/thinplating/dark/corner{
+	dir = 8
+	},
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_beach/gunsmith/electrical)
+"OC" = (
+/obj/effect/turf_decal/siding/thinplating/dark/end{
+	dir = 4
+	},
+/obj/structure/closet/crate/freezer,
+/obj/item/reagent_containers/food/drinks/beer,
+/obj/item/reagent_containers/food/drinks/beer{
+	pixel_y = 4
+	},
+/obj/item/reagent_containers/food/drinks/beer{
+	pixel_y = 8
+	},
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_beach/gunsmith)
+"Pf" = (
+/turf/open/floor/plasteel/stairs/right{
+	dir = 8
+	},
+/area/ruin/unpowered/planet_beach/gunsmith)
+"Po" = (
+/obj/structure/table/reinforced,
+/obj/item/kitchen/knife/butcher,
+/obj/item/stack/rods/ten{
+	pixel_x = -11;
+	pixel_y = 8
+	},
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_beach/gunsmith/kitchen)
+"PH" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_beach/gunsmith/workshop)
+"PK" = (
+/obj/structure/window/plastitanium,
+/obj/machinery/door/poddoor/shutters{
+	dir = 4;
+	id = "exchangewindows"
+	},
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_beach/gunsmith/workshop)
+"PQ" = (
+/obj/structure/railing/corner{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_beach/gunsmith)
+"Qg" = (
+/obj/effect/turf_decal/siding/wood,
+/obj/structure/table/wood,
+/obj/item/food/nigiri_sushi{
+	pixel_x = -7;
+	pixel_y = 8
+	},
+/obj/item/food/nigiri_sushi{
+	pixel_x = -7;
+	pixel_y = 5
+	},
+/obj/item/food/nigiri_sushi{
+	pixel_x = -7;
+	pixel_y = 2
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass{
+	pixel_x = 10;
+	pixel_y = 2;
+	layer = 3.1
+	},
+/obj/item/reagent_containers/food/condiment/soysauce{
+	pixel_x = 11;
+	pixel_y = 13
+	},
+/obj/item/food/onigiri{
+	pixel_x = 2;
+	pixel_y = 5
+	},
+/obj/item/food/onigiri{
+	pixel_x = 2;
+	pixel_y = 7
+	},
+/obj/item/food/onigiri{
+	pixel_x = 2;
+	pixel_y = 9
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/gunsmith/kitchen)
+"Qi" = (
+/obj/structure/window/plastitanium,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_beach/gunsmith/crewquarters)
+"Qj" = (
+/obj/structure/chair{
+	dir = 4;
+	pixel_x = 5;
+	pixel_y = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_beach/gunsmith)
+"Qn" = (
+/obj/structure/chair/fancy/sofa/old/right{
+	dir = 4
+	},
+/turf/open/floor/carpet/green,
+/area/ruin/unpowered/planet_beach/gunsmith/dorms)
+"Qq" = (
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_beach/gunsmith)
+"Qr" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/drinks/coffee{
+	pixel_x = -7;
+	pixel_y = 2
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/gunsmith/dorms)
+"QN" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/plating/asteroid/dirt/beach,
+/area/ruin/unpowered/planet_beach/gunsmith/workshop)
+"QO" = (
 /turf/open/floor/plasteel/dark,
 /area/ruin/unpowered/planet_beach/gunsmith/workshop)
-"nz" = (
+"Rd" = (
+/obj/structure/reagent_dispensers/fueltank,
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/yellow{
+	dir = 10;
+	color = "#C3630C";
+	alpha = 255
+	},
+/obj/effect/turf_decal/box/corners{
+	dir = 1
+	},
+/obj/structure/sign/warning{
+	pixel_y = -24
+	},
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_beach/gunsmith/workshop)
+"Rp" = (
+/obj/effect/turf_decal/trimline/red/filled/warning{
+	color = "#730622";
+	alpha = 255
+	},
+/obj/machinery/light/floor,
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_beach/gunsmith)
+"Rz" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/gunsmith)
+"RC" = (
+/obj/machinery/light,
+/turf/open/water/planet/beach/deep,
+/area/ruin/unpowered/planet_beach/gunsmith)
+"RI" = (
+/obj/effect/turf_decal/ship/techfloor{
+	dir = 1
+	},
+/obj/structure/sign/warning/securearea{
+	pixel_x = -26;
+	pixel_y = -6
+	},
+/obj/effect/decal/cleanable/oil,
+/obj/structure/cable,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_beach/gunsmith/electrical)
+"RQ" = (
+/obj/machinery/door/airlock,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 1
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_beach/gunsmith/dorms)
+"Sc" = (
+/obj/machinery/griddle,
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/gunsmith/kitchen)
+"Sd" = (
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_beach/gunsmith/kitchen)
+"Sg" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 5
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/gunsmith/dorms)
+"Si" = (
+/obj/structure/railing,
+/turf/open/water/planet/beach,
+/area/ruin/unpowered/planet_beach/gunsmith)
+"Sl" = (
+/obj/effect/turf_decal/trimline/red/corner{
+	dir = 1;
+	color = "#B4696A";
+	alpha = 255
+	},
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_beach/gunsmith/electrical)
+"Sm" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/wood/corner,
+/obj/item/clothing/under/shorts/red{
+	pixel_x = -25;
+	pixel_y = 5
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/gunsmith/dorms)
+"So" = (
+/obj/effect/turf_decal/siding/wood,
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 4
+	},
+/obj/structure/table/wood,
+/obj/item/paper_bin,
+/obj/item/pen,
+/obj/item/radio/intercom/directional/south,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/gunsmith/dorms/officer)
+"Sp" = (
+/obj/effect/turf_decal/ship/techfloor{
+	dir = 1
+	},
+/obj/structure/chair/fancy/plastic{
+	dir = 1
+	},
+/obj/item/fishing_rod{
+	pixel_x = 11;
+	pixel_y = 20;
+	layer = 3.09
+	},
+/obj/structure/railing{
+	dir = 1
+	},
+/obj/item/storage/box/fishing_worms{
+	pixel_x = 18;
+	pixel_y = 5
+	},
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_beach/gunsmith)
+"Sv" = (
+/obj/structure/table,
+/obj/item/binoculars,
+/obj/item/reagent_containers/glass/mortar{
+	pixel_x = -7;
+	pixel_y = 8
+	},
+/obj/item/cigbutt{
+	pixel_x = -10;
+	pixel_y = 16
+	},
+/obj/item/cigbutt{
+	pixel_x = -6;
+	pixel_y = 15
+	},
+/obj/item/cigbutt{
+	pixel_x = -12;
+	pixel_y = 14
+	},
+/obj/item/storage/fancy/cigarettes/cigpack_syndicate{
+	pixel_x = 5;
+	pixel_y = 10
+	},
+/obj/item/lighter{
+	pixel_x = 11;
+	pixel_y = 9
+	},
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_beach/gunsmith)
+"SE" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/gunsmith/dorms)
+"ST" = (
+/obj/machinery/door/airlock/grunge{
+	dir = 4;
+	id_tag = "officelock"
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_beach/gunsmith/dorms/officer)
+"Tc" = (
+/obj/machinery/door/window/northright,
+/obj/item/soap{
+	pixel_x = 7;
+	pixel_y = -9
+	},
+/obj/item/soap{
+	pixel_x = 7;
+	pixel_y = -5
+	},
+/obj/item/pushbroom{
+	pixel_x = 3;
+	pixel_y = -3
+	},
+/obj/item/mop{
+	pixel_x = 7;
+	pixel_y = -3
+	},
+/obj/item/reagent_containers/glass/bucket{
+	pixel_x = -10;
+	pixel_y = 2
+	},
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_beach/gunsmith/bathroom)
+"Tk" = (
+/obj/structure/bed/double,
+/obj/item/bedsheet/double/rd{
+	name = "podwójne fioletowe prześcieradło";
+	desc = "Duże, wygodne prześcieradło."
+	},
+/turf/open/floor/carpet/green,
+/area/ruin/unpowered/planet_beach/gunsmith/dorms/officer)
+"Tm" = (
+/obj/item/reagent_containers/food/drinks/beer{
+	pixel_x = -6;
+	pixel_y = -4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_beach/gunsmith)
+"Tq" = (
+/obj/structure/window/plastitanium,
+/obj/machinery/door/poddoor/shutters/preopen{
+	dir = 8;
+	id = "bedroomshutters"
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_beach/gunsmith/dorms)
+"Tt" = (
 /obj/effect/turf_decal/ship/borderfloor{
 	dir = 4
 	},
@@ -857,107 +3276,144 @@
 /obj/structure/closet,
 /turf/open/floor/plasteel/dark,
 /area/ruin/unpowered/planet_beach/gunsmith/dorms/officer)
-"nM" = (
-/obj/structure/closet/crate/bin,
-/turf/open/floor/concrete/slab_1,
-/area/ruin/unpowered/planet_beach/gunsmith/kitchen)
-"nX" = (
-/obj/structure/sink{
-	dir = 8;
-	pixel_x = 13;
-	pixel_y = -1
-	},
-/obj/structure/mirror{
-	pixel_x = 25;
-	pixel_y = 1
-	},
-/obj/structure/cable,
-/obj/machinery/power/apc/auto_name/south,
-/obj/machinery/light_switch{
-	dir = 1;
-	pixel_x = -12;
-	pixel_y = -16
-	},
-/turf/open/floor/plasteel,
-/area/ruin/unpowered/planet_beach/gunsmith/bathroom)
-"oe" = (
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "storage"
-	},
-/obj/structure/cable,
-/turf/open/floor/concrete/slab_1,
-/area/ruin/unpowered/planet_beach/gunsmith/workshop)
-"of" = (
-/obj/structure/bed,
-/turf/open/floor/carpet/green,
-/area/ruin/unpowered/planet_beach/gunsmith/dorms)
-"ov" = (
-/obj/structure/cable,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/wood,
-/area/ruin/unpowered/planet_beach/gunsmith)
-"oF" = (
-/obj/effect/turf_decal/ship/techfloor{
-	dir = 1
-	},
-/obj/structure/sign/warning/securearea{
-	pixel_x = -26;
-	pixel_y = -6
-	},
-/obj/effect/decal/cleanable/oil,
+"Tw" = (
 /obj/structure/cable,
 /turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_beach/gunsmith/workshop)
+"Tz" = (
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/components/unary/passive_vent/layer2{
+	dir = 4
+	},
+/obj/structure/lattice/catwalk/over/ship/dark,
+/turf/open/floor/plating,
 /area/ruin/unpowered/planet_beach/gunsmith/electrical)
-"oJ" = (
-/obj/machinery/light,
-/turf/open/water/planet/beach/deep,
-/area/ruin/unpowered/planet_beach/gunsmith)
-"oQ" = (
-/obj/structure/railing,
-/turf/open/floor/plasteel/stairs/right{
+"TA" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 9
+	},
+/mob/living/basic/trooper/syndicate/melee/sword,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/gunsmith/crewquarters)
+"TL" = (
+/obj/machinery/door/airlock{
+	dir = 4;
+	id_tag = "gunsmithbathroom"
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_beach/gunsmith/bathroom)
+"TN" = (
+/obj/effect/turf_decal/ship/techfloor,
+/obj/machinery/light/small{
 	dir = 8
 	},
-/area/ruin/unpowered/planet_beach/gunsmith)
-"pc" = (
-/obj/structure/fermenting_barrel,
-/obj/structure/railing{
-	dir = 4
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_beach/gunsmith/workshop)
+"Ue" = (
+/obj/structure/table/reinforced,
+/obj/item/storage/fancy/coffee_condi_display{
+	pixel_x = -4;
+	pixel_y = 2
 	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 10;
-	color = "#C3630C";
+/obj/item/storage/box/coffeepack/arabica{
+	pixel_x = 10;
+	pixel_y = 4
+	},
+/obj/item/storage/box/coffeepack/robusta{
+	pixel_x = 10
+	},
+/obj/effect/turf_decal/siding/wood/end{
+	dir = 8
+	},
+/obj/machinery/light,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/gunsmith/kitchen)
+"Uh" = (
+/obj/effect/turf_decal/tile/red/half{
+	color = "#730622";
 	alpha = 255
 	},
-/obj/effect/turf_decal/box/corners{
-	dir = 4
-	},
-/obj/structure/sign/warning{
-	pixel_y = -24
-	},
-/turf/open/floor/concrete/slab_4,
-/area/ruin/unpowered/planet_beach/gunsmith/workshop)
-"pd" = (
-/obj/structure/lattice/catwalk/over/ship/dark,
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_beach/gunsmith)
+"Uo" = (
 /obj/structure/cable,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_beach/gunsmith/workshop)
+"UA" = (
+/obj/effect/turf_decal/trimline/red/filled/warning{
+	dir = 8;
+	color = "#730622";
+	alpha = 255
+	},
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_beach/gunsmith)
+"UD" = (
+/obj/structure/window/plastitanium,
+/obj/machinery/door/poddoor/shutters{
+	id = "exchangewindows"
+	},
 /turf/open/floor/plating,
 /area/ruin/unpowered/planet_beach/gunsmith/workshop)
-"pw" = (
-/obj/item/reagent_containers/food/condiment/milk,
-/obj/item/reagent_containers/food/condiment/milk,
-/obj/item/reagent_containers/food/condiment/milk,
-/obj/item/reagent_containers/food/condiment/milk,
-/obj/item/reagent_containers/food/condiment/soymilk,
-/obj/item/reagent_containers/food/condiment/soymilk,
-/obj/item/reagent_containers/food/condiment/soymilk,
-/obj/item/reagent_containers/food/condiment/soymilk,
-/obj/item/storage/fancy/egg_box,
-/obj/item/storage/fancy/egg_box,
-/obj/item/storage/fancy/egg_box,
-/obj/item/storage/fancy/egg_box,
-/obj/structure/closet/secure_closet/freezer,
+"UF" = (
+/obj/machinery/shower{
+	dir = 4
+	},
+/obj/structure/window/reinforced/tinted{
+	dir = 1
+	},
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_beach/gunsmith/bathroom)
+"UR" = (
+/obj/machinery/light,
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_beach/gunsmith/workshop)
+"Vb" = (
+/obj/effect/turf_decal/trimline/red/filled/warning{
+	dir = 1;
+	color = "#730622";
+	alpha = 255
+	},
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_beach/gunsmith)
+"Vd" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 9
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/gunsmith/crewquarters)
+"Vi" = (
+/obj/effect/turf_decal/trimline/red/filled/warning{
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_beach/gunsmith)
+"Wn" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_beach/gunsmith)
+"Wq" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 5
+	},
 /turf/open/floor/monotile/steel,
 /area/ruin/unpowered/planet_beach/gunsmith/kitchen)
-"py" = (
+"WB" = (
+/obj/effect/turf_decal/siding/thinplating/dark/end{
+	dir = 8
+	},
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_beach/gunsmith)
+"WH" = (
 /obj/effect/turf_decal/ship/borderfloor{
 	dir = 1
 	},
@@ -1018,1144 +3474,48 @@
 /obj/structure/closet,
 /turf/open/floor/plating,
 /area/ruin/unpowered/planet_beach/gunsmith/dorms)
-"pQ" = (
-/obj/structure/window/plastitanium,
-/turf/open/floor/plating,
-/area/ruin/unpowered/planet_beach/gunsmith/kitchen)
-"pW" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 8
-	},
-/turf/open/floor/wood,
-/area/ruin/unpowered/planet_beach/gunsmith/crewquarters)
-"qc" = (
-/turf/open/floor/concrete/slab_4,
-/area/ruin/unpowered/planet_beach/gunsmith/workshop)
-"qk" = (
-/obj/effect/turf_decal/ship/techfloor/corner{
-	dir = 1
-	},
-/obj/structure/cable,
-/turf/open/floor/concrete/slab_4,
-/area/ruin/unpowered/planet_beach/gunsmith/workshop)
-"qo" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 9
-	},
-/turf/open/floor/wood,
-/area/ruin/unpowered/planet_beach/gunsmith/crewquarters)
-"qA" = (
-/obj/effect/turf_decal/ship/borderfloor{
-	dir = 4
-	},
-/obj/effect/turf_decal/trimline/red/line{
-	dir = 8;
-	color = "#B4696A";
-	alpha = 255
-	},
-/obj/item/clothing/shoes/combat{
-	pixel_x = -11;
-	pixel_y = -5
-	},
-/obj/item/clothing/shoes/combat{
-	pixel_x = -11;
-	pixel_y = 6
-	},
-/obj/item/clothing/shoes/combat{
-	pixel_x = -11;
-	pixel_y = 1
-	},
-/obj/item/clothing/shoes/sandal{
-	pixel_x = 4;
-	pixel_y = -1
-	},
-/obj/item/clothing/shoes/sandal{
-	pixel_x = 4;
-	pixel_y = -7
-	},
-/obj/machinery/atmospherics/components/unary/passive_vent/layer2{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/unpowered/planet_beach/gunsmith/crewquarters)
-"qD" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 6
-	},
-/obj/structure/table/reinforced,
-/obj/machinery/light,
-/turf/open/floor/wood,
-/area/ruin/unpowered/planet_beach/gunsmith/kitchen)
-"qF" = (
-/obj/effect/turf_decal/siding/wood/end,
-/obj/machinery/light,
-/turf/open/floor/wood,
-/area/ruin/unpowered/planet_beach/gunsmith/dorms)
-"rd" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 10
-	},
-/obj/structure/chair/fancy/bench{
-	dir = 4
-	},
-/turf/open/floor/wood,
-/area/ruin/unpowered/planet_beach/gunsmith/kitchen)
-"rk" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 8
-	},
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/turf/open/floor/wood,
-/area/ruin/unpowered/planet_beach/gunsmith/crewquarters)
-"rl" = (
-/turf/open/floor/carpet/green,
-/area/ruin/unpowered/planet_beach/gunsmith/crewquarters)
-"rB" = (
-/obj/effect/turf_decal/tile/red/half{
-	dir = 4;
-	color = "#730622";
-	alpha = 255
-	},
-/turf/open/floor/plasteel/techmaint,
-/area/ruin/unpowered/planet_beach/gunsmith/electrical)
-"rW" = (
-/obj/structure/cable,
-/turf/open/floor/plating/asteroid/dirt/beach,
-/area/ruin/unpowered/planet_beach/gunsmith)
-"sb" = (
-/obj/structure/bed,
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/carpet/green,
-/area/ruin/unpowered/planet_beach/gunsmith/dorms)
-"sm" = (
-/obj/effect/turf_decal/siding/thinplating/dark/corner{
-	dir = 4
-	},
-/turf/open/floor/concrete/slab_4,
-/area/ruin/unpowered/planet_beach/gunsmith/electrical)
-"sF" = (
-/obj/effect/turf_decal/trimline/red/filled/warning{
-	color = "#730622";
-	alpha = 255
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/concrete/slab_1,
-/area/ruin/unpowered/planet_beach/gunsmith)
-"sI" = (
-/obj/effect/turf_decal/tile/red/half{
-	dir = 10;
-	color = "#730622";
-	alpha = 255
-	},
-/obj/machinery/light/floor,
-/turf/open/floor/concrete/slab_1,
-/area/ruin/unpowered/planet_beach/gunsmith)
-"sL" = (
-/obj/effect/turf_decal/siding/thinplating/dark,
-/obj/effect/turf_decal/siding/thinplating/dark{
-	dir = 1
-	},
-/turf/open/floor/concrete/slab_1,
-/area/ruin/unpowered/planet_beach/gunsmith)
-"sX" = (
-/obj/effect/turf_decal/tile/red/half{
-	dir = 4;
-	color = "#730622";
-	alpha = 140
-	},
-/obj/structure/closet/crate/secure/weapon,
-/obj/item/attachment/scope{
-	pixel_x = -7;
-	pixel_y = -7
-	},
-/obj/item/attachment/scope{
-	pixel_x = -7;
-	pixel_y = -10
-	},
-/obj/item/flamethrower,
-/turf/open/floor/monotile/dark,
-/area/ruin/unpowered/planet_beach/gunsmith/workshop)
-"tg" = (
-/obj/item/reagent_containers/food/condiment/saltshaker{
-	pixel_x = -13;
-	pixel_y = 16
-	},
-/obj/item/reagent_containers/food/condiment/saltshaker{
-	pixel_x = -9;
-	pixel_y = 16
-	},
-/obj/item/reagent_containers/food/condiment/saltshaker{
-	pixel_x = -4;
-	pixel_y = 16
-	},
-/obj/item/reagent_containers/food/condiment/saltshaker{
-	pixel_x = 1;
-	pixel_y = 16
-	},
-/obj/item/reagent_containers/food/condiment/saltshaker{
-	pixel_x = 6;
-	pixel_y = 16
-	},
-/obj/item/reagent_containers/food/condiment/saltshaker{
-	pixel_x = 11;
-	pixel_y = 16
-	},
-/obj/item/reagent_containers/food/condiment/saltshaker{
-	pixel_x = 16;
-	pixel_y = 16
-	},
-/turf/open/floor/monotile/steel,
-/area/ruin/unpowered/planet_beach/gunsmith/kitchen)
-"tj" = (
-/obj/effect/turf_decal/tile/red/half{
-	dir = 1;
-	color = "#730622";
-	alpha = 255
-	},
-/obj/structure/closet/crate/secure/weapon{
-	opened = 1
-	},
-/turf/open/floor/concrete/slab_1,
-/area/ruin/unpowered/planet_beach/gunsmith)
-"tq" = (
-/obj/structure/grille,
-/obj/structure/window/plastitanium,
-/turf/open/floor/plating,
-/area/ruin/unpowered/planet_beach/gunsmith)
-"ts" = (
-/obj/structure/table/reinforced,
-/obj/item/kitchen/knife/butcher,
-/obj/item/stack/rods/ten{
-	pixel_x = -11;
-	pixel_y = 8
-	},
-/turf/open/floor/monotile/steel,
-/area/ruin/unpowered/planet_beach/gunsmith/kitchen)
-"tC" = (
-/obj/structure/window/plastitanium,
-/obj/machinery/door/poddoor/shutters{
-	id = "officeshutters"
-	},
-/turf/open/floor/plating,
-/area/ruin/unpowered/planet_beach/gunsmith/dorms/officer)
-"tF" = (
-/obj/structure/cable/yellow,
-/obj/machinery/atmospherics/components/unary/passive_vent/layer2{
-	dir = 4
-	},
-/obj/structure/lattice/catwalk/over/ship/dark,
-/turf/open/floor/plating,
-/area/ruin/unpowered/planet_beach/gunsmith/electrical)
-"tL" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 1
-	},
-/obj/structure/filingcabinet{
-	pixel_y = 19;
-	density = 0
-	},
-/obj/item/clipboard{
-	pixel_y = 2
-	},
-/turf/open/floor/wood,
-/area/ruin/unpowered/planet_beach/gunsmith/workshop)
-"tX" = (
-/turf/closed/wall/r_wall,
-/area/ruin/unpowered/planet_beach/gunsmith/electrical)
-"tZ" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 9
-	},
-/obj/structure/noticeboard{
-	pixel_x = -28;
-	dir = 4
-	},
-/obj/item/paper/fluff/ruins{
-	pixel_x = -11;
-	pixel_y = 5;
-	default_raw_text = "<h1>DO ZROBIENIA:</h1>-Przypomnieć nowym, że kochanie jest jedną z nas<br>-Wynegocjować z szefem kochania zysk z dostawy hydr<br>-Rozejrzeć się za nowym dostawcą soli<br>-Nakleić więcej ostrzeżeń przy materiałach wybuchowych";
-	name = "Lista rzeczy do zrobienia"
-	},
-/obj/item/paper/fluff/ruins{
-	pixel_x = -11;
-	pixel_y = -9;
-	default_raw_text = "przypomnieć rei, żeby wymienił moje cholerne deski nad skrytką przy południowej ścianie";
-	name = "przypomnienie"
-	},
-/turf/open/floor/wood,
-/area/ruin/unpowered/planet_beach/gunsmith/workshop)
-"ue" = (
-/turf/open/floor/plasteel/stairs/right{
-	dir = 4
-	},
-/area/ruin/unpowered/planet_beach/gunsmith)
-"ug" = (
-/obj/structure/bed/double,
-/obj/item/bedsheet/double/rd{
-	name = "podwójne fioletowe prześcieradło";
-	desc = "Duże, wygodne prześcieradło."
-	},
-/turf/open/floor/carpet/green,
-/area/ruin/unpowered/planet_beach/gunsmith/dorms/officer)
-"uh" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/concrete/slab_4,
-/area/ruin/unpowered/planet_beach/gunsmith/electrical)
-"uk" = (
-/obj/structure/cable/yellow,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/unpowered/planet_beach/gunsmith/electrical)
-"up" = (
-/obj/structure/table/reinforced,
-/obj/item/reagent_containers/food/condiment/flour{
-	pixel_x = -7;
-	pixel_y = -5
-	},
-/obj/item/reagent_containers/food/condiment/flour{
-	pixel_x = -7;
-	pixel_y = -7
-	},
-/obj/item/reagent_containers/food/condiment/enzyme{
-	pixel_x = -11;
-	pixel_y = 3
-	},
-/obj/item/reagent_containers/food/condiment/sugar{
-	pixel_x = 11;
-	pixel_y = 7
-	},
-/obj/item/reagent_containers/food/condiment/rice{
-	pixel_x = 11;
-	pixel_y = -5
-	},
-/obj/item/reagent_containers/food/condiment/rice{
-	pixel_x = 11;
-	pixel_y = -7
-	},
-/obj/item/reagent_containers/food/condiment/ketchup{
-	pixel_x = 6;
-	pixel_y = 4
-	},
-/obj/item/reagent_containers/food/condiment/ketchup{
-	pixel_y = 4
-	},
-/obj/item/reagent_containers/food/condiment/hotsauce{
-	pixel_x = -5;
-	pixel_y = 3
-	},
-/obj/effect/turf_decal/siding/wood,
-/turf/open/floor/wood,
-/area/ruin/unpowered/planet_beach/gunsmith/kitchen)
-"ur" = (
-/turf/open/floor/plasteel/stairs/left{
-	dir = 1
-	},
-/area/ruin/unpowered/planet_beach/gunsmith)
-"us" = (
-/obj/effect/turf_decal/siding/wood,
-/obj/effect/turf_decal/siding/wood/corner{
-	dir = 4
-	},
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/turf/open/floor/wood,
-/area/ruin/unpowered/planet_beach/gunsmith/dorms)
-"uu" = (
-/obj/structure/dresser,
-/obj/item/clothing/under/shorts{
-	pixel_x = -6;
-	pixel_y = 10
-	},
-/obj/item/clothing/under/shorts/red{
-	pixel_x = -4;
-	pixel_y = 10
-	},
-/obj/item/lipstick/black{
-	pixel_x = 7;
-	pixel_y = 8
-	},
-/turf/open/floor/carpet/green,
-/area/ruin/unpowered/planet_beach/gunsmith/dorms/officer)
-"uS" = (
-/obj/structure/lattice/catwalk/over/ship/dark,
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/ruin/unpowered/planet_beach/gunsmith/crewquarters)
-"uX" = (
-/obj/effect/turf_decal/tile/red/half{
-	dir = 6;
-	color = "#730622";
-	alpha = 255
-	},
-/obj/machinery/light/floor,
-/turf/open/floor/concrete/slab_1,
-/area/ruin/unpowered/planet_beach/gunsmith)
-"vi" = (
-/obj/machinery/door/airlock/security,
-/obj/machinery/door/poddoor/shutters{
-	id = "armory"
-	},
-/turf/open/floor/plasteel/tech/grid,
-/area/ruin/unpowered/planet_beach/gunsmith/workshop)
-"vm" = (
-/turf/closed/wall/r_wall,
-/area/ruin/unpowered/planet_beach/gunsmith/crewquarters)
-"vy" = (
-/obj/structure/lattice/catwalk/over/ship,
-/obj/machinery/power/terminal{
-	dir = 1
-	},
-/obj/structure/cable/yellow,
-/turf/open/floor/plating,
-/area/ruin/unpowered/planet_beach/gunsmith/electrical)
-"vF" = (
-/obj/structure/extinguisher_cabinet/west,
-/turf/open/floor/concrete/slab_4,
-/area/ruin/unpowered/planet_beach/gunsmith/kitchen)
-"vJ" = (
-/obj/effect/turf_decal/trimline/red/line{
-	dir = 8;
-	color = "#B4696A";
-	alpha = 255
-	},
-/obj/effect/turf_decal/ship/borderfloor{
-	dir = 4
-	},
-/obj/structure/closet/crate/bin,
-/turf/open/floor/plasteel/dark,
-/area/ruin/unpowered/planet_beach/gunsmith/crewquarters)
-"vR" = (
-/obj/structure/barricade/sandbags,
-/obj/structure/railing{
-	dir = 4
-	},
-/turf/open/floor/wood,
-/area/ruin/unpowered/planet_beach/gunsmith)
-"vS" = (
-/obj/machinery/door/poddoor/shutters/preopen{
-	dir = 4
-	},
-/turf/open/floor/plasteel/stairs/left{
-	dir = 8
-	},
-/area/ruin/unpowered/planet_beach/gunsmith)
-"vX" = (
-/obj/structure/cable,
-/turf/open/floor/plasteel/stairs/left{
-	dir = 4
-	},
-/area/ruin/unpowered/planet_beach/gunsmith)
-"wb" = (
-/obj/effect/turf_decal/tile/red/half{
-	dir = 8;
-	color = "#730622";
-	alpha = 140
-	},
-/obj/machinery/light,
-/turf/open/floor/monotile/dark,
-/area/ruin/unpowered/planet_beach/gunsmith/workshop)
-"wc" = (
-/obj/structure/cable/yellow,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/turf_decal/siding/thinplating/dark,
-/turf/open/floor/concrete,
-/area/ruin/unpowered/planet_beach/gunsmith/electrical)
-"ww" = (
-/obj/machinery/door/airlock/engineering{
-	dir = 4
-	},
-/obj/structure/cable/yellow,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/turf/open/floor/plasteel/tech/grid,
-/area/ruin/unpowered/planet_beach/gunsmith/electrical)
-"wL" = (
-/obj/machinery/door/airlock{
-	dir = 4;
-	id_tag = "gunsmithbathroom"
-	},
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/turf/open/floor/plasteel/tech/grid,
-/area/ruin/unpowered/planet_beach/gunsmith/bathroom)
-"xe" = (
-/obj/effect/turf_decal/siding/wood,
-/obj/effect/turf_decal/siding/wood/corner{
-	dir = 4
-	},
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 5
-	},
-/turf/open/floor/wood,
-/area/ruin/unpowered/planet_beach/gunsmith/crewquarters)
-"xh" = (
-/obj/structure/rack,
-/obj/effect/turf_decal/siding/thinplating/dark,
-/obj/effect/turf_decal/siding/thinplating/dark{
-	dir = 1
-	},
-/obj/item/ammo_box/c10mm,
-/turf/open/floor/concrete/slab_1,
-/area/ruin/unpowered/planet_beach/gunsmith)
-"xi" = (
-/obj/effect/turf_decal/tile/red/half{
-	dir = 5;
-	color = "#730622";
-	alpha = 255
-	},
-/obj/machinery/light/floor,
-/turf/open/floor/concrete/slab_1,
-/area/ruin/unpowered/planet_beach/gunsmith)
-"xw" = (
-/obj/item/clothing/shoes/sandal{
-	pixel_x = 4;
-	pixel_y = -12
-	},
-/obj/item/clothing/shoes/sandal{
-	pixel_x = 9;
-	pixel_y = -7
-	},
-/obj/item/clothing/under/misc/pj/red{
-	pixel_x = 11;
-	pixel_y = 15
-	},
-/obj/item/clothing/under/misc/pj/red{
-	pixel_x = 9;
-	pixel_y = 13
-	},
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/carpet/green,
-/area/ruin/unpowered/planet_beach/gunsmith/dorms/officer)
-"xD" = (
-/obj/structure/railing{
-	dir = 8
-	},
-/obj/structure/cable,
-/turf/open/floor/plasteel/stairs/left,
-/area/ruin/unpowered/planet_beach/gunsmith/workshop)
-"xE" = (
-/obj/structure/cable,
-/turf/open/floor/concrete/slab_1,
-/area/ruin/unpowered/planet_beach/gunsmith)
-"xF" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 8
-	},
-/obj/effect/turf_decal/siding/wood/corner,
-/obj/item/clothing/under/shorts/red{
-	pixel_x = -25;
-	pixel_y = 5
-	},
-/turf/open/floor/wood,
-/area/ruin/unpowered/planet_beach/gunsmith/dorms)
-"xH" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 5
-	},
-/turf/open/floor/wood,
-/area/ruin/unpowered/planet_beach/gunsmith/dorms/officer)
-"xM" = (
-/obj/structure/chair/fancy/sofa/old/right{
-	dir = 4
-	},
-/turf/open/floor/carpet/green,
-/area/ruin/unpowered/planet_beach/gunsmith/crewquarters)
-"xT" = (
-/obj/structure/table/reinforced,
-/obj/machinery/coffeemaker,
-/obj/effect/turf_decal/siding/wood/end{
-	dir = 4
-	},
-/turf/open/floor/wood,
-/area/ruin/unpowered/planet_beach/gunsmith/kitchen)
-"xX" = (
-/obj/structure/lattice/catwalk/over/ship/dark,
-/obj/machinery/power/apc/auto_name/north,
-/obj/structure/cable,
-/turf/open/floor/plating,
-/area/ruin/unpowered/planet_beach/gunsmith)
-"xZ" = (
-/obj/structure/railing,
-/turf/open/water/planet/beach,
-/area/ruin/unpowered/planet_beach/gunsmith)
-"yg" = (
-/obj/structure/railing,
-/obj/effect/turf_decal/ship/techfloor,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/concrete/slab_4,
-/area/ruin/unpowered/planet_beach/gunsmith/workshop)
-"yn" = (
-/obj/structure/cable,
-/turf/open/floor/plasteel/stairs/right{
-	dir = 8
-	},
-/area/ruin/unpowered/planet_beach/gunsmith)
-"yB" = (
-/turf/open/floor/plating/asteroid/dirt/beach,
-/area/ruin/unpowered/planet_beach/gunsmith/workshop)
-"yJ" = (
-/turf/open/floor/plasteel/stairs/left{
-	dir = 8
-	},
-/area/ruin/unpowered/planet_beach/gunsmith)
-"yK" = (
-/turf/closed/wall/r_wall,
-/area/ruin/unpowered/planet_beach/gunsmith/bathroom)
-"yP" = (
-/turf/open/floor/wood,
-/area/ruin/unpowered/planet_beach/gunsmith)
-"zf" = (
-/obj/structure/rack,
-/obj/effect/turf_decal/ship/techfloor{
-	dir = 4
-	},
-/obj/item/storage/toolbox/ammo{
-	pixel_x = 7;
-	pixel_y = 1
-	},
-/obj/item/storage/toolbox/ammo{
-	pixel_x = 7;
-	pixel_y = 6
-	},
-/obj/item/storage/toolbox/ammo{
-	pixel_x = 7;
-	pixel_y = 10
-	},
-/turf/open/floor/monotile/dark,
-/area/ruin/unpowered/planet_beach/gunsmith/workshop)
-"zm" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/turf_decal/siding/thinplating/dark/corner,
-/turf/open/floor/concrete/slab_4,
-/area/ruin/unpowered/planet_beach/gunsmith/electrical)
-"zC" = (
+"WI" = (
 /obj/structure/window/plastitanium,
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "bedroomshutters"
 	},
 /turf/open/floor/plating,
 /area/ruin/unpowered/planet_beach/gunsmith/dorms)
-"zH" = (
-/obj/structure/barricade/sandbags,
-/obj/structure/railing{
-	dir = 4
-	},
+"WK" = (
+/obj/structure/rack,
+/obj/item/ammo_box/a762,
 /obj/item/radio/intercom/directional/north,
-/turf/open/floor/wood,
-/area/ruin/unpowered/planet_beach/gunsmith)
-"zQ" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/unpowered/planet_beach/gunsmith/workshop)
-"zS" = (
-/obj/effect/turf_decal/tile/red/half{
-	color = "#730622";
-	alpha = 255
-	},
 /turf/open/floor/concrete/slab_1,
 /area/ruin/unpowered/planet_beach/gunsmith)
-"Ab" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 6
-	},
-/obj/structure/chair/fancy/bench{
-	dir = 8
-	},
-/turf/open/floor/wood,
-/area/ruin/unpowered/planet_beach/gunsmith/kitchen)
-"Af" = (
+"WM" = (
 /obj/effect/turf_decal/tile/red/half{
-	color = "#730622";
-	alpha = 140
-	},
-/obj/structure/closet/crate/secure/weapon,
-/obj/item/storage/box/lethalshot{
-	pixel_x = -2;
-	pixel_y = -2
-	},
-/obj/item/storage/box/lethalshot{
-	pixel_x = -2;
-	pixel_y = 1
-	},
-/obj/item/reagent_containers/glass/beaker/large{
-	pixel_x = 7;
-	pixel_y = -2
-	},
-/turf/open/floor/monotile/dark,
-/area/ruin/unpowered/planet_beach/gunsmith/workshop)
-"AG" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 5
-	},
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 1
-	},
-/turf/open/floor/wood,
-/area/ruin/unpowered/planet_beach/gunsmith/crewquarters)
-"AK" = (
-/obj/structure/lattice/catwalk/over/ship/dark,
-/turf/open/floor/plating,
-/area/ruin/unpowered/planet_beach/gunsmith/workshop)
-"AU" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/obj/effect/decal/cleanable/oil,
-/obj/structure/cable/yellow,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/machinery/light,
-/turf/open/floor/plasteel/dark,
-/area/ruin/unpowered/planet_beach/gunsmith/electrical)
-"Bq" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 5
-	},
-/mob/living/basic/trooper/syndicate/ranged,
-/turf/open/floor/wood,
-/area/ruin/unpowered/planet_beach/gunsmith/workshop)
-"BF" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/components/unary/passive_vent/layer2{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/unpowered/planet_beach/gunsmith/electrical)
-"BO" = (
-/turf/open/floor/plasteel/stairs/right,
-/area/ruin/unpowered/planet_beach/gunsmith)
-"BU" = (
-/obj/structure/window/plastitanium,
-/obj/machinery/door/poddoor/shutters/preopen{
-	dir = 8;
-	id = "bedroomshutters"
-	},
-/turf/open/floor/plating,
-/area/ruin/unpowered/planet_beach/gunsmith/dorms)
-"Cu" = (
-/obj/structure/lattice/catwalk/over/ship,
-/obj/item/storage/toolbox/electrical{
-	pixel_y = -4
-	},
-/obj/item/storage/toolbox/mechanical{
-	pixel_x = -4;
-	pixel_y = 7
-	},
-/turf/open/floor/plating,
-/area/ruin/unpowered/planet_beach/gunsmith/electrical)
-"CD" = (
-/obj/effect/turf_decal/ship/techfloor{
-	dir = 1
-	},
-/obj/machinery/button/door{
-	pixel_x = -9;
-	pixel_y = 21
-	},
-/turf/open/floor/concrete/slab_4,
-/area/ruin/unpowered/planet_beach/gunsmith/workshop)
-"CF" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/concrete/slab_4,
-/area/ruin/unpowered/planet_beach/gunsmith)
-"CG" = (
-/obj/effect/turf_decal/siding/thinplating/dark/end{
-	dir = 8
-	},
-/turf/open/floor/concrete/slab_1,
-/area/ruin/unpowered/planet_beach/gunsmith)
-"CM" = (
-/obj/machinery/power/smes/engineering,
-/obj/structure/cable,
-/obj/effect/turf_decal/tile/red/half{
-	dir = 4;
-	color = "#730622";
-	alpha = 255
-	},
-/turf/open/floor/plasteel/techmaint,
-/area/ruin/unpowered/planet_beach/gunsmith/electrical)
-"CQ" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 9
-	},
-/obj/machinery/oven,
-/turf/open/floor/wood,
-/area/ruin/unpowered/planet_beach/gunsmith/kitchen)
-"CS" = (
-/obj/effect/turf_decal/tile/red/half{
-	dir = 4;
-	color = "#730622";
-	alpha = 140
-	},
-/turf/open/floor/monotile/dark,
-/area/ruin/unpowered/planet_beach/gunsmith/workshop)
-"CV" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 5
-	},
-/turf/open/floor/monotile/steel,
-/area/ruin/unpowered/planet_beach/gunsmith/kitchen)
-"Dk" = (
-/obj/effect/turf_decal/trimline/red/filled/warning{
 	dir = 8;
 	color = "#730622";
 	alpha = 255
 	},
-/obj/structure/table,
-/obj/item/stack/spacecash/c1000{
-	pixel_x = 6;
-	pixel_y = 10
-	},
-/obj/item/stamp{
-	pixel_x = -7;
-	pixel_y = 11
-	},
-/obj/item/documents/syndicate{
-	pixel_x = 1
-	},
 /turf/open/floor/concrete/slab_1,
 /area/ruin/unpowered/planet_beach/gunsmith)
-"Do" = (
+"WY" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 5
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_beach/gunsmith/dorms/officer)
+"Xs" = (
+/obj/effect/turf_decal/ship/borderfloor/corner{
+	dir = 8
+	},
 /obj/effect/turf_decal/trimline/red/line{
-	dir = 8;
+	dir = 5;
 	color = "#B4696A";
 	alpha = 255
 	},
-/obj/effect/turf_decal/ship/borderfloor{
-	dir = 4
-	},
-/obj/machinery/atmospherics/components/unary/passive_vent/layer2{
-	dir = 1
-	},
 /obj/machinery/light{
-	dir = 8
+	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/unpowered/planet_beach/gunsmith/crewquarters)
-"Ds" = (
-/obj/structure/chair/fancy/sofa/old/right{
-	dir = 4
-	},
-/turf/open/floor/carpet/green,
-/area/ruin/unpowered/planet_beach/gunsmith/dorms)
-"DA" = (
-/obj/effect/turf_decal/siding/thinplating/dark/end{
-	dir = 4
-	},
-/obj/structure/closet/crate/freezer,
-/obj/item/reagent_containers/food/drinks/beer,
-/obj/item/reagent_containers/food/drinks/beer{
-	pixel_y = 4
-	},
-/obj/item/reagent_containers/food/drinks/beer{
-	pixel_y = 8
-	},
-/turf/open/floor/concrete/slab_1,
 /area/ruin/unpowered/planet_beach/gunsmith)
-"DB" = (
-/obj/effect/turf_decal/siding/wood/corner{
-	dir = 8
-	},
-/obj/effect/turf_decal/siding/wood,
-/obj/machinery/holopad,
-/turf/open/floor/wood,
-/area/ruin/unpowered/planet_beach/gunsmith/workshop)
-"DD" = (
-/obj/machinery/door/airlock,
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/turf/open/floor/plasteel/tech/grid,
-/area/ruin/unpowered/planet_beach/gunsmith/crewquarters)
-"DK" = (
-/obj/structure/bookcase/random{
-	opacity = 1
-	},
-/turf/open/floor/plating,
-/area/ruin/unpowered/planet_beach/gunsmith/dorms/officer)
-"DO" = (
-/obj/effect/turf_decal/ship/techfloor{
-	dir = 6
-	},
-/obj/machinery/atmospherics/components/unary/passive_vent/layer2{
-	dir = 8
-	},
-/obj/machinery/light/small{
-	dir = 4
-	},
-/turf/open/floor/concrete/slab_4,
-/area/ruin/unpowered/planet_beach/gunsmith)
-"DS" = (
-/obj/structure/cable,
-/turf/open/floor/concrete/slab_4,
-/area/ruin/unpowered/planet_beach/gunsmith)
-"DU" = (
-/turf/open/floor/plasteel/stairs/right{
-	dir = 8
-	},
-/area/ruin/unpowered/planet_beach/gunsmith)
-"DW" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 1
-	},
-/obj/effect/turf_decal/siding/wood/corner{
-	dir = 8
-	},
-/turf/open/floor/wood,
-/area/ruin/unpowered/planet_beach/gunsmith/dorms/officer)
-"Ed" = (
-/obj/structure/cable/yellow,
-/obj/effect/turf_decal/siding/thinplating/dark{
-	dir = 1
-	},
-/turf/open/floor/concrete,
-/area/ruin/unpowered/planet_beach/gunsmith/electrical)
-"Ef" = (
-/turf/open/floor/plating/asteroid/sand/dense,
-/area/ruin/unpowered/planet_beach/gunsmith)
-"Eh" = (
-/obj/structure/lattice/catwalk/over/ship/dark,
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/ruin/unpowered/planet_beach/gunsmith/kitchen)
-"En" = (
-/obj/structure/railing/corner{
-	dir = 1
-	},
-/obj/structure/cable,
-/turf/open/floor/concrete/slab_4,
-/area/ruin/unpowered/planet_beach/gunsmith)
-"Er" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 4
-	},
-/obj/effect/turf_decal/siding/wood/corner{
-	dir = 8
-	},
-/turf/open/floor/wood,
-/area/ruin/unpowered/planet_beach/gunsmith/workshop)
-"Et" = (
-/obj/effect/turf_decal/ship/borderfloor{
-	dir = 1
-	},
-/obj/effect/turf_decal/trimline/red/line{
-	color = "#B4696A";
-	alpha = 255
-	},
-/obj/structure/cable,
-/turf/open/floor/plasteel/dark,
-/area/ruin/unpowered/planet_beach/gunsmith)
-"EH" = (
-/obj/structure/dresser,
-/obj/item/flashlight/lamp{
-	pixel_x = -7;
-	pixel_y = 7;
-	layer = 3.3
-	},
-/obj/item/lipstick/black{
-	pixel_x = 9;
-	pixel_y = 10;
-	layer = 3.3
-	},
-/obj/item/lipstick{
-	pixel_x = 11;
-	pixel_y = 12;
-	layer = 3.3
-	},
-/obj/item/clothing/under/shorts/red{
-	pixel_x = 7;
-	pixel_y = 9;
-	layer = 3.4
-	},
-/turf/open/floor/carpet/green,
-/area/ruin/unpowered/planet_beach/gunsmith/dorms)
-"EK" = (
-/obj/structure/barricade/wooden,
-/turf/open/floor/wood,
-/area/ruin/unpowered/planet_beach/gunsmith)
-"EN" = (
-/obj/effect/turf_decal/ship/techfloor{
-	dir = 1
-	},
-/obj/structure/table/reinforced{
-	color = "#c1b6a5"
-	},
-/obj/item/ammo_box/magazine/m556{
-	pixel_x = -10;
-	pixel_y = 8;
-	start_empty = 1
-	},
-/obj/item/ammo_casing/a556{
-	pixel_x = 4;
-	pixel_y = 11
-	},
-/obj/item/stack/ore/iron,
-/obj/item/radio/intercom/directional/east,
-/turf/open/floor/concrete/slab_4,
-/area/ruin/unpowered/planet_beach/gunsmith/workshop)
-"ER" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 4
-	},
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
-	dir = 4
-	},
-/turf/open/floor/wood,
-/area/ruin/unpowered/planet_beach/gunsmith/crewquarters)
-"EU" = (
-/obj/effect/turf_decal/siding/wood/end{
-	dir = 4
-	},
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/turf/open/floor/wood,
-/area/ruin/unpowered/planet_beach/gunsmith/crewquarters)
-"EW" = (
-/obj/structure/cable/yellow,
-/obj/machinery/atmospherics/components/unary/passive_vent/layer2{
-	dir = 8
-	},
-/obj/structure/lattice/catwalk/over/ship/dark,
-/turf/open/floor/plating,
-/area/ruin/unpowered/planet_beach/gunsmith/electrical)
-"EX" = (
-/obj/effect/turf_decal/ship/techfloor{
-	dir = 1
-	},
-/obj/structure/sign/warning/securearea{
-	pixel_x = 26;
-	pixel_y = -6
-	},
-/obj/item/geiger_counter{
-	pixel_x = 8;
-	pixel_y = 3
-	},
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plasteel/dark,
-/area/ruin/unpowered/planet_beach/gunsmith/electrical)
-"Fa" = (
-/obj/structure/rack,
-/obj/effect/turf_decal/siding/thinplating/dark,
-/obj/effect/turf_decal/siding/thinplating/dark{
-	dir = 1
-	},
-/turf/open/floor/concrete/slab_1,
-/area/ruin/unpowered/planet_beach/gunsmith)
-"Fl" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 4
-	},
-/turf/open/floor/wood,
-/area/ruin/unpowered/planet_beach/gunsmith/dorms/officer)
-"Fn" = (
-/obj/effect/turf_decal/trimline/red/filled/warning{
-	color = "#730622";
-	alpha = 255
-	},
-/turf/open/floor/concrete/slab_1,
-/area/ruin/unpowered/planet_beach/gunsmith)
-"Fo" = (
-/obj/effect/turf_decal/trimline/red/filled/warning{
-	dir = 4;
-	color = "#730622";
-	alpha = 255
-	},
-/turf/open/floor/concrete/slab_1,
-/area/ruin/unpowered/planet_beach/gunsmith)
-"Fr" = (
-/obj/structure/railing{
-	dir = 6
-	},
-/obj/effect/turf_decal/ship/techfloor,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/concrete/slab_4,
-/area/ruin/unpowered/planet_beach/gunsmith/workshop)
-"FE" = (
-/obj/machinery/power/rtg/advanced,
-/obj/structure/cable/yellow,
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/effect/turf_decal/siding/thinplating/dark{
-	dir = 8
-	},
-/turf/open/floor/concrete/slab_4,
-/area/ruin/unpowered/planet_beach/gunsmith/electrical)
-"FG" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 1
-	},
-/turf/open/floor/wood,
-/area/ruin/unpowered/planet_beach/gunsmith/dorms)
-"FI" = (
-/obj/machinery/light/small{
-	dir = 4
-	},
-/turf/open/floor/plating/asteroid/dirt/beach,
-/area/ruin/unpowered/planet_beach/gunsmith/workshop)
-"FM" = (
-/obj/structure/cable,
-/turf/open/floor/concrete/slab_4,
-/area/ruin/unpowered/planet_beach/gunsmith/electrical)
-"FQ" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 4
-	},
-/obj/structure/chair/office,
-/turf/open/floor/wood,
-/area/ruin/unpowered/planet_beach/gunsmith/dorms/officer)
-"FX" = (
-/obj/machinery/light,
-/turf/open/floor/concrete/slab_4,
-/area/ruin/unpowered/planet_beach/gunsmith/workshop)
-"Ga" = (
-/obj/structure/table/wood,
-/obj/item/radio/intercom/directional/east{
-	pixel_y = -6
-	},
-/obj/machinery/computer/security/telescreen/entertainment{
-	pixel_x = 3;
-	pixel_y = 16;
-	dir = 8
-	},
-/turf/open/floor/carpet/green,
-/area/ruin/unpowered/planet_beach/gunsmith/crewquarters)
-"Gc" = (
-/obj/structure/cable,
-/obj/structure/cable/yellow,
-/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer2,
-/turf/open/floor/plasteel/dark,
-/area/ruin/unpowered/planet_beach/gunsmith/electrical)
-"Gh" = (
+"Xy" = (
 /obj/effect/turf_decal/siding/wood/end,
 /obj/machinery/photocopier,
 /obj/machinery/button/door{
@@ -2188,142 +3548,7 @@
 	},
 /turf/open/floor/wood,
 /area/ruin/unpowered/planet_beach/gunsmith/workshop)
-"Gi" = (
-/obj/structure/rack,
-/obj/item/grenade/plastic/x4{
-	pixel_x = 7;
-	pixel_y = 3
-	},
-/obj/item/grenade/plastic/x4{
-	pixel_x = 7;
-	pixel_y = -5
-	},
-/obj/item/folder/red{
-	pixel_x = -8;
-	pixel_y = 5
-	},
-/obj/item/folder/syndicate{
-	pixel_x = -8;
-	pixel_y = -6
-	},
-/turf/open/floor/plating,
-/area/ruin/unpowered/planet_beach/gunsmith/dorms/officer)
-"Gn" = (
-/obj/effect/turf_decal/ship/techfloor{
-	dir = 9
-	},
-/obj/item/reagent_containers/food/drinks/beer{
-	pixel_x = 11;
-	pixel_y = 3;
-	layer = 3.09
-	},
-/obj/structure/railing{
-	dir = 9
-	},
-/turf/open/floor/concrete/slab_4,
-/area/ruin/unpowered/planet_beach/gunsmith)
-"GC" = (
-/obj/structure/cable,
-/obj/machinery/door/airlock/glass,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 1
-	},
-/turf/open/floor/plasteel/tech/grid,
-/area/ruin/unpowered/planet_beach/gunsmith/kitchen)
-"GM" = (
-/obj/structure/table/wood,
-/obj/item/reagent_containers/food/drinks/bottle/vodka{
-	pixel_x = -7;
-	pixel_y = 9
-	},
-/obj/item/reagent_containers/food/drinks/drinkingglass{
-	pixel_x = 3;
-	pixel_y = 4
-	},
-/obj/item/reagent_containers/food/drinks/drinkingglass{
-	pixel_x = 9;
-	pixel_y = 9
-	},
-/turf/open/floor/carpet/green,
-/area/ruin/unpowered/planet_beach/gunsmith/dorms/officer)
-"GO" = (
-/obj/effect/turf_decal/trimline/red/line{
-	dir = 8;
-	color = "#B4696A";
-	alpha = 255
-	},
-/obj/effect/turf_decal/ship/borderfloor{
-	dir = 4
-	},
-/obj/structure/cable,
-/obj/machinery/power/apc/auto_name/west,
-/obj/machinery/light_switch{
-	dir = 4;
-	pixel_x = -20;
-	pixel_y = -12
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/unpowered/planet_beach/gunsmith/crewquarters)
-"GP" = (
-/obj/structure/chair/fancy/bench{
-	dir = 1
-	},
-/obj/item/radio/intercom/directional/south,
-/turf/open/floor/carpet/green,
-/area/ruin/unpowered/planet_beach/gunsmith/crewquarters)
-"GT" = (
-/turf/open/floor/plating/asteroid/sand,
-/area/ruin/unpowered/planet_beach/gunsmith)
-"Hb" = (
-/obj/structure/cable,
-/obj/effect/turf_decal/tile/red/half{
-	dir = 4;
-	color = "#730622";
-	alpha = 255
-	},
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plasteel/techmaint,
-/area/ruin/unpowered/planet_beach/gunsmith/electrical)
-"Hr" = (
-/obj/structure/lattice/catwalk/over/ship/dark,
-/turf/open/floor/plating/rust,
-/area/ruin/unpowered/planet_beach/gunsmith/workshop)
-"Hv" = (
-/obj/machinery/light/small,
-/turf/open/water/planet/beach,
-/area/ruin/unpowered/planet_beach/gunsmith)
-"HA" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/water/planet/beach,
-/area/ruin/unpowered/planet_beach/gunsmith)
-"HB" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 1
-	},
-/obj/effect/turf_decal/siding/wood/corner{
-	dir = 8
-	},
-/turf/open/floor/wood,
-/area/ruin/unpowered/planet_beach/gunsmith/dorms)
-"HK" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 10
-	},
-/turf/open/floor/wood,
-/area/ruin/unpowered/planet_beach/gunsmith/crewquarters)
-"HL" = (
-/turf/open/floor/carpet/green,
-/area/ruin/unpowered/planet_beach/gunsmith/dorms/officer)
-"HN" = (
-/obj/effect/turf_decal/siding/thinplating/dark,
-/turf/open/floor/concrete,
-/area/ruin/unpowered/planet_beach/gunsmith/electrical)
-"HS" = (
+"XC" = (
 /obj/effect/turf_decal/ship/techfloor{
 	dir = 10
 	},
@@ -2335,79 +3560,35 @@
 	},
 /turf/open/floor/concrete/slab_4,
 /area/ruin/unpowered/planet_beach/gunsmith)
-"HX" = (
-/obj/effect/turf_decal/trimline/red/corner{
-	dir = 1;
-	color = "#B4696A";
-	alpha = 255
-	},
-/turf/open/floor/concrete/slab_4,
-/area/ruin/unpowered/planet_beach/gunsmith/electrical)
-"Ia" = (
+"XN" = (
 /obj/structure/cable/yellow,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/structure/lattice/catwalk/over/ship/dark,
-/turf/open/floor/plating,
-/area/ruin/unpowered/planet_beach/gunsmith/electrical)
-"Ie" = (
-/obj/structure/closet/crate/secure/weapon,
-/obj/item/clothing/suit/space/hardsuit/syndi{
-	pixel_x = -8;
-	pixel_y = 6
-	},
-/obj/item/clothing/suit/space/hardsuit/syndi{
-	pixel_x = -8;
-	pixel_y = 4
-	},
-/obj/item/clothing/suit/space/hardsuit/syndi{
-	pixel_x = -8;
-	pixel_y = 2
-	},
-/obj/item/clothing/glasses/hud/security/sunglasses{
-	pixel_x = 4;
-	pixel_y = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/unpowered/planet_beach/gunsmith/workshop)
-"In" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 9
-	},
-/turf/open/floor/wood,
-/area/ruin/unpowered/planet_beach/gunsmith/dorms/officer)
-"Iq" = (
-/turf/open/floor/plasteel/stairs/left{
-	dir = 4
-	},
-/area/ruin/unpowered/planet_beach/gunsmith)
-"IG" = (
-/obj/effect/turf_decal/ship/techfloor{
+/obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 1
 	},
-/obj/structure/table/reinforced{
-	color = "#c1b6a5"
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_beach/gunsmith/electrical)
+"XR" = (
+/obj/effect/turf_decal/tile/red/half{
+	dir = 5;
+	color = "#730622";
+	alpha = 255
 	},
-/obj/item/gun/ballistic/automatic/pistol{
-	pixel_x = 16;
-	pixel_y = 3
+/obj/machinery/light/floor,
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_beach/gunsmith)
+"XS" = (
+/turf/open/floor/plasteel/stairs/right,
+/area/ruin/unpowered/planet_beach/gunsmith)
+"XZ" = (
+/obj/effect/turf_decal/tile/red/half{
+	dir = 6;
+	color = "#730622";
+	alpha = 255
 	},
-/obj/item/stack/ore/iron{
-	pixel_x = -5;
-	pixel_y = 3
-	},
-/obj/item/flashlight/lamp{
-	pixel_x = -8;
-	pixel_y = 14
-	},
-/obj/item/clothing/glasses/welding{
-	pixel_x = 10;
-	pixel_y = -6
-	},
-/turf/open/floor/concrete/slab_4,
-/area/ruin/unpowered/planet_beach/gunsmith/workshop)
-"IL" = (
+/obj/machinery/light/floor,
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_beach/gunsmith)
+"Ya" = (
 /obj/machinery/door/poddoor/shutters/preopen{
 	dir = 4
 	},
@@ -2416,300 +3597,82 @@
 	dir = 8
 	},
 /area/ruin/unpowered/planet_beach/gunsmith)
-"IM" = (
-/obj/effect/turf_decal/ship/techfloor{
-	dir = 8
-	},
-/obj/structure/closet/secure_closet{
-	req_access = null;
-	icon_state = "armory"
-	},
-/obj/item/stack/ore/iron{
-	pixel_x = -6;
-	pixel_y = 3;
-	amount = 20
-	},
-/obj/item/stack/ore/iron{
-	pixel_x = -5;
-	pixel_y = 11;
-	amount = 20
-	},
-/obj/item/stack/ore/silver{
-	pixel_x = -11;
-	pixel_y = -3;
-	amount = 5
-	},
-/obj/item/stack/ore/silver{
-	pixel_x = -11;
-	pixel_y = 1;
-	amount = 5
-	},
-/obj/item/stack/ore/silver{
-	pixel_x = -11;
-	pixel_y = 6;
-	amount = 5
-	},
-/obj/item/stack/ore/silver{
-	pixel_x = -11;
-	pixel_y = 12;
-	amount = 5
-	},
-/obj/item/weaponcrafting/receiver{
-	pixel_x = 8;
-	pixel_y = 3
-	},
-/obj/item/weaponcrafting/receiver{
-	pixel_x = 8;
-	pixel_y = 7
-	},
-/obj/item/weaponcrafting/receiver{
-	pixel_x = 8;
-	pixel_y = 11
-	},
-/obj/item/weaponcrafting/stock{
-	pixel_x = 6;
-	pixel_y = -7
-	},
-/obj/item/weaponcrafting/stock{
-	pixel_x = 6;
-	pixel_y = -10
-	},
-/turf/open/floor/concrete/slab_4,
-/area/ruin/unpowered/planet_beach/gunsmith/workshop)
-"IO" = (
-/turf/open/floor/plating/asteroid/dirt/beach,
-/area/ruin/unpowered/planet_beach/gunsmith)
-"IP" = (
-/obj/effect/turf_decal/ship/techfloor{
-	dir = 1
-	},
-/turf/open/floor/concrete/slab_4,
-/area/ruin/unpowered/planet_beach/gunsmith/workshop)
-"IT" = (
-/obj/structure/safe/floor,
-/obj/item/stack/spacecash/c1000,
-/turf/open/floor/plating,
+"Yc" = (
+/turf/open/floor/carpet/green,
 /area/ruin/unpowered/planet_beach/gunsmith/dorms/officer)
-"Jc" = (
-/obj/machinery/porta_turret/syndicate,
-/obj/structure/cable,
-/turf/closed/wall/r_wall,
-/area/ruin/unpowered/planet_beach/gunsmith)
-"Ji" = (
-/obj/effect/turf_decal/trimline/red/filled/warning{
-	color = "#730622";
-	alpha = 255
+"Yg" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
 	},
-/obj/machinery/light/floor,
-/turf/open/floor/concrete/slab_1,
-/area/ruin/unpowered/planet_beach/gunsmith)
-"Jj" = (
-/obj/effect/turf_decal/trimline/red/filled/warning{
-	dir = 1;
-	color = "#730622";
-	alpha = 255
-	},
-/obj/machinery/light/floor,
-/turf/open/floor/concrete/slab_1,
-/area/ruin/unpowered/planet_beach/gunsmith)
-"Jm" = (
 /obj/effect/decal/cleanable/oil,
-/obj/structure/cable,
-/obj/machinery/door/poddoor/shutters{
-	id = "engishutter"
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/turf/open/floor/plasteel/tech/grid,
+/obj/machinery/light,
+/turf/open/floor/plasteel/dark,
 /area/ruin/unpowered/planet_beach/gunsmith/electrical)
-"Ju" = (
-/obj/effect/turf_decal/siding/wood/end{
-	dir = 8
+"Yh" = (
+/obj/machinery/light/small{
+	dir = 4
 	},
-/obj/machinery/button/door{
-	dir = 4;
-	pixel_x = -20;
-	pixel_y = -9;
-	id = "officelock";
-	name = "zamek sypialni <3";
-	specialfunctions = 4
+/turf/open/floor/plating/asteroid/dirt/beach,
+/area/ruin/unpowered/planet_beach/gunsmith/workshop)
+"Yi" = (
+/obj/structure/barricade/sandbags,
+/obj/structure/railing{
+	dir = 4
 	},
 /turf/open/floor/wood,
-/area/ruin/unpowered/planet_beach/gunsmith/dorms/officer)
-"Jx" = (
-/turf/template_noop,
-/area/template_noop)
-"Jz" = (
-/obj/item/restraints/legcuffs/beartrap{
-	armed = 1
-	},
-/turf/open/floor/plating/asteroid/dirt/beach,
 /area/ruin/unpowered/planet_beach/gunsmith)
-"JL" = (
-/obj/effect/turf_decal/ship/techfloor,
-/obj/machinery/light/small{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/unpowered/planet_beach/gunsmith/workshop)
-"Kn" = (
-/obj/machinery/door/airlock/grunge{
-	dir = 4;
-	id_tag = "officelock"
-	},
+"Yx" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
 	},
-/turf/open/floor/plasteel/tech/grid,
-/area/ruin/unpowered/planet_beach/gunsmith/dorms/officer)
-"Ko" = (
-/obj/structure/cable,
-/turf/open/floor/plasteel/dark,
-/area/ruin/unpowered/planet_beach/gunsmith/workshop)
-"Kq" = (
-/obj/effect/turf_decal/siding/wood,
-/obj/structure/table/wood,
-/obj/item/food/nigiri_sushi{
-	pixel_x = -7;
-	pixel_y = 8
+/obj/machinery/light/small{
+	dir = 1
 	},
-/obj/item/food/nigiri_sushi{
-	pixel_x = -7;
-	pixel_y = 5
-	},
-/obj/item/food/nigiri_sushi{
-	pixel_x = -7;
-	pixel_y = 2
-	},
-/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass{
-	pixel_x = 10;
-	pixel_y = 2;
-	layer = 3.1
-	},
-/obj/item/reagent_containers/food/condiment/soysauce{
-	pixel_x = 11;
-	pixel_y = 13
-	},
-/obj/item/food/onigiri{
-	pixel_x = 2;
-	pixel_y = 5
-	},
-/obj/item/food/onigiri{
-	pixel_x = 2;
-	pixel_y = 7
-	},
-/obj/item/food/onigiri{
-	pixel_x = 2;
-	pixel_y = 9
-	},
-/turf/open/floor/wood,
-/area/ruin/unpowered/planet_beach/gunsmith/kitchen)
-"Kv" = (
-/obj/effect/turf_decal/trimline/red/line{
-	dir = 9;
-	color = "#B4696A";
-	alpha = 255
-	},
-/obj/structure/sign/warning/electricshock{
-	pixel_x = 7;
-	pixel_y = 39
-	},
-/obj/structure/sign/warning/securearea{
-	pixel_x = 7;
-	pixel_y = 25
-	},
-/obj/machinery/power/apc/auto_name/west,
-/obj/structure/cable,
-/obj/effect/decal/cleanable/dirt,
 /obj/machinery/button/door{
-	pixel_x = -9;
-	pixel_y = 21;
-	id = "engishutter"
-	},
-/turf/open/floor/monotile/dark,
-/area/ruin/unpowered/planet_beach/gunsmith/electrical)
-"Kw" = (
-/obj/effect/turf_decal/ship/techfloor{
-	dir = 1
-	},
-/obj/structure/chair/fancy/plastic{
-	dir = 1
-	},
-/obj/item/fishing_rod{
-	pixel_x = 11;
+	pixel_x = -10;
 	pixel_y = 20;
-	layer = 3.09
+	id = "gunsmithbathroom";
+	normaldoorcontrol = 1;
+	name = "zamek łazienki";
+	specialfunctions = 4
 	},
-/obj/structure/railing{
-	dir = 1
+/turf/open/floor/carpet/black{
+	name = "mata łazienkowa"
 	},
-/obj/item/storage/box/fishing_worms{
-	pixel_x = 18;
-	pixel_y = 5
-	},
-/turf/open/floor/concrete/slab_4,
-/area/ruin/unpowered/planet_beach/gunsmith)
-"KB" = (
-/obj/structure/table/reinforced{
-	color = "#c1b6a5"
-	},
-/turf/open/floor/concrete/slab_1,
-/area/ruin/unpowered/planet_beach/gunsmith/workshop)
-"KC" = (
-/obj/effect/turf_decal/trimline/red/corner{
-	dir = 4;
-	color = "#B4696A";
-	alpha = 255
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/item/radio/intercom/directional/east,
-/turf/open/floor/concrete/slab_4,
-/area/ruin/unpowered/planet_beach/gunsmith/electrical)
-"KE" = (
-/obj/structure/railing,
-/obj/effect/turf_decal/ship/techfloor,
-/turf/open/floor/concrete/slab_4,
-/area/ruin/unpowered/planet_beach/gunsmith/workshop)
-"KF" = (
-/obj/effect/turf_decal/siding/wood/corner{
-	dir = 1
-	},
-/turf/open/floor/wood,
-/area/ruin/unpowered/planet_beach/gunsmith/dorms/officer)
-"Lc" = (
-/obj/structure/closet/crate/secure/weapon{
-	opened = 1
-	},
-/turf/open/floor/concrete/slab_4,
-/area/ruin/unpowered/planet_beach/gunsmith)
-"Lf" = (
-/obj/effect/turf_decal/tile/black/half{
-	dir = 8;
-	color = "#444547";
-	alpha = 255
-	},
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+/area/ruin/unpowered/planet_beach/gunsmith/bathroom)
+"YQ" = (
+/obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor/plasteel/stairs/left,
-/area/ruin/unpowered/planet_beach/gunsmith/electrical)
-"Li" = (
-/obj/item/gun/energy/plasmacutter,
-/obj/effect/decal/cleanable/oil/slippery,
-/mob/living/basic/trooper/syndicate/melee,
-/turf/open/floor/concrete/slab_4,
-/area/ruin/unpowered/planet_beach/gunsmith/workshop)
-"Lo" = (
-/obj/effect/turf_decal/ship/borderfloor,
-/obj/effect/turf_decal/trimline/red/line{
-	dir = 1;
-	color = "#B4696A";
-	alpha = 255
-	},
 /turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_beach/gunsmith/workshop)
+"Zc" = (
+/obj/structure/chair/fancy/comfy{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/carpet/green,
+/area/ruin/unpowered/planet_beach/gunsmith/crewquarters)
+"Zk" = (
+/obj/effect/turf_decal/ship/techfloor{
+	dir = 6
+	},
+/obj/machinery/atmospherics/components/unary/passive_vent/layer2{
+	dir = 8
+	},
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/concrete/slab_4,
 /area/ruin/unpowered/planet_beach/gunsmith)
-"Lt" = (
+"Zt" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
 	},
@@ -2741,342 +3704,13 @@
 	},
 /turf/open/floor/wood,
 /area/ruin/unpowered/planet_beach/gunsmith/kitchen)
-"LC" = (
-/obj/effect/turf_decal/trimline/red/filled/warning{
-	dir = 1;
-	color = "#730622";
-	alpha = 255
-	},
-/turf/open/floor/concrete/slab_1,
-/area/ruin/unpowered/planet_beach/gunsmith)
-"LD" = (
-/obj/machinery/door/airlock/freezer{
+"ZG" = (
+/obj/structure/cable,
+/turf/open/floor/plasteel/stairs/left{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/turf/open/floor/plasteel/tech/grid,
-/area/ruin/unpowered/planet_beach/gunsmith/kitchen)
-"LM" = (
-/obj/structure/chair/fancy/plastic,
-/turf/open/floor/wood,
 /area/ruin/unpowered/planet_beach/gunsmith)
-"Mb" = (
-/obj/structure/table/reinforced,
-/obj/machinery/reagentgrinder{
-	pixel_x = -8;
-	pixel_y = 7
-	},
-/obj/effect/turf_decal/siding/wood{
-	dir = 10
-	},
-/obj/item/reagent_containers/food/condiment/saltshaker{
-	pixel_x = 3;
-	pixel_y = 10
-	},
-/obj/item/reagent_containers/food/condiment/peppermill{
-	pixel_x = 9;
-	pixel_y = 10
-	},
-/obj/item/kitchen/rollingpin{
-	pixel_x = 7;
-	pixel_y = -2
-	},
-/turf/open/floor/wood,
-/area/ruin/unpowered/planet_beach/gunsmith/kitchen)
-"Mi" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/turf_decal/siding/thinplating/dark/corner{
-	dir = 8
-	},
-/turf/open/floor/concrete/slab_4,
-/area/ruin/unpowered/planet_beach/gunsmith/electrical)
-"Mn" = (
-/obj/machinery/light,
-/turf/open/floor/plating/asteroid/sand/dense,
-/area/ruin/unpowered/planet_beach/gunsmith)
-"Mo" = (
-/obj/machinery/door/poddoor/shutters{
-	id = "engishutter"
-	},
-/turf/open/floor/plasteel/tech/grid,
-/area/ruin/unpowered/planet_beach/gunsmith/electrical)
-"MG" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 5
-	},
-/turf/open/floor/wood,
-/area/ruin/unpowered/planet_beach/gunsmith/kitchen)
-"MP" = (
-/turf/open/floor/wood,
-/area/ruin/unpowered/planet_beach/gunsmith/dorms/officer)
-"Na" = (
-/obj/structure/chair{
-	dir = 4;
-	pixel_x = 5;
-	pixel_y = 4
-	},
-/obj/structure/cable,
-/turf/open/floor/concrete/slab_4,
-/area/ruin/unpowered/planet_beach/gunsmith)
-"Nb" = (
-/obj/effect/turf_decal/tile/red/half{
-	dir = 10;
-	color = "#730622";
-	alpha = 140
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/unpowered/planet_beach/gunsmith/workshop)
-"Nc" = (
-/turf/closed/wall/r_wall,
-/area/ruin/unpowered/planet_beach/gunsmith)
-"No" = (
-/obj/machinery/door/airlock/engineering{
-	dir = 8
-	},
-/obj/structure/cable,
-/turf/open/floor/plasteel/tech/grid,
-/area/ruin/unpowered/planet_beach/gunsmith/workshop)
-"Nv" = (
-/obj/effect/turf_decal/siding/thinplating/dark/end{
-	dir = 8
-	},
-/obj/structure/table,
-/obj/machinery/recharger{
-	pixel_x = -7;
-	pixel_y = 2
-	},
-/turf/open/floor/concrete/slab_1,
-/area/ruin/unpowered/planet_beach/gunsmith)
-"Nz" = (
-/obj/structure/cable,
-/turf/open/floor/plasteel/stairs/right{
-	dir = 1
-	},
-/area/ruin/unpowered/planet_beach/gunsmith)
-"NH" = (
-/obj/effect/turf_decal/siding/thinplating/dark,
-/turf/open/floor/concrete/slab_1,
-/area/ruin/unpowered/planet_beach/gunsmith/kitchen)
-"NJ" = (
-/obj/structure/table/wood,
-/obj/item/flashlight/lamp{
-	pixel_x = -7;
-	pixel_y = 1
-	},
-/turf/open/floor/carpet/green,
-/area/ruin/unpowered/planet_beach/gunsmith/dorms/officer)
-"NQ" = (
-/obj/structure/table/reinforced,
-/obj/item/storage/fancy/coffee_condi_display{
-	pixel_x = -4;
-	pixel_y = 2
-	},
-/obj/item/storage/box/coffeepack/arabica{
-	pixel_x = 10;
-	pixel_y = 4
-	},
-/obj/item/storage/box/coffeepack/robusta{
-	pixel_x = 10
-	},
-/obj/effect/turf_decal/siding/wood/end{
-	dir = 8
-	},
-/obj/machinery/light,
-/turf/open/floor/wood,
-/area/ruin/unpowered/planet_beach/gunsmith/kitchen)
-"Oj" = (
-/obj/machinery/atmospherics/components/unary/passive_vent/layer2,
-/obj/machinery/light/small{
-	dir = 4
-	},
-/turf/open/floor/monotile/steel,
-/area/ruin/unpowered/planet_beach/gunsmith/kitchen)
-"OF" = (
-/obj/machinery/door/airlock/glass{
-	dir = 4
-	},
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/turf/open/floor/plasteel/tech/grid,
-/area/ruin/unpowered/planet_beach/gunsmith/crewquarters)
-"OT" = (
-/obj/item/kitchen/knife{
-	pixel_x = -3;
-	pixel_y = 6
-	},
-/obj/item/plate{
-	pixel_x = 10;
-	pixel_y = -2
-	},
-/obj/item/plate{
-	pixel_x = 10;
-	pixel_y = -4
-	},
-/obj/item/plate{
-	pixel_x = 10;
-	pixel_y = -6
-	},
-/obj/item/plate{
-	pixel_x = 10;
-	pixel_y = -8
-	},
-/obj/item/plate{
-	pixel_x = 10;
-	pixel_y = -10
-	},
-/obj/item/plate{
-	pixel_x = 10;
-	pixel_y = -12
-	},
-/obj/item/plate/small{
-	pixel_x = -6;
-	pixel_y = -1
-	},
-/obj/item/plate/small{
-	pixel_x = -6;
-	pixel_y = -3
-	},
-/obj/item/plate/small{
-	pixel_x = -6;
-	pixel_y = -5
-	},
-/obj/item/plate/small{
-	pixel_x = -6;
-	pixel_y = -7
-	},
-/obj/item/plate/small{
-	pixel_x = -6;
-	pixel_y = -9
-	},
-/obj/item/plate/small{
-	pixel_x = -6;
-	pixel_y = -11
-	},
-/turf/open/floor/concrete/slab_4,
-/area/ruin/unpowered/planet_beach/gunsmith/kitchen)
-"OW" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 1
-	},
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/turf/open/floor/wood,
-/area/ruin/unpowered/planet_beach/gunsmith/crewquarters)
-"Pc" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 10
-	},
-/obj/structure/chair/office,
-/obj/item/radio/intercom/directional/west,
-/turf/open/floor/wood,
-/area/ruin/unpowered/planet_beach/gunsmith/workshop)
-"Pk" = (
-/obj/structure/frame/machine{
-	anchored = 1
-	},
-/turf/open/floor/concrete/slab_1,
-/area/ruin/unpowered/planet_beach/gunsmith)
-"Po" = (
-/obj/machinery/shower{
-	dir = 4
-	},
-/obj/structure/window/reinforced/tinted{
-	dir = 1
-	},
-/turf/open/floor/monotile/steel,
-/area/ruin/unpowered/planet_beach/gunsmith/bathroom)
-"Pp" = (
-/obj/effect/turf_decal/siding/wood,
-/obj/structure/table/wood,
-/obj/item/paper/crumpled{
-	pixel_x = 3;
-	pixel_y = 5;
-	default_raw_text = "hej kochanie. pamiętaj, żeby ostrożniej przesuwać regał przy skrytce. znowu trzeba będzie prosić rei, żeby naprawił deski"
-	},
-/obj/machinery/light,
-/turf/open/floor/wood,
-/area/ruin/unpowered/planet_beach/gunsmith/dorms/officer)
-"Pt" = (
-/obj/structure/chair/fancy/sofa/old/left{
-	dir = 8
-	},
-/obj/item/radio/intercom/directional/east,
-/turf/open/floor/carpet/green,
-/area/ruin/unpowered/planet_beach/gunsmith/dorms)
-"Pv" = (
-/turf/open/floor/plasteel/dark,
-/area/ruin/unpowered/planet_beach/gunsmith/workshop)
-"PC" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 8
-	},
-/turf/open/floor/wood,
-/area/ruin/unpowered/planet_beach/gunsmith/dorms/officer)
-"Qa" = (
-/obj/structure/cable,
-/obj/machinery/light/small{
-	dir = 1
-	},
-/turf/open/floor/concrete/slab_1,
-/area/ruin/unpowered/planet_beach/gunsmith)
-"Qe" = (
-/obj/effect/turf_decal/ship/techfloor{
-	dir = 8
-	},
-/obj/structure/closet/secure_closet{
-	req_access = null;
-	icon_state = "armory"
-	},
-/obj/item/stack/sheet/plastic/twenty{
-	pixel_x = -9;
-	pixel_y = 2
-	},
-/obj/item/stack/sheet/plasteel/twenty{
-	pixel_x = -9;
-	pixel_y = 8
-	},
-/obj/item/stack/sheet/mineral/plasma/twenty{
-	pixel_x = -9;
-	pixel_y = -10
-	},
-/obj/item/stack/sheet/iron/fifty{
-	pixel_x = 6;
-	pixel_y = 2
-	},
-/obj/item/stack/sheet/glass/fifty{
-	pixel_x = 6;
-	pixel_y = 8
-	},
-/turf/open/floor/concrete/slab_4,
-/area/ruin/unpowered/planet_beach/gunsmith/workshop)
-"Qt" = (
-/obj/structure/cable,
-/turf/open/floor/wood,
-/area/ruin/unpowered/planet_beach/gunsmith)
-"Qv" = (
-/turf/open/floor/wood,
-/area/ruin/unpowered/planet_beach/gunsmith/kitchen)
-"QA" = (
-/obj/effect/turf_decal/siding/thinplating/dark/corner{
-	dir = 1
-	},
-/turf/open/floor/concrete/slab_4,
-/area/ruin/unpowered/planet_beach/gunsmith/electrical)
-"QG" = (
-/turf/open/floor/concrete/slab_1,
-/area/ruin/unpowered/planet_beach/gunsmith)
-"Rg" = (
-/obj/machinery/griddle,
-/obj/effect/turf_decal/siding/wood{
-	dir = 1
-	},
-/turf/open/floor/wood,
-/area/ruin/unpowered/planet_beach/gunsmith/kitchen)
-"RG" = (
+"ZX" = (
 /obj/structure/rack,
 /obj/item/clothing/gloves/color/yellow{
 	pixel_x = -4;
@@ -3089,3738 +3723,3104 @@
 	},
 /turf/open/floor/concrete/slab_1,
 /area/ruin/unpowered/planet_beach/gunsmith)
-"RQ" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 4
-	},
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 1
-	},
-/turf/open/floor/wood,
-/area/ruin/unpowered/planet_beach/gunsmith/crewquarters)
-"So" = (
-/obj/effect/turf_decal/ship/techfloor{
-	dir = 1
-	},
-/obj/structure/railing{
-	dir = 1
-	},
-/mob/living/basic/trooper/syndicate/ranged/smg,
-/turf/open/floor/concrete/slab_4,
-/area/ruin/unpowered/planet_beach/gunsmith)
-"Sv" = (
-/obj/structure/cable,
-/turf/open/water/planet/beach,
-/area/ruin/unpowered/planet_beach/gunsmith)
-"Sz" = (
-/obj/structure/barricade/sandbags,
-/obj/machinery/door/poddoor/shutters/preopen{
-	dir = 4
-	},
-/obj/structure/railing{
-	dir = 8
-	},
-/turf/open/floor/concrete/slab_1,
-/area/ruin/unpowered/planet_beach/gunsmith)
-"SK" = (
-/obj/effect/turf_decal/trimline/red/line{
-	dir = 5;
-	color = "#B4696A";
-	alpha = 255
-	},
-/obj/structure/closet,
-/obj/item/clothing/head/radiation,
-/obj/item/clothing/head/radiation,
-/obj/item/clothing/suit/radiation,
-/obj/item/clothing/suit/radiation,
-/obj/item/geiger_counter,
-/obj/item/geiger_counter,
-/turf/open/floor/monotile/dark,
-/area/ruin/unpowered/planet_beach/gunsmith/electrical)
-"ST" = (
-/obj/effect/turf_decal/siding/thinplating/dark,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 9
-	},
-/turf/open/floor/concrete/slab_1,
-/area/ruin/unpowered/planet_beach/gunsmith/kitchen)
-"Ta" = (
-/obj/effect/turf_decal/siding/wood/end{
-	dir = 8
-	},
-/obj/machinery/button/door{
-	pixel_x = -22;
-	pixel_y = -10;
-	dir = 4;
-	id = "bedroomshutters";
-	name = "rolety prywatności"
-	},
-/obj/structure/extinguisher_cabinet/north,
-/turf/open/floor/wood,
-/area/ruin/unpowered/planet_beach/gunsmith/dorms)
-"Ti" = (
-/obj/effect/turf_decal/tile/black/half{
-	dir = 8;
-	color = "#444547";
-	alpha = 255
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 10
-	},
-/turf/open/floor/plasteel/stairs/right,
-/area/ruin/unpowered/planet_beach/gunsmith/electrical)
-"Tl" = (
-/obj/structure/railing/corner,
-/turf/open/floor/concrete/slab_4,
-/area/ruin/unpowered/planet_beach/gunsmith/workshop)
-"Tm" = (
-/obj/effect/turf_decal/siding/thinplating/dark{
-	dir = 1
-	},
-/turf/open/floor/concrete,
-/area/ruin/unpowered/planet_beach/gunsmith/electrical)
-"Tz" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/machinery/light/small{
-	dir = 1
-	},
-/obj/machinery/button/door{
-	pixel_x = -10;
-	pixel_y = 20;
-	id = "gunsmithbathroom";
-	normaldoorcontrol = 1;
-	name = "zamek łazienki";
-	specialfunctions = 4
-	},
-/turf/open/floor/carpet/black{
-	name = "mata łazienkowa"
-	},
-/area/ruin/unpowered/planet_beach/gunsmith/bathroom)
-"TE" = (
-/obj/structure/chair/fancy/comfy{
-	dir = 1
-	},
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/carpet/green,
-/area/ruin/unpowered/planet_beach/gunsmith/crewquarters)
-"TQ" = (
-/obj/structure/table,
-/obj/item/binoculars,
-/obj/item/reagent_containers/glass/mortar{
-	pixel_x = -7;
-	pixel_y = 8
-	},
-/obj/item/cigbutt{
-	pixel_x = -10;
-	pixel_y = 16
-	},
-/obj/item/cigbutt{
-	pixel_x = -6;
-	pixel_y = 15
-	},
-/obj/item/cigbutt{
-	pixel_x = -12;
-	pixel_y = 14
-	},
-/obj/item/storage/fancy/cigarettes/cigpack_syndicate{
-	pixel_x = 5;
-	pixel_y = 10
-	},
-/obj/item/lighter{
-	pixel_x = 11;
-	pixel_y = 9
-	},
-/turf/open/floor/concrete/slab_1,
-/area/ruin/unpowered/planet_beach/gunsmith)
-"TR" = (
-/obj/structure/cable,
-/obj/machinery/light/small,
-/turf/open/floor/concrete/slab_4,
-/area/ruin/unpowered/planet_beach/gunsmith)
-"TZ" = (
-/obj/item/reagent_containers/food/drinks/beer{
-	pixel_x = -6;
-	pixel_y = -4
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/concrete/slab_1,
-/area/ruin/unpowered/planet_beach/gunsmith)
-"Ua" = (
-/turf/open/floor/concrete/slab_4,
-/area/ruin/unpowered/planet_beach/gunsmith/kitchen)
-"Uo" = (
-/obj/structure/cable,
-/obj/machinery/power/apc/auto_name/east,
-/turf/open/floor/concrete/slab_4,
-/area/ruin/unpowered/planet_beach/gunsmith/workshop)
-"Ut" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 8
-	},
-/turf/open/floor/wood,
-/area/ruin/unpowered/planet_beach/gunsmith/dorms)
-"UC" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 9
-	},
-/obj/structure/chair/fancy/bench{
-	dir = 4
-	},
-/turf/open/floor/wood,
-/area/ruin/unpowered/planet_beach/gunsmith/kitchen)
-"UK" = (
-/turf/closed/wall/r_wall,
-/area/ruin/unpowered/planet_beach/gunsmith/dorms/officer)
-"UV" = (
-/obj/effect/turf_decal/ship/borderfloor/corner{
-	dir = 4
-	},
-/obj/effect/turf_decal/trimline/red/line{
-	dir = 10;
-	color = "#B4696A";
-	alpha = 255
-	},
-/obj/structure/cable,
-/turf/open/floor/plasteel/dark,
-/area/ruin/unpowered/planet_beach/gunsmith)
-"Va" = (
-/obj/effect/turf_decal/siding/wood,
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 6
-	},
-/turf/open/floor/wood,
-/area/ruin/unpowered/planet_beach/gunsmith/dorms)
-"Vd" = (
-/obj/machinery/door/poddoor/shutters/preopen{
-	dir = 4
-	},
-/turf/open/floor/plasteel/stairs/right{
-	dir = 4
-	},
-/area/ruin/unpowered/planet_beach/gunsmith)
-"Vh" = (
-/obj/effect/turf_decal/siding/wood,
-/obj/effect/turf_decal/siding/wood{
-	dir = 1
-	},
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
-	dir = 1
-	},
-/turf/open/floor/wood,
-/area/ruin/unpowered/planet_beach/gunsmith/crewquarters)
-"Vi" = (
-/obj/machinery/light/small{
-	dir = 8
-	},
-/turf/open/floor/plating/asteroid/dirt/beach,
-/area/ruin/unpowered/planet_beach/gunsmith/workshop)
-"Vj" = (
-/obj/machinery/door/window/northright,
-/obj/item/soap{
-	pixel_x = 7;
-	pixel_y = -9
-	},
-/obj/item/soap{
-	pixel_x = 7;
-	pixel_y = -5
-	},
-/obj/item/pushbroom{
-	pixel_x = 3;
-	pixel_y = -3
-	},
-/obj/item/mop{
-	pixel_x = 7;
-	pixel_y = -3
-	},
-/obj/item/reagent_containers/glass/bucket{
-	pixel_x = -10;
-	pixel_y = 2
-	},
-/turf/open/floor/monotile/steel,
-/area/ruin/unpowered/planet_beach/gunsmith/bathroom)
-"Vm" = (
-/obj/structure/closet/crate/secure/weapon,
-/obj/item/ammo_box/magazine/m556{
-	pixel_x = -4;
-	start_empty = 1
-	},
-/obj/item/ammo_box/magazine/m556{
-	pixel_x = -4;
-	pixel_y = -4;
-	start_empty = 1
-	},
-/obj/effect/turf_decal/tile/red/half{
-	dir = 6;
-	color = "#730622";
-	alpha = 140
-	},
-/obj/item/ammo_box/a762,
-/obj/item/ammo_box/a762,
-/turf/open/floor/monotile/dark,
-/area/ruin/unpowered/planet_beach/gunsmith/workshop)
-"Vn" = (
-/obj/structure/railing,
-/obj/structure/cable,
-/turf/open/floor/concrete/slab_4,
-/area/ruin/unpowered/planet_beach/gunsmith)
-"Vo" = (
-/obj/structure/window/plastitanium,
-/turf/open/floor/plating,
-/area/ruin/unpowered/planet_beach/gunsmith/crewquarters)
-"Vu" = (
-/obj/structure/railing,
-/obj/effect/turf_decal/ship/techfloor,
-/mob/living/basic/trooper/syndicate/ranged,
-/turf/open/floor/concrete/slab_4,
-/area/ruin/unpowered/planet_beach/gunsmith/workshop)
-"VG" = (
-/obj/effect/turf_decal/siding/wood/end{
-	dir = 4
-	},
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
-	dir = 1
-	},
-/turf/open/floor/wood,
-/area/ruin/unpowered/planet_beach/gunsmith/dorms)
-"VM" = (
-/obj/machinery/door/poddoor/shutters/preopen{
-	dir = 4
-	},
-/obj/structure/cable,
-/turf/open/floor/plasteel/stairs/left{
-	dir = 4
-	},
-/area/ruin/unpowered/planet_beach/gunsmith)
-"VP" = (
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab/chicken,
-/obj/item/food/meat/slab/chicken,
-/obj/item/food/meat/slab/chicken,
-/obj/item/food/meat/slab/chicken,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab/bear,
-/obj/item/food/meat/slab/bear,
-/obj/item/food/meat/rawcrab,
-/obj/item/food/meat/rawcrab,
-/obj/item/food/meat/rawcrab,
-/obj/item/food/meat/rawcrab,
-/obj/structure/closet/secure_closet/freezer,
-/turf/open/floor/monotile/steel,
-/area/ruin/unpowered/planet_beach/gunsmith/kitchen)
-"VR" = (
-/turf/closed/wall/r_wall,
-/area/ruin/unpowered/planet_beach/gunsmith/dorms)
-"VT" = (
-/turf/open/floor/concrete/slab_4,
-/area/ruin/unpowered/planet_beach/gunsmith/electrical)
-"VU" = (
-/obj/effect/turf_decal/trimline/red/filled/warning{
-	dir = 8;
-	color = "#730622";
-	alpha = 255
-	},
-/turf/open/floor/concrete/slab_1,
-/area/ruin/unpowered/planet_beach/gunsmith)
-"VV" = (
-/obj/structure/closet/crate/bin,
-/obj/structure/extinguisher_cabinet/east,
-/turf/open/floor/concrete/slab_4,
-/area/ruin/unpowered/planet_beach/gunsmith/workshop)
-"VW" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/dark,
-/area/ruin/unpowered/planet_beach/gunsmith/workshop)
-"We" = (
-/obj/machinery/recharger{
-	pixel_x = -9;
-	pixel_y = 8
-	},
-/obj/structure/table/reinforced{
-	color = "#c1b6a5"
-	},
-/obj/item/paper_bin{
-	pixel_x = 9;
-	pixel_y = 3
-	},
-/obj/item/pen{
-	pixel_x = 8;
-	pixel_y = 5
-	},
-/obj/item/radio/off{
-	pixel_x = -8;
-	pixel_y = -1
-	},
-/obj/machinery/light,
-/turf/open/floor/concrete/slab_1,
-/area/ruin/unpowered/planet_beach/gunsmith/workshop)
-"Wf" = (
-/obj/structure/closet/secure_closet{
-	req_access = null;
-	icon_state = "armory"
-	},
-/obj/machinery/light/small,
-/turf/open/floor/concrete/slab_1,
-/area/ruin/unpowered/planet_beach/gunsmith)
-"Wr" = (
-/obj/structure/chair/fancy/bench{
-	dir = 1
-	},
-/turf/open/floor/carpet/green,
-/area/ruin/unpowered/planet_beach/gunsmith/crewquarters)
-"Ws" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 5
-	},
-/turf/open/floor/wood,
-/area/ruin/unpowered/planet_beach/gunsmith/dorms)
-"Wt" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 10
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/turf/open/floor/wood,
-/area/ruin/unpowered/planet_beach/gunsmith/crewquarters)
-"WC" = (
-/obj/structure/rack,
-/obj/item/ammo_box/a762,
-/obj/item/radio/intercom/directional/north,
-/turf/open/floor/concrete/slab_1,
-/area/ruin/unpowered/planet_beach/gunsmith)
-"WG" = (
-/obj/structure/railing,
-/obj/structure/cable,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/concrete/slab_4,
-/area/ruin/unpowered/planet_beach/gunsmith)
-"WH" = (
-/obj/structure/railing{
-	dir = 4
-	},
-/obj/effect/turf_decal/ship/techfloor{
-	dir = 1
-	},
-/turf/open/floor/concrete/slab_4,
-/area/ruin/unpowered/planet_beach/gunsmith/workshop)
-"WM" = (
-/obj/effect/turf_decal/siding/wood/end,
-/obj/item/kirbyplants{
-	icon_state = "plant-05";
-	pixel_x = 8;
-	pixel_y = -1
-	},
-/turf/open/floor/wood,
-/area/ruin/unpowered/planet_beach/gunsmith/crewquarters)
-"WO" = (
-/obj/machinery/power/smes/engineering,
-/obj/structure/cable/green,
-/obj/effect/turf_decal/tile/red/half{
-	dir = 4;
-	color = "#730622";
-	alpha = 255
-	},
-/turf/open/floor/plasteel/techmaint,
-/area/ruin/unpowered/planet_beach/gunsmith/electrical)
-"WP" = (
-/obj/effect/turf_decal/ship/borderfloor{
-	dir = 4
-	},
-/obj/effect/turf_decal/trimline/red/line{
-	dir = 8;
-	color = "#B4696A";
-	alpha = 255
-	},
-/obj/structure/rack,
-/obj/item/clothing/head/soft/black{
-	pixel_x = -8;
-	pixel_y = 8
-	},
-/obj/item/clothing/head/soft/black{
-	pixel_x = -8;
-	pixel_y = 1
-	},
-/obj/item/clothing/head/soft/black{
-	pixel_x = -8;
-	pixel_y = -6
-	},
-/obj/item/clothing/head/HoS/beret/syndicate{
-	pixel_x = 4;
-	pixel_y = 3
-	},
-/obj/item/clothing/head/HoS/beret/syndicate{
-	pixel_x = 4;
-	pixel_y = 10
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/unpowered/planet_beach/gunsmith/crewquarters)
-"Xa" = (
-/obj/effect/turf_decal/tile/red/half{
-	dir = 1;
-	color = "#730622";
-	alpha = 255
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/concrete/slab_1,
-/area/ruin/unpowered/planet_beach/gunsmith)
-"Xc" = (
-/obj/effect/turf_decal/ship/borderfloor/corner,
-/obj/effect/turf_decal/trimline/red/line{
-	dir = 9;
-	color = "#B4696A";
-	alpha = 255
-	},
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/unpowered/planet_beach/gunsmith)
-"Xl" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 9
-	},
-/mob/living/basic/trooper/syndicate/melee/sword,
-/turf/open/floor/wood,
-/area/ruin/unpowered/planet_beach/gunsmith/crewquarters)
-"Xt" = (
-/obj/structure/dresser,
-/obj/item/flashlight/lamp{
-	pixel_x = -8;
-	pixel_y = 10;
-	layer = 3.3
-	},
-/obj/item/clothing/head/soft{
-	pixel_x = 5;
-	pixel_y = 9
-	},
-/obj/item/clothing/under/shorts/purple{
-	pixel_x = 10;
-	pixel_y = 8
-	},
-/turf/open/floor/carpet/green,
-/area/ruin/unpowered/planet_beach/gunsmith/dorms)
-"Xv" = (
-/obj/effect/turf_decal/trimline/red/line{
-	dir = 4;
-	color = "#B4696A";
-	alpha = 255
-	},
-/obj/machinery/light/small{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/unpowered/planet_beach/gunsmith/electrical)
-"XB" = (
-/obj/structure/lattice/catwalk/over/ship,
-/obj/structure/cable,
-/turf/open/floor/plating,
-/area/ruin/unpowered/planet_beach/gunsmith/electrical)
-"XF" = (
-/obj/structure/chair/fancy/comfy,
-/obj/machinery/button/door{
-	pixel_x = 9;
-	pixel_y = 21;
-	name = "rolety prywatności";
-	id = "officeshutters"
-	},
-/turf/open/floor/carpet/green,
-/area/ruin/unpowered/planet_beach/gunsmith/dorms/officer)
-"XL" = (
-/obj/machinery/light/small{
-	dir = 8
-	},
-/mob/living/basic/trooper/syndicate/ranged/smg,
-/turf/open/floor/wood,
-/area/ruin/unpowered/planet_beach/gunsmith)
-"Ym" = (
-/turf/closed/wall/r_wall,
-/area/ruin/unpowered/planet_beach/gunsmith/kitchen)
-"Yu" = (
-/turf/closed/mineral/random/beach,
-/area/ruin/unpowered/planet_beach/gunsmith)
-"Yw" = (
-/obj/machinery/power/rtg/advanced,
-/obj/structure/cable/yellow,
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/effect/turf_decal/siding/thinplating/dark{
-	dir = 4
-	},
-/turf/open/floor/concrete/slab_4,
-/area/ruin/unpowered/planet_beach/gunsmith/electrical)
-"YB" = (
-/obj/effect/turf_decal/tile/red/half{
-	color = "#730622";
-	alpha = 140
-	},
-/turf/open/floor/monotile/dark,
-/area/ruin/unpowered/planet_beach/gunsmith/workshop)
-"YI" = (
-/turf/open/water/planet/beach,
-/area/ruin/unpowered/planet_beach/gunsmith)
-"Zg" = (
-/turf/open/water/planet/beach/deep,
-/area/ruin/unpowered/planet_beach/gunsmith)
-"Zh" = (
-/obj/structure/cable,
-/obj/machinery/light/small,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/concrete/slab_4,
-/area/ruin/unpowered/planet_beach/gunsmith)
-"Zo" = (
-/obj/structure/window/plastitanium,
-/obj/machinery/door/poddoor/shutters{
-	id = "exchangewindows"
-	},
-/turf/open/floor/plating,
-/area/ruin/unpowered/planet_beach/gunsmith/workshop)
-"ZE" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 10
-	},
-/turf/open/floor/wood,
-/area/ruin/unpowered/planet_beach/gunsmith/dorms/officer)
-"ZG" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 5
-	},
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/structure/extinguisher_cabinet/east,
-/turf/open/floor/wood,
-/area/ruin/unpowered/planet_beach/gunsmith/crewquarters)
-"ZO" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 4
-	},
-/obj/effect/turf_decal/siding/wood/corner{
-	dir = 8
-	},
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/turf/open/floor/wood,
-/area/ruin/unpowered/planet_beach/gunsmith/crewquarters)
-"ZX" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/wood,
-/area/ruin/unpowered/planet_beach/gunsmith)
 
 (1,1,1) = {"
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Yu
-Yu
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+vX
+vX
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
 "}
 (2,1,1) = {"
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-IO
-IO
-IO
-Yu
-Yu
-Yu
-Jx
-Jx
-Yu
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+Dg
+Dg
+Dg
+vX
+vX
+vX
+tH
+tH
+vX
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
 "}
 (3,1,1) = {"
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-IO
-IO
-IO
-IO
-IO
-IO
-Yu
-Yu
-Yu
-Yu
-Yu
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+Dg
+Dg
+Dg
+Dg
+Dg
+Dg
+vX
+vX
+vX
+vX
+vX
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
 "}
 (4,1,1) = {"
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Yu
-Yu
-Yu
-Jx
-Jx
-Yu
-Yu
-Jx
-Jx
-IO
-IO
-IO
-IO
-IO
-IO
-IO
-IO
-IO
-IO
-IO
-Yu
-Yu
-Yu
-Yu
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+vX
+vX
+vX
+tH
+tH
+vX
+vX
+tH
+tH
+Dg
+Dg
+Dg
+Dg
+Dg
+Dg
+Dg
+Dg
+Dg
+Dg
+Dg
+vX
+vX
+vX
+vX
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
 "}
 (5,1,1) = {"
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-IO
-YI
-IO
-IO
-IO
-IO
-IO
-IO
-IO
-IO
-IO
-Yu
-Yu
-Yu
-Yu
-Yu
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+Dg
+eh
+Dg
+Dg
+Dg
+Dg
+Dg
+Dg
+Dg
+Dg
+Dg
+vX
+vX
+vX
+vX
+vX
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
 "}
 (6,1,1) = {"
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-IO
-YI
-YI
-YI
-yJ
-DU
-IO
-YI
-YI
-IO
-IO
-IO
-IO
-IO
-Yu
-Yu
-Yu
-Yu
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+Dg
+eh
+eh
+eh
+Nw
+Pf
+Dg
+eh
+eh
+Dg
+Dg
+Dg
+Dg
+Dg
+vX
+vX
+vX
+vX
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
 "}
 (7,1,1) = {"
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Yu
-Yu
-lT
-lT
-lT
-lT
-lT
-lT
-lT
-Yu
-IO
-IO
-YI
-YI
-YI
-ZX
-yP
-YI
-YI
-YI
-YI
-Yu
-IO
-IO
-IO
-IO
-IO
-Yu
-Yu
-Yu
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+vX
+vX
+vT
+vT
+vT
+vT
+vT
+vT
+vT
+vX
+Dg
+Dg
+eh
+eh
+eh
+Rz
+sc
+eh
+eh
+eh
+eh
+vX
+Dg
+Dg
+Dg
+Dg
+Dg
+vX
+vX
+vX
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
 "}
 (8,1,1) = {"
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Yu
-Yu
-Yu
-lT
-IM
-iZ
-Qe
-lT
-my
-lT
-lT
-IO
-YI
-YI
-YI
-YI
-yP
-yP
-YI
-YI
-YI
-Yu
-Yu
-Yu
-Yu
-IO
-IO
-IO
-IO
-Yu
-Yu
-Yu
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+vX
+vX
+vX
+vT
+re
+eu
+Ks
+vT
+fp
+vT
+vT
+Dg
+eh
+eh
+eh
+eh
+sc
+sc
+eh
+eh
+eh
+vX
+vX
+vX
+vX
+Dg
+Dg
+Dg
+Dg
+vX
+vX
+vX
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
 "}
 (9,1,1) = {"
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Yu
-Yu
-Yu
-lT
-lT
-qc
-qc
-qc
-vi
-VW
-JL
-lT
-IO
-YI
-YI
-YI
-YI
-yP
-yP
-YI
-YI
-YI
-Yu
-Yu
-Yu
-Yu
-IO
-IO
-IO
-IO
-IO
-IO
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+vX
+vX
+vX
+vT
+vT
+hO
+hO
+hO
+Fb
+sg
+TN
+vT
+Dg
+eh
+eh
+eh
+eh
+sc
+sc
+eh
+eh
+eh
+vX
+vX
+vX
+vX
+Dg
+Dg
+Dg
+Dg
+Dg
+Dg
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
 "}
 (10,1,1) = {"
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Yu
-Yu
-Yu
-lT
-IG
-Li
-AK
-lL
-lT
-zf
-lH
-lT
-IO
-YI
-lS
-Nc
-cg
-yP
-ZX
-lS
-Nc
-cg
-YI
-YI
-Yu
-YI
-YI
-YI
-IO
-IO
-IO
-IO
-IO
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+vX
+vX
+vX
+vT
+gR
+pc
+PH
+Rd
+vT
+mw
+FQ
+vT
+Dg
+eh
+vO
+ye
+qg
+sc
+Rz
+vO
+ye
+qg
+eh
+eh
+vX
+eh
+eh
+eh
+Dg
+Dg
+Dg
+Dg
+Dg
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
 "}
 (11,1,1) = {"
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Yu
-Yu
-Yu
-lT
-ls
-qc
-AK
-pc
-lT
-lT
-lT
-lT
-lT
-IO
-YI
-YI
-YI
-yP
-yP
-YI
-YI
-YI
-YI
-YI
-YI
-YI
-YI
-IO
-IO
-IO
-IO
-IO
-IO
-IO
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+vX
+vX
+vX
+vT
+KL
+hO
+PH
+tY
+vT
+vT
+vT
+vT
+vT
+Dg
+eh
+eh
+eh
+sc
+sc
+eh
+eh
+eh
+eh
+eh
+eh
+eh
+eh
+Dg
+Dg
+Dg
+Dg
+Dg
+Dg
+Dg
+tH
+tH
+tH
+tH
+tH
+tH
+tH
 "}
 (12,1,1) = {"
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Yu
-Yu
-Yu
-Yu
-lT
-mS
-qc
-AK
-qc
-jD
-tZ
-Pc
-We
-lT
-IO
-YI
-YI
-YI
-yP
-yP
-Zg
-YI
-YI
-YI
-YI
-lS
-Nc
-cg
-YI
-yJ
-DU
-IO
-IO
-IO
-IO
-IO
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
+tH
+tH
+tH
+tH
+tH
+tH
+vX
+vX
+vX
+vX
+vT
+Jt
+hO
+PH
+hO
+MN
+dR
+dC
+fx
+vT
+Dg
+eh
+eh
+eh
+sc
+sc
+iV
+eh
+eh
+eh
+eh
+vO
+ye
+qg
+eh
+Nw
+Pf
+Dg
+Dg
+Dg
+Dg
+Dg
+tH
+tH
+tH
+tH
+tH
+tH
 "}
 (13,1,1) = {"
-Jx
-Jx
-Jx
-Jx
-Jx
-Yu
-Yu
-Yu
-Yu
-Yu
-lT
-bj
-mr
-qc
-FX
-lT
-tL
-DB
-KB
-Zo
-YI
-YI
-YI
-Zg
-ZX
-yP
-Zg
-Zg
-Zg
-Zg
-Zg
-YI
-YI
-YI
-YI
-ZX
-yP
-YI
-YI
-IO
-IO
-IO
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
+tH
+tH
+tH
+tH
+tH
+vX
+vX
+vX
+vX
+vX
+vT
+Es
+MO
+hO
+UR
+vT
+gV
+Nn
+lo
+UD
+eh
+eh
+eh
+iV
+Rz
+sc
+iV
+iV
+iV
+iV
+iV
+eh
+eh
+eh
+eh
+Rz
+sc
+eh
+eh
+Dg
+Dg
+Dg
+tH
+tH
+tH
+tH
+tH
+tH
 "}
 (14,1,1) = {"
-Jx
-Jx
-Jx
-Jx
-Jx
-Yu
-Yu
-Yu
-Yu
-Yu
-lT
-EN
-Uo
-ap
-VV
-lT
-Bq
-Er
-Gh
-lT
-YI
-YI
-YI
-Zg
-yP
-yP
-yP
-yP
-ZX
-ZX
-yP
-yP
-yP
-yP
-yP
-ZX
-yP
-YI
-YI
-YI
-IO
-IO
-Jx
-Yu
-Yu
-Jx
-Jx
-Jx
+tH
+tH
+tH
+tH
+tH
+vX
+vX
+vX
+vX
+vX
+vT
+px
+wk
+nX
+Dz
+vT
+Eg
+dZ
+Xy
+vT
+eh
+eh
+eh
+iV
+sc
+sc
+sc
+sc
+Rz
+Rz
+sc
+sc
+sc
+sc
+sc
+Rz
+sc
+eh
+eh
+eh
+Dg
+Dg
+tH
+vX
+vX
+tH
+tH
+tH
 "}
 (15,1,1) = {"
-Jx
-Jx
-Jx
-Jx
-Jx
-Yu
-Yu
-Yu
-Yu
-lT
-lT
-lT
-lT
-No
-lT
-lT
-lA
-eB
-lT
-lT
-YI
-YI
-Zg
-Zg
-Qt
-Qt
-jz
-Qt
-Qt
-Qt
-Qt
-Qt
-ov
-Qt
-Qt
-yP
-ZX
-YI
-YI
-YI
-YI
-IO
-Yu
-Yu
-Yu
-Jx
-Jx
-Jx
+tH
+tH
+tH
+tH
+tH
+vX
+vX
+vX
+vX
+vT
+vT
+vT
+vT
+lW
+vT
+vT
+av
+PK
+vT
+vT
+eh
+eh
+iV
+iV
+oH
+oH
+Eh
+oH
+oH
+oH
+oH
+oH
+iL
+oH
+oH
+sc
+Rz
+eh
+eh
+eh
+eh
+Dg
+vX
+vX
+vX
+tH
+tH
+tH
 "}
 (16,1,1) = {"
-Jx
-Jx
-Jx
-Jx
-Yu
-Yu
-Yu
-Yu
-Yu
-lT
-nf
-zQ
-VW
-Ko
-Nb
-lT
-IP
-KE
-Vi
-IO
-YI
-YI
-Zg
-yP
-Qt
-mL
-Zg
-Zg
-Zg
-Zg
-YI
-YI
-HA
-yP
-Qt
-HA
-YI
-Sv
-YI
-YI
-YI
-YI
-Yu
-Yu
-Yu
-Yu
-Jx
-Jx
+tH
+tH
+tH
+tH
+vX
+vX
+vX
+vX
+vX
+vT
+Lj
+YQ
+sg
+Tw
+Hf
+vT
+Cs
+tu
+QN
+Dg
+eh
+eh
+iV
+sc
+oH
+gv
+iV
+iV
+iV
+iV
+eh
+eh
+Gp
+sc
+oH
+Gp
+eh
+AQ
+eh
+eh
+eh
+eh
+vX
+vX
+vX
+vX
+tH
+tH
 "}
 (17,1,1) = {"
-Jx
-Jx
-Jx
-Jx
-Yu
-Yu
-Yu
-Yu
-Yu
-lT
-CS
-eX
-Hr
-pd
-nm
-lT
-IP
-yg
-yB
-YI
-YI
-YI
-Zg
-yP
-Qt
-LM
-Zg
-Zg
-Zg
-YI
-YI
-YI
-Nc
-yJ
-yn
-Nc
-YI
-Sv
-YI
-YI
-YI
-Yu
-Yu
-Yu
-Yu
-Yu
-Jx
-Jx
+tH
+tH
+tH
+tH
+vX
+vX
+vX
+vX
+vX
+vT
+Mg
+cU
+vs
+pI
+nB
+vT
+Cs
+le
+DI
+eh
+eh
+eh
+iV
+sc
+oH
+vR
+iV
+iV
+iV
+eh
+eh
+eh
+ye
+Nw
+FN
+ye
+eh
+AQ
+eh
+eh
+eh
+vX
+vX
+vX
+vX
+vX
+tH
+tH
 "}
 (18,1,1) = {"
-Jx
-Jx
-Jx
-Jx
-Yu
-Yu
-Yu
-Yu
-Yu
-lT
-sX
-Ie
-AK
-pd
-gh
-oe
-qk
-lF
-xD
-Qt
-ov
-Qt
-Qt
-Qt
-Qt
-Zg
-Zg
-Zg
-IO
-Yu
-Yu
-YI
-xZ
-aU
-Vn
-Sv
-Sv
-Sv
-YI
-YI
-YI
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Jx
+tH
+tH
+tH
+tH
+vX
+vX
+vX
+vX
+vX
+vT
+el
+fb
+PH
+pI
+Uo
+zg
+rP
+jT
+tK
+oH
+iL
+oH
+oH
+oH
+oH
+iV
+iV
+iV
+Dg
+vX
+vX
+eh
+Si
+Qq
+Kn
+AQ
+AQ
+AQ
+eh
+eh
+eh
+vX
+vX
+vX
+vX
+vX
+vX
+tH
 "}
 (19,1,1) = {"
-Jx
-Jx
-Jx
-Jx
-Yu
-Yu
-Yu
-Yu
-Yu
-lT
-CS
-Pv
-aQ
-Hr
-Pv
-fZ
-kv
-Tl
-bS
-yP
-yP
-yP
-yP
-ZX
-yP
-oJ
-Nc
-IO
-Yu
-Yu
-Yu
-YI
-xZ
-aU
-Vn
-YI
-Sv
-Sv
-YI
-YI
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Jx
+tH
+tH
+tH
+tH
+vX
+vX
+vX
+vX
+vX
+vT
+Mg
+QO
+DF
+vs
+QO
+oY
+wF
+qY
+ys
+sc
+sc
+sc
+sc
+Rz
+sc
+RC
+ye
+Dg
+vX
+vX
+vX
+eh
+Si
+Qq
+Kn
+eh
+AQ
+AQ
+eh
+eh
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+tH
 "}
 (20,1,1) = {"
-Jx
-Jx
-Jx
-Jx
-Yu
-Yu
-Yu
-Yu
-Yu
-lT
-lT
-Pv
-VW
-Pv
-wb
-lT
-CD
-Vu
-yB
-YI
-YI
-YI
-YI
-yP
-yP
-YI
-YI
-IO
-Yu
-Yu
-Yu
-YI
-Nc
-iS
-TR
-Nc
-YI
-YI
-YI
-YI
-Nc
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Jx
+tH
+tH
+tH
+tH
+vX
+vX
+vX
+vX
+vX
+vT
+vT
+QO
+sg
+QO
+La
+vT
+HM
+ag
+DI
+eh
+eh
+eh
+eh
+sc
+sc
+eh
+eh
+Dg
+vX
+vX
+vX
+eh
+ye
+aW
+Ne
+ye
+eh
+eh
+eh
+eh
+ye
+vX
+vX
+vX
+vX
+vX
+vX
+tH
 "}
 (21,1,1) = {"
-Jx
-Jx
-Jx
-Jx
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-lT
-Af
-YB
-YB
-Vm
-lT
-WH
-Fr
-FI
-YI
-YI
-YI
-YI
-yJ
-oQ
-YI
-YI
-YI
-YI
-Yu
-IO
-Nc
-Nc
-vS
-IL
-Nc
-Nc
-Sz
-Sz
-Nc
-Nc
-Nc
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
+tH
+tH
+tH
+tH
+vX
+vX
+vX
+vX
+vX
+vX
+vT
+zG
+zN
+zN
+oG
+vT
+nS
+AG
+Yh
+eh
+eh
+eh
+eh
+Nw
+Ld
+eh
+eh
+eh
+eh
+vX
+Dg
+ye
+ye
+wQ
+Ya
+ye
+ye
+LW
+LW
+ye
+ye
+ye
+vX
+vX
+vX
+vX
+vX
+vX
 "}
 (22,1,1) = {"
-Jx
-Jx
-Jx
-Jx
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-lT
-lT
-lT
-lT
-lT
-lT
-yB
-yB
-lT
-YI
-mk
-tj
-VU
-QG
-QG
-Dk
-Xa
-sI
-YI
-YI
-YI
-Nc
-Nc
-Xc
-UV
-CG
-Nc
-cw
-kB
-TZ
-Nc
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
+tH
+tH
+tH
+tH
+vX
+vX
+vX
+vX
+vX
+vX
+vT
+vT
+vT
+vT
+vT
+vT
+DI
+DI
+vT
+eh
+JM
+uZ
+UA
+KR
+KR
+wK
+EW
+JC
+eh
+eh
+eh
+ye
+ye
+aO
+Ci
+WB
+ye
+xz
+xM
+Tm
+ye
+vX
+vX
+vX
+vX
+vX
+vX
+vX
 "}
 (23,1,1) = {"
-Jx
-Jx
-Jx
-Jx
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-YI
-YI
-Zg
-Zg
-YI
-YI
-kg
-iS
-Lc
-aU
-iS
-aU
-iS
-hY
-YI
-YI
-YI
-Nc
-Nv
-Lo
-Et
-sL
-fJ
-iS
-aU
-TQ
-Nc
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
+tH
+tH
+tH
+tH
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+eh
+eh
+iV
+iV
+eh
+eh
+vP
+aW
+pj
+Qq
+aW
+Qq
+aW
+WM
+eh
+eh
+eh
+ye
+KP
+tA
+gC
+la
+zJ
+aW
+Qq
+Sv
+ye
+vX
+vX
+vX
+vX
+vX
+vX
+vX
 "}
 (24,1,1) = {"
-Jx
-Jx
-Ef
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Zg
-Nc
-IO
-Zg
-YI
-LC
-iS
-aU
-aU
-iS
-Lc
-iS
-Fn
-YI
-YI
-YI
-tq
-sL
-Lo
-Et
-xh
-Nc
-WC
-Wf
-Nc
-Nc
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Jx
+tH
+tH
+qb
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+iV
+ye
+Dg
+iV
+eh
+Vb
+aW
+Qq
+Qq
+aW
+pj
+aW
+DB
+eh
+eh
+eh
+Iw
+la
+tA
+gC
+fB
+ye
+WK
+FC
+ye
+ye
+vX
+vX
+vX
+vX
+vX
+vX
+tH
 "}
 (25,1,1) = {"
-Jx
-Jx
-YI
-Yu
-Yu
-Ef
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Zg
-IO
-Yu
-IO
-Zg
-LC
-iS
-aU
-aU
-aU
-iS
-iS
-Fn
-YI
-YI
-YI
-tq
-sL
-Lo
-Et
-Fa
-Nc
-Nc
-Nc
-Nc
-Nc
-Nc
-Yu
-Yu
-Yu
-Yu
-Yu
-Jx
+tH
+tH
+eh
+vX
+vX
+qb
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+iV
+Dg
+vX
+Dg
+iV
+Vb
+aW
+Qq
+Qq
+Qq
+aW
+aW
+DB
+eh
+eh
+eh
+Iw
+la
+tA
+gC
+rX
+ye
+ye
+ye
+ye
+ye
+ye
+vX
+vX
+vX
+vX
+vX
+tH
 "}
 (26,1,1) = {"
-Jx
-Jx
-YI
-YI
-YI
-YI
-YI
-Ef
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-EK
-Yu
-Yu
-IO
-Zg
-LC
-aU
-aU
-aU
-aU
-aU
-aU
-Fn
-YI
-YI
-YI
-Nc
-DA
-Lo
-Et
-sL
-fJ
-yP
-XL
-iQ
-Nc
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Jx
+tH
+tH
+eh
+eh
+eh
+eh
+eh
+qb
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+zV
+vX
+vX
+Dg
+iV
+Vb
+Qq
+Qq
+Qq
+Qq
+Qq
+Qq
+DB
+eh
+eh
+eh
+ye
+OC
+tA
+gC
+la
+zJ
+sc
+IJ
+us
+ye
+vX
+vX
+vX
+vX
+vX
+vX
+tH
 "}
 (27,1,1) = {"
-Jx
-Jx
-Ef
-YI
-YI
-YI
-YI
-YI
-Yu
-Yu
-Yu
-IO
-IO
-Yu
-IO
-Zg
-Yu
-Yu
-Yu
-EK
-Jj
-iS
+tH
+tH
+qb
+eh
+eh
+eh
+eh
+eh
+vX
+vX
+vX
+Dg
+Dg
+vX
+Dg
+iV
+vX
+vX
+vX
+zV
 aU
-aU
-aU
-iS
-aU
-Ji
-YI
-YI
-YI
-Nc
-Nc
-bh
-lm
-at
-Nc
-zH
-vR
-jR
-YI
-Yu
-Yu
-Yu
-Yu
-Yu
-Jx
-Jx
+aW
+Qq
+Qq
+Qq
+aW
+Qq
+Rp
+eh
+eh
+eh
+ye
+ye
+Xs
+xo
+tR
+ye
+Gj
+Yi
+eR
+eh
+vX
+vX
+vX
+vX
+vX
+tH
+tH
 "}
 (28,1,1) = {"
-Jx
-Jx
-Ef
-Ef
-Ef
-Ef
-Ef
-YI
-YI
-YI
-YI
-IO
-Jz
-YI
-YI
-YI
-Zg
-Yu
-IO
-Zg
-LC
-aU
-iS
-aU
-aU
-iS
-iS
-Fn
-YI
-IO
-YI
-YI
-Nc
-Vd
-VM
-Nc
-Nc
-YI
-YI
-YI
-YI
-YI
-Yu
-Yu
-Yu
-Yu
-Yu
-Jx
+tH
+tH
+qb
+qb
+qb
+qb
+qb
+eh
+eh
+eh
+eh
+Dg
+nf
+eh
+eh
+eh
+iV
+vX
+Dg
+iV
+Vb
+Qq
+aW
+Qq
+Qq
+aW
+aW
+DB
+eh
+Dg
+eh
+eh
+ye
+uE
+do
+ye
+ye
+eh
+eh
+eh
+eh
+eh
+vX
+vX
+vX
+vX
+vX
+tH
 "}
 (29,1,1) = {"
-Jx
-GT
-GT
-Ef
-Yu
-Ef
-GT
-Ef
-Ef
-YI
-YI
-Jz
-IO
-YI
-YI
-YI
-YI
-IO
-IO
-YI
-LC
-aU
-iS
-iS
-aU
-iS
-iS
-Fn
-YI
-IO
-Yu
-Nc
-Nc
-aU
-Zh
-Nc
-YI
-YI
-YI
-YI
-YI
-Yu
-Yu
-Yu
-Yu
-Yu
-Jx
-Jx
+tH
+BG
+BG
+qb
+vX
+qb
+BG
+qb
+qb
+eh
+eh
+nf
+Dg
+eh
+eh
+eh
+eh
+Dg
+Dg
+eh
+Vb
+Qq
+aW
+aW
+Qq
+aW
+aW
+DB
+eh
+Dg
+vX
+ye
+ye
+Qq
+lw
+ye
+eh
+eh
+eh
+eh
+eh
+vX
+vX
+vX
+vX
+vX
+tH
+tH
 "}
 (30,1,1) = {"
-Jx
-GT
-GT
-Yu
-Yu
-Yu
-GT
-Yu
-Yu
-tX
-tX
-tX
-tX
-tX
-IO
-YI
-YI
-Zg
-Zg
-YI
-Jj
+tH
+BG
+BG
+vX
+vX
+vX
+BG
+vX
+vX
+kp
+kp
+kp
+kp
+kp
+Dg
+eh
+eh
+iV
+iV
+eh
 aU
-aU
-aU
-aU
-iS
-aU
-Ji
-YI
-Yu
-Yu
-Nc
-RG
-aU
-WG
-YI
-Sv
-YI
-YI
-YI
-YI
-Yu
-Yu
-Yu
-Yu
-Yu
-Jx
-Jx
+Qq
+Qq
+Qq
+Qq
+aW
+Qq
+Rp
+eh
+vX
+vX
+ye
+ZX
+Qq
+uu
+eh
+AQ
+eh
+eh
+eh
+eh
+vX
+vX
+vX
+vX
+vX
+tH
+tH
 "}
 (31,1,1) = {"
-Jx
-GT
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-tX
-tX
-zm
-Yw
-sm
-tX
-tX
-YI
-aB
-Nc
-cg
-YI
-cj
-iS
-aU
-aU
-aU
-aU
-aU
-Fn
-YI
-Yu
-Yu
-Nc
-xX
-DS
-DS
-Sv
-Sv
-Sv
-YI
-IO
-Yu
-Yu
-Yu
-Yu
-Yu
-Jx
-Jx
-Jx
+tH
+BG
+vX
+vX
+vX
+vX
+vX
+vX
+kp
+kp
+BX
+fR
+pQ
+kp
+kp
+eh
+uv
+ye
+qg
+eh
+KB
+aW
+Qq
+Qq
+Qq
+Qq
+Qq
+DB
+eh
+vX
+vX
+ye
+AX
+mr
+mr
+AQ
+AQ
+AQ
+eh
+Dg
+vX
+vX
+vX
+vX
+vX
+tH
+tH
+tH
 "}
 (32,1,1) = {"
-Jx
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-tX
-iN
-wc
-hm
-Ed
-iN
-tX
-Sv
-Sv
-YI
-YI
-YI
-LC
-iS
-aU
-aU
-iS
-aU
-aU
-sF
-YI
-Yu
-IO
-Nc
-Pk
-iS
-Vn
-YI
-YI
-Sv
-Sv
-IO
-IO
-Yu
-Yu
-Yu
-Yu
-Jx
-Jx
-Jx
+tH
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+kp
+pP
+JK
+xB
+XN
+pP
+kp
+AQ
+AQ
+eh
+eh
+eh
+Vb
+aW
+Qq
+Qq
+aW
+Qq
+Qq
+Vi
+eh
+vX
+Dg
+ye
+nw
+aW
+Kn
+eh
+eh
+AQ
+AQ
+Dg
+Dg
+vX
+vX
+vX
+vX
+tH
+tH
+tH
 "}
 (33,1,1) = {"
-Jx
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-tX
-VT
-HN
-tF
-Tm
-jQ
-tX
-Sv
-Sv
-Sv
-YI
-YI
-LC
-aU
-iS
-aU
-aU
-aU
-aU
-Fn
-YI
-YI
-YI
-Nc
-Nc
-ue
+tH
 vX
-Jc
-YI
-YI
-YI
-IO
-IO
-Yu
-Yu
-Yu
-Jx
-Jx
-Jx
-Jx
+vX
+vX
+vX
+vX
+vX
+vX
+kp
+qK
+sE
+Tz
+Im
+EP
+kp
+AQ
+AQ
+AQ
+eh
+eh
+Vb
+Qq
+aW
+Qq
+Qq
+Qq
+Qq
+DB
+eh
+eh
+eh
+ye
+ye
+tO
+ZG
+ib
+eh
+eh
+eh
+Dg
+Dg
+vX
+vX
+vX
+tH
+tH
+tH
+tH
 "}
 (34,1,1) = {"
-Jx
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-tX
-iN
-dO
-Ia
-hw
-iN
-tX
-Qa
-xE
-YI
-YI
-YI
-kg
-aU
-aU
-aU
-iS
-iS
-iS
-hY
-YI
-YI
-IO
-IO
-li
-yP
-Qt
-YI
-YI
-YI
-IO
-IO
-IO
-IO
-Yu
-Jx
-Jx
-Jx
-Jx
-Jx
+tH
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+kp
+pP
+mE
+sy
+hp
+pP
+kp
+DL
+IL
+eh
+eh
+eh
+vP
+Qq
+Qq
+Qq
+aW
+aW
+aW
+WM
+eh
+eh
+Dg
+Dg
+aA
+sc
+oH
+eh
+eh
+eh
+Dg
+Dg
+Dg
+Dg
+vX
+tH
+tH
+tH
+tH
+tH
 "}
 (35,1,1) = {"
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-tX
-tX
-tX
-tX
-ww
-tX
-tX
-tX
-tX
-xE
-IO
-IO
-YI
-xi
-zS
-Fo
-Fo
-Fo
-Fo
-zS
-uX
-YI
-IO
-IO
-ur
-yP
-yP
-Qt
-yP
-yP
-yP
-fu
-IO
-IO
-IO
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+kp
+kp
+kp
+kp
+hX
+kp
+kp
+kp
+kp
+IL
+Dg
+Dg
+eh
+XR
+Uh
+ot
+ot
+ot
+ot
+Uh
+XZ
+eh
+Dg
+Dg
+tB
+sc
+sc
+oH
+sc
+sc
+sc
+lE
+Dg
+Dg
+Dg
+tH
+tH
+tH
+tH
+tH
+tH
 "}
 (36,1,1) = {"
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-tX
-Hb
-XB
-oF
-ik
-tX
-Kv
-eM
-HX
-rW
-IO
-IO
-IO
-IO
-IO
-IO
-ue
-Iq
-IO
-IO
-IO
-IO
-IO
-rW
-Nz
-Qt
-Qt
-Qt
-yP
-yP
-yP
-BO
-IO
-IO
-IO
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+kp
+vc
+hc
+RI
+Fy
+kp
+Jm
+jU
+Sl
+rf
+Dg
+Dg
+Dg
+Dg
+Dg
+Dg
+tO
+nd
+Dg
+Dg
+Dg
+Dg
+Dg
+rf
+Bh
+oH
+oH
+oH
+sc
+sc
+sc
+XS
+Dg
+Dg
+Dg
+tH
+tH
+tH
+tH
+tH
+tH
 "}
 (37,1,1) = {"
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-tX
-CM
-vy
-fk
-Gc
-Jm
-Lf
-BF
-FM
-rW
-rW
-rW
-rW
-rW
-rW
-rW
-rW
-rW
-rW
-rW
-rW
-rW
-rW
-rW
-YI
-YI
-YI
-YI
-YI
-IO
-IO
-IO
-IO
-IO
-IO
-IO
-Jx
-Jx
-Jx
-Jx
-Jx
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+kp
+eZ
+Ei
+FB
+fD
+Ii
+HJ
+AY
+IR
+rf
+rf
+rf
+rf
+rf
+rf
+rf
+rf
+rf
+rf
+rf
+rf
+rf
+rf
+rf
+eh
+eh
+eh
+eh
+eh
+Dg
+Dg
+Dg
+Dg
+Dg
+Dg
+Dg
+tH
+tH
+tH
+tH
+tH
 "}
 (38,1,1) = {"
-Jx
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-tX
-WO
-vy
-eI
-uk
-Mo
-Ti
-hh
-uh
-IO
-fQ
-IO
-IO
-IO
-IO
-IO
-IO
-rW
-IO
-IO
-IO
-IO
-IO
-YI
-Yu
-Yu
-Yu
-Yu
-YI
-YI
-IO
-IO
-IO
-IO
-IO
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
+tH
+vX
+vX
+vX
+vX
+vX
+vX
+kp
+zi
+Ei
+MJ
+nM
+Cb
+HO
+cW
+CL
+Dg
+Lk
+Dg
+Dg
+Dg
+Dg
+Dg
+Dg
+rf
+Dg
+Dg
+Dg
+Dg
+Dg
+eh
+vX
+vX
+vX
+vX
+eh
+eh
+Dg
+Dg
+Dg
+Dg
+Dg
+tH
+tH
+tH
+tH
+tH
+tH
 "}
 (39,1,1) = {"
-Jx
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-tX
-rB
-Cu
-EX
-AU
-tX
-SK
-Xv
-KC
-IO
-IO
-IO
-IO
-IO
-IO
-IO
-YI
-rW
-IO
-IO
-YI
-HA
-YI
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-IO
-IO
-IO
-IO
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
+tH
+vX
+vX
+vX
+vX
+vX
+vX
+kp
+qh
+ne
+sp
+Yg
+kp
+ew
+wE
+hy
+Dg
+Dg
+Dg
+Dg
+Dg
+Dg
+Dg
+eh
+rf
+Dg
+Dg
+eh
+Gp
+eh
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+Dg
+Dg
+Dg
+Dg
+tH
+tH
+tH
+tH
+tH
+tH
 "}
 (40,1,1) = {"
-Jx
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-tX
-tX
-tX
-tX
-ww
-tX
-tX
-tX
-tX
-Yu
-IO
-IO
-IO
-YI
-lS
-Nc
-cg
-mB
-oQ
-Hv
-vm
-vm
-vm
-vm
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-IO
-IO
-IO
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
+tH
+vX
+vX
+vX
+vX
+vX
+vX
+kp
+kp
+kp
+kp
+hX
+kp
+kp
+kp
+kp
+vX
+Dg
+Dg
+Dg
+eh
+vO
+ye
+qg
+KC
+Ld
+By
+qx
+qx
+qx
+qx
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+Dg
+Dg
+Dg
+tH
+tH
+tH
+tH
+tH
+tH
+tH
 "}
 (41,1,1) = {"
-Jx
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-tX
-iN
-wc
-Ia
-Ed
-iN
-tX
-Yu
-IO
-IO
-IO
-Yu
-YI
-YI
-YI
-Gn
-En
-ak
-HS
-vm
-WP
-qA
-vm
-vm
-Yu
-Yu
-Yu
-Yu
-Yu
-IO
-IO
-IO
-IO
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
+tH
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+kp
+pP
+JK
+sy
+XN
+pP
+kp
+vX
+Dg
+Dg
+Dg
+vX
+eh
+eh
+eh
+xr
+JU
+PQ
+XC
+qx
+yD
+rI
+qx
+qx
+vX
+vX
+vX
+vX
+vX
+Dg
+Dg
+Dg
+Dg
+tH
+tH
+tH
+tH
+tH
+tH
+tH
 "}
 (42,1,1) = {"
-Jx
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-tX
-VT
-HN
-EW
-Tm
-VT
-tX
-Yu
-GT
-IO
-Yu
-Yu
-YI
-YI
-YI
-Kw
-DS
-aU
-CF
-Vo
-qo
-Wt
-Wr
-vm
-Ym
-Ym
-Ym
-Ym
-IO
-IO
-IO
-IO
-Yu
-IO
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
+tH
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+kp
+qK
+sE
+xT
+Im
+qK
+kp
+vX
+BG
+Dg
+vX
+vX
+eh
+eh
+eh
+Sp
+mr
+Qq
+Wn
+Qi
+Vd
+GV
+AU
+qx
+AJ
+AJ
+AJ
+AJ
+Dg
+Dg
+Dg
+Dg
+vX
+Dg
+tH
+tH
+tH
+tH
+tH
+tH
 "}
 (43,1,1) = {"
-Jx
-Jx
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-tX
-iN
-wc
-hm
-hw
-iN
-tX
-GT
-GT
-Yu
-Yu
-Yu
-YI
-YI
-Ef
-So
-Na
-DS
-gc
-DD
-OW
-jg
-GP
-vm
-pw
-VP
-ts
-Ym
-Ym
-pQ
-pQ
-Ym
-Yu
-Yu
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
+tH
+tH
+vX
+vX
+vX
+vX
+vX
+vX
+kp
+pP
+JK
+xB
+hp
+pP
+kp
+BG
+BG
+vX
+vX
+vX
+eh
+eh
+qb
+bG
+Qj
+mr
+Iv
+Mz
+BU
+jH
+IK
+qx
+Ee
+ke
+Po
+AJ
+AJ
+fq
+fq
+AJ
+vX
+vX
+tH
+tH
+tH
+tH
+tH
+tH
 "}
 (44,1,1) = {"
-Jx
-Jx
-Jx
-Yu
-Yu
-Yu
-Yu
-Yu
-tX
-tX
-Mi
-FE
-QA
-tX
-tX
-GT
-GT
-Ef
-Yu
-YI
-YI
-YI
-Ef
-da
-fy
-kz
-DO
-vm
-ZG
-ZO
-WM
-vm
-tg
-Oj
-CV
-Ym
-CQ
-fe
-Mb
-Ym
-Yu
-Yu
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
+tH
+tH
+tH
+vX
+vX
+vX
+vX
+vX
+kp
+kp
+Oe
+Hi
+Jv
+kp
+kp
+BG
+BG
+qb
+vX
+eh
+eh
+eh
+qb
+dU
+hG
+uO
+Zk
+qx
+Cx
+ut
+lJ
+qx
+AK
+oJ
+Wq
+AJ
+EV
+HD
+DK
+AJ
+vX
+vX
+tH
+tH
+tH
+tH
+tH
+tH
 "}
 (45,1,1) = {"
-Jx
-Jx
-Jx
-Jx
-Yu
-Yu
-Yu
-Yu
-Yu
-tX
-tX
-tX
-tX
-tX
-Yu
-Yu
-GT
-Ef
-Ef
-YI
-YI
-Ef
-VR
-VR
-BU
-BU
-VR
-vm
-vm
-OF
-vm
-vm
-Ym
-Ym
-LD
-Ym
-Rg
-Qv
-up
-Ym
-Yu
-Yu
-Yu
-Jx
-Jx
-Jx
-Jx
-Jx
+tH
+tH
+tH
+tH
+vX
+vX
+vX
+vX
+vX
+kp
+kp
+kp
+kp
+kp
+vX
+vX
+BG
+qb
+qb
+eh
+eh
+qb
+qq
+qq
+Tq
+Tq
+qq
+qx
+qx
+Ep
+qx
+qx
+AJ
+AJ
+xx
+AJ
+Sc
+ns
+gs
+AJ
+vX
+vX
+vX
+tH
+tH
+tH
+tH
+tH
 "}
 (46,1,1) = {"
-Jx
-Jx
-Jx
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-GT
-Ef
-YI
-YI
-YI
-VR
-VR
-Ta
-of
-Xt
-of
-VR
-GO
-uS
-Do
-vJ
-Ym
-nM
-lc
-vF
-MG
-bP
-qD
-Ym
-Yu
-Yu
-Yu
-Jx
-Jx
-Jx
-Jx
-Jx
+tH
+tH
+tH
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+BG
+qb
+eh
+eh
+eh
+qq
+qq
+uF
+hE
+Ab
+hE
+qq
+kg
+wY
+za
+cE
+AJ
+FA
+eE
+Dx
+wP
+ra
+vD
+AJ
+vX
+vX
+vX
+tH
+tH
+tH
+tH
+tH
 "}
 (47,1,1) = {"
-Jx
-Jx
-Jx
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Ef
-Ef
-YI
-YI
-YI
-VR
-of
-HB
-Ut
-xF
-qF
-VR
-Xl
-rk
-pW
-HK
-pQ
-fo
-lc
-Ua
-Ua
-Ua
-OT
-Ym
-Yu
-Yu
-Yu
-Yu
-Jx
-Jx
-Jx
-Jx
+tH
+tH
+tH
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+qb
+qb
+eh
+eh
+eh
+qq
+hE
+SE
+mj
+Sm
+wr
+qq
+TA
+yL
+ce
+cr
+fq
+Fn
+eE
+Sd
+Sd
+Sd
+JL
+AJ
+vX
+vX
+vX
+vX
+tH
+tH
+tH
+tH
 "}
 (48,1,1) = {"
-Jx
-Jx
-Jx
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Ef
-Mn
-Nc
-YI
-YI
-zC
-EH
-FG
-hN
-Va
-gj
-cN
-AG
+tH
+tH
+tH
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+qb
+yr
+ye
+eh
+eh
+WI
+GM
+gt
+GO
 ER
+gT
 RQ
-xe
-Ym
-as
-lc
-UC
-rd
-Ua
-NQ
-Ym
-Yu
-Yu
-Yu
-Yu
-Jx
-Jx
-Jx
-Jx
+LC
+xR
+rL
+aJ
+AJ
+mH
+eE
+ml
+wi
+Sd
+Ue
+AJ
+vX
+vX
+vX
+vX
+tH
+tH
+tH
+tH
 "}
 (49,1,1) = {"
-Jx
-Jx
-Jx
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-GT
-GT
-Ef
-Ef
-YI
-YI
-VR
-sb
-Ws
-gr
-us
-py
-VR
-bf
-xM
-rl
-Vh
-GC
-Eh
-ST
-Lt
-Kq
-Ua
-xT
-Ym
-Yu
-Yu
-Yu
-Yu
-Jx
-Jx
-Jx
-Jx
+tH
+tH
+tH
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+BG
+BG
+qb
+qb
+eh
+eh
+qq
+AS
+Sg
+Qr
+cY
+WH
+qq
+Hs
+xh
+ii
+CZ
+Av
+Mw
+zT
+Zt
+Qg
+Sd
+ov
+AJ
+vX
+vX
+vX
+vX
+tH
+tH
+tH
+tH
 "}
 (50,1,1) = {"
-Jx
-Jx
-Jx
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-GT
-GT
-GT
-Ef
-YI
-YI
-VR
-VR
-Ds
-Pt
-VG
-mE
-VR
-rl
-rl
-TE
-EU
-Ym
-ba
-NH
-fs
-Ab
-Ua
-Ym
-Ym
-Yu
-Yu
-Yu
-Yu
-Jx
-Jx
-Jx
-Jx
+tH
+tH
+tH
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+BG
+BG
+BG
+qb
+eh
+eh
+qq
+qq
+Qn
+Cd
+zn
+ff
+qq
+ii
+ii
+Zc
+FD
+AJ
+KH
+vA
+Ad
+dX
+Sd
+AJ
+AJ
+vX
+vX
+vX
+vX
+tH
+tH
+tH
+tH
 "}
 (51,1,1) = {"
-Jx
-Jx
-Jx
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-GT
-GT
-Ef
-YI
-YI
-YI
-Ef
-UK
-UK
-UK
-Kn
-UK
-UK
-kA
-Ga
-yK
-wL
-yK
-yK
-Ym
-Ym
-Ym
-Ym
-Ym
-Yu
-Yu
-Yu
-Yu
-Jx
-Jx
-Jx
-Jx
-Jx
+tH
+tH
+tH
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+BG
+BG
+qb
+eh
+eh
+eh
+qb
+ah
+ah
+ah
+ST
+ah
+ah
+JD
+pO
+ca
+TL
+ca
+ca
+AJ
+AJ
+AJ
+AJ
+AJ
+vX
+vX
+vX
+vX
+tH
+tH
+tH
+tH
+tH
 "}
 (52,1,1) = {"
-Jx
-Jx
-Jx
-Jx
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-GT
-GT
-GT
-GT
-Yu
-YI
-YI
-YI
-YI
-UK
-GM
-Ju
-hF
-nz
-UK
-vm
-vm
-yK
-Tz
-Po
-yK
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Jx
-Jx
-Jx
-Jx
-Jx
+tH
+tH
+tH
+tH
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+BG
+BG
+BG
+BG
+vX
+eh
+eh
+eh
+eh
+ah
+MW
+sr
+Ay
+Tt
+ah
+qx
+qx
+ca
+Yx
+UF
+ca
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+tH
+tH
+tH
+tH
+tH
 "}
 (53,1,1) = {"
-Jx
-Jx
-Jx
-Jx
-Jx
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-GT
-GT
-Yu
-Yu
-Yu
-YI
-YI
-UK
-UK
-XF
-DW
-PC
-ZE
-DK
-IT
-yK
-yK
-mR
-Vj
-yK
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
+tH
+tH
+tH
+tH
+tH
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+BG
+BG
+vX
+vX
+vX
+eh
+eh
+ah
+ah
+Et
+jd
+oB
+iS
+Ns
+BJ
+ca
+ca
+qW
+Tc
+ca
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+tH
+tH
+tH
+tH
+tH
+tH
+tH
 "}
 (54,1,1) = {"
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-GT
-GT
-Yu
-Yu
-Yu
-Yu
-YI
-YI
-YI
-tC
-In
-KF
-MP
-Pp
-UK
-Gi
-yK
-mQ
-nX
-yK
-yK
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
+tH
+tH
+tH
+tH
+tH
+tH
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+BG
+BG
+vX
+vX
+vX
+vX
+eh
+eh
+eh
+Lw
+ea
+wm
+aa
+zv
+ah
+zx
+ca
+Hn
+kD
+ca
+ca
+vX
+vX
+vX
+vX
+vX
+vX
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
 "}
 (55,1,1) = {"
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-GT
-GT
-Yu
-Yu
-Yu
-Yu
-YI
-YI
-Ef
-tC
-xH
-Fl
-FQ
-jN
-UK
-UK
-yK
-yK
-yK
-yK
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+vX
+vX
+vX
+vX
+vX
+vX
+BG
+BG
+vX
+vX
+vX
+vX
+eh
+eh
+qb
+Lw
+WY
+gl
+az
+So
+ah
+ah
+ca
+ca
+ca
+ca
+vX
+vX
+vX
+vX
+vX
+vX
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
 "}
 (56,1,1) = {"
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Yu
-Yu
-Yu
-Yu
-Yu
-GT
-GT
-GT
-Ef
-Ef
-YI
-YI
-YI
-Ef
-UK
-UK
-xw
-HL
-HL
-mn
-UK
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+vX
+vX
+vX
+vX
+vX
+BG
+BG
+BG
+qb
+qb
+eh
+eh
+eh
+qb
+ah
+ah
+dO
+Yc
+Yc
+wy
+ah
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
 "}
 (57,1,1) = {"
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Yu
-Yu
-GT
-GT
-Ef
-YI
-YI
-YI
-YI
-Ef
-Yu
-UK
-uu
-ug
-NJ
-UK
-UK
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+vX
+vX
+BG
+BG
+qb
+eh
+eh
+eh
+eh
+qb
+vX
+ah
+dS
+Tk
+xP
+ah
+ah
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
 "}
 (58,1,1) = {"
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-YI
-YI
-YI
-YI
-Yu
-Yu
-UK
-UK
-UK
-UK
-UK
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+eh
+eh
+eh
+eh
+vX
+vX
+ah
+ah
+ah
+ah
+ah
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
 "}
 (59,1,1) = {"
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-YI
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+eh
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
 "}
 (60,1,1) = {"
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
 "}
 (61,1,1) = {"
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
 "}
 (62,1,1) = {"
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Yu
-Yu
-Jx
-Yu
-Yu
-Jx
-Yu
-Yu
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+vX
+vX
+tH
+vX
+vX
+tH
+vX
+vX
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
+tH
 "}

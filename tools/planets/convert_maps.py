@@ -220,6 +220,9 @@ def clean_vars(vars_, keep_icon_state):
             v = '/datum/species/human'
         if v == '/obj/item/gem/amber':  # klejnot w gablocie -> złoto
             v = '/obj/item/stack/sheet/mineral/gold'
+        # ścieżka typu w edycji zmiennej (np. eksponat w gablocie): ten sam zamiennik co dla atomu
+        if v.startswith('/') and isinstance(R.get(v), str):
+            v = R[v]
         if k in ('pixel_x', 'pixel_y') and v == '0':
             continue
         if k in ('name', 'desc', 'default_raw_text') and v.startswith('"'):
@@ -227,7 +230,15 @@ def clean_vars(vars_, keep_icon_state):
         out[k] = v
     return out
 
+# Listy asocjacyjne w edycjach zmiennych (food_reagents = list(/datum/reagent/x = 7, ...)): parser mapmerge2 dzieli je
+# na znakach '=' i ';', więc takie zmienne pomijamy (przedmiot dostaje domyślną zawartość typu)
+ASSOC_LIST_VAR = re.compile(r'(\{|;)\s*\w+ = list\([^()]*=[^()]*\)\s*(?=;|\})')
+
+
 def convert_atom(a, mapname, stat):
+    a = ASSOC_LIST_VAR.sub(lambda m: m.group(1), a).replace('{;', '{').replace(';;', ';').replace(';}', '}')
+    if a.endswith('{}'):
+        a = a[:-2]
     path, vars_ = dmmlib.parse_map_atom(a)
     vars_ = collections.OrderedDict(vars_)
     # kable zostają w starym formacie, przerabia je tools/smartwires/convert.py (kolory blue/cyan/white zna)

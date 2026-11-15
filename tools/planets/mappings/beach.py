@@ -719,3 +719,4 @@ for seed in ['sweet_potato', 'potato', 'carrot/parsnip', 'cabbage', 'garlic', 'c
 	rep('/obj/item/seeds/' + seed, '/obj/effect/spawner/lootdrop/random_seeds')
 DECISIONS['/obj/item/seeds/*'] = 'nasiona Shiptesta -> losowe nasiona (nasza botanika ma inne gatunki)'
 R['/obj/machinery/atmospherics/components/binary/pump/layer5'] = ('/obj/machinery/atmospherics/components/binary/pump', {'piping_layer': '5'})
+rep('/obj/item/gun/ballistic/revolver/rhino', '/obj/item/gun/ballistic/revolver')
