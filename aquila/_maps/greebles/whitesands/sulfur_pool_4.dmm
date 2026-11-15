@@ -1,0 +1,61 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"b" = (
+/turf/open/water/planet/acid,
+/area/template_noop)
+"e" = (
+/obj/effect/spawner/lootdrop/planet_chance/puce,
+/obj/effect/spawner/lootdrop/planet_chance/puce,
+/turf/open/floor/plating/asteroid/whitesands/dried,
+/area/template_noop)
+"m" = (
+/turf/template_noop,
+/area/template_noop)
+"t" = (
+/obj/effect/spawner/lootdrop/planet_chance/fern,
+/turf/open/floor/plating/asteroid/whitesands,
+/area/template_noop)
+"z" = (
+/turf/open/floor/plating/asteroid/whitesands,
+/area/template_noop)
+"K" = (
+/obj/effect/spawner/lootdrop/planet_chance/whitesands_fauna,
+/turf/open/floor/plating/asteroid/whitesands,
+/area/template_noop)
+"R" = (
+/obj/effect/spawner/lootdrop/planet_chance/puce,
+/turf/open/floor/plating/asteroid/whitesands/dried,
+/area/template_noop)
+"W" = (
+/turf/open/floor/plating/asteroid/whitesands/dried,
+/area/template_noop)
+
+(1,1,1) = {"
+m
+b
+z
+m
+"}
+(2,1,1) = {"
+z
+t
+b
+R
+"}
+(3,1,1) = {"
+R
+b
+b
+R
+"}
+(4,1,1) = {"
+e
+b
+t
+K
+"}
+(5,1,1) = {"
+m
+W
+W
+m
+"}

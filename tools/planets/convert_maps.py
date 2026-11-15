@@ -89,12 +89,15 @@ def atom(path, vars_):
 ST_COLORS = {
     'neutral': None, 'black': '#444547', 'blue': '#75A2BB', 'green': '#99BB76', 'lime': '#B7D993', 'yellow': '#BA9F6D',
     'beige': '#CEB689', 'red': '#B4696A', 'bar': '#791500', 'grey': '#a3a2a0', 'syndiered': '#730622',
-    'warrablue': '#32426b', 'white': '#FFFFFF',
+    'warrablue': '#32426b', 'white': '#FFFFFF', 'tan': '#c59973', 'purple': '#AE8CA8', 'orange': '#C3630C',
+    'brown': '#997C4F', 'lightgrey': '#a8b2b6', 'bottlegreen': '#57967f', 'nsorange': '#f97016', 'vired': '#c92020',
+    'solgovgold': '#eeac2e',
 }
 # nasz najbliższy kolor (podtyp), kolor Shiptesta nadpisujemy edycją
 OUR_COLOR = {'neutral': 'neutral', 'black': 'black', 'blue': 'blue', 'green': 'green', 'lime': 'green', 'yellow': 'yellow',
              'beige': 'brown', 'red': 'red', 'bar': 'bar', 'grey': 'neutral', 'syndiered': 'red', 'warrablue': 'darkblue',
-             'white': 'white'}
+             'white': 'white', 'tan': 'brown', 'purple': 'purple', 'orange': 'yellow', 'brown': 'brown', 'lightgrey': 'neutral',
+             'bottlegreen': 'green', 'nsorange': 'yellow', 'vired': 'red', 'solgovgold': 'yellow'}
 OUR_TRIM_COLORS = {'black', 'blue', 'brown', 'darkblue', 'green', 'neutral', 'purple', 'red', 'white', 'yellow'}
 
 # kształty narożników Shiptesta (corner/<kolor>/<kształt>) -> nasz /tile/<kolor>/<kształt> + przeliczenie kierunku
@@ -108,6 +111,7 @@ CORNER_SHAPES = {
     'half': ('half', {2: 8, 1: 4, 4: 2, 8: 1}),                # bordercolorhalf: pół kafla przy krawędzi dir
     'border': ('half', {2: 8, 1: 4, 4: 2, 8: 1}),              # cienki pas przy krawędzi -> pół kafla (najbliższe)
     'bordercorner': ('', {2: 2, 1: 1, 4: 4, 8: 8}),            # mały kwadrat w rogu -> róg kafla
+    'bordercee': ('half', {2: 8, 1: 4, 4: 2, 8: 1}),            # pas w kształcie C -> pół kafla (najbliższe)
 }
 
 def decal(path, vars_, mapname):
@@ -201,6 +205,7 @@ def decal(path, vars_, mapname):
 
 
 MISSING = set()
+OURS = set()
 
 def clean_vars(vars_, keep_icon_state):
     out = collections.OrderedDict()
@@ -225,6 +230,14 @@ def convert_atom(a, mapname, stat):
     if path.startswith('/obj/structure/cable'):
         stat['replaced'] += 1
         return [a]
+    # rury i urządzenia na warstwie, której nasz typ nie ma (np. scrubbers/hidden/layer1): typ bazowy z piping_layer
+    layered = re.match(r'(/obj/machinery/atmospherics/.+)/layer(\d)$', path)
+    # (rury z makr w code/modules/atmospherics/machinery/pipes/mapping.dm mają tylko podtypy layer2 i layer4)
+    if layered and OURS and path not in OURS and (layered.group(1) in OURS or (path.startswith('/obj/machinery/atmospherics/pipe/') and layered.group(2) not in ('2', '4'))):
+        nv = clean_vars(vars_, False)
+        nv['piping_layer'] = layered.group(2)
+        stat['replaced'] += 1
+        return [atom(layered.group(1), nv)]
     # obszary
     if path.startswith('/area'):
         return [AREAS.get(path, path)]
@@ -249,7 +262,7 @@ def convert_atom(a, mapname, stat):
             raise KeyError(path)
         return [atom(path, clean_vars(vars_, True))]
     # dekale
-    if path.startswith('/obj/effect/turf_decal') and path in MISSING:
+    if path.startswith('/obj/effect/turf_decal') and path in MISSING and path not in R:
         res = decal(path, vars_, mapname)
         stat['dropped' if res is None else 'replaced'] += 1
         return res or []
@@ -337,8 +350,15 @@ def convert_atom(a, mapname, stat):
 
 def convert_tile(atoms, mapname, stat):
     out = []
+    missing_here = []
     for a in atoms:
-        out.extend(convert_atom(a, mapname, stat))
+        try:
+            out.extend(convert_atom(a, mapname, stat))
+        except KeyError as error:
+            missing_here.append(str(error.args[0]))
+    if missing_here:
+        # wszystkie braki z kafla naraz, nie tylko pierwszy
+        raise KeyError(*missing_here)
     # magazyny skafandrów, które w Shiptescie zabierały rzeczy z pola (inherit): rzeczy -> zmienne SSU
     ssu = [i for i, a in enumerate(atoms) if dmmlib.parse_map_atom(a)[0].startswith('/obj/machinery/suit_storage_unit/inherit')]
     if ssu:
@@ -392,7 +412,7 @@ def collect_missing(maps, ours):
 
 
 def main():
-    global MISSING
+    global MISSING, OURS
     parser = argparse.ArgumentParser(description='Konwersja map Shiptesta na nasz kod')
     parser.add_argument('--out', required=True, help='folder na przekonwertowane mapy')
     parser.add_argument('--mappings', default='', help='moduły zamienników po przecinku (bez common)')
@@ -403,6 +423,7 @@ def main():
     for name in filter(None, args.mappings.split(',')):
         importlib.import_module('mappings.' + name.strip())
     ours = defined_types(args.root)
+    OURS = ours
     pairs = []
     for item in args.maps:
         src, _, dst = item.partition('=')
@@ -440,7 +461,8 @@ def main():
                 try:
                     cache[key] = tuple(convert_tile(list(m.dictionary[key]), dst, stat))
                 except KeyError as error:
-                    errors[str(error.args[0])].add(dst)
+                    for missing_path in error.args:
+                        errors[str(missing_path)].add(dst)
                     cache[key] = ()
                     failed = True
             tile = cache[key]
