@@ -116,6 +116,11 @@ GLOBAL_LIST_EMPTY(aq_squad_pagers)
 /datum/squad_manager/proc/aq_delete_squad(datum/squad/squad, mob/user)
 	if(!(squad in squads) || length(squads) <= 1)
 		return FALSE
+	// Echo (piloci) jest stała: konsola drużyn i tak odtwarza ją przy następnym odświeżeniu (squad_echo.dm)
+	if(squad.aq_is_echo)
+		if(user)
+			to_chat(user, "<span class='warning'>Drużyny pilotów Echo nie da się rozwiązać.</span>")
+		return FALSE
 	squad.broadcast(squad, "Drużyna [squad.name] zostaje rozwiązana.", list('nsv13/sound/effects/notice2.ogg'))
 	// bez przekazywania dowództwa i komunikatów przy każdym usuniętym członku
 	squad.aq_disbanding = TRUE
