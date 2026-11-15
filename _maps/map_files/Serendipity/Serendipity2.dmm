@@ -1349,13 +1349,6 @@
 /obj/effect/landmark/start/cargo_technician,
 /turf/open/floor/plasteel/white,
 /area/quartermaster/meeting_room)
-"fk" = (
-/obj/structure/cable,
-/obj/structure/pulsar_fuel_tank/filled,
-/turf/open/floor/plasteel/dark/side{
-	dir = 4
-	},
-/area/engine/engine_room)
 "fm" = (
 /obj/item/ship_weapon/ammunition/torpedo/freight{
 	pixel_y = 1
@@ -3008,6 +3001,13 @@
 	},
 /turf/open/space/basic,
 /area/space/nearstation)
+"nx" = (
+/obj/structure/cable,
+/obj/item/radio/intercom/directional/west,
+/turf/open/floor/plasteel/dark/side{
+	dir = 4
+	},
+/area/engine/engine_room)
 "nz" = (
 /obj/structure/sign/ship/smoking{
 	pixel_x = 9;
@@ -5966,13 +5966,6 @@
 /obj/structure/cable,
 /turf/open/floor/plasteel/dark,
 /area/nsv/weapons/gauss/battery/deck2)
-"Em" = (
-/obj/structure/cable,
-/obj/machinery/power/pulsar_bridge,
-/turf/open/floor/plasteel/dark/side{
-	dir = 4
-	},
-/area/engine/engine_room)
 "Eo" = (
 /turf/closed/wall/ship,
 /area/engine/storage_shared)
@@ -9671,14 +9664,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/electrical)
-"YV" = (
-/obj/structure/cable,
-/obj/item/radio/intercom/directional/west,
-/obj/machinery/pulsar_console,
-/turf/open/floor/plasteel/dark/side{
-	dir = 4
-	},
-/area/engine/engine_room)
 "YY" = (
 /obj/structure/cable,
 /turf/open/floor/plasteel/dark,
@@ -40576,9 +40561,9 @@ VL
 Qf
 VL
 Qf
-Em
-YV
-fk
+Qf
+nx
+Qf
 qu
 Vb
 Vb

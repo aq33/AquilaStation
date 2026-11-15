@@ -69,10 +69,6 @@
 	TEST_ASSERT(!ship.is_cloaked(), "The ship stayed cloaked after its shield generator was destroyed")
 	TEST_ASSERT(ship.shields != destroyed, "The ship still points at its destroyed shield generator")
 
-	// Regresja: burza z pulsara trwa, dopóki konsola jej nie wygasi
-	var/datum/weather/rad_storm/pulsar/storm_type = /datum/weather/rad_storm/pulsar
-	TEST_ASSERT(initial(storm_type.perpetual), "The pulsar storm still ends on its own timer")
-
 /datum/unit_test/shield_cloak/Destroy()
 	if(ship)
 		ship.shields = old_shields

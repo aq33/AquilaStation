@@ -1828,19 +1828,6 @@
 /obj/machinery/ntnet_relay,
 /turf/open/floor/circuit/green,
 /area/tcommsat/server)
-"eu" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/structure/cable,
-/obj/machinery/pulsar_console,
-/turf/open/floor/plasteel/dark/side{
-	dir = 1
-	},
-/area/engine/engineering)
 "ev" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -3877,20 +3864,6 @@
 /obj/machinery/newscaster/security_unit/north,
 /turf/open/floor/wood,
 /area/library)
-"kb" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/structure/cable,
-/obj/item/radio/intercom/directional/south,
-/obj/machinery/power/pulsar_bridge,
-/turf/open/floor/plasteel/dark/side{
-	dir = 1
-	},
-/area/engine/engineering)
 "kc" = (
 /obj/structure/table/wood,
 /turf/open/floor/plasteel,
@@ -5378,6 +5351,19 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/storage)
+"ow" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/item/radio/intercom/directional/south,
+/turf/open/floor/plasteel/dark/side{
+	dir = 1
+	},
+/area/engine/engineering)
 "oA" = (
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "research_shutters";
@@ -7683,19 +7669,6 @@
 	},
 /turf/open/floor/engine,
 /area/nsv/weapons/fore)
-"xu" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/structure/cable,
-/obj/structure/pulsar_fuel_tank/filled,
-/turf/open/floor/plasteel/dark/side{
-	dir = 1
-	},
-/area/engine/engineering)
 "xv" = (
 /obj/structure/table/wood,
 /obj/machinery/fax{
@@ -36863,7 +36836,7 @@ EM
 ID
 DN
 cr
-kb
+ow
 ge
 cf
 Fm
@@ -37120,7 +37093,7 @@ EM
 Tw
 DN
 cr
-eu
+fn
 ax
 nL
 Le
@@ -37377,7 +37350,7 @@ EM
 Tw
 dy
 cr
-xu
+fn
 ax
 bd
 LM

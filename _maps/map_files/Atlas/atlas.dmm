@@ -1519,14 +1519,6 @@
 /obj/machinery/status_display/evac/east,
 /turf/open/floor/carpet/royalblack,
 /area/crew_quarters/bar/mess_hall)
-"dd" = (
-/obj/structure/cable,
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/structure/pulsar_fuel_tank/filled,
-/turf/open/floor/durasteel/riveted,
-/area/engine/atmospherics_engine)
 "de" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/chair{
@@ -3839,6 +3831,11 @@
 /obj/structure/cable,
 /turf/open/floor/carpet/royalblack,
 /area/crew_quarters/bar/mess_hall)
+"hR" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/violet/visible,
+/turf/open/floor/durasteel/riveted,
+/area/engine/atmospherics_engine)
 "hS" = (
 /obj/effect/turf_decal/tile/ship/green,
 /obj/effect/turf_decal/tile/ship/green{
@@ -5724,6 +5721,13 @@
 	},
 /turf/open/floor/monotile/dark/airless,
 /area/nsv/hanger/notkmcstupidhanger)
+"mJ" = (
+/obj/structure/cable,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/durasteel/riveted,
+/area/engine/atmospherics_engine)
 "mL" = (
 /turf/closed/wall/r_wall,
 /area/maintenance/nsv/deck2/starboard)
@@ -10157,14 +10161,6 @@
 /obj/effect/spawner/room/threexthree,
 /turf/template_noop,
 /area/maintenance/nsv/deck2/starboard)
-"zS" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/cyan/visible{
-	dir = 8
-	},
-/obj/machinery/pulsar_console,
-/turf/open/floor/durasteel/riveted,
-/area/engine/atmospherics_engine)
 "zU" = (
 /obj/structure/table/reinforced,
 /obj/item/lighter,
@@ -11438,12 +11434,6 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/engine/break_room)
-"DP" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/manifold/violet/visible,
-/obj/machinery/power/pulsar_bridge,
-/turf/open/floor/durasteel/riveted,
-/area/engine/atmospherics_engine)
 "DS" = (
 /obj/effect/turf_decal/tile/ship/half/police{
 	dir = 4
@@ -12445,6 +12435,13 @@
 /obj/machinery/rnd/production/protolathe/department/engineering,
 /turf/open/floor/durasteel/techfloor_grid,
 /area/engine/break_room)
+"GV" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/cyan/visible{
+	dir = 8
+	},
+/turf/open/floor/durasteel/riveted,
+/area/engine/atmospherics_engine)
 "GW" = (
 /obj/machinery/requests_console{
 	color = list(0,1,0,1,0,0,0,0,1,0,0,0);
@@ -42588,9 +42585,9 @@ GO
 lX
 Ys
 Vo
-DP
-zS
-dd
+hR
+GV
+mJ
 cf
 Mm
 UX

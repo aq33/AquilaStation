@@ -1,44 +1,5 @@
 // Rework systemów okrętu (gałąź naped-okretu): dysze, podział mocy, matryce sensorów, maska tarczy, kalibracja FTL,
-// stół projektowy pocisków i nowe ładunki, Echo, zlecenia działów, pulsar
-
-/datum/test_chamber_kit/pr_naped_pulsar
-	name = "Okręt: pulsar"
-	pr = "aq33/AquilaStation#644"
-	description = "Zestaw stawia mostek mocy pulsara na odcinku kabla, konsolę orbity i pełny zbiornik paliwa (wszystko w arenie, więc konsola widzi zbiornik). 1) Konsola orbity (karta inżynierii z zestawu): satelita startuje w (15,5) z mocą 49% i wymaganą osłoną 39,8%. Strzałka przesuwa ją o pole i zużywa 4 mole (czysta plazma); bez paliwa ruch jest odrzucony. 2) Ustaw osłonę poniżej wymaganej: radio inżynierii ostrzega o przeciążeniu za 3 minuty, po 3 minutach na poziomach okrętu pojawiają się szczeliny strzelające wiązkami emitera, co 3 minuty nowa fala; podniesienie osłony zamyka szczeliny. 3) Wprowadź satelitę na przekątną (x = y): ostrzeżenie o burzy, po 3 minutach burza promieniowania na okręcie, która trwa, dopóki satelita nie zejdzie z wiązki. Pole tuż obok wiązki daje 150% mocy i wymaga 60% osłony. 4) Mostek: okno pokazuje MW, Rozłącz wyłącza moc i wydarzenia, ponowne połączenie dopiero po 5 minutach. 5) Zbiornik: dolewaj butlą z plazmą; powyżej 100 moli ostrzeżenie, przy 125 molach pęka i wypuszcza gaz. Na statkach pulsar stoi w inżynierii (Atlas: maszynownia turbiny i spalarni); sprawdź tam, że moc trafia do sieci."
-	items = list(
-		/obj/machinery/pulsar_console = 1,
-		/obj/structure/pulsar_fuel_tank/filled = 1,
-		/obj/item/tank/internals/plasma/full = 2,
-		/obj/item/card/id = 1,
-	)
-
-/datum/test_chamber_kit/pr_naped_pulsar/setup(list/spawned, list/turfs, turf/center, mob/user)
-	. = ..()
-	for(var/obj/item/card/id/card in spawned)
-		card.name = "karta inżynierii"
-		card.access = list(ACCESS_ENGINE, ACCESS_CE)
-	// Kabel z węzłem pod mostkiem
-	var/list/cable_turfs = list()
-	for(var/i in 0 to 3)
-		var/turf/T = locate(center.x + i, center.y - 2, center.z)
-		if(!(T in turfs))
-			break
-		cable_turfs += T
-	if(!length(cable_turfs))
-		cable_turfs += center
-	var/obj/structure/cable/last_cable
-	for(var/turf/T as anything in cable_turfs)
-		last_cable = new /obj/structure/cable(T)
-	last_cable.add_power_node()
-	var/obj/machinery/power/pulsar_bridge/bridge = new(cable_turfs[length(cable_turfs)])
-	bridge.connect_to_network()
-	var/obj/machinery/pulsar_console/console = locate() in spawned
-	if(console)
-		if(bridge.console && bridge.console != console)
-			bridge.console.bridge = null
-		bridge.console = console
-		console.bridge = bridge
-		console.scan_for_tank()
+// stół projektowy pocisków i nowe ładunki, Echo, zlecenia działów
 
 /datum/test_chamber_kit/pr_naped_missiles
 	name = "Okręt: projekty pocisków i ładunki"

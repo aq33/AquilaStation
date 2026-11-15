@@ -5106,18 +5106,6 @@
 	},
 /turf/open/floor/monotile/dark,
 /area/science)
-"ekO" = (
-/obj/effect/turf_decal/tile/ship/half/yellow/orlen,
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/machinery/power/pulsar_bridge,
-/turf/open/floor/durasteel/alt,
-/area/engine/engineering)
 "ekS" = (
 /obj/machinery/ship_weapon/vls,
 /obj/effect/turf_decal/tile/ship/half/orange{
@@ -12276,11 +12264,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/engine/atmos)
-"kjg" = (
-/obj/effect/turf_decal/tile/ship/full/yellow/orlen,
-/obj/structure/pulsar_fuel_tank/filled,
-/turf/open/floor/monotile/steel,
-/area/engine/engineering)
 "kjl" = (
 /obj/effect/turf_decal/tile/ship/police{
 	dir = 8
@@ -22252,11 +22235,6 @@
 /obj/structure/chair/office/light,
 /turf/open/floor/monotile/dark,
 /area/science/xenobiology)
-"stF" = (
-/obj/effect/turf_decal/tile/ship/full/yellow/orlen,
-/obj/machinery/pulsar_console,
-/turf/open/floor/monotile/steel,
-/area/engine/engineering)
 "suc" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 1
@@ -52258,7 +52236,7 @@ gbG
 fqD
 jps
 hGq
-ekO
+cBi
 yco
 yco
 yco
@@ -53544,7 +53522,7 @@ hZB
 wxN
 gDN
 nrh
-stF
+cnD
 ybR
 kQb
 iKr
@@ -53801,7 +53779,7 @@ kSi
 nAR
 wrH
 nrh
-kjg
+cnD
 cnD
 cnD
 hVN
