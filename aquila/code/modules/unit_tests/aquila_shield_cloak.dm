@@ -6,6 +6,9 @@
 	var/obj/machinery/shield_generator/gen
 	var/obj/structure/overmap/ship
 	var/old_shields
+	var/old_had_arrays
+	var/old_pulse
+	var/old_width
 
 /datum/unit_test/shield_cloak/Run()
 	ship = SSstar_system.find_main_overmap()
@@ -30,8 +33,11 @@
 	qdel(proj)
 
 	// Regresja: impuls radaru gracza wobec zamaskowanego celu ma 20% zasięgu, liczone raz (get_player_lidar_range)
-	var/old_pulse = ship.last_radar_pulse
-	var/old_width = ship.radar_pulse_width
+	old_pulse = ship.last_radar_pulse
+	old_width = ship.radar_pulse_width
+	// Matryce statku zależą od wcześniejszych testów (zasilanie, uszkodzenia); tu liczy się tylko maska
+	old_had_arrays = ship.had_sensor_array
+	ship.had_sensor_array = FALSE
 	ship.last_radar_pulse = world.time
 	ship.radar_pulse_width = 0
 	var/cloaked_reach = ship.get_player_lidar_range(ship)
@@ -43,6 +49,7 @@
 		TEST_ASSERT(abs(ship.get_suite_range(SENSOR_LIDAR, ship) - cloaked_reach) < 0.01, "The cloak is applied twice on the player radar suite range")
 	ship.last_radar_pulse = old_pulse
 	ship.radar_pulse_width = old_width
+	ship.had_sensor_array = old_had_arrays
 
 	// Zdjęcie maski: koniec ukrycia, bez stygnięcia (jak tarcza)
 	gen.end_cloak("test")
@@ -72,6 +79,11 @@
 /datum/unit_test/shield_cloak/Destroy()
 	if(ship)
 		ship.shields = old_shields
+		if(!isnull(old_had_arrays))
+			ship.had_sensor_array = old_had_arrays
+		if(!isnull(old_pulse))
+			ship.last_radar_pulse = old_pulse
+			ship.radar_pulse_width = old_width
 		ship.alpha = 255
 	QDEL_NULL(gen)
 	return ..()

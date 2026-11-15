@@ -35,6 +35,9 @@
 		state = generator.shield
 	else if(istype(holder, /obj/machinery/atmospherics/components/trinary/defence_screen_reactor))
 		var/obj/machinery/atmospherics/components/trinary/defence_screen_reactor/reactor = holder
+		// Wyłączone pole nie ma czego rozpraszać: check_stability() przeciążyłby wtedy przekaźniki bez powodu
+		if(!reactor.active)
+			return FALSE
 		state = reactor.shield
 		reactor.shield["stability"] = max(0, reactor.shield["stability"] - round(80 * fraction))
 		reactor.check_stability()

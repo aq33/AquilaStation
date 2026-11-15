@@ -196,7 +196,6 @@ GLOBAL_LIST_INIT(ship_thruster_oxidizers, list(
 		return power_area_cache
 	if(world.time < next_power_search)
 		return null
-	next_power_search = world.time + SHIP_THRUSTER_POWER_SEARCH_COOLDOWN
 	power_area_cache = null
 	var/turf/center = get_turf(src)
 	if(!center)
@@ -210,6 +209,9 @@ GLOBAL_LIST_INIT(ship_thruster_oxidizers, list(
 		if(dist < best_dist)
 			best_dist = dist
 			power_area_cache = A
+	// Odczekiwanie tylko po pustym wyszukiwaniu: utrata zapamiętanego źródła od razu szuka innego
+	if(!power_area_cache)
+		next_power_search = world.time + SHIP_THRUSTER_POWER_SEARCH_COOLDOWN
 	return power_area_cache
 
 /obj/machinery/ship_thruster/powered(chan = -1)

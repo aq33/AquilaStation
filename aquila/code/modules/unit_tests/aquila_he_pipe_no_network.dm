@@ -11,6 +11,11 @@
 	pipe.parent = null
 	pipe.air_temporary = null
 	pipe.process_atmos()
+	// Rozbierana sieć zostawia rurze air_temporary: gorący gaz bez sieci też nie może wołać parent
+	var/datum/gas_mixture/hot = new(70)
+	hot.set_temperature(2000)
+	pipe.air_temporary = hot
+	pipe.process_atmos()
 	pipe.parent = old_parent
 	pipe.air_temporary = old_temporary
 	TEST_ASSERT(!QDELETED(pipe), "The pipe got deleted while processing without a network")
