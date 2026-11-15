@@ -92,12 +92,18 @@
 	else if(ore_left != 1)
 		fail = "The mine kept [ore_left] ore after sending 6 (expected 1)"
 	else
+		// Rozładunek w faktycznym celu konwoju (na mapie może to być inna, bliższa fabryka niż testowa)
+		var/list/saved_expected = expected == factory ? null : hexmap_war_test_save(expected)
+		var/ore_before = expected.war_ore
 		convoy.current_system.fleets -= convoy
-		convoy.current_system = factory
-		factory.fleets += convoy
+		convoy.current_system = expected
+		expected.fleets += convoy
 		convoy.hex_war_deliver()
-		if(factory.war_ore != 6)
-			fail = "A delivered convoy left [factory.war_ore] ore at the factory instead of 6"
+		var/delivered = expected.war_ore - ore_before
+		if(saved_expected)
+			hexmap_war_test_restore(expected, saved_expected)
+		if(delivered != 6)
+			fail = "A delivered convoy left [delivered] ore at the factory instead of 6"
 	if(convoy && !QDELETED(convoy))
 		convoy.hex_war_dispose()
 	GLOB.hex_war.fortunes = saved_fortunes
@@ -216,6 +222,173 @@
 	TEST_ASSERT_EQUAL(restored_order, HEX_ORDER_DEFEND, "The restored fleet lost its order")
 	TEST_ASSERT_EQUAL(restored_target, target, "The restored fleet lost its target")
 	TEST_ASSERT_EQUAL(restored_commander, C, "The restored fleet lost its commander")
+
+/// Stary zapis bez "hull": strength liczone na flotę przy wodowaniu przelicza się na ocalałe okręty
+/datum/unit_test/hexmap_war_save_old_strength
+
+/datum/unit_test/hexmap_war_save_old_strength/Run()
+	var/list/pair = hexmap_war_test_pair()
+	if(!pair)
+		return
+	var/datum/star_system/home = pair[1]
+	var/datum/fleet/F = home.spawn_fleet(/datum/fleet/nanotrasen/light, 2)
+	F.hex_war_adopt()
+	var/datum/hex_commander/C = F.commander
+	var/list/entry
+	for(var/list/candidate in GLOB.hex_war.serialize()["fleets"])
+		if(candidate["commander"] == C.id)
+			entry = candidate.Copy()
+	F.commander = null
+	F.hex_war_dispose()
+	TEST_ASSERT(entry, "The war save has no entry for an adopted fleet")
+	entry -= "hull"
+	entry["ships"] = 2
+	entry["max_ships"] = 4
+	entry["strength"] = 0.5 // dwa z czterech okrętów, oba całe
+	var/list/before = home.fleets.Copy()
+	GLOB.hex_war.restore_fleet(entry, list("[C.id]" = C))
+	var/datum/fleet/restored
+	for(var/datum/fleet/R as anything in home.fleets - before)
+		restored = R
+	TEST_ASSERT(restored, "The old saved fleet did not come back")
+	var/hull = restored.hex_war_hull()
+	restored.commander = null
+	restored.hex_war_dispose()
+	GLOB.hex_war.commanders -= C
+	TEST_ASSERT(hull > 0.95, "Two intact ships from an old save came back with [round(hull * 100)]% hull")
+
+/// Zapis z pustą listą flot (wszystkie zginęły) odtwarza dowódców i magazyny; zapis bez listy jest odrzucany
+/datum/unit_test/hexmap_war_restore_empty
+
+/datum/unit_test/hexmap_war_restore_empty/Run()
+	var/datum/star_system/store
+	for(var/datum/star_system/S as anything in SSstar_system.systems)
+		if(S.hex && !S.hidden && !istype(S, /datum/star_system/random))
+			store = S
+			break
+	if(!store)
+		return
+	var/datum/hex_war/war = new // osobna wojna: dowódcy z zapisu nie trafiają do kampanii
+	var/missing = war.restore(list("commanders" = list()))
+	// restore() zastępuje floty ze startu rundy; te, które jeszcze nie są pod sztabem, chronimy na czas testu
+	var/list/protected = list()
+	for(var/datum/fleet/F as anything in hex_all_fleets())
+		if(F.hex_war_adoptable())
+			F.war_controlled = TRUE
+			protected += F
+	var/old_ore = store.war_ore
+	var/old_parts = store.war_parts
+	var/list/commander_entry = list("id" = 3, "faction" = "nanotrasen", "first" = "Jan", "last" = "Próbny", "rank" = 1, "status" = HEX_CMD_ACTIVE, "return_in" = 0)
+	var/list/stores = list()
+	stores[store.name] = list(7, 8)
+	var/ok = war.restore(list("fleets" = list(), "next_id" = 4, "commanders" = list(commander_entry), "stores" = stores))
+	var/ore = store.war_ore
+	var/parts = store.war_parts
+	store.war_ore = old_ore
+	store.war_parts = old_parts
+	for(var/datum/fleet/F as anything in protected)
+		F.war_controlled = FALSE
+	var/datum/hex_commander/C = length(war.commanders) ? war.commanders[1] : null
+	TEST_ASSERT(!missing, "A save without a fleet list was accepted")
+	TEST_ASSERT(ok, "A save with an empty fleet list was rejected")
+	TEST_ASSERT_EQUAL(ore, 7, "The store ore did not come back")
+	TEST_ASSERT_EQUAL(parts, 8, "The store parts did not come back")
+	TEST_ASSERT(C?.id == 3, "The commander did not come back")
+	TEST_ASSERT_EQUAL(C.status, HEX_CMD_WOUNDED, "A commander without a fleet did not come back wounded")
+
+/// Ponowne trafienie skażonego kafla: po wygaśnięciu wraca pierwotny teren, także po zapisie i wczytaniu kampanii
+/datum/unit_test/hexmap_contamination_rehit
+
+/datum/unit_test/hexmap_contamination_rehit/Run()
+	if(!GLOB.hexmap?.built)
+		return
+	var/datum/hex/H
+	for(var/id in GLOB.hexmap.hexes)
+		var/datum/hex/candidate = GLOB.hexmap.hexes[id]
+		if(!candidate.system && candidate.terrain != HEX_TERRAIN_RADIATION && !GLOB.hexmap.contamination[candidate.id])
+			H = candidate
+			break
+	if(!H)
+		return
+	var/previous = H.terrain
+	GLOB.hexmap.contaminate(H, previous, 10 MINUTES)
+	GLOB.hexmap.contaminate(H, H.terrain, 10 MINUTES) // drugie trafienie: teren to już skażenie
+	var/list/saved = GLOB.hexmap.save_contamination()
+	GLOB.hexmap.decontaminate(H.id)
+	var/after_hits = H.terrain
+	var/list/reload = list()
+	reload[H.id] = saved[H.id]
+	GLOB.hexmap.restore_contamination(reload)
+	var/after_load = H.terrain
+	GLOB.hexmap.decontaminate(H.id)
+	var/after_all = H.terrain
+	if(H.terrain != previous)
+		H.set_terrain(previous)
+	TEST_ASSERT_EQUAL(after_hits, previous, "After two hits the tile stayed [after_hits] instead of [previous]")
+	TEST_ASSERT_EQUAL(after_load, HEX_TERRAIN_RADIATION, "Loaded contamination did not contaminate the tile")
+	TEST_ASSERT_EQUAL(after_all, previous, "After loading the save the tile stayed [after_all] instead of [previous]")
+
+/// Strzał strategiczny nie zabiera atomówki z wyrzutni w trakcie cyklu; bierze ją z drugiej, wolnej wyrzutni
+/datum/unit_test/hexmap_nuke_launcher_cycle
+
+/datum/unit_test/hexmap_nuke_launcher_cycle/Run()
+	var/obj/machinery/ship_weapon/vls/busy = allocate(/obj/machinery/ship_weapon/vls)
+	var/obj/machinery/ship_weapon/vls/free = allocate(/obj/machinery/ship_weapon/vls)
+	var/obj/item/ship_weapon/ammunition/torpedo/nuke/busy_nuke = allocate(/obj/item/ship_weapon/ammunition/torpedo/nuke)
+	var/obj/item/ship_weapon/ammunition/torpedo/nuke/free_nuke = allocate(/obj/item/ship_weapon/ammunition/torpedo/nuke)
+	busy.ammo += busy_nuke
+	free.ammo += free_nuke
+	busy.state = STATE_CHAMBERING // chamber() śpi z torpedą w ammo
+	free.state = STATE_LOADED
+	var/list/ready = busy.hex_ready_nukes() + free.hex_ready_nukes()
+	busy.state = STATE_LOADED
+	var/list/after_cycle = busy.hex_ready_nukes()
+	busy.ammo -= busy_nuke
+	free.ammo -= free_nuke
+	// Zwykłe usunięcie wyrzutni zostawia płytkę i części na podłodze strefy testów, a kolejne testy szukają tam przedmiotów
+	qdel(busy, TRUE)
+	qdel(free, TRUE)
+	TEST_ASSERT(!(busy_nuke in ready), "A nuke was taken from a launcher in the middle of chambering")
+	TEST_ASSERT(free_nuke in ready, "The nuke in the second, idle launcher was not offered")
+	TEST_ASSERT(busy_nuke in after_cycle, "A loaded launcher after its cycle did not offer its nuke")
+
+/// Pocisk strategiczny zestrzelony w walce taktycznej nie robi nic; trafienie daje skutki strategiczne (skażenie pustego kafla)
+/datum/unit_test/hexmap_nuke_tactical_hit
+
+/datum/unit_test/hexmap_nuke_tactical_hit/Run()
+	if(!GLOB.hexmap?.built || !GLOB.hex_war)
+		return
+	var/datum/hex/H
+	for(var/id in GLOB.hexmap.hexes)
+		var/datum/hex/candidate = GLOB.hexmap.hexes[id]
+		if(!candidate.system && candidate.terrain != HEX_TERRAIN_RADIATION && !GLOB.hexmap.contamination[candidate.id])
+			H = candidate
+			break
+	if(!H)
+		return
+	var/previous = H.terrain
+	var/saved_tension = GLOB.hex_war.tension
+	var/saved_lock = GLOB.hex_war.defcon_lock_until
+	var/obj/item/projectile/guided_munition/torpedo/nuclear/plain = allocate(/obj/item/projectile/guided_munition/torpedo/nuclear)
+	plain.hex_detonate(H)
+	var/after_plain = H.terrain
+	var/obj/item/projectile/guided_munition/torpedo/nuclear/strategic = allocate(/obj/item/projectile/guided_munition/torpedo/nuclear)
+	strategic.hex_strategic_faction = "syndicate"
+	qdel(strategic) // zestrzelenie: pocisk znika bez trafienia
+	var/after_shotdown = H.terrain
+	var/obj/item/projectile/guided_munition/torpedo/nuclear/hit = allocate(/obj/item/projectile/guided_munition/torpedo/nuclear)
+	hit.hex_strategic_faction = "syndicate"
+	hit.hex_detonate(H)
+	var/after_hit = H.terrain
+	GLOB.hexmap.decontaminate(H.id)
+	if(H.terrain != previous)
+		H.set_terrain(previous)
+	GLOB.hex_war.tension = saved_tension
+	GLOB.hex_war.defcon_lock_until = saved_lock
+	GLOB.hex_war.update_defcon()
+	TEST_ASSERT_EQUAL(after_plain, previous, "A plain nuclear torpedo contaminated the tile")
+	TEST_ASSERT_EQUAL(after_shotdown, previous, "A strategic missile shot down in tactical combat contaminated the tile")
+	TEST_ASSERT_EQUAL(after_hit, HEX_TERRAIN_RADIATION, "A strategic missile that hit had no strategic effect")
 
 /// Regresja: konwój bez wyznaczonego kursu (plotted_course = FALSE) dochodzi do celu i rozładowuje się bez runtime'u
 /datum/unit_test/hexmap_war_convoy_arrival

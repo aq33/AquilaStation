@@ -5,6 +5,9 @@
 	var/datum/hex/hex_selected
 	/// Konsola pokazuje mapę hex. Astrometria dziedziczy po konsoli nawigacji i woła jej ui_data(), a jej okno zna tylko stary format
 	var/hex_map_console = TRUE
+	/// Dane okna z ostatniego odświeżenia: nie zależą od widza, więc kilku widzów w tej samej chwili dostaje jedne
+	var/list/hex_ui_cache
+	var/hex_ui_cache_time = -INFINITY
 
 /obj/machinery/computer/ship/navigation/astrometrics
 	hex_map_console = FALSE
@@ -49,6 +52,13 @@
 /obj/machinery/computer/ship/navigation/ui_data(mob/user)
 	if(!uses_hex_map() || !has_overmap())
 		return ..()
+	if(hex_ui_cache && world.time < hex_ui_cache_time + 5) // pół sekundy; akcja w oknie czyści pamięć od razu
+		return hex_ui_cache
+	hex_ui_cache = hex_build_ui_data()
+	hex_ui_cache_time = world.time
+	return hex_ui_cache
+
+/obj/machinery/computer/ship/navigation/proc/hex_build_ui_data()
 	GLOB.hexmap.place_new_systems()
 	var/list/data = list()
 	var/list/info = SSstar_system.ships[linked]
@@ -113,7 +123,7 @@
 
 	// Atomówki i DEFCON (war_nuke.dm)
 	data["defcon"] = GLOB.hex_war?.defcon || 5
-	data["nukes_loaded"] = length(linked.hex_loaded_nukes())
+	data["nukes_loaded"] = linked.hex_loaded_nuke_count()
 	var/list/missiles = list()
 	for(var/datum/hex_nuke/N as anything in GLOB.hex_war?.missiles)
 		missiles += list(list("faction" = N.faction, "hex" = N.hex?.id, "target" = N.target_hex?.id, "trail" = N.trail))
@@ -189,7 +199,7 @@
 		"stops" = GLOB.hexmap.stops(H),
 		"blocks" = GLOB.hexmap.blocks(H),
 		"wormhole_to" = H.wormhole_pair?.display_name(),
-		"nuke_blocker" = here ? linked.hex_nuke_blocker(H) : "Okręt jest w locie.",
+		"nuke_blocker" = here ? linked.hex_nuke_blocker(H, TRUE) : "Okręt jest w locie.",
 	)
 	var/list/gate_names = list()
 	for(var/datum/hex/G as anything in H.gates)
@@ -226,6 +236,7 @@
 		return TRUE
 	if(!(action in list("hex_select", "hex_jump", "hex_cancel", "hex_nuke")))
 		return ..()
+	hex_ui_cache = null // po akcji okno dostaje świeże dane, nie te sprzed kliknięcia
 	if(!linked)
 		return
 	if(!can_interact(usr) && !IsAdminGhost(usr))
@@ -250,7 +261,8 @@
 				linked.ftl_drive.request_emergency_ftl_confirm()
 				return TRUE
 			// Konsola jest wspólna: skok tylko w kafel, który widział klikający (inny gracz mógł w międzyczasie zaznaczyć inny)
-			if(params["hex"] && GLOB.hexmap.hex_by_id(params["hex"]) != hex_selected)
+			var/datum/hex/jump_target = GLOB.hexmap.hex_by_id(params["hex"])
+			if(!jump_target || jump_target != hex_selected)
 				to_chat(usr, "<span class='warning'>Ktoś zmienił zaznaczony kafel. Sprawdź cel i spróbuj jeszcze raz.</span>")
 				return TRUE
 			if(linked.hex_jump(hex_selected, usr))

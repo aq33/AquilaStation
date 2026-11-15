@@ -1341,6 +1341,8 @@ const SelectedPanel = (props: SelectedPanelProps) => {
   // Uzbrojenie dotyczy jednego kafla: po zmianie zaznaczenia trzeba potwierdzić od nowa
   const [armedHex, setArmedHex] = useState<string | null>(null);
   const nukeArmed = armedHex === selected.hex;
+  // A -> B -> A: każda zmiana zaznaczenia rozbraja przycisk
+  useEffect(() => setArmedHex(null), [selected.hex]);
   const route = selected.route;
   const showTerrain = !!terrain && terrain.id !== 'empty';
   return (

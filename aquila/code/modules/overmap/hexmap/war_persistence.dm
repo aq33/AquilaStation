@@ -171,8 +171,12 @@
 		qdel(extra)
 	if(length(live) < ships)
 		F.hex_war_add_ships(ships - length(live))
-	// Średni stan kadłubów ocalałych okrętów; strength dzieli przez okręty przy wodowaniu, więc liczyłby straty drugi raz
-	var/strength = clamp(entry["hull"] || entry["strength"] || 1, 0.1, 1)
+	// Średni stan kadłubów ocalałych okrętów. Stary zapis ma tylko strength (suma kadłubów / okręty przy wodowaniu),
+	// więc przeliczamy go na ocalałe okręty, żeby straty nie liczyły się drugi raz.
+	var/hull = entry["hull"]
+	if(isnull(hull))
+		hull = entry["strength"] ? entry["strength"] * max(ships, entry["max_ships"]) / ships : 1
+	var/strength = clamp(hull, 0.1, 1)
 	for(var/obj/structure/overmap/OM as anything in F.all_ships)
 		if(!QDELETED(OM))
 			OM.obj_integrity = max(1, OM.max_integrity * strength)

@@ -188,12 +188,21 @@
 
 /datum/unit_test/hexmap_seegson_power_loss/Run()
 	var/obj/machinery/computer/ship/ftl_computer/drive = allocate(/obj/machinery/computer/ship/ftl_computer)
-	drive.ftl_state = FTL_STATE_JUMPING
+	drive.radio.on = FALSE // komunikaty skoku idą asynchronicznie, a napęd znika razem z testem
+	// Pełny napęd przestaje się przetwarzać po naładowaniu; skok po hexach musi go wznowić, inaczej nie zauważy utraty zasilania
+	STOP_PROCESSING(SSmachines, drive)
+	drive.ftl_state = FTL_STATE_READY
 	drive.progress = drive.spoolup_time
+	drive.jump(SSstar_system.systems[1])
+	var/jumping = drive.ftl_state == FTL_STATE_JUMPING
+	var/resumed = drive.datum_flags & DF_ISPROCESSING
 	drive.set_machine_stat(drive.machine_stat | NOPOWER)
 	drive.process()
 	var/state = drive.ftl_state
 	STOP_PROCESSING(SSmachines, drive)
+	TEST_ASSERT(jumping, "jump() did not start the spool-up")
+	if(GLOB.hexmap?.built)
+		TEST_ASSERT(resumed, "A fully charged Seegson drive was not processed during the hex jump spool-up")
 	TEST_ASSERT(state != FTL_STATE_JUMPING, "A Seegson drive without power stayed in the jump spool-up")
 
 /// Zwykły timer ruchu nie przesuwa floty, która idzie z posiłkami (krokami posiłków steruje fleet_distress.dm)
@@ -243,9 +252,29 @@
 	SSstar_system.hex_default_return = null
 	ship.hex_update_return_station()
 	var/datum/star_system/remembered = SSstar_system.hex_default_return
+	// Poprzednie wywołanie wybrało stację, a teraz żadnej przyjaznej nie ma (stacje ukryte): wraca pierwotny układ, nie stacja
+	var/datum/star_system/station
+	for(var/datum/star_system/S as anything in SSstar_system.systems)
+		if(S != saved_return && S.trader && S.hex)
+			station = S
+			break
+	var/list/hidden = list()
+	for(var/datum/star_system/S as anything in SSstar_system.systems)
+		if(S.trader && !S.hidden)
+			S.hidden = TRUE
+			hidden += S
+	if(station)
+		SSstar_system.return_system = station
+	ship.hex_update_return_station()
+	var/datum/star_system/fallback = SSstar_system.return_system
+	var/datum/star_system/still_remembered = SSstar_system.hex_default_return
+	for(var/datum/star_system/S as anything in hidden)
+		S.hidden = FALSE
 	SSstar_system.hex_default_return = saved_default
 	SSstar_system.return_system = saved_return
 	TEST_ASSERT_EQUAL(remembered, saved_return, "The configured return system was not remembered as the default")
+	TEST_ASSERT_EQUAL(still_remembered, saved_return, "A later call overwrote the remembered default with [station]")
+	TEST_ASSERT_EQUAL(fallback, saved_return, "With no friendly station the return went to [fallback] instead of the default")
 
 
 #undef TEST_ASSERT

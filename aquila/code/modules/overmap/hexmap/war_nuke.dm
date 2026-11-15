@@ -23,10 +23,22 @@
 	impact_effect_type = /obj/effect/temp_visual/nuke_impact
 	shotdown_effect_type = /obj/effect/temp_visual/nuke_impact
 
+/obj/item/projectile/guided_munition/torpedo/nuclear
+	/// Frakcja pocisku strategicznego, który zszedł do walki taktycznej (hex_incoming_nuke); zwykła torpeda: null
+	var/hex_strategic_faction
+
 /obj/item/projectile/guided_munition/torpedo/nuclear/spec_overmap_hit(obj/structure/overmap/target)
 	if(length(target.occupying_levels) || length(target.mobs_in_ship))
 		target.nuclear_impact()
-	GLOB.hex_war?.nuclear_detonation(target.current_system?.hex)
+	hex_detonate(target.current_hex())
+
+/// Skutki na mapie po trafieniu. Pocisk strategiczny dopiero teraz robi to, co robiłby w kaflu bez okrętu gracza
+/// (floty, skażenie); zestrzelony nie robi nic. Zwykła torpeda podnosi tylko napięcie i DEFCON.
+/obj/item/projectile/guided_munition/torpedo/nuclear/proc/hex_detonate(datum/hex/where)
+	if(hex_strategic_faction && where)
+		hex_nuke_blast(where, hex_strategic_faction)
+		return
+	GLOB.hex_war?.nuclear_detonation(where)
 
 /obj/structure/closet/crate/secure/weapon/aquila_nuke
 	name = "skrzynia z atomówką"
@@ -223,22 +235,26 @@
 	if(player && player_hex == hex)
 		// Okręt gracza w kaflu: rakieta schodzi do walki taktycznej jako prawdziwa torpeda, którą da się zestrzelić.
 		// Skutki strategiczne (floty, skażenie, DEFCON) liczy dopiero jej trafienie, nie samo wejście do kafla.
-		player.hex_incoming_nuke()
+		player.hex_incoming_nuke(faction)
 		log_game("HEXWAR: nuclear missile ([faction]) handed over to tactical combat at [hex.id]")
 		finish()
 		return
-	for(var/datum/fleet/F as anything in hex.system?.fleets)
+	hex_nuke_blast(hex, faction)
+	finish()
+
+/// Skutki wybuchu na mapie: floty tracą okręty (3 w kaflu, 1 obok), pusty kafel zostaje skażony, DEFCON i napięcie
+/proc/hex_nuke_blast(datum/hex/where, faction)
+	for(var/datum/fleet/F as anything in where.system?.fleets)
 		hex_nuke_damage_fleet(F, 3)
-	for(var/datum/hex/N as anything in GLOB.hexmap.neighbours(hex))
+	for(var/datum/hex/N as anything in GLOB.hexmap.neighbours(where))
 		for(var/datum/fleet/F as anything in N.system?.fleets)
 			hex_nuke_damage_fleet(F, 1)
-	if(!hex.system || istype(hex.system, /datum/star_system/random/hex_empty))
-		var/previous = hex.terrain
-		GLOB.hexmap.contaminate(hex, hex_terrain(previous)?.moving ? HEX_TERRAIN_EMPTY : previous, 50 MINUTES)
-	mini_announce("Detonacja jądrowa w [hex.display_name()].", "White Rapids EAS")
-	GLOB.hex_war.nuclear_detonation(hex)
-	log_game("HEXWAR: nuclear missile ([faction]) detonates at [hex.id]")
-	finish()
+	if(!where.system || istype(where.system, /datum/star_system/random/hex_empty))
+		var/previous = where.terrain
+		GLOB.hexmap.contaminate(where, hex_terrain(previous)?.moving ? HEX_TERRAIN_EMPTY : previous, 50 MINUTES)
+	mini_announce("Detonacja jądrowa w [where.display_name()].", "White Rapids EAS")
+	GLOB.hex_war?.nuclear_detonation(where)
+	log_game("HEXWAR: nuclear missile ([faction]) detonates at [where.id]")
 
 /datum/hex_nuke/proc/finish()
 	GLOB.hex_war?.missiles -= src
@@ -255,7 +271,7 @@
 			qdel(OM)
 
 /// Pocisk wchodzi w kafel okrętu gracza: prawdziwa torpeda z krawędzi overmapy, którą PD i flak mogą zestrzelić
-/obj/structure/overmap/proc/hex_incoming_nuke()
+/obj/structure/overmap/proc/hex_incoming_nuke(faction)
 	set waitfor = FALSE
 	relay('nsv13/sound/effects/ship/incoming_missile.ogg', message = "<h1>Nieuchronne trafienie pociskiem</h1><br/><span class='danger'>Wykryto odpalenie głowicy termojądrowej. Cała załoga, przygotować się na uderzenie.</span>")
 	sleep(5 SECONDS)
@@ -265,7 +281,8 @@
 	var/turf/goal = get_turf(src)
 	if(!start || !goal)
 		return
-	var/obj/item/projectile/proj = new /obj/item/projectile/guided_munition/torpedo/nuclear(start)
+	var/obj/item/projectile/guided_munition/torpedo/nuclear/proj = new(start)
+	proj.hex_strategic_faction = faction || "unknown"
 	proj.starting = start
 	proj.firer = null
 	proj.def_zone = "chest"
@@ -280,18 +297,24 @@
 	for(var/obj/machinery/ship_weapon/W in GLOB.machines)
 		if(!(istype(W, /obj/machinery/ship_weapon/torpedo_launcher) || istype(W, /obj/machinery/ship_weapon/vls)) || W.get_overmap() != src)
 			continue
-		if(W.state in list(STATE_FEEDING, STATE_CHAMBERING, STATE_FIRING))
-			continue // wyrzutnia w trakcie cyklu (chamber() śpi z torpedą w ammo): zabranie jej teraz zepsułoby cykl
-		for(var/obj/item/ship_weapon/ammunition/torpedo/nuke/N in W.ammo)
+		for(var/obj/item/ship_weapon/ammunition/torpedo/nuke/N as anything in W.hex_ready_nukes())
 			.[N] = W
 
+/// Atomówki, które wolno zabrać z wyrzutni do strzału strategicznego
+/obj/machinery/ship_weapon/proc/hex_ready_nukes()
+	. = list()
+	if(state in list(STATE_FEEDING, STATE_CHAMBERING, STATE_FIRING))
+		return // wyrzutnia w trakcie cyklu (chamber() śpi z torpedą w ammo): zabranie jej teraz zepsułoby cykl
+	for(var/obj/item/ship_weapon/ammunition/torpedo/nuke/N in ammo)
+		. += N
+
 /// Powód, dla którego okręt nie może teraz odpalić atomówki w ten kafel, albo null
-/obj/structure/overmap/proc/hex_nuke_blocker(datum/hex/target)
+/obj/structure/overmap/proc/hex_nuke_blocker(datum/hex/target, cached = FALSE)
 	if(!GLOB.hex_war?.ready)
 		return "Brak łączności ze sztabem."
 	if(GLOB.hex_war.defcon > 2)
 		return "Użycie broni jądrowej wymaga DEFCON 2 albo niższego (teraz [GLOB.hex_war.defcon])."
-	if(!length(hex_loaded_nukes()))
+	if(!(cached ? hex_loaded_nuke_count() : length(hex_loaded_nukes())))
 		return "Żadna wyrzutnia nie ma załadowanej atomówki."
 	var/datum/hex/here = current_hex()
 	if(!here || !target || here == target)
@@ -332,6 +355,9 @@
 	var/list/contamination = list()
 
 /datum/hexmap/proc/contaminate(datum/hex/H, previous, duration)
+	var/list/old = contamination[H.id]
+	if(old) // kolejne trafienie: teren po wygaszeniu ten sam co przy pierwszym, a nie samo skażenie
+		previous = old["previous"]
 	H.set_terrain(HEX_TERRAIN_RADIATION)
 	contamination[H.id] = list("previous" = previous, "until" = world.time + duration)
 	addtimer(CALLBACK(src, PROC_REF(decontaminate), H.id), duration, TIMER_UNIQUE | TIMER_OVERRIDE)
@@ -361,3 +387,14 @@
 			continue
 		contaminate(H, entry[1], max(1 SECONDS, entry[2]))
 
+/obj/structure/overmap
+	var/hex_nuke_count = 0
+	var/hex_nuke_count_time = -INFINITY
+
+/// Liczba załadowanych atomówek dla okna konsoli: przegląd wszystkich maszyn świata najwyżej co 5 s, nie przy każdym
+/// odświeżeniu (pamiętana tylko liczba, bez referencji do torped). Odpalenie sprawdza wyrzutnie na bieżąco.
+/obj/structure/overmap/proc/hex_loaded_nuke_count()
+	if(world.time >= hex_nuke_count_time + 5 SECONDS)
+		hex_nuke_count = length(hex_loaded_nukes())
+		hex_nuke_count_time = world.time
+	return hex_nuke_count
