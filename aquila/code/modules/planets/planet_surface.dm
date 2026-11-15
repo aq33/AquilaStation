@@ -157,36 +157,31 @@
 	var/max_coord = size - 1 - PLANET_EDGE_WIDTH - radius - 2
 	build_landing_grid()
 	var/list/best_layout = list()
-	for(var/layout_attempt in 1 to 5)
+	// Każde lądowisko z przeglądu całej siatki (ocena z sum prefiksowych jest tania): losowo spośród miejsc z oceną
+	// bliską najlepszej, a w kolejnych podejściach pierwsze lądowisko idzie w róg, żeby zostawić miejsce na resztę
+	for(var/layout_attempt in 1 to 8)
 		landing_zones = list()
 		for(var/i in 1 to PLANET_LANDING_ZONES)
-			var/turf/best
+			var/list/candidates = list()
 			var/best_score = -1
-			for(var/attempt in 1 to 60)
-				var/x_offset = rand(min_coord, max_coord)
-				var/y_offset = rand(min_coord, max_coord)
-				if(layout_attempt > 1 && i == 1)
-					x_offset = pick(min_coord, max_coord)
-					y_offset = pick(min_coord, max_coord)
-				var/turf/candidate = locate(bl.x + x_offset, bl.y + y_offset, bl.z)
-				var/score = landing_zone_score(candidate, radius)
-				if(score > best_score)
-					best = candidate
-					best_score = score
+			for(var/x_offset = min_coord; x_offset <= max_coord; x_offset += 3)
+				for(var/y_offset = min_coord; y_offset <= max_coord; y_offset += 3)
+					if(layout_attempt > 1 && i == 1 && min(x_offset - min_coord, max_coord - x_offset) > 3 && min(y_offset - min_coord, max_coord - y_offset) > 3)
+						continue
+					var/turf/candidate = locate(bl.x + x_offset, bl.y + y_offset, bl.z)
+					var/score = landing_zone_score(candidate, radius)
+					if(score < 0)
+						continue
+					candidates[candidate] = score
+					best_score = max(best_score, score)
 				CHECK_TICK
-			// Losowe próby nie trafiły w wolne miejsce (duża ruina, ciasno między lądowiskami): przegląd całej siatki
-			if(!best)
-				for(var/x_offset = min_coord; x_offset <= max_coord; x_offset += 5)
-					for(var/y_offset = min_coord; y_offset <= max_coord; y_offset += 5)
-						var/turf/candidate = locate(bl.x + x_offset, bl.y + y_offset, bl.z)
-						var/score = landing_zone_score(candidate, radius)
-						if(score > best_score)
-							best = candidate
-							best_score = score
-						CHECK_TICK
-			if(!best)
+			if(!length(candidates))
 				break
-			landing_zones[best] = zone_names[i]
+			var/list/good = list()
+			for(var/turf/candidate as anything in candidates)
+				if(candidates[candidate] >= best_score * 0.9)
+					good += candidate
+			landing_zones[pick(good)] = zone_names[i]
 		if(length(landing_zones) > length(best_layout))
 			best_layout = landing_zones
 		if(length(best_layout) >= PLANET_LANDING_ZONES)

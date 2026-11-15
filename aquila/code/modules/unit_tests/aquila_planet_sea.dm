@@ -18,7 +18,8 @@
 		var/obj/structure/overmap/planet/planet = new(run_loc_floor_top_right, planet_type)
 		var/datum/planet_surface/surface = planet.surface
 		TEST_ASSERT(surface.generate(), "[planet_type] surface didn't generate")
-		TEST_ASSERT_EQUAL(surface.size, planet.planet_type.surface_size, "[planet_type] surface has the wrong size without a large main ruin")
+		// Rozmiar typu albo duży, gdy wypadła ruina główna za duża na zwykły kwadrat (np. Kurort Korporacyjny)
+		TEST_ASSERT(surface.size == planet.planet_type.surface_size || surface.size == PLANET_SURFACE_SIZE_LARGE, "[planet_type] surface has the wrong size ([surface.size])")
 		var/turf/bl = surface.bottom_left()
 		TEST_ASSERT(istype(bl, /turf/closed/indestructible/rock/planet_edge), "[planet_type] surface corner isn't the planet edge ([bl.type])")
 		var/water = 0
