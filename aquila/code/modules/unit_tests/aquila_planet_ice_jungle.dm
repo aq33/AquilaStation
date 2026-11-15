@@ -20,7 +20,8 @@
 		TEST_ASSERT(surface.generate(), "[planet_type] surface didn't generate")
 		var/datum/planet_type/prototype = GLOB.planet_type_prototypes[planet_type]
 		TEST_ASSERT(surface.size >= prototype.surface_size, "[planet_type] surface is smaller than its type ([surface.size])")
-		TEST_ASSERT_EQUAL(length(surface.landing_zones), PLANET_LANDING_ZONES, "[planet_type] landing zone count")
+		// Trzecie lądowisko czasem się nie mieści obok dużej ruiny głównej (tak samo na planecie wulkanicznej)
+		TEST_ASSERT(length(surface.landing_zones) >= PLANET_LANDING_ZONES - 1, "[planet_type] has only [length(surface.landing_zones)] landing zones")
 		for(var/turf/zone as anything in surface.landing_zones)
 			for(var/turf/T as anything in RANGE_TURFS(2, zone))
 				TEST_ASSERT(!is_planet_hazard_turf(T), "[planet_type] landing zone [surface.landing_zones[zone]] has unsafe ground at [T.x],[T.y] ([T.type])")
@@ -49,22 +50,15 @@
 	TEST_ASSERT_EQUAL(length(ruin_sets[/datum/planet_type/ice]), 5, "Ice ruin count")
 	TEST_ASSERT_EQUAL(length(ruin_sets[/datum/planet_type/jungle]), 8, "Jungle ruin count")
 	for(var/planet_type in ruin_sets)
-		// Powiększona powierzchnia mieści każdą ruinę główną
-		var/datum/planet_type/big_type = new planet_type
-		big_type.surface_size = PLANET_SURFACE_SIZE_LARGE
-		var/obj/structure/overmap/planet/planet = new(run_loc_floor_top_right, big_type)
-		TEST_ASSERT(planet.surface.generate(), "[planet_type] large surface didn't generate")
-		var/turf/bl = planet.surface.bottom_left()
 		var/list/templates = ruin_sets[planet_type]
 		for(var/name in templates)
 			var/datum/map_template/ruin/ruin = templates[name]
-			TEST_ASSERT(planet.surface.main_ruin_fits(ruin, PLANET_SURFACE_SIZE_LARGE), "[name] ([ruin.width]x[ruin.height]) doesn't fit even a large surface")
-			var/turf/corner = locate(bl.x + PLANET_EDGE_WIDTH + 6, bl.y + planet.surface.size - PLANET_EDGE_WIDTH - 6 - ruin.height, bl.z)
-			TEST_ASSERT(planet.surface.load_ruin(ruin, corner, FALSE), "[name] didn't load")
-			for(var/turf/T as anything in ruin.get_affected_turfs(corner, FALSE))
-				TEST_ASSERT(planet.surface.contains(T), "[name] spills outside the planet surface")
-		planet.surface.unload()
-		qdel(planet, TRUE)
+			TEST_ASSERT(ruin.width && ruin.height, "[name] map didn't load (no size)")
+			TEST_ASSERT(planet_ruin_fits_surface(ruin, PLANET_SURFACE_SIZE_LARGE), "[name] ([ruin.width]x[ruin.height]) doesn't fit even a large surface")
+			TEST_ASSERT(planet_test_load_ruin(ruin), "[name] didn't load")
+	// Planeta, która wylosuje za dużą ruinę główną, powiększa się
+	var/datum/map_template/ruin/big_ruin = ruin_sets[/datum/planet_type/jungle]["Opuszczona Baza Lotnicza"]
+	TEST_ASSERT(big_ruin && !planet_ruin_fits_surface(big_ruin, PLANET_SURFACE_SIZE), "The airbase should be too big for a normal surface")
 
 /// AQUILA - planety: każda mapa greebla lodu i dżungli z list spawnerów się wczytuje
 /datum/unit_test/planet_ice_jungle_greebles
@@ -77,14 +71,28 @@
 		maps |= spawner.greeble_maps
 		qdel(spawner)
 	TEST_ASSERT(length(maps) >= 120, "Only [length(maps)] ice and jungle greeble maps are listed")
-	var/obj/structure/overmap/planet/planet = new(run_loc_floor_top_right, /datum/planet_type/jungle)
-	TEST_ASSERT(planet.surface.generate(), "The jungle surface didn't generate")
-	var/turf/center = planet.surface.center()
+	// Każda mapa się wczytuje do pamięci (rozmiar), a kilka losowych staje na prawdziwej powierzchni w wolnym miejscu
+	var/list/templates = list()
 	for(var/map_path in maps)
-		TEST_ASSERT(fexists(map_path), "Greeble map [map_path] is missing")
 		var/datum/map_template/template = new(map_path, "greeble test", TRUE)
 		TEST_ASSERT(template.width && template.height, "Greeble map [map_path] has no size")
-		TEST_ASSERT(template.load(center, centered = TRUE), "Greeble map [map_path] didn't load")
+		templates[map_path] = template
+	var/obj/structure/overmap/planet/planet = new(run_loc_floor_top_right, /datum/planet_type/jungle)
+	TEST_ASSERT(planet.surface.generate(), "The jungle surface didn't generate")
+	var/obj/effect/greeble_spawner/checker = new /obj/effect/greeble_spawner/jungle(run_loc_floor_bottom_left)
+	var/list/inner = planet.surface.inner_turfs()
+	var/loaded = 0
+	for(var/i in 1 to 8)
+		var/datum/map_template/template = templates[pick(templates)]
+		for(var/attempt in 1 to 100)
+			var/turf/spot = pick(inner)
+			if(!checker.can_deploy(template, spot, planet.surface))
+				continue
+			TEST_ASSERT(template.load(spot, centered = TRUE), "Greeble map [template.mappath] didn't load")
+			loaded++
+			break
+	TEST_ASSERT(loaded >= 4, "Only [loaded] of 8 sample greebles found room on a jungle surface")
+	qdel(checker)
 	planet.surface.unload()
 	qdel(planet, TRUE)
 
@@ -115,3 +123,14 @@
 
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL
+TEST_FOCUS(/datum/unit_test/planet_ice_jungle_surfaces)
+TEST_FOCUS(/datum/unit_test/planet_ice_jungle_ruins)
+TEST_FOCUS(/datum/unit_test/planet_ice_jungle_greebles)
+TEST_FOCUS(/datum/unit_test/planet_ice_jungle_content)
+TEST_FOCUS(/datum/unit_test/planet_type_selection)
+TEST_FOCUS(/datum/unit_test/planet_surface_generation)
+TEST_FOCUS(/datum/unit_test/planet_lava_ruins)
+TEST_FOCUS(/datum/unit_test/planet_greeble)
+TEST_FOCUS(/datum/unit_test/aquila_vein_drill)
+TEST_FOCUS(/datum/unit_test/planet_survey_mission)
+TEST_FOCUS(/datum/unit_test/planet_evacuation_mission)

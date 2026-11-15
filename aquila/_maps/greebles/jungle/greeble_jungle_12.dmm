@@ -1,19 +1,36 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"i" = (
+"e" = (
+/obj/structure/flora/ausbushes/ywflowers,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/template_noop)
+"r" = (
 /obj/structure/flora/ausbushes/ywflowers/hell,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/template_noop)
+"t" = (
+/turf/template_noop,
+/area/template_noop)
+"u" = (
+/obj/structure/flora/rock,
+/obj/item/food/grown/ash_flora/fireblossom{
+	pixel_y = 9;
+	 pixel_x = 6;
+	 desc = "Kiedy odejdę, obiecasz, że będziesz pamiętać? Że po mnie wrócisz? Że wszystko będzie dobrze?"
+	},
 /turf/open/floor/plating/asteroid/dirt/grass/jungle,
 /area/template_noop)
 "x" = (
 /obj/structure/flora/ausbushes/ppflowers,
 /turf/open/floor/plating/asteroid/dirt/grass/jungle,
 /area/template_noop)
-"B" = (
-/turf/template_noop,
-/area/template_noop)
-"D" = (
+"N" = (
 /turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
 /area/template_noop)
-"F" = (
+"V" = (
+/obj/structure/flora/ausbushes/lavendergrass,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/template_noop)
+"X" = (
 /obj/effect/decal/remains/human,
 /obj/structure/closet/crate/coffin{
 	desc = "Oznaczony kawałek ziemi z krzyżem. W drewnie wyryto prosty kwiat.";
@@ -35,84 +52,67 @@
 	},
 /turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
 /area/template_noop)
-"R" = (
-/obj/structure/flora/rock,
-/obj/item/food/grown/ash_flora/fireblossom{
-	pixel_y = 9;
-	 pixel_x = 6;
-	 desc = "Kiedy odejdę, obiecasz, że będziesz pamiętać? Że po mnie wrócisz? Że wszystko będzie dobrze?"
-	},
-/turf/open/floor/plating/asteroid/dirt/grass/jungle,
-/area/template_noop)
-"T" = (
-/obj/structure/flora/ausbushes/lavendergrass,
-/turf/open/floor/plating/asteroid/dirt/grass/jungle,
-/area/template_noop)
-"X" = (
-/obj/structure/flora/ausbushes/ywflowers,
-/turf/open/floor/plating/asteroid/dirt/grass/jungle,
-/area/template_noop)
 
 (1,1,1) = {"
-B
-T
-B
-B
-T
-B
+t
+V
+t
+t
+V
+t
 x
 "}
 (2,1,1) = {"
-B
-B
-X
+t
+t
+e
 x
-B
-X
-B
+t
+e
+t
 "}
 (3,1,1) = {"
-X
-B
+e
+t
 x
-i
-X
-T
-X
+r
+e
+V
+e
 "}
 (4,1,1) = {"
-B
+t
 x
-i
-R
-F
-D
-B
+r
+u
+X
+N
+t
 "}
 (5,1,1) = {"
-B
-X
-T
+t
+e
+V
 x
-i
-X
-T
+r
+e
+V
 "}
 (6,1,1) = {"
-T
-B
-B
-X
-B
-T
-B
+V
+t
+t
+e
+t
+V
+t
 "}
 (7,1,1) = {"
-B
-B
+t
+t
 x
-B
+t
 x
-B
-B
+t
+t
 "}

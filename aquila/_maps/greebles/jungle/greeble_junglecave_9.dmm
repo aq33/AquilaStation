@@ -1,71 +1,71 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"c" = (
-/obj/structure/flora/ash/tall_shroom,
-/turf/open/floor/plating/moss/jungle,
-/area/template_noop)
-"d" = (
+"e" = (
 /turf/open/floor/plating/asteroid/dirt/jungle,
 /area/template_noop)
-"i" = (
-/obj/structure/flora/ash/leaf_shroom,
-/turf/open/floor/plating/asteroid/dirt/jungle,
-/area/template_noop)
-"q" = (
+"f" = (
 /obj/structure/flora/ash/cap_shroom,
 /turf/open/floor/plating/moss/jungle,
 /area/template_noop)
-"s" = (
+"g" = (
 /obj/structure/flora/ash/stem_shroom,
 /turf/open/floor/plating/moss/jungle,
 /area/template_noop)
+"h" = (
+/obj/structure/flora/ash/tall_shroom,
+/turf/open/floor/plating/moss/jungle,
+/area/template_noop)
+"q" = (
+/turf/open/floor/plating/moss/jungle,
+/area/template_noop)
+"B" = (
+/turf/template_noop,
+/area/template_noop)
 "I" = (
+/obj/structure/flora/ash/cap_shroom,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
+"U" = (
 /obj/effect/mob_spawn/human/corpse/charredskeleton,
 /obj/structure/flora/ash/leaf_shroom,
 /turf/open/floor/plating/moss/jungle,
 /area/template_noop)
-"P" = (
-/turf/open/floor/plating/moss/jungle,
-/area/template_noop)
 "V" = (
-/obj/structure/flora/ash/cap_shroom,
+/obj/structure/flora/ash/leaf_shroom,
 /turf/open/floor/plating/asteroid/dirt/jungle,
-/area/template_noop)
-"W" = (
-/turf/template_noop,
 /area/template_noop)
 
 (1,1,1) = {"
-W
+B
+f
+V
 q
-i
-P
-W
+B
 "}
 (2,1,1) = {"
+I
+e
+g
+I
 V
-d
-s
-V
-i
 "}
 (3,1,1) = {"
-i
-s
-I
-c
-W
+V
+g
+U
+h
+B
 "}
 (4,1,1) = {"
-W
-d
-q
-i
-W
+B
+e
+f
+V
+B
 "}
 (5,1,1) = {"
-W
-q
-i
-W
-q
+B
+f
+V
+B
+f
 "}

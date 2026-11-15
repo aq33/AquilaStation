@@ -1,99 +1,99 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"a" = (
+"d" = (
 /turf/template_noop,
 /area/template_noop)
-"m" = (
+"A" = (
 /turf/open/floor/plating/asteroid/iceberg,
 /area/template_noop)
-"H" = (
+"Y" = (
 /turf/closed/mineral/planet_ice_wall,
 /area/template_noop)
 
 (1,1,1) = {"
-a
-H
-H
-m
-a
-H
-H
-H
-a
+d
+Y
+Y
+A
+d
+Y
+Y
+Y
+d
 "}
 (2,1,1) = {"
-a
-H
-H
-m
-m
-m
-m
-H
-H
+d
+Y
+Y
+A
+A
+A
+A
+Y
+Y
 "}
 (3,1,1) = {"
-a
-m
-m
-m
-H
-H
-m
-m
-H
+d
+A
+A
+A
+Y
+Y
+A
+A
+Y
 "}
 (4,1,1) = {"
-H
-H
-H
-m
-m
-m
-H
-m
-H
+Y
+Y
+Y
+A
+A
+A
+Y
+A
+Y
 "}
 (5,1,1) = {"
-a
-m
-H
-m
-H
-m
-H
-m
-a
+d
+A
+Y
+A
+Y
+A
+Y
+A
+d
 "}
 (6,1,1) = {"
-H
-m
-H
-m
-m
-m
-m
-m
-a
+Y
+A
+Y
+A
+A
+A
+A
+A
+d
 "}
 (7,1,1) = {"
-H
-m
-m
-m
-H
-a
-m
-a
-a
+Y
+A
+A
+A
+Y
+d
+A
+d
+d
 "}
 (8,1,1) = {"
-a
-m
-H
-H
-H
-a
-a
-a
-a
+d
+A
+Y
+Y
+Y
+d
+d
+d
+d
 "}

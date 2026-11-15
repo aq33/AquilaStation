@@ -4,32 +4,21 @@
 /obj/effect/decal/cleanable/glass,
 /turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
 /area/template_noop)
-"h" = (
-/obj/effect/decal/cleanable/vomit/old,
+"j" = (
+/obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating/asteroid/dirt/grass/jungle/yellow,
 /area/template_noop)
 "k" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/vomit/old,
-/turf/open/floor/plating/asteroid/dirt/grass/jungle/yellow,
-/area/template_noop)
-"o" = (
-/obj/structure/flora/tree/dead/tall,
-/turf/open/floor/plating/asteroid/dirt/grass/jungle/yellow,
-/area/template_noop)
-"s" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/flora/rock/pile/largejungle,
-/obj/effect/decal/cleanable/glass,
-/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
-/area/template_noop)
-"x" = (
 /turf/template_noop,
 /area/template_noop)
-"y" = (
+"m" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"s" = (
 /turf/open/floor/plating/asteroid/dirt/grass/jungle/yellow,
 /area/template_noop)
-"B" = (
+"v" = (
 /obj/effect/anomaly/tvstatic/blackbox,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/flora/rock/pile,
@@ -37,86 +26,97 @@
 /obj/effect/decal/cleanable/robot_debris/down,
 /turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
 /area/template_noop)
+"y" = (
+/obj/effect/decal/cleanable/vomit/old,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/yellow,
+/area/template_noop)
 "E" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/glass,
+/obj/effect/decal/cleanable/vomit/old,
 /turf/open/floor/plating/asteroid/dirt/grass/jungle/yellow,
 /area/template_noop)
-"G" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
-/area/template_noop)
-"J" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/asteroid/dirt/grass/jungle/yellow,
-/area/template_noop)
-"Y" = (
+"K" = (
 /obj/structure/flora/tree/dead/tall,
 /obj/effect/decal/cleanable/glass,
 /obj/effect/decal/cleanable/vomit/old,
 /turf/open/floor/plating/asteroid/dirt/grass/jungle/yellow,
 /area/template_noop)
+"L" = (
+/obj/structure/flora/tree/dead/tall,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/yellow,
+/area/template_noop)
+"M" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/flora/rock/pile/largejungle,
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"N" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/yellow,
+/area/template_noop)
 
 (1,1,1) = {"
-o
+L
+E
+j
+s
+s
 k
-J
-y
-y
-x
-x
+k
 "}
 (2,1,1) = {"
-y
 s
+M
 b
-G
+m
+s
 y
-h
-x
+k
 "}
 (3,1,1) = {"
-x
-J
-G
-G
+k
+j
+m
+m
 b
-x
-x
+k
+k
 "}
 (4,1,1) = {"
-x
 k
-G
-B
-G
-y
-x
+E
+m
+v
+m
+s
+k
 "}
 (5,1,1) = {"
-x
-x
-G
-G
-E
-J
-y
+k
+k
+m
+m
+N
+j
+s
 "}
 (6,1,1) = {"
-x
-x
-x
-x
-y
-Y
-x
+k
+k
+k
+k
+s
+K
+k
 "}
 (7,1,1) = {"
-x
-x
-x
-x
-x
-y
-x
+k
+k
+k
+k
+k
+s
+k
 "}

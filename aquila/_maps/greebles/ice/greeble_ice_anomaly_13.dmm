@@ -2,105 +2,105 @@
 "n" = (
 /turf/closed/mineral/planet_ice_wall,
 /area/template_noop)
-"t" = (
-/turf/open/floor/plating/ice/planet_ice,
-/area/template_noop)
-"y" = (
-/obj/effect/anomaly/pyro/planetary,
+"A" = (
 /turf/open/water/planet/beach/ice,
 /area/template_noop)
-"A" = (
-/turf/template_noop,
+"E" = (
+/turf/open/floor/plating/ice/planet_ice,
 /area/template_noop)
 "N" = (
+/turf/template_noop,
+/area/template_noop)
+"V" = (
+/obj/effect/anomaly/pyro/planetary,
 /turf/open/water/planet/beach/ice,
 /area/template_noop)
 
 (1,1,1) = {"
-A
-A
+N
+N
 n
 n
-t
-t
-t
-A
-A
+E
+E
+E
+N
+N
 "}
 (2,1,1) = {"
-A
+N
 n
-t
-N
-t
-N
-t
-t
-t
+E
+A
+E
+A
+E
+E
+E
 "}
 (3,1,1) = {"
-t
-t
+E
+E
 n
-t
-N
-N
-N
-N
-t
+E
+A
+A
+A
+A
+E
 "}
 (4,1,1) = {"
-t
-N
-N
-N
-N
-y
-N
+E
+A
+A
+A
+A
+V
+A
 n
-t
+E
 "}
 (5,1,1) = {"
-t
-N
-N
+E
+A
+A
 n
-N
-N
-N
+A
+A
+A
 n
 n
 "}
 (6,1,1) = {"
-t
-t
-N
-N
-N
+E
+E
+A
+A
+A
 n
 n
-N
-t
+A
+E
 "}
 (7,1,1) = {"
-A
-A
-t
+N
+N
+E
 n
-t
+E
 n
-t
-t
-A
+E
+E
+N
 "}
 (8,1,1) = {"
-A
-t
-t
-A
-A
-t
-A
-t
-t
+N
+E
+E
+N
+N
+E
+N
+E
+E
 "}

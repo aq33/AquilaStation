@@ -1,26 +1,41 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"e" = (
-/mob/living/basic/chicken,
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
-/area/template_noop)
-"h" = (
-/obj/structure/flora/tree/jungle/small,
+"b" = (
+/obj/structure/flora/grass/jungle/b,
 /turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
 /area/template_noop)
-"l" = (
+"g" = (
+/mob/living/basic/chicken,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
+/area/template_noop)
+"h" = (
+/obj/structure/flora/junglebush,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
+/area/template_noop)
+"i" = (
+/obj/structure/flora/grass/jungle/b,
 /turf/open/floor/plating/asteroid/dirt/jungle/dark,
 /area/template_noop)
-"m" = (
+"j" = (
 /obj/structure/flora/grass/jungle/b,
 /obj/structure/flora/ausbushes/brflowers,
 /turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
 /area/template_noop)
-"o" = (
+"l" = (
 /obj/structure/flora/grass/jungle,
-/mob/living/basic/chicken,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
+/area/template_noop)
+"n" = (
 /turf/open/floor/plating/asteroid/dirt/jungle/dark,
 /area/template_noop)
-"p" = (
+"s" = (
+/obj/structure/flora/ausbushes/ppflowers,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"w" = (
+/obj/structure/flora/junglebush/b,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
+/area/template_noop)
+"A" = (
 /obj/structure/flora/rock/pile/largejungle,
 /obj/structure/flora/rock{
 	pixel_y = 4
@@ -31,130 +46,115 @@
 	},
 /turf/open/floor/plating/asteroid/dirt/jungle/dark,
 /area/template_noop)
-"q" = (
-/obj/structure/flora/junglebush/b,
-/turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
-/area/template_noop)
-"r" = (
-/obj/structure/flora/ausbushes/ppflowers,
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
-/area/template_noop)
-"s" = (
-/obj/structure/flora/grass/jungle/b,
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
-/area/template_noop)
-"x" = (
-/obj/structure/flora/grass/jungle/b,
-/turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
-/area/template_noop)
 "B" = (
-/obj/structure/flora/junglebush,
-/turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
+/obj/structure/flora/grass/jungle,
+/mob/living/basic/chicken,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
 /area/template_noop)
 "C" = (
-/mob/living/basic/chicken,
-/turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
-/area/template_noop)
-"D" = (
+/obj/structure/flora/grass/jungle,
+/obj/structure/flora/ausbushes/ppflowers,
 /turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
 /area/template_noop)
 "E" = (
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
+/area/template_noop)
+"J" = (
 /turf/template_noop,
 /area/template_noop)
-"M" = (
-/obj/structure/flora/grass/jungle,
+"N" = (
+/obj/structure/flora/tree/jungle/small,
 /turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
 /area/template_noop)
-"T" = (
-/obj/structure/flora/grass/jungle,
-/obj/structure/flora/ausbushes/ppflowers,
-/turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
-/area/template_noop)
-"Y" = (
+"R" = (
 /obj/structure/flora/tree/jungle/small,
 /obj/structure/flora/grass/jungle,
 /turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
 /area/template_noop)
-"Z" = (
+"S" = (
+/mob/living/basic/chicken,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"U" = (
 /obj/structure/flora/grass/jungle,
 /obj/structure/flora/ausbushes/brflowers,
 /turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
 /area/template_noop)
 
 (1,1,1) = {"
+J
+J
+J
 E
-E
-E
-D
-h
-m
-E
-E
-E
+N
+j
+J
+J
+J
 "}
 (2,1,1) = {"
+J
 E
-D
-B
-M
-x
-D
-M
-B
+h
+l
+b
 E
+l
+h
+J
 "}
 (3,1,1) = {"
-E
-Y
-x
-r
-e
+J
+R
+b
 s
+S
+i
+n
+N
 l
-h
-M
 "}
 (4,1,1) = {"
-x
-x
-l
-l
-p
-l
-s
-T
-q
+b
+b
+n
+n
+A
+n
+i
+C
+w
 "}
 (5,1,1) = {"
-D
-q
-Z
-o
-s
-r
-C
+E
+w
+U
 B
-D
+i
+s
+g
+h
+E
 "}
 (6,1,1) = {"
-E
-E
+J
+J
+N
 h
-B
-l
-x
-x
-D
+n
+b
+b
 E
+J
 "}
 (7,1,1) = {"
+J
+J
+b
+b
 E
-E
-x
-x
-D
-h
-E
-E
-E
+N
+J
+J
+J
 "}

@@ -1,250 +1,250 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"d" = (
-/obj/structure/flora/ausbushes/sparsegrass{
-	pixel_x = -2;
-	 pixel_y = -4
-	},
-/turf/open/floor/plating/asteroid/icerock,
+"c" = (
+/turf/template_noop,
 /area/template_noop)
-"e" = (
+"f" = (
 /obj/structure/flora/ausbushes/sparsegrass{
 	pixel_x = 3;
 	 pixel_y = -4
 	},
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
+"h" = (
+/obj/structure/flora/rock/pile,
+/turf/open/lava/plasma/planet_ice,
+/area/template_noop)
 "i" = (
+/obj/structure/flora/ausbushes/sparsegrass{
+	pixel_x = -2;
+	 pixel_y = -4
+	},
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
-"n" = (
-/obj/structure/flora/ausbushes/sparsegrass,
+"k" = (
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
-"o" = (
+"l" = (
+/obj/structure/flora/tree/dead,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"E" = (
+/obj/effect/anomaly/plasmasoul/planetary,
+/turf/open/lava/plasma/planet_ice,
+/area/template_noop)
+"P" = (
 /obj/structure/flora/ausbushes/sparsegrass{
 	pixel_x = -7;
 	 pixel_y = 4
 	},
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
-"q" = (
-/obj/structure/flora/tree/dead,
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"x" = (
+"R" = (
 /obj/structure/flora/tree/dead{
 	pixel_x = -17;
 	 pixel_y = 10
 	},
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
-"z" = (
-/obj/effect/anomaly/plasmasoul/planetary,
+"T" = (
 /turf/open/lava/plasma/planet_ice,
 /area/template_noop)
-"I" = (
-/turf/open/lava/plasma/planet_ice,
-/area/template_noop)
-"L" = (
-/turf/template_noop,
-/area/template_noop)
-"M" = (
-/obj/structure/flora/rock/pile,
-/turf/open/lava/plasma/planet_ice,
+"W" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
 
 (1,1,1) = {"
-L
-L
-L
-I
-I
-i
-i
-i
-i
-L
-L
-L
-L
+c
+c
+c
+T
+T
+k
+k
+k
+k
+c
+c
+c
+c
 "}
 (2,1,1) = {"
-L
-L
-L
-I
-I
-I
-i
-i
-I
-I
-L
-L
-L
+c
+c
+c
+T
+T
+T
+k
+k
+T
+T
+c
+c
+c
 "}
 (3,1,1) = {"
-L
-L
-I
-I
-M
-I
-i
-i
-I
-I
-I
-I
-L
+c
+c
+T
+T
+h
+T
+k
+k
+T
+T
+T
+T
+c
 "}
 (4,1,1) = {"
-L
-I
-M
-I
-I
-I
-i
-n
-I
-I
-I
-M
-I
+c
+T
+h
+T
+T
+T
+k
+W
+T
+T
+T
+h
+T
 "}
 (5,1,1) = {"
-i
-I
-I
-I
-I
-i
-i
-i
-i
-I
-I
-I
-I
+k
+T
+T
+T
+T
+k
+k
+k
+k
+T
+T
+T
+T
 "}
 (6,1,1) = {"
-n
-i
-i
-i
-i
-i
-e
-i
-i
-i
-I
-I
-I
+W
+k
+k
+k
+k
+k
+f
+k
+k
+k
+T
+T
+T
 "}
 (7,1,1) = {"
+k
+k
+k
+k
+l
 i
-i
-i
-i
-q
-d
-i
-z
-I
-I
-I
-I
-I
+k
+E
+T
+T
+T
+T
+T
 "}
 (8,1,1) = {"
-i
-I
-I
-i
-i
-i
-i
-i
-i
-i
-I
-I
-I
+k
+T
+T
+k
+k
+k
+k
+k
+k
+k
+T
+T
+T
 "}
 (9,1,1) = {"
-L
-I
-I
-I
-i
-x
-o
-n
-i
-I
-I
-I
-I
+c
+T
+T
+T
+k
+R
+P
+W
+k
+T
+T
+T
+T
 "}
 (10,1,1) = {"
-L
-I
-M
-I
-i
-i
-i
-I
-I
-I
-I
-M
-L
+c
+T
+h
+T
+k
+k
+k
+T
+T
+T
+T
+h
+c
 "}
 (11,1,1) = {"
-L
-I
-I
-i
-i
-I
-I
-I
-I
-I
-I
-L
-L
+c
+T
+T
+k
+k
+T
+T
+T
+T
+T
+T
+c
+c
 "}
 (12,1,1) = {"
-L
-I
-I
-i
-i
-I
-I
-I
-M
-I
-I
-L
-L
+c
+T
+T
+k
+k
+T
+T
+T
+h
+T
+T
+c
+c
 "}
 (13,1,1) = {"
-L
-L
-i
-i
-i
-i
-L
-L
-L
-L
-L
-L
-L
+c
+c
+k
+k
+k
+k
+c
+c
+c
+c
+c
+c
+c
 "}

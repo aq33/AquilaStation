@@ -1,90 +1,90 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"i" = (
-/obj/structure/flora/rock/jungle,
-/turf/open/floor/plating/asteroid/dirt/jungle,
-/area/template_noop)
-"k" = (
-/turf/template_noop,
-/area/template_noop)
-"o" = (
-/obj/structure/flora/ausbushes/sparsegrass,
-/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
-/area/template_noop)
-"p" = (
-/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
-/area/template_noop)
-"r" = (
+"b" = (
 /obj/effect/anomaly/phantom/planetary,
 /turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
 /area/template_noop)
-"x" = (
+"d" = (
+/turf/template_noop,
+/area/template_noop)
+"k" = (
+/obj/structure/flora/rock/jungle,
 /turf/open/floor/plating/asteroid/dirt/jungle,
 /area/template_noop)
-"T" = (
+"o" = (
 /obj/structure/flora/rock/pile,
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"s" = (
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
+"z" = (
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"X" = (
+/obj/structure/flora/ausbushes/sparsegrass,
 /turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
 /area/template_noop)
 
 (1,1,1) = {"
+d
+s
+z
+s
 k
-x
-p
-x
-i
-x
-k
+s
+d
 "}
 (2,1,1) = {"
-x
-p
-r
-o
-x
-x
-x
+s
+z
+b
+X
+s
+s
+s
 "}
 (3,1,1) = {"
-x
+s
+X
 o
-T
-p
-p
-r
-i
+z
+z
+b
+k
 "}
 (4,1,1) = {"
+d
 k
-i
-p
-r
-T
+z
+b
 o
-x
+X
+s
 "}
 (5,1,1) = {"
-k
-p
-p
-o
-p
-r
-p
+d
+z
+z
+X
+z
+b
+z
 "}
 (6,1,1) = {"
-p
-r
-p
-p
-i
-p
-x
+z
+b
+z
+z
+k
+z
+s
 "}
 (7,1,1) = {"
-T
 o
-k
-x
-k
-k
-x
+X
+d
+s
+d
+d
+s
 "}

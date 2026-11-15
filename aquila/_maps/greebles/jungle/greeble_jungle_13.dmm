@@ -1,23 +1,30 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"n" = (
-/turf/closed/wall/rust,
-/area/template_noop)
-"p" = (
+"e" = (
+/obj/structure/flora/rock/jungle,
 /turf/open/floor/plating/asteroid/dirt/jungle/dark,
 /area/template_noop)
-"v" = (
-/obj/structure/flora/grass/jungle,
+"h" = (
+/turf/template_noop,
+/area/template_noop)
+"o" = (
 /turf/open/floor/plating/asteroid/dirt/jungle/dark,
 /area/template_noop)
-"z" = (
+"q" = (
 /obj/structure/flora/ash/garden,
 /turf/open/floor/plating/asteroid/dirt/jungle/dark,
 /area/template_noop)
-"F" = (
-/obj/structure/flora/junglebush/large,
+"u" = (
+/obj/structure/flora/grass/jungle,
 /turf/open/floor/plating/asteroid/dirt/jungle/dark,
 /area/template_noop)
-"L" = (
+"A" = (
+/obj/structure/girder,
+/turf/open/floor/plating/rust{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"E" = (
 /obj/item/stack/ore/iron{
 	amount = 5
 	},
@@ -26,73 +33,66 @@
 	 planetary_atmos = 1
 	},
 /area/template_noop)
-"N" = (
+"F" = (
 /turf/closed/wall,
 /area/template_noop)
 "P" = (
-/obj/structure/flora/rock/jungle,
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
-/area/template_noop)
-"Q" = (
-/obj/structure/girder,
-/turf/open/floor/plating/rust{
-	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
-	 planetary_atmos = 1
-	},
-/area/template_noop)
-"S" = (
-/turf/template_noop,
-/area/template_noop)
-"Z" = (
 /obj/structure/flora/grass/jungle/b,
 /turf/open/floor/plating/asteroid/dirt/jungle/dark,
 /area/template_noop)
+"S" = (
+/obj/structure/flora/junglebush/large,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"T" = (
+/turf/closed/wall/rust,
+/area/template_noop)
 
 (1,1,1) = {"
-S
-S
-v
-S
-S
-S
+h
+h
+u
+h
+h
+h
 "}
 (2,1,1) = {"
+h
+P
+q
 S
-Z
-z
-F
-p
-S
+o
+h
 "}
 (3,1,1) = {"
-v
-z
-n
-N
-Q
-v
+u
+q
+T
+F
+A
+u
 "}
 (4,1,1) = {"
+h
 S
-F
-Q
-L
-p
-S
+A
+E
+o
+h
 "}
 (5,1,1) = {"
-S
-v
-z
-Z
-S
-S
+h
+u
+q
+P
+h
+h
 "}
 (6,1,1) = {"
-S
-S
-P
-S
-S
-S
+h
+h
+e
+h
+h
+h
 "}

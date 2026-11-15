@@ -1,26 +1,32 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"h" = (
-/turf/template_noop,
-/area/template_noop)
-"i" = (
-/obj/structure/flora/ausbushes/stalkybush,
+"b" = (
+/obj/structure/flora/ausbushes/stalkybush{
+	pixel_y = 6
+	},
 /turf/open/water/planet/jungle,
 /area/template_noop)
-"k" = (
+"g" = (
+/turf/template_noop,
+/area/template_noop)
+"h" = (
+/obj/structure/flora/ausbushes/reedbush,
+/turf/open/water/planet/jungle,
+/area/template_noop)
+"j" = (
 /obj/structure/flora/ausbushes/stalkybush{
 	pixel_x = 7;
 	 pixel_y = 10
 	},
 /turf/open/water/planet/jungle,
 /area/template_noop)
-"l" = (
-/obj/structure/flora/ausbushes/sparsegrass,
+"k" = (
 /turf/open/floor/plating/asteroid/dirt/jungle/dark,
 /area/template_noop)
-"t" = (
+"x" = (
+/obj/structure/flora/ausbushes/fullgrass,
 /turf/open/floor/plating/asteroid/dirt/jungle/dark,
 /area/template_noop)
-"u" = (
+"y" = (
 /obj/structure/flora/ausbushes/stalkybush{
 	pixel_x = -15;
 	 pixel_y = 6
@@ -36,123 +42,117 @@
 /turf/open/water/planet/jungle,
 /area/template_noop)
 "z" = (
-/obj/structure/flora/junglebush/large,
+/obj/structure/flora/ausbushes/sparsegrass,
 /turf/open/floor/plating/asteroid/dirt/jungle/dark,
 /area/template_noop)
-"C" = (
+"E" = (
 /obj/structure/flora/ausbushes/stalkybush{
 	pixel_x = 3;
 	 pixel_y = 10
 	},
 /turf/open/water/planet/jungle,
 /area/template_noop)
-"G" = (
-/obj/structure/flora/ausbushes/reedbush,
-/turf/open/water/planet/jungle,
-/area/template_noop)
-"J" = (
-/obj/structure/flora/junglebush/b,
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
-/area/template_noop)
-"M" = (
-/obj/structure/flora/ausbushes/stalkybush{
-	pixel_y = 6
-	},
-/turf/open/water/planet/jungle,
-/area/template_noop)
-"N" = (
-/turf/open/water/planet/jungle,
-/area/template_noop)
-"P" = (
+"F" = (
 /obj/structure/flora/junglebush/c,
 /turf/open/floor/plating/asteroid/dirt/jungle/dark,
 /area/template_noop)
-"S" = (
-/obj/structure/flora/rock/jungle,
+"G" = (
+/obj/structure/flora/junglebush/b,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"H" = (
+/turf/open/water/planet/jungle,
+/area/template_noop)
+"N" = (
+/obj/structure/flora/junglebush/large,
 /turf/open/floor/plating/asteroid/dirt/jungle/dark,
 /area/template_noop)
 "V" = (
-/obj/structure/flora/ausbushes/fullgrass,
+/obj/structure/flora/rock/jungle,
 /turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"Y" = (
+/obj/structure/flora/ausbushes/stalkybush,
+/turf/open/water/planet/jungle,
 /area/template_noop)
 
 (1,1,1) = {"
-h
-h
-h
-h
-V
-l
-h
-h
+g
+g
+g
+g
+x
+z
+g
+g
 "}
 (2,1,1) = {"
-h
-h
-h
-t
-l
-J
-t
-h
+g
+g
+g
+k
+z
+G
+k
+g
 "}
 (3,1,1) = {"
-h
-h
-z
-S
+g
+g
+N
+V
+j
+y
+V
 k
-u
-S
-t
 "}
 (4,1,1) = {"
+g
+z
+V
+b
+H
 h
-l
-S
-M
-N
-G
-t
-t
+k
+k
 "}
 (5,1,1) = {"
-t
-V
-i
-N
-N
-C
-l
-h
+k
+x
+Y
+H
+H
+E
+z
+g
 "}
 (6,1,1) = {"
+g
+k
+z
 h
-t
-l
-G
-M
-V
-t
-h
+b
+x
+k
+g
 "}
 (7,1,1) = {"
-h
-h
-t
-S
-P
-l
-h
-h
+g
+g
+k
+V
+F
+z
+g
+g
 "}
 (8,1,1) = {"
-h
-h
-h
-t
-t
-h
-h
-h
+g
+g
+g
+k
+k
+g
+g
+g
 "}

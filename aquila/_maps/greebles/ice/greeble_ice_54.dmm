@@ -1,119 +1,119 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"a" = (
-/obj/structure/flora/tree/pine,
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
 "b" = (
-/obj/structure/flora/ausbushes/lavendergrass,
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"e" = (
-/turf/open/floor/plating/asteroid/icerock/cracked,
-/area/template_noop)
-"f" = (
 /obj/structure/flora/ausbushes/sparsegrass,
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
-"o" = (
-/obj/structure/geyser/random,
-/turf/open/floor/plating/asteroid/icerock/cracked,
-/area/template_noop)
-"p" = (
-/obj/structure/flora/ash/garden/frigid,
+"f" = (
+/obj/structure/flora/ausbushes/lavendergrass,
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
-"x" = (
+"p" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
-"A" = (
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"H" = (
+"q" = (
 /obj/structure/flora/rock/icy,
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
-"P" = (
+"v" = (
+/obj/structure/flora/ash/garden/frigid,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"D" = (
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"G" = (
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
+"I" = (
 /turf/template_noop,
+/area/template_noop)
+"T" = (
+/obj/structure/geyser/random,
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
+"X" = (
+/obj/structure/flora/tree/pine,
+/turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
 
 (1,1,1) = {"
-P
-A
-f
-A
-f
+I
+D
 b
-P
-P
+D
+b
+f
+I
+I
 "}
 (2,1,1) = {"
-b
-p
-A
-H
-b
-x
 f
-P
+v
+D
+q
+f
+p
+b
+I
 "}
 (3,1,1) = {"
-a
-A
-e
-e
-e
-A
-A
-f
+X
+D
+G
+G
+G
+D
+D
+b
 "}
 (4,1,1) = {"
-f
-A
-e
-o
-e
-e
-A
-f
+b
+D
+G
+T
+G
+G
+D
+b
 "}
 (5,1,1) = {"
-A
-x
-H
-e
-e
-H
-A
-P
+D
+p
+q
+G
+G
+q
+D
+I
 "}
 (6,1,1) = {"
-P
-f
-f
-A
-A
-x
-P
-P
+I
+b
+b
+D
+D
+p
+I
+I
 "}
 (7,1,1) = {"
-P
-P
-f
-A
-f
-p
-P
-P
+I
+I
+b
+D
+b
+v
+I
+I
 "}
 (8,1,1) = {"
-P
-P
-P
+I
+I
+I
+f
+D
 b
-A
-f
-f
-P
+b
+I
 "}

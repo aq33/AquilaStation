@@ -1,126 +1,126 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"f" = (
-/obj/structure/flora/ash/leaf_shroom,
-/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+"b" = (
+/turf/open/water/planet/jungle,
 /area/template_noop)
-"j" = (
-/obj/structure/flora/rock/jungle,
-/turf/open/floor/plating/asteroid/dirt/grass/jungle,
-/area/template_noop)
-"s" = (
-/obj/structure/flora/ash/tall_shroom,
-/turf/open/floor/plating/asteroid/dirt/jungle,
-/area/template_noop)
-"v" = (
-/obj/structure/flora/ash/leaf_shroom,
-/turf/open/floor/plating/asteroid/dirt/jungle,
-/area/template_noop)
-"B" = (
-/obj/structure/flora/ash/stem_shroom,
-/turf/open/floor/plating/asteroid/dirt/jungle,
-/area/template_noop)
-"L" = (
-/obj/structure/flora/junglebush,
-/turf/open/floor/plating/asteroid/dirt/grass/jungle,
-/area/template_noop)
-"N" = (
+"d" = (
 /obj/structure/flora/ash/cap_shroom,
 /turf/open/floor/plating/asteroid/dirt/jungle,
 /area/template_noop)
-"O" = (
-/turf/open/water/planet/jungle,
+"g" = (
+/obj/structure/flora/ash/stem_shroom,
+/turf/open/floor/plating/asteroid/dirt/jungle,
 /area/template_noop)
-"Q" = (
+"l" = (
+/obj/structure/flora/ash/tall_shroom,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
+"s" = (
+/obj/structure/flora/junglebush,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/template_noop)
+"t" = (
+/obj/structure/flora/ash/leaf_shroom,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/template_noop)
+"w" = (
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
+"x" = (
+/obj/structure/flora/ash/leaf_shroom,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
+"y" = (
 /turf/closed/mineral/random/planet_jungle,
 /area/template_noop)
-"U" = (
-/turf/open/floor/plating/asteroid/dirt/jungle,
+"A" = (
+/obj/structure/flora/rock/jungle,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/template_noop)
+"H" = (
+/turf/template_noop,
 /area/template_noop)
 "V" = (
 /obj/structure/flora/rock,
 /turf/open/floor/plating/asteroid/dirt/grass/jungle,
 /area/template_noop)
-"Y" = (
-/turf/template_noop,
-/area/template_noop)
 
 (1,1,1) = {"
-Y
-Q
-Q
-U
-Q
-Q
-Q
-Y
+H
+y
+y
+w
+y
+y
+y
+H
 "}
 (2,1,1) = {"
-Q
-Q
-U
-s
-N
-Q
-v
-Q
+y
+y
+w
+l
+d
+y
+x
+y
 "}
 (3,1,1) = {"
-Y
-s
-v
+H
+l
+x
 V
-s
-N
-s
-Q
+l
+d
+l
+y
 "}
 (4,1,1) = {"
-Q
-U
-L
-O
-f
-j
-B
-U
+y
+w
+s
+b
+t
+A
+g
+w
 "}
 (5,1,1) = {"
-Y
-Q
-B
-j
+H
+y
+g
+A
 V
-N
-U
-Q
+d
+w
+y
 "}
 (6,1,1) = {"
-Q
-s
-U
-v
-B
-s
-Q
-Q
+y
+l
+w
+x
+g
+l
+y
+y
 "}
 (7,1,1) = {"
-Q
-Q
-N
-Q
-Q
-U
-Q
-Y
+y
+y
+d
+y
+y
+w
+y
+H
 "}
 (8,1,1) = {"
-Y
-Q
-Q
-Y
-Q
-Q
-Y
-Y
+H
+y
+y
+H
+y
+y
+H
+H
 "}

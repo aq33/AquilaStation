@@ -1,60 +1,60 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"e" = (
-/turf/open/floor/carpet/royalblack{
-	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
-	 planetary_atmos = 1
-	},
-/area/template_noop)
-"k" = (
+"g" = (
 /obj/effect/anomaly/hallucination/planetary,
 /turf/open/floor/carpet/royalblack{
 	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
 	 planetary_atmos = 1
 	},
 /area/template_noop)
-"p" = (
-/turf/template_noop,
+"o" = (
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
 /area/template_noop)
-"C" = (
+"D" = (
+/turf/open/floor/carpet/royalblack{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"F" = (
 /obj/structure/flora/rock/jungle,
 /turf/open/floor/plating/asteroid/dirt/jungle/dark,
 /area/template_noop)
-"U" = (
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+"H" = (
+/turf/template_noop,
 /area/template_noop)
 
 (1,1,1) = {"
-p
-C
-U
-U
-p
+H
+F
+o
+o
+H
 "}
 (2,1,1) = {"
-U
-U
-e
-e
-p
+o
+o
+D
+D
+H
 "}
 (3,1,1) = {"
-C
-e
-k
-e
-e
+F
+D
+g
+D
+D
 "}
 (4,1,1) = {"
-U
-e
-e
-e
-U
+o
+D
+D
+D
+o
 "}
 (5,1,1) = {"
-p
-p
-e
-C
-p
+H
+H
+D
+F
+H
 "}

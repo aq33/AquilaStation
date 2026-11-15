@@ -1,123 +1,123 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"d" = (
-/turf/template_noop,
-/area/template_noop)
-"g" = (
-/obj/structure/flora/ausbushes/sparsegrass,
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"i" = (
-/obj/structure/flora/rock/pile/lava{
-	pixel_x = 4;
-	 pixel_y = 8
-	},
-/turf/open/floor/plating/ice/planet_ice,
-/area/template_noop)
-"o" = (
+"a" = (
 /obj/structure/flora/rock/pile/lava{
 	pixel_x = -6;
 	 pixel_y = -9
 	},
 /turf/open/floor/plating/ice/planet_ice,
 /area/template_noop)
-"z" = (
+"l" = (
+/turf/template_noop,
+/area/template_noop)
+"q" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"A" = (
 /turf/open/floor/plating/ice/planet_ice,
 /area/template_noop)
-"C" = (
+"K" = (
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"Q" = (
 /obj/structure/flora/rock/pile/lava{
-	pixel_x = -12;
-	 pixel_y = 6
+	pixel_x = 4;
+	 pixel_y = 8
 	},
 /turf/open/floor/plating/ice/planet_ice,
 /area/template_noop)
-"H" = (
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"Y" = (
+"R" = (
 /obj/structure/flora/rock/pile/lava{
 	pixel_x = 10;
 	 pixel_y = 2
 	},
 /turf/open/floor/plating/ice/planet_ice,
 /area/template_noop)
+"Y" = (
+/obj/structure/flora/rock/pile/lava{
+	pixel_x = -12;
+	 pixel_y = 6
+	},
+/turf/open/floor/plating/ice/planet_ice,
+/area/template_noop)
 
 (1,1,1) = {"
-d
-d
-g
-H
-H
-d
-d
-d
+l
+l
+q
+K
+K
+l
+l
+l
 "}
 (2,1,1) = {"
-d
-d
-H
-Y
-g
-H
-d
-d
+l
+l
+K
+R
+q
+K
+l
+l
 "}
 (3,1,1) = {"
-d
-H
-H
-z
-z
-H
-H
-d
+l
+K
+K
+A
+A
+K
+K
+l
 "}
 (4,1,1) = {"
-g
-H
-z
-z
-z
-i
-H
-g
+q
+K
+A
+A
+A
+Q
+K
+q
 "}
 (5,1,1) = {"
-H
-H
-o
-z
-z
-z
-H
-H
+K
+K
+a
+A
+A
+A
+K
+K
 "}
 (6,1,1) = {"
-d
-g
-H
-z
-z
-H
-H
-d
+l
+q
+K
+A
+A
+K
+K
+l
 "}
 (7,1,1) = {"
-d
-d
-g
-H
-C
-H
-g
-d
+l
+l
+q
+K
+Y
+K
+q
+l
 "}
 (8,1,1) = {"
-d
-d
-d
-H
-H
-H
-d
-d
+l
+l
+l
+K
+K
+K
+l
+l
 "}

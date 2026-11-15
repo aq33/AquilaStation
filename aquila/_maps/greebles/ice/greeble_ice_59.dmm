@@ -1,65 +1,65 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"e" = (
-/turf/open/floor/plating/ice/planet_ice,
+"c" = (
+/turf/template_noop,
 /area/template_noop)
-"g" = (
+"t" = (
 /obj/structure/flora/rock/pile/icy,
 /turf/open/floor/plating/ice/planet_ice,
 /area/template_noop)
-"k" = (
-/turf/template_noop,
-/area/template_noop)
-"E" = (
+"H" = (
 /obj/structure/flora/rock/icy,
+/turf/open/floor/plating/ice/planet_ice,
+/area/template_noop)
+"I" = (
 /turf/open/floor/plating/ice/planet_ice,
 /area/template_noop)
 
 (1,1,1) = {"
-e
-g
-e
-k
-k
+I
+t
+I
+c
+c
 "}
 (2,1,1) = {"
-g
-e
-e
-g
-k
+t
+I
+I
+t
+c
 "}
 (3,1,1) = {"
-k
-e
-e
-e
-e
+c
+I
+I
+I
+I
 "}
 (4,1,1) = {"
-k
-e
-E
-e
-e
+c
+I
+H
+I
+I
 "}
 (5,1,1) = {"
-k
-e
-e
-e
-g
+c
+I
+I
+I
+t
 "}
 (6,1,1) = {"
-k
-k
-e
-g
-e
+c
+c
+I
+t
+I
 "}
 (7,1,1) = {"
-k
-k
-k
-e
-e
+c
+c
+c
+I
+I
 "}

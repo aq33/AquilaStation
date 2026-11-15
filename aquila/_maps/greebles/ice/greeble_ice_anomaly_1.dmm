@@ -1,5 +1,6 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"b" = (
+"a" = (
+/obj/structure/flora/ausbushes/leafybush,
 /turf/open/floor/plating/asteroid/dirt{
 	initial_gas_mix = "o2=26;n2=104;TEMP=255";
 	 planetary_atmos = 1
@@ -7,14 +8,26 @@
 /area/template_noop)
 "c" = (
 /obj/structure/flora/ausbushes/sparsegrass,
-/turf/open/floor/plating/asteroid/dirt{
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"d" = (
+/obj/effect/anomaly/chronograph/planetary,
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/plating/asteroid/dirt/grass{
 	initial_gas_mix = "o2=26;n2=104;TEMP=255";
 	 planetary_atmos = 1
 	},
 /area/template_noop)
-"e" = (
+"f" = (
 /obj/structure/flora/tree/pine,
 /turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"g" = (
+/obj/structure/flora/ausbushes/sunnybush,
+/turf/open/floor/plating/asteroid/dirt/grass{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	 planetary_atmos = 1
+	},
 /area/template_noop)
 "h" = (
 /obj/structure/flora/ausbushes/sparsegrass,
@@ -23,106 +36,93 @@
 	 planetary_atmos = 1
 	},
 /area/template_noop)
-"j" = (
-/obj/structure/flora/ausbushes/sunnybush,
-/obj/structure/flora/ausbushes/sparsegrass,
-/turf/open/floor/plating/asteroid/dirt/grass{
-	initial_gas_mix = "o2=26;n2=104;TEMP=255";
-	 planetary_atmos = 1
-	},
-/area/template_noop)
-"l" = (
-/obj/structure/flora/ausbushes/leafybush,
-/obj/structure/flora/ausbushes/sparsegrass,
+"n" = (
+/obj/structure/flora/tree/jungle,
 /turf/open/floor/plating/asteroid/dirt{
 	initial_gas_mix = "o2=26;n2=104;TEMP=255";
 	 planetary_atmos = 1
 	},
 /area/template_noop)
-"n" = (
-/obj/structure/flora/ausbushes/sparsegrass,
+"p" = (
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
-"o" = (
-/obj/structure/flora/ausbushes/fullgrass,
-/turf/open/floor/plating/asteroid/dirt/grass{
-	initial_gas_mix = "o2=26;n2=104;TEMP=255";
-	 planetary_atmos = 1
-	},
+"r" = (
+/turf/template_noop,
 /area/template_noop)
-"p" = (
-/obj/structure/flora/ausbushes/sunnybush,
-/turf/open/floor/plating/asteroid/dirt/grass{
-	initial_gas_mix = "o2=26;n2=104;TEMP=255";
-	 planetary_atmos = 1
-	},
-/area/template_noop)
-"u" = (
-/obj/structure/flora/ausbushes/fullgrass,
+"v" = (
+/obj/structure/flora/ausbushes/sparsegrass,
 /obj/structure/flora/ausbushes/ppflowers,
 /turf/open/floor/plating/asteroid/dirt/grass{
 	initial_gas_mix = "o2=26;n2=104;TEMP=255";
 	 planetary_atmos = 1
 	},
 /area/template_noop)
-"w" = (
-/turf/template_noop,
-/area/template_noop)
-"y" = (
-/obj/structure/flora/tree/jungle,
+"x" = (
 /turf/open/floor/plating/asteroid/dirt{
 	initial_gas_mix = "o2=26;n2=104;TEMP=255";
 	 planetary_atmos = 1
 	},
 /area/template_noop)
 "z" = (
-/obj/effect/anomaly/chronograph/planetary,
-/obj/structure/flora/ausbushes/sparsegrass,
+/obj/structure/flora/ausbushes/lavendergrass,
 /turf/open/floor/plating/asteroid/dirt/grass{
 	initial_gas_mix = "o2=26;n2=104;TEMP=255";
 	 planetary_atmos = 1
 	},
 /area/template_noop)
-"B" = (
+"E" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/plating/asteroid/dirt{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"H" = (
 /obj/structure/flora/ausbushes/leafybush,
+/obj/structure/flora/ausbushes/sparsegrass,
 /turf/open/floor/plating/asteroid/dirt{
 	initial_gas_mix = "o2=26;n2=104;TEMP=255";
 	 planetary_atmos = 1
 	},
 /area/template_noop)
 "I" = (
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"J" = (
-/turf/open/floor/plating/asteroid/dirt/grass{
-	initial_gas_mix = "o2=26;n2=104;TEMP=255";
-	 planetary_atmos = 1
-	},
-/area/template_noop)
-"K" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/floor/plating/asteroid/dirt{
 	initial_gas_mix = "o2=26;n2=104;TEMP=255";
 	 planetary_atmos = 1
 	},
 /area/template_noop)
-"L" = (
-/obj/structure/flora/ausbushes/sparsegrass,
-/obj/structure/flora/ausbushes/ppflowers,
+"P" = (
 /turf/open/floor/plating/asteroid/dirt/grass{
 	initial_gas_mix = "o2=26;n2=104;TEMP=255";
 	 planetary_atmos = 1
 	},
 /area/template_noop)
-"O" = (
+"S" = (
 /obj/structure/flora/tree/jungle,
 /turf/open/floor/plating/asteroid/dirt/grass{
 	initial_gas_mix = "o2=26;n2=104;TEMP=255";
 	 planetary_atmos = 1
 	},
 /area/template_noop)
+"T" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/turf/open/floor/plating/asteroid/dirt/grass{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"Y" = (
+/obj/structure/flora/ausbushes/sunnybush,
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/plating/asteroid/dirt/grass{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
 "Z" = (
-/obj/structure/flora/ausbushes/lavendergrass,
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/structure/flora/ausbushes/ppflowers,
 /turf/open/floor/plating/asteroid/dirt/grass{
 	initial_gas_mix = "o2=26;n2=104;TEMP=255";
 	 planetary_atmos = 1
@@ -130,226 +130,226 @@
 /area/template_noop)
 
 (1,1,1) = {"
-w
-w
-w
-I
-n
-I
-I
-w
-w
-I
-I
-w
-w
-w
+r
+r
+r
+p
+c
+p
+p
+r
+r
+p
+p
+r
+r
+r
 "}
 (2,1,1) = {"
-w
-w
-I
-e
-I
-I
-n
-I
-I
-n
-I
-w
-w
-w
+r
+r
+p
+f
+p
+p
+c
+p
+p
+c
+p
+r
+r
+r
 "}
 (3,1,1) = {"
-w
-I
-n
-I
+r
+p
 c
-c
-b
-K
-B
+p
+E
+E
+x
 I
-e
-I
-w
-w
+a
+p
+f
+p
+r
+r
 "}
 (4,1,1) = {"
-w
-I
-I
-c
-B
-o
-J
-y
-b
-b
+r
+p
+p
+E
+a
+T
+P
 n
-I
-I
-w
+x
+x
+c
+p
+p
+r
 "}
 (5,1,1) = {"
+p
+p
+x
+x
+S
+z
+T
+z
 I
-I
-b
-b
-O
-Z
-o
-Z
-K
-b
-b
-n
-I
-w
+x
+x
+c
+p
+r
 "}
 (6,1,1) = {"
-n
-I
-b
-Z
-o
+c
+p
+x
+z
+T
 h
-L
-j
-J
-y
-b
-b
-I
-w
+v
+Y
+P
+n
+x
+x
+p
+r
 "}
 (7,1,1) = {"
-e
-I
-l
+f
+p
+H
 h
-O
+S
 h
-z
+d
 h
 h
-o
-c
-B
-e
-I
+T
+E
+a
+f
+p
 "}
 (8,1,1) = {"
-I
-n
-b
-h
-u
-h
-h
-Z
-o
-L
-Z
+p
 c
-b
-I
+x
+h
+Z
+h
+h
+z
+T
+v
+z
+E
+x
+p
 "}
 (9,1,1) = {"
-I
-n
-b
-y
-o
 p
-o
-J
-O
-o
-h
 c
-b
+x
 n
+T
+g
+T
+P
+S
+T
+h
+E
+x
+c
 "}
 (10,1,1) = {"
-I
-I
-n
-b
-b
-O
-u
+p
+p
 c
-b
+x
+x
+S
+Z
+E
+x
 h
-B
-b
-I
-I
+a
+x
+p
+p
 "}
 (11,1,1) = {"
+p
+p
+p
+x
+a
 I
-I
-I
-b
-B
-K
-c
-b
-b
-B
-b
-b
-I
-I
+E
+x
+x
+a
+x
+x
+p
+p
 "}
 (12,1,1) = {"
-w
-w
-n
-I
-b
-b
-b
-I
-I
-I
-I
-n
-I
-w
+r
+r
+c
+p
+x
+x
+x
+p
+p
+p
+p
+c
+p
+r
 "}
 (13,1,1) = {"
-w
-w
-I
-I
-e
-I
-I
-n
-n
-I
-I
-I
-w
-w
+r
+r
+p
+p
+f
+p
+p
+c
+c
+p
+p
+p
+r
+r
 "}
 (14,1,1) = {"
-w
-w
-I
-I
-n
-I
-I
-w
-w
-w
-w
-w
-w
-w
+r
+r
+p
+p
+c
+p
+p
+r
+r
+r
+r
+r
+r
+r
 "}

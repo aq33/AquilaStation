@@ -1,5 +1,31 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"i" = (
+"n" = (
+/obj/item/fishing_rod{
+	pixel_x = 6;
+	 pixel_y = 22
+	},
+/turf/open/floor/plating/ice/planet_ice,
+/area/template_noop)
+"r" = (
+/turf/open/floor/plating/ice/planet_ice,
+/area/template_noop)
+"x" = (
+/turf/template_noop,
+/area/template_noop)
+"K" = (
+/obj/structure/chair/fancy/plastic{
+	dir = 4
+	},
+/obj/item/book/fish_catalog{
+	pixel_x = 8;
+	 pixel_y = 7
+	},
+/turf/open/floor/plating/ice/planet_ice,
+/area/template_noop)
+"L" = (
+/turf/open/water/planet/beach/deep/ice,
+/area/template_noop)
+"U" = (
 /obj/item/flashlight/flare{
 	pixel_x = 2;
 	 pixel_y = 2
@@ -10,84 +36,58 @@
 	},
 /turf/open/floor/plating/ice/planet_ice,
 /area/template_noop)
-"j" = (
-/turf/open/floor/plating/ice/planet_ice,
-/area/template_noop)
-"n" = (
-/turf/template_noop,
-/area/template_noop)
-"u" = (
-/turf/open/water/planet/beach/deep/ice,
-/area/template_noop)
-"z" = (
-/obj/item/fishing_rod{
-	pixel_x = 6;
-	 pixel_y = 22
-	},
-/turf/open/floor/plating/ice/planet_ice,
-/area/template_noop)
-"N" = (
-/obj/structure/chair/fancy/plastic{
-	dir = 4
-	},
-/obj/item/book/fish_catalog{
-	pixel_x = 8;
-	 pixel_y = 7
-	},
-/turf/open/floor/plating/ice/planet_ice,
-/area/template_noop)
 
 (1,1,1) = {"
-n
-j
-j
-j
-j
-n
-n
+x
+r
+r
+r
+r
+x
+x
 "}
 (2,1,1) = {"
-j
-j
-N
-z
-j
-j
+r
+r
+K
 n
+r
+r
+x
 "}
 (3,1,1) = {"
-j
-j
-u
-i
-u
-j
-j
+r
+r
+L
+U
+L
+r
+r
 "}
 (4,1,1) = {"
-n
-j
-j
-u
-j
-j
-j
+x
+r
+r
+L
+r
+r
+r
 "}
 (5,1,1) = {"
-n
-n
-j
-j
-j
-j
-n
+x
+x
+r
+r
+r
+r
+x
 "}
 (6,1,1) = {"
-n
-n
-j
-j
-j
-j
-n
+x
+x
+r
+r
+r
+r
+x
 "}

@@ -1,68 +1,68 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"h" = (
-/obj/structure/flora/ash/puce,
-/turf/open/floor/plating/asteroid/icerock/cracked,
-/area/template_noop)
 "o" = (
 /turf/open/floor/plating/asteroid/icerock/cracked,
 /area/template_noop)
-"C" = (
-/turf/template_noop,
-/area/template_noop)
-"G" = (
-/obj/structure/flora/ash/stem_shroom,
+"L" = (
+/obj/structure/flora/ash/puce,
 /turf/open/floor/plating/asteroid/icerock/cracked,
 /area/template_noop)
-"W" = (
+"M" = (
 /obj/structure/flora/rock/pile/icy,
 /turf/open/floor/plating/asteroid/icerock/cracked,
 /area/template_noop)
+"W" = (
+/obj/structure/flora/ash/stem_shroom,
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
+"Y" = (
+/turf/template_noop,
+/area/template_noop)
 
 (1,1,1) = {"
-C
-h
-C
-C
+Y
+L
+Y
+Y
 o
-C
+Y
 "}
 (2,1,1) = {"
-C
+Y
+M
+Y
 W
-C
-G
-h
+L
 o
 "}
 (3,1,1) = {"
-C
+Y
 o
 o
-h
+L
 o
-W
+M
 "}
 (4,1,1) = {"
+M
 W
-G
-h
+L
 o
 o
-G
+W
 "}
 (5,1,1) = {"
-C
-h
+Y
+L
 o
-W
-h
-C
+M
+L
+Y
 "}
 (6,1,1) = {"
-C
+Y
 o
 o
-C
-C
-C
+Y
+Y
+Y
 "}

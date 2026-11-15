@@ -1,12 +1,9 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"h" = (
-/turf/template_noop,
-/area/template_noop)
-"j" = (
+"g" = (
 /obj/structure/flora/rock/pile,
 /turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
 /area/template_noop)
-"l" = (
+"p" = (
 /obj/item/stack/ore/iron{
 	amount = 5
 	},
@@ -14,90 +11,93 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
 /area/template_noop)
-"q" = (
-/turf/open/floor/plating/asteroid/dirt/jungle,
+"r" = (
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"w" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
 /area/template_noop)
 "A" = (
-/obj/structure/flora/ausbushes/sparsegrass,
-/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/turf/template_noop,
 /area/template_noop)
 "E" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
-/area/template_noop)
-"P" = (
 /obj/structure/flora/ausbushes/sparsegrass,
 /turf/open/floor/plating/asteroid/dirt/jungle,
 /area/template_noop)
-"S" = (
+"K" = (
+/obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
 /area/template_noop)
-"Z" = (
-/obj/effect/decal/cleanable/dirt/dust,
+"S" = (
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
+"U" = (
+/obj/structure/flora/ausbushes/sparsegrass,
 /turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
 /area/template_noop)
 
 (1,1,1) = {"
-h
-h
-h
-P
-h
-h
-h
+A
+A
+A
+E
+A
+A
+A
 "}
 (2,1,1) = {"
-h
-h
-q
+A
+A
 S
-q
-h
-h
+r
+S
+A
+A
 "}
 (3,1,1) = {"
-h
-q
-j
+A
+S
+g
+w
+g
 E
-j
-P
-h
+A
 "}
 (4,1,1) = {"
+r
+U
+K
+p
+K
 S
-A
-Z
-l
-Z
-q
-q
+S
 "}
 (5,1,1) = {"
-h
-S
 A
-Z
-S
-S
-h
+r
+U
+K
+r
+r
+A
 "}
 (6,1,1) = {"
-h
-h
-q
-j
-P
-h
-h
+A
+A
+S
+g
+E
+A
+A
 "}
 (7,1,1) = {"
-h
-h
-h
-q
-h
-h
-h
+A
+A
+A
+S
+A
+A
+A
 "}

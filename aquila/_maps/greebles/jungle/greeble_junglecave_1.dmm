@@ -1,135 +1,135 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"a" = (
-/obj/effect/decal/cleanable/greenglow,
-/turf/open/water/planet/jungle,
-/area/template_noop)
-"c" = (
-/obj/structure/flora/rock,
-/turf/open/water/planet/jungle,
-/area/template_noop)
-"f" = (
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
-/area/template_noop)
-"h" = (
-/turf/template_noop,
-/area/template_noop)
-"l" = (
+"b" = (
 /turf/closed/mineral/random/planet_jungle,
 /area/template_noop)
-"s" = (
-/turf/open/water/planet/jungle,
-/area/template_noop)
-"z" = (
-/obj/structure/flora/rock,
-/obj/effect/decal/cleanable/greenglow,
-/turf/open/water/planet/jungle,
-/area/template_noop)
-"M" = (
-/obj/structure/glowshroom,
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
-/area/template_noop)
-"N" = (
-/obj/structure/flora/ash/puce,
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
-/area/template_noop)
-"Y" = (
+"c" = (
 /obj/structure/flora/rock/pile,
 /turf/open/water/planet/jungle,
 /area/template_noop)
+"d" = (
+/turf/template_noop,
+/area/template_noop)
+"x" = (
+/turf/open/water/planet/jungle,
+/area/template_noop)
+"D" = (
+/obj/structure/flora/rock,
+/turf/open/water/planet/jungle,
+/area/template_noop)
+"G" = (
+/obj/structure/flora/rock,
+/obj/effect/decal/cleanable/greenglow,
+/turf/open/water/planet/jungle,
+/area/template_noop)
+"J" = (
+/obj/structure/flora/ash/puce,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"U" = (
+/obj/structure/glowshroom,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"V" = (
+/obj/effect/decal/cleanable/greenglow,
+/turf/open/water/planet/jungle,
+/area/template_noop)
+"Y" = (
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
 
 (1,1,1) = {"
-h
-h
-h
-l
-f
-s
-s
-f
-l
-h
+d
+d
+d
+b
+Y
+x
+x
+Y
+b
+d
 "}
 (2,1,1) = {"
-h
-h
-l
-N
-s
-Y
-s
-s
-N
-h
+d
+d
+b
+J
+x
+c
+x
+x
+J
+d
 "}
 (3,1,1) = {"
-h
-h
-h
-s
-a
-s
-s
-s
-M
-l
+d
+d
+d
+x
+V
+x
+x
+x
+U
+b
 "}
 (4,1,1) = {"
-h
-l
-f
+d
+b
 Y
-a
-z
+c
+V
+G
+c
 Y
-f
-l
-h
+b
+d
 "}
 (5,1,1) = {"
-l
-M
-s
-a
-a
-s
-s
-h
-h
-h
+b
+U
+x
+V
+V
+x
+x
+d
+d
+d
 "}
 (6,1,1) = {"
-h
-f
-s
-c
-a
-s
-N
-l
-h
-h
+d
+Y
+x
+D
+V
+x
+J
+b
+d
+d
 "}
 (7,1,1) = {"
-h
-h
-s
-Y
-s
-s
-h
-h
-h
-h
+d
+d
+x
+c
+x
+x
+d
+d
+d
+d
 "}
 (8,1,1) = {"
-h
-l
-N
-s
-s
-M
-l
-h
-h
-h
+d
+b
+J
+x
+x
+U
+b
+d
+d
+d
 "}

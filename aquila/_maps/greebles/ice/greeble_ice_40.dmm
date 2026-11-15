@@ -1,21 +1,42 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"b" = (
-/turf/open/floor/plating/asteroid/icerock,
+"e" = (
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/airlock{
+	name = "???";
+	 id_tag = "cock_bathroom";
+	 desc = "Witamy w."
+	},
+/obj/effect/decal/cleanable/blood/tracks,
+/turf/open/floor/plasteel/dark,
 /area/template_noop)
-"d" = (
+"g" = (
 /obj/structure/flora/ausbushes/sparsegrass,
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
-"j" = (
-/turf/template_noop,
+"m" = (
+/obj/effect/decal/cleanable/blood/tracks,
+/turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
-"t" = (
+"s" = (
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"v" = (
+/mob/living/basic/mining/wolf,
 /obj/effect/decal/cleanable/vomit/old{
 	pixel_x = -5
 	},
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
-"z" = (
+"x" = (
+/turf/closed/mineral/random/planet_ice,
+/area/template_noop)
+"B" = (
+/turf/closed/wall,
+/area/template_noop)
+"C" = (
 /obj/machinery/shower{
 	dir = 8
 	},
@@ -26,10 +47,19 @@
 /turf/open/floor/plasteel/freezer,
 /area/template_noop)
 "E" = (
+/obj/effect/decal/cleanable/vomit/old{
+	pixel_x = -5
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"F" = (
 /mob/living/basic/mining/wolf,
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
-"K" = (
+"P" = (
+/turf/template_noop,
+/area/template_noop)
+"R" = (
 /obj/effect/turf_decal/siding/thinplating{
 	dir = 4
 	},
@@ -68,177 +98,147 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plasteel,
 /area/template_noop)
-"M" = (
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/airlock{
-	name = "???";
-	 id_tag = "cock_bathroom";
-	 desc = "Witamy w."
-	},
-/obj/effect/decal/cleanable/blood/tracks,
-/turf/open/floor/plasteel/dark,
-/area/template_noop)
-"O" = (
-/turf/closed/mineral/random/planet_ice,
-/area/template_noop)
-"R" = (
-/mob/living/basic/mining/wolf,
-/obj/effect/decal/cleanable/vomit/old{
-	pixel_x = -5
-	},
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"S" = (
-/obj/effect/decal/cleanable/blood/tracks,
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"W" = (
-/turf/closed/wall,
-/area/template_noop)
 
 (1,1,1) = {"
-j
-j
-j
-j
-O
-O
-j
-j
-j
-j
-j
+P
+P
+P
+P
+x
+x
+P
+P
+P
+P
+P
 "}
 (2,1,1) = {"
-j
-j
-j
-O
-O
-O
-O
-O
-O
-j
-j
+P
+P
+P
+x
+x
+x
+x
+x
+x
+P
+P
 "}
 (3,1,1) = {"
-j
-j
-O
-O
-O
-O
-O
-O
-O
-O
-j
+P
+P
+x
+x
+x
+x
+x
+x
+x
+x
+P
 "}
 (4,1,1) = {"
-j
-O
-O
-O
-O
-O
-O
-O
-O
-O
-d
+P
+x
+x
+x
+x
+x
+x
+x
+x
+x
+g
 "}
 (5,1,1) = {"
-O
-O
-O
-O
-O
-W
-W
-W
-O
+x
+x
+x
+x
+x
+B
+B
+B
+x
+F
 E
-t
 "}
 (6,1,1) = {"
-O
-O
-O
-O
-O
-W
-K
-M
-S
-S
-S
+x
+x
+x
+x
+x
+B
+R
+e
+m
+m
+m
 "}
 (7,1,1) = {"
-O
-O
-O
-O
-O
-W
-z
-W
-d
-d
-b
+x
+x
+x
+x
+x
+B
+C
+B
+g
+g
+s
 "}
 (8,1,1) = {"
-O
-O
-O
-O
-O
-W
-W
-W
-R
-b
-j
+x
+x
+x
+x
+x
+B
+B
+B
+v
+s
+P
 "}
 (9,1,1) = {"
-j
-O
-O
-O
-O
-O
-O
-O
-d
-b
-j
+P
+x
+x
+x
+x
+x
+x
+x
+g
+s
+P
 "}
 (10,1,1) = {"
-j
-j
-O
-O
-O
-O
-O
-j
-j
-j
-j
+P
+P
+x
+x
+x
+x
+x
+P
+P
+P
+P
 "}
 (11,1,1) = {"
-j
-j
-O
-O
-O
-O
-j
-j
-j
-j
-j
+P
+P
+x
+x
+x
+x
+P
+P
+P
+P
+P
 "}

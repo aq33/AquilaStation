@@ -1,39 +1,33 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"a" = (
-/obj/item/chair/plastic,
-/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+"e" = (
+/obj/structure/flora/rock/jungle,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
 /area/template_noop)
-"b" = (
-/obj/structure/flora/grass/jungle/b,
+"f" = (
 /turf/open/floor/plating/asteroid/dirt/jungle/dark,
 /area/template_noop)
 "g" = (
-/obj/item/cigbutt/cigarbutt,
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
-/area/template_noop)
-"h" = (
-/obj/item/broken_bottle,
-/obj/effect/decal/cleanable/glass{
-	pixel_x = 5;
-	 dir = 4
-	},
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
-/area/template_noop)
-"n" = (
-/obj/item/lighter{
-	pixel_y = 5;
-	 pixel_x = -2
-	},
+/obj/structure/chair/fancy/plastic,
+/obj/item/clothing/mask/cigarette,
 /turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
 /area/template_noop)
-"t" = (
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
-/area/template_noop)
-"x" = (
+"h" = (
 /obj/structure/bonfire/prelit,
 /turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
 /area/template_noop)
-"C" = (
+"o" = (
+/obj/structure/flora/grass/jungle/b,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"q" = (
+/obj/item/cigbutt/cigarbutt,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"t" = (
+/obj/structure/flora/grass/jungle/b,
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"x" = (
 /obj/item/trash/canned{
 	pixel_y = 5;
 	 pixel_x = -9
@@ -41,10 +35,14 @@
 /turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
 /area/template_noop)
 "E" = (
-/obj/structure/flora/grass/jungle/b,
-/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/obj/item/broken_bottle,
+/obj/effect/decal/cleanable/glass{
+	pixel_x = 5;
+	 dir = 4
+	},
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
 /area/template_noop)
-"H" = (
+"K" = (
 /obj/structure/chair/fancy/plastic{
 	dir = 8
 	},
@@ -52,90 +50,92 @@
 /turf/open/floor/plating/asteroid/dirt/jungle/dark,
 /area/template_noop)
 "L" = (
-/turf/template_noop,
+/obj/item/chair/plastic,
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
 /area/template_noop)
-"M" = (
+"P" = (
 /obj/item/clothing/head/beret/black,
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
 /area/template_noop)
-"P" = (
+"Q" = (
+/turf/template_noop,
+/area/template_noop)
+"U" = (
+/turf/closed/mineral/random/planet_jungle,
+/area/template_noop)
+"W" = (
+/obj/item/lighter{
+	pixel_y = 5;
+	 pixel_x = -2
+	},
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"X" = (
 /obj/structure/flora/grass/jungle,
 /turf/open/floor/plating/asteroid/dirt/jungle/dark,
 /area/template_noop)
-"Q" = (
-/obj/structure/flora/rock/jungle,
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
-/area/template_noop)
-"T" = (
-/obj/structure/chair/fancy/plastic,
-/obj/item/clothing/mask/cigarette,
-/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
-/area/template_noop)
-"Z" = (
-/turf/closed/mineral/random/planet_jungle,
-/area/template_noop)
 
 (1,1,1) = {"
-L
-L
-L
-Z
-L
-L
-L
+Q
+Q
+Q
+U
+Q
+Q
+Q
 "}
 (2,1,1) = {"
-L
-L
-Z
-Z
-Z
-Z
-L
+Q
+Q
+U
+U
+U
+U
+Q
 "}
 (3,1,1) = {"
-L
-L
-b
-Z
-Z
-t
-L
+Q
+Q
+o
+U
+U
+f
+Q
 "}
 (4,1,1) = {"
-L
-Z
-T
-n
-a
-E
+Q
+U
 g
+W
+L
+t
+q
 "}
 (5,1,1) = {"
-Z
-Z
-C
+U
+U
 x
-M
-Z
+h
 P
+U
+X
 "}
 (6,1,1) = {"
-Z
-h
-t
-H
-Z
-Z
-Z
+U
+E
+f
+K
+U
+U
+U
 "}
 (7,1,1) = {"
-L
-L
 Q
-Z
-Z
-Z
-L
+Q
+e
+U
+U
+U
+Q
 "}

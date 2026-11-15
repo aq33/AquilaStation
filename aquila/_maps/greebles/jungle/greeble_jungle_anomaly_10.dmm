@@ -1,148 +1,148 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"f" = (
+"p" = (
+/turf/open/water/planet/jungle,
+/area/template_noop)
+"q" = (
 /obj/structure/flora/ausbushes/fullgrass/hell,
 /turf/open/water/planet/jungle,
 /area/template_noop)
-"g" = (
-/obj/structure/flora/ausbushes/sparsegrass/hell,
-/turf/open/floor/plating/asteroid/river_sand,
-/area/template_noop)
-"z" = (
-/turf/open/water/planet/jungle,
-/area/template_noop)
-"G" = (
-/obj/structure/flora/ausbushes/fullgrass/hell,
-/turf/open/floor/plating/asteroid/river_sand,
+"u" = (
+/turf/template_noop,
 /area/template_noop)
 "H" = (
 /obj/structure/flora/tree/dead/barren,
 /turf/open/water/planet/jungle,
 /area/template_noop)
-"L" = (
-/turf/template_noop,
-/area/template_noop)
-"V" = (
-/turf/open/floor/plating/asteroid/river_sand,
-/area/template_noop)
-"X" = (
+"I" = (
 /obj/effect/mob_spawn/human/corpse/syndicatesoldier{
 	brute_damage = 600
 	},
 /obj/effect/anomaly/veins/helltree,
 /turf/open/water/planet/jungle,
 /area/template_noop)
+"K" = (
+/obj/structure/flora/ausbushes/fullgrass/hell,
+/turf/open/floor/plating/asteroid/river_sand,
+/area/template_noop)
+"L" = (
+/turf/open/floor/plating/asteroid/river_sand,
+/area/template_noop)
 "Y" = (
+/obj/structure/flora/ausbushes/sparsegrass/hell,
+/turf/open/floor/plating/asteroid/river_sand,
+/area/template_noop)
+"Z" = (
 /obj/structure/flora/ausbushes/sparsegrass/hell,
 /turf/open/water/planet/jungle,
 /area/template_noop)
 
 (1,1,1) = {"
+u
+u
+K
+Y
+Y
+K
 L
-L
-G
-g
-g
-G
-V
-L
+u
 "}
 (2,1,1) = {"
+u
 L
-V
-G
-z
-z
-z
-g
-L
+K
+p
+p
+p
+Y
+u
 "}
 (3,1,1) = {"
-V
-g
-H
-z
+L
 Y
-z
-g
-V
+H
+p
+Z
+p
+Y
+L
 "}
 (4,1,1) = {"
-G
-g
-z
-z
-z
+K
 Y
+p
+p
+p
+Z
 H
-g
+Y
 "}
 (5,1,1) = {"
-G
-z
-Y
-z
-z
-z
-Y
-V
+K
+p
+Z
+p
+p
+p
+Z
+L
 "}
 (6,1,1) = {"
-g
-z
-z
-z
-X
-z
-z
-G
+Y
+p
+p
+p
+I
+p
+p
+K
 "}
 (7,1,1) = {"
-g
-g
-z
-z
 Y
 Y
-f
-g
+p
+p
+Z
+Z
+q
+Y
 "}
 (8,1,1) = {"
-L
-G
-z
-z
-f
-f
-z
-G
+u
+K
+p
+p
+q
+q
+p
+K
 "}
 (9,1,1) = {"
-L
-G
-g
+u
+K
+Y
 H
+Z
+Z
+p
 Y
-Y
-z
-g
 "}
 (10,1,1) = {"
-L
-L
-g
-V
+u
+u
 Y
-z
-g
-g
+L
+Z
+p
+Y
+Y
 "}
 (11,1,1) = {"
+u
+u
+u
 L
 L
 L
-V
-V
-V
-V
 L
+u
 "}

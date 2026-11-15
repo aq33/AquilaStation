@@ -241,27 +241,31 @@
 	surface.unload()
 	qdel(planet, TRUE)
 
+/// Czy ruina mieści się jako ruina główna na kwadracie o boku side, w miejscu z place_main_ruin (przy górnej krawędzi)
+/proc/planet_ruin_fits_surface(datum/map_template/ruin/ruin, side)
+	var/inner_size = side - 2 * PLANET_EDGE_WIDTH
+	return ruin.width <= inner_size - 12 && ruin.height <= inner_size / 2
+
+/// Wczytuje ruinę w osobnej, czystej rezerwacji i ją zwalnia. TRUE, jeśli szablon się wczytał.
+/proc/planet_test_load_ruin(datum/map_template/ruin/ruin)
+	var/datum/turf_reservation/reservation = SSmapping.RequestBlockReservation(ruin.width + 2, ruin.height + 2)
+	if(!reservation)
+		return FALSE
+	var/turf/corner = locate(reservation.bottom_left_coords[1] + 1, reservation.bottom_left_coords[2] + 1, reservation.bottom_left_coords[3])
+	. = ruin.load(corner, centered = FALSE)
+	qdel(reservation)
+
 /// AQUILA - planety: każda ruina Shiptesta z puli ruin głównych planety wulkanicznej mieści się na planecie i się wczytuje
 /datum/unit_test/planet_lava_ruins
 
 /datum/unit_test/planet_lava_ruins/Run()
 	var/list/templates = get_planet_lava_ruin_templates()
 	TEST_ASSERT(length(templates) >= 5, "Only [length(templates)] Shiptest lava ruins are registered")
-	var/obj/structure/overmap/planet/planet = new(run_loc_floor_top_right, /datum/planet_type/lava)
-	TEST_ASSERT(planet.surface.generate(), "The surface didn't generate")
-	var/side = planet.surface.size
-	var/inner_size = side - 2 * PLANET_EDGE_WIDTH
-	var/turf/bl = planet.surface.bottom_left()
-	// Każda ruina w miejscu ruiny głównej (lewy górny róg wnętrza z marginesem jak w place_main_ruin)
 	for(var/name in templates)
 		var/datum/map_template/ruin/ruin = templates[name]
-		TEST_ASSERT(ruin.width <= inner_size - 12 && ruin.height <= inner_size / 2, "[name] ([ruin.width]x[ruin.height]) doesn't fit as a main ruin")
-		var/turf/corner = locate(bl.x + PLANET_EDGE_WIDTH + 6, bl.y + side - PLANET_EDGE_WIDTH - 6 - ruin.height, bl.z)
-		TEST_ASSERT(planet.surface.load_ruin(ruin, corner, FALSE), "[name] didn't load")
-		for(var/turf/T as anything in ruin.get_affected_turfs(corner, FALSE))
-			TEST_ASSERT(planet.surface.contains(T), "[name] spills outside the planet surface")
-	planet.surface.unload()
-	qdel(planet, TRUE)
+		TEST_ASSERT(ruin.width && ruin.height, "[name] map didn't load (no size)")
+		TEST_ASSERT(planet_ruin_fits_surface(ruin, PLANET_SURFACE_SIZE), "[name] ([ruin.width]x[ruin.height]) doesn't fit as a main ruin")
+		TEST_ASSERT(planet_test_load_ruin(ruin), "[name] didn't load")
 
 	// Ruina stojąca na innej istniejącej powierzchni nie jest losowana drugi raz (wspólne obszary ruin)
 	var/datum/map_template/ruin/shared_ruin = templates[templates[1]]

@@ -1,145 +1,5 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"cw" = (
-/obj/structure/railing{
-	dir = 6
-	},
-/turf/open/lava/plasma,
-/area/template_noop)
-"dl" = (
-/obj/structure/flora/rock{
-	icon_state = "basalt3"
-	},
-/turf/open/lava/plasma,
-/area/template_noop)
-"gz" = (
-/obj/structure/flora/ausbushes/sparsegrass,
-/turf/open/floor/plating/asteroid/icerock/cracked,
-/area/template_noop)
-"gR" = (
-/turf/open/floor/plating/asteroid/icerock/cracked,
-/area/template_noop)
-"iI" = (
-/obj/structure/railing/corner,
-/turf/open/lava/plasma,
-/area/template_noop)
-"je" = (
-/obj/structure/flora/rock/icy,
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"jQ" = (
-/obj/structure/flora/ausbushes/sparsegrass,
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"kM" = (
-/turf/closed/wall/r_wall,
-/area/template_noop)
-"mq" = (
-/obj/structure/flora/rock/pile/icy,
-/turf/open/floor/plating/asteroid/icerock/cracked,
-/area/template_noop)
-"mI" = (
-/obj/structure/flora/rock{
-	icon_state = "basalt2"
-	},
-/turf/open/lava/plasma,
-/area/template_noop)
-"nx" = (
-/obj/structure/railing,
-/turf/open/floor/plating/asteroid/icerock/cracked,
-/area/template_noop)
-"oo" = (
-/turf/open/lava/plasma,
-/area/template_noop)
-"oX" = (
-/obj/structure/railing{
-	dir = 8
-	},
-/obj/structure/lattice/catwalk/over/ship/dark,
-/turf/open/floor/plating/rust,
-/area/template_noop)
-"pn" = (
-/obj/structure/railing/corner{
-	dir = 4
-	},
-/obj/structure/lattice/catwalk/over/ship/dark,
-/turf/open/floor/plating/rust,
-/area/template_noop)
-"po" = (
-/obj/structure/railing{
-	dir = 10
-	},
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"pM" = (
-/obj/structure/flora/ausbushes/sparsegrass,
-/turf/open/lava/plasma,
-/area/template_noop)
-"qb" = (
-/turf/closed/mineral/random/planet_ice,
-/area/template_noop)
-"rs" = (
-/obj/structure/railing,
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"rG" = (
-/obj/structure/railing/corner,
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"tG" = (
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"vx" = (
-/obj/structure/railing/corner{
-	dir = 8
-	},
-/obj/structure/lattice/catwalk/over/ship/dark,
-/turf/open/floor/plating/rust,
-/area/template_noop)
-"wx" = (
-/obj/structure/flora/rock/pile,
-/turf/open/lava/plasma,
-/area/template_noop)
-"yi" = (
-/obj/structure/railing{
-	dir = 4
-	},
-/obj/structure/lattice/catwalk/over/ship/dark,
-/turf/open/floor/plating/rust,
-/area/template_noop)
-"CJ" = (
-/obj/structure/railing/corner{
-	dir = 8
-	},
-/obj/structure/flora/rock/pile/icy,
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"Dj" = (
-/obj/structure/railing{
-	dir = 6
-	},
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"Dk" = (
-/obj/structure/railing/corner{
-	dir = 1
-	},
-/obj/structure/lattice/catwalk/over/ship/dark,
-/turf/open/floor/plating/rust,
-/area/template_noop)
-"EN" = (
-/obj/structure/flora/rock,
-/turf/open/lava/plasma,
-/area/template_noop)
-"Pq" = (
-/obj/structure/flora/rock/pile/icy,
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"PJ" = (
-/obj/structure/railing/corner,
-/obj/structure/lattice/catwalk/over/ship/dark,
-/turf/open/floor/plating/rust,
-/area/template_noop)
-"RX" = (
+"cz" = (
 /obj/effect/anomaly/plasmasoul/planetary{
 	effectrange = 1;
 	 pixel_x = -12;
@@ -147,696 +7,836 @@
 	},
 /turf/open/lava/plasma,
 /area/template_noop)
-"Si" = (
-/turf/template_noop,
-/area/template_noop)
-"Tp" = (
-/obj/structure/sign/warning/biohazard{
-	pixel_y = -15
+"ex" = (
+/obj/structure/railing/corner{
+	dir = 8
 	},
+/obj/structure/flora/rock/pile/icy,
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
-"WR" = (
-/obj/structure/railing,
-/turf/open/lava/plasma,
-/area/template_noop)
-"Xw" = (
-/obj/structure/flora/ausbushes/fullgrass,
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"Yt" = (
+"fi" = (
 /obj/structure/flora/rock{
 	icon_state = "basalt"
 	},
 /turf/open/lava/plasma,
 /area/template_noop)
-"ZJ" = (
+"fu" = (
+/obj/structure/railing/corner{
+	dir = 8
+	},
+/obj/structure/lattice/catwalk/over/ship/dark,
+/turf/open/floor/plating/rust,
+/area/template_noop)
+"hV" = (
+/obj/structure/flora/rock/icy,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"hX" = (
+/obj/structure/flora/rock{
+	icon_state = "basalt3"
+	},
+/turf/open/lava/plasma,
+/area/template_noop)
+"kR" = (
+/turf/template_noop,
+/area/template_noop)
+"pj" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"rQ" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/lava/plasma,
+/area/template_noop)
+"sa" = (
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"vB" = (
+/obj/structure/railing{
+	dir = 6
+	},
+/turf/open/lava/plasma,
+/area/template_noop)
+"xH" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
+"AP" = (
+/obj/structure/flora/rock,
+/turf/open/lava/plasma,
+/area/template_noop)
+"DD" = (
 /obj/structure/sign/warning/biohazard{
 	pixel_y = 32
 	},
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
+"DP" = (
+/obj/structure/flora/rock/pile/icy,
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
+"Ej" = (
+/obj/structure/flora/rock/pile/icy,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"Fi" = (
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
+"FE" = (
+/obj/structure/railing,
+/turf/open/lava/plasma,
+/area/template_noop)
+"Kf" = (
+/turf/closed/wall/r_wall,
+/area/template_noop)
+"Kj" = (
+/obj/structure/flora/rock{
+	icon_state = "basalt2"
+	},
+/turf/open/lava/plasma,
+/area/template_noop)
+"KB" = (
+/obj/structure/sign/warning/biohazard{
+	pixel_y = -15
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"Mv" = (
+/obj/structure/railing/corner,
+/obj/structure/lattice/catwalk/over/ship/dark,
+/turf/open/floor/plating/rust,
+/area/template_noop)
+"NG" = (
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/structure/lattice/catwalk/over/ship/dark,
+/turf/open/floor/plating/rust,
+/area/template_noop)
+"NZ" = (
+/obj/structure/railing/corner,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"Ry" = (
+/turf/open/lava/plasma,
+/area/template_noop)
+"Sn" = (
+/obj/structure/railing/corner{
+	dir = 1
+	},
+/obj/structure/lattice/catwalk/over/ship/dark,
+/turf/open/floor/plating/rust,
+/area/template_noop)
+"St" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"Tr" = (
+/obj/structure/railing,
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
+"UC" = (
+/obj/structure/railing/corner{
+	dir = 4
+	},
+/obj/structure/lattice/catwalk/over/ship/dark,
+/turf/open/floor/plating/rust,
+/area/template_noop)
+"VJ" = (
+/obj/structure/flora/rock/pile,
+/turf/open/lava/plasma,
+/area/template_noop)
+"WE" = (
+/obj/structure/railing,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"Xf" = (
+/obj/structure/railing{
+	dir = 6
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"Xk" = (
+/obj/structure/railing/corner,
+/turf/open/lava/plasma,
+/area/template_noop)
+"Yn" = (
+/obj/structure/railing{
+	dir = 10
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"Yu" = (
+/turf/closed/mineral/random/planet_ice,
+/area/template_noop)
+"Ze" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/structure/lattice/catwalk/over/ship/dark,
+/turf/open/floor/plating/rust,
+/area/template_noop)
 
 (1,1,1) = {"
-Si
-Si
-Si
-Si
-qb
-qb
-qb
-qb
-qb
-qb
-qb
-qb
-Si
-Si
-Si
+kR
+kR
+kR
+kR
+Yu
+Yu
+Yu
+Yu
+Yu
+Yu
+Yu
+Yu
+kR
+kR
+kR
 "}
 (2,1,1) = {"
-Si
-Si
-Si
-qb
-qb
-qb
-qb
-qb
-qb
-qb
-qb
-qb
-qb
-Si
-Si
+kR
+kR
+kR
+Yu
+Yu
+Yu
+Yu
+Yu
+Yu
+Yu
+Yu
+Yu
+Yu
+kR
+kR
 "}
 (3,1,1) = {"
-Si
-Si
-qb
-qb
-qb
-qb
-qb
-qb
-qb
-qb
-qb
-qb
-qb
-Si
-Si
+kR
+kR
+Yu
+Yu
+Yu
+Yu
+Yu
+Yu
+Yu
+Yu
+Yu
+Yu
+Yu
+kR
+kR
 "}
 (4,1,1) = {"
-Si
-Si
-qb
-qb
-qb
-qb
-qb
-oo
-oo
-oo
-qb
-qb
-qb
-qb
-Si
+kR
+kR
+Yu
+Yu
+Yu
+Yu
+Yu
+Ry
+Ry
+Ry
+Yu
+Yu
+Yu
+Yu
+kR
 "}
 (5,1,1) = {"
-Si
-Si
-qb
-qb
-qb
-qb
-oo
-oo
-oo
-oo
-oo
-qb
-qb
-qb
-qb
+kR
+kR
+Yu
+Yu
+Yu
+Yu
+Ry
+Ry
+Ry
+Ry
+Ry
+Yu
+Yu
+Yu
+Yu
 "}
 (6,1,1) = {"
-Si
-Si
-qb
-qb
-qb
-qb
-oo
-oo
-RX
-oo
-oo
-oo
-qb
-qb
-qb
+kR
+kR
+Yu
+Yu
+Yu
+Yu
+Ry
+Ry
+cz
+Ry
+Ry
+Ry
+Yu
+Yu
+Yu
 "}
 (7,1,1) = {"
-Si
-qb
-qb
-qb
-qb
-qb
-qb
-oo
-oo
-oo
-oo
-oo
-oo
-qb
-qb
+kR
+Yu
+Yu
+Yu
+Yu
+Yu
+Yu
+Ry
+Ry
+Ry
+Ry
+Ry
+Ry
+Yu
+Yu
 "}
 (8,1,1) = {"
-Si
-qb
-qb
-qb
-qb
-qb
-qb
-oo
-oo
-oo
-oo
-EN
-oo
-qb
-qb
+kR
+Yu
+Yu
+Yu
+Yu
+Yu
+Yu
+Ry
+Ry
+Ry
+Ry
+AP
+Ry
+Yu
+Yu
 "}
 (9,1,1) = {"
-Si
-Si
-qb
-qb
-qb
-qb
-qb
-qb
-oo
-oo
-oo
-oo
-qb
-qb
-qb
+kR
+kR
+Yu
+Yu
+Yu
+Yu
+Yu
+Yu
+Ry
+Ry
+Ry
+Ry
+Yu
+Yu
+Yu
 "}
 (10,1,1) = {"
-Si
-Si
-qb
-qb
-qb
-qb
-qb
-oo
-oo
-oo
-oo
-oo
-kM
-qb
-tG
+kR
+kR
+Yu
+Yu
+Yu
+Yu
+Yu
+Ry
+Ry
+Ry
+Ry
+Ry
+Kf
+Yu
+sa
 "}
 (11,1,1) = {"
-Si
-Si
-Si
-qb
-qb
-kM
-oo
-oo
-oo
-oo
-wx
-oo
-WR
-tG
-jQ
+kR
+kR
+kR
+Yu
+Yu
+Kf
+Ry
+Ry
+Ry
+Ry
+VJ
+Ry
+FE
+sa
+pj
 "}
 (12,1,1) = {"
-Si
-Si
-Si
-Si
-gR
-nx
-oo
-oo
-dl
-oo
-oo
-iI
-cw
-Xw
-tG
+kR
+kR
+kR
+kR
+Fi
+Tr
+Ry
+Ry
+hX
+Ry
+Ry
+Xk
+vB
+St
+sa
 "}
 (13,1,1) = {"
-Si
-Si
-Si
-Si
-gR
-nx
-oo
-oo
-oo
-oo
-oo
-WR
-tG
-tG
-tG
+kR
+kR
+kR
+kR
+Fi
+Tr
+Ry
+Ry
+Ry
+Ry
+Ry
+FE
+sa
+sa
+sa
 "}
 (14,1,1) = {"
-Si
-Si
-Si
-tG
-tG
-nx
-oo
-oo
-pM
-oo
-oo
-WR
-jQ
-tG
-je
+kR
+kR
+kR
+sa
+sa
+Tr
+Ry
+Ry
+rQ
+Ry
+Ry
+FE
+pj
+sa
+hV
 "}
 (15,1,1) = {"
-Si
-Si
-tG
-tG
-jQ
-rs
-oo
-oo
-oo
-mI
-oo
-WR
-Xw
-jQ
-tG
+kR
+kR
+sa
+sa
+pj
+WE
+Ry
+Ry
+Ry
+Kj
+Ry
+FE
+St
+pj
+sa
 "}
 (16,1,1) = {"
-Si
-tG
-Xw
-tG
-rG
-Dj
-oo
-oo
-pM
-oo
-oo
-WR
-jQ
-jQ
-tG
+kR
+sa
+St
+sa
+NZ
+Xf
+Ry
+Ry
+rQ
+Ry
+Ry
+FE
+pj
+pj
+sa
 "}
 (17,1,1) = {"
-tG
-jQ
-tG
-tG
-Dj
-oo
-oo
-pM
-oo
-oo
-pM
-WR
-tG
-tG
-tG
+sa
+pj
+sa
+sa
+Xf
+Ry
+Ry
+rQ
+Ry
+Ry
+rQ
+FE
+sa
+sa
+sa
 "}
 (18,1,1) = {"
-tG
-tG
-Tp
-kM
-oo
-oo
-oo
-oo
-oo
-oo
-oo
-kM
-ZJ
-jQ
-Si
+sa
+sa
+KB
+Kf
+Ry
+Ry
+Ry
+Ry
+Ry
+Ry
+Ry
+Kf
+DD
+pj
+kR
 "}
 (19,1,1) = {"
-jQ
-tG
-tG
-vx
-oX
-oX
-oX
-oX
-oX
-oX
-oX
-Dk
-tG
-tG
-Si
+pj
+sa
+sa
+fu
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+Sn
+sa
+sa
+kR
 "}
 (20,1,1) = {"
-tG
-Pq
-tG
-PJ
-yi
-yi
-yi
-yi
-yi
-yi
-yi
-pn
-tG
-tG
-Si
+sa
+Ej
+sa
+Mv
+Ze
+Ze
+Ze
+Ze
+Ze
+Ze
+Ze
+UC
+sa
+sa
+kR
 "}
 (21,1,1) = {"
-tG
-tG
-Tp
-kM
-oo
-oo
-oo
-oo
-oo
-oo
-oo
-kM
-ZJ
-tG
-Si
+sa
+sa
+KB
+Kf
+Ry
+Ry
+Ry
+Ry
+Ry
+Ry
+Ry
+Kf
+DD
+sa
+kR
 "}
 (22,1,1) = {"
-tG
-jQ
-tG
-rs
-oo
-oo
-oo
-pM
-oo
-oo
-oo
-WR
-jQ
-tG
-tG
+sa
+pj
+sa
+WE
+Ry
+Ry
+Ry
+rQ
+Ry
+Ry
+Ry
+FE
+pj
+sa
+sa
 "}
 (23,1,1) = {"
-tG
-tG
-Xw
-rs
-oo
-oo
-Yt
-oo
-oo
-pM
-oo
-WR
-Xw
-jQ
-tG
+sa
+sa
+St
+WE
+Ry
+Ry
+fi
+Ry
+Ry
+rQ
+Ry
+FE
+St
+pj
+sa
 "}
 (24,1,1) = {"
-Si
-tG
-jQ
-rs
-oo
-oo
-pM
-oo
-oo
-oo
-iI
-cw
-Xw
-jQ
-tG
+kR
+sa
+pj
+WE
+Ry
+Ry
+rQ
+Ry
+Ry
+Ry
+Xk
+vB
+St
+pj
+sa
 "}
 (25,1,1) = {"
-Si
-jQ
-tG
-rs
-oo
-oo
-oo
-oo
-oo
-dl
-WR
-gz
-jQ
-tG
-Si
+kR
+pj
+sa
+WE
+Ry
+Ry
+Ry
+Ry
+Ry
+hX
+FE
+xH
+pj
+sa
+kR
 "}
 (26,1,1) = {"
-Si
-Si
-tG
-CJ
-po
-oo
-oo
-oo
-pM
-oo
-WR
-gR
-gR
-tG
-Si
+kR
+kR
+sa
+ex
+Yn
+Ry
+Ry
+Ry
+rQ
+Ry
+FE
+Fi
+Fi
+sa
+kR
 "}
 (27,1,1) = {"
-Si
-Si
-qb
-qb
-kM
-oo
-oo
-oo
-oo
-oo
-WR
-gR
-mq
-tG
-Si
+kR
+kR
+Yu
+Yu
+Kf
+Ry
+Ry
+Ry
+Ry
+Ry
+FE
+Fi
+DP
+sa
+kR
 "}
 (28,1,1) = {"
-Si
-Si
-qb
-qb
-qb
-pM
-oo
-pM
-oo
-oo
-WR
-gR
-gR
-gR
-Si
+kR
+kR
+Yu
+Yu
+Yu
+rQ
+Ry
+rQ
+Ry
+Ry
+FE
+Fi
+Fi
+Fi
+kR
 "}
 (29,1,1) = {"
-Si
-qb
-qb
-qb
-oo
-oo
-dl
-oo
-oo
-pM
-kM
-qb
-qb
-mq
-Si
+kR
+Yu
+Yu
+Yu
+Ry
+Ry
+hX
+Ry
+Ry
+rQ
+Kf
+Yu
+Yu
+DP
+kR
 "}
 (30,1,1) = {"
-Si
-qb
-qb
-oo
-oo
-pM
-oo
-oo
-oo
-oo
-qb
-qb
-qb
-qb
-Si
+kR
+Yu
+Yu
+Ry
+Ry
+rQ
+Ry
+Ry
+Ry
+Ry
+Yu
+Yu
+Yu
+Yu
+kR
 "}
 (31,1,1) = {"
-Si
-qb
-qb
-qb
-oo
-oo
-oo
-pM
-oo
-oo
-qb
-qb
-qb
-qb
-Si
+kR
+Yu
+Yu
+Yu
+Ry
+Ry
+Ry
+rQ
+Ry
+Ry
+Yu
+Yu
+Yu
+Yu
+kR
 "}
 (32,1,1) = {"
-Si
-qb
-qb
-qb
-qb
-oo
-oo
-oo
-oo
-oo
-qb
-qb
-qb
-qb
-Si
+kR
+Yu
+Yu
+Yu
+Yu
+Ry
+Ry
+Ry
+Ry
+Ry
+Yu
+Yu
+Yu
+Yu
+kR
 "}
 (33,1,1) = {"
-Si
-qb
-qb
-qb
-qb
-qb
-oo
-mI
-oo
-oo
-qb
-qb
-qb
-qb
-Si
+kR
+Yu
+Yu
+Yu
+Yu
+Yu
+Ry
+Kj
+Ry
+Ry
+Yu
+Yu
+Yu
+Yu
+kR
 "}
 (34,1,1) = {"
-Si
-qb
-qb
-qb
-qb
-qb
-oo
-oo
-oo
-qb
-qb
-qb
-qb
-qb
-Si
+kR
+Yu
+Yu
+Yu
+Yu
+Yu
+Ry
+Ry
+Ry
+Yu
+Yu
+Yu
+Yu
+Yu
+kR
 "}
 (35,1,1) = {"
-Si
-qb
-qb
-qb
-qb
-qb
-qb
-oo
-oo
-qb
-qb
-qb
-qb
-qb
-Si
+kR
+Yu
+Yu
+Yu
+Yu
+Yu
+Yu
+Ry
+Ry
+Yu
+Yu
+Yu
+Yu
+Yu
+kR
 "}
 (36,1,1) = {"
-Si
-qb
-qb
-qb
-qb
-qb
-qb
-oo
-oo
-qb
-qb
-qb
-qb
-qb
-Si
+kR
+Yu
+Yu
+Yu
+Yu
+Yu
+Yu
+Ry
+Ry
+Yu
+Yu
+Yu
+Yu
+Yu
+kR
 "}
 (37,1,1) = {"
-Si
-qb
-qb
-qb
-qb
-qb
-qb
-qb
-qb
-qb
-qb
-qb
-qb
-Si
-Si
+kR
+Yu
+Yu
+Yu
+Yu
+Yu
+Yu
+Yu
+Yu
+Yu
+Yu
+Yu
+Yu
+kR
+kR
 "}
 (38,1,1) = {"
-Si
-Si
-Si
-qb
-qb
-qb
-qb
-qb
-qb
-qb
-qb
-qb
-Si
-Si
-Si
+kR
+kR
+kR
+Yu
+Yu
+Yu
+Yu
+Yu
+Yu
+Yu
+Yu
+Yu
+kR
+kR
+kR
 "}
 (39,1,1) = {"
-Si
-Si
-Si
-qb
-qb
-qb
-qb
-qb
-qb
-qb
-qb
-qb
-Si
-Si
-Si
+kR
+kR
+kR
+Yu
+Yu
+Yu
+Yu
+Yu
+Yu
+Yu
+Yu
+Yu
+kR
+kR
+kR
 "}

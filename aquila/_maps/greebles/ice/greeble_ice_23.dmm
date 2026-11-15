@@ -1,25 +1,37 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"d" = (
-/turf/open/floor/plating/asteroid/snow/planet_ice,
+"i" = (
+/turf/template_noop,
 /area/template_noop)
-"l" = (
-/obj/structure/flora/tree/pine,
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"u" = (
+"m" = (
 /obj/structure/flora/ausbushes/sparsegrass,
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
-"w" = (
+"t" = (
+/obj/structure/flora/rock/pile/icy{
+	pixel_y = 11
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"C" = (
 /obj/structure/flora/rock/pile/icy{
 	pixel_y = 8
 	},
 /turf/open/floor/plating/asteroid/snow/planet_ice,
 /area/template_noop)
-"C" = (
-/turf/template_noop,
+"J" = (
+/obj/structure/flora/rock/pile/icy{
+	pixel_x = 11;
+	 pixel_y = -6
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
 /area/template_noop)
-"F" = (
+"M" = (
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"O" = (
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"W" = (
 /mob/living/basic/mining/wolf{
 	name = "słabowity wilk";
 	 faction = list("neutral");
@@ -28,68 +40,56 @@
 /obj/structure/flora/ausbushes/sparsegrass,
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
-"R" = (
-/obj/structure/flora/rock/pile/icy{
-	pixel_x = 11;
-	 pixel_y = -6
-	},
-/turf/open/floor/plating/asteroid/snow/planet_ice,
-/area/template_noop)
-"U" = (
+"X" = (
+/obj/structure/flora/tree/pine,
 /turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"Y" = (
-/obj/structure/flora/rock/pile/icy{
-	pixel_y = 11
-	},
-/turf/open/floor/plating/asteroid/snow/planet_ice,
 /area/template_noop)
 
 (1,1,1) = {"
-C
-C
-d
-d
-d
-C
+i
+i
+O
+O
+O
+i
 "}
 (2,1,1) = {"
+i
+m
+M
 C
-u
-U
-w
-d
-d
+O
+O
 "}
 (3,1,1) = {"
-C
-U
-F
-u
-Y
-R
+i
+M
+W
+m
+t
+J
 "}
 (4,1,1) = {"
-U
-u
-l
-U
-U
-d
+M
+m
+X
+M
+M
+O
 "}
 (5,1,1) = {"
-C
-U
-u
-U
-u
-C
+i
+M
+m
+M
+m
+i
 "}
 (6,1,1) = {"
-C
-U
-U
-C
-C
-C
+i
+M
+M
+i
+i
+i
 "}

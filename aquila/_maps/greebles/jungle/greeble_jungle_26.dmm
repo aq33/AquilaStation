@@ -1,41 +1,47 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"b" = (
+/obj/item/ammo_casing/spent,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
 "c" = (
 /obj/structure/barricade/sandbags,
-/obj/effect/decal/cleanable/blood/gibs/old,
-/obj/item/ammo_casing/spent,
+/obj/effect/decal/cleanable/shreds{
+	pixel_y = -13
+	},
 /turf/open/floor/plating/asteroid/dirt/jungle/dark,
 /area/template_noop)
 "d" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/shreds,
-/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
-/area/template_noop)
-"e" = (
-/obj/item/stack/ore/iron,
-/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
-/area/template_noop)
-"f" = (
-/obj/structure/flora/ausbushes/sparsegrass,
 /obj/effect/decal/cleanable/ash/large,
 /turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
 /area/template_noop)
-"g" = (
+"f" = (
 /obj/item/ammo_casing/spent,
 /obj/item/stack/ore/gold,
 /turf/open/floor/plating/asteroid/dirt/jungle/dark,
 /area/template_noop)
 "j" = (
-/obj/effect/decal/cleanable/ash{
-	pixel_x = 5;
-	 pixel_y = -7
-	},
+/obj/structure/barricade/sandbags,
+/obj/effect/decal/cleanable/blood/gibs/old,
+/obj/item/ammo_casing/spent,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"k" = (
+/obj/item/stack/ore/iron,
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"m" = (
+/obj/structure/flora/ausbushes/sparsegrass,
 /turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
 /area/template_noop)
 "n" = (
-/obj/item/ammo_casing/spent,
-/obj/item/ammo_casing/spent,
-/obj/item/ammo_casing/spent,
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/obj/effect/decal/cleanable/blood/tracks{
+	color = "#4D0000"
+	},
+/turf/open/floor/plasteel/stairs{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	 planetary_atmos = 1
+	},
 /area/template_noop)
 "o" = (
 /obj/item/stack/sheet/mineral/wood,
@@ -43,61 +49,50 @@
 /turf/open/floor/plating/asteroid/dirt/jungle/dark,
 /area/template_noop)
 "p" = (
+/obj/item/ammo_casing/spent,
 /obj/effect/decal/cleanable/blood/tracks{
 	color = "#4D0000"
 	},
 /turf/open/floor/plating/asteroid/dirt/jungle/dark,
 /area/template_noop)
 "q" = (
+/obj/item/stack/sheet/mineral/wood,
+/obj/effect/decal/remains/human,
 /turf/open/floor/plating/asteroid/dirt/jungle/dark,
 /area/template_noop)
-"r" = (
-/obj/structure/barricade/sandbags,
-/obj/effect/decal/cleanable/shreds{
-	pixel_y = -13
-	},
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
-/area/template_noop)
-"t" = (
-/obj/effect/decal/cleanable/blood/tracks{
-	color = "#4D0000"
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
-/area/template_noop)
-"u" = (
+"s" = (
 /obj/effect/decal/cleanable/blood/gibs/old,
 /obj/item/ammo_casing/spent,
 /turf/open/floor/plating/asteroid/dirt/jungle/dark,
 /area/template_noop)
-"w" = (
-/obj/item/ammo_box/magazine/m10mm{
-	start_empty = 1
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
-/area/template_noop)
-"A" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/ash/large,
-/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
-/area/template_noop)
-"B" = (
-/turf/template_noop,
-/area/template_noop)
-"D" = (
+"t" = (
 /obj/effect/decal/cleanable/ash{
 	pixel_x = -5;
 	 pixel_y = 11
 	},
 /turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
 /area/template_noop)
-"E" = (
+"w" = (
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"z" = (
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"A" = (
+/obj/effect/decal/cleanable/shreds{
+	pixel_y = -13
+	},
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"B" = (
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
 /obj/item/ammo_casing/spent,
 /turf/open/floor/plating/asteroid/dirt/jungle/dark,
 /area/template_noop)
-"F" = (
-/obj/structure/flora/tree/dead/tall,
+"E" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/shreds,
 /turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
 /area/template_noop)
 "G" = (
@@ -108,31 +103,33 @@
 	},
 /turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
 /area/template_noop)
+"H" = (
+/obj/effect/decal/cleanable/ash{
+	pixel_x = 5;
+	 pixel_y = -7
+	},
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
 "I" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/obj/effect/decal/cleanable/ash/large,
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"J" = (
+/turf/template_noop,
+/area/template_noop)
+"K" = (
 /obj/effect/decal/cleanable/blood/tracks{
 	color = "#4D0000"
 	},
-/turf/open/floor/plasteel/stairs{
-	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
-	 planetary_atmos = 1
-	},
-/area/template_noop)
-"K" = (
-/obj/effect/decal/cleanable/shreds{
-	pixel_y = -13
-	},
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/asteroid/dirt/jungle/dark,
 /area/template_noop)
 "L" = (
-/obj/structure/flora/ausbushes/sparsegrass,
-/obj/effect/decal/cleanable/dirt,
+/obj/structure/flora/tree/dead/tall,
 /turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
 /area/template_noop)
 "N" = (
-/obj/structure/flora/ausbushes/sparsegrass,
-/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
-/area/template_noop)
-"P" = (
 /obj/effect/decal/cleanable/ash/large,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/shreds{
@@ -142,138 +139,141 @@
 /turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
 /area/template_noop)
 "Q" = (
-/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
-/area/template_noop)
-"R" = (
-/obj/item/ammo_casing/spent,
 /obj/effect/decal/cleanable/blood/tracks{
 	color = "#4D0000"
 	},
 /turf/open/floor/plating/asteroid/dirt/jungle/dark,
 /area/template_noop)
-"S" = (
-/obj/structure/flora/tree/dead/tall,
+"T" = (
+/obj/structure/barricade/sandbags,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"U" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
 /area/template_noop)
-"T" = (
+"V" = (
 /turf/open/floor/plasteel/stairs{
 	dir = 8;
 	 initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
 	 planetary_atmos = 1
 	},
 /area/template_noop)
-"V" = (
-/obj/structure/barricade/sandbags,
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
-/area/template_noop)
-"Y" = (
+"W" = (
+/obj/structure/flora/ausbushes/sparsegrass,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
 /area/template_noop)
-"Z" = (
-/obj/item/stack/sheet/mineral/wood,
-/obj/effect/decal/remains/human,
+"X" = (
+/obj/item/ammo_box/magazine/m10mm{
+	start_empty = 1
+	},
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"Z" = (
+/obj/structure/flora/tree/dead/tall,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
 /area/template_noop)
 
 (1,1,1) = {"
-B
-B
-B
-E
-B
-B
-B
-B
+J
+J
+J
+b
+J
+J
+J
+J
 "}
 (2,1,1) = {"
-B
-B
-n
-c
+J
+J
 B
 j
-f
-B
+J
+H
+I
+J
 "}
 (3,1,1) = {"
-B
-q
-u
-q
-Y
-F
-D
-B
+J
+w
+s
+w
+U
+L
+t
+J
 "}
 (4,1,1) = {"
-B
-Z
-p
-I
-G
+J
+q
 Q
-Y
-B
+n
+G
+z
+U
+J
 "}
 (5,1,1) = {"
-B
-E
-E
-V
-Y
-L
-Q
-B
+J
+b
+b
+T
+U
+W
+z
+J
 "}
 (6,1,1) = {"
-R
-t
-w
+p
 K
-Q
+X
 A
-Q
-Q
+z
+d
+z
+z
 "}
 (7,1,1) = {"
-q
-g
+w
+f
 o
-V
-N
-Q
-F
-N
+T
+m
+z
+L
+m
 "}
 (8,1,1) = {"
-Q
-r
-T
+z
+c
 V
-Q
-N
-d
-e
+T
+z
+m
+E
+k
 "}
 (9,1,1) = {"
-Q
-Q
-Y
-Y
+z
+z
+U
+U
+m
 N
-P
-Q
-B
+z
+J
 "}
 (10,1,1) = {"
-B
-Q
-N
-S
-Q
-B
-B
-B
+J
+z
+m
+Z
+z
+J
+J
+J
 "}

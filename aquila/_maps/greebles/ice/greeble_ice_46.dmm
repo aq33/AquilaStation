@@ -1,70 +1,70 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"d" = (
-/obj/structure/flora/ash/garden/frigid,
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"f" = (
-/obj/structure/flora/ausbushes,
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"r" = (
-/turf/template_noop,
-/area/template_noop)
-"t" = (
-/mob/living/basic/mining/lobstrosity,
-/turf/open/floor/plating/asteroid/snow/planet_ice,
-/area/template_noop)
-"y" = (
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"D" = (
-/turf/open/floor/plating/asteroid/snow/planet_ice,
-/area/template_noop)
-"I" = (
-/obj/structure/flora/tree/pine,
-/turf/open/floor/plating/asteroid/snow/planet_ice,
-/area/template_noop)
-"S" = (
+"c" = (
 /obj/structure/flora/grass/both,
 /turf/open/floor/plating/asteroid/snow/planet_ice,
 /area/template_noop)
-"U" = (
+"d" = (
+/mob/living/basic/mining/lobstrosity,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"h" = (
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"v" = (
 /obj/structure/flora/ausbushes/sparsegrass,
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
+"B" = (
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"C" = (
+/obj/structure/flora/ausbushes,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"D" = (
+/obj/structure/flora/ash/garden/frigid,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"U" = (
+/obj/structure/flora/tree/pine,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"Z" = (
+/turf/template_noop,
+/area/template_noop)
 
 (1,1,1) = {"
-r
-d
-U
-y
-r
+Z
+D
+v
+h
+Z
 "}
 (2,1,1) = {"
-D
-D
-y
-y
-r
+B
+B
+h
+h
+Z
 "}
 (3,1,1) = {"
+B
+U
+B
+C
 D
-I
-D
-f
-d
 "}
 (4,1,1) = {"
-S
-D
-t
-y
-U
+c
+B
+d
+h
+v
 "}
 (5,1,1) = {"
-r
-D
-D
-S
-r
+Z
+B
+B
+c
+Z
 "}

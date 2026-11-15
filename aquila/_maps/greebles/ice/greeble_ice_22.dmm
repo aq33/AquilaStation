@@ -1,205 +1,205 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"g" = (
-/obj/effect/gibspawner/human/bodypartless,
-/turf/open/floor/plating/asteroid/snow/planet_ice,
-/area/template_noop)
-"k" = (
-/obj/item/food/meat/slab{
-	pixel_x = -14;
-	 pixel_y = 7
-	},
-/turf/open/floor/plating/asteroid/snow/planet_ice,
-/area/template_noop)
-"m" = (
-/obj/structure/flora/grass/both,
-/turf/open/floor/plating/asteroid/snow/planet_ice,
-/area/template_noop)
-"p" = (
+"b" = (
 /obj/item/food/meat/slab{
 	pixel_x = -3;
 	 pixel_y = 6
 	},
 /turf/open/floor/plating/asteroid/snow/planet_ice,
 /area/template_noop)
-"q" = (
-/turf/template_noop,
+"d" = (
+/obj/structure/flora/grass/brown,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
 /area/template_noop)
-"r" = (
+"j" = (
 /obj/item/food/meat/slab{
 	pixel_x = -2;
 	 pixel_y = -9
 	},
 /turf/open/floor/plating/asteroid/snow/planet_ice,
 /area/template_noop)
-"u" = (
-/obj/item/food/meat/slab{
-	pixel_x = -12;
-	 pixel_y = -5
-	},
-/turf/open/floor/plating/asteroid/snow/planet_ice,
-/area/template_noop)
-"v" = (
-/obj/item/food/meat/slab{
-	pixel_x = 7;
-	 pixel_y = 9
-	},
-/turf/open/floor/plating/asteroid/snow/planet_ice,
-/area/template_noop)
-"y" = (
-/obj/item/food/meat/slab{
-	pixel_x = 6;
-	 pixel_y = 5
-	},
-/turf/open/floor/plating/asteroid/snow/planet_ice,
-/area/template_noop)
-"E" = (
+"k" = (
 /obj/item/food/meat/slab{
 	pixel_x = -4;
 	 pixel_y = 10
 	},
 /turf/open/floor/plating/asteroid/snow/planet_ice,
 /area/template_noop)
-"H" = (
+"m" = (
+/mob/living/basic/mining/wolf,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"s" = (
+/obj/structure/flora/grass/green,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"w" = (
+/turf/template_noop,
+/area/template_noop)
+"x" = (
+/obj/item/food/meat/slab{
+	pixel_x = -14;
+	 pixel_y = 7
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"B" = (
+/obj/effect/gibspawner/human/bodypartless,
 /turf/open/floor/plating/asteroid/snow/planet_ice,
 /area/template_noop)
 "J" = (
-/obj/structure/flora/grass/brown,
-/turf/open/floor/plating/asteroid/snow/planet_ice,
-/area/template_noop)
-"M" = (
 /obj/effect/gibspawner/human/bodypartless{
 	pixel_x = 3;
 	 pixel_y = 5
 	},
 /turf/open/floor/plating/asteroid/snow/planet_ice,
 /area/template_noop)
-"P" = (
-/obj/structure/flora/grass/green,
+"K" = (
+/mob/living/basic/mining/wolf/alpha,
 /turf/open/floor/plating/asteroid/snow/planet_ice,
 /area/template_noop)
-"Q" = (
-/mob/living/basic/mining/wolf,
-/turf/open/floor/plating/asteroid/snow/planet_ice,
-/area/template_noop)
-"S" = (
+"L" = (
 /obj/structure/flora/tree/pine{
 	pixel_x = -15;
 	 pixel_y = 1
 	},
 /turf/open/floor/plating/asteroid/snow/planet_ice,
 /area/template_noop)
-"Y" = (
-/mob/living/basic/mining/wolf/alpha,
+"N" = (
+/obj/item/food/meat/slab{
+	pixel_x = 6;
+	 pixel_y = 5
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"P" = (
+/obj/item/food/meat/slab{
+	pixel_x = 7;
+	 pixel_y = 9
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"S" = (
+/obj/structure/flora/grass/both,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"W" = (
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"X" = (
+/obj/item/food/meat/slab{
+	pixel_x = -12;
+	 pixel_y = -5
+	},
 /turf/open/floor/plating/asteroid/snow/planet_ice,
 /area/template_noop)
 
 (1,1,1) = {"
-q
-q
-q
-H
-H
-J
-H
-q
-q
+w
+w
+w
+W
+W
+d
+W
+w
+w
 "}
 (2,1,1) = {"
-q
-q
-H
-H
-P
-H
-H
-H
-q
+w
+w
+W
+W
+s
+W
+W
+W
+w
 "}
 (3,1,1) = {"
-H
-H
-H
-Q
-y
-H
-J
-H
-q
+W
+W
+W
+m
+N
+W
+d
+W
+w
 "}
 (4,1,1) = {"
-H
-J
-H
-r
-g
-v
-H
-H
-H
+W
+d
+W
+j
+B
+P
+W
+W
+W
 "}
 (5,1,1) = {"
-H
-q
-P
-Y
-S
-Q
-H
-H
-q
+W
+w
+s
+K
+L
+m
+W
+W
+w
 "}
 (6,1,1) = {"
-q
-H
-u
-M
-p
-H
-H
-q
-H
+w
+W
+X
+J
+b
+W
+W
+w
+W
 "}
 (7,1,1) = {"
-q
-q
-Q
-H
-H
-E
-P
-H
-q
+w
+w
+m
+W
+W
+k
+s
+W
+w
 "}
 (8,1,1) = {"
-q
-q
-H
-J
-k
-H
-m
-H
-q
+w
+w
+W
+d
+x
+W
+S
+W
+w
 "}
 (9,1,1) = {"
-q
-P
-H
-H
-H
-H
-H
-q
-q
+w
+s
+W
+W
+W
+W
+W
+w
+w
 "}
 (10,1,1) = {"
-q
-P
-q
-q
-H
-q
-q
-q
-q
+w
+s
+w
+w
+W
+w
+w
+w
+w
 "}

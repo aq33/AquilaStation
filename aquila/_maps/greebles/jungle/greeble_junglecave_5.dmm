@@ -1,61 +1,5 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"d" = (
-/turf/closed/mineral/random/planet_jungle,
-/area/template_noop)
-"i" = (
-/obj/structure/door_assembly/door_assembly_vault,
-/turf/open/floor/concrete,
-/area/template_noop)
-"n" = (
-/obj/item/stack/ore/iron,
-/mob/living/basic/mining/wolf,
-/obj/effect/decal/cleanable/blood/footprints{
-	dir = 4;
-	 color = "#4D0000"
-	},
-/turf/open/floor/concrete/slab_1,
-/area/template_noop)
-"o" = (
-/turf/template_noop,
-/area/template_noop)
-"q" = (
-/obj/effect/decal/cleanable/robot_debris,
-/obj/effect/decal/cleanable/blood/old,
-/obj/effect/decal/cleanable/shreds{
-	pixel_x = 9;
-	 pixel_y = 12
-	},
-/obj/effect/decal/remains/human,
-/turf/open/floor/concrete/slab_1,
-/area/template_noop)
-"t" = (
-/obj/item/stack/ore/iron{
-	amount = 10
-	},
-/obj/item/stack/cable_coil/cut,
-/obj/effect/decal/cleanable/oil,
-/turf/open/floor/concrete,
-/area/template_noop)
-"v" = (
-/obj/structure/sign/directions/evac{
-	dir = 1
-	},
-/turf/closed/wall/r_wall,
-/area/template_noop)
-"w" = (
-/obj/structure/sign/mining/survival,
-/turf/closed/wall/r_wall,
-/area/template_noop)
-"z" = (
-/turf/closed/wall/r_wall,
-/area/template_noop)
-"B" = (
-/obj/structure/fluff/empty_cryostasis_sleeper,
-/obj/effect/decal/remains/human,
-/obj/machinery/airalarm/directional/south,
-/turf/open/floor/concrete/slab_4,
-/area/template_noop)
-"E" = (
+"b" = (
 /mob/living/basic/mining/wolf,
 /obj/effect/decal/cleanable/blood/splatter{
 	color = "#4D0000"
@@ -63,12 +7,7 @@
 /obj/effect/decal/remains/human,
 /turf/open/floor/concrete,
 /area/template_noop)
-"F" = (
-/obj/effect/decal/cleanable/generic,
-/obj/item/reagent_containers/glass/waterbottle/large,
-/turf/open/floor/concrete/slab_1,
-/area/template_noop)
-"G" = (
+"c" = (
 /obj/effect/decal/remains/human,
 /obj/effect/decal/cleanable/blood/gibs/old,
 /obj/effect/decal/cleanable/shreds,
@@ -80,7 +19,40 @@
 /obj/item/kitchen/knife/combat/survival,
 /turf/open/floor/concrete/slab_1,
 /area/template_noop)
-"K" = (
+"d" = (
+/obj/structure/fluff/empty_cryostasis_sleeper,
+/obj/effect/decal/cleanable/blood/old,
+/obj/machinery/light/broken{
+	dir = 1
+	},
+/turf/open/floor/concrete/slab_4,
+/area/template_noop)
+"e" = (
+/obj/item/stack/ore/iron,
+/mob/living/basic/mining/wolf,
+/obj/effect/decal/cleanable/blood/footprints{
+	dir = 4;
+	 color = "#4D0000"
+	},
+/turf/open/floor/concrete/slab_1,
+/area/template_noop)
+"f" = (
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/generic,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"h" = (
+/obj/structure/sign/directions/evac{
+	dir = 1
+	},
+/turf/closed/wall/r_wall,
+/area/template_noop)
+"j" = (
 /obj/structure/railing{
 	dir = 4
 	},
@@ -89,28 +61,44 @@
 	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308"
 	},
 /area/template_noop)
-"N" = (
+"m" = (
+/turf/template_noop,
+/area/template_noop)
+"v" = (
 /obj/structure/fluff/empty_cryostasis_sleeper,
 /obj/machinery/light/broken{
 	dir = 1
 	},
 /turf/open/floor/concrete/slab_4,
 /area/template_noop)
-"O" = (
-/obj/structure/fluff/empty_cryostasis_sleeper,
-/obj/effect/decal/cleanable/blood/old,
-/obj/machinery/light/broken{
-	dir = 1
+"w" = (
+/obj/structure/railing{
+	dir = 4
 	},
-/turf/open/floor/concrete/slab_4,
+/obj/machinery/light/small/broken{
+	dir = 4
+	},
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	 planetary_atmos = 1
+	},
 /area/template_noop)
-"R" = (
-/obj/structure/fluff/empty_cryostasis_sleeper,
-/obj/effect/decal/remains/human,
-/obj/structure/closet/firecloset,
-/turf/open/floor/concrete/slab_4,
+"y" = (
+/obj/structure/door_assembly/door_assembly_vault,
+/turf/open/floor/concrete,
 /area/template_noop)
-"S" = (
+"A" = (
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/structure/railing{
+	dir = 8
+	},
+/turf/open/floor/plasteel/stairs{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308"
+	},
+/area/template_noop)
+"C" = (
 /obj/structure/table,
 /obj/item/reagent_containers/glass/waterbottle/large,
 /obj/effect/decal/cleanable/shreds,
@@ -125,117 +113,129 @@
 /obj/effect/spawner/lootdrop/glowstick,
 /turf/open/floor/concrete,
 /area/template_noop)
-"U" = (
-/obj/structure/railing{
-	dir = 8
-	},
+"E" = (
+/obj/structure/fluff/empty_cryostasis_sleeper,
+/obj/effect/decal/remains/human,
+/obj/structure/closet/firecloset,
+/turf/open/floor/concrete/slab_4,
+/area/template_noop)
+"F" = (
+/turf/closed/mineral/random/planet_jungle,
+/area/template_noop)
+"I" = (
+/obj/structure/fluff/empty_cryostasis_sleeper,
+/obj/effect/decal/remains/human,
+/obj/machinery/airalarm/directional/south,
+/turf/open/floor/concrete/slab_4,
+/area/template_noop)
+"P" = (
+/obj/structure/sign/mining/survival,
+/turf/closed/wall/r_wall,
+/area/template_noop)
+"T" = (
 /obj/effect/decal/cleanable/generic,
-/turf/open/floor/concrete/slab_1{
-	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
-	 planetary_atmos = 1
+/obj/item/reagent_containers/glass/waterbottle/large,
+/turf/open/floor/concrete/slab_1,
+/area/template_noop)
+"U" = (
+/obj/effect/decal/cleanable/robot_debris,
+/obj/effect/decal/cleanable/blood/old,
+/obj/effect/decal/cleanable/shreds{
+	pixel_x = 9;
+	 pixel_y = 12
 	},
+/obj/effect/decal/remains/human,
+/turf/open/floor/concrete/slab_1,
 /area/template_noop)
 "V" = (
-/obj/structure/railing{
-	dir = 4
-	},
-/obj/machinery/light/small/broken{
-	dir = 4
-	},
-/turf/open/floor/concrete/slab_1{
-	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
-	 planetary_atmos = 1
-	},
+/turf/closed/wall/r_wall,
 /area/template_noop)
-"Y" = (
-/obj/structure/railing{
-	dir = 8
+"Z" = (
+/obj/item/stack/ore/iron{
+	amount = 10
 	},
-/obj/structure/railing{
-	dir = 8
-	},
-/turf/open/floor/plasteel/stairs{
-	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308"
-	},
+/obj/item/stack/cable_coil/cut,
+/obj/effect/decal/cleanable/oil,
+/turf/open/floor/concrete,
 /area/template_noop)
 
 (1,1,1) = {"
-o
-d
-d
-d
-o
-d
-d
-o
+m
+F
+F
+F
+m
+F
+F
+m
 "}
 (2,1,1) = {"
-d
-d
-z
-z
-z
-z
-d
-d
+F
+F
+V
+V
+V
+V
+F
+F
 "}
 (3,1,1) = {"
-d
-z
-z
-N
-R
-z
+F
+V
+V
 v
-d
+E
+V
+h
+F
 "}
 (4,1,1) = {"
-o
-z
-E
-F
-q
-t
+m
+V
+b
+T
 U
-Y
+Z
+f
+A
 "}
 (5,1,1) = {"
-d
-z
-S
-G
-n
-i
+F
 V
-K
+C
+c
+e
+y
+w
+j
 "}
 (6,1,1) = {"
+F
+V
+V
 d
-z
-z
-O
-B
-z
-w
-d
+I
+V
+P
+F
 "}
 (7,1,1) = {"
-o
-d
-z
-z
-z
-z
-d
-d
+m
+F
+V
+V
+V
+V
+F
+F
 "}
 (8,1,1) = {"
-o
-d
-d
-o
-d
-d
-d
-o
+m
+F
+F
+m
+F
+F
+F
+m
 "}

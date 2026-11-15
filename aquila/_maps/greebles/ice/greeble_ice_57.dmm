@@ -1,140 +1,140 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"f" = (
-/obj/structure/flora/grass/both,
-/turf/open/floor/plating/asteroid/snow/planet_ice,
-/area/template_noop)
-"l" = (
-/mob/living/basic/mining/wolf/alpha,
-/turf/open/floor/plating/asteroid/snow/planet_ice,
-/area/template_noop)
-"m" = (
-/turf/template_noop,
-/area/template_noop)
-"o" = (
-/obj/structure/flora/ash/garden/frigid,
-/turf/open/floor/plating/asteroid/snow/planet_ice,
-/area/template_noop)
-"r" = (
-/mob/living/basic/snow_monkey,
-/turf/open/floor/plating/asteroid/snow/planet_ice,
-/area/template_noop)
-"z" = (
-/turf/open/floor/plating/asteroid/snow/planet_ice,
-/area/template_noop)
-"B" = (
+"b" = (
 /obj/structure/flora/grass/green,
 /turf/open/floor/plating/asteroid/snow/planet_ice,
 /area/template_noop)
-"N" = (
-/obj/structure/flora/tree/pine,
+"d" = (
+/turf/template_noop,
+/area/template_noop)
+"n" = (
+/obj/structure/flora/ash/garden/frigid,
 /turf/open/floor/plating/asteroid/snow/planet_ice,
 /area/template_noop)
-"Q" = (
+"u" = (
 /obj/structure/flora/grass/brown,
 /turf/open/floor/plating/asteroid/snow/planet_ice,
 /area/template_noop)
-"T" = (
+"v" = (
+/obj/structure/flora/tree/pine,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"C" = (
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"O" = (
+/mob/living/basic/snow_monkey,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"P" = (
 /mob/living/basic/mining/wolf,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"T" = (
+/mob/living/basic/mining/wolf/alpha,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"U" = (
+/obj/structure/flora/grass/both,
 /turf/open/floor/plating/asteroid/snow/planet_ice,
 /area/template_noop)
 
 (1,1,1) = {"
-z
-o
-z
-z
-Q
-m
-m
-m
+C
+n
+C
+C
+u
+d
+d
+d
 "}
 (2,1,1) = {"
-f
-Q
-z
-z
-z
-f
-m
-m
+U
+u
+C
+C
+C
+U
+d
+d
 "}
 (3,1,1) = {"
-m
-z
-N
-l
-Q
+d
+C
+v
 T
-z
-m
+u
+P
+C
+d
 "}
 (4,1,1) = {"
-m
-m
-Q
-z
-r
-z
-z
-B
+d
+d
+u
+C
+O
+C
+C
+b
 "}
 (5,1,1) = {"
-m
-m
-m
-o
-T
-z
-Q
-o
+d
+d
+d
+n
+P
+C
+u
+n
 "}
 (6,1,1) = {"
-m
-m
-m
-m
-B
-z
-z
-z
+d
+d
+d
+d
+b
+C
+C
+C
 "}
 (7,1,1) = {"
-m
-m
-m
-m
-z
-z
-f
-z
+d
+d
+d
+d
+C
+C
+U
+C
 "}
 (8,1,1) = {"
-m
-m
-m
-m
-m
-z
-z
-m
+d
+d
+d
+d
+d
+C
+C
+d
 "}
 (9,1,1) = {"
-m
-m
-m
-m
-m
-Q
-z
-m
+d
+d
+d
+d
+d
+u
+C
+d
 "}
 (10,1,1) = {"
-m
-m
-m
-m
-m
-z
-m
-m
+d
+d
+d
+d
+d
+C
+d
+d
 "}

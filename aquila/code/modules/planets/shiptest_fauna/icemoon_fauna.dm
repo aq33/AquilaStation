@@ -79,10 +79,11 @@
 /mob/living/basic/mining/wolf/random
 
 /mob/living/basic/mining/wolf/random/Initialize(mapload)
+	. = ..()
+	// Najpierw pełna inicjalizacja: qdel nie w pełni zainicjalizowanego moba sypał runtime w Destroy
 	if(prob(15))
 		new /mob/living/basic/mining/wolf/alpha(loc)
 		return INITIALIZE_HINT_QDEL
-	return ..()
 
 /datum/action/cooldown/mob_cooldown/planet_charge/wolf
 	name = "Skok"

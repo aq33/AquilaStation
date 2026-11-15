@@ -1,18 +1,15 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"g" = (
-/obj/effect/decal/cleanable/crayon{
-	icon_state = "t";
-	 pixel_y = 10;
-	 pixel_x = -9
-	},
-/obj/effect/decal/cleanable/crayon{
-	icon_state = "e";
-	 pixel_x = 4;
-	 pixel_y = 7
-	},
+"b" = (
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"f" = (
 /turf/open/floor/plating/asteroid/dirt/grass/jungle,
 /area/template_noop)
-"l" = (
+"h" = (
+/obj/structure/flora/tree/jungle,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"q" = (
 /obj/effect/decal/cleanable/crayon{
 	icon_state = "o";
 	 pixel_x = -8;
@@ -25,96 +22,7 @@
 	},
 /turf/open/floor/plating/asteroid/dirt/grass/jungle,
 /area/template_noop)
-"m" = (
-/obj/effect/decal/cleanable/crayon{
-	icon_state = "k";
-	 pixel_y = 6;
-	 pixel_x = 3
-	},
-/turf/open/floor/plating/asteroid/dirt/grass/jungle,
-/area/template_noop)
-"n" = (
-/obj/effect/anomaly/tvstatic/planetary,
-/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
-/area/template_noop)
-"o" = (
-/obj/effect/decal/cleanable/crayon{
-	icon_state = "i";
-	 pixel_x = -17;
-	 pixel_y = 5
-	},
-/obj/effect/decal/cleanable/crayon{
-	icon_state = "l";
-	 pixel_y = 2;
-	 pixel_x = -5
-	},
-/obj/effect/decal/cleanable/crayon{
-	icon_state = "l";
-	 pixel_y = 4;
-	 pixel_x = 9
-	},
-/turf/open/floor/plating/asteroid/dirt/grass/jungle,
-/area/template_noop)
-"q" = (
-/obj/effect/decal/cleanable/crayon{
-	icon_state = "l";
-	 pixel_y = 8;
-	 pixel_x = -14
-	},
-/obj/effect/decal/cleanable/crayon{
-	icon_state = "e";
-	 pixel_y = 7
-	},
-/obj/effect/decal/cleanable/crayon{
-	icon_state = "v";
-	 pixel_x = 15;
-	 pixel_y = 6
-	},
-/turf/open/floor/plating/asteroid/dirt/grass/jungle,
-/area/template_noop)
 "s" = (
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
-/area/template_noop)
-"t" = (
-/obj/effect/decal/cleanable/crayon{
-	icon_state = "y";
-	 pixel_y = 5;
-	 pixel_x = 6
-	},
-/turf/open/floor/plating/asteroid/dirt/grass/jungle,
-/area/template_noop)
-"u" = (
-/obj/effect/decal/cleanable/crayon{
-	icon_state = "peace";
-	 pixel_x = -9;
-	 pixel_y = 3
-	},
-/obj/effect/decal/cleanable/crayon{
-	icon_state = "u";
-	 pixel_x = 7;
-	 pixel_y = 3
-	},
-/turf/open/floor/plating/asteroid/dirt/grass/jungle,
-/area/template_noop)
-"x" = (
-/obj/effect/decal/cleanable/crayon{
-	icon_state = "r";
-	 pixel_x = -13;
-	 pixel_y = 5
-	},
-/turf/open/floor/plating/asteroid/dirt/grass/jungle,
-/area/template_noop)
-"A" = (
-/turf/open/floor/plating/asteroid/dirt/grass/jungle,
-/area/template_noop)
-"I" = (
-/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
-/area/template_noop)
-"W" = (
-/obj/structure/flora/tree/jungle,
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
-/area/template_noop)
-"Y" = (
 /obj/effect/decal/cleanable/crayon{
 	icon_state = "thinline";
 	 pixel_x = -6;
@@ -132,39 +40,131 @@
 	},
 /turf/open/floor/plating/asteroid/dirt/grass/jungle,
 /area/template_noop)
+"v" = (
+/obj/effect/decal/cleanable/crayon{
+	icon_state = "k";
+	 pixel_y = 6;
+	 pixel_x = 3
+	},
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/template_noop)
+"B" = (
+/obj/effect/decal/cleanable/crayon{
+	icon_state = "peace";
+	 pixel_x = -9;
+	 pixel_y = 3
+	},
+/obj/effect/decal/cleanable/crayon{
+	icon_state = "u";
+	 pixel_x = 7;
+	 pixel_y = 3
+	},
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/template_noop)
+"D" = (
+/obj/effect/decal/cleanable/crayon{
+	icon_state = "y";
+	 pixel_y = 5;
+	 pixel_x = 6
+	},
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/template_noop)
+"K" = (
+/obj/effect/anomaly/tvstatic/planetary,
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"M" = (
+/obj/effect/decal/cleanable/crayon{
+	icon_state = "i";
+	 pixel_x = -17;
+	 pixel_y = 5
+	},
+/obj/effect/decal/cleanable/crayon{
+	icon_state = "l";
+	 pixel_y = 2;
+	 pixel_x = -5
+	},
+/obj/effect/decal/cleanable/crayon{
+	icon_state = "l";
+	 pixel_y = 4;
+	 pixel_x = 9
+	},
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/template_noop)
+"N" = (
+/obj/effect/decal/cleanable/crayon{
+	icon_state = "l";
+	 pixel_y = 8;
+	 pixel_x = -14
+	},
+/obj/effect/decal/cleanable/crayon{
+	icon_state = "e";
+	 pixel_y = 7
+	},
+/obj/effect/decal/cleanable/crayon{
+	icon_state = "v";
+	 pixel_x = 15;
+	 pixel_y = 6
+	},
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/template_noop)
+"O" = (
+/obj/effect/decal/cleanable/crayon{
+	icon_state = "t";
+	 pixel_y = 10;
+	 pixel_x = -9
+	},
+/obj/effect/decal/cleanable/crayon{
+	icon_state = "e";
+	 pixel_x = 4;
+	 pixel_y = 7
+	},
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/template_noop)
+"S" = (
+/obj/effect/decal/cleanable/crayon{
+	icon_state = "r";
+	 pixel_x = -13;
+	 pixel_y = 5
+	},
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/template_noop)
+"W" = (
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
 
 (1,1,1) = {"
-s
-W
-s
-m
-A
+b
+h
+b
+v
+f
 "}
 (2,1,1) = {"
-s
-I
-I
-o
-g
+b
+W
+W
+M
+O
 "}
 (3,1,1) = {"
+h
+K
 W
-n
-I
-t
-q
+D
+N
 "}
 (4,1,1) = {"
+b
+b
+W
+B
 s
-s
-I
-u
-Y
 "}
 (5,1,1) = {"
-s
-W
-A
-x
-l
+b
+h
+f
+S
+q
 "}
