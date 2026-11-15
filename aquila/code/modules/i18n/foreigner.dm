@@ -4,7 +4,7 @@
 // tłumacz kieszonkowy, translator_item.dm, albo wbudowany u silikonów), a bez niego słyszy bełkot. Przez DeepL (translation_api.dm):
 // - obcokrajowiec z tłumaczem dostaje polską mowę po angielsku (czat i dymek nad głową),
 // - Polak z tłumaczem dostaje angielską mowę obcokrajowca po polsku (też przez radio i szept).
-// Każdy z załogi zaczyna z czipem w słuchawkach z ekwipunku pracy (aq_give_crew_translator).
+// Każde słuchawki mają czip od stworzenia (translator_chip.dm), więc rozumie każdy, kto je nosi na uszach.
 // Bez klucza API albo przy błędzie tekst przechodzi bez tłumaczenia (słuchacz z tłumaczem dostaje oryginał).
 // Języki antagonistów i ras (Nar'Siański, Ksenowspólny, mowa cieni itd., aq_auto_translated_language()) tłumaczą się same, bez tłumacza:
 // obcokrajowiec mówi w nich angielskim tekstem, który polscy kultyści dostają po polsku, a polską mowę w nich słyszy po angielsku.
@@ -54,11 +54,7 @@
 	aq_handle_foreigner(R, M)
 
 /datum/job/proc/aq_handle_foreigner(mob/living/H, mob/M)
-	if(!isliving(H))
-		return
-	if(!M?.client?.wants_english())
-		// Po całym after_spawn, jak u obcokrajowca niżej (słuchawki działowe ochrony)
-		addtimer(CALLBACK(H, TYPE_PROC_REF(/mob/living, aq_give_crew_translator)), 1)
+	if(!M?.client?.wants_english() || !isliving(H))
 		return
 	// Przy dołączeniu w trakcie rundy klient wchodzi do ciała przed after_spawn, więc obcokrajowcem może już być (aq_foreigner_login)
 	if(!H.mind?.aq_foreigner)
@@ -91,15 +87,16 @@
 	if(mind)
 		mind.aq_builtin_translator = TRUE
 	aq_translator_on(AQ_TRANSLATOR_BUILTIN)
-	to_chat(aq_spawn_reader(M), span_notice("Nie znasz polskiego, a załoga nie zna angielskiego. Twój wbudowany tłumacz przekłada mowę w obie strony."))
+	to_chat(aq_spawn_reader(M), span_notice("Nie znasz polskiego, a załoga nie zna angielskiego. Twój wbudowany tłumacz tłumaczy ci polską mowę, a załoga rozumie cię przez czipy w swoich słuchawkach."))
 
 /mob/living/carbon/aq_give_translator(mob/M)
-	// Czip w słuchawkach z ekwipunku pracy (translator_chip.dm); tłumacz kieszonkowy tylko dla tych bez słuchawek
+	// Czip w słuchawkach z ekwipunku pracy (słuchawki mają go od stworzenia, translator_chip.dm); tłumacz kieszonkowy tylko dla tych bez słuchawek
 	var/obj/item/radio/headset/headset = get_item_by_slot(ITEM_SLOT_EARS)
-	if(istype(headset) && !headset.aq_translator_chip)
-		headset.aq_translator_chip = new /obj/item/aquila_translator/chip(headset)
+	if(istype(headset))
+		if(!headset.aq_translator_chip)
+			headset.aq_translator_chip = new /obj/item/aquila_translator/chip(headset)
 		headset.aq_update_translator_wearer()
-		to_chat(aq_spawn_reader(M), span_notice("Nie znasz polskiego, a załoga nie zna angielskiego. Czip tłumacza w twoich słuchawkach przekłada mowę w obie strony, dopóki masz je na uszach."))
+		to_chat(aq_spawn_reader(M), span_notice("Nie znasz polskiego, a załoga nie zna angielskiego. Czip tłumacza w twoich słuchawkach tłumaczy ci polską mowę, dopóki masz je na uszach, a załoga rozumie cię przez własne czipy."))
 		return
 	var/obj/item/aquila_translator/translator = new(get_turf(src))
 	var/where = equip_in_one_of_slots(translator, list("w lewej kieszeni" = ITEM_SLOT_LPOCKET, "w prawej kieszeni" = ITEM_SLOT_RPOCKET), qdel_on_fail = FALSE)
@@ -109,24 +106,27 @@
 		where = equip_in_one_of_slots(translator, list("w plecaku" = ITEM_SLOT_BACKPACK), qdel_on_fail = FALSE)
 	if(!where)
 		where = "pod nogami"
-	to_chat(aq_spawn_reader(M), span_notice("Nie znasz polskiego, a załoga nie zna angielskiego. Tłumacz kieszonkowy ([where]) przekłada mowę w obie strony, dopóki masz go w ręce, w kieszeni albo na pasku."))
+	to_chat(aq_spawn_reader(M), span_notice("Nie znasz polskiego, a załoga nie zna angielskiego. Tłumacz kieszonkowy ([where]) tłumaczy ci polską mowę, dopóki masz go w ręce, w kieszeni albo na pasku, a załoga rozumie cię przez własne czipy."))
 
-/// Polak z pracy: czip w słuchawkach, żeby rozumiał obcokrajowców. Bez słuchawek nic (czipy zapasowe ma HoP).
-/mob/living/proc/aq_give_crew_translator()
-	return
-
-/mob/living/carbon/aq_give_crew_translator()
-	if(QDELETED(src) || mind?.aq_foreigner)
-		return
-	var/obj/item/radio/headset/headset = get_item_by_slot(ITEM_SLOT_EARS)
-	if(istype(headset) && !headset.aq_translator_chip)
-		headset.aq_translator_chip = new /obj/item/aquila_translator/chip(headset)
-		headset.aq_update_translator_wearer()
-
-// Silikony mają tłumacza wbudowanego w korpus (bez słuchawek), więc rozumieją obie strony
+// Silikony mają tłumacza wbudowanego w korpus (bez słuchawek), więc rozumieją obie strony. Własne źródło, bo wbudowany tłumacz
+// obcokrajowca (AQ_TRANSLATOR_BUILTIN) schodzi z ciała razem z jego umysłem.
 /mob/living/silicon/Initialize(mapload)
 	. = ..()
-	aq_translator_on(AQ_TRANSLATOR_BUILTIN)
+	aq_translator_on(AQ_TRANSLATOR_SILICON)
+
+// SI słyszy przez holopad bez Hear(), więc angielską mowę tłumaczy osobno (bez podmiany na żywo: linijka czeka na tłumaczenie)
+/mob/living/silicon/ai/relay_speech(message, atom/movable/speaker, datum/language/message_language, raw_message, radio_freq, list/spans, list/message_mods = list())
+	if(!client || message_mods?[MODE_AQ_TRANSLATED] || !aq_hears_via_translator(message_language))
+		return ..()
+	var/list/mods = message_mods ? message_mods.Copy() : list()
+	mods[MODE_AQ_TRANSLATED] = TRUE
+	var/list/texts = list(html_decode(raw_message))
+	SStranslation.translate(texts, aq_heard_source_lang(), aq_heard_target_lang(), CALLBACK(src, PROC_REF(aq_relay_translated), message, speaker, message_language, radio_freq, spans?.Copy(), mods, texts))
+
+/mob/living/silicon/ai/proc/aq_relay_translated(message, atom/movable/speaker, datum/language/message_language, radio_freq, list/spans, list/message_mods, list/originals, list/translations)
+	if(QDELETED(src) || QDELETED(speaker))
+		return
+	relay_speech(message, speaker, aq_translation_shown_language(message_language), sanitize((translations || originals)[1]), radio_freq, spans, message_mods)
 
 /// Kto przeczyta komunikat ze spawnu: ciało, jeśli ma już klienta, inaczej gracz w lobby
 /mob/living/proc/aq_spawn_reader(mob/M)
@@ -312,8 +312,24 @@
 		return /datum/language/common
 	return message_language
 
+// Szept: dalsi słuchacze dostają treść z gwiazdkami (stars), a tłumacz potrzebuje całej, więc idzie ona w message_mods
+/mob/living/send_speech(message, message_range, obj/source, bubble_type, list/spans, datum/language/message_language, list/message_mods)
+	if(message_mods?[WHISPER_MODE])
+		message_mods[MODE_AQ_SPOKEN] = message
+	return ..()
+
+/// Tekst tłumaczenia dla słuchacza: z gwiazdkami, jeśli oryginał przyszedł z gwiazdkami (dalszy słuchacz szeptu), i po sanitize
+/proc/aq_translation_heard_text(text, list/message_mods)
+	return sanitize(message_mods?[MODE_AQ_STARRED] ? stars(text) : text)
+
 /// Usłyszana mowa idzie do tłumacza, a wynik do aq_hear_translated()
 /mob/living/proc/aq_translate_heard(message, atom/movable/speaker, datum/language/message_language, raw_message, radio_freq, list/spans, list/message_mods)
+	message_mods = message_mods ? message_mods.Copy() : list()
+	// Z gwiazdkami DeepL zwróciłby bełkot: tłumaczy całe zdanie, a gwiazdki dostaje tłumaczenie
+	var/spoken = message_mods[MODE_AQ_SPOKEN]
+	if(spoken && spoken != raw_message)
+		message_mods[MODE_AQ_STARRED] = TRUE
+		raw_message = spoken
 	var/list/texts = list(html_decode(raw_message))
 	var/emote = message_mods?[MODE_CUSTOM_SAY_EMOTE]
 	if(emote)
@@ -321,7 +337,7 @@
 	// Bełkot od razu, tłumaczenie potem w tym samym miejscu (live_translation.dm)
 	if(aq_hear_live(message, speaker, message_language, raw_message, radio_freq, spans, message_mods, texts))
 		return
-	SStranslation.translate(texts, aq_heard_source_lang(), aq_heard_target_lang(), CALLBACK(src, PROC_REF(aq_hear_translated), message, speaker, message_language, radio_freq, spans?.Copy(), message_mods ? message_mods.Copy() : list(), texts))
+	SStranslation.translate(texts, aq_heard_source_lang(), aq_heard_target_lang(), CALLBACK(src, PROC_REF(aq_hear_translated), message, speaker, message_language, radio_freq, spans?.Copy(), message_mods, texts))
 
 /// Usłyszana mowa po tłumaczeniu: czat (przez zwykłe Hear) i dymek nad głową. Obcokrajowiec dostaje tłumaczenie w Angielskim,
 /// Polak we Wspólnym, a język antagonisty słuchacz zna, więc mowa zostaje w nim (ikona, czcionka).
@@ -329,7 +345,7 @@
 	if(QDELETED(src) || !speaker)
 		return
 	var/list/texts = translations || originals
-	var/heard = sanitize(texts[1])
+	var/heard = aq_translation_heard_text(texts[1], message_mods)
 	if(length(texts) > 1)
 		message_mods[MODE_CUSTOM_SAY_EMOTE] = sanitize(texts[2])
 	message_mods[MODE_AQ_TRANSLATED] = TRUE

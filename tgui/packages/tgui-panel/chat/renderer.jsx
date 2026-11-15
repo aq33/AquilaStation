@@ -435,7 +435,9 @@ class ChatRenderer {
     for (let payload of batch) {
       // AQUILA EDIT START - tłumaczenie na żywo podmienia istniejącą linijkę zamiast dodawać nową
       if (payload?.type === MESSAGE_TYPE_AQ_TRANSLATION) {
-        applyAqTranslation(this.messages, payload);
+        applyAqTranslation(this.messages, payload, (html) =>
+          this.highContrast ? formatHighContrast(html) : html,
+        );
         continue;
       }
       // AQUILA EDIT END

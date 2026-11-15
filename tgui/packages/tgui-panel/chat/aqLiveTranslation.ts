@@ -57,7 +57,7 @@ const rewriteHtml = (html: string, payload: TranslationPayload) => {
 };
 
 /** Bełkot przechodzi w tłumaczenie od lewej, z kilkoma migającymi literami na granicy */
-const morph = (element: Element, html: string) => {
+const morph = (element: Element, html: string, shown: string) => {
   const source = element.textContent || '';
   const target = htmlToText(html);
   const frames = Math.max(1, Math.round(MORPH_DURATION / MORPH_FRAME));
@@ -66,7 +66,7 @@ const morph = (element: Element, html: string) => {
     frame++;
     if (frame >= frames || !element.isConnected) {
       clearInterval(timer);
-      element.innerHTML = html;
+      element.innerHTML = shown;
       return;
     }
     const reveal = Math.floor((target.length * frame) / frames);
@@ -80,9 +80,14 @@ const morph = (element: Element, html: string) => {
 };
 
 /** Szuka linijki od końca (tłumaczenie przychodzi zaraz po niej) i podmienia treść */
+/**
+ * format: to samo, co renderer robi z HTML-em nowej linijki (wysoki kontrast),
+ * żeby podmieniona treść wyglądała jak reszta linijki
+ */
 export const applyAqTranslation = (
   messages: ChatMessage[],
   payload: TranslationPayload,
+  format: (html: string) => string = (html) => html,
 ) => {
   if (!payload?.id) {
     return;
@@ -102,7 +107,7 @@ export const applyAqTranslation = (
     if (element) {
       element.classList.remove(PENDING_CLASS);
       if (payload.html) {
-        morph(element, payload.html);
+        morph(element, payload.html, format(payload.html));
       }
     }
     return;

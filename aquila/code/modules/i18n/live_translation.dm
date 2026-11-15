@@ -120,7 +120,7 @@ GLOBAL_VAR_INIT(aq_live_translation_prefix, "[world.timeofday]-[rand(1000, 9999)
 /mob/living/proc/aq_hear_live_translated(id, wrapped, datum/weakref/bubble, message, atom/movable/speaker, datum/language/shown_language, radio_freq, list/spans, list/message_mods, list/originals, list/translations)
 	if(QDELETED(src))
 		return
-	var/heard = sanitize((translations || originals)[1])
+	var/heard = aq_translation_heard_text((translations || originals)[1], message_mods)
 	if(aq_remove_chat_bubble(bubble) && !QDELETED(speaker))
 		aq_translation_bubble(speaker, shown_language, heard, spans, message_mods)
 	if(wrapped)
