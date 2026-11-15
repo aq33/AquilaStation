@@ -44,11 +44,11 @@
 	ship.last_radar_pulse = old_pulse
 	ship.radar_pulse_width = old_width
 
-	// Zdjęcie maski: koniec ukrycia i stygnięcie
+	// Zdjęcie maski: koniec ukrycia, bez stygnięcia (jak tarcza)
 	gen.end_cloak("test")
 	TEST_ASSERT(!ship.is_cloaked(), "The ship stayed cloaked after the cloak ended")
-	TEST_ASSERT(gen.cloak_ready_at > world.time, "The shield generator didn't start cooling down after the cloak")
-	TEST_ASSERT(!gen.can_cloak(), "The cloak can be restarted while the generator cools down")
+	if(gen.powered() && !(gen.machine_stat & BROKEN))
+		TEST_ASSERT(gen.can_cloak(), "The cloak can't be restarted right after it ended")
 
 	// Regresja: tarcza podniesiona przed maską wraca po jej zdjęciu
 	gen.cloaked = TRUE

@@ -3,12 +3,10 @@
 // (trafienie już ma rozbłysk: /obj/effect/temp_visual/overmap_shield_hit).
 // Maskowanie: tryb generatora tarcz włączany z jego konsoli. Tarcza nie pochłania wtedy trafień, generator bierze
 // SHIELD_CLOAK_POWER przez podział mocy (system Tarcza), a sygnatura statku (rozmiar i ciepło) oraz zasięg wrogiego
-// radaru wobec niego spadają do SHIELD_CLOAK_SIGNATURE. Maska trwa najwyżej SHIELD_CLOAK_DURATION, potem generator
-// stygnie SHIELD_CLOAK_COOLDOWN. Zdejmuje ją strzał, skok, uszkodzenie generatora albo brak prądu.
+// radaru wobec niego spadają do SHIELD_CLOAK_SIGNATURE. Jak tarcza, maska nie ma limitu czasu ani stygnięcia: trwa,
+// dopóki jest prąd. Zdejmuje ją strzał, skok, uszkodzenie generatora albo brak prądu.
 
 #define SHIELD_CLOAK_POWER 6e6
-#define SHIELD_CLOAK_DURATION (60 SECONDS)
-#define SHIELD_CLOAK_COOLDOWN (120 SECONDS)
 #define SHIELD_CLOAK_SIGNATURE 0.2
 /// Przezroczystość statku na overmapie w masce (radar.dm: 51-100 = "ledwo widoczny")
 #define SHIELD_CLOAK_ALPHA 90
@@ -17,10 +15,6 @@
 /obj/machinery/shield_generator
 	/// Czy generator utrzymuje maskowanie zamiast tarczy
 	var/cloaked = FALSE
-	/// Kiedy maska sama się skończy
-	var/cloak_until = 0
-	/// Od kiedy można znów włączyć maskę
-	var/cloak_ready_at = 0
 	/// Poziom, na którym włączono maskę (skok na inny poziom ją zdejmuje)
 	var/cloak_z = 0
 	/// Ostatnia jasność bańki, żeby nie odświeżać filtra bez potrzeby
@@ -59,7 +53,7 @@
 		. *= target.get_cloak_lidar_mult()
 
 /obj/machinery/shield_generator/proc/can_cloak()
-	if(cloaked || world.time < cloak_ready_at)
+	if(cloaked)
 		return FALSE
 	if(!powered() || (machine_stat & BROKEN))
 		return FALSE
@@ -71,7 +65,6 @@
 		return FALSE
 	var/obj/structure/overmap/ship = get_overmap()
 	cloaked = TRUE
-	cloak_until = world.time + SHIELD_CLOAK_DURATION
 	cloak_z = ship.z
 	cloak_restore_active = active
 	cloak_fire_mark = ship.aq_weapon_shots
@@ -87,7 +80,6 @@
 	if(!cloaked)
 		return
 	cloaked = FALSE
-	cloak_ready_at = world.time + SHIELD_CLOAK_COOLDOWN
 	// Tarcza wraca do stanu sprzed maski (zniszczony generator już jej nie podniesie)
 	if(!QDELETED(src) && !(machine_stat & BROKEN))
 		active = cloak_restore_active
@@ -95,7 +87,7 @@
 	var/obj/structure/overmap/ship = get_overmap()
 	if(istype(ship))
 		animate(ship, 1.5 SECONDS, alpha = 255)
-		ship.relay(null, "<span class='warning'>Maskowanie zdjęte[reason ? ": [reason]" : ""]. Generator tarczy stygnie[active ? ", tarcza wraca" : ""].</span>", FALSE)
+		ship.relay(null, "<span class='warning'>Maskowanie zdjęte[reason ? ": [reason]" : ""][active ? ". Tarcza wraca" : ""].</span>", FALSE)
 	update_bubble(TRUE)
 
 /// Zniszczony albo rozebrany generator zdejmuje maskę i przestaje być tarczą okrętu
@@ -125,9 +117,6 @@
 	var/obj/structure/overmap/ship = get_overmap()
 	if(!istype(ship) || ship.z != cloak_z)
 		end_cloak("skok")
-		return
-	if(world.time >= cloak_until)
-		end_cloak("koniec czasu")
 		return
 	// Porównanie z chwilą włączenia, a nie okno czasu: strzał między dwoma tickami też zdejmuje maskę
 	if(ship.aq_weapon_shots > cloak_fire_mark)
@@ -175,8 +164,6 @@
 /obj/machinery/shield_generator/ui_data(mob/user)
 	. = ..()
 	.["cloaked"] = cloaked
-	.["cloak_left"] = cloaked ? max(0, round((cloak_until - world.time) / 10)) : 0
-	.["cloak_cooldown"] = max(0, round((cloak_ready_at - world.time) / 10))
 	.["cloak_power"] = SHIELD_CLOAK_POWER / 1e6
 	.["can_cloak"] = can_cloak()
 
@@ -195,8 +182,6 @@
 	return TRUE
 
 #undef SHIELD_CLOAK_POWER
-#undef SHIELD_CLOAK_DURATION
-#undef SHIELD_CLOAK_COOLDOWN
 #undef SHIELD_CLOAK_SIGNATURE
 #undef SHIELD_CLOAK_ALPHA
 #undef SHIELD_BUBBLE_FILTER
