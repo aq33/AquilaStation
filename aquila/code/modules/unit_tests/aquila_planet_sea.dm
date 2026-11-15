@@ -64,23 +64,17 @@
 	)
 	TEST_ASSERT_EQUAL(length(sets[/datum/planet_type/beach]), 5, "Wrong number of beach ruins registered")
 	TEST_ASSERT_EQUAL(length(sets[/datum/planet_type/water]), 3, "Wrong number of water planet ruins registered")
+	// Każda ruina mieści się jako ruina główna na dużej powierzchni i wczytuje się we własnej pustej rezerwacji
+	// (ruiny wczytywane jedna na drugą dublowały kable i rury)
+	var/obj/structure/overmap/planet/fit_planet = new(run_loc_floor_top_right, /datum/planet_type/beach)
 	for(var/planet_type in sets)
 		var/list/templates = sets[planet_type]
-		var/obj/structure/overmap/planet/planet = new(run_loc_floor_top_right, planet_type)
-		// Największa możliwa powierzchnia: ruiny główne muszą się na niej zmieścić
-		planet.planet_type.surface_size = PLANET_SURFACE_SIZE_LARGE
-		TEST_ASSERT(planet.surface.generate(), "[planet_type] surface didn't generate")
-		var/datum/planet_surface/surface = planet.surface
-		var/turf/bl = surface.bottom_left()
 		for(var/name in templates)
 			var/datum/map_template/ruin/ruin = templates[name]
-			TEST_ASSERT(surface.main_ruin_fits(ruin, PLANET_SURFACE_SIZE_LARGE), "[name] ([ruin.width]x[ruin.height]) doesn't fit as a main ruin even on a large surface")
-			var/turf/corner = locate(bl.x + PLANET_EDGE_WIDTH + 6, bl.y + surface.size - PLANET_EDGE_WIDTH - 6 - ruin.height, bl.z)
-			TEST_ASSERT(surface.load_ruin(ruin, corner, FALSE), "[name] didn't load")
-			for(var/turf/T as anything in ruin.get_affected_turfs(corner, FALSE))
-				TEST_ASSERT(surface.contains(T), "[name] spills outside the planet surface")
-		surface.unload()
-		qdel(planet, TRUE)
+			TEST_ASSERT(ruin.width && ruin.height, "[name] map file didn't preload ([ruin.mappath])")
+			TEST_ASSERT(fit_planet.surface.main_ruin_fits(ruin, PLANET_SURFACE_SIZE_LARGE), "[name] ([ruin.width]x[ruin.height]) doesn't fit as a main ruin even on a large surface")
+			TEST_ASSERT(planet_test_load_ruin(ruin), "[name] didn't load")
+	qdel(fit_planet, TRUE)
 
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL

@@ -253,8 +253,11 @@
 	if(!reservation)
 		return FALSE
 	var/turf/corner = locate(reservation.bottom_left_coords[1] + 1, reservation.bottom_left_coords[2] + 1, reservation.bottom_left_coords[3])
+	// Atmosfera wstrzymana jak przy generowaniu planety: podmuch z rozszczelnionych wraków nie rusza rzeczy przed Initialize
+	lazy_template_load_started()
 	. = ruin.load(corner, centered = FALSE)
 	qdel(reservation)
+	lazy_template_load_finished()
 
 /// AQUILA - planety: każda ruina Shiptesta z puli ruin głównych planety wulkanicznej mieści się na planecie i się wczytuje
 /datum/unit_test/planet_lava_ruins

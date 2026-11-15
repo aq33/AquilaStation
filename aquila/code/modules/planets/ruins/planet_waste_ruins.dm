@@ -69,7 +69,7 @@
 	suffix = "planet_battlefield_icwbase.dmm"
 
 /datum/map_template/ruin/planet_battlefield/smugglerbunker
-	name = "Bunkier Maruderów"
+	name = "Bunkier Maruderów (pole bitwy)"
 	id = "planet_battlefield_smugglerbunker"
 	description = "Stary bunkier maruderów z Wojny Międzykorporacyjnej, w którym zagnieździli się przemytnicy."
 	suffix = "planet_battlefield_smugglerbunker.dmm"

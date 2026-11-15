@@ -55,19 +55,14 @@
 	var/list/battlefield = get_planet_battlefield_ruin_templates()
 	TEST_ASSERT_EQUAL(length(waste), 6, "Wrong number of waste planet ruins")
 	TEST_ASSERT_EQUAL(length(battlefield), 3, "Wrong number of battlefield ruins")
-	var/obj/structure/overmap/planet/planet = new(run_loc_floor_top_right, /datum/planet_type/waste)
-	TEST_ASSERT(planet.surface.generate(), "The surface didn't generate")
-	var/turf/bl = planet.surface.bottom_left()
-	var/side = planet.surface.size
+	// Każda ruina wczytuje się we własnej pustej rezerwacji (jedna na drugiej dublowały kable i rury)
+	var/obj/structure/overmap/planet/fit_planet = new(run_loc_floor_top_right, /datum/planet_type/waste)
 	for(var/name in waste + battlefield)
 		var/datum/map_template/ruin/ruin = waste[name] || battlefield[name]
-		TEST_ASSERT(planet.surface.main_ruin_fits(ruin, PLANET_SURFACE_SIZE_LARGE), "[name] ([ruin.width]x[ruin.height]) doesn't fit even the large surface")
-		if(!planet.surface.main_ruin_fits(ruin, side))
-			continue // Planeta wylosowała mniejszy kwadrat, a ta ruina wymaga dużego: sprawdza ją main_ruin_fits wyżej
-		var/turf/corner = locate(bl.x + PLANET_EDGE_WIDTH + 6, bl.y + side - PLANET_EDGE_WIDTH - 6 - ruin.height, bl.z)
-		TEST_ASSERT(planet.surface.load_ruin(ruin, corner, FALSE), "[name] didn't load")
-	planet.surface.unload()
-	qdel(planet, TRUE)
+		TEST_ASSERT(ruin.width && ruin.height, "[name] map file didn't preload ([ruin.mappath])")
+		TEST_ASSERT(fit_planet.surface.main_ruin_fits(ruin, PLANET_SURFACE_SIZE_LARGE), "[name] ([ruin.width]x[ruin.height]) doesn't fit even the large surface")
+		TEST_ASSERT(planet_test_load_ruin(ruin), "[name] didn't load")
+	qdel(fit_planet, TRUE)
 
 /// AQUILA - planety: zawartość biomów śmietniska i pola bitwy (turfy, śmieci, beczki, automaty) powstaje bez runtime'ów
 /datum/unit_test/planet_waste_content

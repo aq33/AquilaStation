@@ -101,28 +101,47 @@
 		T.change_area(old_area, surface_area)
 		T.ChangeTurf(planet_type.edge_turf_type, planet_type.edge_turf_type, CHANGETURF_IGNORE_AIR | CHANGETURF_DEFER_CHANGE)
 		CHECK_TICK
+	// Czasy etapów do logu (generowanie potrafiło trwać minutami: widać, który etap)
+	var/list/phase_times = list()
+	var/phase_start = REALTIMEOFDAY
 	var/datum/planet_generator/generator = new planet_type.generator_type(inner[1], size - 2 * PLANET_EDGE_WIDTH, surface_area, cave_area)
 	generator.generate_turfs(inner)
 	for(var/turf/T as anything in all_turfs)
 		T.AfterChange(CHANGETURF_IGNORE_AIR)
 		CHECK_TICK
+	phase_times["teren"] = REALTIMEOFDAY - phase_start
+	phase_start = REALTIMEOFDAY
 	// Jak w Shiptest: najpierw główna ruina przy górnej krawędzi, potem lądowiska z dala od niej, potem małe ruiny
 	place_main_ruin()
+	phase_times["ruina główna"] = REALTIMEOFDAY - phase_start
+	phase_start = REALTIMEOFDAY
 	make_landing_zones(inner)
+	phase_times["lądowiska"] = REALTIMEOFDAY - phase_start
+	phase_start = REALTIMEOFDAY
 	place_ruins(inner)
+	phase_times["małe ruiny"] = REALTIMEOFDAY - phase_start
+	phase_start = REALTIMEOFDAY
 	generator.populate_turfs(inner, landing_zone_turfs)
 	qdel(generator)
+	phase_times["populacja"] = REALTIMEOFDAY - phase_start
+	phase_start = REALTIMEOFDAY
 	// Greeble z biomów po ruinach i populacji (nie stają na ruinach ani lądowiskach)
 	load_greebles()
+	phase_times["greeble"] = REALTIMEOFDAY - phase_start
+	phase_start = REALTIMEOFDAY
 	for(var/turf/T as anything in all_turfs)
 		T.air_update_turf()
 		CHECK_TICK
 	lazy_template_load_finished()
+	phase_times["powietrze"] = REALTIMEOFDAY - phase_start
 	if(QDELETED(src))
 		return FALSE
 	state = PLANET_SURFACE_READY
 	schedule_weather()
-	log_mapping("Planet [planet] surface generated in [(REALTIMEOFDAY - start_time) / 10] s at [AREACOORD(bl)]")
+	var/list/phase_text = list()
+	for(var/phase in phase_times)
+		phase_text += "[phase] [phase_times[phase] / 10]"
+	log_mapping("Planet [planet] surface generated in [(REALTIMEOFDAY - start_time) / 10] s at [AREACOORD(bl)] ([jointext(phase_text, ", ")] s)")
 	SEND_SIGNAL(planet, COMSIG_PLANET_SURFACE_READY, TRUE)
 	return TRUE
 

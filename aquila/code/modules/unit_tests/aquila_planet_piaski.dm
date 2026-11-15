@@ -59,36 +59,33 @@
 		/datum/map_template/ruin/planet_desert = 4,
 		/datum/map_template/ruin/planet_shrouded = 3,
 	)
-	var/obj/structure/overmap/planet/planet = new(run_loc_floor_top_right, /datum/planet_type/sand)
-	// Największa powierzchnia, na której staje każda ruina główna
-	planet.planet_type.surface_size = PLANET_SURFACE_SIZE_LARGE
-	var/datum/planet_surface/surface = planet.surface
-	TEST_ASSERT(surface.generate(), "The large surface didn't generate")
-	var/side = surface.size
-	TEST_ASSERT_EQUAL(side, PLANET_SURFACE_SIZE_LARGE, "The surface didn't grow to the large size")
-	var/turf/bl = surface.bottom_left()
+	// Każda ruina mieści się na dużej powierzchni i wczytuje się we własnej pustej rezerwacji (wczytywane jedna na drugą
+	// dublowały kable, a miny i kwas z jednej ruiny niszczyły następną przed jej Initialize)
+	var/obj/structure/overmap/planet/fit_planet = new(run_loc_floor_top_right, /datum/planet_type/sand)
 	for(var/ruin_root in ruin_roots)
 		var/list/templates = get_planet_ruin_templates(ruin_root)
 		TEST_ASSERT_EQUAL(length(templates), ruin_roots[ruin_root], "Wrong number of [ruin_root] ruins registered")
 		for(var/name in templates)
 			var/datum/map_template/ruin/ruin = templates[name]
-			TEST_ASSERT(surface.main_ruin_fits(ruin, PLANET_SURFACE_SIZE_LARGE), "[name] ([ruin.width]x[ruin.height]) doesn't fit even on the large surface")
-			var/turf/corner = locate(bl.x + PLANET_EDGE_WIDTH + 6, bl.y + side - PLANET_EDGE_WIDTH - 6 - ruin.height, bl.z)
-			TEST_ASSERT(surface.load_ruin(ruin, corner, FALSE), "[name] didn't load")
-	// Greeble: każda mapa (wkompilowana w .rsc) wczytuje się na środku powierzchni
-	var/turf/center = surface.center()
+			TEST_ASSERT(ruin.width && ruin.height, "[name] map file didn't preload ([ruin.mappath])")
+			TEST_ASSERT(fit_planet.surface.main_ruin_fits(ruin, PLANET_SURFACE_SIZE_LARGE), "[name] ([ruin.width]x[ruin.height]) doesn't fit even on the large surface")
+			TEST_ASSERT(planet_test_load_ruin(ruin), "[name] didn't load")
+	qdel(fit_planet, TRUE)
+	// Greeble: każda mapa (wkompilowana w .rsc) parsuje się i wczytuje we własnej rezerwacji
 	var/list/greeble_maps = list()
 	for(var/spawner_type in list(/obj/effect/greeble_spawner/whitesands_oasis, /obj/effect/greeble_spawner/whitesands_sulfurpool))
-		var/obj/effect/greeble_spawner/spawner = new spawner_type(center)
+		var/obj/effect/greeble_spawner/spawner = new spawner_type(run_loc_floor_bottom_left)
 		greeble_maps |= spawner.greeble_maps
 		qdel(spawner)
 	TEST_ASSERT_EQUAL(length(greeble_maps), 20, "Wrong number of whitesands greeble maps")
 	for(var/greeble_map in greeble_maps)
 		var/datum/map_template/template = new(greeble_map, "test greeble", TRUE)
 		TEST_ASSERT(template.width, "Greeble map [greeble_map] didn't parse")
-		TEST_ASSERT(template.load(center, centered = TRUE), "Greeble map [greeble_map] didn't load")
-	surface.unload()
-	qdel(planet, TRUE)
+		var/datum/turf_reservation/reservation = SSmapping.RequestBlockReservation(template.width + 2, template.height + 2)
+		TEST_ASSERT(reservation, "No room for greeble map [greeble_map]")
+		var/turf/corner = locate(reservation.bottom_left_coords[1] + 1, reservation.bottom_left_coords[2] + 1, reservation.bottom_left_coords[3])
+		TEST_ASSERT(template.load(corner), "Greeble map [greeble_map] didn't load")
+		qdel(reservation)
 
 /// AQUILA - planety mgliste zagłuszają radio na powierzchni, a kwaśne jeziorko białych piasków parzy brodzącego
 /datum/unit_test/planet_piaski_hazards

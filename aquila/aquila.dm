@@ -1014,6 +1014,7 @@
 #include "code\modules\planets\planet_landing.dm"
 #include "code\modules\planets\planet_lifecycle.dm"
 #include "code\modules\planets\planet_spawning.dm"
+#include "code\modules\planets\planet_cleanup_fixes.dm"
 #include "code\modules\planets\shiptest_flora\beach.dm"
 #include "code\modules\planets\biomes\beach.dm"
 #include "code\modules\planets\biomes\water.dm"
