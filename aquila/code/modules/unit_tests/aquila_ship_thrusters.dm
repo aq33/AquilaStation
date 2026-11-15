@@ -140,6 +140,15 @@
 	thruster.process(2)
 	TEST_ASSERT(!thruster.can_fire, "A thruster fires on inert gas alone")
 
+	// Regresja: krótki manewr między tickami spala paliwo, nawet gdy zostało go za mało na pełny tick
+	ship.last_thrust_forward = 0
+	air_contents.set_moles(GAS_O2, 0)
+	air_contents.set_moles(tank.gas_type, thruster.fuel_per_second) // starczy na 1 s, nie na 2
+	thruster.thrust_seen = ship.aq_thrust_seconds
+	ship.aq_thrust_seconds += 0.5
+	thruster.process(2)
+	TEST_ASSERT(abs(air_contents.get_moles(tank.gas_type) - thruster.fuel_per_second * 0.5) < 0.01, "A short manoeuvre with little fuel left was free ([air_contents.get_moles(tank.gas_type)] mol left)")
+
 /datum/unit_test/ship_thrusters/Destroy()
 	QDEL_NULL(thruster)
 	QDEL_NULL(tank)

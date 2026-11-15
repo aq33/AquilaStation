@@ -138,6 +138,8 @@ GLOBAL_LIST_INIT(ship_thruster_oxidizers, list(
 	if(!ship)
 		return
 	linked_ship = ship
+	// Licznik ciągu statku liczymy od chwili podłączenia, a nie od początku rundy
+	thrust_seen = ship.aq_thrust_seconds
 	LAZYOR(ship.ship_thrusters, src)
 	ship.recalculate_engine_thrust()
 
@@ -286,11 +288,13 @@ GLOBAL_LIST_INIT(ship_thruster_oxidizers, list(
 	// Ciąg między tickami (krótkie manewry) też kosztuje paliwo: czas ciągu zlicza fizyka (physics.dm)
 	var/thrust_time = 0
 	if(linked_ship)
-		thrust_time = clamp(linked_ship.aq_thrust_seconds - thrust_seen, 0, delta_time)
+		thrust_time = max(linked_ship.aq_thrust_seconds - thrust_seen, 0)
 		thrust_seen = linked_ship.aq_thrust_seconds
 		if(!thrust_time && linked_ship.is_thrusting())
 			thrust_time = delta_time
-	var/firing = new_can_fire && thrust_time > 0
+	// Manewr już wykonany rozliczamy, jeśli dysza miała prąd i choć trochę paliwa; gotowość na pełny tick (new_can_fire)
+	// decyduje tylko o dalszym ciągu
+	var/firing = thrust_time > 0 && linked_ship && anchored && !(machine_stat & (BROKEN|NOPOWER)) && mix[2] > 0
 	if(firing)
 		burn_fuel(fuel_per_second * thrust_time, heaters, mix)
 	use_power = firing ? ACTIVE_POWER_USE : IDLE_POWER_USE

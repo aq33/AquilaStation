@@ -134,7 +134,7 @@ GLOBAL_VAR_INIT(player_sensor_suites_enabled, TRUE)
 					reach = pulse ? max_tracking_range : 0
 					state = pulse ? (reach >= dist ? "sees" : "far") : "off"
 				else
-					reach = get_radar_reach(pulse ? radar_pulse_width : radar_beam_width) * get_sensor_array_mult(SENSOR_LIDAR, target)
+					reach = get_radar_reach(pulse ? radar_pulse_width : radar_beam_width) * get_sensor_array_mult(SENSOR_LIDAR, target) * target.get_cloak_lidar_mult()
 					if(!pulse)
 						state = "off"
 					else if(radar_pulse_width && !is_in_radar_pulse_beam(target))

@@ -68,4 +68,17 @@
 	TEST_ASSERT(bridge.output_power() == 0, "A disconnected bridge still outputs power")
 	TEST_ASSERT(!bridge.toggle_connection(), "The bridge reconnected before the cooldown")
 
+/// Regresja: burza anulowana w trakcie rozruchu (przed telegraph) nie zostaje bez końca
+/datum/unit_test/pulsar_storm_cancel
+
+/datum/unit_test/pulsar_storm_cancel/Run()
+	var/datum/weather/rad_storm/pulsar/storm = new(list(run_loc_floor_bottom_left.z))
+	storm.cancel() // konsola rozłącza mostek, zanim telegraph() zdążył zarejestrować burzę
+	storm.telegraph()
+	TEST_ASSERT(storm.stage == WIND_DOWN_STAGE || storm.stage == END_STAGE, "A pulsar storm cancelled before its telegraph kept running (stage [storm.stage])")
+	storm.start()
+	TEST_ASSERT(storm.stage != MAIN_STAGE, "A cancelled pulsar storm started anyway")
+	storm.end()
+	qdel(storm)
+
 #undef TEST_ASSERT

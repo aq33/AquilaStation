@@ -394,7 +394,8 @@ GLOBAL_LIST_EMPTY(aq_ship_contracts)
 	// Własne przeszukanie zamiast get_safe_random_station_turfs: ten helper zapętla się, gdy żadne pole się nie nadaje
 	var/list/candidates = list()
 	for(var/area/A as anything in medical_areas)
-		candidates += get_area_turfs(A)
+		for(var/turf/T in A)
+			candidates += T
 	while(length(candidates))
 		var/turf/T = pick_n_take(candidates)
 		if(T.density || isgroundlessturf(T) || is_blocked_turf(T, TRUE))

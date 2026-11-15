@@ -27,8 +27,12 @@
 	var/bubble_level = -1
 	/// Czy tarcza była podniesiona przed maską (koniec maski ją przywraca)
 	var/cloak_restore_active = FALSE
-	/// last_weapon_fire okrętu w chwili włączenia maski: każdy późniejszy strzał ją zdejmuje
+	/// aq_weapon_shots okrętu w chwili włączenia maski: każdy późniejszy strzał ją zdejmuje, także w tym samym ticku
 	var/cloak_fire_mark = 0
+
+/obj/structure/overmap
+	/// Ile razy okręt strzelił (sensor_signature.dm); maska zdejmuje się po każdym strzale po jej włączeniu
+	var/aq_weapon_shots = 0
 
 /obj/structure/overmap/proc/is_cloaked()
 	var/obj/machinery/shield_generator/gen = shields
@@ -70,7 +74,7 @@
 	cloak_until = world.time + SHIELD_CLOAK_DURATION
 	cloak_z = ship.z
 	cloak_restore_active = active
-	cloak_fire_mark = ship.last_weapon_fire
+	cloak_fire_mark = ship.aq_weapon_shots
 	active = FALSE
 	animate(ship, 1.5 SECONDS, alpha = SHIELD_CLOAK_ALPHA)
 	ship.relay(null, "<span class='notice'>Generator tarczy przechodzi w tryb maskowania. Sygnatura okrętu gaśnie.</span>", FALSE)
@@ -126,7 +130,7 @@
 		end_cloak("koniec czasu")
 		return
 	// Porównanie z chwilą włączenia, a nie okno czasu: strzał między dwoma tickami też zdejmuje maskę
-	if(ship.last_weapon_fire > cloak_fire_mark)
+	if(ship.aq_weapon_shots > cloak_fire_mark)
 		end_cloak("strzał")
 		return
 	if(!powered() || !try_use_power(SHIELD_CLOAK_POWER))

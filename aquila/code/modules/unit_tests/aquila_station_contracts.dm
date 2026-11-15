@@ -52,6 +52,28 @@
 	refund_contract(corpse)
 	qdel(corpse)
 
+	// Regresja: śmierć drugiego pacjenta kończy zlecenie, choć pierwszy jest jeszcze w leczeniu
+	var/datum/aq_contract/wounded/wounded = new(null)
+	var/mob/living/carbon/human/hurt = allocate(/mob/living/carbon/human, run_loc_floor_bottom_left)
+	var/mob/living/carbon/human/dead = allocate(/mob/living/carbon/human, run_loc_floor_bottom_left)
+	hurt.adjustBruteLoss(50)
+	dead.death()
+	wounded.patients = list(WEAKREF(hurt), WEAKREF(dead))
+	wounded.state = "w toku"
+	wounded.deadline = world.time + 10 MINUTES
+	wounded.check_progress()
+	TEST_ASSERT(wounded.is_failed(), "The wounded contract kept running after the second patient died")
+	qdel(wounded)
+
+	// Regresja: pole w ambulatorium tylko z obszarów głównego okrętu
+	var/datum/aq_contract/corpse/finder = new(null)
+	var/turf/drop = finder.find_medbay_turf()
+	if(drop)
+		var/area/drop_area = get_area(drop)
+		TEST_ASSERT(istype(drop_area, /area/medical) && drop_area.get_overmap() == SSstar_system.find_main_overmap(), "The medical drop turf isn't in the main ship's medbay")
+		TEST_ASSERT(!drop.density && !is_blocked_turf(drop, TRUE), "The medical drop turf is blocked")
+	qdel(finder)
+
 	// Goście: zlecenie otwiera lokal, a po wykonaniu go zamyka
 	var/datum/venue/restaurant/venue = SSrestaurant.get_venue(/datum/venue/restaurant)
 	TEST_ASSERT(!venue.open, "The restaurant is open before any customer contract")

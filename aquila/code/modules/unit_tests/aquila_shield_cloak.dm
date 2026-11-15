@@ -29,6 +29,21 @@
 	TEST_ASSERT(gen.absorb_hit(proj) == SHIELD_NOEFFECT, "A cloaking shield generator still absorbs hits")
 	qdel(proj)
 
+	// Regresja: impuls radaru gracza wobec zamaskowanego celu ma 20% zasięgu, liczone raz (get_player_lidar_range)
+	var/old_pulse = ship.last_radar_pulse
+	var/old_width = ship.radar_pulse_width
+	ship.last_radar_pulse = world.time
+	ship.radar_pulse_width = 0
+	var/cloaked_reach = ship.get_player_lidar_range(ship)
+	gen.cloaked = FALSE
+	var/open_reach = ship.get_player_lidar_range(ship)
+	gen.cloaked = TRUE
+	TEST_ASSERT(open_reach > 0 && abs(cloaked_reach - open_reach * 0.2) < 0.01, "A cloaked target cuts the player radar pulse to [cloaked_reach] of [open_reach] instead of 20%")
+	if(!ship.ai_controlled)
+		TEST_ASSERT(abs(ship.get_suite_range(SENSOR_LIDAR, ship) - cloaked_reach) < 0.01, "The cloak is applied twice on the player radar suite range")
+	ship.last_radar_pulse = old_pulse
+	ship.radar_pulse_width = old_width
+
 	// Zdjęcie maski: koniec ukrycia i stygnięcie
 	gen.end_cloak("test")
 	TEST_ASSERT(!ship.is_cloaked(), "The ship stayed cloaked after the cloak ended")

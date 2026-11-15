@@ -251,8 +251,8 @@ GLOBAL_LIST_EMPTY(pulsar_consoles)
 	if(!storm_active)
 		return
 	storm_active = FALSE
-	// wind_down przed końcem rozruchu też działa: start() pomija burzę, która już gaśnie, a end() przychodzi z timera
-	storm?.wind_down()
+	// Anulowanie działa w każdej fazie: w trakcie rozruchu (telegraph śpi w CHECK_TICK) burza wygasi się sama po nim
+	storm?.cancel()
 	storm = null
 	announce("Satelita pulsara opuścił wiązkę promieniowania. Kto czuje się źle, niech zgłosi się do ambulatorium.")
 
@@ -539,6 +539,25 @@ GLOBAL_LIST_EMPTY(pulsar_consoles)
 	// Trwa, dopóki konsola jej nie wygasi (end_storm); wcześniej sama gasła po czasie, a storm_active zostawał TRUE
 	perpetual = TRUE
 	probability = 0
+	/// Konsola zgasiła burzę; jeśli stało się to w trakcie rozruchu, burza wygasza się zaraz po nim
+	var/cancelled = FALSE
+
+/// Gasi burzę w każdej fazie. Przed rozruchem stage = END_STAGE i wind_down() nic nie robi, więc to telegraph() i
+/// start() sprawdzają flagę.
+/datum/weather/rad_storm/pulsar/proc/cancel()
+	cancelled = TRUE
+	if(stage == STARTUP_STAGE || stage == MAIN_STAGE)
+		wind_down()
+
+/datum/weather/rad_storm/pulsar/telegraph()
+	. = ..()
+	if(cancelled && stage == STARTUP_STAGE)
+		wind_down()
+
+/datum/weather/rad_storm/pulsar/start()
+	if(cancelled)
+		return
+	return ..()
 
 /// Szczelina energii przy przeciążeniu: strzela wiązkami jak emiter
 /obj/effect/pulsar_rift
