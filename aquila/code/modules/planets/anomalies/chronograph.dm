@@ -34,7 +34,8 @@
 			continue
 		apply_accelerando(old, effect_power SECONDS, effect_power * 30 SECONDS)
 		if(prob(10))
-			to_chat(old, "<span class='warning'>[pick("Czas zaczyna przeciekać ci przez palce.", "Świat wydaje się trochę wolniejszy.", "Nikt już nie będzie tak szybki jak ty.", "Twoje chwile stały się czymś więcej.", "Sekundy zamieniają się w godziny.", "Każda chwila jest wiecznością.")]</span>")
+			var/timestring = pick("Czas zaczyna przeciekać ci przez palce.", "Świat wydaje się trochę wolniejszy.", "Nikt już nie będzie tak szybki jak ty.", "Twoje chwile stały się czymś więcej.", "Sekundy zamieniają się w godziny.", "Każda chwila jest wiecznością.")
+			to_chat(old, "<span class='warning'>[timestring]</span>")
 		do_sparks(2, TRUE, old)
 
 /// Wydłuża przyspieszenie o amount, najwyżej do max_duration pozostałego czasu (jak adjust_timed_status_effect w tg)
