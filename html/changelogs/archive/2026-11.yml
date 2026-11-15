@@ -1185,3 +1185,27 @@
       już wojny frakcji; okręt nie zaczyna rundy przy wrogiej flocie.
   - bugfix: Floty AI nie stoją w nieskończoność z rozkazem ataku, pościg znajduje
       okręt na pustym kaflu, wyłącznik losowych eventów działa też na kafle.
+  - rscadd: 'Dysze okrętowe zamiast dekoracyjnych silników: ciąg zależy od działających
+      dysz, paliwo płynie rurą z atmosu, mieszanka plazmy z tlenem daje więcej ciągu,
+      zniszczone dysze naprawia się plastalą i palnikiem.'
+  - rscadd: 'Podział mocy okrętu w konsoli monitorowania zasilania: limity i priorytety
+      dla tarczy, silników, FTL, uzbrojenia, sensorów i pancerza.'
+  - rscadd: Cztery matryce sensorów na kadłubie każdego statku; zniszczona matryca
+      zostawia ślepą ćwiartkę radaru.
+  - rscadd: Maskowanie w generatorze tarczy (trwa, dopóki jest prąd) i widoczna bańka
+      tarczy na overmapie.
+  - rscadd: Kalibracja pylonów w konsoli FTL; zła kalibracja wydłuża ładowanie i zwiększa
+      ryzyko wypadku przy skoku.
+  - rscadd: 'Stół projektowy pocisków: własne projekty torped i rakiet z czterema
+      typami naprowadzania.'
+  - rscadd: 'Nowe głowice: rakieta zakłócająca, dyfuzor tarcz i sonda czujnikowa z
+      boją widoczną na DRADIS.'
+  - rscadd: Drużyna Echo dla pilotów i ochotników z dostępem do myśliwców i hangaru.
+  - rscadd: 'Zlecenia dla działów na stacjach handlowych: dostawy (w tym pełne pojemniki
+      amunicji), abordaż, ranni, zwłoki i goście w restauracji, z nagrodą dla działu
+      i premią dla załogi.'
+  - bugfix: Rury i mierniki wczytane w trakcie rundy (np. przy podmianie silnika)
+      nie sypią błędami, zanim zbuduje się sieć rur.
+  - tweak: Restauracja i bar przyjmują gości tylko na zlecenie stacji handlowej; terminal
+      pokazuje gości, zamówienia i zlecenie.
+  - imageadd: Sprite matrycy sensorów z Aurory.
