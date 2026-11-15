@@ -15,6 +15,8 @@
 	/// Siatki prefiksowe do oceny lądowisk (tylko podczas wyznaczania)
 	var/list/landing_safe_sums
 	var/list/landing_blocked_sums
+	/// Bez ruin (testy mechanik, które nie dotyczą ruin: mała, szybka powierzchnia)
+	var/skip_ruins = FALSE
 	/// Ruina główna wybrana przed rezerwacją (od niej zależy rozmiar)
 	var/datum/map_template/ruin/main_ruin
 	/// Środki lądowisk -> nazwa lądowiska
@@ -69,7 +71,7 @@
 		return state == PLANET_SURFACE_READY
 	state = PLANET_SURFACE_GENERATING
 	var/start_time = REALTIMEOFDAY
-	main_ruin = pick_main_ruin()
+	main_ruin = skip_ruins ? null : pick_main_ruin()
 	size = planet_type.surface_size
 	if(main_ruin && !main_ruin_fits(main_ruin, size))
 		size = PLANET_SURFACE_SIZE_LARGE
@@ -118,7 +120,8 @@
 	make_landing_zones(inner)
 	phase_times["landing zones"] = REALTIMEOFDAY - phase_start
 	phase_start = REALTIMEOFDAY
-	place_ruins(inner)
+	if(!skip_ruins)
+		place_ruins(inner)
 	phase_times["small ruins"] = REALTIMEOFDAY - phase_start
 	phase_start = REALTIMEOFDAY
 	generator.populate_turfs(inner, landing_zone_turfs)

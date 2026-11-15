@@ -78,7 +78,7 @@
 		TEST_ASSERT(template.width && template.height, "Greeble map [map_path] has no size")
 		templates[map_path] = template
 	var/obj/structure/overmap/planet/planet = new(run_loc_floor_top_right, /datum/planet_type/jungle)
-	TEST_ASSERT(planet.surface.generate(), "The jungle surface didn't generate")
+	TEST_ASSERT(planet_test_fast_surface(planet), "The jungle surface didn't generate")
 	var/obj/effect/greeble_spawner/checker = new /obj/effect/greeble_spawner/jungle(run_loc_floor_bottom_left)
 	var/list/inner = planet.surface.inner_turfs()
 	var/loaded = 0

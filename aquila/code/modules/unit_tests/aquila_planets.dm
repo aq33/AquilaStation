@@ -201,7 +201,7 @@
 /datum/unit_test/planet_greeble/Run()
 	var/obj/structure/overmap/planet/planet = new(run_loc_floor_top_right, /datum/planet_type/lava)
 	var/datum/planet_surface/surface = planet.surface
-	TEST_ASSERT(surface.generate(), "The surface didn't generate")
+	TEST_ASSERT(planet_test_fast_surface(planet), "The surface didn't generate")
 	var/turf/center = surface.center()
 	// Pierwsze miejsce, na którym szablon się mieści (poza lądowiskami, ruinami i krawędzią)
 	var/obj/effect/greeble_spawner/free_greeble = new /obj/effect/greeble_spawner/unit_test(center)
@@ -241,6 +241,13 @@
 	TEST_ASSERT(center, "The surface has no center")
 	surface.unload()
 	qdel(planet, TRUE)
+
+/// Mała powierzchnia bez ruin do testów mechanik planet (ostrzał, kapsuły, misje, greeble): pełne generowanie z ruiną
+/// główną sprawdza planet_surface_generation, a tu liczy się czas jednej części CI
+/proc/planet_test_fast_surface(obj/structure/overmap/planet/planet)
+	planet.planet_type.surface_size = PLANET_SURFACE_SIZE_DWARF
+	planet.surface.skip_ruins = TRUE
+	return planet.surface.generate()
 
 /// Próbka do ciężkich testów planet (generowanie powierzchni, ruiny, greeble): w zwykłym przebiegu losowe count
 /// elementów, więc kolejne przebiegi przechodzą przez całą pulę, a z -DAQUILA_FULL_MAP_TESTS wszystkie (jak testy asteroid
@@ -335,7 +342,7 @@
 
 /datum/unit_test/planet_bombardment/Run()
 	var/obj/structure/overmap/planet/planet = new(run_loc_floor_bottom_left, /datum/planet_type/lava)
-	TEST_ASSERT(planet.surface.generate(), "The surface didn't generate")
+	TEST_ASSERT(planet_test_fast_surface(planet), "The surface didn't generate")
 	var/turf/ground = planet_ground_turf(planet.surface)
 	TEST_ASSERT(get_planet_of(ground) == planet, "A landing zone turf isn't recognised as the planet surface")
 	TEST_ASSERT(!get_planet_of(run_loc_floor_bottom_left), "A ship turf is recognised as a planet surface")
@@ -392,7 +399,7 @@
 
 /datum/unit_test/planet_drop_pod/Run()
 	var/obj/structure/overmap/planet/planet = new(run_loc_floor_top_right, /datum/planet_type/lava)
-	TEST_ASSERT(planet.surface.generate(), "The surface didn't generate")
+	TEST_ASSERT(planet_test_fast_surface(planet), "The surface didn't generate")
 	var/turf/ground = planet_ground_turf(planet.surface)
 	var/obj/machinery/drop_pod_bay/bay = allocate(/obj/machinery/drop_pod_bay, run_loc_floor_bottom_left)
 	TEST_ASSERT(bay.can_land_at(ground), "The drop pod can't land on a landing zone")
@@ -427,7 +434,7 @@
 	var/datum/overmap_objective/planet/survey/test/mission = new(SSstar_system.systems[1])
 	mission.home_turf = run_loc_floor_bottom_left
 	mission.target_planet = new(run_loc_floor_top_right, /datum/planet_type/lava)
-	TEST_ASSERT(mission.target_planet.surface.generate(), "The surface didn't generate")
+	TEST_ASSERT(planet_test_fast_surface(mission.target_planet), "The surface didn't generate")
 	mission.setup_site()
 	TEST_ASSERT(mission.site, "The survey site wasn't placed")
 	TEST_ASSERT(mission.target_planet.surface.contains(get_turf(mission.site)), "The survey site isn't on the planet")
@@ -451,7 +458,7 @@
 	var/datum/overmap_objective/planet/evacuation/test/mission = new(SSstar_system.systems[1])
 	mission.home_turf = run_loc_floor_bottom_left
 	mission.target_planet = new(run_loc_floor_top_right, /datum/planet_type/lava)
-	TEST_ASSERT(mission.target_planet.surface.generate(), "The surface didn't generate")
+	TEST_ASSERT(planet_test_fast_surface(mission.target_planet), "The surface didn't generate")
 	mission.setup_site()
 	TEST_ASSERT(mission.colony_ready, "The colony wasn't set up")
 	TEST_ASSERT_EQUAL(length(mission.colonists), 4, "Wrong number of colonists")

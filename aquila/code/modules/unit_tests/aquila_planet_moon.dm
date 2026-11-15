@@ -112,7 +112,7 @@
 
 	var/obj/structure/overmap/planet/planet = new(run_loc_floor_top_right, /datum/planet_type/moon)
 	var/datum/planet_surface/surface = planet.surface
-	TEST_ASSERT(surface.generate(), "The moon surface didn't generate")
+	TEST_ASSERT(planet_test_fast_surface(planet), "The moon surface didn't generate")
 	var/obj/effect/greeble_spawner/moon/crater_spawner = new(surface.center())
 	var/list/crater_maps = crater_spawner.greeble_maps.Copy()
 	qdel(crater_spawner)
