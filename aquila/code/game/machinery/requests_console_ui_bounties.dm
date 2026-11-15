@@ -93,6 +93,20 @@
 		if(bounty.claimed)
 			continue
 		result += list(requests_console_bounty_entry(bounty, "CentCom", "konsola zleceń zaopatrzenia", bounty.reward_string()))
+	// Przyjęte zlecenia stacji handlowych (aquila/code/modules/overmap/station_contracts.dm)
+	for(var/datum/aq_contract/contract as anything in GLOB.aq_ship_contracts)
+		if(!contract.is_active())
+			continue
+		result += list(list(
+			"name" = contract.name,
+			"description" = contract.desc,
+			"reward" = "[contract.reward] kr[contract.research_points ? " + [contract.research_points] pkt badań" : ""]",
+			"progress" = "zostało [max(0, round((contract.deadline - world.time) / 600))] min",
+			"source" = contract.station ? contract.station.name : "Stacja handlowa",
+			"where" = contract.where_to_deliver(),
+			"department" = contract.department_name,
+			"urgent" = FALSE,
+		))
 	for(var/datum/station_request/request as anything in GLOB.request_list)
 		result += list(list(
 			"name" = "Ogłoszenie: [request.owner]",

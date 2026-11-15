@@ -4110,6 +4110,18 @@ Nazwy obszarów są w większości przetłumaczone. Nowe nazwy budujemy z tych k
 | supply drop / supply pod | zrzut zaopatrzenia / kapsuła zaopatrzeniowa | m / ż; istniejące „kapsuł zaopatrzeniowych” |
 | Galactic Conquest (mode) | Podbój Galaktyki | m; nowe |
 | combat (overmap) | starcie | n; nowe |
+| ship thruster | dysza okrętowa | ż; nowe (aq33/AquilaStation#644) |
+| thruster heater | podgrzewacz dyszy | m; nowe |
+| power allocation | podział mocy | m; nowe; zakładka monitora zasilania |
+| sensor array | matryca sensorów | ż; nowe; „matryca” w skrócie |
+| cloak / cloaking (ship) | maska / maskowanie | ż / n; nowe; tryb generatora tarczy (nie „peleryna”) |
+| shield bubble | bańka tarczy | ż; nowe |
+| FTL calibration / pylon tuning | kalibracja pylonów | ż; nowe |
+| missile design table | stół projektowy pocisków | m; nowe |
+| design chip | chip projektu | m; nowe |
+| shield diffuser | dyfuzor tarcz | m; nowe; głowica |
+| sensor probe / probe buoy | sonda czujnikowa / boja czujnikowa | ż; nowe |
+| department contract | zlecenie dla działu | n; nowe; „zlecenia działów” |
 
 ## 14. Marki, firmy, producenci
 

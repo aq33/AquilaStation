@@ -235,7 +235,7 @@
 
 /datum/unit_test/aquila_squad_custom/Run()
 	for(var/datum/squad/squad as anything in GLOB.squad_manager.squads)
-		TEST_ASSERT(squad.type != /datum/squad/aq_custom || squad.name != "Echo", "Wzorzec drużyny Echo z subtypesof() został na liście drużyn")
+		TEST_ASSERT(squad.type != /datum/squad/aq_custom || squad.name != "Nowa drużyna", "Wzorzec drużyny XO z subtypesof() został na liście drużyn")
 	var/mob/living/carbon/human/officer = allocate(/mob/living/carbon/human)
 	var/datum/squad/created = GLOB.squad_manager.aq_create_squad("Foxtrot", "#123456")
 	TEST_ASSERT(created && (created in GLOB.squad_manager.squads), "Nie powstała nowa drużyna")

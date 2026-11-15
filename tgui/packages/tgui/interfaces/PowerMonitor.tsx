@@ -11,6 +11,7 @@ import {
   Section,
   Stack,
   Table,
+  Tabs,
   Tooltip,
 } from 'tgui-core/components';
 import { toFixed } from 'tgui-core/math';
@@ -18,6 +19,7 @@ import { toFixed } from 'tgui-core/math';
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
 import { LoadingScreen } from './common/LoadingScreen';
+import { ShipPowerAllocation, type ShipPowerData } from './ShipPowerAllocation'; // AQ EDIT - podział mocy okrętu
 
 type Data = {
   areas: Area[];
@@ -66,6 +68,33 @@ function nameSort(a: Area, b: Area): number {
 }
 
 export function PowerMonitor() {
+  // AQ EDIT START - zakładka podziału mocy okrętu (ShipPowerAllocation.tsx)
+  const { data } = useBackend<{ ship_power?: ShipPowerData }>();
+  const [tab, setTab] = useState(0);
+  if (data.ship_power) {
+    return (
+      <Window width={620} height={700}>
+        <Window.Content scrollable={tab === 1}>
+          <Stack fill vertical>
+            <Stack.Item>
+              <Tabs>
+                <Tabs.Tab selected={tab === 0} onClick={() => setTab(0)}>
+                  Sieć
+                </Tabs.Tab>
+                <Tabs.Tab selected={tab === 1} onClick={() => setTab(1)}>
+                  Podział mocy
+                </Tabs.Tab>
+              </Tabs>
+            </Stack.Item>
+            <Stack.Item grow>
+              {tab === 0 ? <PowerMonitorContent /> : <ShipPowerAllocation />}
+            </Stack.Item>
+          </Stack>
+        </Window.Content>
+      </Window>
+    );
+  }
+  // AQ EDIT END
   return (
     <Window width={550} height={700}>
       <Window.Content>
