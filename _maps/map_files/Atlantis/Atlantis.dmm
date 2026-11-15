@@ -5106,6 +5106,18 @@
 	},
 /turf/open/floor/monotile/dark,
 /area/science)
+"ekO" = (
+/obj/effect/turf_decal/tile/ship/half/yellow/orlen,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/power/pulsar_bridge,
+/turf/open/floor/durasteel/alt,
+/area/engine/engineering)
 "ekS" = (
 /obj/machinery/ship_weapon/vls,
 /obj/effect/turf_decal/tile/ship/half/orange{
@@ -8003,6 +8015,14 @@
 	},
 /turf/open/floor/plating,
 /area/science)
+"gIh" = (
+/obj/structure/cable,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/missile_design_table,
+/turf/open/floor/durasteel/techfloor_grid,
+/area/nsv/weapons/artillery)
 "gIo" = (
 /turf/closed/wall/steel,
 /area/engine/break_room)
@@ -12256,6 +12276,11 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/engine/atmos)
+"kjg" = (
+/obj/effect/turf_decal/tile/ship/full/yellow/orlen,
+/obj/structure/pulsar_fuel_tank/filled,
+/turf/open/floor/monotile/steel,
+/area/engine/engineering)
 "kjl" = (
 /obj/effect/turf_decal/tile/ship/police{
 	dir = 8
@@ -20346,13 +20371,6 @@
 	},
 /turf/open/floor/monotile/steel,
 /area/maintenance/department/science)
-"qJU" = (
-/obj/structure/cable,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/open/floor/durasteel/techfloor_grid,
-/area/nsv/weapons/artillery)
 "qKA" = (
 /obj/structure/bed{
 	layer = 2.8
@@ -22234,6 +22252,11 @@
 /obj/structure/chair/office/light,
 /turf/open/floor/monotile/dark,
 /area/science/xenobiology)
+"stF" = (
+/obj/effect/turf_decal/tile/ship/full/yellow/orlen,
+/obj/machinery/pulsar_console,
+/turf/open/floor/monotile/steel,
+/area/engine/engineering)
 "suc" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 1
@@ -52235,7 +52258,7 @@ gbG
 fqD
 jps
 hGq
-cBi
+ekO
 yco
 yco
 yco
@@ -53521,7 +53544,7 @@ hZB
 wxN
 gDN
 nrh
-cnD
+stF
 ybR
 kQb
 iKr
@@ -53778,7 +53801,7 @@ kSi
 nAR
 wrH
 nrh
-cnD
+kjg
 cnD
 cnD
 hVN
@@ -75107,7 +75130,7 @@ tdU
 xNN
 mMZ
 iuX
-qJU
+gIh
 vKE
 fzg
 bKR

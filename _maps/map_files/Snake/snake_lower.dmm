@@ -1828,6 +1828,19 @@
 /obj/machinery/ntnet_relay,
 /turf/open/floor/circuit/green,
 /area/tcommsat/server)
+"eu" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/machinery/pulsar_console,
+/turf/open/floor/plasteel/dark/side{
+	dir = 1
+	},
+/area/engine/engineering)
 "ev" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -3864,6 +3877,20 @@
 /obj/machinery/newscaster/security_unit/north,
 /turf/open/floor/wood,
 /area/library)
+"kb" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/item/radio/intercom/directional/south,
+/obj/machinery/power/pulsar_bridge,
+/turf/open/floor/plasteel/dark/side{
+	dir = 1
+	},
+/area/engine/engineering)
 "kc" = (
 /obj/structure/table/wood,
 /turf/open/floor/plasteel,
@@ -5489,19 +5516,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/closed/wall/r_wall,
 /area/crew_quarters/cryopods)
-"ps" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/structure/cable,
-/obj/item/radio/intercom/directional/south,
-/turf/open/floor/plasteel/dark/side{
-	dir = 1
-	},
-/area/engine/engineering)
 "pu" = (
 /obj/effect/turf_decal/tile/yellow/tile_side/orlen,
 /obj/structure/cable/yellow,
@@ -7669,6 +7683,19 @@
 	},
 /turf/open/floor/engine,
 /area/nsv/weapons/fore)
+"xu" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/structure/pulsar_fuel_tank/filled,
+/turf/open/floor/plasteel/dark/side{
+	dir = 1
+	},
+/area/engine/engineering)
 "xv" = (
 /obj/structure/table/wood,
 /obj/machinery/fax{
@@ -9332,6 +9359,10 @@
 	},
 /turf/open/floor/plasteel/chapel,
 /area/chapel/main)
+"DZ" = (
+/obj/machinery/missile_design_table,
+/turf/open/floor/engine,
+/area/nsv/weapons/fore)
 "Ea" = (
 /obj/structure/disposalpipe/segment{
 	dir = 10
@@ -36832,7 +36863,7 @@ EM
 ID
 DN
 cr
-ps
+kb
 ge
 cf
 Fm
@@ -37089,7 +37120,7 @@ EM
 Tw
 DN
 cr
-fn
+eu
 ax
 nL
 Le
@@ -37346,7 +37377,7 @@ EM
 Tw
 dy
 cr
-fn
+xu
 ax
 bd
 LM
@@ -67931,7 +67962,7 @@ yO
 OU
 Qz
 SP
-SP
+DZ
 gK
 jb
 oe

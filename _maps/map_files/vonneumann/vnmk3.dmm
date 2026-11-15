@@ -3467,13 +3467,6 @@
 	name = "nanoweave carpet (puce)"
 	},
 /area/nsv/weapons/fore)
-"cFG" = (
-/obj/structure/cable/yellow,
-/obj/machinery/atmospherics/pipe/simple/purple/visible/layer2{
-	dir = 6
-	},
-/turf/open/floor/carpet/ship/orange_carpet,
-/area/engine/engineering/reactor_control)
 "cFI" = (
 /obj/machinery/teleport/hub,
 /turf/open/floor/carpet/ship,
@@ -8240,6 +8233,13 @@
 /obj/item/ship_weapon/ammunition/torpedo/plushtide,
 /turf/open/floor/carpet/ship/beige_carpet,
 /area/nsv/weapons/port)
+"gpQ" = (
+/obj/machinery/camera/autoname{
+	dir = 5
+	},
+/obj/machinery/missile_design_table,
+/turf/open/floor/carpet/ship/beige_carpet,
+/area/nsv/weapons/port)
 "gpZ" = (
 /obj/effect/spawner/room/threexthree,
 /turf/template_noop,
@@ -10568,16 +10568,6 @@
 /obj/item/radio/intercom/directional/south,
 /turf/open/floor/durasteel/techfloor_grid,
 /area/science)
-"ifj" = (
-/obj/structure/cable/yellow,
-/obj/machinery/atmospherics/pipe/simple/purple/visible/layer2{
-	dir = 4
-	},
-/obj/structure/sign/warning/radiation{
-	pixel_y = 31
-	},
-/turf/open/floor/carpet/ship/orange_carpet,
-/area/engine/engineering/reactor_control)
 "ifm" = (
 /obj/structure/cable/yellow,
 /obj/machinery/light,
@@ -13754,6 +13744,14 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/central)
+"kBg" = (
+/obj/structure/cable/yellow,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/power/pulsar_bridge,
+/turf/open/floor/carpet/ship/orange_carpet,
+/area/engine/engineering/reactor_control)
 "kBR" = (
 /obj/effect/turf_decal/pool,
 /turf/open/floor/carpet/ship/orange_carpet,
@@ -17644,12 +17642,6 @@
 	},
 /turf/open/floor/carpet/ship,
 /area/ai_monitored/security/armory)
-"nIV" = (
-/obj/machinery/camera/autoname{
-	dir = 5
-	},
-/turf/open/floor/carpet/ship/beige_carpet,
-/area/nsv/weapons/port)
 "nJc" = (
 /turf/closed/wall/r_wall/ship,
 /area/maintenance/port/fore)
@@ -22074,13 +22066,6 @@
 	name = "nanoweave carpet (bluer)"
 	},
 /area/crew_quarters/heads/captain/private)
-"rxc" = (
-/obj/structure/cable/yellow,
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/carpet/ship/orange_carpet,
-/area/engine/engineering/reactor_control)
 "rxs" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
@@ -25079,6 +25064,17 @@
 	name = "nanoweave carpet (puce)"
 	},
 /area/nsv/weapons/fore)
+"tQp" = (
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/simple/purple/visible/layer2{
+	dir = 4
+	},
+/obj/structure/sign/warning/radiation{
+	pixel_y = 31
+	},
+/obj/structure/pulsar_fuel_tank/filled,
+/turf/open/floor/carpet/ship/orange_carpet,
+/area/engine/engineering/reactor_control)
 "tQD" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 8
@@ -25402,6 +25398,14 @@
 /obj/machinery/holopad,
 /turf/open/floor/engine,
 /area/engine/armour_pump)
+"udY" = (
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/simple/purple/visible/layer2{
+	dir = 6
+	},
+/obj/machinery/pulsar_console,
+/turf/open/floor/carpet/ship/orange_carpet,
+/area/engine/engineering/reactor_control)
 "ues" = (
 /obj/machinery/oven,
 /obj/machinery/restaurant_terminal/restaurant{
@@ -41154,7 +41158,7 @@ xZz
 noD
 pEo
 cOY
-rxc
+kBg
 hzH
 jxf
 cQD
@@ -41356,7 +41360,7 @@ qQa
 wio
 pEo
 cOY
-cFG
+udY
 eus
 oVb
 nes
@@ -41558,7 +41562,7 @@ whO
 rrr
 luK
 iJb
-ifj
+tQp
 gBO
 jxf
 bvF
@@ -55310,7 +55314,7 @@ xmq
 iin
 bcQ
 hek
-nIV
+gpQ
 vec
 btu
 oir

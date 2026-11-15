@@ -1519,6 +1519,14 @@
 /obj/machinery/status_display/evac/east,
 /turf/open/floor/carpet/royalblack,
 /area/crew_quarters/bar/mess_hall)
+"dd" = (
+/obj/structure/cable,
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/pulsar_fuel_tank/filled,
+/turf/open/floor/durasteel/riveted,
+/area/engine/atmospherics_engine)
 "de" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/chair{
@@ -7559,6 +7567,18 @@
 	icon_state = "platingdmg3"
 	},
 /area/maintenance/nsv/deck2/starboard)
+"rV" = (
+/obj/machinery/light,
+/obj/structure/sign/ship/space{
+	name = "WARNING: SPACE LADDER";
+	pixel_y = -32
+	},
+/obj/effect/turf_decal/caution/red{
+	dir = 4
+	},
+/obj/machinery/missile_design_table,
+/turf/open/floor/monotile/dark,
+/area/nsv/weapons)
 "rW" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -10137,6 +10157,14 @@
 /obj/effect/spawner/room/threexthree,
 /turf/template_noop,
 /area/maintenance/nsv/deck2/starboard)
+"zS" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/cyan/visible{
+	dir = 8
+	},
+/obj/machinery/pulsar_console,
+/turf/open/floor/durasteel/riveted,
+/area/engine/atmospherics_engine)
 "zU" = (
 /obj/structure/table/reinforced,
 /obj/item/lighter,
@@ -10990,13 +11018,6 @@
 /obj/effect/landmark/zebra_interlock_point,
 /turf/open/floor/plating,
 /area/science/explab)
-"Cu" = (
-/obj/structure/cable,
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/durasteel/riveted,
-/area/engine/atmospherics_engine)
 "Cv" = (
 /obj/effect/turf_decal/siding/wideplating_new/dark{
 	dir = 8
@@ -11417,6 +11438,12 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/engine/break_room)
+"DP" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/violet/visible,
+/obj/machinery/power/pulsar_bridge,
+/turf/open/floor/durasteel/riveted,
+/area/engine/atmospherics_engine)
 "DS" = (
 /obj/effect/turf_decal/tile/ship/half/police{
 	dir = 4
@@ -12199,17 +12226,6 @@
 "Gl" = (
 /turf/open/floor/durasteel/riveted,
 /area/engine/atmospherics_engine)
-"Gm" = (
-/obj/machinery/light,
-/obj/structure/sign/ship/space{
-	name = "WARNING: SPACE LADDER";
-	pixel_y = -32
-	},
-/obj/effect/turf_decal/caution/red{
-	dir = 4
-	},
-/turf/open/floor/monotile/dark,
-/area/nsv/weapons)
 "Gq" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -16419,11 +16435,6 @@
 	},
 /turf/open/floor/carpet/royalblack,
 /area/crew_quarters/bar)
-"Sx" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/manifold/violet/visible,
-/turf/open/floor/durasteel/riveted,
-/area/engine/atmospherics_engine)
 "Sz" = (
 /obj/effect/turf_decal/tile/ship/green{
 	dir = 4
@@ -17540,13 +17551,6 @@
 	},
 /turf/closed/wall/r_wall,
 /area/engine/atmos)
-"VX" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/cyan/visible{
-	dir = 8
-	},
-/turf/open/floor/durasteel/riveted,
-/area/engine/atmospherics_engine)
 "VY" = (
 /obj/effect/turf_decal/tile/ship/half/neutral,
 /obj/structure/disposalpipe/segment,
@@ -42584,9 +42588,9 @@ GO
 lX
 Ys
 Vo
-Sx
-VX
-Cu
+DP
+zS
+dd
 cf
 Mm
 UX
@@ -57513,7 +57517,7 @@ qq
 Gs
 mP
 ct
-Gm
+rV
 eY
 oM
 LZ
