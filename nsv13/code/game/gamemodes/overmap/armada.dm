@@ -31,7 +31,7 @@
 			candidate += S.name
 
 	candidate -= SSmapping.config.return_system
-	selected_system = pick(candidate)
+	selected_system = hex_armada_target(candidate) || pick(candidate) // AQ EDIT - mapa hex: Armada uderza w układ NT najbliżej frontu (war_missions.dm)
 
 	brief = "Wywiad floty donosi, że Syndykat szykuje flotę inwazyjną, by zdobyć [selected_system]. Zbierzcie siły obronne, by odeprzeć Armadę, zwalniając jednostki floty, i przygotujcie się do obrony systemu."
 

@@ -1,0 +1,8 @@
+{
+	"mcpServers": {
+		"aquila-world": {
+			"command": "python",
+			"args": ["tools/auxtools_mcp/server.py"]
+		}
+	}
+}

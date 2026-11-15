@@ -239,3 +239,10 @@ GLOBAL_LIST_EMPTY(engine_choice_slots)
 	if(query.Execute())
 		preferred_engine_saved = preferred_engine
 	qdel(query)
+
+/// Szablon wczytany w trakcie rundy (podmiana silnika) buduje sieci rur z CHECK_TICK, a w przerwie atmosfera przetwarza już
+/// świeże rury wymiennika ciepła bez sieci (return_air() czyta parent.air z null). Taka rura czeka na koniec budowy.
+/obj/machinery/atmospherics/pipe/heat_exchanging/process_atmos()
+	if(!parent && !air_temporary)
+		return
+	return ..()

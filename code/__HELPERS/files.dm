@@ -74,11 +74,25 @@
 
 /// Returns the md5 of a file at a given path.
 /proc/md5filepath(path)
-	. = md5(file(path))
+	// AQ EDIT START - port tgstation/tgstation#91952: rust-g zamiast md5(file()) w BYOND. Błąd rust-g daje null
+	// jak dawniej (a nie tekst błędu), żeby asset_cache_item mógł spróbować inaczej.
+	. = rustg_hash_file(RUSTG_HASH_MD5, path)
+	if(length(.) != 32)
+		return null
+	// AQ EDIT END
 
 /// Save file as an external file then md5 it.
 /// Used because md5ing files stored in the rsc sometimes gives incorrect md5 results.
 /proc/md5asfile(file)
+	// AQ EDIT START - plik leżący na dysku pod własną ścieżką (bundle TGUI, PNG, dźwięki) hashujemy od razu,
+	// bez kopii do tmp/ (kopia 3,5 MB bundle'a to ~0,5 s). Tylko gdy plik na dysku ma ten sam rozmiar co hashowany
+	// zasób: zmieniony po kompilacji plik z rsc idzie przez kopię, czyli hash odpowiada temu, co dostanie klient.
+	var/disk_path = isfile(file) ? "[file]" : null
+	if(disk_path && fexists(disk_path) && length(file) == length(file(disk_path)))
+		. = md5filepath(disk_path)
+		if(.)
+			return
+	// AQ EDIT END
 	var/static/notch = 0
 	// its importaint this code can handle md5filepath sleeping instead of hard blocking, if it's converted to use rust_g.
 	var/filename = "tmp/md5asfile.[world.realtime].[world.timeofday].[world.time].[world.tick_usage].[notch]"
