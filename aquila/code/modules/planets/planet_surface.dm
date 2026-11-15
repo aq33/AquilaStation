@@ -12,6 +12,9 @@
 	var/state = PLANET_SURFACE_NONE
 	/// Bok kwadratu bieżącej powierzchni
 	var/size = PLANET_SURFACE_SIZE
+	/// Siatki prefiksowe do oceny lądowisk (tylko podczas wyznaczania)
+	var/list/landing_safe_sums
+	var/list/landing_blocked_sums
 	/// Ruina główna wybrana przed rezerwacją (od niej zależy rozmiar)
 	var/datum/map_template/ruin/main_ruin
 	/// Środki lądowisk -> nazwa lądowiska
@@ -133,6 +136,7 @@
 	var/radius = round(PLANET_LANDING_ZONE_SIZE / 2)
 	var/min_coord = PLANET_EDGE_WIDTH + radius + 2
 	var/max_coord = size - 1 - PLANET_EDGE_WIDTH - radius - 2
+	build_landing_grid()
 	var/list/best_layout = list()
 	for(var/layout_attempt in 1 to 5)
 		landing_zones = list()
@@ -169,12 +173,50 @@
 		if(length(best_layout) >= PLANET_LANDING_ZONES)
 			break
 	landing_zones = list()
+	landing_safe_sums = null
+	landing_blocked_sums = null
 	for(var/turf/zone as anything in best_layout)
 		clear_landing_zone(zone, radius)
 		landing_zones[zone] = best_layout[zone]
 	if(length(landing_zones) < PLANET_LANDING_ZONES)
 		log_mapping("Planet [planet]: only [length(landing_zones)] of [PLANET_LANDING_ZONES] landing zones fit")
 		message_admins("Planeta [planet]: wyznaczono tylko [length(landing_zones)] z [PLANET_LANDING_ZONES] lądowisk.")
+
+/// Sumy prefiksowe pól bezpiecznych i pól ruin na kwadracie powierzchni: ocena kandydata na lądowisko kosztuje stałą
+/// liczbę operacji zamiast przeglądania ~1200 pól (na dużej powierzchni z ciasnym miejscem przegląd siatki trwał minuty)
+/datum/planet_surface/proc/build_landing_grid()
+	var/turf/bl = bottom_left()
+	var/side = size + 1
+	landing_safe_sums = new /list(side * side)
+	landing_blocked_sums = new /list(side * side)
+	for(var/i in 1 to side)
+		landing_safe_sums[i] = 0
+		landing_blocked_sums[i] = 0
+	for(var/y in 1 to size)
+		var/row = y * side
+		var/previous_row = (y - 1) * side
+		landing_safe_sums[row + 1] = 0
+		landing_blocked_sums[row + 1] = 0
+		var/safe_run = 0
+		var/blocked_run = 0
+		for(var/x in 1 to size)
+			var/turf/T = locate(bl.x + x - 1, bl.y + y - 1, bl.z)
+			if(T.flags_1 & NO_RUINS_1)
+				blocked_run++
+			if(!is_planet_hazard_turf(T))
+				safe_run++
+			landing_safe_sums[row + x + 1] = landing_safe_sums[previous_row + x + 1] + safe_run
+			landing_blocked_sums[row + x + 1] = landing_blocked_sums[previous_row + x + 1] + blocked_run
+		CHECK_TICK
+
+/// Suma z siatki prefiksowej w prostokącie (współrzędne lokalne od 0, włącznie, przycinane do kwadratu)
+/datum/planet_surface/proc/landing_grid_sum(list/sums, x1, y1, x2, y2)
+	x1 = clamp(x1, 0, size - 1)
+	y1 = clamp(y1, 0, size - 1)
+	x2 = clamp(x2, 0, size - 1)
+	y2 = clamp(y2, 0, size - 1)
+	var/side = size + 1
+	return sums[(y2 + 1) * side + x2 + 2] - sums[y1 * side + x2 + 2] - sums[(y2 + 1) * side + x1 + 1] + sums[y1 * side + x1 + 1]
 
 /// Ocena miejsca na lądowisko: ile pól jest już przejezdnych, -1 gdy za blisko innego lądowiska albo nachodzi na ruinę
 /datum/planet_surface/proc/landing_zone_score(turf/candidate, radius)
@@ -183,13 +225,15 @@
 	for(var/turf/other as anything in landing_zones)
 		if(get_dist(other, candidate) < PLANET_LANDING_ZONE_SIZE + 4)
 			return -1
-	var/score = 0
-	for(var/turf/T as anything in RANGE_TURFS(radius + 2, candidate))
-		if(T.flags_1 & NO_RUINS_1)
-			return -1
-		if(!is_planet_hazard_turf(T))
-			score++
-	return score
+	if(!landing_safe_sums)
+		build_landing_grid()
+	var/turf/bl = bottom_left()
+	var/x = candidate.x - bl.x
+	var/y = candidate.y - bl.y
+	var/reach = radius + 2
+	if(landing_grid_sum(landing_blocked_sums, x - reach, y - reach, x + reach, y + reach))
+		return -1
+	return landing_grid_sum(landing_safe_sums, x - reach, y - reach, x + reach, y + reach)
 
 /// Czyści lądowisko: skały, lawa i przepaści zamieniają się w grunt, rośliny i obiekty bez właściciela znikają
 /datum/planet_surface/proc/clear_landing_zone(turf/zone_center, radius)
