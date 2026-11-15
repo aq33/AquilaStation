@@ -47,7 +47,7 @@
 		if(FLEET_TRAIT_INVASION)
 			return S.alignment != alignment
 		if(FLEET_TRAIT_NEUTRAL_ZONE)
-			return S.owner != alignment
+			return S.alignment == "unaligned" || S.alignment == "uncharted" // te same układy co wybór celu w move()
 	return TRUE
 
 /// Następny kafel na trasie do celu. Bez mapy flota skacze wprost, jak dotąd; bez trasy (np. zamknięta brama) null, czyli zostaje.
@@ -110,9 +110,11 @@
 			var/hexes = 0
 			if(S.hex != here)
 				var/list/route = GLOB.hexmap.route(S.hex, here, other.alignment, FLEET_DISTRESS_HEXES * HEX_FTL_COST_GATE)
-				if(!route || route["hexes"] > FLEET_DISTRESS_HEXES)
+				// pełna droga, nie odcinek do pierwszego zagrożenia (route["hexes"]): flota i tak idzie całą trasą
+				var/full_hexes = length(route?["full"]) - 1
+				if(!route || full_hexes > FLEET_DISTRESS_HEXES)
 					continue
-				hexes = route["hexes"]
+				hexes = full_hexes
 			.[other] = max(1, hexes)
 
 /// Odwrót na mapie hex: sąsiedni kafel, nie ten z okrętem gracza; najchętniej w stronę układu swojej frakcji

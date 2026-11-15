@@ -35,7 +35,8 @@
 /obj/structure/overmap/proc/hex_update_return_station()
 	if(role != MAIN_OVERMAP || !GLOB.hexmap?.built)
 		return
-	if(!SSstar_system.hex_default_return && !GLOB.hexmap.is_friendly_station(SSstar_system.return_system))
+	// Układ powrotu z konfiguracji mapy, zapamiętany przed pierwszą zmianą: przejęta później stacja nie zostaje celem domyślnym
+	if(!SSstar_system.hex_default_return)
 		SSstar_system.hex_default_return = SSstar_system.return_system
 	var/datum/star_system/station = GLOB.hexmap.nearest_friendly_station(current_hex(), faction)
 	SSstar_system.return_system = station || SSstar_system.hex_default_return || SSstar_system.return_system

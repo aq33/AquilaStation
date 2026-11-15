@@ -1224,8 +1224,8 @@ export const HexStarmap = () => {
                       terrain={terrainById[selected.terrain]}
                       system={systems.find((s) => s.hex === selected.hex)}
                       nukesLoaded={nukes_loaded}
-                      onNuke={() => act('hex_nuke')}
-                      onJump={() => act('hex_jump')}
+                      onNuke={() => act('hex_nuke', { hex: selected.hex })}
+                      onJump={() => act('hex_jump', { hex: selected.hex })}
                       onShowGate={(gate) => showSector(gate.sector, gate.hex)}
                     />
                   )}
@@ -1323,7 +1323,9 @@ const SelectedPanel = (props: SelectedPanelProps) => {
     onJump,
     onShowGate,
   } = props;
-  const [nukeArmed, setNukeArmed] = useState(false);
+  // Uzbrojenie dotyczy jednego kafla: po zmianie zaznaczenia trzeba potwierdzić od nowa
+  const [armedHex, setArmedHex] = useState<string | null>(null);
+  const nukeArmed = armedHex === selected.hex;
   const route = selected.route;
   const showTerrain = !!terrain && terrain.id !== 'empty';
   return (
@@ -1475,10 +1477,10 @@ const SelectedPanel = (props: SelectedPanelProps) => {
               color={nukeArmed ? 'bad' : 'average'}
               onClick={() => {
                 if (!nukeArmed) {
-                  setNukeArmed(true);
+                  setArmedHex(selected.hex);
                   return;
                 }
-                setNukeArmed(false);
+                setArmedHex(null);
                 onNuke();
               }}
             >

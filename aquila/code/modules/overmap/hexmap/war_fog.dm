@@ -48,6 +48,7 @@
 		if(seen_now)
 			F.war_last_seen_hex = hex_id
 			F.war_last_seen_time = world.time
+			F.war_last_seen_ships = F.hex_war_ship_count()
 			if(F.commander)
 				F.commander.seen = TRUE
 		else if(F.war_last_seen_hex)
@@ -58,7 +59,7 @@
 			"hex" = hex_id,
 			"name" = F.name,
 			"alignment" = F.alignment,
-			"ships" = F.hex_war_ship_count(),
+			"ships" = seen_now ? F.hex_war_ship_count() : F.war_last_seen_ships, // niewidoczna flota: liczebność z ostatniej obserwacji
 			"heading" = (seen_now && allied) ? (F.war_target?.hex?.id || F.hex_heading?.hex?.id) : null,
 			"convoy" = !!F.war_cargo,
 			"ghost" = !seen_now,

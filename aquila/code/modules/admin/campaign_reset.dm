@@ -70,7 +70,7 @@
 		return
 
 	// Kopia, żeby reset dało się cofnąć (Campaign Backups). Bez niej reset nie rusza kampanii, bo potwierdzenie obiecuje kopię.
-	if(GLOB.hexmap?.built && !SSstar_system.campaign_backup("przed-resetem"))
+	if(!SSstar_system.campaign_backup("przed-resetem"))
 		log_admin("[key_name(usr)] tried Hard Restart + New Campaign; the campaign backup FAILED. Restart aborted, campaign kept.")
 		to_chat(usr, "<span class='warning'>Nie udało się zapisać kopii kampanii. Reset przerwany, kampania pozostała bez zmian.</span>")
 		return

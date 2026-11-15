@@ -15633,9 +15633,8 @@
 "Zupa pomidorowa": "Tomato Soup",
 "Zupa z batatów": "Sweet Potato Soup",
 "Zupa z klopsikami": "Meatball Soup",
-"Zupa z łez klauna": "Clown's Tears Soup",
-"Zupa z oczu": "Eyeball Soup",
 "Zupa z łez klauna": "Clown's Tears",
+"Zupa z oczu": "Eyeball Soup",
 "Zupa ze szlamu": "Slime Soup",
 "Zupy z garnka i halucynacje": "Pot soups and hallucinations",
 "Zużyty bufor": "Spent buffer",
@@ -21705,7 +21704,6 @@
 "Strony konfliktu mogą użyć broni jądrowej.": "The warring sides may use nuclear weapons.",
 "Napięcie między frakcjami rośnie.": "Tension between the factions is rising.",
 "Stan gotowości sektora: DEFCON [defcon].": "Sector readiness: DEFCON [defcon].",
-"Wykryto odpalenie pocisku termojądrowego ([hex_war_faction_name(N.faction)]) w [N.hex.display_name()]. Cel: [N.target_hex?.display_name() || \"nieznany\"].": "Thermonuclear missile launch detected ([hex_war_faction_name(N.faction)]) at [N.hex.display_name()]. Target: [N.target_hex?.display_name() || \"unknown\"].",
 "Flota [F.name] zestrzeliła pocisk termojądrowy w [next.display_name()].": "The fleet [F.name] shot down a thermonuclear missile at [next.display_name()].",
 "Detonacja jądrowa w [hex.display_name()].": "Nuclear detonation at [hex.display_name()].",
 "Brak łączności ze sztabem.": "No link to fleet command.",
@@ -21790,5 +21788,8 @@
 "Odbij kwaterę główną Nanotrasen z rąk wroga": "Retake the Nanotrasen headquarters from the enemy",
 "Odbijcie kwaterę główną Nanotrasen z rąk wroga": "Retake the Nanotrasen headquarters from the enemy",
 "Odbijcie kwaterę główną Nanotrasen w układzie [target_system]: rozbijcie floty wroga w jej kaflu. Nagroda [HEX_WAR_RETAKE_REWARD] kr, jeśli okręt walczył przy kwaterze.": "Retake the Nanotrasen headquarters in [target_system]: destroy the enemy fleets in its tile. Reward [HEX_WAR_RETAKE_REWARD] cr if the ship fought at the headquarters.",
-"Kwatera główna Nanotrasen w układzie [target_system] odbita. Za udział okrętu na konto zaopatrzenia przelano [HEX_WAR_RETAKE_REWARD] kr.": "The Nanotrasen headquarters in [target_system] has been retaken. [HEX_WAR_RETAKE_REWARD] cr has been transferred to the supply account for the ship's part in it."
+"Kwatera główna Nanotrasen w układzie [target_system] odbita. Za udział okrętu na konto zaopatrzenia przelano [HEX_WAR_RETAKE_REWARD] kr.": "The Nanotrasen headquarters in [target_system] has been retaken. [HEX_WAR_RETAKE_REWARD] cr has been transferred to the supply account for the ship's part in it.",
+"Przywracanie kopii kampanii [name] nie powiodło się i nie udało się odtworzyć poprzednich plików kampanii. Sprawdź [starmap_path] i [HEXMAP_SAVE_PATH].": "Restoring the campaign backup [name] failed and the previous campaign files could not be put back. Check [starmap_path] and [HEXMAP_SAVE_PATH].",
+"<span class='warning'>Ktoś zmienił zaznaczony kafel. Sprawdź cel i spróbuj jeszcze raz.</span>": "<span class='warning'>Someone changed the selected tile. Check the target and try again.</span>",
+"Wykryto odpalenie pocisku termojądrowego ([hex_war_faction_name(N.faction)]) w [N.hex.display_name()]. Cel: [target_name].": "Thermonuclear missile launch detected ([hex_war_faction_name(N.faction)]) at [N.hex.display_name()]. Target: [target_name]."
 }

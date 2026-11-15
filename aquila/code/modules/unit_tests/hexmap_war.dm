@@ -78,13 +78,17 @@
 	GLOB.hex_war.economy()
 	var/datum/fleet/convoy
 	for(var/datum/fleet/F as anything in GLOB.hex_war.faction_fleets("nanotrasen", TRUE) - convoys_before)
-		convoy = F
+		if(F.war_cargo == "ore" && F.current_system == mine) // economy() może w tym samym wywołaniu wysłać konwoje z innych kopalni
+			convoy = F
+	// Najbliższa fabryka NT od kopalni (na mapie mogą być inne, bliższe niż testowa)
+	var/list/factories = GLOB.hex_war.faction_sites("nanotrasen", HEX_FAC_FACTORY, mine) - mine
+	var/datum/star_system/expected = length(factories) ? factories[1] : factory
 	var/ore_left = mine.war_ore
 	var/fail
 	if(!convoy)
 		fail = "7 ore at a mine sent no convoy to the faction's factory"
-	else if(convoy.war_destination != factory)
-		fail = "The convoy went to [convoy.war_destination] instead of the factory in [factory]"
+	else if(convoy.war_destination != expected)
+		fail = "The convoy went to [convoy.war_destination] instead of the nearest factory in [expected]"
 	else if(ore_left != 1)
 		fail = "The mine kept [ore_left] ore after sending 6 (expected 1)"
 	else

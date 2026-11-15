@@ -158,6 +158,17 @@
 	second.kill()
 	var/after_both = GLOB.aquila_hex_solar_multiplier
 	TEST_ASSERT_EQUAL(after_first, 1.5, "Stopping one solar storm reset the panels boosted by another one")
+	// end(): bezpieczne EVA ogłasza dopiero ostatnia burza
+	var/datum/round_event/aquila_hex_solar_storm/storm_a = new(FALSE)
+	var/datum/round_event/aquila_hex_solar_storm/storm_b = new(FALSE)
+	storm_a.set_solar_level(5)
+	storm_b.set_solar_level(5)
+	var/first_announced = storm_a.end()
+	var/last_announced = storm_b.end()
+	SSevents.running -= storm_a
+	SSevents.running -= storm_b
+	TEST_ASSERT(!first_announced, "One solar storm announced safe EVA while another one was still running")
+	TEST_ASSERT(last_announced, "The last solar storm did not announce safe EVA")
 	TEST_ASSERT_EQUAL(after_both, 1, "The panels stayed boosted after both solar storms stopped")
 
 	var/saved_interference = GLOB.aquila_hex_teleport_interference
@@ -171,6 +182,71 @@
 	GLOB.aquila_hex_teleport_interference = saved_interference
 	TEST_ASSERT_EQUAL(after_kill, saved_interference, "A stopped drive instability left the teleporters jammed")
 	TEST_ASSERT_EQUAL(after_end, saved_interference, "A drive instability released its interference twice")
+
+/// Seegson bez zasilania w rozruchu skoku gaśnie (pełny napęd nie był przetwarzany i nie zauważał utraty zasilania)
+/datum/unit_test/hexmap_seegson_power_loss
+
+/datum/unit_test/hexmap_seegson_power_loss/Run()
+	var/obj/machinery/computer/ship/ftl_computer/drive = allocate(/obj/machinery/computer/ship/ftl_computer)
+	drive.ftl_state = FTL_STATE_JUMPING
+	drive.progress = drive.spoolup_time
+	drive.set_machine_stat(drive.machine_stat | NOPOWER)
+	drive.process()
+	var/state = drive.ftl_state
+	STOP_PROCESSING(SSmachines, drive)
+	TEST_ASSERT(state != FTL_STATE_JUMPING, "A Seegson drive without power stayed in the jump spool-up")
+
+/// Zwykły timer ruchu nie przesuwa floty, która idzie z posiłkami (krokami posiłków steruje fleet_distress.dm)
+/datum/unit_test/hexmap_reinforcement_timer
+
+/datum/unit_test/hexmap_reinforcement_timer/Run()
+	var/datum/star_system/home
+	var/datum/star_system/target
+	for(var/datum/star_system/S as anything in SSstar_system.systems)
+		if(!S.hex || S.hidden || istype(S, /datum/star_system/random) || length(S.fleets))
+			continue
+		for(var/datum/hex/N as anything in GLOB.hexmap.neighbours(S.hex))
+			if(!N.system && !GLOB.hexmap.blocks(N))
+				target = S
+				home = GLOB.hexmap.system_for(N)
+				break
+		if(target)
+			break
+	if(!target)
+		return
+	var/datum/fleet/fleet = new
+	fleet.hide_movements = TRUE
+	fleet.can_reinforce = FALSE
+	fleet.current_system = home
+	home.fleets += fleet
+	fleet.ai_answering = TRUE
+	fleet.hex_heading = target
+	var/moved = fleet.move()
+	var/stayed = fleet.current_system == home
+	home.fleets -= fleet
+	fleet.current_system = null
+	qdel(fleet)
+	var/datum/star_system/random/hex_empty/E = home
+	if(istype(E))
+		E.try_release()
+	TEST_ASSERT(!moved && stayed, "The ordinary move timer moved a fleet that is on its way with reinforcements")
+
+/// Domyślny układ powrotu to ten z konfiguracji mapy, zapamiętany przed pierwszą zmianą
+/datum/unit_test/hexmap_default_return
+
+/datum/unit_test/hexmap_default_return/Run()
+	var/obj/structure/overmap/ship = SSstar_system.find_main_overmap()
+	if(!ship || !GLOB.hexmap?.built)
+		return
+	var/datum/star_system/saved_default = SSstar_system.hex_default_return
+	var/datum/star_system/saved_return = SSstar_system.return_system
+	SSstar_system.hex_default_return = null
+	ship.hex_update_return_station()
+	var/datum/star_system/remembered = SSstar_system.hex_default_return
+	SSstar_system.hex_default_return = saved_default
+	SSstar_system.return_system = saved_return
+	TEST_ASSERT_EQUAL(remembered, saved_return, "The configured return system was not remembered as the default")
+
 
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL

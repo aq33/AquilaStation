@@ -401,9 +401,14 @@ GLOBAL_LIST_INIT(hex_war_factions, list("nanotrasen", "solgov", "syndicate", "pi
 	war_cargo = null
 	hex_war_dispose()
 
-/// Usuwa flotę razem z okrętami (konwój po rozładunku, floty zastąpione zapisem kampanii)
+/// Usuwa flotę razem z okrętami (konwój po rozładunku, floty zastąpione zapisem kampanii). Okręty najpierw odpinamy,
+/// bo usunięcie ostatniego przez remove_ship() wołałoby defeat(): ogłoszenie porażki i napięcie wojny za zwykłą dostawę.
 /datum/fleet/proc/hex_war_dispose()
-	for(var/obj/structure/overmap/OM as anything in all_ships.Copy())
+	var/list/ships = all_ships.Copy()
+	for(var/obj/structure/overmap/OM as anything in ships)
+		UnregisterSignal(OM, list(COMSIG_PARENT_QDELETING, COMSIG_SHIP_IFF_CHANGE))
+	all_ships.Cut()
+	for(var/obj/structure/overmap/OM as anything in ships)
 		if(!QDELETED(OM))
 			qdel(OM)
 	current_system?.fleets -= src

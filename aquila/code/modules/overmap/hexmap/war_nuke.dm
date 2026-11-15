@@ -168,7 +168,8 @@
 	defcon_lock_until = world.time + HEX_WAR_DEFCON_LOCK
 	tension = max(tension, 30)
 	update_defcon()
-	priority_announce("Wykryto odpalenie pocisku termojądrowego ([hex_war_faction_name(N.faction)]) w [N.hex.display_name()]. Cel: [N.target_hex?.display_name() || "nieznany"].", "Dowództwo Floty White Rapids", 'nsv13/sound/effects/ship/incoming_missile.ogg')
+	var/target_name = N.target_hex?.display_name() || "nieznany" // osobny literał: generator słownika nie rozpoznaje || we wstawce
+	priority_announce("Wykryto odpalenie pocisku termojądrowego ([hex_war_faction_name(N.faction)]) w [N.hex.display_name()]. Cel: [target_name].", "Dowództwo Floty White Rapids", 'nsv13/sound/effects/ship/incoming_missile.ogg')
 
 /datum/hex_nuke
 	var/faction
@@ -220,7 +221,12 @@
 /// Wybuch w kaflu: floty tracą okręty (3 w kaflu, 1 obok), pusty kafel zostaje skażony; okręt gracza dostaje prawdziwą torpedę
 /datum/hex_nuke/proc/impact(obj/structure/overmap/player, datum/hex/player_hex)
 	if(player && player_hex == hex)
+		// Okręt gracza w kaflu: rakieta schodzi do walki taktycznej jako prawdziwa torpeda, którą da się zestrzelić.
+		// Skutki strategiczne (floty, skażenie, DEFCON) liczy dopiero jej trafienie, nie samo wejście do kafla.
 		player.hex_incoming_nuke()
+		log_game("HEXWAR: nuclear missile ([faction]) handed over to tactical combat at [hex.id]")
+		finish()
+		return
 	for(var/datum/fleet/F as anything in hex.system?.fleets)
 		hex_nuke_damage_fleet(F, 3)
 	for(var/datum/hex/N as anything in GLOB.hexmap.neighbours(hex))
@@ -228,8 +234,7 @@
 			hex_nuke_damage_fleet(F, 1)
 	if(!hex.system || istype(hex.system, /datum/star_system/random/hex_empty))
 		var/previous = hex.terrain
-		hex.set_terrain(HEX_TERRAIN_RADIATION)
-		addtimer(CALLBACK(hex, TYPE_PROC_REF(/datum/hex, set_terrain), hex_terrain(previous)?.moving ? HEX_TERRAIN_EMPTY : previous), 50 MINUTES)
+		GLOB.hexmap.contaminate(hex, hex_terrain(previous)?.moving ? HEX_TERRAIN_EMPTY : previous, 50 MINUTES)
 	mini_announce("Detonacja jądrowa w [hex.display_name()].", "White Rapids EAS")
 	GLOB.hex_war.nuclear_detonation(hex)
 	log_game("HEXWAR: nuclear missile ([faction]) detonates at [hex.id]")
@@ -275,6 +280,8 @@
 	for(var/obj/machinery/ship_weapon/W in GLOB.machines)
 		if(!(istype(W, /obj/machinery/ship_weapon/torpedo_launcher) || istype(W, /obj/machinery/ship_weapon/vls)) || W.get_overmap() != src)
 			continue
+		if(W.state in list(STATE_FEEDING, STATE_CHAMBERING, STATE_FIRING))
+			continue // wyrzutnia w trakcie cyklu (chamber() śpi z torpedą w ammo): zabranie jej teraz zepsułoby cykl
 		for(var/obj/item/ship_weapon/ammunition/torpedo/nuke/N in W.ammo)
 			.[N] = W
 
@@ -317,3 +324,40 @@
 		log_game("[key_name(user)] fired a strategic nuclear missile from [src] at [target.id]")
 		message_admins("[ADMIN_LOOKUPFLW(user)] wystrzelił atomówkę strategiczną w kafel [target.display_name()].")
 	return TRUE
+
+// ===== skażenie po detonacji (zapisywane w kampanii) =====
+
+/datum/hexmap
+	/// id kafla -> list("previous" = teren po wygaszeniu, "until" = world.time wygaszenia)
+	var/list/contamination = list()
+
+/datum/hexmap/proc/contaminate(datum/hex/H, previous, duration)
+	H.set_terrain(HEX_TERRAIN_RADIATION)
+	contamination[H.id] = list("previous" = previous, "until" = world.time + duration)
+	addtimer(CALLBACK(src, PROC_REF(decontaminate), H.id), duration, TIMER_UNIQUE | TIMER_OVERRIDE)
+
+/datum/hexmap/proc/decontaminate(hex_id)
+	var/list/entry = contamination[hex_id]
+	contamination -= hex_id
+	var/datum/hex/H = hex_by_id(hex_id)
+	if(entry && H && H.terrain == HEX_TERRAIN_RADIATION)
+		H.set_terrain(entry["previous"])
+
+/// Do zapisu kampanii: id kafla -> list(teren po wygaszeniu, pozostały czas)
+/datum/hexmap/proc/save_contamination()
+	. = list()
+	for(var/hex_id in contamination)
+		var/list/entry = contamination[hex_id]
+		.[hex_id] = list(entry["previous"], max(0, entry["until"] - world.time))
+
+/// Start rundy: skażenie z zapisu dalej wygasa w swoim czasie (sam teren odtwarza generate_terrain())
+/datum/hexmap/proc/restore_contamination(list/saved)
+	if(!islist(saved))
+		return
+	for(var/hex_id in saved)
+		var/list/entry = saved[hex_id]
+		var/datum/hex/H = hex_by_id(hex_id)
+		if(!H || !islist(entry) || length(entry) < 2)
+			continue
+		contaminate(H, entry[1], max(1 SECONDS, entry[2]))
+

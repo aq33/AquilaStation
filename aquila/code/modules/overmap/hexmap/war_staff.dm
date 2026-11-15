@@ -23,6 +23,7 @@
 	/// Mgła wojny: ostatnio widziany kafel i kiedy
 	var/war_last_seen_hex
 	var/war_last_seen_time = 0
+	var/war_last_seen_ships = 0
 
 /// Czy sztab może przejąć tę flotę (garnizony, posiłki, polowania i bossowie zostają poza sztabem)
 /datum/fleet/proc/hex_war_adoptable()
@@ -97,6 +98,10 @@
 
 /datum/fleet/move(datum/star_system/target, force = FALSE)
 	if(istype(src, /datum/fleet/aquila_escort)) // eskorta skacze tylko razem z okrętem gracza (war_trade.dm)
+		return FALSE
+	// Flota odpowiadająca na wezwanie idzie tylko krokami posiłków (fleet_distress.dm), w tempie przyjętym w ETA
+	if(ai_answering && !force)
+		addtimer(CALLBACK(src, PROC_REF(move)), rand(minimum_random_move_delay, maximum_random_move_delay))
 		return FALSE
 	if(war_controlled && !target && !force && hex_war_holds())
 		addtimer(CALLBACK(src, PROC_REF(move)), rand(minimum_random_move_delay, maximum_random_move_delay))
@@ -392,6 +397,9 @@
 			F.hex_war_set_order(HEX_ORDER_IDLE)
 		if(F.war_order == HEX_ORDER_RAID && world.time - F.war_order_time > 30 MINUTES)
 			F.hex_war_set_order(HEX_ORDER_IDLE)
+		// Pościg za konwojem, który już dojechał albo zginął: flota wraca do puli od razu (napad na stację ma war_target)
+		if(F.war_order == HEX_ORDER_RAID && !F.war_target && (!F.war_follow || QDELETED(F.war_follow)))
+			F.hex_war_set_order(HEX_ORDER_IDLE)
 		if(!is_free(F))
 			continue
 		var/datum/fleet/prey
@@ -446,4 +454,14 @@
 			best_score = score
 			best = S
 	return best
+
+/// Średni stan kadłubów ocalałych okrętów floty, 0–1 (do zapisu kampanii)
+/datum/fleet/proc/hex_war_hull()
+	var/total = 0
+	var/count = 0
+	for(var/obj/structure/overmap/OM as anything in all_ships)
+		if(!QDELETED(OM) && OM.max_integrity)
+			total += OM.obj_integrity / OM.max_integrity
+			count++
+	return count ? total / count : 1
 

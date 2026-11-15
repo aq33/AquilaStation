@@ -89,6 +89,7 @@
 	var/obj/structure/overmap/escorted = F.escorting
 	OM.defense_target = escorted
 	if(escorted.last_target && !QDELETED(escorted.last_target) && overmap_dist(escorted, escorted.last_target) < escorted.max_weapon_range * 1.5)
+		OM.last_target = escorted.last_target // ostrzał bierze last_target okrętu eskorty, więc cel musi być ten sam co manewr
 		defensively_engage(OM, escorted.last_target)
 		return
 	if(OM.last_target && !QDELETED(OM.last_target) && overmap_dist(OM.last_target, escorted) <= OM.max_weapon_range * 2)

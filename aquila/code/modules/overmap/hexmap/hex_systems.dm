@@ -55,7 +55,10 @@
 	GLOB.hexmap = new
 	GLOB.hexmap.build(systems)
 	var/list/save = campaign_reset_pending ? null : hexmap_read_save(HEXMAP_SAVE_PATH)
+	if(save && save["map_name"] != SSmapping.config?.map_name)
+		save = null // zapis z innej mapy: teren i wojna od nowa, jak w kampanii bez zapisu
 	GLOB.hexmap.generate_terrain(save?["terrain"])
+	GLOB.hexmap.restore_contamination(save?["contamination"])
 	GLOB.hexmap.start_terrain_timers()
 	GLOB.hexmap.place_facilities()
 	GLOB.hex_war = new

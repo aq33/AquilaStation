@@ -72,15 +72,6 @@
 	icon_state = "tear"
 	research_points = 6000
 
-/// Misja skanowania może celować w skupiska anomalii z kafli pól anomalii
-/datum/overmap_objective/scan
-	anomaly_whitelist = list(
-		/obj/effect/overmap_anomaly/safe/sun,
-		/obj/effect/overmap_anomaly/safe/sun/red_giant,
-		/obj/effect/overmap_anomaly/wormhole,
-		/obj/effect/overmap_anomaly/singularity,
-		/obj/effect/overmap_anomaly/aquila_anomaly_cluster)
-
 /// Pole anomalii od razu dostaje układ ze skupiskiem, żeby misja skanowania je widziała
 /datum/hex/proc/hex_spawn_anomaly_cluster()
 	var/datum/star_system/S = GLOB.hexmap.system_for(src)

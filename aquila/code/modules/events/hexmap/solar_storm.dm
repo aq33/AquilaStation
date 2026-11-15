@@ -45,8 +45,12 @@ GLOBAL_LIST_EMPTY(aquila_hex_solar_storms)
 		radiate()
 
 /datum/round_event/aquila_hex_solar_storm/end()
-	priority_announce("Burza słoneczna minęła statek. Można bezpiecznie wznowić EVA.", "Sensory statku")
 	set_solar_level(1)
+	// Inna burza nadal parzy załogę w kosmosie: bezpieczne EVA ogłasza dopiero ostatnia. Zwraca, czy ogłosiła.
+	if(length(GLOB.aquila_hex_solar_storms))
+		return FALSE
+	priority_announce("Burza słoneczna minęła statek. Można bezpiecznie wznowić EVA.", "Sensory statku")
+	return TRUE
 
 /datum/round_event/aquila_hex_solar_storm/kill()
 	set_solar_level(1) // stopped before end(): this storm stops boosting the panels, another one still running keeps its boost

@@ -36,6 +36,7 @@
 			"ships" = F.hex_war_ship_count(),
 			"max_ships" = F.war_max_ships,
 			"strength" = F.hex_war_strength(),
+			"hull" = F.hex_war_hull(),
 			"order" = F.war_order,
 			"target" = F.war_target?.hex?.id,
 			"commander" = F.commander?.id,
@@ -92,7 +93,7 @@
 /// Odtwarza wojnę z zapisu. Zwraca FALSE, gdy zapisu nie da się użyć (wtedy sztab przejmuje floty ze startu rundy).
 /datum/hex_war/proc/restore(list/saved)
 	var/list/fleet_data = saved["fleets"]
-	if(!islist(fleet_data) || !length(fleet_data))
+	if(!islist(fleet_data)) // pusta lista to poprawny zapis (wszystkie floty zginęły): dowódcy i magazyny i tak wracają
 		return FALSE
 	next_commander_id = max(1, saved["next_id"])
 	var/list/by_id = list()
@@ -170,7 +171,8 @@
 		qdel(extra)
 	if(length(live) < ships)
 		F.hex_war_add_ships(ships - length(live))
-	var/strength = clamp(entry["strength"] || 1, 0.1, 1)
+	// Średni stan kadłubów ocalałych okrętów; strength dzieli przez okręty przy wodowaniu, więc liczyłby straty drugi raz
+	var/strength = clamp(entry["hull"] || entry["strength"] || 1, 0.1, 1)
 	for(var/obj/structure/overmap/OM as anything in F.all_ships)
 		if(!QDELETED(OM))
 			OM.obj_integrity = max(1, OM.max_integrity * strength)

@@ -249,13 +249,21 @@
 					return TRUE
 				linked.ftl_drive.request_emergency_ftl_confirm()
 				return TRUE
+			// Konsola jest wspólna: skok tylko w kafel, który widział klikający (inny gracz mógł w międzyczasie zaznaczyć inny)
+			if(params["hex"] && GLOB.hexmap.hex_by_id(params["hex"]) != hex_selected)
+				to_chat(usr, "<span class='warning'>Ktoś zmienił zaznaczony kafel. Sprawdź cel i spróbuj jeszcze raz.</span>")
+				return TRUE
 			if(linked.hex_jump(hex_selected, usr))
 				playsound(src, 'nsv13/sound/effects/computer/scroll_start.ogg', 50, TRUE)
 			return TRUE
 		if("hex_nuke")
 			if(!can_control_ship || linked.ftl_drive?.lockout)
 				return
-			if(linked.hex_fire_strategic_nuke(hex_selected, usr))
+			var/datum/hex/nuke_target = GLOB.hexmap.hex_by_id(params["hex"])
+			if(!nuke_target || nuke_target != hex_selected)
+				to_chat(usr, "<span class='warning'>Ktoś zmienił zaznaczony kafel. Sprawdź cel i spróbuj jeszcze raz.</span>")
+				return TRUE
+			if(linked.hex_fire_strategic_nuke(nuke_target, usr))
 				playsound(src, 'nsv13/sound/effects/computer/alarm_3.ogg', 50, FALSE)
 			return TRUE
 		if("hex_cancel")

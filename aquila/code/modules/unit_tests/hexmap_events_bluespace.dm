@@ -228,6 +228,14 @@
 	TEST_ASSERT(generator.charging_state != POWER_IDLE, "The restored generator did not start its power sequence")
 	TEST_ASSERT(!length(event.disabled_generators), "The event kept generators after it ended")
 
+	// Admin zatrzymuje awarię przez kill(): generator wraca tak samo jak po end()
+	var/datum/round_event/aquila_hex_gravity_failure/killed = new(FALSE)
+	var/obj/machinery/gravity_generator/main/killed_generator = allocate(/obj/machinery/gravity_generator/main)
+	TEST_ASSERT(killed.disable_generator(killed_generator), "A running generator was not shut down before kill()")
+	killed.kill()
+	TEST_ASSERT(killed_generator.breaker, "kill() left the generator switched off")
+	TEST_ASSERT(!length(killed.disabled_generators), "kill() kept generators on the list")
+
 	var/obj/machinery/gravity_generator/main/off_generator = allocate(/obj/machinery/gravity_generator/main)
 	off_generator.breaker = FALSE
 	off_generator.set_state(FALSE)

@@ -182,6 +182,13 @@
 	legacy.icon_state = "ftl_charging"
 	START_PROCESSING(SSmachines, legacy)
 
+// Pełny Seegson nie jest przetwarzany (process() zwraca PROCESS_KILL), więc w rozruchu skoku nie zauważyłby utraty zasilania:
+// skok po hexach włącza mu przetwarzanie, a process() niżej gasi napęd przy braku zasilania i jump_start() przerywa skok.
+/obj/machinery/computer/ship/ftl_computer/jump(datum/star_system/target_system, force = FALSE, misjump = FALSE)
+	. = ..()
+	if(GLOB.hexmap?.built && ftl_state == FTL_STATE_JUMPING && !(datum_flags & DF_ISPROCESSING))
+		START_PROCESSING(SSmachines, src)
+
 // W cooldownie po skoku po hexach napędy się nie ładują. Komputer Seegson nie może też ładować w czasie rozruchu skoku:
 // jego process() ustawia SPOOLING i przerwałby skok, który ruszył z niepełnym ładunkiem.
 /obj/machinery/computer/ship/ftl_computer/process()
@@ -223,3 +230,10 @@
 			var/datum/hex/H = hex_axial(center.sector, center.q + dq, center.r + dr)
 			if(H && H != center)
 				. += H
+
+/// Initialize() komputera FTL śledzi get_overmap(): poza okrętem (strefa testów, spawn admina) to null i runtime w bazie
+/obj/machinery/computer/ship/ftl_computer/start_monitoring(obj/structure/overmap/OM)
+	if(!OM)
+		return
+	return ..()
+

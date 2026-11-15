@@ -13,6 +13,12 @@
 	max_occurrences = 1
 	earliest_start = 20 MINUTES
 
+// Typ eventu nie dziedziczy po /datum/round_event/ghost_role, więc bazowa kontrola nie widzi przełącznika ról duchów
+/datum/round_event_control/aquila_hex_rescue_pod/canSpawnEvent(players_amt, gamemode)
+	. = ..()
+	if(. && !(GLOB.ghost_role_flags & GHOSTROLE_MIDROUND_EVENT))
+		return FALSE
+
 /datum/round_event/aquila_hex_rescue_pod
 	parent_type = /datum/round_event/aquila_stray_cargo
 	fakeable = FALSE

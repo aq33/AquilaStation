@@ -132,7 +132,8 @@
 			try_ai_retreat_jump()
 		return
 	if(!has_ai_fleet_enemies())
-		ai_is_reinforcement = FALSE // walka, na którą przylecieliśmy, się skończyła: w następnej wolno wezwać pomoc
+		if(!ai_answering) // w drodze z posiłkami (pusty kafel po drodze) rola zostaje do dotarcia
+			ai_is_reinforcement = FALSE // walka, na którą przylecieliśmy, się skończyła: w następnej wolno wezwać pomoc
 		return
 	var/list/state = get_ai_fleet_state()
 	var/fear = state[2]
@@ -269,7 +270,10 @@
 		ai_answering = FALSE
 		note_ai_fleet_event("reinforcements stopped on the way: interdicted")
 		return
-	move(target, force = TRUE)
+	if(!move(target, force = TRUE)) // brak trasy (np. wróg trzyma jedyną bramę): flota wraca do puli wezwań
+		ai_answering = FALSE
+		note_ai_fleet_event("reinforcements gave up: no route to [target]")
+		return
 	if(current_system == target)
 		ai_answering = FALSE
 		return

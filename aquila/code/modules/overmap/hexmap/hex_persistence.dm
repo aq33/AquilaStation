@@ -7,7 +7,7 @@
 	var/campaign_restore_pending = FALSE
 
 /datum/controller/subsystem/star_system/save(_destination_path = SSmapping.config?.starmap_path)
-	if(campaign_restore_pending && _destination_path == SSmapping.config?.starmap_path)
+	if(campaign_restore_pending && !campaign_reset_pending && _destination_path == SSmapping.config?.starmap_path)
 		log_game("Starmap save skipped: a campaign backup was restored for the next round.")
 		return 1
 	. = ..()
@@ -20,7 +20,8 @@
 		return
 	// Koniec rundy liczy się raz: rundy bez kwatery głównej rozstrzygają wojnę (war_end.dm)
 	var/loser
-	if(GLOB.hex_war?.ready && !GLOB.hex_war.round_tallied)
+	// Tylko prawdziwy koniec rundy: restart w trakcie rundy też zapisuje kampanię, ale nie rozlicza wojny
+	if(GLOB.hex_war?.ready && !GLOB.hex_war.round_tallied && SSticker.current_state >= GAME_STATE_FINISHED)
 		GLOB.hex_war.round_tallied = TRUE
 		loser = GLOB.hex_war.round_end_tally()
 	if(hexmap_write(HEXMAP_SAVE_PATH))
@@ -40,6 +41,7 @@
 		"ship_system" = (S && !istype(S, /datum/star_system/random)) ? S.name : null,
 		"saved_at" = time2text(world.realtime, "YYYY-MM-DD hh:mm:ss"),
 		"terrain" = GLOB.hexmap.save_terrain(),
+		"contamination" = GLOB.hexmap.save_contamination(),
 		"war" = GLOB.hex_war?.ready ? GLOB.hex_war.serialize() : null,
 	)
 	fdel(path)
@@ -72,6 +74,8 @@
 	if(!data || data["map_name"] != SSmapping.config?.map_name)
 		return fallback
 	var/datum/star_system/named = data["ship_system"] ? system_by_id(data["ship_system"]) : null
+	if(named && (named.system_traits & STARSYSTEM_END_ON_ENTER))
+		return fallback // runda skończyła się w Outpost 45: start w nim od razu znów kończyłby rundę
 	if(named)
 		return named
 	var/datum/hex/H = GLOB.hexmap.hex_by_id(data["ship_hex"])
@@ -84,7 +88,7 @@
 
 /// Robi kopię kampanii z bieżącego stanu, bez ruszania plików, z których startuje następna runda. Zwraca nazwę kopii albo null.
 /datum/controller/subsystem/star_system/proc/campaign_backup(kind = "manual", label)
-	if(!initialized || !GLOB.hexmap?.built)
+	if(!initialized)
 		return
 	var/name = "[time2text(world.realtime, "YYYY-MM-DD_hh-mm-ss")]_[kind][label ? "_[hex_backup_label(label)]" : ""]"
 	var/dir = "[CAMPAIGN_BACKUP_DIR][name]/"
@@ -94,8 +98,9 @@
 		return
 	fcopy(starmap_tmp, "[dir]starmap.json")
 	fdel(starmap_tmp)
-	hexmap_write("[dir]hexmap.json")
-	if(!fexists("[dir]starmap.json"))
+	// Bez mapy hex kopia ma samą mapę gwiezdną; z mapą hex bez hexmap.json byłaby niepełna, więc wtedy jej nie ma wcale
+	if(!fexists("[dir]starmap.json") || (GLOB.hexmap?.built && !hexmap_write("[dir]hexmap.json")))
+		fdel(dir)
 		return
 	if(kind == "auto")
 		prune_auto_backups()
@@ -129,22 +134,34 @@
 	if(!starmap_path || !fexists("[dir]starmap.json"))
 		return FALSE
 	// Bieżący stan idzie do kopii przed przywróceniem; bez niej nic nie nadpisujemy
-	var/before = campaign_backup("przed-przywroceniem")
-	if(!before)
+	if(!campaign_backup("przed-przywroceniem"))
 		return FALSE
-	var/before_dir = "[CAMPAIGN_BACKUP_DIR][before]/"
-	if(!fcopy("[dir]starmap.json", starmap_path))
-		fcopy("[before_dir]starmap.json", starmap_path)
-		return FALSE
-	fdel(HEXMAP_SAVE_PATH)
-	if(fexists("[dir]hexmap.json") && !fcopy("[dir]hexmap.json", HEXMAP_SAVE_PATH))
-		// Połowa kopii to gorzej niż nic: przywracamy poprzedni zestaw plików
-		fcopy("[before_dir]starmap.json", starmap_path)
-		if(fexists("[before_dir]hexmap.json"))
-			fcopy("[before_dir]hexmap.json", HEXMAP_SAVE_PATH)
-		return FALSE
-	campaign_restore_pending = TRUE
-	return TRUE
+	// Cofnięcie przy błędzie wraca do plików, które leżały na dysku (kopia wyżej to stan rundy, nie te pliki)
+	var/old_starmap = fexists(starmap_path) ? rustg_file_read(starmap_path) : null
+	var/old_hexmap = fexists(HEXMAP_SAVE_PATH) ? rustg_file_read(HEXMAP_SAVE_PATH) : null
+	var/ok = fcopy("[dir]starmap.json", starmap_path)
+	if(ok)
+		fdel(HEXMAP_SAVE_PATH)
+		if(fexists("[dir]hexmap.json"))
+			ok = fcopy("[dir]hexmap.json", HEXMAP_SAVE_PATH)
+	if(ok)
+		campaign_restore_pending = TRUE
+		return TRUE
+	// Połowa kopii to gorzej niż nic: wracają poprzednie pliki (albo ich brak)
+	var/starmap_back = campaign_put_file(starmap_path, old_starmap) // oba pliki, nawet gdy pierwszy się nie uda
+	var/hexmap_back = campaign_put_file(HEXMAP_SAVE_PATH, old_hexmap)
+	if(!starmap_back || !hexmap_back)
+		log_game("Campaign restore of [name] failed and the previous campaign files could not be put back.")
+		message_admins("Przywracanie kopii kampanii [name] nie powiodło się i nie udało się odtworzyć poprzednich plików kampanii. Sprawdź [starmap_path] i [HEXMAP_SAVE_PATH].")
+	return FALSE
+
+/// Kładzie z powrotem plik o tej treści (null: pliku nie było). Zwraca TRUE, jeśli na dysku jest to, co trzeba.
+/datum/controller/subsystem/star_system/proc/campaign_put_file(path, content)
+	fdel(path)
+	if(isnull(content))
+		return !fexists(path)
+	rustg_file_write(content, path)
+	return fexists(path) && rustg_file_read(path) == content
 
 /datum/admins/proc/campaign_backups_admin()
 	set category = "Server"
