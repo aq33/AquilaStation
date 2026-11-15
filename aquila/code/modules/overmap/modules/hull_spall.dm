@@ -24,12 +24,38 @@ GLOBAL_VAR_INIT(hull_spall_enabled, TRUE)
 	/// AQUILA - pocisk przekazany na pokład przez Swiss Cheese: list(kierunek x, kierunek y, głębokość wyłomu)
 	var/list/hull_spall
 
+/obj/item/projectile
+	/// AQUILA - pierwsze trafione poszycie: od niego liczy się przebijanie w głąb
+	var/turf/hull_pierce_from
+
+/// Przebijanie w głąb: pocisk przekazany na pokład przelatuje przez ściany i gęste obiekty, dopóki nie oddali się od
+/// pierwszego trafionego poszycia o głębokość wyłomu minus jedno pole; wybucha (z tą samą siłą co wcześniej) dopiero
+/// w głębi. Ludzi trafia normalnie. Głębokość 1 = wybuch na poszyciu jak dawniej.
+/obj/item/projectile/prehit_pierce(atom/A)
+	if(hull_spall && hull_pierce_should_phase(A))
+		do_sparks(2, FALSE, get_turf(A))
+		return PROJECTILE_PIERCE_PHASE
+	return ..()
+
+/obj/item/projectile/proc/hull_pierce_should_phase(atom/A)
+	if(!A || ismob(A))
+		return FALSE
+	if(!isclosedturf(A) && !(isobj(A) && A.density))
+		return FALSE
+	var/turf/here = get_turf(A)
+	if(!here)
+		return FALSE
+	if(!hull_pierce_from)
+		hull_pierce_from = here
+	return get_dist(hull_pierce_from, here) < round(hull_spall[3]) - 1
+
 /obj/item/projectile/Destroy()
 	if(hull_spall && GLOB.hull_spall_enabled)
 		var/turf/origin = get_turf(src)
 		if(origin && !isspaceturf(origin))
 			hull_spall_effects(origin, hull_spall[1], hull_spall[2], hull_spall[3])
 	hull_spall = null
+	hull_pierce_from = null
 	return ..()
 
 /// Odłamki i wybuch kierunkowy z miejsca uderzenia; zwraca liczbę wystrzelonych odłamków

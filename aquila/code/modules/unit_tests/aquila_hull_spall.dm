@@ -31,3 +31,19 @@
 		var/turf/T = blast[1]
 		if(T.y != origin.y || T.x <= origin.x)
 			return Fail("Wybuch kierunkowy poszedł poza kierunek lotu ([T.x],[T.y])")
+	// przebijanie w głąb: przy wyłomie 4 pocisk przelatuje przez przeszkody do 2 pól od pierwszego poszycia, dalej trafia
+	var/turf/far = locate(origin.x + 3, origin.y, origin.z)
+	var/obj/structure/grille/hull = allocate(/obj/structure/grille, origin)
+	var/obj/structure/grille/inner = allocate(/obj/structure/grille, far)
+	var/obj/item/projectile/bullet/pierce_shot = allocate(/obj/item/projectile/bullet, origin)
+	pierce_shot.hull_spall = list(1, 0, 4)
+	if(!pierce_shot.hull_pierce_should_phase(hull))
+		return Fail("Pocisk z wyłomem 4 nie przeleciał przez poszycie")
+	if(pierce_shot.hull_pierce_should_phase(inner))
+		return Fail("Pocisk przeleciał dalej niż głębokość wyłomu")
+	var/obj/item/projectile/bullet/shallow_shot = allocate(/obj/item/projectile/bullet, origin)
+	shallow_shot.hull_spall = list(1, 0, 1)
+	if(shallow_shot.hull_pierce_should_phase(hull))
+		return Fail("Pocisk z płytkim wyłomem przeleciał przez poszycie zamiast na nim wybuchnąć")
+	pierce_shot.hull_spall = null
+	shallow_shot.hull_spall = null
