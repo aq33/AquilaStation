@@ -75,9 +75,12 @@ GLOBAL_LIST_INIT(planet_type_prototypes, init_planet_type_prototypes())
 	for(var/planet_type in subtypesof(/datum/planet_type))
 		.[planet_type] = new planet_type
 
-/// Pole, na którym nie da się stać ani wylądować: ściana, lawa, przepaść
+/// Pole, na którym nie da się stać ani wylądować: ściana, lawa, przepaść, głęboka woda (planet_landing_hazard)
 /proc/is_planet_hazard_turf(turf/T)
-	return !isopenturf(T) || islava(T) || ischasm(T)
+	if(!isopenturf(T) || islava(T) || ischasm(T))
+		return TRUE
+	var/turf/open/open_turf = T
+	return open_turf.planet_landing_hazard
 
 /datum/planet_type/lava
 	name = "planeta wulkaniczna"

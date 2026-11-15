@@ -3714,6 +3714,30 @@ Oznaczenia w kolumnie uwag:
 | brimdust | siarkowy pył | m; nowe |
 | ore sensor | czujnik rud | m; nowe |
 | plasma soul (anomaly) | dusza plazmy | ż; nowe |
+| shallows / shallow water | płycizna / płytka woda | ż; nowe (woda planet) |
+| deep water | głęboka woda | ż; nowe (pływanie) |
+| rough sea | wzburzone morze | n; nowe (planeta wodna) |
+| murky water | mętna woda | ż; nowe (dżungla) |
+| freshwater | słodka woda | ż; nowe (oaza) |
+| catwalk | pomost | m; nowe (kratownica na wodzie) |
+| fishing rod | wędka | ż; nowe |
+| advanced fishing rod | wędka zaawansowana | ż; nowe |
+| fishing spot | łowisko | n; nowe |
+| bait | przynęta | ż; nowe |
+| bait worm / can of worms | robak / puszka z robakami | m / ż; nowe |
+| float (fishing) | spławik | m; nowe |
+| hook | haczyk | m; nowe |
+| (fishing) line | żyłka | ż; nowe |
+| reel (verb, fishing) | holować | czas.; nowe |
+| bite (fishing) | branie | n; nowe |
+| perch | okoń | m; nowe (ryba) |
+| arctic char | golec arktyczny | m; nowe (ryba) |
+| sockeye salmon | nerka | ż; nowe (ryba) |
+| plaice | gładzica | ż; nowe (ryba) |
+| stingray | płaszczka | ż; nowe (ryba) |
+| squid | kałamarnica | ż; nowe (ryba) |
+| monkfish | żabnica | ż; nowe (ryba) |
+| lavaloop | pętlica lawowa | ż; nowe (ryba z lawy, tg) |
 | Ramzi Clique | Klika Ramziego | ż; nowe (frakcja z ruin Shiptesta) |
 | Hardliners | Twardogłowi | m mn.; nowe (frakcja z ruin Shiptesta) |
 | Reisehund (Ramzi hound) | rajzehund | m; nowe |
