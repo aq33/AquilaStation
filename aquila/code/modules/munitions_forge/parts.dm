@@ -87,7 +87,7 @@
 	if(quality)
 		. += "<span class='notice'>Jakość: klasa [quality.roman] ([quality.name]).</span>"
 	if(hammer_time)
-		. += "Trzeba go jeszcze wykuć na kowadle, póki jest gorący."
+		. += "Trzeba go jeszcze wykuć pod młotem mechanicznym, póki jest gorący."
 	else
 		. += "Jest gotowy do montażu."
 		if(forging_damage_state())

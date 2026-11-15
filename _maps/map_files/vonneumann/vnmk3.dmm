@@ -49,24 +49,6 @@
 /obj/machinery/suit_storage_unit/medical/trauma,
 /turf/open/floor/monotile/light,
 /area/medical/medbay)
-"aaj" = (
-/obj/structure/table/reinforced,
-/obj/item/forging_hammer{
-	pixel_x = 6;
-	pixel_y = 4
-	},
-/obj/item/munitions_analyzer{
-	pixel_x = -6
-	},
-/obj/item/storage/box/munition_casts{
-	pixel_y = 8
-	},
-/obj/item/forging_hammer,
-/turf/open/floor/carpet/ship/beige_carpet{
-	color = "#CC8899";
-	name = "nanoweave carpet (puce)"
-	},
-/area/nsv/weapons/fore)
 "aak" = (
 /turf/closed/wall/r_wall/ship,
 /area/space)
@@ -10502,6 +10484,16 @@
 /obj/effect/turf_decal/caution/stand_clear/red,
 /turf/open/floor/plasteel,
 /area/cargo/lobby)
+"ipp" = (
+/obj/structure/table/reinforced,
+/obj/item/munitions_analyzer{
+	pixel_x = -6
+	},
+/turf/open/floor/carpet/ship/beige_carpet{
+	color = "#CC8899";
+	name = "nanoweave carpet (puce)"
+	},
+/area/nsv/weapons/fore)
 "ipq" = (
 /obj/structure/cable/yellow,
 /obj/effect/turf_decal/stripes/corner{
@@ -61569,7 +61561,7 @@ bwd
 urG
 hUL
 ncr
-aaj
+ipp
 bwd
 oqd
 wEM

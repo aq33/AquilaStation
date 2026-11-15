@@ -4796,14 +4796,6 @@
 	},
 /turf/open/floor/durasteel/alt,
 /area/hallway/nsv/deck2/primary)
-"jG" = (
-/obj/machinery/camera/autoname{
-	c_tag = "Atmos - Airlock #2";
-	dir = 6
-	},
-/obj/structure/reagent_dispensers/fueltank/cryogenic_fuel,
-/turf/open/floor/monotile/steel/airless,
-/area/nsv/hanger/mining)
 "jH" = (
 /obj/effect/turf_decal/tile/ship/police{
 	dir = 4
@@ -5413,10 +5405,6 @@
 /area/crew_quarters/abandoned_gambling_den{
 	name = "Abandoned Bar"
 	})
-"ls" = (
-/obj/structure/reagent_dispensers/fueltank/cryogenic_fuel,
-/turf/open/floor/monotile/steel/airless,
-/area/nsv/hanger/mining)
 "lt" = (
 /obj/machinery/computer/ams{
 	dir = 8
@@ -9886,6 +9874,11 @@
 /area/crew_quarters/abandoned_gambling_den{
 	name = "Abandoned Bar"
 	})
+"zj" = (
+/obj/structure/table/reinforced,
+/obj/item/munitions_analyzer,
+/turf/open/floor/monotile/dark,
+/area/nsv/weapons)
 "zk" = (
 /obj/machinery/light,
 /turf/open/floor/monotile/steel,
@@ -11744,14 +11737,6 @@
 /obj/machinery/light/small,
 /turf/open/floor/plating,
 /area/maintenance/nsv/deck2/starboard)
-"Ft" = (
-/obj/structure/table/reinforced,
-/obj/item/storage/box/munition_casts,
-/obj/item/munitions_analyzer,
-/obj/item/forging_hammer,
-/obj/item/forging_hammer,
-/turf/open/floor/monotile/dark,
-/area/nsv/weapons)
 "Fv" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /turf/open/floor/monotile/steel,
@@ -12357,21 +12342,6 @@
 	},
 /turf/open/floor/wood,
 /area/chapel/main)
-"Hl" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/ship/yellow/orlen{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/ship/yellow/orlen{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/ship/yellow/orlen{
-	dir = 4
-	},
-/turf/open/floor/durasteel/techfloor_grid,
-/area/engine/break_room)
 "Hm" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/structure/sign/poster/official/random{
@@ -14886,27 +14856,6 @@
 /obj/item/relic,
 /turf/open/floor/engine,
 /area/science/explab)
-"OF" = (
-/obj/structure/rack,
-/obj/effect/turf_decal/tile/ship/half/police{
-	dir = 8
-	},
-/obj/machinery/camera/motion{
-	c_tag = "Armory";
-	dir = 8
-	},
-/obj/structure/cable,
-/obj/item/storage/box/breacherslug,
-/obj/item/ammo_box/magazine/m556,
-/obj/item/ammo_box/magazine/m556,
-/obj/item/ammo_box/magazine/m556,
-/obj/item/ammo_box/magazine/m556,
-/obj/item/ammo_box/magazine/smgm9mm,
-/obj/item/ammo_box/magazine/smgm9mm,
-/obj/item/ammo_box/magazine/smgm9mm,
-/obj/item/ammo_box/magazine/smgm9mm,
-/turf/open/floor/monotile/dark,
-/area/ai_monitored/security/armory)
 "OH" = (
 /turf/open/floor/carpet/royalblack,
 /area/chapel/main)
@@ -15493,16 +15442,6 @@
 /obj/machinery/advanced_airlock_controller/directional/east,
 /turf/open/floor/monotile/dark,
 /area/hallway/secondary/exit/departure_lounge)
-"QB" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/structure/reagent_dispensers/fueltank/cryogenic_fuel,
-/turf/open/floor/monotile/steel/airless,
-/area/nsv/hanger/mining)
 "QD" = (
 /turf/closed/wall/r_wall,
 /area/crew_quarters/abandoned_gambling_den{
@@ -17483,15 +17422,6 @@
 	},
 /turf/open/floor/monotile/steel,
 /area/hallway/nsv/deck2/primary)
-"WJ" = (
-/obj/effect/turf_decal/tile/ship/half/yellow/orlen{
-	dir = 1
-	},
-/obj/effect/spawner/lootdrop/techstorage/engineering,
-/obj/machinery/airalarm/directional/north,
-/obj/structure/table/reinforced,
-/turf/open/floor/monotile/dark,
-/area/engine/engine_room)
 "WK" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/monotile/dark,
@@ -55151,7 +55081,7 @@ mP
 Te
 mP
 DT
-Ft
+zj
 fa
 WK
 wp

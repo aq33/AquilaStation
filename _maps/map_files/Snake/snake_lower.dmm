@@ -98,13 +98,6 @@
 /obj/machinery/holopad,
 /turf/open/floor/engine/n2o,
 /area/engine/atmos)
-"al" = (
-/obj/item/storage/box/munition_casts,
-/obj/item/munitions_analyzer,
-/obj/item/forging_hammer,
-/obj/structure/table/reinforced,
-/turf/open/floor/engine,
-/area/nsv/weapons/fore)
 "am" = (
 /obj/machinery/door/airlock/ship/security/glass{
 	name = "Labor Shuttle Dock";
@@ -3062,18 +3055,6 @@
 /obj/machinery/door/firedoor/border_only/directional/south,
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
-"hK" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/ship/blue/nfz{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/ship/blue/nfz{
-	dir = 8
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/storage)
 "hL" = (
 /obj/structure/table/wood,
 /obj/item/taperecorder,
@@ -6384,17 +6365,6 @@
 	dir = 4
 	},
 /area/chapel/main)
-"sS" = (
-/obj/structure/table,
-/obj/item/stack/sheet/iron/fifty,
-/obj/item/stack/rods/fifty,
-/obj/item/clothing/glasses/meson,
-/obj/item/clothing/glasses/meson,
-/obj/item/clothing/glasses/meson,
-/obj/item/circuitboard/computer/apc_control,
-/obj/machinery/light,
-/turf/open/floor/plasteel,
-/area/engine/storage)
 "sT" = (
 /obj/structure/disposalpipe/trunk{
 	dir = 1
@@ -13641,6 +13611,11 @@
 "UM" = (
 /turf/closed/wall/r_wall,
 /area/hallway/secondary/entry)
+"UN" = (
+/obj/item/munitions_analyzer,
+/obj/structure/table/reinforced,
+/turf/open/floor/engine,
+/area/nsv/weapons/fore)
 "UO" = (
 /obj/structure/dresser,
 /obj/structure/mirror{
@@ -66017,7 +65992,7 @@ SP
 SP
 ao
 SP
-al
+UN
 SP
 EC
 jb

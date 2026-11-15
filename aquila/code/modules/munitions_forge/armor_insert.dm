@@ -1,5 +1,5 @@
 // AQUILA - kuźnia amunicji: wkładki do pancerza (sprite'y wkładek z Paradise smithing w smithing.dmi).
-// Odlew w piecu łukowym z wybranego materiału lub stopu, potem kucie na kowadle. Wykuta wkładka jest gotowa:
+// Odlew w piecu łukowym z wybranego materiału lub stopu, potem kucie pod młotem mechanicznym. Wykuta wkładka jest gotowa:
 // wkłada się ją do kamizelki, pancerza albo hardsuitu (jedna na ubranie), a wyjmuje śrubokrętem.
 // Ochronę i wytrzymałość daje materiał (tabela niżej), klasa jakości mnoży obie. Ciężki materiał spowalnia.
 // Trafienia w części ciała zakryte przez pancerz zużywają wkładkę: ochrona spada co ćwierć wytrzymałości, a zniszczona pęka.
@@ -118,22 +118,6 @@ GLOBAL_LIST_INIT(aq_insert_profiles, list(
 	insert_integrity = max(0, insert_integrity - amount)
 	return !insert_integrity
 
-/obj/item/munition_cast/armor_insert
-	name = "forma wkładek pancerza"
-	desc = "Forma na lekkie i ciężkie wkładki do pancerzy. Wkładkę wystarczy wykuć na kowadle."
-	icon_state = "insert_frame_cast"
-	product_root = /obj/item/munition_part/body/armor_insert
-
-/datum/design/munition_cast/armor_insert
-	name = "Forma wkładek pancerza"
-	desc = "Forma odlewnicza na wkładki do pancerzy."
-	id = "munition_cast_armor_insert"
-	build_path = /obj/item/munition_cast/armor_insert
-
-/datum/techweb_node/advanced_ballistics/New()
-	. = ..()
-	design_ids += "munition_cast_armor_insert"
-
 // ---------------------------------------------------------------- slot w pancerzu
 
 /obj/item/clothing/suit
@@ -195,7 +179,7 @@ GLOBAL_LIST_INIT(aq_insert_profiles, list(
 
 /obj/item/clothing/suit/proc/aq_try_insert(obj/item/munition_part/body/armor_insert/insert, mob/user)
 	if(!insert.is_finished())
-		to_chat(user, "<span class='warning'>[insert] trzeba jeszcze wykuć na kowadle.</span>")
+		to_chat(user, "<span class='warning'>[insert] trzeba jeszcze wykuć pod młotem mechanicznym.</span>")
 		return FALSE
 	if(insert.forge_heat)
 		to_chat(user, "<span class='warning'>[insert] jest jeszcze gorąca!</span>")

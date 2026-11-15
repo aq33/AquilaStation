@@ -3661,14 +3661,6 @@
 /obj/effect/landmark/start/scientist,
 /turf/open/floor/monotile/dark,
 /area/science/nanite)
-"cUL" = (
-/obj/structure/table/reinforced,
-/obj/item/munitions_analyzer,
-/obj/item/storage/box/munition_casts{
-	pixel_y = 6
-	},
-/turf/open/floor/plasteel/techmaint,
-/area/nsv/weapons)
 "cVa" = (
 /obj/machinery/atmospherics/pipe/simple/purple/hidden{
 	dir = 4
@@ -10153,6 +10145,11 @@
 	},
 /turf/open/floor/monotile/dark,
 /area/science/research)
+"iGB" = (
+/obj/structure/table/reinforced,
+/obj/item/munitions_analyzer,
+/turf/open/floor/plasteel/techmaint,
+/area/nsv/weapons)
 "iGS" = (
 /obj/machinery/firealarm/directional/north,
 /turf/open/floor/monotile/dark,
@@ -16153,14 +16150,6 @@
 /obj/structure/reagent_dispensers/watertank,
 /turf/open/floor/plasteel/techmaint,
 /area/maintenance/nsv/deck2/starboard/fore)
-"nJv" = (
-/obj/effect/turf_decal/tile/ship/half/yellow/orlen{
-	dir = 8
-	},
-/obj/structure/table/reinforced,
-/obj/item/storage/toolbox/electrical,
-/turf/open/floor/durasteel/alt,
-/area/engine/engineering)
 "nJx" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
@@ -17222,15 +17211,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/monotile/steel,
 /area/hallway/nsv/deck2/primary)
-"oCs" = (
-/obj/structure/table/reinforced,
-/obj/item/forging_hammer,
-/obj/item/forging_hammer{
-	pixel_x = 6;
-	pixel_y = 4
-	},
-/turf/open/floor/plasteel/techmaint,
-/area/nsv/weapons)
 "oDf" = (
 /obj/effect/turf_decal/tile/ship/half/yellow/orlen,
 /obj/structure/closet/firecloset/full,
@@ -24450,30 +24430,6 @@
 	},
 /turf/open/floor/plating,
 /area/nsv/weapons)
-"uCx" = (
-/obj/structure/rack,
-/obj/effect/turf_decal/tile/ship/half/police{
-	dir = 8
-	},
-/obj/machinery/camera/motion{
-	c_tag = "Armory";
-	dir = 8
-	},
-/obj/structure/cable,
-/obj/item/ammo_box/magazine/m556,
-/obj/item/ammo_box/magazine/m556,
-/obj/item/ammo_box/magazine/m556,
-/obj/item/ammo_box/magazine/m556,
-/obj/item/ammo_box/magazine/m556,
-/obj/item/ammo_box/magazine/m556,
-/obj/item/ammo_box/magazine/m556,
-/obj/item/ammo_box/magazine/m556,
-/obj/item/ammo_box/magazine/smgm9mm,
-/obj/item/ammo_box/magazine/smgm9mm,
-/obj/item/ammo_box/magazine/smgm9mm,
-/obj/item/ammo_box/magazine/smgm9mm,
-/turf/open/floor/monotile/dark,
-/area/ai_monitored/security/armory/security)
 "uCK" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment{
@@ -26027,6 +25983,10 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/maintenance/nsv/deck2/starboard/fore)
+"was" = (
+/obj/structure/table/reinforced,
+/turf/open/floor/plasteel/techmaint,
+/area/nsv/weapons)
 "wba" = (
 /obj/structure/window/reinforced,
 /obj/machinery/door/firedoor/border_only,
@@ -70860,7 +70820,7 @@ qGT
 nWI
 ggx
 tKU
-oCs
+was
 kKK
 piQ
 piQ
@@ -71117,7 +71077,7 @@ qGT
 nWI
 gBF
 tKU
-cUL
+iGB
 kKK
 piQ
 piQ

@@ -6,7 +6,7 @@
 	description = "Na arenie leżą: kamizelka, hardsuit, gotowe wkładki (ciężka tytanowa, ciężka złota, lekka diamentowa), śrubokręt, multitool, fazer seryjny z chłodnicą i magazynem ciepła, wózek amunicyjny z trzema rakietami obok oraz konsola drużyn XO. \
 	1) Wkładka: klik ciężką tytanową w kamizelkę (3 s) → w opisie kamizelki „Ma włożoną…”, w panelu pancerza +20 na pociski. Druga wkładka do tej samej kamizelki → odmowa (negatyw). Śrubokręt → wkładka wraca do ręki. \
 	2) Złota ciężka w hardsuicie → wolniejszy chód; po wyjęciu prędkość wraca. Postrzel się w tułów kilka razy z czegokolwiek → wytrzymałość w opisie spada, przy 0 komunikat „pęka”. Trafienie w głowę nie zużywa wkładki. \
-	3) Kuźnia (jeśli jest na mapie): forma wkładek z pudełka form → piec łukowy, wybierz materiał → kowadło → gotowa wkładka; stół montażowy jej nie przyjmuje (negatyw). \
+	3) Kuźnia (zestaw kuźni amunicji z aq33/AquilaStation#483 albo mapa): w oknie pieca łukowego wybierz wkładkę, materiał i klasę → Odlej → młot mechaniczny → gotowa wkładka; stół montażowy jej nie przyjmuje (negatyw). \
 	4) Fazer: śrubokręt + klucz na fazerze → w opisie sekwencja strojenia; ręką wpisz ją w menu kołowym; pomyłka podnosi ciepło. Multitool na otwartym fazerze ustawia soczewki do 100%. Chłodnica i magazyn ciepła są już połączone (opis: „połączony z…”). Okno fazera (zamknięta obudowa): pasek ciepła, przycisk „Odprowadź ciepło”, soczewki i strojenie. \
 	5) Wózek: przeciągnij trzy rakiety na wózek → leżą równo jedna nad drugą; zdejmij środkową w oknie wózka → reszta zostaje w porządku. \
 	6) Konsola XO: rozkaz dla swojej drużyny (z kluczem DeepL na serwerze gracz z angielskim widzi go po angielsku; bez klucza wszyscy dostają oryginał)."
@@ -22,7 +22,6 @@
 		/obj/structure/munitions_trolley = 1,
 		/obj/item/ship_weapon/ammunition/missile = 3,
 		/obj/machinery/computer/squad_manager = 1,
-		/obj/item/storage/box/munition_casts = 1,
 	)
 
 /datum/test_chamber_kit/pr_641/setup(list/spawned, list/turfs, turf/center, mob/user)

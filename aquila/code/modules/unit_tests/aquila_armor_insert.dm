@@ -50,10 +50,10 @@
 	gold_heavy.forceMove(run_loc_floor_bottom_left)
 	TEST_ASSERT(!vest.aq_insert && vest.slowdown == base_slowdown, "Wyjęcie wkładki nie zdjęło spowolnienia")
 
-	// Stop: średnia profili składników; wkładka nie idzie na stół montażowy, a forma ją oferuje
+	// Stop: średnia profili składników; wkładka nie idzie na stół montażowy, a okno pieca ją oferuje
 	var/datum/munition_material/alloy = get_munition_alloy(get_munition_material(/datum/material/iron), get_munition_material(/datum/material/diamond))
 	TEST_ASSERT(alloy.insert_profile()["bullet"] == 22.5, "Profil stopu żelazo-diament: [alloy.insert_profile()["bullet"]] zamiast 22.5")
-	var/obj/item/munition_cast/armor_insert/cast = allocate(/obj/item/munition_cast/armor_insert, run_loc_floor_bottom_left)
-	TEST_ASSERT((/obj/item/munition_part/body/armor_insert/heavy in cast.possible_products) && (/obj/item/munition_part/body/armor_insert/light in cast.possible_products), "Forma wkładek nie oferuje obu wkładek")
+	var/list/inserts = GLOB.aq_forge_products["Wkładki do pancerza"]
+	TEST_ASSERT((/obj/item/munition_part/body/armor_insert/heavy in inserts) && (/obj/item/munition_part/body/armor_insert/light in inserts), "Okno pieca nie oferuje obu wkładek")
 
 #undef TEST_ASSERT

@@ -1689,9 +1689,6 @@
 "dz" = (
 /turf/open/floor/circuit/telecomms,
 /area/science/xenobiology)
-"dA" = (
-/turf/closed/wall/r_wall/ship,
-/area/crew_quarters/heads/hor)
 "dB" = (
 /obj/machinery/chem_master/condimaster,
 /obj/machinery/newscaster/directional/north,
@@ -1842,15 +1839,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/bridge)
-"dX" = (
-/obj/machinery/light/floor,
-/obj/structure/table/reinforced,
-/obj/item/munitions_analyzer,
-/obj/item/forging_hammer,
-/obj/item/storage/box/munition_casts,
-/obj/item/forging_hammer,
-/turf/open/floor/plasteel/dark,
-/area/nsv/weapons/starboard)
 "dY" = (
 /obj/structure/closet/crate,
 /obj/effect/spawner/lootdrop/costume,
@@ -4248,6 +4236,12 @@
 /obj/machinery/light/floor,
 /turf/open/floor/plating,
 /area/maintenance/department/medical)
+"mB" = (
+/obj/machinery/light/floor,
+/obj/structure/table/reinforced,
+/obj/item/munitions_analyzer,
+/turf/open/floor/plasteel/dark,
+/area/nsv/weapons/starboard)
 "mC" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -44532,7 +44526,7 @@ bH
 tq
 aA
 aA
-dA
+aA
 Te
 az
 zP
@@ -53261,7 +53255,7 @@ Et
 UW
 Lq
 Lq
-dX
+mB
 Et
 Et
 Et

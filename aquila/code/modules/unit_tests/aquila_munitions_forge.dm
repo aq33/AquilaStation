@@ -58,7 +58,7 @@
 	TEST_ASSERT_EQUAL(lower_munition_quality(top, 10), get_munition_quality(/datum/munition_quality), "Klasa spadła poniżej I")
 	TEST_ASSERT_EQUAL(lower_munition_quality(top, 1), get_munition_quality(/datum/munition_quality/superior), "Klasa V o jeden w dół to nie IV")
 
-/// AQUILA - kuźnia amunicji: odlew w piecu łukowym, kucie na kowadle, stół montażowy i strzał z wykutego naboju
+/// AQUILA - kuźnia amunicji: odlew wybrany w oknie pieca, kucie pod młotem mechanicznym, stół montażowy i strzał z wykutego naboju
 /datum/unit_test/munitions_forge_pipeline
 
 /datum/unit_test/munitions_forge_pipeline/Run()
@@ -69,11 +69,19 @@
 	container.insert_amount_mat(MINERAL_MATERIAL_AMOUNT * 20, /datum/material/iron)
 	container.insert_amount_mat(MINERAL_MATERIAL_AMOUNT * 20, /datum/material/copper)
 
-	// odlew zapalnika: forma bez wyboru materiału
-	var/obj/item/munition_cast/fuze/cast = allocate(/obj/item/munition_cast/fuze)
-	cast.selected_product = /obj/item/munition_part/fuze/primer
-	cast.forceMove(forge)
-	forge.cast = cast
+	// koszt stopu w oknie pieca: oba składniki po połowie
+	forge.selected_product = /obj/item/munition_part/body/casings/c9mm
+	forge.selected_material = get_munition_material(/datum/material/iron)
+	forge.selected_alloy = get_munition_material(/datum/material/copper)
+	var/list/alloy_cost = forge.current_cost()
+	TEST_ASSERT(alloy_cost[/datum/material/iron] && alloy_cost[/datum/material/copper], "Stop w oknie pieca nie kosztuje obu składników")
+	forge.selected_alloy = null
+	TEST_ASSERT(aq_forge_product_available(/obj/item/munition_part/fuze/primer), "Spłonki nie są dostępne w piecu")
+	TEST_ASSERT(GLOB.aq_forge_products["Wkładki do pancerza"], "W oknie pieca nie ma wkładek do pancerza")
+
+	// odlew zapalnika wybranego w oknie: bez wyboru materiału
+	forge.selected_product = /obj/item/munition_part/fuze/primer
+	forge.selected_quality = /datum/munition_quality
 	var/copper_before = container.get_material_amount(/datum/material/copper)
 	TEST_ASSERT(forge.start_operation(null), "Piec nie zaczął odlewu")
 	TEST_ASSERT(container.get_material_amount(/datum/material/copper) < copper_before, "Odlew nie zużył miedzi")
@@ -93,36 +101,33 @@
 	TEST_ASSERT(primer.forge_heat > 1, "Piec nie dogrzał części")
 	forge.working_part = null
 
-	// kowadło: wszystkie nuty trafione, klasa zostaje
+	// młot mechaniczny: klasę I kuje sam, bez minigry
 	var/mob/living/carbon/human/smith = allocate(/mob/living/carbon/human)
 	var/obj/machinery/munitions_forge/anvil/anvil = allocate(/obj/machinery/munitions_forge/anvil, locate(forge.x + 4, forge.y, forge.z))
+	anvil.machine_stat &= ~NOPOWER
 	primer.forceMove(anvil)
 	anvil.working_part = primer
-	TEST_ASSERT(!anvil.start_operation(smith) && !anvil.game, "Kowadło dało kuć bez młota")
-	var/obj/item/forging_hammer/hammer = allocate(/obj/item/forging_hammer)
-	smith.put_in_hands(hammer)
-	TEST_ASSERT(anvil.held_hammer(smith), "Kowadło nie widzi młota w ręce")
-	var/datum/munitions_anvil_game/game = new(anvil, smith, primer)
-	anvil.game = game
-	TEST_ASSERT(length(game.notes) >= 4, "Za mało nut")
-	for(var/i in 1 to length(game.notes))
-		game.results["[i]"] = TRUE
-	game.finish()
-	TEST_ASSERT(primer.is_finished(), "Kowadło nie wykuło spłonek")
-	TEST_ASSERT_EQUAL(primer.quality, get_munition_quality(/datum/munition_quality), "Bez pudła zmieniła się klasa")
-	TEST_ASSERT(!anvil.game && !anvil.operating, "Kowadło zostało zajęte po kuciu")
+	TEST_ASSERT(anvil.start_operation(smith) && !anvil.game, "Młot nie zaczął sam kuć klasy I")
+	anvil.complete_operation(smith)
+	anvil.operating = FALSE
+	TEST_ASSERT(primer.is_finished(), "Młot nie wykuł spłonek")
+	TEST_ASSERT_EQUAL(primer.quality, get_munition_quality(/datum/munition_quality), "Automat dał inną klasę niż I")
 
-	// kowadło: połowa pudeł z klasy III daje klasę niższą
+	// wyższa klasa: automat jej nie wykuje, potrzebne kucie ręczne (bez klienta okno się nie otworzy)
 	var/obj/item/munition_part/filler/ap/filler = allocate(/obj/item/munition_part/filler/ap)
 	filler.cast_finished(get_munition_quality(/datum/munition_quality/enhanced))
 	filler.forceMove(anvil)
 	anvil.working_part = filler
-	game = new(anvil, smith, filler)
+	TEST_ASSERT(!anvil.start_operation(smith) && !filler.is_finished(), "Młot sam wykuł klasę III")
+	var/datum/munitions_anvil_game/game = new(anvil, smith, filler)
+	anvil.game = game
+	TEST_ASSERT(length(game.notes) >= 4, "Za mało nut")
 	anvil.game = game
 	for(var/i in 1 to length(game.notes))
 		game.results["[i]"] = (i % 2 == 0)
 	game.finish()
-	TEST_ASSERT(filler.is_finished(), "Kowadło nie wykuło wypełnienia")
+	TEST_ASSERT(filler.is_finished(), "Kucie ręczne nie wykuło wypełnienia")
+	TEST_ASSERT(!anvil.game && !anvil.operating, "Młot został zajęty po kuciu")
 	TEST_ASSERT(filler.quality.level < 2, "Pudła nie obniżyły klasy")
 	filler.quality = get_munition_quality(/datum/munition_quality)
 
