@@ -37,6 +37,18 @@
 	power.roll_cycle()
 	TEST_ASSERT(power.request(SHIP_POWER_WEAPONS, 1e6, 2e6, gun, 2e6, net_a), "The shield's request in another network blocked weapons")
 	TEST_ASSERT(!power.request(SHIP_POWER_WEAPONS, 1e6, 2e6, gun, 2e6, net_b), "Weapons took the shield's reserve in the shield's own network")
+	// Regresja: rezerwa w sieci B nie przekracza tego, co zostało z limitu systemu po poborze w sieci A
+	var/obj/machinery/shield_b = new /obj/machinery(run_loc_floor_bottom_left)
+	power.limits[SHIP_POWER_SHIELD] = 0.5
+	power.cycle = -1
+	power.roll_cycle()
+	power.request(SHIP_POWER_SHIELD, 5e6, 0, shield, 5e6, net_a)
+	power.request(SHIP_POWER_SHIELD, 5e6, 0, shield_b, 5e6, net_b)
+	power.cycle = -1
+	power.roll_cycle()
+	TEST_ASSERT(power.request(SHIP_POWER_SHIELD, 5e6, 1e9, shield, 5e6, net_a), "The shield in network A didn't get the whole system limit")
+	TEST_ASSERT(power.request(SHIP_POWER_WEAPONS, 2e6, 6e6, gun, 2e6, net_b), "A reserve over the exhausted shield limit blocked weapons in network B")
+	qdel(shield_b)
 	qdel(net_a)
 	qdel(net_b)
 

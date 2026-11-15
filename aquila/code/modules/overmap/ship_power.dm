@@ -125,7 +125,11 @@ GLOBAL_LIST_INIT(ship_power_presets, list(
 		var/limit = cap(other)
 		if(!isnull(limit))
 			wanted = min(wanted, limit)
-		. += max(0, wanted - get_net(net_drawn, other, net))
+		var/remaining = wanted - get_net(net_drawn, other, net)
+		// Nie więcej niż zostało z limitu całego systemu: pobór w innej sieci też go zużywa
+		if(!isnull(limit))
+			remaining = min(remaining, limit - drawn[other])
+		. += max(0, remaining)
 
 /// Maszyna pyta o pobór `amount` W z sieci `net`, w której jest `surplus` W wolnych. Zwraca TRUE, jeśli może pobrać.
 /datum/ship_power/proc/request(system, amount, surplus, obj/machinery/source, max_draw, net)

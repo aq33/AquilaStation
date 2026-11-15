@@ -56,6 +56,14 @@
 	TEST_ASSERT(!ship.is_cloaked(), "The ship stayed cloaked after the cloak ended")
 	TEST_ASSERT(!gen.cloaked, "The generator stayed in the cloak mode after the cloak ended")
 
+	// Odlot w skok zdejmuje maskę od razu (sygnał COMSIG_SHIP_DEPARTED zarejestrowany przy włączeniu)
+	gen.cloaked = TRUE
+	gen.cloak_ship = WEAKREF(ship)
+	gen.RegisterSignal(ship, COMSIG_SHIP_DEPARTED, TYPE_PROC_REF(/obj/machinery/shield_generator, on_ship_departed))
+	SEND_SIGNAL(ship, COMSIG_SHIP_DEPARTED)
+	TEST_ASSERT(!gen.cloaked, "The cloak survived the ship departing on a jump")
+	TEST_ASSERT(!gen.cloak_ship, "The cloak kept a reference to the ship after ending")
+
 	// Regresja: tarcza podniesiona przed maską wraca po jej zdjęciu
 	gen.cloaked = TRUE
 	gen.cloak_restore_active = TRUE
