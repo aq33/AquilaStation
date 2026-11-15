@@ -9,9 +9,14 @@
 /obj/structure/overmap/small_craft/transport
 	/// Lądowisko wybrane przez pilota przy lądowaniu na planecie
 	var/turf/planet_landing_zone
+	/// Timer czekania na zbudowanie powierzchni (kasowany, gdy powierzchnia jest gotowa)
+	var/planet_wait_timer
 
 /obj/structure/overmap/small_craft/transport/Destroy()
 	planet_landing_zone = null
+	if(planet_wait_timer)
+		deltimer(planet_wait_timer)
+		planet_wait_timer = null
 	return ..()
 
 /obj/structure/overmap/small_craft/transport/docking_act(obj/structure/overmap/OM)
@@ -31,7 +36,7 @@
 		INVOKE_ASYNC(src, PROC_REF(shuttle_begin_landing), planet)
 		return TRUE
 	RegisterSignal(planet, COMSIG_PLANET_SURFACE_READY, PROC_REF(planet_surface_ready))
-	addtimer(CALLBACK(src, PROC_REF(planet_surface_timeout), planet), PLANET_SURFACE_WAIT)
+	planet_wait_timer = addtimer(CALLBACK(src, PROC_REF(planet_surface_timeout), planet), PLANET_SURFACE_WAIT, TIMER_STOPPABLE)
 	if(pilot)
 		to_chat(pilot, span_notice("Komputer dokowania mapuje powierzchnię [planet] i szuka lądowisk. To potrwa chwilę, zostań nad planetą."))
 	return TRUE
@@ -39,6 +44,10 @@
 /obj/structure/overmap/small_craft/transport/proc/planet_surface_ready(obj/structure/overmap/planet/planet, success)
 	SIGNAL_HANDLER
 	UnregisterSignal(planet, COMSIG_PLANET_SURFACE_READY)
+	// Timeout dotyczy tylko czekania na powierzchnię: nie może zwolnić blokady w trakcie wyboru lądowiska
+	if(planet_wait_timer)
+		deltimer(planet_wait_timer)
+		planet_wait_timer = null
 	if(!success)
 		var/obj/item/fighter_component/docking_computer/DC = loadout.get_slot(HARDPOINT_SLOT_DOCKING)
 		if(DC)
@@ -49,6 +58,7 @@
 	INVOKE_ASYNC(src, PROC_REF(shuttle_begin_landing), planet)
 
 /obj/structure/overmap/small_craft/transport/proc/planet_surface_timeout(obj/structure/overmap/planet/planet)
+	planet_wait_timer = null
 	if(QDELETED(src) || shuttle_docked_at || shuttle_landing_eye)
 		return
 	if(!QDELETED(planet))
