@@ -3676,6 +3676,23 @@ Oznaczenia w kolumnie uwag:
 | forgotten watcher | zapomniany obserwator | m; nowe (planety, Shiptest) |
 | disfigured legion | zniekształcony legion | m; nowe (planety, Shiptest) |
 | burrow | nora | ż; nowe (spawner fauny na planetach) |
+| white wolf / alpha wolf | biały wilk / wilk alfa | m; nowe (planety, port tg i Shiptest) |
+| polar warbear | polarny niedźwiedź bojowy | m; nowe (planety, Shiptest) |
+| brown bear | niedźwiedź brunatny | m; nowe (planety, Shiptest) |
+| snow legion | śnieżny legion | m; nowe (planety, port tg) |
+| demonic watcher (ice demon) | demoniczny obserwator | m; nowe (planety, port tg) |
+| primordial demon | pradawny demon | m; nowe (planety, Shiptest) |
+| afterimage | powidok | m; nowe (powidok demonicznego obserwatora) |
+| ice whelp | młody smok lodowy | m; nowe (planety, port tg) |
+| lobstrosity (arctic / tropical) | homarzysko (arktyczne / tropikalne) | n; nowe (planety, port tg i Shiptest) |
+| snow monkey | śnieżna małpa | ż; nowe (planety, Shiptest) |
+| capybara | kapibara | ż; nowe (planety, Shiptest) |
+| antlion / antlion queen | mrówkolew / królowa mrówkolwów | m / ż; nowe (planety, Shiptest) |
+| cragenoy (royal crab) | cragenoy | m; nowe, nazwa własna bez zmian (planety, Shiptest) |
+| gruboid / baby gruboid | gruboid / młody gruboid | m; nowe (planety, Shiptest) |
+| whitesands goliath / basilisk | goliat / bazyliszek z białych piasków | m; nowe (planety, Shiptest) |
+| hivebot fabricator | fabrykator hivebotów | m; nowe (planety, Shiptest) |
+| carp spawn (puddle) | kałuża z karpiami | ż; nowe (planety, Shiptest) |
 | volcanic sand | wulkaniczny piasek | m; nowe (turf planety) |
 | crimson grass | szkarłatna trawa | ż; nowe (turf planety) |
 | moss carpet | mszysty dywan | m; nowe (turf planety) |

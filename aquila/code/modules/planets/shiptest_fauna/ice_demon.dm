@@ -321,18 +321,26 @@
 	controller.queue_behavior(/datum/ai_behavior/targeted_mob_ability, BB_DEMON_TELEPORT_ABILITY, BB_DEMON_TELEPORT_DESTINATION)
 	return SUBTREE_RETURN_FINISH_PLANNING
 
-/// A free open tile min-max steps from the target, in sight of it
+/// A free open tile min-max steps from the target, in sight of it. In a cramped cave without such a tile: the free tile
+/// furthest from the target, at least two steps away.
 /proc/ice_demon_find_teleport_turf(atom/target, min_distance, max_distance)
 	var/list/candidates = list()
+	var/turf/furthest
+	var/furthest_distance = 1
 	for(var/turf/open/candidate in view(max_distance, get_turf(target)))
 		var/distance = get_dist(candidate, target)
-		if(distance < min_distance || distance > max_distance || isspaceturf(candidate) || islava(candidate) || ischasm(candidate))
+		if(distance > max_distance || isspaceturf(candidate) || islava(candidate) || ischasm(candidate))
 			continue
 		if(is_blocked_turf(candidate, exclude_mobs = FALSE))
 			continue
-		candidates += candidate
+		if(distance >= min_distance)
+			candidates += candidate
+		else if(distance > furthest_distance)
+			furthest = candidate
+			furthest_distance = distance
 	if(length(candidates))
 		return pick(candidates)
+	return furthest
 
 /// Freeze the floor when someone is next to us and we cannot teleport away
 /datum/ai_planning_subtree/ice_demon_slip
