@@ -8,6 +8,7 @@
 	var/datum/turf_reservation/site
 	var/old_had
 	var/list/old_arrays
+	var/old_sensor_limit
 
 /datum/unit_test/ship_sensor_array/Run()
 	ship = SSstar_system.find_main_overmap()
@@ -41,9 +42,10 @@
 	TEST_ASSERT(abs(ship.get_sensor_array_mult(SENSOR_TELESCOPE) - 0.5) < 0.001, "Range 5 doesn't give half of the telescope range")
 
 	// Limit sensorów z podziału mocy obcina zasięg
+	old_sensor_limit = ship.get_ship_power().limits[SHIP_POWER_SENSORS]
 	ship.get_ship_power().limits[SHIP_POWER_SENSORS] = 0.25
 	TEST_ASSERT(array.allowed_range() == 5, "A 25% power limit doesn't cap the range at 5 ([array.allowed_range()])")
-	ship.get_ship_power().limits[SHIP_POWER_SENSORS] = 1
+	ship.get_ship_power().limits[SHIP_POWER_SENSORS] = old_sensor_limit
 
 	// Rozbita matryca: zostaje tylko kamera na 25% zasięgu
 	array.take_damage(INFINITY, BRUTE, "bomb", FALSE)
@@ -65,6 +67,8 @@
 	if(ship)
 		ship.had_sensor_array = old_had
 		ship.sensor_arrays = old_arrays
+		if(!isnull(old_sensor_limit))
+			ship.get_ship_power().limits[SHIP_POWER_SENSORS] = old_sensor_limit
 	QDEL_NULL(site)
 	return ..()
 

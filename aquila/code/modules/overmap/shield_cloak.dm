@@ -27,6 +27,8 @@
 	var/bubble_level = -1
 	/// Czy tarcza była podniesiona przed maską (koniec maski ją przywraca)
 	var/cloak_restore_active = FALSE
+	/// last_weapon_fire okrętu w chwili włączenia maski: każdy późniejszy strzał ją zdejmuje
+	var/cloak_fire_mark = 0
 
 /obj/structure/overmap/proc/is_cloaked()
 	var/obj/machinery/shield_generator/gen = shields
@@ -42,10 +44,15 @@
 	if(is_cloaked())
 		. *= SHIELD_CLOAK_SIGNATURE
 
+/// Ile zasięgu radaru zostaje wobec tego okrętu (maska)
+/obj/structure/overmap/proc/get_cloak_lidar_mult()
+	return is_cloaked() ? SHIELD_CLOAK_SIGNATURE : 1
+
 /obj/structure/overmap/get_suite_range(suite, obj/structure/overmap/target)
 	. = ..()
-	if(suite == SENSOR_LIDAR && target?.is_cloaked())
-		. *= SHIELD_CLOAK_SIGNATURE
+	// Radar gracza liczy maskę w get_player_lidar_range (player_sensors.dm)
+	if(suite == SENSOR_LIDAR && ai_controlled && target)
+		. *= target.get_cloak_lidar_mult()
 
 /obj/machinery/shield_generator/proc/can_cloak()
 	if(cloaked || world.time < cloak_ready_at)
@@ -63,6 +70,7 @@
 	cloak_until = world.time + SHIELD_CLOAK_DURATION
 	cloak_z = ship.z
 	cloak_restore_active = active
+	cloak_fire_mark = ship.last_weapon_fire
 	active = FALSE
 	animate(ship, 1.5 SECONDS, alpha = SHIELD_CLOAK_ALPHA)
 	ship.relay(null, "<span class='notice'>Generator tarczy przechodzi w tryb maskowania. Sygnatura okrętu gaśnie.</span>", FALSE)
@@ -93,6 +101,7 @@
 	// Szukamy po okrętach, a nie przez get_overmap(): generator mógł już być poza statkiem (wyniesiony, przeniesiony)
 	for(var/obj/structure/overmap/ship as anything in GLOB.overmap_objects)
 		if(ship.shields == src)
+			ship.remove_filter(SHIELD_BUBBLE_FILTER)
 			ship.shields = null
 	return ..()
 
@@ -116,7 +125,8 @@
 	if(world.time >= cloak_until)
 		end_cloak("koniec czasu")
 		return
-	if(world.time < ship.last_weapon_fire + 2 SECONDS)
+	// Porównanie z chwilą włączenia, a nie okno czasu: strzał między dwoma tickami też zdejmuje maskę
+	if(ship.last_weapon_fire > cloak_fire_mark)
 		end_cloak("strzał")
 		return
 	if(!powered() || !try_use_power(SHIELD_CLOAK_POWER))

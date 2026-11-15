@@ -45,6 +45,8 @@ GLOBAL_LIST_EMPTY(pulsar_consoles)
 	/// Kiedy nadejdzie burza (0 = brak ostrzeżenia)
 	var/storm_at = 0
 	var/storm_active = FALSE
+	/// Burza z tej konsoli: trzymana jako instancja, żeby zgasić ją także w trakcie jej rozruchu (telegraph śpi w CHECK_TICK)
+	var/datum/weather/rad_storm/pulsar/storm
 	/// Kiedy nastąpi przeciążenie (0 = brak ostrzeżenia)
 	var/overcharge_at = 0
 	var/overcharge_active = FALSE
@@ -68,6 +70,8 @@ GLOBAL_LIST_EMPTY(pulsar_consoles)
 
 /obj/machinery/pulsar_console/Destroy()
 	GLOB.pulsar_consoles -= src
+	if(storm)
+		storm_active = TRUE // end_storm wygasza tylko aktywną burzę
 	end_storm()
 	end_overcharge()
 	if(tank?.console == src)
@@ -94,7 +98,7 @@ GLOBAL_LIST_EMPTY(pulsar_consoles)
 
 /// Wydarzenia działają tylko wtedy, gdy mostek ciągnie z pulsara moc
 /obj/machinery/pulsar_console/proc/events_enabled()
-	return bridge?.connected
+	return bridge?.connected && !(machine_stat & (BROKEN|NOPOWER))
 
 /obj/machinery/pulsar_console/proc/scan_for_tank()
 	if(tank?.console == src)
@@ -239,17 +243,17 @@ GLOBAL_LIST_EMPTY(pulsar_consoles)
 		return
 	storm_active = TRUE
 	announce("Wysoki poziom promieniowania przy okręcie. Schrońcie się w osłoniętych tunelach technicznych.")
-	SSweather.run_weather(/datum/weather/rad_storm/pulsar, ship_z_levels())
+	storm = new(ship_z_levels())
+	INVOKE_ASYNC(storm, TYPE_PROC_REF(/datum/weather, telegraph))
 
 /obj/machinery/pulsar_console/proc/end_storm()
 	storm_at = 0
 	if(!storm_active)
 		return
 	storm_active = FALSE
-	var/list/levels = ship_z_levels()
-	for(var/datum/weather/rad_storm/pulsar/storm in SSweather.processing)
-		if(length(storm.impacted_z_levels & levels))
-			storm.wind_down()
+	// wind_down przed końcem rozruchu też działa: start() pomija burzę, która już gaśnie, a end() przychodzi z timera
+	storm?.wind_down()
+	storm = null
 	announce("Satelita pulsara opuścił wiązkę promieniowania. Kto czuje się źle, niech zgłosi się do ambulatorium.")
 
 /obj/machinery/pulsar_console/proc/start_overcharge()

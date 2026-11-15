@@ -31,9 +31,11 @@
 	cal_target_phase = rand(0, 359)
 
 /// Fala celu powoli dryfuje, więc kalibrację trzeba poprawiać w trakcie ładowania
-/obj/machinery/atmospherics/components/binary/drive_pylon/proc/drift_calibration()
-	cal_target_freq = clamp(cal_target_freq + rand(-4, 4) / 100, FTL_CAL_FREQ_MIN, FTL_CAL_FREQ_MAX)
-	cal_target_phase = SIMPLIFY_DEGREES(cal_target_phase + rand(-3, 3))
+/// delta_time w sekundach: dryf na sekundę jest stały niezależnie od częstotliwości ticków
+/obj/machinery/atmospherics/components/binary/drive_pylon/proc/drift_calibration(delta_time = 2)
+	var/scale = delta_time / 2
+	cal_target_freq = clamp(cal_target_freq + rand(-4, 4) / 100 * scale, FTL_CAL_FREQ_MIN, FTL_CAL_FREQ_MAX)
+	cal_target_phase = SIMPLIFY_DEGREES(cal_target_phase + rand(-3, 3) * scale)
 
 /// Dopasowanie fali pylonu do fali celu, 0-1
 /obj/machinery/atmospherics/components/binary/drive_pylon/proc/calibration_match()
@@ -60,8 +62,10 @@
 	return FTL_CAL_MISHAP_MAX * (1 - quality) ** 2
 
 /obj/machinery/computer/ship/ftl_core/process(delta_time)
-	for(var/obj/machinery/atmospherics/components/binary/drive_pylon/P as anything in pylons)
-		P.drift_calibration()
+	// Fale dryfują tylko podczas ładowania skoku
+	if(active)
+		for(var/obj/machinery/atmospherics/components/binary/drive_pylon/P as anything in pylons)
+			P.drift_calibration(delta_time)
 	charge_rate = initial(charge_rate) * calibration_charge_mult()
 	return ..()
 

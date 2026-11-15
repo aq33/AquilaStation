@@ -77,6 +77,9 @@
 
 /obj/structure/overmap/get_suite_range(suite, obj/structure/overmap/target)
 	. = ..()
+	// Radar gracza ma mnożnik już w get_player_lidar_range (player_sensors.dm)
+	if(!ai_controlled && suite == SENSOR_LIDAR)
+		return
 	. *= get_sensor_array_mult(suite, target)
 
 

@@ -16,7 +16,7 @@
 /// Echo powstaje przy pierwszym użyciu (przydział przy starcie rundy, konsola drużyn), a nie w New() managera:
 /// manager jest zmienną globalną tworzoną przed konfiguracją, a retask() sięga wtedy do jeszcze pustych słowników
 /datum/squad_manager/proc/aq_get_echo()
-	if(aq_echo && !QDELETED(aq_echo))
+	if(aq_echo && !QDELETED(aq_echo) && (aq_echo in squads))
 		return aq_echo
 	aq_echo = aq_create_squad(ECHO_SQUAD_NAME, ECHO_SQUAD_COLOUR)
 	if(!aq_echo)
@@ -35,7 +35,8 @@
 		for(var/obj/structure/overmap/small_craft/combat/fighter in GLOB.overmap_objects)
 			if(QDELETED(fighter) || fighter.obj_integrity <= 0)
 				continue
-			if(fighter.get_overmap() == ship || fighter.z == ship.z)
+			// Tylko myśliwce okrętu: w jego hangarze albo w locie z jego frakcji
+			if(fighter.get_overmap() == ship || (fighter.z == ship.z && fighter.faction == ship.faction))
 				count++
 	return max(count, 1)
 
@@ -58,6 +59,13 @@
 		// access to wspólna lista z role_access_map: kopia, żeby nie dopisać hangaru innym drużynom
 		access = (access ? access.Copy() : list()) | list(ACCESS_COMBAT_PILOT, ACCESS_HANGAR)
 		access_enabled = TRUE
+
+/// Smycz drużyny Echo też pilnuje limitu (konsola drużyn sprawdza go w squad_console.dm)
+/obj/item/clothing/neck/squad/attack_self(mob/living/carbon/human/user)
+	if(squad?.aq_is_echo && ishuman(user) && user.squad != squad && length(squad.members) >= squad.aq_echo_limit())
+		to_chat(user, "<span class='warning'>Echo ma już tylu członków, ile myśliwców ma okręt.</span>")
+		return FALSE
+	return ..()
 
 #undef ECHO_SQUAD_NAME
 #undef ECHO_SQUAD_COLOUR

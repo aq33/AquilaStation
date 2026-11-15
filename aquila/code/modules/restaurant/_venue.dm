@@ -100,6 +100,9 @@ SUBSYSTEM_DEF(restaurant)
 	if(!COOLDOWN_FINISHED(src, visit_cooldown))
 		return
 	COOLDOWN_START(src, visit_cooldown, rand(min_time_between_visitor, max_time_between_visitor))
+	// Meble mogły dojść po otwarciu: dostawiamy miejsca, gdy żadne nie jest wolne
+	if(!free_seat_count())
+		auto_place_seats()
 	if(length(current_visitors) < max_guests && length(current_visitors) < length(linked_seats) + 1) //Jeden gość może czekać na stojąco
 		create_new_customer()
 
@@ -290,7 +293,12 @@ SUBSYSTEM_DEF(restaurant)
 		targets = floor_by_table
 	if(!length(targets))
 		targets = other_chairs
-	var/limit = max(max_auto_seats - length(linked_seats), 0)
+	// Liczą się tylko miejsca w zasięgu bieżącego portalu: znaczniki przy starym portalu nie blokują nowego
+	var/near_seats = 0
+	for(var/obj/structure/holosign/robot_seat/seat as anything in linked_seats)
+		if(get_dist(seat, portal) <= auto_seat_range && seat.z == portal.z)
+			near_seats++
+	var/limit = max(max_auto_seats - near_seats, 0)
 	var/placed = 0
 	for(var/turf/target as anything in targets)
 		if(placed >= limit)

@@ -292,6 +292,8 @@ This proc is to be used when someone gets stuck in an overmap ship, gauss, WHATE
 	velocity.e = clamp(velocity.e, -speed_limit * speed_mult, speed_limit * speed_mult)
 
 	var/engine_mult = get_engine_thrust_mult()
+	if(last_thrust_forward || last_thrust_right)
+		aq_thrust_seconds += time
 	velocity.a += thrust_x * speed_mult * engine_mult * time //And speed us up based on how long we've been thrusting (up to a point)
 	velocity.e += thrust_y * speed_mult * engine_mult * time
 	// AQ EDIT END

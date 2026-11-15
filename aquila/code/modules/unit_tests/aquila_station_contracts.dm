@@ -49,6 +49,7 @@
 	ADD_TRAIT(body, "autopsied", "test")
 	corpse.check_progress()
 	TEST_ASSERT(corpse.is_done(), "An autopsy didn't complete the corpse contract")
+	refund_contract(corpse)
 	qdel(corpse)
 
 	// Goście: zlecenie otwiera lokal, a po wykonaniu go zamyka
@@ -68,8 +69,15 @@
 	venue.customers_served += 2
 	customers.check_progress()
 	TEST_ASSERT(customers.is_done(), "Serving enough customers didn't complete the contract")
+	refund_contract(customers)
 	TEST_ASSERT(!venue.open, "The restaurant stayed open after the contract was done")
 	venue.customers_served -= 2
 	qdel(customers)
+
+/// Cofa nagrodę i premię wykonanego zlecenia, żeby kolejne testy widziały niezmienione budżety
+/datum/unit_test/station_contracts/proc/refund_contract(datum/aq_contract/contract)
+	var/datum/bank_account/account = SSeconomy.get_dep_account(contract.account)
+	account?.adjust_money(-contract.reward)
+	GLOB.department_commission_pending[contract.account] -= contract.reward
 
 #undef TEST_ASSERT

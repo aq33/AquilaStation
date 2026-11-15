@@ -16,6 +16,8 @@
 #define SHIP_THRUSTER_REPAIR_SHEETS 5
 /// Na ile kafli za tylną krawędzią dyszy szukamy podgrzewaczy (ściana i kafel za nią)
 #define SHIP_THRUSTER_HEATER_REACH 2
+/// Na ile kafli za tylną krawędzią dyszy szukamy zasilanego obszaru statku (dysza stoi w próżni, bez APC)
+#define SHIP_THRUSTER_POWER_REACH 4
 /// Największy ciąg statku z najlepszą mieszanką (względem ciągu sprzed reworku)
 #define SHIP_THRUSTER_MAX_THRUST 1.5
 /// Ile moli utleniacza (w odpowiedniku tlenu) na mol paliwa daje pełną premię
@@ -42,6 +44,8 @@ GLOBAL_LIST_INIT(ship_thruster_oxidizers, list(
 	var/engine_thrust_active = 0
 	/// Największy ciąg dysz okrętowych, jaki statek miał. Zniszczona dysza go nie obniża.
 	var/engine_thrust_design = 0
+	/// Łączny czas ciągu (s) liczony w fizyce; dysze spalają paliwo za czas od swojego ostatniego ticku
+	var/aq_thrust_seconds = 0
 
 /obj/structure/overmap/Destroy()
 	for(var/obj/machinery/ship_thruster/thruster as anything in ship_thrusters)
@@ -102,6 +106,8 @@ GLOBAL_LIST_INIT(ship_thruster_oxidizers, list(
 	var/fuel_quality = 0
 	/// Czy zniszczona dysza jest już załatana płytami i czeka na spawanie
 	var/plated = FALSE
+	/// aq_thrust_seconds statku przy ostatnim ticku tej dyszy
+	var/thrust_seen = 0
 
 /obj/machinery/ship_thruster/large
 	icon = 'icons/obj/2x2.dmi'
@@ -136,29 +142,62 @@ GLOBAL_LIST_INIT(ship_thruster_oxidizers, list(
 	LAZYREMOVE(ship.ship_thrusters, src)
 	ship.recalculate_engine_thrust()
 
+/// Rząd kafli tuż za tylną krawędzią dyszy, depth kafli w głąb
+/obj/machinery/ship_thruster/proc/get_rear_turfs(depth)
+	var/turf/origin = get_turf(src)
+	if(!origin)
+		return list()
+	var/width = bound_width / world.icon_size
+	var/height = bound_height / world.icon_size
+	switch(turn(dir, 180))
+		if(EAST)
+			return block(locate(origin.x + width - 1 + depth, origin.y, origin.z), locate(origin.x + width - 1 + depth, origin.y + height - 1, origin.z))
+		if(WEST)
+			return block(locate(origin.x - depth, origin.y, origin.z), locate(origin.x - depth, origin.y + height - 1, origin.z))
+		if(NORTH)
+			return block(locate(origin.x, origin.y + height - 1 + depth, origin.z), locate(origin.x + width - 1, origin.y + height - 1 + depth, origin.z))
+		if(SOUTH)
+			return block(locate(origin.x, origin.y - depth, origin.z), locate(origin.x + width - 1, origin.y - depth, origin.z))
+	return list()
+
 /// Podgrzewacze za tylną krawędzią dyszy (do SHIP_THRUSTER_HEATER_REACH kafli w głąb), gotowe do pracy
 /obj/machinery/ship_thruster/proc/get_heaters()
 	. = list()
-	var/turf/origin = get_turf(src)
-	if(!origin)
-		return
-	var/width = bound_width / world.icon_size
-	var/height = bound_height / world.icon_size
 	for(var/depth in 1 to SHIP_THRUSTER_HEATER_REACH)
-		var/list/turfs
-		switch(turn(dir, 180))
-			if(EAST)
-				turfs = block(locate(origin.x + width - 1 + depth, origin.y, origin.z), locate(origin.x + width - 1 + depth, origin.y + height - 1, origin.z))
-			if(WEST)
-				turfs = block(locate(origin.x - depth, origin.y, origin.z), locate(origin.x - depth, origin.y + height - 1, origin.z))
-			if(NORTH)
-				turfs = block(locate(origin.x, origin.y + height - 1 + depth, origin.z), locate(origin.x + width - 1, origin.y + height - 1 + depth, origin.z))
-			if(SOUTH)
-				turfs = block(locate(origin.x, origin.y - depth, origin.z), locate(origin.x + width - 1, origin.y - depth, origin.z))
-		for(var/turf/T as anything in turfs)
+		for(var/turf/T as anything in get_rear_turfs(depth))
 			for(var/obj/machinery/atmospherics/components/unary/shuttle/heater/heater in T)
 				if(heater.anchored && !heater.panel_open)
 					. += heater
+
+/// Dysza stoi w próżni za kadłubem, gdzie obszar kosmosu nigdy nie ma prądu. Prąd bierze z pierwszego zasilanego
+/// obszaru statku za swoją tylną krawędzią (maszynownia, technika), do SHIP_THRUSTER_POWER_REACH kafli w głąb.
+/obj/machinery/ship_thruster/proc/get_power_area(chan = power_channel)
+	var/area/own = get_area(src)
+	if(own && !istype(own, /area/space) && own.powered(chan))
+		return own
+	for(var/depth in 1 to SHIP_THRUSTER_POWER_REACH)
+		for(var/turf/T as anything in get_rear_turfs(depth))
+			var/area/A = T.loc
+			if(istype(A, /area/space))
+				continue
+			if(A.powered(chan))
+				return A
+	return null
+
+/obj/machinery/ship_thruster/powered(chan = -1)
+	if(!loc)
+		return FALSE
+	if(machine_stat & EMPED)
+		return FALSE
+	if(chan == -1)
+		chan = power_channel
+	return !!get_power_area(chan)
+
+/obj/machinery/ship_thruster/use_power(amount, chan = -1)
+	if(chan == -1)
+		chan = power_channel
+	var/area/A = get_power_area(chan)
+	A?.use_power(amount, chan)
 
 /// Skład mieszanki we wszystkich podgrzewaczach: list(mole razem, mole paliwa, paliwo razy jakość, utleniacz jako tlen)
 /obj/machinery/ship_thruster/proc/analyze_mix(list/heaters = get_heaters())
@@ -211,14 +250,23 @@ GLOBAL_LIST_INIT(ship_thruster_oxidizers, list(
 /obj/machinery/ship_thruster/process(delta_time)
 	if(!linked_ship || QDELETED(linked_ship))
 		link_to_ship(get_overmap())
+	// Obszar kosmosu nie wysyła zmian zasilania: stan prądu z obszaru za dyszą sprawdzamy co tick
+	power_change()
 	// Jedna analiza mieszanki na tick: wspólna dla sprawdzenia paliwa, jakości i spalania
 	var/list/heaters = get_heaters()
 	var/list/mix = analyze_mix(heaters)
 	var/new_can_fire = check_can_fire(delta_time, heaters, mix)
 	var/new_quality = ship_thruster_mix_quality(mix[2], mix[3], mix[4])
-	var/firing = new_can_fire && linked_ship.is_thrusting()
+	// Ciąg między tickami (krótkie manewry) też kosztuje paliwo: czas ciągu zlicza fizyka (physics.dm)
+	var/thrust_time = 0
+	if(linked_ship)
+		thrust_time = clamp(linked_ship.aq_thrust_seconds - thrust_seen, 0, delta_time)
+		thrust_seen = linked_ship.aq_thrust_seconds
+		if(!thrust_time && linked_ship.is_thrusting())
+			thrust_time = delta_time
+	var/firing = new_can_fire && thrust_time > 0
 	if(firing)
-		burn_fuel(fuel_per_second * delta_time, heaters, mix)
+		burn_fuel(fuel_per_second * thrust_time, heaters, mix)
 	use_power = firing ? ACTIVE_POWER_USE : IDLE_POWER_USE
 	var/datum/ship_power/power = linked_ship?.ship_power
 	active_power_usage = initial(active_power_usage) * (power ? power.limits[SHIP_POWER_ENGINES] : 1)
@@ -280,6 +328,10 @@ GLOBAL_LIST_INIT(ship_thruster_oxidizers, list(
 	to_chat(user, "<span class='notice'>Zaczynasz spawać [src]...</span>")
 	if(!I.use_tool(src, user, (machine_stat & BROKEN) ? 10 SECONDS : 5 SECONDS, volume = 50, amount = 1))
 		return TRUE
+	// Dysza mogła się rozbić w trakcie spawania: bez plastali naprawy nie ma
+	if((machine_stat & BROKEN) && !plated)
+		to_chat(user, "<span class='warning'>[src] rozbiła się w trakcie spawania. Najpierw załataj ją plastalą.</span>")
+		return TRUE
 	finish_repair()
 	user.visible_message("<span class='notice'>[user] kończy naprawiać [src].</span>", "<span class='notice'>Naprawiasz [src].</span>")
 	return TRUE
@@ -336,6 +388,7 @@ GLOBAL_LIST_INIT(ship_thruster_oxidizers, list(
 #undef SHIP_THRUSTER_MIN_THRUST
 #undef SHIP_THRUSTER_REPAIR_SHEETS
 #undef SHIP_THRUSTER_HEATER_REACH
+#undef SHIP_THRUSTER_POWER_REACH
 #undef SHIP_THRUSTER_MAX_THRUST
 #undef SHIP_THRUSTER_IDEAL_RATIO
 #undef SHIP_THRUSTER_OXIDIZER_BONUS

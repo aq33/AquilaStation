@@ -17,6 +17,9 @@
 	var/obj/structure/overmap/ship
 	var/old_design
 	var/old_forward
+	/// Obszar rezerwacji, do którego wracają pola za dyszą
+	var/area/old_area
+	var/list/powered_turfs
 
 /datum/unit_test/ship_thrusters/Run()
 	ship = SSstar_system.find_main_overmap()
@@ -51,7 +54,18 @@
 	air_contents.set_moles(tank.gas_type, 100)
 	thruster = new(locate(x0, y0, z))
 	thruster.link_to_ship(ship)
-	thruster.set_machine_stat(thruster.machine_stat & ~NOPOWER)
+
+	// Regresja: dysza stoi w próżni (obszar bez prądu) i bierze prąd z zasilanego obszaru statku za sobą
+	thruster.power_change()
+	TEST_ASSERT(!thruster.powered(), "A thruster with no powered ship area behind it has power")
+	old_area = get_area(locate(x0 + 2, y0, z))
+	var/area/testroom/engine_room = new
+	powered_turfs = block(locate(x0 + 2, y0, z), locate(x0 + 5, y0 + 2, z))
+	for(var/turf/T as anything in powered_turfs)
+		engine_room.contents += T
+	TEST_ASSERT(istype(get_area(thruster), old_area.type), "The test moved the thruster itself out of its space area")
+	thruster.power_change()
+	TEST_ASSERT(thruster.powered() && !(thruster.machine_stat & NOPOWER), "A thruster in space doesn't take power from the powered ship area behind it")
 	TEST_ASSERT(tank in thruster.get_heaters(), "The thruster doesn't find the heater two tiles behind it")
 	TEST_ASSERT_EQUAL(thruster.get_fuel(), 100, "The thruster doesn't see the plasma in its heater")
 	var/design_with_ours = ship.engine_thrust_design
@@ -134,6 +148,9 @@
 		ship.last_thrust_forward = old_forward
 		ship.engine_thrust_design = old_design
 		ship.recalculate_engine_thrust()
+	if(old_area)
+		for(var/turf/T as anything in powered_turfs)
+			old_area.contents += T
 	QDEL_NULL(site)
 	return ..()
 

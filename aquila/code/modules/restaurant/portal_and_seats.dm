@@ -27,7 +27,8 @@
 		if(linked_venue.restaurant_portal == src)
 			// Wracamy do poprzedniego portalu, a jeśli żadnego nie ma, lokal się zamyka
 			linked_venue.restaurant_portal = length(linked_venue.all_portals) ? linked_venue.all_portals[length(linked_venue.all_portals)] : null
-			if(!linked_venue.restaurant_portal)
+			// Lokal otwiera tylko zlecenie gości (station_contracts.dm): bez niego zamykamy (np. po komorze testowej)
+			if(!linked_venue.restaurant_portal || !aq_venue_contract(linked_venue))
 				linked_venue.close()
 			linked_venue.update_machines()
 	linked_venue = null

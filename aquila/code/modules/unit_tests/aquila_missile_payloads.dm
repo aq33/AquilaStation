@@ -28,7 +28,7 @@
 	gen.shield["integrity"] = 1000
 	var/obj/item/projectile/guided_munition/torpedo/plain = new(run_loc_floor_bottom_left)
 	ship.bullet_act(plain)
-	TEST_ASSERT(gen.shield["integrity"] >= 1000 - plain.damage - 1, "A plain torpedo drained the shield like a diffuser")
+	TEST_ASSERT(abs(gen.shield["integrity"] - (1000 - plain.damage)) < 1, "A plain torpedo should take exactly its damage off the shield, integrity [gen.shield["integrity"]]")
 	qdel(plain)
 
 	// Sonda: boja na overmapie, widoczna dla frakcji, która ją wystrzeliła

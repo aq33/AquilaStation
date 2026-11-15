@@ -50,7 +50,9 @@ GLOBAL_VAR_INIT(player_sensor_suites_enabled, TRUE)
 		return 0
 	if(radar_pulse_width && !is_in_radar_pulse_beam(target))
 		return 0
-	return get_radar_reach(radar_pulse_width)
+	// Matryce sensorów i maska celu liczą się tu, a nie w get_suite_range: get_detection_range i stanowisko rozpoznania
+	// sięgają po ten zasięg bezpośrednio (ship_sensor_array.dm, shield_cloak.dm)
+	return get_radar_reach(radar_pulse_width) * get_sensor_array_mult(SENSOR_LIDAR, target) * (target ? target.get_cloak_lidar_mult() : 1)
 
 /obj/structure/overmap/proc/is_in_radar_pulse_beam(obj/structure/overmap/target)
 	var/bearing = overmap_angle(src, target)

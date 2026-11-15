@@ -21611,5 +21611,6 @@
 "generator zniszczony": "generator destroyed",
 "<span class='warning'>Brak dostępu. Maskowanie włącza inżynieria albo dowództwo.</span>": "<span class='warning'>Access denied. The cloak is operated by engineering or command.</span>",
 "[key_name(user)] przyjął zlecenie [C.name] od [src], ale nie mogło się zacząć: [C.fail_reason]": "[key_name(user)] accepted the contract [C.name] from [src], but it couldn't start: [C.fail_reason]",
-"Zlecenie nie mogło się zacząć: [C.fail_reason].": "The contract couldn't start: [C.fail_reason]."
+"Zlecenie nie mogło się zacząć: [C.fail_reason].": "The contract couldn't start: [C.fail_reason].",
+"<span class='warning'>[src] rozbiła się w trakcie spawania. Najpierw załataj ją plastalą.</span>": "<span class='warning'>[src] broke apart while you were welding it. Patch it with plasteel first.</span>"
 }

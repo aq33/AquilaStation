@@ -204,8 +204,9 @@
 	var/obj/structure/overmap/owner = overmap_firer
 	if(!istype(owner))
 		return
-	if(locate(/obj/effect/overmap_sensor_probe) in where)
-		return
+	for(var/obj/effect/overmap_sensor_probe/existing in where)
+		if(existing.faction == owner.faction)
+			return
 	new /obj/effect/overmap_sensor_probe(where, owner)
 
 GLOBAL_LIST_EMPTY(overmap_sensor_probes)

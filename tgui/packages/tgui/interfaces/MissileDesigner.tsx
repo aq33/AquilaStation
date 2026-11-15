@@ -28,6 +28,7 @@ type Design = {
   summary: Summary;
 };
 
+// index to trwały numer projektu (missile_design.dm), nie pozycja na liście
 type SavedDesign = Design & { index: number };
 
 type Data = {

@@ -40,6 +40,9 @@ GLOBAL_LIST_INIT(missile_design_options, list(
 GLOBAL_LIST_EMPTY(missile_designs)
 
 /datum/missile_design
+	/// Trwały numer zapisanego projektu (okno wczytuje i usuwa po nim, a nie po pozycji na liście)
+	var/id = 0
+	var/static/next_id = 0
 	var/name = "nowy projekt"
 	var/body = "standardowy"
 	var/engine = "standardowy"
@@ -65,7 +68,7 @@ GLOBAL_LIST_EMPTY(missile_designs)
 /datum/missile_design/proc/summary()
 	return list(
 		"speed" = round(1 / mult("speed"), 0.01),
-		"range" = round(mult("range") * mult("speed"), 0.01),
+		"range" = round(mult("range"), 0.01), // zasięg liczy się w kafelkach, prędkość go nie zmienia
 		"integrity" = round(mult("integrity"), 0.01),
 		"turn" = round(mult("turn"), 0.01),
 		"seeker" = seeker
@@ -123,7 +126,7 @@ GLOBAL_LIST_EMPTY(missile_designs)
 			return current
 		if(MISSILE_SEEKER_IR)
 			var/obj/structure/overmap/target = current
-			if(istype(target) && target.get_signature_heat() < MISSILE_IR_MIN_HEAT)
+			if(istype(target) && (target.is_cloaked() || target.get_signature_heat() < MISSILE_IR_MIN_HEAT))
 				return null
 			return current
 		if(MISSILE_SEEKER_RADAR)
@@ -250,7 +253,7 @@ GLOBAL_LIST_EMPTY(missile_designs)
 	var/list/designs = list()
 	for(var/i in 1 to length(GLOB.missile_designs))
 		var/datum/missile_design/D = GLOB.missile_designs[i]
-		designs += list(list("index" = i, "name" = D.name, "summary" = D.summary(), "body" = D.body, "engine" = D.engine, "seeker" = D.seeker))
+		designs += list(list("index" = D.id, "name" = D.name, "summary" = D.summary(), "body" = D.body, "engine" = D.engine, "seeker" = D.seeker))
 	var/list/options = list()
 	for(var/slot in GLOB.missile_design_options)
 		var/list/names = list()
@@ -283,17 +286,19 @@ GLOBAL_LIST_EMPTY(missile_designs)
 			if(new_name)
 				draft.name = new_name
 		if("save")
-			GLOB.missile_designs += draft.copy()
+			var/datum/missile_design/saved = draft.copy()
+			saved.id = ++saved.next_id
+			GLOB.missile_designs += saved
 		if("load")
-			var/index = text2num(params["index"])
-			if(isnum_safe(index) && index >= 1 && index <= length(GLOB.missile_designs))
-				var/datum/missile_design/D = GLOB.missile_designs[index]
+			var/datum/missile_design/D = find_saved_design(params["index"])
+			if(D)
 				QDEL_NULL(draft)
 				draft = D.copy()
 		if("delete")
-			var/index = text2num(params["index"])
-			if(isnum_safe(index) && index >= 1 && index <= length(GLOB.missile_designs))
-				GLOB.missile_designs.Cut(index, index + 1)
+			var/datum/missile_design/D = find_saved_design(params["index"])
+			if(D)
+				GLOB.missile_designs -= D
+				qdel(D)
 		if("print")
 			if(world.time < print_ready || !powered())
 				return TRUE
@@ -301,6 +306,14 @@ GLOBAL_LIST_EMPTY(missile_designs)
 			addtimer(CALLBACK(src, PROC_REF(finish_print), draft.copy()), 5 SECONDS)
 			playsound(src, 'sound/machines/terminal_processing.ogg', 50, TRUE)
 	return TRUE
+
+/// Zapisany projekt po trwałym numerze
+/obj/machinery/missile_design_table/proc/find_saved_design(id)
+	id = text2num(id)
+	for(var/datum/missile_design/D as anything in GLOB.missile_designs)
+		if(D.id == id)
+			return D
+	return null
 
 /obj/machinery/missile_design_table/proc/finish_print(datum/missile_design/design)
 	if(QDELETED(src))

@@ -391,7 +391,19 @@ GLOBAL_LIST_EMPTY(aq_ship_contracts)
 			medical_areas += A
 	if(!length(medical_areas))
 		return null
-	return get_safe_random_station_turfs(medical_areas)
+	// Własne przeszukanie zamiast get_safe_random_station_turfs: ten helper zapętla się, gdy żadne pole się nie nadaje
+	var/list/candidates = list()
+	for(var/area/A as anything in medical_areas)
+		candidates += get_area_turfs(A)
+	while(length(candidates))
+		var/turf/T = pick_n_take(candidates)
+		if(T.density || isgroundlessturf(T) || is_blocked_turf(T, TRUE))
+			continue
+		var/area/turf_area = get_area(T)
+		if(!(turf_area.area_flags & VALID_TERRITORY))
+			continue
+		return T
+	return null
 
 /datum/aq_contract/wounded/accept_error()
 	return find_medbay_turf() ? null : "Okręt nie ma ambulatorium."
@@ -400,14 +412,17 @@ GLOBAL_LIST_EMPTY(aq_ship_contracts)
 	return find_medbay_turf() ? null : "Okręt nie ma ambulatorium."
 
 /datum/aq_contract/wounded/check_progress()
+	// Najpierw śmierć któregokolwiek pacjenta, potem dopiero czekanie na leczenie
+	var/all_healed = TRUE
 	for(var/datum/weakref/ref as anything in patients)
 		var/mob/living/carbon/human/H = ref.resolve()
 		if(!H || H.stat == DEAD)
 			fail("rozbitek zmarł")
 			return
 		if(H.health < H.maxHealth * 0.9)
-			return
-	complete()
+			all_healed = FALSE
+	if(all_healed)
+		complete()
 
 /// Medyczny: zwłoki do ożywienia albo autopsji
 /datum/aq_contract/corpse
