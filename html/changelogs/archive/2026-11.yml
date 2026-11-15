@@ -1092,3 +1092,5 @@
   - tweak: 'Tłumacz działa u słuchacza: obcokrajowca rozumie tylko ten, kto nosi słuchawki
       z czipem (mają go wszystkie słuchawki) albo ma tłumacza, a bez niego słyszy
       bełkot. Obcokrajowiec mówi od razu po angielsku. Silikony mają tłumacza wbudowanego.'
+  - rscadd: Nowa preferencja „Preferowany silnik statku”. Na Atlasie, Trawniku i Padalcu
+      Główny Inżynier (a bez niego większość inżynierów) wybiera silnik na start rundy.
