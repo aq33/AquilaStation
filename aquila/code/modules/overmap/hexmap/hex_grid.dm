@@ -21,6 +21,8 @@ GLOBAL_LIST_INIT(hex_axial_dirs, list(list(1, 0), list(1, -1), list(0, -1), list
 	var/datum/star_system/system
 	/// Hexy w innych sektorach, do których prowadzi brama z tego hexa
 	var/list/gates
+	/// Sąsiedzi w sektorze, liczeni raz (neighbours())
+	var/list/neighbour_cache
 	/// Przybliżone współrzędne starmap.json środka hexa (dla starego kodu, który liczy dist())
 	var/approx_x
 	var/approx_y
@@ -201,13 +203,16 @@ GLOBAL_LIST_INIT(hex_axial_dirs, list(list(1, 0), list(1, -1), list(0, -1), list
 					LAZYOR(S.hex.gates, other)
 					LAZYOR(other.gates, S.hex)
 
-/// Sąsiedzi w tym samym sektorze
+/// Sąsiedzi w tym samym sektorze. Siatka się nie zmienia, więc liczymy ich raz na kafel (klucze tekstowe kosztowały
+/// 9 µs na wywołanie, a trasa po całej mapie woła to tysiące razy). Zwraca kopię: wywołujący dopisują do listy bramy.
 /datum/hexmap/proc/neighbours(datum/hex/H)
-	. = list()
-	for(var/list/dir as anything in GLOB.hex_axial_dirs)
-		var/datum/hex/N = axial["[H.sector]:[H.q + dir[1]]:[H.r + dir[2]]"]
-		if(N)
-			. += N
+	if(!H.neighbour_cache)
+		H.neighbour_cache = list()
+		for(var/list/dir as anything in GLOB.hex_axial_dirs)
+			var/datum/hex/N = axial["[H.sector]:[H.q + dir[1]]:[H.r + dir[2]]"]
+			if(N)
+				H.neighbour_cache += N
+	return H.neighbour_cache.Copy()
 
 /// Odległość w hexach w obrębie sektora (INFINITY między sektorami)
 /datum/hexmap/proc/distance(datum/hex/a, datum/hex/b)
@@ -247,18 +252,38 @@ GLOBAL_LIST_INIT(hex_axial_dirs, list(list(1, 0), list(1, -1), list(0, -1), list
 /datum/hexmap/proc/route(datum/hex/start, datum/hex/dest, faction, max_cost = 400)
 	if(!start || !dest || start == dest || blocks(dest))
 		return
+	// A* z kopcem binarnym (dawniej Dijkstra z liniowym szukaniem minimum: 24 ms na trasę, raport/ftl_mapa_07).
+	// Heurystyka (route_heuristic) nigdy nie przeszacowuje, więc trasa zostaje najkrótsza.
+	var/dest_gate = nearest_gate_distance(dest)
 	var/list/dist = list()
 	var/list/prev = list()
 	dist[start] = 0
-	var/list/open = list(start)
-	while(length(open))
-		var/datum/hex/best
-		var/best_d = INFINITY
-		for(var/datum/hex/C as anything in open)
-			if(dist[C] < best_d)
-				best_d = dist[C]
-				best = C
-		open -= best
+	var/list/heap_nodes = list(start)
+	var/list/heap_keys = list(0)
+	while(length(heap_nodes))
+		// zdejmij minimum
+		var/datum/hex/best = heap_nodes[1]
+		var/best_key = heap_keys[1]
+		var/last = length(heap_nodes)
+		heap_nodes[1] = heap_nodes[last]
+		heap_keys[1] = heap_keys[last]
+		heap_nodes.len--
+		heap_keys.len--
+		var/size = length(heap_nodes)
+		var/i = 1
+		while(TRUE)
+			var/l = i * 2
+			if(l > size)
+				break
+			var/c = (l + 1 <= size && heap_keys[l + 1] < heap_keys[l]) ? l + 1 : l
+			if(heap_keys[c] >= heap_keys[i])
+				break
+			heap_nodes.Swap(i, c)
+			heap_keys.Swap(i, c)
+			i = c
+		var/best_d = dist[best]
+		if(best_key > best_d + route_heuristic(best, dest, dest_gate) + 0.001)
+			continue // nieaktualny wpis kopca (kafel ma już krótszą drogę)
 		if(best == dest)
 			break
 		for(var/datum/hex/N as anything in links(best, faction))
@@ -270,7 +295,17 @@ GLOBAL_LIST_INIT(hex_axial_dirs, list(list(1, 0), list(1, -1), list(0, -1), list
 			if(isnull(dist[N]) || d < dist[N])
 				dist[N] = d
 				prev[N] = best
-				open |= N
+				// wstaw z kluczem droga + heurystyka
+				heap_nodes += N
+				heap_keys += d + route_heuristic(N, dest, dest_gate)
+				var/j = length(heap_nodes)
+				while(j > 1)
+					var/parent = round(j / 2)
+					if(heap_keys[parent] <= heap_keys[j])
+						break
+					heap_nodes.Swap(parent, j)
+					heap_keys.Swap(parent, j)
+					j = parent
 	if(isnull(dist[dest]))
 		return
 	var/list/full = list(dest)
@@ -356,3 +391,38 @@ GLOBAL_LIST_INIT(hex_axial_dirs, list(list(1, 0), list(1, -1), list(0, -1), list
 		if(SECTOR_SYNDICATE)
 			return "Sektor Syndykatu"
 	return "Sektor [sector]"
+
+/datum/hexmap
+	/// sektor -> kafle z bramami (geometria stała, liczone raz)
+	var/list/gate_hexes_cache = list()
+
+/// Kafle z bramami w sektorze
+/datum/hexmap/proc/gate_hexes_in(sector)
+	var/key = "[sector]"
+	if(!gate_hexes_cache[key])
+		var/list/found = list()
+		for(var/name in system_hexes)
+			var/datum/hex/H = system_hexes[name]
+			if(H.sector == sector && LAZYLEN(H.gates))
+				found += H
+		gate_hexes_cache[key] = found
+	return gate_hexes_cache[key]
+
+/// Odległość w kaflach do najbliższej bramy w sektorze kafla (INFINITY bez bram)
+/datum/hexmap/proc/nearest_gate_distance(datum/hex/H)
+	. = INFINITY
+	for(var/datum/hex/G as anything in gate_hexes_in(H.sector))
+		. = min(., distance(H, G))
+
+/// Dolna granica kosztu z kafla do celu: w sektorze celu marsz albo wyjście najbliższą bramą i powrót inną
+/// (dwa skoki bramą i co najmniej marsz do bram po obu stronach); w innym sektorze marsz do najbliższej bramy,
+/// co najmniej jeden skok bramą i marsz od najbliższej bramy sektora celu.
+/datum/hexmap/proc/route_heuristic(datum/hex/N, datum/hex/dest, dest_gate)
+	if(N.sector != dest.sector)
+		var/out = nearest_gate_distance(N)
+		if(out == INFINITY || dest_gate == INFINITY)
+			return 0
+		return (out + dest_gate) * HEX_FTL_COST_HEX + HEX_FTL_COST_GATE
+	var/walk = distance(N, dest) * HEX_FTL_COST_HEX
+	var/via_gates = (nearest_gate_distance(N) + dest_gate) * HEX_FTL_COST_HEX + 2 * HEX_FTL_COST_GATE
+	return min(walk, via_gates)

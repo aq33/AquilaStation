@@ -183,6 +183,7 @@ GLOBAL_LIST_INIT(hex_war_factions, list("nanotrasen", "solgov", "syndicate", "pi
 /datum/hex_war/proc/run_turn()
 	if(!GLOB.hexmap?.built || !SSstar_system.enable_npc_combat)
 		return
+	GLOB.hexmap.war_distance_cache = list()
 	economy()
 	depots()
 	raids()
@@ -462,11 +463,23 @@ GLOBAL_LIST_INIT(hex_war_factions, list("nanotrasen", "solgov", "syndicate", "pi
 	return ..()
 
 /// Odległość po kaflach, także między sektorami: przez jedną albo dwie bramy (jak hd() w makiecie)
+/datum/hexmap
+	/// Odległości przez bramy policzone w tej turze sztabów (geometria się nie zmienia, ale nowe układy mogą dojść)
+	var/list/war_distance_cache = list()
+
 /datum/hexmap/proc/war_distance(datum/hex/a, datum/hex/b)
 	if(!a || !b)
 		return INFINITY
 	if(a.sector == b.sector)
 		return distance(a, b)
+	var/key = "[a.id]>[b.id]"
+	. = war_distance_cache[key]
+	if(!isnull(.))
+		return
+	. = war_distance_uncached(a, b)
+	war_distance_cache[key] = .
+
+/datum/hexmap/proc/war_distance_uncached(datum/hex/a, datum/hex/b)
 	. = INFINITY
 	for(var/name in system_hexes)
 		var/datum/hex/G = system_hexes[name]

@@ -134,18 +134,11 @@
 				gates += list(list("a" = S.hex.id, "b" = G.id))
 	data["gates"] = gates
 
-	// Teren: tylko kafle z terenem (sygnały, anomalie i burze zmieniają się w trakcie rundy)
-	var/list/terrain = list()
-	var/list/wormholes = list()
-	for(var/id in GLOB.hexmap.hexes)
-		var/datum/hex/H = GLOB.hexmap.hexes[id]
-		if(H.terrain == HEX_TERRAIN_EMPTY)
-			continue
-		terrain[id] = H.terrain
-		if(H.wormhole_pair && H.id < H.wormhole_pair.id)
-			wormholes += list(list("a" = H.id, "b" = H.wormhole_pair.id))
-	data["terrain"] = terrain
-	data["wormholes"] = wormholes
+	// Teren: tylko kafle z terenem (sygnały, anomalie i burze zmieniają się w trakcie rundy). Przegląd wszystkich
+	// kafli co sekundę dla każdego widza był drogi, więc lista jest wspólna i odświeżana co 5 s.
+	var/list/terrain_data = GLOB.hexmap.terrain_ui_data()
+	data["terrain"] = terrain_data["terrain"]
+	data["wormholes"] = terrain_data["wormholes"]
 
 	// Zasięg: kafle, na które okręt może skoczyć teraz
 	var/list/reach = list()
@@ -273,3 +266,23 @@
 				linked.relay('nsv13/sound/effects/ship/ftl_stop.ogg', channel=CHANNEL_IMPORTANT_SHIP_ALERT)
 				linked.ftl_drive.radio.talk_into(linked.ftl_drive, "Anulowano translację FTL. Ładunek zachowany.", linked.ftl_drive.radio_channel)
 			return TRUE
+
+/datum/hexmap
+	var/list/terrain_ui_cache
+	var/terrain_ui_cache_time = 0
+
+/datum/hexmap/proc/terrain_ui_data()
+	if(terrain_ui_cache && world.time < terrain_ui_cache_time + 5 SECONDS)
+		return terrain_ui_cache
+	var/list/terrain = list()
+	var/list/wormholes = list()
+	for(var/id in hexes)
+		var/datum/hex/H = hexes[id]
+		if(H.terrain == HEX_TERRAIN_EMPTY)
+			continue
+		terrain[id] = H.terrain
+		if(H.wormhole_pair && H.id < H.wormhole_pair.id)
+			wormholes += list(list("a" = H.id, "b" = H.wormhole_pair.id))
+	terrain_ui_cache = list("terrain" = terrain, "wormholes" = wormholes)
+	terrain_ui_cache_time = world.time
+	return terrain_ui_cache
