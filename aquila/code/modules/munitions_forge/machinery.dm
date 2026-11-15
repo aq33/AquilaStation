@@ -301,6 +301,7 @@
 	reheat_time = max(initial(reheat_time) - (lasers - 2) * 0.4 SECONDS, 2 SECONDS)
 
 /obj/machinery/munitions_forge/arc_forge/proc/get_container()
+	RETURN_TYPE(/datum/component/material_container)
 	return materials?.mat_container
 
 /obj/machinery/munitions_forge/arc_forge/accepts_part(obj/item/munition_part/part)
