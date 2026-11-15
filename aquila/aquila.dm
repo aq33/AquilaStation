@@ -2341,6 +2341,7 @@
 #include "code\modules\unit_tests\aquila_emotki_rewolucja_misje.dm"
 #include "code\modules\unit_tests\aquila_derelict_ruin.dm"
 #include "code\modules\unit_tests\aquila_planets.dm"
+#include "code\modules\unit_tests\aquila_planet_ice_jungle.dm"
 #include "code\modules\unit_tests\aquila_planet_fauna.dm"
 #include "code\modules\unit_tests\aquila_planet_water.dm"
 #include "code\modules\unit_tests\aquila_vein_drill.dm"

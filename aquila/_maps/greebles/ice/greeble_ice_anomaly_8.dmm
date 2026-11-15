@@ -1,266 +1,266 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"b" = (
-/obj/structure/flora/rock/pile/icy{
-	pixel_x = -5;
-	 pixel_y = 6
-	},
-/turf/open/floor/plating/asteroid/icerock/cracked,
-/area/template_noop)
-"d" = (
-/obj/structure/flora/rock/pile/icy{
-	pixel_x = 14;
-	 pixel_y = 16
-	},
-/turf/open/floor/plating/asteroid/icerock/cracked,
-/area/template_noop)
-"e" = (
+"h" = (
 /turf/template_noop,
 /area/template_noop)
-"o" = (
-/turf/closed/mineral/random/planet_ice,
-/area/template_noop)
-"p" = (
-/turf/open/floor/plating/asteroid/icerock/cracked,
-/area/template_noop)
-"r" = (
-/obj/structure/flora/rock/pile/icy{
-	pixel_x = 2;
-	 pixel_y = 8
-	},
-/turf/open/floor/plating/asteroid/icerock/cracked,
-/area/template_noop)
-"u" = (
-/obj/structure/flora/rock/pile/icy{
-	pixel_x = 14;
-	 pixel_y = 9
-	},
-/turf/open/floor/plating/asteroid/icerock/cracked,
-/area/template_noop)
-"y" = (
-/obj/structure/flora/rock/pile/icy{
-	pixel_x = 7;
-	 pixel_y = -6
-	},
-/turf/open/floor/plating/asteroid/icerock/cracked,
-/area/template_noop)
-"z" = (
-/obj/structure/flora/rock/pile/icy{
-	pixel_x = 11;
-	 pixel_y = 4
-	},
-/turf/open/floor/plating/asteroid/icerock/cracked,
-/area/template_noop)
-"P" = (
-/obj/structure/flora/rock/pile/icy{
-	pixel_x = -2;
-	 pixel_y = 7
-	},
-/turf/open/floor/plating/asteroid/icerock/cracked,
-/area/template_noop)
-"Q" = (
-/obj/effect/anomaly/grav/planetary,
-/turf/open/floor/plating/asteroid/icerock/cracked,
-/area/template_noop)
-"S" = (
+"j" = (
 /obj/structure/flora/rock/pile/icy{
 	pixel_x = 6;
 	 pixel_y = 7
 	},
 /turf/open/floor/plating/asteroid/icerock/cracked,
 /area/template_noop)
+"n" = (
+/obj/structure/flora/rock/pile/icy{
+	pixel_x = 2;
+	 pixel_y = 8
+	},
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
+"t" = (
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
+"v" = (
+/obj/structure/flora/rock/pile/icy{
+	pixel_x = -5;
+	 pixel_y = 6
+	},
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
+"w" = (
+/obj/structure/flora/rock/pile/icy{
+	pixel_x = 7;
+	 pixel_y = -6
+	},
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
+"B" = (
+/obj/effect/anomaly/grav/planetary,
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
+"C" = (
+/obj/structure/flora/rock/pile/icy{
+	pixel_x = 11;
+	 pixel_y = 4
+	},
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
+"N" = (
+/turf/closed/mineral/random/planet_ice,
+/area/template_noop)
+"O" = (
+/obj/structure/flora/rock/pile/icy{
+	pixel_x = 14;
+	 pixel_y = 16
+	},
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
+"S" = (
+/obj/structure/flora/rock/pile/icy{
+	pixel_x = -2;
+	 pixel_y = 7
+	},
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
+"Z" = (
+/obj/structure/flora/rock/pile/icy{
+	pixel_x = 14;
+	 pixel_y = 9
+	},
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
 
 (1,1,1) = {"
-e
-e
-e
-o
-o
-o
-o
-e
-e
-e
-e
-e
-e
+h
+h
+h
+N
+N
+N
+N
+h
+h
+h
+h
+h
+h
 "}
 (2,1,1) = {"
-e
-e
-e
-o
-o
-o
-r
-p
-p
-e
-e
-e
-e
+h
+h
+h
+N
+N
+N
+n
+t
+t
+h
+h
+h
+h
 "}
 (3,1,1) = {"
-e
-e
-e
-e
-p
-p
-p
-p
-o
-o
-e
-e
-e
+h
+h
+h
+h
+t
+t
+t
+t
+N
+N
+h
+h
+h
 "}
 (4,1,1) = {"
-e
-o
-o
-S
-p
-p
-p
-o
-o
-o
-o
-e
-e
+h
+N
+N
+j
+t
+t
+t
+N
+N
+N
+N
+h
+h
 "}
 (5,1,1) = {"
-o
-o
-o
-o
-o
-o
-p
-o
-o
-o
-o
-o
-e
+N
+N
+N
+N
+N
+N
+t
+N
+N
+N
+N
+N
+h
 "}
 (6,1,1) = {"
-o
-o
-p
-o
-o
-p
-u
-d
-p
-p
-p
-e
-e
+N
+N
+t
+N
+N
+t
+Z
+O
+t
+t
+t
+h
+h
 "}
 (7,1,1) = {"
-e
-o
-p
-o
-p
-y
-Q
-p
-p
-o
-P
-e
-e
+h
+N
+t
+N
+t
+w
+B
+t
+t
+N
+S
+h
+h
 "}
 (8,1,1) = {"
-e
-e
-p
-p
-p
-p
-b
-p
-p
-o
-o
-o
-e
+h
+h
+t
+t
+t
+t
+v
+t
+t
+N
+N
+N
+h
 "}
 (9,1,1) = {"
-e
-o
-o
-o
-o
-p
-p
-p
-p
-o
-o
-o
-o
+h
+N
+N
+N
+N
+t
+t
+t
+t
+N
+N
+N
+N
 "}
 (10,1,1) = {"
-e
-o
-o
-o
-o
-o
-z
-p
-o
-o
-o
-o
-e
+h
+N
+N
+N
+N
+N
+C
+t
+N
+N
+N
+N
+h
 "}
 (11,1,1) = {"
-e
-o
-o
-o
-o
-o
-o
-p
-o
-o
-o
-e
-e
+h
+N
+N
+N
+N
+N
+N
+t
+N
+N
+N
+h
+h
 "}
 (12,1,1) = {"
-e
-e
-o
-o
-o
-o
-o
-p
-o
-o
-o
-e
-e
+h
+h
+N
+N
+N
+N
+N
+t
+N
+N
+N
+h
+h
 "}
 (13,1,1) = {"
-e
-e
-e
-o
-o
-o
-o
-e
-e
-e
-e
-e
-e
+h
+h
+h
+N
+N
+N
+N
+h
+h
+h
+h
+h
+h
 "}

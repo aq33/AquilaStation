@@ -1,338 +1,338 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"g" = (
-/obj/structure/flora/rock/pile/icy{
-	pixel_x = 10;
-	 pixel_y = 7
-	},
-/turf/open/floor/plating/asteroid/icerock/cracked,
-/area/template_noop)
-"p" = (
-/turf/open/floor/plating/asteroid/icerock/cracked,
-/area/template_noop)
-"r" = (
-/obj/structure/flora/rock/pile/icy{
-	pixel_y = -4
-	},
-/turf/open/floor/plating/asteroid/icerock/cracked,
-/area/template_noop)
-"u" = (
-/obj/structure/flora/rock/icy,
-/turf/open/floor/plating/asteroid/icerock/cracked,
-/area/template_noop)
-"y" = (
-/obj/structure/flora/rock/icy{
-	pixel_x = 2;
-	 pixel_y = 6
-	},
-/turf/open/floor/plating/asteroid/icerock/cracked,
-/area/template_noop)
-"B" = (
+"b" = (
+/obj/effect/decal/remains/human,
+/obj/effect/gibspawner/human/bodypartless,
 /obj/structure/flora/rock/pile/icy,
 /turf/open/floor/plating/asteroid/icerock/cracked,
 /area/template_noop)
-"D" = (
-/obj/effect/decal/remains/human,
-/obj/effect/gibspawner/human/bodypartless,
-/turf/open/floor/plating/asteroid/icerock/cracked,
+"g" = (
+/turf/closed/mineral/random/planet_ice,
 /area/template_noop)
-"F" = (
+"k" = (
+/turf/template_noop,
+/area/template_noop)
+"m" = (
 /obj/effect/anomaly/grav/high/big/planetary,
 /turf/open/floor/plating/asteroid/icerock/cracked,
 /area/template_noop)
-"G" = (
-/turf/template_noop,
-/area/template_noop)
-"H" = (
+"B" = (
 /obj/effect/decal/remains/human,
 /obj/effect/gibspawner/human/bodypartless,
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
+"E" = (
 /obj/structure/flora/rock/pile/icy,
 /turf/open/floor/plating/asteroid/icerock/cracked,
 /area/template_noop)
-"M" = (
+"H" = (
 /obj/effect/decal/remains/human{
 	pixel_x = 6;
 	 pixel_y = -7
 	},
 /turf/open/floor/plating/asteroid/icerock/cracked,
 /area/template_noop)
-"O" = (
-/turf/closed/mineral/random/planet_ice,
+"K" = (
+/obj/structure/flora/rock/icy,
+/turf/open/floor/plating/asteroid/icerock/cracked,
 /area/template_noop)
-"R" = (
+"L" = (
 /obj/structure/flora/rock/icy{
 	pixel_x = -2;
 	 pixel_y = 10
 	},
 /turf/open/floor/plating/asteroid/icerock/cracked,
 /area/template_noop)
+"P" = (
+/obj/structure/flora/rock/pile/icy{
+	pixel_y = -4
+	},
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
+"T" = (
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
+"V" = (
+/obj/structure/flora/rock/icy{
+	pixel_x = 2;
+	 pixel_y = 6
+	},
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
+"Z" = (
+/obj/structure/flora/rock/pile/icy{
+	pixel_x = 10;
+	 pixel_y = 7
+	},
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
 
 (1,1,1) = {"
-G
-G
-G
-G
-O
-O
-O
-O
-G
-G
-G
-G
-G
+k
+k
+k
+k
+g
+g
+g
+g
+k
+k
+k
+k
+k
 "}
 (2,1,1) = {"
-G
-G
-G
-O
-O
-O
-O
-O
-p
-G
-G
-G
-G
+k
+k
+k
+g
+g
+g
+g
+g
+T
+k
+k
+k
+k
 "}
 (3,1,1) = {"
-G
-G
-G
-O
-p
-p
-O
-p
-p
-G
-O
-G
-G
+k
+k
+k
+g
+T
+T
+g
+T
+T
+k
+g
+k
+k
 "}
 (4,1,1) = {"
-G
-G
-G
-p
-p
-y
-p
-p
-O
-O
-O
-G
-G
+k
+k
+k
+T
+T
+V
+T
+T
+g
+g
+g
+k
+k
 "}
 (5,1,1) = {"
-G
-O
-O
-O
-p
-p
-p
-O
-O
-O
-O
-G
-G
+k
+g
+g
+g
+T
+T
+T
+g
+g
+g
+g
+k
+k
 "}
 (6,1,1) = {"
-G
-O
-O
-O
-O
-p
-p
-O
-O
-O
-p
-p
-O
+k
+g
+g
+g
+g
+T
+T
+g
+g
+g
+T
+T
+g
 "}
 (7,1,1) = {"
-G
-O
-O
-O
-p
-p
-r
-p
-O
-p
-p
-O
-O
+k
+g
+g
+g
+T
+T
+P
+T
+g
+T
+T
+g
+g
 "}
 (8,1,1) = {"
-G
-G
-O
-H
-p
-O
-p
-p
-O
-R
-p
-O
-O
+k
+k
+g
+b
+T
+g
+T
+T
+g
+L
+T
+g
+g
 "}
 (9,1,1) = {"
-G
-G
-B
-p
-p
-O
-O
-p
-p
-p
-p
-p
-G
+k
+k
+E
+T
+T
+g
+g
+T
+T
+T
+T
+T
+k
 "}
 (10,1,1) = {"
-G
-G
-O
-O
-p
-p
-p
-D
-O
-O
-O
-O
-O
+k
+k
+g
+g
+T
+T
+T
+B
+g
+g
+g
+g
+g
 "}
 (11,1,1) = {"
-O
-O
-O
-p
-p
-F
-p
-O
-O
-O
-O
-O
-G
+g
+g
+g
+T
+T
+m
+T
+g
+g
+g
+g
+g
+k
 "}
 (12,1,1) = {"
-O
-O
-M
-p
-p
-p
-p
-p
-O
-O
-O
-p
-p
+g
+g
+H
+T
+T
+T
+T
+T
+g
+g
+g
+T
+T
 "}
 (13,1,1) = {"
-p
-O
-p
-O
-O
-O
+T
 g
-p
-p
-p
-p
-B
-O
+T
+g
+g
+g
+Z
+T
+T
+T
+T
+E
+g
 "}
 (14,1,1) = {"
-p
-p
-p
-O
-O
-O
-O
-O
-p
-p
-p
-O
-O
+T
+T
+T
+g
+g
+g
+g
+g
+T
+T
+T
+g
+g
 "}
 (15,1,1) = {"
-O
-u
-p
-p
-O
-O
-O
-O
-p
-D
-O
-O
-O
+g
+K
+T
+T
+g
+g
+g
+g
+T
+B
+g
+g
+g
 "}
 (16,1,1) = {"
-O
-O
-O
-p
-p
-O
-O
-p
-p
-O
-O
-O
-G
+g
+g
+g
+T
+T
+g
+g
+T
+T
+g
+g
+g
+k
 "}
 (17,1,1) = {"
-O
-O
-O
-O
-p
-p
-p
-p
-O
-O
-O
-O
-G
+g
+g
+g
+g
+T
+T
+T
+T
+g
+g
+g
+g
+k
 "}
 (18,1,1) = {"
-G
-O
-O
-O
-G
-B
-p
-G
-G
-G
-G
-G
-G
+k
+g
+g
+g
+k
+E
+T
+k
+k
+k
+k
+k
+k
 "}

@@ -1,5 +1,5 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"h" = (
+"e" = (
 /obj/effect/decal/cleanable/crayon{
 	icon_state = "i";
 	 pixel_x = -17;
@@ -17,11 +17,40 @@
 	},
 /turf/open/floor/plating/asteroid/dirt/grass/jungle,
 /area/template_noop)
-"s" = (
+"g" = (
+/obj/effect/anomaly/tvstatic/planetary,
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"q" = (
+/obj/effect/decal/cleanable/crayon{
+	icon_state = "y";
+	 pixel_y = 5;
+	 pixel_x = 6
+	},
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/template_noop)
+"y" = (
 /obj/structure/flora/tree/jungle,
 /turf/open/floor/plating/asteroid/dirt/jungle/dark,
 /area/template_noop)
-"v" = (
+"z" = (
+/obj/effect/decal/cleanable/crayon{
+	icon_state = "l";
+	 pixel_y = 8;
+	 pixel_x = -14
+	},
+/obj/effect/decal/cleanable/crayon{
+	icon_state = "e";
+	 pixel_y = 7
+	},
+/obj/effect/decal/cleanable/crayon{
+	icon_state = "v";
+	 pixel_x = 15;
+	 pixel_y = 6
+	},
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/template_noop)
+"C" = (
 /obj/effect/decal/cleanable/crayon{
 	icon_state = "thinline";
 	 pixel_x = -6;
@@ -39,14 +68,23 @@
 	},
 /turf/open/floor/plating/asteroid/dirt/grass/jungle,
 /area/template_noop)
-"w" = (
-/turf/open/floor/plating/asteroid/dirt/grass/jungle,
-/area/template_noop)
-"x" = (
-/obj/effect/anomaly/tvstatic/planetary,
+"F" = (
 /turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
 /area/template_noop)
-"D" = (
+"H" = (
+/obj/effect/decal/cleanable/crayon{
+	icon_state = "peace";
+	 pixel_x = -9;
+	 pixel_y = 3
+	},
+/obj/effect/decal/cleanable/crayon{
+	icon_state = "u";
+	 pixel_x = 7;
+	 pixel_y = 3
+	},
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/template_noop)
+"I" = (
 /obj/effect/decal/cleanable/crayon{
 	icon_state = "k";
 	 pixel_y = 6;
@@ -54,7 +92,7 @@
 	},
 /turf/open/floor/plating/asteroid/dirt/grass/jungle,
 /area/template_noop)
-"E" = (
+"N" = (
 /obj/effect/decal/cleanable/crayon{
 	icon_state = "r";
 	 pixel_x = -13;
@@ -62,13 +100,23 @@
 	},
 /turf/open/floor/plating/asteroid/dirt/grass/jungle,
 /area/template_noop)
-"G" = (
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+"R" = (
+/obj/effect/decal/cleanable/crayon{
+	icon_state = "t";
+	 pixel_y = 10;
+	 pixel_x = -9
+	},
+/obj/effect/decal/cleanable/crayon{
+	icon_state = "e";
+	 pixel_x = 4;
+	 pixel_y = 7
+	},
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
 /area/template_noop)
-"K" = (
-/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+"S" = (
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
 /area/template_noop)
-"O" = (
+"U" = (
 /obj/effect/decal/cleanable/crayon{
 	icon_state = "o";
 	 pixel_x = -8;
@@ -82,89 +130,41 @@
 /turf/open/floor/plating/asteroid/dirt/grass/jungle,
 /area/template_noop)
 "V" = (
-/obj/effect/decal/cleanable/crayon{
-	icon_state = "l";
-	 pixel_y = 8;
-	 pixel_x = -14
-	},
-/obj/effect/decal/cleanable/crayon{
-	icon_state = "e";
-	 pixel_y = 7
-	},
-/obj/effect/decal/cleanable/crayon{
-	icon_state = "v";
-	 pixel_x = 15;
-	 pixel_y = 6
-	},
-/turf/open/floor/plating/asteroid/dirt/grass/jungle,
-/area/template_noop)
-"W" = (
-/obj/effect/decal/cleanable/crayon{
-	icon_state = "peace";
-	 pixel_x = -9;
-	 pixel_y = 3
-	},
-/obj/effect/decal/cleanable/crayon{
-	icon_state = "u";
-	 pixel_x = 7;
-	 pixel_y = 3
-	},
-/turf/open/floor/plating/asteroid/dirt/grass/jungle,
-/area/template_noop)
-"X" = (
-/obj/effect/decal/cleanable/crayon{
-	icon_state = "y";
-	 pixel_y = 5;
-	 pixel_x = 6
-	},
-/turf/open/floor/plating/asteroid/dirt/grass/jungle,
-/area/template_noop)
-"Y" = (
-/obj/effect/decal/cleanable/crayon{
-	icon_state = "t";
-	 pixel_y = 10;
-	 pixel_x = -9
-	},
-/obj/effect/decal/cleanable/crayon{
-	icon_state = "e";
-	 pixel_x = 4;
-	 pixel_y = 7
-	},
-/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
 /area/template_noop)
 
 (1,1,1) = {"
-G
-s
-G
-D
-w
+V
+y
+V
+I
+S
 "}
 (2,1,1) = {"
-G
-K
-K
-h
-Y
+V
+F
+F
+e
+R
 "}
 (3,1,1) = {"
-s
-x
-K
-X
-V
+y
+g
+F
+q
+z
 "}
 (4,1,1) = {"
-G
-G
-K
-W
-v
+V
+V
+F
+H
+C
 "}
 (5,1,1) = {"
-G
-s
-w
-E
-O
+V
+y
+S
+N
+U
 "}

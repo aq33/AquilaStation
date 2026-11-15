@@ -3,88 +3,88 @@
 /obj/structure/flora/tree/pine,
 /turf/open/floor/plating/asteroid/snow/planet_ice,
 /area/template_noop)
-"m" = (
-/turf/closed/mineral/random/planet_ice,
-/area/template_noop)
-"r" = (
-/obj/structure/flora/ash/garden/frigid,
-/turf/open/floor/plating/asteroid/snow/planet_ice,
-/area/template_noop)
-"J" = (
-/turf/template_noop,
-/area/template_noop)
-"K" = (
-/obj/structure/flora/grass/both,
-/turf/open/floor/plating/asteroid/snow/planet_ice,
-/area/template_noop)
-"M" = (
+"k" = (
 /obj/structure/flora/rock/icy,
 /turf/open/floor/plating/asteroid/snow/planet_ice,
 /area/template_noop)
-"N" = (
+"m" = (
 /turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"n" = (
+/obj/structure/flora/ash/garden/frigid,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"D" = (
+/obj/structure/flora/grass/both,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"I" = (
+/turf/template_noop,
+/area/template_noop)
+"M" = (
+/turf/closed/mineral/random/planet_ice,
 /area/template_noop)
 
 (1,1,1) = {"
-J
-N
-K
-N
-N
-M
-J
+I
+m
+D
+m
+m
+k
+I
 "}
 (2,1,1) = {"
-J
-N
-N
+I
+m
+m
 a
-r
-N
-K
+n
+m
+D
 "}
 (3,1,1) = {"
+M
+M
+M
 m
 m
-m
-N
-N
 a
-N
+m
 "}
 (4,1,1) = {"
-K
-m
-m
-m
-m
-m
-J
+D
+M
+M
+M
+M
+M
+I
 "}
 (5,1,1) = {"
-N
+m
 a
-m
-m
-m
-K
-J
+M
+M
+M
+D
+I
 "}
 (6,1,1) = {"
-J
-N
-N
-N
+I
+m
+m
+m
 a
-N
-J
+m
+I
 "}
 (7,1,1) = {"
-J
-J
-N
-K
-N
-J
-J
+I
+I
+m
+D
+m
+I
+I
 "}

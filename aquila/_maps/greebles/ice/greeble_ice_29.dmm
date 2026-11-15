@@ -1,311 +1,311 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"d" = (
-/turf/template_noop,
+"a" = (
+/obj/structure/flora/ausbushes/ppflowers,
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
-"f" = (
+"d" = (
 /obj/structure/flora/ausbushes/lavendergrass,
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
-"m" = (
-/obj/structure/flora/tree/pine,
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"o" = (
-/obj/structure/flora/ausbushes/ppflowers,
+"e" = (
 /obj/structure/flora/ausbushes/sparsegrass,
+/obj/structure/flora/ausbushes/lavendergrass,
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
-"q" = (
+"g" = (
+/obj/structure/flora/ausbushes/ppflowers,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"k" = (
 /turf/open/water/planet/beach/ice,
 /area/template_noop)
-"w" = (
+"l" = (
 /obj/structure/flora/ausbushes/sparsegrass,
 /obj/structure/flora/ausbushes/ppflowers,
 /turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"m" = (
+/obj/structure/geyser/random,
+/turf/open/water/planet/beach/ice,
+/area/template_noop)
+"q" = (
+/turf/template_noop,
 /area/template_noop)
 "B" = (
-/obj/structure/flora/ausbushes/ppflowers,
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
-"C" = (
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"N" = (
-/obj/structure/flora/ausbushes/sparsegrass,
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"O" = (
+"H" = (
 /obj/structure/flora/ausbushes/lavendergrass,
 /obj/structure/flora/ausbushes/sparsegrass,
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
 "P" = (
 /obj/structure/flora/ausbushes/sparsegrass,
-/obj/structure/flora/ausbushes/lavendergrass,
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
-"Q" = (
+"T" = (
 /mob/living/basic/mining/lobstrosity,
 /turf/open/water/planet/beach/ice,
 /area/template_noop)
-"V" = (
-/obj/structure/geyser/random,
-/turf/open/water/planet/beach/ice,
+"X" = (
+/obj/structure/flora/tree/pine,
+/turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
-"W" = (
+"Y" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
 
 (1,1,1) = {"
-d
-C
-C
-C
-d
-d
-d
-d
-d
-d
-d
-d
+q
+B
+B
+B
+q
+q
+q
+q
+q
+q
+q
+q
 "}
 (2,1,1) = {"
-C
-C
-W
-C
-N
-C
-W
-C
-d
-d
-d
-d
+B
+B
+Y
+B
+P
+B
+Y
+B
+q
+q
+q
+q
 "}
 (3,1,1) = {"
-C
-o
+B
+a
+k
+T
+k
+B
+B
+X
 q
-Q
 q
-C
-C
-m
-d
-d
-d
-d
+q
+q
 "}
 (4,1,1) = {"
-C
-N
+B
+P
+k
+k
+k
+k
+B
+B
+B
 q
 q
 q
-q
-C
-C
-C
-d
-d
-d
 "}
 (5,1,1) = {"
-d
-C
-C
 q
-V
+B
+B
+k
+m
+k
+k
+P
+B
+B
 q
 q
-N
-C
-C
-d
-d
 "}
 (6,1,1) = {"
-d
-m
-C
-N
 q
+X
+B
+P
+k
+k
+T
+k
+H
+P
+Y
 q
-Q
-q
-O
-N
-W
-d
 "}
 (7,1,1) = {"
+q
+q
+B
+B
+g
+k
+k
+k
+k
 d
-d
-C
-C
 B
 q
-q
-q
-q
-f
-C
-d
 "}
 (8,1,1) = {"
-d
-d
-d
-C
-W
 q
 q
 q
-q
+B
+Y
+k
+k
+k
+k
+e
 P
-N
-C
+B
 "}
 (9,1,1) = {"
-d
-d
-d
-C
-C
-w
 q
 q
 q
-q
-C
-C
+B
+B
+l
+k
+k
+k
+k
+B
+B
 "}
 (10,1,1) = {"
-d
-d
-C
-C
-N
 q
 q
-q
-V
-q
-C
-N
+B
+B
+P
+k
+k
+k
+m
+k
+B
+P
 "}
 (11,1,1) = {"
+q
+B
+B
+l
+g
+k
+k
+k
+T
+k
+P
+P
+"}
+(12,1,1) = {"
+B
+X
+B
+k
+k
+T
+k
+k
+k
+k
+B
+B
+"}
+(13,1,1) = {"
+B
+P
+k
+k
+k
+k
+k
+k
+k
+P
+B
+B
+"}
+(14,1,1) = {"
+P
+k
+k
+k
+k
+k
+k
 d
-C
-C
-w
+d
+B
+B
+q
+"}
+(15,1,1) = {"
+k
+k
+m
+k
+k
+P
+B
+B
+X
+B
+q
+q
+"}
+(16,1,1) = {"
+k
+T
+k
+k
+P
+B
+Y
+q
+q
+q
+q
+q
+"}
+(17,1,1) = {"
+q
+k
+k
+B
+Y
 B
 q
 q
 q
-Q
-q
-N
-N
-"}
-(12,1,1) = {"
-C
-m
-C
-q
-q
-Q
 q
 q
 q
-q
-C
-C
-"}
-(13,1,1) = {"
-C
-N
-q
-q
-q
-q
-q
-q
-q
-N
-C
-C
-"}
-(14,1,1) = {"
-N
-q
-q
-q
-q
-q
-q
-f
-f
-C
-C
-d
-"}
-(15,1,1) = {"
-q
-q
-V
-q
-q
-N
-C
-C
-m
-C
-d
-d
-"}
-(16,1,1) = {"
-q
-Q
-q
-q
-N
-C
-W
-d
-d
-d
-d
-d
-"}
-(17,1,1) = {"
-d
-q
-q
-C
-W
-C
-d
-d
-d
-d
-d
-d
 "}
 (18,1,1) = {"
-d
-d
-d
-m
-C
-d
-d
-d
-d
-d
-d
-d
+q
+q
+q
+X
+B
+q
+q
+q
+q
+q
+q
+q
 "}

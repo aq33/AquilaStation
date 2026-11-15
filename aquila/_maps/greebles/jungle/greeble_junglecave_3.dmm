@@ -1,5 +1,29 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"h" = (
+"b" = (
+/obj/effect/decal/remains/human,
+/obj/structure/spacevine/dense,
+/obj/structure/spacevine,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
+"d" = (
+/obj/effect/decal/remains/human,
+/obj/structure/spacevine,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
+"f" = (
+/turf/template_noop,
+/area/template_noop)
+"j" = (
+/turf/closed/mineral/random/planet_jungle,
+/area/template_noop)
+"k" = (
+/obj/structure/flora/rock/pile,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
+"l" = (
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
+"q" = (
 /obj/effect/decal/remains/human,
 /obj/effect/decal/cleanable/blood/splatter{
 	color = "#4D0000"
@@ -7,145 +31,121 @@
 /obj/structure/spacevine,
 /turf/open/floor/plating/asteroid/dirt/jungle,
 /area/template_noop)
-"j" = (
-/obj/structure/flora/rock/pile,
-/turf/open/floor/plating/asteroid/dirt/jungle,
-/area/template_noop)
-"k" = (
-/obj/structure/spacevine/dense,
-/turf/open/floor/plating/asteroid/dirt/jungle,
-/area/template_noop)
-"m" = (
+"r" = (
 /obj/structure/flora/rock/pile,
 /obj/structure/spacevine,
 /turf/open/floor/plating/asteroid/dirt/jungle,
 /area/template_noop)
-"o" = (
+"u" = (
+/obj/structure/spacevine,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
+"z" = (
+/obj/structure/flora/grass/jungle/b,
+/obj/structure/spacevine/dense,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
+"D" = (
+/obj/structure/flora/grass/jungle/b,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
+"J" = (
 /obj/effect/mob_spawn/human/corpse/damaged/legioninfested,
 /obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/plating/asteroid/dirt/jungle,
 /area/template_noop)
-"p" = (
-/obj/structure/flora/grass/jungle/b,
-/obj/structure/spacevine/dense,
-/turf/open/floor/plating/asteroid/dirt/jungle,
-/area/template_noop)
-"y" = (
-/turf/template_noop,
-/area/template_noop)
-"B" = (
-/obj/structure/spacevine,
-/turf/open/floor/plating/asteroid/dirt/jungle,
-/area/template_noop)
-"I" = (
-/turf/closed/mineral/random/planet_jungle,
-/area/template_noop)
-"R" = (
+"K" = (
 /obj/structure/flora/grass/jungle/b,
 /obj/structure/spacevine,
 /turf/open/floor/plating/asteroid/dirt/jungle,
 /area/template_noop)
-"S" = (
+"O" = (
 /mob/living/basic/mining/wolf/alpha,
 /obj/effect/decal/remains/human,
 /turf/open/floor/plating/asteroid/dirt/jungle,
 /area/template_noop)
-"U" = (
-/obj/structure/flora/grass/jungle/b,
-/turf/open/floor/plating/asteroid/dirt/jungle,
-/area/template_noop)
-"W" = (
-/turf/open/floor/plating/asteroid/dirt/jungle,
-/area/template_noop)
-"X" = (
-/obj/effect/decal/remains/human,
-/obj/structure/spacevine,
-/turf/open/floor/plating/asteroid/dirt/jungle,
-/area/template_noop)
-"Y" = (
-/obj/effect/decal/remains/human,
+"Z" = (
 /obj/structure/spacevine/dense,
-/obj/structure/spacevine,
 /turf/open/floor/plating/asteroid/dirt/jungle,
 /area/template_noop)
 
 (1,1,1) = {"
-y
-y
-I
+f
+f
 j
-R
-I
-I
-y
+k
+K
+j
+j
+f
 "}
 (2,1,1) = {"
-y
-I
-I
-B
-Y
-m
-I
-I
+f
+j
+j
+u
+b
+r
+j
+j
 "}
 (3,1,1) = {"
-I
-I
-o
-W
-B
-U
-B
-k
+j
+j
+J
+l
+u
+D
+u
+Z
 "}
 (4,1,1) = {"
-I
-I
-B
 j
-S
-W
 j
-I
+u
+k
+O
+l
+k
+j
 "}
 (5,1,1) = {"
-B
-p
-X
-I
-U
-m
-I
-I
+u
+z
+d
+j
+D
+r
+j
+j
 "}
 (6,1,1) = {"
-I
-I
-U
-B
-W
-o
-I
-y
+j
+j
+D
+u
+l
+J
+j
+f
 "}
 (7,1,1) = {"
-I
-I
-m
-p
-h
-k
-W
-y
+j
+j
+r
+z
+q
+Z
+l
+f
 "}
 (8,1,1) = {"
-y
-I
-I
-B
-I
-I
-y
-y
+f
+j
+j
+u
+j
+j
+f
+f
 "}

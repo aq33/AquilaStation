@@ -3,146 +3,146 @@
 /obj/structure/flora/ausbushes/sparsegrass/hell,
 /turf/open/floor/plating/asteroid/river_sand,
 /area/template_noop)
-"d" = (
-/obj/structure/flora/ausbushes/fullgrass/hell,
-/turf/open/floor/plating/asteroid/river_sand,
+"o" = (
+/turf/template_noop,
 /area/template_noop)
-"k" = (
+"q" = (
 /obj/structure/flora/ausbushes/fullgrass/hell,
 /turf/open/water/planet/jungle,
 /area/template_noop)
 "r" = (
-/obj/structure/flora/tree/dead/barren,
-/turf/open/water/planet/jungle,
-/area/template_noop)
-"t" = (
 /obj/structure/flora/ausbushes/sparsegrass/hell,
 /turf/open/water/planet/jungle,
 /area/template_noop)
-"u" = (
-/turf/template_noop,
-/area/template_noop)
 "w" = (
+/obj/structure/flora/ausbushes/fullgrass/hell,
 /turf/open/floor/plating/asteroid/river_sand,
 /area/template_noop)
-"N" = (
+"y" = (
 /turf/open/water/planet/jungle,
 /area/template_noop)
-"Y" = (
+"F" = (
+/turf/open/floor/plating/asteroid/river_sand,
+/area/template_noop)
+"O" = (
 /obj/effect/mob_spawn/human/corpse/syndicatesoldier{
 	brute_damage = 600
 	},
 /obj/effect/anomaly/veins/helltree,
 /turf/open/water/planet/jungle,
 /area/template_noop)
+"P" = (
+/obj/structure/flora/tree/dead/barren,
+/turf/open/water/planet/jungle,
+/area/template_noop)
 
 (1,1,1) = {"
-u
-u
-d
-a
-a
-d
+o
+o
 w
-u
+a
+a
+w
+F
+o
 "}
 (2,1,1) = {"
-u
+o
+F
 w
-d
-N
-N
-N
+y
+y
+y
 a
-u
+o
 "}
 (3,1,1) = {"
-w
+F
 a
+P
+y
 r
-N
-t
-N
+y
 a
-w
+F
 "}
 (4,1,1) = {"
-d
+w
 a
-N
-N
-N
-t
+y
+y
+y
 r
+P
 a
 "}
 (5,1,1) = {"
-d
-N
-t
-N
-N
-N
-t
 w
+y
+r
+y
+y
+y
+r
+F
 "}
 (6,1,1) = {"
 a
-N
-N
-N
-Y
-N
-N
-d
+y
+y
+y
+O
+y
+y
+w
 "}
 (7,1,1) = {"
 a
 a
-N
-N
-t
-t
-k
+y
+y
+r
+r
+q
 a
 "}
 (8,1,1) = {"
-u
-d
-N
-N
-k
-k
-N
-d
+o
+w
+y
+y
+q
+q
+y
+w
 "}
 (9,1,1) = {"
-u
-d
+o
+w
 a
+P
 r
-t
-t
-N
+r
+y
 a
 "}
 (10,1,1) = {"
-u
-u
+o
+o
 a
-w
-t
-N
+F
+r
+y
 a
 a
 "}
 (11,1,1) = {"
-u
-u
-u
-w
-w
-w
-w
-u
+o
+o
+o
+F
+F
+F
+F
+o
 "}

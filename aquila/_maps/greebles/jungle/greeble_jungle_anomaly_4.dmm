@@ -1,60 +1,60 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"e" = (
+"g" = (
 /obj/effect/anomaly/hallucination/planetary,
 /turf/open/floor/carpet/royalblack{
 	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
 	 planetary_atmos = 1
 	},
 /area/template_noop)
-"m" = (
+"F" = (
+/obj/structure/flora/rock/jungle,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"H" = (
 /turf/open/floor/carpet/royalblack{
 	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
 	 planetary_atmos = 1
 	},
 /area/template_noop)
-"s" = (
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
-/area/template_noop)
-"H" = (
-/obj/structure/flora/rock/jungle,
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
-/area/template_noop)
-"U" = (
+"O" = (
 /turf/template_noop,
+/area/template_noop)
+"Y" = (
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
 /area/template_noop)
 
 (1,1,1) = {"
-U
-H
-s
-s
-U
+O
+F
+Y
+Y
+O
 "}
 (2,1,1) = {"
-s
-s
-m
-m
-U
+Y
+Y
+H
+H
+O
 "}
 (3,1,1) = {"
+F
 H
-m
-e
-m
-m
+g
+H
+H
 "}
 (4,1,1) = {"
-s
-m
-m
-m
-s
+Y
+H
+H
+H
+Y
 "}
 (5,1,1) = {"
-U
-U
-m
+O
+O
 H
-U
+F
+O
 "}

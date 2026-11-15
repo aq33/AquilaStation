@@ -77,7 +77,8 @@ WALL_PIX = {'north': ('pixel_y', '28'), 'south': ('pixel_y', '-28'), 'east': ('p
 OPP = {'north': 2, 'south': 1, 'east': 8, 'west': 4}
 DROP_VARS = {'populate', 'req_ship_access', 'turret_flags', 'spawn_no_ammo', 'gps_active', 'subship_template',
              'weapon_drop_chance', 'burst_interval', 'aggro_say_chance', 'holds_post', 'on_aggro_say', 'verb_exclaim',
-             'verb_yell', 'icon_state'}  # icon_state zostawiamy tylko tam, gdzie typ docelowy jest ten sam
+             'verb_yell', 'icon_state', 'empty', 'table_type', 'name_override', 'close_exception', 'set_dir_on_move',
+             'auto_scatter', 'auto_rotate', 'default_ammo_type', 'spawn_arm_delay', 'search_alarms', 'drops_core'}  # icon_state zostawiamy tylko tam, gdzie typ docelowy jest ten sam
 
 
 def atom(path, vars_):

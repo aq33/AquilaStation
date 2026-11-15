@@ -1,19 +1,19 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"k" = (
+"p" = (
 /turf/template_noop,
+/area/template_noop)
+"s" = (
+/obj/item/pickaxe,
+/turf/open/floor/plating/ice/planet_ice,
 /area/template_noop)
 "D" = (
 /turf/closed/mineral/planet_ice_wall,
 /area/template_noop)
-"J" = (
-/obj/structure/flora/ausbushes/sparsegrass,
+"L" = (
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
-"M" = (
-/obj/item/pickaxe,
-/turf/open/floor/plating/ice/planet_ice,
-/area/template_noop)
 "Q" = (
+/obj/structure/flora/ausbushes/sparsegrass,
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
 "W" = (
@@ -21,16 +21,16 @@
 /area/template_noop)
 
 (1,1,1) = {"
-k
+p
 W
 W
-k
-k
-k
+p
+p
+p
+L
 Q
-J
-k
-k
+p
+p
 "}
 (2,1,1) = {"
 W
@@ -38,11 +38,11 @@ W
 W
 W
 W
+L
 Q
-J
-Q
-Q
-k
+L
+L
+p
 "}
 (3,1,1) = {"
 W
@@ -51,25 +51,25 @@ D
 D
 D
 W
-M
+s
+L
+L
 Q
-Q
-J
 "}
 (4,1,1) = {"
-k
+p
 W
 D
 D
 D
 D
 W
-Q
+L
 W
-Q
+L
 "}
 (5,1,1) = {"
-k
+p
 W
 D
 D
@@ -78,7 +78,7 @@ D
 D
 W
 W
-Q
+L
 "}
 (6,1,1) = {"
 W
@@ -90,7 +90,7 @@ D
 D
 W
 W
-k
+p
 "}
 (7,1,1) = {"
 W
@@ -102,10 +102,10 @@ D
 D
 W
 W
-k
+p
 "}
 (8,1,1) = {"
-k
+p
 W
 W
 W
@@ -114,5 +114,5 @@ W
 W
 W
 W
-k
+p
 "}

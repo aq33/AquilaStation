@@ -1,60 +1,5 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"b" = (
-/obj/effect/decal/cleanable/ash/large,
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
-/area/template_noop)
-"c" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
-/area/template_noop)
-"d" = (
-/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
-/area/template_noop)
-"f" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/item/stack/ore/titanium,
-/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
-/area/template_noop)
-"i" = (
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
-/area/template_noop)
-"k" = (
-/obj/item/stack/ore/iron{
-	amount = 5
-	},
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
-/area/template_noop)
-"l" = (
-/obj/effect/decal/cleanable/glass,
-/obj/effect/mob_spawn/human/corpse/charredskeleton,
-/obj/structure/closet/crate/coffin{
-	opened = 0
-	},
-/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
-/area/template_noop)
-"m" = (
-/obj/effect/decal/cleanable/ash,
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
-/area/template_noop)
-"o" = (
-/obj/structure/flora/ausbushes/sparsegrass,
-/obj/effect/decal/cleanable/glass,
-/obj/item/stack/ore/iron{
-	amount = 5
-	},
-/obj/item/stack/ore/titanium,
-/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
-/area/template_noop)
-"p" = (
-/obj/effect/decal/cleanable/ash,
-/obj/effect/decal/cleanable/glass,
-/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
-/area/template_noop)
-"q" = (
+"a" = (
 /obj/effect/decal/cleanable/robot_debris,
 /obj/item/stack/ore/iron{
 	amount = 5
@@ -64,25 +9,86 @@
 /obj/effect/decal/cleanable/glass,
 /turf/open/floor/plating/rust,
 /area/template_noop)
-"r" = (
-/turf/closed/wall/r_wall/rust,
-/area/template_noop)
-"s" = (
+"d" = (
 /obj/structure/flora/ausbushes/sparsegrass,
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/obj/item/stack/ore/iron{
+	amount = 5
+	},
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
 /area/template_noop)
-"t" = (
+"e" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"f" = (
+/obj/structure/girder,
+/turf/open/floor/plating/rust,
+/area/template_noop)
+"h" = (
+/turf/template_noop,
+/area/template_noop)
+"i" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"j" = (
+/obj/effect/decal/cleanable/ash,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"n" = (
+/obj/effect/decal/cleanable/glass,
+/obj/effect/mob_spawn/human/corpse/charredskeleton,
+/obj/structure/closet/crate/coffin{
+	opened = 0
+	},
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"o" = (
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"r" = (
+/obj/structure/flora/tree/dead/tall,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"s" = (
+/obj/effect/decal/cleanable/ash/large,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"t" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
 /area/template_noop)
 "v" = (
 /obj/item/stack/ore/iron{
 	amount = 5
 	},
 /obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
 /area/template_noop)
-"x" = (
+"y" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/obj/effect/decal/cleanable/glass,
+/obj/item/stack/ore/iron{
+	amount = 5
+	},
+/obj/item/stack/ore/titanium,
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"z" = (
+/obj/structure/girder,
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"F" = (
+/turf/open/floor/plating/rust,
+/area/template_noop)
+"J" = (
+/obj/effect/decal/cleanable/ash/large,
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"K" = (
 /obj/item/stack/ore/iron{
 	amount = 5
 	},
@@ -90,140 +96,134 @@
 /obj/item/stack/ore/titanium,
 /turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
 /area/template_noop)
-"A" = (
-/obj/structure/flora/ausbushes/sparsegrass,
-/obj/item/stack/ore/iron{
-	amount = 5
-	},
-/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
-/area/template_noop)
-"C" = (
-/turf/open/floor/plating/rust,
-/area/template_noop)
-"D" = (
-/turf/template_noop,
-/area/template_noop)
 "L" = (
-/obj/effect/decal/cleanable/ash/large,
+/obj/structure/flora/ausbushes/sparsegrass,
 /turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
 /area/template_noop)
-"R" = (
-/obj/structure/girder,
-/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+"M" = (
+/turf/closed/wall/r_wall/rust,
 /area/template_noop)
-"U" = (
-/obj/structure/flora/tree/dead/tall,
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
-/area/template_noop)
-"X" = (
+"P" = (
 /obj/effect/decal/cleanable/ash,
 /turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
 /area/template_noop)
-"Y" = (
-/obj/structure/flora/ausbushes/sparsegrass,
+"Q" = (
 /turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
 /area/template_noop)
-"Z" = (
-/obj/structure/girder,
-/turf/open/floor/plating/rust,
+"V" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/stack/ore/titanium,
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"W" = (
+/obj/item/stack/ore/iron{
+	amount = 5
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"Y" = (
+/obj/effect/decal/cleanable/ash,
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
 /area/template_noop)
 
 (1,1,1) = {"
-D
-i
-s
-D
-i
-D
-i
-D
-D
-"}
-(2,1,1) = {"
-i
-c
-d
-d
-r
-Z
-x
-i
-D
-"}
-(3,1,1) = {"
-s
-X
-f
-t
-C
-Y
-t
-p
-i
-"}
-(4,1,1) = {"
-D
-i
-t
-Y
+h
 o
 t
-k
-c
-s
+h
+o
+h
+o
+h
+h
 "}
-(5,1,1) = {"
-D
+(2,1,1) = {"
+o
 i
-Y
-d
-q
-l
+Q
+Q
+M
+f
+K
+o
+h
+"}
+(3,1,1) = {"
+t
+P
+V
+e
+F
 L
-d
-D
-"}
-(6,1,1) = {"
-D
-U
-d
-m
-r
-R
-A
-d
-D
-"}
-(7,1,1) = {"
-i
-s
-b
-v
-d
+e
 Y
-i
-D
-D
+o
 "}
-(8,1,1) = {"
-D
-i
+(4,1,1) = {"
+h
+o
+e
+L
+y
+e
+v
 i
 t
-X
-U
-i
-D
-D
+"}
+(5,1,1) = {"
+h
+o
+L
+Q
+a
+n
+J
+Q
+h
+"}
+(6,1,1) = {"
+h
+r
+Q
+j
+M
+z
+d
+Q
+h
+"}
+(7,1,1) = {"
+o
+t
+s
+W
+Q
+L
+o
+h
+h
+"}
+(8,1,1) = {"
+h
+o
+o
+e
+P
+r
+o
+h
+h
 "}
 (9,1,1) = {"
-D
-D
-D
-s
-i
-i
-D
-D
-D
+h
+h
+h
+t
+o
+o
+h
+h
+h
 "}

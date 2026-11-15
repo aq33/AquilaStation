@@ -1,119 +1,119 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"c" = (
-/obj/structure/flora/tree/pine,
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"l" = (
-/turf/template_noop,
-/area/template_noop)
-"o" = (
-/obj/structure/flora/ash/garden/frigid,
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"p" = (
+"f" = (
 /obj/structure/geyser/random,
 /turf/open/floor/plating/asteroid/icerock/cracked,
 /area/template_noop)
-"u" = (
-/obj/structure/flora/ausbushes/lavendergrass,
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"y" = (
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"F" = (
-/obj/structure/flora/rock/icy,
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"J" = (
-/obj/structure/flora/ausbushes/sparsegrass,
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"U" = (
+"k" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
-"Z" = (
+"o" = (
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"z" = (
+/obj/structure/flora/rock/icy,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"C" = (
+/obj/structure/flora/ausbushes/lavendergrass,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"H" = (
+/obj/structure/flora/tree/pine,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"L" = (
+/turf/template_noop,
+/area/template_noop)
+"M" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"T" = (
 /turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
+"U" = (
+/obj/structure/flora/ash/garden/frigid,
+/turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
 
 (1,1,1) = {"
-l
-y
-J
-y
-J
-u
-l
-l
+L
+o
+M
+o
+M
+C
+L
+L
 "}
 (2,1,1) = {"
-u
-o
-y
-F
-u
+C
 U
-J
-l
+o
+z
+C
+k
+M
+L
 "}
 (3,1,1) = {"
-c
-y
-Z
-Z
-Z
-y
-y
-J
+H
+o
+T
+T
+T
+o
+o
+M
 "}
 (4,1,1) = {"
-J
-y
-Z
-p
-Z
-Z
-y
-J
+M
+o
+T
+f
+T
+T
+o
+M
 "}
 (5,1,1) = {"
-y
-U
-F
-Z
-Z
-F
-y
-l
+o
+k
+z
+T
+T
+z
+o
+L
 "}
 (6,1,1) = {"
-l
-J
-J
-y
-y
-U
-l
-l
+L
+M
+M
+o
+o
+k
+L
+L
 "}
 (7,1,1) = {"
-l
-l
-J
-y
-J
+L
+L
+M
 o
-l
-l
+M
+U
+L
+L
 "}
 (8,1,1) = {"
-l
-l
-l
-u
-y
-J
-J
-l
+L
+L
+L
+C
+o
+M
+M
+L
 "}

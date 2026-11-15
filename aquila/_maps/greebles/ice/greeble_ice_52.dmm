@@ -1,120 +1,120 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"i" = (
+"c" = (
 /obj/structure/flora/tree/pine,
 /turf/open/floor/plating/asteroid/snow/planet_ice,
 /area/template_noop)
 "l" = (
-/turf/open/floor/plating/asteroid/snow/planet_ice,
-/area/template_noop)
-"r" = (
-/obj/structure/flora/ash/garden/frigid,
-/turf/open/floor/plating/asteroid/snow/planet_ice,
-/area/template_noop)
-"t" = (
-/turf/template_noop,
-/area/template_noop)
-"z" = (
-/obj/structure/geyser/random,
-/turf/open/floor/plating/asteroid/snow/planet_ice,
-/area/template_noop)
-"F" = (
-/obj/structure/flora/grass/both,
-/turf/open/floor/plating/asteroid/snow/planet_ice,
-/area/template_noop)
-"R" = (
-/obj/structure/flora/grass/green,
-/turf/open/floor/plating/asteroid/snow/planet_ice,
-/area/template_noop)
-"X" = (
 /obj/structure/flora/grass/brown,
 /turf/open/floor/plating/asteroid/snow/planet_ice,
 /area/template_noop)
+"m" = (
+/obj/structure/flora/grass/both,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"n" = (
+/obj/structure/flora/ash/garden/frigid,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"s" = (
+/obj/structure/flora/grass/green,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"u" = (
+/obj/structure/geyser/random,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"H" = (
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"P" = (
+/turf/template_noop,
+/area/template_noop)
 
 (1,1,1) = {"
-t
-t
-F
+P
+P
+m
+H
 l
-X
-l
+H
 "}
 (2,1,1) = {"
-t
-l
-l
-r
-l
-R
+P
+H
+H
+n
+H
+s
 "}
 (3,1,1) = {"
-l
-l
-i
-l
-l
-t
+H
+H
+c
+H
+H
+P
 "}
 (4,1,1) = {"
-X
 l
-R
-l
-l
-t
+H
+s
+H
+H
+P
 "}
 (5,1,1) = {"
-l
-l
-l
-l
-l
-t
+H
+H
+H
+H
+H
+P
 "}
 (6,1,1) = {"
-t
-t
+P
+P
+H
 l
-X
-l
-t
+H
+P
 "}
 (7,1,1) = {"
-t
-t
-t
-l
-l
-t
+P
+P
+P
+H
+H
+P
 "}
 (8,1,1) = {"
-t
-t
-l
-l
-l
-t
+P
+P
+H
+H
+H
+P
 "}
 (9,1,1) = {"
-t
-l
-l
-z
-R
-l
+P
+H
+H
+u
+s
+H
 "}
 (10,1,1) = {"
+H
 l
-X
-r
-l
-l
-l
+n
+H
+H
+H
 "}
 (11,1,1) = {"
-l
-l
-F
-l
-t
-t
+H
+H
+m
+H
+P
+P
 "}

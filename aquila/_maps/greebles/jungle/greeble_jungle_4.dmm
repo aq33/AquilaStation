@@ -1,61 +1,5 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"c" = (
-/turf/closed/mineral/random/planet_jungle,
-/area/template_noop)
-"d" = (
-/obj/structure/flora/rock/pile,
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
-/area/template_noop)
-"e" = (
-/obj/structure/spacevine,
-/obj/effect/mob_spawn/human/corpse/damaged/legioninfested,
-/obj/effect/decal/cleanable/blood/gibs/torso,
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
-/area/template_noop)
-"g" = (
-/turf/template_noop,
-/area/template_noop)
-"l" = (
-/obj/structure/spacevine,
-/mob/living/basic/bear/cave,
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
-/area/template_noop)
-"m" = (
-/obj/structure/spacevine/dense,
-/obj/effect/decal/remains/human,
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
-/area/template_noop)
-"n" = (
-/obj/structure/spacevine/dense,
-/obj/effect/decal/cleanable/blood/tracks,
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
-/area/template_noop)
-"r" = (
-/obj/effect/decal/remains/human,
-/obj/item/reagent_containers/hypospray/medipen,
-/obj/effect/decal/cleanable/blood,
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
-/area/template_noop)
-"s" = (
-/obj/effect/decal/remains/human,
-/obj/structure/flora/rock/pile,
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
-/area/template_noop)
-"w" = (
-/obj/effect/decal/remains/xeno,
-/obj/effect/decal/cleanable/blood/drip,
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
-/area/template_noop)
-"x" = (
-/obj/structure/spacevine,
-/obj/structure/flora/rock/jungle,
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
-/area/template_noop)
-"J" = (
-/obj/structure/spacevine,
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
-/area/template_noop)
-"P" = (
+"a" = (
 /obj/structure/spacevine/dense,
 /obj/effect/decal/cleanable/blood/drip{
 	pixel_y = 17;
@@ -63,99 +7,155 @@
 	},
 /turf/open/floor/plating/asteroid/dirt/jungle/dark,
 /area/template_noop)
-"W" = (
+"b" = (
 /obj/structure/spacevine/dense,
 /obj/effect/decal/cleanable/blood/footprints,
 /turf/open/floor/plating/asteroid/dirt/jungle/dark,
 /area/template_noop)
+"c" = (
+/obj/structure/spacevine/dense,
+/obj/effect/decal/remains/human,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"h" = (
+/obj/effect/decal/remains/human,
+/obj/structure/flora/rock/pile,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"l" = (
+/obj/structure/spacevine,
+/obj/structure/flora/rock/jungle,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"m" = (
+/obj/structure/spacevine,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"u" = (
+/obj/effect/decal/remains/human,
+/obj/item/reagent_containers/hypospray/medipen,
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"v" = (
+/turf/template_noop,
+/area/template_noop)
+"z" = (
+/obj/effect/decal/remains/xeno,
+/obj/effect/decal/cleanable/blood/drip,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"F" = (
+/turf/closed/mineral/random/planet_jungle,
+/area/template_noop)
+"I" = (
+/obj/structure/spacevine/dense,
+/obj/effect/decal/cleanable/blood/tracks,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"M" = (
+/obj/structure/spacevine,
+/mob/living/basic/bear/cave,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"W" = (
+/obj/structure/spacevine,
+/obj/effect/mob_spawn/human/corpse/damaged/legioninfested,
+/obj/effect/decal/cleanable/blood/gibs/torso,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"Z" = (
+/obj/structure/flora/rock/pile,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
 
 (1,1,1) = {"
-g
-g
-g
-c
-g
-c
-g
-g
+v
+v
+v
+F
+v
+F
+v
+v
 "}
 (2,1,1) = {"
-g
-g
-c
-c
-c
-c
-c
-g
+v
+v
+F
+F
+F
+F
+F
+v
 "}
 (3,1,1) = {"
-g
-c
-c
-c
-c
-J
-w
-g
+v
+F
+F
+F
+F
+m
+z
+v
 "}
 (4,1,1) = {"
-c
-c
-c
-c
-s
-P
-x
-c
+F
+F
+F
+F
+h
+a
+l
+F
 "}
 (5,1,1) = {"
-g
-c
-e
+v
+F
 W
-n
-J
-c
-c
+b
+I
+m
+F
+F
 "}
 (6,1,1) = {"
+F
+F
+u
+M
 c
-c
-r
-l
-m
-c
-c
-g
+F
+F
+v
 "}
 (7,1,1) = {"
-c
-c
-c
-d
-c
-c
-g
-g
+F
+F
+F
+Z
+F
+F
+v
+v
 "}
 (8,1,1) = {"
-g
-c
-c
-c
-c
-c
-g
-g
+v
+F
+F
+F
+F
+F
+v
+v
 "}
 (9,1,1) = {"
-g
-g
-c
-g
-c
-g
-g
-g
+v
+v
+F
+v
+F
+v
+v
+v
 "}

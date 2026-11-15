@@ -1,5 +1,27 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"b" = (
+/obj/structure/flora/ausbushes/ywflowers,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/template_noop)
 "g" = (
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
+/area/template_noop)
+"q" = (
+/turf/template_noop,
+/area/template_noop)
+"u" = (
+/obj/structure/flora/ausbushes/lavendergrass,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/template_noop)
+"w" = (
+/obj/structure/flora/ausbushes/ppflowers,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/template_noop)
+"x" = (
+/obj/structure/flora/ausbushes/ywflowers/hell,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/template_noop)
+"T" = (
 /obj/effect/decal/remains/human,
 /obj/structure/closet/crate/coffin{
 	desc = "Oznaczony kawałek ziemi z krzyżem. W drewnie wyryto prosty kwiat.";
@@ -21,7 +43,7 @@
 	},
 /turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
 /area/template_noop)
-"p" = (
+"Z" = (
 /obj/structure/flora/rock,
 /obj/item/food/grown/ash_flora/fireblossom{
 	pixel_y = 9;
@@ -30,89 +52,67 @@
 	},
 /turf/open/floor/plating/asteroid/dirt/grass/jungle,
 /area/template_noop)
-"y" = (
-/obj/structure/flora/ausbushes/lavendergrass,
-/turf/open/floor/plating/asteroid/dirt/grass/jungle,
-/area/template_noop)
-"B" = (
-/obj/structure/flora/ausbushes/ywflowers/hell,
-/turf/open/floor/plating/asteroid/dirt/grass/jungle,
-/area/template_noop)
-"E" = (
-/turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
-/area/template_noop)
-"I" = (
-/obj/structure/flora/ausbushes/ppflowers,
-/turf/open/floor/plating/asteroid/dirt/grass/jungle,
-/area/template_noop)
-"K" = (
-/turf/template_noop,
-/area/template_noop)
-"T" = (
-/obj/structure/flora/ausbushes/ywflowers,
-/turf/open/floor/plating/asteroid/dirt/grass/jungle,
-/area/template_noop)
 
 (1,1,1) = {"
-K
-y
-K
-K
-y
-K
-I
+q
+u
+q
+q
+u
+q
+w
 "}
 (2,1,1) = {"
-K
-K
-T
-I
-K
-T
-K
+q
+q
+b
+w
+q
+b
+q
 "}
 (3,1,1) = {"
-T
-K
-I
-B
-T
-y
-T
+b
+q
+w
+x
+b
+u
+b
 "}
 (4,1,1) = {"
-K
-I
-B
-p
+q
+w
+x
+Z
+T
 g
-E
-K
+q
 "}
 (5,1,1) = {"
-K
-T
-y
-I
-B
-T
-y
+q
+b
+u
+w
+x
+b
+u
 "}
 (6,1,1) = {"
-y
-K
-K
-T
-K
-y
-K
+u
+q
+q
+b
+q
+u
+q
 "}
 (7,1,1) = {"
-K
-K
-I
-K
-I
-K
-K
+q
+q
+w
+q
+w
+q
+q
 "}

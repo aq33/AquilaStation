@@ -2,18 +2,156 @@
 "a" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/light/small/broken{
+	dir = 1
+	},
 /turf/open/floor/concrete/slab_4,
 /area/template_noop)
-"c" = (
+"d" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/frame/machine{
+	anchored = 1
+	},
+/turf/open/floor/concrete,
+/area/template_noop)
+"e" = (
+/turf/closed/mineral/random/planet_jungle,
+/area/template_noop)
+"f" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/turf/closed/mineral/random/planet_jungle,
+/area/template_noop)
+"g" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/closet/firecloset,
+/turf/open/floor/concrete,
+/area/template_noop)
+"k" = (
+/turf/open/floor/concrete/slab_4{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308"
+	},
+/area/template_noop)
+"l" = (
+/obj/structure/sign/directions/evac{
+	dir = 1
+	},
+/turf/closed/wall/r_wall,
+/area/template_noop)
+"m" = (
+/obj/machinery/door/poddoor/shutters,
+/obj/machinery/door/airlock/grunge{
+	locked = 1
+	},
+/turf/open/floor/concrete,
+/area/template_noop)
+"n" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/oil/streak,
 /obj/effect/spawner/lootdrop/glowstick,
 /turf/open/floor/concrete/slab_4,
 /area/template_noop)
-"d" = (
+"p" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/slab_4,
+/area/template_noop)
+"q" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/airalarm/directional/south,
+/turf/open/floor/concrete,
+/area/template_noop)
+"r" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/frame/machine{
+	anchored = 1
+	},
+/turf/open/floor/concrete,
+/area/template_noop)
+"t" = (
+/turf/closed/wall,
+/area/template_noop)
+"u" = (
+/obj/machinery/door/poddoor/shutters,
+/obj/machinery/door/airlock/vault,
+/turf/open/floor/concrete,
+/area/template_noop)
+"w" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/fluff/empty_cryostasis_sleeper,
+/obj/effect/decal/remains/human,
+/obj/machinery/light/broken{
+	dir = 4
+	},
+/turf/open/floor/concrete,
+/area/template_noop)
+"y" = (
+/obj/item/wallframe/apc,
+/obj/item/stack/cable_coil/cut,
+/obj/item/stack/ore/gold{
+	amount = 5
+	},
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
+"z" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/slab_4,
+/area/template_noop)
+"A" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
+"B" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/concrete/slab_4,
+/area/template_noop)
+"C" = (
+/obj/effect/decal/cleanable/glass,
+/obj/item/wallframe/light_fixture,
+/turf/open/floor/concrete,
+/area/template_noop)
+"D" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/fluff/empty_cryostasis_sleeper,
+/obj/effect/decal/remains/human,
+/obj/effect/decal/cleanable/oil,
+/turf/open/floor/concrete/slab_4,
+/area/template_noop)
+"G" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/fluff/empty_cryostasis_sleeper,
+/obj/effect/decal/remains/human,
+/turf/open/floor/concrete,
+/area/template_noop)
+"I" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/storage/toolbox/electrical,
+/obj/structure/closet{
+	name = "szafka naprawcza"
+	},
+/turf/open/floor/concrete/slab_4,
+/area/template_noop)
+"J" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/slab_4,
+/area/template_noop)
+"L" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/fluff/empty_cryostasis_sleeper,
@@ -23,149 +161,7 @@
 	},
 /turf/open/floor/concrete,
 /area/template_noop)
-"e" = (
-/obj/effect/decal/cleanable/glass,
-/obj/item/wallframe/light_fixture,
-/turf/open/floor/concrete,
-/area/template_noop)
-"f" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/fluff/empty_cryostasis_sleeper,
-/obj/effect/decal/remains/human,
-/obj/machinery/light/broken{
-	dir = 4
-	},
-/turf/open/floor/concrete,
-/area/template_noop)
-"g" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/asteroid/dirt/jungle,
-/area/template_noop)
-"h" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/closet/firecloset,
-/turf/open/floor/concrete,
-/area/template_noop)
-"j" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/fluff/empty_cryostasis_sleeper,
-/obj/effect/decal/remains/human,
-/turf/open/floor/concrete,
-/area/template_noop)
-"k" = (
-/obj/structure/sign/mining/survival,
-/turf/closed/wall/r_wall,
-/area/template_noop)
-"l" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/light/small/broken{
-	dir = 1
-	},
-/turf/open/floor/concrete/slab_4,
-/area/template_noop)
-"m" = (
-/turf/closed/wall,
-/area/template_noop)
-"n" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/airalarm/directional/south,
-/turf/open/floor/concrete,
-/area/template_noop)
-"o" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/concrete/slab_4,
-/area/template_noop)
-"q" = (
-/obj/structure/fluff/empty_cryostasis_sleeper,
-/obj/effect/decal/remains/human,
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/concrete/slab_4,
-/area/template_noop)
-"r" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/frame/machine{
-	anchored = 1
-	},
-/turf/open/floor/concrete,
-/area/template_noop)
-"t" = (
-/obj/machinery/door/poddoor/shutters,
-/obj/machinery/door/airlock/vault,
-/turf/open/floor/concrete,
-/area/template_noop)
-"u" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/frame/machine{
-	anchored = 1
-	},
-/turf/open/floor/concrete,
-/area/template_noop)
-"v" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/item/storage/toolbox/electrical,
-/obj/structure/closet{
-	name = "szafka naprawcza"
-	},
-/turf/open/floor/concrete/slab_4,
-/area/template_noop)
-"w" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/generic,
-/turf/open/floor/concrete/slab_4,
-/area/template_noop)
-"x" = (
-/obj/structure/railing{
-	dir = 4
-	},
-/turf/closed/mineral/random/planet_jungle,
-/area/template_noop)
-"y" = (
-/turf/closed/wall/r_wall,
-/area/template_noop)
-"B" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/concrete,
-/area/template_noop)
-"D" = (
-/obj/machinery/door/poddoor/shutters,
-/obj/machinery/door/airlock/grunge{
-	locked = 1
-	},
-/turf/open/floor/concrete,
-/area/template_noop)
-"E" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/fluff/empty_cryostasis_sleeper,
-/obj/effect/decal/remains/human,
-/obj/effect/decal/cleanable/generic,
-/turf/open/floor/concrete,
-/area/template_noop)
-"F" = (
-/turf/open/floor/concrete/slab_4{
-	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308"
-	},
-/area/template_noop)
-"G" = (
-/turf/closed/mineral/random/planet_jungle,
-/area/template_noop)
-"I" = (
-/obj/item/wallframe/apc,
-/obj/item/stack/cable_coil/cut,
-/obj/item/stack/ore/gold{
-	amount = 5
-	},
-/obj/effect/decal/cleanable/glass,
-/turf/open/floor/plating/asteroid/dirt/jungle,
-/area/template_noop)
-"K" = (
+"M" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/frame/computer{
@@ -174,33 +170,7 @@
 	},
 /turf/open/floor/concrete/slab_4,
 /area/template_noop)
-"L" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/fluff/empty_cryostasis_sleeper,
-/obj/effect/decal/remains/human,
-/obj/effect/decal/cleanable/oil,
-/turf/open/floor/concrete/slab_4,
-/area/template_noop)
-"M" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/concrete/slab_4,
-/area/template_noop)
-"Q" = (
-/obj/structure/sign/directions/evac{
-	dir = 1
-	},
-/turf/closed/wall/r_wall,
-/area/template_noop)
-"R" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/glass,
-/turf/open/floor/concrete/slab_4,
-/area/template_noop)
-"T" = (
+"O" = (
 /obj/structure/table/reinforced,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/item/storage/firstaid,
@@ -220,105 +190,135 @@
 /obj/item/food/donkpocket,
 /turf/open/floor/concrete/slab_4,
 /area/template_noop)
+"P" = (
+/turf/closed/wall/r_wall,
+/area/template_noop)
+"Q" = (
+/obj/structure/sign/mining/survival,
+/turf/closed/wall/r_wall,
+/area/template_noop)
+"S" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/fluff/empty_cryostasis_sleeper,
+/obj/effect/decal/remains/human,
+/turf/open/floor/concrete,
+/area/template_noop)
 "U" = (
-/obj/structure/railing{
-	dir = 8
-	},
-/turf/closed/mineral/random/planet_jungle,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/generic,
+/turf/open/floor/concrete/slab_4,
 /area/template_noop)
 "V" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/fluff/empty_cryostasis_sleeper,
 /obj/effect/decal/remains/human,
+/obj/effect/decal/cleanable/generic,
+/turf/open/floor/concrete,
+/area/template_noop)
+"X" = (
+/obj/structure/fluff/empty_cryostasis_sleeper,
+/obj/effect/decal/remains/human,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/slab_4,
+/area/template_noop)
+"Y" = (
+/obj/structure/railing{
+	dir = 8
+	},
+/turf/closed/mineral/random/planet_jungle,
+/area/template_noop)
+"Z" = (
+/obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/concrete,
 /area/template_noop)
 
 (1,1,1) = {"
-G
-G
-y
-G
-y
-y
-y
-k
-G
+e
+e
+P
+e
+P
+P
+P
+Q
+e
 "}
 (2,1,1) = {"
-G
-G
 e
-u
+e
+C
 r
 d
-j
-y
-G
+L
+S
+P
+e
 "}
 (3,1,1) = {"
-G
-I
-v
-g
-R
-w
-n
+e
 y
-G
+I
+A
+B
+U
+q
+P
+e
 "}
 (4,1,1) = {"
-y
-m
-m
-m
-B
-L
-E
-Q
-x
+P
+t
+t
+t
+Z
+D
+V
+l
+f
 "}
 (5,1,1) = {"
-y
-q
-q
-m
-h
-c
-o
+P
+X
+X
 t
-F
+g
+n
+p
+u
+k
 "}
 (6,1,1) = {"
-y
-l
+P
 a
-D
-w
-M
-o
-t
-F
+J
+m
+U
+z
+p
+u
+k
 "}
 (7,1,1) = {"
-y
-T
-K
-m
-V
-f
-j
-Q
-U
+P
+O
+M
+t
+G
+w
+S
+l
+Y
 "}
 (8,1,1) = {"
-y
-y
-y
-y
-y
-y
-y
-k
-G
+P
+P
+P
+P
+P
+P
+P
+Q
+e
 "}

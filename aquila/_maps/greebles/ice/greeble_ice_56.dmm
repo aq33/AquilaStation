@@ -1,99 +1,99 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"s" = (
-/turf/template_noop,
-/area/template_noop)
-"t" = (
+"o" = (
 /turf/open/floor/plating/asteroid/iceberg,
 /area/template_noop)
-"N" = (
+"p" = (
+/turf/template_noop,
+/area/template_noop)
+"L" = (
 /turf/closed/mineral/planet_ice_wall,
 /area/template_noop)
 
 (1,1,1) = {"
-s
-N
-N
-t
-s
-N
-N
-N
-s
+p
+L
+L
+o
+p
+L
+L
+L
+p
 "}
 (2,1,1) = {"
-s
-N
-N
-t
-t
-t
-t
-N
-N
+p
+L
+L
+o
+o
+o
+o
+L
+L
 "}
 (3,1,1) = {"
-s
-t
-t
-t
-N
-N
-t
-t
-N
+p
+o
+o
+o
+L
+L
+o
+o
+L
 "}
 (4,1,1) = {"
-N
-N
-N
-t
-t
-t
-N
-t
-N
+L
+L
+L
+o
+o
+o
+L
+o
+L
 "}
 (5,1,1) = {"
-s
-t
-N
-t
-N
-t
-N
-t
-s
+p
+o
+L
+o
+L
+o
+L
+o
+p
 "}
 (6,1,1) = {"
-N
-t
-N
-t
-t
-t
-t
-t
-s
+L
+o
+L
+o
+o
+o
+o
+o
+p
 "}
 (7,1,1) = {"
-N
-t
-t
-t
-N
-s
-t
-s
-s
+L
+o
+o
+o
+L
+p
+o
+p
+p
 "}
 (8,1,1) = {"
-s
-t
-N
-N
-N
-s
-s
-s
-s
+p
+o
+L
+L
+L
+p
+p
+p
+p
 "}

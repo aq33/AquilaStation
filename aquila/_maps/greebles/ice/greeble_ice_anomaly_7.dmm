@@ -1,131 +1,131 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"c" = (
+"b" = (
 /turf/open/floor/concrete/slab_1{
 	initial_gas_mix = "o2=26;n2=104;TEMP=255";
 	 planetary_atmos = 1
 	},
 /area/template_noop)
-"e" = (
-/turf/open/floor/plating/asteroid/snow/planet_ice,
-/area/template_noop)
-"m" = (
-/turf/open/floor/plating/asteroid/dirt/grass{
-	initial_gas_mix = "o2=26;n2=104;TEMP=255";
-	 planetary_atmos = 1
-	},
-/area/template_noop)
-"n" = (
-/obj/structure/flora/tree/pine,
-/turf/open/floor/plating/asteroid/snow/planet_ice,
-/area/template_noop)
-"o" = (
+"i" = (
 /obj/structure/flora/grass/brown,
 /turf/open/floor/plating/asteroid/snow/planet_ice,
 /area/template_noop)
-"M" = (
-/turf/template_noop,
-/area/template_noop)
-"P" = (
-/obj/structure/flora/grass/both,
-/turf/open/floor/plating/asteroid/snow/planet_ice,
-/area/template_noop)
-"R" = (
+"j" = (
 /obj/effect/anomaly/hallucination/planetary,
 /turf/open/floor/plating/asteroid/dirt/grass{
 	initial_gas_mix = "o2=26;n2=104;TEMP=255";
 	 planetary_atmos = 1
 	},
 /area/template_noop)
-"Y" = (
+"t" = (
+/turf/open/floor/plating/asteroid/dirt/grass{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"u" = (
 /obj/structure/flora/ash/garden/frigid,
 /turf/open/floor/plating/asteroid/snow/planet_ice,
 /area/template_noop)
+"B" = (
+/obj/structure/flora/tree/pine,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"D" = (
+/obj/structure/flora/grass/both,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"H" = (
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"J" = (
+/turf/template_noop,
+/area/template_noop)
 
 (1,1,1) = {"
-M
-e
-e
-e
-P
-e
-M
-M
-M
+J
+H
+H
+H
+D
+H
+J
+J
+J
 "}
 (2,1,1) = {"
-e
-e
-P
-e
-e
-e
-e
-M
-M
+H
+H
+D
+H
+H
+H
+H
+J
+J
 "}
 (3,1,1) = {"
-e
-o
-n
-m
-m
-c
-e
-e
-M
+H
+i
+B
+t
+t
+b
+H
+H
+J
 "}
 (4,1,1) = {"
-e
-e
-m
-c
-m
-m
-c
-e
-M
+H
+H
+t
+b
+t
+t
+b
+H
+J
 "}
 (5,1,1) = {"
-P
-e
-m
-m
-R
-m
-c
-e
-P
+D
+H
+t
+t
+j
+t
+b
+H
+D
 "}
 (6,1,1) = {"
-Y
-e
-m
-c
-m
-m
-c
-e
-M
+u
+H
+t
+b
+t
+t
+b
+H
+J
 "}
 (7,1,1) = {"
-M
-e
-e
-m
-m
-c
-e
-o
-M
+J
+H
+H
+t
+t
+b
+H
+i
+J
 "}
 (8,1,1) = {"
-M
-M
-e
-e
-e
-P
-e
-e
-M
+J
+J
+H
+H
+H
+D
+H
+H
+J
 "}

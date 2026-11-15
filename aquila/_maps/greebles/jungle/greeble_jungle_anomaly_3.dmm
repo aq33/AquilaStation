@@ -1,102 +1,102 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"g" = (
-/obj/structure/flora/ausbushes/fullgrass/hell,
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
-/area/template_noop)
-"k" = (
-/obj/structure/flora/ausbushes/grassybush/hell,
-/turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
-/area/template_noop)
-"u" = (
-/obj/structure/flora/grass/green,
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
-/area/template_noop)
-"x" = (
+"c" = (
 /obj/effect/anomaly/hallucination/planetary,
 /obj/structure/flora/grass/jungle,
 /turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
 /area/template_noop)
-"H" = (
+"h" = (
+/obj/structure/flora/ausbushes/fullgrass/hell,
 /turf/open/floor/plating/asteroid/dirt/jungle/dark,
 /area/template_noop)
-"I" = (
+"k" = (
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"l" = (
+/obj/structure/flora/ausbushes/grassybush/hell,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
+/area/template_noop)
+"n" = (
 /obj/structure/flora/grass/green,
 /turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
 /area/template_noop)
-"R" = (
-/obj/structure/flora/grass/green,
+"v" = (
 /turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
 /area/template_noop)
-"V" = (
-/turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
-/area/template_noop)
-"W" = (
-/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
-/area/template_noop)
-"Y" = (
+"G" = (
 /turf/template_noop,
+/area/template_noop)
+"H" = (
+/obj/structure/flora/grass/green,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"O" = (
+/obj/structure/flora/grass/green,
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"Q" = (
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
 /area/template_noop)
 
 (1,1,1) = {"
-W
+v
+l
 k
-H
-Y
-H
-V
-W
+G
+k
+Q
+v
 "}
 (2,1,1) = {"
-I
-W
-V
-g
-V
-R
-k
+n
+v
+Q
+h
+Q
+O
+l
 "}
 (3,1,1) = {"
+k
+Q
+v
 H
-V
-W
-u
-W
-V
-H
+v
+Q
+k
 "}
 (4,1,1) = {"
-Y
-g
-H
-x
-H
-g
-Y
+G
+h
+k
+c
+k
+h
+G
 "}
 (5,1,1) = {"
-H
-V
-W
-H
-R
-V
-H
+k
+Q
+v
+k
+O
+Q
+k
 "}
 (6,1,1) = {"
-k
-R
-V
-g
-V
-W
-V
+l
+O
+Q
+h
+Q
+v
+Q
 "}
 (7,1,1) = {"
-W
-V
-H
-Y
-H
+v
+Q
 k
-W
+G
+k
+l
+v
 "}

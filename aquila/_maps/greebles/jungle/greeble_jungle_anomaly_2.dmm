@@ -1,114 +1,114 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"c" = (
+"e" = (
 /turf/template_noop,
 /area/template_noop)
-"f" = (
-/turf/closed/mineral/random/planet_jungle,
+"h" = (
+/obj/structure/flora/ausbushes/sparsegrass/hell,
+/turf/open/water/planet/jungle/blood,
 /area/template_noop)
-"g" = (
+"l" = (
 /obj/structure/flora/ausbushes/sparsegrass/hell,
 /turf/open/floor/plating/asteroid/dirt/jungle/dark,
 /area/template_noop)
-"C" = (
-/turf/open/water/planet/jungle/blood,
-/area/template_noop)
-"M" = (
+"m" = (
 /turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"D" = (
+/turf/closed/mineral/random/planet_jungle,
+/area/template_noop)
+"K" = (
+/turf/open/water/planet/jungle/blood,
 /area/template_noop)
 "O" = (
 /obj/effect/anomaly/transfusion/planetary,
 /turf/open/water/planet/jungle/blood,
 /area/template_noop)
-"P" = (
-/obj/structure/flora/ausbushes/sparsegrass/hell,
-/turf/open/water/planet/jungle/blood,
-/area/template_noop)
 
 (1,1,1) = {"
-c
-c
-c
-f
-f
-f
-c
-g
-c
+e
+e
+e
+D
+D
+D
+e
+l
+e
 "}
 (2,1,1) = {"
-c
-f
-f
-f
-f
-f
-f
-M
-g
+e
+D
+D
+D
+D
+D
+D
+m
+l
 "}
 (3,1,1) = {"
-f
-f
-f
-f
-C
-C
-g
-M
-M
+D
+D
+D
+D
+K
+K
+l
+m
+m
 "}
 (4,1,1) = {"
-f
-f
+D
+D
 O
-P
-C
-g
-M
-M
-g
+h
+K
+l
+m
+m
+l
 "}
 (5,1,1) = {"
-c
-f
-f
-C
-C
-f
-M
-g
-c
+e
+D
+D
+K
+K
+D
+m
+l
+e
 "}
 (6,1,1) = {"
-c
-f
-f
-f
-f
-f
-f
-g
-c
+e
+D
+D
+D
+D
+D
+D
+l
+e
 "}
 (7,1,1) = {"
-f
-f
-f
-f
-f
-f
-f
-f
-c
+D
+D
+D
+D
+D
+D
+D
+D
+e
 "}
 (8,1,1) = {"
-c
-f
-c
-c
-c
-f
-f
-c
-c
+e
+D
+e
+e
+e
+D
+D
+e
+e
 "}

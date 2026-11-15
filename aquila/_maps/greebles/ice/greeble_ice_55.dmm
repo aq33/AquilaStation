@@ -1,85 +1,85 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"b" = (
+"f" = (
+/turf/template_noop,
+/area/template_noop)
+"i" = (
 /obj/structure/flora/ash/garden/frigid,
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
-"e" = (
-/turf/open/lava/plasma/planet_ice,
+"q" = (
+/turf/open/floor/plating/asteroid/icerock/cracked,
 /area/template_noop)
-"n" = (
-/turf/template_noop,
-/area/template_noop)
-"r" = (
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"M" = (
+"y" = (
 /obj/structure/flora/ausbushes/sparsegrass,
 /turf/open/floor/plating/asteroid/icerock/cracked,
 /area/template_noop)
-"U" = (
-/turf/open/floor/plating/asteroid/icerock/cracked,
+"D" = (
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"W" = (
+/turf/open/lava/plasma/planet_ice,
 /area/template_noop)
 
 (1,1,1) = {"
-n
-r
-U
-M
-U
-r
-r
+f
+D
+q
+y
+q
+D
+D
 "}
 (2,1,1) = {"
-n
-U
-M
-e
-U
-U
-r
+f
+q
+y
+W
+q
+q
+D
 "}
 (3,1,1) = {"
-n
-U
-e
-e
-e
-M
-U
+f
+q
+W
+W
+W
+y
+q
 "}
 (4,1,1) = {"
-r
-U
-e
-e
-e
-e
-M
+D
+q
+W
+W
+W
+W
+y
 "}
 (5,1,1) = {"
-r
-U
-M
-e
-e
-e
-U
+D
+q
+y
+W
+W
+W
+q
 "}
 (6,1,1) = {"
-b
-r
-U
-U
-U
-M
-U
+i
+D
+q
+q
+q
+y
+q
 "}
 (7,1,1) = {"
-n
-n
-U
-r
-r
-r
-n
+f
+f
+q
+D
+D
+D
+f
 "}

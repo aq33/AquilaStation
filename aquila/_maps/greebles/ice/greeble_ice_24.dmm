@@ -1,144 +1,144 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"e" = (
-/obj/effect/decal/cleanable/ash,
-/obj/item/food/grown/ash_flora/mushroom_cap,
-/turf/open/floor/plating/asteroid/icerock/cracked,
-/area/template_noop)
-"g" = (
-/mob/living/basic/mining/ice_whelp,
-/obj/effect/decal/cleanable/ash,
-/turf/open/floor/plating/asteroid/icerock/cracked,
-/area/template_noop)
-"l" = (
+"b" = (
 /obj/structure/flora/grass/brown,
 /turf/open/floor/plating/asteroid/snow/planet_ice,
 /area/template_noop)
-"n" = (
-/obj/structure/flora/stump,
-/turf/open/floor/plating/asteroid/icerock/cracked,
-/area/template_noop)
-"q" = (
+"k" = (
 /turf/template_noop,
 /area/template_noop)
-"w" = (
-/obj/structure/flora/grass/both,
-/turf/open/floor/plating/asteroid/snow/planet_ice,
-/area/template_noop)
-"y" = (
+"n" = (
 /mob/living/basic/mining/ice_whelp,
-/turf/open/floor/plating/asteroid/icerock/cracked,
-/area/template_noop)
-"z" = (
-/obj/structure/flora/tree/pine,
-/turf/open/floor/plating/asteroid/snow/planet_ice,
-/area/template_noop)
-"B" = (
 /obj/effect/decal/cleanable/ash,
 /turf/open/floor/plating/asteroid/icerock/cracked,
 /area/template_noop)
-"G" = (
+"p" = (
+/obj/effect/decal/cleanable/ash,
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
+"r" = (
+/mob/living/basic/mining/ice_whelp,
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
+"t" = (
 /turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"u" = (
+/obj/structure/flora/grass/both,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"A" = (
+/obj/structure/flora/tree/pine,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"C" = (
+/obj/item/food/grown/ash_flora/mushroom_cap,
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
+"M" = (
+/obj/structure/flora/stump,
+/turf/open/floor/plating/asteroid/icerock/cracked,
 /area/template_noop)
 "S" = (
 /obj/structure/flora/grass/green,
 /turf/open/floor/plating/asteroid/snow/planet_ice,
 /area/template_noop)
-"W" = (
+"T" = (
+/obj/effect/decal/cleanable/ash,
+/obj/item/food/grown/ash_flora/mushroom_cap,
 /turf/open/floor/plating/asteroid/icerock/cracked,
 /area/template_noop)
-"Z" = (
-/obj/item/food/grown/ash_flora/mushroom_cap,
+"U" = (
 /turf/open/floor/plating/asteroid/icerock/cracked,
 /area/template_noop)
 
 (1,1,1) = {"
-q
-q
-q
-q
-G
-w
-l
-G
-q
-q
-q
+k
+k
+k
+k
+t
+u
+b
+t
+k
+k
+k
 "}
 (2,1,1) = {"
-q
-q
-G
-G
-G
-G
-G
-G
-G
-w
-q
+k
+k
+t
+t
+t
+t
+t
+t
+t
+u
+k
 "}
 (3,1,1) = {"
-q
-w
-G
-G
-n
-Z
-y
-B
-G
-G
-G
+k
+u
+t
+t
+M
+C
+r
+p
+t
+t
+t
 "}
 (4,1,1) = {"
 S
-G
-G
-n
-B
-W
-B
-n
-B
-G
-l
+t
+t
+M
+p
+U
+p
+M
+p
+t
+b
 "}
 (5,1,1) = {"
-G
-z
-G
-g
-e
-G
-G
-G
-w
-G
-G
+t
+A
+t
+n
+T
+t
+t
+t
+u
+t
+t
 "}
 (6,1,1) = {"
-G
-G
-l
-G
-G
-G
+t
+t
+b
+t
+t
+t
 S
-G
-G
-l
-q
+t
+t
+b
+k
 "}
 (7,1,1) = {"
-w
-G
-q
-q
-q
-q
-q
-q
-q
-q
-q
+u
+t
+k
+k
+k
+k
+k
+k
+k
+k
+k
 "}

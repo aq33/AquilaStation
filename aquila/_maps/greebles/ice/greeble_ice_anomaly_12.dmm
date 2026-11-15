@@ -1,250 +1,250 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"c" = (
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"i" = (
-/obj/structure/flora/ausbushes/sparsegrass{
-	pixel_x = -7;
-	 pixel_y = 4
-	},
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"l" = (
-/turf/template_noop,
-/area/template_noop)
-"n" = (
+"b" = (
 /obj/structure/flora/ausbushes/sparsegrass{
 	pixel_x = 3;
 	 pixel_y = -4
 	},
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
-"r" = (
-/obj/structure/flora/tree/dead{
-	pixel_x = -17;
-	 pixel_y = 10
-	},
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"u" = (
-/turf/open/lava/plasma/planet_ice,
-/area/template_noop)
-"w" = (
-/obj/effect/anomaly/plasmasoul/planetary,
-/turf/open/lava/plasma/planet_ice,
-/area/template_noop)
-"A" = (
-/obj/structure/flora/tree/dead,
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"E" = (
+"d" = (
 /obj/structure/flora/rock/pile,
 /turf/open/lava/plasma/planet_ice,
 /area/template_noop)
-"L" = (
+"n" = (
+/turf/open/lava/plasma/planet_ice,
+/area/template_noop)
+"o" = (
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"p" = (
+/turf/template_noop,
+/area/template_noop)
+"s" = (
+/obj/effect/anomaly/plasmasoul/planetary,
+/turf/open/lava/plasma/planet_ice,
+/area/template_noop)
+"t" = (
 /obj/structure/flora/ausbushes/sparsegrass{
 	pixel_x = -2;
 	 pixel_y = -4
 	},
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
+"N" = (
+/obj/structure/flora/tree/dead,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"Q" = (
+/obj/structure/flora/ausbushes/sparsegrass{
+	pixel_x = -7;
+	 pixel_y = 4
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
 "U" = (
+/obj/structure/flora/tree/dead{
+	pixel_x = -17;
+	 pixel_y = 10
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"W" = (
 /obj/structure/flora/ausbushes/sparsegrass,
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
 
 (1,1,1) = {"
-l
-l
-l
-u
-u
-c
-c
-c
-c
-l
-l
-l
-l
+p
+p
+p
+n
+n
+o
+o
+o
+o
+p
+p
+p
+p
 "}
 (2,1,1) = {"
-l
-l
-l
-u
-u
-u
-c
-c
-u
-u
-l
-l
-l
+p
+p
+p
+n
+n
+n
+o
+o
+n
+n
+p
+p
+p
 "}
 (3,1,1) = {"
-l
-l
-u
-u
-E
-u
-c
-c
-u
-u
-u
-u
-l
+p
+p
+n
+n
+d
+n
+o
+o
+n
+n
+n
+n
+p
 "}
 (4,1,1) = {"
-l
-u
-E
-u
-u
-u
-c
-U
-u
-u
-u
-E
-u
+p
+n
+d
+n
+n
+n
+o
+W
+n
+n
+n
+d
+n
 "}
 (5,1,1) = {"
-c
-u
-u
-u
-u
-c
-c
-c
-c
-u
-u
-u
-u
+o
+n
+n
+n
+n
+o
+o
+o
+o
+n
+n
+n
+n
 "}
 (6,1,1) = {"
-U
-c
-c
-c
-c
-c
+W
+o
+o
+o
+o
+o
+b
+o
+o
+o
 n
-c
-c
-c
-u
-u
-u
+n
+n
 "}
 (7,1,1) = {"
-c
-c
-c
-c
-A
-L
-c
-w
-u
-u
-u
-u
-u
+o
+o
+o
+o
+N
+t
+o
+s
+n
+n
+n
+n
+n
 "}
 (8,1,1) = {"
-c
-u
-u
-c
-c
-c
-c
-c
-c
-c
-u
-u
-u
+o
+n
+n
+o
+o
+o
+o
+o
+o
+o
+n
+n
+n
 "}
 (9,1,1) = {"
-l
-u
-u
-u
-c
-r
-i
+p
+n
+n
+n
+o
 U
-c
-u
-u
-u
-u
+Q
+W
+o
+n
+n
+n
+n
 "}
 (10,1,1) = {"
-l
-u
-E
-u
-c
-c
-c
-u
-u
-u
-u
-E
-l
+p
+n
+d
+n
+o
+o
+o
+n
+n
+n
+n
+d
+p
 "}
 (11,1,1) = {"
-l
-u
-u
-c
-c
-u
-u
-u
-u
-u
-u
-l
-l
+p
+n
+n
+o
+o
+n
+n
+n
+n
+n
+n
+p
+p
 "}
 (12,1,1) = {"
-l
-u
-u
-c
-c
-u
-u
-u
-E
-u
-u
-l
-l
+p
+n
+n
+o
+o
+n
+n
+n
+d
+n
+n
+p
+p
 "}
 (13,1,1) = {"
-l
-l
-c
-c
-c
-c
-l
-l
-l
-l
-l
-l
-l
+p
+p
+o
+o
+o
+o
+p
+p
+p
+p
+p
+p
+p
 "}

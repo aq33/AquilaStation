@@ -1,140 +1,140 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"i" = (
-/obj/structure/flora/grass/both,
-/turf/open/floor/plating/asteroid/snow/planet_ice,
-/area/template_noop)
-"s" = (
+"e" = (
 /obj/structure/flora/ash/garden/frigid,
 /turf/open/floor/plating/asteroid/snow/planet_ice,
 /area/template_noop)
-"D" = (
+"n" = (
+/obj/structure/flora/grass/both,
 /turf/open/floor/plating/asteroid/snow/planet_ice,
 /area/template_noop)
-"E" = (
-/obj/structure/flora/grass/brown,
-/turf/open/floor/plating/asteroid/snow/planet_ice,
-/area/template_noop)
-"F" = (
-/mob/living/basic/mining/wolf/alpha,
-/turf/open/floor/plating/asteroid/snow/planet_ice,
-/area/template_noop)
-"I" = (
-/obj/structure/flora/grass/green,
-/turf/open/floor/plating/asteroid/snow/planet_ice,
-/area/template_noop)
-"J" = (
+"o" = (
 /obj/structure/flora/tree/pine,
 /turf/open/floor/plating/asteroid/snow/planet_ice,
 /area/template_noop)
-"M" = (
+"q" = (
 /mob/living/basic/snow_monkey,
 /turf/open/floor/plating/asteroid/snow/planet_ice,
 /area/template_noop)
-"O" = (
+"t" = (
+/turf/template_noop,
+/area/template_noop)
+"z" = (
 /mob/living/basic/mining/wolf,
 /turf/open/floor/plating/asteroid/snow/planet_ice,
 /area/template_noop)
-"P" = (
-/turf/template_noop,
+"F" = (
+/obj/structure/flora/grass/brown,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"J" = (
+/obj/structure/flora/grass/green,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"M" = (
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"O" = (
+/mob/living/basic/mining/wolf/alpha,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
 /area/template_noop)
 
 (1,1,1) = {"
-D
-s
-D
-D
-E
-P
-P
-P
+M
+e
+M
+M
+F
+t
+t
+t
 "}
 (2,1,1) = {"
-i
-E
-D
-D
-D
-i
-P
-P
+n
+F
+M
+M
+M
+n
+t
+t
 "}
 (3,1,1) = {"
-P
-D
-J
-F
-E
+t
+M
+o
 O
-D
-P
+F
+z
+M
+t
 "}
 (4,1,1) = {"
-P
-P
-E
-D
+t
+t
+F
 M
-D
-D
-I
+q
+M
+M
+J
 "}
 (5,1,1) = {"
-P
-P
-P
-s
-O
-D
-E
-s
+t
+t
+t
+e
+z
+M
+F
+e
 "}
 (6,1,1) = {"
-P
-P
-P
-P
-I
-D
-D
-D
+t
+t
+t
+t
+J
+M
+M
+M
 "}
 (7,1,1) = {"
-P
-P
-P
-P
-D
-D
-i
-D
+t
+t
+t
+t
+M
+M
+n
+M
 "}
 (8,1,1) = {"
-P
-P
-P
-P
-P
-D
-D
-P
+t
+t
+t
+t
+t
+M
+M
+t
 "}
 (9,1,1) = {"
-P
-P
-P
-P
-P
-E
-D
-P
+t
+t
+t
+t
+t
+F
+M
+t
 "}
 (10,1,1) = {"
-P
-P
-P
-P
-P
-D
-P
-P
+t
+t
+t
+t
+t
+M
+t
+t
 "}

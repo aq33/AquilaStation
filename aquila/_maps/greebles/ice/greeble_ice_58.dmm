@@ -1,220 +1,220 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"b" = (
+"c" = (
 /obj/structure/flora/ausbushes/lavendergrass,
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
-"c" = (
-/obj/structure/flora/ausbushes/sparsegrass,
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
 "e" = (
-/obj/structure/flora/ausbushes/fullgrass,
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"l" = (
 /obj/structure/flora/ash/garden/frigid,
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
-"m" = (
-/obj/structure/flora/rock/icy,
+"k" = (
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
 "q" = (
+/turf/open/water/planet/beach/ice,
+/area/template_noop)
+"r" = (
 /obj/structure/flora/tree/pine,
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
-"r" = (
+"w" = (
+/obj/structure/flora/rock/icy,
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
-"v" = (
+"x" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"A" = (
+/turf/open/water/planet/beach/deep/ice,
+/area/template_noop)
+"E" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/obj/structure/flora/tree/pine,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"G" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"H" = (
 /mob/living/basic/mining/lobstrosity,
 /turf/open/water/planet/beach/ice,
 /area/template_noop)
-"x" = (
+"M" = (
 /turf/template_noop,
 /area/template_noop)
-"z" = (
-/turf/open/water/planet/beach/ice,
-/area/template_noop)
-"C" = (
-/turf/open/water/planet/beach/deep/ice,
-/area/template_noop)
-"H" = (
+"N" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/obj/structure/flora/tree/pine,
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"I" = (
-/obj/structure/flora/ausbushes/sparsegrass,
 /obj/structure/flora/tree/pine,
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
 
 (1,1,1) = {"
+M
+M
+M
+M
+M
+k
 x
-x
-x
-x
-x
-r
-e
-c
-x
-x
-x
-x
+G
+M
+M
+M
+M
 "}
 (2,1,1) = {"
-x
-x
+M
+M
+G
+G
 c
-c
-b
-r
-H
-c
-r
-x
-x
-x
+k
+N
+G
+k
+M
+M
+M
 "}
 (3,1,1) = {"
+M
+k
 x
-r
+G
+q
 e
-c
-z
-l
-r
-c
-c
-e
+k
+G
+G
 x
-x
+M
+M
 "}
 (4,1,1) = {"
-x
+M
+r
+k
+k
 q
-r
-r
-z
-z
-z
-r
-b
-r
-r
-x
+q
+q
+k
+c
+k
+k
+M
 "}
 (5,1,1) = {"
-b
-e
-r
-z
-z
-v
-z
-z
-m
-r
-r
+c
 x
+k
+q
+q
+H
+q
+q
+w
+k
+k
+M
 "}
 (6,1,1) = {"
-e
-c
-m
-z
-z
-C
-C
-z
-z
-r
-e
 x
+G
+w
+q
+q
+A
+A
+q
+q
+k
+x
+M
 "}
 (7,1,1) = {"
+G
+G
+q
+q
+H
+A
+A
+A
+q
+q
+k
 c
-c
-z
-z
-v
-C
-C
-C
-z
-z
-r
-b
 "}
 (8,1,1) = {"
-c
-l
-b
-r
-z
-z
-z
-C
-v
-z
-r
+G
 e
+c
+k
+q
+q
+q
+A
+H
+q
+k
+x
 "}
 (9,1,1) = {"
-e
-r
-c
-c
-r
-z
-z
-z
-z
-z
-r
-c
+x
+k
+G
+G
+k
+q
+q
+q
+q
+q
+k
+G
 "}
 (10,1,1) = {"
+M
+k
 x
-r
+E
+x
+k
+w
+q
+q
 e
-I
-e
-r
-m
-z
-z
-l
-r
-e
+k
+x
 "}
 (11,1,1) = {"
-x
-x
-x
+M
+M
+M
+G
 c
-b
+k
+G
+G
+G
+x
 r
-c
-c
-c
-e
-q
-c
+G
 "}
 (12,1,1) = {"
+M
+M
+M
+M
+k
 x
-x
-x
-x
-r
-e
-c
-x
-x
-x
-c
-c
+G
+M
+M
+M
+G
+G
 "}

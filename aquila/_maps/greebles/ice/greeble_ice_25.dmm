@@ -1,68 +1,19 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"b" = (
-/obj/item/stack/sheet/animalhide/goliath_hide{
-	pixel_x = 3;
-	 pixel_y = -8
-	},
-/turf/open/floor/plating/ice/planet_ice,
-/area/template_noop)
-"c" = (
-/obj/item/stack/sheet/animalhide/goliath_hide{
-	pixel_x = -7;
-	 pixel_y = -9
-	},
-/turf/open/floor/plating/ice/planet_ice,
-/area/template_noop)
-"f" = (
-/obj/item/food/meat/slab/bear{
-	pixel_x = -7;
-	 pixel_y = 10
-	},
-/turf/open/floor/plating/ice/planet_ice,
-/area/template_noop)
-"h" = (
+"d" = (
 /obj/item/stack/sheet/sinew{
 	pixel_x = -5;
 	 pixel_y = -10
 	},
 /turf/open/floor/plating/ice/planet_ice,
 /area/template_noop)
-"i" = (
-/obj/item/stack/sheet/sinew{
-	pixel_y = 11
+"e" = (
+/obj/item/stack/sheet/animalhide/goliath_hide{
+	pixel_x = 2;
+	 pixel_y = -7
 	},
 /turf/open/floor/plating/ice/planet_ice,
 /area/template_noop)
-"m" = (
-/obj/effect/gibspawner/generic/animal,
-/turf/open/floor/plating/ice/planet_ice,
-/area/template_noop)
-"p" = (
-/obj/item/food/meat/slab/bear{
-	pixel_x = -2;
-	 pixel_y = -5
-	},
-/turf/open/floor/plating/ice/planet_ice,
-/area/template_noop)
-"t" = (
-/obj/item/food/meat/slab/bear{
-	pixel_x = 7;
-	 pixel_y = 9
-	},
-/turf/open/floor/plating/ice/planet_ice,
-/area/template_noop)
-"x" = (
-/obj/item/food/meat/slab/bear{
-	pixel_x = 6;
-	 pixel_y = 2
-	},
-/turf/open/floor/plating/ice/planet_ice,
-/area/template_noop)
-"z" = (
-/mob/living/basic/mining/ice_whelp,
-/turf/open/floor/plating/ice/planet_ice,
-/area/template_noop)
-"E" = (
+"f" = (
 /obj/item/food/meat/slab/bear{
 	pixel_x = -3;
 	 pixel_y = -9
@@ -73,56 +24,105 @@
 	},
 /turf/open/floor/plating/ice/planet_ice,
 /area/template_noop)
-"G" = (
-/turf/closed/mineral/random/planet_ice,
+"g" = (
+/mob/living/basic/mining/ice_whelp,
+/turf/open/floor/plating/ice/planet_ice,
 /area/template_noop)
-"I" = (
-/obj/item/stack/sheet/sinew{
-	pixel_x = 4;
-	 pixel_y = 11
+"l" = (
+/obj/item/food/meat/slab/bear{
+	pixel_x = -2;
+	 pixel_y = -5
 	},
 /turf/open/floor/plating/ice/planet_ice,
 /area/template_noop)
-"P" = (
-/turf/open/floor/plating/ice/planet_ice,
-/area/template_noop)
-"Q" = (
-/obj/item/stack/sheet/animalhide/goliath_hide{
-	pixel_x = 2;
-	 pixel_y = -7
+"q" = (
+/obj/item/food/meat/slab/bear{
+	pixel_y = 6
 	},
 /turf/open/floor/plating/ice/planet_ice,
 /area/template_noop)
-"R" = (
-/turf/closed/mineral/planet_ice_wall,
+"v" = (
+/obj/item/food/meat/slab/bear{
+	pixel_x = 6;
+	 pixel_y = 2
+	},
+/turf/open/floor/plating/ice/planet_ice,
 /area/template_noop)
-"V" = (
+"w" = (
 /obj/item/stack/sheet/sinew{
 	pixel_x = 3;
 	 pixel_y = 7
 	},
 /turf/open/floor/plating/ice/planet_ice,
 /area/template_noop)
-"W" = (
-/turf/template_noop,
-/area/template_noop)
-"X" = (
-/obj/item/food/meat/slab/bear{
-	pixel_y = 6
+"x" = (
+/obj/item/stack/sheet/sinew{
+	pixel_y = 11
 	},
 /turf/open/floor/plating/ice/planet_ice,
+/area/template_noop)
+"z" = (
+/obj/item/stack/sheet/animalhide/goliath_hide{
+	pixel_x = -7;
+	 pixel_y = -9
+	},
+/turf/open/floor/plating/ice/planet_ice,
+/area/template_noop)
+"C" = (
+/obj/item/food/meat/slab/bear{
+	pixel_x = 7;
+	 pixel_y = 9
+	},
+/turf/open/floor/plating/ice/planet_ice,
+/area/template_noop)
+"G" = (
+/obj/item/stack/sheet/sinew{
+	pixel_x = 4;
+	 pixel_y = 11
+	},
+/turf/open/floor/plating/ice/planet_ice,
+/area/template_noop)
+"J" = (
+/turf/closed/mineral/random/planet_ice,
+/area/template_noop)
+"N" = (
+/turf/open/floor/plating/ice/planet_ice,
+/area/template_noop)
+"O" = (
+/obj/item/food/meat/slab/bear{
+	pixel_x = -7;
+	 pixel_y = 10
+	},
+/turf/open/floor/plating/ice/planet_ice,
+/area/template_noop)
+"P" = (
+/turf/closed/mineral/planet_ice_wall,
+/area/template_noop)
+"R" = (
+/obj/effect/gibspawner/generic/animal,
+/turf/open/floor/plating/ice/planet_ice,
+/area/template_noop)
+"V" = (
+/obj/item/stack/sheet/animalhide/goliath_hide{
+	pixel_x = 3;
+	 pixel_y = -8
+	},
+/turf/open/floor/plating/ice/planet_ice,
+/area/template_noop)
+"W" = (
+/turf/template_noop,
 /area/template_noop)
 
 (1,1,1) = {"
 W
 W
-R
-R
-R
-R
-R
-R
-R
+P
+P
+P
+P
+P
+P
+P
 W
 W
 W
@@ -130,168 +130,168 @@ W
 "}
 (2,1,1) = {"
 W
-R
-R
-R
-R
-R
-R
-G
-R
-R
+P
+P
+P
+P
+P
+P
+J
+P
+P
 W
 W
 W
 "}
 (3,1,1) = {"
-R
-R
-R
-x
-R
-R
-R
-G
-G
-R
-R
+P
+P
+P
+v
+P
+P
+P
+J
+J
+P
+P
 W
 W
 "}
 (4,1,1) = {"
+P
+P
+P
 R
-R
-R
-m
-X
-c
-R
-R
-G
-G
-R
-R
+q
+z
+P
+P
+J
+J
+P
+P
 W
 "}
 (5,1,1) = {"
-R
-R
 P
-p
-z
 P
-V
-R
-R
-R
-R
-R
+N
+l
+g
+N
+w
+P
+P
+P
+P
+P
 W
 "}
 (6,1,1) = {"
-R
-R
-h
+P
+P
+d
+N
+N
+N
+f
 P
 P
 P
-E
-R
-R
-R
-R
+P
 W
 W
 "}
 (7,1,1) = {"
 W
-R
-R
-R
-Q
-t
 P
-i
-R
-R
-R
+P
+P
+e
+C
+N
+x
+P
+P
+P
 W
 W
 "}
 (8,1,1) = {"
 W
-R
-R
-R
-m
-z
 P
-f
-m
+P
+P
 R
+g
+N
+O
 R
+P
+P
 W
 W
 "}
 (9,1,1) = {"
 W
 W
-R
-R
-R
 P
-I
-b
-z
-R
-R
-R
+P
+P
+N
+G
+V
+g
+P
+P
+P
 W
 "}
 (10,1,1) = {"
 W
 W
-R
-R
-R
-R
-R
-R
-R
-R
-R
-R
+P
+P
+P
+P
+P
+P
+P
+P
+P
+P
 W
 "}
 (11,1,1) = {"
 W
 W
 W
-R
-R
-R
-R
-R
-R
-G
-G
-R
-R
+P
+P
+P
+P
+P
+P
+J
+J
+P
+P
 "}
 (12,1,1) = {"
 W
 W
 W
 W
-R
-R
-R
-R
-G
-G
-G
-R
-R
+P
+P
+P
+P
+J
+J
+J
+P
+P
 "}
 (13,1,1) = {"
 W
@@ -300,12 +300,12 @@ W
 W
 W
 W
-R
-R
-R
-G
-R
-R
+P
+P
+P
+J
+P
+P
 W
 "}
 (14,1,1) = {"
@@ -316,10 +316,10 @@ W
 W
 W
 W
-R
-R
-R
-R
-R
+P
+P
+P
+P
+P
 W
 "}

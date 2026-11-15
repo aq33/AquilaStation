@@ -1,12 +1,9 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"i" = (
-/obj/structure/flora/rock/icy,
+"b" = (
+/obj/structure/flora/ausbushes/lavendergrass,
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
-"n" = (
-/turf/template_noop,
-/area/template_noop)
-"y" = (
+"f" = (
 /obj/structure/flora/rock/icy,
 /obj/item/food/grown/poppy/geranium{
 	pixel_x = 5;
@@ -14,7 +11,21 @@
 	},
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
-"E" = (
+"k" = (
+/turf/template_noop,
+/area/template_noop)
+"m" = (
+/obj/structure/flora/ash/garden/frigid,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"B" = (
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"F" = (
+/obj/structure/flora/rock/icy,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"H" = (
 /obj/structure/flora/rock/icy{
 	pixel_y = -2
 	},
@@ -24,14 +35,11 @@
 	},
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
-"F" = (
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"H" = (
+"K" = (
 /obj/structure/flora/ausbushes/sparsegrass,
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
-"J" = (
+"L" = (
 /obj/structure/flora/rock/icy{
 	pixel_x = 2;
 	 pixel_y = 4
@@ -42,144 +50,136 @@
 	},
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
-"S" = (
-/obj/structure/flora/ausbushes/lavendergrass,
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"U" = (
-/obj/structure/flora/ash/garden/frigid,
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
 
 (1,1,1) = {"
-n
-n
-n
-n
-F
-F
-H
-n
-n
+k
+k
+k
+k
+B
+B
+K
+k
+k
 "}
 (2,1,1) = {"
-n
-n
-n
+k
+k
+k
+B
 F
-i
-F
-S
-F
-n
+B
+b
+B
+k
 "}
 (3,1,1) = {"
-n
-n
-F
-F
-H
-U
-F
-F
-H
+k
+k
+B
+B
+K
+m
+B
+B
+K
 "}
 (4,1,1) = {"
-n
+k
+B
+H
+B
+B
+B
+B
 F
-E
-F
-F
-F
-F
-i
-F
+B
 "}
 (5,1,1) = {"
-n
-H
-U
-S
-i
+k
+K
+m
+b
 F
-F
-F
-n
+B
+B
+B
+k
 "}
 (6,1,1) = {"
-i
 F
-F
-F
-F
-F
-F
-H
-n
+B
+B
+B
+B
+B
+B
+K
+k
 "}
 (7,1,1) = {"
-F
-F
-J
-F
-H
-y
-F
-F
-n
+B
+B
+L
+B
+K
+f
+B
+B
+k
 "}
 (8,1,1) = {"
-H
-S
-H
-F
-U
-S
-F
-F
-n
+K
+b
+K
+B
+m
+b
+B
+B
+k
 "}
 (9,1,1) = {"
-n
-F
-F
-F
-F
-F
-F
-F
-n
+k
+B
+B
+B
+B
+B
+B
+B
+k
 "}
 (10,1,1) = {"
-n
+k
+B
+K
 F
-H
-i
-F
-F
-H
-n
-n
+B
+B
+K
+k
+k
 "}
 (11,1,1) = {"
-n
-n
-n
-F
-n
-n
-n
-n
-n
+k
+k
+k
+B
+k
+k
+k
+k
+k
 "}
 (12,1,1) = {"
-n
-n
-n
-n
-n
-n
-n
-n
-n
+k
+k
+k
+k
+k
+k
+k
+k
+k
 "}
