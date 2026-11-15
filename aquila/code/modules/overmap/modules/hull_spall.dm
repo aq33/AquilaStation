@@ -38,7 +38,10 @@ GLOBAL_VAR_INIT(hull_spall_enabled, TRUE)
 	return ..()
 
 /obj/item/projectile/proc/hull_pierce_should_phase(atom/A)
-	if(!A || ismob(A))
+	if(!A || ismob(A) || length(hull_spall) < 3)
+		return FALSE
+	var/limit = round(hull_spall[3]) - 1
+	if(limit <= 0) // płytki wyłom: wybuch na poszyciu
 		return FALSE
 	if(!isclosedturf(A) && !(isobj(A) && A.density))
 		return FALSE
@@ -47,7 +50,8 @@ GLOBAL_VAR_INIT(hull_spall_enabled, TRUE)
 		return FALSE
 	if(!hull_pierce_from)
 		hull_pierce_from = here
-	return get_dist(hull_pierce_from, here) < round(hull_spall[3]) - 1
+	var/distance = get_dist(hull_pierce_from, here)
+	return distance < limit
 
 /obj/item/projectile/Destroy()
 	if(hull_spall && GLOB.hull_spall_enabled)
