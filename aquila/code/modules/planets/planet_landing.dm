@@ -113,7 +113,7 @@
 	if(!istype(OM, /obj/structure/overmap/planet))
 		return ..()
 	var/obj/structure/overmap/planet/planet = OM
-	if(!T || !planet.surface?.contains(T) || !isopenturf(T) || islava(T) || ischasm(T))
+	if(!T || !planet.surface?.contains(T) || is_planet_hazard_turf(T))
 		return FALSE
 	if(istype(T.loc, /area/shuttle) || T.loc != planet.surface.surface_area)
 		return FALSE

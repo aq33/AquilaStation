@@ -7,8 +7,8 @@
 // samples_required cykli (6-10), po czym wyrzuca jedną próbkę geologiczną. Próbkę trzeba zamknąć w pojemniku
 // i dowieźć pojemnik na okręt; wiertło przywiezione razem z nim to premia.
 // Zmiany względem Shiptesta:
-// - Shiptest daje tę misję tylko na planetach dżunglowych, lodowych i skalnych; u nas jest tylko planeta wulkaniczna,
-//   więc misja idzie na nią, a setup_site() stawia na niej żyłę klasy 4 z dala od lądowisk;
+// - Shiptest daje tę misję tylko na planetach dżunglowych, lodowych i skalnych; u nas idzie na każdy typ planety
+//   z żyłą klasy 4 (mission_veins["4"]), a setup_site() stawia na niej taką żyłę z dala od lądowisk;
 // - nagroda w skali naszych misji na planecie (Shiptest: 18000 + 2000 za zwrot wiertła);
 // - pojemnik zabiera próbkę z ręki dopiero po udanym do_after (w Shiptest przerwane zamykanie gubiło próbkę),
 //   a nieużywanego w Shiptest seal() nie ma;
@@ -42,6 +42,7 @@
 	desc = "Wywiercić próbkę z żyły klasy 4 na planecie, zamknąć ją w pojemniku i dowieźć pojemnik na okręt."
 	payout = 50000
 	research_payout = 15000
+	required_vein_class = 4
 	equipment = list(
 		/obj/item/pinpointer/mineral,
 		/obj/item/gps/mining,
@@ -97,7 +98,10 @@
 	var/turf/T = pick_site_turf()
 	if(!T)
 		return
-	target_vein = new /obj/structure/vein/lavaland/classfour(T)
+	var/vein_type = target_planet.planet_type.get_mission_vein(4)
+	if(!vein_type)
+		return
+	target_vein = new vein_type(T)
 	RegisterSignal(target_vein, COMSIG_PARENT_QDELETING, PROC_REF(on_tracked_deleted))
 	log_game("Planet [target_planet] deep vein mission vein placed at [AREACOORD(T)]")
 
@@ -194,7 +198,7 @@
 		return
 	say("Próbka wydobyta.")
 	var/turf/drop_turf = get_step(src, SOUTH)
-	if(!drop_turf || isclosedturf(drop_turf) || islava(drop_turf))
+	if(!drop_turf || is_planet_hazard_turf(drop_turf))
 		drop_turf = get_turf(src)
 	var/obj/item/drill_sample/new_sample = new(drop_turf)
 	mission?.on_sample_created(new_sample)

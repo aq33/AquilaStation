@@ -146,7 +146,7 @@
 
 /// Czy kapsuła może tu wylądować: grunt pod niebem planety, bez lawy i przeszkód
 /obj/machinery/drop_pod_bay/proc/can_land_at(turf/T)
-	if(!get_planet_of(T) || !isopenturf(T) || islava(T) || ischasm(T))
+	if(!get_planet_of(T) || is_planet_hazard_turf(T))
 		return FALSE
 	for(var/atom/movable/AM as anything in T)
 		if(AM.density && !ismob(AM))

@@ -1,6 +1,6 @@
 // AQUILA - misja „Próbki geologiczne”: port misji wiertniczej z Shiptesta (AGPLv3)
 // code/modules/missions/outpost/drill_mission.dm (/datum/mission/drill i /obj/machinery/drill/mission) na nasze misje
-// dowództwa na planecie (planet_mission.dm). Dowództwo dodaje planetę wulkaniczną i wysyła na okręt wiertło do próbek
+// dowództwa na planecie (planet_mission.dm). Dowództwo dodaje planetę z żyłami wymaganej klasy i wysyła na okręt wiertło do próbek
 // (z ogniwem) oraz skrzynię ze skanerem gruntu, GPS, instrukcją i zapasowymi częściami. Załoga przykręca wiertło na żyle
 // rudy wymaganej klasy, broni go przed fauną z wyrw, póki nie zbierze próbek, i dowozi je na okręt.
 // Zmiany względem Shiptesta:
@@ -59,6 +59,7 @@
 	// Wagi i liczby próbek z Shiptesta: klasa 1 (waga 11, 5 próbek), 2 (9, 6), 3 (5, 8)
 	class_wanted = pickweight(list("1" = 11, "2" = 9, "3" = 5))
 	class_wanted = text2num(class_wanted)
+	required_vein_class = class_wanted
 	var/base_wanted = 5
 	switch(class_wanted)
 		if(2)
@@ -88,6 +89,7 @@
 	var/obj/structure/closet/crate/drill_crate = new
 	drill_crate.name = "skrzynia: wiertło do próbek"
 	sampler = new(drill_crate)
+	sampler.orevein_wanted = target_planet?.planet_type.vein_root
 	sampler.setup_mission(src)
 	RegisterSignal(sampler, COMSIG_PARENT_QDELETING, PROC_REF(on_sampler_deleted))
 	main_ship.send_supplypod(drill_crate, null, TRUE)
@@ -97,14 +99,9 @@
 	var/turf/T = pick_site_turf()
 	if(!T)
 		return
-	var/vein_type
-	switch(class_wanted)
-		if(2)
-			vein_type = pickweight(list(/obj/structure/vein/lavaland/classtwo = 2, /obj/structure/vein/lavaland/classtwo/rare = 1))
-		if(3)
-			vein_type = pickweight(list(/obj/structure/vein/lavaland/classthree = 2, /obj/structure/vein/lavaland/classthree/rare = 1))
-		else
-			vein_type = /obj/structure/vein/lavaland
+	var/vein_type = target_planet.planet_type.get_mission_vein(class_wanted)
+	if(!vein_type)
+		return
 	var/obj/structure/vein/site_vein = new vein_type(T)
 	site_vein.mining_charges = max(site_vein.mining_charges, num_wanted + PLANET_DRILL_EXTRA_SAMPLES)
 	log_game("Planet [target_planet] drill mission vein [vein_type] placed at [AREACOORD(T)]")
@@ -139,8 +136,8 @@
 	var/mission_class = 1
 	/// Wymagane próbki
 	var/num_wanted = 5
-	/// Rodzaj żył, na których działa (typ planety)
-	var/orevein_wanted = /obj/structure/vein/lavaland
+	/// Rodzaj żył, na których działa (vein_root typu planety misji; null = dowolne)
+	var/orevein_wanted
 	var/datum/overmap_objective/planet/drill_samples/mission
 
 /obj/machinery/drill/mission/Destroy()

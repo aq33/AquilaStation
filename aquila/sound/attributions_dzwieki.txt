@@ -74,3 +74,8 @@ Sound added on the "cowiek-maupa" branch:
 
 Sound added on the "monke-vim-ssd-mandaty" branch:
   machines/printer.ogg              Monkestation2.0 / tgstation (sound/machines/printer.ogg), CC-BY-SA 3.0
+
+Planety (port pogody z shiptest-ss13/Shiptest 9b23be9), licencja CC-BY-SA 3.0:
+  weather/rain/*                    Shiptest sound/weather/rain (deszcz, ulewa, burza)
+  weather/wind/*                    Shiptest sound/weather/wind
+  effects/thunder/*                 Shiptest sound/effects/thunder (grzmoty)

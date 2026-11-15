@@ -80,8 +80,17 @@
 	TEST_ASSERT(storm.impacted_areas[1] == planet_area, "The planet storm doesn't affect its planet")
 	TEST_ASSERT(storm.can_weather_act(in_storm), "The planet storm doesn't hit people on the planet")
 	TEST_ASSERT(!storm.can_weather_act(sheltered), "The planet storm hits people outside its planet")
+	// Pętle etapów: słaba w zapowiedzi, silna w głównym etapie, pod dachem osobna
+	storm.planet_indoor_areas = list(other_area)
+	storm.planet_update_playlist()
+	TEST_ASSERT(storm.planet_playlist[planet_area] == /datum/looping_sound/weak_outside_ashstorm, "The planet storm telegraph doesn't play the weak outdoor loop")
+	TEST_ASSERT(storm.planet_playlist[other_area] == /datum/looping_sound/weak_inside_ashstorm, "The planet storm telegraph doesn't play the weak indoor loop")
+	storm.start()
+	TEST_ASSERT(storm.planet_playlist[planet_area] == /datum/looping_sound/active_outside_ashstorm, "The planet storm doesn't switch to the strong loop")
 	storm.end()
+	TEST_ASSERT(isnull(storm.planet_playlist), "The planet storm keeps its loops after ending")
 	storm.planet_area = null
+	storm.planet_indoor_areas = null
 
 	other_area.contents -= outside
 	old_outside.contents += outside
@@ -129,21 +138,50 @@
 	for(var/obj/effect/anomaly/anomaly in run_loc_floor_top_right)
 		qdel(anomaly)
 
+/// AQUILA - planety: typ losowej planety zależy od znaczników układu, ozdoby (olbrzymy) dochodzą osobno, a misje
+/// wiertnicze wybierają tylko typy z żyłą wymaganej klasy
+/datum/unit_test/planet_type_selection
+
+/datum/unit_test/planet_type_selection/Run()
+	for(var/planet_type in GLOB.planet_type_prototypes)
+		var/datum/planet_type/prototype = GLOB.planet_type_prototypes[planet_type]
+		TEST_ASSERT(length(prototype.system_tags) || prototype.type == /datum/planet_type/lava, "[planet_type] never appears in random systems (no system_tags)")
+		if(length(prototype.mission_veins))
+			TEST_ASSERT(prototype.vein_root, "[planet_type] has mission veins but no vein_root for the mission drill")
+			for(var/vein_class in prototype.mission_veins)
+				var/vein_type = prototype.get_mission_vein(vein_class)
+				TEST_ASSERT(ispath(vein_type, prototype.vein_root), "[planet_type] class [vein_class] vein [vein_type] isn't under its vein_root")
+		TEST_ASSERT(prototype.surface_size <= PLANET_SURFACE_SIZE_LARGE, "[planet_type] surface is bigger than the large surface")
+
+	var/list/weights = planet_type_weights(list("demonstar"), FALSE)
+	TEST_ASSERT(length(weights), "No planet type fits a demon star system")
+	for(var/i in 1 to 10)
+		var/picked = pick_planet_type_for_tags(list("demonstar"))
+		TEST_ASSERT(weights[picked], "[picked] was picked for a demon star system it doesn't fit")
+	TEST_ASSERT(pick_planet_type_for_tags(list("no_such_tag")), "A system with an unknown tag got no planet type")
+
+	var/datum/overmap_objective/planet/deep_vein/deep_mission = new
+	for(var/i in 1 to 10)
+		var/datum/planet_type/picked = GLOB.planet_type_prototypes[deep_mission.pick_planet_type()]
+		TEST_ASSERT(picked.get_mission_vein(4), "The deep vein mission picked [picked.type] without a class 4 vein")
+	qdel(deep_mission)
+
 /// AQUILA - planety: każda ruina Shiptesta z puli ruin głównych planety wulkanicznej mieści się na planecie i się wczytuje
 /datum/unit_test/planet_lava_ruins
 
 /datum/unit_test/planet_lava_ruins/Run()
 	var/list/templates = get_planet_lava_ruin_templates()
 	TEST_ASSERT(length(templates) >= 5, "Only [length(templates)] Shiptest lava ruins are registered")
-	var/inner_size = PLANET_SURFACE_SIZE - 2 * PLANET_EDGE_WIDTH
 	var/obj/structure/overmap/planet/planet = new(run_loc_floor_top_right, /datum/planet_type/lava)
 	TEST_ASSERT(planet.surface.generate(), "The surface didn't generate")
+	var/side = planet.surface.size
+	var/inner_size = side - 2 * PLANET_EDGE_WIDTH
 	var/turf/bl = planet.surface.bottom_left()
 	// Każda ruina w miejscu ruiny głównej (lewy górny róg wnętrza z marginesem jak w place_main_ruin)
 	for(var/name in templates)
 		var/datum/map_template/ruin/ruin = templates[name]
 		TEST_ASSERT(ruin.width <= inner_size - 12 && ruin.height <= inner_size / 2, "[name] ([ruin.width]x[ruin.height]) doesn't fit as a main ruin")
-		var/turf/corner = locate(bl.x + PLANET_EDGE_WIDTH + 6, bl.y + PLANET_SURFACE_SIZE - PLANET_EDGE_WIDTH - 6 - ruin.height, bl.z)
+		var/turf/corner = locate(bl.x + PLANET_EDGE_WIDTH + 6, bl.y + side - PLANET_EDGE_WIDTH - 6 - ruin.height, bl.z)
 		TEST_ASSERT(planet.surface.load_ruin(ruin, corner, FALSE), "[name] didn't load")
 		for(var/turf/T as anything in ruin.get_affected_turfs(corner, FALSE))
 			TEST_ASSERT(planet.surface.contains(T), "[name] spills outside the planet surface")

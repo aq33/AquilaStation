@@ -1,5 +1,5 @@
 // AQUILA - powierzchnia planety. Powstaje przy pierwszym lądowaniu (jak w Shiptest: planeta, której nikt nie odwiedza,
-// nic nie kosztuje) w kwadracie PLANET_SURFACE_SIZE w rezerwacji turfów. Kolejność jak w Shiptest: krawędź, teren
+// nic nie kosztuje) w kwadracie surface_size typu planety w rezerwacji turfów (większym, gdy wypadnie duża ruina główna). Kolejność jak w Shiptest: krawędź, teren
 // z generatora, lądowiska, ruiny, rośliny i zwierzęta, pogoda. Znika, kiedy okręt odlatuje z układu, a na powierzchni
 // nie został nikt żywy (planet_lifecycle.dm).
 
@@ -10,12 +10,18 @@
 	var/area/planet/surface/surface_area
 	var/area/planet/surface/cave_area
 	var/state = PLANET_SURFACE_NONE
+	/// Bok kwadratu bieżącej powierzchni
+	var/size = PLANET_SURFACE_SIZE
+	/// Ruina główna wybrana przed rezerwacją (od niej zależy rozmiar)
+	var/datum/map_template/ruin/main_ruin
 	/// Środki lądowisk -> nazwa lądowiska
 	var/list/landing_zones = list()
 	/// Pola lądowisk (pole -> TRUE): generator nie stawia na nich roślin ani zwierząt
 	var/list/landing_zone_turfs = list()
 	/// Ruiny wczytane na tej powierzchni (szablony)
 	var/list/loaded_ruins = list()
+	/// Obszary ruin na tej powierzchni (pod dachem: pogoda słychać tu stłumioną)
+	var/list/ruin_areas = list()
 	/// Bieżąca pogoda i timer następnej
 	var/datum/weather/current_weather
 	var/weather_timer
@@ -45,14 +51,14 @@
 /datum/planet_surface/proc/center()
 	var/turf/bl = bottom_left()
 	if(bl)
-		return locate(bl.x + round(PLANET_SURFACE_SIZE / 2), bl.y + round(PLANET_SURFACE_SIZE / 2), bl.z)
+		return locate(bl.x + round(size / 2), bl.y + round(size / 2), bl.z)
 
 /// Pola wewnątrz krawędzi
 /datum/planet_surface/proc/inner_turfs()
 	var/turf/bl = bottom_left()
 	if(!bl)
 		return list()
-	return block(locate(bl.x + PLANET_EDGE_WIDTH, bl.y + PLANET_EDGE_WIDTH, bl.z), locate(bl.x + PLANET_SURFACE_SIZE - 1 - PLANET_EDGE_WIDTH, bl.y + PLANET_SURFACE_SIZE - 1 - PLANET_EDGE_WIDTH, bl.z))
+	return block(locate(bl.x + PLANET_EDGE_WIDTH, bl.y + PLANET_EDGE_WIDTH, bl.z), locate(bl.x + size - 1 - PLANET_EDGE_WIDTH, bl.y + size - 1 - PLANET_EDGE_WIDTH, bl.z))
 
 /// Buduje powierzchnię. Może trwać kilka sekund (CHECK_TICK), więc wołać asynchronicznie.
 /datum/planet_surface/proc/generate()
@@ -60,7 +66,11 @@
 		return state == PLANET_SURFACE_READY
 	state = PLANET_SURFACE_GENERATING
 	var/start_time = REALTIMEOFDAY
-	reservation = SSmapping.RequestBlockReservation(PLANET_SURFACE_SIZE, PLANET_SURFACE_SIZE)
+	main_ruin = pick_main_ruin()
+	size = planet_type.surface_size
+	if(main_ruin && !main_ruin_fits(main_ruin, size))
+		size = PLANET_SURFACE_SIZE_LARGE
+	reservation = SSmapping.RequestBlockReservation(size, size)
 	if(!reservation || QDELETED(src))
 		state = PLANET_SURFACE_NONE
 		reservation = null
@@ -79,7 +89,7 @@
 	cave_area.always_unpowered = TRUE
 
 	var/turf/bl = bottom_left()
-	var/list/all_turfs = block(bl, locate(bl.x + PLANET_SURFACE_SIZE - 1, bl.y + PLANET_SURFACE_SIZE - 1, bl.z))
+	var/list/all_turfs = block(bl, locate(bl.x + size - 1, bl.y + size - 1, bl.z))
 	var/list/inner = inner_turfs()
 	// Krawędź: nieprzebyte skały
 	for(var/turf/T as anything in (all_turfs - inner))
@@ -88,7 +98,7 @@
 		T.change_area(old_area, surface_area)
 		T.ChangeTurf(planet_type.edge_turf_type, planet_type.edge_turf_type, CHANGETURF_IGNORE_AIR | CHANGETURF_DEFER_CHANGE)
 		CHECK_TICK
-	var/datum/planet_generator/generator = new planet_type.generator_type(inner[1], PLANET_SURFACE_SIZE - 2 * PLANET_EDGE_WIDTH, surface_area, cave_area)
+	var/datum/planet_generator/generator = new planet_type.generator_type(inner[1], size - 2 * PLANET_EDGE_WIDTH, surface_area, cave_area)
 	generator.generate_turfs(inner)
 	for(var/turf/T as anything in all_turfs)
 		T.AfterChange(CHANGETURF_IGNORE_AIR)
@@ -118,7 +128,7 @@
 	var/turf/bl = bottom_left()
 	var/radius = round(PLANET_LANDING_ZONE_SIZE / 2)
 	var/min_coord = PLANET_EDGE_WIDTH + radius + 2
-	var/max_coord = PLANET_SURFACE_SIZE - 1 - PLANET_EDGE_WIDTH - radius - 2
+	var/max_coord = size - 1 - PLANET_EDGE_WIDTH - radius - 2
 	for(var/i in 1 to PLANET_LANDING_ZONES)
 		var/turf/best
 		var/best_score = -1
@@ -158,18 +168,17 @@
 	for(var/turf/T as anything in RANGE_TURFS(radius + 2, candidate))
 		if(T.flags_1 & NO_RUINS_1)
 			return -1
-		if(isopenturf(T) && !islava(T))
+		if(!is_planet_hazard_turf(T))
 			score++
 	return score
 
-/// Czyści lądowisko: skały i lawa zamieniają się w grunt, rośliny i obiekty bez właściciela znikają
+/// Czyści lądowisko: skały, lawa i przepaści zamieniają się w grunt, rośliny i obiekty bez właściciela znikają
 /datum/planet_surface/proc/clear_landing_zone(turf/zone_center, radius)
-	var/turf/ground_type = /turf/open/floor/plating/asteroid/basalt/lava_land_surface
 	for(var/turf/T as anything in RANGE_TURFS(radius, zone_center))
 		if(!contains(T))
 			continue
-		if(!isopenturf(T) || islava(T))
-			T = T.ChangeTurf(ground_type, initial(ground_type.baseturfs), CHANGETURF_IGNORE_AIR)
+		if(is_planet_hazard_turf(T))
+			T = make_ground(T)
 		T.flags_1 |= NO_RUINS_1
 		landing_zone_turfs[T] = TRUE
 		for(var/atom/movable/AM as anything in T)
@@ -185,26 +194,41 @@
 			T.change_area(old_area, surface_area)
 		CHECK_TICK
 
-/// Główna ruina jak w Shiptest: jedna, losowa (z wagami) z ruin głównych typu planety, przy górnej krawędzi w losowym miejscu w poziomie. Mieści
-/// się każda ruina do szerokości wnętrza bez marginesów i do połowy jego wysokości.
-/datum/planet_surface/proc/place_main_ruin()
-	var/inner_size = PLANET_SURFACE_SIZE - 2 * PLANET_EDGE_WIDTH
+/// Zamienia pole w grunt planety (lądowiska, miejsca misji). Zwraca nowe pole.
+/datum/planet_surface/proc/make_ground(turf/T)
+	var/turf/ground_type = planet_type.ground_turf_type
+	return T.ChangeTurf(ground_type, initial(ground_type.baseturfs), CHANGETURF_IGNORE_AIR)
+
+/// Czy ruina główna mieści się na kwadracie o boku side: do szerokości wnętrza bez marginesów i do połowy jego wysokości
+/datum/planet_surface/proc/main_ruin_fits(datum/map_template/ruin/ruin, side)
+	var/inner_size = side - 2 * PLANET_EDGE_WIDTH
+	return ruin.width <= inner_size - 12 && ruin.height <= inner_size / 2
+
+/// Główna ruina jak w Shiptest: jedna, losowa (z wagami) z ruin głównych typu planety. Za duża na zwykły kwadrat
+/// powiększa powierzchnię do PLANET_SURFACE_SIZE_LARGE.
+/datum/planet_surface/proc/pick_main_ruin()
 	var/list/available = list()
 	var/list/templates = planet_type.get_main_ruin_templates()
 	for(var/key in templates)
 		var/datum/map_template/ruin/ruin = templates[key]
 		if(!istype(ruin) || ruin.unpickable || ruin.always_place || ruin.cost <= 0 || ruin_in_use(ruin))
 			continue
-		if(ruin.width > inner_size - 12 || ruin.height > inner_size / 2)
+		if(!main_ruin_fits(ruin, max(planet_type.surface_size, PLANET_SURFACE_SIZE_LARGE)))
 			continue
 		available[ruin] = ruin.placement_weight
-	if(!length(available))
+	if(length(available))
+		return pickweight(available)
+
+/// Stawia wybraną ruinę główną przy górnej krawędzi w losowym miejscu w poziomie
+/datum/planet_surface/proc/place_main_ruin()
+	var/datum/map_template/ruin/ruin = main_ruin
+	main_ruin = null
+	if(!ruin)
 		return
-	var/datum/map_template/ruin/ruin = pickweight(available)
 	var/turf/bl = bottom_left()
 	var/low_x = bl.x + PLANET_EDGE_WIDTH + 6
-	var/high_x = bl.x + PLANET_SURFACE_SIZE - PLANET_EDGE_WIDTH - 6 - ruin.width
-	var/top_y = bl.y + PLANET_SURFACE_SIZE - PLANET_EDGE_WIDTH - 6 - ruin.height
+	var/high_x = bl.x + size - PLANET_EDGE_WIDTH - 6 - ruin.width
+	var/top_y = bl.y + size - PLANET_EDGE_WIDTH - 6 - ruin.height
 	var/turf/corner = locate(rand(low_x, max(low_x, high_x)), top_y, bl.z)
 	load_ruin(ruin, corner, FALSE)
 
@@ -226,6 +250,8 @@
 			var/area/old_area = T.loc
 			surface_area.contents += T
 			T.change_area(old_area, surface_area)
+		else if(T.loc != surface_area && T.loc != cave_area)
+			ruin_areas |= T.loc
 	log_game("Planet [planet] ruin [ruin.name] placed at [AREACOORD(where)]")
 	return TRUE
 
@@ -249,7 +275,7 @@
 		var/datum/map_template/ruin/ruin = templates[key]
 		if(!istype(ruin) || ruin.unpickable || ruin.always_place || ruin.cost <= 0 || ruin.cost > budget || ruin_in_use(ruin))
 			continue
-		if(ruin.width > PLANET_SURFACE_SIZE / 2.5 || ruin.height > PLANET_SURFACE_SIZE / 2.5)
+		if(ruin.width > size / 2.5 || ruin.height > size / 2.5)
 			continue
 		available[ruin] = ruin.placement_weight
 	while(budget > 0 && length(available))
@@ -266,8 +292,8 @@
 	var/turf/bl = bottom_left()
 	var/margin = PLANET_EDGE_WIDTH + 2
 	for(var/attempt in 1 to 20)
-		var/x = bl.x + rand(margin + round(ruin.width / 2), PLANET_SURFACE_SIZE - 1 - margin - round(ruin.width / 2))
-		var/y = bl.y + rand(margin + round(ruin.height / 2), PLANET_SURFACE_SIZE - 1 - margin - round(ruin.height / 2))
+		var/x = bl.x + rand(margin + round(ruin.width / 2), size - 1 - margin - round(ruin.width / 2))
+		var/y = bl.y + rand(margin + round(ruin.height / 2), size - 1 - margin - round(ruin.height / 2))
 		var/turf/central = locate(x, y, bl.z)
 		var/list/affected = ruin.get_affected_turfs(central, TRUE)
 		var/valid = TRUE
@@ -293,6 +319,7 @@
 	var/weather_type = pickweight(planet_type.weather_types)
 	current_weather = new weather_type(list())
 	current_weather.planet_area = surface_area
+	current_weather.planet_indoor_areas = list(cave_area) + ruin_areas
 	current_weather.telegraph()
 	weather_timer = addtimer(CALLBACK(src, PROC_REF(start_weather)), current_weather.telegraph_duration + current_weather.weather_duration + current_weather.end_duration + rand(planet_type.weather_delay_min, planet_type.weather_delay_max), TIMER_STOPPABLE)
 
@@ -324,10 +351,13 @@
 	if(current_weather)
 		current_weather.end()
 		current_weather.planet_area = null
+		current_weather.planet_indoor_areas = null
 		current_weather = null
 	landing_zones = list()
 	landing_zone_turfs = list()
 	loaded_ruins = list()
+	ruin_areas = list()
+	main_ruin = null
 	if(planet?.roomReservation == reservation)
 		planet.roomReservation = null
 	// Najpierw odpinamy rezerwację: jej zwalnianie usypia, a w tym czasie ktoś inny mógłby ją usunąć drugi raz

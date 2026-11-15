@@ -1,5 +1,5 @@
 // AQUILA - misje dowództwa na planecie, na wzór „Opuszczonej stacji” (derelict_ruin.dm). Dowództwo dodaje planetę
-// wulkaniczną w układzie sektora 2 i wysyła na okręt skrzynię ze sprzętem. Badanie planety: zebrać cztery rodzaje
+// losowego typu z mission_target (dla misji wiertniczych: z żyłą wymaganej klasy) w układzie sektora 2 i wysyła na okręt skrzynię ze sprzętem. Badanie planety: zebrać cztery rodzaje
 // próbek, dowieźć je na okręt i postawić sondę badawczą w punkcie badawczym, póki nie skończy skanu. Ewakuacja:
 // koloniści w schronie na powierzchni (role duchów, a bez chętnych KNPC idący za załogą) mają żywi trafić na okręt.
 
@@ -69,6 +69,8 @@
 	var/research_payout = 5000
 	/// Skrzynia ze sprzętem dla załogi (typy przedmiotów)
 	var/list/equipment = list()
+	/// Klasa żyły, którą musi mieć typ planety (misje wiertnicze); null = dowolny typ
+	var/required_vein_class
 
 /datum/overmap_objective/planet/New(datum/star_system/passed_input)
 	. = ..()
@@ -102,7 +104,7 @@
 		message_admins("Cel [name] nie znajduje układu docelowego, oznaczam go jako wykonany.")
 		status = STATUS_COMPLETED
 		return
-	target_planet = target_system.add_planet(/datum/planet_type/lava)
+	target_planet = target_system.add_planet(pick_planet_type())
 	target_planet.set_scanned()
 	target_system.objective_sector = TRUE
 	RegisterSignal(target_planet, COMSIG_PLANET_SURFACE_READY, PROC_REF(on_surface_ready))
@@ -112,6 +114,20 @@
 
 /datum/overmap_objective/planet/proc/update_brief()
 	return
+
+/// Typ planety misji: losowy typ dla misji, z żyłą wymaganej klasy, jeśli misja jej potrzebuje
+/datum/overmap_objective/planet/proc/pick_planet_type()
+	var/list/candidates = list()
+	for(var/planet_type in GLOB.planet_type_prototypes)
+		var/datum/planet_type/prototype = GLOB.planet_type_prototypes[planet_type]
+		if(!prototype.mission_target || !prototype.can_land || prototype.scenery)
+			continue
+		if(required_vein_class && !LAZYACCESS(prototype.mission_veins, "[required_vein_class]"))
+			continue
+		candidates += planet_type
+	if(length(candidates))
+		return pick(candidates)
+	return /datum/planet_type/lava
 
 /// Skrzynia ze sprzętem trafia na okręt kapsułą zaopatrzeniową
 /datum/overmap_objective/planet/proc/send_equipment()
@@ -146,7 +162,7 @@
 	var/turf/fallback
 	for(var/attempt in 1 to (clearance ? 150 : 50))
 		var/turf/T = pick(inner)
-		if(isclosedturf(T) || islava(T) || T.loc != surface.surface_area || (T.flags_1 & NO_RUINS_1))
+		if(is_planet_hazard_turf(T) || T.loc != surface.surface_area || (T.flags_1 & NO_RUINS_1))
 			continue
 		if(clearance && !site_clear(surface, T, clearance))
 			continue
@@ -399,8 +415,8 @@ GLOBAL_LIST_EMPTY(planet_samples)
 	for(var/turf/area_turf as anything in shelter.get_affected_turfs(T, TRUE))
 		if(!surface.contains(area_turf))
 			continue
-		if(isclosedturf(area_turf) || islava(area_turf))
-			area_turf.ChangeTurf(/turf/open/floor/plating/asteroid/basalt/lava_land_surface)
+		if(is_planet_hazard_turf(area_turf))
+			area_turf = surface.make_ground(area_turf)
 		for(var/atom/movable/AM as anything in area_turf)
 			if(isanimal_or_basicmob(AM) || istype(AM, /obj/structure/flora))
 				qdel(AM)

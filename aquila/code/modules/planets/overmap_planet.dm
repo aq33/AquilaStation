@@ -44,6 +44,8 @@ GLOBAL_LIST_EMPTY(overmap_planets)
 	if(ispath(planet_type))
 		planet_type = new planet_type
 	icon_state = planet_type.overmap_icon_state
+	if(planet_type.overmap_color)
+		color = planet_type.overmap_color
 	. = ..()
 	GLOB.overmap_planets += src
 	surface = new(src)
