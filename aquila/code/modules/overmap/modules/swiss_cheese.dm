@@ -97,6 +97,7 @@ GLOBAL_LIST_EMPTY(ship_deck_bounds)
 	proj.firer = null
 	proj.def_zone = "chest"
 	proj.original = target
+	proj.hull_spall = list(dir_x, dir_y, depth) // odłamki i wybuch kierunkowy tam, gdzie pocisk zginie (hull_spall.dm)
 	LAZYINITLIST(proj.impacted)
 	swiss_cheese_fire(proj, get_angle(start, target) + ((rand() - 0.5) * 6))
 	addtimer(CALLBACK(src, PROC_REF(swiss_cheese_machine_damage), target, depth), 2 SECONDS)
