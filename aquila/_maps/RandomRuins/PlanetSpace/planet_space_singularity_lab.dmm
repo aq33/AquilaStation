@@ -2987,16 +2987,14 @@
 	dir = 1
 	},
 /obj/item/gun/energy/laser/retro{
-	dry_fire_sound = 'sound/items/ding.ogg';
 	name = "zmodyfikowany pistolet maszynowy E-TAR";
-	pixel_x = 5;
-	pixel_y = 6
+	 pixel_x = 5;
+	 pixel_y = 6
 	},
 /obj/item/gun/energy/laser/retro{
-	dry_fire_sound = 'sound/items/ding.ogg';
 	name = "zmodyfikowany pistolet maszynowy E-TAR";
-	pixel_x = 5;
-	pixel_y = 6
+	 pixel_x = 5;
+	 pixel_y = 6
 	},
 /obj/structure/safe{
 	name = "Magazyn prototypów"
@@ -6134,10 +6132,9 @@
 /obj/structure/cable,
 /obj/effect/turf_decal/siding/thinplating,
 /obj/item/gun/energy/laser/retro{
-	dry_fire_sound = 'sound/items/ding.ogg';
 	name = "zmodyfikowany pistolet maszynowy E-TAR";
-	pixel_x = 5;
-	pixel_y = 6
+	 pixel_x = 5;
+	 pixel_y = 6
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/planet_space/singularitylab)
@@ -11015,10 +11012,9 @@
 /area/ruin/space/has_grav/planet_space/singularitylab)
 "Xc" = (
 /obj/item/gun/energy/laser/retro{
-	dry_fire_sound = 'sound/items/ding.ogg';
 	name = "zmodyfikowany pistolet maszynowy E-TAR";
-	pixel_x = 5;
-	pixel_y = 6
+	 pixel_x = 5;
+	 pixel_y = 6
 	},
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/tile/white/fourcorners/contrasted{

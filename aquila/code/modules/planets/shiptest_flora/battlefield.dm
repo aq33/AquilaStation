@@ -57,15 +57,7 @@
 		victim.reagents?.add_reagent(/datum/reagent/toxin, 0.2)
 		. = TRUE
 
-/// Martwe pnącza: zwykłe pnącza bez kontrolera (nie rosną), zbrązowiałe
-/obj/structure/spacevine/dead
-	name = "martwe pnącza"
-	desc = "Uschnięte kosmiczne pnącza. Już nie rosną, ale dalej oplatają wszystko dookoła."
-	color = "#66400f"
-
-/obj/structure/spacevine/dead/Initialize(mapload)
-	. = ..()
-	add_atom_colour("#66400f", FIXED_COLOUR_PRIORITY)
+// Martwe pnącza (/obj/structure/spacevine/dead) są w shiptest_flora/jungle.dm razem z gęstymi i kruchymi
 
 /// Skała jaskiń pola bitwy: po wykopaniu zostaje zryta ziemia
 /turf/closed/mineral/random/jungle/battlefield

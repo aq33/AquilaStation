@@ -23460,6 +23460,7 @@
 "Błąd: wykryto nielicencjonowane oprogramowanie. Skontaktuj się z przełożonym.": "Error: Unlicensed software detected. Please contact your supervisor.",
 "Błąd: za płytka żyła. Znajdźcie żyłę klasy 4.": "Error: insufficient vein depth for operation. Locate a class 4 vein.",
 "Błąd: zły rodzaj planety dla tej operacji.": "Error: incorrect class of planetoid for operation.",
+"Błąd: żyła leży za głęboko. Potrzebne jest wiertło do próbek głębinowych.": "Error: the vein lies too deep. A deep core sampling drill is required.",
 "Błąd: żyła wyczerpana.": "Error: vein depleted.",
 "Błędna liczba: ": "Bad number: ",
 "Błędne połączenia wokół: [AM.name]. Podejrzenie zdublowanych lub zbłąkanych rur w okolicy: [ADMIN_VERBOSEJMP(AM)]": "Errorneous connections around [AM.name]. Duplicate or rogue pipes suspected at or around [ADMIN_VERBOSEJMP(AM)]",

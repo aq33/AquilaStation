@@ -50,6 +50,8 @@ def declared_vars(root):
 		owner = None
 		in_var_block = False
 		for line in open(current, encoding='utf-8', errors='replace'):
+			if line.startswith(('//', '/*')):
+				continue
 			match = re.match(r'^(/[A-Za-z0-9_/]+)', line)
 			if match:
 				path = match.group(1)
@@ -59,11 +61,12 @@ def declared_vars(root):
 					owner = None
 					continue
 				owner = re.split(r'/(proc|verb)(/|$)', path)[0]
-				if '/proc' in path or '/verb' in path or '(' in line:
+				if re.search(r'/(proc|verb)(/|$)', path) or '(' in line:
 					owner = None
 				in_var_block = False
 				continue
-			if re.match(r'^\S', line):
+			# komentarze i dyrektywy od pierwszej kolumny nie kończą bloku typu
+			if re.match(r'^\S', line) and not line.startswith(('//', '#', '/*', '*')):
 				owner = None
 				continue
 			if not owner:
@@ -106,6 +109,10 @@ def main():
 	def known(path, var, value):
 		if var not in BUILTIN and not any(var in decl.get(a, ()) for a in ancestors(path)):
 			return False
+		# pliki zasobów w wartości (dźwięk, ikona) muszą istnieć w repo
+		for resource in ([] if value.startswith('"') else re.findall(r"'([^']+)'", value)):
+			if not os.path.exists(os.path.join(args.root, resource)):
+				return False
 		# ścieżki typów w wartości (np. odczynniki w list_reagents) też muszą istnieć
 		for type_path in re.findall(r'(?<![\w"])(/(?:datum|obj|mob|turf|area|atom)/[\w/]+)', value.split('"')[0] if value.startswith('"') else value):
 			if type_path.rstrip('/') not in types and not type_path.startswith(convert_maps.MACRO_PREFIXES):

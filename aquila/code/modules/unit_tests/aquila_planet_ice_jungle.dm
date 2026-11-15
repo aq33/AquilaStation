@@ -123,14 +123,3 @@
 
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL
-TEST_FOCUS(/datum/unit_test/planet_ice_jungle_surfaces)
-TEST_FOCUS(/datum/unit_test/planet_ice_jungle_ruins)
-TEST_FOCUS(/datum/unit_test/planet_ice_jungle_greebles)
-TEST_FOCUS(/datum/unit_test/planet_ice_jungle_content)
-TEST_FOCUS(/datum/unit_test/planet_type_selection)
-TEST_FOCUS(/datum/unit_test/planet_surface_generation)
-TEST_FOCUS(/datum/unit_test/planet_lava_ruins)
-TEST_FOCUS(/datum/unit_test/planet_greeble)
-TEST_FOCUS(/datum/unit_test/aquila_vein_drill)
-TEST_FOCUS(/datum/unit_test/planet_survey_mission)
-TEST_FOCUS(/datum/unit_test/planet_evacuation_mission)
