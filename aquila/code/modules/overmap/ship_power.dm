@@ -48,6 +48,11 @@ GLOBAL_LIST_INIT(ship_power_presets, list(
 	var/list/last_requested = list()
 	/// system = list(maszyna = jej największy pobór w W)
 	var/list/machines = list()
+	/// Rezerwy liczone osobno dla każdej sieci kabli: system = list(sieć = W). Prośba tarczy w odciętej sieci B nie może
+	/// blokować broni w sieci A, bo i tak nie zabierze z niej prądu.
+	var/list/net_requested = list()
+	var/list/net_drawn = list()
+	var/list/last_net_requested = list()
 	/// Numer bieżącego cyklu
 	var/cycle = 0
 
@@ -72,8 +77,24 @@ GLOBAL_LIST_INIT(ship_power_presets, list(
 	cycle = now
 	last_drawn = drawn
 	last_requested = requested
+	last_net_requested = net_requested
 	drawn = list()
 	requested = list()
+	net_requested = list()
+	net_drawn = list()
+
+/// Klucz sieci w listach rezerw (maszyny bez kabla, np. na APC, liczą się razem)
+/datum/ship_power/proc/net_key(net)
+	return net ? REF(net) : "brak"
+
+/datum/ship_power/proc/add_net(list/L, system, net, amount)
+	var/key = net_key(net)
+	LAZYINITLIST(L[system])
+	L[system][key] += amount
+
+/datum/ship_power/proc/get_net(list/L, system, net)
+	var/list/per_net = L[system]
+	return per_net ? (per_net[net_key(net)] || 0) : 0
 
 /// Największy pobór systemu: suma największych poborów jego maszyn (zgłoszonych przy poborze)
 /datum/ship_power/proc/capacity(system)
@@ -92,22 +113,22 @@ GLOBAL_LIST_INIT(ship_power_presets, list(
 		return null
 	return limits[system] * total
 
-/// Ile wolnego prądu trzeba zostawić systemom o wyższym priorytecie
-/datum/ship_power/proc/reserved_above(system)
+/// Ile wolnego prądu w sieci `net` trzeba zostawić systemom o wyższym priorytecie
+/datum/ship_power/proc/reserved_above(system, net)
 	. = 0
 	var/mine = priorities[system]
 	for(var/other in GLOB.ship_power_systems)
 		if(other == system || priorities[other] >= mine)
 			continue
 		// rezerwa nie większa niż limit tamtego systemu: prośby ponad limit i tak zostaną odrzucone
-		var/wanted = last_requested[other]
+		var/wanted = get_net(last_net_requested, other, net)
 		var/limit = cap(other)
 		if(!isnull(limit))
 			wanted = min(wanted, limit)
-		. += max(0, wanted - drawn[other])
+		. += max(0, wanted - get_net(net_drawn, other, net))
 
-/// Maszyna pyta o pobór `amount` W z sieci, w której jest `surplus` W wolnych. Zwraca TRUE, jeśli może pobrać.
-/datum/ship_power/proc/request(system, amount, surplus, obj/machinery/source, max_draw)
+/// Maszyna pyta o pobór `amount` W z sieci `net`, w której jest `surplus` W wolnych. Zwraca TRUE, jeśli może pobrać.
+/datum/ship_power/proc/request(system, amount, surplus, obj/machinery/source, max_draw, net)
 	roll_cycle()
 	if(source)
 		LAZYINITLIST(machines[system])
@@ -115,22 +136,26 @@ GLOBAL_LIST_INIT(ship_power_presets, list(
 	if(amount <= 0)
 		return TRUE
 	requested[system] += amount
+	add_net(net_requested, system, net, amount)
 	var/limit = limits[system] * max(capacity(system), amount)
 	if(drawn[system] + amount > limit + 1)
 		return FALSE
-	if(surplus - reserved_above(system) < amount)
+	if(surplus - reserved_above(system, net) < amount)
 		return FALSE
 	drawn[system] += amount
+	add_net(net_drawn, system, net, amount)
 	return TRUE
 
 /// Zapis poboru, którego nie odcinamy (np. PDSR: odcięcie groziłoby utratą zabezpieczenia reaktora)
-/datum/ship_power/proc/record(system, amount, obj/machinery/source, max_draw)
+/datum/ship_power/proc/record(system, amount, obj/machinery/source, max_draw, net)
 	roll_cycle()
 	if(source)
 		LAZYINITLIST(machines[system])
 		machines[system][source] = max(max_draw, amount)
 	requested[system] += amount
 	drawn[system] += amount
+	add_net(net_requested, system, net, amount)
+	add_net(net_drawn, system, net, amount)
 
 /obj/structure/overmap
 	/// AQUILA - podział mocy okrętu (tworzony przy pierwszym użyciu)
@@ -146,6 +171,12 @@ GLOBAL_LIST_INIT(ship_power_presets, list(
 	QDEL_NULL(ship_power)
 	return ..()
 
+/// Sieć kabla pod maszyną
+/obj/machinery/proc/ship_power_net()
+	var/turf/T = get_turf(src)
+	var/obj/structure/cable/C = T?.get_cable_node()
+	return C?.powernet
+
 /// Wolny prąd w sieci kabla pod maszyną
 /obj/machinery/proc/ship_power_surplus()
 	var/turf/T = get_turf(src)
@@ -157,7 +188,7 @@ GLOBAL_LIST_INIT(ship_power_presets, list(
 	var/obj/structure/overmap/ship = get_overmap()
 	if(!istype(ship))
 		return TRUE
-	return ship.get_ship_power().request(system, amount, ship_power_surplus(), src, max_draw)
+	return ship.get_ship_power().request(system, amount, ship_power_surplus(), src, max_draw, ship_power_net())
 
 // --- Tarcza: moc obcięta do limitu zamiast gaśnięcia ---
 
@@ -181,7 +212,7 @@ GLOBAL_LIST_INIT(ship_power_presets, list(
 	. = ..()
 	var/obj/structure/overmap/ship = get_overmap()
 	if(. && istype(ship))
-		ship.get_ship_power().record(SHIP_POWER_SHIELD, amount, src, max_power_input)
+		ship.get_ship_power().record(SHIP_POWER_SHIELD, amount, src, max_power_input, ship_power_net())
 
 // --- FTL ---
 

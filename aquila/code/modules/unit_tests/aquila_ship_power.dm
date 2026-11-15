@@ -26,6 +26,20 @@
 	TEST_ASSERT(power.request(SHIP_POWER_WEAPONS, 1e6, 6e6, gun, 2e6), "Weapons didn't get the power left over the shield's reserve")
 	TEST_ASSERT(power.request(SHIP_POWER_SHIELD, 5e6, 6e6, shield, 1e7), "The shield didn't get its reserved power")
 
+	// Regresja: rezerwa tarczy w odciętej sieci B nie blokuje broni w sieci A
+	var/datum/net_a = new
+	var/datum/net_b = new
+	power.cycle = -1
+	power.roll_cycle()
+	power.limits[SHIP_POWER_SHIELD] = 1
+	TEST_ASSERT(!power.request(SHIP_POWER_SHIELD, 9e6, 0, shield, 1e7, net_b), "The shield got power from an empty network")
+	power.cycle = -1
+	power.roll_cycle()
+	TEST_ASSERT(power.request(SHIP_POWER_WEAPONS, 1e6, 2e6, gun, 2e6, net_a), "The shield's request in another network blocked weapons")
+	TEST_ASSERT(!power.request(SHIP_POWER_WEAPONS, 1e6, 2e6, gun, 2e6, net_b), "Weapons took the shield's reserve in the shield's own network")
+	qdel(net_a)
+	qdel(net_b)
+
 	// Limit 0% odcina system całkowicie, a gotowe ustawienie przywraca limity
 	power.limits[SHIP_POWER_WEAPONS] = 0
 	TEST_ASSERT(!power.request(SHIP_POWER_WEAPONS, 1, 1e9, gun, 2e6), "A system at 0% still draws power")
