@@ -1,0 +1,8654 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aa" = (
+/obj/structure/cable,
+/obj/machinery/door/poddoor/preopen{
+	dir = 4;
+	id = "bonnieblast"
+	},
+/turf/open/floor/engine{
+	initial_gas_mix = "TEMP=2.7"
+	},
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"af" = (
+/obj/item/stack/tile/plasteel,
+/obj/machinery/firealarm/directional/south,
+/turf/open/floor/plasteel/dark/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/dorms)
+"aj" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/effect/turf_decal/trimline/yellow/line{
+	dir = 8;
+	color = "#f97016";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargo)
+"am" = (
+/obj/effect/turf_decal/siding/white,
+/obj/structure/cable/yellow,
+/mob/living/basic/trooper/syndicate/ranged/shotgun/space/stormtrooper,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4;
+	color = "#FF0000"
+	},
+/obj/effect/turf_decal/trimline/yellow/line{
+	color = "#f97016";
+	alpha = 255
+	},
+/obj/effect/turf_decal/siding/white/corner{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/yellow/line{
+	dir = 1;
+	color = "#f97016";
+	alpha = 255
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargo)
+"au" = (
+/turf/open/floor/engine/air,
+/area/ruin/space/has_grav/planet_space/refuelingpost/engineering)
+"aw" = (
+/obj/item/stack/tile/plasteel,
+/obj/effect/turf_decal/tile/black{
+	dir = 10;
+	color = "#444547";
+	alpha = 255
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/circuit,
+/area/ruin/space/has_grav/planet_space/refuelingpost/dorms)
+"az" = (
+/obj/machinery/atmospherics/pipe/simple/purple/hidden/layer2,
+/obj/machinery/atmospherics/components/unary/outlet_injector/on{
+	dir = 1
+	},
+/obj/machinery/air_sensor/atmos/toxin_tank{
+	pixel_x = 12;
+	pixel_y = 11
+	},
+/turf/open/floor/engine/plasma,
+/area/ruin/space/has_grav/planet_space/refuelingpost/engineering)
+"aD" = (
+/obj/item/stack/tile/plasteel,
+/obj/effect/turf_decal/tile/black{
+	dir = 10;
+	color = "#444547";
+	alpha = 255
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/circuit,
+/area/ruin/space/has_grav/planet_space/refuelingpost/dorms)
+"aI" = (
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/machinery/atmospherics/components/unary/portables_connector{
+	dir = 4;
+	piping_layer = 5
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/planet_space/refuelingpost/engineering)
+"aU" = (
+/obj/structure/table/glass,
+/obj/effect/turf_decal/tile/blue/anticorner/contrasted{
+	dir = 1;
+	color = "#32426b";
+	alpha = 140
+	},
+/obj/item/newspaper{
+	pixel_x = 5
+	},
+/obj/item/paper/crumpled,
+/obj/item/paper/crumpled{
+	pixel_x = -4;
+	pixel_y = -8
+	},
+/obj/item/paper/crumpled{
+	pixel_x = 21;
+	pixel_y = -22
+	},
+/obj/machinery/button/door{
+	pixel_x = 8;
+	pixel_y = 21;
+	id = "fuelingmedbay";
+	name = "rolety okienne"
+	},
+/turf/open/floor/plasteel/white{
+	initial_gas_mix = "n2=50;plasma=50;TEMP=293.15"
+	},
+/area/ruin/space/has_grav/planet_space/refuelingpost/infirmary)
+"aY" = (
+/obj/effect/decal/cleanable/robot_debris,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/circuit{
+	initial_gas_mix = "TEMP=2.7"
+	},
+/area/ruin/space/planet_space/hivebotshuttle)
+"bd" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 8
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"bq" = (
+/obj/machinery/atmospherics/pipe/simple/general/visible/layer2{
+	dir = 9
+	},
+/obj/item/wrench{
+	pixel_x = 17;
+	pixel_y = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/yellow/visible{
+	dir = 9
+	},
+/obj/item/pipe/binary/bendable{
+	dir = 4;
+	pixel_x = 2;
+	pixel_y = -10;
+	color = "#8000b6"
+	},
+/obj/item/radio/intercom/directional/south,
+/turf/open/floor/plating/rust,
+/area/ruin/space/has_grav/planet_space/refuelingpost/engineering)
+"bs" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/siphon/on/layer2{
+	dir = 1
+	},
+/turf/open/floor/engine/air,
+/area/ruin/space/has_grav/planet_space/refuelingpost/engineering)
+"bv" = (
+/obj/structure/grille,
+/obj/structure/window/shuttle,
+/obj/machinery/door/poddoor/shutters{
+	dir = 4;
+	id = "fuelingsecurity"
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/armory)
+"bx" = (
+/obj/structure/window/shuttle,
+/obj/structure/grille,
+/obj/machinery/door/poddoor/shutters{
+	id = "fuelingsecurity"
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"bA" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/planet_space/refuelingpost/engineering)
+"bN" = (
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 10
+	},
+/obj/structure/closet/firecloset,
+/obj/structure/sign/warning/fire{
+	pixel_x = -23;
+	pixel_y = 10
+	},
+/obj/structure/sign/warning{
+	pixel_x = -23;
+	pixel_y = -2
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/planet_space/refuelingpost/upper)
+"bQ" = (
+/obj/machinery/atmospherics/pipe/simple/purple/hidden/layer2{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
+	dir = 6
+	},
+/obj/effect/turf_decal/ship/borderfloor,
+/obj/effect/turf_decal/siding/yellow,
+/obj/effect/turf_decal/siding/yellow{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/planet_space/refuelingpost/engineering)
+"bR" = (
+/obj/structure/girder/reinforced,
+/obj/structure/grille,
+/turf/open/floor/plating/airless,
+/area/space)
+"bS" = (
+/obj/structure/cable,
+/obj/structure/lattice/catwalk/over/ship/dark,
+/turf/open/floor/plating,
+/area/space)
+"bX" = (
+/obj/structure/spawner/hivebot,
+/turf/open/floor/circuit,
+/area/ruin/space/has_grav/planet_space/refuelingpost/armory)
+"bY" = (
+/turf/closed/wall/r_wall/rust,
+/area/ruin/space/planet_space/hivebotshuttle)
+"ca" = (
+/turf/open/floor/plating,
+/area/space)
+"ck" = (
+/obj/effect/turf_decal/siding/white,
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4;
+	color = "#FF0000"
+	},
+/obj/effect/turf_decal/trimline/yellow/line{
+	color = "#f97016";
+	alpha = 255
+	},
+/obj/effect/turf_decal/trimline/yellow/corner{
+	dir = 4;
+	color = "#f97016";
+	alpha = 255
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargo)
+"cF" = (
+/obj/machinery/atmospherics/components/binary/dp_vent_pump/high_volume/layer2{
+	dir = 1
+	},
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/plasteel/tech,
+/area/ruin/space/has_grav/planet_space/refuelingpost/starboard)
+"cH" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/cable,
+/turf/open/floor/plating/rust,
+/area/ruin/space/planet_space/hivebotshuttle)
+"da" = (
+/turf/closed/wall/rust,
+/area/ruin/space/planet_space/hivebotshuttle)
+"dd" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/cable/yellow,
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/purple/hidden/layer5{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 1
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"du" = (
+/turf/closed/wall/mineral/titanium/nodiagonal,
+/area/ruin/space/has_grav/planet_space/refuelingpost/infirmary)
+"dz" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/planet_space/refuelingpost/upper)
+"dF" = (
+/obj/machinery/atmospherics/pipe/simple/purple/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/planet_space/refuelingpost/engineering)
+"dG" = (
+/obj/structure/lattice/catwalk/over/ship,
+/obj/machinery/power/apc/auto_name/north,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 10
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/planet_space/refuelingpost/engineering)
+"dI" = (
+/obj/structure/lattice/catwalk,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/engineering)
+"dP" = (
+/obj/structure/lattice/catwalk,
+/obj/machinery/atmospherics/components/unary/outlet_injector/on/layer4{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/plating/airless,
+/area/space)
+"dU" = (
+/obj/effect/turf_decal/stripes/box,
+/obj/machinery/door/airlock/external,
+/obj/structure/cable,
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/planet_space/refuelingpost/solarstorage)
+"ec" = (
+/turf/open/floor/engine{
+	initial_gas_mix = "TEMP=2.7"
+	},
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"em" = (
+/obj/structure/girder,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargo)
+"en" = (
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/item/stack/tile/plasteel,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/cable/yellow,
+/obj/effect/turf_decal/trimline/blue/filled/corner{
+	dir = 4;
+	color = "#32426b";
+	alpha = 255
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"eC" = (
+/obj/structure/grille,
+/obj/structure/window/shuttle,
+/obj/machinery/atmospherics/pipe/simple/cyan/visible/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/engineering)
+"eS" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 4;
+	welded = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/planet_space/refuelingpost/solarstorage)
+"fa" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/pipe/simple/purple/hidden/layer5{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
+	dir = 9
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"fb" = (
+/obj/effect/turf_decal/stripes/box,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable/yellow,
+/obj/machinery/door/airlock/command/glass{
+	dir = 4;
+	name = "Dowództwo"
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/space/has_grav/planet_space/refuelingpost/bridge)
+"fc" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/machinery/advanced_airlock_controller/directional/west,
+/obj/structure/cable,
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/planet_space/refuelingpost/solarstorage)
+"fg" = (
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 8
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/bridge)
+"fi" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/cable/yellow,
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/purple/hidden/layer5{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 1
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"fn" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/power/apc/auto_name/west,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/cable/yellow,
+/obj/effect/turf_decal/trimline/blue/filled/corner{
+	dir = 1;
+	color = "#32426b";
+	alpha = 255
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/planet_space/refuelingpost/starboard)
+"fp" = (
+/obj/structure/table/reinforced,
+/obj/item/trash/energybar{
+	pixel_x = 20;
+	pixel_y = -41
+	},
+/obj/item/trash/energybar{
+	pixel_x = 29;
+	pixel_y = -22
+	},
+/obj/item/stamp{
+	pixel_x = 26;
+	pixel_y = -1
+	},
+/obj/item/clipboard{
+	pixel_x = 13;
+	pixel_y = 2
+	},
+/obj/item/paper_bin{
+	pixel_x = -2;
+	pixel_y = 3
+	},
+/obj/item/trash/energybar{
+	pixel_x = -3;
+	pixel_y = 12
+	},
+/turf/open/floor/monotile/dark,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargo)
+"fs" = (
+/turf/closed/wall/mineral/titanium/nodiagonal,
+/area/ruin/space/has_grav/planet_space/refuelingpost/bridge)
+"fw" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"fx" = (
+/obj/structure/table/reinforced,
+/obj/item/flashlight/lamp/green{
+	pixel_x = 7;
+	pixel_y = 11
+	},
+/obj/machinery/button/door{
+	pixel_x = -8;
+	pixel_y = 8;
+	name = "przycisk blokady ładowni";
+	id = "fuelingcargo"
+	},
+/turf/open/floor/circuit,
+/area/ruin/space/has_grav/planet_space/refuelingpost/armory)
+"fC" = (
+/obj/item/stack/tile/plasteel,
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/bridge)
+"fD" = (
+/obj/structure/cable,
+/obj/machinery/power/tracker,
+/turf/open/floor/plating/airless,
+/area/ruin/space/planet_space/hivebotshuttle)
+"fG" = (
+/obj/item/trash/energybar{
+	pixel_x = -14;
+	pixel_y = -20
+	},
+/obj/effect/turf_decal/tile/black{
+	dir = 1;
+	color = "#444547";
+	alpha = 255
+	},
+/turf/open/floor/plating/rust,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargo)
+"gc" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
+/turf/open/floor/plasteel/techmaint{
+	initial_gas_mix = "TEMP=2.7"
+	},
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"gg" = (
+/obj/machinery/door/airlock/external,
+/obj/effect/turf_decal/stripes/box,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/planet_space/refuelingpost/starboard)
+"go" = (
+/obj/effect/decal/cleanable/robot_debris,
+/obj/item/stock_parts/micro_laser/high,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 10
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"gp" = (
+/obj/structure/closet/secure_closet/engineering_personal,
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 5
+	},
+/turf/open/floor/plasteel/tech,
+/area/ruin/space/has_grav/planet_space/refuelingpost/solarstorage)
+"gK" = (
+/obj/structure/lattice,
+/obj/machinery/light/small/broken{
+	dir = 1
+	},
+/obj/item/stack/ore/iron,
+/turf/open/space/basic,
+/area/ruin/space/has_grav/planet_space/refuelingpost/dorms)
+"gS" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/cable/yellow,
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 4;
+	color = "#32426b";
+	alpha = 255
+	},
+/obj/machinery/atmospherics/pipe/manifold/green/hidden{
+	dir = 8
+	},
+/turf/open/floor/monotile/light,
+/area/ruin/space/has_grav/planet_space/refuelingpost/lower)
+"ha" = (
+/obj/structure/grille/broken,
+/obj/item/stack/ore/glass,
+/turf/open/floor/plating/airless,
+/area/space)
+"hf" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/manifold/purple/hidden/layer5{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
+	dir = 9
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"hh" = (
+/turf/open/floor/plating/rust,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"hk" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/monotile/light{
+	initial_gas_mix = "n2=50;plasma=50;TEMP=293.15"
+	},
+/area/ruin/space/has_grav/planet_space/refuelingpost/infirmary)
+"hB" = (
+/obj/structure/grille,
+/obj/structure/window/shuttle,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"hC" = (
+/mob/living/basic/hivebot/range,
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"hF" = (
+/obj/machinery/atmospherics/components/binary/dp_vent_pump/high_volume/layer2{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/plasteel/tech,
+/area/ruin/space/has_grav/planet_space/refuelingpost/starboard)
+"hJ" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	welded = 1
+	},
+/obj/effect/turf_decal/trimline/blue/filled/corner{
+	dir = 4;
+	color = "#32426b";
+	alpha = 255
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/planet_space/refuelingpost/starboard)
+"hO" = (
+/obj/machinery/atmospherics/components/unary/outlet_injector{
+	name = "awaryjne przywrócenie ciśnienia"
+	},
+/obj/effect/turf_decal/stripes/box,
+/turf/open/floor/monotile/light{
+	initial_gas_mix = "n2=50;plasma=50;TEMP=293.15"
+	},
+/area/ruin/space/has_grav/planet_space/refuelingpost/infirmary)
+"hQ" = (
+/obj/structure/lattice/catwalk,
+/turf/open/floor/plating/airless,
+/area/space)
+"hV" = (
+/obj/structure/cable,
+/obj/effect/turf_decal/siding/thinplating/dark,
+/obj/structure/chair/fancy/shuttle{
+	dir = 4
+	},
+/obj/structure/railing,
+/turf/open/floor/plasteel/dark/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"il" = (
+/obj/item/stack/sheet/iron,
+/turf/open/floor/plating/airless{
+	icon_state = "platingdmg1"
+	},
+/area/ruin/space/has_grav/planet_space/refuelingpost/dorms)
+"in" = (
+/turf/open/floor/carpet/red,
+/area/ruin/space/has_grav/planet_space/refuelingpost/armory)
+"ip" = (
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer4{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 6
+	},
+/obj/effect/turf_decal/ship/borderfloor,
+/obj/effect/turf_decal/siding/yellow{
+	dir = 10
+	},
+/obj/effect/turf_decal/siding/yellow/corner{
+	dir = 4
+	},
+/obj/structure/table/reinforced,
+/obj/item/analyzer{
+	pixel_x = -6;
+	pixel_y = 10
+	},
+/obj/item/clothing/glasses/meson/engine,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/planet_space/refuelingpost/engineering)
+"ix" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/cable/yellow,
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 1
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"iC" = (
+/obj/structure/cable/yellow,
+/obj/effect/decal/cleanable/crayon{
+	icon_state = "0";
+	pixel_x = -16;
+	pixel_y = 2
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/planet_space/refuelingpost/solarstorage)
+"iE" = (
+/obj/structure/grille,
+/obj/structure/window/shuttle,
+/obj/machinery/door/poddoor/shutters{
+	dir = 4;
+	id = "cargospacewindow"
+	},
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargo)
+"iH" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/planet_space/refuelingpost/armory)
+"iI" = (
+/obj/machinery/power/smes,
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/machinery/door/poddoor{
+	dir = 4;
+	id = "bonnieengine"
+	},
+/turf/open/floor/plasteel/tech{
+	initial_gas_mix = "TEMP=2.7"
+	},
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"iN" = (
+/obj/effect/turf_decal/delivery,
+/obj/structure/cable/yellow,
+/obj/machinery/porta_turret/syndicate{
+	dir = 6;
+	faction = list("nanotrasenprivate")
+	},
+/turf/open/floor/plating/airless,
+/area/space)
+"iO" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	dir = 4;
+	id = "refuelingbridge"
+	},
+/obj/structure/grille/broken,
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/bridge)
+"iS" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/planet_space/refuelingpost/upper)
+"iU" = (
+/obj/structure/lattice/catwalk/over/ship,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/planet_space/refuelingpost/engineering)
+"iZ" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 9
+	},
+/obj/machinery/advanced_airlock_controller/directional/east,
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/plasteel/tech,
+/area/ruin/space/has_grav/planet_space/refuelingpost/starboard)
+"ja" = (
+/obj/structure/lattice/catwalk,
+/obj/structure/cable,
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/engineering)
+"jc" = (
+/obj/structure/chair/office{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/monotile/steel{
+	initial_gas_mix = "TEMP=2.7"
+	},
+/area/ruin/space/has_grav/planet_space/refuelingpost/bridge)
+"jd" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 4
+	},
+/obj/structure/rack,
+/obj/item/clothing/mask/gas{
+	pixel_x = -5;
+	pixel_y = 1
+	},
+/obj/item/clothing/mask/gas{
+	pixel_x = -5;
+	pixel_y = 7
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"jf" = (
+/obj/machinery/door/airlock/external{
+	welded = 1
+	},
+/obj/effect/turf_decal/stripes/box,
+/obj/machinery/atmospherics/pipe/layer_manifold,
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/planet_space/refuelingpost/starboard)
+"jo" = (
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 8
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/bridge)
+"jw" = (
+/obj/effect/turf_decal/tile/red/half{
+	dir = 8;
+	color = "#730622";
+	alpha = 255
+	},
+/mob/living/basic/hivebot,
+/turf/open/floor/plasteel/tech{
+	initial_gas_mix = "TEMP=2.7"
+	},
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"jC" = (
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer4{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/effect/turf_decal/ship/borderfloor,
+/obj/effect/turf_decal/siding/yellow,
+/obj/effect/turf_decal/siding/yellow{
+	dir = 1
+	},
+/obj/machinery/computer/atmos_alert{
+	dir = 1;
+	icon_state = "computer-middle"
+	},
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/planet_space/refuelingpost/engineering)
+"jF" = (
+/obj/effect/turf_decal/tile/neutral/anticorner/contrasted{
+	color = "#a3a2a0";
+	alpha = 255
+	},
+/obj/machinery/light/broken{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
+/turf/open/floor/plating/rust,
+/area/ruin/space/has_grav/planet_space/refuelingpost/engineering)
+"jH" = (
+/obj/effect/turf_decal/ship/borderfloor,
+/obj/machinery/airalarm/directional/south,
+/turf/open/floor/circuit,
+/area/ruin/space/has_grav/planet_space/refuelingpost/upper)
+"jI" = (
+/obj/structure/girder,
+/obj/item/stack/ore/titanium,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/planet_space/refuelingpost/dorms)
+"jJ" = (
+/obj/structure/lattice/catwalk,
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer4{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/cable,
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/engineering)
+"jL" = (
+/turf/open/floor/engine,
+/area/ruin/space/has_grav/planet_space/refuelingpost/engineering)
+"jQ" = (
+/obj/machinery/vending/snack/orange,
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	color = "#32426b";
+	alpha = 255
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/planet_space/refuelingpost/upper)
+"jT" = (
+/obj/machinery/atmospherics/components/unary/portables_connector{
+	dir = 1
+	},
+/obj/machinery/portable_atmospherics/canister{
+	icon_state = "orange";
+	name = "kanister plazmy"
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 4
+	},
+/obj/effect/turf_decal/box/corners{
+	dir = 1
+	},
+/obj/effect/turf_decal/box/corners{
+	dir = 8
+	},
+/turf/open/floor/plasteel/techmaint{
+	initial_gas_mix = "TEMP=2.7"
+	},
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"jV" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable/yellow,
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 4;
+	color = "#32426b";
+	alpha = 255
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 1
+	},
+/turf/open/floor/monotile/light,
+/area/ruin/space/has_grav/planet_space/refuelingpost/lower)
+"kn" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/dorms)
+"ko" = (
+/obj/machinery/door/poddoor/preopen{
+	id = "fuelhallwayturret"
+	},
+/obj/structure/cable/yellow,
+/obj/structure/grille,
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/upper)
+"kq" = (
+/obj/effect/turf_decal/trimline/blue/line{
+	dir = 6;
+	color = "#32426b";
+	alpha = 255
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 5
+	},
+/turf/open/floor/plasteel/dark/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/bridge)
+"kr" = (
+/obj/effect/turf_decal/siding/thinplating/dark,
+/turf/open/floor/engine,
+/area/space)
+"kw" = (
+/obj/effect/turf_decal/ship/borderfloor,
+/obj/effect/turf_decal/siding/yellow{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/yellow{
+	dir = 4
+	},
+/obj/structure/reagent_dispensers/watertank,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/planet_space/refuelingpost/engineering)
+"kx" = (
+/obj/effect/decal/cleanable/glass,
+/obj/item/stack/rods,
+/obj/structure/cable,
+/turf/open/floor/plating/airless,
+/area/ruin/space/planet_space/hivebotshuttle)
+"ky" = (
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 8
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/bridge)
+"kB" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/plasteel/techmaint,
+/area/ruin/space/has_grav/planet_space/refuelingpost/engineering)
+"kI" = (
+/obj/effect/turf_decal/trimline/red/line{
+	color = "#c92020";
+	alpha = 255
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/planet_space/refuelingpost/armory)
+"kL" = (
+/obj/structure/reagent_dispensers/water_cooler,
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargo)
+"kP" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/structure/cable/yellow,
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 8
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"kR" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/purple/hidden/layer5{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
+	dir = 6
+	},
+/turf/open/floor/plasteel/techmaint{
+	initial_gas_mix = "TEMP=2.7"
+	},
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"kV" = (
+/obj/machinery/power/smes{
+	dir = 2
+	},
+/turf/open/floor/plating,
+/area/ruin/space/planet_space/hivebotshuttle)
+"kX" = (
+/turf/open/floor/monotile/dark,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargo)
+"kZ" = (
+/obj/structure/sign/warning/securearea{
+	pixel_y = 30
+	},
+/obj/effect/turf_decal/caution,
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/upper)
+"li" = (
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 10
+	},
+/obj/effect/turf_decal/siding/yellow{
+	dir = 10
+	},
+/turf/open/floor/plasteel/techmaint,
+/area/ruin/space/has_grav/planet_space/refuelingpost/engineering)
+"lp" = (
+/obj/structure/chair/fancy/comfy{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/blue/line{
+	dir = 4;
+	color = "#32426b";
+	alpha = 255
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/cable/yellow,
+/turf/open/floor/plasteel/dark/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/bridge)
+"lA" = (
+/obj/effect/decal/cleanable/robot_debris,
+/obj/item/stock_parts/manipulator,
+/obj/machinery/atmospherics/components/binary/valve{
+	dir = 4;
+	icon_state = "mvalve_map-5"
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"lF" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/purple/hidden/layer5{
+	dir = 1
+	},
+/obj/machinery/button/door{
+	dir = 4;
+	pixel_x = -22;
+	pixel_y = 9;
+	id = "fuelingarea";
+	name = "rolety stacji paliw"
+	},
+/turf/open/floor/plating/rust,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"lI" = (
+/obj/effect/turf_decal/tile/blue/half{
+	color = "#32426b";
+	alpha = 140
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 6
+	},
+/turf/open/floor/plasteel/white{
+	initial_gas_mix = "n2=50;plasma=50;TEMP=293.15"
+	},
+/area/ruin/space/has_grav/planet_space/refuelingpost/infirmary)
+"lN" = (
+/turf/open/floor/carpet/blue{
+	initial_gas_mix = "TEMP=2.7"
+	},
+/area/ruin/space/has_grav/planet_space/refuelingpost/dorms)
+"lO" = (
+/obj/structure/table/reinforced,
+/obj/item/reagent_containers/hypospray/medipen{
+	pixel_x = -6;
+	pixel_y = 3
+	},
+/obj/item/storage/box/masks{
+	pixel_x = 6;
+	pixel_y = 3
+	},
+/obj/effect/turf_decal/tile/blue/anticorner/contrasted{
+	dir = 4;
+	color = "#32426b";
+	alpha = 140
+	},
+/obj/effect/turf_decal/ship/borderfloor/corner{
+	dir = 8
+	},
+/turf/open/floor/plasteel/white{
+	initial_gas_mix = "n2=50;plasma=50;TEMP=293.15"
+	},
+/area/ruin/space/has_grav/planet_space/refuelingpost/infirmary)
+"lT" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 9
+	},
+/obj/structure/cable/yellow,
+/obj/machinery/button/door{
+	dir = 8;
+	pixel_x = 19;
+	pixel_y = 10;
+	id = "fuelinghangar"
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 9
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"mb" = (
+/obj/machinery/power/solar_control,
+/obj/effect/turf_decal/ship/borderfloor,
+/obj/structure/cable,
+/obj/machinery/power/terminal{
+	dir = 8
+	},
+/turf/open/floor/plasteel/tech,
+/area/ruin/space/has_grav/planet_space/refuelingpost/solarstorage)
+"mf" = (
+/obj/effect/turf_decal/trimline/yellow/line{
+	dir = 5;
+	color = "#f97016";
+	alpha = 255
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargo)
+"mp" = (
+/obj/structure/frame/machine{
+	anchored = 1
+	},
+/obj/effect/decal/cleanable/robot_debris,
+/turf/open/floor/circuit{
+	initial_gas_mix = "TEMP=2.7"
+	},
+/area/ruin/space/planet_space/hivebotshuttle)
+"mt" = (
+/obj/structure/cable,
+/obj/effect/turf_decal/tile/red/half{
+	dir = 4;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/item/ammo_casing/spent,
+/turf/open/floor/plasteel/tech{
+	initial_gas_mix = "TEMP=2.7"
+	},
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"mw" = (
+/obj/structure/girder,
+/turf/open/floor/plating/airless,
+/area/ruin/space/planet_space/hivebotshuttle)
+"mE" = (
+/obj/structure/extinguisher_cabinet/west,
+/obj/machinery/atmospherics/components/unary/outlet_injector{
+	dir = 4;
+	name = "awaryjne przywrócenie ciśnienia"
+	},
+/obj/effect/turf_decal/stripes/box,
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 4
+	},
+/turf/open/floor/monotile/steel{
+	initial_gas_mix = "TEMP=2.7"
+	},
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"mF" = (
+/obj/structure/lattice/catwalk,
+/obj/machinery/atmospherics/pipe/manifold/purple/hidden/layer2{
+	dir = 8
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/yellow/hidden{
+	dir = 8
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/engineering)
+"mN" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/button/door{
+	dir = 4;
+	pixel_x = -22;
+	pixel_y = 9;
+	id = "fuelingarea";
+	name = "rolety stacji paliw"
+	},
+/turf/open/floor/plating/rust,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"mP" = (
+/obj/effect/turf_decal/trimline/blue/line{
+	dir = 5;
+	color = "#32426b";
+	alpha = 255
+	},
+/obj/item/stack/tile/plasteel,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 6
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/plasteel/dark/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/bridge)
+"mS" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/purple/hidden/layer5{
+	dir = 1
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"mW" = (
+/obj/effect/turf_decal/trimline/blue/line{
+	dir = 10;
+	color = "#32426b";
+	alpha = 255
+	},
+/obj/item/shard,
+/turf/open/floor/plasteel/dark/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/bridge)
+"nc" = (
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"nd" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 9
+	},
+/obj/machinery/light/broken,
+/obj/machinery/computer/atmos_control/tank/toxin_tank{
+	dir = 1;
+	icon_state = "computer-left"
+	},
+/obj/effect/turf_decal/ship/borderfloor,
+/obj/effect/turf_decal/siding/yellow,
+/obj/effect/turf_decal/siding/yellow{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/planet_space/refuelingpost/engineering)
+"nl" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/cable/yellow,
+/turf/open/floor/plating/airless,
+/area/ruin/space/planet_space/hivebotshuttle)
+"nq" = (
+/obj/effect/turf_decal/siding/white,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/structure/cable/yellow,
+/obj/structure/extinguisher_cabinet/north,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4;
+	color = "#FF0000"
+	},
+/obj/effect/turf_decal/trimline/yellow/line{
+	color = "#f97016";
+	alpha = 255
+	},
+/obj/effect/turf_decal/trimline/yellow/line{
+	dir = 1;
+	color = "#f97016";
+	alpha = 255
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargo)
+"nr" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
+	dir = 1
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"ns" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/machinery/suit_storage_unit,
+/turf/open/floor/plasteel/tech{
+	initial_gas_mix = "TEMP=2.7"
+	},
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"nt" = (
+/obj/item/shard,
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/engine,
+/area/space)
+"nv" = (
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 5
+	},
+/obj/effect/turf_decal/ship/borderfloor/corner{
+	dir = 8
+	},
+/turf/open/floor/circuit{
+	initial_gas_mix = "TEMP=2.7"
+	},
+/area/ruin/space/has_grav/planet_space/refuelingpost/bridge)
+"nw" = (
+/turf/closed/wall/mineral/titanium/nodiagonal,
+/area/ruin/space/has_grav/planet_space/refuelingpost/dorms)
+"ny" = (
+/obj/effect/turf_decal/siding/thinplating/dark,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/rust,
+/area/ruin/space/has_grav/planet_space/refuelingpost/armory)
+"nA" = (
+/obj/machinery/door/poddoor/preopen{
+	id = "fuelinghangar"
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"nB" = (
+/obj/item/stack/tile/plasteel,
+/obj/structure/cable/yellow,
+/obj/machinery/power/apc/auto_name/north,
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/bridge)
+"nC" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 9
+	},
+/turf/open/floor/monotile/light{
+	initial_gas_mix = "n2=50;plasma=50;TEMP=293.15"
+	},
+/area/ruin/space/has_grav/planet_space/refuelingpost/infirmary)
+"nN" = (
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargo)
+"nW" = (
+/obj/structure/grille,
+/obj/structure/window/shuttle,
+/obj/machinery/door/poddoor/shutters{
+	id = "cargospacewindow"
+	},
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargo)
+"ob" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/planet_space/refuelingpost/engineering)
+"og" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 8;
+	color = "#32426b";
+	alpha = 255
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/monotile/light,
+/area/ruin/space/has_grav/planet_space/refuelingpost/lower)
+"oh" = (
+/obj/item/stack/tile/plasteel,
+/obj/effect/turf_decal/tile/black{
+	dir = 10;
+	color = "#444547";
+	alpha = 255
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/circuit,
+/area/ruin/space/has_grav/planet_space/refuelingpost/dorms)
+"om" = (
+/obj/machinery/portable_atmospherics/canister{
+	icon_state = "orange";
+	name = "kanister plazmy"
+	},
+/turf/open/floor/plasteel/techmaint,
+/area/ruin/space/has_grav/planet_space/refuelingpost/engineering)
+"ot" = (
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 9
+	},
+/turf/open/floor/plasteel/tech/grid{
+	initial_gas_mix = "TEMP=2.7"
+	},
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"ou" = (
+/obj/effect/decal/cleanable/robot_debris,
+/obj/item/stock_parts/cell/crap,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 6
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/planet_space/refuelingpost/armory)
+"oD" = (
+/obj/structure/girder/reinforced,
+/turf/open/floor/plating/airless,
+/area/space)
+"oF" = (
+/obj/effect/turf_decal/siding/white/end,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 1;
+	welded = 1
+	},
+/obj/effect/turf_decal/trimline/yellow/end{
+	color = "#f97016";
+	alpha = 255
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargo)
+"oG" = (
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/planet_space/refuelingpost/dorms)
+"oH" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/purple/visible/layer2,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 5
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/planet_space/refuelingpost/engineering)
+"oJ" = (
+/obj/effect/turf_decal/box,
+/obj/structure/reagent_dispensers/watertank,
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargo)
+"oN" = (
+/obj/effect/decal/cleanable/robot_debris,
+/obj/item/stock_parts/scanning_module/adv,
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/plating/rust,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"oZ" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/extinguisher_cabinet/south,
+/turf/open/floor/plasteel/dark/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/dorms)
+"pa" = (
+/obj/machinery/atmospherics/components/unary/portables_connector/layer2,
+/obj/machinery/portable_atmospherics/pump,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/plasteel/techmaint,
+/area/ruin/space/has_grav/planet_space/refuelingpost/engineering)
+"pq" = (
+/obj/machinery/firealarm/directional/east,
+/obj/structure/table/reinforced,
+/obj/item/reagent_containers/food/drinks/coffee/empty{
+	pixel_x = 12;
+	pixel_y = 12
+	},
+/obj/item/reagent_containers/food/drinks/coffee/empty{
+	pixel_x = 8;
+	pixel_y = 5
+	},
+/obj/item/stack/sheet/cardboard{
+	pixel_x = -8;
+	pixel_y = 20
+	},
+/turf/open/floor/monotile/dark,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargo)
+"pL" = (
+/obj/effect/turf_decal/box,
+/turf/open/floor/plasteel/tech,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargo)
+"pS" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/pipe/simple/purple/hidden/layer5{
+	dir = 1
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"qe" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/plasteel/dark/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/dorms)
+"qf" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/effect/turf_decal/trimline/yellow/line{
+	dir = 8;
+	color = "#f97016";
+	alpha = 255
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargo)
+"qg" = (
+/obj/effect/turf_decal/delivery,
+/obj/machinery/light/small/broken{
+	dir = 1
+	},
+/obj/structure/cable/yellow,
+/obj/machinery/porta_turret/syndicate{
+	faction = list("nanotrasenprivate")
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/upper)
+"qw" = (
+/obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/o2{
+	piping_layer = 4
+	},
+/turf/open/floor/monotile/steel,
+/area/ruin/space/has_grav/planet_space/refuelingpost/engineering)
+"qI" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/planet_space/refuelingpost/starboard)
+"qJ" = (
+/obj/structure/grille,
+/obj/structure/window/shuttle,
+/obj/machinery/door/poddoor/shutters/preopen{
+	dir = 4;
+	id = "fuelingengineering"
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/engineering)
+"qL" = (
+/obj/structure/lattice/catwalk/over/ship,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 5
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/planet_space/refuelingpost/engineering)
+"qS" = (
+/obj/structure/grille/broken,
+/turf/open/floor/plating/airless,
+/area/space)
+"qT" = (
+/obj/effect/turf_decal/ship/borderfloor,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/firealarm/directional/south,
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/planet_space/refuelingpost/upper)
+"ra" = (
+/obj/effect/turf_decal/siding/thinplating/dark,
+/turf/open/space/basic,
+/area/space)
+"re" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/cable/yellow,
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 8;
+	color = "#32426b";
+	alpha = 255
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 4;
+	welded = 1
+	},
+/turf/open/floor/monotile/light,
+/area/ruin/space/has_grav/planet_space/refuelingpost/lower)
+"rm" = (
+/obj/structure/frame,
+/turf/open/floor/circuit{
+	initial_gas_mix = "TEMP=2.7"
+	},
+/area/ruin/space/planet_space/hivebotshuttle)
+"rn" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/pipe/layer_manifold{
+	dir = 4
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"rr" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/space)
+"rz" = (
+/obj/structure/railing{
+	dir = 5
+	},
+/obj/structure/table/reinforced,
+/obj/machinery/cell_charger,
+/turf/open/floor/plating/rust,
+/area/ruin/space/has_grav/planet_space/refuelingpost/engineering)
+"rA" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/sign/warning/fire{
+	pixel_x = -24;
+	pixel_y = 10
+	},
+/obj/structure/sign/warning{
+	pixel_x = -24;
+	pixel_y = -2
+	},
+/obj/machinery/atmospherics/pipe/simple/purple/hidden/layer5{
+	dir = 1
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"rB" = (
+/obj/structure/bed,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/carpet/blue{
+	initial_gas_mix = "TEMP=2.7"
+	},
+/area/ruin/space/has_grav/planet_space/refuelingpost/dorms)
+"rE" = (
+/obj/machinery/power/apc/auto_name/east,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/cable/yellow,
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 4;
+	color = "#32426b";
+	alpha = 255
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/monotile/light,
+/area/ruin/space/has_grav/planet_space/refuelingpost/lower)
+"rL" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/pipe/simple/purple/hidden/layer5{
+	dir = 1
+	},
+/obj/machinery/button/door{
+	dir = 4;
+	pixel_x = -22;
+	pixel_y = 9;
+	id = "fuelingarea";
+	name = "rolety stacji paliw"
+	},
+/turf/open/floor/plating/rust,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"rN" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/simple/purple/hidden/layer5,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 1
+	},
+/turf/open/floor/plating/rust,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"rO" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/cable/yellow,
+/obj/machinery/light/floor,
+/obj/machinery/atmospherics/pipe/simple/purple/hidden/layer5{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"rR" = (
+/obj/structure/sign/warning/securearea{
+	pixel_y = 29
+	},
+/obj/effect/turf_decal/caution,
+/turf/open/floor/plating/rust,
+/area/ruin/space/has_grav/planet_space/refuelingpost/upper)
+"rZ" = (
+/obj/structure/lattice/catwalk,
+/obj/machinery/atmospherics/pipe/simple/purple/hidden/layer2{
+	dir = 1
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
+	dir = 1
+	},
+/turf/open/floor/plating/airless,
+/area/space)
+"sk" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 8
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"sq" = (
+/obj/structure/girder/reinforced,
+/obj/structure/grille/broken,
+/turf/open/floor/plating/airless,
+/area/space)
+"sI" = (
+/obj/effect/turf_decal/siding/thinplating/dark/corner,
+/obj/machinery/holopad,
+/obj/effect/decal/cleanable/robot_debris,
+/obj/item/stock_parts/capacitor,
+/obj/item/ammo_casing/spent,
+/obj/machinery/button/door{
+	dir = 4;
+	pixel_x = -20;
+	pixel_y = -1;
+	name = "rolety silnika";
+	id = "bonnieengine"
+	},
+/obj/machinery/light_switch{
+	pixel_x = -19;
+	pixel_y = 9;
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"sJ" = (
+/obj/effect/turf_decal/tile/neutral/anticorner/contrasted{
+	color = "#a3a2a0";
+	alpha = 255
+	},
+/obj/machinery/light/broken{
+	dir = 4
+	},
+/turf/open/floor/plating/rust,
+/area/ruin/space/has_grav/planet_space/refuelingpost/engineering)
+"sO" = (
+/turf/closed/wall/mineral/titanium/nodiagonal,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"sY" = (
+/obj/effect/turf_decal/stripes/box,
+/obj/machinery/door/airlock{
+	dir = 4;
+	name = "Sypialnie"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/planet_space/refuelingpost/dorms)
+"tb" = (
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 6
+	},
+/obj/effect/turf_decal/ship/borderfloor/corner{
+	dir = 1
+	},
+/obj/item/clipboard{
+	pixel_x = -13
+	},
+/obj/item/stamp,
+/turf/open/floor/circuit,
+/area/ruin/space/has_grav/planet_space/refuelingpost/bridge)
+"tc" = (
+/turf/open/floor/plating/airless,
+/area/space)
+"tk" = (
+/turf/closed/wall/mineral/titanium/nodiagonal,
+/area/ruin/space/has_grav/planet_space/refuelingpost/upper)
+"tr" = (
+/obj/effect/turf_decal/siding/white,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/structure/cable/yellow,
+/obj/item/radio/intercom/directional/north,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4;
+	color = "#FF0000"
+	},
+/obj/effect/turf_decal/trimline/yellow/line{
+	color = "#f97016";
+	alpha = 255
+	},
+/obj/effect/turf_decal/trimline/yellow/line{
+	dir = 1;
+	color = "#f97016";
+	alpha = 255
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargo)
+"ts" = (
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/cable/yellow,
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/planet_space/refuelingpost/upper)
+"tw" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/purple/hidden/layer5{
+	dir = 1
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"tx" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/simple/purple/hidden/layer5{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"ty" = (
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 9
+	},
+/obj/structure/closet/emcloset/anchored,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/radio/intercom/directional/north,
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/planet_space/refuelingpost/upper)
+"tB" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/sign/warning/fire{
+	pixel_x = -24;
+	pixel_y = 10
+	},
+/obj/structure/sign/warning{
+	pixel_x = -24;
+	pixel_y = -2
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"tH" = (
+/obj/structure/lattice,
+/obj/item/stack/ore/titanium,
+/turf/open/space/basic,
+/area/ruin/space/has_grav/planet_space/refuelingpost/dorms)
+"tN" = (
+/obj/effect/turf_decal/stripes/box,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/door/airlock/security{
+	dir = 8;
+	name = "Ochrona";
+	welded = 1
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/space/has_grav/planet_space/refuelingpost/armory)
+"tS" = (
+/obj/structure/lattice/catwalk,
+/obj/machinery/atmospherics/pipe/simple/purple/hidden/layer2{
+	dir = 1
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/yellow/hidden{
+	dir = 8
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/engineering)
+"tX" = (
+/obj/structure/lattice,
+/turf/open/space/basic,
+/area/ruin/space/planet_space/hivebotshuttle)
+"un" = (
+/obj/effect/turf_decal/tile/blue/half{
+	dir = 4;
+	color = "#32426b";
+	alpha = 140
+	},
+/obj/effect/turf_decal/ship/borderfloor/gunmetal,
+/obj/structure/closet{
+	icon_state = "med"
+	},
+/obj/item/reagent_containers/hypospray/medipen/morphine{
+	pixel_y = -5
+	},
+/obj/item/reagent_containers/hypospray/medipen/morphine{
+	pixel_x = 7;
+	pixel_y = -4
+	},
+/obj/item/reagent_containers/hypospray/medipen/morphine{
+	pixel_y = 5
+	},
+/obj/item/reagent_containers/hypospray/medipen/morphine{
+	pixel_x = -7;
+	pixel_y = 5
+	},
+/turf/open/floor/plasteel/white{
+	initial_gas_mix = "n2=50;plasma=50;TEMP=293.15"
+	},
+/area/ruin/space/has_grav/planet_space/refuelingpost/infirmary)
+"ur" = (
+/obj/effect/turf_decal/trimline/red/line{
+	dir = 8;
+	color = "#c92020";
+	alpha = 255
+	},
+/obj/effect/turf_decal/tile/black{
+	color = "#444547";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/robot_debris,
+/obj/item/stock_parts/manipulator,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plating/rust,
+/area/ruin/space/has_grav/planet_space/refuelingpost/armory)
+"uu" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/light/floor,
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"uw" = (
+/obj/structure/lattice/catwalk/over/ship,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/cable/yellow,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/planet_space/refuelingpost/engineering)
+"uz" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 2
+	},
+/turf/open/floor/plating,
+/area/ruin/space/planet_space/hivebotshuttle)
+"uB" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/cable/yellow,
+/turf/open/floor/plating/airless,
+/area/space)
+"uE" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 8;
+	color = "#32426b";
+	alpha = 255
+	},
+/turf/open/floor/monotile/light,
+/area/ruin/space/has_grav/planet_space/refuelingpost/lower)
+"uG" = (
+/obj/effect/turf_decal/stripes/box,
+/obj/machinery/door/airlock/engineering,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/cable/yellow,
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/planet_space/refuelingpost/engineering)
+"uJ" = (
+/obj/machinery/atmospherics/pipe/simple/cyan/visible/layer4,
+/obj/structure/chair/office,
+/turf/open/floor/monotile/steel,
+/area/ruin/space/has_grav/planet_space/refuelingpost/engineering)
+"uR" = (
+/obj/effect/turf_decal/box,
+/obj/structure/reagent_dispensers/fueltank,
+/turf/open/floor/plasteel/tech,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargo)
+"vb" = (
+/obj/structure/grille,
+/turf/open/floor/plating/airless,
+/area/space)
+"vc" = (
+/obj/structure/lattice/catwalk,
+/obj/machinery/atmospherics/pipe/simple/purple/hidden/layer2{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/engineering)
+"vl" = (
+/obj/effect/turf_decal/box/corners{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargo)
+"vo" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/manifold/purple/hidden/layer5{
+	dir = 8
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"vL" = (
+/obj/item/stack/tile/plasteel,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/planet_space/refuelingpost/dorms)
+"vP" = (
+/obj/effect/turf_decal/tile/black{
+	dir = 10;
+	color = "#444547";
+	alpha = 255
+	},
+/obj/effect/turf_decal/trimline/red/line{
+	color = "#c92020";
+	alpha = 255
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/circuit,
+/area/ruin/space/has_grav/planet_space/refuelingpost/armory)
+"vX" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/structure/extinguisher_cabinet/north,
+/obj/structure/cable/yellow,
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"vY" = (
+/obj/structure/grille,
+/obj/structure/window/shuttle,
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/purple/hidden/layer5,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"wn" = (
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 1
+	},
+/obj/machinery/button/door{
+	dir = 4;
+	pixel_x = -20;
+	pixel_y = 10;
+	id = "fuelingsolarwindow";
+	name = "rolety okienne"
+	},
+/obj/machinery/suit_storage_unit,
+/turf/open/floor/plasteel/tech,
+/area/ruin/space/has_grav/planet_space/refuelingpost/solarstorage)
+"ww" = (
+/obj/structure/cable,
+/turf/open/floor/engine,
+/area/space)
+"wy" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/caution,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 10
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/planet_space/refuelingpost/upper)
+"wE" = (
+/obj/machinery/power/tracker,
+/obj/structure/cable,
+/turf/open/floor/plating/airless,
+/area/space)
+"wJ" = (
+/obj/machinery/sleeper{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/blue/half{
+	color = "#32426b";
+	alpha = 140
+	},
+/obj/effect/turf_decal/ship/borderfloor/gunmetal{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/light/small/broken{
+	dir = 4
+	},
+/turf/open/floor/plasteel/white{
+	initial_gas_mix = "n2=50;plasma=50;TEMP=293.15"
+	},
+/area/ruin/space/has_grav/planet_space/refuelingpost/infirmary)
+"wN" = (
+/obj/structure/cable/yellow,
+/turf/open/floor/engine,
+/area/space)
+"wQ" = (
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable/yellow,
+/obj/effect/turf_decal/siding/thinplating/dark,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 1
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"wT" = (
+/obj/structure/girder,
+/obj/item/stack/ore/iron,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/planet_space/refuelingpost/dorms)
+"wU" = (
+/obj/machinery/atmospherics/pipe/simple/purple/hidden/layer2,
+/obj/effect/turf_decal/ship/borderfloor,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/yellow,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/plasteel/techmaint,
+/area/ruin/space/has_grav/planet_space/refuelingpost/engineering)
+"wZ" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 8;
+	welded = 1
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"xf" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/visible/layer4{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 6
+	},
+/turf/open/floor/monotile/steel,
+/area/ruin/space/has_grav/planet_space/refuelingpost/engineering)
+"xh" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/circuit{
+	initial_gas_mix = "TEMP=2.7"
+	},
+/area/ruin/space/planet_space/hivebotshuttle)
+"xl" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	dir = 4;
+	id = "fuelingarea"
+	},
+/obj/machinery/atmospherics/pipe/simple/purple/hidden/layer5{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
+	dir = 4
+	},
+/turf/open/floor/plasteel/tech/grid{
+	initial_gas_mix = "TEMP=2.7"
+	},
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"xn" = (
+/obj/structure/chair/fancy/bench,
+/obj/effect/turf_decal/tile/blue/half{
+	dir = 4;
+	color = "#32426b";
+	alpha = 140
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/white{
+	initial_gas_mix = "n2=50;plasma=50;TEMP=293.15"
+	},
+/area/ruin/space/has_grav/planet_space/refuelingpost/infirmary)
+"xo" = (
+/obj/structure/marker_beacon{
+	picked_color = "Lime"
+	},
+/obj/structure/lattice/catwalk/over/ship/dark,
+/turf/open/floor/plating/airless,
+/area/space)
+"xp" = (
+/obj/effect/turf_decal/siding/thinplating/dark,
+/turf/open/floor/carpet/red,
+/area/ruin/space/has_grav/planet_space/refuelingpost/armory)
+"xv" = (
+/obj/structure/chair/fancy/bench,
+/obj/effect/turf_decal/tile/blue/half{
+	dir = 4;
+	color = "#32426b";
+	alpha = 140
+	},
+/turf/open/floor/plasteel/white{
+	initial_gas_mix = "n2=50;plasma=50;TEMP=293.15"
+	},
+/area/ruin/space/has_grav/planet_space/refuelingpost/infirmary)
+"xO" = (
+/obj/structure/grille,
+/obj/structure/window/shuttle,
+/obj/machinery/door/poddoor/shutters/preopen{
+	dir = 4;
+	id = "refuelingbridge"
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/bridge)
+"xT" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/thinplating/dark/corner{
+	dir = 8
+	},
+/obj/structure/sign/warning{
+	pixel_x = 32;
+	pixel_y = 2
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"ye" = (
+/obj/effect/turf_decal/ship/borderfloor,
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 1
+	},
+/obj/machinery/airalarm/directional/north,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/bridge)
+"yk" = (
+/turf/closed/wall/mineral/titanium/nodiagonal,
+/area/ruin/space/has_grav/planet_space/refuelingpost/solarstorage)
+"ym" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/caution,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/planet_space/refuelingpost/upper)
+"yo" = (
+/obj/structure/extinguisher_cabinet/west,
+/obj/item/stack/sheet/iron{
+	amount = 5
+	},
+/turf/open/floor/carpet/red,
+/area/ruin/space/has_grav/planet_space/refuelingpost/armory)
+"yy" = (
+/obj/structure/chair/fancy/comfy{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/blue/line{
+	dir = 4;
+	color = "#32426b";
+	alpha = 255
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 10
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/plasteel/dark/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/bridge)
+"yB" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"yZ" = (
+/obj/machinery/firealarm/directional/west,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 8;
+	color = "#32426b";
+	alpha = 255
+	},
+/turf/open/floor/monotile/light,
+/area/ruin/space/has_grav/planet_space/refuelingpost/lower)
+"zk" = (
+/obj/effect/turf_decal/stripes/box,
+/obj/machinery/door/airlock/mining{
+	dir = 4;
+	name = "Ładownia"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/structure/cable/yellow,
+/obj/machinery/door/poddoor{
+	dir = 4;
+	id = "fuelingcargo"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4;
+	color = "#FF0000"
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargo)
+"zp" = (
+/obj/structure/lattice,
+/turf/open/space/basic,
+/area/space)
+"zu" = (
+/obj/item/ammo_casing/spent,
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 1
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"zB" = (
+/obj/machinery/conveyor_switch/oneway{
+	id = "conveyors"
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargo)
+"zD" = (
+/obj/machinery/mech_bay_recharge_port{
+	dir = 8
+	},
+/turf/open/floor/monotile/dark,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargo)
+"zE" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/power/apc/auto_name/east,
+/obj/structure/cable/yellow,
+/turf/open/floor/circuit{
+	initial_gas_mix = "TEMP=2.7"
+	},
+/area/ruin/space/planet_space/hivebotshuttle)
+"zG" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 9
+	},
+/obj/structure/cable/yellow,
+/obj/machinery/button/door{
+	dir = 8;
+	pixel_x = 19;
+	pixel_y = 10;
+	id = "fuelinghangar"
+	},
+/obj/machinery/atmospherics/pipe/simple/purple/hidden/layer5{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 9
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"zK" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/plasteel/tech,
+/area/ruin/space/has_grav/planet_space/refuelingpost/starboard)
+"zO" = (
+/obj/structure/cable,
+/obj/machinery/door/poddoor/preopen{
+	dir = 4;
+	id = "bonnieblast"
+	},
+/obj/item/ammo_casing/spent,
+/turf/open/floor/engine{
+	initial_gas_mix = "TEMP=2.7"
+	},
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"zQ" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 1
+	},
+/turf/open/floor/plating/rust,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"zR" = (
+/obj/structure/filingcabinet{
+	dir = 1
+	},
+/obj/item/folder/documents,
+/obj/effect/turf_decal/ship/borderfloor/corner{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/thinplating/dark,
+/obj/machinery/light,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/bridge)
+"zU" = (
+/obj/structure/table/reinforced,
+/obj/machinery/coffeemaker{
+	pixel_x = 6;
+	pixel_y = 11
+	},
+/obj/item/storage/fancy/coffee_cart_rack{
+	pixel_x = -9;
+	pixel_y = 9
+	},
+/turf/open/floor/monotile/dark,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargo)
+"zX" = (
+/obj/structure/girder,
+/obj/structure/cable,
+/turf/open/floor/plating/airless,
+/area/ruin/space/planet_space/hivebotshuttle)
+"Ab" = (
+/obj/structure/grille,
+/obj/structure/cable/yellow,
+/obj/machinery/door/poddoor/shutters/preopen{
+	dir = 4;
+	id = "refuelingbridge"
+	},
+/obj/item/shard,
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/bridge)
+"Af" = (
+/obj/structure/chair/fancy/comfy{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/blue/line{
+	dir = 8;
+	color = "#32426b";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/dark/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/bridge)
+"Ai" = (
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 1
+	},
+/obj/effect/turf_decal/ship/borderfloor,
+/obj/machinery/turretid{
+	pixel_x = -1;
+	pixel_y = 3;
+	id = "fuelingpost"
+	},
+/turf/open/floor/circuit{
+	initial_gas_mix = "TEMP=2.7"
+	},
+/area/ruin/space/has_grav/planet_space/refuelingpost/bridge)
+"Am" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/airalarm/directional/west,
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 8;
+	color = "#32426b";
+	alpha = 255
+	},
+/obj/effect/turf_decal/trimline/blue/warning{
+	dir = 1;
+	color = "#32426b";
+	alpha = 255
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/planet_space/refuelingpost/starboard)
+"Ao" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/light/small/broken{
+	dir = 4
+	},
+/turf/open/floor/monotile/dark{
+	initial_gas_mix = "n2=50;plasma=50;TEMP=293.15"
+	},
+/area/ruin/space/has_grav/planet_space/refuelingpost/armory)
+"Ap" = (
+/turf/open/floor/carpet/blue{
+	initial_gas_mix = "n2=50;plasma=50;TEMP=293.15"
+	},
+/area/ruin/space/has_grav/planet_space/refuelingpost/infirmary)
+"Aq" = (
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/blue/filled/corner{
+	dir = 1;
+	color = "#32426b";
+	alpha = 255
+	},
+/obj/machinery/door/airlock/glass_large{
+	name = "Ładownia"
+	},
+/turf/open/floor/monotile/light,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"At" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 1
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"Au" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 1
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"AB" = (
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/dorms)
+"AE" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
+	dir = 1
+	},
+/obj/machinery/atmospherics/components/binary/valve{
+	piping_layer = 5;
+	icon_state = "mvalve_map-5"
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"AH" = (
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/dorms)
+"AJ" = (
+/obj/structure/grille,
+/obj/machinery/door/poddoor/preopen{
+	id = "fuelhallwayturret"
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/upper)
+"AN" = (
+/obj/effect/turf_decal/tile/red/half{
+	dir = 4;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/robot_debris,
+/obj/item/stock_parts/manipulator,
+/obj/structure/cable,
+/turf/open/floor/plasteel/tech{
+	initial_gas_mix = "TEMP=2.7"
+	},
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"AO" = (
+/obj/structure/cable/yellow,
+/turf/open/floor/monotile/steel{
+	initial_gas_mix = "TEMP=2.7"
+	},
+/area/ruin/space/has_grav/planet_space/refuelingpost/bridge)
+"AV" = (
+/turf/open/floor/engine{
+	initial_gas_mix = "TEMP=2.7"
+	},
+/area/ruin/space/planet_space/hivebotshuttle)
+"AX" = (
+/obj/structure/table/reinforced,
+/obj/item/trash/energybar,
+/obj/item/trash/energybar{
+	pixel_x = 2;
+	pixel_y = 15
+	},
+/obj/machinery/button/door{
+	pixel_x = 6;
+	pixel_y = 9;
+	name = "rolety ładowni";
+	id = "fuelingcargo"
+	},
+/obj/machinery/button/door{
+	pixel_x = 6;
+	name = "rolety hangaru mechów";
+	id = "ripleyfueling"
+	},
+/obj/machinery/button/door{
+	pixel_x = -6;
+	pixel_y = 9;
+	name = "rolety taśmociągu";
+	id = "cargoconveyors"
+	},
+/turf/open/floor/monotile/dark,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargo)
+"AY" = (
+/obj/structure/bed,
+/obj/item/stack/rods,
+/turf/open/floor/carpet/blue{
+	initial_gas_mix = "TEMP=2.7"
+	},
+/area/ruin/space/has_grav/planet_space/refuelingpost/dorms)
+"AZ" = (
+/obj/effect/turf_decal/ship/borderfloor,
+/obj/machinery/airalarm/directional/east,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/cable,
+/obj/effect/turf_decal/siding/yellow{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/yellow{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/planet_space/refuelingpost/solarstorage)
+"Bg" = (
+/obj/machinery/atmospherics/pipe/manifold/general/visible/layer2{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/yellow/visible{
+	dir = 1
+	},
+/obj/machinery/atmospherics/components/trinary/filter/atmos/plasma{
+	dir = 8;
+	piping_layer = 4
+	},
+/obj/structure/cable/yellow,
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/planet_space/refuelingpost/engineering)
+"Bm" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/cable,
+/turf/open/floor/plating/airless,
+/area/space)
+"Bn" = (
+/obj/item/stack/rods,
+/turf/open/space/basic,
+/area/ruin/space/has_grav/planet_space/refuelingpost/dorms)
+"Bo" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	welded = 1
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/planet_space/refuelingpost/engineering)
+"Bp" = (
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/planet_space/refuelingpost/upper)
+"Bq" = (
+/obj/effect/decal/cleanable/crayon{
+	pixel_x = 4;
+	pixel_y = 5;
+	color = "#FF0000"
+	},
+/obj/structure/extinguisher_cabinet/east,
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 4;
+	color = "#32426b";
+	alpha = 255
+	},
+/obj/effect/turf_decal/trimline/blue/warning{
+	dir = 1;
+	color = "#32426b";
+	alpha = 255
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/planet_space/refuelingpost/starboard)
+"Bs" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	dir = 4;
+	id = "fuelingarea"
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/plasteel/tech/grid{
+	initial_gas_mix = "TEMP=2.7"
+	},
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"Bu" = (
+/obj/structure/grille,
+/obj/structure/window/shuttle,
+/obj/machinery/door/poddoor/shutters/preopen{
+	dir = 4;
+	id = "fuelingsolarwindow"
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/solarstorage)
+"Bw" = (
+/obj/structure/table/reinforced,
+/obj/machinery/recharger,
+/turf/open/floor/monotile/dark{
+	initial_gas_mix = "TEMP=2.7"
+	},
+/area/ruin/space/has_grav/planet_space/refuelingpost/armory)
+"BP" = (
+/obj/item/ammo_casing/spent,
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/simple/purple/hidden/layer5,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 1
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"BR" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/plasteel/tech,
+/area/ruin/space/has_grav/planet_space/refuelingpost/starboard)
+"BT" = (
+/obj/machinery/door/airlock{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/box,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/space/has_grav/planet_space/refuelingpost/upper)
+"BV" = (
+/obj/structure/sign/warning{
+	pixel_y = 26
+	},
+/obj/machinery/atmospherics/components/unary/outlet_injector{
+	dir = 8;
+	name = "awaryjne przywrócenie ciśnienia"
+	},
+/obj/effect/turf_decal/stripes/box,
+/turf/open/floor/monotile/dark{
+	initial_gas_mix = "TEMP=2.7"
+	},
+/area/ruin/space/has_grav/planet_space/refuelingpost/bridge)
+"BW" = (
+/obj/structure/grille,
+/obj/structure/window/shuttle,
+/obj/machinery/door/poddoor/shutters/preopen{
+	dir = 4;
+	id = "refuelingbridge"
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/bridge)
+"BY" = (
+/mob/living/basic/hivebot,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/power/terminal{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/circuit{
+	initial_gas_mix = "TEMP=2.7"
+	},
+/area/ruin/space/planet_space/hivebotshuttle)
+"BZ" = (
+/obj/effect/decal/cleanable/robot_debris,
+/obj/item/stock_parts/manipulator,
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/power/apc/auto_name/north,
+/obj/structure/cable/yellow,
+/obj/machinery/light/floor,
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"Cf" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/effect/turf_decal/ship/borderfloor,
+/obj/effect/turf_decal/siding/yellow{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/yellow{
+	dir = 4
+	},
+/obj/structure/closet/secure_closet/engineering_welding,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/planet_space/refuelingpost/engineering)
+"Ch" = (
+/obj/effect/decal/cleanable/robot_debris,
+/turf/open/floor/circuit{
+	initial_gas_mix = "TEMP=2.7"
+	},
+/area/ruin/space/planet_space/hivebotshuttle)
+"Cj" = (
+/obj/structure/girder,
+/obj/item/stack/sheet/iron,
+/obj/structure/cable,
+/turf/open/floor/plating/airless,
+/area/ruin/space/planet_space/hivebotshuttle)
+"Cm" = (
+/obj/machinery/power/smes,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/cable/yellow,
+/turf/open/floor/circuit,
+/area/ruin/space/planet_space/hivebotshuttle)
+"Cp" = (
+/obj/effect/turf_decal/ship/borderfloor,
+/obj/effect/turf_decal/siding/yellow{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/yellow{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/planet_space/refuelingpost/engineering)
+"Cu" = (
+/obj/effect/turf_decal/trimline/yellow/filled/warning{
+	color = "#f97016";
+	alpha = 255
+	},
+/turf/open/floor/monotile/dark,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargo)
+"Cy" = (
+/obj/effect/turf_decal/box,
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargo)
+"CB" = (
+/obj/machinery/computer/mech_bay_power_console{
+	dir = 8
+	},
+/turf/open/floor/monotile/dark,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargo)
+"CI" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 4
+	},
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"CL" = (
+/obj/effect/turf_decal/ship/borderfloor,
+/obj/machinery/power/apc/auto_name/east,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 10
+	},
+/obj/structure/cable/yellow,
+/obj/effect/turf_decal/siding/yellow{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/yellow{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/planet_space/refuelingpost/solarstorage)
+"CP" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 4
+	},
+/obj/machinery/turretid{
+	pixel_x = -26;
+	pixel_y = 1;
+	id = "bonnieguns"
+	},
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/plasteel/dark/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"CS" = (
+/obj/machinery/power/apc/auto_name/north,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/planet_space/refuelingpost/upper)
+"CZ" = (
+/obj/structure/chair/fancy/bench{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue/half{
+	dir = 1;
+	color = "#32426b";
+	alpha = 140
+	},
+/obj/item/newspaper{
+	pixel_x = 11;
+	pixel_y = 14
+	},
+/obj/item/radio/intercom/directional/west,
+/turf/open/floor/plasteel/white{
+	initial_gas_mix = "n2=50;plasma=50;TEMP=293.15"
+	},
+/area/ruin/space/has_grav/planet_space/refuelingpost/infirmary)
+"Do" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating/rust,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"Dt" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/power/apc/auto_name/north,
+/obj/structure/cable/yellow,
+/mob/living/basic/hivebot/strong,
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/planet_space/refuelingpost/armory)
+"Dz" = (
+/obj/machinery/portable_atmospherics/pump,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/plasteel/techmaint,
+/area/ruin/space/has_grav/planet_space/refuelingpost/engineering)
+"DE" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/firealarm/directional/south,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/planet_space/refuelingpost/starboard)
+"DG" = (
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/thinplating/dark,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/bridge)
+"DT" = (
+/obj/structure/cable/yellow,
+/obj/effect/decal/cleanable/crayon{
+	icon_state = "&";
+	pixel_x = -10;
+	pixel_y = 12
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/planet_space/refuelingpost/solarstorage)
+"Ec" = (
+/obj/structure/lattice/catwalk,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/layer_manifold{
+	dir = 4
+	},
+/turf/open/floor/plating/airless,
+/area/space)
+"Ed" = (
+/obj/structure/spawner/hivebot,
+/obj/machinery/power/terminal{
+	dir = 1
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/plating/rust,
+/area/ruin/space/planet_space/hivebotshuttle)
+"Es" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/cable/yellow,
+/obj/effect/decal/cleanable/crayon{
+	icon_state = "credit";
+	pixel_x = -9;
+	pixel_y = 7
+	},
+/obj/effect/decal/cleanable/crayon{
+	icon_state = "3";
+	pixel_x = 9;
+	pixel_y = 4
+	},
+/obj/item/storage/backpack/satchel/flat,
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/planet_space/refuelingpost/solarstorage)
+"Ey" = (
+/obj/structure/grille,
+/obj/structure/window/shuttle,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/visible/layer4{
+	dir = 4
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	dir = 4;
+	id = "fuelingengineering"
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/engineering)
+"EA" = (
+/obj/structure/closet/firecloset,
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 1
+	},
+/obj/machinery/button/door{
+	dir = 8;
+	pixel_x = 21;
+	pixel_y = 9;
+	id = "fuelingarea";
+	name = "rolety stacji paliw"
+	},
+/turf/open/floor/plasteel/tech/grid{
+	initial_gas_mix = "TEMP=2.7"
+	},
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"EK" = (
+/obj/effect/turf_decal/ship/borderfloor,
+/obj/effect/turf_decal/siding/yellow/end{
+	dir = 1
+	},
+/obj/machinery/suit_storage_unit{
+	suit_type = /obj/item/clothing/suit/space/hardsuit/engine/atmos
+	},
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/planet_space/refuelingpost/engineering)
+"EN" = (
+/obj/effect/turf_decal/tile/white/anticorner/contrasted{
+	color = "#FFFFFF";
+	alpha = 255
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/structure/cable/yellow,
+/obj/item/radio/intercom/directional/east,
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 4;
+	color = "#32426b";
+	alpha = 255
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/circuit,
+/area/ruin/space/has_grav/planet_space/refuelingpost/lower)
+"EO" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/turf/open/floor/plating/airless,
+/area/space)
+"EU" = (
+/obj/effect/turf_decal/trimline/blue/line{
+	dir = 9;
+	color = "#32426b";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/dark/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/bridge)
+"EY" = (
+/obj/structure/table/glass,
+/obj/effect/turf_decal/tile/blue/anticorner/contrasted{
+	dir = 8;
+	color = "#32426b";
+	alpha = 140
+	},
+/obj/item/kirbyplants/dead{
+	name = "uschnięta roślina doniczkowa";
+	pixel_x = -1;
+	pixel_y = 9;
+	desc = "Uschnięta roślina doniczkowa."
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/sign/warning{
+	pixel_x = 8;
+	pixel_y = -21
+	},
+/turf/open/floor/plasteel/white{
+	initial_gas_mix = "n2=50;plasma=50;TEMP=293.15"
+	},
+/area/ruin/space/has_grav/planet_space/refuelingpost/infirmary)
+"Fi" = (
+/obj/machinery/atmospherics/components/trinary/mixer/airmix/flipped{
+	dir = 1;
+	piping_layer = 4
+	},
+/turf/open/floor/monotile/steel,
+/area/ruin/space/has_grav/planet_space/refuelingpost/engineering)
+"Fk" = (
+/obj/effect/turf_decal/caution{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/binary/pump{
+	dir = 8;
+	piping_layer = 5;
+	icon_state = "pump_map-5"
+	},
+/obj/machinery/atmospherics/components/binary/pump{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"Fm" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	dir = 4;
+	id = "fuelingarea"
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
+	dir = 4
+	},
+/turf/open/floor/plasteel/tech/grid{
+	initial_gas_mix = "TEMP=2.7"
+	},
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"Fo" = (
+/obj/structure/girder,
+/obj/item/stack/sheet/iron,
+/turf/open/floor/plating/airless,
+/area/ruin/space/planet_space/hivebotshuttle)
+"Fv" = (
+/obj/structure/grille,
+/obj/structure/window/shuttle,
+/obj/structure/curtain,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/planet_space/refuelingpost/dorms)
+"FP" = (
+/obj/effect/turf_decal/siding/white/corner{
+	dir = 8
+	},
+/obj/machinery/airalarm/directional/north,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 10
+	},
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 10
+	},
+/obj/effect/turf_decal/trimline/yellow/corner{
+	dir = 8;
+	color = "#f97016";
+	alpha = 255
+	},
+/obj/effect/turf_decal/trimline/yellow/line{
+	dir = 1;
+	color = "#f97016";
+	alpha = 255
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargo)
+"FU" = (
+/obj/structure/chair/office,
+/turf/open/floor/monotile/steel{
+	initial_gas_mix = "TEMP=2.7"
+	},
+/area/ruin/space/has_grav/planet_space/refuelingpost/bridge)
+"FV" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/machinery/computer/monitor{
+	dir = 8
+	},
+/turf/open/floor/monotile/steel,
+/area/ruin/space/has_grav/planet_space/refuelingpost/engineering)
+"FZ" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargo)
+"Gd" = (
+/turf/open/floor/monotile/light{
+	initial_gas_mix = "n2=50;plasma=50;TEMP=293.15"
+	},
+/area/ruin/space/has_grav/planet_space/refuelingpost/infirmary)
+"Gq" = (
+/obj/effect/turf_decal/tile/blue/anticorner/contrasted{
+	dir = 4;
+	color = "#32426b";
+	alpha = 140
+	},
+/obj/structure/table_frame,
+/obj/item/shard,
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/plasteel/white{
+	initial_gas_mix = "n2=50;plasma=50;TEMP=293.15"
+	},
+/area/ruin/space/has_grav/planet_space/refuelingpost/infirmary)
+"Gs" = (
+/obj/item/gun/energy/e_gun/mini,
+/obj/item/stock_parts/cell/high/plus,
+/obj/item/gun/ballistic/automatic/pistol,
+/obj/item/ammo_box/magazine/pistolm9mm,
+/obj/item/ammo_box/magazine/pistolm9mm,
+/obj/item/ammo_box/magazine/pistolm9mm,
+/turf/open/floor/monotile/dark{
+	initial_gas_mix = "TEMP=2.7"
+	},
+/area/ruin/space/has_grav/planet_space/refuelingpost/armory)
+"Gt" = (
+/obj/machinery/atmospherics/components/binary/valve{
+	dir = 4;
+	piping_layer = 5;
+	icon_state = "mvalve_map-5"
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"GC" = (
+/obj/effect/turf_decal/stripes/box,
+/obj/structure/door_assembly{
+	dir = 4
+	},
+/obj/structure/firelock_frame/border{
+	dir = 4
+	},
+/obj/structure/firelock_frame/border{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/planet_space/refuelingpost/dorms)
+"GD" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 8;
+	welded = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4;
+	color = "#FF0000"
+	},
+/turf/open/floor/plasteel/dark/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/dorms)
+"GJ" = (
+/obj/machinery/atmospherics/pipe/simple/purple/visible/layer2{
+	dir = 9
+	},
+/obj/machinery/firealarm/directional/south,
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/planet_space/refuelingpost/engineering)
+"GK" = (
+/obj/machinery/pipedispenser,
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/planet_space/refuelingpost/engineering)
+"GP" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/simple/purple/hidden/layer5{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating/rust,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"GU" = (
+/obj/machinery/airalarm/directional/east,
+/obj/item/stack/tile/plasteel,
+/obj/structure/reagent_dispensers/foamtank,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/planet_space/refuelingpost/engineering)
+"Hi" = (
+/turf/closed/wall/mineral/titanium/nodiagonal,
+/area/ruin/space/has_grav/planet_space/refuelingpost/engineering)
+"Hm" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/planet_space/refuelingpost/starboard)
+"Hp" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 6
+	},
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/plasteel/tech,
+/area/ruin/space/has_grav/planet_space/refuelingpost/starboard)
+"Hu" = (
+/obj/effect/decal/cleanable/glass,
+/obj/item/shard,
+/obj/item/solar_assembly,
+/obj/structure/cable,
+/turf/open/floor/plating/airless,
+/area/space)
+"Hx" = (
+/obj/machinery/portable_atmospherics/canister/toxins,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/atmospherics/components/unary/portables_connector{
+	piping_layer = 5
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 4
+	},
+/obj/effect/turf_decal/box/corners{
+	dir = 1
+	},
+/obj/effect/turf_decal/box/corners{
+	dir = 8
+	},
+/turf/open/floor/plasteel/techmaint{
+	initial_gas_mix = "TEMP=2.7"
+	},
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"Hz" = (
+/obj/machinery/atmospherics/pipe/layer_manifold/visible,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/planet_space/refuelingpost/engineering)
+"HE" = (
+/obj/machinery/atmospherics/components/binary/pump/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/visible/layer4{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/monotile/steel,
+/area/ruin/space/has_grav/planet_space/refuelingpost/engineering)
+"HF" = (
+/obj/effect/turf_decal/trimline/yellow/line{
+	dir = 4;
+	color = "#f97016";
+	alpha = 255
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargo)
+"HI" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/planet_space/refuelingpost/starboard)
+"HK" = (
+/obj/effect/turf_decal/tile/blue/half{
+	dir = 8;
+	color = "#32426b";
+	alpha = 140
+	},
+/obj/machinery/power/apc/auto_name/south,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 4;
+	welded = 1
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/plasteel/white{
+	initial_gas_mix = "n2=50;plasma=50;TEMP=293.15"
+	},
+/area/ruin/space/has_grav/planet_space/refuelingpost/infirmary)
+"HL" = (
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/planet_space/refuelingpost/upper)
+"HS" = (
+/obj/machinery/firealarm/directional/south,
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/planet_space/refuelingpost/engineering)
+"HV" = (
+/obj/machinery/atmospherics/pipe/simple/purple/hidden/layer2,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/closet/crate/engineering,
+/obj/item/extinguisher/advanced{
+	pixel_x = -2;
+	pixel_y = 4
+	},
+/obj/item/extinguisher/advanced{
+	pixel_x = -9;
+	pixel_y = 4
+	},
+/obj/item/watertank/atmos{
+	pixel_x = 4;
+	pixel_y = 2
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/planet_space/refuelingpost/engineering)
+"HW" = (
+/obj/structure/cable,
+/obj/effect/turf_decal/tile/red{
+	dir = 1;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/trimline/yellow/filled/warning{
+	dir = 4;
+	color = "#BA9F6D";
+	alpha = 140
+	},
+/obj/effect/decal/cleanable/robot_debris,
+/obj/item/stock_parts/micro_laser,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/plasteel/tech{
+	initial_gas_mix = "TEMP=2.7"
+	},
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"HY" = (
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 8
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/bridge)
+"Id" = (
+/obj/item/radio/intercom/directional/south,
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/planet_space/refuelingpost/starboard)
+"Ig" = (
+/obj/structure/cable/yellow,
+/turf/closed/wall/mineral/titanium/nodiagonal,
+/area/ruin/space/has_grav/planet_space/refuelingpost/armory)
+"Ik" = (
+/obj/structure/grille,
+/obj/structure/window/shuttle,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/engineering)
+"Io" = (
+/obj/structure/closet/crate,
+/obj/item/stack/sheet/iron/fifty,
+/obj/item/stack/sheet/glass/fifty,
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargo)
+"Ip" = (
+/obj/structure/lattice/catwalk,
+/obj/effect/decal/cleanable/crayon{
+	color = "#FF0000";
+	icon_state = "skull";
+	pixel_x = -2;
+	pixel_y = -21
+	},
+/obj/effect/decal/cleanable/crayon{
+	color = "#FF0000";
+	icon_state = "skull";
+	pixel_x = 10;
+	pixel_y = -36
+	},
+/turf/open/floor/plating/airless,
+/area/space)
+"It" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/white,
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4;
+	color = "#FF0000"
+	},
+/obj/effect/turf_decal/trimline/yellow/line{
+	dir = 1;
+	color = "#f97016";
+	alpha = 255
+	},
+/obj/effect/turf_decal/trimline/yellow/line{
+	color = "#f97016";
+	alpha = 255
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargo)
+"Iz" = (
+/obj/structure/lattice,
+/obj/item/stack/sheet/iron,
+/turf/open/space/basic,
+/area/ruin/space/has_grav/planet_space/refuelingpost/dorms)
+"ID" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/clothing/suit/armor/vest,
+/obj/item/clothing/head/helmet/sec,
+/obj/item/clothing/head/soft/sec,
+/obj/item/clothing/under/rank/security/officer,
+/obj/item/clothing/shoes/jackboots,
+/turf/open/floor/monotile/dark{
+	initial_gas_mix = "TEMP=2.7"
+	},
+/area/ruin/space/has_grav/planet_space/refuelingpost/armory)
+"IF" = (
+/obj/machinery/atmospherics/pipe/simple/purple/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/plasteel/techmaint,
+/area/ruin/space/has_grav/planet_space/refuelingpost/engineering)
+"IG" = (
+/obj/effect/decal/cleanable/robot_debris,
+/obj/item/stock_parts/micro_laser,
+/turf/open/floor/plating/rust,
+/area/ruin/space/has_grav/planet_space/refuelingpost/armory)
+"IL" = (
+/obj/item/stack/tile/plasteel,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 8;
+	welded = 1
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/bridge)
+"IM" = (
+/obj/structure/lattice,
+/obj/item/stack/ore/iron,
+/turf/open/space/basic,
+/area/ruin/space/has_grav/planet_space/refuelingpost/dorms)
+"IP" = (
+/obj/structure/grille,
+/obj/structure/window/shuttle,
+/obj/machinery/door/poddoor/shutters/preopen{
+	dir = 4;
+	id = "refuelingbridge"
+	},
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/planet_space/refuelingpost/bridge)
+"Jp" = (
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/planet_space/refuelingpost/engineering)
+"Ju" = (
+/obj/machinery/computer/atmos_control/tank/toxin_tank,
+/obj/effect/turf_decal/ship/borderfloor,
+/turf/open/floor/plasteel/tech/grid{
+	initial_gas_mix = "TEMP=2.7"
+	},
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"JD" = (
+/obj/machinery/light/floor,
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"JE" = (
+/obj/machinery/vending/cola,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	color = "#32426b";
+	alpha = 255
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/planet_space/refuelingpost/upper)
+"JK" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"JM" = (
+/obj/structure/lattice/catwalk,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
+	dir = 1
+	},
+/turf/open/floor/plating/airless,
+/area/space)
+"JN" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/cable/yellow,
+/obj/effect/turf_decal/trimline/blue/filled/corner{
+	color = "#32426b";
+	alpha = 255
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 1
+	},
+/turf/open/floor/monotile/light,
+/area/ruin/space/has_grav/planet_space/refuelingpost/lower)
+"JW" = (
+/obj/structure/table/glass,
+/obj/item/documents,
+/turf/open/floor/plasteel/dark/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/bridge)
+"Kg" = (
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/bridge)
+"Ki" = (
+/obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/n2{
+	dir = 4;
+	piping_layer = 4
+	},
+/turf/open/floor/monotile/steel,
+/area/ruin/space/has_grav/planet_space/refuelingpost/engineering)
+"Kj" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 4
+	},
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/radio{
+	dir = 4
+	},
+/turf/open/floor/circuit,
+/area/ruin/space/has_grav/planet_space/refuelingpost/bridge)
+"Km" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/light/broken,
+/turf/open/floor/plasteel/dark/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/dorms)
+"Kq" = (
+/turf/open/space/basic,
+/area/space)
+"Ks" = (
+/obj/effect/turf_decal/delivery,
+/obj/machinery/portable_atmospherics/canister{
+	icon_state = "orange";
+	name = "kanister plazmy"
+	},
+/turf/open/floor/plasteel/techmaint{
+	initial_gas_mix = "TEMP=2.7"
+	},
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"Kw" = (
+/obj/effect/turf_decal/stripes/box,
+/obj/machinery/door/airlock/external,
+/obj/machinery/atmospherics/pipe/layer_manifold,
+/obj/structure/cable,
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/planet_space/refuelingpost/solarstorage)
+"Kz" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 8;
+	color = "#32426b";
+	alpha = 255
+	},
+/turf/open/floor/monotile/light,
+/area/ruin/space/has_grav/planet_space/refuelingpost/lower)
+"KA" = (
+/obj/machinery/conveyor{
+	dir = 4;
+	id = "conveyors"
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"KB" = (
+/obj/effect/decal/cleanable/robot_debris,
+/obj/item/stock_parts/micro_laser/high,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 10
+	},
+/obj/machinery/atmospherics/components/binary/valve{
+	dir = 4;
+	icon_state = "mvalve_map-5"
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"KD" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/machinery/conveyor{
+	dir = 4;
+	id = "conveyors"
+	},
+/obj/machinery/door/poddoor/shutters{
+	dir = 4;
+	id = "cargoconveyors"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargo)
+"KE" = (
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/thinplating/dark,
+/obj/structure/extinguisher_cabinet/south,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/bridge)
+"KO" = (
+/obj/structure/cable,
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 1
+	},
+/obj/structure/closet/crate/internals{
+	name = "skrzynia EVA"
+	},
+/obj/item/tank/internals/emergency_oxygen/double,
+/obj/item/clothing/suit/space/syndicate/black/red,
+/obj/item/clothing/head/helmet/space/syndicate/black/red,
+/turf/open/floor/plasteel/dark/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"KP" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 5
+	},
+/obj/item/reagent_containers/food/drinks/coffee/empty{
+	pixel_x = -8;
+	pixel_y = 7
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargo)
+"KR" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/planet_space/refuelingpost/upper)
+"KZ" = (
+/obj/machinery/power/apc/auto_name/east,
+/obj/structure/cable/yellow,
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargo)
+"Lj" = (
+/obj/structure/chair/office{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/effect/decal/cleanable/crayon{
+	icon_state = "+";
+	pixel_x = -12;
+	pixel_y = -11
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/planet_space/refuelingpost/solarstorage)
+"Lk" = (
+/obj/structure/chair/fancy/comfy,
+/obj/effect/turf_decal/trimline/blue/line{
+	dir = 1;
+	color = "#32426b";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/dark/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/bridge)
+"Ln" = (
+/obj/structure/table_frame,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/carpet/red,
+/area/ruin/space/has_grav/planet_space/refuelingpost/armory)
+"Ly" = (
+/obj/structure/lattice/catwalk,
+/turf/closed/wall/mineral/titanium/nodiagonal,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargo)
+"Lz" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/manifold/green/hidden,
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/planet_space/refuelingpost/upper)
+"LB" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/cable,
+/turf/open/floor/plating/airless,
+/area/ruin/space/planet_space/hivebotshuttle)
+"LE" = (
+/obj/effect/turf_decal/ship/borderfloor,
+/obj/machinery/light,
+/turf/open/floor/plating/rust,
+/area/ruin/space/has_grav/planet_space/refuelingpost/upper)
+"LF" = (
+/obj/effect/decal/cleanable/robot_debris,
+/obj/item/stock_parts/manipulator,
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/power/apc/auto_name/north,
+/obj/structure/cable/yellow,
+/obj/machinery/light/floor,
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"LK" = (
+/obj/item/stack/tile/plasteel,
+/turf/open/floor/plating/rust,
+/area/ruin/space/has_grav/planet_space/refuelingpost/dorms)
+"LW" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/visible/layer4{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/monotile/steel,
+/area/ruin/space/has_grav/planet_space/refuelingpost/engineering)
+"Md" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/monotile/steel,
+/area/ruin/space/has_grav/planet_space/refuelingpost/engineering)
+"Mg" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/structure/cable/yellow,
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 4;
+	color = "#32426b";
+	alpha = 255
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/monotile/light,
+/area/ruin/space/has_grav/planet_space/refuelingpost/lower)
+"Mq" = (
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 1
+	},
+/obj/machinery/light/broken{
+	dir = 1
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	welded = 1
+	},
+/turf/open/floor/plating/rust,
+/area/ruin/space/has_grav/planet_space/refuelingpost/upper)
+"MG" = (
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/button/door{
+	dir = 1;
+	pixel_x = -10;
+	pixel_y = -18;
+	id = "fuelingengineering";
+	name = "rolety okienne"
+	},
+/obj/effect/turf_decal/ship/borderfloor,
+/obj/machinery/computer/atmos_control/tank/air_tank{
+	dir = 1;
+	icon_state = "computer-right"
+	},
+/obj/effect/turf_decal/siding/yellow,
+/obj/effect/turf_decal/siding/yellow{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/planet_space/refuelingpost/engineering)
+"MQ" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/cable/yellow,
+/obj/machinery/light/floor,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"MR" = (
+/obj/effect/turf_decal/delivery,
+/turf/open/floor/monotile/steel,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargo)
+"MU" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 4
+	},
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/simple/purple/hidden/layer5{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"Na" = (
+/obj/structure/filingcabinet{
+	dir = 1
+	},
+/obj/structure/railing,
+/obj/effect/turf_decal/tile/black/anticorner/contrasted{
+	dir = 8;
+	color = "#444547";
+	alpha = 255
+	},
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargo)
+"Nc" = (
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargo)
+"Ne" = (
+/obj/structure/frame/machine{
+	anchored = 1
+	},
+/obj/item/stack/rods,
+/obj/machinery/light/broken{
+	dir = 1
+	},
+/turf/open/floor/plating/rust{
+	initial_gas_mix = "TEMP=2.7"
+	},
+/area/ruin/space/has_grav/planet_space/refuelingpost/bridge)
+"Nl" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 4
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/planet_space/refuelingpost/solarstorage)
+"Np" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/turf/open/floor/monotile/dark{
+	initial_gas_mix = "TEMP=2.7"
+	},
+/area/ruin/space/has_grav/planet_space/refuelingpost/armory)
+"Nr" = (
+/obj/effect/turf_decal/trimline/red/line{
+	color = "#c92020";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/firealarm/directional/south,
+/obj/structure/cable/yellow,
+/obj/machinery/light/broken{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 9
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/planet_space/refuelingpost/armory)
+"Ns" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/white/corner,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 5
+	},
+/obj/effect/turf_decal/trimline/yellow/line{
+	dir = 8;
+	color = "#f97016";
+	alpha = 255
+	},
+/obj/effect/turf_decal/trimline/yellow/corner{
+	color = "#f97016";
+	alpha = 255
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargo)
+"Ny" = (
+/obj/machinery/modular_computer/console/preset/civilian{
+	dir = 1
+	},
+/obj/structure/railing,
+/turf/open/floor/monotile/dark,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargo)
+"NA" = (
+/obj/structure/door_assembly/door_assembly_med{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/box,
+/obj/structure/firelock_frame/border{
+	dir = 4
+	},
+/obj/structure/firelock_frame/border{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/monotile/dark{
+	initial_gas_mix = "n2=50;plasma=50;TEMP=293.15"
+	},
+/area/ruin/space/has_grav/planet_space/refuelingpost/infirmary)
+"NE" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/tile/black/anticorner/contrasted{
+	dir = 8;
+	color = "#444547";
+	alpha = 255
+	},
+/obj/effect/turf_decal/trimline/red/line{
+	dir = 10;
+	color = "#c92020";
+	alpha = 255
+	},
+/turf/open/floor/circuit,
+/area/ruin/space/has_grav/planet_space/refuelingpost/armory)
+"NM" = (
+/obj/effect/turf_decal/box/corners,
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/button/door{
+	dir = 1;
+	pixel_x = 9;
+	pixel_y = -20;
+	id = "cargospacewindow";
+	name = "okna ładowni"
+	},
+/obj/structure/closet/crate/engineering,
+/obj/item/mecha_parts/mecha_equipment/drill,
+/obj/item/mecha_parts/mecha_equipment/hydraulic_clamp,
+/obj/item/mecha_parts/mecha_equipment/mining_scanner,
+/obj/item/mecha_parts/mecha_equipment/thrusters/ion,
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargo)
+"NO" = (
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"NW" = (
+/obj/effect/turf_decal/stripes/box,
+/obj/machinery/door/airlock/external,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/cable,
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/planet_space/refuelingpost/solarstorage)
+"Oc" = (
+/obj/structure/lattice/catwalk,
+/turf/open/floor/plating,
+/area/space)
+"Oe" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/closet/crate/engineering,
+/obj/item/extinguisher/advanced{
+	pixel_x = -2;
+	pixel_y = 4
+	},
+/obj/item/extinguisher/advanced{
+	pixel_x = -9;
+	pixel_y = 4
+	},
+/obj/item/watertank/atmos{
+	pixel_x = 4;
+	pixel_y = 2
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/planet_space/refuelingpost/engineering)
+"Oi" = (
+/mob/living/basic/hivebot,
+/obj/item/pipe/binary/bendable{
+	pixel_x = 7;
+	pixel_y = 5;
+	color = "#0000ff"
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/dorms)
+"Ol" = (
+/obj/machinery/power/terminal{
+	dir = 8
+	},
+/obj/structure/cable,
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 4
+	},
+/mob/living/basic/hivebot/strong,
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/plasteel/dark/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"Oq" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/siphon/on/layer2{
+	dir = 1
+	},
+/turf/open/floor/engine/plasma,
+/area/ruin/space/has_grav/planet_space/refuelingpost/engineering)
+"Or" = (
+/obj/item/stack/sheet/iron,
+/turf/open/space/basic,
+/area/space)
+"Os" = (
+/obj/machinery/power/smes,
+/obj/structure/cable,
+/turf/open/floor/plasteel/dark/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"Ou" = (
+/turf/closed/wall/mineral/titanium/nodiagonal,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargo)
+"OB" = (
+/obj/item/stack/tile/plasteel,
+/obj/machinery/airalarm/directional/west,
+/turf/open/floor/plating/rust,
+/area/ruin/space/has_grav/planet_space/refuelingpost/lower)
+"OM" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	welded = 1
+	},
+/turf/open/floor/monotile/light{
+	initial_gas_mix = "n2=50;plasma=50;TEMP=293.15"
+	},
+/area/ruin/space/has_grav/planet_space/refuelingpost/infirmary)
+"OO" = (
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/yellow{
+	dir = 8
+	},
+/obj/structure/closet/crate/engineering{
+	name = "skrzynia z butlami tlenowymi"
+	},
+/obj/item/tank/internals/emergency_oxygen/engi{
+	pixel_y = -3
+	},
+/obj/item/tank/internals/emergency_oxygen/engi{
+	pixel_x = 7;
+	pixel_y = -3
+	},
+/obj/item/tank/internals/emergency_oxygen/engi{
+	pixel_x = -8;
+	pixel_y = -3
+	},
+/obj/item/tank/internals/emergency_oxygen/engi{
+	pixel_x = 6;
+	pixel_y = 4
+	},
+/obj/item/tank/internals/emergency_oxygen/engi{
+	pixel_x = -1;
+	pixel_y = 4
+	},
+/obj/item/tank/internals/emergency_oxygen/engi{
+	pixel_x = -7;
+	pixel_y = 5
+	},
+/turf/open/floor/plasteel/techmaint,
+/area/ruin/space/has_grav/planet_space/refuelingpost/engineering)
+"OT" = (
+/obj/item/ammo_casing/spent,
+/mob/living/basic/hivebot/range,
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 8
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"OU" = (
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/planet_space/refuelingpost/upper)
+"OV" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/visible/layer4{
+	dir = 4
+	},
+/obj/structure/lattice/catwalk/over/ship,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
+/obj/structure/cable/yellow,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/planet_space/refuelingpost/engineering)
+"OW" = (
+/obj/effect/turf_decal/ship/borderfloor,
+/obj/machinery/firealarm/directional/east,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/cable/yellow,
+/obj/effect/turf_decal/siding/yellow{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/yellow{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/planet_space/refuelingpost/solarstorage)
+"OX" = (
+/obj/machinery/door/airlock/medical/glass{
+	name = "Izba chorych"
+	},
+/obj/effect/turf_decal/stripes/box,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/door/firedoor/border_only/closed{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only/closed,
+/obj/structure/cable/yellow,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/space/has_grav/planet_space/refuelingpost/infirmary)
+"Pe" = (
+/obj/effect/turf_decal/siding/thinplating/dark/corner{
+	dir = 4
+	},
+/obj/structure/chair/fancy/shuttle{
+	dir = 8;
+	pixel_x = 6
+	},
+/obj/machinery/light,
+/turf/open/floor/plasteel/dark/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"Pk" = (
+/obj/structure/tank_dispenser/oxygen,
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 1
+	},
+/turf/open/floor/plasteel/tech,
+/area/ruin/space/has_grav/planet_space/refuelingpost/solarstorage)
+"Pm" = (
+/obj/machinery/power/solar,
+/obj/structure/cable,
+/obj/machinery/light/small/broken{
+	dir = 4
+	},
+/turf/open/floor/plating/airless,
+/area/space)
+"Pt" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 4
+	},
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 8
+	},
+/obj/structure/cable/yellow,
+/obj/machinery/button/door{
+	dir = 8;
+	pixel_x = 9;
+	pixel_y = 8;
+	id = "refuelingbridge";
+	name = "rolety mostka"
+	},
+/obj/machinery/button/door{
+	dir = 8;
+	pixel_x = 9;
+	pixel_y = -4;
+	name = "rolety wieżyczek korytarza";
+	id = "fuelhallwayturret"
+	},
+/obj/item/paper/crumpled{
+	pixel_x = -8;
+	pixel_y = -3
+	},
+/turf/open/floor/circuit,
+/area/ruin/space/has_grav/planet_space/refuelingpost/bridge)
+"PF" = (
+/obj/machinery/atmospherics/components/unary/portables_connector,
+/obj/machinery/portable_atmospherics/scrubber,
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/yellow{
+	dir = 8
+	},
+/turf/open/floor/plasteel/techmaint,
+/area/ruin/space/has_grav/planet_space/refuelingpost/engineering)
+"PI" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 8;
+	welded = 1
+	},
+/obj/machinery/atmospherics/components/binary/valve{
+	dir = 4;
+	piping_layer = 5;
+	icon_state = "mvalve_map-5"
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"PL" = (
+/obj/effect/turf_decal/ship/borderfloor,
+/obj/machinery/airalarm/directional/east,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 10
+	},
+/obj/structure/cable,
+/obj/effect/turf_decal/siding/yellow{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/yellow{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/planet_space/refuelingpost/solarstorage)
+"Qc" = (
+/obj/mecha/working/ripley/mkii,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/monotile/dark,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargo)
+"Qe" = (
+/obj/structure/cable,
+/turf/open/floor/engine{
+	initial_gas_mix = "TEMP=2.7"
+	},
+/area/ruin/space/planet_space/hivebotshuttle)
+"Qj" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/caution,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable/yellow,
+/obj/item/stack/tile/plasteel,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/planet_space/refuelingpost/upper)
+"Qr" = (
+/obj/structure/frame,
+/obj/structure/cable/yellow,
+/obj/item/stock_parts/capacitor/quadratic,
+/turf/open/floor/circuit,
+/area/ruin/space/planet_space/hivebotshuttle)
+"Qs" = (
+/obj/item/stack/tile/plasteel,
+/obj/item/pipe/binary/bendable{
+	dir = 4;
+	color = "#FF0000";
+	pixel_x = 6;
+	pixel_y = -5
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/dorms)
+"Qy" = (
+/obj/structure/grille,
+/obj/structure/window/shuttle,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "fuelingmedbay"
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/infirmary)
+"QA" = (
+/obj/structure/lattice/catwalk,
+/obj/machinery/atmospherics/pipe/simple/purple/hidden/layer2{
+	dir = 10
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
+	dir = 10
+	},
+/turf/open/floor/plating/airless,
+/area/space)
+"QB" = (
+/obj/effect/turf_decal/ship/borderfloor,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/planet_space/refuelingpost/upper)
+"QF" = (
+/obj/machinery/light/broken,
+/turf/open/floor/plasteel/dark/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/dorms)
+"QL" = (
+/obj/structure/grille,
+/obj/structure/window/shuttle,
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"QQ" = (
+/obj/structure/lattice/catwalk/over/ship,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 5
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/planet_space/refuelingpost/engineering)
+"QU" = (
+/turf/closed/wall/mineral/plastitanium,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"QW" = (
+/obj/machinery/conveyor{
+	dir = 4;
+	id = "conveyors"
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargo)
+"Rb" = (
+/obj/effect/turf_decal/tile/blue/anticorner/contrasted{
+	color = "#32426b";
+	alpha = 140
+	},
+/obj/machinery/airalarm/directional/east,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/plasteel/white{
+	initial_gas_mix = "n2=50;plasma=50;TEMP=293.15"
+	},
+/area/ruin/space/has_grav/planet_space/refuelingpost/infirmary)
+"Ri" = (
+/obj/item/stack/ore/titanium,
+/turf/open/space/basic,
+/area/ruin/space/has_grav/planet_space/refuelingpost/dorms)
+"Rp" = (
+/obj/structure/grille,
+/turf/open/floor/plating,
+/area/space)
+"Rq" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
+	dir = 9
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"Rw" = (
+/obj/machinery/power/apc/auto_name/south,
+/obj/structure/cable/yellow,
+/turf/open/floor/plating/rust,
+/area/ruin/space/has_grav/planet_space/refuelingpost/dorms)
+"RC" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/effect/turf_decal/trimline/yellow/line{
+	dir = 8;
+	color = "#f97016";
+	alpha = 255
+	},
+/obj/effect/turf_decal/trimline/yellow/line{
+	dir = 4;
+	color = "#f97016";
+	alpha = 255
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargo)
+"RD" = (
+/obj/structure/lattice/catwalk/over/ship,
+/obj/structure/closet/firecloset,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/planet_space/refuelingpost/engineering)
+"RM" = (
+/obj/structure/lattice/catwalk,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
+	dir = 10
+	},
+/turf/open/floor/plating/airless,
+/area/space)
+"RP" = (
+/obj/structure/frame/computer{
+	dir = 8;
+	anchored = 1
+	},
+/obj/effect/turf_decal/siding/thinplating/dark,
+/obj/structure/railing,
+/obj/machinery/button/door{
+	pixel_x = 4;
+	pixel_y = 23;
+	name = "sterowanie drzwiami przeciwwybuchowymi";
+	id = "bonnieblast"
+	},
+/obj/item/radio/intercom/directional/east,
+/turf/open/floor/plasteel/dark/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"RR" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/marker_beacon{
+	picked_color = "Burgundy"
+	},
+/turf/open/floor/plating/airless,
+/area/space)
+"Sd" = (
+/obj/machinery/atmospherics/components/unary/outlet_injector/on/layer4{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/air_sensor/atmos/air_tank{
+	pixel_x = 12;
+	pixel_y = 12
+	},
+/turf/open/floor/engine/air,
+/area/ruin/space/has_grav/planet_space/refuelingpost/engineering)
+"Sh" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/sign/warning/fire{
+	pixel_x = -24;
+	pixel_y = 10
+	},
+/obj/structure/sign/warning{
+	pixel_x = -24;
+	pixel_y = -2
+	},
+/obj/machinery/atmospherics/pipe/simple/purple/hidden/layer5{
+	dir = 1
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"Si" = (
+/turf/open/floor/monotile/steel{
+	initial_gas_mix = "TEMP=2.7"
+	},
+/area/ruin/space/has_grav/planet_space/refuelingpost/bridge)
+"Sj" = (
+/obj/structure/window/shuttle,
+/obj/structure/grille,
+/obj/machinery/atmospherics/pipe/simple/cyan/visible/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "fuelingengineering"
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/engineering)
+"Sm" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
+	dir = 1
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"So" = (
+/obj/effect/turf_decal/stripes/box,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/door/firedoor/border_only/closed,
+/obj/machinery/door/firedoor/border_only/closed{
+	dir = 1
+	},
+/obj/machinery/door/airlock/security/glass{
+	name = "Zbrojownia";
+	welded = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/planet_space/refuelingpost/armory)
+"Sq" = (
+/turf/open/floor/engine,
+/area/space)
+"SA" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 8;
+	welded = 1
+	},
+/turf/open/floor/plasteel/dark/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/dorms)
+"SC" = (
+/obj/structure/table/reinforced,
+/obj/item/reagent_containers/syringe,
+/obj/item/reagent_containers/syringe{
+	pixel_x = 3;
+	pixel_y = -2
+	},
+/obj/item/reagent_containers/glass/bottle/charcoal{
+	pixel_x = -7;
+	pixel_y = 9
+	},
+/obj/effect/turf_decal/tile/blue/half{
+	dir = 4;
+	color = "#32426b";
+	alpha = 140
+	},
+/obj/effect/turf_decal/ship/borderfloor/gunmetal,
+/turf/open/floor/plasteel/white{
+	initial_gas_mix = "n2=50;plasma=50;TEMP=293.15"
+	},
+/area/ruin/space/has_grav/planet_space/refuelingpost/infirmary)
+"SE" = (
+/obj/structure/safe/floor,
+/obj/structure/table_frame,
+/obj/effect/decal/cleanable/glass,
+/obj/effect/turf_decal/tile/black{
+	color = "#444547";
+	alpha = 255
+	},
+/obj/item/stack/spacecash/c1000,
+/obj/item/stack/spacecash/c1000,
+/obj/item/hand_tele,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/bridge)
+"SI" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/item/radio/intercom/directional/north,
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"SL" = (
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/plasteel/tech,
+/area/ruin/space/has_grav/planet_space/refuelingpost/starboard)
+"SO" = (
+/turf/open/floor/monotile/steel,
+/area/ruin/space/has_grav/planet_space/refuelingpost/engineering)
+"SS" = (
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable/yellow,
+/obj/effect/turf_decal/siding/thinplating/dark,
+/obj/machinery/atmospherics/pipe/simple/purple/hidden/layer5{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 1
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"SV" = (
+/obj/item/ammo_casing/spent,
+/obj/machinery/firealarm/directional/north,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4;
+	color = "#FF0000"
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"SX" = (
+/obj/machinery/door/poddoor/preopen{
+	id = "fuelinghangar"
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"Td" = (
+/obj/effect/turf_decal/box/corners{
+	dir = 4
+	},
+/obj/structure/closet/crate/secure,
+/obj/item/pickaxe/drill,
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargo)
+"Te" = (
+/obj/item/stack/ore/titanium,
+/obj/structure/lattice,
+/turf/open/space/basic,
+/area/ruin/space/has_grav/planet_space/refuelingpost/dorms)
+"Tu" = (
+/obj/structure/grille,
+/obj/structure/window/shuttle,
+/obj/machinery/atmospherics/pipe/simple/purple/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/engineering)
+"Tx" = (
+/obj/machinery/door/airlock/external,
+/obj/effect/turf_decal/stripes/box,
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/planet_space/refuelingpost/starboard)
+"Tz" = (
+/mob/living/basic/hivebot/range,
+/turf/open/floor/circuit{
+	initial_gas_mix = "TEMP=2.7"
+	},
+/area/ruin/space/planet_space/hivebotshuttle)
+"TD" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/purple/hidden/layer5{
+	dir = 8
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"TI" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 5
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
+	dir = 1
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"TJ" = (
+/obj/machinery/door/airlock/external{
+	welded = 1
+	},
+/obj/effect/turf_decal/stripes/box,
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/planet_space/refuelingpost/starboard)
+"TL" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 4
+	},
+/obj/structure/closet/emcloset/anchored,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"TQ" = (
+/obj/structure/chair/fancy/comfy{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/blue/line{
+	color = "#32426b";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/dark/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/bridge)
+"TS" = (
+/obj/structure/lattice/catwalk,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/purple/hidden/layer2{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/purple/hidden/layer5{
+	dir = 10
+	},
+/turf/open/floor/plating/airless,
+/area/space)
+"TV" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/pipe/manifold/purple/hidden/layer5{
+	dir = 8
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"Ud" = (
+/obj/effect/turf_decal/caution{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"Ug" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/airalarm/directional/west,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 8;
+	color = "#32426b";
+	alpha = 255
+	},
+/obj/effect/turf_decal/trimline/blue/warning{
+	dir = 1;
+	color = "#32426b";
+	alpha = 255
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/planet_space/refuelingpost/starboard)
+"Um" = (
+/obj/effect/turf_decal/stripes/box,
+/obj/machinery/door/airlock{
+	dir = 4;
+	name = "Sypialnie"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/planet_space/refuelingpost/dorms)
+"Us" = (
+/obj/effect/turf_decal/stripes/box,
+/obj/structure/door_assembly,
+/obj/structure/firelock_frame/border,
+/obj/structure/firelock_frame/border{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/planet_space/refuelingpost/dorms)
+"Ut" = (
+/obj/structure/chair/fancy/comfy{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/blue/line{
+	dir = 8;
+	color = "#32426b";
+	alpha = 255
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/plasteel/dark/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/bridge)
+"UG" = (
+/obj/machinery/atmospherics/components/binary/pump{
+	dir = 8
+	},
+/obj/machinery/atmospherics/components/binary/volume_pump/on/layer2{
+	dir = 4
+	},
+/obj/effect/turf_decal/ship/borderfloor,
+/obj/effect/turf_decal/siding/yellow/end{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/planet_space/refuelingpost/engineering)
+"UH" = (
+/obj/effect/turf_decal/trimline/blue/filled/corner{
+	dir = 8;
+	color = "#32426b";
+	alpha = 255
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/monotile/light,
+/area/ruin/space/has_grav/planet_space/refuelingpost/lower)
+"UK" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 5
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/planet_space/refuelingpost/engineering)
+"UN" = (
+/obj/structure/frame/machine{
+	anchored = 1
+	},
+/turf/open/floor/circuit{
+	initial_gas_mix = "TEMP=2.7"
+	},
+/area/ruin/space/planet_space/hivebotshuttle)
+"UQ" = (
+/obj/effect/turf_decal/stripes/line,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "ripleyfueling"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargo)
+"UW" = (
+/obj/effect/decal/cleanable/robot_debris,
+/obj/item/stock_parts/capacitor,
+/obj/machinery/airalarm/directional/east,
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 8
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"Vb" = (
+/obj/structure/lattice/catwalk,
+/obj/effect/decal/cleanable/crayon{
+	pixel_x = -8;
+	pixel_y = -34;
+	color = "#FF0000"
+	},
+/turf/open/floor/plating/airless,
+/area/space)
+"Vj" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/power/apc/auto_name/west,
+/obj/structure/cable/yellow,
+/obj/effect/turf_decal/trimline/blue/filled/corner{
+	dir = 1;
+	color = "#32426b";
+	alpha = 255
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/planet_space/refuelingpost/starboard)
+"Vt" = (
+/obj/structure/grille,
+/obj/structure/window/shuttle,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/infirmary)
+"VA" = (
+/obj/structure/grille,
+/obj/structure/window/shuttle,
+/obj/machinery/door/poddoor/shutters{
+	id = "fuelingsecurity"
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"VE" = (
+/obj/effect/turf_decal/tile/black/anticorner/contrasted{
+	dir = 4;
+	color = "#444547";
+	alpha = 255
+	},
+/obj/item/radio/intercom/directional/south,
+/turf/open/floor/circuit,
+/area/ruin/space/has_grav/planet_space/refuelingpost/dorms)
+"VI" = (
+/obj/structure/cable,
+/obj/effect/turf_decal/tile/red/half{
+	dir = 8;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/item/kitchen/knife/combat,
+/obj/effect/decal/cleanable/blood,
+/obj/effect/mob_spawn/human/corpse/syndicatesoldier,
+/turf/open/floor/plasteel/tech{
+	initial_gas_mix = "TEMP=2.7"
+	},
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"VL" = (
+/obj/item/storage/firstaid/brute{
+	pixel_x = -7;
+	pixel_y = 7
+	},
+/obj/item/storage/firstaid/medical{
+	pixel_x = -7;
+	pixel_y = 1
+	},
+/obj/item/storage/firstaid/toxin{
+	pixel_x = 8;
+	pixel_y = 1
+	},
+/obj/item/storage/firstaid/o2{
+	pixel_x = 8;
+	pixel_y = 7
+	},
+/obj/structure/closet/crate/medical,
+/obj/effect/turf_decal/tile/blue/half{
+	color = "#32426b";
+	alpha = 140
+	},
+/obj/effect/turf_decal/ship/borderfloor/gunmetal{
+	dir = 8
+	},
+/obj/item/clothing/neck/stethoscope,
+/obj/item/reagent_containers/blood/OMinus,
+/obj/item/reagent_containers/blood/OMinus,
+/obj/item/reagent_containers/blood/OMinus,
+/obj/item/reagent_containers/blood/OMinus,
+/obj/machinery/iv_drip,
+/turf/open/floor/plasteel/white{
+	initial_gas_mix = "n2=50;plasma=50;TEMP=293.15"
+	},
+/area/ruin/space/has_grav/planet_space/refuelingpost/infirmary)
+"VQ" = (
+/obj/structure/cable,
+/obj/effect/turf_decal/tile/red{
+	dir = 8;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/trimline/yellow/filled/warning{
+	dir = 4;
+	color = "#BA9F6D";
+	alpha = 140
+	},
+/obj/machinery/light/small,
+/turf/open/floor/plasteel/tech{
+	initial_gas_mix = "TEMP=2.7"
+	},
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"VZ" = (
+/obj/structure/lattice,
+/obj/item/stack/rods,
+/turf/open/space/basic,
+/area/ruin/space/has_grav/planet_space/refuelingpost/dorms)
+"Wb" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/visible/layer4{
+	dir = 10
+	},
+/turf/open/floor/monotile/steel,
+/area/ruin/space/has_grav/planet_space/refuelingpost/engineering)
+"Wc" = (
+/obj/structure/chair/office{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/trash/energybar{
+	pixel_x = -5;
+	pixel_y = 12
+	},
+/turf/open/floor/monotile/dark,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargo)
+"We" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/trimline/yellow/line{
+	dir = 4;
+	color = "#f97016";
+	alpha = 255
+	},
+/obj/effect/turf_decal/siding/white/corner{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargo)
+"Wf" = (
+/turf/template_noop,
+/area/template_noop)
+"Wj" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/siphon/on,
+/turf/open/floor/engine/air,
+/area/ruin/space/has_grav/planet_space/refuelingpost/engineering)
+"Wk" = (
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 10
+	},
+/turf/open/floor/plasteel/tech/grid{
+	initial_gas_mix = "TEMP=2.7"
+	},
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"Wo" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/plasteel/tech,
+/area/ruin/space/has_grav/planet_space/refuelingpost/starboard)
+"Wp" = (
+/obj/structure/cable/yellow,
+/obj/machinery/power/terminal{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"Ws" = (
+/obj/effect/turf_decal/ship/borderfloor,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/yellow,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/plasteel/techmaint,
+/area/ruin/space/has_grav/planet_space/refuelingpost/engineering)
+"Ww" = (
+/obj/structure/grille/broken,
+/turf/open/floor/plating,
+/area/space)
+"Wx" = (
+/obj/machinery/power/terminal{
+	dir = 1
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/plating/rust,
+/area/ruin/space/planet_space/hivebotshuttle)
+"WA" = (
+/obj/machinery/atmospherics/components/binary/dp_vent_pump/high_volume/layer2{
+	dir = 1;
+	welded = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/machinery/advanced_airlock_controller/directional/west,
+/obj/structure/cable,
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/planet_space/refuelingpost/solarstorage)
+"WC" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/plasteel/dark/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/dorms)
+"WD" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/simple/purple/hidden/layer5,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 1
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"WJ" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 4;
+	welded = 1
+	},
+/obj/structure/closet/emcloset/anchored,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"WM" = (
+/obj/effect/turf_decal/trimline/red/line{
+	color = "#c92020";
+	alpha = 255
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 5
+	},
+/obj/machinery/button/door{
+	dir = 1;
+	id = "fuelingsecurity";
+	pixel_x = 9;
+	pixel_y = -18
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/planet_space/refuelingpost/armory)
+"WO" = (
+/obj/effect/turf_decal/tile/red/half{
+	dir = 8;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/robot_debris,
+/obj/item/stock_parts/cell/crap,
+/turf/open/floor/plasteel/tech{
+	initial_gas_mix = "TEMP=2.7"
+	},
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"WQ" = (
+/obj/structure/chair/fancy/bench{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue/half{
+	dir = 1;
+	color = "#32426b";
+	alpha = 140
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/firealarm/directional/west,
+/turf/open/floor/plasteel/white{
+	initial_gas_mix = "n2=50;plasma=50;TEMP=293.15"
+	},
+/area/ruin/space/has_grav/planet_space/refuelingpost/infirmary)
+"WX" = (
+/obj/effect/turf_decal/siding/thinplating/dark,
+/obj/item/stack/tile/plasteel,
+/turf/open/floor/plating/rust{
+	initial_gas_mix = "TEMP=2.7"
+	},
+/area/ruin/space/has_grav/planet_space/refuelingpost/bridge)
+"WY" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 4
+	},
+/obj/structure/frame/computer{
+	dir = 8;
+	anchored = 1
+	},
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/circuit,
+/area/ruin/space/has_grav/planet_space/refuelingpost/bridge)
+"Xb" = (
+/obj/structure/lattice/catwalk/over/ship,
+/obj/structure/closet/emcloset/anchored,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/planet_space/refuelingpost/engineering)
+"Xf" = (
+/obj/machinery/atmospherics/pipe/simple/purple/hidden/layer2,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/closet/crate/engineering,
+/obj/item/extinguisher/advanced{
+	pixel_x = -2;
+	pixel_y = 4
+	},
+/obj/item/extinguisher/advanced{
+	pixel_x = -9;
+	pixel_y = 4
+	},
+/obj/item/watertank/atmos{
+	pixel_x = 4;
+	pixel_y = 2
+	},
+/obj/machinery/atmospherics/pipe/manifold/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/planet_space/refuelingpost/engineering)
+"Xj" = (
+/obj/structure/cable,
+/obj/effect/turf_decal/tile/red/half{
+	dir = 4;
+	color = "#730622";
+	alpha = 255
+	},
+/mob/living/basic/hivebot,
+/turf/open/floor/plasteel/tech{
+	initial_gas_mix = "TEMP=2.7"
+	},
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"Xm" = (
+/obj/effect/turf_decal/ship/borderfloor,
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/radio/intercom/directional/north,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/bridge)
+"Xt" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	welded = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/planet_space/refuelingpost/armory)
+"Xx" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/simple/purple/hidden/layer5{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"XI" = (
+/obj/structure/shuttle/engine/propulsion,
+/turf/open/floor/engine{
+	initial_gas_mix = "TEMP=2.7"
+	},
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"XL" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/white,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/yellow/end{
+	dir = 4;
+	color = "#f97016";
+	alpha = 255
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargo)
+"XT" = (
+/obj/machinery/power/solar,
+/obj/structure/cable,
+/turf/open/floor/plating/airless,
+/area/space)
+"XY" = (
+/obj/structure/girder/reinforced,
+/obj/structure/grille,
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/plating/airless,
+/area/space)
+"Yh" = (
+/obj/machinery/door/airlock/engineering{
+	dir = 8;
+	name = "Inżynieria"
+	},
+/obj/effect/turf_decal/stripes/box,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/space/has_grav/planet_space/refuelingpost/upper)
+"Yk" = (
+/obj/effect/decal/cleanable/robot_debris,
+/obj/item/stock_parts/manipulator,
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"Yl" = (
+/obj/effect/turf_decal/tile/black{
+	dir = 4;
+	color = "#444547";
+	alpha = 255
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	welded = 1
+	},
+/turf/open/floor/circuit{
+	initial_gas_mix = "TEMP=2.7"
+	},
+/area/ruin/space/has_grav/planet_space/refuelingpost/armory)
+"YB" = (
+/obj/effect/turf_decal/box/corners{
+	dir = 1
+	},
+/obj/structure/closet/crate,
+/obj/item/food/energybar,
+/obj/item/food/energybar,
+/obj/item/food/energybar,
+/obj/item/food/energybar,
+/obj/item/food/energybar,
+/obj/item/food/donkpocket,
+/obj/item/food/donkpocket,
+/obj/item/food/donkpocket,
+/obj/item/food/donkpocket,
+/obj/item/reagent_containers/glass/waterbottle,
+/obj/item/reagent_containers/glass/waterbottle,
+/obj/item/reagent_containers/glass/waterbottle,
+/obj/item/reagent_containers/glass/waterbottle,
+/obj/item/reagent_containers/glass/waterbottle,
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargo)
+"YC" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 4
+	},
+/obj/structure/frame/computer{
+	dir = 8;
+	anchored = 1
+	},
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 8
+	},
+/turf/open/floor/circuit,
+/area/ruin/space/has_grav/planet_space/refuelingpost/bridge)
+"YD" = (
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal/siding/thinplating/dark,
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 1
+	},
+/obj/item/paper_bin{
+	pixel_x = 4
+	},
+/turf/open/floor/circuit,
+/area/ruin/space/has_grav/planet_space/refuelingpost/bridge)
+"YF" = (
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 8
+	},
+/obj/machinery/firealarm/directional/west,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/bridge)
+"YN" = (
+/obj/effect/turf_decal/ship/borderfloor,
+/obj/machinery/power/apc/auto_name/east,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable/yellow,
+/obj/effect/turf_decal/siding/yellow{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/yellow{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/planet_space/refuelingpost/solarstorage)
+"YX" = (
+/obj/structure/lattice,
+/turf/open/space/basic,
+/area/ruin/space/has_grav/planet_space/refuelingpost/dorms)
+"YY" = (
+/obj/effect/turf_decal/trimline/red/line{
+	color = "#c92020";
+	alpha = 255
+	},
+/obj/machinery/airalarm/directional/south,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
+/obj/structure/cable/yellow,
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/planet_space/refuelingpost/armory)
+"YZ" = (
+/obj/machinery/power/port_gen/pacman,
+/obj/structure/cable/yellow,
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/plasteel/tech{
+	initial_gas_mix = "TEMP=2.7"
+	},
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"Ze" = (
+/obj/effect/turf_decal/delivery,
+/obj/structure/closet/crate/engineering,
+/obj/item/circuitboard/machine/shuttle/engine/plasma,
+/obj/item/circuitboard/machine/shuttle/engine/plasma,
+/obj/item/circuitboard/machine/shuttle/heater,
+/obj/item/circuitboard/machine/shuttle/heater,
+/turf/open/floor/plasteel/techmaint{
+	initial_gas_mix = "TEMP=2.7"
+	},
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargobay)
+"Zf" = (
+/turf/open/floor/plasteel/dark/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/dorms)
+"Zr" = (
+/obj/effect/turf_decal/tile/black/anticorner/contrasted{
+	dir = 1;
+	color = "#444547";
+	alpha = 255
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
+/turf/open/floor/plating/rust,
+/area/ruin/space/has_grav/planet_space/refuelingpost/armory)
+"Zs" = (
+/obj/machinery/door/airlock{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/box,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/space/has_grav/planet_space/refuelingpost/upper)
+"Zt" = (
+/obj/machinery/advanced_airlock_controller/directional/east,
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/plasteel/tech,
+/area/ruin/space/has_grav/planet_space/refuelingpost/starboard)
+"Zu" = (
+/obj/machinery/power/smes/engineering,
+/obj/effect/turf_decal/ship/borderfloor,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/cable/yellow,
+/turf/open/floor/plasteel/tech,
+/area/ruin/space/has_grav/planet_space/refuelingpost/solarstorage)
+"Zv" = (
+/obj/effect/turf_decal/ship/borderfloor,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/planet_space/refuelingpost/upper)
+"ZA" = (
+/obj/structure/table/reinforced,
+/obj/machinery/door/window{
+	dir = 8
+	},
+/obj/machinery/door/window{
+	dir = 4
+	},
+/obj/machinery/door/poddoor{
+	dir = 4;
+	id = "fuelingcargo"
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargo)
+"ZD" = (
+/turf/closed/wall/mineral/titanium/nodiagonal,
+/area/ruin/space/has_grav/planet_space/refuelingpost/armory)
+"ZK" = (
+/obj/machinery/power/solar,
+/obj/structure/cable,
+/turf/open/floor/plating/airless,
+/area/ruin/space/planet_space/hivebotshuttle)
+"ZL" = (
+/obj/effect/turf_decal/tile/blue/half{
+	color = "#32426b";
+	alpha = 140
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
+/obj/machinery/light/broken{
+	dir = 4
+	},
+/turf/open/floor/plasteel/white{
+	initial_gas_mix = "n2=50;plasma=50;TEMP=293.15"
+	},
+/area/ruin/space/has_grav/planet_space/refuelingpost/infirmary)
+"ZO" = (
+/obj/structure/window/shuttle,
+/obj/structure/grille,
+/obj/machinery/door/poddoor{
+	dir = 4;
+	id = "fuelingcargo"
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/cargo)
+"ZS" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 10
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/planet_space/refuelingpost/starboard)
+"ZV" = (
+/obj/structure/grille,
+/obj/structure/window/shuttle,
+/obj/machinery/atmospherics/pipe/simple/purple/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "fuelingengineering"
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/planet_space/refuelingpost/engineering)
+"ZY" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/structure/cable/yellow,
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 4;
+	color = "#32426b";
+	alpha = 255
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/monotile/light,
+/area/ruin/space/has_grav/planet_space/refuelingpost/lower)
+"ZZ" = (
+/obj/structure/lattice/catwalk,
+/obj/structure/cable,
+/turf/open/floor/plating/airless,
+/area/space)
+
+(1,1,1) = {"
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Kq
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+"}
+(2,1,1) = {"
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+"}
+(3,1,1) = {"
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+"}
+(4,1,1) = {"
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+"}
+(5,1,1) = {"
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+XT
+Kq
+Kq
+Kq
+Kq
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+"}
+(6,1,1) = {"
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Kq
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Kq
+Kq
+Kq
+zp
+zp
+zp
+XT
+zp
+zp
+zp
+Kq
+Kq
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+"}
+(7,1,1) = {"
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Kq
+Kq
+Wf
+Wf
+Kq
+Kq
+Kq
+Kq
+Wf
+Kq
+Kq
+Wf
+Wf
+Kq
+Kq
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+XT
+Kq
+Kq
+Kq
+Kq
+Kq
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+"}
+(8,1,1) = {"
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Wf
+Wf
+Wf
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+XT
+Kq
+Kq
+Kq
+Kq
+Kq
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+"}
+(9,1,1) = {"
+Wf
+Wf
+Kq
+Wf
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+XT
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+zp
+zp
+Hu
+zp
+zp
+Kq
+Kq
+Kq
+Kq
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+"}
+(10,1,1) = {"
+Wf
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+XT
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+XT
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+XT
+Kq
+Kq
+Kq
+Kq
+Hu
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Wf
+Wf
+Wf
+Wf
+Wf
+"}
+(11,1,1) = {"
+Wf
+Wf
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+zp
+zp
+Hu
+zp
+zp
+Kq
+Kq
+Kq
+Kq
+Pm
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Hu
+Kq
+Kq
+Kq
+Kq
+XT
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Wf
+Wf
+Wf
+Wf
+"}
+(12,1,1) = {"
+Wf
+Wf
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+XT
+Kq
+Kq
+Kq
+Kq
+Kq
+zp
+XT
+zp
+zp
+zp
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+XT
+Kq
+Kq
+Kq
+zp
+XT
+zp
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Wf
+Wf
+Wf
+Wf
+"}
+(13,1,1) = {"
+Wf
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+zp
+XT
+zp
+Kq
+Kq
+Kq
+Kq
+Kq
+XT
+Kq
+Kq
+Kq
+Kq
+bR
+XY
+bR
+bR
+bR
+Kq
+XT
+Kq
+Kq
+Kq
+Kq
+Hu
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Wf
+Wf
+Wf
+Wf
+"}
+(14,1,1) = {"
+Wf
+Wf
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+XT
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+ww
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Sq
+Kq
+Kq
+Kq
+XT
+Kq
+Kq
+Kq
+Kq
+XT
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Wf
+Wf
+Wf
+"}
+(15,1,1) = {"
+Wf
+Wf
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+ww
+Kq
+Kq
+ZZ
+ZZ
+ZZ
+dP
+ZZ
+ZZ
+ZZ
+ZZ
+ZZ
+ra
+Kq
+Sq
+Kq
+Kq
+Kq
+ww
+Kq
+Kq
+Kq
+Kq
+ww
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Wf
+Wf
+Wf
+"}
+(16,1,1) = {"
+Wf
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+ZZ
+ZZ
+ZZ
+ZZ
+ZZ
+ZZ
+Hi
+Hi
+Ey
+qJ
+qJ
+Hi
+Hi
+ja
+Hi
+Hi
+Hi
+Hi
+ZZ
+ZZ
+ZZ
+ZZ
+ZZ
+ZZ
+ZZ
+ZZ
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Wf
+Wf
+"}
+(17,1,1) = {"
+Wf
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+ZZ
+yk
+yk
+Bu
+Bu
+yk
+Hi
+EK
+Cf
+kw
+Cp
+ip
+Sj
+jJ
+eC
+Sd
+bs
+Hi
+ZZ
+Kq
+Sq
+sO
+sO
+sO
+sO
+Sq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Wf
+Wf
+"}
+(18,1,1) = {"
+Wf
+Wf
+Kq
+Kq
+Kq
+Kq
+wE
+Kq
+Kq
+ZZ
+yk
+Zu
+Es
+DT
+wn
+Hi
+Xb
+LW
+Md
+SO
+MG
+Hi
+ja
+Hi
+Hi
+Hi
+Hi
+ZZ
+Kq
+sO
+sO
+Ks
+Ze
+sO
+sO
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Wf
+"}
+(19,1,1) = {"
+Wf
+Wf
+Wf
+Kq
+Kq
+Kq
+XT
+Kq
+ZZ
+ZZ
+yk
+mb
+Lj
+iC
+Pk
+Hi
+RD
+Ki
+Fi
+uJ
+jC
+Hi
+ja
+jL
+jL
+Kq
+Kq
+ZZ
+Sq
+sO
+Hx
+kR
+gc
+jT
+sO
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Wf
+"}
+(20,1,1) = {"
+Wf
+Kq
+Kq
+Kq
+zp
+Kq
+XT
+Kq
+ZZ
+yk
+yk
+yk
+eS
+Nl
+gp
+Hi
+iU
+Wb
+qw
+xf
+nd
+Hi
+ja
+Hi
+Hi
+Hi
+Hi
+ZZ
+Kq
+hB
+Wk
+Fk
+Ud
+ot
+sO
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Wf
+"}
+(21,1,1) = {"
+Wf
+Wf
+Kq
+Kq
+zp
+EO
+Bm
+bS
+ZZ
+dU
+fc
+dU
+PL
+CL
+OW
+uG
+qL
+rz
+FV
+HE
+bQ
+ZV
+tS
+Tu
+az
+Oq
+Hi
+ZZ
+Sq
+sO
+Ju
+rn
+yB
+EA
+sO
+sO
+sO
+sO
+sO
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Wf
+"}
+(22,1,1) = {"
+Wf
+Kq
+Kq
+Kq
+zp
+Kq
+XT
+Kq
+hQ
+yk
+yk
+yk
+yk
+Hi
+Hi
+Hi
+dG
+uw
+QQ
+OV
+UG
+Hi
+dI
+Hi
+Hi
+Hi
+Hi
+ZZ
+sO
+sO
+sO
+Fm
+Bs
+sO
+sO
+TL
+jd
+mE
+sO
+sO
+sO
+Kq
+Kq
+Kq
+Kq
+Kq
+Wf
+"}
+(23,1,1) = {"
+Wf
+Kq
+Kq
+Kq
+Kq
+Kq
+Hu
+Kq
+hQ
+hQ
+hQ
+Hi
+au
+Hi
+PF
+OO
+li
+Jp
+Hz
+Bg
+bq
+Hi
+RM
+JM
+JM
+JM
+JM
+JM
+QL
+nr
+TI
+Rq
+yB
+tB
+mN
+yB
+yB
+JK
+nA
+nc
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Wf
+"}
+(24,1,1) = {"
+Wf
+Kq
+Kq
+Kq
+Kq
+Kq
+XT
+Kq
+Kq
+Kq
+hQ
+Hi
+Wj
+Ik
+Dz
+kB
+Ws
+Oe
+bA
+UK
+HS
+Hi
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+sO
+oN
+wZ
+NO
+ec
+ec
+ec
+NO
+nc
+Do
+SX
+nc
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Wf
+"}
+(25,1,1) = {"
+Wf
+Kq
+Kq
+Kq
+Kq
+Kq
+Hu
+Kq
+bR
+Kq
+hQ
+Hi
+Hi
+Hi
+om
+om
+GU
+sJ
+Bo
+ob
+GK
+Hi
+ID
+Gs
+Bw
+ZD
+ur
+NE
+sO
+fw
+NO
+NO
+NO
+XI
+NO
+NO
+NO
+Do
+SX
+nc
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+"}
+(26,1,1) = {"
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+XT
+Kq
+bR
+Kq
+hQ
+hQ
+du
+du
+du
+du
+du
+du
+tk
+Yh
+tk
+tk
+Yl
+Ao
+Np
+So
+iH
+WM
+sO
+uu
+NO
+YZ
+NO
+iI
+NO
+ns
+NO
+MQ
+SX
+JD
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+"}
+(27,1,1) = {"
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+tc
+Kq
+bR
+Sq
+Sq
+hQ
+du
+aU
+CZ
+WQ
+EY
+du
+ty
+HL
+bN
+tk
+tk
+ZD
+ZD
+ZD
+Dt
+kI
+VA
+fw
+NO
+Wp
+sI
+Ol
+CP
+Pe
+NO
+JK
+SX
+nc
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+"}
+(28,1,1) = {"
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+bR
+Kq
+Kq
+hQ
+Qy
+xv
+Ap
+Ap
+hO
+Vt
+OU
+Lz
+Zv
+JE
+tk
+IG
+yo
+xp
+Zr
+vP
+bx
+fw
+NO
+Os
+hV
+AN
+VI
+KO
+NO
+JK
+SX
+nc
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+"}
+(29,1,1) = {"
+Wf
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+bR
+Sq
+Sq
+hQ
+Qy
+xn
+Ap
+Ap
+HK
+du
+Mq
+iS
+QB
+jQ
+tk
+bX
+in
+xp
+Xt
+YY
+sO
+SI
+QU
+NO
+RP
+Xj
+WO
+NO
+QU
+JK
+SX
+nc
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+"}
+(30,1,1) = {"
+Wf
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+bR
+Kq
+Kq
+hQ
+du
+Gq
+ZL
+lI
+Rb
+OX
+ts
+KR
+LE
+tk
+tk
+fx
+Ln
+ny
+ou
+Nr
+sO
+LF
+nc
+QU
+NO
+mt
+jw
+NO
+hh
+MQ
+SX
+JD
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+"}
+(31,1,1) = {"
+Wf
+Wf
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+bR
+Kq
+Kq
+hQ
+du
+du
+du
+NA
+du
+tk
+tk
+CS
+jH
+tk
+tk
+ZD
+ZD
+bv
+tN
+Ig
+sO
+vX
+hh
+nc
+NO
+HW
+VQ
+NO
+nc
+JK
+SX
+nc
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+"}
+(32,1,1) = {"
+Wf
+Wf
+Wf
+Wf
+Kq
+Kq
+Kq
+Kq
+bR
+Sq
+Sq
+hQ
+Qy
+un
+Gd
+hk
+du
+kZ
+AJ
+ym
+Bp
+UH
+uE
+yZ
+OB
+Kz
+og
+re
+Aq
+kP
+go
+hC
+NO
+aa
+zO
+NO
+Yk
+CI
+SX
+nc
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+"}
+(33,1,1) = {"
+Wf
+Wf
+Wf
+Kq
+Kq
+Kq
+Kq
+Kq
+bR
+Kq
+Kq
+hQ
+Qy
+SC
+OM
+nC
+du
+qg
+ko
+wy
+dz
+JN
+gS
+jV
+rE
+ZY
+Mg
+EN
+en
+Au
+wQ
+zu
+At
+At
+zQ
+zQ
+ix
+lT
+nA
+nc
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+"}
+(34,1,1) = {"
+Wf
+Wf
+Wf
+Kq
+Kq
+Kq
+Kq
+Kq
+bR
+Sq
+Sq
+hQ
+du
+lO
+wJ
+VL
+du
+rR
+AJ
+Qj
+qT
+fs
+BW
+xO
+fs
+fb
+fs
+fs
+sO
+SV
+xT
+sk
+OT
+bd
+UW
+KA
+sO
+sO
+sO
+sO
+sO
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+"}
+(35,1,1) = {"
+Wf
+Wf
+Wf
+Kq
+Kq
+Kq
+Kq
+Kq
+bR
+Kq
+Kq
+Ip
+du
+du
+du
+du
+du
+tk
+tk
+Zs
+BT
+fs
+BV
+fg
+YF
+Kg
+fg
+fC
+Ou
+zk
+Ou
+ZO
+ZA
+ZO
+Ou
+KD
+Ou
+Kq
+hQ
+hQ
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+"}
+(36,1,1) = {"
+Wf
+Wf
+Wf
+Wf
+Kq
+Kq
+Kq
+Kq
+bR
+Kq
+Kq
+hQ
+EO
+TJ
+zK
+SL
+Tx
+Am
+Vj
+qI
+Id
+fs
+Xm
+EU
+Af
+Ut
+mW
+WX
+Ou
+nq
+kL
+fp
+Wc
+Ny
+zB
+QW
+Ou
+Kq
+hQ
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+"}
+(37,1,1) = {"
+Wf
+Kq
+Wf
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+hQ
+EO
+TJ
+Wo
+Zt
+Tx
+Bq
+hJ
+ZS
+DE
+fs
+ye
+Lk
+JW
+SE
+TQ
+KE
+Ou
+tr
+fG
+AX
+kX
+Na
+Nc
+QW
+Ou
+Ly
+EO
+EO
+EO
+EO
+EO
+EO
+xo
+Kq
+Kq
+"}
+(38,1,1) = {"
+Wf
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Vb
+nw
+nw
+nw
+nw
+nw
+nw
+nw
+Um
+GC
+fs
+nB
+mP
+lp
+yy
+kq
+DG
+Ou
+FP
+aj
+qf
+Ns
+RC
+oF
+MR
+nW
+kr
+hQ
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+"}
+(39,1,1) = {"
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+hQ
+hQ
+nw
+rB
+lN
+kn
+nw
+LK
+qe
+Zf
+fs
+Ne
+IL
+jo
+ky
+HY
+zR
+Ou
+mf
+HF
+We
+ck
+YB
+vl
+uR
+nW
+kr
+hQ
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+"}
+(40,1,1) = {"
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+hQ
+nw
+AY
+lN
+vL
+Us
+Oi
+aD
+oZ
+fs
+Ai
+jc
+AO
+Si
+FU
+YD
+Ou
+zU
+pq
+KP
+am
+nN
+nN
+oJ
+nW
+kr
+hQ
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+"}
+(41,1,1) = {"
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+hQ
+nw
+gK
+LK
+AB
+Fv
+AH
+qe
+Km
+fs
+nv
+WY
+Pt
+Kj
+YC
+tb
+Ou
+Ou
+Ou
+em
+It
+FZ
+Io
+Cy
+Ou
+Ly
+EO
+EO
+EO
+RR
+Kq
+Kq
+Kq
+Kq
+Kq
+"}
+(42,1,1) = {"
+Wf
+Kq
+Kq
+Kq
+Kq
+Kq
+nw
+Kq
+Kq
+Kq
+Kq
+YX
+IM
+Kq
+il
+YX
+YX
+nw
+Iz
+qe
+Rw
+fs
+fs
+IP
+Ab
+iO
+xO
+fs
+Ou
+kX
+Cu
+UQ
+XL
+nN
+nN
+pL
+Ou
+hQ
+hQ
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+"}
+(43,1,1) = {"
+Wf
+Kq
+Kq
+Kq
+Kq
+Kq
+nw
+YX
+Kq
+Kq
+Kq
+Kq
+Kq
+fD
+ZK
+ZK
+kx
+ZK
+Bn
+SA
+af
+nw
+Sq
+Sq
+wN
+nt
+Sq
+Sq
+Ou
+Qc
+Cu
+UQ
+KZ
+Td
+NM
+Ou
+Ou
+hQ
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Wf
+"}
+(44,1,1) = {"
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+jI
+oG
+Kq
+Kq
+Kq
+Kq
+bY
+da
+bY
+bY
+Fo
+tX
+ZK
+Qs
+VE
+nw
+Sq
+EO
+uB
+EO
+ha
+Sq
+Ou
+zD
+CB
+Ou
+Ou
+iE
+Ou
+Ou
+hQ
+hQ
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Wf
+Wf
+Wf
+"}
+(45,1,1) = {"
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+oG
+Kq
+Kq
+Kq
+uz
+kV
+Wx
+UN
+rm
+da
+mw
+Cj
+Kq
+QF
+nw
+Sq
+EO
+iN
+EO
+qS
+rr
+Ou
+Ou
+Ou
+Ou
+Oc
+Oc
+Oc
+Oc
+hQ
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Wf
+Wf
+Wf
+"}
+(46,1,1) = {"
+Wf
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+AV
+da
+Cm
+BY
+Ch
+mp
+bY
+Qe
+IM
+il
+nw
+rr
+EO
+EO
+EO
+vb
+Oc
+Oc
+Oc
+Oc
+Oc
+Oc
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Wf
+Wf
+Wf
+Wf
+"}
+(47,1,1) = {"
+Wf
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+AV
+da
+nl
+LB
+LB
+cH
+cH
+Qe
+VZ
+Zf
+nw
+hQ
+vb
+vb
+vb
+vb
+Kq
+Ww
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Wf
+Wf
+Wf
+Wf
+Wf
+"}
+(48,1,1) = {"
+Kq
+Kq
+Kq
+oG
+Te
+Kq
+Kq
+Kq
+Kq
+tH
+Kq
+AV
+da
+Qr
+aY
+xh
+Tz
+Fo
+Qe
+Kq
+nw
+nw
+hQ
+Kq
+Kq
+Kq
+ca
+Kq
+Rp
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Wf
+Wf
+Wf
+Wf
+Wf
+"}
+(49,1,1) = {"
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+uz
+kV
+Ed
+zE
+UN
+bY
+bY
+zX
+Or
+hQ
+hQ
+hQ
+Kq
+Kq
+Rp
+Rp
+Rp
+Rp
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+"}
+(50,1,1) = {"
+Wf
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+da
+bY
+bY
+da
+da
+ZK
+ZK
+Kq
+Kq
+EO
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+"}
+(51,1,1) = {"
+Wf
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+ZK
+ZK
+ZK
+ZK
+ZK
+Kq
+oD
+sq
+bR
+bR
+bR
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+"}
+(52,1,1) = {"
+Wf
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+YX
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+IM
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+"}
+(53,1,1) = {"
+Wf
+Kq
+Kq
+Kq
+Kq
+Kq
+oG
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+"}
+(54,1,1) = {"
+Wf
+Kq
+Kq
+Kq
+Kq
+Kq
+YX
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+"}
+(55,1,1) = {"
+Wf
+Kq
+Kq
+Kq
+Kq
+nw
+jI
+Kq
+Kq
+Kq
+tH
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Ri
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+"}
+(56,1,1) = {"
+Wf
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Ri
+Kq
+Kq
+Kq
+YX
+YX
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+"}
+(57,1,1) = {"
+Wf
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+wT
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Kq
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+"}
+(58,1,1) = {"
+Wf
+Wf
+Wf
+Kq
+Kq
+Wf
+Wf
+Kq
+Kq
+Kq
+Wf
+Kq
+Kq
+Wf
+Kq
+Kq
+Wf
+Kq
+Kq
+Wf
+Wf
+Kq
+Kq
+Wf
+Wf
+Kq
+Wf
+Kq
+Wf
+Kq
+Kq
+Kq
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+"}
+(59,1,1) = {"
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Kq
+Kq
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Kq
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+"}

@@ -1,0 +1,6247 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"ab" = (
+/obj/structure/reagent_dispensers/fueltank,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_moon/bunker)
+"au" = (
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 9;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 4
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker)
+"aA" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 9
+	},
+/turf/open/floor/carpet/black,
+/area/ruin/unpowered/planet_moon/bunker/dorms/two)
+"aB" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 10
+	},
+/obj/machinery/light/floor,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker/engineering)
+"aG" = (
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 4
+	},
+/turf/closed/mineral/random/moon{
+	initial_gas_mix = "o2=22;n2=82;TEMP=293.15"
+	},
+/area/lavaland/surface/outdoors)
+"aI" = (
+/obj/structure/window/plastitanium,
+/obj/structure/grille,
+/obj/machinery/door/poddoor/shutters{
+	dir = 4;
+	id = "bunkerwindow"
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_moon/bunker/dorms/lounge)
+"aM" = (
+/obj/structure/cable,
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_moon/bunker/drone)
+"aU" = (
+/obj/machinery/door/poddoor{
+	id = "bunkergate2"
+	},
+/obj/structure/cable,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker)
+"aW" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_moon/bunker)
+"aY" = (
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 8
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 8
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker)
+"bb" = (
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 9;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/machinery/light/broken{
+	dir = 8
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker/drone)
+"be" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_moon/bunker)
+"bi" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_moon/bunker/armory)
+"bj" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_moon/bunker)
+"by" = (
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/dark/hidden{
+	dir = 4
+	},
+/turf/open/floor/engine{
+	initial_gas_mix = "TEMP=2.7"
+	},
+/area/ruin/unpowered/planet_moon/bunker)
+"bL" = (
+/obj/machinery/light/floor,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker/cargo)
+"bQ" = (
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 6;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 8
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker)
+"bX" = (
+/obj/structure/window/plastitanium,
+/obj/structure/grille,
+/obj/machinery/atmospherics/pipe/layer_manifold{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_moon/bunker/engineering)
+"ce" = (
+/mob/living/basic/hivebot/range{
+	faction = list("Syndicate")
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker)
+"cf" = (
+/obj/effect/turf_decal/trimline/red/corner{
+	dir = 8;
+	color = "#730622";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_moon/bunker/armory)
+"cv" = (
+/obj/effect/turf_decal/tile/neutral/opposingcorners{
+	dir = 8;
+	color = "#a3a2a0";
+	alpha = 140
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_moon/bunker/bathroom)
+"cx" = (
+/obj/effect/turf_decal/ship/borderfloor,
+/obj/effect/turf_decal/tile/red{
+	dir = 5;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_moon/bunker/armory)
+"cy" = (
+/obj/effect/turf_decal/tile/neutral/opposingcorners{
+	dir = 8;
+	color = "#a3a2a0";
+	alpha = 140
+	},
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_moon/bunker/bathroom)
+"cL" = (
+/obj/structure/closet/crate/secure/gear,
+/obj/item/storage/belt/military{
+	pixel_x = 4;
+	pixel_y = 5
+	},
+/obj/item/storage/belt/military{
+	pixel_x = -7;
+	pixel_y = 5
+	},
+/obj/item/storage/belt/military/assault{
+	pixel_x = -1;
+	pixel_y = -6
+	},
+/obj/item/clothing/suit/armor/vest{
+	pixel_x = -8;
+	pixel_y = -4
+	},
+/obj/item/clothing/suit/armor/vest{
+	pixel_x = 8;
+	pixel_y = -4
+	},
+/obj/item/clothing/head/helmet{
+	pixel_x = -9;
+	pixel_y = 1
+	},
+/obj/item/clothing/head/helmet{
+	pixel_x = 8
+	},
+/obj/item/clothing/mask/gas/syndicate{
+	pixel_x = -3;
+	pixel_y = -5
+	},
+/obj/item/clothing/mask/gas/syndicate{
+	pixel_x = 1;
+	pixel_y = -6
+	},
+/obj/machinery/light/broken{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_moon/bunker/armory)
+"cP" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_moon/bunker/dorms/lounge)
+"cT" = (
+/obj/structure/cable,
+/obj/structure/table/reinforced,
+/obj/item/stock_parts/cell/hyper{
+	pixel_x = 4;
+	pixel_y = 7
+	},
+/obj/item/stock_parts/cell/hyper{
+	pixel_x = -9;
+	pixel_y = 5
+	},
+/obj/item/pipe_dispenser{
+	pixel_x = 12;
+	pixel_y = -3
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker/engineering)
+"cX" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_moon/bunker)
+"dd" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 1;
+	color = "#730622"
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_moon/bunker/armory)
+"de" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker/engineering)
+"dj" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 10
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_moon/bunker/dorms/lounge)
+"dq" = (
+/obj/structure/guncase,
+/obj/item/gun/ballistic/shotgun,
+/obj/item/gun/ballistic/automatic/pistol/no_mag{
+	pixel_x = 7;
+	pixel_y = -6
+	},
+/obj/item/gun/ballistic/automatic/pistol/no_mag{
+	pixel_x = -4;
+	pixel_y = -5
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/ruin/unpowered/planet_moon/bunker/armory)
+"dt" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 8;
+	color = "#BA9F6D"
+	},
+/obj/effect/turf_decal/trimline/red/warning{
+	dir = 8;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker/cargo)
+"dK" = (
+/obj/machinery/suit_storage_unit/radsuit,
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/extinguisher_cabinet/east,
+/turf/open/floor/noslip,
+/area/ruin/unpowered/planet_moon/bunker/engineering)
+"dL" = (
+/obj/effect/turf_decal/tile/neutral/opposingcorners{
+	dir = 8;
+	color = "#a3a2a0";
+	alpha = 140
+	},
+/obj/structure/toilet{
+	dir = 4;
+	pixel_x = -6;
+	pixel_y = 1
+	},
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_moon/bunker/bathroom)
+"dN" = (
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 9;
+	color = "#730622";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker/drone)
+"dS" = (
+/obj/machinery/airalarm/directional/north,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_moon/bunker/dorms/lounge)
+"dV" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/door/airlock/grunge{
+	name = "Zbrojownia"
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker/armory)
+"eb" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/basic/hivebot/range{
+	faction = list("nanotrasenprivate")
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_moon/bunker/dorms/lounge)
+"ec" = (
+/obj/machinery/door/window/eastleft,
+/obj/effect/turf_decal/tile/neutral/opposingcorners{
+	dir = 8;
+	color = "#a3a2a0";
+	alpha = 140
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 8
+	},
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_moon/bunker/bathroom)
+"ee" = (
+/obj/structure/cable,
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 5
+	},
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_moon/bunker/drone)
+"en" = (
+/obj/structure/cable,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/door/airlock/grunge{
+	name = "Inżynieria";
+	dir = 4
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker/engineering)
+"eo" = (
+/obj/structure/cable,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/door/airlock/grunge{
+	name = "Pralnia";
+	dir = 4
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker/bathroom)
+"ep" = (
+/obj/structure/cable,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/door/airlock/grunge{
+	name = "Korytarz ochrony";
+	dir = 4
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker/drone)
+"ew" = (
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_moon/bunker)
+"ey" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 1;
+	color = "#BA9F6D"
+	},
+/obj/effect/turf_decal/trimline/red/warning{
+	dir = 1;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_moon/bunker/armory)
+"eD" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 4;
+	color = "#BA9F6D"
+	},
+/obj/effect/turf_decal/trimline/red/warning{
+	dir = 4;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker/cargo)
+"eH" = (
+/obj/structure/table/glass,
+/turf/open/floor/carpet/black,
+/area/ruin/unpowered/planet_moon/bunker/dorms/lounge)
+"eW" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 8;
+	color = "#BA9F6D"
+	},
+/obj/effect/turf_decal/trimline/red/warning{
+	dir = 8;
+	color = "#730622";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker/cargo)
+"fa" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 9;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/tile/red{
+	color = "#730622";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker)
+"fi" = (
+/obj/effect/turf_decal/ship/borderfloor,
+/obj/effect/turf_decal/tile/red{
+	dir = 5;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker)
+"fj" = (
+/obj/effect/turf_decal/siding/thinplating/dark/corner,
+/obj/effect/turf_decal/siding/thinplating/dark/corner{
+	dir = 8
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_moon/bunker/dorms/lounge)
+"fG" = (
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 4
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker)
+"fR" = (
+/obj/machinery/door/poddoor{
+	id = "bunkergate"
+	},
+/obj/structure/cable,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker)
+"ga" = (
+/obj/structure/closet/crate/freezer,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_moon/bunker/cargo)
+"gh" = (
+/obj/machinery/door/poddoor/shutters{
+	id = "killbutton"
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker)
+"gi" = (
+/obj/effect/turf_decal/ship/borderfloor,
+/obj/effect/turf_decal/tile/red{
+	dir = 5;
+	color = "#730622";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_moon/bunker/armory)
+"gk" = (
+/obj/machinery/porta_turret/syndicate{
+	faction = list("hostile","turret");
+	dir = 1
+	},
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/ruin/unpowered/planet_moon/bunker/drone)
+"gw" = (
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 6;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 8
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker)
+"gG" = (
+/obj/machinery/door/poddoor/shutters{
+	id = "killbutton";
+	dir = 4
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker/armory)
+"gO" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker/engineering)
+"gS" = (
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/ruin/unpowered/planet_moon/bunker)
+"hi" = (
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/lavaland/surface/outdoors)
+"hk" = (
+/turf/open/floor/plating/asteroid/moon_coarse/craters,
+/area/lavaland/surface/outdoors)
+"hW" = (
+/obj/structure/cable,
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_moon/bunker/drone)
+"ib" = (
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/ruin/unpowered/planet_moon/bunker/armory)
+"ic" = (
+/obj/machinery/suit_storage_unit/radsuit,
+/obj/structure/lattice/catwalk/over/ship/dark,
+/turf/open/floor/noslip,
+/area/ruin/unpowered/planet_moon/bunker/engineering)
+"ij" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	dir = 4;
+	id = "bunkerdrone"
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker/drone)
+"ik" = (
+/obj/structure/closet/crate/trashcart,
+/obj/machinery/firealarm/directional/west,
+/obj/machinery/light/small,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker/bathroom)
+"ip" = (
+/obj/structure/closet/crate/freezer,
+/obj/effect/turf_decal/siding/white{
+	color = "#BA9F6D"
+	},
+/obj/effect/turf_decal/trimline/red/warning{
+	color = "#730622";
+	alpha = 255
+	},
+/obj/machinery/airalarm/directional/north,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker/cargo)
+"iw" = (
+/obj/effect/turf_decal/siding/white{
+	color = "#BA9F6D"
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 1;
+	color = "#BA9F6D"
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 1;
+	color = "#BA9F6D"
+	},
+/obj/effect/turf_decal/trimline/red/warning{
+	dir = 1;
+	color = "#730622";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker/cargo)
+"ix" = (
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/ruin/unpowered/planet_moon/bunker/dorms/one)
+"iE" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/airalarm/directional/south,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_moon/bunker/armory)
+"iG" = (
+/obj/structure/rack,
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/power/apc/auto_name/south,
+/obj/structure/cable,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 1
+	},
+/obj/machinery/light/small/broken{
+	pixel_x = -10;
+	pixel_y = -28
+	},
+/obj/item/extinguisher{
+	pixel_x = -6;
+	pixel_y = 3
+	},
+/obj/item/extinguisher{
+	pixel_x = 7;
+	pixel_y = 2
+	},
+/turf/open/floor/noslip,
+/area/ruin/unpowered/planet_moon/bunker/engineering)
+"iL" = (
+/obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden/layer4,
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/cable,
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_moon/bunker)
+"iN" = (
+/obj/effect/turf_decal/ship/borderfloor,
+/obj/effect/turf_decal/tile/red{
+	dir = 5;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker)
+"ja" = (
+/obj/structure/cable,
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 6
+	},
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_moon/bunker/armory)
+"jc" = (
+/obj/effect/turf_decal/ship/borderfloor,
+/obj/effect/turf_decal/tile/red{
+	dir = 5;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/machinery/airalarm/directional/north,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker)
+"jh" = (
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 6;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/machinery/power/apc/auto_name/east,
+/obj/structure/cable,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker/drone)
+"jn" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer2,
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_moon/bunker)
+"jo" = (
+/obj/structure/reagent_dispensers/plumbed,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_moon/bunker/cargo)
+"jp" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/trimline/red/corner{
+	dir = 1;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/structure/filingcabinet{
+	dir = 4;
+	pixel_x = -10;
+	density = 0
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_moon/bunker/armory)
+"js" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_moon/bunker/armory)
+"jv" = (
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 9;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 4
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker)
+"jw" = (
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 9;
+	color = "#730622";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker)
+"jE" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 8
+	},
+/obj/machinery/light_switch{
+	pixel_x = -12;
+	pixel_y = 21
+	},
+/obj/structure/bed,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_moon/bunker/dorms/one)
+"jH" = (
+/obj/effect/turf_decal/tile/neutral/opposingcorners{
+	dir = 8;
+	color = "#a3a2a0";
+	alpha = 140
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
+/obj/machinery/light/small/broken{
+	dir = 1
+	},
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_moon/bunker/bathroom)
+"jM" = (
+/turf/open/floor/plating/asteroid/moon_coarse/dark,
+/area/lavaland/surface/outdoors)
+"jS" = (
+/obj/structure/window/plastitanium,
+/obj/structure/grille,
+/obj/machinery/door/poddoor/shutters{
+	id = "bunkershutter";
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_moon/bunker)
+"jW" = (
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/ruin/unpowered/planet_moon/bunker/dorms/two)
+"jY" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_moon/bunker)
+"kd" = (
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_moon/bunker/cargo)
+"kC" = (
+/obj/machinery/suit_storage_unit{
+	storage_type = /obj/item/radio/intercom/directional/south
+	},
+/turf/open/floor/mineral/plastitanium/red,
+/area/ruin/unpowered/planet_moon/bunker)
+"kH" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_moon/bunker)
+"kK" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/extinguisher_cabinet/east,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_moon/bunker/drone)
+"kQ" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "bunkerdrone"
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker)
+"kS" = (
+/obj/structure/table/reinforced,
+/obj/item/storage/box/stockparts/basic{
+	pixel_x = -13;
+	pixel_y = 7
+	},
+/obj/item/crowbar/red{
+	pixel_x = 4;
+	pixel_y = -1
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker)
+"kZ" = (
+/obj/effect/turf_decal/ship/borderfloor,
+/obj/effect/turf_decal/tile/red{
+	dir = 5;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/machinery/firealarm/directional/north,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker)
+"lf" = (
+/obj/machinery/porta_turret/syndicate{
+	faction = list("hostile","turret");
+	dir = 6
+	},
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/ruin/unpowered/planet_moon/bunker)
+"lg" = (
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/dark/hidden,
+/turf/open/floor/engine{
+	initial_gas_mix = "TEMP=2.7"
+	},
+/area/ruin/unpowered/planet_moon/bunker)
+"lp" = (
+/obj/machinery/power/apc/auto_name/north,
+/obj/structure/cable,
+/obj/machinery/light/broken{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_moon/bunker/dorms/lounge)
+"lr" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/power/apc/auto_name/south,
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_moon/bunker/armory)
+"ls" = (
+/obj/structure/closet/secure_closet{
+	req_access = null;
+	icon_state = "armory"
+	},
+/obj/item/ammo_box/magazine/m12g{
+	pixel_x = 4;
+	pixel_y = 1;
+	start_empty = 1
+	},
+/obj/item/ammo_box/magazine/m12g{
+	pixel_x = 6;
+	pixel_y = -6;
+	start_empty = 1
+	},
+/obj/item/ammo_box/magazine/wt550m9{
+	pixel_x = -9;
+	start_empty = 1
+	},
+/obj/item/ammo_box/magazine/wt550m9{
+	pixel_x = -9;
+	start_empty = 1
+	},
+/obj/item/ammo_box/magazine/wt550m9{
+	pixel_x = -9;
+	pixel_y = -7;
+	start_empty = 1
+	},
+/obj/item/ammo_box/magazine/wt550m9{
+	pixel_x = -9;
+	pixel_y = -5;
+	start_empty = 1
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/ruin/unpowered/planet_moon/bunker/armory)
+"lJ" = (
+/obj/effect/turf_decal/tile/neutral/opposingcorners{
+	dir = 8;
+	color = "#a3a2a0";
+	alpha = 140
+	},
+/obj/machinery/airalarm/directional/north,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_moon/bunker/bathroom)
+"mk" = (
+/obj/machinery/atmospherics/pipe/layer_manifold,
+/obj/machinery/door/poddoor{
+	id = "bunkergate"
+	},
+/obj/structure/cable,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker)
+"my" = (
+/obj/structure/extinguisher_cabinet/north,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_moon/bunker/dorms/lounge)
+"mO" = (
+/obj/structure/table/glass,
+/obj/structure/cable,
+/turf/open/floor/carpet/black,
+/area/ruin/unpowered/planet_moon/bunker/dorms/lounge)
+"ne" = (
+/obj/effect/turf_decal/siding/thinplating/dark/corner{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_moon/bunker/dorms/lounge)
+"nj" = (
+/obj/effect/turf_decal/ship/borderfloor,
+/obj/effect/turf_decal/tile/red{
+	dir = 5;
+	color = "#730622";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker)
+"nr" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
+/obj/structure/cable,
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_moon/bunker)
+"nw" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
+/obj/machinery/light/small/broken{
+	pixel_x = 10;
+	pixel_y = 28;
+	dir = 1
+	},
+/obj/structure/sign/warning/radiation/rad_area{
+	pixel_y = 30
+	},
+/obj/structure/reagent_dispensers/foamtank,
+/turf/open/floor/noslip,
+/area/ruin/unpowered/planet_moon/bunker/engineering)
+"nF" = (
+/obj/machinery/porta_turret/syndicate{
+	faction = list("hostile","turret");
+	dir = 10
+	},
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/ruin/unpowered/planet_moon/bunker)
+"nJ" = (
+/turf/open/floor/plasteel/stairs/old{
+	dir = 8
+	},
+/area/ruin/unpowered/planet_moon/bunker/armory)
+"nL" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_moon/bunker/armory)
+"nY" = (
+/obj/effect/turf_decal/tile/neutral/opposingcorners{
+	dir = 8;
+	color = "#a3a2a0";
+	alpha = 140
+	},
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_moon/bunker/bathroom)
+"od" = (
+/turf/open/floor/plating/asteroid/moon/craters,
+/area/lavaland/surface/outdoors)
+"of" = (
+/obj/effect/decal/cleanable/oil,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 8
+	},
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_moon/bunker)
+"oo" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/turf/open/floor/noslip,
+/area/ruin/unpowered/planet_moon/bunker/bathroom)
+"oy" = (
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/door/airlock/grunge{
+	name = "Magazyn"
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker/cargo)
+"oC" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 1
+	},
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_moon/bunker)
+"oG" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_moon/bunker/armory)
+"oI" = (
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 9
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker)
+"oL" = (
+/obj/effect/turf_decal/trimline/red/warning{
+	dir = 8;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/structure/chair/office{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_moon/bunker/armory)
+"oV" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 4;
+	color = "#730622"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_moon/bunker/armory)
+"pj" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 8
+	},
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_moon/bunker)
+"pu" = (
+/obj/effect/turf_decal/ship/borderfloor,
+/obj/effect/turf_decal/tile/red{
+	dir = 5;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/machinery/light/broken{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker)
+"pH" = (
+/obj/structure/table/reinforced,
+/obj/structure/extinguisher_cabinet/west,
+/obj/machinery/light/small/broken,
+/obj/machinery/button/door{
+	id = "killbutton";
+	name = "ręczne wypuszczenie dronów";
+	pixel_x = -9;
+	pixel_y = -18;
+	dir = 1
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker)
+"pU" = (
+/obj/structure/dresser{
+	dir = 8;
+	pixel_x = 5
+	},
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_moon/bunker/dorms/one)
+"pV" = (
+/obj/effect/turf_decal/siding/thinplating/dark,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_moon/bunker/dorms/lounge)
+"qi" = (
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_moon/bunker/armory)
+"qp" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_moon/bunker/drone)
+"qr" = (
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_moon/bunker)
+"qt" = (
+/obj/item/storage/backpack/duffelbag/syndie{
+	pixel_x = 7;
+	pixel_y = 12
+	},
+/obj/machinery/light/small/broken{
+	dir = 1
+	},
+/turf/open/floor/carpet/black,
+/area/ruin/unpowered/planet_moon/bunker/dorms/lounge)
+"qy" = (
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 5
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 8;
+	color = "#730622";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker/drone)
+"qG" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_moon/bunker)
+"qM" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_moon/bunker/armory)
+"qQ" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 10;
+	layer = 2.030
+	},
+/obj/item/storage/box/coffeepack/arabica{
+	pixel_x = -7;
+	pixel_y = 6
+	},
+/obj/item/storage/box/coffeepack/arabica{
+	pixel_x = -2;
+	pixel_y = 6
+	},
+/obj/item/storage/box/coffeepack/arabica{
+	pixel_x = 4;
+	pixel_y = 6
+	},
+/obj/item/storage/box/coffeepack/arabica{
+	pixel_x = 8;
+	pixel_y = 6
+	},
+/obj/item/storage/box/coffeepack/arabica{
+	pixel_x = -9
+	},
+/obj/item/storage/box/coffeepack/arabica{
+	pixel_x = -3
+	},
+/obj/item/storage/box/coffeepack/arabica{
+	pixel_x = 6
+	},
+/obj/structure/closet/secure_closet/freezer/fridge{
+	anchored = 1
+	},
+/obj/item/storage/box/coffeepack/arabica{
+	pixel_x = 6;
+	pixel_y = -8
+	},
+/obj/item/storage/box/coffeepack/arabica{
+	pixel_x = -2;
+	pixel_y = -8
+	},
+/obj/item/storage/box/coffeepack/arabica{
+	pixel_x = -9;
+	pixel_y = -9
+	},
+/obj/item/storage/box/coffeepack/arabica{
+	pixel_x = -8;
+	pixel_y = -3
+	},
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_moon/bunker/dorms/lounge)
+"qV" = (
+/obj/structure/cable,
+/obj/machinery/door/airlock/grunge{
+	name = "Ochrona punktu kontrolnego"
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker/drone)
+"qX" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_moon/bunker)
+"rc" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_moon/bunker/dorms/lounge)
+"rg" = (
+/obj/effect/turf_decal/siding/white{
+	color = "#730622"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_moon/bunker/armory)
+"rj" = (
+/obj/structure/chair/office{
+	dir = 4
+	},
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_moon/bunker/armory)
+"rl" = (
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 9;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/item/stack/ore/iron,
+/mob/living/basic/hivebot/rapid{
+	faction = list("nanotrasenprivate")
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker)
+"rm" = (
+/obj/machinery/suit_storage_unit{
+	suit_type = /obj/item/clothing/suit/space/hardsuit/syndi;
+	mask_type = /obj/item/clothing/mask/gas/syndicate
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/lavaland/surface/outdoors)
+"rq" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_moon/bunker/armory)
+"rw" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_moon/bunker/dorms/lounge)
+"ry" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_moon/bunker/dorms/lounge)
+"rG" = (
+/obj/machinery/power/smes/engineering,
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/cable,
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_moon/bunker/engineering)
+"rI" = (
+/obj/structure/cable,
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 1
+	},
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_moon/bunker/drone)
+"rU" = (
+/obj/structure/closet/crate/freezer,
+/obj/effect/turf_decal/siding/white{
+	color = "#BA9F6D"
+	},
+/obj/effect/turf_decal/trimline/red/warning{
+	color = "#730622";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker/cargo)
+"rX" = (
+/obj/structure/chair/fancy/sofa/old/left{
+	dir = 8
+	},
+/turf/open/floor/carpet/black,
+/area/ruin/unpowered/planet_moon/bunker/dorms/lounge)
+"rY" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/airalarm/directional/west,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 5
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_moon/bunker)
+"sD" = (
+/obj/structure/cable,
+/obj/structure/closet/secure_closet/engineering_electrical,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker/engineering)
+"sM" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 1
+	},
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_moon/bunker)
+"ti" = (
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_moon/bunker/dorms/lounge)
+"tm" = (
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/door/airlock/grunge{
+	name = "Sypialnia 1"
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker/dorms/one)
+"tA" = (
+/obj/structure/closet/crate/freezer,
+/obj/effect/turf_decal/siding/white/corner{
+	dir = 1;
+	color = "#BA9F6D"
+	},
+/obj/effect/turf_decal/trimline/red/corner{
+	dir = 1;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker/cargo)
+"tB" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_moon/bunker)
+"tJ" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/ship/borderfloor,
+/obj/effect/turf_decal/tile/red{
+	dir = 5;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_moon/bunker/armory)
+"uf" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker/engineering)
+"ul" = (
+/obj/effect/turf_decal/trimline/red/warning{
+	dir = 8;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 6
+	},
+/obj/structure/chair/office{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_moon/bunker/armory)
+"un" = (
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 8;
+	color = "#730622";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker)
+"ut" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_moon/bunker/engineering)
+"uF" = (
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 4
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker)
+"uK" = (
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/ruin/unpowered/planet_moon/bunker/bathroom)
+"uN" = (
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 5
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker)
+"vk" = (
+/obj/machinery/light,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_moon/bunker/armory)
+"vn" = (
+/obj/structure/closet/crate/freezer,
+/obj/effect/turf_decal/siding/white/corner{
+	dir = 8;
+	color = "#BA9F6D"
+	},
+/obj/effect/turf_decal/trimline/red/corner{
+	dir = 8;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 1
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker/cargo)
+"vv" = (
+/obj/machinery/power/apc/auto_name/north,
+/obj/structure/cable,
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_moon/bunker)
+"vC" = (
+/obj/effect/turf_decal/siding/thinplating/dark/corner,
+/obj/effect/turf_decal/siding/thinplating/dark/corner,
+/obj/effect/turf_decal/siding/thinplating/dark/corner{
+	dir = 8
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_moon/bunker/dorms/lounge)
+"vE" = (
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_moon/bunker/armory)
+"vI" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker)
+"vO" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_moon/bunker/armory)
+"vP" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/firealarm/directional/west,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_moon/bunker)
+"vQ" = (
+/obj/machinery/computer/crew{
+	dir = 4
+	},
+/obj/effect/turf_decal/ship/borderfloor,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_moon/bunker)
+"we" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/closet/crate/freezer,
+/obj/item/reagent_containers/food/drinks/beer,
+/obj/item/reagent_containers/food/drinks/beer,
+/obj/item/reagent_containers/food/drinks/beer,
+/obj/item/reagent_containers/food/drinks/beer,
+/obj/item/reagent_containers/food/drinks/beer,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_moon/bunker/dorms/lounge)
+"wl" = (
+/obj/structure/cable,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/door/airlock/grunge{
+	name = "Kwatery mieszkalne";
+	dir = 4
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker/dorms/lounge)
+"ws" = (
+/obj/structure/rack,
+/obj/item/kitchen/knife/combat{
+	pixel_x = -7
+	},
+/obj/item/kitchen/knife/combat{
+	pixel_x = 6
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/ruin/unpowered/planet_moon/bunker/armory)
+"wz" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 9
+	},
+/turf/open/floor/carpet/black,
+/area/ruin/unpowered/planet_moon/bunker/dorms/one)
+"wT" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/cable/yellow,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_moon/bunker/engineering)
+"xa" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_moon/bunker/cargo)
+"xn" = (
+/turf/closed/mineral/random/moon{
+	initial_gas_mix = "o2=22;n2=82;TEMP=293.15"
+	},
+/area/ruin/unpowered/planet_moon/bunker/engineering)
+"xr" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/item/stack/ore/iron,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_moon/bunker)
+"xu" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 8
+	},
+/obj/structure/table/reinforced,
+/obj/machinery/coffeemaker,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_moon/bunker/dorms/lounge)
+"xL" = (
+/obj/effect/turf_decal/siding/white{
+	color = "#730622"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 9
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_moon/bunker/armory)
+"xP" = (
+/obj/structure/cable/yellow,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker/engineering)
+"xQ" = (
+/obj/structure/guncase,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker)
+"yn" = (
+/obj/structure/cable,
+/obj/structure/table/reinforced,
+/obj/machinery/cell_charger,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker/engineering)
+"yz" = (
+/obj/machinery/door/firedoor/heavy,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker)
+"yD" = (
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 9;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/mob/living/basic/hivebot/rapid{
+	faction = list("Syndicate")
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker/drone)
+"yG" = (
+/obj/machinery/modular_computer/console/preset/civilian{
+	dir = 4
+	},
+/obj/machinery/airalarm/directional/west,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_moon/bunker/dorms/one)
+"yP" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral/opposingcorners{
+	dir = 8;
+	color = "#a3a2a0";
+	alpha = 140
+	},
+/obj/structure/sink/kitchen{
+	dir = 1
+	},
+/obj/structure/mirror{
+	pixel_y = -25
+	},
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_moon/bunker/bathroom)
+"yS" = (
+/obj/structure/table/reinforced,
+/turf/open/floor/mineral/plastitanium,
+/area/ruin/unpowered/planet_moon/bunker/armory)
+"yV" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/cable/yellow,
+/obj/machinery/power/terminal,
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_moon/bunker/engineering)
+"zh" = (
+/obj/structure/closet/crate/freezer,
+/obj/effect/turf_decal/siding/white{
+	dir = 1;
+	color = "#BA9F6D"
+	},
+/obj/effect/turf_decal/siding/white/corner{
+	color = "#BA9F6D"
+	},
+/obj/effect/turf_decal/trimline/red/warning{
+	dir = 1;
+	color = "#730622";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker/cargo)
+"zi" = (
+/obj/machinery/firealarm/directional/west,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker/engineering)
+"zr" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_moon/bunker/drone)
+"zN" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_moon/bunker)
+"zY" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 8;
+	color = "#BA9F6D"
+	},
+/obj/effect/turf_decal/trimline/red/warning{
+	dir = 8;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker/cargo)
+"Ac" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/cable,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_moon/bunker/dorms/lounge)
+"Ai" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_moon/bunker/bathroom)
+"Am" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/effect/turf_decal/ship/borderfloor/corner{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_moon/bunker)
+"As" = (
+/obj/structure/closet,
+/obj/item/clothing/under/syndicate{
+	pixel_x = 5;
+	pixel_y = -3
+	},
+/obj/item/clothing/under/syndicate{
+	pixel_x = 5;
+	pixel_y = 5
+	},
+/obj/item/clothing/under/syndicate{
+	pixel_x = 5;
+	pixel_y = -8
+	},
+/obj/item/clothing/shoes/combat{
+	pixel_x = 7;
+	pixel_y = -8
+	},
+/obj/item/clothing/shoes/combat{
+	pixel_y = -8
+	},
+/obj/item/clothing/shoes/combat{
+	pixel_x = -10;
+	pixel_y = -7
+	},
+/obj/item/clothing/under/pants/black{
+	pixel_x = -8;
+	pixel_y = 9
+	},
+/obj/item/clothing/under/pants/black{
+	pixel_x = -8;
+	pixel_y = 5
+	},
+/obj/item/clothing/under/pants/black{
+	pixel_x = -9;
+	pixel_y = 1
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 4
+	},
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_moon/bunker/dorms/one)
+"Av" = (
+/obj/structure/closet/crate/secure/gear,
+/obj/item/clothing/suit/armor/vest{
+	pixel_x = -6;
+	pixel_y = -6
+	},
+/obj/item/clothing/suit/armor/vest{
+	pixel_x = 7;
+	pixel_y = -5
+	},
+/obj/item/clothing/head/helmet{
+	pixel_x = -8;
+	pixel_y = 1
+	},
+/obj/item/clothing/head/helmet{
+	pixel_x = 8;
+	pixel_y = 1
+	},
+/obj/item/storage/belt/military{
+	pixel_x = -8
+	},
+/obj/item/storage/belt/military{
+	pixel_x = 6;
+	pixel_y = -1
+	},
+/obj/item/clothing/mask/gas/syndicate{
+	pixel_x = -3;
+	pixel_y = -6
+	},
+/obj/item/clothing/mask/gas/syndicate{
+	pixel_y = -7
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_moon/bunker/armory)
+"AG" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/cable,
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_moon/bunker)
+"AL" = (
+/turf/open/floor/engine{
+	initial_gas_mix = "TEMP=2.7"
+	},
+/area/ruin/unpowered/planet_moon/bunker/dorms/lounge)
+"Bh" = (
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 1
+	},
+/obj/machinery/atmospherics/components/unary/outlet_injector/on{
+	dir = 8;
+	piping_layer = 1
+	},
+/obj/machinery/button/door{
+	id = "bunkergate";
+	name = "sterowanie drzwiami zewnętrznymi";
+	pixel_x = -7;
+	pixel_y = 22
+	},
+/turf/open/floor/engine{
+	initial_gas_mix = "TEMP=2.7"
+	},
+/area/ruin/unpowered/planet_moon/bunker)
+"Bi" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker/engineering)
+"Bq" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/ship/borderfloor,
+/obj/effect/turf_decal/tile/red{
+	dir = 5;
+	color = "#730622";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_moon/bunker/armory)
+"Bs" = (
+/obj/structure/closet/crate/freezer,
+/obj/effect/turf_decal/siding/white{
+	color = "#BA9F6D"
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 1;
+	color = "#BA9F6D"
+	},
+/obj/effect/turf_decal/trimline/red/warning{
+	dir = 1;
+	color = "#730622";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker/cargo)
+"BA" = (
+/obj/structure/closet/crate/secure/weapon{
+	name = "skrzynia z amunicją"
+	},
+/obj/item/storage/toolbox/ammo{
+	pixel_x = -7;
+	pixel_y = -2
+	},
+/obj/item/storage/toolbox/ammo{
+	pixel_x = 4;
+	pixel_y = -3
+	},
+/obj/item/storage/toolbox/ammo{
+	pixel_x = -1;
+	pixel_y = 3
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_moon/bunker/armory)
+"BM" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_moon/bunker/cargo)
+"BR" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker/engineering)
+"BS" = (
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker/engineering)
+"Cb" = (
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 9;
+	color = "#730622";
+	alpha = 255
+	},
+/mob/living/basic/hivebot/rapid{
+	faction = list("nanotrasenprivate")
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker)
+"Cc" = (
+/obj/machinery/button/door{
+	pixel_x = 8;
+	pixel_y = 21;
+	id = "bunkerwindow"
+	},
+/obj/structure/chair/fancy/sofa/old/corner,
+/obj/machinery/light/broken{
+	dir = 4
+	},
+/turf/open/floor/carpet/black,
+/area/ruin/unpowered/planet_moon/bunker/dorms/lounge)
+"Co" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker/engineering)
+"Cr" = (
+/obj/effect/turf_decal/tile/neutral/opposingcorners{
+	dir = 8;
+	color = "#a3a2a0";
+	alpha = 140
+	},
+/obj/structure/cable,
+/obj/machinery/power/apc/auto_name/north,
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_moon/bunker/bathroom)
+"Cx" = (
+/obj/machinery/power/rtg,
+/obj/structure/cable/yellow,
+/turf/open/floor/plating/asteroid/moon{
+	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+	planetary_atmos = 0
+	},
+/area/ruin/unpowered/planet_moon/bunker/engineering)
+"CF" = (
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_moon/bunker/armory)
+"CI" = (
+/obj/structure/closet/crate/freezer,
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_moon/bunker/cargo)
+"CY" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_moon/bunker)
+"Db" = (
+/obj/structure/closet/crate/freezer,
+/obj/effect/turf_decal/siding/white{
+	dir = 1;
+	color = "#BA9F6D"
+	},
+/obj/effect/turf_decal/siding/white/corner{
+	dir = 8;
+	color = "#BA9F6D"
+	},
+/obj/effect/turf_decal/trimline/red/warning{
+	dir = 1;
+	color = "#730622";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker/cargo)
+"Dc" = (
+/turf/open/floor/plating/asteroid/moon_coarse,
+/area/lavaland/surface/outdoors)
+"Dl" = (
+/obj/effect/turf_decal/tile/neutral/opposingcorners{
+	dir = 8;
+	color = "#a3a2a0";
+	alpha = 140
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_moon/bunker/bathroom)
+"Dy" = (
+/obj/machinery/porta_turret/syndicate{
+	faction = list("hostile","turret");
+	dir = 4
+	},
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/ruin/unpowered/planet_moon/bunker/dorms/lounge)
+"DA" = (
+/obj/machinery/power/apc/auto_name/north,
+/obj/structure/cable,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker/cargo)
+"DB" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 8
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker/engineering)
+"DF" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 6;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 8;
+	color = "#730622";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker)
+"En" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker/cargo)
+"Eu" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/light/broken,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_moon/bunker)
+"EH" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 6;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker)
+"EL" = (
+/obj/structure/closet/crate/secure/weapon{
+	name = "skrzynia z amunicją"
+	},
+/obj/item/storage/box/lethalshot{
+	pixel_x = -10
+	},
+/obj/item/storage/box/lethalshot{
+	pixel_x = 6;
+	pixel_y = 1
+	},
+/obj/item/storage/toolbox/ammo/shotgun{
+	pixel_x = 4;
+	pixel_y = 6
+	},
+/obj/item/storage/toolbox/ammo/shotgun{
+	pixel_x = -8;
+	pixel_y = 6
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_moon/bunker/armory)
+"ES" = (
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 1
+	},
+/obj/machinery/button/door{
+	id = "bunkergate";
+	name = "sterowanie drzwiami zewnętrznymi";
+	pixel_x = -7;
+	pixel_y = 22
+	},
+/turf/open/floor/engine{
+	initial_gas_mix = "TEMP=2.7"
+	},
+/area/ruin/unpowered/planet_moon/bunker)
+"EY" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 10
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_moon/bunker/dorms/lounge)
+"Fn" = (
+/obj/structure/extinguisher_cabinet/west,
+/obj/structure/closet/secure_closet/engineering_welding,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker/engineering)
+"Fu" = (
+/obj/structure/chair/office,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_moon/bunker)
+"Fz" = (
+/obj/structure/closet,
+/obj/item/clothing/under/syndicate{
+	pixel_x = 5;
+	pixel_y = -3
+	},
+/obj/item/clothing/under/syndicate{
+	pixel_x = 5;
+	pixel_y = 5
+	},
+/obj/item/clothing/under/syndicate{
+	pixel_x = 5;
+	pixel_y = -8
+	},
+/obj/item/clothing/shoes/combat{
+	pixel_x = 7;
+	pixel_y = -8
+	},
+/obj/item/clothing/shoes/combat{
+	pixel_y = -8
+	},
+/obj/item/clothing/shoes/combat{
+	pixel_x = -10;
+	pixel_y = -7
+	},
+/obj/item/clothing/under/pants/black{
+	pixel_x = -8;
+	pixel_y = 9
+	},
+/obj/item/clothing/under/pants/black{
+	pixel_x = -8;
+	pixel_y = 5
+	},
+/obj/item/clothing/under/pants/black{
+	pixel_x = -9;
+	pixel_y = 1
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 4
+	},
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_moon/bunker/dorms/two)
+"FB" = (
+/obj/structure/cable/yellow,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker/engineering)
+"FD" = (
+/obj/structure/closet/crate/trashcart,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker/bathroom)
+"FI" = (
+/obj/item/stack/ore/iron,
+/obj/structure/cable,
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_moon/bunker/drone)
+"FJ" = (
+/obj/structure/closet/crate/freezer,
+/obj/effect/turf_decal/siding/white{
+	color = "#BA9F6D"
+	},
+/obj/effect/turf_decal/siding/white/corner{
+	dir = 4;
+	color = "#BA9F6D"
+	},
+/obj/effect/turf_decal/trimline/red/corner{
+	dir = 4;
+	color = "#730622";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker/cargo)
+"FN" = (
+/obj/structure/table/reinforced,
+/obj/item/clipboard{
+	pixel_x = -9;
+	pixel_y = 3
+	},
+/obj/item/folder/syndicate{
+	pixel_x = 8
+	},
+/obj/item/folder/syndicate{
+	pixel_x = 8;
+	pixel_y = 2
+	},
+/obj/item/folder/syndicate{
+	pixel_x = 8;
+	pixel_y = 4
+	},
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_moon/bunker/armory)
+"FT" = (
+/turf/closed/mineral/random/moon{
+	initial_gas_mix = "o2=22;n2=82;TEMP=293.15"
+	},
+/area/lavaland/surface/outdoors)
+"Ge" = (
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 6
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 1;
+	color = "#730622";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker)
+"Gl" = (
+/obj/machinery/porta_turret/syndicate{
+	faction = list("hostile","turret")
+	},
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/ruin/unpowered/planet_moon/bunker/armory)
+"Gp" = (
+/turf/closed/mineral/random/moon{
+	initial_gas_mix = "o2=22;n2=82;TEMP=293.15"
+	},
+/area/ruin/unpowered/planet_moon/bunker/drone)
+"Gw" = (
+/obj/machinery/porta_turret/syndicate{
+	faction = list("hostile","turret");
+	dir = 1
+	},
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/ruin/unpowered/planet_moon/bunker/dorms/lounge)
+"Gy" = (
+/obj/structure/closet/crate/freezer,
+/obj/effect/turf_decal/siding/white/corner{
+	dir = 4;
+	color = "#BA9F6D"
+	},
+/obj/effect/turf_decal/trimline/red/corner{
+	dir = 4;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker/cargo)
+"GB" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_moon/bunker)
+"GQ" = (
+/obj/structure/closet/crate/freezer,
+/obj/effect/turf_decal/siding/white{
+	dir = 1;
+	color = "#BA9F6D"
+	},
+/obj/effect/turf_decal/trimline/red/warning{
+	dir = 1;
+	color = "#730622";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker/cargo)
+"GY" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_moon/bunker/cargo)
+"Hb" = (
+/obj/effect/decal/cleanable/oil,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_moon/bunker)
+"Hh" = (
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 1
+	},
+/turf/open/floor/engine{
+	initial_gas_mix = "TEMP=2.7"
+	},
+/area/ruin/unpowered/planet_moon/bunker)
+"Hi" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker/engineering)
+"Hn" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/components/unary/portables_connector/layer2{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_moon/bunker/engineering)
+"Ho" = (
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red{
+	color = "#730622";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker)
+"Ht" = (
+/obj/machinery/light/broken{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_moon/bunker/cargo)
+"Hy" = (
+/obj/effect/turf_decal/siding/white{
+	color = "#BA9F6D"
+	},
+/obj/machinery/light/broken,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker/cargo)
+"HC" = (
+/obj/machinery/modular_computer/console/preset/civilian{
+	dir = 4
+	},
+/obj/machinery/airalarm/directional/west,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_moon/bunker/dorms/two)
+"HS" = (
+/obj/effect/turf_decal/tile/neutral/opposingcorners{
+	dir = 8;
+	color = "#a3a2a0";
+	alpha = 140
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_moon/bunker/bathroom)
+"HV" = (
+/obj/structure/closet/crate/freezer,
+/obj/effect/turf_decal/siding/white{
+	color = "#BA9F6D"
+	},
+/obj/effect/turf_decal/trimline/red/warning{
+	color = "#730622";
+	alpha = 255
+	},
+/obj/machinery/firealarm/directional/north,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker/cargo)
+"HX" = (
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/ruin/unpowered/planet_moon/bunker/cargo)
+"Ik" = (
+/mob/living/basic/hivebot/rapid{
+	faction = list("nanotrasenprivate")
+	},
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
+/obj/machinery/light/broken,
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_moon/bunker/armory)
+"Ip" = (
+/obj/structure/cable,
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/structure/table/reinforced,
+/obj/machinery/light,
+/obj/item/storage/part_replacer{
+	pixel_x = -1;
+	pixel_y = 9
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker/engineering)
+"Ir" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 1
+	},
+/obj/machinery/button/door{
+	id = "bunkershutter";
+	name = "sterowanie oknami";
+	pixel_x = -20;
+	pixel_y = -10;
+	dir = 4
+	},
+/obj/machinery/light/small/broken{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_moon/bunker)
+"Iu" = (
+/obj/structure/table/reinforced,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker/armory)
+"Iz" = (
+/obj/structure/chair/office{
+	dir = 8;
+	pixel_x = -8
+	},
+/obj/structure/cable,
+/obj/machinery/power/apc/auto_name/south,
+/turf/open/floor/carpet/black,
+/area/ruin/unpowered/planet_moon/bunker/dorms/two)
+"IB" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/mob/living/basic/hivebot/rapid{
+	faction = list("nanotrasenprivate")
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_moon/bunker)
+"IH" = (
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 9;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 4
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker/drone)
+"IM" = (
+/obj/machinery/light/broken{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_moon/bunker/cargo)
+"Ja" = (
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/ruin/unpowered/planet_moon/bunker/dorms/lounge)
+"Jf" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/components/binary/pump/on/layer2{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_moon/bunker/engineering)
+"JR" = (
+/obj/structure/closet/crate/freezer,
+/obj/effect/turf_decal/siding/white/corner{
+	color = "#BA9F6D"
+	},
+/obj/effect/turf_decal/trimline/red/corner{
+	color = "#730622";
+	alpha = 255
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 1
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker/cargo)
+"JZ" = (
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 9
+	},
+/obj/effect/turf_decal/tile/red{
+	color = "#730622";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker/drone)
+"Kb" = (
+/obj/effect/turf_decal/ship/borderfloor,
+/obj/effect/turf_decal/tile/red{
+	dir = 5;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker)
+"Kh" = (
+/obj/machinery/porta_turret/syndicate{
+	faction = list("hostile","turret")
+	},
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/ruin/unpowered/planet_moon/bunker)
+"Kt" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_moon/bunker/dorms/lounge)
+"Ku" = (
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker/cargo)
+"Kx" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/cable,
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_moon/bunker/engineering)
+"KW" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker/engineering)
+"KY" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/extinguisher_cabinet/west,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_moon/bunker)
+"Lj" = (
+/obj/effect/turf_decal/tile/neutral/opposingcorners{
+	dir = 8;
+	color = "#a3a2a0";
+	alpha = 140
+	},
+/obj/effect/turf_decal/tile/neutral/opposingcorners{
+	dir = 8;
+	color = "#a3a2a0";
+	alpha = 140
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 8
+	},
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_moon/bunker/bathroom)
+"Lx" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 9;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker)
+"LB" = (
+/obj/structure/cable/yellow,
+/turf/open/floor/plating/asteroid/moon{
+	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+	planetary_atmos = 0
+	},
+/area/ruin/unpowered/planet_moon/bunker/engineering)
+"LL" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/door/airlock/grunge{
+	name = "Zbrojownia";
+	dir = 4
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker/armory)
+"LR" = (
+/obj/effect/turf_decal/siding/white{
+	color = "#BA9F6D"
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 1;
+	color = "#BA9F6D"
+	},
+/obj/effect/turf_decal/trimline/red/warning{
+	dir = 1;
+	color = "#730622";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker/cargo)
+"LS" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/ruin/unpowered/planet_moon/bunker/bathroom)
+"LX" = (
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/ruin/unpowered/planet_moon/bunker/engineering)
+"LY" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_moon/bunker)
+"Mc" = (
+/obj/structure/cable,
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 6
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_moon/bunker/drone)
+"Mq" = (
+/mob/living/basic/hivebot/rapid{
+	faction = list("nanotrasenprivate")
+	},
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 9
+	},
+/obj/machinery/light/broken,
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_moon/bunker/armory)
+"MB" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/firealarm/directional/south,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_moon/bunker/armory)
+"MK" = (
+/obj/structure/cable,
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_moon/bunker/engineering)
+"MM" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 1
+	},
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_moon/bunker)
+"Na" = (
+/mob/living/basic/hivebot/range{
+	faction = list("Syndicate")
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker/armory)
+"Nb" = (
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 9;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 4
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker/drone)
+"Ng" = (
+/obj/effect/turf_decal/ship/borderfloor/corner{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 10;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 1;
+	color = "#730622";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker/drone)
+"No" = (
+/obj/structure/chair/office{
+	dir = 8;
+	pixel_x = -8
+	},
+/obj/structure/cable,
+/obj/machinery/power/apc/auto_name/south,
+/turf/open/floor/carpet/black,
+/area/ruin/unpowered/planet_moon/bunker/dorms/one)
+"Ns" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker)
+"Nu" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/carpet/black,
+/area/ruin/unpowered/planet_moon/bunker/dorms/lounge)
+"Ny" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 1;
+	color = "#BA9F6D"
+	},
+/obj/effect/turf_decal/trimline/red/warning{
+	dir = 1;
+	color = "#730622";
+	alpha = 255
+	},
+/mob/living/basic/hivebot/range{
+	faction = list("Syndicate")
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_moon/bunker/armory)
+"NB" = (
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/door/airlock/grunge{
+	name = "Sypialnia 2"
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker/dorms/two)
+"ND" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/door/airlock/grunge{
+	name = "Ochrona punktu kontrolnego"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker/drone)
+"NS" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/cable/yellow,
+/obj/machinery/power/terminal,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_moon/bunker/engineering)
+"NV" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/cable,
+/obj/structure/extinguisher_cabinet/east,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_moon/bunker/drone)
+"NX" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 10;
+	layer = 2.030
+	},
+/obj/machinery/firealarm/directional/south,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_moon/bunker/dorms/lounge)
+"Of" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/cable,
+/turf/open/floor/carpet/black,
+/area/ruin/unpowered/planet_moon/bunker/dorms/lounge)
+"Oh" = (
+/obj/item/stack/ore/iron,
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_moon/bunker/drone)
+"Ou" = (
+/turf/template_noop,
+/area/template_noop)
+"OG" = (
+/obj/structure/cable,
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/mob/living/basic/hivebot/rapid{
+	faction = list("Syndicate")
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_moon/bunker/drone)
+"OL" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/high_volume/siphon/atmos/air_output{
+	dir = 4;
+	piping_layer = 2
+	},
+/turf/open/floor/engine/air,
+/area/ruin/unpowered/planet_moon/bunker/engineering)
+"OS" = (
+/obj/structure/table/reinforced,
+/obj/machinery/button/door{
+	id = "bunkergate";
+	name = "sterowanie drzwiami zewnętrznymi";
+	pixel_x = -6;
+	pixel_y = -18;
+	dir = 1
+	},
+/obj/item/radio/off{
+	pixel_x = 2;
+	pixel_y = 4
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker)
+"OV" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_moon/bunker)
+"Pc" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 9
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_moon/bunker)
+"Pd" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_moon/bunker/armory)
+"Pk" = (
+/obj/structure/cable,
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_moon/bunker/drone)
+"Pl" = (
+/obj/machinery/button/door{
+	id = "bunkergate";
+	name = "sterowanie drzwiami zewnętrznymi";
+	pixel_x = -7;
+	pixel_y = 22
+	},
+/obj/machinery/suit_storage_unit,
+/turf/open/floor/mineral/plastitanium/red,
+/area/ruin/unpowered/planet_moon/bunker)
+"Pp" = (
+/obj/structure/closet/crate/internals{
+	name = "dostawa sprzętu EVA"
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_moon/bunker/armory)
+"Pt" = (
+/obj/structure/cable,
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_moon/bunker/drone)
+"Px" = (
+/turf/open/floor/engine/air,
+/area/ruin/unpowered/planet_moon/bunker/engineering)
+"PA" = (
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/door/airlock/grunge{
+	name = "Ochrona punktu kontrolnego"
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker)
+"PJ" = (
+/obj/structure/window/plastitanium,
+/obj/structure/grille,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_moon/bunker/engineering)
+"PK" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_moon/bunker)
+"PU" = (
+/obj/effect/turf_decal/ship/borderfloor,
+/obj/effect/turf_decal/tile/red{
+	dir = 5;
+	color = "#730622";
+	alpha = 255
+	},
+/mob/living/basic/hivebot/rapid{
+	faction = list("nanotrasenprivate")
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker)
+"Qe" = (
+/obj/structure/chair/fancy/sofa/old/right,
+/turf/open/floor/carpet/black,
+/area/ruin/unpowered/planet_moon/bunker/dorms/lounge)
+"Ql" = (
+/turf/closed/mineral/random/moon{
+	initial_gas_mix = "o2=22;n2=82;TEMP=293.15"
+	},
+/area/ruin/unpowered/planet_moon/bunker)
+"Qp" = (
+/obj/structure/chair/fancy/sofa/old,
+/turf/open/floor/carpet/black,
+/area/ruin/unpowered/planet_moon/bunker/dorms/lounge)
+"Qu" = (
+/obj/machinery/modular_fabricator/autolathe,
+/obj/effect/turf_decal/siding/white{
+	dir = 4;
+	color = "#730622"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_moon/bunker/armory)
+"QA" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_moon/bunker/armory)
+"QB" = (
+/obj/structure/chair/office{
+	dir = 8
+	},
+/obj/effect/turf_decal/ship/borderfloor,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_moon/bunker)
+"QC" = (
+/obj/structure/guncase,
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker)
+"QJ" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 4;
+	color = "#BA9F6D"
+	},
+/obj/effect/turf_decal/trimline/red/warning{
+	dir = 4;
+	color = "#730622";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker/cargo)
+"QL" = (
+/obj/machinery/washing_machine,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker/bathroom)
+"Rg" = (
+/obj/effect/turf_decal/siding/white{
+	color = "#BA9F6D"
+	},
+/obj/effect/turf_decal/trimline/red/warning{
+	color = "#730622";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker/cargo)
+"Rh" = (
+/obj/machinery/shower{
+	pixel_y = 18
+	},
+/obj/structure/lattice/catwalk/over/ship/dark,
+/turf/open/floor/noslip,
+/area/ruin/unpowered/planet_moon/bunker/engineering)
+"Rj" = (
+/obj/machinery/button/door{
+	id = "bunkergate2";
+	name = "sterowanie drzwiami wewnętrznymi";
+	pixel_x = -7;
+	pixel_y = 22
+	},
+/obj/machinery/suit_storage_unit,
+/turf/open/floor/mineral/plastitanium/red,
+/area/ruin/unpowered/planet_moon/bunker)
+"Rz" = (
+/obj/structure/dresser{
+	dir = 8;
+	pixel_x = 5
+	},
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_moon/bunker/dorms/two)
+"RB" = (
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 8
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker)
+"RG" = (
+/obj/structure/closet/crate/secure/gear,
+/obj/item/storage/belt/military{
+	pixel_x = 4;
+	pixel_y = 5
+	},
+/obj/item/storage/belt/military{
+	pixel_x = -7;
+	pixel_y = 5
+	},
+/obj/item/storage/belt/military/assault{
+	pixel_x = -1;
+	pixel_y = -6
+	},
+/obj/item/clothing/suit/armor/vest{
+	pixel_x = -8;
+	pixel_y = -4
+	},
+/obj/item/clothing/suit/armor/vest{
+	pixel_x = 8;
+	pixel_y = -4
+	},
+/obj/item/clothing/head/helmet{
+	pixel_x = -9;
+	pixel_y = 1
+	},
+/obj/item/clothing/head/helmet{
+	pixel_x = 8
+	},
+/obj/item/clothing/mask/gas/syndicate{
+	pixel_x = -3;
+	pixel_y = -5
+	},
+/obj/item/clothing/mask/gas/syndicate{
+	pixel_x = 1;
+	pixel_y = -6
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_moon/bunker/armory)
+"Sp" = (
+/obj/effect/turf_decal/ship/borderfloor,
+/obj/effect/turf_decal/tile/red{
+	dir = 5;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/item/stack/ore/iron,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker)
+"SB" = (
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/door/airlock/grunge{
+	name = "Magazyn"
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker/cargo)
+"SF" = (
+/turf/open/floor/plating/asteroid/moon,
+/area/lavaland/surface/outdoors)
+"SJ" = (
+/obj/machinery/suit_storage_unit,
+/turf/open/floor/mineral/plastitanium/red,
+/area/ruin/unpowered/planet_moon/bunker)
+"SL" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 8
+	},
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_moon/bunker)
+"SN" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/cable,
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_moon/bunker)
+"SW" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_moon/bunker)
+"Th" = (
+/obj/item/stack/ore/iron{
+	pixel_x = 14;
+	pixel_y = 7
+	},
+/obj/item/stack/ore/gold{
+	pixel_x = -4;
+	pixel_y = -4;
+	amount = 5
+	},
+/obj/structure/fluff/broken_flooring{
+	icon_state = "singular"
+	},
+/turf/open/floor/plating/rust,
+/area/lavaland/surface/outdoors)
+"Tj" = (
+/obj/structure/window/plastitanium,
+/obj/structure/grille,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_moon/bunker/drone)
+"Tp" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker/engineering)
+"Tq" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 1;
+	color = "#BA9F6D"
+	},
+/obj/effect/turf_decal/trimline/red/warning{
+	dir = 1;
+	color = "#730622";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_moon/bunker/armory)
+"Tr" = (
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 4
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker)
+"Tu" = (
+/obj/machinery/button/door{
+	pixel_y = 22;
+	name = "wypuszczenie dronów";
+	id = "bunkerdrone"
+	},
+/obj/item/stack/ore/iron,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker/drone)
+"TA" = (
+/obj/structure/closet/crate/freezer,
+/obj/effect/turf_decal/siding/white{
+	color = "#BA9F6D"
+	},
+/obj/effect/turf_decal/siding/white/corner{
+	dir = 1;
+	color = "#BA9F6D"
+	},
+/obj/effect/turf_decal/trimline/red/corner{
+	dir = 1;
+	color = "#730622";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker/cargo)
+"TD" = (
+/obj/machinery/door/firedoor/heavy,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/cable,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker)
+"TI" = (
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 1
+	},
+/obj/machinery/atmospherics/components/unary/outlet_injector/on{
+	dir = 4
+	},
+/obj/item/radio/intercom/directional/north,
+/turf/open/floor/engine{
+	initial_gas_mix = "TEMP=2.7"
+	},
+/area/ruin/unpowered/planet_moon/bunker)
+"TK" = (
+/obj/structure/fluff/broken_flooring{
+	icon_state = "singular"
+	},
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_moon/bunker/drone)
+"TP" = (
+/obj/structure/filingcabinet{
+	dir = 1
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker)
+"TU" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/door/airlock/grunge{
+	name = "Umywalnia";
+	dir = 4
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker/bathroom)
+"Ub" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/effect/turf_decal/ship/borderfloor,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_moon/bunker)
+"Uf" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/white{
+	color = "#730622"
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_moon/bunker/armory)
+"Up" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_moon/bunker/engineering)
+"Ux" = (
+/obj/structure/table/reinforced,
+/obj/machinery/airalarm/directional/east,
+/turf/open/floor/mineral/plastitanium,
+/area/ruin/unpowered/planet_moon/bunker/armory)
+"UQ" = (
+/obj/machinery/shower{
+	dir = 8
+	},
+/obj/machinery/light/small,
+/obj/structure/lattice/catwalk/over/ship/dark,
+/turf/open/floor/noslip,
+/area/ruin/unpowered/planet_moon/bunker/bathroom)
+"UT" = (
+/obj/machinery/shower{
+	pixel_y = 18
+	},
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/firealarm/directional/east,
+/turf/open/floor/noslip,
+/area/ruin/unpowered/planet_moon/bunker/engineering)
+"UV" = (
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/dark/hidden{
+	dir = 9
+	},
+/turf/open/floor/engine{
+	initial_gas_mix = "TEMP=2.7"
+	},
+/area/ruin/unpowered/planet_moon/bunker)
+"Vb" = (
+/obj/machinery/door/airlock/grunge{
+	name = "Magazyn EVA";
+	dir = 1
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker/armory)
+"Vc" = (
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/ruin/unpowered/planet_moon/bunker/drone)
+"Vo" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 8
+	},
+/obj/machinery/light_switch{
+	pixel_x = -12;
+	pixel_y = 21
+	},
+/obj/structure/bed,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_moon/bunker/dorms/two)
+"VK" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_moon/bunker/armory)
+"VO" = (
+/obj/machinery/modular_fabricator/autolathe,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker)
+"VS" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/trimline/red/corner{
+	dir = 1;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/filingcabinet{
+	dir = 4;
+	pixel_x = -10;
+	density = 0
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_moon/bunker/armory)
+"Wg" = (
+/obj/structure/table/reinforced,
+/obj/item/paper_bin{
+	pixel_x = -6;
+	pixel_y = 4
+	},
+/obj/item/pen{
+	pixel_x = -7;
+	pixel_y = 6
+	},
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_moon/bunker/armory)
+"Wo" = (
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 10
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 4;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/machinery/firealarm/directional/east,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker/drone)
+"Wz" = (
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker)
+"WT" = (
+/obj/structure/table/reinforced,
+/obj/item/paper_bin{
+	pixel_x = -6;
+	pixel_y = 4
+	},
+/obj/item/pen{
+	pixel_x = -7;
+	pixel_y = 6
+	},
+/obj/machinery/button/door{
+	id = "bunkergate2";
+	name = "sterowanie drzwiami wewnętrznymi";
+	pixel_x = -6;
+	pixel_y = -18;
+	dir = 1
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker)
+"Xa" = (
+/obj/structure/closet/crate/secure/weapon{
+	name = "skrzynia z amunicją"
+	},
+/obj/item/storage/toolbox/ammo{
+	pixel_x = -6;
+	pixel_y = 4
+	},
+/obj/item/storage/toolbox/ammo{
+	pixel_x = 4;
+	pixel_y = 5
+	},
+/obj/item/storage/toolbox/ammo{
+	pixel_x = -2;
+	pixel_y = 1
+	},
+/obj/machinery/light/broken{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_moon/bunker/armory)
+"Xf" = (
+/obj/effect/turf_decal/ship/borderfloor,
+/obj/effect/turf_decal/tile/red{
+	dir = 5;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/basic/hivebot/range{
+	faction = list("nanotrasenprivate")
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker)
+"Xi" = (
+/obj/effect/turf_decal/ship/borderfloor,
+/obj/effect/turf_decal/tile/red{
+	dir = 5;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker)
+"Xm" = (
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker/drone)
+"Xn" = (
+/obj/effect/turf_decal/siding/white/corner{
+	dir = 4;
+	color = "#730622"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_moon/bunker/armory)
+"XG" = (
+/obj/effect/turf_decal/siding/thinplating/dark,
+/obj/effect/turf_decal/siding/thinplating/dark,
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/rack,
+/obj/item/chair/plastic,
+/obj/item/chair/plastic{
+	pixel_y = 12
+	},
+/obj/item/chair/plastic{
+	pixel_y = 5
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_moon/bunker/dorms/lounge)
+"XL" = (
+/obj/structure/closet/crate/freezer,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_moon/bunker/cargo)
+"XM" = (
+/obj/effect/turf_decal/ship/borderfloor,
+/obj/effect/turf_decal/tile/red{
+	dir = 5;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_moon/bunker/armory)
+"XN" = (
+/obj/structure/closet/crate/freezer,
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_moon/bunker/cargo)
+"XQ" = (
+/turf/open/floor/plating/asteroid/moon{
+	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+	planetary_atmos = 0
+	},
+/area/ruin/unpowered/planet_moon/bunker/engineering)
+"XT" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_moon/bunker)
+"Ye" = (
+/obj/machinery/light/floor,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker/engineering)
+"Yh" = (
+/obj/machinery/atmospherics/components/unary/outlet_injector/on/layer4{
+	dir = 4
+	},
+/turf/open/floor/engine/air,
+/area/ruin/unpowered/planet_moon/bunker/engineering)
+"Yo" = (
+/obj/machinery/door/firedoor/heavy,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker)
+"Yr" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/firealarm/directional/south,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_moon/bunker)
+"Yw" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 4;
+	color = "#BA9F6D"
+	},
+/obj/effect/turf_decal/trimline/red/warning{
+	dir = 4;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker/cargo)
+"Yy" = (
+/obj/structure/table,
+/obj/structure/bedsheetbin,
+/obj/machinery/light/small/broken,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker/bathroom)
+"YC" = (
+/obj/machinery/washing_machine,
+/obj/machinery/light/small,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker/bathroom)
+"YS" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_moon/bunker/dorms/lounge)
+"YY" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/door/poddoor{
+	id = "bunkergate2"
+	},
+/obj/structure/cable,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker)
+"Zj" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 1;
+	color = "#BA9F6D"
+	},
+/obj/effect/turf_decal/trimline/red/warning{
+	dir = 1;
+	color = "#730622";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker/cargo)
+"Zk" = (
+/obj/item/stack/ore/gold{
+	amount = 5
+	},
+/obj/structure/frame/computer{
+	dir = 8
+	},
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_moon/bunker/drone)
+"Zs" = (
+/obj/effect/turf_decal/ship/borderfloor,
+/obj/effect/turf_decal/tile/red{
+	dir = 5;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/airalarm/directional/north,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker)
+"Zu" = (
+/obj/effect/turf_decal/siding/white{
+	color = "#730622"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_moon/bunker/armory)
+"ZP" = (
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 8
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker)
+"ZS" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 1
+	},
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_moon/bunker)
+"ZZ" = (
+/obj/effect/turf_decal/ship/borderfloor,
+/obj/effect/turf_decal/tile/red{
+	dir = 5;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_moon/bunker)
+
+(1,1,1) = {"
+Ou
+Ou
+Ou
+Ou
+Ou
+Ou
+Ou
+SF
+SF
+SF
+SF
+SF
+SF
+SF
+FT
+FT
+FT
+FT
+FT
+FT
+Ou
+Ou
+Ou
+Ou
+Ou
+Ou
+Ou
+Ou
+Ou
+Ou
+Ou
+Ou
+Ou
+Ou
+Ou
+Ou
+Ou
+Ou
+Ou
+Ou
+Ou
+Ou
+Ou
+Ou
+"}
+(2,1,1) = {"
+Ou
+Ou
+Ou
+SF
+SF
+SF
+SF
+SF
+SF
+SF
+SF
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+Ou
+Ou
+Ou
+Ou
+Ou
+Ou
+Ou
+Ou
+Ou
+Ou
+SF
+SF
+SF
+Ou
+Ou
+Ou
+Ou
+"}
+(3,1,1) = {"
+Ou
+Ou
+Ou
+SF
+SF
+SF
+SF
+SF
+SF
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+Ou
+SF
+SF
+SF
+SF
+Ou
+Ou
+Ou
+SF
+SF
+SF
+SF
+SF
+Ou
+Ou
+Ou
+"}
+(4,1,1) = {"
+Ou
+Ou
+SF
+SF
+SF
+SF
+SF
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+Vc
+Vc
+Vc
+Vc
+Vc
+Vc
+Vc
+FT
+FT
+FT
+SF
+SF
+SF
+SF
+SF
+SF
+SF
+SF
+jM
+jM
+SF
+SF
+Ou
+Ou
+Ou
+"}
+(5,1,1) = {"
+Ou
+Ou
+SF
+SF
+SF
+SF
+SF
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+Vc
+Xm
+Xm
+Vc
+Xm
+Xm
+Vc
+FT
+FT
+FT
+FT
+SF
+SF
+od
+SF
+od
+SF
+jM
+jM
+jM
+jM
+FT
+FT
+SF
+Ou
+"}
+(6,1,1) = {"
+Ou
+SF
+SF
+SF
+SF
+SF
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+aG
+FT
+FT
+FT
+FT
+FT
+Vc
+Xm
+Xm
+Vc
+Xm
+Xm
+Vc
+FT
+FT
+FT
+FT
+FT
+SF
+SF
+SF
+SF
+SF
+jM
+jM
+jM
+jM
+jM
+FT
+FT
+Ou
+"}
+(7,1,1) = {"
+Ou
+SF
+SF
+SF
+SF
+SF
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+Vc
+Vc
+Vc
+ij
+ij
+Vc
+ij
+ij
+Vc
+Vc
+Vc
+Gp
+FT
+FT
+FT
+FT
+SF
+SF
+SF
+SF
+jM
+jM
+jM
+jM
+jM
+FT
+SF
+"}
+(8,1,1) = {"
+Ou
+SF
+SF
+SF
+SF
+SF
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+Vc
+dN
+yD
+Nb
+IH
+bb
+Ng
+Xm
+Vc
+Tu
+Gp
+Gp
+FT
+FT
+FT
+SF
+SF
+SF
+SF
+SF
+FT
+jM
+jM
+jM
+jM
+FT
+SF
+"}
+(9,1,1) = {"
+Ou
+SF
+SF
+SF
+SF
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+Vc
+Mc
+hW
+aM
+Pt
+ee
+qy
+gk
+Vc
+TK
+Oh
+Gp
+Gp
+FT
+FT
+SF
+gS
+SF
+SF
+SF
+FT
+FT
+jM
+jM
+FT
+FT
+SF
+"}
+(10,1,1) = {"
+Ou
+SF
+SF
+SF
+SF
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+Vc
+OG
+JZ
+jh
+Wo
+Pk
+NV
+zr
+qV
+zr
+FI
+Zk
+Oh
+gS
+gS
+SF
+gS
+SF
+SF
+SF
+SF
+FT
+FT
+FT
+FT
+SF
+SF
+"}
+(11,1,1) = {"
+Ou
+SF
+SF
+SF
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+LX
+LX
+en
+LX
+LX
+Vc
+ep
+Vc
+Vc
+Vc
+Vc
+Vc
+Tj
+Tj
+gS
+gS
+gS
+gS
+gS
+Kh
+Dc
+SF
+SF
+SF
+SF
+SF
+SF
+od
+"}
+(12,1,1) = {"
+Ou
+SF
+SF
+SF
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+LX
+Rh
+uf
+ic
+LX
+nj
+be
+un
+lf
+Lx
+fa
+gS
+SJ
+SJ
+gS
+SJ
+SJ
+gS
+TI
+Dc
+Dc
+Dc
+Dc
+Dc
+SF
+SF
+SF
+SF
+"}
+(13,1,1) = {"
+Ou
+SF
+SF
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+LX
+LX
+LX
+LX
+LX
+nw
+Bi
+iG
+LX
+nj
+XT
+uN
+fG
+Tr
+uF
+aU
+jv
+au
+Yo
+jv
+au
+fR
+by
+Dc
+Dc
+Dc
+Dc
+Dc
+SF
+SF
+SF
+SF
+"}
+(14,1,1) = {"
+Ou
+SF
+SF
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+LX
+Px
+Yh
+OL
+LX
+UT
+uf
+dK
+LX
+PU
+LY
+AG
+jn
+kH
+SN
+YY
+iL
+jn
+TD
+iL
+nr
+mk
+UV
+Dc
+Dc
+Dc
+Dc
+Dc
+Dc
+SF
+SF
+od
+"}
+(15,1,1) = {"
+Ou
+SF
+SF
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+LX
+LX
+LX
+PJ
+bX
+bX
+LX
+LX
+en
+LX
+LX
+jc
+PK
+oI
+RB
+aY
+ZP
+aU
+bQ
+gw
+yz
+bQ
+gw
+fR
+Hh
+Dc
+Dc
+Dc
+Dc
+SF
+SF
+SF
+SF
+SF
+"}
+(16,1,1) = {"
+Ou
+SF
+SF
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+LX
+xn
+XQ
+Up
+Hn
+Jf
+BS
+zi
+MK
+Fn
+LX
+kZ
+PK
+Ho
+nF
+EH
+DF
+gS
+Rj
+kC
+gS
+Pl
+SJ
+gS
+ES
+Dc
+Dc
+Dc
+Dc
+Dc
+Dc
+SF
+SF
+Ou
+"}
+(17,1,1) = {"
+Ou
+SF
+SF
+FT
+FT
+FT
+FT
+FT
+FT
+LX
+LX
+xn
+XQ
+XQ
+XQ
+aB
+KW
+Co
+gO
+sD
+LX
+fi
+be
+gS
+gS
+gS
+gS
+gS
+jS
+jS
+gS
+gS
+gS
+gS
+gS
+Kh
+Dc
+Dc
+Dc
+Dc
+SF
+SF
+SF
+Ou
+"}
+(18,1,1) = {"
+SF
+SF
+SF
+FT
+FT
+FT
+FT
+FT
+FT
+LX
+xn
+xn
+XQ
+Cx
+LB
+LB
+FB
+Hi
+Tp
+yn
+LX
+Xi
+ZS
+PA
+KY
+vP
+rY
+Ir
+vQ
+WT
+gS
+gS
+SF
+gS
+SF
+SF
+SF
+Dc
+SF
+SF
+SF
+SF
+SF
+Ou
+"}
+(19,1,1) = {"
+SF
+SF
+SF
+FT
+FT
+FT
+FT
+FT
+FT
+LX
+xn
+XQ
+XQ
+XQ
+XQ
+XQ
+FB
+de
+DB
+cT
+LX
+ZZ
+zN
+gS
+vv
+ew
+Am
+CY
+QB
+OS
+gS
+SF
+SF
+gS
+SF
+SF
+SF
+SF
+SF
+SF
+SF
+SF
+SF
+Ou
+"}
+(20,1,1) = {"
+SF
+SF
+SF
+FT
+FT
+FT
+FT
+FT
+FT
+LX
+xn
+Cx
+LB
+Cx
+LB
+Cx
+FB
+BR
+BR
+Ip
+LX
+pu
+SW
+gS
+xQ
+QC
+sM
+qG
+Ub
+TP
+gS
+FT
+SF
+SF
+SF
+od
+SF
+SF
+SF
+Dc
+SF
+SF
+SF
+Ou
+"}
+(21,1,1) = {"
+SF
+SF
+SF
+FT
+FT
+FT
+FT
+FT
+FT
+LX
+xn
+XQ
+XQ
+XQ
+XQ
+XQ
+FB
+Up
+yV
+rG
+LX
+nj
+IB
+gS
+gS
+gS
+vI
+Ns
+gS
+gS
+gS
+FT
+SF
+SF
+SF
+SF
+SF
+SF
+Dc
+Dc
+SF
+SF
+SF
+Ou
+"}
+(22,1,1) = {"
+SF
+SF
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+LX
+xn
+xn
+XQ
+Cx
+LB
+LB
+xP
+wT
+wT
+Kx
+LX
+fi
+qX
+gh
+ce
+gh
+jY
+qr
+pH
+gS
+FT
+FT
+SF
+SF
+SF
+SF
+SF
+SF
+Dc
+Dc
+SF
+SF
+SF
+Ou
+"}
+(23,1,1) = {"
+SF
+SF
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+LX
+LX
+xn
+XQ
+XQ
+XQ
+Ye
+BS
+ut
+NS
+rG
+LX
+Xf
+qX
+gh
+Wz
+gh
+of
+Fu
+kS
+Ql
+FT
+FT
+FT
+FT
+FT
+SF
+SF
+SF
+Dc
+SF
+SF
+SF
+SF
+Ou
+"}
+(24,1,1) = {"
+SF
+SF
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+LX
+xn
+xn
+xn
+xn
+xn
+xn
+xn
+LX
+LX
+LX
+fi
+PK
+gh
+Wz
+gh
+pj
+ab
+VO
+Ql
+FT
+FT
+FT
+FT
+FT
+SF
+SF
+SF
+hk
+SF
+SF
+SF
+SF
+Ou
+"}
+(25,1,1) = {"
+SF
+SF
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+LX
+LX
+LX
+LX
+LX
+LX
+LX
+LX
+LX
+Wz
+kQ
+nj
+PK
+gh
+ce
+gh
+OV
+Hb
+Ql
+Ql
+FT
+FT
+FT
+FT
+FT
+SF
+SF
+SF
+SF
+SF
+SF
+SF
+Ou
+Ou
+"}
+(26,1,1) = {"
+SF
+SF
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+gS
+Wz
+kQ
+nj
+PK
+HX
+HX
+HX
+HX
+HX
+HX
+HX
+HX
+HX
+HX
+FT
+FT
+FT
+SF
+SF
+SF
+SF
+SF
+SF
+Ou
+Ou
+"}
+(27,1,1) = {"
+Ou
+SF
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+gS
+gS
+gS
+fi
+Yr
+HX
+rU
+IM
+kd
+GQ
+rU
+kd
+xa
+GQ
+HX
+FT
+FT
+FT
+SF
+SF
+SF
+SF
+SF
+SF
+Ou
+Ou
+"}
+(28,1,1) = {"
+Ou
+SF
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+gS
+iN
+PK
+HX
+rU
+ga
+ga
+GQ
+rU
+ga
+ga
+zh
+HX
+HX
+FT
+FT
+SF
+SF
+SF
+SF
+SF
+SF
+SF
+Ou
+"}
+(29,1,1) = {"
+Ou
+SF
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+ib
+ib
+ib
+ib
+FT
+FT
+FT
+FT
+FT
+gS
+Kb
+cX
+HX
+Rg
+kd
+GY
+Zj
+Rg
+kd
+kd
+LR
+jo
+HX
+FT
+FT
+SF
+SF
+SF
+SF
+SF
+SF
+SF
+Ou
+"}
+(30,1,1) = {"
+Ou
+SF
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+ib
+Na
+Na
+ib
+FT
+FT
+FT
+FT
+FT
+gS
+Zs
+zN
+HX
+ip
+ga
+XL
+GQ
+rU
+ga
+ga
+Bs
+HX
+HX
+FT
+FT
+SF
+SF
+SF
+SF
+SF
+SF
+SF
+Ou
+"}
+(31,1,1) = {"
+Ou
+SF
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+ib
+ib
+gG
+gG
+ib
+ib
+FT
+FT
+FT
+FT
+gS
+nj
+aW
+SB
+CI
+zY
+dt
+tA
+vn
+eW
+eW
+TA
+jo
+HX
+FT
+FT
+SF
+Dc
+SF
+SF
+SF
+SF
+SF
+Ou
+"}
+(32,1,1) = {"
+SF
+SF
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+ib
+Wg
+qi
+qi
+VK
+ib
+FT
+FT
+FT
+FT
+gS
+Sp
+be
+HX
+DA
+Ku
+Ku
+bL
+Ku
+En
+Ku
+Hy
+HX
+HX
+FT
+FT
+Dc
+Dc
+SF
+SF
+SF
+SF
+SF
+Ou
+"}
+(33,1,1) = {"
+SF
+SF
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+ib
+FN
+rj
+VK
+vk
+ib
+FT
+FT
+FT
+FT
+Ql
+Ql
+MM
+oy
+XN
+eD
+eD
+Gy
+JR
+Yw
+QJ
+FJ
+jo
+HX
+FT
+FT
+SF
+Dc
+SF
+od
+SF
+SF
+SF
+Ou
+"}
+(34,1,1) = {"
+SF
+SF
+FT
+FT
+FT
+FT
+ib
+ib
+ib
+ib
+ib
+Gl
+qi
+VK
+qi
+ib
+gS
+gS
+Ql
+Ql
+Ql
+Ql
+Eu
+HX
+HV
+ga
+ga
+GQ
+rU
+XL
+ga
+Bs
+HX
+HX
+FT
+SF
+Dc
+Dc
+SF
+SF
+SF
+SF
+SF
+SF
+"}
+(35,1,1) = {"
+SF
+SF
+FT
+FT
+FT
+FT
+ib
+RG
+vE
+cL
+vE
+Tq
+CF
+nJ
+lr
+ib
+Cb
+jw
+rl
+jv
+Ql
+Ge
+xr
+HX
+Rg
+kd
+kd
+Zj
+Rg
+GY
+kd
+iw
+jo
+HX
+FT
+SF
+Dc
+Dc
+SF
+SF
+FT
+FT
+FT
+SF
+"}
+(36,1,1) = {"
+SF
+od
+FT
+FT
+FT
+FT
+ib
+vE
+vE
+vE
+vE
+Tq
+vO
+tJ
+ja
+dV
+tB
+SL
+tB
+bj
+oC
+SL
+Pc
+HX
+rU
+ga
+ga
+GQ
+rU
+ga
+ga
+Db
+HX
+HX
+FT
+SF
+Dc
+Dc
+SF
+FT
+FT
+jM
+FT
+FT
+"}
+(37,1,1) = {"
+SF
+SF
+FT
+FT
+FT
+FT
+ib
+vE
+EL
+Av
+RG
+Tq
+CF
+Bq
+iE
+ib
+uK
+eo
+uK
+uK
+Ja
+wl
+Ja
+HX
+rU
+BM
+kd
+GQ
+rU
+kd
+Ht
+GQ
+HX
+FT
+FT
+SF
+Dc
+Dc
+SF
+FT
+FT
+jM
+jM
+FT
+"}
+(38,1,1) = {"
+SF
+SF
+FT
+FT
+FT
+FT
+ib
+nL
+vE
+vE
+vE
+Ny
+CF
+Bq
+MB
+ib
+Cr
+Ai
+ik
+uK
+lp
+cP
+NX
+HX
+HX
+HX
+HX
+HX
+HX
+HX
+HX
+HX
+HX
+FT
+FT
+SF
+SF
+SF
+SF
+FT
+jM
+jM
+jM
+jM
+"}
+(39,1,1) = {"
+SF
+SF
+FT
+FT
+FT
+FT
+ib
+BA
+vE
+vE
+Pp
+Tq
+bi
+cx
+Mq
+ib
+nY
+Dl
+FD
+uK
+my
+Kt
+ne
+xu
+qQ
+ix
+As
+yG
+ix
+FT
+FT
+FT
+FT
+FT
+FT
+SF
+SF
+SF
+SF
+FT
+FT
+jM
+jM
+SF
+"}
+(40,1,1) = {"
+SF
+SF
+od
+FT
+FT
+FT
+ib
+vE
+vE
+vE
+vE
+Tq
+Pd
+XM
+QA
+ib
+lJ
+cv
+Yy
+uK
+ti
+dj
+rw
+YS
+fj
+tm
+wz
+No
+ix
+FT
+FT
+FT
+FT
+FT
+FT
+SF
+SF
+SF
+SF
+SF
+FT
+FT
+jM
+SF
+"}
+(41,1,1) = {"
+SF
+SF
+SF
+FT
+FT
+FT
+ib
+vE
+vE
+Xa
+vE
+ey
+Pd
+gi
+rq
+ib
+jH
+HS
+QL
+uK
+dS
+Ac
+ry
+rc
+pV
+ix
+jE
+pU
+ix
+FT
+FT
+FT
+SF
+SF
+Dc
+Dc
+SF
+SF
+SF
+SF
+SF
+SF
+SF
+SF
+"}
+(42,1,1) = {"
+Ou
+SF
+SF
+FT
+FT
+FT
+ib
+ib
+ib
+ib
+ib
+Iu
+Iu
+ib
+LL
+ib
+cy
+Dl
+YC
+uK
+qt
+Of
+Nu
+rc
+Gw
+ix
+ix
+ix
+ix
+FT
+FT
+SF
+SF
+SF
+Dc
+Dc
+SF
+SF
+SF
+SF
+SF
+SF
+SF
+SF
+"}
+(43,1,1) = {"
+Ou
+SF
+SF
+FT
+FT
+FT
+hi
+FT
+FT
+FT
+ib
+cf
+oL
+jp
+rg
+ib
+uK
+TU
+uK
+uK
+Qe
+mO
+Nu
+rc
+pV
+jW
+Fz
+HC
+jW
+FT
+FT
+FT
+SF
+SF
+Dc
+Dc
+SF
+SF
+SF
+SF
+SF
+SF
+SF
+Ou
+"}
+(44,1,1) = {"
+Ou
+Ou
+SF
+FT
+FT
+FT
+FT
+FT
+FT
+Th
+Vb
+CF
+CF
+Pd
+Uf
+dq
+uK
+Lj
+dL
+uK
+Qp
+mO
+Of
+EY
+vC
+NB
+aA
+Iz
+jW
+FT
+FT
+SF
+SF
+SF
+Dc
+Dc
+SF
+SF
+SF
+SF
+SF
+SF
+SF
+Ou
+"}
+(45,1,1) = {"
+Ou
+Ou
+SF
+SF
+FT
+FT
+FT
+FT
+FT
+rm
+ib
+Qu
+oV
+Xn
+Zu
+ws
+uK
+ec
+yP
+uK
+Qp
+eH
+Nu
+eb
+pV
+jW
+Vo
+Rz
+jW
+FT
+FT
+SF
+SF
+SF
+SF
+SF
+SF
+SF
+SF
+SF
+SF
+SF
+SF
+Ou
+"}
+(46,1,1) = {"
+Ou
+Ou
+SF
+od
+FT
+FT
+FT
+FT
+hi
+hi
+ib
+yS
+Ux
+dd
+Zu
+ls
+uK
+oo
+UQ
+uK
+Cc
+rX
+Nu
+we
+XG
+jW
+jW
+jW
+jW
+FT
+SF
+SF
+SF
+SF
+SF
+SF
+SF
+SF
+od
+SF
+SF
+SF
+SF
+SF
+"}
+(47,1,1) = {"
+Ou
+Ou
+SF
+SF
+SF
+FT
+FT
+FT
+FT
+hi
+ib
+ib
+ib
+ib
+ib
+ib
+uK
+uK
+uK
+uK
+Ja
+aI
+aI
+aI
+Ja
+Ja
+Ja
+SF
+SF
+SF
+SF
+SF
+SF
+FT
+FT
+jM
+jM
+SF
+SF
+SF
+SF
+SF
+SF
+SF
+"}
+(48,1,1) = {"
+Ou
+Ou
+Ou
+SF
+SF
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+Ja
+AL
+AL
+AL
+Ja
+SF
+SF
+SF
+SF
+SF
+SF
+SF
+FT
+FT
+jM
+jM
+jM
+jM
+SF
+SF
+SF
+SF
+SF
+SF
+"}
+(49,1,1) = {"
+Ou
+Ou
+SF
+SF
+SF
+SF
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+FT
+SF
+SF
+SF
+Ja
+aI
+aI
+aI
+Ja
+SF
+SF
+SF
+SF
+SF
+SF
+SF
+FT
+jM
+jM
+jM
+jM
+SF
+SF
+SF
+SF
+SF
+Ou
+SF
+"}
+(50,1,1) = {"
+Ou
+Ou
+Ou
+SF
+SF
+SF
+SF
+SF
+SF
+FT
+FT
+FT
+FT
+SF
+SF
+SF
+SF
+SF
+SF
+SF
+Dy
+SF
+SF
+SF
+Dy
+SF
+SF
+od
+SF
+SF
+SF
+SF
+SF
+SF
+SF
+FT
+SF
+SF
+SF
+SF
+Ou
+Ou
+Ou
+Ou
+"}
+(51,1,1) = {"
+Ou
+Ou
+Ou
+Ou
+Ou
+Ou
+SF
+SF
+SF
+SF
+SF
+SF
+SF
+SF
+SF
+SF
+SF
+SF
+SF
+SF
+od
+od
+SF
+SF
+SF
+SF
+SF
+SF
+SF
+SF
+SF
+SF
+SF
+SF
+Ou
+SF
+SF
+Ou
+Ou
+Ou
+Ou
+Ou
+Ou
+Ou
+"}
+(52,1,1) = {"
+Ou
+Ou
+Ou
+Ou
+Ou
+Ou
+Ou
+Ou
+Ou
+Ou
+Ou
+SF
+Ou
+Ou
+SF
+SF
+SF
+Ou
+Ou
+Ou
+Ou
+Ou
+Ou
+Ou
+SF
+SF
+SF
+SF
+SF
+SF
+SF
+SF
+Ou
+Ou
+Ou
+Ou
+Ou
+Ou
+Ou
+Ou
+Ou
+Ou
+Ou
+Ou
+"}
