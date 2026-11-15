@@ -78,12 +78,13 @@
 
 // Każdy układ generowany (Badlands, Litelands) ma jedną planetę. Planeta dostaje nazwę układu dopiero po wylosowaniu
 // nazwy przez generator, więc dochodzi chwilę po utworzeniu układu.
-/datum/star_system/random/New()
+/datum/star_system/random/New(name, desc, threat_level, alignment, owner, hidden, system_type, system_traits, is_capital, adjacency_list, wormhole_connections, fleet_type, x, y, parallax_property, visitable, sector, is_hypergate, preset_trader, audio_cues, startup_proc)
 	. = ..()
 	addtimer(CALLBACK(src, PROC_REF(add_random_planet)), 1)
 
 /datum/star_system/random/proc/add_random_planet()
-	if(length(get_planets()))
+	// Pusty kafel mapy hex to nie układ: bez planety
+	if(istype(src, /datum/star_system/random/hex_empty) || length(get_planets()))
 		return
 	add_planet(pick_planet_type_for_system(src))
 	if(prob(PLANET_SCENERY_CHANCE))
