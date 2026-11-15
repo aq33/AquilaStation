@@ -1084,3 +1084,11 @@
       fale rozstrajające, binglowie i inne), mają pasujące nagrania.
   - bugfix: Ogłoszenie fali mięsoroidów i inwazji ksenomorfów ma znowu poprawny tytuł
       zamiast nazwy dźwięku.
+'2026-11-15':
+  Joker66613:
+  - tweak: Tłumacz obcokrajowca pokazuje od razu bełkot z „…”, który przechodzi w
+      tłumaczenie w czacie i w dymku, gdy tylko przyjdzie. Tak samo kanały telepatyczne,
+      a OOC od razu pokazuje oryginał.
+  - tweak: 'Tłumacz działa u słuchacza: obcokrajowca rozumie tylko ten, kto nosi słuchawki
+      z czipem (mają go wszystkie słuchawki) albo ma tłumacza, a bez niego słyszy
+      bełkot. Obcokrajowiec mówi od razu po angielsku. Silikony mają tłumacza wbudowanego.'
