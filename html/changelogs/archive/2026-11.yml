@@ -1094,3 +1094,9 @@
       bełkot. Obcokrajowiec mówi od razu po angielsku. Silikony mają tłumacza wbudowanego.'
   - rscadd: Nowa preferencja „Preferowany silnik statku”. Na Atlasie, Trawniku i Padalcu
       Główny Inżynier (a bez niego większość inżynierów) wybiera silnik na start rundy.
+  - code_imp: 'Narzędzia deweloperskie: profiler byond-tracy, podgląd okien TGUI,
+      obrazki zmian map i ikon, sterowanie klientem do testów i mock klient w testach
+      jednostkowych.'
+  - server: 'Nowa opcja CACHE_ASSETS w configu: ikony okien są zapisywane między rundami
+      tej samej wersji kodu, start świata krótszy o ponad 10 sekund.'
+  - code_imp: Szybsze liczenie hashy assetów przy starcie serwera.
