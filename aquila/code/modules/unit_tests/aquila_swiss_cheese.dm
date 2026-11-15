@@ -1,14 +1,11 @@
-/// AQUILA - „Swiss Cheese” (aquila/code/modules/overmap/modules/swiss_cheese.dm) i rozrzut od prędkości poprzecznej
-/// (transverse_spread.dm): trafienie od dziobu ląduje na dziobie mapy pokładu, lewa burta na północy, pełny pancerz nie robi
-/// wyłomu, dziura pogłębia następne trafienie, a okręt płynący w poprzek linii strzału dostaje większy rozrzut niż stojący.
+/// AQUILA - „Swiss Cheese” (aquila/code/modules/overmap/modules/swiss_cheese.dm): trafienie od dziobu ląduje na dziobie
+/// mapy pokładu, lewa burta na północy, pełny pancerz nie robi wyłomu, a dziura pogłębia następne trafienie.
 /datum/unit_test/aquila_swiss_cheese
 	var/obj/structure/overmap/small_craft/ship
-	var/obj/structure/overmap/small_craft/target
 
 /datum/unit_test/aquila_swiss_cheese/Run()
 	ship = allocate(/obj/structure/overmap/small_craft/combat/light)
-	target = allocate(/obj/structure/overmap/small_craft/combat/light)
-	var/fail = check_deck_point() || check_depth() || check_spread()
+	var/fail = check_deck_point() || check_depth()
 	if(fail)
 		return Fail(fail)
 
@@ -35,21 +32,3 @@
 		return "Trafienie w starą dziurę nie weszło głębiej"
 	if(ship.deck_hole_depth(hit, 1) <= 0)
 		return "Przy pełnym pancerzu stara dziura nie przepuściła trafienia głębiej"
-
-/datum/unit_test/aquila_swiss_cheese/proc/check_spread()
-	ship.forceMove(locate(10, 10, run_loc_floor_bottom_left.z))
-	target.forceMove(locate(10, 20, run_loc_floor_bottom_left.z))
-	ship.velocity.a = 0
-	ship.velocity.e = 0
-	target.velocity.a = 0
-	target.velocity.e = 0
-	var/projectile = /obj/item/projectile/bullet/pdc_round
-	if(ship.transverse_spread(target, projectile) != 0)
-		return "Stojący cel dał rozrzut [ship.transverse_spread(target, projectile)]"
-	target.velocity.e = -2 // leci prosto na strzelca
-	if(ship.transverse_spread(target, projectile) > 0.01)
-		return "Cel lecący prosto na strzelca dał rozrzut [ship.transverse_spread(target, projectile)]"
-	target.velocity.e = 0
-	target.velocity.a = 2 // w poprzek linii strzału
-	if(ship.transverse_spread(target, projectile) <= 1)
-		return "Cel płynący w poprzek dał za mały rozrzut [ship.transverse_spread(target, projectile)]"

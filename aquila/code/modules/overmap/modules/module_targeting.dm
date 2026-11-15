@@ -59,3 +59,18 @@
 	for(var/obj/structure/overmap/target as anything in aim_modules)
 		if(QDELETED(target) || !LAZYFIND(target_painted, target))
 			LAZYREMOVE(aim_modules, target)
+
+/// Pocisk leci prosto, tam gdzie wycelowano (nie kierowany, nie promień)
+/proc/is_unguided_overmap_projectile(proj_type)
+	if(!ispath(proj_type, /obj/item/projectile) || ispath(proj_type, /obj/item/projectile/guided_munition))
+		return FALSE
+	var/obj/item/projectile/proj = proj_type
+	return !initial(proj.can_home) && !initial(proj.hitscan)
+
+// wybrany moduł celu: strzelec gracza celuje w ten punkt kadłuba
+/obj/structure/overmap/fire_projectile(proj_type, atom/target, pixel_speed = null, user_override = null, firing_flags = NONE, ai_aim = FALSE, miss_chance = 5, max_miss_distance = 5, spread_override = null, projectile_speed = null)
+	if(isovermap(target) && !ai_aim && LAZYLEN(aim_modules) && is_unguided_overmap_projectile(proj_type))
+		var/turf/aim = aim_turf_for(target)
+		if(aim)
+			target = aim
+	return ..(proj_type, target, pixel_speed, user_override, firing_flags, ai_aim, miss_chance, max_miss_distance, spread_override, projectile_speed)

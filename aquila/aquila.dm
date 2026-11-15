@@ -1027,7 +1027,6 @@
 #include "code\modules\overmap\modules\ship_module_sim.dm"
 #include "code\modules\overmap\modules\swiss_cheese.dm"
 #include "code\modules\overmap\modules\hull_spall.dm"
-#include "code\modules\overmap\modules\transverse_spread.dm"
 #include "code\modules\overmap\modules\module_targeting.dm"
 #include "code\modules\overmap\modules\decoys.dm"
 #include "code\modules\overmap\modules\harpoon.dm"

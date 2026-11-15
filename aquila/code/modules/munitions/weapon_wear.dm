@@ -2,8 +2,8 @@
 /// obok konserwacji z ship_weapon_maintenance.dm (maint_req, awaria, oliwienie). Wzory: MAC z FTL13
 /// (code/game/machinery/mac_cannon.dm) i kalibracja Obstruction Field Dispersera z Baya (disperser_console.dm).
 /// - Kalibracja 0–100%: po strzale z szansą calibration_drop_chance spada o calibration_drop. Niższa kalibracja
-///   dokłada rozrzut pociskom niekierowanym na overmapie (kąt w fire_projectile, obok rozrzutu z prędkości
-///   poprzecznej z transverse_spread.dm). Przy 0% strzał kończy się wybuchem w zamku.
+///   dokłada rozrzut pociskom niekierowanym na overmapie (kąt w fire_projectile).
+///   Przy 0% strzał kończy się wybuchem w zamku.
 /// - Przywrócenie: multitool przy odkręconym panelu, mini-gra „Mastermind” (4 cyfry 0–9, cyfra na swoim miejscu
 ///   2 pkt, cyfra z kodu na złym miejscu 1 pkt, wynik = punkty/8). Próba może przepalić aktuator.
 /// - Aktuator zamka: przy strzale może się przepalić i wtedy działo nie strzela, dopóki obsługa go nie wymieni
@@ -65,7 +65,7 @@
 	if(extra > 0 && ispath(proj_type, /obj/item/projectile) && !ispath(proj_type, /obj/item/projectile/guided_munition))
 		if(isnull(spread_override))
 			var/obj/item/projectile/proj = proj_type
-			spread_override = initial(proj.spread) + transverse_spread(target, proj_type)
+			spread_override = initial(proj.spread)
 		spread_override += extra
 	return ..(proj_type, target, pixel_speed, user_override, firing_flags, ai_aim, miss_chance, max_miss_distance, spread_override, projectile_speed)
 
