@@ -112,8 +112,6 @@ GLOBAL_LIST_INIT(ship_thruster_oxidizers, list(
 	var/plated = FALSE
 	/// aq_thrust_seconds statku przy ostatnim ticku tej dyszy
 	var/thrust_seen = 0
-	/// Czy w poprzednim ticku dysza miała prąd (ciąg z tego okresu rozlicza się też po utracie prądu)
-	var/had_power = FALSE
 	/// Obszar, z którego dysza ostatnio brała prąd (szukanie w promieniu jest kosztowne)
 	var/area/power_area_cache
 	var/next_power_search = 0
@@ -296,15 +294,16 @@ GLOBAL_LIST_INIT(ship_thruster_oxidizers, list(
 		thrust_seen = linked_ship.aq_thrust_seconds
 		if(!thrust_time && linked_ship.is_thrusting())
 			thrust_time = delta_time
-	// Manewr już wykonany rozliczamy, jeśli dysza miała prąd i choć trochę paliwa; gotowość na pełny tick (new_can_fire)
-	// decyduje tylko o dalszym ciągu
-	var/powered_now = !(machine_stat & (BROKEN|NOPOWER))
-	var/firing = thrust_time > 0 && linked_ship && anchored && (powered_now || had_power) && mix[2] > 0
-	had_power = powered_now
-	if(firing)
-		burn_fuel(fuel_per_second * thrust_time, heaters, mix)
-	use_power = firing ? ACTIVE_POWER_USE : IDLE_POWER_USE
+	// Manewr już wykonany rozliczamy według tego, czy dysza dawała wtedy ciąg: can_fire z poprzedniego ticku to
+	// dokładnie to, co fizyka wzięła do engine_thrust_active (zmienia się dopiero niżej). Gotowość na pełny tick
+	// (new_can_fire) decyduje tylko o dalszym ciągu.
+	var/firing = thrust_time > 0 && linked_ship && anchored && can_fire && mix[2] > 0
 	var/datum/ship_power/power = linked_ship?.ship_power
+	if(firing)
+		// Limit napędu z podziału mocy skaluje ciąg, więc i spalanie (z tym samym minimum co ciąg statku)
+		var/power_limit = power ? max(power.limits[SHIP_POWER_ENGINES], SHIP_THRUSTER_MIN_THRUST) : 1
+		burn_fuel(fuel_per_second * thrust_time * power_limit, heaters, mix)
+	use_power = firing ? ACTIVE_POWER_USE : IDLE_POWER_USE
 	active_power_usage = initial(active_power_usage) * (power ? power.limits[SHIP_POWER_ENGINES] : 1)
 	power?.record(SHIP_POWER_ENGINES, firing ? active_power_usage : 0, src, initial(active_power_usage))
 	if(new_can_fire != can_fire || abs(new_quality - fuel_quality) > 0.01)

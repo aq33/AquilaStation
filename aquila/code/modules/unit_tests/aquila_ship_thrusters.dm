@@ -140,10 +140,17 @@
 	thruster.process(2)
 	TEST_ASSERT(!thruster.can_fire, "A thruster fires on inert gas alone")
 
-	// Regresja: krótki manewr między tickami spala paliwo, nawet gdy zostało go za mało na pełny tick
+	// Regresja: dysza, która w rozliczanym okresie nie dawała ciągu (can_fire FALSE), nie płaci za ten okres
 	ship.last_thrust_forward = 0
 	air_contents.set_moles(GAS_O2, 0)
 	air_contents.set_moles(tank.gas_type, thruster.fuel_per_second) // starczy na 1 s, nie na 2
+	thruster.thrust_seen = ship.aq_thrust_seconds
+	ship.aq_thrust_seconds += 0.5
+	thruster.process(2)
+	TEST_ASSERT(abs(air_contents.get_moles(tank.gas_type) - thruster.fuel_per_second) < 0.01, "A thruster that gave no thrust paid fuel for the period")
+
+	// Regresja: krótki manewr między tickami spala paliwo, nawet gdy zostało go za mało na pełny tick
+	thruster.can_fire = TRUE // w rozliczanym okresie dysza dawała ciąg
 	thruster.thrust_seen = ship.aq_thrust_seconds
 	ship.aq_thrust_seconds += 0.5
 	thruster.process(2)
