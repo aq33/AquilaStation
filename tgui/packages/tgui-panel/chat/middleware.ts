@@ -80,6 +80,8 @@ const loadChatFromStorage = async (store: Store) => {
         message.html = DOMPurify.sanitize(message.html, {
           FORBID_TAGS,
         });
+        // AQUILA EDIT - tłumaczenie z poprzedniej sesji już nie przyjdzie (chat/aqLiveTranslation.ts)
+        message.html = message.html.replace(/ aq-tr-pending/g, '');
       }
     }
     const batch = [
