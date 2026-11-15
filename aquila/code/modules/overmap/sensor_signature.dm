@@ -144,6 +144,7 @@ GLOBAL_VAR_INIT(sensor_signature_enabled, TRUE)
 	. = ..()
 	if(. && linked_overmap)
 		linked_overmap.last_weapon_fire = world.time
+		linked_overmap.aq_on_weapon_fired() // maska tarczy (shield_cloak.dm): strzał zdejmuje ją od razu
 
 /world/AVerbsDebug()
 	. = ..()

@@ -2,7 +2,7 @@
 ///Brama, przez którą przychodzą i odchodzą roboty-turyści
 /obj/machinery/restaurant_portal
 	name = "portal restauracyjny"
-	desc = "Brama tylko dla robotów, prowadząca prosto do cudów kuchni stacji kosmicznej. Otwiera się terminalem lokalu albo kartą z dostępem."
+	desc = "Brama tylko dla robotów, prowadząca prosto do cudów kuchni stacji kosmicznej. Otwiera się tylko na czas zlecenia gości ze stacji handlowej."
 	icon = 'aquila/icons/obj/restaurant/restaurant_portal.dmi'
 	icon_state = "portal"
 	anchored = TRUE
@@ -27,7 +27,8 @@
 		if(linked_venue.restaurant_portal == src)
 			// Wracamy do poprzedniego portalu, a jeśli żadnego nie ma, lokal się zamyka
 			linked_venue.restaurant_portal = length(linked_venue.all_portals) ? linked_venue.all_portals[length(linked_venue.all_portals)] : null
-			if(!linked_venue.restaurant_portal)
+			// Lokal otwiera tylko zlecenie gości (station_contracts.dm): bez niego zamykamy (np. po komorze testowej)
+			if(!linked_venue.restaurant_portal || !aq_venue_contract(linked_venue))
 				linked_venue.close()
 			linked_venue.update_machines()
 	linked_venue = null
@@ -46,14 +47,7 @@
 	. = ..()
 	if(.)
 		return
-	var/obj/item/card/id/used_id = user.get_idcard(TRUE)
-	if(!used_id)
-		return
-	if(!linked_venue.has_access(user))
-		to_chat(user, "<span class='warning'>Ta karta nie ma dostępu do tego lokalu.</span>")
-		return TRUE
-	linked_venue.toggle_open(user)
-	to_chat(user, "<span class='notice'>[linked_venue.open ? "Otwierasz" : "Zamykasz"] lokal: [linked_venue.display_name].</span>")
+	to_chat(user, "<span class='notice'>Portalu nie da się otworzyć ręcznie. Goście przychodzą tylko na zlecenie stacji handlowej.</span>")
 	return TRUE
 
 /obj/machinery/restaurant_portal/restaurant

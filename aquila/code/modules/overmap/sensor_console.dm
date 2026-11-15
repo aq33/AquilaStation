@@ -66,7 +66,7 @@
 			continue
 		// Kontakt, którego sensory już nie widzą, przestaje być celem: inaczej mostek dostawał jego dokładną
 		// odległość, a teleskop i wiązka dalej celowały w prawdziwy namiar
-		if(!(target in target_painted) && target.is_sensor_visible(src) < SENSOR_VISIBILITY_FAINT)
+		if(!(target in target_painted) && target.is_sensor_visible(src) < SENSOR_VISIBILITY_FAINT && !aq_probe_reveals(target))
 			LAZYREMOVE(designated_targets, target)
 
 /obj/structure/overmap/proc/clear_designations()
