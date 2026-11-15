@@ -79,3 +79,4 @@ Planety (port pogody z shiptest-ss13/Shiptest 9b23be9), licencja CC-BY-SA 3.0:
   weather/rain/*                    Shiptest sound/weather/rain (deszcz, ulewa, burza)
   weather/wind/*                    Shiptest sound/weather/wind
   effects/thunder/*                 Shiptest sound/effects/thunder (grzmoty)
+  weather/falloutwind.ogg           Shiptest sound/weather/fallout (opad radioaktywny)

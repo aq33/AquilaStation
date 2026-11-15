@@ -1005,6 +1005,8 @@
 #include "code\modules\planets\biomes\lava.dm"
 #include "code\modules\planets\planet_type.dm"
 #include "code\modules\planets\planet_weather.dm"
+#include "code\modules\planets\planet_weather_types.dm"
+#include "code\modules\planets\greeble.dm"
 #include "code\modules\planets\planet_surface.dm"
 #include "code\modules\planets\overmap_planet.dm"
 #include "code\modules\planets\planet_landing.dm"

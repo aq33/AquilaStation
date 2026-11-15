@@ -166,6 +166,78 @@
 		TEST_ASSERT(picked.get_mission_vein(4), "The deep vein mission picked [picked.type] without a class 4 vein")
 	qdel(deep_mission)
 
+/// AQUILA - planety: pogoda planet z Shiptesta działa tylko na planetach, ma swoje nakładki w pliku ikon i nie sypie
+/// runtime'ami na człowieku pod gołym niebem
+/datum/unit_test/planet_weather_types
+
+/datum/unit_test/planet_weather_types/Run()
+	var/list/weather_types = subtypesof(/datum/weather/planet) + /datum/weather/snow_storm/planet
+	var/mob/living/carbon/human/victim = allocate(/mob/living/carbon/human, run_loc_floor_bottom_left)
+	for(var/weather_type in weather_types)
+		var/datum/weather/weather = new weather_type(list())
+		TEST_ASSERT_EQUAL(weather.probability, 0, "[weather_type] can start on its own outside planets")
+		var/list/states = icon_states(weather.overlay_icon)
+		for(var/overlay in list(weather.telegraph_overlay, weather.weather_overlay, weather.end_overlay))
+			if(overlay)
+				TEST_ASSERT(overlay in states, "[weather_type] overlay [overlay] is missing from [weather.overlay_icon]")
+		for(var/loop_type in list(weather.planet_sound_weak_outside, weather.planet_sound_weak_inside, weather.planet_sound_active_outside, weather.planet_sound_active_inside))
+			if(loop_type)
+				TEST_ASSERT(ispath(loop_type, /datum/looping_sound), "[weather_type] has a sound loop that isn't a looping sound: [loop_type]")
+		weather.weather_act(victim)
+		qdel(weather)
+	victim.fully_heal(TRUE)
+
+/// Spawner greebla do testu: mała mapa schronu
+/obj/effect/greeble_spawner/unit_test
+	greeble_map = "_maps/templates/shelter_1.dmm"
+
+/// AQUILA - planety: greeble z biomu wczytuje się na powierzchni, ale nie na lądowisku, a łata trawy rozlewa swój turf
+/datum/unit_test/planet_greeble
+
+/datum/unit_test/planet_greeble/Run()
+	var/obj/structure/overmap/planet/planet = new(run_loc_floor_top_right, /datum/planet_type/lava)
+	var/datum/planet_surface/surface = planet.surface
+	TEST_ASSERT(surface.generate(), "The surface didn't generate")
+	var/turf/center = surface.center()
+	// Pierwsze miejsce, na którym szablon się mieści (poza lądowiskami, ruinami i krawędzią)
+	var/obj/effect/greeble_spawner/free_greeble = new /obj/effect/greeble_spawner/unit_test(center)
+	TEST_ASSERT(!QDELETED(free_greeble), "A greeble spawner with a map deleted itself on creation")
+	var/datum/map_template/shelter_template = free_greeble.get_template()
+	var/turf/free_spot
+	for(var/turf/T as anything in surface.inner_turfs())
+		if(free_greeble.can_deploy(shelter_template, T, surface))
+			free_spot = T
+			break
+	TEST_ASSERT(free_spot, "No free spot for a greeble on the surface")
+	free_greeble.forceMove(free_spot)
+	var/turf/zone = surface.landing_zones[1]
+	var/obj/effect/greeble_spawner/zone_greeble = new /obj/effect/greeble_spawner/unit_test(zone)
+	TEST_ASSERT(!zone_greeble.can_deploy(shelter_template, zone, surface), "A greeble can load on a landing zone")
+	var/zone_turf_type = zone.type
+	surface.load_greebles()
+	TEST_ASSERT(QDELETED(free_greeble) && QDELETED(zone_greeble), "Greeble spawners stay after loading")
+	var/loaded_table = FALSE
+	for(var/turf/T as anything in RANGE_TURFS(4, free_spot))
+		if(locate(/obj/structure/table) in T)
+			loaded_table = TRUE
+			break
+	TEST_ASSERT(loaded_table, "The greeble template didn't load on a free spot")
+	TEST_ASSERT_EQUAL(zone.type, zone_turf_type, "A greeble loaded on a landing zone")
+
+	var/obj/effect/greeble_spawner/grass_patch/patch = new(free_spot)
+	patch.turf_to_spread = /turf/open/floor/plating/asteroid/dirt
+	patch.min_turfs_to_spread = 3
+	patch.chance_to_terminate = 0
+	patch.terminate_chance_add = 0
+	patch.max_turfs_to_spread = 3
+	var/turf/patch_start = get_turf(patch)
+	surface.load_greebles()
+	TEST_ASSERT(QDELETED(patch), "The grass patch spawner stays after spreading")
+	TEST_ASSERT(istype(patch_start, /turf/open/floor/plating/asteroid/dirt) || !isopenturf(patch_start), "The grass patch didn't spread its turf")
+	TEST_ASSERT(center, "The surface has no center")
+	surface.unload()
+	qdel(planet, TRUE)
+
 /// AQUILA - planety: każda ruina Shiptesta z puli ruin głównych planety wulkanicznej mieści się na planecie i się wczytuje
 /datum/unit_test/planet_lava_ruins
 

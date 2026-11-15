@@ -109,6 +109,8 @@
 	place_ruins(inner)
 	generator.populate_turfs(inner, landing_zone_turfs)
 	qdel(generator)
+	// Greeble z biomów po ruinach i populacji (nie stają na ruinach ani lądowiskach)
+	load_greebles()
 	for(var/turf/T as anything in all_turfs)
 		T.air_update_turf()
 		CHECK_TICK
