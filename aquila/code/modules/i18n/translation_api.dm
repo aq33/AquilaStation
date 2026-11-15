@@ -174,6 +174,7 @@ SUBSYSTEM_DEF(translation)
 		if(job.html)
 			translated = aq_unmask_emphasis(translated)
 		. += translated
+		log_game("TŁUMACZ [job.source_lang]>[job.target_lang]: \"[job.texts[index]]\" -> \"[translated]\"")
 		cache_set(job.source_lang, job.target_lang, job.texts[index], translated)
 		cache_set(job.target_lang, job.source_lang, translated, job.texts[index])
 		// słuchacz dostaje zdanie po treat_message_min() (wielka litera, kropka), więc ta forma też wraca do oryginału

@@ -27,6 +27,11 @@
 	/// Kto ma teraz tłumacza z tych słuchawek (żeby zdjąć go temu samemu mobowi)
 	var/mob/aq_translator_wearer
 
+// Każde słuchawki mają czip od stworzenia: Polak i obcokrajowiec rozumieją się, dopóki noszą je na uszach (foreigner.dm)
+/obj/item/radio/headset/Initialize(mapload)
+	. = ..()
+	aq_translator_chip = new /obj/item/aquila_translator/chip(src)
+
 /obj/item/radio/headset/Destroy()
 	aq_set_translator_wearer(null)
 	QDEL_NULL(aq_translator_chip)

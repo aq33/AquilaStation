@@ -2290,6 +2290,7 @@
 #include "code\modules\unit_tests\aquila_needs.dm"
 #include "code\modules\unit_tests\aquila_poprawki_0911.dm"
 #include "code\modules\unit_tests\aquila_foreigner.dm"
+#include "code\modules\unit_tests\aquila_live_translation.dm"
 #include "code\modules\unit_tests\aquila_hey_emote.dm"
 #include "code\modules\unit_tests\aquila_disease2_symptoms.dm"
 #include "code\modules\unit_tests\aquila_random_engines.dm"
@@ -2512,6 +2513,7 @@
 #include "code\modules\i18n\hud_icons.dm"
 #include "code\modules\i18n\language_choice.dm"
 #include "code\modules\i18n\translation_api.dm"
+#include "code\modules\i18n\live_translation.dm"
 #include "code\modules\i18n\foreigner.dm"
 #include "code\modules\i18n\translator_item.dm"
 #include "code\modules\i18n\translator_chip.dm"
@@ -2521,6 +2523,7 @@
 #include "code\modules\test_chamber\kits\pr_565_obcokrajowiec.dm"
 #include "code\modules\test_chamber\kits\pr_608_ekonomia_malf_statystyki.dm"
 #include "code\modules\test_chamber\kits\pr_610_zbiorczy_1011.dm"
+#include "code\modules\test_chamber\kits\pr_637_tlumacz_na_zywo.dm"
 
 // Profiler byond-tracy: MUSI być ostatnim include'em całego builda (BYOND inicjuje zmienne statyczne od końca,
 // więc ta rusza pierwsza, przed Master i mapą). Opis: tools/tracy/README.md
