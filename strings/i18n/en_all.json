@@ -39264,6 +39264,7 @@
 "Naprawy zakończone, start wkrótce.": "Repairs complete, launching soon.",
 "Napromieniowanie": "Irradiation",
 "Napromieniowanie (od [DisplayTimeText(world.time - irradiated_component.beginning_of_irradiation, 5)])": "Irradiation (for [DisplayTimeText(world.time - irradiated_component.beginning_of_irradiation, 5)])",
+"Napromieniowuje trafionych, a w okręcie wroga zabija załogę trafionego modułu.": "Irradiates those it hits, and kills the crew of the hit module on an enemy ship.",
 "Napromieniowuje trafionych.": "Irradiates those it hits.",
 "Naprzemienne strzały": "Alternating Shots",
 "Naprzód!": "Forward!",

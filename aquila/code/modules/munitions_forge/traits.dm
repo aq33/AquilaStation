@@ -57,12 +57,23 @@
 
 /datum/munition_trait/radioactive
 	name = "radioaktywna"
-	desc = "Napromieniowuje trafionych."
+	desc = "Napromieniowuje trafionych, a w okręcie wroga zabija załogę trafionego modułu."
 
 /datum/munition_trait/radioactive/on_hit(obj/item/projectile/P, atom/target, datum/component/forged_munition/forged)
 	if(isliving(target))
 		var/mob/living/L = target
 		SSradiation.irradiate(L, intensity = 30 * power * RAD_LEGACY_TO_INTENSITY)
+
+/// Okręt AI (moduły, ship_modules.dm): promieniowanie zabija część załogi trafionego modułu i trochę w sąsiednich
+/datum/munition_trait/radioactive/on_overmap_hit(obj/item/projectile/P, obj/structure/overmap/target, datum/component/forged_munition/forged)
+	var/datum/ship_module/module = target.special_warhead_module(P)
+	var/datum/ship_modules/modules = target.ship_modules
+	if(!module || !modules)
+		return
+	module.crew_lost = min(1, module.crew_lost + 0.25 * power)
+	for(var/datum/ship_module/near as anything in modules.neighbours(module))
+		near.crew_lost = min(1, near.crew_lost + 0.08 * power)
+	modules.apply_effects()
 
 /datum/munition_trait/incendiary
 	name = "zapalająca"

@@ -8132,7 +8132,7 @@
 "Naprawia uszkodzony robotyczny żołądek (przetwornik składników).": "Repairs a damaged robotic stomach (ingredient converter).",
 "Naprawia uszkodzoną robotyczną wątrobę (układ oczyszczania).": "Repairs a damaged robotic liver (purification system).",
 "Napromieniowanie (od [DisplayTimeText(world.time - irradiated_component.beginning_of_irradiation, 5)])": "Irradiation (for [DisplayTimeText(world.time - irradiated_component.beginning_of_irradiation, 5)])",
-"Napromieniowuje trafionych.": "Irradiates those it hits.",
+"Napromieniowuje trafionych, a w okręcie wroga zabija załogę trafionego modułu.": "Irradiates those it hits, and kills the crew of the hit module on an enemy ship.",
 "Naprzód!": "Forward!",
 "Napęd FTL jest wyłączony. Naciśnij „Rozkręć napęd”, poczekaj, aż pasek pod przyciskami się zapełni, i dopiero wtedy „Powrót”.": "The FTL drive is off. Press “Spool Drive”, wait until the bar below the buttons fills up, and only then press “Return”.",
 "Napęd FTL wciąż się rozkręca ([round(ftl.progress / max(ftl.spoolup_time, 1) * 100)]%). Poczekaj, aż pasek się zapełni.": "The FTL drive is still spooling up ([round(ftl.progress / max(ftl.spoolup_time, 1) * 100)]%). Wait until the bar fills up.",
