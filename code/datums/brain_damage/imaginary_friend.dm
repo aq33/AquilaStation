@@ -118,7 +118,7 @@
 	var/gender = pick(MALE, FEMALE)
 	real_name = owner.dna.species.random_name(gender)
 	name = real_name
-	human_image = get_flat_human_icon(null, pick(SSjob.occupations))
+	human_image = get_flat_human_icon(null, imaginary_friend_preview_job()) // AQ EDIT - bez SI i cyborga (brak podglądu, CRASH w equip)
 
 /mob/camera/imaginary_friend/proc/Show()
 	SIGNAL_HANDLER
