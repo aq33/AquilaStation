@@ -236,8 +236,8 @@ GLOBAL_LIST_INIT(ship_power_presets, list(
 			"name" = GLOB.ship_power_systems[system],
 			"limit" = round(power.limits[system] * 100),
 			"priority" = power.priorities[system],
-			"draw" = display_power(power.last_drawn[system]),
-			"demand" = display_power(power.last_requested[system]),
+			"draw" = display_power(power.last_drawn[system] || 0),
+			"demand" = display_power(power.last_requested[system] || 0),
 			"max" = capacity > 0 ? display_power(capacity) : null,
 			"apc" = system == SHIP_POWER_ENGINES
 		))
