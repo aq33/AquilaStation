@@ -17,6 +17,10 @@
 	unload_check_counter = 0
 	if(surface?.state != PLANET_SURFACE_READY || length(surface.living_players()))
 		return
+	// Prom na powierzchni (Sabre, prom z RSD) zostaje z nią: zwolnienie pól usunęłoby jego wnętrze, a porty
+	// dokowania (turf/empty ich nie rusza) wisiałyby w kosmosie. Załoga może po niego wrócić kapsułą.
+	if(length(surface.docked_shuttle_ports()))
+		return
 	log_game("Planet [src] surface unloaded: the system is empty and nobody alive is on it")
 	surface.unload()
 

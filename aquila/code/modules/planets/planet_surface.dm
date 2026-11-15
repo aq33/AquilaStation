@@ -14,6 +14,8 @@
 	var/list/landing_zones = list()
 	/// Pola lądowisk (pole -> TRUE): generator nie stawia na nich roślin ani zwierząt
 	var/list/landing_zone_turfs = list()
+	/// Ruiny wczytane na tej powierzchni (szablony)
+	var/list/loaded_ruins = list()
 	/// Bieżąca pogoda i timer następnej
 	var/datum/weather/current_weather
 	var/weather_timer
@@ -191,7 +193,7 @@
 	var/list/templates = planet_type.get_main_ruin_templates()
 	for(var/key in templates)
 		var/datum/map_template/ruin/ruin = templates[key]
-		if(!istype(ruin) || ruin.unpickable || ruin.always_place || ruin.cost <= 0)
+		if(!istype(ruin) || ruin.unpickable || ruin.always_place || ruin.cost <= 0 || ruin_in_use(ruin))
 			continue
 		if(ruin.width > inner_size - 12 || ruin.height > inner_size / 2)
 			continue
@@ -216,6 +218,7 @@
 		log_mapping("Planet [planet] ruin [ruin.name] failed to load at [AREACOORD(where)]")
 		return FALSE
 	ruin.loaded++
+	loaded_ruins |= ruin
 	for(var/turf/T as anything in ruin.get_affected_turfs(where, centered))
 		T.flags_1 |= NO_RUINS_1
 		// Ruiny Lavalandu mają kawałki pustkowi Lavalandu: na planecie to jej powierzchnia (światło, pogoda)
@@ -226,6 +229,15 @@
 	log_game("Planet [planet] ruin [ruin.name] placed at [AREACOORD(where)]")
 	return TRUE
 
+/// Czy ruina stoi już na innej istniejącej powierzchni. Obszary ruin (/area/ruin) czytnik map bierze z
+/// GLOB.areas_by_type, więc dwie kopie tej samej ruiny miałyby jeden obszar: jedno APC, wspólne zasilanie i alarmy.
+/datum/planet_surface/proc/ruin_in_use(datum/map_template/ruin/ruin)
+	for(var/obj/structure/overmap/planet/other as anything in GLOB.overmap_planets)
+		var/datum/planet_surface/other_surface = other.surface
+		if(other_surface && other_surface != src && other_surface.state != PLANET_SURFACE_NONE && (ruin in other_surface.loaded_ruins))
+			return TRUE
+	return FALSE
+
 /// Małe ruiny z budżetu typu planety w wolnych miejscach, z dala od lądowisk i głównej ruiny
 /datum/planet_surface/proc/place_ruins(list/inner)
 	var/budget = planet_type.ruin_budget
@@ -235,7 +247,7 @@
 	var/list/templates = planet_type.get_ruin_templates()
 	for(var/key in templates)
 		var/datum/map_template/ruin/ruin = templates[key]
-		if(!istype(ruin) || ruin.unpickable || ruin.always_place || ruin.cost <= 0 || ruin.cost > budget)
+		if(!istype(ruin) || ruin.unpickable || ruin.always_place || ruin.cost <= 0 || ruin.cost > budget || ruin_in_use(ruin))
 			continue
 		if(ruin.width > PLANET_SURFACE_SIZE / 2.5 || ruin.height > PLANET_SURFACE_SIZE / 2.5)
 			continue
@@ -295,6 +307,15 @@
 		if(contains(get_turf(M)))
 			. += M
 
+/// Promy zadokowane na powierzchni (ich mobilne porty dokowania)
+/datum/planet_surface/proc/docked_shuttle_ports()
+	. = list()
+	if(!reservation)
+		return
+	for(var/obj/docking_port/mobile/port as anything in SSshuttle.mobile)
+		if(contains(get_turf(port)))
+			. += port
+
 /// Usuwa powierzchnię razem z zawartością
 /datum/planet_surface/proc/unload()
 	if(weather_timer)
@@ -306,6 +327,7 @@
 		current_weather = null
 	landing_zones = list()
 	landing_zone_turfs = list()
+	loaded_ruins = list()
 	if(planet?.roomReservation == reservation)
 		planet.roomReservation = null
 	// Najpierw odpinamy rezerwację: jej zwalnianie usypia, a w tym czasie ktoś inny mógłby ją usunąć drugi raz
@@ -320,6 +342,10 @@
 		for(var/turf/T as anything in old_reservation.reserved_turfs)
 			for(var/obj/effect/landmark/L in T)
 				qdel(L)
+			// turf/empty pomija porty dokowania: wolne miejsca do lądowania nie mogą zostać w zwolnionej rezerwacji
+			for(var/obj/docking_port/stationary/port in T)
+				if(!port.docked)
+					qdel(port, TRUE)
 		qdel(old_reservation)
 	// Puste obszary nie wiszą na listach obszarów (teleporty, admin)
 	for(var/area/A as anything in old_areas)

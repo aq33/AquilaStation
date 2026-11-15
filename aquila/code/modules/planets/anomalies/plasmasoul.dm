@@ -5,8 +5,6 @@
 // Różnice względem Shiptesta:
 // - u nas bazowa anomalia nie ma pulse_cooldown/pulse_delay, więc są tu, z tym samym losowaniem opóźnienia;
 // - w detonate() Shiptest pomijał ludzi z ochroną bio <= 40 (odwrócony warunek), tu pomija tych z ochroną > 40;
-// - bazowa anomalia tworzy zawsze ogólny rdzeń (new() bez typu bierze zadeklarowany typ zmiennej), więc Initialize()
-//   podmienia go na rdzeń duszy plazmy z tą samą częstotliwością i kodem;
 // - pominięte: drugi kod rdzenia (code_b, wybuch rdzenia na sygnał) i mielenie rdzenia na „Mother-Of-Plasma” z jej
 //   reakcjami (u nas nie ma code_b ani odczynników wittel, panacea, fervor, vitfro).
 

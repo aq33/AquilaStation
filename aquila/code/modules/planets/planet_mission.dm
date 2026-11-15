@@ -128,23 +128,27 @@
 
 /datum/overmap_objective/planet/proc/on_surface_ready(obj/structure/overmap/planet/planet, success)
 	SIGNAL_HANDLER
-	if(success)
+	// Powierzchnia powstaje od nowa po każdym powrocie okrętu: zakończona misja nie stawia już schronu ani żyły
+	if(success && status == STATUS_INPROGRESS)
 		INVOKE_ASYNC(src, PROC_REF(setup_site))
 
 /// Przygotowuje miejsce misji na świeżo zbudowanej powierzchni
 /datum/overmap_objective/planet/proc/setup_site()
 	return
 
-/// Pole na powierzchni z dala od lądowisk (dla punktu badawczego i schronu)
-/datum/overmap_objective/planet/proc/pick_site_turf(min_zone_distance = 20)
+/// Pole na powierzchni z dala od lądowisk (dla punktu badawczego i schronu). clearance: promień, w którym nie może
+/// być pól ruin ani lądowisk (schron stawia szablon wokół pola)
+/datum/overmap_objective/planet/proc/pick_site_turf(min_zone_distance = 20, clearance = 0)
 	var/datum/planet_surface/surface = target_planet?.surface
 	if(!surface)
 		return
 	var/list/inner = surface.inner_turfs()
 	var/turf/fallback
-	for(var/attempt in 1 to 50)
+	for(var/attempt in 1 to (clearance ? 150 : 50))
 		var/turf/T = pick(inner)
 		if(isclosedturf(T) || islava(T) || T.loc != surface.surface_area || (T.flags_1 & NO_RUINS_1))
+			continue
+		if(clearance && !site_clear(surface, T, clearance))
 			continue
 		fallback = T
 		var/far_enough = TRUE
@@ -155,6 +159,13 @@
 		if(far_enough)
 			return T
 	return fallback
+
+/// Czy w promieniu radius od pola nie ma ruin, lądowisk ani krawędzi planety
+/datum/overmap_objective/planet/proc/site_clear(datum/planet_surface/surface, turf/center, radius)
+	for(var/turf/T as anything in RANGE_TURFS(radius, center))
+		if(!surface.contains(T) || (T.flags_1 & NO_RUINS_1) || (T.loc != surface.surface_area && T.loc != surface.cave_area))
+			return FALSE
+	return TRUE
 
 /datum/overmap_objective/planet/process(delta_time)
 	if(status != STATUS_INPROGRESS)
@@ -380,10 +391,10 @@ GLOBAL_LIST_EMPTY(planet_samples)
 	brief = "Kolonia na [target_planet] w układzie [target_system] wzywa pomocy. Wylądujcie, odnajdźcie schron kolonistów (nadaje sygnał GPS „Schron kolonii”) i dowieźcie na okręt co najmniej [PLANET_COLONISTS_REQUIRED] z [PLANET_COLONISTS] kolonistów żywych. Nagroda: [payout] kr i [research_payout] punktów badań."
 
 /datum/overmap_objective/planet/evacuation/setup_site()
-	var/turf/T = pick_site_turf()
+	var/datum/map_template/shelter/alpha/shelter = new
+	var/turf/T = pick_site_turf(clearance = round(max(shelter.width, shelter.height) / 2) + 1)
 	if(!T)
 		return
-	var/datum/map_template/shelter/alpha/shelter = new
 	var/datum/planet_surface/surface = target_planet.surface
 	for(var/turf/area_turf as anything in shelter.get_affected_turfs(T, TRUE))
 		if(!surface.contains(area_turf))

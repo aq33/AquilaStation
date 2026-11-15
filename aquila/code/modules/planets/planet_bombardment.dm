@@ -68,7 +68,8 @@ GLOBAL_LIST_EMPTY(planet_laser_targets)
 	desc = "Coś spada z nieba prosto w to miejsce!"
 	icon = 'nsv13/icons/overmap/effects.dmi'
 	icon_state = "target"
-	duration = PLANET_STRIKE_DELAY
+	// Efekt znika chwilę po uderzeniu, które idzie z własnego timera
+	duration = PLANET_STRIKE_DELAY + 1
 	randomdir = FALSE
 	layer = ABOVE_MOB_LAYER
 	light_color = LIGHT_COLOR_ORANGE
@@ -79,16 +80,17 @@ GLOBAL_LIST_EMPTY(planet_laser_targets)
 	projectile_type = new_projectile_type
 	damage = new_damage
 	. = ..()
+	// Z timera, nie z Destroy: usunięcie efektu przed czasem (zwalniana powierzchnia, admin) nie odpala wybuchu
+	addtimer(CALLBACK(src, PROC_REF(impact)), PLANET_STRIKE_DELAY)
 	set_light(4)
 	playsound(src, 'sound/weapons/mortar_whistle.ogg', 80, FALSE, 10)
 	for(var/mob/living/M in range(7, src))
 		to_chat(M, span_userdanger("Słyszysz narastający świst nad głową. Kryj się!"))
 
-/obj/effect/temp_visual/planet_strike/Destroy()
+/obj/effect/temp_visual/planet_strike/proc/impact()
 	var/turf/T = get_turf(src)
 	if(T)
 		strike(T)
-	return ..()
 
 /obj/effect/temp_visual/planet_strike/proc/strike(turf/T)
 	if(!projectile_type && damage <= 0)

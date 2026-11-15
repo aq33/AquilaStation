@@ -20,10 +20,10 @@
 	planet.name = planet_name || default_planet_name()
 	return planet
 
-/// Nazwa jak w katalogach: nazwa układu i numer planety
+/// Nazwa jak w katalogach: nazwa układu i numer planety (nowa planeta jest już w system_contents)
 /datum/star_system/proc/default_planet_name()
 	var/static/list/numerals = list("I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX")
-	var/count = 1
+	var/count = 0
 	for(var/obj/structure/overmap/planet/other in system_contents)
 		count++
 	return "[name] [numerals[min(count, length(numerals))]]"

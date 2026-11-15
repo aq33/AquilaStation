@@ -208,6 +208,31 @@
 	TEST_ASSERT_EQUAL(lost_objective.status, 2, "The deep vein mission isn't failed after losing its only class 4 vein")
 	qdel(lost_objective)
 
+	// Żyła znika razem z powierzchnią po odlocie okrętu (powierzchnia już nie jest gotowa): misja trwa dalej
+	var/obj/structure/overmap/planet/left_planet = new(run_loc_floor_top_right, /datum/planet_type/lava)
+	var/obj/structure/vein/lavaland/classfour/unloaded_vein = allocate(/obj/structure/vein/lavaland/classfour)
+	var/datum/overmap_objective/planet/deep_vein/left_objective = new
+	left_objective.target_planet = left_planet
+	left_objective.target_vein = unloaded_vein
+	left_objective.RegisterSignal(unloaded_vein, COMSIG_PARENT_QDELETING, TYPE_PROC_REF(/datum/overmap_objective/planet/deep_vein, on_tracked_deleted))
+	qdel(unloaded_vein)
+	TEST_ASSERT_EQUAL(left_objective.status, 0, "The deep vein mission failed when the vein left with the unloaded surface")
+	left_objective.target_planet = null
+	qdel(left_objective)
+	qdel(left_planet, TRUE)
+
+	// Zwykłe wiertło nie wierci żyły klasy 4 (tylko wiertło do próbek głębinowych)
+	var/obj/structure/vein/lavaland/classfour/deep_only = allocate(/obj/structure/vein/lavaland/classfour)
+	var/obj/machinery/drill/plain = allocate(/obj/machinery/drill)
+	plain.cell = new /obj/item/stock_parts/cell/high(plain)
+	plain.our_vein = deep_only
+	deep_only.our_drill = plain
+	plain.setAnchored(TRUE)
+	plain.start_mining()
+	TEST_ASSERT(!plain.active, "A plain drill started on a class 4 vein")
+	deep_only.our_drill = null
+	plain.our_vein = null
+
 	for(var/obj/effect/drill_spawner/leftover in range(8, T))
 		qdel(leftover)
 	for(var/mob/living/basic/mining/mob in range(8, T))

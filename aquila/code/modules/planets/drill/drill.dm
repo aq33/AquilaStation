@@ -49,6 +49,8 @@
 	var/preload_cell_type
 	/// Zużycie ogniwa na cykl (dzielone przez poziom kondensatora)
 	var/power_cost = 100
+	/// Sięga do żył głębinowych (klasa 4): tylko wiertło do próbek głębinowych
+	var/deep_drill = FALSE
 	/// Postęp naprawy zniszczonej konstrukcji (DRILL_METAL_*)
 	var/metal_attached = DRILL_METAL_ABSENT
 	/// Rodzaj części zabranej przez awarię
@@ -382,6 +384,12 @@
 			stop_mining()
 		return
 	if(!our_vein)
+		return
+	// Żyła klasy 4 to cel misji Głęboki odwiert: zwykłe wiertło wyciągnęłoby z niej setki kryształów bluespace
+	if(our_vein.deep_vein && !deep_drill)
+		say("Błąd: żyła leży za głęboko. Potrzebne jest wiertło do próbek głębinowych.")
+		if(active)
+			stop_mining()
 		return
 	if(our_vein.mining_charges < 1)
 		say("Błąd: żyła wyczerpana.")

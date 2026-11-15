@@ -120,7 +120,9 @@
 		lost_name = "wiertło do próbek głębinowych"
 	else if(source == target_vein)
 		target_vein = null
-		if(sample)
+		// Powierzchnia znika po odlocie okrętu (unload ustawia stan przed usunięciem pól): po powrocie setup_site
+		// postawi nową żyłę, więc to nie jest porażka
+		if(sample || (target_planet && target_planet.surface?.state != PLANET_SURFACE_READY))
 			return
 		lost_name = "żyłę klasy 4"
 	else if(source == container)
@@ -151,6 +153,7 @@
 	desc = "Laserowe wiertło do głębokich odwiertów w mikroskali. Solidnie zbudowane, jak na warunki, które zwykle znosi: póki laser jest cały, łatwo je naprawić."
 	circuit = null
 	preload_cell_type = /obj/item/stock_parts/cell/high
+	deep_drill = TRUE
 	/// Wywiercone cykle
 	var/num_current = 0
 	/// Ile cykli do próbki

@@ -150,6 +150,20 @@
 	planet.surface.unload()
 	qdel(planet, TRUE)
 
+	// Ruina stojąca na innej istniejącej powierzchni nie jest losowana drugi raz (wspólne obszary ruin)
+	var/datum/map_template/ruin/shared_ruin = templates[templates[1]]
+	var/obj/structure/overmap/planet/first = new(run_loc_floor_top_right, /datum/planet_type/lava)
+	var/obj/structure/overmap/planet/second = new(run_loc_floor_top_right, /datum/planet_type/lava)
+	TEST_ASSERT(!second.surface.ruin_in_use(shared_ruin), "A ruin counts as used before any surface loaded it")
+	first.surface.state = PLANET_SURFACE_READY
+	first.surface.loaded_ruins = list(shared_ruin)
+	TEST_ASSERT(second.surface.ruin_in_use(shared_ruin), "A ruin standing on another surface can be loaded again")
+	first.surface.state = PLANET_SURFACE_NONE
+	TEST_ASSERT(!second.surface.ruin_in_use(shared_ruin), "A ruin of an unloaded surface still counts as used")
+	first.surface.loaded_ruins = list()
+	qdel(first, TRUE)
+	qdel(second, TRUE)
+
 // Misje w teście: „okręt” to okolica podłogi testowej (mapa testowa nie należy do głównego okrętu)
 /datum/overmap_objective/planet/survey/test
 	var/turf/home_turf

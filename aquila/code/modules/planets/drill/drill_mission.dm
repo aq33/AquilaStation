@@ -9,8 +9,8 @@
 // - na planecie misji zawsze stoi żyła wymaganej klasy z ładunkami na wszystkie próbki, z dala od lądowisk (generator
 //   może nie postawić żadnej);
 // - pojemnik na próbki mieści wymagane + 3 i wiertło nie ruszy, gdy jest pełny (w Shiptest dało się wiercić dalej);
-// - bez kart dziurkowanych do namierzania planety (u nas planeta jest od razu przeskanowana) i bez misji klasy 4
-//   (industrial_drill.dm), która potrzebuje żył klasy 4 na innych typach planet.
+// - bez kart dziurkowanych do namierzania planety (u nas planeta jest od razu przeskanowana); misja klasy 4
+//   (industrial_drill.dm) jest osobno w deep_vein_mission.dm.
 
 // Kopie definicji z overmap_mode.dm, które są tam #undef na końcu pliku
 #define STATUS_INPROGRESS 0

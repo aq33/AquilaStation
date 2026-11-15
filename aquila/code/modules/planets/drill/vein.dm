@@ -77,6 +77,8 @@ GLOBAL_LIST_EMPTY(ore_veins)
 	COOLDOWN_DECLARE(wave_timer)
 	/// Wiertło, które jest na niej zamocowane
 	var/obj/machinery/drill/our_drill
+	/// Żyła głębinowa: wierci ją tylko wiertło do próbek głębinowych (deep_drill)
+	var/deep_vein = FALSE
 
 /obj/structure/vein/Initialize(mapload)
 	. = ..()
@@ -276,6 +278,7 @@ GLOBAL_LIST_EMPTY(ore_veins)
 /obj/structure/vein/lavaland/classfour
 	mining_charges = 30
 	vein_class = 4
+	deep_vein = TRUE
 	mob_types = list(
 		/mob/living/basic/mining/goliath = 60,
 		/mob/living/basic/mining/legion/spawner_made = 30,
