@@ -1100,3 +1100,7 @@
   - server: 'Nowa opcja CACHE_ASSETS w configu: ikony okien są zapisywane między rundami
       tej samej wersji kodu, start świata krótszy o ponad 10 sekund.'
   - code_imp: Szybsze liczenie hashy assetów przy starcie serwera.
+  - bugfix: Rury wymiany ciepła w świeżo wczytanych silnikach i ruinach nie sypią
+      już błędami, zanim złoży się ich sieć.
+  - bugfix: Wyimaginowany przyjaciel nie próbuje już wyglądać jak SI albo cyborg (błąd
+      przy powstawaniu).
