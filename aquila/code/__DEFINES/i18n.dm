@@ -21,3 +21,9 @@
 #define MODE_AQ_TRANSLATED "aq_translated"
 /// Źródło wbudowanego tłumacza (silikony, obcokrajowcy spoza prac); siedzi w umyśle i przechodzi z nim na nowe ciało
 #define AQ_TRANSLATOR_BUILTIN "wbudowany"
+/// Źródło tłumacza w korpusie silikonu: zostaje w korpusie, gdy umysł obcokrajowca z niego wyjdzie
+#define AQ_TRANSLATOR_SILICON "korpus"
+/// message_mods szeptu: cała treść (send_speech), bo dalsi słuchacze dostają ją z gwiazdkami, a tłumacz potrzebuje całej
+#define MODE_AQ_SPOKEN "aq_spoken"
+/// message_mods u słuchacza: dostał treść z gwiazdkami, więc tłumaczenie też dostaje gwiazdki
+#define MODE_AQ_STARRED "aq_starred"
