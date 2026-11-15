@@ -248,21 +248,24 @@
 /datum/unit_test/planet_lava_ruins/Run()
 	var/list/templates = get_planet_lava_ruin_templates()
 	TEST_ASSERT(length(templates) >= 5, "Only [length(templates)] Shiptest lava ruins are registered")
-	var/obj/structure/overmap/planet/planet = new(run_loc_floor_top_right, /datum/planet_type/lava)
-	TEST_ASSERT(planet.surface.generate(), "The surface didn't generate")
-	var/side = planet.surface.size
-	var/inner_size = side - 2 * PLANET_EDGE_WIDTH
-	var/turf/bl = planet.surface.bottom_left()
-	// Każda ruina w miejscu ruiny głównej (lewy górny róg wnętrza z marginesem jak w place_main_ruin)
+	// Każda ruina mieści się jako ruina główna (do szerokości wnętrza bez marginesów i połowy jego wysokości) i wczytuje się
+	// we własnej pustej rezerwacji, z atmosferą wstrzymaną jak przy generowaniu planety: ruiny nie nachodzą na siebie,
+	// a podmuch z rozszczelnionych wraków nie rusza przedmiotów przed ich Initialize.
+	var/obj/structure/overmap/planet/fit_planet = new(run_loc_floor_top_right, /datum/planet_type/lava)
 	for(var/name in templates)
 		var/datum/map_template/ruin/ruin = templates[name]
-		TEST_ASSERT(ruin.width <= inner_size - 12 && ruin.height <= inner_size / 2, "[name] ([ruin.width]x[ruin.height]) doesn't fit as a main ruin")
-		var/turf/corner = locate(bl.x + PLANET_EDGE_WIDTH + 6, bl.y + side - PLANET_EDGE_WIDTH - 6 - ruin.height, bl.z)
-		TEST_ASSERT(planet.surface.load_ruin(ruin, corner, FALSE), "[name] didn't load")
-		for(var/turf/T as anything in ruin.get_affected_turfs(corner, FALSE))
-			TEST_ASSERT(planet.surface.contains(T), "[name] spills outside the planet surface")
-	planet.surface.unload()
-	qdel(planet, TRUE)
+		// Bez pliku mapy szablon ma rozmiar 0 i „wczytuje się” jako pusta mapa
+		TEST_ASSERT(ruin.width && ruin.height, "[name] map file didn't preload ([ruin.mappath])")
+		TEST_ASSERT(fit_planet.surface.main_ruin_fits(ruin, PLANET_SURFACE_SIZE), "[name] ([ruin.width]x[ruin.height]) doesn't fit as a main ruin")
+		var/datum/turf_reservation/reservation = SSmapping.RequestBlockReservation(ruin.width, ruin.height)
+		TEST_ASSERT(reservation, "No room to load [name]")
+		var/turf/corner = locate(reservation.bottom_left_coords[1], reservation.bottom_left_coords[2], reservation.bottom_left_coords[3])
+		lazy_template_load_started()
+		var/loaded = ruin.load(corner)
+		qdel(reservation)
+		lazy_template_load_finished()
+		TEST_ASSERT(loaded, "[name] didn't load")
+	qdel(fit_planet, TRUE)
 
 	// Ruina stojąca na innej istniejącej powierzchni nie jest losowana drugi raz (wspólne obszary ruin)
 	var/datum/map_template/ruin/shared_ruin = templates[templates[1]]

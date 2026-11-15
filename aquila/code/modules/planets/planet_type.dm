@@ -64,6 +64,10 @@
 /datum/planet_type/proc/scan_text()
 	return "Typ: [name]. Atmosfera: [atmosphere_desc]. Temperatura: [temperature_desc]. Zagrożenia: [hazard_desc]."
 
+/// Wyposażenie lądowiska po wyczyszczeniu terenu (platformy olbrzymów: barierki, znaczniki, syfon gazu)
+/datum/planet_type/proc/decorate_landing_zone(datum/planet_surface/surface, turf/zone_center, radius)
+	return
+
 /// Typ żyły danej klasy do misji (null, gdy planeta takiej nie ma)
 /datum/planet_type/proc/get_mission_vein(vein_class)
 	var/vein = LAZYACCESS(mission_veins, "[vein_class]")

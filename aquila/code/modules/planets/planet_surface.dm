@@ -256,6 +256,7 @@
 			surface_area.contents += T
 			T.change_area(old_area, surface_area)
 		CHECK_TICK
+	planet_type.decorate_landing_zone(src, zone_center, radius)
 
 /// Zamienia pole w grunt planety (lądowiska, miejsca misji). Zwraca nowe pole.
 /datum/planet_surface/proc/make_ground(turf/T)
