@@ -495,19 +495,143 @@
 		return // No Syndicate headquarters on this map
 	var/list/saved_lost = W.hq_lost_rounds.Copy()
 	var/saved_alignment = hq.alignment
+	var/saved_turns = W.round_turns
+	var/list/saved_hostile = W.hq_hostile_turns.Copy()
 	W.hq_lost_rounds = list("syndicate" = HEX_WAR_END_ROUNDS - 2)
+	W.round_turns = 0
+	W.hq_hostile_turns = list()
 	hq.alignment = "nanotrasen"
 	var/first = W.round_end_tally()
 	var/second = W.round_end_tally()
 	hq.alignment = "syndicate"
 	W.round_end_tally()
 	var/after_retake = W.hq_lost_rounds["syndicate"]
+	// Krótkie zajęcie w chwili zapisu nie liczy się, jeśli przez większość rundy kwatera była w rękach właściciela
+	W.hq_lost_rounds = list()
+	for(var/i in 1 to 4)
+		W.track_hq_control()
+	hq.alignment = "nanotrasen"
+	W.track_hq_control()
+	W.round_end_tally()
+	var/after_blip = W.hq_lost_rounds["syndicate"]
 	W.hq_lost_rounds = saved_lost
+	W.round_turns = saved_turns
+	W.hq_hostile_turns = saved_hostile
 	hq.alignment = saved_alignment
 	TEST_ASSERT(first != "syndicate", "The war ended one round too early")
 	TEST_ASSERT_EQUAL(second, "syndicate", "Losing the headquarters for [HEX_WAR_END_ROUNDS] rounds did not end the war")
 	TEST_ASSERT_EQUAL(after_retake, 0, "Retaking the headquarters did not reset the count")
+	TEST_ASSERT_EQUAL(after_blip, 0, "A headquarters held for most of the round counted as lost because of the last turn")
 	TEST_ASSERT(findtext(hex_war_end_text("syndicate"), "Nanotrasen wygrywa"), "The end of the war names the wrong winner")
+
+
+/// Konwój wchodzi na kafel obok floty piratów: piraci skaczą za nim (przechwycenie), więc w kaflu konwoju zaczyna się walka
+/datum/unit_test/hexmap_war_convoy_intercept
+
+/datum/unit_test/hexmap_war_convoy_intercept/Run()
+	var/datum/hex/convoy_hex
+	var/datum/hex/hunter_hex
+	for(var/id in GLOB.hexmap.hexes)
+		var/datum/hex/H = GLOB.hexmap.hexes[id]
+		if(H.system || H.terrain != HEX_TERRAIN_EMPTY)
+			continue
+		for(var/datum/hex/N as anything in GLOB.hexmap.neighbours(H))
+			if(!N.system && N.terrain == HEX_TERRAIN_EMPTY)
+				hunter_hex = N
+				break
+		if(hunter_hex)
+			convoy_hex = H
+			break
+	TEST_ASSERT(convoy_hex, "No two empty neighbouring hexes")
+	var/datum/star_system/convoy_system = GLOB.hexmap.system_for(convoy_hex)
+	var/datum/star_system/hunter_system = GLOB.hexmap.system_for(hunter_hex)
+	var/datum/fleet/aquila_convoy/convoy = new
+	convoy.alignment = "nanotrasen"
+	convoy.faction_id = FACTION_ID_NT
+	convoy.war_controlled = TRUE
+	convoy.war_cargo = "ore"
+	convoy.war_cargo_amount = 6
+	convoy.hide_movements = TRUE
+	convoy.current_system = convoy_system
+	convoy_system.fleets += convoy
+	var/datum/fleet/hunter = hunter_system.spawn_fleet(/datum/fleet/pirate/raiding, 1)
+	hunter.war_controlled = TRUE
+	hunter.hide_movements = TRUE
+	hunter.last_encounter_time = world.time - hunter.combat_move_delay - 1
+	var/caught = FALSE
+	for(var/attempt in 1 to 40) // 50% na próbę
+		if(convoy.hex_war_try_intercept())
+			caught = TRUE
+			break
+	// Przechwycony konwój mógł od razu zginąć (HEX_WAR_INTERCEPT_KILL): wtedy łowca stoi w jego dawnym kaflu
+	var/same_hex = hunter.current_system == convoy_system
+	for(var/datum/fleet/F as anything in list(convoy, hunter))
+		if(QDELETED(F))
+			continue
+		for(var/obj/structure/overmap/OM as anything in F.all_ships.Copy())
+			qdel(OM)
+		F.current_system?.fleets -= F
+		F.current_system = null
+		qdel(F)
+	SSstar_system.contested_systems -= convoy_system
+	for(var/datum/star_system/random/hex_empty/E in list(convoy_system, hunter_system))
+		E.try_release()
+	TEST_ASSERT(caught, "A pirate fleet next to a convoy never intercepted it")
+	TEST_ASSERT(same_hex, "The intercepting fleet did not jump into the convoy's hex")
+
+/// Atuty kampanii: mnożnik zmienia liczbę całkowitą przez szansę na część ułamkową, brak atutu to 1
+/datum/unit_test/hexmap_war_fortune
+
+/datum/unit_test/hexmap_war_fortune/Run()
+	var/datum/hex_war/W = GLOB.hex_war
+	var/list/saved = W.fortunes.Copy()
+	W.fortunes = list("syndicate" = 1.25)
+	var/total = 0
+	var/odd = 0
+	for(var/i in 1 to 400)
+		var/amount = W.fortune_amount("syndicate", 2)
+		total += amount
+		if(amount != 2 && amount != 3)
+			odd++
+	var/plain = W.fortune_of("pirate")
+	W.fortunes = saved
+	TEST_ASSERT_EQUAL(odd, 0, "Fortune 1.25 on 2 gave something other than 2 or 3")
+	TEST_ASSERT(total / 400 > 2.3 && total / 400 < 2.7, "Fortune 1.25 on 2 averaged [total / 400] instead of about 2.5")
+	TEST_ASSERT_EQUAL(plain, 1, "A faction without a fortune did not get 1")
+
+/// Piraci wybierają do zajęcia słaby układ bez kwatery głównej, nie swój
+/datum/unit_test/hexmap_war_pirate_conquest
+
+/datum/unit_test/hexmap_war_pirate_conquest/Run()
+	var/datum/star_system/target
+	var/datum/hex/entry
+	for(var/datum/star_system/S as anything in SSstar_system.systems)
+		if(!S.hex || S.hidden || istype(S, /datum/star_system/random) || length(S.fleets) || S.has_facility(HEX_FAC_HQ) || S.alignment == "pirate")
+			continue
+		for(var/datum/hex/N as anything in GLOB.hexmap.neighbours(S.hex))
+			if(!N.system && N.terrain == HEX_TERRAIN_EMPTY)
+				entry = N
+				break
+		if(entry)
+			target = S
+			break
+	if(!target)
+		return // No undefended system with a free neighbour on this map
+	var/datum/star_system/start = GLOB.hexmap.system_for(entry)
+	var/datum/fleet/pirates = start.spawn_fleet(/datum/fleet/pirate/raiding, 2)
+	pirates.war_controlled = TRUE
+	var/datum/star_system/chosen = GLOB.hex_war.pirate_conquest_target(pirates)
+	for(var/obj/structure/overmap/OM as anything in pirates.all_ships.Copy())
+		qdel(OM)
+	start.fleets -= pirates
+	pirates.current_system = null
+	qdel(pirates)
+	var/datum/star_system/random/hex_empty/E = start
+	if(istype(E))
+		E.try_release()
+	TEST_ASSERT(chosen, "Pirates next to the undefended [target] found nothing to take")
+	TEST_ASSERT(!chosen.has_facility(HEX_FAC_HQ), "Pirates went for a headquarters ([chosen])")
+	TEST_ASSERT(chosen.alignment != "pirate", "Pirates went for their own system ([chosen])")
 
 
 #undef TEST_ASSERT

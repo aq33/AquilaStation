@@ -1,5 +1,6 @@
 // AQUILA - sztaby frakcji (część D): te same reguły dla NT, SolGov i Syndykatu, różni je tylko cel natarcia; piraci łupią.
-// Kolejność: odwrót do depotu, obrona i odbicie własnych układów, eskorty konwojów, natarcie przy przewadze 1,2x, polowanie.
+// Kolejność: odwrót do depotu, szturm na wrogą kwaterę, obrona i odbicie własnych układów (najwyżej połowa flot), eskorty
+// konwojów, natarcie przy przewadze 1,2x, polowanie.
 // Rozkaz to cel (war_target), do którego flota idzie kafel po kaflu przez hex_continue_heading().
 
 /datum/fleet
@@ -110,8 +111,45 @@
 	if(war_cargo && current_system == war_destination)
 		hex_war_deliver()
 		return
+	if(war_cargo)
+		hex_war_try_intercept()
 	if(war_order == HEX_ORDER_ATTACK && current_system == war_target)
 		hex_war_set_order(HEX_ORDER_HOLD, war_target)
+
+/// Konwój wszedł na kafel: wroga flota sztabu w sąsiednim kaflu może skoczyć za nim i go przechwycić (walka w kaflu konwoju)
+/datum/fleet/proc/hex_war_try_intercept()
+	var/datum/hex/here = GLOB.hex_war?.fleet_hex(src)
+	if(!here)
+		return FALSE
+	for(var/datum/fleet/hunter as anything in hex_all_fleets())
+		if(hunter == src || !hunter.war_controlled || hunter.war_cargo || !hex_factions_hostile(hunter.alignment, alignment))
+			continue
+		if(hunter.current_system == current_system)
+			return FALSE // już tu jest, walka i tak się zacznie
+		if(hunter.war_order in list(HEX_ORDER_REPAIR, HEX_ORDER_HOME))
+			continue
+		var/datum/hex/there = GLOB.hex_war.fleet_hex(hunter)
+		if(!there || there.sector != here.sector || GLOB.hexmap.distance(there, here) != 1)
+			continue
+		if(world.time < hunter.last_encounter_time + hunter.combat_move_delay)
+			continue // zajęta własną walką
+		if(!prob(hunter.alignment == "pirate" ? HEX_WAR_INTERCEPT_PIRATE : HEX_WAR_INTERCEPT))
+			continue
+		hunter.move(current_system, force = TRUE)
+		log_game("HEXWAR: [hunter.name] intercepts [name] at [here.id]")
+		if(hunter.current_system == current_system && prob(HEX_WAR_INTERCEPT_KILL))
+			hex_war_convoy_lost(hunter)
+		return TRUE
+	return FALSE
+
+/// Przechwycony konwój ginie: łup dla piratów, zwycięstwo dla dowódcy łowcy, okręty konwoju znikają
+/datum/fleet/proc/hex_war_convoy_lost(datum/fleet/hunter)
+	if(hunter.alignment == "pirate")
+		hunter.war_loot += war_cargo_amount
+	hunter.commander?.add_win(null)
+	GLOB.hex_war?.add_tension(1)
+	log_game("HEXWAR: convoy [name] was destroyed by [hunter.name]")
+	hex_war_dispose()
 
 // ===== sztab =====
 
@@ -169,7 +207,14 @@
 	if(faction == "pirate")
 		pirate_staff(mine)
 		return
-	// 2. obrona i odbicie własnych układów
+	// 2. szturm na wrogą kwaterę, zanim wolne floty pójdą bronić (inaczej strona pod ciągłym naciskiem nigdy nie kontratakuje)
+	hq_assault(faction, mine)
+	// 3. obrona i odbicie własnych układów: na obronę najwyżej połowa flot, reszta zostaje na natarcie
+	var/defenders = 0
+	for(var/datum/fleet/F as anything in mine)
+		if(F.war_order == HEX_ORDER_DEFEND)
+			defenders++
+	var/max_defenders = max(1, round(length(mine) / 2))
 	for(var/datum/star_system/S as anything in SSstar_system.systems)
 		if(!S.hex || S.hidden || (S.owner != faction && S.alignment != faction))
 			continue
@@ -180,10 +225,14 @@
 		var/defence = power_near(S, faction, 0, FALSE)
 		if(!lost && threat <= defence)
 			continue
+		if(!lost && defenders >= max_defenders)
+			continue
 		var/datum/fleet/F = nearest_free(mine, S, HEX_WAR_REACH)
 		if(F)
 			F.hex_war_set_order(lost ? HEX_ORDER_ATTACK : HEX_ORDER_DEFEND, S)
-	// 3. eskorty zagrożonych konwojów
+			if(!lost)
+				defenders++
+	// 4. eskorty zagrożonych konwojów
 	for(var/datum/fleet/convoy as anything in faction_fleets(faction, TRUE))
 		var/escorted = FALSE
 		for(var/datum/fleet/F as anything in mine)
@@ -195,9 +244,9 @@
 		var/datum/fleet/F = nearest_free(mine, convoy.current_system, 4)
 		if(F)
 			F.hex_war_set_order(HEX_ORDER_ESCORT, null, convoy)
-	// 4. natarcie przy przewadze
+	// 5. natarcie przy przewadze
 	offensive(faction, mine)
-	// 5. polowanie dowódców z urazą do okrętu gracza
+	// 6. polowanie dowódców z urazą do okrętu gracza
 	var/obj/structure/overmap/player = SSstar_system.find_main_overmap()
 	var/datum/star_system/player_system = player?.current_system
 	for(var/datum/fleet/F as anything in mine)
@@ -220,7 +269,8 @@
 		if("syndicate")
 			return hex_factions_hostile(faction, S.alignment) || S.alignment == "unaligned"
 		if("nanotrasen")
-			return hex_factions_hostile(faction, S.alignment) // także w sektorze Syndykatu, inaczej NT tylko się broni (raport/ftl_mapa_07)
+			// także w sektorze Syndykatu i w układach niczyich, jak Syndykat; inaczej NT tylko się broniło (raport/ftl_mapa_07)
+			return hex_factions_hostile(faction, S.alignment) || S.alignment == "unaligned"
 		if("solgov")
 			if(!hex_factions_hostile(faction, S.alignment))
 				return FALSE
@@ -228,6 +278,42 @@
 				if(own.owner == faction && own.hex && GLOB.hexmap.war_distance(own.hex, S.hex) <= 6)
 					return TRUE
 	return FALSE
+
+/// Szturm na wrogą kwaterę: ocena wartość/obrona w offensive() zawsze wybierałaby słabsze cele, więc kwatera ma osobną fazę.
+/// Najbliższe wolne floty w zasięgu (do HEX_WAR_HQ_GROUP) idą razem, jeśli mają HEX_WAR_HQ_ADVANTAGE siły obrony.
+/datum/hex_war/proc/hq_assault(faction, list/mine)
+	var/list/free = list()
+	for(var/datum/fleet/F as anything in mine)
+		if(is_free(F))
+			free += F
+	for(var/datum/star_system/S as anything in SSstar_system.systems)
+		if(!length(free))
+			return
+		if(!S.hex || S.hidden || !S.has_facility(HEX_FAC_HQ) || !in_goal(faction, S) || already_targeted(mine, S, null))
+			continue
+		var/defence = 0
+		for(var/datum/fleet/D as anything in S.fleets)
+			if(!QDELETED(D) && !D.war_cargo && !hex_factions_allied(faction, D.alignment))
+				defence += D.hex_war_power()
+		var/list/by_distance = list()
+		for(var/datum/fleet/F as anything in free)
+			var/d = dist(F, S)
+			if(d <= HEX_WAR_REACH_HQ)
+				by_distance[F] = d
+		sortTim(by_distance, GLOBAL_PROC_REF(cmp_numeric_asc), associative = TRUE)
+		var/list/group = list()
+		var/power = 0
+		for(var/datum/fleet/F as anything in by_distance)
+			if(length(group) >= HEX_WAR_HQ_GROUP)
+				break
+			group += F
+			power += F.hex_war_power()
+		if(!length(group) || power < defence * HEX_WAR_HQ_ADVANTAGE / fortune_of(faction))
+			continue
+		for(var/datum/fleet/F as anything in group)
+			F.hex_war_set_order(HEX_ORDER_ATTACK, S)
+			free -= F
+		log_game("HEXWAR: [faction] storms the headquarters in [S] with [length(group)] fleet(s), power [power] vs [defence]")
 
 /datum/hex_war/proc/offensive(faction, list/mine)
 	var/list/targets = list()
@@ -238,7 +324,7 @@
 		for(var/datum/fleet/F as anything in S.fleets)
 			if(!QDELETED(F) && !F.war_cargo && !hex_factions_allied(faction, F.alignment))
 				defence += F.hex_war_power()
-		var/value = 1 + 2 * length(S.war_facilities) + (S.has_facility(HEX_FAC_FACTORY) ? 2 : 0) + (S.has_facility(HEX_FAC_YARD) ? 2 : 0) + (S.owner == faction ? 3 : 0)
+		var/value = 1 + 2 * length(S.war_facilities) + (S.has_facility(HEX_FAC_FACTORY) ? 2 : 0) + (S.has_facility(HEX_FAC_YARD) ? 2 : 0) + (S.owner == faction ? 3 : 0) + (S.has_facility(HEX_FAC_HQ) ? 6 : 0)
 		targets[S] = list(defence, value)
 	var/list/free = list()
 	for(var/datum/fleet/F as anything in mine)
@@ -250,7 +336,7 @@
 		var/best_score = 0
 		for(var/datum/star_system/S as anything in targets)
 			var/d = dist(lead, S)
-			if(d > HEX_WAR_REACH || already_targeted(mine, S, lead))
+			if(d > (S.has_facility(HEX_FAC_HQ) ? HEX_WAR_REACH_HQ : HEX_WAR_REACH) || already_targeted(mine, S, lead))
 				continue
 			var/list/info = targets[S]
 			var/score = info[2] / (1 + info[1]) / (1 + d * 0.25)
@@ -263,14 +349,19 @@
 		var/defence = targets[best][1]
 		var/list/group = list(lead)
 		var/power = lead.hex_war_power()
-		if(power < defence * HEX_WAR_ADVANTAGE)
+		// Frakcja z lepszym atutem kampanii naciera przy mniejszej przewadze (war_fortune.dm)
+		var/advantage = HEX_WAR_ADVANTAGE / fortune_of(faction)
+		var/is_hq = best.has_facility(HEX_FAC_HQ)
+		if(is_hq)
+			advantage = HEX_WAR_HQ_ADVANTAGE / fortune_of(faction)
+		if(power < defence * advantage)
 			for(var/datum/fleet/other as anything in free - lead)
-				if(length(group) >= 3 || power >= defence * HEX_WAR_ADVANTAGE)
+				if(length(group) >= (is_hq ? HEX_WAR_HQ_GROUP : 3) || power >= defence * advantage)
 					break
-				if(GLOB.hexmap.war_distance(fleet_hex(other), fleet_hex(lead)) <= 4)
+				if(GLOB.hexmap.war_distance(fleet_hex(other), fleet_hex(lead)) <= (is_hq ? HEX_WAR_HQ_GROUP_RANGE : 4))
 					group += other
 					power += other.hex_war_power()
-		if(power >= defence * HEX_WAR_ADVANTAGE)
+		if(power >= defence * advantage)
 			for(var/datum/fleet/F as anything in group)
 				F.hex_war_set_order(HEX_ORDER_ATTACK, best)
 				free -= F
@@ -312,6 +403,12 @@
 		if(prey)
 			F.hex_war_set_order(HEX_ORDER_RAID, null, prey)
 			continue
+		if(prob(HEX_WAR_PIRATE_CONQUEST))
+			var/datum/star_system/conquest = pirate_conquest_target(F)
+			if(conquest)
+				F.hex_war_set_order(HEX_ORDER_ATTACK, conquest)
+				log_game("HEXWAR: [F.name] goes to take [conquest]")
+				continue
 		var/datum/star_system/station
 		var/station_d = 11
 		for(var/datum/star_system/S as anything in SSstar_system.systems)
@@ -323,3 +420,27 @@
 				station = S
 		if(station)
 			F.hex_war_set_order(HEX_ORDER_RAID, station)
+
+/// Piraci zajmują słabe układy w zasięgu 6 kafli: niczyje albo wrogie, bez kwatery głównej, z obroną poniżej siły floty
+/datum/hex_war/proc/pirate_conquest_target(datum/fleet/F)
+	var/power = F.hex_war_power()
+	var/datum/star_system/best
+	var/best_score = 0
+	for(var/datum/star_system/S as anything in SSstar_system.systems)
+		if(!S.hex || S.hidden || istype(S, /datum/star_system/random/hex_empty) || S.alignment == "pirate" || S.has_facility(HEX_FAC_HQ))
+			continue
+		var/d = dist(F, S)
+		if(d > 6 || already_targeted(faction_fleets("pirate"), S, F))
+			continue
+		var/defence = 0
+		for(var/datum/fleet/other as anything in S.fleets)
+			if(!QDELETED(other) && !other.war_cargo && other.alignment != "pirate")
+				defence += other.hex_war_power()
+		if(defence * HEX_WAR_ADVANTAGE > power)
+			continue
+		var/score = (1 + length(S.war_facilities) + (S.trader ? 2 : 0)) / (1 + d * 0.3)
+		if(score > best_score)
+			best_score = score
+			best = S
+	return best
+

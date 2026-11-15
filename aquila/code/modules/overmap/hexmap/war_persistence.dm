@@ -51,7 +51,7 @@
 	var/list/nuke_cooldown = list()
 	for(var/faction in nuke_built_at)
 		nuke_cooldown[faction] = max(0, nuke_built_at[faction] + HEX_WAR_NUKE_COOLDOWN - world.time)
-	return list("commanders" = commander_data, "fleets" = fleet_data, "stores" = stores, "next_id" = next_commander_id, "tension" = tension, "nuke_stocks" = nuke_stocks, "nuke_cooldown" = nuke_cooldown, "hq_lost" = hq_lost_rounds)
+	return list("commanders" = commander_data, "fleets" = fleet_data, "stores" = stores, "next_id" = next_commander_id, "tension" = tension, "nuke_stocks" = nuke_stocks, "nuke_cooldown" = nuke_cooldown, "hq_lost" = hq_lost_rounds, "fortunes" = fortunes)
 
 /// Napięcie i zapasy atomówek z zapisu (niezależnie od tego, czy floty dało się odtworzyć)
 /datum/hex_war/proc/restore_nuclear(list/saved)
@@ -70,6 +70,11 @@
 		for(var/faction in cooldown)
 			if(isnum(cooldown[faction]) && cooldown[faction] > 0)
 				nuke_built_at[faction] = world.time + cooldown[faction] - HEX_WAR_NUKE_COOLDOWN
+	var/list/saved_fortunes = saved["fortunes"]
+	if(islist(saved_fortunes))
+		for(var/faction in saved_fortunes)
+			if(isnum(saved_fortunes[faction]))
+				fortunes[faction] = clamp(saved_fortunes[faction], 0.5, 1.5)
 	var/list/lost = saved["hq_lost"]
 	if(islist(lost))
 		for(var/faction in lost)

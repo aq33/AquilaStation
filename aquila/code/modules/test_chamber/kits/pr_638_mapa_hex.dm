@@ -80,7 +80,7 @@
 		1) Przy układach są ikony obiektów (kopalnie, fabryki, stocznie, depoty, placówki, kwatery, stacje handlowe), w panelu kafla ich opis i magazyn. \
 		2) Wrogie floty widać w zasięgu 3 kafli od okrętu, kafla od sojuszniczych układów i flot oraz 3 kafli od placówek; poza nim szary romb z ostatnią znaną pozycją. \
 		3) Zakładka „Dowódcy”: dowódca floty Syndykatu z rangą; cechy są „?”, dopóki nie spotkasz jego floty. \
-		4) Konwoje (kwadraty) jadą z kopalń do fabryk i ze fabryk do stoczni; piraci je łupią i napadają stacje handlowe (stacja nie handluje 10 min, ta sama stacja najwyżej raz na godzinę). \
+		4) Konwoje (kwadraty) jadą z kopalń do fabryk i ze fabryk do stoczni; piraci je łupią i napadają stacje handlowe (stacja nie handluje 10 min, ta sama stacja najwyżej raz na pół godziny). Wroga flota w sąsiednim kaflu potrafi skoczyć za konwojem i go przechwycić, a piraci czasem zajmują słabe układy i biorą z nich haracz. \
 		5) Zniszcz flotę Syndykatu: dowódca może uciec z blizną i urazą, po 15–25 min wraca z nową flotą i poluje na okręt. \
 		6) Floty sztabów, magazyny i dowódcy przechodzą do następnej rundy."
 

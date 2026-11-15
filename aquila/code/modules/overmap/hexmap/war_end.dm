@@ -10,6 +10,10 @@ GLOBAL_LIST_INIT(hex_war_end_sides, list("nanotrasen", "syndicate"))
 	var/list/hq_lost_rounds = list()
 	/// Koniec tej rundy już policzony (zapis kampanii może przyjść więcej niż raz)
 	var/round_tallied = FALSE
+	/// Tury tej rundy i ile z nich kwatera strony była w rękach wroga (kwatera przechodzi z rąk do rąk co kilka minut,
+	/// więc o rundzie decyduje to, kto ją trzymał przez większość rundy, nie stan w chwili zapisu)
+	var/round_turns = 0
+	var/list/hq_hostile_turns = list()
 
 /// Czy frakcja trzyma którąś ze swoich kwater (nie zajętą przez wroga)
 /datum/hex_war/proc/hq_held(faction)
@@ -18,11 +22,29 @@ GLOBAL_LIST_INIT(hex_war_end_sides, list("nanotrasen", "syndicate"))
 			return TRUE
 	return FALSE
 
+/// Co turę: która strona ma kwaterę w rękach wroga (wołane w run_turn)
+/datum/hex_war/proc/track_hq_control()
+	round_turns++
+	for(var/faction in GLOB.hex_war_end_sides)
+		if(!hq_held(faction))
+			hq_hostile_turns[faction] = (hq_hostile_turns[faction] || 0) + 1
+
+/// Czy strona straciła kwaterę w tej rundzie: wróg trzymał ją przez co najmniej połowę tur (bez tur: stan teraz)
+/datum/hex_war/proc/hq_lost_this_round(faction)
+	if(!round_turns)
+		return !hq_held(faction)
+	return (hq_hostile_turns[faction] || 0) * 2 >= round_turns
+
 /// Koniec rundy: liczy rundy bez kwatery. Zwraca stronę, która przegrała wojnę, albo null.
 /datum/hex_war/proc/round_end_tally()
 	. = null
+	var/list/lost_now = list()
 	for(var/faction in GLOB.hex_war_end_sides)
-		if(hq_held(faction))
+		lost_now[faction] = hq_lost_this_round(faction)
+	round_turns = 0
+	hq_hostile_turns = list()
+	for(var/faction in GLOB.hex_war_end_sides)
+		if(!lost_now[faction])
 			hq_lost_rounds[faction] = 0
 			continue
 		hq_lost_rounds[faction] = (hq_lost_rounds[faction] || 0) + 1

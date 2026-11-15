@@ -49,7 +49,7 @@ GLOBAL_LIST_INIT(hex_war_factions, list("nanotrasen", "solgov", "syndicate", "pi
 /// Rozmieszczenie obiektów jak w makiecie v4
 /datum/hexmap/proc/place_facilities()
 	var/static/list/layout = list(
-		"Argo" = list(HEX_FAC_YARD),
+		"Argo" = list(HEX_FAC_YARD, HEX_FAC_FACTORY), // fabryka na zapleczu: obie fabryki NT z makiety stały na froncie, a Syndykat ma dwie w głębi sektora
 		"Orion's Arm" = list(HEX_FAC_DEPOT),
 		"Caph" = list(HEX_FAC_MINE),
 		"Keid" = list(HEX_FAC_MINE),
@@ -66,7 +66,7 @@ GLOBAL_LIST_INIT(hex_war_factions, list("nanotrasen", "solgov", "syndicate", "pi
 		"Wolf 359" = list(HEX_FAC_MINE),
 		"Barnard's Star" = list(HEX_FAC_MINE),
 		"Lalande 21185" = list(HEX_FAC_POST),
-		"Rubicon" = list(HEX_FAC_FACTORY, HEX_FAC_DEPOT),
+		"Rubicon" = list(HEX_FAC_FACTORY, HEX_FAC_DEPOT, HEX_FAC_HQ), // kwatera na froncie jak Medea: w Abassi (27 kafli od frontu) NT nie mogło jej zdobyć, więc Syndykat nie mógł przegrać wojny
 		"Remus" = list(HEX_FAC_MINE),
 		"Lombard" = list(HEX_FAC_MINE),
 		"Economus" = list(HEX_FAC_YARD),
@@ -76,7 +76,7 @@ GLOBAL_LIST_INIT(hex_war_factions, list("nanotrasen", "solgov", "syndicate", "pi
 		"Phobos" = list(HEX_FAC_DEPOT),
 		"Deimos" = list(HEX_FAC_FACTORY),
 		"Romulus" = list(HEX_FAC_YARD, HEX_FAC_POST),
-		"Abassi" = list(HEX_FAC_FACTORY, HEX_FAC_HQ),
+		"Abassi" = list(HEX_FAC_FACTORY),
 		"Dolos Remnants" = list(HEX_FAC_MINE),
 		"Oasis Fidei" = list(HEX_FAC_MINE),
 		"Tortuga" = list(HEX_FAC_YARD, HEX_FAC_DEPOT, HEX_FAC_HQ),
@@ -106,6 +106,7 @@ GLOBAL_LIST_INIT(hex_war_factions, list("nanotrasen", "solgov", "syndicate", "pi
 		for(var/datum/fleet/F as anything in hex_all_fleets())
 			if(F.hex_war_adoptable())
 				F.hex_war_adopt()
+		roll_fortunes()
 		// Nowa kampania: frakcja bez floty do przejęcia (SolGov ma na starcie tylko garnizon Sol) dostaje jedną w stoczni albo kwaterze
 		for(var/faction in list("nanotrasen", "solgov", "syndicate"))
 			if(length(faction_fleets(faction)))
@@ -115,8 +116,50 @@ GLOBAL_LIST_INIT(hex_war_factions, list("nanotrasen", "solgov", "syndicate", "pi
 				launch_fleet(faction, sites[1])
 	restore_nuclear(saved)
 	ready = TRUE
+	remove_occupied_garrisons()
+	reinforce_hq_garrisons()
 	announce_war_end()
 	addtimer(CALLBACK(src, PROC_REF(tick)), HEX_WAR_TICK)
+
+/// Start rundy: garnizon nie wraca do układu, który wróg trzymał na koniec poprzedniej rundy (inaczej każde zajęcie
+/// cofało się z restartem świata i żadna strona nie utrzymała cudzej kwatery przez HEX_WAR_END_ROUNDS rund)
+/datum/hex_war/proc/remove_occupied_garrisons()
+	for(var/datum/star_system/S as anything in SSstar_system.systems)
+		if(!S.hex || !(S.owner in GLOB.hex_war_factions) || !hex_factions_hostile(S.owner, S.alignment))
+			continue
+		for(var/datum/fleet/F as anything in S.fleets.Copy())
+			if(QDELETED(F) || F.war_controlled || F.fleet_trait != FLEET_TRAIT_DEFENSE || !hex_factions_allied(F.alignment, S.owner))
+				continue
+			log_game("HEXWAR: no garrison returns to occupied [S] ([F.name] removed)")
+			F.hex_war_dispose()
+
+/// Start rundy: garnizony kwater głównych (floty obronne układu, poza sztabem) są równe najsilniejszemu z nich, najmniej
+/// HEX_WAR_HQ_GARRISON okrętów. Inaczej o wyniku wojny decydował układ mapy: Medea miała 2–3 okręty, Rubicon 12.
+/datum/hex_war/proc/reinforce_hq_garrisons()
+	var/list/garrisons = list() // układ -> okręty garnizonu
+	var/target = HEX_WAR_HQ_GARRISON
+	for(var/datum/star_system/S as anything in SSstar_system.systems)
+		if(!S.has_facility(HEX_FAC_HQ) || S.owner == "pirate" || hex_factions_hostile(S.owner, S.alignment))
+			continue
+		var/ships = 0
+		for(var/datum/fleet/F as anything in S.fleets)
+			if(!QDELETED(F) && F.fleet_trait == FLEET_TRAIT_DEFENSE && hex_factions_allied(F.alignment, S.owner))
+				ships += F.hex_war_ship_count()
+		garrisons[S] = ships
+		target = max(target, ships)
+	for(var/datum/star_system/S as anything in garrisons)
+		var/missing = target - garrisons[S]
+		if(missing <= 0)
+			continue
+		var/datum/fleet/garrison
+		for(var/datum/fleet/F as anything in S.fleets)
+			if(!QDELETED(F) && F.fleet_trait == FLEET_TRAIT_DEFENSE && hex_factions_allied(F.alignment, S.owner))
+				garrison = F
+				break
+		if(!garrison)
+			continue
+		garrison.hex_war_add_ships(missing)
+		log_game("HEXWAR: [S] headquarters garrison reinforced with [missing] ship(s) to [target]")
 
 /// Wszystkie floty na mapie
 /proc/hex_all_fleets()
@@ -142,6 +185,7 @@ GLOBAL_LIST_INIT(hex_war_factions, list("nanotrasen", "solgov", "syndicate", "pi
 		staff(faction)
 	nuclear_turn()
 	mission_rewards()
+	track_hq_control()
 
 /// Floty sztabu frakcji (bez konwojów)
 /datum/hex_war/proc/faction_fleets(faction, convoys = FALSE)
@@ -184,7 +228,7 @@ GLOBAL_LIST_INIT(hex_war_factions, list("nanotrasen", "solgov", "syndicate", "pi
 		if(S.alignment != faction || length(hex_hostile_fleets_in(S, faction)))
 			continue
 		if(S.has_facility(HEX_FAC_MINE))
-			S.war_ore = min(S.war_ore + 2, 30) // magazyn kopalni, gdy konwoje są w drodze
+			S.war_ore = min(S.war_ore + fortune_amount(faction, 2), 30) // magazyn kopalni, gdy konwoje są w drodze
 			if(S.war_ore >= 6 && !S.has_facility(HEX_FAC_FACTORY) && send_convoy(S, faction, "ore", 6, HEX_FAC_FACTORY))
 				S.war_ore -= 6
 		if(S.has_facility(HEX_FAC_FACTORY))
@@ -208,11 +252,15 @@ GLOBAL_LIST_INIT(hex_war_factions, list("nanotrasen", "solgov", "syndicate", "pi
 			if(!S.hidden)
 				minor_announce("Wywiad: fabryka w układzie [S] ([hex_war_faction_name(faction)]) złożyła głowicę termojądrową.", "White Rapids EAS")
 	// Piraci nie mają kopalń ani fabryk: ich stocznia co jakiś czas wodowuje rajdowców, a łupy dozbrajają floty
-	if(length(faction_fleets("pirate")) < HEX_WAR_MAX_PIRATE_FLEETS && prob(25))
+	if(length(faction_fleets("pirate")) < HEX_WAR_MAX_PIRATE_FLEETS && prob(40))
 		var/list/pirate_yards = faction_sites("pirate", HEX_FAC_YARD)
 		if(length(pirate_yards) && launch_fleet("pirate", pirate_yards[1]))
 			log_game("HEXWAR: pirates launch raiders from [pirate_yards[1]]")
 	for(var/datum/fleet/F as anything in faction_fleets("pirate"))
+		// Haracz: piraci trzymający cudzy układ z obiektami albo stacją handlową co turę coś z niego biorą
+		var/datum/star_system/held = F.current_system
+		if(held && held.owner != "pirate" && held.alignment == "pirate" && (length(held.war_facilities) || held.trader))
+			F.war_loot += 1
 		if(F.war_loot >= 6 && F.current_system?.owner == "pirate" && F.current_system.has_facility(HEX_FAC_YARD))
 			F.war_loot -= 6
 			F.hex_war_add_ships(1)

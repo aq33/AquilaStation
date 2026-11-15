@@ -70,18 +70,34 @@
 #define HEX_WAR_SETUP_DELAY (30 SECONDS)
 /// Najwięcej flot sztabu na frakcję (bez konwojów)
 #define HEX_WAR_MAX_FLEETS 5
-#define HEX_WAR_MAX_PIRATE_FLEETS 3
+#define HEX_WAR_MAX_PIRATE_FLEETS 5
 /// Najwięcej konwojów naraz na frakcję (przy 2 kopalnie stały pełne: symulacja w raport/ftl_mapa_07)
 #define HEX_WAR_MAX_CONVOYS 3
 /// Stacja handlowa po napadzie piratów nie handluje przez tyle
 #define HEX_WAR_RAID_TIME (10 MINUTES)
 /// Ta sama stacja może być złupiona najwyżej raz na tyle
-#define HEX_WAR_RAID_COOLDOWN (60 MINUTES)
+#define HEX_WAR_RAID_COOLDOWN (30 MINUTES)
+/// Szansa (%), że wroga flota w sąsiednim kaflu przechwyci przelatujący konwój (piraci i reszta)
+#define HEX_WAR_INTERCEPT_PIRATE 50
+#define HEX_WAR_INTERCEPT 25
+/// Szansa (%), że przechwycony konwój od razu ginie (piraci zabierają ładunek); inaczej ucieka, a w kaflu zaczyna się zwykła walka
+#define HEX_WAR_INTERCEPT_KILL 60
+/// Szansa (%), że wolna flota piratów zamiast napadu idzie zająć słaby układ
+#define HEX_WAR_PIRATE_CONQUEST 35
 /// Ranny dowódca wraca z nową flotą po tylu minutach
 #define HEX_WAR_RETURN_MIN (15 MINUTES)
 #define HEX_WAR_RETURN_MAX (25 MINUTES)
 /// Zasięg sztabu: cele i floty dalej niż tyle kafli nie wchodzą w plan
 #define HEX_WAR_REACH 8
+/// Kwatera główna wroga jest celem z dalszej odległości (inaczej kwatera w głębi sektora byłaby nietykalna)
+#define HEX_WAR_REACH_HQ 16
+/// Garnizon kwatery głównej ma na starcie rundy co najmniej tyle okrętów (Medea miała 2–3, Rubicon kilka razy więcej)
+#define HEX_WAR_HQ_GARRISON 6
+/// Natarcie na wrogą kwaterę zbiera do tylu flot z tylu kafli (zwykłe natarcie: 3 floty z 4 kafli)
+#define HEX_WAR_HQ_GROUP 5
+#define HEX_WAR_HQ_GROUP_RANGE 6
+/// Szturm na wrogą kwaterę już przy takim stosunku sił (walka kośćmi jest losowa, a garnizon wraca dopiero w następnej rundzie)
+#define HEX_WAR_HQ_ADVANTAGE 0.8
 /// Natarcie tylko przy takiej przewadze sił
 #define HEX_WAR_ADVANTAGE 1.2
 
@@ -95,7 +111,7 @@
 /// Po odpaleniu lub detonacji DEFCON 1 przez tyle
 #define HEX_WAR_DEFCON_LOCK (15 MINUTES)
 /// Tyle rund z rzędu bez kwatery głównej na koniec rundy kończy wojnę
-#define HEX_WAR_END_ROUNDS 3
+#define HEX_WAR_END_ROUNDS 2
 /// Wynik zakończonej wojny, ogłaszany na starcie następnej rundy (nowej kampanii)
 #define HEX_WAR_END_FILE "data/hex_war_end.json"
 
