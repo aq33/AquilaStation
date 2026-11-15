@@ -14,8 +14,8 @@
 #define SENSOR_ARRAY_POWER_PER_RANGE2 1500
 /// Ciepło na cykl: pobór / to
 #define SENSOR_ARRAY_HEAT_DIVISOR 15000
-/// Chłodzenie na cykl (utrzyma zasięg ok. 6)
-#define SENSOR_ARRAY_COOLING 3.5
+/// Chłodzenie na cykl: zasięg 6 (domyślny) jest stabilny cieplnie, od 7 matryca się grzeje
+#define SENSOR_ARRAY_COOLING 3.7
 #define SENSOR_ARRAY_CRITICAL_HEAT 50
 /// Ile zasięgu kamery zostaje, gdy matryca nie działa
 #define SENSOR_ARRAY_BLIND_OPTICAL 0.25
@@ -71,9 +71,10 @@
 		if(!isnull(bearing) && abs(closer_angle_difference(sensor_array_sector_center(array.dir), bearing)) > 45)
 			continue
 		best = max(best, array.range / SENSOR_ARRAY_MAX_RANGE)
-	if(best > 0)
-		return best
-	return suite == SENSOR_OPTICAL ? SENSOR_ARRAY_BLIND_OPTICAL : 0
+	// Kamera szerokokątna działa zawsze: matryca na małym zasięgu nie może jej pogorszyć
+	if(suite == SENSOR_OPTICAL)
+		return max(best, SENSOR_ARRAY_BLIND_OPTICAL)
+	return best
 
 /obj/structure/overmap/get_suite_range(suite, obj/structure/overmap/target)
 	. = ..()
@@ -131,8 +132,12 @@
 	var/datum/gas_mixture/air = T?.return_air()
 	return !air || air.return_pressure() < SENSOR_ARRAY_VACUUM
 
+/// Stan wnęki z ostatniego cyklu: is_working() idzie dziesiątki razy na odświeżenie okien sensorów, a wnęka
+/// zmienia się najwyżej raz na tick SSmachines
+/obj/machinery/ship_sensor_array/var/vacuum_ok = TRUE
+
 /obj/machinery/ship_sensor_array/proc/is_working()
-	return on && range > 0 && !(machine_stat & (BROKEN|NOPOWER)) && in_vacuum()
+	return on && range > 0 && !(machine_stat & (BROKEN|NOPOWER)) && vacuum_ok
 
 /// Najwyższy zasięg, na jaki pozwala limit sensorów z podziału mocy
 /obj/machinery/ship_sensor_array/proc/allowed_range()
@@ -145,7 +150,8 @@
 /obj/machinery/ship_sensor_array/process(delta_time)
 	if(!linked_ship || QDELETED(linked_ship))
 		link_to_ship(get_overmap())
-	var/working = on && !(machine_stat & (BROKEN|NOPOWER)) && in_vacuum()
+	vacuum_ok = in_vacuum()
+	var/working = on && !(machine_stat & (BROKEN|NOPOWER)) && vacuum_ok
 	var/target = working ? min(desired_range, allowed_range()) : 0
 	if(range < target)
 		range++

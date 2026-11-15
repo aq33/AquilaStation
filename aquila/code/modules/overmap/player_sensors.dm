@@ -185,7 +185,8 @@ GLOBAL_VAR_INIT(player_sensor_suites_enabled, TRUE)
 	OM.radar_pulse_bearing = OM.get_radar_beam_bearing()
 	var/reach = OM.get_radar_reach(OM.radar_pulse_width) * OM.get_sensor_array_mult(SENSOR_LIDAR)
 	addtimer(VARSET_CALLBACK(src, sensor_range, base_sensor_range), RADAR_VISIBILITY_PENALTY)
-	sensor_range = reach
+	// Impuls tylko poszerza widok: przy słabych albo martwych matrycach zasięg nie spada poniżej bazowego
+	sensor_range = max(base_sensor_range, reach)
 	// Śledzenie namierzonego celu (physics.dm) liczy zasięg z DRADIS okrętu: na czas impulsu też go poszerzamy,
 	// inaczej namierzenie dalej niż 80 pól gasło po 3 s mimo impulsu operatora
 	var/obj/machinery/computer/ship/dradis/bridge = OM.dradis
