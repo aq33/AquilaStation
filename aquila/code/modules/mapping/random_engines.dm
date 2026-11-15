@@ -16,6 +16,7 @@
 	name = "Trawnik - silnik Tesli"
 	room_id = "aq_engine_ser_01_tesla"
 	mappath = 'aquila/_maps/random_engines/serendipity_engine_tesla.dmm'
+	engine_type = ENGINE_CHOICE_TESLA
 	centerspawner = FALSE
 	template_height = 19
 	template_width = 13
@@ -24,6 +25,7 @@
 	name = "Trawnik - napęd Stormdrive"
 	room_id = "aq_engine_ser_02_stormdrive"
 	mappath = 'aquila/_maps/random_engines/serendipity_engine_stormdrive.dmm'
+	engine_type = ENGINE_CHOICE_STORMDRIVE
 	centerspawner = FALSE
 	template_height = 19
 	template_width = 13
@@ -32,6 +34,7 @@
 	name = "Trawnik - silnik supermaterii"
 	room_id = "aq_engine_ser_03_supermatter"
 	mappath = 'aquila/_maps/random_engines/serendipity_engine_supermatter.dmm'
+	engine_type = ENGINE_CHOICE_SUPERMATTER
 	centerspawner = FALSE
 	template_height = 19
 	template_width = 13
@@ -40,6 +43,7 @@
 	name = "Padalec - napęd Stormdrive"
 	room_id = "aq_engine_snk_01_stormdrive"
 	mappath = 'aquila/_maps/random_engines/snake_engine_stormdrive.dmm'
+	engine_type = ENGINE_CHOICE_STORMDRIVE
 	centerspawner = FALSE
 	template_height = 10
 	template_width = 18
@@ -48,6 +52,7 @@
 	name = "Padalec - silnik supermaterii"
 	room_id = "aq_engine_snk_03_supermatter"
 	mappath = 'aquila/_maps/random_engines/snake_engine_supermatter.dmm'
+	engine_type = ENGINE_CHOICE_SUPERMATTER
 	centerspawner = FALSE
 	template_height = 10
 	template_width = 18
