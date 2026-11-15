@@ -103,6 +103,19 @@ export const StationContracts = (props) => {
                     (zostało {contract.time_left} min)
                   </Box>
                 )}
+                {contract.state === 'w toku' && (
+                  <Button.Confirm
+                    ml={1}
+                    icon="times"
+                    color="bad"
+                    confirmContent="Na pewno?"
+                    onClick={() =>
+                      act('aq_cancel_contract', { id: contract.id })
+                    }
+                  >
+                    Anuluj
+                  </Button.Confirm>
+                )}
               </LabeledList.Item>
             ))}
           </LabeledList>

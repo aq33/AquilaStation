@@ -234,6 +234,11 @@ SUBSYSTEM_DEF(restaurant)
 	STOP_PROCESSING(SSobj, src)
 	for(var/mob/living/simple_animal/robot_customer/robot_customer as anything in current_visitors)
 		robot_customer.ai_controller?.blackboard[BB_CUSTOMER_LEAVING] = TRUE
+	// Miejsca stawia sam lokal na czas zlecenia: wolne zdejmujemy, żeby nie blokowały krzeseł drugiego lokalu w tej
+	// samej sali (zajęte znikną, gdy gość odejdzie i lokal zamknie się następnym razem)
+	for(var/obj/structure/holosign/robot_seat/seat as anything in linked_seats)
+		if(!linked_seats[seat])
+			qdel(seat)
 	update_machines()
 	return TRUE
 

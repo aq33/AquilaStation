@@ -52,6 +52,20 @@
 	refund_contract(corpse)
 	qdel(corpse)
 
+	// Regresja: chwilowe ożywienie się nie liczy, dopiero 2 minuty życia
+	var/datum/aq_contract/corpse/revived = new(null)
+	var/mob/living/carbon/human/patient = allocate(/mob/living/carbon/human, run_loc_floor_bottom_left)
+	revived.body = WEAKREF(patient)
+	revived.state = "w toku"
+	revived.deadline = world.time + 10 MINUTES
+	revived.check_progress()
+	TEST_ASSERT(revived.is_active(), "A momentary revival completed the corpse contract")
+	revived.alive_since = world.time - 2 MINUTES - 1
+	revived.check_progress()
+	TEST_ASSERT(revived.is_done(), "Two minutes alive didn't complete the corpse contract")
+	refund_contract(revived)
+	qdel(revived)
+
 	// Regresja: śmierć drugiego pacjenta kończy zlecenie, choć pierwszy jest jeszcze w leczeniu
 	var/datum/aq_contract/wounded/wounded = new(null)
 	var/mob/living/carbon/human/hurt = allocate(/mob/living/carbon/human, run_loc_floor_bottom_left)

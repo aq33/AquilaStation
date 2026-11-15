@@ -378,6 +378,9 @@ GLOBAL_LIST_EMPTY(aq_ship_contracts)
 	if(!medical_drop)
 		return null
 	var/obj/structure/closet/supplypod/pod = new
+	// Domyślna kapsuła wybucha przy lądowaniu (explosionSize 0,0,2,3): w ambulatorium raniłaby lekarzy i pacjentów
+	pod.explosionSize = list(0, 0, 0, 0)
+	pod.damage = 0
 	pod.forceMove(GLOB.areas_by_type[/area/centcom/supplypod/supplypod_temp_holding])
 	return pod
 
@@ -438,9 +441,11 @@ GLOBAL_LIST_EMPTY(aq_ship_contracts)
 	department_name = "Medyczny"
 	reward = 2500
 	var/datum/weakref/body
+	/// Od kiedy ciało nieprzerwanie żyje (0 = martwe)
+	var/alive_since = 0
 
 /datum/aq_contract/corpse/setup()
-	desc = "Stacja przysyła ciało członka załogi, który zginął niedawno. Ożywcie go albo zróbcie autopsję i ustalcie przyczynę śmierci."
+	desc = "Stacja przysyła ciało członka załogi, który zginął niedawno. Ożywcie go i utrzymajcie przy życiu przez 2 minuty albo zróbcie autopsję i ustalcie przyczynę śmierci."
 
 /datum/aq_contract/corpse/on_accept(mob/user)
 	var/obj/structure/closet/supplypod/pod = make_medical_pod()
@@ -468,7 +473,16 @@ GLOBAL_LIST_EMPTY(aq_ship_contracts)
 		fail("ciało zniknęło")
 		return
 	// Cecha autopsji z aquila/code/modules/surgery/autopsy.dm (TRAIT_AUTOPSIED, tam #undef)
-	if(H.stat != DEAD || HAS_TRAIT(H, "autopsied"))
+	if(HAS_TRAIT(H, "autopsied"))
+		complete()
+		return
+	// Chwilowe ożywienie (defibrylator do krytyka i ponowna śmierć) się nie liczy
+	if(H.stat == DEAD)
+		alive_since = 0
+		return
+	if(!alive_since)
+		alive_since = world.time
+	else if(world.time - alive_since >= 2 MINUTES)
 		complete()
 
 /// Serwis: goście w restauracji albo w barze (system restauracji, aquila/code/modules/restaurant/).
@@ -507,7 +521,7 @@ GLOBAL_LIST_EMPTY(aq_ship_contracts)
 		return
 	served_at_start = venue.customers_served
 	if(!venue.open)
-		venue.open(user)
+		venue.open()
 
 /datum/aq_contract/customers/check_progress()
 	var/datum/venue/venue = get_venue()
@@ -602,16 +616,45 @@ GLOBAL_LIST_INIT(aq_contract_types, list(
 		return null
 	return "Ta oferta już wygasła."
 
-/// Zlecenia dostawy rozliczane przy odbiorze torpedy transportowej
+/// Zlecenia dostawy rozliczane przy odbiorze torpedy transportowej. Cel misji stacji ma pierwszeństwo: przesyłkę,
+/// którą przyjąłby cel misji, rozlicza bazowe check_objectives (inaczej cel przepadałby razem z ładunkiem).
 /obj/structure/overmap/trader/check_objectives(datum/freight_delivery_receipt/receipt)
-	var/list/contents = receipt?.shipment?.GetAllContents()
+	if(!receipt?.shipment)
+		return ..()
+	for(var/datum/overmap_objective/cargo/request in expecting_cargo)
+		if(request.status != 0)
+			continue
+		// check_cargo przy dopasowaniu ustawia status i tally: przywracamy je, rozliczy to bazowa procka
+		var/old_status = request.status
+		var/old_tally = request.tally
+		var/matches = request.check_cargo(receipt.shipment)
+		request.status = old_status
+		request.tally = old_tally
+		if(matches)
+			return ..()
+	var/list/contents = receipt.shipment.GetAllContents()
 	if(length(contents))
 		for(var/datum/aq_contract/C as anything in aq_active_contracts())
 			if(C.check_shipment(contents))
 				C.complete()
 				received_cargo += receipt
-				approve_shipment(receipt)
+				// Jak approve_shipment, ale bez resetu przypomnień trybu: zlecenie to nie cel misji
+				if(receipt.vessel)
+					SEND_SOUND(receipt.courier, 'nsv13/sound/effects/ship/freespace2/computer/textdraw.wav')
+					receipt.vessel.hail("Dziękujemy za dostarczenie ładunku zlecenia. Oznaczyliśmy je jako wykonane.", src)
+					addtimer(CALLBACK(src, PROC_REF(return_approved_form), receipt), speed_cargo_return)
 				return TRUE
+	return ..()
+
+/// Zniszczona stacja kończy swoje zlecenia i zwalnia oferty (zlecenia trzymają stację, stacja oferty)
+/obj/structure/overmap/trader/Destroy()
+	for(var/datum/aq_contract/C as anything in GLOB.aq_ship_contracts)
+		if(C.station != src)
+			continue
+		if(C.is_active())
+			C.fail("stacja zniszczona")
+		C.station = null
+	QDEL_LIST(aq_contract_offers)
 	return ..()
 
 /datum/trader/ui_data(mob/user)
@@ -629,7 +672,7 @@ GLOBAL_LIST_INIT(aq_contract_types, list(
 	.["aq_contracts"] = list("offers" = offers, "active" = active, "max_active" = CONTRACT_MAX_ACTIVE, "active_count" = aq_active_contract_count())
 
 /datum/trader/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
-	if(action != "aq_accept_contract")
+	if(action != "aq_accept_contract" && action != "aq_cancel_contract")
 		return ..()
 	var/obj/structure/overmap/trader/T = current_location
 	var/mob/living/user = usr
@@ -642,6 +685,13 @@ GLOBAL_LIST_INIT(aq_contract_types, list(
 	var/list/access = card?.GetAccess()
 	if(!issilicon(user) && !(ACCESS_CARGO in access) && !(ACCESS_HEADS in access))
 		to_chat(user, "<span class='warning'>Zlecenia przyjmuje zaopatrzenie albo dowództwo: potrzebna jest karta z ich dostępem.</span>")
+		return TRUE
+	if(action == "aq_cancel_contract")
+		for(var/datum/aq_contract/C as anything in T.aq_active_contracts())
+			if(C.id == params["id"])
+				C.fail("anulowane przez okręt")
+				log_game("[key_name(user)] anulował zlecenie [C.name] od [T]")
+				break
 		return TRUE
 	var/error = T.aq_accept_contract(params["id"], user)
 	if(error)
