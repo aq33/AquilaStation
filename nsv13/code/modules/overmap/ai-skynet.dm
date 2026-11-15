@@ -175,6 +175,10 @@ Adding tasks is easy! Just define a datum for it.
 	if(can_reinforce)
 		try_threat_elevation_reinforce()
 	var/course_picked_target = FALSE
+	if(!target) // AQ EDIT START - mapa hex: flota w drodze przez puste kafle idzie dalej do celu, który już wybrała (warunki cech floty sprawdza hex_continue_heading)
+		target = hex_continue_heading()
+		course_picked_target = !!target
+	// AQ EDIT END
 	if(!target)
 		if(goal_system)
 			if(current_system == goal_system)
@@ -241,6 +245,13 @@ Adding tasks is easy! Just define a datum for it.
 		if((interdict_return & (WEAK_INTERDICT|STRONG_INTERDICT)))
 			return FALSE
 
+	// AQ EDIT START - mapa hex: zamiast skoku wprost do celu flota przechodzi jeden kafel w jego stronę
+	var/datum/star_system/hex_final_target = target
+	var/datum/star_system/hex_left_system = current_system
+	target = hex_next_step(target)
+	if(!target) // brak trasy na mapie (np. zamknięta brama): flota zostaje, zamiast przeskoczyć bramę
+		return FALSE
+	// AQ EDIT END
 	current_system.fleets -= src
 	if(current_system.fleets?.len)
 		var/datum/fleet/F = pick(current_system.fleets)
@@ -258,7 +269,8 @@ Adding tasks is easy! Just define a datum for it.
 	target.fleets += src
 	shared_targets = list() // We just got here and don't know where anything is
 	current_system = target
-	target.alignment = alignment //We're occupying it
+	if(!hex_occupation_blocked(target)) // AQ EDIT - mapa hex: przy wrogiej flocie układ zajmie dopiero zwycięzca walki
+		target.alignment = alignment //We're occupying it
 	if(target.fleets?.len)
 		for(var/datum/fleet/F as() in target.fleets)
 			if(alignment != target.owner && !federation_check(target))
@@ -274,6 +286,9 @@ Adding tasks is easy! Just define a datum for it.
 	if(current_system.check_conflict_status())
 		if(!SSstar_system.contested_systems.Find(current_system))
 			SSstar_system.contested_systems.Add(current_system)
+	hex_after_step(hex_left_system) // AQ EDIT - mapa hex: pusty kafel, z którego flota wyszła, może oddać układ
+	if(current_system != hex_final_target) // AQ EDIT - mapa hex: flota jest dopiero w drodze do celu
+		return TRUE
 	if(course_picked_target)
 		plotted_course -= target
 	else if(plotted_course && plotted_course.len)	//We jumped. but didn't follow our course! Recalculate!

@@ -74,6 +74,8 @@ SUBSYSTEM_DEF(events)
 	for(var/datum/round_event_control/E in control)
 		if(!E.canSpawnEvent(players_amt, gamemode))
 			continue
+		if(!hex_random_event_allowed(E)) // AQ EDIT - mapa hex: środowisko i antagonistów dają kafle
+			continue
 		if(E.weight < 0)						//for round-start events etc.
 			var/res = TriggerEvent(E)
 			if(res == EVENT_INTERRUPTED)
