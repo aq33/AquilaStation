@@ -1042,6 +1042,7 @@
 #include "code\modules\overmap\hazards\hazard_zone.dm"
 #include "code\modules\overmap\hazards\hazard_types.dm"
 #include "code\modules\overmap\hazards\hazard_spawn.dm"
+#include "code\modules\overmap\terrain_background.dm"
 #include "code\modules\overmap\damage_control\dc_console.dm"
 #include "code\modules\overmap\damage_control\dc_locker.dm"
 #include "code\modules\paperwork\contract.dm"

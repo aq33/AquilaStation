@@ -1,6 +1,8 @@
 /// AQUILA - strefy zagrożeń na overmapie (aquila/code/modules/overmap/hazards/): szybki okręt w polu asteroid obrywa,
 /// wolny nie; mgławica i pole szczątków skracają zasięg wykrycia; AI zwalnia w polu; mgławica zakłóca radio;
-/// układ typu "debris" dostaje 1-3 pola, a układ startowy żadnej strefy.
+/// układ typu "debris" (teren pola asteroid) dostaje 1-3 pola, a układ startowy żadnej strefy; teren kafla mapy hex wygrywa
+/// z typem układu; strefa promieniowania zabija załogę okrętu AI, pole przyciągania ciągnie do środka; warstwa środkowa
+/// tła nakłada się dla każdego terenu.
 
 /// Bez uzbrojenia, żeby nic w teście nie strzelało
 /obj/structure/overmap/syndicate/ai/gunboat/hazard_test
@@ -23,7 +25,7 @@
 	observer = allocate(/obj/structure/overmap/small_craft/combat/light)
 	observer.faction = "nanotrasen"
 	ship.ai_controlled = FALSE
-	var/fail = check_speed_field() || check_concealment() || check_ai_speed_cap() || check_interference() || check_spawn()
+	var/fail = check_speed_field() || check_concealment() || check_ai_speed_cap() || check_interference() || check_spawn() || check_radiation() || check_gravity() || check_terrain_background()
 	GLOB.overmap_hazards_enabled = was_enabled
 	if(fail)
 		return Fail(fail)
@@ -120,7 +122,9 @@
 /datum/unit_test/aquila_overmap_hazards/proc/check_spawn()
 	var/datum/star_system/rocks = new /datum/star_system(name = "Unit Test Hazard Rocks", x = 1, y = 1, alignment = "unaligned", owner = "unaligned", sector = 2, adjacency_list = list(), system_type = list(tag = "debris"))
 	made_systems += rocks
-	var/list/zones = rocks.spawn_hazard_zones("debris")
+	if(rocks.hazard_terrain() != "meteor")
+		return "Układ typu debris ma teren [rocks.hazard_terrain()] zamiast pola asteroid (meteor)"
+	var/list/zones = rocks.spawn_hazard_zones(rocks.hazard_terrain())
 	if(length(zones) < 1 || length(zones) > 3)
 		return "Układ z polem asteroid dostał [length(zones)] stref (powinno być 1-3)"
 	for(var/obj/effect/overmap_anomaly/hazard/zone as anything in zones)
@@ -133,3 +137,59 @@
 	start.apply_system_effects()
 	for(var/obj/effect/overmap_anomaly/hazard/zone in start.system_contents)
 		return "W układzie startowym powstała strefa zagrożenia ([zone.name])"
+	// kafel mapy hex: teren kafla wygrywa z typem układu, a pusty kafel nie dostaje stref
+	rocks.hex_terrain_id = "empty"
+	if(length(rocks.spawn_hazard_zones(rocks.hazard_terrain())))
+		return "Pusty kafel dostał strefy zagrożeń"
+	rocks.hex_terrain_id = "rad"
+	var/list/rad_zones = rocks.spawn_hazard_zones(rocks.hazard_terrain())
+	if(!length(rad_zones) || !istype(rad_zones[1], /obj/effect/overmap_anomaly/hazard/radiation))
+		return "Kafel promieniowania nie dostał strefy promieniowania"
+	rocks.hex_terrain_id = null
+
+/datum/unit_test/aquila_overmap_hazards/proc/check_radiation()
+	var/datum/ship_modules/modules = ship.get_ship_modules()
+	if(!modules)
+		return "Kanonierka nie ma modułów"
+	var/obj/effect/overmap_anomaly/hazard/radiation/rad = place_zone(/obj/effect/overmap_anomaly/hazard/radiation)
+	var/before = 0
+	for(var/datum/ship_module/module as anything in modules.modules)
+		before += module.crew_lost
+	rad.affect_ship(ship)
+	var/after = 0
+	for(var/datum/ship_module/module as anything in modules.modules)
+		after += module.crew_lost
+	qdel(rad)
+	if(after <= before)
+		return "Strefa promieniowania nie zabiła nikogo z załogi okrętu AI"
+
+/datum/unit_test/aquila_overmap_hazards/proc/check_gravity()
+	var/obj/effect/overmap_anomaly/hazard/gravity_well/well = allocate(/obj/effect/overmap_anomaly/hazard/gravity_well)
+	well.forceMove(locate(ship.x + 5, ship.y, ship.z))
+	ship.velocity.a = 0
+	ship.velocity.e = 0
+	well.pull_ship(ship, 1)
+	var/pulled_x = ship.velocity.a
+	var/pulled_y = ship.velocity.e
+	ship.velocity.a = 0
+	ship.velocity.e = 0
+	qdel(well)
+	if(pulled_x <= 0 || abs(pulled_y) > 0.001)
+		return "Pole przyciągania nie ciągnie okrętu do środka (prędkość [pulled_x], [pulled_y])"
+
+/datum/unit_test/aquila_overmap_hazards/proc/check_terrain_background()
+	var/atom/movable/screen/parallax_layer/terrain_mid/mid = new(null, world.view)
+	for(var/terrain in list("meteor", "junk", "nebula", "estorm", "storm", "rad", "flare", "anom", "grav", "carp", "wh", "comet", "mines", "empty"))
+		mid.apply_terrain(terrain)
+		if(mid.terrain != terrain)
+			qdel(mid)
+			return "Warstwa tła nie przyjęła terenu [terrain]"
+	mid.apply_terrain("meteor")
+	var/has_dust = !!mid.particles
+	mid.apply_terrain(null)
+	var/leftovers = mid.particles || length(mid.overlays)
+	qdel(mid)
+	if(!has_dust)
+		return "Pole asteroid nie ma pyłu w warstwie tła"
+	if(leftovers)
+		return "Warstwa tła bez terenu dalej coś pokazuje"
