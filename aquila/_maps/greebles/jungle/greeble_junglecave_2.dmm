@@ -1,12 +1,5 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"b" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 8
-	},
-/obj/item/stack/tile/wood,
-/turf/open/floor/plating/asteroid/dirt/jungle,
-/area/template_noop)
-"h" = (
+"c" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 4
 	},
@@ -15,10 +8,57 @@
 	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308"
 	},
 /area/template_noop)
-"i" = (
-/turf/template_noop,
+"f" = (
+/turf/open/floor/plating/asteroid/dirt/jungle,
 /area/template_noop)
-"j" = (
+"g" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/obj/item/stack/tile/wood,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
+"h" = (
+/obj/structure/railing{
+	dir = 6
+	},
+/turf/closed/wall/mineral/wood,
+/area/template_noop)
+"i" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/obj/structure/flora/grass/jungle/b,
+/obj/structure/flora/rock/pile,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
+"l" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/item/stack/tile/wood,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
+"o" = (
+/obj/structure/flora/ash/tall_shroom,
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"p" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/turf/closed/mineral/random/planet_jungle,
+/area/template_noop)
+"r" = (
+/obj/structure/railing{
+	dir = 10
+	},
+/turf/closed/wall/mineral/wood,
+/area/template_noop)
+"x" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 8
 	},
@@ -27,90 +67,23 @@
 	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308"
 	},
 /area/template_noop)
-"k" = (
+"z" = (
 /obj/effect/turf_decal/siding/wood{
-	dir = 4
-	},
-/obj/item/stack/tile/wood,
-/turf/open/floor/plating/asteroid/dirt/jungle,
-/area/template_noop)
-"m" = (
-/obj/structure/flora/ash/stem_shroom,
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
-/area/template_noop)
-"n" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 4
+	dir = 8
 	},
 /turf/open/floor/wood{
 	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308"
 	},
-/area/template_noop)
-"s" = (
-/turf/open/floor/plating/asteroid/dirt/jungle,
-/area/template_noop)
-"x" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 8
-	},
-/obj/item/stack/ore/iron{
-	amount = 12
-	},
-/obj/effect/decal/cleanable/blood/old,
-/turf/open/floor/wood{
-	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308"
-	},
-/area/template_noop)
-"y" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 8
-	},
-/obj/structure/flora/ash/stem_shroom,
-/turf/open/floor/plating/asteroid/dirt/jungle,
 /area/template_noop)
 "B" = (
-/turf/closed/mineral/random/planet_jungle,
-/area/template_noop)
-"F" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 4
 	},
-/obj/structure/flora/grass/jungle/b,
-/obj/structure/flora/rock/pile,
-/turf/open/floor/plating/asteroid/dirt/jungle,
-/area/template_noop)
-"G" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 4
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308"
 	},
-/turf/closed/mineral/random/planet_jungle,
 /area/template_noop)
-"J" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 4
-	},
-/turf/open/floor/plating/asteroid/dirt/jungle,
-/area/template_noop)
-"K" = (
-/obj/structure/railing{
-	dir = 10
-	},
-/turf/closed/wall/mineral/wood,
-/area/template_noop)
-"M" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 8
-	},
-/turf/closed/mineral/random/planet_jungle,
-/area/template_noop)
-"N" = (
-/obj/structure/flora/ash/tall_shroom,
-/obj/effect/turf_decal/siding/wood{
-	dir = 4
-	},
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
-/area/template_noop)
-"P" = (
+"C" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 8
 	},
@@ -123,7 +96,35 @@
 	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308"
 	},
 /area/template_noop)
-"U" = (
+"F" = (
+/turf/closed/mineral/random/planet_jungle,
+/area/template_noop)
+"I" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/turf/closed/mineral/random/planet_jungle,
+/area/template_noop)
+"M" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/item/stack/ore/iron{
+	amount = 12
+	},
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308"
+	},
+/area/template_noop)
+"N" = (
+/obj/structure/flora/ash/stem_shroom,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"O" = (
+/turf/template_noop,
+/area/template_noop)
+"P" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 8
 	},
@@ -131,106 +132,105 @@
 /obj/structure/flora/rock/pile,
 /turf/open/floor/plating/asteroid/dirt/jungle,
 /area/template_noop)
-"V" = (
-/obj/structure/railing{
-	dir = 6
+"Q" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
 	},
-/turf/closed/wall/mineral/wood,
+/turf/open/floor/plating/asteroid/dirt/jungle,
 /area/template_noop)
-"X" = (
+"V" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 8
 	},
-/turf/open/floor/wood{
-	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308"
-	},
+/obj/structure/flora/ash/stem_shroom,
+/turf/open/floor/plating/asteroid/dirt/jungle,
 /area/template_noop)
 
 (1,1,1) = {"
-i
-i
-B
-B
-i
-i
-B
-i
-i
+O
+O
+F
+F
+O
+O
+F
+O
+O
 "}
 (2,1,1) = {"
-i
-B
-B
-B
-B
-B
-B
-B
-i
+O
+F
+F
+F
+F
+F
+F
+F
+O
 "}
 (3,1,1) = {"
-B
-V
-G
 F
-V
-G
-N
-V
+h
+I
 i
+h
+I
+o
+h
+O
 "}
 (4,1,1) = {"
-i
-s
-X
-b
-X
-j
+O
+f
+z
+l
+z
 x
-P
-s
+M
+C
+f
 "}
 (5,1,1) = {"
-i
-k
-J
-h
-J
-k
-n
-k
-i
+O
+g
+Q
+c
+Q
+g
+B
+g
+O
 "}
 (6,1,1) = {"
-B
-K
-M
-y
-K
-M
-U
-K
-m
+F
+r
+p
+V
+r
+p
+P
+r
+N
 "}
 (7,1,1) = {"
-i
-B
-B
-B
-B
-B
-B
-B
-i
+O
+F
+F
+F
+F
+F
+F
+F
+O
 "}
 (8,1,1) = {"
-i
-i
-B
-i
-i
-B
-B
-i
-i
+O
+O
+F
+O
+O
+F
+F
+O
+O
 "}

@@ -1,135 +1,135 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"f" = (
-/turf/closed/mineral/random/planet_jungle,
-/area/template_noop)
-"h" = (
+"a" = (
+/obj/effect/decal/cleanable/greenglow,
 /turf/open/water/planet/jungle,
 /area/template_noop)
-"j" = (
+"c" = (
+/obj/structure/flora/rock,
+/turf/open/water/planet/jungle,
+/area/template_noop)
+"f" = (
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"h" = (
+/turf/template_noop,
+/area/template_noop)
+"l" = (
+/turf/closed/mineral/random/planet_jungle,
+/area/template_noop)
+"s" = (
+/turf/open/water/planet/jungle,
+/area/template_noop)
+"z" = (
+/obj/structure/flora/rock,
+/obj/effect/decal/cleanable/greenglow,
+/turf/open/water/planet/jungle,
+/area/template_noop)
+"M" = (
 /obj/structure/glowshroom,
 /turf/open/floor/plating/asteroid/dirt/jungle/dark,
 /area/template_noop)
-"k" = (
-/turf/template_noop,
-/area/template_noop)
-"r" = (
-/obj/structure/flora/rock,
-/turf/open/water/planet/jungle,
-/area/template_noop)
-"u" = (
-/obj/effect/decal/cleanable/greenglow,
-/turf/open/water/planet/jungle,
-/area/template_noop)
-"x" = (
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
-/area/template_noop)
-"D" = (
+"N" = (
 /obj/structure/flora/ash/puce,
 /turf/open/floor/plating/asteroid/dirt/jungle/dark,
 /area/template_noop)
-"G" = (
+"Y" = (
 /obj/structure/flora/rock/pile,
-/turf/open/water/planet/jungle,
-/area/template_noop)
-"L" = (
-/obj/structure/flora/rock,
-/obj/effect/decal/cleanable/greenglow,
 /turf/open/water/planet/jungle,
 /area/template_noop)
 
 (1,1,1) = {"
-k
-k
-k
-f
-x
 h
 h
-x
+h
+l
 f
-k
+s
+s
+f
+l
+h
 "}
 (2,1,1) = {"
-k
-k
-f
-D
-h
-G
 h
 h
-D
-k
+l
+N
+s
+Y
+s
+s
+N
+h
 "}
 (3,1,1) = {"
-k
-k
-k
-h
-u
 h
 h
 h
-j
-f
+s
+a
+s
+s
+s
+M
+l
 "}
 (4,1,1) = {"
-k
+h
+l
 f
-x
-G
-u
-L
-G
-x
+Y
+a
+z
+Y
 f
-k
+l
+h
 "}
 (5,1,1) = {"
-f
-j
+l
+M
+s
+a
+a
+s
+s
 h
-u
-u
 h
 h
-k
-k
-k
 "}
 (6,1,1) = {"
-k
-x
 h
-r
-u
-h
-D
 f
-k
-k
+s
+c
+a
+s
+N
+l
+h
+h
 "}
 (7,1,1) = {"
-k
-k
-h
-G
 h
 h
-k
-k
-k
-k
+s
+Y
+s
+s
+h
+h
+h
+h
 "}
 (8,1,1) = {"
-k
-f
-D
+h
+l
+N
+s
+s
+M
+l
 h
 h
-j
-f
-k
-k
-k
+h
 "}

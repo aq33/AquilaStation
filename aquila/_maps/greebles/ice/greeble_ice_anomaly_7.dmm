@@ -1,131 +1,131 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"d" = (
-/obj/structure/flora/tree/pine,
-/turf/open/floor/plating/asteroid/snow/planet_ice,
-/area/template_noop)
-"i" = (
+"j" = (
 /turf/template_noop,
 /area/template_noop)
-"p" = (
-/obj/structure/flora/grass/brown,
-/turf/open/floor/plating/asteroid/snow/planet_ice,
+"o" = (
+/turf/open/floor/plating/asteroid/dirt/grass{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	 planetary_atmos = 1
+	},
 /area/template_noop)
-"s" = (
-/obj/structure/flora/ash/garden/frigid,
-/turf/open/floor/plating/asteroid/snow/planet_ice,
-/area/template_noop)
-"v" = (
+"q" = (
 /obj/effect/anomaly/hallucination/planetary,
 /turf/open/floor/plating/asteroid/dirt/grass{
 	initial_gas_mix = "o2=26;n2=104;TEMP=255";
 	 planetary_atmos = 1
 	},
 /area/template_noop)
-"E" = (
-/turf/open/floor/plating/asteroid/dirt/grass{
-	initial_gas_mix = "o2=26;n2=104;TEMP=255";
-	 planetary_atmos = 1
-	},
+"t" = (
+/obj/structure/flora/ash/garden/frigid,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
 /area/template_noop)
 "F" = (
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"I" = (
+/obj/structure/flora/tree/pine,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"J" = (
 /obj/structure/flora/grass/both,
 /turf/open/floor/plating/asteroid/snow/planet_ice,
 /area/template_noop)
-"V" = (
+"K" = (
+/obj/structure/flora/grass/brown,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"R" = (
 /turf/open/floor/concrete/slab_1{
 	initial_gas_mix = "o2=26;n2=104;TEMP=255";
 	 planetary_atmos = 1
 	},
 /area/template_noop)
-"Z" = (
-/turf/open/floor/plating/asteroid/snow/planet_ice,
-/area/template_noop)
 
 (1,1,1) = {"
-i
-Z
-Z
-Z
+j
 F
-Z
-i
-i
-i
+F
+F
+J
+F
+j
+j
+j
 "}
 (2,1,1) = {"
-Z
-Z
 F
-Z
-Z
-Z
-Z
-i
-i
+F
+J
+F
+F
+F
+F
+j
+j
 "}
 (3,1,1) = {"
-Z
-p
-d
-E
-E
-V
-Z
-Z
-i
+F
+K
+I
+o
+o
+R
+F
+F
+j
 "}
 (4,1,1) = {"
-Z
-Z
-E
-V
-E
-E
-V
-Z
-i
+F
+F
+o
+R
+o
+o
+R
+F
+j
 "}
 (5,1,1) = {"
+J
 F
-Z
-E
-E
-v
-E
-V
-Z
+o
+o
+q
+o
+R
 F
+J
 "}
 (6,1,1) = {"
-s
-Z
-E
-V
-E
-E
-V
-Z
-i
+t
+F
+o
+R
+o
+o
+R
+F
+j
 "}
 (7,1,1) = {"
-i
-Z
-Z
-E
-E
-V
-Z
-p
-i
+j
+F
+F
+o
+o
+R
+F
+K
+j
 "}
 (8,1,1) = {"
-i
-i
-Z
-Z
-Z
+j
+j
 F
-Z
-Z
-i
+F
+F
+J
+F
+F
+j
 "}

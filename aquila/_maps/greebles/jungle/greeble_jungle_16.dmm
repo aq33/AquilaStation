@@ -1,149 +1,149 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"m" = (
-/obj/structure/flora/rock/pile,
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
-/area/template_noop)
-"n" = (
-/obj/structure/flora/tree/jungle/small,
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
-/area/template_noop)
-"s" = (
-/obj/structure/flora/junglebush/large,
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
-/area/template_noop)
-"w" = (
-/obj/structure/flora/rock,
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
-/area/template_noop)
-"y" = (
-/obj/structure/flora/grass/jungle,
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
-/area/template_noop)
-"z" = (
-/obj/structure/flora/grass/jungle/b,
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/concrete/pavement{
-	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
-	 planetary_atmos = 1
-	},
-/area/template_noop)
-"A" = (
-/obj/structure/flora/grass/jungle/b,
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
-/area/template_noop)
-"C" = (
-/obj/effect/decal/cleanable/generic,
-/turf/open/floor/concrete/pavement{
-	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
-	 planetary_atmos = 1
-	},
-/area/template_noop)
-"F" = (
-/obj/item/pickaxe,
-/obj/structure/flora/grass/jungle/b,
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
-/area/template_noop)
-"G" = (
-/obj/structure/flora/grass/jungle/b,
-/obj/structure/flora/junglebush,
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
-/area/template_noop)
-"H" = (
-/obj/structure/flora/ash/garden,
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
-/area/template_noop)
-"J" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/concrete/pavement{
-	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
-	 planetary_atmos = 1
-	},
-/area/template_noop)
-"K" = (
+"b" = (
 /obj/item/shovel,
 /turf/open/floor/concrete/pavement{
 	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
 	 planetary_atmos = 1
 	},
 /area/template_noop)
-"M" = (
-/turf/open/floor/concrete/pavement{
-	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
-	 planetary_atmos = 1
-	},
-/area/template_noop)
-"O" = (
-/obj/structure/flora/junglebush/c,
+"c" = (
+/obj/structure/flora/grass/jungle,
 /turf/open/floor/plating/asteroid/dirt/jungle/dark,
 /area/template_noop)
-"P" = (
+"e" = (
+/obj/structure/flora/junglebush/large,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"h" = (
+/obj/structure/flora/tree/jungle/small,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"i" = (
+/obj/structure/flora/grass/jungle/b,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"k" = (
 /obj/structure/flora/grass/jungle/b,
 /turf/open/floor/concrete/pavement{
 	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
 	 planetary_atmos = 1
 	},
 /area/template_noop)
-"R" = (
+"n" = (
+/obj/structure/flora/junglebush/c,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"q" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"s" = (
+/obj/structure/flora/ash/garden,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"t" = (
+/obj/effect/decal/cleanable/generic,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"C" = (
 /obj/structure/flora/rock/jungle,
 /turf/open/floor/plating/asteroid/dirt/jungle/dark,
 /area/template_noop)
-"V" = (
+"D" = (
+/obj/structure/flora/grass/jungle/b,
+/obj/structure/flora/junglebush,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"K" = (
+/obj/structure/flora/rock/pile,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"L" = (
 /turf/template_noop,
+/area/template_noop)
+"P" = (
+/obj/structure/flora/grass/jungle/b,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"S" = (
+/obj/structure/flora/rock,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"U" = (
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"X" = (
+/obj/item/pickaxe,
+/obj/structure/flora/grass/jungle/b,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
 /area/template_noop)
 
 (1,1,1) = {"
-V
-R
-P
-w
-V
+L
+C
+k
+S
+L
 "}
 (2,1,1) = {"
-V
-P
-J
-m
-O
+L
+k
+q
+K
+n
 "}
 (3,1,1) = {"
-n
-C
-P
-y
-H
+h
+t
+k
+c
+s
 "}
 (4,1,1) = {"
-s
-m
-J
+e
 K
-R
+q
+b
+C
 "}
 (5,1,1) = {"
-V
-z
-C
-z
-A
+L
+P
+t
+P
+i
 "}
 (6,1,1) = {"
-R
-M
-P
-G
-V
+C
+U
+k
+D
+L
 "}
 (7,1,1) = {"
-y
-F
-M
-z
-y
+c
+X
+U
+P
+c
 "}
 (8,1,1) = {"
-V
-w
-C
-s
-V
+L
+S
+t
+e
+L
 "}

@@ -202,6 +202,7 @@ def decal(path, vars_, mapname):
 
 
 MISSING = set()
+MISSING_VALUES = set()
 
 def clean_vars(vars_, keep_icon_state):
     out = collections.OrderedDict()
@@ -212,6 +213,14 @@ def clean_vars(vars_, keep_icon_state):
         # kanistra) pomijamy w całości, zostaje wartość domyślna typu
         if not re.match(r'^[A-Za-z_][A-Za-z0-9_]*$', k) or (v.count('(') != v.count(')')):
             continue
+        # wartość będąca ścieżką typu, którego nie mamy (strój zwłok, broń na stojaku): zamiennik albo bez zmiennej
+        if v in MISSING_VALUES:
+            target = R.get(v)
+            if isinstance(target, tuple):
+                target = target[0]
+            if not target:
+                continue
+            v = target
         if v == '/datum/species/spider':  # rachnidzi z Shiptesta, u nas brak tej rasy
             v = '/datum/species/human'
         if v == '/obj/item/gem/amber':  # klejnot w gablocie -> złoto
@@ -400,6 +409,18 @@ def collect_missing(maps, ours):
     return missing
 
 
+def collect_missing_values(maps, ours):
+    """Ścieżki typów użyte jako wartości zmiennych na mapach, których u nas nie ma."""
+    missing = set()
+    for m in maps:
+        for tile in m.dictionary.values():
+            for a in tile:
+                for value in dmmlib.parse_map_atom(a)[1].values():
+                    if re.match(r'^/[\w/]+$', value) and value not in ours and not value.startswith(MACRO_PREFIXES):
+                        missing.add(value)
+    return missing
+
+
 def main():
     global MISSING
     parser = argparse.ArgumentParser(description='Konwersja map Shiptesta na nasz kod')
@@ -419,6 +440,7 @@ def main():
         pairs.append((src, dst or os.path.splitext(os.path.basename(src))[0]))
     loaded = [(dmmlib.DMM.from_file(src), src, dst) for src, dst in pairs]
     MISSING = collect_missing([m for m, _, _ in loaded], ours)
+    MISSING_VALUES.update(collect_missing_values([m for m, _, _ in loaded], ours))
     # Moduły zamienników mogą same dobrać zamienniki dla brakujących ścieżek (resolve(missing, ours), np. mappings/auto.py)
     for module in modules:
         if hasattr(module, 'resolve'):

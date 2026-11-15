@@ -1,128 +1,128 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"a" = (
-/obj/structure/flora/ausbushes/sparsegrass,
+"h" = (
+/obj/structure/flora/tree/dead/tall,
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
-"e" = (
-/obj/structure/flora/rock/pile/lava{
-	pixel_x = 6;
-	 pixel_y = 6
-	},
-/turf/open/floor/plating/ice/planet_ice,
+"l" = (
+/mob/living/basic/mining/goliath/crystal,
+/turf/open/floor/plating/asteroid/icerock/cracked,
 /area/template_noop)
-"f" = (
+"p" = (
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
+"r" = (
 /obj/structure/flora/rock/pile/lava{
 	pixel_x = 4;
 	 pixel_y = 5
 	},
 /turf/open/floor/plating/ice/planet_ice,
 /area/template_noop)
-"n" = (
-/obj/structure/flora/tree/dead/tall,
-/turf/open/floor/plating/asteroid/icerock,
+"s" = (
+/obj/structure/flora/rock/pile/lava{
+	pixel_x = 6;
+	 pixel_y = 6
+	},
+/turf/open/floor/plating/ice/planet_ice,
 /area/template_noop)
-"t" = (
-/turf/open/floor/plating/asteroid/icerock/cracked,
-/area/template_noop)
-"u" = (
+"w" = (
 /obj/structure/flora/rock/pile/lava{
 	pixel_x = 3;
 	 pixel_y = -5
 	},
 /turf/open/floor/plating/ice/planet_ice,
 /area/template_noop)
-"y" = (
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"A" = (
+"G" = (
 /turf/template_noop,
 /area/template_noop)
-"P" = (
-/mob/living/basic/mining/goliath/crystal,
-/turf/open/floor/plating/asteroid/icerock/cracked,
+"H" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
-"Z" = (
+"L" = (
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"Q" = (
 /turf/open/floor/plating/ice/planet_ice,
 /area/template_noop)
 
 (1,1,1) = {"
-A
-A
-y
-a
-t
-Z
-A
+G
+G
+L
+H
+p
+Q
+G
 "}
 (2,1,1) = {"
-A
-A
-n
-y
-t
-e
-Z
+G
+G
+h
+L
+p
+s
+Q
 "}
 (3,1,1) = {"
-A
-a
-y
-y
-Z
-Z
-t
+G
+H
+L
+L
+Q
+Q
+p
 "}
 (4,1,1) = {"
-A
-y
-y
-f
-Z
-P
-t
+G
+L
+L
+r
+Q
+l
+p
 "}
 (5,1,1) = {"
-y
-y
-t
-Z
-Z
-t
-t
+L
+L
+p
+Q
+Q
+p
+p
 "}
 (6,1,1) = {"
-y
-n
-t
-t
-u
-y
-a
+L
+h
+p
+p
+w
+L
+H
 "}
 (7,1,1) = {"
-A
-y
-t
-t
-t
-y
-n
+G
+L
+p
+p
+p
+L
+h
 "}
 (8,1,1) = {"
-A
-a
-y
-n
-y
-y
-y
+G
+H
+L
+h
+L
+L
+L
 "}
 (9,1,1) = {"
-A
-A
-y
-a
-A
-A
-A
+G
+G
+L
+H
+G
+G
+G
 "}

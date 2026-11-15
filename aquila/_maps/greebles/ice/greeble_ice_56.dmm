@@ -1,99 +1,99 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"r" = (
-/turf/closed/mineral/planet_ice_wall,
-/area/template_noop)
-"S" = (
+"a" = (
 /turf/template_noop,
 /area/template_noop)
-"Z" = (
+"m" = (
 /turf/open/floor/plating/asteroid/iceberg,
+/area/template_noop)
+"H" = (
+/turf/closed/mineral/planet_ice_wall,
 /area/template_noop)
 
 (1,1,1) = {"
-S
-r
-r
-Z
-S
-r
-r
-r
-S
+a
+H
+H
+m
+a
+H
+H
+H
+a
 "}
 (2,1,1) = {"
-S
-r
-r
-Z
-Z
-Z
-Z
-r
-r
+a
+H
+H
+m
+m
+m
+m
+H
+H
 "}
 (3,1,1) = {"
-S
-Z
-Z
-Z
-r
-r
-Z
-Z
-r
+a
+m
+m
+m
+H
+H
+m
+m
+H
 "}
 (4,1,1) = {"
-r
-r
-r
-Z
-Z
-Z
-r
-Z
-r
+H
+H
+H
+m
+m
+m
+H
+m
+H
 "}
 (5,1,1) = {"
-S
-Z
-r
-Z
-r
-Z
-r
-Z
-S
+a
+m
+H
+m
+H
+m
+H
+m
+a
 "}
 (6,1,1) = {"
-r
-Z
-r
-Z
-Z
-Z
-Z
-Z
-S
+H
+m
+H
+m
+m
+m
+m
+m
+a
 "}
 (7,1,1) = {"
-r
-Z
-Z
-Z
-r
-S
-Z
-S
-S
+H
+m
+m
+m
+H
+a
+m
+a
+a
 "}
 (8,1,1) = {"
-S
-Z
-r
-r
-r
-S
-S
-S
-S
+a
+m
+H
+H
+H
+a
+a
+a
+a
 "}

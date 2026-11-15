@@ -1,126 +1,126 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"a" = (
+"f" = (
+/obj/structure/flora/ash/leaf_shroom,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/template_noop)
+"j" = (
 /obj/structure/flora/rock/jungle,
 /turf/open/floor/plating/asteroid/dirt/grass/jungle,
 /area/template_noop)
-"c" = (
+"s" = (
 /obj/structure/flora/ash/tall_shroom,
 /turf/open/floor/plating/asteroid/dirt/jungle,
 /area/template_noop)
-"k" = (
+"v" = (
+/obj/structure/flora/ash/leaf_shroom,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
+"B" = (
 /obj/structure/flora/ash/stem_shroom,
 /turf/open/floor/plating/asteroid/dirt/jungle,
 /area/template_noop)
-"m" = (
-/turf/closed/mineral/random/planet_jungle,
-/area/template_noop)
-"w" = (
-/turf/open/water/planet/jungle,
-/area/template_noop)
-"x" = (
+"L" = (
 /obj/structure/flora/junglebush,
 /turf/open/floor/plating/asteroid/dirt/grass/jungle,
 /area/template_noop)
-"G" = (
-/obj/structure/flora/ash/leaf_shroom,
-/turf/open/floor/plating/asteroid/dirt/grass/jungle,
-/area/template_noop)
-"L" = (
-/obj/structure/flora/ash/leaf_shroom,
-/turf/open/floor/plating/asteroid/dirt/jungle,
-/area/template_noop)
-"O" = (
+"N" = (
 /obj/structure/flora/ash/cap_shroom,
 /turf/open/floor/plating/asteroid/dirt/jungle,
 /area/template_noop)
-"R" = (
-/turf/template_noop,
+"O" = (
+/turf/open/water/planet/jungle,
+/area/template_noop)
+"Q" = (
+/turf/closed/mineral/random/planet_jungle,
 /area/template_noop)
 "U" = (
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
+"V" = (
 /obj/structure/flora/rock,
 /turf/open/floor/plating/asteroid/dirt/grass/jungle,
 /area/template_noop)
-"Z" = (
-/turf/open/floor/plating/asteroid/dirt/jungle,
+"Y" = (
+/turf/template_noop,
 /area/template_noop)
 
 (1,1,1) = {"
-R
-m
-m
-Z
-m
-m
-m
-R
+Y
+Q
+Q
+U
+Q
+Q
+Q
+Y
 "}
 (2,1,1) = {"
-m
-m
-Z
-c
-O
-m
-L
-m
+Q
+Q
+U
+s
+N
+Q
+v
+Q
 "}
 (3,1,1) = {"
-R
-c
-L
-U
-c
-O
-c
-m
+Y
+s
+v
+V
+s
+N
+s
+Q
 "}
 (4,1,1) = {"
-m
-Z
-x
-w
-G
-a
-k
-Z
+Q
+U
+L
+O
+f
+j
+B
+U
 "}
 (5,1,1) = {"
-R
-m
-k
-a
+Y
+Q
+B
+j
+V
+N
 U
-O
-Z
-m
+Q
 "}
 (6,1,1) = {"
-m
-c
-Z
-L
-k
-c
-m
-m
+Q
+s
+U
+v
+B
+s
+Q
+Q
 "}
 (7,1,1) = {"
-m
-m
-O
-m
-m
-Z
-m
-R
+Q
+Q
+N
+Q
+Q
+U
+Q
+Y
 "}
 (8,1,1) = {"
-R
-m
-m
-R
-m
-m
-R
-R
+Y
+Q
+Q
+Y
+Q
+Q
+Y
+Y
 "}

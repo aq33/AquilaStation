@@ -1,54 +1,5 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"b" = (
-/obj/item/stack/ore/iron{
-	amount = 5
-	},
-/turf/open/floor/plating/asteroid/dirt/jungle,
-/area/template_noop)
-"i" = (
-/turf/closed/mineral/random/planet_jungle,
-/area/template_noop)
-"j" = (
-/obj/effect/decal/cleanable/oil,
-/turf/open/floor/plating/asteroid/dirt/jungle,
-/area/template_noop)
-"n" = (
-/turf/open/floor/plating/asteroid/dirt/jungle,
-/area/template_noop)
-"s" = (
-/obj/structure/sink,
-/obj/item/shovel,
-/turf/open/floor/plating/asteroid/dirt/jungle,
-/area/template_noop)
-"w" = (
-/obj/effect/decal/cleanable/oil/streak,
-/turf/open/floor/plating/asteroid/dirt/jungle,
-/area/template_noop)
-"x" = (
-/obj/structure/flora/rock,
-/turf/open/floor/plating/asteroid/dirt/jungle,
-/area/template_noop)
-"z" = (
-/turf/template_noop,
-/area/template_noop)
-"A" = (
-/obj/structure/flora/rock/pile,
-/turf/open/floor/plating/asteroid/dirt/jungle,
-/area/template_noop)
-"E" = (
-/obj/structure/sink,
-/turf/open/floor/plating/asteroid/dirt/jungle,
-/area/template_noop)
-"G" = (
-/obj/item/clothing/head/hardhat,
-/turf/open/floor/plating/asteroid/dirt/jungle,
-/area/template_noop)
-"O" = (
-/obj/structure/sink,
-/obj/structure/girder,
-/turf/open/floor/plating/asteroid/dirt/jungle,
-/area/template_noop)
-"Q" = (
+"a" = (
 /obj/effect/decal/cleanable/oil,
 /obj/item/stack/cable_coil/cut,
 /obj/item/stack/ore/iron{
@@ -56,60 +7,109 @@
 	},
 /turf/open/floor/plating/asteroid/dirt/jungle,
 /area/template_noop)
+"g" = (
+/obj/structure/flora/rock/pile,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
+"n" = (
+/turf/closed/mineral/random/planet_jungle,
+/area/template_noop)
+"o" = (
+/obj/effect/decal/cleanable/oil/streak,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
+"p" = (
+/obj/effect/decal/cleanable/oil,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
+"y" = (
+/obj/structure/sink,
+/obj/item/shovel,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
+"A" = (
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
+"B" = (
+/obj/item/stack/ore/iron{
+	amount = 5
+	},
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
+"C" = (
+/obj/structure/flora/rock,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
+"R" = (
+/obj/structure/sink,
+/obj/structure/girder,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
+"T" = (
+/obj/structure/sink,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
+"V" = (
+/turf/template_noop,
+/area/template_noop)
+"W" = (
+/obj/item/clothing/head/hardhat,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
 
 (1,1,1) = {"
-z
-z
-z
-i
-i
-z
+V
+V
+V
+n
+n
+V
 "}
 (2,1,1) = {"
-z
-i
+V
 n
 A
-i
-i
+g
+n
+n
 "}
 (3,1,1) = {"
-i
-i
-E
 n
-b
 n
+T
+A
+B
+A
 "}
 (4,1,1) = {"
-i
-G
-x
-j
-s
-A
+n
+W
+C
+p
+y
+g
 "}
 (5,1,1) = {"
+g
+A
+a
+o
 A
 n
-Q
-w
-n
-i
 "}
 (6,1,1) = {"
-i
-i
-O
 n
-i
-i
+n
+R
+A
+n
+n
 "}
 (7,1,1) = {"
-z
-i
-i
-j
-z
-z
+V
+n
+n
+p
+V
+V
 "}

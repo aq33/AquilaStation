@@ -1,13 +1,35 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"a" = (
-/obj/effect/decal/cleanable/blood/tracks,
+"b" = (
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
-"j" = (
+"d" = (
 /obj/structure/flora/ausbushes/sparsegrass,
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
-"k" = (
+"j" = (
+/turf/template_noop,
+/area/template_noop)
+"t" = (
+/obj/effect/decal/cleanable/vomit/old{
+	pixel_x = -5
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"z" = (
+/obj/machinery/shower{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/glass,
+/obj/machinery/light/small/broken{
+	dir = 1
+	},
+/turf/open/floor/plasteel/freezer,
+/area/template_noop)
+"E" = (
+/mob/living/basic/mining/wolf,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"K" = (
 /obj/effect/turf_decal/siding/thinplating{
 	dir = 4
 	},
@@ -46,23 +68,7 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plasteel,
 /area/template_noop)
-"p" = (
-/obj/effect/decal/cleanable/vomit/old{
-	pixel_x = -5
-	},
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"t" = (
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"w" = (
-/mob/living/basic/mining/wolf,
-/obj/effect/decal/cleanable/vomit/old{
-	pixel_x = -5
-	},
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"y" = (
+"M" = (
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -75,170 +81,164 @@
 /obj/effect/decal/cleanable/blood/tracks,
 /turf/open/floor/plasteel/dark,
 /area/template_noop)
-"B" = (
+"O" = (
 /turf/closed/mineral/random/planet_ice,
 /area/template_noop)
-"E" = (
+"R" = (
 /mob/living/basic/mining/wolf,
+/obj/effect/decal/cleanable/vomit/old{
+	pixel_x = -5
+	},
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
-"I" = (
-/turf/closed/wall,
-/area/template_noop)
-"K" = (
-/obj/machinery/shower{
-	dir = 8
-	},
-/obj/effect/decal/cleanable/glass,
-/obj/machinery/light/small/broken{
-	dir = 1
-	},
-/turf/open/floor/plasteel/freezer,
+"S" = (
+/obj/effect/decal/cleanable/blood/tracks,
+/turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
 "W" = (
-/turf/template_noop,
+/turf/closed/wall,
 /area/template_noop)
 
 (1,1,1) = {"
-W
-W
-W
-W
-B
-B
-W
-W
-W
-W
-W
+j
+j
+j
+j
+O
+O
+j
+j
+j
+j
+j
 "}
 (2,1,1) = {"
-W
-W
-W
-B
-B
-B
-B
-B
-B
-W
-W
+j
+j
+j
+O
+O
+O
+O
+O
+O
+j
+j
 "}
 (3,1,1) = {"
-W
-W
-B
-B
-B
-B
-B
-B
-B
-B
-W
+j
+j
+O
+O
+O
+O
+O
+O
+O
+O
+j
 "}
 (4,1,1) = {"
-W
-B
-B
-B
-B
-B
-B
-B
-B
-B
 j
+O
+O
+O
+O
+O
+O
+O
+O
+O
+d
 "}
 (5,1,1) = {"
-B
-B
-B
-B
-B
-I
-I
-I
-B
+O
+O
+O
+O
+O
+W
+W
+W
+O
 E
-p
+t
 "}
 (6,1,1) = {"
-B
-B
-B
-B
-B
-I
-k
-y
-a
-a
-a
+O
+O
+O
+O
+O
+W
+K
+M
+S
+S
+S
 "}
 (7,1,1) = {"
-B
-B
-B
-B
-B
-I
-K
-I
-j
-j
-t
+O
+O
+O
+O
+O
+W
+z
+W
+d
+d
+b
 "}
 (8,1,1) = {"
-B
-B
-B
-B
-B
-I
-I
-I
-w
-t
+O
+O
+O
+O
+O
 W
+W
+W
+R
+b
+j
 "}
 (9,1,1) = {"
-W
-B
-B
-B
-B
-B
-B
-B
 j
-t
-W
+O
+O
+O
+O
+O
+O
+O
+d
+b
+j
 "}
 (10,1,1) = {"
-W
-W
-B
-B
-B
-B
-B
-W
-W
-W
-W
+j
+j
+O
+O
+O
+O
+O
+j
+j
+j
+j
 "}
 (11,1,1) = {"
-W
-W
-B
-B
-B
-B
-W
-W
-W
-W
-W
+j
+j
+O
+O
+O
+O
+j
+j
+j
+j
+j
 "}

@@ -1,5 +1,25 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"a" = (
+"e" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/plating/asteroid/dirt{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"f" = (
+/obj/structure/flora/ausbushes/palebush,
+/turf/open/floor/plating/asteroid/dirt{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"i" = (
+/turf/open/floor/plating/asteroid/dirt{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"j" = (
 /obj/effect/anomaly/chronograph/planetary,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating/asteroid/dirt{
@@ -7,7 +27,14 @@
 	 planetary_atmos = 1
 	},
 /area/template_noop)
-"b" = (
+"l" = (
+/obj/structure/flora/stump,
+/turf/open/floor/plating/asteroid/dirt{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"m" = (
 /obj/effect/decal/remains/human,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/ash/large,
@@ -16,20 +43,15 @@
 	 planetary_atmos = 1
 	},
 /area/template_noop)
-"c" = (
+"o" = (
+/obj/effect/decal/remains/human,
+/obj/effect/decal/cleanable/ash/large,
 /turf/open/floor/plating/asteroid/dirt{
 	initial_gas_mix = "o2=26;n2=104;TEMP=255";
 	 planetary_atmos = 1
 	},
 /area/template_noop)
-"d" = (
-/obj/structure/flora/ausbushes/palebush,
-/turf/open/floor/plating/asteroid/dirt{
-	initial_gas_mix = "o2=26;n2=104;TEMP=255";
-	 planetary_atmos = 1
-	},
-/area/template_noop)
-"g" = (
+"p" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/flora/stump,
 /obj/structure/flora/ausbushes/sparsegrass,
@@ -38,10 +60,38 @@
 	 planetary_atmos = 1
 	},
 /area/template_noop)
-"m" = (
-/turf/template_noop,
+"q" = (
+/obj/structure/flora/tree/jungle{
+	pixel_y = -4
+	},
+/turf/open/floor/plating/asteroid/dirt{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	 planetary_atmos = 1
+	},
 /area/template_noop)
 "r" = (
+/turf/template_noop,
+/area/template_noop)
+"u" = (
+/obj/effect/decal/remains/human,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/ash/large,
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/plating/asteroid/dirt{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"w" = (
+/obj/structure/flora/tree/jungle,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/plating/asteroid/dirt{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"y" = (
 /obj/structure/flora/tree/jungle{
 	pixel_x = -10;
 	 pixel_y = -3
@@ -52,103 +102,53 @@
 	 planetary_atmos = 1
 	},
 /area/template_noop)
-"s" = (
+"B" = (
+/mob/living/basic/mining/wolf/random,
+/turf/open/floor/plating/asteroid/dirt{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"C" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/asteroid/dirt{
-	initial_gas_mix = "o2=26;n2=104;TEMP=255";
-	 planetary_atmos = 1
-	},
-/area/template_noop)
-"x" = (
-/obj/structure/flora/ausbushes/leafybush,
-/turf/open/floor/plating/asteroid/dirt{
-	initial_gas_mix = "o2=26;n2=104;TEMP=255";
-	 planetary_atmos = 1
-	},
-/area/template_noop)
-"E" = (
-/obj/structure/flora/tree/jungle{
-	pixel_y = -4
-	},
+/obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating/asteroid/dirt{
 	initial_gas_mix = "o2=26;n2=104;TEMP=255";
 	 planetary_atmos = 1
 	},
 /area/template_noop)
 "F" = (
-/mob/living/basic/mining/wolf/random,
-/turf/open/floor/plating/asteroid/dirt{
-	initial_gas_mix = "o2=26;n2=104;TEMP=255";
-	 planetary_atmos = 1
-	},
-/area/template_noop)
-"G" = (
 /obj/structure/flora/tree/jungle,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/flora/ausbushes/sparsegrass,
 /turf/open/floor/plating/asteroid/dirt{
 	initial_gas_mix = "o2=26;n2=104;TEMP=255";
 	 planetary_atmos = 1
 	},
 /area/template_noop)
-"I" = (
-/obj/structure/flora/ausbushes/sparsegrass,
-/turf/open/floor/plating/asteroid/dirt{
-	initial_gas_mix = "o2=26;n2=104;TEMP=255";
-	 planetary_atmos = 1
-	},
-/area/template_noop)
-"J" = (
-/obj/effect/decal/cleanable/dirt/dust,
+"N" = (
 /obj/structure/flora/ausbushes/leafybush,
 /turf/open/floor/plating/asteroid/dirt{
 	initial_gas_mix = "o2=26;n2=104;TEMP=255";
 	 planetary_atmos = 1
 	},
 /area/template_noop)
-"K" = (
-/obj/structure/flora/stump,
-/turf/open/floor/plating/asteroid/dirt{
-	initial_gas_mix = "o2=26;n2=104;TEMP=255";
-	 planetary_atmos = 1
-	},
-/area/template_noop)
-"M" = (
-/obj/effect/decal/remains/human,
-/obj/effect/decal/cleanable/ash/large,
-/turf/open/floor/plating/asteroid/dirt{
-	initial_gas_mix = "o2=26;n2=104;TEMP=255";
-	 planetary_atmos = 1
-	},
-/area/template_noop)
 "O" = (
-/obj/structure/flora/tree/jungle,
-/turf/open/floor/plating/asteroid/dirt{
-	initial_gas_mix = "o2=26;n2=104;TEMP=255";
-	 planetary_atmos = 1
-	},
-/area/template_noop)
-"T" = (
-/obj/effect/decal/remains/human,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/ash/large,
-/obj/structure/flora/ausbushes/sparsegrass,
-/turf/open/floor/plating/asteroid/dirt{
-	initial_gas_mix = "o2=26;n2=104;TEMP=255";
-	 planetary_atmos = 1
-	},
-/area/template_noop)
-"U" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/asteroid/dirt{
-	initial_gas_mix = "o2=26;n2=104;TEMP=255";
-	 planetary_atmos = 1
-	},
-/area/template_noop)
-"X" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /mob/living/basic/mining/wolf/random,
+/turf/open/floor/plating/asteroid/dirt{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"P" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/asteroid/dirt{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"V" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/flora/ausbushes/leafybush,
 /turf/open/floor/plating/asteroid/dirt{
 	initial_gas_mix = "o2=26;n2=104;TEMP=255";
 	 planetary_atmos = 1
@@ -156,101 +156,101 @@
 /area/template_noop)
 
 (1,1,1) = {"
-m
 r
-s
-I
-c
-m
-m
-m
-m
+y
+P
+e
+i
+r
+r
+r
+r
 "}
 (2,1,1) = {"
-m
-c
-I
-x
-c
-O
-c
-m
-m
+r
+i
+e
+N
+i
+F
+i
+r
+r
 "}
 (3,1,1) = {"
-c
-K
-X
-s
-U
-s
-I
-c
-c
+i
+l
+O
+P
+C
+P
+e
+i
+i
 "}
 (4,1,1) = {"
-E
-c
-c
-M
-s
-g
-c
-O
-c
+q
+i
+i
+o
+P
+p
+i
+F
+i
 "}
 (5,1,1) = {"
-J
-I
-s
-d
-a
-c
-T
-c
-I
+V
+e
+P
+f
+j
+i
+u
+i
+e
 "}
 (6,1,1) = {"
-c
-s
-M
-K
-c
-s
-s
-K
-c
+i
+P
+o
+l
+i
+P
+P
+l
+i
 "}
 (7,1,1) = {"
-c
-G
-c
-s
-b
-I
-x
-c
-c
+i
+w
+i
+P
+m
+e
+N
+i
+i
 "}
 (8,1,1) = {"
-m
-c
-I
+r
+i
+e
+B
+l
+i
+e
 F
-K
-c
-I
-O
-m
+r
 "}
 (9,1,1) = {"
-m
-m
-c
-I
-c
-c
-m
-m
-m
+r
+r
+i
+e
+i
+i
+r
+r
+r
 "}

@@ -1,77 +1,40 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/obj/item/stack/cable_coil/cut,
-/obj/item/wallframe/airalarm{
-	pixel_x = 5;
-	pixel_y = 8
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 10
 	},
-/obj/item/kitchen/knife/combat/survival{
-	pixel_x = -5;
-	pixel_y = 13
-	},
+/obj/effect/decal/cleanable/glass,
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/shreds,
-/turf/open/floor/plasteel,
+/obj/effect/decal/remains/human,
+/obj/item/clothing/under/shorts{
+	pixel_y = -4;
+	pixel_x = -6
+	},
+/obj/item/clothing/suit/jacket/miljacket{
+	pixel_y = 6;
+	pixel_x = 8
+	},
+/turf/open/floor/plasteel/dark,
 /area/template_noop)
 "d" = (
-/turf/template_noop,
+/turf/closed/mineral/random/planet_ice,
 /area/template_noop)
-"g" = (
-/turf/closed/wall/r_wall/rust,
-/area/template_noop)
-"h" = (
+"e" = (
 /obj/structure/chair/fancy/shuttle{
 	dir = 1
 	},
-/obj/machinery/firealarm/directional/south,
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 4
 	},
-/obj/item/wallframe/airalarm{
-	pixel_x = -18;
-	pixel_y = 6
-	},
+/obj/effect/decal/cleanable/glass,
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/shreds,
+/obj/effect/decal/cleanable/vomit/old,
 /turf/open/floor/plasteel/dark,
 /area/template_noop)
-"i" = (
-/obj/structure/closet/secure_closet{
-	anchored = 1;
-	can_be_unanchored = 1;
-	name = "szafka pierwszego oficera"
-	},
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/sign/poster/contraband/random{
-	pixel_y = 28
-	},
-/turf/open/floor/plasteel/dark,
+"j" = (
+/turf/closed/mineral/planet_ice_wall,
 /area/template_noop)
-"l" = (
-/obj/structure/lattice/catwalk/over/ship,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/structure/cable,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/shreds,
-/turf/open/floor/plating/rust{
-	initial_gas_mix = "o2=26;n2=104;TEMP=255"
-	},
-/area/template_noop)
-"n" = (
-/turf/closed/mineral/random/planet_ice,
-/area/template_noop)
-"s" = (
-/obj/structure/grille,
-/obj/machinery/door/poddoor/shutters{
-	id = "falmouth_windows";
-	name = "rolety przeciwwybuchowe"
-	},
-/turf/open/floor/plating,
-/area/template_noop)
-"v" = (
+"k" = (
 /obj/machinery/modular_computer/console/preset/command,
 /obj/structure/railing{
 	dir = 5
@@ -89,36 +52,16 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plasteel,
 /area/template_noop)
-"w" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 1
+"l" = (
+/obj/structure/grille,
+/obj/machinery/door/poddoor/shutters{
+	id = "falmouth_windows";
+	name = "rolety przeciwwybuchowe";
+	dir = 8
 	},
-/obj/item/wallframe/apc{
-	pixel_x = 11;
-	pixel_y = -6
-	},
-/obj/effect/decal/cleanable/glass,
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plasteel/stairs{
-	icon = 'icons/obj/stairs.dmi'
-	},
+/turf/open/floor/plating,
 /area/template_noop)
-"y" = (
-/obj/machinery/door/airlock/command{
-	name = "Mostek";
-	req_access_txt = "19"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 1
-	},
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/turf/open/floor/plasteel/dark,
-/area/template_noop)
-"A" = (
-/turf/closed/wall/r_wall,
-/area/template_noop)
-"E" = (
+"q" = (
 /obj/structure/lattice/catwalk/over/ship,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 1
@@ -129,28 +72,24 @@
 	initial_gas_mix = "o2=26;n2=104;TEMP=255"
 	},
 /area/template_noop)
-"G" = (
-/obj/structure/grille,
-/obj/machinery/door/poddoor/shutters{
-	id = "falmouth_windows";
-	name = "rolety przeciwwybuchowe";
-	dir = 8
+"s" = (
+/obj/item/stack/cable_coil/cut,
+/obj/item/wallframe/airalarm{
+	pixel_x = 5;
+	pixel_y = 8
 	},
-/turf/open/floor/plating,
-/area/template_noop)
-"K" = (
-/obj/structure/chair/fancy/shuttle{
-	dir = 1
+/obj/item/kitchen/knife/combat/survival{
+	pixel_x = -5;
+	pixel_y = 13
 	},
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
-	dir = 4
-	},
-/obj/effect/decal/cleanable/glass,
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/vomit/old,
-/turf/open/floor/plasteel/dark,
+/obj/effect/decal/cleanable/shreds,
+/turf/open/floor/plasteel,
 /area/template_noop)
-"N" = (
+"t" = (
+/turf/closed/wall/r_wall/rust,
+/area/template_noop)
+"v" = (
 /obj/structure/guncase{
 	anchored = 1;
 	can_be_unanchored = 1;
@@ -161,15 +100,34 @@
 /obj/effect/decal/cleanable/shreds,
 /turf/open/floor/plasteel/dark,
 /area/template_noop)
-"P" = (
-/obj/structure/frame/computer{
-	anchored = 1
+"y" = (
+/obj/structure/chair/fancy/shuttle{
+	dir = 1
 	},
-/obj/effect/decal/cleanable/glass,
+/obj/machinery/firealarm/directional/south,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 4
+	},
+/obj/item/wallframe/airalarm{
+	pixel_x = -18;
+	pixel_y = 6
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/shreds,
+/turf/open/floor/plasteel/dark,
+/area/template_noop)
+"B" = (
+/obj/machinery/computer/cargo,
+/obj/item/clothing/head/soft{
+	pixel_x = -7;
+	pixel_y = 11;
+	name = "szczęśliwa czapka miskilamao";
+	desc = "Legenda Pogranicza głosi, że ubrania w barwach Miskilamao bywają szczęśliwe: działa w nich duch Miski, który trzyma ich statki w kupie. Biorąc pod uwagę, gdzie tę znaleziono..."
+	},
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plasteel,
 /area/template_noop)
-"Q" = (
+"F" = (
 /obj/machinery/holopad,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 10
@@ -183,7 +141,45 @@
 /obj/effect/decal/cleanable/shreds,
 /turf/open/floor/plasteel/dark,
 /area/template_noop)
+"G" = (
+/turf/closed/wall/r_wall,
+/area/template_noop)
+"I" = (
+/obj/machinery/door/airlock/command{
+	name = "Mostek";
+	req_access_txt = "19"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/turf/open/floor/plasteel/dark,
+/area/template_noop)
+"N" = (
+/obj/structure/closet/secure_closet{
+	anchored = 1;
+	can_be_unanchored = 1;
+	name = "szafka pierwszego oficera"
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/sign/poster/contraband/random{
+	pixel_y = 28
+	},
+/turf/open/floor/plasteel/dark,
+/area/template_noop)
+"P" = (
+/obj/structure/frame/computer{
+	anchored = 1
+	},
+/obj/effect/decal/cleanable/glass,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel,
+/area/template_noop)
 "R" = (
+/turf/closed/wall,
+/area/template_noop)
+"S" = (
 /obj/structure/closet/secure_closet{
 	anchored = 1;
 	can_be_unanchored = 1;
@@ -201,272 +197,276 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/template_noop)
-"S" = (
-/obj/machinery/computer/cargo,
-/obj/item/clothing/head/soft{
-	pixel_x = -7;
-	pixel_y = 11;
-	name = "szczęśliwa czapka miskilamao";
-	desc = "Legenda Pogranicza głosi, że ubrania w barwach Miskilamao bywają szczęśliwe: działa w nich duch Miski, który trzyma ich statki w kupie. Biorąc pod uwagę, gdzie tę znaleziono..."
+"T" = (
+/obj/structure/lattice/catwalk/over/ship,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 1
 	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/cable,
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plasteel,
+/obj/effect/decal/cleanable/shreds,
+/turf/open/floor/plating/rust{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255"
+	},
 /area/template_noop)
 "V" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 10
+	dir = 1
+	},
+/obj/item/wallframe/apc{
+	pixel_x = 11;
+	pixel_y = -6
 	},
 /obj/effect/decal/cleanable/glass,
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/remains/human,
-/obj/item/clothing/under/shorts{
-	pixel_y = -4;
-	pixel_x = -6
+/turf/open/floor/plasteel/stairs{
+	icon = 'icons/obj/stairs.dmi'
 	},
-/obj/item/clothing/suit/jacket/miljacket{
-	pixel_y = 6;
-	pixel_x = 8
-	},
-/turf/open/floor/plasteel/dark,
 /area/template_noop)
 "W" = (
-/turf/closed/mineral/planet_ice_wall,
+/turf/template_noop,
 /area/template_noop)
 "Y" = (
-/turf/closed/wall,
+/obj/structure/grille,
+/obj/machinery/door/poddoor/shutters{
+	id = "falmouth_windows";
+	name = "rolety przeciwwybuchowe"
+	},
+/turf/open/floor/plating,
 /area/template_noop)
 
 (1,1,1) = {"
-d
-d
-d
-d
-d
-d
+W
+W
+W
+W
+W
+W
+W
+W
+W
+j
+j
+j
 d
 d
 d
 W
-W
-W
-n
-n
-n
-d
 "}
 (2,1,1) = {"
-d
-d
-d
-d
-d
-d
-d
-d
 W
 W
 W
 W
 W
-n
-n
-n
+W
+W
+W
+j
+j
+j
+j
+j
+d
+d
+d
 "}
 (3,1,1) = {"
+W
+W
+W
+W
+j
+j
+j
+j
+j
+j
+j
+j
+j
 d
 d
 d
-d
-W
-W
-W
-W
-W
-W
-W
-W
-W
-n
-n
-n
 "}
 (4,1,1) = {"
+W
+W
+j
+j
+j
+j
+j
+j
+j
+j
+j
+j
+G
 d
 d
-W
-W
-W
-W
-W
-W
-W
-W
-W
-W
-A
-n
-n
-n
+d
 "}
 (5,1,1) = {"
+W
+j
+j
+j
+j
+j
+j
+j
+j
+t
+G
+G
+d
+d
 d
 W
-W
-W
-W
-W
-W
-W
-W
-g
-A
-A
-n
-n
-n
-d
 "}
 (6,1,1) = {"
-d
 W
-W
-W
-s
+j
+j
+j
+Y
+l
+l
 G
 G
-A
-A
-A
-i
-n
-n
-n
+G
+N
 d
 d
+d
+W
+W
 "}
 (7,1,1) = {"
-W
-W
-W
-W
-s
-P
-K
-v
-h
+j
+j
+j
+j
 Y
-a
-n
-n
-n
+P
+e
+k
+y
+R
+s
 d
 d
+d
+W
+W
 "}
 (8,1,1) = {"
-W
-W
-W
-W
-s
-S
+j
+j
+j
+j
+Y
+B
+a
 V
-w
-Q
-y
-l
-E
-n
-n
-n
+F
+I
+T
+q
 d
+d
+d
+W
 "}
 (9,1,1) = {"
-W
-W
-W
-W
-s
+j
+j
+j
+j
+Y
+l
+l
 G
 G
-A
-A
-A
-R
-N
-n
-n
-n
+G
+S
+v
 d
+d
+d
+W
 "}
 (10,1,1) = {"
+W
+j
+j
+j
+j
+j
+j
+j
+j
+t
+G
+G
+G
+d
 d
 W
-W
-W
-W
-W
-W
-W
-W
-g
-A
-A
-A
-n
-n
-d
 "}
 (11,1,1) = {"
+W
+W
+j
+j
+j
+j
+j
+j
+j
+j
+j
+j
+G
 d
 d
 W
-W
-W
-W
-W
-W
-W
-W
-W
-W
-A
-n
-n
-d
 "}
 (12,1,1) = {"
+W
+W
+W
+j
+j
+j
+j
+j
+j
+j
+j
+j
+j
+j
 d
 d
-d
-W
-W
-W
-W
-W
-W
-W
-W
-W
-W
-W
-n
-n
 "}
 (13,1,1) = {"
-d
-d
-d
-d
-d
-d
-d
-d
-d
-d
 W
 W
 W
 W
-n
-n
+W
+W
+W
+W
+W
+W
+j
+j
+j
+j
+d
+d
 "}

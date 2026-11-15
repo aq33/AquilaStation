@@ -1,59 +1,42 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/obj/structure/barricade/wooden,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/spacevine/dense,
-/turf/open/floor/plating/asteroid/dirt/jungle,
-/area/template_noop)
-"b" = (
 /obj/structure/spacevine/weak,
 /turf/open/floor/plating/asteroid/dirt/grass/jungle/yellow,
 /area/template_noop)
-"d" = (
-/obj/structure/barricade/wooden,
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/asteroid/dirt/jungle,
+"b" = (
+/obj/structure/spacevine/weak,
+/turf/closed/wall/mineral/wood/nonmetal,
 /area/template_noop)
-"e" = (
-/obj/structure/fence/end,
-/turf/open/floor/plating/asteroid/dirt/grass/jungle/yellow,
-/area/template_noop)
-"f" = (
-/obj/machinery/space_heater{
-	pixel_y = 14
+"c" = (
+/obj/machinery/light/broken{
+	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating/asteroid/dirt/jungle,
 /area/template_noop)
-"k" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/flora/tree/jungle/small,
-/obj/structure/spacevine/dense,
-/turf/open/floor/plating/asteroid/dirt/jungle,
-/area/template_noop)
-"l" = (
-/turf/closed/wall/mineral/wood/nonmetal,
-/area/template_noop)
-"m" = (
+"d" = (
 /obj/structure/fence/cut/large,
 /mob/living/basic/chicken,
 /turf/open/floor/plating/asteroid/dirt/grass/jungle/yellow,
 /area/template_noop)
-"n" = (
+"f" = (
+/obj/structure/plasticflaps,
 /obj/structure/spacevine/weak,
-/turf/open/floor/plating/asteroid/dirt/jungle,
-/area/template_noop)
-"s" = (
-/mob/living/basic/chicken,
-/obj/structure/flora/ash/garden,
 /turf/open/floor/plating/asteroid/dirt/grass/jungle/yellow,
 /area/template_noop)
-"t" = (
+"h" = (
+/turf/template_noop,
+/area/template_noop)
+"i" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
+"j" = (
 /mob/living/basic/chicken,
 /obj/structure/spacevine/dense,
 /turf/open/floor/plating/asteroid/dirt/jungle,
 /area/template_noop)
-"u" = (
+"k" = (
 /obj/machinery/light/broken{
 	dir = 1
 	},
@@ -61,170 +44,187 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating/asteroid/dirt/jungle,
 /area/template_noop)
+"n" = (
+/obj/structure/flora/tree/jungle/small,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/yellow,
+/area/template_noop)
+"p" = (
+/obj/structure/fence,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/yellow,
+/area/template_noop)
+"q" = (
+/obj/structure/fence/end,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/yellow,
+/area/template_noop)
 "x" = (
+/obj/structure/barricade/wooden,
+/obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating/asteroid/dirt/jungle,
 /area/template_noop)
 "y" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/asteroid/dirt/jungle,
-/area/template_noop)
-"A" = (
 /obj/structure/spacevine/dense,
-/turf/closed/wall/mineral/wood/nonmetal,
-/area/template_noop)
-"C" = (
-/mob/living/basic/chicken,
-/obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating/asteroid/dirt/jungle,
-/area/template_noop)
-"E" = (
-/turf/open/floor/plating/asteroid/dirt/grass/jungle/yellow,
 /area/template_noop)
 "G" = (
-/obj/structure/spacevine/dense,
+/mob/living/basic/chicken,
+/obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating/asteroid/dirt/jungle,
 /area/template_noop)
 "H" = (
-/mob/living/basic/chicken,
-/turf/open/floor/plating/asteroid/dirt/grass/jungle/yellow,
-/area/template_noop)
-"I" = (
-/obj/structure/spacevine/weak,
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/turf/closed/wall/mineral/wood/nonmetal,
 /area/template_noop)
 "K" = (
 /obj/structure/spacevine/weak,
-/turf/closed/wall/mineral/wood/nonmetal,
+/turf/open/floor/plating/asteroid/dirt/jungle,
 /area/template_noop)
-"Q" = (
-/obj/structure/plasticflaps,
-/obj/structure/spacevine/weak,
-/turf/open/floor/plating/asteroid/dirt/grass/jungle/yellow,
-/area/template_noop)
-"S" = (
-/obj/machinery/light/broken{
-	dir = 4
+"L" = (
+/obj/machinery/space_heater{
+	pixel_y = 14
 	},
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating/asteroid/dirt/jungle,
 /area/template_noop)
-"T" = (
-/obj/structure/fence,
-/turf/open/floor/plating/asteroid/dirt/grass/jungle/yellow,
-/area/template_noop)
-"V" = (
-/turf/template_noop,
-/area/template_noop)
-"X" = (
-/obj/structure/flora/tree/jungle/small,
-/turf/open/floor/plating/asteroid/dirt/grass/jungle/yellow,
-/area/template_noop)
-"Y" = (
+"M" = (
 /obj/structure/flora/ash/garden,
 /turf/open/floor/plating/asteroid/dirt/grass/jungle/yellow,
 /area/template_noop)
-"Z" = (
+"O" = (
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/yellow,
+/area/template_noop)
+"P" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/flora/tree/jungle/small,
+/obj/structure/spacevine/dense,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
+"R" = (
+/mob/living/basic/chicken,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/yellow,
+/area/template_noop)
+"S" = (
+/obj/structure/spacevine/weak,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"T" = (
 /obj/structure/closet/cardboard,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating/asteroid/dirt/jungle,
 /area/template_noop)
+"U" = (
+/mob/living/basic/chicken,
+/obj/structure/flora/ash/garden,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/yellow,
+/area/template_noop)
+"W" = (
+/obj/structure/spacevine/dense,
+/turf/closed/wall/mineral/wood/nonmetal,
+/area/template_noop)
+"X" = (
+/obj/structure/barricade/wooden,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/spacevine/dense,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
+"Y" = (
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
 
 (1,1,1) = {"
-V
-V
-x
-x
-V
-V
-G
-G
-V
+h
+h
+Y
+Y
+h
+h
+y
+y
+h
 "}
 (2,1,1) = {"
-I
-K
-d
-d
-l
-s
+S
 b
-t
-G
+x
+x
+H
+U
+a
+j
+y
 "}
 (3,1,1) = {"
-I
-K
-u
-y
-y
-E
-Q
+S
 b
-G
-"}
-(4,1,1) = {"
-I
-A
-Z
-C
-d
-E
-H
-b
-G
-"}
-(5,1,1) = {"
-I
-A
+k
+i
+i
+O
 f
-y
-d
-E
-X
-b
-G
-"}
-(6,1,1) = {"
-V
 a
 y
-C
-d
-H
-H
-Y
+"}
+(4,1,1) = {"
+S
+W
+T
+G
 x
+O
+R
+a
+y
+"}
+(5,1,1) = {"
+S
+W
+L
+i
+x
+O
+n
+a
+y
+"}
+(6,1,1) = {"
+h
+X
+i
+G
+x
+R
+R
+M
+Y
 "}
 (7,1,1) = {"
-V
-k
-S
-y
-d
-Y
-E
-H
-V
+h
+P
+c
+i
+x
+M
+O
+R
+h
 "}
 (8,1,1) = {"
-V
-K
-K
-K
-K
-m
-T
-e
-V
+h
+b
+b
+b
+b
+d
+p
+q
+h
 "}
 (9,1,1) = {"
-V
-n
-G
-G
-n
-n
-x
-V
-V
+h
+K
+y
+y
+K
+K
+Y
+h
+h
 "}

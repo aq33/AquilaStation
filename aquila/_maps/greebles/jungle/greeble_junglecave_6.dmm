@@ -1,113 +1,113 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"b" = (
+"c" = (
 /obj/structure/flora/rock,
 /turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
 /area/template_noop)
-"m" = (
-/turf/open/water/planet/jungle,
-/area/template_noop)
-"n" = (
-/turf/template_noop,
-/area/template_noop)
-"o" = (
-/turf/closed/mineral/random/planet_jungle,
-/area/template_noop)
-"v" = (
+"d" = (
 /obj/effect/decal/cleanable/greenglow,
 /turf/open/water/planet/jungle,
 /area/template_noop)
-"F" = (
-/obj/structure/flora/rock/pile,
-/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
-/area/template_noop)
-"H" = (
-/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
-/area/template_noop)
-"I" = (
-/turf/closed/mineral/random/planet_jungle/polluted,
-/area/template_noop)
-"V" = (
+"j" = (
 /obj/structure/glowshroom,
 /turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
 /area/template_noop)
+"o" = (
+/turf/template_noop,
+/area/template_noop)
+"N" = (
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"Q" = (
+/turf/closed/mineral/random/planet_jungle/polluted,
+/area/template_noop)
+"R" = (
+/turf/open/water/planet/jungle,
+/area/template_noop)
+"V" = (
+/obj/structure/flora/rock/pile,
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"Z" = (
+/turf/closed/mineral/random/planet_jungle,
+/area/template_noop)
 
 (1,1,1) = {"
+Z
+Z
+Q
+j
+Z
 o
 o
-I
-V
 o
-n
-n
-n
 "}
 (2,1,1) = {"
+Z
+Q
+N
+N
+Q
+Z
 o
-I
-H
-H
-I
 o
-n
-n
 "}
 (3,1,1) = {"
-n
-V
-m
-v
-V
-I
 o
-n
+j
+R
+d
+j
+Q
+Z
+o
 "}
 (4,1,1) = {"
-I
-F
-v
-v
-m
-H
-o
-o
+Q
+V
+d
+d
+R
+N
+Z
+Z
 "}
 (5,1,1) = {"
-I
-H
-H
-m
-v
-b
-V
-n
+Q
+N
+N
+R
+d
+c
+j
+o
 "}
 (6,1,1) = {"
+Z
+Q
+V
+d
+N
+Q
+Z
 o
-I
-F
-v
-H
-I
-o
-n
 "}
 (7,1,1) = {"
+Z
+Q
+Q
+j
+Q
+Z
+Z
 o
-I
-I
-V
-I
-o
-o
-n
 "}
 (8,1,1) = {"
-n
+o
+Z
+Z
+o
+Z
+Z
 o
 o
-n
-o
-o
-n
-n
 "}

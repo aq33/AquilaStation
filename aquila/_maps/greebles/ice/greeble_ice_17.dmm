@@ -1,123 +1,123 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"a" = (
-/turf/open/floor/plating/asteroid/icerock,
+"d" = (
+/turf/template_noop,
 /area/template_noop)
-"b" = (
-/turf/open/floor/plating/ice/planet_ice,
-/area/template_noop)
-"c" = (
+"g" = (
 /obj/structure/flora/ausbushes/sparsegrass,
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
-"h" = (
-/obj/structure/flora/rock/pile/lava{
-	pixel_x = -12;
-	 pixel_y = 6
-	},
-/turf/open/floor/plating/ice/planet_ice,
-/area/template_noop)
-"p" = (
-/obj/structure/flora/rock/pile/lava{
-	pixel_x = 10;
-	 pixel_y = 2
-	},
-/turf/open/floor/plating/ice/planet_ice,
-/area/template_noop)
-"z" = (
-/turf/template_noop,
-/area/template_noop)
-"C" = (
-/obj/structure/flora/rock/pile/lava{
-	pixel_x = -6;
-	 pixel_y = -9
-	},
-/turf/open/floor/plating/ice/planet_ice,
-/area/template_noop)
-"J" = (
+"i" = (
 /obj/structure/flora/rock/pile/lava{
 	pixel_x = 4;
 	 pixel_y = 8
 	},
 /turf/open/floor/plating/ice/planet_ice,
 /area/template_noop)
+"o" = (
+/obj/structure/flora/rock/pile/lava{
+	pixel_x = -6;
+	 pixel_y = -9
+	},
+/turf/open/floor/plating/ice/planet_ice,
+/area/template_noop)
+"z" = (
+/turf/open/floor/plating/ice/planet_ice,
+/area/template_noop)
+"C" = (
+/obj/structure/flora/rock/pile/lava{
+	pixel_x = -12;
+	 pixel_y = 6
+	},
+/turf/open/floor/plating/ice/planet_ice,
+/area/template_noop)
+"H" = (
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"Y" = (
+/obj/structure/flora/rock/pile/lava{
+	pixel_x = 10;
+	 pixel_y = 2
+	},
+/turf/open/floor/plating/ice/planet_ice,
+/area/template_noop)
 
 (1,1,1) = {"
-z
-z
-c
-a
-a
-z
-z
-z
+d
+d
+g
+H
+H
+d
+d
+d
 "}
 (2,1,1) = {"
-z
-z
-a
-p
-c
-a
-z
-z
+d
+d
+H
+Y
+g
+H
+d
+d
 "}
 (3,1,1) = {"
+d
+H
+H
 z
-a
-a
-b
-b
-a
-a
 z
+H
+H
+d
 "}
 (4,1,1) = {"
-c
-a
-b
-b
-b
-J
-a
-c
+g
+H
+z
+z
+z
+i
+H
+g
 "}
 (5,1,1) = {"
-a
-a
-C
-b
-b
-b
-a
-a
+H
+H
+o
+z
+z
+z
+H
+H
 "}
 (6,1,1) = {"
+d
+g
+H
 z
-c
-a
-b
-b
-a
-a
 z
+H
+H
+d
 "}
 (7,1,1) = {"
-z
-z
-c
-a
-h
-a
-c
-z
+d
+d
+g
+H
+C
+H
+g
+d
 "}
 (8,1,1) = {"
-z
-z
-z
-a
-a
-a
-z
-z
+d
+d
+d
+H
+H
+H
+d
+d
 "}

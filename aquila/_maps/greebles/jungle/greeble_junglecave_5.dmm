@@ -1,29 +1,61 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"e" = (
-/obj/structure/railing{
-	dir = 4
-	},
-/obj/machinery/light/small/broken{
-	dir = 4
-	},
-/turf/open/floor/concrete/slab_1{
-	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
-	 planetary_atmos = 1
-	},
+"d" = (
+/turf/closed/mineral/random/planet_jungle,
 /area/template_noop)
-"k" = (
+"i" = (
+/obj/structure/door_assembly/door_assembly_vault,
+/turf/open/floor/concrete,
+/area/template_noop)
+"n" = (
+/obj/item/stack/ore/iron,
+/mob/living/basic/mining/wolf,
+/obj/effect/decal/cleanable/blood/footprints{
+	dir = 4;
+	 color = "#4D0000"
+	},
+/turf/open/floor/concrete/slab_1,
+/area/template_noop)
+"o" = (
+/turf/template_noop,
+/area/template_noop)
+"q" = (
+/obj/effect/decal/cleanable/robot_debris,
+/obj/effect/decal/cleanable/blood/old,
+/obj/effect/decal/cleanable/shreds{
+	pixel_x = 9;
+	 pixel_y = 12
+	},
+/obj/effect/decal/remains/human,
+/turf/open/floor/concrete/slab_1,
+/area/template_noop)
+"t" = (
+/obj/item/stack/ore/iron{
+	amount = 10
+	},
+/obj/item/stack/cable_coil/cut,
+/obj/effect/decal/cleanable/oil,
+/turf/open/floor/concrete,
+/area/template_noop)
+"v" = (
+/obj/structure/sign/directions/evac{
+	dir = 1
+	},
+/turf/closed/wall/r_wall,
+/area/template_noop)
+"w" = (
 /obj/structure/sign/mining/survival,
 /turf/closed/wall/r_wall,
 /area/template_noop)
-"m" = (
+"z" = (
+/turf/closed/wall/r_wall,
+/area/template_noop)
+"B" = (
 /obj/structure/fluff/empty_cryostasis_sleeper,
-/obj/effect/decal/cleanable/blood/old,
-/obj/machinery/light/broken{
-	dir = 1
-	},
+/obj/effect/decal/remains/human,
+/obj/machinery/airalarm/directional/south,
 /turf/open/floor/concrete/slab_4,
 /area/template_noop)
-"o" = (
+"E" = (
 /mob/living/basic/mining/wolf,
 /obj/effect/decal/cleanable/blood/splatter{
 	color = "#4D0000"
@@ -31,7 +63,54 @@
 /obj/effect/decal/remains/human,
 /turf/open/floor/concrete,
 /area/template_noop)
-"q" = (
+"F" = (
+/obj/effect/decal/cleanable/generic,
+/obj/item/reagent_containers/glass/waterbottle/large,
+/turf/open/floor/concrete/slab_1,
+/area/template_noop)
+"G" = (
+/obj/effect/decal/remains/human,
+/obj/effect/decal/cleanable/blood/gibs/old,
+/obj/effect/decal/cleanable/shreds,
+/obj/effect/decal/cleanable/shreds{
+	pixel_x = 9;
+	 pixel_y = 12
+	},
+/obj/item/clothing/head/helmet/old,
+/obj/item/kitchen/knife/combat/survival,
+/turf/open/floor/concrete/slab_1,
+/area/template_noop)
+"K" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/generic,
+/turf/open/floor/plasteel/stairs{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308"
+	},
+/area/template_noop)
+"N" = (
+/obj/structure/fluff/empty_cryostasis_sleeper,
+/obj/machinery/light/broken{
+	dir = 1
+	},
+/turf/open/floor/concrete/slab_4,
+/area/template_noop)
+"O" = (
+/obj/structure/fluff/empty_cryostasis_sleeper,
+/obj/effect/decal/cleanable/blood/old,
+/obj/machinery/light/broken{
+	dir = 1
+	},
+/turf/open/floor/concrete/slab_4,
+/area/template_noop)
+"R" = (
+/obj/structure/fluff/empty_cryostasis_sleeper,
+/obj/effect/decal/remains/human,
+/obj/structure/closet/firecloset,
+/turf/open/floor/concrete/slab_4,
+/area/template_noop)
+"S" = (
 /obj/structure/table,
 /obj/item/reagent_containers/glass/waterbottle/large,
 /obj/effect/decal/cleanable/shreds,
@@ -46,86 +125,6 @@
 /obj/effect/spawner/lootdrop/glowstick,
 /turf/open/floor/concrete,
 /area/template_noop)
-"r" = (
-/obj/effect/decal/cleanable/generic,
-/obj/item/reagent_containers/glass/waterbottle/large,
-/turf/open/floor/concrete/slab_1,
-/area/template_noop)
-"t" = (
-/obj/item/stack/ore/iron{
-	amount = 10
-	},
-/obj/item/stack/cable_coil/cut,
-/obj/effect/decal/cleanable/oil,
-/turf/open/floor/concrete,
-/area/template_noop)
-"x" = (
-/obj/structure/door_assembly/door_assembly_vault,
-/turf/open/floor/concrete,
-/area/template_noop)
-"y" = (
-/obj/structure/railing{
-	dir = 4
-	},
-/obj/effect/decal/cleanable/generic,
-/turf/open/floor/plasteel/stairs{
-	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308"
-	},
-/area/template_noop)
-"C" = (
-/obj/structure/fluff/empty_cryostasis_sleeper,
-/obj/effect/decal/remains/human,
-/obj/machinery/airalarm/directional/south,
-/turf/open/floor/concrete/slab_4,
-/area/template_noop)
-"D" = (
-/obj/structure/fluff/empty_cryostasis_sleeper,
-/obj/effect/decal/remains/human,
-/obj/structure/closet/firecloset,
-/turf/open/floor/concrete/slab_4,
-/area/template_noop)
-"E" = (
-/obj/item/stack/ore/iron,
-/mob/living/basic/mining/wolf,
-/obj/effect/decal/cleanable/blood/footprints{
-	dir = 4;
-	 color = "#4D0000"
-	},
-/turf/open/floor/concrete/slab_1,
-/area/template_noop)
-"J" = (
-/obj/structure/sign/directions/evac{
-	dir = 1
-	},
-/turf/closed/wall/r_wall,
-/area/template_noop)
-"L" = (
-/obj/structure/railing{
-	dir = 8
-	},
-/obj/structure/railing{
-	dir = 8
-	},
-/turf/open/floor/plasteel/stairs{
-	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308"
-	},
-/area/template_noop)
-"O" = (
-/turf/template_noop,
-/area/template_noop)
-"P" = (
-/turf/closed/wall/r_wall,
-/area/template_noop)
-"S" = (
-/obj/effect/decal/cleanable/robot_debris,
-/obj/effect/decal/cleanable/blood/old,
-/obj/effect/decal/cleanable/shreds{
-	pixel_x = 9;
-	 pixel_y = 12
-	},
-/obj/effect/decal/remains/human,
-/turf/open/floor/concrete/slab_1,
-/area/template_noop)
 "U" = (
 /obj/structure/railing{
 	dir = 8
@@ -137,105 +136,106 @@
 	},
 /area/template_noop)
 "V" = (
-/obj/structure/fluff/empty_cryostasis_sleeper,
-/obj/machinery/light/broken{
-	dir = 1
+/obj/structure/railing{
+	dir = 4
 	},
-/turf/open/floor/concrete/slab_4,
-/area/template_noop)
-"X" = (
-/obj/effect/decal/remains/human,
-/obj/effect/decal/cleanable/blood/gibs/old,
-/obj/effect/decal/cleanable/shreds,
-/obj/effect/decal/cleanable/shreds{
-	pixel_x = 9;
-	 pixel_y = 12
+/obj/machinery/light/small/broken{
+	dir = 4
 	},
-/obj/item/clothing/head/helmet/old,
-/obj/item/kitchen/knife/combat/survival,
-/turf/open/floor/concrete/slab_1,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	 planetary_atmos = 1
+	},
 /area/template_noop)
 "Y" = (
-/turf/closed/mineral/random/planet_jungle,
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/structure/railing{
+	dir = 8
+	},
+/turf/open/floor/plasteel/stairs{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308"
+	},
 /area/template_noop)
 
 (1,1,1) = {"
-O
-Y
-Y
-Y
-O
-Y
-Y
-O
+o
+d
+d
+d
+o
+d
+d
+o
 "}
 (2,1,1) = {"
-Y
-Y
-P
-P
-P
-P
-Y
-Y
+d
+d
+z
+z
+z
+z
+d
+d
 "}
 (3,1,1) = {"
-Y
-P
-P
-V
-D
-P
-J
-Y
+d
+z
+z
+N
+R
+z
+v
+d
 "}
 (4,1,1) = {"
-O
-P
 o
-r
-S
+z
+E
+F
+q
 t
 U
-L
+Y
 "}
 (5,1,1) = {"
-Y
-P
-q
-X
-E
-x
-e
-y
+d
+z
+S
+G
+n
+i
+V
+K
 "}
 (6,1,1) = {"
-Y
-P
-P
-m
-C
-P
-k
-Y
+d
+z
+z
+O
+B
+z
+w
+d
 "}
 (7,1,1) = {"
-O
-Y
-P
-P
-P
-P
-Y
-Y
+o
+d
+z
+z
+z
+z
+d
+d
 "}
 (8,1,1) = {"
-O
-Y
-Y
-O
-Y
-Y
-Y
-O
+o
+d
+d
+o
+d
+d
+d
+o
 "}

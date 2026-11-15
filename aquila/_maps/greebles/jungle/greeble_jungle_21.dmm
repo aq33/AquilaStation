@@ -1,49 +1,5 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"ac" = (
-/obj/structure/railing{
-	dir = 8
-	},
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/spacevine/dense,
-/turf/open/floor/monotile/dark{
-	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
-	 planetary_atmos = 1
-	},
-/area/template_noop)
-"ba" = (
-/obj/structure/flora/rock/jungle,
-/obj/item/stack/ore/iron,
-/obj/structure/spacevine/dense,
-/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
-/area/template_noop)
-"cu" = (
-/obj/structure/flora/rock/jungle,
-/turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
-/area/template_noop)
-"cV" = (
-/obj/item/stack/ore/iron,
-/obj/structure/spacevine/weak,
-/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
-/area/template_noop)
-"dk" = (
-/obj/structure/flora/tree/jungle,
-/obj/structure/flora/grass/jungle,
-/turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
-/area/template_noop)
-"dG" = (
-/obj/structure/railing,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/spacevine/dense,
-/turf/open/floor/plating{
-	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
-	 planetary_atmos = 1
-	},
-/area/template_noop)
-"eY" = (
-/obj/structure/spacevine/dense,
-/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
-/area/template_noop)
-"fB" = (
+"an" = (
 /obj/structure/railing,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating{
@@ -51,213 +7,228 @@
 	 planetary_atmos = 1
 	},
 /area/template_noop)
-"fX" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plasteel/stairs{
-	dir = 4;
-	 initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
-	 planetary_atmos = 1
-	},
-/area/template_noop)
-"gL" = (
-/obj/structure/flora/junglebush/c,
-/turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
-/area/template_noop)
-"ht" = (
-/obj/structure/flora/rock/jungle,
-/obj/structure/spacevine/weak,
-/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
-/area/template_noop)
-"ih" = (
-/obj/structure/spacevine/weak,
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
-/area/template_noop)
-"iM" = (
-/obj/item/stack/ore/titanium,
-/obj/structure/railing,
-/obj/structure/spacevine/weak,
-/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
-/area/template_noop)
-"jL" = (
-/obj/structure/railing{
-	dir = 8
-	},
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/spacevine/weak,
-/turf/open/floor/monotile/dark{
-	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
-	 planetary_atmos = 1
-	},
-/area/template_noop)
-"kq" = (
-/obj/structure/flora/tree/jungle/small,
-/obj/structure/flora/grass/jungle,
-/turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
-/area/template_noop)
-"kz" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/monotile/dark{
-	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
-	 planetary_atmos = 1
-	},
-/area/template_noop)
-"kZ" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/spacevine/dense,
-/turf/open/floor/monotile/dark{
-	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
-	 planetary_atmos = 1
-	},
-/area/template_noop)
-"mx" = (
-/obj/structure/floodlight_frame,
-/obj/effect/decal/cleanable/glass,
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
-/area/template_noop)
-"nz" = (
-/obj/structure/railing/corner,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/spacevine/weak,
-/turf/open/floor/monotile/dark{
-	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
-	 planetary_atmos = 1
-	},
-/area/template_noop)
-"og" = (
-/turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
-/area/template_noop)
-"ox" = (
-/obj/structure/railing{
-	dir = 8
-	},
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/monotile/dark{
-	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
-	 planetary_atmos = 1
-	},
-/area/template_noop)
-"oL" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/railing{
-	dir = 4
-	},
-/turf/open/floor/plating{
-	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
-	 planetary_atmos = 1
-	},
-/area/template_noop)
-"pf" = (
-/obj/structure/spacevine/weak,
-/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
-/area/template_noop)
-"ph" = (
-/obj/structure/railing,
-/obj/structure/spacevine/weak,
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
-/area/template_noop)
-"pl" = (
-/obj/structure/flora/rock/jungle,
-/obj/structure/spacevine/dense,
-/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
-/area/template_noop)
-"pB" = (
-/obj/structure/railing{
-	dir = 4
-	},
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/glass,
-/turf/open/floor/monotile/dark{
-	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
-	 planetary_atmos = 1
-	},
-/area/template_noop)
-"pJ" = (
-/obj/structure/flora/junglebush/large,
-/obj/item/stack/ore/titanium,
-/obj/structure/spacevine/dense,
-/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
-/area/template_noop)
-"qs" = (
-/obj/structure/railing/corner,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/spacevine/dense,
-/turf/open/floor/monotile/dark{
-	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
-	 planetary_atmos = 1
-	},
-/area/template_noop)
-"qB" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/spacevine/dense,
-/turf/open/floor/plasteel/stairs{
-	dir = 4;
-	 initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
-	 planetary_atmos = 1
-	},
-/area/template_noop)
-"rg" = (
-/obj/structure/spacevine/dense,
-/obj/structure/railing,
-/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
-/area/template_noop)
-"sk" = (
-/obj/structure/flora/grass/jungle,
-/obj/structure/spacevine/dense,
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
-/area/template_noop)
-"sz" = (
-/obj/structure/flora/rock/jungle,
-/obj/structure/spacevine/dense,
-/obj/structure/railing,
-/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
-/area/template_noop)
-"sU" = (
-/obj/structure/flora/tree/jungle,
+"aT" = (
 /obj/structure/flora/junglebush/b,
-/obj/structure/flora/grass/jungle,
+/obj/structure/spacevine/dense,
 /turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
 /area/template_noop)
-"tj" = (
+"cr" = (
 /obj/structure/flora/grass/jungle/b,
-/obj/structure/spacevine/dense,
+/obj/structure/spacevine/weak,
 /turf/open/floor/plating/asteroid/dirt/jungle/dark,
 /area/template_noop)
-"tq" = (
-/obj/structure/railing,
-/obj/structure/spacevine/weak,
-/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
-/area/template_noop)
-"tQ" = (
+"cB" = (
 /obj/structure/railing{
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/spacevine/weak,
 /turf/open/floor/plating/rust{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"fD" = (
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/monotile/dark{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"fI" = (
+/obj/structure/railing/corner{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/spacevine/weak,
+/turf/open/floor/monotile/dark{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"iX" = (
+/obj/structure/flora/junglebush/b,
+/obj/item/stack/ore/titanium,
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"kd" = (
+/obj/structure/flora/tree/jungle/small,
+/obj/structure/flora/grass/jungle/b,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
+/area/template_noop)
+"lA" = (
+/obj/structure/vein/jungle/classfour,
+/mob/living/simple_animal/hostile/jungle/seedling,
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"mI" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/spacevine/dense,
+/turf/open/floor/monotile/dark{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"mJ" = (
+/obj/structure/flora/tree/jungle/small,
+/obj/structure/flora/grass/jungle,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
+/area/template_noop)
+"mW" = (
+/obj/structure/flora/grass/jungle,
+/obj/structure/spacevine/dense,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"nj" = (
+/obj/structure/flora/grass/jungle/b,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"nP" = (
+/obj/structure/railing,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/monotile/dark{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"nS" = (
+/obj/item/stack/ore/titanium,
+/obj/structure/railing,
+/obj/structure/spacevine/weak,
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"oi" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/monotile/dark{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"oT" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/structure/spacevine/weak,
+/turf/open/floor/plating/rust{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"pN" = (
+/obj/structure/spacevine/weak,
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"qW" = (
+/obj/structure/flora/rock/jungle,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
+/area/template_noop)
+"sr" = (
+/obj/structure/railing,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/spacevine/dense,
+/turf/open/floor/plating{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"sB" = (
+/obj/structure/spacevine/weak,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
+/area/template_noop)
+"sS" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/glass,
+/obj/structure/spacevine/weak,
+/turf/open/floor/monotile/dark{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"sZ" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/spacevine/weak,
+/turf/open/floor/monotile/dark{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"ta" = (
+/obj/structure/railing,
+/obj/structure/spacevine/dense,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"tc" = (
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/spacevine/dense,
+/turf/open/floor/monotile/dark{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"ti" = (
+/obj/item/stack/ore/iron,
+/obj/structure/spacevine/weak,
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"ty" = (
+/obj/structure/railing,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/spacevine/weak,
+/turf/open/floor/plating{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"tQ" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/monotile/dark{
 	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
 	 planetary_atmos = 1
 	},
 /area/template_noop)
 "uM" = (
+/obj/item/stack/ore/iron,
 /turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
 /area/template_noop)
-"uZ" = (
-/obj/structure/spacevine/weak,
-/turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
+"uR" = (
+/obj/structure/flora/junglebush/large,
+/obj/structure/spacevine/dense,
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
 /area/template_noop)
-"vg" = (
+"vO" = (
+/obj/structure/railing,
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/spacevine/weak,
-/turf/open/floor/plasteel/stairs{
-	dir = 4;
-	 initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+/obj/structure/spacevine/dense,
+/turf/open/floor/monotile/dark{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
 	 planetary_atmos = 1
 	},
 /area/template_noop)
-"vF" = (
-/obj/structure/railing{
-	dir = 4
-	},
+"wi" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/glass,
 /obj/structure/spacevine/weak,
@@ -266,187 +237,30 @@
 	 planetary_atmos = 1
 	},
 /area/template_noop)
-"wQ" = (
-/obj/structure/railing{
-	dir = 8
-	},
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/rust{
-	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
-	 planetary_atmos = 1
-	},
-/area/template_noop)
-"wX" = (
-/obj/structure/flora/rock/jungle,
+"wR" = (
+/obj/structure/flora/grass/jungle/b,
 /obj/structure/spacevine/dense,
 /turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
 /area/template_noop)
-"xc" = (
-/obj/structure/flora/grass/jungle,
+"yd" = (
+/obj/structure/flora/junglebush/b,
 /turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
 /area/template_noop)
-"xF" = (
-/obj/structure/flora/tree/jungle/small,
-/obj/structure/spacevine/dense,
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
-/area/template_noop)
-"yE" = (
-/obj/structure/flora/junglebush/large,
-/obj/structure/spacevine/dense,
-/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
-/area/template_noop)
-"yX" = (
+"yP" = (
+/obj/structure/railing/corner,
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/spacevine/weak,
+/obj/structure/spacevine/dense,
 /turf/open/floor/monotile/dark{
 	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
 	 planetary_atmos = 1
 	},
 /area/template_noop)
 "za" = (
-/obj/structure/flora/tree/jungle/small,
-/obj/structure/flora/grass/jungle/b,
-/turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
-/area/template_noop)
-"zg" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/railing{
-	dir = 8
-	},
-/obj/structure/spacevine/weak,
-/turf/open/floor/plating{
-	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
-	 planetary_atmos = 1
-	},
-/area/template_noop)
-"AI" = (
-/obj/structure/railing/corner{
-	dir = 8
-	},
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/spacevine/weak,
-/turf/open/floor/plating{
-	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
-	 planetary_atmos = 1
-	},
-/area/template_noop)
-"AL" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/glass,
-/obj/structure/spacevine/weak,
-/turf/open/floor/monotile/dark{
-	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
-	 planetary_atmos = 1
-	},
-/area/template_noop)
-"Ba" = (
-/obj/structure/railing{
-	dir = 4
-	},
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/spacevine/dense,
-/turf/open/floor/monotile/dark{
-	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
-	 planetary_atmos = 1
-	},
-/area/template_noop)
-"Bs" = (
 /obj/structure/railing,
-/obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/spacevine/weak,
-/turf/open/floor/plating{
-	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
-	 planetary_atmos = 1
-	},
-/area/template_noop)
-"Ca" = (
-/obj/structure/spacevine/weak,
-/turf/open/floor/plasteel/stairs{
-	dir = 4;
-	 initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
-	 planetary_atmos = 1
-	},
-/area/template_noop)
-"Ch" = (
-/obj/structure/spacevine/weak,
-/obj/structure/spacevine/weak,
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
-/area/template_noop)
-"Cz" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/spacevine/dense,
-/obj/effect/decal/cleanable/glass,
-/turf/open/floor/monotile/dark{
-	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
-	 planetary_atmos = 1
-	},
-/area/template_noop)
-"Da" = (
-/obj/structure/flora/grass/jungle/b,
-/turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
-/area/template_noop)
-"El" = (
-/obj/item/stack/ore/iron,
-/obj/structure/spacevine/dense,
 /turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
 /area/template_noop)
-"En" = (
-/obj/structure/railing{
-	dir = 4
-	},
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/spacevine/weak,
-/turf/open/floor/monotile/dark{
-	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
-	 planetary_atmos = 1
-	},
-/area/template_noop)
-"EO" = (
-/obj/structure/vein/jungle/classfour,
-/mob/living/simple_animal/hostile/jungle/seedling,
-/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
-/area/template_noop)
-"Fm" = (
-/obj/structure/railing/corner{
-	dir = 8
-	},
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/spacevine/weak,
-/turf/open/floor/monotile/dark{
-	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
-	 planetary_atmos = 1
-	},
-/area/template_noop)
-"GQ" = (
-/obj/structure/flora/grass/jungle/b,
-/obj/structure/spacevine/weak,
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
-/area/template_noop)
-"Hw" = (
-/obj/structure/railing,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/spacevine/weak,
-/turf/open/floor/monotile/dark{
-	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
-	 planetary_atmos = 1
-	},
-/area/template_noop)
-"HN" = (
-/obj/structure/railing,
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/monotile/dark{
-	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
-	 planetary_atmos = 1
-	},
-/area/template_noop)
-"Il" = (
-/obj/item/stack/ore/iron,
-/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
-/area/template_noop)
-"II" = (
-/turf/template_noop,
-/area/template_noop)
-"JK" = (
+"ze" = (
 /obj/structure/railing{
 	dir = 4
 	},
@@ -457,7 +271,27 @@
 	 planetary_atmos = 1
 	},
 /area/template_noop)
-"Lp" = (
+"Aw" = (
+/obj/structure/floodlight_frame,
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"Ax" = (
+/obj/structure/flora/tree/jungle,
+/obj/structure/flora/junglebush/b,
+/obj/structure/flora/grass/jungle,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
+/area/template_noop)
+"AB" = (
+/obj/structure/railing,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/spacevine/weak,
+/turf/open/floor/plating/rust{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"Ba" = (
 /obj/structure/railing/corner,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/spacevine/weak,
@@ -466,7 +300,180 @@
 	 planetary_atmos = 1
 	},
 /area/template_noop)
-"Ly" = (
+"BI" = (
+/obj/structure/flora/junglebush/large,
+/obj/item/stack/ore/titanium,
+/obj/structure/spacevine/dense,
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"CT" = (
+/obj/structure/spacevine/weak,
+/turf/open/floor/plasteel/stairs{
+	dir = 4;
+	 initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"Dh" = (
+/obj/structure/spacevine/dense,
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"Dk" = (
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"DT" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/structure/spacevine/weak,
+/turf/open/floor/plating{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"Ed" = (
+/obj/structure/flora/rock/jungle,
+/obj/structure/spacevine/dense,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
+/area/template_noop)
+"Eg" = (
+/obj/structure/flora/tree/jungle,
+/obj/structure/flora/rock/jungle,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
+/area/template_noop)
+"Fi" = (
+/obj/structure/flora/grass/jungle/b,
+/turf/template_noop,
+/area/template_noop)
+"Fo" = (
+/obj/structure/railing/corner{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/spacevine/weak,
+/turf/open/floor/plating{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"FD" = (
+/obj/structure/railing,
+/obj/structure/spacevine/weak,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"Hw" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/stairs{
+	dir = 4;
+	 initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"IB" = (
+/obj/structure/spacevine/dense,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"IK" = (
+/turf/open/floor/plasteel/stairs{
+	dir = 4;
+	 initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"IT" = (
+/obj/structure/flora/rock/jungle,
+/obj/structure/spacevine/weak,
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"Jl" = (
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/spacevine/weak,
+/turf/open/floor/monotile/dark{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"KY" = (
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"LH" = (
+/obj/structure/spacevine/dense,
+/obj/structure/railing,
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"NL" = (
+/turf/template_noop,
+/area/template_noop)
+"NW" = (
+/obj/structure/flora/rock/jungle,
+/obj/structure/spacevine/dense,
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"OD" = (
+/obj/item/stack/ore/iron,
+/obj/structure/spacevine/dense,
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"OV" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/spacevine/dense,
+/turf/open/floor/plasteel/stairs{
+	dir = 4;
+	 initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"OX" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/spacevine/dense,
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/monotile/dark{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"OY" = (
+/obj/structure/spacevine/weak,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"PY" = (
+/obj/structure/spacevine/weak,
+/obj/structure/spacevine/weak,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"Qs" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/spacevine/weak,
+/turf/open/floor/monotile/dark{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"Qt" = (
+/obj/structure/railing/corner,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/spacevine/weak,
+/turf/open/floor/monotile/dark{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"QM" = (
+/obj/structure/flora/tree/jungle,
+/obj/structure/flora/grass/jungle,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
+/area/template_noop)
+"QQ" = (
+/obj/structure/flora/grass/jungle/b,
+/obj/structure/spacevine/dense,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"RO" = (
 /obj/structure/railing{
 	dir = 4
 	},
@@ -476,57 +483,42 @@
 	 planetary_atmos = 1
 	},
 /area/template_noop)
-"LC" = (
-/obj/structure/flora/junglebush/b,
-/obj/structure/spacevine/dense,
-/turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
-/area/template_noop)
-"Mr" = (
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
-/area/template_noop)
-"Oe" = (
-/obj/structure/flora/tree/jungle,
-/obj/structure/flora/rock/jungle,
-/turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
-/area/template_noop)
-"OL" = (
-/obj/structure/flora/junglebush/b,
-/obj/item/stack/ore/titanium,
-/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
-/area/template_noop)
-"PR" = (
-/obj/structure/flora/junglebush/large,
-/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
-/area/template_noop)
-"RP" = (
-/obj/structure/spacevine/dense,
-/turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
-/area/template_noop)
-"RW" = (
+"Sv" = (
 /obj/structure/flora/grass/jungle/b,
-/turf/template_noop,
-/area/template_noop)
-"Uy" = (
-/obj/structure/spacevine/dense,
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
-/area/template_noop)
-"UT" = (
-/obj/structure/flora/grass/jungle/b,
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
-/area/template_noop)
-"Vc" = (
-/obj/structure/flora/junglebush/b,
 /turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
 /area/template_noop)
-"VD" = (
+"Tk" = (
+/obj/structure/spacevine/dense,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
+/area/template_noop)
+"TR" = (
+/obj/structure/railing,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/spacevine/weak,
+/turf/open/floor/monotile/dark{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"Us" = (
+/obj/structure/railing,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/spacevine/dense,
+/turf/open/floor/plating/rust{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"Vj" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/spacevine/weak,
 /turf/open/floor/plasteel/stairs{
 	dir = 4;
 	 initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
 	 planetary_atmos = 1
 	},
 /area/template_noop)
-"WF" = (
-/obj/structure/railing,
+"VM" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/spacevine/dense,
 /turf/open/floor/monotile/dark{
@@ -534,357 +526,365 @@
 	 planetary_atmos = 1
 	},
 /area/template_noop)
-"Xg" = (
-/obj/effect/decal/cleanable/glass,
+"VQ" = (
+/obj/structure/flora/tree/jungle/small,
+/obj/structure/spacevine/dense,
 /turf/open/floor/plating/asteroid/dirt/jungle/dark,
 /area/template_noop)
-"XC" = (
-/obj/structure/railing,
+"VU" = (
+/obj/structure/flora/grass/jungle,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
+/area/template_noop)
+"XX" = (
+/obj/structure/railing{
+	dir = 8
+	},
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/spacevine/dense,
 /turf/open/floor/plating/rust{
 	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
 	 planetary_atmos = 1
 	},
 /area/template_noop)
-"YK" = (
-/obj/structure/railing,
-/obj/structure/spacevine/dense,
+"Yr" = (
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
+/area/template_noop)
+"Yv" = (
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"YA" = (
 /obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/railing{
+	dir = 4
+	},
 /turf/open/floor/plating{
 	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
 	 planetary_atmos = 1
 	},
 /area/template_noop)
-"Zf" = (
-/obj/structure/flora/grass/jungle/b,
-/obj/structure/spacevine/dense,
+"YH" = (
+/obj/structure/flora/junglebush/large,
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"Zo" = (
+/obj/structure/flora/junglebush/c,
 /turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
 /area/template_noop)
-"ZC" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/railing{
-	dir = 8
-	},
-/obj/structure/spacevine/weak,
-/turf/open/floor/plating/rust{
-	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
-	 planetary_atmos = 1
-	},
+"Zx" = (
+/obj/structure/flora/rock/jungle,
+/obj/item/stack/ore/iron,
+/obj/structure/spacevine/dense,
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
 /area/template_noop)
-"ZV" = (
+"ZR" = (
+/obj/structure/flora/rock/jungle,
+/obj/structure/spacevine/dense,
 /obj/structure/railing,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/spacevine/weak,
-/turf/open/floor/plating/rust{
-	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
-	 planetary_atmos = 1
-	},
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
 /area/template_noop)
 
 (1,1,1) = {"
-II
-II
-II
-xc
-cu
-Da
-Xg
-Mr
-Mr
-Mr
-og
-Oe
-og
-og
-xc
+NL
+NL
+NL
+VU
+qW
+Sv
+KY
+Yv
+Yv
+Yv
+Yr
+Eg
+Yr
+Yr
+VU
 "}
 (2,1,1) = {"
-II
-Da
-Zf
-wX
-LC
-RP
-Mr
-mx
-Mr
-Mr
-xc
-og
-cu
-dk
-Da
+NL
+Sv
+wR
+Ed
+aT
+Tk
+Yv
+Aw
+Yv
+Yv
+VU
+Yr
+qW
+QM
+Sv
 "}
 (3,1,1) = {"
-Da
-Zf
-qs
-En
-En
-En
-yX
-pB
-Cz
-Ba
-vF
-En
-yX
-Da
-za
+Sv
+wR
+yP
+sZ
+sZ
+sZ
+Qs
+oi
+OX
+mI
+sS
+sZ
+Qs
+Sv
+kd
 "}
 (4,1,1) = {"
-Da
-sU
-WF
-nz
-En
-En
-vg
-En
-qB
-Ba
-Ba
-WF
-AL
-uZ
-II
+Sv
+Ax
+vO
+Qt
+sZ
+sZ
+Vj
+sZ
+OV
+mI
+mI
+vO
+wi
+sB
+NL
 "}
 (5,1,1) = {"
-gL
-Zf
+Zo
+wR
+TR
+TR
+Ba
+ze
+Vj
+RO
 Hw
-Hw
-Lp
-JK
-vg
-Ly
-fX
-oL
-dG
-WF
-AL
-ih
-II
+YA
+sr
+vO
+wi
+OY
+NL
 "}
 (6,1,1) = {"
-Uy
-sk
-ph
-HN
-fB
-uM
-VD
-OL
-Ca
-tq
-dG
-WF
-kZ
-Mr
-II
+IB
+mW
+FD
+nP
+an
+Dk
+IK
+iX
+CT
+za
+sr
+vO
+VM
+Yv
+NL
 "}
 (7,1,1) = {"
-Mr
-ih
-ph
-Hw
-Bs
-uM
-eY
-eY
-ht
-tq
-Bs
-WF
-kZ
-tj
-Mr
+Yv
+OY
+FD
+TR
+ty
+Dk
+Dh
+Dh
+IT
+za
+ty
+vO
+VM
+QQ
+Yv
 "}
 (8,1,1) = {"
-Mr
-ih
-ph
-Hw
-ZV
-eY
-El
-yE
-cV
-tq
-ZV
-HN
-kZ
-xF
-Mr
+Yv
+OY
+FD
+TR
+AB
+Dh
+OD
+uR
+ti
+za
+AB
+nP
+VM
+VQ
+Yv
 "}
 (9,1,1) = {"
-Mr
-Mr
-HN
-HN
-XC
-eY
-pl
-uM
-uM
-iM
-ZV
-WF
-kZ
-Uy
-tj
+Yv
+Yv
+nP
+nP
+Us
+Dh
+NW
+Dk
+Dk
+nS
+AB
+vO
+VM
+IB
+QQ
 "}
 (10,1,1) = {"
-Mr
-ih
-Hw
-HN
-XC
-eY
-uM
-EO
-uM
-iM
-XC
-WF
-kZ
-tj
-UT
+Yv
+OY
+TR
+nP
+Us
+Dh
+Dk
+lA
+Dk
+nS
+Us
+vO
+VM
+QQ
+nj
 "}
 (11,1,1) = {"
-II
-Ch
-Hw
-HN
-fB
-eY
-pJ
-Il
-PR
-rg
-YK
-WF
-kz
-Mr
-Mr
+NL
+PY
+TR
+nP
+an
+Dh
+BI
+uM
+YH
+LH
+ta
+vO
+tQ
+Yv
+Yv
 "}
 (12,1,1) = {"
-II
-Da
-Hw
-Hw
-Bs
-eY
-ba
-eY
-Il
-sz
-Bs
-HN
-kz
-Mr
-II
+NL
+Sv
+TR
+TR
+ty
+Dh
+Zx
+Dh
+uM
+ZR
+ty
+nP
+tQ
+Yv
+NL
 "}
 (13,1,1) = {"
-II
-Da
-Hw
-Hw
-Bs
-pf
-pf
-eY
-uM
-tq
-ZV
-Hw
-kz
-Mr
-II
+NL
+Sv
+TR
+TR
+ty
+pN
+pN
+Dh
+Dk
+za
+AB
+TR
+tQ
+Yv
+NL
 "}
 (14,1,1) = {"
-RW
-za
-Hw
-Hw
-AI
-tQ
-ZC
-zg
-tQ
-wQ
-Bs
-Hw
-yX
-Da
-II
+Fi
+kd
+TR
+TR
+Fo
+cB
+oT
+DT
+cB
+XX
+ty
+TR
+Qs
+Sv
+NL
 "}
 (15,1,1) = {"
-Da
-Da
-Hw
-Fm
-jL
-ac
-ac
-jL
-jL
-jL
-jL
-Hw
-kz
-za
-II
+Sv
+Sv
+TR
+fI
+Jl
+tc
+tc
+Jl
+Jl
+Jl
+Jl
+TR
+tQ
+kd
+NL
 "}
 (16,1,1) = {"
-II
-Vc
-Fm
-jL
-ox
-ac
-ac
-ac
-jL
-jL
-ac
-ox
-kz
-xc
-Da
+NL
+yd
+fI
+Jl
+fD
+tc
+tc
+tc
+Jl
+Jl
+tc
+fD
+tQ
+VU
+Sv
 "}
 (17,1,1) = {"
-II
-Da
-dk
-xc
-xc
-Da
-Uy
-tj
-GQ
-Uy
-Uy
-Mr
-Da
-Oe
-xc
+NL
+Sv
+QM
+VU
+VU
+Sv
+IB
+QQ
+cr
+IB
+IB
+Yv
+Sv
+Eg
+VU
 "}
 (18,1,1) = {"
-II
-II
-Da
-Da
-kq
-Da
-II
-tj
-Uy
-tj
-II
-II
-II
-II
-II
+NL
+NL
+Sv
+Sv
+mJ
+Sv
+NL
+QQ
+IB
+QQ
+NL
+NL
+NL
+NL
+NL
 "}

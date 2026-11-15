@@ -1,32 +1,42 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"b" = (
-/turf/open/floor/plating/ice/planet_ice,
-/area/template_noop)
-"e" = (
+"a" = (
 /obj/item/clothing/head/cone{
-	pixel_y = 4;
-	 pixel_x = 5
+	pixel_y = 3;
+	 pixel_x = 4
 	},
 /turf/open/floor/plating/ice/planet_ice,
 /area/template_noop)
-"w" = (
-/turf/template_noop,
-/area/template_noop)
-"B" = (
-/obj/item/clothing/head/cone{
-	pixel_y = 5;
-	 pixel_x = -5
-	},
-/turf/open/floor/plating/ice/planet_ice,
-/area/template_noop)
-"N" = (
+"I" = (
 /obj/item/clothing/head/cone{
 	pixel_x = 10;
 	 pixel_y = 5
 	},
 /turf/open/floor/plating/ice/planet_ice,
 /area/template_noop)
-"Q" = (
+"J" = (
+/obj/item/clothing/head/cone{
+	pixel_y = 5;
+	 pixel_x = -5
+	},
+/turf/open/floor/plating/ice/planet_ice,
+/area/template_noop)
+"K" = (
+/turf/closed/mineral/planet_ice_wall,
+/area/template_noop)
+"O" = (
+/obj/item/clothing/head/cone{
+	pixel_y = 4;
+	 pixel_x = 5
+	},
+/turf/open/floor/plating/ice/planet_ice,
+/area/template_noop)
+"P" = (
+/turf/open/floor/plating/ice/planet_ice,
+/area/template_noop)
+"R" = (
+/turf/template_noop,
+/area/template_noop)
+"W" = (
 /obj/item/clothing/head/soft{
 	pixel_y = 7;
 	 pixel_x = 2
@@ -38,77 +48,67 @@
 	},
 /turf/open/floor/plating/ice/planet_ice,
 /area/template_noop)
-"T" = (
-/obj/item/clothing/head/cone{
-	pixel_y = 3;
-	 pixel_x = 4
-	},
-/turf/open/floor/plating/ice/planet_ice,
-/area/template_noop)
-"W" = (
-/turf/closed/mineral/planet_ice_wall,
-/area/template_noop)
 
 (1,1,1) = {"
-w
-w
-w
-b
-b
-N
-b
+R
+R
+R
+P
+P
+I
+P
 "}
 (2,1,1) = {"
-W
-W
-W
-W
-W
-W
-T
+K
+K
+K
+K
+K
+K
+a
 "}
 (3,1,1) = {"
-W
-W
-W
-W
-W
-b
-b
+K
+K
+K
+K
+K
+P
+P
 "}
 (4,1,1) = {"
+K
+K
+K
 W
-W
-W
-Q
-W
-b
-b
+K
+P
+P
 "}
 (5,1,1) = {"
-b
-W
-W
-W
-W
-e
-w
+P
+K
+K
+K
+K
+O
+R
 "}
 (6,1,1) = {"
-w
-W
-W
-W
-B
-b
-w
+R
+K
+K
+K
+J
+P
+R
 "}
 (7,1,1) = {"
-w
-b
-b
-w
-b
-w
-w
+R
+P
+P
+R
+P
+R
+R
 "}

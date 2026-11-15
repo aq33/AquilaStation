@@ -1,19 +1,22 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/obj/structure/flora/junglebush,
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/turf/open/water/planet/jungle,
 /area/template_noop)
 "b" = (
 /obj/structure/flora/ausbushes/stalkybush{
 	name = "trzciny"
 	},
 /obj/structure/flora/ausbushes/stalkybush{
-	pixel_x = 3;
-	 pixel_y = 10
+	pixel_x = 10;
+	 pixel_y = 15
 	},
 /turf/open/water/planet/jungle,
 /area/template_noop)
-"c" = (
+"f" = (
+/obj/structure/flora/ausbushes/sunnybush,
+/turf/open/floor/plating/asteroid/river_sand,
+/area/template_noop)
+"h" = (
 /obj/structure/flora/ausbushes/stalkybush{
 	name = "trzciny"
 	},
@@ -35,60 +38,20 @@
 	},
 /turf/open/water/planet/jungle,
 /area/template_noop)
-"d" = (
-/obj/structure/flora/ausbushes/stalkybush{
-	pixel_x = 10;
-	 pixel_y = 15
+"i" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
 	},
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/wood/corner,
 /turf/open/water/planet/jungle,
 /area/template_noop)
-"e" = (
-/obj/structure/flora/ausbushes/stalkybush{
-	name = "trzciny"
-	},
-/obj/structure/flora/ausbushes/stalkybush{
-	pixel_x = 10;
-	 pixel_y = 15
-	},
-/turf/open/water/planet/jungle,
-/area/template_noop)
-"f" = (
-/obj/structure/chair/wood{
-	dir = 1
-	},
-/obj/item/book/fish_catalog,
+"j" = (
 /turf/open/floor/plating/asteroid/dirt/jungle/dark,
 /area/template_noop)
-"g" = (
-/obj/structure/flora/ausbushes/stalkybush{
-	pixel_x = 3;
-	 pixel_y = 10
-	},
-/turf/open/water/planet/jungle,
-/area/template_noop)
-"l" = (
-/obj/structure/flora/junglebush/c,
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
-/area/template_noop)
-"n" = (
-/turf/template_noop,
-/area/template_noop)
-"o" = (
-/obj/structure/closet/crate/wooden,
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
-/area/template_noop)
-"p" = (
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
-/area/template_noop)
-"r" = (
-/obj/item/fishing_rod,
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
-/area/template_noop)
-"u" = (
-/obj/structure/flora/ausbushes/fullgrass,
-/turf/open/floor/plating/asteroid/river_sand,
-/area/template_noop)
-"v" = (
+"k" = (
 /obj/structure/flora/ausbushes/stalkybush{
 	name = "trzciny"
 	},
@@ -98,13 +61,7 @@
 	},
 /turf/open/water/planet/jungle,
 /area/template_noop)
-"w" = (
-/obj/structure/flora/ausbushes/stalkybush{
-	name = "trzciny"
-	},
-/turf/open/water/planet/jungle,
-/area/template_noop)
-"y" = (
+"l" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 4
 	},
@@ -116,141 +73,184 @@
 	 planetary_atmos = 1
 	},
 /area/template_noop)
+"m" = (
+/obj/structure/flora/ausbushes/stalkybush{
+	name = "trzciny"
+	},
+/obj/structure/flora/ausbushes/stalkybush{
+	pixel_x = 3;
+	 pixel_y = 10
+	},
+/turf/open/water/planet/jungle,
+/area/template_noop)
+"n" = (
+/obj/structure/flora/grass/jungle/b,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"s" = (
+/obj/item/fishing_rod,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"w" = (
+/mob/living/basic/crab{
+	name = "rak"
+	},
+/turf/open/water/planet/jungle,
+/area/template_noop)
+"x" = (
+/obj/structure/flora/junglebush/c,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
 "z" = (
-/obj/effect/overlay/palmtree_r,
-/turf/open/floor/plating/asteroid/river_sand,
+/obj/structure/flora/ausbushes/stalkybush{
+	pixel_x = 3;
+	 pixel_y = 10
+	},
+/turf/open/water/planet/jungle,
 /area/template_noop)
 "A" = (
 /obj/structure/flora/junglebush/large,
 /turf/open/floor/plating/asteroid/dirt/jungle/dark,
 /area/template_noop)
 "B" = (
-/turf/open/floor/plating/asteroid/river_sand,
-/area/template_noop)
-"C" = (
-/obj/structure/flora/grass/jungle/b,
+/obj/structure/flora/junglebush,
 /turf/open/floor/plating/asteroid/dirt/jungle/dark,
 /area/template_noop)
 "D" = (
-/obj/structure/flora/grass/jungle,
+/obj/structure/chair/wood{
+	dir = 1
+	},
+/obj/item/book/fish_catalog,
 /turf/open/floor/plating/asteroid/dirt/jungle/dark,
 /area/template_noop)
-"I" = (
-/obj/structure/flora/ausbushes/sparsegrass,
-/turf/open/floor/plating/asteroid/river_sand,
-/area/template_noop)
-"K" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 8
-	},
-/obj/effect/turf_decal/siding/wood/corner{
-	dir = 8
-	},
-/obj/effect/turf_decal/siding/wood/corner,
-/turf/open/water/planet/jungle,
-/area/template_noop)
-"L" = (
-/obj/structure/flora/ausbushes/sunnybush,
-/turf/open/floor/plating/asteroid/river_sand,
-/area/template_noop)
-"R" = (
-/turf/open/water/planet/jungle,
-/area/template_noop)
-"S" = (
+"F" = (
 /obj/structure/closet/crate/freezer,
 /obj/item/reagent_containers/food/drinks/beer,
 /obj/item/fish,
 /obj/item/reagent_containers/food/drinks/beer,
 /turf/open/floor/plating/asteroid/river_sand,
 /area/template_noop)
-"T" = (
+"H" = (
+/obj/effect/overlay/palmtree_r,
+/turf/open/floor/plating/asteroid/river_sand,
+/area/template_noop)
+"K" = (
+/obj/structure/flora/ausbushes/stalkybush{
+	name = "trzciny"
+	},
+/turf/open/water/planet/jungle,
+/area/template_noop)
+"L" = (
+/obj/structure/flora/grass/jungle,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"N" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/turf/open/floor/plating/asteroid/river_sand,
+/area/template_noop)
+"P" = (
+/turf/template_noop,
+/area/template_noop)
+"Q" = (
+/obj/structure/closet/crate/wooden,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"U" = (
 /obj/structure/flora/ausbushes/reedbush,
 /turf/open/water/planet/jungle,
 /area/template_noop)
 "V" = (
-/mob/living/basic/crab{
-	name = "rak"
+/obj/structure/flora/ausbushes/stalkybush{
+	pixel_x = 10;
+	 pixel_y = 15
 	},
 /turf/open/water/planet/jungle,
 /area/template_noop)
+"W" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/plating/asteroid/river_sand,
+/area/template_noop)
+"X" = (
+/turf/open/floor/plating/asteroid/river_sand,
+/area/template_noop)
 
 (1,1,1) = {"
-n
-a
-L
+P
 B
-I
-p
-n
-n
+f
+X
+W
+j
+P
+P
 "}
 (2,1,1) = {"
 A
-I
-R
-R
-g
-u
-C
+W
+a
+a
+z
+N
 n
+P
 "}
 (3,1,1) = {"
-B
-R
-d
-R
-v
-B
-D
-C
+X
+a
+V
+a
+k
+X
+L
+n
 "}
 (4,1,1) = {"
-y
-c
+l
+h
+i
+U
+a
 K
-T
-R
-w
-I
-B
+W
+X
 "}
 (5,1,1) = {"
-I
-R
-e
-V
-R
-R
-r
-f
+W
+a
+b
+w
+a
+a
+s
+D
 "}
 (6,1,1) = {"
-p
-u
-g
-R
-b
-g
-o
-S
+j
+N
+z
+a
+m
+z
+Q
+F
 "}
 (7,1,1) = {"
+P
 n
-C
+H
+a
 z
-R
-g
-I
-B
-l
+W
+X
+x
 "}
 (8,1,1) = {"
+P
+L
 n
-D
-C
-B
-I
-B
-C
+X
+W
+X
 n
+P
 "}

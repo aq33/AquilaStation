@@ -1,90 +1,72 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "f" = (
-/turf/template_noop,
+/obj/effect/decal/cleanable/greenglow/filled,
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
 /area/template_noop)
 "g" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"h" = (
+/obj/structure/flora/ausbushes/sparsegrass,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/spacevine/dead,
 /turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
 /area/template_noop)
-"h" = (
-/obj/effect/decal/cleanable/greenglow/filled,
-/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
-/area/template_noop)
-"j" = (
+"k" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/spacevine/dead,
 /turf/open/floor/concrete/slab_1{
 	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
 	 planetary_atmos = 1
 	},
 /area/template_noop)
-"o" = (
+"m" = (
 /obj/structure/flora/ausbushes/sparsegrass,
-/obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
 /area/template_noop)
 "p" = (
 /obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/concrete/slab_1{
 	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
 	 planetary_atmos = 1
 	},
 /area/template_noop)
-"q" = (
-/obj/structure/flora/ausbushes/sparsegrass,
+"s" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/spacevine/dead,
-/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
-/area/template_noop)
-"u" = (
-/turf/closed/mineral/random/planet_jungle/polluted,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	 planetary_atmos = 1
+	},
 /area/template_noop)
 "v" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/spacevine/dead,
-/turf/open/floor/concrete/slab_1{
-	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
-	 planetary_atmos = 1
-	},
+/turf/open/water/planet/jungle,
 /area/template_noop)
 "w" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
-/area/template_noop)
-"x" = (
 /obj/structure/spacevine/dead,
 /turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
 /area/template_noop)
-"z" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/spacevine/dead,
-/turf/open/water/planet/jungle,
+"y" = (
+/turf/template_noop,
 /area/template_noop)
-"B" = (
-/obj/structure/flora/ausbushes/sparsegrass,
-/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
-/area/template_noop)
-"J" = (
-/obj/effect/decal/cleanable/greenglow/filled,
-/turf/open/water/planet/jungle,
-/area/template_noop)
-"O" = (
+"C" = (
 /turf/open/space/basic,
 /area/template_noop)
-"R" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/water/planet/jungle,
-/area/template_noop)
-"T" = (
+"D" = (
 /obj/structure/spacevine/dead,
 /turf/open/water/planet/jungle,
 /area/template_noop)
-"V" = (
-/obj/structure/spacevine/dead,
+"F" = (
 /turf/closed/mineral/random/planet_jungle/polluted,
 /area/template_noop)
-"W" = (
+"G" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"H" = (
 /obj/effect/anomaly/heartbeat/planetary{
 	pixel_y = 2
 	},
@@ -95,115 +77,133 @@
 	 planetary_atmos = 1
 	},
 /area/template_noop)
-"X" = (
+"I" = (
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"J" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/spacevine/dead,
+/turf/open/water/planet/jungle,
+/area/template_noop)
+"O" = (
+/obj/effect/decal/cleanable/greenglow/filled,
+/turf/open/water/planet/jungle,
+/area/template_noop)
+"P" = (
+/obj/structure/spacevine/dead,
+/turf/closed/mineral/random/planet_jungle/polluted,
+/area/template_noop)
+"U" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/spacevine/dead,
 /turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
 /area/template_noop)
 
 (1,1,1) = {"
-f
-f
-u
-u
-u
-u
-u
-f
-f
-f
+y
+y
+F
+F
+F
+F
+F
+y
+y
+y
 "}
 (2,1,1) = {"
-f
-u
-u
-V
-u
-J
-u
-u
-f
-f
+y
+F
+F
+P
+F
+O
+F
+F
+y
+y
 "}
 (3,1,1) = {"
-f
-u
-V
-T
-z
-z
-R
-B
-f
-f
+y
+F
+P
+D
+J
+J
+v
+m
+y
+y
 "}
 (4,1,1) = {"
-u
-u
-V
-T
-z
-p
-w
-h
-X
+F
+F
+P
+D
+J
+s
+g
 f
+I
+y
 "}
 (5,1,1) = {"
-u
-u
-O
-T
+F
+F
+C
+D
+s
+s
 p
-p
-j
-w
-X
-f
+g
+I
+y
 "}
 (6,1,1) = {"
-u
-u
-u
-T
-p
-W
-p
-w
-w
-B
+F
+F
+F
+D
+s
+H
+s
+g
+g
+m
 "}
 (7,1,1) = {"
-f
-u
-u
-J
-p
-p
-p
-w
-X
-f
+y
+F
+F
+O
+s
+s
+s
+g
+I
+y
 "}
 (8,1,1) = {"
-f
-f
-V
+y
+y
+P
+U
+U
+k
+G
 g
-g
-v
-o
-w
-f
-f
+y
+y
 "}
 (9,1,1) = {"
-f
-f
-x
-q
+y
+y
 w
-w
-w
-f
-f
-f
+h
+g
+g
+g
+y
+y
+y
 "}

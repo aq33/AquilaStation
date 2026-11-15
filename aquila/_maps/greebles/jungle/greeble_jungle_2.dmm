@@ -1,47 +1,48 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/obj/structure/flora/tree/jungle{
-	icon_state = "tree5"
-	},
+/obj/structure/flora/tree/jungle,
 /obj/structure/spacevine,
 /turf/open/floor/plating/asteroid/dirt/grass/jungle,
 /area/template_noop)
 "b" = (
-/obj/structure/flora/junglebush/large,
-/obj/structure/spacevine,
-/turf/open/floor/plating/asteroid/dirt/grass/jungle,
-/area/template_noop)
-"c" = (
-/obj/structure/flora/junglebush/large,
-/turf/open/floor/plating/asteroid/dirt/grass/jungle,
-/area/template_noop)
-"e" = (
-/obj/structure/flora/junglebush/b,
-/obj/structure/spacevine,
-/turf/open/floor/plating/asteroid/dirt/grass/jungle,
-/area/template_noop)
-"f" = (
-/obj/structure/flora/ausbushes/ywflowers,
-/obj/structure/spacevine,
-/turf/open/floor/plating/asteroid/dirt/grass/jungle,
-/area/template_noop)
-"g" = (
 /obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
+"d" = (
+/obj/structure/flora/ausbushes/ppflowers,
 /obj/structure/spacevine,
 /turf/open/floor/plating/asteroid/dirt/jungle,
 /area/template_noop)
-"h" = (
+"e" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
+"f" = (
 /obj/structure/flora/junglebush/large,
 /obj/structure/spacevine/dense{
 	name = "gęste pnącza"
 	},
 /turf/open/floor/plating/asteroid/dirt/grass/jungle,
 /area/template_noop)
-"k" = (
+"g" = (
+/obj/structure/flora/ash/garden,
+/obj/structure/railing{
+	dir = 1
+	},
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
+"h" = (
+/obj/effect/decal/cleanable/dirt,
 /obj/structure/flora/ausbushes/sparsegrass,
 /turf/open/floor/plating/asteroid/dirt/jungle,
 /area/template_noop)
-"l" = (
+"i" = (
+/obj/structure/railing,
+/obj/structure/flora/ash/garden,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
+"k" = (
 /obj/structure/flora/junglebush/b{
 	pixel_x = -13;
 	pixel_y = 3
@@ -49,24 +50,11 @@
 /obj/structure/spacevine,
 /turf/open/floor/plating/asteroid/dirt/grass/jungle,
 /area/template_noop)
+"l" = (
+/obj/structure/flora/ausbushes/ywflowers/hell,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/template_noop)
 "m" = (
-/turf/open/floor/plating/asteroid/dirt/grass/jungle,
-/area/template_noop)
-"n" = (
-/obj/structure/flora/tree/jungle,
-/turf/open/floor/plating/asteroid/dirt/grass/jungle,
-/area/template_noop)
-"p" = (
-/obj/structure/spacevine/dense{
-	name = "gęste pnącza"
-	},
-/turf/open/floor/plating/asteroid/dirt/grass/jungle,
-/area/template_noop)
-"q" = (
-/obj/item/reagent_containers/glass/bucket,
-/turf/open/floor/plating/asteroid/dirt/jungle,
-/area/template_noop)
-"r" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/railing,
@@ -75,55 +63,53 @@
 	},
 /turf/open/floor/plating/asteroid/dirt/jungle,
 /area/template_noop)
-"s" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/flora/ausbushes/sparsegrass,
-/turf/open/floor/plating/asteroid/dirt/jungle,
-/area/template_noop)
-"t" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating/asteroid/dirt/jungle,
-/area/template_noop)
-"w" = (
-/obj/structure/flora/ausbushes/ywflowers/hell,
-/turf/open/floor/plating/asteroid/dirt/grass/jungle,
-/area/template_noop)
-"x" = (
-/obj/structure/spacevine,
-/obj/structure/spacevine,
-/turf/open/floor/plating/asteroid/dirt/jungle,
-/area/template_noop)
-"y" = (
+"o" = (
 /obj/structure/flora/junglebush,
 /turf/open/floor/plating/asteroid/dirt/grass/jungle,
 /area/template_noop)
+"q" = (
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/template_noop)
+"r" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
+"u" = (
+/obj/structure/flora/ash/garden,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/railing{
+	dir = 1
+	},
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
+"v" = (
+/obj/structure/flora/junglebush/b,
+/obj/structure/spacevine,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/template_noop)
+"y" = (
+/obj/structure/flora/ausbushes/ppflowers,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
 "z" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/spacevine,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
+"B" = (
 /obj/structure/flora/ausbushes/sparsegrass,
 /obj/structure/flora/ash/garden,
 /obj/structure/railing,
 /turf/open/floor/plating/asteroid/dirt/jungle,
 /area/template_noop)
 "C" = (
-/obj/structure/flora/ausbushes/ppflowers,
+/obj/structure/flora/tree/jungle{
+	icon_state = "tree5"
+	},
 /obj/structure/spacevine,
-/turf/open/floor/plating/asteroid/dirt/jungle,
-/area/template_noop)
-"D" = (
-/obj/structure/flora/ausbushes/sparsegrass,
-/obj/structure/flora/ash/garden,
-/turf/open/floor/plating/asteroid/dirt/jungle,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
 /area/template_noop)
 "E" = (
-/obj/structure/flora/ausbushes/ppflowers,
-/turf/open/floor/plating/asteroid/dirt/jungle,
-/area/template_noop)
-"G" = (
-/obj/structure/flora/ausbushes/sparsegrass,
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/spacevine,
-/turf/open/floor/plating/asteroid/dirt/jungle,
-/area/template_noop)
-"H" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/structure/railing{
 	dir = 1
@@ -131,63 +117,53 @@
 /obj/structure/railing,
 /turf/open/floor/plating/asteroid/dirt/jungle,
 /area/template_noop)
-"J" = (
+"F" = (
+/obj/item/cultivator,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
+"G" = (
 /obj/structure/flora/tree/jungle,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/template_noop)
+"H" = (
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
+"I" = (
+/obj/structure/spacevine,
+/obj/structure/spacevine,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
+"J" = (
+/obj/structure/flora/ausbushes/ywflowers,
 /obj/structure/spacevine,
 /turf/open/floor/plating/asteroid/dirt/grass/jungle,
 /area/template_noop)
 "K" = (
-/obj/structure/railing,
+/obj/structure/flora/ausbushes/sparsegrass,
 /obj/structure/flora/ash/garden,
+/obj/structure/railing{
+	dir = 1
+	},
 /turf/open/floor/plating/asteroid/dirt/jungle,
 /area/template_noop)
 "L" = (
 /obj/structure/flora/ausbushes/sparsegrass,
-/obj/structure/flora/ash/garden,
-/obj/structure/railing{
-	dir = 1
-	},
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/spacevine,
 /turf/open/floor/plating/asteroid/dirt/jungle,
 /area/template_noop)
 "M" = (
-/obj/item/cultivator,
-/turf/open/floor/plating/asteroid/dirt/jungle,
-/area/template_noop)
-"O" = (
-/obj/structure/flora/ash/garden,
+/obj/structure/flora/ausbushes/fullgrass,
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/railing{
-	dir = 1
-	},
 /turf/open/floor/plating/asteroid/dirt/jungle,
 /area/template_noop)
 "P" = (
-/obj/structure/flora/ash/garden,
-/obj/structure/railing{
-	dir = 1
-	},
-/turf/open/floor/plating/asteroid/dirt/jungle,
-/area/template_noop)
-"S" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/railing,
 /obj/structure/flora/ausbushes/sparsegrass,
 /turf/open/floor/plating/asteroid/dirt/jungle,
 /area/template_noop)
-"T" = (
-/obj/structure/flora/ausbushes/fullgrass,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating/asteroid/dirt/jungle,
-/area/template_noop)
-"U" = (
-/obj/structure/flora/ausbushes/sparsegrass,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating/asteroid/dirt/jungle,
-/area/template_noop)
-"W" = (
-/turf/open/floor/plating/asteroid/dirt/jungle,
-/area/template_noop)
-"X" = (
+"Q" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/item/clothing/mask/scarecrow{
 	pixel_y = 15
@@ -195,7 +171,7 @@
 /obj/effect/turf_decal/sand/plating,
 /turf/open/floor/plating/asteroid/dirt/jungle,
 /area/template_noop)
-"Y" = (
+"R" = (
 /obj/structure/flora/junglebush/large,
 /obj/structure/spacevine/dense{
 	name = "gęste pnącza"
@@ -203,84 +179,108 @@
 /obj/structure/spacevine,
 /turf/open/floor/plating/asteroid/dirt/grass/jungle,
 /area/template_noop)
+"T" = (
+/obj/structure/spacevine/dense{
+	name = "gęste pnącza"
+	},
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/template_noop)
+"V" = (
+/obj/item/reagent_containers/glass/bucket,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
+"W" = (
+/obj/structure/flora/junglebush/large,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/template_noop)
+"X" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/obj/structure/flora/ash/garden,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
+"Z" = (
+/obj/structure/flora/junglebush/large,
+/obj/structure/spacevine,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/template_noop)
 
 (1,1,1) = {"
-n
-e
-x
-g
-W
-W
-n
-f
+G
+v
+I
+z
+H
+H
+G
+J
 "}
 (2,1,1) = {"
-c
-E
-G
-T
 W
-W
-C
-h
+y
+L
+M
+H
+H
+d
+f
 "}
 (3,1,1) = {"
-W
-S
-M
-D
-W
-z
-W
-G
+H
+P
+F
+X
+H
+B
+H
+L
 "}
 (4,1,1) = {"
-t
-O
-k
-P
-U
+b
+u
 r
-s
-W
+g
+e
+m
+h
+H
 "}
 (5,1,1) = {"
-W
 H
-U
+E
+e
+i
+V
 K
-q
-L
-W
-y
+H
+o
 "}
 (6,1,1) = {"
-y
-k
-t
-X
-k
-W
-W
-W
+o
+r
+b
+Q
+r
+H
+H
+H
 "}
 (7,1,1) = {"
-Y
-l
-E
+R
 k
-W
-W
-m
-a
+y
+r
+H
+H
+q
+C
 "}
 (8,1,1) = {"
-J
-w
-m
-W
-W
-n
-b
-p
+a
+l
+q
+H
+H
+G
+Z
+T
 "}

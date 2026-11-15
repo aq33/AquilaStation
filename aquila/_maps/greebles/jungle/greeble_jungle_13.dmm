@@ -1,44 +1,23 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"a" = (
-/obj/structure/girder,
-/turf/open/floor/plating/rust{
-	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
-	 planetary_atmos = 1
-	},
-/area/template_noop)
-"d" = (
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
-/area/template_noop)
-"h" = (
-/obj/structure/flora/ash/garden,
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
-/area/template_noop)
-"q" = (
+"n" = (
 /turf/closed/wall/rust,
 /area/template_noop)
-"s" = (
-/obj/structure/flora/junglebush/large,
+"p" = (
 /turf/open/floor/plating/asteroid/dirt/jungle/dark,
 /area/template_noop)
 "v" = (
-/turf/template_noop,
-/area/template_noop)
-"z" = (
-/obj/structure/flora/rock/jungle,
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
-/area/template_noop)
-"A" = (
-/obj/structure/flora/grass/jungle/b,
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
-/area/template_noop)
-"C" = (
 /obj/structure/flora/grass/jungle,
 /turf/open/floor/plating/asteroid/dirt/jungle/dark,
 /area/template_noop)
-"G" = (
-/turf/closed/wall,
+"z" = (
+/obj/structure/flora/ash/garden,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
 /area/template_noop)
-"N" = (
+"F" = (
+/obj/structure/flora/junglebush/large,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"L" = (
 /obj/item/stack/ore/iron{
 	amount = 5
 	},
@@ -47,52 +26,73 @@
 	 planetary_atmos = 1
 	},
 /area/template_noop)
+"N" = (
+/turf/closed/wall,
+/area/template_noop)
+"P" = (
+/obj/structure/flora/rock/jungle,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"Q" = (
+/obj/structure/girder,
+/turf/open/floor/plating/rust{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"S" = (
+/turf/template_noop,
+/area/template_noop)
+"Z" = (
+/obj/structure/flora/grass/jungle/b,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
 
 (1,1,1) = {"
+S
+S
 v
-v
-C
-v
-v
-v
+S
+S
+S
 "}
 (2,1,1) = {"
-v
-A
-h
-s
-d
-v
+S
+Z
+z
+F
+p
+S
 "}
 (3,1,1) = {"
-C
-h
-q
-G
-a
-C
-"}
-(4,1,1) = {"
-v
-s
-a
-N
-d
-v
-"}
-(5,1,1) = {"
-v
-C
-h
-A
-v
-v
-"}
-(6,1,1) = {"
-v
 v
 z
+n
+N
+Q
 v
+"}
+(4,1,1) = {"
+S
+F
+Q
+L
+p
+S
+"}
+(5,1,1) = {"
+S
 v
-v
+z
+Z
+S
+S
+"}
+(6,1,1) = {"
+S
+S
+P
+S
+S
+S
 "}

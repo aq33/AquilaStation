@@ -1,5 +1,5 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"a" = (
+"b" = (
 /obj/structure/flora/rock/icy,
 /obj/item/food/grown/poppy/geranium{
 	pixel_x = 5;
@@ -7,29 +7,32 @@
 	},
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
-"k" = (
-/turf/open/floor/plating/asteroid/icerock,
+"j" = (
+/turf/template_noop,
 /area/template_noop)
-"o" = (
+"n" = (
 /obj/structure/flora/ash/garden/frigid,
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
-"t" = (
-/obj/structure/flora/rock/icy,
+"A" = (
+/obj/structure/flora/rock/icy{
+	pixel_y = -2
+	},
+/obj/item/food/grown/poppy{
+	pixel_x = 4;
+	 pixel_y = 3
+	},
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
-"B" = (
+"D" = (
 /obj/structure/flora/ausbushes/lavendergrass,
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
-"M" = (
+"F" = (
 /obj/structure/flora/ausbushes/sparsegrass,
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
-"Q" = (
-/turf/template_noop,
-/area/template_noop)
-"R" = (
+"W" = (
 /obj/structure/flora/rock/icy{
 	pixel_x = 2;
 	 pixel_y = 4
@@ -40,146 +43,143 @@
 	},
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
+"X" = (
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
 "Z" = (
-/obj/structure/flora/rock/icy{
-	pixel_y = -2
-	},
-/obj/item/food/grown/poppy{
-	pixel_x = 4;
-	 pixel_y = 3
-	},
+/obj/structure/flora/rock/icy,
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
 
 (1,1,1) = {"
-Q
-Q
-Q
-Q
-k
-k
-M
-Q
-Q
+j
+j
+j
+j
+X
+X
+F
+j
+j
 "}
 (2,1,1) = {"
-Q
-Q
-Q
-k
-t
-k
-B
-k
-Q
+j
+j
+j
+X
+Z
+X
+D
+X
+j
 "}
 (3,1,1) = {"
-Q
-Q
-k
-k
-M
-o
-k
-k
-M
+j
+j
+X
+X
+F
+n
+X
+X
+F
 "}
 (4,1,1) = {"
-Q
-k
+j
+X
+A
+X
+X
+X
+X
 Z
-k
-k
-k
-k
-t
-k
+X
 "}
 (5,1,1) = {"
-Q
-M
-o
-B
-t
-k
-k
-k
-Q
+j
+F
+n
+D
+Z
+X
+X
+X
+j
 "}
 (6,1,1) = {"
-t
-k
-k
-k
-k
-k
-k
-M
-Q
+Z
+X
+X
+X
+X
+X
+X
+F
+j
 "}
 (7,1,1) = {"
-k
-k
-R
-k
-M
-a
-k
-k
-Q
+X
+X
+W
+X
+F
+b
+X
+X
+j
 "}
 (8,1,1) = {"
-M
-B
-M
-k
-o
-B
-k
-k
-Q
+F
+D
+F
+X
+n
+D
+X
+X
+j
 "}
 (9,1,1) = {"
-Q
-k
-k
-k
-k
-k
-k
-k
-Q
+j
+X
+X
+X
+X
+X
+X
+X
+j
 "}
 (10,1,1) = {"
-Q
-k
-M
-t
-k
-k
-M
-Q
-Q
+j
+X
+F
+Z
+X
+X
+F
+j
+j
 "}
 (11,1,1) = {"
-Q
-Q
-Q
-k
-Q
-Q
-Q
-Q
-Q
+j
+j
+j
+X
+j
+j
+j
+j
+j
 "}
 (12,1,1) = {"
-Q
-Q
-Q
-Q
-Q
-Q
-Q
-Q
-Q
+j
+j
+j
+j
+j
+j
+j
+j
+j
 "}

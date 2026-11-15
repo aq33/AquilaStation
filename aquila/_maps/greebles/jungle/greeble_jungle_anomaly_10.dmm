@@ -1,148 +1,148 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"c" = (
-/obj/structure/flora/tree/dead/barren,
+"f" = (
+/obj/structure/flora/ausbushes/fullgrass/hell,
 /turf/open/water/planet/jungle,
 /area/template_noop)
-"k" = (
+"g" = (
 /obj/structure/flora/ausbushes/sparsegrass/hell,
 /turf/open/floor/plating/asteroid/river_sand,
 /area/template_noop)
-"p" = (
-/obj/structure/flora/ausbushes/fullgrass/hell,
-/turf/open/floor/plating/asteroid/river_sand,
-/area/template_noop)
-"r" = (
-/turf/open/floor/plating/asteroid/river_sand,
-/area/template_noop)
-"w" = (
-/obj/structure/flora/ausbushes/fullgrass/hell,
+"z" = (
 /turf/open/water/planet/jungle,
 /area/template_noop)
-"Q" = (
+"G" = (
+/obj/structure/flora/ausbushes/fullgrass/hell,
+/turf/open/floor/plating/asteroid/river_sand,
+/area/template_noop)
+"H" = (
+/obj/structure/flora/tree/dead/barren,
+/turf/open/water/planet/jungle,
+/area/template_noop)
+"L" = (
+/turf/template_noop,
+/area/template_noop)
+"V" = (
+/turf/open/floor/plating/asteroid/river_sand,
+/area/template_noop)
+"X" = (
 /obj/effect/mob_spawn/human/corpse/syndicatesoldier{
 	brute_damage = 600
 	},
 /obj/effect/anomaly/veins/helltree,
 /turf/open/water/planet/jungle,
 /area/template_noop)
-"U" = (
+"Y" = (
 /obj/structure/flora/ausbushes/sparsegrass/hell,
-/turf/open/water/planet/jungle,
-/area/template_noop)
-"V" = (
-/turf/template_noop,
-/area/template_noop)
-"W" = (
 /turf/open/water/planet/jungle,
 /area/template_noop)
 
 (1,1,1) = {"
+L
+L
+G
+g
+g
+G
 V
-V
-p
-k
-k
-p
-r
-V
+L
 "}
 (2,1,1) = {"
+L
 V
-r
-p
-W
-W
-W
-k
-V
+G
+z
+z
+z
+g
+L
 "}
 (3,1,1) = {"
-r
-k
-c
-W
-U
-W
-k
-r
+V
+g
+H
+z
+Y
+z
+g
+V
 "}
 (4,1,1) = {"
-p
-k
-W
-W
-W
-U
-c
-k
+G
+g
+z
+z
+z
+Y
+H
+g
 "}
 (5,1,1) = {"
-p
-W
-U
-W
-W
-W
-U
-r
+G
+z
+Y
+z
+z
+z
+Y
+V
 "}
 (6,1,1) = {"
-k
-W
-W
-W
-Q
-W
-W
-p
+g
+z
+z
+z
+X
+z
+z
+G
 "}
 (7,1,1) = {"
-k
-k
-W
-W
-U
-U
-w
-k
+g
+g
+z
+z
+Y
+Y
+f
+g
 "}
 (8,1,1) = {"
-V
-p
-W
-W
-w
-w
-W
-p
+L
+G
+z
+z
+f
+f
+z
+G
 "}
 (9,1,1) = {"
-V
-p
-k
-c
-U
-U
-W
-k
+L
+G
+g
+H
+Y
+Y
+z
+g
 "}
 (10,1,1) = {"
+L
+L
+g
 V
-V
-k
-r
-U
-W
-k
-k
+Y
+z
+g
+g
 "}
 (11,1,1) = {"
+L
+L
+L
 V
 V
 V
-r
-r
-r
-r
 V
+L
 "}

@@ -1,46 +1,50 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/turf/template_noop,
-/area/template_noop)
-"b" = (
-/obj/item/crystal_shard{
-	pixel_x = 10;
-	 pixel_y = 13
+/obj/structure/flora/rock/pile/lava{
+	pixel_x = -10;
+	 pixel_y = 6
 	},
 /turf/open/floor/plating/ice/planet_ice,
 /area/template_noop)
 "n" = (
-/obj/structure/flora/rock/pile/lava{
-	pixel_x = 7;
-	 pixel_y = 7
-	},
-/turf/open/floor/plating/ice/planet_ice,
-/area/template_noop)
-"q" = (
-/obj/item/crystal_shard{
-	pixel_x = -4;
-	 pixel_y = 1
-	},
-/turf/open/floor/plating/ice/planet_ice,
-/area/template_noop)
-"u" = (
-/turf/open/floor/plating/ice/planet_ice,
-/area/template_noop)
-"y" = (
-/obj/structure/flora/rock/pile/lava{
-	pixel_x = -5;
-	 pixel_y = 7
-	},
-/turf/open/floor/plating/ice/planet_ice,
-/area/template_noop)
-"G" = (
 /obj/structure/flora/rock/pile/lava{
 	pixel_x = 6;
 	 pixel_y = -4
 	},
 /turf/open/floor/plating/ice/planet_ice,
 /area/template_noop)
+"u" = (
+/obj/item/crystal_shard{
+	pixel_x = -4;
+	 pixel_y = 1
+	},
+/turf/open/floor/plating/ice/planet_ice,
+/area/template_noop)
+"x" = (
+/obj/structure/flora/rock/pile/lava{
+	pixel_x = 7;
+	 pixel_y = 7
+	},
+/turf/open/floor/plating/ice/planet_ice,
+/area/template_noop)
+"z" = (
+/obj/structure/flora/rock/pile/lava{
+	pixel_x = 4;
+	 pixel_y = 7
+	},
+/turf/open/floor/plating/ice/planet_ice,
+/area/template_noop)
+"D" = (
+/turf/open/floor/plating/ice/planet_ice,
+/area/template_noop)
 "H" = (
+/obj/item/crystal_shard{
+	pixel_x = 7;
+	 pixel_y = -4
+	},
+/turf/open/floor/plating/ice/planet_ice,
+/area/template_noop)
+"J" = (
 /obj/item/crystal_shard{
 	pixel_x = 7;
 	 pixel_y = 7
@@ -51,124 +55,120 @@
 	},
 /turf/open/floor/plating/ice/planet_ice,
 /area/template_noop)
-"I" = (
-/obj/item/crystal_shard{
-	pixel_x = 7;
-	 pixel_y = -4
-	},
-/turf/open/floor/plating/ice/planet_ice,
+"M" = (
+/turf/template_noop,
 /area/template_noop)
-"K" = (
+"S" = (
 /obj/structure/flora/rock/pile/lava{
-	pixel_x = 4;
+	pixel_x = -5;
 	 pixel_y = 7
 	},
 /turf/open/floor/plating/ice/planet_ice,
 /area/template_noop)
 "W" = (
-/obj/structure/flora/rock/pile/lava{
-	pixel_x = -10;
-	 pixel_y = 6
+/obj/item/crystal_shard{
+	pixel_x = 10;
+	 pixel_y = 13
 	},
 /turf/open/floor/plating/ice/planet_ice,
 /area/template_noop)
 
 (1,1,1) = {"
-a
-a
-a
-u
-a
-a
-a
-a
-a
+M
+M
+M
+D
+M
+M
+M
+M
+M
 "}
 (2,1,1) = {"
-a
-a
-u
-n
-u
-u
-a
-a
-a
+M
+M
+D
+x
+D
+D
+M
+M
+M
 "}
 (3,1,1) = {"
-q
 u
-u
-u
-u
-H
-u
-u
-a
+D
+D
+D
+D
+J
+D
+D
+M
 "}
 (4,1,1) = {"
+M
+D
+D
+M
+M
+M
+D
 a
-u
-u
-a
-a
-a
-u
-W
-u
+D
 "}
 (5,1,1) = {"
-a
-K
-u
-a
-a
-a
-a
-u
-u
+M
+z
+D
+M
+M
+M
+M
+D
+D
 "}
 (6,1,1) = {"
-a
-u
-u
-a
-a
-a
-u
-u
-a
+M
+D
+D
+M
+M
+M
+D
+D
+M
 "}
 (7,1,1) = {"
-a
-u
-u
-b
-a
-u
-I
-u
-a
+M
+D
+D
+W
+M
+D
+H
+D
+M
 "}
 (8,1,1) = {"
-a
-u
-G
-u
-u
-u
-y
-u
-a
+M
+D
+n
+D
+D
+D
+S
+D
+M
 "}
 (9,1,1) = {"
-a
-a
-u
-u
-a
-a
-u
-a
-a
+M
+M
+D
+D
+M
+M
+D
+M
+M
 "}

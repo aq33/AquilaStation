@@ -1,56 +1,50 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"b" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/item/stack/ore/titanium,
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"c" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 5
+"a" = (
+/obj/effect/turf_decal/siding/purple{
+	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/item/pen,
-/obj/item/gun/ballistic/shotgun/doublebarrel,
-/obj/machinery/firealarm/directional/west,
-/turf/open/floor/monotile/dark,
-/area/template_noop)
-"d" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 10
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 10
-	},
-/obj/structure/cable,
-/obj/machinery/light_switch{
-	pixel_x = -13;
-	pixel_y = 23
-	},
+/obj/item/radio/intercom/directional/west,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/item/stack/ore/titanium,
 /obj/effect/decal/cleanable/glass,
 /obj/item/stack/ore/iron,
+/turf/open/floor/plasteel/tech,
+/area/template_noop)
+"b" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/wallframe/airalarm{
+	pixel_x = -8;
+	pixel_y = -12
+	},
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
 /turf/open/floor/monotile/dark,
 /area/template_noop)
+"c" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/gibspawner/human/bodypartless,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"d" = (
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/template_noop)
 "e" = (
-/obj/machinery/airalarm/directional/south,
-/obj/structure/frame/machine,
-/obj/structure/sign/poster/official/random{
-	pixel_x = 32
+/obj/effect/turf_decal/siding/purple{
+	dir = 6
 	},
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/circuit,
+/obj/item/stack/ore/titanium,
+/turf/open/floor/plasteel/tech,
 /area/template_noop)
 "f" = (
-/obj/structure/statue/snow/snowlegion,
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/asteroid/icerock,
+/turf/template_noop,
 /area/template_noop)
 "g" = (
+/obj/structure/frame/machine,
+/obj/item/radio/intercom/directional/north,
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/glass,
-/turf/open/floor/plating/asteroid/icerock,
+/obj/item/binoculars,
+/turf/open/floor/monotile/dark,
 /area/template_noop)
 "h" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
@@ -72,29 +66,111 @@
 /obj/structure/door_assembly/door_assembly_com,
 /turf/open/floor/monotile/steel,
 /area/template_noop)
+"i" = (
+/obj/structure/grille,
+/obj/structure/window/plastitanium,
+/turf/open/floor/plating,
+/area/template_noop)
 "j" = (
-/obj/effect/turf_decal/siding/purple{
-	dir = 8
-	},
-/obj/structure/frame/machine,
-/obj/item/paper{
-	default_raw_text = "Brak protolathe. Zaginął w transporcie."
-	},
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plasteel/tech,
+/turf/closed/wall/mineral/plastitanium,
 /area/template_noop)
 "k" = (
-/obj/effect/turf_decal/siding/purple{
+/obj/item/radio/intercom/directional/west,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/gps/science{
+	gpstag = "*SOS"
+	},
+/obj/effect/decal/remains/human,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/stack/ore/titanium{
+	amount = 5
+	},
+/turf/open/floor/monotile/dark,
+/area/template_noop)
+"m" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
 	},
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
-	dir = 1
+/obj/machinery/holopad,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/wallframe/apc{
+	pixel_x = -10;
+	pixel_y = 16
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/monotile/dark,
+/area/template_noop)
+"n" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 10
+	},
+/obj/structure/cable,
+/obj/machinery/light_switch{
+	pixel_x = -13;
+	pixel_y = 23
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/stack/ore/titanium,
+/obj/effect/decal/cleanable/glass,
+/obj/item/stack/ore/iron,
+/turf/open/floor/monotile/dark,
+/area/template_noop)
+"o" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 8
+	},
+/obj/structure/chair/fancy/shuttle{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/stack/ore/iron,
+/turf/open/floor/monotile/dark,
+/area/template_noop)
+"p" = (
+/obj/structure/frame/computer{
+	dir = 8;
+	anchored = 1
+	},
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plasteel/tech,
 /area/template_noop)
-"l" = (
+"q" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "nemowindows"
+	},
+/obj/structure/grille,
+/obj/structure/window/plastitanium,
+/turf/open/floor/plating,
+/area/template_noop)
+"r" = (
+/obj/machinery/airalarm/directional/south,
+/obj/structure/frame/machine,
+/obj/structure/sign/poster/official/random{
+	pixel_x = 32
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/circuit,
+/area/template_noop)
+"s" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 5
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/statue/snow/snowlegion,
+/obj/machinery/light/broken{
+	dir = 8
+	},
+/turf/open/floor/monotile/dark,
+/area/template_noop)
+"v" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
@@ -120,7 +196,16 @@
 /obj/effect/turf_decal/siding/thinplating/dark/corner,
 /turf/open/floor/plasteel/dark,
 /area/template_noop)
-"m" = (
+"w" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"y" = (
+/obj/item/storage/box/disks,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/circuit,
+/area/template_noop)
+"z" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
 	},
@@ -150,74 +235,35 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/template_noop)
-"o" = (
-/obj/machinery/computer/cargo{
-	dir = 8
-	},
+"A" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/item/megaphone/command,
 /obj/effect/decal/cleanable/glass,
+/obj/machinery/suit_storage_unit,
 /turf/open/floor/plasteel/tech,
 /area/template_noop)
-"p" = (
+"B" = (
 /obj/effect/turf_decal/siding/purple{
 	dir = 8
 	},
-/obj/item/radio/intercom/directional/west,
+/obj/structure/frame/machine,
+/obj/item/paper{
+	default_raw_text = "Brak protolathe. Zaginął w transporcie."
+	},
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/item/stack/ore/titanium,
-/obj/effect/decal/cleanable/glass,
-/obj/item/stack/ore/iron,
 /turf/open/floor/plasteel/tech,
 /area/template_noop)
-"q" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+"D" = (
+/obj/effect/turf_decal/siding/purple{
 	dir = 4
 	},
-/obj/machinery/holopad,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/item/ammo_casing/spent,
-/obj/item/ammo_casing/spent,
-/obj/item/ammo_casing/spent,
-/obj/item/wallframe/apc{
-	pixel_x = -10;
-	pixel_y = 16
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 1
 	},
-/obj/effect/decal/cleanable/glass,
-/turf/open/floor/monotile/dark,
-/area/template_noop)
-"r" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plasteel/tech,
 /area/template_noop)
-"s" = (
-/turf/template_noop,
-/area/template_noop)
-"t" = (
-/turf/closed/wall/mineral/plastitanium,
-/area/template_noop)
-"u" = (
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "nemowindows"
-	},
-/obj/structure/grille,
-/obj/structure/window/plastitanium,
-/turf/open/floor/plating,
-/area/template_noop)
-"v" = (
-/obj/item/storage/box/disks,
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/circuit,
-/area/template_noop)
-"w" = (
-/turf/closed/mineral/random/planet_ice,
-/area/template_noop)
-"x" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/gibspawner/human/bodypartless,
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"y" = (
+"E" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 8
 	},
@@ -240,82 +286,12 @@
 /obj/effect/decal/cleanable/glass,
 /turf/open/floor/plasteel/tech,
 /area/template_noop)
-"A" = (
-/turf/closed/wall/mineral/plastitanium/nodiagonal,
-/area/template_noop)
-"B" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
-	dir = 8
-	},
-/obj/structure/chair/fancy/shuttle{
-	dir = 4
-	},
+"F" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/item/stack/ore/iron,
-/turf/open/floor/monotile/dark,
-/area/template_noop)
-"C" = (
-/obj/machinery/newscaster/directional/east,
-/turf/closed/mineral/random/planet_ice,
-/area/template_noop)
-"E" = (
-/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/stack/ore/titanium,
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
-"F" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 5
-	},
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/statue/snow/snowlegion,
-/obj/machinery/light/broken{
-	dir = 8
-	},
-/turf/open/floor/monotile/dark,
-/area/template_noop)
 "G" = (
-/obj/item/multitool,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/item/wallframe/apc{
-	pixel_x = 3;
-	pixel_y = 10
-	},
-/obj/machinery/light/broken{
-	dir = 4
-	},
-/turf/open/floor/circuit,
-/area/template_noop)
-"H" = (
-/obj/structure/frame/computer{
-	dir = 8;
-	anchored = 1
-	},
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plasteel/tech,
-/area/template_noop)
-"I" = (
-/obj/item/radio/intercom/directional/west,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/item/gps/science{
-	gpstag = "*SOS"
-	},
-/obj/effect/decal/remains/human,
-/obj/item/ammo_casing/spent,
-/obj/item/ammo_casing/spent,
-/obj/item/ammo_casing/spent,
-/obj/item/stack/ore/titanium{
-	amount = 5
-	},
-/turf/open/floor/monotile/dark,
-/area/template_noop)
-"J" = (
-/obj/item/clothing/glasses/science,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/glass,
-/obj/item/stack/ore/iron,
-/turf/open/floor/circuit,
-/area/template_noop)
-"K" = (
 /obj/effect/turf_decal/siding/purple{
 	dir = 4
 	},
@@ -327,37 +303,31 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plasteel/tech,
 /area/template_noop)
-"L" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/item/wallframe/airalarm{
-	pixel_x = -8;
-	pixel_y = -12
+"H" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 5
 	},
-/obj/item/ammo_casing/spent,
-/obj/item/ammo_casing/spent,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/pen,
+/obj/item/gun/ballistic/shotgun/doublebarrel,
+/obj/machinery/firealarm/directional/west,
 /turf/open/floor/monotile/dark,
 /area/template_noop)
-"N" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/structure/cable,
-/obj/effect/turf_decal/siding/purple{
-	dir = 1
-	},
-/obj/effect/turf_decal/siding/purple,
-/obj/machinery/light_switch{
-	pixel_x = -13;
-	pixel_y = 23
-	},
+"I" = (
+/obj/structure/statue/snow/snowlegion,
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/item/stack/ore/titanium,
-/turf/open/floor/monotile/steel,
+/turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
-"P" = (
+"J" = (
+/turf/closed/mineral/random/planet_ice,
+/area/template_noop)
+"K" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/stack/ore/iron,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"L" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
 	},
@@ -379,24 +349,53 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/monotile/steel,
 /area/template_noop)
-"Q" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/item/stack/ore/iron,
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"R" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/glass,
-/obj/machinery/suit_storage_unit,
-/turf/open/floor/plasteel/tech,
-/area/template_noop)
-"S" = (
+"M" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/structure/cable,
 /obj/effect/turf_decal/siding/purple{
-	dir = 6
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/purple,
+/obj/machinery/light_switch{
+	pixel_x = -13;
+	pixel_y = 23
 	},
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/item/stack/ore/titanium,
+/turf/open/floor/monotile/steel,
+/area/template_noop)
+"N" = (
+/obj/item/clothing/glasses/science,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/glass,
+/obj/item/stack/ore/iron,
+/turf/open/floor/circuit,
+/area/template_noop)
+"P" = (
+/obj/machinery/computer/cargo{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/megaphone/command,
+/obj/effect/decal/cleanable/glass,
 /turf/open/floor/plasteel/tech,
+/area/template_noop)
+"R" = (
+/obj/item/multitool,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/wallframe/apc{
+	pixel_x = 3;
+	pixel_y = 10
+	},
+/obj/machinery/light/broken{
+	dir = 4
+	},
+/turf/open/floor/circuit,
 /area/template_noop)
 "T" = (
 /obj/effect/turf_decal/siding/purple{
@@ -412,17 +411,18 @@
 /obj/structure/statue/snow/snowlegion,
 /turf/open/floor/plasteel/tech,
 /area/template_noop)
-"X" = (
-/obj/structure/frame/machine,
-/obj/item/radio/intercom/directional/north,
+"V" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/item/binoculars,
-/turf/open/floor/monotile/dark,
+/turf/open/floor/plasteel/tech,
 /area/template_noop)
-"Y" = (
-/obj/structure/grille,
-/obj/structure/window/plastitanium,
-/turf/open/floor/plating,
+"W" = (
+/obj/machinery/newscaster/directional/east,
+/turf/closed/mineral/random/planet_ice,
+/area/template_noop)
+"X" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
 "Z" = (
 /obj/machinery/door/poddoor/shutters/preopen{
@@ -435,274 +435,274 @@
 /area/template_noop)
 
 (1,1,1) = {"
-s
-s
-s
-s
-s
-s
-E
-E
-s
-s
-s
-s
-s
-s
+f
+f
+f
+f
+f
+f
+w
+w
+f
+f
+f
+f
+f
+f
 "}
 (2,1,1) = {"
-s
-s
-w
-s
-s
-E
-E
-E
-E
+f
+f
+J
+f
+f
 w
 w
-s
-s
-s
+w
+w
+J
+J
+f
+f
+f
 "}
 (3,1,1) = {"
-s
-w
-w
-w
-E
-g
 f
-E
-E
-b
+J
+J
+J
+w
+X
+I
 w
 w
-w
-s
+F
+J
+J
+J
+f
 "}
 (4,1,1) = {"
+J
+J
+J
+J
+F
+w
+K
 w
 w
-w
-w
-b
-E
-Q
-E
-E
-g
-w
-A
-w
-s
+X
+J
+d
+J
+f
 "}
 (5,1,1) = {"
+J
+J
+J
+d
+d
+z
+d
+d
 w
-w
-w
-A
-A
-m
-A
-A
-E
-x
-A
-A
-w
-w
+c
+d
+d
+J
+J
 "}
 (6,1,1) = {"
-s
-w
-w
-w
-A
-P
-p
-j
-r
-b
-A
-w
-w
-w
+f
+J
+J
+J
+d
+L
+a
+B
+V
+F
+d
+J
+J
+J
 "}
 (7,1,1) = {"
-s
-w
-w
-w
-A
+f
+J
+J
+J
+d
 h
-K
-k
+G
+D
 T
-S
-u
-w
-w
-w
+e
+q
+J
+J
+J
 "}
 (8,1,1) = {"
-s
-w
-w
-w
-A
-N
-G
-v
+f
 J
-e
-A
-w
-w
-w
+J
+J
+d
+M
+R
+y
+N
+r
+d
+J
+J
+J
 "}
 (9,1,1) = {"
-s
-s
-w
-w
-A
-l
-A
-A
-A
-A
-A
-w
-w
-s
+f
+f
+J
+J
+d
+v
+d
+d
+d
+d
+d
+J
+J
+f
 "}
 (10,1,1) = {"
-s
-w
-w
-w
-A
+f
+J
+J
+J
 d
-c
-F
-I
-R
-w
-w
-w
+n
+H
 s
+k
+A
+J
+J
+J
+f
 "}
 (11,1,1) = {"
-s
-s
-w
-w
-A
-X
-q
-B
-L
-C
-w
-w
-w
-w
+f
+f
+J
+J
+d
+g
+m
+o
+b
+W
+J
+J
+J
+J
 "}
 (12,1,1) = {"
-s
-s
-w
-w
-t
-A
-y
-H
-o
-A
-t
-w
-w
-w
+f
+f
+J
+J
+j
+d
+E
+p
+P
+d
+j
+J
+J
+J
 "}
 (13,1,1) = {"
-s
-s
-w
-w
-w
-t
+f
+f
+J
+J
+J
+j
 Z
-w
-Y
-t
-w
-w
-w
-s
+J
+i
+j
+J
+J
+J
+f
 "}
 (14,1,1) = {"
-s
-s
-w
-w
-w
-w
-w
-w
-w
-w
-w
-w
-w
-s
+f
+f
+J
+J
+J
+J
+J
+J
+J
+J
+J
+J
+J
+f
 "}
 (15,1,1) = {"
-s
-s
-s
-w
-w
-w
-w
-w
-w
-w
-w
-w
-s
-s
+f
+f
+f
+J
+J
+J
+J
+J
+J
+J
+J
+J
+f
+f
 "}
 (16,1,1) = {"
-s
-s
-s
-s
-w
-w
-w
-w
-w
-w
-w
-s
-s
-s
+f
+f
+f
+f
+J
+J
+J
+J
+J
+J
+J
+f
+f
+f
 "}
 (17,1,1) = {"
-s
-s
-s
-s
-s
-s
-w
-w
-w
-w
-s
-s
-s
-s
+f
+f
+f
+f
+f
+f
+J
+J
+J
+J
+f
+f
+f
+f
 "}

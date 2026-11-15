@@ -1,137 +1,137 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"c" = (
-/obj/structure/flora/ausbushes/lavendergrass,
+"a" = (
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
-"k" = (
-/obj/structure/flora/rock/icy,
-/turf/open/floor/plating/asteroid/snow/planet_ice,
-/area/template_noop)
-"x" = (
+"d" = (
 /obj/structure/flora/grass/both,
 /turf/open/floor/plating/asteroid/snow/planet_ice,
 /area/template_noop)
-"C" = (
-/turf/template_noop,
+"i" = (
+/turf/open/floor/plating/asteroid/snow/planet_ice,
 /area/template_noop)
-"D" = (
-/turf/open/floor/plating/asteroid/icerock/cracked,
-/area/template_noop)
-"L" = (
-/obj/structure/geyser/random,
-/turf/open/floor/plating/asteroid/icerock/cracked,
-/area/template_noop)
-"N" = (
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"Q" = (
+"l" = (
 /obj/structure/flora/ausbushes/sparsegrass,
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
+"u" = (
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
+"J" = (
+/obj/structure/geyser/random,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"Q" = (
+/obj/structure/geyser/random,
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
+"T" = (
+/turf/template_noop,
+/area/template_noop)
 "V" = (
+/obj/structure/flora/rock/icy,
 /turf/open/floor/plating/asteroid/snow/planet_ice,
 /area/template_noop)
-"Z" = (
-/obj/structure/geyser/random,
+"Y" = (
+/obj/structure/flora/ausbushes/lavendergrass,
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
 
 (1,1,1) = {"
-C
-C
-x
-V
-V
-V
-V
-C
-C
+T
+T
+d
+i
+i
+i
+i
+T
+T
 "}
 (2,1,1) = {"
-C
+T
+i
 V
-k
-V
-Q
-N
-V
-V
-C
+i
+l
+a
+i
+i
+T
 "}
 (3,1,1) = {"
-C
-x
-V
-N
-c
-Z
-V
-x
-V
+T
+d
+i
+a
+Y
+J
+i
+d
+i
 "}
 (4,1,1) = {"
+i
+i
+J
+a
+u
+l
+a
+i
 V
-V
-Z
-N
-D
-Q
-N
-V
-k
 "}
 (5,1,1) = {"
-x
-V
+d
+i
+l
+l
 Q
-Q
-L
-D
-N
-V
-x
+u
+a
+i
+d
 "}
 (6,1,1) = {"
-V
-V
-N
-c
-D
-Q
-N
-Q
-V
+i
+i
+a
+Y
+u
+l
+a
+l
+i
 "}
 (7,1,1) = {"
-V
-V
-V
-Q
-N
-Z
-c
-N
-V
+i
+i
+i
+l
+a
+J
+Y
+a
+i
 "}
 (8,1,1) = {"
-C
-k
+T
 V
-V
-x
-V
-V
-x
-V
+i
+i
+d
+i
+i
+d
+i
 "}
 (9,1,1) = {"
-C
-C
-C
-V
-V
-x
-V
-V
-C
+T
+T
+T
+i
+i
+d
+i
+i
+T
 "}

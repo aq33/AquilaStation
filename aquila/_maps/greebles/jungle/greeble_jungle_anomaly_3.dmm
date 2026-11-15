@@ -1,102 +1,102 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/obj/structure/flora/grass/green,
-/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/turf/template_noop,
 /area/template_noop)
 "d" = (
-/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
-/area/template_noop)
-"n" = (
 /turf/open/floor/plating/asteroid/dirt/jungle/dark,
 /area/template_noop)
-"p" = (
-/turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
-/area/template_noop)
-"u" = (
+"v" = (
 /obj/structure/flora/ausbushes/fullgrass/hell,
 /turf/open/floor/plating/asteroid/dirt/jungle/dark,
 /area/template_noop)
-"x" = (
-/turf/template_noop,
-/area/template_noop)
-"G" = (
-/obj/structure/flora/ausbushes/grassybush/hell,
+"y" = (
+/obj/structure/flora/grass/green,
 /turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
 /area/template_noop)
-"N" = (
+"z" = (
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"B" = (
 /obj/effect/anomaly/hallucination/planetary,
 /obj/structure/flora/grass/jungle,
 /turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
 /area/template_noop)
-"T" = (
-/obj/structure/flora/grass/green,
+"E" = (
 /turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
 /area/template_noop)
-"Y" = (
+"H" = (
+/obj/structure/flora/ausbushes/grassybush/hell,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
+/area/template_noop)
+"J" = (
 /obj/structure/flora/grass/green,
 /turf/open/floor/plating/asteroid/dirt/jungle/dark,
 /area/template_noop)
+"Q" = (
+/obj/structure/flora/grass/green,
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
 
 (1,1,1) = {"
+z
+H
 d
-G
-n
-x
-n
-p
+a
 d
+E
+z
 "}
 (2,1,1) = {"
-T
-d
-p
-u
-p
-a
-G
+y
+z
+E
+v
+E
+Q
+H
 "}
 (3,1,1) = {"
-n
-p
 d
-Y
+E
+z
+J
+z
+E
 d
-p
-n
 "}
 (4,1,1) = {"
-x
-u
-n
-N
-n
-u
-x
+a
+v
+d
+B
+d
+v
+a
 "}
 (5,1,1) = {"
-n
-p
 d
-n
-a
-p
-n
+E
+z
+d
+Q
+E
+d
 "}
 (6,1,1) = {"
-G
-a
-p
-u
-p
-d
-p
+H
+Q
+E
+v
+E
+z
+E
 "}
 (7,1,1) = {"
+z
+E
 d
-p
-n
-x
-n
-G
+a
 d
+H
+z
 "}

@@ -1,129 +1,129 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"a" = (
-/turf/open/floor/plating/asteroid/icerock,
+"b" = (
+/obj/effect/anomaly/bluespace/planetary,
+/turf/open/floor/plating/asteroid/iceberg,
 /area/template_noop)
 "c" = (
 /obj/structure/flora/ausbushes/lavendergrass,
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
-"d" = (
+"v" = (
 /turf/closed/mineral/random/planet_ice,
 /area/template_noop)
-"q" = (
-/mob/living/basic/mining/ice_demon/old,
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"t" = (
+"H" = (
 /obj/structure/flora/ausbushes/sparsegrass,
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
-"u" = (
+"K" = (
 /turf/open/floor/plating/asteroid/iceberg,
 /area/template_noop)
-"L" = (
+"N" = (
+/mob/living/basic/mining/ice_demon/old,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"O" = (
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"W" = (
 /turf/template_noop,
-/area/template_noop)
-"Q" = (
-/obj/effect/anomaly/bluespace/planetary,
-/turf/open/floor/plating/asteroid/iceberg,
 /area/template_noop)
 
 (1,1,1) = {"
-L
-L
-a
-t
-a
-a
-a
-L
-L
+W
+W
+O
+H
+O
+O
+O
+W
+W
 "}
 (2,1,1) = {"
-L
-d
-d
-t
-u
+W
+v
+v
+H
+K
 c
-a
-L
-L
+O
+W
+W
 "}
 (3,1,1) = {"
-d
-d
-d
-u
-u
-t
-t
-a
-L
+v
+v
+v
+K
+K
+H
+H
+O
+W
 "}
 (4,1,1) = {"
-L
-a
-a
-u
-u
-u
-q
-a
-a
+W
+O
+O
+K
+K
+K
+N
+O
+O
 "}
 (5,1,1) = {"
-L
-t
-u
-u
-Q
-u
-u
-u
+W
+H
+K
+K
+b
+K
+K
+K
 c
 "}
 (6,1,1) = {"
-L
-a
+W
+O
 c
-u
-u
-u
-u
-u
-u
+K
+K
+K
+K
+K
+K
 "}
 (7,1,1) = {"
-L
-a
-q
-a
-t
-u
-u
-t
-d
+W
+O
+N
+O
+H
+K
+K
+H
+v
 "}
 (8,1,1) = {"
-a
-t
-a
-a
-a
+O
+H
+O
+O
+O
 c
-d
-d
-d
+v
+v
+v
 "}
 (9,1,1) = {"
-L
-L
-L
-a
-a
-d
-d
-d
-d
+W
+W
+W
+O
+O
+v
+v
+v
+v
 "}

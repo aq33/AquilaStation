@@ -1,24 +1,23 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/turf/template_noop,
+/obj/structure/girder,
+/turf/open/floor/plating/asteroid/dirt/jungle,
 /area/template_noop)
-"f" = (
-/obj/structure/frame/computer{
-	anchored = 1
-	},
-/obj/effect/decal/cleanable/glass,
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/rust,
-/area/template_noop)
-"g" = (
-/obj/item/stack/ore/iron{
-	amount = 5
-	},
+"b" = (
 /turf/open/floor/plating/rust{
 	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308"
 	},
 /area/template_noop)
-"j" = (
+"c" = (
+/obj/machinery/conveyor{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/rust{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308"
+	},
+/area/template_noop)
+"d" = (
 /obj/structure/frame/machine{
 	anchored = 1
 	},
@@ -26,58 +25,7 @@
 	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308"
 	},
 /area/template_noop)
-"k" = (
-/turf/closed/mineral/random/planet_jungle,
-/area/template_noop)
-"l" = (
-/obj/effect/decal/cleanable/plasma,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/dirt/dust,
-/mob/living/basic/bear/cave,
-/turf/open/floor/plating/rust{
-	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308"
-	},
-/area/template_noop)
-"o" = (
-/obj/item/stack/ore/iron{
-	amount = 5
-	},
-/obj/effect/decal/cleanable/oil,
-/turf/open/floor/plating/asteroid/dirt/jungle,
-/area/template_noop)
-"p" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/rust{
-	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308"
-	},
-/area/template_noop)
-"q" = (
-/obj/structure/closet/crate/wooden{
-	opened = 1
-	},
-/obj/item/pickaxe,
-/obj/item/pickaxe,
-/obj/item/pickaxe,
-/obj/item/clothing/glasses/meson,
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/asteroid/dirt/jungle,
-/area/template_noop)
-"t" = (
-/obj/item/stack/ore/iron{
-	amount = 5
-	},
-/turf/open/floor/plating/asteroid/dirt/jungle,
-/area/template_noop)
-"u" = (
-/obj/item/stack/ore/iron{
-	amount = 5
-	},
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/asteroid/dirt/jungle,
-/area/template_noop)
-"v" = (
+"f" = (
 /obj/structure/closet/crate/miningcar,
 /obj/item/stack/ore/iron{
 	amount = 35
@@ -97,41 +45,47 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating/asteroid/dirt/jungle,
 /area/template_noop)
-"x" = (
-/turf/closed/wall/rust,
+"g" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/rust{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308"
+	},
 /area/template_noop)
-"y" = (
+"i" = (
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
+"k" = (
+/turf/closed/mineral/random/planet_jungle,
+/area/template_noop)
+"m" = (
+/obj/item/storage/bag/ore,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/rust{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308"
+	},
+/area/template_noop)
+"p" = (
 /obj/effect/decal/cleanable/plasma,
-/obj/effect/decal/cleanable/ash/large,
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/asteroid/dirt/jungle,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/basic/bear/cave,
+/turf/open/floor/plating/rust{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308"
+	},
 /area/template_noop)
-"A" = (
+"r" = (
 /obj/effect/decal/cleanable/glass,
 /turf/open/floor/plating/rust{
 	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308"
 	},
 /area/template_noop)
-"C" = (
-/obj/effect/decal/cleanable/glass,
-/turf/open/floor/plating/asteroid/dirt/jungle,
+"s" = (
+/turf/template_noop,
 /area/template_noop)
-"I" = (
-/obj/machinery/conveyor{
-	dir = 4
-	},
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/rust{
-	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308"
-	},
-/area/template_noop)
-"J" = (
-/obj/structure/girder,
-/turf/open/floor/plating/rust{
-	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308"
-	},
-/area/template_noop)
-"K" = (
+"v" = (
 /obj/effect/decal/cleanable/plasma,
 /obj/effect/decal/cleanable/robot_debris/up,
 /obj/effect/decal/cleanable/dirt/dust,
@@ -139,7 +93,76 @@
 	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308"
 	},
 /area/template_noop)
+"w" = (
+/obj/effect/decal/cleanable/plasma,
+/obj/effect/decal/cleanable/ash/large,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
+"x" = (
+/obj/structure/frame/computer{
+	anchored = 1
+	},
+/obj/effect/decal/cleanable/glass,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/rust,
+/area/template_noop)
+"y" = (
+/obj/item/stack/ore/iron{
+	amount = 5
+	},
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
+"B" = (
+/obj/effect/decal/cleanable/plasma,
+/obj/effect/decal/cleanable/ash/large,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
+"C" = (
+/obj/item/stack/ore/iron{
+	amount = 5
+	},
+/turf/open/floor/plating/rust{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308"
+	},
+/area/template_noop)
+"I" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
+"L" = (
+/obj/item/stack/ore/iron{
+	amount = 5
+	},
+/obj/effect/decal/cleanable/oil,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
+"M" = (
+/obj/structure/closet/crate/wooden{
+	opened = 1
+	},
+/obj/item/pickaxe,
+/obj/item/pickaxe,
+/obj/item/pickaxe,
+/obj/item/clothing/glasses/meson,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
+"N" = (
+/turf/closed/wall/rust,
+/area/template_noop)
 "O" = (
+/obj/structure/girder,
+/turf/open/floor/plating/rust,
+/area/template_noop)
+"S" = (
+/obj/structure/girder,
+/turf/open/floor/plating/rust{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308"
+	},
+/area/template_noop)
+"W" = (
 /obj/structure/frame/machine{
 	anchored = 1
 	},
@@ -150,33 +173,10 @@
 	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308"
 	},
 /area/template_noop)
-"Q" = (
-/turf/open/floor/plating/rust{
-	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308"
+"X" = (
+/obj/item/stack/ore/iron{
+	amount = 5
 	},
-/area/template_noop)
-"S" = (
-/obj/item/storage/bag/ore,
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/rust{
-	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308"
-	},
-/area/template_noop)
-"U" = (
-/obj/effect/decal/cleanable/plasma,
-/obj/effect/decal/cleanable/ash/large,
-/turf/open/floor/plating/asteroid/dirt/jungle,
-/area/template_noop)
-"V" = (
-/obj/structure/girder,
-/turf/open/floor/plating/rust,
-/area/template_noop)
-"W" = (
-/obj/structure/girder,
-/turf/open/floor/plating/asteroid/dirt/jungle,
-/area/template_noop)
-"Z" = (
-/obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating/asteroid/dirt/jungle,
 /area/template_noop)
@@ -184,72 +184,72 @@
 (1,1,1) = {"
 k
 k
-V
-x
-x
+O
+N
+N
 k
 k
 "}
 (2,1,1) = {"
 k
-x
+N
+f
 v
-K
-t
-q
+y
+M
 k
 "}
 (3,1,1) = {"
 k
-x
-O
-Z
-S
-U
-a
+N
+W
+I
+m
+B
+s
 "}
 (4,1,1) = {"
-a
-g
+s
+C
+c
+L
+p
 I
-o
-l
-Z
-a
+s
 "}
 (5,1,1) = {"
 k
-W
-j
-f
-C
-Q
 a
+d
+x
+i
+b
+s
 "}
 (6,1,1) = {"
-a
-x
-u
-A
-p
-y
+s
+N
+X
+r
+g
+w
 k
 "}
 (7,1,1) = {"
 k
-x
-x
-J
-x
+N
+N
+S
+N
 k
 k
 "}
 (8,1,1) = {"
 k
 k
-a
+s
 k
 k
 k
-a
+s
 "}

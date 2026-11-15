@@ -1,120 +1,120 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"i" = (
-/obj/structure/geyser/random,
-/turf/open/floor/plating/asteroid/snow/planet_ice,
-/area/template_noop)
-"u" = (
-/turf/open/floor/plating/asteroid/snow/planet_ice,
-/area/template_noop)
-"G" = (
-/obj/structure/flora/grass/green,
-/turf/open/floor/plating/asteroid/snow/planet_ice,
-/area/template_noop)
-"H" = (
-/obj/structure/flora/grass/brown,
-/turf/open/floor/plating/asteroid/snow/planet_ice,
-/area/template_noop)
-"I" = (
+"f" = (
 /obj/structure/flora/tree/pine,
 /turf/open/floor/plating/asteroid/snow/planet_ice,
 /area/template_noop)
-"J" = (
+"h" = (
+/obj/structure/flora/grass/brown,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"k" = (
+/obj/structure/flora/ash/garden/frigid,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"m" = (
+/obj/structure/flora/grass/green,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"u" = (
 /obj/structure/flora/grass/both,
 /turf/open/floor/plating/asteroid/snow/planet_ice,
 /area/template_noop)
-"Q" = (
+"v" = (
 /turf/template_noop,
 /area/template_noop)
-"Y" = (
-/obj/structure/flora/ash/garden/frigid,
+"F" = (
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"J" = (
+/obj/structure/geyser/random,
 /turf/open/floor/plating/asteroid/snow/planet_ice,
 /area/template_noop)
 
 (1,1,1) = {"
-Q
-Q
-J
+v
+v
 u
-H
-u
+F
+h
+F
 "}
 (2,1,1) = {"
-Q
-u
-u
-Y
-u
-G
+v
+F
+F
+k
+F
+m
 "}
 (3,1,1) = {"
-u
-u
-I
-u
-u
-Q
+F
+F
+f
+F
+F
+v
 "}
 (4,1,1) = {"
-H
-u
-G
-u
-u
-Q
+h
+F
+m
+F
+F
+v
 "}
 (5,1,1) = {"
-u
-u
-u
-u
-u
-Q
+F
+F
+F
+F
+F
+v
 "}
 (6,1,1) = {"
-Q
-Q
-u
-H
-u
-Q
+v
+v
+F
+h
+F
+v
 "}
 (7,1,1) = {"
-Q
-Q
-Q
-u
-u
-Q
+v
+v
+v
+F
+F
+v
 "}
 (8,1,1) = {"
-Q
-Q
-u
-u
-u
-Q
+v
+v
+F
+F
+F
+v
 "}
 (9,1,1) = {"
-Q
-u
-u
-i
-G
-u
+v
+F
+F
+J
+m
+F
 "}
 (10,1,1) = {"
-u
-H
-Y
-u
-u
-u
+F
+h
+k
+F
+F
+F
 "}
 (11,1,1) = {"
+F
+F
 u
-u
-J
-u
-Q
-Q
+F
+v
+v
 "}

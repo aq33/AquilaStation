@@ -1,90 +1,90 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"x" = (
+"i" = (
 /obj/structure/flora/rock/jungle,
 /turf/open/floor/plating/asteroid/dirt/jungle,
 /area/template_noop)
-"E" = (
-/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
-/area/template_noop)
-"G" = (
-/turf/open/floor/plating/asteroid/dirt/jungle,
-/area/template_noop)
-"P" = (
+"k" = (
 /turf/template_noop,
 /area/template_noop)
-"R" = (
-/obj/structure/flora/rock/pile,
+"o" = (
+/obj/structure/flora/ausbushes/sparsegrass,
 /turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
 /area/template_noop)
-"U" = (
+"p" = (
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"r" = (
 /obj/effect/anomaly/phantom/planetary,
 /turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
 /area/template_noop)
-"V" = (
-/obj/structure/flora/ausbushes/sparsegrass,
+"x" = (
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
+"T" = (
+/obj/structure/flora/rock/pile,
 /turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
 /area/template_noop)
 
 (1,1,1) = {"
-P
-G
-E
-G
+k
 x
-G
-P
+p
+x
+i
+x
+k
 "}
 (2,1,1) = {"
-G
-E
-U
-V
-G
-G
-G
+x
+p
+r
+o
+x
+x
+x
 "}
 (3,1,1) = {"
-G
-V
-R
-E
-E
-U
 x
+o
+T
+p
+p
+r
+i
 "}
 (4,1,1) = {"
-P
+k
+i
+p
+r
+T
+o
 x
-E
-U
-R
-V
-G
 "}
 (5,1,1) = {"
-P
-E
-E
-V
-E
-U
-E
+k
+p
+p
+o
+p
+r
+p
 "}
 (6,1,1) = {"
-E
-U
-E
-E
+p
+r
+p
+p
+i
+p
 x
-E
-G
 "}
 (7,1,1) = {"
-R
-V
-P
-G
-P
-P
-G
+T
+o
+k
+x
+k
+k
+x
 "}

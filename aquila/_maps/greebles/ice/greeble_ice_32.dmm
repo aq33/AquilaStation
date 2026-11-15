@@ -1,99 +1,10 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"bn" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/item/stack/ore/iron,
-/turf/open/floor/plating/asteroid/icerock/cracked,
-/area/template_noop)
-"bA" = (
-/obj/structure/mopbucket,
+"ay" = (
+/obj/machinery/portable_atmospherics/scrubber,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating,
 /area/template_noop)
-"bP" = (
-/turf/closed/mineral/random/planet_ice,
-/area/template_noop)
-"dQ" = (
-/obj/structure/girder,
-/turf/open/floor/plating,
-/area/template_noop)
-"dR" = (
-/obj/machinery/atmospherics/components/unary/portables_connector/visible/layer2{
-	dir = 8
-	},
-/obj/machinery/portable_atmospherics/canister/air,
-/turf/open/floor/plasteel/dark,
-/area/template_noop)
-"fA" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/structure/lattice/catwalk/over/ship/dark,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/item/stack/ore/iron,
-/obj/effect/decal/cleanable/shreds,
-/turf/open/floor/plating,
-/area/template_noop)
-"ga" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/item/stack/ore/titanium,
-/turf/open/floor/plating/asteroid/icerock/cracked,
-/area/template_noop)
-"hj" = (
-/obj/effect/decal/cleanable/ash,
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plasteel/dark,
-/area/template_noop)
-"iu" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 5
-	},
-/obj/structure/lattice/catwalk/over/ship/dark,
-/turf/open/floor/plating,
-/area/template_noop)
-"iz" = (
-/obj/machinery/power/terminal{
-	dir = 8
-	},
-/obj/structure/cable,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/firealarm/directional/north,
-/turf/open/floor/plating,
-/area/template_noop)
-"jb" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/gibspawner/human/bodypartless,
-/turf/open/floor/plasteel,
-/area/template_noop)
-"jc" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/girder,
-/turf/open/floor/plating/asteroid/icerock/cracked,
-/area/template_noop)
-"jx" = (
-/obj/machinery/atmospherics/components/binary/pump/on/layer2{
-	name = "Powietrze do dystrybucji"
-	},
-/obj/effect/gibspawner/human/bodypartless,
-/obj/item/crystal_shard,
-/turf/open/floor/plating,
-/area/template_noop)
-"jA" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/asteroid/icerock/cracked,
-/area/template_noop)
-"jS" = (
-/obj/machinery/atmospherics/components/binary/pump/layer4{
-	dir = 1;
-	name = "filtry na zewnątrz"
-	},
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating,
-/area/template_noop)
-"ks" = (
-/turf/closed/wall/mineral/titanium,
-/area/template_noop)
-"lD" = (
+"aF" = (
 /obj/effect/decal/cleanable/blood/old,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/closet/secure_closet/engineering_personal{
@@ -110,7 +21,197 @@
 /obj/item/storage/toolbox/mechanical,
 /turf/open/floor/plasteel/dark,
 /area/template_noop)
-"md" = (
+"bs" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/stack/ore/iron,
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
+"dq" = (
+/obj/structure/window/shuttle,
+/obj/structure/grille,
+/obj/machinery/door/poddoor{
+	id = "meta_windows"
+	},
+/turf/open/floor/plating,
+/area/template_noop)
+"ev" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/stack/ore/titanium,
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
+"eJ" = (
+/obj/effect/decal/cleanable/shreds,
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
+"eU" = (
+/obj/effect/decal/cleanable/blood/old,
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/basic/cockroach,
+/turf/open/floor/plasteel/dark,
+/area/template_noop)
+"hR" = (
+/obj/structure/window/shuttle,
+/obj/structure/grille,
+/obj/machinery/door/poddoor{
+	id = "meta_windows"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/turf/open/floor/plating,
+/area/template_noop)
+"iJ" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 1
+	},
+/obj/structure/lattice/catwalk/over/ship/dark,
+/turf/open/floor/plating,
+/area/template_noop)
+"jl" = (
+/obj/structure/falsewall/titanium,
+/turf/open/floor/plating,
+/area/template_noop)
+"kn" = (
+/obj/machinery/power/terminal{
+	dir = 8
+	},
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/firealarm/directional/north,
+/turf/open/floor/plating,
+/area/template_noop)
+"kt" = (
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
+"kM" = (
+/obj/machinery/atmospherics/components/unary/tank/air{
+	dir = 4;
+	piping_layer = 2
+	},
+/obj/effect/decal/cleanable/shreds,
+/turf/open/floor/plasteel/dark,
+/area/template_noop)
+"kX" = (
+/obj/machinery/light/small/broken{
+	dir = 4
+	},
+/obj/structure/reagent_dispensers/fueltank,
+/turf/open/floor/plating,
+/area/template_noop)
+"mp" = (
+/obj/machinery/power/terminal{
+	dir = 8
+	},
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/shreds,
+/turf/open/floor/plating,
+/area/template_noop)
+"ny" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/gibspawner/human/bodypartless,
+/turf/open/floor/plasteel,
+/area/template_noop)
+"nJ" = (
+/obj/structure/girder,
+/turf/open/floor/plating,
+/area/template_noop)
+"nS" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 5
+	},
+/obj/structure/lattice/catwalk/over/ship/dark,
+/turf/open/floor/plating,
+/area/template_noop)
+"oP" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating,
+/area/template_noop)
+"qs" = (
+/obj/item/stack/cable_coil/cut,
+/obj/structure/frame/machine,
+/obj/machinery/light/small/broken,
+/turf/open/floor/plating,
+/area/template_noop)
+"qI" = (
+/obj/machinery/atmospherics/components/binary/pump/layer4{
+	dir = 1;
+	name = "filtry na zewnątrz"
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating,
+/area/template_noop)
+"rr" = (
+/obj/structure/shuttle/engine/propulsion,
+/obj/structure/cable/yellow,
+/turf/open/floor/plating,
+/area/template_noop)
+"rI" = (
+/turf/closed/mineral/random/planet_ice,
+/area/template_noop)
+"sr" = (
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/structure/lattice/catwalk/over/ship/dark,
+/turf/open/floor/plating,
+/area/template_noop)
+"tx" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/ash,
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
+"tM" = (
+/obj/structure/sign/poster/official/random,
+/turf/closed/wall/mineral/titanium/nodiagonal,
+/area/template_noop)
+"uw" = (
+/obj/machinery/atmospherics/components/unary/outlet_injector/on/layer4{
+	name = "wtryskiwacz odpadów atmosferycznych"
+	},
+/turf/open/floor/plating,
+/area/template_noop)
+"ux" = (
+/obj/machinery/power/smes,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/poddoor{
+	id = "meta_windows";
+	dir = 4
+	},
+/obj/structure/cable/green,
+/turf/open/floor/plating,
+/area/template_noop)
+"uL" = (
+/obj/machinery/atmospherics/components/unary/portables_connector/visible/layer2{
+	dir = 8
+	},
+/obj/machinery/portable_atmospherics/canister/air,
+/turf/open/floor/plasteel/dark,
+/area/template_noop)
+"vs" = (
+/obj/effect/decal/cleanable/ash,
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
+"vP" = (
+/obj/machinery/power/terminal{
+	dir = 8
+	},
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/stack/ore/iron,
+/obj/machinery/light/small/broken,
+/turf/open/floor/plating,
+/area/template_noop)
+"wz" = (
 /obj/structure/rack,
 /obj/item/analyzer,
 /obj/item/storage/belt/utility{
@@ -126,87 +227,34 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/template_noop)
-"ml" = (
-/obj/machinery/atmospherics/components/unary/tank/air{
-	dir = 4;
-	piping_layer = 2
-	},
-/obj/effect/decal/cleanable/shreds,
-/turf/open/floor/plasteel/dark,
-/area/template_noop)
-"mo" = (
+"wD" = (
 /obj/structure/shuttle/engine/propulsion,
 /obj/structure/cable/green,
 /turf/open/floor/plating,
 /area/template_noop)
-"mQ" = (
-/turf/open/floor/plating/asteroid/icerock/cracked,
-/area/template_noop)
-"na" = (
-/obj/machinery/power/smes,
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/poddoor{
-	id = "meta_windows";
-	dir = 4
-	},
-/obj/structure/cable/green,
-/turf/open/floor/plating,
-/area/template_noop)
-"ox" = (
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 8
-	},
-/obj/structure/lattice/catwalk/over/ship/dark,
-/turf/open/floor/plating,
-/area/template_noop)
-"rl" = (
-/turf/template_noop,
-/area/template_noop)
-"tV" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating,
-/area/template_noop)
-"ud" = (
-/obj/item/stack/cable_coil/cut,
-/obj/structure/frame/machine,
-/obj/machinery/light/small/broken,
-/turf/open/floor/plating,
-/area/template_noop)
-"vc" = (
+"xQ" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/item/stack/ore/titanium,
 /obj/effect/decal/cleanable/ash,
 /turf/open/floor/plating/asteroid/icerock/cracked,
 /area/template_noop)
-"wr" = (
-/obj/structure/falsewall/titanium,
+"yf" = (
+/obj/machinery/portable_atmospherics/pump,
+/obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating,
 /area/template_noop)
-"BM" = (
+"yA" = (
 /obj/structure/cable,
 /obj/effect/decal/cleanable/ash/large,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating,
 /area/template_noop)
-"CR" = (
-/obj/effect/decal/cleanable/blood/old,
+"yJ" = (
+/obj/effect/decal/cleanable/ash,
 /obj/effect/decal/cleanable/dirt/dust,
-/mob/living/basic/cockroach,
-/obj/item/stack/ore/iron,
 /turf/open/floor/plasteel/dark,
 /area/template_noop)
-"Da" = (
-/obj/machinery/portable_atmospherics/scrubber,
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating,
-/area/template_noop)
-"Df" = (
+"zK" = (
 /obj/machinery/power/smes,
 /obj/structure/window/reinforced{
 	dir = 8
@@ -221,76 +269,60 @@
 /obj/structure/cable/yellow,
 /turf/open/floor/plating,
 /area/template_noop)
-"Ex" = (
-/obj/structure/window/shuttle,
-/obj/structure/grille,
-/obj/machinery/door/poddoor{
-	id = "meta_windows"
+"Ce" = (
+/turf/closed/wall/mineral/titanium/nodiagonal,
+/area/template_noop)
+"CT" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
+"EH" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/lattice/catwalk/over/ship/dark,
 /turf/open/floor/plating,
 /area/template_noop)
-"EG" = (
+"FV" = (
+/turf/closed/wall/mineral/titanium,
+/area/template_noop)
+"Ld" = (
 /obj/effect/decal/cleanable/blood/old,
 /obj/effect/decal/cleanable/dirt/dust,
 /mob/living/basic/cockroach,
+/obj/item/stack/ore/iron,
 /turf/open/floor/plasteel/dark,
 /area/template_noop)
-"FD" = (
-/obj/structure/window/shuttle,
-/obj/structure/grille,
-/obj/machinery/door/poddoor{
-	id = "meta_windows"
-	},
-/turf/open/floor/plating,
-/area/template_noop)
-"IE" = (
-/obj/machinery/light/small/broken{
-	dir = 4
-	},
-/obj/structure/reagent_dispensers/fueltank,
-/turf/open/floor/plating,
-/area/template_noop)
-"Jt" = (
+"Ln" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/structure/lattice/catwalk/over/ship/dark,
-/turf/open/floor/plating,
-/area/template_noop)
-"Kh" = (
-/obj/structure/sign/poster/official/random,
-/turf/closed/wall/mineral/titanium/nodiagonal,
-/area/template_noop)
-"Mg" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 6
-	},
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
-	dir = 1
-	},
-/obj/structure/lattice/catwalk/over/ship/dark,
-/turf/open/floor/plating,
-/area/template_noop)
-"Mp" = (
-/obj/machinery/power/terminal{
-	dir = 8
-	},
-/obj/structure/cable,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/item/stack/ore/iron,
-/obj/machinery/light/small/broken,
+/obj/effect/decal/cleanable/shreds,
 /turf/open/floor/plating,
 /area/template_noop)
-"NN" = (
-/turf/closed/wall/mineral/titanium/nodiagonal,
-/area/template_noop)
-"NU" = (
-/obj/item/stack/ore/titanium,
+"MF" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/girder,
 /turf/open/floor/plating/asteroid/icerock/cracked,
 /area/template_noop)
-"Os" = (
+"Pi" = (
+/obj/machinery/atmospherics/components/binary/pump/on/layer2{
+	name = "Powietrze do dystrybucji"
+	},
+/obj/effect/gibspawner/human/bodypartless,
+/obj/item/crystal_shard,
+/turf/open/floor/plating,
+/area/template_noop)
+"PF" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/shreds,
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
+"Ro" = (
 /obj/structure/camera_assembly,
 /obj/structure/rack,
 /obj/item/mop{
@@ -303,40 +335,36 @@
 /obj/item/storage/box/lights/mixed,
 /turf/open/floor/plasteel/dark,
 /area/template_noop)
-"PQ" = (
-/obj/effect/decal/cleanable/ash,
-/turf/open/floor/plating/asteroid/icerock/cracked,
+"Sb" = (
+/turf/template_noop,
 /area/template_noop)
-"PY" = (
-/obj/machinery/portable_atmospherics/pump,
-/obj/effect/decal/cleanable/dirt/dust,
+"SB" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/lattice/catwalk/over/ship/dark,
 /turf/open/floor/plating,
 /area/template_noop)
-"Qk" = (
-/obj/machinery/atmospherics/components/unary/outlet_injector/on/layer4{
-	name = "wtryskiwacz odpadów atmosferycznych"
+"Vz" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
 	},
-/turf/open/floor/plating,
-/area/template_noop)
-"QZ" = (
-/obj/machinery/power/terminal{
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
 	},
-/obj/structure/cable,
+/obj/structure/lattice/catwalk/over/ship/dark,
+/turf/open/floor/plating,
+/area/template_noop)
+"WS" = (
+/obj/structure/mopbucket,
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/shreds,
 /turf/open/floor/plating,
 /area/template_noop)
-"RP" = (
-/obj/structure/shuttle/engine/propulsion,
-/obj/structure/cable/yellow,
-/turf/open/floor/plating,
-/area/template_noop)
-"RS" = (
-/obj/effect/decal/cleanable/shreds,
+"WT" = (
+/obj/item/stack/ore/titanium,
 /turf/open/floor/plating/asteroid/icerock/cracked,
 /area/template_noop)
-"SG" = (
+"Xt" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
 	dir = 1
 	},
@@ -347,242 +375,214 @@
 /obj/item/stack/ore/iron,
 /turf/open/floor/plating,
 /area/template_noop)
-"UC" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/ash,
-/turf/open/floor/plating/asteroid/icerock/cracked,
-/area/template_noop)
-"YI" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/shreds,
-/turf/open/floor/plating/asteroid/icerock/cracked,
-/area/template_noop)
-"Zx" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 8
-	},
-/obj/structure/lattice/catwalk/over/ship/dark,
-/turf/open/floor/plating,
-/area/template_noop)
-"ZH" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 8
-	},
-/obj/structure/lattice/catwalk/over/ship/dark,
-/turf/open/floor/plating,
-/area/template_noop)
 
 (1,1,1) = {"
-rl
-rl
-mQ
-NU
-mQ
-rl
-mQ
-mQ
-mQ
-rl
-rl
-rl
+Sb
+Sb
+kt
+WT
+kt
+Sb
+kt
+kt
+kt
+Sb
+Sb
+Sb
 "}
 (2,1,1) = {"
-rl
-RS
-PQ
-ks
-RP
-mo
-RP
-ks
-UC
-jA
-rl
-rl
+Sb
+eJ
+vs
+FV
+rr
+wD
+rr
+FV
+tx
+CT
+Sb
+Sb
 "}
 (3,1,1) = {"
-mQ
-jA
-jA
-NN
-Df
-na
-Df
-NN
-NU
-ga
-mQ
-rl
+kt
+CT
+CT
+Ce
+zK
+ux
+zK
+Ce
+WT
+ev
+kt
+Sb
 "}
 (4,1,1) = {"
-jA
-jA
-ks
-NN
-iz
-QZ
-Mp
-NN
-bP
-jA
-mQ
-rl
+CT
+CT
+FV
+Ce
+kn
+mp
+vP
+Ce
+rI
+CT
+kt
+Sb
 "}
 (5,1,1) = {"
-NU
-UC
-dQ
-ml
-CR
-BM
-md
-NN
-bP
-bP
-jA
-rl
+WT
+tx
+nJ
+kM
+Ld
+yA
+wz
+Ce
+rI
+rI
+CT
+Sb
 "}
 (6,1,1) = {"
-mQ
-bP
-Kh
-SG
-jx
-iu
-hj
-wr
-bP
-bP
-ga
-NU
+kt
+rI
+tM
+Xt
+Pi
+nS
+yJ
+jl
+rI
+rI
+ev
+WT
 "}
 (7,1,1) = {"
-mQ
-bP
-NN
-dR
-EG
-Zx
-lD
-NN
-bP
-bP
-dQ
-mQ
+kt
+rI
+Ce
+uL
+eU
+EH
+aF
+Ce
+rI
+rI
+nJ
+kt
 "}
 (8,1,1) = {"
-NU
-bP
-ks
-NN
-Os
-Zx
-ud
-NN
-bP
-bP
-dQ
-mQ
+WT
+rI
+FV
+Ce
+Ro
+EH
+qs
+Ce
+rI
+rI
+nJ
+kt
 "}
 (9,1,1) = {"
-mQ
-bP
-bP
-FD
-bA
-Zx
-hj
-ks
-dQ
-NN
-NN
-NU
+kt
+rI
+rI
+dq
+WS
+EH
+yJ
+FV
+nJ
+Ce
+Ce
+WT
 "}
 (10,1,1) = {"
-mQ
-PQ
-bP
-FD
-PY
-Mg
-fA
-Jt
-Jt
-jA
-jA
-YI
+kt
+vs
+rI
+dq
+yf
+iJ
+Ln
+SB
+SB
+CT
+CT
+PF
 "}
 (11,1,1) = {"
-rl
-mQ
-bP
-FD
-Da
-ZH
-tV
-jb
-jA
-bn
-NU
-mQ
+Sb
+kt
+rI
+dq
+ay
+Vz
+oP
+ny
+CT
+bs
+WT
+kt
 "}
 (12,1,1) = {"
-rl
-mQ
-Qk
-Ex
-jS
-ox
-IE
-NN
-jA
-UC
-mQ
-rl
+Sb
+kt
+uw
+hR
+qI
+sr
+kX
+Ce
+CT
+tx
+kt
+Sb
 "}
 (13,1,1) = {"
-rl
-mQ
-NU
-NN
-jc
-jA
-NN
-NN
-ga
-mQ
-rl
-rl
+Sb
+kt
+WT
+Ce
+MF
+CT
+Ce
+Ce
+ev
+kt
+Sb
+Sb
 "}
 (14,1,1) = {"
-rl
-rl
-mQ
-mQ
-vc
-mQ
-mQ
-NU
-mQ
-rl
-rl
-rl
+Sb
+Sb
+kt
+kt
+xQ
+kt
+kt
+WT
+kt
+Sb
+Sb
+Sb
 "}
 (15,1,1) = {"
-rl
-rl
-mQ
-mQ
-mQ
-rl
-rl
-rl
-rl
-rl
-rl
-rl
+Sb
+Sb
+kt
+kt
+kt
+Sb
+Sb
+Sb
+Sb
+Sb
+Sb
+Sb
 "}

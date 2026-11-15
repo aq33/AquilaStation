@@ -1,6 +1,6 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "b" = (
-/obj/structure/flora/rock/icy,
+/obj/structure/flora/ash/garden/frigid,
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
 "c" = (
@@ -10,590 +10,590 @@
 	},
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
-"e" = (
-/obj/structure/flora/ausbushes/sparsegrass{
-	pixel_x = 8;
-	 pixel_y = 11
-	},
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"f" = (
+"d" = (
 /turf/open/lava/plasma,
 /area/template_noop)
-"g" = (
-/obj/structure/flora/ausbushes/sparsegrass{
-	pixel_x = -5;
-	 pixel_y = 4
-	},
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"h" = (
-/obj/structure/flora/ausbushes/sparsegrass{
-	pixel_x = 4;
-	 pixel_y = 2
-	},
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"i" = (
-/obj/structure/flora/ausbushes/sparsegrass{
-	pixel_x = -4;
-	 pixel_y = -6
-	},
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"j" = (
-/turf/open/floor/plating/asteroid/snow/planet_ice,
-/area/template_noop)
-"k" = (
+"e" = (
 /obj/structure/flora/ausbushes/sparsegrass{
 	pixel_x = -13;
 	 pixel_y = -5
 	},
 /turf/open/lava/plasma,
 /area/template_noop)
-"m" = (
-/obj/structure/flora/ausbushes/sparsegrass{
-	pixel_x = 6;
-	 pixel_y = 9
-	},
-/turf/open/lava/plasma,
-/area/template_noop)
-"n" = (
+"f" = (
 /obj/structure/flora/tree/dead{
 	pixel_x = -10;
 	 pixel_y = -3
 	},
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
-"p" = (
-/obj/structure/flora/ausbushes/sparsegrass{
-	pixel_x = -4;
-	 pixel_y = 5
-	},
-/turf/open/floor/plating/asteroid/icerock,
+"h" = (
+/obj/structure/flora/rock/icy,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
 /area/template_noop)
-"q" = (
-/obj/structure/flora/ausbushes/sparsegrass{
-	pixel_x = -12
-	},
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"r" = (
-/obj/structure/flora/ausbushes/sparsegrass{
-	pixel_x = 3;
-	 pixel_y = 12
-	},
-/turf/open/lava/plasma,
-/area/template_noop)
-"u" = (
+"i" = (
 /obj/structure/flora/tree/pine,
 /turf/open/floor/plating/asteroid/snow/planet_ice,
 /area/template_noop)
-"v" = (
-/obj/structure/flora/ash/garden/frigid,
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"w" = (
-/obj/structure/flora/ausbushes/sparsegrass{
-	pixel_x = 3;
-	 pixel_y = 3
-	},
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"x" = (
-/obj/structure/flora/ausbushes/sparsegrass{
-	pixel_x = 4
-	},
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"y" = (
-/obj/structure/flora/ausbushes/sparsegrass{
-	pixel_x = 5;
-	 pixel_y = 10
-	},
-/turf/open/lava/plasma,
-/area/template_noop)
-"z" = (
-/obj/structure/flora/tree/dead,
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"A" = (
-/obj/structure/flora/ausbushes/sparsegrass,
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"B" = (
-/obj/structure/flora/tree/dead{
-	pixel_x = -21;
-	 pixel_y = 5
-	},
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"E" = (
-/obj/structure/flora/ausbushes/sparsegrass{
-	pixel_x = -4;
-	 pixel_y = 9
-	},
-/turf/open/lava/plasma,
-/area/template_noop)
-"F" = (
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"G" = (
-/obj/structure/flora/ausbushes/sparsegrass,
-/turf/open/floor/plating/asteroid/snow/planet_ice,
-/area/template_noop)
-"H" = (
-/obj/structure/flora/ausbushes/sparsegrass{
-	pixel_x = -14;
-	 pixel_y = -7
-	},
-/turf/open/lava/plasma,
-/area/template_noop)
-"K" = (
-/obj/structure/flora/tree/dead{
-	pixel_x = -5;
-	 pixel_y = -6
-	},
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"L" = (
-/turf/template_noop,
-/area/template_noop)
-"Q" = (
+"j" = (
 /obj/structure/flora/ausbushes/sparsegrass{
 	pixel_x = 4;
 	 pixel_y = -3
 	},
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
-"R" = (
-/obj/structure/flora/ausbushes/fullgrass,
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"S" = (
-/obj/structure/flora/rock/icy,
-/turf/open/floor/plating/asteroid/snow/planet_ice,
-/area/template_noop)
-"W" = (
-/obj/structure/flora/ausbushes/sparsegrass{
-	pixel_y = -12
-	},
-/turf/open/lava/plasma,
-/area/template_noop)
-"X" = (
-/obj/structure/flora/ausbushes/sparsegrass{
-	pixel_x = 3
-	},
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"Y" = (
+"k" = (
 /obj/structure/flora/ausbushes/sparsegrass{
 	pixel_x = 13;
 	 pixel_y = 2
 	},
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
-"Z" = (
+"n" = (
+/obj/structure/flora/tree/dead{
+	pixel_x = -5;
+	 pixel_y = -6
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"o" = (
+/obj/structure/flora/ausbushes/sparsegrass{
+	pixel_x = -14;
+	 pixel_y = -7
+	},
+/turf/open/lava/plasma,
+/area/template_noop)
+"q" = (
+/obj/structure/flora/ausbushes/sparsegrass{
+	pixel_x = -4;
+	 pixel_y = 9
+	},
+/turf/open/lava/plasma,
+/area/template_noop)
+"s" = (
+/obj/structure/flora/ausbushes/sparsegrass{
+	pixel_x = 3;
+	 pixel_y = 3
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"w" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"y" = (
+/obj/structure/flora/tree/dead,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"z" = (
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"B" = (
+/obj/structure/flora/ausbushes/sparsegrass{
+	pixel_x = 6;
+	 pixel_y = 9
+	},
+/turf/open/lava/plasma,
+/area/template_noop)
+"C" = (
+/turf/template_noop,
+/area/template_noop)
+"E" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"F" = (
+/obj/structure/flora/rock/icy,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"G" = (
+/obj/structure/flora/ausbushes/sparsegrass{
+	pixel_x = -4;
+	 pixel_y = 5
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"H" = (
+/obj/structure/flora/ausbushes/sparsegrass{
+	pixel_x = 5;
+	 pixel_y = 10
+	},
+/turf/open/lava/plasma,
+/area/template_noop)
+"J" = (
+/obj/structure/flora/ausbushes/sparsegrass{
+	pixel_x = -5;
+	 pixel_y = 4
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"L" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/floor/plating/asteroid/snow/planet_ice,
 /area/template_noop)
+"N" = (
+/obj/structure/flora/ausbushes/sparsegrass{
+	pixel_x = 3;
+	 pixel_y = 12
+	},
+/turf/open/lava/plasma,
+/area/template_noop)
+"P" = (
+/obj/structure/flora/tree/dead{
+	pixel_x = -21;
+	 pixel_y = 5
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"Q" = (
+/obj/structure/flora/ausbushes/sparsegrass{
+	pixel_y = -12
+	},
+/turf/open/lava/plasma,
+/area/template_noop)
+"R" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"S" = (
+/obj/structure/flora/ausbushes/sparsegrass{
+	pixel_x = 3
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"U" = (
+/obj/structure/flora/ausbushes/sparsegrass{
+	pixel_x = -4;
+	 pixel_y = -6
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"V" = (
+/obj/structure/flora/ausbushes/sparsegrass{
+	pixel_x = 8;
+	 pixel_y = 11
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"W" = (
+/obj/structure/flora/ausbushes/sparsegrass{
+	pixel_x = -12
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"X" = (
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"Y" = (
+/obj/structure/flora/ausbushes/sparsegrass{
+	pixel_x = 4
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"Z" = (
+/obj/structure/flora/ausbushes/sparsegrass{
+	pixel_x = 4;
+	 pixel_y = 2
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
 
 (1,1,1) = {"
-L
-L
-L
-L
-L
-L
-L
-L
-j
-G
-j
-j
-j
-j
-j
-L
-L
-L
-L
+C
+C
+C
+C
+C
+C
+C
+C
+X
+E
+X
+X
+X
+X
+X
+C
+C
+C
+C
 "}
 (2,1,1) = {"
+C
+C
+C
+C
+C
+C
+X
+X
+E
+X
+X
+E
+i
 L
-L
-L
-L
-L
-L
-j
-j
-G
-j
-j
-G
-u
-Z
-j
-j
-j
-L
-L
+X
+X
+X
+C
+C
 "}
 (3,1,1) = {"
-L
-L
-L
-L
-j
-j
-G
-j
-F
-Y
-F
-F
+C
+C
+C
+C
+X
+X
+E
+X
+z
+k
+z
+z
+w
 R
-A
-F
-G
-j
-L
-L
+z
+E
+X
+C
+C
 "}
 (4,1,1) = {"
+C
+C
+C
+X
 L
-L
-L
-j
-Z
-j
-S
-F
-F
-F
-F
-F
+X
+h
+z
+z
+z
+z
+z
 c
-F
-F
-v
-j
-j
-L
+z
+z
+b
+X
+X
+C
 "}
 (5,1,1) = {"
-L
-j
-G
-j
-j
-j
+C
+X
+E
+X
+X
+X
+z
+z
+Y
+d
+z
+z
+z
+V
+z
 F
-F
-x
-f
-F
-F
-F
-e
-F
-b
-j
-G
-L
+X
+E
+C
 "}
 (6,1,1) = {"
-L
-j
-j
-u
-j
-F
-F
-F
+C
+X
+X
+i
+X
+z
+z
+z
+d
+d
+d
+W
+z
+z
 f
-f
-f
-q
-F
-F
-n
-F
-j
-j
-j
-"}
-(7,1,1) = {"
-L
-j
-j
-j
-F
 z
 X
-f
-W
-f
-f
-f
-F
-F
-F
-A
-A
-j
-j
+X
+X
+"}
+(7,1,1) = {"
+C
+X
+X
+X
+z
+y
+S
+d
+Q
+d
+d
+d
+z
+z
+z
+R
+R
+X
+X
 "}
 (8,1,1) = {"
-j
-G
-j
-F
-F
-F
-f
-f
-f
-f
-f
-f
-f
-i
-F
+X
+E
+X
+z
+z
+z
+d
+d
+d
+d
+d
+d
+d
+U
+z
+w
 R
-A
-Z
-j
+L
+X
 "}
 (9,1,1) = {"
+X
+X
+X
 j
-j
-j
-Q
-F
-w
-f
-f
-m
-f
-f
+z
+s
+d
+d
+B
+d
+d
+q
+d
+d
+z
+R
+z
 E
-f
-f
-F
-A
-F
-G
-j
+X
 "}
 (10,1,1) = {"
-j
-G
-v
-F
-A
-f
-f
-f
-f
-f
-f
-f
-f
-F
-F
-F
-j
-j
-G
+X
+E
+b
+z
+R
+d
+d
+d
+d
+d
+d
+d
+d
+z
+z
+z
+X
+X
+E
 "}
 (11,1,1) = {"
-G
-j
-F
-F
-f
-f
-f
-f
-f
-k
-f
-f
-F
-F
-A
-j
-u
-j
-j
+E
+X
+z
+z
+d
+d
+d
+d
+d
+e
+d
+d
+z
+z
+R
+X
+i
+X
+X
 "}
 (12,1,1) = {"
-j
-j
-A
-F
-f
-f
-y
-f
-f
-f
-h
-F
-F
-F
+X
+X
+R
+z
+d
+d
+H
+d
+d
+d
 Z
-j
-j
-j
-j
+z
+z
+z
+L
+X
+X
+X
+X
 "}
 (13,1,1) = {"
-j
-G
+X
+E
+y
 z
-F
-f
-f
-f
-r
-f
-f
-F
-F
-B
-F
-j
-j
-Z
-j
+d
+d
+d
+N
+d
+d
+z
+z
+P
+z
+X
+X
 L
+X
+C
 "}
 (14,1,1) = {"
-j
-Z
-F
-F
-f
-H
-f
-f
-f
-F
-F
-F
-F
-j
-G
-j
+X
 L
-L
-L
+z
+z
+d
+o
+d
+d
+d
+z
+z
+z
+z
+X
+E
+X
+C
+C
+C
 "}
 (15,1,1) = {"
-j
-S
-j
-F
-A
-f
-f
-f
-F
-K
-F
-p
-Z
-j
-j
+X
+h
+X
+z
+R
+d
+d
+d
+z
+n
+z
+G
 L
-L
-L
-L
+X
+X
+C
+C
+C
+C
 "}
 (16,1,1) = {"
-L
-j
-G
-F
-F
-F
-F
-F
-F
-F
-F
-j
-j
-j
-L
-L
-L
-L
-L
+C
+X
+E
+z
+z
+z
+z
+z
+z
+z
+z
+X
+X
+X
+C
+C
+C
+C
+C
 "}
 (17,1,1) = {"
-L
-j
-j
-u
-F
+C
+X
+X
+i
 z
-g
-v
-j
-S
-j
-j
-u
-j
-L
-L
-L
-L
-L
+y
+J
+b
+X
+h
+X
+X
+i
+X
+C
+C
+C
+C
+C
 "}
 (18,1,1) = {"
+C
+C
+X
+X
+X
 L
-L
-j
-j
-j
-Z
-j
-j
-j
-j
-G
-j
-L
-L
-L
-L
-L
-L
-L
+X
+X
+X
+X
+E
+X
+C
+C
+C
+C
+C
+C
+C
 "}
 (19,1,1) = {"
-L
-L
-L
-L
-L
-j
-j
-j
-L
-L
-L
-L
-L
-L
-L
-L
-L
-L
-L
+C
+C
+C
+C
+C
+X
+X
+X
+C
+C
+C
+C
+C
+C
+C
+C
+C
+C
+C
 "}

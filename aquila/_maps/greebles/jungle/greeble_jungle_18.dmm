@@ -1,10 +1,12 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"b" = (
-/turf/template_noop,
+"d" = (
+/turf/open/water/planet/jungle,
+/area/template_noop)
+"e" = (
+/obj/structure/flora/grass/jungle,
+/turf/open/floor/plating/asteroid/river_sand,
 /area/template_noop)
 "g" = (
-/obj/structure/flora/grass/jungle,
-/obj/structure/spacevine/weak,
 /turf/open/floor/plating/asteroid/river_sand,
 /area/template_noop)
 "k" = (
@@ -12,200 +14,198 @@
 /turf/open/floor/plating/asteroid/river_sand,
 /area/template_noop)
 "m" = (
-/obj/structure/flora/grass/jungle,
+/obj/structure/spacevine/weak,
 /turf/open/floor/plating/asteroid/river_sand,
 /area/template_noop)
-"p" = (
+"o" = (
+/obj/structure/flora/grass/jungle,
+/obj/structure/spacevine/weak,
+/turf/open/floor/plating/asteroid/river_sand,
+/area/template_noop)
+"G" = (
 /obj/structure/flora/grass/jungle/b,
 /turf/open/floor/plating/asteroid/dirt/jungle/dark,
-/area/template_noop)
-"u" = (
-/obj/structure/flora/grass/jungle/b,
-/obj/structure/spacevine/weak,
-/turf/open/floor/plating/asteroid/river_sand,
-/area/template_noop)
-"C" = (
-/turf/open/water/planet/jungle,
-/area/template_noop)
-"D" = (
-/obj/structure/spacevine/weak,
-/turf/open/floor/plating/asteroid/river_sand,
 /area/template_noop)
 "I" = (
+/obj/structure/spacevine/weak,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"J" = (
 /obj/structure/flora/grass/jungle,
 /turf/open/floor/plating/asteroid/dirt/jungle/dark,
 /area/template_noop)
-"K" = (
+"L" = (
 /obj/structure/flora/tree/jungle/small,
 /turf/open/water/planet/jungle,
 /area/template_noop)
-"S" = (
+"Q" = (
+/obj/structure/flora/grass/jungle/b,
+/obj/structure/spacevine/weak,
 /turf/open/floor/plating/asteroid/river_sand,
 /area/template_noop)
-"W" = (
-/obj/structure/spacevine/weak,
+"R" = (
+/obj/structure/spacevine/dense,
 /turf/open/water/planet/jungle,
 /area/template_noop)
-"Y" = (
-/obj/structure/spacevine/weak,
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+"W" = (
+/turf/template_noop,
 /area/template_noop)
 "Z" = (
-/obj/structure/spacevine/dense,
+/obj/structure/spacevine/weak,
 /turf/open/water/planet/jungle,
 /area/template_noop)
 
 (1,1,1) = {"
-b
-D
-S
-D
-D
-k
-S
-S
-S
+W
 m
-Y
-b
+g
+m
+m
+k
+g
+g
+g
+e
+I
+W
 "}
 (2,1,1) = {"
-D
-D
-k
-D
-W
-C
-C
-C
-k
-S
-D
-b
-"}
-(3,1,1) = {"
-D
-W
-C
-W
-C
-C
-K
-C
-C
-W
-D
-p
-"}
-(4,1,1) = {"
-S
-C
-C
-K
-C
-C
-C
-C
-K
-W
+m
+m
 k
 m
+Z
+d
+d
+d
+k
+g
+m
+W
+"}
+(3,1,1) = {"
+m
+Z
+d
+Z
+d
+d
+L
+d
+d
+Z
+m
+G
+"}
+(4,1,1) = {"
+g
+d
+d
+L
+d
+d
+d
+d
+L
+Z
+k
+e
 "}
 (5,1,1) = {"
-S
-C
-C
-C
-C
-C
-C
-C
-C
-W
-D
+g
+d
+d
+d
+d
+d
+d
+d
+d
+Z
+m
 k
 "}
 (6,1,1) = {"
-S
-S
+g
+g
 k
-C
-C
-K
-C
-C
-C
-W
-D
-S
+d
+d
+L
+d
+d
+d
+Z
+m
+g
 "}
 (7,1,1) = {"
-b
-u
-Z
-Z
-C
-C
-C
-C
-C
-C
-S
-I
+W
+Q
+R
+R
+d
+d
+d
+d
+d
+d
+g
+J
 "}
 (8,1,1) = {"
-b
-D
-Z
-Z
-Z
-Z
-C
-K
-C
-S
+W
 m
-b
+R
+R
+R
+R
+d
+L
+d
+g
+e
+W
 "}
 (9,1,1) = {"
-b
-S
-C
-K
-Z
-Z
-Z
-C
-C
-S
+W
+g
+d
+L
+R
+R
+R
+d
+d
+g
 k
-b
+W
 "}
 (10,1,1) = {"
-b
-S
-C
-C
-C
-Z
-Z
 W
-D
+g
+d
+d
+d
+R
+R
+Z
 m
-p
-b
+e
+G
+W
 "}
 (11,1,1) = {"
-b
-S
-S
-S
-C
 W
-u
 g
-u
-p
-b
-b
+g
+g
+d
+Z
+Q
+o
+Q
+G
+W
+W
 "}

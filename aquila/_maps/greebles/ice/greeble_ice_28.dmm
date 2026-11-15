@@ -1,70 +1,70 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"d" = (
-/mob/living/basic/mining/lobstrosity,
-/turf/open/water/planet/beach/ice,
-/area/template_noop)
-"l" = (
-/turf/open/water/planet/beach/ice,
-/area/template_noop)
-"D" = (
+"g" = (
 /obj/structure/geyser/random,
 /turf/open/water/planet/beach/ice,
 /area/template_noop)
-"K" = (
+"h" = (
+/mob/living/basic/mining/lobstrosity,
+/turf/open/water/planet/beach/ice,
+/area/template_noop)
+"j" = (
+/turf/open/water/planet/beach/ice,
+/area/template_noop)
+"U" = (
 /turf/template_noop,
 /area/template_noop)
 
 (1,1,1) = {"
-K
-l
-l
-l
-l
-l
-K
+U
+j
+j
+j
+j
+j
+U
 "}
 (2,1,1) = {"
-l
-l
-D
-l
-l
-d
-l
+j
+j
+g
+j
+j
+h
+j
 "}
 (3,1,1) = {"
-l
-d
-l
-d
-l
-l
-l
+j
+h
+j
+h
+j
+j
+j
 "}
 (4,1,1) = {"
-K
-l
-l
-l
-l
-D
-l
+U
+j
+j
+j
+j
+g
+j
 "}
 (5,1,1) = {"
-K
-K
-l
-l
-l
-d
-l
+U
+U
+j
+j
+j
+h
+j
 "}
 (6,1,1) = {"
-K
-K
-K
-K
-l
-l
-K
+U
+U
+U
+U
+j
+j
+U
 "}

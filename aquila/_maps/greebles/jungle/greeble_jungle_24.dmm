@@ -1,10 +1,26 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"a" = (
+"e" = (
+/mob/living/basic/chicken,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"h" = (
 /obj/structure/flora/tree/jungle/small,
-/obj/structure/flora/grass/jungle,
 /turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
 /area/template_noop)
-"b" = (
+"l" = (
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"m" = (
+/obj/structure/flora/grass/jungle/b,
+/obj/structure/flora/ausbushes/brflowers,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
+/area/template_noop)
+"o" = (
+/obj/structure/flora/grass/jungle,
+/mob/living/basic/chicken,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"p" = (
 /obj/structure/flora/rock/pile/largejungle,
 /obj/structure/flora/rock{
 	pixel_y = 4
@@ -15,146 +31,130 @@
 	},
 /turf/open/floor/plating/asteroid/dirt/jungle/dark,
 /area/template_noop)
-"c" = (
-/obj/structure/flora/grass/jungle/b,
-/obj/structure/flora/ausbushes/brflowers,
-/turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
-/area/template_noop)
-"d" = (
-/obj/structure/flora/grass/jungle,
-/obj/structure/flora/ausbushes/brflowers,
-/turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
-/area/template_noop)
-"g" = (
-/turf/template_noop,
-/area/template_noop)
-"j" = (
-/mob/living/basic/chicken,
-/turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
-/area/template_noop)
-"k" = (
-/obj/structure/flora/grass/jungle,
-/turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
-/area/template_noop)
-"m" = (
+"q" = (
 /obj/structure/flora/junglebush/b,
 /turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
 /area/template_noop)
-"q" = (
-/obj/structure/flora/grass/jungle/b,
-/turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
-/area/template_noop)
 "r" = (
-/turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
-/area/template_noop)
-"s" = (
-/obj/structure/flora/junglebush,
-/turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
-/area/template_noop)
-"t" = (
 /obj/structure/flora/ausbushes/ppflowers,
 /turf/open/floor/plating/asteroid/dirt/jungle/dark,
 /area/template_noop)
-"u" = (
+"s" = (
 /obj/structure/flora/grass/jungle/b,
 /turf/open/floor/plating/asteroid/dirt/jungle/dark,
 /area/template_noop)
 "x" = (
-/mob/living/basic/chicken,
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
-/area/template_noop)
-"A" = (
-/obj/structure/flora/grass/jungle,
-/mob/living/basic/chicken,
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
-/area/template_noop)
-"F" = (
-/obj/structure/flora/tree/jungle/small,
+/obj/structure/flora/grass/jungle/b,
 /turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
 /area/template_noop)
-"J" = (
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+"B" = (
+/obj/structure/flora/junglebush,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
 /area/template_noop)
-"P" = (
+"C" = (
+/mob/living/basic/chicken,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
+/area/template_noop)
+"D" = (
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
+/area/template_noop)
+"E" = (
+/turf/template_noop,
+/area/template_noop)
+"M" = (
+/obj/structure/flora/grass/jungle,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
+/area/template_noop)
+"T" = (
 /obj/structure/flora/grass/jungle,
 /obj/structure/flora/ausbushes/ppflowers,
 /turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
 /area/template_noop)
+"Y" = (
+/obj/structure/flora/tree/jungle/small,
+/obj/structure/flora/grass/jungle,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
+/area/template_noop)
+"Z" = (
+/obj/structure/flora/grass/jungle,
+/obj/structure/flora/ausbushes/brflowers,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
+/area/template_noop)
 
 (1,1,1) = {"
-g
-g
-g
-r
-F
-c
-g
-g
-g
+E
+E
+E
+D
+h
+m
+E
+E
+E
 "}
 (2,1,1) = {"
-g
-r
-s
-k
-q
-r
-k
-s
-g
+E
+D
+B
+M
+x
+D
+M
+B
+E
 "}
 (3,1,1) = {"
-g
-a
-q
-t
+E
+Y
 x
-u
-J
-F
-k
+r
+e
+s
+l
+h
+M
 "}
 (4,1,1) = {"
+x
+x
+l
+l
+p
+l
+s
+T
 q
-q
-J
-J
-b
-J
-u
-P
-m
 "}
 (5,1,1) = {"
-r
-m
-d
-A
-u
-t
-j
+D
+q
+Z
+o
 s
 r
+C
+B
+D
 "}
 (6,1,1) = {"
-g
-g
-F
-s
-J
-q
-q
-r
-g
+E
+E
+h
+B
+l
+x
+x
+D
+E
 "}
 (7,1,1) = {"
-g
-g
-q
-q
-r
-F
-g
-g
-g
+E
+E
+x
+x
+D
+h
+E
+E
+E
 "}

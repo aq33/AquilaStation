@@ -1,119 +1,119 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"d" = (
-/turf/template_noop,
-/area/template_noop)
-"n" = (
-/obj/structure/flora/rock/icy,
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"s" = (
-/obj/structure/geyser/random,
-/turf/open/floor/plating/asteroid/icerock/cracked,
-/area/template_noop)
-"w" = (
-/obj/structure/flora/ausbushes/sparsegrass,
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"x" = (
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"C" = (
-/obj/structure/flora/ausbushes/lavendergrass,
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"P" = (
-/obj/structure/flora/ash/garden/frigid,
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"V" = (
-/turf/open/floor/plating/asteroid/icerock/cracked,
-/area/template_noop)
-"X" = (
+"a" = (
 /obj/structure/flora/tree/pine,
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
-"Z" = (
+"b" = (
+/obj/structure/flora/ausbushes/lavendergrass,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"e" = (
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
+"f" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"o" = (
+/obj/structure/geyser/random,
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
+"p" = (
+/obj/structure/flora/ash/garden/frigid,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"x" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
+"A" = (
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"H" = (
+/obj/structure/flora/rock/icy,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"P" = (
+/turf/template_noop,
+/area/template_noop)
 
 (1,1,1) = {"
-d
-x
-w
-x
-w
-C
-d
-d
+P
+A
+f
+A
+f
+b
+P
+P
 "}
 (2,1,1) = {"
-C
-P
+b
+p
+A
+H
+b
 x
-n
-C
-Z
-w
-d
+f
+P
 "}
 (3,1,1) = {"
-X
-x
-V
-V
-V
-x
-x
-w
+a
+A
+e
+e
+e
+A
+A
+f
 "}
 (4,1,1) = {"
-w
-x
-V
-s
-V
-V
-x
-w
+f
+A
+e
+o
+e
+e
+A
+f
 "}
 (5,1,1) = {"
+A
 x
-Z
-n
-V
-V
-n
-x
-d
+H
+e
+e
+H
+A
+P
 "}
 (6,1,1) = {"
-d
-w
-w
+P
+f
+f
+A
+A
 x
-x
-Z
-d
-d
+P
+P
 "}
 (7,1,1) = {"
-d
-d
-w
-x
-w
 P
-d
-d
+P
+f
+A
+f
+p
+P
+P
 "}
 (8,1,1) = {"
-d
-d
-d
-C
-x
-w
-w
-d
+P
+P
+P
+b
+A
+f
+f
+P
 "}

@@ -1,68 +1,68 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"k" = (
-/obj/structure/flora/rock/pile/icy,
-/turf/open/floor/plating/asteroid/icerock/cracked,
-/area/template_noop)
-"m" = (
-/turf/open/floor/plating/asteroid/icerock/cracked,
-/area/template_noop)
-"n" = (
+"h" = (
 /obj/structure/flora/ash/puce,
 /turf/open/floor/plating/asteroid/icerock/cracked,
 /area/template_noop)
-"A" = (
+"o" = (
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
+"C" = (
+/turf/template_noop,
+/area/template_noop)
+"G" = (
 /obj/structure/flora/ash/stem_shroom,
 /turf/open/floor/plating/asteroid/icerock/cracked,
 /area/template_noop)
-"X" = (
-/turf/template_noop,
+"W" = (
+/obj/structure/flora/rock/pile/icy,
+/turf/open/floor/plating/asteroid/icerock/cracked,
 /area/template_noop)
 
 (1,1,1) = {"
-X
-n
-X
-X
-m
-X
+C
+h
+C
+C
+o
+C
 "}
 (2,1,1) = {"
-X
-k
-X
-A
-n
-m
+C
+W
+C
+G
+h
+o
 "}
 (3,1,1) = {"
-X
-m
-m
-n
-m
-k
+C
+o
+o
+h
+o
+W
 "}
 (4,1,1) = {"
-k
-A
-n
-m
-m
-A
+W
+G
+h
+o
+o
+G
 "}
 (5,1,1) = {"
-X
-n
-m
-k
-n
-X
+C
+h
+o
+W
+h
+C
 "}
 (6,1,1) = {"
-X
-m
-m
-X
-X
-X
+C
+o
+o
+C
+C
+C
 "}

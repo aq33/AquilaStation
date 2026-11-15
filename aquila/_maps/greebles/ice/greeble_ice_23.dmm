@@ -1,8 +1,25 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"g" = (
+"d" = (
 /turf/open/floor/plating/asteroid/snow/planet_ice,
 /area/template_noop)
-"k" = (
+"l" = (
+/obj/structure/flora/tree/pine,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"u" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"w" = (
+/obj/structure/flora/rock/pile/icy{
+	pixel_y = 8
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"C" = (
+/turf/template_noop,
+/area/template_noop)
+"F" = (
 /mob/living/basic/mining/wolf{
 	name = "słabowity wilk";
 	 faction = list("neutral");
@@ -11,85 +28,68 @@
 /obj/structure/flora/ausbushes/sparsegrass,
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
-"w" = (
-/obj/structure/flora/ausbushes/sparsegrass,
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"F" = (
-/obj/structure/flora/rock/pile/icy{
-	pixel_y = 11
-	},
-/turf/open/floor/plating/asteroid/snow/planet_ice,
-/area/template_noop)
-"I" = (
-/obj/structure/flora/rock/pile/icy{
-	pixel_y = 8
-	},
-/turf/open/floor/plating/asteroid/snow/planet_ice,
-/area/template_noop)
-"K" = (
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"L" = (
-/turf/template_noop,
-/area/template_noop)
-"M" = (
-/obj/structure/flora/tree/pine,
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"U" = (
+"R" = (
 /obj/structure/flora/rock/pile/icy{
 	pixel_x = 11;
 	 pixel_y = -6
 	},
 /turf/open/floor/plating/asteroid/snow/planet_ice,
 /area/template_noop)
+"U" = (
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"Y" = (
+/obj/structure/flora/rock/pile/icy{
+	pixel_y = 11
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
 
 (1,1,1) = {"
-L
-L
-g
-g
-g
-L
+C
+C
+d
+d
+d
+C
 "}
 (2,1,1) = {"
-L
+C
+u
+U
 w
-K
-I
-g
-g
+d
+d
 "}
 (3,1,1) = {"
-L
-K
-k
-w
-F
+C
 U
+F
+u
+Y
+R
 "}
 (4,1,1) = {"
-K
-w
-M
-K
-K
-g
+U
+u
+l
+U
+U
+d
 "}
 (5,1,1) = {"
-L
-K
-w
-K
-w
-L
+C
+U
+u
+U
+u
+C
 "}
 (6,1,1) = {"
-L
-K
-K
-L
-L
-L
+C
+U
+U
+C
+C
+C
 "}

@@ -1,15 +1,15 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"e" = (
+"c" = (
 /obj/structure/flora/ausbushes/sparsegrass,
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
-"f" = (
-/turf/open/floor/plating/asteroid/icerock,
+"l" = (
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	 planetary_atmos = 1
+	},
 /area/template_noop)
-"h" = (
-/turf/template_noop,
-/area/template_noop)
-"k" = (
+"p" = (
 /obj/structure/chair/fancy/bench,
 /obj/structure/statue/snow/snowman{
 	layer = 3.1
@@ -19,183 +19,183 @@
 	 planetary_atmos = 1
 	},
 /area/template_noop)
-"o" = (
-/obj/structure/flora/tree/pine,
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"t" = (
-/obj/structure/flora/ash/garden/frigid,
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"u" = (
-/obj/item/stack/sheet/mineral/snow,
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"v" = (
-/turf/open/floor/plasteel/dark{
-	initial_gas_mix = "o2=26;n2=104;TEMP=255";
-	 planetary_atmos = 1
-	},
-/area/template_noop)
-"G" = (
-/turf/open/floor/wood{
-	initial_gas_mix = "o2=26;n2=104;TEMP=255";
-	 planetary_atmos = 1
-	},
-/area/template_noop)
-"K" = (
+"q" = (
 /obj/effect/anomaly/hallucination/planetary,
 /turf/open/floor/plasteel/dark{
 	initial_gas_mix = "o2=26;n2=104;TEMP=255";
 	 planetary_atmos = 1
 	},
 /area/template_noop)
-"N" = (
+"x" = (
+/obj/item/stack/sheet/mineral/snow,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"B" = (
+/obj/structure/flora/tree/pine,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"G" = (
 /obj/structure/flora/grass/both,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"O" = (
+/obj/structure/flora/ash/garden/frigid,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"P" = (
+/turf/template_noop,
+/area/template_noop)
+"S" = (
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"U" = (
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
 
 (1,1,1) = {"
-h
-f
-N
-f
-h
-h
-h
-h
-h
-h
+P
+U
+G
+U
+P
+P
+P
+P
+P
+P
 "}
 (2,1,1) = {"
-t
-f
-f
-f
-f
-f
-f
-f
-h
-h
+O
+U
+U
+U
+U
+U
+U
+U
+P
+P
 "}
 (3,1,1) = {"
-u
-k
+x
+p
+l
+p
 G
-k
-N
-u
-v
-f
-f
-h
+x
+S
+U
+U
+P
 "}
 (4,1,1) = {"
-f
-k
+U
+p
+l
+p
+U
+U
+S
+c
+U
 G
-k
-f
-f
-v
-e
-f
-N
 "}
 (5,1,1) = {"
-f
-k
-G
-k
-e
-v
-v
-v
-f
-o
+U
+p
+l
+p
+c
+S
+S
+S
+U
+B
 "}
 (6,1,1) = {"
-N
-v
-v
-v
-v
-v
-K
-v
-f
-u
+G
+S
+S
+S
+S
+S
+q
+S
+U
+x
 "}
 (7,1,1) = {"
-f
-k
+U
+p
+l
+p
+U
+S
+S
+S
+U
 G
-k
-f
-v
-v
-v
-f
-N
 "}
 (8,1,1) = {"
-e
-k
-G
-k
-f
-e
-v
-u
-e
-f
+c
+p
+l
+p
+U
+c
+S
+x
+c
+U
 "}
 (9,1,1) = {"
-f
-k
-G
-k
-f
-f
-v
-f
-f
-h
+U
+p
+l
+p
+U
+U
+S
+U
+U
+P
 "}
 (10,1,1) = {"
-f
-u
-e
-f
-f
-N
-f
-f
-h
-h
+U
+x
+c
+U
+U
+G
+U
+U
+P
+P
 "}
 (11,1,1) = {"
-h
-f
-f
-f
-e
-h
-h
-h
-h
-h
+P
+U
+U
+U
+c
+P
+P
+P
+P
+P
 "}
 (12,1,1) = {"
-h
-h
-h
-f
-h
-h
-h
-h
-h
-h
+P
+P
+P
+U
+P
+P
+P
+P
+P
+P
 "}

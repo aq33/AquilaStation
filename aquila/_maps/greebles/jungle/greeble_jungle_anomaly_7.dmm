@@ -1,47 +1,35 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"a" = (
-/obj/structure/flora/tree/dead/tall,
+"b" = (
+/obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/glass,
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"h" = (
 /obj/effect/decal/cleanable/vomit/old,
 /turf/open/floor/plating/asteroid/dirt/grass/jungle/yellow,
 /area/template_noop)
-"l" = (
+"k" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/vomit/old,
 /turf/open/floor/plating/asteroid/dirt/grass/jungle/yellow,
 /area/template_noop)
-"p" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
-/area/template_noop)
-"q" = (
-/obj/effect/decal/cleanable/dirt/dust,
+"o" = (
+/obj/structure/flora/tree/dead/tall,
 /turf/open/floor/plating/asteroid/dirt/grass/jungle/yellow,
 /area/template_noop)
-"r" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/glass,
-/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
-/area/template_noop)
-"x" = (
+"s" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/flora/rock/pile/largejungle,
 /obj/effect/decal/cleanable/glass,
 /turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
 /area/template_noop)
+"x" = (
+/turf/template_noop,
+/area/template_noop)
 "y" = (
-/obj/structure/flora/tree/dead/tall,
 /turf/open/floor/plating/asteroid/dirt/grass/jungle/yellow,
 /area/template_noop)
-"A" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/glass,
-/turf/open/floor/plating/asteroid/dirt/grass/jungle/yellow,
-/area/template_noop)
-"G" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/vomit/old,
-/turf/open/floor/plating/asteroid/dirt/grass/jungle/yellow,
-/area/template_noop)
-"M" = (
+"B" = (
 /obj/effect/anomaly/tvstatic/blackbox,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/flora/rock/pile,
@@ -49,74 +37,86 @@
 /obj/effect/decal/cleanable/robot_debris/down,
 /turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
 /area/template_noop)
-"P" = (
+"E" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/yellow,
+/area/template_noop)
+"G" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"J" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/yellow,
+/area/template_noop)
+"Y" = (
+/obj/structure/flora/tree/dead/tall,
+/obj/effect/decal/cleanable/glass,
 /obj/effect/decal/cleanable/vomit/old,
 /turf/open/floor/plating/asteroid/dirt/grass/jungle/yellow,
 /area/template_noop)
-"Q" = (
-/turf/template_noop,
-/area/template_noop)
 
 (1,1,1) = {"
+o
+k
+J
 y
-G
-q
-l
-l
-Q
-Q
+y
+x
+x
 "}
 (2,1,1) = {"
-l
+y
+s
+b
+G
+y
+h
 x
-r
-p
-l
-P
-Q
 "}
 (3,1,1) = {"
-Q
-q
-p
-p
-r
-Q
-Q
+x
+J
+G
+G
+b
+x
+x
 "}
 (4,1,1) = {"
-Q
+x
+k
 G
-p
-M
-p
-l
-Q
+B
+G
+y
+x
 "}
 (5,1,1) = {"
-Q
-Q
-p
-p
-A
-q
-l
+x
+x
+G
+G
+E
+J
+y
 "}
 (6,1,1) = {"
-Q
-Q
-Q
-Q
-l
-a
-Q
+x
+x
+x
+x
+y
+Y
+x
 "}
 (7,1,1) = {"
-Q
-Q
-Q
-Q
-Q
-l
-Q
+x
+x
+x
+x
+x
+y
+x
 "}

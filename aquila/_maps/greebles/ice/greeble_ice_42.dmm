@@ -1,80 +1,201 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"ak" = (
-/obj/structure/frame/computer{
-	dir = 8;
-	anchored = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/template_noop)
-"al" = (
-/turf/closed/wall/mineral/plastitanium,
-/area/template_noop)
-"ar" = (
-/obj/effect/decal/cleanable/glass/plasma,
-/obj/item/stack/cable_coil/cut,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/robot_debris/up,
-/obj/item/stack/sheet/iron,
-/turf/open/floor/plasteel/dark,
-/area/template_noop)
-"aF" = (
+"bE" = (
 /obj/structure/flora/tree/dead{
 	name = "roztrzaskana kłoda"
 	},
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
-"aM" = (
-/obj/structure/flora/grass/brown,
-/turf/open/floor/plating/asteroid/snow/planet_ice,
-/area/template_noop)
-"bs" = (
-/obj/structure/window/plasma/reinforced{
-	dir = 8
-	},
-/obj/structure/window/plasma/reinforced,
-/turf/open/floor/plasteel/dark,
-/area/template_noop)
-"bt" = (
-/obj/structure/flora/grass/both,
-/turf/open/floor/plating/asteroid/snow/planet_ice,
-/area/template_noop)
-"by" = (
-/obj/structure/flora/rock/pile{
-	icon_state = "lavarocks2"
-	},
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"eI" = (
-/obj/item/stack/ore/gold,
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"fp" = (
-/obj/machinery/atmospherics/pipe/simple/orange/hidden,
-/obj/structure/window/plastitanium,
-/turf/open/floor/plating,
-/area/template_noop)
-"fH" = (
+"cx" = (
 /obj/effect/mapping_helpers/airlock/locked,
 /obj/machinery/door/airlock/external{
 	id_tag = "s2"
 	},
 /turf/open/floor/plasteel/tech/grid,
 /area/template_noop)
-"gh" = (
-/obj/structure/flora/tree/pine{
-	icon_state = "pine_3";
-	layer = 5.1
+"cG" = (
+/obj/structure/frame/machine{
+	pixel_y = -15;
+	anchored = 1
 	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"cP" = (
+/obj/structure/grille/broken,
+/obj/item/shard{
+	pixel_y = -2;
+	pixel_x = -2
+	},
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/plating,
+/area/template_noop)
+"dl" = (
+/obj/structure/window/plasma/reinforced{
+	dir = 8
+	},
+/obj/structure/window/plasma/reinforced,
+/turf/open/floor/plasteel/dark,
+/area/template_noop)
+"dK" = (
+/obj/structure/flora/tree/dead{
+	icon_state = "tree_6"
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"fC" = (
 /obj/structure/flora/tree/pine{
-	icon_state = "pine_3";
+	layer = 5.04
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"fZ" = (
+/obj/structure/flora/tree/dead{
+	icon_state = "tree_3"
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"gm" = (
+/obj/item/stack/sheet/mineral/plastitanium,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"gF" = (
+/obj/structure/flora/tree/dead{
+	icon_state = "tree_4"
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"jv" = (
+/obj/structure/frame/computer{
+	dir = 8;
+	anchored = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/template_noop)
+"lL" = (
+/obj/structure/flora/tree/pine,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"mG" = (
+/obj/structure/flora/grass/green,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"op" = (
+/obj/structure/door_assembly/door_assembly_ext,
+/turf/open/floor/plasteel/tech/grid,
+/area/template_noop)
+"ps" = (
+/obj/effect/decal/cleanable/blood/tracks{
+	layer = 2.4551
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"qf" = (
+/obj/machinery/atmospherics/pipe/simple/orange/hidden{
+	dir = 9
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/dark,
+/area/template_noop)
+"qC" = (
+/obj/structure/flora/rock/icy,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"qX" = (
+/obj/structure/flora/tree/pine{
 	layer = 5.1
 	},
 /turf/open/floor/plating/asteroid/snow/planet_ice,
 /area/template_noop)
-"hu" = (
-/turf/open/floor/plasteel/dark,
+"ro" = (
+/obj/structure/flora/rock/pile/icy{
+	pixel_x = 1
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
 /area/template_noop)
-"jj" = (
+"rQ" = (
+/obj/item/stack/ore/iron{
+	amount = 5
+	},
+/obj/effect/decal/cleanable/blood/tracks{
+	layer = 2.4552
+	},
+/turf/open/floor/plating,
+/area/template_noop)
+"rW" = (
+/obj/structure/frame/machine{
+	pixel_y = 16;
+	anchored = 1
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"sG" = (
+/obj/structure/flora/rock/pile{
+	icon_state = "lavarocks2"
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"uC" = (
+/obj/structure/flora/tree/dead{
+	icon_state = "tree_4";
+	layer = 5.04
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"vi" = (
+/obj/effect/decal/cleanable/blood/splatter{
+	icon_state = "floor2";
+	layer = 2.4551
+	},
+/obj/effect/decal/cleanable/blood/footprints{
+	dir = 1;
+	layer = 2.4552
+	},
+/obj/effect/mob_spawn/human/corpse/syndicatecommando,
+/obj/item/gun/ballistic/automatic/pistol/no_mag{
+	pixel_y = 6
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"vn" = (
+/obj/structure/grille/broken,
+/obj/item/shard{
+	pixel_y = -4;
+	pixel_x = -1
+	},
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/plating,
+/area/template_noop)
+"vP" = (
+/obj/effect/decal/fakelattice,
+/obj/effect/decal/cleanable/shreds,
+/obj/item/stack/ore/iron,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"wZ" = (
+/obj/structure/flora/tree/pine{
+	icon_state = "pine_3";
+	layer = 5.05
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"xl" = (
+/turf/template_noop,
+/area/template_noop)
+"xx" = (
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"xC" = (
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/template_noop)
+"yy" = (
+/turf/open/floor/engine,
+/area/template_noop)
+"yY" = (
+/obj/structure/flora/tree/pine{
+	layer = 5.05
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"zB" = (
 /obj/effect/decal/cleanable/glass,
 /obj/structure/flora/tree/pine{
 	icon_state = "pine_3";
@@ -82,32 +203,127 @@
 	},
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
-"jm" = (
-/turf/template_noop,
+"CA" = (
+/obj/item/stack/ore/gold,
+/turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
-"jB" = (
-/turf/open/floor/engine,
+"DC" = (
+/obj/structure/flora/tree/dead{
+	layer = 5.1
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
 /area/template_noop)
-"jV" = (
+"DU" = (
+/turf/open/floor/plasteel/dark,
+/area/template_noop)
+"DV" = (
 /obj/structure/flora/tree/dead,
 /turf/open/floor/plating/asteroid/snow/planet_ice,
 /area/template_noop)
-"kd" = (
-/obj/machinery/atmospherics/pipe/simple/orange/hidden{
-	dir = 9
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/dark,
+"FO" = (
+/turf/closed/wall/mineral/plastitanium,
 /area/template_noop)
-"kU" = (
+"GW" = (
 /obj/structure/flora/stump,
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
-"lF" = (
+"Ht" = (
+/obj/structure/flora/grass/green,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"HJ" = (
+/obj/structure/flora/tree/pine{
+	icon_state = "pine_3";
+	layer = 5.1
+	},
+/obj/structure/flora/tree/pine{
+	icon_state = "pine_3";
+	layer = 5.1
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"If" = (
+/obj/structure/flora/tree/dead{
+	name = "roztrzaskane drewno"
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"Ig" = (
+/obj/structure/flora/grass/brown,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"Iq" = (
+/obj/structure/flora/bush,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"IZ" = (
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"Jo" = (
+/obj/structure/flora/rock/pile/icy{
+	pixel_x = 6
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"JD" = (
 /obj/item/stack/ore/iron,
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
-"nT" = (
+"KF" = (
+/obj/structure/flora/rock/pile/icy,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"KS" = (
+/obj/effect/decal/cleanable/glass/plasma,
+/obj/item/stack/cable_coil/cut,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/robot_debris/up,
+/obj/item/stack/sheet/iron,
+/turf/open/floor/plasteel/dark,
+/area/template_noop)
+"Lp" = (
+/obj/machinery/atmospherics/pipe/simple/orange/hidden,
+/obj/structure/window/plastitanium,
+/turf/open/floor/plating,
+/area/template_noop)
+"Ma" = (
+/obj/structure/frame/machine{
+	pixel_x = -24;
+	pixel_y = -6;
+	anchored = 1
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"NP" = (
+/obj/structure/flora/rock/pile,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"NX" = (
+/obj/structure/flora/tree/dead{
+	icon_state = "tree_2"
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"Om" = (
+/obj/machinery/atmospherics/pipe/manifold/orange/hidden{
+	dir = 4
+	},
+/obj/machinery/meter,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/dark,
+/area/template_noop)
+"Or" = (
+/obj/structure/flora/grass/both,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"QB" = (
+/obj/machinery/atmospherics/components/binary/pump{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/oil,
+/turf/open/floor/plasteel/dark,
+/area/template_noop)
+"QC" = (
 /obj/machinery/button/door{
 	pixel_x = -23;
 	pixel_y = -9;
@@ -130,27 +346,7 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/template_noop)
-"nY" = (
-/obj/structure/grille/broken,
-/obj/item/shard{
-	pixel_y = -4;
-	pixel_x = -1
-	},
-/obj/effect/decal/cleanable/glass,
-/turf/open/floor/plating,
-/area/template_noop)
-"oW" = (
-/obj/structure/frame/machine{
-	pixel_y = -15;
-	anchored = 1
-	},
-/turf/open/floor/plating/asteroid/snow/planet_ice,
-/area/template_noop)
-"rK" = (
-/obj/structure/flora/tree/pine,
-/turf/open/floor/plating/asteroid/snow/planet_ice,
-/area/template_noop)
-"tR" = (
+"SK" = (
 /obj/structure/frame/machine,
 /obj/item/stack/ore/gold{
 	pixel_y = 1
@@ -161,91 +357,28 @@
 	planetary_atmos = 1
 	},
 /area/template_noop)
-"ue" = (
-/obj/structure/flora/rock/pile/icy{
-	pixel_x = 1
-	},
-/turf/open/floor/plating/asteroid/snow/planet_ice,
-/area/template_noop)
-"up" = (
-/obj/structure/flora/tree/dead{
-	icon_state = "tree_3"
-	},
-/turf/open/floor/plating/asteroid/snow/planet_ice,
-/area/template_noop)
-"vh" = (
-/obj/structure/flora/grass/green,
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"vI" = (
-/obj/structure/flora/tree/dead{
-	icon_state = "tree_6"
-	},
-/turf/open/floor/plating/asteroid/snow/planet_ice,
-/area/template_noop)
-"wx" = (
-/obj/machinery/atmospherics/pipe/manifold/orange/hidden{
-	dir = 4
-	},
-/obj/machinery/meter,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/dark,
-/area/template_noop)
-"xK" = (
+"Ua" = (
 /obj/structure/flora/tree/pine{
-	layer = 5.05
+	icon_state = "pine_3"
 	},
 /turf/open/floor/plating/asteroid/snow/planet_ice,
 /area/template_noop)
-"yh" = (
-/obj/structure/flora/rock/icy,
-/turf/open/floor/plating/asteroid/snow/planet_ice,
-/area/template_noop)
-"yI" = (
-/obj/effect/decal/fakelattice,
-/obj/effect/decal/cleanable/shreds,
-/obj/item/stack/ore/iron,
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"zQ" = (
+"Um" = (
 /obj/structure/frame/machine{
-	pixel_y = 16;
+	pixel_x = -24;
+	pixel_y = 8;
 	anchored = 1
 	},
 /turf/open/floor/plating/asteroid/snow/planet_ice,
 /area/template_noop)
-"Aj" = (
-/obj/structure/flora/tree/pine{
-	icon_state = "pine_3";
-	layer = 5.05
-	},
-/turf/open/floor/plating/asteroid/snow/planet_ice,
-/area/template_noop)
-"AN" = (
-/turf/closed/wall/mineral/plastitanium/nodiagonal,
-/area/template_noop)
-"Bd" = (
-/obj/structure/flora/tree/dead{
-	icon_state = "tree_2"
-	},
-/turf/open/floor/plating/asteroid/snow/planet_ice,
-/area/template_noop)
-"Bj" = (
-/obj/structure/flora/rock/pile,
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"Cb" = (
+"Yw" = (
 /obj/structure/girder,
 /turf/open/floor/plating/rust{
 	initial_gas_mix = "o2=26;n2=104;TEMP=255";
 	planetary_atmos = 1
 	},
 /area/template_noop)
-"Dd" = (
-/obj/structure/flora/grass/green,
-/turf/open/floor/plating/asteroid/snow/planet_ice,
-/area/template_noop)
-"DD" = (
+"YC" = (
 /obj/effect/decal/fakelattice,
 /obj/effect/decal/fakelattice,
 /obj/effect/decal/cleanable/glass/plasma,
@@ -256,52 +389,7 @@
 	},
 /turf/open/floor/plating,
 /area/template_noop)
-"DF" = (
-/obj/structure/flora/tree/dead{
-	icon_state = "tree_4";
-	layer = 5.04
-	},
-/turf/open/floor/plating/asteroid/snow/planet_ice,
-/area/template_noop)
-"Hz" = (
-/obj/structure/flora/rock/pile/icy,
-/turf/open/floor/plating/asteroid/snow/planet_ice,
-/area/template_noop)
-"HH" = (
-/obj/structure/flora/bush,
-/turf/open/floor/plating/asteroid/snow/planet_ice,
-/area/template_noop)
-"Iv" = (
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"IJ" = (
-/obj/structure/grille/broken,
-/obj/item/shard{
-	pixel_y = -2;
-	pixel_x = -2
-	},
-/obj/effect/decal/cleanable/glass,
-/turf/open/floor/plating,
-/area/template_noop)
-"KA" = (
-/obj/structure/flora/tree/dead{
-	icon_state = "tree_4"
-	},
-/turf/open/floor/plating/asteroid/snow/planet_ice,
-/area/template_noop)
-"MA" = (
-/obj/item/stack/ore/iron{
-	amount = 5
-	},
-/obj/effect/decal/cleanable/blood/tracks{
-	layer = 2.4552
-	},
-/turf/open/floor/plating,
-/area/template_noop)
-"Nk" = (
-/turf/open/floor/plating/asteroid/snow/planet_ice,
-/area/template_noop)
-"NK" = (
+"YP" = (
 /obj/machinery/atmospherics/pipe/manifold/orange/hidden{
 	dir = 8
 	},
@@ -311,602 +399,514 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/template_noop)
-"Oj" = (
-/obj/effect/decal/cleanable/blood/splatter{
-	icon_state = "floor2";
-	layer = 2.4551
-	},
-/obj/effect/decal/cleanable/blood/footprints{
-	dir = 1;
-	layer = 2.4552
-	},
-/obj/effect/mob_spawn/human/corpse/syndicatecommando,
-/obj/item/gun/ballistic/automatic/pistol/no_mag{
-	pixel_y = 6
-	},
-/turf/open/floor/plating/asteroid/snow/planet_ice,
-/area/template_noop)
-"Op" = (
-/obj/structure/flora/rock/pile/icy{
-	pixel_x = 6
-	},
-/turf/open/floor/plating/asteroid/snow/planet_ice,
-/area/template_noop)
-"UG" = (
-/obj/structure/flora/tree/pine{
-	icon_state = "pine_3"
-	},
-/turf/open/floor/plating/asteroid/snow/planet_ice,
-/area/template_noop)
-"UV" = (
-/obj/structure/door_assembly/door_assembly_ext,
-/turf/open/floor/plasteel/tech/grid,
-/area/template_noop)
-"VG" = (
-/obj/effect/decal/cleanable/blood/tracks{
-	layer = 2.4551
-	},
-/turf/open/floor/plating/asteroid/snow/planet_ice,
-/area/template_noop)
-"Wr" = (
-/obj/structure/flora/tree/dead{
-	layer = 5.1
-	},
-/turf/open/floor/plating/asteroid/snow/planet_ice,
-/area/template_noop)
-"WF" = (
-/obj/item/stack/sheet/mineral/plastitanium,
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"WW" = (
-/obj/structure/flora/tree/dead{
-	name = "roztrzaskane drewno"
-	},
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"Xv" = (
-/obj/structure/flora/tree/pine{
-	layer = 5.1
-	},
-/turf/open/floor/plating/asteroid/snow/planet_ice,
-/area/template_noop)
-"Yd" = (
-/obj/structure/flora/tree/pine{
-	layer = 5.04
-	},
-/turf/open/floor/plating/asteroid/snow/planet_ice,
-/area/template_noop)
-"YR" = (
-/obj/machinery/atmospherics/components/binary/pump{
-	dir = 8
-	},
-/obj/effect/decal/cleanable/oil,
-/turf/open/floor/plasteel/dark,
-/area/template_noop)
-"Zi" = (
-/obj/structure/frame/machine{
-	pixel_x = -24;
-	pixel_y = 8;
-	anchored = 1
-	},
-/turf/open/floor/plating/asteroid/snow/planet_ice,
-/area/template_noop)
-"ZY" = (
-/obj/structure/frame/machine{
-	pixel_x = -24;
-	pixel_y = -6;
-	anchored = 1
-	},
-/turf/open/floor/plating/asteroid/snow/planet_ice,
-/area/template_noop)
 
 (1,1,1) = {"
-jm
-jm
-jm
-WF
-kU
-Iv
-Iv
-Iv
-Iv
-WW
-Iv
-Iv
-Nk
-jm
-jm
+xl
+xl
+xl
+gm
+GW
+IZ
+IZ
+IZ
+IZ
+If
+IZ
+IZ
+xx
+xl
+xl
 "}
 (2,1,1) = {"
-Nk
-jm
-jm
-Iv
-Iv
-Iv
-Iv
-WW
-Iv
-lF
-Iv
-Bj
-jm
-jm
-Nk
+xx
+xl
+xl
+IZ
+IZ
+IZ
+IZ
+If
+IZ
+JD
+IZ
+NP
+xl
+xl
+xx
 "}
 (3,1,1) = {"
-Nk
-Nk
-Nk
-Nk
-Iv
-Iv
-Iv
-aF
-Iv
-Iv
-Iv
-jm
-jm
-Nk
-Nk
+xx
+xx
+xx
+xx
+IZ
+IZ
+IZ
+bE
+IZ
+IZ
+IZ
+xl
+xl
+xx
+xx
 "}
 (4,1,1) = {"
-KA
-Nk
-Nk
-Nk
-Iv
-lF
-Iv
-Iv
-Iv
-Iv
-WF
-Nk
-Nk
-Nk
-HH
+gF
+xx
+xx
+xx
+IZ
+JD
+IZ
+IZ
+IZ
+IZ
+gm
+xx
+xx
+xx
+Iq
 "}
 (5,1,1) = {"
-Nk
-Nk
-Nk
-Nk
-Nk
-Iv
-Iv
-Iv
-Iv
-Iv
-Nk
-Nk
-Nk
-Nk
-Nk
+xx
+xx
+xx
+xx
+xx
+IZ
+IZ
+IZ
+IZ
+IZ
+xx
+xx
+xx
+xx
+xx
 "}
 (6,1,1) = {"
-Nk
-Nk
-rK
-Nk
-Dd
-Iv
-Iv
-Iv
-WW
-Iv
-Nk
-Nk
-Nk
-Op
-Nk
+xx
+xx
+lL
+xx
+mG
+IZ
+IZ
+IZ
+If
+IZ
+xx
+xx
+xx
+Jo
+xx
 "}
 (7,1,1) = {"
-Nk
-Nk
-aM
-Nk
-Nk
-Iv
-Iv
-Iv
-Iv
-Iv
-Nk
-rK
-Nk
-Nk
-Nk
+xx
+xx
+Ig
+xx
+xx
+IZ
+IZ
+IZ
+IZ
+IZ
+xx
+lL
+xx
+xx
+xx
 "}
 (8,1,1) = {"
-jm
-Nk
-Nk
-Nk
-Nk
-by
-Iv
-Iv
-lF
-Iv
-Nk
-Nk
-Dd
-Nk
-Nk
+xl
+xx
+xx
+xx
+xx
+sG
+IZ
+IZ
+JD
+IZ
+xx
+xx
+mG
+xx
+xx
 "}
 (9,1,1) = {"
-jm
-Nk
-Nk
-up
-Nk
-Iv
-Iv
-Iv
-Iv
-Iv
-Nk
-Nk
-Nk
-Nk
-jV
+xl
+xx
+xx
+fZ
+xx
+IZ
+IZ
+IZ
+IZ
+IZ
+xx
+xx
+xx
+xx
+DV
 "}
 (10,1,1) = {"
-jm
-Nk
-Nk
-Nk
-Iv
-Iv
-Iv
-Iv
-vh
-vh
-vh
-Nk
-Nk
-Nk
-Nk
+xl
+xx
+xx
+xx
+IZ
+IZ
+IZ
+IZ
+Ht
+Ht
+Ht
+xx
+xx
+xx
+xx
 "}
 (11,1,1) = {"
-Nk
-Nk
-yh
-Nk
-Iv
-Iv
-Iv
-Iv
-Iv
-WW
-Iv
-Nk
-Nk
-Nk
-Nk
+xx
+xx
+qC
+xx
+IZ
+IZ
+IZ
+IZ
+IZ
+If
+IZ
+xx
+xx
+xx
+xx
 "}
 (12,1,1) = {"
-Nk
-rK
-Nk
-Nk
-Iv
-WF
-Iv
-Iv
-Iv
-Iv
-Iv
-Nk
-Nk
-rK
-Nk
+xx
+lL
+xx
+xx
+IZ
+gm
+IZ
+IZ
+IZ
+IZ
+IZ
+xx
+xx
+lL
+xx
 "}
 (13,1,1) = {"
-Nk
-Nk
-Nk
-Nk
-Iv
-Iv
-Iv
-Iv
-kU
-Iv
-eI
-Nk
-Nk
-Nk
-jm
+xx
+xx
+xx
+xx
+IZ
+IZ
+IZ
+IZ
+GW
+IZ
+CA
+xx
+xx
+xx
+xl
 "}
 (14,1,1) = {"
-Nk
-Nk
-Nk
-Nk
-Iv
-Iv
-Iv
-Iv
-Iv
-Iv
-Nk
-Nk
-up
-Nk
-jm
+xx
+xx
+xx
+xx
+IZ
+IZ
+IZ
+IZ
+IZ
+IZ
+xx
+xx
+fZ
+xx
+xl
 "}
 (15,1,1) = {"
-Nk
-vI
-Dd
-Nk
-WW
-Iv
-Iv
-aF
-Iv
-lF
-xK
-Nk
-Nk
-Nk
-jm
+xx
+dK
+mG
+xx
+If
+IZ
+IZ
+bE
+IZ
+JD
+yY
+xx
+xx
+xx
+xl
 "}
 (16,1,1) = {"
-Nk
-Nk
-Nk
-Nk
-Nk
-lF
-tR
-al
-jB
-Iv
-Nk
-Nk
-Nk
-Nk
-Nk
+xx
+xx
+xx
+xx
+xx
+JD
+SK
+FO
+yy
+IZ
+xx
+xx
+xx
+xx
+xx
 "}
 (17,1,1) = {"
-jm
-Nk
-Nk
-Nk
-Nk
-DD
-ar
-al
-bs
-AN
-Nk
-Nk
-UG
-Nk
-Nk
+xl
+xx
+xx
+xx
+xx
+YC
+KS
+FO
+dl
+xC
+xx
+xx
+Ua
+xx
+xx
 "}
 (18,1,1) = {"
-jm
-Nk
-Nk
-Xv
-Nk
-UV
-yI
-al
-YR
-Cb
-Nk
-Nk
-yh
-Nk
-Nk
+xl
+xx
+xx
+qX
+xx
+op
+vP
+FO
+QB
+Yw
+xx
+xx
+qC
+xx
+xx
 "}
 (19,1,1) = {"
-Nk
-DF
-Nk
-Nk
-Nk
-fp
-wx
-NK
-kd
-al
-UG
-Nk
-Nk
-Nk
-Nk
+xx
+uC
+xx
+xx
+xx
+Lp
+Om
+YP
+qf
+FO
+Ua
+xx
+xx
+xx
+xx
 "}
 (20,1,1) = {"
-Nk
-Nk
-Nk
-Nk
-Nk
-al
-AN
-hu
-AN
-al
-Nk
-Nk
-Nk
-Nk
-xK
+xx
+xx
+xx
+xx
+xx
+FO
+xC
+DU
+xC
+FO
+xx
+xx
+xx
+xx
+yY
 "}
 (21,1,1) = {"
-Nk
-Nk
-rK
-Nk
-Nk
-ZY
-AN
-AN
-AN
-Zi
-Nk
-Nk
-UG
-Nk
-Nk
+xx
+xx
+lL
+xx
+xx
+Ma
+xC
+xC
+xC
+Um
+xx
+xx
+Ua
+xx
+xx
 "}
 (22,1,1) = {"
-Nk
-Nk
-Nk
-Oj
-VG
-VG
-MA
-nT
-fH
-DF
-Nk
-Nk
-Nk
-Dd
-jm
+xx
+xx
+xx
+vi
+ps
+ps
+rQ
+QC
+cx
+uC
+xx
+xx
+xx
+mG
+xl
 "}
 (23,1,1) = {"
-Dd
-Nk
-Nk
-Wr
-Nk
-oW
-al
-ak
-al
-zQ
-Nk
-Nk
-Nk
-Nk
-jm
+mG
+xx
+xx
+DC
+xx
+cG
+FO
+jv
+FO
+rW
+xx
+xx
+xx
+xx
+xl
 "}
 (24,1,1) = {"
-Nk
-Nk
-Nk
-Nk
-rK
-Nk
-IJ
-nY
-jj
-Nk
-Nk
-Nk
-Nk
-gh
-jm
+xx
+xx
+xx
+xx
+lL
+xx
+cP
+vn
+zB
+xx
+xx
+xx
+xx
+HJ
+xl
 "}
 (25,1,1) = {"
-Nk
-Nk
-Nk
-Nk
-Nk
-Nk
-Aj
-rK
-Nk
-Nk
-Nk
-Hz
-Nk
-Nk
-ue
+xx
+xx
+xx
+xx
+xx
+xx
+wZ
+lL
+xx
+xx
+xx
+KF
+xx
+xx
+ro
 "}
 (26,1,1) = {"
-Nk
-Yd
-Nk
-Hz
-Nk
-Nk
-Nk
-Nk
-bt
-Nk
-Bd
-Nk
-Nk
-Nk
-Nk
+xx
+fC
+xx
+KF
+xx
+xx
+xx
+xx
+Or
+xx
+NX
+xx
+xx
+xx
+xx
 "}
 (27,1,1) = {"
-Nk
-Nk
-Nk
-Nk
-Nk
-rK
-Nk
-KA
-Nk
-Nk
-Nk
-Nk
-Nk
-rK
-Nk
+xx
+xx
+xx
+xx
+xx
+lL
+xx
+gF
+xx
+xx
+xx
+xx
+xx
+lL
+xx
 "}
 (28,1,1) = {"
-jm
-Nk
-rK
-aM
-Nk
-Nk
-Nk
-Nk
-Nk
-Nk
-Yd
-Nk
-Nk
-Nk
-jm
+xl
+xx
+lL
+Ig
+xx
+xx
+xx
+xx
+xx
+xx
+fC
+xx
+xx
+xx
+xl
 "}
 (29,1,1) = {"
-jm
-Nk
-Nk
-Nk
-Nk
-Nk
-rK
-Nk
-Nk
-Nk
-Nk
-rK
-Nk
-jm
-jm
+xl
+xx
+xx
+xx
+xx
+xx
+lL
+xx
+xx
+xx
+xx
+lL
+xx
+xl
+xl
 "}
 (30,1,1) = {"
-jm
-jm
-Nk
-jm
-jm
-Nk
-Nk
-Nk
-rK
-Nk
-jm
-jm
-Nk
-jm
-jm
+xl
+xl
+xx
+xl
+xl
+xx
+xx
+xx
+lL
+xx
+xl
+xl
+xx
+xl
+xl
 "}

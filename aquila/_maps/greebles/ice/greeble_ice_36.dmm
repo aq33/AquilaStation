@@ -1,184 +1,39 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"dm" = (
-/obj/machinery/light,
-/obj/item/storage/box/emptysandbags{
-	pixel_x = -5;
-	pixel_y = -4
-	},
+"bc" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plasteel/tech,
+/turf/open/floor/plasteel,
 /area/template_noop)
-"eb" = (
+"bx" = (
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
+"df" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/tech/grid,
+/area/template_noop)
+"dC" = (
 /obj/structure/cable,
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "h2"
 	},
 /turf/open/floor/plasteel,
 /area/template_noop)
-"fM" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plasteel/tech,
-/area/template_noop)
-"gF" = (
-/obj/structure/flora/grass/green,
-/turf/open/floor/plating/asteroid/snow/planet_ice,
-/area/template_noop)
-"iE" = (
-/obj/machinery/computer/crew{
-	dir = 8
-	},
-/obj/structure/railing,
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plasteel,
-/area/template_noop)
-"jc" = (
-/turf/closed/wall/r_wall/syndicate/nodiagonal,
-/area/template_noop)
-"jL" = (
-/obj/structure/shuttle/engine/propulsion,
-/obj/structure/window/plasma/reinforced{
-	dir = 1
-	},
-/obj/structure/window/plasma/reinforced{
-	dir = 4
-	},
-/obj/structure/cable/yellow,
-/turf/open/floor/plating,
-/area/template_noop)
-"jR" = (
-/obj/machinery/light,
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plasteel/tech,
-/area/template_noop)
-"jU" = (
-/obj/effect/gibspawner/human/bodypartless,
-/turf/open/floor/plating/asteroid/snow/planet_ice,
-/area/template_noop)
-"lD" = (
-/turf/template_noop,
-/area/template_noop)
-"mh" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/structure/cable,
-/obj/item/rack_parts,
-/obj/item/storage/box/emptysandbags{
-	pixel_x = 4;
-	pixel_y = 5
-	},
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plasteel/tech,
-/area/template_noop)
-"mq" = (
+"dH" = (
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
-"ow" = (
-/obj/machinery/power/terminal{
-	dir = 8
-	},
-/obj/structure/lattice/catwalk/over/ship/dark,
-/obj/structure/cable/yellow,
-/mob/living/basic/hivebot/range,
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating,
-/area/template_noop)
-"oJ" = (
-/obj/structure/shuttle/engine/propulsion,
-/obj/structure/window/plasma/reinforced{
-	dir = 4
-	},
-/obj/structure/window/plasma/reinforced,
-/obj/structure/cable/yellow,
-/turf/open/floor/plating,
-/area/template_noop)
-"pT" = (
-/obj/structure/cable,
-/obj/effect/gibspawner/human/bodypartless,
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plasteel,
-/area/template_noop)
-"pU" = (
-/obj/machinery/power/smes/engineering,
-/obj/structure/cable,
-/obj/structure/lattice/catwalk/over/ship/dark,
-/obj/machinery/button/door{
-	dir = 4;
-	pixel_y = 6;
-	pixel_x = -22;
-	name = "rolety silnika";
-	id = "h3"
-	},
-/turf/open/floor/plasteel/techmaint,
-/area/template_noop)
-"qO" = (
-/obj/structure/cable,
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plasteel/stairs{
-	icon = 'icons/obj/stairs.dmi';
-	dir = 8
-	},
-/area/template_noop)
-"qR" = (
-/obj/effect/turf_decal/siding/thinplating/dark{
-	dir = 10
-	},
-/obj/structure/cable,
-/mob/living/basic/hivebot/range,
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plasteel,
-/area/template_noop)
-"rq" = (
-/mob/living/basic/mining/wolf,
-/turf/open/floor/plating/asteroid/snow/planet_ice,
-/area/template_noop)
-"rV" = (
-/obj/structure/railing/corner{
-	dir = 1
-	},
-/obj/structure/table/optable,
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plasteel,
-/area/template_noop)
-"sm" = (
+"gS" = (
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 6
 	},
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plasteel,
 /area/template_noop)
-"sX" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plasteel,
-/area/template_noop)
-"tb" = (
-/obj/structure/closet/body_bag,
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/effect/mob_spawn/human/corpse/pirate/ranged,
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plasteel,
-/area/template_noop)
-"uW" = (
-/obj/structure/chair/fancy/shuttle{
-	dir = 4;
-	name = "krzesło taktyczne"
-	},
-/obj/machinery/power/apc/auto_name/north,
+"hn" = (
 /obj/structure/cable,
-/obj/machinery/light_switch{
-	pixel_y = 23;
-	pixel_x = 11
-	},
-/mob/living/basic/hivebot,
+/obj/structure/cable/yellow,
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/tech,
 /area/template_noop)
-"vi" = (
+"hz" = (
 /obj/machinery/power/smes,
 /obj/structure/railing{
 	dir = 8
@@ -194,37 +49,7 @@
 	},
 /turf/open/floor/plating,
 /area/template_noop)
-"wz" = (
-/obj/structure/cable/yellow,
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plasteel/tech,
-/area/template_noop)
-"xB" = (
-/obj/structure/window/plasma/fulltile,
-/obj/structure/grille,
-/obj/machinery/door/poddoor{
-	dir = 4;
-	id = "h4"
-	},
-/turf/open/floor/plating,
-/area/template_noop)
-"yj" = (
-/obj/effect/turf_decal/siding/thinplating/dark{
-	dir = 5
-	},
-/obj/structure/cable/yellow,
-/mob/living/basic/hivebot/range,
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plasteel,
-/area/template_noop)
-"yv" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/defibrillator_mount{
-	pixel_y = -23
-	},
-/turf/open/floor/plasteel,
-/area/template_noop)
-"yB" = (
+"hI" = (
 /obj/structure/lattice/catwalk/over/ship/dark,
 /obj/item/shovel{
 	pixel_y = 5
@@ -232,23 +57,75 @@
 /obj/structure/cable/yellow,
 /turf/open/floor/plasteel/tech,
 /area/template_noop)
-"Ac" = (
-/obj/structure/lattice/catwalk/over/ship/dark,
-/obj/structure/cable/yellow,
-/turf/open/floor/plasteel/tech,
-/area/template_noop)
-"Al" = (
-/obj/structure/railing{
-	dir = 10
-	},
-/obj/structure/table/reinforced,
-/obj/item/radio/intercom{
+"iU" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/stairs{
+	icon = 'icons/obj/stairs.dmi';
 	dir = 8
 	},
+/area/template_noop)
+"jB" = (
+/obj/structure/chair/fancy/shuttle{
+	dir = 4;
+	name = "krzesło taktyczne"
+	},
+/obj/machinery/power/apc/auto_name/north,
+/obj/structure/cable,
+/obj/machinery/light_switch{
+	pixel_y = 23;
+	pixel_x = 11
+	},
+/mob/living/basic/hivebot,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plasteel,
 /area/template_noop)
-"Ao" = (
+"jE" = (
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/area/template_noop)
+"jO" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/cable,
+/obj/item/rack_parts,
+/obj/item/storage/box/emptysandbags{
+	pixel_x = 4;
+	pixel_y = 5
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/tech,
+/area/template_noop)
+"kr" = (
+/obj/structure/shuttle/engine/propulsion,
+/obj/structure/window/plasma/reinforced{
+	dir = 4
+	},
+/obj/structure/window/plasma/reinforced,
+/obj/structure/cable/yellow,
+/turf/open/floor/plating,
+/area/template_noop)
+"kW" = (
+/obj/structure/flora/tree/pine,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"lP" = (
+/obj/machinery/light,
+/obj/item/storage/box/emptysandbags{
+	pixel_x = -5;
+	pixel_y = -4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/tech,
+/area/template_noop)
+"me" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/tech,
+/area/template_noop)
+"nh" = (
 /obj/structure/frame/computer{
 	dir = 8;
 	anchored = 1
@@ -265,31 +142,39 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plasteel,
 /area/template_noop)
-"Ax" = (
-/obj/machinery/holopad/secure,
-/obj/structure/cable,
+"ol" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plasteel/tech/grid,
-/area/template_noop)
-"Bs" = (
-/obj/structure/cable,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "h1"
+/obj/machinery/defibrillator_mount{
+	pixel_y = -23
 	},
 /turf/open/floor/plasteel,
 /area/template_noop)
-"Ca" = (
+"oW" = (
+/obj/effect/gibspawner/human/bodypartless,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"rW" = (
 /obj/structure/flora/ash/garden/frigid,
 /turf/open/floor/plating/asteroid/snow/planet_ice,
 /area/template_noop)
-"Df" = (
+"su" = (
+/obj/structure/cable,
+/obj/effect/gibspawner/human/bodypartless,
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plasteel/tech/grid,
+/turf/open/floor/plasteel,
 /area/template_noop)
-"Eh" = (
-/turf/open/floor/plating/asteroid/icerock/cracked,
+"uw" = (
+/obj/structure/shuttle/engine/propulsion,
+/obj/structure/window/plasma/reinforced{
+	dir = 1
+	},
+/obj/structure/window/plasma/reinforced{
+	dir = 4
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/plating,
 /area/template_noop)
-"Ej" = (
+"ux" = (
 /obj/structure/railing{
 	dir = 1;
 	layer = 2.89
@@ -299,20 +184,18 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plasteel,
 /area/template_noop)
-"EF" = (
+"vH" = (
 /obj/structure/railing{
-	dir = 9
+	dir = 10
 	},
 /obj/structure/table/reinforced,
+/obj/item/radio/intercom{
+	dir = 8
+	},
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plasteel,
 /area/template_noop)
-"Ha" = (
-/obj/structure/cable,
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plasteel/tech,
-/area/template_noop)
-"Ir" = (
+"wj" = (
 /obj/structure/cable,
 /obj/machinery/power/terminal{
 	dir = 8
@@ -320,13 +203,14 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plasteel/techmaint,
 /area/template_noop)
-"Ly" = (
-/obj/structure/cable,
-/obj/structure/cable/yellow,
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plasteel/tech,
+"wQ" = (
+/turf/open/floor/plating/asteroid/snow/planet_ice,
 /area/template_noop)
-"LO" = (
+"xJ" = (
+/mob/living/basic/mining/wolf,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"BH" = (
 /obj/structure/railing/corner{
 	dir = 8
 	},
@@ -348,22 +232,35 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plasteel,
 /area/template_noop)
-"ND" = (
-/obj/effect/turf_decal/siding/thinplating/dark{
-	dir = 9
+"Dq" = (
+/obj/machinery/power/terminal{
+	dir = 8
 	},
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/cable/yellow,
+/mob/living/basic/hivebot/range,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating,
+/area/template_noop)
+"Ie" = (
+/obj/structure/flora/grass/both,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"JA" = (
+/obj/structure/window/plasma/fulltile,
+/obj/structure/grille,
+/obj/machinery/door/poddoor{
+	dir = 4;
+	id = "h4"
+	},
+/turf/open/floor/plating,
+/area/template_noop)
+"JI" = (
 /obj/structure/cable,
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/tech,
 /area/template_noop)
-"PC" = (
-/turf/open/floor/plating/asteroid/snow/planet_ice,
-/area/template_noop)
-"St" = (
-/obj/structure/flora/tree/pine,
-/turf/open/floor/plating/asteroid/snow/planet_ice,
-/area/template_noop)
-"UB" = (
+"JW" = (
 /obj/machinery/power/terminal{
 	dir = 8
 	},
@@ -372,300 +269,403 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plasteel/techmaint,
 /area/template_noop)
-"Vx" = (
+"Ka" = (
+/obj/structure/closet/body_bag,
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/mob_spawn/human/corpse/pirate/ranged,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel,
+/area/template_noop)
+"MP" = (
+/obj/machinery/power/smes/engineering,
+/obj/structure/cable,
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/button/door{
+	dir = 4;
+	pixel_y = 6;
+	pixel_x = -22;
+	name = "rolety silnika";
+	id = "h3"
+	},
+/turf/open/floor/plasteel/techmaint,
+/area/template_noop)
+"Pf" = (
+/obj/machinery/computer/crew{
+	dir = 8
+	},
+/obj/structure/railing,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel,
+/area/template_noop)
+"PJ" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 5
+	},
+/obj/structure/cable/yellow,
+/mob/living/basic/hivebot/range,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel,
+/area/template_noop)
+"Sk" = (
 /obj/structure/flora/grass/brown,
 /turf/open/floor/plating/asteroid/snow/planet_ice,
 /area/template_noop)
-"WQ" = (
-/obj/structure/flora/grass/both,
+"St" = (
+/obj/structure/cable/yellow,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/tech,
+/area/template_noop)
+"Ud" = (
+/turf/template_noop,
+/area/template_noop)
+"UQ" = (
+/obj/structure/railing{
+	dir = 9
+	},
+/obj/structure/table/reinforced,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel,
+/area/template_noop)
+"Xf" = (
+/obj/machinery/holopad/secure,
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/tech/grid,
+/area/template_noop)
+"Xg" = (
+/obj/structure/flora/grass/green,
 /turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"XA" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/cable/yellow,
+/turf/open/floor/plasteel/tech,
+/area/template_noop)
+"XD" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 9
+	},
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel,
+/area/template_noop)
+"Yf" = (
+/obj/structure/cable,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "h1"
+	},
+/turf/open/floor/plasteel,
+/area/template_noop)
+"Yl" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 10
+	},
+/obj/structure/cable,
+/mob/living/basic/hivebot/range,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel,
+/area/template_noop)
+"Ym" = (
+/obj/structure/railing/corner{
+	dir = 1
+	},
+/obj/structure/table/optable,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel,
+/area/template_noop)
+"Ze" = (
+/obj/machinery/light,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/tech,
 /area/template_noop)
 
 (1,1,1) = {"
-lD
-lD
-lD
-lD
-lD
-lD
-lD
-lD
-Eh
-Eh
-lD
-lD
-lD
-lD
-lD
-lD
+Ud
+Ud
+Ud
+Ud
+Ud
+Ud
+Ud
+Ud
+bx
+bx
+Ud
+Ud
+Ud
+Ud
+Ud
+Ud
 "}
 (2,1,1) = {"
-lD
-lD
-lD
-lD
-lD
-Eh
-Eh
-Eh
-Eh
-Eh
-lD
-lD
-lD
-lD
-lD
-lD
+Ud
+Ud
+Ud
+Ud
+Ud
+bx
+bx
+bx
+bx
+bx
+Ud
+Ud
+Ud
+Ud
+Ud
+Ud
 "}
 (3,1,1) = {"
-lD
-lD
-PC
-PC
-WQ
-Eh
-Eh
-Eh
-Eh
-Eh
-Eh
-PC
-lD
-lD
-lD
-lD
+Ud
+Ud
+wQ
+wQ
+Ie
+bx
+bx
+bx
+bx
+bx
+bx
+wQ
+Ud
+Ud
+Ud
+Ud
 "}
 (4,1,1) = {"
-lD
-lD
-PC
-St
-PC
-jc
-oJ
-jc
-jL
-jc
-PC
-jU
-PC
-lD
-lD
-lD
+Ud
+Ud
+wQ
+kW
+wQ
+jE
+kr
+jE
+uw
+jE
+wQ
+oW
+wQ
+Ud
+Ud
+Ud
 "}
 (5,1,1) = {"
-lD
-gF
-PC
-Vx
-PC
-jc
-vi
-pU
-vi
-jc
-Vx
-PC
-PC
-PC
-lD
-lD
+Ud
+Xg
+wQ
+Sk
+wQ
+jE
+hz
+MP
+hz
+jE
+Sk
+wQ
+wQ
+wQ
+Ud
+Ud
 "}
 (6,1,1) = {"
-lD
-jU
-PC
-mq
-jc
-jc
-Ir
-ow
-UB
-jc
-jc
-mq
-WQ
-PC
-lD
-lD
+Ud
+oW
+wQ
+dH
+jE
+jE
+wj
+Dq
+JW
+jE
+jE
+dH
+Ie
+wQ
+Ud
+Ud
 "}
 (7,1,1) = {"
-lD
-rq
-mq
-mq
-jc
-fM
-Ly
-Ly
-Ha
-dm
-jc
-mq
-mq
-PC
-Ca
-lD
+Ud
+xJ
+dH
+dH
+jE
+me
+hn
+hn
+JI
+lP
+jE
+dH
+dH
+wQ
+rW
+Ud
 "}
 (8,1,1) = {"
-lD
-PC
-mq
-mq
-Bs
-qR
-Ha
-Ac
-Ha
-ND
-eb
-mq
-mq
-PC
-St
-PC
+Ud
+wQ
+dH
+dH
+Yf
+Yl
+JI
+XA
+JI
+XD
+dC
+dH
+dH
+wQ
+kW
+wQ
 "}
 (9,1,1) = {"
-PC
-PC
-mq
-mq
-Bs
-sm
-Ha
-yB
-wz
-yj
-eb
-mq
-mq
-rq
-PC
-PC
+wQ
+wQ
+dH
+dH
+Yf
+gS
+JI
+hI
+St
+PJ
+dC
+dH
+dH
+xJ
+wQ
+wQ
 "}
 (10,1,1) = {"
-WQ
-PC
-PC
-mq
-jc
-jc
-mh
-Ha
-jR
-jc
-jc
-mq
-mq
-jU
-PC
-lD
+Ie
+wQ
+wQ
+dH
+jE
+jE
+jO
+JI
+Ze
+jE
+jE
+dH
+dH
+oW
+wQ
+Ud
 "}
 (11,1,1) = {"
-PC
-Ca
-PC
-mq
-jc
-LO
-Al
-qO
-EF
-rV
-jc
-mq
-mq
-mq
-lD
-lD
+wQ
+rW
+wQ
+dH
+jE
+BH
+vH
+iU
+UQ
+Ym
+jE
+dH
+dH
+dH
+Ud
+Ud
 "}
 (12,1,1) = {"
-PC
-St
-gF
-PC
-jc
-uW
-pT
-Ax
-sX
-yv
-jc
-mq
-mq
-mq
-lD
-lD
+wQ
+kW
+Xg
+wQ
+jE
+jB
+su
+Xf
+bc
+ol
+jE
+dH
+dH
+dH
+Ud
+Ud
 "}
 (13,1,1) = {"
-lD
-PC
-PC
-WQ
-jc
-Ao
-iE
-Df
-Ej
-tb
-jc
-mq
-PC
-PC
-lD
-lD
+Ud
+wQ
+wQ
+Ie
+jE
+nh
+Pf
+df
+ux
+Ka
+jE
+dH
+wQ
+wQ
+Ud
+Ud
 "}
 (14,1,1) = {"
-lD
-lD
-PC
-PC
-jc
-jc
-xB
-xB
-xB
-jc
-jc
-PC
-WQ
-PC
-PC
-lD
+Ud
+Ud
+wQ
+wQ
+jE
+jE
+JA
+JA
+JA
+jE
+jE
+wQ
+Ie
+wQ
+wQ
+Ud
 "}
 (15,1,1) = {"
-lD
-lD
-Vx
-PC
-PC
-PC
-WQ
-PC
-PC
-PC
-Vx
-PC
-jU
-lD
-lD
-lD
+Ud
+Ud
+Sk
+wQ
+wQ
+wQ
+Ie
+wQ
+wQ
+wQ
+Sk
+wQ
+oW
+Ud
+Ud
+Ud
 "}
 (16,1,1) = {"
-lD
-lD
-lD
-lD
-lD
-PC
-PC
-PC
-St
-PC
-lD
-lD
-lD
-lD
-lD
-lD
+Ud
+Ud
+Ud
+Ud
+Ud
+wQ
+wQ
+wQ
+kW
+wQ
+Ud
+Ud
+Ud
+Ud
+Ud
+Ud
 "}

@@ -1,4 +1,7 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"b" = (
+/turf/template_noop,
+/area/template_noop)
 "c" = (
 /obj/structure/flora/ausbushes/reedbush{
 	pixel_x = -3;
@@ -6,14 +9,7 @@
 	},
 /turf/open/water/planet/jungle,
 /area/template_noop)
-"o" = (
-/obj/structure/flora/ausbushes/reedbush{
-	pixel_x = 8;
-	 pixel_y = -8
-	},
-/turf/open/water/planet/jungle,
-/area/template_noop)
-"t" = (
+"f" = (
 /obj/structure/flora/ausbushes/reedbush{
 	pixel_x = -3;
 	 pixel_y = 8;
@@ -21,65 +17,69 @@
 	},
 /turf/open/water/planet/jungle,
 /area/template_noop)
-"u" = (
+"i" = (
 /turf/open/water/planet/jungle,
 /area/template_noop)
-"w" = (
-/turf/template_noop,
-/area/template_noop)
-"x" = (
+"l" = (
+/obj/structure/flora/grass/jungle/b,
 /turf/open/floor/plating/asteroid/river_sand,
 /area/template_noop)
-"G" = (
-/obj/structure/flora/grass/jungle/b,
+"s" = (
+/obj/structure/flora/ausbushes/reedbush{
+	pixel_x = 8;
+	 pixel_y = -8
+	},
+/turf/open/water/planet/jungle,
+/area/template_noop)
+"A" = (
 /turf/open/floor/plating/asteroid/river_sand,
 /area/template_noop)
 
 (1,1,1) = {"
-w
-w
-x
-x
-G
-w
+b
+b
+A
+A
+l
+b
 "}
 (2,1,1) = {"
-w
-G
-x
-u
-x
-G
+b
+l
+A
+i
+A
+l
 "}
 (3,1,1) = {"
-w
-x
-o
-u
-x
-x
+b
+A
+s
+i
+A
+A
 "}
 (4,1,1) = {"
-x
-x
+A
+A
 c
-t
-x
-w
+f
+A
+b
 "}
 (5,1,1) = {"
-G
-x
-x
-x
-x
-G
+l
+A
+A
+A
+A
+l
 "}
 (6,1,1) = {"
-x
-x
-G
-x
-w
-w
+A
+A
+l
+A
+b
+b
 "}

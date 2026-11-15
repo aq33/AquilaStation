@@ -1,5 +1,22 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "b" = (
+/turf/closed/wall/rust,
+/area/template_noop)
+"j" = (
+/obj/structure/flora/junglebush/c,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"l" = (
+/turf/template_noop,
+/area/template_noop)
+"r" = (
+/obj/structure/girder,
+/turf/open/floor/plating/rust{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"u" = (
 /obj/item/stack/ore/iron{
 	amount = 5
 	},
@@ -14,36 +31,44 @@
 	 planetary_atmos = 1
 	},
 /area/template_noop)
-"d" = (
-/obj/structure/flora/rock/jungle,
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
-/area/template_noop)
-"e" = (
-/obj/structure/flora/junglebush,
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
-/area/template_noop)
-"h" = (
-/obj/structure/flora/grass/jungle,
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
-/area/template_noop)
-"t" = (
-/obj/effect/decal/cleanable/glass,
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
-/area/template_noop)
 "z" = (
 /turf/closed/wall,
 /area/template_noop)
-"C" = (
-/obj/structure/girder,
+"D" = (
+/obj/effect/decal/cleanable/glass,
+/obj/structure/flora/grass/jungle/b,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"E" = (
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"F" = (
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"I" = (
 /turf/open/floor/plating/rust{
 	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
 	 planetary_atmos = 1
 	},
 /area/template_noop)
-"E" = (
-/turf/closed/wall/rust,
+"L" = (
+/obj/structure/flora/grass/jungle/b,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
 /area/template_noop)
-"F" = (
+"N" = (
+/obj/structure/flora/junglebush,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"T" = (
+/obj/structure/flora/tree/jungle/small,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"U" = (
+/obj/structure/flora/rock/jungle,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"Y" = (
 /obj/effect/decal/cleanable/glass,
 /obj/item/shard,
 /turf/open/floor/plating/rust{
@@ -51,81 +76,56 @@
 	 planetary_atmos = 1
 	},
 /area/template_noop)
-"H" = (
-/obj/structure/flora/grass/jungle/b,
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
-/area/template_noop)
-"K" = (
-/obj/effect/decal/cleanable/glass,
-/obj/structure/flora/grass/jungle/b,
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
-/area/template_noop)
-"L" = (
-/turf/template_noop,
-/area/template_noop)
-"Q" = (
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
-/area/template_noop)
-"R" = (
-/turf/open/floor/plating/rust{
-	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
-	 planetary_atmos = 1
-	},
-/area/template_noop)
-"U" = (
-/obj/structure/flora/junglebush/c,
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
-/area/template_noop)
-"W" = (
-/obj/structure/flora/tree/jungle/small,
+"Z" = (
+/obj/structure/flora/grass/jungle,
 /turf/open/floor/plating/asteroid/dirt/jungle/dark,
 /area/template_noop)
 
 (1,1,1) = {"
-L
-Q
-W
-L
-Q
-L
+l
+F
+T
+l
+F
+l
 "}
 (2,1,1) = {"
-L
-E
-C
-K
-E
-L
+l
+b
+r
+D
+b
+l
 "}
 (3,1,1) = {"
-h
-E
+Z
 b
-h
-F
-t
+u
+Z
+Y
+E
 "}
 (4,1,1) = {"
-H
-C
-d
-R
-E
+L
+r
 U
+I
+b
+j
 "}
 (5,1,1) = {"
-Q
-E
-Q
-E
+F
+b
+F
+b
 z
-Q
+F
 "}
 (6,1,1) = {"
-L
-h
-L
-L
-e
-L
+l
+Z
+l
+l
+N
+l
 "}
