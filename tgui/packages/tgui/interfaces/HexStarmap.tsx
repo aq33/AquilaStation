@@ -230,6 +230,17 @@ type Cell = {
 
 const R = 22;
 const SQ = Math.sqrt(3);
+
+// Ikony kafli i obiektów są 32x32. Ostre piksele tylko przy całkowitym powiększeniu na ekranie (1:1, 2:1...):
+// przy zmniejszeniu albo ułamkowej skali (zoom mapy, skalowanie Windows) „pixelated” gubi całe linie pikseli
+// i ikona robi się nieczytelna, więc wtedy przeglądarka skaluje gładko.
+const ICON_PX = 32;
+const iconRendering = (shown: number, zoom = 1) => {
+  const scale = (shown / ICON_PX) * zoom * (window.devicePixelRatio || 1);
+  return scale >= 1 && Math.abs(scale - Math.round(scale)) < 0.01
+    ? 'pixelated'
+    : 'auto';
+};
 const GAP = 3;
 
 const FACTION_NAME: Record<string, string> = {
@@ -685,7 +696,7 @@ export const HexStarmap = () => {
                       .filter((cell) => !!terrain[cell.id])
                       .map((cell) => {
                         const kind = terrain[cell.id];
-                        const size = R * 1.25;
+                        const size = ICON_PX; // 1:1 z oryginałem przy zoomie 100%
                         return (
                           <g key={`terrain-${cell.id}`} pointerEvents="none">
                             <polygon
@@ -701,7 +712,9 @@ export const HexStarmap = () => {
                                 width={size}
                                 height={size}
                                 opacity={0.85}
-                                style={{ imageRendering: 'pixelated' }}
+                                style={{
+                                  imageRendering: iconRendering(size, zoom),
+                                }}
                               />
                             )}
                           </g>
@@ -941,7 +954,7 @@ export const HexStarmap = () => {
                               .filter((fac) => !!HEX_FACILITY_ICONS[fac])
                               .slice(0, 3)
                               .map((fac, i, list) => {
-                                const size = R * 0.62;
+                                const size = ICON_PX / 2; // trzy obok siebie nad układem
                                 return (
                                   <image
                                     key={fac}
@@ -959,7 +972,9 @@ export const HexStarmap = () => {
                                         ? 0.35
                                         : 1
                                     }
-                                    style={{ imageRendering: 'pixelated' }}
+                                    style={{
+                                      imageRendering: iconRendering(size, zoom),
+                                    }}
                                   />
                                 );
                               })}
@@ -1250,11 +1265,11 @@ export const HexStarmap = () => {
                         <img
                           alt=""
                           src={HEX_FACILITY_ICONS[fac]}
-                          width={14}
-                          height={14}
+                          width={ICON_PX}
+                          height={ICON_PX}
                           style={{
                             verticalAlign: 'middle',
-                            imageRendering: 'pixelated',
+                            imageRendering: iconRendering(ICON_PX),
                           }}
                         />{' '}
                         {FACILITY_NAME[fac]}
@@ -1276,11 +1291,11 @@ export const HexStarmap = () => {
                           <img
                             alt=""
                             src={HEX_TERRAIN_ICONS[t.id]}
-                            width={14}
-                            height={14}
+                            width={ICON_PX}
+                            height={ICON_PX}
                             style={{
                               verticalAlign: 'middle',
-                              imageRendering: 'pixelated',
+                              imageRendering: iconRendering(ICON_PX),
                             }}
                           />{' '}
                           {t.name}
@@ -1378,11 +1393,11 @@ const SelectedPanel = (props: SelectedPanelProps) => {
                 <img
                   alt=""
                   src={HEX_FACILITY_ICONS[fac]}
-                  width={20}
-                  height={20}
+                  width={ICON_PX}
+                  height={ICON_PX}
                   style={{
                     verticalAlign: 'middle',
-                    imageRendering: 'pixelated',
+                    imageRendering: iconRendering(ICON_PX),
                     marginRight: '4px',
                   }}
                 />
@@ -1408,12 +1423,12 @@ const SelectedPanel = (props: SelectedPanelProps) => {
             <img
               alt=""
               src={HEX_TERRAIN_ICONS[terrain.id]}
-              width={32}
-              height={32}
+              width={ICON_PX}
+              height={ICON_PX}
               style={{
                 float: 'left',
                 marginRight: '6px',
-                imageRendering: 'pixelated',
+                imageRendering: iconRendering(ICON_PX),
               }}
             />
           )}
