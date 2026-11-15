@@ -219,3 +219,5 @@ prof.lib
 prof.pdb
 libprof.so
 
+# Podgląd okien TGUI (tools/tgui_preview)
+tgui/public/_podglad_*
