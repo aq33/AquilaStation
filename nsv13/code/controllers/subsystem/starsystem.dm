@@ -231,7 +231,7 @@ Returns a faction datum by its name (case insensitive!)
 			//General system props
 			"alignment" = length(S.fleets) ? S.owner : S.alignment, // AQUILA EDIT - fleets set alignment while they're in a system; don't save that occupation, or it respawns enemies there next round
 			"owner" = S.owner,
-			"hidden"=initial(S.hidden),
+			"hidden"=S.hidden, // AQ EDIT - initial(S.hidden) to zawsze 0 dla układów z JSON-a, więc każdy zapis odsłaniał ukryte układy
 			"system_type" = json_encode(S.system_type),
 			"system_traits"=isnum(S.system_traits) ? S.system_traits : NONE,
 			"is_capital"=S.is_capital,
