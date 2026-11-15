@@ -10,6 +10,7 @@
 	var/datum/gas_mixture/old_temporary = pipe.air_temporary
 	pipe.parent = null
 	pipe.air_temporary = null
+	TEST_ASSERT(isnull(pipe.return_air()), "A pipe without a network returned air")
 	pipe.process_atmos()
 	// Rozbierana sieć zostawia rurze air_temporary: gorący gaz bez sieci też nie może wołać parent
 	var/datum/gas_mixture/hot = new(70)
