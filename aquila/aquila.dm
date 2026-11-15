@@ -1192,6 +1192,7 @@
 // #include "code\modules\test_chamber\kits\pr_420_traitor_cele.dm"
 #include "code\modules\test_chamber\kits\test_subjects.dm"
 // Komora testowa - zestawy PR-ów niżej (usuwać razem z plikiem zestawu po przetestowaniu)
+#include "code\modules\test_chamber\kits\pr_naped_okretu.dm"
 #include "code\modules\test_chamber\kits\pr_633_zgloszenia_1211.dm"
 #include "code\modules\test_chamber\kits\pr_627_ekwipunek.dm"
 #include "code\modules\test_chamber\kits\pr_622_skala_bristolska.dm"
