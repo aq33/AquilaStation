@@ -2,7 +2,7 @@
 // treat_message() dokleja kropkę na końcu zdania, stąd kropki w oczekiwanych tekstach
 #define TEST_ASSERT(assertion, reason) if (!(assertion)) { return Fail("Assertion failed: [reason || "No reason"]") }
 
-/// Obcokrajowiec: bez tłumacza mówi po angielsku, z tłumaczem załoga słyszy polski we Wspólnym (z pamięci tłumaczeń, bez sieci)
+/// Obcokrajowiec mówi zawsze po angielsku, a polski słuchacz z tłumaczem dostaje to po polsku we Wspólnym (z pamięci tłumaczeń, bez sieci)
 /datum/unit_test/aquila_foreigner
 	var/heard_language
 	var/heard_raw
@@ -32,50 +32,65 @@
 	TEST_ASSERT(heard_language == /datum/language/english, "Speech without translator was not English: [heard_language]")
 	TEST_ASSERT(heard_raw == "Hello there.", "Speech without translator changed: [heard_raw]")
 
-	// Z tłumaczem i zdaniem w pamięci: polski we Wspólnym, przedrostek szeptu zostaje
+	// Z tłumaczem u mówiącego dalej angielski: tłumaczy słuchacz, a nie mówiący
 	var/obj/item/aquila_translator/translator = allocate(/obj/item/aquila_translator, run_loc_floor_bottom_left)
 	TEST_ASSERT(foreigner.put_in_hands(translator), "Could not pick up the translator")
 	TEST_ASSERT(HAS_TRAIT(foreigner, TRAIT_AQ_TRANSLATOR), "Translator in hand gives no trait")
 	SStranslation.cache_set(DEEPL_LANG_EN, DEEPL_LANG_PL, "Hello there", "Cześć")
 	heard_raw = null
 	foreigner.say("Hello there")
-	TEST_ASSERT(heard_language == /datum/language/common, "Translated speech was not Common: [heard_language]")
-	TEST_ASSERT(heard_raw == "Cześć.", "Crew did not hear the translation: [heard_raw]")
-	heard_raw = null
-	foreigner.say("#Hello there")
-	TEST_ASSERT(heard_raw == "Cześć.", "Whispered translation lost: [heard_raw]")
-	TEST_ASSERT(heard_mods?[WHISPER_MODE], "Whisper prefix was lost after translation")
-	TEST_ASSERT(!foreigner.aq_translated_say, "Translated say flag stayed on")
-	TEST_ASSERT(!HAS_TRAIT(foreigner, TRAIT_AQ_TRANSLATED_SPEECH), "Filter bypass trait stayed on after the translated say")
+	TEST_ASSERT(heard_language == /datum/language/english, "Speaker's translator changed the spoken language: [heard_language]")
+	TEST_ASSERT(heard_raw == "Hello there.", "Speaker's translator translated the speech: [heard_raw]")
+	TEST_ASSERT(!foreigner.aq_translated_say, "Translated say flag turned on for English")
 
+	// Słuchacz bez tłumacza: bełkot, z czipem w słuchawkach: polski we Wspólnym
+	TEST_ASSERT(!crew.aq_hears_via_translator(/datum/language/english), "Crew without a translator would get English translated")
+	TEST_ASSERT(!crew.aq_hears_via_translator(/datum/language/common), "Crew would get Polish speech translated")
+	var/obj/item/radio/headset/headset = allocate(/obj/item/radio/headset, run_loc_floor_bottom_left)
+	TEST_ASSERT(headset.aq_translator_chip, "New headset has no translator chip")
+	TEST_ASSERT(crew.equip_to_slot_if_possible(headset, ITEM_SLOT_EARS), "Could not wear the headset")
+	TEST_ASSERT(crew.aq_hears_via_translator(/datum/language/english), "Crew with a chip does not get English translated")
+	heard_raw = null
+	crew.aq_translate_heard("", foreigner, /datum/language/english, "Hello there", null, list(), list())
+	TEST_ASSERT(heard_language == /datum/language/common, "Translation for the crew was not Common: [heard_language]")
+	TEST_ASSERT(heard_raw == "Cześć", "Crew did not hear the translation: [heard_raw]")
+	TEST_ASSERT(heard_mods?[MODE_AQ_TRANSLATED], "Translation for the crew is not marked, it would loop back to the translator")
 	// Własny czasownik: przetłumaczony trafia do message_mods, a nie do treści
 	SStranslation.cache_set(DEEPL_LANG_EN, DEEPL_LANG_PL, "shouts", "krzyczy")
 	heard_raw = null
-	foreigner.say("shouts*Hello there")
-	TEST_ASSERT(heard_raw == "Cześć.", "Custom verb leaked into the translated speech: [heard_raw]")
+	crew.aq_translate_heard("", foreigner, /datum/language/english, "Hello there", null, list(), list(MODE_CUSTOM_SAY_EMOTE = "shouts"))
+	TEST_ASSERT(heard_raw == "Cześć", "Custom verb leaked into the translated speech: [heard_raw]")
 	TEST_ASSERT(heard_mods?[MODE_CUSTOM_SAY_EMOTE] == "krzyczy", "Translated custom verb was lost: [heard_mods?[MODE_CUSTOM_SAY_EMOTE]]")
-	// Gwiazdka w tłumaczeniu zostaje w treści i nie robi z niej czasownika
-	SStranslation.cache_set(DEEPL_LANG_EN, DEEPL_LANG_PL, "Star please", "Gwiazdka * proszę")
-	heard_raw = null
-	foreigner.say("Star please")
-	TEST_ASSERT(heard_raw == "Gwiazdka * proszę.", "Asterisk in the translation was changed: [heard_raw]")
-	TEST_ASSERT(!heard_mods?[MODE_CUSTOM_SAY_EMOTE], "Asterisk in the translation became a custom verb")
-	// Tłumaczenie zaczynające się od gwiazdki zostaje mową, a nie emotką
-	SStranslation.cache_set(DEEPL_LANG_EN, DEEPL_LANG_PL, "Star first", "*macha*")
-	heard_raw = null
-	foreigner.say("Star first")
-	TEST_ASSERT(findtext("[heard_raw]", "macha"), "Translation starting with an asterisk became an emote: [heard_raw]")
 
-	// Bez klucza API i bez pamięci: tekst przechodzi bez tłumaczenia, ale we Wspólnym
+	// Dalszy słuchacz szeptu: tłumaczy się całe zdanie (MODE_AQ_SPOKEN), a gwiazdki dostaje tłumaczenie
+	heard_raw = null
+	crew.aq_translate_heard("", foreigner, /datum/language/english, "H*llo th*re", null, list(), list(WHISPER_MODE = MODE_WHISPER, MODE_AQ_SPOKEN = "Hello there"))
+	TEST_ASSERT(heard_mods?[MODE_AQ_STARRED], "Starred whisper was not marked for the translation")
+	TEST_ASSERT(length_char(heard_raw) == length_char("Cześć"), "Starred whisper was not translated from the full sentence: [heard_raw]")
+	for(var/i in 1 to length_char("Cześć"))
+		var/char = copytext_char(heard_raw, i, i + 1)
+		TEST_ASSERT(char == "*" || char == copytext_char("Cześć", i, i + 1), "Starred whisper translation is not the translation with stars: [heard_raw]")
+	// Bliski słuchacz szeptu dostaje całe tłumaczenie
+	heard_raw = null
+	crew.aq_translate_heard("", foreigner, /datum/language/english, "Hello there", null, list(), list(WHISPER_MODE = MODE_WHISPER, MODE_AQ_SPOKEN = "Hello there"))
+	TEST_ASSERT(heard_raw == "Cześć" && !heard_mods?[MODE_AQ_STARRED], "Near whisper listener got stars: [heard_raw]")
+
+	// Bez klucza API i bez pamięci: słuchacz z czipem dostaje oryginał, ale we Wspólnym
 	if(!CONFIG_GET(string/deepl_api_key))
 		heard_raw = null
-		foreigner.say("Sentence nobody translated")
+		crew.aq_translate_heard("", foreigner, /datum/language/english, "Sentence nobody translated", null, list(), list())
 		TEST_ASSERT(heard_language == /datum/language/common, "Untranslated fallback was not Common: [heard_language]")
-		TEST_ASSERT(heard_raw == "Sentence nobody translated.", "Untranslated fallback changed the text: [heard_raw]")
+		TEST_ASSERT(heard_raw == "Sentence nobody translated", "Untranslated fallback changed the text: [heard_raw]")
 
-	// Słuchanie: z tłumaczem polska mowa idzie do tłumacza, bez niego zostaje bełkot
+	// Silikony rozumieją obie strony bez słuchawek
+	var/mob/living/silicon/robot/borg = allocate(/mob/living/silicon/robot, run_loc_floor_bottom_left)
+	TEST_ASSERT(HAS_TRAIT(borg, TRAIT_AQ_TRANSLATOR), "Silicon has no built-in translator")
+	borg.aq_translator_off(AQ_TRANSLATOR_BUILTIN)
+	TEST_ASSERT(HAS_TRAIT(borg, TRAIT_AQ_TRANSLATOR), "Foreign mind leaving would take the silicon's own translator")
+
+	// Słuchanie u obcokrajowca: z tłumaczem polska mowa idzie do tłumacza, bez niego zostaje bełkot
 	TEST_ASSERT(foreigner.aq_hears_via_translator(/datum/language/common), "Foreigner with translator does not get Polish speech translated")
-	TEST_ASSERT(!crew.aq_hears_via_translator(/datum/language/common), "Crew without foreigner flag would get speech translated")
+	TEST_ASSERT(!foreigner.aq_hears_via_translator(/datum/language/english), "Foreigner would get English translated")
 	foreigner.dropItemToGround(translator)
 	TEST_ASSERT(!HAS_TRAIT(foreigner, TRAIT_AQ_TRANSLATOR), "Dropped translator still works")
 	TEST_ASSERT(!foreigner.aq_hears_via_translator(/datum/language/common), "Foreigner without translator still gets translations")
@@ -83,7 +98,7 @@
 	// Spóźnione tłumaczenie po śmierci nie wychodzi (say() puściłby je na czat duchów)
 	heard_raw = null
 	foreigner.death()
-	foreigner.aq_translator_say("", FALSE, FALSE, list("Too late"), null, list(), /datum/language/english, list("Za późno"))
+	foreigner.aq_translator_say("", FALSE, FALSE, list("Too late"), null, list(), /datum/language/english, null, list("Za późno"))
 	TEST_ASSERT(isnull(heard_raw), "Dead foreigner still spoke the late translation: [heard_raw]")
 
 	UnregisterSignal(crew, COMSIG_MOVABLE_HEAR)
@@ -124,6 +139,21 @@
 		foreigner.say(",nNobody translated this")
 		TEST_ASSERT(heard_language == /datum/language/narsie, "Untranslated cult speech changed language: [heard_language]")
 		TEST_ASSERT(heard_raw == "Nobody translated this.", "Untranslated cult speech changed: [heard_raw]")
+	// Powtórka po tłumaczeniu: przedrostek szeptu zostaje, gwiazdka w treści nie robi z niej czasownika ani emotki
+	heard_raw = null
+	foreigner.say("#,nBlood for the Geometer")
+	TEST_ASSERT(heard_raw == "Krew dla Geometry.", "Whispered translation lost: [heard_raw]")
+	TEST_ASSERT(heard_mods?[WHISPER_MODE], "Whisper prefix was lost after translation")
+	TEST_ASSERT(!HAS_TRAIT(foreigner, TRAIT_AQ_TRANSLATED_SPEECH), "Filter bypass trait stayed on after the translated say")
+	SStranslation.cache_set(DEEPL_LANG_EN, DEEPL_LANG_PL, "Star please", "Gwiazdka * proszę")
+	heard_raw = null
+	foreigner.say(",nStar please")
+	TEST_ASSERT(heard_raw == "Gwiazdka * proszę.", "Asterisk in the translation was changed: [heard_raw]")
+	TEST_ASSERT(!heard_mods?[MODE_CUSTOM_SAY_EMOTE], "Asterisk in the translation became a custom verb")
+	SStranslation.cache_set(DEEPL_LANG_EN, DEEPL_LANG_PL, "Star first", "*macha*")
+	heard_raw = null
+	foreigner.say(",nStar first")
+	TEST_ASSERT(findtext("[heard_raw]", "macha"), "Translation starting with an asterisk became an emote: [heard_raw]")
 	// Angielski bez tłumacza dalej idzie bez tłumaczenia
 	heard_raw = null
 	foreigner.say("Blood for the Geometer")
@@ -177,6 +207,8 @@
 /datum/unit_test/aquila_translator_chip/Run()
 	var/mob/living/carbon/human/wearer = allocate(/mob/living/carbon/human, run_loc_floor_bottom_left)
 	var/obj/item/radio/headset/headset = allocate(/obj/item/radio/headset, run_loc_floor_bottom_left)
+	// Słuchawki mają czip od stworzenia: test wkłada własny
+	QDEL_NULL(headset.aq_translator_chip)
 	var/obj/item/aquila_translator/chip/chip = allocate(/obj/item/aquila_translator/chip, run_loc_floor_bottom_left)
 
 	TEST_ASSERT(wearer.put_in_hands(chip), "Could not pick up the chip")
@@ -243,6 +275,8 @@
 	TEST_ASSERT(translator.burnt && !translator.rebooting, "EMP on a burnt translator changed it")
 
 	var/obj/item/radio/headset/headset = allocate(/obj/item/radio/headset, run_loc_floor_bottom_left)
+	// Słuchawki mają czip od stworzenia: test wkłada własny
+	QDEL_NULL(headset.aq_translator_chip)
 	var/obj/item/aquila_translator/chip/chip = allocate(/obj/item/aquila_translator/chip, run_loc_floor_bottom_left)
 	wearer.drop_all_held_items()
 	TEST_ASSERT(wearer.put_in_hands(chip), "Could not pick up the chip")
