@@ -89,12 +89,14 @@ def atom(path, vars_):
 ST_COLORS = {
     'neutral': None, 'black': '#444547', 'blue': '#75A2BB', 'green': '#99BB76', 'lime': '#B7D993', 'yellow': '#BA9F6D',
     'beige': '#CEB689', 'red': '#B4696A', 'bar': '#791500', 'grey': '#a3a2a0', 'syndiered': '#730622',
-    'warrablue': '#32426b', 'white': '#FFFFFF',
+    'warrablue': '#32426b', 'white': '#FFFFFF', 'brown': '#997C4F', 'cybersunteal': '#4C9C9C', 'lightgrey': '#a8b2b6',
+    'mauve': '#CBB1CA', 'nsorange': '#f97016', 'orange': '#C3630C', 'solgovgold': '#eeac2e', 'tan': '#c59973',
 }
 # nasz najbliższy kolor (podtyp), kolor Shiptesta nadpisujemy edycją
 OUR_COLOR = {'neutral': 'neutral', 'black': 'black', 'blue': 'blue', 'green': 'green', 'lime': 'green', 'yellow': 'yellow',
              'beige': 'brown', 'red': 'red', 'bar': 'bar', 'grey': 'neutral', 'syndiered': 'red', 'warrablue': 'darkblue',
-             'white': 'white'}
+             'white': 'white', 'brown': 'brown', 'cybersunteal': 'blue', 'lightgrey': 'neutral', 'mauve': 'purple',
+             'nsorange': 'yellow', 'orange': 'yellow', 'solgovgold': 'yellow', 'tan': 'brown'}
 OUR_TRIM_COLORS = {'black', 'blue', 'brown', 'darkblue', 'green', 'neutral', 'purple', 'red', 'white', 'yellow'}
 
 # kształty narożników Shiptesta (corner/<kolor>/<kształt>) -> nasz /tile/<kolor>/<kształt> + przeliczenie kierunku
@@ -108,11 +110,26 @@ CORNER_SHAPES = {
     'half': ('half', {2: 8, 1: 4, 4: 2, 8: 1}),                # bordercolorhalf: pół kafla przy krawędzi dir
     'border': ('half', {2: 8, 1: 4, 4: 2, 8: 1}),              # cienki pas przy krawędzi -> pół kafla (najbliższe)
     'bordercorner': ('', {2: 2, 1: 1, 4: 4, 8: 8}),            # mały kwadrat w rogu -> róg kafla
+    'borderfull': ('fourcorners/contrasted', None),            # obwódka całego kafla -> cztery narożniki
+    'bordercee': ('fourcorners/contrasted', None),             # obwódka z trzech stron -> cztery narożniki (najbliższe)
 }
 
 def decal(path, vars_, mapname):
     """Zwraca listę atomów albo None (pominięcie)."""
     d = int(vars_.get('dir', '2'))
+    # Dekale z tablic zamienników modułów planet (R): ścieżka albo (ścieżka, zmienne), kierunek zostaje
+    if path in R:
+        target = R[path]
+        if target is None:
+            return None
+        extra = {}
+        if isinstance(target, tuple):
+            target, extra = target
+        nv = {}
+        if d != 2:
+            nv['dir'] = str(d)
+        nv.update(extra)
+        return [atom(target, nv)]
     m = re.match(r'/obj/effect/turf_decal/corner/(opaque|transparent)/(\w+)(?:/(\w+))?$', path)
     if m:
         op, col, shape = m.group(1), m.group(2), m.group(3) or ''
@@ -213,7 +230,8 @@ def clean_vars(vars_, keep_icon_state):
             v = '/obj/item/stack/sheet/mineral/gold'
         if k in ('pixel_x', 'pixel_y') and v == '0':
             continue
-        if k in ('name', 'desc') and v.startswith('"'):
+        # Teksty dla gracza edytowane na mapie: nazwa, opis i treść kartki
+        if k in ('name', 'desc', 'default_raw_text') and v.startswith('"'):
             v = tr(v)
         out[k] = v
     return out
