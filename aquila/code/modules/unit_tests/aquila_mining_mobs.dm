@@ -57,6 +57,14 @@
 	var/datum/ai_controller/controller = aquila_mining_find_target(hivelord)
 	TEST_ASSERT_EQUAL(controller.blackboard[BB_BASIC_MOB_CURRENT_TARGET], victim, "The hivelord did not pick the human three tiles away")
 
+	// Potomstwo ląduje na wolnym polu obok hivelorda: gęsty obiekt zostawiony przez wcześniejszy test (kolejność testów
+	// w części CI) blokował te pola i zdolność kończyła się samym cooldownem
+	var/list/blockers = list()
+	for(var/turf/T in range(1, get_turf(hivelord)))
+		for(var/obj/O in T)
+			if(O.density && !(O in allocated))
+				blockers += "[O.type]"
+				qdel(O)
 	var/datum/ai_behavior/use_ability = GET_AI_BEHAVIOR(/datum/ai_behavior/targeted_mob_ability)
 	controller.SelectBehaviors(1)
 	TEST_ASSERT(controller.current_behaviors[use_ability], "The hivelord with a target did not plan to spawn brood")
@@ -64,7 +72,7 @@
 	controller.ProcessBehavior(1, use_ability)
 	TEST_ASSERT(hivelord.spawn_brood.next_use_time > world.time, "Spawning brood did not start its cooldown")
 	var/mob/living/basic/hivelord_brood/brood = aquila_mining_wait(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(aquila_mining_find), /mob/living/basic/hivelord_brood, get_turf(hivelord)))
-	TEST_ASSERT(brood, "The brood ability made no brood next to the hivelord")
+	TEST_ASSERT(brood, "The brood ability made no brood next to the hivelord (removed blockers: [jointext(blockers, ", ")])")
 	TEST_ASSERT_EQUAL(brood.ai_controller.blackboard[BB_BASIC_MOB_CURRENT_TARGET], victim, "The brood did not get the hivelord's target")
 	TEST_ASSERT("mining" in brood.faction, "The brood is not in the hivelord's faction")
 
