@@ -281,6 +281,17 @@ done < <(text_files)
 fi
 # AQ EDIT END
 
+# AQ EDIT START - hook byond-tracy działa tylko jako ostatni include builda (zmienne statyczne inicjują się od końca)
+if [ -f aquila/aquila.dm ]; then
+	last_include=$(grep '^#include' aquila/aquila.dm | tail -n1 | tr -d '\r')
+	if [ "$last_include" != '#include "code\modules\tracy\tracy.dm"' ]; then
+		echo
+		echo -e "${RED}ERROR: the last #include of aquila/aquila.dm must be code\\modules\\tracy\\tracy.dm (add new includes above it), found: $last_include${NC}"
+		st=1
+	fi
+fi
+# AQ EDIT END
+
 if [ $st = 0 ]; then
     echo
     echo -e "${GREEN}No errors found using grep!${NC}"
