@@ -96,6 +96,10 @@ GLOBAL_LIST_INIT(aq_forge_products, init_aq_forge_products())
 		var/datum/munition_material/M = GLOB.munition_materials[key]
 		mats += list(list("id" = "[M.material_type]", "name" = M.name, "sheets" = container ? round(container.get_material_amount(M.material_type) / MINERAL_MATERIAL_AMOUNT, 0.1) : 0))
 	.["materials"] = mats
+	var/total_sheets = 0
+	for(var/list/mat as anything in mats)
+		total_sheets += mat["sheets"]
+	.["empty"] = container && !total_sheets
 	var/list/cost = list()
 	var/can_pay = !!container
 	for(var/mat in current_cost())

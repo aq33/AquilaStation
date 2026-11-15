@@ -335,6 +335,10 @@
 	update_icon()
 
 /obj/machinery/munitions_forge/arc_forge/attackby(obj/item/I, mob/living/user, params)
+	// Arkusze włożone do pieca podłączonego do silosu trafiają do silosu (własny zapas pieca obsługuje sam material_container)
+	if(istype(I, /obj/item/stack/sheet) && materials?.silo && get_container() && !user.combat_mode)
+		get_container().user_insert(I, user)
+		return TRUE
 	if(istype(I, /obj/item/munition_part) && !accepts_part(I))
 		to_chat(user, "<span class='notice'>[I] jest już wykuty, nie trzeba go dogrzewać.</span>")
 		return TRUE
@@ -453,7 +457,8 @@
 
 // ---------------------------------------------------------------- młot mechaniczny
 // Zamiast kowadła (typ zostaje, żeby mapy się nie zmieniały). Sprite: power hammer z Paradise (ParadiseSS13/Paradise,
-// icons/obj/machines/large_smithing_machines.dmi, AGPL v3), pomniejszony do jednej kratki.
+// icons/obj/machines/large_smithing_machines.dmi, AGPL v3): jeden filar w pełnej rozdzielczości złożony w kratkę 32×32,
+// animacja kucia to zjeżdżający tłok.
 // Odlew klasy I młot wykuwa sam. Wyższa klasa wymaga minigry (anvil_game.dm), bez młota kowalskiego w ręce.
 
 /obj/machinery/munitions_forge/anvil

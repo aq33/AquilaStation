@@ -67,6 +67,7 @@ type Data = {
   can_cast: boolean;
   stats: Stat[];
   rough: boolean;
+  empty: boolean;
 };
 
 export const MunitionsForge = (props) => {
@@ -94,6 +95,13 @@ export const MunitionsForge = (props) => {
         {!data.connected && (
           <NoticeBox danger>
             Piec nie jest połączony z magazynem materiałów.
+          </NoticeBox>
+        )}
+        {!!data.empty && (
+          <NoticeBox>
+            {data.silo
+              ? 'Silos rudy jest pusty. Włóż arkusze do pieca (trafią do silosu) albo poproś górników i zaopatrzenie o rudę.'
+              : 'Zapas pieca jest pusty. Włóż do niego arkusze materiałów.'}
           </NoticeBox>
         )}
         <Stack fill>

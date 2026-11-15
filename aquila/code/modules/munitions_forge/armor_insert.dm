@@ -1,4 +1,4 @@
-// AQUILA - kuźnia amunicji: wkładki do pancerza (sprite'y wkładek z Paradise smithing w smithing.dmi).
+// AQUILA - kuźnia amunicji: wkładki do pancerza (własne sprite'y w armor_insert.dmi: płyta balistyczna, ciężka i lekka, ze stanem rozgrzanym).
 // Odlew w piecu łukowym z wybranego materiału lub stopu, potem kucie pod młotem mechanicznym. Wykuta wkładka jest gotowa:
 // wkłada się ją do kamizelki, pancerza albo hardsuitu (jedna na ubranie), a wyjmuje śrubokrętem.
 // Ochronę i wytrzymałość daje materiał (tabela niżej), klasa jakości mnoży obie. Ciężki materiał spowalnia.
@@ -40,7 +40,8 @@ GLOBAL_LIST_INIT(aq_insert_profiles, list(
 /obj/item/munition_part/body/armor_insert
 	name = "wkładka pancerza"
 	desc = "Płyta do włożenia w kamizelkę, pancerz albo hardsuit. Zużywa się od trafień."
-	icon_state = "insert_frame"
+	icon = 'aquila/icons/obj/munitions_forge/armor_insert.dmi'
+	icon_state = "insert_heavy"
 	forge_standalone = TRUE
 	hammer_time = 3
 	material_amount = MINERAL_MATERIAL_AMOUNT * 3
@@ -52,7 +53,7 @@ GLOBAL_LIST_INIT(aq_insert_profiles, list(
 /obj/item/munition_part/body/armor_insert/light
 	name = "lekka wkładka pancerza"
 	desc = "Cienka płyta do kamizelki, pancerza albo hardsuitu. Chroni słabiej niż ciężka, ale prawie nie waży."
-	icon_state = "insert_lining"
+	icon_state = "insert_light"
 	hammer_time = 2
 	material_amount = MINERAL_MATERIAL_AMOUNT * 2
 	size_mult = AQ_INSERT_LIGHT_MULT

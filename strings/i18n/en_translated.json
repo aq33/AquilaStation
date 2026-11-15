@@ -21490,5 +21490,7 @@
 "<span class='notice'>Silnik podmieniony na: [choice].</span>": "<span class='notice'>Engine swapped for: [choice].</span>",
 "[key_name_admin(user)] podmienia silnik statku na: [choice] (komora testowa).": "[key_name_admin(user)] swaps the ship engine for: [choice] (test chamber).",
 "<span class='warning'>Podmiana się nie udała.</span>": "<span class='warning'>The swap failed.</span>",
-"Zestaw od razu podmienia silnik statku na wariant wybrany z listy (ta sama procedura co na starcie rundy). \\": "The kit swaps the ship's engine right away to the variant picked from the list (the same procedure as at round start). \\"
+"Zestaw od razu podmienia silnik statku na wariant wybrany z listy (ta sama procedura co na starcie rundy). \\": "The kit swaps the ship's engine right away to the variant picked from the list (the same procedure as at round start). \\",
+"Silos rudy jest pusty. Włóż arkusze do pieca (trafią do silosu) albo poproś górników i zaopatrzenie o rudę.": "The ore silo is empty. Put sheets into the forge (they go to the silo) or ask miners and cargo for ore.",
+"Zapas pieca jest pusty. Włóż do niego arkusze materiałów.": "The forge's own storage is empty. Put material sheets into it."
 }
