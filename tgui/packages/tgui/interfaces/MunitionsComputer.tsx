@@ -23,6 +23,10 @@ import {
 type Data = WeaponStageData & {
   // AQ EDIT - dane etapu z cycle_stage_ui_data()
   ammo: any;
+  // AQ EDIT - kalibracja i aktuator zamka (aquila/code/modules/munitions/weapon_wear.dm)
+  actuator: number;
+  calibration: number;
+  wear_enabled: boolean;
   canReload: any;
   chambered: any;
   charge: any;
@@ -64,11 +68,15 @@ export const MunitionsComputer = (props) => {
     tool_buffer,
     tool_buffer_name,
     has_linked_gun,
+    wear_enabled,
+    calibration,
+    actuator,
   } = data;
   const ammoLevel = max_ammo ? ammo / max_ammo : 0;
   const maintLevel = maint_req / 25;
+  const calibrationLevel = (calibration || 0) / 100;
   return (
-    <ConsoleWindow width={300} height={400}>
+    <ConsoleWindow width={300} height={440}>
       <ConsoleBar>
         <span style={{ color: COLOR.muted }}>Broń:</span>
         <span
@@ -149,6 +157,27 @@ export const MunitionsComputer = (props) => {
                   colour={levelColour(maintLevel)}
                 />
               </ConsoleRow>
+              {!!wear_enabled && (
+                // AQ EDIT - kalibracja i aktuator zamka
+                <>
+                  <ConsoleRow label="Kalibracja">
+                    <ConsoleMeter
+                      value={calibrationLevel}
+                      colour={levelColour(calibrationLevel)}
+                    />
+                  </ConsoleRow>
+                  <ConsoleRow
+                    label="Aktuator zamka"
+                    colour={actuator ? COLOR.bad : COLOR.good}
+                  >
+                    {actuator === 1
+                      ? 'przepalony'
+                      : actuator === 2
+                        ? 'brak'
+                        : 'sprawny'}
+                  </ConsoleRow>
+                </>
+              )}
             </ConsolePanel>
           </>
         )) || (
