@@ -1,5 +1,13 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"e" = (
+"a" = (
+/obj/effect/decal/cleanable/blood/tracks,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"j" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"k" = (
 /obj/effect/turf_decal/siding/thinplating{
 	dir = 4
 	},
@@ -38,11 +46,23 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plasteel,
 /area/template_noop)
-"m" = (
-/obj/effect/decal/cleanable/blood/tracks,
+"p" = (
+/obj/effect/decal/cleanable/vomit/old{
+	pixel_x = -5
+	},
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
-"o" = (
+"t" = (
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"w" = (
+/mob/living/basic/mining/wolf,
+/obj/effect/decal/cleanable/vomit/old{
+	pixel_x = -5
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"y" = (
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -55,40 +75,17 @@
 /obj/effect/decal/cleanable/blood/tracks,
 /turf/open/floor/plasteel/dark,
 /area/template_noop)
-"C" = (
-/mob/living/basic/mining/wolf,
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"D" = (
+"B" = (
 /turf/closed/mineral/random/planet_ice,
 /area/template_noop)
-"G" = (
-/turf/template_noop,
+"E" = (
+/mob/living/basic/mining/wolf,
+/turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
-"K" = (
+"I" = (
 /turf/closed/wall,
 /area/template_noop)
-"M" = (
-/obj/structure/flora/ausbushes/sparsegrass,
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"O" = (
-/mob/living/basic/mining/wolf,
-/obj/effect/decal/cleanable/vomit/old{
-	pixel_x = -5
-	},
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"P" = (
-/obj/effect/decal/cleanable/vomit/old{
-	pixel_x = -5
-	},
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"R" = (
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"U" = (
+"K" = (
 /obj/machinery/shower{
 	dir = 8
 	},
@@ -98,147 +95,150 @@
 	},
 /turf/open/floor/plasteel/freezer,
 /area/template_noop)
+"W" = (
+/turf/template_noop,
+/area/template_noop)
 
 (1,1,1) = {"
-G
-G
-G
-G
-D
-D
-G
-G
-G
-G
-G
+W
+W
+W
+W
+B
+B
+W
+W
+W
+W
+W
 "}
 (2,1,1) = {"
-G
-G
-G
-D
-D
-D
-D
-D
-D
-G
-G
+W
+W
+W
+B
+B
+B
+B
+B
+B
+W
+W
 "}
 (3,1,1) = {"
-G
-G
-D
-D
-D
-D
-D
-D
-D
-D
-G
+W
+W
+B
+B
+B
+B
+B
+B
+B
+B
+W
 "}
 (4,1,1) = {"
-G
-D
-D
-D
-D
-D
-D
-D
-D
-D
-M
+W
+B
+B
+B
+B
+B
+B
+B
+B
+B
+j
 "}
 (5,1,1) = {"
-D
-D
-D
-D
-D
-K
-K
-K
-D
-C
-P
+B
+B
+B
+B
+B
+I
+I
+I
+B
+E
+p
 "}
 (6,1,1) = {"
-D
-D
-D
-D
-D
-K
-e
-o
-m
-m
-m
+B
+B
+B
+B
+B
+I
+k
+y
+a
+a
+a
 "}
 (7,1,1) = {"
-D
-D
-D
-D
-D
+B
+B
+B
+B
+B
+I
 K
-U
-K
-M
-M
-R
+I
+j
+j
+t
 "}
 (8,1,1) = {"
-D
-D
-D
-D
-D
-K
-K
-K
-O
-R
-G
+B
+B
+B
+B
+B
+I
+I
+I
+w
+t
+W
 "}
 (9,1,1) = {"
-G
-D
-D
-D
-D
-D
-D
-D
-M
-R
-G
+W
+B
+B
+B
+B
+B
+B
+B
+j
+t
+W
 "}
 (10,1,1) = {"
-G
-G
-D
-D
-D
-D
-D
-G
-G
-G
-G
+W
+W
+B
+B
+B
+B
+B
+W
+W
+W
+W
 "}
 (11,1,1) = {"
-G
-G
-D
-D
-D
-D
-G
-G
-G
-G
-G
+W
+W
+B
+B
+B
+B
+W
+W
+W
+W
+W
 "}

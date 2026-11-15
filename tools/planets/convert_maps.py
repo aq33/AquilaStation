@@ -208,6 +208,10 @@ def clean_vars(vars_, keep_icon_state):
     for k, v in vars_.items():
         if k in DROP_VARS and not (k == 'icon_state' and keep_icon_state):
             continue
+        # parser map rozcina listy asocjacyjne (list(a = 1, b = 2)) na kawałki: takie zmienne (skład jedzenia, pancerz
+        # kanistra) pomijamy w całości, zostaje wartość domyślna typu
+        if not re.match(r'^[A-Za-z_][A-Za-z0-9_]*$', k) or (v.count('(') != v.count(')')):
+            continue
         if v == '/datum/species/spider':  # rachnidzi z Shiptesta, u nas brak tej rasy
             v = '/datum/species/human'
         if v == '/obj/item/gem/amber':  # klejnot w gablocie -> złoto

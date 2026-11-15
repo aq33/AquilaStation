@@ -1,46 +1,58 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"d" = (
+"e" = (
+/turf/template_noop,
+/area/template_noop)
+"f" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/floor/plating/asteroid/dirt/jungle/dark,
 /area/template_noop)
 "g" = (
-/turf/template_noop,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"i" = (
+/obj/structure/flora/ausbushes/stalkybush{
+	pixel_y = 6
+	},
+/turf/open/water/planet/jungle,
+/area/template_noop)
+"k" = (
+/obj/structure/flora/ausbushes/stalkybush{
+	pixel_x = 3;
+	 pixel_y = 10
+	},
+/turf/open/water/planet/jungle,
 /area/template_noop)
 "l" = (
-/obj/structure/flora/ausbushes/stalkybush,
+/obj/structure/flora/ausbushes/reedbush,
 /turf/open/water/planet/jungle,
 /area/template_noop)
 "n" = (
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
-/area/template_noop)
-"p" = (
-/obj/structure/flora/rock/jungle,
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
-/area/template_noop)
-"u" = (
 /obj/structure/flora/ausbushes/sparsegrass,
 /turf/open/floor/plating/asteroid/dirt/jungle/dark,
 /area/template_noop)
-"y" = (
+"o" = (
+/obj/structure/flora/junglebush/b,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"q" = (
 /obj/structure/flora/ausbushes/stalkybush{
 	pixel_x = 7;
 	 pixel_y = 10
 	},
 /turf/open/water/planet/jungle,
 /area/template_noop)
-"z" = (
-/obj/structure/flora/junglebush/c,
+"v" = (
+/obj/structure/flora/rock/jungle,
 /turf/open/floor/plating/asteroid/dirt/jungle/dark,
 /area/template_noop)
-"A" = (
-/obj/structure/flora/junglebush/large,
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
-/area/template_noop)
-"J" = (
-/obj/structure/flora/ausbushes/reedbush,
+"y" = (
+/obj/structure/flora/ausbushes/stalkybush,
 /turf/open/water/planet/jungle,
 /area/template_noop)
-"K" = (
+"B" = (
+/turf/open/water/planet/jungle,
+/area/template_noop)
+"D" = (
 /obj/structure/flora/ausbushes/stalkybush{
 	pixel_x = -15;
 	 pixel_y = 6
@@ -55,104 +67,92 @@
 	},
 /turf/open/water/planet/jungle,
 /area/template_noop)
-"M" = (
-/turf/open/water/planet/jungle,
-/area/template_noop)
-"Q" = (
-/obj/structure/flora/junglebush/b,
+"R" = (
+/obj/structure/flora/junglebush/large,
 /turf/open/floor/plating/asteroid/dirt/jungle/dark,
 /area/template_noop)
-"S" = (
-/obj/structure/flora/ausbushes/stalkybush{
-	pixel_y = 6
-	},
-/turf/open/water/planet/jungle,
-/area/template_noop)
-"T" = (
-/obj/structure/flora/ausbushes/stalkybush{
-	pixel_x = 3;
-	 pixel_y = 10
-	},
-/turf/open/water/planet/jungle,
+"X" = (
+/obj/structure/flora/junglebush/c,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
 /area/template_noop)
 
 (1,1,1) = {"
-g
-g
-g
-g
-d
-u
-g
-g
+e
+e
+e
+e
+f
+n
+e
+e
 "}
 (2,1,1) = {"
-g
-g
+e
+e
+e
 g
 n
-u
-Q
-n
+o
 g
+e
 "}
 (3,1,1) = {"
+e
+e
+R
+v
+q
+D
+v
 g
-g
-A
-p
-y
-K
-p
-n
 "}
 (4,1,1) = {"
+e
+n
+v
+i
+B
+l
 g
-u
-p
-S
-M
-J
-n
-n
+g
 "}
 (5,1,1) = {"
-n
-d
-l
-M
-M
-T
-u
 g
+f
+y
+B
+B
+k
+n
+e
 "}
 (6,1,1) = {"
+e
 g
 n
-u
-J
-S
-d
-n
+l
+i
+f
 g
+e
 "}
 (7,1,1) = {"
+e
+e
 g
-g
+v
+X
 n
-p
-z
-u
-g
-g
+e
+e
 "}
 (8,1,1) = {"
+e
+e
+e
 g
 g
-g
-n
-n
-g
-g
-g
+e
+e
+e
 "}

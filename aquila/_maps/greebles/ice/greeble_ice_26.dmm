@@ -1,287 +1,5 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/obj/machinery/washing_machine,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/item/wallframe/airalarm{
-	pixel_y = -10;
-	pixel_x = -6
-	},
-/obj/machinery/light/small/broken{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/template_noop)
-"b" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
-	dir = 1
-	},
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/item/stack/sheet/cotton/cloth/five{
-	pixel_x = -4;
-	pixel_y = 11
-	},
-/obj/item/stack/rods{
-	pixel_x = 10;
-	pixel_y = 7
-	},
-/turf/open/floor/carpet,
-/area/template_noop)
-"c" = (
-/obj/structure/cable,
-/obj/structure/curtain/bounty,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel,
-/area/template_noop)
-"e" = (
-/turf/closed/wall/mineral/plastitanium/nodiagonal,
-/area/template_noop)
-"f" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden/layer4{
-	dir = 10
-	},
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/item/stack/ore/iron,
-/turf/open/floor/plasteel,
-/area/template_noop)
-"h" = (
-/obj/structure/toilet{
-	pixel_y = 9
-	},
-/obj/structure/window/reinforced/tinted/frosted{
-	dir = 8
-	},
-/obj/structure/curtain,
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/monotile/steel,
-/area/template_noop)
-"i" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
-	dir = 1
-	},
-/obj/structure/sign/poster/official/report_crimes{
-	pixel_y = 32
-	},
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/item/stack/ore/titanium,
-/turf/open/floor/plasteel/dark,
-/area/template_noop)
-"j" = (
-/obj/machinery/atmospherics/components/unary/passive_vent/layer4{
-	dir = 1
-	},
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/engine,
-/area/template_noop)
-"k" = (
-/turf/closed/wall/mineral/plastitanium,
-/area/template_noop)
-"l" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/item/stack/ore/titanium,
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"m" = (
-/obj/machinery/newscaster{
-	pixel_x = -28
-	},
-/obj/effect/decal/cleanable/glass,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/item/stack/rods{
-	pixel_x = 4;
-	pixel_y = 4
-	},
-/obj/item/stack/ore/titanium,
-/turf/open/floor/carpet,
-/area/template_noop)
-"n" = (
-/obj/structure/closet/secure_closet/freezer/fridge,
-/obj/machinery/camera/autoname,
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/monotile/steel,
-/area/template_noop)
-"o" = (
-/obj/structure/curtain/bounty,
-/obj/item/bedsheet/brown,
-/obj/structure/sign/poster/contraband/random{
-	pixel_x = -32
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/bed,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/item/stack/sheet/cotton/cloth/five{
-	pixel_x = -4;
-	pixel_y = 8
-	},
-/turf/open/floor/carpet,
-/area/template_noop)
-"r" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"s" = (
-/obj/effect/decal/cleanable/glass,
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"t" = (
-/turf/closed/mineral/random/planet_ice,
-/area/template_noop)
-"u" = (
-/obj/structure/chair,
-/obj/structure/cable,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/gibspawner/human/bodypartless,
-/obj/machinery/light/broken{
-	dir = 4
-	},
-/turf/open/floor/monotile/steel,
-/area/template_noop)
-"v" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/effect/decal/cleanable/dirt/dust,
-/mob/living/basic/mining/legion/snow/spawner_made,
-/turf/open/floor/carpet,
-/area/template_noop)
-"w" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/monotile/steel,
-/area/template_noop)
-"x" = (
-/obj/machinery/door/firedoor/window,
-/obj/effect/spawner/structure/window/plastitanium,
-/obj/machinery/door/poddoor/shutters,
-/turf/open/floor/plating,
-/area/template_noop)
-"y" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/item/stack/sheet/iron{
-	pixel_x = -4;
-	pixel_y = 10
-	},
-/obj/item/stack/sheet/iron{
-	pixel_x = 2;
-	pixel_y = -8
-	},
-/obj/item/stack/sheet/iron{
-	pixel_x = 7;
-	pixel_y = 9
-	},
-/turf/open/floor/carpet,
-/area/template_noop)
-"z" = (
-/obj/machinery/door/firedoor/window,
-/obj/effect/decal/cleanable/glass,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/item/stack/ore/iron,
-/turf/open/floor/plating,
-/area/template_noop)
-"A" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/monotile/steel,
-/area/template_noop)
-"B" = (
-/obj/item/shard,
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"C" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden/layer4,
-/obj/machinery/door/firedoor/window,
-/obj/effect/spawner/structure/window/plastitanium,
-/obj/machinery/door/poddoor/shutters,
-/turf/open/floor/plating,
-/area/template_noop)
-"D" = (
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"F" = (
-/obj/structure/sink{
-	dir = 8;
-	pixel_x = 11
-	},
-/obj/machinery/atmospherics/pipe/simple/green/hidden/layer4,
-/obj/structure/mirror{
-	pixel_x = 25
-	},
-/obj/effect/decal/cleanable/glass,
-/obj/effect/decal/cleanable/dirt/dust,
-/mob/living/basic/mining/legion/snow/spawner_made,
-/turf/open/floor/plasteel,
-/area/template_noop)
-"G" = (
-/obj/structure/chair,
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
-	dir = 1
-	},
-/obj/effect/decal/cleanable/dirt/dust,
-/mob/living/basic/mining/legion/snow/spawner_made,
-/turf/open/floor/monotile/steel,
-/area/template_noop)
-"H" = (
-/obj/structure/table,
-/obj/item/kitchen/fork{
-	pixel_x = 3
-	},
-/obj/item/trash/energybar,
-/obj/item/storage/box/cups{
-	pixel_x = 16;
-	pixel_y = 5
-	},
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/monotile/steel,
-/area/template_noop)
-"I" = (
-/obj/item/stack/ore/titanium,
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"J" = (
-/obj/structure/closet,
-/obj/item/clothing/shoes/sneakers/black,
-/obj/item/clothing/shoes/sneakers/black,
-/obj/item/clothing/shoes/sneakers/black,
-/obj/item/clothing/shoes/sneakers/black,
-/obj/item/clothing/shoes/sneakers/black,
-/obj/item/storage/backpack,
-/obj/item/storage/backpack,
-/obj/item/storage/backpack,
-/obj/item/storage/backpack,
-/obj/item/storage/backpack,
-/obj/item/radio/intercom/directional/south,
-/obj/effect/decal/cleanable/glass,
-/obj/item/stack/ore/titanium,
-/turf/open/floor/monotile/steel,
-/area/template_noop)
-"K" = (
-/obj/machinery/shower{
-	pixel_y = 13
-	},
-/obj/item/soap,
-/obj/structure/curtain,
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/monotile/steel,
-/area/template_noop)
-"L" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/item/stack/rods{
@@ -300,7 +18,254 @@
 	},
 /turf/open/floor/carpet,
 /area/template_noop)
-"N" = (
+"c" = (
+/obj/structure/curtain/bounty,
+/obj/item/bedsheet/brown,
+/obj/structure/sign/poster/contraband/random{
+	pixel_x = -32
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/bed,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/stack/sheet/cotton/cloth/five{
+	pixel_x = -4;
+	pixel_y = 8
+	},
+/turf/open/floor/carpet,
+/area/template_noop)
+"d" = (
+/obj/structure/sink{
+	dir = 8;
+	pixel_x = 11
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden/layer4,
+/obj/structure/mirror{
+	pixel_x = 25
+	},
+/obj/effect/decal/cleanable/glass,
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/basic/mining/legion/snow/spawner_made,
+/turf/open/floor/plasteel,
+/area/template_noop)
+"e" = (
+/turf/closed/wall/mineral/plastitanium,
+/area/template_noop)
+"f" = (
+/obj/structure/closet/secure_closet/freezer/fridge,
+/obj/machinery/camera/autoname,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/monotile/steel,
+/area/template_noop)
+"g" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/monotile/steel,
+/area/template_noop)
+"h" = (
+/obj/structure/toilet{
+	pixel_y = 9
+	},
+/obj/structure/window/reinforced/tinted/frosted{
+	dir = 8
+	},
+/obj/structure/curtain,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/monotile/steel,
+/area/template_noop)
+"i" = (
+/obj/machinery/washing_machine,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/wallframe/airalarm{
+	pixel_y = -10;
+	pixel_x = -6
+	},
+/obj/machinery/light/small/broken{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/template_noop)
+"j" = (
+/turf/closed/mineral/random/planet_ice,
+/area/template_noop)
+"k" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/basic/mining/legion/snow/spawner_made,
+/turf/open/floor/carpet,
+/area/template_noop)
+"l" = (
+/obj/structure/table,
+/obj/item/kitchen/fork{
+	pixel_x = 3
+	},
+/obj/item/trash/energybar,
+/obj/item/storage/box/cups{
+	pixel_x = 16;
+	pixel_y = 5
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/monotile/steel,
+/area/template_noop)
+"m" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/monotile/steel,
+/area/template_noop)
+"n" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden/layer4,
+/obj/machinery/door/firedoor/window,
+/obj/effect/spawner/structure/window/plastitanium,
+/obj/machinery/door/poddoor/shutters,
+/turf/open/floor/plating,
+/area/template_noop)
+"o" = (
+/obj/machinery/door/firedoor/window,
+/obj/effect/spawner/structure/window/plastitanium,
+/obj/machinery/door/poddoor/shutters,
+/turf/open/floor/plating,
+/area/template_noop)
+"p" = (
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/template_noop)
+"q" = (
+/obj/structure/table,
+/obj/machinery/light_switch{
+	pixel_x = 19;
+	pixel_y = -8;
+	dir = 8
+	},
+/obj/machinery/coffeemaker{
+	pixel_y = 8
+	},
+/obj/item/storage/fancy/coffee_cart_rack{
+	pixel_x = 9;
+	pixel_y = -2
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/light/broken{
+	dir = 1
+	},
+/turf/open/floor/monotile/steel,
+/area/template_noop)
+"r" = (
+/obj/item/stack/ore/titanium,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"t" = (
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/engine,
+/area/template_noop)
+"w" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/stack/sheet/iron{
+	pixel_x = -4;
+	pixel_y = 10
+	},
+/obj/item/stack/sheet/iron{
+	pixel_x = 2;
+	pixel_y = -8
+	},
+/obj/item/stack/sheet/iron{
+	pixel_x = 7;
+	pixel_y = 9
+	},
+/turf/open/floor/carpet,
+/area/template_noop)
+"x" = (
+/obj/machinery/newscaster{
+	pixel_x = -28
+	},
+/obj/effect/decal/cleanable/glass,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/stack/rods{
+	pixel_x = 4;
+	pixel_y = 4
+	},
+/obj/item/stack/ore/titanium,
+/turf/open/floor/carpet,
+/area/template_noop)
+"A" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/carpet,
+/area/template_noop)
+"B" = (
+/obj/structure/cable,
+/obj/structure/curtain/bounty,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+/area/template_noop)
+"C" = (
+/obj/structure/chair,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/basic/mining/legion/snow/spawner_made,
+/turf/open/floor/monotile/steel,
+/area/template_noop)
+"D" = (
+/obj/machinery/atmospherics/components/unary/passive_vent/layer4{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/engine,
+/area/template_noop)
+"E" = (
+/turf/template_noop,
+/area/template_noop)
+"F" = (
+/obj/effect/decal/cleanable/glass,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"G" = (
+/obj/structure/chair,
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/gibspawner/human/bodypartless,
+/obj/machinery/light/broken{
+	dir = 4
+	},
+/turf/open/floor/monotile/steel,
+/area/template_noop)
+"H" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/stack/ore/titanium,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"I" = (
+/obj/machinery/door/firedoor/window,
+/obj/effect/decal/cleanable/glass,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/stack/ore/iron,
+/turf/open/floor/plating,
+/area/template_noop)
+"J" = (
+/obj/structure/table,
+/obj/machinery/microwave{
+	pixel_y = 5
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/stack/sheet/cotton/cloth/five{
+	pixel_x = 6;
+	pixel_y = -13
+	},
+/turf/open/floor/monotile/steel,
+/area/template_noop)
+"K" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 6
@@ -315,7 +280,110 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/monotile/steel,
 /area/template_noop)
+"L" = (
+/obj/structure/curtain/bounty,
+/obj/structure/bed,
+/obj/item/bedsheet/brown,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/carpet,
+/area/template_noop)
+"N" = (
+/obj/item/shard,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
 "O" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"P" = (
+/obj/machinery/shower{
+	pixel_y = 13
+	},
+/obj/item/soap,
+/obj/structure/curtain,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/monotile/steel,
+/area/template_noop)
+"Q" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/structure/sign/poster/official/report_crimes{
+	pixel_y = 32
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/stack/ore/titanium,
+/turf/open/floor/plasteel/dark,
+/area/template_noop)
+"R" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/monotile/steel,
+/area/template_noop)
+"S" = (
+/obj/structure/closet,
+/obj/item/clothing/shoes/sneakers/black,
+/obj/item/clothing/shoes/sneakers/black,
+/obj/item/clothing/shoes/sneakers/black,
+/obj/item/clothing/shoes/sneakers/black,
+/obj/item/clothing/shoes/sneakers/black,
+/obj/item/storage/backpack,
+/obj/item/storage/backpack,
+/obj/item/storage/backpack,
+/obj/item/storage/backpack,
+/obj/item/storage/backpack,
+/obj/item/radio/intercom/directional/south,
+/obj/effect/decal/cleanable/glass,
+/obj/item/stack/ore/titanium,
+/turf/open/floor/monotile/steel,
+/area/template_noop)
+"T" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/stack/sheet/cotton/cloth/five{
+	pixel_x = -4;
+	pixel_y = 11
+	},
+/obj/item/stack/rods{
+	pixel_x = 10;
+	pixel_y = 7
+	},
+/turf/open/floor/carpet,
+/area/template_noop)
+"U" = (
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"W" = (
+/obj/structure/table,
+/obj/structure/sign/poster/contraband/random{
+	pixel_x = 32
+	},
+/obj/item/kitchen/fork{
+	pixel_x = 3
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/computer/security/telescreen/entertainment{
+	pixel_y = -28
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/stack/ore/iron,
+/turf/open/floor/monotile/steel,
+/area/template_noop)
+"X" = (
 /obj/machinery/door/airlock/glass{
 	name = "Kwatery Załogi";
 	dir = 4
@@ -336,283 +404,215 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plasteel/tech/grid,
 /area/template_noop)
-"P" = (
-/obj/structure/table,
-/obj/machinery/microwave{
-	pixel_y = 5
-	},
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/item/stack/sheet/cotton/cloth/five{
-	pixel_x = 6;
-	pixel_y = -13
-	},
-/turf/open/floor/monotile/steel,
-/area/template_noop)
-"Q" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/monotile/steel,
-/area/template_noop)
-"S" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
-	dir = 1
-	},
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/carpet,
-/area/template_noop)
-"T" = (
-/obj/structure/curtain/bounty,
-/obj/structure/bed,
-/obj/item/bedsheet/brown,
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/carpet,
-/area/template_noop)
-"U" = (
-/obj/effect/decal/cleanable/glass,
-/turf/open/floor/engine,
-/area/template_noop)
-"V" = (
-/obj/structure/table,
-/obj/machinery/light_switch{
-	pixel_x = 19;
-	pixel_y = -8;
-	dir = 8
-	},
-/obj/machinery/coffeemaker{
-	pixel_y = 8
-	},
-/obj/item/storage/fancy/coffee_cart_rack{
-	pixel_x = 9;
-	pixel_y = -2
-	},
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/light/broken{
-	dir = 1
-	},
-/turf/open/floor/monotile/steel,
-/area/template_noop)
-"W" = (
-/obj/structure/table,
-/obj/structure/sign/poster/contraband/random{
-	pixel_x = 32
-	},
-/obj/item/kitchen/fork{
-	pixel_x = 3
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/computer/security/telescreen/entertainment{
-	pixel_y = -28
-	},
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/item/stack/ore/iron,
-/turf/open/floor/monotile/steel,
-/area/template_noop)
-"X" = (
-/turf/template_noop,
-/area/template_noop)
 "Y" = (
 /obj/item/shard,
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
+"Z" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden/layer4{
+	dir = 10
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/stack/ore/iron,
+/turf/open/floor/plasteel,
+/area/template_noop)
 
 (1,1,1) = {"
-X
-X
-X
-X
-t
-t
-t
-t
-X
-X
-X
+E
+E
+E
+E
+j
+j
+j
+j
+E
+E
+E
 "}
 (2,1,1) = {"
-X
-X
-X
-t
-t
-t
-t
-t
-t
-X
-X
+E
+E
+E
+j
+j
+j
+j
+j
+j
+E
+E
 "}
 (3,1,1) = {"
-X
-t
-t
-t
-t
-t
-e
-e
-t
-X
-X
+E
+j
+j
+j
+j
+j
+p
+p
+j
+E
+E
 "}
 (4,1,1) = {"
+j
+j
+j
+j
+P
+j
+i
+p
 t
-t
-t
-t
-K
-t
-a
-e
-U
-r
-X
+O
+E
 "}
 (5,1,1) = {"
-t
-t
-e
-e
-h
-f
-F
-C
 j
-l
-X
+j
+p
+p
+h
+Z
+d
+n
+D
+H
+E
 "}
 (6,1,1) = {"
-X
-t
-t
+E
+j
+j
+p
+p
+B
+p
+p
 e
-e
-c
-e
-e
-k
-r
+O
 Y
 "}
 (7,1,1) = {"
-X
-t
-t
-e
-L
-v
-m
-o
-e
-B
-r
+E
+j
+j
+p
+a
+k
+x
+c
+p
+N
+O
 "}
 (8,1,1) = {"
-X
-t
-t
-e
-y
-b
-S
+E
+j
+j
+p
+w
 T
-z
-s
-l
+A
+L
+I
+F
+H
 "}
 (9,1,1) = {"
-X
-t
-t
-e
-n
-A
-w
-J
-e
+E
+j
+j
+p
+f
+m
+g
+S
+p
 Y
-D
+U
 "}
 (10,1,1) = {"
-X
-X
-t
-e
-P
-N
-G
-H
-x
-I
-X
+E
+E
+j
+p
+J
+K
+C
+l
+o
+r
+E
 "}
 (11,1,1) = {"
-X
-X
-t
-e
-V
-Q
-u
+E
+E
+j
+p
+q
+R
+G
 W
-e
-X
-X
+p
+E
+E
 "}
 (12,1,1) = {"
+E
+E
+j
+p
+p
 X
-X
-t
-e
-e
-O
-e
-e
-e
-X
-X
+p
+p
+p
+E
+E
 "}
 (13,1,1) = {"
-X
-X
-t
-t
-e
-i
-t
-t
-X
-X
-X
+E
+E
+j
+j
+p
+Q
+j
+j
+E
+E
+E
 "}
 (14,1,1) = {"
-X
-X
-X
-t
-t
-t
-t
-t
-X
-X
-X
+E
+E
+E
+j
+j
+j
+j
+j
+E
+E
+E
 "}
 (15,1,1) = {"
-X
-X
-X
-X
-t
-t
-t
-X
-X
-X
-X
+E
+E
+E
+E
+j
+j
+j
+E
+E
+E
+E
 "}

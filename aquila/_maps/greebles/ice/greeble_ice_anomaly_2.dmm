@@ -1,147 +1,55 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/turf/open/floor/plating/ice/planet_ice,
-/area/template_noop)
-"d" = (
-/obj/structure/flora/ausbushes/sparsegrass,
-/turf/open/floor/plating/asteroid/dirt{
-	initial_gas_mix = "o2=26;n2=104;TEMP=255";
-	 planetary_atmos = 1
-	},
-/area/template_noop)
-"e" = (
-/obj/structure/flora/rock/pile/icy,
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"g" = (
-/turf/template_noop,
-/area/template_noop)
-"i" = (
-/obj/structure/flora/rock/pile,
-/turf/open/floor/plating/asteroid/dirt{
-	initial_gas_mix = "o2=26;n2=104;TEMP=255";
-	 planetary_atmos = 1
-	},
-/area/template_noop)
-"j" = (
-/obj/structure/flora/ausbushes{
-	pixel_x = 2;
-	 pixel_y = 5
-	},
-/turf/open/floor/plating/asteroid/dirt{
-	initial_gas_mix = "o2=26;n2=104;TEMP=255";
-	 planetary_atmos = 1
-	},
-/area/template_noop)
-"k" = (
-/obj/structure/flora/ausbushes/fullgrass,
-/turf/open/floor/plating/asteroid/dirt{
-	initial_gas_mix = "o2=26;n2=104;TEMP=255";
-	 planetary_atmos = 1
-	},
-/area/template_noop)
-"o" = (
-/obj/structure/flora/tree/jungle,
-/turf/open/floor/plating/asteroid/dirt{
-	initial_gas_mix = "o2=26;n2=104;TEMP=255";
-	 planetary_atmos = 1
-	},
-/area/template_noop)
-"p" = (
-/obj/structure/flora/ausbushes/fullgrass,
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"q" = (
-/turf/open/water/planet/beach/ice,
-/area/template_noop)
-"t" = (
-/obj/effect/anomaly/chronograph/planetary,
-/turf/open/water/planet/beach/ice,
-/area/template_noop)
-"u" = (
-/obj/structure/flora/ausbushes/sparsegrass,
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"w" = (
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"y" = (
-/turf/open/floor/plating/asteroid/dirt{
-	initial_gas_mix = "o2=26;n2=104;TEMP=255";
-	 planetary_atmos = 1
-	},
-/area/template_noop)
-"A" = (
-/obj/structure/flora/rock{
-	pixel_x = -6;
-	 pixel_y = 8
-	},
-/turf/open/water/planet/beach/ice,
-/area/template_noop)
-"D" = (
-/obj/structure/flora/ausbushes/ppflowers,
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"F" = (
 /obj/structure/flora/ausbushes,
 /turf/open/floor/plating/asteroid/dirt{
 	initial_gas_mix = "o2=26;n2=104;TEMP=255";
 	 planetary_atmos = 1
 	},
 /area/template_noop)
-"G" = (
-/obj/structure/flora/rock/pile,
-/turf/open/floor/plating/ice/planet_ice,
-/area/template_noop)
-"M" = (
-/obj/structure/flora/ausbushes/reedbush{
-	pixel_x = 5;
-	 pixel_y = 12
-	},
-/turf/open/water/planet/beach/ice,
-/area/template_noop)
-"O" = (
-/obj/structure/flora/ausbushes/reedbush{
-	pixel_x = -3;
-	 pixel_y = -7
-	},
-/turf/open/water/planet/beach/ice,
-/area/template_noop)
-"Q" = (
-/obj/structure/flora/ausbushes{
-	pixel_x = 4;
-	 pixel_y = 3
-	},
-/turf/open/floor/plating/asteroid/dirt{
-	initial_gas_mix = "o2=26;n2=104;TEMP=255";
-	 planetary_atmos = 1
-	},
-/area/template_noop)
-"U" = (
-/obj/structure/flora/ausbushes{
-	pixel_x = 2;
-	 pixel_y = -5
-	},
-/turf/open/floor/plating/asteroid/dirt{
-	initial_gas_mix = "o2=26;n2=104;TEMP=255";
-	 planetary_atmos = 1
-	},
-/area/template_noop)
-"V" = (
+"b" = (
 /obj/structure/flora/stump,
 /turf/open/floor/plating/asteroid/dirt{
 	initial_gas_mix = "o2=26;n2=104;TEMP=255";
 	 planetary_atmos = 1
 	},
 /area/template_noop)
-"Y" = (
-/obj/structure/flora/ausbushes/pointybush,
+"e" = (
+/obj/structure/flora/ausbushes/fullgrass,
 /turf/open/floor/plating/asteroid/dirt{
 	initial_gas_mix = "o2=26;n2=104;TEMP=255";
 	 planetary_atmos = 1
 	},
 /area/template_noop)
-"Z" = (
+"f" = (
+/obj/structure/flora/tree/jungle,
+/turf/open/floor/plating/asteroid/dirt{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"g" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"h" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"l" = (
+/obj/structure/flora/rock{
+	pixel_x = -6;
+	 pixel_y = 8
+	},
+/turf/open/water/planet/beach/ice,
+/area/template_noop)
+"p" = (
+/obj/structure/flora/ausbushes/reedbush{
+	pixel_x = -3;
+	 pixel_y = -7
+	},
+/turf/open/water/planet/beach/ice,
+/area/template_noop)
+"q" = (
 /obj/structure/flora/ausbushes/pointybush{
 	pixel_x = -1;
 	 pixel_y = 13
@@ -151,228 +59,320 @@
 	 planetary_atmos = 1
 	},
 /area/template_noop)
+"s" = (
+/obj/structure/flora/rock/pile,
+/turf/open/floor/plating/ice/planet_ice,
+/area/template_noop)
+"u" = (
+/obj/structure/flora/ausbushes/pointybush,
+/turf/open/floor/plating/asteroid/dirt{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"v" = (
+/obj/structure/flora/rock/pile,
+/turf/open/floor/plating/asteroid/dirt{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"w" = (
+/obj/structure/flora/ausbushes{
+	pixel_x = 2;
+	 pixel_y = -5
+	},
+/turf/open/floor/plating/asteroid/dirt{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"x" = (
+/obj/structure/flora/ausbushes{
+	pixel_x = 4;
+	 pixel_y = 3
+	},
+/turf/open/floor/plating/asteroid/dirt{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"y" = (
+/obj/effect/anomaly/chronograph/planetary,
+/turf/open/water/planet/beach/ice,
+/area/template_noop)
+"z" = (
+/obj/structure/flora/rock/pile/icy,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"E" = (
+/turf/open/water/planet/beach/ice,
+/area/template_noop)
+"F" = (
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"H" = (
+/turf/open/floor/plating/asteroid/dirt{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"J" = (
+/obj/structure/flora/ausbushes/reedbush{
+	pixel_x = 5;
+	 pixel_y = 12
+	},
+/turf/open/water/planet/beach/ice,
+/area/template_noop)
+"N" = (
+/turf/template_noop,
+/area/template_noop)
+"P" = (
+/obj/structure/flora/ausbushes/ppflowers,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"V" = (
+/turf/open/floor/plating/ice/planet_ice,
+/area/template_noop)
+"W" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/plating/asteroid/dirt{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"Y" = (
+/obj/structure/flora/ausbushes{
+	pixel_x = 2;
+	 pixel_y = 5
+	},
+/turf/open/floor/plating/asteroid/dirt{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
 
 (1,1,1) = {"
-g
-g
-G
-a
-a
-G
-a
-w
-e
-g
-g
-g
+N
+N
+s
+V
+V
+s
+V
+F
+z
+N
+N
+N
 "}
 (2,1,1) = {"
-e
-a
-a
-a
-G
-a
-D
-u
-w
-g
-g
-g
+z
+V
+V
+V
+s
+V
+P
+h
+F
+N
+N
+N
 "}
 (3,1,1) = {"
-w
-D
-w
-a
-a
-a
-u
-w
-y
-g
-g
-g
+F
+P
+F
+V
+V
+V
+h
+F
+H
+N
+N
+N
 "}
 (4,1,1) = {"
+N
+F
+F
+F
+E
+E
 g
-w
-w
-w
-q
-q
-p
-V
-y
-y
-g
-g
+b
+H
+H
+N
+N
 "}
 (5,1,1) = {"
-g
-g
-w
-u
-q
-q
-q
-d
-i
-y
-g
-g
+N
+N
+F
+h
+E
+E
+E
+W
+v
+H
+N
+N
 "}
 (6,1,1) = {"
-g
-g
-y
-d
-q
-A
-q
-q
-k
-y
-g
-g
+N
+N
+H
+W
+E
+l
+E
+E
+e
+H
+N
+N
 "}
 (7,1,1) = {"
-g
-g
-y
-F
-O
-q
-q
-q
-U
-y
-g
-g
+N
+N
+H
+a
+p
+E
+E
+E
+w
+H
+N
+N
 "}
 (8,1,1) = {"
-g
-g
+N
+N
+H
+v
+u
+E
 y
-i
-Y
-q
-t
-q
-d
-y
-g
-g
+E
+W
+H
+N
+N
 "}
 (9,1,1) = {"
-g
-g
-g
-y
-d
-q
-q
-q
-k
-y
-g
-g
+N
+N
+N
+H
+W
+E
+E
+E
+e
+H
+N
+N
 "}
 (10,1,1) = {"
-g
-g
-o
-y
-k
-q
-q
-q
-M
-k
-y
-g
+N
+N
+f
+H
+e
+E
+E
+E
+J
+e
+H
+N
 "}
 (11,1,1) = {"
-g
-g
-g
-V
-i
-Q
-q
-q
-q
-j
-y
-g
+N
+N
+N
+b
+v
+x
+E
+E
+E
+Y
+H
+N
 "}
 (12,1,1) = {"
-g
-g
-g
-g
-y
-y
-d
+N
+N
+N
+N
+H
+H
+W
+E
+E
 q
-q
-Z
-y
-g
+H
+N
 "}
 (13,1,1) = {"
-g
-g
-g
-g
-g
-y
-w
-q
-q
-w
-u
-g
+N
+N
+N
+N
+N
+H
+F
+E
+E
+F
+h
+N
 "}
 (14,1,1) = {"
-g
-g
-g
-g
-g
-u
-w
-a
-a
-w
-D
-e
+N
+N
+N
+N
+N
+h
+F
+V
+V
+F
+P
+z
 "}
 (15,1,1) = {"
-g
-g
-g
-g
-w
-D
-a
-a
-a
-G
-a
-u
+N
+N
+N
+N
+F
+P
+V
+V
+V
+s
+V
+h
 "}
 (16,1,1) = {"
-g
-g
-g
-g
-u
-e
-a
-G
-a
-a
-a
-w
+N
+N
+N
+N
+h
+z
+V
+s
+V
+V
+V
+F
 "}

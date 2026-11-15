@@ -1,80 +1,43 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"dJ" = (
+"eR" = (
+/obj/structure/flora/rock/pile/icy,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"gA" = (
+/turf/template_noop,
+/area/template_noop)
+"gE" = (
 /obj/structure/sign/warning/biohazard{
 	pixel_y = -15
 	},
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
-"ff" = (
-/obj/structure/sign/warning/biohazard{
-	pixel_y = 32
-	},
+"he" = (
+/obj/structure/flora/ausbushes/fullgrass,
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
-"fJ" = (
+"iJ" = (
 /obj/structure/flora/rock/icy,
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
-"fP" = (
-/obj/structure/flora/rock/pile,
-/turf/open/lava/plasma,
+"ji" = (
+/obj/structure/flora/rock/pile/icy,
+/turf/open/floor/plating/asteroid/icerock/cracked,
 /area/template_noop)
-"hB" = (
-/turf/closed/wall/r_wall,
-/area/template_noop)
-"iA" = (
-/obj/structure/flora/rock{
-	icon_state = "basalt2"
-	},
-/turf/open/lava/plasma,
-/area/template_noop)
-"jh" = (
-/obj/structure/railing{
-	dir = 4
-	},
-/obj/structure/lattice/catwalk/over/ship/dark,
-/turf/open/floor/plating/rust,
-/area/template_noop)
-"jR" = (
-/obj/structure/railing,
-/turf/open/lava/plasma,
-/area/template_noop)
-"oZ" = (
-/turf/closed/mineral/random/planet_ice,
-/area/template_noop)
-"rL" = (
-/obj/structure/railing{
-	dir = 8
-	},
-/obj/structure/lattice/catwalk/over/ship/dark,
-/turf/open/floor/plating/rust,
-/area/template_noop)
-"rR" = (
-/obj/structure/railing/corner{
-	dir = 4
-	},
-/obj/structure/lattice/catwalk/over/ship/dark,
-/turf/open/floor/plating/rust,
-/area/template_noop)
-"va" = (
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"wc" = (
+"kA" = (
 /obj/structure/flora/rock{
 	icon_state = "basalt3"
 	},
 /turf/open/lava/plasma,
 /area/template_noop)
-"wf" = (
-/turf/open/lava/plasma,
-/area/template_noop)
-"wz" = (
-/obj/structure/flora/rock{
-	icon_state = "basalt"
+"nb" = (
+/obj/structure/railing/corner{
+	dir = 8
 	},
-/turf/open/lava/plasma,
+/obj/structure/lattice/catwalk/over/ship/dark,
+/turf/open/floor/plating/rust,
 /area/template_noop)
-"wI" = (
+"nY" = (
 /obj/effect/anomaly/plasmasoul/planetary{
 	effectrange = 1;
 	 pixel_x = -12;
@@ -82,761 +45,798 @@
 	},
 /turf/open/lava/plasma,
 /area/template_noop)
-"Fu" = (
-/obj/structure/railing/corner{
-	dir = 8
-	},
-/obj/structure/lattice/catwalk/over/ship/dark,
-/turf/open/floor/plating/rust,
-/area/template_noop)
-"FD" = (
-/obj/structure/railing{
-	dir = 6
-	},
+"oD" = (
+/obj/structure/railing,
 /turf/open/lava/plasma,
 /area/template_noop)
-"FJ" = (
+"pw" = (
+/obj/structure/flora/rock/pile,
+/turf/open/lava/plasma,
+/area/template_noop)
+"qA" = (
 /obj/structure/railing{
 	dir = 6
 	},
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
-"Hp" = (
+"rh" = (
+/obj/structure/railing/corner{
+	dir = 8
+	},
+/obj/structure/flora/rock/pile/icy,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"rV" = (
+/obj/structure/railing,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"sS" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/lava/plasma,
+/area/template_noop)
+"vc" = (
+/turf/closed/wall/r_wall,
+/area/template_noop)
+"wj" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"wF" = (
+/obj/structure/flora/rock{
+	icon_state = "basalt"
+	},
+/turf/open/lava/plasma,
+/area/template_noop)
+"zf" = (
+/obj/structure/railing,
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
+"zV" = (
+/obj/structure/railing/corner{
+	dir = 4
+	},
+/obj/structure/lattice/catwalk/over/ship/dark,
+/turf/open/floor/plating/rust,
+/area/template_noop)
+"zX" = (
+/turf/open/lava/plasma,
+/area/template_noop)
+"zY" = (
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"Cw" = (
 /obj/structure/railing/corner{
 	dir = 1
 	},
 /obj/structure/lattice/catwalk/over/ship/dark,
 /turf/open/floor/plating/rust,
 /area/template_noop)
-"HQ" = (
-/obj/structure/flora/rock/pile/icy,
+"DL" = (
+/obj/structure/flora/ausbushes/sparsegrass,
 /turf/open/floor/plating/asteroid/icerock/cracked,
 /area/template_noop)
-"Im" = (
-/obj/structure/railing,
+"HR" = (
+/obj/structure/railing/corner,
+/obj/structure/lattice/catwalk/over/ship/dark,
+/turf/open/floor/plating/rust,
+/area/template_noop)
+"Jc" = (
+/obj/structure/sign/warning/biohazard{
+	pixel_y = 32
+	},
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
-"JD" = (
-/obj/structure/flora/ausbushes/sparsegrass,
+"LB" = (
+/obj/structure/flora/rock,
 /turf/open/lava/plasma,
 /area/template_noop)
-"KS" = (
+"Oe" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/structure/lattice/catwalk/over/ship/dark,
+/turf/open/floor/plating/rust,
+/area/template_noop)
+"RU" = (
+/obj/structure/railing/corner,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"Ts" = (
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/structure/lattice/catwalk/over/ship/dark,
+/turf/open/floor/plating/rust,
+/area/template_noop)
+"UJ" = (
 /obj/structure/railing{
 	dir = 10
 	},
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
-"Ld" = (
-/turf/template_noop,
+"WN" = (
+/turf/closed/mineral/random/planet_ice,
 /area/template_noop)
-"Mq" = (
-/obj/structure/railing/corner,
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"Nq" = (
-/obj/structure/flora/ausbushes/sparsegrass,
+"Xm" = (
 /turf/open/floor/plating/asteroid/icerock/cracked,
 /area/template_noop)
-"Ou" = (
-/obj/structure/railing/corner{
-	dir = 8
+"YY" = (
+/obj/structure/railing/corner,
+/turf/open/lava/plasma,
+/area/template_noop)
+"Zc" = (
+/obj/structure/flora/rock{
+	icon_state = "basalt2"
 	},
-/obj/structure/flora/rock/pile/icy,
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"PP" = (
-/obj/structure/railing/corner,
-/obj/structure/lattice/catwalk/over/ship/dark,
-/turf/open/floor/plating/rust,
-/area/template_noop)
-"Ru" = (
-/obj/structure/flora/ausbushes/sparsegrass,
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"Wa" = (
-/turf/open/floor/plating/asteroid/icerock/cracked,
-/area/template_noop)
-"Xt" = (
-/obj/structure/flora/rock/pile/icy,
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"XN" = (
-/obj/structure/railing,
-/turf/open/floor/plating/asteroid/icerock/cracked,
-/area/template_noop)
-"Yh" = (
-/obj/structure/flora/rock,
 /turf/open/lava/plasma,
 /area/template_noop)
-"YV" = (
-/obj/structure/railing/corner,
+"Zl" = (
+/obj/structure/railing{
+	dir = 6
+	},
 /turf/open/lava/plasma,
-/area/template_noop)
-"ZE" = (
-/obj/structure/flora/ausbushes/fullgrass,
-/turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
 
 (1,1,1) = {"
-Ld
-Ld
-Ld
-Ld
-oZ
-oZ
-oZ
-oZ
-oZ
-oZ
-oZ
-oZ
-Ld
-Ld
-Ld
+gA
+gA
+gA
+gA
+WN
+WN
+WN
+WN
+WN
+WN
+WN
+WN
+gA
+gA
+gA
 "}
 (2,1,1) = {"
-Ld
-Ld
-Ld
-oZ
-oZ
-oZ
-oZ
-oZ
-oZ
-oZ
-oZ
-oZ
-oZ
-Ld
-Ld
+gA
+gA
+gA
+WN
+WN
+WN
+WN
+WN
+WN
+WN
+WN
+WN
+WN
+gA
+gA
 "}
 (3,1,1) = {"
-Ld
-Ld
-oZ
-oZ
-oZ
-oZ
-oZ
-oZ
-oZ
-oZ
-oZ
-oZ
-oZ
-Ld
-Ld
+gA
+gA
+WN
+WN
+WN
+WN
+WN
+WN
+WN
+WN
+WN
+WN
+WN
+gA
+gA
 "}
 (4,1,1) = {"
-Ld
-Ld
-oZ
-oZ
-oZ
-oZ
-oZ
-wf
-wf
-wf
-oZ
-oZ
-oZ
-oZ
-Ld
+gA
+gA
+WN
+WN
+WN
+WN
+WN
+zX
+zX
+zX
+WN
+WN
+WN
+WN
+gA
 "}
 (5,1,1) = {"
-Ld
-Ld
-oZ
-oZ
-oZ
-oZ
-wf
-wf
-wf
-wf
-wf
-oZ
-oZ
-oZ
-oZ
+gA
+gA
+WN
+WN
+WN
+WN
+zX
+zX
+zX
+zX
+zX
+WN
+WN
+WN
+WN
 "}
 (6,1,1) = {"
-Ld
-Ld
-oZ
-oZ
-oZ
-oZ
-wf
-wf
-wI
-wf
-wf
-wf
-oZ
-oZ
-oZ
+gA
+gA
+WN
+WN
+WN
+WN
+zX
+zX
+nY
+zX
+zX
+zX
+WN
+WN
+WN
 "}
 (7,1,1) = {"
-Ld
-oZ
-oZ
-oZ
-oZ
-oZ
-oZ
-wf
-wf
-wf
-wf
-wf
-wf
-oZ
-oZ
+gA
+WN
+WN
+WN
+WN
+WN
+WN
+zX
+zX
+zX
+zX
+zX
+zX
+WN
+WN
 "}
 (8,1,1) = {"
-Ld
-oZ
-oZ
-oZ
-oZ
-oZ
-oZ
-wf
-wf
-wf
-wf
-Yh
-wf
-oZ
-oZ
+gA
+WN
+WN
+WN
+WN
+WN
+WN
+zX
+zX
+zX
+zX
+LB
+zX
+WN
+WN
 "}
 (9,1,1) = {"
-Ld
-Ld
-oZ
-oZ
-oZ
-oZ
-oZ
-oZ
-wf
-wf
-wf
-wf
-oZ
-oZ
-oZ
+gA
+gA
+WN
+WN
+WN
+WN
+WN
+WN
+zX
+zX
+zX
+zX
+WN
+WN
+WN
 "}
 (10,1,1) = {"
-Ld
-Ld
-oZ
-oZ
-oZ
-oZ
-oZ
-wf
-wf
-wf
-wf
-wf
-hB
-oZ
-va
+gA
+gA
+WN
+WN
+WN
+WN
+WN
+zX
+zX
+zX
+zX
+zX
+vc
+WN
+zY
 "}
 (11,1,1) = {"
-Ld
-Ld
-Ld
-oZ
-oZ
-hB
-wf
-wf
-wf
-wf
-fP
-wf
-jR
-va
-Ru
+gA
+gA
+gA
+WN
+WN
+vc
+zX
+zX
+zX
+zX
+pw
+zX
+oD
+zY
+wj
 "}
 (12,1,1) = {"
-Ld
-Ld
-Ld
-Ld
-Wa
-XN
-wf
-wf
-wc
-wf
-wf
-YV
-FD
-ZE
-va
+gA
+gA
+gA
+gA
+Xm
+zf
+zX
+zX
+kA
+zX
+zX
+YY
+Zl
+he
+zY
 "}
 (13,1,1) = {"
-Ld
-Ld
-Ld
-Ld
-Wa
-XN
-wf
-wf
-wf
-wf
-wf
-jR
-va
-va
-va
+gA
+gA
+gA
+gA
+Xm
+zf
+zX
+zX
+zX
+zX
+zX
+oD
+zY
+zY
+zY
 "}
 (14,1,1) = {"
-Ld
-Ld
-Ld
-va
-va
-XN
-wf
-wf
-JD
-wf
-wf
-jR
-Ru
-va
-fJ
+gA
+gA
+gA
+zY
+zY
+zf
+zX
+zX
+sS
+zX
+zX
+oD
+wj
+zY
+iJ
 "}
 (15,1,1) = {"
-Ld
-Ld
-va
-va
-Ru
-Im
-wf
-wf
-wf
-iA
-wf
-jR
-ZE
-Ru
-va
+gA
+gA
+zY
+zY
+wj
+rV
+zX
+zX
+zX
+Zc
+zX
+oD
+he
+wj
+zY
 "}
 (16,1,1) = {"
-Ld
-va
-ZE
-va
-Mq
-FJ
-wf
-wf
-JD
-wf
-wf
-jR
-Ru
-Ru
-va
+gA
+zY
+he
+zY
+RU
+qA
+zX
+zX
+sS
+zX
+zX
+oD
+wj
+wj
+zY
 "}
 (17,1,1) = {"
-va
-Ru
-va
-va
-FJ
-wf
-wf
-JD
-wf
-wf
-JD
-jR
-va
-va
-va
+zY
+wj
+zY
+zY
+qA
+zX
+zX
+sS
+zX
+zX
+sS
+oD
+zY
+zY
+zY
 "}
 (18,1,1) = {"
-va
-va
-dJ
-hB
-wf
-wf
-wf
-wf
-wf
-wf
-wf
-hB
-ff
-Ru
-Ld
+zY
+zY
+gE
+vc
+zX
+zX
+zX
+zX
+zX
+zX
+zX
+vc
+Jc
+wj
+gA
 "}
 (19,1,1) = {"
-Ru
-va
-va
-Fu
-rL
-rL
-rL
-rL
-rL
-rL
-rL
-Hp
-va
-va
-Ld
+wj
+zY
+zY
+nb
+Ts
+Ts
+Ts
+Ts
+Ts
+Ts
+Ts
+Cw
+zY
+zY
+gA
 "}
 (20,1,1) = {"
-va
-Xt
-va
-PP
-jh
-jh
-jh
-jh
-jh
-jh
-jh
-rR
-va
-va
-Ld
+zY
+eR
+zY
+HR
+Oe
+Oe
+Oe
+Oe
+Oe
+Oe
+Oe
+zV
+zY
+zY
+gA
 "}
 (21,1,1) = {"
-va
-va
-dJ
-hB
-wf
-wf
-wf
-wf
-wf
-wf
-wf
-hB
-ff
-va
-Ld
+zY
+zY
+gE
+vc
+zX
+zX
+zX
+zX
+zX
+zX
+zX
+vc
+Jc
+zY
+gA
 "}
 (22,1,1) = {"
-va
-Ru
-va
-Im
-wf
-wf
-wf
-JD
-wf
-wf
-wf
-jR
-Ru
-va
-va
+zY
+wj
+zY
+rV
+zX
+zX
+zX
+sS
+zX
+zX
+zX
+oD
+wj
+zY
+zY
 "}
 (23,1,1) = {"
-va
-va
-ZE
-Im
-wf
-wf
-wz
-wf
-wf
-JD
-wf
-jR
-ZE
-Ru
-va
+zY
+zY
+he
+rV
+zX
+zX
+wF
+zX
+zX
+sS
+zX
+oD
+he
+wj
+zY
 "}
 (24,1,1) = {"
-Ld
-va
-Ru
-Im
-wf
-wf
-JD
-wf
-wf
-wf
-YV
-FD
-ZE
-Ru
-va
+gA
+zY
+wj
+rV
+zX
+zX
+sS
+zX
+zX
+zX
+YY
+Zl
+he
+wj
+zY
 "}
 (25,1,1) = {"
-Ld
-Ru
-va
-Im
-wf
-wf
-wf
-wf
-wf
-wc
-jR
-Nq
-Ru
-va
-Ld
+gA
+wj
+zY
+rV
+zX
+zX
+zX
+zX
+zX
+kA
+oD
+DL
+wj
+zY
+gA
 "}
 (26,1,1) = {"
-Ld
-Ld
-va
-Ou
-KS
-wf
-wf
-wf
-JD
-wf
-jR
-Wa
-Wa
-va
-Ld
+gA
+gA
+zY
+rh
+UJ
+zX
+zX
+zX
+sS
+zX
+oD
+Xm
+Xm
+zY
+gA
 "}
 (27,1,1) = {"
-Ld
-Ld
-oZ
-oZ
-hB
-wf
-wf
-wf
-wf
-wf
-jR
-Wa
-HQ
-va
-Ld
+gA
+gA
+WN
+WN
+vc
+zX
+zX
+zX
+zX
+zX
+oD
+Xm
+ji
+zY
+gA
 "}
 (28,1,1) = {"
-Ld
-Ld
-oZ
-oZ
-oZ
-JD
-wf
-JD
-wf
-wf
-jR
-Wa
-Wa
-Wa
-Ld
+gA
+gA
+WN
+WN
+WN
+sS
+zX
+sS
+zX
+zX
+oD
+Xm
+Xm
+Xm
+gA
 "}
 (29,1,1) = {"
-Ld
-oZ
-oZ
-oZ
-wf
-wf
-wc
-wf
-wf
-JD
-hB
-oZ
-oZ
-HQ
-Ld
+gA
+WN
+WN
+WN
+zX
+zX
+kA
+zX
+zX
+sS
+vc
+WN
+WN
+ji
+gA
 "}
 (30,1,1) = {"
-Ld
-oZ
-oZ
-wf
-wf
-JD
-wf
-wf
-wf
-wf
-oZ
-oZ
-oZ
-oZ
-Ld
+gA
+WN
+WN
+zX
+zX
+sS
+zX
+zX
+zX
+zX
+WN
+WN
+WN
+WN
+gA
 "}
 (31,1,1) = {"
-Ld
-oZ
-oZ
-oZ
-wf
-wf
-wf
-JD
-wf
-wf
-oZ
-oZ
-oZ
-oZ
-Ld
+gA
+WN
+WN
+WN
+zX
+zX
+zX
+sS
+zX
+zX
+WN
+WN
+WN
+WN
+gA
 "}
 (32,1,1) = {"
-Ld
-oZ
-oZ
-oZ
-oZ
-wf
-wf
-wf
-wf
-wf
-oZ
-oZ
-oZ
-oZ
-Ld
+gA
+WN
+WN
+WN
+WN
+zX
+zX
+zX
+zX
+zX
+WN
+WN
+WN
+WN
+gA
 "}
 (33,1,1) = {"
-Ld
-oZ
-oZ
-oZ
-oZ
-oZ
-wf
-iA
-wf
-wf
-oZ
-oZ
-oZ
-oZ
-Ld
+gA
+WN
+WN
+WN
+WN
+WN
+zX
+Zc
+zX
+zX
+WN
+WN
+WN
+WN
+gA
 "}
 (34,1,1) = {"
-Ld
-oZ
-oZ
-oZ
-oZ
-oZ
-wf
-wf
-wf
-oZ
-oZ
-oZ
-oZ
-oZ
-Ld
+gA
+WN
+WN
+WN
+WN
+WN
+zX
+zX
+zX
+WN
+WN
+WN
+WN
+WN
+gA
 "}
 (35,1,1) = {"
-Ld
-oZ
-oZ
-oZ
-oZ
-oZ
-oZ
-wf
-wf
-oZ
-oZ
-oZ
-oZ
-oZ
-Ld
+gA
+WN
+WN
+WN
+WN
+WN
+WN
+zX
+zX
+WN
+WN
+WN
+WN
+WN
+gA
 "}
 (36,1,1) = {"
-Ld
-oZ
-oZ
-oZ
-oZ
-oZ
-oZ
-wf
-wf
-oZ
-oZ
-oZ
-oZ
-oZ
-Ld
+gA
+WN
+WN
+WN
+WN
+WN
+WN
+zX
+zX
+WN
+WN
+WN
+WN
+WN
+gA
 "}
 (37,1,1) = {"
-Ld
-oZ
-oZ
-oZ
-oZ
-oZ
-oZ
-oZ
-oZ
-oZ
-oZ
-oZ
-oZ
-Ld
-Ld
+gA
+WN
+WN
+WN
+WN
+WN
+WN
+WN
+WN
+WN
+WN
+WN
+WN
+gA
+gA
 "}
 (38,1,1) = {"
-Ld
-Ld
-Ld
-oZ
-oZ
-oZ
-oZ
-oZ
-oZ
-oZ
-oZ
-oZ
-Ld
-Ld
-Ld
+gA
+gA
+gA
+WN
+WN
+WN
+WN
+WN
+WN
+WN
+WN
+WN
+gA
+gA
+gA
 "}
 (39,1,1) = {"
-Ld
-Ld
-Ld
-oZ
-oZ
-oZ
-oZ
-oZ
-oZ
-oZ
-oZ
-oZ
-Ld
-Ld
-Ld
+gA
+gA
+gA
+WN
+WN
+WN
+WN
+WN
+WN
+WN
+WN
+WN
+gA
+gA
+gA
 "}

@@ -1,35 +1,48 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 8
-	},
-/obj/effect/turf_decal/siding/wood/corner{
-	dir = 8
-	},
-/obj/effect/turf_decal/siding/wood/corner,
-/turf/open/water/planet/jungle,
-/area/template_noop)
-"b" = (
 /obj/structure/flora/junglebush,
 /turf/open/floor/plating/asteroid/dirt/jungle/dark,
 /area/template_noop)
-"e" = (
-/obj/structure/flora/junglebush/large,
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
-/area/template_noop)
-"g" = (
-/obj/structure/flora/junglebush/c,
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
-/area/template_noop)
-"i" = (
-/obj/structure/flora/ausbushes/reedbush,
+"b" = (
+/obj/structure/flora/ausbushes/stalkybush{
+	name = "trzciny"
+	},
+/obj/structure/flora/ausbushes/stalkybush{
+	pixel_x = 3;
+	 pixel_y = 10
+	},
 /turf/open/water/planet/jungle,
 /area/template_noop)
-"j" = (
-/obj/item/fishing_rod,
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+"c" = (
+/obj/structure/flora/ausbushes/stalkybush{
+	name = "trzciny"
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/wood/corner,
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 4
+	},
+/turf/open/water/planet/jungle,
 /area/template_noop)
-"o" = (
+"d" = (
+/obj/structure/flora/ausbushes/stalkybush{
+	pixel_x = 10;
+	 pixel_y = 15
+	},
+/turf/open/water/planet/jungle,
+/area/template_noop)
+"e" = (
 /obj/structure/flora/ausbushes/stalkybush{
 	name = "trzciny"
 	},
@@ -39,19 +52,41 @@
 	},
 /turf/open/water/planet/jungle,
 /area/template_noop)
-"q" = (
-/obj/structure/flora/ausbushes/sunnybush,
-/turf/open/floor/plating/asteroid/river_sand,
+"f" = (
+/obj/structure/chair/wood{
+	dir = 1
+	},
+/obj/item/book/fish_catalog,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
 /area/template_noop)
-"s" = (
+"g" = (
 /obj/structure/flora/ausbushes/stalkybush{
-	pixel_x = 10;
-	 pixel_y = 15
+	pixel_x = 3;
+	 pixel_y = 10
 	},
 /turf/open/water/planet/jungle,
 /area/template_noop)
+"l" = (
+/obj/structure/flora/junglebush/c,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"n" = (
+/turf/template_noop,
+/area/template_noop)
+"o" = (
+/obj/structure/closet/crate/wooden,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"p" = (
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"r" = (
+/obj/item/fishing_rod,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
 "u" = (
-/turf/open/water/planet/jungle,
+/obj/structure/flora/ausbushes/fullgrass,
+/turf/open/floor/plating/asteroid/river_sand,
 /area/template_noop)
 "v" = (
 /obj/structure/flora/ausbushes/stalkybush{
@@ -67,38 +102,9 @@
 /obj/structure/flora/ausbushes/stalkybush{
 	name = "trzciny"
 	},
-/obj/effect/turf_decal/siding/wood{
-	dir = 8
-	},
-/obj/effect/turf_decal/siding/wood{
-	dir = 4
-	},
-/obj/effect/turf_decal/siding/wood/corner,
-/obj/effect/turf_decal/siding/wood/corner{
-	dir = 8
-	},
-/obj/effect/turf_decal/siding/wood/corner{
-	dir = 1
-	},
-/obj/effect/turf_decal/siding/wood/corner{
-	dir = 4
-	},
 /turf/open/water/planet/jungle,
 /area/template_noop)
-"B" = (
-/obj/structure/chair/wood{
-	dir = 1
-	},
-/obj/item/book/fish_catalog,
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
-/area/template_noop)
-"C" = (
-/obj/structure/flora/ausbushes/stalkybush{
-	name = "trzciny"
-	},
-/turf/open/water/planet/jungle,
-/area/template_noop)
-"E" = (
+"y" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 4
 	},
@@ -110,147 +116,141 @@
 	 planetary_atmos = 1
 	},
 /area/template_noop)
-"F" = (
-/obj/structure/flora/ausbushes/stalkybush{
-	name = "trzciny"
-	},
-/obj/structure/flora/ausbushes/stalkybush{
-	pixel_x = 3;
-	 pixel_y = 10
-	},
-/turf/open/water/planet/jungle,
+"z" = (
+/obj/effect/overlay/palmtree_r,
+/turf/open/floor/plating/asteroid/river_sand,
 /area/template_noop)
-"G" = (
-/obj/structure/flora/grass/jungle,
+"A" = (
+/obj/structure/flora/junglebush/large,
 /turf/open/floor/plating/asteroid/dirt/jungle/dark,
 /area/template_noop)
-"H" = (
+"B" = (
 /turf/open/floor/plating/asteroid/river_sand,
+/area/template_noop)
+"C" = (
+/obj/structure/flora/grass/jungle/b,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"D" = (
+/obj/structure/flora/grass/jungle,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
 /area/template_noop)
 "I" = (
 /obj/structure/flora/ausbushes/sparsegrass,
 /turf/open/floor/plating/asteroid/river_sand,
 /area/template_noop)
-"J" = (
-/obj/effect/overlay/palmtree_r,
-/turf/open/floor/plating/asteroid/river_sand,
-/area/template_noop)
 "K" = (
-/obj/structure/flora/ausbushes/fullgrass,
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/wood/corner,
+/turf/open/water/planet/jungle,
+/area/template_noop)
+"L" = (
+/obj/structure/flora/ausbushes/sunnybush,
 /turf/open/floor/plating/asteroid/river_sand,
 /area/template_noop)
-"N" = (
+"R" = (
+/turf/open/water/planet/jungle,
+/area/template_noop)
+"S" = (
 /obj/structure/closet/crate/freezer,
 /obj/item/reagent_containers/food/drinks/beer,
 /obj/item/fish,
 /obj/item/reagent_containers/food/drinks/beer,
 /turf/open/floor/plating/asteroid/river_sand,
 /area/template_noop)
-"O" = (
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+"T" = (
+/obj/structure/flora/ausbushes/reedbush,
+/turf/open/water/planet/jungle,
 /area/template_noop)
-"P" = (
-/turf/template_noop,
-/area/template_noop)
-"S" = (
+"V" = (
 /mob/living/basic/crab{
 	name = "rak"
 	},
 /turf/open/water/planet/jungle,
 /area/template_noop)
-"T" = (
-/obj/structure/flora/grass/jungle/b,
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
-/area/template_noop)
-"X" = (
-/obj/structure/flora/ausbushes/stalkybush{
-	pixel_x = 3;
-	 pixel_y = 10
-	},
-/turf/open/water/planet/jungle,
-/area/template_noop)
-"Y" = (
-/obj/structure/closet/crate/wooden,
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
-/area/template_noop)
 
 (1,1,1) = {"
-P
-b
-q
-H
+n
+a
+L
+B
 I
-O
-P
-P
+p
+n
+n
 "}
 (2,1,1) = {"
-e
+A
 I
-u
-u
-X
-K
-T
-P
-"}
-(3,1,1) = {"
-H
-u
-s
-u
-v
-H
-G
-T
-"}
-(4,1,1) = {"
-E
-w
-a
-i
+R
+R
+g
 u
 C
+n
+"}
+(3,1,1) = {"
+B
+R
+d
+R
+v
+B
+D
+C
+"}
+(4,1,1) = {"
+y
+c
+K
+T
+R
+w
 I
-H
+B
 "}
 (5,1,1) = {"
 I
-u
-o
-S
-u
-u
-j
-B
+R
+e
+V
+R
+R
+r
+f
 "}
 (6,1,1) = {"
-O
-K
-X
+p
 u
-F
-X
-Y
-N
+g
+R
+b
+g
+o
+S
 "}
 (7,1,1) = {"
-P
-T
-J
-u
-X
-I
-H
+n
+C
+z
+R
 g
+I
+B
+l
 "}
 (8,1,1) = {"
-P
-G
-T
-H
+n
+D
+C
+B
 I
-H
-T
-P
+B
+C
+n
 "}

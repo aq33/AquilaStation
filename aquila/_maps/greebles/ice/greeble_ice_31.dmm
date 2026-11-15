@@ -1,25 +1,40 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"c" = (
-/obj/structure/flora/rock/icy{
-	pixel_x = 4;
-	 pixel_y = 10
-	},
-/turf/open/floor/plating/asteroid/icerock/cracked,
+"f" = (
+/obj/structure/flora/grass/brown,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
 /area/template_noop)
-"i" = (
-/turf/template_noop,
-/area/template_noop)
-"o" = (
+"l" = (
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
 "p" = (
+/obj/structure/flora/rock/icy{
+	pixel_x = -7;
+	 pixel_y = 9
+	},
 /turf/open/floor/plating/asteroid/icerock/cracked,
 /area/template_noop)
-"r" = (
+"t" = (
+/obj/structure/flora/rock/icy{
+	pixel_x = 5;
+	 pixel_y = 8
+	},
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
+"x" = (
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
+"y" = (
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"G" = (
+/obj/structure/flora/grass/both,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"H" = (
 /obj/structure/flora/rock/pile/icy,
 /turf/open/floor/plating/asteroid/snow/planet_ice,
 /area/template_noop)
-"t" = (
+"N" = (
 /obj/structure/chair/fancy/plastic{
 	dir = 8
 	},
@@ -29,132 +44,117 @@
 	},
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
-"w" = (
-/obj/structure/flora/rock/icy{
-	pixel_x = 5;
-	 pixel_y = 8
-	},
-/turf/open/floor/plating/asteroid/icerock/cracked,
+"O" = (
+/turf/template_noop,
 /area/template_noop)
-"z" = (
-/turf/open/floor/plating/asteroid/snow/planet_ice,
-/area/template_noop)
-"A" = (
+"P" = (
 /obj/structure/flora/tree/pine,
 /turf/open/floor/plating/asteroid/snow/planet_ice,
 /area/template_noop)
-"D" = (
-/obj/structure/flora/grass/brown,
-/turf/open/floor/plating/asteroid/snow/planet_ice,
-/area/template_noop)
-"L" = (
-/obj/structure/flora/grass/both,
-/turf/open/floor/plating/asteroid/snow/planet_ice,
-/area/template_noop)
-"X" = (
+"Y" = (
 /obj/structure/flora/rock/icy{
-	pixel_x = -7;
-	 pixel_y = 9
+	pixel_x = 4;
+	 pixel_y = 10
 	},
 /turf/open/floor/plating/asteroid/icerock/cracked,
 /area/template_noop)
 
 (1,1,1) = {"
-i
-i
-i
-i
-r
-L
-z
-z
-i
+O
+O
+O
+O
+H
+G
+y
+y
+O
 "}
 (2,1,1) = {"
-i
-i
-i
-w
-p
-z
-A
-z
-D
+O
+O
+O
+t
+x
+y
+P
+y
+f
 "}
 (3,1,1) = {"
-i
-i
-i
-p
-p
-c
-p
-z
-r
+O
+O
+O
+x
+x
+Y
+x
+y
+H
 "}
 (4,1,1) = {"
-i
-p
-p
-p
-p
-p
-p
-A
-L
+O
+x
+x
+x
+x
+x
+x
+P
+G
 "}
 (5,1,1) = {"
-i
-o
-o
-o
-o
-o
-p
-p
-z
+O
+l
+l
+l
+l
+l
+x
+x
+y
 "}
 (6,1,1) = {"
-i
-z
-A
-o
-t
-o
-p
-p
-i
+O
+y
+P
+l
+N
+l
+x
+x
+O
 "}
 (7,1,1) = {"
-i
-L
-z
-z
-o
-o
-p
-p
-i
+O
+G
+y
+y
+l
+l
+x
+x
+O
 "}
 (8,1,1) = {"
-z
-z
-D
-L
-z
-D
-X
+y
+y
+f
+G
+y
+f
 p
-i
+x
+O
 "}
 (9,1,1) = {"
-i
-i
-i
-z
-z
-L
-i
-i
-i
+O
+O
+O
+y
+y
+G
+O
+O
+O
 "}

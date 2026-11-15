@@ -1,90 +1,90 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"h" = (
+"x" = (
+/obj/structure/flora/rock/jungle,
 /turf/open/floor/plating/asteroid/dirt/jungle,
 /area/template_noop)
-"j" = (
-/obj/effect/anomaly/phantom/planetary,
-/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
-/area/template_noop)
 "E" = (
-/obj/structure/flora/ausbushes/sparsegrass,
 /turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
 /area/template_noop)
 "G" = (
-/obj/structure/flora/rock/pile,
-/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/turf/open/floor/plating/asteroid/dirt/jungle,
 /area/template_noop)
 "P" = (
 /turf/template_noop,
 /area/template_noop)
-"V" = (
+"R" = (
+/obj/structure/flora/rock/pile,
 /turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
 /area/template_noop)
-"Z" = (
-/obj/structure/flora/rock/jungle,
-/turf/open/floor/plating/asteroid/dirt/jungle,
+"U" = (
+/obj/effect/anomaly/phantom/planetary,
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"V" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
 /area/template_noop)
 
 (1,1,1) = {"
 P
-h
-V
-h
-Z
-h
+G
+E
+G
+x
+G
 P
 "}
 (2,1,1) = {"
-h
-V
-j
+G
 E
-h
-h
-h
+U
+V
+G
+G
+G
 "}
 (3,1,1) = {"
-h
-E
 G
 V
-V
-j
-Z
+R
+E
+E
+U
+x
 "}
 (4,1,1) = {"
 P
-Z
-V
-j
-G
+x
 E
-h
+U
+R
+V
+G
 "}
 (5,1,1) = {"
 P
-V
-V
+E
 E
 V
-j
-V
+E
+U
+E
 "}
 (6,1,1) = {"
-V
-j
-V
-V
-Z
-V
-h
+E
+U
+E
+E
+x
+E
+G
 "}
 (7,1,1) = {"
+R
+V
+P
 G
-E
-P
-h
 P
 P
-h
+G
 "}

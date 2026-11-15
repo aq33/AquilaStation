@@ -1,16 +1,44 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/obj/structure/flora/grass/jungle,
+/obj/structure/girder,
+/turf/open/floor/plating/rust{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"d" = (
 /turf/open/floor/plating/asteroid/dirt/jungle/dark,
 /area/template_noop)
-"i" = (
-/turf/closed/wall,
-/area/template_noop)
-"l" = (
+"h" = (
 /obj/structure/flora/ash/garden,
 /turf/open/floor/plating/asteroid/dirt/jungle/dark,
 /area/template_noop)
-"m" = (
+"q" = (
+/turf/closed/wall/rust,
+/area/template_noop)
+"s" = (
+/obj/structure/flora/junglebush/large,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"v" = (
+/turf/template_noop,
+/area/template_noop)
+"z" = (
+/obj/structure/flora/rock/jungle,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"A" = (
+/obj/structure/flora/grass/jungle/b,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"C" = (
+/obj/structure/flora/grass/jungle,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"G" = (
+/turf/closed/wall,
+/area/template_noop)
+"N" = (
 /obj/item/stack/ore/iron{
 	amount = 5
 	},
@@ -19,80 +47,52 @@
 	 planetary_atmos = 1
 	},
 /area/template_noop)
-"q" = (
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
-/area/template_noop)
-"x" = (
-/obj/structure/flora/grass/jungle/b,
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
-/area/template_noop)
-"J" = (
-/turf/template_noop,
-/area/template_noop)
-"O" = (
-/turf/closed/wall/rust,
-/area/template_noop)
-"U" = (
-/obj/structure/flora/rock/jungle,
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
-/area/template_noop)
-"V" = (
-/obj/structure/flora/junglebush/large,
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
-/area/template_noop)
-"Y" = (
-/obj/structure/girder,
-/turf/open/floor/plating/rust{
-	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
-	 planetary_atmos = 1
-	},
-/area/template_noop)
 
 (1,1,1) = {"
-J
-J
-a
-J
-J
-J
+v
+v
+C
+v
+v
+v
 "}
 (2,1,1) = {"
-J
-x
-l
-V
-q
-J
+v
+A
+h
+s
+d
+v
 "}
 (3,1,1) = {"
+C
+h
+q
+G
 a
-l
-O
-i
-Y
-a
+C
 "}
 (4,1,1) = {"
-J
-V
-Y
-m
-q
-J
+v
+s
+a
+N
+d
+v
 "}
 (5,1,1) = {"
-J
-a
-l
-x
-J
-J
+v
+C
+h
+A
+v
+v
 "}
 (6,1,1) = {"
-J
-J
-U
-J
-J
-J
+v
+v
+z
+v
+v
+v
 "}

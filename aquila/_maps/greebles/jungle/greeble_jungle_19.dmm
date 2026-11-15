@@ -1,11 +1,17 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"j" = (
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
-/area/template_noop)
-"B" = (
+"c" = (
 /turf/closed/wall/mineral/plastitanium,
 /area/template_noop)
-"D" = (
+"n" = (
+/obj/structure/guncase{
+	anchored = 1
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/template_noop)
+"s" = (
+/turf/template_noop,
+/area/template_noop)
+"N" = (
 /obj/structure/closet/secure_closet{
 	icon_state = "armory"
 	},
@@ -17,34 +23,28 @@
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/template_noop)
-"K" = (
-/turf/template_noop,
-/area/template_noop)
-"S" = (
-/obj/structure/guncase{
-	anchored = 1
-	},
-/turf/open/floor/mineral/plastitanium,
+"Y" = (
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
 /area/template_noop)
 
 (1,1,1) = {"
-B
-B
-B
-B
-B
+c
+c
+c
+c
+c
 "}
 (2,1,1) = {"
-K
-S
-D
-j
-j
+s
+n
+N
+Y
+Y
 "}
 (3,1,1) = {"
-K
-K
-j
-j
-K
+s
+s
+Y
+Y
+s
 "}

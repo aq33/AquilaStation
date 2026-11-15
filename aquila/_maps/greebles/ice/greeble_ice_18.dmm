@@ -1,9 +1,5 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"a" = (
-/obj/structure/flora/ausbushes/sparsegrass,
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"q" = (
+"h" = (
 /obj/structure/festivus/anchored{
 	pixel_x = -17;
 	 desc = "Słup wbity w ziemię.";
@@ -15,64 +11,68 @@
 	},
 /turf/open/floor/plating/ice/planet_ice,
 /area/template_noop)
-"v" = (
-/obj/structure/flora/ausbushes/ppflowers,
+"w" = (
+/obj/structure/flora/ausbushes/sparsegrass,
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
-"w" = (
-/turf/template_noop,
-/area/template_noop)
-"D" = (
+"z" = (
 /obj/structure/flora/tree/dead/tall,
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
-"P" = (
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"Y" = (
+"H" = (
 /obj/structure/flora/rock/pile/lava{
 	pixel_y = 4
 	},
 /turf/open/floor/plating/ice/planet_ice,
 /area/template_noop)
+"P" = (
+/turf/template_noop,
+/area/template_noop)
+"T" = (
+/obj/structure/flora/ausbushes/ppflowers,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"X" = (
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
 
 (1,1,1) = {"
+P
+X
+X
+X
 w
-P
-P
-P
-a
-P
+X
 "}
 (2,1,1) = {"
-v
-P
-a
-v
-P
+T
+X
 w
+T
+X
+P
 "}
 (3,1,1) = {"
+X
+z
+X
+H
+h
 P
-D
-P
-Y
-q
-w
 "}
 (4,1,1) = {"
-a
-a
-P
-a
-P
 w
+w
+X
+w
+X
+P
 "}
 (5,1,1) = {"
+P
+T
+X
+X
+X
 w
-v
-P
-P
-P
-a
 "}

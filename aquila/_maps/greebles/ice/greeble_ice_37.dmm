@@ -1,48 +1,30 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"j" = (
+"f" = (
+/turf/open/water/planet/beach/ice,
+/area/template_noop)
+"g" = (
+/obj/structure/flora/tree/pine,
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
 "k" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"q" = (
+/obj/structure/flora/ash/garden/frigid,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"u" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/structure/flora/ausbushes/ppflowers{
 	pixel_x = 11
 	},
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
-"n" = (
-/turf/open/water/planet/beach/ice,
-/area/template_noop)
-"r" = (
-/turf/template_noop,
-/area/template_noop)
-"s" = (
-/obj/structure/flora/ausbushes/fullgrass,
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"t" = (
-/obj/structure/flora/ash/garden/frigid,
+"w" = (
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
 "x" = (
-/obj/structure/flora/rock/icy{
-	pixel_x = -2;
-	 pixel_y = 12
-	},
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"B" = (
-/obj/structure/flora/ausbushes/sparsegrass,
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"N" = (
-/mob/living/basic/snow_monkey,
-/turf/open/water/planet/beach/ice,
-/area/template_noop)
-"P" = (
-/obj/structure/flora/tree/pine,
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"Z" = (
 /obj/structure/flora/ausbushes/sparsegrass,
 /obj/structure/flora/ausbushes/ppflowers{
 	pixel_x = 7;
@@ -50,160 +32,178 @@
 	},
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
+"z" = (
+/turf/template_noop,
+/area/template_noop)
+"H" = (
+/obj/structure/flora/rock/icy{
+	pixel_x = -2;
+	 pixel_y = 12
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"T" = (
+/mob/living/basic/snow_monkey,
+/turf/open/water/planet/beach/ice,
+/area/template_noop)
+"Z" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
 
 (1,1,1) = {"
-r
-r
-r
-r
-r
-B
-s
-r
-r
-r
-r
+z
+z
+z
+z
+z
+Z
+k
+z
+z
+z
+z
 "}
 (2,1,1) = {"
-r
-r
-r
-n
-n
-j
-B
-n
-r
-r
-r
+z
+z
+z
+f
+f
+w
+Z
+f
+z
+z
+z
 "}
 (3,1,1) = {"
-r
-n
-n
-n
-n
-j
-n
-n
-n
-r
-r
+z
+f
+f
+f
+f
+w
+f
+f
+f
+z
+z
 "}
 (4,1,1) = {"
-n
-n
-n
-N
-n
-j
-j
-n
-n
-n
-r
+f
+f
+f
+T
+f
+w
+w
+f
+f
+f
+z
 "}
 (5,1,1) = {"
-r
-n
-n
-n
-n
-B
-j
-k
-n
-N
-n
+z
+f
+f
+f
+f
+Z
+w
+u
+f
+T
+f
 "}
 (6,1,1) = {"
-r
-n
-n
-n
-t
-j
-j
-B
-t
-n
-n
+z
+f
+f
+f
+q
+w
+w
+Z
+q
+f
+f
 "}
 (7,1,1) = {"
-r
-n
-n
-n
-j
-P
-j
-B
-B
-n
-n
+z
+f
+f
+f
+w
+g
+w
+Z
+Z
+f
+f
 "}
 (8,1,1) = {"
-r
+z
+H
 x
 Z
-B
-j
-j
-j
-j
-B
-j
-j
+w
+w
+w
+w
+Z
+w
+w
 "}
 (9,1,1) = {"
-r
-B
-s
-j
-j
-s
-n
-n
-n
-j
-r
+z
+Z
+k
+w
+w
+k
+f
+f
+f
+w
+z
 "}
 (10,1,1) = {"
-r
-r
-B
-j
-n
-n
-N
-n
-n
-r
-r
+z
+z
+Z
+w
+f
+f
+T
+f
+f
+z
+z
 "}
 (11,1,1) = {"
-r
-r
-n
-n
-n
-n
-n
-n
-n
-r
-r
+z
+z
+f
+f
+f
+f
+f
+f
+f
+z
+z
 "}
 (12,1,1) = {"
-r
-r
-r
-r
-n
-n
-n
-n
-r
-r
-r
+z
+z
+z
+z
+f
+f
+f
+f
+z
+z
+z
 "}

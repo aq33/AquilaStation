@@ -1,117 +1,117 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"h" = (
-/turf/template_noop,
-/area/template_noop)
-"n" = (
+"a" = (
 /turf/open/floor/plating/asteroid/iceberg,
 /area/template_noop)
-"r" = (
-/turf/closed/mineral/random/planet_ice,
-/area/template_noop)
-"O" = (
-/turf/closed/mineral/planet_ice_wall,
-/area/template_noop)
-"Z" = (
+"e" = (
 /obj/effect/anomaly/bluespace/planetary,
 /turf/open/floor/plating/asteroid/iceberg,
 /area/template_noop)
+"E" = (
+/turf/closed/mineral/planet_ice_wall,
+/area/template_noop)
+"F" = (
+/turf/closed/mineral/random/planet_ice,
+/area/template_noop)
+"R" = (
+/turf/template_noop,
+/area/template_noop)
 
 (1,1,1) = {"
-h
-h
-r
-r
-n
-r
-r
-h
-h
+R
+R
+F
+F
+a
+F
+F
+R
+R
 "}
 (2,1,1) = {"
-h
-r
-O
-O
-n
-O
-O
-r
-h
+R
+F
+E
+E
+a
+E
+E
+F
+R
 "}
 (3,1,1) = {"
-r
-O
-O
-n
-n
-n
-O
-O
-r
+F
+E
+E
+a
+a
+a
+E
+E
+F
 "}
 (4,1,1) = {"
-r
-O
-n
-n
-n
-n
-n
-O
-r
+F
+E
+a
+a
+a
+a
+a
+E
+F
 "}
 (5,1,1) = {"
-n
-n
-n
-n
-Z
-n
-n
-n
-n
+a
+a
+a
+a
+e
+a
+a
+a
+a
 "}
 (6,1,1) = {"
-r
-O
-n
-n
-n
-n
-n
-O
-r
+F
+E
+a
+a
+a
+a
+a
+E
+F
 "}
 (7,1,1) = {"
-r
-O
-O
-n
-n
-n
-O
-O
-r
+F
+E
+E
+a
+a
+a
+E
+E
+F
 "}
 (8,1,1) = {"
-h
-r
-O
-O
-n
-O
-O
-r
-h
+R
+F
+E
+E
+a
+E
+E
+F
+R
 "}
 (9,1,1) = {"
-h
-h
-r
-r
-n
-r
-r
-h
-h
+R
+R
+F
+F
+a
+F
+F
+R
+R
 "}

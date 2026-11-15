@@ -1,16 +1,5 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"n" = (
-/turf/template_noop,
-/area/template_noop)
-"o" = (
-/obj/structure/spacevine/weak,
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
-/area/template_noop)
-"B" = (
-/obj/structure/flora/rock,
-/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
-/area/template_noop)
-"G" = (
+"e" = (
 /obj/effect/decal/cleanable/ash{
 	pixel_y = -5;
 	 pixel_x = -8
@@ -32,38 +21,49 @@
 	},
 /turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
 /area/template_noop)
-"L" = (
+"h" = (
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"m" = (
+/obj/structure/spacevine/weak,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"B" = (
+/obj/structure/flora/rock,
 /turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
 /area/template_noop)
-"U" = (
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+"Q" = (
+/turf/template_noop,
+/area/template_noop)
+"R" = (
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
 /area/template_noop)
 
 (1,1,1) = {"
-o
-o
-o
-U
-n
+m
+m
+m
+h
+Q
 "}
 (2,1,1) = {"
-o
+m
 B
-L
-U
-n
+R
+h
+Q
 "}
 (3,1,1) = {"
-n
-L
-G
+Q
+R
+e
 B
-U
+h
 "}
 (4,1,1) = {"
-n
+Q
 B
-L
-L
-n
+R
+R
+Q
 "}

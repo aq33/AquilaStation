@@ -1,5 +1,9 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"b" = (
+"a" = (
+/obj/item/stack/sheet/mineral/snow{
+	pixel_x = 8;
+	 pixel_y = -3
+	},
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
 "d" = (
@@ -10,319 +14,315 @@
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
 "f" = (
-/obj/structure/flora/grass/green,
-/turf/open/floor/plating/asteroid/snow/planet_ice,
-/area/template_noop)
-"h" = (
-/obj/structure/flora/rock/icy{
-	pixel_x = -6;
-	 pixel_y = 14
-	},
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"j" = (
-/turf/open/floor/plating/asteroid/snow/planet_ice,
-/area/template_noop)
-"q" = (
-/obj/item/stack/sheet/mineral/snow{
-	pixel_y = -4
-	},
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"t" = (
-/obj/structure/flora/rock/icy{
-	pixel_y = 8
-	},
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"w" = (
-/obj/effect/anomaly/grav/planetary,
-/turf/open/floor/plating/asteroid/icerock/cracked,
-/area/template_noop)
-"x" = (
-/obj/item/stack/sheet/mineral/snow{
-	pixel_x = 10;
-	 pixel_y = 10
-	},
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"y" = (
-/obj/item/stack/sheet/mineral/snow{
-	pixel_x = -7;
-	 pixel_y = 8
-	},
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"z" = (
-/turf/open/floor/plating/asteroid/icerock/cracked,
-/area/template_noop)
-"F" = (
-/obj/item/stack/sheet/mineral/snow{
-	pixel_x = 5;
-	 pixel_y = -3
-	},
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"H" = (
 /obj/structure/flora/grass/brown,
 /turf/open/floor/plating/asteroid/snow/planet_ice,
 /area/template_noop)
-"I" = (
-/obj/item/stack/sheet/mineral/snow{
-	pixel_x = 14;
-	 pixel_y = -2
-	},
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"J" = (
-/obj/structure/flora/grass/both,
-/turf/open/floor/plating/asteroid/snow/planet_ice,
-/area/template_noop)
-"M" = (
+"g" = (
 /obj/structure/flora/rock/icy{
 	pixel_x = 7;
 	 pixel_y = 9
 	},
 /turf/open/floor/plating/asteroid/snow/planet_ice,
 /area/template_noop)
-"O" = (
-/obj/structure/flora/rock/icy{
-	pixel_x = -6;
-	 pixel_y = -4
-	},
+"k" = (
+/turf/template_noop,
+/area/template_noop)
+"l" = (
+/obj/structure/flora/grass/both,
 /turf/open/floor/plating/asteroid/snow/planet_ice,
 /area/template_noop)
-"P" = (
+"o" = (
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
+"q" = (
+/obj/item/stack/sheet/mineral/snow{
+	pixel_x = 14;
+	 pixel_y = -2
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"r" = (
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"s" = (
+/obj/structure/flora/rock/icy,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"t" = (
 /obj/item/stack/sheet/mineral/snow{
 	pixel_x = 9;
 	 pixel_y = -1
 	},
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
-"Q" = (
-/turf/closed/wall/mineral/snow,
-/area/template_noop)
-"R" = (
-/turf/template_noop,
-/area/template_noop)
-"S" = (
+"u" = (
 /obj/item/stack/sheet/mineral/snow{
-	pixel_x = 8;
-	 pixel_y = -3
+	pixel_y = -4
 	},
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
-"W" = (
-/obj/item/stack/sheet/mineral/snow{
-	pixel_x = -13;
-	 pixel_y = 11
+"x" = (
+/obj/structure/flora/rock/icy{
+	pixel_x = -6;
+	 pixel_y = 14
 	},
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
-"X" = (
-/obj/structure/flora/rock/icy,
+"z" = (
+/obj/item/stack/sheet/mineral/snow{
+	pixel_x = 10;
+	 pixel_y = 10
+	},
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
-"Y" = (
+"B" = (
+/obj/structure/flora/rock/icy{
+	pixel_y = 8
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"C" = (
 /obj/item/stack/sheet/mineral/snow{
 	pixel_x = -9;
 	 pixel_y = 7
 	},
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
+"D" = (
+/obj/effect/anomaly/grav/planetary,
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
+"I" = (
+/obj/structure/flora/grass/green,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"P" = (
+/obj/structure/flora/rock/icy{
+	pixel_x = -6;
+	 pixel_y = -4
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"Q" = (
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"R" = (
+/obj/item/stack/sheet/mineral/snow{
+	pixel_x = 5;
+	 pixel_y = -3
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"V" = (
+/obj/item/stack/sheet/mineral/snow{
+	pixel_x = -7;
+	 pixel_y = 8
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"X" = (
+/obj/item/stack/sheet/mineral/snow{
+	pixel_x = -13;
+	 pixel_y = 11
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"Z" = (
+/turf/closed/wall/mineral/snow,
+/area/template_noop)
 
 (1,1,1) = {"
-R
-R
-R
-R
-j
-j
-j
-j
-j
-R
-R
-R
-R
+k
+k
+k
+k
+r
+r
+r
+r
+r
+k
+k
+k
+k
 "}
 (2,1,1) = {"
-R
-R
-j
-j
-j
+k
+k
+r
+r
+r
 d
-b
-P
-H
-j
-R
-R
-R
+Q
+t
+f
+r
+k
+k
+k
 "}
 (3,1,1) = {"
-R
-R
-f
-j
-b
-b
+k
+k
 I
-b
-b
-j
-j
-R
-R
-"}
-(4,1,1) = {"
-R
-j
-j
-b
-S
+r
 Q
 Q
-Q
-b
-x
-f
-j
-R
-"}
-(5,1,1) = {"
-R
-j
-F
-b
-Q
-Q
-z
-Q
-Q
-b
-j
-M
-R
-"}
-(6,1,1) = {"
-j
-j
-b
-Q
-Q
-z
-z
-z
-Q
-Q
-b
-j
-j
-"}
-(7,1,1) = {"
-j
-t
 q
 Q
+Q
+r
+r
+k
+k
+"}
+(4,1,1) = {"
+k
+r
+r
+Q
+a
+Z
+Z
+Z
+Q
 z
-z
-w
-z
-z
-z
-b
-j
-J
+I
+r
+k
+"}
+(5,1,1) = {"
+k
+r
+R
+Q
+Z
+Z
+o
+Z
+Z
+Q
+r
+g
+k
+"}
+(6,1,1) = {"
+r
+r
+Q
+Z
+Z
+o
+o
+o
+Z
+Z
+Q
+r
+r
+"}
+(7,1,1) = {"
+r
+B
+u
+Z
+o
+o
+D
+o
+o
+o
+Q
+r
+l
 "}
 (8,1,1) = {"
-j
-j
-b
+r
+r
+Q
+Z
+Z
+o
+o
+o
+Z
+Z
 Q
 Q
-z
-z
-z
-Q
-Q
-b
-b
-R
+k
 "}
 (9,1,1) = {"
-f
-j
-X
-b
+I
+r
+s
+Q
+Z
+Z
+o
+Z
+Z
 Q
 Q
-z
-Q
-Q
-b
-b
-h
-R
+x
+k
 "}
 (10,1,1) = {"
-R
-j
-j
-b
-b
+k
+r
+r
 Q
 Q
+Z
+Z
+Z
 Q
-b
-b
-y
-b
-R
+Q
+V
+Q
+k
 "}
 (11,1,1) = {"
-R
-R
-H
-j
-j
-b
-Y
-b
-W
-b
-j
-b
-j
+k
+k
+f
+r
+r
+Q
+C
+Q
+X
+Q
+r
+Q
+r
 "}
 (12,1,1) = {"
-R
-R
-R
-O
-j
-j
-j
-b
-b
-j
-j
-j
-j
+k
+k
+k
+P
+r
+r
+r
+Q
+Q
+r
+r
+r
+r
 "}
 (13,1,1) = {"
-R
-R
-R
-R
-R
-j
-j
-j
-j
-j
-j
-j
-R
+k
+k
+k
+k
+k
+r
+r
+r
+r
+r
+r
+r
+k
 "}

@@ -1,31 +1,30 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"d" = (
+"a" = (
+/obj/structure/flora/tree/dead/tall,
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"p" = (
+/obj/structure/flora/tree/dead/tall,
+/obj/structure/spacevine/dead,
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"q" = (
 /obj/structure/flora/tree/dead/tall,
 /obj/structure/flora/ausbushes/sparsegrass,
 /turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
 /area/template_noop)
-"f" = (
-/obj/effect/anomaly/heartbeat/planetary,
-/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
-/area/template_noop)
-"k" = (
+"w" = (
 /obj/structure/spacevine/dead,
-/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
-/area/template_noop)
-"x" = (
-/obj/structure/flora/tree/dead/tall,
 /turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
 /area/template_noop)
 "y" = (
-/turf/template_noop,
-/area/template_noop)
-"z" = (
-/obj/structure/flora/ausbushes/sparsegrass,
 /turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
 /area/template_noop)
-"O" = (
-/obj/structure/flora/tree/dead/tall,
-/obj/structure/spacevine/dead,
+"F" = (
+/turf/template_noop,
+/area/template_noop)
+"G" = (
+/obj/structure/flora/ausbushes/sparsegrass,
 /turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
 /area/template_noop)
 "P" = (
@@ -34,78 +33,79 @@
 /turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
 /area/template_noop)
 "S" = (
+/obj/effect/anomaly/heartbeat/planetary,
 /turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
 /area/template_noop)
 
 (1,1,1) = {"
+F
 y
-S
-z
-S
+G
 y
-y
+F
+F
 "}
 (2,1,1) = {"
-S
-z
-z
-z
 y
-y
+G
+G
+G
+F
+F
 "}
 (3,1,1) = {"
+F
 y
-S
-x
-S
-k
+a
 y
+w
+F
 "}
 (4,1,1) = {"
+F
+w
 y
-k
-S
-S
-k
-k
+y
+w
+w
 "}
 (5,1,1) = {"
-k
-k
-S
-f
-k
+w
+w
 y
+S
+w
+F
 "}
 (6,1,1) = {"
+F
+w
 y
-k
-S
-S
-k
-S
+y
+w
+y
 "}
 (7,1,1) = {"
 P
-d
-S
-k
-O
-S
+q
+y
+w
+p
+y
 "}
 (8,1,1) = {"
-k
-z
-S
+w
+G
+y
 P
 P
-S
+y
 "}
 (9,1,1) = {"
-S
-S
 y
-k
-S
-S
+y
+F
+w
+y
+y
 "}

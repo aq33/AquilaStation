@@ -1,250 +1,250 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"b" = (
+"d" = (
+/turf/template_noop,
+/area/template_noop)
+"f" = (
 /obj/structure/flora/ausbushes/sparsegrass{
 	pixel_x = 3;
 	 pixel_y = -4
 	},
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
-"d" = (
-/obj/structure/flora/rock/pile,
-/turf/open/lava/plasma/planet_ice,
-/area/template_noop)
-"n" = (
-/turf/open/lava/plasma/planet_ice,
-/area/template_noop)
-"o" = (
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"p" = (
-/turf/template_noop,
-/area/template_noop)
-"s" = (
-/obj/effect/anomaly/plasmasoul/planetary,
-/turf/open/lava/plasma/planet_ice,
-/area/template_noop)
-"t" = (
-/obj/structure/flora/ausbushes/sparsegrass{
-	pixel_x = -2;
-	 pixel_y = -4
-	},
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"N" = (
-/obj/structure/flora/tree/dead,
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"Q" = (
-/obj/structure/flora/ausbushes/sparsegrass{
-	pixel_x = -7;
-	 pixel_y = 4
-	},
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"U" = (
+"h" = (
 /obj/structure/flora/tree/dead{
 	pixel_x = -17;
 	 pixel_y = 10
 	},
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
-"W" = (
+"m" = (
+/obj/structure/flora/tree/dead,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"q" = (
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"r" = (
+/obj/effect/anomaly/plasmasoul/planetary,
+/turf/open/lava/plasma/planet_ice,
+/area/template_noop)
+"I" = (
+/obj/structure/flora/ausbushes/sparsegrass{
+	pixel_x = -2;
+	 pixel_y = -4
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"O" = (
+/obj/structure/flora/ausbushes/sparsegrass{
+	pixel_x = -7;
+	 pixel_y = 4
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"Q" = (
 /obj/structure/flora/ausbushes/sparsegrass,
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
+"Y" = (
+/obj/structure/flora/rock/pile,
+/turf/open/lava/plasma/planet_ice,
+/area/template_noop)
+"Z" = (
+/turf/open/lava/plasma/planet_ice,
+/area/template_noop)
 
 (1,1,1) = {"
-p
-p
-p
-n
-n
-o
-o
-o
-o
-p
-p
-p
-p
+d
+d
+d
+Z
+Z
+q
+q
+q
+q
+d
+d
+d
+d
 "}
 (2,1,1) = {"
-p
-p
-p
-n
-n
-n
-o
-o
-n
-n
-p
-p
-p
+d
+d
+d
+Z
+Z
+Z
+q
+q
+Z
+Z
+d
+d
+d
 "}
 (3,1,1) = {"
-p
-p
-n
-n
 d
-n
-o
-o
-n
-n
-n
-n
-p
+d
+Z
+Z
+Y
+Z
+q
+q
+Z
+Z
+Z
+Z
+d
 "}
 (4,1,1) = {"
-p
-n
 d
-n
-n
-n
-o
-W
-n
-n
-n
-d
-n
+Z
+Y
+Z
+Z
+Z
+q
+Q
+Z
+Z
+Z
+Y
+Z
 "}
 (5,1,1) = {"
-o
-n
-n
-n
-n
-o
-o
-o
-o
-n
-n
-n
-n
+q
+Z
+Z
+Z
+Z
+q
+q
+q
+q
+Z
+Z
+Z
+Z
 "}
 (6,1,1) = {"
-W
-o
-o
-o
-o
-o
-b
-o
-o
-o
-n
-n
-n
+Q
+q
+q
+q
+q
+q
+f
+q
+q
+q
+Z
+Z
+Z
 "}
 (7,1,1) = {"
-o
-o
-o
-o
-N
-t
-o
-s
-n
-n
-n
-n
-n
+q
+q
+q
+q
+m
+I
+q
+r
+Z
+Z
+Z
+Z
+Z
 "}
 (8,1,1) = {"
-o
-n
-n
-o
-o
-o
-o
-o
-o
-o
-n
-n
-n
+q
+Z
+Z
+q
+q
+q
+q
+q
+q
+q
+Z
+Z
+Z
 "}
 (9,1,1) = {"
-p
-n
-n
-n
-o
-U
+d
+Z
+Z
+Z
+q
+h
+O
 Q
-W
-o
-n
-n
-n
-n
+q
+Z
+Z
+Z
+Z
 "}
 (10,1,1) = {"
-p
-n
 d
-n
-o
-o
-o
-n
-n
-n
-n
+Z
+Y
+Z
+q
+q
+q
+Z
+Z
+Z
+Z
+Y
 d
-p
 "}
 (11,1,1) = {"
-p
-n
-n
-o
-o
-n
-n
-n
-n
-n
-n
-p
-p
+d
+Z
+Z
+q
+q
+Z
+Z
+Z
+Z
+Z
+Z
+d
+d
 "}
 (12,1,1) = {"
-p
-n
-n
-o
-o
-n
-n
-n
 d
-n
-n
-p
-p
+Z
+Z
+q
+q
+Z
+Z
+Z
+Y
+Z
+Z
+d
+d
 "}
 (13,1,1) = {"
-p
-p
-o
-o
-o
-o
-p
-p
-p
-p
-p
-p
-p
+d
+d
+q
+q
+q
+q
+d
+d
+d
+d
+d
+d
+d
 "}

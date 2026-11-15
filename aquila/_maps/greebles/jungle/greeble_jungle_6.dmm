@@ -1,8 +1,9 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/turf/template_noop,
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
 /area/template_noop)
-"b" = (
+"c" = (
 /obj/item/stack/ore/iron{
 	amount = 5
 	},
@@ -10,94 +11,93 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
 /area/template_noop)
-"m" = (
+"s" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"v" = (
+/turf/template_noop,
+/area/template_noop)
+"E" = (
+/obj/structure/flora/ausbushes/sparsegrass,
 /turf/open/floor/plating/asteroid/dirt/jungle,
 /area/template_noop)
-"n" = (
-/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
-/area/template_noop)
-"u" = (
-/obj/structure/flora/rock/pile,
-/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
-/area/template_noop)
-"z" = (
-/obj/structure/flora/ausbushes/sparsegrass,
-/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
-/area/template_noop)
-"C" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
-/area/template_noop)
-"H" = (
-/obj/effect/decal/cleanable/dirt/dust,
+"J" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
 /area/template_noop)
 "L" = (
-/obj/structure/flora/ausbushes/sparsegrass,
+/obj/structure/flora/rock/pile,
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"N" = (
 /turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
+"R" = (
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
 /area/template_noop)
 
 (1,1,1) = {"
-a
-a
-a
-L
-a
-a
-a
+v
+v
+v
+E
+v
+v
+v
 "}
 (2,1,1) = {"
-a
-a
-m
-n
-m
-a
-a
+v
+v
+N
+R
+N
+v
+v
 "}
 (3,1,1) = {"
-a
-m
-u
-H
-u
+v
+N
 L
-a
+s
+L
+E
+v
 "}
 (4,1,1) = {"
-n
-z
-C
-b
-C
-m
-m
+R
+a
+J
+c
+J
+N
+N
 "}
 (5,1,1) = {"
+v
+R
 a
-n
-z
-C
-n
-n
-a
+J
+R
+R
+v
 "}
 (6,1,1) = {"
-a
-a
-m
-u
+v
+v
+N
 L
-a
-a
+E
+v
+v
 "}
 (7,1,1) = {"
-a
-a
-a
-m
-a
-a
-a
+v
+v
+v
+N
+v
+v
+v
 "}

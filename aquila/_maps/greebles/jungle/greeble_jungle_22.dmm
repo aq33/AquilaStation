@@ -1,5 +1,65 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
+/obj/machinery/door/poddoor{
+	dir = 4;
+	id = "minutecop_bridge"
+	},
+/obj/effect/spawner/structure/window/plastitanium,
+/turf/open/floor/plating,
+/area/template_noop)
+"b" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 10
+	},
+/obj/structure/spacevine/weak,
+/turf/open/floor/wood,
+/area/template_noop)
+"c" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/chair/fancy/shuttle{
+	dir = 4;
+	name = "Ster"
+	},
+/mob/living/basic/bear/cave,
+/obj/effect/gibspawner/human/bodypartless,
+/obj/effect/decal/remains/human,
+/turf/open/floor/plating/rust{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/template_noop)
+"e" = (
+/obj/machinery/door/poddoor{
+	id = "minutecop_bridge"
+	},
+/obj/effect/spawner/structure/window/plastitanium,
+/turf/open/floor/plating,
+/area/template_noop)
+"f" = (
+/obj/machinery/door/poddoor{
+	id = "minutecop_bridge";
+	dir = 4
+	},
+/obj/effect/spawner/structure/window/plastitanium,
+/turf/open/floor/plating,
+/area/template_noop)
+"g" = (
+/turf/template_noop,
+/area/template_noop)
+"h" = (
+/obj/structure/table/reinforced,
+/obj/machinery/recharger{
+	pixel_x = 12
+	},
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/item/fish,
+/obj/item/fish{
+	pixel_y = 8;
+	pixel_x = -5
+	},
+/turf/open/floor/plasteel,
+/area/template_noop)
+"i" = (
 /obj/structure/table/reinforced,
 /obj/item/paper_bin{
 	pixel_x = -8;
@@ -21,335 +81,16 @@
 /obj/structure/lattice/catwalk/over/ship/dark,
 /turf/open/floor/plasteel,
 /area/template_noop)
-"d" = (
-/turf/closed/mineral/random/planet_jungle,
-/area/template_noop)
-"e" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/item/radio/intercom/directional/south,
-/obj/effect/turf_decal/siding/thinplating/dark,
-/turf/open/floor/plating/rust{
-	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
-	planetary_atmos = 1
-	},
-/area/template_noop)
-"f" = (
-/obj/item/wallframe/airalarm{
-	dir = 8
-	},
-/turf/open/floor/plating/rust{
-	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
-	planetary_atmos = 1
-	},
-/area/template_noop)
-"g" = (
-/obj/machinery/door/poddoor{
-	id = "minutecop_bridge";
-	dir = 4
-	},
-/obj/effect/spawner/structure/window/plastitanium,
-/turf/open/floor/plating,
-/area/template_noop)
-"h" = (
-/obj/structure/lattice/catwalk/over/ship/dark,
-/obj/structure/frame/computer{
-	dir = 8;
-	anchored = 1
-	},
-/obj/item/food/grown/berries{
-	pixel_y = 1;
-	pixel_x = -5
-	},
-/obj/item/toy/plush/lizardplushie{
-	pixel_x = 9;
-	pixel_y = 12
-	},
-/turf/open/floor/plating{
-	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
-	planetary_atmos = 1
-	},
-/area/template_noop)
-"i" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/chair/fancy/shuttle{
-	dir = 4;
-	name = "Ster"
-	},
-/mob/living/basic/bear/cave,
-/obj/effect/gibspawner/human/bodypartless,
-/obj/effect/decal/remains/human,
-/turf/open/floor/plating/rust{
-	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
-	planetary_atmos = 1
-	},
-/area/template_noop)
 "j" = (
-/obj/structure/spacevine/dense,
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
 /area/template_noop)
-"m" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/cable,
-/obj/machinery/light_switch{
-	pixel_y = 23
-	},
-/obj/effect/turf_decal/siding/thinplating/dark{
+"k" = (
+/obj/machinery/light/broken{
 	dir = 1
 	},
-/obj/structure/spacevine/weak,
-/turf/open/floor/plating/rust{
-	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
-	planetary_atmos = 1
-	},
-/area/template_noop)
-"n" = (
-/obj/structure/spacevine/weak,
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
-/area/template_noop)
-"o" = (
-/obj/structure/cable,
-/turf/open/floor/plasteel/stairs{
-	dir = 1;
-	icon = 'icons/obj/stairs.dmi'
-	},
-/area/template_noop)
-"p" = (
-/obj/structure/spacevine/weak,
-/turf/closed/wall/mineral/plastitanium/nodiagonal,
-/area/template_noop)
-"q" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/effect/turf_decal/siding/thinplating/dark,
-/obj/machinery/light/broken,
-/obj/structure/spacevine/weak,
-/turf/open/floor/plating{
-	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
-	planetary_atmos = 1
-	},
-/area/template_noop)
-"r" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/machinery/firealarm/directional/south,
-/obj/structure/cable,
-/obj/effect/turf_decal/siding/thinplating/dark{
-	dir = 6
-	},
-/obj/structure/spacevine/dense,
-/turf/open/floor/plasteel/dark,
-/area/template_noop)
-"s" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
-/turf/open/floor/plating/rust{
-	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
-	planetary_atmos = 1
-	},
-/area/template_noop)
-"t" = (
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
-/area/template_noop)
-"u" = (
-/obj/structure/railing{
-	layer = 4.1
-	},
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 8
-	},
-/obj/structure/chair/fancy/shuttle{
-	dir = 4;
-	name = "Ster"
-	},
-/obj/effect/gibspawner/human/bodypartless,
-/obj/effect/decal/remains/human,
-/turf/open/floor/plasteel/dark,
-/area/template_noop)
-"w" = (
-/obj/structure/railing{
-	layer = 4.1
-	},
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 9
-	},
-/obj/item/stock_parts/cell/high/plus,
-/turf/open/floor/plating/rust{
-	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
-	planetary_atmos = 1
-	},
-/area/template_noop)
-"x" = (
-/turf/closed/wall/mineral/plastitanium/nodiagonal,
-/area/template_noop)
-"z" = (
-/obj/structure/spacevine/dense,
 /turf/closed/mineral/random/planet_jungle,
 /area/template_noop)
-"B" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 6
-	},
-/obj/structure/spacevine/weak,
-/turf/open/floor/wood,
-/area/template_noop)
-"C" = (
-/obj/structure/girder,
-/obj/structure/spacevine/weak,
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
-/area/template_noop)
-"D" = (
-/obj/item/wallframe/apc,
-/obj/item/food/grown/berries,
-/turf/open/floor/plating{
-	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
-	planetary_atmos = 1
-	},
-/area/template_noop)
-"E" = (
-/obj/item/radio/intercom/directional/south,
-/obj/machinery/firealarm/directional/south,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/lattice/catwalk/over/ship/dark,
-/obj/structure/frame/computer{
-	dir = 1;
-	anchored = 1
-	},
-/turf/open/floor/plasteel,
-/area/template_noop)
-"F" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 10
-	},
-/obj/structure/spacevine/weak,
-/turf/open/floor/wood,
-/area/template_noop)
-"G" = (
-/obj/machinery/door/poddoor{
-	dir = 4;
-	id = "minutecop_bridge"
-	},
-/obj/effect/spawner/structure/window/plastitanium,
-/turf/open/floor/plating,
-/area/template_noop)
-"H" = (
-/turf/template_noop,
-/area/template_noop)
-"I" = (
-/obj/structure/spacevine/dense,
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
-/area/template_noop)
-"J" = (
-/obj/machinery/door/poddoor{
-	id = "minutecop_bridge"
-	},
-/obj/effect/spawner/structure/window/plastitanium,
-/turf/open/floor/plating,
-/area/template_noop)
-"L" = (
-/obj/structure/table/reinforced,
-/obj/structure/lattice/catwalk/over/ship/dark,
-/obj/item/food/grown/berries{
-	pixel_y = 5
-	},
-/turf/open/floor/plasteel,
-/area/template_noop)
-"N" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/structure/cable,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/structure/spacevine,
-/turf/open/floor/plasteel/dark,
-/area/template_noop)
-"O" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/structure/cable,
-/turf/open/floor/plating{
-	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
-	planetary_atmos = 1
-	},
-/area/template_noop)
-"P" = (
-/obj/structure/table/reinforced,
-/obj/machinery/recharger{
-	pixel_x = 12
-	},
-/obj/structure/lattice/catwalk/over/ship/dark,
-/obj/item/fish,
-/obj/item/fish{
-	pixel_y = 8;
-	pixel_x = -5
-	},
-/turf/open/floor/plasteel,
-/area/template_noop)
-"Q" = (
-/obj/machinery/porta_turret/syndicate{
-	dir = 5
-	},
-/turf/closed/wall/mineral/plastitanium,
-/area/template_noop)
-"R" = (
-/obj/structure/railing{
-	layer = 4.1
-	},
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
-	dir = 8
-	},
-/obj/structure/lattice/catwalk/over/ship/dark,
-/obj/structure/frame/computer{
-	dir = 8;
-	anchored = 1
-	},
-/turf/open/floor/plasteel,
-/area/template_noop)
-"U" = (
-/obj/structure/cable,
-/obj/machinery/newscaster/directional/north,
-/obj/effect/turf_decal/siding/thinplating/dark{
-	dir = 5
-	},
-/obj/structure/spacevine/weak,
-/turf/open/floor/plating{
-	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
-	planetary_atmos = 1
-	},
-/area/template_noop)
-"V" = (
+"l" = (
 /obj/structure/closet/crate/bin,
 /obj/item/trash/candy,
 /obj/item/trash/sosjerky{
@@ -376,173 +117,432 @@
 	planetary_atmos = 1
 	},
 /area/template_noop)
-"X" = (
+"m" = (
+/obj/structure/railing{
+	layer = 4.1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 9
+	},
+/obj/item/stock_parts/cell/high/plus,
+/turf/open/floor/plating/rust{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/template_noop)
+"n" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 6
+	},
+/obj/structure/spacevine/weak,
+/turf/open/floor/wood,
+/area/template_noop)
+"o" = (
+/obj/structure/table/reinforced,
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/item/food/grown/berries{
+	pixel_y = 5
+	},
+/turf/open/floor/plasteel,
+/area/template_noop)
+"q" = (
+/obj/structure/spacevine/dense,
+/turf/closed/mineral/random/planet_jungle,
+/area/template_noop)
+"r" = (
+/obj/structure/spacevine/weak,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"u" = (
+/obj/structure/cable,
+/turf/open/floor/plasteel/stairs{
+	dir = 1;
+	icon = 'icons/obj/stairs.dmi'
+	},
+/area/template_noop)
+"v" = (
+/obj/item/radio/intercom/directional/south,
+/obj/machinery/firealarm/directional/south,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/frame/computer{
+	dir = 1;
+	anchored = 1
+	},
+/turf/open/floor/plasteel,
+/area/template_noop)
+"x" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/item/radio/intercom/directional/south,
+/obj/effect/turf_decal/siding/thinplating/dark,
+/turf/open/floor/plating/rust{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/template_noop)
+"z" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/frame/computer{
+	dir = 8;
+	anchored = 1
+	},
+/obj/item/food/grown/berries{
+	pixel_y = 1;
+	pixel_x = -5
+	},
+/obj/item/toy/plush/lizardplushie{
+	pixel_x = 9;
+	pixel_y = 12
+	},
+/turf/open/floor/plating{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/template_noop)
+"A" = (
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"B" = (
+/obj/structure/spacevine/dense,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"C" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
+/turf/open/floor/plating/rust{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/template_noop)
+"D" = (
+/obj/structure/spacevine/weak,
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/template_noop)
+"E" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/cable,
+/obj/machinery/light_switch{
+	pixel_y = 23
+	},
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 1
+	},
+/obj/structure/spacevine/weak,
+/turf/open/floor/plating/rust{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/template_noop)
+"F" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/firealarm/directional/south,
+/obj/structure/cable,
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 6
+	},
+/obj/structure/spacevine/dense,
+/turf/open/floor/plasteel/dark,
+/area/template_noop)
+"G" = (
 /obj/machinery/door/airlock/hatch{
 	name = "Kabina Kapitana"
 	},
 /obj/structure/spacevine/dense,
 /turf/open/floor/plasteel/tech,
 /area/template_noop)
-"Z" = (
-/obj/machinery/light/broken{
-	dir = 1
+"H" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
 	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/structure/spacevine,
+/turf/open/floor/plasteel/dark,
+/area/template_noop)
+"I" = (
+/obj/structure/cable,
+/obj/machinery/newscaster/directional/north,
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 5
+	},
+/obj/structure/spacevine/weak,
+/turf/open/floor/plating{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/template_noop)
+"J" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/thinplating/dark,
+/obj/machinery/light/broken,
+/obj/structure/spacevine/weak,
+/turf/open/floor/plating{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/template_noop)
+"K" = (
+/obj/machinery/porta_turret/syndicate{
+	dir = 5
+	},
+/turf/closed/wall/mineral/plastitanium,
+/area/template_noop)
+"L" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/plating{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/template_noop)
+"M" = (
+/obj/structure/railing{
+	layer = 4.1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/structure/chair/fancy/shuttle{
+	dir = 4;
+	name = "Ster"
+	},
+/obj/effect/gibspawner/human/bodypartless,
+/obj/effect/decal/remains/human,
+/turf/open/floor/plasteel/dark,
+/area/template_noop)
+"N" = (
+/obj/item/wallframe/apc,
+/obj/item/food/grown/berries,
+/turf/open/floor/plating{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/template_noop)
+"O" = (
+/obj/item/wallframe/airalarm{
+	dir = 8
+	},
+/turf/open/floor/plating/rust{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/template_noop)
+"Q" = (
+/obj/structure/railing{
+	layer = 4.1
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 8
+	},
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/frame/computer{
+	dir = 8;
+	anchored = 1
+	},
+/turf/open/floor/plasteel,
+/area/template_noop)
+"W" = (
 /turf/closed/mineral/random/planet_jungle,
+/area/template_noop)
+"X" = (
+/obj/structure/spacevine/dense,
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/template_noop)
+"Y" = (
+/obj/structure/girder,
+/obj/structure/spacevine/weak,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
 /area/template_noop)
 
 (1,1,1) = {"
-H
-t
-n
-n
-n
-n
-d
-d
-H
-H
+g
+A
+r
+r
+r
+r
+W
+W
+g
+g
 "}
 (2,1,1) = {"
-H
-t
-j
-V
-e
-p
-d
-d
-t
-t
+g
+A
+X
+l
+x
+D
+W
+W
+A
+A
 "}
 (3,1,1) = {"
-n
-I
-j
-m
-q
-C
-z
-d
-d
-t
-"}
-(4,1,1) = {"
-n
-I
-j
-U
 r
-j
-z
-z
-d
-d
-"}
-(5,1,1) = {"
-n
-n
-j
-j
-N
-x
-C
-C
-x
-d
-"}
-(6,1,1) = {"
-H
-F
-j
-f
-O
-o
-D
-E
-x
-d
-"}
-(7,1,1) = {"
-H
 B
 X
-s
-w
-P
-i
-L
+E
 J
-d
+Y
+q
+W
+W
+A
+"}
+(4,1,1) = {"
+r
+B
+X
+I
+F
+X
+q
+q
+W
+W
+"}
+(5,1,1) = {"
+r
+r
+X
+X
+H
+j
+Y
+Y
+j
+W
+"}
+(6,1,1) = {"
+g
+b
+X
+O
+L
+u
+N
+v
+j
+W
+"}
+(7,1,1) = {"
+g
+n
+G
+C
+m
+h
+c
+o
+e
+W
 "}
 (8,1,1) = {"
+q
+q
+j
+k
+M
+i
 z
-z
-x
-Z
-u
-a
-h
-J
-g
-d
+e
+f
+W
 "}
 (9,1,1) = {"
-d
-d
-x
-d
-R
-J
-G
-g
-d
-d
+W
+W
+j
+W
+Q
+e
+a
+f
+W
+W
 "}
 (10,1,1) = {"
-d
-d
-Q
-d
-d
-d
-d
-d
-d
-d
+W
+W
+K
+W
+W
+W
+W
+W
+W
+W
 "}
 (11,1,1) = {"
-d
-d
-d
-d
-d
-d
-d
-d
-d
-H
+W
+W
+W
+W
+W
+W
+W
+W
+W
+g
 "}
 (12,1,1) = {"
-H
-H
-d
-d
-d
-d
-d
-d
-H
-H
+g
+g
+W
+W
+W
+W
+W
+W
+g
+g
 "}
 (13,1,1) = {"
-H
-H
-H
-d
-d
-H
-H
-H
-H
-H
+g
+g
+g
+W
+W
+g
+g
+g
+g
+g
 "}

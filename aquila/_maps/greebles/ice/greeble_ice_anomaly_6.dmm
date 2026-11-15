@@ -1,44 +1,15 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"d" = (
-/obj/structure/flora/ash/garden/frigid,
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"j" = (
+"e" = (
 /obj/structure/flora/ausbushes/sparsegrass,
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
-"l" = (
-/obj/structure/flora/tree/pine,
+"f" = (
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
-"t" = (
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"x" = (
-/turf/open/floor/wood{
-	initial_gas_mix = "o2=26;n2=104;TEMP=255";
-	 planetary_atmos = 1
-	},
-/area/template_noop)
-"C" = (
+"h" = (
 /turf/template_noop,
 /area/template_noop)
-"H" = (
-/obj/item/stack/sheet/mineral/snow,
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"N" = (
-/obj/structure/flora/grass/both,
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"T" = (
-/obj/effect/anomaly/hallucination/planetary,
-/turf/open/floor/plasteel/dark{
-	initial_gas_mix = "o2=26;n2=104;TEMP=255";
-	 planetary_atmos = 1
-	},
-/area/template_noop)
-"W" = (
+"k" = (
 /obj/structure/chair/fancy/bench,
 /obj/structure/statue/snow/snowman{
 	layer = 3.1
@@ -48,154 +19,183 @@
 	 planetary_atmos = 1
 	},
 /area/template_noop)
-"X" = (
+"o" = (
+/obj/structure/flora/tree/pine,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"t" = (
+/obj/structure/flora/ash/garden/frigid,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"u" = (
+/obj/item/stack/sheet/mineral/snow,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"v" = (
 /turf/open/floor/plasteel/dark{
 	initial_gas_mix = "o2=26;n2=104;TEMP=255";
 	 planetary_atmos = 1
 	},
 /area/template_noop)
+"G" = (
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"K" = (
+/obj/effect/anomaly/hallucination/planetary,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"N" = (
+/obj/structure/flora/grass/both,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
 
 (1,1,1) = {"
-C
-t
+h
+f
 N
-t
-C
-C
-C
-C
-C
-C
+f
+h
+h
+h
+h
+h
+h
 "}
 (2,1,1) = {"
-d
 t
-t
-t
-t
-t
-t
-t
-C
-C
+f
+f
+f
+f
+f
+f
+f
+h
+h
 "}
 (3,1,1) = {"
-H
-W
-x
-W
+u
+k
+G
+k
 N
-H
-X
-t
-t
-C
+u
+v
+f
+f
+h
 "}
 (4,1,1) = {"
-t
-W
-x
-W
-t
-t
-X
-j
-t
+f
+k
+G
+k
+f
+f
+v
+e
+f
 N
 "}
 (5,1,1) = {"
-t
-W
-x
-W
-j
-X
-X
-X
-t
-l
+f
+k
+G
+k
+e
+v
+v
+v
+f
+o
 "}
 (6,1,1) = {"
 N
-X
-X
-X
-X
-X
-T
-X
-t
-H
+v
+v
+v
+v
+v
+K
+v
+f
+u
 "}
 (7,1,1) = {"
-t
-W
-x
-W
-t
-X
-X
-X
-t
+f
+k
+G
+k
+f
+v
+v
+v
+f
 N
 "}
 (8,1,1) = {"
-j
-W
-x
-W
-t
-j
-X
-H
-j
-t
+e
+k
+G
+k
+f
+e
+v
+u
+e
+f
 "}
 (9,1,1) = {"
-t
-W
-x
-W
-t
-t
-X
-t
-t
-C
+f
+k
+G
+k
+f
+f
+v
+f
+f
+h
 "}
 (10,1,1) = {"
-t
-H
-j
-t
-t
+f
+u
+e
+f
+f
 N
-t
-t
-C
-C
+f
+f
+h
+h
 "}
 (11,1,1) = {"
-C
-t
-t
-t
-j
-C
-C
-C
-C
-C
+h
+f
+f
+f
+e
+h
+h
+h
+h
+h
 "}
 (12,1,1) = {"
-C
-C
-C
-t
-C
-C
-C
-C
-C
-C
+h
+h
+h
+f
+h
+h
+h
+h
+h
+h
 "}

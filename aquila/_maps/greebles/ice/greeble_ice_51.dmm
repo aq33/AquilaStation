@@ -1,127 +1,127 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"j" = (
+"c" = (
 /obj/structure/flora/ausbushes/sparsegrass,
 /mob/living/basic/mining/wolf,
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
-"n" = (
-/obj/structure/flora/tree/pine,
+"g" = (
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
-"s" = (
-/obj/structure/flora/ash/garden/frigid,
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"C" = (
+"o" = (
 /obj/structure/flora/ausbushes/sparsegrass,
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
-"F" = (
+"q" = (
 /turf/template_noop,
 /area/template_noop)
-"V" = (
+"A" = (
+/obj/structure/flora/ash/garden/frigid,
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
-"Y" = (
+"K" = (
 /obj/structure/flora/ausbushes/ppflowers,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"Q" = (
+/obj/structure/flora/tree/pine,
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
 
 (1,1,1) = {"
-F
-F
-F
-F
-F
-F
-V
-V
-s
-Y
-V
-V
+q
+q
+q
+q
+q
+q
+g
+g
+A
+K
+g
+g
 "}
 (2,1,1) = {"
-F
-F
-F
-F
-F
-V
-V
-V
-V
-n
-C
-Y
+q
+q
+q
+q
+q
+g
+g
+g
+g
+Q
+o
+K
 "}
 (3,1,1) = {"
-F
-F
-V
-Y
-V
-V
-Y
-j
-C
-C
-C
-V
+q
+q
+g
+K
+g
+g
+K
+c
+o
+o
+o
+g
 "}
 (4,1,1) = {"
-F
-C
-C
-s
-V
-V
-n
-s
-V
-V
-F
-F
+q
+o
+o
+A
+g
+g
+Q
+A
+g
+g
+q
+q
 "}
 (5,1,1) = {"
-F
-V
-n
-C
-C
-V
-V
-V
-V
-F
-F
-F
+q
+g
+Q
+o
+o
+g
+g
+g
+g
+q
+q
+q
 "}
 (6,1,1) = {"
-V
-C
-V
-Y
-V
-F
-F
-F
-F
-F
-F
-F
+g
+o
+g
+K
+g
+q
+q
+q
+q
+q
+q
+q
 "}
 (7,1,1) = {"
-C
-Y
-F
-F
-F
-F
-F
-F
-F
-F
-F
-F
+o
+K
+q
+q
+q
+q
+q
+q
+q
+q
+q
+q
 "}

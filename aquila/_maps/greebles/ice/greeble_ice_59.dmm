@@ -1,65 +1,65 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"m" = (
+"b" = (
 /obj/structure/flora/rock/icy,
 /turf/open/floor/plating/ice/planet_ice,
 /area/template_noop)
-"B" = (
+"q" = (
 /obj/structure/flora/rock/pile/icy,
 /turf/open/floor/plating/ice/planet_ice,
 /area/template_noop)
 "K" = (
-/turf/open/floor/plating/ice/planet_ice,
-/area/template_noop)
-"V" = (
 /turf/template_noop,
+/area/template_noop)
+"Z" = (
+/turf/open/floor/plating/ice/planet_ice,
 /area/template_noop)
 
 (1,1,1) = {"
+Z
+q
+Z
 K
-B
 K
-V
-V
 "}
 (2,1,1) = {"
-B
+q
+Z
+Z
+q
 K
-K
-B
-V
 "}
 (3,1,1) = {"
-V
 K
-K
-K
-K
+Z
+Z
+Z
+Z
 "}
 (4,1,1) = {"
-V
 K
-m
-K
-K
+Z
+b
+Z
+Z
 "}
 (5,1,1) = {"
-V
 K
-K
-K
-B
+Z
+Z
+Z
+q
 "}
 (6,1,1) = {"
-V
-V
 K
-B
 K
+Z
+q
+Z
 "}
 (7,1,1) = {"
-V
-V
-V
 K
 K
+K
+Z
+Z
 "}

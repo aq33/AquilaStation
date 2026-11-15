@@ -1,106 +1,106 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"a" = (
-/turf/open/floor/plating/ice/planet_ice,
+"c" = (
+/turf/template_noop,
 /area/template_noop)
 "d" = (
 /turf/open/water/planet/beach/ice,
 /area/template_noop)
-"v" = (
+"n" = (
+/turf/open/floor/plating/ice/planet_ice,
+/area/template_noop)
+"p" = (
 /obj/effect/anomaly/pyro/planetary,
 /turf/open/water/planet/beach/ice,
 /area/template_noop)
-"x" = (
+"O" = (
 /turf/closed/mineral/planet_ice_wall,
-/area/template_noop)
-"Y" = (
-/turf/template_noop,
 /area/template_noop)
 
 (1,1,1) = {"
-Y
-Y
-x
-x
-a
-a
-a
-Y
-Y
+c
+c
+O
+O
+n
+n
+n
+c
+c
 "}
 (2,1,1) = {"
-Y
-x
-a
+c
+O
+n
 d
-a
+n
 d
-a
-a
-a
+n
+n
+n
 "}
 (3,1,1) = {"
-a
-a
-x
-a
+n
+n
+O
+n
 d
 d
 d
 d
-a
+n
 "}
 (4,1,1) = {"
-a
+n
 d
 d
 d
 d
-v
+p
 d
-x
-a
+O
+n
 "}
 (5,1,1) = {"
-a
+n
 d
 d
-x
+O
 d
 d
 d
-x
-x
+O
+O
 "}
 (6,1,1) = {"
-a
-a
+n
+n
 d
 d
 d
-x
-x
+O
+O
 d
-a
+n
 "}
 (7,1,1) = {"
-Y
-Y
-a
-x
-a
-x
-a
-a
-Y
+c
+c
+n
+O
+n
+O
+n
+n
+c
 "}
 (8,1,1) = {"
-Y
-a
-a
-Y
-Y
-a
-Y
-a
-a
+c
+n
+n
+c
+c
+n
+c
+n
+n
 "}

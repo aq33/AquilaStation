@@ -1,11 +1,4 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"f" = (
-/obj/item/fishing_rod{
-	pixel_x = 6;
-	 pixel_y = 22
-	},
-/turf/open/floor/plating/ice/planet_ice,
-/area/template_noop)
 "v" = (
 /obj/item/flashlight/flare{
 	pixel_x = 2;
@@ -17,7 +10,23 @@
 	},
 /turf/open/floor/plating/ice/planet_ice,
 /area/template_noop)
+"C" = (
+/turf/open/floor/plating/ice/planet_ice,
+/area/template_noop)
 "E" = (
+/turf/open/water/planet/beach/deep/ice,
+/area/template_noop)
+"H" = (
+/obj/item/fishing_rod{
+	pixel_x = 6;
+	 pixel_y = 22
+	},
+/turf/open/floor/plating/ice/planet_ice,
+/area/template_noop)
+"S" = (
+/turf/template_noop,
+/area/template_noop)
+"T" = (
 /obj/structure/chair/fancy/plastic{
 	dir = 4
 	},
@@ -27,67 +36,58 @@
 	},
 /turf/open/floor/plating/ice/planet_ice,
 /area/template_noop)
-"F" = (
-/turf/open/water/planet/beach/deep/ice,
-/area/template_noop)
-"Q" = (
-/turf/open/floor/plating/ice/planet_ice,
-/area/template_noop)
-"X" = (
-/turf/template_noop,
-/area/template_noop)
 
 (1,1,1) = {"
-X
-Q
-Q
-Q
-Q
-X
-X
+S
+C
+C
+C
+C
+S
+S
 "}
 (2,1,1) = {"
-Q
-Q
-E
-f
-Q
-Q
-X
+C
+C
+T
+H
+C
+C
+S
 "}
 (3,1,1) = {"
-Q
-Q
-F
+C
+C
+E
 v
-F
-Q
-Q
+E
+C
+C
 "}
 (4,1,1) = {"
-X
-Q
-Q
-F
-Q
-Q
-Q
+S
+C
+C
+E
+C
+C
+C
 "}
 (5,1,1) = {"
-X
-X
-Q
-Q
-Q
-Q
-X
+S
+S
+C
+C
+C
+C
+S
 "}
 (6,1,1) = {"
-X
-X
-Q
-Q
-Q
-Q
-X
+S
+S
+C
+C
+C
+C
+S
 "}

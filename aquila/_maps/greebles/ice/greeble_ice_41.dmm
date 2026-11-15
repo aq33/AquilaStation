@@ -1,16 +1,89 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "b" = (
-/obj/structure/flora/ausbushes/sparsegrass,
-/turf/open/floor/plating/asteroid/icerock,
+/obj/structure/bonfire/prelit,
+/obj/structure/stone_tile/slab/burnt,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	 planetary_atmos = 1
+	},
 /area/template_noop)
-"d" = (
-/obj/structure/flora/grass/brown,
+"c" = (
+/obj/structure/flora/ash/garden/frigid,
 /turf/open/floor/plating/asteroid/snow/planet_ice,
 /area/template_noop)
-"f" = (
+"g" = (
+/obj/structure/flora/ausbushes/ppflowers,
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
-"g" = (
+"i" = (
+/obj/structure/flora/ash/garden/frigid,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"j" = (
+/turf/template_noop,
+/area/template_noop)
+"p" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"r" = (
+/obj/structure/flora/tree/pine,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"s" = (
+/obj/structure/flora/stump,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"t" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"u" = (
+/obj/structure/railing{
+	dir = 10
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"w" = (
+/obj/item/hatchet{
+	pixel_x = -9;
+	 pixel_y = 12
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"y" = (
+/obj/structure/railing{
+	dir = 6
+	},
+/obj/item/binoculars,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"z" = (
+/turf/open/floor/plasteel/stairs{
+	dir = 1;
+	 initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"A" = (
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"D" = (
+/obj/structure/railing{
+	dir = 5
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"F" = (
 /obj/item/grown/log/tree,
 /obj/item/grown/log/tree{
 	pixel_x = -12
@@ -21,76 +94,39 @@
 	},
 /turf/open/floor/plating/asteroid/snow/planet_ice,
 /area/template_noop)
-"h" = (
-/obj/structure/flora/ausbushes/lavendergrass,
-/turf/open/floor/plating/asteroid/snow/planet_ice,
-/area/template_noop)
-"i" = (
-/obj/structure/flora/grass/both,
-/turf/open/floor/plating/asteroid/snow/planet_ice,
-/area/template_noop)
-"l" = (
-/turf/template_noop,
-/area/template_noop)
-"m" = (
-/obj/item/hatchet{
-	pixel_x = -9;
-	 pixel_y = 12
-	},
-/turf/open/floor/plating/asteroid/snow/planet_ice,
-/area/template_noop)
-"n" = (
-/obj/structure/flora/ausbushes/fullgrass,
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"o" = (
-/obj/structure/flora/ausbushes/ppflowers,
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"r" = (
-/turf/open/floor/plating/asteroid/snow/planet_ice,
-/area/template_noop)
-"u" = (
-/obj/structure/flora/ash/garden/frigid,
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"v" = (
-/obj/structure/flora/stump,
-/turf/open/floor/plating/asteroid/snow/planet_ice,
-/area/template_noop)
-"A" = (
-/obj/structure/railing{
-	dir = 5
-	},
+"G" = (
+/obj/structure/railing,
 /turf/open/floor/wood{
 	initial_gas_mix = "o2=26;n2=104;TEMP=255";
-	 planetary_atmos = 1
-	},
-/area/template_noop)
-"D" = (
-/obj/structure/railing{
-	dir = 6
-	},
-/obj/item/binoculars,
-/turf/open/floor/wood{
-	initial_gas_mix = "o2=26;n2=104;TEMP=255";
-	 planetary_atmos = 1
-	},
-/area/template_noop)
-"E" = (
-/turf/open/floor/plasteel/stairs{
-	dir = 1;
-	 initial_gas_mix = "o2=26;n2=104;TEMP=255";
 	 planetary_atmos = 1
 	},
 /area/template_noop)
 "H" = (
+/obj/structure/flora/grass/both,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"I" = (
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"J" = (
+/obj/structure/flora/grass/brown,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"K" = (
+/obj/structure/flora/ausbushes/lavendergrass,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"L" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"O" = (
 /turf/open/floor/wood{
 	initial_gas_mix = "o2=26;n2=104;TEMP=255";
 	 planetary_atmos = 1
 	},
 /area/template_noop)
-"I" = (
+"V" = (
 /obj/structure/railing{
 	dir = 4
 	},
@@ -99,14 +135,16 @@
 	 planetary_atmos = 1
 	},
 /area/template_noop)
-"J" = (
-/obj/structure/railing,
+"Y" = (
+/obj/structure/railing{
+	dir = 9
+	},
 /turf/open/floor/wood{
 	initial_gas_mix = "o2=26;n2=104;TEMP=255";
 	 planetary_atmos = 1
 	},
 /area/template_noop)
-"K" = (
+"Z" = (
 /obj/structure/railing{
 	dir = 8
 	},
@@ -116,132 +154,94 @@
 	 planetary_atmos = 1
 	},
 /area/template_noop)
-"L" = (
-/obj/structure/railing{
-	dir = 10
-	},
-/turf/open/floor/wood{
-	initial_gas_mix = "o2=26;n2=104;TEMP=255";
-	 planetary_atmos = 1
-	},
-/area/template_noop)
-"M" = (
-/obj/structure/railing{
-	dir = 9
-	},
-/turf/open/floor/wood{
-	initial_gas_mix = "o2=26;n2=104;TEMP=255";
-	 planetary_atmos = 1
-	},
-/area/template_noop)
-"N" = (
-/obj/structure/flora/ash/garden/frigid,
-/turf/open/floor/plating/asteroid/snow/planet_ice,
-/area/template_noop)
-"O" = (
-/obj/structure/flora/ausbushes/sparsegrass,
-/turf/open/floor/plating/asteroid/snow/planet_ice,
-/area/template_noop)
-"W" = (
-/obj/structure/flora/tree/pine,
-/turf/open/floor/plating/asteroid/snow/planet_ice,
-/area/template_noop)
-"X" = (
-/obj/structure/bonfire/prelit,
-/obj/structure/stone_tile/slab/burnt,
-/turf/open/floor/wood{
-	initial_gas_mix = "o2=26;n2=104;TEMP=255";
-	 planetary_atmos = 1
-	},
-/area/template_noop)
 
 (1,1,1) = {"
-l
-l
-h
-v
-r
-r
-l
-l
+j
+j
+K
+s
+I
+I
+j
+j
 "}
 (2,1,1) = {"
-l
-r
-r
-g
-m
-h
-N
-r
+j
+I
+I
+F
+w
+K
+c
+I
 "}
 (3,1,1) = {"
-r
-O
-i
-f
-b
-o
-b
-r
+I
+t
+H
+A
+L
+g
+L
+I
 "}
 (4,1,1) = {"
+I
 r
-W
-f
-M
-K
+A
+Y
+Z
+u
+A
 L
-f
-b
 "}
 (5,1,1) = {"
-O
-d
-E
-H
-X
+t
 J
-f
-f
+z
+O
+b
+G
+A
+A
 "}
 (6,1,1) = {"
-l
-r
-f
-A
+j
 I
+A
 D
-f
-l
+V
+y
+A
+j
 "}
 (7,1,1) = {"
-l
-r
-o
-f
-b
-b
-f
-l
+j
+I
+g
+A
+L
+L
+A
+j
 "}
 (8,1,1) = {"
-l
-u
-f
-n
-f
-f
-l
-l
+j
+i
+A
+p
+A
+A
+j
+j
 "}
 (9,1,1) = {"
-l
-f
-l
-l
-l
-l
-l
-l
+j
+A
+j
+j
+j
+j
+j
+j
 "}

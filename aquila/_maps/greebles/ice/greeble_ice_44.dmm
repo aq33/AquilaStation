@@ -1,30 +1,8 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"d" = (
-/obj/item/stack/sheet/mineral/snow,
-/turf/open/floor/plating/asteroid/snow/planet_ice,
-/area/template_noop)
-"e" = (
+"a" = (
 /turf/closed/wall/mineral/snow,
 /area/template_noop)
-"f" = (
-/obj/structure/flora/ausbushes/ppflowers,
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"g" = (
-/obj/item/stack/sheet/mineral/snow{
-	pixel_y = 3;
-	 pixel_x = 7
-	},
-/turf/open/floor/plating/asteroid/snow/planet_ice,
-/area/template_noop)
-"i" = (
-/turf/open/floor/plating/asteroid/icerock/smooth,
-/area/template_noop)
-"j" = (
-/obj/structure/flora/grass/brown,
-/turf/open/floor/plating/asteroid/snow/planet_ice,
-/area/template_noop)
-"m" = (
+"b" = (
 /obj/item/toy/snowball{
 	pixel_y = 17
 	},
@@ -49,68 +27,77 @@
 	},
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
-"p" = (
-/obj/item/stack/sheet/mineral/snow{
-	pixel_x = -4
-	},
-/obj/item/stack/sheet/mineral/snow{
-	pixel_x = 8
-	},
-/obj/item/stack/sheet/mineral/snow{
-	pixel_x = 2;
-	 pixel_y = 5
-	},
-/turf/open/floor/plating/asteroid/snow/planet_ice,
-/area/template_noop)
-"r" = (
-/obj/item/shovel,
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"t" = (
-/obj/structure/flora/grass/green,
-/turf/open/floor/plating/asteroid/snow/planet_ice,
-/area/template_noop)
-"v" = (
-/turf/template_noop,
-/area/template_noop)
-"B" = (
-/obj/structure/flora/ausbushes/lavendergrass,
-/turf/open/floor/plating/asteroid/snow/planet_ice,
-/area/template_noop)
-"C" = (
+"g" = (
 /obj/item/stack/sheet/mineral/snow{
 	pixel_x = 12;
 	 pixel_y = 10
 	},
 /turf/open/floor/plating/asteroid/snow/planet_ice,
 /area/template_noop)
-"E" = (
-/obj/structure/flora/ash/chilly,
+"j" = (
+/obj/structure/flora/grass/brown,
 /turf/open/floor/plating/asteroid/snow/planet_ice,
 /area/template_noop)
-"F" = (
-/obj/structure/statue/snow/snowman{
-	name = "komandor Mrozik";
-	 desc = "Kilka grud śniegu ulepionych w bałwana. Oddział go porzucił."
+"o" = (
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"r" = (
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"s" = (
+/obj/structure/flora/ausbushes/ppflowers,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"t" = (
+/obj/item/stack/sheet/mineral/snow{
+	pixel_x = -4
+	},
+/obj/item/stack/sheet/mineral/snow{
+	pixel_x = 8
+	},
+/obj/item/stack/sheet/mineral/snow{
+	pixel_x = 2;
+	 pixel_y = 5
 	},
 /turf/open/floor/plating/asteroid/snow/planet_ice,
 /area/template_noop)
-"G" = (
-/obj/structure/flora/grass/both,
+"u" = (
+/obj/item/stack/sheet/mineral/snow{
+	pixel_y = 3;
+	 pixel_x = 7
+	},
 /turf/open/floor/plating/asteroid/snow/planet_ice,
 /area/template_noop)
-"J" = (
+"v" = (
+/turf/template_noop,
+/area/template_noop)
+"x" = (
 /obj/item/stack/sheet/mineral/snow{
 	pixel_x = -11;
 	 pixel_y = -4
 	},
 /turf/open/floor/plating/asteroid/snow/planet_ice,
 /area/template_noop)
-"Q" = (
-/obj/structure/flora/rock/icy,
+"A" = (
+/turf/open/floor/plating/asteroid/icerock/smooth,
+/area/template_noop)
+"D" = (
+/obj/structure/flora/ausbushes/lavendergrass,
 /turf/open/floor/plating/asteroid/snow/planet_ice,
 /area/template_noop)
-"S" = (
+"J" = (
+/obj/structure/flora/ash/chilly,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"K" = (
+/obj/structure/flora/grass/green,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"O" = (
+/obj/item/stack/sheet/mineral/snow,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"Q" = (
 /obj/item/stack/sheet/mineral/snow{
 	pixel_x = 8
 	},
@@ -123,124 +110,137 @@
 	},
 /turf/open/floor/plating/asteroid/snow/planet_ice,
 /area/template_noop)
+"R" = (
+/obj/structure/flora/rock/icy,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
 "T" = (
+/obj/item/shovel,
 /turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"U" = (
+/obj/structure/flora/grass/both,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
 /area/template_noop)
 "W" = (
-/obj/structure/flora/rock/pile/icy,
-/turf/open/floor/plating/asteroid/icerock,
+/obj/structure/statue/snow/snowman{
+	name = "komandor Mrozik";
+	 desc = "Kilka grud śniegu ulepionych w bałwana. Oddział go porzucił."
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
 /area/template_noop)
 "Y" = (
-/turf/open/floor/plating/asteroid/snow/planet_ice,
+/obj/structure/flora/rock/pile/icy,
+/turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
 
 (1,1,1) = {"
 v
 v
-Y
-Y
+o
+o
 v
-Y
-Y
-Y
+o
+o
+o
 v
 "}
 (2,1,1) = {"
 v
-Y
-e
-p
-e
-p
-e
+o
+a
 t
-Y
+a
+t
+a
+K
+o
 "}
 (3,1,1) = {"
-Y
-e
-e
-Y
-Y
-Y
-e
-e
-Y
+o
+a
+a
+o
+o
+o
+a
+a
+o
 "}
 (4,1,1) = {"
-G
-p
-Y
+U
+t
+o
 j
-W
-i
-F
-S
 Y
+A
+W
+Q
+o
 "}
 (5,1,1) = {"
-Y
-e
-Y
-T
-e
-m
-Y
-e
-Y
+o
+a
+o
+r
+a
+b
+o
+a
+o
 "}
 (6,1,1) = {"
-Y
-S
-Y
-f
-r
+o
+Q
+o
+s
 T
-J
+r
+x
+u
 g
-C
 "}
 (7,1,1) = {"
-Y
-e
-d
-Y
-Y
-Y
-e
-e
-Y
+o
+a
+O
+o
+o
+o
+a
+a
+o
 "}
 (8,1,1) = {"
-Y
-E
-e
-S
-e
-p
-e
+o
+J
+a
 Q
+a
+t
+a
+R
 v
 "}
 (9,1,1) = {"
 v
 v
-Y
-Y
-Y
-B
-Y
-Y
+o
+o
+o
+D
+o
+o
 v
 "}
 (10,1,1) = {"
 v
-Y
-G
-Y
+o
+U
+o
 v
 v
 v
-Y
+o
 v
 "}

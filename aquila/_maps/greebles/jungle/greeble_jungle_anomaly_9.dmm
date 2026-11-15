@@ -1,115 +1,115 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"h" = (
-/obj/structure/flora/ausbushes/sparsegrass/hell,
-/turf/open/floor/plating/asteroid/river_sand,
+"a" = (
+/turf/open/water/planet/jungle,
 /area/template_noop)
-"k" = (
+"e" = (
 /obj/effect/gibspawner/human/bodypartless,
+/turf/open/water/planet/jungle,
+/area/template_noop)
+"f" = (
+/obj/structure/flora/ausbushes/genericbush/hell,
 /obj/structure/flora/ausbushes/sparsegrass/hell,
 /turf/open/water/planet/jungle,
 /area/template_noop)
-"o" = (
+"q" = (
+/obj/effect/gibspawner/human/bodypartless,
+/obj/structure/flora/ausbushes/genericbush/hell,
+/turf/open/water/planet/jungle,
+/area/template_noop)
+"t" = (
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
+/area/template_noop)
+"w" = (
+/turf/template_noop,
+/area/template_noop)
+"C" = (
+/obj/structure/flora/ausbushes/genericbush/hell,
+/turf/open/water/planet/jungle,
+/area/template_noop)
+"G" = (
+/obj/structure/flora/ausbushes/sparsegrass/hell,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
+/area/template_noop)
+"H" = (
 /obj/effect/anomaly/veins/planetary,
 /obj/structure/flora/ausbushes/hell{
 	pixel_y = -6
 	},
 /turf/open/water/planet/jungle,
 /area/template_noop)
-"s" = (
-/turf/open/water/planet/jungle,
-/area/template_noop)
-"v" = (
+"K" = (
 /obj/structure/flora/ausbushes/sparsegrass/hell,
-/turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
-/area/template_noop)
-"x" = (
-/turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
-/area/template_noop)
-"y" = (
-/obj/structure/flora/ausbushes/genericbush/hell,
-/obj/structure/flora/ausbushes/sparsegrass/hell,
-/turf/open/water/planet/jungle,
-/area/template_noop)
-"D" = (
-/obj/effect/gibspawner/human/bodypartless,
-/turf/open/water/planet/jungle,
-/area/template_noop)
-"I" = (
 /turf/open/floor/plating/asteroid/river_sand,
 /area/template_noop)
-"M" = (
+"L" = (
+/turf/open/floor/plating/asteroid/river_sand,
+/area/template_noop)
+"Z" = (
 /obj/effect/gibspawner/human/bodypartless,
-/obj/structure/flora/ausbushes/genericbush/hell,
-/turf/open/water/planet/jungle,
-/area/template_noop)
-"V" = (
-/turf/template_noop,
-/area/template_noop)
-"X" = (
-/obj/structure/flora/ausbushes/genericbush/hell,
+/obj/structure/flora/ausbushes/sparsegrass/hell,
 /turf/open/water/planet/jungle,
 /area/template_noop)
 
 (1,1,1) = {"
-s
-X
-s
-I
-h
-V
-V
+a
+C
+a
+L
+K
+w
+w
 "}
 (2,1,1) = {"
-s
-D
-s
-I
-h
-I
-V
+a
+e
+a
+L
+K
+L
+w
 "}
 (3,1,1) = {"
-s
-X
-s
-s
-D
-I
-h
+a
+C
+a
+a
+e
+L
+K
 "}
 (4,1,1) = {"
-h
-I
-s
-o
-y
-I
-I
+K
+L
+a
+H
+f
+L
+L
 "}
 (5,1,1) = {"
-v
-I
-k
-s
-s
-s
-I
+G
+L
+Z
+a
+a
+a
+L
 "}
 (6,1,1) = {"
-x
-v
-I
-I
-M
-s
-I
+t
+G
+L
+L
+q
+a
+L
 "}
 (7,1,1) = {"
-V
-V
-V
-I
-h
-s
-s
+w
+w
+w
+L
+K
+a
+a
 "}

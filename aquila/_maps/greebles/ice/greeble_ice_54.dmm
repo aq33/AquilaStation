@@ -1,119 +1,119 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"f" = (
+"d" = (
+/turf/template_noop,
+/area/template_noop)
+"n" = (
+/obj/structure/flora/rock/icy,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"s" = (
 /obj/structure/geyser/random,
 /turf/open/floor/plating/asteroid/icerock/cracked,
 /area/template_noop)
-"k" = (
-/obj/structure/flora/ausbushes/fullgrass,
+"w" = (
+/obj/structure/flora/ausbushes/sparsegrass,
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
-"o" = (
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"z" = (
-/obj/structure/flora/rock/icy,
+"x" = (
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
 "C" = (
 /obj/structure/flora/ausbushes/lavendergrass,
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
-"H" = (
+"P" = (
+/obj/structure/flora/ash/garden/frigid,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"V" = (
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
+"X" = (
 /obj/structure/flora/tree/pine,
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
-"L" = (
-/turf/template_noop,
-/area/template_noop)
-"M" = (
-/obj/structure/flora/ausbushes/sparsegrass,
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"T" = (
-/turf/open/floor/plating/asteroid/icerock/cracked,
-/area/template_noop)
-"U" = (
-/obj/structure/flora/ash/garden/frigid,
+"Z" = (
+/obj/structure/flora/ausbushes/fullgrass,
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
 
 (1,1,1) = {"
-L
-o
-M
-o
-M
+d
+x
+w
+x
+w
 C
-L
-L
+d
+d
 "}
 (2,1,1) = {"
 C
-U
-o
-z
+P
+x
+n
 C
-k
-M
-L
+Z
+w
+d
 "}
 (3,1,1) = {"
-H
-o
-T
-T
-T
-o
-o
-M
+X
+x
+V
+V
+V
+x
+x
+w
 "}
 (4,1,1) = {"
-M
-o
-T
-f
-T
-T
-o
-M
+w
+x
+V
+s
+V
+V
+x
+w
 "}
 (5,1,1) = {"
-o
-k
-z
-T
-T
-z
-o
-L
+x
+Z
+n
+V
+V
+n
+x
+d
 "}
 (6,1,1) = {"
-L
-M
-M
-o
-o
-k
-L
-L
+d
+w
+w
+x
+x
+Z
+d
+d
 "}
 (7,1,1) = {"
-L
-L
-M
-o
-M
-U
-L
-L
+d
+d
+w
+x
+w
+P
+d
+d
 "}
 (8,1,1) = {"
-L
-L
-L
+d
+d
+d
 C
-o
-M
-M
-L
+x
+w
+w
+d
 "}

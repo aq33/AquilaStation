@@ -1,68 +1,68 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"j" = (
-/turf/template_noop,
-/area/template_noop)
-"s" = (
-/obj/structure/flora/ausbushes/sparsegrass,
+"b" = (
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
-"t" = (
-/obj/structure/flora/ausbushes/lavendergrass,
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"v" = (
+"l" = (
 /mob/living/basic/snow_monkey,
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
-"y" = (
+"A" = (
 /obj/structure/flora/ausbushes/sparsegrass,
 /obj/structure/flora/ausbushes/lavendergrass,
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
-"z" = (
+"B" = (
+/obj/structure/geyser/random,
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
-"I" = (
+"E" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"J" = (
+/turf/template_noop,
+/area/template_noop)
+"P" = (
 /obj/structure/flora/ash/garden/frigid,
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
-"R" = (
-/obj/structure/geyser/random,
+"V" = (
+/obj/structure/flora/ausbushes/lavendergrass,
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
 
 (1,1,1) = {"
-j
-z
-I
-s
-j
+J
+b
+P
+E
+J
 "}
 (2,1,1) = {"
-j
-y
-z
-t
-s
+J
+A
+b
+V
+E
 "}
 (3,1,1) = {"
-z
-z
-v
-z
-I
+b
+b
+l
+b
+P
 "}
 (4,1,1) = {"
-s
-R
-z
-z
-s
+E
+B
+b
+b
+E
 "}
 (5,1,1) = {"
-j
-t
-s
-j
-j
+J
+V
+E
+J
+J
 "}

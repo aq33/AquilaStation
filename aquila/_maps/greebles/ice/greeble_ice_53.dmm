@@ -1,78 +1,78 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"h" = (
+"g" = (
 /obj/structure/statue/snow/snowman,
 /turf/open/floor/plating/asteroid/snow/planet_ice,
 /area/template_noop)
-"o" = (
+"k" = (
 /obj/structure/flora/grass/both,
 /turf/open/floor/plating/asteroid/snow/planet_ice,
 /area/template_noop)
-"B" = (
-/obj/structure/flora/tree/pine,
+"v" = (
 /turf/open/floor/plating/asteroid/snow/planet_ice,
 /area/template_noop)
-"D" = (
-/turf/open/floor/plating/asteroid/snow/planet_ice,
-/area/template_noop)
-"K" = (
+"y" = (
 /obj/structure/flora/grass/brown,
 /turf/open/floor/plating/asteroid/snow/planet_ice,
 /area/template_noop)
-"X" = (
+"L" = (
+/obj/structure/flora/tree/pine,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"R" = (
 /turf/template_noop,
 /area/template_noop)
 
 (1,1,1) = {"
-X
-X
-X
-X
-h
-B
-K
+R
+R
+R
+R
+g
+L
+y
 "}
 (2,1,1) = {"
-o
-D
-K
-X
-X
-D
-D
+k
+v
+y
+R
+R
+v
+v
 "}
 (3,1,1) = {"
-h
-B
-D
-X
-X
-X
-X
+g
+L
+v
+R
+R
+R
+R
 "}
 (4,1,1) = {"
-X
-X
-X
-X
-X
-X
-X
+R
+R
+R
+R
+R
+R
+R
 "}
 (5,1,1) = {"
-X
-o
-X
-X
-D
-X
-X
+R
+k
+R
+R
+v
+R
+R
 "}
 (6,1,1) = {"
-X
-D
-h
-B
-K
-X
-X
+R
+v
+g
+L
+y
+R
+R
 "}

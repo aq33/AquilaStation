@@ -1,148 +1,148 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"a" = (
+"c" = (
+/obj/structure/flora/tree/dead/barren,
+/turf/open/water/planet/jungle,
+/area/template_noop)
+"k" = (
 /obj/structure/flora/ausbushes/sparsegrass/hell,
 /turf/open/floor/plating/asteroid/river_sand,
 /area/template_noop)
-"o" = (
-/turf/template_noop,
-/area/template_noop)
-"q" = (
+"p" = (
 /obj/structure/flora/ausbushes/fullgrass/hell,
-/turf/open/water/planet/jungle,
+/turf/open/floor/plating/asteroid/river_sand,
 /area/template_noop)
 "r" = (
-/obj/structure/flora/ausbushes/sparsegrass/hell,
-/turf/open/water/planet/jungle,
+/turf/open/floor/plating/asteroid/river_sand,
 /area/template_noop)
 "w" = (
 /obj/structure/flora/ausbushes/fullgrass/hell,
-/turf/open/floor/plating/asteroid/river_sand,
-/area/template_noop)
-"y" = (
 /turf/open/water/planet/jungle,
 /area/template_noop)
-"F" = (
-/turf/open/floor/plating/asteroid/river_sand,
-/area/template_noop)
-"O" = (
+"Q" = (
 /obj/effect/mob_spawn/human/corpse/syndicatesoldier{
 	brute_damage = 600
 	},
 /obj/effect/anomaly/veins/helltree,
 /turf/open/water/planet/jungle,
 /area/template_noop)
-"P" = (
-/obj/structure/flora/tree/dead/barren,
+"U" = (
+/obj/structure/flora/ausbushes/sparsegrass/hell,
+/turf/open/water/planet/jungle,
+/area/template_noop)
+"V" = (
+/turf/template_noop,
+/area/template_noop)
+"W" = (
 /turf/open/water/planet/jungle,
 /area/template_noop)
 
 (1,1,1) = {"
-o
-o
-w
-a
-a
-w
-F
-o
+V
+V
+p
+k
+k
+p
+r
+V
 "}
 (2,1,1) = {"
-o
-F
-w
-y
-y
-y
-a
-o
+V
+r
+p
+W
+W
+W
+k
+V
 "}
 (3,1,1) = {"
-F
-a
-P
-y
 r
-y
-a
-F
+k
+c
+W
+U
+W
+k
+r
 "}
 (4,1,1) = {"
-w
-a
-y
-y
-y
-r
-P
-a
+p
+k
+W
+W
+W
+U
+c
+k
 "}
 (5,1,1) = {"
-w
-y
+p
+W
+U
+W
+W
+W
+U
 r
-y
-y
-y
-r
-F
 "}
 (6,1,1) = {"
-a
-y
-y
-y
-O
-y
-y
-w
+k
+W
+W
+W
+Q
+W
+W
+p
 "}
 (7,1,1) = {"
-a
-a
-y
-y
-r
-r
-q
-a
+k
+k
+W
+W
+U
+U
+w
+k
 "}
 (8,1,1) = {"
-o
+V
+p
+W
+W
 w
-y
-y
-q
-q
-y
 w
+W
+p
 "}
 (9,1,1) = {"
-o
-w
-a
-P
-r
-r
-y
-a
+V
+p
+k
+c
+U
+U
+W
+k
 "}
 (10,1,1) = {"
-o
-o
-a
-F
+V
+V
+k
 r
-y
-a
-a
+U
+W
+k
+k
 "}
 (11,1,1) = {"
-o
-o
-o
-F
-F
-F
-F
-o
+V
+V
+V
+r
+r
+r
+r
+V
 "}

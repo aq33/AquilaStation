@@ -3749,6 +3749,24 @@ Oznaczenia w kolumnie uwag:
 | transfusion (anomaly) | anomalia transfuzyjna | ż; nowe (Shiptest) |
 | chronograph (anomaly) | chronograf | m; nowe (Shiptest); efekt: przyspieszenie (accelerando) |
 | big / high (anomaly variants) | ogromna / silna anomalia … | nowe (Shiptest) |
+| frozen planetoid | planeta lodowa | ż; nowe (typ planety) |
+| jungle planetoid | planeta dżunglowa | ż; nowe (typ planety) |
+| snowball dwarf planetoid | śnieżna planeta karłowata | ż; nowe (typ planety) |
+| icy rock (floor) | lodowa skała | ż; nowe (turf) |
+| cracked ice floor (iceberg) | popękany lód | m; nowe (turf) |
+| schist | łupek | m; nowe (ściana minerału planety lodowej) |
+| bauxite | boksyt | m; nowe (ściana minerału planety dżunglowej) |
+| polluted rock | skażona skała | ż; nowe |
+| ice crystals (ore) | kryształki lodu | m mn.; nowe (ruda lodu) |
+| river sand | piasek rzeczny | m; nowe |
+| jungle moss | mech dżungli | m; nowe |
+| dense / weak / dead space vines | gęste / kruche / martwe pnącza | n mn.; nowe |
+| lush garden / chilly garden | bujny ogródek / zmrożony ogródek | m; nowe |
+| springy grassy fruit (chilly) | sprężysta owocująca trawa | ż; nowe |
+| Frontiersmen | piraci (w ruinach planet zamienieni na naszych piratów) | m mn.; zamiennik frakcji |
+| CLIP | CLIP | nazwa własna |
+| Serene Outdoors / Serene Hunts | Serene Outdoors / Łowisko Serene | nazwa własna |
+| Big Hole | Wielka Dziura | ż; nowe (ruina dżungli) |
 | Ramzi Clique | Klika Ramziego | ż; nowe (frakcja z ruin Shiptesta) |
 | Hardliners | Twardogłowi | m mn.; nowe (frakcja z ruin Shiptesta) |
 | Reisehund (Ramzi hound) | rajzehund | m; nowe |

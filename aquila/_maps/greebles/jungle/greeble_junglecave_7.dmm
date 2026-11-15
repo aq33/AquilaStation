@@ -1,26 +1,54 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"d" = (
-/obj/structure/flora/rock/pile,
-/turf/open/floor/plating/asteroid/dirt/jungle,
-/area/template_noop)
-"e" = (
-/obj/effect/decal/cleanable/oil,
-/turf/open/floor/plating/asteroid/dirt/jungle,
-/area/template_noop)
-"f" = (
-/obj/item/clothing/head/hardhat,
-/turf/open/floor/plating/asteroid/dirt/jungle,
-/area/template_noop)
-"q" = (
+"b" = (
 /obj/item/stack/ore/iron{
 	amount = 5
 	},
 /turf/open/floor/plating/asteroid/dirt/jungle,
 /area/template_noop)
-"s" = (
+"i" = (
 /turf/closed/mineral/random/planet_jungle,
 /area/template_noop)
+"j" = (
+/obj/effect/decal/cleanable/oil,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
+"n" = (
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
+"s" = (
+/obj/structure/sink,
+/obj/item/shovel,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
+"w" = (
+/obj/effect/decal/cleanable/oil/streak,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
 "x" = (
+/obj/structure/flora/rock,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
+"z" = (
+/turf/template_noop,
+/area/template_noop)
+"A" = (
+/obj/structure/flora/rock/pile,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
+"E" = (
+/obj/structure/sink,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
+"G" = (
+/obj/item/clothing/head/hardhat,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
+"O" = (
+/obj/structure/sink,
+/obj/structure/girder,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
+"Q" = (
 /obj/effect/decal/cleanable/oil,
 /obj/item/stack/cable_coil/cut,
 /obj/item/stack/ore/iron{
@@ -28,88 +56,60 @@
 	},
 /turf/open/floor/plating/asteroid/dirt/jungle,
 /area/template_noop)
-"A" = (
-/obj/structure/sink,
-/obj/structure/girder,
-/turf/open/floor/plating/asteroid/dirt/jungle,
-/area/template_noop)
-"D" = (
-/obj/structure/flora/rock,
-/turf/open/floor/plating/asteroid/dirt/jungle,
-/area/template_noop)
-"M" = (
-/turf/open/floor/plating/asteroid/dirt/jungle,
-/area/template_noop)
-"Q" = (
-/obj/structure/sink,
-/turf/open/floor/plating/asteroid/dirt/jungle,
-/area/template_noop)
-"R" = (
-/turf/template_noop,
-/area/template_noop)
-"W" = (
-/obj/structure/sink,
-/obj/item/shovel,
-/turf/open/floor/plating/asteroid/dirt/jungle,
-/area/template_noop)
-"Y" = (
-/obj/effect/decal/cleanable/oil/streak,
-/turf/open/floor/plating/asteroid/dirt/jungle,
-/area/template_noop)
 
 (1,1,1) = {"
-R
-R
-R
-s
-s
-R
+z
+z
+z
+i
+i
+z
 "}
 (2,1,1) = {"
-R
-s
-M
-d
-s
-s
+z
+i
+n
+A
+i
+i
 "}
 (3,1,1) = {"
-s
-s
-Q
-M
-q
-M
+i
+i
+E
+n
+b
+n
 "}
 (4,1,1) = {"
-s
-f
-D
-e
-W
-d
-"}
-(5,1,1) = {"
-d
-M
+i
+G
 x
-Y
-M
-s
-"}
-(6,1,1) = {"
-s
+j
 s
 A
-M
-s
-s
+"}
+(5,1,1) = {"
+A
+n
+Q
+w
+n
+i
+"}
+(6,1,1) = {"
+i
+i
+O
+n
+i
+i
 "}
 (7,1,1) = {"
-R
-s
-s
-e
-R
-R
+z
+i
+i
+j
+z
+z
 "}

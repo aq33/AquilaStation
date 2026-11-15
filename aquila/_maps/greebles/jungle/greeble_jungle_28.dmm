@@ -1,29 +1,48 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"b" = (
+"a" = (
 /obj/structure/spacevine,
 /turf/open/floor/plating/asteroid/dirt/jungle/dark,
 /area/template_noop)
-"d" = (
-/obj/structure/flora/ausbushes/sparsegrass,
-/turf/open/floor/plating/asteroid/dirt/grass/jungle,
-/area/template_noop)
-"h" = (
-/obj/item/ammo_casing/spent,
-/obj/item/ammo_casing/spent,
-/obj/item/ammo_casing/spent,
-/obj/item/ammo_casing/spent,
-/obj/item/ammo_casing/spent,
+"e" = (
+/obj/structure/spacevine,
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/concrete/slab_1{
-	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+/turf/open/floor/plasteel/stairs{
+	dir = 4;
+	 initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
 	 planetary_atmos = 1
 	},
 /area/template_noop)
 "i" = (
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"m" = (
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"q" = (
+/obj/structure/spacevine,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"s" = (
+/obj/structure/flora/tree/jungle/small,
 /obj/structure/spacevine,
 /turf/open/floor/plating/asteroid/dirt/grass/jungle,
 /area/template_noop)
-"j" = (
+"t" = (
+/turf/template_noop,
+/area/template_noop)
+"x" = (
 /obj/structure/spacevine,
 /obj/item/ammo_casing/spent,
 /obj/item/ammo_casing/spent,
@@ -35,23 +54,18 @@
 	 planetary_atmos = 1
 	},
 /area/template_noop)
-"m" = (
-/obj/structure/spacevine,
-/obj/structure/flora/rock/jungle,
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
-/area/template_noop)
-"s" = (
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
-/area/template_noop)
-"u" = (
-/obj/structure/spacevine,
-/obj/structure/flora/junglebush/c,
-/turf/open/floor/plating/asteroid/dirt/jungle/dark,
-/area/template_noop)
-"v" = (
-/turf/template_noop,
-/area/template_noop)
 "z" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/template_noop)
+"D" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"F" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plasteel/stairs{
 	dir = 8;
@@ -59,16 +73,21 @@
 	 planetary_atmos = 1
 	},
 /area/template_noop)
-"P" = (
-/obj/structure/flora/junglebush,
-/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+"G" = (
+/obj/structure/spacevine,
+/obj/structure/flora/junglebush/c,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
 /area/template_noop)
-"Q" = (
-/obj/structure/flora/tree/jungle/small,
+"H" = (
 /obj/structure/spacevine,
 /turf/open/floor/plating/asteroid/dirt/grass/jungle,
 /area/template_noop)
-"U" = (
+"M" = (
+/obj/structure/flora/junglebush,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/template_noop)
+"O" = (
+/obj/item/ammo_casing/spent,
 /obj/item/ammo_casing/spent,
 /obj/item/ammo_casing/spent,
 /obj/item/ammo_casing/spent,
@@ -81,82 +100,63 @@
 /area/template_noop)
 "V" = (
 /obj/structure/spacevine,
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plasteel/stairs{
-	dir = 4;
-	 initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
-	 planetary_atmos = 1
-	},
-/area/template_noop)
-"W" = (
-/obj/structure/spacevine,
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/concrete/slab_1{
-	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
-	 planetary_atmos = 1
-	},
-/area/template_noop)
-"Y" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/concrete/slab_1{
-	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
-	 planetary_atmos = 1
-	},
+/obj/structure/flora/rock/jungle,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
 /area/template_noop)
 
 (1,1,1) = {"
-v
-v
-s
-b
-s
-v
+t
+t
+i
+a
+i
+t
 "}
 (2,1,1) = {"
-i
-Q
-b
-V
-z
+H
 s
+a
+e
+F
+i
 "}
 (3,1,1) = {"
-i
-u
-b
-W
-j
-m
+H
+G
+a
+q
+x
+V
 "}
 (4,1,1) = {"
+H
+a
 i
-b
-s
-Y
-h
-s
+D
+O
+i
 "}
 (5,1,1) = {"
-P
-d
-s
-Y
-U
-s
+M
+z
+i
+D
+m
+i
 "}
 (6,1,1) = {"
-d
-s
-s
 z
-z
-v
+i
+i
+F
+F
+t
 "}
 (7,1,1) = {"
-v
-v
-s
-s
-s
-v
+t
+t
+i
+i
+i
+t
 "}

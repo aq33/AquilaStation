@@ -1,33 +1,46 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"d" = (
-/obj/structure/flora/rock/pile/lava{
-	pixel_x = -10;
-	 pixel_y = 6
+"a" = (
+/turf/template_noop,
+/area/template_noop)
+"b" = (
+/obj/item/crystal_shard{
+	pixel_x = 10;
+	 pixel_y = 13
 	},
 /turf/open/floor/plating/ice/planet_ice,
 /area/template_noop)
-"j" = (
+"n" = (
 /obj/structure/flora/rock/pile/lava{
 	pixel_x = 7;
 	 pixel_y = 7
 	},
 /turf/open/floor/plating/ice/planet_ice,
 /area/template_noop)
-"m" = (
-/obj/structure/flora/rock/pile/lava{
-	pixel_x = 6;
-	 pixel_y = -4
+"q" = (
+/obj/item/crystal_shard{
+	pixel_x = -4;
+	 pixel_y = 1
 	},
 /turf/open/floor/plating/ice/planet_ice,
 /area/template_noop)
-"t" = (
+"u" = (
+/turf/open/floor/plating/ice/planet_ice,
+/area/template_noop)
+"y" = (
 /obj/structure/flora/rock/pile/lava{
 	pixel_x = -5;
 	 pixel_y = 7
 	},
 /turf/open/floor/plating/ice/planet_ice,
 /area/template_noop)
-"F" = (
+"G" = (
+/obj/structure/flora/rock/pile/lava{
+	pixel_x = 6;
+	 pixel_y = -4
+	},
+/turf/open/floor/plating/ice/planet_ice,
+/area/template_noop)
+"H" = (
 /obj/item/crystal_shard{
 	pixel_x = 7;
 	 pixel_y = 7
@@ -38,137 +51,124 @@
 	},
 /turf/open/floor/plating/ice/planet_ice,
 /area/template_noop)
-"O" = (
-/obj/structure/flora/rock/pile/lava{
-	pixel_x = 4;
-	 pixel_y = 7
-	},
-/turf/open/floor/plating/ice/planet_ice,
-/area/template_noop)
-"Q" = (
-/turf/open/floor/plating/ice/planet_ice,
-/area/template_noop)
-"T" = (
-/turf/template_noop,
-/area/template_noop)
-"V" = (
+"I" = (
 /obj/item/crystal_shard{
 	pixel_x = 7;
 	 pixel_y = -4
 	},
 /turf/open/floor/plating/ice/planet_ice,
 /area/template_noop)
-"Y" = (
-/obj/item/crystal_shard{
-	pixel_x = 10;
-	 pixel_y = 13
+"K" = (
+/obj/structure/flora/rock/pile/lava{
+	pixel_x = 4;
+	 pixel_y = 7
 	},
 /turf/open/floor/plating/ice/planet_ice,
 /area/template_noop)
-"Z" = (
-/obj/item/crystal_shard{
-	pixel_x = -4;
-	 pixel_y = 1
+"W" = (
+/obj/structure/flora/rock/pile/lava{
+	pixel_x = -10;
+	 pixel_y = 6
 	},
 /turf/open/floor/plating/ice/planet_ice,
 /area/template_noop)
 
 (1,1,1) = {"
-T
-T
-T
-Q
-T
-T
-T
-T
-T
+a
+a
+a
+u
+a
+a
+a
+a
+a
 "}
 (2,1,1) = {"
-T
-T
-Q
-j
-Q
-Q
-T
-T
-T
+a
+a
+u
+n
+u
+u
+a
+a
+a
 "}
 (3,1,1) = {"
-Z
-Q
-Q
-Q
-Q
-F
-Q
-Q
-T
+q
+u
+u
+u
+u
+H
+u
+u
+a
 "}
 (4,1,1) = {"
-T
-Q
-Q
-T
-T
-T
-Q
-d
-Q
+a
+u
+u
+a
+a
+a
+u
+W
+u
 "}
 (5,1,1) = {"
-T
-O
-Q
-T
-T
-T
-T
-Q
-Q
+a
+K
+u
+a
+a
+a
+a
+u
+u
 "}
 (6,1,1) = {"
-T
-Q
-Q
-T
-T
-T
-Q
-Q
-T
+a
+u
+u
+a
+a
+a
+u
+u
+a
 "}
 (7,1,1) = {"
-T
-Q
-Q
-Y
-T
-Q
-V
-Q
-T
+a
+u
+u
+b
+a
+u
+I
+u
+a
 "}
 (8,1,1) = {"
-T
-Q
-m
-Q
-Q
-Q
-t
-Q
-T
+a
+u
+G
+u
+u
+u
+y
+u
+a
 "}
 (9,1,1) = {"
-T
-T
-Q
-Q
-T
-T
-Q
-T
-T
+a
+a
+u
+u
+a
+a
+u
+a
+a
 "}

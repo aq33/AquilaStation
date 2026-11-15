@@ -1,53 +1,12 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"c" = (
-/obj/structure/flora/ausbushes/sparsegrass,
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/asteroid/dirt{
-	initial_gas_mix = "o2=26;n2=104;TEMP=255";
-	 planetary_atmos = 1
-	},
-/area/template_noop)
-"g" = (
-/turf/open/floor/plating/asteroid/dirt{
-	initial_gas_mix = "o2=26;n2=104;TEMP=255";
-	 planetary_atmos = 1
-	},
-/area/template_noop)
-"i" = (
-/obj/structure/flora/rock/icy{
-	pixel_x = 4;
-	 pixel_y = 11
-	},
+"e" = (
+/obj/structure/flora/ausbushes/fullgrass,
 /turf/open/floor/plating/asteroid/snow/planet_ice,
 /area/template_noop)
 "n" = (
-/obj/structure/flora/grass/brown,
-/turf/open/floor/plating/asteroid/snow/planet_ice,
-/area/template_noop)
-"p" = (
-/obj/structure/flora/ausbushes/sparsegrass,
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
-"w" = (
-/turf/template_noop,
-/area/template_noop)
-"y" = (
-/obj/structure/flora/ausbushes/fullgrass,
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"z" = (
-/obj/structure/flora/ausbushes/fullgrass,
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/asteroid/dirt{
-	initial_gas_mix = "o2=26;n2=104;TEMP=255";
-	 planetary_atmos = 1
-	},
-/area/template_noop)
-"E" = (
-/obj/structure/flora/ausbushes/sparsegrass,
-/turf/open/floor/plating/asteroid/snow/planet_ice,
-/area/template_noop)
-"G" = (
+"s" = (
 /obj/structure/flora/tree/pine,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating/asteroid/dirt{
@@ -55,138 +14,179 @@
 	 planetary_atmos = 1
 	},
 /area/template_noop)
-"K" = (
+"t" = (
+/obj/structure/flora/rock/icy{
+	pixel_x = 4;
+	 pixel_y = 11
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"w" = (
+/turf/open/floor/plating/asteroid/dirt{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"B" = (
+/turf/template_noop,
+/area/template_noop)
+"G" = (
 /obj/structure/flora/rock/icy{
 	pixel_x = -4;
 	 pixel_y = 5
 	},
 /turf/open/floor/plating/asteroid/icerock,
 /area/template_noop)
-"L" = (
+"H" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"N" = (
 /turf/open/floor/plating/asteroid/snow/planet_ice,
 /area/template_noop)
-"M" = (
+"O" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"P" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/asteroid/dirt{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"T" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"V" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/asteroid/dirt{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"W" = (
+/obj/structure/flora/grass/brown,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"Y" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/floor/plating/asteroid/dirt{
 	initial_gas_mix = "o2=26;n2=104;TEMP=255";
 	 planetary_atmos = 1
 	},
 /area/template_noop)
-"S" = (
-/turf/open/floor/plating/asteroid/icerock,
-/area/template_noop)
-"Y" = (
-/obj/structure/flora/ausbushes/fullgrass,
-/turf/open/floor/plating/asteroid/snow/planet_ice,
-/area/template_noop)
 
 (1,1,1) = {"
-w
-w
-w
-w
-E
-w
-w
-w
-w
+B
+B
+B
+B
+T
+B
+B
+B
+B
 "}
 (2,1,1) = {"
-w
-L
-n
-L
-L
-L
-Y
-w
-w
+B
+N
+W
+N
+N
+N
+e
+B
+B
 "}
 (3,1,1) = {"
-L
-L
-L
-c
-M
-n
-L
-L
-w
+N
+N
+N
+P
+Y
+W
+N
+N
+B
 "}
 (4,1,1) = {"
-L
-Y
-g
-G
-g
-g
-i
-L
-L
+N
+e
+w
+s
+w
+w
+t
+N
+N
 "}
 (5,1,1) = {"
-n
-E
-L
-M
-c
-g
-L
-n
-L
+W
+T
+N
+Y
+P
+w
+N
+W
+N
 "}
 (6,1,1) = {"
+B
+N
+N
+n
+n
 w
-L
-L
-S
-S
-g
-z
-L
-Y
+V
+N
+e
 "}
 (7,1,1) = {"
-w
-w
-K
-y
-S
+B
+B
 G
-g
-S
-S
+H
+n
+s
+w
+n
+n
 "}
 (8,1,1) = {"
-w
-w
-w
-S
-S
-S
-c
-S
-S
+B
+B
+B
+n
+n
+n
+P
+n
+n
 "}
 (9,1,1) = {"
-w
-w
-w
-p
-y
-S
-S
-S
-w
+B
+B
+B
+O
+H
+n
+n
+n
+B
 "}
 (10,1,1) = {"
-w
-w
-w
-w
-w
-S
-S
-w
-w
+B
+B
+B
+B
+B
+n
+n
+B
+B
 "}
