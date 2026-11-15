@@ -4036,7 +4036,6 @@
 /turf/open/floor/plating/asteroid/rockplanet,
 /area/lavaland/surface/outdoors)
 "Qe" = (
-/obj/structure/lattice/catwalk/over,
 /turf/closed/mineral/random/rockplanet,
 /area/ruin/unpowered/planet_lava/cave)
 "Qp" = (
