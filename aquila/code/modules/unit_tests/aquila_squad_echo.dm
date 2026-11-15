@@ -1,12 +1,18 @@
 // The upstream assert macros are #undef'd at the end of code/modules/unit_tests/_unit_tests.dm, so this modular test carries its own copies
 #define TEST_ASSERT(assertion, reason) if (!(assertion)) { return Fail("Assertion failed: [reason || "No reason"]") }
 
-/// AQUILA - drużyna Echo: istnieje od startu, daje dostęp do myśliwców i hangaru, bierze pilotów, a nie zwykłą załogę
+/// AQUILA - drużyna Echo: powstaje przy pierwszym użyciu (jedna), daje dostęp do myśliwców i hangaru, bierze pilotów, a nie zwykłą załogę
 /datum/unit_test/squad_echo
 
 /datum/unit_test/squad_echo/Run()
 	var/datum/squad/echo = GLOB.squad_manager.aq_get_echo()
-	TEST_ASSERT(echo && (echo in GLOB.squad_manager.squads), "The Echo squad doesn't exist at round start")
+	TEST_ASSERT(echo && (echo in GLOB.squad_manager.squads), "The Echo squad isn't created on first use")
+	TEST_ASSERT(GLOB.squad_manager.aq_get_echo() == echo, "A second call created another Echo squad")
+	var/echo_count = 0
+	for(var/datum/squad/S as anything in GLOB.squad_manager.squads)
+		if(S.aq_is_echo)
+			echo_count++
+	TEST_ASSERT(echo_count == 1, "There are [echo_count] Echo squads instead of one")
 	TEST_ASSERT(echo.aq_is_echo && echo.name == "Echo", "The Echo squad isn't marked as Echo")
 	TEST_ASSERT(echo.access_enabled, "Echo squad access is disabled")
 	var/list/access = echo.GetAccess()
