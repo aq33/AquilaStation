@@ -555,6 +555,30 @@ GLOBAL_LIST_INIT(ship_structure_wallmounts, typecacheof(list(
 			baseline[key] = entry
 		else
 			baseline -= key
+		// Zabezpieczenie kadłuba na starcie rundy porównuje z mapą: pole otwarte do kosmosu w nowym wariancie to nie dziura
+		if(map_open)
+			if(islist(entry) && !isspaceturf(T) && ship_structure_open_to_space(T))
+				map_open[key] = TRUE
+			else
+				map_open -= key
+
+/// Nakłada zapis na wybrane pola po recapture() (np. silnik podmieniony na wariant, który zapis pamięta)
+/datum/ship_structure/proc/reapply_turfs(list/turfs)
+	if(!baseline || !check_rooms)
+		return
+	var/list/data = read_save(save_path) || read_save("[save_path].bak")
+	if(!data)
+		return
+	var/list/saved = data["turfs"]
+	var/list/delta = list()
+	for(var/turf/T as anything in turfs)
+		var/key = key_for(T)
+		if(key && saved[key])
+			delta[key] = saved[key]
+	if(!length(delta))
+		return
+	var/list/result = apply(delta)
+	log_game("Ship structure: reapplied [result[1]] turfs ([result[2]] skipped) after a room swap")
 
 /// Dane nowego obiektu potrzebne do odtworzenia go w następnej rundzie
 /datum/ship_structure/proc/obj_record(sig, obj/O)

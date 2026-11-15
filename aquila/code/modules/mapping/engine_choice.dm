@@ -4,9 +4,10 @@
  * Gracz ustawia w preferencjach „Preferowany silnik statku”. Przy ładowaniu mapy spawner silnika losuje wariant
  * jak dotąd (statek w lobby ma działający silnik). Po rozdaniu profesji, zanim gracze pojawią się na statku,
  * gra liczy wybór: decyduje Główny Inżynier, a bez niego (albo gdy wybrał „Losowy”) większość inżynierów.
- * Jeśli wynik różni się od wylosowanego wariantu, slot dostaje wybrany szablon: obiekty starego wariantu
- * znikają z jego pól, a pola wspólne (template_noop we wszystkich wariantach) zostają z mapy.
- * Trwała struktura statku robi wtedy nowe zdjęcie pól silnika, żeby zapis po rundzie liczył się względem nowego wariantu.
+ * Jeśli wynik różni się od wylosowanego wariantu, slot dostaje wybrany szablon. Na polach starego wariantu znikają
+ * jego obiekty (to, co stało tam na mapie bazowej przed wczytaniem szablonu, zostaje), a turfy wracają do stanu z mapy.
+ * Pola wspólne (template_noop we wszystkich wariantach) zostają nietknięte.
+ * Trwała struktura statku robi nowe zdjęcie pól silnika i nakłada na nie zapis, jeśli pochodzi z tego samego wariantu.
  */
 
 /datum/map_template/random_room
@@ -22,13 +23,24 @@
 /datum/map_template/random_room/sk_rdm_eng_atl_03
 	engine_type = ENGINE_CHOICE_TESLA
 
-/// Sloty silników wczytane przy starcie mapy: list(pole lewego dolnego rogu, wczytany szablon)
+/// Sloty silników wczytane przy starcie mapy (zob. engine_choice_snapshot())
 GLOBAL_LIST_EMPTY(engine_choice_slots)
 
 /datum/map_template/random_room/stationinitload(turf/T, centered = FALSE)
+	var/list/slot = (engine_type && T && !centered) ? engine_choice_snapshot(src, T) : null
 	. = ..()
-	if(engine_type && T && !centered)
-		GLOB.engine_choice_slots += list(list(T, src))
+	if(slot)
+		GLOB.engine_choice_slots += list(slot)
+
+/// Slot silnika z tym, co leży na jego polach przed wczytaniem szablonu
+/proc/engine_choice_snapshot(datum/map_template/random_room/template, turf/origin)
+	var/list/keep = list()
+	var/list/base_turfs = list()
+	for(var/turf/T as anything in template.get_affected_turfs(origin))
+		base_turfs[T] = list(T.type, islist(T.baseturfs) ? T.baseturfs.Copy() : T.baseturfs)
+		for(var/obj/O in T)
+			keep += WEAKREF(O)
+	return list(origin, template, keep, base_turfs)
 
 /// Pola, które ten szablon stawia sam (bez template_noop), dla szablonu postawionego w origin
 /datum/map_template/random_room/proc/engine_owned_turfs(turf/origin)
@@ -83,46 +95,54 @@ GLOBAL_LIST_EMPTY(engine_choice_slots)
 		if(choice && choice != ENGINE_CHOICE_RANDOM)
 			. += list(list(role, choice))
 
-/// Wariant o danym typie dla slotu (ten sam rozmiar co wczytany szablon)
-/proc/engine_choice_template_for(datum/map_template/random_room/current, engine_type)
-	for(var/id in SSmapping.random_room_templates)
-		var/datum/map_template/random_room/candidate = SSmapping.random_room_templates[id]
-		if(candidate.engine_type == engine_type && candidate.template_width == current.template_width && candidate.template_height == current.template_height)
-			return candidate
-
-/// Typy silników możliwe w slocie
-/proc/engine_choice_available(datum/map_template/random_room/current)
+/// Warianty silnika możliwe w slocie: ENGINE_CHOICE_* => szablon o tym samym rozmiarze co wczytany
+/proc/engine_choice_variants(datum/map_template/random_room/current)
 	. = list()
 	for(var/id in SSmapping.random_room_templates)
 		var/datum/map_template/random_room/candidate = SSmapping.random_room_templates[id]
-		if(candidate.engine_type && candidate.template_width == current.template_width && candidate.template_height == current.template_height)
-			. |= candidate.engine_type
+		if(candidate.engine_type && !.[candidate.engine_type] && candidate.template_width == current.template_width && candidate.template_height == current.template_height)
+			.[candidate.engine_type] = candidate
 
 /**
- * Stawia w slocie inny wariant silnika. Obiekty starego wariantu znikają, a jego turfy wracają do tego,
- * co leżało pod nim na mapie (szablon jest kładziony na wierzch), zanim wczyta się nowy.
- * Pola, które stawia tylko nowy wariant, nie są czyszczone: nowy szablon kładzie się na mapę tak jak przy starcie.
+ * Stawia w slocie inny wariant silnika. Na polach starego wariantu znikają jego obiekty i moby bez gracza,
+ * a turfy wracają do stanu z mapy bazowej. Pola, które stawia tylko nowy wariant, nie są czyszczone:
+ * nowy szablon kładzie się na mapę tak jak przy starcie.
  */
 /proc/engine_choice_swap(list/slot, datum/map_template/random_room/new_template)
-	var/turf/origin = slot[1]
-	var/datum/map_template/random_room/old_template = slot[2]
+	var/turf/origin = slot[ENGINE_SLOT_ORIGIN]
+	var/datum/map_template/random_room/old_template = slot[ENGINE_SLOT_TEMPLATE]
+	var/list/base_turfs = slot[ENGINE_SLOT_BASE_TURFS]
+	var/list/keep = list()
+	for(var/datum/weakref/ref as anything in slot[ENGINE_SLOT_KEEP])
+		var/obj/O = ref.resolve()
+		if(O)
+			keep[O] = TRUE
 	var/list/owned = old_template.engine_owned_turfs(origin)
 	var/list/to_delete = list()
 	for(var/turf/T as anything in owned)
-		for(var/obj/O in T)
-			if(istype(O, /obj/effect/abstract))
-				continue
-			to_delete += O
-	for(var/obj/O as anything in to_delete)
-		if(!QDELETED(O))
-			qdel(O)
+		for(var/atom/movable/AM as anything in T)
+			if(isobj(AM))
+				if(!keep[AM] && !istype(AM, /obj/effect/abstract))
+					to_delete += AM
+			else if(isliving(AM))
+				var/mob/living/critter = AM
+				if(!critter.mind && !critter.client)
+					to_delete += critter
+	for(var/atom/movable/AM as anything in to_delete)
+		if(!QDELETED(AM))
+			qdel(AM)
 	for(var/turf/T as anything in owned)
-		if(!isspaceturf(T))
-			T.ScrapeAway()
+		var/list/base = base_turfs[T]
+		if(base)
+			T.ChangeTurf(base[1], base[2])
 	if(!new_template.load(origin, centered = FALSE))
 		return FALSE
-	slot[2] = new_template
-	SSship_structure.structure?.recapture(new_template.get_affected_turfs(origin))
+	slot[ENGINE_SLOT_TEMPLATE] = new_template
+	var/datum/ship_structure/structure = SSship_structure.structure
+	if(structure)
+		var/list/changed = owned | new_template.engine_owned_turfs(origin)
+		structure.recapture(changed)
+		structure.reapply_turfs(changed)
 	return TRUE
 
 /// Po rozdaniu profesji: wybór inżynierów zastępuje wylosowany silnik
@@ -131,14 +151,15 @@ GLOBAL_LIST_EMPTY(engine_choice_slots)
 		return
 	var/list/votes = engine_choice_votes()
 	for(var/list/slot as anything in GLOB.engine_choice_slots)
-		var/datum/map_template/random_room/current = slot[2]
-		var/choice = engine_choice_pick(votes, engine_choice_available(current))
+		var/datum/map_template/random_room/current = slot[ENGINE_SLOT_TEMPLATE]
+		var/list/variants = engine_choice_variants(current)
+		var/choice = engine_choice_pick(votes, variants)
 		if(!choice)
 			continue
 		if(choice == current.engine_type)
 			engine_choice_announce(choice)
 			continue
-		var/datum/map_template/random_room/wanted = engine_choice_template_for(current, choice)
+		var/datum/map_template/random_room/wanted = variants[choice]
 		if(!wanted)
 			continue
 		var/old_name = current.name
@@ -167,6 +188,8 @@ GLOBAL_LIST_EMPTY(engine_choice_slots)
 /datum/preferences
 	/// ENGINE_CHOICE_*, zapisywany pod PREFERENCE_TAG_PREFERRED_ENGINE
 	var/preferred_engine = ENGINE_CHOICE_RANDOM
+	/// Wartość, która jest w bazie (domyślna, gdy wiersza nie ma): zapis tylko po zmianie
+	var/preferred_engine_saved = ENGINE_CHOICE_RANDOM
 
 /proc/engine_choice_values()
 	return list(ENGINE_CHOICE_RANDOM, ENGINE_CHOICE_TESLA, ENGINE_CHOICE_STORMDRIVE, ENGINE_CHOICE_SUPERMATTER)
@@ -203,14 +226,16 @@ GLOBAL_LIST_EMPTY(engine_choice_slots)
 		preferred_engine = query.item[1]
 	qdel(query)
 	preferred_engine = sanitize_inlist(preferred_engine, engine_choice_values(), initial(preferred_engine))
+	preferred_engine_saved = preferred_engine
 
 /datum/preferences/save_preferences()
 	. = ..()
-	if(!SSdbcore.IsConnected() || !parent?.ckey || IS_GUEST_KEY(parent.ckey))
+	if(preferred_engine == preferred_engine_saved || !SSdbcore.IsConnected() || !parent?.ckey || IS_GUEST_KEY(parent.ckey))
 		return
 	var/datum/DBQuery/query = SSdbcore.NewQuery(
 		"INSERT INTO [format_table_name("preferences")] (ckey, preference_tag, preference_value) VALUES (:ckey, :ptag, :pvalue) ON DUPLICATE KEY UPDATE preference_value=:pvalue2",
 		list("ckey" = parent.ckey, "ptag" = PREFERENCE_TAG_PREFERRED_ENGINE, "pvalue" = preferred_engine, "pvalue2" = preferred_engine)
 	)
-	query.Execute()
+	if(query.Execute())
+		preferred_engine_saved = preferred_engine
 	qdel(query)

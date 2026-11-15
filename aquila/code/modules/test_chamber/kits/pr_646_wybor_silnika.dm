@@ -14,11 +14,12 @@
 		to_chat(user, "<span class='warning'>Ta mapa nie ma slotu silnika do wyboru.</span>")
 		return
 	var/list/slot = GLOB.engine_choice_slots[1]
-	var/datum/map_template/random_room/current = slot[2]
+	var/datum/map_template/random_room/current = slot[ENGINE_SLOT_TEMPLATE]
 	var/datum/preference/choiced/preferred_engine/preference = GLOB.preference_entries[/datum/preference/choiced/preferred_engine]
 	var/list/names = preference.get_display_names()
+	var/list/variants = engine_choice_variants(current)
 	var/list/options = list()
-	for(var/engine_type in engine_choice_available(current))
+	for(var/engine_type in variants)
 		if(engine_type != current.engine_type)
 			options[names[engine_type]] = engine_type
 	if(!length(options))
@@ -27,7 +28,7 @@
 	var/choice = tgui_input_list(user, "Obecny silnik: [names[current.engine_type]]. Na co podmienić?", "Wybór silnika", options)
 	if(!choice)
 		return
-	var/datum/map_template/random_room/wanted = engine_choice_template_for(current, options[choice])
+	var/datum/map_template/random_room/wanted = variants[options[choice]]
 	if(wanted && engine_choice_swap(slot, wanted))
 		to_chat(user, "<span class='notice'>Silnik podmieniony na: [choice].</span>")
 		message_admins("[key_name_admin(user)] podmienia silnik statku na: [choice] (komora testowa).")
