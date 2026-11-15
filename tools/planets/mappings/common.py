@@ -115,6 +115,8 @@ EN = {}  # polski -> angielski (en_strings.json)
 
 
 DECISIONS = collections.OrderedDict()  # ścieżka shiptest -> opis
+# Zmienne edytowane na mapach, których nasze typy nie mają (moduły planet dopisują swoje)
+DROP_VARS_EXTRA = {'spawn_loot_count', 'spawn_loot_chance', 'spawn_random_offset', 'spawn_scatter_radius'}
 
 # ---------------------------------------------------------------- mapowanie ścieżek
 # wartość: None = pomiń; 'ścieżka'; albo (ścieżka, {zmienne}); albo funkcja(path, vars, ctx) -> lista atomów

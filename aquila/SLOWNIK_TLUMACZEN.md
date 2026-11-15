@@ -3749,6 +3749,21 @@ Oznaczenia w kolumnie uwag:
 | transfusion (anomaly) | anomalia transfuzyjna | ż; nowe (Shiptest) |
 | chronograph (anomaly) | chronograf | m; nowe (Shiptest); efekt: przyspieszenie (accelerando) |
 | big / high (anomaly variants) | ogromna / silna anomalia … | nowe (Shiptest) |
+| waste planet | planeta-śmietnisko | ż; nowe (planety, Shiptest) |
+| battlefield (planet) | pole bitwy | n; nowe (planety, Shiptest) |
+| automaton (Shiptest drones) | automat | m; nowe |
+| quadrotor drone | dron czterowirnikowy | m; nowe |
+| walkmine | mina krocząca | ż; nowe |
+| Bipedal Assault Platform | dwunożna platforma szturmowa | ż; nowe |
+| hopper (drone) | „Skoczek” | m; nowe |
+| core hivebot | rdzeń roju hivebotów | m; nowe |
+| nuclear waste barrel | beczka z odpadami jądrowymi | ż; nowe |
+| background radiation | promieniowanie tła | n; nowe |
+| glowshroom colony | kolonia świecących grzybów | ż; nowe |
+| tar pit | dół ze smołą | m; nowe |
+| polluted rock / dry rock | skażona skała / suchy kamień | ż/m; nowe (śmietnisko) |
+| frontiersmen | pogranicznicy | m mn.; nowe (w ruinach -> żołnierze rosyjscy) |
+| ICW (Inter-Corporate War) | Wojna Międzykorporacyjna | ż; nowe |
 | Ramzi Clique | Klika Ramziego | ż; nowe (frakcja z ruin Shiptesta) |
 | Hardliners | Twardogłowi | m mn.; nowe (frakcja z ruin Shiptesta) |
 | Reisehund (Ramzi hound) | rajzehund | m; nowe |

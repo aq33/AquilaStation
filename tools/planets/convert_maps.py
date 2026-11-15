@@ -93,6 +93,7 @@ ST_COLORS = {
     'tan': '#c59973', 'lightgrey': '#a8b2b6', 'bottlegreen': '#57967f', 'navyblue': '#334059', 'warrabluelight': '#2270d0',
     'nsorange': '#f97016', 'vired': '#c92020', 'solgovblue': '#2d2a4e', 'solgovgold': '#eeac2e', 'inteqbrown': '#4b2a18',
     'inteqbrownlight': '#804433', 'cybersunteal': '#4C9C9C', 'orange': '#C3630C', 'purple': '#AE8CA8', 'brown': '#997C4F',
+    'mauve': '#CBB1CA',
 }
 # nasz najbliższy kolor (podtyp), kolor Shiptesta nadpisujemy edycją
 OUR_COLOR = {'neutral': 'neutral', 'black': 'black', 'blue': 'blue', 'green': 'green', 'lime': 'green', 'yellow': 'yellow',
@@ -100,7 +101,7 @@ OUR_COLOR = {'neutral': 'neutral', 'black': 'black', 'blue': 'blue', 'green': 'g
              'white': 'white', 'tan': 'brown', 'lightgrey': 'neutral', 'bottlegreen': 'green', 'navyblue': 'darkblue',
              'warrabluelight': 'blue', 'nsorange': 'yellow', 'vired': 'red', 'solgovblue': 'darkblue', 'solgovgold': 'yellow',
              'inteqbrown': 'brown', 'inteqbrownlight': 'brown', 'cybersunteal': 'blue', 'orange': 'yellow', 'purple': 'purple',
-             'brown': 'brown'}
+             'brown': 'brown', 'mauve': 'purple'}
 OUR_TRIM_COLORS = {'black', 'blue', 'brown', 'darkblue', 'green', 'neutral', 'purple', 'red', 'white', 'yellow'}
 
 # kształty narożników Shiptesta (corner/<kolor>/<kształt>) -> nasz /tile/<kolor>/<kształt> + przeliczenie kierunku
@@ -115,11 +116,25 @@ CORNER_SHAPES = {
     'border': ('half', {2: 8, 1: 4, 4: 2, 8: 1}),              # cienki pas przy krawędzi -> pół kafla (najbliższe)
     'bordercorner': ('', {2: 2, 1: 1, 4: 4, 8: 8}),            # mały kwadrat w rogu -> róg kafla
     'bordercee': ('half', {2: 8, 1: 4, 4: 2, 8: 1}),            # pas w kształcie C -> pół kafla (najbliższe)
+    'borderfull': ('fourcorners/contrasted', None),            # obwódka całego kafla -> cztery narożniki
 }
 
 def decal(path, vars_, mapname):
     """Zwraca listę atomów albo None (pominięcie)."""
     d = int(vars_.get('dir', '2'))
+    # Dekale z tablic zamienników modułów planet (R): ścieżka albo (ścieżka, zmienne), kierunek zostaje
+    if path in R:
+        target = R[path]
+        if target is None:
+            return None
+        extra = {}
+        if isinstance(target, tuple):
+            target, extra = target
+        nv = {}
+        if d != 2:
+            nv['dir'] = str(d)
+        nv.update(extra)
+        return [atom(target, nv)]
     m = re.match(r'/obj/effect/turf_decal/corner/(opaque|transparent)/(\w+)(?:/(\w+))?$', path)
     if m:
         op, col, shape = m.group(1), m.group(2), m.group(3) or ''
@@ -211,13 +226,55 @@ def decal(path, vars_, mapname):
     raise KeyError(path)
 
 
+
+def parse_atom(atom):
+    """Jak dmm.parse_map_atom, ale znaki ; i = wewnątrz nawiasów (list(... = ...)) nie dzielą zmiennych."""
+    if '{' not in atom:
+        return atom, {}
+    i = atom.index('{')
+    path, rest = atom[:i], atom[i + 1:]
+    if rest.endswith('}'):
+        rest = rest[:-1]
+    out = collections.OrderedDict()
+    depth = 0
+    in_string = False
+    escaping = False
+    current = ''
+    parts = []
+    for ch in rest:
+        if escaping:
+            escaping = False
+        elif ch == chr(92):
+            # jak dmm.parse_map_atom: znak ucieczki znika, następny znak przechodzi dosłownie
+            escaping = True
+            continue
+        elif ch == '"':
+            in_string = not in_string
+        elif not in_string and ch == '(':
+            depth += 1
+        elif not in_string and ch == ')':
+            depth -= 1
+        elif not in_string and depth == 0 and ch == ';':
+            parts.append(current)
+            current = ''
+            continue
+        current += ch
+    if current.strip():
+        parts.append(current)
+    for part in parts:
+        if '=' not in part:
+            continue
+        key, value = part.split('=', 1)
+        out[key.strip()] = value.strip()
+    return path, out
+
 MISSING = set()
 OURS = set()
 
 def clean_vars(vars_, keep_icon_state):
     out = collections.OrderedDict()
     for k, v in vars_.items():
-        if k in DROP_VARS and not (k == 'icon_state' and keep_icon_state):
+        if (k in DROP_VARS or k in common.DROP_VARS_EXTRA) and not (k == 'icon_state' and keep_icon_state):
             continue
         if v == '/datum/species/spider':  # rachnidzi z Shiptesta, u nas brak tej rasy
             v = '/datum/species/human'
@@ -228,6 +285,7 @@ def clean_vars(vars_, keep_icon_state):
             v = R[v]
         if k in ('pixel_x', 'pixel_y') and v == '0':
             continue
+        # Teksty dla gracza edytowane na mapie: nazwa, opis i treść kartki
         if k in ('name', 'desc', 'default_raw_text') and v.startswith('"'):
             v = tr(v)
         out[k] = v
@@ -239,10 +297,7 @@ ASSOC_LIST_VAR = re.compile(r'(\{|;)\s*\w+ = list\([^()]*=[^()]*\)\s*(?=;|\})')
 
 
 def convert_atom(a, mapname, stat):
-    a = ASSOC_LIST_VAR.sub(lambda m: m.group(1), a).replace('{;', '{').replace(';;', ';').replace(';}', '}')
-    if a.endswith('{}'):
-        a = a[:-2]
-    path, vars_ = dmmlib.parse_map_atom(a)
+    path, vars_ = parse_atom(a)
     vars_ = collections.OrderedDict(vars_)
     # kable zostają w starym formacie, przerabia je tools/smartwires/convert.py (kolory blue/cyan/white zna)
     if path.startswith('/obj/structure/cable'):

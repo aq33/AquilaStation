@@ -1,0 +1,9388 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aa" = (
+/obj/structure/radioactive_barrel/waste,
+/obj/effect/radiation/waste,
+/turf/open/floor/plating/asteroid/dirt/battlefield,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"ae" = (
+/turf/closed/wall/rust,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"ai" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"ap" = (
+/obj/machinery/power/smes{
+	dir = 4
+	},
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/cable/yellow,
+/obj/machinery/door/poddoor/shutters{
+	id = "whollop_engine_shutters";
+	dir = 4
+	},
+/obj/structure/window/plasma/reinforced{
+	dir = 8
+	},
+/obj/machinery/door/window/westright{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"as" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 9;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 5
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker)
+"au" = (
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/killroom)
+"aB" = (
+/obj/structure/closet/crate/medical,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/item/storage/firstaid/ancient{
+	pixel_x = -4;
+	pixel_y = 1
+	},
+/obj/item/storage/firstaid/brute{
+	pixel_x = 5;
+	pixel_y = 1
+	},
+/obj/item/storage/firstaid/fire{
+	pixel_x = 5;
+	pixel_y = -4
+	},
+/obj/item/storage/firstaid/o2{
+	pixel_x = -4;
+	pixel_y = -4
+	},
+/obj/item/storage/firstaid/toxin,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/cargo)
+"aC" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "bunkermedbayshutter"
+	},
+/obj/machinery/door/airlock/science/glass,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/medbay)
+"aK" = (
+/obj/effect/turf_decal/tile/neutral/opposingcorners{
+	dir = 8;
+	color = "#a3a2a0";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 10;
+	color = "#474747"
+	},
+/obj/item/kirbyplants{
+	icon_state = "plant-18";
+	pixel_x = 12;
+	pixel_y = -1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/medbay)
+"aN" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/effect/turf_decal/ship/borderfloor,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/cargo)
+"aP" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 10;
+	color = "#fb9700"
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"aQ" = (
+/obj/structure/cable,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/radiation)
+"aS" = (
+/obj/machinery/door/poddoor/shutters{
+	id = "killroom"
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/armory)
+"aT" = (
+/obj/effect/turf_decal/tile/bar/opposingcorners{
+	color = "#791500";
+	alpha = 130
+	},
+/obj/structure/cable,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/mess)
+"ba" = (
+/obj/structure/chair/fancy/sofa/old/right{
+	dir = 8
+	},
+/turf/open/floor/carpet/black,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/dorms)
+"bb" = (
+/obj/machinery/door/poddoor/shutters{
+	id = "cargobay"
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/cargo)
+"bc" = (
+/obj/structure/table/optable,
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/purple/half{
+	dir = 4;
+	color = "#CBB1CA";
+	alpha = 140
+	},
+/obj/structure/mirror{
+	pixel_x = -2;
+	pixel_y = 22;
+	name = "prowizoryczne lustro";
+	desc = "Lustro naprędce przyklejone taśmą do ściany."
+	},
+/obj/effect/decal/cleanable/blood,
+/obj/effect/mob_spawn/human/corpse/assistant,
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/medbay)
+"bj" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker)
+"bp" = (
+/obj/structure/table/reinforced,
+/obj/item/paper_bin{
+	pixel_x = 6;
+	pixel_y = 4;
+	layer = 2.9
+	},
+/obj/structure/sign/warning/radiation{
+	pixel_y = 30;
+	pixel_x = 23
+	},
+/obj/structure/cable,
+/obj/effect/turf_decal/ship/techfloor/corner{
+	dir = 8
+	},
+/obj/structure/lattice/catwalk/over/ship/dark,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/engineering)
+"bq" = (
+/obj/effect/decal/cleanable/blood/splatter{
+	dir = 4
+	},
+/turf/open/floor/plating/asteroid/dirt/battlefield,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"bs" = (
+/mob/living/basic/hivebot/range{
+	faction = list("Syndicate")
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/killroom)
+"bw" = (
+/obj/effect/turf_decal/siding/white{
+	color = "#BA9F6D"
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 1;
+	color = "#BA9F6D"
+	},
+/obj/effect/turf_decal/trimline/red/warning{
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/trimline/red/warning{
+	dir = 1;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 8
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/cargo)
+"by" = (
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/controlroom)
+"bz" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 5
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker)
+"bD" = (
+/obj/effect/turf_decal/ship/techfloor{
+	dir = 1
+	},
+/obj/machinery/airalarm/directional/south,
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/engineering)
+"bG" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 9;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 4
+	},
+/obj/machinery/airalarm/directional/west,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker)
+"bO" = (
+/obj/structure/flora/ash/glowshroom,
+/obj/effect/decal/cleanable/blood/splatter,
+/turf/open/floor/plating/asteroid/dirt/battlefield,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"cm" = (
+/obj/machinery/button/door{
+	dir = 1;
+	pixel_x = 1;
+	pixel_y = -22;
+	id = "bunkernorthgate2";
+	name = "północna wewnętrzna brama bunkra"
+	},
+/obj/machinery/suit_storage_unit{
+	suit_type = /obj/item/clothing/suit/space/eva;
+	helmet_type = /obj/item/clothing/head/helmet/space/eva;
+	storage_type = /obj/item/tank/internals/oxygen/yellow
+	},
+/turf/open/floor/mineral/plastitanium/red,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker)
+"cv" = (
+/obj/structure/girder/reinforced,
+/obj/item/stack/sheet/mineral/plastitanium,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"cT" = (
+/obj/effect/turf_decal/trimline/red/warning{
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/siding/white{
+	color = "#BA9F6D"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/light/floor,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/cargo)
+"cU" = (
+/obj/effect/turf_decal/stripes/asteroid/line,
+/obj/machinery/atmospherics/pipe/simple/brown/hidden{
+	dir = 6
+	},
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"dg" = (
+/obj/effect/decal/cleanable/robot_debris,
+/turf/open/floor/plating/asteroid/dirt/battlefield,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"dj" = (
+/obj/structure/frame/machine{
+	desc = "Urządzenie zapisujące wszystkie dane o pracy zakładu i jego robotów. Wygląda na uszkodzone promieniowaniem.";
+	name = "rejestrator zakładu";
+	anchored = 1
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/radiation)
+"dw" = (
+/obj/machinery/door/firedoor/heavy,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker)
+"dy" = (
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 6
+	},
+/obj/effect/turf_decal/stripes/corner,
+/obj/effect/turf_decal/stripes/corner{
+	dir = 8
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/checkpoint)
+"dD" = (
+/obj/effect/decal/cleanable/robot_debris,
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"dG" = (
+/obj/effect/turf_decal/siding/white/corner{
+	dir = 8;
+	color = "#474747"
+	},
+/obj/effect/turf_decal/siding/white/corner{
+	color = "#474747"
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/dorms/lounge)
+"dH" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/engineering)
+"dL" = (
+/obj/machinery/door/airlock/grunge{
+	name = "Zabezpieczony magazyn zbrojowni"
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/killroom)
+"dQ" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 10
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker)
+"eb" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 9;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker)
+"ed" = (
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 9
+	},
+/obj/structure/marker_beacon{
+	picked_color = "Burgundy"
+	},
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"eg" = (
+/obj/machinery/modular_computer/console/preset/civilian{
+	dir = 1;
+	pixel_y = -2
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/dorms/one)
+"el" = (
+/obj/item/t_scanner,
+/obj/item/stock_parts/scanning_module{
+	pixel_x = 2;
+	pixel_y = -4
+	},
+/obj/item/stack/sticky_tape,
+/obj/item/reagent_containers/food/drinks/beer{
+	list_reagents = list(/datum/reagent/consumable/ethanol/beer/light = 30);
+	pixel_x = -3
+	},
+/turf/open/floor/plating/asteroid/dirt/battlefield,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"eq" = (
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/armory)
+"ez" = (
+/obj/machinery/door/poddoor/preopen{
+	id = "bunkernorthgate2"
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker)
+"eL" = (
+/obj/structure/closet/crate/freezer,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/cargo)
+"eP" = (
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/radiation)
+"eX" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/lab)
+"fj" = (
+/obj/machinery/door/airlock/grunge{
+	name = "Sypialnia 1";
+	dir = 4
+	},
+/obj/effect/mapping_helpers/airlock/locked,
+/obj/effect/mapping_helpers/airlock/locked,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/dorms/one)
+"fl" = (
+/obj/structure/filingcabinet{
+	dir = 8;
+	pixel_x = 10;
+	density = 0;
+	layer = 2.809
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 8
+	},
+/obj/item/folder{
+	pixel_y = 5
+	},
+/obj/item/folder/blue{
+	pixel_y = 2
+	},
+/obj/item/folder/blue{
+	pixel_y = -1;
+	name = "teczka – DZIENNIK MANIFESTÓW"
+	},
+/obj/item/pen{
+	pixel_x = -6;
+	pixel_y = 4
+	},
+/obj/item/pen/red{
+	pixel_x = -4;
+	pixel_y = 6
+	},
+/obj/item/pen/blue{
+	pixel_x = -2;
+	pixel_y = 8
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/controlroom)
+"fw" = (
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/controlroom)
+"fH" = (
+/obj/structure/spawner/hivebot,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"fL" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/turf_decal/ship/techfloor{
+	dir = 9
+	},
+/obj/structure/closet/crate/freezer,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"fO" = (
+/obj/structure/table/reinforced,
+/obj/item/clipboard{
+	pixel_y = 3;
+	pixel_x = 8
+	},
+/obj/item/pen{
+	pixel_x = -6;
+	pixel_y = 4
+	},
+/obj/item/paper_bin{
+	pixel_x = -6;
+	pixel_y = 4;
+	layer = 2.9
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/controlroom)
+"fT" = (
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/robot_debris/down,
+/turf/open/floor/concrete/pavement,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"fZ" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"gc" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 6
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/dorms/lounge)
+"gi" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 6;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 8
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 8
+	},
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker)
+"gq" = (
+/obj/effect/turf_decal/tile/neutral/opposingcorners{
+	dir = 8;
+	color = "#a3a2a0";
+	alpha = 140
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 5
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 8;
+	color = "#474747"
+	},
+/obj/effect/turf_decal/siding/white/corner{
+	dir = 4;
+	color = "#474747"
+	},
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/bathroom)
+"gv" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/lab)
+"gw" = (
+/obj/machinery/door/poddoor/shutters{
+	id = "cargobay"
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/cargo)
+"gA" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 10;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 1
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker)
+"gL" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 8;
+	color = "#474747"
+	},
+/obj/structure/table/reinforced,
+/obj/item/reagent_containers/spray/cleaner{
+	pixel_y = 3;
+	pixel_x = 7
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/item/clothing/suit/space/eva{
+	pixel_x = -6;
+	pixel_y = -3;
+	name = "podarty skafander pilota";
+	desc = "Lekki, nieopancerzony skafander dla pilotów egzoszkieletów i promów. Specjalne mocowania ułatwiają wsiadanie i wysiadanie z egzoszkieletu. Ten jest podarty i przestrzelony w kilku miejscach. Może jeszcze działać."
+	},
+/obj/item/clothing/head/helmet/space/eva{
+	pixel_x = -5;
+	pixel_y = 9
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/medbay)
+"gR" = (
+/obj/machinery/door/poddoor/preopen{
+	id = "bunkernorthgate2"
+	},
+/obj/structure/cable,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker)
+"gU" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 1;
+	color = "#BA9F6D"
+	},
+/obj/effect/turf_decal/trimline/red/warning{
+	dir = 1;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/effect/turf_decal/ship/borderfloor,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/lab)
+"gW" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 6;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 8
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker)
+"ha" = (
+/obj/effect/turf_decal/stripes/full,
+/obj/machinery/door/poddoor/shutters{
+	dir = 4;
+	id = "radroom"
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/radiation)
+"hi" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"hl" = (
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 10
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/marker_beacon{
+	picked_color = "Burgundy"
+	},
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"hr" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	dir = 4;
+	id = "bay"
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/lab)
+"hs" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker)
+"ht" = (
+/obj/structure/table{
+	dir = 4
+	},
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 9
+	},
+/obj/effect/turf_decal/tile/purple/half{
+	dir = 9;
+	color = "#CBB1CA";
+	alpha = 140
+	},
+/obj/item/stack/sticky_tape{
+	pixel_x = -9;
+	pixel_y = -1
+	},
+/obj/item/reagent_containers/glass/beaker{
+	pixel_x = 7;
+	pixel_y = 3
+	},
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/medbay)
+"hM" = (
+/obj/structure/table/reinforced,
+/obj/item/radio/off{
+	pixel_x = 5;
+	pixel_y = 3
+	},
+/obj/item/reagent_containers/food/drinks/mug{
+	pixel_x = -9;
+	pixel_y = 6
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/controlroom)
+"hN" = (
+/obj/effect/decal/cleanable/molten_object,
+/obj/structure/flora/ash/glowshroom,
+/mob/living/basic/automaton/walkmine/ramzi{
+	faction = list("hostile")
+	},
+/turf/open/floor/plating/asteroid/dirt/battlefield,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"hR" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/effect/turf_decal/ship/borderfloor,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/armory)
+"hS" = (
+/obj/effect/turf_decal/stripes/asteroid/corner,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete/pavement,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"hX" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	dir = 4;
+	id = "bay"
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/lab)
+"ih" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/armory)
+"ii" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 6;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 1;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/machinery/airalarm/directional/east,
+/obj/effect/turf_decal/ship/borderfloor/corner{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/cargo)
+"ij" = (
+/obj/effect/turf_decal/siding/wood/corner,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/dorms)
+"io" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/cargo)
+"ir" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 9;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/tile/red{
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/ship/borderfloor/corner{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/cargo)
+"iz" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker)
+"iC" = (
+/obj/structure/cable/yellow,
+/obj/effect/radiation/waste/intense,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/radiation)
+"iG" = (
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/killroom/drones)
+"iH" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 10;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 1
+	},
+/obj/machinery/light,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/lab)
+"iO" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 6;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 8;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/ship/borderfloor/corner{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker)
+"iU" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 5;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/ship/borderfloor,
+/obj/structure/sign/warning{
+	pixel_y = 32
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/armory)
+"iV" = (
+/obj/machinery/computer/mech_bay_power_console{
+	dir = 8;
+	pixel_x = 2;
+	pixel_y = 1
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/lab)
+"iX" = (
+/obj/effect/radiation/waste,
+/obj/structure/flora/ash/glowshroom,
+/turf/open/floor/plating/asteroid/dirt/battlefield,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"jh" = (
+/obj/structure/girder/wasteworld,
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"jo" = (
+/obj/effect/decal/cleanable/blood/drip,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"jq" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 6;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/lab)
+"jr" = (
+/obj/effect/turf_decal/stripes/asteroid/corner{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete/pavement,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"js" = (
+/obj/structure/cable/yellow,
+/obj/machinery/power/rtg,
+/obj/effect/turf_decal/stripes/full,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/radiation)
+"jt" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 10;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/cargo)
+"jE" = (
+/obj/structure/frame/machine{
+	anchored = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/tile/red{
+	dir = 9;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"jG" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker)
+"jJ" = (
+/obj/effect/turf_decal/siding/white/corner{
+	dir = 4;
+	color = "#474747"
+	},
+/obj/effect/turf_decal/siding/white/corner{
+	color = "#474747"
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/dorms/lounge)
+"jZ" = (
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 10
+	},
+/obj/structure/marker_beacon{
+	picked_color = "Lime"
+	},
+/turf/open/floor/concrete/pavement,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"kd" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/dorms/lounge)
+"kq" = (
+/obj/structure/sign/warning/vacuum{
+	pixel_y = 26
+	},
+/turf/open/floor/engine,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"kt" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 6;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 8
+	},
+/obj/structure/sign/warning/electricshock{
+	pixel_x = 23;
+	pixel_y = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker)
+"kx" = (
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 5
+	},
+/obj/structure/marker_beacon{
+	picked_color = "Burgundy"
+	},
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"kz" = (
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/plating/asteroid/dirt/battlefield,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"kA" = (
+/obj/structure/frame/computer{
+	anchored = 1
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"kD" = (
+/obj/machinery/button/door{
+	dir = 1;
+	pixel_x = -1;
+	pixel_y = -22;
+	id = "bunkersouthgate2";
+	name = "północna wewnętrzna brama bunkra"
+	},
+/obj/machinery/suit_storage_unit{
+	suit_type = /obj/item/clothing/suit/space/eva;
+	helmet_type = /obj/item/clothing/head/helmet/space/eva;
+	storage_type = /obj/item/tank/internals/oxygen/yellow
+	},
+/turf/open/floor/mineral/plastitanium/red,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker)
+"kJ" = (
+/obj/effect/decal/cleanable/ash/large{
+	pixel_x = 4;
+	pixel_y = 1
+	},
+/turf/open/floor/plating/asteroid/dirt/battlefield,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"kK" = (
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/lab)
+"kP" = (
+/obj/effect/decal/cleanable/glass/plasma,
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"kQ" = (
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 6;
+	color = "#730622";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/armory)
+"kR" = (
+/obj/effect/turf_decal/tile/bar/opposingcorners{
+	color = "#791500";
+	alpha = 130
+	},
+/obj/structure/closet{
+	name = "szafka kuchenna"
+	},
+/obj/item/plate/large,
+/obj/item/plate,
+/obj/item/plate,
+/obj/item/plate,
+/obj/item/plate/small,
+/obj/item/plate/small,
+/obj/item/reagent_containers/glass/bowl{
+	pixel_y = 15
+	},
+/obj/item/reagent_containers/glass/bowl{
+	pixel_y = 15
+	},
+/obj/item/reagent_containers/glass/coffeepot{
+	pixel_y = 10;
+	pixel_x = 7
+	},
+/obj/item/reagent_containers/glass/beaker/large{
+	pixel_y = 10;
+	pixel_x = -5
+	},
+/obj/item/reagent_containers/food/drinks/mug{
+	pixel_x = 8
+	},
+/obj/item/reagent_containers/food/drinks/mug{
+	pixel_x = 8
+	},
+/obj/item/reagent_containers/food/drinks/mug{
+	pixel_x = 8
+	},
+/obj/item/reagent_containers/food/drinks/mug{
+	pixel_x = 8
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass{
+	pixel_x = -8;
+	pixel_y = 3
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass{
+	pixel_x = -8;
+	pixel_y = 3
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass{
+	pixel_x = -8;
+	pixel_y = 3
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass{
+	pixel_x = -8;
+	pixel_y = 3
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass,
+/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass,
+/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass,
+/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass,
+/obj/item/kitchen/knife,
+/obj/item/kitchen/rollingpin{
+	pixel_y = 6
+	},
+/obj/item/storage/box/coffeepack/arabica{
+	pixel_x = -5;
+	pixel_y = -5
+	},
+/obj/item/clothing/suit/apron/chef,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/mess)
+"kU" = (
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line,
+/obj/effect/turf_decal/tile/red{
+	dir = 4;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/machinery/button/door{
+	pixel_x = 22;
+	pixel_y = -9;
+	dir = 8;
+	id = "killroom";
+	name = "Zabezpieczony magazyn"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/armory)
+"kW" = (
+/obj/machinery/door/firedoor/heavy,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker)
+"ld" = (
+/obj/structure/chair/office{
+	pixel_x = -8;
+	pixel_y = -4
+	},
+/obj/structure/cable,
+/obj/machinery/power/apc/auto_name/west,
+/turf/open/floor/carpet/black,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/dorms/two)
+"le" = (
+/obj/structure/cable/yellow,
+/obj/machinery/power/terminal{
+	dir = 8
+	},
+/obj/structure/closet/secure_closet/engineering_electrical,
+/obj/structure/lattice/catwalk/over/ship/dark,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/engineering)
+"lf" = (
+/obj/structure/cable,
+/obj/structure/cable/yellow,
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/engineering)
+"lo" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 5;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/ship/borderfloor,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
+/obj/machinery/light/broken{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker)
+"lr" = (
+/mob/living/basic/automaton/agrav/cybersun,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/killroom/drones)
+"ls" = (
+/obj/structure/bed{
+	dir = 1
+	},
+/obj/machinery/airalarm/directional/west,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/effect/mob_spawn/human/corpse/russian,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/dorms/one)
+"lt" = (
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 6
+	},
+/obj/effect/turf_decal/stripes/corner,
+/obj/effect/turf_decal/stripes/corner{
+	dir = 8
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/checkpoint)
+"lC" = (
+/obj/structure/flora/ash/glowshroom{
+	pixel_x = 7;
+	pixel_y = 3
+	},
+/turf/open/floor/plating/asteroid/dirt/battlefield,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"lD" = (
+/obj/structure/railing/corner{
+	dir = 1
+	},
+/obj/machinery/light/floor,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/radiation)
+"lE" = (
+/obj/structure/barricade/sandbags,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"lL" = (
+/obj/machinery/modular_computer/console/preset/civilian{
+	dir = 4;
+	pixel_x = -6
+	},
+/obj/effect/turf_decal/ship/borderfloor,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/controlroom)
+"lS" = (
+/obj/structure/closet/crate/freezer,
+/obj/effect/turf_decal/siding/white{
+	color = "#BA9F6D"
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 1;
+	color = "#BA9F6D"
+	},
+/obj/effect/turf_decal/trimline/red/warning{
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/trimline/red/warning{
+	dir = 1;
+	color = "#730622";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/cargo)
+"lX" = (
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 8
+	},
+/turf/open/floor/concrete/pavement,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"lY" = (
+/obj/structure/cable,
+/obj/machinery/power/apc/auto_name/east,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/medbay)
+"mh" = (
+/obj/item/storage/backpack/duffelbag/med/surgery{
+	pixel_x = 3;
+	pixel_y = 6
+	},
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/medbay)
+"mn" = (
+/obj/structure/guncase,
+/obj/item/gun/ballistic/revolver/detective,
+/obj/machinery/airalarm/directional/north,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/controlroom)
+"mp" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 6;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker)
+"mq" = (
+/obj/structure/sign/warning/vacuum{
+	pixel_x = 28;
+	pixel_y = 8
+	},
+/turf/open/floor/engine,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"mz" = (
+/obj/structure/cable,
+/obj/effect/turf_decal/ship/techfloor{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/closet/crate/engineering,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"mA" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/white/corner{
+	dir = 8;
+	color = "#474747"
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/dorms)
+"mD" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 6;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 8
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/lab)
+"mI" = (
+/turf/open/floor/engine,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"mJ" = (
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker)
+"mS" = (
+/obj/structure/sign/warning/radiation/rad_area{
+	pixel_x = 21;
+	pixel_y = -14
+	},
+/obj/machinery/airalarm/directional/south,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/radiation)
+"mT" = (
+/obj/effect/decal/cleanable/blood/drip{
+	pixel_x = 6
+	},
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"mW" = (
+/obj/effect/turf_decal/stripes/corner,
+/obj/machinery/suit_storage_unit{
+	suit_type = /obj/item/clothing/suit/space/eva;
+	storage_type = /obj/item/tank/internals/oxygen/yellow;
+	helmet_type = /obj/item/clothing/head/helmet/space/eva
+	},
+/turf/open/floor/mineral/plastitanium/red,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/armory)
+"nb" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 6
+	},
+/obj/mecha/working/ripley{
+	name = "APLU „Duża Dziewczyna”"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/cargo)
+"nd" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 1;
+	color = "#474747"
+	},
+/obj/structure/cable,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/dorms)
+"nf" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 6;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 8
+	},
+/obj/machinery/light/broken{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker)
+"ng" = (
+/obj/effect/turf_decal/siding/white{
+	color = "#474747"
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 1
+	},
+/obj/machinery/firealarm/directional/south,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/dorms/lounge)
+"nm" = (
+/turf/closed/wall/r_wall/rust,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"nu" = (
+/obj/machinery/light,
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/medbay)
+"nv" = (
+/obj/structure/closet/secure_closet{
+	req_access = null;
+	anchored = 1;
+	icon_state = "armory"
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 5;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/tile/red{
+	color = "#730622";
+	alpha = 255
+	},
+/obj/item/storage/box/lethalshot{
+	pixel_y = 4
+	},
+/obj/item/radio/intercom/directional/north,
+/obj/effect/turf_decal/ship/borderfloor/corner{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/killroom)
+"nw" = (
+/mob/living/simple_animal/bot/cleanbot,
+/obj/structure/cable,
+/obj/machinery/power/apc/auto_name/north{
+	start_charge = 0
+	},
+/obj/machinery/button/door{
+	pixel_x = 10;
+	pixel_y = 22;
+	name = "rygiel drzwi";
+	id = "secroom";
+	specialfunctions = 4;
+	normaldoorcontrol = 1
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/controlroom)
+"nz" = (
+/obj/machinery/suit_storage_unit{
+	storage_type = /obj/item/tank/internals/oxygen/yellow;
+	suit_type = /obj/item/clothing/suit/space/hardsuit/syndi
+	},
+/turf/open/floor/mineral/plastitanium/red,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/armory)
+"nB" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 1;
+	color = "#BA9F6D"
+	},
+/obj/effect/turf_decal/trimline/red/warning{
+	dir = 1;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/ship/borderfloor,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/lab)
+"nG" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/turf_decal/ship/techfloor{
+	dir = 10
+	},
+/obj/structure/railing,
+/obj/machinery/power/port_gen/pacman{
+	anchored = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"nR" = (
+/obj/machinery/door/airlock/grunge{
+	desc = "Otwiera się i zamyka. Łazienki.";
+	id_tag = "wastebunkerbathroom"
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/bathroom)
+"nS" = (
+/obj/structure/window/plastitanium,
+/obj/structure/grille,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "radlockdown"
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/engineering)
+"nV" = (
+/obj/effect/turf_decal/ship/techfloor{
+	dir = 6
+	},
+/obj/structure/closet/crate/secure/gear,
+/obj/item/clothing/under/rank/centcom/officer{
+	pixel_x = -6;
+	pixel_y = -1
+	},
+/obj/item/clothing/suit/armor/vest/capcarapace{
+	pixel_x = 8
+	},
+/obj/item/clothing/head/helmet{
+	pixel_x = -6;
+	pixel_y = 7
+	},
+/obj/item/storage/belt/sabre,
+/obj/item/folder/documents,
+/obj/item/clothing/mask/gas,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"nX" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 10
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/dorms/lounge)
+"oe" = (
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker)
+"oi" = (
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/controlroom)
+"oj" = (
+/obj/item/kirbyplants,
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/dorms/lounge)
+"om" = (
+/obj/structure/grille,
+/obj/structure/window/plastitanium,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "bunkermedbayshutter"
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/medbay)
+"oq" = (
+/obj/machinery/door/poddoor/shutters{
+	id = "closedrobots"
+	},
+/obj/effect/turf_decal/stripes/full,
+/obj/structure/lattice/catwalk,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker)
+"os" = (
+/obj/machinery/door/airlock/grunge{
+	name = "Sypialnia 2";
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/dorms/two)
+"ou" = (
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"ox" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 1;
+	color = "#474747"
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/structure/cable,
+/obj/machinery/power/apc/auto_name/north{
+	start_charge = 0
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
+/mob/living/basic/automaton/hopper/coalition,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/dorms/lounge)
+"oH" = (
+/obj/structure/cable,
+/obj/machinery/power/apc/auto_name/north{
+	start_charge = 0
+	},
+/obj/effect/turf_decal/ship/techfloor{
+	dir = 6
+	},
+/obj/machinery/firealarm/directional/west,
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/engineering)
+"oS" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/engineering)
+"oV" = (
+/obj/structure/mecha_wreckage/gygax/dark,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/lab)
+"oX" = (
+/obj/machinery/power/terminal{
+	dir = 8
+	},
+/obj/effect/turf_decal/ship/techfloor{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable/yellow,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"oZ" = (
+/obj/structure/cable/yellow,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/stripes/line{
+	dir = 9
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/radiation)
+"ph" = (
+/turf/closed/wall/r_wall,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"pi" = (
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/killroom/drones)
+"pt" = (
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 8
+	},
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"pw" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/ship/borderfloor,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker)
+"px" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/engine/air,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/engineering)
+"pF" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/engineering)
+"pG" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 9;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 4
+	},
+/obj/structure/sign/warning{
+	pixel_x = -23
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker)
+"pN" = (
+/obj/structure/bed{
+	dir = 1
+	},
+/obj/machinery/airalarm/directional/west,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/dorms/two)
+"pZ" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 9
+	},
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/engineering)
+"qa" = (
+/obj/effect/turf_decal/trimline/red/warning{
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/siding/white{
+	color = "#BA9F6D"
+	},
+/obj/structure/closet/crate/freezer,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/machinery/light/floor,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/cargo)
+"qd" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 9;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/armory)
+"qf" = (
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/robot_debris,
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"qi" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 9;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker)
+"qm" = (
+/mob/living/basic/automaton/agrav{
+	name = "dron grawitacyjny „Kumpel”";
+	desc = "Zaawansowana amunicja krążąca Cybersun z końca Wojny Międzykorporacyjnej. Po wojnie większość przerobiono na zwykłe drony robocze Cybersun i wspólników; na twoje szczęście to jeden z nich. Wydaje się dość nieuważny."
+	},
+/turf/open/floor/carpet/black,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/dorms)
+"qp" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/structure/lattice/catwalk/over/ship/dark,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker)
+"qq" = (
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete/pavement,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"qt" = (
+/obj/structure/closet/secure_closet{
+	name = "szafka ze sprzętem";
+	icon_door = "sec_wall";
+	pixel_x = 32
+	},
+/obj/item/ammo_box/a357,
+/obj/item/clothing/accessory/holster,
+/obj/item/ammo_box/a357,
+/obj/item/ammo_box/a357,
+/obj/item/flashlight/seclite,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/controlroom)
+"qC" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 10;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 1
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 10
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/armory)
+"qG" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/engineering)
+"qK" = (
+/obj/effect/decal/cleanable/molten_object/large,
+/obj/effect/radiation/waste/intense,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete/pavement,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"qN" = (
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 6
+	},
+/obj/structure/marker_beacon{
+	picked_color = "Burgundy"
+	},
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"qP" = (
+/obj/effect/decal/cleanable/ash/large{
+	pixel_x = 4;
+	pixel_y = -3
+	},
+/turf/open/floor/plating/asteroid/dirt/battlefield,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"qT" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/ship/borderfloor,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/cargo)
+"qV" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 1;
+	color = "#BA9F6D"
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 8;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/trimline/red/warning{
+	dir = 1;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/machinery/light_switch{
+	dir = 4;
+	pixel_x = -20;
+	pixel_y = -2
+	},
+/obj/machinery/firealarm/directional/west{
+	pixel_x = -32;
+	pixel_y = 6
+	},
+/obj/effect/turf_decal/ship/borderfloor/corner,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/lab)
+"qZ" = (
+/mob/living/basic/automaton/quadrotor/cybersun{
+	faction = list("Syndicate")
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker)
+"ra" = (
+/obj/structure/barricade/sandbags,
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"re" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 9
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/lab)
+"rj" = (
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/engineering)
+"rk" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/effect/turf_decal/ship/borderfloor/corner{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/red{
+	color = "#730622";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker)
+"rx" = (
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 6
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/marker_beacon{
+	picked_color = "Burgundy"
+	},
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"rA" = (
+/mob/living/basic/automaton/walkmine/ramzi{
+	faction = list("hostile")
+	},
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"rB" = (
+/obj/machinery/door/poddoor{
+	id = "bunkernorthgate1"
+	},
+/obj/structure/cable,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker)
+"rD" = (
+/obj/effect/turf_decal/tile/neutral/opposingcorners{
+	dir = 8;
+	color = "#a3a2a0";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 8;
+	color = "#474747"
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/medbay)
+"rG" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 6;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 8
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/lab)
+"rI" = (
+/obj/machinery/door/airlock/grunge{
+	dir = 4;
+	name = "Serwerownia"
+	},
+/obj/effect/mapping_helpers/airlock/locked,
+/obj/effect/mapping_helpers/airlock/locked,
+/obj/effect/mapping_helpers/airlock/locked,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/lab)
+"rM" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 8
+	},
+/obj/effect/turf_decal/ship/borderfloor,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/armory)
+"rQ" = (
+/obj/effect/turf_decal/siding/wood,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/dorms/lounge)
+"rU" = (
+/obj/structure/table/reinforced,
+/obj/item/mecha_parts/part/gygax_left_arm{
+	pixel_x = -9;
+	pixel_y = 3
+	},
+/obj/item/mecha_parts/mecha_equipment/hydraulic_clamp{
+	pixel_x = 4;
+	pixel_y = 2
+	},
+/obj/item/mecha_parts/mecha_equipment/drill{
+	pixel_x = 1;
+	pixel_y = -10
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/lab)
+"rX" = (
+/obj/structure/radioactive_barrel/stack,
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"sb" = (
+/obj/item/food/deadmouse,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"sc" = (
+/turf/open/floor/concrete/pavement,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"sd" = (
+/obj/structure/window/plastitanium,
+/obj/structure/grille,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "radlockdown"
+	},
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/engineering)
+"sj" = (
+/obj/structure/table/reinforced,
+/obj/structure/sink{
+	pixel_y = 6;
+	pixel_x = 3
+	},
+/obj/item/radio/intercom/directional/north,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/medbay)
+"sk" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 9;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 4;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/machinery/power/apc/auto_name/west,
+/obj/structure/cable,
+/obj/effect/turf_decal/ship/borderfloor/corner,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker)
+"sl" = (
+/obj/structure/cable/yellow,
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/radiation)
+"sm" = (
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/radiation)
+"sp" = (
+/obj/structure/girder/reinforced,
+/obj/item/stack/sheet/mineral/plastitanium,
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"sq" = (
+/obj/structure/closet/crate/internals,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/item/tank/internals/oxygen/yellow,
+/obj/item/tank/internals/emergency_oxygen/double,
+/obj/item/tank/internals/emergency_oxygen/double,
+/obj/item/tank/internals/emergency_oxygen/double,
+/obj/item/clothing/mask/gas/syndicate,
+/obj/item/clothing/mask/gas/syndicate,
+/obj/item/clothing/mask/gas/syndicate,
+/obj/item/clothing/suit/space/eva,
+/obj/item/clothing/head/helmet/space/eva,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/cargo)
+"st" = (
+/obj/effect/turf_decal/tile/neutral/opposingcorners{
+	dir = 8;
+	color = "#a3a2a0";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 6;
+	color = "#474747"
+	},
+/obj/structure/closet/crate/bin{
+	pixel_x = 7;
+	density = 0
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/medbay)
+"sJ" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden/layer4,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/dorms/lounge)
+"sL" = (
+/obj/structure/frame/machine{
+	anchored = 1
+	},
+/turf/open/floor/plating/asteroid/dirt/battlefield,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"sN" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/lab)
+"sO" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/curtain{
+	dir = 4;
+	pixel_x = 9
+	},
+/obj/machinery/shower{
+	dir = 4;
+	pixel_x = -2
+	},
+/turf/open/floor/noslip,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker)
+"sX" = (
+/obj/effect/turf_decal/tile/neutral/opposingcorners{
+	dir = 8;
+	color = "#a3a2a0";
+	alpha = 140
+	},
+/obj/structure/sink{
+	dir = 8;
+	pixel_x = 13;
+	pixel_y = 1
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 8
+	},
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 5;
+	color = "#474747"
+	},
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/bathroom)
+"td" = (
+/obj/effect/turf_decal/ship/techfloor{
+	dir = 1
+	},
+/obj/machinery/washing_machine,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/dorms)
+"te" = (
+/obj/effect/turf_decal/ship/techfloor{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 5
+	},
+/obj/machinery/airalarm/directional/south,
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/engineering)
+"tk" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 6;
+	color = "#474747"
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 9
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/mess)
+"tn" = (
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/blood/splatter,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete/pavement,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"tp" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 10;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 1
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 8;
+	welded = 1
+	},
+/obj/machinery/airalarm/directional/south,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/killroom)
+"ts" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/shower{
+	pixel_y = 23;
+	name = "prysznic awaryjny";
+	desc = "Prysznic awaryjny do szybkiego spłukiwania z ciała niebezpiecznych substancji i gaszenia małych pożarów."
+	},
+/obj/structure/curtain,
+/mob/living/basic/automaton/tripod{
+	name = "mokry „Pomocnik” Sav'cla";
+	desc = "Dron Gildii Al'Sa pierwotnie zrobiony do pomocy w domu. Doskonałe czujniki optyczne, które czyniły go świetnym pomocnikiem, czynią go też świetną maszyną wojenną. Sye-Port Industrial od dziesięcioleci masowo robi takie przeróbki, więc na pograniczu to częsty widok. Ten jest przemoczony."
+	},
+/turf/open/floor/noslip,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/checkpoint)
+"tz" = (
+/obj/structure/table/reinforced,
+/obj/structure/sign/warning{
+	pixel_x = 22;
+	pixel_y = 3
+	},
+/obj/effect/turf_decal/ship/techfloor{
+	dir = 8
+	},
+/obj/item/screwdriver/caravan{
+	pixel_x = 2;
+	pixel_y = 8
+	},
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/engineering)
+"tA" = (
+/obj/structure/chair/fancy/bench{
+	dir = 4;
+	pixel_x = -4
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 9;
+	color = "#474747"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/medbay)
+"tB" = (
+/obj/machinery/door/poddoor{
+	id = "bunkersouthgate2"
+	},
+/obj/structure/cable,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker)
+"tF" = (
+/obj/structure/rack,
+/obj/item/watertank{
+	pixel_y = 3;
+	pixel_x = -3
+	},
+/obj/item/geiger_counter{
+	pixel_x = 5;
+	pixel_y = 3
+	},
+/obj/item/flashlight/seclite{
+	pixel_y = -8
+	},
+/obj/effect/turf_decal/box,
+/obj/effect/turf_decal/ship/techfloor,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/engineering)
+"tH" = (
+/obj/machinery/door/window/eastleft,
+/turf/open/floor/plasteel/freezer,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/bathroom)
+"tJ" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 1;
+	color = "#474747"
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 6
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/medbay)
+"tK" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/armory)
+"tL" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/lab)
+"tM" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/asteroid/dirt/battlefield,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"tO" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 10;
+	color = "#474747"
+	},
+/obj/structure/closet/crate/bin{
+	pixel_x = -9;
+	density = 0
+	},
+/obj/item/gun/ballistic/automatic/pistol,
+/obj/item/ammo_box/magazine/m10mm,
+/obj/machinery/light_switch{
+	pixel_x = 12;
+	pixel_y = -19;
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/dorms)
+"tR" = (
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/airalarm/directional/south,
+/obj/machinery/light/floor,
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/checkpoint)
+"tS" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 9;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/tile/red{
+	color = "#730622";
+	alpha = 255
+	},
+/obj/machinery/button/door{
+	dir = 4;
+	pixel_x = -22;
+	pixel_y = 5;
+	id = "bay";
+	name = "Ładownia"
+	},
+/obj/machinery/airalarm/directional/south,
+/obj/effect/turf_decal/ship/borderfloor/corner{
+	dir = 4
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/lab)
+"tV" = (
+/obj/effect/turf_decal/siding/white/corner{
+	dir = 4;
+	color = "#474747"
+	},
+/obj/effect/turf_decal/siding/white/corner{
+	dir = 1;
+	color = "#474747"
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/dorms/lounge)
+"tY" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 10;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 4;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/structure/cable,
+/obj/machinery/power/apc/auto_name/east,
+/obj/effect/turf_decal/ship/borderfloor/corner{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/armory)
+"uj" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker)
+"ul" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/ship/borderfloor,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/lab)
+"uw" = (
+/obj/effect/turf_decal/tile/bar/opposingcorners{
+	color = "#791500";
+	alpha = 130
+	},
+/obj/structure/table/reinforced,
+/obj/structure/sink/kitchen{
+	pixel_y = 10;
+	dir = 1
+	},
+/obj/machinery/airalarm/directional/south,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/mess)
+"uB" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 1;
+	color = "#BA9F6D"
+	},
+/obj/effect/turf_decal/trimline/red/warning{
+	dir = 1;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/effect/turf_decal/ship/borderfloor,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/lab)
+"uE" = (
+/obj/machinery/porta_turret/syndicate{
+	dir = 4;
+	faction = list("hostile","turret")
+	},
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker)
+"uG" = (
+/obj/structure/closet,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 1;
+	welded = 1
+	},
+/obj/item/storage/belt/military,
+/obj/item/clothing/mask/bandana/red,
+/obj/item/clothing/mask/gas/syndicate,
+/obj/item/clothing/under/syndicate,
+/obj/item/clothing/under/syndicate,
+/obj/item/clothing/shoes/combat,
+/obj/item/clothing/shoes/combat,
+/obj/machinery/light_switch{
+	dir = 8;
+	pixel_x = 20;
+	pixel_y = 9
+	},
+/obj/machinery/firealarm/directional/east{
+	pixel_x = 32;
+	pixel_y = 2
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/dorms/one)
+"uM" = (
+/obj/effect/turf_decal/stripes/asteroid/line,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/components/unary/outlet_injector/atmos/atmos_waste{
+	dir = 8
+	},
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"uO" = (
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 9
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/marker_beacon{
+	picked_color = "Lime"
+	},
+/turf/open/floor/concrete/pavement,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"uR" = (
+/obj/machinery/door/firedoor/heavy,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker)
+"uV" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/lab)
+"uW" = (
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/cable,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/controlroom)
+"vo" = (
+/obj/machinery/computer/security/telescreen/entertainment{
+	pixel_x = -28
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 8;
+	color = "#474747"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/dorms)
+"vp" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 5;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/ship/borderfloor,
+/obj/machinery/firealarm/directional/north,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker)
+"vs" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/lab)
+"vy" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"vz" = (
+/obj/effect/turf_decal/stripes/asteroid/line,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete/pavement,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"vH" = (
+/obj/structure/radioactive_barrel/waste,
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"vO" = (
+/obj/machinery/door/airlock{
+	dir = 1;
+	name = "Kwatery załogi"
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/dorms/lounge)
+"vV" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 9;
+	color = "#474747"
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
+/obj/machinery/light_switch{
+	dir = 4;
+	pixel_x = -19;
+	pixel_y = -7
+	},
+/obj/item/radio/intercom/directional/north,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/mess)
+"vW" = (
+/obj/effect/turf_decal/siding/wood/corner,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/dorms/lounge)
+"wd" = (
+/obj/structure/grille,
+/obj/structure/window/plastitanium,
+/obj/machinery/door/poddoor/shutters{
+	id = "controlroomwindows";
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/controlroom)
+"wh" = (
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 6;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/structure/cable,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker)
+"wj" = (
+/obj/structure/cable/yellow,
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/radiation)
+"wk" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 6;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/lab)
+"wm" = (
+/obj/structure/flora/ash/glowshroom,
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"wo" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 5;
+	color = "#474747"
+	},
+/obj/machinery/vending/cigarette/syndicate,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/dorms/lounge)
+"wr" = (
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/purple/half{
+	dir = 1;
+	color = "#CBB1CA";
+	alpha = 140
+	},
+/obj/item/storage/firstaid/regular,
+/obj/item/storage/firstaid/ancient{
+	pixel_x = -6;
+	pixel_y = 6
+	},
+/obj/item/stack/medical/bandage,
+/obj/item/stack/medical/bandage,
+/obj/item/stack/medical/bandage,
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/medbay)
+"wB" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 6;
+	color = "#474747"
+	},
+/obj/machinery/airalarm/directional/east,
+/obj/machinery/light/small,
+/obj/machinery/light_switch{
+	dir = 8;
+	pixel_x = 19;
+	pixel_y = 12
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/dorms/lounge)
+"wM" = (
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"wN" = (
+/obj/effect/turf_decal/tile/red{
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 9
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker)
+"wS" = (
+/obj/machinery/shower{
+	dir = 4;
+	pixel_x = -2
+	},
+/obj/structure/window/reinforced/spawner/east,
+/obj/item/radio/intercom/directional/south,
+/turf/open/floor/plasteel/freezer,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/bathroom)
+"wU" = (
+/obj/effect/turf_decal/stripes/asteroid/corner{
+	dir = 4
+	},
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"wW" = (
+/mob/living/basic/automaton/rover/coalition{
+	faction = list("hostile")
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/killroom/drones)
+"wZ" = (
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 5
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/marker_beacon{
+	picked_color = "Burgundy"
+	},
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"xa" = (
+/obj/structure/chair/fancy/sofa/old/corner,
+/turf/open/floor/carpet/black,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/dorms)
+"xh" = (
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/medbay)
+"xj" = (
+/obj/machinery/atmospherics/components/unary/outlet_injector/on/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/engine/air,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/engineering)
+"xl" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 6
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
+/obj/effect/turf_decal/ship/borderfloor,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/armory)
+"xq" = (
+/obj/structure/radioactive_barrel/waste,
+/turf/open/floor/plating/asteroid/dirt/battlefield,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"xz" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 8;
+	color = "#BA9F6D"
+	},
+/obj/effect/turf_decal/trimline/red/warning{
+	dir = 8;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 4
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/lab)
+"xA" = (
+/obj/structure/chair/fancy/bench{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 9
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/dorms/lounge)
+"xF" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 5
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/cargo)
+"xH" = (
+/mob/living/basic/automaton/walkmine/ramzi{
+	faction = list("hostile")
+	},
+/turf/open/floor/concrete/pavement,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"xI" = (
+/obj/structure/grille,
+/obj/structure/window/plastitanium,
+/obj/machinery/door/poddoor/shutters{
+	dir = 4;
+	id = "wasteviewingports"
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/dorms/lounge)
+"xL" = (
+/obj/structure/frame/machine{
+	anchored = 1
+	},
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker)
+"xP" = (
+/obj/structure/grille,
+/obj/structure/window/plastitanium,
+/obj/machinery/door/poddoor/shutters{
+	id = "controlroomwindows"
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/controlroom)
+"xV" = (
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 10
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/radiation)
+"xX" = (
+/obj/structure/window/plastitanium,
+/obj/structure/grille,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/engineering)
+"xY" = (
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/item/radio/intercom/directional/west,
+/obj/machinery/button/door{
+	pixel_x = -7;
+	pixel_y = 22;
+	id = "bunkersouthgate2";
+	name = "zewnętrzna brama bunkra"
+	},
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"xZ" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/radiation)
+"yd" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 6;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 8
+	},
+/obj/structure/cable,
+/obj/machinery/power/apc/auto_name/east,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/cargo)
+"ye" = (
+/turf/template_noop,
+/area/template_noop)
+"yf" = (
+/obj/structure/sign/warning/radiation{
+	pixel_x = 24;
+	pixel_y = 8
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 5
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/checkpoint)
+"yl" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 5;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/ship/borderfloor,
+/obj/structure/sign/warning/explosives/alt{
+	pixel_y = 24
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/lab)
+"yp" = (
+/obj/structure/radioactive_barrel,
+/turf/open/floor/plating/asteroid/dirt/battlefield,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"ys" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 9;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 4
+	},
+/obj/structure/closet/crate/secure{
+	name = "zamykana skrzynia z klejnotami";
+	desc = "Zamykana skrzynia. Zawiera klejnot(y). Uwaga, klejnoty."
+	},
+/obj/item/stack/sheet/mineral/diamond,
+/obj/item/stack/ore/diamond,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/armory)
+"yt" = (
+/obj/effect/turf_decal/trimline/red/warning{
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/siding/white{
+	color = "#BA9F6D"
+	},
+/obj/structure/closet/crate/freezer,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/cargo)
+"yC" = (
+/obj/machinery/door/airlock/grunge{
+	dir = 4;
+	name = "Inżynieria"
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/engineering)
+"yK" = (
+/obj/effect/turf_decal/trimline/red/warning{
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/siding/white{
+	color = "#BA9F6D"
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/cargo)
+"yO" = (
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/lab)
+"yT" = (
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"yV" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 10;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 1
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 2
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker)
+"yY" = (
+/obj/effect/decal/cleanable/glass,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/engine,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"zj" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/lab)
+"zl" = (
+/obj/effect/turf_decal/siding/white{
+	color = "#BA9F6D"
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 1;
+	color = "#BA9F6D"
+	},
+/obj/effect/turf_decal/trimline/red/warning{
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/trimline/red/warning{
+	dir = 1;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/machinery/firealarm/directional/south,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/cargo)
+"zx" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 10;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/cable,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/lab)
+"zy" = (
+/obj/structure/frame/machine{
+	anchored = 1
+	},
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"zD" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 10
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/cargo)
+"zK" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/airalarm/directional/east,
+/obj/effect/turf_decal/ship/borderfloor/corner{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/red{
+	color = "#730622";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/armory)
+"zL" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/lab)
+"zM" = (
+/obj/structure/reagent_dispensers/fueltank,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"zU" = (
+/obj/machinery/door/airlock/grunge{
+	dir = 4;
+	name = "Mesa"
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/mess)
+"zV" = (
+/obj/effect/turf_decal/stripes/asteroid/line,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"zY" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 9;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/cargo)
+"Ad" = (
+/obj/structure/flora/ash/glowshroom,
+/turf/open/floor/plating/asteroid/dirt/battlefield,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"Ah" = (
+/obj/effect/decal/cleanable/ash{
+	pixel_x = 3;
+	pixel_y = -2
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"An" = (
+/obj/structure/table/reinforced,
+/obj/item/storage/box/masks{
+	pixel_x = 7
+	},
+/obj/item/storage/box/gloves{
+	pixel_y = 6;
+	pixel_x = 7
+	},
+/obj/item/clothing/suit/apron/surgical{
+	pixel_x = -7;
+	pixel_y = -2
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/medbay)
+"Aq" = (
+/obj/machinery/porta_turret/syndicate{
+	faction = list("hostile","turret");
+	dir = 10
+	},
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/dorms/lounge)
+"At" = (
+/obj/structure/cable,
+/obj/machinery/power/apc/auto_name/south,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/radiation)
+"AB" = (
+/obj/effect/turf_decal/tile/neutral/opposingcorners{
+	dir = 8;
+	color = "#a3a2a0";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 9;
+	color = "#474747"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/medbay)
+"AE" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/structure/sign/warning/nosmoking{
+	pixel_x = -22;
+	pixel_y = 8
+	},
+/obj/machinery/button/door{
+	pixel_x = -22;
+	pixel_y = -9;
+	dir = 4;
+	id = "wasteviewingports";
+	name = "iluminatory"
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/dorms/lounge)
+"AG" = (
+/obj/effect/turf_decal/ship/techfloor{
+	dir = 1
+	},
+/obj/structure/table,
+/obj/structure/bedsheetbin{
+	pixel_x = -1;
+	pixel_y = 2
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/dorms)
+"AS" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/checkpoint)
+"AT" = (
+/obj/structure/window/plastitanium,
+/obj/structure/grille,
+/obj/machinery/door/poddoor/shutters/preopen{
+	dir = 4;
+	id = "radlockdown"
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/engineering)
+"AX" = (
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/killroom)
+"Bf" = (
+/obj/machinery/button/door{
+	pixel_x = 2;
+	pixel_y = 22;
+	id = "bunkernorthgate1";
+	name = "północna zewnętrzna brama bunkra"
+	},
+/obj/machinery/suit_storage_unit{
+	storage_type = /obj/item/tank/internals/oxygen/yellow
+	},
+/turf/open/floor/mineral/plastitanium/red,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker)
+"Bg" = (
+/obj/machinery/mech_bay_recharge_port,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/lab)
+"Bk" = (
+/obj/machinery/door/poddoor{
+	id = "bunkernorthgate1"
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/brown/hidden,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker)
+"Bm" = (
+/mob/living/basic/automaton/walkmine/ramzi,
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"Bo" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 9;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 4
+	},
+/obj/machinery/light/broken{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/armory)
+"Bp" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker)
+"Bt" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 10;
+	color = "#474747"
+	},
+/obj/structure/closet/crate/bin{
+	pixel_x = -8
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 4;
+	color = "#474747"
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 1;
+	welded = 1
+	},
+/obj/machinery/firealarm/directional/south{
+	pixel_x = 6;
+	pixel_y = -32
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/mess)
+"Bv" = (
+/obj/structure/cable,
+/obj/effect/turf_decal/ship/techfloor{
+	dir = 5
+	},
+/obj/machinery/power/smes/engineering,
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/engineering)
+"Bw" = (
+/obj/structure/spawner/hivebot,
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"Bx" = (
+/obj/effect/turf_decal/ship/techfloor{
+	dir = 1
+	},
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"BH" = (
+/obj/effect/turf_decal/siding/white{
+	color = "#BA9F6D"
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 1;
+	color = "#BA9F6D"
+	},
+/obj/effect/turf_decal/trimline/red/warning{
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/trimline/red/warning{
+	dir = 1;
+	color = "#730622";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/cargo)
+"BK" = (
+/obj/effect/turf_decal/tile/bar/opposingcorners{
+	color = "#791500";
+	alpha = 130
+	},
+/obj/machinery/griddle,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/mess)
+"BM" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 9;
+	color = "#fb9700"
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"BT" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/tile/red{
+	dir = 9;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"BU" = (
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"BV" = (
+/obj/effect/turf_decal/ship/techfloor,
+/obj/structure/closet/crate/internals,
+/obj/structure/cable,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"BZ" = (
+/obj/structure/cable/yellow,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/oil,
+/obj/item/storage/backpack/satchel/flat,
+/mob/living/basic/automaton/hopper{
+	name = "przemytniczy dron CQB „Skoczek” Al'sa";
+	desc = "Specjalistyczny dron Gildii Al'sa do szybkich potyczek z bliska, nazwany „Skoczkiem” od sposobu biegania. W czasie Wojny Międzykorporacyjnej chciały go i Makosso-Warra, i koalicja; wiele sprzedano i produkowano lokalnie na pograniczu. Ten jest lekko przerobiony i chyba był ochroniarzem zmiażdżonego już przemytnika."
+	},
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"Cb" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 6;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker)
+"Cf" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 10;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 1
+	},
+/mob/living/basic/hivebot/range{
+	faction = list("Syndicate")
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/cargo)
+"Cj" = (
+/obj/machinery/door/airlock/grunge{
+	dir = 4;
+	name = "Punkt kontroli promieniowania"
+	},
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/checkpoint)
+"Cp" = (
+/obj/structure/table/reinforced,
+/obj/machinery/button/door{
+	pixel_x = 1;
+	pixel_y = 7;
+	id = "bunkersouthgate1";
+	name = "południowa wewnętrzna brama bunkra";
+	dir = 1
+	},
+/obj/machinery/button/door{
+	pixel_x = 9;
+	pixel_y = 7;
+	id = "bunkersouthgate2";
+	name = "południowa zewnętrzna brama bunkra";
+	dir = 1
+	},
+/obj/machinery/button/door{
+	dir = 1;
+	pixel_x = -6;
+	pixel_y = 3;
+	id = "controlroomwindows";
+	name = "okna sterowni"
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/controlroom)
+"Cq" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer2,
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/lab)
+"Cr" = (
+/obj/structure/girder,
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"CG" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 4;
+	color = "#474747"
+	},
+/obj/effect/turf_decal/siding/white/corner{
+	dir = 1;
+	color = "#474747"
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/mess)
+"CH" = (
+/obj/structure/chair/office{
+	dir = 8;
+	pixel_x = -10
+	},
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 6
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/controlroom)
+"CM" = (
+/obj/structure/fluff/paper/stack{
+	dir = 6;
+	pixel_y = 8;
+	pixel_x = 1;
+	name = "notatki i bazgrane dzienniki"
+	},
+/turf/open/floor/carpet/black,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/dorms)
+"CO" = (
+/mob/living/basic/automaton/hopper/coalition,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/light/floor,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/dorms/lounge)
+"CS" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/armory)
+"CZ" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/tile/red{
+	dir = 9;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"Dg" = (
+/obj/effect/turf_decal/siding/white{
+	color = "#BA9F6D"
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 1;
+	color = "#BA9F6D"
+	},
+/obj/effect/turf_decal/trimline/red/warning{
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/trimline/red/warning{
+	dir = 1;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 4
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/cargo)
+"Di" = (
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line,
+/obj/effect/turf_decal/stripes/corner{
+	dir = 4
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/checkpoint)
+"Dk" = (
+/obj/structure/chair/office{
+	pixel_x = -8;
+	pixel_y = -4
+	},
+/obj/structure/cable,
+/obj/machinery/power/apc/auto_name/west,
+/turf/open/floor/carpet/black,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/dorms/one)
+"Do" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/lab)
+"Dq" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 10;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 1
+	},
+/obj/structure/cable,
+/obj/machinery/light/broken,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/armory)
+"Dr" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker)
+"DE" = (
+/obj/structure/closet/secure_closet/engineering_welding,
+/obj/effect/turf_decal/box/corners{
+	dir = 4
+	},
+/obj/effect/turf_decal/ship/techfloor{
+	dir = 1
+	},
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/engineering)
+"DG" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 9;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 4;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/ship/borderfloor/corner,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/cargo)
+"DH" = (
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 6
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/greenglow/filled,
+/turf/open/floor/engine,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"DQ" = (
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal/tile/bar/opposingcorners{
+	color = "#791500";
+	alpha = 130
+	},
+/obj/machinery/microwave{
+	pixel_y = 8
+	},
+/obj/machinery/light,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/mess)
+"Eh" = (
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete/pavement,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"Ej" = (
+/obj/effect/turf_decal/stripes/line,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/lab)
+"El" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 5;
+	color = "#474747"
+	},
+/obj/structure/cable,
+/obj/machinery/power/apc/auto_name/east,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/dorms)
+"Ev" = (
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 1
+	},
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"Ew" = (
+/obj/effect/turf_decal/siding/wood,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/dorms)
+"EA" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 4;
+	color = "#474747"
+	},
+/obj/effect/turf_decal/siding/wood,
+/obj/machinery/airalarm/directional/east,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/dorms)
+"EE" = (
+/obj/structure/cable,
+/obj/effect/turf_decal/ship/techfloor,
+/obj/effect/decal/cleanable/oil,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"EH" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/curtain{
+	dir = 4;
+	pixel_x = 9
+	},
+/obj/machinery/shower{
+	dir = 4;
+	pixel_x = -2
+	},
+/obj/structure/sign/poster/official/safety_internals{
+	pixel_y = 25
+	},
+/turf/open/floor/noslip,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker)
+"EI" = (
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/cargo)
+"EJ" = (
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete/pavement,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"EM" = (
+/obj/effect/turf_decal/stripes/white/line{
+	color = "#fb9700"
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"ES" = (
+/obj/structure/table/reinforced,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/controlroom)
+"EU" = (
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/radiation)
+"EZ" = (
+/mob/living/basic/automaton/tripod,
+/turf/closed/mineral/random/jungle/battlefield,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"Fe" = (
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 5
+	},
+/obj/machinery/light/floor,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/controlroom)
+"Ff" = (
+/obj/structure/window/plastitanium,
+/obj/structure/grille,
+/obj/machinery/door/poddoor/shutters{
+	id = "controlroomwindows";
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/controlroom)
+"Fk" = (
+/obj/machinery/door/airlock/grunge{
+	dir = 4;
+	name = "Część wspólna"
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/dorms/lounge)
+"Fv" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker)
+"Fy" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker)
+"FD" = (
+/obj/structure/reagent_dispensers/plumbed,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/cargo)
+"FG" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/engine,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"FH" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 8;
+	color = "#474747"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/dorms)
+"FI" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 10;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 1
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/cargo)
+"FK" = (
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 9;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/structure/cable,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker)
+"Gh" = (
+/obj/effect/turf_decal/siding/white/corner{
+	dir = 1;
+	color = "#474747"
+	},
+/obj/effect/turf_decal/siding/white/corner{
+	dir = 8;
+	color = "#474747"
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/dorms)
+"Gj" = (
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/checkpoint)
+"Gl" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"Gm" = (
+/obj/structure/frame/machine{
+	anchored = 1
+	},
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/dorms/lounge)
+"Gp" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 1;
+	color = "#474747"
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/dorms)
+"Gu" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 10;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 4;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/ship/borderfloor/corner{
+	dir = 1
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/lab)
+"Gx" = (
+/obj/structure/guncase,
+/obj/effect/turf_decal/tile/red{
+	dir = 6;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 8;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/item/gun/ballistic/automatic/c20r/unrestricted,
+/obj/item/gun/ballistic/shotgun/riot{
+	pixel_x = 1;
+	pixel_y = -4
+	},
+/obj/effect/turf_decal/ship/borderfloor/corner{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/killroom)
+"GD" = (
+/mob/living/basic/automaton/tripod{
+	faction = list("hostile")
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/cargo)
+"GE" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker)
+"GF" = (
+/obj/structure/sign/warning/radiation/rad_area{
+	pixel_x = 21;
+	pixel_y = 28
+	},
+/obj/effect/turf_decal/stripes/corner,
+/obj/machinery/button/door{
+	dir = 8;
+	pixel_x = 23;
+	pixel_y = -5;
+	id = "radroom";
+	name = "komora izotopów"
+	},
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/radiation)
+"GN" = (
+/obj/structure/girder/reinforced,
+/obj/effect/decal/cleanable/blood/splatter,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"GS" = (
+/turf/open/floor/engine/air,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/engineering)
+"GT" = (
+/obj/structure/table,
+/obj/item/food/rationpack{
+	pixel_x = -2;
+	pixel_y = 7
+	},
+/obj/item/food/sausage{
+	pixel_y = 4
+	},
+/obj/item/food/rationpack{
+	pixel_x = -3;
+	pixel_y = -4
+	},
+/turf/open/floor/carpet/black,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/dorms)
+"GV" = (
+/turf/closed/wall/r_wall/syndicate,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"Ha" = (
+/obj/effect/turf_decal/stripes/asteroid/line,
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"Hn" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/lab)
+"Ht" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/frame/machine{
+	anchored = 1
+	},
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"Hv" = (
+/obj/structure/cable,
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/lab)
+"HA" = (
+/obj/effect/turf_decal/ship/techfloor,
+/obj/structure/railing,
+/obj/machinery/power/terminal{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/structure/rack,
+/obj/item/storage/toolbox/mechanical{
+	pixel_x = 1;
+	pixel_y = 1
+	},
+/obj/item/multitool,
+/obj/item/storage/toolbox/electrical,
+/obj/item/stack/sheet/mineral/plasma/twenty{
+	pixel_y = 9;
+	pixel_x = -5
+	},
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"HB" = (
+/obj/machinery/light,
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/dorms/lounge)
+"HD" = (
+/obj/structure/table,
+/obj/machinery/coffeemaker{
+	pixel_x = -2;
+	pixel_y = 10
+	},
+/obj/item/coffee_cartridge/bootleg{
+	pixel_x = -7;
+	pixel_y = -2
+	},
+/obj/item/coffee_cartridge/decaf{
+	pixel_x = 7;
+	pixel_y = -2
+	},
+/obj/item/coffee_cartridge{
+	pixel_y = -2
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/item/radio/intercom/directional/north,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/dorms/lounge)
+"HG" = (
+/obj/effect/turf_decal/tile/red{
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 9
+	},
+/obj/structure/cable,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/lab)
+"HI" = (
+/obj/effect/decal/cleanable/oil,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"HM" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/radiation)
+"HN" = (
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"HO" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 6;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 8
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker)
+"HQ" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 6
+	},
+/turf/open/floor/carpet/black,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/dorms/one)
+"HT" = (
+/obj/structure/grille,
+/obj/structure/window/plastitanium,
+/obj/machinery/door/poddoor/shutters{
+	id = "wasteviewingports"
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/dorms/lounge)
+"Ij" = (
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 9;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/brown/hidden,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker)
+"Ik" = (
+/obj/effect/turf_decal/siding/white{
+	color = "#BA9F6D"
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 1;
+	color = "#BA9F6D"
+	},
+/obj/effect/turf_decal/trimline/red/warning{
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/trimline/red/warning{
+	dir = 1;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 5
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/cargo)
+"In" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker)
+"Iv" = (
+/obj/machinery/telecomms/relay/preset/ruskie,
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"IH" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "openrobots"
+	},
+/obj/effect/turf_decal/stripes/full,
+/obj/structure/lattice/catwalk,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/radiation)
+"IJ" = (
+/obj/effect/turf_decal/tile/bar/opposingcorners{
+	color = "#791500";
+	alpha = 130
+	},
+/obj/structure/table/reinforced,
+/obj/item/reagent_containers/food/condiment/peppermill{
+	pixel_x = 10;
+	pixel_y = 2
+	},
+/obj/item/reagent_containers/glass/rag{
+	pixel_x = -6;
+	pixel_y = 7
+	},
+/obj/item/reagent_containers/food/condiment/saltshaker{
+	pixel_y = 2;
+	pixel_x = 4
+	},
+/obj/structure/cable,
+/obj/machinery/power/apc/auto_name/south,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/mess)
+"IK" = (
+/obj/structure/reagent_dispensers/watertank,
+/turf/open/floor/concrete/pavement,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"IO" = (
+/obj/machinery/door/poddoor/shutters{
+	id = "closedrobots";
+	dir = 4
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker)
+"IX" = (
+/obj/effect/turf_decal/stripes/asteroid/corner{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"Jd" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 6;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 8;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/structure/cable,
+/obj/machinery/power/apc/auto_name/south,
+/obj/effect/turf_decal/ship/borderfloor/corner{
+	dir = 1
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/lab)
+"Jg" = (
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/bathroom)
+"Jh" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 10;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 1
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker)
+"Jq" = (
+/obj/structure/dresser,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
+/obj/machinery/button/door{
+	pixel_x = 22;
+	pixel_y = -6;
+	name = "rygiel drzwi";
+	id = "dorm1";
+	specialfunctions = 4;
+	normaldoorcontrol = 1;
+	dir = 8
+	},
+/obj/item/clothing/shoes/sandal{
+	pixel_x = -5;
+	pixel_y = -11
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/dorms/one)
+"Jr" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 5;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/ship/borderfloor,
+/obj/machinery/button/door{
+	pixel_x = -1;
+	pixel_y = 23;
+	id = "bunkernorthgate2";
+	name = "północna wewnętrzna brama bunkra"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker)
+"Ju" = (
+/obj/structure/cable/yellow,
+/obj/structure/lattice/catwalk/over/ship/dark,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/engineering)
+"Jv" = (
+/obj/structure/chair/fancy/bench{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/dorms/lounge)
+"Jw" = (
+/obj/effect/turf_decal/stripes/white/end{
+	dir = 1;
+	color = "#fb9700"
+	},
+/obj/structure/cable,
+/obj/machinery/door/poddoor{
+	dir = 4;
+	id = "whollop_bay_doors"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"JA" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 10;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 1
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/lab)
+"JB" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 10;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 1
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker)
+"JK" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/effect/turf_decal/ship/borderfloor,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/lab)
+"JL" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/drinks/soda_cans/dr_gibb{
+	pixel_x = 7;
+	pixel_y = 11
+	},
+/obj/item/reagent_containers/food/drinks/soda_cans/lemon_lime{
+	pixel_x = -5;
+	pixel_y = 14
+	},
+/turf/open/floor/carpet/black,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/dorms)
+"JM" = (
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 1
+	},
+/turf/open/floor/concrete/pavement,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"JQ" = (
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"JR" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	dir = 4;
+	id = "bay"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/lab)
+"Kb" = (
+/obj/machinery/door/firedoor/heavy,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker)
+"Kg" = (
+/obj/item/reagent_containers/glass/rag,
+/obj/item/cigbutt,
+/obj/item/stack/cable_coil{
+	pixel_x = -2;
+	pixel_y = -2
+	},
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"Kj" = (
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/cargo)
+"Kk" = (
+/obj/effect/turf_decal/siding/wood,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/dorms)
+"Kp" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/ship/borderfloor/corner{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/red{
+	color = "#730622";
+	alpha = 255
+	},
+/obj/machinery/button/door{
+	pixel_x = 22;
+	pixel_y = 10;
+	dir = 8;
+	id = "killroom";
+	name = "Zabezpieczony magazyn"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/lab)
+"Kq" = (
+/mob/living/basic/automaton/agrav/cybersun,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/killroom)
+"Ku" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/radioactive_barrel,
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"Ky" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 10
+	},
+/obj/structure/cable,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/engineering)
+"KE" = (
+/mob/living/basic/automaton/rover/coalition{
+	faction = list("hostile")
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/killroom)
+"KQ" = (
+/obj/structure/cable/yellow,
+/obj/effect/turf_decal/stripes/full,
+/obj/machinery/door/poddoor/shutters{
+	dir = 4;
+	id = "radroom"
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/radiation)
+"KU" = (
+/obj/structure/cable,
+/obj/machinery/power/apc/auto_name/north{
+	start_charge = 0
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/checkpoint)
+"KX" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/checkpoint)
+"KY" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 4
+	},
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/engineering)
+"Lb" = (
+/obj/structure/table/reinforced,
+/obj/item/storage/belt/utility/full/engi{
+	pixel_x = 3
+	},
+/obj/item/clothing/glasses/welding{
+	pixel_x = 4;
+	pixel_y = 7
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/lab)
+"Lj" = (
+/obj/structure/railing/corner{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/radiation)
+"Lu" = (
+/obj/structure/toilet{
+	dir = 8;
+	pixel_x = 5;
+	pixel_y = 4
+	},
+/obj/effect/turf_decal/tile/neutral/opposingcorners{
+	dir = 8;
+	color = "#a3a2a0";
+	alpha = 140
+	},
+/obj/machinery/airalarm/directional/south,
+/obj/effect/turf_decal/siding/white{
+	dir = 6;
+	color = "#474747"
+	},
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/bathroom)
+"LC" = (
+/obj/machinery/mech_bay_recharge_port{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/lab)
+"LD" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 10;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/cargo)
+"LG" = (
+/obj/structure/cable,
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 9
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker)
+"LI" = (
+/obj/effect/turf_decal/trimline/red/corner{
+	dir = 1;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 6
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/lab)
+"LJ" = (
+/obj/effect/decal/cleanable/oil{
+	icon_state = "floor7"
+	},
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"LO" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 5;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/ship/borderfloor,
+/obj/structure/sign/warning{
+	pixel_x = 8;
+	pixel_y = 32
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker)
+"LP" = (
+/obj/machinery/door/poddoor{
+	id = "bunkernorthgate1"
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/brown/hidden,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker)
+"LT" = (
+/mob/living/basic/automaton/quadrotor/cybersun{
+	faction = list("Syndicate")
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/killroom/drones)
+"LW" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 9;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 4;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 5
+	},
+/obj/effect/turf_decal/ship/borderfloor/corner,
+/obj/machinery/firealarm/directional/west,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/killroom)
+"LX" = (
+/obj/structure/closet/crate/secure/gear{
+	name = "skrzynia z przecinarką do ścian"
+	},
+/obj/item/radio/headset,
+/obj/item/clothing/glasses/welding,
+/turf/open/floor/mineral/plastitanium/red,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/armory)
+"LY" = (
+/obj/effect/turf_decal/tile/red{
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 9
+	},
+/mob/living/basic/automaton/rover/coalition/dmr{
+	faction = list("hostile")
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/armory)
+"Md" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/dorms)
+"Mf" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 8;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 5
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker)
+"Mn" = (
+/obj/machinery/ltsrbt{
+	desc = "Przerobiony LTSRBT. Chyba służy do odczytu i zapisu danych w pobliskich systemach robotów. Mruga przytłumione światełko: „BŁĄD”."
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/radiation)
+"Mv" = (
+/obj/machinery/door/poddoor{
+	id = "bunkersouthgate1"
+	},
+/obj/structure/cable,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker)
+"Mx" = (
+/obj/structure/dresser,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
+/obj/machinery/button/door{
+	pixel_x = 22;
+	pixel_y = -6;
+	name = "rygiel drzwi";
+	id = "dorm2";
+	specialfunctions = 4;
+	normaldoorcontrol = 1;
+	dir = 8
+	},
+/obj/item/clothing/shoes/sandal{
+	pixel_x = -9;
+	pixel_y = -13
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/dorms/two)
+"MA" = (
+/obj/structure/chair/fancy/sofa/old/left{
+	dir = 8
+	},
+/turf/open/floor/carpet/black,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/dorms)
+"MB" = (
+/obj/effect/decal/cleanable/blood/splatter/over_window,
+/turf/closed/wall{
+	desc = "Gruba ściana z betonu wylanego wokół stalowych podpór. Sądząc po krwi i szczątkach sączących się ze szczelin, kogoś zmiażdżyła."
+	},
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"MH" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/dorms/lounge)
+"MN" = (
+/obj/structure/cable,
+/obj/structure/cable/yellow,
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/engineering)
+"MP" = (
+/obj/machinery/modular_computer/console/preset/civilian{
+	dir = 1;
+	pixel_y = -2
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/dorms/two)
+"MU" = (
+/obj/structure/sign/warning/nosmoking{
+	pixel_x = -24;
+	pixel_y = 7
+	},
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"MV" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 4
+	},
+/obj/machinery/light,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker)
+"MX" = (
+/obj/structure/chair{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/dorms)
+"Na" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker)
+"Nb" = (
+/mob/living/basic/automaton/walkmine/ramzi{
+	faction = list("hostile")
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"Ne" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/ship/borderfloor/corner{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/red{
+	color = "#730622";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker)
+"Nf" = (
+/obj/effect/turf_decal/stripes/asteroid/line,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/radio/intercom/directional/west,
+/obj/machinery/button/door{
+	dir = 1;
+	pixel_x = -7;
+	pixel_y = -22;
+	id = "bunkernorthgate1";
+	name = "północna zewnętrzna brama bunkra"
+	},
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"Nj" = (
+/obj/effect/turf_decal/box/corners{
+	dir = 4
+	},
+/obj/structure/reagent_dispensers/foamtank,
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
+	},
+/obj/item/radio/intercom/directional/west,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/checkpoint)
+"Nv" = (
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 5
+	},
+/obj/structure/marker_beacon{
+	picked_color = "Burgundy"
+	},
+/mob/living/basic/hivebot/range,
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"Nz" = (
+/mob/living/basic/automaton/agrav/cybersun,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker)
+"NA" = (
+/obj/machinery/door/airlock/grunge{
+	name = "Punkt kontroli promieniowania"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/engineering)
+"NC" = (
+/obj/structure/table,
+/obj/item/food/rationpack{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/machinery/firealarm/directional/south,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/dorms)
+"NM" = (
+/mob/living/basic/automaton/rover/coalition{
+	faction = list("hostile")
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker)
+"NP" = (
+/mob/living/basic/hivebot/strong/core,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"NV" = (
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 6;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 8
+	},
+/obj/machinery/firealarm/directional/east,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/armory)
+"NW" = (
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 10
+	},
+/obj/structure/marker_beacon{
+	picked_color = "Burgundy"
+	},
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"NY" = (
+/obj/effect/turf_decal/siding/white/corner{
+	color = "#474747"
+	},
+/obj/effect/turf_decal/siding/white/corner{
+	dir = 8;
+	color = "#474747"
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/medbay)
+"Oh" = (
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/dorms/one)
+"Ol" = (
+/obj/structure/flora/ash/glowshroom,
+/obj/effect/decal/cleanable/blood/drip,
+/turf/open/floor/plating/asteroid/dirt/battlefield,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"On" = (
+/obj/machinery/door/airlock/grunge{
+	dir = 4;
+	name = "Serwerownia"
+	},
+/obj/effect/mapping_helpers/airlock/locked,
+/obj/effect/mapping_helpers/airlock/locked,
+/obj/effect/mapping_helpers/airlock/locked,
+/obj/structure/cable,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/lab)
+"Ot" = (
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/mess)
+"Ov" = (
+/obj/effect/turf_decal/stripes/full,
+/obj/structure/lattice/catwalk,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "openrobots"
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/killroom/drones)
+"Oy" = (
+/obj/structure/frame/machine{
+	anchored = 1
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 5
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/radiation)
+"OA" = (
+/obj/machinery/computer/mech_bay_power_console{
+	dir = 4;
+	pixel_x = -4;
+	pixel_y = 1
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/lab)
+"OI" = (
+/obj/structure/barricade/sandbags,
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"OJ" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 5;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/ship/borderfloor,
+/obj/machinery/button/door{
+	pixel_x = 9;
+	pixel_y = 21;
+	id = "cargobay";
+	name = "Ładownia"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/cargo)
+"OO" = (
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 9;
+	color = "#730622";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker)
+"OR" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/controlroom)
+"OT" = (
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 1;
+	color = "#fb9700"
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"OW" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/ship/techfloor,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"Pa" = (
+/obj/machinery/atmospherics/components/unary/portables_connector/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/binary/pump/on/layer2{
+	dir = 8;
+	name = "powietrze do dystrybucji"
+	},
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/effect/turf_decal/ship/techfloor/corner{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/engineering)
+"Pf" = (
+/obj/effect/turf_decal/stripes/line,
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/lab)
+"Ph" = (
+/obj/machinery/porta_turret/syndicate/energy/heavy{
+	dir = 9;
+	faction = list("hostile","turret")
+	},
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker)
+"Pl" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 10;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 1;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/structure/cable,
+/obj/machinery/power/apc/auto_name/south,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 5
+	},
+/obj/effect/turf_decal/ship/borderfloor/corner{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/killroom)
+"PG" = (
+/obj/effect/turf_decal/stripes/white/line{
+	color = "#fb9700"
+	},
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"PH" = (
+/obj/structure/window/plastitanium,
+/obj/structure/grille,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/engineering)
+"PL" = (
+/obj/structure/grille/broken,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"PQ" = (
+/obj/machinery/porta_turret/syndicate{
+	faction = list("hostile","turret")
+	},
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/controlroom)
+"PX" = (
+/obj/structure/table/reinforced,
+/obj/item/pen{
+	pixel_x = 37;
+	pixel_y = 4
+	},
+/obj/item/clipboard{
+	pixel_y = 3;
+	pixel_x = 22
+	},
+/obj/structure/cable,
+/obj/effect/turf_decal/ship/techfloor,
+/obj/item/radio/off{
+	dir = 1;
+	pixel_y = 1
+	},
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/engineering)
+"Qh" = (
+/obj/structure/frame/machine{
+	anchored = 1
+	},
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"Qk" = (
+/obj/effect/turf_decal/stripes/line,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/armory)
+"Qp" = (
+/obj/structure/cable,
+/obj/structure/cable/yellow,
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 5
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/engineering)
+"QG" = (
+/obj/structure/window/plastitanium,
+/obj/structure/grille,
+/obj/machinery/door/poddoor/shutters/preopen{
+	dir = 4;
+	id = "radlockdown"
+	},
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/engineering)
+"QH" = (
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/robot_debris,
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"QI" = (
+/obj/effect/turf_decal/ship/techfloor{
+	dir = 1
+	},
+/obj/structure/closet/crate/trashcart,
+/obj/item/clothing/under/rank/medical/doctor,
+/obj/item/clothing/under/rank/medical/doctor,
+/obj/item/clothing/shoes/sandal,
+/obj/item/clothing/under/misc/overalls,
+/obj/item/clothing/under/misc/overalls,
+/obj/item/clothing/under/misc/overalls,
+/obj/item/clothing/under/misc/overalls,
+/obj/item/clothing/under/misc/overalls,
+/obj/item/clothing/under/misc/overalls,
+/obj/item/clothing/suit/hooded/wintercoat,
+/obj/item/clothing/suit/hooded/wintercoat,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/dorms)
+"QK" = (
+/obj/effect/turf_decal/tile/neutral/opposingcorners{
+	dir = 8;
+	color = "#a3a2a0";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 5;
+	color = "#474747"
+	},
+/obj/structure/chair/office{
+	dir = 1;
+	pixel_x = 3
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/medbay)
+"QN" = (
+/turf/closed/wall,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"QT" = (
+/obj/machinery/atmospherics/components/unary/outlet_injector/on/layer4{
+	dir = 8
+	},
+/turf/open/floor/engine/air,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/engineering)
+"QZ" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 9
+	},
+/obj/machinery/firealarm/directional/west,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/checkpoint)
+"Rc" = (
+/obj/machinery/door/airlock/grunge{
+	dir = 4;
+	name = "Serwerownia"
+	},
+/obj/effect/mapping_helpers/airlock/locked,
+/obj/effect/mapping_helpers/airlock/locked,
+/obj/effect/mapping_helpers/airlock/locked,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/lab)
+"Rd" = (
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/radiation)
+"Rl" = (
+/obj/structure/shuttle/engine/propulsion,
+/obj/structure/cable/yellow,
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 8;
+	color = "#fb9700"
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"RD" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"RF" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"RG" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 8;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 6;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/ship/borderfloor/corner{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/cargo)
+"RJ" = (
+/obj/structure/chair{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/dorms)
+"RL" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker)
+"RP" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
+/obj/machinery/door/poddoor/shutters{
+	id = "whollop_window_shutters";
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"RQ" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/closet/radiation,
+/obj/item/storage/firstaid/radbgone,
+/turf/open/floor/noslip,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/checkpoint)
+"RU" = (
+/obj/machinery/washing_machine,
+/obj/effect/turf_decal/ship/techfloor{
+	dir = 1
+	},
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/dorms)
+"RV" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 6;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 8
+	},
+/obj/machinery/button/door{
+	dir = 8;
+	pixel_x = 21;
+	pixel_y = 5;
+	id = "bay";
+	name = "Hala"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker)
+"RZ" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 8
+	},
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/engineering)
+"Sa" = (
+/obj/effect/turf_decal/tile/neutral/opposingcorners{
+	dir = 8;
+	color = "#a3a2a0";
+	alpha = 140
+	},
+/obj/structure/cable,
+/obj/machinery/power/apc/auto_name/south,
+/obj/effect/turf_decal/siding/white{
+	dir = 10;
+	color = "#474747"
+	},
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/bathroom)
+"Sg" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/lab)
+"Sm" = (
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 9;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/machinery/atmospherics/pipe/layer_manifold,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker)
+"Sq" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/ship/borderfloor/corner,
+/obj/effect/turf_decal/tile/red{
+	dir = 8;
+	color = "#730622";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/armory)
+"Ss" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 5;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/ship/borderfloor,
+/obj/machinery/firealarm/directional/north,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/cargo)
+"Sz" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/curtain,
+/obj/machinery/shower{
+	pixel_y = 23;
+	name = "prysznic awaryjny";
+	desc = "Prysznic awaryjny do szybkiego spłukiwania z ciała niebezpiecznych substancji i gaszenia małych pożarów."
+	},
+/turf/open/floor/noslip,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/checkpoint)
+"SD" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete/pavement,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"SF" = (
+/obj/effect/turf_decal/stripes/full,
+/obj/structure/lattice/catwalk,
+/obj/machinery/door/poddoor/shutters{
+	id = "closedrobots"
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/killroom)
+"SK" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/high_volume/siphon/atmos/air_output{
+	dir = 8
+	},
+/turf/open/floor/engine/air,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/engineering)
+"SR" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 8;
+	color = "#BA9F6D"
+	},
+/obj/effect/turf_decal/trimline/red/warning{
+	dir = 8;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 4;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/structure/sign/warning/nosmoking{
+	pixel_x = 9;
+	pixel_y = 32
+	},
+/obj/effect/turf_decal/ship/borderfloor/corner,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/lab)
+"SZ" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 6;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 8
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/lab)
+"Tb" = (
+/obj/structure/girder/reinforced,
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"Tc" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 1;
+	color = "#474747"
+	},
+/obj/effect/turf_decal/siding/white/corner{
+	dir = 8;
+	color = "#474747"
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/dorms)
+"Th" = (
+/obj/structure/chair/fancy/bench{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 6
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/dorms/lounge)
+"Tk" = (
+/obj/effect/decal/cleanable/glass,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete/pavement,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"Tn" = (
+/obj/effect/turf_decal/tile/neutral/opposingcorners{
+	dir = 8;
+	color = "#a3a2a0";
+	alpha = 140
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 4;
+	color = "#474747"
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/medbay)
+"To" = (
+/obj/machinery/door/airlock/grunge{
+	name = "Punkt kontroli i sterownia";
+	id_tag = "secroom"
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/controlroom)
+"Tp" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 6;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 8
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker)
+"TA" = (
+/obj/structure/cable,
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 5
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker)
+"TE" = (
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/dorms/lounge)
+"TH" = (
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 9
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/marker_beacon{
+	picked_color = "Burgundy"
+	},
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"TI" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 1;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 6
+	},
+/mob/living/basic/automaton/rover/coalition/dmr{
+	faction = list("hostile")
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker)
+"TN" = (
+/obj/effect/turf_decal/ship/techfloor{
+	dir = 1
+	},
+/obj/structure/table,
+/obj/item/reagent_containers/glass/rag{
+	pixel_x = 6
+	},
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/dorms)
+"TS" = (
+/obj/machinery/porta_turret/syndicate{
+	dir = 9;
+	faction = list("hostile","turret")
+	},
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/killroom)
+"TW" = (
+/obj/structure/weightmachine/weightlifter,
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/dorms/lounge)
+"Ua" = (
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 5
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/marker_beacon{
+	picked_color = "Lime"
+	},
+/turf/open/floor/concrete/pavement,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"Uq" = (
+/obj/structure/table/reinforced,
+/obj/item/roller{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/medbay)
+"Us" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 4;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 10
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 10
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker)
+"Uy" = (
+/obj/effect/decal/cleanable/molten_object,
+/turf/open/floor/plating/asteroid/dirt/battlefield,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"UB" = (
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/dorms)
+"UD" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/lab)
+"UG" = (
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/radiation)
+"UP" = (
+/obj/effect/turf_decal/stripes/white/end{
+	color = "#fb9700"
+	},
+/obj/structure/cable/yellow,
+/obj/machinery/door/poddoor{
+	dir = 4;
+	id = "whollop_bay_doors"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"US" = (
+/obj/machinery/porta_turret/syndicate{
+	dir = 9;
+	faction = list("hostile")
+	},
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/lab)
+"Va" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 6
+	},
+/turf/open/floor/carpet/black,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/dorms/two)
+"Vc" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/machinery/door/poddoor/shutters{
+	id = "killroom"
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/armory)
+"Vd" = (
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/engineering)
+"Vg" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 8;
+	color = "#474747"
+	},
+/obj/machinery/firealarm/directional/west,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/dorms)
+"Vi" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 10;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 1
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/armory)
+"Vj" = (
+/obj/machinery/atmospherics/components/unary/portables_connector/layer4{
+	dir = 4
+	},
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/effect/turf_decal/ship/techfloor/corner{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/engineering)
+"Vo" = (
+/obj/machinery/porta_turret/syndicate{
+	faction = list("hostile","turret")
+	},
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker)
+"Vr" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/dorms/lounge)
+"Vt" = (
+/mob/living/basic/automaton/hopper/coalition,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker)
+"Vx" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 9;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/tile/red{
+	color = "#730622";
+	alpha = 255
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 4
+	},
+/obj/machinery/light/small,
+/obj/effect/turf_decal/ship/borderfloor/corner{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker)
+"VD" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 5;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/ship/borderfloor,
+/obj/item/radio/intercom/directional/north,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/cargo)
+"VG" = (
+/obj/structure/closet,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 1;
+	welded = 1
+	},
+/obj/item/clothing/under/syndicate,
+/obj/item/clothing/under/syndicate,
+/obj/item/clothing/shoes/combat,
+/obj/item/clothing/shoes/combat,
+/obj/machinery/firealarm/directional/east{
+	pixel_x = 32;
+	pixel_y = 2
+	},
+/obj/machinery/light_switch{
+	dir = 8;
+	pixel_x = 19;
+	pixel_y = 9
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/dorms/two)
+"VM" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/dorms/lounge)
+"VT" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 6
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/lab)
+"VX" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/mob/living/basic/automaton/rover/coalition{
+	faction = list("hostile")
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/engineering)
+"Wf" = (
+/obj/item/coffee_cartridge{
+	pixel_x = 9;
+	pixel_y = 6
+	},
+/obj/item/coffee_cartridge{
+	pixel_x = 9;
+	pixel_y = 6
+	},
+/obj/item/coffee_cartridge{
+	pixel_x = 9;
+	pixel_y = 6
+	},
+/obj/item/coffee_cartridge{
+	pixel_y = 6
+	},
+/obj/item/coffee_cartridge{
+	pixel_y = 6
+	},
+/obj/item/coffee_cartridge{
+	pixel_y = 6
+	},
+/obj/item/coffee_cartridge{
+	pixel_x = -9;
+	pixel_y = 6
+	},
+/obj/item/coffee_cartridge{
+	pixel_x = -9;
+	pixel_y = 6
+	},
+/obj/item/coffee_cartridge{
+	pixel_x = -9;
+	pixel_y = 6
+	},
+/obj/item/coffee_cartridge,
+/obj/item/coffee_cartridge,
+/obj/item/coffee_cartridge,
+/obj/item/coffee_cartridge/fancy{
+	pixel_x = 7
+	},
+/obj/item/coffee_cartridge/decaf{
+	pixel_x = -7
+	},
+/obj/item/coffee_cartridge/decaf{
+	pixel_x = -7
+	},
+/obj/item/coffee_cartridge/decaf{
+	pixel_x = -7
+	},
+/obj/item/coffee_cartridge/decaf{
+	pixel_x = -7
+	},
+/obj/item/coffee_cartridge/decaf{
+	pixel_x = -7
+	},
+/obj/item/coffee_cartridge/decaf{
+	pixel_x = -7
+	},
+/obj/item/coffee_cartridge/decaf{
+	pixel_x = -7
+	},
+/obj/item/coffee_cartridge/decaf{
+	pixel_x = -7
+	},
+/obj/item/coffee_cartridge/bootleg,
+/obj/item/coffee_cartridge{
+	pixel_y = -6
+	},
+/obj/item/coffee_cartridge{
+	pixel_y = -6
+	},
+/obj/item/coffee_cartridge{
+	pixel_y = -6
+	},
+/obj/item/coffee_cartridge{
+	pixel_y = -6
+	},
+/obj/structure/closet/crate/secure/loot{
+	name = "zabezpieczona skrzynia z kawą"
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/cargo)
+"Wg" = (
+/obj/structure/cable,
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/checkpoint)
+"Wh" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 10;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/cargo)
+"Wj" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/cargo)
+"Wm" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/lab)
+"Wo" = (
+/turf/closed/mineral/random/jungle/battlefield,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"Ww" = (
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/dorms/two)
+"Wx" = (
+/mob/living/basic/automaton/walkmine/ramzi{
+	faction = list("hostile")
+	},
+/obj/structure/cable/yellow,
+/obj/machinery/light/floor,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/greenglow/filled,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/radiation)
+"Wz" = (
+/turf/open/floor/plating/asteroid/dirt/battlefield,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"WD" = (
+/obj/effect/turf_decal/siding/white/corner{
+	dir = 1;
+	color = "#474747"
+	},
+/obj/effect/turf_decal/siding/white/corner{
+	dir = 8;
+	color = "#474747"
+	},
+/obj/effect/turf_decal/siding/white/corner{
+	color = "#474747"
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 2
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/mess)
+"WF" = (
+/obj/machinery/power/smes{
+	dir = 4
+	},
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/cable,
+/obj/machinery/door/poddoor/shutters{
+	id = "whollop_engine_shutters";
+	dir = 4
+	},
+/obj/structure/window/plasma/reinforced{
+	dir = 8
+	},
+/obj/machinery/door/window/westright{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"WH" = (
+/obj/item/radio/intercom/directional/north,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/lab)
+"WJ" = (
+/turf/open/floor/carpet/black,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/dorms)
+"WS" = (
+/obj/machinery/button/door{
+	pixel_x = -7;
+	pixel_y = 22;
+	id = "bunkersouthgate1";
+	name = "wewnętrzna brama bunkra"
+	},
+/obj/machinery/suit_storage_unit{
+	suit_type = /obj/item/clothing/suit/space/eva;
+	helmet_type = /obj/item/clothing/head/helmet/space/eva;
+	storage_type = /obj/item/tank/internals/oxygen/yellow
+	},
+/turf/open/floor/mineral/plastitanium/red,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker)
+"WU" = (
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/killroom/drones)
+"Xr" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/lab)
+"Xy" = (
+/obj/machinery/portable_atmospherics/canister/nitrogen{
+	req_access = list()
+	},
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"XA" = (
+/obj/machinery/power/terminal{
+	dir = 8
+	},
+/obj/structure/cable,
+/obj/effect/turf_decal/ship/techfloor{
+	dir = 8
+	},
+/obj/item/storage/bag/ore,
+/obj/item/storage/box/emptysandbags{
+	pixel_x = 4;
+	pixel_y = 5
+	},
+/obj/item/t_scanner/adv_mining_scanner,
+/obj/item/storage/box/emptysandbags{
+	pixel_x = 4;
+	pixel_y = 5
+	},
+/obj/structure/closet/crate/wooden{
+	desc = "Solidna drewniana skrzynia z wybitym na wieku napisem „SPRZĘT GÓRNICZY”.";
+	name = "skrzynia ze sprzętem górniczym"
+	},
+/obj/item/storage/box/evidence{
+	pixel_x = -7;
+	pixel_y = 5
+	},
+/obj/item/shovel,
+/obj/item/shovel,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"XC" = (
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"XF" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 9;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker)
+"XM" = (
+/obj/structure/closet/crate/secure/weapon,
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line,
+/obj/item/suppressor,
+/obj/item/mecha_parts/mecha_equipment/drill,
+/obj/effect/mob_spawn/human/corpse/damaged,
+/obj/effect/turf_decal/tile/red{
+	dir = 1;
+	color = "#730622";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/armory)
+"XQ" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 5;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/ship/borderfloor,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker)
+"Yg" = (
+/obj/structure/shuttle/engine/propulsion,
+/obj/structure/cable,
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 8;
+	color = "#fb9700"
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"Yl" = (
+/obj/effect/turf_decal/stripes/asteroid/line,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/blood/drip,
+/obj/machinery/atmospherics/components/binary/pump{
+	dir = 4;
+	name = "pompa zużytego powietrza"
+	},
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"Yn" = (
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 4
+	},
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"Yp" = (
+/obj/effect/turf_decal/tile/bar/opposingcorners{
+	color = "#791500";
+	alpha = 130
+	},
+/obj/structure/closet/secure_closet/freezer/fridge{
+	anchored = 1
+	},
+/obj/item/food/donkpocket,
+/obj/item/food/donkpocket,
+/obj/item/food/donkpocket,
+/obj/item/food/donkpocket,
+/obj/item/food/donkpocket,
+/obj/item/food/donkpocket,
+/obj/item/food/donkpocket,
+/obj/item/food/rationpack,
+/obj/item/food/rationpack,
+/obj/item/food/rationpack,
+/obj/item/food/rationpack,
+/obj/item/reagent_containers/glass/waterbottle/large,
+/obj/item/reagent_containers/glass/waterbottle/large,
+/obj/item/reagent_containers/food/drinks/drinkingglass,
+/obj/item/reagent_containers/food/drinks/drinkingglass,
+/obj/item/reagent_containers/food/drinks/drinkingglass,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/mess)
+"Yy" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 1;
+	color = "#474747"
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/dorms)
+"YC" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/lattice/catwalk/over/ship/dark,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker)
+"YE" = (
+/obj/structure/cable/yellow,
+/obj/effect/radiation/waste/intense,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/radiation)
+"YI" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	dir = 4;
+	id = "openrobots"
+	},
+/obj/effect/turf_decal/stripes/full,
+/obj/structure/lattice/catwalk,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/killroom/drones)
+"YM" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 5;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/ship/borderfloor,
+/mob/living/basic/automaton/rover/coalition{
+	faction = list("hostile")
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker)
+"YP" = (
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 6
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/marker_beacon{
+	picked_color = "Lime"
+	},
+/turf/open/floor/concrete/pavement,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"YQ" = (
+/obj/effect/turf_decal/ship/techfloor{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"YS" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "openrobots"
+	},
+/obj/effect/turf_decal/stripes/full,
+/obj/structure/lattice/catwalk,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/killroom/drones)
+"YT" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 5;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/ship/borderfloor,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 8;
+	welded = 1
+	},
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/machinery/light_switch{
+	pixel_x = -9;
+	pixel_y = 22
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/killroom)
+"YV" = (
+/obj/effect/turf_decal/stripes/asteroid/line,
+/turf/open/floor/concrete/pavement,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"Za" = (
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal/ship/techfloor{
+	dir = 8
+	},
+/obj/item/storage/toolbox/syndicate{
+	pixel_x = 3;
+	pixel_y = -2
+	},
+/obj/item/clothing/glasses/welding{
+	pixel_y = 7
+	},
+/obj/machinery/button/door{
+	dir = 8;
+	pixel_x = 10;
+	pixel_y = 17;
+	id = "radlockdown";
+	name = "blokada promieniowania"
+	},
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/engineering)
+"Zb" = (
+/obj/item/ammo_casing/spent{
+	dir = 1;
+	pixel_y = 16
+	},
+/obj/item/ammo_casing/spent{
+	dir = 1;
+	pixel_y = 16
+	},
+/obj/item/ammo_casing/spent{
+	dir = 1;
+	pixel_y = 16
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"Ze" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/tile/red{
+	dir = 9;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"Zh" = (
+/obj/machinery/computer/security/telescreen/entertainment,
+/turf/open/floor/concrete/pavement,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"Zo" = (
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/medbay)
+"Zp" = (
+/obj/structure/closet/crate/freezer,
+/obj/effect/turf_decal/siding/white{
+	color = "#BA9F6D"
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 1;
+	color = "#BA9F6D"
+	},
+/obj/effect/turf_decal/trimline/red/warning{
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/trimline/red/warning{
+	dir = 1;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 9
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/cargo)
+"Zr" = (
+/obj/effect/decal/cleanable/blood/drip,
+/turf/open/floor/plating/asteroid/dirt/battlefield,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"Zt" = (
+/obj/structure/chair/fancy/sofa/old/left{
+	dir = 8
+	},
+/obj/item/radio/intercom/directional/east,
+/turf/open/floor/carpet/black,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/dorms)
+"Zx" = (
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 5
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/engine,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"ZB" = (
+/obj/structure/grille/broken,
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"ZC" = (
+/obj/structure/chair/fancy/bench{
+	dir = 4;
+	pixel_x = -4
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 10;
+	color = "#474747"
+	},
+/obj/machinery/button/door{
+	pixel_x = 8;
+	pixel_y = -22;
+	dir = 1;
+	id = "bunkermedbayshutter";
+	name = "prywatność ambulatorium"
+	},
+/obj/machinery/firealarm/directional/south{
+	pixel_x = -4;
+	pixel_y = -32
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/medbay)
+"ZE" = (
+/obj/machinery/airalarm/directional/east,
+/mob/living/simple_animal/bot/cleanbot,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/medbay)
+"ZF" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker)
+"ZH" = (
+/obj/machinery/door/airlock/grunge{
+	dir = 4;
+	name = "Inżynieria"
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/engineering)
+"ZK" = (
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/exterior)
+"ZM" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker)
+"ZT" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 1
+	},
+/obj/effect/turf_decal/ship/borderfloor,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/armory)
+"ZU" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 10;
+	color = "#730622";
+	alpha = 255
+	},
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 1
+	},
+/obj/machinery/button/door{
+	dir = 1;
+	pixel_x = 9;
+	pixel_y = -21;
+	id = "cargobay";
+	name = "Ładownia"
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_battlefield/smugglerbunker/lab)
+
+(1,1,1) = {"
+ye
+ye
+ye
+ed
+pt
+NW
+ye
+ye
+ye
+ye
+Wz
+Wz
+Wz
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+Wz
+Wz
+ye
+Wz
+Wz
+ye
+vy
+vy
+vy
+XC
+vy
+vy
+vy
+vy
+XC
+vy
+XC
+XC
+"}
+(2,1,1) = {"
+ye
+ye
+ye
+Ev
+Bw
+Ha
+Wz
+Wz
+Wz
+ye
+Wz
+Wo
+Wo
+Wz
+ye
+Wz
+Wz
+ye
+ye
+Wz
+Wz
+Wz
+Wz
+Wz
+Wz
+ye
+ye
+Wz
+ye
+ye
+ye
+ye
+ye
+ye
+Wz
+Wz
+Wz
+Wz
+Wz
+Wz
+Wz
+XC
+uO
+lX
+qq
+qq
+lX
+qq
+qq
+qq
+qq
+jZ
+vy
+"}
+(3,1,1) = {"
+ye
+ye
+ye
+Nv
+QH
+qN
+Wz
+Wz
+Wz
+Wz
+Wo
+ae
+Wo
+Wo
+Wo
+Wo
+Wo
+Wz
+Wz
+Wo
+QN
+Wz
+Wz
+Wz
+Wz
+Wz
+Wz
+Wz
+Wz
+Wz
+Wz
+ye
+ye
+Wz
+Wz
+Wz
+Wo
+Wo
+yT
+Wz
+Wz
+vy
+JM
+SD
+SD
+SD
+SD
+sc
+SD
+SD
+SD
+YV
+XC
+"}
+(4,1,1) = {"
+ye
+ye
+Wz
+Wz
+Wz
+Wz
+Wz
+Wz
+Wz
+Wz
+Wz
+ae
+Wo
+QN
+QN
+Wo
+Wo
+Wo
+Wz
+Wo
+Wo
+Wo
+Wo
+QN
+Wz
+Wz
+Wz
+Wz
+Wz
+Wz
+Wz
+Wz
+Wz
+Wz
+Wz
+Wo
+Wo
+nm
+Wo
+Wz
+Wz
+XC
+EJ
+nm
+Yg
+nm
+nm
+nm
+nm
+Rl
+nm
+vz
+vy
+"}
+(5,1,1) = {"
+ye
+Wz
+Wz
+Wz
+Wz
+Wz
+Wz
+Wz
+Wz
+Wz
+Wz
+Tb
+Wo
+Wo
+Wo
+Wo
+Wo
+ZK
+Wz
+tM
+Wz
+Wz
+Wo
+Wo
+Wz
+Wz
+Wz
+Wz
+Wz
+Wz
+Wz
+Wz
+Wz
+Wz
+Wz
+Wo
+ph
+cv
+Wo
+Wo
+Wz
+vy
+EJ
+nm
+WF
+nm
+BM
+aP
+nm
+ap
+nm
+vz
+vy
+"}
+(6,1,1) = {"
+Wz
+Wz
+Wz
+Wz
+Wz
+Ol
+Wo
+Wz
+Wz
+Wz
+Wz
+Wz
+Wz
+Wo
+Wo
+Wo
+Wz
+Wz
+Wz
+Wz
+Wz
+sL
+Wz
+Wz
+Wz
+Wz
+Wz
+Wz
+Wz
+Wz
+Wz
+Ad
+Wz
+Wz
+Wz
+Wo
+Wo
+Wo
+sp
+Bm
+Wz
+vy
+EJ
+nm
+oX
+nG
+OT
+EM
+fL
+XA
+nm
+vz
+vy
+"}
+(7,1,1) = {"
+Wz
+Wz
+Wz
+Wz
+Wz
+Wo
+Wo
+Wo
+Wo
+Wo
+Wo
+Uy
+Wz
+Wz
+Wz
+Wz
+Wz
+Ad
+Wz
+el
+Wz
+Wz
+Wz
+Wz
+Wz
+Wz
+Wz
+Wz
+sL
+Wz
+Wz
+Wz
+Wz
+Wz
+Wo
+Wo
+ae
+Wo
+sp
+yT
+Wz
+vy
+EJ
+nm
+BZ
+HA
+QN
+EM
+Bx
+EE
+nm
+vz
+vy
+"}
+(8,1,1) = {"
+Wz
+Wz
+Wz
+bO
+Wz
+Wo
+yT
+Wo
+Wo
+Wo
+Wo
+Wo
+Wo
+Wz
+ZK
+ZK
+ZK
+Ad
+sb
+Qh
+Wo
+Wo
+Gm
+xI
+xI
+xI
+TE
+Ad
+Ad
+Wz
+Wz
+Wz
+Wz
+Wz
+Wo
+Wo
+Wo
+ae
+Wo
+Wo
+Wz
+vy
+fT
+Wo
+Wo
+Wo
+Wo
+PG
+mz
+BV
+nm
+vz
+vy
+"}
+(9,1,1) = {"
+ye
+Wz
+dg
+bq
+Wz
+Wo
+yT
+QN
+QN
+QN
+QN
+QN
+QN
+QN
+ZK
+JQ
+ZK
+ZK
+Nb
+QN
+QN
+QN
+TE
+kq
+mI
+mI
+TE
+Aq
+qP
+Wz
+ZK
+Wo
+Wz
+Wz
+Wz
+Wo
+Wo
+Wo
+Wo
+ae
+Wz
+vy
+EJ
+ae
+Wo
+ae
+ae
+ae
+YQ
+OW
+nm
+vz
+vy
+"}
+(10,1,1) = {"
+ye
+Wz
+Wz
+bq
+xL
+oe
+oe
+oe
+oe
+oe
+oe
+oe
+oe
+QN
+QN
+QN
+QN
+QN
+QN
+QN
+TE
+TE
+TE
+xI
+xI
+xI
+TE
+TE
+TE
+IX
+Wo
+Wo
+Wo
+Wz
+Wz
+Wo
+Wo
+QN
+Wo
+Wz
+Wz
+mT
+tn
+GN
+MB
+Wo
+Wo
+Wo
+Wo
+nV
+nm
+vz
+vy
+"}
+(11,1,1) = {"
+ye
+ye
+Wz
+bq
+OI
+Nf
+oe
+Bf
+cm
+oe
+EH
+sO
+Ww
+Ww
+Ww
+Ww
+Oh
+Oh
+Oh
+Oh
+TE
+xA
+AE
+VM
+VM
+nX
+HT
+FG
+HT
+BU
+Wo
+Wo
+Wo
+Wz
+Wz
+Wz
+Wz
+Wz
+Wz
+Wz
+Wz
+vy
+EJ
+nm
+Wo
+Tb
+Jw
+UP
+nm
+nm
+nm
+vz
+vy
+"}
+(12,1,1) = {"
+ye
+ye
+Wz
+Zr
+ra
+cU
+Bk
+Ij
+Sm
+ez
+as
+Vx
+Ww
+pN
+ld
+MP
+Oh
+ls
+Dk
+eg
+TE
+oj
+gc
+CO
+Vr
+rQ
+HT
+yY
+ZB
+Wo
+Wo
+Wo
+Wo
+ae
+QN
+Wz
+Wz
+Wz
+Ad
+Wz
+Wz
+XC
+JM
+nm
+RP
+nm
+Zx
+DH
+SD
+SD
+SD
+YV
+XC
+"}
+(13,1,1) = {"
+ye
+Wz
+Wz
+Wz
+jo
+Yl
+rB
+wh
+wh
+gR
+Us
+gA
+Ww
+Mx
+Va
+VG
+Oh
+Jq
+HQ
+uG
+TE
+TW
+MH
+vW
+Jv
+Th
+HT
+yY
+Wo
+Wo
+Wo
+Wo
+Wo
+QN
+Wo
+Wz
+Wz
+Wz
+Ad
+Wz
+Wz
+vy
+EJ
+SD
+SD
+SD
+SD
+SD
+SD
+sc
+SD
+vz
+XC
+"}
+(14,1,1) = {"
+ye
+Wz
+lC
+Ad
+OI
+uM
+oe
+YI
+YI
+oe
+Jr
+Jh
+Ww
+Ww
+os
+Ww
+Oh
+Oh
+fj
+Oh
+TE
+HD
+MH
+rQ
+Jg
+Jg
+Jg
+Jg
+Wo
+ae
+Wo
+Wo
+Wo
+QN
+Wo
+ae
+Wz
+Wz
+Wz
+Wz
+Wz
+vy
+EJ
+SD
+sc
+sc
+SD
+SD
+sc
+SD
+SD
+vz
+XC
+"}
+(15,1,1) = {"
+ye
+Wz
+Wz
+Wz
+Vo
+oe
+oe
+LT
+lr
+oe
+Kb
+kW
+UB
+QI
+Tc
+Vg
+vo
+FH
+Gh
+tO
+TE
+ox
+kd
+ng
+Jg
+tH
+wS
+Jg
+Wo
+Wo
+Wo
+Wo
+Wo
+Wo
+Wo
+Wo
+Wo
+Wz
+Wz
+Wz
+Wz
+vy
+Ua
+jr
+hS
+Eh
+Eh
+Eh
+Eh
+Eh
+Eh
+YP
+XC
+"}
+(16,1,1) = {"
+ye
+ye
+Wz
+Wz
+Ad
+Wo
+oe
+iG
+iG
+oe
+vp
+Jh
+UB
+TN
+Gp
+Md
+Md
+Md
+ij
+mA
+vO
+tV
+sJ
+dG
+nR
+gq
+Sa
+Jg
+iG
+iG
+iG
+iG
+iG
+iG
+oe
+ph
+ph
+yT
+ZK
+JQ
+JQ
+vy
+vy
+sc
+sc
+vy
+vy
+vy
+vy
+vy
+vy
+vy
+hi
+"}
+(17,1,1) = {"
+ye
+ye
+Wz
+Wz
+Wo
+ae
+yT
+Wo
+QN
+oe
+XQ
+Jh
+UB
+AG
+Yy
+qm
+CM
+WJ
+Kk
+RJ
+HB
+wo
+jJ
+wB
+Jg
+sX
+Lu
+Jg
+pi
+pi
+wW
+iG
+pi
+pi
+oe
+oe
+oe
+oe
+ZK
+ZK
+Zb
+vy
+XC
+SD
+SD
+vy
+dD
+Wz
+Wz
+Wz
+Wz
+Wz
+Wz
+"}
+(18,1,1) = {"
+ye
+Wz
+Wz
+Wz
+Wo
+Wo
+Wo
+Wo
+ph
+oe
+lo
+yV
+UB
+td
+nd
+ba
+GT
+JL
+Ew
+NC
+TE
+TE
+Fk
+TE
+Jg
+Jg
+Jg
+Jg
+YI
+YI
+YI
+iG
+YI
+YI
+oe
+Nz
+qZ
+oe
+oe
+Vo
+XC
+vy
+vy
+SD
+SD
+XC
+vy
+vy
+Wz
+Wz
+vy
+Wz
+ye
+"}
+(19,1,1) = {"
+ye
+Wz
+Wz
+Wo
+Wo
+Wo
+Wo
+QN
+QN
+oe
+YM
+Jh
+UB
+RU
+El
+xa
+Zt
+MA
+EA
+MX
+UB
+sk
+XF
+bG
+eb
+uE
+eb
+pG
+Na
+Na
+MV
+oe
+Na
+rk
+oe
+IO
+IO
+oe
+xY
+OI
+SD
+SD
+SD
+SD
+SD
+SD
+sc
+Wz
+Wz
+sc
+Wz
+Wz
+ye
+"}
+(20,1,1) = {"
+ye
+ye
+Wz
+Wz
+Wo
+QN
+QN
+oe
+oe
+oe
+LO
+JB
+UB
+UB
+UB
+UB
+UB
+UB
+UB
+UB
+UB
+vp
+ZM
+RL
+mJ
+NM
+mJ
+mJ
+mJ
+mJ
+mJ
+Kb
+mJ
+hs
+Mv
+OO
+FK
+tB
+BU
+OI
+SD
+sc
+SD
+SD
+SD
+sc
+SD
+Wz
+Wz
+sc
+sc
+Wz
+ye
+"}
+(21,1,1) = {"
+ye
+ye
+Wz
+Wz
+Wo
+Wo
+Wo
+oe
+qZ
+oq
+pw
+Mf
+eb
+eb
+qi
+eb
+eb
+Kb
+eb
+eb
+eb
+TI
+In
+bz
+bj
+bj
+bj
+YC
+qp
+bj
+bj
+uR
+TA
+hs
+Mv
+wh
+wh
+tB
+Ev
+lE
+sc
+SD
+SD
+sc
+SD
+SD
+SD
+Wz
+Wz
+Wz
+sc
+Wz
+ye
+"}
+(22,1,1) = {"
+ye
+ye
+Wz
+ph
+GV
+Wo
+Wo
+oe
+Vt
+oq
+pw
+dQ
+iz
+Fv
+ZF
+Fv
+Fv
+dw
+Fv
+Fv
+Fv
+Fv
+jG
+wN
+Cb
+Ph
+mp
+Cb
+Fy
+Bp
+RV
+oe
+gi
+iO
+oe
+WS
+kD
+oe
+BU
+HI
+SD
+sc
+SD
+SD
+SD
+SD
+Wz
+sc
+Wz
+sc
+sc
+Wz
+Wz
+"}
+(23,1,1) = {"
+ye
+ye
+ye
+Wo
+ae
+QN
+QN
+oe
+Nz
+oq
+Ne
+kt
+Tp
+mp
+gW
+nf
+mp
+Kb
+mp
+mp
+mp
+mp
+HO
+iO
+oe
+kK
+kK
+kK
+hX
+JR
+kK
+oi
+Ff
+Ff
+oi
+Ff
+Ff
+oi
+oi
+PQ
+wU
+kP
+XC
+vy
+XC
+vy
+Wz
+Wz
+Wz
+Wz
+Wz
+Wz
+Wz
+"}
+(24,1,1) = {"
+ye
+ye
+ye
+ae
+Wo
+QN
+Gj
+Gj
+Gj
+Gj
+rj
+rj
+ZH
+rj
+rj
+xh
+xh
+xh
+xh
+xh
+xh
+Ot
+zU
+Ot
+Ot
+Bg
+OA
+qV
+Sg
+uV
+tS
+oi
+nw
+by
+OR
+lL
+hM
+xP
+mI
+xP
+BU
+TH
+qf
+hl
+Tk
+ZK
+Wz
+Wz
+Wz
+Wz
+Ad
+Wz
+Wz
+"}
+(25,1,1) = {"
+ye
+ye
+ye
+Wo
+ae
+ae
+Gj
+RQ
+QZ
+Nj
+rj
+oH
+qG
+dH
+Bv
+xh
+ht
+wr
+tA
+ZC
+xh
+vV
+WD
+Bt
+Ot
+oV
+Xr
+gU
+VT
+sN
+zx
+To
+uW
+fw
+Fe
+CH
+ES
+xP
+mI
+xP
+BU
+Ev
+xH
+Ha
+vy
+RF
+XC
+Ad
+Wo
+QN
+sL
+Wz
+ye
+"}
+(26,1,1) = {"
+ye
+ye
+ye
+Wo
+ae
+Wo
+Gj
+RQ
+KX
+dy
+NA
+VX
+Qp
+Ju
+le
+xh
+bc
+mh
+tJ
+NY
+aC
+CG
+tk
+DQ
+Ot
+rU
+Lb
+nB
+Do
+HG
+Jd
+oi
+mn
+qt
+fl
+fO
+Cp
+xP
+mq
+xP
+BU
+kx
+ou
+rx
+vy
+Ht
+vy
+Wo
+Wo
+ae
+Wo
+Wz
+ye
+"}
+(27,1,1) = {"
+ye
+ye
+ye
+Wo
+Wo
+ph
+Gj
+Gj
+KU
+tR
+rj
+tF
+RZ
+KY
+DE
+nu
+gL
+AB
+rD
+aK
+om
+Yp
+aT
+IJ
+Ot
+WH
+vs
+uB
+zj
+JA
+US
+oi
+oi
+oi
+wd
+wd
+wd
+oi
+oi
+oi
+Wo
+QN
+Zh
+sc
+zy
+wM
+Wz
+Wz
+QN
+Wo
+Wo
+Wz
+ye
+"}
+(28,1,1) = {"
+ye
+ye
+ye
+Wz
+Wo
+ph
+Gj
+ts
+AS
+Wg
+sd
+PX
+Ky
+pZ
+bD
+xh
+sj
+QK
+Tn
+st
+nu
+BK
+kR
+uw
+Ot
+LC
+iV
+nB
+Do
+iH
+EI
+DG
+zY
+ir
+yK
+Kj
+Kj
+BH
+FD
+EI
+QN
+Wo
+Wo
+vy
+LJ
+Wz
+Ad
+Wz
+Wz
+Wz
+Ad
+Wz
+ye
+"}
+(29,1,1) = {"
+ye
+ye
+ye
+Wo
+Wo
+ph
+Gj
+Sz
+yf
+Di
+nS
+bp
+Za
+tz
+Vj
+xh
+An
+Uq
+lY
+ZE
+xh
+Ot
+Ot
+Ot
+Ot
+SR
+xz
+LI
+UD
+ZU
+EI
+OJ
+nb
+Wh
+cT
+sq
+aB
+Ik
+EI
+EI
+QN
+QN
+Wo
+Wo
+vy
+vy
+Gl
+Wz
+Wz
+Wz
+ye
+Wz
+ye
+"}
+(30,1,1) = {"
+ye
+ye
+ye
+Wo
+Wo
+eP
+Gj
+Gj
+Gj
+Cj
+rj
+QG
+AT
+Vd
+PH
+Zo
+xh
+xh
+xh
+xh
+eq
+nz
+LX
+mW
+eq
+yl
+yO
+yO
+Hv
+Pf
+bb
+qT
+Wj
+Cf
+yK
+Kj
+Kj
+bw
+FD
+EI
+QN
+QN
+QN
+Wo
+Wo
+Wo
+Wo
+Wz
+Wz
+Wz
+ye
+ye
+ye
+"}
+(31,1,1) = {"
+ye
+ye
+ye
+Wo
+ph
+eP
+UG
+IH
+Lj
+sm
+lD
+aQ
+At
+Rd
+QT
+WU
+pi
+LT
+YS
+Sq
+Bo
+qd
+ys
+XM
+aS
+ul
+yO
+tL
+Cq
+Ej
+gw
+aN
+xF
+jt
+yK
+Wf
+Kj
+zl
+EI
+EI
+QN
+Wo
+Wo
+QN
+Wo
+Wo
+Wo
+Wz
+Wz
+ye
+ye
+ye
+ye
+"}
+(32,1,1) = {"
+ye
+ye
+ye
+Wz
+rA
+eP
+eP
+eP
+GF
+xV
+EU
+HM
+mS
+Rd
+GS
+WU
+pi
+LT
+Ov
+xl
+CS
+ih
+tK
+Qk
+Vc
+JK
+Wm
+Wm
+re
+JA
+EI
+Ss
+io
+FI
+yK
+Kj
+Kj
+Dg
+FD
+EI
+QN
+Wo
+Wo
+Wo
+QN
+Wo
+Wo
+Wz
+ye
+ye
+ye
+ye
+ye
+"}
+(33,1,1) = {"
+ye
+ye
+ye
+Wz
+Wo
+ph
+ph
+eP
+eP
+ha
+KQ
+ha
+eP
+Rd
+GS
+WU
+pi
+pi
+Ov
+hR
+LY
+kQ
+NV
+kU
+aS
+Kp
+wk
+SZ
+jq
+Gu
+EI
+VD
+zD
+LD
+qa
+eL
+eL
+Zp
+EI
+EI
+QN
+Wo
+Wo
+Wo
+QN
+Wo
+Wo
+ye
+ye
+ye
+ye
+ye
+ye
+"}
+(34,1,1) = {"
+ye
+ye
+ye
+ae
+Wo
+QN
+ph
+eP
+js
+oZ
+wj
+sl
+js
+Rd
+Vd
+au
+AX
+AX
+AX
+iU
+Vi
+TS
+AX
+AX
+AX
+kK
+kK
+kK
+On
+kK
+EI
+ii
+yd
+RG
+yt
+GD
+Kj
+lS
+FD
+EI
+QN
+QN
+Wo
+Wo
+Wo
+Wo
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+"}
+(35,1,1) = {"
+ye
+ye
+ye
+QN
+Wo
+Wo
+Wo
+eP
+js
+iC
+Wx
+YE
+js
+eP
+ph
+ph
+AX
+Kq
+SF
+ZT
+qC
+dL
+LW
+Pl
+AX
+Wo
+Iv
+jE
+CZ
+MU
+EI
+EI
+EI
+EI
+EI
+EI
+EI
+EI
+EI
+EI
+Wo
+Wo
+Wo
+Wo
+QN
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+"}
+(36,1,1) = {"
+ye
+ye
+ye
+QN
+Wo
+Wo
+ph
+eP
+eP
+Oy
+Mn
+dj
+eP
+eP
+Wz
+kJ
+AX
+bs
+SF
+rM
+Dq
+AX
+YT
+tp
+AX
+Wo
+Wo
+RD
+RD
+ai
+sp
+Wo
+ZK
+Wo
+JQ
+Wz
+vy
+Wo
+Wo
+SD
+SD
+Wo
+Wo
+Wo
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+"}
+(37,1,1) = {"
+ye
+ye
+ye
+ae
+Wo
+Wo
+QN
+ph
+eP
+eP
+xZ
+eP
+eP
+ph
+tM
+Wz
+AX
+KE
+SF
+zK
+tY
+AX
+nv
+Gx
+AX
+QN
+Wo
+Wo
+ZK
+ZK
+ZK
+ZK
+ZK
+ZK
+Wz
+Wz
+vy
+sc
+sc
+SD
+sc
+SD
+SD
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+"}
+(38,1,1) = {"
+ye
+ye
+ye
+QN
+Wo
+ph
+Wo
+ph
+ph
+ph
+ph
+ph
+ph
+hN
+Wz
+xq
+AX
+AX
+AX
+eq
+eq
+AX
+AX
+AX
+AX
+cv
+cv
+yT
+yT
+yT
+sp
+ZK
+yT
+Wo
+Wo
+Cr
+zM
+sc
+SD
+SD
+SD
+Tk
+sc
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+"}
+(39,1,1) = {"
+ye
+ye
+ye
+ye
+Wo
+Wo
+Wo
+Wo
+Wo
+Wo
+Wo
+Wo
+Wo
+Wo
+Wz
+Wz
+ph
+ph
+ph
+ph
+ph
+ph
+ph
+ph
+ph
+ph
+Wo
+Wo
+Wo
+Qh
+Kg
+PL
+NP
+Wo
+Wo
+rX
+Ku
+SD
+sc
+IK
+kA
+Wo
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+"}
+(40,1,1) = {"
+ye
+ye
+ye
+ye
+ye
+Wo
+QN
+QN
+ae
+Wo
+EZ
+QN
+yp
+dg
+iX
+Wz
+Wo
+Wo
+QN
+Wo
+Wo
+Wo
+Wo
+Wo
+Wo
+Wo
+ph
+Wo
+Wo
+Ad
+Uy
+JQ
+JQ
+Wo
+Wo
+Wo
+zy
+qK
+SD
+sc
+Xy
+Wo
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+"}
+(41,1,1) = {"
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ae
+Wo
+Wo
+Wo
+Wo
+xq
+Wz
+Wz
+QN
+Wo
+Wo
+Wo
+Wo
+Wo
+ph
+Wo
+Wo
+QN
+Wo
+Wo
+Wo
+Wo
+ZK
+ZK
+jh
+ZK
+ae
+Wo
+Wo
+vH
+Ah
+SD
+sc
+Wo
+XC
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+"}
+(42,1,1) = {"
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+Wo
+Wo
+Wo
+Wo
+Wo
+Wz
+Wz
+Wo
+ae
+Wo
+ae
+Wo
+Wo
+Wo
+Wo
+Wo
+Wo
+Wo
+Wo
+Wo
+Wo
+Wo
+TH
+HN
+hl
+ZK
+Wo
+Wo
+Wo
+ZK
+ai
+Wo
+Wo
+Wo
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+"}
+(43,1,1) = {"
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+Wo
+Wz
+Ad
+Ad
+Ad
+Wo
+Wo
+Wo
+Wo
+Wz
+Wo
+Wz
+aa
+Wo
+Wo
+Wo
+Wo
+QN
+QN
+Wo
+Wz
+BU
+fH
+zV
+ZK
+Wo
+Wo
+Wo
+Wo
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+"}
+(44,1,1) = {"
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+Wz
+Wz
+Wz
+kz
+Wz
+Wz
+Wz
+Wz
+Wz
+Wz
+Ad
+Wz
+ZK
+Wo
+ae
+Wo
+Wo
+Wo
+Wo
+Wz
+wZ
+Yn
+rx
+Wo
+Wo
+Wo
+Wo
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+"}
+(45,1,1) = {"
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+Wz
+Wz
+Wz
+Wz
+Wz
+Wz
+Wz
+Wz
+sL
+Wz
+Wz
+Wz
+Wo
+Wo
+ae
+Wo
+Wo
+ZK
+ZK
+jh
+Wo
+QN
+Wo
+Wo
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+"}
+(46,1,1) = {"
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+Wz
+Wz
+Wz
+Wz
+Ad
+Wz
+Wz
+Wz
+Ad
+Wz
+Wo
+Wo
+Wo
+Wo
+wm
+Wz
+Wo
+Wo
+Wo
+Wo
+Wo
+Wo
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+"}
+(47,1,1) = {"
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+Wz
+Wz
+Wz
+Wz
+Wz
+Wz
+Wz
+Wz
+kJ
+ZK
+sL
+JQ
+Wo
+Wo
+Wo
+Wo
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+"}
+(48,1,1) = {"
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+Wz
+Wz
+Wz
+Ad
+Wz
+tM
+Wz
+Wo
+Wo
+Wo
+Wo
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+"}
+(49,1,1) = {"
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+Wz
+dg
+Wz
+Wo
+Wo
+QN
+Wo
+Wo
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+"}
+(50,1,1) = {"
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+Wo
+Wo
+Wo
+Wo
+Wo
+Wo
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+ye
+"}
