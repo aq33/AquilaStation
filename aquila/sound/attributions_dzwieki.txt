@@ -79,3 +79,6 @@ Planety (port pogody z shiptest-ss13/Shiptest 9b23be9), licencja CC-BY-SA 3.0:
   weather/rain/*                    Shiptest sound/weather/rain (deszcz, ulewa, burza)
   weather/wind/*                    Shiptest sound/weather/wind
   effects/thunder/*                 Shiptest sound/effects/thunder (grzmoty)
+
+Woda i wędkarstwo na planetach (tgstation/tgstation dba6dea), licencja CC-BY-SA 3.0:
+  effects/fishing/fish_splash.ogg, bigsplash.ogg   tgstation sound/effects (chlupnięcia przy łowieniu)
