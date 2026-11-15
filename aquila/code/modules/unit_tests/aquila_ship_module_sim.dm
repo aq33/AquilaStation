@@ -1,5 +1,6 @@
 /// AQUILA - symulacja wnętrza wroga (aquila/code/modules/overmap/modules/ship_module_sim.dm): trafienie w głąb zapala
-/// moduł, ogień go niszczy w kolejnych tikach, zniszczony moduł traci całą załogę, a wyłom zabija załogę dalej.
+/// moduł, ogień go niszczy w kolejnych tikach, zniszczony moduł traci całą załogę, a wyłom zabija załogę dalej. Okręt,
+/// któremu wymarła cała załoga, przestaje walczyć.
 /datum/unit_test/aquila_ship_module_sim
 	var/obj/structure/overmap/ship
 
@@ -36,3 +37,12 @@
 	modules.apply_effects()
 	if(modules.bridge_disruption <= 0)
 		return Fail("Zniszczony mostek nie zakłócił decyzji AI")
+	// jeden martwy moduł to jeszcze nie martwy okręt
+	if(modules.crew_dead)
+		return Fail("Okręt przestał walczyć po stracie załogi jednego modułu")
+	// cała załoga martwa: okręt nie walczy
+	for(var/datum/ship_module/module as anything in modules.modules)
+		module.crew_lost = 1
+	modules.apply_effects()
+	if(!modules.crew_dead)
+		return Fail("Okręt bez żywej załogi dalej walczy")

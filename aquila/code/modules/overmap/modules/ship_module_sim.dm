@@ -6,6 +6,8 @@
 
 #define SHIP_SIM_TICK (10 SECONDS)
 #define SHIP_SIM_MAX_FIRE 3
+/// Poniżej tej części żywej załogi okręt przestaje walczyć: nie strzela, nie manewruje, dryfuje
+#define SHIP_SIM_CREW_DEAD 0.05
 
 /datum/ship_module
 	/// Pożar 0..3
@@ -19,6 +21,8 @@
 	var/sim_timer
 	/// Stan przeniesiony już na wczytane wnętrze
 	var/applied_to_interior = FALSE
+	/// Cała załoga zginęła: okręt nie walczy (strat załogi nic nie cofa)
+	var/crew_dead = FALSE
 
 /// Skutki trafienia w środku: ogień w pierwszym trafionym module, wyłom przy głębokim wejściu, straty załogi
 /datum/ship_modules/proc/on_inside_hit(list/hit_modules, depth, damage)
@@ -47,6 +51,22 @@
 		count++
 	var/crew = count ? total / count : 1
 	return crew * (0.5 + 0.5 * kind_efficiency("bridge"))
+
+/// Część żywej załogi całego okrętu (0..1)
+/datum/ship_modules/proc/crew_alive()
+	var/total = 0
+	var/count = 0
+	for(var/datum/ship_module/module as anything in modules)
+		total += 1 - module.crew_lost
+		count++
+	return count ? total / count : 1
+
+/// Sprawdza, czy załoga nie wymarła; martwy okręt przestaje walczyć
+/datum/ship_modules/proc/check_crew_dead()
+	if(crew_dead || QDELETED(ship) || derelict || crew_alive() >= SHIP_SIM_CREW_DEAD)
+		return
+	crew_dead = TRUE
+	ship.visible_message("<span class='warning'>[ship] milknie: broń przestaje strzelać, a okręt dryfuje bezwładnie.</span>")
 
 /datum/ship_modules/proc/neighbours(datum/ship_module/module)
 	. = list()
@@ -150,5 +170,25 @@
 	sim_timer = null
 	return ..()
 
+/datum/ship_modules/apply_effects()
+	. = ..()
+	check_crew_dead()
+
+// Okręt bez załogi nie podejmuje decyzji (nie strzela, nie manewruje, nie wypuszcza myśliwców)
+/obj/structure/overmap/ai_process()
+	if(ship_modules?.crew_dead)
+		return
+	return ..()
+
+// Broń okrętu bez załogi nie strzela
+/datum/overmap_ship_weapon/can_fire(atom/target, list/inplace_report)
+	. = ..()
+	if(!. || !linked_overmap?.ship_modules?.crew_dead)
+		return
+	if(inplace_report)
+		inplace_report[1] = "Błąd - brak żywej załogi. ([src])"
+	return FALSE
+
 #undef SHIP_SIM_TICK
 #undef SHIP_SIM_MAX_FIRE
+#undef SHIP_SIM_CREW_DEAD

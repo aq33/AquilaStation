@@ -21546,6 +21546,8 @@
 "<span class='userdanger'>Głowica rozbłyska niebieskim impulsem jonowym!</span>": "<span class='userdanger'>The warhead flares with a blue ion pulse!</span>",
 "<span class='userdanger'>Z rozbitej głowicy wysypują się droidy abordażowe!</span>": "<span class='userdanger'>Boarding droids pour out of the shattered warhead!</span>",
 "Błąd - ogłuszona obsługa broni. ([src])": "Error - weapon crew stunned. ([src])",
+"Błąd - brak żywej załogi. ([src])": "Error - no living crew. ([src])",
+"<span class='warning'>[ship] milknie: broń przestaje strzelać, a okręt dryfuje bezwładnie.</span>": "<span class='warning'>[ship] falls silent: its guns stop firing and the ship drifts lifelessly.</span>",
 "\\improper torpeda zapalająca NTP-7Z „ŻAR” 530 mm": "\\improper NTP-7Z 'EMBER' 530mm incendiary torpedo",
 "\\improper torpeda chemiczna NTP-7C „MIAZMAT” 530 mm": "\\improper NTP-7C 'MIASMA' 530mm chemical torpedo",
 "\\improper torpeda ogłuszająca NTP-7O „GROM” 530 mm": "\\improper NTP-7O 'THUNDER' 530mm stun torpedo",

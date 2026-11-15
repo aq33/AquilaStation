@@ -16,10 +16,11 @@
 /datum/test_chamber_kit/pr_643_walka
 	name = "Skutki trafień, amunicja, działa, strefy"
 	pr = "aq33/AquilaStation#643"
-	description = "Odłamki: zespawnuj przy okręcie wrogi okręt i daj mu zbić pancerz ćwiartki; trafienie przez zbity pancerz wypuszcza za poszyciem odłamki w głąb, a przy głębokim wyłomie idzie seria małych wybuchów w kierunku lotu. \
+	description = "Odłamki: zespawnuj przy okręcie wrogi okręt i daj mu zbić pancerz ćwiartki; trafienie przez zbity pancerz wypuszcza za poszyciem odłamki w głąb, a przy głębokim wyłomie idzie seria małych wybuchów w kierunku lotu; pocisk przebija się przez ściany najdalej na głębokość wyłomu od burty, także przy trafieniu w starą dziurę. \
 		Wybuch amunicji: podpal worek prochu (np. zapalniczką i plazmą na podłodze) albo strzel w niego; po 2–4 s syczenia wybucha, a wyjęty z ognia stygnie. \
 		Kalibracja: przy MAC, railgunie albo dziale pokładowym odkręć panel śrubokrętem i użyj multitoola, odgadnij 4 cyfry (6 prób); spalony aktuator wyjmij łomem i włóż manipulator; strzał z otwartym panelem poraża. \
-		Strefy: Debug > Toggle overmap hazards; w układzie z polem szczątków albo mgławicą widać strefy na DRADIS; szybki przelot przez pole asteroid ściąga meteory, mgławica ukrywa i zakłóca radio, burza zrywa maskowanie."
+		Strefy: Debug > Toggle overmap hazards; w układzie z polem szczątków albo mgławicą widać strefy na DRADIS; szybki przelot przez pole asteroid ściąga meteory, mgławica ukrywa i zakłóca radio, burza zrywa maskowanie. \
+		Martwa załoga: na okręcie Syndykatu po pierwszym trafieniu View Variables > ship_modules, w każdym module crew_lost = 1, potem Call Proc apply_effects na ship_modules; okręt milknie, przestaje strzelać i dryfuje."
 	items = list(
 		/obj/item/powder_bag = 2,
 		/obj/item/multitool = 1,
