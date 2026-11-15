@@ -33,3 +33,19 @@
 	if(map_placed && (!isliving(AM) || world.time < armed_at))
 		return
 	return ..()
+
+// Maszyna (APC, alarm, kamera) zostawała źródłem alarmu w GLOB.alarms po usunięciu: APC w Destroy() woła
+// area.poweralert(FALSE, src), czyli podnosi alarm zasilania z samym sobą jako źródłem, a wpisu nikt potem nie czyści.
+// Usunięte APC (np. z ruin planet przy znikaniu powierzchni) zostawało z ogniwem w pamięci (twarde usunięcie).
+/obj/machinery/Destroy()
+	. = ..()
+	for(var/alarm_class in GLOB.alarms)
+		var/list/class_alarms = GLOB.alarms[alarm_class]
+		for(var/area_name in class_alarms.Copy())
+			var/list/alarm = class_alarms[area_name]
+			var/list/sources = alarm?[3]
+			if(!(src in sources))
+				continue
+			sources -= src
+			if(!length(sources))
+				class_alarms -= area_name

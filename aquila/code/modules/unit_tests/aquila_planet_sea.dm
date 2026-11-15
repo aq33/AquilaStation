@@ -14,7 +14,7 @@
 /datum/unit_test/planet_sea_surfaces
 
 /datum/unit_test/planet_sea_surfaces/Run()
-	for(var/planet_type in list(/datum/planet_type/beach, /datum/planet_type/water, /datum/planet_type/dwarf/water))
+	for(var/planet_type in planet_test_sample(list(/datum/planet_type/beach, /datum/planet_type/water, /datum/planet_type/dwarf/water)))
 		var/obj/structure/overmap/planet/planet = new(run_loc_floor_top_right, planet_type)
 		var/datum/planet_surface/surface = planet.surface
 		TEST_ASSERT(surface.generate(), "[planet_type] surface didn't generate")
@@ -70,7 +70,7 @@
 	var/obj/structure/overmap/planet/fit_planet = new(run_loc_floor_top_right, /datum/planet_type/beach)
 	for(var/planet_type in sets)
 		var/list/templates = sets[planet_type]
-		for(var/name in templates)
+		for(var/name in planet_test_sample(templates, 1))
 			var/datum/map_template/ruin/ruin = templates[name]
 			TEST_ASSERT(ruin.width && ruin.height, "[name] map file didn't preload ([ruin.mappath])")
 			TEST_ASSERT(fit_planet.surface.main_ruin_fits(ruin, PLANET_SURFACE_SIZE_LARGE), "[name] ([ruin.width]x[ruin.height]) doesn't fit as a main ruin even on a large surface")

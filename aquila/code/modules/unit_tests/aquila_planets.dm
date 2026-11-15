@@ -242,6 +242,21 @@
 	surface.unload()
 	qdel(planet, TRUE)
 
+/// Próbka do ciężkich testów planet (generowanie powierzchni, ruiny, greeble): w zwykłym przebiegu losowe count
+/// elementów, więc kolejne przebiegi przechodzą przez całą pulę, a z -DAQUILA_FULL_MAP_TESTS wszystkie (jak testy asteroid
+/// górniczych i shipbreakingu). Wszystkie typy, ruiny i greeble naraz to kilkadziesiąt minut jednej części CI.
+/proc/planet_test_sample(list/items, count = 1)
+#ifdef AQUILA_FULL_MAP_TESTS
+	return items.Copy()
+#else
+	var/list/pool = items.Copy()
+	. = list()
+	while(length(pool) && length(.) < count)
+		var/picked = pick(pool)
+		pool -= picked
+		. += picked
+#endif
+
 /// Czy ruina mieści się jako ruina główna na kwadracie o boku side, w miejscu z place_main_ruin (przy górnej krawędzi)
 /proc/planet_ruin_fits_surface(datum/map_template/ruin/ruin, side)
 	var/inner_size = side - 2 * PLANET_EDGE_WIDTH
@@ -269,7 +284,7 @@
 	// we własnej pustej rezerwacji, z atmosferą wstrzymaną jak przy generowaniu planety: ruiny nie nachodzą na siebie,
 	// a podmuch z rozszczelnionych wraków nie rusza przedmiotów przed ich Initialize.
 	var/obj/structure/overmap/planet/fit_planet = new(run_loc_floor_top_right, /datum/planet_type/lava)
-	for(var/name in templates)
+	for(var/name in planet_test_sample(templates, 2))
 		var/datum/map_template/ruin/ruin = templates[name]
 		// Bez pliku mapy szablon ma rozmiar 0 i „wczytuje się” jako pusta mapa
 		TEST_ASSERT(ruin.width && ruin.height, "[name] map file didn't preload ([ruin.mappath])")

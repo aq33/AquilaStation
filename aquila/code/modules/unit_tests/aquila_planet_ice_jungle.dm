@@ -14,7 +14,7 @@
 /datum/unit_test/planet_ice_jungle_surfaces
 
 /datum/unit_test/planet_ice_jungle_surfaces/Run()
-	for(var/planet_type in list(/datum/planet_type/ice, /datum/planet_type/jungle, /datum/planet_type/dwarf/snow))
+	for(var/planet_type in planet_test_sample(list(/datum/planet_type/ice, /datum/planet_type/jungle, /datum/planet_type/dwarf/snow)))
 		var/obj/structure/overmap/planet/planet = new(run_loc_floor_top_right, planet_type)
 		var/datum/planet_surface/surface = planet.surface
 		TEST_ASSERT(surface.generate(), "[planet_type] surface didn't generate")
@@ -51,7 +51,7 @@
 	TEST_ASSERT_EQUAL(length(ruin_sets[/datum/planet_type/jungle]), 8, "Jungle ruin count")
 	for(var/planet_type in ruin_sets)
 		var/list/templates = ruin_sets[planet_type]
-		for(var/name in templates)
+		for(var/name in planet_test_sample(templates, 2))
 			var/datum/map_template/ruin/ruin = templates[name]
 			TEST_ASSERT(ruin.width && ruin.height, "[name] map didn't load (no size)")
 			TEST_ASSERT(planet_ruin_fits_surface(ruin, PLANET_SURFACE_SIZE_LARGE), "[name] ([ruin.width]x[ruin.height]) doesn't fit even a large surface")

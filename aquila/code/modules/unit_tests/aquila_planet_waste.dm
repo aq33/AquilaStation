@@ -14,7 +14,7 @@
 /datum/unit_test/planet_waste_surfaces
 
 /datum/unit_test/planet_waste_surfaces/Run()
-	for(var/planet_type in list(/datum/planet_type/waste, /datum/planet_type/battlefield))
+	for(var/planet_type in planet_test_sample(list(/datum/planet_type/waste, /datum/planet_type/battlefield)))
 		var/obj/structure/overmap/planet/planet = new(run_loc_floor_top_right, planet_type)
 		var/datum/planet_surface/surface = planet.surface
 		TEST_ASSERT(surface.generate(), "[planet_type]: the surface didn't generate")
@@ -57,7 +57,7 @@
 	TEST_ASSERT_EQUAL(length(battlefield), 3, "Wrong number of battlefield ruins")
 	// Każda ruina wczytuje się we własnej pustej rezerwacji (jedna na drugiej dublowały kable i rury)
 	var/obj/structure/overmap/planet/fit_planet = new(run_loc_floor_top_right, /datum/planet_type/waste)
-	for(var/name in waste + battlefield)
+	for(var/name in planet_test_sample(waste + battlefield, 2))
 		var/datum/map_template/ruin/ruin = waste[name] || battlefield[name]
 		TEST_ASSERT(ruin.width && ruin.height, "[name] map file didn't preload ([ruin.mappath])")
 		TEST_ASSERT(fit_planet.surface.main_ruin_fits(ruin, PLANET_SURFACE_SIZE_LARGE), "[name] ([ruin.width]x[ruin.height]) doesn't fit even the large surface")

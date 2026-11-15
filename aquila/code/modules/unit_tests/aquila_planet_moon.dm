@@ -14,7 +14,7 @@
 /datum/unit_test/planet_moon_surfaces
 
 /datum/unit_test/planet_moon_surfaces/Run()
-	for(var/planet_type in list(/datum/planet_type/moon, /datum/planet_type/asteroid, /datum/planet_type/asteroid/space_signal, /datum/planet_type/gas_giant, /datum/planet_type/gas_giant/plasma))
+	for(var/planet_type in planet_test_sample(list(/datum/planet_type/moon, /datum/planet_type/asteroid, /datum/planet_type/asteroid/space_signal, /datum/planet_type/gas_giant, /datum/planet_type/gas_giant/plasma)))
 		var/obj/structure/overmap/planet/planet = new(run_loc_floor_top_right, planet_type)
 		var/datum/planet_surface/surface = planet.surface
 		TEST_ASSERT(surface.generate(), "[planet_type] surface didn't generate")
@@ -92,7 +92,7 @@
 	TEST_ASSERT_EQUAL(length(templates), 8, "Wrong number of moon and space ruins registered")
 	var/obj/structure/overmap/planet/fit_planet = new(run_loc_floor_top_right, /datum/planet_type/moon)
 	var/datum/planet_surface/fit_check = fit_planet.surface
-	for(var/name in templates)
+	for(var/name in planet_test_sample(templates, 2))
 		var/datum/map_template/ruin/ruin = templates[name]
 		// Bez pliku mapy szablon ma rozmiar 0 i „wczytuje się” jako pusta mapa
 		TEST_ASSERT(ruin.width && ruin.height, "[name] map file didn't preload ([ruin.mappath], fexists: [fexists(ruin.mappath)])")

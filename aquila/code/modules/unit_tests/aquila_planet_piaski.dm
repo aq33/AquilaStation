@@ -22,7 +22,7 @@
 		/datum/planet_type/dwarf/dust,
 		/datum/planet_type/dwarf/dune,
 	)
-	for(var/planet_type in planet_types)
+	for(var/planet_type in planet_test_sample(planet_types))
 		var/obj/structure/overmap/planet/planet = new(run_loc_floor_top_right, planet_type)
 		var/datum/planet_surface/surface = planet.surface
 		TEST_ASSERT(surface.generate(), "[planet_type] surface didn't generate")
@@ -65,7 +65,7 @@
 	for(var/ruin_root in ruin_roots)
 		var/list/templates = get_planet_ruin_templates(ruin_root)
 		TEST_ASSERT_EQUAL(length(templates), ruin_roots[ruin_root], "Wrong number of [ruin_root] ruins registered")
-		for(var/name in templates)
+		for(var/name in planet_test_sample(templates, 1))
 			var/datum/map_template/ruin/ruin = templates[name]
 			TEST_ASSERT(ruin.width && ruin.height, "[name] map file didn't preload ([ruin.mappath])")
 			TEST_ASSERT(fit_planet.surface.main_ruin_fits(ruin, PLANET_SURFACE_SIZE_LARGE), "[name] ([ruin.width]x[ruin.height]) doesn't fit even on the large surface")
@@ -78,7 +78,7 @@
 		greeble_maps |= spawner.greeble_maps
 		qdel(spawner)
 	TEST_ASSERT_EQUAL(length(greeble_maps), 20, "Wrong number of whitesands greeble maps")
-	for(var/greeble_map in greeble_maps)
+	for(var/greeble_map in planet_test_sample(greeble_maps, 3))
 		var/datum/map_template/template = new(greeble_map, "test greeble", TRUE)
 		TEST_ASSERT(template.width, "Greeble map [greeble_map] didn't parse")
 		var/datum/turf_reservation/reservation = SSmapping.RequestBlockReservation(template.width + 2, template.height + 2)
