@@ -30,7 +30,7 @@ Domyślnie gra używa combat mode z Bee, a gracz może włączyć w preferencjac
 - Port z serwera, który ma tylko intencje albo tylko combat mode: dopisz brakujący wariant i sprawdź oba tryby w teście w grze.
 ## Kod Aquili (modularność)
 - Nowy kod, ikony i dźwięki idą tylko do `aquila/` (`aquila/code/`, `aquila/icons/`, `aquila/sound/`, `aquila/_maps/`).
-- Nowy plik `.dm` dopisz do `aquila/aquila.dm` (ścieżka względna od `aquila/`, backslashe), nie do `nsv13.dme`.
+- Nowy plik `.dm` dopisz do `aquila/aquila.dm` (ścieżka względna od `aquila/`, backslashe), nie do `nsv13.dme`. Ostatnim include'em zostaje `code\modules\tracy\tracy.dm` (pilnuje tego `check_grep.sh`), więc nowe wpisy idą nad nim.
 - `aquila/aquila.dm` jest dołączany na końcu `nsv13.dme`. Define potrzebny wcześniej w core musi być w core, z markerem.
 - Zmiana zachowania upstreamowego typu: nadpisanie w `aquila/` z wywołaniem `..()`.
 - Pełne nadpisanie procki bez `..()` tylko gdy inaczej się nie da, i wtedy obowiązkowo wpis do `aquila/LEGACY_OVERRIDES.md`.
