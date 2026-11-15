@@ -85,8 +85,8 @@ GLOBAL_LIST_EMPTY(ship_deck_bounds)
 		return ..()
 	var/armour = hull_armour_fraction(u, v)
 	var/depth = deck_hole_depth(target, armour)
+	var/turf/hull = swiss_cheese_first_hull(start, dir_x, dir_y)
 	if(depth <= 0) // pełny pancerz: wgniecenie i iskry na poszyciu
-		var/turf/hull = swiss_cheese_first_hull(start, dir_x, dir_y)
 		if(hull)
 			do_sparks(3, TRUE, hull)
 			playsound(hull, 'sound/effects/bang.ogg', 40, TRUE)
@@ -98,6 +98,7 @@ GLOBAL_LIST_EMPTY(ship_deck_bounds)
 	proj.def_zone = "chest"
 	proj.original = target
 	proj.hull_spall = list(dir_x, dir_y, depth) // odłamki i wybuch kierunkowy tam, gdzie pocisk zginie (hull_spall.dm)
+	proj.hull_pierce_from = hull // przebijanie liczone od poszycia, nie od pierwszej ściany za starą dziurą
 	LAZYINITLIST(proj.impacted)
 	swiss_cheese_fire(proj, get_angle(start, target) + ((rand() - 0.5) * 6))
 	addtimer(CALLBACK(src, PROC_REF(swiss_cheese_machine_damage), target, depth), 2 SECONDS)

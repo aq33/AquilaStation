@@ -45,5 +45,13 @@
 	shallow_shot.hull_spall = list(1, 0, 1)
 	if(shallow_shot.hull_pierce_should_phase(hull))
 		return Fail("Pocisk z płytkim wyłomem przeleciał przez poszycie zamiast na nim wybuchnąć")
+	// liczenie od kadłuba: pierwsza przeszkoda 3 pola za poszyciem (za starą dziurą) już jest poza głębokością 4
+	var/obj/item/projectile/bullet/hole_shot = allocate(/obj/item/projectile/bullet, origin)
+	hole_shot.hull_spall = list(1, 0, 4)
+	hole_shot.hull_pierce_from = origin
+	if(hole_shot.hull_pierce_should_phase(inner))
+		return Fail("Za starą dziurą pocisk liczył przebijanie od pierwszej ściany, a nie od poszycia")
 	pierce_shot.hull_spall = null
 	shallow_shot.hull_spall = null
+	hole_shot.hull_spall = null
+	hole_shot.hull_pierce_from = null

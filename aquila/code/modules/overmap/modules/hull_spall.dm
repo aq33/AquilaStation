@@ -25,11 +25,13 @@ GLOBAL_VAR_INIT(hull_spall_enabled, TRUE)
 	var/list/hull_spall
 
 /obj/item/projectile
-	/// AQUILA - pierwsze trafione poszycie: od niego liczy się przebijanie w głąb
+	/// AQUILA - poszycie, od którego liczy się przebijanie w głąb: pierwsze pole kadłuba na drodze pocisku (swiss_cheese.dm),
+	/// a bez niego pierwsza trafiona przeszkoda. Liczenie od kadłuba sprawia, że stara dziura nie przepuszcza pocisku dalej
+	/// niż głębokość wyłomu od burty.
 	var/turf/hull_pierce_from
 
 /// Przebijanie w głąb: pocisk przekazany na pokład przelatuje przez ściany i gęste obiekty, dopóki nie oddali się od
-/// pierwszego trafionego poszycia o głębokość wyłomu minus jedno pole; wybucha (z tą samą siłą co wcześniej) dopiero
+/// poszycia (hull_pierce_from) o głębokość wyłomu minus jedno pole; wybucha (z tą samą siłą co wcześniej) dopiero
 /// w głębi. Ludzi trafia normalnie. Głębokość 1 = wybuch na poszyciu jak dawniej.
 /obj/item/projectile/prehit_pierce(atom/A)
 	if(hull_spall && hull_pierce_should_phase(A))
