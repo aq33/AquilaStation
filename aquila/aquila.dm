@@ -2521,3 +2521,7 @@
 #include "code\modules\test_chamber\kits\pr_565_obcokrajowiec.dm"
 #include "code\modules\test_chamber\kits\pr_608_ekonomia_malf_statystyki.dm"
 #include "code\modules\test_chamber\kits\pr_610_zbiorczy_1011.dm"
+
+// Profiler byond-tracy: MUSI być ostatnim include'em całego builda (BYOND inicjuje zmienne statyczne od końca,
+// więc ta rusza pierwsza, przed Master i mapą). Opis: tools/tracy/README.md
+#include "code\modules\tracy\tracy.dm"

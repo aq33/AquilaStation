@@ -212,3 +212,10 @@ crowdin_existing/
 
 # Pary z kodu okien (tools/i18n/extract_pairs.py --ui), scalane do en_ui.json
 strings/i18n/en_pairs_ui.json
+
+# byond-tracy (tools/tracy)
+prof.dll
+prof.lib
+prof.pdb
+libprof.so
+
