@@ -18,6 +18,10 @@
 #define SHIP_THRUSTER_HEATER_REACH 2
 /// Na ile kafli za tylną krawędzią dyszy szukamy zasilanego obszaru statku (dysza stoi w próżni, bez APC)
 #define SHIP_THRUSTER_POWER_REACH 4
+/// Zapasowo: w jakim promieniu od dyszy szukamy zasilanego obszaru (dysze na wysięgnikach kadłuba)
+#define SHIP_THRUSTER_POWER_RADIUS 10
+/// Jak często szukamy od nowa, gdy w pobliżu nie było zasilanego obszaru
+#define SHIP_THRUSTER_POWER_SEARCH_COOLDOWN (30 SECONDS)
 /// Największy ciąg statku z najlepszą mieszanką (względem ciągu sprzed reworku)
 #define SHIP_THRUSTER_MAX_THRUST 1.5
 /// Ile moli utleniacza (w odpowiedniku tlenu) na mol paliwa daje pełną premię
@@ -108,6 +112,9 @@ GLOBAL_LIST_INIT(ship_thruster_oxidizers, list(
 	var/plated = FALSE
 	/// aq_thrust_seconds statku przy ostatnim ticku tej dyszy
 	var/thrust_seen = 0
+	/// Obszar, z którego dysza ostatnio brała prąd (szukanie w promieniu jest kosztowne)
+	var/area/power_area_cache
+	var/next_power_search = 0
 
 /obj/machinery/ship_thruster/large
 	icon = 'icons/obj/2x2.dmi'
@@ -182,7 +189,26 @@ GLOBAL_LIST_INIT(ship_thruster_oxidizers, list(
 				continue
 			if(A.powered(chan))
 				return A
-	return null
+	// Dysze na wysięgnikach (Atlantis): najbliższy zasilany obszar statku w promieniu, zapamiętany
+	if(power_area_cache?.powered(chan))
+		return power_area_cache
+	if(world.time < next_power_search)
+		return null
+	next_power_search = world.time + SHIP_THRUSTER_POWER_SEARCH_COOLDOWN
+	power_area_cache = null
+	var/turf/center = get_turf(src)
+	if(!center)
+		return null
+	var/best_dist = INFINITY
+	for(var/turf/T as anything in RANGE_TURFS(SHIP_THRUSTER_POWER_RADIUS, center))
+		var/area/A = T.loc
+		if(istype(A, /area/space) || !A.powered(chan))
+			continue
+		var/dist = get_dist(center, T)
+		if(dist < best_dist)
+			best_dist = dist
+			power_area_cache = A
+	return power_area_cache
 
 /obj/machinery/ship_thruster/powered(chan = -1)
 	if(!loc)
@@ -389,6 +415,8 @@ GLOBAL_LIST_INIT(ship_thruster_oxidizers, list(
 #undef SHIP_THRUSTER_REPAIR_SHEETS
 #undef SHIP_THRUSTER_HEATER_REACH
 #undef SHIP_THRUSTER_POWER_REACH
+#undef SHIP_THRUSTER_POWER_RADIUS
+#undef SHIP_THRUSTER_POWER_SEARCH_COOLDOWN
 #undef SHIP_THRUSTER_MAX_THRUST
 #undef SHIP_THRUSTER_IDEAL_RATIO
 #undef SHIP_THRUSTER_OXIDIZER_BONUS

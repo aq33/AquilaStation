@@ -5597,6 +5597,11 @@
 	name = "nanoweave carpet (puce)"
 	},
 /area/nsv/weapons/fore)
+"epx" = (
+/obj/structure/shuttle/engine/huge,
+/obj/structure/hull_plate/end,
+/turf/open/floor/engine/airless,
+/area/space/nearstation)
 "epS" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -40998,7 +41003,7 @@ eNL
 jgk
 xSG
 xSG
-eFN
+epx
 lfF
 lfF
 lfF
@@ -41806,7 +41811,7 @@ cPj
 jgk
 xSG
 xSG
-eFN
+epx
 lfF
 lfF
 lfF
@@ -42614,7 +42619,7 @@ mkz
 jgk
 xSG
 xSG
-eFN
+epx
 lfF
 lfF
 lfF
@@ -43422,7 +43427,7 @@ gjg
 jgk
 xSG
 xSG
-eFN
+epx
 lfF
 lfF
 lfF
@@ -44230,7 +44235,7 @@ mkz
 jgk
 xSG
 xSG
-eFN
+epx
 lfF
 lfF
 lfF
@@ -45038,7 +45043,7 @@ uif
 jgk
 xSG
 xSG
-eFN
+epx
 lfF
 lfF
 lfF
