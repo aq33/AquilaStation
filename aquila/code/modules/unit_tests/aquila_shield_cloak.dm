@@ -64,6 +64,18 @@
 	TEST_ASSERT(!gen.cloaked, "The cloak survived the ship departing on a jump")
 	TEST_ASSERT(!gen.cloak_ship, "The cloak kept a reference to the ship after ending")
 
+	// Regresja: strzał zdejmuje maskę od razu (każda broń przez fire_projectile albo fire_proc_chain)
+	gen.cloaked = TRUE
+	ship.aq_on_weapon_fired()
+	TEST_ASSERT(!gen.cloaked, "A shot didn't drop the cloak at once")
+
+	// Regresja: dyfuzor nie drenuje opuszczonej tarczy
+	gen.cloaked = FALSE
+	gen.active = FALSE
+	gen.shield["integrity"] = 100
+	gen.shield["max_integrity"] = 100
+	TEST_ASSERT(!ship.aq_diffuse_shields(0.5) && gen.shield["integrity"] == 100, "A diffuser drained a lowered shield")
+
 	// Regresja: tarcza podniesiona przed maską wraca po jej zdjęciu
 	gen.cloaked = TRUE
 	gen.cloak_restore_active = TRUE

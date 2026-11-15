@@ -8,8 +8,10 @@
 
 #define SHIELD_CLOAK_POWER 6e6
 #define SHIELD_CLOAK_SIGNATURE 0.2
-/// Przezroczystość statku na overmapie w masce (radar.dm: 51-100 = "ledwo widoczny")
-#define SHIELD_CLOAK_ALPHA 90
+/// Wygląd statku w masce: kolor z kanałem alfa (półprzezroczysty), a nie zmienna `alpha`. Z `alpha` < 255 korzysta
+/// maskowanie NSV (radar.dm is_sensor_visible, handle_cloak): maska działałaby podwójnie, a strzał lub kolizja
+/// uruchamiałyby handle_cloak, które zostawia okręt nieklikalny (mouse_opacity) i kasuje stealth PvP (cloak_factor)
+#define SHIELD_CLOAK_COLOUR "#ffffff5a"
 #define SHIELD_BUBBLE_FILTER "aq_shield_bubble"
 
 /obj/machinery/shield_generator
@@ -77,7 +79,7 @@
 	cloak_restore_active = active
 	cloak_fire_mark = ship.aq_weapon_shots
 	active = FALSE
-	animate(ship, 1.5 SECONDS, alpha = SHIELD_CLOAK_ALPHA)
+	ship.add_atom_colour(SHIELD_CLOAK_COLOUR, TEMPORARY_COLOUR_PRIORITY)
 	ship.relay(null, "<span class='notice'>Generator tarczy przechodzi w tryb maskowania. Sygnatura okrętu gaśnie.</span>", FALSE)
 	if(user)
 		log_game("[key_name(user)] włączył maskowanie statku [ship] w [AREACOORD(src)]")
@@ -98,14 +100,28 @@
 		active = cloak_restore_active
 	cloak_restore_active = FALSE
 	var/obj/structure/overmap/ship = get_overmap()
+	if(istype(cloaked_ship))
+		cloaked_ship.remove_atom_colour(TEMPORARY_COLOUR_PRIORITY, SHIELD_CLOAK_COLOUR)
 	if(istype(ship))
-		animate(ship, 1.5 SECONDS, alpha = 255)
 		ship.relay(null, "<span class='warning'>Maskowanie zdjęte[reason ? ": [reason]" : ""][active ? ". Tarcza wraca" : ""].</span>", FALSE)
 	update_bubble(TRUE)
 
 /obj/machinery/shield_generator/proc/on_ship_departed(datum/source)
 	SIGNAL_HANDLER
 	INVOKE_ASYNC(src, PROC_REF(end_cloak), "skok")
+
+/// Strzał zdejmuje maskę od razu, a nie przy następnym process() generatora (do 2 s salwy w masce)
+/obj/structure/overmap/proc/aq_on_weapon_fired()
+	aq_weapon_shots++
+	if(is_cloaked())
+		var/obj/machinery/shield_generator/gen = shields
+		gen.end_cloak("strzał")
+
+// Działka strzelców, Gauss i działa pokładowe strzelają przez fire_projectile z pominięciem fire_proc_chain
+/obj/structure/overmap/fire_projectile(proj_type, atom/target, pixel_speed = null, user_override = null, firing_flags = NONE, ai_aim = FALSE, miss_chance = 5, max_miss_distance = 5, spread_override = null, projectile_speed = null)
+	. = ..()
+	if(.)
+		aq_on_weapon_fired()
 
 /// Zniszczony albo rozebrany generator zdejmuje maskę i przestaje być tarczą okrętu
 /obj/machinery/shield_generator/Destroy()
@@ -150,7 +166,7 @@
 		return SHIELD_NOEFFECT
 	. = ..()
 	if(. == SHIELD_ABSORB)
-		update_bubble(TRUE)
+		update_bubble() // filtr przebudowuje się tylko przy zmianie poziomu bańki, nie przy każdym trafieniu
 
 /obj/machinery/shield_generator/take_damage(damage_amount, damage_type, damage_flag, sound_effect, attack_dir, armour_penetration)
 	. = ..()
@@ -185,6 +201,13 @@
 	.["can_cloak"] = can_cloak()
 
 /obj/machinery/shield_generator/ui_act(action, params)
+	// W masce podniesienie albo opuszczenie tarczy dotyczy stanu po masce (inaczej end_cloak nadpisałby wybór)
+	if(action == "activeToggle" && cloaked)
+		if(machine_stat & (BROKEN|NOPOWER))
+			return TRUE
+		cloak_restore_active = !cloak_restore_active
+		to_chat(usr, "<span class='notice'>Tarcza zostanie [cloak_restore_active ? "podniesiona" : "opuszczona"] po zdjęciu maski.</span>")
+		return TRUE
 	if(action != "cloakToggle")
 		return ..()
 	if(machine_stat & (BROKEN|NOPOWER))
@@ -200,5 +223,5 @@
 
 #undef SHIELD_CLOAK_POWER
 #undef SHIELD_CLOAK_SIGNATURE
-#undef SHIELD_CLOAK_ALPHA
+#undef SHIELD_CLOAK_COLOUR
 #undef SHIELD_BUBBLE_FILTER
