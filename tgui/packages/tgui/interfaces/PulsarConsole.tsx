@@ -215,21 +215,21 @@ export const PulsarConsole = (props) => {
                 <LabeledList.Item label="Rozpad orbity">
                   za {decay_minutes} min
                 </LabeledList.Item>
-                <LabeledList.Item
-                  label="Paliwo"
-                  buttons={
-                    <Button icon="search" onClick={() => act('scan_tank')}>
-                      Szukaj zbiornika
-                    </Button>
-                  }
-                >
+                <LabeledList.Item label="Paliwo">
                   {has_tank ? (
-                    <>
-                      {fuel} moli, ruch kosztuje {thrust_cost} moli
-                    </>
+                    <Box>
+                      {fuel} mol (ruch: {thrust_cost} mol)
+                    </Box>
                   ) : (
                     <Box color="bad">Brak zbiornika w pomieszczeniu</Box>
                   )}
+                  <Button
+                    mt={0.5}
+                    icon="search"
+                    onClick={() => act('scan_tank')}
+                  >
+                    Szukaj zbiornika
+                  </Button>
                 </LabeledList.Item>
               </LabeledList>
               <Box color="label" mt={1}>

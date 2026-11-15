@@ -21543,7 +21543,7 @@
 "Rozpad orbity": "Orbit decay",
 "za ${decay_minutes} min": "in ${decay_minutes} min",
 "Szukaj zbiornika": "Find tank",
-"${fuel} moli, ruch kosztuje ${thrust_cost} moli": "${fuel} moles, a move costs ${thrust_cost} moles",
+"${fuel} mol (ruch: ${thrust_cost} mol)": "${fuel} mol (move: ${thrust_cost} mol)",
 "Brak zbiornika w pomieszczeniu": "No tank in the room",
 "Rozłącz": "Disconnect",
 "Połącz": "Connect",

@@ -475,6 +475,7 @@
 "${formatMoney(value)} kr": "${formatMoney(value)} cr",
 "${formatSiUnit(amount, 0)} ark.": "${formatSiUnit(amount, 0)} sheets",
 "${formatSiUnit(sheet_amounts, 0)} ark.": "${formatSiUnit(sheet_amounts, 0)} sheets",
+"${fuel} mol (ruch: ${thrust_cost} mol)": "${fuel} mol (move: ${thrust_cost} mol)",
 "${fuel} moli, ruch kosztuje ${thrust_cost} moli": "${fuel} moles, a move costs ${thrust_cost} moles",
 "${genetic_points_remaining} pkt genetycznych": "${genetic_points_remaining} genetic points",
 "${hoursNeeded} godz.": "${hoursNeeded} h",
