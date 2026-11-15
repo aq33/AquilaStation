@@ -89,6 +89,9 @@
 
 /// Te same zasady co przy abordażu stacji: sektor 2, bez Rubikonu, czarnej dziury i systemu startowego
 /datum/overmap_objective/derelict_ruin/proc/pick_derelict_system()
+	var/datum/star_system/hex_choice = hex_mission_system(null, "derelict") // mapa hex: nieznany sygnał albo kafel przy złomowisku, z dala od wroga (war_missions.dm)
+	if(hex_choice)
+		return hex_choice
 	var/list/candidates = list()
 	var/datum/star_system/start_system = SSovermap_mode.mode ? SSstar_system.system_by_id(SSovermap_mode.mode.starting_system) : null
 	for(var/datum/star_system/S in SSstar_system.neutral_zone_systems)

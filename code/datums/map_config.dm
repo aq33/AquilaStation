@@ -192,7 +192,7 @@
 	if("starmap_path" in json)
 		starmap_path = json["starmap_path"]
 	if("return_system" in json)
-		starmap_path = json["return_system"]
+		return_system = json["return_system"] // AQ EDIT - wpisywało system powrotu do starmap_path
 	if("map_description" in json)
 		map_description = json["map_description"]
 	if("manufacturer" in json)

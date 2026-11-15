@@ -1,0 +1,206 @@
+// AQUILA - zapis wojny w kampanii (część D): floty sztabów, konwoje, magazyny obiektów i dowódcy przechodzą do
+// następnej rundy w hexmap.json. Garnizony układów (floty FLEET_TRAIT_DEFENSE) odradzają się co rundę jak dotąd.
+
+/datum/hex_war/proc/serialize()
+	var/list/commander_data = list()
+	for(var/datum/hex_commander/C as anything in commanders)
+		commander_data += list(list(
+			"id" = C.id,
+			"faction" = C.faction,
+			"first" = C.first_name,
+			"last" = C.last_name,
+			"nick" = C.nickname,
+			"rank" = C.rank,
+			"traits" = C.traits,
+			"known" = C.known_traits,
+			"wins" = C.wins,
+			"losses" = C.losses,
+			"status" = C.status,
+			"grudge" = C.grudge,
+			"scars" = C.scars,
+			"history" = C.history,
+			"seen" = C.seen,
+			"return_in" = max(0, C.return_at - world.time),
+		))
+	var/list/fleet_data = list()
+	for(var/datum/fleet/F as anything in hex_all_fleets())
+		if(!F.war_controlled)
+			continue
+		var/datum/hex/H = GLOB.hexmap.hex_of_system(F.current_system)
+		if(!H)
+			continue
+		fleet_data += list(list(
+			"type" = "[F.type]",
+			"alignment" = F.alignment,
+			"hex" = H.id,
+			"ships" = F.hex_war_ship_count(),
+			"max_ships" = F.war_max_ships,
+			"strength" = F.hex_war_strength(),
+			"hull" = F.hex_war_hull(),
+			"order" = F.war_order,
+			"target" = F.war_target?.hex?.id,
+			"commander" = F.commander?.id,
+			"loot" = F.war_loot,
+			"cargo" = F.war_cargo,
+			"cargo_amount" = F.war_cargo_amount,
+			"destination" = F.war_destination?.hex?.id,
+		))
+	var/list/stores = list()
+	for(var/datum/star_system/S as anything in SSstar_system.systems)
+		if(S.war_ore || S.war_parts)
+			stores[S.name] = list(S.war_ore, S.war_parts)
+	var/list/nuke_cooldown = list()
+	for(var/faction in nuke_built_at)
+		nuke_cooldown[faction] = max(0, nuke_built_at[faction] + HEX_WAR_NUKE_COOLDOWN - world.time)
+	// Kto trzyma który układ: odtworzenie flot (spawn_fleet → assemble) przestawia alignment na stronę ostatnio
+	// postawionej floty, więc oblężony układ wyglądałby po restarcie na zdobyty i tracił garnizon bez walki
+	var/list/occupied = list()
+	for(var/datum/star_system/S as anything in SSstar_system.systems)
+		if(S.hex && !istype(S, /datum/star_system/random/hex_empty) && S.alignment != S.owner)
+			occupied[S.name] = S.alignment
+	return list("occupied" = occupied, "commanders" = commander_data, "fleets" = fleet_data, "stores" = stores, "next_id" = next_commander_id, "tension" = tension, "nuke_stocks" = nuke_stocks, "nuke_cooldown" = nuke_cooldown, "hq_lost" = hq_lost_rounds, "fortunes" = fortunes, "syndicate_defeated" = syndicate_defeated, "hq_relocations" = hq_relocations, "evac_announce" = pending_evac_announce)
+
+/// Napięcie i zapasy atomówek z zapisu (niezależnie od tego, czy floty dało się odtworzyć)
+/datum/hex_war/proc/restore_nuclear(list/saved)
+	if(!islist(saved))
+		return
+	if(isnum(saved["tension"]))
+		tension = saved["tension"]
+	var/list/stocks = saved["nuke_stocks"]
+	if(islist(stocks))
+		for(var/faction in nuke_stocks)
+			if(isnum(stocks[faction]))
+				nuke_stocks[faction] = stocks[faction]
+	// Odliczanie do następnej atomówki i rundy bez kwatery przechodzą przez restart świata
+	var/list/cooldown = saved["nuke_cooldown"]
+	if(islist(cooldown))
+		for(var/faction in cooldown)
+			if(isnum(cooldown[faction]) && cooldown[faction] > 0)
+				nuke_built_at[faction] = world.time + cooldown[faction] - HEX_WAR_NUKE_COOLDOWN
+	if(saved["syndicate_defeated"])
+		syndicate_defeated = TRUE
+	var/list/relocations = saved["hq_relocations"]
+	if(islist(relocations))
+		hq_relocations = relocations.Copy()
+	if(istext(saved["evac_announce"]))
+		pending_evac_announce = saved["evac_announce"]
+	var/list/saved_fortunes = saved["fortunes"]
+	if(islist(saved_fortunes))
+		for(var/faction in saved_fortunes)
+			if(isnum(saved_fortunes[faction]))
+				fortunes[faction] = clamp(saved_fortunes[faction], 0.5, 1.5)
+	var/list/lost = saved["hq_lost"]
+	if(islist(lost))
+		for(var/faction in lost)
+			if(isnum(lost[faction]))
+				hq_lost_rounds[faction] = lost[faction]
+	update_defcon()
+
+/// Odtwarza wojnę z zapisu. Zwraca FALSE, gdy zapisu nie da się użyć (wtedy sztab przejmuje floty ze startu rundy).
+/datum/hex_war/proc/restore(list/saved)
+	var/list/fleet_data = saved["fleets"]
+	if(!islist(fleet_data)) // pusta lista to poprawny zapis (wszystkie floty zginęły): dowódcy i magazyny i tak wracają
+		return FALSE
+	next_commander_id = max(1, saved["next_id"])
+	var/list/by_id = list()
+	for(var/list/entry in saved["commanders"])
+		var/datum/hex_commander/C = new
+		C.id = entry["id"]
+		C.faction = entry["faction"]
+		C.first_name = entry["first"]
+		C.last_name = entry["last"]
+		C.nickname = entry["nick"]
+		C.rank = entry["rank"]
+		C.traits = islist(entry["traits"]) ? entry["traits"] : list()
+		C.known_traits = islist(entry["known"]) ? entry["known"] : list()
+		C.wins = entry["wins"]
+		C.losses = entry["losses"]
+		C.status = entry["status"] || HEX_CMD_ACTIVE
+		C.grudge = entry["grudge"]
+		C.scars = islist(entry["scars"]) ? entry["scars"] : list()
+		C.history = islist(entry["history"]) ? entry["history"] : list()
+		C.seen = entry["seen"]
+		C.return_at = world.time + entry["return_in"]
+		commanders += C
+		by_id["[C.id]"] = C
+		next_commander_id = max(next_commander_id, C.id + 1)
+	// Floty, które sztab przejąłby ze startu rundy, zastępuje zapis
+	for(var/datum/fleet/F as anything in hex_all_fleets())
+		if(F.hex_war_adoptable())
+			F.hex_war_dispose()
+	for(var/list/entry in fleet_data)
+		restore_fleet(entry, by_id)
+	restore_occupation(saved["occupied"])
+	var/list/stores = saved["stores"]
+	if(islist(stores))
+		for(var/name in stores)
+			var/datum/star_system/S = SSstar_system.system_by_id(name)
+			var/list/values = stores[name]
+			if(S && islist(values) && length(values) >= 2)
+				S.war_ore = values[1]
+				S.war_parts = values[2]
+	// Dowódca, którego flota nie wróciła (np. kafel zniknął z mapy), wraca jako ranny
+	for(var/datum/hex_commander/C as anything in commanders)
+		if(C.status == HEX_CMD_ACTIVE && !C.fleet)
+			C.status = HEX_CMD_WOUNDED
+			C.return_at = world.time + rand(HEX_WAR_RETURN_MIN, HEX_WAR_RETURN_MAX)
+	log_game("HEXWAR: restored [length(fleet_data)] fleets and [length(commanders)] commanders from the campaign save")
+	return TRUE
+
+/datum/hex_war/proc/restore_fleet(list/entry, list/by_id)
+	var/fleet_type = text2path(entry["type"])
+	var/datum/hex/H = GLOB.hexmap.hex_by_id(entry["hex"])
+	if(!ispath(fleet_type, /datum/fleet) || !H || GLOB.hexmap.blocks(H))
+		return
+	var/datum/star_system/S = GLOB.hexmap.system_for(H)
+	var/ships = max(1, entry["ships"])
+	var/datum/fleet/F
+	if(entry["cargo"])
+		var/datum/hex/dest_hex = GLOB.hexmap.hex_by_id(entry["destination"])
+		if(!dest_hex?.system || !send_convoy(S, entry["alignment"], entry["cargo"], entry["cargo_amount"], null, dest_hex.system))
+			return
+		F = S.fleets[length(S.fleets)]
+	else
+		F = S.spawn_fleet(fleet_type, max(2, ships))
+		if(!F)
+			return
+		var/datum/hex_commander/C = by_id["[entry["commander"]]"]
+		F.hex_war_adopt(C)
+		F.war_loot = entry["loot"]
+	// Tyle okrętów i taki stan kadłubów, jaki flota miała na koniec rundy
+	var/list/live = list()
+	for(var/obj/structure/overmap/OM as anything in F.all_ships)
+		if(!QDELETED(OM))
+			live += OM
+	while(length(live) > ships)
+		var/obj/structure/overmap/extra = live[length(live)]
+		live.len--
+		qdel(extra)
+	if(length(live) < ships)
+		F.hex_war_add_ships(ships - length(live))
+	// Średni stan kadłubów ocalałych okrętów. Stary zapis ma tylko strength (suma kadłubów / okręty przy wodowaniu),
+	// więc przeliczamy go na ocalałe okręty, żeby straty nie liczyły się drugi raz.
+	var/hull = entry["hull"]
+	if(isnull(hull))
+		hull = entry["strength"] ? entry["strength"] * max(ships, entry["max_ships"]) / ships : 1
+	var/strength = clamp(hull, 0.1, 1)
+	for(var/obj/structure/overmap/OM as anything in F.all_ships)
+		if(!QDELETED(OM))
+			OM.obj_integrity = max(1, OM.max_integrity * strength)
+	F.war_max_ships = max(entry["max_ships"], F.hex_war_ship_count())
+	var/datum/hex/target_hex = GLOB.hexmap.hex_by_id(entry["target"])
+	if(!entry["cargo"])
+		F.hex_war_set_order(entry["order"] || HEX_ORDER_IDLE, target_hex ? GLOB.hexmap.system_for(target_hex) : null)
+
+/// Zajęcia układów z zapisu (serialize: "occupied"). Starszy zapis bez tej listy zostawia stan po odtworzeniu flot.
+/datum/hex_war/proc/restore_occupation(list/occupied)
+	if(!islist(occupied))
+		return
+	for(var/datum/star_system/S as anything in SSstar_system.systems)
+		if(!S.hex || istype(S, /datum/star_system/random/hex_empty))
+			continue
+		var/held = occupied[S.name] || S.owner
+		if(S.alignment != held)
+			log_game("HEXWAR: [S] restored as held by [held] (fleets restored it to [S.alignment])")
+			S.alignment = held
+

@@ -641,3 +641,8 @@ GHOST_ROLE_COOLDOWN 3000
 ## Klucz DeepL API dla tłumacza obcokrajowców (gracze z angielskim w preferencjach, aquila/code/modules/i18n/foreigner.dm).
 ## Darmowy klucz (DeepL API Free, 500 tys. znaków miesięcznie) kończy się na ":fx". Bez klucza tłumacz przepuszcza tekst bez tłumaczenia.
 #DEEPL_API_KEY xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx:fx
+
+## Spritesheety (ikony w oknach) zapisywane w tmp/assets i wczytywane przy kolejnych startach tej samej wersji kodu
+## (commit + test merge), zamiast składania od nowa: ok. 10 s krócej przy starcie świata. Włącz na serwerze.
+## Lokalnie zostaw wyłączone: zmiana ikon bez commitu nie unieważnia cache. Opis: aquila/code/modules/asset_cache/spritesheet_cache.dm
+#CACHE_ASSETS
