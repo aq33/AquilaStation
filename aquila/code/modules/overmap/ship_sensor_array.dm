@@ -4,16 +4,16 @@
 // prawa burta, zachód = rufa, północ = lewa burta; wszystkie nasze statki mają dziób na wschodzie mapy).
 // Każda obejmuje swoją ćwiartkę wokół statku: zestawy sensorów (ai_sensor_suites.dm, player_sensors.dm) widzą cel
 // na zasięgu proporcjonalnym do zasięgu matrycy z jego strony (zasięg 10 = dzisiejszy pełny zasięg).
-// Zasięg ustawia operator na stanowisku rozpoznania; pobór z APC rośnie z kwadratem zasięgu (do 500 kW),
+// Zasięg ustawia operator na stanowisku rozpoznania; pobór z APC rośnie z kwadratem zasięgu (do 150 kW),
 // a matryca grzeje się i przy przegrzaniu sama się uszkadza i wyłącza. Bez działającej matrycy w danej ćwiartce
 // zostaje tam tylko kamera szerokokątna na SENSOR_ARRAY_BLIND_OPTICAL zasięgu. Statek bez matryc na mapie (SI,
 // starsze mapy) widzi jak dotąd.
 
 #define SENSOR_ARRAY_MAX_RANGE 10
 /// Pobór na pełnym zasięgu: SENSOR_ARRAY_POWER_PER_RANGE2 * zasięg²
-#define SENSOR_ARRAY_POWER_PER_RANGE2 5000
+#define SENSOR_ARRAY_POWER_PER_RANGE2 1500
 /// Ciepło na cykl: pobór / to
-#define SENSOR_ARRAY_HEAT_DIVISOR 50000
+#define SENSOR_ARRAY_HEAT_DIVISOR 15000
 /// Chłodzenie na cykl (utrzyma zasięg ok. 6)
 #define SENSOR_ARRAY_COOLING 3.5
 #define SENSOR_ARRAY_CRITICAL_HEAT 50
