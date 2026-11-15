@@ -63,6 +63,25 @@
 		ship.inertial_dampeners = old_damp
 		ship.last_weapon_fire = old_fire
 
+	// Regresja: zapisane projekty po trwałym numerze; usunięcie wcześniejszego nie przesuwa celu load/delete
+	// (okno wysyła numer jako liczbę, text2num zwraca ją bez zmian; tekst też działa)
+	var/obj/machinery/missile_design_table/table = allocate(/obj/machinery/missile_design_table, run_loc_floor_bottom_left)
+	var/list/old_designs = GLOB.missile_designs.Copy()
+	var/datum/missile_design/first = new
+	first.id = 900001
+	var/datum/missile_design/second = new
+	second.id = 900002
+	second.name = "Drugi"
+	GLOB.missile_designs += list(first, second)
+	TEST_ASSERT(table.find_saved_design(900002) == second, "A saved design isn't found by its numeric id")
+	TEST_ASSERT(table.find_saved_design("900002") == second, "A saved design isn't found by its id sent as text")
+	GLOB.missile_designs -= first
+	TEST_ASSERT(table.find_saved_design(900002) == second, "Deleting an earlier design moved the id of a later one")
+	TEST_ASSERT(isnull(table.find_saved_design(900001)), "A deleted design is still found by its id")
+	GLOB.missile_designs = old_designs
+	qdel(first)
+	qdel(second)
+
 /datum/unit_test/missile_design/Destroy()
 	QDEL_NULL(proj)
 	QDEL_NULL(built)
