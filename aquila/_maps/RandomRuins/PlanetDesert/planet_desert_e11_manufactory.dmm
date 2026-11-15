@@ -2518,7 +2518,7 @@
 /obj/item/reagent_containers/food/drinks/drinkingglass{
 	pixel_x = -6;
 	pixel_y = 12;
-	list(/datum/reagent/toxin/acid = 10)
+	list_reagents = list(/datum/reagent/toxin/acid = 10)
 	},
 /obj/item/toy/cards/deck{
 	pixel_y = -10
@@ -2638,7 +2638,7 @@
 	anchored = 1
 	},
 /obj/item/reagent_containers/food/drinks/bottle/whiskey{
-	list(/datum/reagent/consumable/ethanol/whiskey = 15)
+	list_reagents = list(/datum/reagent/consumable/ethanol/whiskey = 15)
 	},
 /obj/item/storage/pill_bottle/dice,
 /turf/open/floor/plasteel/dark,

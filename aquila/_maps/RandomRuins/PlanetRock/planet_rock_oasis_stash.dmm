@@ -386,19 +386,14 @@
 /turf/open/floor/plating/asteroid/rockplanet/wet,
 /area/lavaland/surface/outdoors)
 "sD" = (
-/obj/structure/safe/floor{
-	number_of_tumblers = 3
-	},
+/obj/structure/safe/floor,
 /obj/item/reagent_containers/glass/beaker/meta{
-	list(/datum/reagent/drug/rahkrahene = 180);
 	name = "Meta-Rakhra"
 	},
 /obj/item/reagent_containers/glass/beaker/meta{
-	list(/datum/reagent/drug/mammoth = 180);
 	name = "Meta-Mamut"
 	},
 /obj/item/reagent_containers/glass/beaker/meta{
-	list(/datum/reagent/drug/finobranc = 180);
 	name = "Meta-Branc"
 	},
 /obj/item/storage/pill_bottle/floorpill/full,
@@ -849,9 +844,7 @@
 /turf/open/floor/plating/asteroid/rockplanet/wet,
 /area/lavaland/surface/outdoors)
 "Rn" = (
-/obj/structure/safe/floor{
-	number_of_tumblers = 3
-	},
+/obj/structure/safe/floor,
 /obj/item/organ/cyberimp/brain/anti_drop,
 /obj/item/organ/cyberimp/brain/anti_drop,
 /obj/item/storage/pill_bottle/penacid,

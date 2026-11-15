@@ -3893,7 +3893,6 @@
 	},
 /obj/effect/turf_decal/box,
 /obj/machinery/turretid{
-	id = "m2";
 	pixel_y = -24
 	},
 /turf/open/floor/plasteel{
@@ -8127,7 +8126,6 @@
 	alpha = 255
 	},
 /obj/machinery/turretid{
-	id = "m1";
 	pixel_x = 26
 	},
 /turf/open/floor/plasteel{

@@ -1523,9 +1523,6 @@
 	},
 /turf/open/floor/plating/asteroid/desert,
 /area/lavaland/surface/outdoors)
-"re" = (
-/turf/open/floor/plating/asteroid/desert,
-/area/lavaland/surface/outdoors)
 "rg" = (
 /obj/machinery/conveyor{
 	id = "doohickey"
@@ -1829,13 +1826,6 @@
 	planetary_atmos = 1
 	},
 /area/ruin/unpowered/planet_desert/nomad_stop)
-"tu" = (
-/obj/effect/turf_decal/siding/white/corner{
-	dir = 1;
-	color = null
-	},
-/turf/open/floor/plating/asteroid/desert,
-/area/lavaland/surface/outdoors)
 "ty" = (
 /obj/structure/flora/tree/dead/barren,
 /obj/effect/turf_decal/siding{
@@ -2133,10 +2123,6 @@
 /obj/item/radio/intercom/directional/north,
 /turf/open/floor/plasteel,
 /area/ruin/unpowered/planet_desert/nomad_stop/warehouse)
-"xy" = (
-/obj/effect/turf_decal/siding,
-/turf/open/floor/plating/asteroid/desert,
-/area/lavaland/surface/outdoors)
 "xC" = (
 /obj/item/chainsaw,
 /obj/structure/rack,
@@ -2766,12 +2752,6 @@
 	planetary_atmos = 1
 	},
 /area/ruin/unpowered/planet_desert/nomad_stop)
-"Ei" = (
-/obj/effect/turf_decal/siding{
-	dir = 9
-	},
-/turf/open/floor/plating/asteroid/desert,
-/area/lavaland/surface/outdoors)
 "Ek" = (
 /obj/machinery/conveyor{
 	id = "doohickey";
@@ -2907,12 +2887,6 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/unpowered/planet_desert/nomad_stop/warehouse)
-"FF" = (
-/obj/effect/turf_decal/siding{
-	dir = 5
-	},
-/turf/open/floor/plating/asteroid/desert,
-/area/lavaland/surface/outdoors)
 "FG" = (
 /obj/structure/disposalpipe/trunk{
 	dir = 4
@@ -3059,9 +3033,7 @@
 	},
 /area/lavaland/surface/outdoors)
 "HV" = (
-/obj/structure/safe/floor{
-	tumblers = list(28,69,1)
-	},
+/obj/structure/safe/floor,
 /obj/effect/turf_decal/siding/white{
 	color = "#CEB689"
 	},
@@ -3255,12 +3227,6 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/monotile/steel,
 /area/ruin/unpowered/planet_desert/nomad_stop/engineering)
-"Jl" = (
-/obj/structure/railing/corner{
-	dir = 1
-	},
-/turf/open/floor/plating/asteroid/desert,
-/area/lavaland/surface/outdoors)
 "Jm" = (
 /obj/structure/table,
 /obj/item/card/data/disk{
@@ -3700,9 +3666,6 @@
 	planetary_atmos = 1
 	},
 /area/lavaland/surface/outdoors)
-"OD" = (
-/turf/open/floor/plating/asteroid/desert,
-/area/lavaland/surface/outdoors)
 "ON" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	piping_layer = 1
@@ -3954,12 +3917,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/unpowered/planet_desert/nomad_stop/food)
-"RG" = (
-/obj/effect/turf_decal/siding{
-	dir = 1
-	},
-/turf/open/floor/plating/asteroid/desert,
-/area/lavaland/surface/outdoors)
 "RJ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
@@ -4515,18 +4472,6 @@
 	planetary_atmos = 1
 	},
 /area/lavaland/surface/outdoors)
-"VH" = (
-/obj/effect/turf_decal/siding{
-	dir = 1
-	},
-/turf/open/floor/plating/asteroid/desert,
-/area/lavaland/surface/outdoors)
-"VJ" = (
-/obj/effect/turf_decal/siding{
-	dir = 4
-	},
-/turf/open/floor/plating/asteroid/desert,
-/area/lavaland/surface/outdoors)
 "VO" = (
 /obj/structure/closet/crate/secure/gear,
 /obj/item/trash/chips,
@@ -4673,10 +4618,6 @@
 /obj/structure/lattice/catwalk/over/ship,
 /turf/open/floor/plating,
 /area/ruin/unpowered/planet_desert/nomad_stop/engineering)
-"Xe" = (
-/obj/structure/flora/tree/dead/barren,
-/turf/open/floor/plating/asteroid/desert,
-/area/lavaland/surface/outdoors)
 "Xp" = (
 /obj/structure/flora/ash/cap_shroom,
 /obj/effect/turf_decal/siding{
@@ -4868,9 +4809,6 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plasteel,
 /area/ruin/unpowered/planet_desert/nomad_stop/quarters)
-"Zc" = (
-/turf/open/floor/plating/asteroid/desert,
-/area/lavaland/surface/outdoors)
 "Zf" = (
 /turf/open/floor/engine/n2,
 /area/ruin/unpowered/planet_desert/nomad_stop/engineering)
@@ -4957,21 +4895,21 @@ YO
 YO
 YO
 YO
-OD
-OD
-OD
-OD
-OD
-OD
-OD
-OD
-OD
-OD
-OD
-OD
-OD
-OD
-OD
+iR
+iR
+iR
+iR
+iR
+iR
+iR
+iR
+iR
+iR
+iR
+iR
+iR
+iR
+iR
 YE
 YE
 YO
@@ -4988,9 +4926,9 @@ YO
 YO
 YO
 YO
-OD
-OD
-OD
+iR
+iR
+iR
 YO
 YO
 YO
@@ -5008,23 +4946,23 @@ YO
 YO
 YO
 YO
-OD
-OD
-OD
+iR
+iR
+iR
 eP
 eP
 eP
 eP
 eP
-OD
+iR
 eP
 eP
 eP
 eP
 eP
-OD
-OD
-OD
+iR
+iR
+iR
 YE
 YE
 YE
@@ -5036,15 +4974,15 @@ YO
 YO
 YO
 YO
-OD
-OD
+iR
+iR
 YO
-OD
-OD
-OD
+iR
+iR
+iR
 eV
-RG
-OD
+NB
+iR
 YO
 YO
 YO
@@ -5059,9 +4997,9 @@ YO
 YO
 YO
 YO
-OD
-OD
-OD
+iR
+iR
+iR
 eP
 eP
 eP
@@ -5087,17 +5025,17 @@ YO
 YO
 YO
 YO
-OD
+iR
 mJ
 jv
 jv
-xy
+sE
 eV
-OD
+iR
 eV
-RG
-OD
-OD
+NB
+iR
+iR
 YO
 YO
 YO
@@ -5111,8 +5049,8 @@ YO
 YO
 YO
 YO
-OD
-OD
+iR
+iR
 eP
 eP
 eP
@@ -5139,17 +5077,17 @@ YE
 YE
 YO
 YO
-OD
-OD
+iR
+iR
 ge
 XQ
-OD
-OD
+iR
+iR
 eV
 eV
-RG
+NB
 jv
-OD
+iR
 mJ
 YO
 YO
@@ -5164,7 +5102,7 @@ YO
 YE
 YE
 YE
-OD
+iR
 eP
 eP
 eP
@@ -5192,17 +5130,17 @@ YE
 YE
 YE
 YE
-OD
-OD
-OD
-xy
+iR
+iR
+iR
+sE
 eV
 eV
 eV
-RG
+NB
 jv
 jv
-OD
+iR
 YO
 YO
 YO
@@ -5235,7 +5173,7 @@ eP
 eP
 eP
 SE
-Zc
+iR
 YE
 YE
 YE
@@ -5252,9 +5190,9 @@ eV
 eV
 eV
 Gl
-OD
-OD
-OD
+iR
+iR
+iR
 YO
 YO
 YO
@@ -5287,8 +5225,8 @@ eP
 eP
 nC
 pp
-Zc
-Zc
+iR
+iR
 iR
 iR
 WB
@@ -5337,11 +5275,11 @@ eP
 eP
 nC
 OT
-Jl
+pp
 jv
 jv
-Zc
-Zc
+iR
+iR
 TJ
 iR
 iR
@@ -5387,13 +5325,13 @@ xO
 xO
 yD
 Wm
-Jl
+pp
 Wm
 Ep
 Ep
 Wm
 Wm
-Zc
+iR
 iR
 iR
 iR
@@ -5512,8 +5450,8 @@ eV
 XG
 eV
 NB
-Zc
-Zc
+iR
+iR
 YE
 YE
 YE
@@ -5564,8 +5502,8 @@ eV
 XG
 XG
 NB
-Zc
-Zc
+iR
+iR
 YE
 YE
 YE
@@ -5616,10 +5554,10 @@ eV
 XG
 XG
 Gl
-Zc
-Zc
-Zc
-Zc
+iR
+iR
+iR
+iR
 YE
 YE
 YO
@@ -5669,8 +5607,8 @@ eV
 eV
 Gl
 kp
-Zc
-Zc
+iR
+iR
 KA
 Ub
 dh
@@ -5699,7 +5637,7 @@ Gc
 Bg
 pN
 Wm
-OD
+iR
 nK
 nK
 eA
@@ -5751,23 +5689,23 @@ Wm
 xO
 xO
 ba
-OD
-OD
+iR
+iR
 Wm
 ef
 on
 Wm
 jv
 EY
-OD
-OD
-OD
+iR
+iR
+iR
 iR
 TJ
 iR
 iR
 iR
-xy
+sE
 eV
 eV
 eV
@@ -5791,7 +5729,7 @@ pQ
 er
 YE
 YE
-OD
+iR
 eV
 Rp
 sx
@@ -5802,19 +5740,19 @@ jv
 jv
 jv
 XQ
-OD
-OD
-OD
+iR
+iR
+iR
 Wm
 Cu
 RC
 Wm
 Vu
 jv
-OD
-OD
-OD
-OD
+iR
+iR
+iR
+iR
 iR
 iR
 iR
@@ -5836,7 +5774,7 @@ YO
 (18,1,1) = {"
 YO
 YE
-re
+iR
 YE
 YE
 YE
@@ -5853,9 +5791,9 @@ jv
 EY
 jv
 jv
-OD
-OD
-OD
+iR
+iR
+iR
 ga
 nW
 Eu
@@ -5866,8 +5804,8 @@ TE
 om
 om
 om
-VJ
-VJ
+iG
+iG
 iG
 iG
 pG
@@ -5887,9 +5825,9 @@ eV
 "}
 (19,1,1) = {"
 YO
-re
-re
-re
+iR
+iR
+iR
 YE
 YE
 YE
@@ -5906,9 +5844,9 @@ iR
 iR
 iR
 iR
-OD
+iR
 vb
-xy
+sE
 eV
 Eu
 eV
@@ -5940,8 +5878,8 @@ YO
 (20,1,1) = {"
 YO
 YO
-re
-re
+iR
+iR
 YE
 YE
 YE
@@ -5958,9 +5896,9 @@ iG
 iG
 Vq
 iR
-OD
-OD
-xy
+iR
+iR
+sE
 eV
 Eu
 XG
@@ -5979,7 +5917,7 @@ eV
 eV
 eV
 rw
-tu
+qD
 iR
 iR
 jv
@@ -5993,10 +5931,10 @@ YO
 YO
 YO
 YO
-re
+iR
 YE
-re
-re
+iR
+iR
 jv
 tt
 hv
@@ -6008,9 +5946,9 @@ kF
 eV
 eV
 eV
-VH
-OD
-OD
+NB
+iR
+iR
 tU
 pG
 eV
@@ -6030,7 +5968,7 @@ PF
 Iq
 eV
 rw
-tu
+qD
 iR
 TJ
 iR
@@ -6044,11 +5982,11 @@ YO
 (22,1,1) = {"
 YO
 YO
-re
-re
-re
-re
-re
+iR
+iR
+iR
+iR
+iR
 jv
 tt
 sU
@@ -6096,10 +6034,10 @@ YO
 (23,1,1) = {"
 YO
 YO
-re
-re
-re
-re
+iR
+iR
+iR
+iR
 jv
 jv
 bh
@@ -6113,7 +6051,7 @@ nW
 SH
 XG
 eV
-FF
+Ew
 Xv
 eV
 eV
@@ -6133,7 +6071,7 @@ eV
 XG
 Td
 eV
-RG
+NB
 iR
 iR
 YE
@@ -6147,10 +6085,10 @@ YO
 "}
 (24,1,1) = {"
 YO
-re
-re
-re
-re
+iR
+iR
+iR
+iR
 om
 Ki
 om
@@ -6185,8 +6123,8 @@ eQ
 XG
 Td
 eV
-FF
-OD
+Ew
+iR
 YE
 iu
 iu
@@ -6200,7 +6138,7 @@ YO
 (25,1,1) = {"
 YO
 eV
-re
+iR
 eV
 eV
 eV
@@ -6251,9 +6189,9 @@ YO
 "}
 (26,1,1) = {"
 YO
-re
+iR
 eV
-re
+iR
 eV
 eV
 eV
@@ -6303,9 +6241,9 @@ YO
 "}
 (27,1,1) = {"
 YO
-re
-re
-re
+iR
+iR
+iR
 eV
 eV
 eV
@@ -6355,8 +6293,8 @@ YE
 "}
 (28,1,1) = {"
 YO
-re
-re
+iR
+iR
 dh
 dh
 KA
@@ -6408,7 +6346,7 @@ YE
 (29,1,1) = {"
 YO
 YO
-re
+iR
 dh
 Ub
 KA
@@ -6416,8 +6354,8 @@ YE
 YE
 bh
 mD
-OD
-OD
+iR
+iR
 ae
 lE
 jv
@@ -6460,17 +6398,17 @@ YE
 (30,1,1) = {"
 YO
 YO
-re
+iR
 dh
 KA
 KA
 YE
 YE
 bh
-OD
-OD
+iR
+iR
 tj
-OD
+iR
 jv
 jv
 tt
@@ -6512,7 +6450,7 @@ YE
 (31,1,1) = {"
 YO
 YO
-re
+iR
 dh
 nw
 YE
@@ -6521,7 +6459,7 @@ yC
 yC
 Ug
 Ny
-OD
+iR
 mD
 FX
 bh
@@ -6564,7 +6502,7 @@ YE
 (32,1,1) = {"
 YO
 YO
-re
+iR
 YE
 YE
 YE
@@ -6615,8 +6553,8 @@ YE
 "}
 (33,1,1) = {"
 YO
-re
-re
+iR
+iR
 YE
 YE
 YE
@@ -6826,7 +6764,7 @@ YE
 YE
 YE
 YE
-OD
+iR
 sn
 sn
 sn
@@ -6878,7 +6816,7 @@ YO
 YE
 YE
 YE
-OD
+iR
 sn
 iU
 uA
@@ -7086,7 +7024,7 @@ YO
 YO
 YE
 YE
-OD
+iR
 cJ
 sn
 Nt
@@ -7138,8 +7076,8 @@ YO
 YO
 YE
 YE
-OD
-OD
+iR
+iR
 sn
 sn
 Bp
@@ -7190,8 +7128,8 @@ YO
 YO
 YE
 YE
-OD
-OD
+iR
+iR
 NQ
 RP
 Ll
@@ -7242,8 +7180,8 @@ YO
 YO
 YE
 YE
-OD
-OD
+iR
+iR
 Gq
 Gq
 Gq
@@ -7295,7 +7233,7 @@ YO
 YE
 YE
 YE
-OD
+iR
 sn
 Nf
 HU
@@ -7365,9 +7303,9 @@ ga
 eV
 eV
 eV
-Ei
+rw
 qD
-OD
+iR
 dR
 Ov
 FI
@@ -7406,8 +7344,8 @@ jv
 jv
 jv
 jv
-Zc
-Zc
+iR
+iR
 jv
 jv
 jv
@@ -7417,9 +7355,9 @@ mf
 eV
 eV
 eV
-RG
+NB
 mJ
-OD
+iR
 Fm
 fK
 zb
@@ -7455,23 +7393,23 @@ YE
 YE
 jG
 jG
-Zc
-Zc
-Zc
+iR
+iR
+iR
 jv
-Zc
+iR
 jv
 lE
-Zc
-Zc
+iR
+iR
 jv
 ga
 eV
 eV
 eV
-RG
-OD
-OD
+NB
+iR
+iR
 Fm
 qz
 tZ
@@ -7507,23 +7445,23 @@ YE
 YE
 Fh
 YE
-Zc
-Xe
-Zc
-Zc
-Zc
-Zc
-Zc
-Zc
+iR
+TJ
+iR
+iR
+iR
+iR
+iR
+iR
 jv
 tj
-xy
+sE
 eV
 eV
 eV
 lq
-OD
-OD
+iR
+iR
 Fm
 sj
 zb
@@ -7559,22 +7497,22 @@ YE
 YE
 YE
 YE
-Zc
-Zc
-Zc
-Zc
-Zc
-Zc
-Zc
-Xe
-Zc
-OD
-xy
+iR
+iR
+iR
+iR
+iR
+iR
+iR
+TJ
+iR
+iR
+sE
 eV
 eV
 eV
-RG
-OD
+NB
+iR
 mJ
 dR
 Ca
@@ -7611,15 +7549,15 @@ YE
 YE
 YE
 YE
-Zc
-Zc
-Zc
-Zc
-Zc
+iR
+iR
+iR
+iR
+iR
 KA
 YE
-Zc
-Zc
+iR
+iR
 KA
 UF
 eV
@@ -7627,7 +7565,7 @@ eV
 eV
 Aq
 jd
-OD
+iR
 dR
 dR
 rK
@@ -7665,8 +7603,8 @@ YE
 YE
 YE
 YE
-Zc
-Zc
+iR
+iR
 KA
 KA
 YE
@@ -7735,7 +7673,7 @@ dh
 YE
 YE
 YE
-OD
+iR
 YE
 YE
 YE
@@ -7766,28 +7704,28 @@ YO
 YO
 YO
 YO
-OD
-OD
+iR
+iR
 dh
 Ub
 KA
 dh
 YE
-OD
+iR
 YE
-OD
-OD
-xy
+iR
+iR
+sE
 eV
 eV
 eV
-RG
-OD
-OD
-OD
-OD
-OD
-OD
+NB
+iR
+iR
+iR
+iR
+iR
+iR
 YE
 YE
 YO
@@ -7818,26 +7756,26 @@ YO
 YO
 YO
 YO
-OD
-OD
+iR
+iR
 dh
 dh
 dh
 dh
-OD
-OD
-OD
-OD
-OD
-xy
+iR
+iR
+iR
+iR
+iR
+sE
 eV
 eV
 eV
-RG
-OD
-OD
-OD
-OD
+NB
+iR
+iR
+iR
+iR
 YO
 YO
 YO
@@ -7871,23 +7809,23 @@ YO
 YO
 YO
 YO
-OD
-OD
-OD
-OD
-OD
-OD
-OD
-OD
+iR
+iR
+iR
+iR
+iR
+iR
+iR
+iR
 YO
-OD
-xy
+iR
+sE
 eV
 eV
 eV
-RG
-OD
-OD
+NB
+iR
+iR
 YO
 YO
 YO
@@ -7924,11 +7862,11 @@ YO
 YO
 YO
 YO
-OD
-OD
-OD
-OD
-OD
+iR
+iR
+iR
+iR
+iR
 YO
 YO
 YO
@@ -7937,8 +7875,8 @@ YO
 YO
 eV
 eV
-RG
-OD
+NB
+iR
 YO
 YO
 YO

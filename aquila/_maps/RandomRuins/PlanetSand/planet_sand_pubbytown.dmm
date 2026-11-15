@@ -3760,9 +3760,7 @@
 /turf/open/floor/carpet/red,
 /area/ruin/unpowered/planet_sand/pubbytown/shop)
 "Td" = (
-/obj/structure/safe/floor{
-	tumblers = list(13,91)
-	},
+/obj/structure/safe/floor,
 /obj/item/stack/spacecash/c20{
 	pixel_x = -4;
 	pixel_y = 1

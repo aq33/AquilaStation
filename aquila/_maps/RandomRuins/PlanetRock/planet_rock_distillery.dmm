@@ -30,11 +30,11 @@
 	pixel_y = -1
 	},
 /obj/item/reagent_containers/glass/beaker{
-	list(/datum/reagent/oxygen = 50);
+	list_reagents = list(/datum/reagent/oxygen = 50);
 	pixel_x = -5
 	},
 /obj/item/reagent_containers/glass/beaker{
-	list(/datum/reagent/carbon = 50);
+	list_reagents = list(/datum/reagent/carbon = 50);
 	pixel_y = 12
 	},
 /obj/item/reagent_containers/syringe{
@@ -1785,7 +1785,7 @@
 /obj/structure/reagent_dispensers/beerkeg{
 	desc = "Beczka pełna wątrobobójczego spirytusu pędzonego przez amatorów bimbru.";
 	name = "beczka bimbru";
-	reagent_id = /datum/reagent/consumable/ethanol/chemshine
+	reagent_id = /datum/reagent/consumable/ethanol/moonshine
 	},
 /obj/effect/turf_decal/loading_area/white{
 	dir = 4
@@ -2550,7 +2550,7 @@
 	layer = 2.8;
 	name = "beczka bimbru";
 	pixel_x = -8;
-	reagent_id = /datum/reagent/consumable/ethanol/chemshine
+	reagent_id = /datum/reagent/consumable/ethanol/moonshine
 	},
 /obj/structure/reagent_dispensers/beerkeg{
 	anchored = 1;
@@ -2558,7 +2558,7 @@
 	name = "beczka bimbru";
 	pixel_x = 8;
 	pixel_y = -2;
-	reagent_id = /datum/reagent/consumable/ethanol/chemshine
+	reagent_id = /datum/reagent/consumable/ethanol/moonshine
 	},
 /obj/structure/reagent_dispensers/beerkeg{
 	anchored = 1;
@@ -2567,7 +2567,7 @@
 	name = "beczka bimbru";
 	pixel_x = -4;
 	pixel_y = 14;
-	reagent_id = /datum/reagent/consumable/ethanol/chemshine
+	reagent_id = /datum/reagent/consumable/ethanol/moonshine
 	},
 /obj/effect/turf_decal/box,
 /obj/effect/turf_decal/siding/white{
@@ -3534,7 +3534,7 @@
 /obj/structure/reagent_dispensers/watertank{
 	desc = "Wielka metalowa kadź z kranem z przodu. Pełna bimbru.";
 	name = "kadź z bimbrem";
-	reagent_id = /datum/reagent/consumable/ethanol/chemshine
+	reagent_id = /datum/reagent/consumable/ethanol/moonshine
 	},
 /obj/structure/fermenting_barrel{
 	density = 0;

@@ -4021,8 +4021,7 @@
 	},
 /obj/effect/mob_spawn/human/corpse/nanotrasensoldier{
 	mob_gender = "male";
-	outfit = /datum/outfit/job/clip/correspondent;
-	mob_name = "Chunce Whatney"
+	 mob_name = "Chunce Whatney"
 	},
 /obj/effect/decal/cleanable/blood/splatter{
 	icon_state = "floor6"

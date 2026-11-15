@@ -34,9 +34,15 @@
 	var/obj/structure/overmap/ship = SSstar_system.find_main_overmap()
 	if(!user || !ship?.current_system)
 		return
-	if(tgui_alert(user, "Dodać planetę wulkaniczną w układzie okrętu ([ship.current_system]), 20 pól od okrętu?", "Komora testowa", list("Tak", "Nie")) == "Tak")
+	// Typ planety do dodania w układzie okrętu (nazwa typu -> typ)
+	var/list/planet_choices = list()
+	for(var/planet_type in GLOB.planet_type_prototypes)
+		var/datum/planet_type/prototype = GLOB.planet_type_prototypes[planet_type]
+		planet_choices["[prototype.name] ([planet_type])"] = planet_type
+	var/planet_choice = tgui_input_list(user, "Dodać planetę w układzie okrętu ([ship.current_system]), 20 pól od okrętu? (Anuluj = bez planety)", "Komora testowa", planet_choices)
+	if(planet_choice)
 		var/planet_x = clamp(ship.x + 20, 30, world.maxx - 40)
-		var/obj/structure/overmap/planet/planet = ship.current_system.add_planet(/datum/planet_type/lava, planet_x, clamp(ship.y, 30, world.maxy - 40))
+		var/obj/structure/overmap/planet/planet = ship.current_system.add_planet(planet_choices[planet_choice], planet_x, clamp(ship.y, 30, world.maxy - 40))
 		to_chat(user, span_notice("Dodano [planet] w układzie [ship.current_system]."))
 	var/datum/controller/subsystem/overmap_mode/omode = SSovermap_mode
 	if(!omode.mode || omode.mission_choice_pending || omode.extension_choice_pending)

@@ -23314,5 +23314,8 @@
 "telewizor": "improper television",
 "Plątanina kabli i taśmy, która ledwo działa": "A mess of wires and duct tape that barely functions",
 "nośny widelec": "load bearing fork",
-"Zrujnowana Faktoria": "Ruined Tradepost"
+"Zrujnowana Faktoria": "Ruined Tradepost",
+"oddychalna": "breathable",
+"umiarkowana": "moderate",
+"Dodać planetę w układzie okrętu ([ship.current_system]), 20 pól od okrętu? (Anuluj = bez planety)": "Add a planet in the ship's system ([ship.current_system]), 20 tiles from the ship? (Cancel = no planet)"
 }

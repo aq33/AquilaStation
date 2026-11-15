@@ -3059,9 +3059,7 @@
 	},
 /area/lavaland/surface/outdoors)
 "HV" = (
-/obj/structure/safe/floor{
-	tumblers = list(28,69,1)
-	},
+/obj/structure/safe/floor,
 /obj/effect/turf_decal/siding/white{
 	color = "#CEB689"
 	},

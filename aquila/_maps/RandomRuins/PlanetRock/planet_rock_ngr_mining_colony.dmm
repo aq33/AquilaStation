@@ -2711,10 +2711,8 @@
 "ku" = (
 /obj/structure/safe{
 	name = "sejf konfiskat";
-	desc = "Wielka bryła metalu z pokrętłem. Drobny druk na pokrętle głosi: „Scarborough Arms – sejf na 3 zapadki, gwarantowana odporność na termit, wybuchy i Ramziego”.";
-	number_of_tumblers = 3;
-	locked = 0;
-	pixel_x = -8
+	 desc = "Wielka bryła metalu z pokrętłem. Drobny druk na pokrętle głosi: „Scarborough Arms – sejf na 3 zapadki, gwarantowana odporność na termit, wybuchy i Ramziego”.";
+	 pixel_x = -8
 	},
 /obj/item/gun/ballistic/automatic/pistol{
 	pixel_x = -8;
@@ -3069,12 +3067,8 @@
 /obj/effect/spawner/lootdrop/maintenance,
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/airalarm/directional/north,
-/obj/item/reagent_containers/glass/beaker/large{
-	tamper = 0
-	},
-/obj/item/reagent_containers/glass/beaker/large{
-	tamper = 0
-	},
+/obj/item/reagent_containers/glass/beaker/large,
+/obj/item/reagent_containers/glass/beaker/large,
 /turf/open/floor/concrete/slab_1,
 /area/ruin/unpowered/planet_rock/ngrcolony/ramzi_camp/utility)
 "lK" = (
@@ -4129,10 +4123,7 @@
 /obj/structure/table,
 /obj/item/food/cheese_sandwich{
 	name = "niewiarygodnie czerstwa kanapka";
-	desc = "Masz wrażenie, że zjedzenie tego jest dość wysoko na liście złych pomysłów.";
-	3,/datum/reagent/consumable/nutriment/vitamin = 1);
-	pixel_y = 11;
-	pixel_x = 4
+	 desc = "Masz wrażenie, że zjedzenie tego jest dość wysoko na liście złych pomysłów."
 	},
 /obj/effect/turf_decal/tile/bar/opposingcorners{
 	color = "#791500";
@@ -5678,8 +5669,7 @@
 "tY" = (
 /obj/structure/mecha_wreckage/ripley{
 	dir = 1;
-	pixel_y = 6;
-	on = 0
+	 pixel_y = 6
 	},
 /obj/effect/turf_decal/stripes/white/line{
 	dir = 10;
@@ -6948,9 +6938,7 @@
 	},
 /area/lavaland/surface/outdoors)
 "yH" = (
-/obj/structure/mecha_wreckage/ripley{
-	on = 0
-	},
+/obj/structure/mecha_wreckage/ripley,
 /obj/structure/cable/yellow,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -7270,9 +7258,7 @@
 "zE" = (
 /obj/structure/closet/crate/engineering,
 /obj/item/reagent_containers/glass/beaker/large,
-/obj/item/reagent_containers/glass/beaker/large{
-	tamper = 0
-	},
+/obj/item/reagent_containers/glass/beaker/large,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 1
 	},
@@ -7286,10 +7272,7 @@
 /obj/structure/table/reinforced,
 /obj/item/food/nachos{
 	name = "czerstwe nachos";
-	desc = "Jak długo to tu leży...";
-	6,/datum/reagent/toxin/bad_food = 4);
-	pixel_x = -3;
-	pixel_y = 8
+	 desc = "Jak długo to tu leży..."
 	},
 /turf/open/floor/plasteel,
 /area/ruin/unpowered/planet_rock/ngrcolony/canteen)
@@ -11875,10 +11858,9 @@
 	},
 /obj/item/food/taco{
 	pixel_x = 3;
-	pixel_y = -3;
-	name = "czerstwe taco";
-	desc = "Prawie idealnie zachowane taco z czasów pierwszej ewakuacji kolonii. Kluczowe słowo: prawie. Od zapachu robi ci się niedobrze, a bliższe oględziny mówią, że zjedzenie go byłoby złym pomysłem.";
-	2,/datum/reagent/toxin/bad_food = 4)
+	 pixel_y = -3;
+	 name = "czerstwe taco";
+	 desc = "Prawie idealnie zachowane taco z czasów pierwszej ewakuacji kolonii. Kluczowe słowo: prawie. Od zapachu robi ci się niedobrze, a bliższe oględziny mówią, że zjedzenie go byłoby złym pomysłem."
 	},
 /turf/open/floor/plasteel,
 /area/ruin/unpowered/planet_rock/ngrcolony/canteen)
@@ -12001,9 +11983,7 @@
 	},
 /obj/structure/closet/crate/engineering,
 /obj/item/reagent_containers/glass/beaker/large,
-/obj/item/reagent_containers/glass/beaker/large{
-	tamper = 0
-	},
+/obj/item/reagent_containers/glass/beaker/large,
 /turf/open/floor/concrete/slab_1,
 /area/ruin/unpowered/planet_rock/ngrcolony/ramzi_camp/utility)
 "OQ" = (
@@ -12079,11 +12059,7 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/unpowered/planet_rock/ngrcolony/security)
 "Pe" = (
-/obj/structure/closet/crate/secure/plasma{
-	80,"acid" = 80);
-	name = "skrzynia z materiałami wybuchowymi";
-	desc = "Zabezpieczona skrzynia na materiały wybuchowe. Wzmocniona, żeby wybuch z zewnątrz nie zdetonował zawartości, choć wątpisz, czy to wystarczy."
-	},
+/obj/structure/closet/crate/secure/plasma,
 /obj/item/grenade/iedcasing,
 /obj/item/grenade/iedcasing,
 /obj/item/grenade/iedcasing,
@@ -12977,11 +12953,7 @@
 	},
 /area/ruin/unpowered/planet_rock/ngrcolony/engineering)
 "Sh" = (
-/obj/structure/closet/crate/secure/plasma{
-	80,"acid" = 80);
-	name = "skrzynia z materiałami wybuchowymi";
-	desc = "Zabezpieczona skrzynia na materiały wybuchowe. Wzmocniona, żeby wybuch z zewnątrz nie zdetonował zawartości, choć wątpisz, czy to wystarczy."
-	},
+/obj/structure/closet/crate/secure/plasma,
 /obj/item/grenade/iedcasing,
 /obj/item/grenade/iedcasing,
 /obj/item/grenade/iedcasing,
@@ -14251,9 +14223,7 @@
 /turf/open/floor/plasteel/tech,
 /area/ruin/unpowered/planet_rock/ngrcolony/main_gate)
 "WZ" = (
-/obj/structure/mecha_wreckage/ripley{
-	on = 0
-	},
+/obj/structure/mecha_wreckage/ripley,
 /obj/effect/decal/cleanable/oil,
 /turf/open/floor/concrete/pavement,
 /area/ruin/unpowered/planet_rock/ngrcolony/crawlergarage)
@@ -14327,8 +14297,7 @@
 "Xh" = (
 /obj/structure/vein/rockplanet/classfour{
 	name = "żyła rudy skażona kryształem";
-	desc = "Złoże rudy, w większości pod powierzchnią. Wychodzą z niego złowrogie błękitne żyłki, skażając dno jaskini wokół. Lepiej wiedz, co robisz.";
-	5,/mob/living/simple_animal/hostile/asteroid/hivelord/legion/crystal = 5)
+	 desc = "Złoże rudy, w większości pod powierzchnią. Wychodzą z niego złowrogie błękitne żyłki, skażając dno jaskini wokół. Lepiej wiedz, co robisz."
 	},
 /turf/open/floor/plating/asteroid/rockplanet/cracked,
 /area/ruin/unpowered/planet_rock/ngrcolony/mine)

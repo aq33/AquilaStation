@@ -830,9 +830,7 @@
 "lo" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2,
-/obj/effect/decal/cleanable/robot_debris{
-	id = "ipcbase"
-	},
+/obj/effect/decal/cleanable/robot_debris,
 /obj/machinery/door/airlock/hatch,
 /obj/effect/mapping_helpers/airlock/locked,
 /turf/open/floor/plasteel/tech/grid,
@@ -870,9 +868,7 @@
 /obj/effect/turf_decal/delivery,
 /obj/structure/cable,
 /obj/machinery/door/airlock/hatch,
-/obj/effect/decal/cleanable/robot_debris{
-	id = "ipcbase"
-	},
+/obj/effect/decal/cleanable/robot_debris,
 /turf/open/floor/plasteel/tech/grid,
 /area/ruin/unpowered/planet_sand/cave_base)
 "lW" = (
@@ -1232,8 +1228,7 @@
 /obj/structure/window/plasma/reinforced,
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/computer/atmos_control{
-	dir = 1;
-	list("gnome" = "Airmix Chamber")
+	dir = 1
 	},
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plating,
@@ -1493,7 +1488,6 @@
 /area/ruin/unpowered/planet_sand/cave_base)
 "tI" = (
 /obj/structure/frame/machine{
-	empty = 1;
 	anchored = 1
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -2544,7 +2538,6 @@
 /area/ruin/unpowered/planet_sand/cave_base)
 "FP" = (
 /obj/structure/frame/machine{
-	empty = 1;
 	anchored = 1
 	},
 /obj/structure/cable/yellow,
@@ -3107,7 +3100,6 @@
 "MP" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/frame/machine{
-	empty = 1;
 	anchored = 1
 	},
 /turf/open/floor/circuit/telecomms,
@@ -3881,9 +3873,7 @@
 /obj/effect/turf_decal/delivery,
 /obj/machinery/door/airlock/hatch,
 /obj/structure/cable,
-/obj/effect/decal/cleanable/robot_debris{
-	id = "ipcbase"
-	},
+/obj/effect/decal/cleanable/robot_debris,
 /turf/open/floor/plasteel/tech/grid,
 /area/ruin/unpowered/planet_sand/cave_base/engi)
 "Vw" = (
