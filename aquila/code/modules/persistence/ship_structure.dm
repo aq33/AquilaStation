@@ -520,21 +520,65 @@ GLOBAL_LIST_INIT(ship_structure_wallmounts, typecacheof(list(
 	cache_shuttle_areas()
 	for(var/turf/T as anything in get_turfs())
 		CHECK_TICK
-		if(skip_turf(T))
-			.[key_for(T)] = SHIP_STRUCTURE_SHUTTLE
+		var/entry = capture_turf(T, with_objects)
+		if(entry)
+			.[key_for(T)] = entry
+
+/// Wpis jednego pola do zdjęcia (kształt jak w capture()); null = puste pole kosmosu, którego nie zapisujemy
+/datum/ship_structure/proc/capture_turf(turf/T, with_objects = FALSE)
+	if(skip_turf(T))
+		return SHIP_STRUCTURE_SHUTTLE
+	var/list/objs = tracked_objs(T)
+	if(!length(objs) && isspaceturf(T))
+		return null
+	var/list/sigs = list()
+	var/list/states = list()
+	for(var/obj/O as anything in objs)
+		sigs += ship_structure_obj_sig(O)
+		states += ship_structure_obj_state(O)
+	var/list/entry = list(ship_structure_turf_sig(T), sigs, states)
+	if(with_objects)
+		entry += list(objs)
+	return entry
+
+/// Nowe zdjęcie wybranych pól (np. po podmianie wariantu silnika na starcie rundy): zapis po rundzie liczy się względem nich
+/datum/ship_structure/proc/recapture(list/turfs)
+	if(!baseline)
+		return
+	cache_shuttle_areas()
+	for(var/turf/T as anything in turfs)
+		var/key = key_for(T)
+		if(!key || (bounds && (T.x < bounds[1] || T.y < bounds[2] || T.x > bounds[3] || T.y > bounds[4])))
 			continue
-		var/list/objs = tracked_objs(T)
-		if(!length(objs) && isspaceturf(T))
-			continue
-		var/list/sigs = list()
-		var/list/states = list()
-		for(var/obj/O as anything in objs)
-			sigs += ship_structure_obj_sig(O)
-			states += ship_structure_obj_state(O)
-		var/list/entry = list(ship_structure_turf_sig(T), sigs, states)
-		if(with_objects)
-			entry += list(objs)
-		.[key_for(T)] = entry
+		var/entry = capture_turf(T)
+		if(entry)
+			baseline[key] = entry
+		else
+			baseline -= key
+		// Zabezpieczenie kadłuba na starcie rundy porównuje z mapą: pole otwarte do kosmosu w nowym wariancie to nie dziura
+		if(map_open)
+			if(islist(entry) && !isspaceturf(T) && ship_structure_open_to_space(T))
+				map_open[key] = TRUE
+			else
+				map_open -= key
+
+/// Nakłada zapis na wybrane pola po recapture() (np. silnik podmieniony na wariant, który zapis pamięta)
+/datum/ship_structure/proc/reapply_turfs(list/turfs)
+	if(!baseline || !check_rooms)
+		return
+	var/list/data = read_save(save_path) || read_save("[save_path].bak")
+	if(!data)
+		return
+	var/list/saved = data["turfs"]
+	var/list/delta = list()
+	for(var/turf/T as anything in turfs)
+		var/key = key_for(T)
+		if(key && saved[key])
+			delta[key] = saved[key]
+	if(!length(delta))
+		return
+	var/list/result = apply(delta)
+	log_game("Ship structure: reapplied [result[1]] turfs ([result[2]] skipped) after a room swap")
 
 /// Dane nowego obiektu potrzebne do odtworzenia go w następnej rundzie
 /datum/ship_structure/proc/obj_record(sig, obj/O)
