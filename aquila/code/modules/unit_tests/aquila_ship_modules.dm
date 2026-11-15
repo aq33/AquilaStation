@@ -1,12 +1,13 @@
 /// AQUILA - moduły okrętu na siatce wnętrza (aquila/code/modules/overmap/modules/ship_modules.dm): siatka z mapy wnętrza,
 /// pełny pancerz zatrzymuje trafienie na poszyciu, zbity wpuszcza je w głąb, dziura pogłębia następne trafienie,
-/// a zniszczone moduły tną ciąg silników i wyłączają broń swojego rodzaju.
+/// a zniszczone moduły tną ciąg silników i wyłączają broń swojego rodzaju. Moduły biorą obrażenia po pancerzu okrętu na klasę
+/// pocisku i po przebiciu, a pocisk z kuźni z cechą radioaktywną zabija załogę trafionego modułu.
 /datum/unit_test/aquila_ship_modules
 	var/obj/structure/overmap/ship
 
 /datum/unit_test/aquila_ship_modules/Run()
 	ship = allocate(/obj/structure/overmap/syndicate/ai/gunboat/morale_test)
-	var/fail = check_layouts() || check_hits() || check_effects()
+	var/fail = check_layouts() || check_hits() || check_armour_damage() || check_radiation() || check_effects()
 	if(fail)
 		return Fail(fail)
 
@@ -71,3 +72,38 @@
 		weapon.next_firetime = 0
 		if(weapon.can_fire(null))
 			return "Broń [weapon] strzela mimo zniszczonego modułu flak"
+
+/datum/unit_test/aquila_ship_modules/proc/check_armour_damage()
+	var/obj/item/projectile/bullet/shell = allocate(/obj/item/projectile/bullet)
+	shell.damage = 100
+	shell.damage_type = BRUTE
+	shell.flag = "overmap_heavy"
+	shell.armour_penetration = 0
+	var/datum/armor/old_armor = ship.armor
+	ship.armor = getArmor(overmap_heavy = 50)
+	var/plain = ship.module_damage_from(shell)
+	shell.armour_penetration = 50
+	var/piercing = ship.module_damage_from(shell)
+	shell.flag = "overmap_light"
+	shell.armour_penetration = 0
+	var/light = ship.module_damage_from(shell)
+	ship.armor = old_armor
+	if(plain != 50)
+		return "Pancerz ciężki 50 przepuścił do modułów [plain] ze 100 zamiast 50"
+	if(piercing != 100)
+		return "Przebicie 50 przy pancerzu 50 dało modułom [piercing] zamiast 100"
+	if(light != 100)
+		return "Pocisk lekki przy zerowym pancerzu lekkim dał modułom [light] zamiast 100"
+
+/datum/unit_test/aquila_ship_modules/proc/check_radiation()
+	var/datum/ship_modules/modules = ship.get_ship_modules()
+	var/before = 0
+	for(var/datum/ship_module/module as anything in modules.modules)
+		module.crew_lost = 0
+	var/datum/munition_trait/radioactive/rad = new(1)
+	rad.on_overmap_hit(null, ship, null)
+	var/after = 0
+	for(var/datum/ship_module/module as anything in modules.modules)
+		after += module.crew_lost
+	if(after - before < 0.24)
+		return "Pocisk radioaktywny zabił tylko [after - before] załogi modułu (oczekiwane co najmniej 0,25)"

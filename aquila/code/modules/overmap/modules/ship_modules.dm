@@ -344,8 +344,15 @@ GLOBAL_LIST_INIT(ship_module_names, list(
 	var/dir_y = sx * modules.width / (2 * local[3])
 	return modules.hit(layout_x, layout_y, dir_x, dir_y, damage)
 
+/// Obrażenia, które pocisk zadaje modułom: po pancerzu okrętu na klasę pocisku (lekki, średni, ciężki) i po przebiciu,
+/// jak kadłub. Pocisk przeciwpancerny wchodzi więc głębiej w opancerzony okręt, a lekki ledwo drapie ciężko opancerzony.
+/obj/structure/overmap/proc/module_damage_from(obj/item/projectile/P)
+	if(!P)
+		return 0
+	return run_obj_armor(P.damage, P.damage_type, P.flag, null, P.armour_penetration)
+
 /obj/structure/overmap/bullet_act(obj/item/projectile/P)
-	var/damage = P?.damage
+	var/damage = module_damage_from(P)
 	. = ..()
 	if(QDELETED(src) || QDELETED(P))
 		return
