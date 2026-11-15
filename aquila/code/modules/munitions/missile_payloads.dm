@@ -19,19 +19,26 @@
 /obj/item/projectile/var/aq_sensor_probe = FALSE
 
 /obj/structure/overmap/bullet_act(obj/item/projectile/P)
+	// Ładunek działa raz: pocisk odbity przez PDSR (leci dalej bez frakcji) nie drenuje kolejnego okrętu
+	// i nie zostawia drugiej boi
 	if(P.aq_shield_diffuse && shields)
 		aq_diffuse_shields(P.aq_shield_diffuse)
+		P.aq_shield_diffuse = 0
 	// Przed ..(): tarcza pochłania trafienie i kończy bullet_act, zanim dojdzie do spec_overmap_hit()
 	if(P.aq_sensor_probe)
 		P.drop_sensor_probe(get_turf(src))
+		P.aq_sensor_probe = FALSE
 	return ..()
 
 /// Drenuje tarczę okrętu (generator, PDSR albo tarcza myśliwca) o część jej pełnej integralności
 /obj/structure/overmap/proc/aq_diffuse_shields(fraction)
 	var/list/state
 	var/datum/holder = shields
+	// Opuszczona tarcza (także w masce) nie ma czego rozpraszać, tak jak w absorb_hit każdego typu tarczy
 	if(istype(holder, /obj/machinery/shield_generator))
 		var/obj/machinery/shield_generator/generator = holder
+		if(!generator.active || generator.cloaked)
+			return FALSE
 		state = generator.shield
 	else if(istype(holder, /obj/machinery/atmospherics/components/trinary/defence_screen_reactor))
 		var/obj/machinery/atmospherics/components/trinary/defence_screen_reactor/reactor = holder
@@ -43,8 +50,10 @@
 		reactor.check_stability()
 	else if(istype(holder, /datum/component/overmap_shields))
 		var/datum/component/overmap_shields/fighter_shields = holder
+		if(!fighter_shields.active)
+			return FALSE
 		state = fighter_shields.shield
-	if(!state)
+	if(!state || state["integrity"] <= 0)
 		return FALSE
 	var/drain = state["max_integrity"] * fraction
 	state["integrity"] = max(0, state["integrity"] - drain)
@@ -226,18 +235,22 @@ GLOBAL_LIST_EMPTY(overmap_sensor_probes)
 	var/faction
 	var/datum/weakref/owner_ref
 	var/range = SENSOR_PROBE_RANGE
+	/// Układ, w którym zrzucono boję: po skoku okręt zostaje na tym samym poziomie Z, ale boja nie leci z nim
+	var/datum/star_system/system
 
 /obj/effect/overmap_sensor_probe/Initialize(mapload, obj/structure/overmap/owner)
 	. = ..()
 	if(owner)
 		faction = owner.faction
 		owner_ref = WEAKREF(owner)
+		system = owner.current_system
 		owner.relay(null, "<span class='notice'>Boja czujnikowa nadaje. Kontakty w jej zasięgu widać na DRADIS przez [SENSOR_PROBE_LIFETIME / (1 MINUTES)] min.</span>")
 	GLOB.overmap_sensor_probes += src
 	QDEL_IN(src, SENSOR_PROBE_LIFETIME)
 
 /obj/effect/overmap_sensor_probe/Destroy()
 	GLOB.overmap_sensor_probes -= src
+	system = null
 	return ..()
 
 /// Czy boja tej frakcji widzi dany okręt
@@ -248,8 +261,21 @@ GLOBAL_LIST_EMPTY(overmap_sensor_probes)
 /obj/structure/overmap/proc/get_own_sensor_probes()
 	. = list()
 	for(var/obj/effect/overmap_sensor_probe/probe as anything in GLOB.overmap_sensor_probes)
-		if(probe.faction == faction && probe.z == z)
+		if(probe.faction == faction && probe.z == z && probe.system == current_system)
 			. += probe
+
+/// Czy któraś z naszych boi widzi ten okręt
+/obj/structure/overmap/proc/aq_probe_reveals(obj/structure/overmap/target)
+	for(var/obj/effect/overmap_sensor_probe/probe as anything in get_own_sensor_probes())
+		if(probe.reveals(target))
+			return TRUE
+	return FALSE
+
+/// Kontakt widoczny tylko z boi da się wyznaczyć jako cel (designate, kierowanie ognia, pocisk „z okrętu”)
+/obj/machinery/computer/ship/dradis/can_see_contact(obj/structure/overmap/target)
+	. = ..()
+	if(!. && linked && !QDELETED(target) && target.z == linked.z && target.faction != linked.faction && linked.aq_probe_reveals(target))
+		return TRUE
 
 /// DRADIS: boje i kontakty w ich zasięgu, z dokładnym położeniem
 /obj/machinery/computer/ship/dradis/ui_data(mob/user)
@@ -269,9 +295,16 @@ GLOBAL_LIST_EMPTY(overmap_sensor_probes)
 			shown[blip["id"]] = blip
 	for(var/obj/effect/overmap_sensor_probe/probe as anything in probes)
 		blips[++blips.len] = list("x" = probe.x, "y" = probe.y, "colour" = "#9cffb0", "name" = "Boja czujnikowa", "opacity" = 1, "alignment" = "nanotrasen", "id" = "probe_\ref[probe]")
-		for(var/obj/structure/overmap/OM as anything in GLOB.overmap_objects)
-			if(OM == linked || OM.faction == linked.faction || istype(OM, /obj/structure/overmap/asteroid) || !probe.reveals(OM))
-				continue
+	// Jedna pętla po okrętach (z odfiltrowanym poziomem Z), a nie osobna dla każdej boi
+	for(var/obj/structure/overmap/OM as anything in GLOB.overmap_objects)
+		if(OM.z != linked.z || OM == linked || OM.faction == linked.faction || istype(OM, /obj/structure/overmap/asteroid))
+			continue
+		var/revealed = FALSE
+		for(var/obj/effect/overmap_sensor_probe/probe as anything in probes)
+			if(probe.reveals(OM))
+				revealed = TRUE
+				break
+		if(revealed)
 			var/id = "\ref[OM]"
 			var/list/existing = shown[id]
 			if(existing)

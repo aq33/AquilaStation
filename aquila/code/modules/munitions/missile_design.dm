@@ -6,6 +6,8 @@
 // Naprowadzanie w locie: podczerwień gubi zimny cel i cel w masce, radar daje się ściągnąć wabikowi,
 // "z okrętu" leci na cel główny operatora rozpoznania, a pocisk bez naprowadzania leci prosto.
 
+/// Najwięcej zapisanych projektów pocisków (lista jest wspólna dla wszystkich stołów i żyje całą rundę)
+#define MISSILE_DESIGNS_MAX 30
 #define MISSILE_SEEKER_NONE "brak"
 #define MISSILE_SEEKER_IR "podczerwień"
 #define MISSILE_SEEKER_RADAR "radar"
@@ -251,9 +253,8 @@ GLOBAL_LIST_EMPTY(missile_designs)
 
 /obj/machinery/missile_design_table/ui_data(mob/user)
 	var/list/designs = list()
-	for(var/i in 1 to length(GLOB.missile_designs))
-		var/datum/missile_design/D = GLOB.missile_designs[i]
-		designs += list(list("index" = D.id, "name" = D.name, "summary" = D.summary(), "body" = D.body, "engine" = D.engine, "seeker" = D.seeker))
+	for(var/datum/missile_design/D as anything in GLOB.missile_designs)
+		designs += list(list("index" = D.id, "name" = D.name, "body" = D.body, "engine" = D.engine, "seeker" = D.seeker))
 	var/list/options = list()
 	for(var/slot in GLOB.missile_design_options)
 		var/list/names = list()
@@ -286,6 +287,9 @@ GLOBAL_LIST_EMPTY(missile_designs)
 			if(new_name)
 				draft.name = new_name
 		if("save")
+			if(length(GLOB.missile_designs) >= MISSILE_DESIGNS_MAX)
+				to_chat(usr, "<span class='warning'>Pamięć stołu jest pełna ([MISSILE_DESIGNS_MAX] projektów). Usuń któryś projekt.</span>")
+				return TRUE
 			var/datum/missile_design/saved = draft.copy()
 			saved.id = ++saved.next_id
 			GLOB.missile_designs += saved
@@ -324,7 +328,9 @@ GLOBAL_LIST_EMPTY(missile_designs)
 	chip.name = "chip projektu „[design.name]”"
 	playsound(src, 'sound/machines/ping.ogg', 50, TRUE)
 	visible_message("<span class='notice'>[src] wydaje chip projektu „[design.name]”.</span>")
+	SStgui.update_uis(src) // okno nie ma autoupdate: bez tego przycisk zostawał na „Drukowanie...”
 
+#undef MISSILE_DESIGNS_MAX
 #undef MISSILE_SEEKER_NONE
 #undef MISSILE_SEEKER_IR
 #undef MISSILE_SEEKER_RADAR
