@@ -19,6 +19,8 @@
 	var/cloak_z = 0
 	/// Układ gwiezdny, w którym włączono maskę (skok bywa na ten sam poziom Z)
 	var/datum/star_system/cloak_system
+	/// Okręt, na którym włączono maskę (sygnał odlotu), jako weakref
+	var/datum/weakref/cloak_ship
 	/// Ostatnia jasność bańki, żeby nie odświeżać filtra bez potrzeby
 	var/bubble_level = -1
 	/// Czy tarcza była podniesiona przed maską (koniec maski ją przywraca)
@@ -69,6 +71,9 @@
 	cloaked = TRUE
 	cloak_z = ship.z
 	cloak_system = ship.current_system
+	// Skok zdejmuje maskę od razu przy odlocie, a nie dopiero po przylocie do nowego układu
+	cloak_ship = WEAKREF(ship)
+	RegisterSignal(ship, COMSIG_SHIP_DEPARTED, PROC_REF(on_ship_departed))
 	cloak_restore_active = active
 	cloak_fire_mark = ship.aq_weapon_shots
 	active = FALSE
@@ -84,6 +89,10 @@
 		return
 	cloaked = FALSE
 	cloak_system = null
+	var/obj/structure/overmap/cloaked_ship = cloak_ship?.resolve()
+	if(cloaked_ship)
+		UnregisterSignal(cloaked_ship, COMSIG_SHIP_DEPARTED)
+	cloak_ship = null
 	// Tarcza wraca do stanu sprzed maski (zniszczony generator już jej nie podniesie)
 	if(!QDELETED(src) && !(machine_stat & BROKEN))
 		active = cloak_restore_active
@@ -93,6 +102,10 @@
 		animate(ship, 1.5 SECONDS, alpha = 255)
 		ship.relay(null, "<span class='warning'>Maskowanie zdjęte[reason ? ": [reason]" : ""][active ? ". Tarcza wraca" : ""].</span>", FALSE)
 	update_bubble(TRUE)
+
+/obj/machinery/shield_generator/proc/on_ship_departed(datum/source)
+	SIGNAL_HANDLER
+	INVOKE_ASYNC(src, PROC_REF(end_cloak), "skok")
 
 /// Zniszczony albo rozebrany generator zdejmuje maskę i przestaje być tarczą okrętu
 /obj/machinery/shield_generator/Destroy()
