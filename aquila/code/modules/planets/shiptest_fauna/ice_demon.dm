@@ -98,10 +98,11 @@
 /mob/living/basic/mining/ice_demon/random
 
 /mob/living/basic/mining/ice_demon/random/Initialize(mapload)
+	// Najpierw pełna inicjalizacja: basic mob zwrócony do qdel przed ..() rozpada się w Destroy
+	. = ..()
 	if(prob(15))
 		new /mob/living/basic/mining/ice_demon/old(loc)
 		return INITIALIZE_HINT_QDEL
-	return ..()
 
 /obj/item/projectile/temp/ice_demon
 	name = "lodowy pocisk"

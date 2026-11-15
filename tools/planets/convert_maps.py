@@ -92,14 +92,15 @@ ST_COLORS = {
     'warrablue': '#32426b', 'white': '#FFFFFF',
     'tan': '#c59973', 'lightgrey': '#a8b2b6', 'bottlegreen': '#57967f', 'navyblue': '#334059', 'warrabluelight': '#2270d0',
     'nsorange': '#f97016', 'vired': '#c92020', 'solgovblue': '#2d2a4e', 'solgovgold': '#eeac2e', 'inteqbrown': '#4b2a18',
-    'inteqbrownlight': '#804433', 'cybersunteal': '#4C9C9C', 'orange': '#C3630C',
+    'inteqbrownlight': '#804433', 'cybersunteal': '#4C9C9C', 'orange': '#C3630C', 'purple': '#AE8CA8', 'brown': '#997C4F',
 }
 # nasz najbliższy kolor (podtyp), kolor Shiptesta nadpisujemy edycją
 OUR_COLOR = {'neutral': 'neutral', 'black': 'black', 'blue': 'blue', 'green': 'green', 'lime': 'green', 'yellow': 'yellow',
              'beige': 'brown', 'red': 'red', 'bar': 'bar', 'grey': 'neutral', 'syndiered': 'red', 'warrablue': 'darkblue',
              'white': 'white', 'tan': 'brown', 'lightgrey': 'neutral', 'bottlegreen': 'green', 'navyblue': 'darkblue',
              'warrabluelight': 'blue', 'nsorange': 'yellow', 'vired': 'red', 'solgovblue': 'darkblue', 'solgovgold': 'yellow',
-             'inteqbrown': 'brown', 'inteqbrownlight': 'brown', 'cybersunteal': 'blue', 'orange': 'yellow'}
+             'inteqbrown': 'brown', 'inteqbrownlight': 'brown', 'cybersunteal': 'blue', 'orange': 'yellow', 'purple': 'purple',
+             'brown': 'brown'}
 OUR_TRIM_COLORS = {'black', 'blue', 'brown', 'darkblue', 'green', 'neutral', 'purple', 'red', 'white', 'yellow'}
 
 # kształty narożników Shiptesta (corner/<kolor>/<kształt>) -> nasz /tile/<kolor>/<kształt> + przeliczenie kierunku
@@ -113,6 +114,7 @@ CORNER_SHAPES = {
     'half': ('half', {2: 8, 1: 4, 4: 2, 8: 1}),                # bordercolorhalf: pół kafla przy krawędzi dir
     'border': ('half', {2: 8, 1: 4, 4: 2, 8: 1}),              # cienki pas przy krawędzi -> pół kafla (najbliższe)
     'bordercorner': ('', {2: 2, 1: 1, 4: 4, 8: 8}),            # mały kwadrat w rogu -> róg kafla
+    'bordercee': ('half', {2: 8, 1: 4, 4: 2, 8: 1}),            # pas w kształcie C -> pół kafla (najbliższe)
 }
 
 def decal(path, vars_, mapname):
@@ -210,6 +212,7 @@ def decal(path, vars_, mapname):
 
 
 MISSING = set()
+OURS = set()
 
 def clean_vars(vars_, keep_icon_state):
     out = collections.OrderedDict()
@@ -245,6 +248,14 @@ def convert_atom(a, mapname, stat):
     if path.startswith('/obj/structure/cable'):
         stat['replaced'] += 1
         return [a]
+    # rury i urządzenia na warstwie, której nasz typ nie ma (np. scrubbers/hidden/layer1): typ bazowy z piping_layer
+    layered = re.match(r'(/obj/machinery/atmospherics/.+)/layer(\d)$', path)
+    # (rury z makr w code/modules/atmospherics/machinery/pipes/mapping.dm mają tylko podtypy layer2 i layer4)
+    if layered and OURS and path not in OURS and (layered.group(1) in OURS or (path.startswith('/obj/machinery/atmospherics/pipe/') and layered.group(2) not in ('2', '4'))):
+        nv = clean_vars(vars_, False)
+        nv['piping_layer'] = layered.group(2)
+        stat['replaced'] += 1
+        return [atom(layered.group(1), nv)]
     # obszary
     if path.startswith('/area'):
         return [AREAS.get(path, path)]
@@ -357,8 +368,15 @@ def convert_atom(a, mapname, stat):
 
 def convert_tile(atoms, mapname, stat):
     out = []
+    missing_here = []
     for a in atoms:
-        out.extend(convert_atom(a, mapname, stat))
+        try:
+            out.extend(convert_atom(a, mapname, stat))
+        except KeyError as error:
+            missing_here.append(str(error.args[0]))
+    if missing_here:
+        # wszystkie braki z kafla naraz, nie tylko pierwszy
+        raise KeyError(*missing_here)
     # magazyny skafandrów, które w Shiptescie zabierały rzeczy z pola (inherit): rzeczy -> zmienne SSU
     ssu = [i for i, a in enumerate(atoms) if dmmlib.parse_map_atom(a)[0].startswith('/obj/machinery/suit_storage_unit/inherit')]
     if ssu:
@@ -412,7 +430,7 @@ def collect_missing(maps, ours):
 
 
 def main():
-    global MISSING
+    global MISSING, OURS
     parser = argparse.ArgumentParser(description='Konwersja map Shiptesta na nasz kod')
     parser.add_argument('--out', required=True, help='folder na przekonwertowane mapy')
     parser.add_argument('--mappings', default='', help='moduły zamienników po przecinku (bez common)')
@@ -423,6 +441,7 @@ def main():
     for name in filter(None, args.mappings.split(',')):
         importlib.import_module('mappings.' + name.strip())
     ours = defined_types(args.root)
+    OURS = ours
     pairs = []
     for item in args.maps:
         src, _, dst = item.partition('=')
@@ -460,7 +479,8 @@ def main():
                 try:
                     cache[key] = tuple(convert_tile(list(m.dictionary[key]), dst, stat))
                 except KeyError as error:
-                    errors[str(error.args[0])].add(dst)
+                    for missing_path in error.args:
+                        errors[str(missing_path)].add(dst)
                     cache[key] = ()
                     failed = True
             tile = cache[key]

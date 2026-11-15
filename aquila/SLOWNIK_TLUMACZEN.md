@@ -4139,6 +4139,21 @@ Nazwy obszarów są w większości przetłumaczone. Nowe nazwy budujemy z tych k
 |---|---|---|
 | overmap | overmapa | ż; istniejące (overmapie, overmapy) |
 | starmap | mapa gwiezdna | ż; nowe |
+| rock planetoid | planeta skalista | ż; nowe (typ planety, Shiptest) |
+| salty sand planetoid / Whitesands | planeta białych piasków / białe piaski | ż; nowe (typ planety, Shiptest) |
+| desert planetoid | planeta pustynna | ż; nowe (typ planety) |
+| shrouded planetoid | planeta mglista | ż; nowe (typ planety; zagłusza radio) |
+| dustball / duneball dwarf planetoid | pyłowa / wydmowa planeta karłowata | ż; nowe |
+| iron sand | żelazny piasek | m; nowe (grunt planety skalistej) |
+| salted sand / dried sand | solony piasek / wyschnięty piasek | m; nowe |
+| packed sand | ubity piasek | m; nowe (planeta mglista) |
+| dry seafloor | wyschnięte dno morskie | n; nowe |
+| sulfuric acid pool | jeziorko kwasu siarkowego | n; nowe |
+| cottongrass | wełnianka | ż; nowe |
+| maguaro cactus | kaktus maguaro | m; nowe |
+| sea stack | ostaniec | m; nowe |
+| Frontiersmen | Frontiersmeni | m mn.; nowe (frakcja z ruin Shiptesta; u nas jako piraci) |
+| hermit (Whitesands) | pustelnik | m; nowe (u nas piraci-zbieracze) |
 | star system / system | układ gwiezdny / system | m; istniejące oba; w nazwach z kodu „system” |
 | sector | sektor | m; istniejące |
 | FTL | FTL | m (napęd); istniejące; „napęd FTL”, „skok FTL” |

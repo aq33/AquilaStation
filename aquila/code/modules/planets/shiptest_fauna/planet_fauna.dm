@@ -330,10 +330,11 @@
 /mob/living/basic/mining/goliath/whitesands/random
 
 /mob/living/basic/mining/goliath/whitesands/random/Initialize(mapload)
+	// Najpierw pełna inicjalizacja: basic mob zwrócony do qdel przed ..() rozpada się w Destroy
+	. = ..()
 	if(prob(5))
 		new /mob/living/basic/mining/goliath/whitesands/ancient(loc)
 		return INITIALIZE_HINT_QDEL
-	return ..()
 
 /mob/living/basic/mining/goliath/whitesands/ancient
 	name = "pradawny goliat z białych piasków"

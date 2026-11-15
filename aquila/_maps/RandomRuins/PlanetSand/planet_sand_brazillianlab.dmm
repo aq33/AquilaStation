@@ -1,0 +1,2935 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"ao" = (
+/obj/structure/flora/tree/jungle,
+/turf/open/floor/grass,
+/area/ruin/unpowered)
+"aB" = (
+/turf/closed/mineral/random/whitesands,
+/area/lavaland/surface/outdoors)
+"aX" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered)
+"bm" = (
+/mob/living/simple_animal/bot/medbot{
+	faction = list("hermit")
+	},
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/green/anticorner/contrasted{
+	dir = 4;
+	color = "#99BB76";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/white,
+/area/ruin/unpowered)
+"bE" = (
+/obj/structure/flora/ash/stem_shroom,
+/turf/open/floor/plating/asteroid/whitesands/dried,
+/area/lavaland/surface/outdoors)
+"bS" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/space_heater,
+/obj/effect/turf_decal/tile/green/half{
+	color = "#99BB76";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/white,
+/area/ruin/unpowered)
+"bW" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 9
+	},
+/obj/structure/bonfire/prelit,
+/turf/open/floor/wood{
+	icon_state = "wood-broken6"
+	},
+/area/ruin/unpowered)
+"bZ" = (
+/obj/structure/bonfire/prelit,
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered)
+"cx" = (
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered)
+"cK" = (
+/turf/open/floor/wood,
+/area/ruin/unpowered)
+"cR" = (
+/obj/effect/turf_decal/siding/wood,
+/obj/item/storage/toolbox/drone{
+	pixel_x = 8;
+	pixel_y = 9
+	},
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered)
+"da" = (
+/mob/living/basic/trooper/pirate/melee{
+	dir = 4
+	},
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered)
+"dd" = (
+/obj/structure/flora/grass/jungle/b,
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered)
+"dh" = (
+/obj/structure/bonfire/prelit,
+/obj/effect/turf_decal/siding/wood{
+	dir = 10
+	},
+/turf/open/floor/carpet/green,
+/area/ruin/unpowered)
+"dj" = (
+/obj/machinery/iv_drip,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/tile/green/opposingcorners{
+	color = "#99BB76";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/white,
+/area/ruin/unpowered)
+"dp" = (
+/obj/structure/table,
+/obj/item/weaponcrafting/receiver{
+	pixel_x = -7;
+	pixel_y = -12
+	},
+/obj/item/weaponcrafting/stock{
+	pixel_x = 5;
+	pixel_y = 13
+	},
+/obj/item/attachment/laser_sight{
+	pixel_x = 10;
+	pixel_y = -9
+	},
+/obj/item/gun/ballistic/automatic/pistol/no_mag{
+	pixel_x = -6
+	},
+/obj/item/reagent_containers/glass/rag{
+	pixel_x = -10;
+	pixel_y = 19
+	},
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered)
+"dC" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/blood/splatter,
+/turf/open/floor/plasteel/white,
+/area/ruin/unpowered)
+"dG" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/drinks/mug,
+/obj/item/food/cracker{
+	pixel_x = 12;
+	pixel_y = 7
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered)
+"dT" = (
+/obj/effect/turf_decal/siding/wood,
+/obj/structure/railing,
+/obj/item/flashlight/lantern{
+	on = 1
+	},
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered)
+"eG" = (
+/obj/structure/table/wood,
+/obj/item/food/meat/steak/goliath{
+	pixel_x = 4;
+	pixel_y = 7
+	},
+/obj/item/stack/spacecash/c1{
+	pixel_x = 15;
+	pixel_y = -2
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered)
+"eU" = (
+/obj/structure/table/wood,
+/obj/item/food/onionrings{
+	pixel_y = 7
+	},
+/obj/item/stack/spacecash/c1{
+	pixel_x = -6;
+	pixel_y = -13
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered)
+"fC" = (
+/obj/effect/turf_decal/siding/wood,
+/turf/open/floor/carpet/blue,
+/area/ruin/unpowered)
+"fE" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/turf/open/floor/wood{
+	icon_state = "wood-broken3"
+	},
+/area/ruin/unpowered)
+"fQ" = (
+/obj/item/target/alien/anchored,
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered)
+"fX" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/table,
+/obj/machinery/recharger,
+/turf/open/floor/wood,
+/area/ruin/unpowered)
+"ge" = (
+/obj/structure/flora/grass/jungle,
+/turf/open/floor/grass,
+/area/ruin/unpowered)
+"gv" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/reagent_containers/food/drinks/soda_cans/cola{
+	pixel_x = -11;
+	pixel_y = 1
+	},
+/obj/item/reagent_containers/food/drinks/soda_cans/space_mountain_wind{
+	pixel_y = -6;
+	pixel_x = -6
+	},
+/obj/item/reagent_containers/food/drinks/soda_cans/space_up{
+	pixel_y = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered)
+"gI" = (
+/turf/open/floor/wood{
+	icon_state = "wood-broken5"
+	},
+/area/ruin/unpowered)
+"hi" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/stack/cable_coil{
+	pixel_y = -10
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered)
+"hC" = (
+/obj/item/clothing/neck/stethoscope,
+/obj/structure/closet/secure_closet/medical1,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/reagent_containers/syringe,
+/obj/item/reagent_containers/syringe,
+/obj/item/reagent_containers/syringe,
+/obj/item/stack/medical/mesh,
+/obj/item/stack/medical/suture,
+/obj/item/stack/sheet/cotton/cloth/ten,
+/obj/item/stack/sheet/cotton/cloth/ten,
+/obj/effect/turf_decal/tile/green/anticorner/contrasted{
+	dir = 4;
+	color = "#99BB76";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/white,
+/area/ruin/unpowered)
+"hE" = (
+/turf/open/floor/plating/asteroid/snow/whitesands,
+/area/lavaland/surface/outdoors)
+"hF" = (
+/obj/structure/table/wood,
+/obj/item/toy/cards/deck{
+	pixel_y = 12
+	},
+/obj/item/stack/spacecash/c10{
+	pixel_x = 9
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered)
+"hV" = (
+/obj/effect/turf_decal/siding/wood,
+/turf/open/floor/wood{
+	icon_state = "wood-broken6"
+	},
+/area/ruin/unpowered)
+"hW" = (
+/mob/living/basic/trooper/pirate/melee,
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered)
+"hY" = (
+/obj/structure/flora/rock/pile,
+/turf/open/floor/plating/asteroid/whitesands,
+/area/ruin/unpowered)
+"ii" = (
+/obj/structure/flora/stump,
+/turf/open/floor/plating/asteroid/whitesands,
+/area/lavaland/surface/outdoors)
+"ij" = (
+/obj/structure/table/wood/fancy/green,
+/obj/item/ammo_casing/shotgun/dragonsbreath{
+	pixel_y = 4;
+	pixel_x = 10
+	},
+/obj/item/ammo_casing/shotgun/dragonsbreath{
+	pixel_y = 4;
+	pixel_x = -10
+	},
+/obj/item/ammo_casing/shotgun/dragonsbreath{
+	pixel_y = 4;
+	pixel_x = -6
+	},
+/obj/item/ammo_casing/shotgun/dragonsbreath{
+	pixel_y = 4;
+	pixel_x = -2
+	},
+/obj/item/ammo_casing/shotgun/dragonsbreath{
+	pixel_y = 4;
+	pixel_x = 2
+	},
+/obj/item/ammo_casing/shotgun/dragonsbreath{
+	pixel_y = 4;
+	pixel_x = 6
+	},
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered)
+"iA" = (
+/obj/structure/flora/junglebush/b,
+/obj/structure/sign/poster/official/fruit_bowl{
+	pixel_y = 32
+	},
+/turf/open/floor/grass,
+/area/ruin/unpowered)
+"iQ" = (
+/obj/structure/table/optable,
+/obj/item/stack/medical/suture,
+/turf/open/floor/plasteel/white,
+/area/ruin/unpowered)
+"iU" = (
+/turf/open/floor/wood{
+	icon_state = "wood-broken"
+	},
+/area/ruin/unpowered)
+"jf" = (
+/obj/structure/flora/ash/fern,
+/turf/open/floor/plating/asteroid/whitesands,
+/area/lavaland/surface/outdoors)
+"ji" = (
+/obj/structure/flora/ash/cacti,
+/turf/open/floor/plating/asteroid/whitesands,
+/area/lavaland/surface/outdoors)
+"jj" = (
+/turf/template_noop,
+/area/template_noop)
+"jk" = (
+/obj/machinery/iv_drip,
+/obj/effect/turf_decal/tile/green/opposingcorners{
+	color = "#99BB76";
+	alpha = 255
+	},
+/obj/item/stack/medical/bandage{
+	pixel_x = -16
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/white,
+/area/ruin/unpowered)
+"js" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/sign/warning/securearea{
+	pixel_y = 32
+	},
+/turf/open/floor/wood{
+	icon_state = "wood-broken"
+	},
+/area/ruin/unpowered)
+"jJ" = (
+/obj/structure/chair/wood,
+/mob/living/basic/trooper/pirate/melee{
+	desc = " Postać o dzikim spojrzeniu, w podartym sprzęcie górniczym i ze zniekształconym ciałem."
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered)
+"kh" = (
+/obj/structure/flora/rock/pile,
+/turf/open/floor/plating/asteroid/whitesands,
+/area/lavaland/surface/outdoors)
+"kM" = (
+/obj/item/stack/cable_coil,
+/obj/effect/decal/cleanable/dirt,
+/mob/living/basic/trooper/pirate/ranged,
+/turf/open/floor/wood,
+/area/ruin/unpowered)
+"lj" = (
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered)
+"lw" = (
+/obj/structure/chair/wood{
+	dir = 1
+	},
+/turf/open/floor/wood{
+	icon_state = "wood-broken3"
+	},
+/area/ruin/unpowered)
+"lQ" = (
+/obj/item/gun/ballistic/shotgun/doublebarrel{
+	pixel_x = 8
+	},
+/obj/structure/table/wood/fancy/blue,
+/turf/open/floor/carpet/orange,
+/area/ruin/unpowered)
+"mb" = (
+/obj/effect/turf_decal/siding/wood,
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered)
+"mo" = (
+/obj/effect/decal/cleanable/blood/gibs/down,
+/mob/living/basic/trooper/pirate/melee{
+	desc = " Postać o dzikim spojrzeniu, w podartym sprzęcie górniczym i ze zniekształconym ciałem."
+	},
+/turf/open/floor/plasteel/white,
+/area/ruin/unpowered)
+"mB" = (
+/obj/structure/flora/junglebush/b,
+/turf/open/floor/grass,
+/area/ruin/unpowered)
+"mO" = (
+/obj/structure/flora/ash/cap_shroom,
+/turf/open/floor/plating/asteroid/whitesands/dried,
+/area/lavaland/surface/outdoors)
+"mT" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/drinks/soda_cans/cola{
+	pixel_y = 8;
+	pixel_x = -13
+	},
+/obj/item/reagent_containers/food/drinks/bottle/tequila{
+	pixel_x = 13;
+	pixel_y = 10
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered)
+"mX" = (
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/structure/girder/displaced,
+/turf/open/floor/plating/asteroid/whitesands,
+/area/lavaland/surface/outdoors)
+"nd" = (
+/mob/living/simple_animal/bot/secbot{
+	desc = "Mały robot ochrony. Wygląda na wściekłego!";
+	emagged = 2;
+	name = "oficer Pustelnikowski";
+	faction = list("neutral","silicon","turret","hermit")
+	},
+/obj/structure/closet/crate/critter{
+	name = "NIEBEZPIECZEŃSTWO: NIE OTWIERAĆ"
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered)
+"ni" = (
+/obj/machinery/space_heater,
+/obj/effect/turf_decal/tile/green/half{
+	color = "#99BB76";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/white,
+/area/ruin/unpowered)
+"nn" = (
+/mob/living/basic/trooper/pirate/ranged,
+/obj/structure/chair/fancy/plastic{
+	dir = 8
+	},
+/turf/open/floor/plating/asteroid/snow/whitesands,
+/area/lavaland/surface/outdoors)
+"nq" = (
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/floor/wood,
+/area/ruin/unpowered)
+"nA" = (
+/obj/structure/chair/stool/bar{
+	dir = 4
+	},
+/mob/living/basic/trooper/pirate/melee{
+	desc = " Postać o dzikim spojrzeniu, w podartym sprzęcie górniczym i ze zniekształconym ciałem.";
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered)
+"nH" = (
+/turf/closed/wall/mineral/wood/nonmetal,
+/area/lavaland/surface/outdoors)
+"nO" = (
+/obj/item/toy/plush/moth/snow{
+	pixel_x = 17;
+	pixel_y = -5
+	},
+/turf/open/floor/plating/asteroid/snow/whitesands,
+/area/lavaland/surface/outdoors)
+"nU" = (
+/obj/structure/chair/fancy/plastic{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/lavaland/surface/outdoors)
+"py" = (
+/obj/structure/flora/ash/puce,
+/turf/open/floor/plating/asteroid/whitesands,
+/area/lavaland/surface/outdoors)
+"pG" = (
+/obj/item/target,
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered)
+"pL" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/tile/green{
+	dir = 9;
+	color = "#99BB76";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/white,
+/area/ruin/unpowered)
+"pP" = (
+/obj/item/stack/sheet/iron/ten{
+	pixel_x = -9
+	},
+/turf/open/floor/plating,
+/area/lavaland/surface/outdoors)
+"qd" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/drinks/shaker{
+	pixel_x = 16
+	},
+/obj/effect/turf_decal/siding/wood,
+/obj/item/stack/spacecash/c1000{
+	pixel_x = -2;
+	pixel_y = 3
+	},
+/obj/item/stack/spacecash/c1000{
+	pixel_x = -5
+	},
+/obj/item/stack/spacecash/c1{
+	pixel_x = -8;
+	pixel_y = 9
+	},
+/obj/item/stack/spacecash/c10{
+	pixel_x = 2;
+	pixel_y = 4
+	},
+/turf/open/floor/carpet/green,
+/area/ruin/unpowered)
+"qj" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/assembly/igniter{
+	pixel_x = -9;
+	pixel_y = -14
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered)
+"ql" = (
+/obj/structure/bonfire/prelit,
+/obj/effect/turf_decal/tile/green/half{
+	dir = 4;
+	color = "#99BB76";
+	alpha = 255
+	},
+/obj/effect/turf_decal/tile/green/half{
+	dir = 8;
+	color = "#99BB76";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/white,
+/area/ruin/unpowered)
+"qm" = (
+/obj/structure/table/wood,
+/obj/item/stack/spacecash/c200,
+/turf/open/floor/wood,
+/area/ruin/unpowered)
+"qr" = (
+/mob/living/basic/trooper/pirate/melee,
+/obj/structure/chair/fancy/plastic,
+/turf/open/floor/plating/asteroid/whitesands,
+/area/lavaland/surface/outdoors)
+"qA" = (
+/mob/living/basic/trooper/pirate/ranged,
+/turf/open/floor/carpet/green,
+/area/ruin/unpowered)
+"qG" = (
+/obj/structure/bonfire/prelit,
+/turf/open/floor/wood,
+/area/ruin/unpowered)
+"qM" = (
+/turf/open/floor/carpet/green,
+/area/ruin/unpowered)
+"re" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 10
+	},
+/turf/open/floor/wood{
+	icon_state = "wood-broken7"
+	},
+/area/ruin/unpowered)
+"ri" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/glass/rag{
+	pixel_x = 8;
+	pixel_y = 3
+	},
+/obj/item/cigbutt/cigarbutt{
+	pixel_x = -5;
+	pixel_y = 9
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered)
+"rx" = (
+/obj/structure/flora/tree/dead/tall/grey,
+/turf/open/floor/plating/asteroid/whitesands/grass,
+/area/lavaland/surface/outdoors)
+"rF" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/drinks/drinkingglass{
+	pixel_x = 1;
+	pixel_y = 8
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass{
+	pixel_x = 5;
+	pixel_y = 4
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass{
+	pixel_x = -4;
+	pixel_y = 4
+	},
+/obj/effect/turf_decal/siding/wood,
+/turf/open/floor/carpet/green,
+/area/ruin/unpowered)
+"rK" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 9
+	},
+/turf/open/floor/carpet/green,
+/area/ruin/unpowered)
+"rM" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/turf/open/floor/carpet/green,
+/area/ruin/unpowered)
+"rT" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/bed/roller,
+/obj/effect/turf_decal/tile/green{
+	dir = 8;
+	color = "#99BB76";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/white,
+/area/ruin/unpowered)
+"rY" = (
+/obj/effect/turf_decal/siding/wood,
+/obj/structure/railing,
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered)
+"sl" = (
+/obj/structure/bonfire/prelit,
+/turf/open/floor/grass,
+/area/ruin/unpowered)
+"sn" = (
+/obj/structure/girder/reinforced,
+/turf/open/floor/plating/asteroid/whitesands{
+	light_range = 2
+	},
+/area/lavaland/surface/outdoors)
+"sq" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered)
+"sz" = (
+/obj/structure/table/wood/fancy/green,
+/obj/item/ammo_casing/shotgun/dragonsbreath{
+	pixel_y = 4;
+	pixel_x = -2
+	},
+/obj/item/ammo_casing/shotgun/dragonsbreath{
+	pixel_y = 4;
+	pixel_x = -10
+	},
+/obj/item/ammo_casing/shotgun/dragonsbreath{
+	pixel_y = 4;
+	pixel_x = -6
+	},
+/obj/item/ammo_casing/shotgun/dragonsbreath{
+	pixel_y = 4;
+	pixel_x = 6
+	},
+/obj/item/ammo_casing/shotgun/dragonsbreath{
+	pixel_y = 4;
+	pixel_x = 2
+	},
+/obj/item/ammo_casing/shotgun/dragonsbreath{
+	pixel_y = 4;
+	pixel_x = 10
+	},
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered)
+"sN" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 10
+	},
+/turf/open/floor/carpet/blue,
+/area/ruin/unpowered)
+"sQ" = (
+/obj/effect/turf_decal/tile/green/anticorner/contrasted{
+	color = "#99BB76";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/blood/gibs/up,
+/turf/open/floor/plasteel/white,
+/area/ruin/unpowered)
+"tc" = (
+/obj/item/candle/infinite{
+	pixel_y = 4
+	},
+/obj/item/candle/infinite{
+	pixel_x = -5;
+	pixel_y = 6
+	},
+/obj/item/candle/infinite{
+	pixel_x = -10;
+	pixel_y = 8
+	},
+/obj/item/candle/infinite{
+	pixel_x = -5;
+	pixel_y = 2
+	},
+/obj/item/candle/infinite{
+	pixel_x = -10
+	},
+/obj/item/candle/infinite{
+	pixel_x = -16;
+	pixel_y = -2
+	},
+/obj/structure/table/wood/fancy/blue,
+/turf/open/floor/carpet/orange,
+/area/ruin/unpowered)
+"tm" = (
+/obj/machinery/pipedispenser,
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered)
+"ts" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 5
+	},
+/obj/structure/bonfire/prelit,
+/turf/open/floor/wood{
+	icon_state = "wood-broken"
+	},
+/area/ruin/unpowered)
+"tv" = (
+/turf/open/floor/plating,
+/area/lavaland/surface/outdoors)
+"tA" = (
+/turf/closed/wall/rust,
+/area/lavaland/surface/outdoors)
+"tF" = (
+/obj/structure/bed,
+/obj/structure/curtain,
+/mob/living/basic/trooper/pirate/ranged,
+/obj/effect/turf_decal/tile/green/half{
+	dir = 8;
+	color = "#99BB76";
+	alpha = 255
+	},
+/obj/effect/turf_decal/tile/green/opposingcorners{
+	color = "#99BB76";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/vomit/old,
+/turf/open/floor/plasteel/white,
+/area/ruin/unpowered)
+"tJ" = (
+/mob/living/basic/trooper/pirate/ranged,
+/obj/structure/chair/fancy/plastic,
+/turf/open/floor/plating/asteroid/whitesands,
+/area/lavaland/surface/outdoors)
+"uc" = (
+/obj/effect/turf_decal/siding/wood/corner,
+/turf/open/floor/wood,
+/area/ruin/unpowered)
+"ud" = (
+/turf/closed/wall/mineral/wood/nonmetal,
+/area/ruin/unpowered)
+"uA" = (
+/obj/item/wrench,
+/turf/open/floor/plating,
+/area/lavaland/surface/outdoors)
+"uE" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/rack,
+/obj/item/clothing/ears/earmuffs,
+/obj/item/clothing/ears/earmuffs{
+	pixel_x = -8
+	},
+/obj/item/clothing/ears/earmuffs{
+	pixel_x = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered)
+"uP" = (
+/obj/structure/girder/displaced,
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/structure/railing{
+	dir = 8
+	},
+/turf/open/floor/plating/asteroid/whitesands/dried,
+/area/lavaland/surface/outdoors)
+"uQ" = (
+/obj/structure/girder/reinforced,
+/turf/open/floor/plating/asteroid/whitesands,
+/area/lavaland/surface/outdoors)
+"vd" = (
+/obj/item/stack/sheet/mineral/wood{
+	pixel_x = 8;
+	pixel_y = -9;
+	amount = 25
+	},
+/turf/open/floor/plating,
+/area/lavaland/surface/outdoors)
+"vG" = (
+/obj/structure/table/wood,
+/obj/item/food/meat/steak/meatproduct{
+	pixel_y = 6
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered)
+"wk" = (
+/obj/structure/barricade/wooden/crude,
+/turf/open/floor/plating/asteroid/whitesands,
+/area/lavaland/surface/outdoors)
+"wu" = (
+/obj/structure/girder,
+/turf/open/floor/plating/asteroid/whitesands,
+/area/lavaland/surface/outdoors)
+"wE" = (
+/obj/structure/flora/junglebush/b,
+/obj/structure/flora/grass/jungle/b,
+/turf/open/floor/grass,
+/area/ruin/unpowered)
+"wF" = (
+/obj/structure/bed,
+/obj/structure/curtain,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/tile/green/opposingcorners{
+	color = "#99BB76";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/white,
+/area/ruin/unpowered)
+"xc" = (
+/obj/item/weaponcrafting/stock{
+	pixel_x = 8;
+	pixel_y = 3
+	},
+/obj/item/stack/cable_coil,
+/obj/effect/turf_decal/siding/wood,
+/obj/structure/table,
+/obj/item/screwdriver{
+	pixel_y = 20
+	},
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered)
+"xj" = (
+/mob/living/basic/trooper/pirate/ranged,
+/turf/open/floor/grass,
+/area/ruin/unpowered)
+"xk" = (
+/obj/structure/flora/junglebush/large,
+/turf/open/floor/grass,
+/area/ruin/unpowered)
+"xF" = (
+/obj/structure/fermenting_barrel,
+/turf/open/floor/wood,
+/area/ruin/unpowered)
+"xH" = (
+/obj/effect/turf_decal/siding/wood,
+/turf/open/floor/wood,
+/area/ruin/unpowered)
+"xU" = (
+/obj/item/flashlight/lantern{
+	on = 1;
+	pixel_x = -10;
+	pixel_y = 17
+	},
+/turf/open/floor/plasteel/white,
+/area/ruin/unpowered)
+"xZ" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/tile/green/anticorner/contrasted{
+	dir = 8;
+	color = "#99BB76";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/white,
+/area/ruin/unpowered)
+"ye" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/drinks/bottle/wine{
+	pixel_x = 7;
+	pixel_y = 16
+	},
+/obj/item/food/spaghetti/pastatomato{
+	pixel_y = 3
+	},
+/obj/item/candle/infinite{
+	pixel_y = 17
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered)
+"yl" = (
+/obj/item/stack/sticky_tape{
+	pixel_x = 12
+	},
+/turf/open/floor/plating,
+/area/lavaland/surface/outdoors)
+"yF" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/tile/green{
+	dir = 6;
+	color = "#99BB76";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/blood/drip,
+/turf/open/floor/plasteel/white,
+/area/ruin/unpowered)
+"zn" = (
+/obj/effect/turf_decal/tile/green/anticorner/contrasted{
+	dir = 8;
+	color = "#99BB76";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/blood/innards,
+/obj/item/reagent_containers/glass/bucket{
+	pixel_x = 9;
+	pixel_y = 15
+	},
+/obj/item/chainsaw{
+	pixel_x = -11;
+	pixel_y = 11
+	},
+/turf/open/floor/plasteel/white,
+/area/ruin/unpowered)
+"zs" = (
+/obj/structure/flora/junglebush/c,
+/turf/open/floor/grass,
+/area/ruin/unpowered)
+"Am" = (
+/obj/structure/flora/ash/stem_shroom,
+/turf/open/floor/plating/asteroid/whitesands{
+	light_range = 2
+	},
+/area/lavaland/surface/outdoors)
+"Ay" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered)
+"AD" = (
+/obj/structure/flora/tree/dead/tall/grey,
+/turf/open/floor/plating/asteroid/whitesands,
+/area/lavaland/surface/outdoors)
+"Bb" = (
+/obj/structure/barricade/wooden,
+/turf/open/floor/plating/asteroid/whitesands,
+/area/lavaland/surface/outdoors)
+"Be" = (
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/ruin/unpowered)
+"Bf" = (
+/obj/item/candle/infinite{
+	pixel_x = 10;
+	pixel_y = 8
+	},
+/obj/item/candle/infinite{
+	pixel_x = 5;
+	pixel_y = 6
+	},
+/obj/item/candle/infinite{
+	pixel_y = 4
+	},
+/obj/item/candle/infinite{
+	pixel_x = 5;
+	pixel_y = 2
+	},
+/obj/item/candle/infinite{
+	pixel_x = 10
+	},
+/obj/item/candle/infinite{
+	pixel_x = 16;
+	pixel_y = 10
+	},
+/obj/structure/table/wood/fancy/blue,
+/turf/open/floor/carpet/orange,
+/area/ruin/unpowered)
+"Cj" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/ruin/unpowered)
+"CC" = (
+/turf/open/floor/plating/asteroid/whitesands{
+	light_range = 2
+	},
+/area/lavaland/surface/outdoors)
+"CN" = (
+/obj/structure/chair/stool/bar,
+/mob/living/basic/trooper/pirate/melee{
+	desc = " Postać o dzikim spojrzeniu, w podartym sprzęcie górniczym i ze zniekształconym ciałem."
+	},
+/obj/effect/turf_decal/siding/wood,
+/turf/open/floor/wood,
+/area/ruin/unpowered)
+"CS" = (
+/obj/structure/table/wood,
+/obj/item/stack/spacecash/c50{
+	pixel_x = 14;
+	pixel_y = 7
+	},
+/obj/item/stack/spacecash/c20{
+	pixel_x = -9
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered)
+"Dn" = (
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 4
+	},
+/turf/open/floor/grass,
+/area/ruin/unpowered)
+"Dv" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/drinks/soda_cans/cola{
+	pixel_y = 12
+	},
+/obj/item/reagent_containers/food/drinks/bottle/kahlua{
+	pixel_x = -8;
+	pixel_y = 4
+	},
+/obj/item/reagent_containers/food/drinks/bottle/hcider{
+	pixel_x = 16;
+	pixel_y = 12
+	},
+/obj/item/reagent_containers/food/drinks/bottle/rum{
+	pixel_x = 8;
+	pixel_y = 4
+	},
+/obj/effect/turf_decal/siding/wood,
+/turf/open/floor/carpet/green,
+/area/ruin/unpowered)
+"DG" = (
+/obj/effect/turf_decal/siding/wood,
+/obj/structure/mineral_door/iron,
+/turf/open/floor/wood,
+/area/ruin/unpowered)
+"DW" = (
+/obj/structure/flora/ash/fern,
+/turf/open/floor/plating/asteroid/whitesands/dried,
+/area/lavaland/surface/outdoors)
+"Ea" = (
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 10
+	},
+/obj/effect/turf_decal/tile/green/half{
+	dir = 1;
+	color = "#99BB76";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/white,
+/area/ruin/unpowered)
+"Eu" = (
+/obj/structure/flora/ash/cap_shroom,
+/turf/open/floor/plating/asteroid/whitesands{
+	light_range = 2
+	},
+/area/lavaland/surface/outdoors)
+"EC" = (
+/obj/structure/flora/grass/jungle/b,
+/turf/open/floor/grass,
+/area/ruin/unpowered)
+"Fb" = (
+/obj/structure/table/wood,
+/turf/open/floor/wood,
+/area/ruin/unpowered)
+"Fp" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/tile/green/half{
+	dir = 8;
+	color = "#99BB76";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/white,
+/area/ruin/unpowered)
+"FR" = (
+/obj/structure/chair/wood{
+	dir = 8
+	},
+/mob/living/basic/trooper/pirate/ranged{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered)
+"Gd" = (
+/obj/structure/flora/tree/jungle/small,
+/turf/open/floor/grass,
+/area/ruin/unpowered)
+"Ge" = (
+/obj/structure/barricade/sandbags,
+/turf/open/floor/plating/asteroid/snow/whitesands,
+/area/lavaland/surface/outdoors)
+"Gl" = (
+/obj/structure/table/wood/fancy/green,
+/obj/item/storage/box/lethalshot{
+	pixel_y = 5
+	},
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered)
+"Gw" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 5
+	},
+/turf/open/floor/carpet/blue,
+/area/ruin/unpowered)
+"GP" = (
+/turf/open/floor/plating/asteroid/whitesands/dried,
+/area/lavaland/surface/outdoors)
+"Hn" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/turf/open/floor/carpet/blue,
+/area/ruin/unpowered)
+"HG" = (
+/obj/structure/window/reinforced/fulltile,
+/obj/structure/grille,
+/obj/structure/curtain{
+	open = 0;
+	opacity = 1
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered)
+"Ie" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/drinks/bottle/wine{
+	pixel_y = 12
+	},
+/obj/item/reagent_containers/food/drinks/bottle/tequila{
+	pixel_x = 8;
+	pixel_y = 4
+	},
+/obj/item/reagent_containers/food/drinks/bottle/vermouth{
+	pixel_x = -8;
+	pixel_y = 4
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 6
+	},
+/turf/open/floor/carpet/green,
+/area/ruin/unpowered)
+"Ip" = (
+/obj/structure/bookcase/random,
+/turf/open/floor/wood,
+/area/ruin/unpowered)
+"Iu" = (
+/turf/open/floor/plating/asteroid/whitesands/grass,
+/area/lavaland/surface/outdoors)
+"IV" = (
+/obj/effect/turf_decal/siding/wood,
+/turf/open/floor/wood{
+	icon_state = "wood-broken3"
+	},
+/area/ruin/unpowered)
+"Ja" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/tile/green{
+	color = "#99BB76";
+	alpha = 255
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 4;
+	color = "#99BB76";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/blood/gibs/core,
+/turf/open/floor/plasteel/white,
+/area/ruin/unpowered)
+"Jh" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/drinks/bottle/whiskey{
+	pixel_x = 16;
+	pixel_y = 12
+	},
+/obj/item/reagent_containers/food/drinks/bottle/vodka{
+	pixel_y = 12
+	},
+/obj/item/reagent_containers/food/drinks/bottle/cognac{
+	pixel_x = 8;
+	pixel_y = 4
+	},
+/obj/item/reagent_containers/food/drinks/bottle/gin{
+	pixel_x = -8;
+	pixel_y = 4
+	},
+/obj/effect/turf_decal/siding/wood,
+/turf/open/floor/carpet/green,
+/area/ruin/unpowered)
+"Jp" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/green/anticorner/contrasted{
+	dir = 1;
+	color = "#99BB76";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/white,
+/area/ruin/unpowered)
+"Jr" = (
+/obj/effect/turf_decal/siding/wood/end{
+	dir = 4
+	},
+/turf/open/floor/carpet/green,
+/area/ruin/unpowered)
+"Jy" = (
+/obj/structure/bed,
+/obj/structure/curtain,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/tile/green/opposingcorners{
+	color = "#99BB76";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/white,
+/area/ruin/unpowered)
+"JK" = (
+/obj/structure/flora/rock,
+/turf/open/floor/plating/asteroid/whitesands/dried,
+/area/lavaland/surface/outdoors)
+"JN" = (
+/obj/structure/bonfire/prelit,
+/obj/effect/turf_decal/siding/wood,
+/turf/open/floor/wood,
+/area/ruin/unpowered)
+"JP" = (
+/obj/structure/flora/rock/jungle,
+/turf/open/floor/grass,
+/area/ruin/unpowered)
+"Ki" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/tile/green/half{
+	dir = 4;
+	color = "#99BB76";
+	alpha = 255
+	},
+/obj/effect/turf_decal/tile/green/half{
+	dir = 8;
+	color = "#99BB76";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/white,
+/area/ruin/unpowered)
+"Kn" = (
+/obj/structure/flora/ash/puce,
+/turf/open/floor/plating/asteroid/whitesands/dried{
+	light_range = 2
+	},
+/area/lavaland/surface/outdoors)
+"Kv" = (
+/obj/effect/decal/cleanable/dirt,
+/mob/living/basic/trooper/pirate/ranged,
+/turf/open/floor/wood,
+/area/ruin/unpowered)
+"KN" = (
+/obj/structure/table,
+/obj/item/storage/firstaid/regular{
+	pixel_y = 12
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/food/soup,
+/obj/item/storage/pill_bottle/bicaridine{
+	pixel_x = 12;
+	pixel_y = 8
+	},
+/obj/effect/turf_decal/tile/green/anticorner/contrasted{
+	dir = 1;
+	color = "#99BB76";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/white,
+/area/ruin/unpowered)
+"Li" = (
+/obj/structure/flora/ash/tall_shroom,
+/turf/open/floor/plating/asteroid/whitesands{
+	light_range = 2
+	},
+/area/lavaland/surface/outdoors)
+"Ly" = (
+/mob/living/basic/trooper/pirate/melee,
+/turf/open/floor/plating,
+/area/lavaland/surface/outdoors)
+"LB" = (
+/mob/living/basic/trooper/pirate/melee{
+	desc = "Największy kucharz po tej stronie pustkowi.";
+	name = "Margaryna";
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/turf/open/floor/carpet/green,
+/area/ruin/unpowered)
+"LP" = (
+/obj/structure/guncase,
+/obj/item/gun/ballistic/automatic/wt550,
+/turf/open/floor/wood,
+/area/ruin/unpowered)
+"LU" = (
+/obj/structure/window/reinforced/fulltile,
+/obj/structure/grille,
+/obj/structure/curtain,
+/turf/open/floor/plating,
+/area/ruin/unpowered)
+"Mc" = (
+/turf/open/floor/carpet/orange,
+/area/ruin/unpowered)
+"MF" = (
+/mob/living/basic/trooper/pirate/ranged,
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered)
+"MP" = (
+/turf/open/floor/plating/asteroid/whitesands,
+/area/lavaland/surface/outdoors)
+"MS" = (
+/obj/item/plant_tray/soil,
+/turf/open/floor/grass,
+/area/ruin/unpowered)
+"MV" = (
+/obj/structure/table/wood/fancy/blue,
+/turf/open/floor/carpet/orange,
+/area/ruin/unpowered)
+"MW" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/reagent_dispensers/fueltank,
+/turf/open/floor/wood,
+/area/ruin/unpowered)
+"MY" = (
+/obj/machinery/recharge_station,
+/turf/open/floor/carpet/red,
+/area/ruin/unpowered)
+"NO" = (
+/obj/structure/flora/ash/tall_shroom,
+/turf/open/floor/plating/asteroid/whitesands,
+/area/lavaland/surface/outdoors)
+"NU" = (
+/turf/open/floor/wood{
+	icon_state = "wood-broken3"
+	},
+/area/ruin/unpowered)
+"NX" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 5
+	},
+/obj/effect/turf_decal/tile/green/half{
+	dir = 1;
+	color = "#99BB76";
+	alpha = 255
+	},
+/obj/structure/sign/departments/medbay/alt{
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel/white,
+/area/ruin/unpowered)
+"Om" = (
+/turf/open/floor/wood{
+	icon_state = "wood-broken7"
+	},
+/area/ruin/unpowered)
+"Op" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered)
+"Or" = (
+/obj/structure/bonfire/prelit,
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/turf/open/floor/wood{
+	icon_state = "wood-broken2"
+	},
+/area/ruin/unpowered)
+"OF" = (
+/obj/structure/statue/snow/snowman,
+/turf/open/floor/plating/asteroid/snow/whitesands,
+/area/lavaland/surface/outdoors)
+"OQ" = (
+/obj/structure/table/wood,
+/obj/item/food/meat/steak/meatproduct,
+/turf/open/floor/wood,
+/area/ruin/unpowered)
+"OV" = (
+/obj/structure/flora/rock/jungle,
+/obj/structure/bonfire/prelit,
+/turf/open/floor/grass,
+/area/ruin/unpowered)
+"Pj" = (
+/obj/structure/flora/ash/stem_shroom,
+/turf/open/floor/plating/asteroid/whitesands,
+/area/lavaland/surface/outdoors)
+"PM" = (
+/turf/open/floor/wood{
+	icon_state = "wood-broken2"
+	},
+/area/ruin/unpowered)
+"QL" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/drinks/drinkingglass{
+	pixel_x = 8;
+	pixel_y = 2
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass{
+	pixel_x = -6;
+	pixel_y = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered)
+"Rk" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 6
+	},
+/turf/open/floor/carpet/blue,
+/area/ruin/unpowered)
+"Ru" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 10
+	},
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered)
+"RG" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/table,
+/obj/item/ammo_box/magazine/m45{
+	pixel_x = -4;
+	pixel_y = 6
+	},
+/obj/item/ammo_box/magazine/m45{
+	pixel_x = -10;
+	pixel_y = 6
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered)
+"Sb" = (
+/obj/structure/flora/rock,
+/turf/open/floor/plating/asteroid/whitesands{
+	light_range = 2
+	},
+/area/lavaland/surface/outdoors)
+"Sd" = (
+/turf/closed/wall,
+/area/ruin/unpowered)
+"Sh" = (
+/obj/structure/flora/grass/jungle/b,
+/obj/item/cultivator,
+/turf/open/floor/grass,
+/area/ruin/unpowered)
+"Sn" = (
+/turf/open/floor/grass,
+/area/ruin/unpowered)
+"So" = (
+/obj/item/ammo_casing/shotgun/improvised,
+/obj/item/ammo_casing/shotgun/improvised,
+/obj/item/ammo_casing/shotgun/improvised,
+/obj/item/ammo_casing/shotgun/improvised,
+/obj/item/ammo_casing/shotgun/improvised,
+/obj/item/ammo_casing/shotgun/improvised,
+/obj/item/ammo_casing/shotgun/improvised,
+/obj/structure/closet/secure_closet,
+/obj/item/ammo_box/magazine/wt550m9,
+/obj/item/ammo_box/magazine/wt550m9,
+/obj/item/flashlight/seclite,
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered)
+"SD" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 9
+	},
+/turf/open/floor/carpet/blue,
+/area/ruin/unpowered)
+"Td" = (
+/obj/structure/barricade/wooden,
+/turf/open/floor/plating/asteroid/whitesands{
+	light_range = 2
+	},
+/area/lavaland/surface/outdoors)
+"Tj" = (
+/obj/structure/barricade/sandbags,
+/turf/open/floor/plating/asteroid/whitesands,
+/area/lavaland/surface/outdoors)
+"Tm" = (
+/obj/structure/barricade/sandbags,
+/turf/open/floor/plating/asteroid/whitesands/grass,
+/area/lavaland/surface/outdoors)
+"TF" = (
+/mob/living/basic/trooper/pirate/ranged,
+/turf/open/floor/plating/asteroid/whitesands/grass,
+/area/lavaland/surface/outdoors)
+"Uk" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/wood/corner,
+/turf/open/floor/carpet/green,
+/area/ruin/unpowered)
+"Uu" = (
+/obj/effect/decal/cleanable/blood,
+/obj/effect/turf_decal/tile/green/half{
+	dir = 4;
+	color = "#99BB76";
+	alpha = 255
+	},
+/obj/effect/turf_decal/tile/green/half{
+	dir = 8;
+	color = "#99BB76";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/white,
+/area/ruin/unpowered)
+"UQ" = (
+/obj/structure/flora/rock,
+/turf/open/floor/plating/asteroid/whitesands,
+/area/lavaland/surface/outdoors)
+"VW" = (
+/obj/structure/table/wood,
+/obj/item/food/spaghetti/pastatomato{
+	pixel_y = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered)
+"VZ" = (
+/obj/structure/flora/stump,
+/turf/open/floor/plating/asteroid/whitesands/grass,
+/area/lavaland/surface/outdoors)
+"Wq" = (
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered)
+"WO" = (
+/obj/structure/flora/ash/fern,
+/turf/open/floor/plating/asteroid/whitesands/grass,
+/area/lavaland/surface/outdoors)
+"Xb" = (
+/obj/structure/mineral_door/iron,
+/turf/open/floor/wood,
+/area/ruin/unpowered)
+"Xq" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/drinks/sillycup/smallcarton{
+	pixel_x = 9;
+	pixel_y = 7
+	},
+/obj/item/cigbutt{
+	pixel_x = -8;
+	pixel_y = 11
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered)
+"Xz" = (
+/obj/structure/flora/junglebush/b,
+/obj/item/reagent_containers/glass/bucket,
+/turf/open/floor/grass,
+/area/ruin/unpowered)
+"XU" = (
+/obj/item/shovel,
+/turf/open/floor/grass,
+/area/ruin/unpowered)
+"Yg" = (
+/mob/living/simple_animal/bot/secbot{
+	faction = list("hermit");
+	name = "Karmazynowy Król"
+	},
+/obj/structure/curtain,
+/turf/open/floor/carpet/red,
+/area/ruin/unpowered)
+"Yi" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered)
+"Yj" = (
+/obj/structure/bonfire/prelit,
+/turf/open/floor/plating/asteroid/whitesands,
+/area/lavaland/surface/outdoors)
+"Yk" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/drinks/bottle/kahlua{
+	pixel_y = 12
+	},
+/obj/item/reagent_containers/food/drinks/bottle/trappist{
+	pixel_x = 16;
+	pixel_y = 12
+	},
+/obj/item/reagent_containers/food/drinks/soda_cans/cola{
+	pixel_x = 8;
+	pixel_y = 4
+	},
+/obj/effect/turf_decal/siding/wood,
+/turf/open/floor/carpet/green,
+/area/ruin/unpowered)
+"Ys" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 5
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered)
+"YL" = (
+/obj/structure/flora/rock/jungle,
+/obj/structure/flora/grass/jungle/b,
+/turf/open/floor/grass,
+/area/ruin/unpowered)
+"ZI" = (
+/obj/structure/flora/grass/jungle/b,
+/obj/structure/flora/grass/jungle/b,
+/turf/open/floor/grass,
+/area/ruin/unpowered)
+"ZN" = (
+/obj/structure/bed,
+/obj/structure/curtain,
+/obj/effect/decal/cleanable/dirt,
+/mob/living/basic/trooper/pirate/melee{
+	desc = " Postać o dzikim spojrzeniu, w podartym sprzęcie górniczym i ze zniekształconym ciałem."
+	},
+/obj/effect/turf_decal/tile/green/opposingcorners{
+	color = "#99BB76";
+	alpha = 255
+	},
+/obj/item/reagent_containers/syringe{
+	pixel_x = -11
+	},
+/turf/open/floor/plasteel/white,
+/area/ruin/unpowered)
+"ZP" = (
+/turf/open/floor/plating/asteroid/whitesands/dried{
+	light_range = 2
+	},
+/area/lavaland/surface/outdoors)
+
+(1,1,1) = {"
+jj
+jj
+jj
+jj
+jj
+jj
+MP
+Pj
+Tj
+Ge
+Ge
+MP
+MP
+MP
+jj
+jj
+jj
+jj
+jj
+jj
+jj
+jj
+MP
+MP
+MP
+MP
+jj
+jj
+jj
+jj
+"}
+(2,1,1) = {"
+jj
+jj
+jj
+jj
+jj
+jj
+jj
+MP
+Ge
+nn
+hE
+MP
+ud
+ud
+ud
+ud
+ud
+ud
+ud
+jj
+jj
+jj
+GP
+kh
+MP
+MP
+MP
+jj
+jj
+jj
+"}
+(3,1,1) = {"
+jj
+jj
+jj
+jj
+jj
+jj
+jj
+hE
+Ge
+hE
+nO
+hE
+ud
+pG
+rY
+Om
+Cj
+LP
+ud
+ud
+GP
+GP
+GP
+MP
+MP
+MP
+MP
+MP
+MP
+jj
+"}
+(4,1,1) = {"
+jj
+jj
+jj
+jj
+jj
+jj
+MP
+GP
+hE
+hE
+OF
+hE
+ud
+fQ
+mb
+cK
+kM
+gI
+RG
+ud
+GP
+sn
+CC
+CC
+aB
+CC
+Eu
+CC
+CC
+jj
+"}
+(5,1,1) = {"
+jj
+jj
+jj
+jj
+jj
+jj
+MP
+aB
+JK
+hE
+hE
+MP
+ud
+pG
+dT
+cK
+PM
+Kv
+fX
+ud
+MP
+aB
+aB
+tA
+ZP
+ZP
+CC
+CC
+CC
+jj
+"}
+(6,1,1) = {"
+jj
+jj
+jj
+jj
+jj
+MP
+MP
+MP
+GP
+hE
+MP
+MP
+ud
+ud
+ud
+cK
+cK
+qG
+uE
+ud
+uQ
+ZP
+CC
+aB
+ZP
+aB
+aB
+CC
+CC
+jj
+"}
+(7,1,1) = {"
+jj
+jj
+jj
+jj
+jj
+MP
+tA
+MP
+GP
+GP
+AD
+MP
+py
+ud
+nd
+PM
+cK
+ud
+ud
+ud
+MP
+aB
+CC
+ZP
+ZP
+ZP
+aB
+tA
+ZP
+CC
+"}
+(8,1,1) = {"
+jj
+jj
+jj
+jj
+jj
+MP
+MP
+aB
+MP
+GP
+GP
+ud
+ud
+ud
+ud
+cK
+hi
+MW
+ud
+MP
+MP
+CC
+CC
+aB
+aB
+aB
+CC
+CC
+aB
+ZP
+"}
+(9,1,1) = {"
+jj
+jj
+jj
+jj
+jj
+MP
+aB
+MP
+MP
+mO
+GP
+ud
+So
+da
+cR
+nq
+qj
+gv
+HG
+MP
+MP
+Eu
+Sb
+ZP
+CC
+tA
+ZP
+Kn
+CC
+ZP
+"}
+(10,1,1) = {"
+jj
+jj
+jj
+jj
+MP
+MP
+MP
+NO
+MP
+MP
+GP
+ud
+tm
+dp
+xc
+qG
+Cj
+iU
+HG
+MP
+ii
+CC
+ZP
+ZP
+aB
+ZP
+ZP
+aB
+CC
+jj
+"}
+(11,1,1) = {"
+jj
+jj
+jj
+jj
+aB
+MP
+GP
+GP
+MP
+Sd
+Sd
+Sd
+Sd
+Sd
+Sd
+Sd
+js
+Cj
+ud
+MP
+MP
+CC
+CC
+CC
+CC
+CC
+ZP
+CC
+CC
+jj
+"}
+(12,1,1) = {"
+jj
+jj
+jj
+jj
+jj
+GP
+GP
+Sd
+Sd
+Sd
+Sn
+Sn
+Sn
+Sn
+Sn
+Sn
+Ys
+dd
+Sd
+wu
+MP
+Td
+Li
+CC
+Am
+CC
+aB
+aB
+CC
+jj
+"}
+(13,1,1) = {"
+jj
+jj
+jj
+jj
+jj
+jj
+jj
+Sd
+Sn
+Sn
+Sn
+ao
+Sn
+EC
+Sn
+EC
+EC
+Sn
+Sd
+GP
+MP
+ZP
+CC
+Td
+CC
+ZP
+CC
+CC
+jj
+jj
+"}
+(14,1,1) = {"
+jj
+jj
+jj
+jj
+jj
+jj
+Sd
+Sd
+ge
+Sn
+Sn
+Sn
+JP
+sl
+wE
+YL
+mB
+xj
+Sd
+Sd
+MP
+Yj
+Tj
+Tj
+ZP
+kh
+ZP
+jj
+jj
+jj
+"}
+(15,1,1) = {"
+jj
+jj
+jj
+jj
+jj
+jj
+Sd
+ge
+Sn
+xj
+Sn
+Sn
+MS
+MS
+MS
+Sh
+ge
+Sn
+zs
+Sd
+MP
+MP
+MP
+qr
+Tj
+MP
+jj
+jj
+jj
+jj
+"}
+(16,1,1) = {"
+jj
+jj
+jj
+jj
+jj
+Sd
+Sd
+zs
+Sn
+Sn
+sl
+Sd
+Sd
+Sd
+Sd
+sl
+Sn
+ge
+Sn
+Sd
+Sd
+GP
+MP
+MP
+Tj
+MP
+MP
+MP
+jj
+jj
+"}
+(17,1,1) = {"
+jj
+jj
+jj
+jj
+jj
+Sd
+zs
+Sn
+ge
+Sd
+Sd
+Sd
+Gl
+sz
+Sd
+Sd
+Sd
+Sn
+Sn
+xk
+Sd
+GP
+MP
+MP
+MP
+MP
+MP
+MP
+MP
+jj
+"}
+(18,1,1) = {"
+jj
+jj
+jj
+jj
+jj
+Sd
+Sn
+ge
+ge
+Sd
+Ip
+qM
+qM
+qA
+qM
+Ip
+Sd
+sl
+ge
+ge
+Sd
+Sd
+ud
+GP
+GP
+MP
+Tj
+Tj
+kh
+jj
+"}
+(19,1,1) = {"
+jj
+jj
+jj
+jj
+jj
+Sd
+Sn
+OV
+Sd
+Sd
+MF
+qM
+Mc
+Mc
+qM
+cx
+Sd
+Sd
+Sn
+ge
+bW
+ud
+ud
+ud
+ud
+Yj
+MP
+Tj
+MP
+jj
+"}
+(20,1,1) = {"
+jj
+jj
+jj
+jj
+jj
+Sd
+Sn
+Sn
+cx
+cx
+cx
+Mc
+lQ
+Bf
+Mc
+cx
+Yg
+Sd
+Sn
+Sn
+Yi
+gI
+Xb
+cK
+DG
+MP
+MP
+Tj
+MP
+jj
+"}
+(21,1,1) = {"
+jj
+jj
+jj
+jj
+jj
+Sd
+Sn
+Sn
+cx
+cx
+cx
+Mc
+MV
+tc
+Mc
+cx
+MY
+Sd
+Sn
+Sn
+hW
+cK
+Xb
+iU
+DG
+MP
+MP
+MP
+MP
+jj
+"}
+(22,1,1) = {"
+jj
+jj
+jj
+jj
+jj
+Sd
+Sn
+sl
+Sd
+Sd
+MF
+qM
+Mc
+Mc
+qM
+cx
+Sd
+Sd
+EC
+ZI
+ts
+ud
+ud
+ud
+ud
+MP
+MP
+Tj
+MP
+jj
+"}
+(23,1,1) = {"
+jj
+jj
+jj
+jj
+jj
+Sd
+Sn
+ge
+JP
+Sd
+Ip
+qM
+qM
+qA
+qM
+Ip
+Sd
+sl
+EC
+Sn
+Sd
+Sd
+ud
+MP
+Yj
+MP
+MP
+Tj
+MP
+jj
+"}
+(24,1,1) = {"
+jj
+jj
+jj
+jj
+jj
+Sd
+Sn
+ge
+ge
+Sd
+Sd
+Sd
+ij
+Gl
+Sd
+Sd
+Sd
+Sn
+Sn
+zs
+Sd
+Bb
+GP
+MP
+MP
+tJ
+Tj
+Tj
+MP
+jj
+"}
+(25,1,1) = {"
+jj
+jj
+jj
+jj
+jj
+Sd
+Sd
+Sn
+xj
+Sn
+sl
+Sd
+Sd
+Sd
+Sd
+sl
+Sn
+Sn
+xk
+Sd
+Sd
+Bb
+GP
+GP
+py
+Tj
+Tj
+MP
+jj
+jj
+"}
+(26,1,1) = {"
+jj
+jj
+jj
+jj
+jj
+jj
+Sd
+mB
+mB
+Sn
+Sn
+MS
+MS
+MS
+Sn
+mB
+Sn
+JP
+Sn
+Sd
+MP
+GP
+GP
+MP
+MP
+MP
+jj
+jj
+jj
+jj
+"}
+(27,1,1) = {"
+jj
+jj
+ud
+ud
+Sd
+Sd
+Sd
+Sd
+iA
+Sn
+Sn
+Gd
+XU
+sl
+Sn
+JP
+Sn
+Sn
+Sn
+Sd
+MP
+MP
+MP
+Tj
+MP
+MP
+MP
+MP
+MP
+jj
+"}
+(28,1,1) = {"
+jj
+ud
+ud
+jJ
+VW
+ye
+lw
+Wq
+re
+Sn
+Sn
+Sn
+Sn
+Sn
+xk
+Xz
+Sn
+Dn
+Ay
+ud
+GP
+MP
+ji
+Tj
+MP
+Iu
+Iu
+Iu
+MP
+jj
+"}
+(29,1,1) = {"
+jj
+ud
+cK
+NU
+sq
+cK
+uc
+nA
+aX
+Ru
+Sn
+zs
+Sn
+xj
+Sn
+zs
+EC
+lj
+Ay
+ud
+ud
+GP
+MP
+GP
+Iu
+rx
+Iu
+WO
+Iu
+MP
+"}
+(30,1,1) = {"
+ud
+ud
+gI
+JN
+ud
+Or
+CN
+dG
+Fb
+Sd
+Sd
+Sd
+Sd
+Sd
+Sd
+Sd
+Sd
+NX
+Ea
+xZ
+HG
+GP
+GP
+Iu
+Iu
+Iu
+Iu
+Tm
+Iu
+MP
+"}
+(31,1,1) = {"
+ud
+xF
+cK
+cK
+Op
+cK
+hV
+qm
+rK
+dh
+ud
+GP
+GP
+ud
+KN
+pL
+dC
+xU
+Be
+Fp
+HG
+GP
+GP
+VZ
+Iu
+Iu
+TF
+Tm
+Iu
+MP
+"}
+(32,1,1) = {"
+ud
+iU
+jJ
+eG
+SD
+sN
+xH
+Xq
+rM
+rF
+ud
+GP
+JK
+ud
+hC
+yF
+mo
+sQ
+bm
+Fp
+HG
+GP
+MP
+Iu
+WO
+Iu
+Tm
+Tm
+Iu
+MP
+"}
+(33,1,1) = {"
+ud
+qG
+eU
+hF
+Hn
+fC
+CN
+OQ
+rM
+qd
+ud
+jf
+GP
+ud
+ud
+ud
+iQ
+zn
+Jp
+rT
+ud
+mX
+Bb
+MP
+Iu
+Iu
+Iu
+Iu
+MP
+MP
+"}
+(34,1,1) = {"
+ud
+ud
+vG
+FR
+Gw
+Rk
+xH
+ri
+rM
+Yk
+LU
+ji
+GP
+MP
+MP
+ud
+ud
+ni
+Ja
+bS
+ud
+tv
+vd
+uA
+yl
+Bb
+Iu
+rx
+MP
+jj
+"}
+(35,1,1) = {"
+jj
+ud
+xF
+NU
+sq
+PM
+xH
+CS
+LB
+Dv
+LU
+ji
+MP
+MP
+MP
+MP
+ud
+tF
+Ki
+Jy
+ud
+MP
+tv
+pP
+Ly
+wk
+Iu
+Iu
+MP
+jj
+"}
+(36,1,1) = {"
+jj
+ud
+ud
+JN
+ud
+bZ
+CN
+OQ
+rM
+Jh
+LU
+ji
+MP
+MP
+NO
+MP
+ud
+jk
+Uu
+dj
+ud
+tv
+MP
+tv
+MP
+nH
+WO
+Iu
+MP
+jj
+"}
+(37,1,1) = {"
+jj
+jj
+ud
+cK
+fE
+cK
+IV
+mT
+Uk
+Ie
+ud
+DW
+MP
+MP
+MP
+MP
+ud
+wF
+ql
+ZN
+ud
+MP
+nU
+MP
+tv
+nH
+Iu
+MP
+jj
+jj
+"}
+(38,1,1) = {"
+jj
+jj
+ud
+ud
+qG
+cK
+CN
+QL
+Jr
+ud
+ud
+GP
+GP
+MP
+UQ
+MP
+ud
+ud
+ud
+ud
+ud
+uP
+nH
+Bb
+MP
+MP
+MP
+MP
+jj
+jj
+"}
+(39,1,1) = {"
+jj
+jj
+jj
+ud
+HG
+HG
+HG
+ud
+ud
+ud
+GP
+bE
+GP
+jj
+MP
+jj
+jj
+hY
+jj
+jj
+jj
+MP
+kh
+MP
+NO
+MP
+MP
+jj
+jj
+jj
+"}
+(40,1,1) = {"
+jj
+jj
+jj
+jj
+jj
+jj
+jj
+jj
+jj
+jj
+GP
+GP
+GP
+jj
+jj
+jj
+jj
+jj
+jj
+jj
+jj
+jj
+MP
+MP
+MP
+MP
+jj
+jj
+jj
+jj
+"}

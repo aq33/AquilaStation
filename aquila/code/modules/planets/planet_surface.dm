@@ -124,39 +124,56 @@
 	return TRUE
 
 /// Wyznacza lądowiska: kwadraty 31 × 31 z gruntem bez lawy, skał i zwierząt (jak w Bayu). Najpierw szuka miejsc,
-/// które już są w większości przejezdne, a jeśli takich nie ma, czyści teren pod lądowisko.
+/// które już są w większości przejezdne, a jeśli takich nie ma, czyści teren pod lądowisko. Najpierw wybiera komplet
+/// miejsc, dopiero potem czyści teren: na małej powierzchni (planety karłowate) pierwsze lądowisko na środku blokowało
+/// resztę, więc kolejne podejścia zaczynają od rogu.
 /datum/planet_surface/proc/make_landing_zones(list/inner)
 	var/static/list/zone_names = list("Lądowisko Alfa", "Lądowisko Bravo", "Lądowisko Charlie", "Lądowisko Delta")
 	var/turf/bl = bottom_left()
 	var/radius = round(PLANET_LANDING_ZONE_SIZE / 2)
 	var/min_coord = PLANET_EDGE_WIDTH + radius + 2
 	var/max_coord = size - 1 - PLANET_EDGE_WIDTH - radius - 2
-	for(var/i in 1 to PLANET_LANDING_ZONES)
-		var/turf/best
-		var/best_score = -1
-		for(var/attempt in 1 to 60)
-			var/turf/candidate = locate(bl.x + rand(min_coord, max_coord), bl.y + rand(min_coord, max_coord), bl.z)
-			var/score = landing_zone_score(candidate, radius)
-			if(score > best_score)
-				best = candidate
-				best_score = score
-			CHECK_TICK
-		// Losowe próby nie trafiły w wolne miejsce (duża ruina, ciasno między lądowiskami): przegląd całej siatki
-		if(!best)
-			for(var/x_offset = min_coord; x_offset <= max_coord; x_offset += 5)
-				for(var/y_offset = min_coord; y_offset <= max_coord; y_offset += 5)
-					var/turf/candidate = locate(bl.x + x_offset, bl.y + y_offset, bl.z)
-					var/score = landing_zone_score(candidate, radius)
-					if(score > best_score)
-						best = candidate
-						best_score = score
-					CHECK_TICK
-		if(!best)
-			log_mapping("Planet [planet]: no room for landing zone [i] of [PLANET_LANDING_ZONES]")
-			continue
-		clear_landing_zone(best, radius)
-		landing_zones[best] = zone_names[i]
+	var/list/best_layout = list()
+	for(var/layout_attempt in 1 to 5)
+		landing_zones = list()
+		for(var/i in 1 to PLANET_LANDING_ZONES)
+			var/turf/best
+			var/best_score = -1
+			for(var/attempt in 1 to 60)
+				var/x_offset = rand(min_coord, max_coord)
+				var/y_offset = rand(min_coord, max_coord)
+				if(layout_attempt > 1 && i == 1)
+					x_offset = pick(min_coord, max_coord)
+					y_offset = pick(min_coord, max_coord)
+				var/turf/candidate = locate(bl.x + x_offset, bl.y + y_offset, bl.z)
+				var/score = landing_zone_score(candidate, radius)
+				if(score > best_score)
+					best = candidate
+					best_score = score
+				CHECK_TICK
+			// Losowe próby nie trafiły w wolne miejsce (duża ruina, ciasno między lądowiskami): przegląd całej siatki
+			if(!best)
+				for(var/x_offset = min_coord; x_offset <= max_coord; x_offset += 5)
+					for(var/y_offset = min_coord; y_offset <= max_coord; y_offset += 5)
+						var/turf/candidate = locate(bl.x + x_offset, bl.y + y_offset, bl.z)
+						var/score = landing_zone_score(candidate, radius)
+						if(score > best_score)
+							best = candidate
+							best_score = score
+						CHECK_TICK
+			if(!best)
+				break
+			landing_zones[best] = zone_names[i]
+		if(length(landing_zones) > length(best_layout))
+			best_layout = landing_zones
+		if(length(best_layout) >= PLANET_LANDING_ZONES)
+			break
+	landing_zones = list()
+	for(var/turf/zone as anything in best_layout)
+		clear_landing_zone(zone, radius)
+		landing_zones[zone] = best_layout[zone]
 	if(length(landing_zones) < PLANET_LANDING_ZONES)
+		log_mapping("Planet [planet]: only [length(landing_zones)] of [PLANET_LANDING_ZONES] landing zones fit")
 		message_admins("Planeta [planet]: wyznaczono tylko [length(landing_zones)] z [PLANET_LANDING_ZONES] lądowisk.")
 
 /// Ocena miejsca na lądowisko: ile pól jest już przejezdnych, -1 gdy za blisko innego lądowiska albo nachodzi na ruinę
