@@ -91,13 +91,18 @@
 		if(scenery_type)
 			add_planet(scenery_type)
 
-/// Stałe planety układów z mapy gwiezdnej: nazwa układu -> typy planet (według opisu i paralaksy układu)
-GLOBAL_LIST_INIT(fixed_planets_by_system, list(
-	"Tortuga" = list(/datum/planet_type/lava),
-	"Ethor" = list(/datum/planet_type/lava),
-	"Bemike" = list(/datum/planet_type/lava),
-	"Demon's Maw" = list(/datum/planet_type/lava),
-))
+/// Stałe planety układów z mapy gwiezdnej: nazwa układu -> typy planet. Zbierane z fixed_systems typów planet
+/// (według opisu i paralaksy układu), kolejność typów jak w subtypesof.
+GLOBAL_LIST_INIT(fixed_planets_by_system, init_fixed_planets_by_system())
+
+/proc/init_fixed_planets_by_system()
+	. = list()
+	// Kolejność inicjalizacji globali nie jest pewna: bez gotowych prototypów robimy własne
+	var/list/prototypes = GLOB.planet_type_prototypes || init_planet_type_prototypes()
+	for(var/planet_type in prototypes)
+		var/datum/planet_type/prototype = prototypes[planet_type]
+		for(var/system_name in prototype.fixed_systems)
+			LAZYADD(.[system_name], planet_type)
 
 /datum/controller/subsystem/star_system/Initialize(start_timeofday)
 	. = ..()

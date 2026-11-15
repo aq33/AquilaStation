@@ -159,6 +159,7 @@
 		var/picked = pick_planet_type_for_tags(list("demonstar"))
 		TEST_ASSERT(weights[picked], "[picked] was picked for a demon star system it doesn't fit")
 	TEST_ASSERT(pick_planet_type_for_tags(list("no_such_tag")), "A system with an unknown tag got no planet type")
+	TEST_ASSERT(/datum/planet_type/lava in GLOB.fixed_planets_by_system["Tortuga"], "Fixed planets from fixed_systems are missing (Tortuga has no volcanic planet)")
 
 	var/datum/overmap_objective/planet/deep_vein/deep_mission = new
 	for(var/i in 1 to 10)

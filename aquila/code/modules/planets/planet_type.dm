@@ -42,6 +42,8 @@
 	var/list/mission_veins
 	/// W jakich układach się pojawia: znacznik układu (tag z system_type albo parallax_property) -> waga
 	var/list/system_tags
+	/// Nazwane układy z mapy gwiezdnej, w których ta planeta stoi zawsze (nazwy jak w starmap.json)
+	var/list/fixed_systems
 	/// Ozdoba układu (gazowe olbrzymy): dochodzi obok zwykłej planety, a nie zamiast niej
 	var/scenery = FALSE
 	/// Czy misje planetarne (kolonia, rozpoznanie) mogą wybrać ten typ
@@ -102,6 +104,7 @@ GLOBAL_LIST_INIT(planet_type_prototypes, init_planet_type_prototypes())
 		"4" = /obj/structure/vein/lavaland/classfour,
 	)
 	system_tags = list("demonstar" = 3, "accretiondisk" = 3, "quasar" = 2, "supernova" = 2, "hazardous" = 1, "pirate" = 1)
+	fixed_systems = list("Tortuga", "Ethor", "Bemike", "Demon's Maw")
 
 /datum/planet_type/lava/get_ruin_templates()
 	return SSmapping.lava_ruins_templates
