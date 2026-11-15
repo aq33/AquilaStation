@@ -2334,6 +2334,7 @@
 #include "code\modules\unit_tests\aquila_emotki_rewolucja_misje.dm"
 #include "code\modules\unit_tests\aquila_derelict_ruin.dm"
 #include "code\modules\unit_tests\aquila_planets.dm"
+#include "code\modules\unit_tests\aquila_planet_fauna.dm"
 #include "code\modules\unit_tests\aquila_vein_drill.dm"
 #include "code\modules\unit_tests\aquila_anomaly_cores.dm"
 #include "code\modules\unit_tests\aquila_crystal_reagent.dm"
