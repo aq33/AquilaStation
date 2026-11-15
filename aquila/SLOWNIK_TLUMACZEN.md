@@ -3738,6 +3738,17 @@ Oznaczenia w kolumnie uwag:
 | squid | kałamarnica | ż; nowe (ryba) |
 | monkfish | żabnica | ż; nowe (ryba) |
 | lavaloop | pętlica lawowa | ż; nowe (ryba z lawy, tg) |
+| heartbeat (anomaly) | anomalia tętna | ż; nowe (Shiptest) |
+| sparkler (anomaly) | anomalia iskrząca | ż; nowe (Shiptest) |
+| static (anomaly) | anomalia szumu | ż; nowe (Shiptest); kłębek szumu (static blob) |
+| quantum blackbox | kwantowa czarna skrzynka | ż; nowe (Shiptest) |
+| fountain / veins (anomaly) | anomalia fontanny | ż; nowe (Shiptest) |
+| Fountain of Life | Fontanna Życia | ż; nowe (Shiptest, wariant fontanny w ruinach) |
+| phantom (anomaly) | anomalia widmowa | ż; nowe (Shiptest); widmowa dłoń (phantom hand) |
+| melter (anomaly) | anomalia topiąca | ż; nowe (Shiptest) |
+| transfusion (anomaly) | anomalia transfuzyjna | ż; nowe (Shiptest) |
+| chronograph (anomaly) | chronograf | m; nowe (Shiptest); efekt: przyspieszenie (accelerando) |
+| big / high (anomaly variants) | ogromna / silna anomalia … | nowe (Shiptest) |
 | Ramzi Clique | Klika Ramziego | ż; nowe (frakcja z ruin Shiptesta) |
 | Hardliners | Twardogłowi | m mn.; nowe (frakcja z ruin Shiptesta) |
 | Reisehund (Ramzi hound) | rajzehund | m; nowe |
