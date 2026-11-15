@@ -29,7 +29,7 @@
 		source = initial(example.name)
 	else if(originMachine)
 		source = originMachine.name
-	priority_announce("Agresywna sztuczna inteligencja została wykryta na pokładzie [station_name()]. Za źródło sygnału uważa się: [source].", "Alarm: Zagrożenie cybernetyczne", SSstation.announcer.get_rand_alert_sound())
+	priority_announce("Agresywna sztuczna inteligencja została wykryta na pokładzie [station_name()]. Za źródło sygnału uważa się: [source].", "Alarm: Zagrożenie cybernetyczne", 'aquila/sound/ai/events/brand_intelligence.ogg') // AQ EDIT - własne nagranie ogłoszenia
 
 /datum/round_event/brand_intelligence/start()
 	for(var/obj/machinery/vending/V in GLOB.machines)

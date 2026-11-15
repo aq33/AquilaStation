@@ -367,7 +367,7 @@
 	color = RUNE_COLOR_SUMMON
 	for(var/mob/living/carbon/C in hearers(10, src))
 		C.Stun(350, ignore_canstun = TRUE)
-	priority_announce("W waszym sektorze wykryto przejawy pradawnego boga. Zachowajcie najwyższą ostrożność i zawsze stosujcie „system par”.","Wydział Spraw Wyżej Wymiarowych Centrali", ANNOUNCER_SPANOMALIES)
+	priority_announce("W waszym sektorze wykryto przejawy pradawnego boga. Zachowajcie najwyższą ostrożność i zawsze stosujcie „system par”.","Wydział Spraw Wyżej Wymiarowych Centrali", 'aquila/sound/ai/events/ancient_god.ogg') // AQ EDIT - własne nagranie ogłoszenia
 	message_admins("Ktoś aktywuje niebezpieczną runę cluwne w [AREACOORD(src)][ADMIN_COORDJMP(src)]")
 	log_game("A dangerous cluwne rune was invoked at [AREACOORD(src)][ADMIN_COORDJMP(src)]")
 	stoplag(315)

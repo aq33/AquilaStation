@@ -11,7 +11,7 @@
 /datum/round_event/gremlin
 
 /datum/round_event/gremlin/announce(fake)
-	priority_announce("Bioskany wskazują, że przez wentylację na pokład [station_name()] dostały się gremliny. Zajmijcie się nimi!", "Alarm: gremliny")
+	priority_announce("Bioskany wskazują, że przez wentylację na pokład [station_name()] dostały się gremliny. Zajmijcie się nimi!", "Alarm: gremliny", sound = 'aquila/sound/ai/events/gremlins.ogg')
 
 /datum/round_event/gremlin/start()
 	var/list/spawn_locs = list()

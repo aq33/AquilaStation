@@ -12,7 +12,7 @@
 	announceWhen = 1
 
 /datum/round_event/asteroid_impact/announce(fake)
-	priority_announce("Wykryto asteroidę klasy A na kursie kolizyjnym ze statkiem. Zniszczenie statku jest nieuniknione.", "Alarm meteorytowy", SSstation.announcer.get_rand_alert_sound())
+	priority_announce("Wykryto asteroidę klasy A na kursie kolizyjnym ze statkiem. Zniszczenie statku jest nieuniknione.", "Alarm meteorytowy", 'aquila/sound/ai/events/asteroid_impact.ogg') // AQ EDIT - własne nagranie ogłoszenia
 	if(!fake)
 		set_security_level(SEC_LEVEL_DELTA)
 		var/area/A = GLOB.areas_by_type[/area/centcom]
