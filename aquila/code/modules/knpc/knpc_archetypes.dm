@@ -22,7 +22,8 @@
 	suit_store = /obj/item/tank/internals/oxygen
 	internals_slot = ITEM_SLOT_SUITSTORE
 	back = /obj/item/storage/backpack/duffelbag/syndie
-	backpack_contents = list(/obj/item/gun/ballistic/automatic/c20r = 1, /obj/item/ammo_box/magazine/smgm45 = 4, /obj/item/grenade/flashbang = 1)
+	r_hand = /obj/item/gun/ballistic/automatic/c20r // w ręce: find_carried_gun przegląda kieszenie przed plecakiem
+	backpack_contents = list(/obj/item/ammo_box/magazine/smgm45 = 4, /obj/item/grenade/flashbang = 1)
 	tc = 0
 	can_be_admin_equipped = FALSE
 
@@ -84,7 +85,8 @@
 	suit_store = /obj/item/tank/internals/oxygen
 	internals_slot = ITEM_SLOT_SUITSTORE
 	back = /obj/item/storage/backpack/duffelbag/syndie
-	backpack_contents = list(/obj/item/gun/ballistic/automatic/c20r = 1, /obj/item/ammo_box/magazine/smgm45 = 5, /obj/item/reagent_containers/hypospray/medipen/survival = 2, /obj/item/documents/syndicate/red = 1)
+	r_hand = /obj/item/gun/ballistic/automatic/c20r
+	backpack_contents = list(/obj/item/ammo_box/magazine/smgm45 = 5, /obj/item/reagent_containers/hypospray/medipen/survival = 2, /obj/item/documents/syndicate/red = 1)
 	tc = 0
 	can_be_admin_equipped = FALSE
 

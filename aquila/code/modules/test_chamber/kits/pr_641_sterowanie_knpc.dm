@@ -8,7 +8,7 @@
 	2) Klik w Hamulec, Ster i Broń → stan się zmienia i napis na pasku też. Alt, C i spacja → pasek od razu pokazuje nowy stan. Klik w radar albo DRADIS → pełne okno DRADIS. Shift+klik na radar i pasek → opis w czacie. \
 	3) Katapulta: jeden klik → napis „Potwierdź katapultę!” na czerwono; negatyw: na pokładzie drugi klik daje odmowę jak dotąd. Po 5 s napis wraca. \
 	4) Wyjdź z myśliwca → radar i pasek znikają, ekwipunek wraca. Czasownik „Pokaż/ukryj panel konsoli” chowa radar i pasek. Preferencje → „Klasyczny panel sterowania” → po ponownym wejściu stary duży panel i samootwierające się okno DRADIS. \
-	5) KNPC: zbadaj każdego (examine) → szturmowiec w ODST z C-20r w plecaku, medyk z zieloną torbą medyczną, saper ze spawarką w ręce, wartownik ze strzelbą bojową w ręce, dowódca z czerwonymi dokumentami w plecaku. W walce medyk leczy rannego kolegę medipenem, saper rzuca granaty, a wartownik po opróżnieniu strzelby dobywa pistoletu."
+	5) KNPC: zbadaj każdego (examine) → szturmowiec w ODST z C-20r w ręce, medyk z zieloną torbą medyczną, saper ze spawarką w ręce, wartownik ze strzelbą bojową w ręce, dowódca z C-20r w ręce i czerwonymi dokumentami w plecaku. W walce medyk leczy rannego kolegę medipenem, saper rzuca granaty, a wartownik po opróżnieniu strzelby dobywa pistoletu."
 	items = list(
 		/obj/structure/overmap/small_craft/combat/light = 1,
 		/mob/living/carbon/human/ai_boarder/syndicate/assault = 1,

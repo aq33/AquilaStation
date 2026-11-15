@@ -7,7 +7,7 @@
 
 /datum/preferences/load_characters()
 	. = ..()
-	if(!.)
+	if(isnull(.)) // błąd bazy; FALSE to poprawny odczyt bez postaci i migrację trzeba zapisać od razu
 		return
 	if(!islist(keybind_migrations))
 		keybind_migrations = list()

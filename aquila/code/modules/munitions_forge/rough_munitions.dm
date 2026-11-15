@@ -34,6 +34,7 @@
 	. = ..()
 	if(aq_is_rough_munition(fired) && prob(AQ_ROUGH_JAM_CHANCE))
 		aq_jammed = TRUE
+		firing_burst = FALSE // zaplanowane strzały serii (process_burst) omijają process_fire
 		if(user)
 			balloon_alert(user, "zacięcie!")
 			to_chat(user, "<span class='warning'>[src] się zacina! Użyj broni w ręce, żeby ją odblokować.</span>")

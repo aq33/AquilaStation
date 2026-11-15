@@ -393,9 +393,18 @@ GLOBAL_LIST_INIT(energy_weapon_heat_states, icon_states('aquila/icons/obj/muniti
 	if(manual)
 		linked.last_fired = overlay
 	for(var/i in 1 to shots)
+		// w przerwie między strzałami broń mogła się przegrzać albo zacząć odprowadzać ciepło, a torpedy zginąć
+		if(i > 1 && !can_fire(target, 1))
+			break
+		var/list/live_targets = list()
+		for(var/atom/incoming as anything in targets)
+			if(!QDELETED(incoming))
+				live_targets += incoming
+		if(!length(live_targets))
+			break
 		do_animation()
 		local_fire()
-		overmap_fire(pick(targets))
+		overmap_fire(pick(live_targets))
 		charge -= charge_per_shot
 		after_fire()
 		. = TRUE

@@ -21319,7 +21319,7 @@
 "<span class='notice'>Ma samoczynny układ chłodzenia i nanoogniskowanie wiązki, nie wymaga serwisu.</span>": "<span class='notice'>It has an autonomic thermal management system and nano-centered beam focusing, so it needs no maintenance.</span>",
 "<span class='notice'>Ma włożoną [aq_insert.name] ([aq_insert.insert_integrity]/[aq_insert.insert_max_integrity]). Wyjmiesz ją śrubokrętem.</span>": "<span class='notice'>It holds [aq_insert.name] ([aq_insert.insert_integrity]/[aq_insert.insert_max_integrity]). A screwdriver takes it out.</span>",
 "<span class='notice'>Multitoolem ustawisz soczewki, a ręką wpiszesz sekwencję strojenia.</span>": "<span class='notice'>Use a multitool to align the lenses and your hand to enter the tuning sequence.</span>",
-"<span class='notice'>Najpierw <i>odkręć</i> kluczem wewnętrzną obudowę, żeby dostać się do soczewek!</span>": "<span class='notice'>You must <i>unbolt</i> the protective casing before aligning the lenses!</span>",
+"<span class='notice'>Najpierw <i>odkręć</i> kluczem wewnętrzną obudowę, żeby dostać się do soczewek!</span>": "<span class='notice'>You must <i>unbolt</i> the protective casing with a wrench before aligning the lenses!</span>",
 "<span class='notice'>Ochrona: [length(parts) ? jointext(parts, \", \") : \"żadna\"].</span>": "<span class='notice'>Protection: [length(parts) ? jointext(parts, \", \") : \"none\"].</span>",
 "<span class='notice'>Przekaźnik termiczny: podłączone urządzenia [length(cooling)]/[ENERGY_MAX_COOLING_LINKS].</span>": "<span class='notice'>Thermal transceiver: linked units [length(cooling)]/[ENERGY_MAX_COOLING_LINKS].</span>",
 "<span class='notice'>Soczewki [src] są ustawione.</span>": "<span class='notice'>The lenses of [src] are aligned.</span>",

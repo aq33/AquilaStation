@@ -880,7 +880,11 @@
 	return squads
 
 /datum/preference/choiced/squad/get_display_names()
-	return list(SQUAD_PREF_AUTO = "Automatycznie")
+	// niepuste display_names wyłącza w oknie nazwy zastępcze, więc etykietę musi mieć każda drużyna
+	. = list()
+	for(var/choice in get_choices())
+		.[choice] = choice
+	.[SQUAD_PREF_AUTO] = "Automatycznie"
 
 /datum/preference/choiced/lizard_hiss_style
 	db_key = "lizard_hiss_style"

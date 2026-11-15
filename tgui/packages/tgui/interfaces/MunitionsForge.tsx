@@ -163,7 +163,8 @@ export const MunitionsForge = (props) => {
                 </>
               ) : (
                 <Box color="label">
-                  Wypełnienia i zapalniki odlewa się zawsze z żelaza.
+                  Wypełnienia i zapalniki mają stałe receptury. Wymagane
+                  materiały pokazuje lista kosztów.
                 </Box>
               )}
               <Box color="label" mt={1} mb={0.5}>

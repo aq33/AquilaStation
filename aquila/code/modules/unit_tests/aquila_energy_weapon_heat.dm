@@ -56,6 +56,10 @@
 	TEST_ASSERT(weapon.can_fire(null, 0), "Sprawna broń nie może strzelać")
 	reset_room_air()
 
+/datum/unit_test/aquila_energy_weapon_heat/Destroy()
+	reset_room_air() // także po nieudanej asercji, która przerywa Run() przed resetem
+	return ..()
+
 /// Przywraca sali testowej początkowe powietrze (overload() wypuszcza 200 moli pary o 1000 K)
 /datum/unit_test/aquila_energy_weapon_heat/proc/reset_room_air()
 	for(var/turf/open/room_turf in block(run_loc_floor_bottom_left, run_loc_floor_top_right))

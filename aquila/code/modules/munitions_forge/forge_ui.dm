@@ -37,11 +37,18 @@ GLOBAL_LIST_INIT(aq_forge_products, init_aq_forge_products())
 		if(ispath(product, GLOB.aq_forge_groups[group]))
 			return GLOB.aq_forge_groups[group]
 
-/// Czy piec może już odlewać ten wyrób (wyrób z listy i zbadany węzeł grupy)
+/// Czy to wyrób z katalogu pieca (typ bazowy grupy albo korpus bez wyrobu nim nie jest)
+/proc/aq_forge_is_product(product)
+	for(var/group in GLOB.aq_forge_products)
+		if(product in GLOB.aq_forge_products[group])
+			return TRUE
+	return FALSE
+
+/// Czy piec może już odlewać ten wyrób (wyrób z katalogu i zbadany węzeł grupy)
 /proc/aq_forge_product_available(product)
-	var/root = aq_forge_group_root(product)
-	if(!root)
+	if(!aq_forge_is_product(product))
 		return FALSE
+	var/root = aq_forge_group_root(product)
 	var/node = GLOB.aq_forge_group_nodes[root]
 	if(!node)
 		return TRUE
@@ -133,7 +140,7 @@ GLOBAL_LIST_INIT(aq_forge_products, init_aq_forge_products())
 	switch(action)
 		if("select_product")
 			var/product = text2path(params["id"])
-			if(!aq_forge_group_root(product))
+			if(!aq_forge_is_product(product))
 				return TRUE
 			selected_product = product
 			return TRUE

@@ -63,8 +63,10 @@
 		parent.cooling -= src
 	parent = null
 
-/// Czy urządzenie teraz chłodzi (włączone, zasilone, sprawne, przykręcone)
+/// Czy urządzenie teraz chłodzi (włączone, zasilone, sprawne, przykręcone i w strefie zasilania broni)
 /obj/machinery/cooling/proc/is_working()
+	if(parent && get_area(parent) != get_area(src))
+		return FALSE
 	return on && anchored && !(machine_stat & (BROKEN|NOPOWER|MAINT))
 
 /obj/machinery/cooling/Destroy()
