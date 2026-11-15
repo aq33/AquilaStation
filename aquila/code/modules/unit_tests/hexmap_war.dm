@@ -485,51 +485,105 @@
 		return Fail(fail)
 	TEST_ASSERT(saved_count_ok && full, "The escort limit check is off")
 
-/// Nanotrasen przegrywa po HEX_WAR_END_ROUNDS rundach z kwaterą w rękach wroga (krótkie zajęcie się nie liczy, odbicie zeruje)
+/// Nanotrasen po HEX_WAR_END_ROUNDS rundach bez kwatery ewakuuje sztab na zaplecze, przegrywa dopiero po utracie także nowej
+/// kwatery; krótkie zajęcie się nie liczy, a tura z okrętem walczącym przy kwaterze nie idzie do rund bez kwatery
 /datum/unit_test/hexmap_war_campaign_end
 
 /datum/unit_test/hexmap_war_campaign_end/Run()
 	var/datum/hex_war/W = GLOB.hex_war
-	var/datum/star_system/hq
-	for(var/datum/star_system/S as anything in SSstar_system.systems)
-		if(S.owner == "nanotrasen" && S.has_facility(HEX_FAC_HQ))
-			hq = S
-			break
-	if(!hq)
-		return // No Nanotrasen headquarters on this map
+	var/datum/star_system/hq = W.nt_hq_system()
+	var/datum/star_system/fallback = SSstar_system.system_by_id(GLOB.hex_war_nt_fallbacks[1])
+	if(!hq || !fallback || fallback.owner != "nanotrasen")
+		return // No Nanotrasen headquarters or fallback on this map
 	var/list/saved_lost = W.hq_lost_rounds.Copy()
 	var/saved_alignment = hq.alignment
+	var/saved_fallback_alignment = fallback.alignment
+	var/list/saved_hq_facilities = LAZYCOPY(hq.war_facilities)
+	var/list/saved_fallback_facilities = LAZYCOPY(fallback.war_facilities)
+	var/list/saved_relocations = W.hq_relocations.Copy()
 	var/saved_turns = W.round_turns
 	var/list/saved_hostile = W.hq_hostile_turns.Copy()
 	var/saved_defeated = W.syndicate_defeated
+	var/saved_announce = W.pending_evac_announce
 	W.syndicate_defeated = FALSE
+	W.hq_relocations = list()
 	W.hq_lost_rounds = list("nanotrasen" = HEX_WAR_END_ROUNDS - 2)
 	W.round_turns = 0
 	W.hq_hostile_turns = list()
+	fallback.alignment = "nanotrasen"
 	hq.alignment = "syndicate"
 	var/first = W.round_end_tally()
-	var/second = W.round_end_tally()
-	hq.alignment = "nanotrasen"
-	W.round_end_tally()
-	var/after_retake = W.hq_lost_rounds["nanotrasen"]
+	var/evacuation = W.round_end_tally()
+	var/moved = fallback.has_facility(HEX_FAC_HQ) && !hq.has_facility(HEX_FAC_HQ)
+	// Nowa kwatera też w rękach wroga przez HEX_WAR_END_ROUNDS rund: teraz już przegrana
+	fallback.alignment = "syndicate"
+	var/loser
+	for(var/i in 1 to HEX_WAR_END_ROUNDS)
+		loser = W.round_end_tally()
+	// Okręt walczący przy zajętej kwaterze wstrzymuje licznik
+	W.round_turns = 0
+	W.hq_hostile_turns = list()
+	W.track_hq_control(fallback.hex)
+	var/paused = !W.hq_hostile_turns["nanotrasen"]
 	// Krótkie zajęcie w chwili zapisu nie liczy się, jeśli przez większość rundy kwatera była w rękach właściciela
 	W.hq_lost_rounds = list()
+	W.round_turns = 0
+	W.hq_hostile_turns = list()
+	fallback.alignment = "nanotrasen"
 	for(var/i in 1 to 4)
-		W.track_hq_control()
-	hq.alignment = "syndicate"
-	W.track_hq_control()
+		W.track_hq_control(null)
+	fallback.alignment = "syndicate"
+	W.track_hq_control(null)
 	W.round_end_tally()
 	var/after_blip = W.hq_lost_rounds["nanotrasen"]
 	W.hq_lost_rounds = saved_lost
+	W.hq_relocations = saved_relocations
 	W.round_turns = saved_turns
 	W.hq_hostile_turns = saved_hostile
 	W.syndicate_defeated = saved_defeated
+	W.pending_evac_announce = saved_announce
+	hq.war_facilities = saved_hq_facilities
+	fallback.war_facilities = saved_fallback_facilities
 	hq.alignment = saved_alignment
+	fallback.alignment = saved_fallback_alignment
 	TEST_ASSERT(first != "nanotrasen", "The war ended one round too early")
-	TEST_ASSERT_EQUAL(second, "nanotrasen", "Losing the headquarters for [HEX_WAR_END_ROUNDS] rounds did not end the war")
-	TEST_ASSERT_EQUAL(after_retake, 0, "Retaking the headquarters did not reset the count")
-	TEST_ASSERT_EQUAL(after_blip, 0, "A headquarters held for most of the round counted as lost because of the last turn")
+	TEST_ASSERT(!evacuation, "Losing the first headquarters ended the war instead of evacuating the staff")
+	TEST_ASSERT(moved, "The headquarters did not move to [fallback]")
+	TEST_ASSERT_EQUAL(loser, "nanotrasen", "Losing the evacuated headquarters as well did not end the war")
+	TEST_ASSERT(paused, "A turn with the ship fighting at the headquarters counted towards the defeat")
+	TEST_ASSERT(!after_blip, "A headquarters held for most of the round counted as lost because of the last turn")
 	TEST_ASSERT(findtext(hex_war_end_text("syndicate"), "Nanotrasen wygrywa"), "The end of the war names the wrong winner")
+
+/// Misja „Odbij kwaterę”: kończy się sukcesem po odbiciu, a nie blokuje końca rundy, gdy reszta misji jest zamknięta
+/datum/unit_test/hexmap_war_retake_mission
+
+/datum/unit_test/hexmap_war_retake_mission/Run()
+	var/datum/star_system/hq = GLOB.hex_war.nt_hq_system()
+	if(!hq)
+		return // No Nanotrasen headquarters on this map
+	var/saved_alignment = hq.alignment
+	var/datum/overmap_objective/aquila_retake_hq/mission = new
+	mission.target_system = hq
+	hq.alignment = "syndicate"
+	mission.check_completion()
+	var/open_status = mission.status
+	var/list/saved_objectives = SSovermap_mode.mode?.objectives?.Copy()
+	if(SSovermap_mode.mode)
+		SSovermap_mode.mode.objectives = list(mission)
+	mission.check_completion()
+	var/alone_status = mission.status
+	mission.status = 0
+	hq.alignment = "nanotrasen"
+	mission.check_completion()
+	var/done_status = mission.status
+	if(SSovermap_mode.mode)
+		SSovermap_mode.mode.objectives = saved_objectives
+	hq.alignment = saved_alignment
+	qdel(mission)
+	if(saved_objectives) // bez trybu overmapy nie ma innych misji do sprawdzenia
+		TEST_ASSERT_EQUAL(alone_status, 2, "The retake mission kept the round open with every other objective closed")
+	TEST_ASSERT_EQUAL(done_status, 1, "Retaking the headquarters did not complete the mission")
+	TEST_ASSERT(open_status == 0 || !saved_objectives, "The retake mission closed while the headquarters was still lost")
 
 /// Kwaterę Syndykatu zdobywa tylko okręt gracza: przy wrogiej flocie nic się nie dzieje, po HEX_WAR_PLAYER_CAPTURE_TURNS turach
 /// bez obrony wojna jest wygrana; sztaby AI nie biorą jej za cel

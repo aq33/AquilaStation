@@ -116,6 +116,7 @@ GLOBAL_LIST_INIT(hex_war_factions, list("nanotrasen", "solgov", "syndicate", "pi
 				launch_fleet(faction, sites[1])
 	restore_nuclear(saved)
 	ready = TRUE
+	apply_hq_relocations()
 	remove_occupied_garrisons()
 	reinforce_hq_garrisons()
 	announce_war_end()
@@ -156,8 +157,8 @@ GLOBAL_LIST_INIT(hex_war_factions, list("nanotrasen", "solgov", "syndicate", "pi
 			if(!QDELETED(F) && F.fleet_trait == FLEET_TRAIT_DEFENSE && hex_factions_allied(F.alignment, S.owner))
 				garrison = F
 				break
-		if(!garrison) // Abassi nie ma floty w starmap.json: kwatera bez obrony byłaby za łatwa dla gracza
-			garrison = S.spawn_fleet(/datum/fleet/light_defense)
+		if(!garrison) // Abassi nie ma floty w starmap.json, a nowa kwatera po ewakuacji NT też jej nie ma
+			garrison = S.spawn_fleet(S.owner == "nanotrasen" ? /datum/fleet/nanotrasen/border/defense : /datum/fleet/light_defense)
 			if(!garrison)
 				continue
 			garrison.alignment = S.owner
@@ -190,7 +191,9 @@ GLOBAL_LIST_INIT(hex_war_factions, list("nanotrasen", "solgov", "syndicate", "pi
 		staff(faction)
 	nuclear_turn()
 	mission_rewards()
-	track_hq_control()
+	var/datum/hex/ship_hex = SSstar_system.find_main_overmap()?.current_hex()
+	update_retake_mission(ship_hex)
+	track_hq_control(ship_hex)
 	track_player_capture()
 
 /// Floty sztabu frakcji (bez konwojów)

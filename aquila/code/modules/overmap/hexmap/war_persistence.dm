@@ -51,7 +51,7 @@
 	var/list/nuke_cooldown = list()
 	for(var/faction in nuke_built_at)
 		nuke_cooldown[faction] = max(0, nuke_built_at[faction] + HEX_WAR_NUKE_COOLDOWN - world.time)
-	return list("commanders" = commander_data, "fleets" = fleet_data, "stores" = stores, "next_id" = next_commander_id, "tension" = tension, "nuke_stocks" = nuke_stocks, "nuke_cooldown" = nuke_cooldown, "hq_lost" = hq_lost_rounds, "fortunes" = fortunes, "syndicate_defeated" = syndicate_defeated)
+	return list("commanders" = commander_data, "fleets" = fleet_data, "stores" = stores, "next_id" = next_commander_id, "tension" = tension, "nuke_stocks" = nuke_stocks, "nuke_cooldown" = nuke_cooldown, "hq_lost" = hq_lost_rounds, "fortunes" = fortunes, "syndicate_defeated" = syndicate_defeated, "hq_relocations" = hq_relocations, "evac_announce" = pending_evac_announce)
 
 /// Napięcie i zapasy atomówek z zapisu (niezależnie od tego, czy floty dało się odtworzyć)
 /datum/hex_war/proc/restore_nuclear(list/saved)
@@ -72,6 +72,11 @@
 				nuke_built_at[faction] = world.time + cooldown[faction] - HEX_WAR_NUKE_COOLDOWN
 	if(saved["syndicate_defeated"])
 		syndicate_defeated = TRUE
+	var/list/relocations = saved["hq_relocations"]
+	if(islist(relocations))
+		hq_relocations = relocations.Copy()
+	if(istext(saved["evac_announce"]))
+		pending_evac_announce = saved["evac_announce"]
 	var/list/saved_fortunes = saved["fortunes"]
 	if(islist(saved_fortunes))
 		for(var/faction in saved_fortunes)

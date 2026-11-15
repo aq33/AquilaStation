@@ -27,12 +27,16 @@ GLOBAL_LIST_INIT(hex_war_end_sides, list("nanotrasen"))
 			return TRUE
 	return FALSE
 
-/// Co turę: która strona ma kwaterę w rękach wroga (wołane w run_turn)
-/datum/hex_war/proc/track_hq_control()
+/// Co turę: która strona ma kwaterę w rękach wroga (wołane w run_turn). Tura, w której okręt gracza walczy przy kwaterze
+/// NT (w jej kaflu albo obok), nie liczy się do rund bez kwatery (war_retake.dm).
+/datum/hex_war/proc/track_hq_control(datum/hex/ship_hex)
 	round_turns++
 	for(var/faction in GLOB.hex_war_end_sides)
-		if(!hq_held(faction))
-			hq_hostile_turns[faction] = (hq_hostile_turns[faction] || 0) + 1
+		if(hq_held(faction))
+			continue
+		if(faction == "nanotrasen" && ship_defends(nt_hq_system(), ship_hex))
+			continue
+		hq_hostile_turns[faction] = (hq_hostile_turns[faction] || 0) + 1
 
 /// Czy strona straciła kwaterę w tej rundzie: wróg trzymał ją przez co najmniej połowę tur (bez tur: stan teraz)
 /datum/hex_war/proc/hq_lost_this_round(faction)
@@ -80,7 +84,12 @@ GLOBAL_LIST_INIT(hex_war_end_sides, list("nanotrasen"))
 			continue
 		hq_lost_rounds[faction] = (hq_lost_rounds[faction] || 0) + 1
 		log_game("HEXWAR: [faction] ends round [hq_lost_rounds[faction]] in a row without its headquarters")
-		if(!. && hq_lost_rounds[faction] >= HEX_WAR_END_ROUNDS)
+		if(hq_lost_rounds[faction] < HEX_WAR_END_ROUNDS)
+			continue
+		// Pierwsza utrata kwatery NT: ewakuacja sztabu na zaplecze zamiast przegranej (war_retake.dm)
+		if(faction == "nanotrasen" && evacuate_nt_hq())
+			continue
+		if(!.)
 			. = faction
 
 /// Tekst wyniku wojny dla graczy
