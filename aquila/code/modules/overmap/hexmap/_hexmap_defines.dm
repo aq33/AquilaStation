@@ -112,6 +112,8 @@
 #define HEX_WAR_DEFCON_LOCK (15 MINUTES)
 /// Tyle rund z rzędu bez kwatery głównej na koniec rundy kończy wojnę
 #define HEX_WAR_END_ROUNDS 2
+/// Okręt gracza zdobywa kwaterę Syndykatu, gdy stoi w niej bez wrogich flot przez tyle tur sztabów
+#define HEX_WAR_PLAYER_CAPTURE_TURNS 2
 /// Wynik zakończonej wojny, ogłaszany na starcie następnej rundy (nowej kampanii)
 #define HEX_WAR_END_FILE "data/hex_war_end.json"
 

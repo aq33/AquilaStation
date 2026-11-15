@@ -1,9 +1,10 @@
-// AQUILA - koniec kampanii wojny frakcji (raport/ftl_mapa_07): strona, która HEX_WAR_END_ROUNDS rund z rzędu kończy bez
-// kwatery głównej, przegrywa wojnę. Liczone przy zapisie kampanii na koniec rundy; wtedy powstaje kopia kampanii, mapa
-// gwiezdna wraca do domyślnej (jak „Hard Restart + New Campaign” admina), a wynik ogłasza start następnej rundy.
+// AQUILA - koniec kampanii wojny frakcji (raport/ftl_mapa_07). Nanotrasen przegrywa, gdy HEX_WAR_END_ROUNDS rund z rzędu
+// wróg trzyma jego kwaterę przez co najmniej połowę rundy. Syndykat przegrywa tylko wtedy, gdy okręt gracza zdobędzie jego
+// kwaterę w Abassi (sztaby AI tam nie idą): gracz dobija Syndykat. Wynik liczy zapis kampanii na koniec rundy; wtedy powstaje
+// kopia kampanii, mapa gwiezdna wraca do domyślnej (jak „Hard Restart + New Campaign” admina), a wynik ogłasza start następnej rundy.
 
-/// Strony, których kwatery rozstrzygają wojnę: Nanotrasen (strona okrętu gracza) przeciw Syndykatowi
-GLOBAL_LIST_INIT(hex_war_end_sides, list("nanotrasen", "syndicate"))
+/// Strony, które mogą przegrać przez utratę kwatery na kilka rund (Syndykat przegrywa przez zdobycie kwatery przez gracza)
+GLOBAL_LIST_INIT(hex_war_end_sides, list("nanotrasen"))
 
 /datum/hex_war
 	/// Ile rund z rzędu strona kończy bez kwatery głównej
@@ -14,6 +15,10 @@ GLOBAL_LIST_INIT(hex_war_end_sides, list("nanotrasen", "syndicate"))
 	/// więc o rundzie decyduje to, kto ją trzymał przez większość rundy, nie stan w chwili zapisu)
 	var/round_turns = 0
 	var/list/hq_hostile_turns = list()
+	/// Okręt gracza zdobył kwaterę Syndykatu: wojna kończy się zwycięstwem z końcem rundy
+	var/syndicate_defeated = FALSE
+	/// Kolejne tury, w których okręt gracza stoi w kwaterze Syndykatu bez wrogich flot
+	var/capture_turns = 0
 
 /// Czy frakcja trzyma którąś ze swoich kwater (nie zajętą przez wroga)
 /datum/hex_war/proc/hq_held(faction)
@@ -35,9 +40,35 @@ GLOBAL_LIST_INIT(hex_war_end_sides, list("nanotrasen", "syndicate"))
 		return !hq_held(faction)
 	return (hq_hostile_turns[faction] || 0) * 2 >= round_turns
 
+/// Co turę: okręt gracza w kwaterze Syndykatu (wołane w run_turn)
+/datum/hex_war/proc/track_player_capture()
+	var/obj/structure/overmap/ship = SSstar_system.find_main_overmap()
+	var/datum/star_system/S = ship ? SSstar_system.ships[ship]?["current_system"] : null
+	player_capture_step(S, ship?.faction)
+
+/// Krok zdobywania: kwatera Syndykatu bez wrogich flot przez HEX_WAR_PLAYER_CAPTURE_TURNS tur przechodzi na stronę okrętu.
+/// Zwraca TRUE, gdy kwatera właśnie padła.
+/datum/hex_war/proc/player_capture_step(datum/star_system/S, faction)
+	if(syndicate_defeated || !S || !faction || S.owner != "syndicate" || !S.has_facility(HEX_FAC_HQ) || !hex_factions_hostile(faction, "syndicate"))
+		capture_turns = 0
+		return FALSE
+	if(length(hex_hostile_fleets_in(S, faction)))
+		capture_turns = 0
+		return FALSE
+	capture_turns++
+	if(capture_turns < HEX_WAR_PLAYER_CAPTURE_TURNS)
+		priority_announce("Obrona kwatery głównej Syndykatu w układzie [S] rozbita. Utrzymajcie układ jeszcze kilka minut, żeby ją zająć.", "Dowództwo Floty White Rapids")
+		return FALSE
+	syndicate_defeated = TRUE
+	capture_turns = 0
+	S.alignment = faction
+	log_game("HEXWAR: the player's ship took the Syndicate headquarters in [S]")
+	priority_announce("Kwatera główna Syndykatu w układzie [S] zajęta. Syndykat przegrywa wojnę w sektorze, kampania zakończy się z końcem rundy.", "Dowództwo Floty White Rapids")
+	return TRUE
+
 /// Koniec rundy: liczy rundy bez kwatery. Zwraca stronę, która przegrała wojnę, albo null.
 /datum/hex_war/proc/round_end_tally()
-	. = null
+	. = syndicate_defeated ? "syndicate" : null
 	var/list/lost_now = list()
 	for(var/faction in GLOB.hex_war_end_sides)
 		lost_now[faction] = hq_lost_this_round(faction)
@@ -55,7 +86,7 @@ GLOBAL_LIST_INIT(hex_war_end_sides, list("nanotrasen", "syndicate"))
 /// Tekst wyniku wojny dla graczy
 /proc/hex_war_end_text(loser)
 	if(loser == "syndicate")
-		return "Wojna zakończona: Syndykat przez [HEX_WAR_END_ROUNDS] rundy z rzędu nie odbił swojej kwatery głównej. Nanotrasen wygrywa wojnę w sektorze."
+		return "Wojna zakończona: okręt Nanotrasen zajął kwaterę główną Syndykatu. Nanotrasen wygrywa wojnę w sektorze."
 	return "Wojna zakończona: Nanotrasen przez [HEX_WAR_END_ROUNDS] rundy z rzędu nie odbiło swojej kwatery głównej. Syndykat wygrywa wojnę w sektorze."
 
 /// Przegrana wojna: kopia kampanii, mapa gwiezdna i mapa hex od nowa, wynik do ogłoszenia w następnej rundzie

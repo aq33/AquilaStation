@@ -66,7 +66,7 @@ GLOBAL_LIST_INIT(hex_war_factions, list("nanotrasen", "solgov", "syndicate", "pi
 		"Wolf 359" = list(HEX_FAC_MINE),
 		"Barnard's Star" = list(HEX_FAC_MINE),
 		"Lalande 21185" = list(HEX_FAC_POST),
-		"Rubicon" = list(HEX_FAC_FACTORY, HEX_FAC_DEPOT, HEX_FAC_HQ), // kwatera na froncie jak Medea: w Abassi (27 kafli od frontu) NT nie mogło jej zdobyć, więc Syndykat nie mógł przegrać wojny
+		"Rubicon" = list(HEX_FAC_FACTORY, HEX_FAC_DEPOT),
 		"Remus" = list(HEX_FAC_MINE),
 		"Lombard" = list(HEX_FAC_MINE),
 		"Economus" = list(HEX_FAC_YARD),
@@ -76,7 +76,7 @@ GLOBAL_LIST_INIT(hex_war_factions, list("nanotrasen", "solgov", "syndicate", "pi
 		"Phobos" = list(HEX_FAC_DEPOT),
 		"Deimos" = list(HEX_FAC_FACTORY),
 		"Romulus" = list(HEX_FAC_YARD, HEX_FAC_POST),
-		"Abassi" = list(HEX_FAC_FACTORY),
+		"Abassi" = list(HEX_FAC_FACTORY, HEX_FAC_HQ), // w głębi sektora Syndykatu: sztaby AI tu nie sięgają, kwaterę zdobywa okręt gracza (war_end.dm)
 		"Dolos Remnants" = list(HEX_FAC_MINE),
 		"Oasis Fidei" = list(HEX_FAC_MINE),
 		"Tortuga" = list(HEX_FAC_YARD, HEX_FAC_DEPOT, HEX_FAC_HQ),
@@ -156,9 +156,14 @@ GLOBAL_LIST_INIT(hex_war_factions, list("nanotrasen", "solgov", "syndicate", "pi
 			if(!QDELETED(F) && F.fleet_trait == FLEET_TRAIT_DEFENSE && hex_factions_allied(F.alignment, S.owner))
 				garrison = F
 				break
-		if(!garrison)
-			continue
-		garrison.hex_war_add_ships(missing)
+		if(!garrison) // Abassi nie ma floty w starmap.json: kwatera bez obrony byłaby za łatwa dla gracza
+			garrison = S.spawn_fleet(/datum/fleet/light_defense)
+			if(!garrison)
+				continue
+			garrison.alignment = S.owner
+			missing = max(0, target - garrison.hex_war_ship_count())
+		if(missing)
+			garrison.hex_war_add_ships(missing)
 		log_game("HEXWAR: [S] headquarters garrison reinforced with [missing] ship(s) to [target]")
 
 /// Wszystkie floty na mapie
@@ -186,6 +191,7 @@ GLOBAL_LIST_INIT(hex_war_factions, list("nanotrasen", "solgov", "syndicate", "pi
 	nuclear_turn()
 	mission_rewards()
 	track_hq_control()
+	track_player_capture()
 
 /// Floty sztabu frakcji (bez konwojów)
 /datum/hex_war/proc/faction_fleets(faction, convoys = FALSE)

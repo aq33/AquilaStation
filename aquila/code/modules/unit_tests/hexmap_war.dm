@@ -62,6 +62,9 @@
 	var/datum/star_system/factory = pair[2]
 	var/list/saved_mine = hexmap_war_test_save(mine)
 	var/list/saved_factory = hexmap_war_test_save(factory)
+	// Atut kampanii zmienia wydobycie (war_fortune.dm): test liczy na równe 2 rudy na turę
+	var/list/saved_fortunes = GLOB.hex_war.fortunes.Copy()
+	GLOB.hex_war.fortunes = list()
 	mine.owner = "nanotrasen"
 	mine.alignment = "nanotrasen"
 	mine.war_facilities = list(HEX_FAC_MINE)
@@ -93,6 +96,7 @@
 			fail = "A delivered convoy left [factory.war_ore] ore at the factory instead of 6"
 	if(convoy && !QDELETED(convoy))
 		convoy.hex_war_dispose()
+	GLOB.hex_war.fortunes = saved_fortunes
 	hexmap_war_test_restore(mine, saved_mine)
 	hexmap_war_test_restore(factory, saved_factory)
 	if(fail)
@@ -481,10 +485,57 @@
 		return Fail(fail)
 	TEST_ASSERT(saved_count_ok && full, "The escort limit check is off")
 
-/// Strona, która HEX_WAR_END_ROUNDS rund z rzędu kończy bez kwatery głównej, przegrywa wojnę; odbita kwatera zeruje licznik
+/// Nanotrasen przegrywa po HEX_WAR_END_ROUNDS rundach z kwaterą w rękach wroga (krótkie zajęcie się nie liczy, odbicie zeruje)
 /datum/unit_test/hexmap_war_campaign_end
 
 /datum/unit_test/hexmap_war_campaign_end/Run()
+	var/datum/hex_war/W = GLOB.hex_war
+	var/datum/star_system/hq
+	for(var/datum/star_system/S as anything in SSstar_system.systems)
+		if(S.owner == "nanotrasen" && S.has_facility(HEX_FAC_HQ))
+			hq = S
+			break
+	if(!hq)
+		return // No Nanotrasen headquarters on this map
+	var/list/saved_lost = W.hq_lost_rounds.Copy()
+	var/saved_alignment = hq.alignment
+	var/saved_turns = W.round_turns
+	var/list/saved_hostile = W.hq_hostile_turns.Copy()
+	var/saved_defeated = W.syndicate_defeated
+	W.syndicate_defeated = FALSE
+	W.hq_lost_rounds = list("nanotrasen" = HEX_WAR_END_ROUNDS - 2)
+	W.round_turns = 0
+	W.hq_hostile_turns = list()
+	hq.alignment = "syndicate"
+	var/first = W.round_end_tally()
+	var/second = W.round_end_tally()
+	hq.alignment = "nanotrasen"
+	W.round_end_tally()
+	var/after_retake = W.hq_lost_rounds["nanotrasen"]
+	// Krótkie zajęcie w chwili zapisu nie liczy się, jeśli przez większość rundy kwatera była w rękach właściciela
+	W.hq_lost_rounds = list()
+	for(var/i in 1 to 4)
+		W.track_hq_control()
+	hq.alignment = "syndicate"
+	W.track_hq_control()
+	W.round_end_tally()
+	var/after_blip = W.hq_lost_rounds["nanotrasen"]
+	W.hq_lost_rounds = saved_lost
+	W.round_turns = saved_turns
+	W.hq_hostile_turns = saved_hostile
+	W.syndicate_defeated = saved_defeated
+	hq.alignment = saved_alignment
+	TEST_ASSERT(first != "nanotrasen", "The war ended one round too early")
+	TEST_ASSERT_EQUAL(second, "nanotrasen", "Losing the headquarters for [HEX_WAR_END_ROUNDS] rounds did not end the war")
+	TEST_ASSERT_EQUAL(after_retake, 0, "Retaking the headquarters did not reset the count")
+	TEST_ASSERT_EQUAL(after_blip, 0, "A headquarters held for most of the round counted as lost because of the last turn")
+	TEST_ASSERT(findtext(hex_war_end_text("syndicate"), "Nanotrasen wygrywa"), "The end of the war names the wrong winner")
+
+/// Kwaterę Syndykatu zdobywa tylko okręt gracza: przy wrogiej flocie nic się nie dzieje, po HEX_WAR_PLAYER_CAPTURE_TURNS turach
+/// bez obrony wojna jest wygrana; sztaby AI nie biorą jej za cel
+/datum/unit_test/hexmap_war_player_capture
+
+/datum/unit_test/hexmap_war_player_capture/Run()
 	var/datum/hex_war/W = GLOB.hex_war
 	var/datum/star_system/hq
 	for(var/datum/star_system/S as anything in SSstar_system.systems)
@@ -493,36 +544,36 @@
 			break
 	if(!hq)
 		return // No Syndicate headquarters on this map
-	var/list/saved_lost = W.hq_lost_rounds.Copy()
 	var/saved_alignment = hq.alignment
-	var/saved_turns = W.round_turns
-	var/list/saved_hostile = W.hq_hostile_turns.Copy()
-	W.hq_lost_rounds = list("syndicate" = HEX_WAR_END_ROUNDS - 2)
-	W.round_turns = 0
-	W.hq_hostile_turns = list()
-	hq.alignment = "nanotrasen"
-	var/first = W.round_end_tally()
-	var/second = W.round_end_tally()
-	hq.alignment = "syndicate"
-	W.round_end_tally()
-	var/after_retake = W.hq_lost_rounds["syndicate"]
-	// Krótkie zajęcie w chwili zapisu nie liczy się, jeśli przez większość rundy kwatera była w rękach właściciela
-	W.hq_lost_rounds = list()
-	for(var/i in 1 to 4)
-		W.track_hq_control()
-	hq.alignment = "nanotrasen"
-	W.track_hq_control()
-	W.round_end_tally()
-	var/after_blip = W.hq_lost_rounds["syndicate"]
-	W.hq_lost_rounds = saved_lost
-	W.round_turns = saved_turns
-	W.hq_hostile_turns = saved_hostile
+	var/saved_defeated = W.syndicate_defeated
+	var/saved_turns = W.capture_turns
+	var/list/saved_fleets = hq.fleets.Copy()
+	W.syndicate_defeated = FALSE
+	W.capture_turns = 0
+	var/ai_target = W.in_goal("nanotrasen", hq)
+	// Z obroną w układzie zdobywanie nie rusza
+	var/datum/fleet/guard = new
+	guard.alignment = "syndicate"
+	guard.current_system = hq
+	hq.fleets = list(guard)
+	var/defended = W.player_capture_step(hq, "nanotrasen")
+	var/defended_turns = W.capture_turns
+	// Bez obrony: po HEX_WAR_PLAYER_CAPTURE_TURNS turach kwatera pada
+	hq.fleets = list()
+	var/captured = FALSE
+	for(var/i in 1 to HEX_WAR_PLAYER_CAPTURE_TURNS)
+		captured = W.player_capture_step(hq, "nanotrasen")
+	var/loser = W.round_end_tally()
+	guard.current_system = null
+	qdel(guard)
+	hq.fleets = saved_fleets
 	hq.alignment = saved_alignment
-	TEST_ASSERT(first != "syndicate", "The war ended one round too early")
-	TEST_ASSERT_EQUAL(second, "syndicate", "Losing the headquarters for [HEX_WAR_END_ROUNDS] rounds did not end the war")
-	TEST_ASSERT_EQUAL(after_retake, 0, "Retaking the headquarters did not reset the count")
-	TEST_ASSERT_EQUAL(after_blip, 0, "A headquarters held for most of the round counted as lost because of the last turn")
-	TEST_ASSERT(findtext(hex_war_end_text("syndicate"), "Nanotrasen wygrywa"), "The end of the war names the wrong winner")
+	W.syndicate_defeated = saved_defeated
+	W.capture_turns = saved_turns
+	TEST_ASSERT(!ai_target, "The Nanotrasen staff took the Syndicate headquarters as a target")
+	TEST_ASSERT(!defended && !defended_turns, "The headquarters started to fall with its defence still there")
+	TEST_ASSERT(captured, "The headquarters did not fall after [HEX_WAR_PLAYER_CAPTURE_TURNS] turns without defence")
+	TEST_ASSERT_EQUAL(loser, "syndicate", "Taking the Syndicate headquarters did not end the war")
 
 
 /// Konwój wchodzi na kafel obok floty piratów: piraci skaczą za nim (przechwycenie), więc w kaflu konwoju zaczyna się walka

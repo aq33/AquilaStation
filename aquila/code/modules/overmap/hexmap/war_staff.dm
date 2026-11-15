@@ -265,6 +265,9 @@
 
 /// Czy układ jest celem natarcia tej frakcji
 /datum/hex_war/proc/in_goal(faction, datum/star_system/S)
+	// Kwaterę Syndykatu dobija okręt gracza, nie sztaby AI (war_end.dm)
+	if(S.owner == "syndicate" && S.has_facility(HEX_FAC_HQ) && faction != "syndicate")
+		return FALSE
 	switch(faction)
 		if("syndicate")
 			return hex_factions_hostile(faction, S.alignment) || S.alignment == "unaligned"

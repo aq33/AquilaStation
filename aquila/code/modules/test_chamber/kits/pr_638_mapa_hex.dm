@@ -82,7 +82,7 @@
 		3) Zakładka „Dowódcy”: dowódca floty Syndykatu z rangą; cechy są „?”, dopóki nie spotkasz jego floty. \
 		4) Konwoje (kwadraty) jadą z kopalń do fabryk i ze fabryk do stoczni; piraci je łupią i napadają stacje handlowe (stacja nie handluje 10 min, ta sama stacja najwyżej raz na pół godziny). Wroga flota w sąsiednim kaflu potrafi skoczyć za konwojem i go przechwycić, a piraci czasem zajmują słabe układy i biorą z nich haracz. \
 		5) Zniszcz flotę Syndykatu: dowódca może uciec z blizną i urazą, po 15–25 min wraca z nową flotą i poluje na okręt. \
-		6) Floty sztabów, magazyny i dowódcy przechodzą do następnej rundy."
+		6) Floty sztabów, magazyny i dowódcy przechodzą do następnej rundy. \n		7) Kwaterę Syndykatu w Abassi zdobywa tylko okręt: rozbij jej garnizon i utrzymaj układ przez dwie tury sztabów (ok. 10 min), wtedy ogłoszenie o wygranej wojnie i nowa kampania od następnej rundy."
 
 /datum/test_chamber_kit/pr_638/wojna/setup(list/spawned, list/turfs, turf/center, mob/user)
 	. = ..()
