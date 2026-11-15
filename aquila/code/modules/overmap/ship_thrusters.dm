@@ -112,6 +112,8 @@ GLOBAL_LIST_INIT(ship_thruster_oxidizers, list(
 	var/plated = FALSE
 	/// aq_thrust_seconds statku przy ostatnim ticku tej dyszy
 	var/thrust_seen = 0
+	/// Czy w poprzednim ticku dysza miała prąd (ciąg z tego okresu rozlicza się też po utracie prądu)
+	var/had_power = FALSE
 	/// Obszar, z którego dysza ostatnio brała prąd (szukanie w promieniu jest kosztowne)
 	var/area/power_area_cache
 	var/next_power_search = 0
@@ -296,7 +298,9 @@ GLOBAL_LIST_INIT(ship_thruster_oxidizers, list(
 			thrust_time = delta_time
 	// Manewr już wykonany rozliczamy, jeśli dysza miała prąd i choć trochę paliwa; gotowość na pełny tick (new_can_fire)
 	// decyduje tylko o dalszym ciągu
-	var/firing = thrust_time > 0 && linked_ship && anchored && !(machine_stat & (BROKEN|NOPOWER)) && mix[2] > 0
+	var/powered_now = !(machine_stat & (BROKEN|NOPOWER))
+	var/firing = thrust_time > 0 && linked_ship && anchored && (powered_now || had_power) && mix[2] > 0
+	had_power = powered_now
 	if(firing)
 		burn_fuel(fuel_per_second * thrust_time, heaters, mix)
 	use_power = firing ? ACTIVE_POWER_USE : IDLE_POWER_USE

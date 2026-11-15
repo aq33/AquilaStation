@@ -17,6 +17,8 @@
 	var/cloaked = FALSE
 	/// Poziom, na którym włączono maskę (skok na inny poziom ją zdejmuje)
 	var/cloak_z = 0
+	/// Układ gwiezdny, w którym włączono maskę (skok bywa na ten sam poziom Z)
+	var/datum/star_system/cloak_system
 	/// Ostatnia jasność bańki, żeby nie odświeżać filtra bez potrzeby
 	var/bubble_level = -1
 	/// Czy tarcza była podniesiona przed maską (koniec maski ją przywraca)
@@ -66,6 +68,7 @@
 	var/obj/structure/overmap/ship = get_overmap()
 	cloaked = TRUE
 	cloak_z = ship.z
+	cloak_system = ship.current_system
 	cloak_restore_active = active
 	cloak_fire_mark = ship.aq_weapon_shots
 	active = FALSE
@@ -80,6 +83,7 @@
 	if(!cloaked)
 		return
 	cloaked = FALSE
+	cloak_system = null
 	// Tarcza wraca do stanu sprzed maski (zniszczony generator już jej nie podniesie)
 	if(!QDELETED(src) && !(machine_stat & BROKEN))
 		active = cloak_restore_active
@@ -115,7 +119,7 @@
 		update_bubble()
 		return
 	var/obj/structure/overmap/ship = get_overmap()
-	if(!istype(ship) || ship.z != cloak_z)
+	if(!istype(ship) || ship.z != cloak_z || ship.current_system != cloak_system)
 		end_cloak("skok")
 		return
 	// Porównanie z chwilą włączenia, a nie okno czasu: strzał między dwoma tickami też zdejmuje maskę

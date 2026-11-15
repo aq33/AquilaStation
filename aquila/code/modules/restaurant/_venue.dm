@@ -262,8 +262,13 @@ SUBSYSTEM_DEF(restaurant)
 	if(!restaurant_portal)
 		return
 	for(var/obj/structure/holosign/robot_seat/seat as anything in linked_seats)
-		if(!linked_seats[seat] && seat.z == restaurant_portal.z && get_dist(seat, restaurant_portal) <= auto_seat_range)
-			.++
+		if(linked_seats[seat] || seat.z != restaurant_portal.z || get_dist(seat, restaurant_portal) > auto_seat_range)
+			continue
+		// Tak jak przy szukaniu miejsca przez gościa: zablokowane albo zajęte przez kogoś pole nie jest wolne
+		var/turf/seat_turf = get_turf(seat)
+		if(is_blocked_turf(seat_turf) || (locate(/mob/living) in seat_turf))
+			continue
+		.++
 
 /**
  * Stawia miejsca w pomieszczeniu z portalem, w zasięgu jego wzroku.
