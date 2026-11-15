@@ -177,25 +177,40 @@ GLOBAL_LIST_INIT(hex_war_factions, list("nanotrasen", "solgov", "syndicate", "pi
 
 /datum/hex_war/proc/tick()
 	addtimer(CALLBACK(src, PROC_REF(tick)), HEX_WAR_TICK)
-	run_turn()
+	turn_step(1, TRUE)
 
 /// Jedna tura sztabów (zestaw komory testowej woła ją od razu, bez drugiego timera)
 /datum/hex_war/proc/run_turn()
+	for(var/step in 1 to turn_step_count())
+		if(!turn_step(step))
+			return
+
+/datum/hex_war/proc/turn_step_count()
+	return length(GLOB.hex_war_factions) + 2
+
+/// Krok tury: 1 – ekonomia i logistyka, potem sztab każdej frakcji, na końcu atomówki i rozliczenia. Zwykła tura z tick()
+/// idzie krokami po jednym na tik (chain): sztab jednej frakcji to kilka ms, cała tura w jednym tiku przycinała serwer.
+/datum/hex_war/proc/turn_step(step, chain = FALSE)
 	if(!GLOB.hexmap?.built || !SSstar_system.enable_npc_combat)
-		return
-	GLOB.hexmap.war_distance_cache = list()
-	economy()
-	depots()
-	raids()
-	commander_returns()
-	for(var/faction in GLOB.hex_war_factions)
-		staff(faction)
-	nuclear_turn()
-	mission_rewards()
-	var/datum/hex/ship_hex = SSstar_system.find_main_overmap()?.current_hex()
-	update_retake_mission(ship_hex)
-	track_hq_control(ship_hex)
-	track_player_capture()
+		return FALSE
+	var/faction_count = length(GLOB.hex_war_factions)
+	if(step == 1)
+		economy()
+		depots()
+		raids()
+		commander_returns()
+	else if(step <= faction_count + 1)
+		staff(GLOB.hex_war_factions[step - 1])
+	else
+		nuclear_turn()
+		mission_rewards()
+		var/datum/hex/ship_hex = SSstar_system.find_main_overmap()?.current_hex()
+		update_retake_mission(ship_hex)
+		track_hq_control(ship_hex)
+		track_player_capture()
+	if(chain && step < turn_step_count())
+		addtimer(CALLBACK(src, PROC_REF(turn_step), step + 1, TRUE), 1)
+	return TRUE
 
 /// Floty sztabu frakcji (bez konwojów)
 /datum/hex_war/proc/faction_fleets(faction, convoys = FALSE)
@@ -477,34 +492,30 @@ GLOBAL_LIST_INIT(hex_war_factions, list("nanotrasen", "solgov", "syndicate", "pi
 		return INFINITY
 	if(a.sector == b.sector)
 		return distance(a, b)
-	var/key = "[a.id]>[b.id]"
-	. = war_distance_cache[key]
-	if(!isnull(.))
-		return
-	. = war_distance_uncached(a, b)
-	war_distance_cache[key] = .
-
-/datum/hexmap/proc/war_distance_uncached(datum/hex/a, datum/hex/b)
 	. = INFINITY
-	for(var/name in system_hexes)
-		var/datum/hex/G = system_hexes[name]
-		if(G.sector != a.sector || !LAZYLEN(G.gates))
-			continue
+	var/list/entries = war_sector_entries(a, b.sector)
+	for(var/datum/hex/E as anything in entries)
+		. = min(., entries[E] + distance(E, b))
+
+/// Kafle bram, którymi z kafla a wchodzi się do sektora, z kosztem dojścia (marsz + skok bramą, co najwyżej dwie bramy).
+/// Bramy powstają raz przy budowie mapy (link_gates), więc wynik nie zmienia się w trakcie rundy i jest pamiętany na stałe;
+/// odległość do konkretnego kafla w sektorze to już tylko minimum po kilku wejściach.
+/datum/hexmap/proc/war_sector_entries(datum/hex/a, sector)
+	var/key = "[a.id]>[sector]"
+	. = war_distance_cache[key]
+	if(.)
+		return
+	var/list/entries = list()
+	for(var/datum/hex/G as anything in gate_hexes_in(a.sector))
 		var/to_gate = distance(a, G) + 1
 		for(var/datum/hex/G2 as anything in G.gates)
-			if(G2.sector == b.sector)
-				. = min(., to_gate + distance(G2, b))
+			if(G2.sector == sector)
+				entries[G2] = min(entries[G2] || INFINITY, to_gate)
 				continue
-			for(var/datum/hex/K as anything in system_hexes_in_sector(G2.sector))
-				if(!LAZYLEN(K.gates))
-					continue
+			for(var/datum/hex/K as anything in gate_hexes_in(G2.sector))
 				for(var/datum/hex/K2 as anything in K.gates)
-					if(K2.sector == b.sector)
-						. = min(., to_gate + distance(G2, K) + 1 + distance(K2, b))
+					if(K2.sector == sector)
+						entries[K2] = min(entries[K2] || INFINITY, to_gate + distance(G2, K) + 1)
+	war_distance_cache[key] = entries
+	return entries
 
-/datum/hexmap/proc/system_hexes_in_sector(sector)
-	. = list()
-	for(var/name in system_hexes)
-		var/datum/hex/H = system_hexes[name]
-		if(H.sector == sector)
-			. += H

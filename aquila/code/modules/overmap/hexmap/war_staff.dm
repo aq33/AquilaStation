@@ -173,15 +173,34 @@
 /// Siła floty (wrogiej lub sojuszniczej względem frakcji) w układzie i w promieniu
 /datum/hex_war/proc/power_near(datum/star_system/S, faction, radius, hostile = TRUE)
 	. = 0
+	if(!S?.hex)
+		return
+	var/list/fleets = staff_fleets || fleet_snapshot()
+	var/list/relation = list() // stosunek do frakcji floty liczony raz na wywołanie, nie dla każdej floty
+	for(var/datum/fleet/F as anything in fleets)
+		if(QDELETED(F))
+			continue
+		var/key = "[F.alignment]"
+		var/ok = relation[key]
+		if(isnull(ok))
+			ok = hostile ? hex_factions_hostile(faction, F.alignment) : hex_factions_allied(faction, F.alignment)
+			relation[key] = ok
+		if(!ok)
+			continue
+		var/list/info = fleets[F]
+		if(GLOB.hexmap.war_distance(info[1], S.hex) > radius)
+			continue
+		. += info[2]
+
+/// Floty bojowe na mapie z kaflem i siłą (bez konwojów): flota -> list(kafel, siła)
+/datum/hex_war/proc/fleet_snapshot()
+	. = list()
 	for(var/datum/fleet/F as anything in hex_all_fleets())
 		if(F.war_cargo)
 			continue
-		if(hostile ? !hex_factions_hostile(faction, F.alignment) : !hex_factions_allied(faction, F.alignment))
-			continue
 		var/datum/hex/H = fleet_hex(F)
-		if(!H || GLOB.hexmap.war_distance(H, S.hex) > radius)
-			continue
-		. += F.hex_war_power()
+		if(H)
+			.[F] = list(H, F.hex_war_power())
 
 /datum/hex_war/proc/nearest_free(list/fleets, datum/star_system/S, max_distance)
 	var/datum/fleet/best
@@ -195,7 +214,17 @@
 			best = F
 	return best
 
+/datum/hex_war
+	/// Floty na czas jednego sztabu (fleet_snapshot): power_near pyta o nie dziesiątki razy, a hex_all_fleets() przegląda
+	/// wszystkie układy, kafel i siła floty w trakcie sztabu się nie zmieniają (rozkazy ruszają floty dopiero ich timerem)
+	var/list/staff_fleets
+
 /datum/hex_war/proc/staff(faction)
+	staff_fleets = fleet_snapshot()
+	staff_orders(faction)
+	staff_fleets = null
+
+/datum/hex_war/proc/staff_orders(faction)
 	var/list/mine = faction_fleets(faction)
 	if(!length(mine))
 		return
