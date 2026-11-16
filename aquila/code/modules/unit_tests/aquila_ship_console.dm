@@ -13,6 +13,7 @@
 	fighter = new(center)
 	dummy = new(center)
 	fighter.enter(dummy)
+	dummy.aq_ship_hud_override = "classic" // stary panel; kompaktowy HUD sprawdza aquila_ship_hud_compact
 	fighter.start_piloting(dummy, OVERMAP_USER_ROLE_PILOT | OVERMAP_USER_ROLE_GUNNER)
 
 	TEST_ASSERT_EQUAL(LAZYLEN(dummy.aquila_consoles), 1, "Fighter pilot should get exactly one console panel")
@@ -99,6 +100,7 @@
 	fighter = new(center)
 	dummy = new(center)
 	fighter.enter(dummy)
+	dummy.aq_ship_hud_override = "classic" // stary panel; kompaktowy HUD sprawdza aquila_ship_hud_compact
 	fighter.start_piloting(dummy, OVERMAP_USER_ROLE_PILOT | OVERMAP_USER_ROLE_GUNNER)
 	fighter.brakes = FALSE
 

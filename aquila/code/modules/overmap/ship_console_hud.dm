@@ -453,6 +453,22 @@ GLOBAL_LIST_INIT(aquila_ship_console_buttons, list(
 			kinds += AQUILA_CONSOLE_WEAPONS
 	if(!length(kinds))
 		return
+	RegisterSignal(user, COMSIG_STOPPED_PILOTING, PROC_REF(aquila_on_stopped_piloting), override = TRUE)
+	RegisterSignal(user, COMSIG_KB_OVERMAP_TOGGLEBRAKES_DOWN, PROC_REF(aquila_on_key_brakes), override = TRUE)
+	RegisterSignal(user, COMSIG_KB_OVERMAP_TOGGLEMOUSEMOVE_DOWN, PROC_REF(aquila_on_key_rotation), override = TRUE)
+	RegisterSignal(user, COMSIG_KB_OVERMAP_CYCLEFIREMODE_DOWN, PROC_REF(aquila_on_key_weapon), override = TRUE)
+	user.add_verb(/mob/living/proc/aquila_toggle_ship_console)
+	// Kompaktowy HUD (ship_hud_compact.dm) zamiast paneli, chyba że gracz wybrał klasyczny panel
+	if(user.aq_wants_compact_ship_hud())
+		if(user.aq_ship_hud?.ship != src)
+			QDEL_NULL(user.aq_ship_hud)
+			user.aq_ship_hud = new(user, src)
+			user.update_action_buttons(TRUE) // przyciski przyznane przy przełączaniu HUD-u (wyjście z kamery) nie trafiły na ekran
+			if(!user.aquila_console_hidden)
+				to_chat(user, "<span class='notice'>Radar w prawym górnym rogu otwiera DRADIS, pasek na dole przełącza hamulec, sterowanie i broń. Shift+klik pokazuje opis. Stary duży panel włączysz w preferencjach („Klasyczny panel sterowania”).</span>")
+		else
+			user.aq_ship_hud.update()
+		return
 	var/index = 0
 	for(var/kind in kinds)
 		var/atom/movable/screen/movable/aquila_ship_console/panel = new(null, src, user, kind)
@@ -461,11 +477,6 @@ GLOBAL_LIST_INIT(aquila_ship_console_buttons, list(
 	for(var/atom/movable/screen/movable/aquila_ship_console/panel as anything in LAZYCOPY(user.aquila_consoles))
 		panel.last_scale = null // przelicz położenie, gdy znamy już wszystkie panele
 		panel.refresh()
-	RegisterSignal(user, COMSIG_STOPPED_PILOTING, PROC_REF(aquila_on_stopped_piloting), override = TRUE)
-	RegisterSignal(user, COMSIG_KB_OVERMAP_TOGGLEBRAKES_DOWN, PROC_REF(aquila_on_key_brakes), override = TRUE)
-	RegisterSignal(user, COMSIG_KB_OVERMAP_TOGGLEMOUSEMOVE_DOWN, PROC_REF(aquila_on_key_rotation), override = TRUE)
-	RegisterSignal(user, COMSIG_KB_OVERMAP_CYCLEFIREMODE_DOWN, PROC_REF(aquila_on_key_weapon), override = TRUE)
-	user.add_verb(/mob/living/proc/aquila_toggle_ship_console)
 	if(!user.aquila_console_hidden)
 		to_chat(user, "<span class='notice'>Na dole ekranu jest panel konsoli. Przyciski na nim działają jak skróty klawiszowe, zakładka ZWIŃ chowa panel; Shift+klik pokazuje opis.</span>")
 
@@ -478,6 +489,8 @@ GLOBAL_LIST_INIT(aquila_ship_console_buttons, list(
 	SIGNAL_HANDLER
 	UnregisterSignal(source, list(COMSIG_STOPPED_PILOTING, COMSIG_KB_OVERMAP_TOGGLEBRAKES_DOWN, COMSIG_KB_OVERMAP_TOGGLEMOUSEMOVE_DOWN, COMSIG_KB_OVERMAP_CYCLEFIREMODE_DOWN))
 	aquila_remove_consoles(source)
+	if(source.aq_ship_hud?.ship == src)
+		QDEL_NULL(source.aq_ship_hud)
 	source.remove_verb(/mob/living/proc/aquila_toggle_ship_console)
 
 // Skrót klawiszowy wciska przycisk na panelu. Sygnał przychodzi przed wykonaniem akcji, więc nic nie blokujemy
@@ -495,6 +508,8 @@ GLOBAL_LIST_INIT(aquila_ship_console_buttons, list(
 	aquila_press_console_button(source, "weapon")
 
 /obj/structure/overmap/proc/aquila_press_console_button(mob/living/source, button)
+	if(source.aq_ship_hud?.ship == src)
+		addtimer(CALLBACK(source.aq_ship_hud, TYPE_PROC_REF(/datum/aq_ship_hud, update)), 1) // pasek pokazuje nowy stan po wykonaniu skrótu
 	for(var/atom/movable/screen/movable/aquila_ship_console/panel as anything in source.aquila_consoles)
 		if(panel.ship == src)
 			panel.press(button)
@@ -503,12 +518,13 @@ GLOBAL_LIST_INIT(aquila_ship_console_buttons, list(
 /mob/living/proc/aquila_toggle_ship_console()
 	set name = "Pokaż/ukryj panel konsoli"
 	set category = "Ship"
-	if(!LAZYLEN(aquila_consoles))
+	if(!LAZYLEN(aquila_consoles) && !aq_ship_hud)
 		to_chat(src, "<span class='warning'>Nie siedzisz za sterami ani przy działach statku.</span>")
 		return
 	aquila_console_hidden = !aquila_console_hidden
 	for(var/atom/movable/screen/movable/aquila_ship_console/panel as anything in LAZYCOPY(aquila_consoles))
 		panel.refresh()
+	aq_ship_hud?.update()
 	to_chat(src, "<span class='notice'>[aquila_console_hidden ? "Ukrywasz" : "Pokazujesz"] panel konsoli.</span>")
 
 #undef AQUILA_CONSOLE_FLIGHT

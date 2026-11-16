@@ -101,6 +101,8 @@
 	var/server_delta = elapsed_ms() - note["time"]
 	var/good = (key == note["key"]) && isnum(delta) && abs(delta) <= hit_window && server_delta > -1500 && server_delta < hit_window + 1500
 	results["[index]"] = good
+	// tłok zjeżdża przy każdym uderzeniu, także pudle
+	flick("power_hammer_hit", anvil)
 	if(good)
 		playsound(anvil, 'sound/effects/clang.ogg', 25, TRUE)
 		if(prob(30))
@@ -189,10 +191,6 @@
 	. = ..()
 	if(. || !game || usr != game.user)
 		return
-	if(!held_hammer(usr))
-		to_chat(usr, "<span class='warning'>Odkładasz młot i przestajesz kuć.</span>")
-		game.abort()
-		return TRUE
 	switch(action)
 		if("hit")
 			game.register_hit(text2num(params["index"]), params["key"], text2num(params["delta"]))

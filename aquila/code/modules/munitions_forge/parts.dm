@@ -18,6 +18,8 @@
 	/// Jak równo wykuto (0-1), null przed kuciem
 	var/forging_accuracy
 	var/cool_time = 10 SECONDS
+	/// Gotowy wyrób zaraz po kuciu (wkładka pancerza), bez stołu montażowego
+	var/forge_standalone = FALSE
 
 /obj/item/munition_part/Initialize(mapload)
 	. = ..()
@@ -85,7 +87,7 @@
 	if(quality)
 		. += "<span class='notice'>Jakość: klasa [quality.roman] ([quality.name]).</span>"
 	if(hammer_time)
-		. += "Trzeba go jeszcze wykuć na kowadle, póki jest gorący."
+		. += "Trzeba go jeszcze wykuć pod młotem mechanicznym, póki jest gorący."
 	else
 		. += "Jest gotowy do montażu."
 		if(forging_damage_state())

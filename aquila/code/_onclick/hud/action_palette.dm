@@ -51,7 +51,9 @@
 /mob/update_action_buttons(reload_screen)
 	if(!hud_used || !client)
 		return
-	if(hud_used.hud_shown != HUD_STYLE_STANDARD)
+	// zredukowany HUD (także za sterami z kompaktowym HUD-em statku) chowa ekwipunek, ale przyciski akcji
+	// (np. „Przestań obserwować”) muszą zostać; bez HUD-u (F12) nie
+	if(hud_used.hud_shown != HUD_STYLE_STANDARD && hud_used.hud_version != HUD_STYLE_REDUCED)
 		return
 
 	var/expanded = hud_used.action_palette_expanded

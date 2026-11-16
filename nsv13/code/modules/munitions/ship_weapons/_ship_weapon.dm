@@ -579,12 +579,17 @@
  */
 /obj/machinery/ship_weapon/proc/after_fire()
 	//Count down towards maintenance
+	maint_wear() // AQ EDIT - zużycie w osobnej procce, broń energetyczna grzeje się zamiast tego (BeeStation/NSV13#2677)
+	update()
+
+// AQ EDIT START - BeeStation/NSV13#2677: zużycie po strzale, nadpisywane przez broń energetyczną (aquila/code/modules/munitions/energy_weapon_heat.dm)
+/obj/machinery/ship_weapon/proc/maint_wear()
 	if(maintainable)
 		if(maint_req > 0)
 			maint_req --
 		else
 			weapon_malfunction()
-	update()
+// AQ EDIT END
 
 /**
  * Handles firing animation for the mapped weapon.

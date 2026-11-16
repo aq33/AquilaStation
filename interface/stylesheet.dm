@@ -47,7 +47,7 @@ em						{font-style: normal;	font-weight: bold;}
 .comradio				{color: #948f02;}
 .secradio				{color: #2f7d43;} /* AQUILA EDIT - zieleń Żandarmerii */
 .medradio				{color: #337296;}
-.engradio				{color: #c8202a;} /* AQUILA EDIT - czerwień Orlenu */
+.engradio				{color: #fbb213;}
 .suppradio				{color: #b38a00;} /* AQUILA EDIT - żółć InPostu */
 .servradio				{color: #6eaa2c;}
 .syndradio				{color: #6d3f40;}

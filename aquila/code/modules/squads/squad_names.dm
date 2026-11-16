@@ -36,7 +36,7 @@
 	text_span_style = "duffradio"
 
 /datum/character_save
-	preferred_squad = "Alpha"
+	preferred_squad = SQUAD_PREF_AUTO
 
 /// Stare nazwy z zapisanych postaci (preferowana drużyna w bazie)
 GLOBAL_LIST_INIT(squad_legacy_names, list(
