@@ -25,7 +25,7 @@
 	TEST_ASSERT(fighter.skip_dradis_popup(OVERMAP_USER_ROLE_PILOT), "DRADIS dalej otwiera się sam przy kompaktowym HUD-zie")
 
 	var/list/contents = hud.bar_contents()
-	for(var/id in list("brakes", "rotation", "weapon", "hull", "eject"))
+	for(var/id in list("brakes", "rotation", "weapon", "hull", "controls", "eject"))
 		TEST_ASSERT(id in contents, "Na pasku pilota myśliwca brakuje segmentu [id]")
 
 	// Segment hamulca przełącza hamulec i zmienia napis

@@ -136,6 +136,8 @@
 			.["ammo"] = "[weapon.get_ammo()]/[weapon.get_max_ammo()]"
 	.["hull"] = "Kadłub [aq_ship_hull_percent(ship)]%"
 	if(is_pilot && istype(ship, /obj/structure/overmap/small_craft))
+		// okno myśliwca (silnik, dokowanie, owiewka, paliwo); bez segmentu otwierało się tylko przy wsiadaniu
+		.["controls"] = "Panel"
 		.["eject"] = (eject_armed_until > world.time) ? "Potwierdź katapultę!" : "Katapulta"
 	if(ship.dradis)
 		.["dradis"] = "DRADIS"
@@ -207,6 +209,9 @@
 		if("eject")
 			try_eject()
 			return
+		if("controls")
+			ship.ui_interact(user)
+			return
 		if("hull")
 			return
 	if(ship.helm && prob(80))
@@ -266,7 +271,7 @@
 	if(!ship_hud || usr != ship_hud.user)
 		return
 	if(LAZYACCESS(params2list(params), SHIFT_CLICK))
-		to_chat(usr, "<span class='notice'>Pasek statku: kliknij segment, żeby przełączyć hamulec, sterowanie albo broń; DRADIS otwiera pełne okno radaru. Skróty: Alt (hamulec), C (sterowanie), spacja (broń). Stary duży panel włączysz w preferencjach („Klasyczny panel sterowania”).</span>")
+		to_chat(usr, "<span class='notice'>Pasek statku: kliknij segment, żeby przełączyć hamulec, sterowanie albo broń; Panel otwiera okno myśliwca (silnik, dokowanie, owiewka), a DRADIS pełne okno radaru. Skróty: Alt (hamulec), C (sterowanie), spacja (broń). Stary duży panel włączysz w preferencjach („Klasyczny panel sterowania”).</span>")
 		var/datum/overmap_ship_weapon/weapon = ship_hud.ship.controlled_weapon_datum?[usr]
 		if(segment_id == "weapon" && weapon)
 			to_chat(usr, "<span class='notice'>Wybrana broń: [weapon.name].</span>")
