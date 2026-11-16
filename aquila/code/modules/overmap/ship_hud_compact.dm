@@ -91,6 +91,11 @@
 	if(QDELETED(user) || QDELETED(ship) || user.overmap_ship != ship || (ship.pilot != user && ship.gunner != user))
 		qdel(src)
 		return PROCESS_KILL
+	// impulsy aktywnego radaru wysyła tylko ui_data() okna DRADIS, a w kompaktowym układzie okno jest zwykle zamknięte;
+	// niezależnie od tego, czy radar jest widoczny (czasownik chowania panelu)
+	var/obj/machinery/computer/ship/dradis/dradis = ship.dradis
+	if(dradis?.sensor_mode == SENSOR_MODE_RADAR)
+		dradis.send_radar_pulse()
 	update()
 
 /datum/aq_ship_hud/proc/remove_from_screen()
@@ -287,9 +292,6 @@
 	var/obj/structure/overmap/ship = ship_hud.ship
 	cut_overlays()
 	var/obj/machinery/computer/ship/dradis/dradis = ship.dradis
-	// impulsy aktywnego radaru wysyła tylko ui_data() okna DRADIS, a w kompaktowym układzie okno jest zwykle zamknięte
-	if(dradis?.sensor_mode == SENSOR_MODE_RADAR)
-		dradis.send_radar_pulse()
 	var/range = max(dradis ? dradis.sensor_range : SENSOR_RANGE_DEFAULT, 1)
 	for(var/list/contact as anything in aq_radar_contacts(ship, dradis))
 		var/atom/thing = contact["atom"]

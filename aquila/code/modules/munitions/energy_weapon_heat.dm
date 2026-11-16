@@ -381,26 +381,31 @@ GLOBAL_LIST_INIT(energy_weapon_heat_states, icon_states('aquila/icons/obj/muniti
 					freq = max(freq - rand(1, freq_max), 0)
 	alignment = max(alignment - rand(0, 4), 0)
 
+/// Torpedy z listy, które jeszcze istnieją
+/obj/machinery/ship_weapon/energy/ams/proc/aq_ams_live_targets(list/targets)
+	. = list()
+	for(var/atom/incoming as anything in targets)
+		if(!QDELETED(incoming))
+			. += incoming
+
 /// AMS strzela w losowe z pierwszych dziesięciu torped lecących na okręt, a bez torped nie strzela
 /obj/machinery/ship_weapon/energy/ams/fire(atom/target, shots = linked_overmap_ship_weapon.burst_size, manual = TRUE)
 	if(!linked)
 		return FALSE
 	var/list/targets = linked.torpedoes_to_target.Copy(1, min(length(linked.torpedoes_to_target), 10) + 1)
-	if(!length(targets))
+	if(!length(aq_ams_live_targets(targets)))
 		return FALSE
 	if(!can_fire(target, shots))
 		return FALSE
 	if(manual)
 		linked.last_fired = overlay
 	for(var/i in 1 to shots)
-		// w przerwie między strzałami broń mogła się przegrzać albo zacząć odprowadzać ciepło, a torpedy zginąć
-		if(i > 1 && !can_fire(target, 1))
-			break
-		var/list/live_targets = list()
-		for(var/atom/incoming as anything in targets)
-			if(!QDELETED(incoming))
-				live_targets += incoming
+		// w przerwie między strzałami torpedy mogły zginąć, a broń przegrzać się albo zacząć odprowadzać ciepło;
+		// cele najpierw, bo can_fire() może wywołać overload() i wyzerować ładunek
+		var/list/live_targets = aq_ams_live_targets(targets)
 		if(!length(live_targets))
+			break
+		if(i > 1 && !can_fire(target, 1))
 			break
 		do_animation()
 		local_fire()

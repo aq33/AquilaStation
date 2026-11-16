@@ -76,6 +76,13 @@
 	var/list/alloy_cost = forge.current_cost()
 	TEST_ASSERT(alloy_cost[/datum/material/iron] && alloy_cost[/datum/material/copper], "Stop w oknie pieca nie kosztuje obu składników")
 	forge.selected_alloy = null
+	// typ bazowy grupy nie jest wyrobem (korpus bez product_path): piec go nie odlewa i nie bierze materiału
+	TEST_ASSERT(!aq_forge_is_product(/obj/item/munition_part/body/casings), "Typ bazowy łusek przechodzi jako wyrób pieca")
+	forge.selected_product = /obj/item/munition_part/body/casings
+	var/iron_before = container.get_material_amount(/datum/material/iron)
+	TEST_ASSERT(!forge.prepare_cast(null), "Piec przygotował odlew typu bazowego łusek")
+	TEST_ASSERT_EQUAL(container.get_material_amount(/datum/material/iron), iron_before, "Odrzucony odlew zużył żelazo")
+	forge.selected_product = /obj/item/munition_part/body/casings/c9mm
 	TEST_ASSERT(aq_forge_product_available(/obj/item/munition_part/fuze/primer), "Spłonki nie są dostępne w piecu")
 	TEST_ASSERT(GLOB.aq_forge_products["Wkładki do pancerza"], "W oknie pieca nie ma wkładek do pancerza")
 
