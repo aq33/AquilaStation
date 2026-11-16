@@ -56,6 +56,30 @@
 	TEST_ASSERT(weapon.can_fire(null, 0), "Sprawna broń nie może strzelać")
 	reset_room_air()
 
+/// AMS bez żywych torped nie strzela i nie traci ładunku: cele sprawdza przed can_fire(), które może wywołać overload()
+/datum/unit_test/aquila_ams_dead_targets
+	var/obj/structure/overmap/small_craft/combat/light/ship
+
+/datum/unit_test/aquila_ams_dead_targets/Run()
+	var/obj/machinery/ship_weapon/energy/ams/ams = allocate(/obj/machinery/ship_weapon/energy/ams, run_loc_floor_bottom_left)
+	ship = new(run_loc_floor_top_right)
+	ams.linked = ship
+	var/obj/item/dead_torpedo = allocate(/obj/item/stack/rods, run_loc_floor_bottom_left)
+	qdel(dead_torpedo)
+	ship.torpedoes_to_target = list(dead_torpedo)
+	ams.charge = ams.charge_per_shot * 10
+	ams.freq = 0 // rozstrojona broń: can_fire() mogłoby wywołać overload() i wyzerować ładunek
+	var/charge_before = ams.charge
+	TEST_ASSERT(!ams.fire(null, 1, FALSE), "AMS strzelił bez żywych torped")
+	TEST_ASSERT(ams.charge == charge_before, "AMS bez celów stracił ładunek ([ams.charge] z [charge_before])")
+	TEST_ASSERT(!length(ams.aq_ams_live_targets(ship.torpedoes_to_target)), "Zniszczona torpeda liczy się jako cel")
+
+/datum/unit_test/aquila_ams_dead_targets/Destroy()
+	if(ship)
+		ship.torpedoes_to_target = list()
+	QDEL_NULL(ship)
+	return ..()
+
 /datum/unit_test/aquila_energy_weapon_heat/Destroy()
 	reset_room_air() // także po nieudanej asercji, która przerywa Run() przed resetem
 	return ..()

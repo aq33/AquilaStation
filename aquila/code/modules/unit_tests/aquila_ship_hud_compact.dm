@@ -1,5 +1,6 @@
 // The upstream assert macros are #undef'd at the end of code/modules/unit_tests/_unit_tests.dm, so this modular test carries its own copies
 #define TEST_ASSERT(assertion, reason) if (!(assertion)) { return Fail("Assertion failed: [reason || "No reason"]") }
+#define TEST_ASSERT_EQUAL(a, b, message) do { 	var/lhs = ##a; 	var/rhs = ##b; 	if (lhs != rhs) { 		return Fail("Expected [isnull(lhs) ? "null" : lhs] to be equal to [isnull(rhs) ? "null" : rhs].[message ? " [message]" : ""]"); 	} } while (FALSE)
 
 /// Kompaktowy HUD sternika: zamiast panelu pasek i radar, DRADIS bez samootwierania, segmenty działają jak przyciski,
 /// katapulta wymaga potwierdzenia, radar widzi sojusznika, a zejście ze sterów usuwa HUD
@@ -46,6 +47,31 @@
 			found = contact["colour"] == "#32cd32"
 	TEST_ASSERT(found, "Radar nie pokazał sojusznika na zielono")
 
+	// Impulsy aktywnego radaru idą z process() HUD-u (okno DRADIS jest zamknięte): tryb pasywny nic nie wysyła,
+	// aktywny wysyła z limitem radar_delay, także przy ukrytym panelu
+	var/obj/machinery/computer/ship/dradis/dradis = fighter.dradis
+	TEST_ASSERT(dradis, "Myśliwiec nie ma DRADIS-a")
+	dradis.can_use_radar = TRUE // DRADIS myśliwca nie ma aktywnego radaru, a zintegrowany DRADIS dużego okrętu ma
+	var/long_ago = world.time - 1 HOURS
+	dradis.sensor_mode = SENSOR_MODE_PASSIVE
+	fighter.last_radar_pulse = long_ago
+	hud.process(1)
+	TEST_ASSERT_EQUAL(fighter.last_radar_pulse, long_ago, "Pasywny radar wysłał impuls")
+	dradis.sensor_mode = SENSOR_MODE_RADAR
+	hud.process(1)
+	TEST_ASSERT_EQUAL(fighter.last_radar_pulse, world.time, "Aktywny radar z kompaktowym HUD-em nie wysłał impulsu")
+	var/just_now = world.time - 1
+	fighter.last_radar_pulse = just_now
+	hud.process(1)
+	TEST_ASSERT_EQUAL(fighter.last_radar_pulse, just_now, "Impuls zignorował limit radar_delay")
+	dummy.aquila_console_hidden = TRUE
+	fighter.last_radar_pulse = long_ago
+	hud.process(1)
+	TEST_ASSERT_EQUAL(fighter.last_radar_pulse, world.time, "Przy ukrytym panelu aktywny radar nie wysłał impulsu")
+	dummy.aquila_console_hidden = FALSE
+	dradis.sensor_mode = SENSOR_MODE_PASSIVE
+	dradis.can_use_radar = initial(dradis.can_use_radar)
+
 	// Klasyczny układ dalej działa
 	TEST_ASSERT(aq_ship_bar_width("Kadłub 100%") >= 40, "Za wąski segment paska")
 	fighter.stop_piloting(dummy, eject_mob = FALSE)
@@ -61,3 +87,4 @@
 	return ..()
 
 #undef TEST_ASSERT
+#undef TEST_ASSERT_EQUAL
