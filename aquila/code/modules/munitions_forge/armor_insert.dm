@@ -50,6 +50,19 @@ GLOBAL_LIST_INIT(aq_insert_profiles, list(
 	var/insert_integrity = 0
 	var/insert_max_integrity = 0
 
+/obj/item/munition_part/body/armor_insert/Initialize(mapload)
+	. = ..()
+	update_icon()
+
+// Barwa materiału obejmuje płytę, a kolorowy pasek (stan _stripe) zostaje czytelny dzięki RESET_COLOR
+/obj/item/munition_part/body/armor_insert/update_overlays()
+	. = ..()
+	if(forge_heat)
+		return
+	var/mutable_appearance/stripe = mutable_appearance(icon, "[initial(icon_state)]_stripe")
+	stripe.appearance_flags = RESET_COLOR
+	. += stripe
+
 /obj/item/munition_part/body/armor_insert/light
 	name = "lekka wkładka pancerza"
 	desc = "Cienka płyta do kamizelki, pancerza albo hardsuitu. Chroni słabiej niż ciężka, ale prawie nie waży."
