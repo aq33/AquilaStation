@@ -5,7 +5,8 @@
 // chronią przed tonięciem, jazda na kimś albo w pojeździe przed zmęczeniem.
 // Płytka woda (watery_tile): gasi płonące przedmioty i moby i moczy (u nas mokro = ujemne fire_stacks, bez wet_stacks).
 // Różnice względem Shiptesta: spowolnienie z prędkości pola (slowdown), a nie z modyfikatorów prędkości; status pływania
-// liczy co 5 s bez seconds_between_ticks (nasze status_effect nie podaje czasu).
+// liczy co 5 s bez seconds_between_ticks (nasze status_effect nie podaje czasu). Pomost (catwalk) na wodzie chroni przed
+// zanurzeniem, a z nim przed zmęczeniem i tonięciem (immerse.dm).
 
 /datum/element/swimming_tile
 	element_flags = ELEMENT_DETACH | ELEMENT_BESPOKE
@@ -128,7 +129,9 @@
 	if(!is_drowning())
 		return
 	var/gravity_modifier = owner.has_gravity() > STANDARD_GRAVITY ? 2 : 1
-	owner.apply_damage(oxygen_per_interval * (tick_interval / 10), OXY)
+	// Stały odstęp z definicji: nasz tick_interval w trakcie działania to czas świata następnego tiku, nie odstęp
+	// (inaczej pierwszy tik tonięcia zadawał world.time / 5 obrażeń i zabijał od razu)
+	owner.apply_damage(oxygen_per_interval * (initial(tick_interval) / 10), OXY)
 	if(prob(drowning_process_probability * gravity_modifier))
 		owner.losebreath += oxygen_per_interval
 	if(prob(20))

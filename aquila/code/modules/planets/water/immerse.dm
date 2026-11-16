@@ -56,6 +56,9 @@
 			return FALSE
 	if(movable.bound_width > world.icon_size || movable.bound_height > world.icon_size)
 		return FALSE
+	// Pomost nad wodą: idzie się po nim suchą nogą (w tg TRAIT_IMMERSE_STOPPED)
+	if(locate(/obj/structure/lattice/catwalk) in movable.loc)
+		return FALSE
 	return TRUE
 
 /datum/element/immerse/proc/on_entered(turf/source, atom/movable/arrived)

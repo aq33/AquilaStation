@@ -115,6 +115,7 @@ PROCESSING_SUBSYSTEM_DEF(fishing)
 	RegisterSignal(used_rod, COMSIG_ITEM_DROPPED, PROC_REF(interrupt))
 	RegisterSignal(user, COMSIG_MOB_CLICKON, PROC_REF(handle_click))
 	RegisterSignal(user, COMSIG_MOB_LOGOUT, PROC_REF(interrupt))
+	RegisterSignal(user, COMSIG_MOB_STATCHANGE, PROC_REF(on_user_stat_change))
 	ADD_TRAIT(user, TRAIT_GONE_FISHING, REF(src))
 	start_baiting_phase()
 	to_chat(user, span_notice("Zarzucasz wędkę i czekasz na branie..."))
@@ -129,10 +130,15 @@ PROCESSING_SUBSYSTEM_DEF(fishing)
 	user?.balloon_alert(user, "żyłka się zerwała")
 	interrupt()
 
-/// Kliknięcia podczas łowienia sterują łowieniem, a nie trafiają w świat
-/datum/fishing_challenge/proc/handle_click(mob/living/source, atom/target, params)
+/// Śmierć albo utrata przytomności kończy łowienie
+/datum/fishing_challenge/proc/on_user_stat_change(mob/living/source, new_stat)
 	SIGNAL_HANDLER
-	var/list/modifiers = params2list(params)
+	if(new_stat != CONSCIOUS)
+		interrupt()
+
+/// Kliknięcia podczas łowienia sterują łowieniem, a nie trafiają w świat. ClickOn wysyła już sparsowaną listę modyfikatorów.
+/datum/fishing_challenge/proc/handle_click(mob/living/source, atom/target, list/modifiers)
+	SIGNAL_HANDLER
 	if(LAZYACCESS(modifiers, SHIFT_CLICK) || LAZYACCESS(modifiers, CTRL_CLICK) || LAZYACCESS(modifiers, ALT_CLICK))
 		return
 	if(source.get_active_held_item() != used_rod)

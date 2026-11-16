@@ -53,9 +53,11 @@
 	if(immerse_added || (!isliving(triggering_atom) && !isitem(triggering_atom)))
 		return FALSE
 	immerse_added = TRUE
-	AddElement(/datum/element/immerse, immerse_overlay, immerse_overlay_alpha)
+	// Najpierw pływanie, potem zanurzenie: dodanie cechy zanurzenia liczy wejście do wody raz (odwrotnie pływak z
+	// sąsiedniego pola dostawał przy pierwszym wejściu na nowe pole dwa zanurzenia, czyli dwa rzuty na zmęczenie)
 	if(is_swimming_tile)
 		AddElement(/datum/element/swimming_tile, stamina_entry_cost, ticking_oxy_damage, exhaust_swimmer_prob)
+	AddElement(/datum/element/immerse, immerse_overlay, immerse_overlay_alpha)
 	return TRUE
 
 /turf/open/water/planet/examine(mob/user)
@@ -74,7 +76,10 @@
 		if(rods.use(2))
 			to_chat(user, span_notice("Budujesz pomost."))
 			playsound(src, 'sound/weapons/genhit.ogg', 50, TRUE)
-			new /obj/structure/lattice/catwalk(src)
+			var/obj/structure/lattice/catwalk/catwalk = new(src)
+			// Po pomoście idzie się normalnie, a jego rozebranie przywraca brodzenie
+			slowdown = 0
+			RegisterSignal(catwalk, COMSIG_PARENT_QDELETING, PROC_REF(on_catwalk_removed))
 		else
 			to_chat(user, span_warning("Na pomost potrzeba dwóch prętów."))
 		return
@@ -86,6 +91,10 @@
 	if(istype(attacking_item, /obj/item/reagent_containers/glass) && reagent_to_extract && extract_reagents(attacking_item, user))
 		return
 	return ..()
+
+/turf/open/water/planet/proc/on_catwalk_removed(datum/source)
+	SIGNAL_HANDLER
+	slowdown = initial(slowdown)
 
 /turf/open/water/planet/proc/extract_reagents(obj/item/reagent_containers/glass/container, mob/user)
 	if(!container.is_refillable())
