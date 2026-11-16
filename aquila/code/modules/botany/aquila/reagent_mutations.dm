@@ -12,6 +12,45 @@
 	/// AQUILA - mutacje od odczynnika: list(typ nowej części = list(odczynnik = ilość)). Wszystkie odczynniki z wpisu muszą być w tacy naraz
 	var/list/reagent_mutations
 
+/*
+	Dopiski mutacji do istniejących części bez nadpisywania ich list.
+	Każda partia portu roślin ma własny podtyp /datum/plant_mutation_set, więc kilka plików może dopisać
+	mutacje do tej samej rośliny (np. pomidora) i żaden nie zgubi cudzych. Scalane dla dokładnego typu części.
+*/
+/datum/plant_mutation_set
+	/// list(typ części = list(typ mutacji = koszt w piecu)), dopisywane do mutations
+	var/list/mutations = list()
+	/// list(typ części = list(typ mutacji = list(odczynnik = ilość))), dopisywane do reagent_mutations
+	var/list/reagent_mutations = list()
+
+GLOBAL_LIST_INIT(plant_extra_mutations, build_plant_mutation_sets(FALSE))
+GLOBAL_LIST_INIT(plant_extra_reagent_mutations, build_plant_mutation_sets(TRUE))
+
+/proc/build_plant_mutation_sets(reagent)
+	var/list/merged = list()
+	for(var/set_type in subtypesof(/datum/plant_mutation_set))
+		var/datum/plant_mutation_set/mutation_set = new set_type
+		var/list/entries = reagent ? mutation_set.reagent_mutations : mutation_set.mutations
+		for(var/part_type in entries)
+			var/list/part_entries = merged[part_type] || list()
+			for(var/new_type in entries[part_type])
+				part_entries[new_type] = entries[part_type][new_type]
+			merged[part_type] = part_entries
+	return merged
+
+/datum/plant_feature/New(datum/component/plant/_parent)
+	. = ..()
+	var/list/extra = GLOB.plant_extra_mutations[type]
+	if(length(extra))
+		mutations = mutations ? mutations.Copy() : list()
+		for(var/new_type in extra)
+			mutations[new_type] = extra[new_type]
+	var/list/extra_reagent = GLOB.plant_extra_reagent_mutations[type]
+	if(length(extra_reagent))
+		reagent_mutations = reagent_mutations ? reagent_mutations.Copy() : list()
+		for(var/new_type in extra_reagent)
+			reagent_mutations[new_type] = extra_reagent[new_type]
+
 /datum/plant_feature/fruit/process(delta_time)
 	. = ..()
 	if(!QDELETED(src) && length(reagent_mutations))

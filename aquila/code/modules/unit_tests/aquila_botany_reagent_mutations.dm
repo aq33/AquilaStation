@@ -5,6 +5,11 @@
 /// AQUILA - mutacje od odczynnika: pomidor z krwią w tacy zmienia się w krwisty pomidor i zużywa krew, bez krwi zostaje pomidorem
 /datum/unit_test/aquila_botany_reagent_mutations
 
+/// Testowy zestaw dopisków: pomidor dostaje drugą mutację od odczynnika (mleko) i mutację w piecu, obok tych z własnej listy
+/datum/plant_mutation_set/unit_test
+	mutations = list(/datum/plant_feature/fruit/tomato = list(/datum/plant_feature/fruit/tomato/friendly = 5))
+	reagent_mutations = list(/datum/plant_feature/fruit/tomato = list(/datum/plant_feature/fruit/tomato/blue = list(/datum/reagent/consumable/milk = 10)))
+
 /datum/unit_test/aquila_botany_reagent_mutations/proc/plant_tomato(obj/item/plant_tray/tray)
 	var/datum/component/planter/planter = tray.GetComponent(/datum/component/planter)
 	planter.set_substrate(/datum/plant_subtrate/dirt)
@@ -21,6 +26,14 @@
 	TEST_ASSERT_NOTNULL(plain, "Nie udało się posadzić pomidora")
 	var/datum/plant_feature/fruit/plain_fruit = locate() in plain.plant_features
 	TEST_ASSERT(isnull(plain_fruit.try_reagent_mutation(2, TRUE)), "Pomidor zmutował bez krwi w tacy")
+
+// Dopiski z /datum/plant_mutation_set nie kasują własnych list pomidora
+	TEST_ASSERT(plain_fruit.reagent_mutations[/datum/plant_feature/fruit/tomato/blood], "Dopisek z zestawu skasował własną mutację pomidora od krwi")
+	TEST_ASSERT(plain_fruit.reagent_mutations[/datum/plant_feature/fruit/tomato/blue], "Brak mutacji od mleka dopisanej przez zestaw")
+	TEST_ASSERT((/datum/plant_feature/fruit/tomato/blood in plain_fruit.mutations) && (/datum/plant_feature/fruit/tomato/friendly in plain_fruit.mutations), "Mutacje w piecu: zestaw skasował własne albo nie dopisał nowej")
+	var/datum/plant_feature/fruit/blue_tomato = new /datum/plant_feature/fruit/tomato/blue()
+	TEST_ASSERT(!(/datum/plant_feature/fruit/tomato/friendly in blue_tomato.mutations), "Dopisek dla pomidora trafił też do jego odmiany")
+	qdel(blue_tomato)
 
 // Z krwią zmienia się w krwisty pomidor
 	var/obj/item/plant_tray/blood_tray = allocate(/obj/item/plant_tray, get_step(origin, EAST))
