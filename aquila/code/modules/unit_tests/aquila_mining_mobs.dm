@@ -51,7 +51,9 @@
 /datum/unit_test/aquila_mining_hivelord
 
 /datum/unit_test/aquila_mining_hivelord/Run()
-	var/turf/corner = run_loc_floor_bottom_left
+	// Pole od ścian: zdolność losuje trzy kierunki wokół kierunku do celu (rand(-1, 1) * 45), więc w rogu sali
+	// wszystkie mogły trafić w ścianę (ok. 1 na 27) i potomstwo nie powstawało (losowa porażka w CI)
+	var/turf/corner = aquila_mining_test_turf(run_loc_floor_bottom_left, run_loc_floor_top_right, 1, 1)
 	var/mob/living/basic/mining/hivelord/hivelord = allocate(/mob/living/basic/mining/hivelord, corner)
 	var/mob/living/carbon/human/victim = allocate(/mob/living/carbon/human, aquila_mining_test_turf(corner, run_loc_floor_top_right, 3))
 	var/datum/ai_controller/controller = aquila_mining_find_target(hivelord)
