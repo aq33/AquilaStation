@@ -454,12 +454,7 @@ GENE SCANNER
 			else
 				message += "<span class='notice'>Pacjent nie zawiera odczynników.</span>"
 			message += M.stomach_scan_lines() // AQ EDIT - organy z Bee: zawartość żołądka (stomach_contents.dm)
-			if(M.reagents.addiction_list.len)
-				message += "<span class='boldannounce'>Pacjent jest uzależniony od następujących odczynników:</span>"
-				for(var/datum/reagent/R in M.reagents.addiction_list)
-					message += "<span class='alert'>[R.name]</span>"
-			else
-				message += "<span class='notice'>Pacjent nie jest uzależniony od żadnych odczynników.</span>"
+			message += M.aq_addiction_scan_lines() // AQ EDIT - uzależnienia z tg w umyśle (reagents/addiction/addiction.dm)
 		if(!tochat) // AQ EDIT - vitals monitor
 			return EXAMINE_BLOCK(jointext(message, "\n"))
 		to_chat(user, EXAMINE_BLOCK(jointext(message, "\n")))

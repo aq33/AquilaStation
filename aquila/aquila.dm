@@ -1592,6 +1592,7 @@
 
 // AquilaMed 5 (raport/medycyna5_01_plan.md): potrzebuje ran, bólu, taśmy policyjnej i instalacji chemicznej z bloków wyżej
 #include "code\modules\reagents\chemistry\reagents\med5_reagents.dm"
+#include "code\modules\reagents\addiction\addiction.dm"
 #include "code\modules\medical\asthma.dm"
 #include "code\modules\medical\iv_plumbing.dm"
 #include "code\modules\medical\medical_tape.dm"

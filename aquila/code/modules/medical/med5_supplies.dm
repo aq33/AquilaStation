@@ -124,6 +124,7 @@
 	products[/obj/item/inhaler/albuterol] = 2
 	products[/obj/item/reagent_containers/inhaler_canister/albuterol] = 3
 	products[/obj/item/barrier_tape_roll/medical] = 2
+	products[/obj/item/reagent_containers/hypospray/medipen/naloxone] = 2
 	return ..()
 
 // --- Szafki szpitala ---
@@ -144,6 +145,7 @@
 	..()
 	new /obj/item/storage/pill_bottle/oxycodone(src)
 	new /obj/item/reagent_containers/glass/bottle/oxycodone(src)
+	new /obj/item/reagent_containers/glass/bottle/naloxone(src)
 	new /obj/item/storage/pill_bottle/paroxetine(src)
 	new /obj/item/storage/pill_bottle/methylphenidate(src)
 	new /obj/item/storage/pill_bottle/happiness(src)

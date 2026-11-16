@@ -94,6 +94,7 @@ GLOBAL_LIST_INIT(aq_painkillers, list(
 		if(organ.damage > 0 && organ.slot != ORGAN_SLOT_BRAIN && organ.status == ORGAN_ORGANIC)
 			. += organ.damage * 0.3
 	. += 5 * LAZYLEN(aq_tourniquets)
+	. += aq_withdrawal_pain // odstawienie opioidów (reagents/addiction/addiction.dm)
 
 /// How much the painkillers and adrenaline in the blood take off a pain this big
 /mob/living/carbon/human/proc/aq_pain_suppression(raw_pain)

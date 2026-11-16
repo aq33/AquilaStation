@@ -228,4 +228,66 @@
 	TEST_ASSERT(burn.infection < 50, "The UV penlight did not touch the infection ([burn.infection])")
 	qdel(burn)
 
+/// AQUILA - tg addictions (reagents/addiction/addiction.dm): metabolizing enough morphine addicts, withdrawal hurts,
+/// naloxone purges opioids and forces a sharp withdrawal, losing points ends it, alcohol addicts by strength
+/datum/unit_test/aquila_addictions
+
+/datum/unit_test/aquila_addictions/Run()
+	var/mob/living/carbon/human/patient = allocate(/mob/living/carbon/human)
+	patient.mind_initialize()
+	var/datum/mind/patient_mind = patient.mind
+	TEST_ASSERT(patient_mind, "The patient has no mind")
+
+	// One dose below the threshold does not addict, metabolizing 30 units of morphine does
+	patient.reagents.add_reagent(/datum/reagent/medicine/morphine, 10)
+	for(var/i in 1 to 200)
+		if(!patient.reagents.has_reagent(/datum/reagent/medicine/morphine))
+			break
+		patient.reagents.metabolize(patient, can_overdose = TRUE)
+	TEST_ASSERT(!patient_mind.aq_is_addicted(/datum/addiction/opioids), "10 units of morphine addicted ([LAZYACCESS(patient_mind.aq_addiction_points, /datum/addiction/opioids)] points)")
+	TEST_ASSERT(LAZYACCESS(patient_mind.aq_addiction_points, /datum/addiction/opioids) > 0, "Morphine gave no opioid points")
+	patient.reagents.add_reagent(/datum/reagent/medicine/morphine, 25)
+	for(var/i in 1 to 400)
+		if(!patient.reagents.has_reagent(/datum/reagent/medicine/morphine))
+			break
+		patient.reagents.metabolize(patient, can_overdose = TRUE)
+	TEST_ASSERT(patient_mind.aq_is_addicted(/datum/addiction/opioids), "35 units of morphine did not addict ([LAZYACCESS(patient_mind.aq_addiction_points, /datum/addiction/opioids)] points)")
+	patient.reagents.clear_reagents()
+
+	// Withdrawal: the second stage hurts, the scanner shows it
+	var/datum/addiction/opioids = GLOB.aq_addictions[/datum/addiction/opioids]
+	LAZYSET(patient_mind.aq_active_addictions, /datum/addiction/opioids, 125)
+	opioids.process_addiction(patient, 2)
+	TEST_ASSERT(patient.aq_withdrawal_pain > 0, "Opioid withdrawal does not hurt")
+	var/scan = jointext(patient.aq_addiction_scan_lines(), "")
+	TEST_ASSERT(findtext(scan, "Opioidy"), "The scanner does not show the opioid addiction: [scan]")
+
+	// A dose ends the withdrawal
+	patient.reagents.add_reagent(/datum/reagent/medicine/morphine, 5)
+	opioids.process_addiction(patient, 2)
+	TEST_ASSERT(patient.aq_withdrawal_pain == 0, "A dose did not end the withdrawal pain")
+
+	// Naloxone purges the opioid and throws the addict into the last stage
+	var/points = patient_mind.aq_addiction_points[/datum/addiction/opioids]
+	patient.reagents.add_reagent(/datum/reagent/medicine/naloxone, 5)
+	patient.reagents.metabolize(patient, can_overdose = TRUE)
+	TEST_ASSERT(!patient.reagents.has_reagent(/datum/reagent/medicine/morphine), "Naloxone left morphine in the blood")
+	TEST_ASSERT(patient_mind.aq_addiction_points[/datum/addiction/opioids] < points, "Naloxone did not lower the addiction")
+	TEST_ASSERT(LAZYACCESS(patient_mind.aq_active_addictions, /datum/addiction/opioids) >= 180, "Naloxone did not force the sharp withdrawal")
+	patient.reagents.clear_reagents()
+
+	// Losing the points ends the addiction
+	patient_mind.aq_remove_addiction_points(/datum/addiction/opioids, 2000)
+	TEST_ASSERT(!patient_mind.aq_is_addicted(/datum/addiction/opioids), "The addiction stayed with no points")
+	TEST_ASSERT(patient.aq_withdrawal_pain == 0, "The withdrawal pain stayed after the addiction ended")
+
+	// Alcohol addicts by strength: a strong drink faster than a weak one
+	var/datum/reagent/consumable/ethanol/beer/beer = new()
+	var/datum/reagent/consumable/ethanol/vodka/vodka = new()
+	var/beer_units = beer.aq_get_addiction_types()[/datum/addiction/alcohol]
+	var/vodka_units = vodka.aq_get_addiction_types()[/datum/addiction/alcohol]
+	TEST_ASSERT(beer_units && vodka_units && vodka_units < beer_units, "Vodka does not addict faster than beer ([vodka_units] / [beer_units])")
+	qdel(beer)
+	qdel(vodka)
+
 #undef TEST_ASSERT

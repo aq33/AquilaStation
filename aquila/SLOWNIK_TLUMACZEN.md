@@ -2953,6 +2953,8 @@ Odmianę stref daje helper `strefa_pl(zone, biernik)` z `aquila/code/__HELPERS/p
 | asthma / asthma attack | astma / atak astmy | ż/m; nowe (AquilaMed 5) |
 | paracetamol / tramadol / oxycodone | Paracetamol / Tramadol / Oksykodon | reagenty; nowe (AquilaMed 5) |
 | citalopram / paroxetine / methylphenidate / albuterol | Citalopram / Paroksetyna / Metylofenidat / Albuterol | reagenty; nowe (AquilaMed 5) |
+| naloxone | Nalokson | reagent; nowe (AquilaMed 5) |
+| opioid / stimulant / hallucinogen addiction, withdrawal | uzależnienie od opioidów / stymulantów / halucynogenów, odstawienie | nowe (AquilaMed 5, uzależnienia z tg) |
 | medical spray | spray medyczny | m; nowe |
 | spray bottle | spryskiwacz | m; istniejące |
 | chem sprayer | rozpylacz chemiczny | m; istniejące („rozpylacz”) |
