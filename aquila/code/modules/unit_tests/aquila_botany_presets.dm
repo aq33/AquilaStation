@@ -13,12 +13,18 @@
 		/obj/item/plant_seeds/preset/bs_banana,
 		/obj/item/plant_seeds/preset/firelemon,
 	)
+	/// Abstrakcyjne presety pomijane tylko jako dokładny typ (ich podtypy test sprawdza)
+	var/list/skip_exact = list(
+		/obj/item/plant_seeds/preset/alien,
+	)
 
 /datum/unit_test/aquila_botany_presets/Run()
 	var/turf/origin = run_loc_floor_bottom_left
 	var/mob/living/carbon/human/user = allocate(/mob/living/carbon/human, origin)
 	var/list/failures = list()
 	for(var/seed_type in subtypesof(/obj/item/plant_seeds/preset))
+		if(seed_type in skip_exact)
+			continue
 		var/skipped = FALSE
 		for(var/skip_type in skip)
 			if(ispath(seed_type, skip_type))
