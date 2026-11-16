@@ -18,4 +18,21 @@
 	pipe.air_temporary = old_temporary
 	TEST_ASSERT(!QDELETED(pipe), "Rura HE bez sieci zniknęła po cyklu atmosfery")
 
+/// AQUILA - miernik gazu na rurze bez sieci rur przechodzi cykl atmosfery bez runtime'u (ten sam wyścig co wyżej;
+/// objaw z CI: aquila_engine_choice_swap padał na runtime'ach rur pod miernikami po podmianie silnika).
+/datum/unit_test/aquila_meter_no_pipeline
+
+/datum/unit_test/aquila_meter_no_pipeline/Run()
+	var/obj/machinery/atmospherics/pipe/simple/pipe = allocate(/obj/machinery/atmospherics/pipe/simple, run_loc_floor_bottom_left)
+	var/obj/machinery/meter/meter = allocate(/obj/machinery/meter, run_loc_floor_bottom_left)
+	meter.target = pipe
+	var/datum/pipeline/old_parent = pipe.parent
+	var/datum/gas_mixture/old_temporary = pipe.air_temporary
+	pipe.parent = null
+	pipe.air_temporary = null
+	meter.process_atmos()
+	pipe.parent = old_parent
+	pipe.air_temporary = old_temporary
+	TEST_ASSERT(!QDELETED(meter), "Miernik na rurze bez sieci zniknął po cyklu atmosfery")
+
 #undef TEST_ASSERT

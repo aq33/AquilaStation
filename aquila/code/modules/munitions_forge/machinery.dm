@@ -1,5 +1,5 @@
 // AQUILA - kuźnia amunicji: maszyny linii (logika na wzór smithingu z Paradise, zestaw maszyn jak kowalstwo z Monkestation).
-// Piec łukowy (silos, forma, materiał lub stop, dogrzewanie) -> kowadło (minigra) -> stół montażowy.
+// Piec łukowy (silos, okno wyboru wyrobu, materiału lub stopu i klasy, dogrzewanie) -> młot mechaniczny -> stół montażowy.
 // Sprite'y: Monkestation/Monkestation2.0 (arc forge, kowadło, stół montażowy), CC BY-SA 3.0.
 
 /obj/machinery/munitions_forge
@@ -231,7 +231,7 @@
 
 /obj/machinery/munitions_forge/arc_forge
 	name = "piec łukowy"
-	desc = "Wielki piec połączony z silosem rudy. Odlewa w formie części amunicji z materiału albo stopu dwóch materiałów i dogrzewa ostygnięte odlewy. Multitool z buforem silosu łączy go z silosem."
+	desc = "Wielki piec połączony z silosem rudy. W oknie wybierasz wyrób, materiał albo stop dwóch materiałów i klasę jakości, a piec odlewa część i dogrzewa ostygnięte odlewy. Multitool z buforem silosu łączy go z silosem."
 	icon = 'aquila/icons/obj/munitions_forge/arc_forge.dmi'
 	icon_state = "arc_forge"
 	bound_width = 96
@@ -243,8 +243,12 @@
 	operation_time = 6 SECONDS
 	operation_sound = 'sound/machines/hiss.ogg'
 	var/datum/component/remote_materials/materials
-	var/obj/item/munition_cast/cast
 	var/obj/item/munition_part/produced_part
+	/// Wybór w oknie pieca: wyrób (typ części), materiał, drugi składnik stopu (null = czysty materiał) i klasa
+	var/selected_product = /obj/item/munition_part/body/casings/c9mm
+	var/datum/munition_material/selected_material
+	var/datum/munition_material/selected_alloy
+	var/datum/munition_quality/selected_quality = /datum/munition_quality
 	/// Mnożnik zużycia materiału (mniej = taniej)
 	var/efficiency = 1
 	var/cast_time = 6 SECONDS
@@ -259,6 +263,7 @@
 /obj/machinery/munitions_forge/arc_forge/Initialize(mapload)
 	. = ..()
 	materials = AddComponent(/datum/component/remote_materials, "munitions_forge", mapload)
+	selected_material = get_munition_material(/datum/material/iron)
 
 /obj/machinery/munitions_forge/arc_forge/Destroy()
 	// Własny zapas (bez silosu) wysypujemy teraz: przy niszczeniu komponentów kontener znika przed remote_materials,
@@ -266,9 +271,8 @@
 	if(materials && !materials.silo && materials.mat_container)
 		materials.mat_container.retrieve_all(drop_location())
 	materials = null
-	if(cast)
-		cast.forceMove(drop_location())
-		cast = null
+	selected_material = null
+	selected_alloy = null
 	if(produced_part)
 		produced_part.forceMove(drop_location())
 		produced_part = null
@@ -276,10 +280,7 @@
 
 /obj/machinery/munitions_forge/arc_forge/Exited(atom/movable/gone, direction)
 	. = ..()
-	if(gone == cast)
-		cast = null
-		update_icon()
-	else if(gone == produced_part)
+	if(gone == produced_part)
 		produced_part = null
 		update_icon()
 
@@ -300,6 +301,7 @@
 	reheat_time = max(initial(reheat_time) - (lasers - 2) * 0.4 SECONDS, 2 SECONDS)
 
 /obj/machinery/munitions_forge/arc_forge/proc/get_container()
+	RETURN_TYPE(/datum/component/material_container)
 	return materials?.mat_container
 
 /obj/machinery/munitions_forge/arc_forge/accepts_part(obj/item/munition_part/part)
@@ -307,12 +309,9 @@
 
 /obj/machinery/munitions_forge/arc_forge/examine(mob/user)
 	. = ..()
-	if(cast)
-		. += "<span class='notice'>W gnieździe jest [cast]. Alt+klik, żeby ją wyjąć.</span>"
-	else
-		. += "<span class='notice'>Włóż formę, żeby odlewać. Ostygniętą część włóż, żeby ją dogrzać.</span>"
+	. += "<span class='notice'>Kliknij ręką, żeby otworzyć okno pieca i wybrać odlew. Ostygniętą część włóż, żeby ją dogrzać.</span>"
 	if(produced_part)
-		. += "<span class='notice'>W formie stygnie [produced_part]. Kliknij ręką, żeby go wyjąć.</span>"
+		. += "<span class='notice'>W piecu stygnie odlew: [produced_part]. Kliknij ręką, żeby go wyjąć.</span>"
 	var/datum/component/material_container/container = get_container()
 	if(!container)
 		. += "<span class='warning'>Nie jest połączony z żadnym magazynem materiałów.</span>"
@@ -337,42 +336,14 @@
 	update_icon()
 
 /obj/machinery/munitions_forge/arc_forge/attackby(obj/item/I, mob/living/user, params)
-	if(istype(I, /obj/item/munition_cast))
-		if(operating)
-			to_chat(user, "<span class='warning'>[src] jeszcze pracuje!</span>")
-			return TRUE
-		if(!user.transferItemToLoc(I, src))
-			return TRUE
-		if(cast)
-			user.put_in_hands(cast)
-			to_chat(user, "<span class='notice'>Zamieniasz [cast] na [I].</span>")
-		else
-			to_chat(user, "<span class='notice'>Wkładasz [I] do [src].</span>")
-		cast = I
-		update_icon()
+	// Arkusze włożone do pieca podłączonego do silosu trafiają do silosu (własny zapas pieca obsługuje sam material_container)
+	if(istype(I, /obj/item/stack/sheet) && materials?.silo && get_container() && !user.combat_mode)
+		get_container().user_insert(I, user)
 		return TRUE
 	if(istype(I, /obj/item/munition_part) && !accepts_part(I))
 		to_chat(user, "<span class='notice'>[I] jest już wykuty, nie trzeba go dogrzewać.</span>")
 		return TRUE
 	return ..()
-
-/obj/machinery/munitions_forge/arc_forge/AltClick(mob/living/user)
-	if(working_part)
-		return ..()
-	if(!user_can_reach(user))
-		return
-	if(operating)
-		to_chat(user, "<span class='warning'>[src] jeszcze pracuje!</span>")
-		return
-	if(produced_part)
-		to_chat(user, "<span class='warning'>Najpierw wyjmij odlew.</span>")
-		return
-	if(!cast)
-		to_chat(user, "<span class='notice'>W gnieździe nie ma formy.</span>")
-		return
-	user.put_in_hands(cast)
-	cast = null
-	update_icon()
 
 /obj/machinery/munitions_forge/arc_forge/interact(mob/living/user)
 	if(produced_part && !operating)
@@ -381,7 +352,12 @@
 		part.hand_over(user)
 		update_icon()
 		return
-	return ..()
+	if(isliving(user.pulling) && user.grab_state >= GRAB_NECK && Adjacent(user.pulling))
+		return ..()
+	if(!allowed(user))
+		to_chat(user, "<span class='warning'>Brak dostępu.</span>")
+		return
+	ui_interact(user)
 
 /obj/machinery/munitions_forge/arc_forge/start_operation(mob/user)
 	if(!can_operate(user))
@@ -399,13 +375,33 @@
 	operation_time = cast_time
 	return ..()
 
-/// Pobiera materiał na odlew z formy. TRUE = można lać.
+/// Materiał wybranego odlewu: czysty albo stop z drugim składnikiem
+/obj/machinery/munitions_forge/arc_forge/proc/current_material()
+	RETURN_TYPE(/datum/munition_material)
+	if(selected_alloy && selected_alloy != selected_material)
+		return get_munition_alloy(selected_material, selected_alloy) || selected_material
+	return selected_material
+
+/// Koszt wybranego odlewu: typ materiału -> jednostki
+/obj/machinery/munitions_forge/arc_forge/proc/current_cost()
+	var/datum/munition_quality/quality = get_munition_quality(selected_quality)
+	if(ispath(selected_product, /obj/item/munition_part/body))
+		var/obj/item/munition_part/body/body_path = selected_product
+		return current_material().get_cost(initial(body_path.material_amount) * quality.material_mult * efficiency)
+	// base_cost to lista, a initial() na listach nie działa — jak w Paradise czytamy ją z tymczasowej instancji
+	var/obj/item/munition_part/temp = new selected_product(null)
+	. = list()
+	for(var/mat in temp.base_cost)
+		.[mat] = round(temp.base_cost[mat] * quality.material_mult * efficiency)
+	qdel(temp)
+
+/// Pobiera materiał na wybrany w oknie odlew. TRUE = można lać.
 /obj/machinery/munitions_forge/arc_forge/proc/prepare_cast(mob/user)
 	if(produced_part)
 		to_chat(user, "<span class='warning'>Najpierw wyjmij odlew.</span>")
 		return FALSE
-	if(!cast || !cast.selected_product)
-		to_chat(user, "<span class='warning'>W gnieździe nie ma formy.</span>")
+	if(!aq_forge_product_available(selected_product))
+		to_chat(user, "<span class='warning'>Tego wyrobu jeszcze nie zbadano.</span>")
 		return FALSE
 	var/datum/component/material_container/container = get_container()
 	if(!container)
@@ -414,26 +410,10 @@
 	if(materials.on_hold())
 		to_chat(user, "<span class='warning'>Silos jest zablokowany.</span>")
 		return FALSE
-	var/obj/item/munition_part/product = cast.selected_product
-	var/datum/munition_quality/quality = get_munition_quality(cast.quality)
-	var/list/cost
-	var/datum/munition_material/material = pending_material
-	if(ispath(product, /obj/item/munition_part/body))
-		var/obj/item/munition_part/body/body_path = product
-		var/base_amount = initial(body_path.material_amount) * quality.material_mult * efficiency
-		// materiał mógł zostać ustawiony wcześniej (testy), inaczej pytamy
-		if(!material)
-			material = choose_munition_material(user, container, base_amount, "Odlew: [initial(body_path.name)]")
-			if(!material || QDELETED(src) || !user_can_reach(user) || !can_operate(user) || cast?.selected_product != product || working_part || produced_part)
-				return FALSE
-		cost = material.get_cost(base_amount)
-	else
-		// base_cost to lista, a initial() na listach nie działa — jak w Paradise czytamy ją z tymczasowej instancji
-		var/obj/item/munition_part/temp = new product(null)
-		cost = list()
-		for(var/mat in temp.base_cost)
-			cost[mat] = round(temp.base_cost[mat] * quality.material_mult * efficiency)
-		qdel(temp)
+	var/obj/item/munition_part/product = selected_product
+	var/datum/munition_quality/quality = get_munition_quality(selected_quality)
+	var/datum/munition_material/material = ispath(product, /obj/item/munition_part/body) ? current_material() : null
+	var/list/cost = current_cost()
 	if(!container.has_materials(cost))
 		to_chat(user, "<span class='warning'>W silosie zabrakło materiału.</span>")
 		pending_material = null
@@ -443,7 +423,7 @@
 	pending_material = material
 	pending_quality = quality
 	pending_product = product
-	to_chat(user, "<span class='notice'>Wlewasz płynny metal do formy...</span>")
+	to_chat(user, "<span class='notice'>Wlewasz płynny metal...</span>")
 	return TRUE
 
 /obj/machinery/munitions_forge/arc_forge/complete_operation(mob/user)
@@ -476,17 +456,25 @@
 	playsound(src, 'sound/surgery/cautery1.ogg', 50, TRUE)
 	return TRUE
 
-// ---------------------------------------------------------------- kowadło
+// ---------------------------------------------------------------- młot mechaniczny
+// Zamiast kowadła (typ zostaje, żeby mapy się nie zmieniały). Sprite: power hammer z Paradise (ParadiseSS13/Paradise,
+// icons/obj/machines/large_smithing_machines.dmi, AGPL v3): jeden filar w pełnej rozdzielczości złożony w kratkę 32×32,
+// animacja kucia to zjeżdżający tłok.
+// Odlew klasy I młot wykuwa sam. Wyższa klasa wymaga minigry (anvil_game.dm), bez młota kowalskiego w ręce.
 
 /obj/machinery/munitions_forge/anvil
-	name = "kowadło"
-	desc = "Kowadło do kształtowania gorących odlewów amunicji. Połóż na nim rozgrzaną część i kuj w rytm."
-	icon_state = "anvil_empty"
+	name = "młot mechaniczny"
+	desc = "Pneumatyczny młot do kształtowania gorących odlewów amunicji. Odlew klasy I wykuwa sam, wyższe klasy trzeba prowadzić ręcznie, w rytm uderzeń."
+	icon = 'aquila/icons/obj/munitions_forge/power_hammer.dmi'
+	icon_state = "power_hammer"
 	circuit = /obj/item/circuitboard/machine/munitions_anvil
-	use_power = NO_POWER_USE
+	use_power = NO_POWER_USE // jak dawne kowadło: kuźnia działa bez zasilania obszaru
 	max_integrity = 400
-	/// Trwające kucie
+	operation_sound = 'sound/machines/clockcult/integration_cog_install.ogg'
+	/// Trwające kucie ręczne
 	var/datum/munitions_anvil_game/game
+	/// Ile trwa jedno uderzenie automatu na jednostkę pracochłonności części
+	var/auto_time_per_step = 1.5 SECONDS
 
 /obj/machinery/munitions_forge/anvil/Destroy()
 	QDEL_NULL(game)
@@ -496,29 +484,22 @@
 	return !part.is_finished()
 
 /obj/machinery/munitions_forge/anvil/attackby(obj/item/I, mob/living/user, params)
-	if(istype(I, /obj/item/forging_hammer))
-		interact(user)
-		return TRUE
 	if(istype(I, /obj/item/munition_part) && !accepts_part(I))
 		to_chat(user, "<span class='notice'>[I] jest już wykuty.</span>")
 		return TRUE
 	return ..()
 
-/// Stan anvil_ingot z Monke to sam sztabek, więc kładziemy go na kowadło jako nakładkę
-/obj/machinery/munitions_forge/anvil/update_overlays()
-	. = ..()
-	if(working_part)
-		. += "anvil_ingot"
+/obj/machinery/munitions_forge/anvil/update_icon_state()
+	icon_state = (operating && !game) ? "power_hammer_hit" : "power_hammer"
+	return ..()
 
 /obj/machinery/munitions_forge/anvil/examine(mob/user)
 	. = ..()
-	. += "<span class='notice'>Do kucia potrzebny jest młot kowalski w ręce. Uderz nim w kowadło albo kliknij kowadło, trzymając go w drugiej ręce.</span>"
+	. += "<span class='notice'>Połóż rozgrzany odlew i kliknij młot. Klasę I wykuje sam; wyższa klasa otwiera kucie ręczne, a pudła obniżają klasę.</span>"
 
-/// Młot w którejkolwiek ręce
-/obj/machinery/munitions_forge/anvil/proc/held_hammer(mob/living/user)
-	if(!istype(user))
-		return null
-	return locate(/obj/item/forging_hammer) in user.held_items
+/// Odlew klasy I: młot kuje sam
+/obj/machinery/munitions_forge/anvil/proc/auto_forge_only(obj/item/munition_part/part)
+	return part.quality?.level == 0
 
 /obj/machinery/munitions_forge/anvil/start_operation(mob/user)
 	if(game)
@@ -530,20 +511,29 @@
 	if(!can_operate(user))
 		return FALSE
 	if(!working_part)
-		to_chat(user, "<span class='warning'>Na kowadle nic nie leży.</span>")
+		to_chat(user, "<span class='warning'>Pod młotem nic nie leży.</span>")
 		return FALSE
 	if(!working_part.forge_heat)
 		to_chat(user, "<span class='warning'>[working_part] jest za zimny, żeby go kuć. Dogrzej go w piecu łukowym.</span>")
 		return FALSE
-	if(!held_hammer(user))
-		to_chat(user, "<span class='warning'>Gołymi rękami nic nie wykujesz. Weź młot kowalski.</span>")
-		return FALSE
+	if(auto_forge_only(working_part))
+		operation_time = max(auto_time_per_step * working_part.hammer_time, 2 SECONDS)
+		to_chat(user, "<span class='notice'>Młot zaczyna kuć [working_part].</span>")
+		return ..()
 	if(!user?.client)
 		return FALSE
 	game = new(src, user, working_part)
 	operating = TRUE
 	ui_interact(user)
 	return TRUE
+
+/// Automat: równe uderzenia, więc klasa I bez pudeł
+/obj/machinery/munitions_forge/anvil/complete_operation(mob/user)
+	if(!working_part || working_part.is_finished())
+		return
+	working_part.forging_finished(get_munition_quality(/datum/munition_quality), 1)
+	do_sparks(3, TRUE, src)
+	ping()
 
 /// Wołane przez minigrę na koniec albo przy przerwaniu
 /obj/machinery/munitions_forge/anvil/proc/game_over(datum/munitions_anvil_game/ended)
@@ -555,8 +545,8 @@
 	update_icon()
 
 /obj/machinery/munitions_forge/anvil/special_attack(mob/living/user, mob/living/carbon/target)
-	target.visible_message("<span class='danger'>[user] tłucze głową [target] o [src]!</span>", \
-		"<span class='userdanger'>[user] tłucze twoją głową o [src]!</span>")
+	target.visible_message("<span class='danger'>[user] wsadza głowę [target] pod [src]!</span>", \
+		"<span class='userdanger'>[user] wsadza ci głowę pod [src]!</span>")
 	target.apply_damage(40, BRUTE, BODY_ZONE_HEAD, target.run_armor_check(BODY_ZONE_HEAD, "melee"))
 	target.Paralyze(4 SECONDS)
 	target.emote("scream")
@@ -615,7 +605,10 @@
 		to_chat(user, "<span class='warning'>Na [src] trwa montaż!</span>")
 		return TRUE
 	if(!part.is_finished())
-		to_chat(user, "<span class='warning'>[part] trzeba jeszcze wykuć na kowadle.</span>")
+		to_chat(user, "<span class='warning'>[part] trzeba jeszcze wykuć pod młotem mechanicznym.</span>")
+		return TRUE
+	if(part.forge_standalone)
+		to_chat(user, "<span class='notice'>[part] to gotowy wyrób, nie trzeba go montować.</span>")
 		return TRUE
 	if(!user.transferItemToLoc(part, src))
 		return TRUE

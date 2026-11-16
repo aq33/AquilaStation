@@ -127,9 +127,12 @@
 		if(member.client && member.stat != DEAD && member.aq_has_squad_pager())
 			. += member
 
-/// Komunikat na ekranie dla całej drużyny; sender = null to komunikat automatyczny
-/datum/squad/proc/aq_squad_screen_alert(message, title, mob/living/sender, hold_time, play_tts = FALSE)
+/// Komunikat na ekranie dla całej drużyny; sender = null to komunikat automatyczny.
+/// only: tylko ci członkowie (rozkaz tłumaczony osobno dla części drużyny)
+/datum/squad/proc/aq_squad_screen_alert(message, title, mob/living/sender, hold_time, play_tts = FALSE, list/only)
 	var/list/recipients = aq_alert_recipients()
+	if(only)
+		recipients &= only
 	for(var/mob/living/carbon/human/member as anything in recipients)
 		member.playsound_local(get_turf(member), sender ? 'nsv13/sound/effects/notice2.ogg' : 'sound/machines/twobeep.ogg', 40, FALSE)
 		member.client.aq_queue_squad_alert(new /datum/aq_squad_alert(title, message, colour, sender, hold_time || (sender ? 8 SECONDS : 4 SECONDS)))

@@ -3283,7 +3283,7 @@ Oznaczenia w kolumnie uwag:
 | Statek czy stacja | Aquila to okręt. W tekstach o „naszym” miejscu gry piszemy **statek** (ogólnie) albo **okręt** (wojskowo, NSV13). „Stacja” zostaje tylko tam, gdzie chodzi o prawdziwą stację (stacja handlowa, placówka Syndykatu, teksty tg o Space Station 13). |
 | Space ... | Przedrostek „Space” tłumaczymy przymiotnikiem **kosmiczny**: Space Wizard → Kosmiczny czarodziej, space carp → kosmiczny karp, Space Law → Prawo kosmiczne. |
 | Nazwy firm | Firmy i marki zostają w oryginale (Nanotrasen, Donk Co., Cybersun Industries). Tłumaczymy tylko człon opisowy (Gorlex Marauders → Maruderzy Gorlex, Wizard Federation → Federacja Czarodziejów). |
-| Przedrostki okrętów | NSV, SSV, SGV, DMC, DLV, SBC itd. zostają. Nazwa własna okrętu też zostaje: „NSV Zorn”, „SSV Hammurabi”. Odmiana: „na pokładzie NSV Zorn”, „Hammurabiego” (to drugie już jest w kodzie). |
+| Przedrostki okrętów | Okręty Aquili (gracza) mają przedrostek **AQ** (generator nazwy i `map_name` map: „AQ Aquilas”, „AQ Padalec”). Pozostałe NSV, SSV, SGV, DMC, DLV, SBC itd. zostają. Nazwa własna okrętu też zostaje: „NSV Zorn”, „SSV Hammurabi”. Odmiana: „na pokładzie NSV Zorn”, „Hammurabiego” (to drugie już jest w kodzie). |
 | Klasy okrętów | Szyk polski: typ + „klasy” + nazwa. „Mako class patrol frigate” → „fregata patrolowa klasy Mako”. Nazwa klasy zostaje w oryginale. |
 | Prawa i lewa burta | W zdaniach: **lewa burta** (port), **prawa burta** (starboard), **dziób** (fore), **rufa** (aft), istniejące. W nazwach obszarów istniejący schemat to Burta / Sterburta / Dziób / Rufa (patrz §9). |
 | Kody i skróty | Skróty zostają: FTL, DRADIS, PDC, MAC, NAC, VLS, IFF, APC, SMES, IPC, MMI, ERT, EVA, ATC, CAG. „AI” piszemy **SI** (istniejące, 377×). |

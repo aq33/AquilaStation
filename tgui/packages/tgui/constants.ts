@@ -123,7 +123,7 @@ export const RADIO_CHANNELS = [
   {
     name: 'Inżynieria',
     freq: 1357,
-    color: '#e8484d',
+    color: '#f37746',
   },
   {
     name: 'Żandarmeria',

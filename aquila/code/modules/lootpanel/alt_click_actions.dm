@@ -150,9 +150,6 @@
 /obj/item/modular_computer
 	alt_click_loot = FALSE
 
-/obj/item/munition_cast
-	alt_click_loot = FALSE
-
 /obj/item/nanite_remote
 	alt_click_loot = FALSE
 

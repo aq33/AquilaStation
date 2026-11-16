@@ -1812,15 +1812,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/bridge)
-"dX" = (
-/obj/machinery/light/floor,
-/obj/structure/table/reinforced,
-/obj/item/munitions_analyzer,
-/obj/item/forging_hammer,
-/obj/item/storage/box/munition_casts,
-/obj/item/forging_hammer,
-/turf/open/floor/plasteel/dark,
-/area/nsv/weapons/starboard)
 "dY" = (
 /obj/structure/closet/crate,
 /obj/effect/spawner/lootdrop/costume,
@@ -4268,6 +4259,12 @@
 /obj/machinery/light/floor,
 /turf/open/floor/plating,
 /area/maintenance/department/medical)
+"mB" = (
+/obj/machinery/light/floor,
+/obj/structure/table/reinforced,
+/obj/item/munitions_analyzer,
+/turf/open/floor/plasteel/dark,
+/area/nsv/weapons/starboard)
 "mC" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -53504,7 +53501,7 @@ Et
 UW
 Lq
 Lq
-dX
+mB
 Et
 Et
 Et

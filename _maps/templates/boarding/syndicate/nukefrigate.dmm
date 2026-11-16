@@ -1,8 +1,4 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"aa" = (
-/mob/living/carbon/human/ai_boarder/syndicate/shotgun,
-/turf/open/floor/mineral/plastitanium/red,
-/area/ruin/powered/nsv13/boarding_interior)
 "ab" = (
 /obj/effect/spawner/lootdrop/maintenance/four,
 /turf/open/floor/plating,
@@ -17,31 +13,6 @@
 	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/powered/nsv13/boarding_interior)
-"ad" = (
-/mob/living/carbon/human/ai_boarder/syndicate/pistol,
-/turf/open/floor/engine,
-/area/ruin/powered/nsv13/boarding_interior)
-"ae" = (
-/obj/structure/railing,
-/mob/living/carbon/human/ai_boarder/syndicate/pistol,
-/turf/open/floor/plasteel/dark,
-/area/ruin/powered/nsv13/boarding_interior)
-"af" = (
-/mob/living/carbon/human/ai_boarder/syndicate/shotgun,
-/turf/open/floor/engine,
-/area/ruin/powered/nsv13/boarding_interior)
-"ag" = (
-/mob/living/carbon/human/ai_boarder/syndicate/smg,
-/turf/open/floor/engine,
-/area/ruin/powered/nsv13/boarding_interior)
-"ah" = (
-/mob/living/carbon/human/ai_boarder/syndicate/smg,
-/turf/open/floor/plasteel/tech/grid,
-/area/ruin/powered/nsv13/boarding_interior)
-"ai" = (
-/mob/living/carbon/human/ai_boarder/syndicate/pistol,
-/turf/open/floor/mineral/plastitanium/red,
-/area/ruin/powered/nsv13/boarding_interior)
 "aj" = (
 /obj/structure/chair{
 	dir = 4;
@@ -50,16 +21,6 @@
 /obj/machinery/door/firedoor/border_only/directional/west,
 /obj/machinery/door/firedoor/border_only/directional/south,
 /mob/living/carbon/human/ai_boarder/syndicate/shotgun,
-/turf/open/floor/engine,
-/area/ruin/powered/nsv13/boarding_interior)
-"ak" = (
-/obj/structure/chair{
-	dir = 4;
-	name = "safety seat"
-	},
-/obj/machinery/door/firedoor/border_only/directional/west,
-/obj/machinery/door/firedoor/border_only/directional/north,
-/mob/living/carbon/human/ai_boarder/syndicate/smg,
 /turf/open/floor/engine,
 /area/ruin/powered/nsv13/boarding_interior)
 "am" = (
@@ -82,6 +43,11 @@
 	dir = 1
 	},
 /turf/open/floor/circuit/red/anim,
+/area/ruin/powered/nsv13/boarding_interior)
+"aY" = (
+/obj/structure/railing,
+/mob/living/carbon/human/ai_boarder/syndicate/sapper,
+/turf/open/floor/plasteel/dark,
 /area/ruin/powered/nsv13/boarding_interior)
 "bQ" = (
 /obj/structure/lattice/catwalk/over/ship/dark,
@@ -194,6 +160,10 @@
 /obj/structure/table/reinforced,
 /obj/item/wrench,
 /obj/item/wrench,
+/turf/open/floor/engine,
+/area/ruin/powered/nsv13/boarding_interior)
+"fh" = (
+/mob/living/carbon/human/ai_boarder/syndicate/sapper,
 /turf/open/floor/engine,
 /area/ruin/powered/nsv13/boarding_interior)
 "fA" = (
@@ -459,6 +429,10 @@
 	},
 /turf/open/floor/engine,
 /area/ruin/powered/nsv13/boarding_interior)
+"nP" = (
+/mob/living/carbon/human/ai_boarder/syndicate/assault,
+/turf/open/floor/mineral/plastitanium/red,
+/area/ruin/powered/nsv13/boarding_interior)
 "nX" = (
 /obj/structure/railing,
 /obj/effect/turf_decal/tile/ship/half/red{
@@ -512,6 +486,16 @@
 /obj/structure/window/reinforced/spawner/west,
 /obj/structure/window/reinforced/spawner/east,
 /turf/open/floor/plating/airless,
+/area/ruin/powered/nsv13/boarding_interior)
+"pE" = (
+/obj/structure/chair{
+	dir = 4;
+	name = "safety seat"
+	},
+/obj/machinery/door/firedoor/border_only/directional/west,
+/obj/machinery/door/firedoor/border_only/directional/north,
+/mob/living/carbon/human/ai_boarder/syndicate/commander,
+/turf/open/floor/engine,
 /area/ruin/powered/nsv13/boarding_interior)
 "qm" = (
 /obj/structure/fluff/support_beam{
@@ -1121,6 +1105,10 @@
 /obj/machinery/light/runway/delay4,
 /turf/open/floor/plating,
 /area/ruin/powered/nsv13/boarding_interior)
+"MM" = (
+/mob/living/carbon/human/ai_boarder/syndicate/assault,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/powered/nsv13/boarding_interior)
 "MP" = (
 /obj/structure/fluff/empty_sleeper/syndicate{
 	dir = 4
@@ -1523,6 +1511,10 @@
 "Yz" = (
 /obj/item/chair,
 /turf/open/floor/plating,
+/area/ruin/powered/nsv13/boarding_interior)
+"YH" = (
+/mob/living/carbon/human/ai_boarder/syndicate/medic,
+/turf/open/floor/engine,
 /area/ruin/powered/nsv13/boarding_interior)
 "Zw" = (
 /obj/machinery/light/small,
@@ -19342,7 +19334,7 @@ rw
 Pq
 cr
 Qg
-aa
+nP
 cr
 rw
 rX
@@ -23952,7 +23944,7 @@ bQ
 Qg
 rw
 DT
-ad
+YH
 Da
 uQ
 hx
@@ -24460,7 +24452,7 @@ me
 me
 me
 me
-ae
+aY
 Qg
 rw
 Ea
@@ -26515,7 +26507,7 @@ uQ
 uQ
 uQ
 uQ
-af
+fh
 uQ
 rw
 rX
@@ -27272,7 +27264,7 @@ rX
 rw
 uQ
 uQ
-ag
+fh
 uQ
 uQ
 uQ
@@ -31622,7 +31614,7 @@ rw
 xM
 xM
 xM
-ah
+MM
 xM
 xM
 xM
@@ -33678,7 +33670,7 @@ zX
 cr
 cr
 BN
-ai
+nP
 cr
 fV
 rw
@@ -34191,7 +34183,7 @@ aj
 cr
 cr
 cr
-ak
+pE
 Tm
 rw
 Jw

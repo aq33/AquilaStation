@@ -46,7 +46,7 @@
 		if(!isnull(part.forging_accuracy))
 			. += "Wykuto z celnością [round(part.forging_accuracy * 100)]%."
 		else if(part.hammer_time)
-			. += "Niewykuty: [part.forging_notes()] uderzeń na kowadle."
+			. += "Niewykuty: [part.forging_notes()] uderzeń przy ręcznym kuciu pod młotem."
 		var/obj/item/munition_part/body/body = part
 		if(istype(body) && body.material)
 			. += "<b>[body.material.name]</b>: [jointext(body.material.stat_lines(), " ")]"

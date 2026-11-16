@@ -8,3 +8,11 @@
 	if(!parent && !air_temporary)
 		return
 	return ..()
+
+// Ten sam wyścig dla miernika gazu: process_atmos() miernika czyta target.return_air(), a rura z szablonu nie ma
+// jeszcze sieci (objaw z CI: aquila_engine_choice_swap, runtime'y rur pod miernikami hali Stormdrive'a).
+/obj/machinery/meter/process_atmos()
+	var/obj/machinery/atmospherics/pipe/pipe = target
+	if(istype(pipe) && !pipe.parent && !pipe.air_temporary)
+		return
+	return ..()
