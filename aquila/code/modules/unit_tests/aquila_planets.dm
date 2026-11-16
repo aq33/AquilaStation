@@ -174,6 +174,16 @@
 		TEST_ASSERT(weights[picked], "[picked] was picked for a demon star system it doesn't fit")
 	TEST_ASSERT(pick_planet_type_for_tags(list("no_such_tag")), "A system with an unknown tag got no planet type")
 	TEST_ASSERT(/datum/planet_type/lava in GLOB.fixed_planets_by_system["Tortuga"], "Fixed planets from fixed_systems are missing (Tortuga has no volcanic planet)")
+	// Stałe planety powstają przed SSatoms (Initialize dochodzi bez argumentów): każda miała typ domyślny (lawa)
+	for(var/datum/star_system/system as anything in SSstar_system.systems)
+		var/list/fixed_types = GLOB.fixed_planets_by_system[system.name]
+		if(!length(fixed_types))
+			continue
+		var/list/present_types = list()
+		for(var/obj/structure/overmap/planet/system_planet as anything in system.get_planets())
+			present_types |= system_planet.planet_type.type
+		for(var/fixed_type in fixed_types)
+			TEST_ASSERT(fixed_type in present_types, "[system.name] has no [fixed_type] planet (planets: [jointext(present_types, ", ")])")
 
 	var/datum/overmap_objective/planet/deep_vein/deep_mission = new
 	for(var/i in 1 to 10)

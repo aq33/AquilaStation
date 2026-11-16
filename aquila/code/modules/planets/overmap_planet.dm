@@ -38,6 +38,13 @@ GLOBAL_LIST_EMPTY(overmap_planets)
 	var/planet_scanned = FALSE
 	var/landing_check_timer
 
+// Typ zapisany już w New: stałe planety układów powstają w SSstar_system.Initialize, zanim ruszy SSatoms, a wtedy
+// Initialize dochodzi później bez dodatkowych argumentów. Typ przepadał i każda stała planeta była lawowa.
+/obj/structure/overmap/planet/New(loc, planet_type_override)
+	if(planet_type_override)
+		planet_type = planet_type_override
+	return ..()
+
 /obj/structure/overmap/planet/Initialize(mapload, planet_type_override)
 	if(planet_type_override)
 		planet_type = planet_type_override
