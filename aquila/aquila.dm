@@ -2465,6 +2465,7 @@
 #include "code\modules\unit_tests\aquila_anomaly_cores.dm"
 #include "code\modules\unit_tests\aquila_crystal_reagent.dm"
 #include "code\modules\unit_tests\aquila_planet_anomalies.dm"
+#include "code\modules\unit_tests\aquila_planet_review_fixes.dm"
 #include "code\modules\unit_tests\aquila_sabre_shuttle.dm"
 #include "code\modules\unit_tests\aquila_sabre_tether.dm"
 #include "code\modules\unit_tests\aquila_custom_shuttle_overmap.dm"

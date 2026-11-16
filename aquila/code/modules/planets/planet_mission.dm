@@ -479,6 +479,8 @@ GLOBAL_LIST_EMPTY(planet_survey_probes)
 /// Kolonista usunięty (np. razem z powierzchnią po odlocie okrętu: KNPC nie trzymają jej na mapie) nie zostaje na liście
 /datum/overmap_objective/planet/evacuation/proc/on_colonist_deleted(mob/living/carbon/human/colonist)
 	SIGNAL_HANDLER
+	if(QDELETED(src) || !colonists)
+		return
 	colonists -= colonist
 	if(target_planet && target_planet.surface?.state != PLANET_SURFACE_READY && !is_delivered(colonist))
 		colonists_abandoned = TRUE
