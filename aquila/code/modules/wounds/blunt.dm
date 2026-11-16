@@ -12,13 +12,15 @@
 	var/gelled = FALSE
 	/// Taped over the gel, the bone knits by itself
 	var/taped = FALSE
+	/// Held by a real splint (medical/splint.dm): nothing drops, half the treated limp and less pain, the splint falls off when the bone heals
+	var/splinted = FALSE
 
 /datum/wound/blunt/on_apply()
 	if(severity >= WOUND_SEVERITY_SEVERE)
 		victim.play_bone_break()
 
 /datum/wound/blunt/wound_effects(delta_time)
-	var/drop = treated ? treated_drop_chance : drop_chance
+	var/drop = splinted ? 0 : (treated ? treated_drop_chance : drop_chance)
 	if(drop && (limb.body_zone == BODY_ZONE_L_ARM || limb.body_zone == BODY_ZONE_R_ARM) && DT_PROB(drop, delta_time))
 		var/obj/item/held = victim.get_item_for_held_index(limb.held_index)
 		if(held && victim.dropItemToGround(held))
@@ -41,6 +43,9 @@
 		return FALSE
 	if(istype(item, /obj/item/stack/medical/bone_gel) || istype(item, /obj/item/stack/sticky_tape/surgical))
 		return regen_time && !taped && !limb_in_surgery()
+	if(istype(item, /obj/item/stack/medical/splint)) // szyna (medical/splint.dm): na gołe złamanie albo w miejsce bandaża
+		var/obj/item/stack/medical/splint/splint = item
+		return !splinted && (!treated || splint.proper)
 	return !treated && istype(item, /obj/item/stack/medical/bandage)
 
 /datum/wound/blunt/treat(obj/item/item, mob/user)
@@ -48,6 +53,8 @@
 		return apply_gel(item, user)
 	if(istype(item, /obj/item/stack/sticky_tape/surgical))
 		return apply_tape(item, user)
+	if(istype(item, /obj/item/stack/medical/splint))
+		return apply_splint(item, user)
 	var/obj/item/stack/medical/bandage/bandage = item
 	var/self = user == victim
 	user.visible_message("<span class='notice'>[user] zaczyna unieruchamiać [limb.name] [victim] opatrunkiem.</span>", "<span class='notice'>Zaczynasz unieruchamiać [limb.name] [self ? "" : "[victim] "]opatrunkiem.</span>")

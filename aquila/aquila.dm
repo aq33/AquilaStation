@@ -1590,6 +1590,17 @@
 #include "code\modules\reagents\chemistry\machinery\condimaster.dm"
 #include "code\modules\reagents\chemistry\machinery\reagentgrinder.dm"
 
+// AquilaMed 5 (raport/medycyna5_01_plan.md): potrzebuje ran, bólu, taśmy policyjnej i instalacji chemicznej z bloków wyżej
+#include "code\modules\reagents\chemistry\reagents\med5_reagents.dm"
+#include "code\modules\medical\asthma.dm"
+#include "code\modules\medical\iv_plumbing.dm"
+#include "code\modules\medical\medical_tape.dm"
+#include "code\modules\medical\medical_tools_med5.dm"
+#include "code\modules\medical\organbox.dm"
+#include "code\modules\medical\paramedic_kit.dm"
+#include "code\modules\medical\splint.dm"
+#include "code\modules\medical\med5_supplies.dm"
+
 // Ksenoarcheologia z Bee (BeeStation/BeeStation-Hornet#10906) + naklejki
 #include "code\__DEFINES\sticker.dm"
 #include "code\__DEFINES\xenoarchaeology.dm"
@@ -2419,6 +2430,7 @@
 #include "code\modules\unit_tests\aquila_bitrunning.dm"
 #include "code\modules\unit_tests\aquila_bleeding.dm"
 #include "code\modules\unit_tests\aquila_medycyna4.dm"
+#include "code\modules\unit_tests\aquila_medycyna5.dm"
 #include "code\modules\unit_tests\aquila_blood_trails.dm"
 #include "code\modules\unit_tests\aquila_blood_types.dm"
 #include "code\modules\unit_tests\aquila_jezyki_ras.dm"

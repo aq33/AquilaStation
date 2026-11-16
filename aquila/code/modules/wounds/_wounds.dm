@@ -113,6 +113,10 @@
 /datum/wound/proc/wound_effects(delta_time)
 	return
 
+/// Movement slowdown this wound gives when it is on a leg
+/datum/wound/proc/get_limp_slowdown()
+	return treated ? treated_limp_slowdown : limp_slowdown
+
 /// Replaces this wound with a milder or a worse one of the same kind
 /datum/wound/proc/replace_with(new_type)
 	var/obj/item/bodypart/old_limb = limb
@@ -137,8 +141,11 @@
 
 /// Line for the health analyzer
 /datum/wound/proc/get_scan_text()
-	var/status = treated ? (heal_time ? " (opatrzone, goi się)" : " (opatrzone, wymaga operacji)") : ""
-	return "[capitalize(limb.name)]: <b>[name]</b>[status]. [treat_text]"
+	return "[capitalize(limb.name)]: <b>[name]</b>[get_scan_status()]. [treat_text]"
+
+/// " (opatrzone, ...)" after the wound name on the analyzer
+/datum/wound/proc/get_scan_status()
+	return treated ? (heal_time ? " (opatrzone, goi się)" : " (opatrzone, wymaga operacji)") : ""
 
 /// One piece of the treating stack per wound: is there one this item can help?
 /mob/living/carbon/proc/get_treatable_wound(obj/item/bodypart/limb, obj/item/item)
@@ -248,7 +255,8 @@
 		if(limb.body_zone != BODY_ZONE_L_LEG && limb.body_zone != BODY_ZONE_R_LEG)
 			continue
 		for(var/datum/wound/wound as anything in limb.wounds)
-			slowdown += wound.treated ? wound.treated_limp_slowdown : wound.limp_slowdown
+			slowdown += wound.get_limp_slowdown()
+	slowdown *= aq_walking_aid_mult() // kule (medical/splint.dm)
 	if(slowdown)
 		add_movespeed_modifier("aq_wounds", override = TRUE, multiplicative_slowdown = slowdown)
 	else

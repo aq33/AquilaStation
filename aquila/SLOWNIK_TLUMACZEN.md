@@ -2938,6 +2938,21 @@ Odmianę stref daje helper `strefa_pl(zone, biernik)` z `aquila/code/__HELPERS/p
 | cyborg hypospray / epinephrine injector / laughter injector | hypospray cyborga / iniektor epinefryny / iniektor śmiechu | m; nowe (borghypo) |
 | chemical bag / blood pack | worek chemiczny / worek z krwią | m; istniejące („Worki”) |
 | IV drip / saline drip | kroplówka / kroplówka z solą fizjologiczną | ż; istniejące |
+| automated IV drip | automatyczna kroplówka | ż; nowe (AquilaMed 5) |
+| splint / makeshift splint | szyna / prowizoryczna szyna | ż; nowe (AquilaMed 5) |
+| crutch / wooden crutch | kula medyczna / drewniana kula | ż; nowe (AquilaMed 5) |
+| amputation shears | nożyce do amputacji | mn; nowe (AquilaMed 5) |
+| nanopaste | nanopasta | ż; nowe (AquilaMed 5) |
+| reflex hammer | młotek neurologiczny | m; nowe (AquilaMed 5) |
+| inhaler / inhaler canister | inhalator / kanister do inhalatora | m; nowe (AquilaMed 5) |
+| organ transport box | chłodzony pojemnik na narządy | m; nowe (AquilaMed 5) |
+| EMT belt | pas ratownika | m; nowe (AquilaMed 5) |
+| paramedic penlight | latarka UV ratownika | ż; nowe (AquilaMed 5) |
+| emergency first-aid autoinjector (ekit) | medipen pierwszej pomocy | m; nowe (AquilaMed 5) |
+| medical tape | taśma medyczna | ż; nowe (AquilaMed 5) |
+| asthma / asthma attack | astma / atak astmy | ż/m; nowe (AquilaMed 5) |
+| paracetamol / tramadol / oxycodone | Paracetamol / Tramadol / Oksykodon | reagenty; nowe (AquilaMed 5) |
+| citalopram / paroxetine / methylphenidate / albuterol | Citalopram / Paroksetyna / Metylofenidat / Albuterol | reagenty; nowe (AquilaMed 5) |
 | medical spray | spray medyczny | m; nowe |
 | spray bottle | spryskiwacz | m; istniejące |
 | chem sprayer | rozpylacz chemiczny | m; istniejące („rozpylacz”) |

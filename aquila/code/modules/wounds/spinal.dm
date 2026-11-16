@@ -46,6 +46,8 @@
 	var/obj/item/bodypart/leg = victim.get_bodypart(pick(BODY_ZONE_L_LEG, BODY_ZONE_R_LEG))
 	if(!leg || HAS_TRAIT_FROM(leg, TRAIT_PARALYSIS, AQ_SPINE_TWITCH_TRAIT))
 		return
+	if(victim.aq_walking_aids()) // kula trzyma ciężar (medical/splint.dm)
+		return
 	ADD_TRAIT(leg, TRAIT_PARALYSIS, AQ_SPINE_TWITCH_TRAIT)
 	leg.update_disabled()
 	to_chat(victim, "<span class='danger'>Prąd przeszywa ci kręgosłup, a [strefa_pl(leg.body_zone)] odmawia posłuszeństwa!</span>")

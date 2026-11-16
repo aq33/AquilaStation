@@ -45,6 +45,7 @@
 			/obj/machinery/plumbing/pill_press = 20,
 			/obj/machinery/plumbing/patch_dispenser = 20,
 			/obj/machinery/plumbing/bottle_dispenser = 20,
+			/obj/machinery/iv_drip/plumbing = 20, // AquilaMed 5 (medical/iv_plumbing.dm)
 		),
 	)
 

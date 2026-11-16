@@ -22,6 +22,9 @@
 /// Painkiller -> how much pain it takes off (cmss13/TGMC scale)
 GLOBAL_LIST_INIT(aq_painkillers, list(
 	/datum/reagent/medicine/morphine = 80,
+	/datum/reagent/medicine/oxycodone = 70, // AquilaMed 5 (reagents/chemistry/reagents/med5_reagents.dm)
+	/datum/reagent/medicine/tramadol = 50,
+	/datum/reagent/medicine/paracetamol = 25,
 	/datum/reagent/drug/ketamine = 60,
 	/datum/reagent/toxin/fentanyl = 60,
 	/datum/reagent/drug/krokodil = 50,
