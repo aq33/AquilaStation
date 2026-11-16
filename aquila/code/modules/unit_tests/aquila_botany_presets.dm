@@ -12,6 +12,12 @@
 		// przekroczony budżet genetyczny: losowe potrzeby (krew, leki, toksyny) i cechy, których test nie odtwarza
 		/obj/item/plant_seeds/preset/bs_banana,
 		/obj/item/plant_seeds/preset/firelemon,
+		// ksenoflora rośnie tylko w kapsule, ma własny test (aquila_botany_ported_ksenoflora.dm)
+		/obj/item/plant_seeds/preset/alien/xenoflora,
+	)
+	/// Pomijane tylko dokładnie te typy (abstrakcyjni rodzice), bez podtypów
+	var/list/skip_exact = list(
+		/obj/item/plant_seeds/preset/alien,
 	)
 
 /datum/unit_test/aquila_botany_presets/Run()
@@ -19,7 +25,7 @@
 	var/mob/living/carbon/human/user = allocate(/mob/living/carbon/human, origin)
 	var/list/failures = list()
 	for(var/seed_type in subtypesof(/obj/item/plant_seeds/preset))
-		var/skipped = FALSE
+		var/skipped = (seed_type in skip_exact)
 		for(var/skip_type in skip)
 			if(ispath(seed_type, skip_type))
 				skipped = TRUE

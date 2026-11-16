@@ -94,9 +94,9 @@
 		. = FALSE
 //Tray - AQUILA: krótki stan tacy i każdej rośliny w czacie, zamiast pełnego katalogu potrzeb
 	var/obj/item/plant_tray/tray = target
-	if(istype(tray) && tray.can_scan)
+	if((istype(tray) && tray.can_scan) || istype(target, /obj/machinery/atmospherics/components/binary/xenoflora_pod)) // AQUILA - kapsuła ksenoflory to też taca
 		render_rule = RENDER_RULE_TRAY
-		buffer = get_tray_status(tray)
+		buffer = get_tray_status(target)
 		to_chat(user, span_notice("<b>[capitalize(target.name)]</b><br>[jointext(buffer, "<br>")]"))
 		playsound(src, 'sound/effects/fastbeep.ogg', 20)
 		ui_update()
@@ -146,12 +146,15 @@
 	return lines
 
 /// AQUILA - stan tacy: podłoże, płyny, chwasty, miejsce i krótki stan każdej rośliny
-/obj/item/plant_scanner/proc/get_tray_status(obj/item/plant_tray/tray)
+/obj/item/plant_scanner/proc/get_tray_status(atom/tray)
 	var/list/lines = list()
-	var/datum/component/planter/planter = tray.tray_component
+	var/datum/component/planter/planter = tray.GetComponent(/datum/component/planter)
 	lines += "Podłoże: [planter?.substrate?.name || "brak"]"
 	if(tray.reagents)
 		lines += "Płyny: [round(tray.reagents.total_volume)]/[tray.reagents.maximum_volume] j., w tym woda: [round(tray.reagents.get_reagent_amount(/datum/reagent/water))] j."
+	var/obj/machinery/atmospherics/components/binary/xenoflora_pod/pod = tray
+	if(istype(pod))
+		lines += pod.get_scan_lines()
 	if(planter)
 		lines += "Chwasty: [round(planter.weed_level)]% (przy 100% wyrasta chwast, usuwa je kultywator)"
 		lines += "Wolne miejsce: [planter.plant_slots]/[initial(planter.plant_slots)]"
