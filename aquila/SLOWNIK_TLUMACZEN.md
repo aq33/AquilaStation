@@ -1792,6 +1792,26 @@ Nowe gatunki z tg, Goona, Baya i innych (`aquila/code/modules/botany/aquila/port
 | drake beet | smoczy burak | m; nowe (tg) |
 | cahn'root | korzeń Cahna | m; nowe (tg); od nazwiska twórcy, Cahn'Manga |
 | anti weed / anti cannabis leaf | antykonopie / liść antykonopi | mn / m; nowe (tg) |
+| amauri | amauri (plon: bulwa amauri) | n, nieodm.; nowe (Bay/Skyrat, ksenoarcheologia) |
+| gelthi | gelthi (plon: strąki gelthi) | n, nieodm.; nowe (Bay/Skyrat) |
+| jurl'mah | jurl'mah (plon: owoc jurl'mah) | n, nieodm.; nowe (Bay/Skyrat) |
+| surik | surik (plon: kryształ surik) | m; nowe (Bay/Skyrat) |
+| telriis | telriis (plon: snopek telriis) | m; nowe (Bay/Skyrat) |
+| thaa'dra | thaa'dra (plon: płatki thaa'dra) | ż, nieodm.; nowe (Bay/Skyrat) |
+| vale | vale (plon: liście vale) | n, nieodm.; nowe (Bay/Skyrat) |
+| vaporsac | wapniak gazowy | m; nowe (/vg//Skyrat) |
+| S'randar's hand | Dłoń S'randara (plon: liście Dłoni S'randara, okład z Dłoni S'randara) | ż; nowe (Bay//vg/) |
+| Messa's tear | Łza Messy (plon: płatki Łzy Messy, okład z Łzy Messy) | ż; nowe (Bay//vg/) |
+| Peeker | podglądacz (plon: oko podglądacza) | m; nowe (Goon, roślina-artefakt) |
+| Puker | rzygacz (plon: wymiotna maź) | m; nowe (Goon) |
+| Dripper | ciekacz (plon: fioletowa maź) | m; nowe (Goon) |
+| Light Lotus | lotos świetlny (plon: świecący owoc) | m; nowe (Goon) |
+| Creeper | pełzacz (plon: pędy pełzacza) | m; nowe (Goon) |
+| Crystal | kryształ (plon: fioletowy odłamek) | m; nowe (Goon) |
+| Plasma | roślina plazmowa (plon: zarodnik plazmy) | ż; nowe (Goon) |
+| Goldfish | złota rybka (ciało: koralowiec złotej rybki) | ż; nowe (Goon) |
+| Synthetic Cat | syntetyczny kot (plon: kotostrąk) | m; nowe (Goon) |
+| Man-Eating Plant | ludożerca (plon: paszcza ludożercy) | m; nowe (Goon) |
 
 ## 22. Częste przymiotniki i określenia w nazwach
 
