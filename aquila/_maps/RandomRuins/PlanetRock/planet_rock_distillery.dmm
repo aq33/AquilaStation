@@ -798,7 +798,7 @@
 	},
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/item/paper/fluff/ruins/planet_piaski/distillery{
-	default_raw_text = "Scored this from an SRM ship passing through the sector. Handy if anything happens to our current still.";
+	default_raw_text = "Zwędzone ze statku SRM, który przelatywał przez sektor. Przyda się, gdyby coś się stało z naszym obecnym alembikiem.";
 	name = "notatka"
 	},
 /turf/open/floor/plating{

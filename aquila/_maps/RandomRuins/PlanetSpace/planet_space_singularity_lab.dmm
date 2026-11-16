@@ -11223,7 +11223,7 @@
 "Yq" = (
 /obj/structure/table/reinforced,
 /obj/item/paper{
-	default_raw_text = "They're outside now. I don't know what happened, but I've managed to secure the firing range. I can't get out. Maybe someone will stumble by and we'll be saved. God damn those engineers for insisting on not including communications equipment on station.";
+	default_raw_text = "Są teraz na zewnątrz. Nie wiem, co się stało, ale zdołałem zabezpieczyć strzelnicę. Nie mogę wyjść. Może ktoś tu przypadkiem zajrzy i nas uratuje. Cholerni inżynierowie, że uparli się, żeby nie montować na stacji sprzętu łączności.";
 	pixel_y = 8
 	},
 /turf/open/floor/carpet/purple,

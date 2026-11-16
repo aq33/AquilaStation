@@ -10869,7 +10869,7 @@
 /obj/item/paper/crumpled{
 	pixel_x = -6;
 	pixel_y = 6;
-	default_raw_text = "todo: get NGR markings off the last vest"
+	default_raw_text = "do zrobienia: zdjąć oznaczenia NGR z ostatniej kamizelki"
 	},
 /obj/item/scalpel{
 	name = "nóż do skóry";

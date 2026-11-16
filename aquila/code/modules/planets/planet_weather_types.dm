@@ -348,7 +348,7 @@
 	weather_duration_lower = 600
 	weather_duration_upper = 1500
 	weather_color = "green"
-	weather_sound = 'aquila/sound/weather/falloutwind.ogg'
+	weather_sound = 'nsv13/sound/effects/ship/reactor/falloutwind.ogg' // ten sam plik co opad z NSV (Shiptest wziął go od nas)
 	end_duration = 100
 	end_message = "<span class='notice'>Popiół przestaje opadać.</span>"
 	immunity_type = "rad"

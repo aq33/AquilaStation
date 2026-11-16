@@ -748,7 +748,7 @@
 	},
 /obj/item/paper/fluff/ruins{
 	name = "na wypadek szturmu";
-	default_raw_text = "<center><h1>ATTENTION</h1>The airlock is not to be used any more, security's been too lax lately in local space and with the attack on Yikiti the warehouse airlock shutter will <b>remain closed</b> If an assault occurs and, let me stress this, <i><b>I</b></i> am dead then the override is in my office. <b>DON'T TOUCH IT OTHERWISE</b><br><br>- Big Boss Ross";
+	default_raw_text = "<center><h1>UWAGA</h1>Śluza jest wyłączona z użytku. Ochrona w okolicy ostatnio się rozleniwiła, a po ataku na Yikiti roleta śluzy magazynu <b>zostaje zamknięta</b>. Jeśli dojdzie do szturmu i, podkreślam, <i><b>ja</b></i> zginę, obejście jest w moim biurze. <b>W INNYM WYPADKU NIE RUSZAĆ</b><br><br>- Wielki Szef Ross";
 	pixel_x = -10;
 	pixel_y = -5
 	},
@@ -1012,13 +1012,13 @@
 	pixel_x = 2;
 	pixel_y = 8;
 	name = "racjonowana amunicja";
-	default_raw_text = "<center><h1>ATTENTION</h1><center>I've seen some of you shooting at the wildlife. Fucking stop it. Especially you who I've trusted with an auto-rifle. You're wasting ammo and we're not made of fucking creds.<br><br>- Big Boss Ross"
+	default_raw_text = "<center><h1>UWAGA</h1><center>Widziałem, jak niektórzy z was strzelają do zwierząt. Kurwa, przestańcie. Zwłaszcza ty, któremu powierzyłem karabin automatyczny. Marnujecie amunicję, a kredyty nie rosną nam na drzewach, do cholery.<br><br>- Wielki Szef Ross"
 	},
 /obj/item/paper/fluff/ruins{
 	pixel_y = 8;
 	pixel_x = -10;
 	name = "zdobycze z terenu";
-	default_raw_text = "<center><h1>ATTENTION</h1></center>I don't understand what it is about you fucks that means the words <i>do not use Inteq weapons</i> pass through one ear and out the other. It is a liability and your 'field acquisition' of the weapons is only liable to get yourself shot by your friends. It's because of you fucks that I've had to put the 'pretty' FA2 in my personal safe. <b>STOP. FUCKING. TOUCHING. THEM.</b><br><br>- Big Boss Ross"
+	default_raw_text = "<center><h1>UWAGA</h1></center>Nie rozumiem, co z wami jest nie tak, że słowa <i>nie używać broni Inteq</i> wpadają wam jednym uchem i wylatują drugim. To ryzyko, a takie „zdobycze polowe” skończą się tylko tym, że zastrzelą was właśni kumple. Przez was, kurwy, musiałem schować „ładne” FA2 do osobistego sejfu. <b>PRZESTAŃCIE. ICH. KURWA. DOTYKAĆ.</b><br><br>- Wielki Szef Ross"
 	},
 /obj/effect/turf_decal/siding/thinplating/dark,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
@@ -1029,7 +1029,7 @@
 	},
 /obj/item/paper/fluff/ruins{
 	name = "na wypadek szturmu";
-	default_raw_text = "<center><h1>ATTENTION</h1>The airlock is not to be used any more, security's been too lax lately in local space and the attack on Yikiti the warehouse airlock shutter will <b>remain closed</b> If an assault occurs and I am, let me stress this, <i><b>I</b></i> am dead then the override is in my office. <b>DON'T TOUCH IT OTHERWISE</b><br><br>- Big Boss Ross";
+	default_raw_text = "<center><h1>UWAGA</h1>Śluza jest wyłączona z użytku. Ochrona w okolicy ostatnio się rozleniwiła, a po ataku na Yikiti roleta śluzy magazynu <b>zostaje zamknięta</b>. Jeśli dojdzie do szturmu, a ja, podkreślam, <i><b>ja</b></i> będę martwy, obejście jest w moim biurze. <b>W INNYM WYPADKU NIE RUSZAĆ</b><br><br>- Wielki Szef Ross";
 	pixel_x = -10;
 	pixel_y = -5
 	},
@@ -2746,19 +2746,19 @@
 	pixel_y = 8;
 	pixel_x = -10;
 	name = "zdobycze z terenu";
-	default_raw_text = "<center><h1>ATTENTION</h1></center>I don't understand what it is about you fucks that means the words <i>do not use Inteq weapons</i> pass through one ear and out the other. It is a liability and your 'field acquisition' of the weapons is only liable to get yourself shot by your friends. It's because of you fucks that I've had to put the 'pretty' FA2 in my personal safe. <b>STOP. FUCKING. TOUCHING. THEM.</b><br><br>- Big Boss Ross"
+	default_raw_text = "<center><h1>UWAGA</h1></center>Nie rozumiem, co z wami jest nie tak, że słowa <i>nie używać broni Inteq</i> wpadają wam jednym uchem i wylatują drugim. To ryzyko, a takie „zdobycze polowe” skończą się tylko tym, że zastrzelą was właśni kumple. Przez was, kurwy, musiałem schować „ładne” FA2 do osobistego sejfu. <b>PRZESTAŃCIE. ICH. KURWA. DOTYKAĆ.</b><br><br>- Wielki Szef Ross"
 	},
 /obj/item/paper/fluff/ruins{
 	pixel_x = 2;
 	pixel_y = 8;
 	name = "racjonowana amunicja";
-	default_raw_text = "<center><h1>ATTENTION</h1><center>I've seen some of you shooting at the wildlife. Fucking stop it. Especially you who I've trusted with an auto-rifle. You're wasting ammo and we're not made of fucking creds.<br><br>- Big Boss Ross"
+	default_raw_text = "<center><h1>UWAGA</h1><center>Widziałem, jak niektórzy z was strzelają do zwierząt. Kurwa, przestańcie. Zwłaszcza ty, któremu powierzyłem karabin automatyczny. Marnujecie amunicję, a kredyty nie rosną nam na drzewach, do cholery.<br><br>- Wielki Szef Ross"
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4,
 /obj/item/paper/fluff/ruins{
 	name = "na wypadek szturmu";
-	default_raw_text = "<center><h1>ATTENTION</h1>The airlock is not to be used any more, security's been too lax lately in local space and the attack on Yikiti the warehouse airlock shutter will <b>remain closed</b> If an assault occurs and I am, let me stress this, <i><b>I</b></i> am dead then the override is in my office. <b>DON'T TOUCH IT OTHERWISE</b><br><br>- Big Boss Ross";
+	default_raw_text = "<center><h1>UWAGA</h1>Śluza jest wyłączona z użytku. Ochrona w okolicy ostatnio się rozleniwiła, a po ataku na Yikiti roleta śluzy magazynu <b>zostaje zamknięta</b>. Jeśli dojdzie do szturmu, a ja, podkreślam, <i><b>ja</b></i> będę martwy, obejście jest w moim biurze. <b>W INNYM WYPADKU NIE RUSZAĆ</b><br><br>- Wielki Szef Ross";
 	pixel_x = -10;
 	pixel_y = -5
 	},
@@ -3235,7 +3235,7 @@
 	},
 /obj/item/paper/crumpled/bloody{
 	name = "Ale się wyłożyłem, stary";
-	default_raw_text = "<b>Aw man I've really fucking biffed it</b> Boss asked me if I had a medical degree and I said I have a degree of medical knowledge. I've only stuffed holes full of gauze and Boss handed me the surgical kit. He wanted me to get this Inteq back up but I didn't know how to save them. there were so many bullet holes. Fuck man. I lost the kit too oh if I tell Boss he's gonna fucking kill me."
+	default_raw_text = "<b>Kurde, ale spieprzyłem</b> Szef zapytał, czy mam wykształcenie medyczne, a ja powiedziałem, że coś tam z medycyny wiem. Do tej pory tylko upychałem gazę w dziury, a Szef dał mi zestaw chirurgiczny. Chciał, żebym postawił tego z Inteq na nogi, ale nie wiedziałem, jak go uratować. Tyle dziur po kulach. Kurwa, człowieku. Zgubiłem jeszcze zestaw, jak powiem Szefowi, to mnie, kurwa, zabije."
 	},
 /turf/open/floor/monotile/light,
 /area/ruin/unpowered/planet_rock/somme/medical)
@@ -5249,7 +5249,7 @@
 	},
 /obj/item/paper/fluff/ruins{
 	name = "notatki operacyjne";
-	default_raw_text = "<h3>Day 173</h3>It's been rough, a lot of cells've been getting wiped out, but at least we got one of the teams that was doing that to us. Inteq strike force tried to snatch Captain Yikiti while he was in transit but they didn't count on him having a meeting with other Captains at the time, each with their own bodyguards. Cameraman that was with them pleaded like a bitch for ages but he had nothing so I put a shot through his cranium. Boys are really antsy about the guns though, one of my top guys took the rifle that Vanguard had in the night and started shooting it off. I knew that sound anywhere, thought they had come to take back the bodies. I shot him in the darkness because of it. Stupid fuck. I've put the rifle in my safe for now. Hopefully my <i>kindly worded</i> notice will be enough to convince the rest of these chucklefucks that using the enemy's gear isn't a laughing fucking matter.";
+	default_raw_text = "<h3>Dzień 173</h3>Ciężko jest, sporo komórek wybito, ale przynajmniej dopadliśmy jeden z oddziałów, które nam to robiły. Oddział uderzeniowy Inteq próbował porwać kapitana Yikiti w czasie przelotu, ale nie przewidzieli, że będzie akurat na spotkaniu z innymi kapitanami, każdym z własną obstawą. Kamerzysta, który z nimi był, skamlał całe wieki, ale nic nie wiedział, więc wpakowałem mu kulkę w czaszkę. Chłopaki strasznie się jednak palą do tych spluw: jeden z moich najlepszych ludzi wziął w nocy karabin, który miał ich Vanguard, i zaczął z niego walić. Ten dźwięk poznam wszędzie, myślałem, że przyszli odbić ciała. Przez to zastrzeliłem go w ciemności. Głupi chuj. Na razie schowałem karabin do sejfu. Mam nadzieję, że moje <i>uprzejmie sformułowane</i> ogłoszenie przekona resztę tych pajaców, że używanie sprzętu wroga to nie są, kurwa, żarty.";
 	pixel_x = 8
 	},
 /turf/open/floor/concrete/slab_4,
@@ -5549,7 +5549,7 @@
 	},
 /obj/item/paper/fluff/ruins{
 	name = "drogi weganinie";
-	default_raw_text = "To whom it may concern,<br><br><b>I SHOULD KICK YOUR ASS YOU MOTHERFUCKER. ORDERING ONLY VEGAN CHILI FOR THE FUCKING SITE. I FEEL BLOATED JUST THINKING ABOUT EATING THIS FOR THE NEXT WEEK.</b><br><br>Sincerely,<br>an enemy.";
+	default_raw_text = "Do zainteresowanego,<br><br><b>POWINIENEM CI SKOPAĆ DUPĘ, SKURWYSYNU. ZAMAWIAĆ DLA CAŁEGO OBOZU SAMO WEGAŃSKIE CHILI. CZUJĘ SIĘ WZDĘTY NA SAMĄ MYŚL, ŻE MAM TO JEŚĆ PRZEZ CAŁY NASTĘPNY TYDZIEŃ.</b><br><br>Z wyrazami szacunku,<br>wróg.";
 	pixel_x = 8;
 	pixel_y = 8
 	},
@@ -8249,7 +8249,7 @@
 	},
 /obj/item/paper/fluff/ruins{
 	name = "wiadomości z głębin";
-	default_raw_text = "<h3>Day 146</h3>I had the dream again. Of my fleet in flames, drifting through the void while callous gods laugh. I don't know what to make of it, I've already got as many redundant frontiersman on staff as we can muster. It troubles me. I've still got that stolen rifle and some seed cash in the safe at the foot of my bed. If things go poorly I can always try again."
+	default_raw_text = "<h3>Dzień 146</h3>Znowu miałem ten sen. Moja flota w płomieniach dryfuje przez pustkę, a bezduszni bogowie się śmieją. Nie wiem, co o tym myśleć, mam już na stanie tylu zapasowych pograniczników, ilu tylko zdołamy zebrać. Niepokoi mnie to. W sejfie w nogach łóżka wciąż mam ten skradziony karabin i trochę gotówki na start. Jeśli sprawy pójdą źle, zawsze mogę zacząć od nowa."
 	},
 /turf/open/floor/carpet,
 /area/ruin/unpowered/planet_rock/somme/ross)

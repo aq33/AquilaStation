@@ -2692,7 +2692,7 @@
 	pixel_x = -5;
 	pixel_y = 2;
 	name = "aktualizacja";
-	default_raw_text = "Yet another frontiersman attack, we've been here for almost eight years now, and they still won't leave us alone. I'm just glad the guns seem to be holding up. Everyone's been more on edge, recently. There's been more and more traffic in the sector, I've told the town that if anyone lands, they should make get arms ready and board windows, but don't go picking a fight unless they get close. I hope level heads will see a well-armed town and stay away, but.. I just have to hope it's all enough."
+	default_raw_text = "Kolejny atak pograniczników. Jesteśmy tu prawie osiem lat, a oni wciąż nie dają nam spokoju. Cieszę się chociaż, że broń daje radę. Wszyscy są ostatnio bardziej spięci. W sektorze jest coraz większy ruch. Powiedziałem miastu, że jeśli ktoś wyląduje, mają przygotować broń i zabić okna deskami, ale nie zaczynać zadymy, dopóki nie podejdą blisko. Mam nadzieję, że rozsądni ludzie zobaczą dobrze uzbrojone miasto i będą się trzymać z daleka, ale... muszę po prostu wierzyć, że to wystarczy."
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/unpowered/planet_sand/pubbytown/wreck)
@@ -4221,7 +4221,7 @@
 	pixel_x = 7
 	},
 /obj/item/paper/crumpled{
-	default_raw_text = "thanks for keeping an eye on the shop for me, kiddo. remember to put the money in the safe at the end of the night. code is 13-91. xoxo. dad";
+	default_raw_text = "dzięki, że przypilnowałeś mi sklepu, młody. pamiętaj, żeby na koniec dnia włożyć pieniądze do sejfu. szyfr to 13-91. buziaki. tata";
 	pixel_x = -17;
 	name = "notatka"
 	},

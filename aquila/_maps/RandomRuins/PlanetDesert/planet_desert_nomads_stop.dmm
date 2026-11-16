@@ -4358,7 +4358,7 @@
 	color = "#CEB689"
 	},
 /obj/item/paper/crumpled{
-	default_raw_text = "Under the floor. 28-69-1"
+	default_raw_text = "Pod podłogą. 28-69-1"
 	},
 /turf/open/floor/monotile/dark,
 /area/ruin/unpowered/planet_desert/nomad_stop/warehouse)
