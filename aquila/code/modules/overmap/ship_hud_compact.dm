@@ -178,6 +178,22 @@
 		widths[id] = width
 		total += width + AQ_BAR_GAP
 	total -= AQ_BAR_GAP
+	// pasek nie może wyjść poza widok (wąskie okno, myśliwiec ze wszystkimi segmentami): ściskamy segmenty,
+	// szacunek 5 px na znak ma zapas, więc tekst dalej się mieści
+	var/list/view_size = getviewsize(C.view)
+	var/available = view_size[1] * world.icon_size - 16
+	if(total > available)
+		// najpierw pusty margines segmentów (do 10 px z 14), potem proporcjonalnie
+		var/trim = min(10, CEILING((total - available) / length(widths), 1))
+		var/scale = 1
+		var/trimmed = total - trim * length(widths)
+		if(trimmed > available)
+			scale = available / trimmed
+		total = 0
+		for(var/id in widths)
+			widths[id] = max(round((widths[id] - trim) * scale), 30)
+			total += widths[id] + AQ_BAR_GAP
+		total -= AQ_BAR_GAP
 	var/x = -round(total / 2)
 	for(var/id in contents)
 		var/atom/movable/screen/aq_ship_bar_segment/segment = segments[id]
