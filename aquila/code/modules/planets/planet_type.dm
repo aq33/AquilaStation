@@ -140,6 +140,12 @@ GLOBAL_LIST_INIT(planet_type_prototypes, init_planet_type_prototypes())
 	// dostaje 0: bez tego gracz widział tylko pola w promieniu see_in_dark, a dalej czerń (jak w jaskini).
 	if(lighting_overlay_opacity)
 		luminosity = 1
+	// Pogoda ustawia obszarowi alpha i kolor (nakładka opadów), a nakładka światła dziennego jest overlayem obszaru i to
+	// dziedziczyła: deszcz przyciemniał dzień z 204 do ok. 60, burze barwiły światło
+	if(lighting_overlay)
+		cut_overlay(lighting_overlay)
+		lighting_overlay.appearance_flags |= RESET_ALPHA | RESET_COLOR
+		add_overlay(lighting_overlay)
 
 /area/planet/surface/lava
 	name = "Pustkowia Wulkaniczne"

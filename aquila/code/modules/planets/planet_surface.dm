@@ -27,6 +27,8 @@
 	var/list/loaded_ruins = list()
 	/// Obszary ruin na tej powierzchni (pod dachem: pogoda słychać tu stłumioną)
 	var/list/ruin_areas = list()
+	/// Rezerwacja zwalniana w tle po unload() (testy czekają, aż zniknie)
+	var/datum/turf_reservation/releasing_reservation
 	/// Bieżąca pogoda i timer następnej
 	var/datum/weather/current_weather
 	var/weather_timer
@@ -37,6 +39,94 @@
 /datum/turf_reservation/planet
 	turf_type = null
 
+// Reserve() i Release() bez ..(): bazowe robią na każde pole liniowe |= i -= na listach dziesiątek tysięcy pól (n² porównań,
+// 1-4 s zawieszenia serwera przy każdej powierzchni). Tu listy są budowane raz (LEGACY_OVERRIDES.md).
+/datum/turf_reservation/planet/Reserve(width, height, zlevel)
+	if(width > world.maxx || height > world.maxy || width < 1 || height < 1)
+		return FALSE
+	var/list/avail = SSmapping.unused_turfs["[zlevel]"]
+	var/turf/BL
+	var/turf/TR
+	var/list/turf/final
+	var/passing = FALSE
+	for(var/turf/candidate as anything in avail)
+		CHECK_TICK
+		BL = candidate
+		if(!(BL.flags_1 & UNUSED_RESERVATION_TURF_1))
+			continue
+		if(BL.x + width > world.maxx || BL.y + height > world.maxy)
+			continue
+		TR = locate(BL.x + width - 1, BL.y + height - 1, BL.z)
+		if(!(TR.flags_1 & UNUSED_RESERVATION_TURF_1))
+			continue
+		final = block(BL, TR)
+		if(!final)
+			continue
+		passing = TRUE
+		for(var/turf/checking as anything in final)
+			if(!(checking.flags_1 & UNUSED_RESERVATION_TURF_1))
+				passing = FALSE
+				break
+		if(passing)
+			break
+	if(!passing || !istype(BL) || !istype(TR))
+		return FALSE
+	bottom_left_coords = list(BL.x, BL.y, BL.z)
+	top_right_coords = list(TR.x, TR.y, TR.z)
+	reserved_turfs = final.Copy()
+	for(var/turf/T as anything in final)
+		T.flags_1 &= ~UNUSED_RESERVATION_TURF_1
+		SSmapping.used_turfs[T] = src
+	// Wolne pola poziomu bez naszych: jedno przejście zamiast usuwania pole po polu
+	var/list/still_free = list()
+	for(var/turf/T as anything in avail)
+		if(T.flags_1 & UNUSED_RESERVATION_TURF_1)
+			still_free += T
+	SSmapping.unused_turfs["[zlevel]"] = still_free
+	src.width = width
+	src.height = height
+	return TRUE
+
+/datum/turf_reservation/planet/Release()
+	var/list/turfs = reserved_turfs
+	reserved_turfs = list()
+	if(!length(turfs))
+		return
+	// Wpisy tej rezerwacji z used_turfs: jedno przejście zamiast -= pole po polu
+	var/list/kept = list()
+	for(var/turf/T as anything in SSmapping.used_turfs)
+		var/datum/turf_reservation/owner = SSmapping.used_turfs[T]
+		if(owner != src)
+			kept[T] = owner
+	SSmapping.used_turfs = kept
+	for(var/turf/T as anything in turfs)
+		T.empty(RESERVED_TURF_TYPE, RESERVED_TURF_TYPE, null, TRUE)
+		T.flags_1 |= UNUSED_RESERVATION_TURF_1
+		T.flags_1 &= ~NO_RUINS_1
+		GLOB.areas_by_type[world.area].contents += T
+		CHECK_TICK
+	// Wolne pola wracają do puli poziomu jednym dopisaniem: Reserve() usunęło je z puli, więc nie ma duplikatów
+	var/z_key = "[bottom_left_coords[3]]"
+	if(!SSmapping.unused_turfs[z_key])
+		SSmapping.unused_turfs[z_key] = list()
+	var/list/free = SSmapping.unused_turfs[z_key]
+	free += turfs
+
+/// Zwolnienie rezerwacji powierzchni poza Destroy (zwalnianie usypia na tysiącach pól, a spanie w Destroy jest zabronione)
+/proc/planet_release_reservation(datum/turf_reservation/reservation)
+	if(QDELETED(reservation))
+		return
+	for(var/turf/T as anything in reservation.reserved_turfs)
+		for(var/obj/effect/landmark/L in T)
+			qdel(L)
+		// turf/empty pomija porty dokowania: wolne miejsca do lądowania nie mogą zostać w zwolnionej rezerwacji
+		for(var/obj/docking_port/stationary/port in T)
+			if(!port.docked)
+				qdel(port, TRUE)
+		PLANET_CHECK_TICK
+	reservation.Release()
+	qdel(reservation)
+
 /datum/planet_surface/New(obj/structure/overmap/planet/new_planet)
 	. = ..()
 	planet = new_planet
@@ -44,6 +134,7 @@
 
 /datum/planet_surface/Destroy(force)
 	unload()
+	releasing_reservation = null
 	planet = null
 	planet_type = null
 	return ..()
@@ -91,7 +182,6 @@
 		return FALSE
 	reservation.overmap_fallback = planet
 	planet.roomReservation = reservation
-	lazy_template_load_started()
 	surface_area = new planet_type.surface_area_type
 	surface_area.setup("[surface_area.name] ([planet.name])")
 	surface_area.always_unpowered = TRUE
@@ -102,8 +192,15 @@
 	var/turf/bl = bottom_left()
 	var/list/all_turfs = block(bl, locate(bl.x + size - 1, bl.y + size - 1, bl.z))
 	var/list/inner = inner_turfs()
-	// Krawędź: nieprzebyte skały
-	for(var/turf/T as anything in (all_turfs - inner))
+	var/edge_high = size - 1 - PLANET_EDGE_WIDTH
+	// Krawędź: nieprzebyte skały (z współrzędnych: odejmowanie list tej wielkości to n² porównań w jednym ticku).
+	// Flaga ruin/lądowisk z poprzedniej powierzchni w tym miejscu nie może zostać (ChangeTurf na ten sam typ jej nie czyści).
+	for(var/turf/T as anything in all_turfs)
+		T.flags_1 &= ~NO_RUINS_1
+		var/local_x = T.x - bl.x
+		var/local_y = T.y - bl.y
+		if(local_x >= PLANET_EDGE_WIDTH && local_x <= edge_high && local_y >= PLANET_EDGE_WIDTH && local_y <= edge_high)
+			continue
 		var/area/old_area = T.loc
 		surface_area.contents += T
 		T.change_area(old_area, surface_area)
@@ -134,14 +231,16 @@
 	qdel(generator)
 	phase_times["population"] = REALTIMEOFDAY - phase_start
 	phase_start = REALTIMEOFDAY
-	// Greeble z biomów po ruinach i populacji (nie stają na ruinach ani lądowiskach)
+	// Greeble z biomów po ruinach i populacji (nie stają na ruinach ani lądowiskach). Atmosfera serwera stoi tylko na czas
+	// wczytywania szablonów (podmuchy przesuwały niezainicjalizowane przedmioty), a nie przez całe generowanie.
+	lazy_template_load_started()
 	load_greebles()
+	lazy_template_load_finished()
 	phase_times["greebles"] = REALTIMEOFDAY - phase_start
 	phase_start = REALTIMEOFDAY
 	for(var/turf/T as anything in all_turfs)
 		T.air_update_turf()
 		PLANET_CHECK_TICK
-	lazy_template_load_finished()
 	phase_times["air"] = REALTIMEOFDAY - phase_start
 	if(QDELETED(src))
 		return FALSE
@@ -298,7 +397,8 @@
 	var/list/templates = planet_type.get_main_ruin_templates()
 	for(var/key in templates)
 		var/datum/map_template/ruin/ruin = templates[key]
-		if(!istype(ruin) || ruin.unpickable || ruin.always_place || ruin.cost <= 0 || ruin_in_use(ruin))
+		// Waga 0 = nie wypada losowo (pickweight zamienia 0 na 1)
+		if(!istype(ruin) || ruin.unpickable || ruin.always_place || ruin.cost <= 0 || ruin.placement_weight <= 0 || ruin_in_use(ruin))
 			continue
 		if(!main_ruin_fits(ruin, max(planet_type.surface_size, PLANET_SURFACE_SIZE_LARGE)))
 			continue
@@ -325,7 +425,10 @@
 		for(var/atom/movable/AM as anything in T)
 			if(isanimal_or_basicmob(AM) || istype(AM, /obj/structure/flora) || istype(AM, /obj/structure/spawner))
 				qdel(AM)
-	if(!ruin.load(where, centered = centered))
+	lazy_template_load_started()
+	var/loaded = ruin.load(where, centered = centered)
+	lazy_template_load_finished()
+	if(!loaded)
 		log_mapping("Planet [planet] ruin [ruin.name] failed to load at [AREACOORD(where)]")
 		return FALSE
 	ruin.loaded++
@@ -338,12 +441,18 @@
 			surface_area.contents += T
 			T.change_area(old_area, surface_area)
 		else if(T.loc != surface_area && T.loc != cave_area)
-			ruin_areas |= T.loc
+			var/area/ruin_area = T.loc
+			// Każde wczytanie ruiny tworzy własne obszary, więc na planecie zagłuszającej radio zagłuszają też jej ruiny
+			// (w tym te z gołym /area/ruin/unpowered)
+			if(surface_area.planet_radio_jamming)
+				ruin_area.planet_radio_jamming = TRUE
+			ruin_areas |= ruin_area
 	log_game("Planet [planet] ruin [ruin.name] placed at [AREACOORD(where)]")
 	return TRUE
 
-/// Czy ruina stoi już na innej istniejącej powierzchni. Obszary ruin (/area/ruin) czytnik map bierze z
-/// GLOB.areas_by_type, więc dwie kopie tej samej ruiny miałyby jeden obszar: jedno APC, wspólne zasilanie i alarmy.
+/// Czy ruina stoi już na innej istniejącej powierzchni. Większość obszarów ruin nie ma UNIQUE_AREA, więc każde wczytanie
+/// dostaje własne instancje, ale ruiny kosmiczne (/area/ruin/space) mają UNIQUE_AREA: dwie kopie dzieliłyby jeden obszar
+/// (jedno APC, wspólne zasilanie i alarmy). Do tego id przycisków i drzwi z mapy byłyby wspólne.
 /datum/planet_surface/proc/ruin_in_use(datum/map_template/ruin/ruin)
 	for(var/obj/structure/overmap/planet/other as anything in GLOB.overmap_planets)
 		var/datum/planet_surface/other_surface = other.surface
@@ -360,7 +469,7 @@
 	var/list/templates = planet_type.get_ruin_templates()
 	for(var/key in templates)
 		var/datum/map_template/ruin/ruin = templates[key]
-		if(!istype(ruin) || ruin.unpickable || ruin.always_place || ruin.cost <= 0 || ruin.cost > budget || ruin_in_use(ruin))
+		if(!istype(ruin) || ruin.unpickable || ruin.always_place || ruin.cost <= 0 || ruin.placement_weight <= 0 || ruin.cost > budget || ruin_in_use(ruin))
 			continue
 		if(ruin.width > size / 2.5 || ruin.height > size / 2.5)
 			continue
@@ -456,14 +565,9 @@
 	cave_area = null
 	state = PLANET_SURFACE_NONE
 	if(old_reservation)
-		for(var/turf/T as anything in old_reservation.reserved_turfs)
-			for(var/obj/effect/landmark/L in T)
-				qdel(L)
-			// turf/empty pomija porty dokowania: wolne miejsca do lądowania nie mogą zostać w zwolnionej rezerwacji
-			for(var/obj/docking_port/stationary/port in T)
-				if(!port.docked)
-					qdel(port, TRUE)
-		qdel(old_reservation)
+		// W tle: czyszczenie dziesiątek tysięcy pól usypia, a unload() wołają też Destroy i timer planety
+		releasing_reservation = old_reservation
+		INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(planet_release_reservation), old_reservation)
 	// Puste obszary nie wiszą na listach obszarów (teleporty, admin)
 	for(var/area/A as anything in old_areas)
 		if(!A)

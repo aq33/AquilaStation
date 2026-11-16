@@ -63,8 +63,18 @@
 	surface.unload()
 	TEST_ASSERT_EQUAL(surface.state, PLANET_SURFACE_NONE, "The surface didn't unload")
 	TEST_ASSERT(!planet.roomReservation, "The planet still points at a released reservation")
+	// Rezerwacja zwalnia się w tle (poza Destroy)
+	var/datum/turf_reservation/releasing = surface.releasing_reservation
+	TEST_ASSERT(releasing, "The surface didn't start releasing its reservation")
+	var/wait_until = world.time + 2 MINUTES
+	while(!QDELETED(releasing) && world.time < wait_until)
+		sleep(world.tick_lag)
+	TEST_ASSERT(QDELETED(releasing), "The surface reservation wasn't released in time")
 	var/turf/released = reserved[1]
 	TEST_ASSERT(isspaceturf(released), "The released surface wasn't turned back into space ([released.type])")
+	TEST_ASSERT(released.flags_1 & UNUSED_RESERVATION_TURF_1, "A released surface turf isn't free for new reservations")
+	TEST_ASSERT(!SSmapping.used_turfs[released], "A released surface turf still belongs to the old reservation")
+	TEST_ASSERT(released in SSmapping.unused_turfs["[released.z]"], "A released surface turf didn't return to the free pool")
 	qdel(planet, TRUE)
 
 /// AQUILA - planety: pogoda planety działa tylko w jej obszarze, a nie na całym poziomie rezerwacji
