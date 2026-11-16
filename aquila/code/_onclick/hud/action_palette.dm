@@ -51,7 +51,8 @@
 /mob/update_action_buttons(reload_screen)
 	if(!hud_used || !client)
 		return
-	if(hud_used.hud_shown != HUD_STYLE_STANDARD)
+	// za sterami z kompaktowym HUD-em postać ma HUD zredukowany, a przyciski akcji (np. „Przestań obserwować”) muszą zostać
+	if(hud_used.hud_shown != HUD_STYLE_STANDARD && !aq_ship_hud)
 		return
 
 	var/expanded = hud_used.action_palette_expanded

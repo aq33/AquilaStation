@@ -463,6 +463,7 @@ GLOBAL_LIST_INIT(aquila_ship_console_buttons, list(
 		if(user.aq_ship_hud?.ship != src)
 			QDEL_NULL(user.aq_ship_hud)
 			user.aq_ship_hud = new(user, src)
+			user.update_action_buttons(TRUE) // przyciski przyznane przy przełączaniu HUD-u (wyjście z kamery) nie trafiły na ekran
 			if(!user.aquila_console_hidden)
 				to_chat(user, "<span class='notice'>Radar w prawym górnym rogu otwiera DRADIS, pasek na dole przełącza hamulec, sterowanie i broń. Shift+klik pokazuje opis. Stary duży panel włączysz w preferencjach („Klasyczny panel sterowania”).</span>")
 		else

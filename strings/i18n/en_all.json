@@ -11121,6 +11121,7 @@
 "<span class='notice'>Wybierz godne przebranie i starannie zaplanuj cele! Ludzie zabiją cię, gdy tylko cię zobaczą.</span>": "<span class='notice'>Choose a worthy disguise and plan your targets carefully! Humans will kill you on sight.</span>",
 "<span class='notice'>Wybrana amunicja: kanister</span>": "<span class='notice'>Selected Munition: Canister type</span>",
 "<span class='notice'>Wybrana amunicja: pocisk lity</span>": "<span class='notice'>Selected Munition: Slug type</span>",
+"<span class='notice'>Wybrana broń: [weapon.name].</span>": "<span class='notice'>Selected weapon: [weapon.name].</span>",
 "<span class='notice'>Wybrano dodatkowe stanowisko.</span>": "<span class='notice'>Secondary mount selected.</span>",
 "<span class='notice'>Wybrano działo. Celowanie wspomagane DRADIS-em: aktywne..</span>": "<span class='notice'>Cannon selected. DRADIS assisted targeting: online..</span>",
 "<span class='notice'>Wybrano działo. Celowanie wspomagane DRADIS-em: aktywne.</span>": "<span class='notice'>Cannon selected. DRADIS assisted targeting: online.</span>",

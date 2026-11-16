@@ -11,6 +11,8 @@
 #define AQ_BAR_GAP 2
 /// Ile czasu po pierwszym kliknięciu katapulty czeka na potwierdzenie
 #define AQ_BAR_EJECT_ARM_TIME (5 SECONDS)
+/// Ile znaków nazwy broni mieści segment paska
+#define AQ_SHIP_BAR_WEAPON_CHARS 14
 
 /datum/preferences
 	/// Stary duży panel konsoli i okno DRADIS przy siadaniu za stery zamiast radaru i paska
@@ -125,7 +127,11 @@
 		.["rotation"] = ship.move_by_mouse ? "Ster: mysz" : "Ster: klawisze"
 	if(is_gunner)
 		var/datum/overmap_ship_weapon/weapon = ship.controlled_weapon_datum?[user]
-		.["weapon"] = weapon ? "Broń: [weapon.name]" : "Broń: brak"
+		// długie nazwy („Główne stanowisko wyposażenia”) rozpychały pasek poza ekran; pełna nazwa jest w Shift+klik
+		var/weapon_name = weapon ? weapon.name : "brak"
+		if(length_char(weapon_name) > AQ_SHIP_BAR_WEAPON_CHARS)
+			weapon_name = "[copytext_char(weapon_name, 1, AQ_SHIP_BAR_WEAPON_CHARS)]…"
+		.["weapon"] = "Broń: [weapon_name]"
 		if(weapon)
 			.["ammo"] = "[weapon.get_ammo()]/[weapon.get_max_ammo()]"
 	.["hull"] = "Kadłub [aq_ship_hull_percent(ship)]%"
@@ -261,6 +267,9 @@
 		return
 	if(LAZYACCESS(params2list(params), SHIFT_CLICK))
 		to_chat(usr, "<span class='notice'>Pasek statku: kliknij segment, żeby przełączyć hamulec, sterowanie albo broń; DRADIS otwiera pełne okno radaru. Skróty: Alt (hamulec), C (sterowanie), spacja (broń). Stary duży panel włączysz w preferencjach („Klasyczny panel sterowania”).</span>")
+		var/datum/overmap_ship_weapon/weapon = ship_hud.ship.controlled_weapon_datum?[usr]
+		if(segment_id == "weapon" && weapon)
+			to_chat(usr, "<span class='notice'>Wybrana broń: [weapon.name].</span>")
 		return
 	ship_hud.use_segment(segment_id)
 
@@ -350,3 +359,4 @@
 #undef AQ_BAR_HEIGHT
 #undef AQ_BAR_GAP
 #undef AQ_BAR_EJECT_ARM_TIME
+#undef AQ_SHIP_BAR_WEAPON_CHARS
