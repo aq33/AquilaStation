@@ -12,7 +12,7 @@
 /// Ile czasu po pierwszym kliknięciu katapulty czeka na potwierdzenie
 #define AQ_BAR_EJECT_ARM_TIME (5 SECONDS)
 /// Ile znaków nazwy broni mieści segment paska
-#define AQ_SHIP_BAR_WEAPON_CHARS 14
+#define AQ_SHIP_BAR_WEAPON_CHARS 9
 
 /datum/preferences
 	/// Stary duży panel konsoli i okno DRADIS przy siadaniu za stery zamiast radaru i paska
