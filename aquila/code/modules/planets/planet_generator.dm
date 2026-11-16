@@ -80,7 +80,7 @@ GLOBAL_LIST_EMPTY(planet_biomes)
 		var/datum/planet_biome/biome = get_biome(T)
 		var/area/target_area = istype(biome, /datum/planet_biome/cave) ? cave_area : surface_area
 		biome.generate_turf(T, target_area, src)
-		CHECK_TICK
+		PLANET_CHECK_TICK
 
 /// Rośliny, obiekty i moby biomów (bez pól z listy skip: pole -> TRUE)
 /datum/planet_generator/proc/populate_turfs(list/turf/turfs, list/skip)
@@ -92,7 +92,7 @@ GLOBAL_LIST_EMPTY(planet_biomes)
 			continue
 		var/datum/planet_biome/biome = turf_biome_cache[T]
 		biome?.populate_turf(T, created_features, created_mobs)
-		CHECK_TICK
+		PLANET_CHECK_TICK
 	created_features = null
 	created_mobs = null
 

@@ -14,6 +14,13 @@
 /// Ile lądowisk wyznacza generator
 #define PLANET_LANDING_ZONES 3
 
+/// Ile procent ticku może zająć generowanie powierzchni planety. CHECK_TICK pozwala procedurze asynchronicznej zająć tick
+/// do limitu MC (ok. 80-98%), a wtedy MC nie mieścił się w ticku: przez całe generowanie (kilkadziesiąt sekund) co 2-4
+/// ticki jeden przepadał i serwer zwalniał (TD) u wszystkich graczy, nie tylko u lądujących.
+#define PLANET_GEN_TICK_LIMIT 50
+/// CHECK_TICK z niższym limitem dla generowania planet
+#define PLANET_CHECK_TICK (TICK_USAGE > min(PLANET_GEN_TICK_LIMIT, Master.current_ticklimit) ? stoplag() : 0)
+
 /// Stan powierzchni planety
 #define PLANET_SURFACE_NONE 0
 #define PLANET_SURFACE_GENERATING 1

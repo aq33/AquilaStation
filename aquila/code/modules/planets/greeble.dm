@@ -158,4 +158,4 @@ GLOBAL_LIST_EMPTY(planet_greeble_templates)
 		if(QDELETED(spawner) || !contains(get_turf(spawner)))
 			continue
 		spawner.start_load(src)
-		CHECK_TICK
+		PLANET_CHECK_TICK

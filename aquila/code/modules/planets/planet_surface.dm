@@ -31,6 +31,12 @@
 	var/datum/weather/current_weather
 	var/weather_timer
 
+/// Rezerwacja pod powierzchnię planety bez zmiany pól na kosmos: zwykła rezerwacja robi ChangeTurf na każdym z ok.
+/// 36 tys. pól w jednej pętli bez CHECK_TICK (kilka sekund zawieszenia serwera), a generator i tak nadpisuje każde pole
+/// (krawędź i teren) już z oddawaniem czasu. ChangeTurf(null) kończy się od razu.
+/datum/turf_reservation/planet
+	turf_type = null
+
 /datum/planet_surface/New(obj/structure/overmap/planet/new_planet)
 	. = ..()
 	planet = new_planet
@@ -65,7 +71,7 @@
 		return list()
 	return block(locate(bl.x + PLANET_EDGE_WIDTH, bl.y + PLANET_EDGE_WIDTH, bl.z), locate(bl.x + size - 1 - PLANET_EDGE_WIDTH, bl.y + size - 1 - PLANET_EDGE_WIDTH, bl.z))
 
-/// Buduje powierzchnię. Może trwać kilka sekund (CHECK_TICK), więc wołać asynchronicznie.
+/// Buduje powierzchnię. Może trwać kilka sekund (PLANET_CHECK_TICK), więc wołać asynchronicznie.
 /datum/planet_surface/proc/generate()
 	if(state != PLANET_SURFACE_NONE)
 		return state == PLANET_SURFACE_READY
@@ -75,7 +81,7 @@
 	size = planet_type.surface_size
 	if(main_ruin && !main_ruin_fits(main_ruin, size))
 		size = PLANET_SURFACE_SIZE_LARGE
-	reservation = SSmapping.RequestBlockReservation(size, size)
+	reservation = SSmapping.RequestBlockReservation(size, size, null, /datum/turf_reservation/planet)
 	if(!reservation || QDELETED(src))
 		state = PLANET_SURFACE_NONE
 		reservation = null
@@ -102,7 +108,7 @@
 		surface_area.contents += T
 		T.change_area(old_area, surface_area)
 		T.ChangeTurf(planet_type.edge_turf_type, planet_type.edge_turf_type, CHANGETURF_IGNORE_AIR | CHANGETURF_DEFER_CHANGE)
-		CHECK_TICK
+		PLANET_CHECK_TICK
 	// Czasy etapów do logu (generowanie potrafiło trwać minutami: widać, który etap)
 	var/list/phase_times = list()
 	var/phase_start = REALTIMEOFDAY
@@ -110,7 +116,7 @@
 	generator.generate_turfs(inner)
 	for(var/turf/T as anything in all_turfs)
 		T.AfterChange(CHANGETURF_IGNORE_AIR)
-		CHECK_TICK
+		PLANET_CHECK_TICK
 	phase_times["terrain"] = REALTIMEOFDAY - phase_start
 	phase_start = REALTIMEOFDAY
 	// Jak w Shiptest: najpierw główna ruina przy górnej krawędzi, potem lądowiska z dala od niej, potem małe ruiny
@@ -134,7 +140,7 @@
 	phase_start = REALTIMEOFDAY
 	for(var/turf/T as anything in all_turfs)
 		T.air_update_turf()
-		CHECK_TICK
+		PLANET_CHECK_TICK
 	lazy_template_load_finished()
 	phase_times["air"] = REALTIMEOFDAY - phase_start
 	if(QDELETED(src))
@@ -177,7 +183,7 @@
 						continue
 					candidates[candidate] = score
 					best_score = max(best_score, score)
-				CHECK_TICK
+				PLANET_CHECK_TICK
 			if(!length(candidates))
 				break
 			var/list/good = list()
@@ -224,7 +230,7 @@
 				safe_run++
 			landing_safe_sums[row + x + 1] = landing_safe_sums[previous_row + x + 1] + safe_run
 			landing_blocked_sums[row + x + 1] = landing_blocked_sums[previous_row + x + 1] + blocked_run
-		CHECK_TICK
+		PLANET_CHECK_TICK
 
 /// Suma z siatki prefiksowej w prostokącie (współrzędne lokalne od 0, włącznie, przycinane do kwadratu)
 /datum/planet_surface/proc/landing_grid_sum(list/sums, x1, y1, x2, y2)
@@ -272,7 +278,7 @@
 			var/area/old_area = T.loc
 			surface_area.contents += T
 			T.change_area(old_area, surface_area)
-		CHECK_TICK
+		PLANET_CHECK_TICK
 	planet_type.decorate_landing_zone(src, zone_center, radius)
 
 /// Zamienia pole w grunt planety (lądowiska, miejsca misji). Zwraca nowe pole.
@@ -366,7 +372,7 @@
 			continue
 		if(place_ruin(ruin))
 			budget -= ruin.cost
-		CHECK_TICK
+		PLANET_CHECK_TICK
 
 /// Próbuje postawić jedną ruinę; TRUE, jeśli stanęła
 /datum/planet_surface/proc/place_ruin(datum/map_template/ruin/ruin)

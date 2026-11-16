@@ -25,6 +25,17 @@
 
 	var/turf/bl = surface.bottom_left()
 	TEST_ASSERT(istype(bl, /turf/closed/indestructible/rock/planet_edge), "The surface corner isn't the planet edge ([bl.type])")
+	// Rezerwacja planety nie zamienia pól na kosmos (ChangeTurf 36 tys. pól zamrażał serwer): każde pole, także krawędź,
+	// musi nadpisać generator
+	var/reserved_space = 0
+	for(var/turf/T as anything in surface.reservation.reserved_turfs)
+		if(isspaceturf(T))
+			reserved_space++
+	TEST_ASSERT_EQUAL(reserved_space, 0, "Space turfs left in the planet reservation (edge or terrain skipped by the generator)")
+	// Bez luminosity obszaru gracz widział tylko pola w promieniu see_in_dark, a na planecie grał szum okrętu
+	TEST_ASSERT(surface.surface_area.luminosity, "The planet surface area has no luminosity: turfs past see_in_dark render black")
+	TEST_ASSERT(!surface.cave_area.luminosity, "Planet caves are lit")
+	TEST_ASSERT(!surface.surface_area.ambient_buzz, "The ship ambience hum plays on the planet surface")
 	var/space = 0
 	var/lava = 0
 	var/walls = 0
