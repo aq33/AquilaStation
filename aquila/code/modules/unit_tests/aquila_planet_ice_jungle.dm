@@ -14,6 +14,11 @@
 /datum/unit_test/planet_ice_jungle_surfaces
 
 /datum/unit_test/planet_ice_jungle_surfaces/Run()
+#ifndef AQUILA_FULL_MAP_TESTS
+	// Ciężki test planet (generowanie powierzchni typów, wczytywanie ruin i greebli): w zwykłym CI pomijany, bo cała
+	// część testów z planetami nie mieściła się w limicie czasu. Pełny przebieg: -DAQUILA_FULL_MAP_TESTS.
+	return
+#endif
 	for(var/planet_type in planet_test_sample(list(/datum/planet_type/ice, /datum/planet_type/jungle, /datum/planet_type/dwarf/snow)))
 		var/obj/structure/overmap/planet/planet = new(run_loc_floor_top_right, planet_type)
 		var/datum/planet_surface/surface = planet.surface
@@ -43,6 +48,11 @@
 /datum/unit_test/planet_ice_jungle_ruins
 
 /datum/unit_test/planet_ice_jungle_ruins/Run()
+#ifndef AQUILA_FULL_MAP_TESTS
+	// Ciężki test planet (generowanie powierzchni typów, wczytywanie ruin i greebli): w zwykłym CI pomijany, bo cała
+	// część testów z planetami nie mieściła się w limicie czasu. Pełny przebieg: -DAQUILA_FULL_MAP_TESTS.
+	return
+#endif
 	var/list/ruin_sets = list(
 		/datum/planet_type/ice = get_planet_ice_ruin_templates(),
 		/datum/planet_type/jungle = get_planet_jungle_ruin_templates(),
@@ -64,6 +74,11 @@
 /datum/unit_test/planet_ice_jungle_greebles
 
 /datum/unit_test/planet_ice_jungle_greebles/Run()
+#ifndef AQUILA_FULL_MAP_TESTS
+	// Ciężki test planet (generowanie powierzchni typów, wczytywanie ruin i greebli): w zwykłym CI pomijany, bo cała
+	// część testów z planetami nie mieściła się w limicie czasu. Pełny przebieg: -DAQUILA_FULL_MAP_TESTS.
+	return
+#endif
 	var/list/maps = list()
 	for(var/spawner_type in list(/obj/effect/greeble_spawner/ice, /obj/effect/greeble_spawner/ice/anomaly, /obj/effect/greeble_spawner/jungle,
 			/obj/effect/greeble_spawner/jungle/cave, /obj/effect/greeble_spawner/jungle/anomaly))

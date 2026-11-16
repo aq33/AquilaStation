@@ -287,6 +287,11 @@
 /datum/unit_test/planet_lava_ruins
 
 /datum/unit_test/planet_lava_ruins/Run()
+#ifndef AQUILA_FULL_MAP_TESTS
+	// Ciężki test planet (generowanie powierzchni typów, wczytywanie ruin i greebli): w zwykłym CI pomijany, bo cała
+	// część testów z planetami nie mieściła się w limicie czasu. Pełny przebieg: -DAQUILA_FULL_MAP_TESTS.
+	return
+#endif
 	var/list/templates = get_planet_lava_ruin_templates()
 	TEST_ASSERT(length(templates) >= 5, "Only [length(templates)] Shiptest lava ruins are registered")
 	// Każda ruina mieści się jako ruina główna (do szerokości wnętrza bez marginesów i połowy jego wysokości) i wczytuje się

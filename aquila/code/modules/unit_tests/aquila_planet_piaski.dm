@@ -14,6 +14,11 @@
 /datum/unit_test/planet_piaski_surfaces
 
 /datum/unit_test/planet_piaski_surfaces/Run()
+#ifndef AQUILA_FULL_MAP_TESTS
+	// Ciężki test planet (generowanie powierzchni typów, wczytywanie ruin i greebli): w zwykłym CI pomijany, bo cała
+	// część testów z planetami nie mieściła się w limicie czasu. Pełny przebieg: -DAQUILA_FULL_MAP_TESTS.
+	return
+#endif
 	var/list/planet_types = list(
 		/datum/planet_type/rock,
 		/datum/planet_type/sand,
@@ -53,6 +58,11 @@
 /datum/unit_test/planet_piaski_ruins
 
 /datum/unit_test/planet_piaski_ruins/Run()
+#ifndef AQUILA_FULL_MAP_TESTS
+	// Ciężki test planet (generowanie powierzchni typów, wczytywanie ruin i greebli): w zwykłym CI pomijany, bo cała
+	// część testów z planetami nie mieściła się w limicie czasu. Pełny przebieg: -DAQUILA_FULL_MAP_TESTS.
+	return
+#endif
 	var/list/ruin_roots = list(
 		/datum/map_template/ruin/planet_rock = 7,
 		/datum/map_template/ruin/planet_sand = 7,

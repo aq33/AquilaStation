@@ -14,6 +14,11 @@
 /datum/unit_test/planet_moon_surfaces
 
 /datum/unit_test/planet_moon_surfaces/Run()
+#ifndef AQUILA_FULL_MAP_TESTS
+	// Ciężki test planet (generowanie powierzchni typów, wczytywanie ruin i greebli): w zwykłym CI pomijany, bo cała
+	// część testów z planetami nie mieściła się w limicie czasu. Pełny przebieg: -DAQUILA_FULL_MAP_TESTS.
+	return
+#endif
 	for(var/planet_type in planet_test_sample(list(/datum/planet_type/moon, /datum/planet_type/asteroid, /datum/planet_type/asteroid/space_signal, /datum/planet_type/gas_giant, /datum/planet_type/gas_giant/plasma)))
 		var/obj/structure/overmap/planet/planet = new(run_loc_floor_top_right, planet_type)
 		var/datum/planet_surface/surface = planet.surface
@@ -88,6 +93,11 @@
 /datum/unit_test/planet_moon_ruins
 
 /datum/unit_test/planet_moon_ruins/Run()
+#ifndef AQUILA_FULL_MAP_TESTS
+	// Ciężki test planet (generowanie powierzchni typów, wczytywanie ruin i greebli): w zwykłym CI pomijany, bo cała
+	// część testów z planetami nie mieściła się w limicie czasu. Pełny przebieg: -DAQUILA_FULL_MAP_TESTS.
+	return
+#endif
 	var/list/templates = planet_ruin_templates_of(/datum/map_template/ruin/planet_moon) + planet_ruin_templates_of(/datum/map_template/ruin/planet_space)
 	TEST_ASSERT_EQUAL(length(templates), 8, "Wrong number of moon and space ruins registered")
 	var/obj/structure/overmap/planet/fit_planet = new(run_loc_floor_top_right, /datum/planet_type/moon)

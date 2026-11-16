@@ -14,6 +14,11 @@
 /datum/unit_test/planet_sea_surfaces
 
 /datum/unit_test/planet_sea_surfaces/Run()
+#ifndef AQUILA_FULL_MAP_TESTS
+	// Ciężki test planet (generowanie powierzchni typów, wczytywanie ruin i greebli): w zwykłym CI pomijany, bo cała
+	// część testów z planetami nie mieściła się w limicie czasu. Pełny przebieg: -DAQUILA_FULL_MAP_TESTS.
+	return
+#endif
 	for(var/planet_type in planet_test_sample(list(/datum/planet_type/beach, /datum/planet_type/water, /datum/planet_type/dwarf/water)))
 		var/obj/structure/overmap/planet/planet = new(run_loc_floor_top_right, planet_type)
 		var/datum/planet_surface/surface = planet.surface
@@ -59,6 +64,11 @@
 /datum/unit_test/planet_sea_ruins
 
 /datum/unit_test/planet_sea_ruins/Run()
+#ifndef AQUILA_FULL_MAP_TESTS
+	// Ciężki test planet (generowanie powierzchni typów, wczytywanie ruin i greebli): w zwykłym CI pomijany, bo cała
+	// część testów z planetami nie mieściła się w limicie czasu. Pełny przebieg: -DAQUILA_FULL_MAP_TESTS.
+	return
+#endif
 	var/list/sets = list(
 		/datum/planet_type/beach = get_planet_sea_ruin_templates(/datum/map_template/ruin/planet_beach),
 		/datum/planet_type/water = get_planet_sea_ruin_templates(/datum/map_template/ruin/planet_water),

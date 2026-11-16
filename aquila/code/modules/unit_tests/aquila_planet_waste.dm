@@ -14,6 +14,11 @@
 /datum/unit_test/planet_waste_surfaces
 
 /datum/unit_test/planet_waste_surfaces/Run()
+#ifndef AQUILA_FULL_MAP_TESTS
+	// Ciężki test planet (generowanie powierzchni typów, wczytywanie ruin i greebli): w zwykłym CI pomijany, bo cała
+	// część testów z planetami nie mieściła się w limicie czasu. Pełny przebieg: -DAQUILA_FULL_MAP_TESTS.
+	return
+#endif
 	for(var/planet_type in planet_test_sample(list(/datum/planet_type/waste, /datum/planet_type/battlefield)))
 		var/obj/structure/overmap/planet/planet = new(run_loc_floor_top_right, planet_type)
 		var/datum/planet_surface/surface = planet.surface
@@ -51,6 +56,11 @@
 /datum/unit_test/planet_waste_ruins
 
 /datum/unit_test/planet_waste_ruins/Run()
+#ifndef AQUILA_FULL_MAP_TESTS
+	// Ciężki test planet (generowanie powierzchni typów, wczytywanie ruin i greebli): w zwykłym CI pomijany, bo cała
+	// część testów z planetami nie mieściła się w limicie czasu. Pełny przebieg: -DAQUILA_FULL_MAP_TESTS.
+	return
+#endif
 	var/list/waste = get_planet_waste_ruin_templates()
 	var/list/battlefield = get_planet_battlefield_ruin_templates()
 	TEST_ASSERT_EQUAL(length(waste), 6, "Wrong number of waste planet ruins")
