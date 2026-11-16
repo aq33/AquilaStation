@@ -2402,6 +2402,7 @@
 #include "code\modules\unit_tests\aquila_botany.dm"
 #include "code\modules\unit_tests\aquila_botany_flow.dm"
 #include "code\modules\unit_tests\aquila_botany_ported_surowce.dm"
+#include "code\modules\unit_tests\aquila_botany_ported_tg.dm"
 #include "code\modules\unit_tests\aquila_botany_presets.dm"
 #include "code\modules\unit_tests\aquila_botany_compost.dm"
 #include "code\modules\unit_tests\aquila_botany_ported_akwa.dm"
