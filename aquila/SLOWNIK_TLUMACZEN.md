@@ -1730,6 +1730,23 @@ Nowe gatunki z tg, Goona, Baya i innych (`aquila/code/modules/botany/aquila/port
 |---|---|---|
 | peanut | orzeszki ziemne | mn; nowe (tg) |
 | Peanut Butter (`/consumable/peanut_butter`) | Masło orzechowe | n; nowe, reagent |
+| Synthmeat | syntetyczne mięso | n; nowe (Goon), roślina |
+| Synthbutt / Synthbrain / Synthheart / Syntheye | syntetyczny tyłek / mózg, syntetyczne serce / oczy | nowe (Goon); też narządy `/synthgrown` |
+| Synthlimb / Synthliver / Synthlung / Synthstomach / Synthappendix | syntetyczna kończyna / wątroba, syntetyczne płuca, syntetyczny żołądek / wyrostek robaczkowy | nowe (Goon) |
+| Synthbuttbot | syntetyczny tyłkobot | m; nowe (Goon), plonem tyłkobot |
+| Paper Tree / Money Tree / Rubber Tree | drzewo papierowe / pieniężne / kauczukowe | n; nowe (Goon) |
+| rockfruit | owoc skalny | m; nowe (Bubberstation) |
+| sandfruit | owoc piaskowy | m; nowe (Bubberstation) |
+| ferrotuber / titanituber | żelazna bulwa / tytanowa bulwa | ż; nowe (Bubberstation) |
+| uraniberry | uranowa jagoda | ż; nowe (Bubberstation) |
+| plasmaplum | plazmowa śliwka | ż; nowe (Bubberstation) |
+| bluegem drupe | niebieski klejnot | m; nowe (Bubberstation) |
+| ag-bergine / au-bergine | agberżyna / oberżyna złota | ż; nowe (Bubberstation) |
+| dimantis | dimantis | m; nowe (Bubberstation) |
+| Adam's apple (adamapple) | jabłko adamowe | n; nowe (Bubberstation) |
+| runescooper | runiczna gałka | ż; nowe (Bubberstation) |
+| bananiumberry | bananiowa jagoda | ż; nowe (Bubberstation) |
+| coca leaf / coca leaves | liść koki / liście koki | nowe (Monkestation) |
 
 ## 22. Częste przymiotniki i określenia w nazwach
 
