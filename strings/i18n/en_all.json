@@ -22862,6 +22862,7 @@
 "Broń, która łamie konwencję genewską w tempie 3 pocisków na minutę.": "A weapon that violates the Geneva Convention at 3 rounds per minute",
 "Broń, z której pełnego potencjału skorzystają tylko naprawdę krzepcy.": "A weapon that can only be used to its full potential by the truly robust.",
 "Broń: [weapon.name]": "Weapon: [weapon.name]",
+"Broń: [weapon_name]": "Weapon: [weapon_name]",
 "Broń: brak": "Weapon: none",
 "Brońcie niepodległości [nation_name]. Nie wracajcie do pracy, dopóki dowództwo nie zgodzi się na żądanie: [demand].": "Defend the independence of [nation_name]. Do not go back to work until command agrees to the demand: [demand].",
 "Brudna": "Dirty",
