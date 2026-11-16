@@ -1730,6 +1730,38 @@ Nowe gatunki z tg, Goona, Baya i innych (`aquila/code/modules/botany/aquila/port
 |---|---|---|
 | peanut | orzeszki ziemne | mn; nowe (tg) |
 | Peanut Butter (`/consumable/peanut_butter`) | Masło orzechowe | n; nowe, reagent |
+| aloe | aloes | m; nowe (tg) |
+| Aloe Juice (`/consumable/aloejuice`) | Sok z aloesu | m; nowe (tg), reagent |
+| peas / peapod | groch / strąk grochu | m; nowe (tg) |
+| laughin' peas | śmiejący się groch | m; nowe (tg) |
+| Laughin' Syrup (`/consumable/laughsyrup`) | Syrop śmiechu | m; nowe (tg), reagent |
+| world peas | groch pokoju | m; nowe (tg); gra słów „world peace” |
+| green beans | fasolka szparagowa | ż; nowe (tg) |
+| jumping bean | skacząca fasolka | ż; nowe (tg) |
+| butterbean | bób maślany | m; nowe (tg) |
+| rose / carbon rose | róża / węglowa róża | ż; nowe (tg) |
+| cucumber | ogórek | m; nowe (tg) |
+| Cucumber Juice (`/consumable/cucumberjuice`) | Sok z ogórka | m; nowe (tg), reagent |
+| olive / olive tree | oliwka / drzewo oliwne | ż / n; nowe (tg) |
+| plum / plum tree | śliwka / śliwa | ż; nowe (tg) |
+| Plum Juice (`/consumable/plumjuice`) | Sok śliwkowy | m; nowe (tg), reagent |
+| plumb | śliwka ołowiana | ż; nowe (tg); gra słów plumbum = ołów |
+| bell pepper | papryka | ż; nowe (tg) |
+| pepper-corn | pieprzokukurydza | ż; nowe (tg) |
+| herbs / bundle of herbs | zioła / pęczek ziół | mn / m; nowe (tg) |
+| fraxinella | dyptam | m; nowe (tg); polska nazwa gatunku (dyptam jesionolistny) |
+| korta nut / sweet korta nut | orzech korta / słodki orzech korta | m; nowe (tg) |
+| Korta Milk / Korta Nectar (`/consumable/korta_milk`, `/korta_nectar`) | Mleko korta / Nektar korta | n / m; nowe (tg), reagenty |
+| töchtaüse berries | jagody töchtaüse | mn; nowe (tg); nazwa ciem bez zmian |
+| Töchtaüse Juice (`/consumable/toechtauese_juice`) | Sok z töchtaüse | m; nowe (tg), reagent |
+| lanternfruit | owoc latarniowy | m; nowe (tg) |
+| kronkus / kronkus vine segment | kronkus / pęd kronkusa | m; nowe (tg) |
+| odious puffball | purchawka cuchnąca | ż; nowe (tg) |
+| saltcane | trzcina solna | ż; nowe (tg) |
+| barrelmelon | beczkowy melon | m; nowe (tg) |
+| drake beet | smoczy burak | m; nowe (tg) |
+| cahn'root | korzeń Cahna | m; nowe (tg); od nazwiska twórcy, Cahn'Manga |
+| anti weed / anti cannabis leaf | antykonopie / liść antykonopi | mn / m; nowe (tg) |
 
 ## 22. Częste przymiotniki i określenia w nazwach
 
