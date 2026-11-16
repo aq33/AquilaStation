@@ -12,7 +12,7 @@
 	},
 /area/template_noop)
 "h" = (
-/turf/open/space/basic,
+/turf/template_noop,
 /area/template_noop)
 "i" = (
 /turf/closed/mineral/random/planet_jungle/polluted,

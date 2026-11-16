@@ -22,7 +22,7 @@
 	icon_dead = "whitewolf_dead"
 	mouse_opacity = MOUSE_OPACITY_ICON
 	mob_size = MOB_SIZE_HUMAN
-	speak_emote = list("wyje")
+	speak_emote = list("zawywa")
 	friendly_verb_continuous = "wyje na"
 	butcher_results = list(/obj/item/food/meat/slab = 2, /obj/item/stack/sheet/bone = 2)
 	maxHealth = 130
@@ -86,7 +86,7 @@
 		return INITIALIZE_HINT_QDEL
 
 /datum/action/cooldown/mob_cooldown/planet_charge/wolf
-	name = "Skok"
+	name = "Wypad"
 	desc = "Rzuca się na ofiarę i przewraca ją."
 	cooldown_time = 10 SECONDS
 	charge_distance = 8

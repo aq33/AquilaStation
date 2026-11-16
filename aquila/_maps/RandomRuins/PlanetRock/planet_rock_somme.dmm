@@ -5173,7 +5173,7 @@
 /area/lavaland/surface/outdoors)
 "Gk" = (
 /obj/machinery/door/airlock/grunge{
-	name = "Woźny";
+	name = "Pomieszczenie woźnego";
 	dir = 1
 	},
 /obj/structure/cable,

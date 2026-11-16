@@ -63,7 +63,7 @@
 	aquarium_vc_color = "#C27C55"
 
 /datum/aquarium_behaviour/fish/planet/sockeye
-	name = "nerka"
+	name = "łosoś nerka"
 	desc = "Czerwony łosoś, który całe życie wraca do miejsca, w którym się wykluł."
 	icon_state = "sockeye"
 	aquarium_vc_color = "#B4403C"

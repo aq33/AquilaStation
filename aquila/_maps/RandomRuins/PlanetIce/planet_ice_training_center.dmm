@@ -368,7 +368,7 @@
 "cz" = (
 /obj/machinery/door/airlock/engineering{
 	dir = 4;
-	name = "Technika"
+	name = "Pomieszczenia techniczne"
 	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -4658,7 +4658,7 @@
 "Jb" = (
 /obj/machinery/door/airlock/engineering{
 	dir = 4;
-	name = "Technika"
+	name = "Pomieszczenia techniczne"
 	},
 /turf/open/floor/plating,
 /area/ruin/unpowered/planet_ice/training_facility/engineering)
@@ -5009,7 +5009,7 @@
 "Lp" = (
 /obj/machinery/door/airlock/engineering{
 	dir = 4;
-	name = "Technika"
+	name = "Pomieszczenia techniczne"
 	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
