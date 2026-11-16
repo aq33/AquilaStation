@@ -22,6 +22,8 @@
 /obj/item/gun
 	/// Zacięcie po amunicji klasy I: broń nie strzela, dopóki właściciel jej nie odblokuje (użycie w ręce)
 	var/aq_jammed = FALSE
+	/// Szansa na zacięcie po strzale amunicją klasy I (procent; zmienna, żeby test mógł wymusić zacięcie)
+	var/aq_rough_jam_chance = AQ_ROUGH_JAM_CHANCE
 
 /obj/item/gun/add_wear(obj/item/ammo_casing/casing)
 	var/before = gun_wear
@@ -32,7 +34,7 @@
 /obj/item/gun/shoot_live_shot(mob/living/user, pointblank = 0, atom/pbtarget = null, message = 1)
 	var/obj/item/ammo_casing/fired = chambered
 	. = ..()
-	if(aq_is_rough_munition(fired) && prob(AQ_ROUGH_JAM_CHANCE))
+	if(aq_is_rough_munition(fired) && prob(aq_rough_jam_chance))
 		aq_jammed = TRUE
 		firing_burst = FALSE // zaplanowane strzały serii (process_burst) omijają process_fire
 		if(user)

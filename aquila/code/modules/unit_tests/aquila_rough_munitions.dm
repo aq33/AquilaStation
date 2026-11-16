@@ -33,4 +33,13 @@
 	gun.attack_self(shooter)
 	TEST_ASSERT(!gun.aq_jammed, "Użycie w ręce nie usunęło zacięcia")
 
+	// zacięcie w trakcie serii: zaplanowane strzały process_burst() muszą się zatrzymać (sprawdzają firing_burst)
+	gun.aq_rough_jam_chance = 100
+	gun.firing_burst = TRUE
+	gun.chambered = rough
+	gun.shoot_live_shot(shooter)
+	TEST_ASSERT(gun.aq_jammed, "Wymuszone zacięcie nie zacięło broni")
+	TEST_ASSERT(!gun.firing_burst, "Zacięcie nie przerwało rozpoczętej serii")
+	TEST_ASSERT(!gun.process_burst(shooter, get_step(shooter, NORTH), iteration = 2), "Kolejny strzał serii poszedł mimo zacięcia")
+
 #undef TEST_ASSERT
