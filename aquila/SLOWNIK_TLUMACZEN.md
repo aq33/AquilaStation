@@ -1732,6 +1732,17 @@ Nowe gatunki z tg, Goona, Baya i innych (`aquila/code/modules/botany/aquila/port
 |---|---|---|
 | peanut | orzeszki ziemne | mn; nowe (tg) |
 | Peanut Butter (`/consumable/peanut_butter`) | Masło orzechowe | n; nowe, reagent |
+| aquatic substrate / water (substrate) | podłoże wodne / woda | n / ż; nowe (akwakultura, Bay/Nebula) |
+| shellfish bed / mollusc bed (body) | ławica | ż; nowe (Nebula) |
+| larvae / eggs (shellfish seeds) | larwy | mn; nowe, zamiast „nasiona” w paczkach skorupiaków |
+| shellfish | skorupiak / skorupiaki | m / mn; nowe |
+| clam / clams | małż / małże | m / mn; nowe (Bay, Nebula) |
+| oyster / oysters | ostryga / ostrygi | ż / mn; nowe (Bay) |
+| mussel / mussels | omułek / omułki | m / mn; nowe (Bay) |
+| shrimp | krewetka / krewetki | ż / mn; nowe (Bay) |
+| crab / crabs | krab / kraby | m / mn; istniejące (plon: surowe mięso kraba) |
+| barnacle / barnacles | pąkla / pąkle | ż / mn; nowe (Nebula) |
+| raw clam / mussel / oyster / shrimp / barnacle | surowy małż / surowy omułek / surowa ostryga / surowa krewetka / surowa pąkla | nowe, mięso po otwarciu nożem |
 
 ## 22. Częste przymiotniki i określenia w nazwach
 
