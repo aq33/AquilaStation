@@ -1255,6 +1255,7 @@
 #include "code\modules\test_chamber\kits\pr_641_zbiorczy_1411.dm"
 #include "code\modules\test_chamber\kits\pr_641_sterowanie_knpc.dm"
 #include "code\modules\test_chamber\kits\pr_naped_okretu.dm"
+#include "code\modules\test_chamber\kits\pr_rosliny.dm"
 #include "code\modules\test_chamber\kits\pr_646_wybor_silnika.dm"
 #include "code\modules\test_chamber\kits\pr_640_glos_si_eventy.dm"
 #include "code\modules\test_chamber\kits\pr_638_mapa_hex.dm"

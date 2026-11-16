@@ -50,8 +50,10 @@
 	TEST_ASSERT(istype(plant), "Nasiona [seeds.type] z artefaktu nie dają się posadzić")
 	artifact_component.trigger(TRUE)
 	var/count = 0
+	//Paczka z pierwszej aktywacji może zostać na kafelku (ma kilka nasion), liczą się tylko nowe
 	for(var/obj/item/plant_seeds/preset/alien/more_seeds in origin)
-		count++
+		if(more_seeds != seeds)
+			count++
 	TEST_ASSERT(count == 0, "Artefakt wyrzucił kolejne nasiono w czasie przerwy")
 	for(var/obj/item/leftover in origin)
 		if(leftover != artifact)
