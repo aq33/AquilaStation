@@ -147,7 +147,11 @@
 	var/turf_type_before = T.type
 	for(var/turf_type in turf_types)
 		T = T.ChangeTurf(turf_type)
-		TEST_ASSERT(istype(T, turf_type), "Couldn't place [turf_type]")
+		// Skała z losową rudą sama zmienia się w Initialize w pole z rudą (np. gibtonit): to nie jest błąd, ale test
+		// nie może wyjść, zanim przywróci podłogę (inaczej wszystkie dalsze testy tej części CI padają na ścianie)
+		if(!istype(T, turf_type) && !ispath(turf_type, /turf/closed/mineral/random))
+			T = T.ChangeTurf(turf_type_before)
+			return Fail("Couldn't place [turf_type]")
 	T = T.ChangeTurf(turf_type_before)
 	for(var/atom_type in atom_types)
 		var/atom/movable/thing = new atom_type(run_loc_floor_top_right)
@@ -166,9 +170,9 @@
 /datum/unit_test/planet_type_selection/Run()
 	for(var/planet_type in GLOB.planet_type_prototypes)
 		var/datum/planet_type/prototype = GLOB.planet_type_prototypes[planet_type]
-		// Wspólni rodzice bez generatora (np. planety karłowate) nie są planetami
-		if(prototype.generator_type == /datum/planet_generator)
-			continue
+		// Abstrakcyjni rodzice (abstract_type) nie trafiają do prototypów, więc każdy typ tutaj musi mieć własny generator
+		// (bazowy nie ma tabel biomów: pierwsze lądowanie wysypałoby się runtime'em i powierzchnia utknęłaby w generowaniu)
+		TEST_ASSERT(prototype.generator_type != /datum/planet_generator, "[planet_type] has no planet generator of its own")
 		TEST_ASSERT(length(prototype.system_tags) || prototype.type == /datum/planet_type/lava, "[planet_type] never appears in random systems (no system_tags)")
 		if(length(prototype.mission_veins))
 			TEST_ASSERT(prototype.vein_root, "[planet_type] has mission veins but no vein_root for the mission drill")

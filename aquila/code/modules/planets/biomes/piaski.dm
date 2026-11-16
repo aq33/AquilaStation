@@ -440,8 +440,15 @@
 	open_turf_types = list(/turf/open/floor/plating/asteroid/whitesands/dried = 1)
 	mob_spawn_chance = 2
 
+/// Lawa w jaskiniach białych piasków: ta sama mieszanka co grunt dookoła (z mieszanką Lavalandu brzeg lawy był w atmosferze
+/// aktywny na stałe)
+/turf/open/lava/smooth/planet_sand
+	initial_gas_mix = PLANET_SAND_ATMOS
+	planetary_atmos = TRUE
+	baseturfs = /turf/open/lava/smooth/planet_sand
+
 /datum/planet_biome/cave/sand/volcanic/lava
-	open_turf_types = list(/turf/open/floor/plating/asteroid/whitesands/dried = 7, /turf/open/lava/smooth/lava_land_surface = 1)
+	open_turf_types = list(/turf/open/floor/plating/asteroid/whitesands/dried = 7, /turf/open/lava/smooth/planet_sand = 1)
 
 /datum/planet_biome/cave/sand/volcanic/acidic
 	open_turf_types = list(/turf/open/floor/plating/asteroid/whitesands/dried = 1, /turf/open/water/planet/acid = 8)

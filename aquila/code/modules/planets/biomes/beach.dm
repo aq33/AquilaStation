@@ -181,7 +181,8 @@
 		/turf/open/floor/plating/asteroid/dirt/grass/beach = 1,
 		/turf/open/floor/plating/asteroid/dirt/beach = 9,
 	)
-	flora_spawn_chance = 100
+	// 100% roślin ustawia spawned na każdym polu i fauna biomu (goryle, małpy, kury) nigdy się nie pojawiała
+	flora_spawn_chance = 80
 	flora_spawn_list = list(
 		/obj/structure/flora/grass/jungle = 1,
 		/obj/structure/flora/grass/jungle/b = 1,

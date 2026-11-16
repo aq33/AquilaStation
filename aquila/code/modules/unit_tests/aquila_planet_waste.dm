@@ -102,8 +102,11 @@
 			continue
 		TEST_ASSERT(!QDELETED(thing), "[atom_type] deleted itself right after spawning")
 		qdel(thing)
+	// Sprzątanie po spawnerach (anomalie, miny ze śmieci: uzbrojona mina zostałaby na polu do końca części CI)
 	for(var/obj/effect/anomaly/anomaly in run_loc_floor_top_right)
 		qdel(anomaly)
+	for(var/obj/effect/mine/mine in run_loc_floor_top_right)
+		qdel(mine)
 
 /// AQUILA - planety: automaty wysypiska mają AI, strzelające mają atak dystansowy, mina krocząca uzbraja się przy celu,
 /// rdzeń roju i beczki z odpadami powstają bez runtime'ów

@@ -201,6 +201,9 @@
 /obj/effect/radiation/process(delta_time)
 	if(!COOLDOWN_FINISHED(src, pulse_cooldown))
 		return
+	// Setki takich efektów na powierzchni wysypiska: bez gracza na tym poziomie nie ma kogo szukać
+	if(!z || z > length(SSmobs.clients_by_zlevel) || !length(SSmobs.clients_by_zlevel[z]))
+		return
 	var/player_in_range = FALSE
 	for(var/mob/living/living in range(rad_spread, loc))
 		if(living.client)

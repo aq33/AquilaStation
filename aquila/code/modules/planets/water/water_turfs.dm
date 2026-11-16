@@ -154,7 +154,7 @@
 	name = "mętna woda"
 	desc = "Ciepła, mętna woda pełna mułu i życia."
 	color = "#617B64"
-	initial_gas_mix = "o2=22;n2=82;TEMP=308.15"
+	initial_gas_mix = PLANET_JUNGLE_ATMOS // jak grunt dżungli: inna mieszanka trzymała brzeg aktywny w SSair na stałe
 	baseturfs = /turf/open/water/planet/jungle
 	fishing_preset = FISHING_SPOT_PRESET_JUNGLE
 
