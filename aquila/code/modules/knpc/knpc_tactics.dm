@@ -19,7 +19,6 @@
 /// Zakuwanie (do_mob 4 s) trwające dłużej oznacza przerwaną procedurę: process() zdejmuje flagę sam
 #define KNPC_CUFF_TIMEOUT (10 SECONDS)
 /// Szansa, że boarder Syndykatu albo pirat ma dodatkowo granat odłamkowy
-#define KNPC_FRAG_CHANCE 10
 /// Czas hakowania panelu drzwi
 #define KNPC_HACK_TIME (10 SECONDS)
 /// Przerwa między uderzeniami w drzwi
@@ -456,18 +455,15 @@
 	knpc_traits |= KNPC_IS_DOOR_BASHER
 	give_knpc_gear()
 
-/// Granat hukowy, z szansą KNPC_FRAG_CHANCE odłamkowy i dwie opaski zaciskowe do plecaka (bez plecaka do kieszeni, jeśli wolna)
+/// Granat hukowy, z szansą zależną od trudności (aq_knpc_frag_chance, knpc_archetypes.dm) odłamkowy i dwie opaski zaciskowe
+/// do plecaka (bez plecaka do kieszeni, jeśli wolna). Statek elitarny dokłada sprzęt, gdy wnętrze jest już przypięte do statku.
 /mob/living/carbon/human/ai_boarder/proc/give_knpc_gear()
-	var/list/grenades = list(/obj/item/grenade/flashbang, /obj/item/restraints/handcuffs/cable/zipties, /obj/item/restraints/handcuffs/cable/zipties)
-	if(prob(KNPC_FRAG_CHANCE))
-		grenades += /obj/item/grenade/frag
-	for(var/grenade_type in grenades)
-		if(back)
-			new grenade_type(back)
-		else
-			var/obj/item/grenade/nade = new grenade_type(src)
-			if(!equip_to_slot_if_possible(nade, ITEM_SLOT_LPOCKET, disable_warning = TRUE) && !equip_to_slot_if_possible(nade, ITEM_SLOT_RPOCKET, disable_warning = TRUE))
-				qdel(nade)
+	var/list/gear = list(/obj/item/grenade/flashbang, /obj/item/restraints/handcuffs/cable/zipties, /obj/item/restraints/handcuffs/cable/zipties)
+	if(prob(aq_knpc_frag_chance()))
+		gear += /obj/item/grenade/frag
+	for(var/gear_type in gear)
+		aq_knpc_stash(gear_type)
+	addtimer(CALLBACK(src, PROC_REF(aq_knpc_elite_bonus)), 1 SECONDS)
 
 // Przy krytycznym zdrowiu medipen idzie przed walką
 /datum/ai_goal/human/heal_self/check_score(datum/component/knpc/HA)
@@ -576,7 +572,6 @@
 #undef KNPC_GRENADE_FUSE
 #undef KNPC_GRENADE_DANGER_RANGE
 #undef KNPC_CUFF_TIMEOUT
-#undef KNPC_FRAG_CHANCE
 #undef KNPC_HACK_TIME
 #undef KNPC_BASH_DELAY
 #undef KNPC_BASH_DAMAGE

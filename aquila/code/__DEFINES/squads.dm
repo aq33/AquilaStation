@@ -7,6 +7,9 @@
 /// Tylko do wyboru zestawu i ikon: dowódca nie ma tej funkcji zapisanej na stałe
 #define SQUAD_POSITION_LEADER "leader"
 
+/// Preferencja drużyny „Automatycznie”: przydział według zawodu, potem do najmniej licznej
+#define SQUAD_PREF_AUTO "auto"
+
 #define SQUAD_POSITIONS list(SQUAD_POSITION_SOLDIER, SQUAD_POSITION_MEDIC, SQUAD_POSITION_ENGINEER)
 
 // Stan członka drużyny w konsoli i w pagerze

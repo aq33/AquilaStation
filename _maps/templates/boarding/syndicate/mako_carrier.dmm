@@ -1,22 +1,4 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"aa" = (
-/obj/machinery/power/terminal{
-	dir = 8
-	},
-/obj/structure/cable,
-/mob/living/carbon/human/ai_boarder/syndicate/shotgun,
-/turf/open/floor/mineral/plastitanium/red,
-/area/ruin/powered/nsv13/boarding_interior)
-"ab" = (
-/obj/structure/hull_plate,
-/mob/living/carbon/human/ai_boarder/syndicate/pistol,
-/turf/open/floor/engine,
-/area/ruin/powered/nsv13/boarding_interior)
-"ac" = (
-/obj/structure/peacekeeper_barricade/metal,
-/mob/living/carbon/human/ai_boarder/syndicate/smg,
-/turf/open/floor/plating,
-/area/ruin/powered/nsv13/boarding_interior)
 "ad" = (
 /obj/structure/peacekeeper_barricade/metal{
 	dir = 8
@@ -39,11 +21,6 @@
 /mob/living/carbon/human/ai_boarder/syndicate/pistol,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/powered/nsv13/boarding_interior)
-"ag" = (
-/obj/machinery/holopad,
-/mob/living/carbon/human/ai_boarder/syndicate/shotgun,
-/turf/open/floor/mineral/plastitanium/red,
-/area/ruin/powered/nsv13/boarding_interior)
 "ah" = (
 /obj/structure/chair{
 	color = "#696969";
@@ -51,16 +28,6 @@
 	name = "bridge chair"
 	},
 /obj/machinery/door/firedoor/border_only/directional/west,
-/turf/open/floor/mineral/plastitanium/red,
-/area/ruin/powered/nsv13/boarding_interior)
-"ai" = (
-/obj/structure/chair{
-	color = "#696969";
-	dir = 4;
-	name = "bridge chair"
-	},
-/obj/machinery/door/firedoor/border_only/directional/west,
-/mob/living/carbon/human/ai_boarder/syndicate/smg,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/powered/nsv13/boarding_interior)
 "aF" = (
@@ -178,6 +145,14 @@
 	dir = 4
 	},
 /turf/open/floor/engine,
+/area/ruin/powered/nsv13/boarding_interior)
+"ff" = (
+/obj/machinery/power/terminal{
+	dir = 8
+	},
+/obj/structure/cable,
+/mob/living/carbon/human/ai_boarder/syndicate/medic,
+/turf/open/floor/mineral/plastitanium/red,
 /area/ruin/powered/nsv13/boarding_interior)
 "fC" = (
 /turf/open/space/basic,
@@ -667,6 +642,11 @@
 /obj/item/clothing/mask/breath,
 /turf/open/floor/plating,
 /area/ruin/powered/nsv13/boarding_interior)
+"Bq" = (
+/obj/structure/hull_plate,
+/mob/living/carbon/human/ai_boarder/syndicate/sentry,
+/turf/open/floor/engine,
+/area/ruin/powered/nsv13/boarding_interior)
 "By" = (
 /obj/item/radio/intercom{
 	freqlock = 1;
@@ -696,6 +676,11 @@
 /obj/item/shard,
 /obj/item/storage/firstaid/tactical,
 /turf/open/floor/carpet/red,
+/area/ruin/powered/nsv13/boarding_interior)
+"CK" = (
+/obj/machinery/holopad,
+/mob/living/carbon/human/ai_boarder/syndicate/pistol,
+/turf/open/floor/mineral/plastitanium/red,
 /area/ruin/powered/nsv13/boarding_interior)
 "CX" = (
 /obj/machinery/computer/ship/viewscreen,
@@ -888,6 +873,16 @@
 /obj/structure/shuttle/engine/router,
 /turf/closed/wall/r_wall,
 /area/ruin/powered/nsv13/boarding_interior)
+"Qp" = (
+/obj/structure/chair{
+	color = "#696969";
+	dir = 4;
+	name = "bridge chair"
+	},
+/obj/machinery/door/firedoor/border_only/directional/west,
+/mob/living/carbon/human/ai_boarder/syndicate/commander,
+/turf/open/floor/mineral/plastitanium/red,
+/area/ruin/powered/nsv13/boarding_interior)
 "Qz" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -1022,6 +1017,11 @@
 "Wp" = (
 /obj/structure/fluff/empty_cryostasis_sleeper,
 /turf/open/floor/carpet/red,
+/area/ruin/powered/nsv13/boarding_interior)
+"WH" = (
+/obj/structure/peacekeeper_barricade/metal,
+/mob/living/carbon/human/ai_boarder/syndicate/pistol,
+/turf/open/floor/plating,
 /area/ruin/powered/nsv13/boarding_interior)
 "WQ" = (
 /obj/machinery/light{
@@ -30385,7 +30385,7 @@ Jc
 Cb
 Sn
 nc
-aa
+ff
 nc
 cb
 HN
@@ -32681,7 +32681,7 @@ fG
 uT
 oZ
 oZ
-ab
+Bq
 oZ
 aU
 Cb
@@ -32944,7 +32944,7 @@ Cb
 hS
 nq
 wf
-ac
+WH
 nc
 nc
 nc
@@ -39597,7 +39597,7 @@ fG
 kQ
 WQ
 nc
-ag
+CK
 nc
 IW
 fG
@@ -39854,7 +39854,7 @@ fG
 Hb
 ah
 Ja
-ai
+Qp
 Pm
 fG
 oT

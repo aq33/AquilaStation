@@ -872,14 +872,19 @@
 	character_var = "preferred_squad"
 
 /datum/preference/choiced/squad/init_possible_values()
-	var/list/squads = list()
-	for(var/datum/squad/squad_type as anything in subtypesof(/datum/squad))
-		// Szablon drużyn tworzonych w trakcie rundy (squad_custom.dm) nie jest drużyną do wyboru
-		if(ispath(squad_type, /datum/squad/aq_custom))
-			continue
+	var/list/squads = list(SQUAD_PREF_AUTO)
+	// aq_custom to szablon drużyn tworzonych przez XO w trakcie rundy, nie stała drużyna
+	for(var/datum/squad/squad_type as anything in subtypesof(/datum/squad) - typesof(/datum/squad/aq_custom))
 		if(initial(squad_type.name))
 			squads += initial(squad_type.name)
 	return squads
+
+/datum/preference/choiced/squad/get_display_names()
+	// niepuste display_names wyłącza w oknie nazwy zastępcze, więc etykietę musi mieć każda drużyna
+	. = list()
+	for(var/choice in get_choices())
+		.[choice] = choice
+	.[SQUAD_PREF_AUTO] = "Automatycznie"
 
 /datum/preference/choiced/lizard_hiss_style
 	db_key = "lizard_hiss_style"

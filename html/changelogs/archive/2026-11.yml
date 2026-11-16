@@ -1185,3 +1185,66 @@
       już wojny frakcji; okręt nie zaczyna rundy przy wrogiej flocie.
   - bugfix: Floty AI nie stoją w nieskończoność z rozkazem ataku, pościg znajduje
       okręt na pustym kaflu, wyłącznik losowych eventów działa też na kafle.
+  - rscadd: 'Dysze okrętowe zamiast dekoracyjnych silników: ciąg zależy od działających
+      dysz, paliwo płynie rurą z atmosu, mieszanka plazmy z tlenem daje więcej ciągu,
+      zniszczone dysze naprawia się plastalą i palnikiem.'
+  - rscadd: 'Podział mocy okrętu w konsoli monitorowania zasilania: limity i priorytety
+      dla tarczy, silników, FTL, uzbrojenia, sensorów i pancerza.'
+  - rscadd: Cztery matryce sensorów na kadłubie każdego statku; zniszczona matryca
+      zostawia ślepą ćwiartkę radaru.
+  - rscadd: Maskowanie w generatorze tarczy (trwa, dopóki jest prąd) i widoczna bańka
+      tarczy na overmapie.
+  - rscadd: Kalibracja pylonów w konsoli FTL; zła kalibracja wydłuża ładowanie i zwiększa
+      ryzyko wypadku przy skoku.
+  - rscadd: 'Stół projektowy pocisków: własne projekty torped i rakiet z czterema
+      typami naprowadzania.'
+  - rscadd: 'Nowe głowice: rakieta zakłócająca, dyfuzor tarcz i sonda czujnikowa z
+      boją widoczną na DRADIS.'
+  - rscadd: Drużyna Echo dla pilotów i ochotników z dostępem do myśliwców i hangaru.
+  - rscadd: 'Zlecenia dla działów na stacjach handlowych: dostawy (w tym pełne pojemniki
+      amunicji), abordaż, ranni, zwłoki i goście w restauracji, z nagrodą dla działu
+      i premią dla załogi.'
+  - bugfix: Rury i mierniki wczytane w trakcie rundy (np. przy podmianie silnika)
+      nie sypią błędami, zanim zbuduje się sieć rur.
+  - tweak: Restauracja i bar przyjmują gości tylko na zlecenie stacji handlowej; terminal
+      pokazuje gości, zamówienia i zlecenie.
+  - imageadd: Sprite matrycy sensorów z Aurory.
+'2026-11-16':
+  Pockets-byte, Invictus282, Joker66613:
+  - rscadd: Rozkazy drużyny tłumaczą się przez DeepL dla członków, którzy czytają
+      w innym języku niż nadawca.
+  - rscadd: 'W kreatorze postaci jest opcja „Przydział do drużyny”: Automatycznie
+      albo wybrana drużyna, która ma pierwszeństwo przed zawodem.'
+  - tweak: Zapisane postacie wracają do przydziału „Automatycznie”.
+  - tweak: Patrzenie na kursor w trybie walki jest znowu domyślnie włączone.
+  - tweak: Okręty mają przedrostek AQ zamiast NSV.
+  - tweak: Kanał Inżynierii w radiu znowu jest pomarańczowy.
+  - bugfix: Amunicja na wózku znowu leży w równym stosie.
+  - rscadd: Kuźnia odlewa lekkie i ciężkie wkładki do pancerza z różnych materiałów.
+      Kamizelki, pancerze i hardsuity mają slot na wkładkę, która zużywa się od trafień.
+  - rscadd: Broń energetyczna nagrzewa się przy strzałach, zużywa soczewki i traci
+      strojenie. Chłodnice podprzestrzenne i magazyny ciepła z R&D pomagają ją utrzymać.
+  - balance: Nowe wartości fazerów, działa fazowego i laserowego systemu antyrakietowego
+      z oryginału.
+  - imageadd: Chłodnica i magazyn ciepła, stany przegrzania broni energetycznej.
+  - soundadd: Dźwięk przeciążenia broni energetycznej.
+  - rscadd: Za sterami statku jest radar w prawym górnym rogu i niski pasek z hamulcem,
+      sterowaniem, bronią, kadłubem i katapultą zamiast dużego panelu. Okno DRADIS
+      otwiera klik w radar.
+  - rscadd: Za sterami chowa się ekwipunek postaci, zostają dłonie, intencje i przyciski
+      akcji.
+  - tweak: Preferencja „Klasyczny panel sterowania” przywraca stary panel i samootwierające
+      się okno DRADIS.
+  - rscadd: Na statkach Syndykatu służą szturmowcy, medycy polowi, saperzy, wartownicy
+      i dowódca przy sterach z tajnymi dokumentami.
+  - balance: Załoga statku Syndykatu zależy od jego klasy, a szansa na granat odłamkowy
+      rośnie z trudnością i na statkach elitarnych.
+  - bugfix: Wdepnięcie w odchody zostawia brązowe ślady butów.
+  - rscdel: Formy odlewnicze, pudełko form i młot kowalski znikają z kuźni amunicji.
+  - rscadd: 'Piec łukowy ma okno: wyrób, materiał albo stop, klasa, koszt i właściwości
+      w jednym miejscu.'
+  - rscadd: Kowadło zastąpił młot mechaniczny, który sam wykuwa klasę I; wyższe klasy
+      wymagają kucia ręcznego.
+  - balance: Amunicja klasy I z kuźni szybciej zużywa broń, może ją zaciąć i psuje
+      działa okrętowe.
+  - imageadd: Młot mechaniczny (sprite z Paradise) i nowe sprite'y wkładek do pancerza.

@@ -3,7 +3,7 @@
 	var/new_station_name = ""
 	if(!name)
 		name = pick(GLOB.station_names)
-	new_station_name = "NSV [name]"
+	new_station_name = "AQ [name]" // AQ EDIT - przedrostek okrętów Aquili
 
 	return new_station_name
 
