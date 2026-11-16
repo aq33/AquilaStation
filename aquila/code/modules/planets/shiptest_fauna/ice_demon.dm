@@ -243,6 +243,11 @@
 	afterimages = null
 	return ..()
 
+/// Powidok znika po czasie albo ginie: lista go nie trzyma
+/datum/action/cooldown/mob_cooldown/ice_demon_afterimages/proc/on_afterimage_deleted(datum/source)
+	SIGNAL_HANDLER
+	afterimages -= source
+
 /datum/action/cooldown/mob_cooldown/ice_demon_afterimages/Activate(atom/target_atom)
 	var/turf/center = get_turf(owner)
 	if(!center)
@@ -260,6 +265,7 @@
 		var/mob/living/basic/mining/demon_afterimage/afterimage = new(pick_n_take(free_turfs))
 		afterimage.faction = living_owner.faction.Copy()
 		afterimages += afterimage
+		RegisterSignal(afterimage, COMSIG_PARENT_QDELETING, PROC_REF(on_afterimage_deleted))
 		if(target)
 			afterimage.ai_controller?.set_blackboard_key(BB_BASIC_MOB_CURRENT_TARGET, target)
 	StartCooldown()

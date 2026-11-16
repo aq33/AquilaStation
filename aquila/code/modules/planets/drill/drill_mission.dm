@@ -112,6 +112,9 @@
 	if(status != STATUS_INPROGRESS)
 		return
 	status = STATUS_FAILED
+	if(target_planet && target_planet.surface?.state != PLANET_SURFACE_READY)
+		INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(priority_announce), "Wiertło do próbek z misji na [target_planet] zostało na planecie i przepadło po odlocie okrętu. Zadanie się nie powiodło.", "Dowództwo floty")
+		return
 	INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(priority_announce), "Wiertło do próbek z misji na [target_planet] zostało zniszczone. Zadanie się nie powiodło.", "Dowództwo floty")
 
 /datum/overmap_objective/planet/drill_samples/check_completion()

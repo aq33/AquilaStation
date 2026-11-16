@@ -28,7 +28,7 @@
 /// Burrow of the jungle planets
 /obj/structure/spawner/burrow/jungle_planet
 	mob_types = list(
-		/mob/living/basic/mining/wolf/random = 1,
+		/mob/living/basic/mining/wolf = 1, // nie wolf/random: ten usuwa się w Initialize, a spawner zapisuje usuniętego
 		/mob/living/basic/bat = 1,
 		/mob/living/basic/snake = 1,
 	)

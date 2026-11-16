@@ -148,7 +148,8 @@
 	if(istype(T.loc, /area/shuttle) || T.loc != planet.surface.surface_area)
 		return FALSE
 	for(var/atom/movable/AM as anything in T)
-		if(AM.density)
+		// Żyła nie jest gęsta, ale przelot promu kasuje zakotwiczone obiekty pod kadłubem (żyła misji by przepadła)
+		if(AM.density || istype(AM, /obj/structure/vein))
 			return FALSE
 	return TRUE
 

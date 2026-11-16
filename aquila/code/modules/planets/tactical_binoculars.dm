@@ -54,7 +54,7 @@
 	if(!planet)
 		to_chat(user, span_warning("Wskaźnik celu działa tylko na powierzchni planety, pod otwartym niebem."))
 		return
-	if(!(target_turf in view(user.client?.view || world.view, user)))
+	if(!can_see_target(user, target_turf))
 		to_chat(user, span_warning("Musisz widzieć to miejsce."))
 		return
 	if(isclosedturf(target_turf))
@@ -69,11 +69,28 @@
 		return
 	QDEL_NULL(laser)
 	laser = new(target_turf, user.real_name)
+	RegisterSignal(laser, COMSIG_PARENT_QDELETING, PROC_REF(on_laser_deleted))
 	QDEL_IN(laser, TACTICAL_BINOCULARS_TARGET_TIME)
 	to_chat(user, span_notice("Cel oznaczony. Pociski wystrzelone w [planet] spadną w jego okolicy przez najbliższe [DisplayTimeText(TACTICAL_BINOCULARS_TARGET_TIME)]."))
 	log_game("[key_name(user)] lased an orbital bombardment target on [planet] at [AREACOORD(target_turf)]")
 	var/obj/structure/overmap/main_ship = SSstar_system.find_main_overmap()
 	main_ship?.relay(message = span_notice("Łączność z powierzchni: [user.real_name] oznacza cel ostrzału orbitalnego na [planet]."))
+
+/// Znacznik zgasł (czas, powierzchnia zniknęła): lornetka go nie trzyma
+/obj/item/binoculars/tactical/proc/on_laser_deleted(datum/source)
+	SIGNAL_HANDLER
+	if(laser == source)
+		laser = null
+
+/// Czy gracz widzi pole: lornetka przesuwa ekran o zoom_amt pól (client.pixel_x/y), więc patrzymy też ze środka ekranu
+/obj/item/binoculars/tactical/proc/can_see_target(mob/living/user, turf/target_turf)
+	var/view_range = user.client?.view || world.view
+	if(target_turf in view(view_range, user))
+		return TRUE
+	if(!user.client || listeningTo != user)
+		return FALSE
+	var/turf/screen_center = locate(user.x + round(user.client.pixel_x / world.icon_size), user.y + round(user.client.pixel_y / world.icon_size), user.z)
+	return screen_center && (target_turf in view(view_range, screen_center))
 
 /// Planeta, na której powierzchni leży pole (tylko teren pod niebem planety, nie wnętrza ruin)
 /proc/get_planet_of(turf/T)

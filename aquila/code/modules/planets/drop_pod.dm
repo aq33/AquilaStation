@@ -146,6 +146,10 @@
 
 /// Czy kapsuła może tu wylądować: grunt pod niebem planety, bez lawy i przeszkód
 /obj/machinery/drop_pod_bay/proc/can_land_at(turf/T)
+	return drop_pod_can_land_at(T)
+
+/// Czy kapsuła może spaść na pole (powierzchnia planety pod niebem, bez lawy i gęstych obiektów, np. innej kapsuły)
+/proc/drop_pod_can_land_at(turf/T)
 	if(!get_planet_of(T) || is_planet_hazard_turf(T))
 		return FALSE
 	for(var/atom/movable/AM as anything in T)
@@ -267,14 +271,40 @@
 	addtimer(CALLBACK(src, PROC_REF(fall), landing), DROP_POD_TRANSIT_TIME)
 
 /obj/structure/drop_pod/proc/fall(turf/landing)
-	if(!landing || !get_planet_of(landing))
-		// Powierzchnia zniknęła w trakcie lotu: kapsuła przerywa zrzut i wraca na pole startu
-		landing = origin
+	// Cel sprawdzany drugi raz przy spadaniu: w czasie lotu na polu mogła wylądować inna kapsuła albo prom
+	if(!drop_pod_can_land_at(landing))
+		var/turf/new_landing
+		if(landing && get_planet_of(landing))
+			var/list/spots = list()
+			for(var/turf/T as anything in RANGE_TURFS(DROP_POD_SCATTER, landing))
+				if(drop_pod_can_land_at(T))
+					spots += T
+			if(length(spots))
+				new_landing = pick(spots)
+		if(!new_landing)
+			abort_drop()
+			return
+		landing = new_landing
 	forceMove(landing)
 	pixel_z = 500
 	alpha = 255
 	animate(src, pixel_z = 0, time = DROP_POD_FALL_TIME, easing = LINEAR_EASING)
 	addtimer(CALLBACK(src, PROC_REF(impact)), DROP_POD_FALL_TIME)
+
+/// Powierzchnia zniknęła w trakcie lotu (okręt opuścił układ) albo nie ma gdzie spaść: kapsuła przerywa zrzut i wraca na
+/// pole startu bez uderzenia (dawniej spadała z wybuchem na wyrzutnię i zostawiała tam skorupę)
+/obj/structure/drop_pod/proc/abort_drop()
+	var/turf/T = origin
+	if(!T)
+		qdel(src)
+		return
+	forceMove(T)
+	alpha = 255
+	pixel_z = 0
+	playsound(T, 'sound/machines/airlockopen.ogg', 50, TRUE)
+	for(var/mob/living/passenger in contents)
+		to_chat(passenger, span_warning("Komputer kapsuły przerywa zrzut: cel zniknął. Kapsuła wraca na okręt."))
+	qdel(src) // Destroy wypuszcza pasażera na pole startu
 
 /obj/structure/drop_pod/proc/impact()
 	var/turf/T = get_turf(src)

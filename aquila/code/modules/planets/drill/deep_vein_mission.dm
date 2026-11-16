@@ -102,6 +102,8 @@
 	if(!vein_type)
 		return
 	target_vein = new vein_type(T)
+	// Ładunki na najdłuższy odwiert próbki (wiertło losuje 6-10 cykli): żyła klasy 4 z dżungli ma ich tylko 8-12
+	target_vein.mining_charges = max(target_vein.mining_charges, 12) // 10 cykli najdłuższego odwiertu i zapas na zużycie
 	RegisterSignal(target_vein, COMSIG_PARENT_QDELETING, PROC_REF(on_tracked_deleted))
 	log_game("Planet [target_planet] deep vein mission vein placed at [AREACOORD(T)]")
 
@@ -140,6 +142,10 @@
 	if(status != STATUS_INPROGRESS)
 		return
 	status = STATUS_FAILED
+	// Sprzęt zostawiony na planecie znika razem z jej powierzchnią po odlocie okrętu (unload ustawia stan przed usunięciem pól)
+	if(target_planet && target_planet.surface?.state != PLANET_SURFACE_READY)
+		INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(priority_announce), "Misja na [target_planet] nie powiodła się: [lost_name] zostało na planecie i przepadło po odlocie okrętu.", "Dowództwo floty")
+		return
 	INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(priority_announce), "Misja na [target_planet] nie powiodła się: zniszczono [lost_name].", "Dowództwo floty")
 
 /datum/overmap_objective/planet/deep_vein/check_completion()

@@ -94,6 +94,8 @@ GLOBAL_LIST_INIT(tvstatic_sayings, list(
 	var/obj/effect/anomaly/tvstatic/planetary/expansion = new(get_turf(victim))
 	visible_message("<span class='warning'>[src] pochłania [victim], a na jego miejscu pojawia się [expansion]!</span>")
 	victim.death()
+	// Nowy szum mógł już schować własne ciało z legionem: wypluwa je, zamiast gubić
+	expansion.release_stored_mob()
 	expansion.store_mob(victim)
 
 /obj/effect/anomaly/tvstatic/proc/store_mob(mob/living/carbon/victim)

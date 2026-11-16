@@ -275,6 +275,8 @@
 
 /mob/living/basic/snow_monkey/Initialize(mapload)
 	. = ..()
+	// Ucieczka przed napastnikiem czyta listę atakujących, którą wypełnia ten element
+	AddElement(/datum/element/ai_retaliate)
 	if(gender == FEMALE)
 		icon_state = "snow_monkey_butt"
 		icon_living = "snow_monkey_butt"

@@ -18,6 +18,8 @@
 /// Jak długo skanuje sonda badawcza
 #define PLANET_PROBE_SCAN_TIME (3 MINUTES)
 /// Ilu kolonistów jest w schronie i ilu musi przeżyć
+/// Ile zapasowych sond wysyła dowództwo, zanim badanie przepadnie
+#define PLANET_SURVEY_PROBE_RESENDS 2
 #define PLANET_COLONISTS 4
 #define PLANET_COLONISTS_REQUIRED 3
 
@@ -214,6 +216,8 @@
 	var/obj/structure/planet_survey_site/site
 	/// Sonda skończyła skan
 	var/probe_done = FALSE
+	/// Ile zapasowych sond już wysłano
+	var/probes_resent = 0
 
 /datum/overmap_objective/planet/survey/Destroy()
 	QDEL_NULL(site)
@@ -231,6 +235,9 @@
 	if(status != STATUS_INPROGRESS || !target_planet)
 		return
 	if(!probe_done)
+		// Sonda (przedmiot albo rozłożona) przepadła: zniszczona, w lawie albo została na zwolnionej powierzchni
+		if(!length(GLOB.planet_survey_probes))
+			probe_lost()
 		return
 	var/list/delivered = list()
 	for(var/obj/item/planet_sample/sample as anything in GLOB.planet_samples)
@@ -238,6 +245,22 @@
 			delivered |= sample.sample_type
 	if(length(delivered) >= length(PLANET_SAMPLE_TYPES))
 		complete_mission()
+
+/// Bez sondy badania nie da się skończyć: dowództwo wysyła zapasową, a po kilku stratach misja przepada
+/datum/overmap_objective/planet/survey/proc/probe_lost()
+	if(probes_resent >= PLANET_SURVEY_PROBE_RESENDS)
+		status = STATUS_FAILED
+		priority_announce("Sonda badawcza na [target_planet] przepadła, a zapasowych już nie ma. Badanie się nie powiodło.", "Dowództwo floty")
+		return
+	var/obj/structure/overmap/main_ship = SSstar_system.find_main_overmap()
+	if(!main_ship)
+		return
+	probes_resent++
+	var/obj/structure/closet/crate/probe_crate = new
+	probe_crate.name = "skrzynia: zapasowa sonda badawcza"
+	new /obj/item/planet_survey_probe(probe_crate)
+	main_ship.send_supplypod(probe_crate, null, TRUE)
+	priority_announce("Sonda badawcza na [target_planet] przepadła. Dowództwo wysyła zapasową ([probes_resent] z [PLANET_SURVEY_PROBE_RESENDS]).", "Dowództwo floty")
 
 /// Punkt badawczy: tu stawia się sondę (widać go na GPS)
 /obj/structure/planet_survey_site
@@ -257,6 +280,9 @@
 	set_light(3, 1, LIGHT_COLOR_CYAN)
 
 /obj/structure/planet_survey_site/Destroy()
+	// Punkt znika razem z powierzchnią: misja nie może go trzymać (po powrocie setup_site stawia nowy)
+	if(mission?.site == src)
+		mission.site = null
 	mission = null
 	return ..()
 
@@ -310,6 +336,8 @@
 	to_chat(user, span_notice("Masz próbkę [planet_sample_name(sample_type)] z [planet]."))
 
 GLOBAL_LIST_EMPTY(planet_samples)
+/// Sondy badawcze w grze (przedmioty i rozłożone): misja wie, kiedy sonda przepadła
+GLOBAL_LIST_EMPTY(planet_survey_probes)
 
 /obj/item/planet_sample
 	name = "próbka"
@@ -340,6 +368,14 @@ GLOBAL_LIST_EMPTY(planet_samples)
 	icon_state = "tdoppler"
 	w_class = WEIGHT_CLASS_BULKY
 
+/obj/item/planet_survey_probe/Initialize(mapload)
+	. = ..()
+	GLOB.planet_survey_probes += src
+
+/obj/item/planet_survey_probe/Destroy()
+	GLOB.planet_survey_probes -= src
+	return ..()
+
 /obj/item/planet_survey_probe/attack_self(mob/user)
 	var/obj/structure/planet_survey_site/site = locate() in range(5, user)
 	if(!site?.mission)
@@ -365,6 +401,7 @@ GLOBAL_LIST_EMPTY(planet_samples)
 
 /obj/machinery/planet_survey_probe/Initialize(mapload, datum/overmap_objective/planet/survey/new_mission)
 	. = ..()
+	GLOB.planet_survey_probes += src
 	mission = new_mission
 	scan_started = world.time
 	START_PROCESSING(SSprocessing, src)
@@ -372,6 +409,7 @@ GLOBAL_LIST_EMPTY(planet_samples)
 	say("Sonda rozłożona. Skan potrwa [DisplayTimeText(PLANET_PROBE_SCAN_TIME)].")
 
 /obj/machinery/planet_survey_probe/Destroy()
+	GLOB.planet_survey_probes -= src
 	mission = null
 	STOP_PROCESSING(SSprocessing, src)
 	return ..()
@@ -398,6 +436,8 @@ GLOBAL_LIST_EMPTY(planet_samples)
 	var/list/mob/living/carbon/human/colonists = list()
 	/// Schron już stoi
 	var/colony_ready = FALSE
+	/// Koloniści przepadli razem z powierzchnią po odlocie okrętu (a nie zginęli)
+	var/colonists_abandoned = FALSE
 
 /datum/overmap_objective/planet/evacuation/Destroy()
 	colonists = null
@@ -432,8 +472,16 @@ GLOBAL_LIST_EMPTY(planet_samples)
 		var/turf/spot = length(spots) ? pick(spots) : T
 		var/mob/living/carbon/human/ai_boarder/planet_colonist/colonist = new(spot)
 		colonists += colonist
+		RegisterSignal(colonist, COMSIG_PARENT_QDELETING, PROC_REF(on_colonist_deleted))
 	colony_ready = TRUE
 	INVOKE_ASYNC(src, PROC_REF(offer_colonists_to_ghosts))
+
+/// Kolonista usunięty (np. razem z powierzchnią po odlocie okrętu: KNPC nie trzymają jej na mapie) nie zostaje na liście
+/datum/overmap_objective/planet/evacuation/proc/on_colonist_deleted(mob/living/carbon/human/colonist)
+	SIGNAL_HANDLER
+	colonists -= colonist
+	if(target_planet && target_planet.surface?.state != PLANET_SURFACE_READY && !is_delivered(colonist))
+		colonists_abandoned = TRUE
 
 /// Duchy mogą przejąć kolonistów; reszta zostaje KNPC
 /datum/overmap_objective/planet/evacuation/proc/offer_colonists_to_ghosts()
@@ -464,7 +512,10 @@ GLOBAL_LIST_EMPTY(planet_samples)
 		complete_mission()
 	else if(alive < PLANET_COLONISTS_REQUIRED)
 		status = STATUS_FAILED
-		priority_announce("Za mało kolonistów z [target_planet] przeżyło. Ewakuacja się nie powiodła.", "Dowództwo floty")
+		if(colonists_abandoned)
+			priority_announce("Koloniści pozostawieni na [target_planet] przepadli, gdy okręt opuścił układ. Ewakuacja się nie powiodła.", "Dowództwo floty")
+		else
+			priority_announce("Za mało kolonistów z [target_planet] przeżyło. Ewakuacja się nie powiodła.", "Dowództwo floty")
 
 /// Kolonista: idzie za najbliższym człowiekiem z załogi, nie walczy
 /mob/living/carbon/human/ai_boarder/planet_colonist
@@ -527,5 +578,6 @@ GLOBAL_LIST_EMPTY(planet_samples)
 #undef PLANET_SAMPLE_ATMOSPHERE
 #undef PLANET_SAMPLE_TYPES
 #undef PLANET_PROBE_SCAN_TIME
+#undef PLANET_SURVEY_PROBE_RESENDS
 #undef PLANET_COLONISTS
 #undef PLANET_COLONISTS_REQUIRED

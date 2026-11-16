@@ -36,6 +36,11 @@
 	do_footstep = TRUE
 	ai_controller = /datum/ai_controller/basic_controller/capybara
 
+/mob/living/basic/capybara/Initialize(mapload)
+	. = ..()
+	// Ucieczka przed napastnikiem czyta listę atakujących, którą wypełnia ten element
+	AddElement(/datum/element/ai_retaliate)
+
 /datum/ai_controller/basic_controller/capybara
 	blackboard = list(
 		BB_TARGETING_STRATEGY = /datum/targeting_strategy/basic,
@@ -94,7 +99,8 @@
 /mob/living/basic/mining/antlion/Life(delta_time = SSMOBS_DT, times_fired)
 	. = ..()
 	if(stat != DEAD && burrow?.burrowed)
-		adjustBruteLoss(-heal_amount * delta_time)
+		// Pod ziemią mob ma GODMODE, który bez forced blokuje też leczenie
+		adjustBruteLoss(-heal_amount * delta_time, forced = TRUE)
 
 /// A player in the antlion burrows towards something out of reach
 /mob/living/basic/mining/antlion/RangedAttack(atom/target, modifiers)
