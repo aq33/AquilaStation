@@ -232,7 +232,7 @@
 /obj/machinery/airalarm/Initialize(mapload)
 	. = ..()
 	set_frequency(frequency)
-	GLOB.zclear_atoms |= src // AQ EDIT - New() już dopisał alarm, a Destroy() usuwa jeden wpis (drugi zostawał: twarde usunięcie)
+	GLOB.zclear_atoms |= src // AQ EDIT - pierwsze Initialize(mapload, ndir, nbuild) już dopisało alarm, a Destroy() usuwa jeden wpis (drugi zostawał: twarde usunięcie)
 
 /obj/machinery/airalarm/examine(mob/user)
 	. = ..()

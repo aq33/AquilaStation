@@ -838,6 +838,8 @@
 
 /obj/machinery/door/airlock/proc/on_attack_hand(atom/source, mob/user, list/modifiers)
 	SIGNAL_HANDLER
+	if(user.pulling) // AQ EDIT - kto coś ciągnie, klikając podłogę przeciąga to na pole drzwi (Move_Pulled), a nie zamyka drzwi
+		return
 	INVOKE_ASYNC(src, /atom/proc/attack_hand, user, modifiers)
 	return COMPONENT_CANCEL_ATTACK_CHAIN
 

@@ -31,7 +31,7 @@ Helper method to get what ship an observer belongs to for stuff like parallax.
 	if(last_overmap)
 		last_overmap.mobs_in_ship -= src
 	last_overmap = OM
-	if(OM)
+	if(OM && !istype(OM, /obj/structure/overmap/planet)) // AQ EDIT - powierzchnia planety to nie załoga (FTL, czarna dziura, walki)
 		OM.mobs_in_ship += src
 	SEND_SIGNAL(src, COMSIG_MOB_OVERMAP_CHANGE, src, OM)
 

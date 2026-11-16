@@ -1,21 +1,20 @@
 // AQUILA - poprawki ogólnych mechanik, które wyszły przy prawdziwym wczytywaniu ruin planet (PR aq33/AquilaStation#639).
 
-// Zdolność moba znika razem z mobem, jak w tg (/datum/action/proc/clear_ref). U nas akcja przeżywała usunięcie moba,
-// któremu dano ją jako zdolność (target = owner = mob, a mob trzymał akcję w zmiennej albo w kontrolerze AI): cykl
-// referencji, twarde usunięcie i w testach kilkuminutowe szukanie referencji (np. losowy legion podmieniany na
-// karłowatego, obserwator z oślepiającym spojrzeniem).
+// Zdolność moba nie trzyma usuniętego moba. U nas akcja dana mobowi jako zdolność (target = owner = mob, a mob trzymał
+// akcję w zmiennej albo w kontrolerze AI) tworzyła cykl referencji: twarde usunięcie i w testach kilkuminutowe szukanie
+// referencji (np. losowy legion podmieniany na karłowatego, obserwator z oślepiającym spojrzeniem). Wystarczy zerwać
+// cel; akcji nie usuwamy, bo konsole kamer i dokowania tworzą akcje raz i przy każdym użyciu ustawiają target na
+// użytkownika (usunięta akcja psuła konsolę do końca rundy, a kamera overmapy nie sprzątała swojego oka).
 
 /datum/action/owner_deleted(datum/source)
 	. = ..()
-	// Zdolność moba (cel = właściciel): bez celu nie ma czego robić. Akcje przedmiotów sprząta sam przedmiot.
 	if(source == target)
 		target = null
-		qdel(src)
 
 // Miny z ruin planet (zamiast min naciskowych Shiptesta) odpalały się od przedmiotów i mobów pojawiających się podczas
 // wczytywania ruiny, zanim reszta ruiny przeszła Initialize (setki runtime'ów „taking damage while having <= 0
-// integrity” i zniszczone ruiny przed przylotem załogi). Mina postawiona z mapy uzbraja się chwilę po wczytaniu
-// i reaguje tylko na żywe stworzenia, jak mina naciskowa. Mina postawiona w grze działa po staremu.
+// integrity” i zniszczone ruiny przed przylotem załogi). Mina z ruiny planety uzbraja się chwilę po wczytaniu
+// i reaguje tylko na żywe stworzenia, jak mina naciskowa. Inne miny działają po staremu.
 
 /obj/effect/mine
 	/// Postawiona z mapy (ruiny): tylko żywe stworzenia i dopiero po uzbrojeniu
@@ -25,7 +24,8 @@
 
 /obj/effect/mine/Initialize(mapload)
 	. = ..()
-	if(mapload)
+	// Tylko miny z ruin na powierzchni planety: miny z innych map (domeny bitrunnera, ruiny NSV) działają po staremu
+	if(mapload && istype(SSmapping.used_turfs[get_turf(src)], /datum/turf_reservation/planet))
 		map_placed = TRUE
 		armed_at = world.time + 5 SECONDS
 
@@ -36,9 +36,13 @@
 
 // Maszyna (APC, alarm, kamera) zostawała źródłem alarmu w GLOB.alarms po usunięciu: APC w Destroy() woła
 // area.poweralert(FALSE, src), czyli podnosi alarm zasilania z samym sobą jako źródłem, a wpisu nikt potem nie czyści.
-// Usunięte APC (np. z ruin planet przy znikaniu powierzchni) zostawało z ogniwem w pamięci (twarde usunięcie).
+// Usunięte APC z ruin (np. planet przy znikaniu powierzchni) zostawało z ogniwem w pamięci (twarde usunięcie). Tylko
+// obszary ruin: na okręcie alarm zniszczonego APC ma zostać widoczny na konsolach alarmów.
 /obj/machinery/Destroy()
+	var/area/machine_area = get_area(src)
 	. = ..()
+	if(!istype(machine_area, /area/ruin))
+		return
 	for(var/alarm_class in GLOB.alarms)
 		var/list/class_alarms = GLOB.alarms[alarm_class]
 		for(var/area_name in class_alarms.Copy())
