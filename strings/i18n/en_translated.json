@@ -22053,5 +22053,10 @@
 "[plant.plant_item] wypuszcza nowe pędy i zmienia wygląd!": "[plant.plant_item] sprouts new shoots and changes its look!",
 "Chemiczna perswazja": "Chemical Persuasion",
 "(Niektóre rośliny mutują od konkretnego odczynnika w tacy, bez pieca radiacyjnego. Wlej odczynnik do tacy i poczekaj: gdy roślina zareaguje, zużyje go i zmieni odmianę.)\\n\\nTu pojawi się historia.\\n\\n(Sprawdzone połączenia: pomidor i krew, arbuz i woda święcona, jabłko i złoto, jagody i toksyna. Reszty trzeba szukać samemu.)": "(Some plants mutate from a specific reagent in the tray, without the radiation kiln. Pour the reagent into the tray and wait: when the plant reacts, it uses it up and changes variety.)\\n\\nStory goes here.\\n\\n(Known pairs: tomato and blood, watermelon and holy water, apple and gold, berries and toxin. The rest you have to find yourself.)",
-"(Niektóre rośliny mutują od konkretnego odczynnika w tacy, bez pieca radiacyjnego. Wlej odczynnik do tacy i poczekaj: gdy roślina zareaguje, zużyje go i zmieni odmianę.)\\n\\": "(Some plants mutate from a specific reagent in the tray, without the radiation kiln. Pour the reagent into the tray and wait: when the plant reacts, it uses it up and changes variety.)\\n\\"
+"(Niektóre rośliny mutują od konkretnego odczynnika w tacy, bez pieca radiacyjnego. Wlej odczynnik do tacy i poczekaj: gdy roślina zareaguje, zużyje go i zmieni odmianę.)\\n\\": "(Some plants mutate from a specific reagent in the tray, without the radiation kiln. Pour the reagent into the tray and wait: when the plant reacts, it uses it up and changes variety.)\\n\\",
+"nasiona: orzeszki ziemne (ziemia)": "seeds: peanuts (dirt)",
+"Smaczna para orzeszków ukryta w twardej łupinie.": "A tasty pair of groundnuts concealed in a tough shell.",
+"Masło orzechowe": "Peanut Butter",
+"Gęsta, kremowa pasta z mielonych orzeszków ziemnych.": "A rich, creamy spread produced by grinding peanuts.",
+"orzeszki ziemne": "peanuts"
 }

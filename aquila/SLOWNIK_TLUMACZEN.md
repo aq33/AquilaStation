@@ -1722,6 +1722,15 @@ Wszystkie nazwy roślin i plonów są już przetłumaczone w porcie botaniki (`a
 | fruit / vegetable | owoc / warzywo | m / n; istniejące |
 | mimana | mimana | ż; istniejące |
 
+### 21.1 Rośliny przeniesione z innych kodów (2026-11)
+
+Nowe gatunki z tg, Goona, Baya i innych (`aquila/code/modules/botany/aquila/ported/`). Kolumna EN: nazwa w oryginale.
+
+| EN | PL | rodzaj/uwagi |
+|---|---|---|
+| peanut | orzeszki ziemne | mn; nowe (tg) |
+| Peanut Butter (`/consumable/peanut_butter`) | Masło orzechowe | n; nowe, reagent |
+
 ## 22. Częste przymiotniki i określenia w nazwach
 
 | EN | PL | rodzaj/uwagi |
