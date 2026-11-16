@@ -37,7 +37,7 @@
 /area/planet/surface/beach
 	name = "Wybrzeże"
 	lighting_overlay_colour = "#faeacb"
-	lighting_overlay_opacity = 90
+	lighting_overlay_opacity = 204
 	sound_environment = SOUND_ENVIRONMENT_FOREST
 
 /area/planet/surface/cave/beach

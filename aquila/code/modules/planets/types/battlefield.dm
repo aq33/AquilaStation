@@ -40,6 +40,7 @@
 /area/planet/surface/battlefield
 	name = "Pole Bitwy"
 	lighting_overlay_colour = "#849abf"
+	lighting_overlay_opacity = 255
 	ambience_index = AMBIENCE_RUINS
 	sound_environment = SOUND_ENVIRONMENT_CITY
 

@@ -121,7 +121,8 @@ GLOBAL_LIST_INIT(planet_type_prototypes, init_planet_type_prototypes())
 	return get_planet_lava_ruin_templates()
 
 // Obszary powierzchni. Nie są UNIQUE_AREA, więc każda planeta tworzy własne instancje (pogoda i lądowiska działają
-// na obszarze jednej planety). Stałe, lekko zabarwione światło jak w Shiptest, jaskinie ciemne.
+// na obszarze jednej planety). Stałe, lekko zabarwione światło dzienne jak w Shiptest, jaskinie ciemne. W Shiptest
+// każde pole powierzchni świeci (light_power 0,2-1), tu nakładka obszaru: przezroczystość = light_power × 255.
 
 /area/planet/surface
 	name = "Powierzchnia Planety"
@@ -129,11 +130,21 @@ GLOBAL_LIST_INIT(planet_type_prototypes, init_planet_type_prototypes())
 	outdoors = TRUE
 	area_flags = CAVES_ALLOWED | FLORA_ALLOWED | MOB_SPAWN_ALLOWED
 	lighting_overlay_colour = "#b8c4cf"
-	lighting_overlay_opacity = 90
+	lighting_overlay_opacity = 204
+	/// Bez szumu okrętu (domyślny ambient_buzz każdego obszaru): na planecie grał w pętli po wyjściu z promu
+	ambient_buzz = null
+
+/area/planet/surface/Initialize(mapload)
+	. = ..()
+	// Nakładka obszaru tylko rozjaśnia obraz. Widoczność pola w BYOND zależy od luminosity, a obszar z requires_power
+	// dostaje 0: bez tego gracz widział tylko pola w promieniu see_in_dark, a dalej czerń (jak w jaskini).
+	if(lighting_overlay_opacity)
+		luminosity = 1
 
 /area/planet/surface/lava
 	name = "Pustkowia Wulkaniczne"
 	lighting_overlay_colour = "#cfa98a"
+	lighting_overlay_opacity = 153
 	sound_environment = SOUND_AREA_LAVALAND
 
 /area/planet/surface/cave

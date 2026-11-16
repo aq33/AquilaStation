@@ -36,6 +36,7 @@
 /area/planet/surface/ice
 	name = "Lodowe Pustkowia"
 	lighting_overlay_colour = "#e1d1e6"
+	lighting_overlay_opacity = 255
 	ambience_index = AMBIENCE_SPOOKY
 
 /area/planet/surface/cave/ice

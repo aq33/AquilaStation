@@ -34,6 +34,7 @@
 /area/planet/surface/jungle
 	name = "Dżungla"
 	lighting_overlay_colour = "#d3dccb"
+	lighting_overlay_opacity = 255
 	ambience_index = AMBIENCE_AWAY
 	sound_environment = SOUND_ENVIRONMENT_FOREST
 

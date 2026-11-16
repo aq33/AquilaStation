@@ -49,14 +49,14 @@
 /area/planet/surface/water
 	name = "Wzburzone Morze"
 	lighting_overlay_colour = "#1c3550"
-	lighting_overlay_opacity = 80
+	lighting_overlay_opacity = 255
 	sound_environment = SOUND_ENVIRONMENT_FOREST
 
 /// Wyspy i jaskinie pod nimi: wyloty jaskiń mają otwarte niebo, więc słabe światło jak morze
 /area/planet/surface/cave/water
 	name = "Wyspy i Groty"
 	lighting_overlay_colour = "#1c3550"
-	lighting_overlay_opacity = 60
+	lighting_overlay_opacity = 191
 
 /// Wodna planeta karłowata (Shiptest: waterball)
 /datum/planet_type/dwarf/water

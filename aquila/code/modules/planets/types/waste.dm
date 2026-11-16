@@ -39,7 +39,7 @@
 /area/planet/surface/waste
 	name = "Wysypisko"
 	lighting_overlay_colour = "#6957aa"
-	lighting_overlay_opacity = 20
+	lighting_overlay_opacity = 51
 	ambience_index = AMBIENCE_RUINS
 	sound_environment = SOUND_ENVIRONMENT_QUARRY
 

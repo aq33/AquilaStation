@@ -173,7 +173,7 @@
 /area/planet/surface/rock
 	name = "Rdzawe Pustkowia"
 	lighting_overlay_colour = "#db9e9f"
-	lighting_overlay_opacity = 55
+	lighting_overlay_opacity = 153
 	sound_environment = SOUND_ENVIRONMENT_QUARRY
 
 /area/planet/surface/cave/rock
@@ -182,7 +182,7 @@
 /area/planet/surface/sand
 	name = "Białe Piaski"
 	lighting_overlay_colour = "#eeeeee"
-	lighting_overlay_opacity = 55
+	lighting_overlay_opacity = 153
 	sound_environment = SOUND_ENVIRONMENT_PLAIN
 
 /area/planet/surface/cave/sand
@@ -191,7 +191,7 @@
 /area/planet/surface/desert
 	name = "Pustynia"
 	lighting_overlay_colour = "#ffd2bd"
-	lighting_overlay_opacity = 55
+	lighting_overlay_opacity = 153
 	sound_environment = SOUND_ENVIRONMENT_MOUNTAINS
 
 /area/planet/surface/cave/desert
@@ -214,13 +214,13 @@
 /area/planet/surface/dwarf_dust
 	name = "Pyłowe Pustkowia"
 	lighting_overlay_colour = "#bf9b9b"
-	lighting_overlay_opacity = 90
+	lighting_overlay_opacity = 255
 	sound_environment = SOUND_ENVIRONMENT_PLAIN
 
 /area/planet/surface/dwarf_dune
 	name = "Wydmy"
 	lighting_overlay_colour = "#ffd2bd"
-	lighting_overlay_opacity = 55
+	lighting_overlay_opacity = 153
 	sound_environment = SOUND_ENVIRONMENT_PLAIN
 
 /area
