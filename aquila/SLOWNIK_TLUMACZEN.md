@@ -1821,6 +1821,29 @@ Nowe gatunki z tg, Goona, Baya i innych (`aquila/code/modules/botany/aquila/port
 | pyrite peach | pirytowa brzoskwinia | ż; nowe (tg#82089) |
 | Limon Juice (`/consumable/limonjuice`) | Sok z limony | m; nowe, reagent |
 | Cellulose Fibers (`/cellulose`) | Włókna celulozowe | mn; nowe, reagent |
+| peach / pear | brzoskwinia / gruszka (drzewo: grusza) | ż; nowe (Goon) |
+| strawberry / raspberry / blackberry / blue raspberry | truskawka / malina / jeżyna / niebieska malina | ż; nowe (Goon) |
+| blueberry | borówka | ż; nowe (Goon, Bay) |
+| honeydew melon | melon miodowy | m; nowe (Monke) |
+| avocado / mango / kiwi | awokado / mango / kiwi | n, ndm; nowe (Goon, Paradise) |
+| almond (plant: almond tree) | migdały (roślina: migdałowiec) | mn / m; nowe (Bay) |
+| cinnamon stick (plant: cinnamon tree) | laska cynamonu (roślina: cynamonowiec) | ż / m; nowe (Goon) |
+| peppercorns / black pepper plant | ziarna pieprzu / pieprz czarny | mn / m; nowe (Goon, Bay) |
+| ginger root / turmeric root | korzeń imbiru / kłącze kurkumy | m / n; nowe (Goon) |
+| mustard seed pod (plant: mustard) | strąk gorczycy (roślina: gorczyca) | m / ż; nowe (Goon) |
+| lavender / mint leaves / lettuce | lawenda / liście mięty / sałata | ż / mn / ż; nowe (Goon) |
+| flax | len | m; nowe (Nebula), daje surową bawełnę |
+| catnip (nepeta cataria) | kocimiętka | ż; nowe (Goon, Skyrat) |
+| blood orange / clockwork orange / grapefruit | krwista pomarańcza / mechaniczna pomarańcza / grejpfrut | ż / ż / m; nowe (Goon) |
+| white grapes | białe winogrona | mn; nowe |
+| tomacco / seething tomato / quantumato | tomacco / wrzący pomidor / kwantomat | m; nowe (Goon) |
+| twobacco | dwutoń (liść dwutoniu) | m; nowe (Goon) |
+| jelly bean | żelkowa fasolka (plon: żelkowe fasolki) | ż / mn; nowe (Goon) |
+| spice pumpkin | dynia korzenna | ż; nowe (Goon) |
+| Asomna / Commol / Contusine / Nureous / Venne | asomna / komol / kontuzyna / nureus / wenna | ż / m / ż / m / ż; nowe (Goon), zioła lecznicze |
+| ipecacuanha / aconite | ipekakuana / tojad | ż / m; nowe (Goon) |
+| hydrangea / gardenia / bird of paradise / rafflesia | hortensja / gardenia / strelicja / raflezja | ż; nowe (Goon) |
+| Mustard / Cinnamon / Ground Ginger / Curry Powder (`/consumable/mustard`, `cinnamon`, `ginger`, `curry_powder`) | Musztarda / Cynamon / Imbir mielony / Proszek curry | ż / m / m / m; nowe, reagenty |
 
 ## 22. Częste przymiotniki i określenia w nazwach
 
