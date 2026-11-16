@@ -1658,6 +1658,8 @@ Wszystkie nazwy roślin i plonów są już przetłumaczone w porcie botaniki (`a
 | weed killer / Plant-B-Gone | środek chwastobójczy | m; nowe |
 | pest killer | pestycyd | m; istniejące |
 | watering can | konewka | ż; nowe |
+| compost bin / compost | kompostownik / kompost | m; nowe (Bubberstation) |
+| worm farm / worm | farma dżdżownic / dżdżownica | ż; nowe (Skyrat, tg) |
 | apple / golden apple | jabłko / złote jabłko | n; istniejące |
 | banana / banana peel | banan / skórka od banana | m / ż; istniejące / nowe |
 | cherries / blue cherries | wiśnie / niebieskie wiśnie | mn; istniejące |
