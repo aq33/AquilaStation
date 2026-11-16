@@ -874,6 +874,9 @@
 /datum/preference/choiced/squad/init_possible_values()
 	var/list/squads = list()
 	for(var/datum/squad/squad_type as anything in subtypesof(/datum/squad))
+		// Szablon drużyn tworzonych w trakcie rundy (squad_custom.dm) nie jest drużyną do wyboru
+		if(ispath(squad_type, /datum/squad/aq_custom))
+			continue
 		if(initial(squad_type.name))
 			squads += initial(squad_type.name)
 	return squads

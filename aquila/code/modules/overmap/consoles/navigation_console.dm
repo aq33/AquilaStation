@@ -310,6 +310,8 @@
 // --- Konsola nawigacji ---
 
 /obj/machinery/computer/ship/navigation/ui_data(mob/user)
+	if(uses_hex_map()) // mapa hex (hexmap/hex_console.dm) ma własne okno, trasę, koszt i chłodzenie skoku
+		return ..()
 	if(!has_overmap())
 		return
 	var/list/data = starmap_ui_data(user, screen, selected_system, current_sector, can_control_ship)
@@ -322,7 +324,7 @@
 	. = ..()
 	if(. && !IsAdminGhost(usr))
 		return
-	if(!linked || !merged_ftl_tab)
+	if(!linked || !merged_ftl_tab || uses_hex_map())
 		return
 	switch(action)
 		if("system")
@@ -342,6 +344,8 @@
 // --- Stary komputer FTL: to samo okno, zaczyna od zakładki napędu ---
 
 /obj/machinery/computer/ship/ftl_computer/ui_interact(mob/user, datum/tgui/ui)
+	if(GLOB.hexmap?.built) // na mapie hex skacze się z konsoli nawigacji (trasa, koszt, chłodzenie), nie ze starej mapy
+		return ..()
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		nav_screen = NAV_SCREEN_FTL
@@ -352,6 +356,8 @@
 		ui.set_autoupdate(TRUE)
 
 /obj/machinery/computer/ship/ftl_computer/ui_data(mob/user)
+	if(GLOB.hexmap?.built)
+		return ..()
 	if(!linked)
 		return list()
 	var/list/data = starmap_ui_data(user, nav_screen, nav_selected_system, nav_sector, TRUE)
@@ -361,7 +367,7 @@
 
 /obj/machinery/computer/ship/ftl_computer/ui_act(action, params, datum/tgui/ui)
 	. = ..()
-	if(.)
+	if(. || GLOB.hexmap?.built)
 		return
 	if(!linked)
 		return

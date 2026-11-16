@@ -13,6 +13,7 @@ import {
   ConsoleWindow,
   MONO,
 } from './common/ShipConsole';
+import { FtlCalibration } from './FtlCalibration'; // AQ EDIT - kalibracja pylonów
 
 type Data = {
   auto_spool_enabled: any;
@@ -114,7 +115,7 @@ export const FTLComputerModular = (props) => {
   const pylons = data.pylons || [];
   const spool = data.goal ? data.progress / data.goal : 0;
   return (
-    <ConsoleWindow width={600} height={550}>
+    <ConsoleWindow width={600} height={760}>
       <ConsoleBar>
         <span style={{ color: COLOR.muted }}>Napęd FTL:</span>
         <span
@@ -189,6 +190,8 @@ export const FTLComputerModular = (props) => {
                 ))}
               </Box>
             </ConsolePanel>
+            <FtlCalibration />
+            {/* AQ EDIT - kalibracja pylonów (FtlCalibration.tsx) */}
           </>
         )}
       </ConsoleBody>

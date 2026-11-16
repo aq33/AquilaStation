@@ -11,10 +11,13 @@
 
 /// AQUILA - okno „Nawigacja i skok” (aquila/code/modules/overmap/consoles/navigation_console.dm): konsola nawigacji
 /// i stary komputer FTL dają dane mapy i zakładki napędu, komputer FTL zaczyna od napędu, a z zakładki napędu
-/// w nawigacji da się rozkręcić stary napęd tylko z dostępem komputera FTL i nie z publicznej mapy
+/// w nawigacji da się rozkręcić stary napęd tylko z dostępem komputera FTL i nie z publicznej mapy. Przy zbudowanej mapie
+/// hex konsola oddaje okno mapie hex (hexmap/hex_console.dm), więc scalone okno sprawdzamy na starej mapie.
 /datum/unit_test/aquila_navigation_console
 	var/obj/structure/overmap/main_ship
 	var/obj/old_drive
+	/// Stan GLOB.hexmap.built sprzed testu (null = mapy hex nie ma)
+	var/hex_built
 
 /datum/unit_test/aquila_navigation_console/Run()
 	main_ship = SSstar_system.find_main_overmap()
@@ -34,7 +37,15 @@
 	ftl.has_overmap()
 	TEST_ASSERT(main_ship.ftl_drive == ftl, "The legacy FTL computer didn't become the ship's drive")
 
-	// Nawigacja: domyślnie mapa, do tego zakładka napędu ze starym komputerem FTL
+	// Mapa hex: konsola nawigacji daje okno mapy hex, nie scalone okno starej mapy
+	hex_built = GLOB.hexmap?.built
+	if(GLOB.hexmap)
+		GLOB.hexmap.built = TRUE
+		var/list/hex_data = nav.ui_data(user)
+		TEST_ASSERT(isnull(hex_data?["screen"]), "With the hex map the navigation console still sends the old star map window")
+		GLOB.hexmap.built = FALSE
+
+	// Stara mapa. Nawigacja: domyślnie mapa, do tego zakładka napędu ze starym komputerem FTL
 	var/list/data = nav.ui_data(user)
 	TEST_ASSERT_EQUAL(data["screen"], 1, "The navigation console doesn't start on the star map")
 	TEST_ASSERT(islist(data["star_systems"]), "The navigation console sends no star map")
@@ -89,6 +100,8 @@
 	TEST_ASSERT(!data["ftl"]?["can_control"], "The public star map console allows controlling the FTL drive")
 
 /datum/unit_test/aquila_navigation_console/Destroy()
+	if(GLOB.hexmap && !isnull(hex_built))
+		GLOB.hexmap.built = hex_built
 	if(main_ship)
 		main_ship.ftl_drive = old_drive
 	main_ship = null

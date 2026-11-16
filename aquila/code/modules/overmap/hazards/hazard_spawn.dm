@@ -1,8 +1,8 @@
 /// AQUILA - rozmieszczenie stref zagrożeń w układach gwiezdnych (typy: hazards/hazard_types.dm).
 /// Strefy powstają raz, przy apply_system_effects() (generate_anomaly() 15 s po wczytaniu układu albo badlands),
-/// według terenu układu: identyfikator kafla mapy hex (HEX_TERRAIN_* z aq33/AquilaStation#638, w hex_terrain_id),
-/// a w układzie bez kafla odpowiednik typu układu NSV (hazard_terrain()). Ten sam teren wybiera warstwę środkową tła
-/// (overmap/terrain_background.dm).
+/// według terenu układu (hazard_terrain()): teren kafla mapy hex (hexmap/hex_terrain.dm), a w układzie bez kafla albo na
+/// pustym kaflu prawdziwego układu odpowiednik typu układu NSV. hex_terrain_id wymusza teren (admin, testy). Ten sam teren
+/// wybiera warstwę środkową tła (overmap/terrain_background.dm). Pusty kafel dostaje strefy przy powstaniu swojego układu.
 
 /// Szansa (%) na jedną losową strefę w układzie, którego teren nie ma własnej tabeli
 #define HAZARD_RANDOM_ZONE_CHANCE 10
@@ -13,13 +13,18 @@ GLOBAL_LIST_INIT(hazard_quiet_terrains, list("empty", "signal", "carp", "anom", 
 /datum/star_system
 	/// AQUILA - strefy zagrożeń już rozmieszczone (apply_system_effects() bywa wołane więcej niż raz)
 	var/hazards_generated = FALSE
-	/// AQUILA - teren kafla mapy hex, na którym leży układ (HEX_TERRAIN_*); null = układ bez kafla
+	/// AQUILA - wymuszony teren (HEX_TERRAIN_*), ważniejszy od terenu kafla; null = teren z kafla albo z typu układu
 	var/hex_terrain_id
 
-/// Teren układu dla stref i tła: kafel mapy hex, a bez niego odpowiednik typu układu NSV
+/// Teren układu dla stref i tła: wymuszony, potem kafel mapy hex, a bez niego odpowiednik typu układu NSV
 /datum/star_system/proc/hazard_terrain()
 	if(hex_terrain_id)
 		return hex_terrain_id
+	var/datum/hex/H = hex
+	if(istype(src, /datum/star_system/random/hex_empty))
+		return H?.terrain || HEX_TERRAIN_EMPTY
+	if(H?.terrain && H.terrain != HEX_TERRAIN_EMPTY)
+		return H.terrain
 	var/list/sys = system_type
 	return system_tag_terrain(islist(sys) ? sys["tag"] : null)
 
@@ -132,6 +137,14 @@ GLOBAL_LIST_INIT(hazard_quiet_terrains, list("empty", "signal", "carp", "anom", 
 		return
 	if(!hex_terrain_id && CHECK_BITFIELD(system_traits, STARSYSTEM_NO_ANOMALIES))
 		return
+	spawn_hazard_zones(hazard_terrain())
+
+/// Pusty kafel mapy hex: strefy z terenu kafla przy powstaniu układu (zwykłe anomalie ma wyłączone)
+/datum/star_system/random/hex_empty/apply_hex_terrain()
+	. = ..()
+	if(hazards_generated)
+		return
+	hazards_generated = TRUE
 	spawn_hazard_zones(hazard_terrain())
 
 #undef HAZARD_RANDOM_ZONE_CHANCE

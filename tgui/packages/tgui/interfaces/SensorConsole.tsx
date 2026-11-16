@@ -93,6 +93,26 @@ type Data = {
   radar_beam_bearing: number;
   radar_reach: number;
   objects: ScopeObject[];
+  sensor_array?: SensorArray;
+};
+
+// Matryce sensorów okrętu (aquila/code/modules/overmap/ship_sensor_array.dm)
+type SensorArrayUnit = {
+  sector: string;
+  status: string;
+  working: boolean;
+  range: number;
+  heat: number;
+  power: string;
+};
+
+type SensorArray = {
+  arrays: SensorArrayUnit[];
+  on: boolean;
+  desired_range: number;
+  allowed_range: number;
+  max_range: number;
+  critical_heat: number;
 };
 
 export type ScopeObject = {
@@ -397,6 +417,70 @@ const TopBar = () => {
             }}
           />
         </span>
+      </span>
+    </Box>
+  );
+};
+
+const ArrayBar = () => {
+  const { act, data } = useBackend<Data>();
+  const array = data.sensor_array;
+  if (!array) {
+    return null;
+  }
+  const ranges = Array.from({ length: array.max_range }, (_, i) => i + 1);
+  return (
+    <Box
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        flexWrap: 'wrap',
+        gap: '10px',
+        padding: '6px 10px',
+        borderBottom: '1px solid ' + COLOR.line,
+        background: COLOR.panel,
+      }}
+    >
+      <Button
+        icon="power-off"
+        selected={array.on}
+        onClick={() => act('array_toggle', { on: !array.on })}
+      >
+        {array.on ? 'Matryce włączone' : 'Matryce wyłączone'}
+      </Button>
+      <span style={{ color: COLOR.ink2 }}>Zasięg</span>
+      <span>
+        {ranges.map((value) => (
+          <Button
+            key={value}
+            compact
+            selected={array.desired_range === value}
+            color={value > array.allowed_range ? 'average' : undefined}
+            onClick={() => act('array_range', { value })}
+          >
+            {value}
+          </Button>
+        ))}
+      </span>
+      <span style={{ color: COLOR.muted, fontSize: '11.5px' }}>
+        limit mocy: {array.allowed_range}
+      </span>
+      <span style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+        {array.arrays.map((unit) => (
+          <span
+            key={unit.sector}
+            title={`${unit.status}, ${unit.power}, ciepło ${unit.heat}/${array.critical_heat}`}
+            style={{
+              padding: '2px 8px',
+              borderRadius: '999px',
+              border:
+                '1px solid ' + (unit.working ? '#2b6b45' : '#7a2d2d'),
+              color: unit.working ? COLOR.good : COLOR.bad,
+            }}
+          >
+            {unit.sector}: {unit.working ? unit.range : unit.status}
+          </span>
+        ))}
       </span>
     </Box>
   );
@@ -1724,6 +1808,7 @@ export const SensorConsole = (props) => {
           style={{ display: 'flex', flexDirection: 'column', height: '100%' }}
         >
           <TopBar />
+          <ArrayBar />
           <Box style={{ flex: 1, display: 'flex', minHeight: 0 }}>
             <Box
               style={{
