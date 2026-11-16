@@ -54,6 +54,8 @@ GLOBAL_LIST_INIT(energy_weapon_heat_states, icon_states('aquila/icons/obj/muniti
 	/// Soczewki termiczne: ciepło broni dodaje do 70% obrażeń
 	var/thermal = TRUE
 	var/overheat_sound = 'sound/effects/smoke.ogg'
+	/// Kiedy najwcześniej powtórzyć komunikat o broni wymagającej serwisu po przegrzaniu
+	var/next_service_warning = 0
 
 /obj/machinery/ship_weapon/energy/beam
 	charge_rate = 700000
@@ -243,6 +245,13 @@ GLOBAL_LIST_INIT(energy_weapon_heat_states, icon_states('aquila/icons/obj/muniti
 	if(!maintainable)
 		return TRUE
 	if(weapon_state != ENERGY_STATE_NOTHING) // przegrzana albo odprowadza ciepło
+		return FALSE
+	if(freq <= 10 && alignment <= 0)
+		// stan po przegrzaniu: bez serwisu broń nie strzela; kolejne overload() przy każdej próbie (AMS strzela sam)
+		// wypuszczałoby co minutę 200 moli gorącej pary
+		if(world.time >= next_service_warning)
+			next_service_warning = world.time + 30 SECONDS
+			say("Soczewki i strojenie wymagają serwisu. Strzał zablokowany.")
 		return FALSE
 	if(freq <= 10)
 		for(var/mob/living/M in range(10, get_turf(src)))

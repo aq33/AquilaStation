@@ -468,6 +468,7 @@
 	icon = 'aquila/icons/obj/munitions_forge/power_hammer.dmi'
 	icon_state = "power_hammer"
 	circuit = /obj/item/circuitboard/machine/munitions_anvil
+	use_power = NO_POWER_USE // jak dawne kowadło: kuźnia działa bez zasilania obszaru
 	max_integrity = 400
 	operation_sound = 'sound/machines/clockcult/integration_cog_install.ogg'
 	/// Trwające kucie ręczne

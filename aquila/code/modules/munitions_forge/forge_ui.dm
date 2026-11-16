@@ -94,9 +94,12 @@ GLOBAL_LIST_INIT(aq_forge_products, init_aq_forge_products())
 	.["uses_material"] = is_body
 	var/list/locked = list()
 	for(var/group in GLOB.aq_forge_products)
+		// wyroby z katalogu blokuje tylko niezbadany węzeł ich grupy
+		var/node = GLOB.aq_forge_group_nodes[GLOB.aq_forge_groups[group]]
+		if(!node || SSresearch.science_tech?.researched_nodes[node])
+			continue
 		for(var/path in GLOB.aq_forge_products[group])
-			if(!aq_forge_product_available(path))
-				locked += "[path]"
+			locked += "[path]"
 	.["locked"] = locked
 	var/list/mats = list()
 	for(var/key in GLOB.munition_materials)
@@ -109,11 +112,12 @@ GLOBAL_LIST_INIT(aq_forge_products, init_aq_forge_products())
 	.["empty"] = container && !total_sheets
 	var/list/cost = list()
 	var/can_pay = !!container
-	for(var/mat in current_cost())
+	var/list/cost_amounts = current_cost() // dla wypełnień i zapalników tworzy tymczasowy przedmiot, więc liczymy raz
+	for(var/mat in cost_amounts)
 		var/datum/munition_material/M = get_munition_material(mat)
 		var/have = container ? container.get_material_amount(mat) : 0
-		cost += list(list("name" = M ? M.name : "[mat]", "need" = round(current_cost()[mat] / MINERAL_MATERIAL_AMOUNT, 0.1), "have" = round(have / MINERAL_MATERIAL_AMOUNT, 0.1)))
-		if(have < current_cost()[mat])
+		cost += list(list("name" = M ? M.name : "[mat]", "need" = round(cost_amounts[mat] / MINERAL_MATERIAL_AMOUNT, 0.1), "have" = round(have / MINERAL_MATERIAL_AMOUNT, 0.1)))
+		if(have < cost_amounts[mat])
 			can_pay = FALSE
 	.["cost"] = cost
 	.["can_cast"] = can_pay && !operating && !produced_part && !working_part && aq_forge_product_available(selected_product)

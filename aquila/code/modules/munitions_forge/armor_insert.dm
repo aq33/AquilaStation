@@ -114,8 +114,9 @@ GLOBAL_LIST_INIT(aq_insert_profiles, list(
 	if(!is_finished())
 		return
 	var/list/parts = list()
-	for(var/key in insert_armor())
-		parts += "[aq_armor_key_pl(key)] +[insert_armor()[key]]"
+	var/list/armor_ratings = insert_armor()
+	for(var/key in armor_ratings)
+		parts += "[aq_armor_key_pl(key)] +[armor_ratings[key]]"
 	. += "<span class='notice'>Ochrona: [length(parts) ? jointext(parts, ", ") : "żadna"].</span>"
 	. += "<span class='notice'>Wytrzymałość: [insert_integrity]/[insert_max_integrity].</span>"
 	var/slow = insert_slowdown()
@@ -268,6 +269,23 @@ GLOBAL_LIST_INIT(aq_insert_profiles, list(
 		return
 	if(aq_insert.insert_wear_step() != old_wear)
 		aq_apply_insert_effects()
+
+// Hardsuit Syndykatu przy zmianie trybu ustawia slowdown na stałą (1 albo cm_slowdown), co kasowało spowolnienie wkładki,
+// a jej późniejsze wyjęcie odejmowało je od wartości bazowej
+/obj/item/clothing/suit/space/hardsuit/syndi/activate_space_mode()
+	. = ..()
+	aq_reapply_insert_slowdown()
+
+/obj/item/clothing/suit/space/hardsuit/syndi/activate_combat_mode()
+	. = ..()
+	aq_reapply_insert_slowdown()
+
+/// Po nadpisaniu slowdown przez ubranie: spowolnienie wkładki wraca na wierzch
+/obj/item/clothing/suit/proc/aq_reapply_insert_slowdown()
+	if(!aq_insert_slowdown_applied)
+		return
+	slowdown += aq_insert_slowdown_applied
+	aq_update_wearer()
 
 #undef AQ_INSERT_LIGHT_MULT
 #undef AQ_INSERT_BASE_INTEGRITY

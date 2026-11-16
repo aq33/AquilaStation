@@ -50,6 +50,19 @@
 	gold_heavy.forceMove(run_loc_floor_bottom_left)
 	TEST_ASSERT(!vest.aq_insert && vest.slowdown == base_slowdown, "Wyjęcie wkładki nie zdjęło spowolnienia")
 
+	// Hardsuit Syndykatu: zmiana trybu ustawia slowdown na stałą, a spowolnienie wkładki ma zostać (i zejść po wyjęciu)
+	var/obj/item/clothing/suit/space/hardsuit/syndi/syndi_suit = allocate(/obj/item/clothing/suit/space/hardsuit/syndi, run_loc_floor_bottom_left)
+	syndi_suit.activate_space_mode()
+	var/space_slowdown = syndi_suit.slowdown
+	gold_heavy.forceMove(syndi_suit)
+	syndi_suit.aq_insert = gold_heavy
+	syndi_suit.aq_apply_insert_effects()
+	syndi_suit.activate_combat_mode()
+	syndi_suit.activate_space_mode()
+	TEST_ASSERT(syndi_suit.slowdown == space_slowdown + gold_heavy.insert_slowdown(), "Zmiana trybu hardsuitu skasowała spowolnienie wkładki ([syndi_suit.slowdown])")
+	gold_heavy.forceMove(run_loc_floor_bottom_left)
+	TEST_ASSERT(syndi_suit.slowdown == space_slowdown, "Po wyjęciu wkładki hardsuit ma [syndi_suit.slowdown] spowolnienia zamiast [space_slowdown]")
+
 	// Stop: średnia profili składników; wkładka nie idzie na stół montażowy, a okno pieca ją oferuje
 	var/datum/munition_material/alloy = get_munition_alloy(get_munition_material(/datum/material/iron), get_munition_material(/datum/material/diamond))
 	TEST_ASSERT(alloy.insert_profile()["bullet"] == 22.5, "Profil stopu żelazo-diament: [alloy.insert_profile()["bullet"]] zamiast 22.5")

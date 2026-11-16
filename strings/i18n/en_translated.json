@@ -22225,5 +22225,6 @@
 "<span class='notice'>Wybrana broń: [weapon.name].</span>": "<span class='notice'>Selected weapon: [weapon.name].</span>",
 "Broń: [weapon_name]": "Weapon: [weapon_name]",
 "<span class='notice'>Pasek statku: kliknij segment, żeby przełączyć hamulec, sterowanie albo broń; Panel otwiera okno myśliwca (silnik, dokowanie, owiewka), a DRADIS pełne okno radaru. Skróty: Alt (hamulec), C (sterowanie), spacja (broń). Stary duży panel włączysz w preferencjach („Klasyczny panel sterowania”).</span>": "<span class='notice'>Ship bar: click a segment to toggle the brakes, steering or weapon; Panel opens the fighter window (engine, docking, canopy) and DRADIS the full radar window. Hotkeys: Alt (brakes), C (steering), space (weapon). The old large panel can be turned on in preferences (\"Classic flight panel\").</span>",
-"Panel": "Panel"
+"Panel": "Panel",
+"Soczewki i strojenie wymagają serwisu. Strzał zablokowany.": "Lenses and tuning require service. Firing blocked."
 }

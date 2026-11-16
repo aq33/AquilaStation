@@ -43,6 +43,10 @@
 	weapon.process_heat()
 	TEST_ASSERT(weapon.weapon_state == 0 && weapon.icon == initial(weapon.icon), "Ostygnięta broń nie wróciła do pracy")
 	TEST_ASSERT(weapon.alignment == 0 && weapon.freq == 0, "Przegrzanie nie wyzerowało soczewek i strojenia")
+	// Bez serwisu broń odmawia strzału, ale nie przegrzewa się od nowa (AMS strzela sam i wpadał w pętlę przeciążeń z parą)
+	weapon.charge = weapon.charge_per_shot * 2
+	TEST_ASSERT(!weapon.can_fire(null, 0), "Broń po przegrzaniu strzela bez serwisu")
+	TEST_ASSERT(weapon.weapon_state == 0 && weapon.charge == weapon.charge_per_shot * 2, "Próba strzału po przegrzaniu znowu przeciążyła broń")
 
 	// Odprowadzanie ciepła blokuje strzał do 1/4 progu
 	weapon.alignment = 100
