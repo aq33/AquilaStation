@@ -1812,6 +1812,15 @@ Nowe gatunki z tg, Goona, Baya i innych (`aquila/code/modules/botany/aquila/port
 | Goldfish | złota rybka (ciało: koralowiec złotej rybki) | ż; nowe (Goon) |
 | Synthetic Cat | syntetyczny kot (plon: kotostrąk) | m; nowe (Goon) |
 | Man-Eating Plant | ludożerca (plon: paszcza ludożercy) | m; nowe (Goon) |
+| xenoflora | ksenoflora | ż; nowe (tg#82089), rośliny obce rosnące tylko w kapsule |
+| xenoflora pod | kapsuła ksenoflory | ż; nowe (tg#82089), maszyna 2×2 z kopułą |
+| broombush / broombush leaf | miotlarz / liść miotlarza | m; nowe (tg#82089) |
+| cubomelon / cubomelon slice | sześciomelon / plaster sześciomelona | m; nowe (tg#82089) |
+| Chronolized-Crystal Hyperlattice | hiperkrata czasowa, plon: kryształ hiperkraty | ż / m; nowe (tg#82089) |
+| bluespace limon | bluespace'owa limona | ż; nowe (tg#82089), jak „bluespace'owy banan” |
+| pyrite peach | pirytowa brzoskwinia | ż; nowe (tg#82089) |
+| Limon Juice (`/consumable/limonjuice`) | Sok z limony | m; nowe, reagent |
+| Cellulose Fibers (`/cellulose`) | Włókna celulozowe | mn; nowe, reagent |
 
 ## 22. Częste przymiotniki i określenia w nazwach
 
