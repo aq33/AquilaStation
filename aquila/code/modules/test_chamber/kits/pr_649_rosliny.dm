@@ -2,7 +2,7 @@
 
 /datum/test_chamber_kit/pr_rosliny_uprawy
 	name = "Botanika: nowe rośliny i mutacje od odczynnika"
-	pr = "aq33/AquilaStation#PR_NUMER"
+	pr = "aq33/AquilaStation#649"
 	description = "Zestaw: tace z podłożem, łopatka, skaner roślin, nasiona z każdej grupy, zlewki z odczynnikami do mutacji. 1) Posadź nasiona (podłoże widać na paczce) i polej wodą: orzeszki, groch, róża, brzoskwinia, cynamon, zioło lecznicze asomna. Plony mają polskie nazwy i ikony; skaner pokazuje części rośliny. 2) Mutacje od odczynnika: posadź pomidor i wlej do tacy krew (krwisty pomidor) albo nikotynę (Tomacco); jabłoń ze złotem daje złote jabłko. Mutacja przychodzi losowo w ciągu około minuty i zużywa odczynnik. 3) Piec radiacyjny: groch → śmiejący się groch, malina → jeżyna. 4) Automat MegaSeed ma nowe paczki, po zhakowaniu też owoc latarniowy, kronkus, tojad, raflezję i kokę."
 	items = list(
 		/obj/item/plant_tray = 4,
@@ -34,7 +34,7 @@
 
 /datum/test_chamber_kit/pr_rosliny_kompost
 	name = "Botanika: kompostownik, farma dżdżownic, akwakultura"
-	pr = "aq33/AquilaStation#PR_NUMER"
+	pr = "aq33/AquilaStation#649"
 	description = "1) Kompostownik: wrzuć plony albo jedzenie (też z torby), co 20 s rozkłada do 5 rzeczy na nawóz E-Z-Nutrient; zlewką nalewasz kompost, pustą ręką wygrzebujesz worek ziemi (40 j. kompostu). Łom rozbiera skrzynię. 2) Farma dżdżownic: działa od 2 dżdżownic, nakarmiona jedzeniem co 30 s daje nawóz i nowe dżdżownice; ręką wygrzebujesz dżdżownicę. Obie konstrukcje są też w craftingu z desek. 3) Akwakultura: wysyp worek „podłoże wodne” do tacy i posadź larwy małży albo krewetek; w ziemi się nie da. Plon (zamkniętą skorupę) otwórz nożem."
 	items = list(
 		/obj/structure/compost_bin = 1,
@@ -52,7 +52,7 @@
 
 /datum/test_chamber_kit/pr_rosliny_ksenoflora
 	name = "Botanika: kapsuła ksenoflory i nasiona z artefaktów"
-	pr = "aq33/AquilaStation#PR_NUMER"
+	pr = "aq33/AquilaStation#649"
 	description = "1) Kapsuła ksenoflory 2×2: rury gazowe na lewym dolnym kaflu (z południa wejście wymaganych gazów, na zachód wyjście reszty). Podłącz kanister azotu, zamknij kopułę, ustaw temperaturę w oknie i posadź miotlarza: rośnie tylko w kapsule z azotem i w swojej temperaturze. Sześciomelon potrzebuje bromu w zbiorniku kapsuły i mrozu. W zwykłej tacce ksenoflory nie da się posadzić. 2) Artefakt z cechą „Seeding”: aktywuj (ściśnij w ręce), wyrzuca nasiono obcej rośliny (amauri, gelthi, podglądacz, lotos świetlny, ludożerca…), potem 90 s przerwy. Sprawdź podglądacza (obraca się do ciebie), ludożercę (gryzie przy dotknięciu) i pełzacza (zasiewa się w pustej tacy obok)."
 	items = list(
 		/obj/machinery/atmospherics/components/binary/xenoflora_pod = 1,
