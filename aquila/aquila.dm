@@ -465,6 +465,7 @@
 #include "code\modules\antagonists\traitor\objectives\mapping.dm"
 #include "code\modules\antagonists\traitor\objectives\sabotage.dm"
 #include "code\modules\antagonists\traitor\objectives\steal.dm"
+#include "code\modules\antagonists\traitor\objectives\target_opt_in.dm"
 #include "code\modules\antagonists\traitor\equipment\Malf_Modules.dm"
 #include "code\modules\antagonists\disease\disease_abilities.dm"
 #include "code\modules\antagonists\disease\disease_datum.dm"

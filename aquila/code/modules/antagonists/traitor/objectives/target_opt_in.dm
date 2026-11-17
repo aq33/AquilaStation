@@ -1,0 +1,25 @@
+// AQUILA - „Chcę być celem antagonistów”: gracz z tą opcją jest pierwszym wyborem przy losowaniu celu
+// (zabójstwo, ochrona, porwanie itd., każdy cel przez /datum/objective/proc/find_target). Hook w find_target
+// (AQ EDIT) bierze go spośród kandydatów, którzy przeszli wszystkie zwykłe filtry.
+
+/datum/preferences
+	/// Gracz chce, żeby antagoniści wybierali go na cel w pierwszej kolejności
+	var/antag_target_opt_in = FALSE
+
+/datum/preference/toggle/player/antag_target_opt_in
+	db_key = "antag_target_opt_in"
+	player_var = "antag_target_opt_in"
+
+/// Czy właściciel umysłu włączył „Chcę być celem antagonistów”. Preferencje zostają po wyjściu z gry.
+/proc/wants_to_be_antag_target(datum/mind/candidate)
+	if(!candidate?.key)
+		return FALSE
+	var/datum/preferences/prefs = GLOB.preferences_datums[ckey(candidate.key)]
+	return prefs?.antag_target_opt_in ? TRUE : FALSE
+
+/// Kandydaci z listy, którzy sami chcą być celem
+/proc/opted_in_antag_targets(list/candidates)
+	. = list()
+	for(var/datum/mind/candidate as anything in candidates)
+		if(wants_to_be_antag_target(candidate))
+			. += candidate
