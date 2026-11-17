@@ -1892,6 +1892,7 @@
 #include "code\modules\botany\aquila\ported\akwa.dm"
 #include "code\modules\botany\aquila\ported\akwa_substrate.dm"
 #include "code\modules\botany\aquila\ported\surowce.dm"
+#include "code\modules\botany\aquila\ported\surowce_med5.dm"
 #include "code\modules\botany\aquila\ported\obce.dm"
 #include "code\modules\botany\aquila\ported\obce_artefakty.dm"
 #include "code\modules\botany\aquila\ported\ksenoflora.dm"
