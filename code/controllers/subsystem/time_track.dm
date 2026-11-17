@@ -89,7 +89,7 @@ SUBSYSTEM_DEF(time_track)
 	var/current_byondtime = world.time
 	var/current_tickcount = world.time/world.tick_lag
 
-	if (!first_run)
+	if (!first_run && current_tickcount != last_tick_tickcount && current_realtime != last_tick_realtime) // AQ EDIT - drugi fire() w tym samym ticku dzielił przez zero
 		var/tick_drift = max(0, (((current_realtime - last_tick_realtime) - (current_byondtime - last_tick_byond_time)) / world.tick_lag))
 
 		time_dilation_current = tick_drift / (current_tickcount - last_tick_tickcount) * 100
