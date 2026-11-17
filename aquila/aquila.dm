@@ -1077,6 +1077,7 @@
 #include "code\modules\overmap\station_contracts.dm"
 // Po nakładkach DRADIS (dradis_uncertainty, sensor_console): kontakty z boi sondy zostają dokładne
 #include "code\modules\munitions\missile_payloads.dm"
+#include "code\modules\munitions\nsv_yamato.dm"
 #include "code\modules\overmap\overmap_scale.dm"
 #include "code\modules\overmap\ai_morale.dm"
 #include "code\modules\overmap\ai_targeting.dm"
@@ -2389,6 +2390,7 @@
 #include "code\modules\unit_tests\aquila_squad_orders_cooldown.dm"
 #include "code\modules\unit_tests\aquila_squad_order_translation.dm"
 #include "code\modules\unit_tests\aquila_munitions_trolley_stack.dm"
+#include "code\modules\unit_tests\aquila_nsv_weapons.dm"
 #include "code\modules\unit_tests\aquila_energy_weapon_heat.dm"
 #include "code\modules\unit_tests\aquila_feces_footprints.dm"
 #include "code\modules\unit_tests\aquila_squad_gear_ping.dm"
