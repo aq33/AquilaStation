@@ -1249,6 +1249,9 @@
       działa okrętowe.
   - imageadd: Młot mechaniczny (sprite z Paradise) i nowe sprite'y wkładek do pancerza.
 '2026-11-17':
+  Joker66613:
+  - bugfix: Śledzenie czasu serwera nie wyrzuca błędu, gdy przebiegnie dwa razy w
+      jednym ticku.
   shiptest-ss13, TerraGov-Marine-Corps, tgstation:
   - rscadd: 'Planety z lądowaniem: planeta wulkaniczna z burzami popiołu, rudami,
       ruinami, roślinami i fauną z Shiptesta (siarkodemony, lawowe pędraki, nory i
