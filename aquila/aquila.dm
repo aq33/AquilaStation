@@ -1901,6 +1901,7 @@
 #include "code\modules\botany\aquila\ported\inne_owoce.dm"
 #include "code\modules\botany\aquila\ported\inne_przyprawy.dm"
 #include "code\modules\botany\aquila\ported\planety_nasiona.dm"
+#include "code\modules\botany\aquila\ported\dzika_flora.dm"
 #include "code\game\objects\items\sticker\series_2.dm"
 #include "code\modules\mob\living\simple_animal\friendly_fruit.dm"
 #include "code\modules\mob\living\simple_animal\bot\turtle.dm"

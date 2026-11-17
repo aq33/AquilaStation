@@ -70,4 +70,17 @@
 	qdel(seeder)
 	return null
 
+/// AQUILA - losowa cecha dzikiej rośliny nie przekracza budżetu: paproć jaskiniowa (bez własnych potrzeb) nigdy nie dostaje potrzeby
+/datum/unit_test/aquila_planet_wild_flora_budget
+
+/datum/unit_test/aquila_planet_wild_flora_budget/Run()
+	var/turf/spot = get_step(run_loc_floor_bottom_left, EAST)
+	for(var/i in 1 to 20)
+		var/obj/structure/flora/ash/fern/fern = allocate(/obj/structure/flora/ash/fern, spot)
+		var/datum/component/plant/plant = fern.GetComponent(/datum/component/plant)
+		for(var/datum/plant_feature/feature as anything in plant.plant_features)
+			TEST_ASSERT(feature.remaining_genetic_budget >= 0, "[feature.name] dzikiej paproci przekroczyła budżet ([feature.remaining_genetic_budget])")
+			TEST_ASSERT(!length(feature.plant_needs), "[feature.name] dzikiej paproci dostała potrzebę z losowej cechy, więc na planecie nie zaowocuje")
+		qdel(fern)
+
 #undef TEST_ASSERT

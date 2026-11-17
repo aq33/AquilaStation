@@ -70,3 +70,23 @@
 	. = ..()
 	for(var/obj/item/xenoartifact/no_traits/artifact in spawned)
 		artifact.AddComponent(/datum/component/xenoartifact, /datum/xenoartifact_material/bluespace, list(/datum/xenoartifact_trait/activator/sturdy, /datum/xenoartifact_trait/major/seeding), TRUE, FALSE, FALSE)
+
+/datum/test_chamber_kit/pr_rosliny_planety
+	name = "Botanika: dzika flora planet"
+	pr = "aq33/AquilaStation#649"
+	description = "Dzikie rośliny z każdego biomu planet (lód, księżyc, woda, lawa, dżungla, piaski, pustkowia). 1) Kliknij roślinę pustą ręką: zbierasz plon, roślina po czasie odrasta. 2) Plon włóż do siewnika, nasiona posadź w tacy (glony i wodorosty na podłożu wodnym). 3) Na planecie te rośliny rosną w swoich biomach; ruiny planet mają czasem 1-2 paczki obcych nasion. Kaktus popielny w piecu radiacyjnym może dać gwiaździsty kaktus, opuncja San Pedro, a San Pedro pejotl."
+	items = list(
+		/obj/structure/flora/ash/fonarstolbe = 1,
+		/obj/structure/flora/ash/glowbell = 1,
+		/obj/structure/flora/ash/seaweed = 1,
+		/obj/structure/flora/ash/lightshroom = 1,
+		/obj/structure/flora/ash/cinchona = 1,
+		/obj/structure/flora/ash/cacti/prickly_pear = 1,
+		/obj/structure/flora/ash/mutfruit = 1,
+		/obj/structure/flora/ash/geigerpunga = 1,
+		/obj/machinery/seeder = 1,
+		/obj/item/plant_tray = 2,
+		/obj/item/substrate_bag/dirt = 1,
+		/obj/item/substrate_bag/water = 1,
+		/obj/item/shovel/spade = 1,
+	)
