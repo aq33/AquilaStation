@@ -1031,6 +1031,37 @@
 	TEST_ASSERT_EQUAL(returned_commander, C, "A wounded nemesis did not come back with his boss to [home]")
 	TEST_ASSERT_EQUAL(returned_status, HEX_CMD_ACTIVE, "A returned nemesis is not active")
 
+	// Układ zajęty przez wroga na koniec rundy: garnizon bossa znika, zajęcie zostaje, a dowódca wraca później
+	var/datum/hex_war/occupied_war = new
+	for(var/datum/fleet/original as anything in originals)
+		var/datum/star_system/S = originals[original]
+		S.fleets -= original
+	var/datum/fleet/occupied_boss = home.spawn_fleet(fleet_type)
+	home.alignment = "nanotrasen"
+	occupied_war.remove_occupied_garrisons()
+	var/occupied_alignment = home.alignment
+	var/garrison_left = hex_nemesis_fleet(home, fleet_type)
+	occupied_war.setup_nemeses()
+	var/datum/hex_commander/occupied_commander = occupied_war.nemesis_commander("fistofsol")
+	var/occupied_status = occupied_commander.status
+	var/occupied_respawn = hex_nemesis_fleet(home, fleet_type)
+	for(var/datum/star_system/S as anything in alignments)
+		for(var/datum/fleet/F as anything in S.fleets.Copy())
+			if(F.commander && (F.commander in occupied_war.commanders))
+				F.commander = null
+				F.hex_war_dispose()
+	if(!QDELETED(occupied_boss))
+		occupied_boss.hex_war_dispose()
+	for(var/datum/fleet/original as anything in originals)
+		var/datum/star_system/S = originals[original]
+		S.fleets += original
+	for(var/datum/star_system/S as anything in alignments)
+		S.alignment = alignments[S]
+	TEST_ASSERT_EQUAL(occupied_alignment, "nanotrasen", "Removing the boss garrison gave the occupied [home] back to its owner")
+	TEST_ASSERT(!garrison_left, "The boss garrison returned to the occupied [home]")
+	TEST_ASSERT(!occupied_respawn, "The nemesis boss spawned in the occupied [home] at round start")
+	TEST_ASSERT_EQUAL(occupied_status, HEX_CMD_WOUNDED, "A nemesis whose home is occupied is not waiting to return")
+
 	// Zapis: nemezis bez floty sztabu zostaje aktywny i dalej jest nemezis
 	var/datum/hex_war/saved_war = new
 	var/list/protected = list()
