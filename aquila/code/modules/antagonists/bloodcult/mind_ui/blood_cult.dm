@@ -1450,17 +1450,14 @@ GLOBAL_LIST_INIT(blood_communion, list())
 	tooltip_content = "Lorem Ipsum (tego nie powinieneś widzieć!)"
 	tooltip_theme = "radial-cult"
 
-	var/datum/team/cult/cult
-	var/datum/antagonist/cult/cultist
+	// AQUILA - drużyna i rola kultysty są pobierane w UpdateIcon(), a nie trzymane w zmiennych:
+	// element żyje na umyśle także po deradykalizacji i trzymał rolę oraz drużynę na zawsze (wyciek w testach).
 
 /obj/abstract/mind_ui_element/hoverable/bloodcult_ritual/New(turf/loc, datum/mind_ui/P)
 	if (!istype(P))
 		qdel(src)
 		return
 	..()
-	cult = locate_team(/datum/team/cult)
-	var/mob/M = GetUser()
-	cultist = M.mind?.has_antag_datum(/datum/antagonist/cult)
 
 	//This horseshit magically lets have screen objects use animate(). Maybe I should make it a default mindUI feature at some point. -Deity
 	animate(src, pixel_y = 2 , time = 10, loop = -1, easing = SINE_EASING)
@@ -1494,6 +1491,8 @@ GLOBAL_LIST_INIT(blood_communion, list())
 	offset_x = -110
 
 /obj/abstract/mind_ui_element/hoverable/bloodcult_ritual/faction_ritual/first/UpdateIcon()
+	var/datum/team/cult/cult = locate_team(/datum/team/cult)
+	var/datum/antagonist/cult/cultist = GetUser()?.mind?.has_antag_datum(/datum/antagonist/cult)
 	overlays.len = 0
 	icon_state = "ritual_cleared"
 	tooltip_title = ""
@@ -1514,6 +1513,8 @@ GLOBAL_LIST_INIT(blood_communion, list())
 
 
 /obj/abstract/mind_ui_element/hoverable/bloodcult_ritual/faction_ritual/second/UpdateIcon()
+	var/datum/team/cult/cult = locate_team(/datum/team/cult)
+	var/datum/antagonist/cult/cultist = GetUser()?.mind?.has_antag_datum(/datum/antagonist/cult)
 	overlays.len = 0
 	icon_state = "ritual_cleared"
 	tooltip_title = ""
@@ -1534,6 +1535,8 @@ GLOBAL_LIST_INIT(blood_communion, list())
 	offset_x = 110
 
 /obj/abstract/mind_ui_element/hoverable/bloodcult_ritual/faction_ritual/third/UpdateIcon()
+	var/datum/team/cult/cult = locate_team(/datum/team/cult)
+	var/datum/antagonist/cult/cultist = GetUser()?.mind?.has_antag_datum(/datum/antagonist/cult)
 	overlays.len = 0
 	icon_state = "ritual_cleared"
 	tooltip_title = ""
@@ -1559,6 +1562,8 @@ GLOBAL_LIST_INIT(blood_communion, list())
 	offset_x = -55
 
 /obj/abstract/mind_ui_element/hoverable/bloodcult_ritual/personal_ritual/first/UpdateIcon()
+	var/datum/team/cult/cult = locate_team(/datum/team/cult)
+	var/datum/antagonist/cult/cultist = GetUser()?.mind?.has_antag_datum(/datum/antagonist/cult)
 	overlays.len = 0
 	icon_state = "ritual_cleared"
 	tooltip_title = ""
@@ -1579,6 +1584,8 @@ GLOBAL_LIST_INIT(blood_communion, list())
 	offset_x = 55
 
 /obj/abstract/mind_ui_element/hoverable/bloodcult_ritual/personal_ritual/second/UpdateIcon()
+	var/datum/team/cult/cult = locate_team(/datum/team/cult)
+	var/datum/antagonist/cult/cultist = GetUser()?.mind?.has_antag_datum(/datum/antagonist/cult)
 	overlays.len = 0
 	icon_state = "ritual_cleared"
 	tooltip_title = ""

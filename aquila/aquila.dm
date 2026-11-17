@@ -115,6 +115,7 @@
 #include "code\controllers\subsystem\vote.dm"
 #include "code\datum\wires\wires_jukebox.dm"
 #include "code\datums\actions\spell.dm"
+#include "code\datums\gc_leaks.dm"
 #include "code\datums\actions\spell_types.dm"
 #include "code\datums\actions\spell_types_tg.dm"
 #include "code\datums\contraband.dm"
