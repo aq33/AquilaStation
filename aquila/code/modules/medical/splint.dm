@@ -102,9 +102,9 @@
 	return ..()
 
 /// An untreated broken leg can give way under the victim
-/datum/wound/blunt/proc/aq_on_victim_moved(datum/source, atom/old_loc, dir)
+/datum/wound/blunt/proc/aq_on_victim_moved(datum/source, atom/old_loc, dir, forced)
 	SIGNAL_HANDLER
-	if(treated || !isturf(victim.loc) || victim.buckled || victim.stat != CONSCIOUS || !(victim.mobility_flags & MOBILITY_STAND))
+	if(forced || treated || !isturf(victim.loc) || victim.buckled || victim.stat != CONSCIOUS || !(victim.mobility_flags & MOBILITY_STAND))
 		return
 	if((victim.movement_type & (FLYING | FLOATING)) || victim.aq_walking_aids())
 		return

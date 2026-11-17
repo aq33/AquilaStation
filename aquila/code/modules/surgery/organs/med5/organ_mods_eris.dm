@@ -93,6 +93,8 @@
 	organ.maxHealth *= 1.2
 	organ.low_threshold *= 1.2
 	organ.high_threshold *= 1.2
+	if((organ.organ_flags & ORGAN_FAILING) && organ.damage < organ.maxHealth)
+		organ.organ_flags &= ~ORGAN_FAILING
 
 /obj/item/aq_organ_mod/stem_cells
 	name = "komórki macierzyste"
@@ -134,6 +136,13 @@
 	name = "błona maskująca"
 	desc = "Zewnętrzna błona, która pochłania fale skanerów medycznych: analizator nie widzi uszkodzeń narządu, a sam narząd jest o 10% wrażliwszy."
 	icon_state = "stealth_composites"
+
+/// The analyzer reads the brain, eyes and ears in their own sections, so the membrane would hide nothing there
+/obj/item/aq_organ_mod/masking/try_apply(obj/item/organ/organ, mob/user)
+	if(istype(organ, /obj/item/organ/brain) || istype(organ, /obj/item/organ/eyes) || istype(organ, /obj/item/organ/ears))
+		to_chat(user, "<span class='warning'>[name] nie przylega do [organ]: analizator i tak bada go osobno.</span>")
+		return FALSE
+	return ..()
 
 /obj/item/aq_organ_mod/masking/apply(obj/item/organ/organ)
 	organ.aq_damage_mult *= 1.1

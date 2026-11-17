@@ -102,7 +102,7 @@ GLOBAL_LIST_INIT(aq_addictions, aq_init_addictions())
 
 /mob/living/carbon/Life()
 	. = ..()
-	if(QDELETED(src) || stat == DEAD || !mind)
+	if(QDELETED(src) || stat == DEAD || !mind || IsInStasis())
 		return
 	for(var/kind in mind.aq_addiction_points)
 		var/datum/addiction/addiction = GLOB.aq_addictions[kind]
@@ -403,3 +403,12 @@ GLOBAL_LIST_INIT(aq_addictions, aq_init_addictions())
 #undef AQ_WITHDRAWAL_STAGE2
 #undef AQ_WITHDRAWAL_STAGE3
 #undef AQ_ADDICTION_TICK
+
+/// Lowest addiction threshold of a reagent type for the chem master analysis (units metabolised), 0 = not addictive
+/proc/aq_addiction_threshold_of(reagent_type)
+	var/datum/reagent/reagent = GLOB.chemical_reagents_list[reagent_type]
+	if(!length(reagent?.addiction_types))
+		return 0
+	. = INFINITY
+	for(var/kind in reagent.addiction_types)
+		. = min(., reagent.addiction_types[kind])

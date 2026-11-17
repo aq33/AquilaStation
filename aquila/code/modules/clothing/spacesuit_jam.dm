@@ -76,7 +76,8 @@
 		if(!do_after(user, 5 SECONDS, target = src) || !aq_cut || !tape.use(2))
 			return TRUE
 		aq_cut = FALSE
-		clothing_flags |= STOPSPRESSUREDAMAGE
+		if(initial(clothing_flags) & STOPSPRESSUREDAMAGE)
+			clothing_flags |= STOPSPRESSUREDAMAGE
 		name = initial(name)
 		to_chat(user, "<span class='notice'>Zaklejasz rozcięcie, [src] znowu trzyma ciśnienie.</span>")
 		return TRUE

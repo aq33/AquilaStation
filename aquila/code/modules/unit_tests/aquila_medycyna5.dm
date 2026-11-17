@@ -31,8 +31,14 @@
 
 	// The bone heals: the splint falls off
 	var/turf/floor = get_turf(patient)
+	var/splints_before = 0
+	for(var/obj/item/stack/medical/splint/lying in floor)
+		splints_before += lying.amount
 	qdel(fracture)
-	TEST_ASSERT(locate(/obj/item/stack/medical/splint) in floor, "The splint did not fall off after the bone healed")
+	var/splints_after = 0
+	for(var/obj/item/stack/medical/splint/lying in floor)
+		splints_after += lying.amount
+	TEST_ASSERT(splints_after == splints_before + 1, "The splint did not fall off after the bone healed ([splints_before] -> [splints_after])")
 
 	// An untreated broken leg gives way, a crutch stops it and halves the limp
 	fracture = new()
@@ -93,6 +99,7 @@
 	var/obj/item/bodypart/human_arm = medic.get_bodypart(BODY_ZONE_R_ARM)
 	human_arm.receive_damage(brute = 20)
 	var/organic_before = human_arm.brute_dam
+	patient.zone_selected = BODY_ZONE_R_ARM
 	paste.attack(medic, patient)
 	TEST_ASSERT(human_arm.brute_dam == organic_before, "Nanopaste healed an organic arm")
 

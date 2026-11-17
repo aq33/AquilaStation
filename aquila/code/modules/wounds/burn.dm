@@ -4,10 +4,13 @@
 
 /datum/wound/burn
 	wound_type = WOUND_BURN
+	/// The festering warning was shown
+	var/aq_festering_warned = FALSE
 
-/// The moment the burn starts to fester
+/// The moment the burn starts to fester (germ threshold of an infection, medical/germs.dm)
 /datum/wound/burn/wound_effects(delta_time)
-	if(!treated && limb.aq_germs >= 30 && limb.aq_germs - germ_rate * delta_time < 30)
+	if(!treated && !aq_festering_warned && limb.aq_germs >= 30)
+		aq_festering_warned = TRUE
 		to_chat(victim, "<span class='userdanger'>Oparzenie ([limb.name]) ropieje i cuchnie, czujesz gorączkę!</span>")
 
 /datum/wound/burn/can_treat_with(obj/item/item)

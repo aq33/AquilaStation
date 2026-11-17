@@ -102,7 +102,7 @@
 			continue
 		var/word = words[i]
 		for(var/sound in sounds)
-			word = replacetext(word, sound, sounds[sound])
+			word = replacetextEx(word, sound, sounds[sound])
 		words[i] = word
 	return jointext(words, " ")
 
@@ -182,6 +182,7 @@
 	catalog_sections = list(SURGERY_SECTION_FACE)
 	desc = "Wszczepia ząb (własny, sztuczny albo złoty) w puste miejsce w szczęce. Dziąsło trzeba najpierw naciąć."
 	implements = list(/obj/item/stack/teeth = 1)
+	consumes_stack_tool = FALSE // on_success uses the planted tooth itself
 	time = 6 SECONDS
 	all_surgery_states_required = SURGERY_SKIN_OPEN
 	any_surgery_states_blocked = SURGERY_VESSELS_UNCLAMPED

@@ -196,9 +196,9 @@
 	. = ..()
 	if(!prox_check(proximity))
 		return
-	if(istype(target, /obj/machinery/plumbing) || istype(target, /obj/machinery/duct))
+	if(istype(target, /obj/machinery/plumbing) || istype(target, /obj/machinery/duct) || istype(target, /obj/machinery/iv_drip/plumbing))
 		var/obj/machinery/machine = target
-		if(istype(machine, /obj/machinery/plumbing) && machine.anchored)
+		if(!istype(machine, /obj/machinery/duct) && machine.anchored)
 			to_chat(user, "<span class='warning'>Najpierw odkręć [machine.name]!</span>")
 			return
 		if(do_after(user, 2 SECONDS, target = machine))

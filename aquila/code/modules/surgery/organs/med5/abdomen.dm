@@ -188,9 +188,9 @@
 	ruptured = FALSE
 	return ..()
 
-/obj/item/organ/bladder/proc/on_owner_damaged(datum/source, damage, damagetype, def_zone)
+/obj/item/organ/bladder/proc/on_owner_damaged(datum/source, incoming_damage, damagetype, def_zone)
 	SIGNAL_HANDLER
-	if(ruptured || damage < AQ_RUPTURE_MIN_DAMAGE || !aq_is_belly_hit(damagetype, def_zone) || !prob(6))
+	if(ruptured || incoming_damage < AQ_RUPTURE_MIN_DAMAGE || !aq_is_belly_hit(damagetype, def_zone) || !prob(6))
 		return
 	ruptured = TRUE
 	setOrganDamage(max(damage, high_threshold))

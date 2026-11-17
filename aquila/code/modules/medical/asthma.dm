@@ -453,7 +453,7 @@
 
 /obj/item/reagent_containers/inhaler_canister/proc/puff(mob/living/user, mob/living/carbon/target)
 	playsound(src, 'sound/effects/spray.ogg', 20, TRUE, -6)
-	reagents.reaction(target, VAPOR, amount_per_transfer_from_this / max(reagents.total_volume, 1))
+	// Only the transfer: a VAPOR reaction would add the dose a second time through the skin
 	reagents.trans_to(target, amount_per_transfer_from_this, transfered_by = user)
 
 /obj/item/reagent_containers/inhaler_canister/proc/get_puffs_left()

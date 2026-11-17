@@ -52,7 +52,7 @@
 
 /mob/living/carbon/human/Life()
 	. = ..()
-	if(QDELETED(src) || notransform || stat == DEAD)
+	if(QDELETED(src) || notransform || stat == DEAD || IsInStasis())
 		return
 	aq_handle_germs(2)
 

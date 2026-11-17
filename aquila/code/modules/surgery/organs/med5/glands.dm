@@ -76,7 +76,7 @@
 // The blood type is taken only when the marrow leaves a body: a fresh organ from spawn fits whatever blood type
 // the character gets later from the preferences.
 /obj/item/organ/marrow/Remove(mob/living/carbon/M, special = 0)
-	if(M?.dna?.blood_type)
+	if(!donor_blood_type && M?.dna?.blood_type) // the first body is the donor; later removals do not change it
 		donor_blood_type = M.dna.blood_type
 	return ..()
 

@@ -211,6 +211,9 @@
 /datum/wound/frostbite/third_degree/Destroy()
 	if(limb)
 		REMOVE_TRAIT(limb, TRAIT_PARALYSIS, WOUND_FROSTBITE)
+		// Bee keeps the old disabled state of a damaged limb, so the paralysis is cleared by hand (as in spinal.dm)
+		if(limb.disabled == BODYPART_DISABLED_PARALYSIS && !HAS_TRAIT(limb, TRAIT_PARALYSIS))
+			limb.set_disabled(BODYPART_NOT_DISABLED)
 		limb.update_disabled()
 	return ..()
 
