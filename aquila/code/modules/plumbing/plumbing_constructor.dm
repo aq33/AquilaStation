@@ -202,6 +202,9 @@
 			to_chat(user, "<span class='warning'>Najpierw odkręć [machine.name]!</span>")
 			return
 		if(do_after(user, 2 SECONDS, target = machine))
+			if(!istype(machine, /obj/machinery/duct) && machine.anchored) // ktoś mógł ją przykręcić w trakcie
+				to_chat(user, "<span class='warning'>Najpierw odkręć [machine.name]!</span>")
+				return
 			machine.deconstruct() //Let's not substract matter
 			playsound(get_turf(src), 'sound/machines/click.ogg', 50, TRUE) //this is just such a great sound effect
 		return

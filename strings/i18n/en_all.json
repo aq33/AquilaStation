@@ -12223,6 +12223,7 @@
 "<span class='notice'>Zajmie to 20 sekund i musisz stać w bezruchu.</span>": "<span class='notice'>It will take 20 seconds and you have to stand still.</span>",
 "<span class='notice'>Zajmuje <b>[cost]%</b> pojemności na modyfikacje.</span>": "<span class='notice'>Occupies <b>[cost]%</b> of mod capacity.</span>",
 "<span class='notice'>Zaklejasz rozcięcie [src]...</span>": "<span class='notice'>You tape up the cut in [src]...</span>",
+"<span class='notice'>Zaklejasz rozcięcie w [src].</span>": "<span class='notice'>You tape up the cut in [src].</span>",
 "<span class='notice'>Zaklejasz rozcięcie, [src] znowu trzyma ciśnienie.</span>": "<span class='notice'>You tape up the cut, [src] holds pressure again.</span>",
 "<span class='notice'>Zaklęcie wciąż się odnawia.</span>": "<span class='notice'>The spell is still recharging.</span>",
 "<span class='notice'>Zakres temperatur <b>[min_temperature] K - [max_temperature] K ([(T0C-min_temperature)*-1] °C - [(T0C-max_temperature)*-1] °C)</b>.</span>": "<span class='notice'>Temperature range <b>[min_temperature]K - [max_temperature]K ([(T0C-min_temperature)*-1]C - [(T0C-max_temperature)*-1]C)</b>.</span>",
