@@ -471,7 +471,12 @@ GLOBAL_LIST_INIT(hex_war_factions, list("nanotrasen", "solgov", "syndicate", "pi
 		return FALSE
 	// Limit eskorty sprawdzamy przed pobraniem pieniędzy (war_trade.dm)
 	var/obj/structure/overmap/OM = user?.get_overmap()
-	if(istype(item, /datum/trader_item/aquila_escort) && OM && OM.hex_escort_count() >= HEX_ESCORT_MAX)
+	if(istype(item, /datum/trader_item/aquila_escort/fighters) && OM)
+		var/datum/trader_item/aquila_escort/fighters/wing = item
+		if(OM.hex_escort_count(TRUE) + wing.escort_count > HEX_ESCORT_FIGHTERS_MAX)
+			to_chat(user, "<span class='warning'>Eskorta myśliwców jest pełna: najwyżej [HEX_ESCORT_FIGHTERS_MAX] myśliwców naraz.</span>")
+			return FALSE
+	else if(istype(item, /datum/trader_item/aquila_escort) && OM && OM.hex_escort_count() >= HEX_ESCORT_MAX)
 		to_chat(user, "<span class='warning'>Eskorta jest pełna: najwyżej [HEX_ESCORT_MAX] okręty naraz.</span>")
 		return FALSE
 	return ..()

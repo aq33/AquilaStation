@@ -37,3 +37,14 @@
 	items = list(
 		/obj/item/card/id/captains_spare = 1,
 	)
+
+/datum/test_chamber_kit/pr_643_mysliwce_rakiety
+	name = "Myśliwce przy wrakach, eskorta myśliwców, rakiety w moduł"
+	pr = "aq33/AquilaStation#643"
+	description = "Wraki: zestrzel okręt AI (np. /obj/structure/overmap/syndicate/ai/gunboat), żeby został wrak. Włóż ładownię z zestawu do myśliwca (hardpoint użytkowy), wystartuj i podleć do wraku na najwyżej 4 pola. W oknie myśliwca sekcja „Wrak:” pokazuje cel i liczbę przeszukań, „Przeszukaj wrak” po 15 s wkłada do ładowni 2 fanty: złom zawsze, a z ocalałych modułów materiały, amunicję działek, broń, apteczki albo części. Odlot w trakcie przerywa przeszukiwanie. \
+		Eskorta: na mapie hex w stoczni albo u handlarza bronią kup „Klucz myśliwców eskorty” (1000): dwa myśliwce Viper lecą za okrętem i biją jego cele, liczone osobno od okrętów (do 6 myśliwców i 4 okrętów). \
+		Rakiety: w konsoli taktycznej wybierz moduł namierzonego okrętu i strzel torpedą przy pełnym pancerzu: moduł dostaje obrażenia mimo pancerza. Artyleria MAC leci teraz w wybrany moduł zamiast w środek. Torpeda wroga w nasz okręt robi wyłom w losowym miejscu, także przy pełnym pancerzu burty."
+	items = list(
+		/obj/item/fighter_component/secondary/utility/hold = 1,
+		/obj/item/card/id/captains_spare = 1,
+	)
