@@ -74,7 +74,7 @@
 	if(world.time < hex_cooldown_until)
 		return "Napęd stygnie po skoku: jeszcze [hex_cooldown_left()] s."
 	if(hex_charge() + 0.001 < cost)
-		return "Za mało naładowania napędu: [hex_charge_text(hex_charge(), hex_charge_thresholds())] z potrzebnych [hex_percent_text(cost)]."
+		return "Za mało naładowania napędu: [hex_charge_text(hex_charge(), hex_charge_thresholds() + cost)] z potrzebnych [hex_percent_text(cost)]."
 	return null
 
 /**

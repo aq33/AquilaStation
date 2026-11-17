@@ -142,6 +142,12 @@
 	spawned += rats
 	if(length(rats) < 2 || length(rats) > 3)
 		return "Zamiast 2–3 myśliwców pojawiło się [length(rats)]"
+	var/list/rat_dirs = list()
+	for(var/obj/structure/overmap/rat as anything in rats)
+		var/rat_dir = get_dir(ship, rat)
+		if(rat_dir in rat_dirs)
+			return "Dwa myśliwce nadleciały z tej samej strony ([dir2text(rat_dir)])"
+		rat_dirs += rat_dir
 	var/syndicate_ships = 0
 	for(var/obj/structure/overmap/other in system.system_contents)
 		if(other.faction == "syndicate")

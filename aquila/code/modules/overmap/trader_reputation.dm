@@ -55,12 +55,14 @@
 
 /// Dokłada oferty specjalne do obecnego towaru, jak stock_items() (nazwa, cena i ilość losowane tak samo)
 /datum/trader/proc/aq_add_special_offers()
-	if(!length(stonks))
-		return // towaru jeszcze nie było: stock_items() przy pierwszym otwarciu okna i tak doda oferty
+	if(!next_restock)
+		return // sklep jeszcze nie był otwierany: stock_items() przy pierwszym otwarciu i tak doda oferty (wyprzedany ma next_restock)
+	var/list/present = list()
 	for(var/datum/trader_item/existing as anything in stonks)
-		if(existing.type in special_offers)
-			return
+		present |= existing.type
 	for(var/item_path in special_offers)
+		if(item_path in present)
+			continue // ta oferta już jest: jej cena i zapas zostają
 		var/datum/trader_item/TI = new item_path()
 		TI.name = "SPECJALNA OFERTA! " + TI.name
 		TI.price = round(rand((2 * TI.price) / 3, TI.price * 2))

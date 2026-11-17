@@ -332,10 +332,14 @@ const hexDistance = (a: Cell, b: Cell) =>
 const percent = (value: number) => `${Math.ceil(value - 0.001)}%`;
 
 // Ładunek zaokrąglony w górę jak koszty (2/3 to 67%), ale nigdy nie pokazuje kosztu, którego jeszcze nie pokrywa (hex_charge_text w DM,
-// progi z hex_charge_thresholds(): kafel, brama i pojemność napędu z bonusem układu FTL)
-const chargeText = (charge: number, ship: Ship) => {
+// progi z hex_charge_thresholds(): kafel, brama i pojemność napędu z bonusem układu FTL, do tego koszt wybranej trasy)
+const chargeText = (charge: number, ship: Ship, routeCost?: number) => {
   let shown = Math.ceil(charge - 0.001);
-  for (const threshold of [ship.cost_hex, ship.cost_gate, ship.capacity]) {
+  const thresholds = [ship.cost_hex, ship.cost_gate, ship.capacity];
+  if (routeCost) {
+    thresholds.push(routeCost);
+  }
+  for (const threshold of thresholds) {
     if (charge + 0.001 < threshold) {
       shown = Math.min(shown, Math.ceil(threshold - 0.001) - 1);
     }
@@ -1179,7 +1183,7 @@ export const HexStarmap = () => {
                       bad: [-Infinity, ship.cost_hex],
                     }}
                   >
-                    {chargeText(ship.charge, ship)}
+                    {chargeText(ship.charge, ship, route?.cost)}
                   </ProgressBar>
                   <LabeledList>
                     <LabeledList.Item label="Stan">

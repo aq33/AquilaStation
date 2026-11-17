@@ -38,8 +38,11 @@
 	. = list()
 	if(!aquila_hex_ship_settled(near))
 		return
+	var/list/dirs = GLOB.alldirs.Copy() // każdy myśliwiec z innej strony
 	for(var/i in 1 to rand(2, 3))
-		var/turf/spot = aquila_hex_overmap_spot_beside(near, rand(10, 14), GLOB.alldirs)
+		if(!length(dirs))
+			break
+		var/turf/spot = aquila_hex_overmap_spot_beside(near, rand(10, 14), list(pick_n_take(dirs)))
 		if(!spot)
 			continue
 		var/obj/structure/overmap/syndicate/ai/fighter/rat = new /obj/structure/overmap/syndicate/ai/fighter(spot)

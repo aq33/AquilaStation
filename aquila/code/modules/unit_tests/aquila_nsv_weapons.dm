@@ -47,10 +47,11 @@
 	QDEL_LIST(trader.stonks)
 	qdel(trader)
 
-/// Ile strzałów oddaje datum broni z jednego działa z trzema pociskami
-/proc/aq_test_salvo_shots(weapon_type, turf/target)
+/// Ile strzałów oddaje datum broni z jednego działa z podaną liczbą pocisków
+/proc/aq_test_salvo_shots(weapon_type, turf/target, ammo = 3)
 	var/datum/overmap_ship_weapon/weapon = new weapon_type()
 	var/obj/machinery/ship_weapon/aq_salvo_test/gun = new(target)
+	gun.test_ammo = ammo
 	weapon.weapons["loaded"] += gun
 	weapon.weapons["all"] += gun
 	gun.linked_overmap_ship_weapon = weapon
@@ -76,6 +77,7 @@
 	TEST_ASSERT_EQUAL(initial(yamato_datum.fire_delay), 7 SECONDS, "Złe przeładowanie Yamato")
 
 	TEST_ASSERT_EQUAL(aq_test_salvo_shots(/datum/overmap_ship_weapon/mac/yamato/aq_test, run_loc_floor_bottom_left), 3, "Yamato nie wystrzelił salwy trzech pocisków")
+	TEST_ASSERT_EQUAL(aq_test_salvo_shots(/datum/overmap_ship_weapon/mac/yamato/aq_test, run_loc_floor_bottom_left, 1), 1, "Yamato z jednym pociskiem nie strzelił wcale")
 	TEST_ASSERT_EQUAL(aq_test_salvo_shots(/datum/overmap_ship_weapon/mac/aq_test, run_loc_floor_bottom_left), 1, "Hood zaczął strzelać salwą")
 
 	var/list/stock = aq_test_trader_stock(/datum/trader/minsky)

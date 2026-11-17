@@ -23,6 +23,19 @@
 	TEST_ASSERT(T.next_restock > world.time, "Unlocking special offers rerolled the whole stock")
 	TEST_ASSERT(stocked in T.stonks, "Unlocking special offers threw away the current stock")
 	TEST_ASSERT(locate(/datum/trader_item/ship_repair/tier3) in T.stonks, "Unlocking special offers didn't add them to the stock")
+	// Wyprzedany sklep z jedną ofertą specjalną już na półce: druga dochodzi, pierwsza zostaje ta sama
+	T.aq_adjust_reputation(-1000)
+	QDEL_LIST(T.stonks)
+	var/datum/trader_item/ship_repair/tier3/kept = new
+	T.stonks = list(kept)
+	T.special_offers = list(/datum/trader_item/ship_repair/tier3, /datum/trader_item/mac)
+	T.aq_adjust_reputation(50)
+	TEST_ASSERT(kept in T.stonks, "A special offer already on the shelf was replaced")
+	TEST_ASSERT(locate(/datum/trader_item/mac) in T.stonks, "A missing special offer wasn't added next to an existing one")
+	var/repairs = 0
+	for(var/datum/trader_item/ship_repair/tier3/R in T.stonks)
+		repairs++
+	TEST_ASSERT(repairs == 1, "A special offer already on the shelf was added twice")
 	T.aq_adjust_reputation(1000)
 	TEST_ASSERT(T.aq_reputation == 150, "Reputation went over the cap ([T.aq_reputation])")
 	TEST_ASSERT(T.aq_price(item) == 850, "The top reputation level didn't give 15% off ([T.aq_price(item)])")
