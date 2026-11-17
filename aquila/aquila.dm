@@ -2710,6 +2710,25 @@
 #include "code\modules\test_chamber\kits\pr_610_zbiorczy_1011.dm"
 #include "code\modules\test_chamber\kits\pr_637_tlumacz_na_zywo.dm"
 
+// Quirki z innych kodów (okno postaci, 17.11.2026): na końcu, bo nadpisują procki modułów dołączonych wyżej (pollution, higiena, medycyna)
+#include "code\datums\traits\extra\nastroj_wspolne.dm"
+#include "code\datums\traits\extra\nastroj_fobie.dm"
+#include "code\datums\traits\extra\nastroj_gracz.dm"
+#include "code\datums\traits\extra\nastroj_fani.dm"
+#include "code\datums\traits\extra\nastroj_plakaty.dm"
+#include "code\datums\traits\extra\nastroj_nieprzespany.dm"
+#include "code\datums\traits\extra\nastroj_przeklety.dm"
+#include "code\datums\traits\extra\nastroj_cialo.dm"
+#include "code\datums\traits\extra\nastroj_ogien.dm"
+#include "code\datums\traits\extra\nastroj_charakter.dm"
+#include "code\datums\traits\extra\cialo.dm"
+#include "code\datums\traits\extra\zmysly.dm"
+#ifdef UNIT_TESTS
+#include "code\modules\unit_tests\aquila_quirks_extra_nastroj.dm"
+#include "code\modules\unit_tests\aquila_quirks_extra_cialo.dm"
+#include "code\modules\unit_tests\aquila_quirks_extra_zmysly.dm"
+#endif
+
 // Profiler byond-tracy: MUSI być ostatnim include'em całego builda (BYOND inicjuje zmienne statyczne od końca,
 // więc ta rusza pierwsza, przed Master i mapą). Opis: tools/tracy/README.md
 #include "code\modules\tracy\tracy.dm"

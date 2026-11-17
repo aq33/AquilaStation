@@ -4307,3 +4307,17 @@ Nazwy obszarów są w większości przetłumaczone. Nowe nazwy budujemy z tych k
 | wet rocky ground | mokre skaliste podłoże | n; nowe (planeta wodna) |
 | Frontiersmen | Pogranicznicy | m mn.; nowe (frakcja z ruin Shiptesta, u nas piraci) |
 | Corporate Resort / Cybersun Pad / Frontiersman Moat / Cave Gunsmith / Frontiersmen Depot | Kurort Korporacyjny / Lądowisko Cybersun / Fosa Pograniczników / Jaskiniowy Rusznikarz / Składnica Pograniczników | nowe (ruiny plaży) |
+
+| Clown Enjoyer / Mime Fan | Miłośnik Klaunów / Fan Mima | m; cechy postaci (przypinka klauna/mima) |
+| homemade poster / Poster Boy | plakat domowej roboty / Plakaciarz | m; cecha postaci |
+| All Nighter | Zarwana Noc | ż; cecha postaci |
+| Body Purist / Transhumanist | Purysta Ciała / Transhumanista | m; cechy postaci |
+| Fundamentally Evil | Z Gruntu Zły | m; cecha postaci |
+| Pseudobulbar Affect | Afekt Pseudobulbarny | m; cecha postaci |
+| Bad Touch | Niechęć do Dotyku | ż; cecha postaci |
+| Tin Man | Blaszany drwal | m; cecha postaci |
+| surplus heart / lungs / liver / stomach | tanie cybernetyczne serce / tanie cybernetyczne płuca / tania cybernetyczna wątroba / tani cybernetyczny żołądek | nowe (cecha Protetyczny organ) |
+| Hereditary Manifold Sickness | dziedziczna choroba rozmaitościowa | ż; nowe (cecha choroby przewlekłej) |
+| Sansufentanyl | Sansufentanyl | m; reagent, bez zmian |
+| hair dye spray | farba do włosów w sprayu | ż; cecha Kolorysta |
+| Speech voice / Species voice | głos mowy / głos gatunku | m; okno postaci (głosy z Goona) |
