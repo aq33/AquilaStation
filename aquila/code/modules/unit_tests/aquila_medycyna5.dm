@@ -1000,4 +1000,14 @@
 	leg.heal_damage(leg.max_damage * 0.3, 0)
 	qdel(leg_bite)
 	TEST_ASSERT(leg.disabled == BODYPART_DISABLED_DAMAGE, "Removing the frostbite also lifted the damage disable ([leg.get_damage()] / [leg.max_damage])")
+
+/// The chem master analysis shows the tg addiction threshold, alcohol from its strength
+/datum/unit_test/aquila_addiction_threshold_display
+
+/datum/unit_test/aquila_addiction_threshold_display/Run()
+	TEST_ASSERT(aq_addiction_threshold_of(/datum/reagent/medicine/tramadol) == 40, "Tramadol shows [aq_addiction_threshold_of(/datum/reagent/medicine/tramadol)] instead of 40")
+	var/datum/reagent/consumable/ethanol/beer/beer = GLOB.chemical_reagents_list[/datum/reagent/consumable/ethanol/beer]
+	var/expected = max(10, 2000 / beer.boozepwr)
+	TEST_ASSERT(aq_addiction_threshold_of(/datum/reagent/consumable/ethanol/beer) == expected, "Beer shows [aq_addiction_threshold_of(/datum/reagent/consumable/ethanol/beer)] instead of [expected]")
+	TEST_ASSERT(aq_addiction_threshold_of(/datum/reagent/water) == 0, "Water shows an addiction threshold")
 #undef TEST_ASSERT

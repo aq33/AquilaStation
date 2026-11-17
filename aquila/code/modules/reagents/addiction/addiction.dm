@@ -407,8 +407,9 @@ GLOBAL_LIST_INIT(aq_addictions, aq_init_addictions())
 /// Lowest addiction threshold of a reagent type for the chem master analysis (units metabolised), 0 = not addictive
 /proc/aq_addiction_threshold_of(reagent_type)
 	var/datum/reagent/reagent = GLOB.chemical_reagents_list[reagent_type]
-	if(!length(reagent?.addiction_types))
+	var/list/types = reagent?.aq_get_addiction_types() // alcohol computes its threshold from boozepwr
+	if(!length(types))
 		return 0
 	. = INFINITY
-	for(var/kind in reagent.addiction_types)
-		. = min(., reagent.addiction_types[kind])
+	for(var/kind in types)
+		. = min(., types[kind])
