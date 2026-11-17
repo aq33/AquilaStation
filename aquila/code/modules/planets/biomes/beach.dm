@@ -140,6 +140,7 @@
 		/obj/structure/flora/rock/beach = 3,
 		/obj/structure/flora/driftwood = 3,
 		/obj/structure/flora/driftlog = 1,
+		/obj/structure/flora/ash/seaweed = 1,
 		/obj/item/toy/seashell = 1,
 	)
 	mob_spawn_chance = 1
@@ -159,7 +160,7 @@
 		/obj/structure/flora/driftlog = 2,
 	)
 
-/// Płycizna (Shiptest: /datum/biome/ocean). Wodorosty z ogródka zastąpione trzcinami.
+/// Płycizna (Shiptest: /datum/biome/ocean). Obok trzcin wodorosty (jak ogródek z wodorostami w Shiptest) i glony z Nebuli.
 /datum/planet_biome/ocean
 	open_turf_types = list(/turf/open/water/planet/beach = 1)
 	flora_spawn_chance = 1
@@ -167,6 +168,8 @@
 		/obj/structure/flora/rock/beach = 1,
 		/obj/structure/flora/rock/pile = 1,
 		/obj/structure/flora/ausbushes/reedbush = 1,
+		/obj/structure/flora/ash/seaweed = 1,
+		/obj/structure/flora/ash/algae = 1,
 	)
 	mob_spawn_chance = 0
 
