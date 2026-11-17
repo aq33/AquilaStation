@@ -978,4 +978,26 @@
 	TEST_ASSERT(bot, "A robot head with two flashes and a manipulator did not become a spider-bot")
 	TEST_ASSERT(bot.ventcrawler == VENTCRAWLER_ALWAYS, "The spider-bot cannot crawl through vents")
 	qdel(bot)
+
+/// Healing a third degree frostbite lifts its paralysis, but a limb disabled by damage before it stays disabled
+/datum/unit_test/aquila_frostbite_paralysis
+
+/datum/unit_test/aquila_frostbite_paralysis/Run()
+	var/mob/living/carbon/human/patient = allocate(/mob/living/carbon/human)
+	var/obj/item/bodypart/arm = patient.get_bodypart(BODY_ZONE_L_ARM)
+	var/datum/wound/frostbite/third_degree/bite = new()
+	bite.apply_wound(arm, silent = TRUE)
+	TEST_ASSERT(arm.disabled == BODYPART_DISABLED_PARALYSIS, "Third degree frostbite does not paralyse the arm")
+	qdel(bite)
+	TEST_ASSERT(arm.disabled == BODYPART_NOT_DISABLED, "A healthy arm stays paralysed after the frostbite is gone")
+
+	var/obj/item/bodypart/leg = patient.get_bodypart(BODY_ZONE_R_LEG)
+	leg.receive_damage(brute = leg.max_damage)
+	leg.update_disabled()
+	TEST_ASSERT(leg.disabled == BODYPART_DISABLED_DAMAGE, "A leg at full damage is not disabled")
+	var/datum/wound/frostbite/third_degree/leg_bite = new()
+	leg_bite.apply_wound(leg, silent = TRUE)
+	leg.heal_damage(leg.max_damage * 0.3, 0)
+	qdel(leg_bite)
+	TEST_ASSERT(leg.disabled == BODYPART_DISABLED_DAMAGE, "Removing the frostbite also lifted the damage disable ([leg.get_damage()] / [leg.max_damage])")
 #undef TEST_ASSERT

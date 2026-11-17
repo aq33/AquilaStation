@@ -201,19 +201,24 @@
 	var/necrosis_at = 0
 	/// Past saving: only amputation helps
 	var/necrotic = FALSE
+	/// Disabled state of the limb before the frostbite paralysed it (a limb disabled by damage stays so)
+	var/disabled_before = BODYPART_NOT_DISABLED
 
 /datum/wound/frostbite/third_degree/on_apply()
 	. = ..()
 	necrosis_at = world.time + AQ_FROSTBITE_NECROSIS_TIME
+	disabled_before = limb.disabled
 	ADD_TRAIT(limb, TRAIT_PARALYSIS, WOUND_FROSTBITE)
 	limb.update_disabled()
 
 /datum/wound/frostbite/third_degree/Destroy()
 	if(limb)
 		REMOVE_TRAIT(limb, TRAIT_PARALYSIS, WOUND_FROSTBITE)
-		// Bee keeps the old disabled state of a damaged limb, so the paralysis is cleared by hand (as in spinal.dm)
+		// Bee keeps the old disabled state of a damaged limb, so the paralysis is cleared by hand (as in spinal.dm).
+		// A limb disabled by damage before the frostbite stays disabled while its damage keeps it so (above half, as is_disabled()).
 		if(limb.disabled == BODYPART_DISABLED_PARALYSIS && !HAS_TRAIT(limb, TRAIT_PARALYSIS))
-			limb.set_disabled(BODYPART_NOT_DISABLED)
+			var/keep_damage = disabled_before == BODYPART_DISABLED_DAMAGE && limb.get_damage(TRUE) > limb.max_damage * 0.5
+			limb.set_disabled(keep_damage ? BODYPART_DISABLED_DAMAGE : BODYPART_NOT_DISABLED)
 		limb.update_disabled()
 	return ..()
 
