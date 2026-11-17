@@ -113,6 +113,8 @@
 		/obj/structure/flora/ash/fern = 5,
 		/obj/structure/flora/ash/fireblossom = 1,
 		/obj/structure/flora/ash/puce = 5,
+		/obj/structure/flora/ash/cacti = 3,
+		/obj/structure/flora/ash/cacti/star = 1,
 	)
 	feature_spawn_chance = 0.3
 	feature_spawn_list = list(
@@ -192,6 +194,8 @@
 		/obj/structure/flora/ausbushes/hell = 3,
 		/obj/structure/flora/tree/dead/hell = 3,
 		/obj/structure/flora/rock/lava = 2,
+		/obj/structure/flora/ash/cacti = 2,
+		/obj/structure/flora/ash/cacti/star = 1,
 	)
 
 /// Bujne zakątki
@@ -241,6 +245,9 @@
 		/obj/structure/flora/ash/tall_shroom = 2,
 		/obj/structure/flora/ash/fern = 2,
 		/obj/structure/flora/ash/puce = 2,
+		/obj/structure/flora/ash/lightshroom = 1,
+		/obj/structure/flora/ash/lightshroom/blue = 1,
+		/obj/structure/flora/ash/lightshroom/green = 1,
 	)
 	mob_spawn_chance = 1.5
 	mob_spawn_list = PLANET_LAVA_CAVE_FAUNA
@@ -264,6 +271,9 @@
 		/obj/structure/flora/ash/stem_shroom = 2,
 		/obj/structure/flora/ash/cacti = 1,
 		/obj/structure/flora/ash/tall_shroom = 2,
+		/obj/structure/flora/ash/lightshroom = 1,
+		/obj/structure/flora/ash/lightshroom/blue = 1,
+		/obj/structure/flora/ash/lightshroom/green = 1,
 	)
 
 /datum/planet_biome/cave/lava/lava
