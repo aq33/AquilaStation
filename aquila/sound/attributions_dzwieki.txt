@@ -86,3 +86,11 @@ Kapsuły desantowe na planetach (tgstation/TerraGov-Marine-Corps), licencja CC B
 Woda i wędkarstwo na planetach (tgstation/tgstation dba6dea), licencja CC-BY-SA 3.0:
   effects/fishing/fish_splash.ogg, bigsplash.ogg   tgstation sound/effects (chlupnięcia przy łowieniu)
   effects/anomaly/*                 Shiptest sound/effects (radiohiss, stall, walkietalkie) i sound/effects/anomaly/static.ogg, anomalia szumu
+
+Okno postaci (17.11.2026):
+  voice/scream/skyrat_*, voice/laugh/felinid_*, voice/laugh/vox_laugh.ogg   Skyrat-SS13/Skyrat-tg i Bubberstation (modular_skyrat/modules/emotes, modular_zubbers), CC-BY-SA 3.0
+  voice/scream/ethereal_lustrous_*   tgstation sound/mobs/humanoids/ethereal, CC-BY-SA 3.0
+  voice/scream/goon_*, voice/goon/*, misc/fart/goon_*   goonstation/goonstation (sound/voice/screams, sound/misc/talk, sound/voice/farts), CC BY-NC-SA 3.0
+  voice/simian/*   Monkestation/Monkestation2.0, CC-BY-SA 3.0
+  species/beefman/*   fulpstation/fulpstation (fulp_modules), CC-BY-SA 3.0
+  voice/psyphoza/*, emotes/diona/*   BeeStation/BeeStation-Hornet, CC-BY-SA 3.0
