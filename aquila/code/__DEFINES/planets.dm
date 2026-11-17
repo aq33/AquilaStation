@@ -17,7 +17,13 @@
 /// Ile procent ticku może zająć generowanie powierzchni planety. CHECK_TICK pozwala procedurze asynchronicznej zająć tick
 /// do limitu MC (ok. 80-98%), a wtedy MC nie mieścił się w ticku: przez całe generowanie (kilkadziesiąt sekund) co 2-4
 /// ticki jeden przepadał i serwer zwalniał (TD) u wszystkich graczy, nie tylko u lądujących.
+#ifdef UNIT_TESTS
+/// W testach nie ma graczy, którym TD by przeszkadzał: generowanie bierze tyle ticku, ile da MC (z limitem 50 każda planeta
+/// w teście trwała dwa razy dłużej, a testy planet to kilka minut jednej części CI)
+#define PLANET_GEN_TICK_LIMIT 100
+#else
 #define PLANET_GEN_TICK_LIMIT 50
+#endif
 /// CHECK_TICK z niższym limitem dla generowania planet
 #define PLANET_CHECK_TICK (TICK_USAGE > min(PLANET_GEN_TICK_LIMIT, Master.current_ticklimit) ? stoplag() : 0)
 

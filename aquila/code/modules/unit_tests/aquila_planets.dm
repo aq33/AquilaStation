@@ -459,10 +459,13 @@
 	bay.launch(trooper)
 	TEST_ASSERT(istype(trooper.loc, /obj/structure/drop_pod), "The trooper isn't in the drop pod ([trooper.loc?.type])")
 	TEST_ASSERT(!bay.ready, "The bay is ready right after launching")
-	// Kapsuła leci kilka sekund (tranzyt, spadanie, otwarcie): żołnierz ma wysiąść na planecie
-	sleep(15 SECONDS)
+	// Lot trwa kilkanaście sekund na timerach (start, tranzyt, spadanie, otwarcie): test woła od razu spadanie i otwarcie,
+	// zamiast czekać prawdziwy czas
+	var/obj/structure/drop_pod/pod = trooper.loc
+	pod.fall(ground)
+	pod.open()
 	TEST_ASSERT(planet.surface.contains(get_turf(trooper)), "The trooper didn't land on the planet ([AREACOORD(trooper)])")
-	TEST_ASSERT(get_dist(trooper, ground) <= 3, "The trooper landed too far from the target")
+	TEST_ASSERT_EQUAL(get_turf(trooper), ground, "The trooper didn't get out of the pod at the landing spot")
 	trooper.forceMove(run_loc_floor_bottom_left)
 	planet.surface.unload()
 	qdel(planet, TRUE)
