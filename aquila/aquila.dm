@@ -1075,6 +1075,8 @@
 #include "code\modules\overmap\shield_cloak.dm"
 #include "code\modules\overmap\ftl_calibration.dm"
 #include "code\modules\overmap\station_contracts.dm"
+#include "code\modules\overmap\trader_reputation.dm"
+#include "code\modules\overmap\trader_missions.dm"
 // Po nakładkach DRADIS (dradis_uncertainty, sensor_console): kontakty z boi sondy zostają dokładne
 #include "code\modules\munitions\missile_payloads.dm"
 #include "code\modules\overmap\overmap_scale.dm"
@@ -1313,6 +1315,7 @@
 // #include "code\modules\test_chamber\kits\pr_420_traitor_cele.dm"
 #include "code\modules\test_chamber\kits\test_subjects.dm"
 // Komora testowa - zestawy PR-ów niżej (usuwać razem z plikiem zestawu po przetestowaniu)
+#include "code\modules\test_chamber\kits\pr_nsvprzyw_misje.dm"
 #include "code\modules\test_chamber\kits\pr_nsvprzyw_eventy.dm"
 #include "code\modules\test_chamber\kits\pr_nsvprzyw_warp.dm"
 #include "code\modules\test_chamber\kits\pr_641_zbiorczy_1411.dm"
@@ -2483,6 +2486,8 @@
 #include "code\modules\unit_tests\aquila_missile_design.dm"
 #include "code\modules\unit_tests\aquila_squad_echo.dm"
 #include "code\modules\unit_tests\aquila_station_contracts.dm"
+#include "code\modules\unit_tests\aquila_trader_reputation.dm"
+#include "code\modules\unit_tests\aquila_trader_missions.dm"
 #include "code\modules\unit_tests\aquila_missile_payloads.dm"
 #include "code\modules\unit_tests\aquila_botany.dm"
 #include "code\modules\unit_tests\aquila_botany_flow.dm"

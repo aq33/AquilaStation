@@ -1,0 +1,33 @@
+// The upstream assert macros are #undef'd at the end of code/modules/unit_tests/_unit_tests.dm, so this modular test carries its own copies
+#define TEST_ASSERT(assertion, reason) if (!(assertion)) { return Fail("Assertion failed: [reason || "No reason"]") }
+
+/// AQUILA - reputacja u handlarza (trader_reputation.dm): zniżka rośnie z poziomem, od „zaufanego partnera” są oferty
+/// specjalne i towar odnawia się od razu, a cena katalogowa zostaje bez zmian
+/datum/unit_test/aquila_trader_reputation
+
+/datum/unit_test/aquila_trader_reputation/Run()
+	var/datum/trader/T = new /datum/trader/shallowstone
+	var/datum/trader_item/item = new
+	item.price = 1000
+	T.special_offers = list(/datum/trader_item/ship_repair/tier3)
+	T.next_restock = world.time + 10 MINUTES
+	TEST_ASSERT(T.aq_price(item) == 1000, "A trader without reputation gave a discount ([T.aq_price(item)])")
+	T.aq_adjust_reputation(20)
+	TEST_ASSERT(T.aq_price(item) == 950, "A good client didn't get 5% off ([T.aq_price(item)])")
+	TEST_ASSERT(!T.aq_special_unlocked(), "Special offers unlocked at the first reputation level")
+	T.aq_adjust_reputation(30)
+	TEST_ASSERT(T.aq_price(item) == 900, "A trusted partner didn't get 10% off ([T.aq_price(item)])")
+	TEST_ASSERT(T.aq_special_unlocked(), "A trusted partner doesn't see special offers")
+	TEST_ASSERT(T.next_restock == 0, "Unlocking special offers didn't restock the trader right away")
+	T.aq_adjust_reputation(1000)
+	TEST_ASSERT(T.aq_reputation == 150, "Reputation went over the cap ([T.aq_reputation])")
+	TEST_ASSERT(T.aq_price(item) == 850, "The top reputation level didn't give 15% off ([T.aq_price(item)])")
+	T.aq_adjust_reputation(-1000)
+	TEST_ASSERT(T.aq_reputation == 0 && T.aq_price(item) == 1000, "Losing all reputation didn't bring the full price back")
+	// Cena katalogowa zostaje nietknięta (ruszają ją wiadomości gospodarcze)
+	TEST_ASSERT(item.price == 1000, "The discount changed the list price of the item")
+
+	qdel(item)
+	qdel(T)
+
+#undef TEST_ASSERT
