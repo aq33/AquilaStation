@@ -94,7 +94,7 @@
 
 /datum/techweb_node/base/New()
 	. = ..()
-	design_ids += list("aq_splint", "aq_crutch", "aq_reflex_hammer", "aq_inhaler", "aq_inhaler_canister", "aq_medical_tape")
+	design_ids += list("aq_splint", "aq_crutch", "aq_reflex_hammer", "aq_inhaler", "aq_inhaler_canister", "aq_medical_tape", "aq_catheter")
 
 /datum/techweb_node/biotech/New()
 	. = ..()
@@ -125,6 +125,7 @@
 	products[/obj/item/reagent_containers/inhaler_canister/albuterol] = 3
 	products[/obj/item/barrier_tape_roll/medical] = 2
 	products[/obj/item/reagent_containers/hypospray/medipen/naloxone] = 2
+	products[/obj/item/catheter] = 4
 	return ..()
 
 // --- Szafki szpitala ---

@@ -2959,6 +2959,10 @@ Odmianę stref daje helper `strefa_pl(zone, biernik)` z `aquila/code/__HELPERS/p
 | pulse / cardiac arrest / CPR | tętno / zatrzymanie krążenia / RKO | nowe (AquilaMed 5) |
 | germs / infection / sepsis | zarazki / zakażenie / sepsa | nowe (AquilaMed 5) |
 | opioid / stimulant / hallucinogen addiction, withdrawal | uzależnienie od opioidów / stymulantów / halucynogenów, odstawienie | nowe (AquilaMed 5, uzależnienia z tg) |
+| kidneys / spleen / intestines / catheter | nerki / śledziona / jelita / cewnik | nowe (AquilaMed 5) |
+| adrenal glands / bone marrow | nadnercza / szpik kostny | nowe (AquilaMed 5) |
+| larynx / vocal cords / speech synthesizer | krtań / struny głosowe / syntezator mowy | nowe (AquilaMed 5) |
+| nerve / cut nerve / nerve suture | nerw / przerwany nerw / zszycie nerwu | nowe (AquilaMed 5) |
 | medical spray | spray medyczny | m; nowe |
 | spray bottle | spryskiwacz | m; istniejące |
 | chem sprayer | rozpylacz chemiczny | m; istniejące („rozpylacz”) |

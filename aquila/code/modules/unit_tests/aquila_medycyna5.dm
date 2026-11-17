@@ -543,4 +543,205 @@
 	patient.aq_filter_blood(0)
 	TEST_ASSERT(patient.getToxLoss() > tox, "Missing kidneys did not poison")
 
+/// AQUILA - spleen, intestines, bladder (surgery/organs/med5/abdomen.dm): the spleen releases blood and can rupture,
+/// punctured intestines let germs in and absorb worse, a ruptured bladder poisons and a catheter holds it off
+/datum/unit_test/aquila_abdomen
+
+/datum/unit_test/aquila_abdomen/Run()
+	var/mob/living/carbon/human/patient = allocate(/mob/living/carbon/human)
+	var/obj/item/organ/spleen/spleen = patient.getorganslot(ORGAN_SLOT_SPLEEN)
+	var/obj/item/organ/intestines/intestines = patient.getorganslot(ORGAN_SLOT_INTESTINES)
+	TEST_ASSERT(istype(spleen) && istype(intestines), "A human has no spleen or intestines")
+
+	// The spleen gives blood when it runs low, once per cooldown
+	patient.blood_volume = BLOOD_VOLUME_BAD
+	spleen.on_life()
+	TEST_ASSERT(patient.blood_volume > BLOOD_VOLUME_BAD, "The spleen released no blood")
+	var/after_release = patient.blood_volume
+	spleen.on_life()
+	TEST_ASSERT(patient.blood_volume == after_release, "The spleen released blood again before the cooldown")
+	patient.blood_volume = BLOOD_VOLUME_NORMAL
+
+	// Heavy belly hits can rupture it: internal bleeding until stitched
+	for(var/i in 1 to 200)
+		if(spleen.ruptured)
+			break
+		patient.apply_damage(15, BRUTE, BODY_ZONE_CHEST)
+		patient.adjustBruteLoss(-15)
+	TEST_ASSERT(spleen.ruptured, "200 heavy belly hits never ruptured the spleen")
+	var/blood = patient.blood_volume
+	spleen.on_life()
+	TEST_ASSERT(patient.blood_volume < blood, "A ruptured spleen does not bleed inside")
+	TEST_ASSERT(findtext(jointext(patient.aq_organ_scan_lines(), ""), "śledziona"), "The scanner does not show the ruptured spleen")
+	var/datum/surgery_operation/organ/repair/spleen/splenorrhaphy = new()
+	TEST_ASSERT(splenorrhaphy.state_check(spleen), "A ruptured spleen cannot be stitched")
+	splenorrhaphy.on_success(spleen, patient, null, list())
+	TEST_ASSERT(!spleen.ruptured, "Stitching did not close the spleen")
+	qdel(splenorrhaphy)
+
+	// Punctured intestines: germs in the belly, worse absorption, diarrhea
+	var/obj/item/bodypart/chest = patient.get_bodypart(BODY_ZONE_CHEST)
+	intestines.perforate()
+	TEST_ASSERT(intestines.perforated, "The intestines did not perforate")
+	var/germs = chest.aq_germs
+	intestines.on_life()
+	TEST_ASSERT(chest.aq_germs > germs, "Punctured intestines let no germs in")
+	var/nutrition = patient.nutrition
+	patient.adjust_nutrition(100)
+	TEST_ASSERT(patient.nutrition - nutrition < 100, "Punctured intestines absorbed everything")
+	TEST_ASSERT(patient.stool_type() >= 6, "Sick intestines give no diarrhea")
+	var/datum/surgery_operation/organ/repair/intestines/enterorrhaphy = new()
+	enterorrhaphy.on_success(intestines, patient, null, list())
+	TEST_ASSERT(!intestines.perforated, "Stitching did not close the intestines")
+	qdel(enterorrhaphy)
+
+	// A ruptured bladder poisons, a catheter holds it off
+	var/obj/item/organ/bladder/bladder = patient.getorganslot(ORGAN_SLOT_BLADDER)
+	if(bladder)
+		bladder.ruptured = TRUE
+		var/tox = patient.getToxLoss()
+		bladder.on_life()
+		TEST_ASSERT(patient.getToxLoss() > tox, "A ruptured bladder does not poison")
+		var/mob/living/carbon/human/medic = allocate(/mob/living/carbon/human)
+		var/obj/item/catheter/catheter = allocate(/obj/item/catheter)
+		medic.set_combat_mode(FALSE)
+		catheter.attack(patient, medic)
+		tox = patient.getToxLoss()
+		bladder.on_life()
+		TEST_ASSERT(patient.getToxLoss() == tox, "A catheter did not hold off the urine poisoning")
+
+
+/// Adrenals hold the adrenaline reserve, marrow makes blood and rejects another blood type
+/datum/unit_test/aquila_glands
+
+/datum/unit_test/aquila_glands/Run()
+	var/mob/living/carbon/human/patient = allocate(/mob/living/carbon/human)
+	var/obj/item/organ/adrenals/adrenals = patient.getorganslot(ORGAN_SLOT_ADRENALS)
+	var/obj/item/organ/marrow/marrow = patient.getorganslot(ORGAN_SLOT_MARROW)
+	TEST_ASSERT(istype(adrenals) && istype(marrow), "A human has no adrenals or marrow")
+
+	// Damaged glands hold less, none hold nothing, cybernetic hold more
+	TEST_ASSERT(patient.aq_adrenal_capacity() == 100, "Healthy adrenals do not hold the full reserve")
+	adrenals.applyOrganDamage(adrenals.maxHealth / 2)
+	patient.aq_handle_adrenal_glands()
+	TEST_ASSERT(patient.aq_adrenal_reserve < 100, "Damaged adrenals still hold the full reserve")
+	adrenals.Remove(patient)
+	patient.aq_handle_adrenal_glands()
+	TEST_ASSERT(patient.aq_adrenal_reserve == 0, "No adrenals still keep adrenaline")
+	qdel(adrenals)
+	var/obj/item/organ/adrenals/cybernetic/cyber_adrenals = new()
+	cyber_adrenals.Insert(patient)
+	for(var/i in 1 to 400)
+		patient.aq_handle_adrenal_glands()
+	TEST_ASSERT(patient.aq_adrenal_reserve > 100, "Cybernetic adrenals do not hold more")
+
+	// Blood regeneration follows the marrow
+	var/healthy = patient.get_heart_blood_regeneration_multiplier()
+	TEST_ASSERT(healthy > 0, "No blood regeneration with healthy marrow")
+	marrow.applyOrganDamage(marrow.maxHealth / 2)
+	TEST_ASSERT(patient.get_heart_blood_regeneration_multiplier() < healthy, "Damaged marrow makes blood as fast")
+	marrow.Remove(patient)
+	TEST_ASSERT(patient.get_heart_blood_regeneration_multiplier() < healthy / 5, "Blood comes back without marrow")
+
+	// Marrow from a donor of another blood type is rejected
+	marrow.setOrganDamage(0)
+	marrow.donor_blood_type = patient.dna.blood_type == "O-" ? "AB+" : "O-"
+	marrow.Insert(patient)
+	TEST_ASSERT(marrow.is_rejected(), "Marrow of another blood type is not rejected")
+	var/tox = patient.getToxLoss()
+	marrow.on_life()
+	TEST_ASSERT(patient.getToxLoss() > tox && marrow.damage > 0, "Rejected marrow does no harm")
+	marrow.donor_blood_type = patient.dna.blood_type
+	TEST_ASSERT(!marrow.is_rejected(), "Marrow of the same blood type is rejected")
+
+	// Radiation hurts the marrow
+	marrow.setOrganDamage(0)
+	ADD_TRAIT(patient, TRAIT_IRRADIATED, "test")
+	marrow.on_life()
+	TEST_ASSERT(marrow.damage > 0, "Radiation does not hurt the marrow")
+	REMOVE_TRAIT(patient, TRAIT_IRRADIATED, "test")
+
+/// The larynx gives the voice: none means mute, a transplanted one speaks with the donor's voice
+/datum/unit_test/aquila_larynx
+
+/datum/unit_test/aquila_larynx/Run()
+	var/mob/living/carbon/human/patient = allocate(/mob/living/carbon/human)
+	patient.real_name = "Jan Pacjent"
+	var/obj/item/organ/larynx/larynx = patient.getorganslot(ORGAN_SLOT_LARYNX)
+	TEST_ASSERT(istype(larynx) && !istype(larynx, /obj/item/organ/larynx/synthesizer), "A human has no larynx")
+	TEST_ASSERT(patient.can_speak_vocal("test"), "A healthy larynx cannot speak")
+	TEST_ASSERT(patient.GetVoice() == "Jan Pacjent", "A fresh larynx changed the voice")
+
+	// Hoarse: no shouting
+	larynx.applyOrganDamage(larynx.low_threshold + 1)
+	var/list/speech_args = list("Na pomoc!", "", list())
+	larynx.on_owner_say(patient, speech_args)
+	TEST_ASSERT(!findtext(speech_args[1], "!"), "A hoarse voice can still shout")
+	// Destroyed: mute
+	larynx.applyOrganDamage(larynx.maxHealth)
+	TEST_ASSERT(!patient.can_speak_vocal("test"), "A destroyed larynx can still speak")
+	larynx.setOrganDamage(0)
+	TEST_ASSERT(patient.can_speak_vocal("test"), "A repaired larynx cannot speak")
+
+	// Removed: mute, and it keeps the owner's voice
+	larynx.Remove(patient)
+	TEST_ASSERT(!patient.can_speak_vocal("test"), "Speaking without a larynx")
+	TEST_ASSERT(larynx.voice == "Jan Pacjent", "The removed larynx did not keep the voice")
+	var/mob/living/carbon/human/recipient = allocate(/mob/living/carbon/human)
+	recipient.real_name = "Anna Biorca"
+	var/obj/item/organ/larynx/own = recipient.getorganslot(ORGAN_SLOT_LARYNX)
+	own.Remove(recipient)
+	qdel(own)
+	larynx.Insert(recipient)
+	TEST_ASSERT(recipient.GetVoice() == "Jan Pacjent", "The transplanted larynx does not speak with the donor's voice")
+
+	// Synthetics have a speech synthesizer
+	var/mob/living/carbon/human/ipc = allocate(/mob/living/carbon/human)
+	ipc.set_species(/datum/species/ipc)
+	TEST_ASSERT(istype(ipc.getorganslot(ORGAN_SLOT_LARYNX), /obj/item/organ/larynx/synthesizer), "An IPC has no speech synthesizer")
+	TEST_ASSERT(!ipc.getorganslot(ORGAN_SLOT_KIDNEYS), "An IPC has kidneys")
+
+/// A cut nerve: no pain from the limb, dropped items, no reflex; a nerve suture fixes it
+/datum/unit_test/aquila_nerves
+
+/datum/unit_test/aquila_nerves/Run()
+	var/mob/living/carbon/human/patient = allocate(/mob/living/carbon/human)
+	var/obj/item/bodypart/arm = patient.get_bodypart(BODY_ZONE_R_ARM)
+	var/obj/item/bodypart/chest = patient.get_bodypart(BODY_ZONE_CHEST)
+	TEST_ASSERT(!chest.aq_can_cut_nerve(), "The chest has a limb nerve")
+
+	// Severe cuts roll for the nerve
+	for(var/i in 1 to 100)
+		if(arm.aq_nerve_cut)
+			break
+		var/datum/wound/slash/deep/wound = new()
+		wound.apply_wound(arm, silent = TRUE)
+		qdel(wound)
+	TEST_ASSERT(arm.aq_nerve_cut, "100 deep cuts never cut the nerve")
+
+	// No pain from that arm
+	arm.receive_damage(40)
+	TEST_ASSERT(patient.aq_limb_pain(arm) == 0, "An arm with a cut nerve still hurts")
+
+	// The hand lets go
+	var/obj/item/storage/box/held = allocate(/obj/item/storage/box)
+	patient.put_in_hand(held, arm.held_index)
+	for(var/i in 1 to 300)
+		if(held.loc != patient)
+			break
+		patient.aq_handle_nerves()
+	TEST_ASSERT(held.loc != patient, "A hand with a cut nerve never let go")
+
+	// The hammer and the scanner see it
+	var/list/reflex = patient.aq_reflex_result(arm)
+	TEST_ASSERT(findtext(reflex[1], "nerw"), "The reflex hammer does not find the cut nerve")
+	TEST_ASSERT(findtext(jointext(patient.get_wound_scan_lines(), ""), "Przerwany nerw"), "The scanner does not show the cut nerve")
+
+	// The suture fixes it
+	var/datum/surgery_operation/limb/nerve_repair/suture = new()
+	TEST_ASSERT(suture.state_check(arm), "A cut nerve cannot be stitched")
+	suture.on_success(arm, patient, null, list())
+	TEST_ASSERT(!arm.aq_nerve_cut, "The suture did not fix the nerve")
+	TEST_ASSERT(patient.aq_limb_pain(arm) > 0, "The arm does not hurt after the suture")
+	qdel(suture)
 #undef TEST_ASSERT
