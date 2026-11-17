@@ -5,10 +5,9 @@
 /datum/unit_test/perf_log_columns
 
 /datum/unit_test/perf_log_columns/Run()
-	// fire() divides by the ticks since its last run
-	for(var/i in 1 to 2)
-		sleep(world.tick_lag)
-		SStime_track.fire()
+	// Two runs in one tick (the MC can fire the subsystem in the same tick as a manual call) must not divide by zero ticks
+	SStime_track.fire()
+	SStime_track.fire()
 	var/list/lines = splittext(trim(file2text(GLOB.perf_log)), "\n")
 	// The log can hold earlier runs with the same file name, check this round's header
 	var/header_line = 0
