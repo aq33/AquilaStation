@@ -9585,6 +9585,10 @@
 	},
 /turf/open/floor/monotile/dark/airless,
 /area/nsv/hanger/deck2)
+"juA" = (
+/obj/machinery/drop_pod_bay,
+/turf/open/floor/monotile/dark/airless,
+/area/nsv/hanger/deck2)
 "jvc" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
@@ -69901,7 +69905,7 @@ uNn
 kKv
 uNn
 ulQ
-uyj
+juA
 uyj
 pgd
 pHm
@@ -70415,7 +70419,7 @@ jDi
 faI
 fdb
 gTv
-uyj
+juA
 jum
 rbw
 mJC

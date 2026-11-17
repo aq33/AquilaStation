@@ -39,7 +39,7 @@
 	items = list(
 		/obj/structure/compost_bin = 1,
 		/obj/structure/worm_farm = 1,
-		/obj/item/food/worm = 3,
+		/obj/item/food/fishing_worm = 3,
 		/obj/item/food/grown/tomato = 6,
 		/obj/item/reagent_containers/glass/beaker/large = 1,
 		/obj/item/crowbar = 1,

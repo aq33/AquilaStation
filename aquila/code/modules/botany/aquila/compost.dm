@@ -149,7 +149,8 @@
 			break
 		if(reagents.total_volume >= reagents.maximum_volume)
 			break
-		convert_to_compost(item)
+		if(!convert_to_compost(item))
+			break
 		converted++
 	update_appearance()
 	return converted
@@ -160,9 +161,14 @@
 		amount = COMPOST_BIN_MIN_PER_ITEM
 		if(item.reagents)
 			amount = max(amount, CEILING(item.reagents.get_reagent_amount(/datum/reagent/consumable/nutriment, TRUE), 1))
+	//Przedmiot zostaje w skrzyni, dopóki cały kompost z niego nie zmieści się w zbiorniku (bardzo pożywny daje najwyżej pełny zbiornik)
+	amount = min(amount, reagents.maximum_volume)
+	if(amount > reagents.maximum_volume - reagents.total_volume)
+		return FALSE
 	qdel(item)
 	if(amount)
 		reagents.add_reagent(reagent_id, amount)
+	return TRUE
 
 /obj/structure/compost_bin/Exited(atom/movable/gone, direction)
 	. = ..()

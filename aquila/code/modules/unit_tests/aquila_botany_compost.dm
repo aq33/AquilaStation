@@ -66,7 +66,7 @@
 	TEST_ASSERT_EQUAL(farm.reagents.total_volume, 0, "Farma z jedną dżdżownicą dała nawóz")
 
 // Druga dżdżownica wpuszczona ręką
-	var/obj/item/food/worm/worm = allocate(/obj/item/food/worm, get_turf(gardener))
+	var/obj/item/food/fishing_worm/worm = allocate(/obj/item/food/fishing_worm, get_turf(gardener))
 	gardener.put_in_active_hand(worm)
 	farm.attackby(worm, gardener)
 	TEST_ASSERT_EQUAL(farm.current_worm, 2, "Dżdżownica wpuszczona ręką nie trafiła do beczki")

@@ -1,0 +1,118 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"i" = (
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"t" = (
+/turf/template_noop,
+/area/template_noop)
+"C" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"E" = (
+/turf/open/floor/plating/ice/planet_ice,
+/area/template_noop)
+"O" = (
+/obj/item/pickaxe,
+/turf/open/floor/plating/ice/planet_ice,
+/area/template_noop)
+"V" = (
+/turf/closed/mineral/planet_ice_wall,
+/area/template_noop)
+
+(1,1,1) = {"
+t
+E
+E
+t
+t
+t
+i
+C
+t
+t
+"}
+(2,1,1) = {"
+E
+E
+E
+E
+E
+i
+C
+i
+i
+t
+"}
+(3,1,1) = {"
+E
+E
+V
+V
+V
+E
+O
+i
+i
+C
+"}
+(4,1,1) = {"
+t
+E
+V
+V
+V
+V
+E
+i
+E
+i
+"}
+(5,1,1) = {"
+t
+E
+V
+V
+V
+V
+V
+E
+E
+i
+"}
+(6,1,1) = {"
+E
+E
+V
+V
+V
+V
+V
+E
+E
+t
+"}
+(7,1,1) = {"
+E
+E
+V
+V
+V
+V
+V
+E
+E
+t
+"}
+(8,1,1) = {"
+t
+E
+E
+E
+E
+E
+E
+E
+E
+t
+"}

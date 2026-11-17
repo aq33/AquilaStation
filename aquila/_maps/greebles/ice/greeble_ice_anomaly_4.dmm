@@ -1,0 +1,117 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"g" = (
+/turf/closed/mineral/planet_ice_wall,
+/area/template_noop)
+"i" = (
+/turf/template_noop,
+/area/template_noop)
+"t" = (
+/turf/open/floor/plating/asteroid/iceberg,
+/area/template_noop)
+"H" = (
+/obj/effect/anomaly/bluespace/planetary,
+/turf/open/floor/plating/asteroid/iceberg,
+/area/template_noop)
+"R" = (
+/turf/closed/mineral/random/planet_ice,
+/area/template_noop)
+
+(1,1,1) = {"
+i
+i
+R
+R
+t
+R
+R
+i
+i
+"}
+(2,1,1) = {"
+i
+R
+g
+g
+t
+g
+g
+R
+i
+"}
+(3,1,1) = {"
+R
+g
+g
+t
+t
+t
+g
+g
+R
+"}
+(4,1,1) = {"
+R
+g
+t
+t
+t
+t
+t
+g
+R
+"}
+(5,1,1) = {"
+t
+t
+t
+t
+H
+t
+t
+t
+t
+"}
+(6,1,1) = {"
+R
+g
+t
+t
+t
+t
+t
+g
+R
+"}
+(7,1,1) = {"
+R
+g
+g
+t
+t
+t
+g
+g
+R
+"}
+(8,1,1) = {"
+i
+R
+g
+g
+t
+g
+g
+R
+i
+"}
+(9,1,1) = {"
+i
+i
+R
+R
+t
+R
+R
+i
+i
+"}

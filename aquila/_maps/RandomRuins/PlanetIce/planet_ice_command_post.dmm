@@ -1,0 +1,7099 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"ak" = (
+/obj/structure/tank_dispenser/oxygen,
+/obj/machinery/light,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_ice/command_post/eva)
+"an" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/components/binary/pump/on/layer2{
+	dir = 2;
+	name = "Powietrze do dystrybucji"
+	},
+/obj/machinery/atmospherics/pipe/manifold/cyan/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_ice/command_post/engi)
+"au" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 10
+	},
+/obj/structure/cable,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_ice/command_post/officer)
+"ax" = (
+/mob/living/basic/trooper/syndicate/melee/sword/space,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_ice/command_post/armory)
+"aK" = (
+/obj/structure/table/reinforced,
+/obj/item/plate{
+	pixel_x = 10
+	},
+/obj/item/plate{
+	pixel_x = 10;
+	pixel_y = -3
+	},
+/obj/item/reagent_containers/glass/bowl{
+	pixel_x = -5;
+	pixel_y = -3
+	},
+/obj/item/reagent_containers/glass/bowl{
+	pixel_x = -4;
+	pixel_y = -5
+	},
+/obj/item/reagent_containers/glass/bowl{
+	pixel_x = -5;
+	pixel_y = -7
+	},
+/obj/item/kitchen/knife/butcher{
+	pixel_x = -3;
+	pixel_y = 5
+	},
+/obj/item/kitchen/knife{
+	pixel_y = 2
+	},
+/obj/item/reagent_containers/food/condiment/saltshaker{
+	pixel_x = -3;
+	pixel_y = 4
+	},
+/obj/item/reagent_containers/food/condiment/saltshaker{
+	pixel_x = -8;
+	pixel_y = 4
+	},
+/obj/item/reagent_containers/food/condiment/saltshaker{
+	pixel_x = -13;
+	pixel_y = 4
+	},
+/obj/item/reagent_containers/food/condiment/saltshaker{
+	pixel_x = -3;
+	pixel_y = 10
+	},
+/obj/item/reagent_containers/food/condiment/saltshaker{
+	pixel_x = -8;
+	pixel_y = 10
+	},
+/obj/item/reagent_containers/food/condiment/saltshaker{
+	pixel_x = -13;
+	pixel_y = 10
+	},
+/obj/item/reagent_containers/food/condiment/peppermill{
+	pixel_x = 3;
+	pixel_y = 10
+	},
+/obj/item/plate{
+	pixel_x = 10;
+	pixel_y = -6
+	},
+/obj/item/plate{
+	pixel_x = 10;
+	pixel_y = -9
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_ice/command_post/kitchen)
+"aM" = (
+/obj/structure/chair/stool,
+/obj/item/reagent_containers/glass/bucket{
+	pixel_x = 7;
+	pixel_y = 15
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_ice/command_post/crew_quarters)
+"aO" = (
+/obj/structure/cable,
+/obj/machinery/portable_atmospherics/canister,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_ice/command_post/engi)
+"aR" = (
+/obj/item/folder/red{
+	pixel_y = 7
+	},
+/obj/structure/safe/floor,
+/obj/item/stack/spacecash/c1000,
+/obj/item/stack/spacecash/c1000,
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_ice/command_post/officer)
+"aT" = (
+/obj/machinery/telecomms/receiver,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_ice/command_post/mission_control)
+"be" = (
+/obj/structure/closet/secure_closet/medical1,
+/obj/item/bonesetter{
+	pixel_x = -3;
+	pixel_y = 7
+	},
+/obj/item/stack/medical{
+	pixel_x = -4;
+	pixel_y = 4
+	},
+/obj/item/stack/medical/suture{
+	pixel_x = 7;
+	pixel_y = 20
+	},
+/obj/item/stack/medical/mesh{
+	pixel_x = 6;
+	pixel_y = 8
+	},
+/obj/item/reagent_containers/glass/bottle{
+	pixel_x = 10;
+	pixel_y = 16
+	},
+/obj/item/reagent_containers/syringe{
+	pixel_x = 8;
+	pixel_y = 7
+	},
+/obj/item/reagent_containers/hypospray/medipen/morphine{
+	pixel_x = 7;
+	pixel_y = 7
+	},
+/obj/item/reagent_containers/hypospray/medipen/morphine{
+	pixel_x = 11;
+	pixel_y = 7
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 4
+	},
+/obj/item/clothing/neck/stethoscope{
+	pixel_x = 6;
+	pixel_y = -2
+	},
+/obj/item/storage/firstaid/regular{
+	pixel_x = -6;
+	pixel_y = 12;
+	layer = 2.9
+	},
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_ice/command_post/dorms)
+"bg" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/lattice/catwalk/over,
+/turf/open/floor/plating{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_ice/command_post)
+"bj" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/mob/living/basic/trooper/syndicate/ranged/smg/space,
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_ice/command_post/armory)
+"bn" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
+/obj/structure/cable,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_ice/command_post/dorms)
+"bo" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/cable,
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_ice/command_post/engi)
+"br" = (
+/obj/structure/window/plastitanium,
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_ice/command_post/kitchen)
+"bu" = (
+/obj/machinery/door/airlock/grunge,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/cable,
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_ice/command_post/crew_quarters)
+"bx" = (
+/obj/machinery/door/poddoor{
+	dir = 8;
+	id = "cavegarage"
+	},
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_ice/command_post/engi)
+"bz" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_ice/command_post/crew_quarters)
+"bA" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/closet/crate/radiation,
+/obj/item/stack/sheet/mineral/plasma/twenty,
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_ice/command_post/storage)
+"bF" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/power/apc/auto_name/north,
+/obj/structure/cable,
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_ice/command_post/storage)
+"bI" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_ice/command_post/dorms)
+"bR" = (
+/obj/machinery/light/small,
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_ice/command_post/kitchen)
+"bS" = (
+/obj/effect/decal/cleanable/dirt,
+/mob/living/basic/trooper/syndicate/ranged/shotgun,
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_ice/command_post/kitchen/second)
+"bV" = (
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_ice/command_post/mission_control)
+"bZ" = (
+/obj/structure/table/wood,
+/obj/item/clipboard,
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_ice/command_post/officer)
+"ca" = (
+/obj/machinery/drill,
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_ice/command_post/storage)
+"cf" = (
+/obj/structure/fireplace{
+	dir = 8;
+	pixel_x = -18;
+	pixel_y = -17
+	},
+/obj/item/reagent_containers/glass/bowl{
+	pixel_x = -3;
+	pixel_y = -6
+	},
+/obj/item/food/grown/onion{
+	pixel_x = -11;
+	pixel_y = 10
+	},
+/obj/item/food/grown/onion{
+	pixel_x = -15;
+	pixel_y = 6
+	},
+/obj/item/food/grown/potato{
+	pixel_y = 9
+	},
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_ice/command_post/crew_quarters)
+"cs" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
+/obj/structure/cable,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_ice/command_post/engi)
+"cx" = (
+/obj/machinery/atmospherics/components/unary/portables_connector/layer4{
+	name = "napełnianie kanistrów tlenu"
+	},
+/obj/machinery/airalarm/directional/west,
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_ice/command_post/engi)
+"cy" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/unpowered/planet_ice/command_post)
+"cz" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_ice/command_post/engi)
+"cC" = (
+/obj/effect/decal/cleanable/oil/streak,
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_ice/command_post/engi)
+"cD" = (
+/obj/item/cigbutt{
+	pixel_x = -12;
+	pixel_y = 13
+	},
+/obj/item/cigbutt{
+	pixel_x = -14;
+	pixel_y = 16
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_ice/command_post/dorms/second)
+"cG" = (
+/obj/machinery/oven,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_ice/command_post/kitchen)
+"cN" = (
+/obj/effect/decal/cleanable/dirt,
+/mob/living/basic/trooper/syndicate/ranged/shotgun/space,
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_ice/command_post/engi)
+"cT" = (
+/obj/machinery/holopad,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_ice/command_post/officer)
+"cV" = (
+/obj/structure/table/reinforced,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_ice/command_post)
+"dg" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 9
+	},
+/obj/structure/lattice/catwalk/over,
+/turf/open/floor/plating{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_ice/command_post)
+"dh" = (
+/turf/closed/mineral/planet_ice_wall,
+/area/ruin/unpowered/planet_ice/command_post)
+"dl" = (
+/obj/machinery/door/poddoor/shutters{
+	dir = 8;
+	id = "leftarmoury"
+	},
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_ice/command_post/armory)
+"dm" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 10
+	},
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_ice/command_post/armory)
+"dw" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_ice/command_post)
+"dD" = (
+/obj/structure/closet/secure_closet/freezer/kitchen,
+/obj/item/reagent_containers/food/condiment/flour{
+	pixel_x = -10;
+	pixel_y = 8
+	},
+/obj/item/reagent_containers/condiment{
+	pixel_y = 9
+	},
+/obj/item/reagent_containers/food/condiment/flour{
+	pixel_x = -10;
+	pixel_y = 4
+	},
+/obj/item/food/grown/onion{
+	pixel_x = -3;
+	pixel_y = -5
+	},
+/obj/item/food/grown/onion{
+	pixel_x = -9;
+	pixel_y = -6
+	},
+/obj/item/food/grown/onion{
+	pixel_x = -14;
+	pixel_y = -6
+	},
+/obj/item/food/grown/potato{
+	pixel_x = 4;
+	pixel_y = 3
+	},
+/obj/item/food/grown/potato{
+	pixel_x = 4
+	},
+/obj/item/food/grown/potato{
+	pixel_x = 6;
+	pixel_y = -2
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_ice/command_post/kitchen)
+"dP" = (
+/obj/effect/turf_decal/siding/thinplating/dark/corner{
+	dir = 1
+	},
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_ice/command_post/kitchen)
+"dX" = (
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_ice/command_post/engi)
+"ed" = (
+/obj/structure/chair/stool{
+	dir = 1
+	},
+/obj/structure/extinguisher_cabinet/south,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_ice/command_post/armory)
+"ee" = (
+/obj/structure/table/wood/poker,
+/obj/item/toy/cards/deck/syndicate{
+	pixel_y = 6
+	},
+/obj/item/stack/spacecash/c50{
+	pixel_x = 9;
+	pixel_y = 13
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_ice/command_post/crew_quarters)
+"eg" = (
+/obj/structure/table/reinforced,
+/obj/item/reagent_containers/glass/bowl{
+	pixel_x = -5;
+	pixel_y = 4
+	},
+/obj/item/reagent_containers/glass/bowl{
+	pixel_x = -5;
+	pixel_y = 10
+	},
+/obj/item/reagent_containers/glass/bowl{
+	pixel_x = 7;
+	pixel_y = 7
+	},
+/obj/item/reagent_containers/glass/bowl{
+	pixel_x = 7;
+	pixel_y = 12
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_ice/command_post/kitchen/second)
+"es" = (
+/obj/structure/window/plastitanium,
+/obj/structure/cable/yellow,
+/obj/structure/grille,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_ice/command_post/engi)
+"ez" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/turf/open/floor/plasteel/stairs/right,
+/area/ruin/unpowered/planet_ice/command_post)
+"eC" = (
+/obj/structure/dresser,
+/obj/item/clothing/gloves/boxing{
+	pixel_x = -6;
+	pixel_y = 12
+	},
+/obj/item/storage/fancy/cigarettes/cigpack_cannabis{
+	pixel_x = 4;
+	pixel_y = 5
+	},
+/obj/item/storage/fancy/cigarettes/cigpack_cannabis{
+	pixel_x = 11;
+	pixel_y = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_ice/command_post/dorms/second)
+"eF" = (
+/obj/structure/chair/stool,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/extinguisher_cabinet/north,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_ice/command_post/eva)
+"eG" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_ice/command_post/mission_control)
+"fl" = (
+/obj/structure/table/wood,
+/obj/item/radio/intercom/directional/west,
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_ice/command_post/officer)
+"fm" = (
+/obj/structure/chair/stool{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 6
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_ice/command_post/armory)
+"fp" = (
+/obj/structure/table/reinforced,
+/obj/item/flashlight/lamp{
+	pixel_x = -8;
+	pixel_y = 12
+	},
+/obj/item/storage/box/stockparts{
+	pixel_x = -7;
+	pixel_y = -2
+	},
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_ice/command_post/engi)
+"fq" = (
+/obj/structure/chair{
+	dir = 4
+	},
+/obj/item/plate_shard{
+	pixel_x = -5;
+	pixel_y = -12
+	},
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_ice/command_post/kitchen/second)
+"fs" = (
+/obj/structure/dresser,
+/obj/structure/sign/poster/official/random{
+	pixel_x = 32
+	},
+/obj/item/paper/fluff/ruins{
+	name = "gniewna notatka";
+	pixel_x = -6;
+	pixel_y = 7;
+	default_raw_text = "ty głupi debilu PRZESTAŃ PRZESTAWIAĆ KRZESŁO nie obchodzi mnie że masz pod nim sejf, tu jest ciasno jak cholera"
+	},
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_ice/command_post/dorms)
+"fx" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_ice/command_post)
+"fF" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/siphon/on/layer2{
+	dir = 8
+	},
+/turf/open/floor/engine/air,
+/area/ruin/unpowered/planet_ice/command_post/engi)
+"fK" = (
+/obj/machinery/computer/telecomms/monitor{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_ice/command_post/mission_control)
+"fL" = (
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/lavaland/surface/outdoors)
+"fM" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/cable,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_ice/command_post/crew_quarters)
+"ga" = (
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_ice/command_post/kitchen/second)
+"gg" = (
+/obj/machinery/telecomms/processor,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_ice/command_post/mission_control)
+"gu" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_ice/command_post/engi)
+"gw" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/airalarm/directional/south,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_ice/command_post/crew_quarters)
+"gx" = (
+/obj/item/poster/random_contraband,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/power/apc/auto_name/north,
+/obj/structure/cable,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_ice/command_post/dorms/third)
+"gD" = (
+/obj/structure/table,
+/obj/structure/bedsheetbin,
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_ice/command_post/dorms)
+"gH" = (
+/mob/living/basic/trooper/syndicate/ranged/smg,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/cable,
+/obj/structure/lattice/catwalk/over,
+/turf/open/floor/plating{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_ice/command_post)
+"gU" = (
+/obj/machinery/power/apc/auto_name/east,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_ice/command_post/kitchen)
+"hc" = (
+/obj/structure/guncase,
+/obj/item/gun/ballistic/shotgun/doublebarrel,
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_ice/command_post/armory)
+"hi" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_ice/command_post/dorms)
+"hU" = (
+/obj/structure/railing{
+	dir = 10
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_ice/command_post)
+"hZ" = (
+/obj/machinery/button/door{
+	pixel_y = 25;
+	name = "przycisk garażu";
+	id = "cavegarage"
+	},
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/ruin/unpowered/planet_ice/command_post)
+"ic" = (
+/obj/machinery/door/poddoor/shutters{
+	dir = 8;
+	id = "rightarmoury"
+	},
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_ice/command_post/armory)
+"id" = (
+/obj/structure/closet,
+/obj/item/clothing/under/syndicate{
+	pixel_x = -8;
+	pixel_y = -11
+	},
+/obj/item/clothing/under/syndicate{
+	pixel_x = -3;
+	pixel_y = -11
+	},
+/obj/item/clothing/under/syndicate{
+	pixel_x = 6;
+	pixel_y = -11
+	},
+/obj/item/clothing/under/syndicate{
+	pixel_x = 12;
+	pixel_y = -11
+	},
+/obj/item/clothing/shoes/combat{
+	pixel_x = 2;
+	pixel_y = 3
+	},
+/obj/item/clothing/shoes/combat{
+	pixel_x = 10;
+	pixel_y = 3
+	},
+/obj/item/clothing/neck/scarf{
+	pixel_x = -3
+	},
+/obj/item/clothing/neck/scarf{
+	pixel_x = -8
+	},
+/obj/item/clothing/head/soft/black{
+	pixel_x = -1;
+	pixel_y = 8
+	},
+/obj/item/clothing/head/soft/black{
+	pixel_x = -8;
+	pixel_y = 8
+	},
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_ice/command_post/dorms/second)
+"ip" = (
+/obj/structure/filingcabinet{
+	dir = 8;
+	pixel_x = 10
+	},
+/obj/item/clipboard,
+/obj/item/clipboard,
+/obj/item/folder/syndicate,
+/obj/item/folder/syndicate,
+/obj/item/folder/red,
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_ice/command_post/mission_control)
+"iv" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/power/apc/auto_name/south,
+/obj/machinery/airalarm/directional/west,
+/obj/structure/cable,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_ice/command_post/kitchen/second)
+"iw" = (
+/obj/structure/table,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/plate{
+	pixel_x = 5;
+	pixel_y = 5
+	},
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_ice/command_post/kitchen/second)
+"iL" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_ice/command_post/eva)
+"iN" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_ice/command_post/engi)
+"iT" = (
+/obj/structure/window/plastitanium,
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_ice/command_post/crew_quarters)
+"iU" = (
+/turf/closed/wall/r_wall,
+/area/ruin/unpowered/planet_ice/command_post/eva)
+"ja" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/sign/poster/contraband/random{
+	pixel_x = -31
+	},
+/obj/structure/chair/fancy/comfy{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_ice/command_post/dorms)
+"ju" = (
+/obj/machinery/door/airlock/freezer{
+	dir = 4
+	},
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_ice/command_post/kitchen)
+"jz" = (
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_ice/command_post/mission_control)
+"jE" = (
+/obj/structure/chair/stool{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 5
+	},
+/obj/structure/cable,
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_ice/command_post/crew_quarters)
+"jF" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 1
+	},
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_ice/command_post/kitchen/second)
+"jG" = (
+/obj/structure/railing/corner{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_ice/command_post/eva)
+"jI" = (
+/obj/structure/chair{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/item/plate_shard{
+	pixel_x = 17;
+	pixel_y = 9
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_ice/command_post/kitchen/second)
+"jW" = (
+/obj/structure/chair{
+	dir = 8
+	},
+/obj/structure/extinguisher_cabinet/east,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_ice/command_post/kitchen/second)
+"kf" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 9
+	},
+/obj/structure/cable,
+/obj/structure/lattice/catwalk/over,
+/turf/open/floor/plating{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_ice/command_post)
+"kl" = (
+/obj/structure/sign/poster/contraband/hacking_guide{
+	pixel_y = 32
+	},
+/obj/structure/safe/floor,
+/obj/structure/chair/fancy/comfy,
+/obj/item/card/emag,
+/obj/item/organ/cyberimp/arm/toolset,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_ice/command_post/dorms)
+"kn" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 10
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_ice/command_post/engi)
+"ko" = (
+/turf/closed/wall/r_wall,
+/area/ruin/unpowered/planet_ice/command_post/mission_control)
+"kp" = (
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_ice/command_post/dorms/second)
+"kq" = (
+/obj/machinery/power/rtg,
+/obj/structure/cable/yellow,
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/ruin/unpowered/planet_ice/command_post)
+"kF" = (
+/obj/structure/toilet{
+	pixel_y = 13
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 10
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_ice/command_post/dorms)
+"kJ" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_ice/command_post/mission_control)
+"kL" = (
+/mob/living/basic/trooper/syndicate/ranged,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_ice/command_post/mission_control)
+"lc" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/extinguisher_cabinet/south,
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_ice/command_post/mission_control)
+"lf" = (
+/obj/structure/railing/corner,
+/obj/item/clothing/suit/space/hardsuit/syndi,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_ice/command_post/eva)
+"lj" = (
+/obj/machinery/portable_atmospherics/pump,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_ice/command_post/eva)
+"ls" = (
+/obj/structure/closet,
+/obj/item/clothing/head/helmet{
+	pixel_x = -7;
+	pixel_y = -4
+	},
+/obj/item/clothing/head/helmet{
+	pixel_x = -7;
+	pixel_y = -8
+	},
+/obj/item/clothing/head/helmet/alt{
+	pixel_x = 8;
+	pixel_y = -9
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_ice/command_post/eva)
+"lA" = (
+/obj/structure/vein/ice/classfour,
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/ruin/unpowered/planet_ice/command_post)
+"lH" = (
+/obj/structure/chair{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_ice/command_post/kitchen/second)
+"lL" = (
+/mob/living/basic/viscerator,
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/unpowered/planet_ice/command_post)
+"lT" = (
+/obj/structure/filingcabinet{
+	dir = 4;
+	pixel_x = -10
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_ice/command_post/armory)
+"lU" = (
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/unpowered/planet_ice/command_post/kitchen)
+"lW" = (
+/obj/machinery/modular_fabricator/autolathe,
+/obj/item/stack/sheet/iron/fifty,
+/obj/item/stack/sheet/glass/fifty{
+	pixel_x = -8
+	},
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_ice/command_post/engi)
+"lX" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 4
+	},
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_ice/command_post/mission_control)
+"mh" = (
+/obj/machinery/door/window/eastleft,
+/obj/item/soap/syndie{
+	pixel_x = -9;
+	pixel_y = -9
+	},
+/obj/item/pushbroom{
+	pixel_x = -3;
+	pixel_y = 5
+	},
+/obj/item/mop{
+	pixel_x = 1;
+	pixel_y = 4
+	},
+/obj/item/reagent_containers/glass/bucket{
+	pixel_x = 6;
+	pixel_y = -1
+	},
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_ice/command_post/dorms)
+"ml" = (
+/obj/structure/closet,
+/obj/item/clothing/suit/armor/vest{
+	pixel_x = 2;
+	pixel_y = -3
+	},
+/obj/item/clothing/suit/armor/vest{
+	pixel_x = 2;
+	pixel_y = -9
+	},
+/obj/item/clothing/suit/armor/bulletproof{
+	pixel_x = 11;
+	pixel_y = -10
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_ice/command_post/eva)
+"mt" = (
+/obj/structure/sign/poster/contraband/syndiemoth{
+	pixel_x = 31
+	},
+/obj/item/clothing/under/syndicate{
+	pixel_x = -8;
+	pixel_y = -13
+	},
+/obj/item/clothing/under/syndicate{
+	pixel_x = 1;
+	pixel_y = -13
+	},
+/obj/item/clothing/shoes/combat{
+	pixel_x = 8;
+	pixel_y = 3
+	},
+/obj/item/clothing/suit/hooded{
+	pixel_x = 1;
+	pixel_y = -1
+	},
+/obj/item/toy/plush{
+	pixel_x = -8;
+	pixel_y = -1
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_ice/command_post/dorms)
+"mv" = (
+/obj/machinery/airalarm/directional/north,
+/obj/machinery/suit_storage_unit,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_ice/command_post/officer)
+"my" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_ice/command_post/armory)
+"mD" = (
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer4{
+	dir = 10
+	},
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_ice/command_post/engi)
+"mI" = (
+/obj/structure/chair{
+	dir = 8
+	},
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_ice/command_post/kitchen/second)
+"mV" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/machinery/suit_storage_unit,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_ice/command_post/eva)
+"nk" = (
+/obj/structure/closet/secure_closet{
+	req_access = null;
+	icon_state = "armory"
+	},
+/obj/item/ammo_box/c9mm{
+	pixel_x = -6;
+	pixel_y = 7
+	},
+/obj/item/ammo_box/c9mm{
+	pixel_x = -6;
+	pixel_y = 1
+	},
+/obj/item/storage/toolbox/ammo/shotgun{
+	pixel_x = -6;
+	pixel_y = -5
+	},
+/obj/item/ammo_box/magazine/m10mm,
+/obj/item/ammo_box/magazine/m10mm{
+	pixel_x = 8
+	},
+/obj/item/ammo_box/magazine/m10mm{
+	pixel_x = 13
+	},
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_ice/command_post/armory)
+"no" = (
+/obj/structure/chair/fancy/bench,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_ice/command_post/kitchen)
+"nI" = (
+/obj/structure/guncase,
+/obj/item/gun/ballistic/automatic/pistol/no_mag,
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_ice/command_post/armory)
+"nL" = (
+/obj/structure/sign/poster/contraband/ambrosia_vulgaris{
+	pixel_y = 32
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/chair/fancy/bench,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_ice/command_post/dorms/second)
+"nV" = (
+/obj/structure/dresser,
+/obj/item/disk/nuclear/fake{
+	pixel_x = -5;
+	pixel_y = 11
+	},
+/turf/open/floor/carpet/green,
+/area/ruin/unpowered/planet_ice/command_post/officer)
+"of" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_ice/command_post/crew_quarters)
+"og" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_ice/command_post)
+"oh" = (
+/obj/structure/reagent_dispensers/fueltank,
+/obj/effect/turf_decal/box/corners{
+	dir = 1
+	},
+/obj/structure/sign/warning{
+	pixel_x = 28;
+	pixel_y = 1
+	},
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_ice/command_post/engi)
+"oq" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_ice/command_post/dorms)
+"oD" = (
+/turf/closed/mineral/random/planet_ice,
+/area/ruin/unpowered/planet_ice/command_post)
+"oW" = (
+/obj/effect/decal/cleanable/oil,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/cable,
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_ice/command_post/engi)
+"oX" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/cable,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_ice/command_post/dorms)
+"oY" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 5
+	},
+/obj/structure/cable,
+/obj/structure/lattice/catwalk/over,
+/turf/open/floor/plating{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_ice/command_post)
+"oZ" = (
+/turf/open/floor/plating/asteroid/icerock,
+/area/lavaland/surface/outdoors)
+"pb" = (
+/obj/structure/table/reinforced,
+/obj/item/reagent_containers/glass/rag{
+	pixel_x = 5;
+	pixel_y = 14
+	},
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_ice/command_post/engi)
+"px" = (
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_ice/command_post/engi)
+"pG" = (
+/obj/structure/table,
+/obj/machinery/recharger{
+	pixel_x = -8;
+	pixel_y = 6
+	},
+/obj/item/reagent_containers/glass/rag{
+	pixel_x = -10;
+	pixel_y = 1
+	},
+/obj/item/flashlight/pen{
+	pixel_x = -4;
+	pixel_y = -8
+	},
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_ice/command_post/armory)
+"pO" = (
+/obj/structure/railing/corner{
+	dir = 8
+	},
+/mob/living/basic/trooper/syndicate/ranged/smg,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_ice/command_post/eva)
+"pS" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 9
+	},
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_ice/command_post/armory)
+"pX" = (
+/obj/structure/table,
+/obj/item/clipboard{
+	pixel_x = 4;
+	pixel_y = 9
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_ice/command_post/mission_control)
+"qd" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_ice/command_post/mission_control)
+"qf" = (
+/obj/structure/closet,
+/obj/item/clothing/under/syndicate{
+	pixel_x = -3;
+	pixel_y = -10
+	},
+/obj/item/clothing/under/syndicate{
+	pixel_x = -9;
+	pixel_y = -10
+	},
+/obj/item/clothing/shoes/combat{
+	pixel_x = 7;
+	pixel_y = -3
+	},
+/obj/item/clothing/shoes/combat{
+	pixel_x = 7;
+	pixel_y = -9
+	},
+/obj/item/clothing/head/soft/black{
+	pixel_y = 6
+	},
+/obj/item/clothing/head/soft/black{
+	pixel_x = -7;
+	pixel_y = 6
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_ice/command_post/dorms/third)
+"qk" = (
+/obj/machinery/door/airlock/grunge{
+	dir = 4;
+	id_tag = "officelock"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_ice/command_post/mission_control)
+"ql" = (
+/mob/living/basic/viscerator,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_ice/command_post)
+"qq" = (
+/obj/machinery/telecomms/relay,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_ice/command_post/mission_control)
+"qv" = (
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/unpowered/planet_ice/command_post)
+"qA" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/drinks/coffee{
+	pixel_x = 7;
+	pixel_y = 6
+	},
+/obj/item/trash/syndi_cakes{
+	pixel_x = -5;
+	pixel_y = 4
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_ice/command_post/armory)
+"qC" = (
+/obj/effect/decal/cleanable/oil,
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_ice/command_post/engi)
+"qM" = (
+/obj/effect/mob_spawn/human/skeleton,
+/obj/item/pickaxe,
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/unpowered/planet_ice/command_post)
+"rf" = (
+/turf/closed/wall/r_wall,
+/area/ruin/unpowered/planet_ice/command_post/crew_quarters)
+"rH" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_ice/command_post/engi)
+"rP" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_ice/command_post/kitchen/second)
+"rV" = (
+/obj/item/flashlight/flare,
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/unpowered/planet_ice/command_post)
+"rX" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_ice/command_post/dorms)
+"rY" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 6
+	},
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_ice/command_post/dorms/second)
+"sd" = (
+/obj/structure/bed,
+/obj/structure/sign/poster/contraband/punch_shit{
+	pixel_y = 31
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_ice/command_post/dorms/second)
+"se" = (
+/obj/structure/window/reinforced/tinted{
+	dir = 4
+	},
+/obj/machinery/shower{
+	dir = 1
+	},
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_ice/command_post/dorms)
+"sk" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/cable,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_ice/command_post/kitchen/second)
+"sm" = (
+/obj/structure/girder/reinforced,
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/unpowered/planet_ice/command_post)
+"sp" = (
+/turf/open/floor/plating/asteroid/iceberg,
+/area/ruin/unpowered/planet_ice/command_post/kitchen)
+"sq" = (
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_ice/command_post)
+"sC" = (
+/obj/structure/bed,
+/obj/item/toy/plush/moth/redish{
+	pixel_x = 9;
+	pixel_y = -2;
+	name = "Yitosun";
+	desc = "Uroczy pluszak ćmy. Czerwony robaczek! Na plakietce starannym pismem wypisano „Yitosun”."
+	},
+/obj/item/toy/plush/moth/poison{
+	pixel_x = 5;
+	pixel_y = -8;
+	name = "Anna";
+	desc = "Uroczy pluszak ćmy. Trujący robaczek! Na plakietce starannym pismem wypisano „Anna”."
+	},
+/obj/item/toy/plush/moth/monarch{
+	pixel_x = -1;
+	pixel_y = -6;
+	name = "Debbie";
+	desc = "Uroczy pluszak ćmy. Ważny robaczek! Na plakietce starannym pismem wypisano „Debbie”."
+	},
+/obj/item/toy/plush/moth/snow{
+	pixel_x = -8;
+	pixel_y = -6;
+	name = "Myo";
+	desc = "Uroczy pluszak ćmy. Fajny robaczek! Na plakietce starannym pismem wypisano „Myo”. Czułki sterczą jak uszy królika."
+	},
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_ice/command_post/dorms)
+"sJ" = (
+/obj/structure/window/plastitanium,
+/obj/structure/curtain,
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_ice/command_post/kitchen/second)
+"sL" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_ice/command_post/engi)
+"sV" = (
+/turf/closed/wall/r_wall,
+/area/ruin/unpowered/planet_ice/command_post/kitchen)
+"tb" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer4{
+	dir = 5
+	},
+/obj/machinery/power/apc/auto_name/west,
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_ice/command_post/engi)
+"tt" = (
+/turf/open/floor/plasteel/stairs{
+	dir = 8
+	},
+/area/ruin/unpowered/planet_ice/command_post/kitchen)
+"tv" = (
+/mob/living/basic/trooper/syndicate/ranged/smg,
+/obj/machinery/light,
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/ruin/unpowered/planet_ice/command_post)
+"tx" = (
+/obj/machinery/washing_machine,
+/obj/machinery/airalarm/directional/south,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_ice/command_post/dorms)
+"tA" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/cable/yellow,
+/obj/machinery/power/terminal,
+/obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/o2{
+	piping_layer = 4;
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 5
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_ice/command_post/engi)
+"tE" = (
+/mob/living/basic/trooper/syndicate/ranged/smg,
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_ice/command_post/mission_control)
+"tJ" = (
+/mob/living/basic/viscerator,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_ice/command_post)
+"tU" = (
+/obj/machinery/light,
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/unpowered/planet_ice/command_post)
+"ub" = (
+/obj/machinery/door/airlock/grunge{
+	id_tag = "ramziminingbathroom"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_ice/command_post/dorms)
+"uj" = (
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_ice/command_post/storage)
+"ul" = (
+/turf/closed/wall/r_wall,
+/area/ruin/unpowered/planet_ice/command_post/dorms)
+"um" = (
+/obj/structure/cable,
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/ruin/unpowered/planet_ice/command_post)
+"us" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 1
+	},
+/obj/structure/extinguisher_cabinet/east,
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_ice/command_post/engi)
+"uv" = (
+/obj/structure/closet/secure_closet{
+	req_access = null;
+	icon_state = "armory"
+	},
+/obj/item/grenade/spawnergrenade/manhacks{
+	pixel_x = -5;
+	pixel_y = -4
+	},
+/obj/item/grenade/spawnergrenade/manhacks{
+	pixel_x = -5;
+	pixel_y = 3
+	},
+/obj/item/grenade/spawnergrenade/manhacks{
+	pixel_x = -5;
+	pixel_y = 11
+	},
+/obj/item/grenade/smokebomb{
+	pixel_x = 7;
+	pixel_y = -3
+	},
+/obj/item/grenade/smokebomb{
+	pixel_x = 7;
+	pixel_y = 4
+	},
+/obj/item/grenade/smokebomb{
+	pixel_x = 7;
+	pixel_y = 11
+	},
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_ice/command_post/armory)
+"uD" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_ice/command_post)
+"uF" = (
+/obj/machinery/door/airlock/grunge,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/cable,
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_ice/command_post/armory)
+"uJ" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_ice/command_post/dorms)
+"vb" = (
+/obj/structure/window/plastitanium,
+/obj/structure/cable/yellow,
+/obj/structure/grille,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_ice/command_post/engi)
+"vc" = (
+/obj/structure/rack,
+/obj/item/clothing/shoes/winterboots{
+	pixel_x = -10;
+	pixel_y = -4
+	},
+/obj/item/clothing/shoes/winterboots{
+	pixel_x = -10;
+	pixel_y = 1
+	},
+/obj/item/clothing/shoes/winterboots{
+	pixel_x = -10;
+	pixel_y = 6
+	},
+/obj/item/clothing/shoes/winterboots{
+	pixel_x = 6;
+	pixel_y = -4
+	},
+/obj/item/clothing/shoes/winterboots{
+	pixel_x = 6;
+	pixel_y = 1
+	},
+/obj/item/clothing/shoes/winterboots{
+	pixel_x = 6;
+	pixel_y = 5
+	},
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_ice/command_post/dorms)
+"vd" = (
+/obj/machinery/button/door{
+	dir = 8;
+	pixel_x = 22;
+	pixel_y = -10;
+	id = "rightarmoury";
+	name = "blokada prawej zbrojowni"
+	},
+/obj/machinery/button/door{
+	dir = 8;
+	pixel_x = 22;
+	pixel_y = 10;
+	name = "blokada lewej zbrojowni";
+	id = "leftarmoury"
+	},
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_ice/command_post/armory)
+"vz" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_ice/command_post/dorms)
+"vW" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/components/trinary/mixer/on/layer4{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_ice/command_post/engi)
+"vX" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_ice/command_post/engi)
+"wa" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_ice/command_post/kitchen/second)
+"wd" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_ice/command_post/dorms)
+"wf" = (
+/obj/structure/railing{
+	dir = 8
+	},
+/turf/open/floor/plasteel/stairs/left,
+/area/ruin/unpowered/planet_ice/command_post)
+"wn" = (
+/obj/structure/closet,
+/obj/item/clothing/under/syndicate{
+	pixel_x = 11;
+	pixel_y = -10
+	},
+/obj/item/clothing/under/syndicate{
+	pixel_x = 4;
+	pixel_y = -10
+	},
+/obj/item/clothing/under/syndicate{
+	pixel_x = -3;
+	pixel_y = -10
+	},
+/obj/item/clothing/under/syndicate{
+	pixel_x = -10;
+	pixel_y = -10
+	},
+/obj/item/clothing/shoes/combat{
+	pixel_x = 2;
+	pixel_y = 4
+	},
+/obj/item/clothing/shoes/combat{
+	pixel_x = 9;
+	pixel_y = 4
+	},
+/obj/item/clothing/neck/scarf{
+	pixel_x = -4
+	},
+/obj/item/clothing/neck/scarf{
+	pixel_x = -9
+	},
+/obj/item/clothing/head/soft/black{
+	pixel_x = -2;
+	pixel_y = 8
+	},
+/obj/item/clothing/head/soft/black{
+	pixel_x = -9;
+	pixel_y = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_ice/command_post/dorms/second)
+"wr" = (
+/obj/structure/closet,
+/obj/item/reagent_containers/glass/rag{
+	pixel_x = -8;
+	pixel_y = 5
+	},
+/obj/item/reagent_containers/glass/rag{
+	pixel_x = -8;
+	pixel_y = 10
+	},
+/obj/item/reagent_containers/glass/rag{
+	pixel_x = -8;
+	pixel_y = 15
+	},
+/obj/item/weldingtool/largetank{
+	pixel_x = 7;
+	pixel_y = 10
+	},
+/obj/item/weldingtool/largetank{
+	pixel_x = 8;
+	pixel_y = 14
+	},
+/obj/item/stock_parts/cell/hyper{
+	pixel_x = 8;
+	pixel_y = -3
+	},
+/obj/item/stock_parts/cell/hyper{
+	pixel_x = 8;
+	pixel_y = -8
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_ice/command_post/eva)
+"wL" = (
+/obj/structure/cable,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_ice/command_post/dorms/third)
+"wW" = (
+/obj/structure/closet/crate/freezer,
+/obj/item/food/raw_sausage,
+/obj/item/food/raw_sausage,
+/obj/item/food/raw_sausage,
+/obj/item/food/raw_sausage,
+/obj/item/food/raw_meatball,
+/obj/item/food/raw_meatball,
+/obj/item/food/raw_meatball,
+/obj/item/food/raw_meatball,
+/obj/item/food/raw_meatball,
+/obj/item/food/raw_meatball,
+/obj/item/food/raw_meatball,
+/obj/item/food/raw_meatball,
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/ruin/unpowered/planet_ice/command_post/kitchen)
+"xb" = (
+/obj/structure/barricade/wooden,
+/obj/structure/barricade/wooden/crude,
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/unpowered/planet_ice/command_post)
+"xg" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 6
+	},
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_ice/command_post/dorms)
+"xi" = (
+/obj/structure/table/reinforced,
+/obj/item/storage/toolbox/syndicate{
+	pixel_x = -2
+	},
+/obj/item/clothing/glasses/welding{
+	pixel_x = -6;
+	pixel_y = 10
+	},
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_ice/command_post/engi)
+"xk" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 9
+	},
+/obj/structure/cable,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_ice/command_post/engi)
+"xo" = (
+/obj/structure/extinguisher_cabinet/north,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_ice/command_post/engi)
+"xr" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/structure/lattice/catwalk/over,
+/turf/open/floor/plating{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_ice/command_post)
+"xu" = (
+/obj/structure/railing{
+	dir = 10
+	},
+/obj/machinery/computer/crew/syndie{
+	dir = 4
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_ice/command_post/mission_control)
+"xx" = (
+/obj/structure/railing,
+/obj/structure/closet/crate/freezer,
+/obj/item/reagent_containers/food/condiment/milk{
+	pixel_x = -2;
+	pixel_y = -2
+	},
+/obj/item/reagent_containers/condiment{
+	pixel_x = -10
+	},
+/obj/item/reagent_containers/food/condiment/milk{
+	pixel_x = 6;
+	pixel_y = -2
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/unpowered/planet_ice/command_post/kitchen)
+"xF" = (
+/obj/structure/sign/poster/contraband/random{
+	pixel_x = -32;
+	pixel_y = -1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/clothing/under/syndicate{
+	pixel_x = -11;
+	pixel_y = -11
+	},
+/obj/item/clothing/under/syndicate{
+	pixel_x = -3;
+	pixel_y = -11
+	},
+/obj/item/clothing/shoes/combat{
+	pixel_x = 9;
+	pixel_y = -9
+	},
+/obj/item/clothing/mask/bandana/red{
+	pixel_x = -10;
+	pixel_y = 4
+	},
+/obj/item/clothing/neck/scarf{
+	pixel_y = -1;
+	layer = 3.1
+	},
+/obj/item/ammo_box/c9mm{
+	pixel_x = -7;
+	pixel_y = 10
+	},
+/obj/item/clothing/head/soft/black{
+	pixel_x = 8;
+	pixel_y = -1
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_ice/command_post/dorms)
+"xG" = (
+/obj/structure/chair/office{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_ice/command_post/mission_control)
+"xQ" = (
+/obj/machinery/power/apc/auto_name/south,
+/obj/machinery/airalarm/directional/west,
+/obj/structure/cable,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_ice/command_post/mission_control)
+"xW" = (
+/obj/structure/rack,
+/obj/item/grown/log{
+	pixel_x = -7;
+	pixel_y = 5
+	},
+/obj/item/grown/log{
+	pixel_x = 2;
+	pixel_y = 5
+	},
+/obj/item/grown/log{
+	pixel_x = 10;
+	pixel_y = 5
+	},
+/obj/item/grown/log{
+	pixel_x = 6;
+	pixel_y = 9
+	},
+/obj/item/grown/log{
+	pixel_x = -3;
+	pixel_y = 10
+	},
+/obj/item/hatchet{
+	pixel_x = 5;
+	pixel_y = -9
+	},
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_ice/command_post/crew_quarters)
+"ya" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 1
+	},
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_ice/command_post/kitchen)
+"ye" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/closet/crate/engineering,
+/obj/item/shovel,
+/obj/item/shovel{
+	pixel_y = 5
+	},
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_ice/command_post/storage)
+"yf" = (
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_ice/command_post/eva)
+"yi" = (
+/obj/machinery/atmospherics/components/unary/outlet_injector/layer4{
+	dir = 4
+	},
+/turf/open/floor/engine/air,
+/area/ruin/unpowered/planet_ice/command_post/engi)
+"yj" = (
+/obj/effect/decal/cleanable/dirt,
+/mob/living/basic/trooper/syndicate/ranged/smg,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_ice/command_post/engi)
+"yo" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/cable,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_ice/command_post/dorms)
+"yp" = (
+/obj/structure/cable,
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/unpowered/planet_ice/command_post)
+"yv" = (
+/obj/machinery/power/floodlight,
+/obj/structure/cable,
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/unpowered/planet_ice/command_post)
+"yx" = (
+/turf/closed/wall/r_wall,
+/area/ruin/unpowered/planet_ice/command_post)
+"yA" = (
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer4{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 6
+	},
+/turf/open/floor/engine/air,
+/area/ruin/unpowered/planet_ice/command_post/engi)
+"yJ" = (
+/obj/structure/chair/fancy/bench{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_ice/command_post/kitchen)
+"yM" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_ice/command_post/eva)
+"yO" = (
+/obj/structure/sink/kitchen{
+	dir = 1;
+	name = "umywalka"
+	},
+/obj/structure/mirror{
+	pixel_y = -26
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 4
+	},
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_ice/command_post/dorms)
+"yT" = (
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_ice/command_post)
+"ze" = (
+/turf/closed/mineral/random/planet_ice,
+/area/ruin/unpowered/planet_ice/command_post/kitchen)
+"zg" = (
+/obj/structure/table/reinforced,
+/obj/machinery/door/poddoor/shutters/preopen{
+	dir = 4
+	},
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_ice/command_post/armory)
+"zh" = (
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer4,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_ice/command_post/engi)
+"zr" = (
+/turf/open/lava,
+/area/ruin/unpowered/planet_ice/command_post)
+"zw" = (
+/obj/machinery/door/airlock/grunge{
+	dir = 4;
+	id_tag = "officelock"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_ice/command_post/eva)
+"zB" = (
+/obj/machinery/computer/telecomms/server{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_ice/command_post/mission_control)
+"zT" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_ice/command_post/dorms)
+"Ad" = (
+/obj/structure/chair/office{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_ice/command_post/mission_control)
+"AG" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_ice/command_post/armory)
+"AJ" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 9;
+	layer = 2.041
+	},
+/mob/living/basic/trooper/syndicate/melee,
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_ice/command_post/kitchen)
+"AL" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_ice/command_post/officer)
+"AN" = (
+/obj/structure/closet,
+/obj/item/clothing/under/syndicate{
+	pixel_x = -1;
+	pixel_y = -11
+	},
+/obj/item/clothing/under/syndicate{
+	pixel_x = -8;
+	pixel_y = -11
+	},
+/obj/item/clothing/mask/bandana/red{
+	pixel_x = -7;
+	pixel_y = 4;
+	layer = 3.1
+	},
+/obj/item/clothing/neck/scarf/pink{
+	pixel_x = 1;
+	pixel_y = -2;
+	layer = 3.1
+	},
+/obj/item/clothing/under/dress/skirt{
+	pixel_x = 10;
+	pixel_y = 1;
+	layer = 3.1
+	},
+/obj/item/camera{
+	pixel_x = -6;
+	pixel_y = 8
+	},
+/obj/item/storage/photo_album{
+	pixel_x = -2;
+	pixel_y = 7
+	},
+/obj/item/clothing/head/soft/black{
+	pixel_x = 11;
+	pixel_y = 7
+	},
+/obj/item/clothing/shoes/combat{
+	pixel_x = 4;
+	pixel_y = -9
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_ice/command_post/dorms)
+"AQ" = (
+/obj/structure/reagent_dispensers/watertank,
+/obj/effect/turf_decal/box/corners{
+	dir = 8
+	},
+/obj/structure/sign/warning{
+	pixel_x = 28
+	},
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_ice/command_post/engi)
+"AU" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_ice/command_post/armory)
+"Be" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/extinguisher_cabinet/south,
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_ice/command_post/dorms)
+"Bf" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/door/poddoor{
+	dir = 8;
+	id = "cavegarage"
+	},
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_ice/command_post/engi)
+"Bi" = (
+/obj/structure/chair/office{
+	dir = 4
+	},
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_ice/command_post/mission_control)
+"By" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/carpet/green,
+/area/ruin/unpowered/planet_ice/command_post/officer)
+"BB" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 5
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_ice/command_post/dorms)
+"BM" = (
+/obj/structure/chair/stool{
+	dir = 8
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 8
+	},
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_ice/command_post/crew_quarters)
+"BN" = (
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_ice/command_post/mission_control)
+"BP" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_ice/command_post/crew_quarters)
+"BR" = (
+/obj/machinery/light,
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/ruin/unpowered/planet_ice/command_post)
+"BZ" = (
+/obj/effect/decal/cleanable/oil,
+/obj/machinery/button/door{
+	pixel_y = 25;
+	name = "przycisk garażu";
+	id = "cavegarage"
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_ice/command_post/engi)
+"Cj" = (
+/obj/machinery/power/floodlight,
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_ice/command_post/storage)
+"Cm" = (
+/obj/structure/bed,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_ice/command_post/dorms/third)
+"Co" = (
+/turf/open/floor/carpet/green,
+/area/ruin/unpowered/planet_ice/command_post/officer)
+"Cz" = (
+/obj/effect/decal/cleanable/dirt,
+/mob/living/basic/trooper/syndicate/ranged/shotgun/space,
+/obj/structure/extinguisher_cabinet/north,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_ice/command_post/crew_quarters)
+"CF" = (
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_ice/command_post/mission_control)
+"CU" = (
+/obj/structure/table,
+/obj/item/weldingtool/largetank{
+	pixel_x = -3;
+	pixel_y = 5
+	},
+/obj/item/crowbar,
+/obj/item/screwdriver{
+	pixel_x = 4;
+	pixel_y = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/cable,
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_ice/command_post/engi)
+"CW" = (
+/obj/structure/filingcabinet{
+	dir = 4;
+	pixel_x = -10
+	},
+/obj/item/clipboard,
+/obj/item/clipboard,
+/obj/item/folder/syndicate,
+/obj/item/folder/syndicate,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_ice/command_post/officer)
+"De" = (
+/obj/structure/table/wood,
+/obj/item/paper_bin,
+/obj/item/pen,
+/obj/item/radio/intercom/directional/west,
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_ice/command_post/officer)
+"Dp" = (
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/machinery/computer/monitor{
+	dir = 4
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_ice/command_post/mission_control)
+"Dy" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/light,
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_ice/command_post/storage)
+"DA" = (
+/obj/structure/closet,
+/obj/item/flashlight/flare{
+	pixel_x = 9;
+	pixel_y = 1
+	},
+/obj/item/flashlight/flare{
+	pixel_x = 9;
+	pixel_y = -6
+	},
+/obj/item/shovel{
+	pixel_y = -3
+	},
+/obj/item/radio{
+	pixel_x = -9;
+	pixel_y = 4
+	},
+/obj/item/radio{
+	pixel_x = -9
+	},
+/obj/structure/cable,
+/obj/machinery/light,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_ice/command_post/dorms)
+"DC" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 8
+	},
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_ice/command_post/armory)
+"DH" = (
+/obj/structure/reagent_dispensers/fueltank,
+/obj/structure/sign/warning/explosives/alt{
+	pixel_y = 29
+	},
+/obj/structure/railing,
+/obj/machinery/airalarm/directional/west,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_ice/command_post/eva)
+"DL" = (
+/obj/structure/chair,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_ice/command_post/kitchen/second)
+"DN" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_ice/command_post/mission_control)
+"DO" = (
+/obj/item/chair/plastic,
+/obj/item/chair/plastic{
+	pixel_y = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 5
+	},
+/obj/structure/cable,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_ice/command_post/dorms/third)
+"DV" = (
+/mob/living/basic/trooper/syndicate/ranged/smg/space,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/structure/cable,
+/obj/structure/extinguisher_cabinet/north,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_ice/command_post/dorms)
+"Ed" = (
+/turf/open/floor/plasteel/stairs,
+/area/ruin/unpowered/planet_ice/command_post)
+"Ee" = (
+/obj/structure/bed/double,
+/obj/item/bedsheet/double/black,
+/obj/structure/noticeboard{
+	pixel_y = 28
+	},
+/obj/item/clothing/neck/cloak{
+	pixel_y = 28
+	},
+/turf/open/floor/carpet/green,
+/area/ruin/unpowered/planet_ice/command_post/officer)
+"Ev" = (
+/obj/structure/table/wood,
+/obj/item/clothing/mask/cigarette/pipe{
+	pixel_x = 10;
+	pixel_y = -1
+	},
+/obj/item/food/grown/tobacco{
+	pixel_x = -9;
+	pixel_y = 13
+	},
+/obj/item/food/grown/tobacco{
+	pixel_x = -10;
+	pixel_y = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/cable,
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_ice/command_post/officer)
+"EA" = (
+/turf/closed/wall/r_wall,
+/area/ruin/unpowered/planet_ice/command_post/kitchen/second)
+"EP" = (
+/obj/structure/table/wood/poker,
+/obj/item/stack/spacecash/c10{
+	pixel_x = -7
+	},
+/obj/item/stack/spacecash/c20{
+	pixel_x = 7;
+	pixel_y = 10
+	},
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_ice/command_post/crew_quarters)
+"EQ" = (
+/obj/structure/dresser,
+/obj/structure/sign/poster/contraband/smoke{
+	pixel_x = -32
+	},
+/obj/item/storage/pill_bottle{
+	pixel_x = 8;
+	pixel_y = 7
+	},
+/obj/item/reagent_containers/hypospray/medipen{
+	pixel_x = -4;
+	pixel_y = 5
+	},
+/obj/item/reagent_containers/hypospray/medipen{
+	pixel_x = -9;
+	pixel_y = 5
+	},
+/obj/item/reagent_containers/hypospray/medipen{
+	pixel_x = 1;
+	pixel_y = 5
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_ice/command_post/dorms/second)
+"EZ" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 1
+	},
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_ice/command_post/kitchen/second)
+"Fb" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/cable,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_ice/command_post/officer)
+"Ff" = (
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/machinery/modular_computer/console/preset/command{
+	dir = 4
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_ice/command_post/mission_control)
+"Fg" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_ice/command_post/kitchen/second)
+"Fh" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_ice/command_post/crew_quarters)
+"Fj" = (
+/obj/structure/table/reinforced,
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_ice/command_post/mission_control)
+"Fo" = (
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_ice/command_post/kitchen)
+"Ft" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_ice/command_post/mission_control)
+"FE" = (
+/obj/structure/table/reinforced,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_ice/command_post/kitchen/second)
+"FH" = (
+/obj/machinery/power/apc/auto_name/south,
+/obj/structure/cable,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_ice/command_post/crew_quarters)
+"FM" = (
+/obj/machinery/holopad,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_ice/command_post/mission_control)
+"Gb" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_ice/command_post/engi)
+"Gz" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_ice/command_post/storage)
+"GE" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_ice/command_post/officer)
+"GI" = (
+/obj/structure/table,
+/obj/item/reagent_containers/glass/bowl{
+	pixel_x = -8;
+	pixel_y = 13
+	},
+/obj/item/food/soup{
+	pixel_x = 7
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_ice/command_post/kitchen/second)
+"GR" = (
+/obj/structure/railing/corner{
+	dir = 8
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_ice/command_post)
+"GX" = (
+/turf/closed/wall/mineral/titanium/survival/nodiagonal,
+/area/ruin/unpowered/planet_ice/command_post/dorms/third)
+"Ha" = (
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/ruin/unpowered/planet_ice/command_post/kitchen)
+"He" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_ice/command_post/eva)
+"Hm" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/cable,
+/obj/structure/lattice/catwalk/over,
+/turf/open/floor/plating{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_ice/command_post)
+"Hn" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/structure/cable,
+/obj/structure/lattice/catwalk/over,
+/turf/open/floor/plating{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_ice/command_post)
+"Hp" = (
+/obj/structure/dresser,
+/obj/item/poster/random_contraband{
+	pixel_y = 8
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_ice/command_post/dorms/third)
+"Hs" = (
+/obj/structure/table/reinforced,
+/obj/item/radio/intercom{
+	dir = 1;
+	pixel_x = 5;
+	pixel_y = 3
+	},
+/obj/item/radio/intercom/directional/north{
+	pixel_x = 4;
+	pixel_y = 31
+	},
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_ice/command_post/mission_control)
+"Hx" = (
+/obj/structure/sign/poster/contraband/lusty_xenomorph{
+	pixel_y = 32
+	},
+/obj/item/toy/toy_xeno{
+	pixel_x = 12;
+	pixel_y = 5
+	},
+/obj/item/toy/toy_xeno{
+	pixel_x = 4;
+	pixel_y = 8
+	},
+/obj/structure/chair/stool,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_ice/command_post/dorms)
+"HA" = (
+/obj/machinery/button/door{
+	pixel_x = -22;
+	pixel_y = -9;
+	id = "ramziminingofficer";
+	normaldoorcontrol = 1;
+	name = "zamek drzwi";
+	specialfunctions = 4;
+	dir = 4
+	},
+/obj/machinery/power/apc/auto_name/north,
+/obj/structure/cable,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_ice/command_post/officer)
+"HI" = (
+/obj/structure/rack,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/stack/cable_coil,
+/obj/item/stack/cable_coil,
+/obj/item/stack/cable_coil,
+/obj/item/stack/cable_coil,
+/obj/item/stack/cable_coil,
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_ice/command_post/storage)
+"HJ" = (
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_ice/command_post/armory)
+"HP" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/closet{
+	name = "szafka kuchenna";
+	pixel_x = -30
+	},
+/obj/item/plate{
+	pixel_x = -9;
+	pixel_y = -4
+	},
+/obj/item/plate{
+	pixel_x = -9;
+	pixel_y = -6
+	},
+/obj/item/plate{
+	pixel_x = -9;
+	pixel_y = -8
+	},
+/obj/item/plate{
+	pixel_x = -9;
+	pixel_y = -10
+	},
+/obj/item/plate/small{
+	pixel_x = 6;
+	pixel_y = -1
+	},
+/obj/item/plate/small{
+	pixel_x = 6;
+	pixel_y = -4
+	},
+/obj/item/plate/small{
+	pixel_x = 6;
+	pixel_y = -7
+	},
+/obj/item/plate/small{
+	pixel_x = 6;
+	pixel_y = -10
+	},
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_ice/command_post/kitchen/second)
+"HT" = (
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_ice/command_post)
+"Ig" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 1
+	},
+/obj/structure/chair/office{
+	dir = 8
+	},
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_ice/command_post/armory)
+"Ij" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 5
+	},
+/obj/structure/cable,
+/obj/machinery/light,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_ice/command_post/kitchen)
+"It" = (
+/obj/structure/closet,
+/obj/item/clothing/suit/armor/vest{
+	pixel_y = 8
+	},
+/obj/item/clothing/suit/armor/vest{
+	pixel_x = -9;
+	pixel_y = 8
+	},
+/obj/item/clothing/head/HoS/beret/syndicate{
+	pixel_x = 8;
+	pixel_y = 8
+	},
+/obj/item/clothing/under/syndicate/combat{
+	pixel_x = 10;
+	pixel_y = 1
+	},
+/obj/item/clothing/shoes/combat{
+	pixel_x = 8;
+	pixel_y = -4
+	},
+/obj/item/clothing/neck/scarf{
+	pixel_x = -1;
+	pixel_y = -5
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_ice/command_post/officer)
+"IF" = (
+/obj/item/food/sausage{
+	pixel_x = -10;
+	pixel_y = 11
+	},
+/obj/item/food/sausage{
+	pixel_x = -7;
+	pixel_y = 7
+	},
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_ice/command_post/crew_quarters)
+"IH" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_ice/command_post/armory)
+"IR" = (
+/obj/item/clothing/under/syndicate{
+	pixel_y = -10
+	},
+/obj/item/clothing/under/syndicate{
+	pixel_x = -8;
+	pixel_y = -10
+	},
+/obj/item/clothing/shoes/combat{
+	pixel_x = 9;
+	pixel_y = -3
+	},
+/obj/item/clothing/shoes/combat{
+	pixel_x = 9;
+	pixel_y = -8
+	},
+/obj/item/clothing/head/soft/black{
+	pixel_y = 6
+	},
+/obj/item/clothing/head/soft/black{
+	pixel_x = -8;
+	pixel_y = 6
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_ice/command_post/dorms/third)
+"IX" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 4
+	},
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_ice/command_post/kitchen)
+"Jc" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/ruin/unpowered/planet_ice/command_post)
+"Ji" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_ice/command_post/eva)
+"Js" = (
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/ruin/unpowered/planet_ice/command_post)
+"Ju" = (
+/obj/structure/chair/stool{
+	dir = 1
+	},
+/obj/machinery/light,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_ice/command_post/armory)
+"JP" = (
+/obj/structure/railing/corner,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/power/apc/auto_name/west,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_ice/command_post/eva)
+"Kf" = (
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/machinery/suit_storage_unit,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_ice/command_post/eva)
+"Kk" = (
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_ice/command_post/storage)
+"Ks" = (
+/obj/structure/chair/fancy/bench{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_ice/command_post/kitchen)
+"Kw" = (
+/obj/structure/bed,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_ice/command_post/dorms)
+"Ky" = (
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_ice/command_post/armory)
+"KF" = (
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_ice/command_post/crew_quarters)
+"KL" = (
+/mob/living/basic/viscerator,
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/ruin/unpowered/planet_ice/command_post)
+"Lb" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_ice/command_post/dorms/third)
+"Ld" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 4
+	},
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_ice/command_post/dorms/second)
+"Lf" = (
+/obj/structure/window/plastitanium,
+/obj/structure/grille,
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_ice/command_post/engi)
+"Ll" = (
+/obj/structure/chair{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/light,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_ice/command_post/kitchen/second)
+"Lo" = (
+/obj/structure/window/plastitanium,
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_ice/command_post/officer)
+"Lp" = (
+/obj/structure/chair/stool,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_ice/command_post/eva)
+"Lq" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/power/port_gen/pacman,
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_ice/command_post/storage)
+"Lx" = (
+/obj/structure/kitchenspike,
+/mob/living/basic/mining/polarbear,
+/obj/effect/gibspawner/generic/animal,
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/unpowered/planet_ice/command_post/kitchen)
+"Lz" = (
+/obj/structure/table/reinforced,
+/obj/item/paper_bin{
+	pixel_x = 10;
+	pixel_y = -2
+	},
+/obj/item/pen{
+	pixel_x = 9
+	},
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_ice/command_post/mission_control)
+"LG" = (
+/obj/structure/railing/corner,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_ice/command_post)
+"LK" = (
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"LN" = (
+/obj/structure/table/reinforced,
+/obj/item/radio/off{
+	dir = 4;
+	pixel_x = 7;
+	pixel_y = 4
+	},
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_ice/command_post/mission_control)
+"LQ" = (
+/obj/structure/window/plastitanium,
+/obj/structure/curtain,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_ice/command_post/kitchen/second)
+"Mc" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/unpowered/planet_ice/command_post)
+"Ml" = (
+/obj/effect/decal/cleanable/ash,
+/obj/effect/decal/cleanable/plasma,
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_ice/command_post/engi)
+"Mp" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/storage/toolbox/syndicate{
+	pixel_x = -13;
+	pixel_y = 10
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 6
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_ice/command_post/dorms)
+"Mu" = (
+/obj/machinery/door/airlock/grunge,
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_ice/command_post/crew_quarters)
+"Mw" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_ice/command_post/armory)
+"My" = (
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/machinery/computer/security{
+	dir = 4
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_ice/command_post/mission_control)
+"MK" = (
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"ML" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/airalarm/directional/west,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/cable,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_ice/command_post/armory)
+"MM" = (
+/turf/open/floor/plasteel/stairs{
+	dir = 4
+	},
+/area/ruin/unpowered/planet_ice/command_post/mission_control)
+"MN" = (
+/obj/structure/chair/stool,
+/obj/item/weldingtool{
+	pixel_x = 2;
+	pixel_y = 5
+	},
+/obj/item/clothing/glasses/welding{
+	pixel_x = 11
+	},
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_ice/command_post/eva)
+"MW" = (
+/obj/machinery/door/airlock/grunge{
+	dir = 4;
+	id_tag = "officelock"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_ice/command_post/armory)
+"Nd" = (
+/obj/machinery/telecomms/broadcaster,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_ice/command_post/mission_control)
+"Ng" = (
+/obj/structure/chair/fancy/shuttle{
+	dir = 8
+	},
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_ice/command_post/mission_control)
+"Nk" = (
+/obj/structure/closet/crate/bin,
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_ice/command_post/kitchen)
+"Nn" = (
+/obj/structure/barricade/sandbags,
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/unpowered/planet_ice/command_post)
+"Nq" = (
+/obj/machinery/power/smes/engineering,
+/obj/structure/cable,
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_ice/command_post/engi)
+"NA" = (
+/turf/closed/wall/r_wall,
+/area/ruin/unpowered/planet_ice/command_post/armory)
+"NQ" = (
+/obj/machinery/power/floodlight{
+	anchored = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/unpowered/planet_ice/command_post)
+"NT" = (
+/obj/machinery/power/apc/auto_name/east,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_ice/command_post/dorms/second)
+"NU" = (
+/turf/closed/wall/r_wall,
+/area/ruin/unpowered/planet_ice/command_post/engi)
+"NY" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 10
+	},
+/obj/structure/cable,
+/obj/structure/lattice/catwalk/over,
+/turf/open/floor/plating{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_ice/command_post)
+"NZ" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_ice/command_post/armory)
+"Os" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_ice/command_post/mission_control)
+"Oy" = (
+/obj/structure/chair{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_ice/command_post/kitchen/second)
+"OP" = (
+/obj/structure/table,
+/obj/item/plate/small{
+	pixel_x = -7;
+	pixel_y = -1;
+	layer = 2.9
+	},
+/obj/item/reagent_containers/food/drinks/coffee{
+	pixel_x = 9;
+	pixel_y = 12
+	},
+/obj/item/food/garlicbread{
+	pixel_x = -7;
+	pixel_y = 6
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_ice/command_post/kitchen)
+"OU" = (
+/obj/machinery/power/rtg,
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/components/unary/outlet_injector/on/layer4{
+	dir = 8
+	},
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/ruin/unpowered/planet_ice/command_post)
+"Pa" = (
+/obj/structure/rack,
+/obj/item/storage/belt/security/webbing{
+	pixel_x = -8;
+	pixel_y = 7
+	},
+/obj/item/storage/belt/military{
+	pixel_x = -7;
+	pixel_y = -3
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_ice/command_post/dorms)
+"Pu" = (
+/obj/machinery/door/airlock/grunge{
+	dir = 4;
+	id_tag = "officelock"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_ice/command_post/dorms/second)
+"Pv" = (
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/n2{
+	dir = 8;
+	piping_layer = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 10
+	},
+/turf/open/floor/concrete/slab_4,
+/area/ruin/unpowered/planet_ice/command_post/engi)
+"Pz" = (
+/obj/structure/frame/machine{
+	anchored = 1
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_ice/command_post/mission_control)
+"PC" = (
+/obj/machinery/portable_atmospherics/canister/oxygen,
+/obj/machinery/light,
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_ice/command_post/engi)
+"PF" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_ice/command_post/engi)
+"PQ" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_ice/command_post/kitchen/second)
+"PS" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
+/obj/structure/cable,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_ice/command_post/dorms)
+"Qc" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 1
+	},
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_ice/command_post/dorms)
+"Qr" = (
+/obj/structure/closet/crate/engineering,
+/obj/item/flashlight/flare{
+	pixel_x = 8;
+	pixel_y = 2
+	},
+/obj/item/flashlight/flare{
+	pixel_y = 2
+	},
+/obj/item/flashlight/flare{
+	pixel_x = -8;
+	pixel_y = 2
+	},
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_ice/command_post/storage)
+"Qu" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_ice/command_post/mission_control)
+"Qw" = (
+/obj/structure/barricade/sandbags,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/cable,
+/obj/structure/lattice/catwalk/over,
+/turf/open/floor/plating{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_ice/command_post)
+"QC" = (
+/obj/machinery/telecomms/server,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_ice/command_post/mission_control)
+"QE" = (
+/obj/structure/table/reinforced,
+/obj/item/paper_bin{
+	pixel_x = -8;
+	pixel_y = 5
+	},
+/obj/item/pen{
+	pixel_x = -8;
+	pixel_y = 6
+	},
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_ice/command_post/mission_control)
+"QF" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_ice/command_post/armory)
+"QI" = (
+/obj/item/cigbutt/roach{
+	pixel_x = -2;
+	pixel_y = -2
+	},
+/obj/item/cigbutt/roach{
+	pixel_x = 10
+	},
+/obj/item/cigbutt/roach{
+	pixel_x = -12
+	},
+/obj/item/cigbutt/roach{
+	pixel_x = -2;
+	pixel_y = 7
+	},
+/obj/item/cigbutt/roach{
+	pixel_x = 5;
+	pixel_y = 9
+	},
+/obj/item/cigbutt/roach{
+	pixel_x = 8;
+	pixel_y = 16
+	},
+/obj/item/cigbutt/roach{
+	pixel_x = -10;
+	pixel_y = 8
+	},
+/obj/item/cigbutt/roach{
+	pixel_x = -4;
+	pixel_y = 15
+	},
+/obj/item/cigbutt/roach{
+	pixel_x = -13;
+	pixel_y = 17
+	},
+/obj/effect/decal/cleanable/ash,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_ice/command_post/dorms/second)
+"QW" = (
+/obj/item/chair/stool,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_ice/command_post/crew_quarters)
+"QY" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 5
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_ice/command_post/engi)
+"QZ" = (
+/obj/structure/table,
+/obj/item/storage/toolbox/syndicate{
+	pixel_x = -1;
+	pixel_y = -2
+	},
+/obj/item/clothing/glasses/welding{
+	pixel_x = 5;
+	pixel_y = 8
+	},
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_ice/command_post/engi)
+"Ro" = (
+/obj/machinery/door/airlock/grunge{
+	dir = 4;
+	id_tag = "officelock"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_ice/command_post/kitchen)
+"Rp" = (
+/obj/machinery/door/poddoor{
+	dir = 8;
+	id = "caveshed"
+	},
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_ice/command_post/storage)
+"Ru" = (
+/obj/machinery/door/airlock/grunge{
+	dir = 4;
+	id_tag = "officelock"
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_ice/command_post/engi)
+"RG" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 8
+	},
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_ice/command_post/mission_control)
+"RK" = (
+/obj/structure/closet/cardboard,
+/mob/living/basic/snake{
+	name = "zmarznięty wąż";
+	desc = "Brrrr."
+	},
+/obj/machinery/airalarm/directional/north,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_ice/command_post/dorms/third)
+"RM" = (
+/obj/structure/table,
+/obj/item/radio/intercom/directional/north,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_ice/command_post/mission_control)
+"RR" = (
+/obj/machinery/door/airlock/grunge,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_ice/command_post/dorms)
+"RS" = (
+/obj/structure/table,
+/obj/item/plate/small{
+	pixel_x = 4;
+	pixel_y = 7;
+	layer = 2.9
+	},
+/obj/item/food/cheese/wedge{
+	pixel_x = 5;
+	pixel_y = 12
+	},
+/obj/item/food/soup{
+	pixel_x = -5
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_ice/command_post/kitchen)
+"RV" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden/layer4,
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_ice/command_post/armory)
+"Sj" = (
+/obj/structure/closet/crate/trashcart,
+/obj/machinery/power/apc/auto_name/south,
+/obj/structure/cable,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_ice/command_post/dorms)
+"Sq" = (
+/obj/machinery/button/door{
+	name = "drzwi szopy";
+	id = "caveshed";
+	pixel_y = 23
+	},
+/obj/structure/cable,
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/unpowered/planet_ice/command_post)
+"SK" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_ice/command_post/engi)
+"SM" = (
+/obj/machinery/button/door{
+	pixel_x = 21;
+	pixel_y = -9;
+	id = "ramziminingbathroom";
+	normaldoorcontrol = 1;
+	name = "zamek łazienki";
+	specialfunctions = 4;
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/turf/open/floor/carpet/black{
+	name = "mata łazienkowa"
+	},
+/area/ruin/unpowered/planet_ice/command_post/dorms)
+"SS" = (
+/obj/machinery/telecomms/bus,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_ice/command_post/mission_control)
+"SV" = (
+/obj/structure/table,
+/obj/item/plate{
+	pixel_x = -7;
+	pixel_y = 9
+	},
+/obj/item/food/soup,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_ice/command_post/kitchen/second)
+"SZ" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_ice/command_post/armory)
+"Ta" = (
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_ice/command_post/dorms)
+"Th" = (
+/obj/structure/marker_beacon{
+	picked_color = "Bronze"
+	},
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/ruin/unpowered/planet_ice/command_post)
+"Tm" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 8
+	},
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_ice/command_post/armory)
+"Tn" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/extinguisher_cabinet/south,
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_ice/command_post/armory)
+"Tp" = (
+/obj/structure/closet/crate/freezer,
+/obj/item/food/meat/slab,
+/obj/item/food/meat/slab,
+/obj/item/food/meat/slab,
+/obj/item/food/meat/slab,
+/obj/item/food/meat/slab,
+/obj/item/food/meat/slab,
+/obj/item/food/meat/slab,
+/obj/item/food/meat/slab,
+/obj/item/food/meat/slab,
+/obj/item/food/meat/slab,
+/obj/item/food/meat/slab,
+/obj/item/food/meat/slab,
+/turf/open/floor/plating/asteroid/iceberg,
+/area/ruin/unpowered/planet_ice/command_post/kitchen)
+"TD" = (
+/turf/closed/wall/r_wall,
+/area/ruin/unpowered/planet_ice/command_post/officer)
+"TK" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/cable,
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_ice/command_post/kitchen/second)
+"TR" = (
+/obj/structure/table/reinforced,
+/obj/machinery/recharger{
+	pixel_x = 9
+	},
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_ice/command_post/engi)
+"TZ" = (
+/turf/closed/wall/r_wall,
+/area/ruin/unpowered/planet_ice/command_post/dorms/second)
+"Ug" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/closet,
+/obj/item/clothing/under/syndicate{
+	pixel_x = -10;
+	pixel_y = -13
+	},
+/obj/item/clothing/under/syndicate{
+	pixel_x = -1;
+	pixel_y = -13
+	},
+/obj/item/clothing/shoes/combat{
+	pixel_x = 6;
+	pixel_y = 3
+	},
+/obj/item/radio/off{
+	pixel_x = -9;
+	pixel_y = 12;
+	name = "wycofany uplink";
+	desc = "Stary uplink agenta przebrany za radio. Ten nie jest już zaopatrywany."
+	},
+/obj/item/stack/telecrystal/five{
+	pixel_x = 2;
+	pixel_y = 9
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_ice/command_post/dorms)
+"Um" = (
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_ice/command_post/armory)
+"Un" = (
+/obj/structure/ore_box,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_ice/command_post/storage)
+"Us" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/unpowered/planet_ice/command_post/kitchen)
+"Uw" = (
+/obj/structure/fermenting_barrel,
+/obj/structure/sign/poster/contraband/red_rum{
+	pixel_x = 32
+	},
+/obj/item/reagent_containers/food/drinks/bottle/rum{
+	pixel_x = -11;
+	pixel_y = 21
+	},
+/obj/item/reagent_containers/food/drinks/bottle/trappist{
+	pixel_x = 13;
+	pixel_y = 21
+	},
+/obj/item/reagent_containers/food/drinks/bottle/absinthe/premium{
+	pixel_x = 4;
+	pixel_y = 21
+	},
+/obj/item/reagent_containers/food/drinks/bottle/sake{
+	pixel_x = -3;
+	pixel_y = 22
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_ice/command_post/dorms)
+"Uy" = (
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_ice/command_post)
+"UD" = (
+/obj/structure/closet,
+/obj/item/clothing/under/syndicate{
+	pixel_x = 5;
+	pixel_y = -10
+	},
+/obj/item/clothing/under/syndicate{
+	pixel_x = 5;
+	pixel_y = -13
+	},
+/obj/item/clothing/mask/bandana/red{
+	pixel_x = 13;
+	pixel_y = -9
+	},
+/obj/item/clothing/head/soft/black{
+	pixel_x = 12;
+	pixel_y = -5
+	},
+/obj/item/ammo_box/c9mm{
+	pixel_x = 7;
+	pixel_y = 5;
+	layer = 2.9
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_ice/command_post/dorms)
+"UK" = (
+/obj/machinery/door/airlock/grunge{
+	dir = 4;
+	id_tag = "ramziminingofficer"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_ice/command_post/officer)
+"UX" = (
+/obj/machinery/telecomms/hub,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_ice/command_post/mission_control)
+"Vb" = (
+/obj/structure/table,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/plate{
+	pixel_x = -7;
+	pixel_y = 6
+	},
+/obj/item/food/butterbiscuit{
+	pixel_x = -10;
+	pixel_y = 7
+	},
+/obj/item/food/boiledegg{
+	pixel_x = -1;
+	pixel_y = 10
+	},
+/obj/item/food/boiledegg{
+	pixel_x = -4;
+	pixel_y = 4
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_ice/command_post/kitchen/second)
+"Vp" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/ruin/unpowered/planet_ice/command_post)
+"Vq" = (
+/obj/machinery/door/airlock/grunge{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_ice/command_post/dorms)
+"VM" = (
+/obj/machinery/door/airlock/external{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_ice/command_post/dorms/third)
+"Wa" = (
+/obj/structure/railing{
+	dir = 6
+	},
+/mob/living/basic/trooper/syndicate/ranged/space,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_ice/command_post)
+"Wi" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_ice/command_post/engi)
+"Wn" = (
+/obj/item/clothing/under/syndicate{
+	pixel_x = 6;
+	pixel_y = 9
+	},
+/obj/item/clothing/under/syndicate{
+	pixel_x = 12;
+	pixel_y = 9
+	},
+/obj/item/clothing/shoes/combat{
+	pixel_x = 10;
+	pixel_y = -3
+	},
+/obj/item/clothing/mask/bandana/red{
+	pixel_x = 13;
+	pixel_y = 5
+	},
+/obj/item/clothing/neck/scarf{
+	pixel_x = 5;
+	pixel_y = 1
+	},
+/obj/item/clothing/head/soft/black{
+	pixel_x = 8;
+	pixel_y = -12
+	},
+/obj/item/reagent_containers/food/drinks/flask/det{
+	pixel_x = -1;
+	pixel_y = 3;
+	name = "piersiówka premium";
+	desc = "Alkohol to nasz przyjaciel. Naprawdę porzucisz przyjaciela?"
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 10
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_ice/command_post/dorms)
+"Wx" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/extinguisher_cabinet/north,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_ice/command_post/engi)
+"Wy" = (
+/obj/machinery/door/airlock/grunge,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/cable,
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_ice/command_post/kitchen/second)
+"WI" = (
+/obj/structure/dresser,
+/obj/item/gun/ballistic/automatic/pistol{
+	pixel_x = -4;
+	pixel_y = 8
+	},
+/obj/item/ammo_box/magazine/m10mm{
+	pixel_x = 1;
+	pixel_y = 5
+	},
+/obj/item/ammo_box/magazine/m10mm{
+	pixel_x = 10;
+	pixel_y = 9
+	},
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_ice/command_post/dorms)
+"WS" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_ice/command_post/kitchen/second)
+"Xb" = (
+/obj/structure/bed,
+/obj/structure/sign/poster/official/random{
+	pixel_y = -32
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_ice/command_post/dorms/second)
+"Xc" = (
+/obj/machinery/power/apc/auto_name/west,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/cable,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_ice/command_post/armory)
+"Xp" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_ice/command_post/crew_quarters)
+"Xr" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 5
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_ice/command_post/mission_control)
+"Xu" = (
+/obj/effect/decal/cleanable/oil/streak,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_ice/command_post/engi)
+"Xv" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
+/obj/machinery/light,
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_ice/command_post/dorms)
+"Xz" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 4
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_ice/command_post/engi)
+"XP" = (
+/turf/template_noop,
+/area/template_noop)
+"XS" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_ice/command_post/eva)
+"Yf" = (
+/obj/structure/rack,
+/obj/item/reagent_containers/glass/rag{
+	pixel_x = -6;
+	pixel_y = 1
+	},
+/obj/item/flashlight/pen{
+	pixel_x = 5;
+	pixel_y = -4
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_ice/command_post/eva)
+"Yg" = (
+/obj/machinery/door/poddoor{
+	dir = 8;
+	id = "caveshed"
+	},
+/obj/structure/cable,
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_ice/command_post/storage)
+"Yu" = (
+/obj/structure/dresser,
+/obj/structure/noticeboard{
+	name = "stojak na broń";
+	desc = "Tablica do zawieszenia broni.";
+	pixel_y = 28
+	},
+/obj/item/kitchen/knife/hunting,
+/obj/item/gun/ballistic/shotgun{
+	pixel_x = -7;
+	pixel_y = 27;
+	layer = 3.1
+	},
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_ice/command_post/dorms)
+"Yw" = (
+/obj/structure/closet,
+/obj/item/clothing/head/soft/black{
+	pixel_x = 9;
+	pixel_y = 1
+	},
+/obj/item/clothing/head/soft/black{
+	pixel_y = 1
+	},
+/obj/item/clothing/head/soft/black{
+	pixel_x = -9;
+	pixel_y = 1
+	},
+/obj/item/clothing/head/soft/black{
+	pixel_x = 9;
+	pixel_y = 8
+	},
+/obj/item/clothing/head/soft/black{
+	pixel_y = 8
+	},
+/obj/item/clothing/head/soft/black{
+	pixel_x = -9;
+	pixel_y = 8
+	},
+/obj/item/clothing/neck/scarf{
+	pixel_x = -9;
+	pixel_y = -9
+	},
+/obj/item/clothing/neck/scarf{
+	pixel_x = -3;
+	pixel_y = -9
+	},
+/obj/item/clothing/neck/scarf{
+	pixel_x = 2;
+	pixel_y = -9
+	},
+/obj/item/clothing/neck/scarf{
+	pixel_x = 8;
+	pixel_y = -9
+	},
+/obj/structure/cable,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_ice/command_post/dorms)
+"Yx" = (
+/obj/structure/chair/fancy/bench{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/ash,
+/obj/item/cigbutt{
+	pixel_x = 9;
+	pixel_y = -8
+	},
+/obj/item/cigbutt{
+	pixel_x = 13;
+	pixel_y = -5
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_ice/command_post/dorms/second)
+"YC" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_ice/command_post/mission_control)
+"Zc" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 1
+	},
+/obj/structure/extinguisher_cabinet/south,
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_ice/command_post/kitchen)
+"Zf" = (
+/turf/closed/mineral/planet_ice_wall,
+/area/ruin/unpowered/planet_ice/command_post/kitchen)
+"Zj" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/unpowered/planet_ice/command_post)
+"Zk" = (
+/turf/closed/wall/r_wall,
+/area/ruin/unpowered/planet_ice/command_post/storage)
+"Zl" = (
+/obj/structure/chair/office,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/cable,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_ice/command_post/officer)
+"Zq" = (
+/obj/structure/window/plastitanium,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/cable,
+/turf/open/floor/concrete,
+/area/ruin/unpowered/planet_ice/command_post/officer)
+"Zr" = (
+/obj/structure/closet/crate/engineering,
+/obj/item/storage/box/emptysandbags{
+	pixel_x = 2
+	},
+/obj/item/storage/box/emptysandbags{
+	pixel_x = -5
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/unpowered/planet_ice/command_post)
+"ZM" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 1
+	},
+/obj/machinery/airalarm/directional/east,
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_ice/command_post/kitchen)
+
+(1,1,1) = {"
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+"}
+(2,1,1) = {"
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+XP
+oD
+oD
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+"}
+(3,1,1) = {"
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+qv
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+"}
+(4,1,1) = {"
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+oD
+oD
+oD
+qv
+qv
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+"}
+(5,1,1) = {"
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+oD
+oD
+oD
+oD
+oD
+oD
+Js
+lL
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+Zk
+Zk
+Zk
+Zk
+Zk
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+XP
+XP
+XP
+XP
+XP
+XP
+"}
+(6,1,1) = {"
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+Js
+Js
+qv
+oD
+oD
+TZ
+TZ
+TZ
+TZ
+TZ
+Zk
+Cj
+Lq
+HI
+Zk
+Zk
+oD
+GX
+GX
+GX
+GX
+GX
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+XP
+XP
+XP
+XP
+XP
+XP
+"}
+(7,1,1) = {"
+XP
+XP
+XP
+XP
+XP
+XP
+oD
+oD
+oD
+oD
+oD
+dh
+dh
+dh
+oD
+oD
+Js
+qv
+oD
+TZ
+TZ
+Yx
+EQ
+Xb
+TZ
+ye
+uj
+uj
+uj
+ca
+Zk
+oD
+GX
+Cm
+Hp
+Cm
+GX
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+fL
+fL
+fL
+XP
+XP
+"}
+(8,1,1) = {"
+XP
+XP
+XP
+XP
+XP
+XP
+oD
+oD
+dh
+dh
+dh
+dh
+oD
+oD
+oD
+oD
+Js
+oD
+oD
+TZ
+sd
+cD
+kp
+wn
+TZ
+bA
+Gz
+uj
+uj
+Un
+Zk
+oD
+GX
+gx
+wL
+qf
+GX
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oZ
+fL
+fL
+fL
+fL
+XP
+"}
+(9,1,1) = {"
+XP
+XP
+XP
+XP
+XP
+oD
+oD
+dh
+dh
+dh
+dh
+oD
+oD
+oD
+dh
+oD
+lL
+qv
+oD
+TZ
+eC
+kp
+Ld
+id
+TZ
+Qr
+uj
+uj
+Gz
+Un
+Zk
+oD
+GX
+RK
+DO
+IR
+GX
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oZ
+oZ
+fL
+fL
+fL
+fL
+"}
+(10,1,1) = {"
+XP
+XP
+XP
+XP
+oD
+oD
+oD
+dh
+dh
+dh
+dh
+dh
+dh
+dh
+dh
+oD
+qv
+qv
+lL
+TZ
+nL
+QI
+rY
+NT
+TZ
+Zk
+bF
+Kk
+Dy
+Zk
+Zk
+oD
+GX
+GX
+Lb
+GX
+GX
+oD
+oD
+yx
+sm
+oD
+oD
+sm
+yx
+oD
+oZ
+oZ
+oZ
+oZ
+fL
+fL
+"}
+(11,1,1) = {"
+XP
+XP
+XP
+oD
+oD
+oD
+oD
+oD
+dh
+oD
+dh
+Zf
+Zf
+Zf
+Zf
+Zf
+yx
+Vp
+oD
+TZ
+TZ
+TZ
+Pu
+TZ
+TZ
+Zk
+Yg
+Rp
+Rp
+Zk
+oD
+oD
+oD
+GX
+VM
+GX
+Js
+qv
+lL
+og
+sq
+tJ
+sq
+sq
+og
+sq
+LK
+LK
+oZ
+LK
+fL
+fL
+"}
+(12,1,1) = {"
+XP
+XP
+XP
+oD
+oD
+oD
+oD
+dh
+oD
+dh
+oD
+Zf
+Lx
+sp
+Ha
+ze
+oD
+lL
+oD
+EA
+fq
+jI
+WS
+HP
+iv
+EA
+Sq
+qv
+qv
+cy
+oD
+oD
+oD
+oD
+xr
+Js
+qv
+qv
+qv
+lL
+yT
+yT
+yT
+yT
+yT
+yT
+MK
+MK
+oZ
+MK
+fL
+fL
+"}
+(13,1,1) = {"
+XP
+XP
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+yx
+Tp
+lU
+lU
+bR
+sV
+oD
+Js
+oD
+EA
+Vb
+iw
+Fg
+TK
+sk
+Wy
+Hm
+oY
+qv
+Nn
+qv
+oD
+oD
+yx
+bg
+qv
+qv
+qv
+qv
+qv
+ql
+yT
+yT
+yT
+yT
+yT
+MK
+oZ
+oZ
+fL
+fL
+MK
+"}
+(14,1,1) = {"
+XP
+XP
+oD
+oD
+oD
+oD
+oD
+ul
+ul
+ul
+ul
+wW
+Us
+xx
+tt
+sV
+oD
+Js
+Js
+EA
+Oy
+mI
+rP
+EZ
+Ll
+EA
+qv
+NY
+gH
+Qw
+Hm
+Hm
+Hm
+Hm
+dg
+qv
+qv
+qv
+qv
+qv
+yT
+yT
+ql
+yT
+yT
+yT
+MK
+MK
+oZ
+MK
+MK
+fL
+"}
+(15,1,1) = {"
+XP
+XP
+oD
+oD
+oD
+oD
+oD
+ul
+WI
+xF
+ul
+sV
+sV
+sV
+ju
+sV
+oD
+qv
+KL
+EA
+eg
+ga
+PQ
+jF
+GI
+sJ
+qv
+yp
+qv
+Nn
+qv
+qv
+qv
+Js
+qv
+qv
+qv
+qv
+lL
+dw
+sq
+tJ
+sq
+sq
+dw
+sq
+LK
+LK
+LK
+oZ
+LK
+fL
+"}
+(16,1,1) = {"
+XP
+oD
+oD
+oD
+oD
+oD
+oD
+ul
+Kw
+AN
+ul
+no
+OP
+yJ
+Zc
+sV
+sV
+oD
+qv
+EA
+FE
+bS
+wa
+ga
+jW
+sJ
+qv
+yp
+qv
+qv
+lL
+qv
+qv
+qv
+qv
+qv
+qv
+qv
+oD
+yx
+sm
+oD
+oD
+sm
+yx
+oD
+oZ
+oZ
+oZ
+fL
+fL
+fL
+"}
+(17,1,1) = {"
+oD
+oD
+oD
+oD
+ul
+ul
+ul
+ul
+Hx
+BB
+ul
+no
+RS
+Ks
+ya
+Nk
+sV
+lL
+tU
+EA
+EA
+DL
+SV
+lH
+EA
+EA
+qv
+NQ
+lL
+qv
+qv
+qv
+qv
+rV
+qv
+qv
+qv
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oZ
+oZ
+fL
+fL
+fL
+fL
+"}
+(18,1,1) = {"
+oD
+oD
+oD
+oD
+ul
+mh
+se
+ul
+ul
+Vq
+ul
+dD
+Fo
+AJ
+dP
+IX
+br
+qv
+qv
+qv
+EA
+EA
+LQ
+EA
+EA
+oD
+oD
+Js
+qv
+lL
+qv
+qv
+qv
+qv
+qv
+qv
+Js
+Js
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oZ
+fL
+fL
+fL
+XP
+"}
+(19,1,1) = {"
+oD
+oD
+oD
+oD
+ul
+be
+yO
+ul
+gD
+Be
+ul
+cG
+Fo
+ZM
+gU
+Ij
+sV
+qv
+qv
+qv
+qv
+qv
+xr
+qv
+oD
+oD
+yx
+oD
+Js
+qv
+qv
+qv
+Js
+qv
+qv
+Js
+oD
+Js
+Js
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+fL
+fL
+fL
+fL
+XP
+"}
+(20,1,1) = {"
+XP
+oD
+oD
+oD
+ul
+kF
+SM
+ub
+hi
+Xv
+ul
+cV
+aK
+sV
+sV
+Ro
+sV
+rf
+rf
+qv
+qv
+qv
+xr
+qv
+Js
+Js
+Jc
+Js
+Js
+qv
+rV
+Th
+Js
+qv
+qv
+tv
+yx
+oD
+Js
+oD
+oD
+oD
+oD
+oD
+oD
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+"}
+(21,1,1) = {"
+XP
+oD
+oD
+oD
+ul
+ul
+ul
+ul
+ul
+bI
+ul
+ul
+ul
+rf
+BP
+bz
+KF
+gw
+rf
+HT
+hU
+qv
+xr
+qv
+qv
+qv
+Js
+Js
+qv
+qv
+Js
+lA
+Js
+qv
+Js
+Js
+oD
+oD
+Js
+oD
+oD
+oD
+oD
+oD
+oD
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+"}
+(22,1,1) = {"
+XP
+XP
+oD
+oD
+oD
+ul
+Yu
+ja
+ul
+rX
+oX
+yo
+oq
+bu
+fM
+QW
+jE
+Xp
+Mu
+Uy
+GR
+wf
+xr
+qv
+qv
+qv
+qv
+qv
+qv
+qv
+Js
+Th
+qv
+qv
+Js
+qv
+Js
+Js
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+"}
+(23,1,1) = {"
+XP
+XP
+oD
+oD
+oD
+ul
+Kw
+UD
+ul
+wd
+vc
+zT
+Yw
+rf
+of
+EP
+ee
+FH
+rf
+Uy
+fx
+Ed
+xr
+qv
+qv
+qv
+qv
+qv
+qv
+qv
+qv
+qv
+rV
+qv
+qv
+qv
+Js
+Js
+oD
+oD
+oD
+oD
+oD
+oD
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+"}
+(24,1,1) = {"
+XP
+XP
+oD
+oD
+oD
+ul
+Uw
+Wn
+RR
+bn
+xg
+Qc
+DA
+rf
+Cz
+Fh
+BM
+KF
+iT
+Uy
+LG
+ez
+xr
+qv
+qv
+qv
+qv
+qv
+qv
+qv
+qv
+qv
+qv
+qv
+qv
+qv
+Js
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+XP
+fL
+XP
+XP
+XP
+XP
+XP
+"}
+(25,1,1) = {"
+XP
+XP
+oD
+oD
+oD
+ul
+ul
+ul
+ul
+DV
+Pa
+Ta
+Sj
+rf
+aM
+BP
+KF
+BP
+iT
+uD
+Wa
+qv
+xr
+qv
+qv
+qv
+qv
+qv
+qv
+qv
+Js
+qv
+qv
+qv
+qv
+qv
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+fL
+fL
+fL
+XP
+XP
+XP
+XP
+"}
+(26,1,1) = {"
+XP
+XP
+oD
+oD
+oD
+ul
+kl
+Mp
+RR
+uJ
+PS
+vz
+tx
+rf
+cf
+IF
+xW
+rf
+rf
+Js
+Js
+qv
+xr
+qv
+qv
+qv
+qv
+qv
+Js
+BR
+yx
+Vp
+Js
+qv
+qv
+qv
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oZ
+fL
+fL
+fL
+XP
+XP
+XP
+"}
+(27,1,1) = {"
+XP
+XP
+oD
+oD
+oD
+ul
+sC
+Ug
+TD
+TD
+UK
+TD
+TD
+TD
+TD
+rf
+rf
+rf
+Js
+Js
+Js
+Js
+xr
+qv
+qv
+qv
+qv
+qv
+Js
+oD
+oD
+oD
+Js
+qv
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oZ
+oZ
+fL
+fL
+XP
+XP
+XP
+"}
+(28,1,1) = {"
+XP
+XP
+XP
+oD
+oD
+ul
+fs
+mt
+TD
+HA
+AL
+CW
+De
+fl
+TD
+qv
+qv
+Js
+Js
+BR
+yx
+Mc
+xr
+qv
+qv
+qv
+qv
+qv
+oD
+oD
+oD
+oD
+qv
+Zr
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oZ
+oZ
+oZ
+fL
+XP
+XP
+XP
+XP
+"}
+(29,1,1) = {"
+XP
+XP
+XP
+oD
+oD
+ul
+ul
+ul
+TD
+mv
+au
+Fb
+Zl
+Ev
+Zq
+Hm
+Hm
+Hm
+Hm
+Hm
+Hn
+Hm
+kf
+yp
+yp
+yp
+qv
+qv
+Js
+oD
+oD
+Js
+KL
+qv
+qv
+yx
+oD
+oD
+yx
+oD
+oD
+yx
+oD
+oD
+oZ
+oZ
+fL
+fL
+XP
+XP
+XP
+XP
+"}
+(30,1,1) = {"
+XP
+XP
+XP
+XP
+oD
+oD
+oD
+oD
+TD
+nV
+Co
+GE
+cT
+bZ
+Lo
+qv
+qv
+yv
+Js
+qv
+xr
+qv
+qv
+Js
+qv
+yp
+yp
+yp
+yp
+um
+um
+um
+yp
+qv
+qv
+qv
+qv
+oD
+oD
+qv
+qv
+xb
+xb
+oZ
+oZ
+oZ
+fL
+fL
+XP
+XP
+XP
+XP
+"}
+(31,1,1) = {"
+XP
+XP
+XP
+XP
+oD
+oD
+oD
+oD
+TD
+Ee
+By
+It
+aR
+TD
+TD
+qv
+qv
+Js
+Js
+qv
+xr
+qv
+Js
+Js
+Js
+qv
+qv
+qv
+qv
+Js
+oD
+oD
+NQ
+lL
+qv
+qv
+oD
+oD
+qM
+qv
+qv
+xb
+qv
+oZ
+oZ
+oZ
+oZ
+fL
+fL
+XP
+XP
+XP
+"}
+(32,1,1) = {"
+XP
+XP
+XP
+XP
+oD
+oD
+oD
+oD
+TD
+TD
+TD
+TD
+TD
+TD
+qv
+qv
+Js
+Js
+iU
+iU
+zw
+iU
+iU
+iU
+hZ
+Js
+qv
+qv
+qv
+Zj
+oD
+oD
+yx
+oD
+oD
+yx
+oD
+oD
+yx
+oD
+oD
+yx
+oD
+oZ
+oZ
+oZ
+oZ
+fL
+fL
+XP
+XP
+XP
+"}
+(33,1,1) = {"
+XP
+XP
+XP
+XP
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+qv
+qv
+Js
+Js
+iU
+iU
+DH
+iL
+JP
+mV
+iU
+Bf
+Bf
+bx
+bx
+Bf
+NU
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oZ
+oZ
+fL
+fL
+XP
+XP
+XP
+XP
+"}
+(34,1,1) = {"
+XP
+XP
+XP
+XP
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+Js
+Js
+Js
+iU
+Yf
+yM
+He
+jG
+Kf
+iU
+BZ
+SK
+px
+px
+SK
+NU
+NU
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oZ
+fL
+fL
+XP
+XP
+XP
+XP
+XP
+"}
+(35,1,1) = {"
+XP
+XP
+XP
+XP
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+ko
+ko
+ko
+ko
+iU
+eF
+XS
+Ji
+yf
+ak
+iU
+Xu
+QZ
+dX
+PF
+px
+pb
+NU
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+fL
+fL
+fL
+fL
+XP
+XP
+XP
+XP
+XP
+"}
+(36,1,1) = {"
+XP
+XP
+XP
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+ko
+ko
+SS
+UX
+gg
+iU
+Lp
+yf
+He
+MN
+lj
+iU
+xo
+cC
+dX
+qC
+px
+xi
+NU
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+"}
+(37,1,1) = {"
+XP
+XP
+XP
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+ko
+Pz
+bV
+bV
+BN
+iU
+wr
+yf
+He
+lf
+mV
+iU
+yj
+Ml
+dX
+dX
+Xz
+PC
+NU
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+"}
+(38,1,1) = {"
+XP
+XP
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+ko
+QC
+bV
+lX
+aT
+iU
+ml
+ls
+He
+pO
+Kf
+iU
+Wx
+dX
+dX
+cN
+iN
+lW
+NU
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+"}
+(39,1,1) = {"
+XP
+XP
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+ko
+qq
+DN
+Xr
+Nd
+NA
+NA
+NA
+NZ
+NA
+NA
+NA
+Gb
+dX
+dX
+Ml
+sL
+fp
+NU
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+"}
+(40,1,1) = {"
+XP
+XP
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+ko
+ko
+ko
+ko
+qk
+ko
+NA
+qA
+fm
+RV
+Xc
+ML
+uF
+cs
+oW
+bo
+CU
+xk
+TR
+NU
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+"}
+(41,1,1) = {"
+XP
+XP
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+ko
+ko
+fK
+zB
+CF
+Qu
+xQ
+NA
+ax
+Tm
+QF
+DC
+ed
+NA
+kn
+cz
+vX
+gu
+QY
+NU
+NU
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+"}
+(42,1,1) = {"
+XP
+XP
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+ko
+RM
+jz
+Ad
+qd
+kJ
+eG
+uF
+SZ
+my
+pS
+Um
+Ju
+NA
+NU
+oh
+AQ
+NU
+Ru
+NU
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+"}
+(43,1,1) = {"
+XP
+XP
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+ko
+pX
+tE
+jz
+YC
+RG
+Os
+NA
+Mw
+AG
+Ky
+Ky
+AG
+NA
+NU
+NU
+NU
+NU
+Wi
+NU
+NU
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+"}
+(44,1,1) = {"
+XP
+XP
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+ko
+ko
+Dp
+My
+Ff
+xu
+MM
+NA
+MW
+NA
+zg
+zg
+NA
+NA
+yi
+NU
+cx
+tb
+rH
+aO
+NU
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+"}
+(45,1,1) = {"
+XP
+XP
+XP
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+ko
+Fj
+bV
+Ng
+Ng
+Ft
+lc
+NA
+dm
+lT
+bj
+Ig
+pG
+NA
+yA
+Lf
+vW
+an
+tA
+Nq
+NU
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+"}
+(46,1,1) = {"
+XP
+XP
+XP
+XP
+oD
+oD
+oD
+oD
+oD
+oD
+ko
+QE
+bV
+bV
+bV
+kL
+Bi
+NA
+AU
+HJ
+vd
+IH
+Tn
+NA
+fF
+NU
+mD
+zh
+Pv
+us
+NU
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+"}
+(47,1,1) = {"
+XP
+XP
+XP
+XP
+oD
+oD
+oD
+oD
+oD
+oD
+ko
+Hs
+xG
+FM
+ip
+LN
+Lz
+NA
+dl
+dl
+NA
+ic
+ic
+NA
+NU
+NU
+es
+NU
+vb
+NU
+NU
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+"}
+(48,1,1) = {"
+XP
+XP
+XP
+XP
+oD
+oD
+oD
+oD
+oD
+oD
+ko
+ko
+ko
+ko
+ko
+ko
+ko
+NA
+nI
+nk
+NA
+hc
+uv
+NA
+yx
+yx
+kq
+yx
+OU
+yx
+yx
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+"}
+(49,1,1) = {"
+XP
+XP
+XP
+XP
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+NA
+NA
+NA
+NA
+NA
+NA
+NA
+yx
+zr
+zr
+zr
+zr
+Js
+yx
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+"}
+(50,1,1) = {"
+XP
+XP
+XP
+XP
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+yx
+Js
+Js
+zr
+zr
+zr
+yx
+oD
+oD
+oD
+oD
+oD
+oD
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+"}
+(51,1,1) = {"
+XP
+XP
+XP
+XP
+XP
+XP
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+Js
+Js
+Js
+qv
+zr
+Js
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+"}
+(52,1,1) = {"
+XP
+XP
+XP
+XP
+XP
+XP
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+qv
+qv
+qv
+qv
+Js
+oD
+oD
+oD
+oD
+oD
+oD
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+"}
+(53,1,1) = {"
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+qv
+qv
+qv
+qv
+qv
+Js
+oD
+oD
+oD
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+"}
+(54,1,1) = {"
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+oD
+Js
+qv
+qv
+qv
+Js
+oD
+oD
+oD
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+"}
+(55,1,1) = {"
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+oD
+oD
+oD
+oD
+oD
+oD
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+oD
+oD
+oD
+oD
+Js
+qv
+qv
+qv
+Js
+oD
+XP
+oD
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+"}
+(56,1,1) = {"
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+oD
+oD
+oD
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+oD
+oD
+qv
+qv
+qv
+qv
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+XP
+"}

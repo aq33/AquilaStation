@@ -12,6 +12,7 @@
 		// przekroczony budżet genetyczny: losowe potrzeby (krew, leki, toksyny) i cechy, których test nie odtwarza
 		/obj/item/plant_seeds/preset/bs_banana,
 		/obj/item/plant_seeds/preset/firelemon,
+		/obj/item/plant_seeds/preset/chili/ice, // lodowa papryka z planet (aq33/AquilaStation#639): 4 cechy przy budżecie 2
 		// ksenoflora rośnie tylko w kapsule, ma własny test (aquila_botany_ported_ksenoflora.dm)
 		/obj/item/plant_seeds/preset/alien/xenoflora,
 	)

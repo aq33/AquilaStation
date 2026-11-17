@@ -1248,3 +1248,53 @@
   - balance: Amunicja klasy I z kuźni szybciej zużywa broń, może ją zaciąć i psuje
       działa okrętowe.
   - imageadd: Młot mechaniczny (sprite z Paradise) i nowe sprite'y wkładek do pancerza.
+'2026-11-17':
+  shiptest-ss13, TerraGov-Marine-Corps, tgstation:
+  - rscadd: 'Planety z lądowaniem: planeta wulkaniczna z burzami popiołu, rudami,
+      ruinami, roślinami i fauną z Shiptesta (siarkodemony, lawowe pędraki, nory i
+      rzadkie kryształowe bestie). Powierzchnia powstaje przy pierwszym lądowaniu
+      i znika po odlocie okrętu, jeśli nikt żywy na niej nie został.'
+  - rscadd: 'Prom z wnętrzem (Sabre) ląduje na planecie: pilot wybiera jedno z trzech
+      lądowisk i ustawia prom kamerą.'
+  - rscadd: Stanowisko rozpoznania skanuje planety (typ, atmosfera, zagrożenia).
+  - rscadd: 'Wyrzutnie kapsuł desantowych w hangarach i płytka w R&D: zrzut na lądowisko,
+      znacznik albo wybrane miejsce na planecie.'
+  - rscadd: Ostrzał planet z orbity ciężką bronią okrętu i lornetka taktyczna dowódcy
+      drużyny do wskazywania celu.
+  - rscadd: Misje „Badanie planety” (próbki i sonda), „Ewakuacja kolonii” (koloniści
+      z ról duchów albo NPC idący za załogą), „Próbki geologiczne” (wiertło na żyle
+      rudy) i „Głęboki odwiert” (próbka z żyły klasy 4).
+  - rscadd: 'Pięć ruin z Shiptesta na planetach wulkanicznych: Dynamitowa Dziura,
+      Zniszczona Fabryka, Rozbity Starwalker, Opuszczony Posterunek Nasłuchowy i Ostatni
+      Bastion Twardogłowych.'
+  - rscadd: Laserowe wiertło górnicze na żyłach rud z falami fauny i awariami oraz
+      georadarowy skaner górniczy.
+  - rscadd: Nieruchome anomalie na planetach, w tym nowa dusza plazmy.
+  - rscadd: 'Łupy z fauny planet: dziwny kryształ, Odczynnik kryształowy, kryształowe
+      serce, siarkowy pył i czujnik rud.'
+  - rscadd: Stałe planety w Tortudze, Ethorze, Bemike i Demon's Maw oraz jedna planeta
+      w każdym układzie generowanym.
+  - imageadd: Sprite'y terenu, roślin i fauny planet z Shiptesta oraz kapsuły desantowej
+      z TGMC.
+  - soundadd: Dźwięki startu i lądowania kapsuły desantowej z TGMC.
+  - bugfix: Neutralizowana anomalia zostawia rdzeń swojego typu, a nie zawsze ogólny.
+      Anomalie strumienia, grawitacyjna, bluespace i wirowa mają własne rdzenie.
+  - rscadd: 'Wszystkie typy planet z Shiptesta: lodowa, dżunglowa, skalista, białe
+      piaski, pustynna, mglista, oceaniczna, wodna, wysypisko, pole bitwy, księżyc,
+      pole asteroid, słaby sygnał, planety karłowate oraz gazowy i plazmowy olbrzym
+      z platformą i syfonem gazu. Typ planety zależy od rodzaju układu.'
+  - rscadd: Ruiny Shiptesta na każdym typie planety (ponad 50) i małe szablony terenu
+      (greeble).
+  - rscadd: 'Fauna planet z tg i Shiptesta: wilki, niedźwiedzie polarne i jaskiniowe,
+      demony lodowe, młode smoki lodowe, homarzyska, śnieżne małpy, kapibary, mrówkolwy,
+      cragenoy, warianty goliatów i bazyliszków oraz automaty wysypisk.'
+  - rscadd: 'Pogoda planet: deszcze i burze z piorunami, śnieżyce, grad, burze piaskowe
+      i elektryczne, toksyczny deszcz i opad radioaktywny, z dźwiękami.'
+  - rscadd: 'Pływanie w głębokiej wodzie i wędkarstwo z minigrą (port z tg): wędki,
+      przynęta, łowiska na planetach i ryby na filety.'
+  - rscadd: 'Nowe anomalie z Shiptesta z rdzeniami: tętna, iskrząca, szumu, fontanny,
+      widmowa, topiąca, transfuzyjna, chronograf oraz ogromne wersje.'
+  - soundadd: Dźwięki deszczu, wiatru i grzmotów z Shiptesta.
+  - bugfix: 'Usunięte drzwi i alarmy powietrza nie zostają w pamięci. Kliknięcie ręką
+      podłogi pod otwartymi drzwiami je zamyka, jak było zaplanowane (chyba że coś
+      ciągniesz: wtedy przeciągasz to na pole drzwi).'

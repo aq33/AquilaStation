@@ -9,8 +9,8 @@
 	W oryginale rośliny były osobnym systemem (/datum/xenoflora_plant), tu są cechami owocu.
 */
 
-/// Podłoże kapsuły ksenoflory, poza nią go nie ma
-#define PLANT_SUBSTRATE_XENOFLORA (1<<4)
+/// Podłoże kapsuły ksenoflory, poza nią go nie ma (1<<4 to podłoże wodne akwakultury)
+#define PLANT_SUBSTRATE_XENOFLORA (1<<5)
 
 /*
 	Podłoże kapsuły: przyjmuje każdą roślinę, a do tego korzenie ksenoflory
@@ -19,7 +19,7 @@
 	name = "podłoże kapsuły ksenoflory"
 	tooltip = "Pasuje do każdej rośliny, a korzenie ksenoflory rosną tylko w nim."
 	icon_state = "fairy"
-	substrate_flags = PLANT_SUBSTRATE_DIRT | PLANT_SUBSTRATE_SAND | PLANT_SUBSTRATE_CLAY | PLANT_SUBSTRATE_DEBRIS | PLANT_SUBSTRATE_XENOFLORA
+	substrate_flags = PLANT_SUBSTRATE_DIRT | PLANT_SUBSTRATE_SAND | PLANT_SUBSTRATE_CLAY | PLANT_SUBSTRATE_DEBRIS | PLANT_SUBSTRATE_WATER | PLANT_SUBSTRATE_XENOFLORA
 
 /*
 	Korzenie ksenoflory
@@ -385,9 +385,9 @@
 		if(SOUTH)
 			y_offset = -distance
 		if(EAST)
-			x_offset = -distance
-		if(WEST)
 			x_offset = distance
+		if(WEST)
+			x_offset = -distance
 	var/turf/tele_center = locate(clamp(M.x + x_offset, 1, world.maxx), clamp(M.y + y_offset, 1, world.maxy), M.z)
 	if(!tele_center)
 		return

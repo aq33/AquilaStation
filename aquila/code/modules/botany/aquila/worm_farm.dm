@@ -1,17 +1,7 @@
 // AQUILA - farma dżdżownic (wzór: Skyrat/Bubberstation /obj/structure/wormfarm, modular_skyrat/modules/ashwalkers/code/buildings/wormfarm.dm)
 // Beczka z dżdżownicami. Karmiona jedzeniem co pół minuty przerabia jedną porcję na nawóz (mniej niż kompostownik),
-// a dżdżownice się mnożą i można je wygrzebać ręką. Nie mamy wędkarstwa, więc dżdżownica nie jest przynętą,
-// służy tylko do zakładania kolejnych farm (i można ją zjeść).
-
-/obj/item/food/worm
-	name = "dżdżownica"
-	desc = "Wijąca się dżdżownica. Chyba nie zamierzasz jej zjeść?"
-	icon = 'aquila/icons/obj/hydroponics/compost.dmi'
-	icon_state = "worm"
-	food_reagents = list(/datum/reagent/consumable/nutriment/protein = 1)
-	tastes = list("mięso" = 1, "robaki" = 1)
-	foodtypes = GROSS | MEAT | BUGS
-	w_class = WEIGHT_CLASS_TINY
+// a dżdżownice się mnożą i można je wygrzebać ręką. Dżdżownica to robak na przynętę z wędkarstwa planet
+// (/obj/item/food/fishing_worm, aquila/code/modules/planets/water/fishing_rod.dm).
 
 /obj/structure/worm_farm
 	name = "farma dżdżownic"
@@ -60,7 +50,8 @@
 		return
 	if(current_worm < max_worm)
 		current_worm++
-	if(current_food > 0 && reagents.total_volume < reagents.maximum_volume)
+	//Porcja jedzenia znika tylko wtedy, gdy cały nawóz z niej zmieści się w beczce
+	if(current_food > 0 && reagents.maximum_volume - reagents.total_volume >= fertilizer_per_food)
 		current_food--
 		reagents.add_reagent(reagent_id, fertilizer_per_food)
 
@@ -91,7 +82,7 @@
 		in_use = FALSE
 		return
 	current_worm--
-	var/obj/item/food/worm/worm = new(drop_location())
+	var/obj/item/food/fishing_worm/worm = new(drop_location())
 	user.put_in_hands(worm)
 	in_use = FALSE
 	return TRUE
@@ -102,7 +93,7 @@
 	if(item.is_refillable())
 		return FALSE //nalewanie nawozu w afterattack pojemnika
 	//dżdżownica to też jedzenie, więc najpierw ona
-	if(istype(item, /obj/item/food/worm))
+	if(istype(item, /obj/item/food/fishing_worm))
 		if(current_worm >= max_worm)
 			balloon_alert(user, "beczka jest pełna dżdżownic")
 			return TRUE
@@ -139,7 +130,7 @@
 	in_use = TRUE
 	var/fed = 0
 	for(var/obj/item/food/food in bag.contents)
-		if(istype(food, /obj/item/food/worm))
+		if(istype(food, /obj/item/food/fishing_worm))
 			continue
 		if(!do_after(user, 1 SECONDS, target = src))
 			break
@@ -162,7 +153,7 @@
 	if(!(flags_1 & NODECONSTRUCT_1))
 		new /obj/item/stack/sheet/mineral/wood(drop_location(), 5)
 		for(var/i in 1 to current_worm)
-			new /obj/item/food/worm(drop_location())
+			new /obj/item/food/fishing_worm(drop_location())
 		current_worm = 0
 	return ..()
 
@@ -171,7 +162,7 @@
 	result = /obj/structure/worm_farm
 	reqs = list(
 		/obj/item/stack/sheet/mineral/wood = 5,
-		/obj/item/food/worm = 2,
+		/obj/item/food/fishing_worm = 2,
 	)
 	time = 4 SECONDS
 	category = CAT_STRUCTURE
@@ -181,9 +172,9 @@
 /datum/crafting_recipe/worm_farm/on_craft_completion(mob/user, atom/result)
 	var/obj/structure/worm_farm/farm = result
 	if(istype(farm))
-		farm.current_worm = reqs[/obj/item/food/worm]
+		farm.current_worm = reqs[/obj/item/food/fishing_worm]
 
 /// Dżdżownice na start pierwszej farmy w automacie NutriMax w hydroponice
 /obj/machinery/vending/hydronutrients/Initialize(mapload)
-	products[/obj/item/food/worm] = 6
+	products[/obj/item/food/fishing_worm] = 6
 	return ..()

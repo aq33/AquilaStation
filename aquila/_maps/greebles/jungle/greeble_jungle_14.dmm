@@ -1,0 +1,105 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/structure/flora/grass/jungle,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"l" = (
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"o" = (
+/turf/template_noop,
+/area/template_noop)
+"t" = (
+/turf/closed/wall,
+/area/template_noop)
+"u" = (
+/obj/structure/flora/rock/jungle,
+/turf/open/floor/plating/rust{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"x" = (
+/obj/structure/flora/grass/jungle/b,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"z" = (
+/obj/structure/girder,
+/turf/open/floor/plating/rust{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"E" = (
+/obj/structure/flora/junglebush,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"L" = (
+/turf/closed/wall/rust,
+/area/template_noop)
+"O" = (
+/obj/structure/flora/tree/jungle/small,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"Q" = (
+/obj/item/stack/ore/iron{
+	amount = 5
+	},
+/turf/open/floor/plating/rust{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"Z" = (
+/obj/structure/flora/ash/garden,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+
+(1,1,1) = {"
+o
+E
+L
+x
+o
+o
+"}
+(2,1,1) = {"
+l
+Z
+z
+a
+l
+a
+"}
+(3,1,1) = {"
+o
+a
+L
+Z
+Q
+L
+"}
+(4,1,1) = {"
+l
+Z
+t
+u
+o
+o
+"}
+(5,1,1) = {"
+o
+x
+l
+O
+x
+o
+"}
+(6,1,1) = {"
+o
+o
+o
+l
+o
+o
+"}

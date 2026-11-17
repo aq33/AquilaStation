@@ -53,5 +53,14 @@
 	var/datum/plant_feature/fruit/blood_fruit = new_feature
 	TEST_ASSERT(isnull(blood_fruit.try_reagent_mutation(2, TRUE)), "Krwisty pomidor zmutował sam w siebie")
 
+// Zwykły cykl wzrostu (process) też wywołuje mutację; przy delta_time 60 szansa przekracza 100%, więc wynik jest pewny
+	var/obj/item/plant_tray/process_tray = allocate(/obj/item/plant_tray, get_step(origin, NORTH))
+	var/datum/component/plant/process_plant = plant_tomato(process_tray)
+	TEST_ASSERT_NOTNULL(process_plant, "Nie udało się posadzić trzeciego pomidora")
+	process_tray.reagents.add_reagent(/datum/reagent/blood, 15)
+	var/datum/plant_feature/fruit/process_fruit = locate() in process_plant.plant_features
+	process_fruit.process(60)
+	TEST_ASSERT(locate(/datum/plant_feature/fruit/tomato/blood) in process_plant.plant_features, "Cykl wzrostu (process) z krwią w tacy nie zmienił pomidora w krwisty")
+
 #undef TEST_ASSERT
 #undef TEST_ASSERT_NOTNULL

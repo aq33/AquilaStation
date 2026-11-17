@@ -33,6 +33,16 @@
 	if(meat_type)
 		AddElement(/datum/element/processable, TOOL_KNIFE, meat_type, 1, 2 SECONDS, screentip_verb = "Otwórz")
 
+/// Zamknięta skorupa zostaje jedzeniem (komponent edible), ale zjeść da się dopiero mięso po otwarciu nożem
+/obj/item/food/grown/shellfish/make_edible()
+	. = ..()
+	var/datum/component/edible/edible = GetComponent(/datum/component/edible)
+	edible?.pre_eat = CALLBACK(src, PROC_REF(closed_shell_pre_eat))
+
+/obj/item/food/grown/shellfish/proc/closed_shell_pre_eat(mob/living/eater, mob/living/feeder)
+	to_chat(feeder || eater, span_warning("[src] ma zamkniętą skorupę. Najpierw otwórz go nożem."))
+	return FALSE
+
 /// Mięso skorupiaka po otwarciu - składnik do kuchni
 /obj/item/food/shellfish_meat
 	name = "surowe mięso skorupiaka"

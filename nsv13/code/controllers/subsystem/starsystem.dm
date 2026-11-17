@@ -716,6 +716,8 @@ Returns a faction datum by its name (case insensitive!)
 			continue
 		if(OM.z != z)
 			continue
+		if(istype(OM, /obj/structure/overmap/planet)) // AQ EDIT - planeta stoi w miejscu, nie wciąga jej ani nie zgniata
+			continue
 		if(overmap_dist(src, OM) <= influence_range)
 			affecting += OM
 			grav_tracker[OM] = 0

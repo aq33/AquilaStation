@@ -164,7 +164,10 @@
 	seed_icon = 'aquila/icons/obj/hydroponics/ported_inne_seeds.dmi'
 	seed_icon_state = "seed-seethingtomato"
 	fruit_product = /obj/item/food/grown/tomato/seething
-	plant_traits = list(/datum/plant_trait/reagent/fruit/nutriment, /datum/plant_trait/reagent/fruit/vitamin, /datum/plant_trait/fruit/temperature)
+	//liquid_contents/sensitive aktywuje grzanie przy użyciu i rzucie, bez rozlania zawartości (jak wiśniowa bomba).
+	//Dwie cechy po 1 i dwa odczynniki po 0,25 to 2,5 punktu, więc budżet 3 (domyślne 2 dałoby losowe dodatkowe potrzeby)
+	genetic_budget = 3
+	plant_traits = list(/datum/plant_trait/reagent/fruit/nutriment, /datum/plant_trait/fruit/temperature, /datum/plant_trait/fruit/liquid_contents/sensitive)
 	fast_reagents = list(/datum/reagent/fuel = PLANT_REAGENT_MEDIUM)
 	mutations = list(/datum/plant_feature/fruit/tomato)
 	trait_power = 1.5

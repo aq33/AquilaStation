@@ -1,0 +1,95 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"i" = (
+/turf/template_noop,
+/area/template_noop)
+"m" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"t" = (
+/obj/structure/flora/rock/pile/icy{
+	pixel_y = 11
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"C" = (
+/obj/structure/flora/rock/pile/icy{
+	pixel_y = 8
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"J" = (
+/obj/structure/flora/rock/pile/icy{
+	pixel_x = 11;
+	 pixel_y = -6
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"M" = (
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"O" = (
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"W" = (
+/mob/living/basic/mining/wolf{
+	name = "słabowity wilk";
+	 faction = list("neutral");
+	 desc = "Biały wilk, który wygląda na mocno niedożywionego. Ktoś go tu zostawił?"
+	},
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"X" = (
+/obj/structure/flora/tree/pine,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+
+(1,1,1) = {"
+i
+i
+O
+O
+O
+i
+"}
+(2,1,1) = {"
+i
+m
+M
+C
+O
+O
+"}
+(3,1,1) = {"
+i
+M
+W
+m
+t
+J
+"}
+(4,1,1) = {"
+M
+m
+X
+M
+M
+O
+"}
+(5,1,1) = {"
+i
+M
+m
+M
+m
+i
+"}
+(6,1,1) = {"
+i
+M
+M
+i
+i
+i
+"}

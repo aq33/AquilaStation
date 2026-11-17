@@ -115,7 +115,7 @@
 		shuttle_manual_landing_end(eye)
 		shuttle_manual_landing_fallback(OM)
 		return FALSE
-	var/turf/spot_turf = get_turf(eye)
+	var/turf/spot_turf = eye.landing_port_turf()
 	var/spot_dir = eye.landing_dir
 	if(!spot_turf || !shuttle_spot_free(OM, spot_turf.x, spot_turf.y, spot_turf.z, shuttle_rotate_offsets(hull_offsets, spot_dir)))
 		if(user)
@@ -150,6 +150,9 @@
 	var/list/hull_images = list()
 	/// Obraz pola przed włazem -> przesunięcie
 	var/list/exit_images = list()
+	/// Przesunięcie mobilnego portu względem kamery: kamera trzyma środek obrysu (port leży w rogu kadłuba, więc
+	/// obrys rysował się z boku widoku i nie było widać, gdzie prom wyląduje)
+	var/list/port_shift = list(0, 0)
 	var/list/datum/action/innate/shuttle_craft_landing/landing_actions = list()
 
 /mob/camera/ai_eye/remote/shuttle_craft_landing/proc/start(obj/structure/overmap/small_craft/transport/new_craft, obj/structure/overmap/target, mob/living/user)
@@ -189,12 +192,29 @@
 /mob/camera/ai_eye/remote/shuttle_craft_landing/proc/update_offsets()
 	var/list/hull = craft.shuttle_rotate_offsets(craft.hull_offsets, landing_dir)
 	var/list/exits = craft.shuttle_rotate_offsets(craft.exit_offsets, landing_dir)
+	if(length(hull))
+		var/min_x = INFINITY
+		var/max_x = -INFINITY
+		var/min_y = INFINITY
+		var/max_y = -INFINITY
+		for(var/list/offset as anything in hull)
+			min_x = min(min_x, offset[1])
+			max_x = max(max_x, offset[1])
+			min_y = min(min_y, offset[2])
+			max_y = max(max_y, offset[2])
+		port_shift = list(-round((min_x + max_x) / 2), -round((min_y + max_y) / 2))
 	var/i = 0
 	for(var/image/I as anything in hull_images)
 		hull_images[I] = hull[++i]
 	i = 0
 	for(var/image/I as anything in exit_images)
 		exit_images[I] = exits[++i]
+
+/// Pole, na którym stanie mobilny port, gdy prom wyląduje pod kamerą (obrys na środku widoku)
+/mob/camera/ai_eye/remote/shuttle_craft_landing/proc/landing_port_turf()
+	var/turf/here = get_turf(src)
+	if(here)
+		return locate(here.x + port_shift[1], here.y + port_shift[2], here.z)
 
 /mob/camera/ai_eye/remote/shuttle_craft_landing/proc/rotate()
 	landing_dir = turn(landing_dir, -90)
@@ -203,7 +223,7 @@
 
 /// Przesuwa obrys pod kamerę i koloruje pola: zielone wolne, czerwone zajęte
 /mob/camera/ai_eye/remote/shuttle_craft_landing/proc/update_preview()
-	var/turf/here = get_turf(src)
+	var/turf/here = landing_port_turf()
 	if(!here || QDELETED(craft) || QDELETED(landing_target))
 		landing_clear = FALSE
 		return

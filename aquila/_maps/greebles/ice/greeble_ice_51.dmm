@@ -1,0 +1,127 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"t" = (
+/obj/structure/flora/ausbushes/ppflowers,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"x" = (
+/turf/template_noop,
+/area/template_noop)
+"J" = (
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"P" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"T" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/mob/living/basic/mining/wolf,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"W" = (
+/obj/structure/flora/tree/pine,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"Y" = (
+/obj/structure/flora/ash/garden/frigid,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+
+(1,1,1) = {"
+x
+x
+x
+x
+x
+x
+J
+J
+Y
+t
+J
+J
+"}
+(2,1,1) = {"
+x
+x
+x
+x
+x
+J
+J
+J
+J
+W
+P
+t
+"}
+(3,1,1) = {"
+x
+x
+J
+t
+J
+J
+t
+T
+P
+P
+P
+J
+"}
+(4,1,1) = {"
+x
+P
+P
+Y
+J
+J
+W
+Y
+J
+J
+x
+x
+"}
+(5,1,1) = {"
+x
+J
+W
+P
+P
+J
+J
+J
+J
+x
+x
+x
+"}
+(6,1,1) = {"
+J
+P
+J
+t
+J
+x
+x
+x
+x
+x
+x
+x
+"}
+(7,1,1) = {"
+P
+t
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+"}

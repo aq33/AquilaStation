@@ -48,6 +48,10 @@
 	tray.reagents.add_reagent(/datum/reagent/water, 150)
 	TEST_ASSERT(!plant_broombush(tray), "Miotlarz dał się posadzić w zwykłej tacce")
 	TEST_ASSERT(!length(tray_planter.plants), "W zwykłej tacce pojawiła się ksenoflora")
+	//Ani na podłożu wodnym akwakultury (osobny bit podłoża)
+	tray_planter.set_substrate(/datum/plant_subtrate/water)
+	TEST_ASSERT(!plant_broombush(tray), "Miotlarz dał się posadzić w tacce z podłożem wodnym")
+	TEST_ASSERT(!length(tray_planter.plants), "W tacce z podłożem wodnym pojawiła się ksenoflora")
 
 /datum/unit_test/aquila_botany_ksenoflora/proc/plant_broombush(atom/target)
 	var/obj/item/plant_seeds/seeds = allocate(/obj/item/plant_seeds/preset/alien/xenoflora/broombush, get_turf(target))
