@@ -33,6 +33,10 @@
 	shuttle.forceMove(locate(14, 10, run_loc_floor_bottom_left.z))
 	if(shuttle.overmap_display_scale() != 1)
 		return "Kapsuła ratunkowa na pokładzie ma skalę [shuttle.overmap_display_scale()] zamiast 1"
+	var/obj/structure/overmap/small_craft/combat/light/syndicate/pvp = allocate(/obj/structure/overmap/small_craft/combat/light/syndicate)
+	pvp.forceMove(locate(18, 10, run_loc_floor_bottom_left.z))
+	if(pvp.overmap_display_scale() != 1)
+		return "Myśliwiec Syndykatu (PvP) na pokładzie ma skalę [pvp.overmap_display_scale()] zamiast 1"
 	// Stary sprite: hitbox z dzisiejszej ikony (klatka 96 px), nie ze starej (256 px)
 	var/list/ref = overmap_sprite_bounds_of(old_sprite.overmap_hitbox_icon, old_sprite.overmap_hitbox_state)
 	if(!ref)

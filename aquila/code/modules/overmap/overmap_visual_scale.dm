@@ -21,6 +21,10 @@
 /obj/structure/overmap/small_craft/combat
 	deck_display_proportion = 2
 
+// Myśliwce Syndykatu zostają ×1: stoją w zatokach map PvP i we wnętrzach abordażu lotniskowców, które nie mają miejsca na ×2
+/obj/structure/overmap/small_craft/combat/light/syndicate
+	deck_display_proportion = 1
+
 /// Obrys stanu ikony z tabeli generowanej: list(klatka x, klatka y, kadłub x, kadłub y, przesunięcie środka x, y) albo null
 /proc/overmap_sprite_bounds_of(icon_file, state)
 	return GLOB.overmap_sprite_bounds["[icon_file]|[state]"]
