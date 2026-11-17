@@ -744,4 +744,231 @@
 	TEST_ASSERT(!arm.aq_nerve_cut, "The suture did not fix the nerve")
 	TEST_ASSERT(patient.aq_limb_pain(arm) > 0, "The arm does not hurt after the suture")
 	qdel(suture)
+
+/// Teeth: a blunt blow to the mouth knocks them out, few teeth make the speech lisp, a dentist pulls and plants them
+/datum/unit_test/aquila_teeth
+
+/datum/unit_test/aquila_teeth/Run()
+	var/mob/living/carbon/human/patient = allocate(/mob/living/carbon/human)
+	var/mob/living/carbon/human/attacker = allocate(/mob/living/carbon/human)
+	var/obj/item/bodypart/head/head = patient.get_bodypart(BODY_ZONE_HEAD)
+	TEST_ASSERT(head.aq_teeth == 32, "A head does not start with 32 teeth")
+
+	// Blows to the mouth: blunt knocks teeth out, sharp does not, other zones do not
+	attacker.zone_selected = BODY_ZONE_PRECISE_MOUTH
+	var/knocked = 0
+	for(var/i in 1 to 100)
+		knocked += patient.aq_try_knock_teeth(attacker, 15, WEIGHT_CLASS_NORMAL, FALSE)
+		if(knocked)
+			break
+	TEST_ASSERT(knocked > 0 && head.aq_teeth == 32 - knocked, "100 blunt blows to the mouth never knocked a tooth out")
+	var/obj/item/stack/teeth/teeth = locate() in range(3, patient)
+	TEST_ASSERT(teeth, "The knocked out teeth did not fall out")
+	for(var/i in 1 to 100)
+		TEST_ASSERT(!patient.aq_try_knock_teeth(attacker, 15, WEIGHT_CLASS_NORMAL, TRUE), "A sharp weapon knocked teeth out")
+	attacker.zone_selected = BODY_ZONE_HEAD
+	for(var/i in 1 to 100)
+		TEST_ASSERT(!patient.aq_try_knock_teeth(attacker, 15, WEIGHT_CLASS_NORMAL, FALSE), "A blow to the head (not the mouth) knocked teeth out")
+
+	// Speech lisps without teeth
+	head.aq_teeth = 0
+	TEST_ASSERT(findtext(patient.treat_message("szansa"), "ś"), "No teeth and no lisp")
+	head.aq_teeth = 32
+	TEST_ASSERT(!findtext(patient.treat_message("szansa"), "ś"), "A full mouth lisps")
+
+	// The dentist pulls a tooth and plants it back
+	var/datum/surgery_operation/limb/aq_pull_tooth/pull = new()
+	pull.on_success(head, attacker, null, list())
+	TEST_ASSERT(head.aq_teeth == 31, "Pulling did not take a tooth out")
+	qdel(pull)
+	var/obj/item/stack/teeth/prosthetic/five/prosthetic = allocate(/obj/item/stack/teeth/prosthetic/five)
+	var/datum/surgery_operation/limb/aq_insert_tooth/insert = new()
+	TEST_ASSERT(insert.state_check(head), "A missing tooth cannot be planted")
+	insert.on_success(head, attacker, prosthetic, list())
+	TEST_ASSERT(head.aq_teeth == 32 && prosthetic.amount == 4, "Planting did not use a prosthetic tooth")
+	TEST_ASSERT(!insert.state_check(head), "A tooth can be planted in a full mouth")
+	qdel(insert)
+
+/// A new brain or head: limp limbs until the brain stem surgery, then weakness
+/datum/unit_test/aquila_brainstem
+
+/datum/unit_test/aquila_brainstem/Run()
+	var/mob/living/carbon/human/patient = allocate(/mob/living/carbon/human)
+	var/datum/wound/spinal/brainstem/wound = patient.aq_disconnect_brainstem()
+	TEST_ASSERT(istype(wound), "No brain stem wound after a transplant")
+	var/obj/item/bodypart/arm = patient.get_bodypart(BODY_ZONE_L_ARM)
+	var/obj/item/bodypart/leg = patient.get_bodypart(BODY_ZONE_R_LEG)
+	TEST_ASSERT(arm.disabled == BODYPART_DISABLED_PARALYSIS && leg.disabled == BODYPART_DISABLED_PARALYSIS, "The limbs work before the brain stem is joined")
+
+	// The spine surgeries do not touch it, the brain stem surgery does
+	var/obj/item/bodypart/chest = patient.get_bodypart(BODY_ZONE_CHEST)
+	var/datum/surgery_operation/limb/stabilize_spine/stabilize = new()
+	TEST_ASSERT(!stabilize.state_check(chest), "The spine surgery treats the brain stem")
+	qdel(stabilize)
+	var/obj/item/bodypart/head = patient.get_bodypart(BODY_ZONE_HEAD)
+	var/datum/surgery_operation/limb/aq_connect_brainstem/connect = new()
+	TEST_ASSERT(connect.state_check(head), "The brain stem cannot be joined")
+	connect.on_success(head, patient, null, list())
+	qdel(connect)
+	TEST_ASSERT(!chest.get_wound(WOUND_SPINE), "The brain stem wound stayed after the surgery")
+	TEST_ASSERT(arm.disabled != BODYPART_DISABLED_PARALYSIS && leg.disabled != BODYPART_DISABLED_PARALYSIS, "The limbs stay limp after the surgery")
+	TEST_ASSERT(patient.has_status_effect(/datum/status_effect/aq_transplant_weakness), "No weakness after the transplant")
+
+/// A jammed suit cannot be taken off by the wearer; someone cuts it off with a welder and it leaks until taped
+/datum/unit_test/aquila_spacesuit_jam
+
+/datum/unit_test/aquila_spacesuit_jam/Run()
+	var/mob/living/carbon/human/wearer = allocate(/mob/living/carbon/human)
+	var/obj/item/clothing/suit/space/suit = allocate(/obj/item/clothing/suit/space)
+	TEST_ASSERT(wearer.equip_to_slot_if_possible(suit, ITEM_SLOT_OCLOTHING), "Could not put the suit on")
+	for(var/i in 1 to 300)
+		if(suit.aq_jammed)
+			break
+		wearer.apply_damage(25, BRUTE, BODY_ZONE_CHEST)
+		wearer.adjustBruteLoss(-25)
+	TEST_ASSERT(suit.aq_jammed, "300 heavy hits never jammed the suit")
+	TEST_ASSERT(!wearer.dropItemToGround(suit), "The wearer took off a jammed suit")
+	var/mob/living/carbon/human/rescuer = allocate(/mob/living/carbon/human)
+	var/obj/item/weldingtool/welder = allocate(/obj/item/weldingtool/experimental)
+	welder.toolspeed = 0.01
+	welder.welding = TRUE
+	rescuer.put_in_active_hand(welder)
+	rescuer.set_combat_mode(FALSE)
+	rescuer.zone_selected = BODY_ZONE_CHEST
+	suit.aq_cut_out(wearer, welder, rescuer)
+	TEST_ASSERT(!suit.aq_jammed && suit.loc != wearer, "The rescuer did not cut the suit off")
+	TEST_ASSERT(suit.aq_cut && !(suit.clothing_flags & STOPSPRESSUREDAMAGE), "The cut suit still holds pressure")
+
+/// Embalmed organs do not rot; a husk with rezadone in the blood is rebuilt by surgery
+/datum/unit_test/aquila_embalming
+
+/datum/unit_test/aquila_embalming/Run()
+	var/mob/living/carbon/human/corpse = allocate(/mob/living/carbon/human)
+	corpse.death()
+	var/obj/item/bodypart/chest = corpse.get_bodypart(BODY_ZONE_CHEST)
+	var/obj/item/reagent_containers/glass/beaker/beaker = allocate(/obj/item/reagent_containers/glass/beaker)
+	beaker.reagents.add_reagent(/datum/reagent/toxin/formaldehyde, 20)
+	var/datum/surgery_operation/limb/aq_embalm/embalm = new()
+	TEST_ASSERT(embalm.state_check(chest) && embalm.tool_check(beaker), "A corpse cannot be embalmed")
+	embalm.on_success(chest, corpse, beaker, list())
+	qdel(embalm)
+	TEST_ASSERT(HAS_TRAIT(corpse, TRAIT_AQ_EMBALMED), "The corpse was not embalmed")
+	corpse.reagents.clear_reagents()
+	var/obj/item/organ/liver/liver = corpse.getorganslot(ORGAN_SLOT_LIVER)
+	var/damage = liver.damage
+	for(var/i in 1 to 20)
+		liver.on_death()
+	TEST_ASSERT(liver.damage == damage, "The organs of an embalmed corpse rot")
+
+	corpse.become_husk("burn")
+	var/datum/surgery_operation/limb/aq_unhusk/unhusk = new()
+	TEST_ASSERT(!unhusk.state_check(chest), "A husk is rebuilt without rezadone")
+	corpse.reagents.add_reagent(/datum/reagent/medicine/rezadone, 5)
+	TEST_ASSERT(unhusk.state_check(chest), "A husk with rezadone cannot be rebuilt")
+	unhusk.on_success(chest, corpse, null, list())
+	TEST_ASSERT(!HAS_TRAIT(corpse, TRAIT_HUSK), "The husk was not rebuilt")
+	corpse.become_husk(CHANGELING_DRAIN)
+	corpse.reagents.add_reagent(/datum/reagent/medicine/rezadone, 5)
+	TEST_ASSERT(!unhusk.state_check(chest), "A changeling husk can be rebuilt")
+	qdel(unhusk)
+
+/// The cloning console reads the mind only from a cortical stack
+/datum/unit_test/aquila_cortical_stack
+
+/datum/unit_test/aquila_cortical_stack/Run()
+	var/mob/living/carbon/human/patient = allocate(/mob/living/carbon/human)
+	patient.mind_initialize()
+	var/obj/item/organ/cortical_stack/stack = patient.getorganslot(ORGAN_SLOT_CORTICAL_STACK)
+	TEST_ASSERT(istype(stack), "A human has no cortical stack")
+	var/obj/machinery/computer/cloning/console = allocate(/obj/machinery/computer/cloning)
+	TEST_ASSERT(console.can_scan(patient.dna, patient, null, FALSE), "A body with a stack cannot be scanned")
+	stack.Remove(patient)
+	TEST_ASSERT(stack.recorded_name == patient.real_name, "The removed stack did not keep the mind")
+	TEST_ASSERT(!console.can_scan(patient.dna, patient, null, FALSE), "A body without a stack can be cloned")
+	TEST_ASSERT(console.can_scan(patient.dna, patient, null, TRUE), "A body without a stack cannot be scanned body-only")
+
+/// Bay augments: armor, muscles, aim; Eris organ upgrades
+/datum/unit_test/aquila_augments
+
+/datum/unit_test/aquila_augments/Run()
+	var/mob/living/carbon/human/patient = allocate(/mob/living/carbon/human)
+	var/melee = patient.physiology.armor.melee
+	var/obj/item/organ/cyberimp/chest/aq_subdermal_armor/armor = new()
+	armor.Insert(patient)
+	TEST_ASSERT(patient.physiology.armor.melee > melee, "Subdermal armor gives no armor")
+	armor.Remove(patient)
+	TEST_ASSERT(patient.physiology.armor.melee == melee, "Subdermal armor stays after removal")
+	qdel(armor)
+	var/obj/item/organ/cyberimp/chest/aq_muscle/muscle = new()
+	muscle.Insert(patient)
+	TEST_ASSERT(patient.unarmed_damage_bonus > 0, "The muscle augment gives no punch bonus")
+	qdel(muscle)
+	TEST_ASSERT(patient.unarmed_damage_bonus == 0, "The muscle bonus stays after removal")
+
+	// Organ upgrades go into a removed organ only, two per organ
+	var/obj/item/organ/liver/liver = patient.getorganslot(ORGAN_SLOT_LIVER)
+	var/obj/item/aq_organ_mod/durable/durable = new(patient.loc)
+	TEST_ASSERT(!durable.try_apply(liver, patient), "An upgrade went into an organ still in the body")
+	liver.Remove(patient)
+	var/max_health = liver.maxHealth
+	patient.put_in_active_hand(durable)
+	TEST_ASSERT(durable.try_apply(liver, patient), "An upgrade did not go into a removed organ")
+	TEST_ASSERT(liver.maxHealth > max_health, "The durable membrane did not toughen the organ")
+	var/obj/item/aq_organ_mod/stem_cells/cells = new(patient.loc)
+	patient.put_in_active_hand(cells)
+	TEST_ASSERT(cells.try_apply(liver, patient), "A second upgrade did not fit")
+	var/obj/item/aq_organ_mod/symbiont/symbiont = new(patient.loc)
+	patient.put_in_active_hand(symbiont)
+	TEST_ASSERT(!symbiont.try_apply(liver, patient), "A third upgrade fit without gel")
+	var/damage = liver.damage
+	liver.applyOrganDamage(10)
+	TEST_ASSERT(liver.damage - damage < 10, "Stem cells did not lower the damage")
+
+/// Aberrant organ: three organoids in a scaffold, in the chest it reacts to its input
+/datum/unit_test/aquila_aberrant
+
+/datum/unit_test/aquila_aberrant/Run()
+	var/mob/living/carbon/human/patient = allocate(/mob/living/carbon/human)
+	var/obj/item/organ/aq_aberrant/scaffold = allocate(/obj/item/organ/aq_aberrant)
+	var/obj/item/aq_organoid/input/reagent/input = new(patient.loc)
+	input.trigger_reagent = /datum/reagent/water
+	var/obj/item/aq_organoid/process/tubular/processor = new(patient.loc)
+	var/obj/item/aq_organoid/output/reagent/output = new(patient.loc)
+	output.made_reagent = /datum/reagent/medicine/spaceacillin
+	for(var/obj/item/aq_organoid/organoid in list(input, processor, output))
+		patient.put_in_active_hand(organoid)
+		scaffold.attackby(organoid, patient)
+	TEST_ASSERT(scaffold.is_complete(), "The scaffold did not take the three organoids")
+	scaffold.Insert(patient)
+	TEST_ASSERT(scaffold.owner == patient && findtext(scaffold.slot, "aq_aberrant"), "The aberrant organ did not go into an extra slot")
+	scaffold.on_life()
+	TEST_ASSERT(!patient.reagents.has_reagent(/datum/reagent/medicine/spaceacillin), "The organ acted without its input")
+	patient.reagents.add_reagent(/datum/reagent/water, 5)
+	scaffold.on_life()
+	TEST_ASSERT(patient.reagents.has_reagent(/datum/reagent/medicine/spaceacillin), "The organ did not act on its input")
+
+	// The organ printer prints from biomass made by the recycler
+	var/obj/machinery/aq_biomass_recycler/recycler = allocate(/obj/machinery/aq_biomass_recycler)
+	var/obj/item/aq_teratoma/teratoma = allocate(/obj/item/aq_teratoma)
+	TEST_ASSERT(recycler.biomass_value(teratoma) > 0, "The recycler does not take a teratoma")
+	var/obj/machinery/aq_organ_printer/printer = allocate(/obj/machinery/aq_organ_printer)
+	printer.finish_print(/obj/item/aq_organoid/output)
+	var/obj/item/aq_organoid/output/printed = locate() in printer.drop_location()
+	TEST_ASSERT(printed && printed.type != /obj/item/aq_organoid/output, "The printer did not print a real organoid")
+
+/// A spider-bot takes an MMI, gives it a body and drops it when destroyed
+/datum/unit_test/aquila_spiderbot
+
+/datum/unit_test/aquila_spiderbot/Run()
+	var/obj/item/bodypart/head/robot/head = allocate(/obj/item/bodypart/head/robot)
+	head.flash1 = new(head)
+	head.flash2 = new(head)
+	var/mob/living/carbon/human/builder = allocate(/mob/living/carbon/human)
+	var/obj/item/stock_parts/manipulator/manipulator = new(builder.loc)
+	builder.put_in_active_hand(manipulator)
+	head.attackby(manipulator, builder)
+	var/mob/living/simple_animal/aq_spiderbot/bot = locate() in builder.loc
+	TEST_ASSERT(bot, "A robot head with two flashes and a manipulator did not become a spider-bot")
+	TEST_ASSERT(bot.ventcrawler == VENTCRAWLER_ALWAYS, "The spider-bot cannot crawl through vents")
+	qdel(bot)
 #undef TEST_ASSERT

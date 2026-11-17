@@ -301,6 +301,8 @@ GENE SCANNER
 		//Piece together the lists to be reported
 		for(var/O in H.internal_organs)
 			var/obj/item/organ/organ = O
+			if(organ.aq_scanner_hidden) // AQ EDIT - błona maskująca z Eris (aquila/code/modules/surgery/organs/med5/organ_mods_eris.dm)
+				continue
 			if(organ.organ_flags & ORGAN_FAILING)
 				report_organs = TRUE	//if we report one organ, we report all organs, even if the lists are empty, just for consistency
 				if(max_damage)

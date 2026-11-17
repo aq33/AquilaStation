@@ -19,6 +19,8 @@
 /mob/living/carbon/proc/aq_organ_scan_lines()
 	. = list()
 	for(var/obj/item/organ/organ as anything in internal_organs)
+		if(organ.aq_scanner_hidden) // błona maskująca (organ_mods_eris.dm)
+			continue
 		var/line = organ.aq_scan_line()
 		if(line)
 			. += "<span class='alert'>[line]</span>"

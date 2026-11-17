@@ -2963,6 +2963,16 @@ Odmianę stref daje helper `strefa_pl(zone, biernik)` z `aquila/code/__HELPERS/p
 | adrenal glands / bone marrow | nadnercza / szpik kostny | nowe (AquilaMed 5) |
 | larynx / vocal cords / speech synthesizer | krtań / struny głosowe / syntezator mowy | nowe (AquilaMed 5) |
 | nerve / cut nerve / nerve suture | nerw / przerwany nerw / zszycie nerwu | nowe (AquilaMed 5) |
+| teeth / prosthetic teeth / gold teeth / lisp | zęby / sztuczne zęby / złote zęby / seplenienie | nowe (AquilaMed 5, port z /vg/) |
+| brain stem / transplant weakness | pień mózgu / osłabienie po przeszczepie | nowe (AquilaMed 5) |
+| jammed suit / cut open | zacięty skafander / rozcięty | nowe (AquilaMed 5) |
+| unhusking / embalming | odbudowa tkanek (odhuskowanie) / balsamowanie | nowe (AquilaMed 5) |
+| cortical stack | stos korowy | m; nowe (AquilaMed 5, z Bay) |
+| translator implant | implant tłumacza | m; nowe (AquilaMed 5) |
+| subdermal armor / muscle reinforcement / aiming booster / repair nanites / combat claws | podskórna siatka pancerna / wzmocnienie mięśni / wzmacniacz celowania / nanity naprawcze / pazury bojowe | nowe (AquilaMed 5, z Bay/Torch) |
+| improved capillaries / durable membrane / stem cells / visceral symbiont / bypass tubules / biostructure gel / masked membrane | ulepszone naczynia włosowate / błona trwała / komórki macierzyste / symbiont trzewny / kanaliki bocznikujące / żel biostrukturalny / błona maskująca | nowe (AquilaMed 5, z Eris) |
+| aberrant organ / organ scaffold / organoid / teratoma / biomass recycler / organ printer | narząd aberracyjny / rusztowanie narządu / organoid / teratoma / przetwornik biomasy / drukarka narządów | nowe (AquilaMed 5, z Eris) |
+| spider-bot | pająk-robot | m; nowe (AquilaMed 5, z Paradise) |
 | medical spray | spray medyczny | m; nowe |
 | spray bottle | spryskiwacz | m; istniejące |
 | chem sprayer | rozpylacz chemiczny | m; istniejące („rozpylacz”) |

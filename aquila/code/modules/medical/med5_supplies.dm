@@ -153,6 +153,8 @@
 	new /obj/item/storage/pill_bottle/pax(src)
 	new /obj/item/storage/organbox/preloaded(src)
 	new /obj/item/barrier_tape_roll/medical(src)
+	new /obj/item/organ/cyberimp/brain/linkedsurgery(src) // procesor chirurgiczny (AquilaMed 5, etap 12)
+	new /obj/item/organ/cortical_stack(src)
 	new /obj/item/reflexhammer(src)
 
 // --- Apteczki ---

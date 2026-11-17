@@ -34,6 +34,7 @@
 	aq_regenerate_organ(C, ORGAN_SLOT_ADRENALS, wanted ? mutantadrenals : null)
 	aq_regenerate_organ(C, ORGAN_SLOT_MARROW, wanted ? mutantmarrow : null)
 	aq_regenerate_organ(C, ORGAN_SLOT_LARYNX, aq_larynx_type())
+	aq_regenerate_organ(C, ORGAN_SLOT_CORTICAL_STACK, (wanted && !C.has_quirk(/datum/quirk/no_cortical_stack)) ? mutantcorticalstack : null) // cortical_stack.dm
 
 /mob/living/carbon/monkey/create_internal_organs()
 	internal_organs += new /obj/item/organ/kidneys

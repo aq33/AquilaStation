@@ -6,3 +6,8 @@
 #define ORGAN_SLOT_ADRENALS "adrenals"
 #define ORGAN_SLOT_MARROW "marrow"
 #define ORGAN_SLOT_LARYNX "larynx"
+#define ORGAN_SLOT_CORTICAL_STACK "cortical_stack"
+#define ORGAN_SLOT_AQ_TRANSLATOR "aq_translator_implant"
+
+/// Zabalsamowane zwłoki: narządy nie gniją (medical/embalming.dm)
+#define TRAIT_AQ_EMBALMED "aq_embalmed"
