@@ -25063,5 +25063,7 @@
 "Studnia nanonaprawcza zbija stres systemu 2,5 raza szybciej.": "The nanorepair well sheds system stress 2.5 times faster.",
 "Podnosi limit mocy studni nanonaprawczej z 3 do 12 MW. Powyżej 3 MW studnia grzeje pomieszczenie.": "Raises the nanorepair well's power limit from 3 to 12 MW. Above 3 MW the well heats the room.",
 "Studnia znosi dwa razy większe obciążenie pomp, zanim zacznie narastać stres.": "The well takes twice the pump load before stress starts building up.",
-"Studnia zbija stres systemu 2,5 raza szybciej.": "The well sheds system stress 2.5 times faster."
+"Studnia zbija stres systemu 2,5 raza szybciej.": "The well sheds system stress 2.5 times faster.",
+"Projekt maszyny (inżynieryjna mapa okrętu)": "Machine Design (Engineering Ship Map)",
+"Płytka ściennej holomapy pokładu, która pokazuje aktywne alarmy pożarowe i atmosferyczne.": "The circuit board for a wall-mounted deck holomap that shows active fire and atmospheric alarms."
 }
