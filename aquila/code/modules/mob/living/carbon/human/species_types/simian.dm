@@ -95,14 +95,16 @@ GLOBAL_LIST_INIT(simian_last_names, splittext(trim(file2text('aquila/strings/nam
 	var/obj/item/organ/eyes/eyes = H.getorganslot(ORGAN_SLOT_EYES)
 	if(!length(standing) || !eyes || !icon_exists(eye_icon, eyes.eye_icon_state))
 		return
-	var/changed = FALSE
+	var/list/old_eyes = list()
 	for(var/mutable_appearance/overlay in standing)
 		if(overlay.icon == 'icons/mob/human_face.dmi' && overlay.icon_state == eyes.eye_icon_state)
-			overlay.icon = eye_icon
-			changed = TRUE
-	if(!changed)
+			old_eyes += overlay
+	if(!length(old_eyes))
 		return
+	// Najpierw zdejmujemy nakładki w starej postaci: cut_overlay szuka dokładnie tego wyglądu, który został nałożony
 	H.remove_overlay(BODY_LAYER)
+	for(var/mutable_appearance/overlay as anything in old_eyes)
+		overlay.icon = eye_icon
 	H.overlays_standing[BODY_LAYER] = standing
 	H.apply_overlay(BODY_LAYER)
 	// Mruganie bierze kształt oczu z tego samego pliku

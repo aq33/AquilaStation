@@ -9,6 +9,13 @@
 			return TRUE
 	return FALSE
 
+/// Czy na mobie wisi nakładka z tym plikiem i stanem (to, co gracz widzi, a nie lista warstw)
+/proc/monke_test_has_drawn_overlay(mob/living/carbon/human/H, state, icon_file)
+	for(var/mutable_appearance/overlay as anything in H.overlays)
+		if(overlay.icon_state == state && overlay.icon == icon_file)
+			return TRUE
+	return FALSE
+
 /// Małpolud z Monkestation: części ciała, ogon, skrócona sylwetka, mniej zdrowia, tłumacz, przeskakiwanie i przyjaźń małp
 /datum/unit_test/aquila_rasy_monke_simian
 
@@ -31,6 +38,7 @@
 	TEST_ASSERT(monke_test_has_overlay(simian, BODY_BEHIND_LAYER, "m_tail_monkey_default_BEHIND"), "A simian has no tail behind the body")
 	TEST_ASSERT(monke_test_has_overlay(simian, BODY_FRONT_LAYER, "m_tail_monkey_default_FRONT"), "A simian has no tail in front of the body")
 	TEST_ASSERT(monke_test_has_overlay(simian, BODY_LAYER, "eyes", 'aquila/icons/mob/species/simian/simian.dmi'), "Simian eyes are drawn from the human face icon")
+	TEST_ASSERT(!monke_test_has_drawn_overlay(simian, "eyes", 'icons/mob/human_face.dmi'), "Human eyes stayed on the simian under its own eyes")
 	simian.dna.features["tail_monkey"] = "None"
 	simian.update_body()
 	TEST_ASSERT(!monke_test_has_overlay(simian, BODY_BEHIND_LAYER, "m_tail_monkey_default_BEHIND"), "A simian without a tail still draws one")
@@ -104,6 +112,7 @@
 	floran.update_body()
 	TEST_ASSERT(monke_test_has_overlay(floran, BODY_ADJ_LAYER, "m_floran_leaves_furnivour_ADJ"), "A floran has no leaves")
 	TEST_ASSERT(monke_test_has_overlay(floran, BODY_LAYER, "floraneyes", 'aquila/icons/mob/species/floran/floran.dmi'), "Floran eyes are not drawn")
+	TEST_ASSERT(!monke_test_has_drawn_overlay(floran, "floraneyes", 'icons/mob/human_face.dmi'), "A floran shows an ERROR sprite: eyes from the human face icon stayed on the mob")
 	floran.dna.features["floran_hair"] = "Rose"
 	floran.update_hair()
 	TEST_ASSERT(monke_test_has_overlay(floran, HAIR_LAYER, "m_floran_hair_rose_ADJ"), "A floran has no leaves on the head")
