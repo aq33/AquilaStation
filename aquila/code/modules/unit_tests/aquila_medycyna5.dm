@@ -1001,6 +1001,19 @@
 	qdel(leg_bite)
 	TEST_ASSERT(leg.disabled == BODYPART_DISABLED_DAMAGE, "Removing the frostbite also lifted the damage disable ([leg.get_damage()] / [leg.max_damage])")
 
+	// Healed below half during the paralysis and hurt again a little: without the paralysis the disable would be gone
+	var/obj/item/bodypart/other_leg = patient.get_bodypart(BODY_ZONE_L_LEG)
+	other_leg.receive_damage(brute = other_leg.max_damage)
+	other_leg.update_disabled()
+	var/datum/wound/frostbite/third_degree/other_bite = new()
+	other_bite.apply_wound(other_leg, silent = TRUE)
+	other_leg.heal_damage(other_leg.max_damage * 0.6, 0)
+	other_bite.aq_track_damage_disable()
+	other_leg.receive_damage(brute = other_leg.max_damage * 0.2)
+	other_bite.aq_track_damage_disable()
+	qdel(other_bite)
+	TEST_ASSERT(other_leg.disabled == BODYPART_NOT_DISABLED, "The leg stays disabled although its damage fell below half during the paralysis ([other_leg.get_damage()] / [other_leg.max_damage])")
+
 /// The chem master analysis shows the tg addiction threshold, alcohol from its strength
 /datum/unit_test/aquila_addiction_threshold_display
 

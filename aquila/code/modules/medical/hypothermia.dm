@@ -201,29 +201,42 @@
 	var/necrosis_at = 0
 	/// Past saving: only amputation helps
 	var/necrotic = FALSE
-	/// Disabled state of the limb before the frostbite paralysed it (a limb disabled by damage stays so)
+	/// Damage disable the limb would have without the paralysis, tracked while paralysed (is_disabled() hysteresis)
 	var/disabled_before = BODYPART_NOT_DISABLED
 
 /datum/wound/frostbite/third_degree/on_apply()
 	. = ..()
 	necrosis_at = world.time + AQ_FROSTBITE_NECROSIS_TIME
-	disabled_before = limb.disabled
+	disabled_before = limb.disabled == BODYPART_DISABLED_DAMAGE ? BODYPART_DISABLED_DAMAGE : BODYPART_NOT_DISABLED
 	ADD_TRAIT(limb, TRAIT_PARALYSIS, WOUND_FROSTBITE)
 	limb.update_disabled()
 
 /datum/wound/frostbite/third_degree/Destroy()
 	if(limb)
 		REMOVE_TRAIT(limb, TRAIT_PARALYSIS, WOUND_FROSTBITE)
-		// Bee keeps the old disabled state of a damaged limb, so the paralysis is cleared by hand (as in spinal.dm).
-		// A limb disabled by damage before the frostbite stays disabled while its damage keeps it so (above half, as is_disabled()).
+		// Bee keeps the old disabled state of a damaged limb, so the paralysis is cleared by hand (as in spinal.dm),
+		// back to the damage disable the limb would have now without the paralysis.
 		if(limb.disabled == BODYPART_DISABLED_PARALYSIS && !HAS_TRAIT(limb, TRAIT_PARALYSIS))
-			var/keep_damage = disabled_before == BODYPART_DISABLED_DAMAGE && limb.get_damage(TRUE) > limb.max_damage * 0.5
-			limb.set_disabled(keep_damage ? BODYPART_DISABLED_DAMAGE : BODYPART_NOT_DISABLED)
+			aq_track_damage_disable()
+			limb.set_disabled(disabled_before)
 		limb.update_disabled()
 	return ..()
 
+/// Follows the damage disable of the limb as is_disabled() would without the paralysis: on at max damage
+/// (or 60% with TRAIT_EASYLIMBDISABLE), off again only at half
+/datum/wound/frostbite/third_degree/proc/aq_track_damage_disable()
+	if(!limb?.owner || !limb.can_dismember() || HAS_TRAIT(limb.owner, TRAIT_NOLIMBDISABLE))
+		disabled_before = BODYPART_NOT_DISABLED
+		return
+	var/damage = limb.get_damage(TRUE)
+	if(damage >= limb.max_damage || (HAS_TRAIT(limb.owner, TRAIT_EASYLIMBDISABLE) && damage >= limb.max_damage * 0.6))
+		disabled_before = BODYPART_DISABLED_DAMAGE
+	else if(disabled_before == BODYPART_DISABLED_DAMAGE && damage <= limb.max_damage * 0.5)
+		disabled_before = BODYPART_NOT_DISABLED
+
 /datum/wound/frostbite/third_degree/wound_effects(delta_time)
 	. = ..()
+	aq_track_damage_disable()
 	if(!necrotic && world.time >= necrosis_at)
 		necrotic = TRUE
 		treat_text = "Martwica jest nieodwracalna: tę kończynę trzeba amputować."
