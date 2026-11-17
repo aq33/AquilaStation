@@ -1109,6 +1109,7 @@
 #include "code\modules\overmap\hexmap\war_nuke.dm"
 #include "code\modules\overmap\hexmap\war_trade.dm"
 #include "code\modules\overmap\hexmap\war_missions.dm"
+#include "code\modules\overmap\nano_well_oc_modules.dm"
 // Porty eventów z innych kodów do pul kafli mapy hex (rework mapy FTL, część C)
 #include "code\modules\events\hexmap\ship_hazard_helpers.dm"
 #include "code\modules\events\hexmap\comet_expulsion.dm"
@@ -2344,6 +2345,7 @@
 #include "code\modules\unit_tests\_unit_test_shards.dm"
 
 #ifdef UNIT_TESTS
+#include "code\modules\unit_tests\aquila_nano_well_oc.dm"
 #include "code\modules\unit_tests\aquila_basic_tg_fauna.dm"
 #include "code\modules\unit_tests\aquila_basic_deer.dm"
 #include "code\modules\unit_tests\aquila_basic_retaliate_p1.dm"
