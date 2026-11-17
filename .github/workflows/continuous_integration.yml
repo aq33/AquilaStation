@@ -108,7 +108,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        shard: [1, 2, 3]
+        shard: [1, 2, 3, 4]
     # AQUILA - wiszacy serwer przed "Shutdown complete" czekalby do domyslnych 6 godzin
     timeout-minutes: 90
     # AQUILA - bez kontenera uslugi mysql: testy lacza sie z MySQL-em runnera (127.0.0.1:3306, krok "Setup database"),
