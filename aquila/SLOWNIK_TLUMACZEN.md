@@ -1854,6 +1854,16 @@ Nowe gatunki z tg, Goona, Baya i innych (`aquila/code/modules/botany/aquila/port
 | punga (pungafruit) | punga; plon: owoc pungi | ż; nowe (Mojave Sun), dzika roślina pustkowi |
 | geiger punga (geiger pungafruit) | gejgerpunga; plon: owoc gejgerpungi | ż; nowe (Mojave Sun), napromieniowana punga |
 | radberry | radjagoda; roślina: krzew radjagód | ż; nowe (Mojave Sun), napromieniowana |
+| fonarstolbe (fruit) | fonarsztolbe (plon: owoc fonarsztolbe) | n, nieodm.; nowe (tg), dzika flora planety lodowej |
+| vahrezjia (stalks) | wachrezja (plon: łodygi wachrezji) | ż; nowe (tg), dzika flora planety lodowej |
+| podsneyzka (bunch) | podśnieżka (plon: pęczek podśnieżek) | ż; nowe (tg), dzika flora planety lodowej |
+| inozhakust (mash) | inożakust (plon: papka z inożakustu) | m; nowe (tg), dzika flora planety lodowej |
+| plasma flower | kwiat plazmowy | m; nowe (tg), dzika flora planety lodowej |
+| glowgrowth (colony / sheet) | świecąca narośl (kolonia świecącej narośli / płat świecącej narośli) | ż; nowe (tg), dzika flora planety lodowej |
+| seraka (mushrooms / cap) | seraka (grzyby seraka / kapelusz seraki) | ż; nowe (tg), dzika flora planety lodowej |
+| glowbell / weeping moon / cavern candle | świecący dzwonek / płaczący księżyc / jaskiniowa świeca | m / m / ż; nowe (Nebula), grzyby jaskiń księżyca i asteroid |
+| algae | glony (dzika: kożuch glonów) | mn; nowe (Nebula), płycizna i zalane jaskinie |
+| seaweed | wodorosty (dzika: kępa wodorostów) | mn; nowe (Shiptest), płycizna, plaża i zalane jaskinie; suszone dają arkusz wodorostów |
 
 ## 22. Częste przymiotniki i określenia w nazwach
 

@@ -1048,6 +1048,7 @@
 #include "code\modules\planets\types\waste.dm"
 #include "code\modules\planets\types\battlefield.dm"
 #include "code\modules\planets\shiptest_flora\moon.dm"
+#include "code\modules\planets\shiptest_flora\zimne_flora.dm"
 #include "code\modules\planets\biomes\moon.dm"
 #include "code\modules\planets\biomes\asteroid.dm"
 #include "code\modules\planets\drill\veins_moon.dm"
