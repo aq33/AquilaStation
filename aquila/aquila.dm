@@ -1076,6 +1076,7 @@
 #include "code\modules\overmap\ftl_calibration.dm"
 #include "code\modules\overmap\station_contracts.dm"
 #include "code\modules\overmap\trader_reputation.dm"
+#include "code\modules\overmap\trader_missions.dm"
 // Po nakładkach DRADIS (dradis_uncertainty, sensor_console): kontakty z boi sondy zostają dokładne
 #include "code\modules\munitions\missile_payloads.dm"
 #include "code\modules\overmap\overmap_scale.dm"
@@ -2480,6 +2481,7 @@
 #include "code\modules\unit_tests\aquila_squad_echo.dm"
 #include "code\modules\unit_tests\aquila_station_contracts.dm"
 #include "code\modules\unit_tests\aquila_trader_reputation.dm"
+#include "code\modules\unit_tests\aquila_trader_missions.dm"
 #include "code\modules\unit_tests\aquila_missile_payloads.dm"
 #include "code\modules\unit_tests\aquila_botany.dm"
 #include "code\modules\unit_tests\aquila_botany_flow.dm"
