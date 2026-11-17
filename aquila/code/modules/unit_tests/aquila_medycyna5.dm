@@ -1021,4 +1021,27 @@
 	var/expected = max(10, 2000 / beer.boozepwr)
 	TEST_ASSERT(aq_addiction_threshold_of(/datum/reagent/consumable/ethanol/beer) == expected, "Beer shows [aq_addiction_threshold_of(/datum/reagent/consumable/ethanol/beer)] instead of [expected]")
 	TEST_ASSERT(aq_addiction_threshold_of(/datum/reagent/water) == 0, "Water shows an addiction threshold")
+
+/// Upgrades come back out with a hemostat (not stem cells), the surgery bag has amputation shears
+/datum/unit_test/aquila_organ_mod_removal
+
+/datum/unit_test/aquila_organ_mod_removal/Run()
+	var/mob/living/carbon/human/surgeon = allocate(/mob/living/carbon/human)
+	var/obj/item/organ/liver/liver = allocate(/obj/item/organ/liver)
+	var/max_health = liver.maxHealth
+	var/obj/item/aq_organ_mod/durable/durable = new(surgeon.loc)
+	surgeon.put_in_active_hand(durable)
+	durable.try_apply(liver, surgeon)
+	var/obj/item/aq_organ_mod/stem_cells/cells = new(surgeon.loc)
+	surgeon.put_in_active_hand(cells)
+	cells.try_apply(liver, surgeon)
+	TEST_ASSERT(liver.aq_mod_slots == 0, "Two upgrades did not fill the organ")
+	surgeon.dropItemToGround(surgeon.get_active_held_item())
+	TEST_ASSERT(liver.aq_remove_mod(surgeon), "The hemostat took no upgrade out")
+	TEST_ASSERT(liver.maxHealth == max_health && liver.aq_mod_slots == 1, "Removing the durable membrane did not undo it")
+	TEST_ASSERT(!liver.aq_remove_mod(surgeon), "Stem cells came back out")
+	TEST_ASSERT(liver.aq_damage_mult < 1, "Stem cells stopped working")
+
+	var/obj/item/storage/backpack/duffelbag/med/surgery/bag = allocate(/obj/item/storage/backpack/duffelbag/med/surgery)
+	TEST_ASSERT(locate(/obj/item/shears) in bag, "The surgery bag has no amputation shears")
 #undef TEST_ASSERT

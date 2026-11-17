@@ -3,7 +3,7 @@
 // Ulepszenie wkłada się w narząd wyjęty z ciała (użyj go na narządzie), zwykły narząd mieści dwa.
 // Różnice od Eris: nie mamy wydajności narządów, rozmiaru ani zapotrzebowania na krew i tlen (decyzja „bez wydajności”),
 // więc „wydajność” to tu odporność narządu na uszkodzenia, a „zapotrzebowanie” to głód nosiciela i gnicie narządu.
-// Ulepszeń nie da się wyjąć (w Eris część się da). Drukuje je protolathe medyczny po badaniu cybernetycznych narządów.
+// Hemostat wyjmuje ulepszenia z wyjętego narządu, poza komórkami macierzystymi i żelem (jak w Eris). Drukuje je protolathe medyczny po badaniu cybernetycznych narządów.
 
 #define AQ_ORGAN_MOD_SLOTS 2
 
@@ -39,7 +39,30 @@
 		var/obj/item/aq_organ_mod/mod = I
 		mod.try_apply(src, user)
 		return TRUE
+	if(I.tool_behaviour == TOOL_HEMOSTAT && LAZYLEN(aq_mods))
+		aq_remove_mod(user)
+		return TRUE
 	return ..()
+
+/// Eris: most upgrades come back out with a hemostat (not stem cells and gel); the last removable one goes first
+/obj/item/organ/proc/aq_remove_mod(mob/user)
+	if(owner)
+		to_chat(user, "<span class='warning'>Najpierw wyjmij [src] z ciała.</span>")
+		return FALSE
+	for(var/i in length(aq_mods) to 1 step -1)
+		var/obj/item/aq_organ_mod/mod_type = aq_mods[i]
+		if(!initial(mod_type.removable))
+			continue
+		var/obj/item/aq_organ_mod/mod = new mod_type(drop_location())
+		mod.unapply(src)
+		aq_mods.Cut(i, i + 1)
+		if(!mod.free_slot)
+			aq_mod_slots++
+		user.put_in_hands(mod)
+		to_chat(user, "<span class='notice'>Wyjmujesz [mod.name] z [src].</span>")
+		return TRUE
+	to_chat(user, "<span class='warning'>Ulepszeń w [src] nie da się już wyjąć.</span>")
+	return FALSE
 
 /obj/item/aq_organ_mod
 	name = "ulepszenie narządu"
@@ -47,10 +70,12 @@
 	w_class = WEIGHT_CLASS_TINY
 	/// Takes no slot (the gel adds them)
 	var/free_slot = FALSE
+	/// Comes back out with a hemostat (as in Eris: not stem cells and gel)
+	var/removable = TRUE
 
 /obj/item/aq_organ_mod/examine(mob/user)
 	. = ..()
-	. += "<span class='notice'>Użyj na narządzie wyjętym z ciała. Zwykły narząd mieści dwa ulepszenia, a włożonego nie da się wyjąć.</span>"
+	. += "<span class='notice'>Użyj na narządzie wyjętym z ciała. Zwykły narząd mieści dwa ulepszenia. [removable ? "Hemostat wyjmuje je z powrotem." : "Tego ulepszenia nie da się wyjąć."]</span>"
 
 /obj/item/aq_organ_mod/proc/try_apply(obj/item/organ/organ, mob/user)
 	if(organ.owner)
@@ -76,6 +101,10 @@
 /obj/item/aq_organ_mod/proc/apply(obj/item/organ/organ)
 	return
 
+/// Undoes apply() when the upgrade is taken out
+/obj/item/aq_organ_mod/proc/unapply(obj/item/organ/organ)
+	return
+
 /obj/item/aq_organ_mod/capillaries
 	name = "ulepszone naczynia włosowate"
 	desc = "Zmodyfikowane naczynia, które lepiej odżywiają narząd. Narząd poza ciałem gnije o połowę wolniej."
@@ -83,6 +112,9 @@
 
 /obj/item/aq_organ_mod/capillaries/apply(obj/item/organ/organ)
 	organ.decay_factor *= 0.5
+
+/obj/item/aq_organ_mod/capillaries/unapply(obj/item/organ/organ)
+	organ.decay_factor /= 0.5
 
 /obj/item/aq_organ_mod/durable
 	name = "błona trwała"
@@ -96,10 +128,20 @@
 	if((organ.organ_flags & ORGAN_FAILING) && organ.damage < organ.maxHealth)
 		organ.organ_flags &= ~ORGAN_FAILING
 
+/obj/item/aq_organ_mod/durable/unapply(obj/item/organ/organ)
+	organ.maxHealth /= 1.2
+	organ.low_threshold /= 1.2
+	organ.high_threshold /= 1.2
+	if(organ.damage >= organ.maxHealth)
+		organ.setOrganDamage(organ.maxHealth) // the thinner membrane fails again
+
 /obj/item/aq_organ_mod/stem_cells
 	name = "komórki macierzyste"
 	desc = "Grudka komórek macierzystych, które na stałe wzmacniają narząd: obrażenia trafiają go o 10% słabiej, a sam leczy się szybciej."
 	icon_state = "stem_cells"
+
+/obj/item/aq_organ_mod/stem_cells
+	removable = FALSE
 
 /obj/item/aq_organ_mod/stem_cells/apply(obj/item/organ/organ)
 	organ.aq_damage_mult *= 0.9
@@ -114,6 +156,10 @@
 	organ.aq_damage_mult *= 0.8
 	organ.aq_hunger += 0.03
 
+/obj/item/aq_organ_mod/symbiont/unapply(obj/item/organ/organ)
+	organ.aq_damage_mult /= 0.8
+	organ.aq_hunger -= 0.03
+
 /obj/item/aq_organ_mod/bypass
 	name = "kanaliki bocznikujące"
 	desc = "Kanaliki odprowadzające krew z narządu: nosiciel wolniej głodnieje, ale narząd jest o 20% wrażliwszy na obrażenia."
@@ -123,11 +169,18 @@
 	organ.aq_damage_mult *= 1.2
 	organ.aq_hunger -= 0.03
 
+/obj/item/aq_organ_mod/bypass/unapply(obj/item/organ/organ)
+	organ.aq_damage_mult /= 1.2
+	organ.aq_hunger += 0.03
+
 /obj/item/aq_organ_mod/gel
 	name = "żel biostrukturalny"
 	desc = "Żel, który zastyga w tkankę narządu i robi miejsce na dwa kolejne ulepszenia. Nie zajmuje miejsca."
 	icon_state = "advanced_collagen"
 	free_slot = TRUE
+
+/obj/item/aq_organ_mod/gel
+	removable = FALSE
 
 /obj/item/aq_organ_mod/gel/apply(obj/item/organ/organ)
 	organ.aq_mod_slots += 2
@@ -147,6 +200,10 @@
 /obj/item/aq_organ_mod/masking/apply(obj/item/organ/organ)
 	organ.aq_damage_mult *= 1.1
 	organ.aq_scanner_hidden = TRUE
+
+/obj/item/aq_organ_mod/masking/unapply(obj/item/organ/organ)
+	organ.aq_damage_mult /= 1.1
+	organ.aq_scanner_hidden = FALSE
 
 /datum/design/aq_organ_mod
 	build_type = PROTOLATHE

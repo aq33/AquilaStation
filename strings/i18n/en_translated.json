@@ -25811,5 +25811,18 @@
 "Kolejny atak pograniczników. Jesteśmy tu prawie osiem lat, a oni wciąż nie dają nam spokoju. Cieszę się chociaż, że broń daje radę. Wszyscy są ostatnio bardziej spięci. W sektorze jest coraz większy ruch. Powiedziałem miastu, że jeśli ktoś wyląduje, mają przygotować broń i zabić okna deskami, ale nie zaczynać zadymy, dopóki nie podejdą blisko. Mam nadzieję, że rozsądni ludzie zobaczą dobrze uzbrojone miasto i będą się trzymać z daleka, ale... muszę po prostu wierzyć, że to wystarczy.": "Yet another frontiersman attack, we've been here for almost eight years now, and they still won't leave us alone. I'm just glad the guns seem to be holding up. Everyone's been more on edge, recently. There's been more and more traffic in the sector, I've told the town that if anyone lands, they should make get arms ready and board windows, but don't go picking a fight unless they get close. I hope level heads will see a well-armed town and stay away, but.. I just have to hope it's all enough.",
 "dzięki, że przypilnowałeś mi sklepu, młody. pamiętaj, żeby na koniec dnia włożyć pieniądze do sejfu. szyfr to 13-91. buziaki. tata": "thanks for keeping an eye on the shop for me, kiddo. remember to put the money in the safe at the end of the night. code is 13-91. xoxo. dad",
 "Są teraz na zewnątrz. Nie wiem, co się stało, ale zdołałem zabezpieczyć strzelnicę. Nie mogę wyjść. Może ktoś tu przypadkiem zajrzy i nas uratuje. Cholerni inżynierowie, że uparli się, żeby nie montować na stacji sprzętu łączności.": "They're outside now. I don't know what happened, but I've managed to secure the firing range. I can't get out. Maybe someone will stumble by and we'll be saved. God damn those engineers for insisting on not including communications equipment on station.",
-"<span class='notice'>Zaklejasz rozcięcie w [src].</span>": "<span class='notice'>You tape up the cut in [src].</span>"
+"<span class='notice'>Zaklejasz rozcięcie w [src].</span>": "<span class='notice'>You tape up the cut in [src].</span>",
+"<span class='notice'>Użyj na narządzie wyjętym z ciała. Zwykły narząd mieści dwa ulepszenia. [removable ? \"Hemostat wyjmuje je z powrotem.\" : \"Tego ulepszenia nie da się wyjąć.\"]</span>": "<span class='notice'>Use it on an organ taken out of a body. A normal organ holds two upgrades. [removable ? \"Hemostat wyjmuje je z powrotem.\" : \"Tego ulepszenia nie da się wyjąć.\"]</span>",
+"Hemostat wyjmuje je z powrotem.": "A hemostat takes them back out.",
+"Tego ulepszenia nie da się wyjąć.": "This upgrade cannot be taken out.",
+"<span class='warning'>Najpierw wyjmij [src] z ciała.</span>": "<span class='warning'>Take [src] out of the body first.</span>",
+"<span class='notice'>Wyjmujesz [mod.name] z [src].</span>": "<span class='notice'>You take [mod.name] out of [src].</span>",
+"<span class='warning'>Ulepszeń w [src] nie da się już wyjąć.</span>": "<span class='warning'>The upgrades in [src] can no longer be taken out.</span>",
+"Teratoma ze szlamu": "Slime teratoma",
+"autochirurg (pazury bojowe)": "autosurgeon (combat claws)",
+"Używane pazury bojowe": "Used combat claws",
+"Implant pazurów z odzysku, z autochirurgiem. Ktoś je już nosił.": "A salvaged claws implant with an autosurgeon. Someone has worn them already.",
+"Używana kusza w przedramieniu": "Used forearm crossbow",
+"Implant miniaturowej kuszy energetycznej z odzysku, z autochirurgiem.": "A salvaged miniature energy crossbow implant with an autosurgeon.",
+"Daje teratomę, z której nożem wycina się organoid.": "Makes a teratoma, from which an organoid is cut out with a knife."
 }

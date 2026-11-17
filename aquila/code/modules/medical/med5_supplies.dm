@@ -179,3 +179,9 @@
 	r_pocket = /obj/item/modular_computer/tablet/pda/paramedic
 	pda_slot = ITEM_SLOT_RPOCKET
 	box = /obj/item/storage/box/survival/medical
+
+// --- Torba chirurgiczna ---
+
+/obj/item/storage/backpack/duffelbag/med/surgery/PopulateContents()
+	. = ..()
+	new /obj/item/shears(src)

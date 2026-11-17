@@ -1,7 +1,7 @@
 // AQUILA - augmenty z Baystation12/Torch (AquilaMed 5, etap 12). Pomysły z code/modules/augment/ (Bay), sprite'y z
 // Bay icons/obj/augment.dmi (CC BY-SA 3.0). Dopisane tylko te, których nie było: polinarzędzia, przechwytywacz synaps
 // (restart OUN), ostrza i działka w ramieniu już mamy z tg/Bee. Cywilne idą z R&D (protolathe i fabrykator robotyki),
-// broń w ramieniu (pazury, kusza) tylko z uplinku.
+// broń w ramieniu (pazury, kusza) z uplinku, czarnego rynku i dla ochrony ERT w pełnym alarmie (pazury).
 // Różnice od Bay: zamiast systemu slotów augmentów z Bay zwykłe implanty cybernetyczne (wszczepia je operacja na
 // narządach albo autochirurg), pancerz i mięśnie przez physiology, celowanie przez rozrzut broni z gunplay/recoil.dm.
 
@@ -223,3 +223,32 @@
 #undef ORGAN_SLOT_AQ_AIM
 #undef ORGAN_SLOT_AQ_NANITES
 #undef TRAIT_AQ_STEADY_AIM
+
+// ERT: ochrona w pełnym alarmie dostaje pazury, czarny rynek ma oba implanty (łup)
+/datum/outfit/ert/security/alert
+	backpack_contents = list(/obj/item/storage/box/engineer=1,
+		/obj/item/storage/box/handcuffs=1,
+		/obj/item/melee/baton/loaded=1,
+		/obj/item/gun/energy/pulse/carbine/loyalpin=1,
+		/obj/item/autosurgeon/aq_claws_ert=1)
+
+/obj/item/autosurgeon/aq_claws_ert
+	name = "autochirurg (pazury bojowe)"
+	uses = 1
+	starting_organ = list(/obj/item/organ/cyberimp/arm/aq_claws)
+
+/datum/market_item/shoddy_implant/aq_claws
+	name = "Używane pazury bojowe"
+	desc = "Implant pazurów z odzysku, z autochirurgiem. Ktoś je już nosił."
+	item = /obj/item/autosurgeon/syndicate/aq_claws
+	price_min = MARKET_CRATE_VALUE * 4
+	price_max = MARKET_CRATE_VALUE * 6
+	availability_prob = 25
+
+/datum/market_item/shoddy_implant/aq_crossbow
+	name = "Używana kusza w przedramieniu"
+	desc = "Implant miniaturowej kuszy energetycznej z odzysku, z autochirurgiem."
+	item = /obj/item/autosurgeon/syndicate/aq_crossbow
+	price_min = MARKET_CRATE_VALUE * 6
+	price_max = MARKET_CRATE_VALUE * 9
+	availability_prob = 15

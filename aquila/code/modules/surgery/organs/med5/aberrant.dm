@@ -418,3 +418,16 @@ GLOBAL_LIST_INIT(aq_organoid_output_reagents, list(/datum/reagent/medicine/epine
 #undef AQ_ORGANOID_INPUT
 #undef AQ_ORGANOID_PROCESS
 #undef AQ_ORGANOID_OUTPUT
+
+/// Xenobiology: a green slime extract with blood grows a teratoma (the only green extract reaction with blood)
+/datum/chemical_reaction/slime/aq_teratoma
+	name = "Teratoma ze szlamu"
+	id = "aq_slime_teratoma"
+	required_reagents = list(/datum/reagent/blood = 1)
+	required_container = /obj/item/slime_extract/green
+	required_other = TRUE
+	catalog_desc = "Daje teratomę, z której nożem wycina się organoid."
+
+/datum/chemical_reaction/slime/aq_teratoma/on_reaction(datum/reagents/holder)
+	new /obj/item/aq_teratoma(get_turf(holder.my_atom))
+	..()
