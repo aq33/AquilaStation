@@ -897,6 +897,8 @@ GLOBAL_DATUM_INIT(operations, /datum/operation_holder, new)
 			if(patient)
 				update_surgery_mood(patient, SURGERY_STATE_SUCCESS)
 
+		aq_spread_surgery_germs(operating_on, surgeon, tool) // AquilaMed 5: brud narzędzi, rąk i miejsca (medical/germs.dm)
+
 		if(consumes_stack_tool && isstack(tool))
 			var/obj/item/stack/tool_stack = tool
 			if(!QDELETED(tool_stack))

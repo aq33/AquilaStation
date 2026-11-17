@@ -50,8 +50,8 @@
 	var/obj/item/bodypart/chest = patient.get_bodypart(BODY_ZONE_CHEST)
 	var/datum/wound/burn/burn = new /datum/wound/burn/third_degree()
 	burn.apply_wound(chest, silent = TRUE)
-	burn.wound_effects(100)
-	TEST_ASSERT(patient.getToxLoss() > 0, "An infected burn does not poison")
+	burn.process(300)
+	TEST_ASSERT(chest.aq_germs >= 30, "An undressed third degree burn does not get infected ([chest.aq_germs] germs)")
 
 	patient.fully_heal()
 	TEST_ASSERT(!length(leg.wounds) && !length(arm.wounds) && !length(chest.wounds), "Full heal left wounds")

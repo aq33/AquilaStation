@@ -73,6 +73,7 @@ GLOBAL_LIST_INIT(aq_painkillers, list(
 		. += wound.get_pain()
 	if(LIMB_HAS_ANY_SURGERY_STATE(limb, ALL_SURGERY_SKIN_STATES))
 		. += 15
+	. += limb.aq_infection_pain() // zakażenie (medical/germs.dm)
 
 /// Pain computed from the body, before painkillers
 /mob/living/carbon/human/proc/aq_compute_pain()

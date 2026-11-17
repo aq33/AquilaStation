@@ -107,7 +107,7 @@
 		to_chat(user, "<span class='warning'>Lampa UV jeszcze się ładuje.</span>")
 		return
 	COOLDOWN_START(src, uv_cooldown, 4 SECONDS)
-	burn.infection = max(0, burn.infection - 20)
+	limb.aq_add_germs(-20) // zarazki kończyny (germs.dm)
 	user.visible_message("<span class='notice'>[user] świeci lampą UV na oparzenie [patient] ([limb.name]).</span>", "<span class='notice'>Świecisz lampą UV na oparzenie [patient == user ? "" : "[patient] "]([limb.name]). Zakażenie słabnie.</span>")
 
 // --- Medyczny zestaw przetrwania ---

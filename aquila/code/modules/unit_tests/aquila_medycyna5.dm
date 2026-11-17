@@ -220,12 +220,13 @@
 	var/mob/living/carbon/human/medic = allocate(/mob/living/carbon/human)
 	var/datum/wound/burn/third_degree/burn = new()
 	burn.apply_wound(patient.get_bodypart(BODY_ZONE_L_ARM), silent = TRUE)
-	burn.infection = 50
+	var/obj/item/bodypart/burnt_arm = patient.get_bodypart(BODY_ZONE_L_ARM)
+	burnt_arm.aq_germs = 50
 	var/obj/item/flashlight/pen/paramedic/uv = locate() in belt
 	medic.set_combat_mode(FALSE)
 	medic.zone_selected = BODY_ZONE_L_ARM
 	uv.attack(patient, medic)
-	TEST_ASSERT(burn.infection < 50, "The UV penlight did not touch the infection ([burn.infection])")
+	TEST_ASSERT(burnt_arm.aq_germs < 50, "The UV penlight did not touch the infection ([burnt_arm.aq_germs])")
 	qdel(burn)
 
 /// AQUILA - tg addictions (reagents/addiction/addiction.dm): metabolizing enough morphine addicts, withdrawal hurts,
@@ -289,5 +290,78 @@
 	TEST_ASSERT(beer_units && vodka_units && vodka_units < beer_units, "Vodka does not addict faster than beer ([vodka_units] / [beer_units])")
 	qdel(beer)
 	qdel(vodka)
+
+/// AQUILA - germs (medical/germs.dm): a dirty operation infects, a clean one does not, tools and gloves get dirty and
+/// cleaning makes them sterile, an infection grows and an antibiotic knocks it back, sepsis weakens without killing
+/datum/unit_test/aquila_germs
+
+/datum/unit_test/aquila_germs/Run()
+	var/mob/living/carbon/human/patient = allocate(/mob/living/carbon/human)
+	var/mob/living/carbon/human/surgeon = allocate(/mob/living/carbon/human)
+	var/datum/surgery_operation/operation = new /datum/surgery_operation/limb/clean_infection()
+	var/obj/item/scalpel/scalpel = allocate(/obj/item/scalpel)
+	var/obj/item/bodypart/arm = patient.get_bodypart(BODY_ZONE_R_ARM)
+	arm.add_surgical_state(SURGERY_SKIN_OPEN)
+
+	// Dirty: bare hands, a dirty scalpel, the floor
+	scalpel.aq_dirt = 10
+	operation.aq_spread_surgery_germs(arm, surgeon, scalpel)
+	var/dirty_germs = arm.aq_germs
+	TEST_ASSERT(dirty_germs >= 15, "A dirty floor operation with bare hands and a dirty scalpel gave only [dirty_germs] germs")
+
+	// Clean: fresh gloves, a mask, a sterile scalpel, an operating table, sterilizine on the patient
+	var/obj/item/bodypart/leg = patient.get_bodypart(BODY_ZONE_L_LEG)
+	leg.add_surgical_state(SURGERY_SKIN_OPEN)
+	var/obj/item/clothing/gloves/color/latex/gloves = allocate(/obj/item/clothing/gloves/color/latex)
+	surgeon.equip_to_slot_if_possible(gloves, ITEM_SLOT_GLOVES)
+	var/obj/item/clothing/mask/surgical/mask = allocate(/obj/item/clothing/mask/surgical)
+	surgeon.equip_to_slot_if_possible(mask, ITEM_SLOT_MASK)
+	var/obj/item/clothing/mask/surgical/patient_mask = allocate(/obj/item/clothing/mask/surgical)
+	patient.equip_to_slot_if_possible(patient_mask, ITEM_SLOT_MASK)
+	allocate(/obj/structure/table/optable, get_turf(patient))
+	scalpel.aq_dirt = 0
+	patient.add_surgery_speed_mod(/datum/reagent/space_cleaner/sterilizine, 0.8, 1 MINUTES)
+	operation.aq_spread_surgery_germs(leg, surgeon, scalpel)
+	TEST_ASSERT(leg.aq_germs < 3 && leg.aq_germs * 5 < dirty_germs, "A clean operation gave [leg.aq_germs] germs (a dirty one [dirty_germs])") // bałagan po innych testach może dać punkt
+	TEST_ASSERT(scalpel.aq_dirt > 0 && gloves.aq_dirt > 0, "The scalpel and the gloves did not get dirty from the patient")
+
+	// Cleaning makes them sterile
+	var/datum/reagent/space_cleaner/sterilizine/cleaner = new()
+	cleaner.reaction_obj(scalpel, 10)
+	TEST_ASSERT(scalpel.aq_dirt == 0, "Sterilizine did not clean the scalpel")
+	qdel(cleaner)
+	var/obj/item/storage/firstaid/regular/kit = allocate(/obj/item/storage/firstaid/regular)
+	gloves.aq_dirt = 10
+	gloves.forceMove(kit)
+	var/obj/machinery/autoclave/autoclave = allocate(/obj/machinery/autoclave)
+	autoclave.sanitize(kit)
+	TEST_ASSERT(gloves.aq_dirt == 0, "The autoclave did not clean what was inside the kit")
+
+	// An infection grows, an antibiotic knocks it back
+	arm.aq_germs = 40
+	patient.aq_handle_germs(20)
+	TEST_ASSERT(arm.aq_germs > 40, "An infection did not grow ([arm.aq_germs])")
+	var/scan = jointext(patient.aq_germ_scan_lines(), "")
+	TEST_ASSERT(findtext(scan, "zakażenie"), "The scanner does not show the infection: [scan]")
+	patient.reagents.add_reagent(/datum/reagent/medicine/spaceacillin, 10)
+	var/before_antibiotic = arm.aq_germs
+	patient.aq_handle_germs(20)
+	TEST_ASSERT(arm.aq_germs < before_antibiotic, "Spaceacillin did not knock the infection back")
+	patient.reagents.clear_reagents()
+
+	// Sepsis weakens but stops short of killing
+	arm.aq_germs = 100
+	for(var/i in 1 to 300)
+		patient.aq_handle_germs(2)
+	TEST_ASSERT(patient.getToxLoss() <= 45, "Sepsis keeps poisoning past its cap ([patient.getToxLoss()])")
+	TEST_ASSERT(patient.stat != DEAD, "Sepsis killed")
+
+	// Disinfecting the skin knocks back germs that have not taken hold
+	leg.aq_germs = 50
+	var/datum/reagent/space_cleaner/sterilizine/spray = new()
+	spray.reaction_mob(patient, TOUCH, 10)
+	TEST_ASSERT(leg.aq_germs < 50, "Sterilizine on the skin did not disinfect")
+	qdel(spray)
+	qdel(operation)
 
 #undef TEST_ASSERT

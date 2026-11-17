@@ -18,6 +18,7 @@
 	gain_text = "<span class='danger'>Oddycha ci się trochę ciężej.</span>"
 	lose_text = "<span class='notice'>Nagle oddycha ci się dużo swobodniej!</span>"
 	medical_record_text = "Pacjent choruje na astmę."
+	icon = "lungs-virus"
 	process = TRUE
 	/// Current inflammation of the airways, 0 to AQ_ASTHMA_MAX_INFLAMMATION
 	var/inflammation = 0
