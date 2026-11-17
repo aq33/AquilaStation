@@ -1,5 +1,5 @@
-/// AQUILA - skala wizualna overmapy (aquila/code/modules/overmap/overmap_visual_scale.dm): poza overmapą nic się nie zmienia,
-/// na overmapie okręt rysuje się mniejszy, stary sprite zostawia dzisiejszy hitbox i środek, a efekt trafienia trafia na obrys kadłuba.
+/// AQUILA - skala wizualna overmapy (aquila/code/modules/overmap/overmap_visual_scale.dm): poza overmapą myśliwiec rysuje się
+/// dwa razy większy (prom bez zmian), na overmapie okręt rysuje się mniejszy, stary sprite zostawia dzisiejszy hitbox i środek, a efekt trafienia trafia na obrys kadłuba.
 /datum/unit_test/aquila_overmap_visual_scale
 	var/obj/structure/overmap/small_craft/ship
 	var/obj/structure/overmap/small_craft/old_sprite
@@ -21,12 +21,18 @@
 
 /datum/unit_test/aquila_overmap_visual_scale/proc/check_off_overmap()
 	ship.forceMove(locate(10, 10, run_loc_floor_bottom_left.z))
-	if(ship.overmap_display_scale() != 1)
-		return "Poza overmapą myśliwiec ma skalę [ship.overmap_display_scale()] zamiast 1"
+	if(ship.overmap_display_scale() != 2)
+		return "Na pokładzie myśliwiec ma skalę [ship.overmap_display_scale()] zamiast 2"
 	var/matrix/M = matrix()
 	ship.apply_overmap_display(M, 0)
-	if(M.a != 1 || M.e != 1 || M.c != 0 || M.f != 0)
-		return "Poza overmapą macierz rysowania się zmieniła ([M.a], [M.e], [M.c], [M.f])"
+	if(M.a != 2 || M.e != 2)
+		return "Na pokładzie macierz rysowania myśliwca nie jest podwojona ([M.a], [M.e])"
+	if(ship.bound_width != 64 || ship.bound_height != 64)
+		return "Na pokładzie myśliwiec zmienił hitbox na [ship.bound_width]x[ship.bound_height]"
+	var/obj/structure/overmap/small_craft/escapepod/shuttle = allocate(/obj/structure/overmap/small_craft/escapepod)
+	shuttle.forceMove(locate(14, 10, run_loc_floor_bottom_left.z))
+	if(shuttle.overmap_display_scale() != 1)
+		return "Kapsuła ratunkowa na pokładzie ma skalę [shuttle.overmap_display_scale()] zamiast 1"
 	// Stary sprite: hitbox z dzisiejszej ikony (klatka 96 px), nie ze starej (256 px)
 	var/list/ref = overmap_sprite_bounds_of(old_sprite.overmap_hitbox_icon, old_sprite.overmap_hitbox_state)
 	if(!ref)

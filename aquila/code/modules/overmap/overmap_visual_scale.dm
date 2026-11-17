@@ -6,6 +6,8 @@
 /// (overmap_hitbox_icon), a środek rysunku stoi tam, gdzie był środek dzisiejszego sprite'a.
 /// Efekt trafienia pocisku rysuje się na obrysie kadłuba, a nie przy rogu hitboksu.
 /// Obrysy sprite'ów: tools/overmap_scale/sprite_bounds.py -> overmap_sprite_bounds.dm
+/// Myśliwce na pokładzie (hangar, doki) rysują się dwa razy większe, żeby w kabinie zmieścił się człowiek; hitbox na
+/// pokładzie (2×2 pola) zostaje, więc myśliwiec dalej mieści się w wyrzutniach i drzwiach hangaru.
 
 /obj/structure/overmap
 	/// AQUILA - rozmiar na mapie względem proporcji ze zrzutów; null = 1, a dla MASS_TINY OVERMAP_TINY_PROPORTION
@@ -13,15 +15,20 @@
 	/// AQUILA - sprite, z którego liczony jest hitbox, gdy okręt rysuje się innym (starym, dużym) sprite'em
 	var/overmap_hitbox_icon
 	var/overmap_hitbox_state
+	/// AQUILA - rozmiar poza overmapą (na pokładzie okrętu)
+	var/deck_display_proportion = 1
+
+/obj/structure/overmap/small_craft/combat
+	deck_display_proportion = 2
 
 /// Obrys stanu ikony z tabeli generowanej: list(klatka x, klatka y, kadłub x, kadłub y, przesunięcie środka x, y) albo null
 /proc/overmap_sprite_bounds_of(icon_file, state)
 	return GLOB.overmap_sprite_bounds["[icon_file]|[state]"]
 
-/// Łączna skala rysowania w tym miejscu: 1 poza poziomami overmapy (myśliwce w hangarze, promy w dokach)
+/// Łączna skala rysowania w tym miejscu: poza poziomami overmapy deck_display_proportion (promy w dokach 1, myśliwce 2)
 /obj/structure/overmap/proc/overmap_display_scale()
 	if(!z || !SSmapping.level_trait(z, ZTRAIT_OVERMAP))
-		return 1
+		return deck_display_proportion
 	var/proportion = overmap_display_proportion
 	if(isnull(proportion))
 		proportion = (mass <= MASS_TINY) ? OVERMAP_TINY_PROPORTION : 1
