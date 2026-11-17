@@ -25073,5 +25073,16 @@
 "<span class='warning'>Nieskalibrowany. Skalibruj go multitoolem.</span>": "<span class='warning'>Not calibrated. Calibrate it with a multitool.</span>",
 "Projekt maszyny (moduł kalibracji działa pokładowego)": "Machine Design (Deck Gun Calibration Module)",
 "Moduł obok rdzenia działa pokładowego: dłuższe naprowadzanie pocisków, mniejszy rozrzut i szybsze ładowanie. Co kwadrans trzeba go skalibrować multitoolem.": "A module next to the deck gun core: longer shell homing, less spread and faster loading. It needs a multitool calibration every quarter of an hour.",
-"Płytka modułu kalibracji działa pokładowego": "Deck gun calibration module board"
+"Płytka modułu kalibracji działa pokładowego": "Deck gun calibration module board",
+"Pocisk artylerii okrętowej (Magneton)": "Naval artillery shell (Magneton)",
+"Pocisk FTL-1301, który naprowadza się na kadłub celu i uderza mocniej od zwykłego. (UWAGA: do przenoszenia potrzebny jest wózek!)": "An FTL-1301 shell that homes in on the target's hull and hits harder than a standard one. (NOTE: a trolley is needed to move it!)",
+"Pocisk artylerii okrętowej FTL-1301 Magneton": "FTL-1301 Magneton naval artillery shell",
+"Pocisk działa pokładowego, który naprowadza się na kadłub celu i uderza mocniej od zwykłego.": "A deck gun shell that homes in on the target's hull and hits harder than a standard one.",
+"pocisk manewrujący Sparrowhawk": "Sparrowhawk cruise missile",
+"głowica pocisku manewrującego MS-1": "MS-1 cruise missile warhead",
+"Ciężka głowica z dodatkowym zbiornikiem paliwa. Złożona w obudowie rakiety daje pocisk manewrujący „Sparrowhawk” dalekiego zasięgu, tylko do VLS.": "A heavy warhead with an extra fuel tank. Assembled in a missile casing it makes a long-range \"Sparrowhawk\" cruise missile, VLS only.",
+"Głowica pocisku manewrującego Sparrowhawk": "Sparrowhawk cruise missile warhead",
+"Głowica rakiety dalekiego zasięgu do VLS.": "A long-range missile warhead for the VLS.",
+"Pocisk manewrujący MS-1 „Sparrowhawk”": "MS-1 \"Sparrowhawk\" cruise missile",
+"Rakieta dalekiego zasięgu do wyrzutni VLS: leci dwa razy dalej niż zwykła rakieta i uderza mocniej.": "A long-range missile for the VLS launcher: it flies twice as far as a standard missile and hits harder."
 }

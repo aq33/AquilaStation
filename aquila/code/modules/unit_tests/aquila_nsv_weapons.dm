@@ -132,5 +132,37 @@
 	calibrator.multitool_act(user, tool)
 	TEST_ASSERT_EQUAL(core.get_calibrator(), calibrator, "Multitool nie skalibrował modułu")
 
+/// AQUILA - raport nsv_martwe_08 pkt 4: Magneton i Sparrowhawk z badań i od White Rapids, lepsze od zwykłej amunicji
+/datum/unit_test/nsv_magneton_sparrowhawk
+
+/datum/unit_test/nsv_magneton_sparrowhawk/Run()
+	var/datum/techweb_node/node = SSresearch.techweb_node_by_id("macro_ballistics")
+	TEST_ASSERT("naval_shell_homing" in node.design_ids, "Makrobalistyka nie ma Magnetonu")
+	node = SSresearch.techweb_node_by_id("advanced_torpedo_components")
+	TEST_ASSERT("cruise_missile_warhead" in node.design_ids, "Amunicja kierowana II nie ma głowicy Sparrowhawka")
+	var/list/stock = aq_test_trader_stock(/datum/trader/armsdealer)
+	TEST_ASSERT(/datum/trader_item/naval_shell_homing in stock, "White Rapids nie sprzedaje Magnetonu")
+	TEST_ASSERT(/datum/trader_item/cruise_missile in stock, "White Rapids nie sprzedaje Sparrowhawka")
+
+	var/obj/item/projectile/bullet/mac_round/magneton/magneton = /obj/item/projectile/bullet/mac_round/magneton
+	var/obj/item/projectile/bullet/mac_round/shell = /obj/item/projectile/bullet/mac_round
+	TEST_ASSERT(initial(magneton.damage) > initial(shell.damage), "Magneton jest słabszy od zwykłego pocisku")
+	var/obj/item/projectile/guided_munition/missile/cruise/cruise = /obj/item/projectile/guided_munition/missile/cruise
+	var/obj/item/projectile/guided_munition/missile/missile = /obj/item/projectile/guided_munition/missile
+	TEST_ASSERT(initial(cruise.damage) > initial(missile.damage), "Sparrowhawk jest słabszy od zwykłej rakiety")
+	TEST_ASSERT(initial(cruise.range) > initial(missile.range), "Sparrowhawk nie leci dalej od zwykłej rakiety")
+	var/obj/item/ship_weapon/parts/missile/warhead/cruise/warhead = /obj/item/ship_weapon/parts/missile/warhead/cruise
+	TEST_ASSERT_EQUAL(initial(warhead.build_path), /obj/item/ship_weapon/ammunition/missile/cruise, "Głowica Sparrowhawka składa inną rakietę")
+
+	// Sparrowhawk da się przewieźć i wtoczyć do VLS, ale nie do wyrzutni myśliwca
+	var/obj/machinery/ship_weapon/vls/vls = allocate(/obj/machinery/ship_weapon/vls, run_loc_floor_bottom_left)
+	var/obj/item/ship_weapon/ammunition/missile/cruise/sparrowhawk = allocate(/obj/item/ship_weapon/ammunition/missile/cruise, get_step(run_loc_floor_bottom_left, EAST))
+	TEST_ASSERT(!sparrowhawk.anchored, "Sparrowhawk jest przykręcony do podłogi")
+	var/obj/item/fighter_component/secondary/ordnance_launcher/rack = allocate(/obj/item/fighter_component/secondary/ordnance_launcher)
+	TEST_ASSERT(!rack.load(null, sparrowhawk), "Wyrzutnia myśliwca przyjęła Sparrowhawka")
+	sparrowhawk.forceMove(get_turf(vls))
+	TEST_ASSERT(sparrowhawk in vls.ammo, "VLS nie przyjął Sparrowhawka")
+	TEST_ASSERT_EQUAL(sparrowhawk.projectile_type, /obj/item/projectile/guided_munition/missile/cruise, "Sparrowhawk strzela zwykłą rakietą")
+
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL
