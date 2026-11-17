@@ -1871,6 +1871,14 @@ Nowe gatunki z tg, Goona, Baya i innych (`aquila/code/modules/botany/aquila/port
 | kuku / bonji / bianco (berry, bush) | kuku / bondżi / bianko (jagoda, krzak) | ndm; nowe (Yogstation) |
 | Liberal Hat | kapelusz liberała | m; nowe (Yogstation), grzyb |
 | prickly pear / san pedro cactus / peyote | opuncja (plon: owoc opuncji) / kaktus San Pedro / pejotl | ż / m / m; nowe (Paradise) |
+| earthen-root (Binajr-nab'at) | ziemny korzeń | m; nowe (Aurora), ksenoflora z Adhomai, dziko na planetach lodowych |
+| dirt berries (Zhu'hagha Nifs) | brudne jagody (roślina: krzew brudnych jagód) | mn; nowe (Aurora), ksenoflora z Adhomai |
+| sarezhi berry | sareżi (plon: jagody sareżi) | ndm; nowe (Aurora), ksenoflora |
+| ylpha berry | ylfa (plon: jagody ylfy, roślina: krzew ylfy) | ż; nowe (Aurora), ksenoflora |
+| sugar tree (Nm'shaan) | drzewo cukrowe (plon: owoc drzewa cukrowego) | n; nowe (Aurora), ksenoflora z Adhomai |
+| fjylozyn | fjylozyn (pnącze fjylozynu) | m; nowe (Aurora), ksenoflora, świeci na czerwono |
+| wulumunusha | wulumunusza (plon: owoc wulumunuszy) | ż; nowe (Aurora), ksenoflora |
+| Earthen-Root / Dirt Berry / Sarezhi Berry / Ylpha Berry Juice | Sok z ziemnego korzenia / z brudnych jagód / z jagód sareżi / z jagód ylfy | m; nowe, reagenty |
 
 ## 22. Częste przymiotniki i określenia w nazwach
 
