@@ -2371,6 +2371,7 @@
 
 // Podział testów między joby CI: poza blokiem UNIT_TESTS, bo RunUnitTests() kompiluje się też pod dreamcheckerem
 #include "code\modules\unit_tests\_unit_test_shards.dm"
+#include "code\modules\unit_tests\_unit_test_weights.dm"
 
 #ifdef UNIT_TESTS
 #include "code\modules\unit_tests\aquila_basic_tg_fauna.dm"
