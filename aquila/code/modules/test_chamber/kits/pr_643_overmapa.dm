@@ -27,3 +27,13 @@
 		/obj/item/card/id/captains_spare = 1,
 		/obj/structure/closet/damage_control = 1,
 	)
+
+/datum/test_chamber_kit/pr_643_abordaz_cywile
+	name = "Abordaż kapsułą i cywile z IFF"
+	pr = "aq33/AquilaStation#643"
+	description = "Kapsuła: jako admin postaw /obj/machinery/drop_pod_bay na pokładzie okrętu (komora nie leży na okręcie) i zespawnuj przy okręcie na overmapie /obj/structure/overmap/syndicate/ai; zbij mu tarcze. Usiądź w kapsule, „Cel zrzutu” ma teraz pozycję „Abordaż: …”, potem „Zrzut”. Kapsuła leci ok. 30 s, ląduje na losowej podłodze celu i wybija sąsiednią ścianę; zestrzelona przez PDC wyrzuca rannego pasażera w kosmos przy okręcie. \
+		Cywile: zespawnuj /obj/structure/overmap/nanotrasen/mining_cruiser/aquila_hex_freighter/civilian/independent. Z daleka DRADIS pokazuje klasę („Kontakt 3 (średni)”), po rozpoznaniu niebieski kolor cywila. Strzał w niego: ogłoszenie Centrali, a kupcy niezależni (stacja handlowa) biorą drożej; przy złej reputacji odmawiają. \
+		Fałszywy IFF: ustaw zmienną globalną civilian_fake_iff_chance na 100 i zespawnuj okręt Syndykatu; z daleka nadaje się jako frachtowiec, z bliska (8 pól) albo po strzale wychodzi prawda."
+	items = list(
+		/obj/item/card/id/captains_spare = 1,
+	)
