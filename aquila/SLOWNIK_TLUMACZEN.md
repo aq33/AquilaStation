@@ -1821,6 +1821,16 @@ Nowe gatunki z tg, Goona, Baya i innych (`aquila/code/modules/botany/aquila/port
 | pyrite peach | pirytowa brzoskwinia | ż; nowe (tgstation/tgstation#82089) |
 | Limon Juice (`/consumable/limonjuice`) | Sok z limony | m; nowe, reagent |
 | Cellulose Fibers (`/cellulose`) | Włókna celulozowe | mn; nowe, reagent |
+| gukhe bloom | guche; plon: zakwit guche | n, ndm / m; nowe (Bay), ksenoflora z Moghes (Unathi) |
+| hrukhza (flower) | hruchza; plon: liść hruchzy | ż; nowe (Bay), ksenoflora z Moghes |
+| aghrassh tree | drzewo aghrasz; plon: owoc aghrasza | m; nowe (Bay), ksenoflora z pustyń Moghes |
+| o'krri mushroom / cluster | okri; plon: grzyb okri | m, ndm; nowe (Bay), ksenoflora z Qerrbalak (Skrellowie) |
+| ximi'koa | ksimikoa; plon: kwiat ksimikoi | ż; nowe (Bay), ksenoflora z Qerrbalak |
+| qokk'loa moss | mech kokloa; plon: kępa mchu kokloa | m; nowe (Bay), ksenoflora z Qerrbalak |
+| iridast bush / berries | krzew irydastu (owoc: irydast); plon: jagody irydastu | m; nowe (Bay), ksenoflora |
+| affelerin flower | afelerin; plon: kwiat afelerinu | m; nowe (Bay), ksenoflora światów pustynnych |
+| gummen bean plant | fasola gummen; plon: strąk fasoli gummen | ż; nowe (Bay), ksenoflora |
+| merlin tears | łzy Merlina | mn; nowe (Bay), ksenoflora, roślina czarodzieja |
 | peach / pear | brzoskwinia / gruszka (drzewo: grusza) | ż; nowe (Goon) |
 | strawberry / raspberry / blackberry / blue raspberry | truskawka / malina / jeżyna / niebieska malina | ż; nowe (Goon) |
 | blueberry | borówka | ż; nowe (Goon, Bay) |
