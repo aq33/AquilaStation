@@ -1,0 +1,10439 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"ah" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/concrete/slab_4{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"al" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_desert/e11manufactory)
+"au" = (
+/obj/machinery/conveyor{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_desert/e11manufactory/warehouse)
+"av" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/slab_1{
+	light_power = 0.6;
+	light_range = 2
+	},
+/area/lavaland/surface/outdoors)
+"aA" = (
+/obj/structure/bed,
+/obj/item/bedsheet/random,
+/turf/open/floor/carpet/purple,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"aJ" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_desert/e11manufactory/warehouse)
+"aL" = (
+/obj/structure/fence{
+	dir = 4
+	},
+/turf/open/floor/concrete/slab_4{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"aM" = (
+/obj/machinery/door/airlock/external{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 8
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_desert/e11manufactory/office)
+"aZ" = (
+/obj/structure/toilet{
+	dir = 4;
+	pixel_x = -4
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/vomit/old{
+	pixel_x = 13;
+	pixel_y = 3
+	},
+/turf/open/floor/plasteel/white,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"ba" = (
+/obj/machinery/conveyor/inverted{
+	dir = 5
+	},
+/obj/structure/railing{
+	dir = 9
+	},
+/obj/structure/railing/corner,
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"bd" = (
+/obj/structure/table,
+/obj/item/clothing/head/hardhat{
+	pixel_y = 5
+	},
+/turf/open/floor/carpet,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"bj" = (
+/obj/machinery/door/airlock/grunge{
+	name = "Kwatery załogi"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"bt" = (
+/obj/structure/chair{
+	dir = 8
+	},
+/mob/living/basic/trooper/pirate/melee,
+/turf/open/floor/carpet,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"bv" = (
+/obj/effect/turf_decal/tile/green/opposingcorners{
+	color = "#99BB76";
+	alpha = 255
+	},
+/obj/effect/turf_decal/tile/red/opposingcorners{
+	dir = 8;
+	color = "#B4696A";
+	alpha = 255
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"bC" = (
+/obj/item/restraints/legcuffs/beartrap{
+	armed = 1
+	},
+/turf/open/floor/plating/asteroid/desert,
+/area/lavaland/surface/outdoors)
+"bE" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"bI" = (
+/obj/structure/cable/yellow,
+/obj/structure/cable/orange,
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"bJ" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"bR" = (
+/obj/structure/chair/stool/bar{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/carpet,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"bT" = (
+/obj/machinery/door/airlock/external{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable/orange,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 8
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_desert/e11manufactory/security)
+"bW" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 8
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"bZ" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/structure/cable/orange,
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_desert/e11manufactory)
+"ca" = (
+/obj/effect/decal/cleanable/greenglow,
+/obj/effect/decal/cleanable/dirt{
+	pixel_x = -8;
+	pixel_y = -15
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"cc" = (
+/obj/effect/turf_decal/trimline/white/corner{
+	dir = 8;
+	color = "#FFFFFF";
+	alpha = 255
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"ch" = (
+/obj/structure/railing/corner{
+	dir = 8
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"ci" = (
+/obj/structure/cable/yellow,
+/obj/machinery/power/terminal{
+	dir = 1
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"ck" = (
+/obj/machinery/door/airlock/grunge{
+	name = "Biuro kierownika"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/machinery/door/firedoor,
+/obj/effect/mapping_helpers/airlock/locked,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_desert/e11manufactory/office)
+"cm" = (
+/obj/effect/turf_decal/tile/green/opposingcorners{
+	color = "#99BB76";
+	alpha = 255
+	},
+/obj/structure/table,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"ct" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/structure/cable/orange,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"cv" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable/orange,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/carpet,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"cB" = (
+/obj/structure/table,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/radio/off{
+	pixel_y = 12
+	},
+/obj/item/binoculars{
+	pixel_y = -7
+	},
+/turf/open/floor/carpet/red,
+/area/ruin/unpowered/planet_desert/e11manufactory/security)
+"cL" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 8
+	},
+/turf/open/floor/concrete/pavement,
+/area/ruin/unpowered/planet_desert/e11manufactory/warehouse)
+"cO" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"cQ" = (
+/obj/effect/turf_decal/trimline/white/line{
+	dir = 8;
+	color = "#FFFFFF";
+	alpha = 255
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"dd" = (
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_desert/e11manufactory)
+"de" = (
+/obj/structure/table/glass,
+/obj/item/phone{
+	pixel_x = -4;
+	pixel_y = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 5
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/carpet/royalblue,
+/area/ruin/unpowered/planet_desert/e11manufactory/office)
+"dj" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/structure/cable/orange,
+/mob/living/basic/trooper/pirate/ranged,
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"dn" = (
+/obj/effect/decal/cleanable/oil/streak,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"dt" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_desert/e11manufactory)
+"dx" = (
+/obj/structure/flora/ash/puce,
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"dz" = (
+/obj/structure/bed,
+/obj/item/bedsheet/random,
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/carpet/purple,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"dA" = (
+/obj/machinery/conveyor/inverted{
+	dir = 9
+	},
+/obj/item/gun/energy/e_gun,
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_desert/e11manufactory)
+"dB" = (
+/obj/machinery/door/airlock/external{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 4
+	},
+/obj/structure/cable/orange,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_desert/e11manufactory/office)
+"dG" = (
+/obj/structure/closet/crate/secure/engineering{
+	anchored = 1
+	},
+/obj/item/circuitboard/machine/cell_charger,
+/obj/item/circuitboard/machine/cell_charger,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_desert/e11manufactory/warehouse)
+"dJ" = (
+/obj/structure/chair{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/carpet,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"dL" = (
+/obj/machinery/conveyor{
+	dir = 10
+	},
+/obj/structure/railing{
+	dir = 6
+	},
+/obj/structure/railing/corner{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"dN" = (
+/turf/open/water/planet/oasis,
+/area/lavaland/surface/outdoors)
+"dP" = (
+/turf/closed/wall,
+/area/lavaland/surface/outdoors)
+"dX" = (
+/obj/machinery/door/airlock/external,
+/obj/effect/turf_decal/stripes/corner{
+	dir = 1
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"dZ" = (
+/obj/structure/railing/corner{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"ea" = (
+/turf/open/floor/concrete/slab_1{
+	light_power = 0.6;
+	light_range = 2
+	},
+/area/lavaland/surface/outdoors)
+"eb" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
+/obj/machinery/airalarm/directional/west,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/carpet/red,
+/area/ruin/unpowered/planet_desert/e11manufactory/security)
+"eh" = (
+/obj/structure/closet/crate/trashcart,
+/obj/item/trash/canned/beans,
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"ej" = (
+/obj/structure/table/wood,
+/obj/item/radio/off{
+	pixel_x = -4;
+	pixel_y = 3
+	},
+/turf/open/floor/carpet/purple,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"ek" = (
+/obj/machinery/atmospherics/components/unary/passive_vent/layer4,
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"en" = (
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_desert/e11manufactory/mats)
+"es" = (
+/obj/structure/bed,
+/obj/effect/turf_decal/tile/purple/opposingcorners{
+	color = "#AE8CA8";
+	alpha = 255
+	},
+/obj/item/bedsheet/random,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"eu" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable/orange,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_desert/e11manufactory/mats)
+"eE" = (
+/obj/structure/marker_beacon{
+	picked_color = "Cerulean"
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_desert/e11manufactory/warehouse)
+"eK" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 1
+	},
+/obj/machinery/button/door{
+	dir = 8;
+	id = "e11_manufactory_manager_window";
+	pixel_x = 20
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/carpet/royalblue,
+/area/ruin/unpowered/planet_desert/e11manufactory/office)
+"eL" = (
+/obj/structure/closet/crate/secure/weapon{
+	anchored = 1;
+	opened = 1;
+	locked = 0
+	},
+/obj/structure/sign/poster/official/random{
+	pixel_x = -32
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_desert/e11manufactory/warehouse)
+"eO" = (
+/obj/structure/closet{
+	anchored = 1
+	},
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 4
+	},
+/obj/item/clothing/shoes/workboots,
+/obj/structure/cable/orange,
+/obj/machinery/power/apc/auto_name/west,
+/obj/effect/turf_decal/box/corners{
+	dir = 4
+	},
+/obj/effect/turf_decal/box/corners,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"eQ" = (
+/obj/effect/turf_decal/tile/red/opposingcorners{
+	color = "#B4696A";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"eY" = (
+/turf/closed/wall/r_wall,
+/area/lavaland/surface/outdoors)
+"fb" = (
+/obj/structure/bed,
+/obj/effect/turf_decal/tile/red/opposingcorners{
+	color = "#B4696A";
+	alpha = 255
+	},
+/obj/item/bedsheet/random,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"fc" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 9
+	},
+/turf/open/floor/carpet/red,
+/area/ruin/unpowered/planet_desert/e11manufactory/security)
+"ff" = (
+/obj/effect/turf_decal/trimline/white/line{
+	dir = 8;
+	color = "#FFFFFF";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"fk" = (
+/obj/structure/statue/snow/snowman{
+	anchored = 1
+	},
+/turf/open/floor/plating/asteroid/desert,
+/area/lavaland/surface/outdoors)
+"fy" = (
+/obj/effect/decal/cleanable/molten_object,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"fC" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 9
+	},
+/obj/structure/cable/orange,
+/obj/effect/turf_decal/stripes/corner{
+	dir = 4
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"fD" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_desert/e11manufactory/warehouse)
+"fE" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/fluff/paper/stack{
+	dir = 1
+	},
+/obj/structure/fluff/paper/stack,
+/turf/open/floor/carpet/orange,
+/area/ruin/unpowered/planet_desert/e11manufactory/office)
+"fF" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/cable/orange,
+/turf/open/floor/concrete/slab_4{
+	light_power = 0.6;
+	light_range = 2
+	},
+/area/lavaland/surface/outdoors)
+"fH" = (
+/obj/effect/turf_decal/caution,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/item/restraints/legcuffs/beartrap{
+	armed = 1
+	},
+/turf/open/floor/concrete/slab_4{
+	light_power = 0.6;
+	light_range = 2
+	},
+/area/lavaland/surface/outdoors)
+"fW" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/table,
+/obj/item/plate{
+	pixel_x = 3
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"gb" = (
+/obj/structure/railing{
+	dir = 8
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"gq" = (
+/obj/structure/flora/ash/cap_shroom,
+/turf/open/floor/plating/asteroid/desert,
+/area/lavaland/surface/outdoors)
+"gt" = (
+/turf/open/floor/plating/asteroid/desert,
+/area/lavaland/surface/outdoors)
+"gy" = (
+/obj/effect/decal/cleanable/cobweb,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable/orange,
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_desert/e11manufactory/security)
+"gB" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 5
+	},
+/obj/structure/cable/orange,
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/concrete/slab_4{
+	light_power = 0.6;
+	light_range = 2
+	},
+/area/ruin/unpowered/planet_desert/e11manufactory/warehouse)
+"gI" = (
+/obj/structure/guncase{
+	anchored = 1
+	},
+/obj/item/gun/energy/disabler,
+/turf/open/floor/carpet/red,
+/area/ruin/unpowered/planet_desert/e11manufactory/security)
+"gM" = (
+/obj/structure/reagent_dispensers/fueltank,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"gN" = (
+/obj/structure/closet/crate/secure/plasma{
+	name = "skrzynia z materiałami";
+	desc = "Zabezpieczona skrzynia na rudę.";
+	anchored = 1
+	},
+/obj/effect/turf_decal/box/corners{
+	dir = 1
+	},
+/obj/effect/turf_decal/box/corners{
+	dir = 8
+	},
+/obj/item/stack/sheet/mineral/gold/five,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/stack/sheet/mineral/gold/five,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_desert/e11manufactory/mats)
+"hd" = (
+/mob/living/basic/trooper/pirate/ranged,
+/obj/structure/cable/orange,
+/turf/open/floor/concrete/pavement,
+/area/ruin/unpowered/planet_desert/e11manufactory/warehouse)
+"hh" = (
+/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden/layer4,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"hn" = (
+/obj/machinery/conveyor/inverted{
+	dir = 9
+	},
+/obj/structure/frame/machine{
+	name = "zepsuty skaner";
+	anchored = 1
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_desert/e11manufactory)
+"hr" = (
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"hu" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/book/random{
+	pixel_y = 12;
+	pixel_x = -3;
+	layer = 2.99
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"hv" = (
+/obj/effect/decal/remains/xeno/larva{
+	name = "Krokiet";
+	desc = "Wyglądają jak szczątki ćmokaraluchu. Bije od nich dziwna aura."
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/carpet/royalblue,
+/area/ruin/unpowered/planet_desert/e11manufactory/office)
+"hy" = (
+/obj/structure/chair{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/carpet,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"hz" = (
+/obj/machinery/door/airlock/external{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 4
+	},
+/obj/structure/cable/orange,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_desert/e11manufactory)
+"hH" = (
+/obj/machinery/door/airlock/grunge{
+	name = "Kuchnia"
+	},
+/obj/effect/turf_decal/tile/green/opposingcorners{
+	color = "#99BB76";
+	alpha = 255
+	},
+/obj/effect/turf_decal/tile/red/opposingcorners{
+	dir = 8;
+	color = "#B4696A";
+	alpha = 255
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"hO" = (
+/obj/structure/railing{
+	dir = 9
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"hR" = (
+/obj/structure/closet/crate/secure/weapon{
+	anchored = 1
+	},
+/obj/effect/turf_decal/box/corners{
+	dir = 1
+	},
+/obj/effect/turf_decal/box/corners{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/item/gun/energy/e_gun,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_desert/e11manufactory/warehouse)
+"hT" = (
+/obj/item/stack/ore/iron,
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"hV" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"hX" = (
+/obj/effect/turf_decal/tile/green/opposingcorners{
+	color = "#99BB76";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/layer4,
+/obj/structure/sign/poster/contraband/shamblers_juice{
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"hZ" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/cable/orange,
+/turf/open/floor/carpet,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"ib" = (
+/obj/machinery/conveyor{
+	dir = 4
+	},
+/obj/structure/frame/machine{
+	name = "zepsuty fabrykator";
+	anchored = 1
+	},
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_desert/e11manufactory)
+"ih" = (
+/obj/machinery/conveyor,
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/structure/railing{
+	max_integrity = 70;
+	dir = 4
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"il" = (
+/obj/structure/chair{
+	dir = 8
+	},
+/turf/open/floor/carpet,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"in" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/chair/fancy/plastic{
+	dir = 8
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"io" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"ir" = (
+/obj/effect/turf_decal/tile/green/opposingcorners{
+	color = "#99BB76";
+	alpha = 255
+	},
+/obj/effect/turf_decal/tile/red/opposingcorners{
+	dir = 8;
+	color = "#B4696A";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/cobweb,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"iD" = (
+/obj/machinery/atmospherics/components/unary/passive_vent/layer4{
+	dir = 1
+	},
+/obj/structure/cable/orange,
+/obj/effect/turf_decal/stripes/corner{
+	dir = 4
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"iJ" = (
+/obj/machinery/light,
+/obj/machinery/mech_bay_recharge_port,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_desert/e11manufactory/warehouse)
+"iR" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/cable/orange,
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/concrete/slab_1{
+	light_power = 0.6;
+	light_range = 2
+	},
+/area/lavaland/surface/outdoors)
+"ja" = (
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/concrete/slab_1{
+	light_power = 0.6;
+	light_range = 2
+	},
+/area/lavaland/surface/outdoors)
+"jb" = (
+/obj/item/shard,
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"jd" = (
+/obj/machinery/door/airlock/external,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/cable/orange,
+/obj/effect/turf_decal/stripes/corner{
+	dir = 4
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"jg" = (
+/obj/effect/turf_decal/tile/green/opposingcorners{
+	color = "#99BB76";
+	alpha = 255
+	},
+/obj/effect/turf_decal/tile/red/opposingcorners{
+	dir = 8;
+	color = "#B4696A";
+	alpha = 255
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"jj" = (
+/obj/structure/railing{
+	dir = 6
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"jk" = (
+/obj/structure/closet/crate/secure/plasma{
+	name = "skrzynia z materiałami";
+	desc = "Zabezpieczona skrzynia na rudę.";
+	anchored = 1
+	},
+/obj/effect/turf_decal/box/corners{
+	dir = 4
+	},
+/obj/effect/turf_decal/box/corners{
+	dir = 1
+	},
+/obj/item/stack/sheet/iron/twenty,
+/obj/item/stack/sheet/iron/ten,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_desert/e11manufactory/mats)
+"jp" = (
+/obj/structure/chair,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/carpet/royalblue,
+/area/ruin/unpowered/planet_desert/e11manufactory/office)
+"js" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 1
+	},
+/obj/machinery/light,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_desert/e11manufactory/office)
+"jt" = (
+/obj/structure/fence,
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"jC" = (
+/obj/structure/closet/crate/secure/weapon{
+	anchored = 1
+	},
+/obj/effect/turf_decal/box/corners,
+/obj/effect/turf_decal/box/corners{
+	dir = 8
+	},
+/obj/item/gun/energy/e_gun,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_desert/e11manufactory/warehouse)
+"jD" = (
+/obj/structure/chair{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/light,
+/turf/open/floor/carpet,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"jK" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"jQ" = (
+/obj/structure/cable/yellow,
+/obj/machinery/power/terminal,
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"jR" = (
+/obj/structure/table/reinforced,
+/obj/item/weaponcrafting/receiver{
+	pixel_y = 7
+	},
+/obj/structure/sign/poster/official/build{
+	pixel_y = -32
+	},
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_desert/e11manufactory)
+"jU" = (
+/obj/effect/decal/cleanable/greenglow,
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"jZ" = (
+/turf/open/floor/concrete/slab_4{
+	light_power = 0.6;
+	light_range = 2
+	},
+/area/lavaland/surface/outdoors)
+"ki" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"kl" = (
+/obj/machinery/door/airlock/grunge{
+	dir = 4;
+	name = "Biuro brygadzisty"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/closed,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_desert/e11manufactory/office)
+"kn" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_desert/e11manufactory/warehouse)
+"kt" = (
+/obj/item/restraints/legcuffs/beartrap,
+/obj/effect/mob_spawn/human/corpse/damaged,
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"kB" = (
+/obj/structure/fence/end,
+/turf/open/floor/concrete/slab_4{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"kF" = (
+/obj/machinery/door/airlock/external,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_desert/e11manufactory/office)
+"kJ" = (
+/obj/effect/spawner/lootdrop/maintenance,
+/turf/open/floor/plating/asteroid/desert/dry_seafloor{
+	light_range = 2
+	},
+/area/lavaland/surface/outdoors)
+"kQ" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 6
+	},
+/obj/structure/cable/orange,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_desert/e11manufactory/warehouse)
+"kR" = (
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal/tile/green/opposingcorners{
+	color = "#99BB76";
+	alpha = 255
+	},
+/obj/effect/turf_decal/tile/red/opposingcorners{
+	dir = 8;
+	color = "#B4696A";
+	alpha = 255
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass{
+	pixel_x = 8;
+	pixel_y = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"kS" = (
+/obj/structure/chair,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 9
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_desert/e11manufactory/office)
+"kT" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 9
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/structure/cable/orange,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/restraints/legcuffs/beartrap{
+	armed = 1
+	},
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"kW" = (
+/obj/machinery/door/airlock/external{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable/orange,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"kX" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_desert/e11manufactory/warehouse)
+"lc" = (
+/obj/structure/frame/machine{
+	anchored = 1
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_desert/e11manufactory)
+"lh" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"lk" = (
+/obj/effect/turf_decal/tile/green/opposingcorners{
+	color = "#99BB76";
+	alpha = 255
+	},
+/obj/effect/turf_decal/tile/red/opposingcorners{
+	dir = 8;
+	color = "#B4696A";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"lq" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 9
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_desert/e11manufactory/warehouse)
+"lz" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 5
+	},
+/obj/structure/marker_beacon{
+	picked_color = "Cerulean"
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"lA" = (
+/obj/machinery/door/airlock/external{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/structure/cable/orange,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"lB" = (
+/obj/effect/turf_decal/stripes/corner,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"lC" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/basic/trooper/pirate/ranged,
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"lF" = (
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_desert/e11manufactory/warehouse)
+"lG" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/concrete/slab_1{
+	light_power = 0.6;
+	light_range = 2
+	},
+/area/lavaland/surface/outdoors)
+"lL" = (
+/obj/effect/turf_decal/tile/green/opposingcorners{
+	color = "#99BB76";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 5
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"lP" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable/orange,
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_desert/e11manufactory)
+"mb" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable/orange,
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_desert/e11manufactory/warehouse)
+"mg" = (
+/obj/structure/railing/corner{
+	dir = 1
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"mj" = (
+/obj/structure/rack,
+/obj/item/screwdriver{
+	pixel_y = 5
+	},
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_desert/e11manufactory)
+"mk" = (
+/obj/machinery/power/solar,
+/obj/structure/cable/yellow,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/slab_4{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"mm" = (
+/turf/open/floor/plating/asteroid/desert,
+/area/lavaland/surface/outdoors)
+"mn" = (
+/obj/structure/flora/ash/stem_shroom,
+/turf/open/floor/plating/asteroid/desert,
+/area/lavaland/surface/outdoors)
+"mp" = (
+/obj/structure/fence{
+	dir = 4
+	},
+/turf/open/floor/plating/asteroid/desert,
+/area/lavaland/surface/outdoors)
+"ms" = (
+/obj/structure/closet/crate/freezer{
+	anchored = 1
+	},
+/obj/effect/turf_decal/box/corners{
+	dir = 8
+	},
+/obj/effect/turf_decal/box/corners{
+	dir = 1
+	},
+/obj/item/food/donkpocket,
+/obj/item/food/donkpocket,
+/obj/item/food/donkpocket,
+/obj/item/food/donkpocket,
+/obj/item/food/donkpocket,
+/obj/item/food/donkpocket,
+/obj/effect/decal/cleanable/cobweb,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"mv" = (
+/obj/effect/turf_decal/stripes/line,
+/obj/machinery/airalarm/directional/north,
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_desert/e11manufactory/mats)
+"mF" = (
+/obj/machinery/vending/cigarette,
+/turf/open/floor/carpet,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"mH" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"mI" = (
+/obj/effect/turf_decal/tile/red/opposingcorners{
+	color = "#B4696A";
+	alpha = 255
+	},
+/obj/structure/chair/stool{
+	dir = 4
+	},
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"mT" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/pavement,
+/area/ruin/unpowered/planet_desert/e11manufactory/warehouse)
+"mZ" = (
+/obj/item/restraints/legcuffs/beartrap{
+	armed = 1
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"na" = (
+/obj/effect/decal/cleanable/cobweb,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 6
+	},
+/obj/machinery/power/apc/auto_name/west,
+/obj/structure/cable/orange,
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_desert/e11manufactory/mats)
+"nf" = (
+/obj/item/stack/ore/iron,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"ni" = (
+/obj/effect/spawner/lootdrop/maintenance,
+/turf/open/floor/plating/asteroid/desert,
+/area/lavaland/surface/outdoors)
+"nn" = (
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal/tile/green/opposingcorners{
+	color = "#99BB76";
+	alpha = 255
+	},
+/obj/effect/turf_decal/tile/red/opposingcorners{
+	dir = 8;
+	color = "#B4696A";
+	alpha = 255
+	},
+/obj/machinery/light,
+/obj/item/plate{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"nr" = (
+/obj/machinery/door/airlock/external,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_desert/e11manufactory/office)
+"ns" = (
+/obj/effect/decal/cleanable/cobweb,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/filingcabinet/chestdrawer/wheeled{
+	dir = 4;
+	pixel_x = -6;
+	anchored = 1
+	},
+/turf/open/floor/carpet/orange,
+/area/ruin/unpowered/planet_desert/e11manufactory/office)
+"nt" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/carpet/orange,
+/area/ruin/unpowered/planet_desert/e11manufactory/office)
+"nw" = (
+/obj/machinery/door/window/eastleft,
+/obj/effect/turf_decal/tile/green/opposingcorners{
+	color = "#99BB76";
+	alpha = 255
+	},
+/obj/effect/turf_decal/tile/red/opposingcorners{
+	dir = 8;
+	color = "#B4696A";
+	alpha = 255
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"nD" = (
+/obj/structure/cable/yellow,
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"nE" = (
+/obj/effect/decal/cleanable/oil/streak,
+/turf/open/floor/concrete/pavement,
+/area/ruin/unpowered/planet_desert/e11manufactory/warehouse)
+"nH" = (
+/mob/living/basic/trooper/pirate/ranged,
+/obj/structure/fluff/paper/stack,
+/obj/structure/fluff/paper/stack{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/carpet/red,
+/area/ruin/unpowered/planet_desert/e11manufactory/security)
+"nI" = (
+/obj/structure/bed,
+/obj/effect/turf_decal/tile/green/opposingcorners{
+	color = "#99BB76";
+	alpha = 255
+	},
+/obj/item/bedsheet/random,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 1;
+	piping_layer = 2
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"nL" = (
+/obj/structure/closet/cabinet{
+	anchored = 1
+	},
+/obj/item/clothing/under/suit/black,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/storage/wallet/random,
+/turf/open/floor/carpet/purple,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"nT" = (
+/obj/effect/turf_decal/tile/green/opposingcorners{
+	color = "#99BB76";
+	alpha = 255
+	},
+/obj/item/chair/stool{
+	pixel_y = -7;
+	pixel_x = -8;
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"nU" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/monotile/light,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"ol" = (
+/obj/effect/turf_decal/tile/red/opposingcorners{
+	color = "#B4696A";
+	alpha = 255
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 9
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"oq" = (
+/obj/machinery/firealarm/directional/north,
+/obj/item/kirbyplants{
+	pixel_y = 20
+	},
+/turf/open/floor/carpet/royalblue,
+/area/ruin/unpowered/planet_desert/e11manufactory/office)
+"or" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 1
+	},
+/turf/open/floor/concrete/pavement,
+/area/ruin/unpowered/planet_desert/e11manufactory/warehouse)
+"oH" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/drinks/drinkingglass{
+	pixel_x = -7;
+	pixel_y = 12
+	},
+/obj/item/plate{
+	pixel_x = 3
+	},
+/turf/open/floor/carpet,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"oI" = (
+/obj/item/restraints/legcuffs/beartrap{
+	armed = 1
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"oJ" = (
+/obj/effect/turf_decal/tile/purple/opposingcorners{
+	color = "#AE8CA8";
+	alpha = 255
+	},
+/obj/structure/chair/stool,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"oK" = (
+/obj/effect/decal/cleanable/insectguts,
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"oM" = (
+/obj/machinery/door/airlock/external{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 4
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_desert/e11manufactory/security)
+"oO" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/cable/orange,
+/turf/open/floor/concrete/slab_1{
+	light_power = 0.6;
+	light_range = 2
+	},
+/area/lavaland/surface/outdoors)
+"pa" = (
+/obj/machinery/conveyor{
+	dir = 5
+	},
+/obj/structure/railing{
+	dir = 9
+	},
+/obj/structure/railing/corner,
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"pf" = (
+/obj/structure/girder/reinforced,
+/turf/open/floor/plating/asteroid/desert/dry_seafloor{
+	light_range = 2
+	},
+/area/lavaland/surface/outdoors)
+"pp" = (
+/obj/structure/filingcabinet{
+	dir = 4
+	},
+/obj/item/folder/documents,
+/obj/item/pen/fourcolor,
+/obj/item/clothing/neck/stethoscope{
+	w_class = 2
+	},
+/turf/open/floor/carpet/royalblue,
+/area/ruin/unpowered/planet_desert/e11manufactory/office)
+"pu" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/kirbyplants,
+/turf/open/floor/carpet/orange,
+/area/ruin/unpowered/planet_desert/e11manufactory/office)
+"pA" = (
+/obj/effect/turf_decal/stripes/line,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"pD" = (
+/obj/machinery/door/airlock/grunge{
+	name = "Szatnia"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/cable/orange,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"pF" = (
+/mob/living/basic/trooper/pirate/ranged,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"pQ" = (
+/obj/machinery/door/airlock/grunge{
+	name = "Kwatery załogi C";
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"pV" = (
+/obj/machinery/atmospherics/components/unary/tank/air{
+	piping_layer = 2
+	},
+/obj/effect/turf_decal/stripes/end{
+	dir = 8
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"qc" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/cable/orange,
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"ql" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/carpet,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"qv" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_desert/e11manufactory)
+"qx" = (
+/obj/effect/turf_decal/tile/purple/opposingcorners{
+	color = "#AE8CA8";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/insectguts,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"qO" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/carpet/orange,
+/area/ruin/unpowered/planet_desert/e11manufactory/office)
+"qP" = (
+/obj/machinery/atmospherics/components/unary/tank/air{
+	piping_layer = 2
+	},
+/obj/effect/turf_decal/stripes/line,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"qQ" = (
+/obj/structure/sign/poster/contraband/random{
+	pixel_y = 32
+	},
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_desert/e11manufactory/warehouse)
+"qT" = (
+/obj/structure/toilet{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_desert/e11manufactory/office)
+"qX" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/fluff/paper/stack{
+	dir = 1
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
+/turf/open/floor/carpet/orange,
+/area/ruin/unpowered/planet_desert/e11manufactory/office)
+"qY" = (
+/obj/effect/turf_decal/tile/green/opposingcorners{
+	color = "#99BB76";
+	alpha = 255
+	},
+/obj/structure/closet{
+	anchored = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/spawner/lootdrop/maintenance/two,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"rj" = (
+/obj/structure/table,
+/turf/open/floor/carpet,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"rk" = (
+/obj/item/restraints/legcuffs/beartrap{
+	armed = 1
+	},
+/turf/open/floor/plating/asteroid/desert,
+/area/lavaland/surface/outdoors)
+"rl" = (
+/obj/machinery/door/airlock/external{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 8
+	},
+/obj/structure/cable/orange,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_desert/e11manufactory)
+"rm" = (
+/obj/machinery/atmospherics/pipe/simple/supply/visible/layer2{
+	dir = 5
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"rp" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/slab_4{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"rr" = (
+/obj/effect/turf_decal/tile/green/opposingcorners{
+	color = "#99BB76";
+	alpha = 255
+	},
+/obj/effect/turf_decal/tile/red/opposingcorners{
+	dir = 8;
+	color = "#B4696A";
+	alpha = 255
+	},
+/mob/living/basic/trooper/pirate/ranged,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"rs" = (
+/obj/structure/railing/corner{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"ru" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"rw" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/stack/ore/iron,
+/turf/open/floor/carpet/orange,
+/area/ruin/unpowered/planet_desert/e11manufactory/office)
+"rL" = (
+/obj/machinery/door/airlock/grunge{
+	name = "Kwatery załogi D";
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"rN" = (
+/obj/structure/closet{
+	anchored = 1
+	},
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 4
+	},
+/obj/effect/turf_decal/box/corners{
+	dir = 4
+	},
+/obj/effect/turf_decal/box/corners,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/tank/internals/emergency_oxygen,
+/obj/item/clothing/mask/breath,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"rS" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 4
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"rV" = (
+/turf/open/floor/carpet/orange,
+/area/ruin/unpowered/planet_desert/e11manufactory/office)
+"rW" = (
+/obj/machinery/firealarm/directional/east,
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_desert/e11manufactory/warehouse)
+"rX" = (
+/obj/structure/lattice/catwalk/over/ship,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/structure/cable/orange,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"rY" = (
+/obj/structure/bed,
+/obj/effect/turf_decal/tile/purple/opposingcorners{
+	color = "#AE8CA8";
+	alpha = 255
+	},
+/obj/item/bedsheet/random,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"se" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 1
+	},
+/obj/structure/glowshroom,
+/turf/open/floor/plasteel/white,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"sh" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_desert/e11manufactory/warehouse)
+"sl" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/carpet/purple,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"sp" = (
+/mob/living/basic/trooper/pirate/ranged,
+/obj/machinery/light/small,
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"sq" = (
+/obj/structure/cable/yellow,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/slab_4{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"sF" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/power/apc/auto_name/north,
+/obj/structure/cable/orange,
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_desert/e11manufactory/office)
+"sH" = (
+/turf/closed/wall/rust,
+/area/ruin/unpowered/planet_desert/e11manufactory/security)
+"sR" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/structure/frame/computer{
+	dir = 4;
+	anchored = 1
+	},
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_desert/e11manufactory/warehouse)
+"sT" = (
+/obj/effect/turf_decal/bot,
+/obj/mecha/working/ripley{
+	name = "APLU MK-I „Wózek widłowy”"
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_desert/e11manufactory/warehouse)
+"sX" = (
+/obj/machinery/door/poddoor/shutters{
+	dir = 4;
+	id = "e11_manufactory_warehouse"
+	},
+/obj/structure/cable/orange,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_desert/e11manufactory/warehouse)
+"sZ" = (
+/obj/effect/spawner/structure/window,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"tf" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 9
+	},
+/obj/machinery/power/apc/auto_name/south,
+/obj/structure/cable/orange,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/carpet/red,
+/area/ruin/unpowered/planet_desert/e11manufactory/security)
+"tj" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_desert/e11manufactory/warehouse)
+"to" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 6
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_desert/e11manufactory/office)
+"tp" = (
+/obj/structure/table,
+/obj/item/storage/toolbox/mechanical{
+	pixel_y = 4
+	},
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_desert/e11manufactory/warehouse)
+"ts" = (
+/obj/item/solar_assembly,
+/obj/structure/cable/yellow,
+/obj/item/shard,
+/turf/open/floor/concrete/slab_4{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"tu" = (
+/obj/effect/turf_decal/caution{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/cable/orange,
+/turf/open/floor/concrete/slab_4{
+	light_power = 0.6;
+	light_range = 2
+	},
+/area/lavaland/surface/outdoors)
+"tJ" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_desert/e11manufactory/office)
+"tM" = (
+/obj/structure/railing/corner,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"tP" = (
+/obj/structure/flora/ash/fern,
+/turf/open/floor/plating/asteroid/desert,
+/area/lavaland/surface/outdoors)
+"tV" = (
+/obj/structure/sign/poster/contraband/missing_gloves{
+	pixel_y = 32
+	},
+/obj/structure/flora/ash/cap_shroom,
+/turf/open/floor/plating/asteroid/desert,
+/area/lavaland/surface/outdoors)
+"tZ" = (
+/obj/effect/turf_decal/stripes/corner,
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"ua" = (
+/obj/effect/turf_decal/tile/red/opposingcorners{
+	color = "#B4696A";
+	alpha = 255
+	},
+/obj/structure/chair/stool{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"ub" = (
+/obj/machinery/conveyor{
+	dir = 1
+	},
+/obj/structure/railing{
+	max_integrity = 70;
+	dir = 4
+	},
+/obj/structure/railing{
+	dir = 8
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"ud" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/cable/orange,
+/turf/open/floor/carpet,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"us" = (
+/obj/structure/fence/end{
+	dir = 1
+	},
+/turf/open/floor/concrete/slab_4{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"uu" = (
+/obj/structure/fence,
+/turf/open/floor/plating/asteroid/desert,
+/area/lavaland/surface/outdoors)
+"uw" = (
+/obj/effect/turf_decal/box/corners{
+	dir = 1
+	},
+/obj/effect/turf_decal/box/corners{
+	dir = 4
+	},
+/obj/structure/closet/crate/secure/weapon{
+	anchored = 1;
+	opened = 1;
+	locked = 0
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_desert/e11manufactory/warehouse)
+"uy" = (
+/obj/machinery/airalarm/directional/east,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/carpet/orange,
+/area/ruin/unpowered/planet_desert/e11manufactory/office)
+"uz" = (
+/obj/structure/marker_beacon{
+	picked_color = "Cerulean"
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/slab_4{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"uC" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/structure/cable/orange,
+/turf/open/floor/concrete/slab_4{
+	light_power = 0.6;
+	light_range = 2
+	},
+/area/lavaland/surface/outdoors)
+"uD" = (
+/mob/living/basic/trooper/pirate/ranged,
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_desert/e11manufactory/warehouse)
+"uM" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/white,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"uO" = (
+/obj/structure/flora/ash/puce,
+/turf/open/floor/plating/asteroid/desert,
+/area/lavaland/surface/outdoors)
+"uT" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/poddoor/shutters{
+	id = "e11_manufactory_manager_window"
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_desert/e11manufactory/office)
+"uV" = (
+/obj/structure/cable/orange,
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"uZ" = (
+/obj/effect/turf_decal/trimline/white/corner{
+	dir = 1;
+	color = "#FFFFFF";
+	alpha = 255
+	},
+/obj/effect/turf_decal/stripes/line,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"vf" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 6
+	},
+/obj/structure/cable/orange,
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/concrete/slab_4{
+	light_power = 0.6;
+	light_range = 2
+	},
+/area/lavaland/surface/outdoors)
+"vo" = (
+/obj/structure/flora/ash/tall_shroom,
+/turf/open/floor/plating/asteroid/desert,
+/area/lavaland/surface/outdoors)
+"vt" = (
+/obj/effect/turf_decal/box/corners,
+/obj/structure/closet/crate/secure/weapon{
+	anchored = 1;
+	opened = 1;
+	locked = 0
+	},
+/obj/effect/turf_decal/stripes/corner{
+	dir = 8
+	},
+/obj/effect/turf_decal/box/corners{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_desert/e11manufactory/warehouse)
+"vy" = (
+/obj/effect/turf_decal/tile/red/opposingcorners{
+	color = "#B4696A";
+	alpha = 255
+	},
+/obj/structure/table,
+/obj/item/toy/cards/deck{
+	pixel_y = 6
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"vA" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"vB" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/structure/cable/orange,
+/turf/open/floor/concrete/slab_1{
+	light_power = 0.6;
+	light_range = 2
+	},
+/area/lavaland/surface/outdoors)
+"vE" = (
+/obj/structure/grille/broken,
+/obj/item/shard,
+/obj/item/shard,
+/obj/effect/decal/cleanable/glass,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_desert/e11manufactory/office)
+"vH" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/turf/open/floor/carpet/orange,
+/area/ruin/unpowered/planet_desert/e11manufactory/office)
+"vL" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 5
+	},
+/obj/machinery/power/apc/auto_name/south,
+/obj/structure/cable/orange,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_desert/e11manufactory)
+"vM" = (
+/obj/effect/turf_decal/loading_area{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_desert/e11manufactory/warehouse)
+"vZ" = (
+/obj/structure/sink{
+	dir = 8;
+	pixel_y = 1;
+	pixel_x = 13
+	},
+/obj/structure/mirror{
+	layer = 2.89;
+	pixel_x = 22;
+	pixel_y = 4
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 8
+	},
+/obj/item/storage/pill_bottle{
+	name = "podejrzana fiolka z tabletkami";
+	pixel_x = -9;
+	pixel_y = 18
+	},
+/obj/machinery/light/small/broken{
+	dir = 1
+	},
+/turf/open/floor/plasteel/white,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"wa" = (
+/obj/machinery/conveyor{
+	dir = 4
+	},
+/obj/structure/plasticflaps/opaque,
+/obj/machinery/door/poddoor/shutters{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/heavy,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_desert/e11manufactory/warehouse)
+"wg" = (
+/obj/structure/bed,
+/obj/effect/turf_decal/tile/red/opposingcorners{
+	color = "#B4696A";
+	alpha = 255
+	},
+/obj/item/bedsheet/random,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"wh" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/drinks/drinkingglass{
+	pixel_x = -6;
+	pixel_y = 12;
+	list_reagents = list(/datum/reagent/toxin/acid = 10)
+	},
+/obj/item/toy/cards/deck{
+	pixel_y = -10
+	},
+/obj/item/clothing/head/hardhat{
+	pixel_x = 7;
+	pixel_y = -1
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"wo" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/carpet,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"wv" = (
+/obj/effect/turf_decal/caution/stand_clear/white{
+	dir = 8
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"wz" = (
+/obj/structure/frame/computer{
+	anchored = 1
+	},
+/obj/structure/sign/poster/contraband/random{
+	pixel_y = 32
+	},
+/turf/open/floor/carpet/red,
+/area/ruin/unpowered/planet_desert/e11manufactory/security)
+"wC" = (
+/obj/effect/turf_decal/box/corners,
+/obj/effect/turf_decal/box/corners{
+	dir = 4
+	},
+/obj/structure/reagent_dispensers/watertank/high,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"wH" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/firealarm/directional/north,
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_desert/e11manufactory/mats)
+"wM" = (
+/obj/effect/turf_decal/tile/purple/opposingcorners{
+	color = "#AE8CA8";
+	alpha = 255
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 1
+	},
+/obj/structure/sign/poster/contraband/random{
+	pixel_y = -32;
+	desc = "Reklama Ntos IV. Plakat wygląda na dość stary.";
+	name = "Ntos IV"
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"wO" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/restraints/legcuffs/beartrap{
+	armed = 1
+	},
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_desert/e11manufactory)
+"wW" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/structure/closet/emcloset/anchored,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_desert/e11manufactory/office)
+"wX" = (
+/turf/closed/wall/rust,
+/area/ruin/unpowered/planet_desert/e11manufactory/office)
+"xf" = (
+/obj/structure/fence/door,
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"xj" = (
+/obj/structure/sign/poster/official/work_for_a_future{
+	pixel_y = 32
+	},
+/mob/living/basic/trooper/pirate/ranged,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 8
+	},
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_desert/e11manufactory/mats)
+"xn" = (
+/obj/effect/turf_decal/tile/purple/opposingcorners{
+	color = "#AE8CA8";
+	alpha = 255
+	},
+/obj/structure/closet{
+	anchored = 1
+	},
+/obj/item/reagent_containers/food/drinks/bottle/whiskey{
+	list_reagents = list(/datum/reagent/consumable/ethanol/whiskey = 15)
+	},
+/obj/item/storage/pill_bottle/dice,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"xo" = (
+/obj/structure/closet{
+	anchored = 1
+	},
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 4
+	},
+/obj/item/clothing/under/rank/cargo/miner{
+	name = "kombinezon robotnika"
+	},
+/obj/effect/decal/cleanable/cobweb,
+/obj/effect/turf_decal/box/corners{
+	dir = 4
+	},
+/obj/effect/turf_decal/box/corners,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"xq" = (
+/obj/structure/table/reinforced,
+/obj/item/paper_bin{
+	pixel_y = 6
+	},
+/obj/item/pen,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/carpet/orange,
+/area/ruin/unpowered/planet_desert/e11manufactory/office)
+"xv" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/reagent_dispensers/water_cooler,
+/turf/open/floor/carpet/orange,
+/area/ruin/unpowered/planet_desert/e11manufactory/office)
+"xx" = (
+/obj/machinery/power/tracker,
+/obj/structure/cable/yellow,
+/turf/open/floor/concrete/slab_4{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"xz" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 1
+	},
+/obj/structure/sign/poster/official/high_class_martini{
+	pixel_y = -32
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/item/kirbyplants{
+	icon_state = "plant-25";
+	name = "zwiędła roślina doniczkowa";
+	desc = "Kiedyś w tej doniczce był kawałek natury. Teraz już nie żyje."
+	},
+/turf/open/floor/carpet/purple,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"xA" = (
+/obj/structure/railing{
+	max_integrity = 70;
+	dir = 4
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"xD" = (
+/turf/closed/wall/rust,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"xF" = (
+/obj/structure/chair/office{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/carpet/red,
+/area/ruin/unpowered/planet_desert/e11manufactory/security)
+"xL" = (
+/obj/structure/flora/ash/stem_shroom,
+/turf/open/floor/plating/asteroid/desert/dry_seafloor{
+	light_range = 2
+	},
+/area/lavaland/surface/outdoors)
+"xR" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/cable/orange,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/slab_1{
+	light_power = 0.6;
+	light_range = 2
+	},
+/area/lavaland/surface/outdoors)
+"yb" = (
+/mob/living/basic/trooper/pirate/ranged,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_desert/e11manufactory)
+"ym" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"yp" = (
+/obj/structure/rack,
+/obj/item/storage/toolbox/mechanical{
+	pixel_y = 8
+	},
+/obj/item/storage/toolbox/electrical{
+	pixel_y = 1
+	},
+/obj/machinery/light,
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_desert/e11manufactory)
+"yz" = (
+/obj/machinery/atmospherics/components/unary/passive_vent/layer4,
+/obj/structure/cable/orange,
+/obj/effect/turf_decal/stripes/corner{
+	dir = 8
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"yF" = (
+/obj/item/mecha_parts/mecha_equipment/hydraulic_clamp{
+	pixel_y = -9;
+	pixel_x = 2
+	},
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_desert/e11manufactory/warehouse)
+"yK" = (
+/obj/structure/sign/poster/official/work_for_a_future{
+	pixel_x = 32
+	},
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_desert/e11manufactory/warehouse)
+"yN" = (
+/obj/effect/decal/cleanable/oil,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"yP" = (
+/obj/structure/cable/orange,
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_desert/e11manufactory/warehouse)
+"yU" = (
+/obj/item/stack/ore/iron,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"yW" = (
+/obj/machinery/airalarm/directional/north,
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_desert/e11manufactory/warehouse)
+"ze" = (
+/obj/effect/turf_decal/trimline/white/arrow_ccw{
+	dir = 8;
+	color = "#FFFFFF";
+	alpha = 255
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"zj" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/table_frame,
+/obj/item/shard,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 10
+	},
+/turf/open/floor/carpet/orange,
+/area/ruin/unpowered/planet_desert/e11manufactory/office)
+"zl" = (
+/turf/closed/wall/rust,
+/area/ruin/unpowered/planet_desert/e11manufactory/mats)
+"zq" = (
+/turf/closed/wall/rust,
+/area/lavaland/surface/outdoors)
+"zv" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"zy" = (
+/obj/structure/frame/computer{
+	dir = 8;
+	anchored = 1
+	},
+/turf/open/floor/carpet/orange,
+/area/ruin/unpowered/planet_desert/e11manufactory/office)
+"zE" = (
+/obj/machinery/door/airlock/grunge{
+	name = "Kwatery załogi A";
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"zI" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/structure/cable/orange,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"zK" = (
+/obj/structure/cable/yellow,
+/turf/open/floor/concrete/slab_4{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"zR" = (
+/obj/structure/railing{
+	dir = 1
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"zW" = (
+/obj/machinery/door/airlock/grunge{
+	name = "Łazienka"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"zY" = (
+/obj/machinery/door/poddoor/shutters{
+	dir = 4;
+	id = "e11_manufactory_warehouse_road"
+	},
+/obj/structure/cable/orange,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_desert/e11manufactory/warehouse)
+"Ac" = (
+/mob/living/basic/mining/goliath{
+	dir = 1
+	},
+/turf/open/floor/plating/asteroid/desert,
+/area/lavaland/surface/outdoors)
+"An" = (
+/obj/structure/sink{
+	pixel_y = 18
+	},
+/obj/structure/mirror{
+	pixel_y = 30;
+	layer = 2.89
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_desert/e11manufactory/office)
+"As" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/structure/marker_beacon{
+	picked_color = "Cerulean"
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"AA" = (
+/obj/item/radio/off{
+	pixel_y = 5;
+	pixel_x = 12
+	},
+/obj/item/reagent_containers/food/drinks/beer,
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"AB" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_desert/e11manufactory/warehouse)
+"AF" = (
+/turf/open/floor/plating/asteroid/desert,
+/area/lavaland/surface/outdoors)
+"AJ" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/mob/living/basic/cockroach,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/monotile/light,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"AM" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_desert/e11manufactory)
+"Bf" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/cable/orange,
+/turf/open/floor/carpet,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"Bg" = (
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/item/clothing/head/hardhat{
+	pixel_x = -4;
+	pixel_y = 3
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Bi" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Bk" = (
+/turf/closed/wall/rust,
+/area/ruin/unpowered/planet_desert/e11manufactory)
+"Bl" = (
+/turf/closed/mineral/random/desert,
+/area/lavaland/surface/outdoors)
+"Bx" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_desert/e11manufactory/office)
+"By" = (
+/obj/structure/girder,
+/obj/item/stack/ore/iron,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"BJ" = (
+/obj/structure/table,
+/obj/item/paper_bin{
+	pixel_y = 6
+	},
+/obj/item/pen,
+/turf/open/floor/carpet/red,
+/area/ruin/unpowered/planet_desert/e11manufactory/security)
+"BY" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"Cg" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/button/door{
+	dir = 8;
+	id = "e11_manufactory_warehouse_road";
+	pixel_x = 20;
+	pixel_y = 5
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_desert/e11manufactory/warehouse)
+"Cj" = (
+/obj/effect/spawner/lootdrop/planet_hermit,
+/turf/open/floor/plating/asteroid/desert,
+/area/lavaland/surface/outdoors)
+"Cl" = (
+/obj/machinery/power/smes/engineering,
+/obj/structure/cable/orange,
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Cm" = (
+/obj/item/restraints/legcuffs/beartrap{
+	armed = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Cs" = (
+/obj/structure/table/reinforced,
+/obj/item/kitchen/knife{
+	pixel_y = 4
+	},
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"Cw" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/obj/structure/marker_beacon{
+	picked_color = "Cerulean"
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Cx" = (
+/obj/structure/chair/fancy/plastic{
+	dir = 8
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Cy" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_desert/e11manufactory/security)
+"Cz" = (
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"CB" = (
+/turf/open/floor/carpet/royalblue,
+/area/ruin/unpowered/planet_desert/e11manufactory/office)
+"CL" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/carpet/orange,
+/area/ruin/unpowered/planet_desert/e11manufactory/office)
+"CO" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"CR" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/carpet/orange,
+/area/ruin/unpowered/planet_desert/e11manufactory/office)
+"CT" = (
+/obj/effect/turf_decal/tile/green/opposingcorners{
+	color = "#99BB76";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/item/restraints/legcuffs/beartrap{
+	armed = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"CV" = (
+/obj/structure/window/unanchored,
+/obj/item/chair{
+	pixel_y = 6;
+	pixel_x = -9
+	},
+/obj/effect/turf_decal/stripes/line,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Da" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/carpet/red,
+/area/ruin/unpowered/planet_desert/e11manufactory/security)
+"Db" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/cable/orange,
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_desert/e11manufactory/warehouse)
+"Dc" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/pavement,
+/area/ruin/unpowered/planet_desert/e11manufactory/warehouse)
+"Dj" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 9
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Dk" = (
+/obj/machinery/door/airlock/grunge{
+	name = "Kwatery załogi B";
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"Dn" = (
+/obj/structure/mecha_wreckage/ripley,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Dt" = (
+/obj/structure/cable/orange,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Dx" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/structure/cable/orange,
+/turf/open/floor/concrete/slab_1{
+	light_power = 0.6;
+	light_range = 2
+	},
+/area/lavaland/surface/outdoors)
+"Dy" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_desert/e11manufactory)
+"DH" = (
+/obj/structure/table/glass,
+/obj/item/radio/off{
+	pixel_y = 5
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_desert/e11manufactory/office)
+"DK" = (
+/obj/structure/closet{
+	anchored = 1
+	},
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 8
+	},
+/obj/item/clothing/head/hardhat,
+/obj/effect/turf_decal/box/corners{
+	dir = 8
+	},
+/obj/effect/turf_decal/box/corners{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"DV" = (
+/obj/structure/railing,
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"DW" = (
+/obj/effect/decal/cleanable/greenglow,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Ed" = (
+/obj/structure/closet/crate/trashcart,
+/obj/effect/spawner/lootdrop/maintenance/three,
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Ee" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_desert/e11manufactory/warehouse)
+"Ej" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/structure/cable/orange,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/pavement,
+/area/ruin/unpowered/planet_desert/e11manufactory/warehouse)
+"Ek" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/turf/open/floor/carpet/orange,
+/area/ruin/unpowered/planet_desert/e11manufactory/office)
+"Eq" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/visible/layer2{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/oil/streak,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Ev" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 5
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_desert/e11manufactory/mats)
+"Ew" = (
+/obj/structure/closet/crate/bin,
+/obj/effect/spawner/lootdrop/maintenance,
+/turf/open/floor/carpet,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"EC" = (
+/obj/structure/fence{
+	dir = 4
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"EI" = (
+/obj/machinery/conveyor,
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_desert/e11manufactory/mats)
+"EL" = (
+/obj/structure/marker_beacon{
+	picked_color = "Cerulean"
+	},
+/turf/open/floor/concrete/slab_4{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"EO" = (
+/obj/structure/cable/orange,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 6
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Fa" = (
+/turf/open/floor/plating/asteroid/desert,
+/area/lavaland/surface/outdoors)
+"Ff" = (
+/obj/effect/turf_decal/tile/purple/opposingcorners{
+	color = "#AE8CA8";
+	alpha = 255
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"Fj" = (
+/obj/machinery/conveyor/inverted{
+	dir = 10
+	},
+/obj/structure/railing{
+	dir = 6
+	},
+/obj/structure/railing/corner{
+	dir = 1
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Fo" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/cable/orange,
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/slab_1{
+	light_power = 0.6;
+	light_range = 2
+	},
+/area/lavaland/surface/outdoors)
+"Fs" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_desert/e11manufactory)
+"Fw" = (
+/obj/machinery/conveyor{
+	dir = 4
+	},
+/obj/structure/plasticflaps/opaque,
+/obj/machinery/door/firedoor/heavy,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_desert/e11manufactory)
+"FB" = (
+/obj/structure/flora/stump,
+/turf/open/floor/plating/asteroid/desert,
+/area/lavaland/surface/outdoors)
+"FH" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/item/restraints/legcuffs/beartrap{
+	armed = 1
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"FK" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/structure/closet/emcloset/anchored,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_desert/e11manufactory/office)
+"FT" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"FW" = (
+/obj/structure/cable/orange,
+/obj/machinery/atmospherics/components/unary/passive_vent/layer4,
+/obj/effect/turf_decal/stripes/corner,
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Gf" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/cable/orange,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Gu" = (
+/obj/effect/turf_decal/caution{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/concrete/slab_4{
+	light_power = 0.6;
+	light_range = 2
+	},
+/area/lavaland/surface/outdoors)
+"Gx" = (
+/obj/effect/turf_decal/box/corners,
+/obj/effect/turf_decal/box/corners{
+	dir = 4
+	},
+/obj/structure/closet/crate/secure/engineering{
+	anchored = 1
+	},
+/obj/item/storage/box/stockparts/basic,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_desert/e11manufactory/warehouse)
+"GE" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_desert/e11manufactory/office)
+"GI" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/greenglow,
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"GJ" = (
+/obj/machinery/power/solar_control,
+/obj/structure/cable/yellow,
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_desert/e11manufactory/office)
+"GL" = (
+/obj/effect/turf_decal/stripes/corner,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"GR" = (
+/obj/machinery/power/solar_control{
+	dir = 8
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/concrete{
+	light_range = 2;
+	light_power = 0.6
+	},
+/area/ruin/unpowered/planet_desert/e11manufactory/mats)
+"GX" = (
+/obj/structure/table/reinforced,
+/obj/item/flashlight/lamp{
+	pixel_y = 5;
+	pixel_x = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/carpet/orange,
+/area/ruin/unpowered/planet_desert/e11manufactory/office)
+"Hb" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/firealarm/directional/west,
+/turf/open/floor/carpet/orange,
+/area/ruin/unpowered/planet_desert/e11manufactory/office)
+"Hd" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 1
+	},
+/obj/structure/cable/orange,
+/turf/open/floor/concrete/slab_1{
+	light_power = 0.6;
+	light_range = 2
+	},
+/area/lavaland/surface/outdoors)
+"He" = (
+/obj/effect/turf_decal/box/corners{
+	dir = 1
+	},
+/obj/effect/turf_decal/box/corners{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/reagent_dispensers/foamtank,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Hi" = (
+/turf/open/floor/concrete/pavement,
+/area/ruin/unpowered/planet_desert/e11manufactory/warehouse)
+"Hk" = (
+/obj/item/stack/package_wrap{
+	pixel_x = 1;
+	pixel_y = 11
+	},
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_desert/e11manufactory/warehouse)
+"Hn" = (
+/obj/machinery/conveyor,
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_desert/e11manufactory/mats)
+"Ho" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable/orange,
+/obj/structure/sign/poster/official/safety_internals{
+	pixel_y = 32
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_desert/e11manufactory)
+"Hq" = (
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_desert/e11manufactory/warehouse)
+"Ht" = (
+/obj/structure/table/reinforced,
+/obj/item/clothing/head/hardhat{
+	pixel_y = 3;
+	pixel_x = -5
+	},
+/obj/item/stack/sticky_tape{
+	pixel_x = 5;
+	pixel_y = -9
+	},
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_desert/e11manufactory)
+"Hz" = (
+/obj/machinery/door/airlock/external{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"HE" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_desert/e11manufactory/office)
+"HG" = (
+/mob/living/basic/mining/legion,
+/turf/open/floor/plating/asteroid/desert,
+/area/lavaland/surface/outdoors)
+"HI" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/cable/orange,
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/slab_4{
+	light_power = 0.6;
+	light_range = 2
+	},
+/area/lavaland/surface/outdoors)
+"HK" = (
+/obj/effect/turf_decal/box/corners{
+	dir = 1
+	},
+/obj/effect/turf_decal/box/corners{
+	dir = 8
+	},
+/obj/structure/closet/crate/secure/gear{
+	anchored = 1
+	},
+/obj/item/target,
+/obj/item/target,
+/obj/item/target,
+/obj/item/target,
+/obj/item/target,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_desert/e11manufactory/warehouse)
+"HL" = (
+/mob/living/basic/trooper/pirate/ranged,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"HM" = (
+/obj/item/kirbyplants{
+	pixel_x = -7
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/firealarm/directional/south,
+/turf/open/floor/carpet/orange,
+/area/ruin/unpowered/planet_desert/e11manufactory/office)
+"HV" = (
+/obj/structure/dresser,
+/obj/item/flashlight/lamp/green{
+	pixel_y = 13
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/carpet/purple,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"HW" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable/orange,
+/obj/effect/decal/cleanable/oil/streak,
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_desert/e11manufactory/warehouse)
+"If" = (
+/obj/machinery/conveyor{
+	dir = 4
+	},
+/obj/structure/railing,
+/obj/structure/railing{
+	dir = 1
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Ih" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/carpet/purple,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"Ik" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_desert/e11manufactory/warehouse)
+"Im" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 4
+	},
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"Is" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/concrete/slab_1{
+	light_power = 0.6;
+	light_range = 2
+	},
+/area/lavaland/surface/outdoors)
+"It" = (
+/obj/structure/flora/ash/cacti,
+/turf/open/floor/plating/asteroid/desert,
+/area/lavaland/surface/outdoors)
+"Iu" = (
+/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden/layer4,
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"IC" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/structure/cable/orange,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/slab_1{
+	light_power = 0.6;
+	light_range = 2
+	},
+/area/lavaland/surface/outdoors)
+"IE" = (
+/obj/structure/railing{
+	max_integrity = 70;
+	dir = 4
+	},
+/obj/effect/decal/cleanable/greenglow,
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"II" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 9
+	},
+/obj/structure/cable/orange,
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/concrete/slab_1{
+	light_power = 0.6;
+	light_range = 2
+	},
+/area/lavaland/surface/outdoors)
+"IJ" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"IK" = (
+/obj/effect/turf_decal/tile/green/opposingcorners{
+	color = "#99BB76";
+	alpha = 255
+	},
+/obj/structure/chair/stool{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/light/small/broken{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"IN" = (
+/turf/closed/wall/mineral/titanium/survival/pod,
+/area/lavaland/surface/outdoors)
+"IQ" = (
+/obj/machinery/conveyor{
+	dir = 4
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"IV" = (
+/obj/machinery/power/apc/auto_name/north,
+/obj/structure/cable/orange,
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_desert/e11manufactory/warehouse)
+"IW" = (
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal/tile/green/opposingcorners{
+	color = "#99BB76";
+	alpha = 255
+	},
+/obj/effect/turf_decal/tile/red/opposingcorners{
+	dir = 8;
+	color = "#B4696A";
+	alpha = 255
+	},
+/obj/item/stack/spacecash/c10{
+	pixel_x = 8
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"IX" = (
+/obj/structure/mecha_wreckage/ripley,
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Jd" = (
+/obj/structure/chair/fancy/bench{
+	dir = 1
+	},
+/obj/structure/sign/poster/contraband/random{
+	pixel_y = -32
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/carpet/orange,
+/area/ruin/unpowered/planet_desert/e11manufactory/office)
+"Je" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_desert/e11manufactory/mats)
+"Jl" = (
+/obj/machinery/door/poddoor/shutters{
+	dir = 4;
+	id = "e11_manufactory_warehouse"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable/orange,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_desert/e11manufactory/warehouse)
+"Jo" = (
+/obj/structure/chair/fancy/plastic{
+	dir = 8
+	},
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_desert/e11manufactory/warehouse)
+"Jt" = (
+/obj/machinery/button/door{
+	dir = 4;
+	id = "e11_manufactory_warehouse";
+	pixel_x = -20;
+	pixel_y = -5
+	},
+/obj/effect/turf_decal/stripes/corner{
+	dir = 1
+	},
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_desert/e11manufactory/warehouse)
+"Jx" = (
+/obj/machinery/conveyor,
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"JA" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/carpet/orange,
+/area/ruin/unpowered/planet_desert/e11manufactory/office)
+"JC" = (
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"JH" = (
+/obj/machinery/conveyor{
+	dir = 4
+	},
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_desert/e11manufactory)
+"JI" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"JK" = (
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"JO" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 9
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"JT" = (
+/obj/structure/table/reinforced,
+/obj/item/stock_parts/cell/empty{
+	pixel_y = 8
+	},
+/obj/machinery/airalarm/directional/south,
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_desert/e11manufactory)
+"JU" = (
+/obj/effect/decal/cleanable/oil/streak,
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_desert/e11manufactory)
+"JW" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 8;
+	piping_layer = 2
+	},
+/turf/open/floor/carpet/orange,
+/area/ruin/unpowered/planet_desert/e11manufactory/office)
+"JY" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable/orange,
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_desert/e11manufactory/mats)
+"Kb" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/effect/turf_decal/stripes/corner,
+/obj/structure/cable/orange,
+/turf/open/floor/concrete/slab_4{
+	light_power = 0.6;
+	light_range = 2
+	},
+/area/lavaland/surface/outdoors)
+"Ki" = (
+/obj/structure/filingcabinet,
+/obj/item/folder/yellow,
+/obj/item/folder/red,
+/obj/item/flashlight/seclite,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/carpet/red,
+/area/ruin/unpowered/planet_desert/e11manufactory/security)
+"Kj" = (
+/obj/machinery/door/airlock/external{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable/orange,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_desert/e11manufactory/mats)
+"Kl" = (
+/obj/structure/lattice/catwalk/over/ship,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/cable/orange,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"Ks" = (
+/obj/structure/bed,
+/obj/effect/turf_decal/tile/red/opposingcorners{
+	color = "#B4696A";
+	alpha = 255
+	},
+/obj/item/bedsheet/random,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"KC" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/chair{
+	dir = 4
+	},
+/turf/open/floor/carpet/orange,
+/area/ruin/unpowered/planet_desert/e11manufactory/office)
+"KD" = (
+/obj/structure/fence,
+/turf/open/floor/plating/asteroid/desert,
+/area/lavaland/surface/outdoors)
+"KL" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/firealarm/directional/east,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_desert/e11manufactory)
+"KO" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/cable/orange,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_desert/e11manufactory/warehouse)
+"KP" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 1
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"KR" = (
+/obj/machinery/atmospherics/pipe/simple/supply/visible/layer2{
+	dir = 9
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"KS" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"KV" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_desert/e11manufactory/warehouse)
+"KW" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"KX" = (
+/obj/machinery/door/poddoor/shutters{
+	dir = 4;
+	id = "e11_manufactory_warehouse_road"
+	},
+/obj/structure/cable/orange,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_desert/e11manufactory/warehouse)
+"Li" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 4
+	},
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_desert/e11manufactory/warehouse)
+"Lj" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/structure/cable/orange,
+/turf/open/floor/concrete/slab_1{
+	light_power = 0.6;
+	light_range = 2
+	},
+/area/lavaland/surface/outdoors)
+"Lo" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"Lt" = (
+/obj/structure/table/reinforced,
+/obj/machinery/microwave{
+	pixel_y = 6
+	},
+/turf/open/floor/monotile/light,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"Lu" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/concrete/slab_1{
+	light_power = 0.6;
+	light_range = 2
+	},
+/area/ruin/unpowered/planet_desert/e11manufactory/warehouse)
+"LI" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/effect/turf_decal/caution{
+	dir = 4
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"LQ" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_desert/e11manufactory/mats)
+"LY" = (
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal/tile/green/opposingcorners{
+	color = "#99BB76";
+	alpha = 255
+	},
+/obj/effect/turf_decal/tile/red/opposingcorners{
+	dir = 8;
+	color = "#B4696A";
+	alpha = 255
+	},
+/obj/item/reagent_containers/glass/rag{
+	pixel_y = 4;
+	pixel_x = -5
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"Ma" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_desert/e11manufactory/warehouse)
+"Me" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/pen/fourcolor,
+/obj/structure/fluff/paper/stack,
+/turf/open/floor/carpet/orange,
+/area/ruin/unpowered/planet_desert/e11manufactory/office)
+"Mh" = (
+/obj/structure/table,
+/obj/item/toy/cards/deck{
+	pixel_y = 3
+	},
+/obj/machinery/airalarm/directional/south,
+/turf/open/floor/carpet,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"Mj" = (
+/obj/structure/flora/ash/puce,
+/turf/open/floor/plating/asteroid/desert/dry_seafloor{
+	light_range = 2
+	},
+/area/lavaland/surface/outdoors)
+"Mo" = (
+/obj/effect/turf_decal/tile/purple/opposingcorners{
+	color = "#AE8CA8";
+	alpha = 255
+	},
+/obj/structure/chair/stool{
+	dir = 4
+	},
+/obj/machinery/light/small,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"Mq" = (
+/obj/effect/turf_decal/trimline/white/corner{
+	dir = 8;
+	color = "#FFFFFF";
+	alpha = 255
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Mx" = (
+/obj/structure/chair/office{
+	dir = 4
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"MD" = (
+/obj/structure/safe/floor,
+/obj/item/stack/spacecash/c100,
+/obj/item/stack/spacecash/c20,
+/obj/item/stack/spacecash/c20,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_desert/e11manufactory/office)
+"MM" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable/orange,
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_desert/e11manufactory/warehouse)
+"MN" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 4
+	},
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"MQ" = (
+/obj/machinery/atmospherics/components/unary/portables_connector/visible{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"MS" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable/orange,
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_desert/e11manufactory/warehouse)
+"Ne" = (
+/obj/machinery/power/smes/engineering,
+/obj/structure/cable/orange,
+/obj/structure/cable/yellow,
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Ni" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/filingcabinet,
+/obj/item/photo,
+/obj/item/folder/yellow,
+/turf/open/floor/carpet/orange,
+/area/ruin/unpowered/planet_desert/e11manufactory/office)
+"Nr" = (
+/obj/machinery/atmospherics/components/binary/valve/on/layer2{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Ns" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 6
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/restraints/legcuffs/beartrap{
+	armed = 1
+	},
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_desert/e11manufactory/office)
+"Nv" = (
+/obj/structure/closet{
+	anchored = 1
+	},
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 8
+	},
+/obj/effect/turf_decal/box/corners{
+	dir = 8
+	},
+/obj/effect/turf_decal/box/corners{
+	dir = 1
+	},
+/obj/item/tank/internals/emergency_oxygen,
+/obj/item/clothing/mask/breath,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"Nx" = (
+/obj/effect/turf_decal/box/corners,
+/obj/effect/turf_decal/box/corners{
+	dir = 8
+	},
+/obj/structure/closet/crate/secure/weapon{
+	anchored = 1
+	},
+/obj/item/gun/energy/e_gun,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_desert/e11manufactory/warehouse)
+"NA" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 10
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_desert/e11manufactory)
+"NB" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 6
+	},
+/obj/structure/cable/orange,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/carpet,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"ND" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_desert/e11manufactory/office)
+"NH" = (
+/obj/machinery/atmospherics/components/unary/passive_vent/layer4,
+/obj/effect/turf_decal/stripes/corner{
+	dir = 8
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"NK" = (
+/obj/machinery/conveyor,
+/obj/structure/plasticflaps/opaque,
+/obj/machinery/door/poddoor/shutters,
+/obj/machinery/door/firedoor/heavy,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_desert/e11manufactory)
+"NP" = (
+/obj/structure/chair{
+	dir = 4
+	},
+/turf/open/floor/carpet,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"NS" = (
+/obj/machinery/conveyor{
+	dir = 4
+	},
+/obj/structure/frame/machine{
+	name = "zepsuty montażownik";
+	anchored = 1
+	},
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_desert/e11manufactory)
+"NY" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 1
+	},
+/obj/structure/cable/orange,
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/concrete/slab_1{
+	light_power = 0.6;
+	light_range = 2
+	},
+/area/lavaland/surface/outdoors)
+"Oa" = (
+/obj/structure/chair/fancy/plastic{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Of" = (
+/obj/machinery/atmospherics/components/unary/passive_vent/layer4{
+	dir = 4
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"On" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Os" = (
+/obj/effect/turf_decal/tile/green/opposingcorners{
+	color = "#99BB76";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/stack/ore/iron,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"Oy" = (
+/obj/effect/turf_decal/box/corners,
+/obj/effect/turf_decal/box/corners{
+	dir = 4
+	},
+/obj/structure/closet/crate/secure/loot{
+	anchored = 1
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_desert/e11manufactory/warehouse)
+"OD" = (
+/obj/structure/fence/cut/large{
+	dir = 8
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"OL" = (
+/obj/machinery/conveyor{
+	dir = 8
+	},
+/obj/structure/railing{
+	dir = 1
+	},
+/obj/structure/railing,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"OM" = (
+/obj/item/solar_assembly,
+/obj/item/shard,
+/obj/structure/cable/yellow,
+/turf/open/floor/concrete/slab_4{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"OZ" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 5
+	},
+/obj/structure/cable/orange,
+/turf/open/floor/concrete/slab_4{
+	light_power = 0.6;
+	light_range = 2
+	},
+/area/lavaland/surface/outdoors)
+"Pc" = (
+/obj/structure/chair/fancy/comfy{
+	dir = 8
+	},
+/obj/machinery/light/small,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/carpet/purple,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"Pf" = (
+/obj/structure/closet/firecloset/full,
+/obj/item/extinguisher,
+/obj/item/extinguisher,
+/obj/item/extinguisher,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_desert/e11manufactory)
+"Po" = (
+/obj/item/chair{
+	pixel_x = -4;
+	pixel_y = -5
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/carpet,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"Pp" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
+	},
+/obj/structure/marker_beacon{
+	picked_color = "Cerulean"
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Pr" = (
+/obj/structure/bed/dogbed{
+	name = "posłanie Krokieta";
+	desc = "Wygodnie wyglądające posłanie ćmokaraluchów."
+	},
+/turf/open/floor/carpet/royalblue,
+/area/ruin/unpowered/planet_desert/e11manufactory/office)
+"PF" = (
+/obj/machinery/conveyor{
+	dir = 4
+	},
+/obj/structure/frame/machine{
+	name = "zepsuta prasa hydrauliczna";
+	anchored = 1
+	},
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_desert/e11manufactory)
+"PJ" = (
+/obj/machinery/conveyor{
+	dir = 6
+	},
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_desert/e11manufactory)
+"PK" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/oil,
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_desert/e11manufactory)
+"PN" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_desert/e11manufactory)
+"PO" = (
+/obj/effect/turf_decal/stripes/line,
+/obj/item/clothing/head/hardhat{
+	pixel_y = -9;
+	pixel_x = -9
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_desert/e11manufactory/warehouse)
+"PT" = (
+/obj/structure/fence{
+	dir = 4
+	},
+/turf/open/floor/plating/asteroid/desert,
+/area/lavaland/surface/outdoors)
+"PZ" = (
+/obj/item/solar_assembly,
+/obj/item/shard,
+/obj/structure/cable/yellow,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/slab_4{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Qh" = (
+/obj/machinery/conveyor{
+	dir = 4
+	},
+/obj/structure/plasticflaps/opaque,
+/obj/machinery/door/poddoor/shutters{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/heavy,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_desert/e11manufactory)
+"Qj" = (
+/turf/open/floor/concrete/slab_4{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Qn" = (
+/obj/effect/turf_decal/trimline/white/corner{
+	dir = 1;
+	color = "#FFFFFF";
+	alpha = 255
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Qt" = (
+/obj/structure/flora/ash/cacti,
+/turf/open/floor/plating/asteroid/desert/dry_seafloor{
+	light_range = 2
+	},
+/area/lavaland/surface/outdoors)
+"QT" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/carpet/orange,
+/area/ruin/unpowered/planet_desert/e11manufactory/office)
+"Rm" = (
+/obj/effect/turf_decal/tile/green/opposingcorners{
+	color = "#99BB76";
+	alpha = 255
+	},
+/obj/effect/turf_decal/tile/red/opposingcorners{
+	dir = 8;
+	color = "#B4696A";
+	alpha = 255
+	},
+/obj/structure/table/reinforced,
+/obj/structure/reagent_dispensers/beerkeg{
+	pixel_y = 8
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"Rq" = (
+/obj/effect/turf_decal/tile/red/opposingcorners{
+	color = "#B4696A";
+	alpha = 255
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"Rt" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/concrete/pavement,
+/area/ruin/unpowered/planet_desert/e11manufactory/warehouse)
+"Rz" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 4
+	},
+/obj/structure/closet/crate/secure/weapon{
+	anchored = 1;
+	opened = 1;
+	locked = 0
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_desert/e11manufactory/warehouse)
+"RA" = (
+/obj/structure/closet{
+	anchored = 1
+	},
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 4
+	},
+/obj/item/clothing/under/rank/cargo/miner{
+	name = "kombinezon robotnika"
+	},
+/obj/effect/turf_decal/box/corners{
+	dir = 4
+	},
+/obj/effect/turf_decal/box/corners,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"RB" = (
+/obj/structure/chair/office{
+	dir = 4
+	},
+/mob/living/basic/trooper/pirate/ranged,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/carpet/orange,
+/area/ruin/unpowered/planet_desert/e11manufactory/office)
+"RE" = (
+/obj/structure/chair/fancy/plastic{
+	dir = 4
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"RG" = (
+/obj/structure/closet/crate/bin,
+/obj/effect/spawner/lootdrop/maintenance,
+/turf/open/floor/carpet/orange,
+/area/ruin/unpowered/planet_desert/e11manufactory/office)
+"RI" = (
+/obj/structure/table/reinforced,
+/obj/item/shard,
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_desert/e11manufactory)
+"RJ" = (
+/obj/effect/turf_decal/stripes/line,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_desert/e11manufactory/warehouse)
+"RL" = (
+/obj/machinery/power/solar,
+/obj/structure/cable/yellow,
+/turf/open/floor/concrete/slab_4{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"RN" = (
+/obj/effect/turf_decal/caution,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/cable/orange,
+/turf/open/floor/concrete/slab_1{
+	light_power = 0.6;
+	light_range = 2
+	},
+/area/lavaland/surface/outdoors)
+"RR" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 8
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"RT" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 4
+	},
+/obj/structure/frame/computer{
+	dir = 4;
+	anchored = 1
+	},
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_desert/e11manufactory)
+"Se" = (
+/obj/structure/flora/rock,
+/turf/open/floor/plating/asteroid/desert/dry_seafloor{
+	light_range = 2
+	},
+/area/lavaland/surface/outdoors)
+"Sk" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Ss" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/cable/orange,
+/obj/effect/turf_decal/stripes/corner{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/slab_4{
+	light_power = 0.6;
+	light_range = 2
+	},
+/area/lavaland/surface/outdoors)
+"Su" = (
+/obj/structure/chair/fancy/comfy,
+/turf/open/floor/carpet/purple,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"Sx" = (
+/obj/machinery/door/airlock/external{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable/orange,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_desert/e11manufactory/mats)
+"SA" = (
+/obj/machinery/door/airlock/grunge{
+	name = "Toaleta";
+	dir = 4
+	},
+/obj/machinery/door/firedoor,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_desert/e11manufactory/office)
+"SB" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"SC" = (
+/obj/structure/flora/ash/tall_shroom,
+/turf/open/floor/plating/asteroid/desert/dry_seafloor{
+	light_range = 2
+	},
+/area/lavaland/surface/outdoors)
+"SF" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/structure/cable/orange,
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"SL" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/concrete/slab_1{
+	light_power = 0.6;
+	light_range = 2
+	},
+/area/lavaland/surface/outdoors)
+"SS" = (
+/obj/structure/chair/stool/bar{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/carpet,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"SU" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/structure/cable/orange,
+/turf/open/floor/concrete/slab_4{
+	light_power = 0.6;
+	light_range = 2
+	},
+/area/lavaland/surface/outdoors)
+"SY" = (
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Ta" = (
+/obj/structure/table/glass,
+/obj/item/flashlight/lamp/green{
+	pixel_y = 13
+	},
+/obj/item/paper_bin{
+	pixel_y = 6;
+	pixel_x = -14
+	},
+/obj/item/pen/fourcolor,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 10
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/carpet/royalblue,
+/area/ruin/unpowered/planet_desert/e11manufactory/office)
+"Tb" = (
+/obj/machinery/conveyor{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/cable/orange,
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Tf" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/slab_1{
+	light_power = 0.6;
+	light_range = 2
+	},
+/area/lavaland/surface/outdoors)
+"Tg" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/effect/turf_decal/caution{
+	dir = 8
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Tk" = (
+/obj/effect/decal/cleanable/greenglow,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Tl" = (
+/obj/item/stack/ore/iron,
+/obj/item/shard,
+/obj/effect/decal/cleanable/glass,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_desert/e11manufactory/office)
+"Tn" = (
+/obj/machinery/washing_machine,
+/obj/item/clothing/under/rank/cargo/miner{
+	name = "kombinezon robotnika"
+	},
+/turf/open/floor/plasteel/white,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"Tq" = (
+/obj/structure/curtain,
+/obj/machinery/shower{
+	pixel_y = 19
+	},
+/turf/open/floor/plasteel/freezer,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"Tx" = (
+/obj/structure/cable/yellow,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"TB" = (
+/obj/structure/closet/crate/secure/weapon{
+	anchored = 1
+	},
+/obj/item/gun/energy/e_gun,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_desert/e11manufactory/warehouse)
+"TC" = (
+/obj/structure/cable/orange,
+/turf/open/floor/concrete/pavement,
+/area/ruin/unpowered/planet_desert/e11manufactory/warehouse)
+"TG" = (
+/obj/structure/chair/office,
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_desert/e11manufactory)
+"TI" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_desert/e11manufactory/mats)
+"TN" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/machinery/light/small,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_desert/e11manufactory)
+"TP" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 9
+	},
+/obj/structure/cable/orange,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/slab_4{
+	light_power = 0.6;
+	light_range = 2
+	},
+/area/lavaland/surface/outdoors)
+"TT" = (
+/obj/structure/cable/orange,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/pavement,
+/area/ruin/unpowered/planet_desert/e11manufactory/warehouse)
+"TX" = (
+/obj/structure/cable/yellow,
+/obj/machinery/power/terminal{
+	dir = 4
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"TY" = (
+/obj/structure/closet,
+/obj/effect/turf_decal/tile/green/opposingcorners{
+	color = "#99BB76";
+	alpha = 255
+	},
+/obj/effect/turf_decal/tile/red/opposingcorners{
+	dir = 8;
+	color = "#B4696A";
+	alpha = 255
+	},
+/obj/item/storage/box/drinkingglasses,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 6
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"Ua" = (
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Uc" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/filingcabinet,
+/obj/item/gun/energy/laser/retro,
+/obj/item/pen/fourcolor,
+/turf/open/floor/carpet/orange,
+/area/ruin/unpowered/planet_desert/e11manufactory/office)
+"Ud" = (
+/obj/structure/closet/crate/secure/plasma{
+	name = "skrzynia z materiałami";
+	desc = "Zabezpieczona skrzynia na rudę.";
+	anchored = 1
+	},
+/obj/effect/turf_decal/box/corners{
+	dir = 8
+	},
+/obj/effect/turf_decal/box/corners,
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/item/stack/sheet/glass{
+	amount = 20
+	},
+/obj/item/stack/sheet/glass{
+	amount = 20
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_desert/e11manufactory/mats)
+"Um" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/table/glass,
+/obj/item/flashlight/lamp{
+	pixel_x = -4;
+	pixel_y = 3
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 5
+	},
+/obj/machinery/light/broken,
+/turf/open/floor/carpet/orange,
+/area/ruin/unpowered/planet_desert/e11manufactory/office)
+"Ur" = (
+/obj/structure/table/reinforced,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/radio/off{
+	pixel_y = 14
+	},
+/turf/open/floor/carpet/orange,
+/area/ruin/unpowered/planet_desert/e11manufactory/office)
+"UA" = (
+/obj/structure/fence/cut/large{
+	dir = 1
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"UD" = (
+/obj/machinery/conveyor,
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/structure/railing{
+	max_integrity = 70;
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"UJ" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/chair{
+	pixel_x = -4;
+	pixel_y = -5
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 9
+	},
+/turf/open/floor/carpet/orange,
+/area/ruin/unpowered/planet_desert/e11manufactory/office)
+"UM" = (
+/obj/structure/bed,
+/obj/effect/turf_decal/tile/green/opposingcorners{
+	color = "#99BB76";
+	alpha = 255
+	},
+/obj/item/bedsheet/random,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"US" = (
+/obj/item/stack/ore/iron,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_desert/e11manufactory/office)
+"UT" = (
+/obj/effect/decal/cleanable/molten_object/large,
+/obj/effect/decal/cleanable/dirt{
+	pixel_x = -8
+	},
+/obj/effect/turf_decal/stripes/line,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"UU" = (
+/turf/template_noop,
+/area/template_noop)
+"Vi" = (
+/obj/structure/railing{
+	dir = 10;
+	layer = 4.1
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Vk" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/structure/cable/orange,
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/concrete/slab_1{
+	light_power = 0.6;
+	light_range = 2
+	},
+/area/lavaland/surface/outdoors)
+"Vl" = (
+/obj/item/restraints/legcuffs/beartrap{
+	armed = 1
+	},
+/turf/open/floor/plating/asteroid/desert/dry_seafloor{
+	light_range = 2
+	},
+/area/lavaland/surface/outdoors)
+"Vm" = (
+/obj/structure/closet{
+	anchored = 1
+	},
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 8
+	},
+/obj/item/clothing/under/rank/cargo/miner{
+	name = "kombinezon robotnika"
+	},
+/obj/effect/turf_decal/box/corners{
+	dir = 8
+	},
+/obj/effect/turf_decal/box/corners{
+	dir = 1
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"Vp" = (
+/obj/structure/railing/corner,
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Vt" = (
+/obj/item/restraints/legcuffs/beartrap{
+	armed = 1
+	},
+/turf/open/floor/concrete/slab_4{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"VF" = (
+/obj/structure/chair/stool/bar{
+	dir = 8
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/carpet,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"VO" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/carpet/orange,
+/area/ruin/unpowered/planet_desert/e11manufactory/office)
+"VU" = (
+/obj/effect/turf_decal/tile/red/opposingcorners{
+	color = "#B4696A";
+	alpha = 255
+	},
+/mob/living/basic/trooper/pirate/ranged,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
+/obj/structure/sign/poster/official/bless_this_spess{
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"We" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/structure/cable/orange,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_desert/e11manufactory/warehouse)
+"Wf" = (
+/obj/structure/closet/crate{
+	anchored = 1
+	},
+/obj/effect/turf_decal/box/corners,
+/obj/effect/turf_decal/box/corners{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/item/food/grown/coffee/robusta,
+/obj/item/food/grown/coffee/robusta,
+/obj/item/food/grown/coffee/robusta,
+/obj/item/food/grown/coffee/robusta,
+/obj/item/food/grown/coffee/robusta,
+/obj/item/food/grown/tea,
+/obj/item/food/grown/tea,
+/obj/item/food/grown/tea,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"Wg" = (
+/obj/structure/fence/door{
+	dir = 4
+	},
+/turf/open/floor/plating/asteroid/desert,
+/area/lavaland/surface/outdoors)
+"Wi" = (
+/obj/effect/turf_decal/tile/red/opposingcorners{
+	color = "#B4696A";
+	alpha = 255
+	},
+/obj/structure/closet{
+	anchored = 1
+	},
+/obj/item/photo,
+/obj/item/book/random,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"Wj" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_desert/e11manufactory/warehouse)
+"Ws" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/slab_4{
+	light_power = 0.6;
+	light_range = 2
+	},
+/area/lavaland/surface/outdoors)
+"Wx" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 4
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_desert/e11manufactory/warehouse)
+"Wy" = (
+/obj/effect/turf_decal/trimline/white/arrow_cw{
+	dir = 8;
+	color = "#FFFFFF";
+	alpha = 255
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Wz" = (
+/obj/machinery/power/tracker,
+/obj/structure/cable/yellow,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/slab_4{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"WB" = (
+/obj/structure/chair/stool{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/green/opposingcorners{
+	color = "#99BB76";
+	alpha = 255
+	},
+/obj/effect/turf_decal/tile/red/opposingcorners{
+	dir = 8;
+	color = "#B4696A";
+	alpha = 255
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"WI" = (
+/obj/structure/chair/fancy/bench{
+	dir = 1
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 1
+	},
+/turf/open/floor/carpet/orange,
+/area/ruin/unpowered/planet_desert/e11manufactory/office)
+"WJ" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/concrete/slab_4{
+	light_power = 0.6;
+	light_range = 2
+	},
+/area/ruin/unpowered/planet_desert/e11manufactory/warehouse)
+"WM" = (
+/obj/structure/lattice/catwalk/over/ship,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/cable/orange,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"WO" = (
+/obj/effect/turf_decal/box/corners{
+	dir = 1
+	},
+/obj/effect/turf_decal/box/corners{
+	dir = 8
+	},
+/obj/item/stack/sticky_tape{
+	pixel_x = 7;
+	pixel_y = 4
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_desert/e11manufactory/warehouse)
+"WU" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/carpet/orange,
+/area/ruin/unpowered/planet_desert/e11manufactory/office)
+"Xe" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 6
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/carpet/purple,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"Xh" = (
+/obj/structure/table/reinforced,
+/obj/machinery/reagentgrinder{
+	pixel_y = 12;
+	pixel_x = 5
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/monotile/light,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"Xi" = (
+/obj/structure/frame/machine{
+	anchored = 1
+	},
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_desert/e11manufactory)
+"Xm" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_desert/e11manufactory/warehouse)
+"Xn" = (
+/obj/structure/flora/tree/dead/barren,
+/turf/open/floor/plating/asteroid/desert,
+/area/lavaland/surface/outdoors)
+"Xq" = (
+/obj/machinery/atmospherics/components/unary/tank/toxins{
+	volume = 300;
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/end{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/end{
+	dir = 4
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Xr" = (
+/obj/structure/closet/crate/secure/plasma{
+	name = "skrzynia z materiałami";
+	desc = "Zabezpieczona skrzynia na rudę.";
+	anchored = 1
+	},
+/obj/effect/turf_decal/box/corners{
+	dir = 4
+	},
+/obj/effect/turf_decal/box/corners,
+/obj/item/stack/sheet/mineral/silver/five,
+/obj/item/stack/sheet/mineral/silver/five,
+/obj/item/stack/sheet/mineral/silver/five,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_desert/e11manufactory/mats)
+"Xt" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/cable/orange,
+/obj/structure/lattice/catwalk/over/ship,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"Xu" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/structure/cable/orange,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/slab_4{
+	light_power = 0.6;
+	light_range = 2
+	},
+/area/lavaland/surface/outdoors)
+"Xw" = (
+/obj/structure/closet/crate/secure/weapon{
+	anchored = 1;
+	opened = 1;
+	locked = 0
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_desert/e11manufactory/warehouse)
+"Xz" = (
+/obj/effect/decal/cleanable/oil,
+/turf/open/floor/concrete/slab_4{
+	light_power = 0.6;
+	light_range = 2
+	},
+/area/lavaland/surface/outdoors)
+"XA" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 9
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/carpet/orange,
+/area/ruin/unpowered/planet_desert/e11manufactory/office)
+"XD" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 4
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"XJ" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 1
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"XL" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"XP" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/carpet/orange,
+/area/ruin/unpowered/planet_desert/e11manufactory/office)
+"XQ" = (
+/obj/machinery/conveyor,
+/obj/structure/plasticflaps/opaque,
+/obj/machinery/door/poddoor/shutters,
+/obj/machinery/door/firedoor/heavy,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_desert/e11manufactory/mats)
+"XR" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/restraints/legcuffs/beartrap{
+	armed = 1
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"XS" = (
+/turf/open/floor/plating/asteroid/desert/dry_seafloor{
+	light_range = 2
+	},
+/area/lavaland/surface/outdoors)
+"XT" = (
+/obj/machinery/computer/mech_bay_power_console{
+	dir = 1
+	},
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_desert/e11manufactory/warehouse)
+"XW" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 9
+	},
+/obj/structure/cable/orange,
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Yd" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 1
+	},
+/obj/structure/cable/orange,
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Yg" = (
+/obj/structure/chair/office{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_desert/e11manufactory/office)
+"Yk" = (
+/obj/effect/turf_decal/tile/purple/opposingcorners{
+	color = "#AE8CA8";
+	alpha = 255
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 10
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"Ym" = (
+/obj/effect/turf_decal/tile/purple/opposingcorners{
+	color = "#AE8CA8";
+	alpha = 255
+	},
+/obj/structure/table,
+/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass{
+	pixel_y = 4;
+	pixel_x = -5
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass{
+	pixel_y = 13;
+	pixel_x = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"YD" = (
+/obj/structure/table,
+/obj/item/restraints/legcuffs/beartrap{
+	pixel_y = 9
+	},
+/turf/open/floor/carpet/red,
+/area/ruin/unpowered/planet_desert/e11manufactory/security)
+"YF" = (
+/obj/effect/decal/cleanable/oil,
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_desert/e11manufactory/warehouse)
+"YH" = (
+/obj/effect/decal/cleanable/greenglow,
+/turf/open/floor/plating/asteroid/desert,
+/area/lavaland/surface/outdoors)
+"YK" = (
+/obj/structure/sink/kitchen{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 9
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 1
+	},
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"YL" = (
+/obj/structure/bed,
+/obj/effect/turf_decal/tile/purple/opposingcorners{
+	color = "#AE8CA8";
+	alpha = 255
+	},
+/obj/item/bedsheet/random,
+/obj/effect/decal/cleanable/cobweb,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"YM" = (
+/obj/effect/turf_decal/box/corners{
+	dir = 1
+	},
+/obj/effect/turf_decal/box/corners{
+	dir = 4
+	},
+/obj/structure/closet/crate/secure/weapon{
+	anchored = 1
+	},
+/obj/item/gun/energy/e_gun,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_desert/e11manufactory/warehouse)
+"YP" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/button/door{
+	dir = 8;
+	id = "e11_manufactory_warehouse";
+	pixel_x = 20;
+	pixel_y = 5
+	},
+/obj/effect/turf_decal/stripes/corner,
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_desert/e11manufactory/warehouse)
+"YQ" = (
+/obj/structure/flora/rock,
+/turf/open/floor/plating/asteroid/desert,
+/area/lavaland/surface/outdoors)
+"YU" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/cable/orange,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/slab_4{
+	light_power = 0.6;
+	light_range = 2
+	},
+/area/lavaland/surface/outdoors)
+"YW" = (
+/obj/effect/decal/cleanable/cobweb,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_desert/e11manufactory/warehouse)
+"Zd" = (
+/obj/structure/table,
+/obj/item/food/soup{
+	pixel_y = 5
+	},
+/turf/open/floor/carpet,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"Zn" = (
+/obj/structure/closet{
+	anchored = 1
+	},
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 8
+	},
+/obj/item/clothing/shoes/workboots,
+/obj/effect/turf_decal/box/corners{
+	dir = 8
+	},
+/obj/effect/turf_decal/box/corners{
+	dir = 1
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"Zs" = (
+/obj/structure/cable/yellow,
+/obj/item/restraints/legcuffs/beartrap{
+	armed = 1
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Zt" = (
+/obj/structure/cable/orange,
+/obj/machinery/light/small,
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"Zu" = (
+/obj/structure/girder,
+/obj/item/stack/ore/iron,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_desert/e11manufactory/office)
+"Zv" = (
+/turf/closed/wall/r_wall/rust,
+/area/ruin/unpowered/planet_desert/e11manufactory/warehouse)
+"ZA" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"ZD" = (
+/obj/structure/cable/yellow,
+/obj/machinery/power/solar_control{
+	dir = 1
+	},
+/turf/open/floor/concrete{
+	light_range = 2;
+	light_power = 0.6
+	},
+/area/ruin/unpowered/planet_desert/e11manufactory/security)
+"ZO" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/light/floor{
+	pixel_x = 15
+	},
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_desert/e11manufactory/barracks)
+"ZS" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=20;n2=80;TEMP=313.15";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+
+(1,1,1) = {"
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+gq
+AF
+AF
+Bl
+XS
+XS
+XS
+AF
+AF
+AF
+AF
+AF
+AF
+AF
+AF
+YQ
+AF
+AF
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+"}
+(2,1,1) = {"
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+mn
+AF
+AF
+AF
+AF
+Ac
+AF
+AF
+AF
+AF
+XS
+XS
+XS
+AF
+AF
+AF
+XS
+XS
+AF
+XS
+XS
+SC
+XS
+AF
+AF
+AF
+AF
+AF
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+"}
+(3,1,1) = {"
+UU
+UU
+UU
+AF
+AF
+AF
+AF
+AF
+AF
+AF
+AF
+XS
+AF
+AF
+AF
+AF
+AF
+AF
+AF
+AF
+AF
+vo
+AF
+AF
+XS
+XS
+XS
+AF
+AF
+AF
+AF
+YH
+AF
+AF
+AF
+AF
+AF
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+"}
+(4,1,1) = {"
+UU
+UU
+YQ
+gq
+AF
+AF
+AF
+It
+AF
+Se
+XS
+AF
+mn
+AF
+AF
+AF
+AF
+AF
+XS
+AF
+AF
+AF
+AF
+YQ
+AF
+XS
+gq
+AF
+AF
+AF
+AF
+AF
+AF
+AF
+AF
+gq
+AF
+AF
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+"}
+(5,1,1) = {"
+UU
+UU
+AF
+dP
+dP
+jt
+jt
+jt
+jt
+uu
+uu
+uu
+uu
+uu
+uu
+uu
+jt
+jt
+jt
+jt
+jt
+jt
+jt
+jt
+jt
+uu
+uu
+uu
+uu
+uu
+uu
+uu
+dP
+dP
+AF
+AF
+AF
+AF
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+"}
+(6,1,1) = {"
+UU
+UU
+AF
+dP
+jU
+hr
+hr
+hr
+hr
+hr
+hr
+AF
+hr
+hr
+hr
+hr
+oI
+XL
+XL
+XL
+hr
+hr
+XL
+hr
+hr
+AF
+AF
+hr
+hr
+hr
+AF
+AF
+AF
+dP
+AF
+AF
+AF
+AF
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+"}
+(7,1,1) = {"
+UU
+UU
+AF
+EC
+hr
+RL
+RL
+mk
+OM
+hr
+hr
+hr
+hr
+XL
+XL
+XL
+XL
+hr
+hr
+hr
+hr
+hr
+XL
+XL
+hr
+hr
+oI
+hr
+hr
+hr
+hr
+AF
+AF
+PT
+AF
+AF
+AF
+AF
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+"}
+(8,1,1) = {"
+UU
+UU
+vo
+EC
+hr
+Qj
+rp
+rp
+zK
+nD
+hr
+hr
+hr
+hr
+hr
+hr
+hr
+hr
+hr
+hr
+XL
+XL
+XL
+XL
+XL
+ym
+XL
+XL
+hr
+hr
+hr
+gq
+hr
+EC
+AF
+AF
+AF
+YQ
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+"}
+(9,1,1) = {"
+UU
+UU
+AF
+EC
+hr
+OM
+Wz
+RL
+mk
+nD
+TX
+nD
+hr
+hr
+hr
+hr
+hr
+XL
+XL
+XL
+hr
+XL
+hr
+hr
+Bk
+Bk
+Bk
+Bk
+Bk
+hr
+hr
+hr
+hr
+EC
+AF
+Cj
+XS
+AF
+AF
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+"}
+(10,1,1) = {"
+UU
+UU
+AF
+EC
+hr
+rp
+Vt
+Qj
+Qj
+bI
+Cl
+GR
+zl
+zl
+zl
+zl
+hr
+hr
+hr
+tZ
+Tg
+Tg
+XD
+Bk
+Bk
+RT
+lc
+Xi
+Bk
+Bk
+XL
+hr
+hr
+EC
+AF
+AF
+kJ
+Bl
+zq
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+"}
+(11,1,1) = {"
+UU
+AF
+XS
+EC
+hr
+RL
+RL
+OM
+RL
+bI
+zl
+zl
+zl
+jk
+Ud
+zl
+zl
+XL
+XL
+ba
+Jx
+Jx
+ih
+NK
+hn
+dt
+dd
+JU
+JT
+Bk
+XL
+XL
+XL
+EC
+AF
+Bl
+Bl
+AF
+AF
+ni
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+"}
+(12,1,1) = {"
+UU
+AF
+XS
+EC
+hr
+hr
+hr
+XL
+hr
+uV
+zl
+na
+LQ
+Ev
+TI
+gN
+zl
+XL
+XL
+OL
+LI
+LI
+XJ
+Bk
+JH
+dt
+Dy
+TG
+jR
+Bk
+hr
+XL
+XL
+EC
+AF
+AF
+Mj
+AF
+Bl
+Bl
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+"}
+(13,1,1) = {"
+AF
+gq
+AF
+PT
+hr
+hr
+hr
+hr
+hr
+uV
+zl
+Kj
+zl
+wH
+Je
+Xr
+zl
+XL
+XL
+OL
+oI
+XL
+hr
+Bk
+PF
+dt
+AM
+Ht
+RI
+Bk
+hr
+XL
+hr
+EC
+AF
+XS
+XS
+AF
+zq
+Bl
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+"}
+(14,1,1) = {"
+AF
+XS
+AF
+PT
+AF
+AF
+AF
+hr
+XL
+uV
+zl
+eu
+zl
+xj
+Je
+en
+zl
+XL
+XL
+OL
+XL
+XL
+hr
+Bk
+JH
+dt
+yb
+mj
+Bk
+Bk
+XL
+XL
+hr
+EC
+rk
+XS
+pf
+kJ
+XS
+XS
+Bl
+AF
+AF
+AF
+AF
+AF
+AF
+AF
+AF
+AF
+AF
+AF
+AF
+AF
+AF
+AF
+AF
+AF
+UU
+UU
+UU
+UU
+UU
+"}
+(15,1,1) = {"
+AF
+XS
+XS
+PT
+AF
+hr
+hr
+hr
+XL
+Dt
+zl
+JY
+zl
+mv
+Hn
+EI
+XQ
+UD
+ih
+dL
+XL
+XL
+XL
+Bk
+ib
+al
+qv
+yp
+Bk
+hr
+XL
+XL
+hr
+OD
+AF
+AF
+ni
+Bl
+AF
+AF
+XS
+AF
+XS
+AF
+AF
+AF
+AF
+AF
+AF
+AF
+XS
+XS
+gq
+XS
+XS
+XS
+AF
+AF
+AF
+AF
+UU
+UU
+UU
+"}
+(16,1,1) = {"
+AF
+AF
+AF
+PT
+hr
+kt
+XL
+XL
+XL
+Dt
+zl
+Sx
+zl
+zl
+zl
+zl
+zl
+XL
+XL
+XL
+XL
+XL
+XL
+Bk
+JH
+PK
+Fs
+Pf
+Bk
+hr
+hr
+ym
+hr
+EC
+AF
+AF
+Bl
+AF
+AF
+IN
+AF
+XS
+AF
+AF
+AF
+AF
+AF
+mn
+AF
+AF
+AF
+AF
+AF
+AF
+AF
+AF
+AF
+XS
+AF
+AF
+AF
+AF
+UU
+"}
+(17,1,1) = {"
+YQ
+AF
+AF
+EC
+hr
+hr
+hr
+XL
+XL
+uV
+yz
+XW
+XJ
+hr
+hr
+hr
+Vp
+xA
+xA
+xA
+xA
+dZ
+XL
+Bk
+NS
+al
+NA
+vL
+Bk
+AF
+hr
+XL
+hr
+EC
+vo
+AF
+AF
+AF
+AF
+gq
+AF
+AF
+Se
+XS
+AF
+AF
+AF
+AF
+AF
+AF
+AF
+AF
+AF
+AF
+AF
+AF
+vo
+AF
+XS
+AF
+AF
+AF
+AF
+"}
+(18,1,1) = {"
+UU
+AF
+mn
+dP
+hr
+hr
+hr
+hr
+hr
+XL
+hr
+SF
+hr
+tM
+IE
+xA
+jj
+dN
+dN
+dN
+dN
+zR
+hr
+Bk
+JH
+KL
+PN
+lP
+Bk
+AF
+hr
+XL
+hr
+dP
+jt
+jt
+jt
+uu
+uu
+uu
+uu
+uu
+uu
+uu
+uu
+uu
+uu
+uu
+uu
+uu
+uu
+jt
+jt
+jt
+jt
+jt
+jt
+dP
+dP
+XS
+AF
+AF
+AF
+"}
+(19,1,1) = {"
+UU
+UU
+AF
+dP
+dP
+jt
+jt
+jt
+jt
+dP
+hr
+SF
+hr
+DV
+dN
+dN
+dN
+dN
+dN
+dN
+dN
+zR
+hr
+Bk
+Fw
+Bk
+Bk
+hz
+Bk
+Bk
+hr
+hr
+XL
+hr
+XL
+jU
+hr
+hr
+AF
+mn
+AF
+AF
+AF
+AF
+AF
+AF
+AF
+AF
+AF
+AF
+hr
+hr
+hr
+hr
+hr
+hr
+hr
+hr
+dP
+AF
+Bl
+AF
+ni
+"}
+(20,1,1) = {"
+UU
+UU
+AF
+AF
+AF
+uO
+Dj
+ca
+Ed
+EC
+hr
+SF
+hr
+DV
+dN
+dN
+dN
+dN
+dN
+dN
+hO
+rs
+hr
+Bk
+PJ
+dA
+Bk
+Ho
+wO
+Bk
+hr
+hr
+Cm
+hr
+hr
+hr
+hr
+hr
+hr
+AF
+AF
+hr
+hr
+hr
+hr
+hr
+AF
+AF
+gq
+AF
+hr
+hr
+hT
+XL
+hr
+XL
+hr
+hr
+EC
+AF
+Bl
+IN
+AF
+"}
+(21,1,1) = {"
+UU
+UU
+AF
+AF
+rk
+AF
+zv
+fy
+eh
+EC
+hr
+SF
+hr
+ch
+Vi
+dN
+dN
+dN
+dN
+hO
+rs
+XL
+hr
+Bk
+Bk
+JH
+Bk
+bZ
+TN
+Bk
+hr
+hr
+hr
+hr
+hr
+hr
+XL
+XL
+hr
+hr
+xD
+xD
+xD
+xD
+xD
+hr
+hr
+hr
+hr
+AF
+AF
+hr
+XL
+XL
+XL
+XL
+hr
+hr
+EC
+AF
+AF
+ni
+Bl
+"}
+(22,1,1) = {"
+UU
+UU
+AF
+gq
+AF
+AF
+DW
+JC
+UT
+EC
+IX
+SF
+XL
+XL
+ch
+Bg
+gb
+gb
+gb
+mg
+XL
+hr
+hr
+hr
+Bk
+Qh
+Bk
+rl
+Bk
+Bk
+hr
+hr
+hr
+Of
+hr
+XL
+hr
+hr
+hr
+xD
+xD
+ms
+Im
+Lt
+xD
+hr
+xD
+xD
+xD
+xD
+xD
+nf
+nf
+hr
+yU
+XL
+XL
+hr
+EC
+AF
+AF
+AF
+AF
+"}
+(23,1,1) = {"
+UU
+UU
+UU
+AF
+AF
+AF
+AF
+dx
+CV
+EC
+hr
+SF
+XL
+XL
+hr
+Cx
+AA
+hr
+hr
+lC
+XL
+hr
+hr
+hr
+hr
+If
+NH
+II
+SL
+XJ
+hr
+XL
+XL
+Sk
+hr
+xD
+xD
+xD
+xD
+xD
+xD
+Wf
+AJ
+Cs
+xD
+xD
+xD
+Su
+ej
+xD
+cm
+nT
+nf
+By
+hr
+Cm
+XL
+XL
+EC
+AF
+AF
+AF
+AF
+"}
+(24,1,1) = {"
+UU
+UU
+UU
+AF
+AF
+AF
+AF
+ZS
+IJ
+EC
+hr
+zI
+XL
+hr
+XL
+hr
+hr
+in
+hu
+XL
+hr
+hr
+hr
+pa
+ub
+Fj
+hr
+Lj
+jZ
+av
+Ws
+Ws
+jZ
+Is
+xD
+xD
+Rm
+WB
+TY
+jg
+hH
+nU
+YK
+Xh
+xD
+xD
+aA
+sl
+Pc
+xD
+IK
+Os
+UM
+xD
+hr
+hr
+XL
+XL
+EC
+AF
+AF
+XS
+AF
+"}
+(25,1,1) = {"
+UU
+UU
+UU
+UU
+XS
+AF
+AF
+hr
+hr
+xf
+oI
+zI
+XL
+hr
+XL
+hr
+hr
+XL
+XL
+hr
+hr
+hr
+tZ
+If
+XD
+hr
+hr
+Hd
+xR
+YU
+YU
+Kb
+Dx
+vB
+xD
+ir
+lk
+bv
+rr
+lk
+xD
+xD
+xD
+xD
+xD
+xD
+HV
+Xe
+xz
+xD
+hX
+lL
+nI
+xD
+hr
+hr
+XL
+hr
+EC
+AF
+AF
+gq
+AF
+"}
+(26,1,1) = {"
+UU
+UU
+UU
+AF
+AF
+XS
+AF
+AF
+AF
+EC
+hr
+zI
+hr
+hr
+XL
+hr
+hr
+hr
+XL
+ea
+Xz
+jZ
+Gu
+IQ
+fH
+jZ
+jZ
+Xu
+Ws
+XL
+hr
+xD
+Hz
+kW
+xD
+nw
+IW
+LY
+kR
+nn
+xD
+xo
+RA
+rN
+eO
+xD
+dz
+Ih
+nL
+xD
+qY
+CT
+UM
+xD
+xD
+xD
+xD
+hr
+EC
+AF
+XS
+XS
+AF
+"}
+(27,1,1) = {"
+UU
+UU
+gt
+AF
+AF
+XS
+Vl
+XS
+AF
+PT
+hr
+Yd
+qc
+qc
+Gf
+Gf
+Gf
+qc
+qc
+oO
+SU
+fF
+tu
+Tb
+RN
+fF
+YU
+TP
+av
+hr
+hr
+sZ
+ZO
+ct
+dX
+wo
+wo
+VF
+bR
+SS
+xD
+KW
+FT
+MN
+Zt
+xD
+xD
+zE
+xD
+xD
+xD
+Dk
+xD
+xD
+Tq
+aZ
+xD
+hr
+EC
+AF
+Se
+AF
+AF
+"}
+(28,1,1) = {"
+UU
+UU
+AF
+AF
+vo
+YQ
+AF
+AF
+uO
+EC
+hr
+SF
+hr
+hr
+XL
+XL
+hr
+hr
+hr
+jZ
+uC
+jZ
+bW
+If
+XJ
+hr
+XL
+hr
+XL
+hr
+hr
+sZ
+KS
+kT
+jd
+Bf
+ud
+NB
+cv
+hZ
+pD
+Xt
+rX
+WM
+Kl
+bj
+JI
+hh
+Lo
+BY
+SB
+Iu
+BY
+zW
+uM
+se
+xD
+hr
+EC
+XS
+AF
+AF
+AF
+"}
+(29,1,1) = {"
+UU
+UU
+AF
+AF
+AF
+AF
+AF
+AF
+mn
+EC
+hr
+SF
+hr
+hr
+hr
+hr
+hr
+ek
+YP
+WJ
+gB
+Lu
+Wx
+If
+hr
+hr
+hr
+hr
+XL
+hr
+hr
+xD
+Hz
+lA
+xD
+dJ
+NP
+ql
+Po
+jD
+xD
+ru
+ki
+oK
+sp
+xD
+xD
+pQ
+xD
+xD
+xD
+rL
+xD
+xD
+vZ
+Tn
+xD
+hr
+EC
+XS
+AF
+AF
+AF
+"}
+(30,1,1) = {"
+UU
+AF
+AF
+dP
+dP
+uu
+uu
+uu
+uu
+dP
+hr
+SF
+jU
+hr
+hr
+Zv
+Zv
+Zv
+Zv
+sX
+Jl
+sX
+Zv
+wa
+Zv
+Zv
+hr
+hr
+hr
+hr
+hr
+bW
+SL
+Vk
+cO
+bd
+oH
+wo
+Zd
+Mh
+xD
+Zn
+Vm
+DK
+Nv
+xD
+YL
+Ff
+xn
+xD
+Wi
+Rq
+Ks
+xD
+xD
+xD
+xD
+hr
+EC
+AF
+AF
+AF
+XS
+"}
+(31,1,1) = {"
+UU
+AF
+AF
+dP
+AF
+AF
+AF
+AF
+AF
+hr
+hr
+zI
+hr
+hr
+Zv
+Zv
+YM
+eL
+vt
+Ma
+MS
+AB
+Jt
+au
+sR
+Zv
+Zv
+hr
+hr
+JC
+hr
+hr
+jZ
+uC
+cO
+il
+bt
+wo
+hy
+il
+xD
+cO
+cO
+cO
+cO
+xD
+es
+Yk
+wM
+xD
+VU
+ol
+wg
+xD
+hr
+hr
+hr
+hr
+PT
+XS
+AF
+AF
+SC
+"}
+(32,1,1) = {"
+UU
+AF
+AF
+PT
+AF
+AF
+rk
+vo
+hr
+hr
+XL
+SF
+hr
+hr
+Zv
+YW
+Hq
+Hq
+Hq
+fD
+mb
+fD
+Hq
+au
+kn
+tp
+Zv
+AF
+hr
+hr
+XL
+GI
+ea
+uC
+xD
+xD
+rj
+mF
+Ew
+xD
+xD
+hr
+hr
+hr
+hr
+xD
+rY
+qx
+Mo
+xD
+mI
+eQ
+fb
+xD
+hr
+hr
+hr
+hr
+PT
+AF
+XS
+AF
+XS
+"}
+(33,1,1) = {"
+UU
+AF
+AF
+PT
+AF
+AF
+AF
+AF
+hr
+XL
+hr
+SF
+hr
+hr
+Zv
+uw
+Xw
+TB
+Nx
+Hk
+mb
+uD
+Hq
+vM
+tj
+XT
+Zv
+tV
+hr
+hr
+hr
+XL
+av
+Lj
+hr
+xD
+cO
+cO
+cO
+xD
+hr
+hr
+RE
+Oa
+hr
+xD
+xD
+oJ
+Ym
+xD
+vy
+ua
+xD
+xD
+hr
+hr
+hr
+AF
+PT
+mn
+XS
+AF
+XS
+"}
+(34,1,1) = {"
+UU
+AF
+AF
+PT
+AF
+AF
+hr
+RL
+zK
+ts
+hr
+SF
+hr
+hr
+Zv
+hR
+Xw
+Rz
+jC
+Hq
+HW
+Hq
+Li
+tj
+yF
+iJ
+Zv
+AF
+AF
+hr
+XL
+XL
+Ws
+Xu
+hr
+hr
+hr
+oI
+hr
+hr
+hr
+hr
+wh
+fW
+XL
+hr
+xD
+xD
+xD
+xD
+xD
+xD
+xD
+hr
+hr
+XL
+hr
+AF
+mp
+Fa
+XS
+XS
+XS
+"}
+(35,1,1) = {"
+UU
+AF
+AF
+PT
+AF
+hr
+hr
+mk
+sq
+mk
+XL
+SF
+hr
+hr
+Zv
+IV
+yP
+kQ
+KO
+Db
+MM
+Xm
+lq
+tj
+tj
+sT
+Zv
+AF
+hr
+hr
+hr
+hr
+av
+IC
+XL
+hr
+hr
+hr
+hr
+hr
+hr
+hr
+in
+in
+XL
+XL
+hr
+hr
+hr
+hr
+hr
+hr
+XL
+XL
+hr
+jU
+hr
+AF
+mp
+Fa
+AF
+XS
+YQ
+"}
+(36,1,1) = {"
+UU
+AF
+AF
+EC
+hr
+hr
+XL
+ts
+zK
+RL
+XL
+SF
+hr
+hr
+Zv
+yW
+eE
+Wj
+KV
+We
+sh
+eE
+Ik
+WO
+tj
+HK
+Zv
+hr
+XL
+XL
+hr
+hr
+Ws
+Xu
+jZ
+jZ
+jZ
+jZ
+jZ
+jZ
+av
+jZ
+jZ
+ea
+av
+Ws
+av
+hr
+oI
+hr
+hr
+OM
+PZ
+XL
+XL
+hr
+AF
+AF
+PT
+tP
+Fa
+Fa
+Fa
+"}
+(37,1,1) = {"
+UU
+gq
+AF
+EC
+hr
+XL
+XL
+RL
+zK
+RL
+hr
+dj
+hr
+hr
+Zv
+qQ
+RJ
+or
+Hi
+TC
+cL
+kX
+YF
+dG
+tj
+Oy
+Zv
+hr
+XL
+tZ
+ZS
+ZS
+lG
+NY
+Fo
+HI
+Ss
+YU
+fF
+oO
+YU
+oO
+fF
+fF
+fF
+OZ
+Ws
+hr
+hr
+hr
+XL
+PZ
+OM
+XL
+hr
+hr
+AF
+hr
+EC
+Fa
+Fa
+AF
+Fa
+"}
+(38,1,1) = {"
+UU
+AF
+AF
+EC
+hr
+XL
+hr
+RL
+zK
+RL
+hr
+SF
+hr
+hr
+Zv
+Ee
+PO
+mT
+mT
+hd
+Hi
+aJ
+Hq
+Gx
+yK
+Zv
+Zv
+hr
+hr
+Ua
+eY
+kB
+Qj
+ah
+us
+eY
+zv
+hr
+hr
+XL
+XL
+XL
+XL
+XL
+XL
+Lj
+jZ
+hr
+hr
+XL
+XL
+sq
+rp
+XL
+hr
+hr
+oI
+hr
+dP
+Fa
+FB
+tP
+AF
+"}
+(39,1,1) = {"
+UU
+AF
+AF
+EC
+hr
+XL
+hr
+RL
+zK
+xx
+hr
+SF
+hr
+hr
+Zv
+Jo
+lF
+nE
+mT
+TT
+Hi
+aJ
+rW
+Zv
+Zv
+Zv
+hr
+XL
+Cm
+Ua
+aL
+pV
+rm
+Nr
+He
+aL
+zv
+hr
+XL
+XL
+pF
+XL
+XL
+hr
+tZ
+vf
+iR
+iD
+Dt
+hr
+hr
+RL
+RL
+hr
+hr
+dP
+Wg
+dP
+dP
+Fa
+Fa
+AF
+AF
+"}
+(40,1,1) = {"
+UU
+AF
+AF
+EC
+hr
+hr
+hr
+RL
+zK
+RL
+hr
+SF
+hr
+hr
+Zv
+Zv
+lF
+Rt
+Dc
+Ej
+Dc
+Cg
+Zv
+Zv
+hr
+hr
+hr
+XL
+hr
+Ua
+aL
+qP
+Eq
+KR
+gM
+aL
+zv
+hr
+XL
+hr
+XL
+XL
+hr
+hr
+wX
+dB
+wX
+wX
+uV
+nD
+nD
+RL
+RL
+nD
+hr
+EC
+Fa
+Fa
+Fa
+Fa
+gq
+AF
+AF
+"}
+(41,1,1) = {"
+UU
+XS
+YQ
+EC
+hr
+AF
+AF
+hr
+nD
+hr
+hr
+SF
+XL
+hr
+hr
+Zv
+Zv
+KX
+KX
+KX
+zY
+Zv
+Zv
+hr
+hr
+hr
+XL
+XL
+hr
+Ua
+aL
+Xq
+hV
+hV
+gM
+aL
+zv
+hr
+XL
+hr
+XL
+XL
+hr
+hr
+wX
+sF
+HE
+wX
+Cl
+ci
+hr
+hr
+hr
+nD
+hr
+EC
+Fa
+Fa
+HG
+Fa
+AF
+AF
+AF
+"}
+(42,1,1) = {"
+UU
+AF
+AF
+PT
+vo
+AF
+hr
+AF
+nD
+hr
+hr
+SF
+XL
+XL
+hr
+hr
+EL
+lh
+lh
+lh
+FH
+EL
+hr
+hr
+hr
+XL
+XL
+hr
+hr
+Ua
+aL
+MQ
+hV
+dn
+wC
+aL
+zv
+hr
+XL
+XL
+XL
+hr
+hr
+hr
+wX
+wW
+js
+wX
+wX
+wX
+wX
+wX
+hr
+nD
+hr
+EC
+tP
+Fa
+FB
+Fa
+AF
+AF
+AF
+"}
+(43,1,1) = {"
+UU
+vo
+AF
+PT
+AF
+hr
+hr
+hr
+bI
+FW
+EO
+fC
+hr
+XL
+hr
+hr
+Qj
+SY
+hV
+hV
+SY
+Qj
+hr
+hr
+XL
+XL
+hr
+hr
+hr
+Ua
+eY
+kB
+Qj
+Qj
+us
+eY
+zv
+hr
+hr
+hr
+hr
+wX
+tJ
+tJ
+wX
+aM
+wX
+wX
+pp
+Pr
+DH
+wX
+wX
+Tx
+XL
+EC
+Fa
+Fa
+Fa
+AF
+Fa
+AF
+UU
+"}
+(44,1,1) = {"
+UU
+AF
+AF
+EC
+hr
+hr
+hr
+jQ
+Ne
+sH
+oM
+sH
+hr
+XL
+XL
+hr
+Qj
+hV
+hV
+SY
+SY
+Qj
+hr
+XL
+XL
+XL
+hr
+hr
+hr
+bW
+CO
+CO
+SL
+Tf
+ZA
+ZA
+On
+hr
+hr
+hr
+hr
+tJ
+ns
+CR
+JA
+QT
+RG
+wX
+Bx
+GE
+MD
+CB
+uT
+Tx
+XL
+EC
+Fa
+Fa
+Fa
+AF
+AF
+UU
+UU
+"}
+(45,1,1) = {"
+UU
+Bl
+AF
+EC
+hr
+XL
+hr
+hr
+ZD
+sH
+gy
+sH
+hr
+hr
+XL
+hr
+Qj
+hV
+SY
+SY
+SY
+Qj
+XL
+XL
+XL
+hr
+hr
+hr
+hr
+hr
+hr
+hr
+Ws
+Ws
+XL
+hr
+XL
+XL
+hr
+hr
+jU
+tJ
+rV
+RB
+GX
+CL
+vH
+ck
+hv
+kS
+de
+Yg
+uT
+nD
+hr
+EC
+Fa
+tP
+AF
+AF
+UU
+UU
+UU
+"}
+(46,1,1) = {"
+AF
+AF
+AF
+EC
+hr
+XL
+hr
+sH
+sH
+sH
+bT
+sH
+hr
+hr
+hr
+hr
+Qj
+hV
+SY
+hV
+hV
+Qj
+XL
+XL
+hr
+hr
+hr
+hr
+hr
+hr
+hr
+hr
+jZ
+ea
+hr
+XL
+XL
+GL
+wX
+wX
+wX
+wX
+zy
+Ur
+xq
+Ek
+WI
+wX
+oq
+jp
+Ta
+eK
+uT
+nD
+AF
+EC
+Fa
+AF
+AF
+AF
+UU
+UU
+UU
+"}
+(47,1,1) = {"
+ni
+zq
+AF
+EC
+XL
+XL
+hr
+sH
+gI
+eb
+tf
+sH
+hr
+hr
+hr
+hr
+Qj
+hV
+hV
+hV
+hV
+Qj
+av
+jZ
+ea
+jZ
+ea
+jZ
+av
+av
+Ws
+ea
+jZ
+jZ
+jZ
+ea
+jZ
+ja
+nr
+to
+Ns
+kF
+vH
+WU
+VO
+XA
+Jd
+wX
+wX
+wX
+wX
+wX
+wX
+nD
+AF
+PT
+XS
+Se
+SC
+AF
+UU
+UU
+UU
+"}
+(48,1,1) = {"
+Bl
+AF
+AF
+EC
+hr
+XL
+hr
+sH
+Ki
+nH
+Da
+Cy
+hr
+hr
+hr
+hr
+Qj
+SY
+SY
+SY
+SY
+rp
+jZ
+jZ
+jZ
+ea
+jZ
+jZ
+av
+av
+av
+Ws
+bC
+ea
+gt
+jZ
+jZ
+ja
+wX
+FK
+ND
+wX
+xv
+QT
+nt
+uy
+HM
+wX
+wX
+wX
+wX
+hr
+hr
+Zs
+hr
+PT
+AF
+XS
+XS
+AF
+UU
+UU
+UU
+"}
+(49,1,1) = {"
+Bl
+Bl
+AF
+EC
+XL
+XL
+hr
+sH
+wz
+xF
+fc
+Cy
+hr
+hr
+hr
+hr
+EL
+rS
+mZ
+SY
+lB
+uz
+hr
+hr
+hr
+hr
+hr
+XL
+XL
+XL
+XL
+gt
+gt
+gt
+gt
+hr
+hr
+bW
+wX
+wX
+wX
+wX
+wX
+kl
+wX
+wX
+SA
+wX
+wX
+GJ
+zK
+zK
+RL
+nD
+hr
+EC
+AF
+XS
+AF
+AF
+UU
+UU
+UU
+"}
+(50,1,1) = {"
+AF
+AF
+AF
+EC
+hr
+XL
+XL
+sH
+BJ
+cB
+YD
+Cy
+oI
+hr
+JO
+mH
+mH
+KP
+SY
+SY
+RR
+lh
+mH
+mH
+mH
+mH
+mH
+mH
+lh
+bE
+hr
+gt
+fk
+gt
+hr
+hr
+hr
+hr
+hr
+hr
+wX
+pu
+qO
+XP
+Hb
+wX
+An
+qT
+wX
+hr
+RL
+Qj
+RL
+hr
+hr
+EC
+AF
+AF
+AF
+XS
+UU
+UU
+UU
+"}
+(51,1,1) = {"
+UU
+AF
+AF
+EC
+XL
+XL
+XL
+sH
+sH
+Cy
+Cy
+sH
+hr
+hr
+cc
+ze
+cQ
+Qn
+SY
+Cz
+Mq
+cQ
+Wy
+cQ
+cQ
+cQ
+ff
+Wy
+cQ
+uZ
+XL
+XL
+gt
+gt
+hr
+hr
+XL
+XL
+XL
+hr
+wX
+Ni
+qX
+UJ
+KC
+wX
+wX
+wX
+wX
+XL
+RL
+Qj
+RL
+hr
+hr
+EC
+AF
+AF
+AF
+XS
+UU
+UU
+UU
+"}
+(52,1,1) = {"
+UU
+AF
+AF
+EC
+XL
+hr
+XL
+hr
+hr
+hr
+hr
+hr
+hr
+hr
+vA
+SY
+SY
+SY
+SY
+SY
+SY
+SY
+SY
+SY
+SY
+hV
+hV
+SY
+Dn
+pA
+hr
+hr
+hr
+gt
+hr
+XL
+XL
+hr
+XL
+hr
+wX
+Uc
+fE
+zj
+Um
+wX
+YH
+hr
+hr
+XL
+PZ
+Qj
+xx
+hr
+hr
+EC
+AF
+AF
+AF
+Qt
+UU
+UU
+UU
+"}
+(53,1,1) = {"
+UU
+AF
+gq
+EC
+hr
+oI
+hr
+hr
+hr
+hr
+hr
+hr
+hr
+hr
+vA
+SY
+hV
+hV
+hV
+hV
+SY
+SY
+yN
+SY
+SY
+SY
+HL
+SY
+SY
+JK
+XL
+XL
+hr
+hr
+hr
+XL
+XL
+XL
+XL
+XL
+Zu
+US
+Me
+rw
+JW
+wX
+AF
+AF
+hr
+hr
+PZ
+rp
+RL
+hr
+hr
+EC
+gq
+AF
+AF
+AF
+UU
+UU
+UU
+"}
+(54,1,1) = {"
+UU
+YQ
+AF
+dP
+hr
+hr
+hr
+AF
+AF
+AF
+hr
+hr
+hr
+hr
+vA
+SY
+hV
+hV
+hV
+hV
+hV
+SY
+SY
+SY
+SY
+SY
+SY
+SY
+hV
+JK
+hr
+XL
+XL
+hr
+hr
+hr
+hr
+hr
+XL
+hr
+hr
+US
+Tl
+vE
+tJ
+wX
+AF
+mn
+AF
+hr
+PZ
+Qj
+RL
+XL
+hr
+EC
+AF
+AF
+AF
+XS
+UU
+UU
+UU
+"}
+(55,1,1) = {"
+UU
+AF
+AF
+dP
+dP
+jt
+uu
+uu
+dP
+AF
+hr
+hr
+hr
+hr
+As
+SY
+SY
+wv
+hV
+hV
+hV
+SY
+SY
+SY
+SY
+wv
+SY
+SY
+hV
+jK
+mH
+mH
+lh
+mH
+Pp
+hr
+hr
+hr
+XL
+oI
+hT
+hr
+Mx
+hr
+hr
+hr
+AF
+AF
+hr
+hr
+XL
+XL
+XL
+XL
+hr
+EC
+AF
+AF
+AF
+AF
+UU
+UU
+UU
+"}
+(56,1,1) = {"
+UU
+AF
+AF
+gt
+gt
+AF
+AF
+AF
+PT
+hr
+hr
+hr
+hr
+hr
+vA
+SY
+SY
+hV
+SY
+hV
+hV
+hV
+SY
+SY
+SY
+SY
+SY
+hV
+hV
+hV
+SY
+SY
+SY
+SY
+JK
+hr
+hr
+hr
+hr
+hr
+hr
+jb
+hr
+hr
+AF
+AF
+AF
+AF
+hr
+hr
+hr
+hr
+hr
+hr
+hr
+dP
+AF
+AF
+AF
+AF
+UU
+UU
+UU
+"}
+(57,1,1) = {"
+UU
+AF
+gt
+gt
+gt
+gt
+gt
+AF
+EC
+hr
+hr
+hr
+hr
+hr
+vA
+SY
+SY
+SY
+hV
+SY
+SY
+hV
+hV
+SY
+SY
+SY
+SY
+SY
+hV
+hV
+hV
+SY
+SY
+SY
+JK
+hr
+hr
+hr
+hr
+dP
+jt
+jt
+jt
+jt
+uu
+uu
+uu
+uu
+uu
+UA
+jt
+jt
+jt
+jt
+dP
+dP
+AF
+vo
+AF
+AF
+UU
+UU
+UU
+"}
+(58,1,1) = {"
+UU
+UU
+gt
+gt
+gt
+gt
+gt
+AF
+EC
+hr
+hr
+XL
+hr
+hr
+vA
+SY
+SY
+SY
+hV
+hV
+hV
+SY
+hV
+hV
+hV
+SY
+SY
+SY
+SY
+hV
+hV
+hV
+SY
+SY
+JK
+hr
+hr
+hr
+hr
+EC
+vo
+AF
+AF
+AF
+AF
+AF
+AF
+AF
+AF
+AF
+mn
+AF
+AF
+AF
+AF
+AF
+AF
+AF
+AF
+AF
+UU
+UU
+UU
+"}
+(59,1,1) = {"
+UU
+UU
+UU
+gt
+gt
+gt
+AF
+AF
+EC
+hr
+hr
+hr
+hr
+hr
+vA
+SY
+SY
+SY
+SY
+SY
+SY
+Tk
+SY
+SY
+SY
+SY
+SY
+SY
+yN
+hV
+hV
+hV
+hV
+SY
+JK
+hr
+hr
+hr
+hr
+EC
+AF
+AF
+AF
+Bl
+AF
+AF
+AF
+AF
+AF
+AF
+AF
+AF
+AF
+AF
+AF
+AF
+AF
+AF
+AF
+AF
+UU
+UU
+UU
+"}
+(60,1,1) = {"
+UU
+UU
+UU
+UU
+UU
+XS
+AF
+AF
+EC
+hr
+hr
+hr
+vo
+hr
+vA
+SY
+SY
+SY
+SY
+SY
+SY
+SY
+SY
+SY
+SY
+SY
+SY
+SY
+SY
+SY
+SY
+hV
+hV
+SY
+JK
+hr
+hr
+XL
+hr
+EC
+AF
+Bl
+XS
+XS
+kJ
+IN
+AF
+AF
+gq
+XS
+XS
+UU
+AF
+AF
+AF
+AF
+XS
+XS
+AF
+mn
+UU
+UU
+UU
+"}
+(61,1,1) = {"
+UU
+UU
+UU
+UU
+UU
+XS
+It
+AF
+EC
+hr
+XR
+hr
+AF
+AF
+vA
+SY
+SY
+SY
+yN
+SY
+SY
+SY
+hV
+hV
+SY
+dn
+SY
+SY
+SY
+SY
+SY
+SY
+SY
+SY
+JK
+hr
+XL
+XL
+hr
+EC
+AF
+Bl
+AF
+AF
+zq
+YQ
+UU
+UU
+UU
+UU
+UU
+UU
+XS
+XS
+XS
+Se
+AF
+AF
+AF
+UU
+UU
+UU
+UU
+"}
+(62,1,1) = {"
+UU
+UU
+UU
+UU
+UU
+AF
+YQ
+AF
+EC
+hr
+XL
+hr
+AF
+hr
+bJ
+hV
+SY
+SY
+SY
+SY
+SY
+hV
+hV
+hV
+SY
+SY
+SY
+SY
+mZ
+SY
+SY
+AF
+SY
+SY
+JK
+XL
+hr
+XL
+hr
+EC
+ni
+XS
+XS
+AF
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+"}
+(63,1,1) = {"
+UU
+UU
+UU
+UU
+UU
+AF
+XS
+AF
+OD
+hr
+hr
+hr
+hr
+hr
+lz
+io
+Bi
+Bi
+Bi
+Bi
+io
+io
+io
+io
+io
+Bi
+Bi
+Bi
+Bi
+Bi
+AF
+mn
+AF
+Bi
+Cw
+XL
+XL
+hr
+hr
+EC
+AF
+AF
+XS
+AF
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+"}
+(64,1,1) = {"
+UU
+UU
+UU
+UU
+UU
+AF
+XS
+AF
+EC
+hr
+hr
+XL
+XL
+XL
+XL
+hr
+hr
+hr
+hr
+hr
+XL
+hr
+XL
+XL
+hr
+XL
+XL
+hr
+hr
+hr
+hr
+AF
+AF
+AF
+hr
+XL
+hr
+hr
+hr
+EC
+AF
+AF
+XS
+AF
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+"}
+(65,1,1) = {"
+UU
+UU
+UU
+UU
+UU
+AF
+AF
+AF
+dP
+hr
+hr
+hr
+hr
+XL
+XL
+hr
+AF
+hr
+hr
+hr
+hr
+hr
+XL
+XL
+XL
+hr
+hr
+XL
+hr
+hr
+AF
+AF
+AF
+AF
+hr
+hr
+hr
+hr
+hr
+dP
+AF
+AF
+AF
+XS
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+"}
+(66,1,1) = {"
+UU
+UU
+UU
+UU
+UU
+UU
+mn
+AF
+dP
+dP
+jt
+jt
+uu
+uu
+uu
+uu
+uu
+uu
+jt
+jt
+jt
+jt
+jt
+KD
+jt
+jt
+jt
+jt
+jt
+uu
+uu
+uu
+uu
+uu
+uu
+jt
+jt
+jt
+dP
+dP
+AF
+AF
+XS
+XS
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+"}
+(67,1,1) = {"
+UU
+UU
+UU
+UU
+UU
+UU
+AF
+AF
+AF
+AF
+XS
+AF
+AF
+AF
+AF
+AF
+AF
+AF
+AF
+AF
+AF
+AF
+mm
+mm
+AF
+AF
+AF
+AF
+AF
+AF
+AF
+AF
+AF
+AF
+AF
+mn
+AF
+AF
+AF
+AF
+YQ
+XS
+AF
+AF
+vo
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+"}
+(68,1,1) = {"
+UU
+UU
+UU
+UU
+UU
+UU
+AF
+AF
+AF
+AF
+AF
+kJ
+Mj
+AF
+vo
+AF
+AF
+AF
+AF
+gq
+mm
+mm
+mm
+AF
+XS
+XS
+mm
+XS
+XS
+XS
+XS
+AF
+XS
+AF
+AF
+AF
+AF
+AF
+AF
+AF
+AF
+AF
+AF
+AF
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+"}
+(69,1,1) = {"
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+AF
+AF
+AF
+AF
+AF
+XS
+Bl
+Bl
+AF
+XS
+AF
+AF
+mm
+mm
+XS
+mm
+mm
+mm
+mm
+XS
+XS
+XS
+AF
+AF
+AF
+AF
+XS
+XS
+AF
+gq
+AF
+AF
+AF
+AF
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+"}
+(70,1,1) = {"
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+AF
+gq
+Bl
+Bl
+AF
+XS
+kJ
+AF
+AF
+AF
+AF
+mm
+Xn
+XS
+Se
+XS
+xL
+XS
+AF
+XS
+AF
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+UU
+"}

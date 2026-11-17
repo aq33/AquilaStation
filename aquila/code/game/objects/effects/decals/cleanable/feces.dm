@@ -7,7 +7,9 @@
 	icon_state = "floor1"
 	random_icon_states = list("floor1", "floor2", "floor3", "floor4", "floor5", "floor6", "floor7")
 	blood_state = BLOOD_STATE_POOP
-	bloodiness = BLOOD_AMOUNT_PER_DECAL
+	/// Z BLOOD_AMOUNT_PER_DECAL (20) buty dostawały tyle, ile wynosi próg śladu (BLOOD_LOSS_IN_SPREAD), więc kupa nigdy nie zostawiała śladów.
+	/// 60: wdepnięcie daje butom BLOOD_GAIN_PER_STEP (40), czyli kilka brązowych śladów.
+	bloodiness = 60
 
 /obj/effect/decal/cleanable/feces/Initialize(mapload, list/datum/disease/diseases)
 	. = ..()

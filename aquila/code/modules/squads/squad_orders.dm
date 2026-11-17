@@ -37,15 +37,21 @@
 	aq_next_order = world.time + SQUAD_ORDER_COOLDOWN
 	var/title = from_console ? "Wiadomość z CIC od: [sender.real_name]" : "Rozkaz dowódcy drużyny [name]"
 	log_say("[key_name(sender)] gave an order to squad [name]: [message]")
-	var/span_style = squad_channel?.text_span_style || "sciradio"
-	for(var/mob/living/carbon/human/member as anything in members)
-		if(member.client && member.aq_has_squad_pager())
-			to_chat(member, "<span class='[span_style]'><b>\[[name]\] ROZKAZ ([sender.real_name]):</b> [html_encode(message)]</span>")
+	aq_deliver_order(sender, message, title, members.Copy())
 	if(from_console)
+		var/span_style = squad_channel?.text_span_style || "sciradio"
 		to_chat(sender, "<span class='[span_style]'><b>\[[name]\] Wysłano rozkaz:</b> [html_encode(message)]</span>")
-	aq_squad_screen_alert(message, title, sender, play_tts = TRUE)
 	aq_log_message(sender.real_name, message, "order")
 	return TRUE
+
+/// Rozkaz w czacie, na ekranie i w TTS dla podanych członków drużyny.
+/// translated = treść już przetłumaczona (tłumacz DeepL w aquila/code/modules/i18n/squad_orders.dm nadpisuje tę prockę).
+/datum/squad/proc/aq_deliver_order(mob/living/sender, message, title, list/targets, translated = FALSE)
+	var/span_style = squad_channel?.text_span_style || "sciradio"
+	for(var/mob/living/carbon/human/member as anything in targets)
+		if(member.client && member.aq_has_squad_pager())
+			to_chat(member, "<span class='[span_style]'><b>\[[name]\] ROZKAZ ([sender.real_name]):</b> [html_encode(message)]</span>")
+	aq_squad_screen_alert(message, title, sender, play_tts = TRUE, only = targets)
 
 // Dowódca dostaje akcje rozkazu i znacznika razem ze stanowiskiem
 /datum/squad

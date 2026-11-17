@@ -89,6 +89,7 @@
 		antag_datums = null
 	QDEL_NULL(language_holder)
 	set_current(null)
+	soulOwner = null // AQ EDIT - umysł trzymał sam siebie (soulOwner = src): każdy usunięty umysł był twardym usunięciem
 	return ..()
 
 /datum/mind/proc/set_current(mob/new_current)

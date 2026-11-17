@@ -3746,14 +3746,6 @@
 /obj/effect/landmark/start/scientist,
 /turf/open/floor/monotile/dark,
 /area/science/nanite)
-"cUL" = (
-/obj/structure/table/reinforced,
-/obj/item/munitions_analyzer,
-/obj/item/storage/box/munition_casts{
-	pixel_y = 6
-	},
-/turf/open/floor/plasteel/techmaint,
-/area/nsv/weapons)
 "cVa" = (
 /obj/machinery/atmospherics/pipe/simple/purple/hidden{
 	dir = 4
@@ -10350,6 +10342,11 @@
 	},
 /turf/open/floor/monotile/dark,
 /area/science/research)
+"iGB" = (
+/obj/structure/table/reinforced,
+/obj/item/munitions_analyzer,
+/turf/open/floor/plasteel/techmaint,
+/area/nsv/weapons)
 "iGS" = (
 /obj/machinery/firealarm/directional/north,
 /turf/open/floor/monotile/dark,
@@ -17644,15 +17641,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/monotile/steel,
 /area/hallway/nsv/deck2/primary)
-"oCs" = (
-/obj/structure/table/reinforced,
-/obj/item/forging_hammer,
-/obj/item/forging_hammer{
-	pixel_x = 6;
-	pixel_y = 4
-	},
-/turf/open/floor/plasteel/techmaint,
-/area/nsv/weapons)
 "oDf" = (
 /obj/effect/turf_decal/tile/ship/half/yellow/orlen,
 /obj/structure/closet/firecloset/full,
@@ -26581,6 +26569,10 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/maintenance/nsv/deck2/starboard/fore)
+"was" = (
+/obj/structure/table/reinforced,
+/turf/open/floor/plasteel/techmaint,
+/area/nsv/weapons)
 "wba" = (
 /obj/structure/window/reinforced,
 /obj/machinery/door/firedoor/border_only,
@@ -71500,7 +71492,7 @@ qGT
 eHy
 ggx
 tKU
-oCs
+was
 kKK
 piQ
 piQ
@@ -71757,7 +71749,7 @@ qGT
 eHy
 gBF
 tKU
-cUL
+iGB
 kKK
 piQ
 piQ

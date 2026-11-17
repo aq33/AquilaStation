@@ -1,0 +1,222 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"e" = (
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"j" = (
+/turf/template_noop,
+/area/template_noop)
+"n" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"p" = (
+/obj/structure/vein/ice/classtwo,
+/turf/open/floor/plating/ice/planet_ice,
+/area/template_noop)
+"C" = (
+/turf/open/floor/plating/ice/planet_ice,
+/area/template_noop)
+"N" = (
+/turf/closed/mineral/random/planet_ice,
+/area/template_noop)
+"R" = (
+/obj/structure/flora/ausbushes/ppflowers,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"W" = (
+/obj/structure/geyser/random,
+/turf/open/floor/plating/ice/planet_ice,
+/area/template_noop)
+
+(1,1,1) = {"
+j
+e
+n
+e
+e
+e
+n
+j
+N
+N
+N
+j
+j
+j
+"}
+(2,1,1) = {"
+e
+e
+e
+n
+e
+n
+N
+N
+N
+N
+N
+N
+j
+j
+"}
+(3,1,1) = {"
+e
+e
+C
+C
+C
+e
+R
+N
+N
+N
+N
+N
+N
+j
+"}
+(4,1,1) = {"
+e
+C
+C
+W
+C
+C
+C
+e
+N
+N
+N
+N
+N
+N
+"}
+(5,1,1) = {"
+e
+R
+C
+C
+C
+C
+C
+e
+n
+N
+N
+N
+N
+N
+"}
+(6,1,1) = {"
+e
+n
+C
+C
+C
+p
+C
+C
+e
+n
+N
+N
+N
+N
+"}
+(7,1,1) = {"
+e
+e
+C
+C
+C
+C
+C
+C
+e
+R
+N
+N
+N
+N
+"}
+(8,1,1) = {"
+j
+e
+e
+C
+C
+C
+C
+C
+C
+e
+N
+N
+N
+N
+"}
+(9,1,1) = {"
+j
+n
+e
+C
+C
+C
+W
+C
+C
+e
+N
+N
+N
+N
+"}
+(10,1,1) = {"
+j
+j
+e
+e
+n
+C
+C
+C
+C
+n
+N
+N
+N
+j
+"}
+(11,1,1) = {"
+j
+j
+j
+e
+e
+e
+e
+C
+n
+n
+e
+N
+j
+j
+"}
+(12,1,1) = {"
+j
+j
+j
+j
+n
+e
+R
+e
+e
+e
+e
+j
+j
+j
+"}

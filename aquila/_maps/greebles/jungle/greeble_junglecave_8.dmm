@@ -1,0 +1,126 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"b" = (
+/turf/open/water/planet/jungle,
+/area/template_noop)
+"d" = (
+/obj/structure/flora/ash/cap_shroom,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
+"g" = (
+/obj/structure/flora/ash/stem_shroom,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
+"l" = (
+/obj/structure/flora/ash/tall_shroom,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
+"s" = (
+/obj/structure/flora/junglebush,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/template_noop)
+"t" = (
+/obj/structure/flora/ash/leaf_shroom,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/template_noop)
+"w" = (
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
+"x" = (
+/obj/structure/flora/ash/leaf_shroom,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
+"y" = (
+/turf/closed/mineral/random/planet_jungle,
+/area/template_noop)
+"A" = (
+/obj/structure/flora/rock/jungle,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/template_noop)
+"H" = (
+/turf/template_noop,
+/area/template_noop)
+"V" = (
+/obj/structure/flora/rock,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/template_noop)
+
+(1,1,1) = {"
+H
+y
+y
+w
+y
+y
+y
+H
+"}
+(2,1,1) = {"
+y
+y
+w
+l
+d
+y
+x
+y
+"}
+(3,1,1) = {"
+H
+l
+x
+V
+l
+d
+l
+y
+"}
+(4,1,1) = {"
+y
+w
+s
+b
+t
+A
+g
+w
+"}
+(5,1,1) = {"
+H
+y
+g
+A
+V
+d
+w
+y
+"}
+(6,1,1) = {"
+y
+l
+w
+x
+g
+l
+y
+y
+"}
+(7,1,1) = {"
+y
+y
+d
+y
+y
+w
+y
+H
+"}
+(8,1,1) = {"
+H
+y
+y
+H
+y
+y
+H
+H
+"}

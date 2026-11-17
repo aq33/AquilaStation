@@ -88,6 +88,27 @@
 	qdel(lost_eye)
 	TEST_ASSERT(!sabre.shuttle_landing_eye, "A deleted landing camera stayed on the Sabre")
 	TEST_ASSERT(!DC.docking_cooldown, "A deleted landing camera left the docking computer locked")
+	// Obrys kadłuba stoi na środku widoku kamery (port jest w rogu kadłuba: obrys rysował się z boku i gracz nie
+	// widział, gdzie prom wyląduje), w każdym kierunku
+	var/turf/camera_turf = locate(bl[1] + 20, bl[2] + 20, bl[3])
+	var/mob/camera/ai_eye/remote/shuttle_craft_landing/centered_eye = new(camera_turf)
+	centered_eye.craft = sabre
+	for(var/test_dir in GLOB.cardinals)
+		centered_eye.landing_dir = test_dir
+		centered_eye.update_offsets()
+		var/turf/port_turf = centered_eye.landing_port_turf()
+		var/min_x = INFINITY
+		var/max_x = -INFINITY
+		var/min_y = INFINITY
+		var/max_y = -INFINITY
+		for(var/list/offset as anything in sabre.shuttle_rotate_offsets(sabre.hull_offsets, test_dir))
+			min_x = min(min_x, port_turf.x + offset[1])
+			max_x = max(max_x, port_turf.x + offset[1])
+			min_y = min(min_y, port_turf.y + offset[2])
+			max_y = max(max_y, port_turf.y + offset[2])
+		TEST_ASSERT(abs((min_x + max_x) / 2 - camera_turf.x) <= 0.5 && abs((min_y + max_y) / 2 - camera_turf.y) <= 0.5, "The landing outline facing [dir2text(test_dir)] isn't centered on the camera (x [min_x]-[max_x], y [min_y]-[max_y], camera [camera_turf.x],[camera_turf.y])")
+	centered_eye.craft = null
+	qdel(centered_eye)
 	var/turf/spot = locate(bl[1] + 20, bl[2] + 20, bl[3])
 	var/list/rotated = sabre.shuttle_rotate_offsets(sabre.hull_offsets, EAST)
 	TEST_ASSERT_EQUAL(length(rotated), length(sabre.hull_offsets), "Rotating the hull outline lost tiles")

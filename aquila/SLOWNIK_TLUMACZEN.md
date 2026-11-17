@@ -3160,7 +3160,7 @@ Oznaczenia w kolumnie uwag:
 | Statek czy stacja | Aquila to okręt. W tekstach o „naszym” miejscu gry piszemy **statek** (ogólnie) albo **okręt** (wojskowo, NSV13). „Stacja” zostaje tylko tam, gdzie chodzi o prawdziwą stację (stacja handlowa, placówka Syndykatu, teksty tg o Space Station 13). |
 | Space ... | Przedrostek „Space” tłumaczymy przymiotnikiem **kosmiczny**: Space Wizard → Kosmiczny czarodziej, space carp → kosmiczny karp, Space Law → Prawo kosmiczne. |
 | Nazwy firm | Firmy i marki zostają w oryginale (Nanotrasen, Donk Co., Cybersun Industries). Tłumaczymy tylko człon opisowy (Gorlex Marauders → Maruderzy Gorlex, Wizard Federation → Federacja Czarodziejów). |
-| Przedrostki okrętów | NSV, SSV, SGV, DMC, DLV, SBC itd. zostają. Nazwa własna okrętu też zostaje: „NSV Zorn”, „SSV Hammurabi”. Odmiana: „na pokładzie NSV Zorn”, „Hammurabiego” (to drugie już jest w kodzie). |
+| Przedrostki okrętów | Okręty Aquili (gracza) mają przedrostek **AQ** (generator nazwy i `map_name` map: „AQ Aquilas”, „AQ Padalec”). Pozostałe NSV, SSV, SGV, DMC, DLV, SBC itd. zostają. Nazwa własna okrętu też zostaje: „NSV Zorn”, „SSV Hammurabi”. Odmiana: „na pokładzie NSV Zorn”, „Hammurabiego” (to drugie już jest w kodzie). |
 | Klasy okrętów | Szyk polski: typ + „klasy” + nazwa. „Mako class patrol frigate” → „fregata patrolowa klasy Mako”. Nazwa klasy zostaje w oryginale. |
 | Prawa i lewa burta | W zdaniach: **lewa burta** (port), **prawa burta** (starboard), **dziób** (fore), **rufa** (aft), istniejące. W nazwach obszarów istniejący schemat to Burta / Sterburta / Dziób / Rufa (patrz §9). |
 | Kody i skróty | Skróty zostają: FTL, DRADIS, PDC, MAC, NAC, VLS, IFF, APC, SMES, IPC, MMI, ERT, EVA, ATC, CAG. „AI” piszemy **SI** (istniejące, 377×). |
@@ -3670,6 +3670,121 @@ Oznaczenia w kolumnie uwag:
 | ancient goliath | pradawny goliat | m; nowe |
 | legion | legion | m; istniejące |
 | legion skull | czaszka legionu | ż; nowe |
+| brimdemon | siarkodemon | m; nowe (planety, port tg) |
+| lavagrub | lawowy pędrak | m; nowe (planety, Shiptest) |
+| crystal goliath | kryształowy goliat | m; nowe (planety, Shiptest) |
+| forgotten watcher | zapomniany obserwator | m; nowe (planety, Shiptest) |
+| disfigured legion | zniekształcony legion | m; nowe (planety, Shiptest) |
+| burrow | nora | ż; nowe (spawner fauny na planetach) |
+| white wolf / alpha wolf | biały wilk / wilk alfa | m; nowe (planety, port tg i Shiptest) |
+| polar warbear | polarny niedźwiedź bojowy | m; nowe (planety, Shiptest) |
+| brown bear | niedźwiedź brunatny | m; nowe (planety, Shiptest) |
+| snow legion | śnieżny legion | m; nowe (planety, port tg) |
+| demonic watcher (ice demon) | demoniczny obserwator | m; nowe (planety, port tg) |
+| primordial demon | pradawny demon | m; nowe (planety, Shiptest) |
+| afterimage | powidok | m; nowe (powidok demonicznego obserwatora) |
+| ice whelp | młody smok lodowy | m; nowe (planety, port tg) |
+| lobstrosity (arctic / tropical) | homarzysko (arktyczne / tropikalne) | n; nowe (planety, port tg i Shiptest) |
+| snow monkey | śnieżna małpa | ż; nowe (planety, Shiptest) |
+| capybara | kapibara | ż; nowe (planety, Shiptest) |
+| antlion / antlion queen | mrówkolew / królowa mrówkolwów | m / ż; nowe (planety, Shiptest) |
+| cragenoy (royal crab) | cragenoy | m; nowe, nazwa własna bez zmian (planety, Shiptest) |
+| gruboid / baby gruboid | gruboid / młody gruboid | m; nowe (planety, Shiptest) |
+| whitesands goliath / basilisk | goliat / bazyliszek z białych piasków | m; nowe (planety, Shiptest) |
+| hivebot fabricator | fabrykator hivebotów | m; nowe (planety, Shiptest) |
+| carp spawn (puddle) | kałuża z karpiami | ż; nowe (planety, Shiptest) |
+| volcanic sand | wulkaniczny piasek | m; nowe (turf planety) |
+| crimson grass | szkarłatna trawa | ż; nowe (turf planety) |
+| moss carpet | mszysty dywan | m; nowe (turf planety) |
+| obsidian | obsydian | m; nowe (turf planety) |
+| cave fern | paproć jaskiniowa | ż; nowe (roślina Lavalandu) |
+| fireblossom | ogniokwiat | m; nowe (roślina Lavalandu) |
+| pucetal | pucestal | m; nowe, spolszczenie brzmieniowe |
+| drop pod | kapsuła desantowa | ż; nowe |
+| drop pod bay | wyrzutnia kapsuł desantowych | ż; nowe |
+| tactical binoculars | lornetka taktyczna | ż; nowe |
+| landing zone | lądowisko | n; nowe (Lądowisko Alfa/Bravo/Charlie) |
+| ore vein | żyła rudy | ż; nowe (planety, Shiptest) |
+| laser mining drill | laserowe wiertło górnicze | n; nowe |
+| sampling drill | wiertło do próbek geologicznych | n; nowe |
+| ground penetrating mining scanner | georadarowy skaner górniczy | m; nowe |
+| seismic disturbance | wyrwa sejsmiczna | ż; nowe (spawner fauny przy żyle) |
+| strange crystal | dziwny kryształ | m; nowe |
+| crystal heart | kryształowe serce | n; nowe (rdzeń legionu) |
+| brimdust | siarkowy pył | m; nowe |
+| ore sensor | czujnik rud | m; nowe |
+| plasma soul (anomaly) | dusza plazmy | ż; nowe |
+| shallows / shallow water | płycizna / płytka woda | ż; nowe (woda planet) |
+| deep water | głęboka woda | ż; nowe (pływanie) |
+| rough sea | wzburzone morze | n; nowe (planeta wodna) |
+| murky water | mętna woda | ż; nowe (dżungla) |
+| freshwater | słodka woda | ż; nowe (oaza) |
+| catwalk | pomost | m; nowe (kratownica na wodzie) |
+| fishing rod | wędka | ż; nowe |
+| advanced fishing rod | wędka zaawansowana | ż; nowe |
+| fishing spot | łowisko | n; nowe |
+| bait | przynęta | ż; nowe |
+| bait worm / can of worms | robak / puszka z robakami | m / ż; nowe |
+| float (fishing) | spławik | m; nowe |
+| hook | haczyk | m; nowe |
+| (fishing) line | żyłka | ż; nowe |
+| reel (verb, fishing) | holować | czas.; nowe |
+| bite (fishing) | branie | n; nowe |
+| perch | okoń | m; nowe (ryba) |
+| arctic char | golec arktyczny | m; nowe (ryba) |
+| sockeye salmon | nerka | ż; nowe (ryba) |
+| plaice | gładzica | ż; nowe (ryba) |
+| stingray | płaszczka | ż; nowe (ryba) |
+| squid | kałamarnica | ż; nowe (ryba) |
+| monkfish | żabnica | ż; nowe (ryba) |
+| lavaloop | pętlica lawowa | ż; nowe (ryba z lawy, tg) |
+| heartbeat (anomaly) | anomalia tętna | ż; nowe (Shiptest) |
+| sparkler (anomaly) | anomalia iskrząca | ż; nowe (Shiptest) |
+| static (anomaly) | anomalia szumu | ż; nowe (Shiptest); kłębek szumu (static blob) |
+| quantum blackbox | kwantowa czarna skrzynka | ż; nowe (Shiptest) |
+| fountain / veins (anomaly) | anomalia fontanny | ż; nowe (Shiptest) |
+| Fountain of Life | Fontanna Życia | ż; nowe (Shiptest, wariant fontanny w ruinach) |
+| phantom (anomaly) | anomalia widmowa | ż; nowe (Shiptest); widmowa dłoń (phantom hand) |
+| melter (anomaly) | anomalia topiąca | ż; nowe (Shiptest) |
+| transfusion (anomaly) | anomalia transfuzyjna | ż; nowe (Shiptest) |
+| chronograph (anomaly) | chronograf | m; nowe (Shiptest); efekt: przyspieszenie (accelerando) |
+| big / high (anomaly variants) | ogromna / silna anomalia … | nowe (Shiptest) |
+| waste planet | planeta-śmietnisko | ż; nowe (planety, Shiptest) |
+| battlefield (planet) | pole bitwy | n; nowe (planety, Shiptest) |
+| automaton (Shiptest drones) | automat | m; nowe |
+| quadrotor drone | dron czterowirnikowy | m; nowe |
+| walkmine | mina krocząca | ż; nowe |
+| Bipedal Assault Platform | dwunożna platforma szturmowa | ż; nowe |
+| hopper (drone) | „Skoczek” | m; nowe |
+| core hivebot | rdzeń roju hivebotów | m; nowe |
+| nuclear waste barrel | beczka z odpadami jądrowymi | ż; nowe |
+| background radiation | promieniowanie tła | n; nowe |
+| glowshroom colony | kolonia świecących grzybów | ż; nowe |
+| tar pit | dół ze smołą | m; nowe |
+| polluted rock / dry rock | skażona skała / suchy kamień | ż/m; nowe (śmietnisko) |
+| frontiersmen | pogranicznicy | m mn.; nowe (w ruinach -> żołnierze rosyjscy) |
+| ICW (Inter-Corporate War) | Wojna Międzykorporacyjna | ż; nowe |
+| frozen planetoid | planeta lodowa | ż; nowe (typ planety) |
+| jungle planetoid | planeta dżunglowa | ż; nowe (typ planety) |
+| snowball dwarf planetoid | śnieżna planeta karłowata | ż; nowe (typ planety) |
+| icy rock (floor) | lodowa skała | ż; nowe (turf) |
+| cracked ice floor (iceberg) | popękany lód | m; nowe (turf) |
+| schist | łupek | m; nowe (ściana minerału planety lodowej) |
+| bauxite | boksyt | m; nowe (ściana minerału planety dżunglowej) |
+| polluted rock | skażona skała | ż; nowe |
+| ice crystals (ore) | kryształki lodu | m mn.; nowe (ruda lodu) |
+| river sand | piasek rzeczny | m; nowe |
+| jungle moss | mech dżungli | m; nowe |
+| dense / weak / dead space vines | gęste / kruche / martwe pnącza | n mn.; nowe |
+| lush garden / chilly garden | bujny ogródek / zmrożony ogródek | m; nowe |
+| springy grassy fruit (chilly) | sprężysta owocująca trawa | ż; nowe |
+| Frontiersmen | piraci (w ruinach planet zamienieni na naszych piratów) | m mn.; zamiennik frakcji |
+| CLIP | CLIP | nazwa własna |
+| Serene Outdoors / Serene Hunts | Serene Outdoors / Łowisko Serene | nazwa własna |
+| Big Hole | Wielka Dziura | ż; nowe (ruina dżungli) |
+| Ramzi Clique | Klika Ramziego | ż; nowe (frakcja z ruin Shiptesta) |
+| Hardliners | Twardogłowi | m mn.; nowe (frakcja z ruin Shiptesta) |
+| Reisehund (Ramzi hound) | rajzehund | m; nowe |
 | dwarf legion | karłowaty legion | m; nowe |
 | legionnaire | legionista | m; istniejące |
 | watcher | obserwator | m; nowe |
@@ -4057,6 +4172,21 @@ Nazwy obszarów są w większości przetłumaczone. Nowe nazwy budujemy z tych k
 |---|---|---|
 | overmap | overmapa | ż; istniejące (overmapie, overmapy) |
 | starmap | mapa gwiezdna | ż; nowe |
+| rock planetoid | planeta skalista | ż; nowe (typ planety, Shiptest) |
+| salty sand planetoid / Whitesands | planeta białych piasków / białe piaski | ż; nowe (typ planety, Shiptest) |
+| desert planetoid | planeta pustynna | ż; nowe (typ planety) |
+| shrouded planetoid | planeta mglista | ż; nowe (typ planety; zagłusza radio) |
+| dustball / duneball dwarf planetoid | pyłowa / wydmowa planeta karłowata | ż; nowe |
+| iron sand | żelazny piasek | m; nowe (grunt planety skalistej) |
+| salted sand / dried sand | solony piasek / wyschnięty piasek | m; nowe |
+| packed sand | ubity piasek | m; nowe (planeta mglista) |
+| dry seafloor | wyschnięte dno morskie | n; nowe |
+| sulfuric acid pool | jeziorko kwasu siarkowego | n; nowe |
+| cottongrass | wełnianka | ż; nowe |
+| maguaro cactus | kaktus maguaro | m; nowe |
+| sea stack | ostaniec | m; nowe |
+| Frontiersmen | Frontiersmeni | m mn.; nowe (frakcja z ruin Shiptesta; u nas jako piraci) |
+| hermit (Whitesands) | pustelnik | m; nowe (u nas piraci-zbieracze) |
 | star system / system | układ gwiezdny / system | m; istniejące oba; w nazwach z kodu „system” |
 | sector | sektor | m; istniejące |
 | FTL | FTL | m (napęd); istniejące; „napęd FTL”, „skok FTL” |
@@ -4165,3 +4295,15 @@ Nazwy obszarów są w większości przetłumaczone. Nowe nazwy budujemy z tych k
 | Boringheed | Boringheed | m; nazwa własna, parodia |
 
 
+| ocean planetoid (beach) | planeta oceaniczna | ż; nowe (planety, Shiptest) |
+| aqua planetoid (water planet) | planeta wodna | ż; nowe (planety, Shiptest) |
+| waterball dwarf planetoid | wodna planeta karłowata | ż; nowe (planety, Shiptest) |
+| dwarf planetoid | planeta karłowata | ż; nowe (planety, Shiptest) |
+| sea stack | ostaniec | m; nowe (flora plaży) |
+| driftwood / driftwood log | wyrzucone drewno / wyrzucony pień | n / m; nowe (flora plaży) |
+| pebbles | kamyki | m mn.; nowe |
+| seashell | muszla | ż; nowe |
+| coastal marl | nadbrzeżny margiel | m; nowe (skała jaskiń plaży) |
+| wet rocky ground | mokre skaliste podłoże | n; nowe (planeta wodna) |
+| Frontiersmen | Pogranicznicy | m mn.; nowe (frakcja z ruin Shiptesta, u nas piraci) |
+| Corporate Resort / Cybersun Pad / Frontiersman Moat / Cave Gunsmith / Frontiersmen Depot | Kurort Korporacyjny / Lądowisko Cybersun / Fosa Pograniczników / Jaskiniowy Rusznikarz / Składnica Pograniczników | nowe (ruiny plaży) |

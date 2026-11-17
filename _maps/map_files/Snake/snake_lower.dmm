@@ -98,13 +98,6 @@
 /obj/machinery/holopad,
 /turf/open/floor/engine/n2o,
 /area/engine/atmos)
-"al" = (
-/obj/item/storage/box/munition_casts,
-/obj/item/munitions_analyzer,
-/obj/item/forging_hammer,
-/obj/structure/table/reinforced,
-/turf/open/floor/engine,
-/area/nsv/weapons/fore)
 "am" = (
 /obj/machinery/door/airlock/ship/security/glass{
 	name = "Labor Shuttle Dock";
@@ -13806,6 +13799,11 @@
 "UM" = (
 /turf/closed/wall/r_wall,
 /area/hallway/secondary/entry)
+"UN" = (
+/obj/item/munitions_analyzer,
+/obj/structure/table/reinforced,
+/turf/open/floor/engine,
+/area/nsv/weapons/fore)
 "UO" = (
 /obj/structure/dresser,
 /obj/structure/mirror{
@@ -66153,7 +66151,7 @@ SP
 SP
 ao
 SP
-al
+UN
 SP
 EC
 jb

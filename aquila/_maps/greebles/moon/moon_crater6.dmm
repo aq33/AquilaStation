@@ -1,0 +1,91 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"e" = (
+/turf/closed/mineral/random/moon,
+/area/template_noop)
+"j" = (
+/turf/template_noop,
+/area/template_noop)
+"x" = (
+/turf/open/floor/plating/asteroid/moon_coarse/dark,
+/area/template_noop)
+
+(1,1,1) = {"
+j
+j
+j
+e
+e
+j
+j
+j
+"}
+(2,1,1) = {"
+j
+e
+x
+x
+x
+x
+e
+j
+"}
+(3,1,1) = {"
+j
+x
+x
+x
+x
+x
+x
+e
+"}
+(4,1,1) = {"
+e
+x
+x
+x
+x
+x
+x
+x
+"}
+(5,1,1) = {"
+e
+x
+x
+x
+x
+x
+x
+e
+"}
+(6,1,1) = {"
+e
+e
+x
+x
+x
+x
+x
+e
+"}
+(7,1,1) = {"
+j
+e
+e
+x
+x
+x
+e
+j
+"}
+(8,1,1) = {"
+j
+j
+e
+e
+j
+e
+j
+j
+"}

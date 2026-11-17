@@ -1,0 +1,128 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/effect/spawner/lootdrop/planet_chance/puce,
+/turf/open/floor/plating/asteroid/whitesands/dried,
+/area/template_noop)
+"e" = (
+/turf/open/water/planet/acid,
+/area/template_noop)
+"h" = (
+/turf/open/floor/plating/asteroid/whitesands,
+/area/template_noop)
+"i" = (
+/turf/template_noop,
+/area/template_noop)
+"m" = (
+/obj/effect/spawner/lootdrop/planet_chance/fern,
+/turf/open/floor/plating/asteroid/whitesands/dried,
+/area/template_noop)
+"p" = (
+/turf/open/floor/plating/asteroid/whitesands/dried,
+/area/template_noop)
+"v" = (
+/obj/effect/spawner/lootdrop/planet_chance/whitesands_fauna,
+/turf/open/floor/plating/asteroid/whitesands/dried,
+/area/template_noop)
+"y" = (
+/obj/effect/spawner/lootdrop/planet_chance/fern,
+/turf/open/floor/plating/asteroid/whitesands,
+/area/template_noop)
+"A" = (
+/turf/closed/mineral/random/whitesands,
+/area/template_noop)
+"Q" = (
+/obj/effect/spawner/lootdrop/planet_chance/fern,
+/obj/effect/spawner/lootdrop/planet_chance/whitesands_fauna,
+/turf/open/floor/plating/asteroid/whitesands,
+/area/template_noop)
+
+(1,1,1) = {"
+i
+i
+A
+A
+i
+i
+i
+i
+"}
+(2,1,1) = {"
+A
+A
+A
+m
+p
+A
+i
+i
+"}
+(3,1,1) = {"
+A
+a
+e
+e
+a
+A
+i
+i
+"}
+(4,1,1) = {"
+A
+e
+e
+e
+e
+a
+i
+i
+"}
+(5,1,1) = {"
+p
+A
+e
+e
+e
+e
+A
+i
+"}
+(6,1,1) = {"
+p
+A
+a
+e
+e
+e
+e
+Q
+"}
+(7,1,1) = {"
+i
+p
+A
+a
+e
+e
+e
+h
+"}
+(8,1,1) = {"
+i
+i
+i
+v
+a
+e
+y
+e
+"}
+(9,1,1) = {"
+i
+i
+i
+i
+i
+h
+h
+i
+"}

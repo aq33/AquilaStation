@@ -1,15 +1,4 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"aa" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/mob/living/carbon/human/ai_boarder/syndicate/pistol,
-/turf/open/floor/engine,
-/area/ruin/unpowered/boarding_interior)
-"ab" = (
-/mob/living/carbon/human/ai_boarder/syndicate/pistol,
-/turf/open/floor/monotile/dark,
-/area/ruin/unpowered/boarding_interior)
 "ac" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -33,34 +22,11 @@
 /obj/effect/turf_decal/tile/orange,
 /turf/open/floor/plating,
 /area/ruin/unpowered/boarding_interior)
-"ae" = (
-/mob/living/carbon/human/ai_boarder/syndicate/smg,
-/turf/open/floor/engine,
-/area/ruin/unpowered/boarding_interior)
-"af" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/mob/living/carbon/human/ai_boarder/syndicate/shotgun,
-/turf/open/floor/engine,
-/area/ruin/unpowered/boarding_interior)
-"ag" = (
-/obj/machinery/suit_storage_unit/syndicate/odst,
-/mob/living/carbon/human/ai_boarder/syndicate/pistol,
-/turf/open/floor/carpet/red,
-/area/ruin/unpowered/boarding_interior)
 "ah" = (
 /obj/structure/chair,
 /obj/effect/turf_decal/tile/ship/half/bar,
 /mob/living/carbon/human/ai_boarder/syndicate/shotgun,
 /turf/open/floor/plasteel/tech/grid,
-/area/ruin/unpowered/boarding_interior)
-"ai" = (
-/obj/structure/chair{
-	dir = 4
-	},
-/mob/living/carbon/human/ai_boarder/syndicate/smg,
-/turf/open/floor/carpet/red,
 /area/ruin/unpowered/boarding_interior)
 "aj" = (
 /obj/effect/turf_decal/stripes/line{
@@ -75,42 +41,6 @@
 	dir = 8
 	},
 /turf/open/floor/carpet/red,
-/area/ruin/unpowered/boarding_interior)
-"al" = (
-/mob/living/carbon/human/ai_boarder/syndicate/pistol,
-/turf/open/floor/plating,
-/area/ruin/unpowered/boarding_interior)
-"am" = (
-/obj/structure/chair{
-	color = "#696969";
-	dir = 4;
-	icon_state = "shuttle_chair";
-	name = "captain's chair"
-	},
-/mob/living/carbon/human/ai_boarder/syndicate/pistol,
-/turf/open/floor/mineral/plastitanium/red,
-/area/ruin/unpowered/boarding_interior)
-"an" = (
-/obj/structure/chair{
-	color = "#696969";
-	dir = 4;
-	icon_state = "shuttle_chair";
-	name = "bridge chair"
-	},
-/obj/machinery/door/firedoor/border_only/directional/west,
-/mob/living/carbon/human/ai_boarder/syndicate/shotgun,
-/turf/open/floor/mineral/plastitanium/red,
-/area/ruin/unpowered/boarding_interior)
-"ao" = (
-/obj/structure/chair{
-	color = "#696969";
-	dir = 4;
-	icon_state = "shuttle_chair";
-	name = "bridge chair"
-	},
-/obj/machinery/door/firedoor/border_only/directional/west,
-/mob/living/carbon/human/ai_boarder/syndicate/smg,
-/turf/open/floor/mineral/plastitanium/red,
 /area/ruin/unpowered/boarding_interior)
 "at" = (
 /obj/structure/hull_plate,
@@ -293,6 +223,11 @@
 /obj/machinery/computer/ship/munitions_computer/west{
 	pixel_x = -8
 	},
+/turf/open/floor/engine,
+/area/ruin/unpowered/boarding_interior)
+"gj" = (
+/obj/structure/cable/yellow,
+/mob/living/carbon/human/ai_boarder/syndicate/sapper,
 /turf/open/floor/engine,
 /area/ruin/unpowered/boarding_interior)
 "gC" = (
@@ -515,11 +450,6 @@
 /obj/item/ammo_box/magazine/smgm45,
 /turf/open/floor/plasteel/grid,
 /area/ruin/unpowered/boarding_interior)
-"ln" = (
-/obj/structure/cable/yellow,
-/mob/living/carbon/human/ai_boarder/syndicate/smg,
-/turf/open/floor/engine,
-/area/ruin/unpowered/boarding_interior)
 "lv" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 8
@@ -606,6 +536,17 @@
 	dir = 8
 	},
 /turf/open/space/basic,
+/area/ruin/unpowered/boarding_interior)
+"od" = (
+/obj/structure/chair{
+	color = "#696969";
+	dir = 4;
+	icon_state = "shuttle_chair";
+	name = "bridge chair"
+	},
+/obj/machinery/door/firedoor/border_only/directional/west,
+/mob/living/carbon/human/ai_boarder/syndicate/assault,
+/turf/open/floor/mineral/plastitanium/red,
 /area/ruin/unpowered/boarding_interior)
 "of" = (
 /obj/machinery/portable_atmospherics/canister/toxins,
@@ -994,9 +935,23 @@
 /obj/structure/cable/yellow,
 /turf/closed/wall/r_wall,
 /area/ruin/unpowered/boarding_interior)
+"xE" = (
+/mob/living/carbon/human/ai_boarder/syndicate/sentry,
+/turf/open/floor/engine,
+/area/ruin/unpowered/boarding_interior)
 "xV" = (
 /obj/structure/cable/yellow,
 /turf/open/floor/plating,
+/area/ruin/unpowered/boarding_interior)
+"xW" = (
+/obj/structure/chair{
+	color = "#696969";
+	dir = 4;
+	icon_state = "shuttle_chair";
+	name = "captain's chair"
+	},
+/mob/living/carbon/human/ai_boarder/syndicate/medic,
+/turf/open/floor/mineral/plastitanium/red,
 /area/ruin/unpowered/boarding_interior)
 "yc" = (
 /obj/effect/spawner/lootdrop/minor/beret_or_rabbitears,
@@ -1004,6 +959,10 @@
 /area/ruin/unpowered/boarding_interior)
 "yw" = (
 /turf/open/floor/engine/n2,
+/area/ruin/unpowered/boarding_interior)
+"yA" = (
+/mob/living/carbon/human/ai_boarder/syndicate/medic,
+/turf/open/floor/monotile/dark,
 /area/ruin/unpowered/boarding_interior)
 "zd" = (
 /obj/structure/cable,
@@ -1201,11 +1160,6 @@
 	},
 /turf/open/space/basic,
 /area/ruin/unpowered/boarding_interior)
-"Cq" = (
-/obj/structure/cable/yellow,
-/mob/living/carbon/human/ai_boarder/syndicate/shotgun,
-/turf/open/floor/engine,
-/area/ruin/unpowered/boarding_interior)
 "Cr" = (
 /obj/structure/chair{
 	dir = 4
@@ -1331,6 +1285,18 @@
 /obj/effect/landmark/nuclear_waste_spawner,
 /turf/open/floor/engine,
 /area/ruin/unpowered/boarding_interior)
+"EW" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/mob/living/carbon/human/ai_boarder/syndicate/assault,
+/turf/open/floor/engine,
+/area/ruin/unpowered/boarding_interior)
+"Fl" = (
+/obj/machinery/suit_storage_unit/syndicate/odst,
+/mob/living/carbon/human/ai_boarder/syndicate/shotgun,
+/turf/open/floor/carpet/red,
+/area/ruin/unpowered/boarding_interior)
 "Fp" = (
 /obj/machinery/atmospherics/components/binary/pump/on{
 	dir = 1
@@ -1348,6 +1314,11 @@
 /obj/structure/cable/yellow,
 /obj/machinery/power/tracker,
 /turf/open/floor/plasteel/airless/solarpanel,
+/area/ruin/unpowered/boarding_interior)
+"FW" = (
+/obj/structure/cable/yellow,
+/mob/living/carbon/human/ai_boarder/syndicate/assault,
+/turf/open/floor/engine,
 /area/ruin/unpowered/boarding_interior)
 "FY" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/visible,
@@ -1487,6 +1458,17 @@
 /obj/structure/cable/yellow,
 /turf/open/floor/engine,
 /area/ruin/unpowered/boarding_interior)
+"Jq" = (
+/obj/structure/chair{
+	color = "#696969";
+	dir = 4;
+	icon_state = "shuttle_chair";
+	name = "bridge chair"
+	},
+/obj/machinery/door/firedoor/border_only/directional/west,
+/mob/living/carbon/human/ai_boarder/syndicate/commander,
+/turf/open/floor/mineral/plastitanium/red,
+/area/ruin/unpowered/boarding_interior)
 "JS" = (
 /obj/machinery/deck_turret/powder_gate,
 /obj/effect/turf_decal/tile/orange{
@@ -1544,6 +1526,13 @@
 "LE" = (
 /obj/structure/cable/yellow,
 /turf/open/floor/monotile/dark,
+/area/ruin/unpowered/boarding_interior)
+"LR" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/mob/living/carbon/human/ai_boarder/syndicate/sapper,
+/turf/open/floor/engine,
 /area/ruin/unpowered/boarding_interior)
 "Md" = (
 /obj/effect/turf_decal/tile/yellow,
@@ -1722,6 +1711,10 @@
 	},
 /turf/open/floor/engine,
 /area/ruin/unpowered/boarding_interior)
+"Rz" = (
+/mob/living/carbon/human/ai_boarder/syndicate/shotgun,
+/turf/open/floor/plating,
+/area/ruin/unpowered/boarding_interior)
 "RK" = (
 /obj/structure/peacekeeper_barricade/metal/plasteel/deployable,
 /obj/structure/peacekeeper_barricade/metal/plasteel/deployable,
@@ -1743,6 +1736,13 @@
 /obj/structure/cable/yellow,
 /obj/structure/lattice/catwalk/over/ship,
 /turf/open/floor/mineral/plastitanium/red,
+/area/ruin/unpowered/boarding_interior)
+"Tr" = (
+/obj/structure/chair{
+	dir = 4
+	},
+/mob/living/carbon/human/ai_boarder/syndicate/assault,
+/turf/open/floor/carpet/red,
 /area/ruin/unpowered/boarding_interior)
 "Tv" = (
 /obj/structure/lattice/catwalk,
@@ -29670,7 +29670,7 @@ Hk
 zu
 Yn
 Yn
-aa
+LR
 id
 id
 id
@@ -29931,7 +29931,7 @@ id
 Ab
 id
 Qc
-ab
+yA
 Hk
 Lx
 bV
@@ -31982,7 +31982,7 @@ tB
 zW
 Hk
 wp
-Cq
+FW
 Qc
 DU
 op
@@ -32230,7 +32230,7 @@ ad
 VG
 JS
 NP
-ae
+xE
 ZG
 Hk
 tJ
@@ -32238,7 +32238,7 @@ tB
 zZ
 Hk
 Cd
-ln
+gj
 Qc
 vj
 op
@@ -32740,7 +32740,7 @@ Pu
 Hk
 op
 at
-af
+EW
 NP
 CO
 CO
@@ -35046,7 +35046,7 @@ Hk
 dE
 ek
 qC
-ag
+Fl
 Hk
 cr
 sW
@@ -36331,7 +36331,7 @@ ah
 qC
 HY
 HY
-ai
+Tr
 qC
 AQ
 xy
@@ -37872,7 +37872,7 @@ tB
 zW
 Hk
 eA
-al
+Rz
 Hk
 ba
 hg
@@ -39915,7 +39915,7 @@ kc
 dW
 lL
 Nz
-am
+xW
 dW
 kc
 oV
@@ -40680,11 +40680,11 @@ Hk
 Hk
 Hk
 HU
-an
+od
 qm
 hF
 qm
-ao
+Jq
 TW
 Hk
 Hk

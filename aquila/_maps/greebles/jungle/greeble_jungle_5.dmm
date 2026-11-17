@@ -1,0 +1,141 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"e" = (
+/obj/structure/flora/rock/jungle,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"f" = (
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"g" = (
+/obj/structure/chair/fancy/plastic,
+/obj/item/clothing/mask/cigarette,
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"h" = (
+/obj/structure/bonfire/prelit,
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"o" = (
+/obj/structure/flora/grass/jungle/b,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"q" = (
+/obj/item/cigbutt/cigarbutt,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"t" = (
+/obj/structure/flora/grass/jungle/b,
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"x" = (
+/obj/item/trash/canned{
+	pixel_y = 5;
+	 pixel_x = -9
+	},
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"E" = (
+/obj/item/broken_bottle,
+/obj/effect/decal/cleanable/glass{
+	pixel_x = 5;
+	 dir = 4
+	},
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"K" = (
+/obj/structure/chair/fancy/plastic{
+	dir = 8
+	},
+/obj/item/paper/crumpled,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"L" = (
+/obj/item/chair/plastic,
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"P" = (
+/obj/item/clothing/head/beret/black,
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"Q" = (
+/turf/template_noop,
+/area/template_noop)
+"U" = (
+/turf/closed/mineral/random/planet_jungle,
+/area/template_noop)
+"W" = (
+/obj/item/lighter{
+	pixel_y = 5;
+	 pixel_x = -2
+	},
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"X" = (
+/obj/structure/flora/grass/jungle,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+
+(1,1,1) = {"
+Q
+Q
+Q
+U
+Q
+Q
+Q
+"}
+(2,1,1) = {"
+Q
+Q
+U
+U
+U
+U
+Q
+"}
+(3,1,1) = {"
+Q
+Q
+o
+U
+U
+f
+Q
+"}
+(4,1,1) = {"
+Q
+U
+g
+W
+L
+t
+q
+"}
+(5,1,1) = {"
+U
+U
+x
+h
+P
+U
+X
+"}
+(6,1,1) = {"
+U
+E
+f
+K
+U
+U
+U
+"}
+(7,1,1) = {"
+Q
+Q
+e
+U
+U
+U
+Q
+"}

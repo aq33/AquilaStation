@@ -185,6 +185,12 @@
 	if(!host?.current_system)
 		to_chat(user, span_warning("Nie można wystartować: [host ? host : "port"] nie jest teraz w żadnym układzie."))
 		return FALSE
+	// Planeta zostaje w układzie po odlocie okrętu, ale poza mapą: z niej nie ma dokąd wystartować (dla każdego promu,
+	// także tych, które nadpisują shuttle_can_launch bez ..())
+	var/obj/structure/overmap/planet/planet_host = host
+	if(istype(planet_host) && !planet_host.z)
+		to_chat(user, span_warning("Okręt opuścił układ, a komputer nawigacyjny [src] nie ma do czego się odnieść na orbicie. Trzeba czekać, aż okręt wróci."))
+		return FALSE
 	if(!shuttle_can_launch(user))
 		return FALSE
 	var/obj/docking_port/stationary/parking = shuttle_make_parking()
@@ -222,13 +228,16 @@
 	log_game("[key_name(user)] launched [src] from [old_port] ([host])")
 	return TRUE
 
+/// Tuż po starcie prom wciąż nachodzi na gospodarza: bez tego od razu by do niego wrócił
+/obj/structure/overmap/small_craft/transport/proc/shuttle_just_launched_from(obj/structure/overmap/OM)
+	return OM == shuttle_launch_host && world.time < shuttle_launched_at + SHUTTLE_CRAFT_LAUNCH_GRACE
+
 /obj/structure/overmap/small_craft/transport/docking_act(obj/structure/overmap/OM)
 	if(!shuttle_port)
 		return ..()
 	if(shuttle_docked_at || OM == src || shuttle_landing_eye)
 		return FALSE
-	// Tuż po starcie prom wciąż nachodzi na gospodarza: bez tego od razu by do niego wrócił
-	if(OM == shuttle_launch_host && world.time < shuttle_launched_at + SHUTTLE_CRAFT_LAUNCH_GRACE)
+	if(shuttle_just_launched_from(OM))
 		return FALSE
 	if(istype(OM, /obj/structure/overmap/asteroid/shipbreak_wreck))
 		return FALSE // Wnętrze wraku istnieje tylko w klatce magnesu (jak w small_craft/docking_act)

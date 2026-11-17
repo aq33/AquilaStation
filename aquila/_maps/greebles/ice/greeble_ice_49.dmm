@@ -1,0 +1,68 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"o" = (
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
+"L" = (
+/obj/structure/flora/ash/puce,
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
+"M" = (
+/obj/structure/flora/rock/pile/icy,
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
+"W" = (
+/obj/structure/flora/ash/stem_shroom,
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
+"Y" = (
+/turf/template_noop,
+/area/template_noop)
+
+(1,1,1) = {"
+Y
+L
+Y
+Y
+o
+Y
+"}
+(2,1,1) = {"
+Y
+M
+Y
+W
+L
+o
+"}
+(3,1,1) = {"
+Y
+o
+o
+L
+o
+M
+"}
+(4,1,1) = {"
+M
+W
+L
+o
+o
+W
+"}
+(5,1,1) = {"
+Y
+L
+o
+M
+L
+Y
+"}
+(6,1,1) = {"
+Y
+o
+o
+Y
+Y
+Y
+"}

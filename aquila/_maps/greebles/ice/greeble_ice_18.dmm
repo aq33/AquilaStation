@@ -1,0 +1,78 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"g" = (
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"n" = (
+/obj/structure/flora/tree/dead/tall,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"o" = (
+/obj/structure/festivus/anchored{
+	pixel_x = -17;
+	 desc = "Słup wbity w ziemię.";
+	 name = "słup"
+	},
+/obj/item/organ{
+	pixel_y = 29;
+	 anchored = 1
+	},
+/turf/open/floor/plating/ice/planet_ice,
+/area/template_noop)
+"K" = (
+/obj/structure/flora/ausbushes/ppflowers,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"M" = (
+/turf/template_noop,
+/area/template_noop)
+"Q" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"R" = (
+/obj/structure/flora/rock/pile/lava{
+	pixel_y = 4
+	},
+/turf/open/floor/plating/ice/planet_ice,
+/area/template_noop)
+
+(1,1,1) = {"
+M
+g
+g
+g
+Q
+g
+"}
+(2,1,1) = {"
+K
+g
+Q
+K
+g
+M
+"}
+(3,1,1) = {"
+g
+n
+g
+R
+o
+M
+"}
+(4,1,1) = {"
+Q
+Q
+g
+Q
+g
+M
+"}
+(5,1,1) = {"
+M
+K
+g
+g
+g
+Q
+"}

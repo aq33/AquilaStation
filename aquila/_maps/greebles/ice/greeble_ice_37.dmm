@@ -1,0 +1,209 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"d" = (
+/obj/structure/flora/ash/garden/frigid,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"k" = (
+/turf/open/water/planet/beach/ice,
+/area/template_noop)
+"p" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/obj/structure/flora/ausbushes/ppflowers{
+	pixel_x = 7;
+	 pixel_y = 3
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"v" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"x" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"y" = (
+/obj/structure/flora/rock/icy{
+	pixel_x = -2;
+	 pixel_y = 12
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"z" = (
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"C" = (
+/obj/structure/flora/tree/pine,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"Q" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/structure/flora/ausbushes/ppflowers{
+	pixel_x = 11
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"W" = (
+/turf/template_noop,
+/area/template_noop)
+"Z" = (
+/mob/living/basic/snow_monkey,
+/turf/open/water/planet/beach/ice,
+/area/template_noop)
+
+(1,1,1) = {"
+W
+W
+W
+W
+W
+x
+v
+W
+W
+W
+W
+"}
+(2,1,1) = {"
+W
+W
+W
+k
+k
+z
+x
+k
+W
+W
+W
+"}
+(3,1,1) = {"
+W
+k
+k
+k
+k
+z
+k
+k
+k
+W
+W
+"}
+(4,1,1) = {"
+k
+k
+k
+Z
+k
+z
+z
+k
+k
+k
+W
+"}
+(5,1,1) = {"
+W
+k
+k
+k
+k
+x
+z
+Q
+k
+Z
+k
+"}
+(6,1,1) = {"
+W
+k
+k
+k
+d
+z
+z
+x
+d
+k
+k
+"}
+(7,1,1) = {"
+W
+k
+k
+k
+z
+C
+z
+x
+x
+k
+k
+"}
+(8,1,1) = {"
+W
+y
+p
+x
+z
+z
+z
+z
+x
+z
+z
+"}
+(9,1,1) = {"
+W
+x
+v
+z
+z
+v
+k
+k
+k
+z
+W
+"}
+(10,1,1) = {"
+W
+W
+x
+z
+k
+k
+Z
+k
+k
+W
+W
+"}
+(11,1,1) = {"
+W
+W
+k
+k
+k
+k
+k
+k
+k
+W
+W
+"}
+(12,1,1) = {"
+W
+W
+W
+W
+k
+k
+k
+k
+W
+W
+W
+"}

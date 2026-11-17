@@ -49,24 +49,6 @@
 /obj/machinery/suit_storage_unit/medical/trauma,
 /turf/open/floor/monotile/light,
 /area/medical/medbay)
-"aaj" = (
-/obj/structure/table/reinforced,
-/obj/item/forging_hammer{
-	pixel_x = 6;
-	pixel_y = 4
-	},
-/obj/item/munitions_analyzer{
-	pixel_x = -6
-	},
-/obj/item/storage/box/munition_casts{
-	pixel_y = 8
-	},
-/obj/item/forging_hammer,
-/turf/open/floor/carpet/ship/beige_carpet{
-	color = "#CC8899";
-	name = "nanoweave carpet (puce)"
-	},
-/area/nsv/weapons/fore)
 "aak" = (
 /turf/closed/wall/r_wall/ship,
 /area/space)
@@ -4133,6 +4115,14 @@
 	},
 /turf/open/floor/carpet/ship/orange_carpet,
 /area/engine/atmos/port_atmos)
+"dca" = (
+/obj/structure/cable/yellow,
+/obj/machinery/cooling/cooler,
+/turf/open/floor/carpet/ship/beige_carpet{
+	color = "#CC8899";
+	name = "nanoweave carpet (puce)"
+	},
+/area/nsv/weapons/fore)
 "ddf" = (
 /obj/machinery/conveyor{
 	dir = 8;
@@ -6488,6 +6478,10 @@
 /obj/machinery/duct,
 /turf/open/floor/carpet/ship,
 /area/hallway/primary/port)
+"eXH" = (
+/obj/machinery/drop_pod_bay,
+/turf/open/floor/engine/airless,
+/area/nsv/hanger)
 "eXJ" = (
 /obj/effect/turf_decal/tile/yellow/flat_side{
 	dir = 4
@@ -9003,6 +8997,14 @@
 	},
 /turf/open/floor/carpet/ship,
 /area/hallway/nsv/deck1/frame2/port)
+"gVt" = (
+/obj/structure/cable/yellow,
+/obj/machinery/cooling/storage,
+/turf/open/floor/carpet/ship/beige_carpet{
+	color = "#CC8899";
+	name = "nanoweave carpet (puce)"
+	},
+/area/nsv/weapons/fore)
 "gVV" = (
 /obj/machinery/recharge_station,
 /turf/open/floor/engine,
@@ -10499,6 +10501,13 @@
 	},
 /turf/open/floor/carpet/ship,
 /area/hallway/primary/starboard)
+"ian" = (
+/obj/machinery/cooling/cooler,
+/turf/open/floor/carpet/ship/beige_carpet{
+	color = "#CC8899";
+	name = "nanoweave carpet (puce)"
+	},
+/area/nsv/weapons/fore)
 "iat" = (
 /obj/machinery/airalarm/directional/south,
 /obj/effect/turf_decal/tile/purple/tile_side{
@@ -10824,6 +10833,16 @@
 /obj/effect/turf_decal/caution/stand_clear/red,
 /turf/open/floor/plasteel,
 /area/cargo/lobby)
+"ipp" = (
+/obj/structure/table/reinforced,
+/obj/item/munitions_analyzer{
+	pixel_x = -6
+	},
+/turf/open/floor/carpet/ship/beige_carpet{
+	color = "#CC8899";
+	name = "nanoweave carpet (puce)"
+	},
+/area/nsv/weapons/fore)
 "ipq" = (
 /obj/structure/cable/yellow,
 /obj/effect/turf_decal/stripes/corner{
@@ -59680,9 +59699,9 @@ bwd
 vYy
 grk
 sOW
-ncr
-dGs
-ncr
+dca
+gVt
+dca
 hUL
 gtc
 bwd
@@ -59883,7 +59902,7 @@ bwd
 fvW
 ncr
 gkg
-ncr
+dGs
 ncr
 wHQ
 bwd
@@ -61669,9 +61688,9 @@ oLI
 jCR
 oLI
 oLI
+eXH
 oLI
-oLI
-oLI
+eXH
 oLI
 vcm
 jMR
@@ -62509,7 +62528,7 @@ bwd
 urG
 hUL
 ncr
-aaj
+ipp
 bwd
 oqd
 wEM
@@ -63517,8 +63536,8 @@ lfF
 lfF
 bwd
 apS
-hUL
-hUL
+ian
+ian
 bwd
 oqd
 wEM

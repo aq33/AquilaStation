@@ -1,0 +1,78 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"d" = (
+/obj/structure/statue/snow/snowman,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"n" = (
+/obj/structure/flora/grass/brown,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"v" = (
+/obj/structure/flora/grass/both,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"E" = (
+/obj/structure/flora/tree/pine,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"T" = (
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"V" = (
+/turf/template_noop,
+/area/template_noop)
+
+(1,1,1) = {"
+V
+V
+V
+V
+d
+E
+n
+"}
+(2,1,1) = {"
+v
+T
+n
+V
+V
+T
+T
+"}
+(3,1,1) = {"
+d
+E
+T
+V
+V
+V
+V
+"}
+(4,1,1) = {"
+V
+V
+V
+V
+V
+V
+V
+"}
+(5,1,1) = {"
+V
+v
+V
+V
+T
+V
+V
+"}
+(6,1,1) = {"
+V
+T
+d
+E
+n
+V
+V
+"}

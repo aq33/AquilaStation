@@ -1,0 +1,174 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"i" = (
+/turf/template_noop,
+/area/template_noop)
+"s" = (
+/obj/item/crystal_shard{
+	pixel_x = -4;
+	 pixel_y = 1
+	},
+/turf/open/floor/plating/ice/planet_ice,
+/area/template_noop)
+"y" = (
+/obj/structure/flora/rock/pile/lava{
+	pixel_x = -10;
+	 pixel_y = 6
+	},
+/turf/open/floor/plating/ice/planet_ice,
+/area/template_noop)
+"z" = (
+/turf/open/floor/plating/ice/planet_ice,
+/area/template_noop)
+"F" = (
+/obj/item/crystal_shard{
+	pixel_x = 7;
+	 pixel_y = 7
+	},
+/obj/item/crystal_shard{
+	pixel_x = -8;
+	 pixel_y = -5
+	},
+/turf/open/floor/plating/ice/planet_ice,
+/area/template_noop)
+"J" = (
+/obj/item/crystal_shard{
+	pixel_x = 7;
+	 pixel_y = -4
+	},
+/turf/open/floor/plating/ice/planet_ice,
+/area/template_noop)
+"Q" = (
+/obj/item/crystal_shard{
+	pixel_x = 10;
+	 pixel_y = 13
+	},
+/turf/open/floor/plating/ice/planet_ice,
+/area/template_noop)
+"W" = (
+/obj/structure/flora/rock/pile/lava{
+	pixel_x = 7;
+	 pixel_y = 7
+	},
+/turf/open/floor/plating/ice/planet_ice,
+/area/template_noop)
+"X" = (
+/obj/structure/flora/rock/pile/lava{
+	pixel_x = -5;
+	 pixel_y = 7
+	},
+/turf/open/floor/plating/ice/planet_ice,
+/area/template_noop)
+"Y" = (
+/obj/structure/flora/rock/pile/lava{
+	pixel_x = 6;
+	 pixel_y = -4
+	},
+/turf/open/floor/plating/ice/planet_ice,
+/area/template_noop)
+"Z" = (
+/obj/structure/flora/rock/pile/lava{
+	pixel_x = 4;
+	 pixel_y = 7
+	},
+/turf/open/floor/plating/ice/planet_ice,
+/area/template_noop)
+
+(1,1,1) = {"
+i
+i
+i
+z
+i
+i
+i
+i
+i
+"}
+(2,1,1) = {"
+i
+i
+z
+W
+z
+z
+i
+i
+i
+"}
+(3,1,1) = {"
+s
+z
+z
+z
+z
+F
+z
+z
+i
+"}
+(4,1,1) = {"
+i
+z
+z
+i
+i
+i
+z
+y
+z
+"}
+(5,1,1) = {"
+i
+Z
+z
+i
+i
+i
+i
+z
+z
+"}
+(6,1,1) = {"
+i
+z
+z
+i
+i
+i
+z
+z
+i
+"}
+(7,1,1) = {"
+i
+z
+z
+Q
+i
+z
+J
+z
+i
+"}
+(8,1,1) = {"
+i
+z
+Y
+z
+z
+z
+X
+z
+i
+"}
+(9,1,1) = {"
+i
+i
+z
+z
+i
+i
+z
+i
+i
+"}

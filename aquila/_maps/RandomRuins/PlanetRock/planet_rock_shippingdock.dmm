@@ -1,0 +1,11106 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"ac" = (
+/obj/structure/cable/yellow,
+/obj/structure/grille,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"ai" = (
+/obj/machinery/door/airlock/public/glass{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_rock/shippingdock)
+"aj" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/white,
+/area/ruin/unpowered/planet_rock/shippingdock)
+"al" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_rock/shippingdockoffice)
+"am" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/spawner/lootdrop/maintenance,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"ao" = (
+/obj/effect/decal/cleanable/robot_debris/old,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"aB" = (
+/mob/living/basic/creature,
+/turf/open/floor/plating/asteroid/rockplanet/cracked,
+/area/lavaland/surface/outdoors)
+"aF" = (
+/turf/open/floor/plasteel/stairs/right{
+	dir = 1
+	},
+/area/ruin/unpowered/planet_rock/shippingdock)
+"aI" = (
+/obj/effect/turf_decal/stripes/asteroid/line,
+/turf/open/floor/concrete{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"aV" = (
+/obj/structure/sign/warning/docking{
+	pixel_y = 28
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"aX" = (
+/obj/effect/turf_decal/delivery,
+/obj/structure/reagent_dispensers/watertank/high,
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"bj" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/slab_4{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"bn" = (
+/obj/structure/closet/crate/large,
+/obj/item/bot_assembly/secbot,
+/obj/item/bot_assembly/secbot,
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"bs" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/concrete/slab_4{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"bE" = (
+/obj/machinery/button/door{
+	dir = 4;
+	pixel_x = -24;
+	id = "shippingdocksecure"
+	},
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_rock/shippingdocksecure)
+"bG" = (
+/obj/effect/turf_decal/box/red,
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_rock/shippingdocksecure)
+"bJ" = (
+/obj/structure/closet/crate/large,
+/obj/item/stack/sheet/mineral/sandstone/thirty,
+/obj/item/storage/box/emptysandbags,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"bK" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "shippingdockfront"
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_rock/shippingdockcustoms)
+"bS" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/mine/explosive,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"bU" = (
+/obj/structure/safe,
+/obj/item/stack/spacecash/c100,
+/obj/machinery/light,
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_rock/shippingdocksecure)
+"bV" = (
+/obj/effect/turf_decal/box/red,
+/obj/item/stack/sheet/mineral/gold/five,
+/obj/item/stack/sheet/mineral/diamond/five,
+/obj/structure/closet/crate/secure{
+	req_one_access_txt = "53"
+	},
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_rock/shippingdocksecure)
+"cd" = (
+/obj/structure/fence{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"cf" = (
+/obj/structure/cable/yellow,
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/concrete{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"cj" = (
+/obj/structure/frame/machine,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/item/stack/ore/gold,
+/obj/item/stock_parts/cell/empty,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_rock/shippingdock)
+"co" = (
+/turf/closed/wall/rust,
+/area/lavaland/surface/outdoors)
+"ct" = (
+/obj/item/toy/snappop,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"cu" = (
+/obj/structure/frame/machine,
+/obj/item/stack/ore/iron,
+/obj/item/stack/ore/plasma,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_rock/shippingdock)
+"cC" = (
+/obj/machinery/power/terminal{
+	dir = 1
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/plating,
+/area/lavaland/surface/outdoors)
+"cJ" = (
+/turf/closed/wall/r_wall,
+/area/ruin/unpowered/planet_rock/shippingdocksecure)
+"cO" = (
+/obj/item/stack/ore/titanium,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"cT" = (
+/obj/effect/turf_decal/trimline/white/warning{
+	dir = 1;
+	color = "#FFFFFF";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"cU" = (
+/obj/item/shard,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"db" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/cable,
+/turf/open/floor/concrete/slab_4{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"df" = (
+/obj/structure/chair/office{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/carpet/purple,
+/area/ruin/unpowered/planet_rock/shippingdockoffice)
+"do" = (
+/obj/structure/reagent_dispensers/water_cooler,
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_rock/shippingdockcustoms)
+"dp" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/girder/displaced,
+/turf/open/floor/concrete{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"dw" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/structure/sign/poster/official/safety_internals{
+	pixel_y = 32
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/restraints/legcuffs/beartrap{
+	armed = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_rock/shippingdockoffice)
+"dD" = (
+/obj/machinery/door/airlock/external{
+	dir = 4
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_rock/shippingdockoffice)
+"dH" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/carpet/orange,
+/area/ruin/unpowered/planet_rock/shippingdockoffice)
+"dI" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/chair/fancy/sofa/old,
+/turf/open/floor/carpet/black,
+/area/ruin/unpowered/planet_rock/shippingdockoffice)
+"dP" = (
+/obj/effect/mine/explosive,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"dQ" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/slab_4{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"dU" = (
+/obj/item/toy/crayon/spraycan,
+/turf/open/floor/concrete{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"dW" = (
+/turf/open/floor/plating/asteroid/rockplanet/wet,
+/area/lavaland/surface/outdoors)
+"dY" = (
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/chair/fancy/sofa/old,
+/turf/open/floor/carpet/black,
+/area/ruin/unpowered/planet_rock/shippingdockoffice)
+"ed" = (
+/obj/structure/safe,
+/obj/item/stack/spacecash/c10,
+/obj/item/stack/spacecash/c10,
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_rock/shippingdocksecure)
+"ej" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/slab_4{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"em" = (
+/obj/item/stack/rods,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"en" = (
+/obj/machinery/door/airlock/grunge{
+	name = "Punkt kontrolny ładowni"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/structure/cable,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_rock/shippingdockcustoms)
+"ep" = (
+/obj/effect/turf_decal/trimline/neutral/filled/warning{
+	dir = 4;
+	alpha = 255
+	},
+/obj/effect/turf_decal/trimline/neutral/filled/warning{
+	dir = 8;
+	alpha = 255
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"eA" = (
+/obj/effect/decal/cleanable/crayon,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"eH" = (
+/obj/machinery/light/broken{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"eK" = (
+/obj/effect/turf_decal/siding/white,
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"eN" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_rock/shippingdockoffice)
+"eQ" = (
+/obj/machinery/light,
+/obj/structure/safe,
+/obj/item/organ/cyberimp/arm/gun/taser,
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_rock/shippingdocksecure)
+"eR" = (
+/obj/effect/turf_decal/stripes/full,
+/obj/structure/cable/yellow,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"eT" = (
+/obj/effect/decal/cleanable/glass,
+/obj/item/shard,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"eU" = (
+/obj/effect/turf_decal/loading_area{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/white/corner{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"eZ" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/carpet/purple,
+/area/ruin/unpowered/planet_rock/shippingdockoffice)
+"fg" = (
+/obj/effect/decal/cleanable/food/tomato_smudge,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_rock/shippingdockoffice)
+"fj" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/toy/snappop,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"fq" = (
+/obj/effect/mine/shrapnel/sting,
+/turf/open/floor/concrete{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"fs" = (
+/obj/item/stack/ore/titanium,
+/turf/open/floor/concrete{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"ft" = (
+/obj/machinery/light/broken,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"fy" = (
+/obj/effect/turf_decal/box/corners{
+	dir = 4
+	},
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"fD" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/carpet/black,
+/area/ruin/unpowered/planet_rock/shippingdockoffice)
+"fI" = (
+/obj/structure/frame/computer{
+	dir = 8;
+	anchored = 1
+	},
+/obj/effect/turf_decal/tile/brown/half{
+	dir = 6;
+	color = "#997C4F";
+	alpha = 255
+	},
+/turf/open/floor/mineral/titanium/white,
+/area/ruin/unpowered/planet_rock/shippingdock)
+"fP" = (
+/turf/closed/wall/rust,
+/area/ruin/unpowered/planet_rock/shippingdockcustoms)
+"fQ" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"fR" = (
+/obj/effect/decal/cleanable/robot_debris,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"fS" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_rock/shippingdockoffice)
+"fU" = (
+/obj/effect/decal/cleanable/robot_debris/old,
+/obj/effect/decal/cleanable/plasma,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"fV" = (
+/obj/effect/turf_decal/delivery,
+/obj/structure/reagent_dispensers/foamtank,
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"gb" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_rock/shippingdockoffice)
+"gd" = (
+/obj/structure/table/wood,
+/obj/machinery/microwave,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_rock/shippingdockoffice)
+"gp" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 10
+	},
+/obj/effect/decal/remains/human,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_rock/shippingdockoffice)
+"gs" = (
+/obj/structure/cable/yellow,
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/concrete/slab_4{
+	light_power = 0.6;
+	light_range = 2
+	},
+/area/lavaland/surface/outdoors)
+"gu" = (
+/obj/effect/turf_decal/stripes/asteroid/corner{
+	dir = 8
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"gw" = (
+/obj/effect/turf_decal/box/white,
+/obj/structure/closet/cardboard,
+/obj/item/tank/internals/oxygen/yellow,
+/obj/item/tank/internals/oxygen/yellow,
+/obj/item/clothing/mask/gas,
+/obj/item/clothing/mask/gas,
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"gG" = (
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"gH" = (
+/obj/machinery/door/airlock/grunge{
+	name = "Biuro kierownika"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_rock/shippingdockoffice)
+"gJ" = (
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 1
+	},
+/obj/item/emptysandbag,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"gO" = (
+/obj/effect/spawner/lootdrop/maintenance,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_rock/shippingdock)
+"gU" = (
+/obj/structure/railing,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"gZ" = (
+/obj/machinery/button/door{
+	pixel_y = 24;
+	id = "shippingdockwarehousesouth"
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"hb" = (
+/obj/structure/railing{
+	dir = 10
+	},
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"hg" = (
+/obj/structure/closet/secure_closet/freezer,
+/obj/item/reagent_containers/food/drinks/beer,
+/obj/item/food/sosjerky,
+/obj/item/food/spaghetti/boiledspaghetti,
+/obj/item/food/soup,
+/obj/effect/decal/cleanable/cobweb,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_rock/shippingdockoffice)
+"hk" = (
+/obj/structure/girder/displaced,
+/turf/open/floor/concrete{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"hm" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_rock/shippingdockoffice)
+"hs" = (
+/obj/machinery/button/door{
+	dir = 1;
+	pixel_y = -24;
+	id = "shippingdockwarehouse"
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"hF" = (
+/obj/structure/fence/corner,
+/turf/open/floor/concrete{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"hW" = (
+/obj/structure/table,
+/obj/item/flashlight/lamp,
+/turf/open/floor/carpet/purple,
+/area/ruin/unpowered/planet_rock/shippingdockoffice)
+"hX" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_rock/shippingdockcustoms)
+"ib" = (
+/obj/effect/turf_decal/trimline/white/arrow_cw{
+	dir = 1;
+	color = "#FFFFFF";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"ie" = (
+/obj/effect/turf_decal/stripes/full,
+/obj/effect/supplypod_rubble,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"ig" = (
+/obj/structure/cable/yellow,
+/obj/item/restraints/legcuffs/beartrap{
+	armed = 1
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"ij" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"in" = (
+/obj/structure/marker_beacon,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"iH" = (
+/obj/item/clothing/shoes/magboots{
+	name = "zwęglone buty magnetyczne"
+	},
+/obj/effect/decal/cleanable/shreds{
+	pixel_x = -8;
+	pixel_y = 17
+	},
+/obj/effect/decal/cleanable/shreds{
+	pixel_y = -9;
+	pixel_x = 15
+	},
+/obj/effect/decal/cleanable/plasma,
+/turf/open/floor/plating{
+	light_power = 0.6;
+	light_range = 2;
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"iX" = (
+/obj/structure/cable/yellow,
+/obj/item/shard,
+/turf/open/floor/concrete{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"iZ" = (
+/obj/effect/turf_decal/box,
+/obj/structure/reagent_dispensers/fueltank,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"jb" = (
+/obj/machinery/door/airlock/freezer{
+	dir = 4;
+	name = "Łazienka"
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/showroomfloor,
+/area/ruin/unpowered/planet_rock/shippingdockoffice)
+"jc" = (
+/obj/structure/cable,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"jg" = (
+/obj/structure/cable/yellow,
+/obj/effect/turf_decal/trimline/neutral/filled/warning{
+	dir = 1;
+	alpha = 255
+	},
+/obj/machinery/door/poddoor/shutters{
+	id = "shippingdockwarehousesouth"
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"jm" = (
+/obj/structure/railing,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"jo" = (
+/obj/structure/railing{
+	max_integrity = 70;
+	dir = 4
+	},
+/obj/structure/barricade/sandbags,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_rock/shippingdock)
+"jr" = (
+/obj/item/mecha_parts/mecha_equipment/hydraulic_clamp,
+/obj/structure/table,
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 10
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"js" = (
+/obj/structure/fence/corner{
+	dir = 8
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"jx" = (
+/turf/open/floor/plating/asteroid/rockplanet,
+/area/lavaland/surface/outdoors)
+"jD" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"jK" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/slab_4{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"jR" = (
+/obj/effect/turf_decal/trimline/white/warning{
+	color = "#FFFFFF";
+	alpha = 255
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"jT" = (
+/turf/closed/wall,
+/area/ruin/unpowered/planet_rock/shippingdockoffice)
+"kd" = (
+/obj/structure/cable/yellow,
+/turf/open/floor/concrete{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"ke" = (
+/obj/item/ammo_casing/spent{
+	pixel_x = -14;
+	pixel_y = 1
+	},
+/obj/item/ammo_casing/spent{
+	pixel_x = 3;
+	pixel_y = -5
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"ki" = (
+/obj/effect/turf_decal/box/corners{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"kk" = (
+/obj/structure/sign/warning/nosmoking/circle{
+	pixel_y = 24
+	},
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"km" = (
+/obj/structure/cable/yellow,
+/obj/item/gun/ballistic/automatic/pistol{
+	pixel_x = 15
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"kr" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_rock/shippingdockcustoms)
+"ky" = (
+/obj/structure/table,
+/obj/machinery/computer/secure_data/laptop{
+	dir = 8;
+	pixel_x = 1
+	},
+/obj/machinery/button/door{
+	pixel_y = 24;
+	id = "shippingdockcustoms"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_rock/shippingdockcustoms)
+"kz" = (
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
+/obj/effect/decal/cleanable/glass,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_rock/shippingdockoffice)
+"kF" = (
+/obj/structure/table,
+/obj/item/storage/toolbox/mechanical,
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"kG" = (
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"kJ" = (
+/obj/structure/fence/post{
+	dir = 8
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"kU" = (
+/obj/structure/cable/yellow,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"lb" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/girder,
+/turf/open/floor/concrete{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"ld" = (
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"lg" = (
+/obj/structure/window/reinforced,
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_rock/shippingdocksecure)
+"ll" = (
+/obj/structure/fence/post{
+	dir = 1
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"lv" = (
+/obj/effect/decal/cleanable/robot_debris/old,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"lF" = (
+/obj/structure/cable,
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_rock/shippingdocksecure)
+"lL" = (
+/obj/structure/cable/yellow,
+/obj/effect/decal/cleanable/glass,
+/obj/item/shard,
+/turf/open/floor/concrete/slab_4{
+	light_power = 0.6;
+	light_range = 2
+	},
+/area/lavaland/surface/outdoors)
+"lV" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
+/obj/machinery/light/small,
+/obj/effect/decal/cleanable/glass,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/rust{
+	light_power = 0.6;
+	light_range = 2
+	},
+/area/ruin/unpowered/planet_rock/shippingdockoffice)
+"lZ" = (
+/obj/structure/railing{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/oil,
+/mob/living/simple_animal/bot/mulebot,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"md" = (
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_rock/shippingdocksecure)
+"ml" = (
+/turf/open/floor/plasteel/stairs/left{
+	dir = 1
+	},
+/area/ruin/unpowered/planet_rock/shippingdock)
+"mn" = (
+/obj/effect/turf_decal/trimline/neutral/filled/warning{
+	dir = 1;
+	alpha = 255
+	},
+/obj/machinery/door/poddoor/shutters{
+	id = "shippingdockwarehousesouth"
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"mv" = (
+/obj/machinery/door/window/eastleft,
+/obj/effect/decal/cleanable/oil,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"mx" = (
+/obj/structure/closet/crate,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_rock/shippingdock)
+"mB" = (
+/obj/structure/closet/crate/large,
+/obj/item/bot_assembly/floorbot,
+/obj/item/bot_assembly/floorbot,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"mC" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/restraints/legcuffs/beartrap{
+	armed = 1
+	},
+/turf/open/floor/carpet/orange,
+/area/ruin/unpowered/planet_rock/shippingdockoffice)
+"mJ" = (
+/obj/structure/flora/rock/rockplanet,
+/turf/open/floor/plating/asteroid/rockplanet/cracked,
+/area/lavaland/surface/outdoors)
+"mQ" = (
+/obj/structure/cable/yellow,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"mS" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"mY" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/structure/chair/fancy/sofa/old,
+/turf/open/floor/carpet/black,
+/area/ruin/unpowered/planet_rock/shippingdockoffice)
+"ne" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 10
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_rock/shippingdockcustoms)
+"nt" = (
+/obj/structure/flora/rock/rockplanet,
+/turf/open/floor/plating/asteroid/rockplanet/wet,
+/area/lavaland/surface/outdoors)
+"nB" = (
+/obj/machinery/power/terminal{
+	dir = 8
+	},
+/obj/structure/cable/yellow,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"nC" = (
+/obj/item/stack/rods,
+/turf/open/floor/plating/asteroid/rockplanet/wet,
+/area/lavaland/surface/outdoors)
+"nE" = (
+/obj/structure/mirror{
+	pixel_y = 28
+	},
+/obj/structure/sink{
+	pixel_y = 17
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/showroomfloor,
+/area/ruin/unpowered/planet_rock/shippingdockoffice)
+"nF" = (
+/obj/effect/decal/cleanable/crayon,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"nG" = (
+/obj/structure/flora/rock/rockplanet,
+/turf/open/floor/plating/asteroid/rockplanet,
+/area/lavaland/surface/outdoors)
+"nO" = (
+/obj/structure/cable,
+/obj/effect/mine/explosive,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_rock/shippingdockcustoms)
+"nR" = (
+/obj/structure/railing/corner{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"nS" = (
+/obj/structure/barricade/sandbags,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"nT" = (
+/obj/item/candle{
+	pixel_x = -12
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"nW" = (
+/obj/structure/rack,
+/obj/structure/window/reinforced,
+/obj/item/toy/plush/carpplushie,
+/obj/item/toy/plush/carpplushie,
+/obj/item/toy/plush/nukeplushie,
+/obj/item/toy/prize/phazon,
+/obj/item/toy/windupToolbox,
+/turf/open/floor/monotile/light,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"nX" = (
+/obj/structure/railing{
+	dir = 5
+	},
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"nY" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"oa" = (
+/obj/effect/turf_decal/delivery/red,
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_rock/shippingdocksecure)
+"om" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
+/obj/machinery/airalarm/directional/north,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_rock/shippingdockoffice)
+"op" = (
+/obj/structure/cable,
+/obj/machinery/power/apc/auto_name/north,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/carpet/orange,
+/area/ruin/unpowered/planet_rock/shippingdockoffice)
+"oq" = (
+/obj/structure/railing/corner{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/crayon,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"or" = (
+/obj/effect/turf_decal/box/white,
+/obj/structure/closet/cardboard,
+/obj/item/modular_computer/laptop,
+/obj/item/modular_computer/laptop,
+/obj/item/modular_computer/laptop,
+/obj/item/modular_computer/laptop,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"ov" = (
+/obj/effect/turf_decal/delivery,
+/obj/structure/closet/cardboard/metal,
+/obj/item/stack/sheet/iron/fifty,
+/obj/item/stack/sheet/plasteel/twenty,
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"ox" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/carpet/orange,
+/area/ruin/unpowered/planet_rock/shippingdockoffice)
+"oC" = (
+/obj/structure/rack,
+/obj/structure/window/reinforced,
+/obj/item/toy/plush/moth/firewatch,
+/obj/item/toy/plush/lizardplushie,
+/obj/item/toy/plush/lizardplushie,
+/obj/item/toy/prize/ripley,
+/obj/item/toy/talking/AI,
+/turf/open/floor/monotile/light,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"oF" = (
+/obj/effect/decal/cleanable/crayon,
+/turf/open/floor/concrete{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"oS" = (
+/obj/item/trash/semki,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/carpet/purple,
+/area/ruin/unpowered/planet_rock/shippingdockoffice)
+"oU" = (
+/obj/structure/rack,
+/obj/structure/window/reinforced,
+/obj/item/food/donkpocket,
+/obj/item/food/donkpocket,
+/obj/item/food/donkpocket,
+/turf/open/floor/monotile/light,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"oV" = (
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"pa" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/carpet/orange,
+/area/ruin/unpowered/planet_rock/shippingdockoffice)
+"pn" = (
+/obj/item/ammo_casing/spent{
+	pixel_x = 10;
+	pixel_y = 12
+	},
+/obj/item/ammo_casing/spent,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"pq" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/concrete/slab_4{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"ps" = (
+/obj/structure/cable,
+/obj/machinery/power/apc/auto_name/west,
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"px" = (
+/obj/structure/flora/rock/pile/rockplanet,
+/turf/open/floor/plating/asteroid/rockplanet/wet,
+/area/lavaland/surface/outdoors)
+"pI" = (
+/obj/structure/flora/grass/rockplanet/dead,
+/turf/open/floor/plating/asteroid/rockplanet/cracked,
+/area/lavaland/surface/outdoors)
+"pS" = (
+/turf/open/water/planet/rockplanet{
+	light_power = 0.6;
+	light_range = 2
+	},
+/area/lavaland/surface/outdoors)
+"pU" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/cable/yellow,
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"qa" = (
+/obj/structure/toilet{
+	dir = 4
+	},
+/obj/item/newspaper,
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/showroomfloor,
+/area/ruin/unpowered/planet_rock/shippingdockoffice)
+"qj" = (
+/obj/machinery/door/airlock/external,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_rock/shippingdockoffice)
+"qk" = (
+/obj/effect/turf_decal/box/white/corners{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"qo" = (
+/obj/item/stack/ore/titanium,
+/turf/open/floor/plating/asteroid/rockplanet/cracked,
+/area/lavaland/surface/outdoors)
+"qt" = (
+/obj/structure/chair{
+	dir = 4
+	},
+/obj/machinery/light/small,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"qu" = (
+/obj/structure/grille,
+/obj/structure/cable/yellow,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"qv" = (
+/obj/structure/cable/yellow,
+/obj/structure/grille,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"qw" = (
+/obj/structure/chair/fancy/bench/right{
+	dir = 8
+	},
+/turf/open/floor/concrete/slab_4{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"qD" = (
+/obj/effect/decal/cleanable/shreds,
+/obj/effect/decal/cleanable/plasma,
+/turf/open/floor/plating{
+	light_power = 0.6;
+	light_range = 2;
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"qR" = (
+/obj/effect/turf_decal/trimline/white/filled/line{
+	color = "#FFFFFF";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"qV" = (
+/obj/machinery/airalarm/directional/north,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/carpet/orange,
+/area/ruin/unpowered/planet_rock/shippingdockoffice)
+"qX" = (
+/obj/structure/railing/corner,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"qZ" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"ra" = (
+/obj/structure/closet/cardboard,
+/obj/item/stack/sheet/glass,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"re" = (
+/obj/structure/girder/reinforced,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_rock/shippingdock)
+"rk" = (
+/obj/structure/table,
+/obj/item/paper_bin,
+/obj/item/pen/fourcolor,
+/obj/structure/cable,
+/obj/machinery/power/apc/auto_name/west,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_rock/shippingdockcustoms)
+"rm" = (
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/turf/open/floor/concrete{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"rr" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 6
+	},
+/turf/open/floor/concrete/slab_4{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"rw" = (
+/obj/structure/railing{
+	dir = 1
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"rF" = (
+/obj/structure/chair/fancy/bench{
+	dir = 8
+	},
+/turf/open/floor/concrete/slab_4{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"rL" = (
+/obj/effect/turf_decal/loading_area{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/white/corner{
+	dir = 8
+	},
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"rN" = (
+/obj/structure/cable,
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"rQ" = (
+/turf/closed/wall,
+/area/lavaland/surface/outdoors)
+"sh" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/carpet/orange,
+/area/ruin/unpowered/planet_rock/shippingdockoffice)
+"sj" = (
+/obj/machinery/power/solar,
+/obj/structure/cable/yellow,
+/turf/open/floor/concrete/slab_4{
+	light_power = 0.6;
+	light_range = 2
+	},
+/area/lavaland/surface/outdoors)
+"sm" = (
+/obj/effect/spawner/lootdrop/maintenance,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_rock/shippingdock)
+"ss" = (
+/turf/closed/wall/rust,
+/area/ruin/unpowered/planet_rock/shippingdockoffice)
+"sF" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 5
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/rust{
+	light_power = 0.6;
+	light_range = 2
+	},
+/area/ruin/unpowered/planet_rock/shippingdockoffice)
+"sM" = (
+/obj/effect/turf_decal/stripes/asteroid/corner{
+	dir = 1
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"sS" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/mine/explosive,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"tb" = (
+/obj/effect/turf_decal/delivery/red,
+/obj/item/reagent_containers/glass/bottle/coniine{
+	name = "butelka";
+	desc = "Mała butelka. Zawiera nieznany płyn."
+	},
+/obj/item/reagent_containers/glass/bottle/chloralhydrate{
+	desc = "Mała butelka. Zawiera nieznany płyn.";
+	name = "butelka"
+	},
+/obj/item/reagent_containers/glass/bottle/atropine{
+	desc = "Mała butelka. Zawiera nieznany płyn.";
+	name = "butelka"
+	},
+/obj/structure/closet/crate/secure/science{
+	req_one_access_txt = "53"
+	},
+/obj/item/reagent_containers/glass/bottle/amanitin{
+	desc = "Mała butelka. Zawiera nieznany płyn.";
+	name = "butelka"
+	},
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_rock/shippingdocksecure)
+"te" = (
+/obj/structure/fence/door{
+	dir = 1
+	},
+/obj/structure/barricade/wooden/crude,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"ti" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/carpet/black,
+/area/ruin/unpowered/planet_rock/shippingdockoffice)
+"tj" = (
+/obj/structure/railing/corner{
+	dir = 4
+	},
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"ts" = (
+/obj/item/stack/ore/titanium,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"tv" = (
+/obj/effect/turf_decal/stripes/full,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"tI" = (
+/obj/structure/fence/post{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"tL" = (
+/mob/living/basic/creature,
+/turf/open/floor/concrete{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"tO" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/light/small/broken{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_rock/shippingdockoffice)
+"tP" = (
+/obj/structure/cable,
+/turf/open/floor/concrete/slab_4{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"tR" = (
+/obj/structure/frame/machine,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/item/stack/cable_coil/cut,
+/obj/item/stack/ore/gold,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_rock/shippingdock)
+"ub" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"uf" = (
+/obj/structure/closet/crate/trashcart,
+/obj/effect/spawner/lootdrop/maintenance,
+/obj/item/trash/can,
+/obj/item/trash/can,
+/obj/item/trash/tray,
+/obj/item/storage/bag/trash,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"ui" = (
+/obj/structure/cable/yellow,
+/obj/item/solar_assembly,
+/turf/open/floor/concrete/slab_4{
+	light_power = 0.6;
+	light_range = 2
+	},
+/area/lavaland/surface/outdoors)
+"um" = (
+/obj/item/stack/ore/iron,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/white,
+/area/ruin/unpowered/planet_rock/shippingdock)
+"up" = (
+/obj/structure/cable/yellow,
+/obj/item/solar_assembly,
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/concrete/slab_4{
+	light_power = 0.6;
+	light_range = 2
+	},
+/area/lavaland/surface/outdoors)
+"us" = (
+/obj/structure/cable/yellow,
+/obj/machinery/power/tracker,
+/turf/open/floor/concrete/slab_4{
+	light_power = 0.6;
+	light_range = 2
+	},
+/area/lavaland/surface/outdoors)
+"uA" = (
+/obj/item/kirbyplants/random,
+/obj/effect/decal/cleanable/cobweb,
+/turf/open/floor/carpet/orange,
+/area/ruin/unpowered/planet_rock/shippingdockoffice)
+"uB" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 9
+	},
+/turf/open/floor/concrete/slab_4{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"uJ" = (
+/obj/structure/cable/yellow,
+/obj/machinery/power/solar_control{
+	dir = 4
+	},
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"uL" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_rock/shippingdockoffice)
+"uS" = (
+/obj/structure/cable,
+/obj/machinery/door/poddoor{
+	dir = 4;
+	id = "shippingdocksecure"
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_rock/shippingdocksecure)
+"uV" = (
+/turf/closed/wall/mineral/titanium,
+/area/ruin/unpowered/planet_rock/shippingdock)
+"uW" = (
+/obj/effect/turf_decal/trimline/white/arrow_cw{
+	dir = 1;
+	color = "#FFFFFF";
+	alpha = 255
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"vb" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"vc" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/slab_4{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"vd" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/candle{
+	pixel_x = 11
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"vg" = (
+/obj/effect/turf_decal/loading_area{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/white/corner{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"vh" = (
+/mob/living/basic/migo,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/slab_4{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"vj" = (
+/obj/effect/turf_decal/caution/stand_clear/white,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"vk" = (
+/obj/structure/flora/tree/cactus,
+/turf/open/floor/plating/asteroid/rockplanet/cracked,
+/area/lavaland/surface/outdoors)
+"vs" = (
+/obj/item/stack/ore/iron,
+/obj/effect/turf_decal/caution/stand_clear{
+	dir = 1
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"vz" = (
+/obj/effect/turf_decal/trimline/white/filled/line{
+	color = "#FFFFFF";
+	alpha = 255
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"vV" = (
+/obj/structure/railing/corner{
+	dir = 8
+	},
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"vW" = (
+/obj/structure/cable,
+/obj/machinery/power/smes/engineering,
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"vX" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/mine/explosive,
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"vY" = (
+/obj/structure/chair/fancy/bench{
+	dir = 4
+	},
+/turf/open/floor/concrete/slab_4{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"vZ" = (
+/mob/living/basic/migo,
+/turf/open/floor/plating/asteroid/rockplanet/cracked,
+/area/lavaland/surface/outdoors)
+"wi" = (
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_rock/shippingdockoffice)
+"wp" = (
+/obj/effect/turf_decal/box/white/corners,
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"wr" = (
+/obj/effect/turf_decal/trimline/neutral/filled/warning{
+	dir = 4;
+	alpha = 255
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"ww" = (
+/obj/effect/turf_decal/caution/stand_clear{
+	dir = 1
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"wB" = (
+/obj/structure/cable/yellow,
+/obj/effect/decal/cleanable/glass,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/slab_4{
+	light_power = 0.6;
+	light_range = 2
+	},
+/area/lavaland/surface/outdoors)
+"wI" = (
+/obj/structure/cable,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"wN" = (
+/obj/machinery/light/broken{
+	dir = 1
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"wQ" = (
+/obj/structure/cable/yellow,
+/obj/effect/decal/cleanable/glass,
+/obj/item/shard,
+/turf/open/floor/concrete{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"wX" = (
+/obj/effect/turf_decal/caution/stand_clear,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"wY" = (
+/obj/item/restraints/legcuffs/beartrap{
+	armed = 1
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_rock/shippingdock)
+"wZ" = (
+/obj/item/stack/ore/titanium,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_rock/shippingdock)
+"xa" = (
+/obj/structure/fence,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"xc" = (
+/obj/structure/marker_beacon,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"xd" = (
+/obj/machinery/door/airlock/security{
+	name = "Zabezpieczony magazyn";
+	req_one_access_txt = "53"
+	},
+/obj/effect/mapping_helpers/airlock/locked,
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_rock/shippingdocksecure)
+"xe" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"xh" = (
+/obj/item/stack/cable_coil/cut,
+/obj/item/stock_parts/cell/empty,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_rock/shippingdock)
+"xn" = (
+/obj/effect/turf_decal/box/white,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_rock/shippingdock)
+"xt" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"xw" = (
+/obj/structure/flora/ausbushes/ppflowers,
+/turf/open/floor/plating/asteroid/rockplanet/wet,
+/area/lavaland/surface/outdoors)
+"xB" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	dir = 4;
+	id = "shippingdockcustoms"
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"xF" = (
+/obj/item/pickaxe,
+/turf/open/floor/concrete{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"xH" = (
+/obj/structure/flora/ash/cacti,
+/turf/open/floor/plating/asteroid/rockplanet/wet,
+/area/lavaland/surface/outdoors)
+"xJ" = (
+/obj/structure/door_assembly/door_assembly_public{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_rock/shippingdock)
+"xK" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/slab_4{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"xQ" = (
+/obj/structure/barricade/sandbags,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"yj" = (
+/obj/structure/table,
+/obj/item/paper_bin,
+/obj/item/pen/fourcolor,
+/turf/open/floor/carpet/purple,
+/area/ruin/unpowered/planet_rock/shippingdockoffice)
+"yo" = (
+/obj/structure/closet/crate/secure/loot,
+/turf/open/floor/plating/asteroid/rockplanet/wet,
+/area/lavaland/surface/outdoors)
+"yu" = (
+/obj/structure/table,
+/obj/item/folder,
+/obj/machinery/light/broken,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/carpet/purple,
+/area/ruin/unpowered/planet_rock/shippingdockoffice)
+"yv" = (
+/obj/effect/turf_decal/trimline/white/filled/line{
+	dir = 1;
+	color = "#FFFFFF";
+	alpha = 255
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"yB" = (
+/turf/template_noop,
+/area/template_noop)
+"yD" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"yH" = (
+/obj/structure/flora/grass/rockplanet,
+/turf/open/floor/plating/asteroid/rockplanet/cracked,
+/area/lavaland/surface/outdoors)
+"yM" = (
+/obj/structure/closet/cabinet,
+/obj/item/clothing/under/suit/charcoal,
+/obj/item/clothing/suit/toggle/lawyer/black,
+/obj/item/clothing/glasses/sunglasses,
+/obj/item/clothing/shoes/laceup,
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_rock/shippingdockoffice)
+"yO" = (
+/obj/structure/cable/yellow,
+/obj/structure/grille,
+/turf/open/floor/concrete{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"yT" = (
+/obj/machinery/light/broken{
+	dir = 8
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"yV" = (
+/obj/effect/turf_decal/trimline/white/arrow_ccw{
+	color = "#FFFFFF";
+	alpha = 255
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"yX" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"yY" = (
+/obj/structure/table/wood,
+/obj/item/modular_computer/laptop,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_rock/shippingdockoffice)
+"zc" = (
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/concrete{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"zi" = (
+/obj/item/stack/cable_coil/cut,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"zj" = (
+/obj/effect/decal/cleanable/plasma,
+/turf/open/floor/concrete{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"zu" = (
+/obj/structure/railing{
+	dir = 1
+	},
+/turf/open/floor/concrete/slab_4{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"zA" = (
+/obj/effect/turf_decal/trimline/neutral/warning{
+	alpha = 255
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"zB" = (
+/obj/structure/girder/reinforced,
+/turf/open/floor/concrete{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"zJ" = (
+/obj/effect/turf_decal/tile/brown/half{
+	dir = 8;
+	color = "#997C4F";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/white,
+/area/ruin/unpowered/planet_rock/shippingdock)
+"zL" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"zM" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/structure/rack,
+/obj/item/camera,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_rock/shippingdockcustoms)
+"zQ" = (
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/structure/barricade/sandbags,
+/turf/open/floor/plating/rust{
+	light_power = 0.6;
+	light_range = 2
+	},
+/area/ruin/unpowered/planet_rock/shippingdock)
+"zR" = (
+/obj/machinery/light/broken{
+	dir = 4
+	},
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"zS" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/turf/open/floor/carpet/orange,
+/area/ruin/unpowered/planet_rock/shippingdockoffice)
+"Ah" = (
+/obj/effect/turf_decal/trimline/white/corner{
+	color = "#FFFFFF";
+	alpha = 255
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Ai" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/door/airlock/maintenance_hatch,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_rock/shippingdockoffice)
+"Ak" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/slab_4{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"As" = (
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/open/floor/monotile/light,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"AH" = (
+/obj/effect/turf_decal/trimline/neutral/filled/warning{
+	dir = 8;
+	alpha = 255
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"AQ" = (
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_rock/shippingdock)
+"Br" = (
+/obj/machinery/door/airlock/grunge{
+	name = "Pokój socjalny";
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_rock/shippingdockoffice)
+"Bw" = (
+/obj/structure/cable,
+/obj/structure/cable/yellow,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"BC" = (
+/obj/effect/decal/fakelattice,
+/obj/item/stack/ore/titanium,
+/obj/item/crowbar/large,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"BE" = (
+/obj/structure/chair/office{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_rock/shippingdockcustoms)
+"BF" = (
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/structure/barricade/sandbags,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_rock/shippingdock)
+"BH" = (
+/obj/effect/decal/cleanable/vomit/old,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/showroomfloor,
+/area/ruin/unpowered/planet_rock/shippingdockoffice)
+"BI" = (
+/obj/item/stack/ore/titanium,
+/turf/open/floor/plating/asteroid/rockplanet/wet,
+/area/lavaland/surface/outdoors)
+"BK" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/carpet/orange,
+/area/ruin/unpowered/planet_rock/shippingdockoffice)
+"BL" = (
+/obj/structure/flora/ash/cap_shroom,
+/turf/open/floor/plating/asteroid/rockplanet/wet,
+/area/lavaland/surface/outdoors)
+"BM" = (
+/obj/effect/turf_decal/trimline/white/corner{
+	dir = 8;
+	color = "#FFFFFF";
+	alpha = 255
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"BO" = (
+/obj/structure/flora/ash/cacti,
+/turf/open/floor/plating/asteroid/rockplanet,
+/area/lavaland/surface/outdoors)
+"BP" = (
+/obj/machinery/door/airlock/public/glass{
+	dir = 4;
+	req_one_access_txt = "52"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_rock/shippingdock)
+"BR" = (
+/obj/structure/railing{
+	dir = 8
+	},
+/turf/open/floor/concrete/slab_4{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"BS" = (
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_rock/shippingdockcustoms)
+"BV" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/mine/explosive,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_rock/shippingdockoffice)
+"Cb" = (
+/obj/machinery/door/poddoor{
+	dir = 4;
+	id = "shippingdocksecure"
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_rock/shippingdocksecure)
+"Cs" = (
+/obj/machinery/door/airlock/external,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_rock/shippingdockoffice)
+"Cx" = (
+/obj/machinery/computer/mech_bay_power_console{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 6
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"CB" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/carpet/orange,
+/area/ruin/unpowered/planet_rock/shippingdockoffice)
+"CD" = (
+/obj/structure/closet/crate/large,
+/obj/item/bot_assembly/ed209,
+/obj/item/bot_assembly/ed209,
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"CF" = (
+/obj/item/stack/ore/plasma,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_rock/shippingdock)
+"CH" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"CI" = (
+/obj/structure/chair/fancy/bench/left{
+	dir = 4
+	},
+/turf/open/floor/concrete/slab_4{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"CJ" = (
+/obj/effect/spawner/lootdrop/maintenance,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"CL" = (
+/obj/structure/railing/corner{
+	dir = 1
+	},
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"CU" = (
+/obj/machinery/door/airlock/external{
+	dir = 4
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_rock/shippingdockoffice)
+"Db" = (
+/obj/structure/frame/machine,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_rock/shippingdock)
+"Di" = (
+/obj/structure/tank_dispenser,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"Dm" = (
+/obj/structure/sign/warning/electricshock{
+	pixel_y = 26
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Dp" = (
+/obj/item/paper/crumpled{
+	default_raw_text = "# 01010100 01001000 01001001 01010011 00100000 01010011 01010000 01000001 01000011 01000101 00100000 01001001 01001110 01010100 01000101 01001110 01010100 01001001 01001111 01001110 01000001 01001100 01001100 01011001 00100000 01001100 01000101 01000110 01010100 00100000 01000010 01001100 01000001 01001110 01001011"
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Ds" = (
+/obj/item/stack/ore/titanium,
+/obj/effect/turf_decal/box/white,
+/obj/item/wallframe/apc{
+	pixel_y = 19
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_rock/shippingdock)
+"Du" = (
+/obj/effect/decal/cleanable/robot_debris/down,
+/obj/effect/decal/cleanable/plasma,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Dv" = (
+/obj/structure/rack,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/open/floor/monotile/light,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"Dy" = (
+/obj/effect/turf_decal/caution/stand_clear,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"DC" = (
+/obj/structure/table/wood,
+/obj/item/flashlight/lamp/green,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_rock/shippingdockoffice)
+"DJ" = (
+/turf/closed/wall,
+/area/ruin/unpowered/planet_rock/shippingdockcustoms)
+"DK" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/turf/open/floor/plating/asteroid/rockplanet/wet,
+/area/lavaland/surface/outdoors)
+"DR" = (
+/obj/effect/decal/fakelattice,
+/obj/item/stack/ore/iron,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"DS" = (
+/obj/structure/sign/warning/nosmoking/circle{
+	pixel_y = 24
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"DW" = (
+/turf/open/floor/concrete/slab_4{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"DX" = (
+/obj/effect/decal/cleanable/glass,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Eb" = (
+/obj/structure/fence/cut/large{
+	dir = 1
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Ei" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"Eo" = (
+/obj/structure/table/wood,
+/obj/item/folder,
+/obj/item/pen/fountain,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_rock/shippingdockoffice)
+"Ev" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/slab_4{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Ey" = (
+/obj/structure/fence/cut/medium{
+	dir = 4
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Ez" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_rock/shippingdockoffice)
+"EG" = (
+/obj/item/stack/cable_coil/cut,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_rock/shippingdock)
+"EK" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/turf/open/floor/carpet/orange,
+/area/ruin/unpowered/planet_rock/shippingdockoffice)
+"EL" = (
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 5
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"EN" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/item/assembly/mousetrap/armed,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_rock/shippingdockoffice)
+"EP" = (
+/obj/structure/sign/departments/drop{
+	pixel_x = 32
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"EV" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/robot_debris/limb,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"EW" = (
+/obj/structure/flora/tree/cactus,
+/turf/open/floor/plating/asteroid/rockplanet,
+/area/lavaland/surface/outdoors)
+"EY" = (
+/obj/structure/railing{
+	dir = 1
+	},
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Fe" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/carpet/orange,
+/area/ruin/unpowered/planet_rock/shippingdockoffice)
+"Fg" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"Fo" = (
+/obj/structure/flora/grass/rockplanet,
+/turf/open/floor/plating/asteroid/rockplanet,
+/area/lavaland/surface/outdoors)
+"Ft" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/carpet/orange,
+/area/ruin/unpowered/planet_rock/shippingdockoffice)
+"Fx" = (
+/obj/effect/turf_decal/stripes/asteroid/corner{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/ash/large,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"FB" = (
+/obj/structure/cable/yellow,
+/obj/item/ammo_casing/spent{
+	pixel_x = 10;
+	pixel_y = 12
+	},
+/obj/item/ammo_casing/spent{
+	pixel_x = 3;
+	pixel_y = -5
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"FC" = (
+/obj/machinery/door/airlock/external{
+	dir = 4
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_rock/shippingdockoffice)
+"FL" = (
+/obj/structure/rack,
+/obj/structure/window/reinforced,
+/obj/item/food/fishfingers,
+/obj/item/food/pizzaslice/margherita,
+/turf/open/floor/monotile/light,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"FV" = (
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"FY" = (
+/obj/structure/chair/fancy/shuttle{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/brown/half{
+	dir = 8;
+	color = "#997C4F";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/basic/mothroach{
+	name = "Gmatwa"
+	},
+/turf/open/floor/mineral/titanium/white,
+/area/ruin/unpowered/planet_rock/shippingdock)
+"FZ" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/carpet/orange,
+/area/ruin/unpowered/planet_rock/shippingdockoffice)
+"Gj" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/stack/ore/iron,
+/turf/open/floor/concrete{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Gn" = (
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/oil,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"Gq" = (
+/obj/effect/turf_decal/trimline/white/warning{
+	color = "#FFFFFF";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Gu" = (
+/obj/structure/frame/computer{
+	dir = 8
+	},
+/obj/item/stack/ore/gold,
+/obj/effect/turf_decal/tile/brown/half{
+	dir = 5;
+	color = "#997C4F";
+	alpha = 255
+	},
+/turf/open/floor/mineral/titanium/white,
+/area/ruin/unpowered/planet_rock/shippingdock)
+"Gy" = (
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"GK" = (
+/obj/structure/railing{
+	dir = 1
+	},
+/obj/effect/mine/explosive,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"GN" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_rock/shippingdockoffice)
+"GO" = (
+/obj/effect/turf_decal/caution/stand_clear/white,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"GZ" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/carpet/orange,
+/area/ruin/unpowered/planet_rock/shippingdockoffice)
+"Ha" = (
+/obj/effect/turf_decal/stripes/asteroid/corner{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Hf" = (
+/obj/item/ammo_box/magazine/pistolm9mm{
+	pixel_x = 5;
+	pixel_y = 12
+	},
+/obj/item/ammo_casing/spent{
+	pixel_x = 3;
+	pixel_y = -5
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"Hh" = (
+/obj/effect/turf_decal/box/white/corners{
+	dir = 4
+	},
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"Hi" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 1
+	},
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"Hn" = (
+/obj/effect/turf_decal/trimline/white/corner{
+	dir = 4;
+	color = "#FFFFFF";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Hq" = (
+/obj/structure/table,
+/obj/machinery/door/window/brigdoor/eastright{
+	dir = 2
+	},
+/obj/machinery/door/window/northright,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_rock/shippingdockcustoms)
+"Hs" = (
+/obj/effect/decal/cleanable/shreds,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/carpet/black,
+/area/ruin/unpowered/planet_rock/shippingdockoffice)
+"Hv" = (
+/obj/effect/decal/fakelattice,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Hy" = (
+/obj/structure/cable,
+/obj/machinery/power/apc/auto_name/west,
+/obj/structure/window/reinforced,
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_rock/shippingdocksecure)
+"Hz" = (
+/obj/structure/barricade/wooden,
+/obj/effect/decal/cleanable/oil/streak,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"HL" = (
+/obj/structure/railing{
+	max_integrity = 70;
+	dir = 4
+	},
+/obj/structure/barricade/sandbags,
+/turf/open/floor/plating/rust{
+	light_power = 0.6;
+	light_range = 2
+	},
+/area/ruin/unpowered/planet_rock/shippingdock)
+"HN" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/slab_4{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"HQ" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_rock/shippingdockoffice)
+"HR" = (
+/obj/structure/railing,
+/obj/structure/table,
+/obj/item/radio,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_rock/shippingdock)
+"HW" = (
+/obj/item/ammo_casing/spent{
+	pixel_x = 3;
+	pixel_y = -5
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"Ie" = (
+/obj/structure/chair/fancy/plastic{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_rock/shippingdock)
+"Ig" = (
+/obj/effect/turf_decal/trimline/white/arrow_ccw{
+	color = "#FFFFFF";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Ii" = (
+/obj/item/pipe{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_rock/shippingdock)
+"In" = (
+/obj/effect/turf_decal/bot,
+/obj/effect/turf_decal/stripes/asteroid/line,
+/obj/structure/mecha_wreckage/ripley,
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"Io" = (
+/obj/effect/decal/fakelattice,
+/obj/item/stack/ore/titanium,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Iv" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/light/broken{
+	dir = 4
+	},
+/turf/open/floor/carpet/black,
+/area/ruin/unpowered/planet_rock/shippingdockoffice)
+"Iw" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"IA" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/mine/shrapnel/sting,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"IQ" = (
+/obj/machinery/door/poddoor/shutters{
+	id = "shippingdockwarehousesouth"
+	},
+/obj/effect/turf_decal/trimline/neutral/filled/warning{
+	dir = 1;
+	alpha = 255
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"Ja" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"Jc" = (
+/obj/structure/cable,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Jd" = (
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 8
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Jf" = (
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"Jg" = (
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 5
+	},
+/obj/item/stack/cable_coil/cut,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"Jh" = (
+/obj/effect/turf_decal/tile/brown/half{
+	dir = 8;
+	color = "#997C4F";
+	alpha = 255
+	},
+/obj/item/wallframe/airalarm{
+	pixel_y = -27
+	},
+/turf/open/floor/plasteel/white,
+/area/ruin/unpowered/planet_rock/shippingdock)
+"Ji" = (
+/obj/structure/cable/yellow,
+/turf/open/floor/concrete/slab_4{
+	light_power = 0.6;
+	light_range = 2
+	},
+/area/lavaland/surface/outdoors)
+"Jj" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_rock/shippingdock)
+"Jn" = (
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/lavaland/surface/outdoors)
+"Jr" = (
+/obj/effect/decal/cleanable/shreds{
+	pixel_x = 7;
+	pixel_y = -8
+	},
+/obj/effect/decal/cleanable/shreds{
+	pixel_y = 7
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating{
+	light_power = 0.6;
+	light_range = 2;
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Jt" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Ju" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/mine/shrapnel/sting,
+/turf/open/floor/concrete{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Jx" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 10
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/mine/explosive,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_rock/shippingdockoffice)
+"Jy" = (
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete/slab_4{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Jz" = (
+/obj/effect/mine/explosive,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"JD" = (
+/obj/effect/turf_decal/box,
+/obj/structure/closet/crate/large,
+/obj/machinery/smoke_machine,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"JJ" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 9
+	},
+/turf/open/floor/concrete/slab_4{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Ke" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Kn" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_rock/shippingdock)
+"Kp" = (
+/obj/machinery/suit_storage_unit,
+/obj/item/clothing/head/helmet/space/eva,
+/obj/item/clothing/under/pants/jeans,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"Ky" = (
+/obj/effect/turf_decal/trimline/neutral/filled/warning{
+	dir = 10;
+	alpha = 255
+	},
+/obj/item/toy/snappop,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"KB" = (
+/obj/item/stack/ore/iron,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"KD" = (
+/obj/structure/railing{
+	dir = 6
+	},
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"KH" = (
+/obj/structure/railing{
+	max_integrity = 70;
+	dir = 4
+	},
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"KL" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/concrete/slab_4{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"KV" = (
+/obj/machinery/airalarm/directional/west,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/carpet/black,
+/area/ruin/unpowered/planet_rock/shippingdockoffice)
+"KX" = (
+/obj/structure/cable/yellow,
+/obj/item/shard,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"KY" = (
+/obj/effect/turf_decal/box,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"La" = (
+/obj/structure/railing{
+	dir = 6
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Lc" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/mine/explosive,
+/turf/open/floor/concrete{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Ld" = (
+/turf/closed/wall/r_wall,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"Le" = (
+/obj/item/stack/ore/iron,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_rock/shippingdock)
+"Lh" = (
+/obj/effect/decal/cleanable/shreds{
+	pixel_y = 6;
+	pixel_x = -7
+	},
+/turf/open/floor/plating{
+	light_power = 0.6;
+	light_range = 2;
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Li" = (
+/obj/structure/cable,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_rock/shippingdockcustoms)
+"Lj" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
+/turf/open/floor/carpet/orange,
+/area/ruin/unpowered/planet_rock/shippingdockoffice)
+"Ll" = (
+/obj/effect/turf_decal/trimline/white/warning{
+	dir = 1;
+	color = "#FFFFFF";
+	alpha = 255
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Lp" = (
+/obj/structure/railing{
+	max_integrity = 70
+	},
+/obj/structure/table,
+/obj/item/binoculars,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_rock/shippingdock)
+"Lq" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 9
+	},
+/turf/open/floor/concrete/slab_4{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Lt" = (
+/obj/effect/turf_decal/box/white/corners{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"Lw" = (
+/obj/structure/railing{
+	dir = 9
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"LD" = (
+/obj/structure/cable/yellow,
+/obj/structure/barricade/sandbags,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"LE" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/turf/open/floor/concrete/slab_4{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"LG" = (
+/obj/item/stack/ore/titanium,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"LJ" = (
+/obj/structure/chair/fancy/bench/left{
+	dir = 8
+	},
+/turf/open/floor/concrete/slab_4{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"LN" = (
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/components/unary/passive_vent,
+/turf/open/floor/concrete{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"LO" = (
+/obj/machinery/button/door{
+	id = "shippingdockwarehousesouth";
+	dir = 8;
+	pixel_x = 24
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"LP" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 6
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/slab_4{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"LR" = (
+/obj/effect/turf_decal/box/red,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/mine/explosive,
+/turf/open/floor/plasteel/white,
+/area/ruin/unpowered/planet_rock/shippingdock)
+"LU" = (
+/obj/structure/fence{
+	dir = 4
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"LZ" = (
+/obj/structure/window/reinforced,
+/turf/open/floor/monotile/light,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"Mf" = (
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"Mg" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/door/airlock/public/glass{
+	dir = 4;
+	req_one_access_txt = "52"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_rock/shippingdock)
+"Mq" = (
+/obj/item/stack/ore/iron,
+/obj/effect/turf_decal/tile/brown/half{
+	dir = 4;
+	color = "#997C4F";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/white,
+/area/ruin/unpowered/planet_rock/shippingdock)
+"Mr" = (
+/obj/structure/cable/yellow,
+/obj/machinery/button/door{
+	pixel_y = 24;
+	id = "shippingdockwarehousesouth"
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"Mw" = (
+/obj/item/trash/waffles,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/carpet/black,
+/area/ruin/unpowered/planet_rock/shippingdockoffice)
+"Mz" = (
+/obj/effect/mine/explosive,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"MQ" = (
+/turf/open/floor/concrete{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"MR" = (
+/obj/structure/fence/corner{
+	dir = 1
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"MU" = (
+/obj/structure/sign/warning/nosmoking/circle{
+	pixel_y = 24
+	},
+/turf/open/floor/concrete/slab_4{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"MV" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/rack,
+/obj/effect/spawner/lootdrop/maintenance/eight,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"MW" = (
+/turf/open/floor/plating/asteroid/rockplanet/cracked,
+/area/lavaland/surface/outdoors)
+"Nf" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_rock/shippingdockoffice)
+"Nh" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/carpet/purple,
+/area/ruin/unpowered/planet_rock/shippingdockoffice)
+"Nj" = (
+/obj/item/stack/ore/iron,
+/obj/effect/turf_decal/box/white,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_rock/shippingdock)
+"Nk" = (
+/mob/living/basic/creature,
+/turf/open/floor/plating/asteroid/rockplanet/wet,
+/area/lavaland/surface/outdoors)
+"Nl" = (
+/obj/effect/decal/cleanable/plasma,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Nr" = (
+/obj/item/restraints/legcuffs/beartrap{
+	armed = 1
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Nu" = (
+/obj/structure/cable/yellow,
+/obj/structure/barricade/sandbags,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"Nw" = (
+/obj/structure/rack,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/effect/spawner/lootdrop/maintenance/eight,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"NF" = (
+/obj/structure/cable/yellow,
+/obj/machinery/power/solar,
+/turf/open/floor/concrete/slab_4{
+	light_power = 0.6;
+	light_range = 2
+	},
+/area/lavaland/surface/outdoors)
+"NK" = (
+/turf/open/floor/plating/rust{
+	light_power = 0.6;
+	light_range = 2
+	},
+/area/ruin/unpowered/planet_rock/shippingdock)
+"NP" = (
+/obj/effect/turf_decal/trimline/neutral/filled/warning{
+	dir = 6;
+	alpha = 255
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"NQ" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/item/restraints/legcuffs/beartrap{
+	armed = 1
+	},
+/turf/open/floor/concrete/slab_4{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"NR" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/slab_4{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"NU" = (
+/obj/machinery/door/airlock/external,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_rock/shippingdockcustoms)
+"Od" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Oh" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_rock/shippingdockcustoms)
+"Oj" = (
+/obj/structure/closet/crate,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_rock/shippingdock)
+"Oq" = (
+/obj/structure/flora/rock/pile/rockplanet,
+/turf/open/floor/plating/asteroid/rockplanet/cracked,
+/area/lavaland/surface/outdoors)
+"Oz" = (
+/obj/structure/cable/yellow,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"OA" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/chair/fancy/comfy{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_rock/shippingdockoffice)
+"OI" = (
+/obj/effect/turf_decal/caution/stand_clear,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"ON" = (
+/obj/effect/turf_decal/trimline/neutral/filled/warning{
+	dir = 5;
+	alpha = 255
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"OP" = (
+/obj/effect/turf_decal/box/white,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"OT" = (
+/obj/structure/girder/reinforced,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_rock/shippingdock)
+"OU" = (
+/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/machinery/door/airlock/grunge{
+	name = "Punkt kontrolny ładowni"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_rock/shippingdockcustoms)
+"Po" = (
+/obj/effect/turf_decal/trimline/neutral/warning{
+	dir = 1;
+	alpha = 255
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Pp" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Pw" = (
+/obj/machinery/atmospherics/components/unary/tank/air{
+	piping_layer = 2
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_rock/shippingdockoffice)
+"Px" = (
+/obj/effect/turf_decal/trimline/white/filled/line{
+	dir = 4;
+	color = "#FFFFFF";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"PB" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/mine/explosive,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"PE" = (
+/obj/structure/grille,
+/obj/structure/window/shuttle,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_rock/shippingdock)
+"PH" = (
+/obj/structure/table/wood,
+/obj/item/storage/bag/tray,
+/obj/item/storage/bag/tray{
+	pixel_y = 1
+	},
+/obj/item/storage/bag/tray{
+	pixel_y = 2
+	},
+/obj/item/storage/bag/tray{
+	pixel_y = 3
+	},
+/obj/machinery/light/broken{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_rock/shippingdockoffice)
+"PJ" = (
+/obj/machinery/door/window/brigdoor{
+	req_one_access_txt = "53"
+	},
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_rock/shippingdocksecure)
+"PK" = (
+/obj/item/toy/snappop,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"PN" = (
+/obj/effect/turf_decal/box/corners,
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"PW" = (
+/obj/structure/cable,
+/obj/structure/grille,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"PZ" = (
+/obj/effect/decal/remains/human,
+/obj/item/ammo_casing/spent{
+	pixel_x = 10;
+	pixel_y = 12
+	},
+/obj/item/ammo_casing/spent{
+	pixel_x = -14;
+	pixel_y = 1
+	},
+/obj/item/clothing/suit/hazardvest,
+/obj/item/clothing/head/beret/supply{
+	pixel_y = 17
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"Qb" = (
+/obj/effect/decal/cleanable/oil,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"Qc" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_rock/shippingdocksecure)
+"Qf" = (
+/obj/item/kirbyplants/random,
+/turf/open/floor/carpet/purple,
+/area/ruin/unpowered/planet_rock/shippingdockoffice)
+"Ql" = (
+/obj/structure/table,
+/obj/machinery/door/window/brigdoor,
+/obj/machinery/door/window/northleft,
+/obj/item/clipboard,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_rock/shippingdockcustoms)
+"Qm" = (
+/obj/structure/cable,
+/obj/effect/mine/shrapnel/sting,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Qo" = (
+/obj/item/pipe{
+	dir = 8
+	},
+/obj/item/wrench,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_rock/shippingdock)
+"Qu" = (
+/obj/effect/turf_decal/trimline/white/corner{
+	dir = 1;
+	color = "#FFFFFF";
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Qv" = (
+/obj/structure/railing{
+	dir = 10
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Qw" = (
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/layer_manifold,
+/turf/open/floor/concrete{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Qz" = (
+/obj/structure/railing{
+	dir = 5
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"QC" = (
+/obj/structure/table,
+/obj/item/radio,
+/obj/machinery/airalarm/directional/east,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_rock/shippingdockcustoms)
+"QG" = (
+/obj/effect/turf_decal/tile/brown/half{
+	dir = 4;
+	color = "#997C4F";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/white,
+/area/ruin/unpowered/planet_rock/shippingdock)
+"QM" = (
+/obj/structure/fence/corner{
+	dir = 4
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"QQ" = (
+/obj/structure/fence,
+/turf/open/floor/concrete{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"QS" = (
+/obj/machinery/atmospherics/components/unary/tank/air{
+	piping_layer = 2
+	},
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/turf/open/floor/plating/rust{
+	light_power = 0.6;
+	light_range = 2
+	},
+/area/ruin/unpowered/planet_rock/shippingdockoffice)
+"QV" = (
+/obj/structure/table,
+/obj/item/clothing/head/welding,
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 8
+	},
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"Rb" = (
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/carpet/orange,
+/area/ruin/unpowered/planet_rock/shippingdockoffice)
+"Rn" = (
+/obj/structure/cable/yellow,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"Rq" = (
+/obj/item/stack/ore/iron,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_rock/shippingdock)
+"Rs" = (
+/obj/item/pipe{
+	dir = 8
+	},
+/obj/item/stack/ore/plasma,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_rock/shippingdock)
+"Rx" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/robot_debris/limb,
+/turf/open/floor/concrete{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"RC" = (
+/obj/structure/fence{
+	dir = 4
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/concrete{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"RF" = (
+/obj/structure/table/wood,
+/obj/item/food/donut/choco,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/carpet/black,
+/area/ruin/unpowered/planet_rock/shippingdockoffice)
+"RG" = (
+/obj/effect/turf_decal/delivery/red,
+/obj/structure/closet/crate/secure/gear{
+	req_one_access_txt = "53"
+	},
+/obj/item/ammo_box/magazine/pistolm9mm,
+/obj/item/ammo_box/magazine/pistolm9mm,
+/obj/item/gun/ballistic/automatic/pistol/no_mag,
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_rock/shippingdocksecure)
+"RK" = (
+/obj/machinery/mech_bay_recharge_port,
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 10
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"RZ" = (
+/obj/effect/decal/cleanable/food/flour,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_rock/shippingdockoffice)
+"Se" = (
+/obj/effect/turf_decal/loading_area{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/white/corner{
+	dir = 1
+	},
+/obj/structure/reagent_dispensers/fueltank,
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"Sh" = (
+/obj/effect/turf_decal/stripes/asteroid/corner,
+/turf/open/floor/concrete{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"So" = (
+/obj/structure/flora/grass/rockplanet/dead,
+/turf/open/floor/plating/asteroid/rockplanet/wet,
+/area/lavaland/surface/outdoors)
+"Sv" = (
+/turf/closed/wall/r_wall/rust,
+/area/ruin/unpowered/planet_rock/shippingdocksecure)
+"SD" = (
+/obj/machinery/door/airlock/external{
+	dir = 4
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_rock/shippingdockoffice)
+"SF" = (
+/obj/effect/turf_decal/box/red,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/white,
+/area/ruin/unpowered/planet_rock/shippingdock)
+"SI" = (
+/obj/effect/turf_decal/caution/stand_clear{
+	dir = 4
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"SJ" = (
+/obj/effect/turf_decal/box/white,
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"SK" = (
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_rock/shippingdock)
+"SL" = (
+/turf/closed/wall/r_wall/rust,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"SR" = (
+/obj/effect/turf_decal/delivery,
+/obj/structure/closet/crate/solarpanel_small,
+/obj/item/clothing/gloves/color/fyellow,
+/obj/item/clothing/gloves/color/fyellow,
+/obj/item/clothing/gloves/color/yellow,
+/obj/item/clothing/gloves/color/fyellow/old,
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"Tf" = (
+/obj/effect/decal/cleanable/generic,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Th" = (
+/obj/structure/cable/yellow,
+/obj/machinery/power/solar,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/slab_4{
+	light_power = 0.6;
+	light_range = 2
+	},
+/area/lavaland/surface/outdoors)
+"Tm" = (
+/obj/structure/flora/ausbushes/ywflowers,
+/turf/open/floor/plating/asteroid/rockplanet/wet,
+/area/lavaland/surface/outdoors)
+"Ts" = (
+/obj/effect/decal/cleanable/shreds{
+	pixel_y = 10
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating{
+	light_power = 0.6;
+	light_range = 2;
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Tt" = (
+/obj/structure/railing/corner{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Tv" = (
+/obj/effect/turf_decal/stripes/full,
+/obj/structure/sign/warning/electricshock{
+	pixel_y = 26
+	},
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"TB" = (
+/obj/structure/table,
+/obj/item/flashlight/lamp,
+/obj/machinery/button/door{
+	pixel_y = 24;
+	id = "shippingdockfront"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_rock/shippingdockcustoms)
+"TN" = (
+/obj/structure/fence{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/concrete{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"TO" = (
+/obj/structure/flora/rock/pile/rockplanet,
+/turf/open/floor/plating/asteroid/rockplanet,
+/area/lavaland/surface/outdoors)
+"TS" = (
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 9
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"TT" = (
+/obj/structure/flora/ash/cacti,
+/turf/open/floor/plating/asteroid/rockplanet/cracked,
+/area/lavaland/surface/outdoors)
+"TV" = (
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"TZ" = (
+/obj/effect/turf_decal/caution/stand_clear{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Uf" = (
+/obj/effect/turf_decal/caution/stand_clear/red,
+/mob/living/basic/hivebot/range{
+	faction = list("nanotrasenprivate")
+	},
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_rock/shippingdocksecure)
+"Ur" = (
+/obj/effect/turf_decal/caution/stand_clear/red,
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_rock/shippingdocksecure)
+"Us" = (
+/obj/structure/table/wood,
+/obj/item/storage/fancy/donut_box,
+/turf/open/floor/carpet/black,
+/area/ruin/unpowered/planet_rock/shippingdockoffice)
+"UB" = (
+/obj/structure/table,
+/obj/item/modular_computer/laptop,
+/turf/open/floor/carpet/purple,
+/area/ruin/unpowered/planet_rock/shippingdockoffice)
+"UC" = (
+/obj/structure/cable,
+/obj/machinery/power/smes/engineering,
+/turf/open/floor/plating,
+/area/lavaland/surface/outdoors)
+"UF" = (
+/obj/item/stack/cable_coil/cut,
+/obj/item/stack/ore/titanium,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_rock/shippingdock)
+"UH" = (
+/obj/machinery/door/poddoor/shutters{
+	id = "shippingdockwarehouse"
+	},
+/obj/effect/turf_decal/trimline/neutral/filled/warning{
+	alpha = 255
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"UI" = (
+/obj/structure/barricade/wooden,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"UJ" = (
+/obj/structure/flora/ausbushes/brflowers,
+/turf/open/floor/plating/asteroid/rockplanet/wet,
+/area/lavaland/surface/outdoors)
+"UP" = (
+/obj/effect/turf_decal/stripes/full,
+/obj/structure/cable,
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"US" = (
+/obj/structure/sign/poster/official/safety_internals{
+	pixel_x = -32
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 4
+	},
+/obj/effect/mine/shrapnel,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_rock/shippingdockoffice)
+"Vb" = (
+/obj/structure/railing/corner,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Vd" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/item/reagent_containers/food/drinks/trophy/gold_cup{
+	pixel_y = 6
+	},
+/obj/structure/table/wood,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_rock/shippingdockoffice)
+"Vf" = (
+/obj/effect/turf_decal/caution/stand_clear,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"Vi" = (
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"Vo" = (
+/obj/structure/cable/yellow,
+/obj/structure/sign/warning/electricshock{
+	pixel_y = 26
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Vs" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/item/restraints/legcuffs/beartrap{
+	armed = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_rock/shippingdockoffice)
+"Vt" = (
+/obj/machinery/light/small,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 5
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_rock/shippingdockoffice)
+"Vv" = (
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 4
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Vx" = (
+/obj/machinery/power/floodlight{
+	anchored = 1
+	},
+/obj/structure/cable/yellow,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"VB" = (
+/mob/living/basic/creature,
+/turf/open/floor/plating/asteroid/rockplanet,
+/area/lavaland/surface/outdoors)
+"VC" = (
+/obj/structure/rack,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/item/storage/box,
+/turf/open/floor/monotile/light,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"VD" = (
+/obj/effect/decal/cleanable/oil/streak,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"VH" = (
+/obj/structure/fence/cut/large{
+	dir = 8
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"VM" = (
+/obj/structure/chair/fancy/shuttle{
+	dir = 4
+	},
+/obj/item/stack/ore/silver,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_rock/shippingdock)
+"VR" = (
+/obj/structure/fence/post{
+	dir = 4
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"VT" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 10
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/carpet/black,
+/area/ruin/unpowered/planet_rock/shippingdockoffice)
+"VW" = (
+/obj/effect/mine/explosive,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Wo" = (
+/obj/structure/chair/fancy/bench/right{
+	dir = 4
+	},
+/turf/open/floor/concrete/slab_4{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Ws" = (
+/obj/structure/frame/machine,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_rock/shippingdock)
+"Wu" = (
+/obj/item/trash/syndi_cakes,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/carpet/orange,
+/area/ruin/unpowered/planet_rock/shippingdockoffice)
+"WA" = (
+/obj/structure/cable/yellow,
+/obj/machinery/power/solar_control{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/concrete/slab_4{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/shippingdockoffice)
+"WD" = (
+/obj/structure/cable,
+/obj/machinery/light/broken{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"WG" = (
+/obj/machinery/door/airlock/external,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_rock/shippingdockcustoms)
+"WI" = (
+/obj/structure/railing{
+	dir = 8
+	},
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"WJ" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 9
+	},
+/turf/open/floor/concrete/slab_4{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"WR" = (
+/obj/structure/frame/machine{
+	anchored = 1
+	},
+/obj/structure/sign/departments/cargo{
+	pixel_y = 32
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_rock/shippingdock)
+"WU" = (
+/obj/item/stack/ore/iron,
+/turf/open/floor/concrete{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"WX" = (
+/obj/machinery/door/airlock/external,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_rock/shippingdockoffice)
+"WY" = (
+/obj/structure/cable,
+/obj/structure/sign/warning/securearea{
+	pixel_x = 32
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"WZ" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_rock/shippingdocksecure)
+"Xd" = (
+/obj/structure/filingcabinet,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_rock/shippingdockoffice)
+"Xk" = (
+/obj/effect/turf_decal/trimline/neutral/filled/warning{
+	dir = 9;
+	alpha = 255
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Xp" = (
+/obj/effect/turf_decal/trimline/white/filled/line{
+	dir = 4;
+	color = "#FFFFFF";
+	alpha = 255
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Xr" = (
+/obj/structure/safe/floor,
+/obj/effect/turf_decal/siding/wood/end{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/wood,
+/obj/item/stack/spacecash/c500,
+/obj/item/stack/spacecash/c100,
+/obj/machinery/light/broken{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_rock/shippingdockoffice)
+"Xt" = (
+/obj/effect/turf_decal/caution/stand_clear{
+	dir = 8
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"XD" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/spawner/lootdrop/maintenance,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"XM" = (
+/obj/structure/chair/fancy/plastic,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_rock/shippingdock)
+"XN" = (
+/obj/structure/curtain,
+/obj/machinery/shower{
+	pixel_y = 19
+	},
+/obj/structure/window/reinforced/survival_pod,
+/obj/machinery/door/window/survival_pod{
+	dir = 4
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/ruin/unpowered/planet_rock/shippingdockoffice)
+"XS" = (
+/obj/effect/mine/explosive,
+/turf/open/floor/concrete/slab_4{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"XV" = (
+/obj/machinery/door/airlock/external,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_rock/shippingdockoffice)
+"XZ" = (
+/obj/effect/turf_decal/trimline/neutral/filled/warning{
+	dir = 4;
+	alpha = 255
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Yc" = (
+/obj/effect/mine/explosive,
+/turf/open/floor/concrete{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Yf" = (
+/obj/effect/turf_decal/siding/white,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"Yh" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/glass,
+/obj/machinery/light/small/broken,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/mine/gas,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_rock/shippingdockoffice)
+"Yi" = (
+/obj/effect/turf_decal/trimline/neutral/filled/warning{
+	dir = 4;
+	alpha = 255
+	},
+/obj/effect/turf_decal/trimline/neutral/filled/warning{
+	dir = 8;
+	alpha = 255
+	},
+/obj/effect/turf_decal/trimline/neutral/filled/warning{
+	dir = 8;
+	alpha = 255
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Yj" = (
+/obj/machinery/door/poddoor,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_rock/shippingdock)
+"Yp" = (
+/obj/structure/railing{
+	dir = 9
+	},
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Yv" = (
+/obj/item/wirecutters{
+	pixel_y = 17
+	},
+/turf/open/floor/plating/asteroid/rockplanet,
+/area/lavaland/surface/outdoors)
+"Yw" = (
+/turf/closed/wall/rust,
+/area/ruin/unpowered/planet_rock/shippingdock)
+"Yz" = (
+/obj/structure/fence{
+	dir = 1
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"YI" = (
+/obj/item/weldingtool,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_rock/shippingdock)
+"YK" = (
+/obj/effect/turf_decal/box,
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"YS" = (
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 1
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"YZ" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Zg" = (
+/obj/item/stack/ore/plasma,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_rock/shippingdock)
+"Zh" = (
+/obj/structure/rack,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/effect/spawner/lootdrop/maintenance/eight,
+/turf/open/floor/monotile/light,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"Zl" = (
+/obj/structure/chair{
+	dir = 4
+	},
+/obj/machinery/button/door{
+	pixel_y = 24;
+	id = "shippingdockwarehouse"
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"Zx" = (
+/obj/structure/cable/yellow,
+/obj/effect/decal/cleanable/glass,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"ZF" = (
+/obj/machinery/door/airlock/grunge{
+	name = "Pokój socjalny";
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_rock/shippingdockoffice)
+"ZL" = (
+/obj/structure/fence{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"ZT" = (
+/obj/structure/girder,
+/turf/open/floor/concrete{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"ZU" = (
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 4
+	},
+/obj/item/emptysandbag,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+"ZX" = (
+/obj/structure/railing{
+	dir = 9
+	},
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"ZY" = (
+/obj/effect/turf_decal/box/corners{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/monotile/dark,
+/area/ruin/unpowered/planet_rock/shippingdockwarehouse)
+
+(1,1,1) = {"
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+"}
+(2,1,1) = {"
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+"}
+(3,1,1) = {"
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+jx
+jx
+Fo
+jx
+aB
+MW
+jx
+Fo
+jx
+MW
+MW
+jx
+MW
+jx
+jx
+jx
+jx
+jx
+Fo
+jx
+jx
+jx
+TO
+jx
+jx
+jx
+jx
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+"}
+(4,1,1) = {"
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+jx
+jx
+MW
+MW
+jx
+jx
+Oq
+MW
+MW
+MW
+MW
+MW
+jx
+jx
+Oq
+MW
+MW
+jx
+MW
+MW
+jx
+EW
+jx
+jx
+jx
+jx
+jx
+jx
+jx
+jx
+jx
+jx
+jx
+jx
+jx
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+"}
+(5,1,1) = {"
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+jx
+vk
+MW
+MW
+MW
+jx
+MW
+jx
+mJ
+MW
+MW
+MW
+vk
+MW
+MW
+MW
+MW
+mJ
+jx
+MW
+jx
+jx
+jx
+jx
+TO
+jx
+Fo
+jx
+jx
+EW
+jx
+BO
+jx
+jx
+jx
+jx
+jx
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+"}
+(6,1,1) = {"
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+jx
+jx
+jx
+jx
+yH
+MW
+MW
+MW
+MW
+MW
+yH
+MW
+MW
+MW
+MW
+MW
+MW
+jx
+jx
+Fo
+MW
+jx
+jx
+jx
+jx
+jx
+jx
+jx
+jx
+jx
+jx
+jx
+jx
+Oq
+MW
+MW
+MW
+MW
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+"}
+(7,1,1) = {"
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+jx
+TO
+jx
+jx
+co
+co
+QQ
+QQ
+QQ
+QQ
+QQ
+QQ
+QQ
+QQ
+QQ
+QQ
+QQ
+QQ
+QQ
+Eb
+Eb
+QQ
+QQ
+QQ
+QQ
+QQ
+QQ
+QQ
+QQ
+QQ
+QQ
+co
+co
+MW
+jx
+yH
+MW
+jx
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+"}
+(8,1,1) = {"
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+jx
+jx
+jx
+jx
+co
+MQ
+MQ
+MQ
+MQ
+MQ
+MQ
+MQ
+MQ
+MQ
+MQ
+MQ
+MQ
+Iw
+Iw
+Iw
+Iw
+Iw
+Iw
+Iw
+Iw
+MQ
+MQ
+MQ
+MQ
+MQ
+MQ
+MQ
+co
+MW
+jx
+MW
+MW
+MW
+MW
+jx
+jx
+jx
+jx
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+"}
+(9,1,1) = {"
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+jx
+jx
+jx
+BO
+jx
+LU
+MQ
+Gy
+Gy
+Gy
+Gy
+Gy
+Gy
+Gy
+Gy
+Gy
+Gy
+Hn
+xe
+Gy
+Gy
+Ah
+Gy
+Gy
+Gy
+Gy
+xe
+xe
+xe
+Gy
+Gy
+Gy
+MQ
+LU
+MW
+jx
+MW
+VB
+jx
+MW
+MW
+jx
+jx
+jx
+jx
+jx
+TO
+jx
+jx
+jx
+jx
+Fo
+jx
+jx
+jx
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+"}
+(10,1,1) = {"
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+jx
+Fo
+jx
+jx
+jx
+LU
+MQ
+Gy
+xc
+xe
+xe
+xe
+xe
+Gy
+xe
+in
+xe
+cT
+Gy
+Gy
+Tf
+jR
+Gy
+in
+Tf
+Gy
+Gy
+Gy
+xe
+xe
+in
+Gy
+MQ
+LU
+jx
+MW
+vk
+jx
+jx
+nG
+MW
+MW
+MW
+yH
+MW
+MW
+MW
+jx
+MW
+MW
+vk
+MW
+jx
+jx
+jx
+MW
+MW
+MW
+MW
+jx
+yB
+yB
+"}
+(11,1,1) = {"
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+jx
+jx
+jx
+EW
+jx
+LU
+MQ
+Gy
+xe
+Gy
+Tf
+Gy
+Gy
+xe
+xe
+Gy
+xe
+cT
+xe
+xe
+Gy
+jR
+Gy
+Gy
+Gy
+Gy
+Gy
+Gy
+CJ
+xe
+Gy
+Gy
+MQ
+LU
+jx
+MW
+MW
+jx
+jx
+jx
+jx
+TT
+jx
+jx
+jx
+jx
+MW
+MW
+MW
+jx
+jx
+MW
+MW
+mJ
+MW
+MW
+jx
+jx
+Oq
+jx
+yB
+yB
+"}
+(12,1,1) = {"
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+jx
+jx
+jx
+jx
+jx
+LU
+MQ
+Gy
+xe
+xe
+Gy
+Gy
+xe
+xe
+CJ
+xe
+xe
+Ll
+Gy
+Gy
+xe
+Gq
+Gy
+Gy
+Gy
+xe
+xe
+Gy
+Gy
+xe
+Gy
+Gy
+MQ
+LU
+jx
+MW
+MW
+mJ
+MW
+yH
+MW
+MW
+MW
+vk
+MW
+MW
+MW
+yH
+MW
+MW
+Oq
+MW
+MW
+MW
+jx
+jx
+jx
+Fo
+MW
+jx
+yB
+yB
+"}
+(13,1,1) = {"
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+nG
+jx
+jx
+jx
+jx
+LU
+MQ
+Gy
+in
+xe
+xe
+am
+Gy
+Gy
+Gy
+in
+jD
+cT
+Gy
+CH
+Gy
+Gq
+xe
+xc
+CJ
+Gy
+xe
+xe
+Gy
+xe
+in
+Gy
+MQ
+LU
+jx
+jx
+jx
+jx
+jx
+jx
+jx
+MW
+MW
+MW
+MW
+MW
+MW
+MW
+MW
+MW
+jx
+jx
+MW
+MW
+MW
+MW
+MW
+MW
+MW
+jx
+yB
+yB
+"}
+(14,1,1) = {"
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+jx
+jx
+Fo
+TO
+jx
+LU
+MQ
+Gy
+VW
+Gy
+Gy
+Gy
+Gy
+Gy
+Gy
+Gy
+Gy
+ib
+uf
+Gy
+Gy
+yV
+Gy
+xe
+xe
+Gy
+Gy
+xe
+xe
+Tf
+Gy
+xe
+MQ
+QM
+QQ
+QQ
+QQ
+QQ
+QQ
+QQ
+QQ
+Eb
+QQ
+QQ
+QQ
+QQ
+QQ
+QQ
+QQ
+QQ
+QQ
+QQ
+QQ
+QQ
+QQ
+co
+co
+jx
+jx
+jx
+yB
+yB
+"}
+(15,1,1) = {"
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+jx
+jx
+jx
+jx
+jx
+LU
+MQ
+Gy
+Gy
+KB
+Gy
+Gy
+Gy
+ts
+Gy
+Gy
+Gy
+Ll
+Gy
+Gy
+Gy
+jR
+Gy
+Gy
+xe
+Gy
+Gy
+Tf
+Gy
+Gy
+xe
+xe
+MQ
+MQ
+MQ
+Iw
+Iw
+Iw
+Iw
+Iw
+Iw
+Iw
+Iw
+Iw
+Iw
+Iw
+Iw
+Iw
+Iw
+Iw
+yD
+Iw
+MQ
+MQ
+MQ
+MQ
+co
+jx
+jx
+jx
+yB
+yB
+"}
+(16,1,1) = {"
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+jx
+VB
+jx
+jx
+Fo
+LU
+MQ
+Gy
+Gy
+uV
+Ws
+Gy
+ts
+cu
+uV
+Gy
+Gy
+Ll
+CH
+Gy
+Gy
+jR
+Gy
+Gy
+xe
+xe
+Gy
+Gy
+Gy
+Gy
+xe
+Gy
+MQ
+MQ
+dQ
+yX
+Ev
+Ev
+yX
+Ev
+gG
+DW
+Jz
+gG
+gG
+DW
+Ev
+yX
+yX
+Ev
+fQ
+yX
+Ev
+dQ
+Iw
+MQ
+LU
+jx
+EW
+jx
+jx
+yB
+"}
+(17,1,1) = {"
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+jx
+jx
+jx
+jx
+jx
+LU
+MQ
+Gy
+vs
+uV
+tR
+uV
+uV
+cj
+uV
+Dy
+Gy
+Ll
+Gy
+Gy
+Gy
+Gq
+xe
+TZ
+xe
+Od
+Od
+xe
+xe
+Gy
+Dy
+xe
+Iw
+Ev
+Pp
+tP
+Jc
+Jc
+tP
+tP
+xK
+Pp
+db
+xK
+xK
+xK
+Pp
+Jc
+tP
+tP
+Jc
+xK
+Jc
+Qm
+Ev
+MQ
+LU
+jx
+jx
+jx
+jx
+yB
+"}
+(18,1,1) = {"
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+jx
+jx
+BO
+jx
+jx
+LU
+MQ
+Gy
+Gy
+uV
+xh
+AQ
+Zg
+UF
+re
+LG
+xe
+ib
+VW
+Gy
+am
+Ig
+Gy
+Gy
+Gy
+Gy
+vd
+xe
+xe
+Gy
+am
+xe
+MQ
+Ev
+Pp
+MQ
+MQ
+jT
+jT
+ss
+ss
+ss
+cd
+TN
+Yz
+rQ
+Dm
+us
+zc
+sj
+MQ
+sj
+cU
+tP
+yX
+MQ
+LU
+jx
+jx
+nG
+jx
+yB
+"}
+(19,1,1) = {"
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+MW
+EW
+MW
+nG
+jx
+LU
+MQ
+Gy
+Gy
+uV
+uV
+xJ
+ai
+uV
+OT
+ts
+xe
+Ll
+Gy
+xe
+Gy
+jR
+Gy
+Gy
+Gy
+Gy
+Dp
+xe
+Gy
+xe
+xe
+Gy
+MQ
+Ev
+Jc
+ss
+ss
+jT
+hg
+PH
+gd
+ss
+Jn
+UC
+cC
+RC
+kd
+gs
+kd
+sj
+cf
+ui
+Zx
+Jc
+Ev
+MQ
+LU
+jx
+VB
+jx
+jx
+yB
+"}
+(20,1,1) = {"
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+MW
+MW
+MW
+jx
+jx
+LU
+MQ
+Gy
+CH
+Hv
+uV
+Ii
+Jh
+uV
+Hv
+Gy
+xe
+Ll
+xe
+xe
+Gy
+jR
+Gy
+Gy
+Gy
+Gy
+nT
+xe
+Gy
+xe
+xe
+xe
+Iw
+DW
+tP
+ss
+mY
+KV
+fD
+hm
+RZ
+jT
+jT
+jT
+ss
+ss
+yO
+sj
+kd
+sj
+kd
+gs
+kd
+xK
+Ev
+fs
+LU
+jx
+jx
+jx
+jx
+yB
+"}
+(21,1,1) = {"
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+jx
+jx
+MW
+MW
+jx
+LU
+MQ
+Gy
+ww
+ts
+PE
+Mq
+zJ
+PE
+CJ
+Dy
+xe
+Ll
+xe
+Gy
+Gy
+jR
+Gy
+ww
+Gy
+Gy
+Gy
+xe
+Gy
+xe
+Dy
+xe
+Iw
+gG
+Jc
+al
+dI
+Us
+Hs
+ti
+hm
+fg
+jT
+XN
+qa
+ss
+kd
+sj
+iX
+up
+kd
+sj
+cf
+Pp
+Ev
+MQ
+Ey
+Yv
+jx
+jx
+Fo
+yB
+"}
+(22,1,1) = {"
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+Fo
+MW
+MW
+jx
+LU
+MQ
+Gy
+Gy
+BC
+OT
+QG
+EG
+uV
+Hv
+Gy
+xe
+uW
+xe
+Gy
+Tf
+yV
+Gy
+Gy
+Tf
+Gy
+xe
+Gy
+Gy
+xe
+Gy
+Od
+Iw
+gG
+tP
+al
+dI
+RF
+Mw
+VT
+HQ
+Vt
+jT
+nE
+BH
+ss
+kd
+sj
+cf
+Ji
+iX
+sj
+kd
+Pp
+yX
+Iw
+LU
+jx
+jx
+jx
+jx
+yB
+"}
+(23,1,1) = {"
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+jx
+jx
+MW
+MW
+LU
+MQ
+Gy
+ts
+OT
+uV
+mx
+Kn
+uV
+uV
+KB
+xe
+Ll
+xe
+xe
+Gy
+jR
+Gy
+Gy
+Gy
+Gy
+xe
+Gy
+CJ
+xe
+Gy
+xe
+Iw
+gG
+tP
+ss
+dY
+fD
+Iv
+Hs
+BV
+EN
+jT
+jT
+jb
+jT
+LN
+Qw
+rm
+rm
+EL
+kd
+kd
+xK
+DW
+Iw
+LU
+jx
+TO
+jx
+jx
+yB
+"}
+(24,1,1) = {"
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+jx
+MW
+MW
+qo
+VH
+MQ
+Gy
+Gy
+uV
+WR
+Qo
+aj
+xn
+uV
+KB
+xe
+Ll
+Gy
+xe
+Gy
+Gq
+xe
+xe
+xe
+Gy
+xe
+Gy
+Gy
+xe
+Gy
+xe
+Iw
+gG
+Jc
+ss
+ss
+ss
+jT
+jT
+Br
+ZF
+jT
+uA
+BK
+jT
+jT
+jT
+jT
+ss
+WA
+DW
+Iw
+Pp
+gG
+Iw
+LU
+jx
+jx
+jx
+jx
+yB
+"}
+(25,1,1) = {"
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+jx
+MW
+yH
+MW
+kJ
+MQ
+Gy
+TZ
+Db
+Le
+CF
+um
+AQ
+Yj
+Dy
+xe
+Ll
+Gy
+xe
+xe
+Gq
+Gy
+ww
+xe
+XD
+Gy
+Gy
+Gy
+xe
+Dy
+xe
+Iw
+Jz
+Jc
+al
+Xd
+GN
+Xr
+jT
+sh
+dH
+Wu
+GZ
+Ft
+qj
+wi
+US
+wi
+WX
+KL
+gG
+Ev
+tP
+DW
+Iw
+LU
+jx
+jx
+EW
+jx
+yB
+"}
+(26,1,1) = {"
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+MW
+jx
+qo
+MW
+VH
+fs
+Gy
+xe
+Ws
+SK
+SF
+gO
+wZ
+Yj
+Gy
+xe
+uW
+CJ
+Gy
+Gy
+yV
+Gy
+Gy
+Gy
+xe
+Gy
+Tf
+Gy
+xe
+Gy
+xe
+MQ
+Ev
+bs
+al
+Eo
+OA
+fS
+jT
+op
+CB
+EK
+zS
+FZ
+XV
+gb
+tO
+Vs
+Cs
+Lq
+xK
+xK
+tP
+MQ
+Iw
+LU
+jx
+jx
+jx
+jx
+yB
+"}
+(27,1,1) = {"
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+jx
+MW
+MW
+jx
+LU
+MQ
+Gy
+Gy
+Yj
+SK
+EG
+LR
+wZ
+Ws
+xe
+xe
+Ll
+Gy
+Gy
+Gy
+jR
+Gy
+Gy
+Gy
+xe
+Gy
+Gy
+xe
+Gy
+Gy
+xe
+MQ
+DW
+Jc
+al
+DC
+yY
+Ez
+jT
+qV
+mC
+hW
+yj
+yu
+jT
+jT
+ss
+ss
+jT
+gG
+yX
+MQ
+MQ
+MQ
+Iw
+LU
+jx
+Fo
+jx
+jx
+yB
+"}
+(28,1,1) = {"
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+TO
+MW
+MW
+jx
+LU
+MQ
+Gy
+Gy
+Yj
+Rq
+Jj
+SF
+YI
+Db
+xe
+Gy
+Ll
+Gy
+Gy
+Gy
+jR
+xe
+xe
+xe
+xe
+Gy
+Gy
+xe
+Gy
+Gy
+xe
+MQ
+DW
+tP
+jT
+jT
+om
+Jx
+gH
+Fe
+Rb
+UB
+df
+Nh
+al
+TT
+MW
+pI
+jT
+MU
+Ev
+Iw
+MQ
+Iw
+Lc
+LU
+jx
+jx
+jx
+jx
+yB
+"}
+(29,1,1) = {"
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+jx
+MW
+MW
+yH
+LU
+MQ
+Gy
+ww
+Yj
+Oj
+aj
+Rs
+mx
+Yj
+Dy
+Gy
+Ll
+Gy
+Gy
+xe
+Gq
+Gy
+ww
+Gy
+xe
+Gy
+xe
+Gy
+Gy
+Dy
+xe
+Iw
+gG
+Jc
+DW
+jT
+yM
+Vd
+jT
+ox
+pa
+eZ
+oS
+Qf
+al
+So
+dW
+MW
+zu
+DW
+yX
+Iw
+MQ
+Iw
+MQ
+kJ
+jx
+jx
+Fo
+jx
+yB
+"}
+(30,1,1) = {"
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+jx
+MW
+MW
+MW
+LU
+MQ
+Gy
+Gy
+uV
+Ds
+sm
+aj
+Nj
+uV
+Gy
+Gy
+uW
+Gy
+Tf
+xe
+yV
+Gy
+Gy
+Gy
+xe
+Gy
+xe
+Gy
+VD
+Gy
+Gy
+Iw
+gG
+Jc
+gG
+jT
+ss
+ss
+jT
+Lj
+Rb
+jT
+al
+al
+al
+dW
+So
+MW
+em
+gG
+Ev
+Iw
+Iw
+MQ
+MQ
+LU
+nG
+jx
+jx
+jx
+yB
+"}
+(31,1,1) = {"
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yH
+MW
+MW
+MW
+LU
+MQ
+Gy
+CJ
+OT
+uV
+BP
+Mg
+uV
+uV
+KB
+Gy
+Ll
+Gy
+xe
+xe
+jR
+Gy
+Gy
+xe
+xe
+xe
+Gy
+Gy
+VD
+Gy
+Gy
+Iw
+Ev
+tP
+gG
+jT
+Pw
+sF
+ss
+dD
+CU
+jT
+MW
+TT
+dW
+dW
+xH
+dW
+zu
+yX
+DW
+Iw
+yD
+MQ
+MQ
+LU
+jx
+jx
+nG
+jx
+yB
+"}
+(32,1,1) = {"
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+jx
+jx
+MW
+jx
+LU
+MQ
+xe
+Gy
+Io
+uV
+VM
+FY
+uV
+DR
+Gy
+Gy
+Ll
+Gy
+xe
+Gy
+jR
+Gy
+Gy
+xe
+Gy
+xe
+Tf
+fR
+Hz
+oq
+Gy
+MQ
+yX
+Jc
+DW
+jT
+QS
+lV
+ss
+uL
+Nf
+ss
+pI
+MW
+pI
+dW
+yo
+MW
+EY
+Ev
+gG
+MQ
+yD
+MQ
+MQ
+LU
+jx
+jx
+jx
+jx
+yB
+"}
+(33,1,1) = {"
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+jx
+jx
+MW
+vk
+jx
+LU
+MQ
+xe
+Gy
+ts
+PE
+Gu
+fI
+PE
+Gy
+Gy
+Gy
+Ll
+xe
+Gy
+Gy
+jR
+Gy
+xe
+xe
+xe
+xe
+Gy
+Gy
+lZ
+rw
+Gy
+MQ
+yX
+Jc
+gG
+jT
+jT
+gp
+Ai
+eN
+Yh
+ss
+dW
+MW
+dW
+TT
+MW
+pI
+EY
+Ev
+DW
+MQ
+yD
+Iw
+MQ
+co
+DW
+jx
+jx
+jx
+yB
+"}
+(34,1,1) = {"
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+MW
+MW
+MW
+jx
+jx
+LU
+MQ
+Od
+Tf
+Gy
+PE
+PE
+PE
+PE
+Gy
+CH
+xe
+ib
+xe
+Gy
+CJ
+yV
+Gy
+xe
+Gy
+xe
+Gy
+Gy
+eA
+UI
+Tt
+Gy
+MQ
+dQ
+xK
+gG
+DW
+jT
+jT
+jT
+dw
+kz
+ss
+MW
+pI
+nC
+MW
+dW
+dW
+zu
+yX
+gG
+yX
+Ev
+yX
+DW
+te
+DW
+jx
+jx
+jx
+yB
+"}
+(35,1,1) = {"
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+MW
+yH
+jx
+jx
+jx
+LU
+MQ
+Od
+xe
+Gy
+Gy
+Gy
+Gy
+VW
+xe
+xe
+xe
+Ll
+Gy
+Gy
+Gy
+Gq
+Gy
+Gy
+Gy
+xe
+Gy
+Gy
+Gy
+Gy
+Gy
+Gy
+MQ
+MQ
+HN
+tP
+gG
+gG
+DW
+jT
+FC
+SD
+ss
+jT
+Jy
+gG
+WI
+BR
+BR
+CL
+Ev
+gG
+Ev
+Ev
+Ev
+DW
+te
+DW
+jx
+jx
+jx
+yB
+"}
+(36,1,1) = {"
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+jx
+jx
+jx
+jx
+jx
+LU
+MQ
+xe
+Gy
+xe
+xe
+Gy
+xe
+xe
+xe
+Gy
+Gy
+Ll
+Gy
+Tf
+xe
+Gq
+Gy
+Gy
+Gy
+xe
+xe
+Gy
+Gy
+Gy
+Gy
+Gy
+MQ
+MQ
+Ev
+tP
+DW
+DW
+DW
+nF
+pq
+NR
+Ev
+Ev
+gG
+DW
+DW
+gG
+gG
+DW
+yX
+DW
+MQ
+Iw
+Iw
+MQ
+co
+DW
+jx
+jx
+jx
+yB
+"}
+(37,1,1) = {"
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+jx
+jx
+jx
+jx
+TO
+LU
+MQ
+qR
+Xp
+Gy
+xe
+xe
+xe
+Gy
+Gy
+Xp
+yv
+Ll
+Gy
+xe
+sS
+jR
+vz
+Px
+xe
+xe
+Od
+xe
+xe
+Gy
+Xp
+yv
+MQ
+MQ
+Iw
+LP
+LE
+LE
+YZ
+jK
+bj
+JJ
+DW
+gG
+Ev
+Ev
+yX
+XS
+gG
+gG
+Ev
+yX
+MQ
+Iw
+Iw
+MQ
+LU
+jx
+jx
+jx
+EW
+yB
+"}
+(38,1,1) = {"
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+jx
+jx
+BO
+jx
+jx
+LU
+MQ
+xe
+in
+Gy
+xe
+xe
+xe
+xe
+xe
+xc
+Gy
+uW
+xe
+Gy
+Gy
+Ig
+xe
+xc
+Gy
+Gy
+xe
+Gy
+xe
+xe
+xc
+Gy
+MQ
+MQ
+MQ
+Ak
+gG
+Iw
+Iw
+MQ
+MQ
+MQ
+MQ
+MQ
+MQ
+MQ
+Iw
+Iw
+MQ
+MQ
+DW
+yX
+MQ
+Iw
+MQ
+Iw
+LU
+Fo
+jx
+jx
+jx
+yB
+"}
+(39,1,1) = {"
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+jx
+jx
+jx
+Fo
+jx
+LU
+MQ
+xe
+Gy
+xe
+Tf
+Gy
+Gy
+Gy
+Gy
+xe
+Gy
+cT
+Gy
+Gy
+Gy
+Gq
+Gy
+Gy
+Gy
+Gy
+xe
+xe
+Gy
+Tf
+xe
+xe
+MQ
+MQ
+DW
+Ak
+yX
+Iw
+MQ
+DW
+DW
+Wo
+vY
+CI
+DW
+DW
+MQ
+MQ
+Iw
+DW
+DW
+Ev
+Lc
+MQ
+Iw
+Iw
+LU
+jx
+jx
+jx
+TO
+yB
+"}
+(40,1,1) = {"
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+jx
+EW
+jx
+jx
+jx
+LU
+MQ
+Gy
+xe
+xe
+VW
+Gy
+Gy
+Gy
+Gy
+Gy
+xe
+Ll
+Gy
+Gy
+xe
+Gq
+Gy
+Tf
+Gy
+Gy
+Gy
+xe
+Gy
+Gy
+Gy
+xe
+MQ
+MQ
+DW
+vc
+Ev
+MQ
+DW
+DW
+Vb
+KH
+KH
+KH
+tj
+DW
+Ev
+DW
+Ev
+Ev
+gG
+DW
+Iw
+MQ
+Iw
+MQ
+LU
+jx
+nG
+jx
+jx
+yB
+"}
+(41,1,1) = {"
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+jx
+TO
+jx
+jx
+jx
+VB
+jx
+jx
+LU
+MQ
+Gy
+xe
+Gy
+Gy
+Gy
+Gy
+Gy
+Gy
+xe
+Od
+Qu
+Gy
+Gy
+xe
+BM
+Gy
+Gy
+Gy
+Gy
+Gy
+xe
+xe
+xe
+Gy
+xe
+Iw
+Iw
+Ev
+Ak
+Iw
+MQ
+DW
+Vb
+KD
+Tm
+BL
+UJ
+nX
+tj
+vh
+DW
+gG
+DW
+Ev
+MQ
+MQ
+MQ
+Iw
+MQ
+LU
+jx
+jx
+jx
+jx
+yB
+"}
+(42,1,1) = {"
+yB
+yB
+yB
+yB
+yB
+yB
+jx
+jx
+jx
+jx
+jx
+jx
+jx
+jx
+nG
+jx
+LU
+Iw
+MQ
+Iw
+MQ
+MQ
+MQ
+MQ
+Iw
+Iw
+MQ
+Gy
+xe
+Gy
+Gy
+xe
+xe
+Gy
+MQ
+MQ
+MQ
+MQ
+MQ
+MQ
+MQ
+MQ
+Iw
+Iw
+MQ
+DW
+Ke
+Iw
+MQ
+DW
+jm
+UJ
+DK
+pS
+pS
+DK
+EY
+Ev
+MQ
+MQ
+MQ
+MQ
+MQ
+MQ
+MQ
+MQ
+Iw
+co
+jx
+jx
+jx
+jx
+yB
+"}
+(43,1,1) = {"
+yB
+yB
+yB
+yB
+yB
+yB
+MW
+MW
+Fo
+jx
+jx
+jx
+Fo
+jx
+jx
+jx
+LU
+MQ
+Iw
+Iw
+MQ
+MQ
+MQ
+Iw
+MQ
+MQ
+MQ
+Gy
+xe
+Gy
+Gy
+Gy
+xe
+Gy
+ZT
+hk
+MQ
+MQ
+MQ
+MQ
+MQ
+ub
+Iw
+yD
+MQ
+XS
+Ak
+MQ
+MQ
+DW
+jm
+BL
+pS
+pS
+pS
+Tm
+EY
+Ev
+MQ
+js
+QQ
+QQ
+QQ
+QQ
+QQ
+QQ
+co
+co
+jx
+jx
+jx
+yB
+yB
+"}
+(44,1,1) = {"
+yB
+yB
+yB
+yB
+yB
+yB
+MW
+MW
+jx
+jx
+jx
+jx
+jx
+jx
+jx
+jx
+LU
+MQ
+Iw
+yD
+Iw
+MQ
+MQ
+MQ
+MQ
+MQ
+MQ
+ON
+Gy
+XZ
+wr
+wr
+xe
+NP
+fP
+fP
+DJ
+DJ
+DJ
+MQ
+MQ
+MQ
+MQ
+yD
+MQ
+DW
+Ak
+MQ
+MQ
+DW
+em
+xw
+pS
+pS
+pS
+DK
+EY
+Ev
+MQ
+LU
+jx
+MW
+MW
+jx
+jx
+MW
+jx
+jx
+jx
+EW
+jx
+yB
+yB
+"}
+(45,1,1) = {"
+yB
+yB
+yB
+yB
+yB
+yB
+jx
+mJ
+MW
+co
+co
+QQ
+QQ
+QQ
+QQ
+QQ
+hF
+MQ
+Iw
+Iw
+Iw
+MQ
+Yw
+zQ
+zQ
+zQ
+BF
+Yw
+aV
+xe
+Gy
+Gy
+jD
+fP
+fP
+TB
+rk
+zM
+fP
+fP
+fP
+oF
+MQ
+yD
+DW
+DW
+Ak
+MQ
+MQ
+DW
+jm
+DK
+pS
+pS
+BL
+UJ
+EY
+Ev
+fs
+LU
+MW
+Oq
+MW
+EW
+MW
+MW
+jx
+jx
+jx
+jx
+jx
+yB
+yB
+"}
+(46,1,1) = {"
+yB
+yB
+yB
+yB
+yB
+yB
+Fo
+jx
+MW
+co
+MQ
+Iw
+Iw
+Iw
+Iw
+Iw
+Iw
+Iw
+Ev
+DW
+Ev
+DW
+ml
+wY
+Ie
+NK
+NK
+HR
+Gy
+xe
+IA
+xe
+Gy
+bK
+Ql
+BS
+kr
+Li
+en
+nO
+WG
+Jc
+tP
+HN
+tP
+rr
+WJ
+Iw
+MQ
+XS
+vV
+hb
+BL
+xw
+DK
+Yp
+CL
+Ev
+MQ
+VH
+MW
+MW
+jx
+MW
+jx
+nG
+jx
+Fo
+jx
+jx
+jx
+yB
+yB
+"}
+(47,1,1) = {"
+yB
+yB
+yB
+yB
+yB
+yB
+MW
+MW
+MW
+LU
+MQ
+Ju
+Vb
+KH
+KH
+tj
+gG
+DW
+gG
+DW
+Ev
+Jz
+aF
+NK
+NK
+NK
+XM
+Lp
+Gy
+Gy
+Gy
+Gy
+Gy
+bK
+Hq
+BE
+ne
+Oh
+OU
+hX
+NU
+NQ
+YZ
+ej
+LE
+uB
+MQ
+Iw
+Iw
+DW
+DW
+vV
+WI
+WI
+WI
+CL
+vh
+Ev
+MQ
+LU
+jx
+qo
+MW
+MW
+MW
+jx
+jx
+jx
+yB
+yB
+yB
+yB
+yB
+"}
+(48,1,1) = {"
+yB
+jx
+Fo
+jx
+MW
+jx
+MW
+Oq
+MW
+LU
+MQ
+qX
+KD
+yH
+vk
+nX
+tj
+DW
+DW
+MQ
+Iw
+MQ
+Yw
+HL
+jo
+jo
+HL
+Yw
+xB
+xB
+xB
+xB
+xB
+DJ
+DJ
+ky
+QC
+do
+fP
+fP
+DJ
+DS
+DW
+dQ
+MQ
+MQ
+MQ
+MQ
+Iw
+Iw
+Ev
+DW
+LJ
+rF
+qw
+DW
+Ev
+MQ
+MQ
+LU
+jx
+MW
+vZ
+jx
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+"}
+(49,1,1) = {"
+yB
+jx
+jx
+MW
+MW
+jx
+MW
+MW
+jx
+LU
+Iw
+gU
+Fo
+jx
+MW
+yH
+EY
+DW
+DW
+MQ
+Iw
+MQ
+MQ
+MQ
+MQ
+MQ
+MQ
+Xk
+Gy
+AH
+AH
+AH
+Gy
+Ky
+fP
+fP
+fP
+DJ
+fP
+hk
+MQ
+MQ
+yX
+dQ
+Sh
+Vv
+Vv
+Vv
+Vv
+Vv
+Ha
+Iw
+Iw
+Iw
+Iw
+Iw
+MQ
+MQ
+MQ
+co
+jx
+yH
+jx
+jx
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+"}
+(50,1,1) = {"
+yB
+jx
+BO
+MW
+mJ
+MW
+MW
+vk
+jx
+LU
+Iw
+jm
+jx
+vk
+MW
+jx
+EY
+DW
+DW
+Iw
+Iw
+MQ
+MQ
+MQ
+MQ
+MQ
+MQ
+xe
+xe
+xe
+xe
+xe
+xe
+Gy
+MQ
+MQ
+MQ
+ZT
+ZT
+MQ
+MQ
+Iw
+dQ
+Ev
+aI
+ZX
+Gy
+Gy
+Gy
+Qv
+YS
+MQ
+js
+QQ
+QQ
+QQ
+QQ
+QQ
+co
+co
+jx
+MW
+jx
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+"}
+(51,1,1) = {"
+yB
+jx
+jx
+jx
+jx
+Fo
+jx
+MW
+MW
+LU
+Iw
+em
+MW
+VB
+Fo
+MW
+GK
+gG
+DW
+Iw
+MQ
+MQ
+Iw
+Iw
+Iw
+MQ
+Iw
+Gy
+Gy
+Gy
+Gy
+Gy
+xe
+Gy
+MQ
+MQ
+MQ
+MQ
+MQ
+MQ
+Iw
+Iw
+Ev
+gG
+aI
+Gy
+Gy
+Xt
+Gy
+Gy
+YS
+MQ
+LU
+jx
+jx
+jx
+jx
+jx
+jx
+MW
+MW
+MW
+TO
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+"}
+(52,1,1) = {"
+jx
+jx
+co
+co
+QQ
+QQ
+QQ
+QQ
+QQ
+hF
+MQ
+jm
+yH
+MW
+jx
+vk
+EY
+Ev
+Ev
+MQ
+Iw
+Iw
+MQ
+MQ
+MQ
+Iw
+MQ
+Gy
+Gy
+Gy
+Gy
+Gy
+xe
+Od
+Iw
+Iw
+yD
+Jt
+yD
+Iw
+Iw
+Iw
+DW
+DW
+aI
+Gy
+ie
+tv
+tv
+Gy
+YS
+MQ
+LU
+jx
+mJ
+MW
+TT
+MW
+MW
+vk
+jx
+MW
+jx
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+"}
+(53,1,1) = {"
+Fo
+jx
+co
+MQ
+MQ
+MQ
+MQ
+MQ
+MQ
+MQ
+MQ
+vV
+hb
+MW
+Fo
+Lw
+nR
+Ev
+gG
+Ev
+Ev
+DW
+DW
+DW
+Ev
+DW
+DW
+Gy
+Gy
+Gy
+Gy
+Gy
+Gy
+xe
+Ev
+Ev
+Ev
+fQ
+Ev
+dQ
+Ev
+XS
+gG
+DW
+aI
+Gy
+tv
+tv
+ie
+Gy
+YS
+MQ
+LU
+jx
+MW
+jx
+MW
+jx
+MW
+MW
+MW
+MW
+jx
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+"}
+(54,1,1) = {"
+VB
+jx
+LU
+Iw
+dU
+MQ
+MQ
+MQ
+Iw
+oF
+MQ
+MQ
+vV
+WI
+FV
+nR
+gG
+DW
+Ev
+yX
+DW
+DW
+Jz
+DW
+Ev
+DW
+DW
+zA
+ep
+ep
+Yi
+ep
+ep
+Po
+DW
+DW
+gG
+DW
+DW
+gG
+Ev
+DW
+DW
+DW
+aI
+Gy
+VW
+SI
+Gy
+Gy
+YS
+MQ
+LU
+MW
+MW
+jx
+Oq
+MW
+jx
+jx
+jx
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+"}
+(55,1,1) = {"
+jx
+jx
+LU
+Iw
+MQ
+MQ
+MQ
+MQ
+Iw
+MQ
+MQ
+MQ
+MQ
+MQ
+Iw
+MQ
+MQ
+MQ
+Ev
+DW
+DW
+gG
+DW
+Ev
+DW
+DW
+DW
+Gy
+Gy
+Gy
+Gy
+Gy
+Gy
+Gy
+DW
+DW
+DW
+DW
+DW
+gG
+Ev
+DW
+DW
+MQ
+aI
+Qz
+Gy
+Gy
+Gy
+La
+YS
+MQ
+LU
+MW
+vk
+jx
+jx
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+"}
+(56,1,1) = {"
+jx
+jx
+LU
+Iw
+oF
+MQ
+MQ
+MQ
+Iw
+Iw
+MQ
+MQ
+MQ
+Iw
+MQ
+MQ
+Iw
+Iw
+Iw
+MQ
+MQ
+MQ
+Iw
+Iw
+Iw
+MQ
+MQ
+Gy
+Gy
+Gy
+xe
+xe
+xe
+xe
+MQ
+MQ
+MQ
+MQ
+MQ
+Iw
+yD
+yD
+Iw
+MQ
+gu
+Jd
+Jd
+Jd
+Jd
+Jd
+sM
+EP
+co
+MW
+MW
+jx
+jx
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+"}
+(57,1,1) = {"
+jx
+TO
+LU
+Iw
+MQ
+MQ
+MQ
+dU
+Iw
+Iw
+Iw
+MQ
+MQ
+Iw
+MQ
+Iw
+Iw
+MQ
+MQ
+MQ
+MQ
+Iw
+MQ
+MQ
+Iw
+MQ
+Gy
+Gy
+Gy
+xe
+xe
+Gy
+Gy
+Gy
+xe
+Iw
+Iw
+xF
+Rx
+Iw
+MQ
+Iw
+MQ
+Iw
+MQ
+js
+QQ
+QQ
+QQ
+QQ
+QQ
+co
+co
+MW
+MW
+jx
+jx
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+"}
+(58,1,1) = {"
+jx
+jx
+LU
+MQ
+Iw
+xe
+Gy
+xe
+Gy
+Gy
+xe
+xe
+xe
+Od
+bS
+xe
+Gy
+Gy
+Gy
+xe
+xe
+Gy
+Gy
+Gy
+xe
+Gy
+Gy
+Gy
+Gy
+xe
+Gy
+Gy
+VW
+Gy
+Gy
+Gy
+xe
+Nl
+xe
+Nl
+Gy
+zj
+Iw
+MQ
+MQ
+LU
+jx
+jx
+jx
+jx
+jx
+MW
+MW
+MW
+Fo
+jx
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+"}
+(59,1,1) = {"
+jx
+jx
+kJ
+MQ
+Gy
+Gy
+xe
+xe
+Gy
+Gy
+Gy
+Gy
+Gy
+Gy
+Gy
+xe
+xe
+xe
+xe
+Gy
+Gy
+Gy
+Gy
+Gy
+xe
+Gy
+Gy
+Gy
+xe
+xe
+xe
+xe
+xe
+xe
+xe
+xe
+xe
+Od
+xe
+Jr
+Du
+Gy
+Iw
+MQ
+MQ
+LU
+MW
+BO
+MW
+MW
+yH
+MW
+jx
+MW
+MW
+jx
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+"}
+(60,1,1) = {"
+jx
+jx
+LU
+MQ
+Gy
+xe
+xe
+VW
+Gy
+Gy
+Gy
+Gy
+Gy
+Gy
+Gy
+Gy
+Gy
+Gy
+Gy
+Gy
+Gy
+Gy
+Gy
+Gy
+Gy
+sS
+xe
+xe
+xe
+Gy
+Gy
+Gy
+Gy
+Gy
+Gy
+Gy
+xe
+xe
+qD
+iH
+Ts
+Nl
+Iw
+Yc
+MQ
+LU
+MW
+MW
+EW
+jx
+MW
+MW
+jx
+jx
+MW
+MW
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+"}
+(61,1,1) = {"
+yB
+jx
+LU
+MQ
+Gy
+xe
+Gy
+Gy
+Gy
+Gy
+xe
+xe
+xe
+xe
+Gy
+Gy
+Gy
+Gy
+Gy
+Gy
+Gy
+Gy
+Gy
+Gy
+Gy
+xe
+xe
+Gy
+Gy
+Gy
+Gy
+Gy
+Gy
+Gy
+Gy
+Gy
+xe
+Nl
+fU
+Lh
+EV
+Nl
+MQ
+Iw
+MQ
+LU
+jx
+yH
+MW
+MW
+mJ
+MW
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+"}
+(62,1,1) = {"
+yB
+Fo
+LU
+MQ
+Gy
+xe
+Gy
+Gy
+Gy
+MQ
+Iw
+MQ
+MQ
+Iw
+MQ
+MQ
+MQ
+MQ
+MQ
+MQ
+MQ
+MQ
+MQ
+MQ
+MQ
+MQ
+MQ
+MQ
+MQ
+MQ
+MQ
+MQ
+MQ
+MQ
+MQ
+MQ
+Iw
+Gy
+xe
+Nl
+xe
+xe
+Iw
+Iw
+Iw
+ZL
+jx
+MW
+MW
+MW
+MW
+MW
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+"}
+(63,1,1) = {"
+yB
+jx
+LU
+MQ
+Gy
+xe
+Gy
+Gy
+hk
+WU
+MQ
+hk
+MQ
+Iw
+SL
+SL
+Ld
+Ld
+Ld
+Ld
+Ld
+Ld
+Ld
+Ld
+Ld
+Ld
+Ld
+Ld
+Ld
+Ld
+Ld
+Ld
+Ld
+Ld
+MQ
+tL
+Iw
+Iw
+xe
+Gy
+Gy
+xe
+MQ
+MQ
+MQ
+ZL
+jx
+jx
+yH
+MW
+MW
+jx
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+"}
+(64,1,1) = {"
+yB
+jx
+LU
+MQ
+Gy
+xe
+xe
+xe
+MQ
+MQ
+MQ
+tL
+Gj
+dp
+SL
+Di
+Jf
+MV
+Dv
+ij
+eK
+oU
+uJ
+vW
+ps
+Zh
+Hi
+eK
+oC
+TS
+QV
+kF
+jr
+Ld
+Ld
+MQ
+MQ
+MQ
+Od
+xe
+Gy
+Gy
+MQ
+MQ
+MQ
+LU
+jx
+MW
+MW
+MW
+vk
+jx
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+"}
+(65,1,1) = {"
+yB
+jx
+VH
+fq
+Gy
+Gy
+Gy
+Gy
+MQ
+hk
+WU
+MQ
+lb
+zB
+SL
+Kp
+lv
+mS
+As
+Hi
+Yf
+LZ
+pU
+nB
+rN
+As
+Hi
+eK
+LZ
+gJ
+zi
+vb
+Fx
+RK
+Ld
+MQ
+MQ
+MQ
+xe
+xe
+xe
+Gy
+MQ
+MQ
+MQ
+LU
+jx
+TO
+MW
+jx
+jx
+jx
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+"}
+(66,1,1) = {"
+yB
+jx
+LU
+MQ
+Gy
+Gy
+Gy
+Gy
+WU
+MQ
+tL
+WU
+SL
+SL
+SL
+SL
+mS
+ao
+VC
+Hi
+Yf
+FL
+Mf
+Vx
+rN
+Zh
+Hi
+eK
+nW
+kG
+Qb
+ld
+Vf
+In
+Ld
+MQ
+Iw
+Iw
+Gy
+Gy
+Gy
+xe
+Iw
+MQ
+MQ
+VR
+jx
+jx
+MW
+MW
+MW
+MW
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+"}
+(67,1,1) = {"
+yB
+jx
+LU
+Iw
+xe
+xe
+xe
+xe
+MQ
+MQ
+MQ
+SL
+SL
+Zl
+qt
+Ld
+mv
+Nw
+Ld
+eU
+vg
+Ld
+Tv
+eR
+UP
+Ld
+Se
+rL
+Ld
+Jg
+oV
+ZU
+Gn
+Cx
+Ld
+DS
+Iw
+MQ
+Gy
+Gy
+Gy
+Gy
+Iw
+Iw
+MQ
+LU
+jx
+MW
+MW
+jx
+jx
+jx
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+"}
+(68,1,1) = {"
+yB
+jx
+LU
+Iw
+Gy
+Gy
+Gy
+Gy
+Gy
+MQ
+hs
+SL
+Ei
+Vi
+ct
+Vi
+nY
+Ja
+eH
+Ja
+Ja
+Vi
+Vi
+qv
+jc
+dP
+Vi
+Vi
+yT
+fj
+nY
+nY
+Vi
+ft
+Ld
+gZ
+MQ
+Gy
+Gy
+Gy
+Gy
+Gy
+tL
+Iw
+MQ
+LU
+jx
+MW
+MW
+MW
+MW
+jx
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+"}
+(69,1,1) = {"
+yB
+jx
+kJ
+Iw
+Gy
+VW
+Gy
+Gy
+xe
+xe
+Gy
+UH
+TV
+TV
+TV
+zL
+zL
+TV
+xQ
+xQ
+nS
+nS
+zL
+mQ
+wI
+TV
+TV
+TV
+zL
+zL
+zL
+nS
+TV
+TV
+IQ
+Gy
+Gy
+Gy
+Gy
+Gy
+Gy
+VW
+Iw
+Iw
+MQ
+LU
+jx
+vk
+Fo
+nG
+MW
+jx
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+"}
+(70,1,1) = {"
+yB
+jx
+LU
+MQ
+xe
+Gy
+xe
+xe
+xe
+xe
+Gy
+UH
+Mz
+TV
+zL
+qu
+mQ
+mQ
+Nu
+km
+FB
+mQ
+mQ
+mQ
+Bw
+mQ
+mQ
+mQ
+ac
+Rn
+Rn
+LD
+Rn
+mQ
+jg
+ig
+Gy
+Gy
+Gy
+Gy
+xe
+xe
+Iw
+MQ
+MQ
+LU
+jx
+MW
+jx
+jx
+aB
+jx
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+"}
+(71,1,1) = {"
+yB
+jx
+LU
+MQ
+xe
+xe
+xe
+Gy
+Gy
+xe
+Nr
+UH
+TV
+zL
+zL
+TV
+PK
+TV
+xQ
+PZ
+Hf
+pn
+zL
+qZ
+PW
+zL
+TV
+TV
+TV
+TV
+TV
+zL
+zL
+PB
+mn
+kU
+Gy
+Gy
+xe
+xe
+xe
+Gy
+MQ
+gs
+MQ
+LU
+jx
+MW
+MW
+jx
+MW
+MW
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+"}
+(72,1,1) = {"
+jx
+jx
+LU
+MQ
+MQ
+Gy
+Gy
+Gy
+Gy
+xe
+Gy
+UH
+zL
+zL
+TV
+TV
+TV
+TV
+xQ
+HW
+ke
+zL
+zL
+zL
+xt
+WD
+WY
+PW
+xt
+xt
+xt
+nS
+TV
+LO
+mn
+kU
+Gy
+xe
+xe
+Gy
+Gy
+kd
+wQ
+NF
+MQ
+LU
+MW
+Oq
+MW
+TO
+MW
+MW
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+"}
+(73,1,1) = {"
+Fo
+jx
+LU
+MQ
+MQ
+MQ
+MQ
+MQ
+Iw
+Iw
+hs
+SL
+wN
+Vi
+Ja
+ra
+Ja
+Ja
+Vi
+Ja
+Ja
+fj
+dP
+Ja
+cJ
+cJ
+Sv
+Sv
+Cb
+Cb
+uS
+Sv
+Sv
+Sv
+cJ
+Mr
+Oz
+Oz
+kd
+kd
+cf
+kd
+us
+NF
+MQ
+LU
+jx
+jx
+MW
+jx
+MW
+jx
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+"}
+(74,1,1) = {"
+jx
+MW
+LU
+MQ
+Iw
+Iw
+Iw
+Iw
+MQ
+MQ
+MQ
+SL
+mB
+wX
+mS
+OI
+Jf
+mS
+vj
+bJ
+GO
+Jf
+mS
+mS
+Sv
+WZ
+md
+bE
+md
+md
+lF
+Hy
+Qc
+eQ
+Sv
+Vo
+Th
+kd
+NF
+MQ
+ui
+Ji
+NF
+MQ
+MQ
+LU
+jx
+mJ
+MW
+BO
+MW
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+"}
+(75,1,1) = {"
+MW
+MW
+co
+MQ
+Iw
+Iw
+Iw
+Iw
+Lc
+MQ
+MQ
+Ld
+kk
+iZ
+vX
+KY
+ki
+ZY
+gw
+Mf
+SJ
+qk
+Lt
+Mf
+xd
+md
+Ur
+md
+Uf
+md
+Ur
+PJ
+Qc
+ed
+Sv
+kd
+NF
+Oz
+gs
+DX
+yD
+zc
+MQ
+MQ
+MQ
+co
+MW
+MW
+MW
+MW
+jx
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+"}
+(76,1,1) = {"
+MW
+Fo
+co
+co
+QQ
+QQ
+QQ
+MR
+Iw
+Iw
+MQ
+Ld
+Mf
+YK
+Fg
+JD
+Mf
+Fg
+OP
+Fg
+or
+Mf
+CD
+Fg
+xd
+md
+bG
+md
+bV
+md
+bG
+lg
+Qc
+bU
+Sv
+cf
+lL
+Zx
+Th
+Iw
+js
+QQ
+QQ
+QQ
+co
+co
+MW
+jx
+EW
+MW
+MW
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+"}
+(77,1,1) = {"
+MW
+MW
+jx
+Oq
+MW
+jx
+jx
+LU
+MQ
+MQ
+Iw
+SL
+SL
+aX
+bn
+SR
+fy
+PN
+fV
+zR
+ov
+Hh
+wp
+Mf
+cJ
+WZ
+RG
+md
+oa
+md
+tb
+cJ
+cJ
+cJ
+cJ
+iX
+NF
+kd
+Th
+eT
+LU
+MW
+dW
+dW
+dW
+dW
+jx
+jx
+jx
+MW
+jx
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+"}
+(78,1,1) = {"
+jx
+MW
+MW
+MW
+MW
+yH
+MW
+LU
+MQ
+MQ
+Iw
+MQ
+SL
+SL
+SL
+SL
+Ld
+Ld
+Ld
+SL
+SL
+SL
+Ld
+Ld
+Sv
+cJ
+cJ
+cJ
+Sv
+Sv
+Sv
+cJ
+zB
+hk
+WU
+kd
+ui
+Zx
+wB
+MQ
+LU
+MW
+MW
+dW
+dW
+So
+dW
+jx
+jx
+MW
+jx
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+"}
+(79,1,1) = {"
+yB
+jx
+jx
+jx
+yH
+VB
+MW
+LU
+MQ
+MQ
+Iw
+Iw
+MQ
+MQ
+MQ
+MQ
+MQ
+Iw
+Iw
+Iw
+Iw
+Iw
+Iw
+MQ
+MQ
+Yc
+MQ
+MQ
+MQ
+MQ
+Gj
+Iw
+Iw
+Iw
+hk
+kd
+Th
+KX
+NF
+MQ
+LU
+dW
+MW
+vk
+MW
+dW
+dW
+MW
+MW
+MW
+jx
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+"}
+(80,1,1) = {"
+yB
+yB
+yB
+yB
+jx
+MW
+MW
+co
+MQ
+MQ
+MQ
+MQ
+MQ
+Iw
+Iw
+Iw
+Iw
+Yc
+Iw
+MQ
+MQ
+MQ
+Iw
+Iw
+Iw
+Iw
+Iw
+Iw
+Iw
+MQ
+MQ
+MQ
+WU
+Iw
+Gj
+Iw
+cO
+MQ
+MQ
+MQ
+co
+dW
+MW
+dW
+MW
+dW
+dW
+jx
+MW
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+"}
+(81,1,1) = {"
+yB
+yB
+yB
+yB
+Oq
+MW
+BO
+co
+co
+QQ
+QQ
+QQ
+QQ
+xa
+ll
+QQ
+QQ
+QQ
+xa
+xa
+xa
+xa
+tI
+xa
+xa
+xa
+xa
+xa
+xa
+xa
+xa
+tI
+QQ
+QQ
+QQ
+Eb
+QQ
+QQ
+QQ
+co
+co
+dW
+MW
+pI
+MW
+dW
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+"}
+(82,1,1) = {"
+yB
+yB
+yB
+yB
+MW
+MW
+MW
+jx
+jx
+jx
+MW
+MW
+TO
+jx
+jx
+jx
+jx
+jx
+Fo
+jx
+jx
+jx
+jx
+TO
+jx
+dW
+MW
+dW
+So
+dW
+MW
+dW
+nt
+dW
+BI
+MW
+MW
+pI
+MW
+dW
+dW
+dW
+MW
+MW
+mJ
+dW
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+"}
+(83,1,1) = {"
+yB
+yB
+yB
+yB
+jx
+jx
+yH
+MW
+MW
+mJ
+jx
+MW
+MW
+jx
+jx
+jx
+EW
+jx
+nG
+jx
+EW
+jx
+jx
+jx
+jx
+dW
+MW
+MW
+dW
+MW
+pI
+MW
+MW
+dW
+dW
+aB
+dW
+dW
+MW
+dW
+px
+dW
+dW
+dW
+MW
+dW
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+"}
+(84,1,1) = {"
+yB
+yB
+yB
+yB
+jx
+jx
+MW
+MW
+yH
+jx
+jx
+jx
+MW
+MW
+EW
+MW
+jx
+jx
+jx
+jx
+Fo
+jx
+jx
+jx
+jx
+dW
+dW
+nt
+MW
+dW
+dW
+dW
+MW
+vk
+MW
+MW
+dW
+dW
+vk
+MW
+dW
+dW
+Nk
+MW
+dW
+So
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+"}
+(85,1,1) = {"
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+jx
+jx
+MW
+MW
+Fo
+jx
+jx
+jx
+jx
+nG
+jx
+jx
+yB
+yB
+yB
+yB
+yB
+yB
+dW
+MW
+MW
+MW
+pI
+px
+dW
+dW
+dW
+MW
+mJ
+dW
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+yB
+"}

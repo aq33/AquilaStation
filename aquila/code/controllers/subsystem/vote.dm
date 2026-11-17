@@ -22,7 +22,7 @@ GLOBAL_VAR(vote_submit_cooldown)
 	sound_to_playing_players('aquila/sound/misc/Vote_success.ogg')
 	return ..()
 
-/// Nazwa mapy z rozmiarem w nawiasie, np. „NSV Shrike (mała)”
+/// Nazwa mapy z rozmiarem w nawiasie, np. „AQ Shrike (mała)”
 /datum/map_config/proc/get_vote_label()
 	return map_size ? "[map_name] ([map_size])" : map_name
 

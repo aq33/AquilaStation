@@ -1,0 +1,9850 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"ag" = (
+/obj/structure/cable,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_jungle/cavecrew/ship)
+"ax" = (
+/obj/structure/chair/fancy/comfy{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/floor/carpet/green{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/bridge)
+"ay" = (
+/obj/structure/flora/grass/jungle,
+/obj/structure/flora/tree/jungle/small,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"az" = (
+/obj/structure/flora/rock/jungle{
+	pixel_x = 3;
+	pixel_y = 9
+	},
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"aB" = (
+/obj/machinery/light,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"aK" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/railing{
+	dir = 1;
+	layer = 2.89
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"aM" = (
+/obj/structure/bed,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_jungle/cavecrew/dormitories)
+"aO" = (
+/obj/structure/cable,
+/turf/open/floor/concrete/slab_4{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/cargo)
+"aS" = (
+/obj/structure/frame/computer{
+	anchored = 1
+	},
+/obj/item/radio/intercom/directional/north,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_jungle/cavecrew/ship)
+"bc" = (
+/obj/structure/cable,
+/obj/item/storage/fancy/cigarettes{
+	pixel_x = -6;
+	pixel_y = 3
+	},
+/obj/item/storage/fancy/cigarettes{
+	pixel_x = 11;
+	pixel_y = -7
+	},
+/obj/effect/decal/cleanable/ash,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/bridge)
+"bd" = (
+/obj/machinery/door/poddoor,
+/obj/machinery/atmospherics/pipe/simple/orange/visible,
+/turf/open/floor/engine,
+/area/ruin/unpowered/planet_jungle/cavecrew/ship)
+"bf" = (
+/obj/structure/table,
+/obj/item/storage/bag/tray{
+	pixel_x = -9;
+	pixel_y = -1
+	},
+/obj/item/storage/bag/tray{
+	pixel_x = 9;
+	pixel_y = 10
+	},
+/obj/effect/turf_decal/siding/thinplating/dark,
+/obj/item/reagent_containers/food/drinks/soda_cans{
+	pixel_x = 10
+	},
+/obj/item/reagent_containers/food/drinks/bottle/ale,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/dormitories)
+"bg" = (
+/obj/structure/flora/junglebush/large{
+	pixel_x = -7;
+	pixel_y = 8
+	},
+/obj/structure/flora/grass/jungle/b{
+	pixel_x = 10;
+	pixel_y = 9
+	},
+/obj/structure/spacevine,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"bl" = (
+/obj/structure/cable,
+/mob/living/basic/trooper/pirate/ranged,
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"br" = (
+/obj/machinery/light,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"bt" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_jungle/cavecrew/ship)
+"bw" = (
+/turf/closed/wall,
+/area/ruin/unpowered/planet_jungle/cavecrew/bridge)
+"bA" = (
+/obj/structure/flora/junglebush/large{
+	pixel_x = -7;
+	pixel_y = 8
+	},
+/obj/structure/spacevine,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"bB" = (
+/obj/structure/railing{
+	layer = 3.1
+	},
+/obj/structure/flora/ausbushes/reedbush{
+	pixel_y = 9;
+	pixel_x = 1
+	},
+/obj/structure/flora/ausbushes/reedbush{
+	pixel_x = -13;
+	pixel_y = -2
+	},
+/turf/open/water/planet/jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"bC" = (
+/obj/structure/flora/tree/dead,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"bD" = (
+/obj/structure/cable,
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/item/trash/can,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/engineering)
+"bE" = (
+/obj/structure/spacevine/dense,
+/turf/open/water/planet/jungle,
+/area/lavaland/surface/outdoors)
+"bG" = (
+/obj/structure/chair/fancy/bench{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 9
+	},
+/obj/item/trash/candy,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/dormitories)
+"bI" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 2
+	},
+/obj/effect/decal/cleanable/ash,
+/turf/open/floor/carpet/green{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/dormitories)
+"bM" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/water/planet/jungle,
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"bP" = (
+/obj/structure/table/wood,
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/machinery/reagentgrinder{
+	name = "Pomyjomat";
+	desc = "Wrzuć mięso, warzywa i rum, i naciśnij „miksuj”. Żarcie dla całej celi!";
+	pixel_x = 7;
+	pixel_y = 15
+	},
+/obj/item/reagent_containers/food/condiment/saltshaker{
+	pixel_x = -3
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass{
+	pixel_x = -10;
+	pixel_y = 13
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass{
+	pixel_x = -9;
+	pixel_y = 10
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass{
+	pixel_x = -9;
+	pixel_y = 7
+	},
+/obj/item/reagent_containers/glass/bowl{
+	pixel_x = 8;
+	pixel_y = -1
+	},
+/turf/open/floor/carpet/red{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/dormitories)
+"bQ" = (
+/obj/effect/turf_decal/siding/thinplating/dark,
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/hallway)
+"bS" = (
+/obj/structure/flora/ausbushes/ppflowers,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"bV" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"bX" = (
+/turf/closed/mineral/random/planet_jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"cd" = (
+/obj/structure/flora/junglebush/b,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/lavaland/surface/outdoors)
+"cl" = (
+/obj/structure/railing/corner{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"cr" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/hallway)
+"cs" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/ash,
+/obj/effect/decal/cleanable/ash{
+	pixel_x = 10;
+	pixel_y = 7
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/dormitories)
+"cw" = (
+/obj/structure/flora/rock/pile/largejungle{
+	pixel_x = -1;
+	pixel_y = -37
+	},
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"cH" = (
+/obj/structure/reagent_dispensers/water_cooler{
+	pixel_x = 8;
+	pixel_y = 15;
+	density = 0
+	},
+/obj/machinery/light_switch{
+	pixel_y = 21;
+	pixel_x = -10
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/dormitories)
+"cI" = (
+/obj/structure/closet/crate/secure/gear,
+/obj/item/ammo_box/a762,
+/obj/item/ammo_box/a762,
+/obj/item/ammo_box/magazine/m10mm{
+	start_empty = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/cargo)
+"cQ" = (
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"dc" = (
+/obj/structure/flora/grass/jungle{
+	pixel_x = -13;
+	pixel_y = -14
+	},
+/obj/structure/flora/rock/pile/largejungle,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"dg" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/camera/autoname{
+	dir = 1
+	},
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/engineering)
+"dq" = (
+/obj/machinery/light_switch{
+	pixel_y = 21;
+	pixel_x = -10
+	},
+/obj/machinery/computer/crew,
+/obj/machinery/button/door{
+	id = "gut_cargo";
+	name = "sterowanie drzwiami ładowni";
+	pixel_y = 22;
+	pixel_x = -1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_jungle/cavecrew/ship)
+"dt" = (
+/obj/structure/barricade/wooden,
+/obj/structure/barricade/wooden/crude,
+/turf/open/floor/plating/asteroid/dirt,
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"du" = (
+/obj/structure/railing{
+	layer = 4.1
+	},
+/obj/structure/flora/ausbushes/palebush,
+/obj/structure/cable,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"dw" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/hallway)
+"dy" = (
+/obj/item/shovel,
+/turf/open/floor/plating{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"dE" = (
+/obj/machinery/porta_turret/syndicate,
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/ruin/unpowered/planet_jungle/cavecrew/ship)
+"dQ" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"dV" = (
+/turf/open/water/planet/jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"dX" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"ea" = (
+/obj/structure/sign/barsign{
+	pixel_y = 32
+	},
+/obj/machinery/vending/cola/shamblers,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/dormitories)
+"ee" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/crayon,
+/obj/structure/railing{
+	dir = 4;
+	layer = 4.1
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/concrete/slab_4{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"eh" = (
+/obj/structure/chair/fancy/bench{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 10
+	},
+/mob/living/basic/trooper/pirate/melee,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/dormitories)
+"ej" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/carpet/green{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/dormitories)
+"em" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 1
+	},
+/turf/open/floor/plasteel{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/engineering)
+"ey" = (
+/obj/effect/turf_decal/siding/thinplating/dark,
+/obj/machinery/suit_storage_unit{
+	storage_type = /obj/item/tank/jetpack/oxygen;
+	suit_type = /obj/item/clothing/suit/space/hardsuit/security
+	},
+/turf/open/floor/engine,
+/area/ruin/unpowered/planet_jungle/cavecrew/ship)
+"ez" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/turf/open/water/planet/jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"eH" = (
+/obj/structure/cable/yellow,
+/obj/structure/sign/poster/contraband/missing_gloves{
+	pixel_y = 30
+	},
+/obj/structure/railing{
+	dir = 8;
+	layer = 4.1
+	},
+/obj/machinery/power/port_gen/pacman,
+/turf/open/floor/plasteel/tech/grid{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/engineering)
+"eL" = (
+/obj/structure/chair/office{
+	dir = 1;
+	pixel_x = -7
+	},
+/turf/open/floor/monotile/steel{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/bridge)
+"eN" = (
+/obj/structure/railing{
+	dir = 6
+	},
+/turf/open/water/planet/jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"eS" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"eT" = (
+/obj/structure/cable,
+/obj/machinery/power/apc/auto_name/north,
+/obj/item/storage/fancy/cigarettes{
+	pixel_x = -6;
+	pixel_y = -8
+	},
+/obj/item/storage/fancy/cigarettes{
+	pixel_x = 8;
+	pixel_y = -11
+	},
+/obj/item/storage/fancy/cigarettes{
+	pixel_y = 5
+	},
+/obj/effect/decal/cleanable/ash/large,
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/bridge)
+"eX" = (
+/obj/structure/chair/office{
+	dir = 1;
+	pixel_x = -2;
+	pixel_y = 2
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/mob/living/basic/trooper/pirate/ranged,
+/turf/open/floor/monotile/steel{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/bridge)
+"fc" = (
+/obj/structure/flora/tree/jungle/small,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"fd" = (
+/obj/structure/railing{
+	layer = 3.1
+	},
+/turf/open/water/planet/jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"fe" = (
+/obj/structure/flora/ausbushes/reedbush{
+	pixel_y = 17;
+	pixel_x = 3
+	},
+/obj/structure/flora/ausbushes/reedbush{
+	pixel_y = 5;
+	pixel_x = -9
+	},
+/turf/open/water/planet/jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"fl" = (
+/turf/closed/wall/mineral/titanium/survival/pod,
+/area/ruin/unpowered/planet_lava/cave)
+"fm" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/railing{
+	dir = 1;
+	layer = 2.89
+	},
+/turf/open/floor/plating{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"fp" = (
+/obj/machinery/suit_storage_unit,
+/turf/open/floor/pod{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"fs" = (
+/obj/structure/sign/poster/contraband/punch_shit{
+	pixel_x = 32
+	},
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/area/ruin/unpowered/planet_jungle/cavecrew/dormitories)
+"ft" = (
+/obj/structure/closet/crate,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/engineering)
+"fv" = (
+/obj/structure/table,
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 1
+	},
+/obj/item/kitchen/spoon,
+/obj/item/kitchen/spoon,
+/obj/item/kitchen/spoon,
+/obj/item/kitchen/spoon,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/dormitories)
+"fz" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/railing{
+	dir = 8;
+	layer = 3.1
+	},
+/turf/open/water/planet/jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"fB" = (
+/obj/structure/cable,
+/obj/structure/railing{
+	layer = 4.1
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/stairs{
+	dir = 8;
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/hallway)
+"fH" = (
+/obj/machinery/power/smes/engineering,
+/obj/structure/cable,
+/turf/open/floor/pod{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/engineering)
+"fI" = (
+/obj/structure/flora/rock/jungle{
+	pixel_x = -1;
+	pixel_y = -1
+	},
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/ruin/unpowered/planet_jungle/cavecrew/hallway)
+"fO" = (
+/obj/structure/falsewall/plastitanium,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"fS" = (
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/area/ruin/unpowered/planet_jungle/cavecrew/bridge)
+"fY" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 6
+	},
+/obj/structure/chair{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/mob/living/basic/trooper/pirate/ranged,
+/obj/structure/cable,
+/turf/open/floor/carpet/green{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/dormitories)
+"gb" = (
+/obj/structure/flora/rock/jungle{
+	pixel_x = 3;
+	pixel_y = 7
+	},
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"gi" = (
+/obj/structure/flora/rock/jungle{
+	pixel_x = 10;
+	pixel_y = 5
+	},
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"gn" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/hallway)
+"gp" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/stairs{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"gr" = (
+/obj/structure/flora/ausbushes/stalkybush{
+	pixel_x = 6;
+	pixel_y = 9
+	},
+/obj/structure/flora/ausbushes/stalkybush{
+	pixel_x = -4;
+	pixel_y = -6
+	},
+/turf/open/water/planet/jungle,
+/area/lavaland/surface/outdoors)
+"gx" = (
+/obj/machinery/conveyor{
+	id = "sbase";
+	dir = 5
+	},
+/turf/open/floor/plasteel/tech/grid{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/engineering)
+"gy" = (
+/obj/structure/chair/fancy/shuttle{
+	dir = 8;
+	name = "krzesło taktyczne"
+	},
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/engine,
+/area/ruin/unpowered/planet_jungle/cavecrew/ship)
+"gz" = (
+/mob/living/basic/carp,
+/turf/open/water/planet/jungle,
+/area/lavaland/surface/outdoors)
+"gA" = (
+/obj/structure/table/reinforced{
+	color = "#c1b6a5"
+	},
+/obj/item/paper_bin{
+	pixel_x = -11;
+	pixel_y = 13
+	},
+/obj/item/pen{
+	pixel_y = 13;
+	pixel_x = -15
+	},
+/obj/item/trash/popcorn{
+	pixel_x = -4;
+	pixel_y = -7
+	},
+/obj/item/radio/off{
+	dir = 4;
+	pixel_x = 5
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"gB" = (
+/obj/structure/flora/grass/jungle,
+/obj/structure/spacevine,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"gE" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/button/door{
+	pixel_x = -5;
+	pixel_y = 24;
+	id = "bunker-control"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_jungle/cavecrew/bridge)
+"gF" = (
+/obj/structure/falsewall/plastitanium,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/engineering)
+"gG" = (
+/obj/structure/closet/secure_closet{
+	icon_state = "sec";
+	name = "szafka z amunicją";
+	req_access_txt = "1"
+	},
+/obj/item/ammo_box/magazine/m556,
+/obj/item/ammo_box/magazine/m556,
+/obj/item/ammo_box/a762,
+/obj/item/storage/box/lethalshot,
+/obj/item/storage/box/lethalshot,
+/obj/item/ammo_box/magazine/m12g,
+/obj/item/ammo_box/magazine/m12g,
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/item/ammo_box/magazine/m10mm,
+/obj/item/ammo_box/c9mm,
+/turf/open/floor/pod{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"gI" = (
+/obj/structure/flora/ausbushes/palebush,
+/turf/open/water/planet/jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"gO" = (
+/obj/structure/chair/fancy/shuttle{
+	dir = 1;
+	name = "krzesło taktyczne"
+	},
+/mob/living/basic/trooper/pirate/ranged,
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_jungle/cavecrew/ship)
+"hc" = (
+/obj/structure/cable,
+/obj/item/storage/fancy/cigarettes{
+	pixel_x = -11;
+	pixel_y = 12
+	},
+/obj/item/storage/fancy/cigarettes{
+	pixel_x = 6;
+	pixel_y = -4
+	},
+/obj/item/storage/fancy/cigarettes{
+	pixel_x = 4;
+	pixel_y = 14
+	},
+/obj/effect/decal/cleanable/ash,
+/obj/effect/decal/cleanable/ash{
+	pixel_x = -7;
+	pixel_y = 13
+	},
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/bridge)
+"hd" = (
+/obj/structure/railing/corner{
+	dir = 8
+	},
+/turf/open/water/planet/jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"hh" = (
+/obj/structure/flora/rock/pile/largejungle,
+/obj/structure/punji_sticks,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"hj" = (
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/area/ruin/unpowered/planet_jungle/cavecrew/engineering)
+"hl" = (
+/obj/structure/flora/ausbushes/reedbush{
+	pixel_y = 5;
+	pixel_x = -9
+	},
+/turf/open/water/planet/jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"hq" = (
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/area/ruin/unpowered/planet_jungle/cavecrew/ship)
+"ht" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/concrete/slab_4{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/cargo)
+"hv" = (
+/obj/structure/sign/poster/contraband/random,
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"hw" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/railing{
+	layer = 4.1
+	},
+/mob/living/basic/trooper/pirate/ranged/space,
+/turf/open/floor/plating{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"hx" = (
+/obj/structure/closet/secure_closet/freezer/fridge,
+/obj/item/pizzabox/margherita,
+/obj/item/pizzabox/margherita,
+/obj/item/pizzabox/meat,
+/obj/item/pizzabox/meat,
+/obj/item/storage/box,
+/obj/item/storage/box,
+/obj/effect/decal/cleanable/food/tomato_smudge,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/dormitories)
+"hE" = (
+/turf/open/floor/plating/asteroid/dirt,
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"hF" = (
+/obj/structure/cable,
+/obj/structure/railing{
+	dir = 4;
+	layer = 4.1
+	},
+/obj/structure/marker_beacon,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"hI" = (
+/obj/structure/spacevine,
+/obj/structure/spacevine,
+/turf/open/water/planet/jungle,
+/area/lavaland/surface/outdoors)
+"hL" = (
+/obj/structure/spacevine,
+/obj/structure/flora/grass/jungle,
+/obj/structure/flora/tree/jungle/small,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"hN" = (
+/obj/structure/spacevine,
+/obj/structure/spacevine,
+/obj/structure/spacevine/dense,
+/turf/open/water/planet/jungle,
+/area/lavaland/surface/outdoors)
+"hO" = (
+/obj/structure/railing{
+	dir = 1;
+	layer = 2.89
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"hU" = (
+/obj/structure/flora/grass/jungle,
+/obj/structure/flora/rock/pile/largejungle,
+/obj/structure/spacevine,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"hY" = (
+/obj/structure/chair/fancy/plastic{
+	dir = 8;
+	pixel_x = 8
+	},
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"id" = (
+/obj/structure/chair/fancy/shuttle{
+	dir = 8;
+	name = "krzesło taktyczne"
+	},
+/obj/structure/cable,
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/power/apc/auto_name/north,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/engine,
+/area/ruin/unpowered/planet_jungle/cavecrew/ship)
+"ie" = (
+/obj/effect/turf_decal/siding/thinplating/dark,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/hallway)
+"ig" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/turf/open/floor/plating{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"iv" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"iA" = (
+/obj/structure/flora/ausbushes/stalkybush,
+/obj/structure/spacevine/dense,
+/turf/open/water/planet/jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"iC" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete/slab_4{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"iD" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete/slab_4{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/cargo)
+"iE" = (
+/obj/structure/sign/poster/official/random{
+	pixel_y = 31
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"iJ" = (
+/obj/structure/railing/corner,
+/turf/open/water/planet/jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"iK" = (
+/obj/structure/cable,
+/obj/structure/railing{
+	dir = 4;
+	layer = 4.1
+	},
+/turf/open/floor/concrete{
+	dir = 8
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"iO" = (
+/obj/item/clothing/suit/armor/vest/alt,
+/obj/item/clothing/head/helmet/alt,
+/obj/item/clothing/mask/gas,
+/obj/structure/closet,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"iX" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/girder,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/cargo)
+"iZ" = (
+/obj/structure/spacevine,
+/turf/open/water/planet/jungle,
+/area/lavaland/surface/outdoors)
+"ji" = (
+/obj/machinery/power/terminal{
+	dir = 8
+	},
+/obj/structure/cable/yellow,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/plasteel/tech/grid{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/engineering)
+"jj" = (
+/obj/structure/flora/ausbushes/stalkybush{
+	pixel_x = -5;
+	pixel_y = 18
+	},
+/turf/open/water/planet/jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"jo" = (
+/obj/machinery/computer/camera_advanced{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 6
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/carpet/green{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/bridge)
+"jr" = (
+/obj/structure/table/reinforced{
+	color = "#c1b6a5"
+	},
+/obj/item/reagent_containers/glass/rag,
+/obj/machinery/light,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"jt" = (
+/obj/machinery/power/port_gen/pacman/super,
+/obj/structure/cable,
+/obj/machinery/button/door{
+	id = "gut_engines";
+	name = "rolety silnika";
+	pixel_y = -22;
+	dir = 1
+	},
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_jungle/cavecrew/ship)
+"ju" = (
+/obj/effect/decal/cleanable/dirt,
+/mob/living/basic/trooper/pirate/ranged,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_jungle/cavecrew/ship)
+"jx" = (
+/obj/structure/flora/grass/jungle,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/lavaland/surface/outdoors)
+"jy" = (
+/obj/structure/cable,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"jG" = (
+/obj/structure/chair/fancy/plastic{
+	dir = 4
+	},
+/mob/living/basic/trooper/pirate/ranged{
+	name = "kucharz"
+	},
+/obj/structure/cable,
+/turf/open/floor/monotile/steel{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"jH" = (
+/obj/structure/window/plastitanium,
+/obj/structure/grille,
+/obj/machinery/door/poddoor/shutters/preopen{
+	dir = 4;
+	id = "bunker-control"
+	},
+/turf/open/floor/plating{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/bridge)
+"jP" = (
+/obj/structure/flora/rock/jungle{
+	pixel_x = 3;
+	pixel_y = 9
+	},
+/obj/structure/flora/grass/jungle,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/lavaland/surface/outdoors)
+"jW" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"jX" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/food/egg_smudge,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/dormitories)
+"jZ" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/ruin/unpowered/planet_lava/cave)
+"kb" = (
+/obj/structure/flora/rock/jungle{
+	pixel_x = 3;
+	pixel_y = 9
+	},
+/obj/structure/flora/grass/jungle{
+	pixel_x = -13;
+	pixel_y = -14
+	},
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/lavaland/surface/outdoors)
+"kf" = (
+/obj/structure/spacevine,
+/obj/structure/flora/rock/pile/largejungle,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"kg" = (
+/obj/machinery/vending/cigarette,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/dormitories)
+"kh" = (
+/obj/effect/decal/cleanable/crayon{
+	color = "#FF3333";
+	 pixel_y = -13;
+	 pixel_x = -28
+	},
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"kj" = (
+/obj/structure/ore_box,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/engineering)
+"kq" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/basic/trooper/pirate/melee,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"ks" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/asteroid/dirt,
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"kx" = (
+/turf/closed/wall,
+/area/ruin/unpowered/planet_jungle/cavecrew/engineering)
+"kE" = (
+/obj/item/pen{
+	pixel_y = 4;
+	pixel_x = -4
+	},
+/obj/item/modular_computer/laptop/preset{
+	pixel_x = 17;
+	pixel_y = 3
+	},
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 9
+	},
+/obj/machinery/power/apc/auto_name/north,
+/obj/item/clipboard{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/paper_bin{
+	pixel_x = -4;
+	pixel_y = 4
+	},
+/obj/structure/table/wood,
+/obj/structure/cable,
+/turf/open/floor/carpet/green{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/bridge)
+"kM" = (
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/ruin/unpowered/planet_lava/cave)
+"kN" = (
+/mob/living/basic/trooper/pirate/ranged,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"kP" = (
+/obj/machinery/porta_turret/syndicate{
+	dir = 9
+	},
+/turf/closed/wall/mineral/plastitanium,
+/area/ruin/unpowered/planet_jungle/cavecrew/ship)
+"kQ" = (
+/obj/structure/cable,
+/turf/open/floor/concrete/slab_4{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/hallway)
+"kV" = (
+/obj/structure/spacevine/dense,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"li" = (
+/obj/structure/spacevine,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"ll" = (
+/obj/structure/spacevine,
+/obj/structure/punji_sticks,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"lm" = (
+/obj/structure/flora/grass/jungle{
+	pixel_x = -11;
+	pixel_y = 10
+	},
+/obj/structure/flora/grass/jungle,
+/obj/structure/spacevine,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"lq" = (
+/obj/item/shovel,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/ruin/unpowered/planet_lava/cave)
+"lx" = (
+/obj/machinery/atmospherics/components/unary/portables_connector{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_jungle/cavecrew/ship)
+"lA" = (
+/obj/structure/cable,
+/obj/structure/railing/corner{
+	dir = 4
+	},
+/turf/open/floor/concrete/slab_4{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"lM" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/wood,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/carpet/green{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/dormitories)
+"lR" = (
+/obj/structure/fluff/fokoff_sign,
+/turf/open/water/planet/jungle,
+/area/lavaland/surface/outdoors)
+"lZ" = (
+/obj/structure/cable,
+/turf/open/floor/plasteel/stairs{
+	dir = 8;
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"mb" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_jungle/cavecrew/bridge)
+"mi" = (
+/obj/structure/cable,
+/obj/item/stack/cable_coil{
+	amount = 5
+	},
+/obj/item/wirecutters,
+/turf/open/floor/concrete/slab_4{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"ml" = (
+/obj/structure/flora/tree/jungle/small{
+	icon_state = "tree2"
+	},
+/obj/structure/flora/rock/pile/largejungle,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"mm" = (
+/obj/structure/flora/rock/jungle{
+	pixel_x = 3;
+	pixel_y = 9
+	},
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/lavaland/surface/outdoors)
+"mn" = (
+/obj/structure/cable,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"mr" = (
+/obj/structure/flora/grass/jungle{
+	pixel_x = -13;
+	pixel_y = -14
+	},
+/obj/structure/flora/rock/pile/largejungle,
+/obj/structure/spacevine,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"mz" = (
+/turf/open/floor/plasteel/stairs{
+	dir = 8;
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"mF" = (
+/obj/structure/barricade/sandbags,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"mK" = (
+/obj/structure/flora/ausbushes/stalkybush{
+	pixel_x = -8;
+	pixel_y = 3
+	},
+/obj/structure/spacevine,
+/obj/structure/spacevine,
+/turf/open/water/planet/jungle,
+/area/lavaland/surface/outdoors)
+"mL" = (
+/obj/machinery/atmospherics/pipe/simple/orange/hidden{
+	dir = 9
+	},
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_jungle/cavecrew/cargo)
+"mR" = (
+/obj/structure/cable,
+/obj/structure/chair{
+	dir = 1
+	},
+/mob/living/basic/trooper/pirate/ranged,
+/turf/open/floor/plating/asteroid/dirt,
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"mT" = (
+/obj/structure/flora/ausbushes/stalkybush{
+	pixel_x = 13;
+	pixel_y = 7
+	},
+/obj/structure/flora/ausbushes/stalkybush{
+	pixel_x = 5;
+	pixel_y = 11
+	},
+/obj/structure/flora/ausbushes/stalkybush{
+	pixel_x = -2;
+	pixel_y = 1
+	},
+/turf/open/water/planet/jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"mW" = (
+/obj/structure/flora/grass/jungle,
+/obj/structure/spacevine,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"mX" = (
+/obj/structure/spacevine,
+/turf/open/water/planet/jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"ne" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 4
+	},
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/hallway)
+"ng" = (
+/obj/effect/decal/cleanable/crayon{
+	color = "#FF3333";
+	icon_state = "danger";
+	pixel_y = -4;
+	pixel_x = -5
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"nh" = (
+/obj/structure/flora/rock/jungle{
+	pixel_x = 3;
+	pixel_y = 7
+	},
+/obj/structure/flora/grass/jungle{
+	pixel_x = -11;
+	pixel_y = 10
+	},
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"nB" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/structure/chair/fancy/bench{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 5
+	},
+/mob/living/basic/trooper/pirate/melee,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/dormitories)
+"nG" = (
+/obj/structure/table/reinforced{
+	color = "#c1b6a5"
+	},
+/obj/item/storage/toolbox/ammo{
+	pixel_y = 2
+	},
+/obj/item/storage/toolbox/ammo{
+	pixel_y = -6;
+	pixel_x = -5
+	},
+/turf/open/floor/pod{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"nJ" = (
+/obj/structure/sink{
+	dir = 4;
+	pixel_x = -18;
+	pixel_y = 4
+	},
+/obj/structure/mirror{
+	pixel_y = 29
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/hallway)
+"nK" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+/turf/open/floor/plating{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"nO" = (
+/obj/structure/cable,
+/obj/item/stack/sheet/mineral/plasma/twenty{
+	pixel_y = 7
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/engineering)
+"nP" = (
+/obj/structure/girder,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"nR" = (
+/obj/structure/flora/rock/pile/largejungle,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"nU" = (
+/obj/structure/falsewall/plastitanium{
+	name = "lekko uchylona ściana"
+	},
+/obj/structure/cable,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/bridge)
+"nW" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/engineering)
+"od" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 5
+	},
+/turf/open/floor/carpet/red{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/dormitories)
+"oi" = (
+/obj/structure/flora/grass/jungle{
+	pixel_x = -11;
+	pixel_y = 10
+	},
+/obj/structure/spacevine,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"oj" = (
+/obj/structure/window/plastitanium,
+/turf/open/floor/plating{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"or" = (
+/turf/open/floor/monotile/steel{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"os" = (
+/obj/structure/flora/rock/jungle{
+	pixel_x = 3;
+	pixel_y = 9
+	},
+/obj/structure/flora/grass/jungle{
+	pixel_x = -11;
+	pixel_y = 10
+	},
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"ou" = (
+/obj/structure/flora/tree/jungle/small{
+	icon_state = "tree2"
+	},
+/obj/structure/flora/rock/jungle{
+	pixel_x = 3;
+	pixel_y = 7
+	},
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"ox" = (
+/obj/structure/flora/grass/jungle{
+	pixel_x = -13;
+	pixel_y = -14
+	},
+/obj/structure/spacevine,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"oz" = (
+/obj/machinery/door/poddoor/shutters{
+	id = "gut_cargo";
+	name = "rolety przeciwwybuchowe";
+	dir = 4
+	},
+/obj/effect/decal/cleanable/oil,
+/turf/open/floor/engine,
+/area/ruin/unpowered/planet_jungle/cavecrew/ship)
+"oA" = (
+/obj/structure/flora/tree/dead,
+/turf/open/water/planet/jungle,
+/area/lavaland/surface/outdoors)
+"oD" = (
+/obj/structure/spacevine/dense,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"oK" = (
+/obj/structure/flora/ausbushes/stalkybush{
+	pixel_x = -5;
+	pixel_y = 18
+	},
+/obj/structure/flora/ausbushes/stalkybush{
+	pixel_x = 14;
+	pixel_y = 1
+	},
+/turf/open/water/planet/jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"oP" = (
+/obj/structure/cable,
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/bridge)
+"oQ" = (
+/obj/machinery/porta_turret/syndicate{
+	dir = 1
+	},
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/area/ruin/unpowered/planet_jungle/cavecrew/ship)
+"pi" = (
+/obj/structure/railing{
+	dir = 4;
+	layer = 3.1
+	},
+/turf/open/water/planet/jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"pk" = (
+/obj/structure/cable,
+/obj/machinery/power/apc/auto_name/north,
+/obj/item/stack/cable_coil{
+	amount = 5
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"pn" = (
+/obj/structure/flora/grass/jungle{
+	pixel_x = -13;
+	pixel_y = -14
+	},
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"pp" = (
+/obj/structure/cable,
+/obj/machinery/door/airlock/grunge{
+	dir = 4;
+	name = "Posterunek Dowodzenia"
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_jungle/cavecrew/bridge)
+"pq" = (
+/mob/living/basic/trooper/pirate/ranged,
+/obj/structure/cable,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/hallway)
+"ps" = (
+/obj/structure/closet/crate,
+/obj/item/stack/ore/uranium{
+	amount = 5
+	},
+/obj/item/stack/ore/plasma{
+	amount = 5
+	},
+/obj/item/stack/ore/plasma{
+	amount = 5
+	},
+/obj/item/stack/ore/plasma{
+	amount = 5
+	},
+/obj/item/stack/ore/silver{
+	amount = 5
+	},
+/obj/item/stack/ore/titanium{
+	amount = 5
+	},
+/obj/item/stack/ore/titanium{
+	amount = 5
+	},
+/obj/item/stack/ore/iron,
+/obj/item/stack/ore/iron{
+	amount = 10
+	},
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"pw" = (
+/obj/machinery/portable_atmospherics/canister/oxygen{
+	name = "zaniedbany kanister tlenu";
+	max_integrity = 60;
+	desc = "Byle jak zrobiony kanister tlenu. Niezbędny do życia, ale przy tej rdzy i tym ciśnieniu to raczej zagrożenie."
+	},
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_jungle/cavecrew/cargo)
+"pD" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete{
+	dir = 8
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/cargo)
+"pJ" = (
+/obj/structure/flora/ausbushes/stalkybush{
+	pixel_x = 1;
+	pixel_y = 16
+	},
+/obj/structure/flora/ausbushes/stalkybush{
+	pixel_x = -15;
+	pixel_y = -5
+	},
+/obj/structure/flora/ausbushes/stalkybush{
+	pixel_x = 7;
+	pixel_y = 1
+	},
+/turf/open/water/planet/jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"pK" = (
+/obj/structure/flora/grass/jungle,
+/obj/structure/spacevine/dense,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/lavaland/surface/outdoors)
+"pO" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"pV" = (
+/obj/structure/cable,
+/obj/machinery/power/apc/auto_name/south,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/engineering)
+"pW" = (
+/obj/structure/cable,
+/obj/machinery/light,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"pY" = (
+/obj/structure/table/reinforced{
+	color = "#c1b6a5"
+	},
+/turf/open/floor/monotile/steel{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/bridge)
+"qa" = (
+/obj/structure/flora/junglebush/large{
+	pixel_x = -7;
+	pixel_y = 8
+	},
+/obj/structure/flora/junglebush/b,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"qd" = (
+/obj/structure/grille,
+/obj/structure/window/plastitanium,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_jungle/cavecrew/ship)
+"qg" = (
+/obj/structure/flora/rock/jungle{
+	pixel_x = 3;
+	pixel_y = 7
+	},
+/obj/structure/flora/tree/jungle,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/lavaland/surface/outdoors)
+"qi" = (
+/obj/structure/girder,
+/turf/open/water/planet/jungle,
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"qk" = (
+/obj/structure/flora/junglebush/c,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"ql" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/bridge)
+"qm" = (
+/obj/structure/flora/ausbushes/stalkybush,
+/turf/open/water/planet/jungle,
+/area/lavaland/surface/outdoors)
+"qs" = (
+/obj/structure/cable,
+/obj/machinery/door/airlock/grunge{
+	name = "Punkt Kontrolny"
+	},
+/turf/open/floor/plasteel{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"qt" = (
+/obj/structure/flora/grass/jungle/b,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"qA" = (
+/mob/living/basic/trooper/pirate/melee,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"qC" = (
+/obj/structure/railing{
+	dir = 1;
+	layer = 2.89
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete/slab_4{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/engineering)
+"qE" = (
+/obj/structure/cable,
+/mob/living/basic/trooper/pirate/ranged,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"qF" = (
+/obj/structure/table/reinforced{
+	color = "#c1b6a5"
+	},
+/obj/machinery/power/apc/auto_name/south,
+/obj/structure/cable,
+/obj/item/clothing/head/soft,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"qM" = (
+/obj/structure/railing/corner,
+/obj/structure/cable,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/cargo)
+"qO" = (
+/obj/structure/flora/grass/jungle/b,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/ruin/unpowered/planet_lava/cave)
+"rm" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 5
+	},
+/turf/open/floor/plasteel{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/engineering)
+"rp" = (
+/obj/structure/spacevine,
+/obj/structure/spacevine/dense,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"rv" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/cargo)
+"rC" = (
+/turf/closed/indestructible/rock,
+/area/ruin/unpowered/planet_lava/cave)
+"rJ" = (
+/obj/structure/flora/tree/jungle/small,
+/obj/structure/flora/grass/jungle,
+/obj/structure/flora/rock/pile/largejungle,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"rO" = (
+/obj/machinery/atmospherics/components/unary/portables_connector{
+	dir = 4
+	},
+/obj/machinery/portable_atmospherics/canister/toxins{
+	name = "zasyfiony kanister plazmy";
+	max_integrity = 60;
+	desc = "Byle jak skręcony pojemnik z plazmą. Silnie toksyczna."
+	},
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_jungle/cavecrew/cargo)
+"rU" = (
+/obj/structure/girder,
+/turf/open/floor/plating/asteroid/dirt,
+/area/ruin/unpowered/planet_lava/cave)
+"rV" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/engineering)
+"rW" = (
+/obj/structure/flora/tree/jungle,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"sb" = (
+/obj/structure/closet/crate/secure/engineering,
+/obj/item/stack/sheet/mineral/plasma/twenty,
+/obj/item/stack/sheet/mineral/plasma/twenty,
+/obj/structure/cable,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/cargo)
+"sl" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/cargo)
+"ss" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/engineering)
+"sA" = (
+/obj/machinery/button/door{
+	pixel_x = 22;
+	pixel_y = 9;
+	dir = 8;
+	id = "cavecheckpointsouth"
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/stairs{
+	dir = 1;
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"sB" = (
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"sC" = (
+/obj/structure/flora/tree/jungle/small,
+/obj/structure/flora/grass/jungle{
+	pixel_x = -13;
+	pixel_y = -14
+	},
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"sD" = (
+/obj/structure/railing/corner{
+	dir = 1
+	},
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/engineering)
+"sL" = (
+/obj/structure/flora/junglebush/b,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"sM" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/engineering)
+"sR" = (
+/turf/open/floor/concrete{
+	dir = 8
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/cargo)
+"sS" = (
+/obj/machinery/light,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/dormitories)
+"sT" = (
+/obj/machinery/button/door{
+	id = "gut_cargo";
+	name = "sterowanie drzwiami ładowni";
+	pixel_y = -22;
+	dir = 1;
+	pixel_x = -11
+	},
+/obj/machinery/door/poddoor/shutters{
+	id = "gut_cargo";
+	name = "rolety przeciwwybuchowe";
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/ruin/unpowered/planet_jungle/cavecrew/ship)
+"sZ" = (
+/obj/structure/cable,
+/obj/machinery/door/airlock/grunge{
+	name = "Zbrojownia"
+	},
+/turf/open/floor/plasteel{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"td" = (
+/obj/structure/flora/grass/jungle,
+/obj/structure/punji_sticks,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"tj" = (
+/obj/machinery/door/poddoor/shutters{
+	id = "cavecheckpointsouth";
+	name = "Punkt Kontrolny Południe"
+	},
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"tk" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/concrete/slab_4{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"tl" = (
+/obj/structure/cable,
+/turf/open/water/planet/jungle,
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"tn" = (
+/obj/structure/cable,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/dormitories)
+"tp" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"ts" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"tv" = (
+/turf/closed/mineral/random/planet_jungle,
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"tw" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/stairs{
+	dir = 1;
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"ty" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+/turf/open/floor/concrete/slab_4{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"tF" = (
+/obj/structure/girder,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/cargo)
+"tH" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_jungle/cavecrew/ship)
+"tJ" = (
+/obj/structure/flora/ausbushes/stalkybush,
+/obj/structure/spacevine,
+/turf/open/water/planet/jungle,
+/area/lavaland/surface/outdoors)
+"tL" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/mob_spawn/human/corpse/syndicatesoldier,
+/obj/structure/closet/body_bag{
+	name = "worek na zwłoki – Mark nr 1"
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_jungle/cavecrew/ship)
+"tM" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/railing{
+	dir = 8;
+	layer = 3.1
+	},
+/mob/living/basic/trooper/pirate/ranged,
+/turf/open/water/planet/jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"tN" = (
+/obj/structure/closet/crate/secure/gear,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/cargo)
+"tP" = (
+/obj/structure/spacevine,
+/obj/structure/spacevine/dense,
+/turf/open/water/planet/jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"ue" = (
+/obj/structure/cable,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"uf" = (
+/obj/effect/turf_decal/siding/thinplating/dark/corner,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/hallway)
+"uk" = (
+/obj/structure/spacevine,
+/obj/structure/spacevine/dense,
+/obj/structure/flora/grass/jungle{
+	pixel_x = -13;
+	pixel_y = -14
+	},
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"ut" = (
+/obj/structure/cable,
+/turf/open/floor/plating{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"uv" = (
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/dormitories)
+"ux" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 2
+	},
+/obj/structure/closet/cabinet,
+/obj/item/clothing/under/syndicate/camo,
+/obj/item/clothing/suit/armor,
+/obj/item/clothing/shoes/combat,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/bridge)
+"uA" = (
+/turf/open/floor/plating{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/cargo)
+"uF" = (
+/obj/structure/table,
+/obj/item/storage/toolbox/mechanical{
+	pixel_x = 9;
+	pixel_y = 9
+	},
+/obj/item/clothing/head/hardhat{
+	pixel_x = -9;
+	pixel_y = -1
+	},
+/obj/item/clothing/head/hardhat{
+	pixel_x = -11;
+	pixel_y = 9
+	},
+/turf/open/floor/plating{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"uH" = (
+/obj/machinery/atmospherics/pipe/simple/orange/hidden{
+	dir = 10
+	},
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_jungle/cavecrew/cargo)
+"uT" = (
+/obj/machinery/door/poddoor{
+	id = "gut_engines";
+	name = "drzwi przeciwwybuchowe silnika"
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_jungle/cavecrew/ship)
+"uV" = (
+/obj/structure/cable,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_jungle/cavecrew/cargo)
+"uX" = (
+/obj/structure/railing{
+	dir = 6;
+	layer = 3.1
+	},
+/turf/open/water/planet/jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"uY" = (
+/obj/structure/railing{
+	layer = 4.1
+	},
+/mob/living/basic/trooper/pirate/ranged,
+/turf/open/floor/plasteel{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/cargo)
+"va" = (
+/obj/structure/cable,
+/obj/item/trash/candy,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/engineering)
+"ve" = (
+/obj/effect/decal/cleanable/oil{
+	pixel_x = 8;
+	pixel_y = 12
+	},
+/obj/structure/window/plasma/reinforced/spawner,
+/turf/open/floor/plasteel/techmaint,
+/area/ruin/unpowered/planet_jungle/cavecrew/ship)
+"vh" = (
+/obj/effect/turf_decal/siding/thinplating/dark,
+/obj/structure/cable,
+/obj/machinery/light,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/camera/autoname{
+	dir = 1
+	},
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/hallway)
+"vl" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/camera/autoname,
+/turf/open/floor/plasteel{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/cargo)
+"vr" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/caution,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"vu" = (
+/obj/structure/flora/ausbushes/reedbush{
+	pixel_y = 5;
+	pixel_x = 10
+	},
+/turf/open/water/planet/jungle,
+/area/lavaland/surface/outdoors)
+"vw" = (
+/obj/effect/decal/cleanable/ash{
+	pixel_x = -8;
+	pixel_y = 7
+	},
+/obj/effect/decal/cleanable/ash{
+	pixel_x = 9;
+	pixel_y = 12
+	},
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"vx" = (
+/obj/structure/cable,
+/turf/open/floor/concrete/slab_4{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/engineering)
+"vE" = (
+/obj/item/storage/fancy/cigarettes{
+	pixel_x = -2;
+	pixel_y = -3
+	},
+/obj/item/storage/fancy/cigarettes{
+	pixel_x = 7;
+	pixel_y = -8
+	},
+/obj/effect/decal/cleanable/ash/large{
+	pixel_y = -9
+	},
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/bridge)
+"vG" = (
+/obj/structure/bed/double{
+	dir = 1
+	},
+/obj/item/bedsheet/double/brown{
+	dir = 1
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/bridge)
+"vI" = (
+/obj/structure/flora/grass/jungle{
+	pixel_x = -13;
+	pixel_y = -14
+	},
+/obj/structure/flora/grass/jungle{
+	pixel_x = -13;
+	pixel_y = -14
+	},
+/obj/structure/flora/rock/jungle{
+	pixel_x = 3;
+	pixel_y = 9
+	},
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"vL" = (
+/obj/structure/flora/ausbushes/stalkybush{
+	pixel_x = 14;
+	pixel_y = 1
+	},
+/turf/open/water/planet/jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"vM" = (
+/obj/structure/flora/rock/jungle{
+	pixel_x = 10;
+	pixel_y = 5
+	},
+/obj/structure/flora/junglebush/c,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"vP" = (
+/obj/structure/flora/ausbushes/stalkybush,
+/turf/open/water/planet/jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"vU" = (
+/obj/structure/cable,
+/mob/living/basic/trooper/pirate/ranged,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/engineering)
+"wa" = (
+/obj/structure/cable,
+/obj/structure/railing/corner{
+	dir = 1
+	},
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/engineering)
+"wb" = (
+/obj/structure/cable,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/engineering)
+"we" = (
+/obj/structure/bed,
+/obj/item/toy/plush/snakeplushie{
+	pixel_x = -7;
+	pixel_y = 7
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_jungle/cavecrew/dormitories)
+"wg" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/water/planet/jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"wh" = (
+/turf/open/floor/plating{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"wp" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/water/planet/jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"wA" = (
+/obj/item/circuitboard/machine/autolathe,
+/obj/structure/closet/crate,
+/obj/item/circuitboard/machine/chem_heater,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/cargo)
+"wD" = (
+/obj/structure/closet/crate/medical,
+/obj/item/storage/firstaid/brute,
+/obj/item/storage/firstaid/regular,
+/obj/item/roller,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/cargo)
+"wE" = (
+/obj/structure/closet/crate/secure/weapon,
+/obj/item/grenade/empgrenade,
+/obj/item/grenade/empgrenade,
+/obj/item/grenade/frag,
+/obj/item/grenade/smokebomb,
+/obj/item/grenade/smokebomb,
+/obj/item/grenade/smokebomb,
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_jungle/cavecrew/ship)
+"wH" = (
+/obj/machinery/power/apc/auto_name/north,
+/obj/structure/cable,
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/item/stack/cable_coil{
+	amount = 5
+	},
+/turf/open/floor/monotile/steel{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"wJ" = (
+/obj/structure/bonfire/prelit,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/ruin/unpowered/planet_lava/cave)
+"wN" = (
+/obj/structure/railing{
+	dir = 8;
+	layer = 3.1
+	},
+/turf/open/floor/concrete/slab_4{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/engineering)
+"wT" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"wU" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"wX" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"xi" = (
+/obj/structure/spacevine,
+/obj/structure/flora/rock/pile/largejungle,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"xl" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/dormitories)
+"xm" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"xn" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"xp" = (
+/obj/machinery/airalarm/directional/west,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plasteel/stairs,
+/area/ruin/unpowered/planet_jungle/cavecrew/ship)
+"xt" = (
+/obj/structure/cable,
+/obj/structure/barricade/wooden/crude,
+/turf/open/floor/plating{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"xD" = (
+/obj/machinery/light_switch{
+	pixel_y = 21;
+	pixel_x = -10
+	},
+/obj/structure/rack,
+/obj/item/storage/belt/utility/full/engi,
+/obj/item/storage/toolbox/electrical,
+/obj/item/clothing/glasses/welding{
+	pixel_y = 5
+	},
+/obj/item/multitool{
+	pixel_x = 9
+	},
+/turf/open/floor/plasteel/tech/grid{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/engineering)
+"xG" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/trash/can,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/dormitories)
+"xI" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/suit_storage_unit,
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 10
+	},
+/turf/open/floor/engine,
+/area/ruin/unpowered/planet_jungle/cavecrew/ship)
+"xO" = (
+/obj/structure/cable,
+/obj/machinery/door/poddoor/shutters{
+	id = "cavecheckpointnorth";
+	name = "Punkt Kontrolny Północ"
+	},
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"xS" = (
+/obj/structure/flora/ausbushes/reedbush{
+	pixel_y = -2;
+	pixel_x = -4
+	},
+/turf/open/water/planet/jungle,
+/area/lavaland/surface/outdoors)
+"xT" = (
+/obj/structure/cable,
+/obj/structure/railing{
+	dir = 4;
+	layer = 4.1
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/cargo)
+"xU" = (
+/turf/open/floor/engine,
+/area/ruin/unpowered/planet_jungle/cavecrew/ship)
+"xW" = (
+/obj/structure/railing{
+	dir = 9
+	},
+/obj/machinery/conveyor_switch/oneway{
+	pixel_y = 8;
+	layer = 3.09;
+	id = "outpost2"
+	},
+/turf/open/floor/concrete/slab_4{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/engineering)
+"xX" = (
+/obj/structure/railing/corner{
+	dir = 8
+	},
+/turf/open/floor/plating{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"xY" = (
+/obj/structure/flora/grass/jungle/b{
+	pixel_x = 10;
+	pixel_y = -19
+	},
+/obj/structure/cable,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"yc" = (
+/obj/structure/table/wood,
+/obj/effect/turf_decal/siding/wood{
+	dir = 9
+	},
+/obj/machinery/chem_dispenser/drinks/beer,
+/turf/open/floor/carpet/red{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/dormitories)
+"yd" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/railing{
+	dir = 8;
+	layer = 3.1
+	},
+/turf/open/floor/plating{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"ye" = (
+/obj/structure/railing{
+	layer = 4.1
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"ys" = (
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"yv" = (
+/obj/structure/flora/ausbushes/sunnybush{
+	pixel_x = 12;
+	pixel_y = 2
+	},
+/obj/structure/flora/ausbushes/sparsegrass,
+/obj/structure/bonfire/prelit,
+/obj/structure/fermenting_barrel{
+	pixel_x = -14;
+	pixel_y = -8
+	},
+/obj/structure/fermenting_barrel{
+	pixel_x = -28;
+	pixel_y = 16
+	},
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/ruin/unpowered/planet_jungle/cavecrew/cargo)
+"yz" = (
+/obj/structure/grille,
+/obj/structure/window/plastitanium,
+/obj/machinery/door/poddoor/shutters/preopen{
+	dir = 4;
+	id = "bunker-control"
+	},
+/turf/open/floor/plating{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/bridge)
+"yF" = (
+/obj/structure/cable,
+/obj/machinery/light/small,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"yH" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 9
+	},
+/obj/machinery/cell_charger,
+/obj/item/stock_parts/cell/high,
+/obj/item/stock_parts/cell/high{
+	pixel_y = -5;
+	pixel_x = -3
+	},
+/obj/structure/table/reinforced{
+	color = "#c1b6a5"
+	},
+/turf/open/floor/plasteel{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/engineering)
+"yJ" = (
+/obj/structure/spacevine,
+/obj/structure/flora/tree/jungle,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"yK" = (
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_jungle/cavecrew/ship)
+"yN" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/engineering)
+"yS" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+/turf/open/floor/plating{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"yT" = (
+/obj/structure/flora/tree/jungle,
+/obj/structure/flora/grass/jungle{
+	pixel_x = -11;
+	pixel_y = 10
+	},
+/obj/structure/flora/grass/jungle/b,
+/obj/structure/flora/rock/pile/largejungle,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"yU" = (
+/obj/structure/table/wood{
+	color = "#55391A"
+	},
+/turf/closed/mineral/random/planet_jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"zc" = (
+/obj/structure/railing,
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/stairs{
+	dir = 4;
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"zh" = (
+/obj/structure/table,
+/obj/item/wrench,
+/obj/item/hand_labeler,
+/turf/open/floor/plating{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/cargo)
+"zk" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"zt" = (
+/obj/effect/decal/cleanable/crayon{
+	icon_state = "shotgun";
+	pixel_x = 4;
+	pixel_y = 6
+	},
+/obj/effect/decal/cleanable/crayon{
+	icon_state = "shotgun";
+	pixel_x = 4;
+	pixel_y = -6
+	},
+/obj/structure/cable,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"zA" = (
+/obj/structure/cable,
+/obj/structure/railing{
+	dir = 4;
+	layer = 4.1
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"zE" = (
+/obj/structure/railing{
+	dir = 8;
+	layer = 3.1
+	},
+/obj/structure/railing{
+	dir = 8;
+	layer = 3.1
+	},
+/obj/machinery/atmospherics/pipe/simple/orange/visible,
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/machinery/portable_atmospherics/canister{
+	name = "byle jak skręcony kanister o bardzo dużej pojemności";
+	desc = "Och, Łowco, to zły pomysł.";
+	maximum_pressure = 14119.25;
+	max_integrity = 60
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_jungle/cavecrew/ship)
+"zF" = (
+/obj/structure/flora/ausbushes/stalkybush{
+	pixel_x = -8;
+	pixel_y = 3
+	},
+/obj/structure/spacevine,
+/turf/open/water/planet/jungle,
+/area/lavaland/surface/outdoors)
+"zH" = (
+/obj/structure/cable,
+/obj/structure/railing{
+	dir = 4;
+	layer = 4.1
+	},
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"zK" = (
+/obj/structure/railing{
+	dir = 8;
+	layer = 4.1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_jungle/cavecrew/ship)
+"zL" = (
+/obj/effect/turf_decal/siding/thinplating/dark,
+/obj/machinery/light,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/hallway)
+"zW" = (
+/obj/structure/spacevine,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"zZ" = (
+/obj/effect/decal/cleanable/crayon{
+	color = "#FF3333";
+	icon_state = "danger";
+	pixel_y = -4;
+	pixel_x = -5
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+/turf/open/floor/plating{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"Ad" = (
+/obj/structure/bed,
+/obj/item/toy/plush/lizardplushie{
+	pixel_x = 8;
+	pixel_y = -8
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/dormitories)
+"Ah" = (
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/carpet/green{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/dormitories)
+"Ak" = (
+/obj/structure/spacevine,
+/obj/structure/punji_sticks,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"Am" = (
+/turf/closed/wall,
+/area/ruin/unpowered/planet_jungle/cavecrew/hallway)
+"Aq" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/obj/structure/table/wood/poker,
+/obj/item/stack/spacecash/c10,
+/obj/item/stack/spacecash/c10{
+	pixel_x = 9;
+	pixel_y = 5
+	},
+/obj/item/stack/spacecash/c1{
+	pixel_x = -8;
+	pixel_y = 8
+	},
+/obj/item/stack/spacecash/c20{
+	pixel_x = 9;
+	pixel_y = -5
+	},
+/turf/open/floor/carpet/green{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/dormitories)
+"Ar" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"At" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"Aw" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/stairs{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/cargo)
+"Ay" = (
+/obj/machinery/atmospherics/components/unary/outlet_injector,
+/turf/open/floor/engine,
+/area/ruin/unpowered/planet_jungle/cavecrew/ship)
+"AA" = (
+/obj/machinery/light,
+/turf/open/floor/carpet/red{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/dormitories)
+"AB" = (
+/obj/structure/marker_beacon,
+/turf/open/floor/plating{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"AD" = (
+/obj/structure/flora/ausbushes/leafybush,
+/obj/structure/spacevine,
+/turf/open/water/planet/jungle,
+/area/lavaland/surface/outdoors)
+"Bb" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/engineering)
+"Bp" = (
+/obj/item/stack/sheet/iron,
+/obj/item/stack/sheet/iron,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+/obj/structure/closet/crate/secure/engineering,
+/obj/item/stack/sheet/iron,
+/obj/item/stack/rods/ten,
+/obj/item/stack/rods/ten,
+/turf/open/floor/plating{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"Br" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete/slab_4{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"Bt" = (
+/obj/structure/cable,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/engineering)
+"Bv" = (
+/obj/machinery/mineral/unloading_machine{
+	input_dir = 2;
+	output_dir = 1
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel/tech/grid{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/engineering)
+"Bw" = (
+/obj/structure/railing{
+	dir = 8;
+	layer = 3.1
+	},
+/obj/machinery/atmospherics/pipe/simple/orange/visible,
+/obj/structure/lattice/catwalk/over/ship/dark,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_jungle/cavecrew/ship)
+"Bx" = (
+/obj/structure/flora/junglebush/c,
+/obj/structure/bonfire/prelit,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"Bz" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/window/plasma/reinforced/spawner,
+/turf/open/floor/plasteel/techmaint,
+/area/ruin/unpowered/planet_jungle/cavecrew/ship)
+"BB" = (
+/turf/open/floor/monotile/steel{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/bridge)
+"BD" = (
+/obj/structure/railing/corner{
+	dir = 8
+	},
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"BE" = (
+/obj/machinery/light/small{
+	pixel_x = 11;
+	pixel_y = -28
+	},
+/obj/structure/cable,
+/obj/machinery/power/apc/auto_name/south,
+/obj/item/toy/plush/moth/punished,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"BM" = (
+/obj/structure/chair/fancy/shuttle{
+	dir = 8;
+	name = "krzesło taktyczne"
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/ruin/unpowered/planet_jungle/cavecrew/ship)
+"BN" = (
+/obj/machinery/portable_atmospherics/canister/oxygen{
+	name = "zaniedbany kanister tlenu";
+	max_integrity = 60;
+	desc = "Byle jak zrobiony kanister tlenu. Niezbędny do życia, ale przy tej rdzy i tym ciśnieniu to raczej zagrożenie."
+	},
+/turf/open/floor/plating{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/cargo)
+"BO" = (
+/obj/structure/flora/rock/pile/largejungle,
+/obj/structure/spacevine,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"BY" = (
+/obj/structure/cable,
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"BZ" = (
+/obj/item/storage/secure/safe,
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/area/ruin/unpowered/planet_jungle/cavecrew/engineering)
+"Cc" = (
+/obj/structure/railing{
+	dir = 5
+	},
+/obj/structure/lattice/catwalk/over/ship/dark,
+/turf/open/water/planet/jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"Cg" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plating{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"Ci" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"Cj" = (
+/obj/structure/railing{
+	dir = 6;
+	layer = 3.1
+	},
+/obj/structure/table/reinforced{
+	color = "#c1b6a5"
+	},
+/obj/item/megaphone{
+	pixel_x = -8;
+	pixel_y = 6
+	},
+/turf/open/floor/plasteel{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/cargo)
+"Cq" = (
+/obj/structure/flora/grass/jungle,
+/turf/open/water/planet/jungle,
+/area/lavaland/surface/outdoors)
+"Cs" = (
+/turf/closed/wall,
+/area/ruin/unpowered/planet_lava/cave)
+"CK" = (
+/obj/structure/spacevine/dense,
+/obj/structure/flora/rock/pile/largejungle,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"CR" = (
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/lavaland/surface/outdoors)
+"CS" = (
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"CU" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/ash,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/dormitories)
+"Dd" = (
+/obj/structure/girder,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"Dy" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/table/reinforced{
+	color = "#c1b6a5"
+	},
+/obj/item/storage/pill_bottle{
+	pixel_x = 2;
+	pixel_y = -2
+	},
+/obj/item/gun/ballistic/revolver{
+	pixel_y = 8;
+	pixel_x = -3
+	},
+/obj/item/storage/fancy/cigarettes{
+	pixel_x = -8;
+	pixel_y = -5
+	},
+/obj/item/storage/fancy/cigarettes{
+	pixel_x = -3;
+	pixel_y = -10
+	},
+/obj/item/storage/fancy/cigarettes{
+	pixel_x = -12;
+	pixel_y = 2
+	},
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/bridge)
+"DA" = (
+/obj/machinery/power/terminal,
+/obj/structure/cable,
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_jungle/cavecrew/ship)
+"DH" = (
+/obj/structure/curtain{
+	open = 0
+	},
+/obj/structure/cable,
+/turf/open/floor/plasteel/stairs{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/dormitories)
+"DX" = (
+/obj/structure/chair{
+	pixel_x = -9;
+	pixel_y = 12;
+	dir = 4
+	},
+/mob/living/basic/trooper/pirate/ranged,
+/obj/effect/decal/cleanable/ash,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"DZ" = (
+/obj/structure/spacevine,
+/obj/structure/spacevine,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"Ef" = (
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/cargo)
+"Eh" = (
+/obj/structure/table/wood,
+/obj/item/storage/fancy/cigarettes/cigars/havana{
+	pixel_y = -8;
+	pixel_x = 4
+	},
+/obj/item/phone{
+	pixel_x = 8;
+	pixel_y = -4
+	},
+/obj/item/flashlight/lamp/green{
+	pixel_y = 13;
+	pixel_x = 8
+	},
+/obj/item/storage/fancy/cigarettes,
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 5
+	},
+/turf/open/floor/carpet/green{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/bridge)
+"Ej" = (
+/obj/machinery/button/massdriver{
+	id = "gut_launchdoor";
+	name = "przycisk działa";
+	pixel_x = 21;
+	pixel_y = 8;
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_jungle/cavecrew/ship)
+"Ek" = (
+/obj/structure/table,
+/obj/item/pestle,
+/obj/item/storage/fancy/cigarettes,
+/obj/effect/decal/cleanable/ash,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"Eo" = (
+/obj/structure/bed,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/item/toy/plush/carpplushie/dehy_carp{
+	pixel_x = 7;
+	pixel_y = 9
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/dormitories)
+"Eq" = (
+/obj/structure/flora/rock/pile/largejungle,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/lavaland/surface/outdoors)
+"EE" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/camera/autoname{
+	dir = 1
+	},
+/obj/structure/table,
+/obj/item/assembly/igniter{
+	pixel_x = 3;
+	pixel_y = 1
+	},
+/obj/item/grenade{
+	pixel_x = 9;
+	pixel_y = 11
+	},
+/obj/item/assembly/timer{
+	pixel_x = 9;
+	pixel_y = -4
+	},
+/obj/item/stack/sheet/iron{
+	pixel_x = -15
+	},
+/obj/item/stack/sheet/iron{
+	pixel_x = -13;
+	pixel_y = 3
+	},
+/obj/item/screwdriver{
+	pixel_x = 3;
+	pixel_y = -4
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/engineering)
+"EG" = (
+/obj/item/storage/backpack/duffelbag/syndie/c4{
+	pixel_y = 5;
+	pixel_x = 2
+	},
+/obj/item/crowbar{
+	pixel_y = -4
+	},
+/obj/structure/table/reinforced{
+	color = "#c1b6a5"
+	},
+/obj/machinery/light,
+/obj/item/grenade/spawnergrenade/manhacks{
+	pixel_x = -11;
+	pixel_y = 3
+	},
+/turf/open/floor/pod{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"EM" = (
+/obj/structure/railing{
+	dir = 8;
+	layer = 3.1
+	},
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"EQ" = (
+/obj/structure/railing{
+	layer = 4.1
+	},
+/turf/open/floor/plating{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"EU" = (
+/obj/structure/flora/junglebush/large{
+	pixel_x = -7;
+	pixel_y = 8
+	},
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"EW" = (
+/obj/structure/bonfire/prelit,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/ruin/unpowered/planet_lava/cave)
+"EX" = (
+/obj/machinery/door/airlock/hatch{
+	dir = 4;
+	name = "Łazienka"
+	},
+/turf/open/floor/plasteel{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/hallway)
+"Fp" = (
+/obj/structure/railing{
+	dir = 10
+	},
+/turf/open/water/planet/jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"Fx" = (
+/obj/structure/flora/rock/pile/largejungle,
+/turf/closed/mineral/random/planet_jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"FC" = (
+/turf/open/floor/plasteel{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/cargo)
+"FE" = (
+/turf/closed/mineral/random/planet_jungle,
+/area/lavaland/surface/outdoors)
+"FH" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/camera/autoname{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_jungle/cavecrew/bridge)
+"FL" = (
+/obj/machinery/light_switch{
+	pixel_y = 21;
+	pixel_x = -10
+	},
+/turf/open/floor/plating{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"FR" = (
+/obj/structure/flora/grass/jungle{
+	pixel_x = -13;
+	pixel_y = -14
+	},
+/obj/structure/spacevine,
+/obj/structure/spacevine,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"Gh" = (
+/obj/structure/sign/poster/contraband/hacking_guide,
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/area/ruin/unpowered/planet_jungle/cavecrew/engineering)
+"Gx" = (
+/obj/structure/cable,
+/obj/machinery/button/door{
+	pixel_x = 22;
+	pixel_y = 9;
+	dir = 8;
+	id = "cavecheckpointnorth"
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"GA" = (
+/obj/structure/flora/grass/jungle{
+	pixel_x = -13;
+	pixel_y = -14
+	},
+/obj/structure/spacevine/dense,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"GJ" = (
+/obj/structure/cable,
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_jungle/cavecrew/ship)
+"GK" = (
+/obj/structure/spacevine,
+/turf/closed/mineral/random/planet_jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"GN" = (
+/obj/machinery/porta_turret/syndicate{
+	dir = 5
+	},
+/turf/closed/wall/mineral/plastitanium,
+/area/ruin/unpowered/planet_jungle/cavecrew/ship)
+"GQ" = (
+/obj/structure/flora/ausbushes/sunnybush{
+	pixel_x = -2;
+	pixel_y = 6
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 6
+	},
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/ruin/unpowered/planet_jungle/cavecrew/hallway)
+"GT" = (
+/turf/closed/mineral/random/planet_jungle,
+/area/ruin/unpowered/planet_jungle/cavecrew/cargo)
+"GX" = (
+/turf/open/floor/plasteel/stairs,
+/area/ruin/unpowered/planet_jungle/cavecrew/ship)
+"GY" = (
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"GZ" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/closet/crate/secure/gear,
+/obj/item/clothing/suit/space/hardsuit/syndi,
+/obj/item/clothing/suit/armor/vest,
+/obj/item/clothing/head/helmet,
+/obj/item/clothing/glasses/hud/security/sunglasses,
+/obj/item/clothing/glasses/hud/security/sunglasses,
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_jungle/cavecrew/ship)
+"Hd" = (
+/obj/structure/spacevine,
+/obj/structure/flora/tree/jungle/small{
+	icon_state = "tree2"
+	},
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"Hf" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/engineering)
+"Hk" = (
+/obj/structure/flora/grass/jungle{
+	pixel_x = -13;
+	pixel_y = -14
+	},
+/obj/structure/flora/grass/jungle/b,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"Hl" = (
+/obj/structure/flora/junglebush,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"Ho" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"Hp" = (
+/obj/structure/flora/tree/jungle/small,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/lavaland/surface/outdoors)
+"Hs" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/item/kirbyplants{
+	icon_state = "plant-12";
+	pixel_x = 8;
+	pixel_y = 1
+	},
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 5
+	},
+/obj/structure/cable,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"HD" = (
+/obj/machinery/light/small,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"HE" = (
+/obj/structure/flora/rock/jungle{
+	pixel_x = -8;
+	pixel_y = 7
+	},
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"HF" = (
+/obj/structure/chair{
+	pixel_x = -9;
+	pixel_y = 3;
+	dir = 4
+	},
+/mob/living/basic/trooper/pirate/ranged{
+	desc = "Członek brutalnej floty terrorystów z Pogranicza! Czeka cierpliwie z palcem na spuście, a w słońcu łapiesz błysk jego lunety. Przypinka na klapie głosi „dumny weganin!”."
+	},
+/turf/open/floor/plating{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"HH" = (
+/obj/structure/chair/fancy/bench{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 6
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/dormitories)
+"HO" = (
+/obj/structure/cable,
+/obj/item/storage/fancy/cigarettes{
+	pixel_y = -8
+	},
+/obj/item/storage/fancy/cigarettes{
+	pixel_x = 10;
+	pixel_y = 6
+	},
+/obj/item/storage/fancy/cigarettes{
+	pixel_x = -14;
+	pixel_y = 6
+	},
+/obj/effect/decal/cleanable/ash,
+/obj/effect/decal/cleanable/ash/large{
+	pixel_x = -9;
+	pixel_y = 6
+	},
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/bridge)
+"Ib" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/hallway)
+"Ic" = (
+/obj/structure/flora/grass/jungle{
+	pixel_x = -11;
+	pixel_y = 10
+	},
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/lavaland/surface/outdoors)
+"Ig" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plating{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"Iq" = (
+/obj/structure/railing{
+	dir = 4;
+	layer = 3.1
+	},
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/table,
+/obj/item/binoculars,
+/obj/item/flashlight{
+	pixel_x = -1;
+	pixel_y = 11
+	},
+/turf/open/water/planet/jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"It" = (
+/obj/structure/flora/rock/jungle{
+	pixel_x = 8;
+	pixel_y = -3
+	},
+/turf/open/water/planet/jungle,
+/area/lavaland/surface/outdoors)
+"Iv" = (
+/obj/machinery/button/door{
+	pixel_x = -1;
+	pixel_y = -22;
+	dir = 1;
+	id = "cavecheckpointnorth"
+	},
+/turf/open/floor/plating/asteroid/dirt,
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"Iz" = (
+/obj/structure/cable,
+/obj/machinery/door/airlock/grunge{
+	dir = 4;
+	name = "Mesa"
+	},
+/turf/open/floor/plasteel{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/dormitories)
+"ID" = (
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_jungle/cavecrew/bridge)
+"IF" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 9
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/door/firedoor/border_only,
+/obj/item/storage/toolbox/syndicate{
+	pixel_y = 5;
+	pixel_x = 11
+	},
+/obj/structure/cable,
+/turf/open/floor/plasteel/techmaint,
+/area/ruin/unpowered/planet_jungle/cavecrew/ship)
+"IH" = (
+/obj/structure/flora/junglebush,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/lavaland/surface/outdoors)
+"IM" = (
+/obj/structure/flora/rock/jungle{
+	pixel_x = 3;
+	pixel_y = 7
+	},
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/lavaland/surface/outdoors)
+"IS" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/stairs{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/cargo)
+"IT" = (
+/obj/structure/railing{
+	layer = 4.1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"Jg" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"Jv" = (
+/obj/structure/flora/grass/jungle{
+	pixel_x = -11;
+	pixel_y = 10
+	},
+/obj/structure/flora/ausbushes/ppflowers,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"Jy" = (
+/obj/structure/flora/ausbushes/sunnybush,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"JA" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/railing/corner,
+/turf/open/water/planet/jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"JC" = (
+/obj/structure/cable,
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_jungle/cavecrew/ship)
+"JD" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/bonfire/prelit,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"JE" = (
+/obj/structure/dresser,
+/obj/item/reagent_containers/food/drinks/soda_cans{
+	pixel_x = 1;
+	pixel_y = 5
+	},
+/obj/item/reagent_containers/food/drinks/soda_cans{
+	pixel_x = -9;
+	pixel_y = 10
+	},
+/obj/item/reagent_containers/food/drinks/soda_cans{
+	pixel_x = 9;
+	pixel_y = 14
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/dormitories)
+"JF" = (
+/obj/structure/cable,
+/obj/structure/curtain{
+	open = 0
+	},
+/turf/open/floor/plasteel/stairs{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/dormitories)
+"JG" = (
+/turf/open/water/planet/jungle,
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"JP" = (
+/obj/structure/cable,
+/obj/structure/chair/fancy/plastic{
+	pixel_x = -1;
+	pixel_y = 12
+	},
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"JQ" = (
+/obj/effect/turf_decal/siding/thinplating/dark,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"JR" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 5
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plasteel/techmaint,
+/area/ruin/unpowered/planet_jungle/cavecrew/ship)
+"JT" = (
+/obj/structure/railing{
+	dir = 4;
+	layer = 3.1
+	},
+/obj/structure/lattice/catwalk/over/ship/dark,
+/turf/open/floor/plating{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"JV" = (
+/obj/structure/cable,
+/obj/machinery/door/airlock/grunge{
+	name = "Zbrojownia";
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"JX" = (
+/obj/structure/cable,
+/obj/item/fishing_rod,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"Ke" = (
+/turf/open/floor/concrete/slab_4{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/engineering)
+"Kk" = (
+/obj/machinery/portable_atmospherics/canister/toxins{
+	name = "zasyfiony kanister plazmy";
+	max_integrity = 60;
+	desc = "Byle jak skręcony pojemnik z plazmą. Silnie toksyczna."
+	},
+/turf/open/floor/plating{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/cargo)
+"Km" = (
+/obj/structure/flora/grass/jungle,
+/obj/structure/flora/rock/pile/largejungle,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"Ko" = (
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"Kq" = (
+/obj/machinery/camera/autoname,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"Kt" = (
+/obj/structure/flora/tree/jungle,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/lavaland/surface/outdoors)
+"Kz" = (
+/obj/structure/cable,
+/obj/machinery/camera/autoname{
+	dir = 8
+	},
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/engineering)
+"KC" = (
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_jungle/cavecrew/cargo)
+"KE" = (
+/obj/structure/flora/junglebush,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"KG" = (
+/obj/machinery/door/poddoor/shutters{
+	id = "gut_cargo";
+	name = "rolety przeciwwybuchowe";
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/ruin/unpowered/planet_jungle/cavecrew/ship)
+"KM" = (
+/obj/structure/marker_beacon,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"KN" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/computer/card/minor/cmo{
+	dir = 8
+	},
+/turf/open/floor/monotile/steel{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/bridge)
+"KO" = (
+/obj/structure/table/reinforced{
+	color = "#c1b6a5"
+	},
+/obj/item/modular_computer/laptop/preset/civillian{
+	pixel_x = -3;
+	pixel_y = 12
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"KS" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"KT" = (
+/turf/open/floor/plating{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"KV" = (
+/obj/structure/flora/tree/jungle/small{
+	icon_state = "tree2"
+	},
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"KW" = (
+/obj/structure/railing{
+	layer = 4.1
+	},
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"Lb" = (
+/obj/structure/flora/ausbushes/reedbush{
+	pixel_y = 17;
+	pixel_x = 3
+	},
+/turf/open/water/planet/jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"Lc" = (
+/obj/structure/flora/grass/jungle{
+	pixel_x = -13;
+	pixel_y = -14
+	},
+/obj/structure/flora/grass/jungle{
+	pixel_x = -11;
+	pixel_y = 10
+	},
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"Ld" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/cargo)
+"Lf" = (
+/obj/structure/flora/ausbushes/reedbush{
+	pixel_x = -11;
+	pixel_y = 13
+	},
+/obj/structure/flora/ausbushes/reedbush{
+	pixel_y = 5;
+	pixel_x = 10
+	},
+/turf/open/water/planet/jungle,
+/area/lavaland/surface/outdoors)
+"Lg" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/railing{
+	layer = 4.1
+	},
+/turf/open/floor/plating{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"Li" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/cargo)
+"Lj" = (
+/obj/structure/flora/grass/jungle,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"Lk" = (
+/obj/structure/cable,
+/obj/machinery/camera/autoname,
+/obj/structure/table/reinforced{
+	color = "#c1b6a5"
+	},
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 9
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"Lm" = (
+/obj/machinery/power/smes{
+	charge = 5e+006
+	},
+/obj/structure/cable,
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_jungle/cavecrew/ship)
+"Ln" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_jungle/cavecrew/bridge)
+"Lu" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/closet/crate/secure/weapon,
+/obj/item/ammo_box/magazine/m10mm,
+/obj/item/ammo_box/magazine/m10mm,
+/obj/item/gun/ballistic/automatic/pistol,
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_jungle/cavecrew/ship)
+"Lx" = (
+/obj/structure/flora/grass/jungle,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"Ly" = (
+/obj/structure/table/wood,
+/obj/item/stack/spacecash/c1000{
+	pixel_x = 6;
+	pixel_y = 11
+	},
+/obj/item/stack/spacecash/c1000{
+	pixel_x = 7;
+	pixel_y = 4
+	},
+/obj/item/lighter{
+	pixel_y = -6;
+	pixel_x = -4
+	},
+/obj/item/camera_bug{
+	pixel_x = -9;
+	pixel_y = 9
+	},
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 4
+	},
+/turf/open/floor/carpet/green{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/bridge)
+"Lz" = (
+/mob/living/basic/trooper/pirate/ranged,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_jungle/cavecrew/cargo)
+"LC" = (
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/area/ruin/unpowered/planet_jungle/cavecrew/hallway)
+"LE" = (
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_jungle/cavecrew/ship)
+"LF" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"LL" = (
+/obj/item/food/meat/slab/monkey,
+/obj/item/food/meat/slab/monkey,
+/obj/item/food/meat/slab/monkey,
+/obj/item/food/grown/cabbage,
+/obj/item/food/grown/cabbage,
+/obj/item/food/grown/cabbage,
+/obj/item/food/grown/cabbage,
+/obj/item/food/grown/carrot,
+/obj/item/food/grown/carrot,
+/obj/item/food/grown/carrot,
+/obj/item/food/grown/carrot,
+/obj/item/reagent_containers/food/drinks/bottle/absinthe/premium{
+	pixel_x = -6;
+	pixel_y = -2;
+	name = "Sekretny Składnik"
+	},
+/obj/item/food/grown,
+/obj/item/food/grown,
+/obj/item/food/deadmouse,
+/obj/item/food/deadmouse,
+/obj/item/food/deadmouse,
+/obj/item/food/grown/garlic,
+/obj/item/food/grown/garlic,
+/turf/open/floor/carpet/red{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/dormitories)
+"LM" = (
+/turf/open/floor/plasteel/stairs{
+	dir = 4;
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"LN" = (
+/obj/structure/flora/rock/jungle{
+	pixel_x = 3;
+	pixel_y = 9
+	},
+/obj/structure/spacevine,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"Mc" = (
+/obj/structure/cable,
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"Me" = (
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/area/ruin/unpowered/planet_jungle/cavecrew/dormitories)
+"Mf" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"Ml" = (
+/obj/structure/railing{
+	dir = 1;
+	layer = 2.89
+	},
+/obj/structure/chair{
+	dir = 1
+	},
+/turf/open/floor/plating{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"Mm" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"Mp" = (
+/mob/living/basic/trooper/pirate/ranged{
+	name = "oficer Seth"
+	},
+/obj/structure/cable,
+/obj/item/storage/fancy/cigarettes{
+	pixel_x = 14;
+	pixel_y = -6
+	},
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/bridge)
+"Mq" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/closet/crate/trashcart,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/dormitories)
+"Ms" = (
+/turf/open/floor/concrete/slab_4{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"Mv" = (
+/obj/machinery/door/airlock/grunge{
+	dir = 4;
+	name = "Posterunek Dowodzenia"
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_jungle/cavecrew/bridge)
+"Mx" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/cargo)
+"My" = (
+/obj/item/flashlight/lantern{
+	light_on = 1
+	},
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"ME" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plasteel/stairs,
+/area/ruin/unpowered/planet_jungle/cavecrew/ship)
+"MJ" = (
+/obj/machinery/suit_storage_unit{
+	suit_type = /obj/item/clothing/suit/space/hardsuit/security
+	},
+/turf/open/floor/pod{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"MK" = (
+/obj/structure/flora/junglebush/c,
+/turf/open/floor/plating/asteroid/dirt,
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"MM" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/glass/rag,
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/item/food/pizza/vegetable,
+/turf/open/floor/carpet/red{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/dormitories)
+"MN" = (
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"MP" = (
+/obj/structure/cable,
+/obj/item/trash/raisins,
+/obj/item/trash/raisins,
+/obj/item/cigbutt,
+/obj/item/cigbutt,
+/obj/item/cigbutt,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/trash/can,
+/obj/item/trash/can,
+/obj/item/trash/can,
+/obj/structure/closet/crate/trashcart,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/engineering)
+"MV" = (
+/obj/structure/flora/ausbushes/reedbush{
+	pixel_y = 14;
+	pixel_x = 2
+	},
+/obj/structure/flora/ausbushes/reedbush{
+	pixel_y = 2;
+	pixel_x = 12
+	},
+/turf/open/water/planet/jungle,
+/area/lavaland/surface/outdoors)
+"Na" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 10
+	},
+/obj/structure/closet,
+/obj/item/clothing/head/soft,
+/obj/item/clothing/head/soft,
+/obj/item/clothing/head/soft,
+/obj/item/clothing/head/soft,
+/obj/item/clothing/shoes/jackboots,
+/obj/item/clothing/shoes/jackboots,
+/obj/item/clothing/shoes/jackboots,
+/obj/item/clothing/shoes/jackboots,
+/obj/item/clothing/shoes/jackboots,
+/obj/item/clothing/head/soft,
+/turf/open/floor/carpet/green{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/dormitories)
+"Nm" = (
+/obj/effect/decal/cleanable/crayon,
+/turf/open/floor/concrete/slab_4{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"Nn" = (
+/obj/structure/flora/rock/jungle{
+	pixel_x = 3;
+	pixel_y = 7
+	},
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"No" = (
+/turf/open/water/planet/jungle,
+/area/lavaland/surface/outdoors)
+"Np" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_jungle/cavecrew/bridge)
+"Nr" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/engineering)
+"Ns" = (
+/obj/structure/closet/body_bag{
+	name = "worek na zwłoki – Mark nr 2"
+	},
+/obj/effect/mob_spawn/human/corpse/damaged,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_jungle/cavecrew/ship)
+"Nu" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 4
+	},
+/obj/structure/closet/secure_closet/engineering_welding{
+	req_access = null;
+	anchored = 1
+	},
+/obj/structure/railing{
+	dir = 4;
+	layer = 4.1
+	},
+/turf/open/floor/plasteel{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/engineering)
+"Nz" = (
+/obj/structure/railing{
+	dir = 8;
+	layer = 3.1
+	},
+/turf/open/water/planet/jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"NF" = (
+/obj/structure/railing{
+	dir = 4;
+	layer = 3.1
+	},
+/obj/structure/lattice/catwalk/over/ship/dark,
+/turf/open/water/planet/jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"NG" = (
+/obj/structure/cable,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_jungle/cavecrew/bridge)
+"NN" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"NQ" = (
+/obj/structure/flora/junglebush/b,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"NV" = (
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/ruin/unpowered/planet_jungle/cavecrew/cargo)
+"NY" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 8
+	},
+/obj/machinery/modular_fabricator/autolathe/hacked,
+/turf/open/floor/plasteel{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/engineering)
+"Oc" = (
+/obj/structure/closet,
+/obj/item/clothing/mask/gas,
+/obj/item/clothing/head/helmet/alt,
+/obj/item/clothing/suit/armor/vest/alt,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"Od" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/oil,
+/obj/machinery/door/airlock/grunge{
+	dir = 4;
+	name = "sterowanie zasilaniem"
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/engineering)
+"Og" = (
+/obj/machinery/light_switch{
+	pixel_y = 21;
+	pixel_x = -10
+	},
+/obj/structure/guncase,
+/obj/item/gun/ballistic/shotgun/automatic{
+	pixel_y = 8
+	},
+/obj/item/gun/ballistic/automatic,
+/turf/open/floor/pod{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"Oi" = (
+/obj/structure/flora/grass/jungle/b{
+	pixel_x = 10;
+	pixel_y = 25
+	},
+/turf/open/floor/plating/asteroid/dirt,
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"Oq" = (
+/obj/structure/cable,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"Ou" = (
+/obj/structure/cable,
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/engineering)
+"Ow" = (
+/obj/machinery/light/floor,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+/turf/open/floor/plating{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"Ox" = (
+/turf/open/floor/plating/asteroid/dirt,
+/area/ruin/unpowered/planet_lava/cave)
+"Oz" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 10
+	},
+/obj/structure/cable,
+/turf/open/floor/carpet/green{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/bridge)
+"OC" = (
+/obj/structure/railing{
+	dir = 8;
+	layer = 4.1
+	},
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_jungle/cavecrew/ship)
+"OM" = (
+/obj/machinery/computer/crew/syndie{
+	dir = 8
+	},
+/turf/open/floor/monotile/steel{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/bridge)
+"OP" = (
+/obj/machinery/light,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"OQ" = (
+/obj/structure/flora/rock/jungle{
+	pixel_x = 10;
+	pixel_y = 5
+	},
+/obj/structure/flora/ausbushes/ppflowers,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"OS" = (
+/turf/closed/wall,
+/area/ruin/unpowered/planet_jungle/cavecrew/cargo)
+"OY" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"Pa" = (
+/obj/structure/railing/corner{
+	dir = 1
+	},
+/turf/open/floor/plating{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"Pb" = (
+/obj/structure/cable,
+/obj/structure/table/glass,
+/obj/item/toy/cards/deck{
+	pixel_x = -8;
+	pixel_y = -1
+	},
+/obj/item/toy/cards/deck{
+	pixel_x = 8;
+	pixel_y = 9
+	},
+/obj/item/book/fish_catalog{
+	pixel_x = -10;
+	pixel_y = 8
+	},
+/turf/open/floor/carpet/green{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/dormitories)
+"Pe" = (
+/mob/living/basic/trooper/pirate/melee,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"Pg" = (
+/obj/item/storage/box/zipties{
+	pixel_y = 7;
+	pixel_x = 4
+	},
+/obj/item/grenade/frag{
+	pixel_x = 8;
+	pixel_y = -6
+	},
+/obj/structure/table/reinforced{
+	color = "#c1b6a5"
+	},
+/obj/item/storage/box/syndie_kit/emp,
+/turf/open/floor/pod{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"Pi" = (
+/obj/structure/cable,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"Po" = (
+/obj/item/storage/box/stockparts{
+	pixel_x = 4;
+	pixel_y = 3;
+	name = "NAPRAWCIE TĘ CHOLERNĄ MASZYNĘ DO RUDY"
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/engineering)
+"PC" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 6
+	},
+/obj/machinery/suit_storage_unit{
+	storage_type = /obj/item/tank/jetpack/oxygen;
+	suit_type = /obj/item/clothing/suit/space/hardsuit/security
+	},
+/turf/open/floor/engine,
+/area/ruin/unpowered/planet_jungle/cavecrew/ship)
+"PP" = (
+/obj/structure/railing/corner{
+	dir = 4
+	},
+/turf/open/floor/plating{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"PV" = (
+/obj/machinery/light,
+/obj/structure/chair/fancy/plastic{
+	dir = 4
+	},
+/mob/living/basic/trooper/pirate/melee,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/engineering)
+"PZ" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"Qb" = (
+/obj/structure/cable,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/hallway)
+"Qc" = (
+/obj/structure/cable,
+/turf/open/floor/plating{
+	icon_state = "panelscorched"
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"Qu" = (
+/obj/structure/sign/poster/contraband/busty_backdoor_xeno_babes_6,
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/area/ruin/unpowered/planet_jungle/cavecrew/dormitories)
+"QB" = (
+/obj/machinery/power/apc/auto_name/north,
+/obj/structure/cable,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/cargo)
+"QE" = (
+/obj/item/trash/can,
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/obj/machinery/camera/autoname{
+	dir = 8
+	},
+/turf/open/floor/carpet/red{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/dormitories)
+"QF" = (
+/turf/closed/indestructible/rock,
+/area/ruin/unpowered/planet_jungle/cavecrew/bridge)
+"QG" = (
+/obj/machinery/light_switch{
+	pixel_y = 21;
+	pixel_x = -10
+	},
+/obj/structure/chair/fancy/sofa/old/left,
+/obj/effect/turf_decal/siding/wood{
+	dir = 5
+	},
+/mob/living/basic/trooper/pirate/ranged,
+/turf/open/floor/carpet/green{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/dormitories)
+"QM" = (
+/obj/structure/fermenting_barrel,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/ruin/unpowered/planet_jungle/cavecrew/cargo)
+"QP" = (
+/obj/structure/chair/fancy/plastic{
+	dir = 8;
+	pixel_x = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/cable,
+/turf/open/floor/plating{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"QQ" = (
+/obj/machinery/light_switch{
+	pixel_y = 21;
+	pixel_x = -10
+	},
+/obj/structure/flora/ausbushes/sunnybush{
+	pixel_y = 6
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 10
+	},
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/ruin/unpowered/planet_jungle/cavecrew/hallway)
+"QR" = (
+/obj/item/flashlight/lantern{
+	light_on = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"QS" = (
+/obj/structure/spacevine,
+/obj/structure/spacevine,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"QU" = (
+/obj/machinery/light/small,
+/obj/structure/toilet{
+	dir = 8;
+	pixel_x = 8
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/hallway)
+"Rd" = (
+/obj/structure/flora/grass/jungle{
+	pixel_x = -13;
+	pixel_y = -14
+	},
+/obj/structure/spacevine,
+/obj/structure/flora/ausbushes/sunnybush{
+	pixel_x = 12;
+	pixel_y = 2
+	},
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"Rk" = (
+/obj/structure/cable,
+/obj/effect/turf_decal/siding/wood{
+	dir = 2
+	},
+/obj/structure/chair{
+	dir = 1
+	},
+/turf/open/floor/carpet/green{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/dormitories)
+"Rm" = (
+/obj/machinery/door/airlock/grunge{
+	name = "Zbrojownia";
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"Rn" = (
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"Rp" = (
+/obj/structure/cable,
+/obj/structure/railing{
+	layer = 4.1
+	},
+/turf/open/floor/plasteel/stairs{
+	dir = 4;
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"Rs" = (
+/obj/structure/railing{
+	dir = 10
+	},
+/obj/structure/table/reinforced{
+	color = "#c1b6a5"
+	},
+/turf/open/floor/plasteel{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/cargo)
+"Rv" = (
+/obj/structure/flora/ausbushes/stalkybush{
+	pixel_x = 6;
+	pixel_y = 11
+	},
+/turf/closed/mineral/random/planet_jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"RD" = (
+/obj/structure/flora/ausbushes/palebush,
+/obj/structure/flora/ausbushes/palebush,
+/turf/open/water/planet/jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"RH" = (
+/obj/structure/flora/rock/jungle{
+	pixel_x = 3;
+	pixel_y = 9
+	},
+/obj/structure/spacevine,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/lavaland/surface/outdoors)
+"RJ" = (
+/obj/structure/cable,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"RK" = (
+/obj/structure/flora/rock/jungle{
+	pixel_x = 3;
+	pixel_y = 9
+	},
+/obj/structure/flora/tree/jungle,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"RL" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_jungle/cavecrew/ship)
+"RR" = (
+/obj/structure/flora/rock/jungle{
+	pixel_x = 10;
+	pixel_y = 5
+	},
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/ruin/unpowered/planet_lava/cave)
+"RZ" = (
+/obj/structure/cable,
+/obj/structure/railing{
+	dir = 4;
+	layer = 4.1
+	},
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/cargo)
+"Sa" = (
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/hallway)
+"Sb" = (
+/obj/machinery/door/airlock/grunge,
+/obj/structure/cable,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_jungle/cavecrew/bridge)
+"Sd" = (
+/obj/machinery/conveyor{
+	id = "outpost3";
+	dir = 1
+	},
+/turf/open/floor/plasteel/tech/grid{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/engineering)
+"Sg" = (
+/obj/structure/spacevine,
+/obj/structure/flora/grass/jungle,
+/obj/structure/spacevine,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"Sl" = (
+/obj/structure/flora/ausbushes/leafybush,
+/turf/open/water/planet/jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"So" = (
+/obj/item/pickaxe,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"Sp" = (
+/obj/structure/cable,
+/turf/open/floor/concrete/slab_4{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"Sr" = (
+/obj/structure/barricade/wooden/crude,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"Sv" = (
+/obj/structure/railing{
+	layer = 3.1
+	},
+/obj/structure/flora/junglebush/c,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/ruin/unpowered/planet_jungle/cavecrew/hallway)
+"Sx" = (
+/obj/structure/cable,
+/obj/item/storage/fancy/cigarettes,
+/mob/living/basic/trooper/pirate/ranged,
+/turf/open/floor/concrete/slab_4{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/bridge)
+"SA" = (
+/obj/item/storage/box/lethalshot,
+/obj/item/gun/ballistic/shotgun/doublebarrel,
+/turf/open/floor/carpet/red{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/dormitories)
+"SD" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"SE" = (
+/obj/machinery/power/terminal{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/floor/plasteel/tech/grid{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/engineering)
+"SI" = (
+/obj/structure/cable,
+/turf/open/floor/plasteel/stairs{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"ST" = (
+/obj/structure/sign/poster/contraband/random,
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/area/ruin/unpowered/planet_jungle/cavecrew/hallway)
+"SV" = (
+/obj/structure/cable,
+/obj/structure/railing{
+	dir = 4;
+	layer = 4.1
+	},
+/turf/open/floor/concrete/slab_4{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"SW" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plasteel/techmaint,
+/area/ruin/unpowered/planet_jungle/cavecrew/ship)
+"Tf" = (
+/obj/item/flashlight/lantern{
+	light_on = 1
+	},
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"Tn" = (
+/turf/closed/wall,
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"Ty" = (
+/obj/machinery/shower{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_jungle/cavecrew/hallway)
+"TA" = (
+/obj/structure/grille/broken,
+/obj/structure/cable,
+/turf/open/water/planet/jungle,
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"TB" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 6
+	},
+/obj/structure/cable,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/bridge)
+"TI" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/ash,
+/turf/open/floor/concrete{
+	dir = 8
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"TM" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/railing/corner{
+	dir = 8
+	},
+/turf/open/water/planet/jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"TN" = (
+/obj/structure/girder,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_jungle/cavecrew/engineering)
+"TU" = (
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/engineering)
+"TZ" = (
+/obj/structure/flora/ausbushes/stalkybush{
+	pixel_x = -8;
+	pixel_y = 3
+	},
+/turf/open/water/planet/jungle,
+/area/lavaland/surface/outdoors)
+"Ua" = (
+/obj/structure/flora/rock/jungle{
+	pixel_x = 3;
+	pixel_y = 7
+	},
+/obj/structure/spacevine,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"Uf" = (
+/obj/effect/turf_decal/siding/wood/end{
+	dir = 8
+	},
+/turf/open/floor/carpet/green{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/dormitories)
+"Uk" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/item/flashlight{
+	pixel_x = 1;
+	pixel_y = 14
+	},
+/obj/structure/table,
+/obj/structure/railing{
+	dir = 8;
+	layer = 3.1
+	},
+/turf/open/water/planet/jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"Uo" = (
+/obj/item/stack/sheet/iron/twenty,
+/obj/effect/turf_decal/box,
+/turf/open/floor/concrete/slab_1,
+/area/ruin/unpowered/planet_jungle/cavecrew/engineering)
+"Ux" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 9
+	},
+/obj/item/kirbyplants{
+	icon_state = "plant-25";
+	pixel_x = 2;
+	pixel_y = 8
+	},
+/turf/open/floor/carpet/green{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/dormitories)
+"UC" = (
+/obj/machinery/door/poddoor/shutters{
+	id = "cavecheckpointnorth";
+	name = "Punkt Kontrolny Północ"
+	},
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"UI" = (
+/obj/structure/spacevine,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"UJ" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 6
+	},
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/hallway)
+"UK" = (
+/obj/structure/flora/ausbushes/stalkybush{
+	pixel_x = 7;
+	pixel_y = 27
+	},
+/obj/structure/flora/ausbushes/stalkybush{
+	pixel_x = -5;
+	pixel_y = 15
+	},
+/turf/closed/mineral/random/planet_jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"UQ" = (
+/obj/machinery/light,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/trash/can{
+	pixel_x = 12;
+	pixel_y = 15
+	},
+/turf/open/floor/plasteel{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/engineering)
+"UT" = (
+/obj/structure/flora/grass/jungle{
+	pixel_x = -11;
+	pixel_y = 10
+	},
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"UZ" = (
+/obj/structure/cable,
+/obj/machinery/power/apc/auto_name/north,
+/obj/structure/chair/fancy/sofa/old/right,
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/turf/open/floor/carpet/green{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/dormitories)
+"Va" = (
+/obj/structure/cable,
+/obj/machinery/door/airlock/grunge{
+	dir = 4;
+	name = "W BUDOWIE!"
+	},
+/turf/open/floor/plasteel{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"Vc" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/food/flour,
+/obj/item/kirbyplants{
+	icon_state = "plant-21";
+	pixel_y = 2
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/dormitories)
+"Ve" = (
+/obj/structure/flora/junglebush/large,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/lavaland/surface/outdoors)
+"Vm" = (
+/obj/structure/flora/rock/jungle{
+	pixel_x = 10;
+	pixel_y = 5
+	},
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"Vn" = (
+/obj/effect/turf_decal/siding/thinplating/dark/corner,
+/obj/structure/cable,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/hallway)
+"Vp" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_jungle/cavecrew/ship)
+"Vv" = (
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"Vx" = (
+/obj/structure/flora/rock/jungle{
+	pixel_y = 13
+	},
+/turf/open/water/planet/jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"VJ" = (
+/obj/effect/decal/cleanable/crayon{
+	color = "#FF3333";
+	icon_state = "danger";
+	pixel_y = -4;
+	pixel_x = -5
+	},
+/obj/structure/cable,
+/turf/open/floor/plating{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"VQ" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/dormitories)
+"VT" = (
+/obj/machinery/button/door{
+	pixel_x = 22;
+	pixel_y = -9;
+	dir = 8;
+	id = "cavecheckpointsouth"
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/camera/autoname{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"VV" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/hallway)
+"VY" = (
+/obj/structure/cable,
+/obj/structure/railing/corner,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"Wd" = (
+/obj/item/stack/rods/ten,
+/turf/open/floor/plating{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"Wj" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"Wo" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"Wr" = (
+/obj/structure/cable,
+/obj/machinery/door/airlock/grunge{
+	name = "Pokój Przygotowań";
+	dir = 4
+	},
+/turf/open/floor/plasteel{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"Ws" = (
+/obj/structure/flora/tree/jungle/small{
+	icon_state = "tree2"
+	},
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/lavaland/surface/outdoors)
+"Wt" = (
+/obj/structure/flora/ausbushes/stalkybush{
+	pixel_x = 14;
+	pixel_y = 1
+	},
+/obj/structure/spacevine,
+/turf/open/water/planet/jungle,
+/area/lavaland/surface/outdoors)
+"Wx" = (
+/obj/structure/spacevine,
+/obj/structure/flora/tree/jungle/small,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"WB" = (
+/obj/structure/table/reinforced{
+	color = "#c1b6a5";
+	pixel_y = 2
+	},
+/obj/machinery/button/door{
+	pixel_x = -8;
+	pixel_y = 11;
+	dir = 8;
+	id = "cavecheckpointnorth"
+	},
+/obj/item/toy/plush{
+	pixel_x = 9;
+	pixel_y = 11
+	},
+/obj/machinery/button/door{
+	pixel_x = -8;
+	dir = 8;
+	id = "cavecheckpointsouth"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"WD" = (
+/obj/machinery/conveyor{
+	dir = 4;
+	id = "outpost2"
+	},
+/turf/open/floor/plasteel/tech/grid{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/engineering)
+"WE" = (
+/obj/structure/cable,
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/engineering)
+"WH" = (
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"WO" = (
+/obj/structure/flora/junglebush/large,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"WP" = (
+/obj/structure/cable,
+/obj/machinery/power/apc/auto_name/north,
+/mob/living/basic/trooper/pirate/ranged,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/hallway)
+"WR" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/stairs{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"WW" = (
+/obj/structure/flora/rock{
+	pixel_x = 9
+	},
+/turf/open/water/planet/jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"Xc" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/dormitories)
+"Xd" = (
+/obj/machinery/mineral/processing_unit{
+	output_dir = 4;
+	input_dir = 2
+	},
+/turf/open/floor/plasteel/tech/grid{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/engineering)
+"Xh" = (
+/obj/machinery/porta_turret/syndicate{
+	dir = 6
+	},
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/ruin/unpowered/planet_jungle/cavecrew/ship)
+"Xn" = (
+/obj/structure/cable,
+/obj/machinery/light_switch{
+	pixel_y = 21;
+	pixel_x = -10
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/hallway)
+"Xx" = (
+/obj/structure/flora/ausbushes/sunnybush{
+	pixel_x = 12;
+	pixel_y = 2
+	},
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"Xz" = (
+/obj/item/storage/fancy/cigarettes{
+	pixel_x = -6;
+	pixel_y = -20
+	},
+/obj/item/storage/fancy/cigarettes{
+	pixel_x = -11;
+	pixel_y = -14
+	},
+/obj/item/storage/fancy/cigarettes{
+	pixel_x = 5;
+	pixel_y = -5
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/bridge)
+"XA" = (
+/obj/structure/railing{
+	dir = 1;
+	layer = 2.89
+	},
+/turf/open/floor/plating{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"XB" = (
+/obj/structure/cable,
+/turf/open/floor/plating/asteroid/dirt,
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"XQ" = (
+/obj/structure/closet/crate/secure/gear,
+/obj/structure/cable,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/cargo)
+"XU" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 4
+	},
+/obj/structure/window/plasma/reinforced/spawner,
+/turf/open/floor/plasteel/techmaint,
+/area/ruin/unpowered/planet_jungle/cavecrew/ship)
+"Yh" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 10
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/barricade/wooden/crude{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"Yj" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"Yp" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/monotile/steel{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"Yt" = (
+/obj/effect/decal/cleanable/crayon{
+	color = "#FF3333";
+	 pixel_y = -3;
+	 pixel_x = -5
+	},
+/obj/structure/cable,
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/kirbyplants/random,
+/turf/open/floor/plating{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/bridge)
+"YA" = (
+/turf/template_noop,
+/area/template_noop)
+"YE" = (
+/obj/structure/lattice/catwalk/over/ship/dark,
+/obj/structure/railing{
+	dir = 9;
+	layer = 4.1
+	},
+/turf/open/water/planet/jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"YX" = (
+/obj/structure/chair/fancy/shuttle{
+	dir = 8;
+	name = "krzesło taktyczne"
+	},
+/turf/open/floor/engine,
+/area/ruin/unpowered/planet_jungle/cavecrew/ship)
+"YY" = (
+/obj/structure/flora/grass/jungle{
+	pixel_x = -13;
+	pixel_y = -14
+	},
+/obj/structure/flora/grass/jungle,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"Zb" = (
+/obj/structure/cable,
+/obj/effect/turf_decal/box,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/engineering)
+"Zc" = (
+/obj/structure/spacevine,
+/obj/structure/spacevine/dense,
+/turf/open/water/planet/jungle,
+/area/lavaland/surface/outdoors)
+"Ze" = (
+/obj/machinery/porta_turret/syndicate{
+	dir = 9
+	},
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"Zn" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew)
+"Zr" = (
+/obj/structure/cable/yellow,
+/obj/machinery/power/port_gen/pacman,
+/obj/structure/railing{
+	dir = 4;
+	layer = 4.1
+	},
+/turf/open/floor/plasteel/tech/grid{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/engineering)
+"Zy" = (
+/obj/structure/railing{
+	dir = 10
+	},
+/obj/structure/cable,
+/mob/living/basic/trooper/pirate/ranged,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"ZE" = (
+/obj/item/shovel,
+/obj/item/clothing/head/hardhat,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/ruin/unpowered/planet_lava/cave)
+"ZG" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/cargo)
+"ZM" = (
+/obj/structure/flora/grass/jungle/b,
+/obj/structure/flora/rock/pile/largejungle,
+/obj/structure/flora/tree/jungle,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/lavaland/surface/outdoors)
+"ZU" = (
+/obj/machinery/power/apc/auto_name/north,
+/obj/structure/frame/computer{
+	anchored = 1
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/plasteel/tech/grid{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_jungle/cavecrew/engineering)
+
+(1,1,1) = {"
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+"}
+(2,1,1) = {"
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+"}
+(3,1,1) = {"
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+"}
+(4,1,1) = {"
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+YA
+YA
+YA
+YA
+YA
+Rn
+fc
+az
+Rn
+Rn
+Rn
+rW
+Rn
+Rn
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+"}
+(5,1,1) = {"
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+YA
+Rn
+Rn
+CR
+rW
+Rn
+Rn
+Rn
+Rn
+pn
+Rn
+fc
+pn
+KE
+Rn
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+"}
+(6,1,1) = {"
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+hj
+hj
+hj
+hj
+hj
+hj
+bX
+bX
+bX
+bX
+bX
+bX
+Rn
+cw
+Rn
+fc
+vI
+Rn
+Rn
+Rn
+KE
+nR
+az
+CR
+No
+YA
+YA
+YA
+YA
+YA
+YA
+"}
+(7,1,1) = {"
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+hj
+fH
+fH
+yH
+NY
+hj
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+Rn
+Rn
+CR
+Rn
+mm
+pn
+Rn
+Rn
+pn
+CR
+Kt
+No
+No
+YA
+YA
+YA
+YA
+YA
+"}
+(8,1,1) = {"
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+No
+No
+No
+No
+No
+iZ
+No
+YA
+YA
+YA
+YA
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+hj
+ji
+SE
+em
+UQ
+hj
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+CR
+nR
+CR
+pn
+Rn
+KV
+Rn
+CR
+CR
+CR
+No
+No
+CR
+YA
+YA
+YA
+YA
+"}
+(9,1,1) = {"
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+iZ
+No
+No
+No
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+Me
+Me
+Me
+Me
+Me
+Me
+hj
+eH
+Bt
+rm
+Nu
+hj
+Vv
+Vv
+hv
+Vv
+Vv
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+Rn
+pn
+kb
+jx
+Eq
+No
+oA
+IH
+cd
+Rn
+YA
+YA
+YA
+"}
+(10,1,1) = {"
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+No
+No
+No
+No
+No
+No
+No
+iZ
+iZ
+No
+No
+iZ
+iZ
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+fs
+bG
+eh
+jX
+yc
+LL
+hj
+Zr
+nO
+ss
+PV
+hj
+Vv
+Og
+nG
+Pg
+Vv
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+Rn
+Hp
+No
+No
+It
+CR
+CR
+KE
+Rn
+YA
+YA
+YA
+"}
+(11,1,1) = {"
+YA
+YA
+YA
+YA
+No
+No
+No
+No
+No
+No
+No
+No
+gz
+No
+No
+iZ
+iZ
+iZ
+Zc
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+Me
+fv
+bf
+tn
+bP
+SA
+BZ
+xD
+Bt
+ss
+EE
+Gh
+MJ
+or
+Yp
+or
+Vv
+Vv
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+No
+Cq
+mm
+jP
+Kt
+Rn
+Rn
+az
+Rn
+YA
+YA
+"}
+(12,1,1) = {"
+YA
+YA
+YA
+YA
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+iZ
+iZ
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+Me
+Me
+Me
+Me
+Me
+nB
+HH
+xl
+MM
+AA
+hj
+ZU
+va
+bD
+Bt
+hj
+fp
+or
+or
+or
+EG
+Vv
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+Rn
+Kt
+jx
+mm
+KE
+Rn
+Rn
+rW
+Rn
+YA
+"}
+(13,1,1) = {"
+YA
+YA
+No
+No
+No
+No
+No
+No
+No
+iZ
+No
+No
+iZ
+iZ
+Zc
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+Qu
+Ad
+Uf
+we
+Me
+ea
+xG
+xl
+od
+QE
+hj
+hj
+hj
+hj
+Od
+hj
+Vv
+wH
+jG
+Yp
+gG
+Vv
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+CR
+Rn
+jx
+Lj
+Rn
+Rn
+az
+Rn
+YA
+"}
+(14,1,1) = {"
+YA
+YA
+No
+No
+No
+No
+No
+No
+No
+No
+hI
+mK
+iZ
+iZ
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+Me
+Eo
+lM
+aM
+Me
+kg
+cs
+VQ
+Vc
+LC
+LC
+Ty
+Ty
+LC
+dw
+ie
+Vv
+Vv
+Lk
+Yh
+Vv
+Vv
+tv
+tv
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+Rn
+Rn
+Rn
+rW
+jx
+Rn
+CR
+Rn
+YA
+"}
+(15,1,1) = {"
+YA
+YA
+No
+No
+No
+No
+No
+No
+gr
+oA
+No
+No
+zF
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+Cs
+bX
+bX
+bX
+Me
+JE
+ej
+Na
+Me
+Me
+cH
+CU
+hx
+LC
+nJ
+QU
+LC
+LC
+Xn
+zL
+Vv
+FL
+SD
+JQ
+hE
+Sr
+tv
+tv
+tv
+qi
+Tn
+Tn
+Tn
+Tn
+bX
+bX
+bX
+Rn
+Rn
+az
+az
+sL
+nR
+Rn
+YA
+"}
+(16,1,1) = {"
+YA
+YA
+No
+No
+No
+No
+No
+No
+No
+No
+qm
+bX
+UK
+bX
+Rv
+bX
+bX
+bX
+bX
+bX
+bX
+tF
+pw
+rO
+rO
+ht
+bX
+bX
+bX
+Me
+Ux
+Ah
+bI
+uv
+Me
+Me
+Iz
+Me
+LC
+EX
+LC
+LC
+WP
+Qb
+bQ
+sZ
+JP
+kq
+VJ
+wh
+Sr
+MN
+tv
+tv
+TA
+ut
+dy
+Wd
+Tn
+Tn
+bX
+bX
+bX
+Rn
+WO
+KE
+Rn
+sL
+az
+YA
+"}
+(17,1,1) = {"
+YA
+No
+No
+No
+No
+No
+WO
+Rn
+TZ
+No
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+uA
+Kk
+uA
+OS
+QB
+KC
+uH
+mL
+iD
+bX
+bX
+bX
+Me
+UZ
+Pb
+Rk
+sS
+Me
+GQ
+Qb
+cr
+Qb
+dw
+cr
+Sa
+gn
+uf
+UJ
+Vv
+Hs
+hY
+QP
+xt
+tl
+JG
+tv
+tv
+tv
+yS
+zZ
+ut
+Bp
+Tn
+bX
+bX
+bX
+bX
+Rn
+rW
+Rn
+rW
+sL
+YA
+"}
+(18,1,1) = {"
+YA
+No
+No
+No
+Rn
+Rn
+ay
+qt
+nR
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+Cs
+Kk
+uA
+FC
+IS
+sl
+uV
+KC
+Lz
+Ef
+sR
+rU
+bX
+Me
+QG
+Aq
+fY
+xl
+JF
+Sa
+pq
+Vn
+ne
+Ib
+Ib
+VV
+Ib
+UJ
+LC
+Vv
+Vv
+JV
+Rm
+Vv
+Vv
+qi
+tv
+tv
+So
+wh
+bM
+Ow
+wh
+Vv
+bX
+bX
+bX
+FE
+Rn
+Rn
+Rn
+CR
+Rn
+YA
+"}
+(19,1,1) = {"
+YA
+No
+No
+Rn
+ZM
+Rn
+nR
+Km
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+BN
+zh
+ZG
+Rs
+Ef
+sl
+Ld
+Li
+Ef
+pD
+Ef
+Cs
+Me
+Me
+Mq
+Xc
+uv
+DH
+Qb
+dw
+vh
+LC
+LC
+ST
+LC
+LC
+LC
+LC
+bX
+bX
+Pi
+WH
+bX
+bX
+tv
+tv
+tv
+nP
+Tn
+Qc
+nK
+br
+Vv
+bX
+bX
+bX
+bX
+RK
+Rn
+KV
+Rn
+YA
+YA
+"}
+(20,1,1) = {"
+YA
+No
+No
+Lj
+Lj
+Lj
+fc
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+ZG
+uY
+Ef
+Ef
+sb
+cI
+rv
+Li
+Ef
+rU
+bX
+Me
+Me
+Me
+Me
+Me
+QQ
+dw
+ie
+LC
+bX
+bX
+bX
+Cs
+bX
+bX
+bX
+du
+lZ
+mz
+bX
+bX
+tv
+tv
+tv
+tv
+Tn
+uF
+vr
+ng
+Vv
+bX
+bX
+bX
+bX
+Lj
+az
+pn
+Rn
+YA
+YA
+"}
+(21,1,1) = {"
+YA
+No
+No
+rW
+Rn
+nR
+qt
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+Cs
+vl
+Cj
+iD
+Ef
+wD
+XQ
+pD
+Mx
+Ef
+Ox
+bX
+bX
+bX
+bX
+bX
+LC
+LC
+kQ
+LC
+LC
+bX
+bX
+Ms
+tk
+ty
+tp
+Pi
+Pi
+zt
+WH
+Ho
+wU
+MN
+MK
+JD
+tv
+Vv
+Vv
+pk
+Yj
+Vv
+bX
+bX
+bX
+bX
+FE
+Rn
+sC
+bC
+YA
+YA
+"}
+(22,1,1) = {"
+No
+No
+No
+No
+Rn
+Km
+rW
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+FC
+Aw
+Li
+Ef
+wA
+tN
+aO
+Ef
+Li
+kM
+kM
+bX
+bX
+bX
+bX
+Am
+Sv
+fB
+fI
+Am
+bX
+bl
+Br
+Sp
+Sp
+BY
+Ho
+LF
+Pi
+Mm
+Pi
+Ho
+XB
+XB
+ks
+tv
+tv
+Vv
+Vv
+Va
+Vv
+Vv
+bX
+bX
+bX
+bX
+kV
+pK
+RH
+YA
+YA
+"}
+(23,1,1) = {"
+No
+No
+No
+No
+Rn
+Rn
+qt
+Fx
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+GT
+tF
+iX
+NV
+NV
+Ef
+Ld
+Mx
+iD
+Nm
+LF
+LF
+LF
+LF
+WH
+iv
+LF
+At
+CS
+eS
+Ms
+BY
+Br
+iC
+bX
+bX
+bX
+bX
+bX
+Cs
+bX
+bX
+Nz
+Fp
+xY
+XB
+Oq
+qs
+jy
+SD
+sB
+Vv
+bX
+bX
+bX
+kV
+kV
+zW
+LN
+EU
+YA
+"}
+(24,1,1) = {"
+No
+No
+No
+No
+No
+lR
+Rn
+nR
+bX
+zW
+ll
+GK
+bX
+fl
+mW
+fl
+bX
+fl
+bX
+OS
+GT
+GT
+yv
+QM
+uA
+qM
+RZ
+xT
+ee
+lA
+Pi
+VY
+zA
+zH
+hF
+zH
+hF
+zH
+zH
+SV
+SV
+iK
+bX
+Cs
+bX
+gb
+bg
+bX
+bX
+bX
+Cs
+wg
+hd
+Fp
+hE
+XB
+Vv
+iE
+Pe
+OP
+Vv
+bX
+bX
+zW
+kV
+kV
+yJ
+ox
+Rn
+YA
+"}
+(25,1,1) = {"
+No
+No
+No
+No
+No
+Lf
+No
+Rn
+fc
+zW
+CK
+UI
+oD
+hU
+td
+Xx
+Lx
+XA
+HF
+Ig
+KT
+KT
+KT
+KT
+jW
+IT
+dV
+dV
+fl
+hO
+KT
+EQ
+fl
+dV
+dV
+dV
+dV
+dV
+dV
+dV
+dV
+dV
+dV
+wp
+dV
+dV
+gi
+bX
+Cs
+bX
+Vx
+dV
+dV
+fd
+MN
+XB
+Vv
+WB
+KO
+gA
+Vv
+bX
+Cs
+zW
+zW
+zW
+zW
+sL
+pn
+YA
+"}
+(26,1,1) = {"
+No
+No
+No
+No
+No
+No
+No
+No
+No
+hI
+kV
+zW
+rp
+FR
+mX
+dV
+dV
+Cc
+Iq
+NF
+NF
+NF
+NF
+JT
+PP
+ye
+dV
+dV
+dV
+aK
+ig
+Lg
+dV
+dV
+dV
+dV
+dV
+dV
+dV
+dV
+dV
+dV
+dV
+dV
+dV
+dV
+UI
+mF
+DX
+vw
+dV
+dV
+dV
+fd
+zk
+pW
+Vv
+oj
+oj
+oj
+Vv
+Tn
+cQ
+bS
+zW
+Hd
+rp
+Rn
+WO
+YA
+"}
+(27,1,1) = {"
+No
+No
+No
+No
+No
+oA
+No
+No
+No
+iZ
+iZ
+mX
+mX
+Sl
+dV
+dV
+dV
+dV
+dV
+dV
+dV
+dV
+dV
+dV
+AB
+EQ
+dV
+dV
+dV
+fm
+Jg
+hw
+dV
+dV
+dV
+dV
+dV
+dV
+dV
+dV
+dV
+dV
+dV
+dV
+dV
+dV
+dV
+Bx
+Ek
+dV
+dV
+dV
+dV
+fd
+ue
+ts
+UC
+wT
+KS
+KS
+tj
+tw
+zk
+GY
+Rn
+Ua
+Vm
+UT
+Vm
+YA
+"}
+(28,1,1) = {"
+No
+No
+No
+No
+No
+No
+No
+No
+No
+iZ
+iZ
+iZ
+bE
+iZ
+vL
+dV
+dV
+dV
+dV
+dV
+dV
+dV
+dV
+dV
+ez
+TM
+dV
+dV
+dV
+fm
+PZ
+Lg
+dV
+dV
+dV
+dV
+dV
+dV
+dV
+dV
+dV
+dV
+dV
+dV
+dV
+dV
+dV
+dV
+dV
+dV
+dV
+dV
+dV
+fd
+JX
+dQ
+UC
+wT
+Wo
+KS
+tj
+tw
+cQ
+GY
+Rn
+CR
+Rn
+qk
+Rn
+YA
+"}
+(29,1,1) = {"
+No
+No
+No
+No
+No
+No
+No
+No
+No
+iZ
+iZ
+iZ
+iZ
+AD
+Zc
+vL
+dV
+dV
+dV
+dV
+dV
+dV
+dV
+dV
+ez
+ez
+dV
+oQ
+hq
+KG
+oz
+sT
+hq
+xU
+xU
+kP
+qd
+qd
+qd
+hq
+hq
+dE
+dV
+dV
+dV
+dV
+dV
+mX
+dV
+dV
+dV
+dV
+dV
+fd
+mR
+Zn
+xO
+Gx
+OY
+VT
+tj
+sA
+cQ
+GY
+GA
+ox
+Ic
+qa
+Jv
+YA
+"}
+(30,1,1) = {"
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+bE
+bE
+iZ
+dV
+dV
+dV
+dV
+Lb
+dV
+dV
+dV
+dV
+dV
+dV
+ez
+ez
+dV
+hq
+xI
+RL
+RL
+RL
+hq
+hq
+hq
+hq
+aS
+gO
+GX
+DA
+Lm
+hq
+hq
+dV
+dV
+dV
+dV
+mX
+mX
+dV
+dV
+dV
+dV
+fd
+ue
+aB
+Vv
+Vv
+Wr
+Vv
+Vv
+Tn
+Kq
+HE
+zW
+zW
+kV
+OQ
+Nn
+YA
+"}
+(31,1,1) = {"
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+iZ
+hN
+iZ
+tJ
+Wt
+Sl
+hl
+dV
+dV
+dV
+dV
+dV
+dV
+dV
+ez
+ez
+dV
+hq
+ey
+yK
+ju
+yK
+wE
+Lu
+GZ
+hq
+dq
+LE
+GX
+bt
+IF
+Bz
+uT
+dV
+dV
+dV
+WW
+GK
+QS
+mT
+dV
+RD
+iJ
+uX
+mn
+Iv
+Vv
+Oc
+xm
+jr
+Vv
+bX
+Cs
+kV
+kV
+Wx
+mr
+KV
+Rn
+YA
+"}
+(32,1,1) = {"
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+hI
+hN
+iZ
+iZ
+iZ
+dV
+dV
+dV
+dV
+dV
+dV
+dV
+dV
+dV
+ez
+ez
+dV
+hq
+PC
+yK
+yK
+yK
+yK
+yK
+RL
+xp
+zK
+zK
+OC
+ag
+SW
+ve
+uT
+dV
+dV
+dV
+UI
+GK
+GK
+pJ
+dV
+gI
+fd
+hE
+mn
+Oi
+Vv
+iO
+kh
+qF
+Vv
+bX
+bX
+bX
+kV
+yJ
+kV
+oi
+Ic
+YA
+"}
+(33,1,1) = {"
+No
+No
+No
+No
+No
+No
+No
+No
+No
+iZ
+iZ
+iZ
+iZ
+Wt
+tJ
+Sl
+dV
+dV
+dV
+dV
+dV
+dV
+dV
+dV
+ez
+ez
+dV
+hq
+hq
+tH
+RL
+yK
+Ej
+tL
+Ns
+ME
+Vp
+GJ
+GJ
+JC
+JR
+XU
+uT
+dV
+dV
+vM
+UI
+bX
+GK
+GK
+UI
+dV
+bB
+hE
+XB
+dt
+Vv
+Vv
+fO
+Vv
+Vv
+bX
+bX
+bX
+bX
+kV
+Ua
+yJ
+Rn
+YA
+"}
+(34,1,1) = {"
+YA
+No
+No
+No
+No
+No
+No
+No
+No
+iZ
+iZ
+iZ
+iZ
+mX
+vL
+jj
+dV
+dV
+dV
+dV
+dV
+dV
+dV
+dV
+ez
+ez
+dV
+Ay
+bd
+Bw
+zE
+lx
+hq
+hq
+hq
+hq
+id
+gy
+YX
+BM
+jt
+hq
+hq
+dV
+dV
+UI
+bX
+bX
+Cs
+bX
+bX
+pi
+eN
+ps
+ue
+Ze
+bX
+rC
+LM
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+kV
+IM
+YA
+YA
+"}
+(35,1,1) = {"
+YA
+No
+No
+No
+No
+No
+No
+No
+No
+No
+iZ
+bE
+iZ
+tJ
+No
+dV
+fe
+dV
+dV
+dV
+dV
+dV
+dV
+dV
+ez
+ez
+dV
+oQ
+hq
+hq
+hq
+hq
+hq
+xU
+xU
+GN
+hq
+hq
+hq
+hq
+hq
+Xh
+dV
+dV
+dV
+bX
+bX
+bX
+bX
+hj
+hj
+hj
+hj
+TU
+wb
+hj
+bX
+bX
+wX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+Rn
+ou
+YA
+YA
+"}
+(36,1,1) = {"
+YA
+No
+No
+No
+No
+No
+No
+No
+No
+iZ
+iZ
+Zc
+iZ
+iZ
+Sl
+dV
+dV
+dV
+dV
+dV
+dV
+dV
+dV
+dV
+ez
+JA
+dV
+dV
+dV
+dV
+dV
+dV
+dV
+dV
+dV
+dV
+dV
+dV
+dV
+dV
+dV
+dV
+dV
+UI
+Cs
+bX
+bX
+bX
+bX
+hj
+gx
+Sd
+Bv
+Zb
+dg
+hj
+bX
+rC
+ys
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+Nn
+Nn
+YA
+YA
+"}
+(37,1,1) = {"
+YA
+No
+No
+No
+No
+No
+No
+No
+iZ
+hI
+bE
+mX
+tP
+iA
+oK
+vP
+dV
+dV
+dV
+dV
+dV
+dV
+dV
+dV
+AB
+EQ
+dV
+dV
+dV
+dV
+dV
+dV
+dV
+dV
+dV
+dV
+dV
+dV
+dV
+dV
+dV
+dV
+Ko
+bA
+bX
+bX
+bX
+bX
+bX
+hj
+WD
+xW
+wN
+wa
+pV
+hj
+bX
+bX
+wX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+Ve
+qk
+YA
+YA
+"}
+(38,1,1) = {"
+YA
+No
+No
+No
+No
+No
+No
+No
+iZ
+iZ
+bE
+bE
+zW
+Rd
+Ko
+dV
+dV
+YE
+Uk
+tM
+fz
+fz
+fz
+yd
+Pa
+IT
+dV
+dV
+fl
+KT
+KT
+KT
+fl
+dV
+dV
+dV
+dV
+dV
+dV
+dV
+WW
+EW
+gi
+bX
+bX
+kx
+kx
+TN
+TN
+hj
+Xd
+qC
+kx
+vU
+Nr
+gF
+WR
+ys
+QR
+Cs
+rC
+rC
+bX
+bX
+bX
+bX
+qg
+YA
+YA
+YA
+"}
+(39,1,1) = {"
+YA
+YA
+No
+No
+vu
+No
+No
+oi
+Sg
+hL
+kV
+xi
+uk
+UI
+hh
+Lx
+Lx
+Ml
+KT
+Cg
+KT
+KT
+KT
+KT
+jW
+IT
+dV
+dV
+dX
+Ms
+WH
+WH
+eS
+WH
+KM
+WH
+KM
+WH
+BD
+Zy
+RJ
+Ko
+Ko
+RR
+Ko
+sM
+TU
+Ke
+Bb
+nW
+Uo
+sD
+yN
+Hf
+Po
+hj
+bX
+rC
+wX
+rC
+rC
+Ko
+Cs
+bX
+bX
+Rn
+Rn
+YA
+YA
+YA
+"}
+(40,1,1) = {"
+YA
+YA
+No
+No
+xS
+oA
+Rn
+DZ
+bX
+bX
+kf
+Ak
+bX
+fl
+lm
+fl
+bX
+fl
+bX
+Cs
+bX
+dV
+dV
+Ko
+jW
+xX
+EM
+cl
+Wj
+Ms
+Wj
+LF
+LF
+WH
+LF
+LF
+WH
+WH
+mi
+TI
+Mf
+Pi
+RJ
+NN
+NN
+Ou
+yN
+vx
+Kz
+wb
+rV
+WE
+MP
+ft
+kj
+hj
+bX
+bX
+mz
+rC
+rC
+kN
+bX
+bX
+bX
+UT
+rW
+YA
+YA
+YA
+"}
+(41,1,1) = {"
+YA
+YA
+No
+No
+No
+Rn
+rW
+Rn
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+Cs
+Hl
+jW
+jW
+iC
+iC
+iC
+CS
+LF
+WH
+WH
+WH
+WH
+KW
+LM
+Rp
+Sp
+Ar
+LF
+Hl
+bX
+bX
+kx
+kx
+kx
+hj
+hj
+hj
+hj
+hj
+hj
+hj
+hj
+qA
+Ko
+wX
+Ko
+Ko
+ys
+bX
+bX
+Fx
+Rn
+Rn
+YA
+YA
+YA
+"}
+(42,1,1) = {"
+YA
+YA
+No
+No
+Rn
+Rn
+Lc
+Rn
+Fx
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+NQ
+wJ
+Lx
+Dd
+Dd
+fS
+fS
+fS
+fS
+yz
+jH
+jH
+fS
+Mv
+pp
+fS
+CS
+li
+bX
+bX
+rC
+rC
+wU
+Ci
+gp
+RJ
+RJ
+rC
+rC
+Cs
+rC
+Ko
+HD
+Cs
+rC
+rC
+Ko
+bX
+bX
+bX
+Rn
+nh
+Nn
+YA
+YA
+YA
+"}
+(43,1,1) = {"
+YA
+YA
+No
+No
+Rn
+Rn
+yT
+Rn
+nR
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+jZ
+qO
+bX
+bX
+fS
+vG
+ux
+fS
+gE
+ID
+ID
+ID
+Ln
+Np
+fS
+bX
+bX
+bX
+bX
+rC
+RJ
+NN
+rC
+rC
+rC
+RJ
+Ci
+pO
+xn
+wX
+Ko
+Cs
+Cs
+Cs
+rC
+rC
+bX
+bX
+bX
+Rn
+KV
+YA
+YA
+YA
+YA
+"}
+(44,1,1) = {"
+YA
+YA
+No
+No
+Rn
+pn
+Rn
+qt
+dc
+Rn
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+Dd
+pO
+jZ
+lq
+bX
+fS
+fS
+ql
+TB
+Sb
+NG
+Ln
+NG
+FH
+NG
+mb
+fS
+bX
+bX
+bX
+Cs
+RJ
+RJ
+rC
+rC
+bw
+rC
+rC
+RJ
+rC
+rC
+Ko
+rC
+rC
+Cs
+bX
+bX
+bX
+bX
+bX
+Rn
+qg
+Rn
+YA
+YA
+YA
+YA
+"}
+(45,1,1) = {"
+YA
+YA
+No
+No
+No
+bS
+nR
+pn
+Rn
+Lj
+ml
+Rn
+BO
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+Dd
+jZ
+kM
+Dd
+bX
+fS
+kE
+ax
+Oz
+fS
+pY
+BB
+oP
+fS
+BB
+eL
+fS
+bX
+bX
+RJ
+Mc
+Ci
+rC
+rC
+vE
+Dy
+QF
+rC
+NN
+rC
+Cs
+Ko
+pO
+Ko
+bX
+bX
+bX
+bX
+bX
+Rn
+Ws
+CR
+YA
+YA
+YA
+YA
+YA
+"}
+(46,1,1) = {"
+YA
+YA
+No
+No
+No
+No
+qt
+YY
+rJ
+Hk
+Rn
+Rn
+gB
+gB
+kV
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+ZE
+pO
+bX
+bX
+fS
+Eh
+Ly
+jo
+fS
+pY
+eX
+Yt
+fS
+KN
+OM
+fS
+bX
+rC
+NN
+bX
+bX
+rC
+bw
+eT
+Mp
+bc
+Sx
+RJ
+rC
+rC
+rC
+Ko
+bX
+bX
+bX
+bX
+bX
+Rn
+rW
+IM
+Rn
+YA
+YA
+YA
+YA
+YA
+"}
+(47,1,1) = {"
+YA
+YA
+No
+No
+No
+No
+MV
+No
+qt
+Lj
+No
+oA
+Jy
+zW
+iZ
+iZ
+hI
+bE
+bX
+bX
+bX
+bX
+bX
+bX
+Cs
+wX
+Cs
+bX
+fS
+fS
+fS
+fS
+fS
+fS
+fS
+nU
+fS
+fS
+fS
+fS
+wU
+Ci
+RJ
+bX
+bX
+rC
+rC
+Xz
+HO
+hc
+rC
+rC
+rC
+rC
+rC
+rC
+bX
+bX
+bX
+bX
+Rn
+Rn
+UT
+Rn
+YA
+YA
+YA
+YA
+YA
+YA
+"}
+(48,1,1) = {"
+YA
+YA
+YA
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+iZ
+iZ
+No
+No
+No
+No
+bX
+bX
+bX
+bX
+bX
+Ko
+bX
+rC
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+zc
+My
+qE
+RJ
+NN
+yF
+Cs
+RJ
+bX
+bX
+bX
+rC
+rC
+rC
+rC
+rC
+Ci
+SI
+BE
+Cs
+bX
+bX
+bX
+bX
+FE
+KV
+os
+Nn
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+"}
+(49,1,1) = {"
+YA
+YA
+YA
+YA
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+gz
+No
+No
+bX
+bX
+bX
+rC
+Ko
+wX
+Tf
+bV
+Ko
+bX
+bX
+yU
+bX
+rC
+Ci
+wX
+bX
+bX
+Ko
+bX
+bX
+RJ
+RJ
+bX
+bX
+bX
+bX
+bX
+bX
+RJ
+RJ
+rC
+rC
+rC
+bX
+bX
+bX
+bX
+az
+CR
+Rn
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+"}
+(50,1,1) = {"
+YA
+YA
+YA
+YA
+YA
+YA
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+bX
+rC
+rC
+bX
+bX
+rC
+Ko
+wX
+Ko
+bX
+Cs
+rC
+rC
+pO
+bX
+bX
+Ko
+bX
+bX
+bX
+RJ
+Ci
+gp
+RJ
+RJ
+Ci
+SI
+RJ
+rC
+rC
+rC
+rC
+bX
+bX
+bX
+Rn
+CR
+Rn
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+"}
+(51,1,1) = {"
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+YA
+bX
+bX
+bX
+bX
+rC
+rC
+rC
+Ko
+Ko
+wX
+Ko
+Ko
+ys
+rC
+bX
+wX
+bX
+bX
+bX
+bX
+rC
+rC
+rC
+rC
+rC
+rC
+rC
+rC
+rC
+rC
+rC
+bX
+bX
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+"}
+(52,1,1) = {"
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+bX
+bX
+rC
+rC
+bX
+rC
+bX
+bX
+rC
+rC
+bX
+pO
+bX
+bX
+bX
+bX
+rC
+rC
+rC
+rC
+rC
+rC
+rC
+rC
+bX
+rC
+bX
+bX
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+"}
+(53,1,1) = {"
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+YA
+YA
+bX
+bX
+bX
+bX
+bX
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+"}
+(54,1,1) = {"
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+bX
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+"}
+(55,1,1) = {"
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+"}

@@ -1,17 +1,17 @@
 //this needs to come after the job_types subfolder to keep the correct ordering
 
-#define JOB_MODIFICATION_MAP_NAME "NSV Shrike"
+#define JOB_MODIFICATION_MAP_NAME "AQ Shrike" // AQ EDIT - przedrostek AQ w map_name
 #include "..\..\..\..\_maps\map_files\Shrike\job_changes.dm"
 
 //AQ EDIT START - our maps are renamed in their .json, so the upstream map_names ("NSV Atlas", "DLV Serendipity") never match them
-#define JOB_MODIFICATION_MAP_NAME "NSV Aquilas"
+#define JOB_MODIFICATION_MAP_NAME "AQ Aquilas"
 #include "..\..\..\..\_maps\map_files\Atlas\job_changes.dm"
 
 #define JOB_MODIFICATION_MAP_NAME "DLV Trawnik"
 #include "..\..\..\..\_maps\map_files\Serendipity\job_changes.dm"
 
 // Atlantis też nie był dołączony, więc jego usunięcia profesji i sloty pilotów nie działały.
-#define JOB_MODIFICATION_MAP_NAME "NSV Atlantis"
+#define JOB_MODIFICATION_MAP_NAME "AQ Atlantis"
 #include "..\..\..\..\_maps\map_files\Atlantis\job_changes.dm"
 
 // Upstream (BeeStation/NSV13#2656) nie dołączył tego pliku, więc zmiany profesji Von Neumanna nie działały. Plik kończy się #undef, dlatego jest ostatni.

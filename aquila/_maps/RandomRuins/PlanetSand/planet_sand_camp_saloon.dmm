@@ -1,0 +1,2646 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"al" = (
+/turf/template_noop,
+/area/template_noop)
+"aS" = (
+/obj/structure/railing{
+	dir = 1
+	},
+/turf/open/floor/plasteel/stairs{
+	dir = 8;
+	color = "#55391A"
+	},
+/area/ruin/unpowered/planet_sand/saloon)
+"aV" = (
+/obj/structure/sign/poster/contraband/random,
+/turf/closed/wall/mineral/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"aW" = (
+/obj/structure/table/wood,
+/obj/item/candle/infinite,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"aY" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/mob/living/basic/trooper/pirate/melee{
+	dir = 1
+	},
+/turf/open/floor/wood{
+	icon_state = "wood-broken5"
+	},
+/area/ruin/unpowered/planet_sand/saloon)
+"bO" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"bY" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/drinks/soda_cans/cola,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"cf" = (
+/obj/structure/closet/cabinet,
+/obj/effect/spawner/lootdrop/maintenance/three,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood{
+	icon_state = "wood-broken5"
+	},
+/area/ruin/unpowered/planet_sand/saloon)
+"cl" = (
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_sand/saloon)
+"cG" = (
+/turf/open/floor/plasteel/stairs{
+	color = "#55391A"
+	},
+/area/ruin/unpowered/planet_sand/saloon)
+"cN" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/chair/stool/bar{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"cP" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 5
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_sand/saloon)
+"dx" = (
+/obj/structure/chair/fancy/sofa/old{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/turf/open/floor/wood{
+	icon_state = "wood-broken5"
+	},
+/area/ruin/unpowered/planet_sand/saloon)
+"dI" = (
+/obj/machinery/atmospherics/pipe/layer_manifold,
+/obj/machinery/door/airlock/wood/glass{
+	name = "Wejście do saloonu"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"dQ" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 9
+	},
+/obj/effect/turf_decal/siding/wood,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"dR" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"es" = (
+/obj/machinery/door/airlock/wood/glass{
+	name = "Wejście do saloonu"
+	},
+/obj/machinery/atmospherics/pipe/layer_manifold,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"ew" = (
+/obj/structure/bed,
+/obj/item/bedsheet/random,
+/turf/open/floor/wood{
+	icon_state = "wood-broken5"
+	},
+/area/ruin/unpowered/planet_sand/saloon)
+"ez" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"eJ" = (
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"eZ" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/chair/stool/bar,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"fn" = (
+/obj/effect/mapping_helpers/airlock/locked,
+/obj/machinery/door/airlock/wood/glass{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"fS" = (
+/obj/machinery/power/port_gen/pacman,
+/obj/structure/cable/yellow,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"gC" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/wood,
+/obj/structure/chair/stool/bar,
+/mob/living/basic/trooper/pirate/ranged,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"gL" = (
+/obj/effect/mapping_helpers/airlock/locked,
+/obj/machinery/door/airlock/wood,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"gX" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"hm" = (
+/obj/structure/sign/barsign{
+	pixel_y = 32
+	},
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"hq" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"hM" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 1
+	},
+/turf/open/floor/wood{
+	icon_state = "wood-broken7"
+	},
+/area/ruin/unpowered/planet_sand/saloon)
+"hV" = (
+/obj/machinery/vending/cigarette,
+/turf/open/floor/wood{
+	icon_state = "wood-broken5"
+	},
+/area/ruin/unpowered/planet_sand/saloon)
+"il" = (
+/obj/structure/table/wood,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/sign/poster/contraband/smoke{
+	pixel_y = 32
+	},
+/obj/item/reagent_containers/food/drinks/soda_cans/cola,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"iq" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"ir" = (
+/turf/open/floor/wood{
+	icon_state = "wood-broken7"
+	},
+/area/ruin/unpowered/planet_sand/saloon)
+"jc" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"jh" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"ji" = (
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"jr" = (
+/obj/effect/spawner/structure/window,
+/obj/structure/curtain,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_sand/saloon)
+"jM" = (
+/obj/effect/spawner/structure/window,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_sand/saloon)
+"ka" = (
+/obj/structure/railing/corner{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"kb" = (
+/obj/structure/railing{
+	dir = 10
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"kh" = (
+/obj/structure/table/wood,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"kr" = (
+/obj/structure/closet/crate/secure/loot,
+/obj/item/gun/ballistic/automatic/pistol,
+/turf/open/floor/plating/asteroid/whitesands/grass,
+/area/lavaland/surface/outdoors)
+"kv" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/sign/poster/contraband/punch_shit{
+	pixel_y = -32
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"kx" = (
+/obj/structure/table/wood,
+/obj/item/candle/infinite,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"kC" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 9
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_sand/saloon)
+"kN" = (
+/obj/structure/chair/stool/bar,
+/turf/open/floor/wood{
+	icon_state = "wood-broken5"
+	},
+/area/ruin/unpowered/planet_sand/saloon)
+"lt" = (
+/obj/effect/decal/cleanable/blood/old,
+/obj/machinery/door/airlock/wood,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"lF" = (
+/obj/structure/chair/stool/bar{
+	dir = 8
+	},
+/mob/living/basic/trooper/pirate/ranged{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"lQ" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"mn" = (
+/obj/machinery/light,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"mr" = (
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 4
+	},
+/obj/structure/sign/poster/random{
+	pixel_x = -32
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"my" = (
+/turf/open/floor/wood{
+	icon_state = "wood-broken5"
+	},
+/area/ruin/unpowered/planet_sand/saloon)
+"mB" = (
+/obj/item/chair/stool/bar,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"nx" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"nA" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"nU" = (
+/obj/machinery/atmospherics/pipe/layer_manifold,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"nX" = (
+/obj/structure/table/wood,
+/obj/machinery/light,
+/obj/item/clothing/mask/cigarette/cigar/havana{
+	pixel_x = 1;
+	pixel_y = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"oj" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 1
+	},
+/obj/machinery/door/airlock/wood/glass,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"oF" = (
+/obj/item/chair/stool/bar,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 6
+	},
+/mob/living/basic/trooper/pirate/melee{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"oT" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/drinks/bottle/wine,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"oX" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"ph" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 1
+	},
+/turf/open/floor/wood{
+	icon_state = "wood-broken5"
+	},
+/area/ruin/unpowered/planet_sand/saloon)
+"po" = (
+/obj/structure/chair/wood,
+/mob/living/basic/trooper/pirate/melee{
+	name = "Robert";
+	desc = "Ten gość wydaje się w miarę zdrowy na umyśle i normalny";
+	faction = list("neutral")
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"pU" = (
+/obj/structure/chair/fancy/sofa/old,
+/obj/effect/turf_decal/siding/wood,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"qc" = (
+/obj/effect/turf_decal/siding/wood/corner,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/sign/poster/random{
+	pixel_x = -32
+	},
+/turf/open/floor/wood{
+	icon_state = "wood-broken5"
+	},
+/area/ruin/unpowered/planet_sand/saloon)
+"qd" = (
+/obj/structure/chair/stool/bar{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"qB" = (
+/obj/structure/table/wood/poker,
+/obj/item/reagent_containers/food/drinks/bottle/ale,
+/turf/open/floor/carpet,
+/area/ruin/unpowered/planet_sand/saloon)
+"rb" = (
+/obj/machinery/advanced_airlock_controller{
+	pixel_x = -27
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/components/binary/dp_vent_pump/on/layer2,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"rk" = (
+/obj/structure/sign/poster/random,
+/turf/closed/wall/mineral/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"rm" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/table/wood,
+/obj/item/storage/fancy/candle_box,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"rr" = (
+/obj/structure/closet/cabinet,
+/obj/effect/spawner/lootdrop/maintenance/four,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"sh" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 6
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"sH" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"sO" = (
+/obj/structure/chair/stool/bar,
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"ta" = (
+/obj/structure/table/wood,
+/obj/item/clothing/head/collectable/tophat{
+	pixel_y = 7
+	},
+/obj/structure/sign/poster/official/cohiba_robusto_ad{
+	pixel_y = 32
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"to" = (
+/obj/structure/table/wood,
+/obj/item/storage/fancy/cigarettes/cigars/havana,
+/obj/item/clothing/mask/cigarette/cigar/havana{
+	pixel_y = 6;
+	pixel_x = -2
+	},
+/turf/open/floor/carpet,
+/area/ruin/unpowered/planet_sand/saloon)
+"tw" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/door/airlock/wood/glass{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"tQ" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/structure/chair/stool/bar{
+	dir = 8
+	},
+/mob/living/basic/trooper/pirate/melee{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"uq" = (
+/obj/machinery/computer/slot_machine,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"us" = (
+/obj/structure/railing,
+/turf/open/floor/plasteel/stairs{
+	dir = 8;
+	color = "#55391A"
+	},
+/area/ruin/unpowered/planet_sand/saloon)
+"ut" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/turf/open/floor/wood{
+	icon_state = "wood-broken7"
+	},
+/area/ruin/unpowered/planet_sand/saloon)
+"uA" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/carpet,
+/area/ruin/unpowered/planet_sand/saloon)
+"uW" = (
+/obj/structure/chair/fancy/sofa/old,
+/obj/effect/turf_decal/siding/wood,
+/obj/structure/sign/poster/official/cohiba_robusto_ad{
+	pixel_y = 32
+	},
+/mob/living/basic/trooper/pirate/melee,
+/turf/open/floor/wood{
+	icon_state = "wood-broken7"
+	},
+/area/ruin/unpowered/planet_sand/saloon)
+"uX" = (
+/obj/machinery/light,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood{
+	icon_state = "wood-broken7"
+	},
+/area/ruin/unpowered/planet_sand/saloon)
+"vn" = (
+/obj/structure/sign/poster/official/safety_internals{
+	pixel_y = -32
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"vu" = (
+/obj/machinery/light,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/chair/stool/bar{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"vK" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass,
+/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass{
+	pixel_y = 6;
+	pixel_x = -10
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass{
+	pixel_y = 2;
+	pixel_x = 11
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"vT" = (
+/obj/effect/decal/cleanable/blood/footprints{
+	icon_state = "oil1";
+	dir = 8
+	},
+/turf/open/floor/plating/asteroid/whitesands,
+/area/lavaland/surface/outdoors)
+"wy" = (
+/obj/structure/table/wood,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood{
+	icon_state = "wood-broken5"
+	},
+/area/ruin/unpowered/planet_sand/saloon)
+"wN" = (
+/obj/structure/railing,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"wZ" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 1
+	},
+/turf/open/floor/wood{
+	icon_state = "wood-broken5"
+	},
+/area/ruin/unpowered/planet_sand/saloon)
+"xh" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 10
+	},
+/turf/open/floor/wood{
+	icon_state = "wood-broken7"
+	},
+/area/ruin/unpowered/planet_sand/saloon)
+"xG" = (
+/obj/item/clothing/head/fedora{
+	pixel_x = -17
+	},
+/obj/effect/decal/cleanable/blood/old,
+/obj/item/ammo_casing/spent{
+	pixel_x = 13;
+	pixel_y = -6
+	},
+/turf/open/floor/plating/asteroid/whitesands,
+/area/lavaland/surface/outdoors)
+"xI" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"xR" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"xW" = (
+/obj/structure/table/wood,
+/obj/item/clothing/mask/cigarette/cigar/havana{
+	pixel_y = -3;
+	pixel_x = 5
+	},
+/obj/item/clothing/mask/cigarette/cigar/havana{
+	pixel_y = 4
+	},
+/turf/open/floor/carpet,
+/area/ruin/unpowered/planet_sand/saloon)
+"xZ" = (
+/obj/structure/chair/stool/bar{
+	dir = 1
+	},
+/mob/living/basic/trooper/pirate/melee{
+	dir = 1
+	},
+/turf/open/floor/wood{
+	icon_state = "wood-broken5"
+	},
+/area/ruin/unpowered/planet_sand/saloon)
+"yG" = (
+/obj/effect/decal/cleanable/blood/footprints{
+	icon_state = "conc1";
+	dir = 8
+	},
+/obj/item/clothing/head/fedora{
+	pixel_x = 13
+	},
+/obj/item/ammo_casing/spent,
+/obj/item/clothing/mask/gas/explorer,
+/turf/open/floor/plating/asteroid/whitesands,
+/area/lavaland/surface/outdoors)
+"ze" = (
+/obj/structure/chair/stool/bar{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"zg" = (
+/obj/structure/railing{
+	dir = 8
+	},
+/turf/open/floor/plasteel/stairs{
+	color = "#55391A"
+	},
+/area/ruin/unpowered/planet_sand/saloon)
+"zi" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 8
+	},
+/turf/open/floor/wood{
+	icon_state = "wood-broken7"
+	},
+/area/ruin/unpowered/planet_sand/saloon)
+"zm" = (
+/turf/closed/wall/mineral/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"zs" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"zF" = (
+/obj/structure/chair/fancy/sofa/old{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/mob/living/basic/trooper/pirate/ranged{
+	dir = 8
+	},
+/turf/open/floor/wood{
+	icon_state = "wood-broken7"
+	},
+/area/ruin/unpowered/planet_sand/saloon)
+"zL" = (
+/obj/machinery/light,
+/obj/structure/chair/stool/bar{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"zO" = (
+/obj/structure/chair/fancy/sofa/old,
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 8
+	},
+/obj/structure/sign/poster/contraband/have_a_puff{
+	pixel_x = 32
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"zQ" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/door/airlock/wood/glass{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"zT" = (
+/obj/structure/railing,
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/floor/wood{
+	icon_state = "wood-broken7"
+	},
+/area/ruin/unpowered/planet_sand/saloon)
+"Aa" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/glass/rag,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"Ad" = (
+/obj/structure/table/wood/poker,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/carpet,
+/area/ruin/unpowered/planet_sand/saloon)
+"Aq" = (
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"Aw" = (
+/obj/structure/table/wood/poker,
+/obj/item/chair/stool/bar,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/carpet,
+/area/ruin/unpowered/planet_sand/saloon)
+"AD" = (
+/obj/structure/table/wood/poker,
+/obj/item/reagent_containers/food/drinks/bottle/rum,
+/turf/open/floor/carpet,
+/area/ruin/unpowered/planet_sand/saloon)
+"Bf" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/turf/open/floor/plasteel/stairs{
+	dir = 8;
+	color = "#55391A"
+	},
+/area/ruin/unpowered/planet_sand/saloon)
+"Bm" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"BL" = (
+/obj/machinery/door/airlock/wood/glass{
+	name = "Wejście do saloonu"
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"BX" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 1
+	},
+/obj/machinery/door/airlock/wood/glass{
+	name = "Wejście do saloonu"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"Cb" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"CD" = (
+/obj/structure/closet/cabinet,
+/obj/effect/spawner/lootdrop/maintenance/two,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/gun/energy/plasmacutter,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"CW" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/chair/stool/bar{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"De" = (
+/obj/structure/chair/stool/bar,
+/mob/living/basic/trooper/pirate/ranged{
+	dir = 8
+	},
+/turf/open/floor/wood{
+	icon_state = "wood-broken5"
+	},
+/area/ruin/unpowered/planet_sand/saloon)
+"Dj" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 6
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"Dk" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 6
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"Dt" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/ammo_casing/a357,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/wood{
+	icon_state = "wood-broken7"
+	},
+/area/ruin/unpowered/planet_sand/saloon)
+"Dy" = (
+/obj/machinery/computer/slot_machine,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"DE" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"DJ" = (
+/obj/machinery/vending/boozeomat,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"DP" = (
+/turf/open/floor/plating/asteroid/whitesands/grass,
+/area/lavaland/surface/outdoors)
+"Ed" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/wood,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"Eo" = (
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer2,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"Fe" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/light,
+/turf/open/floor/wood{
+	icon_state = "wood-broken7"
+	},
+/area/ruin/unpowered/planet_sand/saloon)
+"Fm" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/structure/sign/poster/random{
+	pixel_y = -32
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"FA" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 9
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"FB" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/sign/poster/contraband/red_rum{
+	pixel_x = -32;
+	pixel_y = 32
+	},
+/turf/open/floor/wood{
+	icon_state = "wood-broken5"
+	},
+/area/ruin/unpowered/planet_sand/saloon)
+"FM" = (
+/obj/structure/reagent_dispensers/beerkeg,
+/obj/structure/sign/poster/official/high_class_martini{
+	pixel_y = 32
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"FN" = (
+/obj/structure/table/wood,
+/obj/item/stack/spacecash/c100,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"FO" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"FT" = (
+/obj/structure/musician/piano,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"FW" = (
+/obj/structure/closet/cabinet,
+/obj/item/storage/bag/money,
+/obj/item/rsf,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"FY" = (
+/obj/structure/bed,
+/obj/item/bedsheet/random,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"FZ" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/spawner/structure/window,
+/obj/structure/curtain,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_sand/saloon)
+"Gc" = (
+/obj/machinery/power/apc/auto_name/south,
+/obj/structure/cable,
+/obj/item/shovel,
+/obj/item/shovel,
+/obj/structure/rack,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"Gd" = (
+/obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"Ge" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"GY" = (
+/obj/machinery/power/smes/magical{
+	name = "magazyn energii"
+	},
+/obj/structure/cable,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"Hb" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/ammo_casing/shotgun/buckshot,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"Hj" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/turf/open/floor/wood{
+	icon_state = "wood-broken5"
+	},
+/area/ruin/unpowered/planet_sand/saloon)
+"Ho" = (
+/obj/structure/table/wood,
+/obj/item/chair/stool/bar,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"HH" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 1
+	},
+/obj/machinery/door/airlock/wood/glass{
+	name = "Wejście do saloonu"
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"HR" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"HS" = (
+/obj/machinery/atmospherics/components/unary/tank/air,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"HZ" = (
+/obj/structure/table/wood,
+/obj/item/vending_refill/boozeomat,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"Ig" = (
+/obj/structure/table/wood,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"IA" = (
+/obj/structure/closet/crate/bin,
+/obj/effect/spawner/lootdrop/maintenance,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"IL" = (
+/obj/structure/table/wood,
+/obj/item/storage/toolbox/mechanical,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"IU" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"Ju" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 10
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"JD" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/stack/sheet/mineral/wood,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"JZ" = (
+/obj/structure/closet/crate/bin,
+/obj/effect/spawner/lootdrop/maintenance,
+/obj/item/chair/stool/bar,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"Ke" = (
+/obj/machinery/chem_master/condimaster{
+	desc = "Służy do mieszania wódy. Widać niedbale zaklejoną etykietę Coondimastera.";
+	name = "Bimbrownik 2000"
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"Kz" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood{
+	icon_state = "wood-broken7"
+	},
+/area/ruin/unpowered/planet_sand/saloon)
+"KQ" = (
+/obj/machinery/door/airlock/wood/glass{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"Lj" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 5
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"Lw" = (
+/obj/structure/table/wood/poker,
+/obj/item/toy/cards/deck,
+/turf/open/floor/carpet,
+/area/ruin/unpowered/planet_sand/saloon)
+"LL" = (
+/obj/structure/chair/stool/bar,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"Ms" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/chair/stool/bar,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"MP" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"Nh" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 5
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood{
+	icon_state = "wood-broken5"
+	},
+/area/ruin/unpowered/planet_sand/saloon)
+"Nr" = (
+/obj/machinery/vending/cola/random,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"Nt" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/ammo_casing/shotgun/buckshot,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"NN" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/chair/stool/bar{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"NT" = (
+/obj/structure/closet/cabinet,
+/obj/item/gun/ballistic/shotgun,
+/obj/item/storage/box/rubbershot{
+	pixel_x = -5;
+	pixel_y = 5
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"Oc" = (
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/floor/plating/asteroid/whitesands,
+/area/lavaland/surface/outdoors)
+"Od" = (
+/obj/machinery/chem_dispenser/drinks/beer,
+/obj/structure/table/wood,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"Of" = (
+/obj/effect/turf_decal/siding/wood/corner,
+/turf/open/floor/wood{
+	icon_state = "wood-broken5"
+	},
+/area/ruin/unpowered/planet_sand/saloon)
+"OF" = (
+/obj/structure/table/wood/poker,
+/turf/open/floor/carpet,
+/area/ruin/unpowered/planet_sand/saloon)
+"OT" = (
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/floor/wood{
+	icon_state = "wood-broken7"
+	},
+/area/ruin/unpowered/planet_sand/saloon)
+"Pd" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/wood,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"PO" = (
+/obj/effect/decal/cleanable/blood/old,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 5
+	},
+/turf/open/floor/wood{
+	icon_state = "wood-broken7"
+	},
+/area/ruin/unpowered/planet_sand/saloon)
+"PR" = (
+/obj/structure/closet/crate/bin,
+/obj/effect/spawner/lootdrop/maintenance,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"Qh" = (
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 5
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"QH" = (
+/turf/open/floor/plating/asteroid/whitesands,
+/area/lavaland/surface/outdoors)
+"QJ" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/blood/old,
+/mob/living/basic/trooper/pirate/ranged{
+	name = "barman pustelników"
+	},
+/turf/open/floor/wood{
+	icon_state = "wood-broken5"
+	},
+/area/ruin/unpowered/planet_sand/saloon)
+"QK" = (
+/obj/structure/railing,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"Rh" = (
+/obj/structure/chair/stool/bar,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood{
+	icon_state = "wood-broken7"
+	},
+/area/ruin/unpowered/planet_sand/saloon)
+"Ri" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood{
+	icon_state = "wood-broken7"
+	},
+/area/ruin/unpowered/planet_sand/saloon)
+"Rl" = (
+/obj/structure/chair/stool/bar{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"Ro" = (
+/obj/machinery/door/airlock/wood,
+/obj/effect/mapping_helpers/airlock/locked,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"Rz" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood{
+	icon_state = "wood-broken7"
+	},
+/area/ruin/unpowered/planet_sand/saloon)
+"RF" = (
+/obj/machinery/atmospherics/components/binary/pump/on/layer2,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"RR" = (
+/obj/structure/chair/fancy/sofa/old{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 1
+	},
+/obj/structure/sign/poster/random{
+	pixel_y = -32
+	},
+/turf/open/floor/wood{
+	icon_state = "wood-broken5"
+	},
+/area/ruin/unpowered/planet_sand/saloon)
+"Sa" = (
+/obj/machinery/power/terminal{
+	dir = 1
+	},
+/obj/structure/cable/yellow,
+/obj/structure/table/wood,
+/obj/item/storage/toolbox/electrical,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"Sl" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 1
+	},
+/obj/structure/chair/stool/bar{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"Sm" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 1
+	},
+/turf/open/floor/wood{
+	icon_state = "wood-broken7"
+	},
+/area/ruin/unpowered/planet_sand/saloon)
+"Sz" = (
+/mob/living/basic/trooper/pirate/melee{
+	dir = 1
+	},
+/turf/open/floor/plating/asteroid/whitesands,
+/area/lavaland/surface/outdoors)
+"SD" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 5
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"SI" = (
+/turf/open/floor/plasteel/stairs{
+	dir = 8;
+	color = "#55391A"
+	},
+/area/ruin/unpowered/planet_sand/saloon)
+"SX" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/turf/open/floor/wood{
+	icon_state = "wood-broken5"
+	},
+/area/ruin/unpowered/planet_sand/saloon)
+"SZ" = (
+/obj/structure/chair/stool/bar{
+	dir = 1
+	},
+/mob/living/basic/trooper/pirate/melee{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"Tg" = (
+/obj/structure/chair/stool/bar{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/mob/living/basic/trooper/pirate/melee{
+	dir = 4
+	},
+/turf/open/floor/wood{
+	icon_state = "wood-broken5"
+	},
+/area/ruin/unpowered/planet_sand/saloon)
+"TY" = (
+/obj/structure/chair/stool/bar{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"Ud" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/spawner/structure/window,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_sand/saloon)
+"Ui" = (
+/obj/structure/table/wood,
+/obj/machinery/reagentgrinder,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"Up" = (
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"Uv" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/item/chair/stool/bar,
+/mob/living/basic/trooper/pirate/melee{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"UD" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/chair/stool{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"UX" = (
+/obj/machinery/atmospherics/components/unary/outlet_injector/on/layer4{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_sand/saloon)
+"Vm" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood{
+	icon_state = "wood-broken7"
+	},
+/area/ruin/unpowered/planet_sand/saloon)
+"Vt" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"VC" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"VU" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/wood{
+	icon_state = "wood-broken5"
+	},
+/area/ruin/unpowered/planet_sand/saloon)
+"Wc" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"Wr" = (
+/obj/structure/sign/poster/official/safety_internals{
+	pixel_y = -32
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"Wu" = (
+/mob/living/basic/trooper/pirate/ranged{
+	name = "barman pustelników";
+	dir = 4
+	},
+/turf/open/floor/carpet,
+/area/ruin/unpowered/planet_sand/saloon)
+"WO" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/wood{
+	icon_state = "wood-broken7"
+	},
+/area/ruin/unpowered/planet_sand/saloon)
+"Xg" = (
+/obj/structure/table/wood/poker,
+/obj/item/reagent_containers/food/drinks/bottle/grappa,
+/turf/open/floor/carpet,
+/area/ruin/unpowered/planet_sand/saloon)
+"Xx" = (
+/obj/structure/table/wood/poker,
+/obj/item/toy/cards/deck/syndicate,
+/turf/open/floor/carpet,
+/area/ruin/unpowered/planet_sand/saloon)
+"XU" = (
+/obj/structure/table/wood/poker,
+/obj/item/reagent_containers/food/drinks/soda_cans/cola{
+	pixel_y = 6;
+	pixel_x = 3
+	},
+/obj/item/stack/spacecash/c1000,
+/turf/open/floor/carpet,
+/area/ruin/unpowered/planet_sand/saloon)
+"Yi" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/railing/corner{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"Yp" = (
+/obj/item/stack/sheet/mineral/wood,
+/obj/item/stack/sheet/mineral/wood,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 1
+	},
+/turf/open/floor/wood{
+	icon_state = "wood-broken5"
+	},
+/area/ruin/unpowered/planet_sand/saloon)
+"Ys" = (
+/obj/machinery/chem_dispenser/drinks,
+/obj/structure/table/wood,
+/obj/structure/sign/barsign{
+	pixel_y = 32
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"Yz" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood{
+	icon_state = "wood-broken5"
+	},
+/area/ruin/unpowered/planet_sand/saloon)
+"YD" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/drinks/bottle/absinthe,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"YH" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 5
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"YQ" = (
+/obj/structure/chair/fancy/sofa/old{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"Zd" = (
+/obj/structure/cable,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"Zj" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/drinks/soda_cans/cola,
+/turf/open/floor/wood{
+	icon_state = "wood-broken5"
+	},
+/area/ruin/unpowered/planet_sand/saloon)
+"ZK" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/chair/stool/bar,
+/turf/open/floor/wood{
+	icon_state = "wood-broken5"
+	},
+/area/ruin/unpowered/planet_sand/saloon)
+"ZU" = (
+/obj/structure/chair/fancy/sofa/old{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/mob/living/basic/trooper/pirate/melee{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/saloon)
+"ZY" = (
+/obj/machinery/atmospherics/components/unary/outlet_injector/on/layer4{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_sand/saloon)
+
+(1,1,1) = {"
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+QH
+QH
+QH
+QH
+QH
+QH
+QH
+QH
+QH
+QH
+QH
+QH
+QH
+al
+al
+al
+al
+al
+"}
+(2,1,1) = {"
+al
+al
+al
+al
+al
+al
+al
+al
+al
+QH
+QH
+QH
+QH
+QH
+zm
+zm
+zm
+jr
+jr
+zm
+zm
+zm
+QH
+QH
+QH
+QH
+al
+al
+al
+al
+"}
+(3,1,1) = {"
+al
+al
+al
+QH
+QH
+QH
+QH
+QH
+QH
+QH
+QH
+QH
+DP
+zm
+zm
+qc
+xR
+eJ
+xR
+mr
+mn
+zm
+zm
+QH
+DP
+DP
+DP
+al
+al
+al
+"}
+(4,1,1) = {"
+al
+al
+al
+QH
+QH
+zm
+zm
+zm
+zm
+zm
+zm
+DP
+DP
+zm
+QK
+gC
+XU
+Wu
+Lw
+DE
+kN
+uq
+zm
+DP
+DP
+DP
+DP
+al
+al
+al
+"}
+(5,1,1) = {"
+al
+al
+al
+QH
+QH
+zm
+IL
+GY
+Sa
+fS
+zm
+zm
+zm
+zm
+zT
+Ed
+Lw
+Lw
+AD
+aY
+Rh
+Dy
+zm
+DP
+DP
+DP
+DP
+al
+al
+al
+"}
+(6,1,1) = {"
+al
+al
+QH
+QH
+QH
+zm
+HZ
+Zd
+zs
+mn
+zm
+FT
+Nr
+IA
+wN
+Qh
+tQ
+Uv
+Kz
+ji
+Aq
+zs
+jr
+DP
+DP
+DP
+DP
+DP
+al
+al
+"}
+(7,1,1) = {"
+al
+al
+QH
+QH
+QH
+zm
+HS
+SD
+sH
+Gc
+zm
+UD
+zs
+Yz
+ka
+zg
+ir
+Yz
+zs
+mB
+zs
+zs
+jr
+DP
+QH
+QH
+DP
+DP
+al
+al
+"}
+(8,1,1) = {"
+al
+al
+QH
+QH
+QH
+zm
+HS
+jh
+nU
+RF
+gL
+gX
+YH
+Hb
+eJ
+cG
+eJ
+mB
+zs
+eJ
+Vm
+nx
+jr
+QH
+QH
+QH
+QH
+QH
+al
+al
+"}
+(9,1,1) = {"
+al
+QH
+QH
+QH
+QH
+zm
+zm
+zm
+zm
+zm
+zm
+oX
+MP
+Tg
+eJ
+kb
+SI
+us
+Nh
+Dk
+aS
+Bf
+zm
+QH
+QH
+QH
+QH
+QH
+al
+al
+"}
+(10,1,1) = {"
+QH
+QH
+QH
+QH
+QH
+QH
+zm
+FY
+zs
+kx
+zm
+eJ
+Dt
+Xg
+OF
+mB
+zs
+Yi
+zm
+zm
+KQ
+tw
+zm
+QH
+QH
+QH
+QH
+QH
+QH
+al
+"}
+(11,1,1) = {"
+QH
+QH
+DP
+DP
+DP
+QH
+zm
+ir
+po
+nX
+zm
+eJ
+Ms
+Ad
+Lw
+my
+eJ
+my
+eJ
+jM
+eJ
+Vt
+zm
+QH
+QH
+QH
+QH
+xG
+QH
+QH
+"}
+(12,1,1) = {"
+QH
+QH
+DP
+kr
+DP
+QH
+zm
+my
+zs
+my
+Ro
+eJ
+xh
+xI
+Sl
+PO
+ir
+eJ
+OT
+jM
+eJ
+Fm
+zm
+QH
+QH
+QH
+QH
+QH
+QH
+al
+"}
+(13,1,1) = {"
+QH
+DP
+DP
+DP
+DP
+Sz
+zm
+FW
+ir
+eJ
+zm
+ze
+mB
+eJ
+eJ
+Sm
+Hj
+gX
+Lj
+zm
+hm
+Fe
+zm
+QH
+QH
+Oc
+QH
+QH
+QH
+al
+"}
+(14,1,1) = {"
+QH
+DP
+DP
+kr
+QH
+QH
+zm
+zs
+zs
+zm
+zm
+il
+FN
+bY
+eJ
+HR
+mB
+eJ
+zi
+zm
+eJ
+Wr
+zm
+zm
+zm
+UX
+QH
+QH
+al
+al
+"}
+(15,1,1) = {"
+QH
+QH
+QH
+QH
+QH
+QH
+zm
+NT
+zs
+DJ
+zm
+FM
+eJ
+vK
+qd
+LL
+wy
+vu
+zm
+zm
+sh
+Gd
+BX
+rb
+es
+kC
+QH
+QH
+al
+al
+"}
+(16,1,1) = {"
+al
+al
+QH
+QH
+QH
+QH
+zm
+Ke
+zs
+zs
+zm
+Ys
+Aq
+YD
+SZ
+Nt
+cN
+zs
+BL
+eJ
+FB
+kv
+zm
+zm
+zm
+cl
+QH
+QH
+al
+al
+"}
+(17,1,1) = {"
+al
+al
+QH
+QH
+QH
+QH
+zm
+ta
+zs
+uX
+zm
+Od
+QJ
+kh
+mB
+ph
+xI
+wZ
+HH
+lQ
+Eo
+Ri
+BX
+rb
+dI
+cP
+QH
+QH
+al
+al
+"}
+(18,1,1) = {"
+al
+QH
+QH
+QH
+QH
+QH
+zm
+Ui
+nA
+nA
+lt
+Aq
+nA
+Aa
+oF
+FA
+NN
+zs
+BL
+Ge
+Cb
+vn
+zm
+zm
+zm
+ZY
+QH
+QH
+al
+al
+"}
+(19,1,1) = {"
+al
+QH
+zm
+zm
+zm
+zm
+zm
+zs
+nA
+zs
+zm
+PR
+ir
+Ho
+VU
+sO
+Zj
+zL
+zm
+zm
+zQ
+KQ
+zm
+QH
+QH
+DP
+DP
+QH
+al
+al
+"}
+(20,1,1) = {"
+al
+QH
+zm
+cf
+zs
+kh
+zm
+zm
+fn
+zm
+zm
+Ig
+bY
+FN
+HR
+mB
+Rl
+eJ
+zm
+Bm
+iq
+eJ
+zm
+QH
+DP
+DP
+DP
+QH
+al
+al
+"}
+(21,1,1) = {"
+QH
+QH
+zm
+FY
+bO
+my
+aV
+kh
+zs
+aW
+zm
+Rl
+De
+Rl
+eZ
+SX
+jc
+zs
+jM
+Of
+FO
+Up
+jr
+DP
+DP
+DP
+DP
+yG
+al
+al
+"}
+(22,1,1) = {"
+QH
+zm
+zm
+zm
+zm
+KQ
+zm
+zs
+zs
+zs
+zm
+eJ
+zs
+my
+Pd
+OF
+Aw
+DE
+Ud
+pU
+uA
+dx
+FZ
+DP
+DP
+DP
+QH
+vT
+al
+al
+"}
+(23,1,1) = {"
+QH
+jr
+oT
+xZ
+dR
+hq
+ez
+ut
+Dj
+hM
+oj
+VC
+VC
+Yp
+dQ
+qB
+Xx
+TY
+jM
+pU
+to
+YQ
+FZ
+DP
+DP
+DP
+QH
+vT
+al
+al
+"}
+(24,1,1) = {"
+QH
+jr
+lF
+Rz
+Yz
+zs
+zs
+zs
+Ju
+Wc
+zm
+ZK
+JD
+CW
+JZ
+eJ
+Rl
+hV
+zm
+uW
+xW
+ZU
+zm
+DP
+DP
+QH
+QH
+Oc
+al
+al
+"}
+(25,1,1) = {"
+QH
+zm
+zm
+zm
+zm
+KQ
+zm
+KQ
+zm
+zm
+zm
+zm
+zm
+rk
+jr
+jr
+rk
+zm
+zm
+zO
+zF
+RR
+zm
+QH
+QH
+QH
+al
+al
+al
+al
+"}
+(26,1,1) = {"
+QH
+QH
+zm
+ew
+IU
+eJ
+zm
+eJ
+WO
+FY
+zm
+QH
+QH
+DP
+DP
+DP
+DP
+QH
+zm
+zm
+zm
+zm
+zm
+QH
+QH
+al
+al
+al
+al
+al
+"}
+(27,1,1) = {"
+al
+QH
+zm
+CD
+Vm
+rm
+zm
+kx
+my
+rr
+zm
+QH
+DP
+DP
+DP
+DP
+DP
+QH
+QH
+QH
+QH
+QH
+QH
+QH
+al
+al
+al
+al
+al
+al
+"}
+(28,1,1) = {"
+al
+QH
+zm
+zm
+zm
+jr
+zm
+jr
+zm
+zm
+zm
+QH
+DP
+DP
+DP
+DP
+DP
+QH
+QH
+QH
+QH
+QH
+al
+al
+al
+al
+al
+al
+al
+al
+"}
+(29,1,1) = {"
+al
+QH
+QH
+QH
+QH
+QH
+QH
+QH
+QH
+QH
+QH
+QH
+DP
+DP
+DP
+QH
+QH
+QH
+QH
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+"}
+(30,1,1) = {"
+al
+al
+QH
+QH
+QH
+al
+al
+al
+QH
+QH
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+"}

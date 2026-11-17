@@ -11922,18 +11922,15 @@
 /obj/machinery/light/small,
 /turf/open/floor/plating,
 /area/maintenance/nsv/deck2/starboard)
-"Ft" = (
-/obj/structure/table/reinforced,
-/obj/item/storage/box/munition_casts,
-/obj/item/munitions_analyzer,
-/obj/item/forging_hammer,
-/obj/item/forging_hammer,
-/turf/open/floor/monotile/dark,
-/area/nsv/weapons)
 "Fv" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /turf/open/floor/monotile/steel,
 /area/ai_monitored/security/armory)
+"Fw" = (
+/obj/structure/table/reinforced,
+/obj/item/munitions_analyzer,
+/turf/open/floor/monotile/dark,
+/area/nsv/weapons)
 "Fx" = (
 /obj/machinery/door/airlock/highsecurity/ship{
 	name = "Weapons Bay Maintenance";
@@ -18644,6 +18641,10 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/visible/layer4,
 /turf/open/floor/durasteel/riveted,
 /area/engine/atmos)
+"Zv" = (
+/obj/machinery/drop_pod_bay,
+/turf/open/floor/monotile/steel/airless,
+/area/nsv/hanger/notkmcstupidhanger)
 "Zw" = (
 /obj/structure/disposalpipe/segment{
 	dir = 5
@@ -55490,7 +55491,7 @@ mP
 Te
 mP
 DT
-Ft
+Fw
 fa
 WK
 wp
@@ -62931,7 +62932,7 @@ Jc
 Jc
 Jc
 xX
-xX
+Zv
 jx
 jx
 ik
@@ -63445,7 +63446,7 @@ Jc
 Jc
 Jc
 xX
-xX
+Zv
 jx
 jx
 jx

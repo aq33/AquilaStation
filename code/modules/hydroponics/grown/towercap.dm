@@ -119,6 +119,11 @@
 
 /obj/structure/bonfire/prelit/Initialize(mapload)
 	. = ..()
+	// AQ EDIT START - ognisko z mapy zapala się po inicjalizacji reszty mapy (w ruinie paliło sąsiadów przed ich Initialize)
+	if(mapload)
+		addtimer(CALLBACK(src, PROC_REF(StartBurning)), 1)
+		return
+	// AQ EDIT END
 	StartBurning()
 
 /obj/structure/bonfire/CanPass(atom/movable/mover, turf/target)

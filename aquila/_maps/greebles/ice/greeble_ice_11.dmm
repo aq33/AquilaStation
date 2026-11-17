@@ -1,0 +1,599 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"b" = (
+/obj/structure/flora/rock/icy,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"c" = (
+/obj/structure/flora/rock/icy,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"e" = (
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"f" = (
+/obj/structure/flora/ash/garden/frigid,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"j" = (
+/obj/structure/flora/ausbushes/sparsegrass{
+	pixel_x = -4;
+	 pixel_y = 9
+	},
+/turf/open/lava/plasma,
+/area/template_noop)
+"l" = (
+/obj/structure/flora/ausbushes/sparsegrass{
+	pixel_x = 13;
+	 pixel_y = 2
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"m" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"n" = (
+/obj/structure/flora/ausbushes/sparsegrass{
+	pixel_x = -4;
+	 pixel_y = 5
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"p" = (
+/obj/structure/flora/ausbushes/sparsegrass{
+	pixel_x = 3
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"s" = (
+/obj/structure/flora/ausbushes/sparsegrass{
+	pixel_x = -5;
+	 pixel_y = 4
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"u" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"v" = (
+/obj/structure/flora/ausbushes/sparsegrass{
+	pixel_x = 4;
+	 pixel_y = -3
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"w" = (
+/turf/open/lava/plasma,
+/area/template_noop)
+"x" = (
+/obj/structure/flora/ausbushes/sparsegrass{
+	pixel_y = -12
+	},
+/turf/open/lava/plasma,
+/area/template_noop)
+"z" = (
+/obj/structure/flora/ausbushes/sparsegrass{
+	pixel_x = 3;
+	 pixel_y = 3
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"A" = (
+/obj/structure/flora/ausbushes/sparsegrass{
+	pixel_x = -4;
+	 pixel_y = -6
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"D" = (
+/obj/structure/flora/ausbushes/sparsegrass{
+	pixel_x = -14;
+	 pixel_y = -7
+	},
+/turf/open/lava/plasma,
+/area/template_noop)
+"E" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"G" = (
+/obj/structure/flora/tree/dead{
+	pixel_x = -21;
+	 pixel_y = 5
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"H" = (
+/obj/structure/flora/ausbushes/sparsegrass{
+	pixel_x = 4;
+	 pixel_y = 2
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"I" = (
+/turf/template_noop,
+/area/template_noop)
+"J" = (
+/obj/structure/flora/ausbushes/sparsegrass{
+	pixel_x = 6;
+	 pixel_y = 9
+	},
+/turf/open/lava/plasma,
+/area/template_noop)
+"L" = (
+/obj/structure/flora/ausbushes/sparsegrass{
+	pixel_x = -13;
+	 pixel_y = -5
+	},
+/turf/open/lava/plasma,
+/area/template_noop)
+"N" = (
+/obj/structure/flora/ausbushes/sparsegrass{
+	pixel_x = -12
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"O" = (
+/obj/structure/flora/tree/dead{
+	pixel_x = -10;
+	 pixel_y = -3
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"Q" = (
+/obj/structure/flora/ausbushes/sparsegrass{
+	pixel_x = 8;
+	 pixel_y = 11
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"R" = (
+/obj/structure/flora/ausbushes/sparsegrass{
+	pixel_x = 3;
+	 pixel_y = 12
+	},
+/turf/open/lava/plasma,
+/area/template_noop)
+"S" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"T" = (
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"U" = (
+/obj/structure/flora/tree/dead{
+	pixel_x = -5;
+	 pixel_y = -6
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"V" = (
+/obj/structure/flora/tree/pine,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"W" = (
+/obj/structure/flora/ausbushes/sparsegrass{
+	pixel_x = 5;
+	 pixel_y = 10
+	},
+/turf/open/lava/plasma,
+/area/template_noop)
+"X" = (
+/obj/structure/flora/tree/dead,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"Y" = (
+/obj/structure/flora/tree/dead{
+	pixel_x = -19;
+	 pixel_y = -5
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"Z" = (
+/obj/structure/flora/ausbushes/sparsegrass{
+	pixel_x = 4
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+
+(1,1,1) = {"
+I
+I
+I
+I
+I
+I
+I
+I
+T
+S
+T
+T
+T
+T
+T
+I
+I
+I
+I
+"}
+(2,1,1) = {"
+I
+I
+I
+I
+I
+I
+T
+T
+S
+T
+T
+S
+V
+u
+T
+T
+T
+I
+I
+"}
+(3,1,1) = {"
+I
+I
+I
+I
+T
+T
+S
+T
+e
+l
+e
+e
+m
+E
+e
+S
+T
+I
+I
+"}
+(4,1,1) = {"
+I
+I
+I
+T
+u
+T
+b
+e
+e
+e
+e
+e
+Y
+e
+e
+f
+T
+T
+I
+"}
+(5,1,1) = {"
+I
+T
+S
+T
+T
+T
+e
+e
+Z
+w
+e
+e
+e
+Q
+e
+c
+T
+S
+I
+"}
+(6,1,1) = {"
+I
+T
+T
+V
+T
+e
+e
+e
+w
+w
+w
+N
+e
+e
+O
+e
+T
+T
+T
+"}
+(7,1,1) = {"
+I
+T
+T
+T
+e
+X
+p
+w
+x
+w
+w
+w
+e
+e
+e
+E
+E
+T
+T
+"}
+(8,1,1) = {"
+T
+S
+T
+e
+e
+e
+w
+w
+w
+w
+w
+w
+w
+A
+e
+m
+E
+u
+T
+"}
+(9,1,1) = {"
+T
+T
+T
+v
+e
+z
+w
+w
+J
+w
+w
+j
+w
+w
+e
+E
+e
+S
+T
+"}
+(10,1,1) = {"
+T
+S
+f
+e
+E
+w
+w
+w
+w
+w
+w
+w
+w
+e
+e
+e
+T
+T
+S
+"}
+(11,1,1) = {"
+S
+T
+e
+e
+w
+w
+w
+w
+w
+L
+w
+w
+e
+e
+E
+T
+V
+T
+T
+"}
+(12,1,1) = {"
+T
+T
+E
+e
+w
+w
+W
+w
+w
+w
+H
+e
+e
+e
+u
+T
+T
+T
+T
+"}
+(13,1,1) = {"
+T
+S
+X
+e
+w
+w
+w
+R
+w
+w
+e
+e
+G
+e
+T
+T
+u
+T
+I
+"}
+(14,1,1) = {"
+T
+u
+e
+e
+w
+D
+w
+w
+w
+e
+e
+e
+e
+T
+S
+T
+I
+I
+I
+"}
+(15,1,1) = {"
+T
+b
+T
+e
+E
+w
+w
+w
+e
+U
+e
+n
+u
+T
+T
+I
+I
+I
+I
+"}
+(16,1,1) = {"
+I
+T
+S
+e
+e
+e
+e
+e
+e
+e
+e
+T
+T
+T
+I
+I
+I
+I
+I
+"}
+(17,1,1) = {"
+I
+T
+T
+V
+e
+X
+s
+f
+T
+b
+T
+T
+V
+T
+I
+I
+I
+I
+I
+"}
+(18,1,1) = {"
+I
+I
+T
+T
+T
+u
+T
+T
+T
+T
+S
+T
+I
+I
+I
+I
+I
+I
+I
+"}
+(19,1,1) = {"
+I
+I
+I
+I
+I
+T
+T
+T
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+"}

@@ -1,0 +1,55 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"c" = (
+/turf/open/floor/plating/ice/planet_ice,
+/area/template_noop)
+"j" = (
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
+"P" = (
+/obj/structure/flora/rock/pile/lava,
+/turf/open/floor/plating/ice/planet_ice,
+/area/template_noop)
+"V" = (
+/turf/template_noop,
+/area/template_noop)
+"W" = (
+/obj/effect/decal/remains/human,
+/obj/item/strange_crystal,
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
+
+(1,1,1) = {"
+V
+P
+c
+P
+V
+"}
+(2,1,1) = {"
+c
+c
+j
+c
+c
+"}
+(3,1,1) = {"
+P
+j
+W
+j
+P
+"}
+(4,1,1) = {"
+c
+c
+j
+c
+c
+"}
+(5,1,1) = {"
+V
+P
+c
+P
+V
+"}
