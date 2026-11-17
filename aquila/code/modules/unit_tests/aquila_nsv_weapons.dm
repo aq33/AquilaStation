@@ -234,6 +234,12 @@
 	TEST_ASSERT("flak_mount_circuit" in node.design_ids, "Zaawansowana balistyka nie ma płytki flaku")
 	var/datum/design/design = SSresearch.techweb_design_by_id("flak_mount_circuit")
 	TEST_ASSERT_EQUAL(design.build_path, /obj/item/circuitboard/machine/pdc_mount/flak, "Projekt płytki flaku robi inną płytkę")
+	TEST_ASSERT("flak_ammo" in node.design_ids, "Zaawansowana balistyka nie ma amunicji flak")
+	design = SSresearch.techweb_design_by_id("flak_ammo")
+	TEST_ASSERT_EQUAL(design.build_path, /obj/item/ammo_box/magazine/nsv/flak, "Projekt amunicji flak robi coś innego")
+	var/datum/supply_pack/munitions/flak_ammo/pack = SSshuttle.supply_packs[/datum/supply_pack/munitions/flak_ammo]
+	TEST_ASSERT(pack, "Nie ma paczki amunicji flak w zaopatrzeniu")
+	TEST_ASSERT(/obj/item/ammo_box/magazine/nsv/flak in pack.contains, "Paczka amunicji flak nie ma magazynków flak")
 	var/obj/item/circuitboard/machine/pdc_mount/flak/board = /obj/item/circuitboard/machine/pdc_mount/flak
 	TEST_ASSERT_EQUAL(initial(board.build_path), /obj/machinery/ship_weapon/pdc_mount/flak, "Płytka flaku buduje inny stojak")
 	var/obj/machinery/ship_weapon/pdc_mount/flak/mount = /obj/machinery/ship_weapon/pdc_mount/flak

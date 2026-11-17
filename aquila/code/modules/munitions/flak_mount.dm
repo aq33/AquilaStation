@@ -28,6 +28,26 @@
 	category = list("Advanced Munitions")
 	departmental_flags = DEPARTMENTAL_FLAG_MUNITIONS
 
+/datum/design/flak_ammo
+	name = "Pociski flak 40 mm"
+	desc = "Magazynek 150 pocisków do stojaka ładowania flaku."
+	id = "flak_ammo"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 6000, /datum/material/copper = 1500, /datum/material/titanium = 1000)
+	build_path = /obj/item/ammo_box/magazine/nsv/flak
+	category = list("Advanced Munitions")
+	departmental_flags = DEPARTMENTAL_FLAG_MUNITIONS
+
 /datum/techweb_node/advanced_ballistics/New()
 	. = ..()
-	design_ids += "flak_mount_circuit"
+	design_ids += list("flak_mount_circuit", "flak_ammo")
+
+/// Amunicja flak w zaopatrzeniu (dotąd tylko u Minsky'ego, 500 za magazynek przed losowaniem ceny)
+/datum/supply_pack/munitions/flak_ammo
+	name = "Amunicja flak 40 mm (x3)"
+	desc = "3 magazynki po 150 pocisków flak do stojaków ładowania flaku."
+	cost = 1500
+	contains = list(/obj/item/ammo_box/magazine/nsv/flak,
+					/obj/item/ammo_box/magazine/nsv/flak,
+					/obj/item/ammo_box/magazine/nsv/flak)
+	crate_name = "skrzynia z amunicją flak"
