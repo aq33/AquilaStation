@@ -99,6 +99,10 @@
 		/obj/structure/flora/junglebush/large = 1,
 		/obj/structure/spacevine/dense = 10,
 		/obj/structure/flora/ash/garden = 1,
+		/obj/structure/flora/ash/kuku = 1,
+		/obj/structure/flora/ash/kuku/bonji = 1,
+		/obj/structure/flora/ash/kuku/bianco = 1,
+		/obj/structure/flora/ash/cinchona = 1,
 	)
 	mob_spawn_chance = 0.3
 	mob_spawn_list = list(
@@ -137,6 +141,9 @@
 		/obj/structure/flora/junglebush/large = 1,
 		/obj/structure/spacevine/dense = 20,
 		/obj/structure/flora/ash/garden = 1,
+		/obj/structure/flora/ash/cinchona = 1,
+		/obj/structure/flora/ash/liberal_hat = 1,
+		/obj/structure/flora/ash/kuku/bonji = 1,
 	)
 	mob_spawn_chance = 0.6
 	mob_spawn_list = list(
@@ -165,6 +172,7 @@
 		/obj/structure/flora/grass/jungle/b = 1,
 		/obj/structure/flora/rock/jungle = 1,
 		/obj/structure/spacevine = 5,
+		/obj/structure/flora/ash/magnus_purpura = 1,
 	)
 	mob_spawn_chance = 0.05
 	mob_spawn_list = list(/mob/living/simple_animal/hostile/spider/giant/tarantula = 1)
@@ -264,6 +272,8 @@
 		/obj/structure/spacevine/dense = 40,
 		/obj/structure/flora/rock/jungle = 1,
 		/obj/structure/flora/ash/garden = 1,
+		/obj/structure/flora/ash/liberal_hat = 1,
+		/obj/structure/flora/ash/kuku/bianco = 1,
 	)
 	mob_spawn_chance = 1
 	mob_spawn_list = list(
