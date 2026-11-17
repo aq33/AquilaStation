@@ -1,6 +1,6 @@
-/datum/test_chamber_kit/pr_medycyna5
-	name = "AquilaMed 5: szyny, leki, zarazki, krążenie, hipotermia, nowe narządy, zęby, implanty, pająk-robot"
-	pr = "aq33/AquilaStation#0"
+/datum/test_chamber_kit/pr_652
+	name = "PR 652: AquilaMed 5: szyny, leki, zarazki, krążenie, hipotermia, nowe narządy, zęby, implanty, pająk-robot"
+	pr = "aq33/AquilaStation#652"
 	description = "Obok stoją „Pacjent” (zdrowy), „Ranny” (złamana noga, rana cięta ręki z przerwanym nerwem, zatrzymane serce) i pusty pająk-robot. \
 	1) Wyposażenie: szyna na złamaną nogę „Rannego” (lepsza od bandaża, nie utyka tak mocno), kula w rękę, nożyce, nanopasta na protezę, młotek neurologiczny na rękę (brak odruchu: przerwany nerw), pas ratownika z medipenami, kroplówka z rur, inhalator. \
 	2) Krążenie: stetoskop na „Rannym” (brak tętna), RKO, defibrylator. Skaner: puls, niedotlenienie mózgu. \
@@ -43,7 +43,7 @@
 		/obj/item/mmi = 1,
 	)
 
-/datum/test_chamber_kit/pr_medycyna5/setup(list/spawned, list/turfs, turf/center, mob/user)
+/datum/test_chamber_kit/pr_652/setup(list/spawned, list/turfs, turf/center, mob/user)
 	. = ..()
 	var/turf/drop = turfs[min(length(items) + 1, length(turfs))]
 	var/mob/living/carbon/human/patient = new(drop)

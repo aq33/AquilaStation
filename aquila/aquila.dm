@@ -1270,7 +1270,7 @@
 #include "code\modules\test_chamber\kits\pr_625_gornicze.dm"
 #include "code\modules\test_chamber\kits\pr_625_reszta.dm"
 #include "code\modules\test_chamber\kits\pr_619_medycyna4.dm"
-#include "code\modules\test_chamber\kits\pr_medycyna5.dm"
+#include "code\modules\test_chamber\kits\pr_652_medycyna5.dm"
 #include "code\modules\test_chamber\kits\pr_618_smycz.dm"
 #include "code\modules\test_chamber\kits\pr_617_zgloszenia_1111.dm"
 #include "code\modules\test_chamber\kits\pr_611_konsole_nauka.dm"
