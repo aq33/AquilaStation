@@ -225,8 +225,8 @@
 	cabin_air = new
 	cabin_air.set_temperature(T20C)
 	cabin_air.set_volume(200)
-	cabin_air.set_moles(GAS_O2, O2STANDARD * cabin_air.return_volume() / (R_IDEAL_GAS_EQUATION * cabin_air.return_temperature()))
-	cabin_air.set_moles(GAS_N2, N2STANDARD * cabin_air.return_volume() / (R_IDEAL_GAS_EQUATION * cabin_air.return_temperature()))
+	cabin_air.set_moles(GAS_O2, O2STANDARD * ONE_ATMOSPHERE * cabin_air.return_volume() / (R_IDEAL_GAS_EQUATION * cabin_air.return_temperature()))
+	cabin_air.set_moles(GAS_N2, N2STANDARD * ONE_ATMOSPHERE * cabin_air.return_volume() / (R_IDEAL_GAS_EQUATION * cabin_air.return_temperature()))
 
 /obj/structure/drop_pod/return_air()
 	return cabin_air
