@@ -1252,6 +1252,11 @@
   Joker66613:
   - bugfix: Śledzenie czasu serwera nie wyrzuca błędu, gdy przebiegnie dwa razy w
       jednym ticku.
+  - bugfix: Usunięte myśliwce nie zostają już na liście statków w hangarze okrętu.
+  - bugfix: Przycisk „Informacje o roli” znika z ciała razem z rolą, także gdy postać
+      dostaje nową duszę.
+  - code_imp: Usunięta drużyna antagonistów usuwa swoje cele, a gang zabiera role
+      członkom; poprawione wycieki pamięci, przez które testy w CI trwały do 35 minut.
   shiptest-ss13, TerraGov-Marine-Corps, tgstation:
   - rscadd: 'Planety z lądowaniem: planeta wulkaniczna z burzami popiołu, rudami,
       ruinami, roślinami i fauną z Shiptesta (siarkodemony, lawowe pędraki, nory i
