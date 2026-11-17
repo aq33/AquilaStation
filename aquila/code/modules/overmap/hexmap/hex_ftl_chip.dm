@@ -151,11 +151,13 @@
 	chip.forceMove(src)
 	if(old)
 		chip.hex_bonus = old.hex_bonus
+	// Nowy układ przejmuje okręt, zanim stary wypadnie: odpięcie starego nie przycina wtedy ładunku do pojemności bez układu
+	chip.hex_ship = linked
+	linked.hex_chip = chip
+	if(old)
 		var/atom/old_holder = old.loc
 		old.forceMove(old_holder ? old_holder.drop_location() : drop_location()) // Exited() konsoli odpina stary układ
 		old.hex_uninstall()
-	chip.hex_ship = linked
-	linked.hex_chip = chip
 	linked.hex_bonus_changed()
 	hex_ui_cache = null
 	playsound(src, 'sound/machines/terminal_insert_disc.ogg', 50, FALSE)

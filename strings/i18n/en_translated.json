@@ -25100,7 +25100,7 @@
 "misja": "mission",
 "[T ? \"[pick(T.on_mission_give)] \" : \"\"]Szczegóły misji: [desc]": "[T ? \"[pick(T.on_mission_give)] \" : \"\"]Mission details: [desc]",
 "kafel [H.display_name()] ([hex_sector_name(H.sector)])": "tile [H.display_name()] ([hex_sector_name(H.sector)])",
-"Nasze linie zaopatrzenia mocno ostatnio oberwały. Zniszczcie okręty Syndykatu albo piratów (liczba: [amount]) w dowolnym układzie. Liczą się okręty zniszczone tam, gdzie jest wasz okręt; myśliwce się nie liczą.": "Our supply lines have taken a beating lately. Destroy Syndicate or pirate ships (count: [amount]) in any system. Ships destroyed where your ship is count; fighters don't.",
+"Nasze linie zaopatrzenia mocno ostatnio oberwały. Zniszczcie okręty Syndykatu albo piratów (liczba: [amount]) w dowolnym układzie. Liczą się okręty zestrzelone przez wasz okręt albo wasze myśliwce; wrogie myśliwce się nie liczą.": "Our supply lines have taken a beating lately. Destroy Syndicate or pirate ships (count: [amount]) in any system. Only ships shot down by your ship or your fighters count; enemy fighters don't.",
 "zniszczono [kills]/[amount]": "destroyed [kills]/[amount]",
 "piraci zbierają": "pirates are gathering",
 "Syndykat zbiera": "the Syndicate is gathering",
@@ -25216,5 +25216,6 @@
 "Magazynek 150 pocisków do stojaka ładowania flaku.": "A 150-round magazine for the flak loading rack.",
 "Amunicja flak 40 mm (x3)": "40 mm flak ammo (x3)",
 "3 magazynki po 150 pocisków flak do stojaków ładowania flaku.": "3 magazines of 150 flak rounds each for flak loading racks.",
-"skrzynia z amunicją flak": "flak ammo crate"
+"skrzynia z amunicją flak": "flak ammo crate",
+"Otworzyliście skrzynię? W środku jest uzbrojona głowica Syndykatu i dalej odlicza. Wyrzućcie ją w kosmos, zanim wybuchnie na waszym okręcie.": "You opened the crate? Inside is an armed Syndicate warhead and it is still counting down. Space it before it goes off on your ship."
 }

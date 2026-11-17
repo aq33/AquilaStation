@@ -260,11 +260,12 @@ GLOBAL_DATUM_INIT(character_stats_ui, /datum/character_stats_ui, new)
 	if(server_ckey)
 		record_character_stat(get_mob_by_ckey(server_ckey), "restaurant_orders")
 
-/obj/structure/overmap/syndicate/ai
-	/// Ostatnie trafienie przyszło od statku graczy (główny statek albo statek z załogą), patrz Destroy()
+/obj/structure/overmap
+	/// Ostatnie trafienie przyszło od statku graczy (główny statek albo statek z załogą): statystyki postaci (Destroy() niżej)
+	/// i misja nagrody za okręty od handlarzy (trader_missions.dm)
 	var/last_hit_by_players = FALSE
 
-/obj/structure/overmap/syndicate/ai/bullet_act(obj/item/projectile/P)
+/obj/structure/overmap/bullet_act(obj/item/projectile/P)
 	var/obj/structure/overmap/firer = P?.overmap_firer
 	last_hit_by_players = istype(firer) && (firer.role == MAIN_OVERMAP || length(firer.mobs_in_ship))
 	return ..()

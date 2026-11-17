@@ -79,6 +79,16 @@ GLOBAL_VAR_INIT(aq_mission_nuke_offered, FALSE)
 	/// Sprzęt w nagrodę: losowy towar ze sklepu stacji (do MISSION_GEAR_MAX_PRICE), za darmo kapsułą
 	var/gear_reward = FALSE
 
+/// Flota wystawiona przez misję zostaje po jej końcu tylko wtedy, gdy okręt gracza z nią walczy; inaczej znika
+/// (floty obronne nie odlatują same, a w układzie stacji trzymałyby go jako zajęty przez wroga)
+/datum/aq_contract/mission/proc/dispose_fleet(datum/weakref/ref)
+	var/datum/fleet/F = ref?.resolve()
+	if(!F || QDELETED(F))
+		return
+	if(F.current_system && ship()?.current_system == F.current_system)
+		return
+	F.hex_war_dispose()
+
 /datum/aq_contract/mission/proc/ship()
 	RETURN_TYPE(/obj/structure/overmap)
 	return SSstar_system.find_main_overmap()
@@ -191,7 +201,7 @@ GLOBAL_VAR_INIT(aq_mission_nuke_offered, FALSE)
 	amount = rand(2, 6)
 	reward = 2500 + 750 * amount
 	reputation = 5 + 2 * amount
-	desc = "Nasze linie zaopatrzenia mocno ostatnio oberwały. Zniszczcie okręty Syndykatu albo piratów (liczba: [amount]) w dowolnym układzie. Liczą się okręty zniszczone tam, gdzie jest wasz okręt; myśliwce się nie liczą."
+	desc = "Nasze linie zaopatrzenia mocno ostatnio oberwały. Zniszczcie okręty Syndykatu albo piratów (liczba: [amount]) w dowolnym układzie. Liczą się okręty zestrzelone przez wasz okręt albo wasze myśliwce; wrogie myśliwce się nie liczą."
 
 /datum/aq_contract/mission/kill_ships/progress_text()
 	return "zniszczono [kills]/[amount]"
@@ -200,9 +210,9 @@ GLOBAL_VAR_INIT(aq_mission_nuke_offered, FALSE)
 	if(kills >= amount)
 		complete()
 
-/// Zniszczony okręt AI: czy liczy się do nagrody (wróg NT, nie myśliwiec, w układzie okrętu gracza)
+/// Zniszczony okręt AI: czy liczy się do nagrody (wróg NT, nie myśliwiec, w układzie okrętu gracza, ostatni strzał od graczy)
 /datum/aq_contract/mission/kill_ships/proc/report_kill(obj/structure/overmap/OM)
-	if(!is_active() || OM.mass < MASS_SMALL || OM.mass >= MASS_IMMOBILE)
+	if(!is_active() || OM.mass < MASS_SMALL || OM.mass >= MASS_IMMOBILE || !OM.last_hit_by_players)
 		return
 	if(!hex_factions_hostile("nanotrasen", OM.faction))
 		return
@@ -268,6 +278,10 @@ GLOBAL_VAR_INIT(aq_mission_nuke_offered, FALSE)
 	else
 		fail("wroga flota opuściła kafel bez walki z wami")
 
+/datum/aq_contract/mission/clear_system/on_end()
+	. = ..()
+	dispose_fleet(fleet_ref)
+
 /datum/aq_contract/mission/clear_system/progress_text()
 	return "cel: [aq_hex_label(target)]"
 
@@ -332,6 +346,10 @@ GLOBAL_VAR_INIT(aq_mission_nuke_offered, FALSE)
 		return
 	wave_ref = WEAKREF(F)
 	announce("Nadchodzi fala [waves_done + 1]/[amount]!")
+
+/datum/aq_contract/mission/waves/on_end()
+	. = ..()
+	dispose_fleet(wave_ref)
 
 /datum/aq_contract/mission/waves/progress_text()
 	if(!started)
@@ -563,12 +581,13 @@ GLOBAL_VAR_INIT(aq_mission_nuke_offered, FALSE)
 			return
 	addtimer(CALLBACK(src, PROC_REF(warn)), 15 MINUTES)
 
-/// Otwarcie skrzyni kończy misję (w NSV: report_tampered_cargo)
+/// Otwarcie skrzyni kończy misję (w NSV: report_tampered_cargo), ale głowica dalej odlicza: stacja każe ją wyrzucić
 /datum/aq_contract/mission/cargo/nuke/mark_tampered(list/items)
 	. = ..()
 	for(var/item in cargo)
 		if(!cargo[item])
 			fail("skrzynia otwarta")
+			ship()?.hail("Otworzyliście skrzynię? W środku jest uzbrojona głowica Syndykatu i dalej odlicza. Wyrzućcie ją w kosmos, zanim wybuchnie na waszym okręcie.", station ? station.name : "Stacja")
 			return
 
 /datum/aq_contract/mission/cargo/nuke/check_progress()
@@ -662,10 +681,10 @@ GLOBAL_VAR_INIT(aq_mission_nuke_offered, FALSE)
 	. = ..()
 	AddElement(/datum/element/radioactive, 1, RAD_LIGHT_INSULATION, 1)
 
-/// Wyrzucona w kosmos znika razem z głowicą (jak w NSV)
-/obj/structure/closet/crate/large/freight_objective/aq_sealed/nuke/forceMove(atom/destination)
+/// Wyrzucona w kosmos (każdą drogą: przeniesienie, pchnięcie, rzut, dryf) znika razem z głowicą (jak w NSV)
+/obj/structure/closet/crate/large/freight_objective/aq_sealed/nuke/Moved(atom/OldLoc, Dir, Forced = FALSE)
 	. = ..()
-	if(isspaceturf(loc))
+	if(isspaceturf(loc) && !QDELETED(src))
 		for(var/atom/movable/inside as anything in contents)
 			qdel(inside)
 		qdel(src)
@@ -683,9 +702,9 @@ GLOBAL_VAR_INIT(aq_mission_nuke_offered, FALSE)
 	countdown.start()
 	update_icon()
 
-/obj/machinery/nuclearbomb/aq_mission_cargo/forceMove(atom/destination)
+/obj/machinery/nuclearbomb/aq_mission_cargo/Moved(atom/OldLoc, Dir, Forced = FALSE)
 	. = ..()
-	if(isspaceturf(loc))
+	if(isspaceturf(loc) && !QDELETED(src))
 		qdel(src)
 
 /obj/machinery/nuclearbomb/aq_mission_cargo/explode()

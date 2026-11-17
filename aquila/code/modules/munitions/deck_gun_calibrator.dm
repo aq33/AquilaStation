@@ -74,18 +74,22 @@
 
 // ---------------------------------------------------------------- ładowanie
 
-/obj/machinery/ship_weapon/deck_turret/proc/aq_update_calibrated_delays()
-	var/mult = core?.get_calibrator() ? DECK_GUN_CALIBRATED_BREECH_MULT : 1
-	feed_delay = initial(feed_delay) * mult
-	chamber_delay = initial(chamber_delay) * mult
-
+// Mnożnik na czas jednego wywołania, potem wartość wraca (jak bramki niżej): inne zmiany tych czasów zostają
 /obj/machinery/ship_weapon/deck_turret/feed()
-	aq_update_calibrated_delays()
-	return ..()
+	if(!core?.get_calibrator())
+		return ..()
+	var/base_delay = feed_delay
+	feed_delay *= DECK_GUN_CALIBRATED_BREECH_MULT
+	. = ..()
+	feed_delay = base_delay
 
 /obj/machinery/ship_weapon/deck_turret/chamber(rapidfire = FALSE)
-	aq_update_calibrated_delays()
-	return ..()
+	if(!core?.get_calibrator())
+		return ..()
+	var/base_delay = chamber_delay
+	chamber_delay *= DECK_GUN_CALIBRATED_BREECH_MULT
+	. = ..()
+	chamber_delay = base_delay
 
 /obj/machinery/deck_turret/payload_gate/load(obj/item/A, mob/user)
 	var/base_delay = load_delay

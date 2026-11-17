@@ -200,6 +200,8 @@
 		return "The warp chip did not replace the slipstream chip (old chip in [slipstream.loc], ship chip [ship.hex_chip], bonus [warp.hex_bonus])"
 	if(ship.hex_capacity() != 200)
 		return "The warp chip with the longer range holds [ship.hex_capacity()]%"
+	if(abs(ship.hex_charge() - 120) > 0.5)
+		return "Upgrading the chip lost the overcharge ([ship.hex_charge()]% instead of 120%)"
 	drive.ftl_state = FTL_STATE_JUMPING
 	if(nav.hex_set_chip_bonus(HEX_CHIP_QUICK, null))
 		return "The bonus was switched during the jump startup"

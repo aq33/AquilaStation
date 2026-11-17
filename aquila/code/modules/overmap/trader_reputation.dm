@@ -49,9 +49,24 @@
 		ship?.hail("Wasza reputacja u nas rośnie: jesteście teraz dla nas „[new_level]” (zniżka [aq_discount()]%).", name)
 	else
 		ship?.hail("Zawiedliście nas. Jesteście teraz dla nas „[new_level]” (zniżka [aq_discount()]%).", name)
-	// Nowo odblokowane oferty specjalne pojawiają się od razu, a nie przy następnej dostawie towaru
-	if(!was_special && aq_special_unlocked() && length(special_offers))
-		next_restock = 0
+	// Nowo odblokowane oferty specjalne pojawiają się od razu, a reszta towaru i cen zostaje (bez losowania na nowo)
+	if(!was_special && aq_special_unlocked())
+		aq_add_special_offers()
+
+/// Dokłada oferty specjalne do obecnego towaru, jak stock_items() (nazwa, cena i ilość losowane tak samo)
+/datum/trader/proc/aq_add_special_offers()
+	if(!length(stonks))
+		return // towaru jeszcze nie było: stock_items() przy pierwszym otwarciu okna i tak doda oferty
+	for(var/datum/trader_item/existing as anything in stonks)
+		if(existing.type in special_offers)
+			return
+	for(var/item_path in special_offers)
+		var/datum/trader_item/TI = new item_path()
+		TI.name = "SPECJALNA OFERTA! " + TI.name
+		TI.price = round(rand((2 * TI.price) / 3, TI.price * 2))
+		TI.stock = round(rand(TI.stock / 2, TI.stock * 2))
+		TI.owner = src
+		stonks += TI
 
 /datum/trader/ui_data(mob/user)
 	. = ..()

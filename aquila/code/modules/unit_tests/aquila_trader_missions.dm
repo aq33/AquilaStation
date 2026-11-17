@@ -18,7 +18,7 @@
 /datum/unit_test/aquila_trader_missions/Run()
 	var/datum/faction/NT = SSstar_system.faction_by_id(FACTION_ID_NT)
 	old_nt_tickets = NT?.tickets
-	var/fail = check_kills() || check_cargo() || check_nuke() || check_explore() || check_offers() || check_gear() || check_fail_reputation()
+	var/fail = check_kills() || check_cargo() || check_nuke() || check_explore() || check_offers() || check_gear() || check_fail_reputation() || check_wave_cleanup()
 	if(NT)
 		NT.tickets = old_nt_tickets
 	if(fail)
@@ -47,6 +47,8 @@
 	GLOB.aq_ship_contracts += M
 	. = kill_one(M, "syndicate", here, TRUE)
 	if(!.)
+		. = kill_one(M, "syndicate", here, FALSE, FALSE) // zestrzelił go ktoś inny niż gracze (eskorta, flota NT)
+	if(!.)
 		. = kill_one(M, "nanotrasen", here, FALSE)
 	if(!.)
 		var/datum/star_system/elsewhere
@@ -66,11 +68,12 @@
 	player.current_system = old_system
 	qdel(M)
 
-/// Niszczy okręt testowy; counts: czy powinien się liczyć do nagrody
-/datum/unit_test/aquila_trader_missions/proc/kill_one(datum/aq_contract/mission/kill_ships/M, faction, datum/star_system/where, counts)
+/// Niszczy okręt testowy; counts: czy powinien się liczyć do nagrody; by_players: ostatnie trafienie od graczy
+/datum/unit_test/aquila_trader_missions/proc/kill_one(datum/aq_contract/mission/kill_ships/M, faction, datum/star_system/where, counts, by_players = TRUE)
 	var/before = M.kills
 	var/obj/structure/overmap/syndicate/ai/gunboat/mission_test/target = allocate(/obj/structure/overmap/syndicate/ai/gunboat/mission_test)
 	target.faction = faction
+	target.last_hit_by_players = by_players
 	target.current_system = where
 	target.mass = MASS_SMALL
 	target.obj_integrity = 0
@@ -78,7 +81,7 @@
 	if(counts && M.kills != before + 1)
 		return "A destroyed [faction] ship in the player's system didn't count for the bounty"
 	if(!counts && M.kills != before)
-		return "A destroyed [faction] ship in [where] counted for the bounty"
+		return "A destroyed [faction] ship in [where] counted for the bounty[by_players ? "" : " although the players never hit it"]"
 
 /datum/unit_test/aquila_trader_missions/proc/check_cargo()
 	// Dwie skrzynie: jedna dotarła nienaruszona, drugą otwarto łomem
@@ -135,6 +138,14 @@
 	if(GLOB.security_level != old_level)
 		return "Deleting the warhead changed the security level"
 	qdel(M)
+	// Wypchnięta w kosmos (Moved, nie tylko forceMove) znika razem z głowicą
+	var/turf/open/space/void = locate(/turf/open/space)
+	if(void)
+		var/obj/structure/closet/crate/large/freight_objective/aq_sealed/nuke/spaced = allocate(/obj/structure/closet/crate/large/freight_objective/aq_sealed/nuke, run_loc_floor_bottom_left)
+		var/obj/machinery/nuclearbomb/aq_mission_cargo/spaced_bomb = locate() in spaced
+		spaced.forceMove(void) // Moved() w skrzyni łapie każdą drogę ruchu, także tę
+		if(!QDELETED(spaced) || !QDELETED(spaced_bomb))
+			return "A warhead crate pushed into space did not disappear with its warhead"
 
 /datum/unit_test/aquila_trader_missions/proc/check_explore()
 	var/obj/structure/overmap/player = SSstar_system.find_main_overmap()
@@ -195,6 +206,40 @@
 	qdel(cheap)
 	qdel(expensive)
 	qdel(pages)
+
+/// Obrona układu, z której okręt odleciał: flota fali nie zostaje w układzie stacji
+/datum/unit_test/aquila_trader_missions/proc/check_wave_cleanup()
+	var/obj/structure/overmap/trader/station
+	for(var/datum/trader/candidate as anything in SSstar_system.traders)
+		var/obj/structure/overmap/trader/S = candidate.current_location
+		if(!QDELETED(S) && S.current_system)
+			station = S
+			break
+	var/obj/structure/overmap/player = SSstar_system.find_main_overmap()
+	if(!station || !player)
+		return
+	var/datum/star_system/S = station.current_system
+	var/old_alignment = S.alignment
+	var/datum/star_system/old_player_system = player.current_system
+	if(player.current_system == S)
+		player.current_system = null
+	var/datum/aq_contract/mission/waves/M = new(station)
+	start(M)
+	M.amount = 2
+	M.started = TRUE
+	M.spawn_wave(S)
+	var/datum/fleet/wave = M.wave_ref?.resolve()
+	M.fail("test")
+	var/left = wave && !QDELETED(wave)
+	if(left)
+		wave.hex_war_dispose()
+	S.alignment = old_alignment
+	player.current_system = old_player_system
+	qdel(M)
+	if(!wave)
+		return "The defence mission spawned no wave"
+	if(left)
+		return "The wave fleet stayed in [S] after the defence mission failed"
 
 /// Porażka misji obniża reputację u stacji, która ją zleciła
 /datum/unit_test/aquila_trader_missions/proc/check_fail_reputation()

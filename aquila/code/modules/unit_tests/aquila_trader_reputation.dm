@@ -2,7 +2,7 @@
 #define TEST_ASSERT(assertion, reason) if (!(assertion)) { return Fail("Assertion failed: [reason || "No reason"]") }
 
 /// AQUILA - reputacja u handlarza (trader_reputation.dm): zniżka rośnie z poziomem, od „zaufanego partnera” są oferty
-/// specjalne i towar odnawia się od razu, a cena katalogowa zostaje bez zmian
+/// specjalne dochodzą od razu do obecnego towaru (bez losowania na nowo), a cena katalogowa zostaje bez zmian
 /datum/unit_test/aquila_trader_reputation
 
 /datum/unit_test/aquila_trader_reputation/Run()
@@ -11,6 +11,8 @@
 	item.price = 1000
 	T.special_offers = list(/datum/trader_item/ship_repair/tier3)
 	T.next_restock = world.time + 10 MINUTES
+	var/datum/trader_item/stocked = new
+	T.stonks = list(stocked)
 	TEST_ASSERT(T.aq_price(item) == 1000, "A trader without reputation gave a discount ([T.aq_price(item)])")
 	T.aq_adjust_reputation(20)
 	TEST_ASSERT(T.aq_price(item) == 950, "A good client didn't get 5% off ([T.aq_price(item)])")
@@ -18,7 +20,9 @@
 	T.aq_adjust_reputation(30)
 	TEST_ASSERT(T.aq_price(item) == 900, "A trusted partner didn't get 10% off ([T.aq_price(item)])")
 	TEST_ASSERT(T.aq_special_unlocked(), "A trusted partner doesn't see special offers")
-	TEST_ASSERT(T.next_restock == 0, "Unlocking special offers didn't restock the trader right away")
+	TEST_ASSERT(T.next_restock > world.time, "Unlocking special offers rerolled the whole stock")
+	TEST_ASSERT(stocked in T.stonks, "Unlocking special offers threw away the current stock")
+	TEST_ASSERT(locate(/datum/trader_item/ship_repair/tier3) in T.stonks, "Unlocking special offers didn't add them to the stock")
 	T.aq_adjust_reputation(1000)
 	TEST_ASSERT(T.aq_reputation == 150, "Reputation went over the cap ([T.aq_reputation])")
 	TEST_ASSERT(T.aq_price(item) == 850, "The top reputation level didn't give 15% off ([T.aq_price(item)])")
@@ -27,6 +31,7 @@
 	// Cena katalogowa zostaje nietknięta (ruszają ją wiadomości gospodarcze)
 	TEST_ASSERT(item.price == 1000, "The discount changed the list price of the item")
 
+	QDEL_LIST(T.stonks)
 	qdel(item)
 	qdel(T)
 
