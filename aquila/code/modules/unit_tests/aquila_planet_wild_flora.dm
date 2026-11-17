@@ -61,6 +61,9 @@
 	var/datum/plant_feature/roots/roots = locate() in seeds.plant_features
 	if(roots && (roots.compatible_substrate & PLANT_SUBSTRATE_WATER) && !(roots.compatible_substrate & PLANT_SUBSTRATE_DIRT))
 		planter.set_substrate(/datum/plant_subtrate/water)
+	//Plon dzikiej ksenoflory (np. rośliny z Adhomai) daje nasiona do kapsuły: jej podłoże przyjmuje każde korzenie
+	if(roots && (roots.compatible_substrate & PLANT_SUBSTRATE_XENOFLORA))
+		planter.set_substrate(/datum/plant_subtrate/xenoflora)
 	if(!istype(seeds.plant(tray, null, TRUE, null, TRUE), /datum/component/plant))
 		return "nasion z plonu nie da się posadzić w tacy"
 	var/turf/seeder_turf = get_turf(seeder)
