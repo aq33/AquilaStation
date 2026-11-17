@@ -335,6 +335,24 @@ GLOBAL_LIST_INIT(hex_nemeses, list(
 		return TRUE
 	return FALSE
 
+/// Boss nemezis układu S żyje i jest poza nim (pościg albo droga powrotna)
+/proc/hex_nemesis_boss_away(datum/star_system/S)
+	if(!GLOB.hex_war || !S)
+		return FALSE
+	for(var/datum/hex_commander/C as anything in GLOB.hex_war.commanders)
+		if(!C.nemesis || GLOB.hex_nemeses[C.nemesis]?["home"] != S.name)
+			continue
+		var/datum/fleet/F = C.fleet
+		return C.status == HEX_CMD_ACTIVE && F && !QDELETED(F) && F.current_system != S
+	return FALSE
+
+// Cel trybu trudnego włączonego w trakcie rundy, gdy boss Dolos ściga okręt: Dolos jest pusty, bo boss dopiero wraca.
+// Cel czeka, aż boss stanie w układzie (i zostanie pokonany) albo padnie po drodze.
+/datum/overmap_objective/clear_system/dolos/check_completion()
+	. = ..()
+	if(status == 1 && hex_nemesis_boss_away(target_system))
+		status = 0
+
 /// Boss jest celem trybu trudnego: przerywa pościg i wraca, a pod nieobecność rannego albo poległego dowódcy
 /// w układzie staje jego flota bez dowódcy, żeby cel miał z kim walczyć
 /datum/hex_war/proc/nemesis_objective_boss(id)
