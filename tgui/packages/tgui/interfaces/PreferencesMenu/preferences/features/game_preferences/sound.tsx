@@ -40,6 +40,14 @@ export const sound_ghostpoll: FeatureToggle = {
   component: CheckboxInput,
 };
 
+export const sound_speech: FeatureToggle = {
+  name: 'Dźwięki mowy postaci',
+  category: 'SOUND',
+  description:
+    'Odtwarza krótki dźwięk, gdy postać coś mówi (głos gatunku albo wybrany głos).',
+  component: CheckboxInput,
+};
+
 export const sound_combatmode: FeatureToggle = {
   name: 'Dźwięk trybu walki',
   category: 'SOUND',

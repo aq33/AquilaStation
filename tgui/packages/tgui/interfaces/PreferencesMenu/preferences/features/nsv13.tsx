@@ -42,6 +42,14 @@ export const lizard_hiss_style: FeatureChoiced = {
   component: FeatureButtonedDropdownInput,
 };
 
+/** Głos mowy: dźwięk gatunku albo jeden z głosów z Goonstation; zmiana od razu gra próbkę */
+export const speech_voice: FeatureChoiced = {
+  name: 'Głos mowy',
+  description:
+    'Dźwięk przy każdej wypowiedzi. Głosy 1–4 mają osobne nagrania pytania i okrzyku.',
+  component: FeatureButtonedDropdownInput,
+};
+
 /** Wysokość głosu w półtonach; zmiana od razu gra próbkę, a przycisk gra ją jeszcze raz */
 export const voice_pitch: FeatureNumeric = {
   name: 'Wysokość głosu',

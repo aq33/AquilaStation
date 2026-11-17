@@ -3,6 +3,9 @@
 // Jukebox: maksymalna głośność YouTube (0-1) przy 100% gałki - muzyka z sieci jest zwykle głośna
 #define JUKEBOX_YT_MAX_GAIN 0.6
 
+/// Kategoria głośności dźwięków mowy (gatunkowych i z Goona); 0 gdy gracz je wyłączył, patrz voice_goon.dm
+#define VOLUME_PREF_SPEECH "speech"
+
 // Voices: every character has a voice pitch, in semitones, applied to speech sounds and vocal emotes
 #define VOICE_PITCH_MIN -5
 #define VOICE_PITCH_MAX 5

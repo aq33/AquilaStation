@@ -78,7 +78,10 @@
 
 /// Plays the speech sound for a message: one phrase per SPEECH_PHRASE_CHARS characters, with the pitch following the punctuation
 /atom/movable/proc/play_speech_sound(message, range, list/message_mods)
-	if(!speech_sound || speech_sound_cd > world.time)
+	if(speech_sound_cd > world.time)
+		return
+	var/goon_voice = get_goon_voice()
+	if(!speech_sound && !goon_voice)
 		return
 	var/text = trim(message)
 	var/length = length_char(text)
@@ -96,9 +99,13 @@
 
 	var/muffling = get_voice_muffling()
 	var/sound_key = muffling == VOICE_GAGGED ? "muffspeech" : get_speech_sound_key()
+	// Głos Goona ma osobne nagrania pytania i okrzyku, więc ton nie jest dodatkowo podnoszony
+	var/goon_sound = (muffling == VOICE_GAGGED || !goon_voice) ? null : get_goon_voice_sound(goon_voice, last_char)
+	if(goon_sound)
+		sound_key = goon_sound
 	for(var/i in 1 to phrases)
 		// A question goes up at the end
-		var/extra_semitones = (i == phrases && last_char == "?") ? 2 : 0
+		var/extra_semitones = (!goon_sound && i == phrases && last_char == "?") ? 2 : 0
 		if(i == 1)
 			play_voice_phrase(sound_key, volume, range, extra_semitones, muffling)
 		else
@@ -114,7 +121,7 @@
 		if(muffled_file)
 			sound_file = muffled_file
 		volume *= 0.8
-	playsound(src, sound_file, volume, TRUE, (-7 + range), frequency = frequency, ignore_walls = FALSE)
+	playsound(src, sound_file, volume, TRUE, (-7 + range), frequency = frequency, ignore_walls = FALSE, volume_pref = VOLUME_PREF_SPEECH)
 
 #undef VOICE_CLEAR
 #undef VOICE_MUFFLED

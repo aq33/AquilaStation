@@ -42,7 +42,12 @@
 	if(species?.gendered_speech)
 		sound_key += active_character.gender == FEMALE ? FEMALE : MALE
 	var/pitch = active_character.features["voice_pitch"]
-	var/sound/voice = sound(get_sfx(sound_key))
+	var/sound_file = get_sfx(sound_key)
+	// Głos Goona: narzucony przez rasę albo wybrany w oknie postaci
+	var/goon_voice = species?.goon_voice || active_character.features["speech_voice"]
+	if(GLOB.goon_speech_voices[goon_voice])
+		sound_file = get_goon_voice_sound(goon_voice, "")
+	var/sound/voice = sound(sound_file)
 	voice.volume = 50
 	voice.channel = SSsounds.random_available_channel()
 	voice.frequency = SEMITONES_TO_FREQUENCY(isnum(pitch) ? pitch : 0)
