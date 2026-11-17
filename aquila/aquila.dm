@@ -1253,7 +1253,7 @@
 // #include "code\modules\test_chamber\kits\pr_420_traitor_cele.dm"
 #include "code\modules\test_chamber\kits\test_subjects.dm"
 // Komora testowa - zestawy PR-ów niżej (usuwać razem z plikiem zestawu po przetestowaniu)
-#include "code\modules\test_chamber\kits\pr_nemezis_bossowie.dm"
+#include "code\modules\test_chamber\kits\pr_651_nemezis_bossowie.dm"
 #include "code\modules\test_chamber\kits\pr_641_zbiorczy_1411.dm"
 #include "code\modules\test_chamber\kits\pr_641_sterowanie_knpc.dm"
 #include "code\modules\test_chamber\kits\pr_naped_okretu.dm"
