@@ -50,6 +50,21 @@
 	bin.reagents.clear_reagents()
 	TEST_ASSERT(isnull(bin.take_substrate_bag(origin)), "Kompostownik dał worek ziemi bez kompostu")
 
+// Regresja: przy prawie pełnym zbiorniku (299/300) plon zostaje w skrzyni, a kompost nie przepada
+	bin.reagents.add_reagent(bin.reagent_id, bin.reagents.maximum_volume - 1)
+	var/obj/item/food/grown/tomato/late = allocate(/obj/item/food/grown/tomato, origin)
+	late.forceMove(bin)
+	COOLDOWN_RESET(bin, compost_cooldown)
+	bin.process(2)
+	TEST_ASSERT_EQUAL(late.loc, bin, "Plon zniknął, choć jego kompost nie mieścił się w zbiorniku")
+	TEST_ASSERT_EQUAL(bin.reagents.total_volume, bin.reagents.maximum_volume - 1, "Zawartość zbiornika zmieniła się mimo braku miejsca")
+// Po opróżnieniu zbiornika ten sam plon się rozkłada
+	bin.reagents.clear_reagents()
+	COOLDOWN_RESET(bin, compost_cooldown)
+	bin.process(2)
+	TEST_ASSERT(QDELETED(late) || late.loc != bin, "Plon nie rozłożył się po opróżnieniu zbiornika")
+	TEST_ASSERT(bin.reagents.get_reagent_amount(bin.reagent_id) > 0, "Po opróżnieniu zbiornika plon nie dał kompostu")
+
 /// AQUILA - farma dżdżownic: nakarmiona daje nawóz, dżdżownice się mnożą, z jedną dżdżownicą nic się nie dzieje
 /datum/unit_test/aquila_worm_farm
 
@@ -81,6 +96,14 @@
 	COOLDOWN_RESET(farm, worm_timer) // przyspieszenie: cykl farmy od razu
 	farm.process(2)
 	TEST_ASSERT_EQUAL(farm.reagents.get_reagent_amount(farm.reagent_id), farm.fertilizer_per_food, "Farma bez jedzenia dała nawóz")
+
+// Regresja: gdy w beczce nie ma miejsca na cały nawóz z porcji, porcja czeka, a nawóz nie przepada
+	farm.reagents.add_reagent(farm.reagent_id, farm.reagents.maximum_volume - farm.reagents.total_volume - 1)
+	farm.current_food = 1
+	COOLDOWN_RESET(farm, worm_timer)
+	farm.process(2)
+	TEST_ASSERT_EQUAL(farm.current_food, 1, "Porcja jedzenia przepadła, choć nawóz nie mieścił się w beczce")
+	TEST_ASSERT_EQUAL(farm.reagents.total_volume, farm.reagents.maximum_volume - 1, "Zawartość beczki zmieniła się mimo braku miejsca")
 
 #undef TEST_ASSERT
 #undef TEST_ASSERT_NOTNULL
