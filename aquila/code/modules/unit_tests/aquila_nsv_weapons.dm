@@ -63,6 +63,29 @@
 	qdel(gun)
 	qdel(weapon)
 
+/// Salwa Yamato z dwóch dział z 1 i 3 pociskami: pierwsze strzela od razu jednym, drugie po chwili dwoma (lista strzałów)
+/proc/aq_test_yamato_split_salvo(turf/target)
+	var/datum/overmap_ship_weapon/mac/yamato/aq_test/weapon = new
+	var/list/guns = list()
+	for(var/ammo in list(1, 3))
+		var/obj/machinery/ship_weapon/aq_salvo_test/gun = new(target)
+		gun.test_ammo = ammo
+		gun.linked_overmap_ship_weapon = weapon
+		weapon.weapons["loaded"] += gun
+		weapon.weapons["all"] += gun
+		guns += gun
+	var/obj/machinery/ship_weapon/aq_salvo_test/first = guns[1]
+	var/obj/machinery/ship_weapon/aq_salvo_test/second = guns[2]
+	. = list(weapon.fire_physical(target), first.fired_shots, second.fired_shots)
+	sleep(weapon.burst_fire_delay * weapon.burst_size + 1)
+	. += second.fired_shots
+	for(var/obj/machinery/ship_weapon/aq_salvo_test/gun as anything in guns)
+		gun.linked_overmap_ship_weapon = null
+		qdel(gun)
+	weapon.weapons["loaded"] = list()
+	weapon.weapons["all"] = list()
+	qdel(weapon)
+
 /// AQUILA - raport nsv_martwe_08 pkt 1: Yamato z badań i od Minsky'ego, salwa trzech pocisków, przeładowanie 7 s
 /datum/unit_test/nsv_yamato
 
@@ -78,6 +101,11 @@
 
 	TEST_ASSERT_EQUAL(aq_test_salvo_shots(/datum/overmap_ship_weapon/mac/yamato/aq_test, run_loc_floor_bottom_left), 3, "Yamato nie wystrzelił salwy trzech pocisków")
 	TEST_ASSERT_EQUAL(aq_test_salvo_shots(/datum/overmap_ship_weapon/mac/yamato/aq_test, run_loc_floor_bottom_left, 1), 1, "Yamato z jednym pociskiem nie strzelił wcale")
+	var/list/split = aq_test_yamato_split_salvo(run_loc_floor_bottom_left)
+	TEST_ASSERT_EQUAL(split[1], 3, "Salwa z dział z 1 i 3 pociskami nie liczy trzech strzałów")
+	TEST_ASSERT_EQUAL(split[2], 1, "Działo z jednym pociskiem nie strzeliło od razu")
+	TEST_ASSERT_EQUAL(split[3], 0, "Drugie działo strzeliło przed resztą salwy")
+	TEST_ASSERT_EQUAL(split[4], 2, "Drugie działo nie dokończyło salwy dwoma strzałami")
 	TEST_ASSERT_EQUAL(aq_test_salvo_shots(/datum/overmap_ship_weapon/mac/aq_test, run_loc_floor_bottom_left), 1, "Hood zaczął strzelać salwą")
 
 	var/list/stock = aq_test_trader_stock(/datum/trader/minsky)
