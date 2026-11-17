@@ -155,6 +155,7 @@
 	new /obj/item/barrier_tape_roll/medical(src)
 	new /obj/item/organ/cyberimp/brain/linkedsurgery(src) // procesor chirurgiczny (AquilaMed 5, etap 12)
 	new /obj/item/organ/cortical_stack(src)
+	new /obj/item/circuitboard/machine/autoclave(src) // autoklaw nie stoi na mapach: medbay składa go z tej płytki
 	new /obj/item/reflexhammer(src)
 
 // --- Apteczki ---
