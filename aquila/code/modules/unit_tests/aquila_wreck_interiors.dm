@@ -1,5 +1,6 @@
 /// AQUILA - wrak przejmuje wnętrze i moduły zestrzelonego okrętu (aquila/code/modules/overmap/modules/wreck_interiors.dm):
-/// konsola odzysku widzi go jak okręt z wnętrzem, moduły zostają takie, jak po walce, a załoga jest martwa.
+/// konsola odzysku widzi go jak okręt z wnętrzem, moduły zostają takie, jak po walce, a załoga jest martwa. Wrak ma
+/// wytrzymałość z kadłuba okrętu, PDC go nie rusza, działa tak, a liczba promów do wyciągnięcia zależy od klasy i ładowni.
 /datum/unit_test/aquila_wreck_interiors
 
 /datum/unit_test/aquila_wreck_interiors/Run()
@@ -24,3 +25,19 @@
 			return Fail("Moduł [module.kind] wraku ma żywą załogę albo pożar")
 	if(!wreck.overmap_display_bounds())
 		return Fail("Wrak nie ma obrysu sprite'a okrętu do skali wizualnej")
+	if(wreck.max_integrity < 300 || wreck.obj_integrity != wreck.max_integrity)
+		return Fail("Wrak ma [wreck.obj_integrity]/[wreck.max_integrity] wytrzymałości zamiast co najmniej 300")
+	var/obj/item/projectile/bullet/pdc_round/pdc = allocate(/obj/item/projectile/bullet/pdc_round)
+	var/obj/item/projectile/bullet/heavy_cannon_round/cannon = allocate(/obj/item/projectile/bullet/heavy_cannon_round)
+	if(wreck.run_obj_armor(pdc.damage, pdc.damage_type, pdc.flag) >= pdc.damage * 0.5)
+		return Fail("PDC rozbija wrak prawie bez osłabienia")
+	if(wreck.run_obj_armor(cannon.damage, cannon.damage_type, cannon.flag) < cannon.damage)
+		return Fail("Działo średnie nie zadaje wrakowi pełnych obrażeń")
+	// Promy do wyciągnięcia: klasa okrętu, mniej przy rozbitej ładowni; ostatni prom zostawia wypatroszony wrak
+	var/expected = wreck_salvage_count(ship, null)
+	if(expected < 1)
+		return Fail("Okręt daje [expected] promów do wyciągnięcia")
+	wreck.salvage_left = 1
+	wreck.take_salvage()
+	if(wreck.salvage_left != 0 || QDELETED(wreck) || !findtext(wreck.name, "Wypatroszony"))
+		return Fail("Po ostatnim promie wrak zniknął albo nie jest wypatroszony ([wreck.name], zostało [wreck.salvage_left])")

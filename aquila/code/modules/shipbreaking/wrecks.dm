@@ -129,7 +129,7 @@ GLOBAL_LIST_EMPTY(shipbreaker_templates)
 /// Wrak na overmapie. To podtyp asteroidy, bo AI go nie atakuje, radar pokazuje go jak asteroidę, a magnes umie go złapać.
 /obj/structure/overmap/asteroid/shipbreak_wreck
 	name = "Wrak"
-	desc = "Dryfujący wrak okrętu. Magnes na asteroidy może go przyciągnąć do klatki, gdzie da się go rozebrać na złom."
+	desc = "Dryfujący wrak okrętu. Magnes na asteroidy wyciąga z niego do klatki promy i statki, które da się rozebrać na złom, a ostrzał z dział rozbija go na szczątki."
 	icon = 'nsv13/icons/overmap/syndicate/gunboat.dmi'
 	icon_state = "gunboat-25"
 	color = "#8a8a8a"

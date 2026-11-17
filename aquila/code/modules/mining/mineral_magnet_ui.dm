@@ -38,7 +38,8 @@
 	var/list/wrecks = list()
 	if(linked && target_location && !current_asteroid && !current_wreck)
 		for(var/obj/structure/overmap/asteroid/shipbreak_wreck/wreck in orange(5, linked))
-			wrecks += list(list("name" = wreck.name, "ref" = REF(wreck)))
+			if(wreck.salvage_left > 0)
+				wrecks += list(list("name" = "[wreck.name] (promy do wyciągnięcia: [wreck.salvage_left])", "ref" = REF(wreck)))
 		for(var/obj/structure/overmap/asteroid/asteroid in orange(5, linked))
 			if(istype(asteroid, /obj/structure/overmap/asteroid/shipbreak_wreck))
 				continue

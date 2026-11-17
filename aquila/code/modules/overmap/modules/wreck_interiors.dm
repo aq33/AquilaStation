@@ -1,7 +1,9 @@
 /// AQUILA - wraki zestrzelonych okrętów (plan walki na overmapie, etap „wraki”). Wrak z portu shipbreakingu
 /// (aquila/code/modules/shipbreaking/wrecks.dm) przejmuje wnętrze abordażu i moduły okrętu: konsola odzysku może go
-/// abordażować, a we wnętrzu widać skutki walki (martwa załoga, rozbite moduły, dziury po trafieniach). Magnes dalej
-/// wciąga wrak do złomowania. W systemie zostaje najwyżej SHIPBREAK_MAX_WRECKS wraków, najstarsze się rozpadają.
+/// abordażować, a we wnętrzu widać skutki walki (martwa załoga, rozbite moduły, dziury po trafieniach). Wraku nie rozbiera
+/// się w całości: magnes wyciąga z niego promy i statki do złomowania (salvage_left, zależnie od klasy okrętu i ocalałych
+/// ładowni i hangaru), a wrak zostaje. Działa rozbijają go na pole szczątków (PDC nic mu nie robi). W systemie zostaje
+/// najwyżej SHIPBREAK_MAX_WRECKS wraków, najstarsze się rozpadają.
 
 #define SHIPBREAK_MAX_WRECKS 8
 
@@ -70,4 +72,57 @@
 		wrecks.Cut(1, 2)
 		qdel(oldest)
 
+// ---- Wytrzymałość i promy do wyciągnięcia ----
+
+/// Wytrzymałość wraku: część kadłuba okrętu, z którego powstał, ale nie mniej niż WRECK_MIN_INTEGRITY
+#define WRECK_MIN_INTEGRITY 300
+#define WRECK_INTEGRITY_SHARE 0.4
+
+/obj/structure/overmap/asteroid/shipbreak_wreck
+	max_integrity = WRECK_MIN_INTEGRITY
+	obj_integrity = WRECK_MIN_INTEGRITY
+	// PDC i lekkie działka go nie ruszają, działa tak (asteroida bierze tylko ciężkie)
+	armor = list("overmap_light" = 80, "overmap_medium" = 0, "overmap_heavy" = 0)
+	/// Ile promów i statków do złomowania magnes jeszcze z niego wyciągnie
+	var/salvage_left = 1
+
+/obj/structure/overmap/asteroid/shipbreak_wreck/Initialize(mapload)
+	. = ..()
+	salvage_left = rand(1, 2) // losowy wrak w układzie; zestrzelony okręt nadpisze to w copy_ship()
+
+/obj/structure/overmap/asteroid/shipbreak_wreck/copy_ship(obj/structure/overmap/source)
+	. = ..()
+	max_integrity = max(WRECK_MIN_INTEGRITY, round(source.max_integrity * WRECK_INTEGRITY_SHARE))
+	obj_integrity = max_integrity
+	salvage_left = wreck_salvage_count(source, ship_modules)
+
+/// Ile promów da się wyciągnąć z wraku: klasa okrętu (1-4) razy stan ładowni i hangaru (moduły z bitwy)
+/proc/wreck_salvage_count(obj/structure/overmap/source, datum/ship_modules/modules)
+	var/base = clamp(round(source.mass / 2), 1, 4)
+	if(!modules || !(modules.has_kind("cargo") || modules.has_kind("hangar")))
+		return base
+	var/total = 0
+	var/count = 0
+	for(var/kind in list("cargo", "hangar"))
+		if(modules.has_kind(kind))
+			total += modules.kind_efficiency(kind)
+			count++
+	return max(1, round(base * (0.5 + 0.5 * total / count)))
+
+/// Magnes wyciągnął prom: wrak zostaje, a gdy nic w nim nie ma, zmienia nazwę
+/obj/structure/overmap/asteroid/shipbreak_wreck/proc/take_salvage()
+	salvage_left = max(0, salvage_left - 1)
+	if(!salvage_left && !findtext(name, "Wypatroszony"))
+		name = "Wypatroszony [lowertext(name)]"
+
+/// Rozbity działami: w jego miejscu zostaje pole szczątków
+/obj/structure/overmap/asteroid/shipbreak_wreck/obj_destruction(damage_flag)
+	if(z && current_system)
+		var/obj/effect/overmap_anomaly/hazard/speed/debris_field/debris = new(get_turf(src), current_system)
+		current_system.system_contents |= debris
+		visible_message("<span class='warning'>[src] rozpada się na chmurę szczątków.</span>")
+	return ..()
+
+#undef WRECK_MIN_INTEGRITY
+#undef WRECK_INTEGRITY_SHARE
 #undef SHIPBREAK_MAX_WRECKS
