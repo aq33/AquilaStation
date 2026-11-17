@@ -2535,6 +2535,7 @@
 #include "code\modules\unit_tests\aquila_ghost_polls.dm"
 #include "code\modules\unit_tests\aquila_gq_lights.dm"
 #include "code\modules\unit_tests\aquila_gun_fire_without_params.dm"
+#include "code\modules\unit_tests\aquila_drobiazgi_1711.dm"
 #include "code\modules\unit_tests\aquila_he_pipe_no_pipeline.dm"
 #include "code\modules\unit_tests\aquila_imaginary_friend_job.dm"
 #include "code\modules\unit_tests\aquila_gunplay.dm"
