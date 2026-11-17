@@ -170,3 +170,25 @@
 	if(SSstar_system.bounty_pool != pool_before)
 		SSstar_system.bounty_pool = pool_before
 		return "Zniszczenie szczurów z pasa dodało nagrodę do puli"
+	// Okręt przy wschodniej krawędzi mapy: kierunki na wschód są przycięte do brzegu, myśliwce i tak z różnych stron i 10–14 pól
+	var/turf/old_spot = ship.loc
+	ship.forceMove(locate(world.maxx - 3, 40, old_spot.z))
+	raid = new /datum/round_event/aquila_hex_belt_rats(FALSE)
+	raid.kill()
+	var/list/edge_rats = raid.spawn_rats(ship)
+	qdel(raid)
+	spawned += edge_rats
+	var/list/edge_dirs = list()
+	. = null
+	if(length(edge_rats) < 2)
+		. = "Przy krawędzi mapy pojawiło się tylko [length(edge_rats)] myśliwców"
+	for(var/obj/structure/overmap/rat as anything in edge_rats)
+		var/rat_dir = get_dir(ship, rat)
+		var/distance = get_dist(rat, ship)
+		if(!. && (rat_dir in edge_dirs))
+			. = "Przy krawędzi mapy dwa myśliwce nadleciały z tej samej strony ([dir2text(rat_dir)])"
+		if(!. && (distance < 10 || distance > 14))
+			. = "Przy krawędzi mapy myśliwiec pojawił się [distance] pól od okrętu zamiast 10–14"
+		edge_dirs += rat_dir
+	QDEL_LIST(edge_rats)
+	ship.forceMove(old_spot)

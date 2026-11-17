@@ -38,12 +38,13 @@
 	. = list()
 	if(!aquila_hex_ship_settled(near))
 		return
-	var/list/dirs = GLOB.alldirs.Copy() // każdy myśliwiec z innej strony
-	for(var/i in 1 to rand(2, 3))
-		if(!length(dirs))
+	var/wanted = rand(2, 3)
+	for(var/dir in shuffle(GLOB.alldirs.Copy())) // każdy myśliwiec z innej strony
+		if(length(.) >= wanted)
 			break
-		var/turf/spot = aquila_hex_overmap_spot_beside(near, rand(10, 14), list(pick_n_take(dirs)))
-		if(!spot)
+		var/turf/spot = aquila_hex_overmap_spot_beside(near, rand(10, 14), list(dir))
+		// Przy krawędzi mapy pole jest przycięte do brzegu (inny kierunek albo za blisko): bierzemy kolejny kierunek
+		if(!spot || get_dir(near, spot) != dir || get_dist(near, spot) < 10)
 			continue
 		var/obj/structure/overmap/syndicate/ai/fighter/rat = new /obj/structure/overmap/syndicate/ai/fighter(spot)
 		rat.bounty = 0
