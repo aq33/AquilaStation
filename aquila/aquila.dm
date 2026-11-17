@@ -403,6 +403,7 @@
 #include "code\modules\antagonists\horror\horror_chemicals.dm"
 #include "code\modules\antagonists\horror\horror_datums.dm"
 #include "code\modules\antagonists\horror\horror_mutate.dm"
+#include "code\modules\antagonists\horror\horror_xenobio.dm"
 #include "code\modules\antagonists\infiltrator\infiltrator.dm"
 #include "code\modules\antagonists\infiltrator\objectives.dm"
 #include "code\modules\antagonists\infiltrator\outfit.dm"
