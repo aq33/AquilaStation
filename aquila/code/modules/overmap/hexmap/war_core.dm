@@ -118,6 +118,7 @@ GLOBAL_LIST_INIT(hex_war_factions, list("nanotrasen", "solgov", "syndicate", "pi
 	ready = TRUE
 	apply_hq_relocations()
 	remove_occupied_garrisons()
+	setup_nemeses()
 	reinforce_hq_garrisons()
 	announce_war_end()
 	addtimer(CALLBACK(src, PROC_REF(tick)), HEX_WAR_TICK)

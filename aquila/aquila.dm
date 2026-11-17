@@ -1043,6 +1043,7 @@
 #include "code\modules\overmap\hexmap\war_core.dm"
 #include "code\modules\overmap\hexmap\war_staff.dm"
 #include "code\modules\overmap\hexmap\war_commanders.dm"
+#include "code\modules\overmap\hexmap\war_nemesis.dm"
 #include "code\modules\overmap\hexmap\war_persistence.dm"
 #include "code\modules\overmap\hexmap\war_end.dm"
 #include "code\modules\overmap\hexmap\war_retake.dm"
@@ -1252,6 +1253,7 @@
 // #include "code\modules\test_chamber\kits\pr_420_traitor_cele.dm"
 #include "code\modules\test_chamber\kits\test_subjects.dm"
 // Komora testowa - zestawy PR-ów niżej (usuwać razem z plikiem zestawu po przetestowaniu)
+#include "code\modules\test_chamber\kits\pr_nemezis_bossowie.dm"
 #include "code\modules\test_chamber\kits\pr_641_zbiorczy_1411.dm"
 #include "code\modules\test_chamber\kits\pr_641_sterowanie_knpc.dm"
 #include "code\modules\test_chamber\kits\pr_naped_okretu.dm"

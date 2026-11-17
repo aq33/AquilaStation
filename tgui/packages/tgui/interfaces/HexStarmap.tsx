@@ -77,6 +77,7 @@ type Commander = {
   scars: string[];
   history: string[];
   fleet_hex: string | null;
+  nemesis: boolean;
 };
 
 type Ship = {
@@ -251,6 +252,7 @@ const FACTION_NAME: Record<string, string> = {
   pirate: 'Piraci',
   unaligned: 'Niezależni',
   uncharted: 'Niezbadany',
+  hostile: 'Nieznana frakcja',
 };
 
 const FACTION_COLOR: Record<string, string> = {
@@ -261,6 +263,7 @@ const FACTION_COLOR: Record<string, string> = {
   pirate: '#8e3cc2',
   unaligned: '#b07a1c',
   uncharted: '#555',
+  hostile: '#5a1f4a',
 };
 
 const BLOC: Record<string, string | undefined> = {
@@ -1543,6 +1546,9 @@ const CommandersPanel = (props: { commanders: Commander[] }) => {
           }}
         >
           <Box bold>{`${'★'.repeat(c.stars) || '·'} ${c.rank} ${c.name}`}</Box>
+          {!!c.nemesis && (
+            <Box color="average">Nemezis: dowodzi bossem swojego układu.</Box>
+          )}
           <Box color="label">
             {`${FACTION_NAME[c.faction] || c.faction}, ${STATUS_NAME[c.status] || c.status}, zwycięstwa ${c.wins}, porażki ${c.losses}`}
           </Box>

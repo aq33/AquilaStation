@@ -973,5 +973,98 @@
 	TEST_ASSERT(chosen.alignment != "pirate", "Pirates went for their own system ([chosen])")
 
 
+/// Nemezis: boss w swoim układzie dostaje stałego dowódcę, poległy nie wraca, ranny wraca z bossem do swojego układu,
+/// a zapis kampanii zachowuje go jako nemezis (nie oznacza go jako rannego za brak floty sztabu)
+/datum/unit_test/hexmap_war_nemesis
+
+/datum/unit_test/hexmap_war_nemesis/Run()
+	if(!GLOB.hexmap?.built)
+		return
+	var/list/info = GLOB.hex_nemeses["fistofsol"]
+	var/datum/star_system/home = SSstar_system.system_by_id(info["home"])
+	if(!home?.hex)
+		return // mapa testowa bez Romulusa
+	var/fleet_type = info["fleet"]
+	// Bossowie z mapy gwiezdnej czekają poza układami, a test używa własnej wojny, żeby nie ruszać dowódców kampanii
+	var/list/originals = list() // flota -> układ
+	var/list/alignments = list() // układ -> alignment
+	for(var/id in GLOB.hex_nemeses)
+		var/datum/star_system/S = SSstar_system.system_by_id(GLOB.hex_nemeses[id]["home"])
+		if(!S)
+			continue
+		alignments[S] = S.alignment
+		var/datum/fleet/original = hex_nemesis_fleet(S, GLOB.hex_nemeses[id]["fleet"])
+		if(original)
+			S.fleets -= original
+			originals[original] = S
+	var/datum/hex_war/war = new
+	var/datum/fleet/boss = home.spawn_fleet(fleet_type)
+	war.setup_nemeses()
+	var/datum/hex_commander/C = war.nemesis_commander("fistofsol")
+	var/boss_commander = boss.commander
+	var/boss_name = boss.name
+	var/same_commander = (war.nemesis_commander("fistofsol") == C) && (length(war.commanders) == length(GLOB.hex_nemeses))
+	C.status = HEX_CMD_DEAD
+	war.setup_nemeses()
+	var/dead_boss = hex_nemesis_fleet(home, fleet_type)
+	C.status = HEX_CMD_WOUNDED
+	C.fleet = null
+	war.nemesis_return(C)
+	var/datum/fleet/returned = hex_nemesis_fleet(home, fleet_type)
+	var/returned_commander = returned?.commander
+	var/returned_status = C.status
+	// Sprzątanie: floty bossów z wojny testu znikają, oryginały wracają do układów
+	for(var/datum/star_system/S as anything in alignments)
+		for(var/datum/fleet/F as anything in S.fleets.Copy())
+			if(F.commander && (F.commander in war.commanders))
+				F.commander = null
+				F.hex_war_dispose()
+	for(var/datum/fleet/original as anything in originals)
+		var/datum/star_system/S = originals[original]
+		S.fleets += original
+	for(var/datum/star_system/S as anything in alignments)
+		S.alignment = alignments[S]
+	TEST_ASSERT_EQUAL(boss_commander, C, "The boss fleet did not get its nemesis commander")
+	TEST_ASSERT(findtext(boss_name, C.last_name), "The boss fleet name has no commander: [boss_name]")
+	TEST_ASSERT(same_commander, "The nemesis commander is not unique")
+	TEST_ASSERT(!dead_boss, "The boss of a dead nemesis stayed in [home]")
+	TEST_ASSERT_EQUAL(returned_commander, C, "A wounded nemesis did not come back with his boss to [home]")
+	TEST_ASSERT_EQUAL(returned_status, HEX_CMD_ACTIVE, "A returned nemesis is not active")
+
+	// Zapis: nemezis bez floty sztabu zostaje aktywny i dalej jest nemezis
+	var/datum/hex_war/saved_war = new
+	var/list/protected = list()
+	for(var/datum/fleet/F as anything in hex_all_fleets())
+		if(F.hex_war_adoptable())
+			F.war_controlled = TRUE
+			protected += F
+	var/list/entry = list("id" = 5, "faction" = "syndicate", "first" = "Lucan", "last" = "Draven", "rank" = 3, "status" = HEX_CMD_ACTIVE, "return_in" = 0, "nemesis" = "fistofsol")
+	saved_war.restore(list("fleets" = list(), "next_id" = 6, "commanders" = list(entry)))
+	for(var/datum/fleet/F as anything in protected)
+		F.war_controlled = FALSE
+	var/datum/hex_commander/R = length(saved_war.commanders) ? saved_war.commanders[1] : null
+	TEST_ASSERT_EQUAL(R?.nemesis, "fistofsol", "The campaign save lost the nemesis id")
+	TEST_ASSERT_EQUAL(R?.status, HEX_CMD_ACTIVE, "A nemesis without a staff fleet came back wounded from the save")
+
+/// Alicorn leci sam: bez eskorty Syndykatu, która strzelała do niego jako do innej frakcji
+/datum/unit_test/hexmap_alicorn_alone
+
+/datum/unit_test/hexmap_alicorn_alone/Run()
+	var/datum/star_system/S = SSstar_system.system_by_id("Staging") || SSstar_system.systems[1]
+	var/old_alignment = S.alignment
+	var/datum/fleet/F = S.spawn_fleet(/datum/fleet/hostile/alicorn_boss)
+	var/list/factions = list()
+	var/count = 0
+	for(var/obj/structure/overmap/OM as anything in F.all_ships)
+		factions |= OM.faction
+		count++
+	var/alignment = F.alignment
+	F.hex_war_dispose()
+	S.alignment = old_alignment
+	TEST_ASSERT(count >= 1, "The Alicorn fleet has no ships")
+	TEST_ASSERT_EQUAL(english_list(factions), "hostile", "The Alicorn fleet mixes ship factions")
+	TEST_ASSERT_EQUAL(alignment, "hostile", "The Alicorn fleet does not belong to its ships' faction")
+
+
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL
