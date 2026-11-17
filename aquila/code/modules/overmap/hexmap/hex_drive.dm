@@ -14,6 +14,8 @@
 	var/hex_pending_time = 0
 	/// Timer rozruchu skoku (begin_jump, hook w ftl_jump.dm): odwołanie skoku go kasuje
 	var/hex_startup_timer
+	/// Kafle trasy ostatniego skoku po hexach (przelot obok bossa nemezis, war_nemesis.dm)
+	var/list/hex_flight_path
 
 /// Plan skoku po hexach na najbliższy jump_start()
 /obj/structure/overmap/proc/hex_set_pending(cost, hexes)
@@ -99,6 +101,7 @@
 	var/datum/hex/destination = path[length(path)]
 	var/datum/star_system/target_system = GLOB.hexmap.system_for(destination)
 	hex_set_pending(route["cost"], route["hexes"])
+	hex_flight_path = path
 	if(user)
 		log_game("[key_name(user)] ordered [src] to jump [route["hexes"]] hexes to [destination.id] ([target_system.name]) for [route["cost"]]% charge.")
 	ftl_drive.jump(target_system)

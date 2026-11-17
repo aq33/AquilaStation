@@ -1183,7 +1183,7 @@
 	  "is_capital": 0,
 	  "adjacency_list": "[\"Abassi\"]",
 	  "wormhole_connections": "[]",
-	  "fleet_type": "/datum/fleet/remnant",
+	  "fleet_type": null,
 	  "x": 75,
 	  "y": 120,
 	  "parallax_property": null,
