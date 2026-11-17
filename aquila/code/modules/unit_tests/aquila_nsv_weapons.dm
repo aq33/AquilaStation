@@ -97,5 +97,40 @@
 	stock = aq_test_trader_stock(/datum/trader/armsdealer/syndicate)
 	TEST_ASSERT(!(/datum/trader_item/gauss_turret_circuit in stock), "DonkCo sprzedaje płytki White Rapids")
 
+/// AQUILA - raport nsv_martwe_08 pkt 3: moduł kalibracji działa pokładowego działa, wygasa i daje się skalibrować multitoolem
+/datum/unit_test/nsv_deck_gun_calibrator
+
+/datum/unit_test/nsv_deck_gun_calibrator/Run()
+	var/datum/techweb_node/node = SSresearch.techweb_node_by_id("ship_armament")
+	TEST_ASSERT("deck_gun_calibrator" in node.design_ids, "Uzbrojenie okrętowe nie ma płytki modułu kalibracji")
+	TEST_ASSERT(/datum/trader_item/deck_gun_calibrator in aq_test_trader_stock(/datum/trader/armsdealer), "White Rapids nie sprzedaje modułu kalibracji")
+
+	var/turf/center = get_step(run_loc_floor_bottom_left, NORTHEAST)
+	var/obj/machinery/deck_turret/core/core = allocate(/obj/machinery/deck_turret/core, center)
+	TEST_ASSERT_EQUAL(core.get_calibrator(), null, "Rdzeń widzi moduł kalibracji, którego nie ma")
+	var/obj/machinery/deck_turret/calibrator/calibrator = allocate(/obj/machinery/deck_turret/calibrator, get_step(center, EAST))
+	TEST_ASSERT_EQUAL(core.get_calibrator(), calibrator, "Nowy moduł kalibracji obok rdzenia nie działa")
+
+	// Pocisk ze skalibrowanego działa: dłuższe i ostrzejsze naprowadzanie
+	var/obj/item/projectile/bullet/mac_round/round = allocate(/obj/item/projectile/bullet/mac_round, center)
+	round.homing = TRUE
+	round.aq_calibrate()
+	TEST_ASSERT_EQUAL(round.homing_turn_speed, initial(round.homing_turn_speed) * 2, "Skalibrowany pocisk nie skręca ostrzej")
+	round.stop_homing() // Zwykły timer po 0,2 s
+	TEST_ASSERT(round.homing, "Skalibrowany pocisk przestał się naprowadzać po 0,2 s")
+	round.aq_homing_until = world.time
+	round.stop_homing()
+	TEST_ASSERT(!round.homing, "Skalibrowany pocisk naprowadza się bez końca")
+
+	// Po kwadransie moduł nic nie daje, dopóki ktoś go nie skalibruje multitoolem
+	calibrator.lose_calibration()
+	TEST_ASSERT_EQUAL(core.get_calibrator(), null, "Moduł bez kalibracji nadal działa")
+	var/mob/living/carbon/human/user = allocate(/mob/living/carbon/human, get_step(calibrator, NORTH))
+	var/obj/item/multitool/tool = allocate(/obj/item/multitool, get_step(calibrator, NORTH))
+	tool.toolspeed = 0.01
+	user.put_in_active_hand(tool)
+	calibrator.multitool_act(user, tool)
+	TEST_ASSERT_EQUAL(core.get_calibrator(), calibrator, "Multitool nie skalibrował modułu")
+
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL

@@ -25063,5 +25063,15 @@
 "Płytka drukowana dozownika amunicji Gaussa": "Gauss ammo dispenser circuit board",
 "Dozownik, który podaje wieżyczce Gaussa amunicję z magazynów okrętu.": "A dispenser that feeds a Gauss turret with ammo from the ship's magazines.",
 "Płytka drukowana wieżyczki działa pokładowego": "Deck gun turret circuit board",
-"Wieżyczka działa pokładowego „Hood”. Rdzeń, bramki i konsola są w badaniach balistyki.": "The \"Hood\" deck gun turret. The core, gates and console are in the ballistics research."
+"Wieżyczka działa pokładowego „Hood”. Rdzeń, bramki i konsola są w badaniach balistyki.": "The \"Hood\" deck gun turret. The core, gates and console are in the ballistics research.",
+"moduł kalibracji działa pokładowego (płytka maszyny)": "deck gun calibration module (Machine Board)",
+"Moduł, który na bieżąco koryguje celownik działa pokładowego, gdy stoi obok jego rdzenia. Skalibrowany wydłuża naprowadzanie pocisków, zmniejsza ich rozrzut i przyspiesza ładowanie. Po kwadransie traci kalibrację: wtedy skalibruj go multitoolem.": "A module that keeps correcting a deck gun's sights while it stands next to the gun's core. When calibrated it extends shell homing, reduces their spread and speeds up loading. It loses calibration after a quarter of an hour: recalibrate it with a multitool.",
+"<span class='warning'>[src] piszczy: kalibracja wygasła.</span>": "<span class='warning'>[src] beeps: calibration expired.</span>",
+"<span class='notice'>Zaczynasz kalibrować moduł...</span>": "<span class='notice'>You start calibrating the module...</span>",
+"<span class='notice'>Moduł skalibrowany. Kalibracja wytrzyma około [DisplayTimeText(DECK_GUN_CALIBRATION_TIME)].</span>": "<span class='notice'>Module calibrated. The calibration will hold for about [DisplayTimeText(DECK_GUN_CALIBRATION_TIME)].</span>",
+"<span class='notice'>Skalibrowany jeszcze przez [DisplayTimeText(calibrated_until - world.time, 1)].</span>": "<span class='notice'>Calibrated for another [DisplayTimeText(calibrated_until - world.time, 1)].</span>",
+"<span class='warning'>Nieskalibrowany. Skalibruj go multitoolem.</span>": "<span class='warning'>Not calibrated. Calibrate it with a multitool.</span>",
+"Projekt maszyny (moduł kalibracji działa pokładowego)": "Machine Design (Deck Gun Calibration Module)",
+"Moduł obok rdzenia działa pokładowego: dłuższe naprowadzanie pocisków, mniejszy rozrzut i szybsze ładowanie. Co kwadrans trzeba go skalibrować multitoolem.": "A module next to the deck gun core: longer shell homing, less spread and faster loading. It needs a multitool calibration every quarter of an hour.",
+"Płytka modułu kalibracji działa pokładowego": "Deck gun calibration module board"
 }
