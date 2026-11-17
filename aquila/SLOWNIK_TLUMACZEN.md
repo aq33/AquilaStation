@@ -4336,3 +4336,4 @@ Nazwy obszarów są w większości przetłumaczone. Nowe nazwy budujemy z tych k
 | Sticky Tongue | Lepki język | m; akcja Żaby |
 | sleuth | węszenie | n; emotka Mopsa |
 | coat | umaszczenie | n; wybór w oknie postaci |
+| Vox / Vox pidgin / quills | Vox / Voxski (pidgin) / pióra | m; rasa (YogStation) |
