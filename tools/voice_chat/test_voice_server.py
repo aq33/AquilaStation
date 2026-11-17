@@ -1,4 +1,4 @@
-"""Testy serwisu czatu głosowego: zgoda na chmurę i /info.
+"""Testy serwisu czatu głosowego: zgoda na chmurę, /info i język nagrania.
 
 Uruchomienie: python -m unittest tools/voice_chat/test_voice_server.py (z katalogu repozytorium).
 Serwis startuje w wątku na wolnym porcie, chmura ma fałszywy adres, więc nic nie wychodzi do internetu.
@@ -25,7 +25,7 @@ SECRET = "sekret_testowy"
 
 def make_args(backend, save_dir=""):
 	return argparse.Namespace(
-		backend=backend, model="", api_key="test", keyterms=[], language="pl", prompt="",
+		backend=backend, model="", api_key="test", keyterms=["syndykat"], language="pl", prompt="Halo, tu kapitan.", prompt_en="Hello, this is the captain.",
 		whisper="http://127.0.0.1:9", secret=SECRET, save_dir=save_dir, verbose=False,
 	)
 
@@ -48,8 +48,9 @@ class VoiceServerTest(unittest.TestCase):
 		self.base = f"http://127.0.0.1:{server.server_address[1]}"
 		# Chmura bez sieci: zamiast prawdziwego zapytania zapamiętujemy, że nagranie poszłoby do dostawcy
 		self.sent = []
+		self.languages = []
 		original = voice_server.BACKENDS[backend]
-		voice_server.BACKENDS[backend] = lambda args, data: self.sent.append(len(data)) or "test"
+		voice_server.BACKENDS[backend] = lambda args, data, language: self.sent.append(len(data)) or self.languages.append(language) or "test"
 		self.addCleanup(voice_server.BACKENDS.__setitem__, backend, original)
 		return server
 
@@ -61,9 +62,12 @@ class VoiceServerTest(unittest.TestCase):
 		except urllib.error.HTTPError as e:
 			return e.code, json.loads(e.read().decode("utf-8"))
 
-	def sync(self, cmds=()):
+	def sync(self, cmds=(), languages=None):
 		headers = {"X-Voice-Secret": hashlib.sha256(SECRET.encode()).hexdigest(), "Content-Type": "application/json"}
-		return self.request("/api/sync", json.dumps({"sessions": {TOKEN: "tester"}, "cmds": list(cmds)}).encode(), headers)
+		payload = {"sessions": {TOKEN: "tester"}, "cmds": list(cmds)}
+		if languages is not None:
+			payload["languages"] = languages
+		return self.request("/api/sync", json.dumps(payload).encode(), headers)
 
 	def connect_page(self):
 		"""Otwiera strumień /events jak strona gracza i zwraca identyfikator połączenia."""
@@ -75,13 +79,14 @@ class VoiceServerTest(unittest.TestCase):
 					line = line.decode("utf-8").strip()
 					# Czytamy dalej: zamknięte połączenie to zamknięta karta, a jej nagrań serwis już nie przyjmie
 					if line.startswith("data:") and "conn" in line:
-						hello.put(json.loads(line[5:])["conn"])
+						hello.put(json.loads(line[5:]))
 
 		threading.Thread(target=listen, daemon=True).start()
-		return hello.get(timeout=5)
+		self.hello = hello.get(timeout=5)
+		return self.hello["conn"]
 
-	def record(self, seq, conn, consent=""):
-		self.sync([{"token": TOKEN, "cmd": "start", "seq": seq, "channel": "say"}])
+	def record(self, seq, conn, consent="", languages=None):
+		self.sync([{"token": TOKEN, "cmd": "start", "seq": seq, "channel": "say"}], languages)
 		query = f"/audio?t={TOKEN}&c={conn}&seq={seq}" + (f"&consent={consent}" if consent else "")
 		return self.request(query, wav(), {"Content-Type": "audio/wav"})
 
@@ -113,6 +118,42 @@ class VoiceServerTest(unittest.TestCase):
 		self.assertEqual(status, 200)
 		self.assertEqual(body["text"], "test")
 		self.assertEqual(len(self.sent), 1)
+
+	def test_english_player_is_transcribed_in_english(self):
+		self.start_server("elevenlabs")
+		self.sync(languages={TOKEN: "en"})
+		conn = self.connect_page()
+		self.assertEqual(self.hello["lang"], "en", "Strona nie dostała języka gracza")
+		status, _ = self.record(1, conn, consent="elevenlabs", languages={TOKEN: "en"})
+		self.assertEqual(status, 200)
+		self.assertEqual(self.languages, ["en"])
+
+	def test_language_defaults_to_polish(self):
+		self.start_server("elevenlabs")
+		self.sync(languages={TOKEN: "de"})  # nieznany język: domyślny serwisu
+		conn = self.connect_page()
+		self.assertEqual(self.hello["lang"], "pl")
+		self.record(1, conn, consent="elevenlabs")  # stara gra bez listy języków
+		self.assertEqual(self.languages, ["pl"])
+
+	def test_prompt_and_keyterms_follow_language(self):
+		args = make_args("elevenlabs")
+		self.assertEqual(voice_server.prompt_for(args, "pl"), "Halo, tu kapitan.")
+		self.assertEqual(voice_server.prompt_for(args, "en"), "Hello, this is the captain.")
+		sent = {}
+		original = voice_server.post_multipart
+		voice_server.post_multipart = lambda url, fields, data, headers=None: sent.update(fields) or {"text": "ok"}
+		self.addCleanup(setattr, voice_server, "post_multipart", original)
+		voice_server.transcribe_elevenlabs(args, wav(), "en")
+		self.assertEqual(sent["language_code"], "eng")
+		self.assertNotIn("keyterms", sent, "Polskie słownictwo gry nie może iść do angielskiego nagrania")
+		sent.clear()
+		voice_server.transcribe_elevenlabs(args, wav(), "pl")
+		self.assertEqual(sent["keyterms"], ["syndykat"])
+
+	def test_english_hallucinations_are_dropped(self):
+		self.assertEqual(voice_server.clean_text("Thanks for watching!"), "")
+		self.assertEqual(voice_server.clean_text("Security to the bridge."), "Security to the bridge.")
 
 
 if __name__ == "__main__":

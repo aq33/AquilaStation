@@ -29,6 +29,8 @@ from urllib.parse import parse_qs, urlparse
 HERE = os.path.dirname(os.path.abspath(__file__))
 TOKEN_RE = re.compile(r"^[0-9a-f]{32}$")
 CHANNELS = ("say", "radio", "department")
+# Języki rozpoznawania mowy: gra podaje angielski dla gracza z angielską wersją gry, reszta mówi po polsku.
+LANGUAGES = ("pl", "en")
 MAX_AUDIO_BYTES = 2 * 1024 * 1024
 MIN_SECONDS = 0.3
 MAX_SECONDS = 20.0
@@ -48,6 +50,10 @@ HALLUCINATIONS = (
 	"zasubskrybuj",
 	"tłumaczenie:",
 	"www.",
+	"thanks for watching",
+	"thank you for watching",
+	"subtitles by",
+	"please subscribe",
 )
 
 
@@ -55,6 +61,7 @@ class Session:
 	def __init__(self, token, ckey):
 		self.token = token
 		self.ckey = ckey
+		self.language = None  # język gracza z gry (LANGUAGES); None = domyślny serwisu (--language)
 		# Jedna otwarta strona na token: (kolejka zdarzeń SSE, identyfikator połączenia).
 		# Nowa karta z tym samym tokenem odłącza starą, a nagranie przyjmujemy tylko od bieżącej.
 		self.listener = None
@@ -77,8 +84,9 @@ class State:
 		self.sessions = {}
 		self.results = []
 
-	def sync(self, sessions, cmds):
-		"""Gra przysyła pełną listę sesji i nowe polecenia, dostaje wyniki i stan stron."""
+	def sync(self, sessions, cmds, languages=None):
+		"""Gra przysyła pełną listę sesji (z językiem graczy spoza polskiej wersji) i nowe polecenia, dostaje wyniki i stan stron."""
+		languages = languages if isinstance(languages, dict) else {}
 		with self.lock:
 			wanted = {}
 			for token, ckey in sessions.items():
@@ -89,6 +97,8 @@ class State:
 					self.sessions[token] = Session(token, ckey)
 				else:
 					self.sessions[token].ckey = ckey
+				language = languages.get(token)
+				self.sessions[token].language = language if language in LANGUAGES else None
 			# Polecenia przed usunięciem sesji: „cancel” dla gracza, który właśnie wyszedł, musi dojść do jego strony.
 			for cmd in cmds:
 				if not isinstance(cmd, dict):
@@ -201,13 +211,18 @@ def post_multipart(url, fields, wav, headers=None, timeout=30):
 
 
 # Dostawcy rozpoznawania mowy. Każdy dostaje nagranie WAV 16 kHz mono i zwraca surowy tekst.
-def transcribe_whisper(args, wav):
-	fields = {"response_format": "json", "language": args.language, "temperature": "0.0", "prompt": args.prompt}
+def prompt_for(args, language):
+	"""Podpowiedź ze słownictwem gry w języku nagrania (polska podpowiedź psułaby angielską mowę)."""
+	return args.prompt if language == args.language else args.prompt_en if language == "en" else ""
+
+
+def transcribe_whisper(args, wav, language):
+	fields = {"response_format": "json", "language": language, "temperature": "0.0", "prompt": prompt_for(args, language)}
 	return post_multipart(args.whisper.rstrip("/") + "/inference", fields, wav).get("text", "")
 
 
-def transcribe_openai(args, wav):
-	fields = {"model": args.model or "gpt-4o-transcribe", "language": args.language, "prompt": args.prompt, "response_format": "json"}
+def transcribe_openai(args, wav, language):
+	fields = {"model": args.model or "gpt-4o-transcribe", "language": language, "prompt": prompt_for(args, language), "response_format": "json"}
 	headers = {"Authorization": f"Bearer {args.api_key}"}
 	return post_multipart("https://api.openai.com/v1/audio/transcriptions", fields, wav, headers).get("text", "")
 
@@ -215,9 +230,9 @@ def transcribe_openai(args, wav):
 ELEVENLABS_LANGUAGES = {"pl": "pol", "en": "eng"}
 
 
-def transcribe_elevenlabs(args, wav):
-	fields = {"model_id": args.model or "scribe_v2", "language_code": ELEVENLABS_LANGUAGES.get(args.language, args.language), "tag_audio_events": "false"}
-	if args.keyterms:
+def transcribe_elevenlabs(args, wav, language):
+	fields = {"model_id": args.model or "scribe_v2", "language_code": ELEVENLABS_LANGUAGES.get(language, language), "tag_audio_events": "false"}
+	if args.keyterms and language == args.language:  # słownictwo z keyterms.txt jest polskie
 		fields["keyterms"] = args.keyterms  # słowa z gry, do których model ma się skłaniać (+20% ceny)
 	headers = {"xi-api-key": args.api_key}
 	return post_multipart("https://api.elevenlabs.io/v1/speech-to-text", fields, wav, headers).get("text", "")
@@ -248,15 +263,16 @@ def privacy_info(args):
 	}
 
 
-def transcribe(args, wav):
+def transcribe(args, wav, language=None):
+	language = language or args.language
 	if args.backend == "whisper":
-		return transcribe_whisper(args, wav)
+		return transcribe_whisper(args, wav, language)
 	try:
-		return BACKENDS[args.backend](args, wav)
+		return BACKENDS[args.backend](args, wav, language)
 	except (urllib.error.URLError, OSError, ValueError) as e:
 		# Chmura nie działa (limit, brak sieci): lokalny Whisper, jeśli stoi.
 		print(f"[glos] {args.backend} nie odpowiada ({e}), używam lokalnego Whispera", flush=True)
-		return transcribe_whisper(args, wav)
+		return transcribe_whisper(args, wav, language)
 
 
 def args_cloud(args):
@@ -384,7 +400,7 @@ class Handler(BaseHTTPRequestHandler):
 		cmds = data.get("cmds") or []
 		if not isinstance(sessions, dict) or not isinstance(cmds, list):
 			return self.send_body(400, {"error": "zły format"})
-		self.send_body(200, self.server.state.sync(sessions, cmds))
+		self.send_body(200, self.server.state.sync(sessions, cmds, data.get("languages")))
 
 	def events(self, token):
 		state = self.server.state
@@ -400,13 +416,14 @@ class Handler(BaseHTTPRequestHandler):
 				session.replaced = True
 			session.listener = (q, conn)
 			ckey = session.ckey
+			language = session.language or self.server.args.language
 		try:
 			self.send_response(200)
 			self.send_header("Content-Type", "text/event-stream; charset=utf-8")
 			self.send_header("Cache-Control", "no-store")
 			self.send_header("Connection", "close")
 			self.end_headers()
-			self.write_event("hello", {"ckey": ckey, "conn": conn})
+			self.write_event("hello", {"ckey": ckey, "conn": conn, "lang": language})
 			while True:
 				try:
 					event, data = q.get(timeout=15)
@@ -469,14 +486,14 @@ class Handler(BaseHTTPRequestHandler):
 		saved = save_recording(self.server.args, session, seq, body)
 		started = time.monotonic()
 		try:
-			raw = transcribe(self.server.args, body)
+			raw = transcribe(self.server.args, body, session.language)
 		except (urllib.error.URLError, OSError, ValueError) as e:
 			state.add_result(session, seq, channel, "", "rozpoznawanie mowy nie odpowiada")
 			print(f"[glos] błąd rozpoznawania ({self.server.args.backend}): {e}", flush=True)
 			return self.send_body(502, {"error": "rozpoznawanie mowy nie odpowiada"})
 		text = clean_text(raw)
 		took = time.monotonic() - started
-		print(f"[glos] {session.ckey} ({channel}, {seconds:.1f} s nagrania, {took:.2f} s): {raw.strip()!r} -> {text!r}", flush=True)
+		print(f"[glos] {session.ckey} ({channel}, {session.language or self.server.args.language}, {seconds:.1f} s nagrania, {took:.2f} s): {raw.strip()!r} -> {text!r}", flush=True)
 		if saved:
 			with open(saved + ".txt", "w", encoding="utf-8") as f:
 				f.write(raw.strip() + "\n")
@@ -494,8 +511,9 @@ def main():
 	p.add_argument("--api-key", default="", help="klucz API chmury; domyślnie ze zmiennej OPENAI_API_KEY / ELEVENLABS_API_KEY")
 	p.add_argument("--api-key-file", default="", help="plik z kluczem (NAZWA=wartość albo sam klucz)")
 	p.add_argument("--keyterms-file", default="", help="plik ze słowami z gry (jedno na linię) dla ElevenLabs keyterms")
-	p.add_argument("--language", default="pl")
+	p.add_argument("--language", default="pl", help="język graczy z polską wersją gry; gracze z angielską mówią po angielsku")
 	p.add_argument("--prompt", default="Halo, tu kapitan. Ochrona, proszę na mostek. Medyczny, mamy rannego. Inżynieria, sprawdźcie zasilanie. Uwaga, syndykat na pokładzie!", help="podpowiedź dla Whispera: naturalne zdania ze słownictwem gry działają lepiej niż lista słów")
+	p.add_argument("--prompt-en", default="Hello, this is the captain. Security, to the bridge please. Medical, we have a casualty. Engineering, check the power. Warning, Syndicate on board!", help="podpowiedź dla nagrań po angielsku")
 	p.add_argument("--secret", default=os.environ.get("VOICE_CHAT_SECRET", ""), help="musi się zgadzać z VOICE_CHAT_SECRET w configu gry")
 	p.add_argument("--save-dir", default="", help="zapisuj nagrania i rozpoznany tekst do tego folderu (diagnostyka)")
 	p.add_argument("--verbose", action="store_true")

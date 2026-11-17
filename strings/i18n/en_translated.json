@@ -25056,5 +25056,11 @@
 "Zwinięte, oślizgłe plugastwo. Śpi. Chyba.": "A coiled, slimy abomination. It is asleep. Probably.",
 "[ADMIN_LOOKUPFLW(horror)] budzi pradawnego horrora w klatce xenobio.": "[ADMIN_LOOKUPFLW(horror)] wakes up an eldritch horror in a xenobiology cell.",
 "Chcę być celem antagonistów": "I want to be an antagonist target",
-"Gdy antagonista losuje cel (zabójstwo, porwanie, ochrona i inne), w pierwszej kolejności wybiera graczy z tą opcją.": "When an antagonist rolls a target (assassination, kidnapping, protection and others), players with this option are picked first."
+"Gdy antagonista losuje cel (zabójstwo, porwanie, ochrona i inne), w pierwszej kolejności wybiera graczy z tą opcją.": "When an antagonist rolls a target (assassination, kidnapping, protection and others), players with this option are picked first.",
+"cisza": "silence",
+"za krótko": "too short",
+"za długo": "too long",
+"rozpoznawanie mowy nie odpowiada": "speech recognition is not responding",
+"zły format nagrania": "bad recording format",
+"brak zgody na wysyłanie głosu, odśwież stronę czatu głosowego": "no consent to send your voice, refresh the voice chat page"
 }
