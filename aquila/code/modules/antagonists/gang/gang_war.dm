@@ -29,8 +29,9 @@
 	objectives += objective
 	update_gang_cap()
 
-/// Usunięty gang zabiera rolę członkom i usuwa swoje cele. Rola i cel trzymają gang (gang -> członek -> rola -> gang,
-/// gang -> cel -> gang), więc bez tego gang nigdy się nie zwalniał (twarde usunięcie i szukanie referencji w CI).
+/// Usunięty gang zabiera rolę członkom: rola trzyma gang (gang -> członek -> rola -> gang), więc bez tego gang nigdy
+/// się nie zwalniał (twarde usunięcie i szukanie referencji w CI). Cele i listę członków czyści /datum/team/Destroy()
+/// (aquila/code/modules/antagonists/_common/antag_team.dm).
 /datum/team/gang/Destroy()
 	for(var/datum/mind/member as anything in members.Copy())
 		var/datum/antagonist/gang/gangster = member.has_antag_datum(/datum/antagonist/gang)
@@ -40,9 +41,7 @@
 			gangster.on_removal()
 		else
 			qdel(gangster)
-	members.Cut()
 	leaders.Cut()
-	QDEL_LIST(objectives)
 	return ..()
 
 /datum/team/gang/proc/domination(modifier = 1)

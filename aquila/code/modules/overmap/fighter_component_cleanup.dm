@@ -29,14 +29,21 @@
 	holder = null
 	return ..()
 
-/// Myśliwiec stworzony w hangarze trafia do `overmaps_in_ship` okrętu w Initialize(), a Destroy() z upstreamu
-/// zdejmował go tylko z `last_overmap`, które jest puste, dopóki myśliwiec nie wyleci. Usunięty myśliwiec zostawał na liście okrętu.
-/// Statek z ludźmi w środku odmawia usunięcia (QDEL_HINT_LETMELIVE) i wtedy zostaje nietknięty.
-/obj/structure/overmap/small_craft/Destroy()
-	var/obj/structure/overmap/home = get_overmap()
+/// Myśliwiec stworzony w hangarze trafia w Initialize() do `overmaps_in_ship` okrętu, ale `last_overmap` zostawało puste
+/// do pierwszego wylotu. Destroy() z upstreamu zdejmuje jednostkę z listy właśnie przez `last_overmap`, więc usunięty
+/// myśliwiec zostawał na liście okrętu na zawsze.
+/obj/structure/overmap/small_craft/Initialize(mapload, list/build_components = components)
 	. = ..()
-	if(. == QDEL_HINT_LETMELIVE)
+	if(last_overmap)
 		return
-	if(home) // get_overmap() bez loc zwraca FALSE, nie null
-		home.overmaps_in_ship -= src
+	var/obj/structure/overmap/OM = loc?.get_overmap()
+	if(OM && (src in OM.overmaps_in_ship))
+		last_overmap = OM
+
+/// Statek z ludźmi w środku odmawia usunięcia (QDEL_HINT_LETMELIVE) i wtedy zostaje nietknięty, chyba że qdel jest wymuszony:
+/// wtedy SSgarbage i tak go usuwa.
+/obj/structure/overmap/small_craft/Destroy(force)
+	. = ..()
+	if(. == QDEL_HINT_LETMELIVE && !force)
+		return
 	loadout = null

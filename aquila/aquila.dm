@@ -372,6 +372,7 @@
 #include "code\modules\admin\verbs\one_click_antag.dm"
 #include "code\modules\admin\topic.dm"
 #include "code\modules\antagonists\_common\antag_info.dm"
+#include "code\modules\antagonists\_common\antag_team.dm"
 #include "code\modules\antagonists\_common\antag_info_windows.dm"
 #include "code\modules\antagonists\ert\ert.dm"
 #include "code\modules\antagonists\revolution\revolution_conversion.dm"
