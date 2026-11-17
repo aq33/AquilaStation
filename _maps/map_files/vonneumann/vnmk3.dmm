@@ -7993,6 +7993,11 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/science)
+"gcn" = (
+/obj/machinery/light/floor,
+/obj/structure/overmap/small_craft/combat/light,
+/turf/open/floor/engine/airless,
+/area/nsv/hanger)
 "gdl" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
@@ -59066,7 +59071,7 @@ oLI
 oLI
 oLI
 oLI
-exz
+oLI
 vcm
 cGz
 aGQ
@@ -59871,10 +59876,10 @@ uAt
 oLI
 oLI
 oLI
-aZh
+gcn
 oLI
 oLI
-exz
+oLI
 vcm
 quY
 pso
@@ -60881,7 +60886,7 @@ jCR
 oLI
 oLI
 oLI
-oLI
+exz
 oLI
 oLI
 dqF

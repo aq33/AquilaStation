@@ -43,7 +43,7 @@
 	pr = "aq33/AquilaStation#643"
 	description = "Wraki: zestrzel okręt AI (np. /obj/structure/overmap/syndicate/ai/gunboat), żeby został wrak. Włóż ładownię z zestawu do myśliwca (hardpoint użytkowy), wystartuj i podleć do wraku na najwyżej 4 pola. W oknie myśliwca sekcja „Wrak:” pokazuje cel i liczbę przeszukań, „Przeszukaj wrak” po 15 s wkłada do ładowni 2 fanty: złom zawsze, a z ocalałych modułów materiały, amunicję działek, broń, apteczki albo części. Odlot w trakcie przerywa przeszukiwanie. \
 		Eskorta: na mapie hex w stoczni albo u handlarza bronią kup „Klucz myśliwców eskorty” (1000): dwa myśliwce Viper lecą za okrętem i biją jego cele, liczone osobno od okrętów (do 6 myśliwców i 4 okrętów). \
-		Rakiety: w konsoli taktycznej wybierz moduł namierzonego okrętu i strzel torpedą przy pełnym pancerzu: moduł dostaje obrażenia mimo pancerza. Artyleria MAC leci teraz w wybrany moduł zamiast w środek. Torpeda wroga w nasz okręt robi wyłom w losowym miejscu, także przy pełnym pancerzu burty."
+		Rakiety: w konsoli taktycznej wybierz moduł namierzonego okrętu i strzel torpedą przy pełnym pancerzu: moduł dostaje obrażenia mimo pancerza. Artyleria MAC leci teraz w wybrany moduł zamiast w środek. Torpeda wroga w nasz okręt robi wyłom w losowym miejscu, także przy pełnym pancerzu burty. \n		Skala: myśliwiec na pokładzie jest dwa razy większy (hitbox 2×2 bez zmian), na overmapie dalej mały. Hangary: Atlas 2 myśliwce (jeden przodem do wyjścia), Padalec 1, Von Neumann 2, Atlantis 3; obejrzyj, czy nie wchodzą na ściany i przechodzą przez drzwi hangaru."
 	items = list(
 		/obj/item/fighter_component/secondary/utility/hold = 1,
 		/obj/item/card/id/captains_spare = 1,

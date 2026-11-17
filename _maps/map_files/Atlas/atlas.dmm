@@ -2847,13 +2847,6 @@
 "fI" = (
 /turf/closed/wall/r_wall,
 /area/maintenance/department/science)
-"fJ" = (
-/obj/structure/disposalpipe/segment,
-/obj/structure/overmap/small_craft/combat/light,
-/turf/open/floor/plasteel/techmaint{
-	initial_gas_mix = "TEMP=2.7"
-	},
-/area/nsv/hanger/notkmcstupidhanger)
 "fK" = (
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/techmaint{
@@ -7944,6 +7937,14 @@
 /obj/machinery/duct,
 /turf/open/floor/durasteel,
 /area/hallway/secondary/service)
+"tb" = (
+/obj/structure/overmap/small_craft/combat/light{
+	angle = 90
+	},
+/turf/open/floor/plasteel/techmaint{
+	initial_gas_mix = "TEMP=2.7"
+	},
+/area/nsv/hanger/notkmcstupidhanger)
 "tc" = (
 /obj/machinery/atmospherics/pipe/simple/green/visible{
 	dir = 4
@@ -11464,13 +11465,6 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
 /turf/open/floor/monotile/steel,
 /area/nsv/weapons)
-"DX" = (
-/obj/structure/overmap/small_craft/combat/light,
-/obj/machinery/light,
-/turf/open/floor/plasteel/techmaint{
-	initial_gas_mix = "TEMP=2.7"
-	},
-/area/nsv/hanger/notkmcstupidhanger)
 "DY" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -60886,12 +60880,12 @@ UB
 BN
 Jc
 sF
-Jc
+UK
 BN
 US
 fL
 fK
-fJ
+fK
 fF
 fA
 fv
@@ -61662,7 +61656,7 @@ hy
 US
 BN
 Jc
-UK
+Jc
 jx
 QD
 yP
@@ -61918,7 +61912,7 @@ Jc
 BN
 US
 BN
-Jc
+tb
 Jc
 jx
 QD
@@ -62433,7 +62427,7 @@ BN
 US
 BN
 Jc
-DX
+yB
 jx
 QD
 Ko
