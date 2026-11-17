@@ -103,6 +103,8 @@
 	flora_spawn_list = list(
 		/obj/structure/flora/rock = 1,
 		/obj/structure/flora/rock/pile = 1,
+		/obj/structure/flora/ash/glowbell = 1,
+		/obj/structure/flora/ash/glowbell/cavern_candle = 1,
 	)
 	feature_spawn_list = list(
 		/obj/structure/spawner/burrow/asteroid = 3,

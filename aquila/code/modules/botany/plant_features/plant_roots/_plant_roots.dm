@@ -6,7 +6,7 @@
 	genetic_budget = 1
 	abstract_type = /datum/plant_feature/roots
 	///Where can we pull reagents from
-	var/list/access_whitelist = list(/obj/item/plant_tray, /turf/open)
+	var/list/access_whitelist = list(/obj/item/plant_tray, /turf/open, /obj/machinery/atmospherics/components/binary/xenoflora_pod) // AQUILA - kapsuła ksenoflory (ported/ksenoflora_pod.dm)
 	///What kinda of substrate can we grow in?
 	var/compatible_substrate = PLANT_SUBSTRATE_DIRT | PLANT_SUBSTRATE_SAND |  PLANT_SUBSTRATE_CLAY | PLANT_SUBSTRATE_DEBRIS
 	///Set to TRUE if you want our desired substrate to have all the ones we're compatible with, instead of one
@@ -26,6 +26,8 @@
 		substrate_dialogue += "glina "
 	if(compatible_substrate & PLANT_SUBSTRATE_DEBRIS)
 		substrate_dialogue += "gruz "
+	if(compatible_substrate & PLANT_SUBSTRATE_WATER) // AQUILA - akwakultura
+		substrate_dialogue += "woda "
 
 /// AQUILA - podłoże do nazwy paczki i komunikatów: „ziemia”, „glina lub piasek” albo „dowolne podłoże”
 /datum/plant_feature/roots/proc/get_substrate_text()
