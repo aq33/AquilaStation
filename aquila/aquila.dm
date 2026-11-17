@@ -1078,6 +1078,7 @@
 // Po nakładkach DRADIS (dradis_uncertainty, sensor_console): kontakty z boi sondy zostają dokładne
 #include "code\modules\munitions\missile_payloads.dm"
 #include "code\modules\munitions\nsv_yamato.dm"
+#include "code\modules\munitions\nsv_ship_armament.dm"
 #include "code\modules\overmap\overmap_scale.dm"
 #include "code\modules\overmap\ai_morale.dm"
 #include "code\modules\overmap\ai_targeting.dm"

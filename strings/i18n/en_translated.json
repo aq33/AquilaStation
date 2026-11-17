@@ -25055,5 +25055,13 @@
 "Trzylufowa artyleria okrętowa": "Triple-barrel naval artillery",
 "<span class='notice'>Trzylufowa artyleria okrętowa gotowa.</span>": "<span class='notice'>Triple-barrel naval artillery ready.</span>",
 "Ulepszenie trzylufowe działa pokładowego „Yamato”": "\"Yamato\" triple-barrel deck gun upgrade",
-"Płytka, która zamienia działo pokładowe w trzylufowe: salwa trzech pocisków, dwa razy dłuższe przeładowanie. Działo trzeba rozebrać do ramy, dołożyć dwie lufy i dwa zapalniki.": "A board that turns a deck gun into a triple-barrel one: a three-shell salvo and twice the reload time. Strip the gun down to its frame and add two barrels and two igniters."
+"Płytka, która zamienia działo pokładowe w trzylufowe: salwa trzech pocisków, dwa razy dłuższe przeładowanie. Działo trzeba rozebrać do ramy, dołożyć dwie lufy i dwa zapalniki.": "A board that turns a deck gun into a triple-barrel one: a three-shell salvo and twice the reload time. Strip the gun down to its frame and add two barrels and two igniters.",
+"Uzbrojenie okrętowe": "Ship armament",
+"Pełne plany dział okrętowych: wieżyczka Gaussa z podajnikiem, wyrzutnia VLS, działo pokładowe i elektronika spustowa. Dobudujesz tyle broni, ile zmieści się na pokładzie.": "Full blueprints for ship guns: the Gauss turret with its feeder, the VLS launcher, the deck gun and firing electronics. Build as many guns as the deck can fit.",
+"Płytka drukowana wieżyczki Gaussa": "Gauss turret circuit board",
+"Wieżyczka Gaussa z własnym strzelcem. Podajnik amunicji sprzedawany osobno.": "A Gauss turret with its own gunner seat. The ammo feeder is sold separately.",
+"Płytka drukowana dozownika amunicji Gaussa": "Gauss ammo dispenser circuit board",
+"Dozownik, który podaje wieżyczce Gaussa amunicję z magazynów okrętu.": "A dispenser that feeds a Gauss turret with ammo from the ship's magazines.",
+"Płytka drukowana wieżyczki działa pokładowego": "Deck gun turret circuit board",
+"Wieżyczka działa pokładowego „Hood”. Rdzeń, bramki i konsola są w badaniach balistyki.": "The \"Hood\" deck gun turret. The core, gates and console are in the ballistics research."
 }

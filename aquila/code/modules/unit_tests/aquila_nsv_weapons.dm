@@ -72,5 +72,30 @@
 	TEST_ASSERT(/datum/trader_item/deck_gun_triple in stock, "Minsky nie sprzedaje płytki Yamato")
 	TEST_ASSERT(/datum/trader_item/railgun_disk in stock, "Minsky zgubił swój zwykły towar")
 
+/// AQUILA - raport nsv_martwe_08 pkt 2: działa z trybu trudnego w badaniu „Uzbrojenie okrętowe” i u handlarzy
+/datum/unit_test/nsv_ship_armament
+
+/datum/unit_test/nsv_ship_armament/Run()
+	var/datum/techweb_node/node = SSresearch.techweb_node_by_id("ship_armament")
+	TEST_ASSERT(node != SSresearch.error_node, "Nie ma badania Uzbrojenie okrętowe")
+	TEST_ASSERT("macro_ballistics" in node.prereq_ids, "Uzbrojenie okrętowe nie wymaga Makrobalistyki")
+	TEST_ASSERT(node.research_costs[TECHWEB_POINT_TYPE_GENERIC] >= 10000, "Uzbrojenie okrętowe jest za tanie")
+	for(var/design_id in list("gauss_dispenser_circuit", "gauss_turret", "ship_firing_electronics", "deck_gun", "vls_tube"))
+		TEST_ASSERT(design_id in node.design_ids, "Uzbrojenie okrętowe nie ma projektu [design_id]")
+		TEST_ASSERT(SSresearch.techweb_design_by_id(design_id) != SSresearch.error_design, "Nie ma projektu [design_id]")
+	// Pusta lista: włączenie trybu trudnego nic nie dokłada, a wyłączenie niczego nie zdejmuje z badań
+	TEST_ASSERT_EQUAL(length(SSresearch.gun_techdesigns), 0, "Tryb trudny nadal ma własne projekty dział")
+
+	var/list/stock = aq_test_trader_stock(/datum/trader/armsdealer)
+	for(var/item_type in list(/datum/trader_item/gauss_turret_circuit, /datum/trader_item/gauss_dispenser_circuit, /datum/trader_item/deck_turret_circuit, /datum/trader_item/torpedo))
+		TEST_ASSERT(item_type in stock, "White Rapids nie sprzedaje [item_type]")
+	stock = aq_test_trader_stock(/datum/trader/minsky)
+	TEST_ASSERT(/datum/trader_item/firing_electronics in stock, "Minsky nie sprzedaje elektroniki spustowej")
+	TEST_ASSERT(/datum/trader_item/vls_circuit in stock, "Minsky nie sprzedaje płytki VLS")
+	// Towar dopisany w innym pliku zostaje
+	TEST_ASSERT(/datum/trader_item/deck_gun_triple in stock, "Minsky zgubił płytkę Yamato")
+	stock = aq_test_trader_stock(/datum/trader/armsdealer/syndicate)
+	TEST_ASSERT(!(/datum/trader_item/gauss_turret_circuit in stock), "DonkCo sprzedaje płytki White Rapids")
+
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL

@@ -20,16 +20,6 @@
 	. = ..()
 	design_ids += "deck_gun_triple"
 
-// Wyłączenie trybu trudnego zdejmuje projekty z tej listy ze wszystkich węzłów, więc Yamato musi z niej zniknąć
-/datum/controller/subsystem/research
-	gun_techdesigns = list(
-		"gauss_dispenser_circuit" = /datum/techweb_node/advanced_ballistics,
-		"gauss_turret" = /datum/techweb_node/advanced_ballistics,
-		"ship_firing_electronics" = /datum/techweb_node/advanced_ballistics,
-		"deck_gun" = /datum/techweb_node/advanced_ballistics,
-		"vls_tube" = /datum/techweb_node/basic_torpedo_components
-	)
-
 /datum/trader_item/deck_gun_triple
 	name = "Ulepszenie trzylufowe działa pokładowego „Yamato”"
 	desc = "Płytka, która zamienia działo pokładowe w trzylufowe: salwa trzech pocisków, dwa razy dłuższe przeładowanie. Działo trzeba rozebrać do ramy, dołożyć dwie lufy i dwa zapalniki."
