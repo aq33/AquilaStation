@@ -830,7 +830,6 @@
 	plant_traits = list(/datum/plant_trait/reagent/fruit/nutriment)
 	fast_reagents = list(/datum/reagent/consumable/ethanol/ale = PLANT_REAGENT_MEDIUM)
 	mutations = list(/datum/plant_feature/fruit/watermelon)
-	reagent_mutations = null
 
 /obj/item/food/grown/barrelmelon
 	name = "beczkowy melon"

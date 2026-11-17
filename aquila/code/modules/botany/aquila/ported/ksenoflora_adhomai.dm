@@ -22,17 +22,25 @@
 	var/obj/item/new_fruit = .
 	if(!wild_capsule_seeds || QDELETED(new_fruit))
 		return
-	var/obj/item/plant_seeds/capsule_seeds = new wild_capsule_seeds(null)
-	var/species_id = capsule_seeds.species_id
-	if(!SSbotany.gene_cache["[species_id]"])
-		var/list/plant_genes = list()
-		for(var/datum/plant_feature/gene as anything in capsule_seeds.plant_features)
-			plant_genes += gene.copy()
-		SSbotany.gene_cache[species_id] = plant_genes
+	//Gatunek i nazwa paczki kapsułowej są stałe dla typu: paczkę tworzymy raz na typ, a nie przy każdym owocu
+	var/static/list/capsule_ids = list()
+	var/list/capsule_info = capsule_ids[wild_capsule_seeds]
+	if(!capsule_info)
+		var/obj/item/plant_seeds/capsule_seeds = new wild_capsule_seeds(null)
+		capsule_info = list(capsule_seeds.species_id, capsule_seeds.name_override)
+		if(!SSbotany.gene_cache["[capsule_seeds.species_id]"])
+			var/list/plant_genes = list()
+			for(var/datum/plant_feature/gene as anything in capsule_seeds.plant_features)
+				plant_genes += gene.copy()
+			SSbotany.gene_cache[capsule_seeds.species_id] = plant_genes
+		//Paczka nasion nie usuwa swoich części w Destroy, a części trzymają potrzeby i cechy w cyklach referencji
+		QDEL_LIST(capsule_seeds.plant_features)
+		qdel(capsule_seeds)
+		capsule_ids[wild_capsule_seeds] = capsule_info
+	var/species_id = capsule_info[1]
 	SEND_SIGNAL(new_fruit, COMSIG_PLANT_MODIFY_GENES, PLANT_GENE_INDEX_FEATURES, SSbotany.gene_cache["[species_id]"])
 	SEND_SIGNAL(new_fruit, COMSIG_PLANT_MODIFY_GENES, PLANT_GENE_INDEX_ID, species_id)
-	SEND_SIGNAL(new_fruit, COMSIG_PLANT_MODIFY_GENES, PLANT_GENE_INDEX_NAME, capsule_seeds.name_override)
-	qdel(capsule_seeds)
+	SEND_SIGNAL(new_fruit, COMSIG_PLANT_MODIFY_GENES, PLANT_GENE_INDEX_NAME, capsule_info[2])
 
 /*
 	Potrzeby w kapsule (Adhomai ma średnio −16 °C)
@@ -43,7 +51,7 @@
 	max_temperature = T0C - 5
 
 /datum/plant_need/xenoflora/dirtberries
-	required_reagents = list(/datum/reagent/ammonia = 0.05)
+	required_reagents = list(/datum/reagent/nitrogen = 0.05) //nie amoniak: z wodą w zbiorniku robi się z niego płyn czyszczący
 	min_temperature = T0C - 35
 	max_temperature = T0C - 5
 
@@ -70,7 +78,7 @@
 
 /datum/plant_need/xenoflora/wulumunusha
 	required_gases = list(GAS_NITROUS = 0.1)
-	required_reagents = list(/datum/reagent/phosphorus = 0.05)
+	required_reagents = list(/datum/reagent/iodine = 0.05) //nie fosfor (lista toksyn łodygi) ani potas (wybucha z wodą w zbiorniku)
 	min_temperature = T0C - 30
 	max_temperature = T0C - 10
 

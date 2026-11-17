@@ -30,7 +30,7 @@
 	icon = 'aquila/icons/obj/hydroponics/ported_ksenoflora_pod.dmi'
 	icon_state = "pod"
 	density = TRUE
-	layer = OBJ_LAYER
+	layer = OBJ_LAYER - 0.1 //nakładki ziemi i tylnej szyby muszą być nad kapsułą, a pod roślinami (OBJ_LAYER albo ABOVE_OBJ_LAYER)
 	bound_width = 64
 	bound_height = 64
 	dir = SOUTH
@@ -62,7 +62,8 @@
 	. = ..()
 	create_reagents(XENOFLORA_MAX_REAGENTS, TRANSPARENT | REFILLABLE)
 	AddComponent(/datum/component/plumbing/simple_demand)
-	planter = AddComponent(/datum/component/planter, list(16, 22), (ABOVE_ALL_MOB_LAYER + 0.2) - OBJ_LAYER, TRUE)
+	//Bez względnego podnoszenia warstwy: ciała roślin ustawiają warstwę na sztywno przy wzroście, więc wypadałyby spod nakładek
+	planter = AddComponent(/datum/component/planter, list(16, 22), null, TRUE)
 	planter.set_substrate(/datum/plant_subtrate/xenoflora)
 	planter.allow_substrate_change = FALSE
 	update_icon()
@@ -78,6 +79,23 @@
 			pod_turf.air_update_turf()
 	planter = null
 	QDEL_NULL(internal_gases)
+	return ..()
+
+/// Czy kapsuła 2×2 zmieści się z lewym dolnym rogiem na tym polu: pola na wschód i północ nie mogą być zablokowane
+/proc/xenoflora_pod_fits(turf/corner)
+	if(!isturf(corner))
+		return FALSE
+	for(var/list/offset in list(list(1, 0), list(0, 1), list(1, 1)))
+		var/turf/other = locate(corner.x + offset[1], corner.y + offset[2], corner.z)
+		if(!other || is_blocked_turf(other))
+			return FALSE
+	return TRUE
+
+// Rama maszyny ma jedno pole, a kapsuła zajmuje 2×2: bez tego stawała na ścianie, w przejściu przez śluzę albo na kimś
+/obj/structure/frame/machine/attackby(obj/item/P, mob/living/user, params)
+	if(state == 3 && P.tool_behaviour == TOOL_SCREWDRIVER && ispath(circuit?.build_path, /obj/machinery/atmospherics/components/binary/xenoflora_pod) && !xenoflora_pod_fits(loc))
+		to_chat(user, span_warning("Kapsuła ksenoflory zajmuje 2×2 pola: zrób miejsce na wschód i na północ od ramy."))
+		return TRUE
 	return ..()
 
 /obj/machinery/atmospherics/components/binary/xenoflora_pod/on_construction()
@@ -105,7 +123,13 @@
 	. += span_notice("Rura z południa podaje gazy wymagane przez rośliny, rura z zachodu odbiera pozostałe. Odczynniki wlewa się ręcznie albo rurami chemicznymi z południa.")
 
 /obj/machinery/atmospherics/components/binary/xenoflora_pod/power_change()
+	var/old_stat = machine_stat
 	. = ..()
+	//Bazowe power_change zmienia machine_stat bez set_machine_stat, więc is_operational zostawałby TRUE bez prądu
+	if(machine_stat != old_stat)
+		var/new_stat = machine_stat
+		machine_stat = old_stat
+		set_machine_stat(new_stat)
 	update_icon()
 
 /// Kapsuła jest włączona i ma zasilanie
@@ -155,11 +179,11 @@
 /obj/machinery/atmospherics/components/binary/xenoflora_pod/process_atmos()
 	if(!is_working())
 		return
-	inject_gases()
 	if(dome_extended)
+		inject_gases()
 		regulate_temperature()
 	else
-		spread_gases()
+		spread_gases() //przy otwartej kopule rośliny oddychają powietrzem z pomieszczenia; dobieranie z rury przepompowałoby ją do pokoju
 	dump_gases()
 	var/fire = dome_extended && get_chamber_temperature() >= XENOFLORA_FIRE_TEMPERATURE
 	if(fire != drawn_fire)
@@ -283,16 +307,16 @@
 		icon_state = "pod-unpowered"
 	var/list/new_overlays = list()
 	SEND_SIGNAL(src, COMSIG_ATOM_UPDATE_OVERLAYS, new_overlays) //złącza rur chemicznych
-	new_overlays += mutable_appearance(icon, "dirt", ABOVE_ALL_MOB_LAYER + 0.15)
+	new_overlays += mutable_appearance(icon, "dirt", OBJ_LAYER - 0.04)
 	var/temperature = get_chamber_temperature()
 	drawn_fire = dome_extended && temperature >= XENOFLORA_FIRE_TEMPERATURE
 	if(dome_extended)
-		new_overlays += mutable_appearance(icon, "glass_behind", ABOVE_ALL_MOB_LAYER + 0.1)
-		new_overlays += mutable_appearance(icon, "glass_front", ABOVE_ALL_MOB_LAYER + 0.3)
+		new_overlays += mutable_appearance(icon, "glass_behind", OBJ_LAYER - 0.06)
+		new_overlays += mutable_appearance(icon, "glass_front", ABOVE_OBJ_LAYER + 0.1)
 	if(drawn_fire)
-		new_overlays += mutable_appearance(icon, "fire", ABOVE_ALL_MOB_LAYER + 0.25)
+		new_overlays += mutable_appearance(icon, "fire", ABOVE_OBJ_LAYER + 0.05)
 	if(is_working() && length(planter?.plants))
-		new_overlays += mutable_appearance(icon, temperature >= XENOFLORA_FIRE_TEMPERATURE ? "pod-screen-fire" : "pod-screen", ABOVE_ALL_MOB_LAYER)
+		new_overlays += mutable_appearance(icon, temperature >= XENOFLORA_FIRE_TEMPERATURE ? "pod-screen-fire" : "pod-screen", OBJ_LAYER - 0.08)
 	add_overlay(new_overlays)
 
 /obj/machinery/atmospherics/components/binary/xenoflora_pod/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)

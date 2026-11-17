@@ -140,6 +140,7 @@
 // Dzikie presety (tylko dla struktur; nie do automatu)
 
 /obj/item/plant_seeds/preset/earthenroot_wild
+	random_pool = FALSE
 	icon = 'aquila/icons/obj/hydroponics/ported_kseno_adhomai_seeds.dmi'
 	name = "nasiona: dziki ziemny korzeń (dowolne podłoże)"
 	name_override = "dziki ziemny korzeń"
@@ -147,6 +148,7 @@
 	plant_features = list(/datum/plant_feature/roots, /datum/plant_feature/body/tuber/lavaland, /datum/plant_feature/fruit/xenoflora/adhomai/earthenroot/wild)
 
 /obj/item/plant_seeds/preset/dirtberries_wild
+	random_pool = FALSE
 	icon = 'aquila/icons/obj/hydroponics/ported_kseno_adhomai_seeds.dmi'
 	name = "nasiona: dzikie brudne jagody (dowolne podłoże)"
 	name_override = "dzikie brudne jagody"
@@ -154,6 +156,7 @@
 	plant_features = list(/datum/plant_feature/roots, /datum/plant_feature/body/tuber/lavaland, /datum/plant_feature/fruit/xenoflora/adhomai/dirtberries/wild)
 
 /obj/item/plant_seeds/preset/sarezhi_wild
+	random_pool = FALSE
 	icon = 'aquila/icons/obj/hydroponics/ported_kseno_adhomai_seeds.dmi'
 	name = "nasiona: dziki krzew sareżi (dowolne podłoże)"
 	name_override = "dziki krzew sareżi"
@@ -161,6 +164,7 @@
 	plant_features = list(/datum/plant_feature/roots, /datum/plant_feature/body/tuber/lavaland, /datum/plant_feature/fruit/xenoflora/adhomai/sarezhi/wild)
 
 /obj/item/plant_seeds/preset/ylpha_wild
+	random_pool = FALSE
 	icon = 'aquila/icons/obj/hydroponics/ported_kseno_adhomai_seeds.dmi'
 	name = "nasiona: dziki krzew ylfy (dowolne podłoże)"
 	name_override = "dziki krzew ylfy"
@@ -168,6 +172,7 @@
 	plant_features = list(/datum/plant_feature/roots, /datum/plant_feature/body/tuber/lavaland, /datum/plant_feature/fruit/xenoflora/adhomai/ylpha/wild)
 
 /obj/item/plant_seeds/preset/sugartree_wild
+	random_pool = FALSE
 	icon = 'aquila/icons/obj/hydroponics/ported_kseno_adhomai_seeds.dmi'
 	name = "nasiona: dzikie drzewo cukrowe (dowolne podłoże)"
 	name_override = "dzikie drzewo cukrowe"
@@ -175,6 +180,7 @@
 	plant_features = list(/datum/plant_feature/roots, /datum/plant_feature/body/tuber/lavaland, /datum/plant_feature/fruit/xenoflora/adhomai/sugartree/wild)
 
 /obj/item/plant_seeds/preset/fjylozyn_wild
+	random_pool = FALSE
 	icon = 'aquila/icons/obj/hydroponics/ported_kseno_adhomai_seeds.dmi'
 	name = "nasiona: dziki fjylozyn (dowolne podłoże)"
 	name_override = "dziki fjylozyn"
@@ -182,6 +188,7 @@
 	plant_features = list(/datum/plant_feature/roots, /datum/plant_feature/body/tuber/lavaland, /datum/plant_feature/fruit/xenoflora/adhomai/fjylozyn/wild)
 
 /obj/item/plant_seeds/preset/wulumunusha_wild
+	random_pool = FALSE
 	icon = 'aquila/icons/obj/hydroponics/ported_kseno_adhomai_seeds.dmi'
 	name = "nasiona: dzika wulumunusza (dowolne podłoże)"
 	name_override = "dzika wulumunusza"

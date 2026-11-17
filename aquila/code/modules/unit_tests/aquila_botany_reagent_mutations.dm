@@ -62,5 +62,24 @@
 	process_fruit.process(60)
 	TEST_ASSERT(locate(/datum/plant_feature/fruit/tomato/blood) in process_plant.plant_features, "Cykl wzrostu (process) z krwią w tacy nie zmienił pomidora w krwisty")
 
+// Regresja: odmiany nie dziedziczą mutacji rodzica od odczynnika. Jagoda śmierci z toksyną (odstrasza szkodniki) nie cofa się do trujących jagód
+	var/datum/plant_feature/fruit/death_berry = new /datum/plant_feature/fruit/berry/death()
+	TEST_ASSERT(!length(death_berry.reagent_mutations), "Jagoda śmierci odziedziczyła mutacje od odczynnika po jagodach: [english_list(death_berry.reagent_mutations)]")
+	qdel(death_berry)
+	var/datum/plant_feature/fruit/killer_tomato = new /datum/plant_feature/fruit/tomato/killer()
+	TEST_ASSERT(!(killer_tomato.reagent_mutations && killer_tomato.reagent_mutations[/datum/plant_feature/fruit/tomato/blood]), "Pomidor zabójca odziedziczył mutację od krwi po pomidorze")
+	qdel(killer_tomato)
+
+// Regresja: uschnięta roślina nie mutuje i nie zużywa odczynnika
+	var/obj/item/plant_tray/dead_tray = allocate(/obj/item/plant_tray, get_step(origin, NORTHEAST))
+	var/datum/component/plant/dead_plant = plant_tomato(dead_tray)
+	TEST_ASSERT_NOTNULL(dead_plant, "Nie udało się posadzić czwartego pomidora")
+	dead_tray.reagents.add_reagent(/datum/reagent/blood, 15)
+	var/datum/plant_feature/body/dead_body = locate() in dead_plant.plant_features
+	dead_body.health = -1
+	var/datum/plant_feature/fruit/dead_fruit = locate() in dead_plant.plant_features
+	TEST_ASSERT(isnull(dead_fruit.try_reagent_mutation(2, TRUE)), "Uschnięty pomidor zmutował od krwi")
+	TEST_ASSERT(dead_tray.reagents.get_reagent_amount(/datum/reagent/blood) >= 15, "Uschnięty pomidor zużył krew")
+
 #undef TEST_ASSERT
 #undef TEST_ASSERT_NOTNULL
