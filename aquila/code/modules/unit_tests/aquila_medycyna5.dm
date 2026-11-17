@@ -492,4 +492,55 @@
 	TEST_ASSERT(istype(second, /datum/wound/frostbite/second_degree) && second.can_treat_with(mesh), "Second degree frostbite does not take a mesh")
 	qdel(second)
 
+/// AQUILA - kidneys (surgery/organs/med5/kidneys.dm): who gets them, they clear toxin damage and drug excess,
+/// failing or missing kidneys let toxins build up, a sleeper works as dialysis
+/datum/unit_test/aquila_kidneys
+
+/datum/unit_test/aquila_kidneys/Run()
+	var/mob/living/carbon/human/patient = allocate(/mob/living/carbon/human)
+	var/obj/item/organ/kidneys/kidneys = patient.getorganslot(ORGAN_SLOT_KIDNEYS)
+	TEST_ASSERT(istype(kidneys), "A human has no kidneys")
+	var/mob/living/carbon/human/ipc = allocate(/mob/living/carbon/human)
+	ipc.set_species(/datum/species/ipc)
+	TEST_ASSERT(!ipc.getorganslot(ORGAN_SLOT_KIDNEYS), "An IPC got kidneys")
+	var/mob/living/carbon/human/plasmaman = allocate(/mob/living/carbon/human)
+	plasmaman.set_species(/datum/species/plasmaman)
+	TEST_ASSERT(!plasmaman.getorganslot(ORGAN_SLOT_KIDNEYS), "A plasmaman got kidneys")
+
+	// Healthy kidneys clear toxins and the drug excess
+	patient.adjustToxLoss(20)
+	patient.reagents.add_reagent(/datum/reagent/medicine/morphine, 40)
+	var/morphine = patient.reagents.get_reagent_amount(/datum/reagent/medicine/morphine)
+	kidneys.on_life()
+	TEST_ASSERT(patient.getToxLoss() < 20, "Healthy kidneys did not clear toxin damage")
+	TEST_ASSERT(patient.reagents.get_reagent_amount(/datum/reagent/medicine/morphine) < morphine, "Healthy kidneys left the morphine overdose")
+	patient.reagents.clear_reagents()
+
+	// Failing kidneys let toxins build up, dialysis in a sleeper takes over
+	kidneys.setOrganDamage(kidneys.maxHealth)
+	var/tox = patient.getToxLoss()
+	kidneys.on_life()
+	TEST_ASSERT(patient.getToxLoss() > tox, "Failing kidneys did not poison")
+	var/obj/machinery/sleeper/sleeper = allocate(/obj/machinery/sleeper)
+	patient.forceMove(sleeper)
+	if(!(sleeper.machine_stat & (NOPOWER|BROKEN)))
+		tox = patient.getToxLoss()
+		kidneys.on_life()
+		TEST_ASSERT(patient.getToxLoss() < tox, "Dialysis in a sleeper did not clean the blood")
+	patient.forceMove(get_turf(sleeper))
+
+	// Damaged kidneys put blood in the urine
+	kidneys.setOrganDamage(kidneys.low_threshold + 5)
+	var/datum/reagents/urine = new(50)
+	patient.aq_urine_extras(urine, 10)
+	TEST_ASSERT(urine.has_reagent(/datum/reagent/blood), "Damaged kidneys put no blood in the urine")
+	qdel(urine)
+
+	// No kidneys at all: toxins build up
+	kidneys.Remove(patient)
+	qdel(kidneys)
+	tox = patient.getToxLoss()
+	patient.aq_filter_blood(0)
+	TEST_ASSERT(patient.getToxLoss() > tox, "Missing kidneys did not poison")
+
 #undef TEST_ASSERT

@@ -22585,5 +22585,16 @@
 "<span class='userdanger'>Kończyna ([limb.name]) jest martwa i już nic nie poczuje.</span>": "<span class='userdanger'>The limb ([limb.name]) is dead and will never feel anything again.</span>",
 " (martwica, tylko amputacja)": " (necrosis, amputation only)",
 "Wycinasz martwą tkankę odmrożenia ([FORMAT_LIMB_OWNER(limb)]).": "You cut away the dead frostbitten tissue ([FORMAT_LIMB_OWNER(limb)]).",
-"[surgeon] wycina martwą tkankę odmrożenia ([FORMAT_LIMB_OWNER(limb)])!": "[surgeon] cuts away the dead frostbitten tissue ([FORMAT_LIMB_OWNER(limb)])!"
+"[surgeon] wycina martwą tkankę odmrożenia ([FORMAT_LIMB_OWNER(limb)])!": "[surgeon] cuts away the dead frostbitten tissue ([FORMAT_LIMB_OWNER(limb)])!",
+"nerki": "kidneys",
+"Para nerek. Filtrują krew z toksyn i nadmiaru leków.": "A pair of kidneys. They filter toxins and excess drugs out of the blood.",
+"<span class='info'>Coś ćmi cię w krzyżu, po obu stronach kręgosłupa.</span>": "<span class='info'>Something aches in your lower back, on both sides of the spine.</span>",
+"<span class='warning'>Ból w krzyżu nie ustępuje, a w ustach czujesz metaliczny posmak.</span>": "<span class='warning'>The pain in your lower back won't go away and you taste metal.</span>",
+"<span class='danger'>Nerki przestają pracować. Czujesz, jak organizm się zatruwa.</span>": "<span class='danger'>Your kidneys stop working. You feel your body poisoning itself.</span>",
+"<span class='info'>Ból w krzyżu mija.</span>": "<span class='info'>The pain in your lower back fades.</span>",
+"nerki cybernetyczne": "cybernetic kidneys",
+"Mechaniczne filtry krwi. Działają jak zdrowe nerki, ale impuls EMP potrafi je uszkodzić.": "Mechanical blood filters. They work like healthy kidneys, but an EMP can damage them.",
+"<span class='warning'>W moczu widać krew.</span>": "<span class='warning'>There is blood in your urine.</span>",
+"Nerki cybernetyczne": "Cybernetic kidneys",
+"Mechaniczne filtry krwi zamiast nerek.": "Mechanical blood filters to replace kidneys."
 }
