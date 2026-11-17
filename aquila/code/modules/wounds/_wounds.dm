@@ -269,6 +269,7 @@
 		for(var/datum/wound/wound as anything in limb.wounds)
 			lines += "<span class='alert'>[wound.get_scan_text()]</span>"
 	lines += aq_germ_scan_lines() // zarazki (medical/germs.dm)
+	lines += aq_pulse_scan_lines() // puls (medical/circulation.dm)
 	return lines
 
 /mob/living/carbon/human/check_self_for_injuries()

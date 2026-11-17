@@ -364,4 +364,72 @@
 	qdel(spray)
 	qdel(operation)
 
+/// AQUILA - pulse, cardiac arrest and brain hypoxia (medical/circulation.dm): stimulants speed the pulse and opioids slow it,
+/// too little blood stops the heart, no circulation starves the brain slowly, chest compressions move the blood,
+/// a brain outside the body dies unless kept cold
+/datum/unit_test/aquila_circulation
+
+/datum/unit_test/aquila_circulation/Run()
+	var/mob/living/carbon/human/patient = allocate(/mob/living/carbon/human)
+	var/obj/item/organ/heart/heart = patient.getorganslot(ORGAN_SLOT_HEART)
+	patient.aq_update_pulse(heart)
+	TEST_ASSERT(findtext(heart.aq_pulse_text(), "prawidłowy"), "A healthy heart has a [heart.aq_pulse_text()] pulse")
+	patient.reagents.add_reagent(/datum/reagent/medicine/epinephrine, 20)
+	patient.aq_update_pulse(heart)
+	TEST_ASSERT(heart.aq_pulse > 2, "Epinephrine did not speed up the pulse ([heart.aq_pulse])")
+	patient.reagents.clear_reagents()
+	patient.reagents.add_reagent(/datum/reagent/medicine/morphine, 20)
+	patient.aq_update_pulse(heart)
+	TEST_ASSERT(heart.aq_pulse < 2, "Morphine did not slow down the pulse ([heart.aq_pulse])")
+	patient.reagents.clear_reagents()
+
+	// Too little blood stops the heart
+	patient.blood_volume = 100
+	for(var/i in 1 to 30)
+		if(patient.undergoing_cardiac_arrest())
+			break
+		patient.aq_update_pulse(heart)
+	TEST_ASSERT(patient.undergoing_cardiac_arrest(), "The heart kept beating with 100 units of blood")
+	patient.blood_volume = BLOOD_VOLUME_NORMAL
+
+	// No circulation: a quarter of the blood moves, chest compressions make it half
+	TEST_ASSERT(patient.aq_get_circulation() < BLOOD_VOLUME_SURVIVE * 1.2, "A stopped heart still moves [patient.aq_get_circulation()] units of blood")
+	patient.aq_cpr_until = world.time + 10 SECONDS
+	TEST_ASSERT(patient.aq_get_circulation() > BLOOD_VOLUME_SURVIVE * 2, "Chest compressions move only [patient.aq_get_circulation()] units of blood")
+	patient.aq_cpr_until = 0
+
+	// The brain starves slowly: 100 ticks (~3 minutes) of no circulation is short of brain death and of the body dying
+	var/oxy = patient.getOxyLoss()
+	for(var/i in 1 to 100)
+		patient.aq_handle_brain_oxygen()
+	var/brain_damage = patient.getOrganLoss(ORGAN_SLOT_BRAIN)
+	TEST_ASSERT(brain_damage > 30 && brain_damage < 60, "Three minutes without circulation gave [brain_damage] brain damage")
+	TEST_ASSERT(patient.getOxyLoss() == oxy, "A stopped heart alone damaged the body")
+	patient.set_heartattack(FALSE)
+	patient.aq_update_pulse(heart)
+	TEST_ASSERT(heart.aq_pulse != 0, "A restarted heart has no pulse")
+
+	// Tissue regeneration heals toxins and oxygen deprivation
+	patient.adjustToxLoss(30)
+	patient.adjustOxyLoss(30)
+	var/datum/surgery_operation/limb/tissue_regeneration/regeneration = new()
+	regeneration.on_success(patient.get_bodypart(BODY_ZONE_CHEST), patient, null, list())
+	TEST_ASSERT(patient.getToxLoss() <= 15 && patient.getOxyLoss() <= oxy + 15, "Tissue regeneration did not heal")
+	qdel(regeneration)
+
+	// A brain outside the body dies, a frozen one does not
+	var/obj/item/organ/brain/brain = patient.getorganslot(ORGAN_SLOT_BRAIN)
+	brain.Remove(patient)
+	brain.forceMove(get_turf(patient))
+	brain.setOrganDamage(0)
+	for(var/i in 1 to 60)
+		brain.on_death(2)
+	TEST_ASSERT(brain.damage > 25, "A brain outside the body took only [brain.damage] damage in two minutes")
+	var/outside = brain.damage
+	brain.organ_flags |= ORGAN_FROZEN
+	for(var/i in 1 to 60)
+		brain.on_death(2)
+	TEST_ASSERT(brain.damage == outside, "A frozen brain kept dying")
+	qdel(brain)
+
 #undef TEST_ASSERT

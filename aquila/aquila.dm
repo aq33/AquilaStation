@@ -1595,6 +1595,7 @@
 #include "code\modules\reagents\addiction\addiction.dm"
 #include "code\modules\medical\asthma.dm"
 #include "code\modules\medical\autoclave.dm"
+#include "code\modules\medical\circulation.dm"
 #include "code\modules\medical\germs.dm"
 #include "code\modules\medical\iv_plumbing.dm"
 #include "code\modules\medical\medical_tape.dm"
