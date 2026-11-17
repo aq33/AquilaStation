@@ -116,6 +116,7 @@
 		deltimer(hex_startup_timer)
 		hex_startup_timer = null
 	hex_clear_pending()
+	hex_flight_path = null // odwołany skok: kolejny przylot (np. skok awaryjny) nie przeleciał tą trasą
 	hex_resume_charging()
 	return TRUE
 
@@ -139,6 +140,7 @@
 /obj/structure/overmap/proc/hex_on_departure(misjump = FALSE)
 	if(!hex_pending_cost || misjump || !hex_pending_fresh())
 		hex_clear_pending()
+		hex_flight_path = null // to nie jest zaplanowany skok po kaflach: jego trasy nie było
 		return FALSE
 	var/cost = hex_pending_cost
 	hex_clear_pending()

@@ -1265,5 +1265,34 @@
 	TEST_ASSERT(taken_over, "The returning nemesis did not take over its leaderless fleet")
 	TEST_ASSERT_EQUAL(boss_fleets, 1, "The returning nemesis brought a second boss fleet to [home]")
 
+/// Przegląd aq33/AquilaStation#651: Alicorn wrogi wszystkim w logice wojny, wylot bez zaplanowanego skoku nie zostawia
+/// trasy, a powrót bossa, który stoi w miejscu, kończy się po kilku próbach
+/datum/unit_test/hexmap_nemesis_review
+
+/datum/unit_test/hexmap_nemesis_review/Run()
+	TEST_ASSERT(hex_factions_hostile("hostile", "nanotrasen") && hex_factions_hostile("syndicate", "hostile"), "The Alicorn faction is neutral in the hex war")
+	TEST_ASSERT(!hex_factions_hostile("hostile", "hostile"), "The Alicorn faction is hostile to itself")
+	var/obj/structure/overmap/ship = SSstar_system.find_main_overmap()
+	if(ship)
+		var/list/old_path = ship.hex_flight_path
+		ship.hex_flight_path = list("x")
+		ship.hex_on_departure(TRUE) // skok awaryjny / misjump: nie zaplanowany skok po kaflach
+		TEST_ASSERT(isnull(ship.hex_flight_path), "A non-hex departure kept the planned route")
+		ship.hex_flight_path = old_path
+	if(!GLOB.hexmap?.built)
+		return
+	var/datum/star_system/home = SSstar_system.system_by_id(GLOB.hex_nemeses["dolos"]["home"])
+	if(!home?.hex)
+		return
+	var/datum/fleet/dolos/boss/F = new
+	F.current_system = home
+	F.hex_war_set_order(HEX_ORDER_HOME, home)
+	for(var/i in 1 to HEX_NEMESIS_STUCK_LIMIT)
+		F.nemesis_note_stuck()
+	var/order = F.war_order
+	F.current_system = null
+	qdel(F)
+	TEST_ASSERT_EQUAL(order, HEX_ORDER_IDLE, "A boss that could not get home kept trying forever")
+
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL

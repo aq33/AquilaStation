@@ -379,14 +379,15 @@ GLOBAL_LIST_INIT(hex_axial_dirs, list(list(1, 0), list(1, -1), list(0, -1), list
 	S.apply_hex_terrain()
 	return S
 
-/// Czy frakcje są sobie wrogie (NT, SolGov i WhiteRapids to jeden blok; piraci wrodzy wszystkim; niezależni nikomu)
+/// Czy frakcje są sobie wrogie (NT, SolGov i WhiteRapids to jeden blok; piraci i nieznana frakcja Alicorna wrodzy wszystkim;
+/// niezależni nikomu)
 /proc/hex_factions_hostile(a, b)
-	var/static/list/blocs = list("nanotrasen" = "nt", "solgov" = "nt", "whiterapids" = "nt", "syndicate" = "syn", "pirate" = "pir", "unaligned" = "neu")
+	var/static/list/blocs = list("nanotrasen" = "nt", "solgov" = "nt", "whiterapids" = "nt", "syndicate" = "syn", "pirate" = "pir", "hostile" = "hos", "unaligned" = "neu")
 	var/A = blocs[a]
 	var/B = blocs[b]
 	if(!A || !B || A == B)
 		return FALSE
-	if(A == "pir" || B == "pir")
+	if(A == "pir" || B == "pir" || A == "hos" || B == "hos")
 		return TRUE
 	if(A == "neu" || B == "neu")
 		return FALSE

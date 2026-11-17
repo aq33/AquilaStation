@@ -142,6 +142,8 @@
 #define HEX_NEMESIS_HUNT_FIRST (1 MINUTES)
 #define HEX_NEMESIS_HUNT_STEP_MIN (1 MINUTES)
 #define HEX_NEMESIS_HUNT_STEP_MAX (3 MINUTES)
+/// Tyle kroków powrotu w miejscu i boss przestaje wracać (czeka, gdzie jest)
+#define HEX_NEMESIS_STUCK_LIMIT 5
 
 /// Los dowódcy
 #define HEX_CMD_ACTIVE "active"

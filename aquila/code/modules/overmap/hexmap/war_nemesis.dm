@@ -49,6 +49,8 @@ GLOBAL_LIST_INIT(hex_nemeses, list(
 	/// Ile skoków pościgu jeszcze zostało
 	var/nemesis_hunt_left = 0
 	var/nemesis_hunt_timer
+	/// Kroki powrotu, w których flota nie ruszyła się z miejsca (walka, interdykcja, brak trasy)
+	var/nemesis_stuck_steps = 0
 
 /// Komitet Powitalny Dolos jako boss nemezis: 8 okrętów zamiast 25 z /datum/fleet/dolos (więcej niż Fist of Sol
 /// i Alicorn razem, a AI nie radziło sobie z fizyką i ostrzałem tylu okrętów). Pozostałość z Oasis Fidei połączono
@@ -59,13 +61,6 @@ GLOBAL_LIST_INIT(hex_nemeses, list(
 	audio_cues = list(/datum/soundtrack_song/bee/future_perception, /datum/soundtrack_song/bee/finale)
 	taunts = list("Nie myślcie, że nie wyciągnęliśmy wniosków z waszej ostatniej próby.", "Nie zawiedziemy ponownie", "Wasza przestarzała broń MAC nie ma z nami szans. Szykujcie się na zniszczenie.", "<pre>\[BŁĄD DESZYFRACJI]</pre>")
 	nemesis_hunt_steps = 4
-
-// Boss, który poluje, nie wędruje sam (zwykły timer ruchu poprowadziłby go z pustego kafla do najbliższego układu):
-// rusza tylko krokami pościgu i powrotu (nemesis_hunt_step) albo ruchem z celem (odwrót, admin)
-/datum/fleet/move(datum/star_system/target, force = FALSE)
-	if(nemesis_hunt_steps && !force && !target)
-		return FALSE
-	return ..()
 
 // Alicorn i jego myśliwce mają frakcję okrętów "hostile". Flota z frakcją Syndykatu dostawała z domyślnych list
 // niszczyciel i krążownik Syndykatu, które strzelały do Alicorna, a flota uznawała okręty Syndykatu za swoje.
@@ -185,8 +180,9 @@ GLOBAL_LIST_INIT(hex_nemeses, list(
 	if(!H || !GLOB.hex_war?.ready || SSticker.current_state != GAME_STATE_PLAYING || SSovermap_mode?.already_ended)
 		return
 	var/list/hexes = list(H)
-	if(length(path) && path[length(path)] == H)
-		hexes |= path
+	// Kafle, przez które okręt przeleciał, bez kafla wylotu: odlot spod bossa to nie przelot obok niego
+	if(length(path) >= 2 && path[length(path)] == H)
+		hexes |= path.Copy(2)
 	GLOB.hex_war.nemesis_sighting(src, S, hexes)
 
 /// Boss nemezis, który poluje, widzi okręt gracza na swoim kaflu albo obok i rusza za nim
@@ -266,19 +262,39 @@ GLOBAL_LIST_INIT(hex_nemeses, list(
 	if(!(war_order in list(HEX_ORDER_HUNT, HEX_ORDER_HOME)))
 		return FALSE
 	var/datum/star_system/T = hex_war_move_target()
-	if(!T || current_system.check_conflict_status()) // na miejscu albo walka flot AI w układzie: zostaje
+	if(!T)
+		return FALSE
+	if(current_system.check_conflict_status()) // walka flot AI w układzie: zostaje
+		nemesis_note_stuck()
 		return FALSE
 	if(length(all_ships) && (SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CHECK_INTERDICT, pick(all_ships)) & (WEAK_INTERDICT|STRONG_INTERDICT)))
+		nemesis_note_stuck()
 		return FALSE
 	var/datum/star_system/before = current_system
 	move(T, TRUE)
-	if(QDELETED(src) || current_system == before)
+	if(QDELETED(src))
 		return FALSE
+	if(current_system == before)
+		nemesis_note_stuck()
+		return FALSE
+	nemesis_stuck_steps = 0
 	if(war_order == HEX_ORDER_HUNT)
 		nemesis_hunt_left--
 	else if(current_system == home)
 		hex_war_set_order(HEX_ORDER_IDLE)
 	return TRUE
+
+/// Powrót nie posuwa się naprzód: po HEX_NEMESIS_STUCK_LIMIT próbach boss zostaje tam, gdzie jest, i znów może polować
+/// (kroki pościgu nie liczą się tu, bo pościg kończy się sam po nemesis_hunt_steps skokach)
+/datum/fleet/proc/nemesis_note_stuck()
+	if(war_order != HEX_ORDER_HOME)
+		return
+	nemesis_stuck_steps++
+	if(nemesis_stuck_steps < HEX_NEMESIS_STUCK_LIMIT)
+		return
+	nemesis_stuck_steps = 0
+	hex_war_set_order(HEX_ORDER_IDLE)
+	log_game("HEXWAR: nemesis [name] could not get home and waits in [current_system]")
 
 /// Koniec pościgu: boss wraca do swojego układu (bez układu zostaje tam, gdzie jest)
 /datum/fleet/proc/nemesis_end_hunt(datum/star_system/home)
