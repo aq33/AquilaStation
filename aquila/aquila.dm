@@ -2726,7 +2726,13 @@
 #include "code\modules\mob\living\carbon\human\species_types\diona.dm"
 #include "code\modules\mob\living\simple_animal\hostile\retaliate\nymph.dm"
 #include "code\modules\client\preferences_menu\entries_species_bee.dm"
+// Mops i Żaba z Goonstation (ciało przełożone na nasz szablon)
+#include "code\__DEFINES\species_goon.dm"
+#include "code\modules\mob\living\carbon\human\species_types\goon_species.dm"
+#include "code\modules\mob\living\carbon\human\species_types\pug.dm"
+#include "code\modules\mob\living\carbon\human\species_types\amphibian.dm"
 #ifdef UNIT_TESTS
+#include "code\modules\unit_tests\aquila_rasy_goon.dm"
 #include "code\modules\unit_tests\aquila_rasy_monke.dm"
 #include "code\modules\unit_tests\aquila_rasy_fulp.dm"
 #include "code\modules\unit_tests\aquila_rasy_bee.dm"

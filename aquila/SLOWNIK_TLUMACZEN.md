@@ -4331,3 +4331,8 @@ Nazwy obszarów są w większości przetłumaczone. Nowe nazwy budujemy z tych k
 | Psyphoza | Psyfoza | ż; rasa (BeeStation) |
 | Diona / nymph / gestalt | Diona / nimfa / gestalt | ż / ż / m; rasa (BeeStation), l.mn. diony |
 | Sonus | Sonus | m; język Psyfoz |
+| Pug (rasa) | Mops | m; rasa (Goonstation) |
+| Amphibian (rasa) | Żaba | ż; rasa (Goonstation) |
+| Sticky Tongue | Lepki język | m; akcja Żaby |
+| sleuth | węszenie | n; emotka Mopsa |
+| coat | umaszczenie | n; wybór w oknie postaci |
