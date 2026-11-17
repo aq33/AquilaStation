@@ -66,7 +66,7 @@
 		return "brak ikony plonu [product.icon_state] w [product.icon]"
 	for(var/obj/item/leftover in get_turf(user))
 		qdel(leftover)
-	qdel(pod)
+	aquila_test_drop_pod(pod)
 
 //Kapsuła bez wymaganego gazu (odczynniki i temperatura w porządku): ani wzrostu, ani owoców
 	pod = allocate(/obj/machinery/atmospherics/components/binary/xenoflora_pod, pod_turf)
@@ -81,7 +81,7 @@
 		return "urosła w kapsule bez wymaganego gazu"
 	if(length(fruit.fruits))
 		return "zawiązała owoce w kapsule bez wymaganego gazu"
-	qdel(pod)
+	aquila_test_drop_pod(pod)
 
 /datum/unit_test/aquila_botany_kseno_gazowe/proc/plant_in(seed_type, atom/target)
 	var/obj/item/plant_seeds/seeds = allocate(seed_type, get_turf(target))

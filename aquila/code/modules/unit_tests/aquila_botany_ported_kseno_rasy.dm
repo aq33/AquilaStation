@@ -45,7 +45,7 @@
 		TEST_ASSERT(icon_exists(product.icon, product.icon_state), "Plon [product_type] nie ma ikony [product.icon_state]")
 		for(var/obj/item/leftover in get_turf(user))
 			qdel(leftover)
-		qdel(pod)
+		aquila_test_drop_pod(pod)
 
 		//Bez każdego z wymagań po kolei: ani wzrostu, ani owoców
 		for(var/missing in requirements)
@@ -60,7 +60,7 @@
 			//Łodyżka kwiatu ma jeden etap, więc stoi od razu; wtedy liczą się tylko owoce
 			TEST_ASSERT(body.growth_stages <= 1 || body.current_stage < body.growth_stages, "[seed_type] urósł w kapsule bez [missing]")
 			TEST_ASSERT(!length(fruit.fruits), "[seed_type] zawiązał owoce w kapsule bez [missing]")
-			qdel(pod)
+			aquila_test_drop_pod(pod)
 
 /datum/unit_test/aquila_botany_kseno_rasy/proc/plant_seeds(seed_type, atom/target)
 	var/obj/item/plant_seeds/seeds = allocate(seed_type, get_turf(target))

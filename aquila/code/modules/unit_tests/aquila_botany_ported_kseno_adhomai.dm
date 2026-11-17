@@ -55,7 +55,7 @@
 	if(!icon_exists(product.icon, product.icon_state))
 		return "brak ikony plonu [product.icon_state] w [product.icon]"
 	qdel(product)
-	qdel(pod)
+	aquila_test_drop_pod(pod)
 
 //Kapsuła na mrozie, ale bez gazu i odczynnika: nie rośnie
 	pod = allocate(/obj/machinery/atmospherics/components/binary/xenoflora_pod, pod_turf)
@@ -67,7 +67,7 @@
 	grow(body, fruit)
 	if(body.current_stage >= body.growth_stages || length(fruit.fruits))
 		return "urosła w kapsule bez wymaganego gazu i odczynnika"
-	qdel(pod)
+	aquila_test_drop_pod(pod)
 
 //Kapsuła z gazem i odczynnikiem, ale w cieple: nie rośnie
 	pod = allocate(/obj/machinery/atmospherics/components/binary/xenoflora_pod, pod_turf)
@@ -79,7 +79,7 @@
 	grow(body, fruit)
 	if(body.current_stage >= body.growth_stages || length(fruit.fruits))
 		return "urosła w kapsule w temperaturze pokojowej"
-	qdel(pod)
+	aquila_test_drop_pod(pod)
 	for(var/obj/item/leftover in get_turf(user))
 		if(leftover != user && !(leftover in user))
 			qdel(leftover)

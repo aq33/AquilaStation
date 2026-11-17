@@ -1,6 +1,14 @@
 // The upstream assert macros are #undef'd at the end of code/modules/unit_tests/_unit_tests.dm, so this modular test carries its own copies
 #define TEST_ASSERT(assertion, reason) if (!(assertion)) { return Fail("Assertion failed: [reason || "No reason"]") }
 
+/// Opróżnia kapsułę i ją usuwa. Destroy kapsuły wypuszcza jej gaz na pole, a pola testowe są wspólne dla kolejnych testów:
+/// 50 moli plazmy albo N2O w 150 °C czy −90 °C przerywało akcje człowieka w późniejszych testach (np. monke_ingame)
+/proc/aquila_test_drop_pod(obj/machinery/atmospherics/components/binary/xenoflora_pod/pod)
+	if(QDELETED(pod))
+		return
+	pod.internal_gases.remove(pod.internal_gases.total_moles())
+	qdel(pod)
+
 /// AQUILA - ksenoflora rośnie tylko w kapsule: miotlarz z azotem pod kopułą rośnie i owocuje, bez azotu stoi, a w zwykłej tacce nie da się go zasadzić
 /datum/unit_test/aquila_botany_ksenoflora
 
@@ -27,7 +35,7 @@
 	var/obj/item/leaf = locate(/obj/item/food/grown/xenoflora/broombush) in get_turf(user)
 	TEST_ASSERT(leaf, "Zbiór miotlarza nie dał liścia miotlarza")
 	qdel(leaf)
-	qdel(pod)
+	aquila_test_drop_pod(pod)
 
 //Kapsuła bez azotu: ani wzrostu, ani owoców
 	pod = allocate(/obj/machinery/atmospherics/components/binary/xenoflora_pod, pod_turf)
@@ -39,7 +47,7 @@
 	grow(body, fruit)
 	TEST_ASSERT(body.current_stage < body.growth_stages, "Miotlarz urósł w kapsule bez azotu")
 	TEST_ASSERT(!length(fruit.fruits), "Miotlarz zawiązał owoce w kapsule bez azotu")
-	qdel(pod)
+	aquila_test_drop_pod(pod)
 
 //Zwykła tacka: nasiona nie wschodzą
 	var/obj/item/plant_tray/tray = allocate(/obj/item/plant_tray, pod_turf)
