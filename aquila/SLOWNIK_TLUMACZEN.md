@@ -1819,6 +1819,11 @@ Nowe gatunki z tg, Goona, Baya i innych (`aquila/code/modules/botany/aquila/port
 | Chronolized-Crystal Hyperlattice | hiperkrata czasowa, plon: kryształ hiperkraty | ż / m; nowe (tgstation/tgstation#82089) |
 | bluespace limon | bluespace'owa limona | ż; nowe (tgstation/tgstation#82089), jak „bluespace'owy banan” |
 | pyrite peach | pirytowa brzoskwinia | ż; nowe (tgstation/tgstation#82089) |
+| breather | oddychacz | m; nowe (Bay), ksenoflora |
+| resin plant / resin | roślina żywiczna / gałązka żywicy | ż; nowe (Bay), ksenoflora, plon tnie się na plastik |
+| plasma cabbage | kapusta plazmowa | ż; nowe (/vg/), ksenoflora |
+| livewire orange | pomarańcza piorunowa | ż; nowe (CHOMP), ksenoflora |
+| nuclear orange | pomarańcza jądrowa | ż; nowe (CHOMP), ksenoflora |
 | Limon Juice (`/consumable/limonjuice`) | Sok z limony | m; nowe, reagent |
 | Cellulose Fibers (`/cellulose`) | Włókna celulozowe | mn; nowe, reagent |
 | peach / pear | brzoskwinia / gruszka (drzewo: grusza) | ż; nowe (Goon) |

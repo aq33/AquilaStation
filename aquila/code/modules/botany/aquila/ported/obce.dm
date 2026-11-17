@@ -245,7 +245,7 @@
 	tastes = list("plazma" = 1)
 
 /*
-	Wapniak gazowy (vaporsac)
+	Wapniak gazowy (vaporsac) - ksenoflora, rośnie tylko w kapsule (wymagania w ksenoflora_gazowe.dm)
 */
 /datum/plant_feature/fruit/vaporsac
 	species_name = "vesica vaporis"
@@ -256,20 +256,21 @@
 	seed_icon_state = "seed-vaporsac"
 	fruit_product = /obj/item/food/grown/vaporsac
 	genetic_budget = 3
+	plant_needs = list(/datum/plant_need/reagent/water, /datum/plant_need/reagent/buff/pests, /datum/plant_need/xenoflora/vaporsac)
 	plant_traits = list(/datum/plant_trait/fruit/liquid_contents, /datum/plant_trait/fruit/gaseous)
 	fast_reagents = list(/datum/reagent/nitrous_oxide = PLANT_REAGENT_MEDIUM, /datum/reagent/medicine/ephedrine = PLANT_REAGENT_SMALL)
 	total_volume = PLANT_FRUIT_VOLUME_SMALL
 	growth_time = PLANT_FRUIT_GROWTH_MEDIUM
 
-/obj/item/plant_seeds/preset/alien/vaporsac
-	name = "nasiona: wapniak gazowy (piasek)"
+/obj/item/plant_seeds/preset/alien/xenoflora/vaporsac
+	name = "nasiona: wapniak gazowy (kapsuła ksenoflory)"
 	name_override = "wapniak gazowy"
 	icon = 'aquila/icons/obj/hydroponics/ported_obce_seeds.dmi'
 	icon_state = "seed-vaporsac"
-	plant_features = list(/datum/plant_feature/roots/sand, /datum/plant_feature/body/bush_vine, /datum/plant_feature/fruit/vaporsac)
+	plant_features = list(/datum/plant_feature/roots/xenoflora, /datum/plant_feature/body/bush_vine, /datum/plant_feature/fruit/vaporsac)
 
 /obj/item/food/grown/vaporsac
-	seed = /obj/item/plant_seeds/preset/alien/vaporsac
+	seed = /obj/item/plant_seeds/preset/alien/xenoflora/vaporsac
 	name = "wapniak gazowy"
 	desc = "Lekki pęcherz pełen rozpylonych związków chemicznych."
 	icon = 'aquila/icons/obj/hydroponics/ported_obce_harvest.dmi'

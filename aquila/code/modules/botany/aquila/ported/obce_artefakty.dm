@@ -577,7 +577,7 @@ GLOBAL_VAR_INIT(aquila_creeper_spreads, 0)
 	tastes = list("gorzkie pędy" = 1)
 
 /*
-	Kryształ (Crystal) - plonem odłamki szkła plazmowego
+	Kryształ (Crystal) - plonem odłamki szkła plazmowego. Ksenoflora, rośnie tylko w kapsule (wymagania w ksenoflora_gazowe.dm)
 */
 /datum/plant_feature/fruit/crystal
 	species_name = "crystallum vivum"
@@ -587,18 +587,19 @@ GLOBAL_VAR_INIT(aquila_creeper_spreads, 0)
 	seed_icon = 'aquila/icons/obj/hydroponics/ported_obce_seeds.dmi'
 	seed_icon_state = "seed-artifact"
 	fruit_product = /obj/item/shard/plasma
+	plant_needs = list(/datum/plant_need/reagent/water, /datum/plant_need/reagent/buff/pests, /datum/plant_need/xenoflora/crystal)
 	total_volume = PLANT_FRUIT_VOLUME_MICRO
 	growth_time = PLANT_FRUIT_GROWTH_SLOW
 
-/obj/item/plant_seeds/preset/alien/crystal
-	name = "nasiona: kryształ (gruz)"
+/obj/item/plant_seeds/preset/alien/xenoflora/crystal
+	name = "nasiona: kryształ (kapsuła ksenoflory)"
 	name_override = "kryształ"
 	icon = 'aquila/icons/obj/hydroponics/ported_obce_seeds.dmi'
 	icon_state = "seed-artifact"
-	plant_features = list(/datum/plant_feature/roots/debris, /datum/plant_feature/body/alien_artifact/crystal, /datum/plant_feature/fruit/crystal)
+	plant_features = list(/datum/plant_feature/roots/xenoflora, /datum/plant_feature/body/alien_artifact/crystal, /datum/plant_feature/fruit/crystal)
 
 /*
-	Roślina plazmowa (Plasma) - zarodnik pękający chmurą plazmy
+	Roślina plazmowa (Plasma) - zarodnik pękający chmurą plazmy. Ksenoflora, rośnie tylko w kapsule (wymagania w ksenoflora_gazowe.dm)
 */
 /datum/plant_feature/fruit/plasma_spore
 	species_name = "plasmaticus floridus"
@@ -609,20 +610,21 @@ GLOBAL_VAR_INIT(aquila_creeper_spreads, 0)
 	seed_icon_state = "seed-artifact"
 	fruit_product = /obj/item/food/grown/plasma_spore
 	genetic_budget = 3
+	plant_needs = list(/datum/plant_need/reagent/water, /datum/plant_need/reagent/buff/pests, /datum/plant_need/xenoflora/plasma_spore)
 	plant_traits = list(/datum/plant_trait/fruit/liquid_contents, /datum/plant_trait/fruit/gaseous)
 	fast_reagents = list(/datum/reagent/toxin/plasma = PLANT_REAGENT_MEDIUM)
 	total_volume = PLANT_FRUIT_VOLUME_SMALL
 	growth_time = PLANT_FRUIT_GROWTH_SLOW
 
-/obj/item/plant_seeds/preset/alien/plasma
-	name = "nasiona: roślina plazmowa (gruz)"
+/obj/item/plant_seeds/preset/alien/xenoflora/plasma
+	name = "nasiona: roślina plazmowa (kapsuła ksenoflory)"
 	name_override = "roślina plazmowa"
 	icon = 'aquila/icons/obj/hydroponics/ported_obce_seeds.dmi'
 	icon_state = "seed-artifact"
-	plant_features = list(/datum/plant_feature/roots/debris, /datum/plant_feature/body/alien_artifact/plasma, /datum/plant_feature/fruit/plasma_spore)
+	plant_features = list(/datum/plant_feature/roots/xenoflora, /datum/plant_feature/body/alien_artifact/plasma, /datum/plant_feature/fruit/plasma_spore)
 
 /obj/item/food/grown/plasma_spore
-	seed = /obj/item/plant_seeds/preset/alien/plasma
+	seed = /obj/item/plant_seeds/preset/alien/xenoflora/plasma
 	name = "zarodnik plazmy"
 	desc = "Ledwie świadoma kolonia organizmów. Bardzo lotna."
 	icon = 'aquila/icons/obj/hydroponics/ported_obce_harvest.dmi'
