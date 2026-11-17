@@ -234,9 +234,14 @@
 	else if(disabled_before == BODYPART_DISABLED_DAMAGE && damage <= limb.max_damage * 0.5)
 		disabled_before = BODYPART_NOT_DISABLED
 
+/// Every damage change of a limb ends in update_disabled() (receive_damage, heal_damage), so the frostbite follows each one
+/obj/item/bodypart/update_disabled()
+	var/datum/wound/frostbite/third_degree/frostbite = locate() in wounds
+	frostbite?.aq_track_damage_disable()
+	return ..()
+
 /datum/wound/frostbite/third_degree/wound_effects(delta_time)
 	. = ..()
-	aq_track_damage_disable()
 	if(!necrotic && world.time >= necrosis_at)
 		necrotic = TRUE
 		treat_text = "Martwica jest nieodwracalna: tę kończynę trzeba amputować."

@@ -1008,9 +1008,7 @@
 	var/datum/wound/frostbite/third_degree/other_bite = new()
 	other_bite.apply_wound(other_leg, silent = TRUE)
 	other_leg.heal_damage(other_leg.max_damage * 0.6, 0)
-	other_bite.aq_track_damage_disable()
 	other_leg.receive_damage(brute = other_leg.max_damage * 0.2)
-	other_bite.aq_track_damage_disable()
 	qdel(other_bite)
 	TEST_ASSERT(other_leg.disabled == BODYPART_NOT_DISABLED, "The leg stays disabled although its damage fell below half during the paralysis ([other_leg.get_damage()] / [other_leg.max_damage])")
 
