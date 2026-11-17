@@ -1,0 +1,4846 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"ak" = (
+/obj/machinery/atmospherics/components/unary/shuttle/heater{
+	dir = 1
+	},
+/obj/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"as" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/kirbyplants{
+	icon_state = "plant-10"
+	},
+/turf/open/floor/pod/light,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"au" = (
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/lavaland/surface/outdoors)
+"av" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/pod/light,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"aF" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 9
+	},
+/obj/effect/decal/cleanable/oil/streak,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable/yellow,
+/obj/item/wallframe/apc,
+/obj/machinery/light/small/broken{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"aH" = (
+/obj/effect/decal/cleanable/blood/old,
+/obj/effect/decal/cleanable/blood/old{
+	icon_state = "gib2-old"
+	},
+/obj/structure/chair/fancy/comfy{
+	desc = "Wygląda na niesamowicie wygodny i drogi. Na boku jest karteczka z zapewnieniem, że to 100% prawdziwa skóra krowia.";
+	name = "fotel z krowiej skóry"
+	},
+/obj/effect/mob_spawn/human/corpse/pirate,
+/turf/open/floor/plating/moss,
+/area/ruin/unpowered/planet_lava/cave)
+"aQ" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/blood/old{
+	pixel_x = 10;
+	pixel_y = 17;
+	icon_state = "gib2-old"
+	},
+/obj/effect/decal/cleanable/blood/old{
+	icon_state = "gib5-old";
+	pixel_x = 1;
+	pixel_y = 14
+	},
+/turf/open/floor/plating/moss,
+/area/ruin/unpowered/planet_lava/cave)
+"aV" = (
+/obj/effect/turf_decal/ship/techfloor{
+	dir = 9
+	},
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/structure/frame/computer{
+	anchored = 1;
+	dir = 4
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"aW" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/floor/plating/moss,
+/area/ruin/unpowered/planet_lava/cave)
+"bk" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/structure/closet/body_bag,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/mob_spawn/human/corpse/pirate,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"bn" = (
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/engine,
+/area/lavaland/surface/outdoors)
+"bp" = (
+/obj/machinery/door/airlock/grunge{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/structure/cable/pink,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"bs" = (
+/obj/machinery/power/terminal,
+/obj/machinery/power/apc/auto_name/east{
+	start_charge = 0
+	},
+/obj/machinery/atmospherics/components/binary/dp_vent_pump/layer2{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/corner{
+	dir = 4
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"bw" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/stack/ore/titanium{
+	pixel_x = -12;
+	pixel_y = 11
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"bN" = (
+/obj/item/stack/cable_coil/cut{
+	pixel_x = -9;
+	pixel_y = -9
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"bO" = (
+/obj/machinery/power/terminal,
+/obj/structure/cable/yellow,
+/obj/effect/decal/cleanable/glass{
+	pixel_x = -13;
+	pixel_y = 7
+	},
+/obj/machinery/portable_atmospherics/canister/toxins,
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"ct" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/components/unary/passive_vent{
+	dir = 4
+	},
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 4
+	},
+/turf/open/floor/plating/foam,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"cy" = (
+/obj/structure/lattice/catwalk/over,
+/obj/structure/closet/firecloset,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/simple/orange/hidden,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"cU" = (
+/turf/open/lava/smooth/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"cY" = (
+/obj/effect/decal/cleanable/blood/old,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 4
+	},
+/obj/item/reagent_containers/glass/bottle{
+	pixel_x = -10;
+	pixel_y = -7
+	},
+/obj/item/reagent_containers/syringe,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"di" = (
+/obj/structure/chair/fancy/plastic{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/radio/intercom/directional/west,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 1
+	},
+/turf/open/floor/plasteel/grimy,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"dk" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/item/storage/box/lethalshot,
+/turf/open/floor/mineral/plastitanium,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"dm" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/flora/ausbushes/fullgrass/hell,
+/turf/open/floor/plating/moss,
+/area/ruin/unpowered/planet_lava/cave)
+"dv" = (
+/obj/item/grown/log/tree,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"dy" = (
+/turf/open/floor/plating/rust,
+/area/lavaland/surface/outdoors)
+"dD" = (
+/obj/structure/bed/roller,
+/obj/effect/decal/cleanable/blood/old{
+	pixel_x = -9;
+	pixel_y = 11;
+	icon_state = "floor6-old"
+	},
+/obj/effect/decal/cleanable/blood/old{
+	pixel_x = -2;
+	pixel_y = -3;
+	icon_state = "gib2-old"
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/clothing/gloves/color/latex/nitrile,
+/obj/item/reagent_containers/syringe{
+	pixel_y = 5;
+	pixel_x = -4
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"dJ" = (
+/obj/structure/frame/computer{
+	anchored = 1;
+	can_be_unanchored = 1;
+	dir = 1
+	},
+/obj/effect/turf_decal/ship/techfloor{
+	dir = 10
+	},
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/machinery/firealarm/directional/south,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"dV" = (
+/obj/structure/lattice/catwalk/over,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/orange/hidden,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/structure/cable/yellow,
+/obj/item/stack/sheet/iron/twenty{
+	pixel_x = -5;
+	pixel_y = 5
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"dW" = (
+/obj/effect/decal/cleanable/blood/old{
+	pixel_x = -15;
+	pixel_y = -5
+	},
+/obj/structure/flora/ausbushes/sparsegrass/hell,
+/turf/open/floor/plating/moss,
+/area/ruin/unpowered/planet_lava/cave)
+"ef" = (
+/obj/machinery/atmospherics/components/unary/tank/air,
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"ex" = (
+/obj/structure/flora/ausbushes/grassybush/hell,
+/turf/open/floor/plating/asteroid/dirt/grass/lavaland,
+/area/lavaland/surface/outdoors)
+"eG" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"eJ" = (
+/obj/effect/decal/cleanable/glass{
+	dir = 8;
+	pixel_x = -9
+	},
+/obj/effect/decal/cleanable/glass{
+	dir = 8;
+	pixel_y = -10
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/item/stack/sheet/animalhide/monkey,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"eQ" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/clothing/suit/armor/vest/alt,
+/obj/item/clothing/head/helmet/alt{
+	pixel_y = 6
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"eR" = (
+/obj/machinery/power/port_gen/pacman{
+	anchored = 1
+	},
+/obj/structure/cable,
+/obj/machinery/advanced_airlock_controller{
+	pixel_x = 24
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 10
+	},
+/obj/effect/turf_decal/stripes/corner,
+/obj/effect/turf_decal/stripes/corner{
+	dir = 1
+	},
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"fw" = (
+/obj/machinery/door/airlock/hatch{
+	dir = 4
+	},
+/obj/structure/sign/departments/restroom{
+	pixel_y = 32
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/structure/barricade/wooden/crude,
+/turf/open/floor/pod/light,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"fz" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating{
+	icon_state = "panelscorched"
+	},
+/area/lavaland/surface/outdoors)
+"fH" = (
+/obj/structure/lattice/catwalk/over,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/simple/orange/hidden,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/machinery/door/airlock/external/glass,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"gd" = (
+/obj/structure/flora/ausbushes/fernybush/hell,
+/turf/open/floor/plating/asteroid/dirt/grass/lavaland,
+/area/lavaland/surface/outdoors)
+"gg" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/simple/orange/hidden,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 9
+	},
+/obj/item/newspaper{
+	pixel_x = -4;
+	pixel_y = 2
+	},
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"gt" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 5
+	},
+/obj/machinery/light/broken{
+	dir = 4
+	},
+/turf/open/floor/wood{
+	icon_state = "wood-broken"
+	},
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"gC" = (
+/obj/item/stack/rods{
+	pixel_x = 2;
+	pixel_y = 9
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"gO" = (
+/obj/structure/cable/yellow,
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"gQ" = (
+/obj/effect/decal/cleanable/blood/old{
+	icon_state = "gib1-old";
+	pixel_x = -3;
+	pixel_y = -6
+	},
+/obj/effect/decal/cleanable/blood/old{
+	pixel_x = 11;
+	pixel_y = -5
+	},
+/obj/effect/decal/cleanable/blood/old{
+	pixel_x = -9;
+	pixel_y = 11;
+	icon_state = "floor6-old"
+	},
+/mob/living/basic/mining/legion,
+/turf/open/floor/plating/moss,
+/area/ruin/unpowered/planet_lava/cave)
+"gR" = (
+/obj/item/stack/rods{
+	pixel_x = 9;
+	pixel_y = -11
+	},
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"hc" = (
+/obj/item/stack/ore/iron{
+	pixel_x = 7;
+	amount = 5
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"hu" = (
+/obj/effect/decal/cleanable/blood/tracks,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"hP" = (
+/obj/effect/decal/fakelattice,
+/obj/item/stack/ore/titanium{
+	pixel_x = -12;
+	pixel_y = 11
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"hU" = (
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/obj/structure/flora/ash/fern,
+/turf/open/floor/plating/moss,
+/area/ruin/unpowered/planet_lava/cave)
+"hW" = (
+/obj/item/clothing/head/beret/black,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"im" = (
+/obj/effect/turf_decal/box,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/mopbucket,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"iu" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/foamedmetal,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"iy" = (
+/obj/effect/turf_decal/box,
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/structure/grille,
+/turf/open/floor/engine,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"ji" = (
+/obj/effect/turf_decal/ship/techfloor{
+	dir = 8
+	},
+/obj/machinery/light,
+/obj/structure/extinguisher_cabinet/north,
+/obj/structure/frame/computer{
+	anchored = 1;
+	can_be_unanchored = 1;
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"jt" = (
+/obj/effect/decal/cleanable/oil,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable/yellow,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"jI" = (
+/obj/structure/girder/displaced,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"jS" = (
+/obj/item/stack/rods{
+	pixel_x = 9;
+	pixel_y = -11
+	},
+/turf/open/floor/plating/rust,
+/area/lavaland/surface/outdoors)
+"jU" = (
+/obj/structure/grille,
+/turf/template_noop,
+/area/lavaland/surface/outdoors)
+"kd" = (
+/obj/machinery/vending/snack/random,
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/structure/cable/yellow,
+/obj/machinery/power/apc/auto_name/south{
+	start_charge = 0
+	},
+/turf/open/floor/plating{
+	icon_state = "panelscorched"
+	},
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"kw" = (
+/obj/effect/decal/cleanable/oil,
+/turf/open/floor/plating/rust,
+/area/lavaland/surface/outdoors)
+"kC" = (
+/obj/structure/fermenting_barrel{
+	pixel_x = -9;
+	pixel_y = 4
+	},
+/obj/structure/fermenting_barrel{
+	pixel_y = -3;
+	pixel_x = 8
+	},
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/turf/open/floor/plating/moss,
+/area/ruin/unpowered/planet_lava/cave)
+"kF" = (
+/obj/structure/railing/corner{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/orange/hidden{
+	dir = 8
+	},
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"kI" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 10
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/plasteel/grimy,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"kK" = (
+/obj/item/soap/deluxe,
+/obj/item/bikehorn/rubberducky,
+/obj/machinery/shower{
+	dir = 1
+	},
+/obj/structure/curtain,
+/obj/structure/sign/poster/contraband/random{
+	pixel_x = -32
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"kL" = (
+/obj/structure/flora/rock,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"kY" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/stack/medical/suture{
+	pixel_x = -10;
+	pixel_y = 12
+	},
+/turf/open/floor/plating/moss,
+/area/ruin/unpowered/planet_lava/cave)
+"ld" = (
+/obj/structure/railing,
+/obj/machinery/atmospherics/pipe/simple/orange/hidden{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/plasteel/stairs{
+	dir = 4
+	},
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"li" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/vomit/old,
+/obj/structure/cable/yellow,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"lj" = (
+/obj/effect/decal/cleanable/glass{
+	pixel_y = -12;
+	pixel_x = -9
+	},
+/obj/effect/decal/fakelattice,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"lk" = (
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/lavaland/surface/outdoors)
+"lq" = (
+/obj/effect/turf_decal/ship/techfloor{
+	dir = 8
+	},
+/obj/effect/turf_decal/ship/techfloor{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"lt" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 10
+	},
+/obj/structure/cable/yellow,
+/obj/item/gps{
+	pixel_x = -9;
+	pixel_y = 6
+	},
+/turf/open/floor/plasteel/stairs{
+	icon = 'icons/obj/stairs.dmi';
+	dir = 8
+	},
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"lw" = (
+/obj/structure/railing{
+	dir = 1
+	},
+/obj/structure/cable/orange,
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"lJ" = (
+/obj/item/stack/ore/plasma{
+	pixel_x = -3;
+	pixel_y = -18;
+	amount = 5
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/blood/drip,
+/turf/open/floor/engine,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"lX" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/blood/tracks,
+/turf/open/floor/plating/moss,
+/area/ruin/unpowered/planet_lava/cave)
+"mk" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/structure/table/reinforced,
+/obj/machinery/airalarm/directional/north,
+/obj/machinery/light/small/broken{
+	dir = 4
+	},
+/obj/item/ammo_casing/shotgun/improvised{
+	pixel_x = -11;
+	pixel_y = 10
+	},
+/obj/item/ammo_casing/shotgun/improvised{
+	pixel_x = -6
+	},
+/obj/item/ammo_casing/shotgun/improvised{
+	pixel_y = 4
+	},
+/obj/item/ammo_casing/shotgun/improvised{
+	pixel_x = 6
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"mm" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/flora/rock/pile/lava,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"ms" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/stack/cable_coil/cut{
+	pixel_x = 9;
+	pixel_y = 14
+	},
+/turf/open/floor/plating{
+	icon_state = "panelscorched"
+	},
+/area/lavaland/surface/outdoors)
+"mt" = (
+/obj/structure/flora/rock/pile/lava,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"mv" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating{
+	icon_state = "platingdmg1"
+	},
+/area/lavaland/surface/outdoors)
+"mF" = (
+/obj/effect/decal/fakelattice,
+/obj/item/stack/ore/titanium{
+	pixel_x = -12;
+	pixel_y = -6
+	},
+/obj/item/stack/cable_coil/cut,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"mO" = (
+/obj/structure/lattice/catwalk/over,
+/obj/machinery/atmospherics/pipe/simple/orange/hidden,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"mX" = (
+/obj/structure/flora/rock/pile,
+/turf/open/floor/plating/moss,
+/area/ruin/unpowered/planet_lava/cave)
+"nj" = (
+/obj/machinery/power/terminal{
+	dir = 1
+	},
+/obj/structure/cable,
+/obj/item/storage/toolbox/electrical{
+	pixel_x = -3;
+	pixel_y = 7
+	},
+/obj/structure/table/reinforced,
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 6
+	},
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"np" = (
+/obj/structure/flora/ash/fern,
+/turf/open/floor/plating/moss,
+/area/ruin/unpowered/planet_lava/cave)
+"nW" = (
+/obj/effect/turf_decal/ship/techfloor{
+	dir = 6
+	},
+/obj/item/radio/intercom/directional/east,
+/obj/machinery/power/apc/auto_name/south{
+	start_charge = 0
+	},
+/obj/structure/cable/yellow,
+/obj/structure/grille/broken,
+/obj/structure/frame/computer{
+	anchored = 1;
+	dir = 8
+	},
+/obj/item/dice/d2,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"om" = (
+/obj/effect/decal/fakelattice,
+/obj/item/stack/cable_coil/cut{
+	pixel_x = 7;
+	pixel_y = 11
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"or" = (
+/obj/item/cigbutt/cigarbutt{
+	pixel_y = 15;
+	pixel_x = 11
+	},
+/obj/effect/decal/cleanable/blood/tracks,
+/obj/effect/decal/cleanable/blood/old{
+	icon_state = "gib3-old";
+	pixel_x = -6
+	},
+/obj/item/melee/transforming/energy/sword/pirate{
+	pixel_x = -5;
+	pixel_y = 16
+	},
+/turf/open/floor/plating/moss,
+/area/ruin/unpowered/planet_lava/cave)
+"oD" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/blood/drip,
+/turf/open/floor/plating/moss,
+/area/ruin/unpowered/planet_lava/cave)
+"oG" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/components/unary/passive_vent,
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"pi" = (
+/obj/structure/table,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/item/kitchen/knife{
+	pixel_x = 7;
+	pixel_y = 10
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"pk" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/flora/ausbushes/sparsegrass/hell,
+/turf/open/floor/plating/moss,
+/area/ruin/unpowered/planet_lava/cave)
+"pm" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/structure/rack,
+/obj/machinery/firealarm/directional/north,
+/obj/effect/mine/shrapnel,
+/obj/effect/mine/shrapnel{
+	pixel_x = 8
+	},
+/obj/effect/mine/shrapnel{
+	pixel_x = -8
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"po" = (
+/obj/effect/turf_decal/ship/techfloor{
+	dir = 8
+	},
+/obj/effect/turf_decal/ship/techfloor{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/item/reagent_containers/food/drinks/beer{
+	pixel_x = 6;
+	pixel_y = 7
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"ps" = (
+/turf/closed/wall/mineral/plastitanium,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"pw" = (
+/obj/item/stack/rods{
+	pixel_x = -9;
+	pixel_y = 1
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"pR" = (
+/obj/effect/turf_decal/stripes/line,
+/obj/structure/railing/corner{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable/orange,
+/obj/structure/grille,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"qt" = (
+/obj/structure/table/reinforced,
+/obj/structure/sign/poster/contraband/random{
+	pixel_x = -32
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"qx" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/sign/poster/contraband/random{
+	pixel_y = -32
+	},
+/turf/open/floor/pod/light,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"qH" = (
+/obj/effect/decal/cleanable/blood/drip{
+	pixel_x = -10;
+	pixel_y = 15
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"ra" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"rd" = (
+/obj/structure/railing/corner{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
+/obj/machinery/light/broken{
+	dir = 1
+	},
+/turf/open/floor/plating{
+	icon_state = "platingdmg1"
+	},
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"re" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/blood/old{
+	pixel_x = -9;
+	pixel_y = 11;
+	icon_state = "floor6-old"
+	},
+/obj/item/stack/ore/gold{
+	pixel_x = -7;
+	pixel_y = -11;
+	amount = 5
+	},
+/obj/item/stack/ore/uranium{
+	pixel_x = 3;
+	pixel_y = -9
+	},
+/turf/open/floor/engine,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"rz" = (
+/obj/effect/decal/cleanable/blood/drip,
+/obj/effect/decal/cleanable/blood/drip{
+	pixel_x = -21;
+	pixel_y = 11
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"rB" = (
+/obj/effect/spawner/structure/window/plastitanium,
+/obj/machinery/door/poddoor/shutters{
+	id = "pcarrier_windows"
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"rC" = (
+/obj/effect/decal/cleanable/blood/drip{
+	pixel_x = -21;
+	pixel_y = 11
+	},
+/obj/structure/foamedmetal,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"rO" = (
+/obj/structure/window/reinforced,
+/obj/machinery/door/window/northright{
+	name = "Dostęp do silnika"
+	},
+/obj/structure/cable,
+/obj/machinery/power/smes{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"sa" = (
+/obj/effect/turf_decal/stripes/line,
+/obj/structure/railing,
+/obj/effect/turf_decal/box,
+/obj/effect/decal/cleanable/generic,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/rack,
+/obj/structure/cable/orange,
+/obj/machinery/power/apc/auto_name/west{
+	start_charge = 0
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"sf" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/engine,
+/area/lavaland/surface/outdoors)
+"si" = (
+/obj/machinery/door/airlock/external/glass{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"sx" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/pod/light,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"sH" = (
+/obj/item/stack/rods{
+	pixel_x = 9;
+	pixel_y = -11
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"sI" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/radio/intercom/directional/east,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/orange/hidden,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable/yellow,
+/obj/item/stack/cable_coil{
+	pixel_x = 3;
+	pixel_y = 8
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"sM" = (
+/obj/structure/railing/corner,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/pipe/simple/orange/hidden{
+	dir = 8
+	},
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"tg" = (
+/obj/structure/window/reinforced,
+/obj/structure/cable,
+/obj/machinery/power/smes{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 5
+	},
+/obj/effect/decal/cleanable/glass{
+	pixel_x = -13;
+	pixel_y = 7
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"ti" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/item/healthanalyzer,
+/obj/item/reagent_containers/glass/bottle/charcoal{
+	pixel_x = -8;
+	pixel_y = 12
+	},
+/obj/item/storage/pill_bottle/mannitol{
+	pixel_x = 7;
+	pixel_y = 5
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"tv" = (
+/obj/structure/tank_dispenser/oxygen,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/airalarm/directional/east,
+/obj/machinery/light/small/broken,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"tD" = (
+/obj/effect/decal/fakelattice,
+/obj/structure/foamedmetal,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"tT" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/pipe/simple/orange/hidden{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/structure/cable/yellow,
+/obj/item/stack/ore/gold{
+	pixel_x = -9;
+	pixel_y = 10;
+	amount = 5
+	},
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"tY" = (
+/obj/item/reagent_containers/glass/bucket,
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"ua" = (
+/obj/structure/flora/ausbushes/sparsegrass/hell,
+/turf/open/floor/plating/moss,
+/area/ruin/unpowered/planet_lava/cave)
+"ul" = (
+/obj/item/stack/ore/iron{
+	amount = 5
+	},
+/obj/effect/decal/cleanable/blood/drip,
+/turf/open/floor/engine,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"uu" = (
+/obj/machinery/smartfridge/organ,
+/obj/machinery/firealarm/directional/north,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"uw" = (
+/obj/item/stack/ore/iron{
+	amount = 5
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"uy" = (
+/obj/structure/cable/yellow,
+/obj/structure/fluff/broken_flooring,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"uF" = (
+/obj/structure/grille/broken,
+/obj/item/stack/ore/iron{
+	amount = 5
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"uQ" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/power/smes{
+	charge = 1e+006
+	},
+/obj/effect/turf_decal/stripes/corner{
+	dir = 4
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"uT" = (
+/obj/structure/window/reinforced,
+/obj/structure/cable,
+/obj/machinery/power/smes{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"uW" = (
+/obj/effect/spawner/structure/window/plastitanium,
+/obj/machinery/door/poddoor/shutters{
+	id = "pcarrier_bridge"
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"vb" = (
+/obj/effect/turf_decal/box,
+/obj/structure/closet/crate/engineering,
+/obj/effect/decal/cleanable/oil,
+/obj/item/stack/cable_coil,
+/obj/item/reagent_containers/spray/weedspray,
+/obj/item/stack/cable_coil,
+/obj/machinery/firealarm/directional/west,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"vc" = (
+/obj/effect/decal/fakelattice,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"ve" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/glass{
+	pixel_y = 3;
+	pixel_x = 16
+	},
+/turf/open/floor/plating,
+/area/lavaland/surface/outdoors)
+"vh" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/firealarm/directional/west,
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"vF" = (
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"vU" = (
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"we" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/obj/structure/closet{
+	name = "szafka zbrojowni";
+	req_one_access_txt = "1"
+	},
+/obj/structure/railing,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/cable/yellow,
+/obj/item/gun/ballistic/shotgun/doublebarrel,
+/turf/open/floor/mineral/plastitanium,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"wh" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/cable/yellow,
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"wy" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/stack/ore/gold{
+	pixel_x = -11;
+	pixel_y = 6
+	},
+/turf/open/floor/plating/moss,
+/area/ruin/unpowered/planet_lava/cave)
+"wL" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"wN" = (
+/obj/effect/decal/cleanable/blood{
+	pixel_y = 11;
+	pixel_x = 6
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"wU" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/cobweb,
+/obj/structure/closet/secure_closet/freezer/kitchen{
+	pixel_y = 29
+	},
+/obj/item/reagent_containers/food/condiment/rice,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"xj" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/rust,
+/area/lavaland/surface/outdoors)
+"xm" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 4
+	},
+/obj/structure/cable/yellow,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"xs" = (
+/obj/machinery/light/floor,
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/plasma,
+/turf/open/floor/engine,
+/area/lavaland/surface/outdoors)
+"xY" = (
+/obj/structure/railing{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/sign/departments/cargo{
+	pixel_y = 32
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/plasteel/stairs{
+	dir = 4
+	},
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"ye" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/toilet{
+	dir = 4
+	},
+/obj/structure/spider/cocoon,
+/obj/structure/spider/stickyweb,
+/obj/structure/spider/stickyweb,
+/obj/effect/decal/cleanable/blood/old,
+/obj/effect/decal/cleanable/vomit/old,
+/obj/structure/curtain/bounty,
+/turf/open/floor/pod/light,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"yv" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/robot_debris,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 10
+	},
+/obj/item/light/tube/broken,
+/obj/structure/cable/yellow,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"yA" = (
+/turf/closed/wall/mineral/plastitanium,
+/area/lavaland/surface/outdoors)
+"yG" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/moss,
+/area/ruin/unpowered/planet_lava/cave)
+"yP" = (
+/obj/effect/turf_decal/loading_area,
+/obj/item/food/monkeycube,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"zg" = (
+/obj/effect/turf_decal/box,
+/obj/structure/grille,
+/turf/open/floor/engine,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"zj" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/closet/crate/freezer/blood,
+/obj/machinery/iv_drip,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"zt" = (
+/obj/item/kirbyplants{
+	icon_state = "plant-25"
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/pod/light,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"zD" = (
+/turf/closed/mineral/random/volcanic,
+/area/ruin/unpowered/planet_lava/cave)
+"zE" = (
+/obj/structure/flora/tree/dead/hell,
+/turf/open/floor/plating/asteroid/dirt/grass/lavaland,
+/area/ruin/unpowered/planet_lava/cave)
+"zH" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/blood{
+	pixel_y = -13;
+	pixel_x = 6
+	},
+/turf/open/floor/plating/moss,
+/area/ruin/unpowered/planet_lava/cave)
+"zZ" = (
+/obj/effect/decal/cleanable/plasma,
+/turf/open/floor/plating{
+	icon_state = "panelscorched"
+	},
+/area/lavaland/surface/outdoors)
+"Ab" = (
+/obj/machinery/atmospherics/components/binary/pump{
+	name = "pompa paliwa silnika"
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"Ag" = (
+/obj/effect/turf_decal/ship/techfloor{
+	dir = 8
+	},
+/obj/effect/turf_decal/ship/techfloor{
+	dir = 4
+	},
+/obj/effect/turf_decal/ship/borderfloor,
+/obj/machinery/power/emitter/anchored{
+	dir = 1
+	},
+/obj/structure/railing,
+/obj/structure/cable/orange,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"Ah" = (
+/obj/structure/grille/broken,
+/obj/effect/decal/cleanable/glass{
+	pixel_y = 3;
+	pixel_x = 16
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"Ao" = (
+/obj/effect/turf_decal/ship/techfloor{
+	dir = 8
+	},
+/turf/open/floor/plating{
+	icon_state = "platingdmg1"
+	},
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"As" = (
+/obj/structure/flora/stump,
+/turf/open/floor/plating/asteroid/dirt/grass/lavaland,
+/area/lavaland/surface/outdoors)
+"Av" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 6
+	},
+/obj/item/radio{
+	pixel_x = -7
+	},
+/turf/open/floor/plating{
+	icon_state = "platingdmg3"
+	},
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"AQ" = (
+/obj/effect/turf_decal/ship/techfloor{
+	dir = 8
+	},
+/obj/effect/turf_decal/ship/techfloor{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"AT" = (
+/obj/effect/turf_decal/ship/techfloor{
+	dir = 6
+	},
+/obj/structure/table/reinforced,
+/obj/machinery/status_display/shuttle{
+	pixel_y = -32
+	},
+/obj/machinery/light_switch{
+	pixel_x = 20;
+	dir = 8;
+	pixel_y = -7
+	},
+/obj/machinery/light/broken,
+/obj/item/reagent_containers/pill/lsd{
+	pixel_y = -2;
+	pixel_x = -1
+	},
+/obj/item/toy/plush/lizardplushie{
+	pixel_x = -10;
+	pixel_y = 4
+	},
+/obj/item/clothing/head/beret/black{
+	pixel_x = 8;
+	pixel_y = 9
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"AZ" = (
+/obj/effect/turf_decal/siding/wood/end,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/closet,
+/obj/item/flashlight/lantern{
+	pixel_x = 8
+	},
+/obj/item/radio/off{
+	pixel_x = -5;
+	pixel_y = -2
+	},
+/obj/structure/cable/orange,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"Bh" = (
+/obj/item/clothing/head/bandana{
+	pixel_x = 7;
+	pixel_y = -11
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"Bo" = (
+/mob/living/basic/mining/legion,
+/turf/open/floor/plating/asteroid/dirt/grass/lavaland,
+/area/ruin/unpowered/planet_lava/cave)
+"Br" = (
+/obj/structure/flora/firebush,
+/turf/open/floor/plating/asteroid/dirt/grass/lavaland,
+/area/lavaland/surface/outdoors)
+"BG" = (
+/turf/open/floor/plating/moss,
+/area/ruin/unpowered/planet_lava/cave)
+"BI" = (
+/obj/structure/lattice/catwalk/over,
+/obj/machinery/door/airlock/glass,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/atmospherics/pipe/simple/orange/hidden,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"BN" = (
+/obj/structure/bed{
+	icon_state = "dirty_mattress"
+	},
+/turf/open/floor/plating/moss,
+/area/ruin/unpowered/planet_lava/cave)
+"BX" = (
+/obj/structure/table/reinforced,
+/obj/machinery/button/door{
+	dir = 4;
+	id = "pcarrier_bridge";
+	name = "blokada mostka";
+	pixel_x = -21;
+	pixel_y = 5
+	},
+/obj/machinery/button/door{
+	dir = 4;
+	id = "pcarrier_windows";
+	name = "blokada okien";
+	pixel_x = -21;
+	pixel_y = -6
+	},
+/obj/effect/turf_decal/ship/borderfloor{
+	dir = 1
+	},
+/obj/item/pen/red{
+	pixel_x = 6;
+	pixel_y = 6
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
+/obj/item/paper_bin{
+	pixel_x = 6;
+	pixel_y = 5
+	},
+/obj/item/ammo_box/a357{
+	pixel_y = 6
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"Ci" = (
+/obj/item/stack/ore/iron{
+	pixel_x = 7;
+	amount = 5
+	},
+/obj/effect/decal/fakelattice,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"CC" = (
+/obj/machinery/door/firedoor,
+/obj/machinery/door/poddoor/shutters{
+	id = "pcarrier_cargo";
+	name = "rolety przeciwwybuchowe"
+	},
+/turf/open/floor/engine,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"CK" = (
+/obj/structure/grille/broken,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"CM" = (
+/obj/machinery/button/door{
+	pixel_x = -23;
+	pixel_y = 22;
+	dir = 4;
+	id = "pcarrier_c2"
+	},
+/obj/structure/cable/pink,
+/obj/machinery/light/small/broken,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"CR" = (
+/obj/effect/spawner/structure/window/plastitanium,
+/obj/machinery/door/poddoor/shutters{
+	id = "pcarrier_windows";
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"CT" = (
+/obj/effect/turf_decal/box,
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/obj/structure/closet/crate/secure/gear,
+/obj/item/ammo_box/c10mm,
+/obj/item/weaponcrafting/stock,
+/obj/item/weaponcrafting/stock{
+	pixel_x = -6
+	},
+/obj/item/weaponcrafting/receiver,
+/obj/item/weaponcrafting/receiver,
+/obj/item/weaponcrafting/stock{
+	pixel_x = 7
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"CU" = (
+/obj/structure/closet/crate/secure/loot,
+/turf/open/floor/plating/moss,
+/area/ruin/unpowered/planet_lava/cave)
+"CV" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 5
+	},
+/turf/open/floor/plating/moss,
+/area/ruin/unpowered/planet_lava/cave)
+"Dm" = (
+/obj/effect/turf_decal/ship/techfloor{
+	dir = 8
+	},
+/obj/structure/railing/corner{
+	dir = 1
+	},
+/obj/structure/railing/corner{
+	dir = 8
+	},
+/obj/structure/cable/yellow,
+/obj/item/trash/chips{
+	pixel_x = 3;
+	pixel_y = 2
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"Dt" = (
+/obj/effect/turf_decal/ship/techfloor{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/chair/fancy/shuttle{
+	dir = 8
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"DL" = (
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"DS" = (
+/obj/structure/lattice/catwalk/over,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/orange/hidden,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/structure/cable/yellow,
+/obj/machinery/light/broken{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"Eh" = (
+/obj/effect/turf_decal/box,
+/obj/machinery/light,
+/obj/machinery/suit_storage_unit{
+	storage_type = /obj/item/tank/jetpack/oxygen/harness
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"EE" = (
+/obj/structure/railing/corner{
+	dir = 4;
+	color = "#A47449"
+	},
+/obj/structure/closet{
+	name = "szafa z mundurami"
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable/orange,
+/obj/item/clothing/under/syndicate/camo,
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"EP" = (
+/obj/structure/railing/corner{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/cable/yellow,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"Fo" = (
+/obj/item/food/monkeycube{
+	pixel_y = -1;
+	pixel_x = 6
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"Fr" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/orange/hidden,
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/item/storage/toolbox/mechanical{
+	pixel_x = 3;
+	pixel_y = 9
+	},
+/obj/item/stock_parts/cell/high{
+	pixel_x = -14
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"FA" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/glass/plasma,
+/turf/open/floor/plating/rust,
+/area/lavaland/surface/outdoors)
+"FE" = (
+/obj/effect/spawner/structure/window/plastitanium,
+/obj/structure/curtain/bounty,
+/obj/machinery/door/poddoor/shutters{
+	id = "pcarrier_windows";
+	name = "rolety przeciwwybuchowe";
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"FR" = (
+/obj/machinery/light/floor,
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/engine,
+/area/lavaland/surface/outdoors)
+"Gh" = (
+/obj/structure/flora/tree/dead,
+/turf/open/floor/plating/asteroid/dirt/grass/lavaland,
+/area/lavaland/surface/outdoors)
+"Gn" = (
+/obj/structure/flora/ausbushes/fullgrass/hell,
+/turf/open/floor/plating/asteroid/dirt/grass/lavaland,
+/area/lavaland/surface/outdoors)
+"Gr" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/components/unary/passive_vent{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 5
+	},
+/obj/structure/lattice/catwalk/over,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"GM" = (
+/obj/structure/bed,
+/obj/effect/turf_decal/siding/wood{
+	dir = 9
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood{
+	icon_state = "wood-broken5"
+	},
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"GX" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/flora/ausbushes/sparsegrass/hell,
+/turf/open/floor/plating/moss,
+/area/ruin/unpowered/planet_lava/cave)
+"Hf" = (
+/obj/item/radio/intercom/directional/east,
+/obj/effect/decal/cleanable/glass{
+	pixel_y = -12;
+	pixel_x = -9
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"Hk" = (
+/obj/structure/closet/emcloset/anchored,
+/obj/item/stack/sticky_tape,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/orange/hidden{
+	dir = 9
+	},
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"Hs" = (
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 9
+	},
+/turf/open/floor/engine,
+/area/lavaland/surface/outdoors)
+"Hw" = (
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/table,
+/obj/machinery/cell_charger,
+/obj/structure/grille/broken,
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"HV" = (
+/obj/structure/cable/orange,
+/obj/item/clothing/shoes/jackboots,
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"Ij" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/door/airlock/grunge{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"Iq" = (
+/obj/machinery/power/apc/auto_name/west{
+	start_charge = 0
+	},
+/obj/structure/cable/orange,
+/obj/structure/railing{
+	dir = 4
+	},
+/turf/open/floor/plasteel/stairs,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"Iu" = (
+/obj/machinery/power/terminal,
+/obj/structure/cable/yellow,
+/obj/structure/chair/stool{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/item/skub{
+	pixel_x = -5;
+	pixel_y = 6
+	},
+/obj/item/trash/can{
+	pixel_x = -8;
+	pixel_y = -2
+	},
+/obj/effect/decal/cleanable/glass{
+	pixel_y = -10;
+	pixel_x = 9
+	},
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"IS" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 8
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"IX" = (
+/obj/structure/lattice/catwalk/over,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/airalarm/directional/west,
+/obj/machinery/atmospherics/pipe/simple/orange/hidden,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"Jf" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/wallframe/firealarm,
+/obj/machinery/light/broken,
+/obj/structure/frame/machine,
+/obj/structure/cable/yellow,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"Jl" = (
+/obj/item/stack/ore/titanium{
+	pixel_x = -12;
+	pixel_y = 11
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"Jv" = (
+/obj/effect/turf_decal/ship/techfloor/corner,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/cable/yellow,
+/obj/item/stack/ore/bluespace_crystal{
+	pixel_x = -9;
+	pixel_y = -9;
+	amount = 5
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"JF" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/blood/tracks,
+/obj/effect/decal/cleanable/blood/old{
+	icon_state = "gib1-old";
+	pixel_x = -3;
+	pixel_y = -6
+	},
+/obj/effect/decal/cleanable/blood/drip,
+/obj/effect/decal/cleanable/blood/footprints{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/blood/innards{
+	pixel_y = -7
+	},
+/turf/open/floor/plating/moss,
+/area/ruin/unpowered/planet_lava/cave)
+"JJ" = (
+/obj/structure/flora/ausbushes/fullgrass/hell,
+/turf/open/floor/plating/moss,
+/area/ruin/unpowered/planet_lava/cave)
+"JK" = (
+/obj/structure/foamedmetal,
+/turf/template_noop,
+/area/lavaland/surface/outdoors)
+"Kn" = (
+/obj/structure/lattice/catwalk/over,
+/obj/machinery/door/airlock/glass,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/atmospherics/pipe/simple/orange/hidden,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"KD" = (
+/obj/structure/foamedmetal,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"KS" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/fakelattice,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"KY" = (
+/turf/open/floor/plating/asteroid/dirt/grass/lavaland,
+/area/ruin/unpowered/planet_lava/cave)
+"Lb" = (
+/obj/machinery/door/airlock/maintenance{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"Le" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable/yellow,
+/obj/structure/frame/machine,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"Lk" = (
+/obj/structure/cable/orange,
+/obj/item/wallframe/airalarm{
+	pixel_x = 7;
+	pixel_y = 5
+	},
+/obj/item/pickaxe/drill{
+	pixel_y = -12
+	},
+/turf/open/floor/plasteel/stairs{
+	dir = 4
+	},
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"Ll" = (
+/obj/structure/railing,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/simple/orange/hidden{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"Lo" = (
+/turf/open/floor/plating/asteroid/dirt/grass/lavaland,
+/area/lavaland/surface/outdoors)
+"Lp" = (
+/obj/structure/railing/corner{
+	dir = 1
+	},
+/obj/machinery/status_display/shuttle{
+	pixel_y = 32
+	},
+/obj/structure/cable/yellow,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"Lt" = (
+/obj/structure/closet/crate/coffin,
+/obj/effect/mob_spawn/human/corpse/pirate,
+/turf/open/floor/plating/moss,
+/area/ruin/unpowered/planet_lava/cave)
+"LB" = (
+/obj/item/pushbroom{
+	pixel_x = 6;
+	pixel_y = 7
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"LP" = (
+/obj/structure/sign/poster/ripped{
+	pixel_x = 32
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/frame/machine{
+	anchored = 1
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"LR" = (
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"LW" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/rack,
+/obj/item/storage/pill_bottle/epinephrine{
+	pixel_x = 8;
+	pixel_y = -3
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"Mi" = (
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/obj/structure/frame/machine,
+/obj/structure/railing,
+/obj/structure/sign/poster/ripped{
+	pixel_x = 32
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"Mk" = (
+/obj/structure/flora/rock/pile,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"Mp" = (
+/turf/open/floor/engine,
+/area/lavaland/surface/outdoors)
+"Ms" = (
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"ML" = (
+/obj/effect/turf_decal/ship/techfloor{
+	dir = 8
+	},
+/obj/effect/turf_decal/ship/techfloor{
+	dir = 4
+	},
+/obj/effect/turf_decal/ship/borderfloor,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable/pink,
+/obj/structure/frame/machine,
+/obj/structure/railing,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"MM" = (
+/turf/open/floor/plating{
+	icon_state = "platingdmg3"
+	},
+/area/lavaland/surface/outdoors)
+"MS" = (
+/obj/item/clothing/shoes/jackboots,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/glass{
+	pixel_x = -13;
+	pixel_y = 7
+	},
+/turf/open/floor/plating/rust,
+/area/lavaland/surface/outdoors)
+"MZ" = (
+/obj/machinery/atmospherics/components/unary/shuttle/heater{
+	dir = 1
+	},
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"Na" = (
+/turf/open/floor/plating,
+/area/lavaland/surface/outdoors)
+"Ni" = (
+/obj/machinery/computer/card/minor/cmo{
+	dir = 8
+	},
+/obj/effect/turf_decal/ship/techfloor{
+	dir = 5
+	},
+/obj/item/radio/intercom/directional/east,
+/mob/living/simple_animal/parrot{
+	name = "Papryczka"
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"Nm" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/girder/displaced,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"Nt" = (
+/obj/structure/disposalpipe/broken,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"Nz" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/plasma,
+/turf/open/floor/engine,
+/area/lavaland/surface/outdoors)
+"NV" = (
+/obj/structure/table,
+/obj/machinery/microwave{
+	pixel_y = 5
+	},
+/obj/machinery/airalarm/directional/east,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"NW" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/orange/hidden,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 5
+	},
+/obj/structure/lattice/catwalk/over,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/structure/cable/yellow,
+/obj/item/stack/sheet/mineral/plasma/five{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"NX" = (
+/obj/structure/cable,
+/obj/structure/shuttle/engine/propulsion{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"Od" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/moss,
+/area/ruin/unpowered/planet_lava/cave)
+"Oe" = (
+/obj/structure/flora/rock/lava,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"Og" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/blood/drip,
+/obj/effect/decal/cleanable/blood/drip{
+	pixel_x = 6;
+	pixel_y = 15
+	},
+/turf/open/floor/engine,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"On" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 8
+	},
+/turf/open/floor/wood{
+	icon_state = "wood-broken4"
+	},
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"Oo" = (
+/obj/machinery/door/airlock/grunge{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/structure/cable/orange,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"OI" = (
+/obj/item/grown/log/tree,
+/turf/open/floor/plating/asteroid/dirt/grass/lavaland,
+/area/lavaland/surface/outdoors)
+"OO" = (
+/obj/effect/spawner/structure/window/plastitanium,
+/obj/machinery/door/poddoor/shutters{
+	id = "pcarrier_windows";
+	name = "rolety przeciwwybuchowe";
+	dir = 4
+	},
+/obj/structure/curtain/bounty,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"OP" = (
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal/ship/borderfloor,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 1
+	},
+/obj/machinery/airalarm/directional/south,
+/obj/item/modular_computer/tablet/preset/cheap,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"OY" = (
+/obj/structure/flora/ash/fireblossom,
+/turf/open/floor/plating/asteroid/dirt/grass/lavaland,
+/area/lavaland/surface/outdoors)
+"Pg" = (
+/turf/open/floor/plating{
+	icon_state = "panelscorched"
+	},
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"Pk" = (
+/obj/structure/closet/crate/silvercrate,
+/obj/item/clothing/neck/cloak/qm,
+/turf/open/floor/plating/moss,
+/area/ruin/unpowered/planet_lava/cave)
+"Po" = (
+/obj/structure/railing/corner{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/cable/yellow,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"PI" = (
+/obj/effect/spawner/structure/window/plastitanium,
+/obj/machinery/door/poddoor/shutters{
+	id = "pcarrier_windows";
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"PO" = (
+/obj/effect/decal/cleanable/blood/drip,
+/obj/effect/decal/cleanable/blood/drip{
+	pixel_x = -21;
+	pixel_y = 11
+	},
+/obj/effect/decal/cleanable/blood/drip{
+	pixel_x = -10;
+	pixel_y = 15
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"PQ" = (
+/obj/structure/grille,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"PS" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"PU" = (
+/obj/structure/railing,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/orange/hidden{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable/yellow,
+/obj/item/stack/ore/iron{
+	pixel_x = -14;
+	pixel_y = 14;
+	amount = 10
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"Qa" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/mineral/plastitanium,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"Qe" = (
+/obj/effect/decal/fakelattice,
+/obj/item/stack/ore/titanium{
+	pixel_x = -3;
+	pixel_y = -6
+	},
+/obj/item/stack/rods,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"QK" = (
+/obj/structure/lattice/catwalk/over,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/simple/orange/hidden,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"QQ" = (
+/obj/structure/closet/crate/goldcrate,
+/turf/open/floor/plating/moss,
+/area/ruin/unpowered/planet_lava/cave)
+"QS" = (
+/obj/effect/turf_decal/loading_area,
+/obj/item/food/monkeycube{
+	pixel_y = 5;
+	pixel_x = 3
+	},
+/obj/effect/decal/cleanable/ash/large,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"QU" = (
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/engine,
+/area/lavaland/surface/outdoors)
+"Ra" = (
+/obj/structure/flora/ash/stem_shroom,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"Rc" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/machinery/door/firedoor,
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/turf/open/floor/plasteel/stairs{
+	dir = 1
+	},
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"Rf" = (
+/obj/item/clothing/under/syndicate/camo,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"Rn" = (
+/obj/structure/lattice/catwalk/over,
+/obj/structure/sign/departments/medbay/alt{
+	pixel_x = -32
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/pipe/simple/orange/hidden,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/structure/cable/yellow,
+/obj/structure/grille/broken,
+/obj/item/stack/medical/suture{
+	pixel_x = -10;
+	pixel_y = 12
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"Rr" = (
+/obj/effect/decal/cleanable/glass{
+	pixel_x = -13;
+	pixel_y = 7
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"Rx" = (
+/obj/structure/foamedmetal,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"RB" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/sink{
+	dir = 4;
+	pixel_x = -12
+	},
+/obj/structure/mirror{
+	pixel_x = -26
+	},
+/obj/structure/spider/stickyweb,
+/obj/effect/spawner/lootdrop/glowstick,
+/turf/open/floor/pod/light,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"RR" = (
+/obj/machinery/door/airlock/external/glass{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"Sb" = (
+/obj/structure/railing{
+	dir = 1
+	},
+/obj/structure/noticeboard{
+	pixel_y = 28
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/plasteel/stairs{
+	dir = 8
+	},
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"Si" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"Sp" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/stack/ore/gold{
+	pixel_x = -9;
+	amount = 5
+	},
+/turf/open/floor/plating{
+	icon_state = "platingdmg3"
+	},
+/area/lavaland/surface/outdoors)
+"Sr" = (
+/turf/template_noop,
+/area/template_noop)
+"SC" = (
+/obj/effect/decal/cleanable/blood/drip,
+/obj/effect/decal/cleanable/blood/drip{
+	pixel_x = -21;
+	pixel_y = 11
+	},
+/obj/structure/flora/ausbushes/sparsegrass/hell,
+/turf/open/floor/plating/moss,
+/area/ruin/unpowered/planet_lava/cave)
+"SJ" = (
+/obj/effect/decal/cleanable/blood/drip,
+/obj/effect/decal/cleanable/blood/old,
+/obj/effect/decal/cleanable/blood/old{
+	icon_state = "floor6-old";
+	pixel_x = 12
+	},
+/turf/open/floor/engine,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"SM" = (
+/obj/structure/flora/ausbushes/sparsegrass/hell,
+/turf/open/floor/plating/asteroid/dirt/grass/lavaland,
+/area/lavaland/surface/outdoors)
+"SP" = (
+/obj/item/stack/ore/silver{
+	pixel_x = -9
+	},
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"Th" = (
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/simple/orange/hidden,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/lattice/catwalk/over,
+/obj/item/storage/pill_bottle/happy{
+	pixel_x = -10;
+	pixel_y = -2
+	},
+/obj/item/reagent_containers/pill/lsd{
+	pixel_y = -6;
+	pixel_x = -3
+	},
+/obj/item/reagent_containers/pill/lsd{
+	pixel_y = -2;
+	pixel_x = 5
+	},
+/obj/item/reagent_containers/pill/lsd{
+	pixel_y = -8;
+	pixel_x = 11
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"TL" = (
+/obj/structure/closet/crate/coffin,
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/obj/effect/mob_spawn/human/corpse/pirate/ranged,
+/turf/open/floor/plating/moss,
+/area/ruin/unpowered/planet_lava/cave)
+"Ue" = (
+/obj/structure/railing,
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/simple/orange/hidden{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/plasteel/stairs{
+	dir = 8
+	},
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"Uf" = (
+/obj/effect/decal/cleanable/blood/drip{
+	pixel_x = -21;
+	pixel_y = 11
+	},
+/turf/open/floor/engine,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"Uo" = (
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 8;
+	color = "#fb9700"
+	},
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/engine,
+/area/lavaland/surface/outdoors)
+"Ur" = (
+/obj/item/stack/ore/iron{
+	pixel_x = 13;
+	pixel_y = 17;
+	amount = 5
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"UQ" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 10
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"Vp" = (
+/obj/effect/decal/cleanable/cobweb,
+/turf/open/floor/plating/moss,
+/area/ruin/unpowered/planet_lava/cave)
+"Wh" = (
+/obj/structure/grille/broken,
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/plating{
+	icon_state = "panelscorched"
+	},
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"Wk" = (
+/obj/structure/flora/tree/dead/tall/grey,
+/turf/open/floor/plating/asteroid/dirt/grass/lavaland,
+/area/lavaland/surface/outdoors)
+"Wm" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/stack/ore/iron{
+	amount = 5
+	},
+/turf/open/floor/plasteel/grimy,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"Wu" = (
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/door/firedoor,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/stairs{
+	dir = 1
+	},
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"WA" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/closet/crate/trashcart,
+/obj/item/trash/canned/beans{
+	pixel_x = 4;
+	pixel_y = -5
+	},
+/obj/item/trash/popcorn,
+/obj/item/trash/candy,
+/obj/item/trash/chips,
+/obj/item/trash/pistachios{
+	pixel_x = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 9
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"WE" = (
+/mob/living/basic/mining/legion,
+/turf/open/floor/plating/moss,
+/area/ruin/unpowered/planet_lava/cave)
+"WJ" = (
+/obj/effect/decal/cleanable/blood/drip{
+	pixel_x = -21;
+	pixel_y = 11
+	},
+/obj/effect/decal/cleanable/blood/drip{
+	pixel_x = -10;
+	pixel_y = 15
+	},
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"WK" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/layer_manifold{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/item/stack/sheet/mineral/plasma/five{
+	pixel_x = -2;
+	pixel_y = -3
+	},
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"WN" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating{
+	icon_state = "panelscorched"
+	},
+/area/lavaland/surface/outdoors)
+"Xd" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/blood/drip,
+/obj/effect/decal/cleanable/blood/drip{
+	pixel_x = -10;
+	pixel_y = 15
+	},
+/turf/open/floor/engine,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"Xg" = (
+/obj/structure/window/reinforced,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/processor,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"Xn" = (
+/obj/structure/lattice/catwalk/over,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/pipe/simple/orange/hidden,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"Xo" = (
+/obj/effect/decal/cleanable/blood/drip,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"Xp" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/stack/cable_coil/cut,
+/turf/open/floor/plating{
+	icon_state = "panelscorched"
+	},
+/area/lavaland/surface/outdoors)
+"Xv" = (
+/obj/item/stack/ore/iron{
+	pixel_x = -14;
+	pixel_y = 14;
+	amount = 10
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"Xy" = (
+/obj/structure/window/reinforced,
+/obj/machinery/door/window/northright{
+	name = "Dostęp do silnika"
+	},
+/obj/structure/cable,
+/obj/machinery/power/smes{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 9
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"XN" = (
+/obj/structure/chair/greyscale{
+	dir = 1
+	},
+/obj/machinery/button/door{
+	pixel_x = 21;
+	pixel_y = 22;
+	dir = 8;
+	id = "pcarrier_c1"
+	},
+/obj/structure/cable/orange,
+/obj/machinery/light/small/broken,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"XU" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/components/binary/pump{
+	name = "pompa paliwa silnika"
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/glass{
+	pixel_y = -12;
+	pixel_x = -9
+	},
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"Yb" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/stack/ore/silver{
+	pixel_x = -7;
+	pixel_y = 8;
+	amount = 5
+	},
+/turf/open/floor/plating{
+	icon_state = "panelscorched"
+	},
+/area/lavaland/surface/outdoors)
+"Yo" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable/yellow,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/glass{
+	pixel_y = -12;
+	pixel_x = -9
+	},
+/obj/machinery/atmospherics/pipe/simple/orange/hidden{
+	dir = 6
+	},
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"YB" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/stack/ore/titanium{
+	pixel_x = -3;
+	pixel_y = -6
+	},
+/turf/open/floor/plating,
+/area/lavaland/surface/outdoors)
+"YI" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/frame/machine,
+/obj/machinery/light/small/broken,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"Zd" = (
+/obj/effect/turf_decal/ship/techfloor{
+	dir = 8
+	},
+/obj/machinery/button/door{
+	pixel_y = 10;
+	pixel_x = -23;
+	dir = 4;
+	name = "rolety ładowni";
+	id = "pcarrier_cargo"
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/frame/computer{
+	anchored = 1;
+	can_be_unanchored = 1;
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"Zk" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/stack/ore/gold{
+	pixel_x = 5;
+	pixel_y = 6
+	},
+/turf/open/floor/plating/moss,
+/area/ruin/unpowered/planet_lava/cave)
+"Zp" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/stack/ore/glass/basalt{
+	amount = 15;
+	pixel_x = -6;
+	pixel_y = -8
+	},
+/obj/effect/decal/cleanable/blood/drip{
+	pixel_x = -21;
+	pixel_y = 11
+	},
+/obj/effect/decal/cleanable/blood/drip,
+/obj/effect/decal/cleanable/blood/drip{
+	pixel_x = 6;
+	pixel_y = 15
+	},
+/turf/open/floor/engine,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"Zt" = (
+/obj/structure/cable/yellow,
+/obj/machinery/power/terminal,
+/obj/effect/turf_decal/stripes/corner{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/glass{
+	pixel_y = 3;
+	pixel_x = 16
+	},
+/obj/machinery/power/apc/auto_name/west{
+	start_charge = 0
+	},
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_lava/crashed_starwalker)
+"ZG" = (
+/obj/structure/grille,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"ZH" = (
+/obj/effect/decal/cleanable/blood/drip{
+	pixel_x = -21;
+	pixel_y = 11
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"ZY" = (
+/obj/item/stack/cable_coil/cut{
+	pixel_y = -9;
+	pixel_x = 9
+	},
+/turf/open/floor/plating/rust,
+/area/lavaland/surface/outdoors)
+
+(1,1,1) = {"
+Sr
+Sr
+Sr
+Sr
+Sr
+Sr
+Sr
+Sr
+Sr
+zD
+zD
+zD
+vF
+vF
+vF
+vF
+vF
+vF
+Lo
+Sr
+Sr
+Sr
+Sr
+Sr
+Sr
+Sr
+Sr
+Lo
+Gn
+Lo
+Sr
+Sr
+Sr
+Sr
+Sr
+Sr
+Sr
+Sr
+Sr
+Sr
+Sr
+Sr
+Lo
+Lo
+Lo
+Lo
+Lo
+Lo
+Sr
+Sr
+Sr
+Sr
+Sr
+Sr
+Sr
+Sr
+"}
+(2,1,1) = {"
+Sr
+Sr
+Sr
+Sr
+Sr
+Sr
+Sr
+zD
+zD
+zD
+zD
+zD
+zD
+yA
+vF
+vF
+vF
+vF
+Lo
+Lo
+Lo
+Sr
+Sr
+Sr
+Sr
+Lo
+Lo
+Lo
+gd
+Lo
+Lo
+Lo
+Sr
+Sr
+Sr
+Sr
+Sr
+Sr
+Sr
+Sr
+Sr
+Lo
+Lo
+Br
+Lo
+gd
+Lo
+Lo
+ex
+Sr
+Sr
+Sr
+Sr
+Sr
+Sr
+Sr
+"}
+(3,1,1) = {"
+Sr
+Sr
+Sr
+Sr
+Sr
+Sr
+zD
+zD
+zD
+zD
+zD
+zD
+zD
+Hs
+vF
+vF
+lk
+lk
+lk
+lk
+Lo
+Lo
+Lo
+Lo
+Lo
+Gn
+Br
+Lo
+Lo
+Lo
+Gn
+Lo
+Lo
+Lo
+Sr
+Lo
+Lo
+Lo
+Lo
+Lo
+Lo
+ex
+Lo
+Gn
+Lo
+Lo
+Lo
+Gn
+Lo
+Lo
+Sr
+Sr
+Sr
+Sr
+Sr
+Sr
+"}
+(4,1,1) = {"
+Sr
+Sr
+Sr
+Sr
+Sr
+zD
+zD
+zD
+zD
+gQ
+aQ
+zD
+Ra
+bn
+ra
+ra
+Uo
+vF
+vF
+xs
+vF
+vF
+Lo
+Lo
+OY
+Lo
+Lo
+Gh
+Lo
+ex
+Lo
+OY
+Lo
+Gn
+Gn
+Lo
+Lo
+Lo
+Wk
+Lo
+Gn
+Lo
+Gn
+Lo
+Lo
+Gn
+Lo
+Br
+Lo
+Lo
+Lo
+Sr
+Sr
+Sr
+Sr
+Sr
+"}
+(5,1,1) = {"
+Sr
+Sr
+Sr
+Sr
+zD
+zD
+zD
+hU
+JJ
+zH
+GX
+vF
+vF
+bn
+vF
+vF
+KS
+ra
+vF
+Mp
+vF
+vF
+Mk
+vF
+ex
+Lo
+Lo
+Lo
+Lo
+Gn
+Lo
+Lo
+Lo
+Lo
+Lo
+Br
+Lo
+Lo
+Lo
+Gn
+Lo
+Lo
+Lo
+Wk
+Lo
+Lo
+ex
+Lo
+Lo
+Lo
+Lo
+Sr
+Sr
+Sr
+Sr
+Sr
+"}
+(6,1,1) = {"
+Sr
+Sr
+Sr
+Sr
+zD
+zD
+zD
+zD
+ua
+CV
+hu
+hu
+hu
+hu
+hu
+wN
+vF
+vF
+ra
+ra
+ra
+vF
+vF
+vF
+vF
+Gn
+Lo
+Lo
+Br
+Lo
+Lo
+Gn
+Lo
+Lo
+Lo
+Lo
+Gn
+Lo
+Lo
+gd
+Lo
+Lo
+Lo
+Lo
+Lo
+Gn
+Lo
+Lo
+Gn
+Lo
+gd
+Sr
+Sr
+Sr
+Sr
+Sr
+"}
+(7,1,1) = {"
+Sr
+Sr
+Sr
+Sr
+zD
+zD
+zD
+zD
+zD
+zD
+zD
+zD
+zD
+vF
+Mk
+vF
+ra
+vF
+vF
+vF
+vF
+ra
+vF
+vF
+vF
+vF
+kL
+Lo
+Lo
+Lo
+Lo
+Lo
+Wk
+Gn
+Lo
+ex
+Lo
+Gn
+Lo
+Lo
+Lo
+Lo
+Gn
+Lo
+Lo
+OY
+Gn
+Lo
+Lo
+Lo
+Lo
+Sr
+Sr
+Sr
+Sr
+Sr
+"}
+(8,1,1) = {"
+Sr
+Sr
+Sr
+Sr
+Sr
+zD
+zD
+zD
+zD
+zD
+zD
+zD
+vF
+vF
+vF
+vF
+Nz
+sf
+vF
+vF
+vF
+hc
+ra
+mv
+Sp
+vF
+vF
+vF
+vF
+Lo
+ex
+Lo
+Gn
+Gn
+Lo
+Lo
+gd
+Lo
+Lo
+Lo
+Br
+Lo
+Lo
+gd
+Lo
+Lo
+Gn
+Lo
+Gh
+Lo
+Lo
+Lo
+Sr
+Sr
+Sr
+Sr
+"}
+(9,1,1) = {"
+Sr
+Sr
+Sr
+Sr
+zD
+zD
+zD
+zD
+zD
+zD
+zD
+zD
+vF
+vF
+kL
+vF
+au
+au
+ZG
+sf
+sf
+hP
+FA
+KS
+YB
+ve
+kw
+vF
+vF
+vF
+vF
+vF
+vF
+vF
+vF
+vF
+vF
+vF
+vF
+vF
+vF
+vF
+vF
+Lo
+Lo
+Lo
+Lo
+Lo
+Gn
+Lo
+Gn
+Lo
+Sr
+Sr
+Sr
+Sr
+"}
+(10,1,1) = {"
+Sr
+Sr
+Sr
+zD
+zD
+zD
+zD
+zD
+Vp
+JJ
+zD
+zD
+vF
+vF
+vF
+vF
+vF
+vF
+vF
+QU
+FR
+ra
+ra
+Nm
+vc
+Na
+jU
+Ur
+vF
+jS
+vF
+KD
+ps
+Ms
+ps
+DL
+DL
+CR
+DL
+ps
+vF
+vF
+vF
+vF
+ra
+ra
+ra
+ra
+Lo
+Lo
+Br
+Lo
+Lo
+Sr
+Sr
+Sr
+"}
+(11,1,1) = {"
+Sr
+Sr
+zD
+zD
+zD
+zD
+CU
+BG
+dm
+CU
+zD
+zD
+vF
+vF
+vF
+vF
+vF
+vF
+vF
+vF
+vF
+vF
+vF
+vF
+vF
+vF
+ra
+ra
+bw
+vF
+gC
+vF
+DL
+DL
+DL
+kK
+DL
+uu
+qt
+DL
+ps
+ra
+ra
+ra
+ra
+vF
+vF
+vF
+vF
+vF
+vF
+vF
+vF
+Sr
+Sr
+Sr
+"}
+(12,1,1) = {"
+Sr
+zD
+zD
+zD
+zD
+QQ
+dW
+CU
+oD
+GX
+Ra
+vF
+vF
+vF
+zD
+zD
+vF
+vF
+vF
+vF
+vF
+Mk
+vF
+vF
+kL
+vF
+vF
+ra
+Yb
+fz
+PQ
+KD
+DL
+ye
+RB
+sx
+DL
+dD
+cY
+YI
+DL
+DL
+DL
+DL
+DL
+ps
+ra
+cU
+cU
+cU
+cU
+ra
+ra
+Sr
+Sr
+Sr
+"}
+(13,1,1) = {"
+Sr
+zD
+zD
+zD
+Pk
+Zk
+wy
+yG
+aW
+yG
+vF
+vF
+vF
+vF
+zD
+zD
+zD
+vF
+vF
+Mk
+vF
+vF
+vF
+vF
+vF
+KD
+KD
+iu
+tD
+zZ
+tD
+CK
+DL
+DL
+fw
+DL
+DL
+zj
+ti
+LW
+DL
+uQ
+nj
+Iu
+tg
+NX
+cU
+cU
+mt
+ra
+ra
+ra
+ra
+vF
+Sr
+Sr
+"}
+(14,1,1) = {"
+Sr
+zD
+zD
+zD
+aH
+or
+lX
+JF
+yG
+PO
+qH
+Xo
+vF
+vF
+vF
+zD
+zD
+vF
+jI
+vF
+uF
+DL
+DL
+FE
+OO
+DL
+wU
+wL
+iu
+tD
+tD
+KD
+oG
+BI
+dV
+cy
+Rn
+Xn
+Th
+mO
+fH
+NW
+gg
+Ab
+MZ
+eG
+vF
+vF
+vF
+vF
+cU
+cU
+cU
+vF
+Sr
+Sr
+"}
+(15,1,1) = {"
+Sr
+zD
+zD
+zD
+kY
+pk
+Od
+Od
+SC
+ZH
+rz
+WJ
+vF
+vF
+vF
+vF
+zD
+vF
+vF
+Pg
+lq
+lq
+lq
+Ag
+XN
+DL
+NV
+pi
+Xg
+Le
+ct
+wh
+Jf
+DL
+Mi
+aF
+bk
+Rx
+im
+tv
+DL
+eR
+WK
+bs
+Xy
+NX
+cU
+cU
+cU
+cU
+cU
+vF
+vF
+vF
+vF
+Sr
+"}
+(16,1,1) = {"
+Sr
+zD
+zD
+zD
+kC
+BN
+JJ
+yG
+JJ
+Xo
+vF
+zD
+vF
+vF
+jI
+vF
+Mk
+vF
+KD
+ps
+DL
+DL
+DL
+DL
+Oo
+DL
+DL
+DL
+DL
+rd
+sM
+li
+kd
+DL
+DL
+DL
+CR
+Rx
+Rx
+DL
+DL
+DL
+si
+DL
+DL
+ps
+ra
+ra
+cU
+cU
+vF
+ra
+ra
+ra
+ra
+Sr
+"}
+(17,1,1) = {"
+Sr
+Sr
+zD
+zD
+zD
+zD
+zD
+TL
+Lt
+zD
+zD
+zD
+vF
+vF
+vF
+vc
+vc
+Ci
+KD
+zg
+iy
+ps
+DL
+vb
+Lk
+sa
+Zd
+ji
+DL
+xY
+ld
+qx
+DL
+ps
+vF
+pw
+tY
+LB
+gR
+LR
+vF
+vF
+vF
+vF
+vF
+vF
+kL
+vF
+vF
+cU
+cU
+cU
+cU
+ra
+ra
+Sr
+"}
+(18,1,1) = {"
+Sr
+Sr
+zD
+zD
+zD
+zD
+zD
+zD
+zD
+zD
+zD
+cU
+vF
+jI
+vF
+vF
+uw
+KD
+KD
+SJ
+lJ
+ul
+CC
+yP
+PS
+pR
+jt
+xm
+Wu
+EP
+PU
+zt
+rB
+vF
+vF
+LR
+vF
+gR
+vF
+vF
+vF
+vF
+vF
+vF
+vF
+vF
+vF
+vF
+vF
+vF
+vF
+vF
+vF
+Lo
+Lo
+Sr
+"}
+(19,1,1) = {"
+Sr
+zD
+zD
+zD
+zD
+zD
+zD
+zD
+zD
+zD
+zD
+cU
+vF
+vF
+vF
+kL
+vF
+KD
+KD
+Zp
+Og
+Xd
+Uf
+QS
+eJ
+Fo
+Nt
+yv
+Rc
+Po
+Ll
+as
+rB
+vF
+vF
+vF
+LR
+vF
+vF
+vF
+vF
+vF
+vF
+OI
+SM
+Lo
+SM
+vF
+vF
+vF
+vF
+SM
+OI
+As
+Lo
+Sr
+"}
+(20,1,1) = {"
+Sr
+zD
+zD
+zD
+zD
+zD
+zD
+zD
+zD
+zD
+zD
+cU
+mt
+vF
+vF
+vF
+vF
+Ur
+KD
+rC
+re
+ps
+DL
+CT
+SP
+LP
+Hf
+Eh
+DL
+Sb
+Ue
+av
+DL
+ps
+vF
+vF
+vF
+KD
+KD
+KD
+KD
+vF
+vF
+vF
+vF
+As
+Lo
+Lo
+Lo
+Lo
+Lo
+Lo
+Lo
+SM
+Lo
+Sr
+"}
+(21,1,1) = {"
+Sr
+zD
+zD
+zD
+zD
+zD
+zD
+zD
+zD
+zD
+zD
+cU
+cU
+vF
+vF
+vF
+vc
+vc
+vc
+ps
+DL
+DL
+DL
+DL
+bp
+DL
+DL
+DL
+DL
+Lp
+kF
+vU
+Hw
+DL
+DL
+DL
+CR
+Wh
+CR
+KD
+KD
+vF
+vF
+vF
+dv
+vF
+vF
+vF
+vF
+SM
+OI
+Lo
+Lo
+Lo
+Lo
+Sr
+"}
+(22,1,1) = {"
+zD
+zD
+zD
+zD
+zD
+zD
+zD
+zD
+zD
+zD
+zD
+zD
+cU
+vF
+jI
+vF
+jI
+vF
+vF
+JK
+Ao
+AQ
+po
+ML
+CM
+DL
+pm
+eQ
+Qa
+uy
+tT
+sI
+Fr
+Kn
+IX
+DS
+QK
+Gr
+KD
+KD
+vF
+vF
+vF
+vF
+vF
+vF
+vF
+vF
+vF
+vF
+vF
+vF
+As
+Lo
+Lo
+Lo
+"}
+(23,1,1) = {"
+zD
+zD
+zD
+zD
+zD
+zD
+zD
+zD
+zD
+zD
+zD
+zD
+cU
+vF
+vF
+vF
+vF
+Mk
+vF
+JK
+JK
+JK
+DL
+DL
+Ah
+DL
+mk
+dk
+we
+Av
+WA
+DL
+DL
+DL
+DL
+DL
+DL
+Lb
+DL
+Rr
+vF
+vF
+vF
+vF
+vF
+vF
+vF
+vF
+vF
+dv
+vF
+vF
+vF
+vF
+Lo
+SM
+"}
+(24,1,1) = {"
+zD
+zD
+zD
+zD
+zD
+zD
+Bo
+zD
+zD
+zD
+zD
+zD
+cU
+cU
+Oe
+vF
+vF
+vF
+vF
+vF
+vF
+JK
+JK
+vF
+vF
+ps
+DL
+DL
+DL
+Ij
+DL
+DL
+GM
+UQ
+Iq
+EE
+vh
+kI
+di
+om
+Qe
+dy
+vF
+vF
+kL
+vF
+vF
+vF
+vF
+vF
+vF
+vF
+vF
+vF
+vF
+Lo
+"}
+(25,1,1) = {"
+zD
+zD
+zD
+zD
+zD
+KY
+KY
+Bo
+zD
+zD
+zD
+zD
+zD
+cU
+cU
+vF
+vF
+vF
+vF
+vF
+Mk
+vF
+vF
+vF
+vF
+vF
+vF
+DL
+BX
+lt
+OP
+DL
+gt
+On
+AZ
+lw
+HV
+Wm
+Jl
+Bh
+bN
+vc
+MM
+Ur
+vF
+vF
+vF
+vF
+vF
+ra
+ra
+ra
+vF
+vF
+vF
+vF
+"}
+(26,1,1) = {"
+zD
+zD
+zD
+zD
+zD
+KY
+zE
+KY
+KY
+JJ
+zD
+zD
+zD
+zD
+zD
+zD
+vF
+vF
+vF
+vF
+vF
+vF
+vF
+Mk
+vF
+vF
+vF
+uW
+aV
+Dm
+dJ
+DL
+DL
+PI
+DL
+lj
+Rf
+vF
+MS
+gC
+Xp
+ms
+vc
+ZY
+vF
+RR
+DL
+DL
+ps
+ra
+cU
+cU
+cU
+vF
+vF
+vF
+"}
+(27,1,1) = {"
+zD
+zD
+zD
+zD
+zD
+zD
+KY
+KY
+BG
+np
+ua
+JJ
+BG
+ua
+Ra
+vF
+vF
+vF
+vF
+vF
+vF
+vF
+vF
+vF
+vF
+vF
+vF
+uW
+Dt
+Jv
+AT
+DL
+ps
+vF
+vF
+vF
+vF
+hW
+vF
+pw
+vF
+WN
+WN
+sH
+IS
+gO
+Zt
+uT
+NX
+cU
+cU
+ra
+ra
+ra
+vF
+Sr
+"}
+(28,1,1) = {"
+Sr
+zD
+zD
+zD
+zD
+zD
+KY
+JJ
+WE
+ua
+BG
+ua
+BG
+JJ
+BG
+vF
+vF
+vF
+vF
+vF
+vF
+vF
+vF
+vF
+vF
+vF
+vF
+uW
+Ni
+nW
+DL
+ps
+vF
+vF
+vF
+vF
+vF
+vF
+vF
+vF
+Rf
+Jl
+vc
+mF
+Si
+Yo
+XU
+ak
+eG
+mm
+ra
+ra
+vF
+vF
+Sr
+Sr
+"}
+(29,1,1) = {"
+Sr
+zD
+zD
+zD
+zD
+zD
+ua
+mX
+BG
+BG
+BG
+ua
+BG
+BG
+BG
+ua
+zD
+zD
+zD
+zD
+zD
+zD
+cU
+cU
+Oe
+vF
+vF
+ps
+DL
+DL
+ps
+vF
+vF
+vF
+Mk
+vF
+vF
+vF
+xj
+Xv
+vF
+vF
+pw
+DL
+ef
+Hk
+bO
+rO
+NX
+cU
+cU
+cU
+vF
+vF
+Sr
+Sr
+"}
+(30,1,1) = {"
+Sr
+Sr
+zD
+zD
+zD
+zD
+zD
+zD
+zD
+ua
+JJ
+ua
+mX
+BG
+JJ
+zD
+zD
+zD
+zD
+zD
+zD
+zD
+zD
+cU
+cU
+cU
+vF
+vF
+vF
+vF
+vF
+vF
+vF
+vF
+vF
+vF
+vF
+vF
+vF
+vF
+vF
+vF
+vF
+DL
+DL
+DL
+DL
+DL
+ps
+ra
+ra
+vF
+Sr
+Sr
+Sr
+Sr
+"}
+(31,1,1) = {"
+Sr
+Sr
+Sr
+Sr
+zD
+zD
+zD
+zD
+zD
+zD
+zD
+zD
+zD
+zD
+zD
+zD
+zD
+zD
+zD
+zD
+zD
+zD
+zD
+zD
+zD
+zD
+zD
+zD
+zD
+zD
+zD
+zD
+vF
+vF
+vF
+vF
+vF
+vF
+vF
+Mk
+vF
+vF
+DL
+ps
+vF
+vF
+vF
+vF
+vF
+vF
+ra
+Sr
+Sr
+Sr
+Sr
+Sr
+"}
+(32,1,1) = {"
+Sr
+Sr
+Sr
+Sr
+Sr
+Sr
+zD
+zD
+zD
+zD
+zD
+zD
+zD
+zD
+zD
+zD
+zD
+zD
+Sr
+Sr
+zD
+zD
+zD
+zD
+zD
+zD
+zD
+zD
+zD
+zD
+zD
+zD
+zD
+zD
+zD
+zD
+vF
+vF
+vF
+vF
+vF
+vF
+ps
+vF
+vF
+vF
+vF
+vF
+vF
+vF
+Sr
+Sr
+Sr
+Sr
+Sr
+Sr
+"}
+(33,1,1) = {"
+Sr
+Sr
+Sr
+Sr
+Sr
+Sr
+Sr
+Sr
+zD
+zD
+zD
+zD
+zD
+zD
+zD
+zD
+zD
+Sr
+Sr
+Sr
+Sr
+Sr
+Sr
+Sr
+Sr
+Sr
+Sr
+Sr
+Sr
+Sr
+zD
+zD
+zD
+zD
+zD
+zD
+zD
+zD
+zD
+zD
+zD
+vF
+vF
+vF
+vF
+vF
+vF
+vF
+vF
+Sr
+Sr
+Sr
+Sr
+Sr
+Sr
+Sr
+"}

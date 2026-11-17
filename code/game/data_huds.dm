@@ -159,6 +159,8 @@
 
 //called when a living mob changes health
 /mob/living/proc/med_hud_set_health()
+	if(!hud_list) // AQ EDIT - mob z szablonu ruiny trafiony, zanim przeszedł Initialize (wieżyczki strzelają w trakcie wczytywania)
+		return
 	var/image/holder = hud_list[HEALTH_HUD]
 	if(holder)
 		holder.icon_state = "hud[RoundHealth(src)]"
@@ -173,6 +175,8 @@
 //called when a carbon changes stat, virus or XENO_HOST
 /mob/living/proc/med_hud_set_status()
 	SIGNAL_HANDLER
+	if(!hud_list) // AQ EDIT - mob z szablonu ruiny trafiony, zanim przeszedł Initialize (wieżyczki strzelają w trakcie wczytywania)
+		return
 	var/image/holder = hud_list[STATUS_HUD]
 	if(holder)
 		holder.pixel_y = get_cached_height() - world.icon_size // AQ EDIT - tgstation/tgstation#88266: wysokość z pamięci, bez nowej ikony

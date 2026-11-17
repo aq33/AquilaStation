@@ -1,0 +1,254 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"f" = (
+/turf/template_noop,
+/area/template_noop)
+"j" = (
+/obj/effect/spawner/lootdrop/planet_chance/whitesands_fauna,
+/turf/open/floor/plating/asteroid/whitesands,
+/area/template_noop)
+"m" = (
+/obj/effect/spawner/lootdrop/planet_chance/rock,
+/turf/open/floor/plating/asteroid/whitesands,
+/area/template_noop)
+"o" = (
+/obj/effect/spawner/lootdrop/planet_chance/puce,
+/obj/effect/spawner/lootdrop/planet_chance/whitesands_fauna,
+/turf/open/floor/plating/asteroid/whitesands/dried,
+/area/template_noop)
+"z" = (
+/obj/effect/spawner/lootdrop/planet_chance/fern,
+/turf/open/floor/plating/asteroid/whitesands/dried,
+/area/template_noop)
+"A" = (
+/turf/open/floor/plating/asteroid/whitesands/dried,
+/area/template_noop)
+"D" = (
+/turf/closed/mineral/random/whitesands,
+/area/template_noop)
+"E" = (
+/obj/effect/spawner/lootdrop/planet_chance/puce,
+/turf/open/floor/plating/asteroid/whitesands/dried,
+/area/template_noop)
+"M" = (
+/turf/open/floor/plating/asteroid/whitesands,
+/area/template_noop)
+"N" = (
+/obj/effect/spawner/lootdrop/planet_chance/fern,
+/turf/open/floor/plating/asteroid/whitesands,
+/area/template_noop)
+"O" = (
+/obj/effect/spawner/lootdrop/planet_chance/rock,
+/turf/open/floor/plating/asteroid/whitesands/dried,
+/area/template_noop)
+"P" = (
+/turf/open/water/planet/acid,
+/area/template_noop)
+"X" = (
+/obj/effect/spawner/lootdrop/planet_chance/whitesands_fauna,
+/turf/open/floor/plating/asteroid/whitesands/dried,
+/area/template_noop)
+
+(1,1,1) = {"
+f
+f
+f
+f
+f
+D
+f
+M
+f
+f
+"}
+(2,1,1) = {"
+f
+f
+f
+D
+D
+A
+E
+P
+D
+f
+"}
+(3,1,1) = {"
+f
+f
+f
+P
+P
+j
+N
+P
+f
+f
+"}
+(4,1,1) = {"
+f
+f
+f
+D
+M
+P
+P
+M
+D
+f
+"}
+(5,1,1) = {"
+f
+f
+D
+D
+m
+P
+M
+D
+D
+f
+"}
+(6,1,1) = {"
+f
+D
+D
+D
+E
+P
+P
+P
+D
+f
+"}
+(7,1,1) = {"
+D
+D
+M
+P
+P
+P
+P
+P
+D
+f
+"}
+(8,1,1) = {"
+D
+A
+M
+P
+P
+E
+P
+P
+D
+D
+"}
+(9,1,1) = {"
+f
+E
+P
+P
+P
+E
+P
+M
+A
+D
+"}
+(10,1,1) = {"
+f
+z
+E
+P
+P
+P
+P
+M
+A
+f
+"}
+(11,1,1) = {"
+f
+D
+O
+M
+P
+P
+P
+E
+X
+D
+"}
+(12,1,1) = {"
+f
+D
+D
+A
+M
+P
+N
+M
+O
+D
+"}
+(13,1,1) = {"
+f
+f
+D
+A
+E
+P
+P
+E
+M
+D
+"}
+(14,1,1) = {"
+f
+f
+D
+o
+P
+D
+D
+P
+P
+M
+"}
+(15,1,1) = {"
+f
+f
+f
+E
+P
+M
+A
+M
+D
+P
+"}
+(16,1,1) = {"
+f
+f
+f
+D
+P
+E
+z
+D
+f
+P
+"}
+(17,1,1) = {"
+f
+f
+f
+P
+f
+f
+D
+D
+f
+f
+"}

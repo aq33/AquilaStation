@@ -1,0 +1,140 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"b" = (
+/obj/structure/flora/grass/green,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"d" = (
+/turf/template_noop,
+/area/template_noop)
+"n" = (
+/obj/structure/flora/ash/garden/frigid,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"u" = (
+/obj/structure/flora/grass/brown,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"v" = (
+/obj/structure/flora/tree/pine,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"C" = (
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"O" = (
+/mob/living/basic/snow_monkey,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"P" = (
+/mob/living/basic/mining/wolf,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"T" = (
+/mob/living/basic/mining/wolf/alpha,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"U" = (
+/obj/structure/flora/grass/both,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+
+(1,1,1) = {"
+C
+n
+C
+C
+u
+d
+d
+d
+"}
+(2,1,1) = {"
+U
+u
+C
+C
+C
+U
+d
+d
+"}
+(3,1,1) = {"
+d
+C
+v
+T
+u
+P
+C
+d
+"}
+(4,1,1) = {"
+d
+d
+u
+C
+O
+C
+C
+b
+"}
+(5,1,1) = {"
+d
+d
+d
+n
+P
+C
+u
+n
+"}
+(6,1,1) = {"
+d
+d
+d
+d
+b
+C
+C
+C
+"}
+(7,1,1) = {"
+d
+d
+d
+d
+C
+C
+U
+C
+"}
+(8,1,1) = {"
+d
+d
+d
+d
+d
+C
+C
+d
+"}
+(9,1,1) = {"
+d
+d
+d
+d
+d
+u
+C
+d
+"}
+(10,1,1) = {"
+d
+d
+d
+d
+d
+C
+d
+d
+"}

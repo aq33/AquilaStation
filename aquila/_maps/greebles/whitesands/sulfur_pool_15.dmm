@@ -1,0 +1,78 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"c" = (
+/turf/open/floor/plating/asteroid/whitesands,
+/area/template_noop)
+"d" = (
+/obj/effect/spawner/lootdrop/planet_chance/fern,
+/turf/open/floor/plating/asteroid/whitesands/dried,
+/area/template_noop)
+"k" = (
+/obj/effect/spawner/lootdrop/planet_chance/fern,
+/turf/open/floor/plating/asteroid/whitesands,
+/area/template_noop)
+"v" = (
+/obj/effect/spawner/lootdrop/planet_chance/puce,
+/turf/open/floor/plating/asteroid/whitesands/dried,
+/area/template_noop)
+"B" = (
+/obj/effect/spawner/lootdrop/planet_chance/whitesands_fauna,
+/turf/open/floor/plating/asteroid/whitesands/dried,
+/area/template_noop)
+"L" = (
+/turf/open/water/planet/acid,
+/area/template_noop)
+"N" = (
+/turf/template_noop,
+/area/template_noop)
+"W" = (
+/turf/open/floor/plating/asteroid/whitesands/dried,
+/area/template_noop)
+
+(1,1,1) = {"
+N
+N
+W
+N
+"}
+(2,1,1) = {"
+N
+c
+d
+N
+"}
+(3,1,1) = {"
+v
+L
+c
+B
+"}
+(4,1,1) = {"
+N
+L
+L
+v
+"}
+(5,1,1) = {"
+v
+L
+c
+c
+"}
+(6,1,1) = {"
+B
+c
+L
+v
+"}
+(7,1,1) = {"
+N
+k
+L
+c
+"}
+(8,1,1) = {"
+N
+L
+v
+N
+"}

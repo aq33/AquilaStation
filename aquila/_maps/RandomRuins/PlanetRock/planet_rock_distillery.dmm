@@ -1,0 +1,6920 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aj" = (
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/ruin/unpowered/planet_rock/distillery/shuttle)
+"ay" = (
+/obj/effect/turf_decal/siding/wood,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery/saloon)
+"aD" = (
+/obj/structure/closet/crate/bin,
+/obj/effect/turf_decal/siding/white{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/spawner/lootdrop/maintenance/two,
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_rock/distillery/office)
+"aH" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/table/glass,
+/obj/item/lighter/greyscale{
+	pixel_x = 7;
+	pixel_y = -1
+	},
+/obj/item/reagent_containers/glass/beaker{
+	list_reagents = list(/datum/reagent/oxygen = 50);
+	pixel_x = -5
+	},
+/obj/item/reagent_containers/glass/beaker{
+	list_reagents = list(/datum/reagent/carbon = 50);
+	pixel_y = 12
+	},
+/obj/item/reagent_containers/syringe{
+	pixel_y = 6
+	},
+/turf/open/floor/plating/rust{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery)
+"aZ" = (
+/turf/template_noop,
+/area/template_noop)
+"bs" = (
+/obj/structure/shuttle/engine/propulsion,
+/obj/structure/cable/yellow,
+/turf/open/floor/engine,
+/area/ruin/unpowered/planet_rock/distillery/shuttle)
+"bG" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/obj/effect/mine/explosive{
+	layer = 2.8
+	},
+/turf/open/floor/plating/asteroid/rockplanet,
+/area/lavaland/surface/outdoors)
+"bI" = (
+/obj/structure/table,
+/obj/item/healthanalyzer{
+	pixel_y = 18
+	},
+/obj/item/reagent_containers/glass/bucket{
+	pixel_x = 3;
+	pixel_y = 8
+	},
+/obj/item/reagent_containers/glass/bucket{
+	pixel_x = -4;
+	pixel_y = 2
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/monotile/steel{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery)
+"bM" = (
+/obj/effect/turf_decal/stripes/line,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2,
+/obj/structure/cable/yellow,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4,
+/obj/machinery/door/airlock/external/glass,
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_rock/distillery/crew)
+"bN" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/chair/fancy/sofa/old{
+	dir = 8
+	},
+/turf/open/floor/monotile/steel{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery)
+"bU" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
+	dir = 10
+	},
+/obj/structure/cable,
+/turf/open/floor/wood{
+	icon_state = "wood-broken"
+	},
+/area/ruin/unpowered/planet_rock/distillery/crew)
+"bV" = (
+/obj/effect/turf_decal/trimline/neutral/filled/line{
+	dir = 5;
+	alpha = 255
+	},
+/obj/effect/turf_decal/siding/white/corner{
+	dir = 8;
+	color = "#FFFFFF"
+	},
+/obj/structure/railing/corner{
+	dir = 8;
+	layer = 4.1
+	},
+/turf/open/floor/plasteel{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"cz" = (
+/obj/machinery/vending/cola/random,
+/obj/effect/turf_decal/siding/white{
+	color = "#FFFFFF"
+	},
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_rock/distillery/crew)
+"cH" = (
+/obj/structure/flora/rock/pile/rockplanet,
+/turf/open/floor/plating/asteroid/rockplanet/wet,
+/area/lavaland/surface/outdoors)
+"cM" = (
+/obj/structure/cable,
+/turf/open/floor/pod/light{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery)
+"cZ" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 10;
+	color = "#FFFFFF"
+	},
+/obj/effect/turf_decal/trimline/neutral/filled/corner{
+	dir = 4;
+	alpha = 255
+	},
+/obj/structure/cable,
+/turf/open/floor/plasteel{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"do" = (
+/obj/structure/chair/stool/bar{
+	dir = 4;
+	pixel_x = 6
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery/saloon)
+"du" = (
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 1;
+	color = "#fb9700"
+	},
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/effect/turf_decal/ship/techfloor,
+/obj/machinery/door/window/brigdoor/southleft{
+	req_one_access_txt = "10"
+	},
+/obj/item/storage/toolbox/emergency,
+/obj/item/gun/ballistic/revolver,
+/obj/structure/chair/fancy/shuttle{
+	dir = 1
+	},
+/obj/item/ammo_box/c45,
+/turf/open/floor/monotile/steel{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery/shuttle)
+"dA" = (
+/obj/effect/turf_decal/siding/wood,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_rock/distillery/crew)
+"dE" = (
+/obj/structure/chair/office,
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/button/door{
+	id = "frontier_armory";
+	name = "zamek drzwi zbrojowni";
+	normaldoorcontrol = 1;
+	pixel_x = 6;
+	pixel_y = 24;
+	specialfunctions = 4
+	},
+/mob/living/basic/trooper/pirate/ranged,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_rock/distillery/office)
+"dY" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/machinery/door/airlock/grunge{
+	dir = 4;
+	id_tag = "frontier_door"
+	},
+/obj/structure/cable,
+/turf/open/floor/pod/light{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery)
+"ei" = (
+/obj/structure/window/reinforced/fulltile,
+/obj/machinery/door/poddoor/shutters{
+	dir = 4;
+	id = "mudskipper_engine"
+	},
+/obj/structure/grille,
+/turf/open/floor/plating{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery/saloon)
+"ek" = (
+/obj/structure/window/reinforced,
+/obj/structure/chair/fancy/shuttle{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 1;
+	color = "#fb9700"
+	},
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/machinery/light/small{
+	pixel_y = -6;
+	dir = 4
+	},
+/obj/machinery/light_switch{
+	dir = 8
+	},
+/obj/effect/turf_decal/ship/techfloor,
+/obj/machinery/light_switch{
+	dir = 8;
+	pixel_x = 22;
+	pixel_y = 5
+	},
+/obj/effect/decal/cleanable/generic,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/cable,
+/obj/item/reagent_containers/food/drinks/bottle/vodka,
+/turf/open/floor/monotile/steel{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery/shuttle)
+"en" = (
+/obj/structure/table/wood/poker,
+/obj/effect/turf_decal/siding/white{
+	dir = 10;
+	color = "#FFFFFF"
+	},
+/obj/item/stack/spacecash/c1{
+	pixel_y = 8
+	},
+/obj/item/stack/spacecash/c100,
+/obj/item/stack/spacecash/c10{
+	pixel_x = 4
+	},
+/turf/open/floor/monotile/steel{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery/saloon)
+"er" = (
+/obj/machinery/light/floor,
+/turf/open/floor/plating{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"eF" = (
+/obj/structure/flora/ausbushes/sunnybush{
+	layer = 3
+	},
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/plating/asteroid/rockplanet,
+/area/lavaland/surface/outdoors)
+"eW" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4,
+/obj/machinery/power/apc/auto_name/east,
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood{
+	icon_state = "wood-broken6"
+	},
+/area/ruin/unpowered/planet_rock/distillery/office)
+"eY" = (
+/obj/structure/table,
+/obj/item/stack/cable_coil,
+/obj/item/stack/cable_coil{
+	pixel_y = 3
+	},
+/obj/item/stock_parts/manipulator{
+	pixel_x = 4;
+	pixel_y = 5
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
+	dir = 8
+	},
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_rock/distillery/engineering)
+"fg" = (
+/turf/closed/wall,
+/area/ruin/unpowered/planet_rock/distillery/crew)
+"fx" = (
+/obj/structure/flora/ausbushes/sunnybush{
+	layer = 3
+	},
+/turf/open/floor/plating/asteroid/rockplanet,
+/area/lavaland/surface/outdoors)
+"fF" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 6;
+	color = "#FFFFFF"
+	},
+/obj/effect/turf_decal/trimline/neutral/filled/corner{
+	dir = 1;
+	alpha = 255
+	},
+/obj/structure/railing{
+	dir = 6
+	},
+/turf/open/floor/plasteel{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"fW" = (
+/obj/machinery/shower{
+	pixel_y = 12
+	},
+/obj/structure/lattice/catwalk/over,
+/obj/structure/window/reinforced/tinted{
+	dir = 8
+	},
+/obj/machinery/door/window/southright,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_rock/distillery/crew)
+"fZ" = (
+/obj/effect/turf_decal/trimline/neutral/filled/line{
+	alpha = 255
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 1;
+	color = "#FFFFFF"
+	},
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/structure/railing{
+	dir = 1
+	},
+/turf/open/floor/plasteel{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"gc" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 10
+	},
+/obj/structure/glowshroom,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery/saloon)
+"gx" = (
+/obj/effect/mine/explosive,
+/turf/open/floor/plating/asteroid/rockplanet,
+/area/lavaland/surface/outdoors)
+"gy" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 4
+	},
+/obj/structure/chair/office{
+	dir = 8
+	},
+/mob/living/basic/trooper/pirate/ranged,
+/turf/open/floor/pod/light{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery)
+"gC" = (
+/obj/effect/turf_decal/trimline/neutral/filled/line{
+	dir = 1;
+	alpha = 255
+	},
+/obj/effect/turf_decal/siding/white{
+	color = "#FFFFFF"
+	},
+/obj/structure/cable,
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/structure/railing{
+	layer = 4.1
+	},
+/turf/open/floor/plasteel{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"gH" = (
+/turf/closed/wall,
+/area/ruin/unpowered/planet_rock/distillery/office)
+"gT" = (
+/obj/structure/girder,
+/obj/item/stack/ore/iron,
+/turf/open/floor/plating/rust,
+/area/lavaland/surface/outdoors)
+"gU" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/cable,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "pod_window"
+	},
+/obj/machinery/power/terminal{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/ruin/unpowered/planet_rock/distillery/shuttle)
+"gV" = (
+/obj/machinery/shower{
+	pixel_y = 12
+	},
+/obj/structure/lattice/catwalk/over,
+/obj/structure/window/reinforced/tinted{
+	dir = 4
+	},
+/obj/machinery/door/window/southleft,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_rock/distillery/crew)
+"hd" = (
+/obj/effect/turf_decal/trimline/neutral/filled/line{
+	dir = 1;
+	alpha = 255
+	},
+/obj/effect/turf_decal/siding/white{
+	color = "#FFFFFF"
+	},
+/obj/structure/railing{
+	layer = 4.1
+	},
+/turf/open/floor/plasteel{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"hf" = (
+/obj/effect/decal/cleanable/ash,
+/obj/item/cigbutt{
+	pixel_x = -3;
+	pixel_y = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/cable,
+/obj/effect/turf_decal/siding/white{
+	dir = 6;
+	color = "#FFFFFF"
+	},
+/turf/open/floor/monotile/steel{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery)
+"hk" = (
+/obj/structure/flora/rock/rockplanet,
+/turf/open/floor/plating/asteroid/rockplanet,
+/area/lavaland/surface/outdoors)
+"hL" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 9
+	},
+/obj/effect/turf_decal/siding/white/corner,
+/obj/structure/sink{
+	pixel_y = 16
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/insectguts,
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_rock/distillery/crew)
+"ik" = (
+/turf/closed/wall/r_wall/rust,
+/area/ruin/unpowered/planet_lava/cave)
+"iu" = (
+/obj/effect/turf_decal/trimline/neutral/filled/line{
+	dir = 8;
+	alpha = 255
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 4;
+	color = "#FFFFFF"
+	},
+/obj/effect/decal/cleanable/blood/splatter,
+/turf/open/floor/plasteel{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"iw" = (
+/obj/effect/turf_decal/loading_area,
+/obj/effect/turf_decal/siding/white{
+	dir = 4;
+	color = "#FFFFFF"
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 8;
+	color = "#FFFFFF"
+	},
+/turf/open/floor/plasteel{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery/crew)
+"iA" = (
+/obj/structure/rack,
+/obj/item/clothing/suit/armor/vest/old,
+/obj/item/clothing/head/fedora/det_hat{
+	pixel_x = -4
+	},
+/obj/item/clothing/head/beret/black{
+	pixel_x = 4
+	},
+/obj/item/cigbutt{
+	pixel_x = 4
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 10
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery/saloon)
+"iO" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/power/port_gen/pacman/super,
+/obj/effect/turf_decal/siding/white/end{
+	dir = 4
+	},
+/obj/structure/cable/yellow,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_rock/distillery/engineering)
+"jg" = (
+/obj/effect/turf_decal/trimline/neutral/filled/line{
+	dir = 6;
+	alpha = 255
+	},
+/obj/effect/turf_decal/siding/white/corner{
+	dir = 1;
+	color = "#FFFFFF"
+	},
+/obj/structure/railing/corner{
+	dir = 1
+	},
+/obj/structure/railing/corner{
+	dir = 1
+	},
+/turf/open/floor/plasteel{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"jl" = (
+/obj/structure/flora/ash/stem_shroom,
+/turf/open/floor/plating/asteroid/rockplanet/cracked,
+/area/lavaland/surface/outdoors)
+"jw" = (
+/obj/structure/lattice/catwalk/over,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer4{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_rock/distillery/engineering)
+"jA" = (
+/obj/structure/flora/ash/cacti,
+/turf/open/floor/plating/asteroid/rockplanet,
+/area/lavaland/surface/outdoors)
+"jH" = (
+/obj/structure/flora/ash/cacti,
+/turf/open/floor/plating/asteroid/rockplanet/cracked,
+/area/lavaland/surface/outdoors)
+"jL" = (
+/obj/effect/decal/cleanable/vomit/old,
+/obj/effect/turf_decal/siding/white{
+	dir = 9;
+	color = "#FFFFFF"
+	},
+/turf/open/floor/monotile/steel{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery)
+"jV" = (
+/obj/structure/window/reinforced/fulltile,
+/obj/structure/grille,
+/turf/open/floor/plating{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery)
+"jX" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 9;
+	color = "#FFFFFF"
+	},
+/obj/structure/chair/fancy/sofa/old,
+/turf/open/floor/monotile/steel{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery/saloon)
+"jZ" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/light/small/broken{
+	dir = 4
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery/saloon)
+"ka" = (
+/obj/structure/table/wood,
+/obj/effect/turf_decal/siding/wood{
+	dir = 9
+	},
+/obj/item/food/chips{
+	pixel_x = -3;
+	pixel_y = 4
+	},
+/obj/item/reagent_containers/food/drinks/bottle/ale,
+/turf/open/floor/wood{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery/saloon)
+"ki" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/glass,
+/obj/structure/grille/broken,
+/obj/structure/barricade/wooden,
+/turf/open/floor/plating{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery/saloon)
+"kj" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/structure/table/wood,
+/obj/item/paper_bin,
+/obj/item/pen/fountain,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_rock/distillery/office)
+"kl" = (
+/obj/machinery/shower{
+	dir = 1
+	},
+/obj/structure/lattice/catwalk/over,
+/obj/structure/window/reinforced/tinted{
+	dir = 4
+	},
+/obj/machinery/door/window/northleft,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_rock/distillery/crew)
+"kr" = (
+/obj/effect/turf_decal/siding/white/corner{
+	color = "#FFFFFF"
+	},
+/obj/effect/turf_decal/trimline/neutral/filled/line{
+	dir = 9;
+	alpha = 255
+	},
+/obj/structure/railing/corner{
+	layer = 4.1
+	},
+/turf/open/floor/plasteel{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"kt" = (
+/obj/structure/lattice/catwalk/over/ship,
+/turf/open/floor/plating{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"kz" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/glowshroom,
+/turf/open/floor/monotile/steel{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery)
+"kC" = (
+/obj/structure/chair/wood{
+	dir = 8;
+	pixel_x = -4
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery/saloon)
+"kE" = (
+/obj/machinery/door/airlock/grunge,
+/obj/effect/turf_decal/stripes/line,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/pod/light{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery)
+"kP" = (
+/obj/structure/fermenting_barrel{
+	pixel_y = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/paper/fluff/ruins/planet_piaski/distillery{
+	default_raw_text = "Zwędzone ze statku SRM, który przelatywał przez sektor. Przyda się, gdyby coś się stało z naszym obecnym alembikiem.";
+	name = "notatka"
+	},
+/turf/open/floor/plating{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery)
+"kQ" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 5
+	},
+/obj/structure/cable,
+/turf/open/floor/wood{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery)
+"kS" = (
+/obj/machinery/door/airlock{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/floor/pod/light{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery)
+"la" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
+	dir = 9
+	},
+/obj/structure/cable,
+/obj/machinery/photocopier,
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_rock/distillery/office)
+"li" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 5
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/chair/fancy/sofa/old,
+/turf/open/floor/carpet,
+/area/ruin/unpowered/planet_rock/distillery/crew)
+"lk" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/cable,
+/obj/effect/turf_decal/siding/white{
+	dir = 10;
+	color = "#FFFFFF"
+	},
+/turf/open/floor/monotile/steel{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery)
+"lo" = (
+/obj/structure/cable,
+/turf/open/floor/plating{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery)
+"lu" = (
+/obj/structure/flora/ash/cap_shroom,
+/turf/open/floor/plating/asteroid/rockplanet,
+/area/lavaland/surface/outdoors)
+"lx" = (
+/obj/structure/window/reinforced/fulltile,
+/obj/machinery/door/poddoor/shutters{
+	id = "engi_window"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/visible/layer2{
+	dir = 1
+	},
+/obj/structure/grille,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_rock/distillery/engineering)
+"lQ" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood{
+	icon_state = "wood-broken6"
+	},
+/area/ruin/unpowered/planet_rock/distillery/office)
+"lU" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/glowshroom,
+/turf/open/floor/plating{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery)
+"lW" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/structure/glowshroom,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
+	dir = 8
+	},
+/obj/structure/cable,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_rock/distillery/crew)
+"mc" = (
+/obj/structure/table/wood/poker,
+/obj/effect/turf_decal/siding/white{
+	dir = 9;
+	color = "#FFFFFF"
+	},
+/obj/item/toy/cards/deck{
+	pixel_x = 6;
+	pixel_y = -4
+	},
+/turf/open/floor/monotile/steel{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery/saloon)
+"mt" = (
+/obj/structure/table/wood,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
+	dir = 5
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_rock/distillery/office)
+"mF" = (
+/obj/effect/turf_decal/stripes/line,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/door/airlock/grunge,
+/turf/open/floor/pod/light{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery/crew)
+"mK" = (
+/obj/effect/turf_decal/box,
+/obj/structure/closet/crate/secure/weapon{
+	name = "skrzynia z amunicją"
+	},
+/obj/item/ammo_box/a762,
+/obj/item/ammo_box/c9mm/ap,
+/obj/machinery/button/door{
+	dir = 4;
+	id = "frontier_armory";
+	name = "zamek drzwi zbrojowni";
+	normaldoorcontrol = 1;
+	pixel_x = -22;
+	pixel_y = -6;
+	specialfunctions = 4
+	},
+/obj/item/ammo_box/a762,
+/obj/item/ammo_box/a762,
+/obj/item/ammo_box/magazine/pistolm9mm,
+/obj/item/ammo_box/magazine/pistolm9mm,
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_rock/distillery/office)
+"mM" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 8;
+	color = "#FFFFFF"
+	},
+/obj/effect/turf_decal/trimline/neutral/filled/line{
+	dir = 4;
+	alpha = 255
+	},
+/obj/structure/railing{
+	dir = 8
+	},
+/turf/open/floor/plasteel{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"mQ" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 9
+	},
+/obj/structure/chair/fancy/sofa/old,
+/turf/open/floor/carpet,
+/area/ruin/unpowered/planet_rock/distillery/crew)
+"mR" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 10;
+	color = "#FFFFFF"
+	},
+/obj/effect/turf_decal/trimline/neutral/filled/corner{
+	dir = 4;
+	alpha = 255
+	},
+/obj/structure/railing{
+	layer = 4.1
+	},
+/turf/open/floor/plasteel{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"mW" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_rock/distillery/office)
+"nb" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
+	dir = 6
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_rock/distillery/crew)
+"nk" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/machinery/power/smes,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "pod_window"
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/engine,
+/area/ruin/unpowered/planet_rock/distillery/shuttle)
+"nr" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 9;
+	color = "#FFFFFF"
+	},
+/obj/effect/turf_decal/trimline/neutral/filled/corner{
+	alpha = 255
+	},
+/turf/open/floor/plasteel{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"nv" = (
+/obj/structure/cable,
+/turf/open/floor/plating{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"nI" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/obj/structure/table,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/cigbutt,
+/obj/item/cigbutt{
+	pixel_x = 6;
+	pixel_y = 8
+	},
+/obj/item/reagent_containers/food/drinks/bottle/vodka{
+	pixel_x = -6;
+	pixel_y = 6
+	},
+/turf/open/floor/carpet,
+/area/ruin/unpowered/planet_rock/distillery/crew)
+"nM" = (
+/turf/closed/wall/r_wall,
+/area/ruin/unpowered/planet_rock/distillery/crew)
+"nT" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 9;
+	color = "#FFFFFF"
+	},
+/obj/machinery/atmospherics/components/unary/tank/air,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/visible/layer2{
+	dir = 6
+	},
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_rock/distillery/engineering)
+"og" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 9
+	},
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery/saloon)
+"ok" = (
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery/saloon)
+"om" = (
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 1;
+	color = "#fb9700"
+	},
+/obj/effect/turf_decal/stripes/white/line{
+	color = "#fb9700"
+	},
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_rock/distillery/office)
+"op" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 10
+	},
+/obj/effect/turf_decal/siding/white/corner{
+	dir = 4
+	},
+/obj/structure/sink{
+	dir = 4;
+	pixel_x = -12;
+	pixel_y = 6
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_rock/distillery/crew)
+"ow" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery/saloon)
+"oC" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 5
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery/saloon)
+"oF" = (
+/obj/machinery/door/airlock/engineering,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_rock/distillery/engineering)
+"oK" = (
+/obj/effect/turf_decal/siding/wood,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_rock/distillery/crew)
+"oL" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/machinery/holopad,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery/saloon)
+"oS" = (
+/obj/machinery/vending/cola/space_up,
+/turf/open/floor/monotile/steel{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery)
+"oX" = (
+/obj/effect/turf_decal/box/red,
+/obj/structure/frame/machine{
+	anchored = 1
+	},
+/turf/open/floor/monotile/steel{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery)
+"pa" = (
+/obj/structure/closet/secure_closet{
+	icon_state = "armory";
+	name = "szafka z pancerzami"
+	},
+/obj/effect/turf_decal/box/red,
+/obj/item/clothing/suit/armor/vest,
+/obj/item/clothing/suit/armor/vest,
+/obj/item/clothing/suit/armor/vest,
+/obj/item/clothing/head/helmet/alt,
+/obj/item/clothing/head/helmet/alt,
+/obj/item/clothing/suit/armor/vest/old,
+/obj/item/clothing/head/beret/black,
+/obj/item/clothing/gloves/combat,
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_rock/distillery/office)
+"pc" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/basic/trooper/pirate/ranged,
+/turf/open/floor/plating/rust{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery)
+"pe" = (
+/turf/closed/wall,
+/area/lavaland/surface/outdoors)
+"ph" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/machinery/turretid{
+	pixel_y = 24
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_rock/distillery/office)
+"pj" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 6;
+	color = "#FFFFFF"
+	},
+/obj/effect/turf_decal/trimline/neutral/filled/corner{
+	dir = 1;
+	alpha = 255
+	},
+/turf/open/floor/plasteel{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"pk" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/wood{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery)
+"pm" = (
+/obj/structure/bed,
+/obj/structure/curtain,
+/obj/structure/cable,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_rock/distillery/crew)
+"pp" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery/saloon)
+"pz" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 9
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/safe/floor,
+/obj/effect/decal/cleanable/crayon{
+	icon_state = "credit"
+	},
+/obj/item/stack/spacecash/c1000,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_rock/distillery/office)
+"pA" = (
+/obj/structure/chair/fancy/shuttle{
+	dir = 4;
+	layer = 3.3
+	},
+/obj/effect/turf_decal/ship/techfloor{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/white/line{
+	color = "#fb9700"
+	},
+/obj/machinery/button/door{
+	dir = 4;
+	id = "pod_aft";
+	name = "Drzwi rufowe";
+	pixel_x = -22;
+	pixel_y = -6
+	},
+/obj/machinery/button/door{
+	dir = 4;
+	id = "pod_window";
+	name = "rolety okienne";
+	pixel_x = -32
+	},
+/obj/machinery/door/window/brigdoor/northleft{
+	req_one_access_txt = "10"
+	},
+/obj/machinery/button/door{
+	dir = 4;
+	id = "pod_fore";
+	name = "Drzwi dziobowe";
+	pixel_x = -22;
+	pixel_y = 6
+	},
+/obj/effect/decal/cleanable/oil,
+/mob/living/basic/trooper/pirate/ranged,
+/turf/open/floor/monotile/steel{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery/shuttle)
+"pB" = (
+/obj/structure/window/reinforced/fulltile,
+/obj/structure/grille,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_rock/distillery/crew)
+"pH" = (
+/obj/effect/decal/cleanable/crayon{
+	color = "#FF7742";
+	icon_state = "skull";
+	pixel_x = -16
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/siding/white{
+	dir = 6;
+	color = "#FFFFFF"
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_rock/distillery/crew)
+"pJ" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 6;
+	color = "#FFFFFF"
+	},
+/obj/machinery/atmospherics/components/binary/pump/on{
+	dir = 4;
+	name = "Powietrze do dystrybucji";
+	target_pressure = 500
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_rock/distillery/engineering)
+"pK" = (
+/obj/structure/flora/rock/pile/rockplanet,
+/turf/open/floor/plating/asteroid/rockplanet/cracked,
+/area/lavaland/surface/outdoors)
+"pP" = (
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/power/apc/auto_name/east,
+/obj/structure/cable,
+/obj/machinery/light/small,
+/turf/open/floor/pod/light{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery)
+"pU" = (
+/turf/closed/wall/r_wall/rust,
+/area/ruin/unpowered/planet_rock/distillery/engineering)
+"qd" = (
+/obj/structure/closet/crate/bin,
+/obj/machinery/firealarm/directional/south{
+	buildstage = 0
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 10
+	},
+/obj/structure/cable,
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/effect/spawner/lootdrop/maintenance/four,
+/turf/open/floor/wood{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery)
+"qg" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 1;
+	color = "#FFFFFF"
+	},
+/obj/effect/turf_decal/trimline/neutral/filled/line{
+	alpha = 255
+	},
+/obj/structure/railing{
+	dir = 1
+	},
+/turf/open/floor/plasteel{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"qn" = (
+/obj/structure/table,
+/obj/item/reagent_containers/glass/beaker/large{
+	pixel_x = 5;
+	pixel_y = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/monotile/steel{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery)
+"qC" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
+	dir = 10
+	},
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_rock/distillery/office)
+"qG" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/table/glass,
+/obj/item/plant_seeds/preset/corn{
+	pixel_x = -2;
+	pixel_y = 6
+	},
+/obj/item/plant_seeds/preset/corn{
+	pixel_y = 6
+	},
+/obj/item/food/grown/corn{
+	pixel_y = 6
+	},
+/obj/item/food/grown/corn{
+	pixel_x = 3;
+	pixel_y = -2
+	},
+/obj/item/food/grown/corn{
+	pixel_x = 4;
+	pixel_y = 3
+	},
+/turf/open/floor/plating{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery)
+"qI" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/chair/fancy/sofa/old{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_rock/distillery/crew)
+"qP" = (
+/obj/structure/glowshroom,
+/obj/machinery/button/door{
+	id = "dist_cargo";
+	name = "Drzwi ładowni";
+	pixel_y = 26
+	},
+/turf/open/floor/plating{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery)
+"qZ" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/machinery/door/airlock/grunge{
+	dir = 4;
+	id_tag = "frontier_armory";
+	locked = 1;
+	security_level = 4
+	},
+/turf/open/floor/pod/light{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery/office)
+"ri" = (
+/obj/machinery/power/smes/engineering,
+/obj/effect/turf_decal/siding/white/end{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_rock/distillery/engineering)
+"rq" = (
+/obj/item/shard{
+	pixel_y = 8
+	},
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/plating{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"rr" = (
+/obj/item/stack/ore/gold{
+	pixel_x = 8;
+	amount = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/components/unary/portables_connector/visible{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
+	dir = 8
+	},
+/obj/structure/lattice/catwalk/over,
+/obj/structure/cable,
+/obj/machinery/airalarm/directional/south,
+/turf/open/floor/plating{
+	icon_state = "platingdmg1"
+	},
+/area/ruin/unpowered/planet_rock/distillery/engineering)
+"rv" = (
+/obj/effect/turf_decal/trimline/neutral/filled/line{
+	dir = 10;
+	alpha = 255
+	},
+/obj/effect/turf_decal/siding/white/corner{
+	dir = 4;
+	color = "#FFFFFF"
+	},
+/obj/structure/railing/corner{
+	dir = 4
+	},
+/turf/open/floor/plasteel{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"ry" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 10;
+	color = "#FFFFFF"
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
+	dir = 4
+	},
+/obj/item/trash/popcorn{
+	pixel_x = 7;
+	pixel_y = 12
+	},
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_rock/distillery/crew)
+"rA" = (
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery/saloon)
+"rH" = (
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery/saloon)
+"rI" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 4;
+	color = "#FFFFFF"
+	},
+/obj/effect/turf_decal/trimline/neutral/filled/line{
+	dir = 8;
+	alpha = 255
+	},
+/obj/structure/cable,
+/turf/open/floor/plasteel{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"rJ" = (
+/turf/closed/wall,
+/area/ruin/unpowered/planet_rock/distillery/engineering)
+"rS" = (
+/obj/structure/barricade/sandbags,
+/obj/effect/turf_decal/sand/plating,
+/turf/open/floor/plating{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"sA" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/plant_tray,
+/turf/open/floor/monotile/steel{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery)
+"sI" = (
+/obj/structure/reagent_dispensers/water_cooler{
+	pixel_x = 6;
+	pixel_y = 6
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery)
+"sZ" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
+	filter_types = list("co2","bz","water_vapor","freon","tritium","n20");
+	widenet = 1
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 5;
+	color = "#FFFFFF"
+	},
+/obj/structure/closet/crate/bin,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/light/small/broken{
+	dir = 4
+	},
+/obj/effect/spawner/lootdrop/maintenance/three,
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_rock/distillery/crew)
+"tf" = (
+/obj/item/stack/ore/iron{
+	amount = 5
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 10;
+	color = "#FFFFFF"
+	},
+/obj/machinery/atmospherics/pipe/manifold/cyan/visible{
+	dir = 8
+	},
+/obj/machinery/button/door{
+	dir = 4;
+	id = "engi_window";
+	name = "roleta okienna";
+	pixel_x = -22;
+	pixel_y = 6
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/components/binary/volume_pump/on/layer2{
+	dir = 1
+	},
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_rock/distillery/engineering)
+"tv" = (
+/obj/machinery/door/airlock/grunge{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_rock/distillery/office)
+"tD" = (
+/obj/effect/turf_decal/siding/white/corner{
+	dir = 4;
+	color = "#FFFFFF"
+	},
+/obj/effect/turf_decal/trimline/neutral/filled/line{
+	dir = 10;
+	alpha = 255
+	},
+/obj/structure/railing/corner{
+	dir = 4
+	},
+/turf/open/floor/plasteel{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"tE" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/wood{
+	dir = 6
+	},
+/obj/structure/cable,
+/turf/open/floor/wood{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery)
+"tM" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/table,
+/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass{
+	pixel_x = 10;
+	pixel_y = 12
+	},
+/obj/item/newspaper{
+	pixel_x = -4;
+	pixel_y = 2
+	},
+/turf/open/floor/carpet,
+/area/ruin/unpowered/planet_rock/distillery/crew)
+"tP" = (
+/obj/structure/barricade/sandbags,
+/turf/open/floor/plating/asteroid/rockplanet,
+/area/lavaland/surface/outdoors)
+"tZ" = (
+/obj/structure/girder,
+/obj/item/stack/ore/iron,
+/obj/item/stack/ore/iron,
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_rock/distillery/office)
+"uf" = (
+/obj/effect/mine/explosive{
+	layer = 2.8
+	},
+/turf/open/floor/plating/asteroid/rockplanet/cracked,
+/area/lavaland/surface/outdoors)
+"um" = (
+/obj/structure/reagent_dispensers/beerkeg{
+	desc = "Beczka pełna wątrobobójczego spirytusu pędzonego przez amatorów bimbru.";
+	name = "beczka bimbru";
+	reagent_id = /datum/reagent/consumable/ethanol/moonshine
+	},
+/obj/effect/turf_decal/loading_area/white{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 1;
+	color = "#FFFFFF"
+	},
+/obj/machinery/light/small,
+/turf/open/floor/monotile/steel{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery/saloon)
+"uv" = (
+/obj/structure/railing{
+	layer = 4.1
+	},
+/turf/open/floor/plasteel/stairs{
+	dir = 8
+	},
+/area/ruin/unpowered/planet_rock/distillery/saloon)
+"uy" = (
+/obj/effect/turf_decal/box/red,
+/obj/structure/closet/crate/medical,
+/obj/item/storage/firstaid/regular,
+/obj/item/reagent_containers/glass/bottle{
+	pixel_x = -6
+	},
+/obj/item/reagent_containers/syringe,
+/obj/item/reagent_containers/glass/bottle{
+	pixel_x = 6
+	},
+/turf/open/floor/monotile/steel{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery/crew)
+"uz" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 6;
+	color = "#FFFFFF"
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/power/apc/auto_name/south,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer2,
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_rock/distillery/crew)
+"uI" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 10
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery/saloon)
+"uM" = (
+/turf/closed/wall/rust,
+/area/ruin/unpowered/planet_rock/distillery)
+"uS" = (
+/obj/effect/turf_decal/trimline/neutral/filled/line{
+	alpha = 255
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 1;
+	color = "#FFFFFF"
+	},
+/obj/structure/railing{
+	dir = 1
+	},
+/turf/open/floor/plasteel{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"uT" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 6
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/closet/secure_closet/freezer/fridge,
+/obj/item/food/chips,
+/obj/item/food/butterdog,
+/obj/item/food/chips{
+	pixel_x = 2
+	},
+/obj/item/reagent_containers/food/drinks/bottle/rum{
+	pixel_x = -6
+	},
+/obj/item/food/canned/beans,
+/obj/item/stack/spacecash/c500,
+/obj/item/reagent_containers/food/drinks/bottle/whiskey{
+	pixel_x = 8
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery/saloon)
+"vh" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/monotile/steel{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery)
+"vu" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/plating/asteroid/rockplanet/cracked,
+/area/lavaland/surface/outdoors)
+"vy" = (
+/obj/structure/chair/office,
+/obj/effect/turf_decal/siding/white{
+	dir = 5;
+	color = "#FFFFFF"
+	},
+/mob/living/basic/trooper/pirate/ranged,
+/turf/open/floor/monotile/steel{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery/saloon)
+"vU" = (
+/turf/open/floor/plasteel/stairs,
+/area/ruin/unpowered/planet_rock/distillery/saloon)
+"vZ" = (
+/obj/machinery/door/airlock{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/floor/pod/light{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery/saloon)
+"wa" = (
+/obj/effect/turf_decal/siding/wood/end{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/carpet,
+/area/ruin/unpowered/planet_rock/distillery/office)
+"wb" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/white/corner{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 6
+	},
+/obj/effect/decal/cleanable/vomit/old,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/pod/light{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery)
+"wd" = (
+/obj/effect/turf_decal/loading_area{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/paper/fluff/ruins/planet_piaski/distillery{
+	pixel_y = -12
+	},
+/turf/open/floor/pod/light{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery)
+"wj" = (
+/turf/open/floor/pod/light{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery)
+"ww" = (
+/obj/structure/curtain,
+/obj/structure/bed{
+	dir = 8;
+	icon_state = "dirty_mattress"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_rock/distillery/crew)
+"wz" = (
+/obj/effect/turf_decal/siding/white/end{
+	dir = 1
+	},
+/obj/structure/toilet,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/light/small{
+	dir = 8
+	},
+/mob/living/basic/trooper/pirate/melee,
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_rock/distillery/crew)
+"wA" = (
+/turf/open/floor/plating/asteroid/rockplanet/wet,
+/area/lavaland/surface/outdoors)
+"wE" = (
+/obj/effect/turf_decal/trimline/neutral/filled/line{
+	dir = 6;
+	alpha = 255
+	},
+/obj/effect/turf_decal/siding/white/corner{
+	dir = 1;
+	color = "#FFFFFF"
+	},
+/obj/structure/railing/corner{
+	dir = 1
+	},
+/turf/open/floor/plasteel{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"wH" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass{
+	pixel_x = 8;
+	pixel_y = 12
+	},
+/obj/item/clothing/head/beret/black{
+	pixel_x = -4
+	},
+/turf/open/floor/monotile/steel{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery/saloon)
+"wK" = (
+/obj/structure/chair/stool/bar{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery/saloon)
+"wW" = (
+/obj/effect/turf_decal/siding/white{
+	color = "#FFFFFF"
+	},
+/obj/effect/turf_decal/trimline/neutral/filled/line{
+	dir = 1;
+	alpha = 255
+	},
+/obj/structure/cable,
+/turf/open/floor/plasteel{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"wY" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
+	dir = 6
+	},
+/obj/machinery/atmospherics/components/binary/pump{
+	dir = 8;
+	name = "Wejście do powietrza"
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer2{
+	dir = 1
+	},
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_rock/distillery/engineering)
+"xn" = (
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/obj/structure/table/glass,
+/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass{
+	pixel_x = 8;
+	pixel_y = 12
+	},
+/obj/item/clipboard{
+	pixel_x = -4;
+	pixel_y = 2
+	},
+/obj/item/paper{
+	pixel_x = -4;
+	pixel_y = 2
+	},
+/obj/item/pen,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/wood{
+	dir = 5
+	},
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery)
+"xr" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass{
+	pixel_x = 8;
+	pixel_y = 12
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass{
+	pixel_x = -4;
+	pixel_y = 14
+	},
+/obj/item/newspaper{
+	pixel_x = -4
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 8;
+	color = "#FFFFFF"
+	},
+/turf/open/floor/monotile/steel{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery/saloon)
+"xL" = (
+/obj/effect/turf_decal/loading_area{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/white{
+	color = "#FFFFFF"
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 1;
+	color = "#FFFFFF"
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_rock/distillery/office)
+"xO" = (
+/obj/structure/table/wood/poker,
+/obj/effect/turf_decal/siding/white{
+	dir = 5;
+	color = "#FFFFFF"
+	},
+/obj/item/stack/spacecash/c10,
+/obj/item/stack/spacecash/c1{
+	pixel_x = 8;
+	pixel_y = 4
+	},
+/turf/open/floor/monotile/steel{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery/saloon)
+"xP" = (
+/obj/structure/frame/machine{
+	anchored = 1
+	},
+/obj/effect/decal/cleanable/greenglow,
+/turf/open/floor/plating/asteroid/rockplanet/wet,
+/area/lavaland/surface/outdoors)
+"xT" = (
+/obj/structure/table/wood,
+/obj/item/paper_bin{
+	pixel_x = -4;
+	pixel_y = 8
+	},
+/obj/item/pen{
+	pixel_x = -4;
+	pixel_y = 8
+	},
+/obj/item/hand_labeler{
+	pixel_y = -4
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass{
+	pixel_x = 8;
+	pixel_y = 12
+	},
+/turf/open/floor/monotile/steel{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery)
+"xV" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_rock/distillery/crew)
+"yb" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 8;
+	color = "#FFFFFF"
+	},
+/obj/effect/turf_decal/trimline/neutral/filled/line{
+	dir = 4;
+	alpha = 255
+	},
+/turf/open/floor/plasteel{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"yv" = (
+/obj/structure/chair{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 10
+	},
+/turf/open/floor/carpet,
+/area/ruin/unpowered/planet_rock/distillery/office)
+"yw" = (
+/obj/structure/flora/ash/puce,
+/turf/open/floor/plating/asteroid/rockplanet/cracked,
+/area/lavaland/surface/outdoors)
+"yF" = (
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 4;
+	color = "#fb9700"
+	},
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 8;
+	color = "#fb9700"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2,
+/obj/structure/cable/yellow,
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
+	dir = 9
+	},
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_rock/distillery/crew)
+"yL" = (
+/obj/machinery/washing_machine,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/lattice/catwalk/over,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
+	dir = 9
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
+	dir = 9
+	},
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_rock/distillery/crew)
+"yM" = (
+/obj/structure/flora/ash/cacti,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plating/asteroid/rockplanet,
+/area/lavaland/surface/outdoors)
+"yQ" = (
+/obj/structure/barricade/sandbags,
+/turf/open/floor/plating/asteroid/rockplanet/cracked,
+/area/lavaland/surface/outdoors)
+"yS" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/drinks/bottle/vodka{
+	pixel_x = 4;
+	pixel_y = 6
+	},
+/obj/item/reagent_containers/food/drinks/bottle/vodka{
+	pixel_x = -6;
+	pixel_y = 2
+	},
+/obj/item/reagent_containers/food/drinks/bottle/hooch{
+	pixel_x = 7;
+	pixel_y = -4
+	},
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/monotile/steel{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery)
+"yW" = (
+/obj/structure/flora/ash/leaf_shroom,
+/turf/open/floor/plating/asteroid/rockplanet/cracked,
+/area/lavaland/surface/outdoors)
+"za" = (
+/turf/closed/mineral/random/rockplanet,
+/area/ruin/unpowered/planet_lava/cave)
+"zD" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/high_volume/on/layer4{
+	dir = 4
+	},
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_rock/distillery/crew)
+"zF" = (
+/obj/machinery/door/airlock{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_rock/distillery/crew)
+"zI" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/lattice/catwalk/over,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2,
+/obj/structure/cable,
+/turf/open/floor/plating{
+	icon_state = "panelscorched"
+	},
+/area/ruin/unpowered/planet_rock/distillery/crew)
+"zK" = (
+/obj/effect/turf_decal/siding/wood,
+/turf/open/floor/carpet,
+/area/ruin/unpowered/planet_rock/distillery/office)
+"zO" = (
+/obj/structure/lattice/catwalk/over,
+/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/cable,
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_rock/distillery/crew)
+"zP" = (
+/obj/effect/turf_decal/siding/white/end,
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/pod/light{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery/saloon)
+"zT" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 4;
+	color = "#FFFFFF"
+	},
+/obj/effect/turf_decal/trimline/neutral/filled/line{
+	dir = 8;
+	alpha = 255
+	},
+/obj/structure/railing{
+	dir = 4
+	},
+/turf/open/floor/plasteel{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"zY" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
+/obj/machinery/newscaster/directional/north,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_rock/distillery/crew)
+"Av" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 9;
+	color = "#FFFFFF"
+	},
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_rock/distillery/crew)
+"Aw" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 5;
+	color = "#FFFFFF"
+	},
+/obj/effect/decal/cleanable/generic,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_rock/distillery/crew)
+"AT" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 5
+	},
+/obj/structure/filingcabinet,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/folder/yellow,
+/obj/item/folder/documents,
+/obj/item/folder/red,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_rock/distillery/office)
+"AU" = (
+/obj/structure/flora/rock/rockplanet,
+/turf/open/floor/plating/asteroid/rockplanet/cracked,
+/area/lavaland/surface/outdoors)
+"Ba" = (
+/mob/living/basic/trooper/pirate/ranged,
+/turf/open/floor/plating/asteroid/rockplanet,
+/area/lavaland/surface/outdoors)
+"Bd" = (
+/obj/structure/lattice/catwalk/over,
+/obj/item/reagent_containers/food/drinks/bottle/vodka{
+	pixel_y = 6
+	},
+/turf/open/floor/plating{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery/saloon)
+"Be" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery/saloon)
+"Bl" = (
+/obj/machinery/atmospherics/components/unary/passive_vent/layer2,
+/obj/structure/railing{
+	layer = 4.1
+	},
+/turf/open/floor/plating{
+	icon_state = "panelscorched"
+	},
+/area/lavaland/surface/outdoors)
+"Bn" = (
+/obj/item/chair,
+/obj/structure/railing{
+	layer = 4.1
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 10;
+	color = "#FFFFFF"
+	},
+/turf/open/floor/monotile/steel{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery/saloon)
+"Bp" = (
+/obj/structure/curtain,
+/obj/structure/bed{
+	dir = 8;
+	icon_state = "dirty_mattress"
+	},
+/obj/item/bedsheet/random,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_rock/distillery/crew)
+"Bs" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 5;
+	color = "#FFFFFF"
+	},
+/obj/effect/turf_decal/trimline/neutral/filled/corner{
+	dir = 8;
+	alpha = 255
+	},
+/obj/structure/railing{
+	dir = 4
+	},
+/turf/open/floor/plasteel{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Bt" = (
+/obj/item/kirbyplants{
+	icon_state = "plant-14";
+	layer = 3.8
+	},
+/obj/effect/decal/cleanable/glass,
+/obj/item/broken_bottle{
+	pixel_x = 8
+	},
+/obj/item/shard{
+	pixel_x = -4
+	},
+/obj/item/pushbroom{
+	layer = 3.9;
+	pixel_x = 5;
+	pixel_y = -12
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/wood{
+	dir = 9
+	},
+/obj/machinery/light/small/broken{
+	dir = 8
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery)
+"By" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 6;
+	color = "#FFFFFF"
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
+	dir = 8
+	},
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_rock/distillery/crew)
+"BB" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 10;
+	color = "#FFFFFF"
+	},
+/obj/structure/chair/fancy/sofa/old{
+	dir = 1
+	},
+/turf/open/floor/monotile/steel{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery/saloon)
+"BC" = (
+/obj/structure/reagent_dispensers/beerkeg{
+	anchored = 1;
+	desc = "Beczka pełna wątrobobójczego spirytusu pędzonego przez amatorów bimbru.";
+	layer = 2.8;
+	name = "beczka bimbru";
+	pixel_x = -8;
+	reagent_id = /datum/reagent/consumable/ethanol/moonshine
+	},
+/obj/structure/reagent_dispensers/beerkeg{
+	anchored = 1;
+	desc = "Beczka pełna wątrobobójczego spirytusu pędzonego przez amatorów bimbru.";
+	name = "beczka bimbru";
+	pixel_x = 8;
+	pixel_y = -2;
+	reagent_id = /datum/reagent/consumable/ethanol/moonshine
+	},
+/obj/structure/reagent_dispensers/beerkeg{
+	anchored = 1;
+	desc = "Beczka pełna wątrobobójczego spirytusu pędzonego przez amatorów bimbru.";
+	layer = 3;
+	name = "beczka bimbru";
+	pixel_x = -4;
+	pixel_y = 14;
+	reagent_id = /datum/reagent/consumable/ethanol/moonshine
+	},
+/obj/effect/turf_decal/box,
+/obj/effect/turf_decal/siding/white{
+	dir = 1;
+	color = "#FFFFFF"
+	},
+/turf/open/floor/monotile/steel{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery/saloon)
+"BU" = (
+/obj/structure/table/wood,
+/obj/machinery/chem_dispenser/drinks{
+	dir = 8
+	},
+/turf/open/floor/monotile/steel{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery/saloon)
+"BZ" = (
+/obj/structure/railing{
+	layer = 4.1
+	},
+/obj/structure/sign/poster/official/safety_internals{
+	pixel_y = -32
+	},
+/turf/open/floor/plating{
+	icon_state = "platingdmg3"
+	},
+/area/lavaland/surface/outdoors)
+"Cb" = (
+/obj/structure/table/wood,
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/ammo_casing/c9mm,
+/obj/item/ammo_casing/c9mm,
+/obj/item/ammo_casing/c9mm,
+/obj/item/ammo_casing/c9mm,
+/obj/item/ammo_casing/c9mm,
+/obj/item/ammo_box/magazine/pistolm9mm,
+/obj/item/ammo_box/magazine/pistolm9mm{
+	pixel_x = 10
+	},
+/turf/open/floor/carpet,
+/area/ruin/unpowered/planet_rock/distillery/office)
+"Cj" = (
+/turf/open/floor/plating{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Cn" = (
+/obj/effect/turf_decal/box/red,
+/obj/item/food/grown/corn,
+/obj/item/food/grown/corn,
+/obj/item/reagent_containers/food/condiment/sugar,
+/obj/item/reagent_containers/food/condiment/sugar,
+/obj/item/food/grown/corn{
+	pixel_y = 3
+	},
+/obj/item/food/grown/corn{
+	pixel_y = 3
+	},
+/obj/structure/closet/crate/freezer,
+/turf/open/floor/monotile/steel{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery)
+"Cr" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 9;
+	color = "#FFFFFF"
+	},
+/obj/effect/decal/cleanable/vomit/old,
+/turf/open/floor/monotile/steel{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery/saloon)
+"Cu" = (
+/obj/machinery/power/terminal{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/white,
+/obj/effect/turf_decal/siding/white{
+	dir = 1
+	},
+/obj/structure/sign/warning/electricshock{
+	pixel_y = 28
+	},
+/obj/structure/cable/yellow,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_rock/distillery/engineering)
+"CA" = (
+/obj/structure/cable,
+/obj/effect/turf_decal/siding/white{
+	dir = 5;
+	color = "#FFFFFF"
+	},
+/turf/open/floor/monotile/steel{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery)
+"CB" = (
+/obj/structure/lattice/catwalk/over,
+/obj/structure/railing{
+	layer = 4.1
+	},
+/turf/open/floor/plating,
+/area/lavaland/surface/outdoors)
+"CU" = (
+/obj/structure/curtain,
+/obj/structure/bed{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_rock/distillery/crew)
+"CZ" = (
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 4;
+	color = "#fb9700"
+	},
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 8;
+	color = "#fb9700"
+	},
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
+	dir = 9
+	},
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_rock/distillery/crew)
+"Do" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 10
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery)
+"Dp" = (
+/obj/effect/turf_decal/siding/wood,
+/obj/structure/sign/poster/official/random{
+	pixel_y = -32
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
+	dir = 1;
+	filter_types = list("co2","bz","water_vapor","freon","tritium","n20");
+	widenet = 1
+	},
+/turf/open/floor/wood{
+	icon_state = "wood-broken4"
+	},
+/area/ruin/unpowered/planet_rock/distillery/crew)
+"Dw" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plating/asteroid/rockplanet,
+/area/lavaland/surface/outdoors)
+"Dy" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 1;
+	color = "#FFFFFF"
+	},
+/obj/effect/turf_decal/trimline/neutral/filled/line{
+	alpha = 255
+	},
+/turf/open/floor/plasteel{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"DD" = (
+/obj/machinery/door/airlock,
+/obj/effect/turf_decal/stripes/line,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_rock/distillery/crew)
+"DI" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery)
+"DV" = (
+/obj/structure/fermenting_barrel,
+/obj/effect/decal/cleanable/greenglow,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/light/small/broken,
+/turf/open/floor/plating{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery)
+"Ec" = (
+/obj/effect/turf_decal/siding/white/corner{
+	dir = 1;
+	color = "#FFFFFF"
+	},
+/obj/effect/turf_decal/trimline/neutral/filled/line{
+	dir = 6;
+	alpha = 255
+	},
+/obj/structure/railing/corner{
+	dir = 1
+	},
+/turf/open/floor/plasteel{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Eg" = (
+/obj/structure/flora/tree/cactus,
+/turf/open/floor/plating/asteroid/rockplanet,
+/area/lavaland/surface/outdoors)
+"Ek" = (
+/obj/structure/table/wood,
+/obj/effect/turf_decal/siding/wood{
+	dir = 5
+	},
+/obj/item/stamp{
+	pixel_x = 5;
+	pixel_y = 16
+	},
+/obj/item/stamp/denied{
+	pixel_x = -5;
+	pixel_y = 16
+	},
+/obj/item/kirbyplants{
+	icon_state = "plant-11";
+	pixel_y = 10
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/carpet,
+/area/ruin/unpowered/planet_rock/distillery/office)
+"En" = (
+/obj/machinery/door/airlock/grunge,
+/obj/effect/turf_decal/stripes/line,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2,
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_rock/distillery/office)
+"Ey" = (
+/obj/effect/turf_decal/siding/wood/end{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/carpet,
+/area/ruin/unpowered/planet_rock/distillery/office)
+"EC" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 6
+	},
+/obj/item/kirbyplants{
+	icon_state = "plant-21"
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_rock/distillery/crew)
+"EL" = (
+/turf/open/floor/plating/asteroid/rockplanet/cracked,
+/area/lavaland/surface/outdoors)
+"ET" = (
+/turf/open/floor/plating/rust{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Fb" = (
+/obj/structure/chair/office{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 9;
+	color = "#FFFFFF"
+	},
+/obj/structure/railing{
+	dir = 1;
+	layer = 2.7
+	},
+/turf/open/floor/monotile/steel{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery/saloon)
+"Fd" = (
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/cable,
+/turf/open/floor/pod/light{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery)
+"Fn" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_rock/distillery/crew)
+"FD" = (
+/obj/structure/lattice/catwalk/over,
+/obj/structure/table/glass,
+/obj/item/cigbutt{
+	pixel_x = 4
+	},
+/obj/item/cigbutt{
+	pixel_x = -3;
+	pixel_y = 4
+	},
+/obj/item/electronics/firealarm{
+	pixel_x = -4;
+	pixel_y = 6
+	},
+/obj/item/reagent_containers/food/drinks/soda_cans/sodawater{
+	pixel_x = 6;
+	pixel_y = 6
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery)
+"FL" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 6;
+	color = "#FFFFFF"
+	},
+/obj/structure/table,
+/obj/item/clothing/gloves/color/yellow{
+	pixel_y = -16
+	},
+/obj/item/stock_parts/capacitor{
+	pixel_x = -6;
+	pixel_y = -4
+	},
+/obj/item/weldingtool/largetank{
+	pixel_y = 3
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_rock/distillery/engineering)
+"FR" = (
+/obj/structure/table/wood,
+/obj/structure/railing{
+	layer = 4.1
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 6;
+	color = "#FFFFFF"
+	},
+/obj/item/reagent_containers/food/drinks/bottle/vodka{
+	pixel_x = -6;
+	pixel_y = 4
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass{
+	pixel_x = 8;
+	pixel_y = 12
+	},
+/turf/open/floor/monotile/steel{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery/saloon)
+"FV" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer2,
+/obj/effect/decal/cleanable/ash,
+/obj/item/cigbutt{
+	pixel_x = 6;
+	pixel_y = 3
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_rock/distillery/crew)
+"Gi" = (
+/obj/machinery/modular_fabricator/autolathe,
+/obj/machinery/atmospherics/pipe/simple/cyan/visible{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/visible/layer2{
+	dir = 5
+	},
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_rock/distillery/engineering)
+"Gn" = (
+/obj/structure/cable,
+/obj/structure/lattice/catwalk/over/ship,
+/turf/open/floor/plating/rust{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Go" = (
+/obj/effect/turf_decal/trimline/neutral/filled/line{
+	dir = 9;
+	alpha = 255
+	},
+/obj/effect/turf_decal/siding/white/corner{
+	color = "#FFFFFF"
+	},
+/obj/structure/railing/corner{
+	layer = 4.1
+	},
+/turf/open/floor/plasteel{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Gp" = (
+/obj/structure/chair/wood{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/light/small{
+	dir = 8
+	},
+/mob/living/basic/trooper/pirate/melee,
+/turf/open/floor/wood{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery/saloon)
+"Gr" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
+	dir = 10
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer4{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_rock/distillery/crew)
+"Gw" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/structure/cable,
+/obj/machinery/door/poddoor/shutters{
+	dir = 4;
+	id = "dist_cargo"
+	},
+/turf/open/floor/pod/light{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery)
+"Gx" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 10
+	},
+/obj/structure/glowshroom,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/closet/crate/bin,
+/obj/effect/spawner/lootdrop/maintenance/three,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_rock/distillery/crew)
+"GA" = (
+/obj/effect/turf_decal/trimline/neutral/filled/line{
+	dir = 8;
+	alpha = 255
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 4;
+	color = "#FFFFFF"
+	},
+/turf/open/floor/plasteel{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"GD" = (
+/turf/closed/wall/r_wall,
+/area/ruin/unpowered/planet_lava/cave)
+"GJ" = (
+/turf/closed/wall/rust,
+/area/lavaland/surface/outdoors)
+"GT" = (
+/obj/effect/turf_decal/stripes/line,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2,
+/obj/structure/cable,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4,
+/obj/machinery/door/airlock/external,
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_rock/distillery/crew)
+"GX" = (
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 4;
+	color = "#fb9700"
+	},
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 8;
+	color = "#fb9700"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2,
+/obj/structure/cable,
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
+	dir = 9
+	},
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_rock/distillery/crew)
+"GZ" = (
+/obj/structure/cable,
+/obj/structure/lattice/catwalk/over/ship,
+/turf/open/floor/plating{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Hm" = (
+/obj/structure/bed,
+/obj/item/bedsheet/brown,
+/obj/effect/turf_decal/siding/wood/end{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_rock/distillery/office)
+"Hr" = (
+/obj/effect/turf_decal/siding/white{
+	color = "#FFFFFF"
+	},
+/obj/effect/turf_decal/trimline/neutral/filled/line{
+	dir = 1;
+	alpha = 255
+	},
+/turf/open/floor/plasteel{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"HI" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_rock/distillery/crew)
+"HL" = (
+/obj/effect/turf_decal/trimline/neutral/filled/line{
+	dir = 4;
+	alpha = 255
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 8;
+	color = "#FFFFFF"
+	},
+/obj/structure/railing{
+	dir = 8
+	},
+/turf/open/floor/plasteel{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"HT" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 6;
+	color = "#FFFFFF"
+	},
+/obj/item/food/deadmouse{
+	layer = 2.9;
+	pixel_x = 8;
+	pixel_y = 6
+	},
+/obj/structure/chair/fancy/sofa/old{
+	dir = 8
+	},
+/turf/open/floor/monotile/steel{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery/saloon)
+"HW" = (
+/obj/effect/turf_decal/box/red,
+/obj/structure/closet/crate/freezer,
+/obj/item/food/donkpocket,
+/obj/item/food/donkpocket,
+/obj/item/food/donkpocket,
+/obj/item/food/donkpocket,
+/obj/item/food/donkpocket,
+/obj/item/food/donkpocket,
+/turf/open/floor/monotile/steel{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery/crew)
+"In" = (
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/machinery/button/door{
+	dir = 8;
+	id = "frontier_door";
+	name = "zamek drzwi";
+	normaldoorcontrol = 1;
+	pixel_x = 23;
+	pixel_y = -2;
+	specialfunctions = 4
+	},
+/turf/open/floor/plasteel/stairs{
+	dir = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery)
+"IC" = (
+/obj/structure/lattice/catwalk/over,
+/turf/open/floor/plating/rust{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery)
+"ID" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery/saloon)
+"IE" = (
+/obj/effect/turf_decal/siding/white/end{
+	dir = 4
+	},
+/obj/structure/toilet{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_rock/distillery/crew)
+"IH" = (
+/obj/item/shard{
+	pixel_x = 12
+	},
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 9
+	},
+/obj/item/clothing/head/cone,
+/turf/open/floor/plating/asteroid/rockplanet,
+/area/lavaland/surface/outdoors)
+"IK" = (
+/obj/machinery/door/airlock/grunge{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/pod/light{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery/saloon)
+"IL" = (
+/obj/structure/railing{
+	layer = 4.1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/sign/poster/official/random{
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel/stairs{
+	dir = 4
+	},
+/area/ruin/unpowered/planet_rock/distillery)
+"IW" = (
+/obj/structure/chair/wood,
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/mob/living/basic/trooper/pirate/melee,
+/turf/open/floor/wood{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery/saloon)
+"IZ" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 10;
+	color = "#FFFFFF"
+	},
+/obj/structure/reagent_dispensers/fueltank,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/layer_manifold/visible{
+	dir = 4
+	},
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_rock/distillery/engineering)
+"Jc" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 4;
+	color = "#FFFFFF"
+	},
+/obj/effect/turf_decal/trimline/neutral/filled/line{
+	dir = 8;
+	alpha = 255
+	},
+/turf/open/floor/plasteel{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Jg" = (
+/obj/effect/turf_decal/trimline/neutral/filled/line{
+	dir = 8;
+	alpha = 255
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 4;
+	color = "#FFFFFF"
+	},
+/obj/structure/railing{
+	dir = 4
+	},
+/turf/open/floor/plasteel{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Ji" = (
+/obj/effect/turf_decal/stripes/white/line{
+	color = "#fb9700"
+	},
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 1;
+	color = "#fb9700"
+	},
+/turf/open/floor/pod/light{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery/crew)
+"Jo" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 6
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/carpet,
+/area/ruin/unpowered/planet_rock/distillery/crew)
+"JJ" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/wood{
+	icon_state = "wood-broken"
+	},
+/area/ruin/unpowered/planet_rock/distillery/crew)
+"JN" = (
+/obj/effect/turf_decal/siding/white,
+/obj/effect/turf_decal/siding/white{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt,
+/mob/living/basic/trooper/pirate/ranged,
+/obj/structure/cable,
+/turf/open/floor/pod/light{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery/shuttle)
+"Ke" = (
+/obj/structure/railing/corner{
+	layer = 4.1
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 9
+	},
+/obj/effect/turf_decal/siding/white/corner,
+/obj/item/kirbyplants{
+	icon_state = "plant-25";
+	pixel_x = -2;
+	pixel_y = 12
+	},
+/obj/effect/decal/cleanable/glass,
+/obj/effect/decal/cleanable/ash,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/pod/light{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery)
+"Kk" = (
+/obj/structure/chair/office{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 6;
+	color = "#FFFFFF"
+	},
+/turf/open/floor/monotile/steel{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery/saloon)
+"Ks" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/wood,
+/obj/structure/cable,
+/turf/open/floor/wood{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery)
+"Kt" = (
+/obj/structure/cable,
+/turf/open/floor/plating/asteroid/rockplanet/cracked,
+/area/lavaland/surface/outdoors)
+"Kz" = (
+/obj/effect/turf_decal/delivery,
+/obj/structure/reagent_dispensers/watertank/high,
+/turf/open/floor/monotile/steel{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery/crew)
+"KD" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 4;
+	color = "#FFFFFF"
+	},
+/obj/item/ammo_casing/spent{
+	pixel_x = 12;
+	pixel_y = 6
+	},
+/obj/item/ammo_casing/spent{
+	pixel_x = 14
+	},
+/obj/machinery/light/small/broken{
+	dir = 4
+	},
+/obj/structure/chair/fancy/sofa/old{
+	dir = 8
+	},
+/turf/open/floor/monotile/steel{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery/saloon)
+"KP" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/plating/asteroid/rockplanet,
+/area/lavaland/surface/outdoors)
+"Ld" = (
+/obj/effect/turf_decal/siding/white,
+/obj/effect/turf_decal/siding/white{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/reagent_containers/food/drinks/bottle/vodka,
+/turf/open/floor/pod/light{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery/shuttle)
+"Lj" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/plating/asteroid/rockplanet/cracked,
+/area/lavaland/surface/outdoors)
+"Ll" = (
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/machinery/power/smes,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "pod_window"
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/engine,
+/area/ruin/unpowered/planet_rock/distillery/shuttle)
+"Lq" = (
+/obj/structure/lattice/catwalk/over,
+/obj/structure/fermenting_barrel,
+/obj/machinery/light/small,
+/turf/open/floor/plating/rust{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery)
+"Lr" = (
+/obj/structure/barricade/sandbags,
+/obj/effect/turf_decal/sand/plating,
+/obj/structure/cable,
+/turf/open/floor/plating{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Lt" = (
+/obj/structure/reagent_dispensers/watertank{
+	desc = "Wielka metalowa kadź z kranem z przodu. Pełna bimbru.";
+	name = "kadź z bimbrem";
+	reagent_id = /datum/reagent/consumable/ethanol/moonshine
+	},
+/obj/structure/fermenting_barrel{
+	density = 0;
+	pixel_y = -14
+	},
+/turf/open/floor/pod/light{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery)
+"Lv" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/chair/fancy/sofa/old,
+/mob/living/basic/trooper/pirate/ranged,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_rock/distillery/crew)
+"Ly" = (
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 4;
+	color = "#fb9700"
+	},
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 8;
+	color = "#fb9700"
+	},
+/obj/machinery/door/poddoor/preopen{
+	dir = 4;
+	id = "pod_fore"
+	},
+/obj/structure/cable,
+/turf/open/floor/engine,
+/area/ruin/unpowered/planet_rock/distillery/shuttle)
+"LA" = (
+/turf/closed/wall,
+/area/ruin/unpowered/planet_rock/distillery/saloon)
+"LH" = (
+/obj/structure/lattice/catwalk/over,
+/obj/machinery/light/small/broken{
+	dir = 8
+	},
+/turf/open/floor/plating/rust{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery)
+"LO" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 10;
+	color = "#FFFFFF"
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
+	dir = 4
+	},
+/obj/machinery/light/broken,
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_rock/distillery/crew)
+"LR" = (
+/obj/effect/turf_decal/siding/white{
+	color = "#FFFFFF"
+	},
+/obj/effect/turf_decal/trimline/neutral/filled/line{
+	dir = 1;
+	alpha = 255
+	},
+/obj/structure/railing{
+	layer = 4.1
+	},
+/turf/open/floor/plasteel{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Ma" = (
+/obj/structure/lattice/catwalk/over,
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/obj/structure/chair/fancy/sofa/old,
+/turf/open/floor/plating/rust{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery/saloon)
+"Mr" = (
+/turf/closed/wall/r_wall,
+/area/ruin/unpowered/planet_rock/distillery/office)
+"Ms" = (
+/obj/effect/turf_decal/siding/white/end{
+	dir = 8
+	},
+/obj/item/reagent_containers/food/drinks/bottle/vodka,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/pod/light{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery)
+"Mz" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/drinks/bottle/whiskey{
+	pixel_x = 6;
+	pixel_y = 12
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass{
+	pixel_x = -8;
+	pixel_y = 2
+	},
+/obj/item/cigbutt{
+	pixel_y = 3
+	},
+/turf/open/floor/monotile/steel{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery/saloon)
+"MC" = (
+/obj/effect/turf_decal/sand/plating,
+/turf/open/floor/plating{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"ME" = (
+/obj/structure/table/wood,
+/obj/structure/railing{
+	dir = 1;
+	layer = 2.7
+	},
+/obj/item/reagent_containers/food/drinks/bottle/ale,
+/obj/item/reagent_containers/food/drinks/mug/cocoa{
+	pixel_x = -6;
+	pixel_y = 8
+	},
+/obj/item/stack/spacecash/c1{
+	pixel_x = -4
+	},
+/obj/item/stack/spacecash/c10{
+	pixel_y = -2
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 5;
+	color = "#FFFFFF"
+	},
+/turf/open/floor/monotile/steel{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery/saloon)
+"MF" = (
+/obj/structure/closet/crate,
+/obj/effect/turf_decal/box/red,
+/obj/item/reagent_containers/food/drinks/bottle/vodka{
+	list_reagents = null;
+	pixel_x = -6
+	},
+/obj/item/reagent_containers/food/drinks/bottle/vodka{
+	list_reagents = null;
+	pixel_x = -6
+	},
+/obj/item/reagent_containers/food/drinks/bottle/vodka{
+	list_reagents = null
+	},
+/obj/item/reagent_containers/food/drinks/bottle/vodka{
+	list_reagents = null
+	},
+/obj/item/reagent_containers/food/drinks/bottle/vodka{
+	list_reagents = null;
+	pixel_x = 6
+	},
+/obj/item/reagent_containers/food/drinks/bottle/vodka{
+	list_reagents = null;
+	pixel_x = 6
+	},
+/turf/open/floor/plating/rust{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery)
+"MX" = (
+/obj/structure/flora/rock/rockplanet,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/effect/turf_decal/sand/plating,
+/turf/open/floor/plating{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"MY" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/power/apc/auto_name/south,
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_rock/distillery/engineering)
+"Ng" = (
+/obj/machinery/vending/snack/random,
+/obj/effect/turf_decal/siding/white{
+	color = "#FFFFFF"
+	},
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_rock/distillery/crew)
+"No" = (
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 4;
+	color = "#fb9700"
+	},
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 8;
+	color = "#fb9700"
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
+	dir = 9
+	},
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_rock/distillery/crew)
+"Nq" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/siding/wood{
+	dir = 6
+	},
+/obj/structure/cable,
+/turf/open/floor/wood{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery)
+"Nr" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/structure/sign/poster/official/random{
+	pixel_y = 32
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/basic/migo{
+	faction = list("Frontiersmen");
+	name = "Pies"
+	},
+/obj/structure/bed/dogbed,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer2{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_rock/distillery/crew)
+"Ns" = (
+/obj/effect/turf_decal/siding/wood,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/cable,
+/turf/open/floor/wood{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery)
+"Nt" = (
+/obj/structure/cable,
+/mob/living/basic/trooper/pirate/ranged,
+/turf/open/floor/plating/asteroid/rockplanet,
+/area/lavaland/surface/outdoors)
+"Nx" = (
+/obj/machinery/door/airlock/grunge,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/pod/light{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery/saloon)
+"NH" = (
+/obj/effect/turf_decal/stripes/line,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/door/airlock/external,
+/obj/structure/cable/yellow,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_rock/distillery/crew)
+"NT" = (
+/obj/structure/closet/crate,
+/obj/effect/turf_decal/box/red,
+/obj/item/circuitboard/computer/operating,
+/obj/effect/spawner/lootdrop/maintenance/four,
+/obj/item/circuitboard/machine/autolathe,
+/obj/item/circuitboard/machine/autolathe,
+/turf/open/floor/monotile/steel{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery/crew)
+"NW" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/generic,
+/turf/open/floor/plating/asteroid/rockplanet/cracked,
+/area/lavaland/surface/outdoors)
+"Oe" = (
+/obj/structure/table,
+/obj/item/kirbyplants{
+	icon_state = "plant-11";
+	pixel_y = 6
+	},
+/obj/machinery/light/small,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_rock/distillery/crew)
+"Ok" = (
+/obj/structure/lattice/catwalk/over,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/table/glass,
+/obj/item/reagent_containers/food/condiment/sugar{
+	layer = 2.8;
+	pixel_x = -2;
+	pixel_y = 13
+	},
+/obj/item/stock_parts/micro_laser{
+	layer = 2.8;
+	pixel_x = 6;
+	pixel_y = 16
+	},
+/obj/machinery/reagentgrinder,
+/obj/item/stock_parts/scanning_module{
+	layer = 2.8;
+	pixel_x = -6;
+	pixel_y = 6
+	},
+/obj/item/reagent_containers/food/condiment/enzyme{
+	pixel_x = 10;
+	pixel_y = 10
+	},
+/turf/open/floor/plating{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery)
+"Oo" = (
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 6
+	},
+/obj/structure/mopbucket,
+/obj/item/holosign_creator/janibarrier,
+/obj/item/mop,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plating/asteroid/rockplanet,
+/area/lavaland/surface/outdoors)
+"Or" = (
+/obj/machinery/light/floor,
+/turf/open/floor/plating/rust{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"OD" = (
+/obj/structure/lattice/catwalk/over,
+/obj/machinery/computer/atmos_alert{
+	dir = 1
+	},
+/turf/open/floor/plating/rust{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery)
+"OJ" = (
+/obj/structure/lattice/catwalk/over,
+/turf/open/floor/plating{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery)
+"OY" = (
+/obj/structure/table/wood/poker,
+/obj/effect/turf_decal/siding/white{
+	dir = 6;
+	color = "#FFFFFF"
+	},
+/obj/item/stack/spacecash/c1{
+	pixel_x = 8;
+	pixel_y = 4
+	},
+/turf/open/floor/monotile/steel{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery/saloon)
+"OZ" = (
+/obj/effect/turf_decal/siding/wood/end{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery/saloon)
+"Pb" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/obj/effect/mine/explosive{
+	layer = 2.8
+	},
+/turf/open/floor/plating/asteroid/rockplanet/cracked,
+/area/lavaland/surface/outdoors)
+"Pn" = (
+/obj/effect/turf_decal/box/red,
+/obj/structure/guncase,
+/obj/item/gun/ballistic/rifle/boltaction,
+/obj/item/gun/ballistic/automatic/pistol,
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_rock/distillery/office)
+"Pp" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/white/corner{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/white/corner{
+	dir = 1
+	},
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/pod/light{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery/saloon)
+"Pt" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery/saloon)
+"Pw" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 5;
+	color = "#FFFFFF"
+	},
+/obj/effect/decal/cleanable/crayon{
+	color = "#FF7702";
+	icon_state = "k";
+	pixel_x = -5
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/effect/decal/cleanable/crayon{
+	color = "#FF7702";
+	icon_state = "u";
+	pixel_x = -16
+	},
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_rock/distillery/crew)
+"PI" = (
+/turf/open/floor/plating/asteroid/rockplanet,
+/area/lavaland/surface/outdoors)
+"PS" = (
+/obj/structure/cable,
+/turf/open/floor/monotile/steel{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery)
+"PW" = (
+/obj/structure/flora/tree/dead/barren{
+	layer = 2.8;
+	pixel_x = 9;
+	pixel_y = -15
+	},
+/turf/open/floor/plating/asteroid/rockplanet,
+/area/lavaland/surface/outdoors)
+"Qe" = (
+/turf/closed/mineral/random/rockplanet,
+/area/ruin/unpowered/planet_lava/cave)
+"Qp" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass,
+/obj/item/reagent_containers/food/drinks/bottle/vodka{
+	pixel_x = -6;
+	pixel_y = 12
+	},
+/turf/open/floor/monotile/steel{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery/saloon)
+"Qs" = (
+/obj/effect/turf_decal/trimline/neutral/filled/line{
+	dir = 8;
+	alpha = 255
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 4;
+	color = "#FFFFFF"
+	},
+/obj/structure/cable,
+/obj/structure/railing{
+	dir = 4
+	},
+/turf/open/floor/plasteel{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Qy" = (
+/obj/structure/lattice/catwalk/over,
+/turf/open/floor/plating/rust{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery/saloon)
+"QA" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 5
+	},
+/obj/item/kirbyplants{
+	icon_state = "plant-20";
+	pixel_y = 8
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery/saloon)
+"QM" = (
+/obj/structure/window/reinforced/fulltile,
+/obj/machinery/door/poddoor/shutters,
+/obj/structure/grille,
+/turf/open/floor/plating{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery)
+"QO" = (
+/obj/effect/turf_decal/siding/white,
+/obj/effect/turf_decal/siding/white{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/oil/streak,
+/turf/open/floor/pod/light{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery/shuttle)
+"Ra" = (
+/obj/structure/lattice/catwalk/over,
+/obj/structure/closet/crate/hydroponics,
+/obj/item/food/grown/corn,
+/obj/item/food/grown/corn,
+/obj/item/food/grown/corn{
+	pixel_y = 2
+	},
+/obj/item/food/grown/corn{
+	pixel_y = 2
+	},
+/obj/item/plant_seeds/preset/corn,
+/obj/item/plant_seeds/preset/corn,
+/obj/item/plant_seeds/preset/corn,
+/obj/item/reagent_containers/food/condiment/enzyme{
+	pixel_x = -8
+	},
+/obj/item/reagent_containers/food/condiment/enzyme,
+/obj/item/food/grown/corn{
+	pixel_y = 4
+	},
+/obj/item/food/grown/corn{
+	pixel_y = 4
+	},
+/turf/open/floor/plating{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery)
+"Rq" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 5
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery/saloon)
+"Rr" = (
+/obj/structure/reagent_dispensers/water_cooler{
+	pixel_x = -4
+	},
+/obj/effect/turf_decal/siding/wood/end{
+	dir = 8
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery/saloon)
+"Ry" = (
+/obj/structure/grille,
+/obj/structure/cable,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "pod_window"
+	},
+/obj/machinery/power/terminal{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/ruin/unpowered/planet_rock/distillery/shuttle)
+"RA" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/obj/structure/rack,
+/obj/item/reagent_containers/food/condiment/sugar{
+	layer = 2.8;
+	pixel_x = -2;
+	pixel_y = 13
+	},
+/obj/item/reagent_containers/food/condiment/sugar{
+	layer = 2.8;
+	pixel_x = -2;
+	pixel_y = 7
+	},
+/obj/item/wrench{
+	pixel_y = 4
+	},
+/obj/item/screwdriver,
+/turf/open/floor/plating/rust{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery)
+"RL" = (
+/obj/machinery/door/airlock{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
+	dir = 8
+	},
+/obj/structure/cable,
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_rock/distillery/crew)
+"RV" = (
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 4;
+	color = "#fb9700"
+	},
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 8;
+	color = "#fb9700"
+	},
+/obj/machinery/door/poddoor{
+	dir = 4;
+	id = "pod_aft"
+	},
+/turf/open/floor/engine,
+/area/ruin/unpowered/planet_rock/distillery/shuttle)
+"Sk" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 5
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
+	dir = 8
+	},
+/turf/open/floor/wood{
+	icon_state = "wood-broken6"
+	},
+/area/ruin/unpowered/planet_rock/distillery/crew)
+"Sr" = (
+/obj/effect/turf_decal/stripes/white/line{
+	color = "#fb9700"
+	},
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 1;
+	color = "#fb9700"
+	},
+/obj/machinery/light,
+/turf/open/floor/pod/light{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery/crew)
+"SE" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 10;
+	color = "#FFFFFF"
+	},
+/obj/effect/decal/cleanable/vomit/old{
+	pixel_y = 12
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_rock/distillery/crew)
+"SY" = (
+/obj/structure/girder/displaced,
+/obj/structure/cable,
+/obj/item/stack/ore/iron,
+/turf/open/floor/plating/rust,
+/area/lavaland/surface/outdoors)
+"Tj" = (
+/obj/effect/turf_decal/siding/white,
+/obj/effect/turf_decal/siding/white{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_rock/distillery/crew)
+"Tr" = (
+/obj/effect/turf_decal/stripes/line,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/door/airlock/external,
+/obj/structure/cable,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_rock/distillery/crew)
+"Tt" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 1;
+	color = "#FFFFFF"
+	},
+/obj/effect/decal/cleanable/ash{
+	pixel_x = -6
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2,
+/mob/living/basic/trooper/pirate/ranged,
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_rock/distillery/crew)
+"Tu" = (
+/obj/structure/fermenting_barrel,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/monotile/steel{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery)
+"TD" = (
+/obj/structure/chair{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 6
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/carpet,
+/area/ruin/unpowered/planet_rock/distillery/office)
+"TL" = (
+/obj/effect/turf_decal/siding/wood/end{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/power/apc/auto_name/east,
+/turf/open/floor/wood{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery/saloon)
+"TO" = (
+/obj/effect/turf_decal/trimline/neutral/filled/line{
+	dir = 4;
+	alpha = 255
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 8;
+	color = "#FFFFFF"
+	},
+/turf/open/floor/plasteel{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"TV" = (
+/obj/effect/decal/cleanable/crayon{
+	color = "#ff7702";
+	icon_state = "f";
+	pixel_x = 6
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 9;
+	color = "#FFFFFF"
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer2,
+/obj/structure/cable,
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_rock/distillery/crew)
+"TX" = (
+/obj/effect/turf_decal/siding/white/corner{
+	dir = 8;
+	color = "#FFFFFF"
+	},
+/obj/effect/turf_decal/trimline/neutral/filled/line{
+	dir = 5;
+	alpha = 255
+	},
+/obj/structure/railing/corner{
+	dir = 8;
+	layer = 4.1
+	},
+/turf/open/floor/plasteel{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Uk" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 9
+	},
+/obj/effect/turf_decal/siding/white/corner,
+/obj/structure/railing/corner{
+	layer = 4.1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/pod/light{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery/saloon)
+"UO" = (
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/frame/computer{
+	desc = "Tego nie da się już poderwać z ziemi.";
+	dir = 8;
+	layer = 3.3;
+	name = "zablokowana konsola sterowania";
+	anchored = 1
+	},
+/obj/effect/turf_decal/ship/techfloor{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/white/line{
+	color = "#fb9700"
+	},
+/obj/structure/cable,
+/turf/open/floor/monotile/steel{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery/shuttle)
+"UQ" = (
+/obj/structure/flora/tree/dead/barren{
+	pixel_x = -6;
+	pixel_y = 2
+	},
+/turf/open/floor/plating/asteroid/rockplanet/cracked,
+/area/lavaland/surface/outdoors)
+"Vb" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 10
+	},
+/obj/machinery/airalarm/directional/west,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_rock/distillery/office)
+"Vd" = (
+/obj/structure/flora/ausbushes/sunnybush{
+	layer = 3
+	},
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/plating/asteroid/rockplanet/cracked,
+/area/lavaland/surface/outdoors)
+"Vj" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 1;
+	color = "#FFFFFF"
+	},
+/obj/effect/turf_decal/trimline/neutral/filled/line{
+	alpha = 255
+	},
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/plasteel{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Vm" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 9
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery/saloon)
+"Vn" = (
+/turf/closed/wall/r_wall/rust,
+/area/ruin/unpowered/planet_rock/distillery/crew)
+"VK" = (
+/obj/structure/table/wood,
+/obj/machinery/chem_dispenser/drinks/beer{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/monotile/steel{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery/saloon)
+"VV" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/machinery/door/poddoor/shutters{
+	dir = 4;
+	id = "dist_cargo"
+	},
+/turf/open/floor/pod/light{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery)
+"VY" = (
+/turf/closed/wall,
+/area/ruin/unpowered/planet_rock/distillery)
+"Wh" = (
+/obj/structure/cable/yellow,
+/obj/structure/frame,
+/obj/item/circuitboard/machine/shuttle/engine,
+/obj/item/stack/cable_coil/cut,
+/obj/item/stock_parts/capacitor,
+/turf/open/floor/engine,
+/area/ruin/unpowered/planet_rock/distillery/shuttle)
+"Wj" = (
+/obj/machinery/door/airlock{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_rock/distillery/crew)
+"Wt" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 10
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/generic,
+/obj/structure/cable,
+/turf/open/floor/carpet,
+/area/ruin/unpowered/planet_rock/distillery/crew)
+"Wz" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 9;
+	color = "#FFFFFF"
+	},
+/obj/structure/table,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
+/obj/machinery/airalarm/directional/north,
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/machinery/microwave{
+	pixel_y = 6
+	},
+/obj/item/plate{
+	pixel_y = 16
+	},
+/obj/item/food/donkpocket/warm/pizza{
+	pixel_y = 18
+	},
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_rock/distillery/crew)
+"WF" = (
+/obj/structure/chair/fancy/sofa/old{
+	dir = 8
+	},
+/turf/open/floor/plating/rust{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery)
+"WT" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery/saloon)
+"Xl" = (
+/obj/structure/lattice/catwalk/over,
+/obj/structure/closet/crate/hydroponics,
+/obj/item/reagent_containers/food/condiment/enzyme{
+	pixel_x = -8;
+	pixel_y = 8
+	},
+/obj/item/reagent_containers/food/condiment/enzyme{
+	pixel_x = -8;
+	pixel_y = 8
+	},
+/obj/item/reagent_containers/food/condiment/enzyme{
+	pixel_y = 8
+	},
+/obj/item/reagent_containers/food/condiment/enzyme{
+	pixel_y = 8
+	},
+/obj/item/reagent_containers/food/condiment/enzyme{
+	pixel_y = 8
+	},
+/obj/item/reagent_containers/food/condiment/enzyme{
+	pixel_x = -8
+	},
+/obj/item/reagent_containers/food/condiment/enzyme{
+	pixel_x = -8
+	},
+/obj/item/reagent_containers/food/condiment/enzyme{
+	pixel_x = 8
+	},
+/obj/item/reagent_containers/food/condiment/enzyme{
+	pixel_x = 8
+	},
+/turf/open/floor/plating{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery)
+"XA" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 6
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery/saloon)
+"XC" = (
+/obj/item/chair/stool/bar{
+	pixel_y = 8
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery/saloon)
+"XJ" = (
+/obj/machinery/door/airlock{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_rock/distillery/crew)
+"XQ" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/plant_tray,
+/turf/open/floor/monotile/steel{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery)
+"XV" = (
+/obj/structure/flora/ausbushes/sparsegrass/hell{
+	desc = "Rzadka kępa bezbarwnej trawy.";
+	light_power = 1;
+	light_range = 0;
+	name = "martwa trawa"
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plating/asteroid/rockplanet/cracked,
+/area/lavaland/surface/outdoors)
+"Yh" = (
+/obj/structure/cable,
+/mob/living/basic/trooper/pirate/melee,
+/turf/open/floor/monotile/steel{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery)
+"Ym" = (
+/obj/effect/turf_decal/siding/wood,
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery/saloon)
+"Yq" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_rock/distillery/office)
+"Yx" = (
+/obj/structure/rack,
+/obj/item/reagent_containers/food/drinks/bottle/vodka{
+	pixel_y = 6
+	},
+/turf/open/floor/monotile/steel{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery)
+"YC" = (
+/turf/closed/wall/r_wall,
+/area/ruin/unpowered/planet_rock/distillery/engineering)
+"YD" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/siding/wood{
+	dir = 9
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery)
+"YK" = (
+/obj/structure/table/wood,
+/obj/effect/turf_decal/siding/wood{
+	dir = 9
+	},
+/obj/item/folder/red{
+	pixel_x = -2;
+	pixel_y = 3
+	},
+/obj/item/folder/yellow{
+	pixel_y = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/carpet,
+/area/ruin/unpowered/planet_rock/distillery/office)
+"YR" = (
+/obj/structure/cable,
+/obj/machinery/porta_turret/syndicate/pod{
+	faction = list("pirate")
+	},
+/turf/open/floor/plating/asteroid/rockplanet/cracked,
+/area/lavaland/surface/outdoors)
+"YT" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
+	dir = 4;
+	filter_types = list("co2","bz","water_vapor","freon","tritium","n20");
+	widenet = 1
+	},
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_rock/distillery/crew)
+"YV" = (
+/obj/effect/turf_decal/siding/white,
+/obj/effect/turf_decal/siding/white{
+	dir = 1
+	},
+/obj/machinery/power/apc/auto_name/north,
+/obj/item/radio/intercom/directional/south,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+/turf/open/floor/pod/light{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery/shuttle)
+"Zs" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/structure/table/reinforced,
+/obj/item/wrench,
+/obj/item/wirecutters,
+/obj/machinery/cell_charger,
+/obj/effect/turf_decal/siding/white{
+	dir = 9;
+	color = "#FFFFFF"
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/visible/layer2{
+	dir = 9
+	},
+/turf/open/floor/monotile/steel,
+/area/ruin/unpowered/planet_rock/distillery/engineering)
+"Zt" = (
+/obj/structure/flora/tree/dead/tall,
+/turf/open/floor/plating/asteroid/rockplanet/cracked,
+/area/lavaland/surface/outdoors)
+"Zw" = (
+/obj/structure/cable,
+/turf/open/floor/plating/rust{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"ZD" = (
+/obj/effect/turf_decal/delivery,
+/obj/item/reagent_containers/food/drinks/bottle/vodka,
+/turf/open/floor/monotile/steel{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_rock/distillery/crew)
+"ZE" = (
+/obj/structure/flora/ausbushes/sparsegrass/hell{
+	desc = "Rzadka kępa bezbarwnej trawy.";
+	light_power = 1;
+	light_range = 0;
+	name = "martwa trawa"
+	},
+/turf/open/floor/plating/asteroid/rockplanet/cracked,
+/area/lavaland/surface/outdoors)
+"ZM" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/wood{
+	icon_state = "wood-broken2"
+	},
+/area/ruin/unpowered/planet_rock/distillery/crew)
+"ZS" = (
+/obj/structure/cable,
+/turf/closed/wall/rust,
+/area/lavaland/surface/outdoors)
+"ZV" = (
+/obj/structure/dresser,
+/obj/effect/turf_decal/siding/wood/end{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/clothing/neck/stethoscope{
+	pixel_y = 8
+	},
+/obj/item/toy/plush/carpplushie{
+	pixel_y = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_rock/distillery/office)
+
+(1,1,1) = {"
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+za
+za
+za
+za
+za
+za
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+"}
+(2,1,1) = {"
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+za
+za
+za
+za
+za
+za
+za
+za
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+"}
+(3,1,1) = {"
+aZ
+aZ
+aZ
+aZ
+aZ
+za
+za
+za
+za
+za
+za
+za
+za
+za
+za
+za
+za
+za
+za
+za
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+"}
+(4,1,1) = {"
+aZ
+aZ
+aZ
+aZ
+za
+za
+za
+za
+za
+za
+za
+za
+za
+za
+za
+za
+za
+za
+Qe
+za
+za
+za
+za
+za
+za
+za
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+"}
+(5,1,1) = {"
+aZ
+aZ
+za
+za
+za
+za
+za
+za
+za
+za
+za
+za
+za
+za
+za
+za
+za
+za
+za
+za
+za
+za
+za
+za
+za
+za
+za
+za
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+"}
+(6,1,1) = {"
+aZ
+za
+za
+za
+za
+za
+za
+nM
+nM
+nM
+nM
+za
+za
+za
+za
+za
+za
+za
+za
+za
+za
+za
+za
+za
+za
+za
+za
+za
+za
+za
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+"}
+(7,1,1) = {"
+aZ
+za
+za
+za
+za
+za
+za
+nM
+wz
+op
+nM
+za
+za
+za
+za
+za
+GD
+za
+za
+GD
+za
+za
+ik
+za
+za
+za
+za
+za
+za
+za
+za
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+"}
+(8,1,1) = {"
+aZ
+za
+za
+za
+za
+za
+za
+nM
+fg
+Wj
+nM
+nM
+za
+za
+za
+nr
+yb
+yb
+yb
+yb
+yb
+yb
+yb
+mR
+za
+za
+za
+za
+za
+za
+za
+za
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+"}
+(9,1,1) = {"
+za
+za
+za
+za
+za
+nM
+nM
+nM
+gV
+Tj
+kl
+nM
+za
+za
+ik
+Dy
+er
+ET
+ET
+Cj
+Cj
+ET
+Or
+LR
+za
+za
+za
+za
+za
+za
+za
+za
+za
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+"}
+(10,1,1) = {"
+za
+za
+za
+za
+za
+nM
+hL
+DD
+xV
+Av
+LO
+nM
+za
+za
+za
+Dy
+ET
+Cj
+aj
+RV
+aj
+Cj
+Cj
+LR
+PI
+yw
+ZE
+za
+za
+za
+za
+za
+za
+za
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+"}
+(11,1,1) = {"
+za
+za
+za
+za
+za
+nM
+IE
+fg
+fW
+Aw
+By
+nM
+za
+za
+za
+Dy
+ET
+bs
+aj
+Ld
+aj
+Wh
+ET
+LR
+PI
+Eg
+jl
+ZE
+za
+za
+za
+za
+za
+za
+za
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+"}
+(12,1,1) = {"
+aZ
+EL
+za
+za
+YC
+YC
+rJ
+rJ
+rJ
+fg
+XJ
+nM
+nM
+nM
+nM
+Dy
+ET
+nk
+pA
+QO
+du
+Ll
+Cj
+Hr
+PI
+PI
+PI
+NW
+za
+za
+za
+za
+za
+za
+za
+za
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+"}
+(13,1,1) = {"
+aZ
+jH
+EL
+CB
+pU
+nT
+tf
+Gi
+rJ
+Wz
+ry
+pB
+zD
+YT
+nM
+Vj
+Cj
+gU
+UO
+JN
+ek
+Ry
+rq
+LR
+PI
+PI
+yw
+EL
+ZE
+za
+za
+za
+za
+za
+za
+za
+za
+za
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+"}
+(14,1,1) = {"
+PI
+wA
+ZE
+Bl
+lx
+Zs
+pJ
+wY
+oF
+Tt
+zO
+bM
+yF
+CZ
+NH
+Dy
+Cj
+aj
+aj
+YV
+aj
+aj
+Cj
+LR
+PI
+PI
+EL
+xP
+cH
+za
+za
+za
+za
+za
+za
+za
+za
+za
+za
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+"}
+(15,1,1) = {"
+PI
+PI
+EL
+BZ
+YC
+ri
+IZ
+rr
+rJ
+sZ
+uz
+nM
+nM
+nM
+nM
+Dy
+ET
+Cj
+aj
+Ly
+aj
+Cj
+ET
+LR
+PI
+VY
+uM
+VY
+VY
+uM
+uM
+VY
+za
+za
+za
+za
+za
+za
+za
+za
+aZ
+aZ
+aZ
+aZ
+aZ
+"}
+(16,1,1) = {"
+PI
+ZE
+yw
+za
+YC
+Cu
+jw
+MY
+rJ
+fg
+RL
+fg
+Fn
+CU
+Vn
+Dy
+Or
+ET
+ET
+nv
+Cj
+Cj
+Or
+LR
+PI
+VY
+qn
+bI
+Lt
+wd
+XQ
+VY
+za
+za
+za
+za
+za
+za
+za
+za
+aZ
+aZ
+aZ
+aZ
+aZ
+"}
+(17,1,1) = {"
+aZ
+za
+za
+za
+YC
+iO
+FL
+eY
+rJ
+zY
+bU
+zI
+FV
+Oe
+Vn
+Bs
+Jc
+zT
+tD
+GZ
+kr
+zT
+Jc
+fF
+PI
+VY
+vh
+OJ
+pc
+lU
+sA
+VY
+uM
+uM
+VY
+VY
+za
+za
+za
+za
+za
+aZ
+aZ
+aZ
+aZ
+"}
+(18,1,1) = {"
+za
+za
+za
+za
+YC
+YC
+rJ
+rJ
+rJ
+mQ
+tM
+Wt
+HI
+Bp
+nM
+pK
+vu
+PI
+qg
+GZ
+LR
+PI
+PI
+PI
+Vd
+uM
+Ra
+DI
+qG
+Ok
+aH
+VY
+yS
+xT
+Ms
+VY
+za
+za
+za
+za
+za
+aZ
+aZ
+aZ
+aZ
+"}
+(19,1,1) = {"
+za
+za
+za
+za
+za
+Mr
+Hm
+Ey
+gH
+li
+nI
+Jo
+ww
+nM
+nM
+nM
+Vn
+mM
+Ec
+GZ
+LR
+PI
+EL
+EL
+EL
+uM
+RA
+kz
+In
+Fd
+pP
+VY
+Ke
+gy
+wb
+QM
+za
+za
+za
+za
+za
+za
+PI
+aZ
+aZ
+"}
+(20,1,1) = {"
+aZ
+za
+za
+za
+za
+Mr
+ZV
+wa
+gH
+Lv
+qI
+nb
+yL
+nM
+ZD
+iw
+mF
+kt
+kt
+Gn
+LR
+PI
+VY
+uM
+VY
+VY
+VY
+VY
+VY
+dY
+VY
+VY
+IL
+IC
+kP
+QM
+za
+za
+za
+za
+za
+za
+EL
+PI
+aZ
+"}
+(21,1,1) = {"
+aZ
+aZ
+za
+za
+za
+Mr
+gH
+tv
+gH
+gH
+gH
+ZM
+pm
+nM
+Kz
+Sr
+nM
+zT
+tD
+Gn
+LR
+EL
+VY
+Cn
+LH
+Yx
+VY
+Bt
+jL
+lk
+qd
+VY
+YD
+Do
+DV
+uM
+za
+za
+za
+za
+za
+pK
+EL
+PI
+aZ
+"}
+(22,1,1) = {"
+aZ
+za
+za
+za
+za
+Mr
+pz
+lQ
+Vb
+mt
+gH
+zF
+fg
+nM
+NT
+Ji
+Vn
+XV
+qg
+GZ
+LR
+EL
+jV
+Xl
+lo
+PS
+kE
+kQ
+CA
+hf
+tE
+kE
+pk
+Ns
+oX
+QM
+za
+za
+za
+za
+pe
+MC
+EL
+PI
+PI
+"}
+(23,1,1) = {"
+aZ
+za
+za
+za
+za
+Mr
+ph
+YK
+yv
+aD
+gH
+JJ
+Gx
+pB
+HW
+Ji
+Vn
+jl
+qg
+nv
+LR
+jH
+jV
+MF
+Yh
+Lq
+VY
+oS
+FD
+bN
+WF
+VY
+sI
+Ks
+OD
+QM
+za
+za
+za
+pe
+GJ
+KP
+PI
+PI
+PI
+"}
+(24,1,1) = {"
+aZ
+za
+za
+za
+za
+Mr
+dE
+Cb
+zK
+qC
+En
+TV
+SE
+pB
+ZD
+Sr
+Vn
+wA
+qg
+GZ
+LR
+pK
+uM
+qP
+cM
+wj
+VY
+jV
+jV
+jV
+jV
+VY
+xn
+Nq
+Tu
+VY
+za
+za
+EL
+SY
+MC
+AU
+PI
+PI
+PI
+"}
+(25,1,1) = {"
+za
+za
+za
+za
+za
+Mr
+kj
+Ek
+TD
+Yq
+gH
+Pw
+pH
+pB
+ZD
+uy
+nM
+PI
+Dy
+Gn
+Hr
+PI
+VY
+VV
+Gw
+VV
+VY
+eF
+lu
+wA
+ZE
+VY
+VY
+kS
+uM
+VY
+EL
+Kt
+Kt
+ZS
+Lj
+EL
+Eg
+PI
+PI
+"}
+(26,1,1) = {"
+za
+za
+za
+za
+za
+Mr
+AT
+mW
+eW
+la
+gH
+Nr
+Dp
+nM
+pB
+pB
+Vn
+yM
+qg
+Gn
+LR
+PI
+eF
+uS
+GZ
+hd
+PI
+PI
+PI
+jA
+jl
+EL
+uS
+GZ
+gC
+PI
+PI
+PI
+Nt
+rS
+EL
+fx
+gx
+PI
+aZ
+"}
+(27,1,1) = {"
+za
+za
+za
+za
+za
+Mr
+Mr
+qZ
+Mr
+Mr
+gH
+lW
+dA
+pB
+zD
+YT
+nM
+mM
+Ec
+Gn
+TX
+mM
+HL
+wE
+Gn
+bV
+HL
+HL
+TO
+HL
+HL
+HL
+jg
+Gn
+bV
+HL
+HL
+yb
+cZ
+rS
+EL
+PI
+PI
+aZ
+aZ
+"}
+(28,1,1) = {"
+aZ
+za
+za
+za
+za
+tZ
+mK
+xL
+pa
+nM
+cz
+Gr
+oK
+GT
+GX
+No
+Tr
+GZ
+GZ
+GZ
+GZ
+nv
+GZ
+GZ
+GZ
+Gn
+Zw
+GZ
+GZ
+GZ
+Gn
+GZ
+Gn
+Gn
+GZ
+nv
+GZ
+GZ
+wW
+PI
+PI
+PI
+PI
+PI
+aZ
+"}
+(29,1,1) = {"
+aZ
+aZ
+za
+za
+za
+Mr
+Mr
+om
+Pn
+nM
+Ng
+Sk
+EC
+nM
+Vn
+nM
+Vn
+zT
+Jc
+Jc
+zT
+zT
+Qs
+Jg
+GA
+Jg
+Jg
+rv
+nv
+Go
+Jg
+Jg
+GA
+Jg
+Jg
+iu
+Jg
+rI
+pj
+PI
+PI
+PI
+PI
+PI
+PI
+"}
+(30,1,1) = {"
+aZ
+aZ
+za
+za
+za
+za
+Mr
+Mr
+Mr
+nM
+nM
+nM
+Vn
+Vn
+EL
+vu
+PI
+PI
+MC
+MC
+PI
+PI
+fx
+jA
+PI
+EL
+ZE
+fZ
+GZ
+hd
+ZE
+yW
+wA
+PI
+IH
+Oo
+EL
+Kt
+Kt
+rS
+EL
+jH
+EL
+bG
+PI
+"}
+(31,1,1) = {"
+aZ
+aZ
+aZ
+za
+za
+za
+za
+za
+za
+za
+za
+za
+za
+za
+EL
+EL
+PI
+Eg
+PI
+MC
+jA
+PI
+PI
+Dw
+wA
+jl
+LA
+LA
+vZ
+LA
+LA
+LA
+ei
+ei
+ki
+LA
+LA
+Kt
+YR
+Lr
+Kt
+MC
+EL
+Eg
+PI
+"}
+(32,1,1) = {"
+aZ
+aZ
+aZ
+za
+za
+za
+za
+za
+za
+za
+za
+za
+za
+pK
+EL
+PI
+MC
+PI
+MC
+PW
+EL
+LA
+LA
+LA
+LA
+LA
+LA
+Uk
+Pp
+zP
+LA
+Cr
+Bn
+Rr
+Fb
+Qy
+LA
+za
+za
+pe
+ZS
+MX
+EL
+PI
+PI
+"}
+(33,1,1) = {"
+aZ
+aZ
+aZ
+aZ
+za
+za
+za
+za
+za
+za
+za
+za
+za
+za
+EL
+Ba
+MC
+PI
+PI
+EL
+AU
+LA
+Vm
+Gp
+pp
+uI
+LA
+uv
+ka
+iA
+LA
+vy
+FR
+Ym
+ME
+Kk
+LA
+za
+za
+za
+pe
+MC
+Pb
+EL
+PI
+"}
+(34,1,1) = {"
+aZ
+aZ
+aZ
+aZ
+za
+za
+za
+za
+za
+za
+za
+za
+za
+za
+yQ
+tP
+tP
+MC
+EL
+Zt
+vu
+LA
+Be
+mc
+en
+ay
+LA
+og
+ok
+rH
+vU
+pp
+ow
+rA
+WT
+uI
+LA
+za
+za
+za
+za
+MC
+MC
+EL
+PI
+"}
+(35,1,1) = {"
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+za
+za
+za
+za
+EL
+MC
+EL
+MC
+MC
+Vd
+gT
+pe
+za
+LA
+IW
+xO
+OY
+ay
+Nx
+oC
+ID
+ID
+vU
+wK
+do
+XC
+Pt
+XA
+LA
+za
+za
+za
+za
+pK
+EL
+EL
+PI
+"}
+(36,1,1) = {"
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+za
+za
+EL
+UQ
+EL
+hk
+MC
+PI
+uf
+AU
+za
+za
+LA
+QA
+jZ
+kC
+XA
+LA
+jX
+xr
+BB
+LA
+wH
+Qp
+Mz
+LA
+IK
+LA
+LA
+za
+za
+za
+MC
+AU
+PI
+PI
+"}
+(37,1,1) = {"
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+PI
+PI
+PI
+Eg
+gx
+PI
+PI
+EL
+EL
+za
+za
+LA
+LA
+LA
+LA
+LA
+LA
+Ma
+KD
+HT
+LA
+Bd
+oL
+gc
+LA
+OZ
+BC
+LA
+za
+za
+za
+za
+EL
+PI
+PI
+"}
+(38,1,1) = {"
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+PI
+PI
+PI
+PI
+PI
+pK
+za
+za
+za
+za
+za
+za
+za
+za
+LA
+LA
+LA
+LA
+LA
+Rq
+Qy
+uT
+Nx
+TL
+um
+LA
+za
+za
+za
+za
+EL
+PI
+aZ
+"}
+(39,1,1) = {"
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+PI
+PI
+PI
+za
+za
+za
+za
+za
+za
+za
+za
+za
+za
+za
+za
+LA
+VK
+BU
+LA
+LA
+LA
+LA
+LA
+za
+za
+za
+za
+EL
+PI
+aZ
+"}
+(40,1,1) = {"
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+za
+za
+za
+za
+za
+za
+za
+za
+za
+za
+za
+LA
+LA
+LA
+LA
+za
+za
+za
+za
+za
+za
+za
+za
+EL
+EL
+PI
+"}
+(41,1,1) = {"
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+za
+za
+za
+za
+za
+za
+za
+za
+za
+za
+za
+za
+za
+za
+za
+za
+za
+za
+za
+za
+za
+EL
+EL
+EL
+PI
+"}
+(42,1,1) = {"
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+za
+za
+za
+za
+za
+za
+za
+za
+za
+za
+za
+za
+za
+za
+za
+za
+za
+EL
+EL
+PI
+PI
+aZ
+"}
+(43,1,1) = {"
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+za
+za
+za
+za
+za
+aZ
+za
+za
+za
+za
+za
+za
+za
+za
+EL
+EL
+EL
+EL
+PI
+aZ
+aZ
+"}
+(44,1,1) = {"
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+za
+za
+za
+aZ
+aZ
+za
+za
+za
+aZ
+za
+za
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+"}

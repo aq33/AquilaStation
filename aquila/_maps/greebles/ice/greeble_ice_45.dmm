@@ -1,0 +1,90 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"f" = (
+/obj/structure/flora/ash/garden/frigid,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"h" = (
+/obj/structure/flora/tree/pine,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"t" = (
+/obj/structure/flora/rock/icy,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"u" = (
+/turf/closed/mineral/random/planet_ice,
+/area/template_noop)
+"x" = (
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"F" = (
+/obj/structure/flora/grass/both,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"R" = (
+/turf/template_noop,
+/area/template_noop)
+
+(1,1,1) = {"
+R
+x
+F
+x
+x
+t
+R
+"}
+(2,1,1) = {"
+R
+x
+x
+h
+f
+x
+F
+"}
+(3,1,1) = {"
+u
+u
+u
+x
+x
+h
+x
+"}
+(4,1,1) = {"
+F
+u
+u
+u
+u
+u
+R
+"}
+(5,1,1) = {"
+x
+h
+u
+u
+u
+F
+R
+"}
+(6,1,1) = {"
+R
+x
+x
+x
+h
+x
+R
+"}
+(7,1,1) = {"
+R
+R
+x
+F
+x
+R
+R
+"}

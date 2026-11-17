@@ -11,6 +11,7 @@ fi
 
 mkdir -p \
     $1/_maps \
+	$1/aquila/_maps \
 	$1/auxtools \
 	$1/code/datums/greyscale/json_configs \
 	$1/data/spritesheets \
@@ -29,6 +30,8 @@ fi
 # NSV13 - different binary names
 cp nsv13.dmb nsv13.rsc $1/
 cp -r _maps/* $1/_maps/
+# AQUILA - szablony map Aquili (ruiny planet, greeble) czytane z dysku w czasie gry
+cp -r aquila/_maps/* $1/aquila/_maps/
 cp -r code/datums/greyscale/json_configs/* $1/code/datums/greyscale/json_configs/
 cp -r icons/* $1/icons/
 cp -r sound/runtime/* $1/sound/runtime/

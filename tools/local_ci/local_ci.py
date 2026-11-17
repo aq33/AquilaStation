@@ -293,7 +293,7 @@ def deploy_tests(base, target):
 		shutil.copyfile(os.path.join(REPO, base + ext), os.path.join(target, base + ext))
 	# Zasoby, których świat nie zapisuje, przez twarde dowiązania (ok. 250 MB na część bez kopiowania).
 	# config/ i html/ są zwykłymi kopiami: serwer je zapisuje, a zapis przez dowiązanie zmieniłby pliki w repo
-	read_only = ("_maps", "code/datums/greyscale/json_configs", "icons", "sound/runtime", "strings", "tgui/public", "tgui/packages/tgfont/dist")
+	read_only = ("_maps", "aquila/_maps", "code/datums/greyscale/json_configs", "icons", "sound/runtime", "strings", "tgui/public", "tgui/packages/tgfont/dist")
 	for folder in read_only + ("html/changelogs/archive", "config"):
 		source = os.path.join(REPO, folder)
 		if os.path.isdir(source):

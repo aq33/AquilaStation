@@ -1,0 +1,129 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"c" = (
+/mob/living/basic/mining/ice_demon/old,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"r" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"u" = (
+/turf/template_noop,
+/area/template_noop)
+"w" = (
+/obj/effect/anomaly/bluespace/planetary,
+/turf/open/floor/plating/asteroid/iceberg,
+/area/template_noop)
+"D" = (
+/turf/closed/mineral/random/planet_ice,
+/area/template_noop)
+"F" = (
+/obj/structure/flora/ausbushes/lavendergrass,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"R" = (
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"U" = (
+/turf/open/floor/plating/asteroid/iceberg,
+/area/template_noop)
+
+(1,1,1) = {"
+u
+u
+R
+r
+R
+R
+R
+u
+u
+"}
+(2,1,1) = {"
+u
+D
+D
+r
+U
+F
+R
+u
+u
+"}
+(3,1,1) = {"
+D
+D
+D
+U
+U
+r
+r
+R
+u
+"}
+(4,1,1) = {"
+u
+R
+R
+U
+U
+U
+c
+R
+R
+"}
+(5,1,1) = {"
+u
+r
+U
+U
+w
+U
+U
+U
+F
+"}
+(6,1,1) = {"
+u
+R
+F
+U
+U
+U
+U
+U
+U
+"}
+(7,1,1) = {"
+u
+R
+c
+R
+r
+U
+U
+r
+D
+"}
+(8,1,1) = {"
+R
+r
+R
+R
+R
+F
+D
+D
+D
+"}
+(9,1,1) = {"
+u
+u
+u
+R
+R
+D
+D
+D
+D
+"}

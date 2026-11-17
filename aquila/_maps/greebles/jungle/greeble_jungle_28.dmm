@@ -1,0 +1,162 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/structure/spacevine,
+/obj/structure/flora/junglebush/c,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"d" = (
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"f" = (
+/obj/structure/spacevine,
+/obj/structure/flora/rock/jungle,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"g" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"j" = (
+/obj/structure/spacevine,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"r" = (
+/obj/structure/spacevine,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"s" = (
+/obj/structure/spacevine,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/stairs{
+	dir = 4;
+	 initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"u" = (
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"v" = (
+/obj/structure/spacevine,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/template_noop)
+"B" = (
+/obj/structure/flora/tree/jungle/small,
+/obj/structure/spacevine,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/template_noop)
+"C" = (
+/obj/structure/flora/junglebush,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/template_noop)
+"D" = (
+/turf/template_noop,
+/area/template_noop)
+"G" = (
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"L" = (
+/obj/structure/spacevine,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"P" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/template_noop)
+"T" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/stairs{
+	dir = 8;
+	 initial_gas_mix = "o2=22;n2=89;co2=2;TEMP=308";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+
+(1,1,1) = {"
+D
+D
+u
+r
+u
+D
+"}
+(2,1,1) = {"
+v
+B
+r
+s
+T
+u
+"}
+(3,1,1) = {"
+v
+a
+r
+L
+j
+f
+"}
+(4,1,1) = {"
+v
+r
+u
+g
+d
+u
+"}
+(5,1,1) = {"
+C
+P
+u
+g
+G
+u
+"}
+(6,1,1) = {"
+P
+u
+u
+T
+T
+D
+"}
+(7,1,1) = {"
+D
+D
+u
+u
+u
+D
+"}

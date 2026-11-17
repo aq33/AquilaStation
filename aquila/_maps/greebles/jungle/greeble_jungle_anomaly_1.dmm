@@ -1,0 +1,139 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"b" = (
+/obj/structure/flora/grass/jungle/b,
+/obj/structure/flora/ausbushes/sparsegrass/hell,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/yellow,
+/area/template_noop)
+"c" = (
+/obj/structure/flora/grass/jungle/b,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/yellow,
+/area/template_noop)
+"d" = (
+/obj/structure/flora/ausbushes/sparsegrass/hell,
+/turf/open/water/planet/jungle/blood,
+/area/template_noop)
+"l" = (
+/obj/structure/flora/grass/jungle/b,
+/obj/structure/flora/tree/jungle,
+/obj/structure/flora/ausbushes/sparsegrass/hell,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/yellow,
+/area/template_noop)
+"m" = (
+/turf/open/water/planet/jungle/blood,
+/area/template_noop)
+"n" = (
+/obj/structure/flora/ausbushes/stalkybush{
+	pixel_x = -2;
+	 pixel_y = -6
+	},
+/turf/open/water/planet/jungle/blood,
+/area/template_noop)
+"w" = (
+/obj/structure/flora/grass/jungle,
+/obj/structure/flora/ausbushes/sparsegrass/hell,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/yellow,
+/area/template_noop)
+"C" = (
+/turf/template_noop,
+/area/template_noop)
+"E" = (
+/obj/structure/flora/ausbushes/stalkybush{
+	pixel_x = -11;
+	 pixel_y = -4
+	},
+/turf/open/water/planet/jungle/blood,
+/area/template_noop)
+"F" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/obj/structure/flora/grass/jungle,
+/obj/structure/flora/ausbushes/hell{
+	pixel_y = 4
+	},
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/yellow,
+/area/template_noop)
+"G" = (
+/obj/effect/anomaly/transfusion/planetary{
+	pixel_y = 11
+	},
+/obj/structure/flora/ausbushes/reedbush,
+/turf/open/water/planet/jungle/blood,
+/area/template_noop)
+"M" = (
+/obj/structure/flora/ausbushes/sparsegrass/hell,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/yellow,
+/area/template_noop)
+"O" = (
+/obj/structure/flora/grass/jungle,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/yellow,
+/area/template_noop)
+"P" = (
+/obj/structure/flora/ausbushes/stalkybush{
+	pixel_x = -5;
+	 pixel_y = 10
+	},
+/turf/open/water/planet/jungle/blood,
+/area/template_noop)
+
+(1,1,1) = {"
+C
+C
+C
+C
+C
+M
+O
+"}
+(2,1,1) = {"
+C
+C
+O
+w
+b
+F
+M
+"}
+(3,1,1) = {"
+C
+O
+d
+m
+m
+w
+c
+"}
+(4,1,1) = {"
+C
+O
+n
+G
+P
+m
+b
+"}
+(5,1,1) = {"
+b
+d
+m
+E
+d
+m
+C
+"}
+(6,1,1) = {"
+O
+l
+d
+O
+O
+m
+C
+"}
+(7,1,1) = {"
+O
+w
+b
+O
+c
+C
+C
+"}
