@@ -13,6 +13,8 @@ GLOBAL_VAR_INIT(hex_last_ship_event, 0)
 /datum/round_event_control
 	/// Event odpalany przez kafel mapy hex: pomija earliest_start, reszta warunków zostaje
 	var/hex_triggered = FALSE
+	/// Szansa (%), że event z puli kafla w ogóle wejdzie do losowania: rzadkie eventy kafli mają mniej niż 100
+	var/hex_pool_chance = 100
 
 /datum/round_event_control/canSpawnEvent(players_amt, gamemode)
 	if(!hex_triggered)
@@ -115,7 +117,7 @@ GLOBAL_VAR_INIT(hex_last_ship_event, 0)
 	return hex_weighted_offers().malf_ai_candidates()
 
 /**
- * Losuje event z puli kafla (wszystkie z tą samą szansą). Gdy nic z puli nie może wystartować, losuje event statkowy.
+ * Losuje event z puli kafla (wszystkie z tą samą szansą, rzadkie tylko z szansą hex_pool_chance na wejście do losowania). Gdy nic z puli nie może wystartować, losuje event statkowy.
  * Zwraca kontrolkę eventu, HEX_POOL_MALF albo nic.
  */
 /proc/hex_pick_tile_event(datum/hex/H, allow_antags = TRUE, last_event)
@@ -124,7 +126,7 @@ GLOBAL_VAR_INIT(hex_last_ship_event, 0)
 	var/list/options = list()
 	for(var/path in T?.events)
 		var/datum/round_event_control/E = hex_event_control(path)
-		if(E && E != last_event && hex_event_can_spawn(E, players))
+		if(E && E != last_event && prob(E.hex_pool_chance) && hex_event_can_spawn(E, players))
 			options += E
 	if(allow_antags)
 		for(var/entry in T?.antags)

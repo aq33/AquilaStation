@@ -57,6 +57,8 @@ GLOBAL_LIST_EMPTY(hex_terrains)
 		/datum/round_event_control/meteor_wave/catastrophic,
 		/datum/round_event_control/immovable_rod,
 		/datum/round_event_control/aquila_hex_comet_expulsion,
+		/datum/round_event_control/aquila_hex_lone_hunter,
+		/datum/round_event_control/aquila_hex_belt_rats,
 	)
 	antags = list(
 		/datum/round_event_control/spider_infestation,
@@ -97,6 +99,7 @@ GLOBAL_LIST_EMPTY(hex_terrains)
 		/datum/round_event_control/anomaly/anomaly_hallucination,
 		/datum/round_event_control/aurora_caelus,
 		/datum/round_event_control/aquila_hex_nebula_flicker,
+		/datum/round_event_control/aquila_hex_lone_hunter,
 	)
 	antags = list(
 		/datum/round_event_control/pirates,
