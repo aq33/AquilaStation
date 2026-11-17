@@ -164,5 +164,25 @@
 	TEST_ASSERT(sparrowhawk in vls.ammo, "VLS nie przyjął Sparrowhawka")
 	TEST_ASSERT_EQUAL(sparrowhawk.projectile_type, /obj/item/projectile/guided_munition/missile/cruise, "Sparrowhawk strzela zwykłą rakietą")
 
+/// AQUILA - raport nsv_martwe_08 pkt 5: przepis na głodny worek prochu zna kucharz, i tylko on
+/datum/unit_test/nsv_cook_hungry_powder
+
+/datum/unit_test/nsv_cook_hungry_powder/Run()
+	var/datum/crafting_recipe/hungrypowder/recipe = locate() in GLOB.crafting_recipes
+	TEST_ASSERT(recipe, "Nie ma przepisu na głodny worek prochu")
+	TEST_ASSERT(recipe.crafting_flags & CRAFT_MUST_BE_LEARNED, "Głodny worek prochu może zrobić każdy")
+
+	var/mob/living/carbon/human/cook = allocate(/mob/living/carbon/human)
+	cook.mind_initialize()
+	var/datum/job/cook/cook_job = SSjob.GetJobType(/datum/job/cook)
+	cook_job.after_spawn(cook, cook)
+	TEST_ASSERT(cook.mind.learned_recipes && (/datum/crafting_recipe/hungrypowder in cook.mind.learned_recipes), "Kucharz nie zna przepisu na głodny worek prochu")
+
+	var/mob/living/carbon/human/janitor = allocate(/mob/living/carbon/human)
+	janitor.mind_initialize()
+	var/datum/job/janitor/janitor_job = SSjob.GetJobType(/datum/job/janitor)
+	janitor_job.after_spawn(janitor, janitor)
+	TEST_ASSERT(!(janitor.mind.learned_recipes && (/datum/crafting_recipe/hungrypowder in janitor.mind.learned_recipes)), "Woźny zna przepis kucharza")
+
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL
