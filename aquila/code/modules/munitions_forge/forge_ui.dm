@@ -1,19 +1,20 @@
-// AQUILA - okno pieca łukowego (MunitionsForge.tsx) zamiast form odlewniczych: wyrób, materiał albo stop, klasa,
-// koszt z silosu i właściwości wyrobu w jednym oknie. Obudowy głowic wymagają zbadanych głowic torped (jak dawna forma).
+// AQUILA - okno pieca łukowego (MunitionsForge.tsx) zamiast form odlewniczych: wyrób, rdzeń i powłoka, typ pocisku,
+// klasa, koszt z silosu i właściwości wyrobu w jednym oknie. Wyroby po dawnych projektach protolathe wymagają
+// tego samego badania co w protolathe (required_node części).
 
 /// Grupy wyrobów w oknie: nazwa grupy -> typ bazowy (wyrobami są podtypy)
 GLOBAL_LIST_INIT(aq_forge_groups, list(
 	"Łuski" = /obj/item/munition_part/body/casings,
 	"Pociski działowe" = /obj/item/munition_part/body/shell,
-	"Obudowy głowic" = /obj/item/munition_part/body/warhead,
+	"Części fabryczne" = /obj/item/munition_part/simple,
 	"Wkładki do pancerza" = /obj/item/munition_part/body/armor_insert,
-	"Wypełnienia" = /obj/item/munition_part/filler,
 	"Zapalniki" = /obj/item/munition_part/fuze,
 ))
 
-/// Typ bazowy grupy -> węzeł techwebu, bez którego piec jej nie odleje
-GLOBAL_LIST_INIT(aq_forge_group_nodes, list(
-	/obj/item/munition_part/body/warhead = "basic_torpedo_components",
+/// Nazwy węzłów do podpowiedzi przy zablokowanym wyrobie
+GLOBAL_LIST_INIT(aq_forge_node_names, list(
+	"adv_ballistics" = "Zaawansowana balistyka",
+	"macro_ballistics" = "Makrobalistyka",
 ))
 
 /// Wszystkie wyroby pieca: nazwa grupy -> lista typów części
@@ -44,12 +45,12 @@ GLOBAL_LIST_INIT(aq_forge_products, init_aq_forge_products())
 			return TRUE
 	return FALSE
 
-/// Czy piec może już odlewać ten wyrób (wyrób z katalogu i zbadany węzeł grupy)
+/// Czy piec może już odlewać ten wyrób (wyrób z katalogu i zbadany jego węzeł)
 /proc/aq_forge_product_available(product)
 	if(!aq_forge_is_product(product))
 		return FALSE
-	var/root = aq_forge_group_root(product)
-	var/node = GLOB.aq_forge_group_nodes[root]
+	var/obj/item/munition_part/part = product
+	var/node = initial(part.required_node)
 	if(!node)
 		return TRUE
 	return !!SSresearch.science_tech?.researched_nodes[node]
@@ -67,7 +68,8 @@ GLOBAL_LIST_INIT(aq_forge_products, init_aq_forge_products())
 	for(var/group in GLOB.aq_forge_products)
 		var/list/items = list()
 		for(var/obj/item/munition_part/path as anything in GLOB.aq_forge_products[group])
-			items += list(list("id" = "[path]", "name" = initial(path.name)))
+			var/node = initial(path.required_node)
+			items += list(list("id" = "[path]", "name" = initial(path.name), "node" = node ? (GLOB.aq_forge_node_names[node] || node) : null))
 		groups += list(list("name" = group, "items" = items))
 	.["groups"] = groups
 	var/list/qualities = list()
@@ -75,6 +77,11 @@ GLOBAL_LIST_INIT(aq_forge_products, init_aq_forge_products())
 		var/datum/munition_quality/quality = get_munition_quality(quality_type)
 		qualities += list(list("level" = quality.level, "roman" = quality.roman, "name" = quality.name))
 	.["qualities"] = qualities
+	var/list/shell_types = list()
+	for(var/path in GLOB.munition_fillers)
+		var/datum/munition_filler/filler_datum = GLOB.munition_fillers[path]
+		shell_types += list(list("id" = "[path]", "name" = filler_datum.short_name, "desc" = "[filler_datum.name]: [filler_datum.desc] Obrażenia ×[filler_datum.damage_mult], przebicie [filler_datum.armour_pen_add >= 0 ? "+" : ""][filler_datum.armour_pen_add]."))
+	.["shell_types"] = shell_types
 
 /obj/machinery/munitions_forge/arc_forge/ui_data(mob/user)
 	. = list()
@@ -87,19 +94,20 @@ GLOBAL_LIST_INIT(aq_forge_products, init_aq_forge_products())
 	.["working_heat"] = working_part?.forge_heat
 	.["selected_product"] = "[selected_product]"
 	.["selected_material"] = "[selected_material?.material_type]"
-	.["selected_alloy"] = selected_alloy ? "[selected_alloy.material_type]" : null
-	var/datum/munition_quality/quality = get_munition_quality(selected_quality)
+	.["selected_coating"] = selected_coating ? "[selected_coating.material_type]" : null
+	var/datum/munition_quality/quality = get_munition_quality(selected_has_quality() ? selected_quality : /datum/munition_quality)
 	.["selected_quality"] = quality.level
+	.["has_quality"] = selected_has_quality()
 	var/is_body = ispath(selected_product, /obj/item/munition_part/body)
 	.["uses_material"] = is_body
+	var/datum/munition_filler/shell_type = current_shell_type()
+	.["uses_shell_type"] = !!shell_type
+	.["selected_shell_type"] = "[selected_shell_type]"
 	var/list/locked = list()
 	for(var/group in GLOB.aq_forge_products)
-		// wyroby z katalogu blokuje tylko niezbadany węzeł ich grupy
-		var/node = GLOB.aq_forge_group_nodes[GLOB.aq_forge_groups[group]]
-		if(!node || SSresearch.science_tech?.researched_nodes[node])
-			continue
 		for(var/path in GLOB.aq_forge_products[group])
-			locked += "[path]"
+			if(!aq_forge_product_available(path))
+				locked += "[path]"
 	.["locked"] = locked
 	var/list/mats = list()
 	for(var/key in GLOB.munition_materials)
@@ -112,7 +120,7 @@ GLOBAL_LIST_INIT(aq_forge_products, init_aq_forge_products())
 	.["empty"] = container && !total_sheets
 	var/list/cost = list()
 	var/can_pay = !!container
-	var/list/cost_amounts = current_cost() // dla wypełnień i zapalników tworzy tymczasowy przedmiot, więc liczymy raz
+	var/list/cost_amounts = current_cost() // tworzy tymczasowy przedmiot, więc liczymy raz
 	for(var/mat in cost_amounts)
 		var/datum/munition_material/M = get_munition_material(mat)
 		var/have = container ? container.get_material_amount(mat) : 0
@@ -123,16 +131,27 @@ GLOBAL_LIST_INIT(aq_forge_products, init_aq_forge_products())
 	.["can_cast"] = can_pay && !operating && !produced_part && !working_part && aq_forge_product_available(selected_product)
 	var/datum/munition_material/material = current_material()
 	var/list/stats = list()
+	var/list/effects = list()
 	if(is_body)
+		var/damage = material.damage_mult * quality.bonus * (shell_type ? shell_type.damage_mult : 1)
+		var/pen = material.armour_pen_add + (shell_type ? shell_type.armour_pen_add : 0)
 		stats += list(list("name" = "materiał", "value" = material.name))
-		stats += list(list("name" = "obrażenia", "value" = "×[round(material.damage_mult * quality.bonus, 0.01)]"))
-		stats += list(list("name" = "przebicie", "value" = "[material.armour_pen_add >= 0 ? "+" : ""][material.armour_pen_add]"))
+		if(shell_type)
+			stats += list(list("name" = "typ", "value" = "[shell_type.short_name] ([shell_type.name])"))
+		stats += list(list("name" = "obrażenia", "value" = "×[round(damage, 0.01)]"))
+		stats += list(list("name" = "przebicie", "value" = "[pen >= 0 ? "+" : ""][pen]"))
 		stats += list(list("name" = "prędkość", "value" = "×[material.speed_mult]"))
 		stats += list(list("name" = "wytrzymałość", "value" = "×[round(material.integrity_mult * quality.bonus, 0.01)]"))
-	else
+		if(material.special_desc)
+			effects += material.special_desc
+		for(var/key in material.traits)
+			var/datum/munition_trait/T = material.traits[key]
+			effects += "[capitalize(T.name)]: [T.describe()]"
+	else if(selected_has_quality())
 		stats += list(list("name" = "jakość", "value" = "×[quality.bonus]"))
 	.["stats"] = stats
-	.["rough"] = quality.level == 0
+	.["effects"] = effects
+	.["rough"] = selected_has_quality() && quality.level == 0
 
 /obj/machinery/munitions_forge/arc_forge/ui_act(action, list/params)
 	. = ..()
@@ -153,14 +172,19 @@ GLOBAL_LIST_INIT(aq_forge_products, init_aq_forge_products())
 			if(!M)
 				return TRUE
 			selected_material = M
-			if(selected_alloy == M)
-				selected_alloy = null
+			if(selected_coating == M)
+				selected_coating = null
 			return TRUE
-		if("select_alloy")
+		if("select_coating")
 			var/id = params["id"]
-			selected_alloy = id ? get_munition_material(text2path(id)) : null
-			if(selected_alloy == selected_material)
-				selected_alloy = null
+			selected_coating = id ? get_munition_material(text2path(id)) : null
+			if(selected_coating == selected_material)
+				selected_coating = null
+			return TRUE
+		if("select_shell_type")
+			var/path = text2path(params["id"])
+			if(get_munition_filler(path))
+				selected_shell_type = path
 			return TRUE
 		if("select_quality")
 			var/level = text2num(params["level"])

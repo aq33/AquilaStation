@@ -163,51 +163,23 @@
 	if(C)
 		if(istype(C, /obj/item/ship_weapon/ammunition/railgun_ammo/forged))
 			var/obj/item/ship_weapon/ammunition/railgun_ammo/forged/T = C
-			projectile_velocity = (T.material_conductivity * 1.5) - ((100 - alignment) / 100) //ignoring the actual mass of the projectile here
-			if(projectile_velocity < 0)
-				projectile_velocity = 0.1
-			projectile_damage = T.material_density * projectile_velocity
-			if(projectile_damage < 0)
-				projectile_damage = 0
+			// AQ EDIT START - rework amunicji: wzór we wspólnych prockach (railgun_preview.dm), z których liczy też podgląd w kuźni
+			projectile_velocity = aq_railgun_velocity(T.material_conductivity, alignment)
+			projectile_damage = aq_railgun_slug_damage(T.material_density, projectile_velocity)
 			if(T.railgun_flags & RAIL_BANANA)
 				projectile_flag = "overmap_light"
-			else
-				switch(T.material_hardness) //Linear projection of the Mohs scale, assuming hulls are made of fairly soft materials
-					if(0 to 5)
-						projectile_penetration = 0
-					if(5 to 6)
-						projectile_penetration = 5
-					if(6 to 7)
-						projectile_penetration = 10
-					if(7 to 8)
-						projectile_penetration = 15
-					if(8 to 9)
-						projectile_penetration = 20
-					if(9 to 10)
-						projectile_penetration = 25
+			projectile_penetration = aq_railgun_penetration(T.material_hardness, T.railgun_flags)
+			// AQ EDIT END
 			if(T.railgun_flags & RAIL_BURN)
 				projectile_burn = 20
 		if(istype(C, /obj/item/ship_weapon/ammunition/railgun_ammo_canister))
 			var/obj/item/ship_weapon/ammunition/railgun_ammo_canister/T = C
-			projectile_velocity = (T.material_conductivity * 1.5) - ((100 - alignment) / 100)
-			if(projectile_velocity < 0)
-				projectile_velocity = 0.1
+			// AQ EDIT START - rework amunicji: wspólny wzór z railgun_preview.dm
+			projectile_velocity = aq_railgun_velocity(T.material_conductivity, alignment)
 			if(T.railgun_flags & RAIL_BANANA)
 				projectile_flag = "overmap_light"
-			else
-				switch(T.material_hardness)
-					if(0 to 5)
-						projectile_penetration = 0
-					if(5 to 6)
-						projectile_penetration = 5
-					if(6 to 7)
-						projectile_penetration = 10
-					if(7 to 8)
-						projectile_penetration = 15
-					if(8 to 9)
-						projectile_penetration = 20
-					if(9 to 10)
-						projectile_penetration = 25
+			projectile_penetration = aq_railgun_penetration(T.material_hardness, T.railgun_flags)
+			// AQ EDIT END
 			var/gas_mix = 	T.canister_gas.get_moles(GAS_O2) + \
 							T.canister_gas.get_moles(GAS_PLUOXIUM) * 1.25 + \
 							T.canister_gas.get_moles(GAS_PLASMA) * 1.75 + \
@@ -241,7 +213,7 @@
 				if(70 to 80)
 					projectile_burn = 40
 
-			projectile_damage = ((((T.material_hardness * 0.25) * T.material_density) * projectile_velocity) * 0.2) + ((gas_mix * 4) * (T.material_charge / 100))
+			projectile_damage = aq_railgun_canister_damage(T.material_hardness, T.material_density, projectile_velocity) + ((gas_mix * 4) * (T.material_charge / 100)) // AQ EDIT - rework amunicji: wspólny wzór z railgun_preview.dm
 
 		var/P = linked.fire_projectile(C.projectile_type, target, pixel_speed=projectile_velocity)
 		if(istype(P, /obj/item/projectile/bullet/railgun_forged))

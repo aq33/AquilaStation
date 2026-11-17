@@ -1,9 +1,11 @@
 // NSV13
 
 import {
+  Box,
   Button,
   Dropdown,
   Flex,
+  LabeledList,
   ProgressBar,
   Section,
 } from 'tgui-core/components';
@@ -11,7 +13,24 @@ import {
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
 
+// AQUILA: podgląd kutego pocisku (aquila/code/modules/munitions_forge/railgun_preview.dm)
+type Preview = {
+  damage: number;
+  penetration: number;
+  velocity: number;
+  burn: number;
+  light: boolean;
+};
+
+type PreviewData = {
+  slug: Preview;
+  canister: Preview;
+  plain_damage: number;
+  uranium_damage: number;
+};
+
 type Data = {
+  preview: PreviewData | null;
   t1_alloy_lock: any;
   t1_material: any;
   t1_processing: any;
@@ -39,6 +58,59 @@ const MATERIALS = [
 const materialName = (value: string) =>
   MATERIALS.find((material) => material.value === value)?.displayText || value;
 
+// AQUILA: liczby pocisku i kanistru przed wykuciem, przy pełnym wyrównaniu szyn
+const ForgePreview = (props: { preview: PreviewData | null }) => {
+  const { preview } = props;
+  if (!preview) {
+    return (
+      <Section title="Podgląd">
+        <Box color="label">
+          Wybierz materiał obu zbiorników, żeby zobaczyć wynik.
+        </Box>
+      </Section>
+    );
+  }
+  const { slug, canister } = preview;
+  const slugColor =
+    slug.damage < preview.plain_damage
+      ? 'bad'
+      : slug.damage >= preview.uranium_damage
+        ? 'good'
+        : undefined;
+  return (
+    <Section title="Podgląd (pełne wyrównanie szyn)">
+      <LabeledList>
+        <LabeledList.Item label="Pocisk 400 mm">
+          <Box color={slugColor}>
+            {`${slug.damage} obrażeń, przebicie ${slug.penetration}, prędkość ${slug.velocity}`}
+          </Box>
+        </LabeledList.Item>
+        <LabeledList.Item label="Kanister 800 mm">
+          {`${canister.damage} obrażeń bez gazu, przebicie ${canister.penetration}, prędkość ${canister.velocity}`}
+        </LabeledList.Item>
+        <LabeledList.Item label="Dla porównania">
+          {`zwykły pocisk ${preview.plain_damage}, uranowy ${preview.uranium_damage}`}
+        </LabeledList.Item>
+      </LabeledList>
+      {slug.damage < preview.plain_damage && (
+        <Box mt={1} color="bad">
+          Ta para materiałów da pocisk słabszy niż zwykły.
+        </Box>
+      )}
+      {!!slug.burn && (
+        <Box mt={1} color="average">
+          Plazma: pocisk podpala cel, ale może sam wybuchnąć.
+        </Box>
+      )}
+      {!!slug.light && (
+        <Box mt={1} color="average">
+          Bananium: lekki pocisk bez przebicia.
+        </Box>
+      )}
+    </Section>
+  );
+};
+
 export const RailgunForge = (props) => {
   const { act, data } = useBackend<Data>();
   const {
@@ -50,9 +122,10 @@ export const RailgunForge = (props) => {
     t2_alloy_lock,
     t2_processing,
     t2_material,
+    preview,
   } = data;
   return (
-    <Window width={460} height={350}>
+    <Window width={460} height={500}>
       <Window.Content scrollable>
         <Section>
           <Button
@@ -66,7 +139,7 @@ export const RailgunForge = (props) => {
             onClick={() => act('print_canister')}
           />
         </Section>
-        <br />
+        <ForgePreview preview={preview} />
         <Section title="Zbiornik powłoki">
           <Flex>
             <Flex.Item>

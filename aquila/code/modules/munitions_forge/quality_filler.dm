@@ -1,4 +1,4 @@
-// AQUILA - kuźnia amunicji: klasy jakości (na wzór smithingu z Paradise) i wypełnienia.
+// AQUILA - kuźnia amunicji: klasy jakości (na wzór smithingu z Paradise) i typy pocisków (AP, HE, APHE).
 
 GLOBAL_LIST_INIT(munition_qualities, init_munition_qualities())
 
@@ -75,6 +75,8 @@ GLOBAL_LIST_INIT(munition_fillers, init_munition_fillers())
 /proc/get_munition_filler(filler_type)
 	return GLOB.munition_fillers[filler_type]
 
+/// Typ pocisku artylerii i burtówki (AP, HE, APHE): wybierany w piecu przy odlewie korpusu.
+/// Przebicie zmienia pancerz celu (run_obj_armor): ujemne go podnosi, więc HE słabnie na grubym pancerzu.
 /datum/munition_filler
 	var/name = "nic"
 	/// Skrót do nazw wyrobów
@@ -92,30 +94,23 @@ GLOBAL_LIST_INIT(munition_fillers, init_munition_fillers())
 	for(var/path in trait_types)
 		traits[path] = new path
 
-/datum/munition_filler/he
-	name = "ładunek odłamkowo-burzący"
-	short_name = "HE"
-	desc = "Więcej obrażeń, trochę słabsze przebicie."
-	damage_mult = 1.15
-	armour_pen_add = -5
-
 /datum/munition_filler/ap
-	name = "rdzeń przeciwpancerny"
+	name = "przeciwpancerny"
 	short_name = "AP"
-	desc = "Dużo lepsze przebicie kosztem obrażeń."
-	damage_mult = 0.9
-	armour_pen_add = 20
+	desc = "Przebija gruby pancerz kosztem obrażeń."
+	damage_mult = 0.85
+	armour_pen_add = 25
 
-/datum/munition_filler/incendiary
-	name = "ładunek zapalający"
-	short_name = "Z"
-	desc = "Podpala cel i kadłub trafionego statku."
-	damage_mult = 0.95
-	trait_types = list(/datum/munition_trait/incendiary/filler)
+/datum/munition_filler/he
+	name = "odłamkowo-burzący"
+	short_name = "HE"
+	desc = "Najwięcej obrażeń, ale słabo radzi sobie z grubym pancerzem. Na myśliwce, lekkie okręty i ćwiartki bez płyt."
+	damage_mult = 1.3
+	armour_pen_add = -15
 
-/datum/munition_filler/emp
-	name = "ładunek EMP"
-	short_name = "EMP"
-	desc = "Zakłóca elektronikę celu. Ze srebra i miedzi działa mocniej."
-	damage_mult = 0.8
-	trait_types = list(/datum/munition_trait/emp)
+/datum/munition_filler/aphe
+	name = "przeciwpancerny odłamkowo-burzący"
+	short_name = "APHE"
+	desc = "Pośrodku: trochę więcej obrażeń i trochę lepsze przebicie."
+	damage_mult = 1.1
+	armour_pen_add = 10
