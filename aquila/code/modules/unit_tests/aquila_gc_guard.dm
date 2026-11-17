@@ -15,6 +15,7 @@
 
 	var/list/leaked = list()
 	var/datum/first_leak
+	var/list/one_of_type = list()
 	for(var/level in GC_QUEUE_FILTER to GC_QUEUE_CHECK)
 		for(var/list/entry as anything in SSgarbage.queues[level])
 			if(length(entry) < 2)
@@ -27,6 +28,8 @@
 				continue
 			leaked[thing.type] += 1
 			first_leak ||= thing
+			if(!one_of_type[thing.type])
+				one_of_type[thing.type] = thing
 
 	// Wycieki, które SSgarbage już wyłapał (część dłuższa niż GC_CHECK_QUEUE)
 	for(var/path in SSgarbage.items)
@@ -39,7 +42,32 @@
 	for(var/path in leaked)
 		Fail("[path] did not get collected after qdel [leaked[path]] time(s): something still holds a reference to it")
 #ifdef REFERENCE_TRACKING
-	if(first_leak)
-		log_world("## aquila_gc_guard: searching references to the first leaked [first_leak.type]")
-		first_leak.find_references(skip_alert = TRUE)
+	// SZKIC (zbieranie danych do planu): jedno szukanie na typ. Globale i datumy trwają kilka sekund,
+	// atomy (~2 min) tylko wtedy, gdy w datumach nic nie było (jak REFERENCE_TRACKING_FAST).
+	var/index = 0
+	for(var/path in one_of_type)
+		var/datum/thing = one_of_type[path]
+		index++
+		thing.aquila_gc_guard_search(world.time + index / 1000)
+#endif
+
+#ifdef REFERENCE_TRACKING
+/datum/proc/aquila_gc_guard_search(search_time)
+	SSgarbage.can_fire = FALSE
+	log_reftracker("AQGUARD Beginning search for references to a [type] \ref[src].")
+	var/found = DoSearchVar(GLOB, "GLOB", search_time = search_time)
+	var/global_vars = list()
+	for(var/key in global.vars)
+		global_vars[key] = global.vars[key]
+	found = DoSearchVar(global_vars, "Native Global", search_time = search_time) || found
+	for(var/datum/container)
+		found = DoSearchVar(container, "Datums -> [container.type]", search_time = search_time) || found
+	if(!found)
+		for(var/datum/container in world)
+			if(DoSearchVar(container, "World -> [container.type]", search_time = search_time))
+				found = TRUE
+				break
+	log_reftracker("AQGUARD Completed search for [type] \ref[src]. [found ? "Found" : "No"] reference(s).")
+	SSgarbage.can_fire = TRUE
+	SSgarbage.next_fire = world.time + world.tick_lag
 #endif
