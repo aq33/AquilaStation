@@ -13,7 +13,11 @@ GLOBAL_REAL(GLOB, /datum/controller/global_vars)
 	GLOB = src
 
 	var/datum/controller/exclude_these = new
-	gvars_datum_in_built_vars = exclude_these.vars + list(NAMEOF(src, gvars_datum_protected_varlist), NAMEOF(src, gvars_datum_in_built_vars), NAMEOF(src, gvars_datum_init_order))
+	// AQ EDIT START - port tg: zagnieżdżona lista vars trzyma referencję do datumu, więc exclude_these nigdy się nie zwalniał
+	var/list/controller_vars = exclude_these.vars.Copy()
+	controller_vars["vars"] = null
+	gvars_datum_in_built_vars = controller_vars + list(NAMEOF(src, gvars_datum_protected_varlist), NAMEOF(src, gvars_datum_in_built_vars), NAMEOF(src, gvars_datum_init_order))
+	// AQ EDIT END
 	QDEL_IN(exclude_these, 0)	//signal logging isn't ready
 
 	log_world("[vars.len - gvars_datum_in_built_vars.len] global variables")

@@ -2443,6 +2443,7 @@
 #include "code\modules\unit_tests\aquila_ship_console.dm"
 #include "code\modules\unit_tests\aquila_ship_hud_compact.dm"
 #include "code\modules\unit_tests\aquila_fighter_destroyed_parts.dm"
+#include "code\modules\unit_tests\aquila_gc_cycles.dm"
 #include "code\modules\unit_tests\aquila_ticket_db_log.dm"
 #include "code\modules\unit_tests\aquila_player_browser.dm"
 #include "code\modules\unit_tests\test_chamber_smoke.dm"

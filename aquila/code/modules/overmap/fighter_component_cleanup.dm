@@ -21,3 +21,22 @@
 	if(QDELETED(src))
 		return TRUE
 	return ..()
+
+/// AQUILA - myśliwiec trzymał komponent w `loadout`, a komponent myśliwiec w `holder`: po qdel żadne z nich się nie zwalniało,
+/// a z komponentem wisiały części ze slotów (komputer dokujący). Twarde usunięcie i szukanie referencji w CI.
+/datum/component/ship_loadout/Destroy(force, silent)
+	STOP_PROCESSING(SSobj, src)
+	holder = null
+	return ..()
+
+/// Myśliwiec stworzony w hangarze trafia do `overmaps_in_ship` okrętu w Initialize(), a Destroy() z upstreamu
+/// zdejmował go tylko z `last_overmap`, które jest puste, dopóki myśliwiec nie wyleci. Usunięty myśliwiec zostawał na liście okrętu.
+/// Statek z ludźmi w środku odmawia usunięcia (QDEL_HINT_LETMELIVE) i wtedy zostaje nietknięty.
+/obj/structure/overmap/small_craft/Destroy()
+	var/obj/structure/overmap/home = get_overmap()
+	. = ..()
+	if(. == QDEL_HINT_LETMELIVE)
+		return
+	if(home) // get_overmap() bez loc zwraca FALSE, nie null
+		home.overmaps_in_ship -= src
+	loadout = null
