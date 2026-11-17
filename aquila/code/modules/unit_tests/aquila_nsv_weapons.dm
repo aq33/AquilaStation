@@ -32,6 +32,9 @@
 /datum/overmap_ship_weapon/mac/yamato/aq_test/needs_real_weapons()
 	return TRUE
 
+/datum/overmap_ship_weapon/flak/aq_test/needs_real_weapons()
+	return TRUE
+
 /// Typy towarów, które handlarz wystawia po uzupełnieniu (bez ofert specjalnych, które wymagają okrętu gracza)
 /proc/aq_test_trader_stock(trader_type)
 	var/datum/trader/trader = new trader_type()
@@ -206,6 +209,35 @@
 	janitor_job.after_spawn(janitor, janitor)
 	qdel(janitor_job)
 	TEST_ASSERT(!(janitor.mind.learned_recipes && (/datum/crafting_recipe/hungrypowder in janitor.mind.learned_recipes)), "Woźny zna przepis kucharza")
+
+/// AQUILA - raport nsv_martwe_08 pkt 6: stojak flaku z mapy strzela, a płytkę flaku da się wydrukować z badań
+/datum/unit_test/nsv_flak
+
+/datum/unit_test/nsv_flak/Run()
+	// Stojak z mapy (Atlantis): add_weapon() tworzy datum przez new(overmapa), bez liczby baterii
+	var/datum/overmap_ship_weapon/flak/flak = new /datum/overmap_ship_weapon/flak/aq_test()
+	var/obj/machinery/ship_weapon/aq_salvo_test/rack = new(run_loc_floor_bottom_left)
+	flak.link_physical_weapon(rack)
+	flak.weapons["loaded"] += rack
+	TEST_ASSERT(flak.burst_size >= 1, "Flak ze stojaka ma salwę [isnull(flak.burst_size) ? "null" : flak.burst_size]")
+	var/shots = flak.fire_physical(run_loc_floor_bottom_left)
+	flak.unlink_physical_weapon(rack, TRUE)
+	qdel(rack)
+	qdel(flak)
+	TEST_ASSERT_EQUAL(shots, 1, "Stojak flaku nie strzela")
+	// Okręt AI z podaną liczbą baterii zachowuje swoją salwę
+	var/datum/overmap_ship_weapon/flak/battery = new(null, TRUE, 3)
+	TEST_ASSERT_EQUAL(battery.burst_size, 3, "Zmieniła się salwa flaku okrętów AI")
+	qdel(battery)
+
+	var/datum/techweb_node/node = SSresearch.techweb_node_by_id("adv_ballistics")
+	TEST_ASSERT("flak_mount_circuit" in node.design_ids, "Zaawansowana balistyka nie ma płytki flaku")
+	var/datum/design/design = SSresearch.techweb_design_by_id("flak_mount_circuit")
+	TEST_ASSERT_EQUAL(design.build_path, /obj/item/circuitboard/machine/pdc_mount/flak, "Projekt płytki flaku robi inną płytkę")
+	var/obj/item/circuitboard/machine/pdc_mount/flak/board = /obj/item/circuitboard/machine/pdc_mount/flak
+	TEST_ASSERT_EQUAL(initial(board.build_path), /obj/machinery/ship_weapon/pdc_mount/flak, "Płytka flaku buduje inny stojak")
+	var/obj/machinery/ship_weapon/pdc_mount/flak/mount = /obj/machinery/ship_weapon/pdc_mount/flak
+	TEST_ASSERT_EQUAL(initial(mount.circuit), /obj/item/circuitboard/machine/pdc_mount/flak, "Rozebrany stojak flaku oddaje płytkę PDC")
 
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL
