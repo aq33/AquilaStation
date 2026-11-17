@@ -1,13 +1,14 @@
 /// AQUILA - moduły okrętu na siatce wnętrza (aquila/code/modules/overmap/modules/ship_modules.dm): siatka z mapy wnętrza,
 /// pełny pancerz zatrzymuje trafienie na poszyciu, zbity wpuszcza je w głąb, dziura pogłębia następne trafienie,
 /// a zniszczone moduły tną ciąg silników i wyłączają broń swojego rodzaju. Moduły biorą obrażenia po pancerzu okrętu na klasę
-/// pocisku i po przebiciu, a pocisk z kuźni z cechą radioaktywną zabija załogę trafionego modułu.
+/// pocisku i po przebiciu, a pocisk z kuźni z cechą radioaktywną zabija załogę trafionego modułu. Rakiety i torpedy
+/// ignorują burty: wybuchają w module wybranym przez strzelca mimo pełnego pancerza, a w okręcie z wnętrzem w losowym punkcie.
 /datum/unit_test/aquila_ship_modules
 	var/obj/structure/overmap/ship
 
 /datum/unit_test/aquila_ship_modules/Run()
 	ship = allocate(/obj/structure/overmap/syndicate/ai/gunboat/morale_test)
-	var/fail = check_layouts() || check_hits() || check_armour_damage() || check_radiation() || check_effects()
+	var/fail = check_layouts() || check_hits() || check_armour_damage() || check_radiation() || check_guided() || check_effects()
 	if(fail)
 		return Fail(fail)
 
@@ -107,3 +108,26 @@
 		after += module.crew_lost
 	if(after - before < 0.24)
 		return "Pocisk radioaktywny zabił tylko [after - before] załogi modułu (oczekiwane co najmniej 0,25)"
+
+/datum/unit_test/aquila_ship_modules/proc/check_guided()
+	if(!is_unguided_overmap_projectile(/obj/item/projectile/bullet/mac_round))
+		return "Artyleria MAC nie celuje w wybrany moduł"
+	if(is_unguided_overmap_projectile(/obj/item/projectile/guided_munition/torpedo))
+		return "Torpeda liczy się jak pocisk niekierowany"
+	var/datum/ship_modules/modules = ship.get_ship_modules()
+	var/datum/ship_module/bridge = modules.modules_of("bridge")[1]
+	set_armour(1)
+	bridge.integrity = bridge.max_integrity
+	var/obj/structure/overmap/firer = allocate(/obj/structure/overmap/syndicate/ai/gunboat/morale_test)
+	firer.set_aim_module(ship, modules.modules.Find(bridge))
+	var/obj/item/projectile/guided_munition/torpedo/torp = allocate(/obj/item/projectile/guided_munition/torpedo)
+	torp.overmap_firer = firer
+	var/list/hit = ship.ship_module_projectile_hit(torp, 60)
+	if(!(bridge in hit) || bridge.integrity >= bridge.max_integrity)
+		return "Torpeda przy pełnym pancerzu nie trafiła wybranego mostka ([bridge.integrity]/[bridge.max_integrity])"
+	// okręt z wnętrzem: rakieta trafia w losowy punkt i nie patrzy na pancerz ćwiartki
+	ship.remember_hull_hit(torp)
+	var/list/hull_hit = ship.last_hull_hit
+	ship.last_hull_hit = null
+	if(length(hull_hit) < 5 || ship.hull_hit_armour(hull_hit) != 0)
+		return "Torpeda w okręcie z wnętrzem zatrzymuje się na pancerzu burty"

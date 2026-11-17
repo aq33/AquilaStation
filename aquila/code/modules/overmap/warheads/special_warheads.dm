@@ -273,7 +273,7 @@ GLOBAL_LIST_INIT(special_warhead_poisons, list(
 	var/turf/start = swiss_cheese_start(target, deck[3], deck[4], bounds)
 	if(!target || !start)
 		return null
-	if(deck_hole_depth(target, hull_armour_fraction(hit[1], hit[2])) > 0)
+	if(deck_hole_depth(target, hull_hit_armour(hit)) > 0)
 		return null // pancerz zbity: Swiss Cheese wpuści pocisk z ładunkiem
 	var/turf/hull = swiss_cheese_first_hull(start, deck[3], deck[4])
 	if(!hull)

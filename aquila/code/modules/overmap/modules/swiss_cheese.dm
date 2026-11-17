@@ -10,8 +10,9 @@
 GLOBAL_LIST_EMPTY(ship_deck_bounds)
 
 /obj/structure/overmap
-	/// AQUILA - ostatnie trafienie w kadłub: list(u, v, kierunek x, kierunek y) w układzie okrętu (u: rufa -1..dziób 1,
-	/// v: lewa burta -1..prawa 1), zapisane w bullet_act przed relay_damage()
+	/// AQUILA - ostatnie trafienie w kadłub: list(u, v, kierunek x, kierunek y, bez pancerza) w układzie okrętu (u: rufa
+	/// -1..dziób 1, v: lewa burta -1..prawa 1), zapisane w bullet_act przed relay_damage(). Rakieta i torpeda: losowy punkt
+	/// i kierunek, pancerz ćwiartki pominięty.
 	var/list/last_hull_hit
 	/// AQUILA - dziury w poszyciu pokładów: "z" = list(list(x, y, głębokość))
 	var/list/deck_holes
@@ -46,8 +47,18 @@ GLOBAL_LIST_EMPTY(ship_deck_bounds)
 		return 1
 	return armour["current_armour"] / armour["max_armour"]
 
+/// Część pancerza, która decyduje o wejściu ostatniego trafienia (rakieta i torpeda: żadna)
+/obj/structure/overmap/proc/hull_hit_armour(list/hit)
+	if(length(hit) >= 5 && hit[5])
+		return 0
+	return hull_armour_fraction(hit[1], hit[2])
+
 /// Zapisuje trafienie w kadłub (punkt na obrysie i kierunek lotu w układzie okrętu)
 /obj/structure/overmap/proc/remember_hull_hit(obj/item/projectile/P)
+	if(istype(P, /obj/item/projectile/guided_munition)) // rakieta ignoruje burty: wybucha w losowym punkcie okrętu
+		var/heading = rand(0, 359)
+		last_hull_hit = list(rand(-80, 80) / 100, rand(-80, 80) / 100, sin(heading), cos(heading), TRUE)
+		return
 	var/list/local = overmap_hull_local((P.x - x) * 32 + P.pixel_x + 16, (P.y - y) * 32 + P.pixel_y + 16)
 	if(!local)
 		last_hull_hit = null
@@ -83,7 +94,7 @@ GLOBAL_LIST_EMPTY(ship_deck_bounds)
 	var/turf/start = swiss_cheese_start(target, dir_x, dir_y, bounds)
 	if(!target || !start)
 		return ..()
-	var/armour = hull_armour_fraction(u, v)
+	var/armour = hull_hit_armour(hit)
 	var/depth = deck_hole_depth(target, armour)
 	var/turf/hull = swiss_cheese_first_hull(start, dir_x, dir_y)
 	if(depth <= 0) // pełny pancerz: wgniecenie i iskry na poszyciu

@@ -182,9 +182,10 @@ GLOBAL_LIST_INIT(ship_module_names, list(
 		return 1
 	return armour["current_armour"] / armour["max_armour"]
 
-/// Głębokość wejścia pocisku (pola): pełny pancerz zatrzymuje go na poszyciu, zbity wpuszcza w głąb, stara dziura pogłębia
-/datum/ship_modules/proc/penetration_depth(x, y, damage)
-	var/armour = armour_fraction(x, y)
+/// Głębokość wejścia pocisku (pola): pełny pancerz zatrzymuje go na poszyciu, zbity wpuszcza w głąb, stara dziura pogłębia.
+/// ignore_armour: rakieta albo torpeda, która nie przebija się przez burtę, tylko wybucha w module
+/datum/ship_modules/proc/penetration_depth(x, y, damage, ignore_armour = FALSE)
+	var/armour = ignore_armour ? 0 : armour_fraction(x, y)
 	var/depth = 0
 	if(armour < SHIP_MODULE_ARMOUR_BREACH)
 		depth = clamp(damage / 8, 2, 12) * (1 - armour / SHIP_MODULE_ARMOUR_BREACH)
@@ -207,9 +208,9 @@ GLOBAL_LIST_INIT(ship_module_names, list(
 		holes.Cut(1, 2)
 
 /// Trafienie w punkcie układu (x, y) z kierunkiem lotu (dx, dy) w układzie; zwraca listę trafionych modułów
-/datum/ship_modules/proc/hit(x, y, dx, dy, damage)
+/datum/ship_modules/proc/hit(x, y, dx, dy, damage, ignore_armour = FALSE)
 	. = list()
-	var/depth = penetration_depth(x, y, damage)
+	var/depth = penetration_depth(x, y, damage, ignore_armour)
 	add_hole(x, y, depth)
 	if(depth <= 0)
 		return
@@ -325,6 +326,8 @@ GLOBAL_LIST_INIT(ship_module_names, list(
 	var/datum/ship_modules/modules = get_ship_modules()
 	if(!modules)
 		return
+	if(istype(P, /obj/item/projectile/guided_munition))
+		return guided_module_hit(P, damage)
 	var/list/local = overmap_hull_local((P.x - x) * 32 + P.pixel_x + 16, (P.y - y) * 32 + P.pixel_y + 16)
 	if(!local)
 		return
@@ -343,6 +346,23 @@ GLOBAL_LIST_INIT(ship_module_names, list(
 	var/dir_x = sy * modules.length / (2 * local[4])
 	var/dir_y = sx * modules.width / (2 * local[3])
 	return modules.hit(layout_x, layout_y, dir_x, dir_y, damage)
+
+/// Rakieta albo torpeda ignoruje burty: wybucha w module, który wybrał strzelec w konsoli taktycznej (bez wyboru w losowym),
+/// z pominięciem pancerza ćwiartki. Odłamki idą od punktu wybuchu w losowym kierunku.
+/obj/structure/overmap/proc/guided_module_hit(obj/item/projectile/P, damage)
+	var/datum/ship_modules/modules = get_ship_modules()
+	if(!length(modules?.modules))
+		return
+	var/datum/ship_module/module
+	var/index = LAZYACCESS(P.overmap_firer?.aim_modules, src)
+	if(index && index <= length(modules.modules))
+		module = modules.modules[index]
+	if(!module)
+		module = pick(modules.modules)
+	var/x = module.x0 + rand() * (module.x1 - module.x0)
+	var/y = module.y0 + rand() * (module.y1 - module.y0)
+	var/heading = rand(0, 359)
+	return modules.hit(x, y, sin(heading), cos(heading), damage, TRUE)
 
 /// Obrażenia, które pocisk zadaje modułom: po pancerzu okrętu na klasę pocisku (lekki, średni, ciężki) i po przebiciu,
 /// jak kadłub. Pocisk przeciwpancerny wchodzi więc głębiej w opancerzony okręt, a lekki ledwo drapie ciężko opancerzony.

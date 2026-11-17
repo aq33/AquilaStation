@@ -1,6 +1,7 @@
 /// AQUILA - wybór modułu wroga jako punktu celowania w konsoli taktycznej (FireControl.tsx, karta wybranego kontaktu).
-/// Strzelec klika moduł na siatce namierzonego okrętu; pociski niekierowane lecą w ten punkt kadłuba zamiast w środek,
-/// a gdzie trafią, rozstrzyga geometria (overmap_visual_scale.dm, ship_modules.dm). Pociski kierowane i AI bez zmian.
+/// Strzelec klika moduł na siatce namierzonego okrętu; pociski niekierowane (także artyleria MAC) lecą w ten punkt kadłuba
+/// zamiast w środek, a gdzie trafią, rozstrzyga geometria (overmap_visual_scale.dm, ship_modules.dm). Rakiety i torpedy lecą
+/// do okrętu jak zawsze, ale wybuchają w wybranym module (guided_module_hit w ship_modules.dm). AI bez zmian.
 
 /obj/structure/overmap
 	/// AQUILA - wybrany moduł celu: cel -> indeks w ship_modules.modules
@@ -60,17 +61,26 @@
 		if(QDELETED(target) || !LAZYFIND(target_painted, target))
 			LAZYREMOVE(aim_modules, target)
 
-/// Pocisk leci prosto, tam gdzie wycelowano (nie kierowany, nie promień)
+/// Pocisk leci prosto, tam gdzie wycelowano (nie kierowany, nie promień). Artyleria MAC tylko lekko się naprowadza
+/// (Magneton dłużej), więc przy wybranym module celuje w moduł i traci naprowadzanie.
 /proc/is_unguided_overmap_projectile(proj_type)
 	if(!ispath(proj_type, /obj/item/projectile) || ispath(proj_type, /obj/item/projectile/guided_munition))
 		return FALSE
 	var/obj/item/projectile/proj = proj_type
-	return !initial(proj.can_home) && !initial(proj.hitscan)
+	if(initial(proj.hitscan))
+		return FALSE
+	return !initial(proj.can_home) || ispath(proj_type, /obj/item/projectile/bullet/mac_round)
 
 // wybrany moduł celu: strzelec gracza celuje w ten punkt kadłuba
 /obj/structure/overmap/fire_projectile(proj_type, atom/target, pixel_speed = null, user_override = null, firing_flags = NONE, ai_aim = FALSE, miss_chance = 5, max_miss_distance = 5, spread_override = null, projectile_speed = null)
+	var/aimed = FALSE
 	if(isovermap(target) && !ai_aim && LAZYLEN(aim_modules) && is_unguided_overmap_projectile(proj_type))
 		var/turf/aim = aim_turf_for(target)
 		if(aim)
 			target = aim
-	return ..(proj_type, target, pixel_speed, user_override, firing_flags, ai_aim, miss_chance, max_miss_distance, spread_override, projectile_speed)
+			aimed = TRUE
+	. = ..(proj_type, target, pixel_speed, user_override, firing_flags, ai_aim, miss_chance, max_miss_distance, spread_override, projectile_speed)
+	var/obj/item/projectile/proj = .
+	if(aimed && istype(proj) && proj.homing)
+		proj.homing = FALSE // naprowadzanie ściągnęłoby pocisk z wybranego modułu do środka okrętu
+		proj.homing_target = null
