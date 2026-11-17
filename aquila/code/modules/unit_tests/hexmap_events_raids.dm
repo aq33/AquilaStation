@@ -1,6 +1,7 @@
-/// AQUILA - wypady Syndykatu z kafli hex (aquila/code/modules/events/hexmap/lone_hunter.dm): tylko na pograniczu i w sektorze
-/// Syndykatu, tylko z pól asteroid i mgławic, rzadko (hex_pool_chance), a łowca wyskakuje przy okręcie, celuje w niego
-/// i nie daje nagrody za zestrzelenie. Bez okrętu w układzie gwiezdnym nic się nie pojawia.
+/// AQUILA - wypady Syndykatu z kafli hex (aquila/code/modules/events/hexmap/lone_hunter.dm, belt_rats.dm): tylko na pograniczu
+/// i w sektorze Syndykatu, łowca z pól asteroid i mgławic, szczury z pasa tylko z pól asteroid, rzadko (hex_pool_chance).
+/// Łowca i myśliwce pojawiają się przy okręcie, celują w niego i nie dają nagrody za zestrzelenie.
+/// Bez okrętu w układzie gwiezdnym nic się nie pojawia.
 /datum/unit_test/aquila_hex_syndicate_raids
 	var/datum/star_system/system
 	var/obj/structure/overmap/ship
@@ -13,7 +14,7 @@
 	ship.faction = "nanotrasen"
 	ship.forceMove(locate(40, 40, run_loc_floor_bottom_left.z))
 	ship.current_system = system
-	var/fail = check_sectors() || check_pools() || check_pool_chance() || check_lone_hunter()
+	var/fail = check_sectors() || check_pools() || check_pool_chance() || check_lone_hunter() || check_belt_rats()
 	for(var/atom/movable/thing as anything in spawned)
 		system.system_contents -= thing
 		if(!QDELETED(thing))
@@ -35,6 +36,7 @@
 /datum/unit_test/aquila_hex_syndicate_raids/proc/check_pools()
 	var/list/allowed_terrains = list(
 		/datum/round_event_control/aquila_hex_lone_hunter = list(HEX_TERRAIN_ASTEROIDS, HEX_TERRAIN_NEBULA),
+		/datum/round_event_control/aquila_hex_belt_rats = list(HEX_TERRAIN_ASTEROIDS),
 	)
 	for(var/path in allowed_terrains)
 		var/datum/round_event_control/control = hex_event_control(path)
@@ -48,7 +50,7 @@
 				return "[control.name] nie ma w puli kafla [id]"
 		for(var/id in GLOB.hex_terrains)
 			if(!(id in terrains) && (path in hex_terrain(id).events))
-				return "[control.name] jest w puli kafla [id], a ma być tylko na polach asteroid i w mgławicach"
+				return "[control.name] jest w puli kafla [id], a ma być tylko w [jointext(terrains, ", ")]"
 
 /// Event z hex_pool_chance = 0 nigdy nie wypada z puli kafla, ze 100 wypada
 /datum/unit_test/aquila_hex_syndicate_raids/proc/check_pool_chance()
@@ -124,3 +126,41 @@
 	if(SSstar_system.bounty_pool != pool_before)
 		SSstar_system.bounty_pool = pool_before
 		return "Zniszczenie łowcy dodało nagrodę do puli"
+
+/datum/unit_test/aquila_hex_syndicate_raids/proc/check_belt_rats()
+	var/datum/round_event/aquila_hex_belt_rats/raid = new /datum/round_event/aquila_hex_belt_rats(FALSE)
+	raid.kill()
+	ship.current_system = null
+	var/list/nowhere = raid.spawn_rats(ship)
+	ship.current_system = system
+	if(length(nowhere))
+		spawned += nowhere
+		qdel(raid)
+		return "Szczury z pasa wyleciały, choć okręt nie jest w układzie gwiezdnym"
+	var/list/rats = raid.spawn_rats(ship)
+	qdel(raid)
+	spawned += rats
+	if(length(rats) < 2 || length(rats) > 3)
+		return "Zamiast 2–3 myśliwców pojawiło się [length(rats)]"
+	var/syndicate_ships = 0
+	for(var/obj/structure/overmap/other in system.system_contents)
+		if(other.faction == "syndicate")
+			syndicate_ships++
+	if(syndicate_ships != length(rats))
+		return "W układzie jest [syndicate_ships] okrętów Syndykatu, a szczurów z pasa [length(rats)]"
+	var/pool_before = SSstar_system.bounty_pool
+	for(var/obj/structure/overmap/syndicate/ai/rat as anything in rats)
+		if(rat.type != /obj/structure/overmap/syndicate/ai/fighter || !rat.ai_controlled)
+			return "Szczur z pasa to [rat.type], a nie myśliwiec Syndykatu sterowany przez AI"
+		if(rat.current_system != system)
+			return "Myśliwiec ma zły układ gwiezdny"
+		var/distance = get_dist(rat, ship)
+		if(distance < 10 || distance > 14)
+			return "Myśliwiec pojawił się [distance] pól od okrętu zamiast 10–14"
+		if(rat.last_target != ship)
+			return "Myśliwiec nie celuje w okręt"
+	for(var/obj/structure/overmap/rat as anything in rats)
+		qdel(rat)
+	if(SSstar_system.bounty_pool != pool_before)
+		SSstar_system.bounty_pool = pool_before
+		return "Zniszczenie szczurów z pasa dodało nagrodę do puli"

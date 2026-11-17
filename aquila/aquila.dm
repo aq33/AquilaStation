@@ -1117,6 +1117,7 @@
 #include "code\modules\events\hexmap\wreck_graveyard.dm"
 #include "code\modules\events\hexmap\freighter_attack.dm"
 #include "code\modules\events\hexmap\lone_hunter.dm"
+#include "code\modules\events\hexmap\belt_rats.dm"
 #include "code\modules\events\hexmap\storm_discharge.dm"
 #include "code\modules\events\hexmap\emp_storm.dm"
 #include "code\modules\events\hexmap\solar_flare.dm"
