@@ -97,9 +97,13 @@ GLOBAL_LIST_INIT(hex_nemeses, list(
 	var/datum/star_system/home = SSstar_system.system_by_id(info["home"])
 	if(!home)
 		return
+	var/held = home.alignment
 	var/datum/fleet/F = home.spawn_fleet(info["fleet"])
 	if(!F)
 		return
+	// Jak przy ruchu floty (fleet.move): przy wrogiej flocie w układzie zajmie go dopiero zwycięzca walki
+	if(F.hex_occupation_blocked(home))
+		home.alignment = held
 	C.take_fleet(F)
 	C.add_history("wrócił do układu [home]")
 	if(home.hidden)

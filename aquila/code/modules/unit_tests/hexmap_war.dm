@@ -1045,6 +1045,13 @@
 	var/datum/hex_commander/occupied_commander = occupied_war.nemesis_commander("fistofsol")
 	var/occupied_status = occupied_commander.status
 	var/occupied_respawn = hex_nemesis_fleet(home, fleet_type)
+	// Kontratak: ranny wraca do układu z flotą okupanta, ale układ zajmie dopiero zwycięzca walki
+	var/datum/fleet/occupier = home.spawn_fleet(/datum/fleet/nanotrasen/light)
+	occupied_commander.fleet = null
+	occupied_war.nemesis_return(occupied_commander)
+	var/counter_boss = hex_nemesis_fleet(home, fleet_type)
+	var/counter_alignment = home.alignment
+	occupier?.hex_war_dispose()
 	for(var/datum/star_system/S as anything in alignments)
 		for(var/datum/fleet/F as anything in S.fleets.Copy())
 			if(F.commander && (F.commander in occupied_war.commanders))
@@ -1061,6 +1068,8 @@
 	TEST_ASSERT(!garrison_left, "The boss garrison returned to the occupied [home]")
 	TEST_ASSERT(!occupied_respawn, "The nemesis boss spawned in the occupied [home] at round start")
 	TEST_ASSERT_EQUAL(occupied_status, HEX_CMD_WOUNDED, "A nemesis whose home is occupied is not waiting to return")
+	TEST_ASSERT(counter_boss, "A returning nemesis did not come back to its occupied [home]")
+	TEST_ASSERT_EQUAL(counter_alignment, "nanotrasen", "A returning nemesis took [home] before beating the occupying fleet")
 
 	// Zapis: nemezis bez floty sztabu zostaje aktywny i dalej jest nemezis
 	var/datum/hex_war/saved_war = new
