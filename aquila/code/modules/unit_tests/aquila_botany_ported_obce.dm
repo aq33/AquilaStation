@@ -45,7 +45,8 @@
 	TEST_ASSERT(seeds.type != seeds.abstract_type, "Artefakt wyrzucił abstrakcyjny typ nasion")
 	var/obj/item/plant_tray/tray = allocate(/obj/item/plant_tray, get_step(origin, EAST))
 	var/datum/component/planter/planter = tray.GetComponent(/datum/component/planter)
-	planter.set_substrate(/datum/plant_subtrate/fairy)
+	//Ksenoflora z puli artefaktu rośnie tylko na podłożu kapsuły, reszta obcych na każdym
+	planter.set_substrate(istype(seeds, /obj/item/plant_seeds/preset/alien/xenoflora) ? /datum/plant_subtrate/xenoflora : /datum/plant_subtrate/fairy)
 	var/datum/component/plant/plant = seeds.plant(tray, null, TRUE, null, TRUE)
 	TEST_ASSERT(istype(plant), "Nasiona [seeds.type] z artefaktu nie dają się posadzić")
 	artifact_component.trigger(TRUE)
