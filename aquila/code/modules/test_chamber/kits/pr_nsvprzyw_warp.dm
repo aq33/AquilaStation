@@ -1,8 +1,8 @@
-// aq33/AquilaStation#NSVPRZYW - układy FTL w konsoli nawigacji mapy hex (aquila/code/modules/overmap/hexmap/hex_ftl_chip.dm)
+// aq33/AquilaStation#657 - układy FTL w konsoli nawigacji mapy hex (aquila/code/modules/overmap/hexmap/hex_ftl_chip.dm)
 
 /datum/test_chamber_kit/pr_nsvprzyw_warp
 	name = "Układy FTL na mapie hex"
-	pr = "aq33/AquilaStation#NSVPRZYW"
+	pr = "aq33/AquilaStation#657"
 	description = "Zestaw daje matrycę strumienia (poziom 2) i układ napędu warp (poziom 3) oraz ładuje do pełna napęd okrętu głównego. Testuj na konsoli nawigacji na mostku. \
 		1) Włóż matrycę do konsoli nawigacji: w oknie pod napędem pojawiają się cztery bonusy, domyślnie „Tańszy skok”. Koszt kafla 25%, bramy 50%, zielony zasięg sięga 4 kafli. \
 		2) Przełącz na „Dwa kafle za cenę jednego”: trasa na 2 kafle kosztuje 34%, na 4 kafle 100%. \

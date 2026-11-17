@@ -1,8 +1,8 @@
-// aq33/AquilaStation#NSVPRZYW - przywrócone eventy overmapy NSV13 na kaflach mapy hex (aquila/code/modules/events/hexmap/)
+// aq33/AquilaStation#657 - przywrócone eventy overmapy NSV13 na kaflach mapy hex (aquila/code/modules/events/hexmap/)
 
 /datum/test_chamber_kit/pr_nsvprzyw_eventy
 	name = "Kafle hex: Samotny łowca"
-	pr = "aq33/AquilaStation#NSVPRZYW"
+	pr = "aq33/AquilaStation#657"
 	description = "Zestaw nic nie zrzuca: od razu odpala Samotnego łowcę przy okręcie głównym (okręt musi stać w układzie, nie w skoku; zestaw pomija warunek sektora). \
 		1) W czacie ostrzeżenie „Łącze DRADIS: Wykryto sygnaturę bluespace.”. \
 		2) Po 4–6 s na DRADIS-ie jeden okręt Syndykatu (fregata Mako) kilkanaście pól od okrętu, który od razu atakuje. \

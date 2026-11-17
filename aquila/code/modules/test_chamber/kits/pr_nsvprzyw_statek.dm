@@ -1,6 +1,6 @@
 /datum/test_chamber_kit/pr_nsvprzyw_statek
 	name = "Przywrócone NSV: studnia nanonaprawcza i holomapa"
-	pr = "aq33/AquilaStation#NSVPRZYW"
+	pr = "aq33/AquilaStation#657"
 	description = "Moduły podkręcania: weź trzy moduły i łom, idź do studni nanonaprawczej statku (pomieszczenie pomp pancerza w inżynierii). \
 		1. Włóż moduł nadmiaru mocy: w oknie studni suwak mocy sięga 12 MW, a przy mocy powyżej 3 MW powietrze przy studni się nagrzewa. Drugi taki sam moduł studnia odrzuca. \
 		2. Włóż przeciążenie i chłodzenie, obejrzyj studnię: opis wspomina wyważanie łomem. \
