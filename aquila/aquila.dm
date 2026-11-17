@@ -2503,6 +2503,7 @@
 #include "code\modules\unit_tests\aquila_botany_ported_tg.dm"
 #include "code\modules\unit_tests\aquila_botany_ported_inne.dm"
 #include "code\modules\unit_tests\aquila_botany_presets.dm"
+#include "code\modules\unit_tests\aquila_planet_wild_flora.dm"
 #include "code\modules\unit_tests\aquila_botany_compost.dm"
 #include "code\modules\unit_tests\aquila_botany_ported_akwa.dm"
 #include "code\modules\unit_tests\aquila_botany_ported_ksenoflora.dm"
