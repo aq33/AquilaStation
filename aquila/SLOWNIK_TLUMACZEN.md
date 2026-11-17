@@ -1864,6 +1864,13 @@ Nowe gatunki z tg, Goona, Baya i innych (`aquila/code/modules/botany/aquila/port
 | glowbell / weeping moon / cavern candle | świecący dzwonek / płaczący księżyc / jaskiniowa świeca | m / m / ż; nowe (Nebula), grzyby jaskiń księżyca i asteroid |
 | algae | glony (dzika: kożuch glonów) | mn; nowe (Nebula), płycizna i zalane jaskinie |
 | seaweed | wodorosty (dzika: kępa wodorostów) | mn; nowe (Shiptest), płycizna, plaża i zalane jaskinie; suszone dają arkusz wodorostów |
+| star cacti / Star Cactus Cluster | gwiaździsty kaktus / skupisko gwiaździstych kaktusów | m / n; nowe (tg), dzika flora planet |
+| lightshroom (red / blue / green) | grzyb świetlny (czerwony / niebieski / zielony) | m; nowe (Monke), dzika flora planet |
+| cinchona / Cinchona Exotica / cinchona bark | chinowiec / chinowiec egzotyczny / kora chinowca | m / m / ż; nowe (Yogstation) |
+| Magnus Purpura / Magnus Purpura flower | magnus purpura / kwiat magnus purpury | ż / m; nowe (Yogstation) |
+| kuku / bonji / bianco (berry, bush) | kuku / bondżi / bianko (jagoda, krzak) | ndm; nowe (Yogstation) |
+| Liberal Hat | kapelusz liberała | m; nowe (Yogstation), grzyb |
+| prickly pear / san pedro cactus / peyote | opuncja (plon: owoc opuncji) / kaktus San Pedro / pejotl | ż / m / m; nowe (Paradise) |
 
 ## 22. Częste przymiotniki i określenia w nazwach
 
