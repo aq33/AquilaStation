@@ -1,6 +1,8 @@
 /datum/antagonist/vampire/proc/setup_tracker(mob/living/body)
 	cleanup_tracker()
 	tracker = new(body, REF(src))
+	// Nośnik siedzi w ciele: znika razem z nim (qdel ciała), a datum antaga zostaje przy umyśle i trzymał twardą referencję
+	RegisterSignal(tracker, COMSIG_QDELETING, PROC_REF(on_tracker_deleted))
 
 	for(var/datum/antagonist/vassal/vassal in vassals)
 		vassal.monitor?.add_to_tracking_network(tracker.tracking_beacon)
@@ -19,6 +21,11 @@
 					vassal.monitor.updating.hud_used.team_finder_arrows -= arrow
 				qdel(arrow)
 		QDEL_NULL(tracker)
+
+/datum/antagonist/vampire/proc/on_tracker_deleted(datum/source)
+	SIGNAL_HANDLER
+	if(tracker == source)
+		tracker = null
 
 /**
  * An abstract object contained within the vampire, used to host the team_monitor component.
