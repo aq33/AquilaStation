@@ -1317,6 +1317,7 @@
 #include "code\modules\test_chamber\kits\test_subjects.dm"
 // Komora testowa - zestawy PR-ów niżej (usuwać razem z plikiem zestawu po przetestowaniu)
 #include "code\modules\test_chamber\kits\pr_641_zbiorczy_1411.dm"
+#include "code\modules\test_chamber\kits\pr_nsvprzyw_bronie.dm"
 #include "code\modules\test_chamber\kits\pr_641_sterowanie_knpc.dm"
 #include "code\modules\test_chamber\kits\pr_naped_okretu.dm"
 #include "code\modules\test_chamber\kits\pr_646_wybor_silnika.dm"
