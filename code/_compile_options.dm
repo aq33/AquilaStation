@@ -103,7 +103,8 @@
 #define REFERENCE_TRACKING
 #define REFERENCE_TRACKING_DEBUG
 #define FIND_REF_NO_CHECK_TICK
-#define GC_FAILURE_HARD_LOOKUP
+// #define GC_FAILURE_HARD_LOOKUP // AQ EDIT - bez szukania referencji przy każdym wycieku: zamrażało świat na ~3 min i wydłużało CI do 35 min, a wyciek i tak jest w logu
+
 // AQ EDIT START - tgstation/tgstation#76214: pełne nazwy timerów w testach
 #ifndef TIMER_DEBUG
 #define TIMER_DEBUG
