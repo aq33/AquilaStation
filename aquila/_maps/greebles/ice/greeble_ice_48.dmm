@@ -1,0 +1,114 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"i" = (
+/turf/open/floor/plating/ice/planet_ice,
+/area/template_noop)
+"l" = (
+/obj/item/clothing/head/cone{
+	pixel_x = 10;
+	 pixel_y = 5
+	},
+/turf/open/floor/plating/ice/planet_ice,
+/area/template_noop)
+"p" = (
+/obj/item/clothing/head/cone{
+	pixel_y = 3;
+	 pixel_x = 4
+	},
+/turf/open/floor/plating/ice/planet_ice,
+/area/template_noop)
+"v" = (
+/turf/closed/mineral/planet_ice_wall,
+/area/template_noop)
+"z" = (
+/obj/item/clothing/head/soft{
+	pixel_y = 7;
+	 pixel_x = 2
+	},
+/obj/effect/decal/remains/human,
+/obj/item/pickaxe/mini{
+	pixel_x = 6;
+	 pixel_y = -5
+	},
+/turf/open/floor/plating/ice/planet_ice,
+/area/template_noop)
+"C" = (
+/obj/item/clothing/head/cone{
+	pixel_y = 4;
+	 pixel_x = 5
+	},
+/turf/open/floor/plating/ice/planet_ice,
+/area/template_noop)
+"F" = (
+/obj/item/clothing/head/cone{
+	pixel_y = 5;
+	 pixel_x = -5
+	},
+/turf/open/floor/plating/ice/planet_ice,
+/area/template_noop)
+"Q" = (
+/turf/template_noop,
+/area/template_noop)
+
+(1,1,1) = {"
+Q
+Q
+Q
+i
+i
+l
+i
+"}
+(2,1,1) = {"
+v
+v
+v
+v
+v
+v
+p
+"}
+(3,1,1) = {"
+v
+v
+v
+v
+v
+i
+i
+"}
+(4,1,1) = {"
+v
+v
+v
+z
+v
+i
+i
+"}
+(5,1,1) = {"
+i
+v
+v
+v
+v
+C
+Q
+"}
+(6,1,1) = {"
+Q
+v
+v
+v
+F
+i
+Q
+"}
+(7,1,1) = {"
+Q
+i
+i
+Q
+i
+Q
+Q
+"}

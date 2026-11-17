@@ -162,7 +162,7 @@
 	var/static/list/connections = list(
 		COMSIG_ATOM_ATTACK_HAND = PROC_REF(on_attack_hand)
 	)
-	AddElement(/datum/element/connect_loc, src, connections)
+	AddElement(/datum/element/connect_loc, connections) // AQ EDIT - bez src: element bespoke trzymał drzwi jako listę połączeń (twarde usunięcie każdych drzwi, klik w podłogę nie działał)
 
 	return INITIALIZE_HINT_LATELOAD
 
@@ -838,6 +838,8 @@
 
 /obj/machinery/door/airlock/proc/on_attack_hand(atom/source, mob/user, list/modifiers)
 	SIGNAL_HANDLER
+	if(user.pulling) // AQ EDIT - kto coś ciągnie, klikając podłogę przeciąga to na pole drzwi (Move_Pulled), a nie zamyka drzwi
+		return
 	INVOKE_ASYNC(src, /atom/proc/attack_hand, user, modifiers)
 	return COMPONENT_CANCEL_ATTACK_CHAIN
 

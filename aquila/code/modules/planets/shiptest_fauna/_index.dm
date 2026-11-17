@@ -1,0 +1,13 @@
+// AQUILA - indeks fauny planet (pliki w tym folderze): planeta wulkaniczna i kolejne typy z Shiptesta
+#include "loot.dm"
+#include "brimdemon.dm"
+#include "lavagrub.dm"
+#include "crystal_fauna.dm"
+#include "burrow.dm"
+#include "planet_charge.dm"
+#include "icemoon_fauna.dm"
+#include "ice_demon.dm"
+#include "ice_whelp.dm"
+#include "lobstrosity.dm"
+#include "planet_fauna.dm"
+#include "planet_spawners.dm"

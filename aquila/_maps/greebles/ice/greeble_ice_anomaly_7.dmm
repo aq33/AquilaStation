@@ -1,0 +1,131 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/effect/anomaly/hallucination/planetary,
+/turf/open/floor/plating/asteroid/dirt/grass{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"l" = (
+/turf/template_noop,
+/area/template_noop)
+"s" = (
+/obj/structure/flora/tree/pine,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"E" = (
+/obj/structure/flora/grass/both,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"H" = (
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"Q" = (
+/obj/structure/flora/ash/garden/frigid,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"S" = (
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"W" = (
+/turf/open/floor/plating/asteroid/dirt/grass{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	 planetary_atmos = 1
+	},
+/area/template_noop)
+"Y" = (
+/obj/structure/flora/grass/brown,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+
+(1,1,1) = {"
+l
+H
+H
+H
+E
+H
+l
+l
+l
+"}
+(2,1,1) = {"
+H
+H
+E
+H
+H
+H
+H
+l
+l
+"}
+(3,1,1) = {"
+H
+Y
+s
+W
+W
+S
+H
+H
+l
+"}
+(4,1,1) = {"
+H
+H
+W
+S
+W
+W
+S
+H
+l
+"}
+(5,1,1) = {"
+E
+H
+W
+W
+a
+W
+S
+H
+E
+"}
+(6,1,1) = {"
+Q
+H
+W
+S
+W
+W
+S
+H
+l
+"}
+(7,1,1) = {"
+l
+H
+H
+W
+W
+S
+H
+Y
+l
+"}
+(8,1,1) = {"
+l
+l
+H
+H
+H
+E
+H
+H
+l
+"}

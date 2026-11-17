@@ -1,0 +1,1266 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"at" = (
+/turf/template_noop,
+/area/template_noop)
+"dP" = (
+/obj/structure/flora/rock/icy,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"gf" = (
+/obj/structure/flora/grass/brown,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"hH" = (
+/obj/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"jT" = (
+/turf/open/floor/plating/ice/planet_ice,
+/area/template_noop)
+"kF" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"kI" = (
+/obj/structure/flora/rock/icy,
+/turf/open/floor/plating/ice/planet_ice,
+/area/template_noop)
+"mr" = (
+/mob/living/basic/mining/polarbear,
+/obj/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"ol" = (
+/obj/structure/flora/grass/green,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"pW" = (
+/obj/item/food/badrecipe,
+/obj/effect/decal/cleanable/blood/footprints{
+	dir = 1
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"pZ" = (
+/obj/structure/flora/grass/both,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"qJ" = (
+/obj/item/gun/energy/e_gun/mini,
+/obj/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood/footprints{
+	dir = 8
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"rC" = (
+/obj/structure/flora/stump,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"sZ" = (
+/obj/structure/vein/ice/classfour,
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
+"uc" = (
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"uD" = (
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"vQ" = (
+/obj/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood/footprints{
+	dir = 8
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"vV" = (
+/turf/closed/mineral/planet_ice_wall,
+/area/template_noop)
+"wb" = (
+/obj/structure/table/wood,
+/obj/item/food/meat/rawcutlet/bear,
+/obj/item/food/meat/rawcutlet/bear{
+	pixel_x = -7;
+	 pixel_y = 6
+	},
+/obj/item/kitchen/knife/combat/survival{
+	pixel_x = 6;
+	 pixel_y = -5;
+	 name = "nóż do mięsa"
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"wn" = (
+/obj/effect/mob_spawn/human/corpse/heavy,
+/obj/effect/decal/cleanable/blood/gibs/up,
+/obj/effect/decal/cleanable/blood/footprints{
+	dir = 1
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"zp" = (
+/obj/effect/decal/cleanable/blood/gibs/up,
+/obj/effect/mob_spawn/human/corpse/heavy,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"As" = (
+/turf/closed/indestructible/rock/snow,
+/area/template_noop)
+"AP" = (
+/obj/structure/barricade/wooden,
+/obj/structure/barricade/wooden/crude,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"BH" = (
+/obj/structure/barricade/wooden/crude,
+/obj/structure/barricade/wooden,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"Cf" = (
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/blood/splatter{
+	dir = 4
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"Dc" = (
+/obj/item/stack/sheet/mineral/wood,
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 10
+	},
+/obj/effect/decal/cleanable/blood/splatter{
+	dir = 4
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"Ds" = (
+/turf/closed/mineral/random/planet_ice,
+/area/template_noop)
+"DX" = (
+/obj/structure/table_frame/wood,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"Eo" = (
+/obj/structure/barricade/wooden/crude{
+	dir = 4
+	},
+/obj/structure/barricade/wooden/crude,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"EL" = (
+/obj/structure/barricade/wooden/crude,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"Fd" = (
+/obj/item/food/badrecipe,
+/obj/effect/decal/cleanable/blood/gibs/down,
+/obj/item/stack/sheet/bone,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"Fu" = (
+/obj/item/grown/log/tree{
+	pixel_x = -8
+	},
+/obj/item/grown/log/tree{
+	pixel_x = 3
+	},
+/obj/item/grown/log/tree{
+	pixel_x = 14
+	},
+/obj/item/grown/log/tree{
+	pixel_x = -2;
+	 pixel_y = 8
+	},
+/obj/item/grown/log/tree{
+	pixel_x = 9;
+	 pixel_y = 8
+	},
+/obj/item/grown/log/tree{
+	pixel_x = 4;
+	 pixel_y = 14
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"Fz" = (
+/obj/effect/decal/cleanable/blood/gibs/down,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"Gw" = (
+/mob/living/basic/mining/polarbear,
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"HJ" = (
+/obj/item/stack/sheet/mineral/wood,
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"HS" = (
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/blood/gibs/torso,
+/obj/effect/decal/cleanable/blood/gibs/core,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"Jn" = (
+/obj/item/stack/sheet/bone,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"Le" = (
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 1
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"Nr" = (
+/mob/living/basic/mining/polarbear,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"NB" = (
+/obj/item/gun/energy/e_gun/mini,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"NI" = (
+/obj/item/food/badrecipe,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"OL" = (
+/obj/structure/barricade/wooden/crude{
+	dir = 4
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"PH" = (
+/obj/item/food/badrecipe,
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"Qd" = (
+/obj/structure/bonfire,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"Qt" = (
+/obj/structure/flora/rock/pile/icy,
+/obj/item/stack/sheet/bone,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"QR" = (
+/obj/structure/flora/rock/icy,
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
+"SP" = (
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"Uk" = (
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"Us" = (
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
+"UW" = (
+/obj/structure/flora/rock/pile/icy,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"Xq" = (
+/obj/item/food/meat/rawcutlet/bear,
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"Xz" = (
+/obj/effect/mob_spawn/human/corpse/heavy,
+/obj/effect/decal/cleanable/blood/gibs/up,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"XJ" = (
+/obj/item/stack/sheet/mineral/wood,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"XN" = (
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/plating/ice/planet_ice,
+/area/template_noop)
+"ZB" = (
+/obj/structure/ore_box,
+/obj/effect/decal/cleanable/blood/gibs/down,
+/turf/open/floor/plating/ice/planet_ice,
+/area/template_noop)
+"ZC" = (
+/obj/item/mining_scanner,
+/obj/effect/decal/cleanable/blood/footprints{
+	dir = 1
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+
+(1,1,1) = {"
+at
+at
+at
+at
+at
+at
+at
+at
+at
+at
+at
+at
+at
+at
+at
+at
+at
+at
+at
+SP
+SP
+SP
+SP
+SP
+at
+at
+at
+at
+at
+"}
+(2,1,1) = {"
+at
+at
+at
+at
+at
+at
+at
+at
+at
+Ds
+Ds
+Ds
+Ds
+Ds
+at
+at
+at
+SP
+SP
+SP
+ol
+SP
+gf
+SP
+ol
+SP
+at
+at
+at
+"}
+(3,1,1) = {"
+at
+at
+at
+at
+at
+Ds
+at
+Ds
+Ds
+Ds
+Ds
+Ds
+Ds
+Ds
+Ds
+Ds
+Ds
+SP
+ol
+SP
+SP
+SP
+rC
+SP
+SP
+SP
+SP
+at
+at
+"}
+(4,1,1) = {"
+at
+at
+at
+Ds
+Ds
+Ds
+Ds
+Ds
+Ds
+Ds
+Ds
+Ds
+Ds
+Ds
+Ds
+Ds
+Ds
+Ds
+SP
+gf
+rC
+SP
+SP
+ol
+SP
+rC
+SP
+SP
+at
+"}
+(5,1,1) = {"
+at
+at
+Ds
+Ds
+Ds
+Ds
+Ds
+Ds
+Ds
+Ds
+Ds
+Ds
+Ds
+Ds
+vV
+vV
+Ds
+Ds
+Ds
+SP
+ol
+SP
+SP
+rC
+SP
+gf
+ol
+SP
+at
+"}
+(6,1,1) = {"
+at
+Ds
+Ds
+Ds
+Ds
+Ds
+Ds
+Ds
+Ds
+Ds
+Ds
+Ds
+Ds
+vV
+vV
+vV
+vV
+Ds
+Ds
+Ds
+Ds
+SP
+SP
+ol
+SP
+SP
+SP
+rC
+SP
+"}
+(7,1,1) = {"
+at
+Ds
+Ds
+Ds
+Ds
+Ds
+Ds
+Ds
+Ds
+Ds
+vV
+vV
+vV
+vV
+vV
+Fu
+Jn
+Ds
+Ds
+Ds
+Ds
+EL
+SP
+SP
+ol
+rC
+SP
+ol
+SP
+"}
+(8,1,1) = {"
+Ds
+Ds
+Ds
+Ds
+Ds
+Ds
+Ds
+Ds
+vV
+vV
+vV
+vV
+vV
+vV
+vQ
+Fu
+wb
+uD
+Ds
+Ds
+BH
+EL
+EL
+SP
+SP
+pZ
+SP
+ol
+SP
+"}
+(9,1,1) = {"
+Ds
+Ds
+Ds
+Ds
+Ds
+Ds
+Ds
+vV
+vV
+vV
+vV
+vV
+vV
+Uk
+qJ
+NI
+Xz
+Nr
+PH
+Uk
+Uk
+BH
+EL
+EL
+EL
+Ds
+Ds
+SP
+SP
+"}
+(10,1,1) = {"
+Ds
+Ds
+Ds
+Ds
+Ds
+Ds
+vV
+vV
+vV
+vV
+vV
+vV
+Uk
+Qt
+vQ
+Xq
+Qd
+hH
+Fz
+Qt
+Uk
+Uk
+BH
+BH
+Ds
+Ds
+Ds
+Ds
+SP
+"}
+(11,1,1) = {"
+Ds
+Ds
+Ds
+Ds
+Ds
+Ds
+vV
+vV
+vV
+vV
+vV
+Uk
+Uk
+ZC
+wn
+pW
+mr
+NI
+dP
+NI
+Uk
+Uk
+Uk
+Ds
+Ds
+Ds
+Ds
+Ds
+at
+"}
+(12,1,1) = {"
+Ds
+Ds
+Ds
+Ds
+Ds
+Ds
+vV
+vV
+vV
+vV
+Uk
+Uk
+Uk
+jT
+jT
+uD
+Fd
+NB
+Uk
+Uk
+Uk
+Uk
+Uk
+Ds
+Ds
+Ds
+Ds
+Ds
+at
+"}
+(13,1,1) = {"
+Ds
+Ds
+Ds
+Ds
+Ds
+vV
+vV
+vV
+vV
+Uk
+Uk
+Uk
+jT
+ZB
+jT
+XN
+jT
+Uk
+jT
+jT
+jT
+jT
+UW
+Ds
+Ds
+Ds
+Ds
+Ds
+at
+"}
+(14,1,1) = {"
+at
+Ds
+Ds
+Ds
+Ds
+vV
+vV
+vV
+vV
+Uk
+UW
+jT
+XN
+jT
+jT
+jT
+jT
+jT
+jT
+jT
+jT
+vV
+vV
+Ds
+Ds
+Ds
+Ds
+Ds
+at
+"}
+(15,1,1) = {"
+at
+Ds
+Ds
+Ds
+Ds
+vV
+vV
+vV
+vV
+Uk
+Uk
+jT
+jT
+jT
+Us
+QR
+jT
+jT
+jT
+jT
+jT
+vV
+vV
+vV
+Ds
+Ds
+Ds
+at
+at
+"}
+(16,1,1) = {"
+Ds
+Ds
+Ds
+Ds
+vV
+vV
+vV
+vV
+vV
+Uk
+jT
+jT
+jT
+Us
+sZ
+Us
+jT
+jT
+XN
+jT
+vV
+vV
+vV
+vV
+Ds
+Ds
+Ds
+Ds
+at
+"}
+(17,1,1) = {"
+at
+Ds
+Ds
+Ds
+vV
+vV
+vV
+vV
+Uk
+Uk
+Uk
+jT
+jT
+Us
+Us
+jT
+jT
+jT
+jT
+vV
+vV
+vV
+Ds
+Ds
+Ds
+Ds
+Ds
+Ds
+at
+"}
+(18,1,1) = {"
+at
+Ds
+Ds
+Ds
+vV
+vV
+vV
+vV
+vV
+Uk
+Uk
+jT
+jT
+kI
+jT
+jT
+jT
+kI
+jT
+vV
+vV
+vV
+vV
+Ds
+Ds
+Ds
+Ds
+Ds
+at
+"}
+(19,1,1) = {"
+at
+Ds
+Ds
+Ds
+vV
+vV
+vV
+vV
+vV
+vV
+Uk
+dP
+jT
+jT
+XN
+jT
+jT
+jT
+jT
+vV
+vV
+vV
+vV
+Ds
+Ds
+Ds
+Ds
+at
+at
+"}
+(20,1,1) = {"
+at
+at
+Ds
+Ds
+vV
+vV
+vV
+vV
+vV
+vV
+Uk
+Uk
+Uk
+jT
+jT
+jT
+jT
+jT
+vV
+vV
+vV
+vV
+Ds
+Ds
+Ds
+Ds
+at
+at
+at
+"}
+(21,1,1) = {"
+at
+at
+Ds
+Ds
+Ds
+vV
+vV
+vV
+vV
+vV
+uD
+UW
+Uk
+jT
+jT
+jT
+jT
+jT
+vV
+vV
+vV
+Ds
+Ds
+Ds
+Ds
+Ds
+Ds
+at
+at
+"}
+(22,1,1) = {"
+at
+at
+Ds
+Ds
+Ds
+Ds
+vV
+vV
+vV
+vV
+vV
+Uk
+Nr
+Fz
+jT
+jT
+UW
+uD
+jT
+vV
+vV
+Ds
+Ds
+Ds
+Ds
+Ds
+Ds
+at
+at
+"}
+(23,1,1) = {"
+at
+at
+at
+Ds
+Ds
+Ds
+Ds
+vV
+vV
+vV
+vV
+zp
+HS
+Le
+Le
+uc
+Le
+Dc
+uD
+vV
+Ds
+Ds
+Ds
+Ds
+Ds
+Ds
+Ds
+Ds
+at
+"}
+(24,1,1) = {"
+at
+at
+at
+at
+Ds
+Ds
+Ds
+vV
+vV
+vV
+vV
+Ds
+Ds
+Ds
+Uk
+Uk
+DX
+Cf
+OL
+Ds
+Ds
+Ds
+Ds
+Ds
+Ds
+Ds
+Ds
+Ds
+at
+"}
+(25,1,1) = {"
+at
+at
+at
+at
+at
+Ds
+Ds
+Ds
+Ds
+Ds
+Ds
+Ds
+Ds
+Ds
+Ds
+Ds
+XJ
+Cf
+AP
+Ds
+Ds
+Ds
+Ds
+Ds
+Ds
+Ds
+Ds
+at
+at
+"}
+(26,1,1) = {"
+at
+at
+at
+at
+at
+Ds
+Ds
+As
+As
+As
+Ds
+Ds
+Ds
+Ds
+Ds
+Ds
+Eo
+Cf
+XJ
+HJ
+Ds
+Ds
+Ds
+Ds
+Ds
+Ds
+Ds
+at
+at
+"}
+(27,1,1) = {"
+at
+at
+at
+at
+at
+at
+Ds
+Ds
+As
+As
+As
+As
+As
+Ds
+Ds
+Ds
+AP
+uD
+DX
+Nr
+Ds
+Ds
+Ds
+Ds
+Ds
+Ds
+Ds
+at
+at
+"}
+(28,1,1) = {"
+at
+at
+at
+at
+at
+at
+Ds
+Ds
+Ds
+Ds
+As
+As
+As
+As
+As
+Ds
+XJ
+Uk
+HJ
+Uk
+Uk
+Ds
+Ds
+Ds
+Ds
+Ds
+Ds
+Ds
+at
+"}
+(29,1,1) = {"
+at
+at
+at
+at
+at
+at
+at
+Ds
+Ds
+Ds
+Ds
+Ds
+Ds
+Ds
+Ds
+Ds
+kF
+Gw
+Uk
+Uk
+Uk
+kF
+Ds
+Ds
+Ds
+Ds
+Ds
+Ds
+at
+"}
+(30,1,1) = {"
+at
+at
+at
+at
+at
+at
+at
+at
+Ds
+Ds
+Ds
+Ds
+Ds
+Ds
+at
+at
+Uk
+Uk
+Uk
+dP
+Uk
+Uk
+Uk
+Ds
+Ds
+Ds
+Ds
+Ds
+at
+"}
+(31,1,1) = {"
+at
+at
+at
+at
+at
+at
+at
+at
+at
+at
+at
+at
+at
+at
+at
+at
+at
+Uk
+Uk
+kF
+Uk
+Uk
+at
+at
+at
+Ds
+Ds
+at
+at
+"}

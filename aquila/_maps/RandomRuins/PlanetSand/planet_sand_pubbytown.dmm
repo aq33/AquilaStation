@@ -1,0 +1,7142 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"ac" = (
+/obj/effect/decal/fakelattice,
+/turf/open/floor/plating{
+	icon_state = "platingdmg1";
+	initial_gas_mix = "ws_atmos"
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/wreck)
+"ai" = (
+/obj/structure/cable,
+/obj/machinery/power/apc/auto_name/south,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/house)
+"am" = (
+/obj/structure/cable,
+/obj/structure/table/reinforced,
+/obj/item/paper_bin{
+	pixel_x = -4
+	},
+/obj/item/folder/blue{
+	pixel_x = 3;
+	pixel_y = 2
+	},
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/item/stamp{
+	pixel_x = -6;
+	pixel_y = 8
+	},
+/obj/item/documents{
+	pixel_x = 3;
+	pixel_y = 7
+	},
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_sand/pubbytown/wreck)
+"aA" = (
+/mob/living/basic/trooper/pirate/melee,
+/obj/item/clothing/head/beret/black{
+	pixel_y = 9
+	},
+/turf/open/floor/plating/asteroid/whitesands/dried,
+/area/ruin/unpowered/planet_sand/pubbytown)
+"aB" = (
+/obj/structure/table,
+/turf/open/floor/plating{
+	icon_state = "platingdmg2"
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/canteen)
+"aG" = (
+/obj/structure/chair/wood{
+	dir = 1;
+	pixel_x = 2;
+	pixel_y = 10
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood{
+	icon_state = "wood-broken2"
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/guard)
+"aJ" = (
+/obj/item/flashlight/lantern{
+	pixel_x = -9;
+	light_on = 1
+	},
+/turf/open/floor/plating/asteroid/whitesands,
+/area/lavaland/surface/outdoors)
+"aP" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/blood/splatter,
+/turf/open/floor/plating{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown)
+"aR" = (
+/obj/effect/turf_decal/siding/wood{
+	color = "#543C30";
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/wood/corner{
+	color = "#543C30";
+	dir = 4
+	},
+/obj/item/pushbroom,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/clinic)
+"aS" = (
+/obj/structure/dresser{
+	dir = 4;
+	pixel_x = -6
+	},
+/turf/open/floor/carpet/red,
+/area/ruin/unpowered/planet_sand/pubbytown/guard)
+"aU" = (
+/turf/closed/wall/mineral/wood,
+/area/ruin/unpowered/planet_sand/pubbytown/cargo)
+"aW" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 1;
+	color = "#444547"
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/engine,
+/area/ruin/unpowered/planet_sand/pubbytown/cargo)
+"bc" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/house)
+"bj" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_sand/pubbytown/canteen)
+"bp" = (
+/obj/item/flashlight/lantern{
+	pixel_y = 10;
+	light_on = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown)
+"bv" = (
+/obj/structure/chair/wood{
+	dir = 8;
+	pixel_x = -10;
+	pixel_y = 2
+	},
+/turf/open/floor/carpet/purple,
+/area/ruin/unpowered/planet_sand/pubbytown/study)
+"bz" = (
+/obj/effect/decal/fakelattice,
+/turf/open/floor/plating/asteroid/whitesands,
+/area/lavaland/surface/outdoors)
+"bE" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/glass,
+/obj/effect/turf_decal/stripes/line{
+	dir = 9
+	},
+/obj/structure/frame/machine{
+	anchored = 1
+	},
+/turf/open/floor/plasteel/techmaint,
+/area/ruin/unpowered/planet_sand/pubbytown/engine)
+"bM" = (
+/obj/effect/turf_decal/siding/thinplating{
+	dir = 10
+	},
+/obj/item/ammo_casing/spent,
+/turf/open/floor/plating{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown)
+"bR" = (
+/mob/living/basic/trooper/pirate/melee,
+/turf/open/floor/carpet/blue,
+/area/ruin/unpowered/planet_sand/pubbytown/wreck)
+"cd" = (
+/obj/structure/cable,
+/obj/structure/table/reinforced,
+/obj/machinery/recharger,
+/obj/structure/railing{
+	dir = 10;
+	layer = 4.1
+	},
+/obj/effect/turf_decal/siding/white{
+	color = "#444547"
+	},
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_sand/pubbytown/wreck)
+"ck" = (
+/obj/structure/dresser{
+	dir = 4;
+	pixel_x = 6
+	},
+/obj/effect/turf_decal/siding/wood{
+	color = "#543C30";
+	dir = 1
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/clinic)
+"cn" = (
+/obj/structure/frame/computer{
+	dir = 8;
+	layer = 3.3;
+	anchored = 1
+	},
+/obj/structure/cable,
+/obj/machinery/button/door{
+	pixel_y = 24;
+	id = "frontiepod3"
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_sand/pubbytown)
+"cp" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/oil,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_sand/pubbytown/cargo)
+"cv" = (
+/turf/closed/mineral/random/whitesands,
+/area/ruin/unpowered/planet_sand/pubbytown/wreck)
+"cz" = (
+/obj/item/storage/box{
+	pixel_x = -5;
+	pixel_y = 10
+	},
+/obj/item/stock_parts/micro_laser/high,
+/obj/item/stock_parts/micro_laser/high,
+/obj/item/stock_parts/micro_laser/high,
+/turf/open/floor/plating/asteroid/whitesands,
+/area/lavaland/surface/outdoors)
+"cE" = (
+/obj/item/ammo_casing/spent,
+/obj/effect/decal/cleanable/blood/tracks,
+/turf/open/floor/plating/asteroid/whitesands,
+/area/lavaland/surface/outdoors)
+"cZ" = (
+/obj/machinery/door/airlock/wood{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/clinic)
+"dr" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 1
+	},
+/turf/open/floor/carpet/purple,
+/area/ruin/unpowered/planet_sand/pubbytown/study)
+"dv" = (
+/obj/structure/bed{
+	dir = 1
+	},
+/turf/open/floor/carpet/red,
+/area/ruin/unpowered/planet_sand/pubbytown/house)
+"dy" = (
+/obj/machinery/camera/autoname{
+	dir = 1
+	},
+/obj/structure/extinguisher_cabinet/west,
+/obj/machinery/atmospherics/components/unary/passive_vent{
+	dir = 4
+	},
+/obj/structure/bed/dogbed,
+/mob/living/basic/mining/goliath{
+	faction = list("hermit","neutral");
+	name = "Lawrence";
+	desc = "Niedojrzały goliat. Na tym etapie życia goliaty nie mają jeszcze w pełni rozwiniętych macek i zdobywanie jedzenia zostawiają rodzicom. Ten wygląda na całkiem miłe zwierzątko."
+	},
+/turf/open/floor/carpet/blue,
+/area/ruin/unpowered/planet_sand/pubbytown/wreck)
+"dI" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/pubbytown/study)
+"dO" = (
+/obj/structure/cable,
+/obj/machinery/door/airlock/wood,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/guard)
+"dU" = (
+/obj/effect/decal/cleanable/blood/tracks,
+/turf/open/floor/plating/asteroid/whitesands/dried,
+/area/ruin/unpowered/planet_sand/pubbytown)
+"dV" = (
+/obj/structure/railing,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_sand/pubbytown/cargo)
+"dZ" = (
+/obj/structure/chair/wood{
+	dir = 1;
+	pixel_x = 4;
+	pixel_y = 10
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/pubbytown/study)
+"ek" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_sand/pubbytown/cargo)
+"eq" = (
+/obj/effect/turf_decal/siding/wood/corner{
+	color = "#543C30";
+	dir = 1
+	},
+/mob/living/basic/trooper/pirate/ranged,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/house)
+"ev" = (
+/turf/closed/wall/mineral/titanium/nodiagonal,
+/area/ruin/unpowered/planet_sand/pubbytown/cargo)
+"eG" = (
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/clinic)
+"eH" = (
+/obj/structure/table/reinforced,
+/obj/item/paper_bin,
+/obj/item/pen,
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/obj/structure/noticeboard{
+	pixel_y = 28
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_sand/pubbytown/wreck)
+"eL" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/techmaint,
+/area/ruin/unpowered/planet_sand/pubbytown/engine)
+"eO" = (
+/turf/closed/wall/mineral/wood,
+/area/ruin/unpowered/planet_sand/pubbytown/wreck)
+"eR" = (
+/obj/item/flashlight/lantern{
+	pixel_x = -12;
+	light_on = 1
+	},
+/turf/open/floor/plating/asteroid/whitesands,
+/area/lavaland/surface/outdoors)
+"eS" = (
+/obj/structure/fireplace{
+	pixel_x = -33
+	},
+/obj/item/grown/log/tree{
+	pixel_x = 9;
+	pixel_y = 19
+	},
+/obj/item/grown/log/tree{
+	pixel_x = 3;
+	pixel_y = 19
+	},
+/obj/item/grown/log/tree{
+	pixel_x = 6;
+	pixel_y = 23
+	},
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/clinic)
+"eV" = (
+/obj/structure/girder,
+/turf/open/floor/plating{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown)
+"eY" = (
+/obj/machinery/atmospherics/components/unary/passive_vent,
+/obj/structure/cable,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"ff" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/basic/trooper/pirate/melee,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_sand/pubbytown/wreck)
+"fl" = (
+/obj/machinery/power/smes,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/plating{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown)
+"fm" = (
+/turf/open/floor/engine,
+/area/ruin/unpowered/planet_sand/pubbytown/engine)
+"fn" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/carpet/red,
+/area/ruin/unpowered/planet_sand/pubbytown/house)
+"ft" = (
+/obj/structure/cable,
+/obj/effect/turf_decal/box/white{
+	color = "#EFB341"
+	},
+/obj/machinery/portable_atmospherics/canister/toxins,
+/turf/open/floor/plasteel/techmaint,
+/area/ruin/unpowered/planet_sand/pubbytown/engine)
+"fu" = (
+/obj/structure/cable,
+/obj/machinery/door/airlock/highsecurity,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_sand/pubbytown/wreck)
+"fx" = (
+/obj/effect/decal/fakelattice,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"fz" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_sand/pubbytown/cargo)
+"fC" = (
+/obj/structure/window/reinforced/fulltile,
+/obj/structure/barricade/wooden/crude{
+	layer = 3.3;
+	opacity = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/house)
+"fJ" = (
+/obj/item/ammo_casing/spent,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_sand/pubbytown)
+"fZ" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/white,
+/area/ruin/unpowered/planet_sand/pubbytown/canteen)
+"ga" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/guard)
+"gb" = (
+/obj/structure/frame/computer{
+	anchored = 1
+	},
+/obj/item/stack/ore/gold,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_sand/pubbytown/wreck)
+"gf" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/components/unary/passive_vent{
+	dir = 4
+	},
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_sand/pubbytown/engine)
+"gj" = (
+/obj/effect/turf_decal/tile/blue/anticorner/contrasted{
+	dir = 1;
+	color = "#75A2BB";
+	alpha = 255
+	},
+/obj/structure/cable,
+/turf/open/floor/plasteel/white{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/clinic)
+"gk" = (
+/obj/effect/turf_decal/siding/wood{
+	color = "#543C30";
+	dir = 4
+	},
+/mob/living/basic/trooper/pirate/melee,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 1
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/shop)
+"gw" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/closet/crate/secure/plasma,
+/obj/item/stack/sheet/mineral/plasma/fifty,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_sand/pubbytown/engine)
+"gI" = (
+/obj/machinery/atmospherics/components/unary/passive_vent{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_sand/pubbytown/wreck)
+"gK" = (
+/obj/structure/cable/yellow,
+/obj/structure/frame/machine,
+/obj/item/stock_parts/micro_laser/high{
+	pixel_x = 5
+	},
+/obj/item/stock_parts/micro_laser/high{
+	pixel_x = -6;
+	pixel_y = 7
+	},
+/obj/item/stock_parts/capacitor/adv{
+	pixel_x = 3;
+	pixel_y = -5
+	},
+/obj/item/stock_parts/capacitor/adv{
+	pixel_x = 6;
+	pixel_y = 11
+	},
+/obj/item/stock_parts/capacitor/adv{
+	pixel_x = -8;
+	pixel_y = -3
+	},
+/turf/open/floor/plating{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown)
+"gL" = (
+/mob/living/basic/trooper/pirate/melee,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_sand/pubbytown/wreck)
+"gN" = (
+/obj/structure/closet/crate/coffin{
+	pixel_x = 2;
+	pixel_y = -4;
+	opened = 0
+	},
+/turf/open/floor/plating/asteroid/whitesands/dried,
+/area/ruin/unpowered/planet_sand/pubbytown)
+"gO" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/turf/open/floor/wood{
+	icon_state = "wood-broken3"
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/guard)
+"gP" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/caution{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/engine,
+/area/ruin/unpowered/planet_sand/pubbytown/cargo)
+"gS" = (
+/turf/open/floor/plating/asteroid/whitesands,
+/area/lavaland/surface/outdoors)
+"gU" = (
+/obj/effect/turf_decal/siding/wood{
+	color = "#543C30";
+	dir = 2
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/clinic)
+"hl" = (
+/obj/structure/railing/corner{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 9
+	},
+/turf/open/floor/plasteel/techmaint,
+/area/ruin/unpowered/planet_sand/pubbytown/engine)
+"hn" = (
+/obj/structure/dresser{
+	dir = 4;
+	pixel_x = -7
+	},
+/turf/open/floor/carpet/red,
+/area/ruin/unpowered/planet_sand/pubbytown/house)
+"ht" = (
+/obj/structure/cable,
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_sand/pubbytown/wreck)
+"hv" = (
+/obj/structure/window/reinforced/fulltile,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/clinic)
+"hx" = (
+/obj/structure/table,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/stripes/corner,
+/obj/effect/spawner/lootdrop/maintenance/two,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_sand/pubbytown/engine)
+"hE" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/obj/machinery/light,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_sand/pubbytown/wreck)
+"hH" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/table/reinforced,
+/obj/machinery/reagentgrinder{
+	pixel_x = 6;
+	pixel_y = 14
+	},
+/turf/open/floor/plasteel/white,
+/area/ruin/unpowered/planet_sand/pubbytown/canteen)
+"hJ" = (
+/obj/effect/turf_decal/siding/wood{
+	color = "#543C30";
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/wood/corner{
+	color = "#543C30";
+	dir = 4
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/house)
+"hK" = (
+/turf/closed/wall/mineral/titanium,
+/area/ruin/unpowered/planet_sand/pubbytown/engine)
+"hT" = (
+/obj/effect/turf_decal/siding/wood/corner{
+	color = "#543C30";
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/components/unary/passive_vent{
+	dir = 4
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/house)
+"hV" = (
+/obj/structure/chair/wood{
+	dir = 4;
+	pixel_x = 8;
+	pixel_y = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 1
+	},
+/turf/open/floor/carpet/purple,
+/area/ruin/unpowered/planet_sand/pubbytown/study)
+"hY" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/firealarm/directional/west,
+/obj/item/stack/ore/iron{
+	pixel_x = 8;
+	pixel_y = 10;
+	amount = 5
+	},
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_sand/pubbytown/cargo)
+"ig" = (
+/obj/structure/cable/yellow,
+/obj/effect/turf_decal/box,
+/obj/machinery/power/port_gen/pacman,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_sand/pubbytown/engine)
+"ik" = (
+/obj/structure/window/reinforced/fulltile,
+/obj/structure/barricade/wooden/crude{
+	layer = 3.3;
+	opacity = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/guard)
+"ip" = (
+/obj/effect/decal/cleanable/oil{
+	icon_state = "floor6"
+	},
+/turf/open/floor/engine,
+/area/ruin/unpowered/planet_sand/pubbytown/cargo)
+"iq" = (
+/obj/item/ammo_casing/spent,
+/turf/open/floor/plating/asteroid/whitesands,
+/area/lavaland/surface/outdoors)
+"ir" = (
+/obj/structure/table/wood,
+/obj/item/gun/energy/e_gun{
+	pixel_x = 1;
+	pixel_y = 12
+	},
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/shop)
+"iv" = (
+/obj/structure/rack{
+	pixel_y = -3
+	},
+/obj/item/clothing/suit/hooded/explorer{
+	pixel_x = 7;
+	pixel_y = -4
+	},
+/obj/item/extinguisher/mini{
+	pixel_x = -10;
+	pixel_y = 4
+	},
+/obj/item/reagent_containers/hypospray/medipen/stimpack{
+	pixel_x = -4;
+	pixel_y = -3
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/shop)
+"iC" = (
+/obj/item/clothing/head/beret/sec{
+	pixel_x = -4;
+	pixel_y = 7
+	},
+/turf/open/floor/plating/asteroid/whitesands/dried,
+/area/ruin/unpowered/planet_sand/pubbytown)
+"iL" = (
+/turf/closed/wall/mineral/wood,
+/area/lavaland/surface/outdoors)
+"jb" = (
+/turf/open/floor/engine,
+/area/ruin/unpowered/planet_sand/pubbytown)
+"jh" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/closet/crate/secure/weapon,
+/obj/item/stock_parts/cell/empty{
+	pixel_x = -6;
+	pixel_y = 1
+	},
+/obj/item/stock_parts/cell/empty{
+	pixel_x = 6;
+	pixel_y = 4
+	},
+/obj/item/stock_parts/cell/high{
+	pixel_x = 3;
+	pixel_y = -3
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_sand/pubbytown/cargo)
+"ji" = (
+/obj/machinery/door/airlock/public/glass,
+/obj/structure/cable,
+/turf/open/floor/engine,
+/area/ruin/unpowered/planet_sand/pubbytown/canteen)
+"jj" = (
+/turf/open/floor/plating/asteroid/whitesands/grass,
+/area/lavaland/surface/outdoors)
+"jn" = (
+/obj/machinery/power/apc/auto_name/east,
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/techmaint,
+/area/ruin/unpowered/planet_sand/pubbytown/engine)
+"jq" = (
+/obj/effect/turf_decal/siding/wood/corner{
+	color = "#543C30"
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/light,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/shop)
+"jr" = (
+/obj/structure/bed{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/carpet/red,
+/area/ruin/unpowered/planet_sand/pubbytown/shop)
+"jt" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 4;
+	color = "#D2BC9D"
+	},
+/obj/item/flashlight/lantern{
+	pixel_x = -13;
+	pixel_y = 8
+	},
+/turf/open/floor/plating/asteroid/whitesands/dried,
+/area/ruin/unpowered/planet_sand/pubbytown)
+"jv" = (
+/obj/effect/turf_decal/stripes/line,
+/obj/structure/frame/machine{
+	anchored = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_sand/pubbytown/wreck)
+"jA" = (
+/obj/item/restraints/handcuffs/cable/zipties/used,
+/obj/effect/decal/cleanable/blood/gibs/down,
+/obj/effect/mob_spawn/human/corpse/pirate,
+/turf/open/floor/plating/asteroid/whitesands/dried,
+/area/ruin/unpowered/planet_sand/pubbytown)
+"jB" = (
+/obj/item/chair/plastic,
+/obj/structure/cable,
+/turf/open/floor/plating{
+	icon_state = "platingdmg1";
+	initial_gas_mix = "ws_atmos"
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/canteen)
+"jC" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 1;
+	color = "#444547"
+	},
+/turf/open/floor/engine,
+/area/ruin/unpowered/planet_sand/pubbytown/cargo)
+"jJ" = (
+/obj/structure/table/optable,
+/turf/open/floor/plasteel/white{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/clinic)
+"jK" = (
+/obj/structure/cable,
+/obj/structure/railing{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/turf/open/floor/plasteel/stairs{
+	dir = 4
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/engine)
+"jN" = (
+/obj/machinery/vending/cola/random{
+	pixel_x = -5;
+	pixel_y = 10
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/shop)
+"jU" = (
+/obj/effect/turf_decal/siding/wood,
+/obj/effect/turf_decal/siding/wood/corner{
+	color = "#543C30";
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/pubbytown/study)
+"jY" = (
+/obj/structure/bed,
+/turf/open/floor/carpet/red,
+/area/ruin/unpowered/planet_sand/pubbytown/shop)
+"ki" = (
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_sand/pubbytown/engine)
+"km" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 1
+	},
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_sand/pubbytown/engine)
+"kp" = (
+/obj/structure/closet/crate/coffin{
+	pixel_y = -5;
+	opened = 0
+	},
+/turf/open/floor/plating/asteroid/whitesands/dried,
+/area/ruin/unpowered/planet_sand/pubbytown)
+"kt" = (
+/mob/living/basic/trooper/pirate/melee,
+/turf/open/floor/plasteel/white{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/clinic)
+"kv" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_sand/pubbytown/canteen)
+"kB" = (
+/obj/effect/turf_decal/siding/wood{
+	color = "#543C30";
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/wood/corner{
+	color = "#543C30";
+	dir = 8
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/clinic)
+"kD" = (
+/obj/effect/decal/cleanable/vomit/old,
+/obj/effect/decal/cleanable/vomit/old,
+/obj/item/stack/ore/iron,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_sand/pubbytown/wreck)
+"kM" = (
+/obj/effect/turf_decal/siding/wood{
+	color = "#543C30";
+	dir = 8
+	},
+/obj/item/stack/sheet/sinew{
+	pixel_y = 10
+	},
+/obj/structure/rack{
+	pixel_y = 5
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/house)
+"kO" = (
+/obj/structure/cable/yellow,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/stripes/corner{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_sand/pubbytown/engine)
+"kW" = (
+/obj/item/restraints/handcuffs/cable/zipties/used,
+/obj/effect/decal/cleanable/ash/large{
+	pixel_x = -2
+	},
+/obj/effect/mob_spawn/human/corpse/pirate,
+/turf/open/floor/plating/asteroid/whitesands/dried,
+/area/ruin/unpowered/planet_sand/pubbytown)
+"kX" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/asteroid/whitesands,
+/area/lavaland/surface/outdoors)
+"ld" = (
+/obj/item/stack/ore/iron,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_sand/pubbytown/wreck)
+"lg" = (
+/obj/structure/barricade/sandbags,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown)
+"lk" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_sand/pubbytown/cargo)
+"ln" = (
+/obj/structure/rack{
+	pixel_y = 5
+	},
+/obj/item/kitchen/knife/combat{
+	pixel_x = 1;
+	pixel_y = 6
+	},
+/obj/item/reagent_containers/hypospray/medipen/survival{
+	pixel_x = 4;
+	pixel_y = 2
+	},
+/obj/item/reagent_containers/hypospray/medipen/survival{
+	pixel_x = 10;
+	pixel_y = 3
+	},
+/obj/item/tank/internals/emergency_oxygen/double{
+	pixel_x = -5;
+	pixel_y = 10
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/shop)
+"lp" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/structure/cable,
+/obj/machinery/power/apc/auto_name/east,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/guard)
+"lJ" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/floor/plasteel/stairs,
+/area/lavaland/surface/outdoors)
+"lL" = (
+/obj/structure/chair/wood{
+	dir = 8;
+	pixel_x = -8;
+	pixel_y = 3
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/light,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/house)
+"lM" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 1;
+	color = "#444547"
+	},
+/obj/structure/reagent_dispensers/watertank,
+/obj/effect/turf_decal/box/red,
+/turf/open/floor/engine,
+/area/ruin/unpowered/planet_sand/pubbytown/cargo)
+"lQ" = (
+/obj/effect/decal/cleanable/generic,
+/obj/structure/chair/office/light{
+	dir = 8
+	},
+/turf/open/floor/carpet/blue,
+/area/ruin/unpowered/planet_sand/pubbytown/wreck)
+"lR" = (
+/obj/effect/turf_decal/siding/wood{
+	color = "#543C30";
+	dir = 1
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/house)
+"lW" = (
+/obj/structure/rack,
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_sand/pubbytown/wreck)
+"ma" = (
+/obj/effect/turf_decal/siding/wood{
+	color = "#543C30";
+	dir = 2
+	},
+/obj/structure/cable,
+/mob/living/basic/trooper/pirate/melee,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/shop)
+"md" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/stack/ore/iron{
+	pixel_x = -7;
+	pixel_y = 1;
+	amount = 5
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_sand/pubbytown/cargo)
+"mi" = (
+/obj/structure/girder/displaced,
+/turf/open/floor/plating/asteroid/whitesands/dried,
+/area/lavaland/surface/outdoors)
+"mn" = (
+/obj/structure/cable,
+/mob/living/basic/trooper/pirate/melee{
+	faction = list("hermit","mining")
+	},
+/turf/open/floor/plating/asteroid/whitesands,
+/area/lavaland/surface/outdoors)
+"mr" = (
+/obj/structure/table/wood,
+/obj/item/book/manual/wiki/engineering_guide{
+	pixel_x = 6;
+	pixel_y = 4
+	},
+/obj/item/book/manual/wiki/barman_recipes{
+	pixel_x = -12;
+	pixel_y = 1
+	},
+/turf/open/floor/carpet/purple,
+/area/ruin/unpowered/planet_sand/pubbytown/study)
+"mv" = (
+/turf/closed/wall,
+/area/ruin/unpowered/planet_sand/pubbytown)
+"mw" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/chair/plastic{
+	dir = 1
+	},
+/obj/machinery/atmospherics/components/unary/passive_vent{
+	dir = 1
+	},
+/turf/open/floor/plasteel/white,
+/area/ruin/unpowered/planet_sand/pubbytown/canteen)
+"mO" = (
+/obj/structure/table/reinforced,
+/obj/item/storage/toolbox/mechanical{
+	pixel_x = -2;
+	pixel_y = -1
+	},
+/obj/item/stack/cable_coil,
+/obj/structure/sign/poster/contraband/red_rum{
+	pixel_x = 30
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/structure/railing{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_sand/pubbytown/wreck)
+"mP" = (
+/obj/effect/turf_decal/siding/wood{
+	color = "#543C30";
+	dir = 1
+	},
+/obj/machinery/atmospherics/components/unary/passive_vent{
+	dir = 4
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/clinic)
+"mY" = (
+/obj/structure/bookcase/manuals{
+	pixel_y = 13;
+	density = 0
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/pubbytown/study)
+"ni" = (
+/obj/item/restraints/handcuffs/cable/zipties/used,
+/obj/effect/mob_spawn/human/corpse/pirate,
+/turf/open/floor/plating/asteroid/whitesands/dried,
+/area/ruin/unpowered/planet_sand/pubbytown)
+"nt" = (
+/obj/structure/table,
+/obj/item/reagent_containers/glass/bottle/morphine{
+	pixel_x = -3;
+	pixel_y = 7
+	},
+/obj/item/reagent_containers/syringe{
+	pixel_x = 1;
+	pixel_y = 1
+	},
+/turf/open/floor/plasteel/white{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/clinic)
+"ny" = (
+/obj/item/ammo_casing/spent,
+/obj/machinery/door/poddoor/shutters/preopen{
+	dir = 4;
+	id = "frontiepod3"
+	},
+/obj/item/ammo_casing/spent,
+/turf/open/floor/engine,
+/area/ruin/unpowered/planet_sand/pubbytown)
+"nF" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/machinery/door/window/northleft{
+	dir = 4;
+	name = "Dostęp do silnika"
+	},
+/obj/structure/frame/machine,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_sand/pubbytown/engine)
+"nJ" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/railing/corner{
+	dir = 8
+	},
+/obj/structure/railing/corner,
+/obj/effect/decal/cleanable/vomit/old,
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_sand/pubbytown/wreck)
+"nQ" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/item/stack/sheet/mineral/wood/fifty,
+/obj/structure/closet/crate,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_sand/pubbytown/engine)
+"nS" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/barricade/wooden/crude,
+/obj/structure/cable,
+/turf/open/floor/engine,
+/area/ruin/unpowered/planet_sand/pubbytown/cargo)
+"nY" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+/obj/structure/lattice/catwalk,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_sand/pubbytown/engine)
+"oh" = (
+/obj/machinery/door/airlock/wood{
+	dir = 8;
+	welded = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/canteen)
+"op" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/components/unary/passive_vent{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/pubbytown/study)
+"oq" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_sand/pubbytown/wreck)
+"oy" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/chair/plastic,
+/turf/open/floor/plasteel/white,
+/area/ruin/unpowered/planet_sand/pubbytown/canteen)
+"oA" = (
+/obj/structure/cable,
+/obj/structure/chair/fancy/shuttle,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_sand/pubbytown)
+"oN" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/power/apc/auto_name/south,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_sand/pubbytown/wreck)
+"oO" = (
+/obj/structure/window/reinforced/fulltile,
+/obj/structure/barricade/wooden/crude{
+	layer = 3.3;
+	opacity = 1
+	},
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/guard)
+"oV" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/guard)
+"pa" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/chair/office/light{
+	dir = 8;
+	icon_state = "chair_toppled"
+	},
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_sand/pubbytown/cargo)
+"pl" = (
+/turf/open/floor/plating/asteroid/whitesands/dried,
+/area/lavaland/surface/outdoors)
+"pm" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/table,
+/obj/item/gun/energy/e_gun/mini{
+	pixel_x = -3;
+	pixel_y = 3
+	},
+/obj/item/screwdriver{
+	pixel_x = 7
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_sand/pubbytown/cargo)
+"pp" = (
+/obj/effect/decal/cleanable/dirt,
+/mob/living/basic/trooper/pirate/melee,
+/turf/open/floor/carpet/blue,
+/area/ruin/unpowered/planet_sand/pubbytown/wreck)
+"pr" = (
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/clinic)
+"ps" = (
+/obj/effect/turf_decal/siding/wood/corner{
+	color = "#543C30";
+	dir = 8
+	},
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/power/apc/auto_name/east,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/shop)
+"pt" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/firealarm/directional/south,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_sand/pubbytown/wreck)
+"pH" = (
+/obj/effect/turf_decal/siding/wood{
+	color = "#D2BC9D";
+	dir = 8
+	},
+/turf/open/floor/plating/asteroid/whitesands/dried,
+/area/ruin/unpowered/planet_sand/pubbytown)
+"pK" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/basic/trooper/pirate/ranged{
+	faction = list("hermit","mining")
+	},
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown)
+"pN" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_sand/pubbytown/cargo)
+"pQ" = (
+/obj/machinery/atmospherics/components/unary/passive_vent,
+/turf/open/floor/plating/asteroid/whitesands,
+/area/lavaland/surface/outdoors)
+"pZ" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/pubbytown/guard)
+"qa" = (
+/obj/machinery/power/apc/auto_name/east,
+/obj/structure/cable,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_sand/pubbytown/cargo)
+"qb" = (
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/pubbytown/guard)
+"qf" = (
+/obj/effect/turf_decal/siding/wood/corner{
+	color = "#543C30"
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/clinic)
+"qq" = (
+/obj/effect/decal/fakelattice,
+/turf/open/floor/plating/asteroid/whitesands/dried,
+/area/lavaland/surface/outdoors)
+"qw" = (
+/obj/machinery/door/poddoor{
+	dir = 4;
+	id = "whiteship_windows"
+	},
+/obj/structure/grille,
+/obj/structure/window/shuttle,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_sand/pubbytown/cargo)
+"qE" = (
+/turf/closed/mineral/random/whitesands,
+/area/ruin/unpowered/planet_sand/pubbytown/guard)
+"qK" = (
+/obj/item/clothing/head/beret/black{
+	pixel_x = -1;
+	pixel_y = 8
+	},
+/turf/open/floor/plating/asteroid/whitesands/dried,
+/area/ruin/unpowered/planet_sand/pubbytown)
+"qT" = (
+/obj/machinery/light,
+/obj/structure/chair/fancy/shuttle{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_sand/pubbytown)
+"rh" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/closet/emcloset/anchored,
+/obj/effect/spawner/lootdrop/maintenance/two,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_sand/pubbytown/engine)
+"ri" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown)
+"rB" = (
+/obj/structure/chair/wood{
+	dir = 1;
+	pixel_x = -2;
+	pixel_y = 13
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/shop)
+"rE" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/turf/open/floor/wood{
+	icon_state = "wood-broken4"
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/study)
+"rH" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/sign/poster/official/random{
+	pixel_x = 32
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_sand/pubbytown/cargo)
+"rK" = (
+/obj/structure/cable,
+/obj/machinery/light,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 9
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_sand/pubbytown/wreck)
+"rL" = (
+/obj/effect/turf_decal/siding/wood{
+	color = "#543C30";
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 1
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/shop)
+"sh" = (
+/obj/structure/railing,
+/turf/open/floor/plating/asteroid/whitesands/dried,
+/area/lavaland/surface/outdoors)
+"sr" = (
+/obj/structure/chair/fancy/shuttle{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_sand/pubbytown)
+"su" = (
+/obj/item/restraints/handcuffs/cable/zipties/used,
+/obj/effect/decal/cleanable/ash/large,
+/obj/effect/mob_spawn/human/corpse/pirate,
+/turf/open/floor/plating/asteroid/whitesands/dried,
+/area/ruin/unpowered/planet_sand/pubbytown)
+"sx" = (
+/obj/effect/turf_decal/siding/wood/corner{
+	color = "#543C30";
+	dir = 1
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/house)
+"sC" = (
+/obj/structure/cable,
+/obj/machinery/door/airlock/engineering{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_sand/pubbytown/cargo)
+"sF" = (
+/obj/structure/cable,
+/turf/open/floor/plasteel/white,
+/area/ruin/unpowered/planet_sand/pubbytown/canteen)
+"sG" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_sand/pubbytown/cargo)
+"sJ" = (
+/obj/structure/railing,
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_sand/pubbytown/cargo)
+"sL" = (
+/obj/effect/turf_decal/caution,
+/obj/structure/railing/corner{
+	dir = 8
+	},
+/obj/structure/railing/corner{
+	dir = 1
+	},
+/obj/structure/lattice/catwalk,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_sand/pubbytown/engine)
+"sN" = (
+/obj/structure/cable,
+/obj/effect/turf_decal/box/white{
+	color = "#a3a2a0"
+	},
+/obj/machinery/portable_atmospherics/canister/air,
+/turf/open/floor/plasteel/techmaint,
+/area/ruin/unpowered/planet_sand/pubbytown/engine)
+"sO" = (
+/obj/structure/chair/wood{
+	dir = 1;
+	pixel_x = 1;
+	pixel_y = 10
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/house)
+"sQ" = (
+/obj/machinery/door/airlock/wood,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 1
+	},
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/shop)
+"sZ" = (
+/turf/template_noop,
+/area/template_noop)
+"th" = (
+/obj/structure/cable,
+/obj/effect/turf_decal/siding/white{
+	dir = 6;
+	color = "#444547"
+	},
+/obj/machinery/power/smes/engineering,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_sand/pubbytown/engine)
+"to" = (
+/obj/structure/girder,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_sand/pubbytown/engine)
+"tq" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 5;
+	color = "#75A2BB";
+	alpha = 255
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/plasteel/white{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/clinic)
+"tz" = (
+/obj/structure/cable,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plasteel/techmaint,
+/area/ruin/unpowered/planet_sand/pubbytown/engine)
+"tK" = (
+/obj/structure/sign/poster/official/random{
+	pixel_y = -1
+	},
+/turf/closed/wall/mineral/sandstone,
+/area/ruin/unpowered/planet_sand/pubbytown/study)
+"tM" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 1;
+	color = "#444547"
+	},
+/obj/effect/turf_decal/box/red,
+/mob/living/basic/trooper/pirate/melee,
+/turf/open/floor/engine,
+/area/ruin/unpowered/planet_sand/pubbytown/cargo)
+"tP" = (
+/obj/effect/turf_decal/siding/wood{
+	color = "#543C30";
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/clinic)
+"tV" = (
+/obj/machinery/power/terminal{
+	dir = 8
+	},
+/obj/structure/cable,
+/obj/structure/closet/emcloset/anchored,
+/turf/open/floor/plating{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown)
+"ua" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/stairs{
+	dir = 8
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/wreck)
+"un" = (
+/obj/item/flashlight/lantern{
+	pixel_x = 4;
+	pixel_y = -6;
+	light_on = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/plating/asteroid/whitesands,
+/area/lavaland/surface/outdoors)
+"uq" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/table,
+/obj/item/stock_parts/cell/empty{
+	pixel_x = -4;
+	pixel_y = 7
+	},
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_sand/pubbytown/canteen)
+"uz" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/rack,
+/obj/item/stack/ore/uranium{
+	pixel_x = 7;
+	pixel_y = -1
+	},
+/obj/item/stack/ore/uranium{
+	pixel_x = -6;
+	pixel_y = -5
+	},
+/obj/item/stack/ore/uranium{
+	pixel_x = -6;
+	pixel_y = 6;
+	amount = 5
+	},
+/turf/open/floor/engine,
+/area/ruin/unpowered/planet_sand/pubbytown/cargo)
+"uA" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/guard)
+"uB" = (
+/obj/structure/railing,
+/obj/structure/frame/computer{
+	dir = 8;
+	anchored = 1
+	},
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_sand/pubbytown/wreck)
+"uC" = (
+/obj/machinery/door/airlock/hatch{
+	welded = 1;
+	locked = 1
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_sand/pubbytown/canteen)
+"uE" = (
+/obj/structure/window/reinforced/fulltile,
+/obj/structure/barricade/wooden/crude{
+	layer = 3.3;
+	opacity = 1
+	},
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/shop)
+"uH" = (
+/obj/effect/decal/fakelattice,
+/obj/item/flashlight/lantern{
+	light_on = 1
+	},
+/turf/open/floor/plating/asteroid/whitesands,
+/area/lavaland/surface/outdoors)
+"uN" = (
+/obj/structure/window/reinforced/fulltile,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/clinic)
+"uV" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 8
+	},
+/obj/structure/frame/computer{
+	anchored = 1
+	},
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_sand/pubbytown/engine)
+"uW" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+/turf/open/floor/engine,
+/area/ruin/unpowered/planet_sand/pubbytown/cargo)
+"uX" = (
+/obj/machinery/door/poddoor{
+	id = "whiteship_windows"
+	},
+/obj/structure/grille,
+/obj/structure/window/shuttle,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_sand/pubbytown/canteen)
+"uY" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/carpet/blue,
+/area/ruin/unpowered/planet_sand/pubbytown/wreck)
+"uZ" = (
+/obj/structure/closet/crate/medical,
+/obj/item/storage/firstaid/fire,
+/obj/effect/turf_decal/tile/blue{
+	dir = 9;
+	color = "#75A2BB";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/white{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/clinic)
+"vd" = (
+/obj/structure/bed,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/carpet/red,
+/area/ruin/unpowered/planet_sand/pubbytown/canteen)
+"ve" = (
+/obj/machinery/door/airlock/wood,
+/obj/structure/cable,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/house)
+"vp" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden{
+	dir = 1
+	},
+/turf/open/floor/carpet/red,
+/area/ruin/unpowered/planet_sand/pubbytown/canteen)
+"vq" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_sand/pubbytown/cargo)
+"vt" = (
+/obj/item/ammo_casing/spent,
+/obj/machinery/door/poddoor/shutters/preopen{
+	dir = 4;
+	id = "frontiepod3"
+	},
+/turf/open/floor/engine,
+/area/ruin/unpowered/planet_sand/pubbytown)
+"vv" = (
+/turf/open/floor/plating/asteroid/whitesands/grass,
+/area/ruin/unpowered/planet_sand/pubbytown)
+"vz" = (
+/obj/structure/table/reinforced,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_sand/pubbytown/wreck)
+"vD" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/barricade/wooden/crude,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/pubbytown/guard)
+"vH" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+/obj/structure/railing,
+/obj/structure/railing{
+	dir = 1
+	},
+/turf/open/floor/plasteel/stairs{
+	dir = 4
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/engine)
+"vN" = (
+/obj/structure/window/reinforced/fulltile,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/study)
+"vO" = (
+/obj/structure/chair/wood{
+	dir = 4;
+	pixel_x = -8;
+	pixel_y = 4
+	},
+/obj/effect/turf_decal/siding/wood{
+	color = "#543C30";
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/clinic)
+"vZ" = (
+/obj/machinery/light,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/chair/fancy/plastic{
+	dir = 4;
+	pixel_y = 4;
+	pixel_x = 6
+	},
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_sand/pubbytown/canteen)
+"wk" = (
+/obj/structure/railing/corner,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/light/small,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_sand/pubbytown/engine)
+"wp" = (
+/obj/machinery/portable_atmospherics/canister/air,
+/obj/structure/sign/poster/official/random{
+	pixel_y = -32
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
+	},
+/turf/open/floor/plasteel/techmaint,
+/area/ruin/unpowered/planet_sand/pubbytown/engine)
+"wq" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plating{
+	icon_state = "panelscorched";
+	initial_gas_mix = "ws_atmos"
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/cargo)
+"ws" = (
+/obj/effect/turf_decal/siding/wood,
+/turf/open/floor/wood{
+	icon_state = "wood-broken5"
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/study)
+"wu" = (
+/obj/effect/decal/cleanable/blood/tracks,
+/turf/open/floor/plating/asteroid/whitesands,
+/area/lavaland/surface/outdoors)
+"wv" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/table,
+/turf/open/floor/plasteel/white,
+/area/ruin/unpowered/planet_sand/pubbytown/canteen)
+"wA" = (
+/obj/structure/bed,
+/turf/open/floor/carpet/red,
+/area/ruin/unpowered/planet_sand/pubbytown/study)
+"wB" = (
+/obj/effect/turf_decal/delivery,
+/obj/machinery/door/airlock/external{
+	dir = 4
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_sand/pubbytown/engine)
+"wG" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_sand/pubbytown/engine)
+"wR" = (
+/obj/structure/table/wood,
+/obj/item/ammo_box/a762{
+	pixel_x = 3;
+	pixel_y = -5
+	},
+/obj/item/ammo_casing/spent{
+	pixel_x = -9;
+	pixel_y = 11
+	},
+/obj/item/ammo_box/a762{
+	pixel_x = 5;
+	pixel_y = 8;
+	start_empty = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/pubbytown/guard)
+"xc" = (
+/obj/structure/barricade/wooden/crude,
+/turf/open/floor/wood{
+	icon_state = "wood-broken7"
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/guard)
+"xf" = (
+/obj/structure/chair/wood{
+	dir = 1;
+	pixel_x = 2;
+	pixel_y = 12
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/clinic)
+"xj" = (
+/obj/item/flashlight/lantern{
+	pixel_x = -7;
+	pixel_y = 16;
+	light_on = 1
+	},
+/obj/item/ammo_box/a762{
+	pixel_x = 4;
+	pixel_y = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown)
+"xm" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/bed/double{
+	dir = 1
+	},
+/obj/item/bedsheet/double/blue{
+	dir = 4
+	},
+/turf/open/floor/carpet/blue,
+/area/ruin/unpowered/planet_sand/pubbytown/wreck)
+"xF" = (
+/obj/structure/dresser{
+	dir = 4;
+	pixel_x = 5
+	},
+/obj/effect/turf_decal/siding/wood{
+	color = "#543C30";
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/shop)
+"xH" = (
+/obj/machinery/power/terminal{
+	dir = 8
+	},
+/obj/structure/cable,
+/obj/machinery/portable_atmospherics/canister/toxins,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_sand/pubbytown/engine)
+"xO" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/table/reinforced,
+/obj/item/storage/toolbox/mechanical{
+	pixel_x = -2;
+	pixel_y = 8
+	},
+/obj/item/stack/ore/bluespace_crystal{
+	pixel_x = -4;
+	pixel_y = -1;
+	amount = 5
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_sand/pubbytown/cargo)
+"xX" = (
+/obj/item/flashlight/lantern{
+	pixel_x = -12;
+	pixel_y = 2
+	},
+/turf/open/floor/plating/asteroid/whitesands/dried,
+/area/lavaland/surface/outdoors)
+"xY" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/machinery/door/window/northleft{
+	dir = 4;
+	name = "Dostęp do silnika"
+	},
+/obj/structure/cable/yellow,
+/obj/structure/frame/machine,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_sand/pubbytown/engine)
+"yv" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/carpet/blue,
+/area/ruin/unpowered/planet_sand/pubbytown/wreck)
+"yA" = (
+/obj/machinery/door/airlock/wood{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/clinic)
+"yB" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/carpet/red,
+/area/ruin/unpowered/planet_sand/pubbytown/study)
+"yD" = (
+/mob/living/basic/trooper/pirate/ranged{
+	faction = list("hermit","mining")
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown)
+"yH" = (
+/obj/effect/turf_decal/siding/wood{
+	color = "#543C30";
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/wood{
+	color = "#543C30";
+	dir = 4
+	},
+/obj/structure/closet/cabinet,
+/obj/item/clothing/suit/hooded/explorer{
+	pixel_x = -5;
+	pixel_y = 6
+	},
+/obj/item/clothing/suit/hooded/explorer{
+	pixel_x = -5;
+	pixel_y = 1
+	},
+/obj/item/clothing/shoes/workboots/mining{
+	pixel_x = 4;
+	pixel_y = 11
+	},
+/obj/item/clothing/shoes/workboots/mining{
+	pixel_x = 4;
+	pixel_y = 5
+	},
+/obj/item/storage/box/lethalshot{
+	pixel_x = 4;
+	pixel_y = -8
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/house)
+"yL" = (
+/obj/structure/railing,
+/obj/structure/cable,
+/turf/open/floor/plating/asteroid/whitesands/dried,
+/area/lavaland/surface/outdoors)
+"yO" = (
+/obj/machinery/power/smes,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/cable/green,
+/turf/open/floor/plating{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown)
+"yP" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/turf/open/floor/plasteel/techmaint,
+/area/ruin/unpowered/planet_sand/pubbytown/engine)
+"yQ" = (
+/mob/living/basic/trooper/pirate/melee,
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/pubbytown/study)
+"yR" = (
+/obj/item/stack/ore/iron{
+	pixel_y = -12;
+	pixel_x = 4;
+	amount = 5
+	},
+/turf/open/floor/plating/asteroid/whitesands/dried,
+/area/lavaland/surface/outdoors)
+"yY" = (
+/obj/structure/table,
+/obj/item/storage/firstaid/regular{
+	pixel_x = 4;
+	pixel_y = 6
+	},
+/turf/open/floor/plasteel/white{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/clinic)
+"zb" = (
+/obj/effect/turf_decal/siding/wood/corner{
+	color = "#543C30"
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 10
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/shop)
+"zc" = (
+/obj/structure/chair/wood,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/pubbytown/study)
+"zd" = (
+/turf/closed/mineral/random/whitesands,
+/area/ruin/unpowered/planet_sand/pubbytown/cargo)
+"zs" = (
+/turf/closed/wall/mineral/sandstone,
+/area/ruin/unpowered/planet_sand/pubbytown/study)
+"zu" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/cable,
+/obj/machinery/door/airlock/hatch{
+	welded = 1
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_sand/pubbytown/wreck)
+"zy" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/shop)
+"zC" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 10
+	},
+/turf/open/floor/plasteel/white,
+/area/ruin/unpowered/planet_sand/pubbytown/canteen)
+"zZ" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 10
+	},
+/turf/open/floor/carpet/blue,
+/area/ruin/unpowered/planet_sand/pubbytown/wreck)
+"Ac" = (
+/obj/structure/sign/poster/official/random{
+	pixel_x = -4;
+	pixel_y = 1
+	},
+/turf/closed/wall/mineral/sandstone,
+/area/ruin/unpowered/planet_sand/pubbytown/study)
+"Ad" = (
+/obj/structure/window/reinforced/fulltile,
+/obj/structure/barricade/wooden/crude{
+	layer = 3.3;
+	opacity = 1
+	},
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/house)
+"Ao" = (
+/obj/structure/flora/tree/dead/tall/grey,
+/turf/open/floor/plating/asteroid/whitesands/grass,
+/area/lavaland/surface/outdoors)
+"Aq" = (
+/obj/structure/chair/fancy/plastic{
+	dir = 8
+	},
+/obj/machinery/light,
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_sand/pubbytown/canteen)
+"As" = (
+/mob/living/basic/trooper/pirate/melee,
+/turf/open/floor/carpet/red,
+/area/ruin/unpowered/planet_sand/pubbytown/house)
+"Ay" = (
+/obj/structure/bookcase/manuals/research_and_development{
+	pixel_y = 13;
+	density = 0
+	},
+/turf/open/floor/wood{
+	icon_state = "wood-broken2"
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/study)
+"AA" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/machinery/door/window/northright{
+	dir = 4;
+	name = "Dostęp do silnika"
+	},
+/obj/structure/frame/machine,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_sand/pubbytown/engine)
+"AI" = (
+/obj/effect/turf_decal/siding/wood{
+	color = "#543C30";
+	dir = 2
+	},
+/obj/structure/cable,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/shop)
+"AM" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/barricade/wooden/crude,
+/turf/open/floor/engine,
+/area/ruin/unpowered/planet_sand/pubbytown/cargo)
+"AP" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_sand/pubbytown/engine)
+"AW" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden,
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/pubbytown/study)
+"Bj" = (
+/obj/effect/turf_decal/siding/wood{
+	color = "#543C30";
+	dir = 9
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/house)
+"Bo" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 9
+	},
+/turf/open/floor/wood{
+	icon_state = "wood-broken4"
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/guard)
+"Bq" = (
+/turf/closed/mineral/random/whitesands,
+/area/lavaland/surface/outdoors)
+"Br" = (
+/obj/structure/cable,
+/turf/open/floor/plasteel/techmaint,
+/area/ruin/unpowered/planet_sand/pubbytown/engine)
+"Bz" = (
+/obj/effect/turf_decal/siding/wood/corner{
+	color = "#543C30";
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden{
+	dir = 4
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/shop)
+"BS" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood{
+	icon_state = "wood-broken5"
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/guard)
+"BV" = (
+/mob/living/basic/trooper/pirate/melee,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/carpet/purple,
+/area/ruin/unpowered/planet_sand/pubbytown/study)
+"BW" = (
+/obj/structure/closet/crate/bin,
+/obj/item/trash/pistachios{
+	pixel_y = 5
+	},
+/obj/item/trash/energybar,
+/obj/item/trash/candy,
+/obj/item/trash/canned,
+/obj/item/trash/sosjerky{
+	pixel_x = 5
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_sand/pubbytown/wreck)
+"Cb" = (
+/obj/effect/turf_decal/siding/thinplating{
+	dir = 9
+	},
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/plating{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown)
+"Ce" = (
+/obj/effect/turf_decal/siding/wood{
+	color = "#543C30";
+	dir = 8
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/shop)
+"Cl" = (
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_sand/pubbytown/wreck)
+"Cs" = (
+/mob/living/basic/trooper/pirate/ranged{
+	faction = list("hermit","mining")
+	},
+/turf/open/floor/plating/asteroid/whitesands,
+/area/lavaland/surface/outdoors)
+"Cx" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/guard)
+"CB" = (
+/obj/structure/guncase,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/guard)
+"CC" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/structure/lattice/catwalk,
+/obj/effect/turf_decal/siding/white{
+	dir = 8;
+	color = "#444547"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 6
+	},
+/mob/living/basic/trooper/pirate/ranged{
+	faction = list("hermit","mining")
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_sand/pubbytown/engine)
+"CL" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/power/apc/auto_name/north,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/pubbytown/study)
+"CR" = (
+/obj/structure/railing,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_sand/pubbytown/cargo)
+"CV" = (
+/obj/structure/barricade/wooden/crude{
+	layer = 3.22
+	},
+/turf/open/floor/plating{
+	icon_state = "panelscorched";
+	initial_gas_mix = "ws_atmos"
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/wreck)
+"CW" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 4;
+	color = "#D2BC9D"
+	},
+/turf/open/floor/plating/asteroid/whitesands/dried,
+/area/ruin/unpowered/planet_sand/pubbytown)
+"Df" = (
+/mob/living/basic/trooper/pirate/ranged,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/pubbytown/guard)
+"Dh" = (
+/obj/structure/chair/wood{
+	dir = 4;
+	pixel_x = -8;
+	pixel_y = 3
+	},
+/obj/effect/turf_decal/siding/wood/corner{
+	color = "#543C30"
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden{
+	dir = 8
+	},
+/mob/living/basic/trooper/pirate/ranged,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/clinic)
+"Dq" = (
+/obj/structure/flora/ausbushes/brflowers,
+/turf/open/floor/plating/asteroid/whitesands/grass,
+/area/ruin/unpowered/planet_sand/pubbytown)
+"Ds" = (
+/obj/structure/window/reinforced/fulltile,
+/obj/structure/barricade/wooden/crude{
+	layer = 3.3;
+	opacity = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 1
+	},
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/shop)
+"DA" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/frame/computer{
+	dir = 8;
+	anchored = 1
+	},
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_sand/pubbytown/wreck)
+"DG" = (
+/obj/structure/cable,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"DW" = (
+/obj/item/flashlight/lantern{
+	light_on = 1
+	},
+/turf/open/floor/plating/asteroid/whitesands/dried,
+/area/lavaland/surface/outdoors)
+"DY" = (
+/turf/closed/wall/mineral/sandstone,
+/area/ruin/unpowered/planet_sand/pubbytown/guard)
+"Ef" = (
+/obj/structure/flora/ausbushes/ppflowers,
+/turf/open/floor/plating/asteroid/whitesands/grass,
+/area/ruin/unpowered/planet_sand/pubbytown)
+"Ex" = (
+/turf/template_noop,
+/area/space)
+"EN" = (
+/obj/machinery/power/terminal{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_sand/pubbytown/engine)
+"EO" = (
+/obj/machinery/door/airlock/wood{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/study)
+"EQ" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/barricade/sandbags,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"ET" = (
+/obj/item/stack/ore/iron{
+	pixel_y = -12;
+	pixel_x = 5;
+	amount = 5
+	},
+/obj/effect/decal/fakelattice,
+/turf/open/floor/plating/asteroid/whitesands,
+/area/lavaland/surface/outdoors)
+"EZ" = (
+/obj/effect/decal/cleanable/dirt,
+/mob/living/basic/trooper/pirate/melee,
+/turf/open/floor/plasteel/white,
+/area/ruin/unpowered/planet_sand/pubbytown/canteen)
+"Fb" = (
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/structure/sign/poster/official/random{
+	pixel_y = -32
+	},
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/machinery/firealarm/directional/east,
+/obj/item/paper/crumpled{
+	pixel_x = -5;
+	pixel_y = 2;
+	name = "aktualizacja";
+	default_raw_text = "Kolejny atak pograniczników. Jesteśmy tu prawie osiem lat, a oni wciąż nie dają nam spokoju. Cieszę się chociaż, że broń daje radę. Wszyscy są ostatnio bardziej spięci. W sektorze jest coraz większy ruch. Powiedziałem miastu, że jeśli ktoś wyląduje, mają przygotować broń i zabić okna deskami, ale nie zaczynać zadymy, dopóki nie podejdą blisko. Mam nadzieję, że rozsądni ludzie zobaczą dobrze uzbrojone miasto i będą się trzymać z daleka, ale... muszę po prostu wierzyć, że to wystarczy."
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_sand/pubbytown/wreck)
+"Fi" = (
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/structure/lattice/catwalk,
+/obj/effect/turf_decal/siding/white{
+	dir = 8;
+	color = "#444547"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_sand/pubbytown/engine)
+"Fl" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"FB" = (
+/obj/item/stack/ore/iron{
+	pixel_y = -9;
+	pixel_x = 6;
+	amount = 5
+	},
+/turf/open/floor/plating/asteroid/whitesands,
+/area/lavaland/surface/outdoors)
+"FD" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
+	},
+/obj/structure/frame/machine{
+	anchored = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_sand/pubbytown/wreck)
+"FJ" = (
+/obj/structure/cable,
+/obj/machinery/door/airlock/grunge{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_sand/pubbytown/cargo)
+"FO" = (
+/obj/item/flashlight/lantern{
+	pixel_x = 12;
+	light_on = 1
+	},
+/turf/open/floor/plating/asteroid/whitesands,
+/area/lavaland/surface/outdoors)
+"FQ" = (
+/obj/machinery/door/poddoor{
+	id = "whiteship_windows"
+	},
+/obj/structure/grille,
+/obj/structure/window/shuttle,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_sand/pubbytown/engine)
+"FX" = (
+/obj/machinery/light/built{
+	dir = 1
+	},
+/obj/structure/table_frame,
+/obj/effect/turf_decal/tile/neutral,
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_sand/pubbytown/wreck)
+"Gc" = (
+/obj/machinery/door/airlock/wood{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/study)
+"Gl" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/components/unary/passive_vent{
+	dir = 1
+	},
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/shop)
+"Gn" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/components/unary/passive_vent{
+	dir = 4
+	},
+/turf/open/floor/wood{
+	icon_state = "wood-broken3"
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/guard)
+"Gq" = (
+/obj/machinery/door/airlock/hatch{
+	locked = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 1
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/ruin/unpowered/planet_sand/pubbytown/wreck)
+"Gu" = (
+/turf/open/floor/plasteel/white,
+/area/ruin/unpowered/planet_sand/pubbytown/canteen)
+"Gz" = (
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_sand/pubbytown/wreck)
+"GE" = (
+/obj/structure/cable,
+/obj/machinery/airalarm/directional/east,
+/turf/open/floor/plasteel/techmaint,
+/area/ruin/unpowered/planet_sand/pubbytown/engine)
+"GI" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_sand/pubbytown/wreck)
+"GJ" = (
+/obj/structure/cable,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_sand/pubbytown/engine)
+"GL" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/bookcase,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_sand/pubbytown/cargo)
+"Hj" = (
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/structure/lattice/catwalk,
+/obj/effect/turf_decal/siding/white{
+	dir = 8;
+	color = "#444547"
+	},
+/obj/structure/frame/machine{
+	anchored = 1
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_sand/pubbytown/engine)
+"Hm" = (
+/obj/effect/turf_decal/siding/wood{
+	color = "#543C30";
+	dir = 2
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/clinic)
+"HD" = (
+/obj/structure/window/reinforced/fulltile,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 1
+	},
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/study)
+"HI" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/stock_parts/cell/high{
+	pixel_x = -7;
+	pixel_y = -1
+	},
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown)
+"HJ" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/barricade/wooden/crude{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_sand/pubbytown/cargo)
+"Ie" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/basic/trooper/pirate/ranged,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/shop)
+"In" = (
+/mob/living/basic/trooper/pirate/melee,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/carpet/red,
+/area/ruin/unpowered/planet_sand/pubbytown/shop)
+"Ip" = (
+/mob/living/basic/trooper/pirate/melee,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 5
+	},
+/turf/open/floor/carpet/red,
+/area/ruin/unpowered/planet_sand/pubbytown/canteen)
+"It" = (
+/mob/living/basic/trooper/pirate/ranged,
+/turf/open/floor/plasteel/white,
+/area/ruin/unpowered/planet_sand/pubbytown/canteen)
+"Iz" = (
+/obj/machinery/atmospherics/components/unary/passive_vent{
+	dir = 8
+	},
+/turf/open/floor/plating/asteroid/whitesands,
+/area/lavaland/surface/outdoors)
+"IB" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/pubbytown/guard)
+"IH" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	dir = 4;
+	id = "frontiepod3"
+	},
+/obj/structure/cable,
+/obj/item/ammo_casing/spent,
+/turf/open/floor/engine,
+/area/ruin/unpowered/planet_sand/pubbytown)
+"IX" = (
+/turf/closed/wall/mineral/titanium/nodiagonal,
+/area/ruin/unpowered/planet_sand/pubbytown/wreck)
+"Je" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/engine,
+/area/ruin/unpowered/planet_sand/pubbytown/cargo)
+"Jj" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/structure/lattice/catwalk,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_sand/pubbytown/engine)
+"Jk" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/wood,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/pubbytown/study)
+"Jq" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/cable,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Jt" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/cable/yellow,
+/obj/machinery/power/terminal{
+	dir = 4
+	},
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_sand/pubbytown/engine)
+"JA" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/basic/trooper/pirate/melee{
+	faction = list("hermit","mining")
+	},
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_sand/pubbytown/engine)
+"JC" = (
+/obj/structure/table/reinforced,
+/turf/open/floor/plasteel/white{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/wreck)
+"JD" = (
+/obj/effect/decal/cleanable/oil{
+	icon_state = "floor3"
+	},
+/turf/open/floor/engine,
+/area/ruin/unpowered/planet_sand/pubbytown/cargo)
+"JI" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/chair/office/light{
+	dir = 4
+	},
+/obj/item/stack/ore/gold{
+	pixel_x = 9;
+	pixel_y = 9
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_sand/pubbytown/cargo)
+"JT" = (
+/obj/structure/barricade/sandbags,
+/turf/open/floor/plating/asteroid/whitesands/dried,
+/area/lavaland/surface/outdoors)
+"JU" = (
+/obj/structure/table/reinforced,
+/obj/structure/cable,
+/obj/item/flashlight/lamp{
+	pixel_x = -6;
+	pixel_y = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/item/toy/figure/captain{
+	pixel_x = 7;
+	pixel_y = 12
+	},
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_sand/pubbytown/wreck)
+"JW" = (
+/obj/item/ammo_box/a762{
+	pixel_x = -5;
+	pixel_y = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown)
+"Kb" = (
+/obj/structure/cable,
+/obj/structure/railing,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_sand/pubbytown/engine)
+"Kd" = (
+/obj/effect/decal/cleanable/crayon{
+	icon_state = "shop";
+	pixel_x = -5
+	},
+/turf/closed/wall/mineral/sandstone,
+/area/ruin/unpowered/planet_sand/pubbytown/shop)
+"Kg" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/asteroid/whitesands,
+/area/lavaland/surface/outdoors)
+"Kp" = (
+/obj/structure/cable/green,
+/obj/structure/frame/machine,
+/obj/item/stock_parts/micro_laser/high,
+/obj/item/stock_parts/capacitor/adv{
+	pixel_x = -9;
+	pixel_y = -3
+	},
+/obj/item/stock_parts/capacitor/adv{
+	pixel_x = 8
+	},
+/obj/item/stock_parts/capacitor/adv{
+	pixel_x = -5;
+	pixel_y = 8
+	},
+/turf/open/floor/plating{
+	initial_gas_mix = "co2=86;n2=17;TEMP=263";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown)
+"Kr" = (
+/obj/structure/bed{
+	dir = 1
+	},
+/turf/open/floor/carpet/red,
+/area/ruin/unpowered/planet_sand/pubbytown/study)
+"Kv" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/pubbytown/study)
+"KF" = (
+/obj/structure/cable,
+/turf/open/floor/plating/asteroid/whitesands,
+/area/lavaland/surface/outdoors)
+"KJ" = (
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_sand/pubbytown/engine)
+"KM" = (
+/turf/closed/wall/mineral/sandstone,
+/area/ruin/unpowered/planet_sand/pubbytown/shop)
+"KV" = (
+/obj/item/ammo_box/a762{
+	pixel_x = 6;
+	pixel_y = -5
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown)
+"Lc" = (
+/obj/machinery/power/apc/auto_name/south,
+/obj/structure/cable,
+/turf/open/floor/plasteel/white,
+/area/ruin/unpowered/planet_sand/pubbytown/canteen)
+"Lf" = (
+/mob/living/basic/trooper/pirate/melee,
+/turf/open/floor/carpet/red,
+/area/ruin/unpowered/planet_sand/pubbytown/clinic)
+"LA" = (
+/obj/structure/cable/yellow,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/chair{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_sand/pubbytown/engine)
+"LF" = (
+/turf/open/floor/carpet/red,
+/area/ruin/unpowered/planet_sand/pubbytown/study)
+"LJ" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/carpet/purple,
+/area/ruin/unpowered/planet_sand/pubbytown/study)
+"LL" = (
+/turf/open/floor/engine,
+/area/ruin/unpowered/planet_sand/pubbytown/cargo)
+"LM" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/asteroid/whitesands/dried,
+/area/lavaland/surface/outdoors)
+"LY" = (
+/turf/closed/wall/mineral/wood,
+/area/ruin/unpowered/planet_sand/pubbytown/canteen)
+"LZ" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/pubbytown/guard)
+"Mg" = (
+/obj/structure/closet/cabinet{
+	pixel_x = -2;
+	pixel_y = 1
+	},
+/obj/item/clothing/suit/hooded/explorer{
+	pixel_x = -8;
+	pixel_y = 6
+	},
+/obj/item/clothing/suit/hooded/explorer{
+	pixel_x = -8
+	},
+/obj/item/clothing/shoes/workboots/mining{
+	pixel_x = 2;
+	pixel_y = 8
+	},
+/obj/item/clothing/shoes/workboots/mining{
+	pixel_x = 2;
+	pixel_y = -1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/pubbytown/guard)
+"Mo" = (
+/mob/living/basic/trooper/pirate/melee{
+	faction = list("hermit","mining")
+	},
+/turf/open/floor/plating/asteroid/whitesands,
+/area/lavaland/surface/outdoors)
+"Mw" = (
+/obj/item/flashlight/lantern{
+	pixel_x = 13;
+	light_on = 1
+	},
+/turf/open/floor/plating/asteroid/whitesands/dried,
+/area/lavaland/surface/outdoors)
+"ML" = (
+/obj/structure/chair/fancy/plastic,
+/turf/open/floor/plating{
+	icon_state = "platingdmg1";
+	initial_gas_mix = "ws_atmos"
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/canteen)
+"MV" = (
+/obj/structure/cable,
+/turf/open/floor/plating/asteroid/whitesands/grass,
+/area/lavaland/surface/outdoors)
+"Nc" = (
+/obj/structure/flora/ausbushes/ywflowers,
+/turf/open/floor/plating/asteroid/whitesands/grass,
+/area/ruin/unpowered/planet_sand/pubbytown)
+"Nf" = (
+/obj/structure/table,
+/obj/item/stock_parts/cell/empty{
+	pixel_x = 3;
+	pixel_y = 14
+	},
+/obj/item/stock_parts/cell/empty{
+	pixel_x = 5;
+	pixel_y = 7
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/pubbytown/guard)
+"Nl" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/chair/fancy/plastic,
+/obj/structure/cable,
+/turf/open/floor/plasteel/white,
+/area/ruin/unpowered/planet_sand/pubbytown/canteen)
+"Nr" = (
+/obj/machinery/atmospherics/components/unary/passive_vent,
+/turf/open/floor/plating/asteroid/whitesands/dried,
+/area/lavaland/surface/outdoors)
+"Nx" = (
+/obj/structure/table/wood,
+/obj/item/clothing/mask/cigarette/rollie/cannabis{
+	pixel_x = -2;
+	pixel_y = 2
+	},
+/obj/item/clothing/mask/cigarette/rollie/cannabis{
+	pixel_x = 7;
+	pixel_y = 16
+	},
+/obj/item/clothing/head/beret/med{
+	pixel_x = 1;
+	pixel_y = 5
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/clinic)
+"NF" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/table/reinforced,
+/obj/item/stack/cable_coil/cut{
+	pixel_x = 6;
+	pixel_y = -1
+	},
+/obj/item/stack/cable_coil/cut{
+	pixel_x = 3;
+	pixel_y = 4
+	},
+/obj/item/stock_parts/capacitor/adv{
+	pixel_x = 3;
+	pixel_y = 11
+	},
+/obj/item/stock_parts/cell/empty{
+	pixel_x = -19;
+	pixel_y = 1
+	},
+/obj/item/stock_parts/cell/empty{
+	pixel_x = -10;
+	pixel_y = 5
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_sand/pubbytown/cargo)
+"NH" = (
+/obj/effect/turf_decal/siding/wood,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/pubbytown/study)
+"NO" = (
+/obj/effect/decal/cleanable/blood/tracks,
+/obj/item/ammo_casing/spent,
+/turf/open/floor/plating/asteroid/whitesands,
+/area/lavaland/surface/outdoors)
+"NS" = (
+/obj/item/radio/intercom/directional/west,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/dresser,
+/turf/open/floor/carpet/blue,
+/area/ruin/unpowered/planet_sand/pubbytown/wreck)
+"NT" = (
+/obj/structure/table/wood,
+/obj/item/radio/off{
+	pixel_x = -4;
+	pixel_y = 13
+	},
+/turf/open/floor/carpet/purple,
+/area/ruin/unpowered/planet_sand/pubbytown/study)
+"NV" = (
+/obj/structure/cable,
+/turf/open/floor/plasteel/stairs{
+	dir = 8
+	},
+/area/lavaland/surface/outdoors)
+"NW" = (
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/shop)
+"NX" = (
+/obj/machinery/firealarm/directional/south,
+/obj/structure/dresser{
+	dir = 1
+	},
+/obj/machinery/atmospherics/components/unary/passive_vent{
+	dir = 1
+	},
+/turf/open/floor/carpet/red,
+/area/ruin/unpowered/planet_sand/pubbytown/canteen)
+"Od" = (
+/obj/structure/table/wood,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/turf/open/floor/wood{
+	icon_state = "wood-broken7"
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/study)
+"Ot" = (
+/turf/closed/mineral/random/whitesands,
+/area/ruin/unpowered/planet_sand/pubbytown)
+"Ov" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/barricade/wooden/crude{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_sand/pubbytown/cargo)
+"Oy" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 9;
+	color = "#75A2BB";
+	alpha = 255
+	},
+/obj/structure/cable,
+/turf/open/floor/plasteel/white{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/clinic)
+"OD" = (
+/obj/machinery/atmospherics/components/unary/passive_vent,
+/mob/living/basic/trooper/pirate/melee,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_sand/pubbytown/cargo)
+"OI" = (
+/obj/structure/sign/poster/official/random{
+	pixel_x = 32
+	},
+/turf/closed/wall/mineral/titanium/nodiagonal,
+/area/ruin/unpowered/planet_sand/pubbytown/wreck)
+"OK" = (
+/turf/closed/wall/mineral/titanium/nodiagonal,
+/area/ruin/unpowered/planet_sand/pubbytown/engine)
+"OP" = (
+/obj/structure/closet/cabinet,
+/obj/item/clothing/suit/hooded/explorer{
+	pixel_x = -4;
+	pixel_y = 5
+	},
+/obj/item/clothing/suit/hooded/explorer{
+	pixel_x = -4;
+	pixel_y = -2
+	},
+/obj/item/clothing/shoes/workboots/mining{
+	pixel_x = 4;
+	pixel_y = 4
+	},
+/obj/item/clothing/shoes/workboots/mining{
+	pixel_x = 3;
+	pixel_y = -4
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/clinic)
+"OQ" = (
+/obj/structure/chair/wood{
+	dir = 1;
+	pixel_x = -1;
+	pixel_y = 16
+	},
+/turf/open/floor/carpet/purple,
+/area/ruin/unpowered/planet_sand/pubbytown/study)
+"Pc" = (
+/obj/effect/turf_decal/siding/wood{
+	color = "#543C30";
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 1
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/shop)
+"Pk" = (
+/obj/machinery/door/airlock/glass,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_sand/pubbytown/wreck)
+"Pm" = (
+/obj/effect/turf_decal/siding/wood{
+	color = "#543C30";
+	dir = 2
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/components/unary/passive_vent{
+	dir = 8
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/clinic)
+"Po" = (
+/mob/living/basic/trooper/pirate/melee,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/pubbytown/study)
+"Pt" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_sand/pubbytown/canteen)
+"PA" = (
+/obj/effect/turf_decal/siding/wood{
+	color = "#543C30";
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/machinery/power/apc/auto_name/south,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 9
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/clinic)
+"PH" = (
+/obj/structure/cable,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/house)
+"PI" = (
+/obj/structure/bed,
+/turf/open/floor/carpet/red,
+/area/ruin/unpowered/planet_sand/pubbytown/guard)
+"PT" = (
+/obj/structure/closet/cabinet,
+/obj/item/clothing/suit/hooded/explorer{
+	pixel_x = -9;
+	pixel_y = 5
+	},
+/obj/item/clothing/suit/hooded/explorer{
+	pixel_x = -9;
+	pixel_y = 5
+	},
+/obj/item/clothing/suit/hooded/explorer{
+	pixel_x = -9;
+	pixel_y = -2
+	},
+/obj/item/clothing/shoes/workboots/mining{
+	pixel_x = 3;
+	pixel_y = 4
+	},
+/obj/item/clothing/shoes/workboots/mining{
+	pixel_x = 3;
+	pixel_y = -3
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/shop)
+"PU" = (
+/obj/structure/cable,
+/turf/open/floor/plating/asteroid/whitesands/dried,
+/area/lavaland/surface/outdoors)
+"PW" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 5
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/shop)
+"Qg" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/basic/trooper/pirate/melee{
+	faction = list("hermit","mining")
+	},
+/turf/open/floor/plating/asteroid/whitesands,
+/area/lavaland/surface/outdoors)
+"Qn" = (
+/obj/effect/turf_decal/siding/wood/corner{
+	color = "#543C30";
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/components/unary/passive_vent{
+	dir = 4
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/shop)
+"Qq" = (
+/obj/structure/window/reinforced/fulltile,
+/obj/structure/barricade/wooden/crude{
+	layer = 3.3;
+	opacity = 1
+	},
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/study)
+"Qu" = (
+/obj/structure/railing,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"QR" = (
+/obj/effect/decal/fakelattice,
+/turf/open/floor/plating{
+	icon_state = "panelscorched";
+	initial_gas_mix = "ws_atmos"
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/wreck)
+"QY" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 4
+	},
+/turf/open/floor/wood{
+	icon_state = "wood-broken3"
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/study)
+"Rd" = (
+/obj/structure/chair/fancy/shuttle{
+	dir = 4;
+	layer = 3.3
+	},
+/obj/machinery/power/apc/auto_name/west,
+/obj/structure/cable,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_sand/pubbytown)
+"Re" = (
+/obj/structure/bed{
+	pixel_x = 3
+	},
+/turf/open/floor/carpet/red,
+/area/ruin/unpowered/planet_sand/pubbytown/clinic)
+"Rg" = (
+/obj/structure/frame/machine,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_sand/pubbytown/engine)
+"Rj" = (
+/obj/structure/cable/yellow,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_sand/pubbytown/engine)
+"Rk" = (
+/obj/structure/cable,
+/turf/open/floor/plasteel/stairs{
+	dir = 4
+	},
+/area/lavaland/surface/outdoors)
+"Rp" = (
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 8;
+	color = "#D2BC9D"
+	},
+/turf/open/floor/plating/asteroid/whitesands/dried,
+/area/ruin/unpowered/planet_sand/pubbytown)
+"Rr" = (
+/obj/effect/turf_decal/siding/wood/corner,
+/mob/living/basic/trooper/pirate/ranged,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/pubbytown/study)
+"Rs" = (
+/obj/structure/closet/cabinet,
+/obj/item/clothing/suit/hooded/explorer{
+	pixel_x = -5
+	},
+/obj/item/clothing/shoes/workboots/mining{
+	pixel_x = 2;
+	pixel_y = -6
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/reagent_containers/food/drinks/bottle/cognac{
+	pixel_x = 4;
+	pixel_y = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/pubbytown/study)
+"RC" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/stack/ore/silver{
+	pixel_x = -5;
+	pixel_y = 8;
+	amount = 5
+	},
+/obj/item/stack/ore/silver{
+	pixel_x = -7;
+	pixel_y = -4;
+	amount = 5
+	},
+/obj/item/stack/ore/titanium{
+	pixel_x = 4;
+	pixel_y = 1;
+	amount = 5
+	},
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_sand/pubbytown/cargo)
+"RI" = (
+/obj/effect/decal/fakelattice,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_sand/pubbytown/wreck)
+"RM" = (
+/obj/structure/window/reinforced/fulltile,
+/obj/structure/barricade/wooden/crude{
+	layer = 3.3;
+	opacity = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 1
+	},
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/canteen)
+"RS" = (
+/obj/structure/chair/wood{
+	pixel_x = -4;
+	pixel_y = -1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/shop)
+"RT" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/wood/corner,
+/mob/living/basic/trooper/pirate/melee,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/pubbytown/study)
+"RY" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/components/unary/passive_vent,
+/turf/open/floor/plating/asteroid/whitesands,
+/area/lavaland/surface/outdoors)
+"Sj" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/oil{
+	icon_state = "floor6"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_sand/pubbytown/engine)
+"Sx" = (
+/obj/structure/window/reinforced/fulltile,
+/obj/structure/barricade/wooden/crude{
+	layer = 3.3;
+	opacity = 1
+	},
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/canteen)
+"Sz" = (
+/obj/effect/turf_decal/stripes/line,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/cable,
+/obj/machinery/door/poddoor{
+	id = "d1"
+	},
+/turf/open/floor/engine,
+/area/ruin/unpowered/planet_sand/pubbytown/cargo)
+"SF" = (
+/obj/effect/turf_decal/stripes/line,
+/turf/closed/wall/mineral/titanium/nodiagonal,
+/area/ruin/unpowered/planet_sand/pubbytown/cargo)
+"SQ" = (
+/obj/structure/cable/yellow,
+/obj/effect/turf_decal/box,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_sand/pubbytown/engine)
+"SR" = (
+/obj/machinery/griddle,
+/turf/open/floor/plasteel/white,
+/area/ruin/unpowered/planet_sand/pubbytown/canteen)
+"SW" = (
+/mob/living/basic/trooper/pirate/melee{
+	faction = list("hermit","mining")
+	},
+/turf/open/floor/plating/asteroid/whitesands/dried,
+/area/lavaland/surface/outdoors)
+"SX" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/carpet/red,
+/area/ruin/unpowered/planet_sand/pubbytown/shop)
+"Td" = (
+/obj/structure/safe/floor,
+/obj/item/stack/spacecash/c20{
+	pixel_x = -4;
+	pixel_y = 1
+	},
+/obj/item/stack/spacecash/c20{
+	pixel_x = -2;
+	pixel_y = 3
+	},
+/obj/item/stack/spacecash/c20{
+	pixel_x = -2;
+	pixel_y = 4
+	},
+/obj/item/stack/spacecash/c20{
+	pixel_x = -4;
+	pixel_y = 3
+	},
+/obj/effect/decal/cleanable/crayon{
+	icon_state = "safepath";
+	pixel_x = -5
+	},
+/obj/item/stock_parts/cell/empty{
+	pixel_x = 1;
+	pixel_y = 1
+	},
+/obj/effect/turf_decal/siding/wood{
+	color = "#543C30";
+	dir = 9
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/shop)
+"Te" = (
+/obj/structure/table,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_sand/pubbytown/canteen)
+"To" = (
+/obj/structure/table/wood,
+/obj/item/storage/bag/tray{
+	pixel_y = 6
+	},
+/obj/item/food/meat/steak/goliath{
+	pixel_x = 4;
+	pixel_y = 2
+	},
+/obj/item/food/meat/steak/goliath{
+	pixel_x = -4;
+	pixel_y = 1
+	},
+/obj/item/food/meat/steak/goliath{
+	pixel_y = 5
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/house)
+"Tt" = (
+/turf/closed/wall/mineral/sandstone,
+/area/ruin/unpowered/planet_sand/pubbytown/house)
+"TH" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/button/door{
+	pixel_x = -5;
+	pixel_y = 23;
+	id = "d1"
+	},
+/turf/open/floor/plating{
+	icon_state = "panelscorched"
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/cargo)
+"TQ" = (
+/obj/structure/table/wood,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/pubbytown/study)
+"Ub" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 1
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/shop)
+"Uf" = (
+/obj/structure/table/wood,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/shop)
+"Ug" = (
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/house)
+"Uo" = (
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"Us" = (
+/obj/structure/bed,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/carpet/red,
+/area/ruin/unpowered/planet_sand/pubbytown/house)
+"Ux" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 6
+	},
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_sand/pubbytown/wreck)
+"UC" = (
+/obj/effect/turf_decal/siding/wood{
+	color = "#543C30";
+	dir = 2
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/clinic)
+"UG" = (
+/obj/structure/chair/wood{
+	pixel_x = 2;
+	pixel_y = -1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood{
+	icon_state = "wood-broken7"
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/guard)
+"UK" = (
+/turf/closed/wall/mineral/titanium/nodiagonal,
+/area/ruin/unpowered/planet_sand/pubbytown/canteen)
+"UO" = (
+/obj/structure/table,
+/obj/machinery/cell_charger,
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_sand/pubbytown/engine)
+"UY" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/barricade/wooden/crude{
+	layer = 3.22
+	},
+/turf/open/floor/plating{
+	icon_state = "panelscorched";
+	initial_gas_mix = "ws_atmos"
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/wreck)
+"Vj" = (
+/obj/effect/turf_decal/siding/wood{
+	color = "#543C30";
+	dir = 1
+	},
+/mob/living/basic/trooper/pirate/melee,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/house)
+"VC" = (
+/obj/effect/turf_decal/caution,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/railing/corner{
+	dir = 8
+	},
+/obj/structure/lattice/catwalk,
+/obj/machinery/button/door{
+	id = "whiteshipubbyEngines";
+	name = "sterowanie blokadą silnika";
+	pixel_x = -25;
+	dir = 4
+	},
+/obj/structure/frame/machine{
+	anchored = 1
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_sand/pubbytown/engine)
+"VF" = (
+/turf/closed/wall/mineral/sandstone,
+/area/ruin/unpowered/planet_sand/pubbytown)
+"VJ" = (
+/obj/structure/closet/crate/coffin{
+	pixel_x = -2;
+	pixel_y = -6;
+	opened = 0
+	},
+/turf/open/floor/plating/asteroid/whitesands/dried,
+/area/ruin/unpowered/planet_sand/pubbytown)
+"VL" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/ruin/unpowered/planet_sand/pubbytown/canteen)
+"VO" = (
+/obj/effect/decal/fakelattice,
+/obj/structure/cable,
+/turf/open/floor/plating/asteroid/whitesands,
+/area/lavaland/surface/outdoors)
+"VQ" = (
+/turf/closed/wall/mineral/titanium,
+/area/ruin/unpowered/planet_sand/pubbytown/canteen)
+"VU" = (
+/obj/machinery/door/airlock/wood{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/shop)
+"Wc" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/asteroid/whitesands/dried,
+/area/lavaland/surface/outdoors)
+"Wd" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_sand/pubbytown/engine)
+"Wg" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/barricade/wooden/crude{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/plasteel/white,
+/area/ruin/unpowered/planet_sand/pubbytown/canteen)
+"Wk" = (
+/obj/structure/chair/wood{
+	dir = 4;
+	pixel_x = 6;
+	pixel_y = 2
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/components/unary/passive_vent{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/pubbytown/study)
+"WA" = (
+/obj/structure/table,
+/obj/machinery/recharger{
+	pixel_x = -6;
+	pixel_y = 1
+	},
+/obj/machinery/recharger{
+	pixel_x = 6;
+	pixel_y = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/pubbytown/guard)
+"WE" = (
+/obj/structure/barricade/sandbags,
+/turf/open/floor/concrete/pavement{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/lavaland/surface/outdoors)
+"WO" = (
+/obj/machinery/power/terminal{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/floor/plating{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown)
+"WV" = (
+/obj/structure/flora/tree/dead/tall/grey,
+/obj/structure/cable,
+/turf/open/floor/plating/asteroid/whitesands/grass,
+/area/lavaland/surface/outdoors)
+"Xc" = (
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/plasteel/stairs,
+/area/lavaland/surface/outdoors)
+"Xf" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/caution{
+	dir = 1
+	},
+/mob/living/basic/trooper/pirate/ranged,
+/turf/open/floor/engine,
+/area/ruin/unpowered/planet_sand/pubbytown/cargo)
+"Xm" = (
+/turf/open/floor/carpet/red,
+/area/ruin/unpowered/planet_sand/pubbytown/guard)
+"Xw" = (
+/obj/machinery/button/door{
+	pixel_x = -5;
+	pixel_y = -23;
+	id = "d1";
+	dir = 1
+	},
+/turf/open/floor/engine,
+/area/ruin/unpowered/planet_sand/pubbytown/cargo)
+"Xy" = (
+/obj/effect/turf_decal/siding/wood{
+	color = "#543C30";
+	dir = 1
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/clinic)
+"XC" = (
+/obj/effect/turf_decal/stripes/line,
+/obj/structure/cable,
+/obj/machinery/door/poddoor{
+	id = "d1"
+	},
+/turf/open/floor/engine,
+/area/ruin/unpowered/planet_sand/pubbytown/cargo)
+"XH" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/reagent_dispensers/fueltank,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_sand/pubbytown/engine)
+"XK" = (
+/turf/closed/mineral/random/whitesands,
+/area/ruin/unpowered/planet_sand/pubbytown/house)
+"XZ" = (
+/turf/closed/wall/mineral/sandstone,
+/area/ruin/unpowered/planet_sand/pubbytown/clinic)
+"Yg" = (
+/obj/structure/cable,
+/obj/item/clothing/head/beret/black{
+	pixel_x = -6;
+	pixel_y = 6
+	},
+/turf/open/floor/plating{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown)
+"Ys" = (
+/obj/structure/chair/wood,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/clinic)
+"Yw" = (
+/obj/machinery/door/airlock/external{
+	dir = 4
+	},
+/obj/effect/turf_decal/delivery,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_sand/pubbytown/engine)
+"Yx" = (
+/obj/effect/turf_decal/siding/wood,
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_sand/pubbytown/study)
+"Yz" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/closet/secure_closet/freezer/fridge{
+	pixel_x = -8;
+	pixel_y = 1
+	},
+/turf/open/floor/plating{
+	icon_state = "platingdmg1";
+	initial_gas_mix = "ws_atmos"
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/canteen)
+"YH" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/shop)
+"YI" = (
+/turf/open/floor/plating/asteroid/whitesands/dried,
+/area/ruin/unpowered/planet_sand/pubbytown)
+"YJ" = (
+/obj/structure/rack{
+	pixel_y = 5
+	},
+/obj/item/reagent_containers/food/drinks/bottle/ale{
+	pixel_x = 3;
+	pixel_y = 16
+	},
+/obj/item/reagent_containers/food/drinks/bottle/ale{
+	pixel_x = 9;
+	pixel_y = 14
+	},
+/obj/item/reagent_containers/food/drinks/bottle/ale{
+	pixel_x = 10;
+	pixel_y = 8
+	},
+/obj/item/reagent_containers/food/drinks/bottle/ale{
+	pixel_x = 4;
+	pixel_y = 10
+	},
+/obj/item/clothing/suit/hooded/explorer{
+	pixel_x = -6;
+	pixel_y = 6
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/shop)
+"YS" = (
+/obj/structure/table/wood,
+/obj/item/stack/spacecash/c1{
+	pixel_x = -3;
+	pixel_y = 8
+	},
+/obj/item/stack/spacecash/c1{
+	pixel_y = 1
+	},
+/obj/item/stack/spacecash/c1{
+	pixel_x = 4;
+	pixel_y = 6
+	},
+/obj/item/stack/spacecash/c20{
+	pixel_x = 7
+	},
+/obj/item/paper/crumpled{
+	default_raw_text = "dzięki, że przypilnowałeś mi sklepu, młody. pamiętaj, żeby na koniec dnia włożyć pieniądze do sejfu. szyfr to 13-91. buziaki. tata";
+	pixel_x = -17;
+	name = "notatka"
+	},
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/shop)
+"YW" = (
+/obj/structure/fireplace{
+	pixel_x = -33
+	},
+/obj/item/grown/log/tree{
+	pixel_x = 10;
+	pixel_y = 18
+	},
+/obj/item/grown/log/tree{
+	pixel_x = 4;
+	pixel_y = 18
+	},
+/obj/item/grown/log/tree{
+	pixel_x = 7;
+	pixel_y = 22
+	},
+/turf/open/floor/concrete/slab_1{
+	initial_gas_mix = "o2=16;n2=21;co2=11;TEMP=248";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/house)
+"Za" = (
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 4;
+	color = "#D2BC9D"
+	},
+/turf/open/floor/plating/asteroid/whitesands/dried,
+/area/ruin/unpowered/planet_sand/pubbytown)
+"Zo" = (
+/obj/structure/bed{
+	dir = 1;
+	pixel_x = -5;
+	pixel_y = 2
+	},
+/turf/open/floor/carpet/red,
+/area/ruin/unpowered/planet_sand/pubbytown/clinic)
+"Zy" = (
+/obj/item/stack/ore/titanium{
+	pixel_x = 8
+	},
+/turf/open/floor/plating/asteroid/whitesands,
+/area/lavaland/surface/outdoors)
+"ZE" = (
+/obj/item/stack/ore/titanium{
+	pixel_y = 8;
+	pixel_x = 6
+	},
+/turf/open/floor/plating/asteroid/whitesands/dried,
+/area/lavaland/surface/outdoors)
+"ZO" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating{
+	icon_state = "platingdmg3"
+	},
+/area/ruin/unpowered/planet_sand/pubbytown/canteen)
+
+(1,1,1) = {"
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+gS
+gS
+gS
+gS
+gS
+sZ
+sZ
+sZ
+sZ
+sZ
+"}
+(2,1,1) = {"
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+gS
+gS
+gS
+gS
+gS
+gS
+gS
+gS
+sZ
+sZ
+sZ
+"}
+(3,1,1) = {"
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+Ot
+Ot
+pl
+gS
+pl
+pl
+gS
+gS
+gS
+gS
+Ot
+Ot
+gS
+gS
+iL
+gS
+sZ
+"}
+(4,1,1) = {"
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+Ot
+Ot
+Ot
+pl
+pl
+Uo
+gS
+lg
+lg
+lg
+VF
+Ot
+Ot
+Ot
+gS
+gS
+gS
+sZ
+"}
+(5,1,1) = {"
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+gS
+gS
+sZ
+gS
+sZ
+sZ
+sZ
+sZ
+Ot
+Ot
+Ot
+jj
+gS
+pl
+Uo
+gS
+lg
+xj
+yD
+VF
+Ot
+Ot
+Ot
+Ot
+gS
+gS
+gS
+"}
+(6,1,1) = {"
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+gS
+gS
+gS
+gS
+gS
+sZ
+gS
+gS
+Ot
+Ot
+Ot
+Ot
+jj
+gS
+Uo
+pl
+Uo
+VF
+pl
+gS
+gS
+Ot
+Ot
+Ot
+Ot
+Ot
+gS
+gS
+"}
+(7,1,1) = {"
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+gS
+gS
+gS
+gS
+gS
+gS
+gS
+Zy
+gS
+gS
+gS
+Ot
+Ot
+Ot
+jj
+jj
+jj
+gS
+Uo
+gS
+pl
+pl
+pl
+gS
+gS
+Ot
+VF
+VF
+gS
+gS
+gS
+"}
+(8,1,1) = {"
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+gS
+ZE
+pl
+qq
+mi
+ET
+gS
+qq
+qq
+FB
+qq
+gS
+Ot
+Ot
+Ot
+Tt
+Tt
+Tt
+Tt
+gS
+pl
+Fl
+gS
+Uo
+gS
+gS
+pl
+HI
+lg
+gS
+gS
+sZ
+"}
+(9,1,1) = {"
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+pl
+pl
+qq
+yR
+qq
+OK
+Yw
+OK
+OK
+qq
+qq
+qq
+pl
+Ot
+Ot
+Tt
+Tt
+hn
+dv
+Tt
+Tt
+Tt
+gS
+Fl
+LM
+gS
+gS
+pl
+pK
+lg
+gS
+gS
+sZ
+"}
+(10,1,1) = {"
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+pl
+OK
+ki
+Rg
+OK
+KJ
+KJ
+KJ
+to
+ki
+Rg
+OK
+pl
+Ot
+Ot
+XK
+Us
+fn
+fn
+Vj
+bc
+Tt
+gS
+gS
+Fl
+gS
+pl
+VF
+lg
+lg
+gS
+gS
+sZ
+"}
+(11,1,1) = {"
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+OK
+xY
+AA
+OK
+KJ
+Wd
+rh
+OK
+nF
+AA
+OK
+pl
+pl
+Ot
+XK
+As
+fn
+Bj
+sx
+bc
+Tt
+pl
+pl
+Uo
+gS
+pl
+pl
+pl
+gS
+gS
+gS
+gS
+"}
+(12,1,1) = {"
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+OK
+xH
+AP
+OK
+OK
+wB
+OK
+OK
+nQ
+EN
+OK
+Ot
+pl
+Ot
+Tt
+yH
+hJ
+eq
+bc
+PH
+ve
+Xc
+pl
+Uo
+pl
+Fl
+Fl
+pl
+Uo
+gS
+Uo
+gS
+"}
+(13,1,1) = {"
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+Ot
+OK
+XH
+wk
+OK
+uV
+wG
+km
+gw
+JA
+gf
+FQ
+Ot
+pl
+Ot
+Tt
+Ug
+lR
+To
+sO
+ai
+Tt
+PU
+pl
+gS
+Fl
+Fl
+LM
+Fl
+gS
+pl
+gS
+gS
+"}
+(14,1,1) = {"
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+Ot
+OK
+GJ
+Kb
+OK
+hx
+LA
+Rj
+kO
+Jt
+Sj
+FQ
+Ot
+Ot
+Ot
+Tt
+YW
+lR
+lL
+Tt
+Tt
+Tt
+PU
+Uo
+pl
+Fl
+LM
+LM
+Uo
+pl
+pl
+gS
+sZ
+"}
+(15,1,1) = {"
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+pl
+Ot
+OK
+OK
+vH
+OK
+UO
+SQ
+ig
+OK
+th
+jK
+OK
+Ot
+Ot
+Ot
+Tt
+kM
+hT
+bc
+Tt
+gS
+KF
+KF
+Uo
+Uo
+SW
+pl
+gS
+pl
+gS
+gS
+gS
+sZ
+"}
+(16,1,1) = {"
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+pl
+fm
+OK
+sN
+nY
+VC
+Hj
+CC
+Fi
+sL
+Jj
+hl
+OK
+Ot
+Ot
+Ot
+Tt
+Tt
+fC
+Ad
+Tt
+KF
+PU
+Uo
+gS
+gS
+gS
+gS
+gS
+jj
+jj
+Bq
+sZ
+sZ
+"}
+(17,1,1) = {"
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+Ot
+hK
+OK
+ft
+Br
+tz
+GE
+yP
+eL
+jn
+bE
+wp
+OK
+hK
+Ot
+Ot
+gS
+eR
+Iz
+gS
+KF
+PU
+gS
+Uo
+gS
+pl
+FO
+jj
+jj
+jj
+Bq
+Bq
+sZ
+sZ
+"}
+(18,1,1) = {"
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+Ot
+Ot
+ev
+ev
+qw
+qw
+ev
+ev
+sC
+ev
+ev
+qw
+qw
+ev
+ev
+pl
+pl
+gS
+gS
+Uo
+KF
+PU
+Kg
+Fl
+LM
+gS
+zs
+zs
+Qq
+Qq
+zs
+Ot
+Ot
+Ot
+sZ
+"}
+(19,1,1) = {"
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+Ot
+Ot
+Ot
+ev
+zd
+zd
+xO
+hY
+sG
+CR
+jC
+LL
+uz
+SF
+wq
+pl
+Bq
+Bq
+gS
+KF
+KF
+Fl
+Fl
+LM
+Fl
+pl
+zs
+Kr
+RT
+yQ
+zs
+Ot
+Ot
+Ot
+sZ
+"}
+(20,1,1) = {"
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+Ot
+Ot
+Ot
+zd
+ev
+NF
+JI
+Ov
+sJ
+aW
+Je
+JD
+Sz
+pl
+Bq
+Bq
+Bq
+Uo
+PU
+pl
+Fl
+LM
+gS
+pl
+gS
+zs
+yB
+Yx
+LF
+Ot
+Ot
+Ot
+sZ
+sZ
+"}
+(21,1,1) = {"
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+Ot
+Ot
+Ot
+ev
+zd
+pm
+cp
+fz
+vq
+Xf
+AM
+Je
+XC
+pl
+pl
+Bq
+gS
+KF
+PU
+Uo
+gS
+gS
+zs
+zs
+zs
+zs
+op
+jU
+wA
+Ot
+Ot
+sZ
+sZ
+sZ
+"}
+(22,1,1) = {"
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+Ot
+Ot
+Ot
+ev
+zd
+jh
+md
+fz
+lk
+gP
+nS
+uW
+XC
+PU
+PU
+KF
+KF
+KF
+PU
+PU
+PU
+PU
+vN
+Kv
+Rs
+zs
+Gc
+zs
+Ot
+Ot
+Ot
+sZ
+sZ
+sZ
+"}
+(23,1,1) = {"
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+Ot
+Ot
+Ot
+ev
+GL
+OD
+pN
+HJ
+dV
+tM
+Je
+ip
+XC
+pl
+Uo
+Wc
+LM
+Fl
+pl
+gS
+Qu
+NV
+vN
+Rr
+rE
+dI
+QY
+zs
+Ot
+Ot
+sZ
+sZ
+sZ
+sZ
+"}
+(24,1,1) = {"
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+Ot
+Ot
+pa
+RC
+rH
+qa
+ek
+dV
+lM
+Je
+Xw
+ev
+TH
+Wc
+Jq
+Fl
+Fl
+gS
+gS
+sh
+eY
+HD
+Jk
+hV
+dr
+AW
+Ot
+Ot
+Ot
+sZ
+sZ
+sZ
+sZ
+"}
+(25,1,1) = {"
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+Ot
+ev
+ev
+ev
+ev
+ev
+FJ
+ev
+ev
+aU
+aU
+aU
+ev
+KF
+LM
+Qg
+gS
+pl
+gS
+zs
+EO
+tK
+ws
+NT
+OQ
+Wk
+Ot
+Ot
+Ot
+Ot
+sZ
+sZ
+sZ
+"}
+(26,1,1) = {"
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+Ot
+Ot
+Ot
+Ot
+FX
+Ux
+zu
+ht
+GI
+Gq
+RI
+gI
+Gz
+pl
+KF
+KF
+Uo
+pl
+bz
+bz
+gS
+zs
+CL
+Kv
+NH
+mr
+BV
+Od
+Ot
+Ot
+sZ
+sZ
+sZ
+sZ
+sZ
+"}
+(27,1,1) = {"
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+Ot
+Ot
+Ot
+Ot
+Ot
+lW
+JC
+OI
+gL
+hE
+IX
+ac
+QR
+pl
+KF
+PU
+Uo
+pl
+uH
+bz
+bz
+gS
+zs
+mY
+Po
+NH
+bv
+LJ
+Ot
+Ot
+Ot
+gS
+sZ
+sZ
+sZ
+sZ
+"}
+(28,1,1) = {"
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+Ot
+Ot
+Ot
+IX
+IX
+IX
+IX
+Cl
+oN
+IX
+eO
+pl
+Bq
+PU
+Fl
+Fl
+LY
+UK
+UK
+UK
+jj
+zs
+Ay
+zc
+TQ
+dZ
+Ot
+Ot
+Ot
+gS
+gS
+gS
+sZ
+sZ
+sZ
+"}
+(29,1,1) = {"
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+Ot
+sZ
+Ot
+Ot
+Ot
+NS
+xm
+dy
+IX
+BW
+oq
+eO
+DW
+pl
+gS
+kX
+Fl
+Nr
+RM
+Ip
+vd
+UK
+jj
+zs
+zs
+zs
+Ac
+Ot
+Ot
+Ot
+Ot
+Ot
+gS
+gS
+sZ
+sZ
+sZ
+"}
+(30,1,1) = {"
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+Ot
+Ot
+Ot
+Ot
+Ot
+Ot
+bR
+yv
+zZ
+Pk
+ff
+rK
+IX
+pl
+gS
+Uo
+Wc
+pl
+qq
+Sx
+vp
+NX
+UK
+jj
+jj
+jj
+Ot
+Ot
+Ot
+Ot
+Ot
+Ot
+gS
+gS
+gS
+sZ
+sZ
+sZ
+"}
+(31,1,1) = {"
+sZ
+sZ
+sZ
+sZ
+sZ
+Ot
+Ot
+Ot
+Ot
+Ot
+Ot
+IX
+lQ
+pp
+uY
+IX
+FD
+pt
+IX
+Cs
+pl
+Fl
+kX
+LY
+LY
+LY
+oh
+LY
+UK
+jj
+Ot
+Ot
+Ot
+Ot
+Ot
+Ot
+Ot
+Ot
+gS
+gS
+gS
+gS
+sZ
+sZ
+"}
+(32,1,1) = {"
+Ot
+Ot
+sZ
+Ot
+Ot
+Ot
+Ot
+Ot
+Ot
+Ot
+Ot
+IX
+eH
+mO
+Fb
+IX
+jv
+ht
+IX
+gS
+pl
+gS
+VO
+LY
+oy
+EZ
+Pt
+vZ
+UK
+Ot
+Ot
+Ot
+Ot
+Ot
+Ot
+jj
+jj
+gS
+cz
+Cs
+gS
+gS
+gS
+sZ
+"}
+(33,1,1) = {"
+Ex
+Ot
+Ot
+Ot
+Ot
+Ot
+Nc
+Dq
+Ot
+Ot
+Ot
+IX
+IX
+IX
+IX
+IX
+IX
+fu
+IX
+qq
+pl
+Uo
+PU
+UK
+Gu
+fZ
+VL
+wv
+uX
+Ot
+Ot
+Ot
+Ot
+jj
+jj
+jj
+jj
+mv
+jb
+jb
+mv
+gS
+gS
+sZ
+"}
+(34,1,1) = {"
+Ex
+Ot
+Ot
+Ot
+YI
+Rp
+pH
+pH
+Ot
+Ot
+Ot
+Ot
+Ot
+IX
+JU
+am
+cd
+ua
+CV
+qq
+Kg
+Fl
+PU
+ji
+sF
+Wg
+zC
+mw
+uX
+Ot
+Ot
+Ot
+jj
+jj
+Ao
+jj
+jj
+mv
+gK
+Kp
+mv
+gS
+gS
+sZ
+"}
+(35,1,1) = {"
+Ex
+Ot
+Ot
+kp
+qK
+vv
+vv
+YI
+YI
+Ot
+Ot
+Ot
+Ot
+IX
+gb
+kD
+nJ
+ld
+UY
+qq
+Fl
+gS
+KF
+UK
+hH
+fZ
+Nl
+uq
+uX
+Ot
+Ot
+Ot
+Ot
+jj
+jj
+jj
+gS
+mv
+fl
+yO
+eV
+gS
+gS
+sZ
+"}
+(36,1,1) = {"
+Ot
+Ot
+Ot
+gN
+aA
+vv
+vv
+vv
+YI
+YI
+Ot
+Ot
+Ot
+cv
+cv
+DA
+uB
+vz
+CV
+qq
+Uo
+pl
+KF
+UK
+SR
+It
+jB
+Aq
+UK
+Ot
+Ot
+Ot
+Ot
+Ot
+jj
+jj
+mv
+mv
+WO
+tV
+mv
+mv
+gS
+sZ
+"}
+(37,1,1) = {"
+Ot
+Ot
+Ot
+VJ
+iC
+YI
+vv
+vv
+YI
+YI
+YI
+YI
+Ot
+Ot
+cv
+cv
+cv
+cv
+IX
+LM
+Fl
+Fl
+PU
+UK
+Yz
+kv
+Lc
+UK
+VQ
+Ot
+Ot
+Ot
+Ot
+Ot
+Ot
+jj
+mv
+Rd
+Yg
+aP
+sr
+mv
+gS
+sZ
+"}
+(38,1,1) = {"
+Ot
+Ot
+Ot
+Ot
+Ot
+jt
+CW
+Za
+YI
+YI
+YI
+YI
+YI
+YI
+Ot
+Ot
+Ot
+Ot
+Ot
+Fl
+Kg
+fx
+VO
+uC
+bj
+ZO
+Te
+VQ
+Ot
+Ot
+Ot
+Ot
+Ot
+Ot
+gS
+gS
+mv
+cn
+fJ
+fJ
+qT
+mv
+gS
+sZ
+"}
+(39,1,1) = {"
+sZ
+Ot
+Ot
+Ot
+Ot
+Dq
+Ef
+Ot
+Ot
+Ot
+Ot
+YI
+YI
+YI
+YI
+Ot
+gS
+gS
+aJ
+LM
+Uo
+gS
+VO
+UK
+UK
+ML
+aB
+Ot
+Ot
+Ot
+Ot
+Ot
+YI
+YI
+gS
+gS
+eV
+oA
+Cb
+bM
+sr
+mv
+gS
+sZ
+"}
+(40,1,1) = {"
+sZ
+sZ
+Ot
+Ot
+Ot
+Ot
+Ot
+Ot
+qE
+qE
+qE
+qE
+qE
+gS
+gS
+pl
+pl
+gS
+pl
+Uo
+Uo
+gS
+KF
+gS
+UK
+UK
+UK
+Ot
+Ot
+Ot
+jA
+YI
+YI
+YI
+gS
+gS
+eV
+IH
+ny
+ny
+vt
+mv
+gS
+sZ
+"}
+(41,1,1) = {"
+sZ
+sZ
+Ot
+Ot
+Ot
+Ot
+qE
+qE
+qE
+PI
+LZ
+WA
+qE
+pl
+pl
+gS
+gS
+Uo
+pl
+Fl
+Fl
+gS
+PU
+jj
+jj
+jj
+jj
+Ot
+Ot
+ni
+YI
+dU
+dU
+wu
+wu
+wu
+NO
+cE
+iq
+iq
+gS
+gS
+gS
+sZ
+"}
+(42,1,1) = {"
+sZ
+sZ
+Ot
+Ot
+Ot
+Ot
+qE
+PI
+aS
+Xm
+BS
+Nf
+DY
+DY
+DY
+gS
+gS
+gS
+Fl
+Kg
+Kg
+KF
+MV
+jj
+jj
+jj
+Ot
+Ot
+Ot
+Ot
+su
+YI
+YI
+gS
+iq
+gS
+gS
+gS
+iq
+Cs
+gS
+sZ
+sZ
+sZ
+"}
+(43,1,1) = {"
+sZ
+Ot
+Ot
+Ot
+jj
+jj
+DY
+Xm
+Xm
+Bo
+qb
+IB
+uA
+CB
+DY
+pl
+pl
+pl
+Fl
+Kg
+kX
+WV
+jj
+XZ
+XZ
+XZ
+Ot
+Ot
+Ot
+Ot
+kW
+YI
+gS
+gS
+gS
+gS
+iq
+gS
+gS
+gS
+gS
+sZ
+sZ
+sZ
+"}
+(44,1,1) = {"
+sZ
+Ot
+Ot
+jj
+jj
+jj
+oO
+pZ
+gO
+qb
+Df
+xc
+ga
+oV
+dO
+lJ
+PU
+KF
+PU
+PU
+mn
+jj
+jj
+XZ
+eG
+mP
+Ys
+Nx
+xf
+Ot
+Ot
+Ot
+Ot
+gS
+sZ
+gS
+gS
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+"}
+(45,1,1) = {"
+sZ
+sZ
+jj
+jj
+jj
+jj
+oO
+UG
+wR
+aG
+Df
+vD
+lp
+Cx
+DY
+pl
+gS
+gS
+Uo
+Uo
+KF
+KF
+XZ
+XZ
+eS
+tP
+pr
+pr
+qf
+Ot
+Ot
+Ot
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+"}
+(46,1,1) = {"
+sZ
+sZ
+gS
+gS
+gS
+jj
+DY
+DY
+DY
+Mg
+Gn
+DY
+DY
+DY
+DY
+gS
+JT
+WE
+EQ
+pl
+gS
+KF
+XZ
+XZ
+XZ
+yA
+XZ
+OP
+gU
+Re
+Ot
+Ot
+Ot
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+"}
+(47,1,1) = {"
+sZ
+gS
+gS
+iL
+gS
+gS
+gS
+gS
+DY
+oO
+ik
+DY
+gS
+gS
+gS
+gS
+gS
+pl
+Kg
+Fl
+gS
+RY
+uN
+Dh
+vO
+PA
+XZ
+XZ
+UC
+Lf
+Ot
+Ot
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+"}
+(48,1,1) = {"
+sZ
+gS
+gS
+gS
+pl
+Fl
+pl
+gS
+xX
+gS
+Iz
+pl
+gS
+gS
+pl
+Uo
+pl
+gS
+Fl
+pl
+gS
+KF
+hv
+Hm
+gj
+Oy
+uZ
+XZ
+kB
+aR
+Ot
+Ot
+Ot
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+"}
+(49,1,1) = {"
+sZ
+gS
+gS
+pl
+gS
+pl
+Fl
+gS
+pl
+gS
+pl
+Uo
+pl
+Fl
+Fl
+gS
+gS
+Fl
+Fl
+pl
+pl
+un
+XZ
+Pm
+tq
+kt
+jJ
+XZ
+Lf
+Xy
+Ot
+Ot
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+"}
+(50,1,1) = {"
+sZ
+gS
+gS
+pl
+pl
+Uo
+pl
+Fl
+pl
+pl
+Fl
+Kg
+Fl
+Uo
+gS
+gS
+pl
+gS
+pl
+Cs
+PU
+KF
+XZ
+cZ
+XZ
+nt
+yY
+XZ
+Zo
+ck
+Ot
+Ot
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+"}
+(51,1,1) = {"
+sZ
+gS
+pl
+Uo
+gS
+gS
+gS
+gS
+Uo
+Uo
+gS
+gS
+gS
+Mo
+gS
+PU
+KF
+KF
+PU
+PU
+DG
+PU
+yL
+Rk
+XZ
+XZ
+XZ
+Ot
+Ot
+Ot
+Ot
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+"}
+(52,1,1) = {"
+sZ
+gS
+gS
+gS
+pl
+VF
+bp
+ri
+gS
+KM
+KM
+KM
+KM
+gS
+Mw
+NV
+pl
+gS
+pl
+Uo
+pl
+gS
+gS
+pl
+jj
+jj
+Ot
+Ot
+Ot
+Ot
+Ot
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+"}
+(53,1,1) = {"
+sZ
+sZ
+sZ
+gS
+gS
+lg
+yD
+KV
+gS
+KM
+jr
+In
+KM
+KM
+KM
+VU
+Kd
+KM
+gS
+pl
+pl
+Fl
+gS
+gS
+jj
+jj
+Ot
+Ot
+Ot
+Ot
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+"}
+(54,1,1) = {"
+sZ
+sZ
+sZ
+sZ
+gS
+lg
+lg
+VF
+gS
+uE
+Ce
+Ce
+Qn
+KM
+jN
+zy
+iv
+KM
+gS
+gS
+gS
+Fl
+pl
+gS
+jj
+jj
+Ot
+Ot
+Ot
+Ot
+Ot
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+"}
+(55,1,1) = {"
+sZ
+sZ
+sZ
+sZ
+gS
+gS
+gS
+gS
+pQ
+Ds
+gk
+rL
+Bz
+sQ
+Ub
+PW
+jq
+KM
+KM
+gS
+pl
+pl
+Fl
+gS
+jj
+Ot
+Ot
+Ot
+Ot
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+"}
+(56,1,1) = {"
+sZ
+sZ
+sZ
+sZ
+gS
+gS
+gS
+gS
+gS
+uE
+jY
+SX
+xF
+KM
+YJ
+zb
+Pc
+Gl
+KM
+gS
+pl
+pl
+Fl
+gS
+gS
+Ot
+Ot
+Ot
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+"}
+(57,1,1) = {"
+sZ
+sZ
+sZ
+sZ
+sZ
+gS
+gS
+gS
+jj
+KM
+KM
+KM
+KM
+KM
+ln
+AI
+ir
+Ie
+KM
+gS
+gS
+pl
+VF
+gS
+gS
+Ot
+Ot
+Ot
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+"}
+(58,1,1) = {"
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+gS
+gS
+jj
+jj
+KM
+PT
+RS
+Uf
+rB
+ma
+YS
+Td
+KM
+gS
+pl
+Uo
+lg
+JW
+yD
+Ot
+Ot
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+"}
+(59,1,1) = {"
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+gS
+gS
+Ao
+jj
+KM
+KM
+YH
+NW
+YH
+ps
+KM
+KM
+KM
+gS
+pl
+pl
+lg
+lg
+lg
+Ot
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+"}
+(60,1,1) = {"
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+gS
+gS
+gS
+jj
+jj
+KM
+KM
+uE
+uE
+KM
+KM
+gS
+gS
+gS
+Uo
+gS
+pl
+gS
+gS
+Ot
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+"}
+(61,1,1) = {"
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+gS
+gS
+gS
+gS
+gS
+jj
+jj
+jj
+jj
+jj
+gS
+gS
+iL
+gS
+pl
+pl
+gS
+gS
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+"}
+(62,1,1) = {"
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+gS
+gS
+gS
+gS
+gS
+jj
+jj
+jj
+gS
+gS
+gS
+gS
+gS
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+sZ
+"}

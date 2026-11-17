@@ -1,0 +1,282 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"b" = (
+/obj/effect/spawner/lootdrop/planet_chance/fern,
+/turf/open/floor/plating/asteroid/whitesands/dried,
+/area/template_noop)
+"c" = (
+/turf/template_noop,
+/area/template_noop)
+"h" = (
+/obj/effect/spawner/lootdrop/planet_chance/rock,
+/turf/open/floor/plating/asteroid/whitesands/dried,
+/area/template_noop)
+"j" = (
+/obj/effect/spawner/lootdrop/planet_chance/fern,
+/turf/open/floor/plating/asteroid/whitesands,
+/area/template_noop)
+"k" = (
+/turf/closed/mineral/random/whitesands,
+/area/template_noop)
+"p" = (
+/turf/open/floor/plating/asteroid/whitesands/dried,
+/area/template_noop)
+"q" = (
+/turf/open/water/planet/acid,
+/area/template_noop)
+"s" = (
+/obj/effect/spawner/lootdrop/planet_chance/whitesands_fauna,
+/turf/open/floor/plating/asteroid/whitesands,
+/area/template_noop)
+"C" = (
+/obj/effect/spawner/lootdrop/planet_chance/puce,
+/obj/effect/spawner/lootdrop/planet_chance/whitesands_fauna,
+/turf/open/floor/plating/asteroid/whitesands/dried,
+/area/template_noop)
+"O" = (
+/obj/effect/spawner/lootdrop/planet_chance/puce,
+/turf/open/floor/plating/asteroid/whitesands/dried,
+/area/template_noop)
+"X" = (
+/turf/open/floor/plating/asteroid/whitesands,
+/area/template_noop)
+
+(1,1,1) = {"
+c
+c
+c
+c
+c
+k
+c
+c
+c
+c
+c
+c
+c
+c
+"}
+(2,1,1) = {"
+c
+c
+c
+c
+X
+X
+k
+c
+c
+c
+c
+c
+c
+c
+"}
+(3,1,1) = {"
+c
+c
+X
+X
+q
+s
+p
+X
+c
+c
+c
+c
+c
+c
+"}
+(4,1,1) = {"
+c
+c
+X
+j
+q
+O
+h
+k
+k
+c
+c
+c
+c
+c
+"}
+(5,1,1) = {"
+k
+X
+q
+q
+C
+q
+O
+O
+k
+k
+c
+c
+c
+c
+"}
+(6,1,1) = {"
+c
+k
+k
+q
+O
+q
+q
+q
+O
+k
+c
+c
+c
+c
+"}
+(7,1,1) = {"
+c
+c
+k
+h
+q
+q
+q
+q
+q
+q
+h
+c
+c
+c
+"}
+(8,1,1) = {"
+c
+c
+k
+k
+q
+q
+q
+q
+q
+q
+q
+k
+k
+c
+"}
+(9,1,1) = {"
+c
+c
+c
+k
+b
+q
+q
+q
+q
+q
+q
+O
+k
+c
+"}
+(10,1,1) = {"
+c
+c
+c
+c
+X
+X
+q
+q
+q
+q
+q
+b
+k
+k
+"}
+(11,1,1) = {"
+c
+c
+c
+c
+c
+X
+q
+q
+q
+q
+q
+O
+k
+k
+"}
+(12,1,1) = {"
+c
+c
+c
+c
+k
+k
+O
+q
+q
+q
+q
+k
+k
+c
+"}
+(13,1,1) = {"
+c
+c
+c
+c
+k
+k
+O
+O
+O
+k
+k
+k
+c
+c
+"}
+(14,1,1) = {"
+c
+c
+c
+c
+c
+k
+k
+k
+k
+k
+c
+c
+c
+c
+"}
+(15,1,1) = {"
+c
+c
+c
+c
+c
+c
+c
+k
+k
+c
+c
+c
+c
+c
+"}

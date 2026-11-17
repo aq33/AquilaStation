@@ -62,7 +62,8 @@ SUBSYSTEM_DEF(radiation)
 				continue
 
 			var/irradiation_result = SEND_SIGNAL(target, COMSIG_IN_THRESHOLD_OF_IRRADIATION, pulse_information)
-			if (irradiation_result & CANCEL_IRRADIATION)
+			// Sygnały wyżej mogły usunąć cel (np. druga ręka przy upuszczeniu dwuręcznej broni)
+			if ((irradiation_result & CANCEL_IRRADIATION) || QDELETED(target))
 				continue
 
 			if (pulse_information.minimum_exposure_time && !(irradiation_result & SKIP_MINIMUM_EXPOSURE_TIME_CHECK))
@@ -146,6 +147,9 @@ SUBSYSTEM_DEF(radiation)
 
 /// Czy cel w ogóle może zostać napromieniowany. Nie sprawdza stroju.
 /datum/controller/subsystem/radiation/proc/can_irradiate_basic(atom/target)
+	// Obiekt w trakcie usuwania (np. druga ręka przy upuszczeniu) nie dostaje już komponentu napromieniowania
+	if (QDELETED(target))
+		return FALSE
 	if (!CAN_IRRADIATE(target))
 		return FALSE
 
