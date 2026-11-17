@@ -104,6 +104,12 @@
 /datum/planet_biome/cave/moon
 	open_turf_types = list(/turf/open/floor/plating/asteroid/moon = 1)
 	closed_turf_types = list(/turf/closed/mineral/random/moon = 1)
+	flora_spawn_chance = 3
+	flora_spawn_list = list(
+		/obj/structure/flora/ash/glowbell = 3,
+		/obj/structure/flora/ash/glowbell/cavern_candle = 2,
+		/obj/structure/flora/ash/glowbell/weeping_moon = 1,
+	)
 	mob_spawn_chance = 0
 	feature_spawn_chance = 0.1
 	feature_spawn_list = list(
