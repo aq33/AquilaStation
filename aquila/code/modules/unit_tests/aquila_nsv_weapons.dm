@@ -234,10 +234,51 @@
 	TEST_ASSERT("flak_mount_circuit" in node.design_ids, "Zaawansowana balistyka nie ma płytki flaku")
 	var/datum/design/design = SSresearch.techweb_design_by_id("flak_mount_circuit")
 	TEST_ASSERT_EQUAL(design.build_path, /obj/item/circuitboard/machine/pdc_mount/flak, "Projekt płytki flaku robi inną płytkę")
+	TEST_ASSERT("flak_ammo" in node.design_ids, "Zaawansowana balistyka nie ma amunicji flak")
+	design = SSresearch.techweb_design_by_id("flak_ammo")
+	TEST_ASSERT_EQUAL(design.build_path, /obj/item/ammo_box/magazine/nsv/flak, "Projekt amunicji flak robi coś innego")
+	var/datum/supply_pack/munitions/flak_ammo/pack = SSshuttle.supply_packs[/datum/supply_pack/munitions/flak_ammo]
+	TEST_ASSERT(pack, "Nie ma paczki amunicji flak w zaopatrzeniu")
+	TEST_ASSERT(/obj/item/ammo_box/magazine/nsv/flak in pack.contains, "Paczka amunicji flak nie ma magazynków flak")
 	var/obj/item/circuitboard/machine/pdc_mount/flak/board = /obj/item/circuitboard/machine/pdc_mount/flak
 	TEST_ASSERT_EQUAL(initial(board.build_path), /obj/machinery/ship_weapon/pdc_mount/flak, "Płytka flaku buduje inny stojak")
 	var/obj/machinery/ship_weapon/pdc_mount/flak/mount = /obj/machinery/ship_weapon/pdc_mount/flak
 	TEST_ASSERT_EQUAL(initial(mount.circuit), /obj/item/circuitboard/machine/pdc_mount/flak, "Rozebrany stojak flaku oddaje płytkę PDC")
+
+/// Flak okrętu AI: zamiast pocisków liczy salwy, które wysłałby na overmapę
+/datum/overmap_ship_weapon/flak/aq_ai_test
+	var/fired_bursts = 0
+
+/datum/overmap_ship_weapon/flak/aq_ai_test/async_nonphysical_fire(atom/target, mob/living/firer, ai_aim = FALSE, active_burst_size, list/snowflake_projectile_list)
+	fired_bursts += active_burst_size
+
+/// AQUILA - flak okrętów AI tworzony bez liczby baterii (np. lotniskowiec Syndykatu) strzela
+/datum/unit_test/nsv_flak_ai
+
+/datum/unit_test/nsv_flak_ai/Run()
+	var/datum/overmap_ship_weapon/flak/plain = new(null, FALSE)
+	TEST_ASSERT_EQUAL(plain.burst_size, 1, "Flak bez liczby baterii ma salwę [isnull(plain.burst_size) ? "null" : plain.burst_size]")
+	qdel(plain)
+
+	var/was_enabled = GLOB.ai_guns_last_resort_enabled
+	GLOB.ai_guns_last_resort_enabled = FALSE
+	var/z = run_loc_floor_bottom_left.z
+	var/obj/structure/overmap/small_craft/combat/light/ship = allocate(/obj/structure/overmap/small_craft/combat/light)
+	var/obj/structure/overmap/small_craft/combat/light/target = allocate(/obj/structure/overmap/small_craft/combat/light)
+	ship.ai_controlled = TRUE
+	target.faction = "syndicate"
+	ship.forceMove(locate(100, 60, z))
+	target.forceMove(locate(100, 70, z))
+	ship.light_shots_left = 100
+	// Tak jak okręty Syndykatu w apply_weapons(): new /datum/overmap_ship_weapon/flak(src, FALSE)
+	var/datum/overmap_ship_weapon/flak/aq_ai_test/flak = new(ship, FALSE)
+	var/shots = flak.fire_proc_chain(target)
+	var/bursts = flak.fired_bursts
+	ship.ai_controlled = FALSE
+	GLOB.ai_guns_last_resort_enabled = was_enabled
+	qdel(flak)
+	TEST_ASSERT_EQUAL(shots, 1, "Flak okrętu AI nie oddał strzału")
+	TEST_ASSERT_EQUAL(bursts, 1, "Flak okrętu AI nie wysłał pocisku")
 
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL
