@@ -1012,6 +1012,15 @@
 	qdel(other_bite)
 	TEST_ASSERT(other_leg.disabled == BODYPART_NOT_DISABLED, "The leg stays disabled although its damage fell below half during the paralysis ([other_leg.get_damage()] / [other_leg.max_damage])")
 
+	// Amputated with the frostbite on: the wound goes away without touching the missing owner (a runtime fails the test)
+	var/obj/item/bodypart/cut_arm = patient.get_bodypart(BODY_ZONE_R_ARM)
+	var/datum/wound/frostbite/third_degree/cut_bite = new()
+	cut_bite.apply_wound(cut_arm, silent = TRUE)
+	cut_arm.drop_limb()
+	qdel(cut_bite)
+	TEST_ASSERT(!(cut_bite in cut_arm.wounds), "The frostbite stayed on the amputated arm")
+	TEST_ASSERT(cut_arm.disabled != BODYPART_DISABLED_PARALYSIS, "The amputated arm stays paralysed")
+
 /// The chem master analysis shows the tg addiction threshold, alcohol from its strength
 /datum/unit_test/aquila_addiction_threshold_display
 
