@@ -1,0 +1,209 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"b" = (
+/obj/structure/flora/grass/both,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"r" = (
+/obj/structure/flora/rock/icy,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"y" = (
+/obj/structure/flora/grass/green,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"F" = (
+/obj/structure/flora/ash/garden/frigid,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"H" = (
+/obj/structure/flora/rock/icy,
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
+"M" = (
+/turf/closed/mineral/random/planet_ice,
+/area/template_noop)
+"N" = (
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/template_noop)
+"S" = (
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"W" = (
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/template_noop)
+"X" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"Z" = (
+/turf/template_noop,
+/area/template_noop)
+
+(1,1,1) = {"
+Z
+Z
+Z
+Z
+Z
+Z
+N
+b
+N
+N
+N
+Z
+"}
+(2,1,1) = {"
+Z
+Z
+Z
+Z
+S
+X
+S
+S
+S
+b
+N
+N
+"}
+(3,1,1) = {"
+Z
+Z
+Z
+Z
+N
+N
+S
+X
+S
+S
+r
+N
+"}
+(4,1,1) = {"
+Z
+Z
+Z
+N
+N
+r
+M
+S
+X
+X
+S
+b
+"}
+(5,1,1) = {"
+Z
+Z
+N
+N
+F
+N
+M
+M
+S
+S
+S
+N
+"}
+(6,1,1) = {"
+Z
+Z
+N
+b
+W
+b
+M
+M
+M
+X
+X
+N
+"}
+(7,1,1) = {"
+Z
+N
+N
+W
+H
+W
+N
+M
+M
+M
+X
+S
+"}
+(8,1,1) = {"
+Z
+N
+F
+W
+W
+W
+N
+y
+M
+M
+M
+S
+"}
+(9,1,1) = {"
+Z
+N
+y
+W
+b
+N
+F
+N
+r
+M
+M
+S
+"}
+(10,1,1) = {"
+Z
+N
+N
+N
+N
+N
+N
+N
+N
+N
+S
+Z
+"}
+(11,1,1) = {"
+Z
+Z
+N
+N
+N
+N
+N
+N
+N
+N
+Z
+Z
+"}
+(12,1,1) = {"
+Z
+Z
+Z
+Z
+Z
+Z
+Z
+N
+N
+Z
+Z
+Z
+"}

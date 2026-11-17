@@ -93,6 +93,8 @@
 	return ..()
 
 /datum/status_effect/seedling_beam_indicator/tick()
+	if(!seedling_screen_object) // AQ EDIT - cel bez klienta (NPC, fauna na planetach) nie ma wskaźnika na ekranie
+		return
 	var/target_angle = get_angle(owner, target)
 	var/matrix/final = matrix()
 	final.Turn(target_angle)

@@ -21,11 +21,12 @@
 
 /datum/squad_loadout/aquila/nt/leader
 	name = "Dowódca drużyny"
-	desc = "Zestaw żołnierza z hełmem dowódcy i megafonem."
+	desc = "Zestaw żołnierza z hełmem dowódcy, megafonem i lornetką taktyczną do wskazywania celów ostrzału z orbity."
 	position = SQUAD_POSITION_LEADER
 	items = list(
 		/obj/item/clothing/under/ship/marine,
 		/obj/item/megaphone,
+		/obj/item/binoculars/tactical,
 		/obj/item/clothing/suit/ship/squad,
 		/obj/item/clothing/head/helmet/ship/squad/leader,
 		/obj/item/clothing/suit/ship/squad/space,

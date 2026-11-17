@@ -1,0 +1,68 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"d" = (
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"r" = (
+/mob/living/basic/snow_monkey,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"x" = (
+/obj/structure/flora/ash/garden/frigid,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"y" = (
+/obj/structure/flora/ausbushes/lavendergrass,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"D" = (
+/obj/structure/geyser/random,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"F" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/obj/structure/flora/ausbushes/lavendergrass,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"G" = (
+/turf/template_noop,
+/area/template_noop)
+"H" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+
+(1,1,1) = {"
+G
+d
+x
+H
+G
+"}
+(2,1,1) = {"
+G
+F
+d
+y
+H
+"}
+(3,1,1) = {"
+d
+d
+r
+d
+x
+"}
+(4,1,1) = {"
+H
+D
+d
+d
+H
+"}
+(5,1,1) = {"
+G
+y
+H
+G
+G
+"}

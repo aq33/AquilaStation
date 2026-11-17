@@ -165,6 +165,9 @@
 /obj/item/pickaxe/drill/implant
 	alt_click_loot = FALSE
 
+/obj/item/pinpointer/mineral
+	alt_click_loot = FALSE
+
 /obj/item/plant_seeds/debug
 	alt_click_loot = FALSE
 
@@ -334,6 +337,9 @@
 	alt_click_loot = FALSE
 
 /obj/machinery/dna_infuser
+	alt_click_loot = FALSE
+
+/obj/machinery/drill
 	alt_click_loot = FALSE
 
 /obj/machinery/fat_sucker

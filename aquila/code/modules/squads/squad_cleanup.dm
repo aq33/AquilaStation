@@ -22,3 +22,11 @@
 	holder = null
 	teamspeak = null
 	return ..()
+
+/// Drużyna i jej komponent kanału trzymały się nawzajem (squad_channel i squad): usunięty szablon aq_custom ze startu
+/// gry wisiał do hard delete, a w testach kosztował kilka minut szukania referencji
+/datum/squad/Destroy(force)
+	if(squad_channel)
+		squad_channel.squad = null
+		squad_channel = null
+	return ..()

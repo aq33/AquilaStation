@@ -74,3 +74,15 @@ Sound added on the "cowiek-maupa" branch:
 
 Sound added on the "monke-vim-ssd-mandaty" branch:
   machines/printer.ogg              Monkestation2.0 / tgstation (sound/machines/printer.ogg), CC-BY-SA 3.0
+
+Planety (port pogody z shiptest-ss13/Shiptest 9b23be9), licencja CC-BY-SA 3.0:
+  weather/rain/*                    Shiptest sound/weather/rain (deszcz, ulewa, burza)
+  weather/wind/*                    Shiptest sound/weather/wind
+  effects/thunder/*                 Shiptest sound/effects/thunder (grzmoty)
+
+Kapsuły desantowe na planetach (tgstation/TerraGov-Marine-Corps), licencja CC BY-NC-SA 3.0:
+  planets/droppod_launch.ogg, droppod_impact.ogg, escape_pod_launch.ogg   TGMC sound/effects (start i uderzenie kapsuły desantowej)
+
+Woda i wędkarstwo na planetach (tgstation/tgstation dba6dea), licencja CC-BY-SA 3.0:
+  effects/fishing/fish_splash.ogg, bigsplash.ogg   tgstation sound/effects (chlupnięcia przy łowieniu)
+  effects/anomaly/*                 Shiptest sound/effects (radiohiss, stall, walkietalkie) i sound/effects/anomaly/static.ogg, anomalia szumu

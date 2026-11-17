@@ -1,0 +1,6413 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"ac" = (
+/obj/structure/cable/yellow,
+/obj/structure/floodlight_frame,
+/obj/item/shard,
+/obj/item/stack/cable_coil/cut,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield)
+"ad" = (
+/obj/effect/decal/cleanable/oil,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield)
+"aj" = (
+/obj/structure/sign/warning/docking{
+	pixel_y = -32
+	},
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 10
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield)
+"ar" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/ship)
+"au" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/yellow{
+	dir = 10;
+	color = "#C3630C";
+	alpha = 140
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/dorms)
+"aA" = (
+/obj/structure/cable/yellow,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 9;
+	color = "#C3630C";
+	alpha = 140
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"aC" = (
+/obj/structure/rack,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"aD" = (
+/obj/structure/chair/stool/bar{
+	dir = 8;
+	pixel_x = -8
+	},
+/obj/effect/mob_spawn/human/corpse/charredskeleton,
+/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass,
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"aE" = (
+/obj/machinery/suit_storage_unit/engine,
+/obj/effect/turf_decal/delivery,
+/obj/effect/turf_decal/stripes/white/corner{
+	color = "#fb9700"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"aF" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/blood/tracks,
+/obj/item/stack/ore/iron{
+	amount = 5
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/effect/turf_decal/tile/green/half{
+	dir = 1;
+	color = "#B7D993";
+	alpha = 140
+	},
+/obj/effect/turf_decal/tile/green/half{
+	color = "#B7D993";
+	alpha = 140
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/ship)
+"aG" = (
+/obj/effect/turf_decal/delivery,
+/obj/item/clothing/suit/space/hardsuit/engine,
+/obj/structure/closet/crate/engineering,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"aK" = (
+/obj/machinery/door/airlock/maintenance/external/glass,
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/machinery/door/firedoor,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"aL" = (
+/obj/effect/turf_decal/stripes/white/corner{
+	dir = 8;
+	color = "#fb9700"
+	},
+/obj/structure/closet/firecloset/full,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 6;
+	color = "#C3630C";
+	alpha = 140
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"aM" = (
+/obj/structure/chair{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"aR" = (
+/obj/structure/closet,
+/obj/item/clothing/shoes/workboots,
+/obj/item/clothing/under/rank/engineering/atmospheric_technician,
+/obj/item/clothing/head/hardhat,
+/obj/item/pipe_dispenser,
+/obj/structure/sign/poster/contraband/atmosia_independence{
+	pixel_x = -28
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/dorms)
+"aU" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 6;
+	color = "#75A2BB";
+	alpha = 140
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"aV" = (
+/obj/structure/rack,
+/obj/item/storage/toolbox/drone{
+	pixel_y = 8
+	},
+/obj/item/storage/toolbox/drone{
+	pixel_y = -8
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"aZ" = (
+/obj/structure/fence/cut/medium,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield)
+"bv" = (
+/obj/structure/cable,
+/obj/machinery/power/terminal{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"bA" = (
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield)
+"bC" = (
+/obj/effect/turf_decal/delivery,
+/obj/structure/floodlight_frame,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"bE" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 9
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 9;
+	color = "#75A2BB";
+	alpha = 140
+	},
+/obj/item/trash/raisins{
+	pixel_x = 15;
+	pixel_y = -2
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"bP" = (
+/obj/machinery/atmospherics/components/unary/passive_vent{
+	dir = 8
+	},
+/turf/open/floor/plating/asteroid/dirt/battlefield,
+/area/ruin/unpowered/planet_battlefield)
+"bV" = (
+/obj/machinery/door/airlock/command,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"cb" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/green/half{
+	dir = 1;
+	color = "#B7D993";
+	alpha = 140
+	},
+/obj/effect/turf_decal/tile/green{
+	color = "#B7D993";
+	alpha = 140
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/ship)
+"cd" = (
+/mob/living/basic/hivebot/range,
+/obj/structure/railing{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/dorms)
+"cf" = (
+/obj/item/plant_tray,
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/obj/item/plant_seeds/preset/potato,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/ship)
+"cq" = (
+/obj/machinery/ntnet_relay,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"cC" = (
+/obj/structure/chair/fancy/shuttle{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/green/half{
+	dir = 8;
+	color = "#B7D993";
+	alpha = 140
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/ship)
+"cG" = (
+/obj/effect/decal/cleanable/oil,
+/obj/effect/decal/cleanable/robot_debris,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield)
+"cI" = (
+/obj/structure/cable/yellow,
+/obj/machinery/firealarm/directional/west,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 9;
+	color = "#C3630C";
+	alpha = 140
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"cV" = (
+/obj/structure/girder,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/ship)
+"cZ" = (
+/obj/structure/bed/double{
+	dir = 4
+	},
+/obj/item/bedsheet/double/orange{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/dorms)
+"dc" = (
+/obj/effect/decal/cleanable/robot_debris,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield)
+"dg" = (
+/obj/structure/rack,
+/obj/item/clothing/glasses/welding,
+/obj/item/weldingtool/largetank,
+/obj/effect/turf_decal/stripes/white/corner{
+	dir = 1;
+	color = "#fb9700"
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"dl" = (
+/obj/effect/turf_decal/tile/yellow{
+	dir = 5;
+	color = "#C3630C";
+	alpha = 140
+	},
+/obj/structure/chair,
+/obj/item/instrument/banjo,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"dy" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/yellow{
+	dir = 6;
+	color = "#C3630C";
+	alpha = 140
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/dorms)
+"dM" = (
+/obj/effect/turf_decal/stripes/white/line{
+	color = "#fb9700"
+	},
+/obj/effect/turf_decal/caution{
+	dir = 1
+	},
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/components/binary/volume_pump/on,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"dP" = (
+/obj/effect/turf_decal/stripes/white/line{
+	color = "#fb9700"
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"dR" = (
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"dT" = (
+/obj/machinery/door/airlock{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral/fourcorners{
+	alpha = 140
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/dorms)
+"dV" = (
+/obj/structure/chair/office{
+	dir = 4;
+	pixel_x = 8
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/dorms)
+"dX" = (
+/obj/machinery/power/smes{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/cable/green,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/ship)
+"ej" = (
+/obj/structure/closet/cabinet,
+/obj/item/clothing/shoes/workboots,
+/obj/item/clothing/under/rank/engineering/chief_engineer,
+/obj/item/stamp/chief_engineer,
+/obj/item/clothing/head/hardhat/weldhat/white,
+/obj/structure/sign/poster/contraband/space_cube{
+	pixel_x = 32
+	},
+/obj/item/stack/spacecash/c10,
+/obj/item/gun/energy/e_gun/mini,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/dorms)
+"em" = (
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 1;
+	color = "#fb9700"
+	},
+/obj/effect/turf_decal/caution,
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"er" = (
+/obj/item/storage/toolbox/drone,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield)
+"es" = (
+/obj/structure/fence,
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 6
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield)
+"eB" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"eK" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"eM" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/dorms)
+"eO" = (
+/obj/structure/marker_beacon{
+	picked_color = "Lime"
+	},
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield)
+"eP" = (
+/obj/structure/girder,
+/obj/item/stack/sheet/mineral/titanium,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/ship)
+"fd" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/ship)
+"fm" = (
+/obj/effect/turf_decal/tile/green/half{
+	dir = 5;
+	color = "#B7D993";
+	alpha = 140
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/ship)
+"fu" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"fz" = (
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
+	dir = 4
+	},
+/obj/structure/lattice/catwalk/over/ship,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/dorms)
+"fG" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"ga" = (
+/obj/structure/table/reinforced,
+/obj/machinery/light/small/broken{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/ship)
+"gb" = (
+/obj/structure/rack,
+/obj/effect/turf_decal/stripes/white/corner{
+	dir = 4;
+	color = "#fb9700"
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"gc" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/turf/open/floor/plasteel/stairs{
+	dir = 1
+	},
+/area/ruin/unpowered/planet_battlefield/shipbreaking/dorms)
+"gg" = (
+/obj/structure/fence{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"gi" = (
+/obj/structure/fence/cut/large{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield)
+"go" = (
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"gq" = (
+/obj/structure/cable,
+/obj/machinery/light/small/broken{
+	dir = 4
+	},
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/ship)
+"gy" = (
+/obj/effect/turf_decal/delivery,
+/obj/structure/closet/crate/secure/loot,
+/obj/item/crowbar/red,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"gB" = (
+/obj/machinery/computer/mech_bay_power_console{
+	dir = 4
+	},
+/obj/structure/sign/warning/electricshock{
+	pixel_x = -28
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"gD" = (
+/turf/closed/wall/r_wall,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"gE" = (
+/obj/structure/chair/fancy/sofa/old{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 10;
+	color = "#75A2BB";
+	alpha = 140
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/dorms)
+"gI" = (
+/obj/machinery/light,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 10;
+	color = "#C3630C";
+	alpha = 140
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"gL" = (
+/obj/structure/toilet{
+	pixel_y = 11
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/ship)
+"gO" = (
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_battlefield)
+"gS" = (
+/obj/structure/chair/office{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/dorms)
+"gU" = (
+/obj/machinery/vending/cola/pwr_game,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"gY" = (
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"hd" = (
+/obj/effect/turf_decal/delivery,
+/obj/item/clothing/gloves/color/yellow,
+/obj/item/clothing/gloves/color/yellow,
+/obj/item/clothing/gloves/color/yellow,
+/obj/structure/closet/crate/engineering/electrical,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"hj" = (
+/obj/effect/turf_decal/delivery,
+/obj/item/stack/sheet/mineral/plasma/twenty,
+/obj/structure/closet/crate/secure/plasma,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"hk" = (
+/obj/effect/turf_decal/tile/yellow{
+	dir = 9;
+	color = "#C3630C";
+	alpha = 140
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/dorms)
+"hm" = (
+/obj/item/clothing/shoes/sneakers/black,
+/obj/item/clothing/neck/cloak/qm,
+/obj/item/clothing/head/beret/supply,
+/obj/item/clothing/under/rank/cargo/quartermaster,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/dorms)
+"hr" = (
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield)
+"hv" = (
+/obj/structure/railing{
+	max_integrity = 70
+	},
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 5
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"hz" = (
+/turf/closed/wall,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/dorms)
+"hL" = (
+/obj/machinery/door/airlock{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"hO" = (
+/obj/structure/closet,
+/obj/item/clothing/under/rank/engineering/engineer,
+/obj/item/clothing/under/rank/engineering/engineer,
+/obj/item/clothing/shoes/workboots,
+/obj/effect/turf_decal/tile/green/half{
+	color = "#B7D993";
+	alpha = 140
+	},
+/obj/effect/turf_decal/tile/green/half{
+	dir = 1;
+	color = "#B7D993";
+	alpha = 140
+	},
+/obj/item/food/rationpack,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/ship)
+"hS" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"if" = (
+/obj/structure/table,
+/obj/item/flashlight/lamp,
+/obj/item/food/sosjerky{
+	pixel_x = 10
+	},
+/obj/item/food/chips,
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/dorms)
+"ik" = (
+/obj/structure/bed,
+/obj/item/bedsheet/hos,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/dorms)
+"ix" = (
+/obj/effect/turf_decal/delivery/red,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield)
+"jb" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/blood/tracks,
+/obj/effect/turf_decal/tile/green/half{
+	dir = 1;
+	color = "#B7D993";
+	alpha = 140
+	},
+/obj/effect/turf_decal/tile/green{
+	color = "#B7D993";
+	alpha = 140
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/ship)
+"jg" = (
+/obj/effect/turf_decal/delivery,
+/obj/structure/closet/crate/large,
+/mob/living/basic/hivebot,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"jj" = (
+/obj/structure/chair{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 6;
+	color = "#75A2BB";
+	alpha = 140
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"jm" = (
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
+/obj/structure/lattice/catwalk/over,
+/obj/structure/spawner/hivebot,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"jo" = (
+/obj/structure/fence,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield)
+"jp" = (
+/obj/structure/bed{
+	dir = 4
+	},
+/obj/item/bedsheet/grey{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/dorms)
+"js" = (
+/obj/structure/marker_beacon{
+	picked_color = "Burgundy"
+	},
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield)
+"ju" = (
+/mob/living/basic/hivebot/strong,
+/obj/structure/sign/warning/docking{
+	pixel_x = 32
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/ship)
+"jL" = (
+/obj/effect/turf_decal/delivery/red,
+/obj/structure/closet/crate/secure/loot,
+/obj/item/circuitboard/machine/grounding_rod,
+/obj/item/circuitboard/machine/grounding_rod,
+/obj/item/circuitboard/machine/grounding_rod,
+/obj/item/circuitboard/machine/grounding_rod,
+/obj/item/stack/sheet/iron/twenty,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"jM" = (
+/obj/machinery/suit_storage_unit/open,
+/obj/effect/turf_decal/delivery,
+/obj/effect/turf_decal/stripes/white/corner{
+	dir = 1;
+	color = "#fb9700"
+	},
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"jP" = (
+/obj/machinery/power/terminal{
+	dir = 4
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/ship)
+"jW" = (
+/obj/structure/table/reinforced,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/ship)
+"jY" = (
+/obj/structure/mirror{
+	pixel_x = -28
+	},
+/obj/structure/sink{
+	dir = 4;
+	pixel_x = -13
+	},
+/obj/effect/turf_decal/tile/neutral/fourcorners{
+	alpha = 140
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/dorms)
+"kb" = (
+/obj/structure/sign/warning/docking{
+	pixel_y = -32
+	},
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 6
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield)
+"km" = (
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/ship)
+"ko" = (
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 1;
+	color = "#fb9700"
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"kq" = (
+/obj/structure/cable/yellow,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"kr" = (
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 9
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield)
+"kx" = (
+/obj/structure/table,
+/obj/item/flashlight/lamp{
+	pixel_y = 12;
+	pixel_x = -8
+	},
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/item/screwdriver{
+	pixel_x = -7
+	},
+/obj/item/stack/cable_coil/cut,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/dorms)
+"ky" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on,
+/obj/effect/turf_decal/tile/blue{
+	dir = 8;
+	color = "#75A2BB";
+	alpha = 140
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"kz" = (
+/obj/structure/chair/office{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/dorms)
+"kL" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/cobweb,
+/obj/structure/sign/poster/official/cleanliness{
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/ship)
+"kM" = (
+/obj/structure/lattice/catwalk/over,
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_battlefield)
+"kQ" = (
+/obj/effect/turf_decal/stripes/white/full{
+	color = "#fb9700"
+	},
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/machinery/door/firedoor/closed,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"kT" = (
+/obj/machinery/suit_storage_unit/open,
+/obj/effect/turf_decal/delivery,
+/obj/effect/turf_decal/stripes/white/corner{
+	dir = 8;
+	color = "#fb9700"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"kU" = (
+/obj/structure/cable/yellow,
+/mob/living/basic/hivebot,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"kV" = (
+/obj/structure/railing{
+	max_integrity = 70
+	},
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/machinery/power/apc/auto_name/north{
+	start_charge = 0
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"li" = (
+/obj/structure/fence/door,
+/obj/structure/cable/yellow,
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield)
+"ln" = (
+/obj/structure/railing{
+	max_integrity = 70
+	},
+/obj/effect/turf_decal/stripes/white/corner{
+	dir = 4;
+	color = "#fb9700"
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"lw" = (
+/obj/machinery/door/airlock,
+/obj/structure/cable,
+/obj/effect/decal/cleanable/blood/tracks,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/green/half{
+	dir = 1;
+	color = "#B7D993";
+	alpha = 140
+	},
+/obj/effect/turf_decal/tile/green/half{
+	color = "#B7D993";
+	alpha = 140
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/ship)
+"lU" = (
+/obj/item/reagent_containers/food/drinks/drinkingglass{
+	pixel_y = -4
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass{
+	pixel_y = -4;
+	pixel_x = -8
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass{
+	pixel_y = -4;
+	pixel_x = 8
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass{
+	pixel_y = 9;
+	pixel_x = 4
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass{
+	pixel_y = 9;
+	pixel_x = -4
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass{
+	pixel_y = 22
+	},
+/obj/structure/table/wood,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"lX" = (
+/obj/structure/railing{
+	max_integrity = 70
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"lY" = (
+/obj/structure/marker_beacon{
+	picked_color = "Lime"
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield)
+"me" = (
+/obj/structure/cable/yellow,
+/obj/effect/turf_decal/stripes/asteroid/line,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield)
+"mg" = (
+/obj/structure/cable,
+/obj/machinery/power/smes,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/ship)
+"mm" = (
+/obj/structure/railing{
+	max_integrity = 70
+	},
+/obj/machinery/airalarm/directional/north,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"ms" = (
+/obj/structure/tank_dispenser/oxygen,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/ship)
+"mt" = (
+/obj/effect/decal/cleanable/oil,
+/obj/effect/decal/cleanable/robot_debris/up,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield)
+"mw" = (
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/structure/lattice/catwalk/over/ship,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"mz" = (
+/obj/effect/turf_decal/tile/yellow{
+	dir = 5;
+	color = "#C3630C";
+	alpha = 140
+	},
+/obj/item/chair{
+	pixel_x = -7;
+	pixel_y = -7
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"mB" = (
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 6
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield)
+"mR" = (
+/obj/structure/closet/crate,
+/obj/item/grenade/chem_grenade/cleaner,
+/obj/item/grenade/chem_grenade/cleaner{
+	pixel_x = 6
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"mX" = (
+/obj/structure/cable/yellow,
+/obj/effect/turf_decal/stripes/asteroid/corner,
+/obj/effect/turf_decal/stripes/asteroid/corner{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield)
+"nb" = (
+/obj/structure/fence{
+	dir = 8
+	},
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_battlefield)
+"ne" = (
+/obj/machinery/computer/monitor{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/green/half{
+	dir = 8;
+	color = "#B7D993";
+	alpha = 140
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/ship)
+"nj" = (
+/obj/effect/turf_decal/stripes/white/line{
+	color = "#fb9700"
+	},
+/obj/effect/turf_decal/caution{
+	dir = 1
+	},
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 10
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"nk" = (
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"nt" = (
+/obj/structure/railing{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/blood/drip,
+/turf/open/floor/plasteel/stairs{
+	dir = 8
+	},
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"nI" = (
+/obj/structure/table/wood,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"nP" = (
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"nR" = (
+/obj/structure/table,
+/obj/structure/reagent_dispensers/beerkeg,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"ov" = (
+/obj/machinery/power/smes{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/ship)
+"ow" = (
+/obj/effect/turf_decal/stripes/white/corner{
+	dir = 8;
+	color = "#fb9700"
+	},
+/obj/structure/cable/yellow,
+/obj/machinery/light,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 6;
+	color = "#C3630C";
+	alpha = 140
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"oz" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral/opposingcorners{
+	alpha = 140
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"oE" = (
+/obj/structure/sign/warning/nosmoking{
+	pixel_x = -28
+	},
+/obj/structure/cable/yellow,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 9;
+	color = "#C3630C";
+	alpha = 140
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"oG" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 6;
+	color = "#75A2BB";
+	alpha = 140
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"oK" = (
+/obj/effect/turf_decal/delivery,
+/obj/item/stack/sheet/mineral/titanium/twenty,
+/obj/item/stack/ore/titanium{
+	amount = 5
+	},
+/obj/structure/closet/crate/secure/plasma,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield)
+"oM" = (
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield)
+"oN" = (
+/obj/effect/turf_decal/delivery/red,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"oQ" = (
+/obj/effect/turf_decal/tile/yellow{
+	dir = 9;
+	color = "#C3630C";
+	alpha = 140
+	},
+/obj/effect/decal/cleanable/dirt{
+	pixel_x = -6;
+	pixel_y = 10
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/dorms)
+"oW" = (
+/obj/structure/closet/crate/trashcart,
+/obj/item/broken_bottle,
+/obj/item/shard,
+/obj/item/reagent_containers/food/drinks/bottle/hooch,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"oY" = (
+/obj/structure/chair/fancy/plastic,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/ship)
+"pc" = (
+/obj/structure/closet,
+/obj/item/clothing/shoes/jackboots,
+/obj/item/clothing/under/rank/engineering/engineer/hazard,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/dorms)
+"pj" = (
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 1
+	},
+/obj/structure/cable/yellow,
+/obj/effect/turf_decal/stripes/asteroid/corner{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/asteroid/corner{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield)
+"pl" = (
+/obj/machinery/door/airlock,
+/obj/structure/barricade/wooden/crude,
+/obj/structure/cable/yellow,
+/obj/effect/mapping_helpers/airlock/locked,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"pt" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral/opposingcorners{
+	alpha = 140
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"pv" = (
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 1;
+	color = "#fb9700"
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"pw" = (
+/obj/effect/turf_decal/tile/yellow{
+	dir = 5;
+	color = "#C3630C";
+	alpha = 140
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"pB" = (
+/obj/effect/turf_decal/stripes/white/corner{
+	dir = 4;
+	color = "#fb9700"
+	},
+/obj/structure/cable/yellow,
+/obj/machinery/power/floodlight,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield)
+"pH" = (
+/obj/machinery/power/port_gen/pacman,
+/obj/effect/turf_decal/delivery,
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"pP" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/green/half{
+	dir = 1;
+	color = "#B7D993";
+	alpha = 140
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 4;
+	color = "#B7D993";
+	alpha = 140
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/ship)
+"pT" = (
+/obj/machinery/vending/coffee,
+/obj/machinery/light,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"pU" = (
+/obj/effect/turf_decal/stripes/white/corner{
+	dir = 1;
+	color = "#fb9700"
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield)
+"qd" = (
+/obj/structure/table/reinforced,
+/obj/machinery/cell_charger,
+/obj/effect/turf_decal/tile/green/half{
+	color = "#B7D993";
+	alpha = 140
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/ship)
+"qf" = (
+/obj/structure/table,
+/obj/effect/turf_decal/tile/neutral/opposingcorners{
+	alpha = 140
+	},
+/obj/structure/sink/kitchen{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/food/flour,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"qn" = (
+/obj/item/trash/sosjerky{
+	pixel_x = 2;
+	pixel_y = -15
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/item/trash/raisins{
+	pixel_x = 11;
+	pixel_y = -13
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"qy" = (
+/mob/living/basic/hivebot/strong,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"qz" = (
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden,
+/obj/structure/lattice/catwalk/over/ship,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"qC" = (
+/obj/structure/window/shuttle,
+/obj/structure/grille,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/ship)
+"qD" = (
+/obj/machinery/power/terminal{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/ship)
+"qX" = (
+/obj/structure/closet/secure_closet/freezer/fridge,
+/obj/item/food/donkpocket,
+/obj/item/food/donkpocket,
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral/fourcorners{
+	alpha = 140
+	},
+/obj/effect/turf_decal/tile/blue/half{
+	dir = 9;
+	color = "#75A2BB";
+	alpha = 140
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"qZ" = (
+/obj/structure/rack,
+/obj/item/storage/toolbox/electrical{
+	pixel_y = 8
+	},
+/obj/item/storage/toolbox/electrical,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"rr" = (
+/obj/structure/chair/fancy/sofa/old/right{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 10;
+	color = "#75A2BB";
+	alpha = 140
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/dorms)
+"rs" = (
+/obj/effect/turf_decal/tile/yellow{
+	dir = 10;
+	color = "#C3630C";
+	alpha = 140
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"ru" = (
+/turf/closed/wall/mineral/titanium/nodiagonal,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/ship)
+"rw" = (
+/obj/effect/turf_decal/delivery,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield)
+"ry" = (
+/obj/structure/spawner/hivebot,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield)
+"rz" = (
+/obj/machinery/shower{
+	pixel_y = 19
+	},
+/obj/structure/curtain,
+/obj/structure/lattice/catwalk/over/ship/light,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/dorms)
+"rF" = (
+/obj/structure/toilet{
+	dir = 8;
+	pixel_x = 4
+	},
+/obj/effect/turf_decal/tile/neutral/fourcorners{
+	alpha = 140
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/dorms)
+"rG" = (
+/turf/closed/wall,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"rL" = (
+/obj/structure/spawner/hivebot,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/dorms)
+"rP" = (
+/obj/effect/turf_decal/delivery,
+/obj/item/stack/cable_coil{
+	pixel_y = 4
+	},
+/obj/item/stack/cable_coil,
+/obj/item/stack/cable_coil{
+	pixel_y = -4
+	},
+/obj/item/stack/cable_coil/cut,
+/obj/structure/closet/crate/engineering/electrical,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"rU" = (
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield)
+"sb" = (
+/obj/effect/turf_decal/delivery,
+/obj/structure/reagent_dispensers/watertank,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"sd" = (
+/obj/machinery/light,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"sr" = (
+/obj/structure/reagent_dispensers/watertank/high,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/ship)
+"sF" = (
+/obj/structure/bed{
+	dir = 4
+	},
+/obj/item/bedsheet/green{
+	dir = 4
+	},
+/obj/structure/curtain,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/ship)
+"sL" = (
+/obj/machinery/vending/snack/orange,
+/obj/effect/turf_decal/tile/blue{
+	dir = 6;
+	color = "#75A2BB";
+	alpha = 140
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"sO" = (
+/mob/living/basic/hivebot/strong,
+/obj/effect/decal/cleanable/blood/old,
+/obj/effect/mob_spawn/human/corpse/charredskeleton,
+/obj/item/wrench,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/dorms)
+"sT" = (
+/obj/item/chair{
+	pixel_x = -13;
+	pixel_y = -7
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"sW" = (
+/obj/structure/cable,
+/obj/structure/bed{
+	dir = 4
+	},
+/obj/item/bedsheet/green{
+	dir = 4
+	},
+/obj/structure/curtain,
+/obj/machinery/light/small/broken{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/ship)
+"tc" = (
+/obj/structure/closet/secure_closet/engineering_welding,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"ty" = (
+/obj/machinery/power/port_gen/pacman,
+/obj/structure/cable/yellow,
+/obj/effect/turf_decal/delivery,
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/ship)
+"tA" = (
+/obj/machinery/portable_atmospherics/canister/oxygen,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/ship)
+"tP" = (
+/obj/structure/cable,
+/obj/effect/turf_decal/tile/green/half{
+	color = "#B7D993";
+	alpha = 140
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/ship)
+"tV" = (
+/turf/open/floor/plating/asteroid/dirt/battlefield,
+/area/ruin/unpowered/planet_battlefield)
+"ud" = (
+/obj/item/stack/ore/iron,
+/obj/item/stack/ore/uranium,
+/obj/structure/lattice/catwalk/over,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield)
+"ui" = (
+/obj/structure/cable/yellow,
+/obj/structure/extinguisher_cabinet/east,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 6;
+	color = "#C3630C";
+	alpha = 140
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"ul" = (
+/obj/effect/turf_decal/tile/green/half{
+	color = "#B7D993";
+	alpha = 140
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/ship)
+"ur" = (
+/obj/structure/railing{
+	max_integrity = 70
+	},
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 9
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"ut" = (
+/obj/structure/cable,
+/obj/machinery/light/small/broken{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/ship)
+"uw" = (
+/obj/structure/cable,
+/obj/machinery/light/small/broken{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/ship)
+"ux" = (
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/ship)
+"uC" = (
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 1;
+	color = "#fb9700"
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield)
+"uD" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 4
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/ship)
+"uI" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/yellow{
+	dir = 9;
+	color = "#C3630C";
+	alpha = 140
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/dorms)
+"uS" = (
+/obj/mecha/working/ripley,
+/obj/effect/turf_decal/delivery,
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"uY" = (
+/obj/machinery/light,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/yellow{
+	dir = 10;
+	color = "#C3630C";
+	alpha = 140
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"va" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"vf" = (
+/obj/machinery/light,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 10;
+	color = "#C3630C";
+	alpha = 140
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"vg" = (
+/obj/effect/turf_decal/delivery,
+/obj/item/storage/belt/utility,
+/obj/item/storage/belt/utility,
+/obj/item/storage/belt/utility,
+/obj/item/weldingtool/largetank,
+/obj/item/weldingtool/largetank,
+/obj/item/weldingtool/largetank,
+/obj/structure/closet/crate/engineering,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"vn" = (
+/obj/structure/cable/yellow,
+/obj/machinery/mineral/stacking_unit_console{
+	pixel_y = 28
+	},
+/obj/effect/turf_decal/tile/yellow{
+	dir = 6;
+	color = "#C3630C";
+	alpha = 140
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"vu" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/yellow{
+	dir = 10;
+	color = "#C3630C";
+	alpha = 140
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/dorms)
+"vw" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 5;
+	color = "#C3630C";
+	alpha = 140
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/dorms)
+"vz" = (
+/obj/structure/table/reinforced,
+/obj/item/reagent_containers/glass/waterbottle/large{
+	pixel_y = 20;
+	pixel_x = 10
+	},
+/obj/item/radio{
+	dir = 4
+	},
+/obj/machinery/light/small/broken{
+	dir = 4
+	},
+/obj/item/reagent_containers/food/drinks/soda_cans/lemon_lime{
+	pixel_x = 9
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/ship)
+"vA" = (
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"vH" = (
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"vL" = (
+/obj/item/kirbyplants/dead,
+/obj/effect/turf_decal/tile/green/half{
+	dir = 6;
+	color = "#B7D993";
+	alpha = 140
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/ship)
+"vM" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 9;
+	color = "#75A2BB";
+	alpha = 140
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"vN" = (
+/obj/effect/decal/cleanable/ash,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield)
+"vU" = (
+/obj/machinery/ltsrbt,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"vW" = (
+/mob/living/basic/hivebot/range,
+/obj/structure/lattice/catwalk/over,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield)
+"vX" = (
+/obj/item/stack/ore/titanium,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield)
+"vY" = (
+/obj/structure/cable/yellow,
+/obj/structure/extinguisher_cabinet/west,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 9;
+	color = "#C3630C";
+	alpha = 140
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"wd" = (
+/obj/machinery/door/airlock/external,
+/obj/effect/turf_decal/stripes/white/full{
+	color = "#fb9700"
+	},
+/obj/structure/cable/yellow,
+/obj/machinery/door/firedoor,
+/obj/effect/mapping_helpers/airlock/locked,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"we" = (
+/obj/effect/turf_decal/delivery,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"wf" = (
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 4;
+	color = "#fb9700"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 10
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"wg" = (
+/obj/structure/table,
+/obj/effect/turf_decal/tile/neutral/opposingcorners{
+	alpha = 140
+	},
+/obj/item/food/canned/beans{
+	pixel_x = 6;
+	pixel_y = 14
+	},
+/obj/item/food/canned/peaches,
+/obj/item/food/canned/beans{
+	pixel_x = 6;
+	pixel_y = 8
+	},
+/obj/item/food/canned/beans{
+	pixel_x = 6;
+	pixel_y = 2
+	},
+/obj/item/trash/can{
+	pixel_x = -6;
+	pixel_y = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"wk" = (
+/obj/effect/turf_decal/tile/yellow{
+	dir = 6;
+	color = "#C3630C";
+	alpha = 140
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/dorms)
+"wA" = (
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"wC" = (
+/obj/machinery/power/smes,
+/obj/structure/cable/yellow,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"wE" = (
+/obj/structure/chair/stool/bar{
+	dir = 1;
+	pixel_y = 12
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 9;
+	color = "#75A2BB";
+	alpha = 140
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"wR" = (
+/obj/effect/turf_decal/tile/yellow{
+	color = "#C3630C";
+	alpha = 140
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/dorms)
+"wT" = (
+/obj/effect/turf_decal/tile/yellow{
+	dir = 10;
+	color = "#C3630C";
+	alpha = 140
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/dorms)
+"wU" = (
+/obj/structure/table/reinforced,
+/obj/item/radio/off{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/ship)
+"wW" = (
+/obj/machinery/shower{
+	pixel_y = 19
+	},
+/obj/structure/curtain,
+/obj/item/soap/nanotrasen,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/ship)
+"xf" = (
+/obj/structure/cable/yellow,
+/obj/machinery/firealarm/directional/east,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 6;
+	color = "#C3630C";
+	alpha = 140
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"xj" = (
+/obj/effect/turf_decal/delivery/white{
+	color = "#3f84d1"
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield)
+"xk" = (
+/obj/machinery/door/airlock{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/ship)
+"xo" = (
+/obj/structure/chair/stool/bar{
+	dir = 8;
+	pixel_x = -8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"xr" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 4
+	},
+/obj/structure/cable/green,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/ship)
+"xu" = (
+/obj/structure/cable,
+/obj/structure/extinguisher_cabinet/south,
+/obj/effect/turf_decal/tile/green/half{
+	dir = 8;
+	color = "#B7D993";
+	alpha = 140
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/ship)
+"xy" = (
+/obj/item/kirbyplants/dead,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 5;
+	color = "#C3630C";
+	alpha = 140
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"xI" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 9;
+	color = "#C3630C";
+	alpha = 140
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/dorms)
+"xK" = (
+/obj/structure/reagent_dispensers/fueltank,
+/obj/structure/sign/warning/explosives{
+	pixel_x = -28
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"xN" = (
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/ship)
+"xP" = (
+/obj/structure/railing{
+	max_integrity = 70
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"xT" = (
+/obj/machinery/washing_machine,
+/obj/machinery/light/small/broken{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/ship)
+"xV" = (
+/obj/machinery/mech_bay_recharge_port{
+	dir = 2
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"xZ" = (
+/obj/structure/marker_beacon{
+	picked_color = "Burgundy"
+	},
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_battlefield)
+"yd" = (
+/obj/effect/turf_decal/delivery/red,
+/obj/item/stack/ore/uranium{
+	amount = 5
+	},
+/obj/item/stack/ore/uranium{
+	pixel_y = -6;
+	amount = 5
+	},
+/obj/item/stack/ore/uranium{
+	pixel_y = 5
+	},
+/obj/structure/closet/crate/radiation,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"yg" = (
+/obj/structure/bed,
+/obj/item/bedsheet/brown,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/dorms)
+"yi" = (
+/obj/structure/chair/stool/bar{
+	dir = 1;
+	pixel_y = 12
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on,
+/obj/effect/turf_decal/tile/blue{
+	color = "#75A2BB";
+	alpha = 140
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"yt" = (
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/dorms)
+"yA" = (
+/obj/effect/turf_decal/stripes/white/corner{
+	color = "#fb9700"
+	},
+/obj/structure/closet/bombcloset,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 9;
+	color = "#C3630C";
+	alpha = 140
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"yN" = (
+/obj/structure/cable/yellow,
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield)
+"za" = (
+/obj/effect/turf_decal/stripes/white/corner{
+	color = "#fb9700"
+	},
+/obj/structure/cable/yellow,
+/obj/machinery/light,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 9;
+	color = "#C3630C";
+	alpha = 140
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"zd" = (
+/obj/effect/decal/cleanable/oil,
+/obj/structure/reagent_dispensers/fueltank,
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"zi" = (
+/turf/closed/wall,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"zx" = (
+/obj/structure/table/wood,
+/obj/machinery/chem_dispenser/drinks/beer{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/cobweb,
+/obj/effect/turf_decal/tile/blue{
+	dir = 9;
+	color = "#75A2BB";
+	alpha = 140
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"zy" = (
+/obj/structure/closet/crate/bin,
+/obj/item/trash/syndi_cakes,
+/obj/effect/turf_decal/tile/blue{
+	dir = 10;
+	color = "#75A2BB";
+	alpha = 140
+	},
+/obj/effect/decal/cleanable/plasma,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/dorms)
+"zA" = (
+/obj/structure/rack,
+/obj/effect/turf_decal/stripes/white/corner{
+	dir = 8;
+	color = "#fb9700"
+	},
+/obj/machinery/light,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"zI" = (
+/obj/structure/lattice/catwalk/over,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield)
+"zJ" = (
+/obj/structure/sink{
+	dir = 8;
+	pixel_x = 11
+	},
+/obj/structure/mirror{
+	pixel_x = 28
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/ship)
+"zN" = (
+/obj/structure/bed,
+/obj/item/bedsheet/grey,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/dorms)
+"zO" = (
+/obj/structure/table/wood/fancy/orange,
+/obj/item/flashlight/lamp/green,
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/dorms)
+"zQ" = (
+/obj/machinery/atmospherics/components/unary/passive_vent{
+	dir = 4
+	},
+/turf/open/floor/plating/asteroid/dirt/battlefield,
+/area/ruin/unpowered/planet_battlefield)
+"Ac" = (
+/obj/item/storage/bag/plants,
+/obj/item/plant_scanner,
+/obj/item/cultivator{
+	pixel_x = -4
+	},
+/obj/item/shovel/spade{
+	pixel_x = 6
+	},
+/obj/structure/rack,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/ship)
+"An" = (
+/obj/structure/sign/poster/contraband/missing_gloves{
+	pixel_y = 32
+	},
+/obj/effect/turf_decal/tile/yellow{
+	dir = 5;
+	color = "#C3630C";
+	alpha = 140
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"Ay" = (
+/mob/living/basic/hivebot/range,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield)
+"Az" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/blood/tracks,
+/obj/effect/turf_decal/tile/green{
+	dir = 8;
+	color = "#B7D993";
+	alpha = 140
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 1;
+	color = "#B7D993";
+	alpha = 140
+	},
+/obj/structure/spawner/hivebot,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/ship)
+"AD" = (
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 1;
+	color = "#fb9700"
+	},
+/obj/effect/turf_decal/caution,
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield)
+"AJ" = (
+/obj/structure/cable/yellow,
+/obj/machinery/power/floodlight,
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield)
+"AS" = (
+/obj/structure/table,
+/obj/item/stamp/quartermaster{
+	pixel_y = 4;
+	pixel_x = 14
+	},
+/obj/item/stamp{
+	pixel_x = 14
+	},
+/obj/item/stamp/denied{
+	pixel_y = -4;
+	pixel_x = 14
+	},
+/obj/item/paper,
+/obj/item/pen,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/dorms)
+"AZ" = (
+/obj/machinery/computer/mech_bay_power_console{
+	dir = 8
+	},
+/obj/structure/sign/warning/electricshock{
+	pixel_x = 28
+	},
+/obj/machinery/light/broken{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"Bc" = (
+/obj/machinery/door/airlock/engineering,
+/obj/structure/cable/yellow,
+/obj/structure/barricade/wooden/crude,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"Bh" = (
+/obj/structure/chair/fancy/comfy,
+/obj/item/toy/plush/snakeplushie,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/dorms)
+"Bi" = (
+/obj/effect/turf_decal/tile/yellow{
+	dir = 10;
+	color = "#C3630C";
+	alpha = 140
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"Bl" = (
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 10;
+	color = "#C3630C";
+	alpha = 140
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"Bp" = (
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/blood/drip,
+/obj/effect/turf_decal/tile/blue{
+	dir = 6;
+	color = "#75A2BB";
+	alpha = 140
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"Bs" = (
+/mob/living/basic/hivebot,
+/turf/open/floor/plating/asteroid/dirt/battlefield,
+/area/ruin/unpowered/planet_battlefield)
+"BJ" = (
+/obj/structure/sign/warning/docking{
+	pixel_y = 32
+	},
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 5
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield)
+"BL" = (
+/obj/structure/table_frame,
+/obj/item/stack/ore/iron,
+/obj/item/wirecutters,
+/obj/item/screwdriver{
+	pixel_x = 7;
+	pixel_y = -8
+	},
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 5;
+	color = "#75A2BB";
+	alpha = 140
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/dorms)
+"BU" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
+/obj/machinery/door/firedoor/window,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"Ck" = (
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/green/half{
+	color = "#B7D993";
+	alpha = 140
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/ship)
+"Cu" = (
+/obj/effect/turf_decal/delivery,
+/mob/living/basic/hivebot/range,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield)
+"CA" = (
+/obj/structure/cable,
+/obj/structure/closet,
+/obj/item/clothing/suit/hooded/wintercoat/captain,
+/obj/item/storage/firstaid/o2,
+/obj/machinery/light/small/broken{
+	dir = 1
+	},
+/obj/item/gun/ballistic/revolver/detective,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/ship)
+"CB" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 6
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"CE" = (
+/obj/effect/turf_decal/delivery,
+/obj/structure/cable,
+/mob/living/basic/hivebot,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"CG" = (
+/obj/structure/table,
+/obj/structure/showcase/machinery/tv{
+	name = "telewizor";
+	desc = "Plątanina kabli i taśmy, która ledwo działa"
+	},
+/obj/item/stack/cable_coil/cut{
+	pixel_y = 10
+	},
+/obj/item/kitchen/fork{
+	pixel_x = 12;
+	name = "nośny widelec"
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 5;
+	color = "#75A2BB";
+	alpha = 140
+	},
+/obj/item/trash/raisins{
+	pixel_x = -12;
+	pixel_y = -2
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/dorms)
+"CJ" = (
+/obj/structure/chair/office{
+	dir = 8
+	},
+/obj/item/gps{
+	gpstag = "Distress Signal"
+	},
+/obj/effect/mob_spawn/human/corpse/charredskeleton,
+/obj/effect/decal/cleanable/blood/old,
+/obj/item/screwdriver/caravan,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"CS" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"CZ" = (
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 9;
+	color = "#75A2BB";
+	alpha = 140
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"Dk" = (
+/obj/effect/mob_spawn/human/corpse/charredskeleton,
+/obj/effect/decal/cleanable/blood/old,
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/structure/lattice/catwalk/over/ship,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"Ds" = (
+/obj/structure/fence{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield)
+"Dv" = (
+/obj/structure/closet,
+/obj/item/clothing/shoes/workboots,
+/obj/item/clothing/under/rank/engineering/engineer/hazard,
+/obj/item/clothing/head/hardhat,
+/obj/item/trash/chips,
+/obj/structure/sign/poster/contraband/hacking_guide{
+	pixel_x = 28
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/dorms)
+"Ed" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 10
+	},
+/obj/effect/turf_decal/tile/green/half{
+	dir = 1;
+	color = "#B7D993";
+	alpha = 140
+	},
+/obj/effect/turf_decal/tile/green/half{
+	color = "#B7D993";
+	alpha = 140
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/ship)
+"Eg" = (
+/obj/structure/grille/broken,
+/obj/item/stack/rods,
+/obj/item/shard,
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/ship)
+"Ei" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/green/half{
+	color = "#B7D993";
+	alpha = 140
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/ship)
+"Ej" = (
+/obj/structure/railing{
+	max_integrity = 70
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/turf/open/floor/plasteel/stairs{
+	dir = 8
+	},
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"ED" = (
+/obj/structure/railing{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/turf/open/floor/plasteel/stairs{
+	dir = 4
+	},
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"EG" = (
+/obj/structure/table,
+/obj/item/flashlight/lamp,
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/dorms)
+"EJ" = (
+/obj/machinery/cell_charger,
+/obj/structure/table,
+/obj/item/stock_parts/cell/hyper/empty,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"EL" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 5;
+	color = "#75A2BB";
+	alpha = 140
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/dorms)
+"ET" = (
+/obj/structure/chair/fancy/sofa/old/left{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 10;
+	color = "#75A2BB";
+	alpha = 140
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/dorms)
+"Fc" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"Fg" = (
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 5
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield)
+"Fj" = (
+/obj/item/toy/figure/bartender,
+/obj/effect/turf_decal/tile/blue{
+	dir = 6;
+	color = "#75A2BB";
+	alpha = 140
+	},
+/obj/item/gun/energy/e_gun/mini,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"Fo" = (
+/obj/machinery/door/airlock/external,
+/obj/effect/turf_decal/stripes/white/full{
+	color = "#fb9700"
+	},
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/machinery/door/firedoor,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"Fs" = (
+/obj/structure/closet/crate/bin,
+/obj/item/trash/can,
+/obj/item/trash/candy,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 10;
+	color = "#C3630C";
+	alpha = 140
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"FH" = (
+/obj/structure/chair/office{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/dorms)
+"FM" = (
+/obj/structure/table/wood/fancy/orange,
+/obj/item/toy/plush/moth/firewatch,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/dorms)
+"FS" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 5;
+	color = "#C3630C";
+	alpha = 140
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"FW" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/yellow{
+	dir = 5;
+	color = "#C3630C";
+	alpha = 140
+	},
+/obj/structure/table,
+/obj/item/reagent_containers/food/drinks/soda_cans/cola{
+	pixel_y = 13;
+	pixel_x = -6
+	},
+/obj/item/flashlight/lamp,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"FX" = (
+/obj/effect/turf_decal/stripes/white/corner{
+	dir = 1;
+	color = "#fb9700"
+	},
+/obj/structure/extinguisher_cabinet/north,
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_battlefield)
+"Gj" = (
+/obj/structure/rack,
+/obj/item/clothing/glasses/welding,
+/obj/item/weldingtool/largetank,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"Go" = (
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden,
+/obj/structure/lattice/catwalk/over/ship,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/dorms)
+"Gq" = (
+/obj/machinery/door/airlock/external,
+/obj/effect/turf_decal/stripes/white/full{
+	color = "#fb9700"
+	},
+/obj/machinery/door/firedoor,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"Gw" = (
+/obj/effect/turf_decal/stripes/white/line{
+	color = "#fb9700"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 9
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"Gx" = (
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"GC" = (
+/obj/structure/fence,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield)
+"GL" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/yellow{
+	dir = 4;
+	color = "#C3630C";
+	alpha = 140
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/dorms)
+"GP" = (
+/turf/closed/wall/r_wall,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"GQ" = (
+/obj/machinery/door/airlock/external,
+/obj/effect/turf_decal/stripes/white/full{
+	color = "#fb9700"
+	},
+/obj/machinery/door/firedoor,
+/obj/effect/mapping_helpers/airlock/locked,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"GS" = (
+/obj/structure/marker_beacon{
+	picked_color = "Burgundy"
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield)
+"GY" = (
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 8;
+	color = "#C3630C";
+	alpha = 140
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/dorms)
+"Ho" = (
+/obj/structure/table,
+/obj/item/flashlight/lamp,
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/dorms)
+"Hq" = (
+/obj/structure/table,
+/obj/item/paper_bin{
+	pixel_x = -6
+	},
+/obj/item/folder/yellow{
+	pixel_x = 8
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/dorms)
+"Hr" = (
+/obj/structure/cable,
+/obj/machinery/power/apc/auto_name/east{
+	start_charge = 0
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/ship)
+"Hu" = (
+/obj/machinery/suit_storage_unit/open,
+/obj/effect/turf_decal/delivery,
+/obj/effect/turf_decal/stripes/white/corner{
+	dir = 4;
+	color = "#fb9700"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"Hv" = (
+/obj/structure/table,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"Hz" = (
+/obj/machinery/airalarm/directional/west,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 9;
+	color = "#C3630C";
+	alpha = 140
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/dorms)
+"HB" = (
+/obj/structure/chair/fancy/shuttle{
+	dir = 4
+	},
+/obj/item/clothing/shoes/workboots,
+/obj/effect/decal/cleanable/blood/old,
+/obj/effect/turf_decal/tile/green/half{
+	dir = 4;
+	color = "#B7D993";
+	alpha = 140
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/ship)
+"HK" = (
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield)
+"HS" = (
+/obj/effect/turf_decal/tile/neutral/fourcorners{
+	alpha = 140
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/dorms)
+"HV" = (
+/obj/machinery/door/airlock{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/ship)
+"Id" = (
+/obj/machinery/door/airlock{
+	dir = 4
+	},
+/obj/effect/mapping_helpers/airlock/locked,
+/obj/effect/turf_decal/tile/neutral/fourcorners{
+	alpha = 140
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/dorms)
+"If" = (
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"Im" = (
+/obj/effect/turf_decal/tile/green/half{
+	dir = 6;
+	color = "#B7D993";
+	alpha = 140
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/ship)
+"Iy" = (
+/obj/effect/turf_decal/delivery/red,
+/obj/structure/closet/crate/secure/weapon,
+/obj/item/gun/energy/e_gun/mini,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"IB" = (
+/obj/structure/fence/end{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"IE" = (
+/obj/effect/turf_decal/stripes/asteroid/line,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield)
+"II" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 9;
+	color = "#75A2BB";
+	alpha = 140
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"IJ" = (
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 9;
+	color = "#C3630C";
+	alpha = 140
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/dorms)
+"IR" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/drinks/bottle/rum{
+	pixel_y = 8;
+	pixel_x = -4
+	},
+/obj/item/reagent_containers/food/drinks/bottle/rum{
+	pixel_x = -4
+	},
+/obj/item/reagent_containers/food/drinks/bottle/rum{
+	pixel_y = -8;
+	pixel_x = -4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"IU" = (
+/obj/machinery/door/airlock{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/dorms)
+"Jp" = (
+/obj/machinery/door/airlock{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"Jt" = (
+/obj/structure/closet/crate/secure/loot,
+/obj/item/clothing/suit/space/nasavoid,
+/obj/item/clothing/head/helmet/space/nasavoid,
+/obj/item/tank/jetpack/void,
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_battlefield)
+"Ju" = (
+/obj/effect/decal/cleanable/cobweb,
+/obj/item/clothing/suit/space/nasavoid{
+	name = "stary skafander próżniowy";
+	desc = "Stary skafander kosmiczny, którego nikt nie używał od kilkudziesięciu lat."
+	},
+/obj/item/clothing/head/helmet/space/nasavoid{
+	name = "hełm skafandra próżniowego";
+	desc = "Stary hełm skafandra z porysowanym wizjerem."
+	},
+/obj/machinery/suit_storage_unit{
+	storage_type = /obj/item/tank/jetpack/void
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/ship)
+"Jv" = (
+/obj/structure/table/reinforced,
+/obj/item/radio/off{
+	dir = 1
+	},
+/obj/item/reagent_containers/glass/beaker/large{
+	pixel_y = 12;
+	pixel_x = -16
+	},
+/obj/item/reagent_containers/glass/beaker/large{
+	pixel_x = -13;
+	pixel_y = 19
+	},
+/obj/item/reagent_containers/glass/beaker/large{
+	pixel_y = 4;
+	pixel_x = -14
+	},
+/obj/effect/turf_decal/tile/green/half{
+	color = "#B7D993";
+	alpha = 140
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/ship)
+"Jx" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield)
+"JA" = (
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 8;
+	color = "#fb9700"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 6
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"JD" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 10
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"JE" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 5;
+	color = "#75A2BB";
+	alpha = 140
+	},
+/obj/item/kirbyplants/dead{
+	pixel_x = 10;
+	pixel_y = 10
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/dorms)
+"JG" = (
+/obj/structure/table,
+/obj/effect/turf_decal/tile/neutral/fourcorners{
+	alpha = 140
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/dorms)
+"JO" = (
+/obj/structure/table,
+/obj/item/radio/off{
+	pixel_y = 12;
+	pixel_x = -11
+	},
+/obj/item/radio{
+	pixel_y = 11
+	},
+/obj/item/stack/cable_coil/cut{
+	pixel_y = 10
+	},
+/obj/item/stack/sticky_tape,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"JR" = (
+/obj/structure/cable,
+/obj/effect/turf_decal/tile/green/half{
+	dir = 4;
+	color = "#B7D993";
+	alpha = 140
+	},
+/obj/effect/turf_decal/tile/green/half{
+	dir = 8;
+	color = "#B7D993";
+	alpha = 140
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/ship)
+"JS" = (
+/obj/structure/janitorialcart,
+/obj/item/storage/bag/trash,
+/obj/item/mop{
+	pixel_x = -6
+	},
+/obj/item/clothing/shoes/galoshes{
+	pixel_x = 16;
+	pixel_y = -8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"Kj" = (
+/obj/structure/closet/crate/bin,
+/obj/item/trash/boritos,
+/obj/item/trash/candy,
+/obj/item/trash/candy,
+/obj/item/trash/raisins,
+/obj/item/trash/syndi_cakes,
+/obj/item/trash/sosjerky,
+/obj/item/toy/beach_ball/holoball,
+/obj/machinery/light,
+/obj/item/trash/can,
+/obj/item/trash/can,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"Kz" = (
+/obj/structure/closet/secure_closet/engineering_electrical,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"KC" = (
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/ship)
+"KP" = (
+/obj/structure/table,
+/obj/item/food/rationpack,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"La" = (
+/obj/item/radio{
+	dir = 8
+	},
+/obj/structure/table,
+/obj/effect/decal/cleanable/cobweb,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"Lj" = (
+/obj/structure/cable,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/ship)
+"Ln" = (
+/mob/living/basic/hivebot,
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"Lr" = (
+/obj/item/plant_tray,
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/item/plant_seeds/preset/kudzu,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/ship)
+"LD" = (
+/obj/structure/table/wood,
+/obj/structure/sink,
+/obj/effect/turf_decal/tile/blue{
+	dir = 9;
+	color = "#75A2BB";
+	alpha = 140
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"LE" = (
+/obj/structure/fence,
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield)
+"LP" = (
+/obj/structure/fence,
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield)
+"LZ" = (
+/obj/structure/chair/stool/bar{
+	dir = 8;
+	pixel_x = -8
+	},
+/obj/structure/cable/yellow,
+/obj/machinery/power/apc/auto_name/north{
+	start_charge = 0
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"Me" = (
+/obj/effect/turf_decal/stripes/white/line{
+	color = "#fb9700"
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"Mn" = (
+/turf/closed/wall/r_wall,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/dorms)
+"Mr" = (
+/obj/structure/cable,
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/green/half{
+	dir = 4;
+	color = "#B7D993";
+	alpha = 140
+	},
+/obj/effect/turf_decal/tile/green/half{
+	dir = 8;
+	color = "#B7D993";
+	alpha = 140
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/ship)
+"Ms" = (
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 1;
+	color = "#fb9700"
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield)
+"MD" = (
+/obj/machinery/vending/cola/red,
+/obj/effect/turf_decal/tile/blue{
+	dir = 9;
+	color = "#75A2BB";
+	alpha = 140
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"MH" = (
+/obj/structure/extinguisher_cabinet/east,
+/obj/effect/turf_decal/tile/blue{
+	dir = 6;
+	color = "#75A2BB";
+	alpha = 140
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"MN" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/yellow{
+	color = "#C3630C";
+	alpha = 140
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"MR" = (
+/obj/structure/cable/yellow,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 9;
+	color = "#C3630C";
+	alpha = 140
+	},
+/obj/structure/sign/warning/nosmoking{
+	pixel_x = -28
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"MW" = (
+/obj/effect/turf_decal/delivery,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"MY" = (
+/obj/structure/table/reinforced,
+/obj/item/paper_bin{
+	pixel_x = -6
+	},
+/obj/item/folder/yellow{
+	pixel_x = 8
+	},
+/obj/item/pen/fountain{
+	pixel_x = -6;
+	pixel_y = 1
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/ship)
+"Nh" = (
+/turf/closed/mineral/random/jungle/battlefield,
+/area/ruin/unpowered/planet_battlefield)
+"Ni" = (
+/obj/structure/cable/yellow,
+/obj/effect/turf_decal/tile/blue{
+	dir = 10;
+	color = "#75A2BB";
+	alpha = 140
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"Nj" = (
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"Nk" = (
+/obj/structure/rack,
+/obj/item/clothing/glasses/welding,
+/obj/item/weldingtool/largetank,
+/obj/effect/turf_decal/stripes/white/corner{
+	color = "#fb9700"
+	},
+/obj/machinery/light,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"No" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/blood/tracks,
+/obj/machinery/light/small/broken{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/green/half{
+	dir = 1;
+	color = "#B7D993";
+	alpha = 140
+	},
+/obj/effect/turf_decal/tile/green/half{
+	color = "#B7D993";
+	alpha = 140
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/ship)
+"Nt" = (
+/obj/structure/cable/yellow,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 10;
+	color = "#C3630C";
+	alpha = 140
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"Nw" = (
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"Nz" = (
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/dorms)
+"NE" = (
+/obj/machinery/door/airlock{
+	dir = 4
+	},
+/obj/effect/mapping_helpers/airlock/locked,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/dorms)
+"NI" = (
+/obj/structure/table/reinforced,
+/obj/item/food/breadslice/plain,
+/obj/item/food/rationpack{
+	pixel_x = 10;
+	pixel_y = 8
+	},
+/obj/item/plate{
+	pixel_x = -13
+	},
+/obj/item/food/rationpack{
+	pixel_x = 1;
+	pixel_y = 7
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/ship)
+"NM" = (
+/obj/structure/railing{
+	max_integrity = 70
+	},
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 1;
+	color = "#fb9700"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"NP" = (
+/obj/structure/railing{
+	max_integrity = 70
+	},
+/obj/structure/cable/yellow,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"NZ" = (
+/obj/structure/chair{
+	dir = 4
+	},
+/obj/machinery/airalarm/directional/north,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"Oc" = (
+/obj/effect/turf_decal/delivery,
+/obj/item/stack/sheet/iron/twenty,
+/obj/item/stack/sheet/glass{
+	amount = 20
+	},
+/obj/structure/closet/crate/secure/plasma,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"Og" = (
+/obj/structure/table,
+/obj/item/soap,
+/obj/effect/turf_decal/tile/neutral/fourcorners{
+	alpha = 140
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/dorms)
+"Oh" = (
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/ship)
+"On" = (
+/obj/structure/closet,
+/obj/structure/sign/poster/contraband/random{
+	pixel_x = -28
+	},
+/obj/item/clothing/under/rank/engineering/engineer/hazard,
+/obj/item/clothing/head/hardhat/orange,
+/obj/item/clothing/shoes/workboots,
+/obj/item/stack/spacecash/c50,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/dorms)
+"Or" = (
+/obj/item/stack/sheet/plastic,
+/obj/item/stack/ore/iron{
+	amount = 5
+	},
+/obj/item/circuitboard/computer/shuttle,
+/obj/effect/turf_decal/tile/green/half{
+	dir = 4;
+	color = "#B7D993";
+	alpha = 140
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/ship)
+"Ou" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 5
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 6;
+	color = "#75A2BB";
+	alpha = 140
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"Ov" = (
+/obj/item/stack/ore/iron{
+	amount = 5
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/dorms)
+"OF" = (
+/obj/effect/decal/cleanable/blood/old,
+/obj/structure/closet/crate/coffin,
+/obj/effect/mob_spawn/human/corpse/charredskeleton,
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_battlefield)
+"OM" = (
+/obj/structure/table_frame,
+/obj/item/stack/ore/iron,
+/obj/item/paper/crumpled{
+	pixel_x = -3;
+	pixel_y = 3
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/dorms)
+"OR" = (
+/obj/structure/cable/yellow,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield)
+"OU" = (
+/obj/effect/turf_decal/stripes/white/corner{
+	dir = 4;
+	color = "#fb9700"
+	},
+/obj/structure/extinguisher_cabinet/north,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield)
+"OW" = (
+/obj/structure/table,
+/obj/machinery/light,
+/obj/effect/turf_decal/tile/neutral/opposingcorners{
+	alpha = 140
+	},
+/obj/item/kitchen/knife,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"Pe" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/drinks/bottle/absinthe,
+/obj/item/clothing/head/hardhat{
+	pixel_x = 11
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"Pf" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 6;
+	color = "#75A2BB";
+	alpha = 140
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"Pv" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 1;
+	color = "#C3630C";
+	alpha = 140
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/dorms)
+"Py" = (
+/obj/structure/cable,
+/obj/structure/sign/poster/contraband/random{
+	pixel_y = -28
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"PE" = (
+/obj/effect/decal/cleanable/oil,
+/obj/item/stack/ore/uranium,
+/obj/item/stack/ore/iron,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield)
+"PH" = (
+/obj/machinery/power/floodlight,
+/obj/effect/turf_decal/delivery,
+/obj/effect/decal/cleanable/cobweb,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"PO" = (
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/obj/effect/turf_decal/tile/neutral/fourcorners{
+	alpha = 140
+	},
+/obj/effect/turf_decal/tile/blue/half{
+	dir = 5;
+	color = "#75A2BB";
+	alpha = 140
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"PU" = (
+/obj/item/stack/ore/iron{
+	amount = 5
+	},
+/obj/structure/frame,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/ship)
+"Ql" = (
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"Qt" = (
+/obj/structure/closet/crate/trashcart,
+/obj/item/clothing/gloves/color/yellow,
+/obj/effect/turf_decal/tile/neutral/fourcorners{
+	alpha = 140
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/dorms)
+"QE" = (
+/obj/machinery/door/airlock,
+/obj/effect/turf_decal/tile/neutral/fourcorners{
+	alpha = 140
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"QF" = (
+/obj/structure/grille/broken,
+/obj/item/shard,
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/dorms)
+"QH" = (
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/machinery/power/apc/auto_name/west{
+	start_charge = 0
+	},
+/obj/effect/turf_decal/tile/yellow{
+	dir = 9;
+	color = "#C3630C";
+	alpha = 140
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/dorms)
+"QJ" = (
+/obj/structure/cable,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/ship)
+"QM" = (
+/turf/closed/wall,
+/area/ruin/unpowered/planet_battlefield)
+"Ra" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"Ri" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/yellow{
+	dir = 8;
+	color = "#C3630C";
+	alpha = 140
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"Rk" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 10;
+	color = "#75A2BB";
+	alpha = 140
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"Rm" = (
+/obj/structure/railing{
+	max_integrity = 70
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/turf/open/floor/plasteel/stairs{
+	dir = 4
+	},
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"Rv" = (
+/obj/effect/turf_decal/tile/yellow{
+	dir = 5;
+	color = "#C3630C";
+	alpha = 140
+	},
+/obj/structure/chair,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"RM" = (
+/obj/structure/closet/secure_closet/freezer/fridge,
+/obj/item/storage/firstaid/radbgone,
+/obj/item/reagent_containers/food/drinks/beer,
+/obj/effect/turf_decal/tile/neutral/fourcorners{
+	alpha = 140
+	},
+/obj/effect/turf_decal/tile/blue/half{
+	dir = 10;
+	color = "#75A2BB";
+	alpha = 140
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"Sb" = (
+/obj/structure/cable,
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/ship)
+"Si" = (
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"Sj" = (
+/obj/structure/marker_beacon{
+	picked_color = "Burgundy"
+	},
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield)
+"Sy" = (
+/obj/structure/fence/end{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"Sz" = (
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/structure/lattice/catwalk/over/ship,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/dorms)
+"SA" = (
+/obj/item/stack/ore/titanium,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/ship)
+"SF" = (
+/obj/structure/mecha_wreckage/ripley/firefighter,
+/obj/effect/mob_spawn/human/corpse/charredskeleton,
+/obj/effect/decal/cleanable/ash,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield)
+"SH" = (
+/obj/structure/fence/post,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield)
+"SP" = (
+/obj/machinery/door/airlock/external,
+/obj/effect/turf_decal/stripes/white/full{
+	color = "#fb9700"
+	},
+/obj/machinery/door/firedoor/closed,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"SV" = (
+/obj/structure/sign/warning{
+	pixel_x = 32
+	},
+/obj/effect/turf_decal/tile/neutral/fourcorners{
+	alpha = 140
+	},
+/obj/effect/turf_decal/tile/blue/half{
+	dir = 6;
+	color = "#75A2BB";
+	alpha = 140
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"SZ" = (
+/obj/structure/table,
+/obj/item/plate,
+/obj/item/food/badrecipe,
+/obj/item/reagent_containers/food/drinks/soda_cans/space_mountain_wind{
+	pixel_y = 9;
+	pixel_x = -8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"Tb" = (
+/obj/effect/turf_decal/stripes/white/line{
+	color = "#fb9700"
+	},
+/obj/effect/turf_decal/caution{
+	dir = 1
+	},
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 6
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"Tc" = (
+/obj/structure/grille/broken,
+/obj/item/shard,
+/obj/machinery/door/firedoor/window,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"Tn" = (
+/obj/structure/fence/cut/large,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield)
+"To" = (
+/obj/structure/cable,
+/obj/machinery/airalarm/directional/east,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/ship)
+"Tp" = (
+/obj/structure/window/shuttle,
+/obj/structure/grille,
+/obj/structure/curtain,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/ship)
+"Tu" = (
+/obj/machinery/microwave,
+/obj/item/clothing/head/chefhat{
+	pixel_y = 13
+	},
+/obj/structure/table,
+/obj/effect/decal/cleanable/food/flour,
+/obj/item/food/badrecipe,
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/obj/effect/turf_decal/tile/neutral/opposingcorners{
+	alpha = 140
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"TB" = (
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 1
+	},
+/obj/structure/cable/yellow,
+/obj/effect/turf_decal/stripes/asteroid/corner{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/asteroid/corner,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield)
+"TJ" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"TK" = (
+/obj/machinery/door/airlock/external,
+/obj/effect/turf_decal/stripes/white/full{
+	color = "#fb9700"
+	},
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/machinery/door/firedoor/closed,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"TL" = (
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"TM" = (
+/obj/structure/reagent_dispensers/foamtank,
+/obj/item/extinguisher/advanced,
+/obj/structure/sign/warning/nosmoking{
+	pixel_x = 28
+	},
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"Ub" = (
+/obj/effect/decal/cleanable/oil,
+/obj/item/stack/ore/iron{
+	amount = 5
+	},
+/obj/item/stack/ore/plasma,
+/obj/effect/decal/cleanable/robot_debris,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield)
+"Ue" = (
+/turf/template_noop,
+/area/template_noop)
+"Uj" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 5;
+	color = "#C3630C";
+	alpha = 140
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"Un" = (
+/obj/effect/turf_decal/tile/yellow{
+	dir = 5;
+	color = "#C3630C";
+	alpha = 140
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/dorms)
+"Uo" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/structure/table/wood,
+/obj/item/flashlight/lamp/green,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/dorms)
+"Uv" = (
+/obj/machinery/suit_storage_unit/engine,
+/obj/effect/turf_decal/delivery,
+/obj/structure/sign/warning/nosmoking{
+	pixel_x = -28
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"UL" = (
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
+	dir = 1
+	},
+/obj/structure/lattice/catwalk/over/ship,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"UO" = (
+/obj/structure/sign/warning/nosmoking{
+	pixel_x = 28
+	},
+/obj/structure/cable/yellow,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 6;
+	color = "#C3630C";
+	alpha = 140
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"UR" = (
+/obj/structure/closet/crate{
+	name = "skrzynia z racjami"
+	},
+/obj/item/reagent_containers/glass/waterbottle/large,
+/obj/effect/turf_decal/delivery,
+/obj/machinery/light/small/broken{
+	dir = 8
+	},
+/obj/item/food/donkpocket,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/ship)
+"UV" = (
+/obj/structure/railing{
+	dir = 1
+	},
+/obj/structure/cable/yellow,
+/obj/item/multitool{
+	pixel_y = -5;
+	pixel_x = 11
+	},
+/obj/item/screwdriver{
+	pixel_x = -7
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"UX" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/ship)
+"Va" = (
+/obj/structure/cable,
+/obj/machinery/light/small/broken{
+	dir = 4
+	},
+/obj/structure/extinguisher_cabinet/west,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/ship)
+"Vd" = (
+/obj/structure/railing{
+	max_integrity = 70
+	},
+/obj/effect/turf_decal/stripes/white/corner{
+	dir = 1;
+	color = "#fb9700"
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"Vm" = (
+/obj/machinery/vending/snack/teal,
+/obj/item/stack/sticky_tape{
+	pixel_y = 16
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 5;
+	color = "#75A2BB";
+	alpha = 140
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/dorms)
+"Vt" = (
+/obj/structure/grille/broken,
+/obj/item/shard,
+/obj/structure/curtain,
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/dorms)
+"Vx" = (
+/obj/effect/decal/cleanable/blood/drip,
+/obj/effect/turf_decal/tile/blue{
+	dir = 10;
+	color = "#75A2BB";
+	alpha = 140
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"VQ" = (
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 9
+	},
+/obj/structure/marker_beacon{
+	picked_color = "Burgundy"
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield)
+"VS" = (
+/obj/structure/bed{
+	dir = 4
+	},
+/obj/item/bedsheet/qm{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/dorms)
+"VU" = (
+/obj/machinery/door/airlock{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/ship)
+"Wg" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"Wn" = (
+/obj/structure/fence/door,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"Wt" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"WF" = (
+/obj/structure/cable,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/ship)
+"WR" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/blood/tracks,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/ship)
+"Xb" = (
+/obj/structure/cable/yellow,
+/obj/effect/turf_decal/stripes/asteroid/corner{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/asteroid/corner{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield)
+"Xg" = (
+/obj/item/stack/ore/iron,
+/obj/effect/decal/cleanable/blood/gibs/down,
+/obj/item/stack/ore/iron,
+/obj/item/shard,
+/obj/effect/mob_spawn/human/corpse/charredskeleton,
+/obj/item/clothing/head/fedora,
+/obj/structure/sign/poster/official/random{
+	pixel_x = -28
+	},
+/obj/machinery/light/small/broken,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/ship)
+"Xs" = (
+/obj/structure/fence,
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 10
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield)
+"Xt" = (
+/obj/structure/cable/yellow,
+/turf/open/floor/plating/rust,
+/area/ruin/unpowered/planet_battlefield)
+"Xu" = (
+/obj/structure/railing{
+	max_integrity = 70
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/plasteel/stairs{
+	dir = 4
+	},
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"XF" = (
+/obj/structure/chair/stool/bar{
+	dir = 1;
+	pixel_y = 12
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"XN" = (
+/obj/structure/extinguisher_cabinet/west,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"XQ" = (
+/obj/structure/closet/crate{
+	name = "skrzynia z racjami"
+	},
+/obj/item/reagent_containers/glass/waterbottle/large,
+/obj/item/reagent_containers/glass/waterbottle/large,
+/obj/item/reagent_containers/glass/waterbottle/large,
+/obj/effect/turf_decal/delivery,
+/obj/item/food/donkpocket,
+/obj/item/food/donkpocket,
+/obj/item/food/donkpocket,
+/obj/item/food/donkpocket,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/ship)
+"XR" = (
+/obj/structure/railing{
+	max_integrity = 70
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/plasteel/stairs{
+	dir = 8
+	},
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"Yb" = (
+/obj/structure/cable/yellow,
+/obj/structure/sign/poster/contraband/space_cola{
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"Yd" = (
+/obj/structure/cable/yellow,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"Yl" = (
+/obj/structure/fence/post{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield)
+"Yq" = (
+/obj/effect/turf_decal/delivery,
+/obj/structure/closet/crate/secure/loot,
+/obj/effect/mob_spawn/human/corpse/charredskeleton,
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"YT" = (
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
+	dir = 8
+	},
+/obj/structure/lattice/catwalk/over/ship,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/canteen)
+"YX" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/green/half{
+	dir = 1;
+	color = "#B7D993";
+	alpha = 140
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/ship)
+"Zd" = (
+/obj/machinery/washing_machine,
+/obj/effect/turf_decal/tile/neutral/fourcorners{
+	alpha = 140
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/dorms)
+"Zf" = (
+/obj/machinery/vending/cigarette,
+/obj/effect/turf_decal/stripes/full,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"Zh" = (
+/obj/effect/turf_decal/stripes/white/full{
+	color = "#fb9700"
+	},
+/obj/item/stack/ore/iron{
+	amount = 5
+	},
+/obj/machinery/door/firedoor/closed,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"Zq" = (
+/obj/structure/fence/door/opened,
+/obj/effect/decal/cleanable/blood/tracks,
+/obj/structure/cable/yellow,
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield)
+"Zy" = (
+/obj/structure/sign/warning/docking{
+	pixel_y = 32
+	},
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 9
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield)
+"ZF" = (
+/obj/machinery/suit_storage_unit/open,
+/obj/effect/turf_decal/delivery,
+/obj/structure/sign/warning/nosmoking{
+	pixel_x = 28
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"ZK" = (
+/obj/machinery/power/terminal{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/ship)
+"ZM" = (
+/obj/structure/fence,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_battlefield)
+"ZY" = (
+/obj/effect/turf_decal/stripes/white/line{
+	color = "#fb9700"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 5
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/bay)
+"ZZ" = (
+/obj/structure/closet/crate{
+	name = "skrzynia z racjami"
+	},
+/obj/item/reagent_containers/glass/waterbottle/large,
+/obj/item/reagent_containers/glass/waterbottle/large,
+/obj/item/reagent_containers/glass/waterbottle/large,
+/obj/machinery/light/small/broken,
+/obj/item/food/donkpocket,
+/obj/item/food/donkpocket,
+/obj/item/food/donkpocket,
+/obj/item/food/donkpocket,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/planet_battlefield/shipbreaking/ship)
+
+(1,1,1) = {"
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+QM
+QM
+GC
+GC
+GC
+SH
+GC
+GC
+GC
+SH
+GC
+GC
+GC
+SH
+GC
+GC
+GC
+QM
+QM
+"}
+(2,1,1) = {"
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+QM
+Zy
+js
+rU
+oM
+oM
+oM
+rU
+rU
+oM
+oM
+oM
+oM
+oM
+oM
+rU
+eO
+aj
+QM
+"}
+(3,1,1) = {"
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Nh
+Nh
+Nh
+Nh
+Nh
+Nh
+Nh
+Nh
+Nh
+Nh
+Nh
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Nh
+tV
+Ds
+rU
+rU
+rU
+rU
+rU
+gO
+rU
+rU
+rU
+rU
+gO
+gO
+rU
+rU
+rU
+rU
+IE
+Ds
+"}
+(4,1,1) = {"
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Nh
+Nh
+Nh
+Nh
+Nh
+Nh
+Nh
+Nh
+Nh
+Nh
+QM
+Nh
+Nh
+Nh
+Nh
+Nh
+Ue
+Ue
+Ue
+Ue
+Nh
+Nh
+Nh
+Nh
+tV
+Ds
+HK
+zI
+zI
+rU
+zI
+zI
+zI
+zI
+zI
+rU
+rU
+rU
+zI
+zI
+zI
+gO
+IE
+Ds
+"}
+(5,1,1) = {"
+Ue
+Ue
+Ue
+Ue
+Ue
+Nh
+Nh
+Nh
+Nh
+Nh
+Nh
+GP
+GP
+GP
+GP
+gD
+Nh
+Nh
+Nh
+Nh
+Nh
+Nh
+Nh
+Nh
+Nh
+Nh
+Nh
+Nh
+QM
+Nh
+tV
+tV
+Ds
+HK
+gO
+rU
+rU
+rU
+rU
+rU
+rU
+rU
+rU
+rU
+rU
+rU
+rU
+rU
+rU
+IE
+Ds
+"}
+(6,1,1) = {"
+Ue
+Ue
+Ue
+Ue
+Nh
+Nh
+Nh
+GP
+GP
+GP
+GP
+GP
+xy
+gU
+Fs
+gD
+gD
+gD
+gD
+gD
+gD
+gD
+gD
+Nh
+Nh
+Nh
+Nh
+Nh
+Nh
+Nh
+tV
+tV
+Yl
+HK
+xZ
+rU
+ru
+uD
+xr
+ru
+rU
+rU
+rU
+ru
+uD
+xr
+ru
+rU
+lY
+rU
+Yl
+"}
+(7,1,1) = {"
+Ue
+Ue
+Ue
+Nh
+Nh
+Nh
+Nh
+GP
+La
+cq
+vU
+zi
+pw
+nk
+rs
+rG
+PH
+bC
+EJ
+XN
+CE
+pH
+gD
+gD
+Nh
+QM
+Nh
+Nh
+tV
+tV
+tV
+tV
+Ds
+HK
+rU
+rU
+ru
+ov
+dX
+ru
+ru
+qC
+ru
+ru
+ov
+dX
+ru
+rU
+rU
+rU
+Ds
+"}
+(8,1,1) = {"
+Ue
+Ue
+Nh
+Nh
+Nh
+QM
+Nh
+GP
+CJ
+va
+qy
+bV
+FS
+YT
+Bl
+Bc
+go
+wA
+Yd
+Yd
+Nw
+Nw
+Py
+gD
+Nh
+Nh
+Nh
+tV
+tV
+tV
+tV
+tV
+gi
+rU
+rU
+cV
+ru
+ZK
+qD
+ru
+Ju
+ms
+PU
+ru
+qD
+ZK
+ru
+ru
+zI
+IE
+Ds
+"}
+(9,1,1) = {"
+Ue
+Ue
+Nh
+Nh
+Nh
+Nh
+Nh
+GP
+zi
+zi
+zi
+zi
+pw
+mw
+rs
+rG
+tc
+Kz
+vH
+kU
+wC
+bv
+Nw
+gD
+Nh
+Nh
+Nh
+tV
+zQ
+tV
+tV
+tV
+Ds
+HK
+rU
+cV
+ty
+km
+km
+Va
+To
+QJ
+Hr
+ut
+km
+km
+sr
+ru
+rU
+IE
+Ds
+"}
+(10,1,1) = {"
+Ue
+Nh
+Nh
+Nh
+Nh
+GP
+GP
+GP
+oW
+mR
+JS
+zi
+Uj
+qz
+uY
+rG
+rG
+rG
+rG
+rG
+rG
+rG
+gD
+gD
+gD
+gD
+gD
+LE
+ZM
+LE
+LE
+Xs
+Yl
+AJ
+GS
+cV
+jP
+km
+tA
+ru
+ru
+HV
+ru
+ru
+Ac
+ux
+UX
+qC
+lY
+IE
+Yl
+"}
+(11,1,1) = {"
+Ue
+Nh
+Nh
+Nh
+Nh
+GP
+IR
+nR
+If
+Wg
+If
+zi
+pw
+mw
+rs
+rG
+aA
+MR
+cI
+vY
+oE
+za
+gD
+Hu
+Uv
+aE
+gD
+OU
+Jx
+ix
+ix
+rU
+Ds
+yN
+rU
+cV
+mg
+gq
+ru
+ru
+kL
+Mr
+ar
+ru
+ru
+cf
+Lr
+ru
+rU
+IE
+nb
+"}
+(12,1,1) = {"
+Ue
+Nh
+Nh
+Nh
+Nh
+GP
+Fj
+oG
+aU
+Pf
+oG
+zi
+pw
+mw
+rs
+rG
+XR
+TL
+zd
+oN
+yd
+Me
+GQ
+ko
+Ra
+dP
+Gq
+uC
+Jx
+Jt
+ix
+IE
+Ds
+yN
+rU
+cV
+ru
+ru
+ru
+UR
+Oh
+JR
+oY
+ga
+ru
+ru
+ru
+ru
+zI
+IE
+Ds
+"}
+(13,1,1) = {"
+Nh
+Nh
+QM
+Nh
+GP
+GP
+hL
+zi
+zi
+Jp
+zi
+zi
+fu
+UL
+Bl
+aK
+hv
+TL
+Iy
+jL
+oN
+Tb
+wd
+em
+nP
+dM
+Fo
+AD
+kr
+ix
+gO
+rU
+nb
+yN
+rU
+ru
+fd
+uw
+ru
+XQ
+ju
+JR
+oY
+NI
+ru
+sW
+sF
+ru
+rU
+IE
+Ds
+"}
+(14,1,1) = {"
+Nh
+Nh
+Nh
+Nh
+GP
+zx
+vM
+LD
+wE
+II
+MD
+zi
+pw
+mw
+Ql
+rG
+NP
+CB
+fG
+fG
+Gx
+Gw
+GQ
+pv
+Fc
+dP
+Gq
+Ms
+OR
+OR
+OR
+me
+Yl
+yN
+VQ
+WR
+YX
+jb
+aF
+No
+pP
+Az
+cb
+No
+lw
+Ed
+hO
+Tp
+lY
+gO
+Yl
+"}
+(15,1,1) = {"
+Nh
+Nh
+Nh
+Nh
+GP
+Wt
+If
+nI
+XF
+eK
+pT
+zi
+pw
+Dk
+rs
+rG
+kV
+TJ
+Oc
+Ln
+MN
+aL
+gD
+dg
+Gj
+zA
+gD
+pU
+rU
+xj
+xj
+me
+Ds
+yN
+hr
+km
+WF
+xu
+ru
+ru
+fm
+tP
+vL
+ru
+ru
+VU
+ru
+ru
+rU
+gO
+Ds
+"}
+(16,1,1) = {"
+Nh
+Nh
+Nh
+Nh
+GP
+lU
+nI
+Pe
+yi
+Bp
+Ou
+eB
+Ql
+vA
+rs
+BU
+xP
+Ej
+Yq
+rP
+gI
+gD
+gD
+CS
+CS
+CS
+gD
+Sy
+rU
+xj
+OF
+TB
+Zq
+pj
+mB
+Sb
+Ei
+Im
+ZZ
+ru
+ru
+xk
+ru
+ru
+wW
+xN
+zJ
+Tp
+zI
+IE
+Ds
+"}
+(17,1,1) = {"
+Nh
+QM
+Nh
+Nh
+GP
+LZ
+xo
+aD
+Vx
+If
+nt
+zi
+Ql
+vA
+Ql
+Tc
+wf
+ln
+MW
+hj
+Bi
+gD
+gB
+xV
+we
+aV
+xK
+gg
+rU
+gO
+xj
+rU
+Ds
+gO
+rU
+ru
+cV
+Oh
+cV
+ru
+CA
+Lj
+Xg
+ru
+ru
+gL
+ru
+ru
+rU
+IE
+Ds
+"}
+(18,1,1) = {"
+Nh
+Nh
+Nh
+Nh
+GP
+Yb
+kq
+kq
+Ni
+kq
+UV
+pl
+gY
+jm
+Ql
+BU
+Zf
+NM
+TL
+TL
+Bi
+BU
+vH
+Nj
+vH
+vH
+vH
+Wn
+rU
+rU
+rU
+rU
+Yl
+gO
+GS
+rU
+eP
+Oh
+cV
+Jv
+ul
+ul
+Ck
+qd
+ru
+xT
+ru
+rU
+vN
+IE
+Yl
+"}
+(19,1,1) = {"
+Nh
+Nh
+Nh
+Nh
+GP
+NZ
+sT
+aM
+Rk
+If
+ED
+zi
+Ql
+vA
+Si
+BU
+JA
+Vd
+vg
+MW
+Bi
+gD
+AZ
+xV
+uS
+qZ
+TM
+gg
+gO
+oK
+rw
+rU
+Ds
+HK
+rU
+vX
+KC
+KC
+cV
+wU
+cC
+jW
+HB
+MY
+ru
+ru
+ru
+rU
+rU
+rU
+Ds
+"}
+(20,1,1) = {"
+Nh
+Nh
+Nh
+Nh
+GP
+KP
+Hv
+Hv
+ky
+CZ
+bE
+eB
+Si
+vA
+Ql
+BU
+xP
+Rm
+hd
+jg
+sd
+gD
+gD
+CS
+CS
+CS
+gD
+IB
+rU
+gO
+rw
+mX
+li
+Xb
+zI
+zI
+zI
+SA
+eP
+qC
+ne
+vz
+Or
+qC
+ru
+ru
+zI
+zI
+gO
+IE
+Ds
+"}
+(21,1,1) = {"
+Nh
+Nh
+Nh
+Nh
+GP
+JO
+Hv
+SZ
+If
+qn
+Kj
+zi
+pw
+mw
+Ql
+rG
+mm
+hS
+MW
+gy
+Ri
+yA
+gD
+gb
+aC
+Nk
+gD
+pB
+rU
+Cu
+rw
+OR
+Ds
+yN
+rU
+rU
+rU
+er
+rU
+qC
+qC
+ru
+Eg
+qC
+rU
+rU
+rU
+rU
+rU
+IE
+Ds
+"}
+(22,1,1) = {"
+Nh
+Nh
+QM
+Nh
+GP
+jj
+jj
+jj
+MH
+Pf
+sL
+zi
+An
+mw
+rs
+rG
+lX
+JD
+fG
+fG
+dR
+ZY
+SP
+ko
+Ra
+dP
+Zh
+Ms
+OR
+OR
+Xt
+OR
+Yl
+yN
+xZ
+rU
+gO
+rU
+rU
+rU
+rU
+rU
+rU
+rU
+rU
+rU
+rU
+rU
+lY
+IE
+Yl
+"}
+(23,1,1) = {"
+Ue
+Nh
+Nh
+Nh
+GP
+GP
+zi
+zi
+zi
+Jp
+zi
+zi
+FW
+UL
+Nt
+aK
+ur
+TL
+MW
+aG
+Nj
+nj
+TK
+em
+nP
+dM
+kQ
+AD
+Fg
+rw
+rw
+IE
+Ds
+yN
+rU
+gO
+gO
+rU
+rU
+rU
+rU
+rU
+rU
+rU
+rU
+rU
+rU
+rU
+rU
+rU
+Ds
+"}
+(24,1,1) = {"
+Ue
+Nh
+Nh
+Nh
+Nh
+GP
+qX
+RM
+zi
+pt
+qf
+zi
+dl
+vA
+rs
+rG
+Xu
+TL
+TL
+MW
+sb
+Me
+Zh
+pv
+Fc
+dP
+Zh
+uC
+Jx
+gO
+rw
+IE
+Ds
+yN
+zI
+gO
+cG
+zI
+zI
+zI
+rU
+zI
+rU
+zI
+zI
+kM
+vW
+zI
+zI
+rU
+Ds
+"}
+(25,1,1) = {"
+Ue
+Nh
+Nh
+Nh
+Nh
+GP
+PO
+SV
+QE
+oz
+OW
+zi
+mz
+mw
+Si
+rG
+vn
+UO
+xf
+ui
+UO
+ow
+gD
+jM
+ZF
+kT
+gD
+FX
+Jx
+rw
+gO
+rU
+Ds
+yN
+rU
+rU
+rU
+rU
+rU
+ad
+gO
+rU
+rU
+rU
+rU
+rU
+rU
+rU
+rU
+IE
+Ds
+"}
+(26,1,1) = {"
+Ue
+Nh
+Nh
+Nh
+Nh
+GP
+GP
+GP
+zi
+Tu
+wg
+zi
+Rv
+mw
+vf
+rG
+rG
+rG
+rG
+rG
+rG
+rG
+gD
+gD
+gD
+gD
+gD
+LP
+jo
+Tn
+LP
+es
+Yl
+ac
+GS
+PE
+rU
+rU
+gO
+rU
+gO
+rU
+ry
+rU
+rU
+rU
+rU
+gO
+lY
+IE
+Yl
+"}
+(27,1,1) = {"
+Ue
+Ue
+Nh
+Nh
+Nh
+Nh
+Nh
+Mn
+hz
+hz
+hz
+hz
+OM
+Sz
+wT
+hz
+if
+jp
+hz
+Ho
+VS
+hz
+zO
+cZ
+FM
+Mn
+tV
+tV
+bP
+tV
+tV
+tV
+Ds
+HK
+rU
+rU
+SF
+rU
+dc
+gO
+gO
+rU
+rU
+rU
+rU
+rU
+rU
+gO
+rU
+IE
+Ds
+"}
+(28,1,1) = {"
+Ue
+Ue
+Ue
+Nh
+Nh
+Nh
+Nh
+Mn
+Zd
+Zd
+JG
+hz
+vw
+Go
+au
+hz
+gS
+Nz
+hz
+AS
+kz
+hz
+Nz
+sO
+Nz
+Vt
+tV
+tV
+tV
+Nh
+Nh
+tV
+Ds
+HK
+zI
+gO
+rU
+ud
+zI
+zI
+zI
+zI
+gO
+zI
+zI
+zI
+zI
+zI
+zI
+rU
+Ds
+"}
+(29,1,1) = {"
+Ue
+Ue
+Ue
+Nh
+Nh
+Nh
+Nh
+Mn
+HS
+HS
+Qt
+hz
+Un
+Sz
+wT
+hz
+Dv
+Nz
+hz
+Hq
+hm
+hz
+ej
+Nz
+Mn
+Mn
+tV
+tV
+tV
+Nh
+Nh
+tV
+Ds
+HK
+rU
+rU
+Ub
+rU
+rU
+rU
+rU
+rU
+rU
+gO
+gO
+rU
+rU
+rU
+rU
+rU
+Ds
+"}
+(30,1,1) = {"
+Ue
+Ue
+Ue
+Ue
+Nh
+Nh
+Nh
+Mn
+hz
+dT
+hz
+hz
+Un
+Sz
+wT
+hz
+hz
+NE
+hz
+hz
+IU
+hz
+hz
+Ov
+Mn
+tV
+tV
+Nh
+tV
+Nh
+Nh
+Nh
+Yl
+rU
+vN
+mt
+rU
+Ay
+rU
+rU
+rU
+rU
+gO
+gO
+rU
+rU
+rU
+rU
+lY
+IE
+Yl
+"}
+(31,1,1) = {"
+Ue
+Ue
+Ue
+Ue
+Nh
+Nh
+Nh
+Mn
+oQ
+hk
+Hz
+xI
+Pv
+fz
+GY
+IJ
+IJ
+IJ
+QH
+xI
+uI
+hk
+hk
+hk
+Mn
+tV
+tV
+tV
+tV
+Nh
+Nh
+Nh
+Ds
+HK
+gO
+rU
+rU
+rU
+rU
+rU
+rU
+rU
+rU
+rU
+rU
+rU
+rU
+gO
+rU
+rU
+Ds
+"}
+(32,1,1) = {"
+Ue
+Ue
+Ue
+Ue
+Nh
+Nh
+Nh
+Mn
+wk
+wk
+dy
+wk
+GL
+cd
+wR
+wk
+wk
+wk
+dy
+wk
+wk
+wk
+wk
+wk
+Mn
+tV
+tV
+tV
+tV
+tV
+tV
+Nh
+Ds
+HK
+gO
+zI
+zI
+zI
+rU
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+gO
+IE
+Ds
+"}
+(33,1,1) = {"
+Ue
+Ue
+Ue
+Ue
+Nh
+Nh
+Nh
+Mn
+hz
+Id
+hz
+hz
+EL
+gc
+vu
+hz
+hz
+IU
+hz
+hz
+NE
+hz
+hz
+IU
+Mn
+Nh
+Nh
+tV
+tV
+tV
+tV
+tV
+Ds
+HK
+rU
+rU
+rU
+gO
+rU
+rU
+rU
+rU
+rU
+rU
+rU
+rU
+gO
+gO
+gO
+IE
+Ds
+"}
+(34,1,1) = {"
+Ue
+Ue
+Ue
+Ue
+Nh
+QM
+Nh
+Mn
+Og
+HS
+jY
+hz
+JE
+yt
+zy
+hz
+On
+Nz
+hz
+aR
+Nz
+hz
+pc
+Nz
+Mn
+Nh
+Nh
+tV
+tV
+tV
+tV
+tV
+QM
+BJ
+Sj
+bA
+rU
+rU
+rU
+bA
+rU
+gO
+bA
+bA
+rU
+bA
+bA
+rU
+lY
+kb
+QM
+"}
+(35,1,1) = {"
+Ue
+Ue
+Ue
+Ue
+Nh
+Nh
+Nh
+Mn
+rz
+HS
+rF
+hz
+Vm
+yt
+ET
+hz
+dV
+Nz
+hz
+FH
+Nz
+hz
+Bh
+Nz
+Mn
+Nh
+Nh
+Nh
+tV
+tV
+tV
+tV
+QM
+QM
+GC
+GC
+GC
+SH
+GC
+GC
+GC
+SH
+GC
+GC
+aZ
+SH
+GC
+GC
+GC
+QM
+QM
+"}
+(36,1,1) = {"
+Ue
+Ue
+Ue
+Ue
+Nh
+Nh
+Nh
+Mn
+Mn
+Mn
+Mn
+Mn
+CG
+rL
+gE
+hz
+kx
+ik
+hz
+EG
+zN
+hz
+Uo
+yg
+Mn
+Nh
+Nh
+Nh
+tV
+tV
+tV
+tV
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+"}
+(37,1,1) = {"
+Ue
+Ue
+Ue
+Ue
+Ue
+Nh
+Nh
+Nh
+Nh
+Nh
+Nh
+Mn
+BL
+yt
+rr
+Mn
+Mn
+Mn
+Mn
+Mn
+Mn
+Mn
+Mn
+Mn
+Mn
+Nh
+Nh
+tV
+tV
+tV
+tV
+Nh
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+"}
+(38,1,1) = {"
+Ue
+Ue
+Ue
+Ue
+Ue
+Nh
+Nh
+Nh
+QM
+Nh
+Nh
+Mn
+QF
+eM
+eM
+Mn
+Nh
+Nh
+Nh
+Nh
+Nh
+Nh
+Nh
+Nh
+Nh
+Nh
+Nh
+tV
+tV
+tV
+tV
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+"}
+(39,1,1) = {"
+Ue
+Ue
+Ue
+Ue
+Ue
+Nh
+Nh
+Nh
+Nh
+Nh
+Nh
+tV
+tV
+tV
+tV
+tV
+Nh
+Nh
+Nh
+Nh
+Nh
+QM
+Nh
+Nh
+QM
+Nh
+Nh
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+"}
+(40,1,1) = {"
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Nh
+Nh
+Nh
+Nh
+Nh
+Nh
+Bs
+tV
+tV
+tV
+Nh
+QM
+Nh
+Nh
+Nh
+Nh
+Nh
+Nh
+Nh
+Nh
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+"}
+(41,1,1) = {"
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Nh
+Nh
+QM
+Nh
+Nh
+tV
+tV
+Nh
+Nh
+Nh
+Nh
+Nh
+Nh
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+"}
+(42,1,1) = {"
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Nh
+Nh
+Nh
+Nh
+tV
+tV
+Nh
+Nh
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+"}
+(43,1,1) = {"
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Nh
+Nh
+Nh
+Nh
+tV
+tV
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+Ue
+"}

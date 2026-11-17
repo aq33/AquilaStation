@@ -1,0 +1,69 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"h" = (
+/obj/effect/decal/cleanable/ash{
+	pixel_y = -5;
+	 pixel_x = -8
+	},
+/obj/effect/decal/cleanable/ash{
+	pixel_x = 7;
+	 pixel_y = -2
+	},
+/obj/effect/decal/cleanable/ash{
+	pixel_x = 7;
+	 pixel_y = 14
+	},
+/obj/effect/decal/cleanable/ash{
+	pixel_x = -8;
+	 pixel_y = 12
+	},
+/obj/effect/decal/cleanable/ash/large{
+	pixel_y = 1
+	},
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"i" = (
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"l" = (
+/obj/structure/flora/rock,
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"D" = (
+/turf/template_noop,
+/area/template_noop)
+"M" = (
+/obj/structure/spacevine/weak,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"P" = (
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+
+(1,1,1) = {"
+M
+M
+M
+P
+D
+"}
+(2,1,1) = {"
+M
+l
+i
+P
+D
+"}
+(3,1,1) = {"
+D
+i
+h
+l
+P
+"}
+(4,1,1) = {"
+D
+l
+i
+i
+D
+"}
