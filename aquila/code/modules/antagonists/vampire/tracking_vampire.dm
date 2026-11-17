@@ -21,7 +21,10 @@
 					vassal.monitor.updating.hud_used.team_finder_arrows -= arrow
 				qdel(arrow)
 		UnregisterSignal(tracker, COMSIG_PARENT_QDELETING)
-		QDEL_NULL(tracker)
+		if(QDELING(tracker)) // wołane z on_tracker_deleted(): namiernik już jest usuwany
+			tracker = null
+		else
+			QDEL_NULL(tracker)
 
 /// Namiernik usunięty razem z ciałem: zdejmij go z sieci wasali i zapomnij
 /datum/antagonist/vampire/proc/on_tracker_deleted(datum/source)

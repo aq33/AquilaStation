@@ -1492,7 +1492,8 @@ GLOBAL_LIST_INIT(blood_communion, list())
 
 /obj/abstract/mind_ui_element/hoverable/bloodcult_ritual/faction_ritual/first/UpdateIcon()
 	var/datum/team/cult/cult = locate_team(/datum/team/cult)
-	var/datum/antagonist/cult/cultist = GetUser()?.mind?.has_antag_datum(/datum/antagonist/cult)
+	var/mob/user = GetUser()
+	var/datum/antagonist/cult/cultist = user?.mind?.has_antag_datum(/datum/antagonist/cult)
 	overlays.len = 0
 	icon_state = "ritual_cleared"
 	tooltip_title = ""
@@ -1514,7 +1515,8 @@ GLOBAL_LIST_INIT(blood_communion, list())
 
 /obj/abstract/mind_ui_element/hoverable/bloodcult_ritual/faction_ritual/second/UpdateIcon()
 	var/datum/team/cult/cult = locate_team(/datum/team/cult)
-	var/datum/antagonist/cult/cultist = GetUser()?.mind?.has_antag_datum(/datum/antagonist/cult)
+	var/mob/user = GetUser()
+	var/datum/antagonist/cult/cultist = user?.mind?.has_antag_datum(/datum/antagonist/cult)
 	overlays.len = 0
 	icon_state = "ritual_cleared"
 	tooltip_title = ""
@@ -1536,7 +1538,8 @@ GLOBAL_LIST_INIT(blood_communion, list())
 
 /obj/abstract/mind_ui_element/hoverable/bloodcult_ritual/faction_ritual/third/UpdateIcon()
 	var/datum/team/cult/cult = locate_team(/datum/team/cult)
-	var/datum/antagonist/cult/cultist = GetUser()?.mind?.has_antag_datum(/datum/antagonist/cult)
+	var/mob/user = GetUser()
+	var/datum/antagonist/cult/cultist = user?.mind?.has_antag_datum(/datum/antagonist/cult)
 	overlays.len = 0
 	icon_state = "ritual_cleared"
 	tooltip_title = ""
@@ -1563,7 +1566,8 @@ GLOBAL_LIST_INIT(blood_communion, list())
 
 /obj/abstract/mind_ui_element/hoverable/bloodcult_ritual/personal_ritual/first/UpdateIcon()
 	var/datum/team/cult/cult = locate_team(/datum/team/cult)
-	var/datum/antagonist/cult/cultist = GetUser()?.mind?.has_antag_datum(/datum/antagonist/cult)
+	var/mob/user = GetUser()
+	var/datum/antagonist/cult/cultist = user?.mind?.has_antag_datum(/datum/antagonist/cult)
 	overlays.len = 0
 	icon_state = "ritual_cleared"
 	tooltip_title = ""
@@ -1585,7 +1589,8 @@ GLOBAL_LIST_INIT(blood_communion, list())
 
 /obj/abstract/mind_ui_element/hoverable/bloodcult_ritual/personal_ritual/second/UpdateIcon()
 	var/datum/team/cult/cult = locate_team(/datum/team/cult)
-	var/datum/antagonist/cult/cultist = GetUser()?.mind?.has_antag_datum(/datum/antagonist/cult)
+	var/mob/user = GetUser()
+	var/datum/antagonist/cult/cultist = user?.mind?.has_antag_datum(/datum/antagonist/cult)
 	overlays.len = 0
 	icon_state = "ritual_cleared"
 	tooltip_title = ""
