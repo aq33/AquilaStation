@@ -148,7 +148,7 @@
 
 /datum/plant_need/xenoflora/pyrite_peach
 	required_gases = list(GAS_O2 = 0.3)
-	required_reagents = list(/datum/reagent/napalm = 0.05)
+	required_reagents = list(/datum/reagent/sulfur = 0.05) //pirytowa: siarka; napalm i fosfor są na liście toksyn łodygi
 	min_temperature = T0C + 70
 	max_temperature = T0C + 150
 
@@ -374,7 +374,7 @@
 /// Oblanie sokiem z limony przerzuca kawałek w stronę, w którą patrzy cel, chętnie w kosmos
 /datum/reagent/consumable/limonjuice/reaction_mob(mob/living/M, method = TOUCH, reac_volume)
 	. = ..()
-	if(!(method & (TOUCH|VAPOR)) || !isturf(M.loc))
+	if((method != TOUCH && method != VAPOR) || !isturf(M.loc)) //metody reakcji to u nas kolejne liczby, nie flagi
 		return
 	var/distance = min(round(reac_volume / 5, 1) + 1, 5)
 	var/x_offset = 0

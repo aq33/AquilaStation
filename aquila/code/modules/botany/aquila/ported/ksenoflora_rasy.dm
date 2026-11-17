@@ -60,7 +60,7 @@
 
 /datum/plant_need/xenoflora/gummen
 	required_gases = list(GAS_N2 = 0.15)
-	required_reagents = list(/datum/reagent/ammonia = 0.05)
+	required_reagents = list(/datum/reagent/nitrogen = 0.05) //nie amoniak: z wodą w zbiorniku robi się z niego płyn czyszczący
 	min_temperature = T0C - 30
 	max_temperature = T0C + 10
 
@@ -318,7 +318,7 @@
 	name = "zakwit guche"
 	desc = "Czerwony, gorzko-ostry kożuch glonów z ciepłych mórz Moghes. Unathi Yeosa nacierają nim ryby przed suszeniem."
 	icon_state = "gukhe"
-	tastes = list("gorycz" = 2, "ostrość" = 2, "morze" = 1)
+	tastes = list("gorycz" = 2, "pikantność" = 2, "morze" = 1)
 	foodtypes = VEGETABLES
 	grind_results = list(/datum/reagent/consumable/capsaicin = 0)
 
