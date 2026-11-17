@@ -2732,6 +2732,14 @@
 #include "code\modules\unit_tests\aquila_rasy_bee.dm"
 #endif
 
+// Markingi na kończynach (okno postaci, 17.11.2026): po prosthetic_item i voidwalker_traumas, żeby voidwalker nie przebarwiał markingów
+#include "code\modules\mob\living\carbon\human\body_markings\body_markings.dm"
+#include "code\modules\mob\living\carbon\human\body_markings\body_markings_extra.dm"
+#include "code\modules\mob\living\carbon\human\body_markings\body_markings_prefs.dm"
+#ifdef UNIT_TESTS
+#include "code\modules\unit_tests\aquila_body_markings.dm"
+#endif
+
 // Quirki z innych kodów (okno postaci, 17.11.2026): na końcu, bo nadpisują procki modułów dołączonych wyżej (pollution, higiena, medycyna)
 #include "code\datums\traits\extra\nastroj_wspolne.dm"
 #include "code\datums\traits\extra\nastroj_fobie.dm"
