@@ -2775,6 +2775,9 @@
 #include "code\modules\unit_tests\aquila_quirks_extra_zmysly.dm"
 #endif
 
+// Komora testowa okna postaci (zestaw używa ras i przedmiotów z modułów wyżej)
+#include "code\modules\test_chamber\kits\pr_655_okno_postaci.dm"
+
 // Profiler byond-tracy: MUSI być ostatnim include'em całego builda (BYOND inicjuje zmienne statyczne od końca,
 // więc ta rusza pierwsza, przed Master i mapą). Opis: tools/tracy/README.md
 #include "code\modules\tracy\tracy.dm"
