@@ -101,7 +101,7 @@
 	// AquilaMed 5: bez słuchawek człowiek dostaje implant tłumacza (translator_implant.dm), reszta tłumacza kieszonkowego
 	var/obj/item/bodypart/head = get_bodypart(BODY_ZONE_HEAD)
 	if(ishuman(src) && head && IS_ORGANIC_LIMB(head) && !getorganslot(ORGAN_SLOT_AQ_TRANSLATOR))
-		var/obj/item/organ/cyberimp/brain/aq_translator/implant = new()
+		var/obj/item/organ/cyberimp/aq_translator/implant = new()
 		implant.Insert(src, TRUE)
 		to_chat(aq_spawn_reader(M), span_notice("Nie znasz polskiego, a załoga nie zna angielskiego. Implant tłumacza w twojej głowie tłumaczy ci polską mowę, a załoga rozumie cię przez własne czipy."))
 		return

@@ -483,7 +483,7 @@
 	TEST_ASSERT(leg.disabled == BODYPART_DISABLED_PARALYSIS, "Third degree frostbite did not paralyse the leg")
 	var/datum/surgery_operation/limb/debride/debride = new()
 	TEST_ASSERT(debride.state_check(leg), "Debridement cannot save third degree frostbite")
-	third.necrosis_at = world.time - 1
+	third.necrosis_progress = 15 MINUTES
 	third.wound_effects(2)
 	TEST_ASSERT(third.necrotic && !debride.state_check(leg), "Necrotic frostbite can still be saved by debridement")
 	qdel(debride)
@@ -593,9 +593,18 @@
 	var/germs = chest.aq_germs
 	intestines.on_life()
 	TEST_ASSERT(chest.aq_germs > germs, "Punctured intestines let no germs in")
+	// Food from the stomach is partly lost, food straight into the blood (an IV) is not
+	var/obj/item/organ/stomach/stomach = patient.getorganslot(ORGAN_SLOT_STOMACH)
+	stomach.reagents.add_reagent(/datum/reagent/consumable/nutriment, 10)
+	var/stomach_before = stomach.reagents.get_reagent_amount(/datum/reagent/consumable/nutriment)
+	var/blood_before = patient.reagents.get_reagent_amount(/datum/reagent/consumable/nutriment)
+	stomach.digest()
+	var/left_stomach = stomach_before - stomach.reagents.get_reagent_amount(/datum/reagent/consumable/nutriment)
+	var/reached_blood = patient.reagents.get_reagent_amount(/datum/reagent/consumable/nutriment) - blood_before
+	TEST_ASSERT(left_stomach > 0 && reached_blood < left_stomach, "Punctured intestines absorbed everything ([reached_blood] of [left_stomach])")
 	var/nutrition = patient.nutrition
-	patient.adjust_nutrition(100)
-	TEST_ASSERT(patient.nutrition - nutrition < 100, "Punctured intestines absorbed everything")
+	patient.adjust_nutrition(10)
+	TEST_ASSERT(patient.nutrition - nutrition == 10, "Nutrition outside the gut (IV, photosynthesis) is cut by the intestines")
 	TEST_ASSERT(patient.stool_type() >= 6, "Sick intestines give no diarrhea")
 	var/datum/surgery_operation/organ/repair/intestines/enterorrhaphy = new()
 	enterorrhaphy.on_success(intestines, patient, null, list())
@@ -611,6 +620,7 @@
 		TEST_ASSERT(patient.getToxLoss() > tox, "A ruptured bladder does not poison")
 		var/mob/living/carbon/human/medic = allocate(/mob/living/carbon/human)
 		var/obj/item/catheter/catheter = allocate(/obj/item/catheter)
+		catheter.toolspeed = 0.01 // the test does not wait 4 seconds of game time
 		medic.set_combat_mode(FALSE)
 		catheter.attack(patient, medic)
 		tox = patient.getToxLoss()
@@ -1053,4 +1063,176 @@
 
 	var/obj/item/storage/backpack/duffelbag/med/surgery/bag = allocate(/obj/item/storage/backpack/duffelbag/med/surgery)
 	TEST_ASSERT(locate(/obj/item/shears) in bag, "The surgery bag has no amputation shears")
+
+/// Review max fixes: circulation, hypothermia, CPR, scanner
+/datum/unit_test/aquila_med5_review_body
+
+/datum/unit_test/aquila_med5_review_body/Run()
+	// Cold-blooded species sit at room temperature: no hypothermia
+	var/mob/living/carbon/human/lizard = allocate(/mob/living/carbon/human)
+	ADD_TRAIT(lizard, TRAIT_COLDBLOODED, "test")
+	lizard.bodytemperature = T0C + 20
+	TEST_ASSERT(lizard.aq_hypothermia_stage() == 0, "A cold-blooded body at room temperature has hypothermia")
+
+	// A stopped heart with full health still gets CPR on a help click, and the pulse line hides under fake death
+	var/mob/living/carbon/human/patient = allocate(/mob/living/carbon/human)
+	var/mob/living/carbon/human/medic = allocate(/mob/living/carbon/human)
+	var/obj/item/organ/heart/heart = patient.getorganslot(ORGAN_SLOT_HEART)
+	heart.Stop()
+	patient.Unconscious(10 SECONDS)
+	patient.update_mobility()
+	TEST_ASSERT(patient.health >= 0, "The stopped heart lowered health (setup)")
+	TEST_ASSERT(medic.dna.species.aq_wants_cpr(medic, patient), "A lying patient with a stopped heart and full health gets no CPR")
+	heart.Restart()
+	TEST_ASSERT(!medic.dna.species.aq_wants_cpr(medic, patient), "A beating heart gets CPR instead of a shake")
+	ADD_TRAIT(patient, TRAIT_FAKEDEATH, "test")
+	TEST_ASSERT(!length(patient.aq_pulse_scan_lines()), "The pulse line shows through fake death")
+	REMOVE_TRAIT(patient, TRAIT_FAKEDEATH, "test")
+
+	// Albuterol is only made with heat: the survival medipen keeps its epinephrine and salbutamol
+	var/obj/item/reagent_containers/hypospray/medipen/survival/pen = allocate(/obj/item/reagent_containers/hypospray/medipen/survival)
+	TEST_ASSERT(pen.reagents.has_reagent(/datum/reagent/medicine/epinephrine) && !pen.reagents.has_reagent(/datum/reagent/medicine/albuterol), "The survival medipen turned into albuterol")
+
+	// A fist (bodypart passed as def_zone) can rupture the spleen; armor counts
+	var/mob/living/carbon/human/boxed = allocate(/mob/living/carbon/human)
+	var/obj/item/organ/spleen/spleen = boxed.getorganslot(ORGAN_SLOT_SPLEEN)
+	var/obj/item/bodypart/chest = boxed.get_bodypart(BODY_ZONE_CHEST)
+	TEST_ASSERT(aq_damage_zone(chest) == BODY_ZONE_CHEST, "A bodypart zone is not read")
+	for(var/i in 1 to 300)
+		if(spleen.ruptured)
+			break
+		boxed.apply_damage(16, BRUTE, chest)
+		boxed.adjustBruteLoss(-16)
+	TEST_ASSERT(spleen.ruptured, "Blows passing the bodypart never ruptured the spleen")
+	boxed.fully_heal(TRUE)
+	TEST_ASSERT(!spleen.ruptured, "A full heal left the spleen ruptured")
+
+	// A milder wound from treatment rolls no new nerve cut; the brain stem survives a spine injury
+	var/mob/living/carbon/human/stitched = allocate(/mob/living/carbon/human)
+	var/obj/item/bodypart/arm = stitched.get_bodypart(BODY_ZONE_L_ARM)
+	for(var/i in 1 to 60)
+		var/datum/wound/slash/artery/artery = new()
+		artery.apply_wound(arm, silent = TRUE)
+		arm.aq_nerve_cut = FALSE
+		var/datum/wound/milder = artery.replace_with(/datum/wound/slash/deep)
+		qdel(milder)
+		TEST_ASSERT(!arm.aq_nerve_cut, "Suturing an artery cut the nerve")
+	stitched.aq_disconnect_brainstem()
+	stitched.aq_injure_spine(WOUND_SEVERITY_CRITICAL)
+	var/obj/item/bodypart/stitched_chest = stitched.get_bodypart(BODY_ZONE_CHEST)
+	TEST_ASSERT(istype(stitched_chest.get_wound(WOUND_SPINE), /datum/wound/spinal/brainstem), "A spine injury replaced the unjoined brain stem")
+
+	// A splint stays on a fracture that changes severity; a dressed burn clears its infection
+	var/obj/item/bodypart/leg = stitched.get_bodypart(BODY_ZONE_R_LEG)
+	var/datum/wound/blunt/fracture/fracture = new()
+	fracture.apply_wound(leg, silent = TRUE)
+	fracture.splinted = TRUE
+	var/datum/wound/blunt/worse = fracture.replace_with(/datum/wound/blunt/compound)
+	TEST_ASSERT(istype(worse) && worse.splinted, "The splint fell off when the fracture got worse")
+	TEST_ASSERT(!(locate(/obj/item/stack/medical/splint) in get_turf(stitched)), "The splint dropped although it moved to the new wound")
+	qdel(worse)
+	var/obj/item/bodypart/burnt = stitched.get_bodypart(BODY_ZONE_R_ARM)
+	var/datum/wound/burn/third_degree/burn = new()
+	burn.apply_wound(burnt, silent = TRUE)
+	burn.treated = TRUE
+	burnt.aq_germs = 40
+	burn.wound_effects(2)
+	TEST_ASSERT(burnt.aq_germs < 40, "A burn dressed with mesh keeps its infection")
+	qdel(burn)
+
+/// Review max fixes: organs, implants, addictions, machines
+/datum/unit_test/aquila_med5_review_items
+
+/datum/unit_test/aquila_med5_review_items/Run()
+	var/mob/living/carbon/human/patient = allocate(/mob/living/carbon/human)
+
+	// "Set exactly X" ignores the upgrade multiplier: a brain set to max still fails
+	var/obj/item/organ/brain/brain = patient.getorganslot(ORGAN_SLOT_BRAIN)
+	brain.aq_damage_mult = 0.9
+	brain.setOrganDamage(brain.maxHealth)
+	TEST_ASSERT(brain.damage == brain.maxHealth, "A brain with an upgrade cannot be set to max damage ([brain.damage])")
+	brain.aq_damage_mult = 1
+	brain.setOrganDamage(0)
+
+	// Removing the durable membrane from a dead organ leaves it dead
+	var/obj/item/organ/liver/liver = allocate(/obj/item/organ/liver)
+	liver.setOrganDamage(liver.maxHealth)
+	var/obj/item/aq_organ_mod/durable/durable = new(patient.loc)
+	patient.put_in_active_hand(durable)
+	durable.try_apply(liver, patient)
+	TEST_ASSERT(!(liver.organ_flags & ORGAN_FAILING), "The durable membrane did not lift the failure")
+	patient.dropItemToGround(patient.get_active_held_item())
+	liver.aq_remove_mod(patient)
+	TEST_ASSERT(liver.organ_flags & ORGAN_FAILING, "Removing the membrane brought a dead organ back")
+
+	// A second aberrant organ finds a free slot before surgery checks it
+	var/obj/item/organ/aq_aberrant/first = new()
+	first.Insert(patient)
+	var/obj/item/organ/aq_aberrant/second = allocate(/obj/item/organ/aq_aberrant)
+	second.aq_pick_slot(patient)
+	TEST_ASSERT(second.slot != first.slot && !patient.getorganslot(second.slot), "A second aberrant organ gets no free slot")
+
+	// Claws survive being put away; the translator implant does not stun on EMP
+	var/obj/item/organ/cyberimp/arm/aq_claws/claws = new()
+	claws.Insert(patient)
+	var/obj/item/blades = locate(/obj/item/aq_implant_claws) in claws
+	claws.Extend(blades)
+	claws.Retract()
+	TEST_ASSERT(!QDELETED(blades) && (blades in claws), "The claws vanished when put away")
+	var/obj/item/organ/cyberimp/aq_translator/translator = new()
+	translator.Insert(patient)
+	TEST_ASSERT(HAS_TRAIT(patient, TRAIT_AQ_TRANSLATOR), "The translator implant does not translate")
+	translator.emp_act(EMP_HEAVY)
+	TEST_ASSERT(!patient.IsStun() && !HAS_TRAIT(patient, TRAIT_AQ_TRANSLATOR), "The translator implant stuns or keeps working after an EMP")
+
+	// Bypass tubules never feed past "fed"
+	var/obj/item/organ/eyes/eyes = patient.getorganslot(ORGAN_SLOT_EYES) // eyes do not touch nutrition themselves
+	eyes.aq_hunger = -0.03
+	patient.set_nutrition(NUTRITION_LEVEL_FED + 50)
+	eyes.on_life()
+	TEST_ASSERT(patient.nutrition == NUTRITION_LEVEL_FED + 50, "Bypass tubules feed a full body")
+	patient.set_nutrition(NUTRITION_LEVEL_HUNGRY)
+	eyes.on_life()
+	TEST_ASSERT(patient.nutrition > NUTRITION_LEVEL_HUNGRY, "Bypass tubules spare no food")
+	eyes.aq_hunger = 0
+
+	// Addictions: no false end for someone never addicted, no end every tick while satisfied
+	patient.mind_initialize()
+	patient.disgust = 50
+	patient.mind.aq_add_addiction_points(/datum/addiction/opioids, 500)
+	patient.mind.aq_remove_addiction_points(/datum/addiction/opioids, 300)
+	TEST_ASSERT(patient.disgust == 50, "Losing points of an addiction never had ended a withdrawal")
+	TEST_ASSERT(length(GLOB.chemical_reagents_list[/datum/reagent/consumable/coffee].aq_get_addiction_types()), "Coffee does not feed the coffee addict quirk")
+
+	// The recycler never takes a brain; an empty organ box spends no coolant; the printer gives biomass back
+	var/obj/machinery/aq_biomass_recycler/recycler = allocate(/obj/machinery/aq_biomass_recycler)
+	TEST_ASSERT(!recycler.biomass_value(brain), "The biomass recycler takes a brain")
+	var/obj/item/storage/organbox/box = allocate(/obj/item/storage/organbox)
+	box.reagents.add_reagent(/datum/reagent/consumable/ice, 10)
+	box.process(2)
+	TEST_ASSERT(box.reagents.get_reagent_amount(/datum/reagent/consumable/ice) == 10, "An empty organ box spent coolant")
+	var/obj/machinery/aq_organ_printer/printer = allocate(/obj/machinery/aq_organ_printer)
+	var/turf/printer_turf = get_turf(printer)
+	printer.biomass = 30
+	qdel(printer)
+	var/refunded = 0
+	for(var/obj/item/stack/aq_biomass/cubes in printer_turf)
+		refunded += cubes.amount
+	TEST_ASSERT(refunded == 30, "Taking the printer apart lost the biomass ([refunded])")
+
+	// A fist can knock teeth out
+	var/mob/living/carbon/human/boxer = allocate(/mob/living/carbon/human)
+	boxer.zone_selected = BODY_ZONE_PRECISE_MOUTH
+	var/knocked = 0
+	for(var/i in 1 to 100)
+		knocked += patient.aq_try_knock_teeth(boxer, 7, WEIGHT_CLASS_SMALL, FALSE)
+		if(knocked)
+			break
+	TEST_ASSERT(knocked, "100 punches to the mouth never knocked a tooth out")
+
+	// Green slime extract with blood grows a teratoma
+	var/obj/item/slime_extract/green/extract = allocate(/obj/item/slime_extract/green)
+	var/turf/extract_turf = get_turf(extract) // the reaction uses the extract up
+	extract.reagents.add_reagent(/datum/reagent/blood, 1)
+	TEST_ASSERT(locate(/obj/item/aq_teratoma) in extract_turf, "A green extract with blood grew no teratoma")
 #undef TEST_ASSERT

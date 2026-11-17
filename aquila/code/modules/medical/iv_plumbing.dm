@@ -41,7 +41,7 @@
 /obj/machinery/iv_drip/plumbing/attackby(obj/item/W, mob/user, params)
 	if(is_type_in_typecache(W, drip_containers) || IS_EDIBLE(W))
 		to_chat(user, "<span class='warning'>[src] bierze płyny z rur, nie z pojemników.</span>")
-		return
+		return TRUE // refused: the beaker must not pour into the reservoir in afterattack
 	return ..()
 
 /obj/machinery/iv_drip/plumbing/eject_beaker()

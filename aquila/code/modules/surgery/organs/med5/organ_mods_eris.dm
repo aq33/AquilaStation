@@ -24,9 +24,21 @@
 		d *= aq_damage_mult
 	return ..()
 
+/// "Set exactly X" goes through applyOrganDamage(X - damage): it must not be scaled (a brain set to maxHealth must fail)
+/obj/item/organ/setOrganDamage(d)
+	var/mult = aq_damage_mult
+	aq_damage_mult = 1
+	. = ..()
+	aq_damage_mult = mult
+
 /obj/item/organ/on_life()
 	. = ..()
-	if(aq_hunger && owner && owner.stat != DEAD)
+	if(!aq_hunger || !owner || owner.stat == DEAD)
+		return
+	// A symbiont eats, bypass tubules only spare food: they slow hunger down, never feed past "fed"
+	if(aq_hunger > 0)
+		owner.adjust_nutrition(-aq_hunger)
+	else if(owner.nutrition > 0 && owner.nutrition < NUTRITION_LEVEL_FED)
 		owner.adjust_nutrition(-aq_hunger)
 
 /obj/item/organ/examine(mob/user)
@@ -132,8 +144,10 @@
 	organ.maxHealth /= 1.2
 	organ.low_threshold /= 1.2
 	organ.high_threshold /= 1.2
+	// The thinner membrane fails again; set by hand, applyOrganDamage ignores damage already at or above the cap
 	if(organ.damage >= organ.maxHealth)
-		organ.setOrganDamage(organ.maxHealth) // the thinner membrane fails again
+		organ.damage = organ.maxHealth
+		organ.organ_flags |= ORGAN_FAILING
 
 /obj/item/aq_organ_mod/stem_cells
 	name = "komórki macierzyste"

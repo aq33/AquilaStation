@@ -1,8 +1,8 @@
 // AQUILA - leki AquilaMed 5 z Baystation12 (code/modules/reagents/chemistry/reagents/medicine.dm, Chemistry-Recipes.dm).
 // Przeciwbólowe: paracetamol, tramadol, oksykodon. Siłę przeciwbólową mają w GLOB.aq_painkillers (pain/pain.dm).
 // Na nastrój: citalopram, paroksetyna, metylofenidat (antydepresanty Bay, u nas przez moodlety Bee).
-// Receptury jak w Bay, inaprowalinę zastępuje nasza epinefryna. Uzależnienia: na razie progi z Bee,
-// etap 2 AquilaMed 5 przenosi je na typy z tg (opioidy, stymulanty).
+// Receptury jak w Bay, inaprowalinę zastępuje nasza epinefryna. Progi uzależnień są w
+// addiction_types (reagents/addiction/addiction.dm, uzależnienia z tg).
 
 // --- Przeciwbólowe ---
 
@@ -31,7 +31,6 @@
 	taste_description = "kwaśność"
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
 	overdose_threshold = 30
-	addiction_threshold = 30
 
 /datum/reagent/medicine/tramadol/on_mob_life(mob/living/carbon/M)
 	if(current_cycle > 20 && prob(5))
@@ -54,7 +53,6 @@
 	taste_description = "gorzka mgła"
 	metabolization_rate = 0.3 * REAGENTS_METABOLISM
 	overdose_threshold = 20
-	addiction_threshold = 15
 
 /datum/reagent/medicine/oxycodone/on_mob_life(mob/living/carbon/M)
 	M.drowsyness = max(M.drowsyness, 1)
@@ -142,7 +140,6 @@
 	taste_description = "miętowa gorycz"
 	metabolization_rate = 0.2 * REAGENTS_METABOLISM
 	overdose_threshold = 30
-	addiction_threshold = 20
 
 /datum/reagent/medicine/methylphenidate/on_mob_life(mob/living/carbon/M)
 	M.jitteriness = max(0, M.jitteriness - 5)

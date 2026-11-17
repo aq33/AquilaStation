@@ -125,7 +125,7 @@ GLOBAL_LIST_INIT(aq_pulse_reagents, list(
 		log_message("doznał(a) zatrzymania krążenia: [stop_reason]", LOG_ATTACK)
 		return
 	if(mod < 6)
-		heart.aq_pulse = clamp(AQ_PULSE_NORM + round(mod), AQ_PULSE_SLOW, AQ_PULSE_2FAST)
+		heart.aq_pulse = clamp(AQ_PULSE_NORM + round(mod, 1), AQ_PULSE_SLOW, AQ_PULSE_2FAST)
 	else
 		heart.aq_pulse = AQ_PULSE_THREADY
 	if(blood_volume <= BLOOD_VOLUME_SURVIVE || (aq_pain > 120 && prob(30)))
@@ -149,6 +149,9 @@ GLOBAL_LIST_INIT(aq_pulse_reagents, list(
 		return
 	var/obj/item/organ/brain/brain = getorganslot(ORGAN_SLOT_BRAIN)
 	if(!brain || (brain.organ_flags & ORGAN_SYNTHETIC))
+		// No brain to starve (positronic brain of an IPC): the body wears down instead, as the core did before
+		if(stat != DEAD && undergoing_cardiac_arrest())
+			adjustBruteLoss(2)
 		return
 	// Procent normalnej objętości krwi docierającej do mózgu, progi jak w Bay (85/75/60/30%)
 	var/circulation = 100 * aq_get_circulation() / BLOOD_VOLUME_NORMAL
@@ -179,7 +182,7 @@ GLOBAL_LIST_INIT(aq_pulse_reagents, list(
 /mob/living/carbon/proc/aq_pulse_scan_lines()
 	. = list()
 	var/obj/item/organ/heart/heart = getorganslot(ORGAN_SLOT_HEART)
-	if(!heart || stat == DEAD || (heart.organ_flags & ORGAN_SYNTHETIC))
+	if(!heart || stat == DEAD || HAS_TRAIT(src, TRAIT_FAKEDEATH) || (heart.organ_flags & ORGAN_SYNTHETIC)) // udawana śmierć wygląda jak śmierć
 		return
 	. += "<span class='info'>Tętno: [heart.aq_pulse_text()].</span>"
 
@@ -199,6 +202,9 @@ GLOBAL_LIST_INIT(aq_pulse_reagents, list(
 	if(QDELETED(patient) || patient.stat == DEAD)
 		return
 	patient.aq_cpr_until = world.time + AQ_CPR_DURATION
+	// Rescue breaths as in the core CPR, when both mouths are free
+	if(!HAS_TRAIT(src, TRAIT_NOBREATH) && !is_mouth_covered() && !patient.is_mouth_covered())
+		patient.adjustOxyLoss(-min(patient.getOxyLoss(), 7))
 	visible_message("<span class='notice'>[src] uciska klatkę piersiową [patient] w równym rytmie.</span>", "<span class='notice'>Uciskasz klatkę piersiową [patient]. Krew krąży, dopóki uciskasz.</span>")
 	SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "perform_cpr", /datum/mood_event/perform_cpr)
 	log_combat(src, patient, "uciskał(a) klatkę piersiową (RKO)")
@@ -210,6 +216,23 @@ GLOBAL_LIST_INIT(aq_pulse_reagents, list(
 	if(prob(5))
 		patient.set_heartattack(FALSE)
 		visible_message("<span class='notice'>Serce [patient] znów zaczyna bić!</span>")
+
+/// A stopped heart does not lower health any more (the core only offers CPR below 0 health), so a lying patient
+/// in cardiac arrest gets CPR on a help click too, with the same checks as the core
+/datum/species/help(mob/living/carbon/human/user, mob/living/carbon/human/target, datum/martial_art/attacker_style)
+	if(attacker_style || !aq_wants_cpr(user, target))
+		return ..()
+	if(HAS_TRAIT(user, TRAIT_NOBREATH))
+		to_chat(user, "<span class='notice'>Nie oddychasz, więc nie możesz przeprowadzić resuscytacji.</span>")
+	else if(!user.getorganslot(ORGAN_SLOT_LUNGS))
+		to_chat(user, "<span class='warning'>Nie masz płuc, więc nie możesz przeprowadzić resuscytacji.</span>")
+	else
+		user.do_cpr(target)
+	return TRUE
+
+/// A help click on this target is CPR on a stopped heart that the core would only shake
+/datum/species/proc/aq_wants_cpr(mob/living/carbon/human/user, mob/living/carbon/human/target)
+	return target != user && target.stat != DEAD && target.health >= 0 && !(target.mobility_flags & MOBILITY_STAND) && target.undergoing_cardiac_arrest()
 
 // --- Prąd ---
 

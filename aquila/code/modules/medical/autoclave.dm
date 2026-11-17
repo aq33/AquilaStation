@@ -150,6 +150,9 @@
 
 /obj/machinery/autoclave/wrench_act(mob/living/user, obj/item/I)
 	. = TRUE
+	if(work_timer_id)
+		to_chat(user, "<span class='warning'>Nie odkręcisz [src] w trakcie cyklu.</span>")
+		return
 	default_unfasten_wrench(user, I, 0)
 
 /obj/machinery/autoclave/proc/toggle_open()
@@ -170,6 +173,9 @@
 	work_timer_id = null
 	soundloop.stop()
 	use_power = IDLE_POWER_USE
+	if(machine_stat & (NOPOWER|BROKEN)) // power cut mid-cycle: nothing gets sterilised
+		update_appearance()
+		return
 	if(chamber_item)
 		sanitize(chamber_item)
 		playsound(src, 'sound/machines/ding.ogg', 50, TRUE)

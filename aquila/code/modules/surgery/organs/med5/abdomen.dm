@@ -11,9 +11,23 @@
 #define AQ_RUPTURE_MIN_DAMAGE 15
 #define AQ_SPLEEN_RELEASE_COOLDOWN (5 MINUTES)
 
+/// The zone of COMSIG_MOB_APPLY_DAMGE: fists, kicks, animals and aliens pass the bodypart itself, weapons a zone string
+/proc/aq_damage_zone(def_zone)
+	if(isbodypart(def_zone))
+		var/obj/item/bodypart/part = def_zone
+		return part.body_zone
+	return def_zone
+
+/// COMSIG_MOB_APPLY_DAMGE carries the damage before armor: what is left of it after the armor on that zone
+/mob/living/carbon/proc/aq_damage_after_armor(damage, def_zone)
+	var/zone = aq_damage_zone(def_zone)
+	var/armor = zone ? getarmor(zone, MELEE) : 0
+	return damage * max(0, 100 - armor) / 100
+
 /// A belly hit: brute on the chest or the groin
 /proc/aq_is_belly_hit(damagetype, def_zone)
-	return damagetype == BRUTE && (!def_zone || def_zone == BODY_ZONE_CHEST || def_zone == BODY_ZONE_PRECISE_GROIN)
+	var/zone = aq_damage_zone(def_zone)
+	return damagetype == BRUTE && (!zone || zone == BODY_ZONE_CHEST || zone == BODY_ZONE_PRECISE_GROIN)
 
 /// Organ lines for the health analyzer (wounds/_wounds.dm get_wound_scan_lines)
 /mob/living/carbon/proc/aq_organ_scan_lines()
@@ -68,7 +82,7 @@
 
 /obj/item/organ/spleen/proc/on_owner_damaged(datum/source, damage, damagetype, def_zone)
 	SIGNAL_HANDLER
-	if(ruptured || (organ_flags & ORGAN_SYNTHETIC) || damage < AQ_RUPTURE_MIN_DAMAGE || !aq_is_belly_hit(damagetype, def_zone) || !prob(10))
+	if(ruptured || (organ_flags & ORGAN_SYNTHETIC) || !owner || !aq_is_belly_hit(damagetype, def_zone) || owner.aq_damage_after_armor(damage, def_zone) < AQ_RUPTURE_MIN_DAMAGE || !prob(10))
 		return
 	rupture()
 
@@ -152,11 +166,37 @@
 	if(perforated)
 		return "<b>Przebite jelita.</b> Grozi zakażeniem: zszyj jelita operacją."
 
-/mob/living/carbon/human/adjust_nutrition(change)
-	if(change > 0 && dna?.species?.aq_has_med5_organs())
-		var/obj/item/organ/intestines/intestines = getorganslot(ORGAN_SLOT_INTESTINES)
-		change *= intestines ? intestines.aq_absorption() : 0.2
-	return ..()
+/// Sick or missing intestines absorb less of the food passing from the stomach; the rest is lost. Only food that went
+/// through the stomach: photosynthesis, an IV drip or an injection are not touched.
+/obj/item/organ/stomach/digest()
+	var/mob/living/carbon/human/H = owner
+	if(!istype(H) || !H.reagents || !H.dna?.species?.aq_has_med5_organs())
+		return ..()
+	var/obj/item/organ/intestines/intestines = H.getorganslot(ORGAN_SLOT_INTESTINES)
+	var/absorption = intestines ? intestines.aq_absorption() : 0.2
+	if(absorption >= 1)
+		return ..()
+	var/list/before = list()
+	for(var/datum/reagent/consumable/food in H.reagents.reagent_list)
+		before[food.type] = food.volume
+	. = ..()
+	for(var/datum/reagent/consumable/food in H.reagents.reagent_list.Copy())
+		var/gained = food.volume - (before[food.type] || 0)
+		if(gained > 0)
+			H.reagents.remove_reagent(food.type, gained * (1 - absorption))
+
+/// A full heal (admin, changeling revive, healing magic) closes ruptures and perforations too
+/mob/living/carbon/fully_heal(admin_revive = FALSE)
+	. = ..()
+	var/obj/item/organ/spleen/spleen = getorganslot(ORGAN_SLOT_SPLEEN)
+	if(spleen)
+		spleen.ruptured = FALSE
+	var/obj/item/organ/intestines/intestines = getorganslot(ORGAN_SLOT_INTESTINES)
+	if(intestines)
+		intestines.perforated = FALSE
+	var/obj/item/organ/bladder/bladder = getorganslot(ORGAN_SLOT_BLADDER)
+	if(bladder)
+		bladder.ruptured = FALSE
 
 /mob/living/carbon/human/stool_type(list/reasons)
 	. = ..()
@@ -168,7 +208,7 @@
 /// A stab or a gunshot in the belly can puncture the intestines
 /datum/wound/pierce/on_apply()
 	. = ..()
-	if(limb?.body_zone != BODY_ZONE_CHEST || !prob(15 * severity))
+	if(aq_from_treatment || limb?.body_zone != BODY_ZONE_CHEST || !prob(15 * severity))
 		return
 	var/obj/item/organ/intestines/intestines = victim.getorganslot(ORGAN_SLOT_INTESTINES)
 	intestines?.perforate()
@@ -190,7 +230,7 @@
 
 /obj/item/organ/bladder/proc/on_owner_damaged(datum/source, incoming_damage, damagetype, def_zone)
 	SIGNAL_HANDLER
-	if(ruptured || incoming_damage < AQ_RUPTURE_MIN_DAMAGE || !aq_is_belly_hit(damagetype, def_zone) || !prob(6))
+	if(ruptured || !owner || !aq_is_belly_hit(damagetype, def_zone) || owner.aq_damage_after_armor(incoming_damage, def_zone) < AQ_RUPTURE_MIN_DAMAGE || !prob(6))
 		return
 	ruptured = TRUE
 	setOrganDamage(max(damage, high_threshold))
@@ -230,7 +270,7 @@
 		to_chat(user, "<span class='warning'>[patient] nie ma pęcherza.</span>")
 		return
 	user.visible_message("<span class='notice'>[user] zakłada cewnik [patient].</span>", "<span class='notice'>Zakładasz cewnik [patient]...</span>")
-	if(!do_mob(user, patient, patient == user ? 6 SECONDS : 4 SECONDS))
+	if(!do_mob(user, patient, (patient == user ? 6 SECONDS : 4 SECONDS) * toolspeed))
 		return
 	var/drained = patient.urination
 	patient.urination = 0

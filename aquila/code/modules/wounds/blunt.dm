@@ -14,6 +14,9 @@
 	var/taped = FALSE
 	/// Held by a real splint (medical/splint.dm): nothing drops, half the treated limp and less pain, the splint falls off when the bone heals
 	var/splinted = FALSE
+	/// The splint moves to the wound that replaces this one (medical/splint.dm)
+	var/aq_splint_moving = FALSE
+	var/turf/aq_splint_drop
 
 /datum/wound/blunt/on_apply()
 	if(severity >= WOUND_SEVERITY_SEVERE)

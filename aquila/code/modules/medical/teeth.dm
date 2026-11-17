@@ -80,7 +80,8 @@
 /datum/species/spec_unarmedattacked(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	. = ..()
 	if(user && target && user.zone_selected == BODY_ZONE_PRECISE_MOUTH)
-		target.aq_try_knock_teeth(user, user.dna.species.punchdamage, 1, FALSE)
+		// A fist counts as a small blunt object: about 14% for a normal punch, a weapon goes up to 40%
+		target.aq_try_knock_teeth(user, user.dna.species.punchdamage + user.unarmed_damage_bonus, WEIGHT_CLASS_SMALL, FALSE)
 
 /// Missing teeth make the speech lisp
 /mob/living/carbon/human/treat_message(message)
@@ -239,6 +240,10 @@
 
 /obj/item/stack/teeth/prosthetic/five
 	amount = 5
+
+/// The autolathe builds stacks with new(loc, multiplier), which would leave one tooth: a print is always at least 5
+/obj/item/stack/teeth/prosthetic/five/Initialize(mapload, new_amount, merge = TRUE)
+	return ..(mapload, max(new_amount, 5), merge)
 
 /obj/item/stack/teeth/gold/five
 	amount = 5

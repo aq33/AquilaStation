@@ -207,10 +207,21 @@ GLOBAL_LIST_INIT(aq_organoid_output_reagents, list(/datum/reagent/medicine/epine
 
 /// The first free extra slot in the chest
 /obj/item/organ/aq_aberrant/Insert(mob/living/carbon/M, special = 0, drop_if_replaced = TRUE)
+	aq_pick_slot(M)
+	return ..()
+
+/// Takes the first free extra slot of that body (stays on the first one when all are taken)
+/obj/item/organ/aq_aberrant/proc/aq_pick_slot(mob/living/carbon/M)
 	for(var/free_slot in AQ_ABERRANT_SLOTS)
 		if(!M.getorganslot(free_slot))
 			slot = free_slot
-			break
+			return
+
+/// Organ surgery checks the slot before Insert(): pick the free one first, or a second aberrant organ never fits
+/datum/surgery_operation/limb/organ_manipulation/is_insert_available(obj/item/bodypart/limb, obj/item/tool, operated_zone)
+	var/obj/item/organ/aq_aberrant/aberrant = get_inserted_organ(tool)
+	if(istype(aberrant) && iscarbon(limb.owner))
+		aberrant.aq_pick_slot(limb.owner)
 	return ..()
 
 /obj/item/organ/aq_aberrant/on_life()
@@ -280,6 +291,8 @@ GLOBAL_LIST_INIT(aq_organoid_output_reagents, list(/datum/reagent/medicine/epine
 /obj/machinery/aq_biomass_recycler/proc/biomass_value(obj/item/I)
 	if(istype(I, /obj/item/aq_teratoma))
 		return 10
+	if(istype(I, /obj/item/organ/brain)) // a brain may still hold a player: never chewed
+		return 0
 	var/obj/item/organ/organ = I
 	if(istype(organ) && !istype(organ, /obj/item/organ/cyberimp) && !(organ.status & ORGAN_ROBOTIC))
 		return 5
@@ -316,6 +329,8 @@ GLOBAL_LIST_INIT(aq_organoid_output_reagents, list(/datum/reagent/medicine/epine
 	active_power_usage = 500
 	var/biomass = 0
 	var/busy = FALSE
+	/// Biomass taken for the print in progress, given back if it never finishes
+	var/pending_cost = 0
 	/// Printable things and their biomass cost
 	var/static/list/products = list(
 		"puste rusztowanie narządu" = list(/obj/item/organ/aq_aberrant, 20),
@@ -361,6 +376,7 @@ GLOBAL_LIST_INIT(aq_organoid_output_reagents, list(/datum/reagent/medicine/epine
 		to_chat(user, "<span class='warning'>Za mało biomasy ([biomass] z [entry[2]]).</span>")
 		return
 	biomass -= entry[2]
+	pending_cost = entry[2]
 	busy = TRUE
 	icon_state = "organ_fabricator_work"
 	use_power(active_power_usage)
@@ -369,10 +385,27 @@ GLOBAL_LIST_INIT(aq_organoid_output_reagents, list(/datum/reagent/medicine/epine
 /obj/machinery/aq_organ_printer/proc/finish_print(product_type)
 	busy = FALSE
 	icon_state = initial(icon_state)
+	var/cost = pending_cost
+	pending_cost = 0
+	if(machine_stat & (NOPOWER|BROKEN)) // power cut mid-print: the biomass stays in the machine
+		biomass += cost
+		return
 	if(ispath(product_type, /obj/item/aq_organoid) && length(subtypesof(product_type)))
 		product_type = pick(subtypesof(product_type))
 	new product_type(drop_location())
 	playsound(src, 'sound/machines/ding.ogg', 40, TRUE)
+
+/// Taking the printer apart gives the stored biomass back as cubes (also the cost of a print still in progress)
+/obj/machinery/aq_organ_printer/Destroy()
+	var/left = biomass + pending_cost
+	biomass = 0
+	pending_cost = 0
+	var/turf/here = drop_location()
+	while(left > 0 && here)
+		var/chunk = min(left, 100)
+		new /obj/item/stack/aq_biomass(here, chunk, FALSE)
+		left -= chunk
+	return ..()
 
 /obj/item/circuitboard/machine/aq_biomass_recycler
 	name = "przetwornik biomasy (płytka)"

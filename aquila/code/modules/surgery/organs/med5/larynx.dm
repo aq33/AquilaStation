@@ -61,10 +61,11 @@
 
 /obj/item/organ/larynx/proc/on_owner_damaged(datum/source, damage, damagetype, def_zone)
 	SIGNAL_HANDLER
-	if(damagetype != BRUTE || def_zone != BODY_ZONE_HEAD || damage < AQ_LARYNX_HIT_DAMAGE || (organ_flags & ORGAN_SYNTHETIC))
+	if(damagetype != BRUTE || !owner || (organ_flags & ORGAN_SYNTHETIC) || check_zone(aq_damage_zone(def_zone)) != BODY_ZONE_HEAD)
 		return
-	if(prob(6))
-		applyOrganDamage(damage)
+	var/hit = owner.aq_damage_after_armor(damage, def_zone) // hełm chroni krtań
+	if(hit >= AQ_LARYNX_HIT_DAMAGE && prob(6))
+		applyOrganDamage(hit)
 
 /// Badly hurt: only a whisper
 /obj/item/organ/larynx/proc/on_owner_pre_say(datum/source, original_message, message, list/message_mods, datum/language/language, bubble_type, list/spans, forced)

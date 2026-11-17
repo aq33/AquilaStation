@@ -34,7 +34,9 @@
 	aq_regenerate_organ(C, ORGAN_SLOT_ADRENALS, wanted ? mutantadrenals : null, replace_current)
 	aq_regenerate_organ(C, ORGAN_SLOT_MARROW, wanted ? mutantmarrow : null, replace_current)
 	aq_regenerate_organ(C, ORGAN_SLOT_LARYNX, aq_larynx_type(), replace_current)
-	aq_regenerate_organ(C, ORGAN_SLOT_CORTICAL_STACK, (wanted && !C.has_quirk(/datum/quirk/no_cortical_stack)) ? mutantcorticalstack : null, replace_current) // cortical_stack.dm
+	// Without a stack by choice: none is given, but one a medic implanted later stays (cortical_stack.dm)
+	if(!C.has_quirk(/datum/quirk/no_cortical_stack))
+		aq_regenerate_organ(C, ORGAN_SLOT_CORTICAL_STACK, wanted ? mutantcorticalstack : null, replace_current)
 
 /mob/living/carbon/monkey/create_internal_organs()
 	internal_organs += new /obj/item/organ/kidneys

@@ -2,7 +2,7 @@
 // (code/modules/reagents/reagent_containers/hypospray.dm), pas ratownika (code/game/objects/items/storage/belt.dm),
 // latarka UV ratownika (code/game/objects/items/devices/flashlight.dm) i medyczny zestaw przetrwania.
 // Sprite'y z tgstation (CC-BY-SA 3.0) w aquila/icons/obj/medical/medycyna5.dmi.
-// Różnice: medipen „pierwsza pomoc” ma u nas epinefrynę, spaceacylinę i salbutamol (koagulantu z tg nie mamy),
+// Różnice: medipen „pierwsza pomoc” ma u nas epinefrynę, spacyklinę i salbutamol (koagulantu z tg nie mamy),
 // pas niesie medipeny, a latarka UV gasi zakażenie oparzeń z naszych ran (wounds/burn.dm).
 
 // --- Medipeny ---

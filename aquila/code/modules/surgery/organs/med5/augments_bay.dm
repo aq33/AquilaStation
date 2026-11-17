@@ -75,7 +75,7 @@
 /obj/item/organ/cyberimp/brain/aq_aim/emp_act(severity)
 	. = ..()
 	if(!(. & EMP_PROTECT_SELF) && owner)
-		owner.Jitter(10 * severity)
+		owner.Jitter(20 / severity) // EMP_HEAVY = 1, EMP_LIGHT = 2: a heavy pulse shakes harder
 		to_chat(owner, "<span class='warning'>Wzmacniacz celowania szarpie ci rękami!</span>")
 
 /obj/item/gun/get_dynamic_spread(mob/living/user)
@@ -96,11 +96,8 @@
 	. = ..()
 	if(!owner || owner.stat == DEAD || (organ_flags & ORGAN_FAILING))
 		return
-	for(var/obj/item/bodypart/limb as anything in owner.bodyparts)
-		if(!IS_ORGANIC_LIMB(limb) && (limb.brute_dam || limb.burn_dam))
-			if(limb.heal_damage(0.5, 0.5, null, BODYTYPE_ROBOTIC))
-				owner.update_damage_overlays()
-			return
+	// The same filter picks and heals the limbs, with health and overlays updated once (as the nanite programs do)
+	owner.heal_overall_damage(0.5, 0.5, required_status = BODYTYPE_ROBOTIC)
 
 /obj/item/organ/cyberimp/chest/aq_repair_nanites/emp_act(severity)
 	. = ..()
@@ -122,7 +119,6 @@
 	sharpness = IS_SHARP
 	attack_verb = list("tnie", "dźga", "rozrywa")
 	hitsound = 'sound/weapons/bladeslice.ogg'
-	item_flags = DROPDEL
 	bleed_force = BLEED_CUT
 
 /obj/item/organ/cyberimp/arm/aq_claws

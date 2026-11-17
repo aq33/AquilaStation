@@ -45,6 +45,8 @@
 	var/wound_source_is_projectile = FALSE
 	/// Replaced by a milder or a worse wound, or removed by a full heal: leaves no scar
 	var/replaced = FALSE
+	/// Made milder by treatment through replace_with(): no fresh injury rolls on apply
+	var/aq_from_treatment = FALSE
 	/// Limbs it can appear on, null for all
 	var/list/allowed_zones
 	var/obj/item/bodypart/limb
@@ -95,7 +97,7 @@
 	if(QDELETED(limb) || QDELETED(victim) || limb.owner != victim)
 		qdel(src)
 		return
-	if(victim.stat == DEAD)
+	if(victim.stat == DEAD || victim.IsInStasis()) // staza zatrzymuje też rany (zarazki, martwica, gojenie)
 		return
 	if(treated && heal_time)
 		heal_progress += delta_time SECONDS
@@ -120,12 +122,26 @@
 /// Replaces this wound with a milder or a worse one of the same kind
 /datum/wound/proc/replace_with(new_type)
 	var/obj/item/bodypart/old_limb = limb
+	var/old_severity = severity
 	replaced = TRUE
+	aq_before_replace()
 	qdel(src)
 	if(new_type)
 		var/datum/wound/replacement = new new_type()
+		// A milder wound comes from treatment (suturing, cauterising): it is not a new injury (nerves.dm, abdomen.dm)
+		replacement.aq_from_treatment = initial(replacement.severity) < old_severity
 		replacement.apply_wound(old_limb, silent = TRUE)
+		aq_after_replace(replacement)
 		return replacement
+	aq_after_replace(null)
+
+/// Called on the old wound just before replace_with() deletes it
+/datum/wound/proc/aq_before_replace()
+	return
+
+/// Called on the old (deleted) wound with the wound that took its place
+/datum/wound/proc/aq_after_replace(datum/wound/replacement)
+	return
 
 /datum/wound/proc/on_examine(mob/living/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER

@@ -9,6 +9,9 @@
 
 /// The moment the burn starts to fester (germ threshold of an infection, medical/germs.dm)
 /datum/wound/burn/wound_effects(delta_time)
+	// Dressed with mesh: the dead skin is covered and the infection in it slowly clears, as before the germs (0.5/s)
+	if(treated && limb.aq_germs)
+		limb.aq_add_germs(-0.5 * delta_time)
 	if(!treated && !aq_festering_warned && limb.aq_germs >= 30)
 		aq_festering_warned = TRUE
 		to_chat(victim, "<span class='userdanger'>Oparzenie ([limb.name]) ropieje i cuchnie, czujesz gorączkę!</span>")

@@ -183,10 +183,7 @@
 	asthma_quirk = null
 	return ..()
 
-/datum/disease/asthma_attack/Copy()
-	var/datum/disease/asthma_attack/copy = ..()
-	copy.asthma_quirk = asthma_quirk
-	return copy
+// Copy() keeps no asthma_quirk on purpose: copies land in blood samples (get_blood_data) and must not hold the quirk
 
 /datum/disease/asthma_attack/stage_act()
 	..()
@@ -320,6 +317,9 @@
 	id = /datum/reagent/medicine/albuterol
 	results = list(/datum/reagent/medicine/albuterol = 2)
 	required_reagents = list(/datum/reagent/medicine/salbutamol = 1, /datum/reagent/medicine/epinephrine = 1)
+	// Only heated, never inside a body: the survival and first-aid medipens hold both reagents and must keep them
+	required_temp = 380
+	mob_react = FALSE
 
 // --- Inhalator ---
 

@@ -124,8 +124,8 @@ GLOBAL_LIST_INIT(aq_addictions, aq_init_addictions())
 	var/loss_threshold = 400
 	/// Points lost per second without the drug, before and in each stage
 	var/list/loss_per_stage = list(0.5, 0.5, 1, 1.5)
-	/// Units in the blood that satisfy it
-	var/relief_threshold = 1
+	/// Units in the blood that satisfy it (a 1u junkie pill is half metabolised before the check in the same Life)
+	var/relief_threshold = 0.5
 	var/list/stage_messages = list("", "", "")
 
 /datum/addiction/proc/on_gain_points(datum/mind/victim_mind, new_amount, last_amount)
@@ -136,6 +136,8 @@ GLOBAL_LIST_INIT(aq_addictions, aq_init_addictions())
 
 /datum/addiction/proc/on_lose_points(datum/mind/victim_mind, new_amount, last_amount)
 	if(last_amount < loss_threshold || new_amount >= loss_threshold)
+		return FALSE
+	if(!LAZYACCESS(victim_mind.aq_active_addictions, type)) // tg: never addicted, nothing ends
 		return FALSE
 	var/mob/living/carbon/C = victim_mind.current
 	if(iscarbon(C))
@@ -167,9 +169,10 @@ GLOBAL_LIST_INIT(aq_addictions, aq_init_addictions())
 	var/datum/mind/victim_mind = C.mind
 	var/cycle = LAZYACCESS(victim_mind.aq_active_addictions, type)
 	var/satisfied = is_satisfied(C)
-	if(satisfied && cycle)
+	if(satisfied && cycle > 1) // the drug ends a withdrawal once, it does not "end" it again every tick
 		end_withdrawal(C)
 		cycle = 1
+		LAZYSET(victim_mind.aq_active_addictions, type, 1)
 	var/stage = withdrawal_stage(cycle)
 	if(!satisfied && victim_mind.aq_remove_addiction_points(type, loss_per_stage[stage + 1] * delta))
 		return
@@ -247,7 +250,7 @@ GLOBAL_LIST_INIT(aq_addictions, aq_init_addictions())
 	. = ..()
 	C.Jitter(5 * stage * delta)
 	if(stage >= 2)
-		C.adjust_hallucinations(5 SECONDS * delta)
+		C.adjust_hallucinations_up_to(5 SECONDS * delta, 60 SECONDS)
 	if(stage >= 3 && prob(2 * delta))
 		C.visible_message("<span class='danger'>[C] dostaje drgawek!</span>", "<span class='userdanger'>Całe ciało ci się trzęsie, nie panujesz nad nim!</span>")
 		C.Paralyze(4 SECONDS)
@@ -263,7 +266,7 @@ GLOBAL_LIST_INIT(aq_addictions, aq_init_addictions())
 	if(stage >= 2)
 		C.blur_eyes(2 * delta)
 	if(stage >= 3)
-		C.adjust_hallucinations(5 SECONDS * delta)
+		C.adjust_hallucinations_up_to(5 SECONDS * delta, 60 SECONDS)
 		C.Dizzy(2 * delta)
 
 /datum/addiction/nicotine
@@ -316,6 +319,10 @@ GLOBAL_LIST_INIT(aq_addictions, aq_init_addictions())
 /datum/reagent/consumable/navy_coffee
 	addiction_types = list(/datum/addiction/stimulants = 150)
 
+/// Ordinary coffee is a weak stimulant: the NSV "coffee addict" quirk needs it, a cup now and then never addicts
+/datum/reagent/consumable/coffee
+	addiction_types = list(/datum/addiction/stimulants = 5)
+
 /datum/reagent/drug/happiness
 	addiction_types = list(/datum/addiction/hallucinogens = 30)
 
@@ -348,7 +355,9 @@ GLOBAL_LIST_INIT(aq_addictions, aq_init_addictions())
 			M.reagents.remove_reagent(reagent.type, 5)
 	if(M.mind?.aq_is_addicted(/datum/addiction/opioids))
 		M.mind.aq_remove_addiction_points(/datum/addiction/opioids, 20)
-		if(M.mind.aq_is_addicted(/datum/addiction/opioids) && LAZYACCESS(M.mind.aq_active_addictions, /datum/addiction/opioids) < AQ_WITHDRAWAL_STAGE3)
+		var/datum/addiction/opioids = GLOB.aq_addictions[/datum/addiction/opioids]
+		// With an opioid still in the blood the craving is held off anyway, so no sudden withdrawal every tick
+		if(M.mind.aq_is_addicted(/datum/addiction/opioids) && !opioids.is_satisfied(M) && LAZYACCESS(M.mind.aq_active_addictions, /datum/addiction/opioids) < AQ_WITHDRAWAL_STAGE3)
 			LAZYSET(M.mind.aq_active_addictions, /datum/addiction/opioids, AQ_WITHDRAWAL_STAGE3 - 1)
 			to_chat(M, "<span class='userdanger'>Głód uderza naraz ze wszystkich stron!</span>")
 	..()
@@ -388,6 +397,9 @@ GLOBAL_LIST_INIT(aq_addictions, aq_init_addictions())
 /// Keeps the junkie addicted to the kinds of their drug; TRUE if it had to bring the addiction back
 /datum/quirk/junkie/proc/aq_keep_addicted()
 	var/datum/mind/junkie_mind = quirk_holder?.mind
+	// A clone gets the quirk without on_spawn: a fixed drug (smoker, coffee) is made again from reagent_type
+	if(!reagent_instance && reagent_type)
+		reagent_instance = new reagent_type()
 	var/datum/reagent/drug = reagent_instance
 	if(!junkie_mind || !drug)
 		return FALSE

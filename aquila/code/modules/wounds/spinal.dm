@@ -166,7 +166,8 @@
 	if(severity >= WOUND_SEVERITY_CRITICAL)
 		new_type = cervical ? /datum/wound/spinal/fracture/cervical : /datum/wound/spinal/fracture
 	if(existing)
-		if(existing.type == new_type || existing.severity > severity || istype(existing, /datum/wound/spinal/fracture/cervical))
+		// The unjoined brain stem (medical/brainstem.dm) already paralyses everything and needs its own surgery
+		if(existing.type == new_type || existing.severity > severity || istype(existing, /datum/wound/spinal/fracture/cervical) || istype(existing, /datum/wound/spinal/brainstem))
 			return existing
 		return existing.replace_with(new_type)
 	var/datum/wound/spinal/wound = new new_type()

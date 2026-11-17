@@ -36,7 +36,6 @@
 	/// The brain inside
 	var/obj/item/mmi/mmi
 	var/emagged = FALSE
-	var/mob/emagged_master
 
 /mob/living/simple_animal/aq_spiderbot/Destroy()
 	if(emagged)
@@ -44,7 +43,6 @@
 		explosion(get_turf(src), -1, -1, 3, 5)
 	else
 		eject_brain()
-	emagged_master = null
 	return ..()
 
 /mob/living/simple_animal/aq_spiderbot/attackby(obj/item/O, mob/living/user, params)
@@ -94,7 +92,6 @@
 		to_chat(user, "<span class='warning'>[src] nie reaguje.</span>")
 		return
 	emagged = TRUE
-	emagged_master = user
 	maxHealth = 60
 	health = 60
 	to_chat(user, "<span class='notice'>Zwierasz zabezpieczenia i nadpisujesz pamięć [src].</span>")

@@ -121,7 +121,8 @@
 		return
 	if(QDELETED(limb) || limb.owner != patient || !use(1))
 		return
-	limb.heal_damage(heal_brute, heal_burn, 0, BODYTYPE_ROBOTIC)
+	if(limb.heal_damage(heal_brute, heal_burn, 0, BODYTYPE_ROBOTIC))
+		patient.update_damage_overlays() // dents and scorch marks go from the sprite, as with a welder or cable
 	patient.updatehealth()
 	user.visible_message("<span class='notice'>[user] smaruje nanopastą [limb.name] [patient].</span>", "<span class='notice'>Smarujesz nanopastą [limb.name] [patient == user ? "" : "[patient]"].</span>")
 

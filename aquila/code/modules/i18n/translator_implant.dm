@@ -3,26 +3,28 @@
 // zamiast tłumacza kieszonkowego (foreigner.dm). Drukuje go protolathe medyczny, wszczepia operacja na narządach głowy.
 // EMP wyłącza go na minutę, jak tłumacz kieszonkowy.
 
-/obj/item/organ/cyberimp/brain/aq_translator
+/obj/item/organ/cyberimp/aq_translator
 	name = "implant tłumacza"
 	desc = "Implant w płacie skroniowym. Przekłada mowę między angielskim i polskim bez słuchawek na uszach."
 	icon = 'aquila/icons/obj/translator_chip.dmi'
 	icon_state = "translator_chip"
 	slot = ORGAN_SLOT_AQ_TRANSLATOR
+	zone = BODY_ZONE_HEAD // not a /cyberimp/brain: those stun the owner on EMP, this one only switches off
+	w_class = WEIGHT_CLASS_TINY
 	implant_color = "#4FA3D1"
 	/// Off for a minute after an EMP
 	var/rebooting = FALSE
 
-/obj/item/organ/cyberimp/brain/aq_translator/Insert(mob/living/carbon/M, special = 0, drop_if_replaced = TRUE)
+/obj/item/organ/cyberimp/aq_translator/Insert(mob/living/carbon/M, special = 0, drop_if_replaced = TRUE)
 	. = ..()
 	if(!rebooting)
 		M.aq_translator_on(REF(src))
 
-/obj/item/organ/cyberimp/brain/aq_translator/Remove(mob/living/carbon/M, special = 0)
+/obj/item/organ/cyberimp/aq_translator/Remove(mob/living/carbon/M, special = 0)
 	M?.aq_translator_off(REF(src))
 	return ..()
 
-/obj/item/organ/cyberimp/brain/aq_translator/emp_act(severity)
+/obj/item/organ/cyberimp/aq_translator/emp_act(severity)
 	. = ..()
 	if((. & EMP_PROTECT_SELF) || rebooting || !owner)
 		return
@@ -31,7 +33,7 @@
 	to_chat(owner, "<span class='warning'>Implant tłumacza piszczy w głowie i milknie.</span>")
 	addtimer(CALLBACK(src, PROC_REF(aq_reboot_done)), 1 MINUTES)
 
-/obj/item/organ/cyberimp/brain/aq_translator/proc/aq_reboot_done()
+/obj/item/organ/cyberimp/aq_translator/proc/aq_reboot_done()
 	rebooting = FALSE
 	if(owner)
 		owner.aq_translator_on(REF(src))
@@ -44,7 +46,7 @@
 	build_type = PROTOLATHE | MECHFAB
 	construction_time = 40
 	materials = list(/datum/material/iron = 300, /datum/material/glass = 300, /datum/material/gold = 100)
-	build_path = /obj/item/organ/cyberimp/brain/aq_translator
+	build_path = /obj/item/organ/cyberimp/aq_translator
 	category = list("Medical Designs", "Cybernetics")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 

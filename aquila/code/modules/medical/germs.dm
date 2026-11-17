@@ -5,7 +5,7 @@
 //   operacyjny), z bałaganu wokół i od ludzi bez maseczek obok. Sterylizyna albo alkohol na pacjencie mocno to ograniczają.
 //   Narzędzia i rękawiczki brudzą się od każdego kroku, czyści je autoklaw, sterylizyna, środek czyszczący albo mocny alkohol.
 // - Od 30 zakażenie (ból), od 60 gorączka, od 90 sepsa: ciężko osłabia (toksyny, zmęczenie, zawroty), ale nie zabija.
-// - Antybiotyk (spaceacylina) cofa zakażenie w kilka minut, sterylizyna na skórę i operacja oczyszczenia pomagają od razu.
+// - Antybiotyk (spacyklina) cofa zakażenie w kilka minut, sterylizyna na skórę i operacja oczyszczenia pomagają od razu.
 // - Zakażenie oparzeń (wounds/burn.dm) jest teraz zarazkami kończyny: oparzenie trzeciego stopnia brudzi się najszybciej.
 // Bez zarazków w narządach (decyzja w raport/medycyna5_01_plan.md).
 
@@ -107,7 +107,7 @@
 	for(var/obj/item/bodypart/limb as anything in bodyparts)
 		var/stage = limb.aq_infection_stage_name()
 		if(stage)
-			. += "<span class='alert'>[capitalize(limb.name)]: <b>[stage]</b> ([round(limb.aq_germs)]%). Spaceacylina, sterylizyna na skórę albo operacja oczyszczenia.</span>"
+			. += "<span class='alert'>[capitalize(limb.name)]: <b>[stage]</b> ([round(limb.aq_germs)]%). Spacyklina, sterylizyna na skórę albo operacja oczyszczenia.</span>"
 
 // --- Rany zbierają zarazki ---
 
@@ -138,7 +138,7 @@
 
 /datum/wound/process(delta_time)
 	. = ..()
-	if(QDELETED(src) || !germ_rate || treated || !limb || victim?.stat == DEAD)
+	if(QDELETED(src) || !germ_rate || treated || !limb || victim?.stat == DEAD || victim?.IsInStasis())
 		return
 	limb.aq_add_germs(germ_rate * delta_time)
 
@@ -248,7 +248,7 @@
 	name = "oczyszczenie zakażenia"
 	catalog_sections = list(SURGERY_SECTION_WOUNDS)
 	rnd_name = "Oczyszczenie zakażenia"
-	desc = "Wypłukuje zakażenie z otwartej kończyny pojemnikiem ze sterylizyną albo spaceacyliną (zużywa 5 j.)."
+	desc = "Wypłukuje zakażenie z otwartej kończyny pojemnikiem ze sterylizyną albo spacykliną (zużywa 5 j.)."
 	implements = list(/obj/item/reagent_containers = 1)
 	time = 3 SECONDS
 	operation_flags = OPERATION_AFFECTS_MOOD
@@ -257,7 +257,7 @@
 	success_sound = 'sound/effects/spray.ogg'
 
 /datum/surgery_operation/limb/clean_infection/all_required_strings()
-	return list("kończyna musi mieć zarazki", "pojemnik z 5 j. sterylizyny albo spaceacyliny") + ..()
+	return list("kończyna musi mieć zarazki", "pojemnik z 5 j. sterylizyny albo spacykliny") + ..()
 
 /datum/surgery_operation/limb/clean_infection/get_default_radial_image()
 	return image(icon = 'icons/obj/chemical.dmi', icon_state = "medspray")

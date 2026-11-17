@@ -47,13 +47,13 @@
 		var/obj/item/reagent_containers/container = I
 		if(!container.reagents.total_volume)
 			to_chat(user, "<span class='warning'>[container] jest pusty.</span>")
-			return
+			return TRUE
 		var/units = container.reagents.trans_to(src, container.amount_per_transfer_from_this, transfered_by = user)
 		if(units)
 			to_chat(user, "<span class='notice'>Wlewasz [units] j. do obiegu chłodzącego [src].</span>")
 		else
 			to_chat(user, "<span class='warning'>Obieg chłodzący jest pełny.</span>")
-		return
+		return TRUE // handled: the beaker must not pour a second time in afterattack
 	return ..()
 
 /obj/item/storage/organbox/update_icon_state()
@@ -68,7 +68,22 @@
 		return /datum/reagent/consumable/ice
 	return null
 
+/// Organs to keep cold: loose ones, the brain of an MMI and the organs inside a stored limb (a severed head keeps its brain)
+/obj/item/storage/organbox/proc/organs_inside()
+	. = list()
+	for(var/obj/item/organ/organ in contents)
+		. += organ
+	for(var/obj/item/mmi/mmi in contents)
+		if(mmi.brain)
+			. += mmi.brain
+	for(var/obj/item/bodypart/part in contents)
+		for(var/obj/item/organ/organ in part.contents)
+			. += organ
+
 /obj/item/storage/organbox/process(delta_time)
+	var/list/organs = organs_inside()
+	if(!length(organs)) // empty: the coolant is not spent
+		return
 	var/coolant = coolant_to_spend()
 	if(!coolant)
 		if(cooling)
@@ -80,11 +95,8 @@
 	if(!cooling)
 		cooling = TRUE
 		update_icon()
-	for(var/obj/item/organ/organ in contents)
+	for(var/obj/item/organ/organ as anything in organs)
 		freeze_organ(organ)
-	for(var/obj/item/mmi/mmi in contents)
-		if(mmi.brain)
-			freeze_organ(mmi.brain)
 
 /obj/item/storage/organbox/proc/freeze_organ(obj/item/organ/organ)
 	if(organ.organ_flags & ORGAN_FROZEN)
@@ -100,13 +112,20 @@
 
 /obj/item/storage/organbox/Exited(atom/movable/gone, direction)
 	. = ..()
-	var/obj/item/organ/organ = gone
-	if(istype(gone, /obj/item/mmi))
+	var/list/leaving = list()
+	if(isorgan(gone))
+		leaving += gone
+	else if(istype(gone, /obj/item/mmi))
 		var/obj/item/mmi/mmi = gone
-		organ = mmi.brain
-	if(organ && (organ in frozen_by_us))
-		organ.organ_flags &= ~ORGAN_FROZEN
-		frozen_by_us -= organ
+		if(mmi.brain)
+			leaving += mmi.brain
+	else if(isbodypart(gone))
+		for(var/obj/item/organ/organ in gone.contents)
+			leaving += organ
+	for(var/obj/item/organ/organ as anything in leaving)
+		if(organ in frozen_by_us)
+			organ.organ_flags &= ~ORGAN_FROZEN
+			frozen_by_us -= organ
 
 /obj/item/storage/organbox/preloaded
 	desc = "Walizka z obiegiem chłodzącym, napełniona lodem. Narządy w środku nie gniją, dopóki jest czym chłodzić."

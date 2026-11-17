@@ -28,7 +28,7 @@
 
 /// Severe cuts and stabs can cut a nerve
 /datum/wound/proc/aq_roll_nerve()
-	if(!limb || severity < WOUND_SEVERITY_SEVERE || !limb.aq_can_cut_nerve())
+	if(!limb || aq_from_treatment || severity < WOUND_SEVERITY_SEVERE || !limb.aq_can_cut_nerve())
 		return
 	if(prob(severity >= WOUND_SEVERITY_CRITICAL ? AQ_NERVE_CUT_CHANCE_CRITICAL : AQ_NERVE_CUT_CHANCE_SEVERE))
 		limb.aq_cut_nerve()

@@ -93,6 +93,24 @@
 	if(severity >= WOUND_SEVERITY_SEVERE && (limb.body_zone == BODY_ZONE_L_LEG || limb.body_zone == BODY_ZONE_R_LEG))
 		RegisterSignal(victim, COMSIG_MOVABLE_MOVED, PROC_REF(aq_on_victim_moved))
 
+/// A fracture that gets worse or better keeps its splint: it moves to the new wound instead of falling off
+/datum/wound/blunt/aq_before_replace()
+	if(!splinted)
+		return
+	aq_splint_moving = TRUE
+	aq_splint_drop = victim && isturf(victim.loc) ? victim.drop_location() : null
+	splinted = FALSE // Destroy does not drop it, the new wound gets it
+
+/datum/wound/blunt/aq_after_replace(datum/wound/replacement)
+	if(!aq_splint_moving)
+		return
+	var/datum/wound/blunt/fracture = replacement
+	if(istype(fracture))
+		fracture.splinted = TRUE
+	else if(aq_splint_drop) // healed into nothing that holds a splint
+		new /obj/item/stack/medical/splint/one(aq_splint_drop)
+	aq_splint_drop = null
+
 /datum/wound/blunt/Destroy()
 	if(victim)
 		UnregisterSignal(victim, COMSIG_MOVABLE_MOVED)

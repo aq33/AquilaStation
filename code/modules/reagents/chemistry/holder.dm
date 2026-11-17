@@ -354,6 +354,7 @@
 	if(C?.dna?.species && (NOREAGENTS in C.dna.species.species_traits))
 		return 0
 	var/list/cached_reagents = reagent_list
+	// AQ EDIT - usunięte cached_addictions = addiction_list: uzależnienia z tg w umyśle (aquila/code/modules/reagents/addiction/addiction.dm)
 	if(C)
 		expose_temperature(C.bodytemperature, 0.25)
 	var/need_mob_update = 0
@@ -384,8 +385,10 @@
 					// AQ EDIT END
 					if(R.overdosed)
 						need_mob_update += R.overdose_process(C)
+					// AQ EDIT - usunięte zaspokajanie addiction_stage z Bee (zaspokojenie liczy is_satisfied w addiction.dm)
 				need_mob_update += R.on_mob_life(C)
 
+	// AQ EDIT - usunięty blok addiction_tick / addiction_act_stage1-4 z Bee: etapy odstawienia robi process_addiction (addiction.dm)
 	if(C && need_mob_update) //some of the metabolized reagents had effects on the mob that requires some updates.
 		C.updatehealth()
 		C.update_mobility()

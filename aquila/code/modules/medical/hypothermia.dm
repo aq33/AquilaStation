@@ -38,8 +38,10 @@
 
 // --- Hipotermia ---
 
+/// Cold-blooded species (NSV13 lizards) sit at room temperature on purpose, and a cryo cell chills its patient
+/// as treatment: neither is hypothermia
 /mob/living/carbon/human/proc/aq_hypothermia_stage()
-	if(HAS_TRAIT(src, TRAIT_RESISTCOLD))
+	if(HAS_TRAIT(src, TRAIT_RESISTCOLD) || HAS_TRAIT(src, TRAIT_COLDBLOODED) || istype(loc, /obj/machinery/atmospherics/components/unary/cryo_cell))
 		return 0
 	if(bodytemperature < AQ_HYPOTHERMIA_SEVERE)
 		return 3
@@ -94,8 +96,8 @@
 // --- Odmrożenia ---
 
 /mob/living/carbon/human/proc/aq_handle_frostbite()
-	var/turf/place = get_turf(src)
-	var/datum/gas_mixture/air = place?.return_air()
+	// The air around the body: a fighter cockpit, a mech or a locker hand out their own, not the tile's
+	var/datum/gas_mixture/air = loc?.return_air()
 	var/air_temp = air ? air.return_temperature() : T0C
 	var/freezing = air_temp < AQ_FROSTBITE_AIR && !HAS_TRAIT(src, TRAIT_RESISTCOLD) && !istype(loc, /obj/machinery) && !istype(loc, /obj/structure/closet)
 	var/protected = freezing ? get_cold_protection_flags(air_temp) : 0
@@ -197,8 +199,8 @@
 	drop_chance = 0
 	limp_slowdown = 1.2
 	germ_rate = 0.1
-	/// When it can no longer be saved
-	var/necrosis_at = 0
+	/// How long the limb has been dying; at AQ_FROSTBITE_NECROSIS_TIME it can no longer be saved (stops in stasis)
+	var/necrosis_progress = 0
 	/// Past saving: only amputation helps
 	var/necrotic = FALSE
 	/// Damage disable the limb would have without the paralysis, tracked while paralysed (is_disabled() hysteresis)
@@ -206,7 +208,6 @@
 
 /datum/wound/frostbite/third_degree/on_apply()
 	. = ..()
-	necrosis_at = world.time + AQ_FROSTBITE_NECROSIS_TIME
 	disabled_before = limb.disabled == BODYPART_DISABLED_DAMAGE ? BODYPART_DISABLED_DAMAGE : BODYPART_NOT_DISABLED
 	ADD_TRAIT(limb, TRAIT_PARALYSIS, WOUND_FROSTBITE)
 	limb.update_disabled()
@@ -246,7 +247,8 @@
 
 /datum/wound/frostbite/third_degree/wound_effects(delta_time)
 	. = ..()
-	if(!necrotic && world.time >= necrosis_at)
+	necrosis_progress += delta_time SECONDS
+	if(!necrotic && necrosis_progress >= AQ_FROSTBITE_NECROSIS_TIME)
 		necrotic = TRUE
 		treat_text = "Martwica jest nieodwracalna: tę kończynę trzeba amputować."
 		to_chat(victim, "<span class='userdanger'>Kończyna ([limb.name]) jest martwa i już nic nie poczuje.</span>")

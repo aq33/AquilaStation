@@ -26,10 +26,21 @@
 /obj/item/clothing/suit/space/dropped(mob/user)
 	. = ..()
 	UnregisterSignal(user, list(COMSIG_MOB_APPLY_DAMGE, COMSIG_PARENT_ATTACKBY))
+	// Taken off by force (admin, gib, death drop): the locks stay broken open, nobody is left inside to cut out
+	if(aq_jammed)
+		aq_jammed = FALSE
+		REMOVE_TRAIT(src, TRAIT_NODROP, AQ_SUIT_JAM_TRAIT)
 
-/obj/item/clothing/suit/space/proc/aq_on_wearer_damaged(datum/source, damage, damagetype, def_zone)
+/// The suit is one listener for COMSIG_MOB_APPLY_DAMGE, so this handler also drives the armor insert one
+/// (munitions_forge/armor_insert.dm), which this registration replaces
+/obj/item/clothing/suit/space/proc/aq_on_wearer_damaged(mob/living/carbon/source, damage, damagetype, def_zone)
 	SIGNAL_HANDLER
-	if(aq_jammed || damagetype != BRUTE || damage < AQ_SUIT_JAM_DAMAGE || (def_zone && def_zone != BODY_ZONE_CHEST))
+	if(aq_insert_slot)
+		aq_insert_on_damage(source, damage, damagetype, def_zone)
+	var/zone = aq_damage_zone(def_zone)
+	if(aq_jammed || damagetype != BRUTE || (zone && zone != BODY_ZONE_CHEST))
+		return
+	if(source.aq_damage_after_armor(damage, def_zone) < AQ_SUIT_JAM_DAMAGE)
 		return
 	if(prob(AQ_SUIT_JAM_CHANCE))
 		aq_jam()
@@ -56,7 +67,8 @@
 
 /obj/item/clothing/suit/space/proc/aq_cut_out(mob/living/carbon/human/wearer, obj/item/tool, mob/living/user)
 	user.visible_message("<span class='notice'>[user] zaczyna wycinać [wearer] z zaciętego skafandra za pomocą [tool].</span>", "<span class='notice'>Zaczynasz wycinać [wearer] z zaciętego skafandra...</span>")
-	if(!tool.use_tool(wearer, user, AQ_SUIT_CUT_TIME, amount = 1, volume = 50))
+	// Only a welder spends fuel; a saw has no amount to use (use_tool would refuse it)
+	if(!tool.use_tool(wearer, user, AQ_SUIT_CUT_TIME, amount = tool.tool_behaviour == TOOL_WELDER ? 1 : 0, volume = 50))
 		return
 	if(!aq_jammed || wearer.wear_suit != src)
 		return
