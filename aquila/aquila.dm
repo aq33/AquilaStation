@@ -1597,6 +1597,7 @@
 #include "code\modules\medical\autoclave.dm"
 #include "code\modules\medical\circulation.dm"
 #include "code\modules\medical\germs.dm"
+#include "code\modules\medical\hypothermia.dm"
 #include "code\modules\medical\iv_plumbing.dm"
 #include "code\modules\medical\medical_tape.dm"
 #include "code\modules\medical\medical_tools_med5.dm"

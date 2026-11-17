@@ -2955,6 +2955,8 @@ Odmianę stref daje helper `strefa_pl(zone, biernik)` z `aquila/code/__HELPERS/p
 | citalopram / paroxetine / methylphenidate / albuterol | Citalopram / Paroksetyna / Metylofenidat / Albuterol | reagenty; nowe (AquilaMed 5) |
 | naloxone | Nalokson | reagent; nowe (AquilaMed 5) |
 | autoclave | autoklaw | m; nowe (AquilaMed 5) |
+| hypothermia / frostbite (first, second, third degree) | hipotermia / odmrożenie (pierwszego, drugiego, trzeciego stopnia) | nowe (AquilaMed 5) |
+| pulse / cardiac arrest / CPR | tętno / zatrzymanie krążenia / RKO | nowe (AquilaMed 5) |
 | germs / infection / sepsis | zarazki / zakażenie / sepsa | nowe (AquilaMed 5) |
 | opioid / stimulant / hallucinogen addiction, withdrawal | uzależnienie od opioidów / stymulantów / halucynogenów, odstawienie | nowe (AquilaMed 5, uzależnienia z tg) |
 | medical spray | spray medyczny | m; nowe |

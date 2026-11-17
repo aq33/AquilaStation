@@ -432,4 +432,64 @@
 	TEST_ASSERT(brain.damage == outside, "A frozen brain kept dying")
 	qdel(brain)
 
+/// AQUILA - hypothermia and frostbite (medical/hypothermia.dm): the stages slow down and chill the pulse, a blanket warms,
+/// frost on a limb becomes frostbite, the third degree paralyses and can be saved by surgery until it turns necrotic
+/datum/unit_test/aquila_hypothermia
+
+/datum/unit_test/aquila_hypothermia/Run()
+	var/mob/living/carbon/human/patient = allocate(/mob/living/carbon/human)
+	patient.bodytemperature = T0C + 28
+	TEST_ASSERT(patient.aq_hypothermia_stage() == 2, "28°C is stage [patient.aq_hypothermia_stage()]")
+	patient.aq_handle_hypothermia()
+	TEST_ASSERT(LAZYACCESS(patient.movespeed_modification, "aq_hypothermia"), "Moderate hypothermia does not slow down")
+	patient.bodytemperature = T0C + 22
+	var/cold_mod = patient.aq_pulse_mod()
+	patient.bodytemperature = BODYTEMP_NORMAL
+	TEST_ASSERT(cold_mod < patient.aq_pulse_mod(), "Severe hypothermia does not slow the pulse")
+	patient.aq_handle_hypothermia()
+	TEST_ASSERT(!LAZYACCESS(patient.movespeed_modification, "aq_hypothermia"), "The hypothermia slowdown stayed after warming up")
+
+	// A blanket warms
+	var/obj/item/bedsheet/blanket = allocate(/obj/item/bedsheet)
+	patient.equip_to_slot_if_possible(blanket, ITEM_SLOT_NECK)
+	patient.bodytemperature = T0C + 30
+	patient.aq_handle_hypothermia()
+	TEST_ASSERT(patient.bodytemperature > T0C + 30, "A blanket did not warm")
+	patient.bodytemperature = BODYTEMP_NORMAL
+
+	// Frost turns into frostbite of the matching degree
+	var/obj/item/bodypart/arm = patient.get_bodypart(BODY_ZONE_R_ARM)
+	arm.aq_frost = 25
+	patient.aq_frostbite_from_frost(arm)
+	var/datum/wound/frostbite/first = arm.get_wound("frostbite")
+	TEST_ASSERT(istype(first, /datum/wound/frostbite/first_degree), "25 frost gave [first] instead of first degree frostbite")
+	arm.aq_frost = 0
+	first.wound_effects(2)
+	TEST_ASSERT(first.treated, "First degree frostbite did not start healing once warm")
+	qdel(first)
+
+	var/obj/item/bodypart/leg = patient.get_bodypart(BODY_ZONE_L_LEG)
+	leg.aq_frost = 90
+	patient.aq_frostbite_from_frost(leg)
+	var/datum/wound/frostbite/third_degree/third = leg.get_wound("frostbite")
+	TEST_ASSERT(istype(third), "90 frost gave no third degree frostbite")
+	TEST_ASSERT(leg.disabled == BODYPART_DISABLED_PARALYSIS, "Third degree frostbite did not paralyse the leg")
+	var/datum/surgery_operation/limb/debride/debride = new()
+	TEST_ASSERT(debride.state_check(leg), "Debridement cannot save third degree frostbite")
+	third.necrosis_at = world.time - 1
+	third.wound_effects(2)
+	TEST_ASSERT(third.necrotic && !debride.state_check(leg), "Necrotic frostbite can still be saved by debridement")
+	qdel(debride)
+	qdel(third)
+	TEST_ASSERT(leg.disabled != BODYPART_DISABLED_PARALYSIS, "The leg stayed paralysed after the frostbite was gone")
+
+	// Second degree takes a mesh once warm
+	var/obj/item/bodypart/left_arm = patient.get_bodypart(BODY_ZONE_L_ARM)
+	left_arm.aq_frost = 60
+	patient.aq_frostbite_from_frost(left_arm)
+	var/datum/wound/frostbite/second = left_arm.get_wound("frostbite")
+	var/obj/item/stack/medical/mesh/mesh = allocate(/obj/item/stack/medical/mesh)
+	TEST_ASSERT(istype(second, /datum/wound/frostbite/second_degree) && second.can_treat_with(mesh), "Second degree frostbite does not take a mesh")
+	qdel(second)
+
 #undef TEST_ASSERT
