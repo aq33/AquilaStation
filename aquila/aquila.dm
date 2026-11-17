@@ -1038,6 +1038,7 @@
 #include "code\modules\planets\biomes\piaski.dm"
 #include "code\modules\planets\types\piaski.dm"
 #include "code\modules\planets\shiptest_flora\waste.dm"
+#include "code\modules\planets\shiptest_flora\pustkowia_flora.dm"
 #include "code\modules\planets\shiptest_flora\battlefield.dm"
 #include "code\modules\planets\shiptest_fauna\automatons.dm"
 #include "code\modules\planets\drill\veins_waste.dm"

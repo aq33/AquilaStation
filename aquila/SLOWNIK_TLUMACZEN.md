@@ -1844,6 +1844,16 @@ Nowe gatunki z tg, Goona, Baya i innych (`aquila/code/modules/botany/aquila/port
 | ipecacuanha / aconite | ipekakuana / tojad | ż / m; nowe (Goon) |
 | hydrangea / gardenia / bird of paradise / rafflesia | hortensja / gardenia / strelicja / raflezja | ż; nowe (Goon) |
 | Mustard / Cinnamon / Ground Ginger / Curry Powder (`/consumable/mustard`, `cinnamon`, `ginger`, `curry_powder`) | Musztarda / Cynamon / Imbir mielony / Proszek curry | ż / m / m / m; nowe, reagenty |
+| broc flower (brocflower) | brokoł; plon: kwiat brokołu | m; nowe (Mojave Sun), dzika roślina pustkowi |
+| xander (xander root) | xander; plon: korzeń xandera | m; nowe (Mojave Sun), dzika roślina pustkowi |
+| mutfruit | mutoowoc; roślina: krzew mutoowocu | m; nowe (Mojave Sun), dzika roślina pustkowi |
+| tato | tato; roślina: krzak tato | n, nieodm.; nowe (Mojave Sun), dzika roślina pustkowi |
+| yucca (yucca fruit) | juka; plon: owoc juki | ż; nowe (Mojave Sun), dzika roślina pustkowi |
+| agave | agawa; plon: liść agawy | ż; nowe (Mojave Sun), dzika roślina pustkowi i wydm |
+| datura (datura flower) | bieluń; plon: kwiat bielunia | m; nowe (Mojave Sun), dzika roślina pustkowi |
+| punga (pungafruit) | punga; plon: owoc pungi | ż; nowe (Mojave Sun), dzika roślina pustkowi |
+| geiger punga (geiger pungafruit) | gejgerpunga; plon: owoc gejgerpungi | ż; nowe (Mojave Sun), napromieniowana punga |
+| radberry | radjagoda; roślina: krzew radjagód | ż; nowe (Mojave Sun), napromieniowana |
 
 ## 22. Częste przymiotniki i określenia w nazwach
 

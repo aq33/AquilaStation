@@ -136,6 +136,15 @@
 	flora_spawn_list = list(
 		PLANET_WASTE_JUNK,
 		/obj/structure/flora/ash/glowshroom = 27,
+		/obj/structure/flora/ash/broc = 6,
+		/obj/structure/flora/ash/xander = 6,
+		/obj/structure/flora/ash/tato = 5,
+		/obj/structure/flora/ash/mutfruit = 4,
+		/obj/structure/flora/ash/yucca = 4,
+		/obj/structure/flora/ash/datura = 3,
+		/obj/structure/flora/ash/punga = 3,
+		/obj/structure/flora/ash/agave = 2,
+		/obj/structure/flora/ash/radberry = 2,
 	)
 	feature_spawn_list = PLANET_WASTE_FEATURES(/obj/effect/spawner/lootdrop/planetary_anomaly/waste)
 	mob_spawn_list = PLANET_WASTE_FAUNA
@@ -155,6 +164,9 @@
 		/obj/effect/spawner/lootdrop/waste/radiation/more_rads = 2,
 		/obj/effect/spawner/lootdrop/waste/atmos_can = 36,
 		/obj/effect/spawner/lootdrop/waste/salvageable = 60,
+		/obj/structure/flora/ash/yucca = 8,
+		/obj/structure/flora/ash/agave = 8,
+		/obj/structure/flora/ash/xander = 4,
 	)
 	mob_spawn_chance = 1
 
@@ -167,6 +179,8 @@
 		/obj/effect/spawner/lootdrop/waste/radiation/more_rads = 7,
 		/obj/effect/spawner/lootdrop/waste/atmos_can = 7,
 		/obj/effect/spawner/lootdrop/waste/salvageable = 15,
+		/obj/structure/flora/ash/geigerpunga = 15,
+		/obj/structure/flora/ash/radberry = 15,
 	)
 
 /datum/planet_biome/waste/clearing
@@ -177,6 +191,8 @@
 	flora_spawn_list = list(
 		PLANET_WASTE_JUNK,
 		/obj/structure/flora/ash/glowshroom = 210,
+		/obj/structure/flora/ash/punga = 20,
+		/obj/structure/flora/ash/geigerpunga = 5,
 	)
 
 /// Złoża smoły
