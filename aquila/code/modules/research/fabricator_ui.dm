@@ -35,6 +35,8 @@
 		var/icon_size = spritesheet.icon_size_id(design.id)
 		output[design.id] = list(
 			"name" = design.name,
+			// angielska nazwa do wyszukiwania także w polskiej wersji (gracze znają „multitool”, „RCD”)
+			"nameEn" = i18n_en_exact(design.name),
 			"desc" = design.desc,
 			"cost" = cost,
 			"reagentCost" = reagent_cost,
