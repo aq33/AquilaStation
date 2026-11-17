@@ -25,6 +25,13 @@
 	test_ammo -= shots
 	return TRUE
 
+// Datumy broni bez overmapy: liczą amunicję tylko z podpiętych dział
+/datum/overmap_ship_weapon/mac/aq_test/needs_real_weapons()
+	return TRUE
+
+/datum/overmap_ship_weapon/mac/yamato/aq_test/needs_real_weapons()
+	return TRUE
+
 /// Typy towarów, które handlarz wystawia po uzupełnieniu (bez ofert specjalnych, które wymagają okrętu gracza)
 /proc/aq_test_trader_stock(trader_type)
 	var/datum/trader/trader = new trader_type()
@@ -65,8 +72,8 @@
 	var/datum/overmap_ship_weapon/mac/yamato/yamato_datum = /datum/overmap_ship_weapon/mac/yamato
 	TEST_ASSERT_EQUAL(initial(yamato_datum.fire_delay), 7 SECONDS, "Złe przeładowanie Yamato")
 
-	TEST_ASSERT_EQUAL(aq_test_salvo_shots(/datum/overmap_ship_weapon/mac/yamato, run_loc_floor_bottom_left), 3, "Yamato nie wystrzelił salwy trzech pocisków")
-	TEST_ASSERT_EQUAL(aq_test_salvo_shots(/datum/overmap_ship_weapon/mac, run_loc_floor_bottom_left), 1, "Hood zaczął strzelać salwą")
+	TEST_ASSERT_EQUAL(aq_test_salvo_shots(/datum/overmap_ship_weapon/mac/yamato/aq_test, run_loc_floor_bottom_left), 3, "Yamato nie wystrzelił salwy trzech pocisków")
+	TEST_ASSERT_EQUAL(aq_test_salvo_shots(/datum/overmap_ship_weapon/mac/aq_test, run_loc_floor_bottom_left), 1, "Hood zaczął strzelać salwą")
 
 	var/list/stock = aq_test_trader_stock(/datum/trader/minsky)
 	TEST_ASSERT(/datum/trader_item/deck_gun_triple in stock, "Minsky nie sprzedaje płytki Yamato")
@@ -76,7 +83,7 @@
 /datum/unit_test/nsv_ship_armament
 
 /datum/unit_test/nsv_ship_armament/Run()
-	var/datum/techweb_node/node = SSresearch.techweb_node_by_id("ship_armament")
+	var/datum/techweb_node/node = SSresearch.techweb_node_by_id("ship_weaponry")
 	TEST_ASSERT(node != SSresearch.error_node, "Nie ma badania Uzbrojenie okrętowe")
 	TEST_ASSERT("macro_ballistics" in node.prereq_ids, "Uzbrojenie okrętowe nie wymaga Makrobalistyki")
 	TEST_ASSERT(node.research_costs[TECHWEB_POINT_TYPE_GENERIC] >= 10000, "Uzbrojenie okrętowe jest za tanie")
@@ -101,7 +108,7 @@
 /datum/unit_test/nsv_deck_gun_calibrator
 
 /datum/unit_test/nsv_deck_gun_calibrator/Run()
-	var/datum/techweb_node/node = SSresearch.techweb_node_by_id("ship_armament")
+	var/datum/techweb_node/node = SSresearch.techweb_node_by_id("ship_weaponry")
 	TEST_ASSERT("deck_gun_calibrator" in node.design_ids, "Uzbrojenie okrętowe nie ma płytki modułu kalibracji")
 	TEST_ASSERT(/datum/trader_item/deck_gun_calibrator in aq_test_trader_stock(/datum/trader/armsdealer), "White Rapids nie sprzedaje modułu kalibracji")
 
@@ -164,6 +171,20 @@
 	TEST_ASSERT(sparrowhawk in vls.ammo, "VLS nie przyjął Sparrowhawka")
 	TEST_ASSERT_EQUAL(sparrowhawk.projectile_type, /obj/item/projectile/guided_munition/missile/cruise, "Sparrowhawk strzela zwykłą rakietą")
 
+// Profesje bez przydziału do drużyny: register_squad() po 5 s trafiłby w usunięte już moby testu.
+// Inna frakcja, żeby SSjob nie wziął ich za prawdziwe profesje (SetupOccupations() bierze tylko „Station”)
+/datum/job/cook/aq_test
+	faction = "aq_test"
+
+/datum/job/cook/aq_test/register_squad(mob/living/H)
+	return
+
+/datum/job/janitor/aq_test
+	faction = "aq_test"
+
+/datum/job/janitor/aq_test/register_squad(mob/living/H)
+	return
+
 /// AQUILA - raport nsv_martwe_08 pkt 5: przepis na głodny worek prochu zna kucharz, i tylko on
 /datum/unit_test/nsv_cook_hungry_powder
 
@@ -174,14 +195,16 @@
 
 	var/mob/living/carbon/human/cook = allocate(/mob/living/carbon/human)
 	cook.mind_initialize()
-	var/datum/job/cook/cook_job = SSjob.GetJobType(/datum/job/cook)
+	var/datum/job/cook/aq_test/cook_job = new
 	cook_job.after_spawn(cook, cook)
+	qdel(cook_job)
 	TEST_ASSERT(cook.mind.learned_recipes && (/datum/crafting_recipe/hungrypowder in cook.mind.learned_recipes), "Kucharz nie zna przepisu na głodny worek prochu")
 
 	var/mob/living/carbon/human/janitor = allocate(/mob/living/carbon/human)
 	janitor.mind_initialize()
-	var/datum/job/janitor/janitor_job = SSjob.GetJobType(/datum/job/janitor)
+	var/datum/job/janitor/aq_test/janitor_job = new
 	janitor_job.after_spawn(janitor, janitor)
+	qdel(janitor_job)
 	TEST_ASSERT(!(janitor.mind.learned_recipes && (/datum/crafting_recipe/hungrypowder in janitor.mind.learned_recipes)), "Woźny zna przepis kucharza")
 
 #undef TEST_ASSERT

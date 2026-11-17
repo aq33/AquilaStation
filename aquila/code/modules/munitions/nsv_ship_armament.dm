@@ -5,8 +5,9 @@
 // Tryb trudny nic w zamian nie dostaje, a jego lista jest pusta, żeby wyłączenie trybu nie zdejmowało
 // projektów z badań. Bez limitu dobudowywania.
 
+// Id z „weapon”: kategorie badań liczą się z id (techweb_categories.dm), a „ship” wrzuciłoby węzeł do drzewka okrętu
 /datum/techweb_node/ship_armament
-	id = "ship_armament"
+	id = "ship_weaponry"
 	tech_tier = 5
 	display_name = "Uzbrojenie okrętowe"
 	description = "Pełne plany dział okrętowych: wieżyczka Gaussa z podajnikiem, wyrzutnia VLS, działo pokładowe i elektronika spustowa. Dobudujesz tyle broni, ile zmieści się na pokładzie."
