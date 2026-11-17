@@ -142,6 +142,8 @@
 		/obj/structure/flora/rock/rockplanet = 6,
 		/obj/structure/flora/tree/cactus = 8,
 		/obj/structure/flora/ash/cacti = 4,
+		/obj/structure/flora/ash/cacti/prickly_pear = 2,
+		/obj/structure/flora/ash/san_pedro = 1,
 	)
 	mob_spawn_chance = 3
 	mob_spawn_list = PLANET_ROCK_SURFACE_FAUNA
@@ -160,6 +162,7 @@
 		/obj/structure/flora/rock/rockplanet = 6,
 		/obj/structure/flora/tree/cactus = 8,
 		/obj/structure/flora/ash/cacti = 3,
+		/obj/structure/flora/ash/cacti/prickly_pear = 1,
 		/obj/structure/flora/grass/rockplanet/dead = 8,
 		/obj/structure/flora/grass/rockplanet = 4,
 	)
@@ -471,7 +474,13 @@
 /// Wydmy
 /datum/planet_biome/desert
 	open_turf_types = list(/turf/open/floor/plating/asteroid/desert = 1)
-	flora_spawn_chance = 0
+	flora_spawn_chance = 1
+	flora_spawn_list = list(
+		/obj/structure/flora/ash/cacti = 2,
+		/obj/structure/flora/ash/cacti/prickly_pear = 3,
+		/obj/structure/flora/ash/san_pedro = 2,
+		/obj/structure/flora/ash/peyote = 1,
+	)
 	mob_spawn_chance = 1
 	mob_spawn_list = PLANET_DESERT_FAUNA
 
@@ -483,6 +492,7 @@
 		/obj/structure/flora/rock/pile = 5,
 		/obj/structure/flora/rock = 5,
 		/obj/structure/flora/ash/cacti = 1,
+		/obj/structure/flora/ash/peyote = 1,
 	)
 	feature_spawn_chance = 0.5
 	feature_spawn_list = list(
