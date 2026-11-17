@@ -61,9 +61,12 @@
 	give_quirk(thief, /datum/quirk/kleptomaniac)
 	var/datum/brain_trauma/severe/kleptomaniac/klepto = thief.has_trauma_type(/datum/brain_trauma/severe/kleptomaniac)
 	TEST_ASSERT(klepto, "Kleptomania gave no trauma")
-	var/obj/item/pen/loot = allocate(/obj/item/pen, get_step(thief, EAST))
+	allocate(/obj/item/pen, get_step(thief, EAST))
+	TEST_ASSERT(!length(thief.held_items - null), "The kleptomaniac started with something in hand")
 	TEST_ASSERT(klepto.steal_from_ground(), "The kleptomaniac found nothing to take")
-	TEST_ASSERT(thief.is_holding(loot), "The kleptomaniac did not pick up the pen")
+	// Kleptoman bierze losową rzecz z sąsiednich pól, a obok mogą leżeć rzeczy z wcześniejszych części testu
+	var/list/taken = thief.held_items - null
+	TEST_ASSERT(length(taken) == 1, "The kleptomaniac did not pick up anything")
 
 	// Klaustrofobia: w szafce panika, na podłodze spokój
 	var/mob/living/carbon/human/boxed = make_human()
