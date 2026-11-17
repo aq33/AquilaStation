@@ -284,6 +284,34 @@ GLOBAL_LIST_INIT(civilian_fake_iff_names, list("frachtowiec niezależny", "trans
 	. = ..()
 	spawn_civilian_traffic()
 
+// Pusty kafel bez nikogo zwalnia się razem ze swoim tłem (cywile, strefy zagrożeń): inaczej nigdy by się nie zwolnił.
+// Przy ponownym wejściu na kafel tło losuje się od nowa (apply_hex_terrain). Wrak, flota albo inna rzecz zostawia wszystko.
+/datum/star_system/random/hex_empty/try_release()
+	if(!occupying_z)
+		release_ambient_contents()
+	return ..()
+
+/datum/star_system/random/hex_empty/proc/release_ambient_contents()
+	var/list/ambient = list()
+	for(var/atom/movable/A as anything in system_contents)
+		var/obj/structure/overmap/OM = A
+		if(istype(A, /obj/effect/overmap_anomaly/hazard) || (istype(OM) && OM.civilian))
+			ambient += A
+		else
+			return
+	// Cywile niewczytanego układu czekają w enemy_queue jako typy (spawn_ship), dopiero przy wejściu stają się okrętami
+	var/list/queued_civilians = list()
+	for(var/entry in enemy_queue)
+		var/obj/structure/overmap/queued = entry
+		if(ispath(entry, /obj/structure/overmap) && initial(queued.civilian))
+			queued_civilians += entry
+		else
+			return
+	enemy_queue -= queued_civilians
+	for(var/atom/movable/A as anything in ambient)
+		system_contents -= A
+		qdel(A)
+
 #undef CIVILIAN_COLOUR
 #undef CIVILIAN_VISUAL_RANGE
 #undef CIVILIAN_ANNOUNCE_COOLDOWN

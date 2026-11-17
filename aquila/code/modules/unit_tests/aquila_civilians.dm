@@ -9,7 +9,7 @@
 /datum/unit_test/aquila_civilians/Run()
 	old_standing = GLOB.civilian_standing.Copy()
 	old_fake_chance = GLOB.civilian_fake_iff_chance
-	var/fail = check_ai_targeting() || check_penalty() || check_traders() || check_fake_iff()
+	var/fail = check_ai_targeting() || check_penalty() || check_traders() || check_fake_iff() || check_empty_hex_release()
 	if(fail)
 		return Fail(fail)
 
@@ -92,3 +92,23 @@
 	raider.fire_projectile(/obj/item/projectile/bullet/light_cannon_round, player)
 	if(raider.fake_iff_name)
 		return "Strzał nie zdemaskował fałszywego IFF"
+
+/// Pusty kafel z cywilem i strefą (tło kafla) zwalnia się, gdy nikogo na nim nie ma (dawniej cywil blokował zwolnienie)
+/datum/unit_test/aquila_civilians/proc/check_empty_hex_release()
+	if(!GLOB.hexmap?.built)
+		return
+	var/datum/hex/empty
+	for(var/id in GLOB.hexmap.hexes)
+		var/datum/hex/H = GLOB.hexmap.hexes[id]
+		if(!H.system && H.terrain == HEX_TERRAIN_EMPTY)
+			empty = H
+			break
+	if(!empty)
+		return
+	var/datum/star_system/random/hex_empty/S = GLOB.hexmap.system_for(empty)
+	SSstar_system.spawn_ship(/obj/structure/overmap/nanotrasen/mining_cruiser/aquila_hex_freighter/civilian/independent, S)
+	SSstar_system.spawn_anomaly(/obj/effect/overmap_anomaly/hazard/nebula, S)
+	if(!S.try_release())
+		return "Pusty kafel z cywilem i strefą nie zwolnił się"
+	if(empty.system)
+		return "Kafel dalej wskazuje zwolniony układ"
