@@ -119,13 +119,13 @@
 	alert_type = null
 
 /datum/status_effect/aq_transplant_weakness/on_apply()
-	owner.add_movespeed_modifier(/datum/movespeed_modifier/aq_transplant_weakness)
+	owner.add_movespeed_modifier_type(/datum/movespeed_modifier/aq_transplant_weakness) // datum API: the 0.6 slowdown comes from the type
 	owner.stamina?.add_regen_multiplier(id, 0.5)
 	to_chat(owner, "<span class='notice'>Ciało znowu cię słucha, ale każdy ruch kosztuje dużo siły.</span>")
 	return TRUE
 
 /datum/status_effect/aq_transplant_weakness/on_remove()
-	owner.remove_movespeed_modifier(/datum/movespeed_modifier/aq_transplant_weakness)
+	owner.remove_movespeed_modifier_type(/datum/movespeed_modifier/aq_transplant_weakness)
 	owner.stamina?.remove_regen_multiplier(id)
 	to_chat(owner, "<span class='green'>Słabość po przeszczepie mija.</span>")
 

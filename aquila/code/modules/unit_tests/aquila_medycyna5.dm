@@ -830,6 +830,8 @@
 	TEST_ASSERT(!chest.get_wound(WOUND_SPINE), "The brain stem wound stayed after the surgery")
 	TEST_ASSERT(arm.disabled != BODYPART_DISABLED_PARALYSIS && leg.disabled != BODYPART_DISABLED_PARALYSIS, "The limbs stay limp after the surgery")
 	TEST_ASSERT(patient.has_status_effect(/datum/status_effect/aq_transplant_weakness), "No weakness after the transplant")
+	var/list/weakness_data = LAZYACCESS(patient.movespeed_modification, "[/datum/movespeed_modifier/aq_transplant_weakness]")
+	TEST_ASSERT(weakness_data && weakness_data[MOVESPEED_DATA_INDEX_MULTIPLICATIVE_SLOWDOWN] > 0, "The weakness after the transplant does not slow down")
 
 /// A jammed suit cannot be taken off by the wearer; someone cuts it off with a welder and it leaks until taped
 /datum/unit_test/aquila_spacesuit_jam
