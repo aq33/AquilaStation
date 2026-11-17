@@ -106,6 +106,11 @@
 		/obj/structure/flora/grass/both = 12,
 		/obj/structure/flora/ash/chilly = 4,
 		/obj/structure/flora/ash/garden/frigid = 2,
+		/obj/structure/flora/ash/fonarstolbe = 2,
+		/obj/structure/flora/ash/vahrezjia = 2,
+		/obj/structure/flora/ash/earthenroot = 1,
+		/obj/structure/flora/ash/dirtberries = 1,
+		/obj/structure/flora/ash/sugartree = 1,
 	)
 	mob_spawn_chance = 1
 	mob_spawn_list = list(
@@ -146,6 +151,12 @@
 		/obj/structure/flora/ausbushes/ppflowers = 2,
 		/obj/structure/flora/ausbushes/lavendergrass = 2,
 		/obj/structure/flora/ash/garden/frigid = 2,
+		/obj/structure/flora/ash/podsneyzka = 2,
+		/obj/structure/flora/ash/vahrezjia = 1,
+		/obj/structure/flora/ash/earthenroot = 1,
+		/obj/structure/flora/ash/dirtberries = 1,
+		/obj/structure/flora/ash/sarezhi = 1,
+		/obj/structure/flora/ash/ylpha = 1,
 	)
 
 /// Las iglasty
@@ -155,6 +166,10 @@
 		/obj/structure/flora/tree/pine = 20,
 		/obj/structure/flora/tree/dead = 6,
 		/obj/structure/flora/grass/both = 8,
+		/obj/structure/flora/ash/inozhakust = 2,
+		/obj/structure/flora/ash/sugartree = 2,
+		/obj/structure/flora/ash/fjylozyn = 1,
+		/obj/structure/flora/ash/wulumunusha = 1,
 	)
 
 /datum/planet_biome/ice/forest/dense
@@ -232,6 +247,14 @@
 		/obj/structure/flora/ash/stem_shroom = 2,
 		/obj/structure/flora/ash/puce = 2,
 		/obj/structure/flora/ash/garden/frigid = 2,
+		/obj/structure/flora/ash/fonarstolbe = 1,
+		/obj/structure/flora/ash/vahrezjia = 1,
+		/obj/structure/flora/ash/podsneyzka = 1,
+		/obj/structure/flora/ash/inozhakust = 1,
+		/obj/structure/flora/ash/seraka = 2,
+		/obj/structure/flora/ash/glowgrowth = 1,
+		/obj/structure/flora/ash/fjylozyn = 1,
+		/obj/structure/flora/ash/wulumunusha = 1,
 	)
 	mob_spawn_chance = 2
 	mob_spawn_list = list(
@@ -273,6 +296,8 @@
 		/obj/structure/flora/ash/leaf_shroom = 3,
 		/obj/structure/flora/ash/cap_shroom = 3,
 		/obj/structure/flora/ash/stem_shroom = 3,
+		/obj/structure/flora/ash/plasma_flower = 3,
+		/obj/structure/flora/ash/glowgrowth = 2,
 	)
 	mob_spawn_list = PLANET_ICE_FAUNA
 

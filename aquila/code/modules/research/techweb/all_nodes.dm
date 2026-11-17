@@ -247,7 +247,7 @@
 // Węzły z istniejącym New() w aquila/ (base, comptech, telecomms) mają dopiski w tamtych plikach.
 /datum/techweb_node/botany/New() // płytki maszyn botaniki z Bee, obok ich konsoli
 	. = ..()
-	design_ids += list("seed_editor_board", "plant_mutator_board", "seeder", "plant_analyser_board", "refraction_catalogue_board")
+	design_ids += list("seed_editor_board", "plant_mutator_board", "seeder", "plant_analyser_board", "refraction_catalogue_board", "xenoflora_pod_board")
 
 /datum/techweb_node/mech_disabler/New() // paralizator mecha "Pacifier" obok "Peacemakera"
 	. = ..()

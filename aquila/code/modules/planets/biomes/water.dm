@@ -118,9 +118,15 @@
 	mob_spawn_chance = 1
 	mob_spawn_list = PLANET_WATER_CAVE_FAUNA
 
-/// Zalane korytarze
+/// Zalane korytarze: na wodzie glony i wodorosty
 /datum/planet_biome/cave/water/flooded
 	open_turf_types = list(/turf/open/water/planet/stormy/underground = 1)
+	flora_spawn_list = list(
+		/obj/structure/flora/rock/beach = 1,
+		/obj/structure/flora/rock/asteroid = 6,
+		/obj/structure/flora/ash/algae = 1,
+		/obj/structure/flora/ash/seaweed = 1,
+	)
 
 /datum/planet_biome/cave/water/flooded/partially
 	open_turf_types = list(

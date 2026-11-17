@@ -1658,6 +1658,8 @@ Wszystkie nazwy roślin i plonów są już przetłumaczone w porcie botaniki (`a
 | weed killer / Plant-B-Gone | środek chwastobójczy | m; nowe |
 | pest killer | pestycyd | m; istniejące |
 | watering can | konewka | ż; nowe |
+| compost bin / compost | kompostownik / kompost | m; nowe (Bubberstation) |
+| worm farm / worm | farma dżdżownic / dżdżownica | ż; nowe (Skyrat, tg) |
 | apple / golden apple | jabłko / złote jabłko | n; istniejące |
 | banana / banana peel | banan / skórka od banana | m / ż; istniejące / nowe |
 | cherries / blue cherries | wiśnie / niebieskie wiśnie | mn; istniejące |
@@ -1721,6 +1723,177 @@ Wszystkie nazwy roślin i plonów są już przetłumaczone w porcie botaniki (`a
 | leaf / stem / root / branch | liść / łodyga / korzeń / gałązka | m / ż / m / ż; istniejące |
 | fruit / vegetable | owoc / warzywo | m / n; istniejące |
 | mimana | mimana | ż; istniejące |
+
+### 21.1 Rośliny przeniesione z innych kodów (2026-11)
+
+Nowe gatunki z tg, Goona, Baya i innych (`aquila/code/modules/botany/aquila/ported/`). Kolumna EN: nazwa w oryginale.
+
+| EN | PL | rodzaj/uwagi |
+|---|---|---|
+| peanut | orzeszki ziemne | mn; nowe (tg) |
+| Peanut Butter (`/consumable/peanut_butter`) | Masło orzechowe | n; nowe, reagent |
+| aquatic substrate / water (substrate) | podłoże wodne / woda | n / ż; nowe (akwakultura, Bay/Nebula) |
+| shellfish bed / mollusc bed (body) | ławica | ż; nowe (Nebula) |
+| larvae / eggs (shellfish seeds) | larwy | mn; nowe, zamiast „nasiona” w paczkach skorupiaków |
+| shellfish | skorupiak / skorupiaki | m / mn; nowe |
+| clam / clams | małż / małże | m / mn; nowe (Bay, Nebula) |
+| oyster / oysters | ostryga / ostrygi | ż / mn; nowe (Bay) |
+| mussel / mussels | omułek / omułki | m / mn; nowe (Bay) |
+| shrimp | krewetka / krewetki | ż / mn; nowe (Bay) |
+| crab / crabs | krab / kraby | m / mn; istniejące (plon: surowe mięso kraba) |
+| barnacle / barnacles | pąkla / pąkle | ż / mn; nowe (Nebula) |
+| raw clam / mussel / oyster / shrimp / barnacle | surowy małż / surowy omułek / surowa ostryga / surowa krewetka / surowa pąkla | nowe, mięso po otwarciu nożem |
+| Synthmeat | syntetyczne mięso | n; nowe (Goon), roślina |
+| Synthbutt / Synthbrain / Synthheart / Syntheye | syntetyczny tyłek / mózg, syntetyczne serce / oczy | nowe (Goon); też narządy `/synthgrown` |
+| Synthlimb / Synthliver / Synthlung / Synthstomach / Synthappendix | syntetyczna kończyna / wątroba, syntetyczne płuca, syntetyczny żołądek / wyrostek robaczkowy | nowe (Goon) |
+| Synthbuttbot | syntetyczny tyłkobot | m; nowe (Goon), plonem tyłkobot |
+| Paper Tree / Money Tree / Rubber Tree | drzewo papierowe / pieniężne / kauczukowe | n; nowe (Goon) |
+| rockfruit | owoc skalny | m; nowe (Bubberstation) |
+| sandfruit | owoc piaskowy | m; nowe (Bubberstation) |
+| ferrotuber / titanituber | żelazna bulwa / tytanowa bulwa | ż; nowe (Bubberstation) |
+| uraniberry | uranowa jagoda | ż; nowe (Bubberstation) |
+| plasmaplum | plazmowa śliwka | ż; nowe (Bubberstation) |
+| bluegem drupe | niebieski klejnot | m; nowe (Bubberstation) |
+| ag-bergine / au-bergine | agberżyna / oberżyna złota | ż; nowe (Bubberstation) |
+| dimantis | dimantis | m; nowe (Bubberstation) |
+| Adam's apple (adamapple) | jabłko adamowe | n; nowe (Bubberstation) |
+| runescooper | runiczna gałka | ż; nowe (Bubberstation) |
+| bananiumberry | bananiowa jagoda | ż; nowe (Bubberstation) |
+| coca leaf / coca leaves | liść koki / liście koki | nowe (Monkestation) |
+| aloe | aloes | m; nowe (tg) |
+| Aloe Juice (`/consumable/aloejuice`) | Sok z aloesu | m; nowe (tg), reagent |
+| peas / peapod | groch / strąk grochu | m; nowe (tg) |
+| laughin' peas | śmiejący się groch | m; nowe (tg) |
+| Laughin' Syrup (`/consumable/laughsyrup`) | Syrop śmiechu | m; nowe (tg), reagent |
+| world peas | groch pokoju | m; nowe (tg); gra słów „world peace” |
+| green beans | fasolka szparagowa | ż; nowe (tg) |
+| jumping bean | skacząca fasolka | ż; nowe (tg) |
+| butterbean | bób maślany | m; nowe (tg) |
+| rose / carbon rose | róża / węglowa róża | ż; nowe (tg) |
+| cucumber | ogórek | m; nowe (tg) |
+| Cucumber Juice (`/consumable/cucumberjuice`) | Sok z ogórka | m; nowe (tg), reagent |
+| olive / olive tree | oliwka / drzewo oliwne | ż / n; nowe (tg) |
+| plum / plum tree | śliwka / śliwa | ż; nowe (tg) |
+| Plum Juice (`/consumable/plumjuice`) | Sok śliwkowy | m; nowe (tg), reagent |
+| plumb | śliwka ołowiana | ż; nowe (tg); gra słów plumbum = ołów |
+| bell pepper | papryka | ż; nowe (tg) |
+| pepper-corn | pieprzokukurydza | ż; nowe (tg) |
+| herbs / bundle of herbs | zioła / pęczek ziół | mn / m; nowe (tg) |
+| fraxinella | dyptam | m; nowe (tg); polska nazwa gatunku (dyptam jesionolistny) |
+| korta nut / sweet korta nut | orzech korta / słodki orzech korta | m; nowe (tg) |
+| Korta Milk / Korta Nectar (`/consumable/korta_milk`, `/korta_nectar`) | Mleko korta / Nektar korta | n / m; nowe (tg), reagenty |
+| töchtaüse berries | jagody töchtaüse | mn; nowe (tg); nazwa ciem bez zmian |
+| Töchtaüse Juice (`/consumable/toechtauese_juice`) | Sok z töchtaüse | m; nowe (tg), reagent |
+| lanternfruit | owoc latarniowy | m; nowe (tg) |
+| kronkus / kronkus vine segment | kronkus / pęd kronkusa | m; nowe (tg) |
+| odious puffball | purchawka cuchnąca | ż; nowe (tg) |
+| saltcane | trzcina solna | ż; nowe (tg) |
+| barrelmelon | beczkowy melon | m; nowe (tg) |
+| drake beet | smoczy burak | m; nowe (tg) |
+| cahn'root | korzeń Cahna | m; nowe (tg); od nazwiska twórcy, Cahn'Manga |
+| anti weed / anti cannabis leaf | antykonopie / liść antykonopi | mn / m; nowe (tg) |
+| amauri | amauri (plon: bulwa amauri) | n, nieodm.; nowe (Bay/Skyrat, ksenoarcheologia) |
+| gelthi | gelthi (plon: strąki gelthi) | n, nieodm.; nowe (Bay/Skyrat) |
+| jurl'mah | jurl'mah (plon: owoc jurl'mah) | n, nieodm.; nowe (Bay/Skyrat) |
+| surik | surik (plon: kryształ surik) | m; nowe (Bay/Skyrat) |
+| telriis | telriis (plon: snopek telriis) | m; nowe (Bay/Skyrat) |
+| thaa'dra | thaa'dra (plon: płatki thaa'dra) | ż, nieodm.; nowe (Bay/Skyrat) |
+| vale | vale (plon: liście vale) | n, nieodm.; nowe (Bay/Skyrat) |
+| vaporsac | wapniak gazowy | m; nowe (/vg//Skyrat) |
+| S'randar's hand | Dłoń S'randara (plon: liście Dłoni S'randara, okład z Dłoni S'randara) | ż; nowe (Bay//vg/) |
+| Messa's tear | Łza Messy (plon: płatki Łzy Messy, okład z Łzy Messy) | ż; nowe (Bay//vg/) |
+| Peeker | podglądacz (plon: oko podglądacza) | m; nowe (Goon, roślina-artefakt) |
+| Puker | rzygacz (plon: wymiotna maź) | m; nowe (Goon) |
+| Dripper | ciekacz (plon: fioletowa maź) | m; nowe (Goon) |
+| Light Lotus | lotos świetlny (plon: świecący owoc) | m; nowe (Goon) |
+| Creeper | pełzacz (plon: pędy pełzacza) | m; nowe (Goon) |
+| Crystal | kryształ (plon: fioletowy odłamek) | m; nowe (Goon) |
+| Plasma | roślina plazmowa (plon: zarodnik plazmy) | ż; nowe (Goon) |
+| Goldfish | złota rybka (ciało: koralowiec złotej rybki) | ż; nowe (Goon) |
+| Synthetic Cat | syntetyczny kot (plon: kotostrąk) | m; nowe (Goon) |
+| Man-Eating Plant | ludożerca (plon: paszcza ludożercy) | m; nowe (Goon) |
+| xenoflora | ksenoflora | ż; nowe (tgstation/tgstation#82089), rośliny obce rosnące tylko w kapsule |
+| xenoflora pod | kapsuła ksenoflory | ż; nowe (tgstation/tgstation#82089), maszyna 2×2 z kopułą |
+| broombush / broombush leaf | miotlarz / liść miotlarza | m; nowe (tgstation/tgstation#82089) |
+| cubomelon / cubomelon slice | sześciomelon / plaster sześciomelona | m; nowe (tgstation/tgstation#82089) |
+| Chronolized-Crystal Hyperlattice | hiperkrata czasowa, plon: kryształ hiperkraty | ż / m; nowe (tgstation/tgstation#82089) |
+| bluespace limon | bluespace'owa limona | ż; nowe (tgstation/tgstation#82089), jak „bluespace'owy banan” |
+| pyrite peach | pirytowa brzoskwinia | ż; nowe (tgstation/tgstation#82089) |
+| breather | oddychacz | m; nowe (Bay), ksenoflora |
+| resin plant / resin | roślina żywiczna / gałązka żywicy | ż; nowe (Bay), ksenoflora, plon tnie się na plastik |
+| plasma cabbage | kapusta plazmowa | ż; nowe (/vg/), ksenoflora |
+| livewire orange | pomarańcza piorunowa | ż; nowe (CHOMP), ksenoflora |
+| nuclear orange | pomarańcza jądrowa | ż; nowe (CHOMP), ksenoflora |
+| Limon Juice (`/consumable/limonjuice`) | Sok z limony | m; nowe, reagent |
+| Cellulose Fibers (`/cellulose`) | Włókna celulozowe | mn; nowe, reagent |
+| gukhe bloom | guche; plon: zakwit guche | n, ndm / m; nowe (Bay), ksenoflora z Moghes (Unathi) |
+| hrukhza (flower) | hruchza; plon: liść hruchzy | ż; nowe (Bay), ksenoflora z Moghes |
+| aghrassh tree | drzewo aghrasz; plon: owoc aghrasza | m; nowe (Bay), ksenoflora z pustyń Moghes |
+| o'krri mushroom / cluster | okri; plon: grzyb okri | m, ndm; nowe (Bay), ksenoflora z Qerrbalak (Skrellowie) |
+| ximi'koa | ksimikoa; plon: kwiat ksimikoi | ż; nowe (Bay), ksenoflora z Qerrbalak |
+| qokk'loa moss | mech kokloa; plon: kępa mchu kokloa | m; nowe (Bay), ksenoflora z Qerrbalak |
+| iridast bush / berries | krzew irydastu (owoc: irydast); plon: jagody irydastu | m; nowe (Bay), ksenoflora |
+| affelerin flower | afelerin; plon: kwiat afelerinu | m; nowe (Bay), ksenoflora światów pustynnych |
+| gummen bean plant | fasola gummen; plon: strąk fasoli gummen | ż; nowe (Bay), ksenoflora |
+| merlin tears | łzy Merlina | mn; nowe (Bay), ksenoflora, roślina czarodzieja |
+| peach / pear | brzoskwinia / gruszka (drzewo: grusza) | ż; nowe (Goon) |
+| strawberry / raspberry / blackberry / blue raspberry | truskawka / malina / jeżyna / niebieska malina | ż; nowe (Goon) |
+| blueberry | borówka | ż; nowe (Goon, Bay) |
+| honeydew melon | melon miodowy | m; nowe (Monke) |
+| avocado / mango / kiwi | awokado / mango / kiwi | n, ndm; nowe (Goon, Paradise) |
+| almond (plant: almond tree) | migdały (roślina: migdałowiec) | mn / m; nowe (Bay) |
+| cinnamon stick (plant: cinnamon tree) | laska cynamonu (roślina: cynamonowiec) | ż / m; nowe (Goon) |
+| peppercorns / black pepper plant | ziarna pieprzu / pieprz czarny | mn / m; nowe (Goon, Bay) |
+| ginger root / turmeric root | korzeń imbiru / kłącze kurkumy | m / n; nowe (Goon) |
+| mustard seed pod (plant: mustard) | strąk gorczycy (roślina: gorczyca) | m / ż; nowe (Goon) |
+| lavender / mint leaves / lettuce | lawenda / liście mięty / sałata | ż / mn / ż; nowe (Goon) |
+| flax | len | m; nowe (Nebula), daje surową bawełnę |
+| catnip (nepeta cataria) | kocimiętka | ż; nowe (Goon, Skyrat) |
+| blood orange / clockwork orange / grapefruit | krwista pomarańcza / mechaniczna pomarańcza / grejpfrut | ż / ż / m; nowe (Goon) |
+| white grapes | białe winogrona | mn; nowe |
+| tomacco / seething tomato / quantumato | tomacco / wrzący pomidor / kwantomat | m; nowe (Goon) |
+| twobacco | dwutoń (liść dwutoniu) | m; nowe (Goon) |
+| jelly bean | żelkowa fasolka (plon: żelkowe fasolki) | ż / mn; nowe (Goon) |
+| spice pumpkin | dynia korzenna | ż; nowe (Goon) |
+| Asomna / Commol / Contusine / Nureous / Venne | asomna / komol / kontuzyna / nureus / wenna | ż / m / ż / m / ż; nowe (Goon), zioła lecznicze |
+| ipecacuanha / aconite | ipekakuana / tojad | ż / m; nowe (Goon) |
+| hydrangea / gardenia / bird of paradise / rafflesia | hortensja / gardenia / strelicja / raflezja | ż; nowe (Goon) |
+| Mustard / Cinnamon / Ground Ginger / Curry Powder (`/consumable/mustard`, `cinnamon`, `ginger`, `curry_powder`) | Musztarda / Cynamon / Imbir mielony / Proszek curry | ż / m / m / m; nowe, reagenty |
+| broc flower (brocflower) | brokoł; plon: kwiat brokołu | m; nowe (Mojave Sun), dzika roślina pustkowi |
+| xander (xander root) | xander; plon: korzeń xandera | m; nowe (Mojave Sun), dzika roślina pustkowi |
+| mutfruit | mutoowoc; roślina: krzew mutoowocu | m; nowe (Mojave Sun), dzika roślina pustkowi |
+| tato | tato; roślina: krzak tato | n, nieodm.; nowe (Mojave Sun), dzika roślina pustkowi |
+| yucca (yucca fruit) | juka; plon: owoc juki | ż; nowe (Mojave Sun), dzika roślina pustkowi |
+| agave | agawa; plon: liść agawy | ż; nowe (Mojave Sun), dzika roślina pustkowi i wydm |
+| datura (datura flower) | bieluń; plon: kwiat bielunia | m; nowe (Mojave Sun), dzika roślina pustkowi |
+| punga (pungafruit) | punga; plon: owoc pungi | ż; nowe (Mojave Sun), dzika roślina pustkowi |
+| geiger punga (geiger pungafruit) | gejgerpunga; plon: owoc gejgerpungi | ż; nowe (Mojave Sun), napromieniowana punga |
+| radberry | radjagoda; roślina: krzew radjagód | ż; nowe (Mojave Sun), napromieniowana |
+| fonarstolbe (fruit) | fonarsztolbe (plon: owoc fonarsztolbe) | n, nieodm.; nowe (tg), dzika flora planety lodowej |
+| vahrezjia (stalks) | wachrezja (plon: łodygi wachrezji) | ż; nowe (tg), dzika flora planety lodowej |
+| podsneyzka (bunch) | podśnieżka (plon: pęczek podśnieżek) | ż; nowe (tg), dzika flora planety lodowej |
+| inozhakust (mash) | inożakust (plon: papka z inożakustu) | m; nowe (tg), dzika flora planety lodowej |
+| plasma flower | kwiat plazmowy | m; nowe (tg), dzika flora planety lodowej |
+| glowgrowth (colony / sheet) | świecąca narośl (kolonia świecącej narośli / płat świecącej narośli) | ż; nowe (tg), dzika flora planety lodowej |
+| seraka (mushrooms / cap) | seraka (grzyby seraka / kapelusz seraki) | ż; nowe (tg), dzika flora planety lodowej |
+| glowbell / weeping moon / cavern candle | świecący dzwonek / płaczący księżyc / jaskiniowa świeca | m / m / ż; nowe (Nebula), grzyby jaskiń księżyca i asteroid |
+| algae | glony (dzika: kożuch glonów) | mn; nowe (Nebula), płycizna i zalane jaskinie |
+| seaweed | wodorosty (dzika: kępa wodorostów) | mn; nowe (Shiptest), płycizna, plaża i zalane jaskinie; suszone dają arkusz wodorostów |
+| star cacti / Star Cactus Cluster | gwiaździsty kaktus / skupisko gwiaździstych kaktusów | m / n; nowe (tg), dzika flora planet |
+| lightshroom (red / blue / green) | grzyb świetlny (czerwony / niebieski / zielony) | m; nowe (Monke), dzika flora planet |
+| cinchona / Cinchona Exotica / cinchona bark | chinowiec / chinowiec egzotyczny / kora chinowca | m / m / ż; nowe (Yogstation) |
+| Magnus Purpura / Magnus Purpura flower | magnus purpura / kwiat magnus purpury | ż / m; nowe (Yogstation) |
+| kuku / bonji / bianco (berry, bush) | kuku / bondżi / bianko (jagoda, krzak) | ndm; nowe (Yogstation) |
+| Liberal Hat | kapelusz liberała | m; nowe (Yogstation), grzyb |
+| prickly pear / san pedro cactus / peyote | opuncja (plon: owoc opuncji) / kaktus San Pedro / pejotl | ż / m / m; nowe (Paradise) |
+| earthen-root (Binajr-nab'at) | ziemny korzeń | m; nowe (Aurora), ksenoflora z Adhomai, dziko na planetach lodowych |
+| dirt berries (Zhu'hagha Nifs) | brudne jagody (roślina: krzew brudnych jagód) | mn; nowe (Aurora), ksenoflora z Adhomai |
+| sarezhi berry | sareżi (plon: jagody sareżi) | ndm; nowe (Aurora), ksenoflora |
+| ylpha berry | ylfa (plon: jagody ylfy, roślina: krzew ylfy) | ż; nowe (Aurora), ksenoflora |
+| sugar tree (Nm'shaan) | drzewo cukrowe (plon: owoc drzewa cukrowego) | n; nowe (Aurora), ksenoflora z Adhomai |
+| fjylozyn | fjylozyn (pnącze fjylozynu) | m; nowe (Aurora), ksenoflora, świeci na czerwono |
+| wulumunusha | wulumunusza (plon: owoc wulumunuszy) | ż; nowe (Aurora), ksenoflora |
+| Earthen-Root / Dirt Berry / Sarezhi Berry / Ylpha Berry Juice | Sok z ziemnego korzenia / z brudnych jagód / z jagód sareżi / z jagód ylfy | m; nowe, reagenty |
 
 ## 22. Częste przymiotniki i określenia w nazwach
 
