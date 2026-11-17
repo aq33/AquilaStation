@@ -61,8 +61,10 @@
 	give_quirk(thief, /datum/quirk/kleptomaniac)
 	var/datum/brain_trauma/severe/kleptomaniac/klepto = thief.has_trauma_type(/datum/brain_trauma/severe/kleptomaniac)
 	TEST_ASSERT(klepto, "Kleptomania gave no trauma")
+	// Ręce muszą być wolne. Uraz działa już w Life(), więc kleptoman mógł coś podnieść, zanim test tu doszedł.
+	for(var/obj/item/held in thief.held_items)
+		qdel(held)
 	allocate(/obj/item/pen, get_step(thief, EAST))
-	TEST_ASSERT(!length(thief.held_items - null), "The kleptomaniac started with something in hand")
 	TEST_ASSERT(klepto.steal_from_ground(), "The kleptomaniac found nothing to take")
 	// Kleptoman bierze losową rzecz z sąsiednich pól, a obok mogą leżeć rzeczy z wcześniejszych części testu
 	var/list/taken = thief.held_items - null
