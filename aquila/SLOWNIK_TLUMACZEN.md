@@ -4337,3 +4337,4 @@ Nazwy obszarów są w większości przetłumaczone. Nowe nazwy budujemy z tych k
 | sleuth | węszenie | n; emotka Mopsa |
 | coat | umaszczenie | n; wybór w oknie postaci |
 | Vox / Vox pidgin / quills | Vox / Voxski (pidgin) / pióra | m; rasa (YogStation) |
+| Aquarian / dome | Akwarianin (l.mn. akwarianie) / klosz | m; nasza rasa (ryba w kloszu) |
