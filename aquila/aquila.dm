@@ -314,6 +314,7 @@
 #include "code\game\objects\items\implants\implant_security.dm"
 #include "code\game\objects\items\inducer.dm"
 #include "code\game\objects\items\item_scatter.dm"
+#include "code\game\objects\items\throw_from_hand.dm"
 #include "code\game\objects\items\manuals.dm"
 #include "code\game\objects\items\melee\misc.dm"
 #include "code\game\objects\items\polskie_znaki.dm"
@@ -404,6 +405,7 @@
 #include "code\modules\antagonists\horror\horror_chemicals.dm"
 #include "code\modules\antagonists\horror\horror_datums.dm"
 #include "code\modules\antagonists\horror\horror_mutate.dm"
+#include "code\modules\antagonists\horror\horror_xenobio.dm"
 #include "code\modules\antagonists\infiltrator\infiltrator.dm"
 #include "code\modules\antagonists\infiltrator\objectives.dm"
 #include "code\modules\antagonists\infiltrator\outfit.dm"
@@ -465,6 +467,7 @@
 #include "code\modules\antagonists\traitor\objectives\mapping.dm"
 #include "code\modules\antagonists\traitor\objectives\sabotage.dm"
 #include "code\modules\antagonists\traitor\objectives\steal.dm"
+#include "code\modules\antagonists\traitor\objectives\target_opt_in.dm"
 #include "code\modules\antagonists\traitor\equipment\Malf_Modules.dm"
 #include "code\modules\antagonists\disease\disease_abilities.dm"
 #include "code\modules\antagonists\disease\disease_datum.dm"
@@ -2604,6 +2607,7 @@
 #include "code\modules\unit_tests\aquila_ghost_polls.dm"
 #include "code\modules\unit_tests\aquila_gq_lights.dm"
 #include "code\modules\unit_tests\aquila_gun_fire_without_params.dm"
+#include "code\modules\unit_tests\aquila_drobiazgi_1711.dm"
 #include "code\modules\unit_tests\aquila_he_pipe_no_pipeline.dm"
 #include "code\modules\unit_tests\aquila_imaginary_friend_job.dm"
 #include "code\modules\unit_tests\aquila_gunplay.dm"
@@ -2772,11 +2776,14 @@
 #include "code\modules\i18n\chat_translation.dm"
 #include "code\modules\i18n\foreigner_names.dm"
 #include "code\modules\i18n\squad_orders.dm"
+#include "code\modules\i18n\voice_chat_language.dm"
+#include "code\modules\i18n\fabricator_search.dm"
 // Komora testowa dla obcokrajowca (zestaw używa przedmiotu z modułu, więc odpina się razem z nim)
 #include "code\modules\test_chamber\kits\pr_565_obcokrajowiec.dm"
 #include "code\modules\test_chamber\kits\pr_608_ekonomia_malf_statystyki.dm"
 #include "code\modules\test_chamber\kits\pr_610_zbiorczy_1011.dm"
 #include "code\modules\test_chamber\kits\pr_637_tlumacz_na_zywo.dm"
+#include "code\modules\test_chamber\kits\pr_654_drobiazgi_1711.dm"
 
 // Profiler byond-tracy: MUSI być ostatnim include'em całego builda (BYOND inicjuje zmienne statyczne od końca,
 // więc ta rusza pierwsza, przed Master i mapą). Opis: tools/tracy/README.md
