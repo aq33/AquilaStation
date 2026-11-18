@@ -184,6 +184,17 @@
 	dir = newdir
 	transform = dropship_turf_transform(dir)
 
+/// Szyby kokpitu Sabre: ściany, przez które widać, co dzieje się na zewnątrz (np. planetę przy zejściu na powierzchnię)
+/turf/closed/indestructible/dropship/sabre_window
+	name = "szyba kokpitu"
+	desc = "Pancerna szyba w kadłubie Sabre. Widać przez nią, co dzieje się na zewnątrz."
+	opacity = FALSE
+
+/// Boczne okna w burtach kokpitu, w stylu szyb z narożników
+/turf/closed/indestructible/dropship/sabre_window/side
+	icon = 'aquila/icons/turf/sabre_window.dmi'
+	icon_state = "left"
+
 // Skrzydła (boczne gondole) to podłoga: można po nich podejść do wrót kokpitu i kliknięciem wejść do środka
 
 /turf/open/indestructible/dropship/sabre_wing

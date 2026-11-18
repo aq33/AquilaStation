@@ -55,6 +55,11 @@
 	icon_state = "rasputin3"
 	},
 /area/shuttle/sabre)
+"jb" = (
+/turf/closed/indestructible/dropship/sabre_window{
+	icon_state = "98"
+	},
+/area/shuttle/sabre)
 "mj" = (
 /turf/closed/indestructible/dropship{
 	icon_state = "blue_cockpit_fr"
@@ -87,6 +92,11 @@
 "pC" = (
 /turf/closed/indestructible/dropship{
 	icon_state = "blue_cockpit_fl"
+	},
+/area/shuttle/sabre)
+"qS" = (
+/turf/closed/indestructible/dropship/sabre_window{
+	icon_state = "96"
 	},
 /area/shuttle/sabre)
 "sf" = (
@@ -134,6 +144,21 @@
 "uU" = (
 /turf/closed/indestructible/dropship/entry/sabre{
 	icon_state = "57"
+	},
+/area/shuttle/sabre)
+"xn" = (
+/turf/closed/indestructible/dropship/sabre_window/side{
+	icon_state = "left"
+	},
+/area/shuttle/sabre)
+"xY" = (
+/turf/closed/indestructible/dropship/sabre_window/side{
+	icon_state = "right"
+	},
+/area/shuttle/sabre)
+"ye" = (
+/turf/closed/indestructible/dropship/sabre_window{
+	icon_state = "86"
 	},
 /area/shuttle/sabre)
 "yx" = (
@@ -277,6 +302,11 @@
 	icon_state = "blue_rearwing_lb"
 	},
 /area/shuttle/sabre)
+"Ps" = (
+/turf/closed/indestructible/dropship/sabre_window{
+	icon_state = "89"
+	},
+/area/shuttle/sabre)
 "PD" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -322,6 +352,11 @@
 "Vf" = (
 /turf/closed/indestructible/dropship{
 	icon_state = "19"
+	},
+/area/shuttle/sabre)
+"VA" = (
+/turf/closed/indestructible/dropship/sabre_window{
+	icon_state = "97"
 	},
 /area/shuttle/sabre)
 "Wl" = (
@@ -384,8 +419,8 @@ Bl
 (3,1,1) = {"
 IA
 pC
-SB
-mN
+ye
+xn
 uU
 AB
 mN
@@ -394,7 +429,7 @@ OL
 "}
 (4,1,1) = {"
 uI
-dm
+qS
 Jf
 Gd
 mw
@@ -405,7 +440,7 @@ Ot
 "}
 (5,1,1) = {"
 uI
-Gw
+VA
 CO
 dO
 QY
@@ -416,7 +451,7 @@ tD
 "}
 (6,1,1) = {"
 uI
-Qh
+jb
 Ir
 IL
 PD
@@ -428,8 +463,8 @@ WJ
 (7,1,1) = {"
 sr
 mj
-XC
-Vf
+Ps
+xY
 Vf
 Vf
 Vf

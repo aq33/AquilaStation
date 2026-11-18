@@ -44,6 +44,11 @@
 	icon_state = "12"
 	},
 /area/shuttle/sabre)
+"fZ" = (
+/turf/closed/indestructible/dropship/sabre_window/side{
+	icon_state = "right"
+	},
+/area/shuttle/sabre)
 "gE" = (
 /obj/effect/landmark/dropship_entry,
 /obj/effect/turf_decal/stripes/line{
@@ -59,6 +64,11 @@
 "hB" = (
 /turf/template_noop,
 /area/template_noop)
+"hJ" = (
+/turf/closed/indestructible/dropship/sabre_window{
+	icon_state = "97"
+	},
+/area/shuttle/sabre)
 "iK" = (
 /turf/open/indestructible/dropship/sabre_wing{
 	icon_state = "70"
@@ -123,6 +133,11 @@
 	icon_state = "rasputin15"
 	},
 /area/shuttle/sabre)
+"uI" = (
+/turf/closed/indestructible/dropship/sabre_window{
+	icon_state = "96"
+	},
+/area/shuttle/sabre)
 "uK" = (
 /turf/closed/indestructible/dropship{
 	icon_state = "19"
@@ -171,6 +186,16 @@
 "zD" = (
 /turf/closed/indestructible/dropship{
 	icon_state = "96"
+	},
+/area/shuttle/sabre)
+"Al" = (
+/turf/closed/indestructible/dropship/sabre_window{
+	icon_state = "98"
+	},
+/area/shuttle/sabre)
+"AB" = (
+/turf/closed/indestructible/dropship/sabre_window{
+	icon_state = "86"
 	},
 /area/shuttle/sabre)
 "AE" = (
@@ -243,6 +268,11 @@
 	icon_state = "blue_wing_rt"
 	},
 /area/shuttle/sabre)
+"IW" = (
+/turf/closed/indestructible/dropship/sabre_window/side{
+	icon_state = "left"
+	},
+/area/shuttle/sabre)
 "Kb" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -307,6 +337,11 @@
 	},
 /turf/open/indestructible/dropship{
 	icon_state = "rasputin15"
+	},
+/area/shuttle/sabre)
+"Se" = (
+/turf/closed/indestructible/dropship/sabre_window{
+	icon_state = "89"
 	},
 /area/shuttle/sabre)
 "Sw" = (
@@ -386,8 +421,8 @@ aW
 (3,1,1) = {"
 WA
 cF
-aL
-EO
+AB
+IW
 LY
 lI
 EO
@@ -396,7 +431,7 @@ xX
 "}
 (4,1,1) = {"
 Ks
-zD
+uI
 AE
 LT
 mA
@@ -407,7 +442,7 @@ XX
 "}
 (5,1,1) = {"
 Ks
-Cb
+hJ
 tO
 oK
 Do
@@ -418,7 +453,7 @@ fb
 "}
 (6,1,1) = {"
 Ks
-Wi
+Al
 Sw
 bT
 Sb
@@ -430,8 +465,8 @@ uM
 (7,1,1) = {"
 CE
 xb
-Tz
-uK
+Se
+fZ
 uK
 uK
 uK
