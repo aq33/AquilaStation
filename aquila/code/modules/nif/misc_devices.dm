@@ -14,7 +14,7 @@
 /obj/item/nifsoft_remover/attack(mob/living/carbon/human/target_mob, mob/living/user, params)
 	if(!ishuman(target_mob))
 		return ..()
-	var/obj/item/organ/cyberimp/brain/nif/target_nif = target_mob.getorganslot(ORGAN_SLOT_BRAIN_NIF)
+	var/obj/item/organ/cyberimp/nif/target_nif = target_mob.getorganslot(ORGAN_SLOT_BRAIN_NIF)
 
 	if(!istype(target_nif) || !length(target_nif.loaded_nifsofts))
 		balloon_alert(user, "brak NIFSoftów!")
@@ -72,7 +72,7 @@
 	if(!ishuman(mob_to_repair))
 		return ..()
 
-	var/obj/item/organ/cyberimp/brain/nif/installed_nif = mob_to_repair.getorganslot(ORGAN_SLOT_BRAIN_NIF)
+	var/obj/item/organ/cyberimp/nif/installed_nif = mob_to_repair.getorganslot(ORGAN_SLOT_BRAIN_NIF)
 	if(!istype(installed_nif))
 		balloon_alert(user, "brak NIF-u")
 		return FALSE

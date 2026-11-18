@@ -15,7 +15,7 @@
 #define NIF_SETUP_BLINDNESS "nif_setup"
 
 /// Bazowy NIF, z którego wychodzą pozostałe modele
-/obj/item/organ/cyberimp/brain/nif
+/obj/item/organ/cyberimp/nif
 	name = "Nanitowa Platforma Implantów"
 	desc = "Implant mózgu, który wypełnia ciało nosiciela nanitami."
 	icon = 'aquila/icons/monke/nif/nif.dmi'
@@ -23,6 +23,7 @@
 	implant_overlay = null
 	w_class = WEIGHT_CLASS_NORMAL
 	slot = ORGAN_SLOT_BRAIN_NIF
+	zone = BODY_ZONE_HEAD // nie /cyberimp/brain: te ogłuszają nosiciela przy EMP (z pochłanianiem ogłuszeń heretyka), NIF tylko się psuje
 	actions_types = list(/datum/action/item_action/nif/open_menu)
 
 	/// Z kim NIF jest teraz połączony
@@ -99,12 +100,12 @@
 	/// Ikona NIF-u w czacie (stan z aquila/icons/monke/nif/nif_chat.dmi)
 	var/chat_icon = "standard"
 
-/obj/item/organ/cyberimp/brain/nif/Initialize(mapload)
+/obj/item/organ/cyberimp/nif/Initialize(mapload)
 	. = ..()
 	durability = max_durability
 	power_level = max_power_level
 
-/obj/item/organ/cyberimp/brain/nif/Destroy()
+/obj/item/organ/cyberimp/nif/Destroy()
 	if(owner) // wyjęcie przed wyczyszczeniem linked_mob, żeby Remove() zdjął pobór z ciała nosiciela
 		Remove(owner, special = TRUE)
 	if(linked_mob)
@@ -116,7 +117,7 @@
 	QDEL_LIST(loaded_nifsofts)
 	return ..()
 
-/obj/item/organ/cyberimp/brain/nif/Insert(mob/living/carbon/insertee, special = FALSE, drop_if_replaced = TRUE)
+/obj/item/organ/cyberimp/nif/Insert(mob/living/carbon/insertee, special = FALSE, drop_if_replaced = TRUE)
 	// Ochrona przed kradzieżą przed bazowym Insert(): ten wyjąłby najpierw działający NIF nosiciela
 	if(!ishuman(insertee) || (linked_mob && stored_ckey != insertee.ckey && theft_protection))
 		insertee?.audible_message(span_warning("[src] brzęczy ostrzegawczo i nie chce się połączyć."))
@@ -144,7 +145,7 @@
 		send_message("Wczytywanie fabrycznych NIFSoftów, proszę czekać...")
 		addtimer(CALLBACK(src, PROC_REF(install_preinstalled_nifsofts)), 3 SECONDS)
 
-/obj/item/organ/cyberimp/brain/nif/Remove(mob/living/carbon/organ_owner, special = FALSE)
+/obj/item/organ/cyberimp/nif/Remove(mob/living/carbon/organ_owner, special = FALSE)
 	if(organ_owner && linked_mob == organ_owner)
 		// Zasilanie z ciała nosiciela nie może zostać po wyjęciu (mnożnik głodu)
 		if(nutrition_drain)
@@ -171,7 +172,7 @@
 	SStgui.close_uis(src)
 
 /// Instaluje programy wgrane fabrycznie
-/obj/item/organ/cyberimp/brain/nif/proc/install_preinstalled_nifsofts()
+/obj/item/organ/cyberimp/nif/proc/install_preinstalled_nifsofts()
 	if(!length(preinstalled_nifsofts) || !owner)
 		return FALSE
 
@@ -180,7 +181,7 @@
 
 	return TRUE
 
-/obj/item/organ/cyberimp/brain/nif/process(delta_time)
+/obj/item/organ/cyberimp/nif/process(delta_time)
 	if(!linked_mob || owner != linked_mob || broken || linked_mob.IsInStasis())
 		return FALSE
 
@@ -206,7 +207,7 @@
 	change_power_level(power_usage)
 
 /// Zmienia zapas energii. Dodatnie power_to_change zużywa energię, ujemne ładuje
-/obj/item/organ/cyberimp/brain/nif/proc/change_power_level(power_to_change)
+/obj/item/organ/cyberimp/nif/proc/change_power_level(power_to_change)
 	if(!power_to_change)
 		return TRUE
 
@@ -221,7 +222,7 @@
 	return TRUE
 
 /// Włącza albo wyłącza zasilanie z odżywienia. bypass pomija nutrition_check()
-/obj/item/organ/cyberimp/brain/nif/proc/toggle_nutrition_drain(bypass = FALSE)
+/obj/item/organ/cyberimp/nif/proc/toggle_nutrition_drain(bypass = FALSE)
 	if(!bypass && !nutrition_check())
 		return FALSE
 
@@ -240,7 +241,7 @@
 	return TRUE
 
 /// Czy nosiciel ma odżywienie, z którego NIF może czerpać
-/obj/item/organ/cyberimp/brain/nif/proc/nutrition_check()
+/obj/item/organ/cyberimp/nif/proc/nutrition_check()
 	if(!linked_mob || !linked_mob.nutrition)
 		return FALSE
 
@@ -250,7 +251,7 @@
 	return linked_mob.nutrition >= minimum_nutrition
 
 /// Włącza albo wyłącza zasilanie z krwi. bypass pomija blood_check()
-/obj/item/organ/cyberimp/brain/nif/proc/toggle_blood_drain(bypass = FALSE)
+/obj/item/organ/cyberimp/nif/proc/toggle_blood_drain(bypass = FALSE)
 	if(!bypass && !blood_check())
 		return
 
@@ -265,14 +266,14 @@
 	balloon_alert(linked_mob, "pobór krwi włączony")
 
 /// Czy NIF może pobierać krew jako źródło energii
-/obj/item/organ/cyberimp/brain/nif/proc/blood_check()
+/obj/item/organ/cyberimp/nif/proc/blood_check()
 	if(!linked_mob || !linked_mob.blood_volume || (linked_mob.blood_volume <= minimum_blood_level))
 		return FALSE
 
 	return TRUE
 
 /// Kalibracja po pierwszym wszczepieniu: chwilowa ślepota, potem drobne skutki uboczne
-/obj/item/organ/cyberimp/brain/nif/proc/perform_calibration()
+/obj/item/organ/cyberimp/nif/proc/perform_calibration()
 	if(linked_mob.stat >= DEAD)
 		return FALSE
 
@@ -309,7 +310,7 @@
 				install_preinstalled_nifsofts()
 
 /// Dodaje program do NIF-u. Woła go /datum/nifsoft/New()
-/obj/item/organ/cyberimp/brain/nif/proc/install_nifsoft(datum/nifsoft/loaded_nifsoft)
+/obj/item/organ/cyberimp/nif/proc/install_nifsoft(datum/nifsoft/loaded_nifsoft)
 	if(broken || calibrating) // na zepsuty albo kalibrujący się NIF nic się nie instaluje
 		return FALSE
 
@@ -339,7 +340,7 @@
 	return TRUE
 
 /// Usuwa program z NIF-u. silent: bez komunikatu dla nosiciela
-/obj/item/organ/cyberimp/brain/nif/proc/remove_nifsoft(datum/nifsoft/removed_nifsoft, silent = FALSE)
+/obj/item/organ/cyberimp/nif/proc/remove_nifsoft(datum/nifsoft/removed_nifsoft, silent = FALSE)
 	if(!(removed_nifsoft in loaded_nifsofts) || broken)
 		return FALSE
 
@@ -351,7 +352,7 @@
 	return TRUE
 
 /// Zmienia wytrzymałość. Dodatnie wartości naprawiają, ujemne uszkadzają
-/obj/item/organ/cyberimp/brain/nif/proc/adjust_durability(adjustment_amount)
+/obj/item/organ/cyberimp/nif/proc/adjust_durability(adjustment_amount)
 	if(!adjustment_amount || ((adjustment_amount > 0) && (durability >= max_durability)) || ((adjustment_amount < 0) && (durability <= NIF_MINIMUM_DURABILITY)))
 		return FALSE
 
@@ -363,7 +364,7 @@
 	return TRUE
 
 /// Wiadomość od NIF-u albo NIFSoftu do nosiciela
-/obj/item/organ/cyberimp/brain/nif/proc/send_message(message_to_send, alert = FALSE)
+/obj/item/organ/cyberimp/nif/proc/send_message(message_to_send, alert = FALSE)
 	if(!linked_mob)
 		return
 	var/nif_icon = icon2html('aquila/icons/monke/nif/nif_chat.dmi', linked_mob.client, chat_icon) || ""
@@ -377,7 +378,7 @@
 	linked_mob.playsound_local(get_turf(linked_mob), good_sound, 60, FALSE)
 
 /// Kończy chwilową awarię (broken). Nie dotyczy wytrzymałości
-/obj/item/organ/cyberimp/brain/nif/proc/fix_nif()
+/obj/item/organ/cyberimp/nif/proc/fix_nif()
 	if(!broken)
 		return FALSE
 
@@ -386,19 +387,17 @@
 	return TRUE
 
 /// Znów pozwala NIF-owi tracić wytrzymałość
-/obj/item/organ/cyberimp/brain/nif/proc/make_vulnerable()
+/obj/item/organ/cyberimp/nif/proc/make_vulnerable()
 	durability_loss_vulnerable = TRUE
 
 // Okno NIF otwiera się tylko przyciskiem akcji wszczepionego implantu
-/obj/item/organ/cyberimp/brain/nif/attack_self(mob/user, modifiers)
+/obj/item/organ/cyberimp/nif/attack_self(mob/user, modifiers)
 	return FALSE
 
-/obj/item/organ/cyberimp/brain/nif/emp_act(severity)
-	var/stun_before = owner?.AmountStun()
+/obj/item/organ/cyberimp/nif/emp_act(severity)
 	. = ..()
 	if(!owner || . & EMP_PROTECT_SELF)
 		return
-	owner.SetStun(stun_before) // znosi tylko ogłuszenie z bazowego implantu mózgu, cudze zostaje
 	to_chat(owner, span_warning("Czujesz kłujący ból głowy!"))
 	if(!durability_loss_vulnerable)
 		return FALSE
@@ -424,7 +423,7 @@
 	send_message("<b>WYKRYTO ZAKŁÓCENIA ELEKTROMAGNETYCZNE.</b>", alert = TRUE)
 
 /// Uszkadza NIF przy śmierci nosiciela
-/obj/item/organ/cyberimp/brain/nif/proc/damage_on_death(datum/source, gibbed)
+/obj/item/organ/cyberimp/nif/proc/damage_on_death(datum/source, gibbed)
 	SIGNAL_HANDLER
 
 	if(!durability_loss_vulnerable)
@@ -458,7 +457,7 @@
 
 /// Zwraca zainstalowany program danego typu albo FALSE
 /mob/living/carbon/human/proc/find_nifsoft(nifsoft_to_find)
-	var/obj/item/organ/cyberimp/brain/nif/installed_nif = getorganslot(ORGAN_SLOT_BRAIN_NIF)
+	var/obj/item/organ/cyberimp/nif/installed_nif = getorganslot(ORGAN_SLOT_BRAIN_NIF)
 	if(!istype(installed_nif) || !length(installed_nif.loaded_nifsofts))
 		return FALSE
 
@@ -469,16 +468,16 @@
 /obj/item/autosurgeon/nif
 	name = "autochirurg z NIF typu Standard"
 	desc = "Jednorazowy autochirurg z Nanitową Platformą Implantów typu Standard. Użyj go na sobie, żeby wszczepić NIF."
-	starting_organ = list(/obj/item/organ/cyberimp/brain/nif/standard)
+	starting_organ = list(/obj/item/organ/cyberimp/nif/standard)
 	uses = 1
 
 /// NIF do testów i komory testowej: od razu skalibrowany
-/obj/item/organ/cyberimp/brain/nif/debug
+/obj/item/organ/cyberimp/nif/debug
 	is_calibrated = TRUE
 
 /obj/item/autosurgeon/nif/debug
 	name = "autochirurg z NIF testowym"
-	starting_organ = list(/obj/item/organ/cyberimp/brain/nif/debug)
+	starting_organ = list(/obj/item/organ/cyberimp/nif/debug)
 
 #undef NIF_CALIBRATION_STAGE_1
 #undef NIF_CALIBRATION_STAGE_1_END

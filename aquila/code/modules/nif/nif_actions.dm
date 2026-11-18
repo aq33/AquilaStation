@@ -12,7 +12,7 @@
 	button_icon_state = "user"
 
 // Przycisk akcji woła ui_action_click() implantu (item_action/Trigger)
-/obj/item/organ/cyberimp/brain/nif/ui_action_click(mob/user, datum/actiontype)
+/obj/item/organ/cyberimp/nif/ui_action_click(mob/user, datum/actiontype)
 	if(!istype(actiontype, /datum/action/item_action/nif/open_menu))
 		return ..()
 

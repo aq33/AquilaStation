@@ -7,7 +7,7 @@
 
 /datum/unit_test/aquila_nif/Run()
 	var/mob/living/carbon/human/patient = allocate(/mob/living/carbon/human)
-	var/obj/item/organ/cyberimp/brain/nif/standard/nif = new()
+	var/obj/item/organ/cyberimp/nif/standard/nif = new()
 
 	// Wszczepienie zaczyna kalibrację
 	nif.Insert(patient)
@@ -67,7 +67,7 @@
 	qdel(nif)
 
 	// Zniszczenie wszczepionego NIF-u z włączonym programem też sprząta ciało nosiciela
-	var/obj/item/organ/cyberimp/brain/nif/debug/debug_nif = new()
+	var/obj/item/organ/cyberimp/nif/debug/debug_nif = new()
 	debug_nif.Insert(patient)
 	TEST_ASSERT(!debug_nif.calibrating, "A pre-calibrated NIF started calibrating")
 	var/datum/nifsoft/money_sense/debug_soft = new(debug_nif)
@@ -78,8 +78,11 @@
 	TEST_ASSERT(patient.physiology.hunger_mod == hunger_before, "Destroying the NIF did not restore hunger")
 
 	// EMP zdejmuje tylko własne ogłuszenie implantu: krótsze ogłuszenie z innego źródła zostaje
-	var/obj/item/organ/cyberimp/brain/nif/debug/emp_nif = new()
+	var/obj/item/organ/cyberimp/nif/debug/emp_nif = new()
 	emp_nif.Insert(patient)
+	emp_nif.emp_act(EMP_HEAVY)
+	TEST_ASSERT(!patient.AmountStun(), "EMP on a NIF stunned the host like a brain implant")
+	emp_nif.make_vulnerable()
 	patient.SetStun(50)
 	emp_nif.emp_act(EMP_HEAVY)
 	TEST_ASSERT(patient.AmountStun() > 0 && patient.AmountStun() <= 50, "EMP on a NIF changed a stun from another source ([patient.AmountStun()])")
@@ -87,7 +90,7 @@
 
 	// Cudzy NIF odbija się przed wymianą: własny zostaje na miejscu
 	var/mob/living/carbon/human/stranger = allocate(/mob/living/carbon/human)
-	var/obj/item/organ/cyberimp/brain/nif/standard/foreign = new()
+	var/obj/item/organ/cyberimp/nif/standard/foreign = new()
 	foreign.linked_mob = stranger
 	foreign.stored_ckey = "aq_test_other_owner"
 	TEST_ASSERT(!foreign.Insert(patient), "A NIF bound to someone else went in")
@@ -98,7 +101,7 @@
 	qdel(emp_nif)
 
 	// Fabryczny program instaluje się po zakończeniu kalibracji
-	var/obj/item/organ/cyberimp/brain/nif/standard/fresh = new()
+	var/obj/item/organ/cyberimp/nif/standard/fresh = new()
 	fresh.Insert(patient)
 	fresh.calibration_duration = world.time
 	fresh.perform_calibration()

@@ -29,7 +29,7 @@ GLOBAL_LIST_INIT(purchasable_nifsofts, list(
 	if(!ishuman(user))
 		return null
 	var/mob/living/carbon/human/nif_user = user
-	var/obj/item/organ/cyberimp/brain/nif/user_nif = nif_user.getorganslot(ORGAN_SLOT_BRAIN_NIF)
+	var/obj/item/organ/cyberimp/nif/user_nif = nif_user.getorganslot(ORGAN_SLOT_BRAIN_NIF)
 	return istype(user_nif) ? user_nif : null
 
 /datum/computer_file/program/nifsoft_downloader/ui_data(mob/user)
@@ -75,7 +75,7 @@ GLOBAL_LIST_INIT(purchasable_nifsofts, list(
 			if(!product_to_buy || !paying_account || !(product_to_buy in GLOB.purchasable_nifsofts))
 				return FALSE
 
-			var/obj/item/organ/cyberimp/brain/nif/buyer_nif = get_user_nif(usr)
+			var/obj/item/organ/cyberimp/nif/buyer_nif = get_user_nif(usr)
 			if(!buyer_nif)
 				paying_account.bank_card_talk("Do tego zakupu potrzebujesz implantu NIF.")
 				return FALSE

@@ -44,11 +44,11 @@
 	/// Czas odnowienia
 	var/cooldown_duration = DEFAULT_NIFSOFT_COOLDOWN
 	/// Modele NIF, na które program się instaluje
-	var/list/compatible_nifs = list(/obj/item/organ/cyberimp/brain/nif)
+	var/list/compatible_nifs = list(/obj/item/organ/cyberimp/nif)
 
-/datum/nifsoft/New(obj/item/organ/cyberimp/brain/nif/recepient_nif)
+/datum/nifsoft/New(obj/item/organ/cyberimp/nif/recepient_nif)
 	. = ..()
-	compatible_nifs += /obj/item/organ/cyberimp/brain/nif/debug
+	compatible_nifs += /obj/item/organ/cyberimp/nif/debug
 	program_name = name
 
 	if(!istype(recepient_nif) || !recepient_nif.install_nifsoft(src))
@@ -63,7 +63,7 @@
 
 	linked_mob = null
 
-	var/obj/item/organ/cyberimp/brain/nif/installed_nif = parent_nif?.resolve()
+	var/obj/item/organ/cyberimp/nif/installed_nif = parent_nif?.resolve()
 	if(installed_nif)
 		installed_nif.loaded_nifsofts -= src
 
@@ -71,7 +71,7 @@
 
 /// Włącza albo wyłącza program (dla programów bez trybu: uruchamia go raz)
 /datum/nifsoft/proc/activate()
-	var/obj/item/organ/cyberimp/brain/nif/installed_nif = parent_nif?.resolve()
+	var/obj/item/organ/cyberimp/nif/installed_nif = parent_nif?.resolve()
 
 	if(!installed_nif)
 		if(active) // NIF właśnie jest niszczony: wyłącz sam program, bez rozliczania energii
@@ -112,7 +112,7 @@
 
 /// Oddaje koszt uruchomienia
 /datum/nifsoft/proc/refund_activation_cost()
-	var/obj/item/organ/cyberimp/brain/nif/installed_nif = parent_nif?.resolve()
+	var/obj/item/organ/cyberimp/nif/installed_nif = parent_nif?.resolve()
 	if(!installed_nif)
 		return
 	installed_nif.change_power_level(-activation_cost)
@@ -144,7 +144,7 @@
 
 /// Dopasowuje motyw programu do NIF-u
 /datum/nifsoft/proc/update_theme()
-	var/obj/item/organ/cyberimp/brain/nif/target_nif = parent_nif?.resolve()
+	var/obj/item/organ/cyberimp/nif/target_nif = parent_nif?.resolve()
 	if(!target_nif)
 		return FALSE
 
@@ -176,7 +176,7 @@
 /obj/item/disk/nifsoft_uploader/proc/attempt_software_install(mob/living/carbon/human/target, mob/user)
 	if(!ishuman(target))
 		return FALSE
-	var/obj/item/organ/cyberimp/brain/nif/installed_nif = target.getorganslot(ORGAN_SLOT_BRAIN_NIF)
+	var/obj/item/organ/cyberimp/nif/installed_nif = target.getorganslot(ORGAN_SLOT_BRAIN_NIF)
 	if(!istype(installed_nif))
 		balloon_alert(user || target, "brak NIF-u")
 		return FALSE

@@ -9,7 +9,7 @@
 	program_desc = "Łączy mózg nosiciela z bazą aktualnych cen większości przedmiotów, dzięki czemu na bieżąco zna ich wartość."
 	active_mode = TRUE
 	active_cost = 0.5
-	compatible_nifs = list(/obj/item/organ/cyberimp/brain/nif/standard)
+	compatible_nifs = list(/obj/item/organ/cyberimp/nif/standard)
 	buying_category = NIFSOFT_CATEGORY_UTILITY
 	ui_icon = "coins"
 

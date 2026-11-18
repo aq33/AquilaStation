@@ -1,6 +1,6 @@
 // AQUILA - okno NIF (NifPanel.tsx). Port z Monkestation (nifs_tgui.dm), bez przełącznika „zachowaj między rundami” i punktów nagród.
 
-/obj/item/organ/cyberimp/brain/nif
+/obj/item/organ/cyberimp/nif
 	/// Motywy okna do wyboru
 	var/static/list/ui_themes = list(
 		"default",
@@ -17,23 +17,23 @@
 	/// Obecny motyw okna
 	var/current_theme = "default"
 
-/obj/item/organ/cyberimp/brain/nif/ui_interact(mob/user, datum/tgui/ui)
+/obj/item/organ/cyberimp/nif/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "NifPanel", name)
 		ui.set_autoupdate(TRUE) // energia i krew zmieniają się co cykl
 		ui.open()
 
-/obj/item/organ/cyberimp/brain/nif/ui_state(mob/user)
+/obj/item/organ/cyberimp/nif/ui_state(mob/user)
 	return GLOB.conscious_state
 
 // Implant siedzi w nullspace, więc zwykłe sprawdzanie odległości by nie przeszło: okno ma tylko nosiciel
-/obj/item/organ/cyberimp/brain/nif/ui_status(mob/user, datum/ui_state/state)
+/obj/item/organ/cyberimp/nif/ui_status(mob/user, datum/ui_state/state)
 	if(user != linked_mob || owner != linked_mob)
 		return UI_CLOSE
 	return state.can_use_topic(src, user)
 
-/obj/item/organ/cyberimp/brain/nif/ui_static_data(mob/user)
+/obj/item/organ/cyberimp/nif/ui_static_data(mob/user)
 	var/list/data = list()
 
 	data["loaded_nifsofts"] = list()
@@ -57,7 +57,7 @@
 	data["product_notes"] = manufacturer_notes
 	return data
 
-/obj/item/organ/cyberimp/brain/nif/ui_data(mob/user)
+/obj/item/organ/cyberimp/nif/ui_data(mob/user)
 	var/list/data = list()
 	data["linked_mob_name"] = linked_mob?.name
 	data["current_theme"] = current_theme
@@ -79,7 +79,7 @@
 	data["examine_text"] = examine_datum ? html_decode(examine_datum.nif_examine_text) : ""
 	return data
 
-/obj/item/organ/cyberimp/brain/nif/ui_act(action, list/params)
+/obj/item/organ/cyberimp/nif/ui_act(action, list/params)
 	. = ..()
 	if(.)
 		return

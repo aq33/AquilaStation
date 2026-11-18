@@ -4,7 +4,7 @@
 /datum/nifsoft/hud
 	name = "Soczewka jasnowidza"
 	program_desc = "Zbiorcza nazwa NIFSoftów z wyświetlaczami przeziernymi. Ta technologia sięga niemal początków NIFSoftów. W cywilu łączy się ją z wszelkimi zajęciami: pilotażem, szermierką, badaniami naukowymi, a nawet pomocą SI w ważnych rozmowach. Zwykle nanomaszyny programu tworzą sztuczną soczewkę kontaktową na oku, ale przepisy Nanotrasen każą tym wersjom współpracować z okularami, które nosiciel już ma na sobie."
-	compatible_nifs = list(/obj/item/organ/cyberimp/brain/nif/standard)
+	compatible_nifs = list(/obj/item/organ/cyberimp/nif/standard)
 	active_mode = TRUE
 	active_cost = 0.5
 	ui_icon = "eye"
