@@ -69,4 +69,66 @@
 	TEST_ASSERT(!patient.aq_can_swallow() && !glass.canconsume(patient, patient), "A body without an esophagus can drink")
 	qdel(esophagus)
 
+/// AQUILA - AquilaMed 6 spine organ: spine wounds hurt it, a dead one paralyses the legs, none paralyses everything,
+/// a titanium one does not break
+/datum/unit_test/aquila_spine_organ
+
+/datum/unit_test/aquila_spine_organ/Run()
+	var/mob/living/carbon/human/patient = allocate(/mob/living/carbon/human)
+	var/obj/item/organ/aq_spine/spine = patient.getorganslot(ORGAN_SLOT_AQ_SPINE)
+	TEST_ASSERT(istype(spine), "A human has no spine")
+	TEST_ASSERT(!HAS_TRAIT(patient, TRAIT_PARALYSIS_L_LEG), "A healthy spine paralyses the legs")
+
+	patient.aq_injure_spine(WOUND_SEVERITY_CRITICAL)
+	TEST_ASSERT(spine.damage >= spine.fracture_damage, "A broken spine did not hurt the spine organ")
+	var/obj/item/bodypart/chest = patient.get_bodypart(BODY_ZONE_CHEST)
+	qdel(chest.get_wound(WOUND_SPINE))
+
+	spine.setOrganDamage(spine.maxHealth)
+	spine.on_life()
+	TEST_ASSERT(HAS_TRAIT(patient, TRAIT_PARALYSIS_L_LEG) && !HAS_TRAIT(patient, TRAIT_PARALYSIS_L_ARM), "A dead spine does not paralyse only the legs")
+	spine.Remove(patient)
+	TEST_ASSERT(HAS_TRAIT(patient, TRAIT_PARALYSIS_L_ARM) && HAS_TRAIT(patient, TRAIT_PARALYSIS_R_LEG), "A body without a spine can move")
+	qdel(spine)
+
+	var/obj/item/organ/aq_spine/cybernetic/titanium = new()
+	titanium.Insert(patient)
+	TEST_ASSERT(!HAS_TRAIT(patient, TRAIT_PARALYSIS_L_ARM) && !HAS_TRAIT(patient, TRAIT_PARALYSIS_L_LEG), "A new spine left the paralysis")
+	var/datum/wound/spinal/wound = patient.aq_injure_spine(WOUND_SEVERITY_CRITICAL)
+	TEST_ASSERT(istype(wound, /datum/wound/spinal/bruise), "A titanium spine broke")
+
+/// AQUILA - AquilaMed 6 paired lungs and kidneys: one side can be taken out and sewn back, a lung collapses and a
+/// syringe lets the air out, one kidney filters less
+/datum/unit_test/aquila_paired_organs
+
+/datum/unit_test/aquila_paired_organs/Run()
+	var/mob/living/carbon/human/patient = allocate(/mob/living/carbon/human)
+	var/obj/item/organ/lungs/lungs = patient.getorganslot(ORGAN_SLOT_LUNGS)
+	var/obj/item/organ/kidneys/kidneys = patient.getorganslot(ORGAN_SLOT_KIDNEYS)
+	TEST_ASSERT(lungs.aq_paired && kidneys.aq_paired && lungs.aq_working_sides() == 2, "Human lungs and kidneys are not a full pair")
+
+	// Pneumothorax and needle decompression
+	TEST_ASSERT(lungs.aq_collapse(AQ_SIDE_RIGHT) && lungs.aq_working_sides() == 1, "A lung did not collapse")
+	TEST_ASSERT(findtext(lungs.aq_scan_line(), "Odma"), "The scanner does not show the pneumothorax")
+	TEST_ASSERT(lungs.aq_decompress() && lungs.aq_working_sides() == 2, "Decompression did not open the lung")
+
+	// Taking one kidney out: half stays, half is a new organ, joining it back makes a pair
+	var/full = kidneys.aq_efficiency()
+	var/datum/surgery_operation/organ/aq_split_pair/kidneys/split = new()
+	TEST_ASSERT(split.state_check(kidneys), "A full kidney pair cannot be split")
+	split.on_success(kidneys, patient, null, list())
+	var/obj/item/organ/kidneys/donated = locate() in get_turf(patient)
+	TEST_ASSERT(istype(donated) && donated.aq_sides == AQ_SIDE_LEFT && kidneys.aq_sides == AQ_SIDE_RIGHT, "Splitting did not leave one kidney in the body and give the other")
+	TEST_ASSERT(kidneys.aq_efficiency() < full, "One kidney filters as well as two")
+	var/datum/surgery_operation/organ/aq_join_pair/kidneys/join = new()
+	TEST_ASSERT(join.state_check(kidneys) && join.snowflake_check_availability(patient, patient, donated, BODY_ZONE_PRECISE_GROIN), "The missing kidney cannot be sewn back")
+	join.on_success(kidneys, patient, donated, list())
+	TEST_ASSERT(kidneys.aq_sides == AQ_SIDES_BOTH && QDELETED(donated), "Sewing the kidney back did not make a pair")
+	qdel(split)
+	qdel(join)
+
+	// Species lungs are not a pair
+	var/obj/item/organ/lungs/plasmaman/filter = allocate(/obj/item/organ/lungs/plasmaman)
+	TEST_ASSERT(!filter.aq_paired, "A plasma filter splits into halves")
+
 #undef TEST_ASSERT

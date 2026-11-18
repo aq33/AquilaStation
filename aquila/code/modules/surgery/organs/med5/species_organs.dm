@@ -10,6 +10,7 @@
 	var/obj/item/organ/adrenals/mutantadrenals = /obj/item/organ/adrenals
 	var/obj/item/organ/pancreas/mutantpancreas = /obj/item/organ/pancreas // AquilaMed 6
 	var/obj/item/organ/esophagus/mutantesophagus = /obj/item/organ/esophagus // AquilaMed 6
+	var/obj/item/organ/aq_spine/mutantspine = /obj/item/organ/aq_spine // AquilaMed 6
 
 /// Does this species get the AquilaMed 5 organs of a body with blood
 /datum/species/proc/aq_has_med5_organs()
@@ -35,6 +36,7 @@
 	aq_regenerate_organ(C, ORGAN_SLOT_ADRENALS, wanted ? mutantadrenals : null, replace_current)
 	aq_regenerate_organ(C, ORGAN_SLOT_PANCREAS, wanted ? mutantpancreas : null, replace_current)
 	aq_regenerate_organ(C, ORGAN_SLOT_ESOPHAGUS, wanted ? mutantesophagus : null, replace_current)
+	aq_regenerate_organ(C, ORGAN_SLOT_AQ_SPINE, wanted ? mutantspine : null, replace_current)
 	aq_regenerate_organ(C, ORGAN_SLOT_LARYNX, aq_larynx_type(), replace_current)
 	// Without a stack by choice: none is given, but one a medic implanted later stays (cortical_stack.dm)
 	if(!C.has_quirk(/datum/quirk/no_cortical_stack))
@@ -47,9 +49,10 @@
 	internal_organs += new /obj/item/organ/adrenals
 	internal_organs += new /obj/item/organ/pancreas
 	internal_organs += new /obj/item/organ/esophagus
+	internal_organs += new /obj/item/organ/aq_spine
 	internal_organs += new /obj/item/organ/larynx
 	return ..()
 
 /datum/techweb_node/cyber_organs/New()
 	. = ..()
-	design_ids += list("aq_cybernetic_kidneys", "aq_cybernetic_spleen", "aq_cybernetic_intestines", "aq_cybernetic_adrenals", "aq_cybernetic_pancreas", "aq_synthesizer")
+	design_ids += list("aq_cybernetic_kidneys", "aq_cybernetic_spleen", "aq_cybernetic_intestines", "aq_cybernetic_adrenals", "aq_cybernetic_pancreas", "aq_cybernetic_spine", "aq_synthesizer")
