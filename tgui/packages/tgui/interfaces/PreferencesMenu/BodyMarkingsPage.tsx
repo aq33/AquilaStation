@@ -1,5 +1,6 @@
 // AQUILA: markingi przypisane do kończyn (do 3 na część ciała, każdy z własnym kolorem).
 // Serwer: aquila/code/modules/mob/living/carbon/human/body_markings/body_markings_prefs.dm
+import { classes } from 'common/react';
 import { useState } from 'react';
 import {
   Box,
@@ -44,6 +45,17 @@ const ZONES: [string, string][] = [
   ['l_leg', 'Lewa noga'],
   ['r_leg', 'Prawa noga'],
 ];
+
+/** Podgląd markingu na części ciała z arkusza aq_body_markings (klasa jak sanitize_css_class_name w DM) */
+const MarkingIcon = (props: { id: string; zone: string }) => {
+  const key = `${props.id}_${props.zone}`.replace(/[^a-zA-Z0-9]/g, '');
+  return (
+    <Box
+      className={classes(['aq_body_markings48x48', key])}
+      style={{ verticalAlign: 'middle' }}
+    />
+  );
+};
 
 export const BodyMarkingsPage = () => {
   const { act, data } = useBackend<BodyMarkingsData>();
@@ -149,6 +161,9 @@ export const BodyMarkingsPage = () => {
               {current.map(([id, color], i) => (
                 <Stack key={i} align="center" mb={0.5}>
                   <Stack.Item>
+                    <MarkingIcon id={id} zone={zone} />
+                  </Stack.Item>
+                  <Stack.Item>
                     <ColorBox color={color} />
                   </Stack.Item>
                   <Stack.Item grow>{names[id] || id}</Stack.Item>
@@ -228,7 +243,12 @@ export const BodyMarkingsPage = () => {
                     }
                   }}
                 >
-                  {marking.name}
+                  <Stack align="center">
+                    <Stack.Item>
+                      <MarkingIcon id={marking.id} zone={zone} />
+                    </Stack.Item>
+                    <Stack.Item>{marking.name}</Stack.Item>
+                  </Stack>
                 </Button>
               ))}
             </Section>

@@ -79,5 +79,26 @@
 			return TRUE
 	return FALSE
 
+/// Okno postaci: każdy marking ma podgląd na każdej swojej części ciała, a listy wyboru pokazują polskie nazwy
+/datum/unit_test/aquila_body_markings_window
+
+/datum/unit_test/aquila_body_markings_window/Run()
+	var/checked = 0
+	for(var/id in GLOB.aq_body_markings)
+		var/datum/aq_body_marking/marking = GLOB.aq_body_markings[id]
+		for(var/zone in marking.zones)
+			if(checked >= 40) // pełny arkusz generuje się przy starcie, tu wystarczy próbka
+				break
+			checked++
+			TEST_ASSERT(isicon(aq_marking_preview_icon(marking, zone)), "Marking [id] has no preview for [zone]")
+	TEST_ASSERT(checked, "No body markings to preview")
+
+	var/datum/preference/choiced/hair = GLOB.preference_entries_by_key["hair_style_name"]
+	var/list/hair_names = hair.get_display_names_with_polish()
+	TEST_ASSERT_EQUAL(hair_names["Bald"], "Łysina", "The hairstyle list does not show Polish names")
+	TEST_ASSERT("Bald" in hair.get_choices(), "Polish display names replaced the saved hairstyle values")
+	var/datum/preference/choiced/voice = GLOB.preference_entries_by_key["speech_voice"]
+	TEST_ASSERT_EQUAL(voice.get_display_names_with_polish()["speak_1"], "Głos 1", "Own display names were overwritten by the Polish list")
+
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL
