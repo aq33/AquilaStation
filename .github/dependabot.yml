@@ -1,6 +1,7 @@
 # AQUILA - cotygodniowe aktualizacje zależności (jak w tgstation). Pull requesty od Dependabota są zbiorcze: jeden
-# na zestaw drobnych podbić (minor/patch) w TGUI i jeden na akcje GitHub. Poprawki bezpieczeństwa przychodzą osobno
-# i od razu, niezależnie od harmonogramu. Duże wersje (major) idą pojedynczo, bo zwykle wymagają zmian w kodzie.
+# na zestaw drobnych podbić (minor/patch) w TGUI i jeden na akcje GitHub. Duże wersje (major) idą pojedynczo, bo zwykle
+# wymagają zmian w kodzie. Ten plik ustawia tylko harmonogram: osobne PR-y z poprawkami bezpieczeństwa (od razu, poza
+# harmonogramem) przychodzą dopiero po włączeniu „Dependabot security updates” w ustawieniach repozytorium.
 version: 2
 updates:
   - package-ecosystem: "npm"
