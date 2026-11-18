@@ -1,0 +1,31 @@
+# AQUILA - cotygodniowe aktualizacje zależności (jak w tgstation). Pull requesty od Dependabota są zbiorcze: jeden
+# na zestaw drobnych podbić (minor/patch) w TGUI i jeden na akcje GitHub. Poprawki bezpieczeństwa przychodzą osobno
+# i od razu, niezależnie od harmonogramu. Duże wersje (major) idą pojedynczo, bo zwykle wymagają zmian w kodzie.
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/tgui"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "TGUI"
+    groups:
+      tgui-drobne:
+        update-types:
+          - "minor"
+          - "patch"
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "CI"
+    groups:
+      akcje-github:
+        patterns:
+          - "*"
