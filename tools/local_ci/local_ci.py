@@ -403,6 +403,12 @@ def step_tests(r):
 	return code, "\n".join(lines)
 
 
+def step_times(r):
+	"""Ostrzeżenia o wolnych testach (jak krok „Test times” w CI) z logów ostatniego przebiegu testów."""
+	logs = [os.path.join(test_deploy_dir(shard), "data", "logs", "ci", "tests.log") for shard in range(1, max(1, r.args.czesci) + 1)]
+	return r.run([sys.executable, os.path.join(REPO, "tools", "ci", "check_test_times.py"), *logs])
+
+
 STEPS = [
 	("filedirs", "Zaznaczone foldery w .dme", step_filedirs, "base"),
 	("changelog", "Changelog", step_changelog, "base"),
@@ -418,8 +424,9 @@ STEPS = [
 	("dreamchecker", "dreamchecker", step_dreamchecker, "base"),
 	("maps", "Wszystkie mapy (-DALL_MAPS)", step_maps, "full"),
 	("tests", "Testy jednostkowe", step_tests, "full"),
+	("czasy", "Czasy testów (ostrzeżenia)", step_times, "full"),
 ]
-WARN_ONLY = {"i18n"}
+WARN_ONLY = {"i18n", "czasy"}
 
 
 def main():

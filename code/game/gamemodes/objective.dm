@@ -162,8 +162,11 @@ GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
 				possible_targets -= PT
 		if(!possible_targets.len)
 			possible_targets = all_possible_targets
+	var/list/opted_in_targets = opted_in_antag_targets(possible_targets) // AQ EDIT - gracze z opcją „Chcę być celem antagonistów” idą pierwsi
+	if(length(opted_in_targets)) // AQ EDIT
+		set_target(pick(opted_in_targets)) // AQ EDIT
 	//30% chance to go for a prefered target
-	if(prefered_targets.len > 0 && prob(30))
+	else if(prefered_targets.len > 0 && prob(30)) // AQ EDIT - było if
 		set_target(pick(prefered_targets))
 	else if(possible_targets.len > 0)
 		set_target(pick(possible_targets))

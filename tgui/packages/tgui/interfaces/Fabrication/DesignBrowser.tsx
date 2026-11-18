@@ -314,9 +314,10 @@ export const DesignBrowser = <T extends Design = Design>(
                     {allDesigns
                       .filter((design) => {
                         const query = searchText.toLowerCase();
-                        // AQUILA: z EN gracz widzi i wpisuje angielską nazwę
+                        // AQUILA: angielska nazwa pasuje w obu wersjach językowych
                         return (
                           design.name.toLowerCase().includes(query) ||
+                          !!design.nameEn?.toLowerCase().includes(query) ||
                           (isTranslating() &&
                             translateUiText(design.name)
                               .toLowerCase()
