@@ -6,12 +6,23 @@
  * przebiegu wszystkich testów naraz (co trzeci test psuł np. sabre_shuttle_rotated). Bez zmiennej
  * (gra, lokalny serwer) wykonują się wszystkie testy. Zmienną ustawia .github/workflows/continuous_integration.yml
  * i tools/local_ci (--czesci).
+ *
+ * Testy z aquila_unit_test_every_shard() nie biorą udziału w podziale: idą na koniec każdej części (i całej listy).
  */
 /proc/aquila_unit_test_shard(list/tests)
+	var/list/every_shard = tests & aquila_unit_test_every_shard()
+	var/list/rest = tests - every_shard
 	var/setting = world.GetConfig("env", "UNIT_TEST_SHARD")
-	if(!setting)
-		return tests
-	return aquila_unit_test_shard_of(tests, setting)
+	if(setting)
+		rest = aquila_unit_test_shard_of(rest, setting)
+	return rest + every_shard
+
+/// Testy wykonywane na samym końcu każdej części, bo sprawdzają, co zostawiły po sobie wszystkie poprzednie
+/proc/aquila_unit_test_every_shard()
+	. = list()
+#ifdef UNIT_TESTS
+	. += /datum/unit_test/aquila_gc_guard
+#endif
 
 /// Część listy testów dla ustawienia "numer/liczba"; przy złym ustawieniu cała lista
 /proc/aquila_unit_test_shard_of(list/tests, setting)

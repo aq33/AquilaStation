@@ -1324,3 +1324,10 @@
   - bugfix: 'Usunięte drzwi i alarmy powietrza nie zostają w pamięci. Kliknięcie ręką
       podłogi pod otwartymi drzwiami je zamyka, jak było zaplanowane (chyba że coś
       ciągniesz: wtedy przeciągasz to na pole drzwi).'
+'2026-11-18':
+  Joker66613:
+  - bugfix: Zniszczone okręty, floty, usunięte postacie, cyborgi i SI nie zostają
+      już w pamięci serwera.
+  - code_imp: Testy w CI nie szukają referencji przy każdym wycieku (bez kilkuminutowych
+      zamrożeń), a na końcu każdej części wypisują do logu obiekty, które nie zwolniły
+      się po usunięciu.
