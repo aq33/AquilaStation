@@ -3,7 +3,7 @@
 
 /obj/item/munitions_analyzer
 	name = "analizator amunicji"
-	desc = "Skaner do kuźni amunicji. Pokazuje, co dają materiał, stop, klasa i wypełnienie. Użyj w ręce, żeby wydrukować ostatni wynik."
+	desc = "Skaner do kuźni amunicji. Pokazuje, co dają rdzeń, powłoka, klasa i typ pocisku. Użyj w ręce, żeby wydrukować ostatni wynik."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "adv_spectrometer"
 	item_state = "analyzer"
@@ -38,7 +38,7 @@
 			var/datum/munition_material/M = GLOB.munition_materials[key]
 			var/amount = container ? round(container.get_material_amount(M.material_type) / MINERAL_MATERIAL_AMOUNT, 0.1) : 0
 			. += "<b>[M.name]</b> ([amount] ark.): [jointext(M.stat_lines(), " ")]"
-		. += "Stop dwóch materiałów: średnia liczb, cechy obu składników ze słabszą siłą."
+		. += "Rdzeń w powłoce: liczby (obrażenia, przebicie, prędkość) daje rdzeń, efekt specjalny i odporność daje powłoka."
 		return
 	if(istype(target, /obj/item/munition_part))
 		var/obj/item/munition_part/part = target
@@ -50,18 +50,20 @@
 		var/obj/item/munition_part/body/body = part
 		if(istype(body) && body.material)
 			. += "<b>[body.material.name]</b>: [jointext(body.material.stat_lines(), " ")]"
-		var/obj/item/munition_part/filler/filler_part = part
-		if(istype(filler_part))
-			var/datum/munition_filler/F = get_munition_filler(filler_part.filler_type)
-			. += "[F.name]: obrażenia ×[F.damage_mult], przebicie [F.armour_pen_add >= 0 ? "+" : ""][F.armour_pen_add]. [F.desc]"
+		var/datum/munition_filler/F = istype(body) ? body.shell_type : null
+		if(F)
+			. += "Typ [F.short_name] ([F.name]): obrażenia ×[F.damage_mult], przebicie [F.armour_pen_add >= 0 ? "+" : ""][F.armour_pen_add]. [F.desc]"
 		return
 	var/datum/component/forged_munition/forged = get_forged_munition(target)
 	if(!forged)
 		return
-	. += "[forged.galvanized ? "Pokryto" : "Wykuto"]: [forged.material.name], klasa [forged.quality.roman] ([forged.quality.name])."
+	if(forged.factory)
+		. += "Fabryczny pocisk: [forged.material.name]."
+	else
+		. += "[forged.galvanized ? "Pokryto" : "Wykuto"]: [forged.material.name], klasa [forged.quality.roman] ([forged.quality.name])."
 	. += "Razem: obrażenia ×[round(forged.damage_mult(), 0.01)], przebicie [forged.armour_pen_add() >= 0 ? "+" : ""][forged.armour_pen_add()], prędkość ×[forged.material.speed_mult], wytrzymałość ×[round(forged.material.integrity_mult * forged.quality.bonus, 0.01)]."
 	if(forged.filler)
-		. += "Wypełnienie: [forged.filler.name]."
+		. += "Typ pocisku: [forged.filler.short_name] ([forged.filler.name])."
 	. += forged.trait_lines()
 
 /obj/item/munitions_analyzer/attack_self(mob/user)

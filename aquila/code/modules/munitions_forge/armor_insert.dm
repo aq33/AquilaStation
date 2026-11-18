@@ -1,5 +1,5 @@
 // AQUILA - kuźnia amunicji: wkładki do pancerza (własne sprite'y w armor_insert.dmi: płyta balistyczna, ciężka i lekka, ze stanem rozgrzanym).
-// Odlew w piecu łukowym z wybranego materiału lub stopu, potem kucie pod młotem mechanicznym. Wykuta wkładka jest gotowa:
+// Odlew w piecu łukowym z wybranego materiału (rdzeń i powłoka), potem kucie pod młotem mechanicznym. Wykuta wkładka jest gotowa:
 // wkłada się ją do kamizelki, pancerza albo hardsuitu (jedna na ubranie), a wyjmuje śrubokrętem.
 // Ochronę i wytrzymałość daje materiał (tabela niżej), klasa jakości mnoży obie. Ciężki materiał spowalnia.
 // Trafienia w części ciała zakryte przez pancerz zużywają wkładkę: ochrona spada co ćwierć wytrzymałości, a zniszczona pęka.
@@ -26,16 +26,16 @@ GLOBAL_LIST_INIT(aq_insert_profiles, list(
 #define AQ_INSERT_SLOWDOWN_DENSITY 15
 #define AQ_INSERT_SLOWDOWN_PER_DENSITY 0.01
 
-/// Profil wkładki z materiału; stop to średnia składników
+/// Profil wkładki z materiału; rdzeń w powłoce to średnia ważona udziałem obu warstw w odlewie
 /datum/munition_material/proc/insert_profile()
 	return GLOB.aq_insert_profiles[material_type] || GLOB.aq_insert_profiles[/datum/material/iron]
 
-/datum/munition_material/alloy/insert_profile()
-	var/list/first_profile = first.insert_profile()
-	var/list/second_profile = second.insert_profile()
+/datum/munition_material/layered/insert_profile()
+	var/list/coating_profile = coating.insert_profile()
+	var/list/core_profile = core.insert_profile()
 	. = list()
-	for(var/key in first_profile | second_profile)
-		.[key] = (first_profile[key] + second_profile[key]) / 2
+	for(var/key in coating_profile | core_profile)
+		.[key] = coating_profile[key] * MUNITION_COATING_SHARE + core_profile[key] * (1 - MUNITION_COATING_SHARE)
 
 /obj/item/munition_part/body/armor_insert
 	name = "wkładka pancerza"
