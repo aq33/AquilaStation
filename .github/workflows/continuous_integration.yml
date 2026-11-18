@@ -96,10 +96,16 @@ jobs:
           key: apt-i386-v2-${{ steps.image.outputs.version }}-libssl3-libcurl4
       - name: Install libcurl (needed by BYOND 516.1664+ on Linux)
         run: APT_DEB_CACHE=$HOME/apt-i386 bash tools/ci/apt_install.sh libssl3:i386 libcurl4:i386
+      # AQUILA - ostrzezenie (nie blad), gdy czesc map kompiluje sie za dlugo: czas rosnie z kwadratem liczby map
       - name: Compile All Maps
         run: |
           source $HOME/BYOND/byond/bin/byondsetup
+          started=$SECONDS
           tools/build/build --ci dm -DCIBUILDING -DCITESTING -DALL_MAPS --map-shard=${{ matrix.shard }}/${{ strategy.job-total }}
+          elapsed=$((SECONDS - started))
+          if [ "$elapsed" -gt 200 ]; then
+            echo "::warning title=Wolna kompilacja map::Czesc ${{ matrix.shard }}/${{ strategy.job-total }} kompilowala sie ${elapsed} s (limit 200 s). Dopisz czesc do matrix.shard joba compile_all_maps."
+          fi
   run_all_tests:
     # AQUILA - testy w rownoleglych czesciach (UNIT_TEST_SHARD, aquila/code/modules/unit_tests/_unit_test_shards.dm).
     # Liczba czesci to tylko lista matrix.shard; nazwa i zmienna biora ja ze strategy.job-total
@@ -152,6 +158,10 @@ jobs:
           source $HOME/BYOND/byond/bin/byondsetup
           tools/build/build --ci build -DCIBUILDING
           bash tools/ci/run_server.sh
+      # AQUILA - ostrzezenia (nie blad), gdy nowy test albo cala czesc trwa za dlugo: przebieg CI ma zostac przy 6-7 min
+      - name: Test times
+        if: always()
+        run: python3 tools/ci/check_test_times.py ci_test/data/logs/ci/tests.log || true
       # AQUILA - pelne logi serwera i wyniki testow do pobrania, gdy testy nie przejda
       - name: Upload server logs
         if: failure()
