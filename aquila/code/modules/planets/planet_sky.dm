@@ -103,7 +103,8 @@
 	if(!T || SSmapping.level_trait(T.z, ZTRAIT_OVERMAP))
 		return null
 	var/obj/structure/overmap/ship = M.get_overmap()
-	if(!ship?.current_system)
+	// Na powierzchni planety (rezerwacja należy do planety) jej samej na niebie nie widać
+	if(!ship?.current_system || istype(ship, /obj/structure/overmap/planet))
 		return null
 	var/list/ship_data = SSstar_system.ships[ship]
 	if(ship_data && ship_data["target_system"]) // skok FTL: niebo należy do warstwy FTL
