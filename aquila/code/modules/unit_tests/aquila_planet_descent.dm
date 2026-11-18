@@ -45,6 +45,15 @@
 /// AQUILA - Sabre na planecie nie dokuje od razu: schodzi, a dokuje dopiero na końcu zejścia. Zejście przerwane, bo prom
 /// nie jest już nad planetą, kończy się bez lądowania i z wolnym komputerem dokowania
 /datum/unit_test/planet_descent_landing
+	/// Planeta testu (zwykłe qdel jej nie usuwa): Destroy usuwa ją z force także po nieudanej asercji
+	var/obj/structure/overmap/planet/test_planet
+
+/datum/unit_test/planet_descent_landing/Destroy()
+	if(test_planet && !QDELETED(test_planet))
+		test_planet.surface?.unload()
+		qdel(test_planet, TRUE)
+	test_planet = null
+	return ..()
 
 /datum/unit_test/planet_descent_landing/Run()
 	var/obj/structure/overmap/host = SSstar_system.find_main_overmap()
@@ -76,6 +85,7 @@
 			TEST_ASSERT(SSmapping.used_turfs[far] == parking, "The parking around the Sabre ends closer than 10 tiles from its hull ([COORD(far)])")
 
 	var/obj/structure/overmap/planet/planet = host.current_system.add_planet(/datum/planet_type/lava, clamp(host.x + 20, 30, world.maxx - 40), clamp(host.y, 30, world.maxy - 40))
+	test_planet = planet
 	TEST_ASSERT(planet_test_fast_surface(planet), "The planet surface didn't generate")
 	sabre.forceMove(planet.center_turf())
 	// Szukanie miejsca usypia (CHECK_TICK): prom z prędkością ze startu odleciałby w tym czasie znad planety
@@ -124,14 +134,32 @@
 	TEST_ASSERT(QDELETED(second_port), "The unused landing spot stayed on the planet")
 	TEST_ASSERT(!DC.docking_cooldown, "The docking computer stayed locked after the aborted descent")
 
+	// Trzecie zejście: obrys lądowiska jest zajęty dla innych promów, a coś postawione na nim w trakcie zejścia przerywa
+	// lądowanie (dokowanie zabiłoby ludzi i usunęło przedmioty pod kadłubem)
+	DC.docking_mode = TRUE
+	DC.docking_cooldown = FALSE
+	var/obj/docking_port/stationary/third_port = sabre.shuttle_find_landing(planet)
+	TEST_ASSERT(third_port, "No landing spot for the third descent")
+	TEST_ASSERT(sabre.shuttle_land(planet, third_port), "The third descent didn't start")
+	var/list/footprint = sabre.planet_landing_footprint(third_port)
+	TEST_ASSERT(length(footprint), "The landing spot has no hull footprint")
+	var/turf/blocked = footprint[1]
+	TEST_ASSERT(planet_descent_reserved(blocked, null), "Another shuttle could land on the spot of a descending shuttle")
+	TEST_ASSERT(!planet_descent_reserved(blocked, sabre), "A descending shuttle blocks its own landing spot")
+	var/obj/structure/girder/obstacle = new(blocked)
+	sabre.planet_descent.finish()
+	TEST_ASSERT(!sabre.shuttle_docked_at, "The Sabre landed on an occupied spot")
+	TEST_ASSERT(QDELETED(third_port), "The blocked landing spot stayed on the planet")
+	TEST_ASSERT(!QDELETED(obstacle), "Landing on an occupied spot deleted what stood there")
+	TEST_ASSERT(!planet_descent_reserved(blocked, null), "The landing spot stayed reserved after the aborted descent")
+	qdel(obstacle)
+
 	TEST_ASSERT(sabre.shuttle_land(host, home), "The Sabre didn't land back home")
 	shuttle_port.jumpToNullSpace()
 	if(!QDELETED(sabre))
 		qdel(sabre)
 	qdel(home, TRUE)
 	qdel(hangar)
-	planet.surface.unload()
-	qdel(planet, TRUE)
 
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL

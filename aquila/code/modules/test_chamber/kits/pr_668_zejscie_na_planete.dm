@@ -26,7 +26,8 @@
 		var/datum/planet_type/prototype = GLOB.planet_type_prototypes[planet_type]
 		planet_choices["[prototype.name || planet_type] ([planet_type])"] = planet_type
 	var/planet_choice = tgui_input_list(user, "Dodać planetę w układzie okrętu ([ship.current_system]), 6 pól od okrętu? (Anuluj = bez planety)", "Komora testowa", planet_choices)
-	if(!planet_choice)
+	// Okno wyboru nie ma limitu czasu: okręt mógł w tym czasie zniknąć albo skoczyć
+	if(!planet_choice || QDELETED(ship) || !ship.current_system)
 		return
 	var/obj/structure/overmap/planet/planet = ship.current_system.add_planet(planet_choices[planet_choice], clamp(ship.x + 6, 30, world.maxx - 40), clamp(ship.y - 4, 30, world.maxy - 40))
 	to_chat(user, span_notice("Dodano [planet] w układzie [ship.current_system]. Obraz na niebie zmieni się w ciągu 10 s."))

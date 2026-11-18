@@ -30,6 +30,16 @@
 		return FALSE
 	return ..()
 
+/// Trwające zejścia (obrysy ich lądowisk są zajęte dla innych promów)
+GLOBAL_LIST_EMPTY(planet_descents)
+
+/// Czy pole leży w obrysie lądowiska innego promu, który właśnie schodzi
+/proc/planet_descent_reserved(turf/T, obj/structure/overmap/small_craft/transport/asking)
+	for(var/datum/planet_descent/descent as anything in GLOB.planet_descents)
+		if(descent.craft != asking && descent.footprint[T])
+			return TRUE
+	return FALSE
+
 /// Zejście jednego promu na wybrany port na powierzchni planety
 /datum/planet_descent
 	var/obj/structure/overmap/small_craft/transport/craft
@@ -41,6 +51,8 @@
 	var/obj/effect/abstract/planet_descent_shadow/shadow
 	/// Warstwy planety ludzi, którzy oglądają zejście (zapamiętane na starcie: po dokowaniu ludzie należą już do planety)
 	var/list/viewers = list()
+	/// Pola, na których stanie kadłub (zajęte dla innych promów do końca zejścia)
+	var/list/footprint = list()
 	/// Ludzie z pomarańczową poświatą w kabinie (zdejmowana po przejściu przez atmosferę albo przy przerwaniu)
 	var/list/tinted = list()
 	var/list/timers = list()
@@ -49,8 +61,13 @@
 	craft = new_craft
 	planet = new_planet
 	port = new_port
+	for(var/turf/T as anything in craft.planet_landing_footprint(port))
+		footprint[T] = TRUE
+	GLOB.planet_descents += src
 
 /datum/planet_descent/Destroy()
+	GLOB.planet_descents -= src
+	footprint.Cut()
 	for(var/timer in timers)
 		deltimer(timer)
 	timers.Cut()
@@ -148,7 +165,7 @@
 /// Ostatnia faza: pod promem teren, a cień kadłuba kurczy się z dużej, miękkiej plamy do obrysu promu (widać go z każdej
 /// strony kadłuba, także zza ścian, które zasłaniają część nieba)
 /datum/planet_descent/proc/approach()
-	var/list/hull = craft.shuttle_port?.return_turfs()
+	var/list/hull = shuttle_hull_turfs(craft.shuttle_port)
 	if(!length(hull))
 		return
 	var/sum_x = 0
@@ -165,6 +182,17 @@
 /datum/planet_descent/proc/finish()
 	var/obj/structure/overmap/small_craft/transport/landing = craft
 	var/obj/structure/overmap/planet/target = planet
+	// Lądowisko mogło się zapełnić w trakcie zejścia (ktoś na nim stanął, coś postawiono): dokowanie zabiłoby ludzi
+	// i usunęło przedmioty na polach kadłuba, więc lądowanie się przerywa
+	if(!landing.planet_landing_spot_free(target, port))
+		landing.relay(null, span_warning("Lądowisko pod [landing] jest zajęte. Komputer dokowania przerywa lądowanie."))
+		if(istype(port, /obj/docking_port/stationary/shuttle_craft_spot) && !port.docked)
+			qdel(port, TRUE)
+		port = null
+		qdel(src)
+		if(!QDELETED(landing) && !QDELETED(target))
+			landing.planet_landing_cancelled(target)
+		return
 	finishing = TRUE
 	var/landed = landing.shuttle_land(target, port)
 	finishing = FALSE
@@ -179,13 +207,20 @@
 		if(M.client)
 			shake_camera(M, 3, 3)
 
+/// Pola kadłuba: return_turfs() daje cały prostokąt portu, razem z rogami spoza promu (template_noop w mapie Sabre)
+/proc/shuttle_hull_turfs(obj/docking_port/mobile/shuttle)
+	. = list()
+	for(var/turf/T as anything in shuttle?.return_turfs())
+		if(shuttle.shuttle_areas[T.loc])
+			. += T
+
 /// Kosmos przy kadłubie: lista (pole, kierunek do kadłuba)
 /proc/hull_edges(obj/docking_port/mobile/shuttle)
 	. = list()
 	if(!shuttle)
 		return
 	var/list/hull = list()
-	for(var/turf/T as anything in shuttle.return_turfs())
+	for(var/turf/T as anything in shuttle_hull_turfs(shuttle))
 		hull[T] = TRUE
 	for(var/turf/T as anything in hull)
 		for(var/dir in GLOB.cardinals)
@@ -438,7 +473,7 @@
 	if(!istype(OM, /obj/structure/overmap/planet) || planet_descent?.finishing)
 		return ..()
 	var/obj/structure/overmap/planet/planet = OM
-	if(planet_descent || shuttle_docked_at || !shuttle_port || !planet.craft_over_planet(src))
+	if(planet_descent || shuttle_docked_at || !shuttle_port || !planet.craft_over_planet(src) || !planet_landing_spot_free(planet, port))
 		// Port trwającego zejścia zostaje: drugie wywołanie (autopilot, ponowne dokowanie) nie może go zabrać
 		if(istype(port, /obj/docking_port/stationary/shuttle_craft_spot) && !port.docked && port != planet_descent?.port)
 			qdel(port, TRUE)
@@ -447,12 +482,32 @@
 	planet_descent.start()
 	return TRUE
 
+/// Pola, na których stanie kadłub na porcie (z obrotem portu)
+/obj/structure/overmap/small_craft/transport/proc/planet_landing_footprint(obj/docking_port/stationary/port)
+	. = list()
+	if(!port || !shuttle_port)
+		return
+	if(!length(hull_offsets))
+		shuttle_cache_offsets()
+	for(var/list/offset as anything in shuttle_rotate_offsets(hull_offsets, port.dir))
+		var/turf/T = locate(port.x + offset[1], port.y + offset[2], port.z)
+		if(T)
+			. += T
+
+/// Czy kadłub zmieści się na porcie (każde pole wolne, także od lądowisk innych schodzących promów)
+/obj/structure/overmap/small_craft/transport/proc/planet_landing_spot_free(obj/structure/overmap/planet/planet, obj/docking_port/stationary/port)
+	if(!port)
+		return FALSE
+	if(!length(hull_offsets))
+		shuttle_cache_offsets()
+	return shuttle_spot_free(planet, port.x, port.y, port.z, shuttle_rotate_offsets(hull_offsets, port.dir))
+
 /obj/structure/overmap/small_craft/transport/shuttle_launch(mob/user)
 	var/obj/structure/overmap/planet/planet = get_overmap()
 	// Pola pod kadłubem: po starcie znów są gruntem planety, a kurz zostaje tam, gdzie stał prom
 	var/list/site
 	if(istype(planet) && shuttle_port)
-		site = shuttle_port.return_turfs()
+		site = shuttle_hull_turfs(shuttle_port)
 	. = ..()
 	if(!. || !istype(planet))
 		return

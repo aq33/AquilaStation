@@ -62,9 +62,12 @@
 	layer = HUD_LAYER + 1
 	/// Typ planety, który teraz widać (null: niebo bez planety)
 	var/datum/planet_type/shown_type
-	/// Układ z ostatniego sprawdzenia i kiedy sprawdzić go znowu
+	/// Układ z ostatniego sprawdzenia, wybrana wtedy planeta i kiedy sprawdzić go znowu
 	var/datum/star_system/checked_system
+	var/datum/planet_type/checked_type
 	var/next_check = 0
+	/// Sprawdzanie co PLANET_SKY_RECHECK_DELAY także wtedy, gdy pasażer stoi w miejscu (paralaksa odświeża się tylko przy ruchu)
+	var/recheck_timer
 	/// Tarcza z powierzchnią i chmurami (KEEP_TOGETHER, filtry displace i alpha)
 	var/obj/effect/overlay/planet_sky_part/body
 	var/obj/effect/overlay/planet_sky_part/shade
@@ -73,7 +76,21 @@
 	var/list/surface_strips
 	var/list/cloud_strips
 
+/atom/movable/screen/parallax_layer/planet_sky/Initialize(mapload, view)
+	. = ..()
+	recheck_timer = addtimer(CALLBACK(src, PROC_REF(recheck_sky)), PLANET_SKY_RECHECK_DELAY, TIMER_STOPPABLE | TIMER_LOOP)
+
+/// Okręt mógł podlecieć do innej planety układu, a pasażer stoi przy oknie: wtedy update_parallax() nic nie woła
+/atom/movable/screen/parallax_layer/planet_sky/proc/recheck_sky()
+	var/mob/M = current_mob
+	if(QDELETED(M) || !(src in M.client?.parallax_layers))
+		return
+	update_status(M)
+
 /atom/movable/screen/parallax_layer/planet_sky/Destroy()
+	if(recheck_timer)
+		deltimer(recheck_timer)
+		recheck_timer = null
 	vis_contents.Cut()
 	if(body)
 		body.vis_contents.Cut()
@@ -84,6 +101,7 @@
 	QDEL_NULL(atmosphere)
 	shown_type = null
 	checked_system = null
+	checked_type = null
 	return ..()
 
 /atom/movable/screen/parallax_layer/planet_sky/update_o(view)
@@ -107,12 +125,14 @@
 	var/list/ship_data = SSstar_system.ships[ship]
 	if(ship_data && ship_data["target_system"]) // skok FTL: niebo należy do warstwy FTL
 		return null
+	// Zapamiętany wybór, nie to, co akurat widać: po powrocie z overmapy (planeta schowana) niebo od razu wraca
 	if(ship.current_system == checked_system && world.time < next_check)
-		return shown_type
+		return checked_type
 	checked_system = ship.current_system
 	next_check = world.time + PLANET_SKY_RECHECK_DELAY
 	var/obj/structure/overmap/planet/planet = pick_sky_planet(checked_system.system_contents, ship)
-	return planet?.planet_type
+	checked_type = planet?.planet_type
+	return checked_type
 
 /// Składa obraz planety danego typu (null chowa planetę)
 /atom/movable/screen/parallax_layer/planet_sky/proc/show_planet(datum/planet_type/planet_type)

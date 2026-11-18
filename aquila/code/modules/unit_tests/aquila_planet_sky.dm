@@ -32,18 +32,29 @@
 
 /// AQUILA - planeta na niebie: wybór najbliższej planety i składanie obrazu (tarcza z filtrami, chmury, poświata)
 /datum/unit_test/planet_sky_layer
+	/// Planety testu: zwykłe qdel ich nie usuwa (QDEL_HINT_LETMELIVE), więc Destroy usuwa je z force także po nieudanej asercji
+	var/list/planets = list()
+	var/atom/movable/screen/parallax_layer/planet_sky/sky
+
+/datum/unit_test/planet_sky_layer/Destroy()
+	for(var/obj/structure/overmap/planet/planet as anything in planets)
+		if(!QDELETED(planet))
+			qdel(planet, TRUE)
+	planets.Cut()
+	QDEL_NULL(sky)
+	return ..()
 
 /datum/unit_test/planet_sky_layer/Run()
 	var/turf/viewer = run_loc_floor_bottom_left
 	var/obj/structure/overmap/planet/hidden = new(viewer, /datum/planet_type/asteroid)
 	var/obj/structure/overmap/planet/near = new(locate(viewer.x + 1, viewer.y + 1, viewer.z), /datum/planet_type/moon)
 	var/obj/structure/overmap/planet/far = new(run_loc_floor_top_right, /datum/planet_type/lava)
-	var/list/planets = list(far, hidden, near)
+	planets = list(far, hidden, near)
 	TEST_ASSERT_EQUAL(pick_sky_planet(planets, viewer), near, "The nearest planet visible in the sky wasn't picked")
 	TEST_ASSERT_EQUAL(pick_sky_planet(list(far, hidden), viewer), far, "An asteroid field was picked instead of a planet")
 	TEST_ASSERT_EQUAL(pick_sky_planet(list(hidden), viewer), null, "An asteroid field showed up in the sky")
 
-	var/atom/movable/screen/parallax_layer/planet_sky/sky = new(null, world.view)
+	sky = new(null, world.view)
 	sky.show_planet(far.planet_type)
 	TEST_ASSERT(sky.body in sky.vis_contents, "The planet disk isn't shown")
 	TEST_ASSERT(sky.shade in sky.vis_contents, "The planet shadow isn't shown")
@@ -62,10 +73,6 @@
 	sky.show_planet(null)
 	TEST_ASSERT_EQUAL(length(sky.vis_contents), 0, "The sky still shows a planet")
 
-	qdel(sky)
-	qdel(hidden, TRUE)
-	qdel(near, TRUE)
-	qdel(far, TRUE)
 
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL

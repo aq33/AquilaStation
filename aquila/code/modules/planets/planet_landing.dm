@@ -147,6 +147,8 @@
 		return FALSE
 	if(istype(T.loc, /area/shuttle) || T.loc != planet.surface.surface_area)
 		return FALSE
+	if(planet_descent_reserved(T, src)) // lądowisko innego promu, który właśnie schodzi
+		return FALSE
 	for(var/atom/movable/AM as anything in T)
 		// Żyła nie jest gęsta, ale przelot promu kasuje zakotwiczone obiekty pod kadłubem (żyła misji by przepadła)
 		if(AM.density || istype(AM, /obj/structure/vein))
