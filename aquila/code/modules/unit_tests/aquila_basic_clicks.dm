@@ -1,7 +1,7 @@
 // The upstream assert macros are #undef'd at the end of code/modules/unit_tests/_unit_tests.dm, so this modular test carries its own copies
 #define TEST_ASSERT(assertion, reason) if (!(assertion)) { return Fail("Assertion failed: [reason || "No reason"]") }
 
-#define LEFT_CLICK "icon-x=16;icon-y=16;left=1;button=left"
+#define TEST_LEFT_CLICK "icon-x=16;icon-y=16;left=1;button=left"
 #define RIGHT_CLICK_PARAMS "icon-x=16;icon-y=16;right=1;button=right"
 
 /// AQUILA: basic mobs driven by real player clicks (ClickOn), in both control modes: combat mode and the legacy intents.
@@ -17,7 +17,7 @@
 	user.next_click = 0
 	user.next_move = 0
 	// The legacy controls turn the disarm intent into a right click
-	user.ClickOn(target, (right && !user.uses_legacy_intents()) ? RIGHT_CLICK_PARAMS : LEFT_CLICK)
+	user.ClickOn(target, (right && !user.uses_legacy_intents()) ? RIGHT_CLICK_PARAMS : TEST_LEFT_CLICK)
 
 /datum/unit_test/aquila_basic_clicks/proc/make_user(legacy, turf/where)
 	return allocate(legacy ? /mob/living/carbon/human/legacy_intents_test : /mob/living/carbon/human, where)
@@ -107,6 +107,6 @@
 			if(!QDELETED(thing))
 				qdel(thing)
 
-#undef LEFT_CLICK
+#undef TEST_LEFT_CLICK
 #undef RIGHT_CLICK_PARAMS
 #undef TEST_ASSERT

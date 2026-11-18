@@ -12,7 +12,7 @@
 	} \
 } while (FALSE)
 
-#define LEFT_CLICK "icon-x=16;icon-y=16;left=1;button=left"
+#define TEST_LEFT_CLICK "icon-x=16;icon-y=16;left=1;button=left"
 
 /// Records what a mob says
 /datum/aquila_say_recorder
@@ -58,7 +58,7 @@
 		COOLDOWN_RESET(ranged, fire_cooldown)
 		shooter.next_click = 0
 		shooter.next_move = 0
-		shooter.ClickOn(victim, LEFT_CLICK)
+		shooter.ClickOn(victim, TEST_LEFT_CLICK)
 		TEST_ASSERT(aquila_wait_for_hit(recorder), "[shooter_type]: a player click on a far target did not shoot")
 		qdel(recorder)
 		qdel(shooter)
@@ -172,7 +172,7 @@
 		feeder.put_in_active_hand(slop)
 		feeder.next_click = 0
 		feeder.next_move = 0
-		feeder.ClickOn(birdboat, LEFT_CLICK)
+		feeder.ClickOn(birdboat, TEST_LEFT_CLICK)
 		TEST_ASSERT(slop.loc == birdboat, "Birdboat did not eat the slop a player fed it")
 	TEST_ASSERT_EQUAL(boat_controller.blackboard[BB_GOOSE_VOMIT_CHANCE], 9, "Gross food did not make Birdboat more likely to throw up")
 
@@ -241,7 +241,7 @@
 		COOLDOWN_RESET(ranged, fire_cooldown)
 		spitter.next_click = 0
 		spitter.next_move = 0
-		spitter.ClickOn(victim, LEFT_CLICK)
+		spitter.ClickOn(victim, TEST_LEFT_CLICK)
 		TEST_ASSERT(aquila_wait_for_hit(recorder), "[spitter_type]: a player click on a far target did not spit")
 		qdel(recorder)
 		qdel(spitter)
@@ -287,7 +287,7 @@
 	var/obj/effect/decal/cleanable/blood/mess = allocate(/obj/effect/decal/cleanable/blood, get_step(corner, NORTH))
 	maid.next_move = 0
 	maid.next_click = 0
-	maid.ClickOn(mess, LEFT_CLICK)
+	maid.ClickOn(mess, TEST_LEFT_CLICK)
 	TEST_ASSERT(QDELETED(mess), "The maid did not clean up the blood she clicked")
 	qdel(maid)
 	qdel(victim)
@@ -614,6 +614,6 @@
 	TEST_ASSERT_EQUAL(disk.loc, drop_turf, "Cayenne did not put the disk down on the clicked floor")
 	TEST_ASSERT(isnull(cayenne.disky), "Cayenne still thinks she holds the disk")
 
-#undef LEFT_CLICK
+#undef TEST_LEFT_CLICK
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL

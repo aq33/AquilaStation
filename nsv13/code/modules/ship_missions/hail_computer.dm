@@ -13,7 +13,7 @@
 	size = 4
 	tgui_id = "NtosHailLogs"
 	program_icon = "envelope-open"
-	var/obj/var/obj/structure/overmap/ship //Our ship
+	var/obj/structure/overmap/ship //Our ship // AQ EDIT - literówka w typie (var/obj/var/obj/...)
 
 /datum/computer_file/program/ship_hail_logger/on_start(mob/living/user)
 	. = ..(user)
