@@ -10,8 +10,14 @@
 // - Rozrzut prędkości kul ±15% (wzór: CM), żeby seria nie leciała sznurkiem.
 // - Kule z broni ręcznej lecą dwa razy szybciej niż fabryczne 0,8 ds na kratkę (prośba z testów w grze).
 
-/// Szansa na niewypał zwykłego fabrycznego naboju (procent)
+/// Szansa na niewypał zwykłego fabrycznego naboju (procent). W buildzie testowym 0: każdy test, który strzela, padał
+/// przez nią losowo raz na ok. 330 strzałów (aquila_gun_fire_without_params na masterze). Testy niewypału ustawiają
+/// misfire_chance naboju jawnie.
+#ifdef UNIT_TESTS
+#define AQ_FACTORY_MISFIRE_CHANCE 0
+#else
 #define AQ_FACTORY_MISFIRE_CHANCE 0.3
+#endif
 /// Ciepło, poniżej którego przegrzana broń znowu strzela
 #define AQ_OVERHEAT_RECOVERY 0.3
 /// Przyspieszenie kul z broni ręcznej (pociski energetyczne i działa okrętowe bez zmian)

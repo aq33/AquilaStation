@@ -122,4 +122,21 @@
 
 	TEST_ASSERT(GLOB.total_runtimes == runtimes_before, "[GLOB.total_runtimes - runtimes_before] runtimes while testing the vampire")
 
+/// AQUILA - nośnik namiernika wampira siedzi w ciele: po usunięciu ciała datum antaga (zostaje przy umyśle) nie może go
+/// trzymać, bo twarde usunięcie odpalało w CI przeszukiwanie referencji na 2,5 minuty
+/datum/unit_test/aquila_vampire_tracker_body_deleted
+
+/datum/unit_test/aquila_vampire_tracker_body_deleted/Run()
+	var/mob/living/carbon/human/vampire_mob = allocate(/mob/living/carbon/human)
+	vampire_mob.mind_initialize()
+	var/datum/antagonist/vampire/vampire = new
+	vampire.silent = TRUE
+	vampire_mob.mind.add_antag_datum(vampire)
+	var/obj/effect/abstract/vampire_tracker_holder/tracker = vampire.tracker
+	TEST_ASSERT(tracker, "The vampire got no tracker")
+	TEST_ASSERT(tracker.loc == vampire_mob, "The tracker isn't inside the vampire's body")
+	qdel(vampire_mob)
+	TEST_ASSERT(QDELETED(tracker), "The tracker survived its body")
+	TEST_ASSERT(!vampire.tracker, "The vampire datum still references the deleted tracker")
+
 #undef TEST_ASSERT

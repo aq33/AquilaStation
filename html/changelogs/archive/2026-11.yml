@@ -1257,6 +1257,24 @@
       dostaje nową duszę.
   - code_imp: Usunięta drużyna antagonistów usuwa swoje cele, a gang zabiera role
       członkom; poprawione wycieki pamięci, przez które testy w CI trwały do 35 minut.
+  Smartkar, SELFHELL:
+  - rscadd: 'Botanika: 188 nowych roślin i odmian z tg, Goona, Baya, Paradise, Monke,
+      Nebuli, Yoga, Mojave Sun i Bubberstation, z automatu, z pieca radiacyjnego,
+      z mutacji od odczynnika, z artefaktów i z dzikiej flory planet.'
+  - rscadd: 'Planety: dzikie rośliny w każdym biomie (zbiór ręką, nasiona do tacki)
+      i obce nasiona w ruinach.'
+  - bugfix: Dzikie rośliny Lavalandu i planet zawsze owocują (losowa cecha nie przekracza
+      budżetu).
+  - rscadd: 'Mutacje od odczynnika: konkretny odczynnik w tacy zmienia roślinę w konkretną
+      odmianę (np. pomidor z krwią, pomidor z nikotyną).'
+  - rscadd: 'Kompostownik i farma dżdżownic do zrobienia z desek: nawóz bez chemii
+      i worki ziemi.'
+  - rscadd: 'Akwakultura: podłoże wodne i hodowla skorupiaków w tacy.'
+  - rscadd: Kapsuła ksenoflory 2×2 z własną atmosferą i 30 roślinami obcych światów
+      (gaz, odczynnik i temperatura według rośliny), płytka w R&D i skrzynia w zaopatrzeniu.
+  - rscadd: Artefakty ksenoarcheologii mogą mieć cechę wyrzucającą nasiona obcych
+      roślin.
+  - imageadd: Sprite'y plonów, nasion i kapsuły z innych kodów.
   shiptest-ss13, TerraGov-Marine-Corps, tgstation:
   - rscadd: 'Planety z lądowaniem: planeta wulkaniczna z burzami popiołu, rudami,
       ruinami, roślinami i fauną z Shiptesta (siarkodemony, lawowe pędraki, nory i
@@ -1306,3 +1324,32 @@
   - bugfix: 'Usunięte drzwi i alarmy powietrza nie zostają w pamięci. Kliknięcie ręką
       podłogi pod otwartymi drzwiami je zamyka, jak było zaplanowane (chyba że coś
       ciągniesz: wtedy przeciągasz to na pole drzwi).'
+'2026-11-18':
+  Joker66613:
+  - bugfix: Zniszczone okręty, floty, usunięte postacie, cyborgi i SI nie zostają
+      już w pamięci serwera.
+  - code_imp: Testy w CI nie szukają referencji przy każdym wycieku (bez kilkuminutowych
+      zamrożeń), a na końcu każdej części wypisują do logu obiekty, które nie zwolniły
+      się po usunięciu.
+  - bugfix: Misja na małej planecie zawsze dostaje punkt badawczy albo schron kolonii.
+  - code_imp: Krótsze testy planet w CI.
+  - code_imp: 'CI: mapy kompilują się w trzech równoległych częściach, części testów
+      mają podobny czas, a nowy push do PR-a anuluje przebieg poprzedniego commita.'
+  - bugfix: Zniszczony Sabre nie wysadza już wnętrza innego Sabre ani hangaru, w którym
+      tamten stoi.
+  - code_imp: Testy ze strzałem nie padają już losowo przez niewypał fabrycznego naboju.
+  - code_imp: Zaktualizowano biblioteki interfejsu z lukami bezpieczeństwa (m.in.
+      DOMPurify czyszczący HTML w oknach i czacie).
+  - rscadd: Trzylufowe działo pokładowe Yamato, moduł kalibracji działa, pociski Magneton
+      i Sparrowhawk oraz nowe badanie „Uzbrojenie okrętowe” z płytkami dział Gaussa,
+      VLS i działa pokładowego.
+  - rscadd: Moduły podkręcania studni nanonaprawczej (badania, Minsky, wyjmowanie
+      łomem) i inżynieryjna holomapa z alarmami na mostku i w inżynierii.
+  - rscadd: Układy FTL wkłada się do konsoli nawigacji i wybiera jeden bonus skoku;
+      układ warp u Minsky'ego i w badaniach.
+  - rscadd: Misje od handlarzy i reputacja u stacji ze zniżkami.
+  - rscadd: Wydarzenia „Samotny łowca” i „Szczury z pasa” na mapie galaktyki.
+  - rscadd: Kucharz zna przepis na głodny worek prochu.
+  - bugfix: Flak na Atlantis i flak okrętów AI strzela; płytka i amunicja flaku w
+      badaniach, amunicja w zaopatrzeniu.
+  - bugfix: Holomapa poza planem pokładu nie wywala błędu.

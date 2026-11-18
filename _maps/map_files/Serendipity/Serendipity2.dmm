@@ -6152,6 +6152,12 @@
 /obj/structure/extinguisher_cabinet/south,
 /turf/open/floor/monotile/light,
 /area/quartermaster)
+"Fn" = (
+/obj/structure/disposalpipe/segment,
+/obj/structure/cable,
+/obj/machinery/station_map/engineering/directional/west,
+/turf/open/floor/monotile/steel,
+/area/engine/engineering)
 "Fo" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable,
@@ -7621,11 +7627,6 @@
 /obj/machinery/light/small,
 /turf/open/floor/plating,
 /area/maintenance/department/engine)
-"NI" = (
-/obj/structure/disposalpipe/segment,
-/obj/structure/cable,
-/turf/open/floor/monotile/steel,
-/area/engine/engineering)
 "NJ" = (
 /obj/structure/lattice/catwalk/over/ship,
 /obj/structure/cable,
@@ -43908,7 +43909,7 @@ UN
 JG
 Qg
 ji
-NI
+Fn
 ob
 cq
 XE
