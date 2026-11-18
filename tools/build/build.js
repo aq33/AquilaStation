@@ -41,8 +41,28 @@ export const WarningParameter = new Juke.Parameter({
   alias: 'W',
 });
 
+// AQ EDIT START - część szablonów map dla równoległych jobów CI (--map-shard=2/3). Czas wczytywania map
+// przez dm rośnie z kwadratem ich liczby (821 map w jednej kompilacji: 376 s), więc podział skraca też sumę
+export const MapShardParameter = new Juke.Parameter({ type: 'string' });
+
+const mapShardFilter = (setting) => {
+  if (!setting) {
+    return () => true;
+  }
+  const match = /^(\d+)\/(\d+)$/.exec(setting);
+  const index = match && Number(match[1]);
+  const count = match && Number(match[2]);
+  if (!match || index < 1 || index > count) {
+    throw new Error(`--map-shard=${setting} nie ma postaci numer/liczba`);
+  }
+  // Co liczba-ta mapa, żeby każda część dostała podobny przekrój folderów
+  return (_, position) => position % count === index - 1;
+};
+// AQ EDIT END
+
 export const DmMapsIncludeTarget = new Juke.Target({
-  executes: async () => {
+  parameters: [MapShardParameter], // AQ EDIT
+  executes: async ({ get }) => { // AQ EDIT - get
     const folders = [
       ...Juke.glob('_maps/RandomRooms/**/*.dmm'),
       ...Juke.glob('_maps/RandomRuins/**/*.dmm'),
@@ -57,6 +77,8 @@ export const DmMapsIncludeTarget = new Juke.Target({
       // AQ EDIT END
     ];
     const content = folders
+      .sort() // AQ EDIT - stała kolejność, żeby części z różnych jobów razem dawały każdą mapę dokładnie raz
+      .filter(mapShardFilter(get(MapShardParameter))) // AQ EDIT
       // AQ EDIT - templates.dm leży w _maps/, więc mapy Aquili dołączamy przez ../
       .map((file) => (file.startsWith('aquila/') ? `../${file}` : file.replace('_maps/', '')))
       .map((file) => `#include "${file}"`)
@@ -80,6 +102,9 @@ export const DmTarget = new Juke.Target({
     'icons/**',
     'interface/**',
     `${DME_NAME}.dme`,
+    // AQ EDIT - lista map z DmMapsIncludeTarget: bez niej kompilacja kolejnej części (--map-shard) w tym samym
+    // folderze była pomijana jako aktualna. Glob, bo zwykła ścieżka do nieistniejącego pliku psuje porównanie dat
+    '_maps/templates.dm*',
   ],
   outputs: [
     `${DME_NAME}.dmb`,

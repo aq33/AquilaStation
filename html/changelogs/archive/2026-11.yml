@@ -1331,3 +1331,28 @@
   - code_imp: Testy w CI nie szukają referencji przy każdym wycieku (bez kilkuminutowych
       zamrożeń), a na końcu każdej części wypisują do logu obiekty, które nie zwolniły
       się po usunięciu.
+  - bugfix: Misja na małej planecie zawsze dostaje punkt badawczy albo schron kolonii.
+  - code_imp: Krótsze testy planet w CI.
+  - code_imp: 'CI: mapy kompilują się w trzech równoległych częściach, części testów
+      mają podobny czas, a nowy push do PR-a anuluje przebieg poprzedniego commita.'
+  - bugfix: Zniszczony Sabre nie wysadza już wnętrza innego Sabre ani hangaru, w którym
+      tamten stoi.
+  - code_imp: Testy ze strzałem nie padają już losowo przez niewypał fabrycznego naboju.
+  - code_imp: Zaktualizowano biblioteki interfejsu z lukami bezpieczeństwa (m.in.
+      DOMPurify czyszczący HTML w oknach i czacie).
+  - rscadd: Trzylufowe działo pokładowe Yamato, moduł kalibracji działa, pociski Magneton
+      i Sparrowhawk oraz nowe badanie „Uzbrojenie okrętowe” z płytkami dział Gaussa,
+      VLS i działa pokładowego.
+  - rscadd: Moduły podkręcania studni nanonaprawczej (badania, Minsky, wyjmowanie
+      łomem) i inżynieryjna holomapa z alarmami na mostku i w inżynierii.
+  - rscadd: Układy FTL wkłada się do konsoli nawigacji i wybiera jeden bonus skoku;
+      układ warp u Minsky'ego i w badaniach.
+  - rscadd: Misje od handlarzy i reputacja u stacji ze zniżkami.
+  - rscadd: Wydarzenia „Samotny łowca” i „Szczury z pasa” na mapie galaktyki.
+  - rscadd: Kucharz zna przepis na głodny worek prochu.
+  - bugfix: Flak na Atlantis i flak okrętów AI strzela; płytka i amunicja flaku w
+      badaniach, amunicja w zaopatrzeniu.
+  - bugfix: Holomapa poza planem pokładu nie wywala błędu.
+  - code_imp: Cotygodniowe automatyczne aktualizacje zależności TGUI i akcji GitHub
+      (Dependabot).
+  - code_imp: CI ostrzega o nowych wolnych testach i o zbyt długiej kompilacji map.

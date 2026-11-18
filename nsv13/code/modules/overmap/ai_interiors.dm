@@ -37,7 +37,15 @@
 	if(!areas)
 		return
 	for(var/area/AR in areas)
-		var/turf/T = pick(get_area_turfs(AR))
+		// AQ EDIT START - pola tylko z tej instancji obszaru: get_area_turfs() zamienia instancję na typ i zbiera pola
+		// ze wszystkich obszarów tego typu, więc zniszczony prom wysadzał wnętrze innego promu (dwa Sabre)
+		var/list/turf/area_turfs = list()
+		for(var/turf/area_turf in AR)
+			area_turfs += area_turf
+		if(!length(area_turfs))
+			continue
+		var/turf/T = pick(area_turfs)
+		// AQ EDIT END
 		explosion(T,7,0,0, ignorecap = TRUE)
 		sleep(3 SECONDS)
 
