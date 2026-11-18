@@ -1333,3 +1333,5 @@
       się po usunięciu.
   - bugfix: Misja na małej planecie zawsze dostaje punkt badawczy albo schron kolonii.
   - code_imp: Krótsze testy planet w CI.
+  - code_imp: 'CI: mapy kompilują się w trzech równoległych częściach, części testów
+      mają podobny czas, a nowy push do PR-a anuluje przebieg poprzedniego commita.'
