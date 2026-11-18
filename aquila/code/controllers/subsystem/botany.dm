@@ -169,7 +169,7 @@ SUBSYSTEM_DEF(botany)
 	chapters["Plants"] = list()
 	for(var/obj/item/plant_seeds/preset as anything in typesof(/obj/item/plant_seeds/preset))
 		var/obj/item/plant_seeds/seeds = new preset()
-		if(seeds.type == /obj/item/plant_seeds/preset)
+		if(seeds.type == /obj/item/plant_seeds/preset || seeds.type == seeds.abstract_type) // AQUILA - abstrakcyjne presety (obce rośliny)
 			qdel(seeds)
 			continue
 		if(istype(seeds, /obj/item/plant_seeds/preset/kirby))
