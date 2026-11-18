@@ -41,6 +41,8 @@
 	var/obj/effect/abstract/planet_descent_shadow/shadow
 	/// Warstwy planety ludzi, którzy oglądają zejście (zapamiętane na starcie: po dokowaniu ludzie należą już do planety)
 	var/list/viewers = list()
+	/// Ludzie z pomarańczową poświatą w kabinie (zdejmowana po przejściu przez atmosferę albo przy przerwaniu)
+	var/list/tinted = list()
 	var/list/timers = list()
 
 /datum/planet_descent/New(obj/structure/overmap/small_craft/transport/new_craft, obj/structure/overmap/planet/new_planet, obj/docking_port/stationary/new_port)
@@ -53,6 +55,7 @@
 		deltimer(timer)
 	timers.Cut()
 	stop_viewers()
+	clear_cabin_glow()
 	QDEL_NULL(shadow)
 	// Zejście przerwane, zanim prom zadokował (prom zniszczony): port na powierzchni nikomu się już nie przyda
 	if(istype(port, /obj/docking_port/stationary/shuttle_craft_spot) && !port.docked && !QDELETED(port))
@@ -111,8 +114,34 @@
 	shake_crew(PLANET_DESCENT_REENTRY / 2, 2)
 	for(var/list/edge as anything in hull_edges(craft.shuttle_port))
 		new /obj/effect/temp_visual/planet_reentry(edge[1], edge[2], PLANET_DESCENT_REENTRY + PLANET_DESCENT_CLOUDS / 2)
+	cabin_effects()
+
+/// W kabinie bez okien też czuć wejście w atmosferę: pomarańczowa, pulsująca poświata i iskry z paneli. Bez migania
+/// lamp (flicker() usypia i wysypuje się na lampie, której prom zniknął w trakcie)
+/datum/planet_descent/proc/cabin_effects()
+	for(var/mob/M as anything in craft.mobs_in_ship)
+		if(!M.client)
+			continue
+		var/atom/movable/screen/fullscreen/glow = M.overlay_fullscreen("planet_reentry", /atom/movable/screen/fullscreen/color_vision/planet_reentry)
+		glow.alpha = 0
+		animate(glow, alpha = 70, time = 4, loop = -1)
+		animate(alpha = 25, time = 4)
+		tinted += M
+	var/list/interior = list()
+	for(var/area/A as anything in craft.shuttle_port?.shuttle_areas)
+		for(var/turf/open/T in A)
+			interior += T
+	for(var/i in 1 to min(3, length(interior)))
+		do_sparks(3, TRUE, pick(interior))
+
+/datum/planet_descent/proc/clear_cabin_glow()
+	for(var/mob/M as anything in tinted)
+		if(!QDELETED(M))
+			M.clear_fullscreen("planet_reentry", 10)
+	tinted.Cut()
 
 /datum/planet_descent/proc/clouds()
+	clear_cabin_glow()
 	craft.relay(null, span_notice("[craft] przebija chmury i podchodzi do lądowiska."))
 	shake_crew(PLANET_DESCENT_CLOUDS, 1)
 
@@ -185,6 +214,10 @@
 	var/turf/center = get_turf(shuttle) || (length(where) ? where[1] : null)
 	if(center)
 		playsound(center, splashed ? 'sound/effects/splash.ogg' : 'sound/effects/meteorimpact.ogg', 60, TRUE)
+
+/// Pomarańczowa poświata w kabinie przy wejściu w atmosferę (alfa pulsuje z /datum/planet_descent/proc/cabin_effects)
+/atom/movable/screen/fullscreen/color_vision/planet_reentry
+	color = "#ff7a20"
 
 /// Żar na polu przy kadłubie, od strony kadłuba
 /obj/effect/temp_visual/planet_reentry

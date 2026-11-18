@@ -59,6 +59,12 @@
 	var/obj/docking_port/mobile/sabre/shuttle_port = home.docked
 	TEST_ASSERT(istype(shuttle_port), "The Sabre template didn't dock at its port")
 	var/obj/structure/overmap/small_craft/transport/sabre/shuttle/sabre = shuttle_port.craft
+	// Z kokpitu widać zejście przez szyby: przednią, boczne w narożnikach i dwa okna w burtach
+	var/windows = 0
+	for(var/turf/closed/indestructible/dropship/sabre_window/window in shuttle_port.return_turfs())
+		TEST_ASSERT(!window.opacity, "A Sabre cockpit window blocks the view")
+		windows++
+	TEST_ASSERT_EQUAL(windows, 7, "The Sabre cockpit should have seven windows")
 	sabre.set_fuel(500)
 	TEST_ASSERT(sabre.shuttle_launch(), "The Sabre didn't launch")
 
@@ -79,6 +85,11 @@
 	TEST_ASSERT(!sabre.can_move(), "The Sabre can be flown during the descent")
 	TEST_ASSERT(!sabre.shuttle_land(planet, port), "A second landing started in the middle of the descent")
 	TEST_ASSERT(!QDELETED(port), "A second landing call deleted the landing spot of the descent")
+	// Fazy pokazu bez klientów: żar przy kadłubie, iskry i lampy w kabinie nie mogą się wysypać
+	sabre.planet_descent.reentry()
+	sabre.planet_descent.clouds()
+	sabre.planet_descent.approach()
+	TEST_ASSERT(sabre.planet_descent.shadow, "No hull shadow over the ground during the approach")
 	sabre.planet_descent.finish()
 	TEST_ASSERT(!sabre.planet_descent, "The descent didn't end after touchdown")
 	TEST_ASSERT_EQUAL(shuttle_port.docked, port, "The interior isn't on the landing spot after the descent.")

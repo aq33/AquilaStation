@@ -26262,5 +26262,7 @@
 "[craft] schodzi z orbity nad [planet]. Trzymajcie się czegoś.": "[craft] is descending from orbit over [planet]. Hold on to something.",
 "Kadłub [craft] rozgrzewa się w atmosferze [planet], prom trzęsie się.": "[craft]'s hull is heating up in [planet]'s atmosphere, the shuttle is shaking.",
 "[craft] przebija chmury i podchodzi do lądowiska.": "[craft] breaks through the clouds and approaches the landing zone.",
-"[src] wznosi się przez atmosferę [planet] na orbitę.": "[src] climbs through [planet]'s atmosphere into orbit."
+"[src] wznosi się przez atmosferę [planet] na orbitę.": "[src] climbs through [planet]'s atmosphere into orbit.",
+"szyba kokpitu": "cockpit window",
+"Pancerna szyba w kadłubie Sabre. Widać przez nią, co dzieje się na zewnątrz.": "An armoured window in the Sabre hull. You can see what is going on outside through it."
 }
