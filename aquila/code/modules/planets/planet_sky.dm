@@ -1,7 +1,7 @@
 // AQUILA - planeta na niebie: okręt w układzie z planetą widzi ją za oknami (warstwa paralaksy, jak planeta na orbicie).
 // Obraz składa się w kliencie: płaska mapa powierzchni (aquila/icons/effects/planet_sky_surface.dmi, odwzorowanie walcowe)
-// przesuwa się pod tarczą, filtr displace z mapą kuli zgina ją w globus, maska alpha obcina do tarczy, a na wierzchu
-// leżą nieruchomy cień i poświata atmosfery. Obrót to jedno animate() na pozycji tekstury, więc jest płynny i tani.
+// leży pod tarczą, filtr displace z mapą kuli zgina ją w globus, maska alpha obcina do tarczy, a na wierzchu leżą cień
+// i poświata atmosfery. Planeta stoi w miejscu (obrót wyglądał źle).
 // Tekstury generuje tools/planets/sky_planets.py (z ziarna, bez cudzych grafik).
 
 /// Szerokość tekstury powierzchni (cały obwód planety)
@@ -28,8 +28,6 @@
 	/// Powiększenie tarczy (192 px, planeta ma 163 px średnicy): 2,5 dla zwykłych planet (ok. 13 z 15 pól widoku),
 	/// mniej dla karłowatych i księżyców, więcej dla olbrzymów
 	var/sky_scale = 2.5
-	/// Czas pełnego obrotu planety na niebie
-	var/sky_rotation = 6 MINUTES
 
 /// Najbliższa okrętowi planeta układu, którą widać na niebie (planeta poza mapą układu liczy się jako daleka)
 /proc/pick_sky_planet(list/planets, atom/viewer)
@@ -71,7 +69,7 @@
 	var/obj/effect/overlay/planet_sky_part/body
 	var/obj/effect/overlay/planet_sky_part/shade
 	var/obj/effect/overlay/planet_sky_part/atmosphere
-	/// Dwie kopie tekstury powierzchni i chmur, przesuwane razem o szerokość tekstury
+	/// Tekstura powierzchni i chmur (listy, bo pokaz zejścia i testy biorą je razem)
 	var/list/surface_strips
 	var/list/cloud_strips
 
@@ -95,7 +93,7 @@
 	. = ..()
 	var/datum/planet_type/wanted = find_sky_planet_type(M)
 	if(wanted != shown_type)
-		show_planet(wanted, M?.client?.do_parallax_animations)
+		show_planet(wanted)
 
 /// Typ planety do pokazania temu mobowi: okręt w układzie (nie w FTL), oko poza overmapą (pilot przy konsoli)
 /atom/movable/screen/parallax_layer/planet_sky/proc/find_sky_planet_type(mob/M)
@@ -116,8 +114,8 @@
 	var/obj/structure/overmap/planet/planet = pick_sky_planet(checked_system.system_contents, ship)
 	return planet?.planet_type
 
-/// Składa obraz planety danego typu (null chowa planetę). animated: obrót powierzchni i chmur
-/atom/movable/screen/parallax_layer/planet_sky/proc/show_planet(datum/planet_type/planet_type, animated = TRUE)
+/// Składa obraz planety danego typu (null chowa planetę)
+/atom/movable/screen/parallax_layer/planet_sky/proc/show_planet(datum/planet_type/planet_type)
 	shown_type = planet_type
 	vis_contents.Cut()
 	if(!planet_type)
@@ -145,8 +143,6 @@
 	if(planet_type.sky_atmosphere_color)
 		atmosphere.color = planet_type.sky_atmosphere_color
 		vis_contents += atmosphere
-	rotate_strips(surface_strips, animated ? planet_type.sky_rotation : 0)
-	rotate_strips(cloud_strips, animated ? planet_type.sky_rotation / 1.6 : 0)
 
 /atom/movable/screen/parallax_layer/planet_sky/proc/build_parts()
 	body = new
@@ -169,29 +165,17 @@
 	surface_strips = make_strips(1)
 	cloud_strips = make_strips(2)
 
-/// Dwie kopie tekstury obok siebie, środkiem pierwszej na środku tarczy (wewnątrz KEEP_TOGETHER płaszczyzna i warstwa lokalne)
+/// Tekstura środkiem na środku tarczy (wewnątrz KEEP_TOGETHER płaszczyzna i warstwa lokalne)
 /atom/movable/screen/parallax_layer/planet_sky/proc/make_strips(strip_layer)
-	. = list()
-	for(var/copy in 0 to 1)
-		var/obj/effect/overlay/planet_sky_part/strip = new
-		strip.icon = 'aquila/icons/effects/planet_sky_surface.dmi'
-		strip.vis_flags = NONE
-		strip.layer = strip_layer
-		strip.pixel_x = PLANET_SKY_DISK_SIZE / 2 - PLANET_SKY_TEXTURE_WIDTH / 2 + copy * PLANET_SKY_TEXTURE_WIDTH
-		strip.pixel_y = PLANET_SKY_DISK_SIZE / 2 - PLANET_SKY_TEXTURE_WIDTH / 4
-		. += strip
+	var/obj/effect/overlay/planet_sky_part/strip = new
+	strip.icon = 'aquila/icons/effects/planet_sky_surface.dmi'
+	strip.vis_flags = NONE
+	strip.layer = strip_layer
+	strip.pixel_x = PLANET_SKY_DISK_SIZE / 2 - PLANET_SKY_TEXTURE_WIDTH / 2
+	strip.pixel_y = PLANET_SKY_DISK_SIZE / 2 - PLANET_SKY_TEXTURE_WIDTH / 4
+	return list(strip)
 
-/// Obrót: obie kopie jadą w lewo o szerokość tekstury i wracają skokiem (wtedy obraz jest ten sam). 0 zatrzymuje
-/atom/movable/screen/parallax_layer/planet_sky/proc/rotate_strips(list/strips, period)
-	for(var/obj/effect/overlay/planet_sky_part/strip as anything in strips)
-		animate(strip)
-		strip.transform = matrix()
-		if(period > 0)
-			animate(strip, transform = matrix(1, 0, -PLANET_SKY_TEXTURE_WIDTH, 0, 1, 0), time = period, loop = -1)
-			animate(transform = matrix(), time = 0)
-
-/// Warstwa planety dochodzi do warstw paralaksy klienta niezależnie od limitu z ustawień (to jedna warstwa,
-/// na niskich ustawieniach bez obrotu)
+/// Warstwa planety dochodzi do warstw paralaksy klienta niezależnie od limitu z ustawień (to jedna warstwa)
 /datum/hud/create_parallax(mob/viewmob)
 	. = ..()
 	var/mob/screenmob = viewmob || mymob

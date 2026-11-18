@@ -13,7 +13,6 @@
 	sky_state = "gas_giant"
 	sky_atmosphere_color = "#f0b070"
 	sky_scale = 3.5
-	sky_rotation = 4 MINUTES
 	name = "gazowy olbrzym"
 	desc = "Ogromna kula gęstego gazu bez stałej powierzchni. Na orbicie wiszą platformy wydobywcze, z których da się czerpać gaz."
 	overmap_icon_state = "planet_gas"

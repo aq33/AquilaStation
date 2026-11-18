@@ -1,9 +1,8 @@
 """Tekstury planet na niebie (paralaksa za okrętem stojącym w układzie z planetą).
 
 Planeta na niebie to płaska mapa powierzchni (odwzorowanie walcowe 512 × 256, szwu brak, bo szum liczymy na kuli)
-przesuwana w poziomie pod tarczą. Filtr displace z mapą przemieszczeń kuli zgina ją w globus, maska alpha obcina
-do tarczy, a nieruchomy cień i poświata atmosfery leżą na wierzchu. Obrót jest więc płynny (animate na pozycji
-tekstury), a pliki są małe: jedna tekstura na typ planety zamiast setek klatek.
+pod tarczą. Filtr displace z mapą przemieszczeń kuli zgina ją w globus, maska alpha obcina do tarczy, a cień i poświata
+atmosfery leżą na wierzchu. Pliki są małe: jedna tekstura na typ planety.
 
 Wynik:
   aquila/icons/effects/planet_sky_surface.dmi  (512 × 256) powierzchnie i chmury

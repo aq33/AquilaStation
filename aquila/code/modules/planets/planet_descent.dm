@@ -336,7 +336,7 @@
 /// Pokaz zejścia (czasy jak w /datum/planet_descent): planeta rośnie, niebo, smugi, chmury, teren pod promem
 /atom/movable/screen/parallax_layer/planet_sky/proc/play_descent(datum/planet_type/planet_type)
 	descent_active = TRUE
-	show_planet(planet_type, TRUE)
+	show_planet(planet_type)
 	reset_descent_parts(planet_type)
 	var/sky = matrix(PLANET_DESCENT_SKY_SCALE, 0, 0, 0, PLANET_DESCENT_SKY_SCALE, 0)
 	var/ground = matrix(PLANET_DESCENT_GROUND_SCALE, 0, 0, 0, PLANET_DESCENT_GROUND_SCALE, 0)
@@ -375,7 +375,7 @@
 /// Pokaz startu z planety: chmury i niebo, potem planeta maleje do zwykłej wielkości za oknami
 /atom/movable/screen/parallax_layer/planet_sky/proc/play_ascent(datum/planet_type/planet_type)
 	descent_active = TRUE
-	show_planet(planet_type, TRUE)
+	show_planet(planet_type)
 	reset_descent_parts(planet_type)
 	var/normal = matrix(planet_type.sky_scale, 0, 0, 0, planet_type.sky_scale, 0)
 	var/sky = matrix(PLANET_DESCENT_SKY_SCALE, 0, 0, 0, PLANET_DESCENT_SKY_SCALE, 0)

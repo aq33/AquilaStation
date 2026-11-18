@@ -44,19 +44,19 @@
 	TEST_ASSERT_EQUAL(pick_sky_planet(list(hidden), viewer), null, "An asteroid field showed up in the sky")
 
 	var/atom/movable/screen/parallax_layer/planet_sky/sky = new(null, world.view)
-	sky.show_planet(far.planet_type, TRUE)
+	sky.show_planet(far.planet_type)
 	TEST_ASSERT(sky.body in sky.vis_contents, "The planet disk isn't shown")
 	TEST_ASSERT(sky.shade in sky.vis_contents, "The planet shadow isn't shown")
 	TEST_ASSERT(sky.atmosphere in sky.vis_contents, "A planet with an atmosphere has no glow")
 	TEST_ASSERT_EQUAL(length(sky.body.filters), 2, "The disk should bend the texture (displace) and cut it to a circle (alpha)")
-	TEST_ASSERT_EQUAL(length(sky.body.vis_contents), 4, "A planet with clouds should have two surface and two cloud strips")
+	TEST_ASSERT_EQUAL(length(sky.body.vis_contents), 2, "A planet with clouds should have a surface and a cloud texture")
 	var/obj/effect/overlay/planet_sky_part/strip = sky.surface_strips[1]
 	TEST_ASSERT_EQUAL(strip.icon_state, far.planet_type.sky_state, "The surface strip doesn't show the planet type")
 	TEST_ASSERT_EQUAL(sky.body.transform.a, far.planet_type.sky_scale, "The disk isn't scaled for the planet type")
 
-	sky.show_planet(near.planet_type, FALSE)
+	sky.show_planet(near.planet_type)
 	TEST_ASSERT(!(sky.atmosphere in sky.vis_contents), "A moon without an atmosphere still glows")
-	TEST_ASSERT_EQUAL(length(sky.body.vis_contents), 2, "A planet without clouds still shows cloud strips")
+	TEST_ASSERT_EQUAL(length(sky.body.vis_contents), 1, "A planet without clouds still shows clouds")
 	TEST_ASSERT_EQUAL(sky.body.transform.a, near.planet_type.sky_scale, "The disk wasn't rescaled for the new planet")
 
 	sky.show_planet(null)
