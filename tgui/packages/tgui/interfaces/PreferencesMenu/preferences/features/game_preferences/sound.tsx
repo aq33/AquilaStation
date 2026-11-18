@@ -1,9 +1,11 @@
 import {
   CheckboxInput,
   type Feature,
+  type FeatureChoiced,
   FeatureSliderInput,
   FeatureToggle,
 } from '../base';
+import { FeatureButtonedDropdownInput } from '../dropdowns';
 
 export const sound_adminhelp: FeatureToggle = {
   name: 'Dźwięki adminhelpów',
@@ -40,12 +42,12 @@ export const sound_ghostpoll: FeatureToggle = {
   component: CheckboxInput,
 };
 
-export const sound_speech: FeatureToggle = {
+export const speech_sounds: FeatureChoiced = {
   name: 'Dźwięki mowy postaci',
   category: 'SOUND',
   description:
-    'Odtwarza krótki dźwięk, gdy postać coś mówi (głos gatunku albo wybrany głos).',
-  component: CheckboxInput,
+    'Co słychać, gdy postać coś mówi: nasze krótkie „hmm”, głosy z Goona (każda postać ma swój) albo nic. Rasy z własnym głosem, maszyny i zwierzęta brzmią po swojemu w obu trybach.',
+  component: FeatureButtonedDropdownInput,
 };
 
 export const sound_combatmode: FeatureToggle = {

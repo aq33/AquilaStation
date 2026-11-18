@@ -23,7 +23,7 @@
 	TEST_ASSERT(istype(dog.get_bodypart(BODY_ZONE_HEAD), /obj/item/bodypart/head/pug), "A pug has no pug head")
 	TEST_ASSERT(istype(dog.get_bodypart(BODY_ZONE_R_LEG), /obj/item/bodypart/r_leg/pug), "A pug has no pug legs")
 	TEST_ASSERT(pug.goon_voice == "pug" || pug.goon_voice == "pugg", "A pug does not bark with a Goon pug voice")
-	TEST_ASSERT_EQUAL(dog.get_goon_voice(), pug.goon_voice, "The pug voice is not used for speech")
+	TEST_ASSERT_EQUAL(dog.get_species_goon_voice(), pug.goon_voice, "The pug voice is not used for speech")
 
 	// Umaszczenie z okna postaci zmienia części ciała i ogon
 	for(var/coat in GLOB.pug_coats)
@@ -104,7 +104,7 @@
 	frog.set_species(/datum/species/amphibian)
 	TEST_ASSERT(isamphibian(frog), "set_species did not make an amphibian")
 	TEST_ASSERT(istype(frog.get_bodypart(BODY_ZONE_L_ARM), /obj/item/bodypart/l_arm/amphibian), "An amphibian has no amphibian arms")
-	TEST_ASSERT_EQUAL(frog.get_goon_voice(), "amphibian", "An amphibian does not speak with the Goon amphibian voice")
+	TEST_ASSERT_EQUAL(frog.get_species_goon_voice(), "amphibian", "An amphibian does not speak with the Goon amphibian voice")
 	for(var/skin in GLOB.amphibian_skins)
 		for(var/part in list("head", "chest", "l_arm", "r_arm", "l_hand", "r_hand", "l_leg", "r_leg"))
 			TEST_ASSERT(icon_exists(AMPHIBIAN_BODYPARTS_ICON, "amphibian_[skin]_[part]"), "Missing amphibian icon state amphibian_[skin]_[part]")

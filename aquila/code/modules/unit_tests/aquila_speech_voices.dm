@@ -19,21 +19,37 @@
 	TEST_ASSERT_EQUAL(get_goon_voice_sound("speak_2", "."), 'aquila/sound/voice/goon/speak_2.ogg', "A plain line did not use the plain recording")
 	TEST_ASSERT(isnull(get_goon_voice_sound("nonexistent", "?")), "An unknown voice returned a recording")
 
+	// Bez wyboru postać ma stały głos z Goona liczony z imienia, wybór go zastępuje, a głos rasy jest osobno
 	var/mob/living/carbon/human/speaker = allocate(/mob/living/carbon/human, run_loc_floor_bottom_left)
-	TEST_ASSERT(isnull(speaker.get_goon_voice()), "A character without the preference speaks with a Goon voice")
-	speaker.dna.features["speech_voice"] = "species"
-	TEST_ASSERT(isnull(speaker.get_goon_voice()), "The species voice choice still gave a Goon voice")
+	speaker.real_name = "Jan Kowalski"
+	var/automatic = speaker.get_goon_voice()
+	TEST_ASSERT(automatic in (GLOB.selectable_speech_voices - "species"), "A character without a choice has no Goon voice for Goon listeners")
+	TEST_ASSERT_EQUAL(speaker.get_goon_voice(), automatic, "The automatic Goon voice is not stable")
 	speaker.dna.features["speech_voice"] = "speak_3"
 	TEST_ASSERT_EQUAL(speaker.get_goon_voice(), "speak_3", "The chosen Goon voice was not used")
+	TEST_ASSERT(isnull(speaker.get_species_goon_voice()), "A human has a species voice")
 	speaker.dna.species.goon_voice = "pug"
-	TEST_ASSERT_EQUAL(speaker.get_goon_voice(), "pug", "The species voice did not override the player's choice")
+	TEST_ASSERT_EQUAL(speaker.get_species_goon_voice(), "pug", "The species voice is not reported")
 	speaker.dna.species.goon_voice = null
+	var/mob/living/basic/pet/dog/corgi/corgi = allocate(/mob/living/basic/pet/dog/corgi, run_loc_floor_bottom_left)
+	TEST_ASSERT(isnull(corgi.get_goon_voice()), "An animal got a Goon voice")
 
+	// Słuchacz wybiera: nasze „hmm”, głosy z Goona albo cisza. Dźwięki bez wersji z Goona słychać w obu trybach.
 	var/datum/preferences/prefs = new
-	prefs.chat_toggles &= ~CHAT_DISABLE_SPEECH_SOUNDS
-	TEST_ASSERT_EQUAL(prefs.get_volume_pref(VOLUME_PREF_SPEECH), 100, "Speech sounds are quiet with the option on")
-	prefs.chat_toggles |= CHAT_DISABLE_SPEECH_SOUNDS
-	TEST_ASSERT_EQUAL(prefs.get_volume_pref(VOLUME_PREF_SPEECH), 0, "Speech sounds still play with the option off")
+	var/datum/preference/choiced/speech_sounds/mode = GLOB.preference_entries_by_key["speech_sounds"]
+	TEST_ASSERT(istype(mode), "There is no speech sounds entry in the game preferences")
+	var/list/expected = list(
+		"hmm" = list(VOLUME_PREF_SPEECH = 100, VOLUME_PREF_SPEECH_GOON = 0, VOLUME_PREF_SPEECH_ANY = 100),
+		"goon" = list(VOLUME_PREF_SPEECH = 0, VOLUME_PREF_SPEECH_GOON = 100, VOLUME_PREF_SPEECH_ANY = 100),
+		"off" = list(VOLUME_PREF_SPEECH = 0, VOLUME_PREF_SPEECH_GOON = 0, VOLUME_PREF_SPEECH_ANY = 0),
+	)
+	TEST_ASSERT_EQUAL(mode.read_value(prefs), "hmm", "A new player does not hear our speech sounds by default")
+	for(var/value in expected)
+		mode.write_value(prefs, value)
+		TEST_ASSERT_EQUAL(mode.read_value(prefs), value, "The speech sounds mode [value] was not saved")
+		var/list/volumes = expected[value]
+		for(var/category in volumes)
+			TEST_ASSERT_EQUAL(prefs.get_volume_pref(category), volumes[category], "Mode [value]: wrong volume of [category]")
 	TEST_ASSERT_EQUAL(prefs.get_volume_pref(VOLUME_PREF_TESLA), prefs.tesla_volume, "The speech override broke other volume categories")
 
 /// Krzyki ras i pierdnięcia z Goona trafiają do puli dźwięków

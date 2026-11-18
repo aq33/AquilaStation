@@ -43,8 +43,12 @@
 		sound_key += active_character.gender == FEMALE ? FEMALE : MALE
 	var/pitch = active_character.features["voice_pitch"]
 	var/sound_file = get_sfx(sound_key)
-	// Głos Goona: narzucony przez rasę albo wybrany w oknie postaci
-	var/goon_voice = species?.goon_voice || active_character.features["speech_voice"]
+	// Własny głos rasy słychać zawsze. Głos z Goona postaci gra, gdy gracz sam słucha głosów z Goona albo właśnie go wybrał.
+	var/goon_voice = species?.goon_voice
+	if(!goon_voice && (chat_toggles & CHAT_GOON_SPEECH_SOUNDS || GLOB.goon_speech_voices[active_character.features["speech_voice"]]))
+		goon_voice = active_character.features["speech_voice"]
+		if(!GLOB.goon_speech_voices[goon_voice])
+			goon_voice = aquila_default_goon_voice(active_character.real_name)
 	if(GLOB.goon_speech_voices[goon_voice])
 		sound_file = get_goon_voice_sound(goon_voice, "")
 	var/sound/voice = sound(sound_file)

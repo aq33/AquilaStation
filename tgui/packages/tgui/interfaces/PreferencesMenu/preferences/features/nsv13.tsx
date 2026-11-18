@@ -42,11 +42,11 @@ export const lizard_hiss_style: FeatureChoiced = {
   component: FeatureButtonedDropdownInput,
 };
 
-/** Głos mowy: dźwięk gatunku albo jeden z głosów z Goonstation; zmiana od razu gra próbkę */
+/** Głos z Goonstation tej postaci; zmiana od razu gra próbkę */
 export const speech_voice: FeatureChoiced = {
   name: 'Głos mowy',
   description:
-    'Dźwięk przy każdej wypowiedzi. Głosy 1–4 mają osobne nagrania pytania i okrzyku.',
+    'Głos z Goona, którym mówi postać dla graczy, którzy w ustawieniach gry wybrali głosy z Goona. Automatyczny dobiera stały głos z imienia. Głosy 1–4 mają osobne nagrania pytania i okrzyku.',
   component: FeatureButtonedDropdownInput,
 };
 

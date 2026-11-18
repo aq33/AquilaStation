@@ -3,8 +3,14 @@
 // Jukebox: maksymalna głośność YouTube (0-1) przy 100% gałki - muzyka z sieci jest zwykle głośna
 #define JUKEBOX_YT_MAX_GAIN 0.6
 
-/// Kategoria głośności dźwięków mowy (gatunkowych i z Goona); 0 gdy gracz je wyłączył, patrz voice_goon.dm
+// Dźwięki mowy: słuchacz wybiera w ustawieniach gry nasze „hmm”, głosy z Goona albo ciszę (voice_goon.dm).
+// Każda wypowiedź gra w obu wersjach, a głośność danej kategorii u słuchacza wycisza tę, której nie chce.
+/// Nasze „hmm” mowy postaci, które mogłyby mówić głosem z Goona (słyszą je gracze z trybem „hmm”)
 #define VOLUME_PREF_SPEECH "speech"
+/// Głos z Goona tej samej wypowiedzi (słyszą go gracze z trybem głosów z Goona)
+#define VOLUME_PREF_SPEECH_GOON "speech_goon"
+/// Dźwięk mowy bez wersji do wyboru (rasa z własnym głosem, maszyny, zwierzęta): słyszą go oba tryby
+#define VOLUME_PREF_SPEECH_ANY "speech_any"
 
 // Voices: every character has a voice pitch, in semitones, applied to speech sounds and vocal emotes
 #define VOICE_PITCH_MIN -5

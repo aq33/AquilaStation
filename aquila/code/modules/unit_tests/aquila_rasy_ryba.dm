@@ -40,7 +40,7 @@
 	var/mob/living/carbon/human/H = allocate(/mob/living/carbon/human, run_loc_floor_bottom_left)
 	H.set_species(/datum/species/aquarian)
 	TEST_ASSERT(isaquarian(H), "set_species did not make an aquarian")
-	TEST_ASSERT_EQUAL(H.get_goon_voice(), "blub", "An aquarian does not speak with the blub voice")
+	TEST_ASSERT_EQUAL(H.get_species_goon_voice(), "blub", "An aquarian does not speak with the blub voice")
 	var/obj/item/organ/brain/aquarian/dome = H.getorganslot(ORGAN_SLOT_BRAIN)
 	TEST_ASSERT(istype(dome), "An aquarian has no dome instead of a brain")
 	TEST_ASSERT_EQUAL(dome.water_amount(), AQUARIAN_DOME_VOLUME, "A fresh dome is not full of water")
