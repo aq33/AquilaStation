@@ -131,4 +131,52 @@
 	var/obj/item/organ/lungs/plasmaman/filter = allocate(/obj/item/organ/lungs/plasmaman)
 	TEST_ASSERT(!filter.aq_paired, "A plasma filter splits into halves")
 
+/// AQUILA - AquilaMed 6 limb tissues: every limb has a bone, muscles and vessels; wounds hurt them, a taken out or
+/// dead one disables the limb or starves it of blood, a new one fixes it
+/datum/unit_test/aquila_limb_tissues
+
+/datum/unit_test/aquila_limb_tissues/Run()
+	var/mob/living/carbon/human/patient = allocate(/mob/living/carbon/human)
+	var/obj/item/organ/aq_tissue/bone/bone = patient.getorganslot("aq_tissue_[AQ_TISSUE_BONE]_[BODY_ZONE_L_ARM]")
+	var/obj/item/organ/aq_tissue/muscle/leg_muscle = patient.getorganslot("aq_tissue_[AQ_TISSUE_MUSCLE]_[BODY_ZONE_R_LEG]")
+	var/obj/item/organ/aq_tissue/vessels/vessels = patient.getorganslot("aq_tissue_[AQ_TISSUE_VESSELS]_[BODY_ZONE_R_ARM]")
+	TEST_ASSERT(istype(bone) && istype(leg_muscle) && istype(vessels), "A human has no limb tissues")
+	TEST_ASSERT(!HAS_TRAIT(patient, TRAIT_PARALYSIS_L_ARM), "Healthy tissues disable a limb")
+
+	// A fracture hurts the bone
+	var/obj/item/bodypart/arm = patient.get_bodypart(BODY_ZONE_L_ARM)
+	var/datum/wound/blunt/fracture/fracture = new()
+	fracture.apply_wound(arm, silent = TRUE)
+	TEST_ASSERT(bone.damage > 0, "A fracture did not hurt the bone")
+	qdel(fracture)
+
+	// Taken out: the arm is limp until a new bone goes in
+	bone.Remove(patient)
+	TEST_ASSERT(HAS_TRAIT(patient, TRAIT_PARALYSIS_L_ARM), "An arm without a bone works")
+	bone.Insert(patient)
+	TEST_ASSERT(!HAS_TRAIT(patient, TRAIT_PARALYSIS_L_ARM), "A new bone did not fix the arm")
+
+	// Damaged leg muscles slow down
+	leg_muscle.applyOrganDamage(leg_muscle.maxHealth * 0.8)
+	TEST_ASSERT(LAZYACCESS(patient.movespeed_modification, "aq_tissue_muscles"), "Torn leg muscles do not slow down")
+	leg_muscle.setOrganDamage(0)
+	patient.aq_update_tissues()
+
+	// No vessels: the arm starves of blood
+	vessels.Remove(patient)
+	TEST_ASSERT(BODY_ZONE_R_ARM in patient.aq_ischemic_limbs, "An arm without vessels gets blood")
+	var/obj/item/organ/aq_tissue/vessels/cybernetic/synthetic = new()
+	TEST_ASSERT(synthetic.any_limb, "Synthetic vessels do not fit any limb")
+	synthetic.aq_set_zone(BODY_ZONE_R_ARM)
+	synthetic.Insert(patient)
+	TEST_ASSERT(!length(patient.aq_ischemic_limbs), "New vessels did not bring the blood back")
+	qdel(vessels)
+
+	// A new organic limb gets fresh tissues
+	var/obj/item/bodypart/leg = patient.get_bodypart(BODY_ZONE_L_LEG)
+	leg.drop_limb()
+	TEST_ASSERT(locate(/obj/item/organ/aq_tissue) in leg, "The tissues did not go with the cut off leg")
+	leg.attach_limb(patient)
+	TEST_ASSERT(patient.getorganslot("aq_tissue_[AQ_TISSUE_BONE]_[BODY_ZONE_L_LEG]") && !HAS_TRAIT(patient, TRAIT_PARALYSIS_L_LEG), "A sewn back leg lost its tissues")
+
 #undef TEST_ASSERT

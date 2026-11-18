@@ -1686,6 +1686,7 @@
 #include "code\modules\surgery\organs\med6\paired_organs.dm"
 #include "code\modules\surgery\organs\med6\pancreas.dm"
 #include "code\modules\surgery\organs\med6\spine.dm"
+#include "code\modules\surgery\organs\med6\tissues.dm"
 #include "code\modules\medical\iv_plumbing.dm"
 #include "code\modules\medical\medical_tape.dm"
 #include "code\modules\medical\medical_tools_med5.dm"
