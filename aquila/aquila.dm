@@ -57,6 +57,7 @@
 #include "code\__DEFINES\traits.dm"
 #include "code\__DEFINES\tutorial.dm"
 #include "code\__DEFINES\uplink.dm"
+#include "code\__DEFINES\species_grod.dm"
 #include "code\__DEFINES\vampires.dm"
 #include "code\__DEFINES\wiremod_compat.dm"
 #include "code\__DEFINES\wires.dm"
@@ -934,6 +935,9 @@
 #include "code\modules\mob\living\carbon\human\species_types\skeletons.dm"
 #include "code\modules\mob\living\carbon\human\species_types\snail.dm"
 #include "code\modules\mob\living\carbon\human\species_types\squidpeople.dm"
+#include "code\modules\mob\living\carbon\human\species_types\grod.dm"
+#include "code\modules\mob\living\carbon\human\species_types\grod_crown.dm"
+#include "code\_onclick\hud\grod.dm"
 #include "code\modules\mob\living\carbon\human\species_types\zombies.dm"
 #include "code\modules\mob\living\carbon\monkey\monkey.dm"
 #include "code\modules\mob\living\death.dm"
@@ -2754,6 +2758,7 @@
 #include "code\modules\unit_tests\weighted_rotation.dm"
 #include "code\modules\unit_tests\window_singularity_pull.dm"
 #include "code\modules\vehicles\ridden.dm"
+#include "code\modules\unit_tests\aquila_rasy_grod.dm"
 #endif
 
 // Heretyk z tg (osobny plik z includami)
