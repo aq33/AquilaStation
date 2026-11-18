@@ -1355,3 +1355,4 @@
   - bugfix: Holomapa poza planem pokładu nie wywala błędu.
   - code_imp: Cotygodniowe automatyczne aktualizacje zależności TGUI i akcji GitHub
       (Dependabot).
+  - code_imp: CI ostrzega o nowych wolnych testach i o zbyt długiej kompilacji map.
