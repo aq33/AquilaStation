@@ -129,11 +129,13 @@
 	// Fotosynteza leczy tylko w świetle
 	floran.set_species(/datum/species/floran/aquila_test_dark)
 	floran.adjustBruteLoss(10)
+	// Porównanie z tolerancją: obrażenia są liczbą zmiennoprzecinkową (CI zgłaszało „10 różne od 10”)
+	var/brute_before = floran.getBruteLoss()
 	floran.dna.species.spec_life(floran)
-	TEST_ASSERT_EQUAL(floran.getBruteLoss(), 10, "A floran heals in the dark")
+	TEST_ASSERT(abs(floran.getBruteLoss() - brute_before) < 0.01, "A floran heals in the dark")
 	floran.set_species(/datum/species/floran/aquila_test_lit)
 	floran.dna.species.spec_life(floran)
-	TEST_ASSERT(floran.getBruteLoss() < 10, "A floran does not heal in bright light")
+	TEST_ASSERT(floran.getBruteLoss() < brute_before - 0.01, "A floran does not heal in bright light")
 
 	// Oprysk Plant-B-Gone (5 jednostek) zadaje 40 obrażeń od toksyn
 	var/datum/reagent/toxin/plantbgone/plantbgone = new
