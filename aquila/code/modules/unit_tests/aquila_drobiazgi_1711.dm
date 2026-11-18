@@ -81,9 +81,11 @@
 	bystander.mock_client = new
 
 	var/datum/preferences/prefs = new
-	prefs.antag_target_opt_in = TRUE
+	prefs.active_character = new
+	prefs.active_character.features["antag_target_opt_in"] = TRUE
 	GLOB.preferences_datums["aqtestoptinvolunteer"] = prefs
 	var/datum/preferences/other_prefs = new
+	other_prefs.active_character = new
 	GLOB.preferences_datums["aqtestoptinbystander"] = other_prefs
 
 	var/datum/objective/aquila_test_opt_in_probe/objective = new
@@ -112,6 +114,11 @@
 		other_antag.objectives += taken
 		if(length(opted_in_antag_targets(list(volunteer.mind))))
 			. = Fail("An opted-in player already targeted by another antagonist still gets priority")
+
+		// Losowy wygląd postaci (be_random_body) nie kasuje opcji
+		prefs.active_character.randomise()
+		if(!wants_to_be_antag_target(volunteer.mind))
+			. = Fail("Randomising the character's look turned the antag target option off")
 
 	other_antag.objectives -= taken
 	qdel(taken)

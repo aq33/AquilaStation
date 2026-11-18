@@ -25056,7 +25056,7 @@
 "Zwinięte, oślizgłe plugastwo. Śpi. Chyba.": "A coiled, slimy abomination. It is asleep. Probably.",
 "[ADMIN_LOOKUPFLW(horror)] budzi pradawnego horrora w klatce xenobio.": "[ADMIN_LOOKUPFLW(horror)] wakes up an eldritch horror in a xenobiology cell.",
 "Chcę być celem antagonistów": "I want to be an antagonist target",
-"Gdy antagonista losuje cel (zabójstwo, porwanie, ochrona i inne), w pierwszej kolejności wybiera graczy z tą opcją.": "When an antagonist rolls a target (assassination, kidnapping, protection and others), players with this option are picked first.",
+"Gdy antagonista losuje cel (zabójstwo, porwanie, ochrona i inne), w pierwszej kolejności wybiera graczy, których postać ma tę opcję.": "When an antagonist rolls a target (assassination, kidnapping, protection and others), players whose character has this option are picked first.",
 "cisza": "silence",
 "za krótko": "too short",
 "za długo": "too long",

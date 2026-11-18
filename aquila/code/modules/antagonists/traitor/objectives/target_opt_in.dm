@@ -3,20 +3,20 @@
 // (AQ EDIT) bierze go spośród kandydatów, którzy przeszli wszystkie zwykłe filtry, są w grze i nie są jeszcze celem
 // innego antagonisty.
 
-/datum/preferences
-	/// Gracz chce, żeby antagoniści wybierali go na cel w pierwszej kolejności
-	var/antag_target_opt_in = FALSE
-
-/datum/preference/toggle/player/antag_target_opt_in
+/// Opcja postaci w kreatorze (zapisana w features postaci, jak inne nasze cechy postaci: bez nowej kolumny w bazie)
+/datum/preference/toggle/antag_target_opt_in
 	db_key = "antag_target_opt_in"
-	player_var = "antag_target_opt_in"
+	preference_type = PREFERENCE_CHARACTER
+	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
+	feature_key = "antag_target_opt_in"
 
-/// Czy właściciel umysłu włączył „Chcę być celem antagonistów”. Preferencje zostają po wyjściu z gry.
+/// Czy właściciel umysłu ma „Chcę być celem antagonistów” na postaci, którą gra (wybranej w kreatorze).
+/// Preferencje zostają po wyjściu z gry, więc obecność w grze sprawdza opted_in_antag_targets().
 /proc/wants_to_be_antag_target(datum/mind/candidate)
 	if(!candidate?.key)
 		return FALSE
 	var/datum/preferences/prefs = GLOB.preferences_datums[ckey(candidate.key)]
-	return prefs?.antag_target_opt_in ? TRUE : FALSE
+	return prefs?.active_character?.features["antag_target_opt_in"] ? TRUE : FALSE
 
 /// Czy umysł jest już celem któregoś celu (objective) innego antagonisty
 /proc/is_antag_objective_target(datum/mind/candidate)

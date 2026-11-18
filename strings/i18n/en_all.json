@@ -29392,6 +29392,7 @@
 "Gdy \\\"Check Any\\\" jest prawdą, zwraca prawdę, jeśli \\\"Access To Check\\\" zawiera DOWOLNĄ wartość z \\\"Required Access\\\".": "When \\\"Check Any\\\" is true, returns true if \\\"Access To Check\\\" contains ANY value in \\\"Required Access\\\".",
 "Gdy adamantyt rezonuje, wprawia w rezonans wszystkie pobliskie kawałki adamantytu. Adamantytowe golemy używają tego do nadawania wiadomości pobliskim golemom.": "When adamantine resonates, it causes all nearby pieces of adamantine to resonate as well. Adamantine golems use this to broadcast messages to nearby golems.",
 "Gdy antagonista losuje cel (zabójstwo, porwanie, ochrona i inne), w pierwszej kolejności wybiera graczy z tą opcją.": "When an antagonist rolls a target (assassination, kidnapping, protection and others), players with this option are picked first.",
+"Gdy antagonista losuje cel (zabójstwo, porwanie, ochrona i inne), w pierwszej kolejności wybiera graczy, których postać ma tę opcję.": "When an antagonist rolls a target (assassination, kidnapping, protection and others), players whose character has this option are picked first.",
 "Gdy bierzesz łyk, czujesz, że coś bulgocze ci w żołądku...": "As you take a sip, you feel something bubbling in your stomach...",
 "Gdy brak zasilania, światła korzystają z wewnętrznego ogniwa.": "Lights use internal power cell when there is no power available.",
 "Gdy cele przestaną nam być potrzebne, odeślemy je na": "When the targets are no longer needed, we will send them back to",
