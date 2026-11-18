@@ -1331,6 +1331,7 @@
 // #include "code\modules\test_chamber\kits\pr_420_traitor_cele.dm"
 #include "code\modules\test_chamber\kits\test_subjects.dm"
 // Komora testowa - zestawy PR-ów niżej (usuwać razem z plikiem zestawu po przetestowaniu)
+#include "code\modules\test_chamber\kits\pr_668_zejscie_na_planete.dm"
 #include "code\modules\test_chamber\kits\pr_664_planeta_na_niebie.dm"
 #include "code\modules\test_chamber\kits\pr_nsvprzyw_statek.dm"
 #include "code\modules\test_chamber\kits\pr_nsvprzyw_misje.dm"
