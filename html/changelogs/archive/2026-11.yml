@@ -1353,3 +1353,5 @@
   - bugfix: Flak na Atlantis i flak okrętów AI strzela; płytka i amunicja flaku w
       badaniach, amunicja w zaopatrzeniu.
   - bugfix: Holomapa poza planem pokładu nie wywala błędu.
+  - code_imp: Cotygodniowe automatyczne aktualizacje zależności TGUI i akcji GitHub
+      (Dependabot).
