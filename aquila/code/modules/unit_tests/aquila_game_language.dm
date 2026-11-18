@@ -102,4 +102,30 @@
 	var/stripped = strip_auto_articles("[clicking] klika.")
 	TEST_ASSERT(stripped == "protokinetyczny akcelerator klika.", "BYOND article is left in a Polish balloon: [stripped]")
 
+
+/// Mock klienta czyta język gry tak jak prawdziwy /client/proc/wants_english()
+/datum/client_interface/proc/wants_english()
+	return prefs?.game_language == GAME_LANGUAGE_EN
+
+/// AQUILA - czat głosowy: gracz z angielską wersją gry dostaje stronę i rozpoznawanie mowy po angielsku
+/datum/unit_test/aquila_voice_chat_language
+
+/datum/unit_test/aquila_voice_chat_language/Run()
+	var/datum/client_interface/mock = new
+	mock.prefs = new /datum/preferences
+	var/token = "0123456789abcdef0123456789abcdef"
+	mock.prefs.game_language = GAME_LANGUAGE_PL
+	TEST_ASSERT(SSvoice_chat.player_language(mock) == "pl", "A Polish player got a non-Polish voice chat")
+	TEST_ASSERT(SSvoice_chat.player_language(null) == "pl", "A missing client must default to Polish")
+	GLOB.directory["voicelangtest"] = mock
+	var/list/languages = SSvoice_chat.session_languages(list("[token]" = "voicelangtest"))
+	var/polish_entries = length(languages)
+	mock.prefs.game_language = GAME_LANGUAGE_EN
+	var/english = SSvoice_chat.player_language(mock)
+	languages = SSvoice_chat.session_languages(list("[token]" = "voicelangtest"))
+	GLOB.directory -= "voicelangtest"
+	TEST_ASSERT(!polish_entries, "Polish players must not be listed in the languages sent to the voice service")
+	TEST_ASSERT(english == "en", "An English player did not get an English voice chat")
+	TEST_ASSERT(languages[token] == "en", "The English player's session is not sent to the voice service as English")
+
 #undef TEST_ASSERT

@@ -48,6 +48,10 @@ Zgoda jest zapamiętana w przeglądarce, można ją cofnąć na stronie. Serwis 
 ## Zachowanie
 
 - Tekst przechodzi przez zwykłe `say` (języki postaci, filtry, logi).
+- Gracz z angielską wersją gry (preferencja języka) dostaje stronę po angielsku (`l=en` w linku) i jego mowa jest
+  rozpoznawana po angielsku: gra wysyła w `/api/sync` listę `languages` (token -> `en`), serwis bierze wtedy
+  podpowiedź `--prompt-en` i pomija polskie `keyterms`. Reszta graczy mówi w języku `--language` (domyślnie `pl`).
+  Strona bierze język z powitania serwisu, więc stary link przełącza się po zmianie języka w grze.
 - Nagrywanie zaczyna tylko wciśnięty klawisz (z modyfikatorami, jeśli bind je ma): bind sprawdza `keys_held` klienta.
   Podsystem nie przyjmuje Advanced ProcCall, a zmienne z tokenami (sesje, polecenia) są ukryte w VV; sesje graczy
   i bindy głosu są zablokowane całe (`GENERAL_PROTECT_DATUM`). Admin w grze nie włączy więc nikomu mikrofonu

@@ -1356,3 +1356,13 @@
   - code_imp: Cotygodniowe automatyczne aktualizacje zależności TGUI i akcji GitHub
       (Dependabot).
   - code_imp: CI ostrzega o nowych wolnych testach i o zbyt długiej kompilacji map.
+  - rscadd: Wyszukiwarka w autolathe, protolathe i innych fabrykatorach znajduje projekty
+      także po angielskiej nazwie.
+  - tweak: Przedmiot rzucony z ręki leci od rzucającego, zamiast pojawiać się od razu
+      kilka pól dalej.
+  - rscadd: W klatce xenobio może się pojawić uśpiony pradawny horror, którego może
+      przejąć duch.
+  - rscadd: 'Opcja postaci „Chcę być celem antagonistów” w kreatorze postaci: antagoniści
+      wybierają takich graczy na cel w pierwszej kolejności.'
+  - rscadd: 'Czat głosowy po angielsku: gracz z angielską wersją gry dostaje stronę
+      po angielsku, a jego mowa jest rozpoznawana po angielsku.'

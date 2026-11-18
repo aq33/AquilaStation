@@ -29,6 +29,8 @@ export type Material = {
 
 export type Design = {
   name: string;
+  /** AQUILA: angielska nazwa ze słownika (wyszukiwanie), null bez tłumaczenia */
+  nameEn?: string | null;
   desc: string;
   cost: MaterialMap;
   /** Reagent name -> units. Empty for designs that need none. */
