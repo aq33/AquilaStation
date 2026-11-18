@@ -1,4 +1,4 @@
-// Akwarianin: własna rasa Aquili (bez oryginału w innych kodach, wygląd wg „Fish People” z r/ss14).
+// Akwarianin: własna rasa Aquili (bez oryginału w innych kodach). Sprite'y od twórcy projektu „Fish People” z r/ss14 (Resprited Fish People V2).
 // Rybka w szklanym kloszu z wodą, który siedzi na kołnierzu mechanicznego pancerza.
 // - Pancerz to robotyczne części ciała jak u IPC: bez krwi, naprawa spawarką i kablami, operacje robotyczne, EMP go paraliżuje.
 // - Klosz to mózg (/obj/item/organ/brain/aquarian) z wodą w reagentach. Ryba oddycha wodą: mało wody = duszenie,
