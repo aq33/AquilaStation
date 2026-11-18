@@ -84,6 +84,8 @@ GLOBAL_LIST_INIT(munition_fillers, init_munition_fillers())
 	var/desc
 	var/damage_mult = 1
 	var/armour_pen_add = 0
+	/// Przebicie w modelu grubości pancerza okrętów AI (armor_penetration.dm); zastępuje przebicie pocisku
+	var/penetration
 	var/list/trait_types
 	/// Cechy: typ -> /datum/munition_trait
 	var/list/traits
@@ -97,20 +99,23 @@ GLOBAL_LIST_INIT(munition_fillers, init_munition_fillers())
 /datum/munition_filler/ap
 	name = "przeciwpancerny"
 	short_name = "AP"
-	desc = "Przebija gruby pancerz kosztem obrażeń."
+	desc = "Przebija ciężkie okręty, ale lekkie i myśliwce przelatuje na wylot."
 	damage_mult = 0.85
 	armour_pen_add = 25
+	penetration = 80
 
 /datum/munition_filler/he
 	name = "odłamkowo-burzący"
 	short_name = "HE"
-	desc = "Najwięcej obrażeń, ale słabo radzi sobie z grubym pancerzem. Na myśliwce, lekkie okręty i ćwiartki bez płyt."
+	desc = "Najwięcej obrażeń przeciw myśliwcom i lekkim okrętom. Od średnich odbija się prawie bez skutku."
 	damage_mult = 1.3
 	armour_pen_add = -15
+	penetration = 25
 
 /datum/munition_filler/aphe
 	name = "przeciwpancerny odłamkowo-burzący"
 	short_name = "APHE"
-	desc = "Pośrodku: trochę więcej obrażeń i trochę lepsze przebicie."
+	desc = "Na lekkie i średnie okręty. Ciężkich nie przebija, myśliwce przelatuje na wylot."
 	damage_mult = 1.1
 	armour_pen_add = 10
+	penetration = 50

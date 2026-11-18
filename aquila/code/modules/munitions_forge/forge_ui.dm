@@ -142,6 +142,8 @@ GLOBAL_LIST_INIT(aq_forge_products, init_aq_forge_products())
 		stats += list(list("name" = "przebicie", "value" = "[pen >= 0 ? "+" : ""][pen]"))
 		stats += list(list("name" = "prędkość", "value" = "×[material.speed_mult]"))
 		stats += list(list("name" = "wytrzymałość", "value" = "×[round(material.integrity_mult * quality.bonus, 0.01)]"))
+		if(shell_type?.penetration)
+			effects += aq_penetration_text(shell_type.penetration + material.armour_pen_add, damage)
 		if(material.special_desc)
 			effects += material.special_desc
 		for(var/key in material.traits)

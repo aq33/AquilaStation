@@ -69,6 +69,11 @@
 /datum/component/forged_munition/proc/apply_to_projectile(obj/item/projectile/P)
 	P.damage = round(P.damage * damage_mult(), 0.1)
 	P.armour_penetration = P.armour_penetration + armour_pen_add()
+	// Model grubości pancerza: typ pocisku zastępuje przebicie, rdzeń je przesuwa
+	if(!isnull(P.aq_penetration))
+		if(filler?.penetration)
+			P.aq_penetration = filler.penetration
+		P.aq_penetration += material.armour_pen_add
 	if(P.speed > 0)
 		P.speed = P.speed / material.speed_mult
 	var/integrity = material.integrity_mult * quality.bonus
@@ -109,6 +114,8 @@
 	examine_list += "<span class='notice'>[jointext(stats, ", ")].</span>"
 	if(filler)
 		examine_list += "<span class='notice'>Typ pocisku: [filler.name] ([filler.short_name]). [filler.desc]</span>"
+		if(filler.penetration)
+			examine_list += "<span class='notice'>[aq_penetration_text(filler.penetration + material.armour_pen_add, damage_mult())]</span>"
 	if(material.special_desc)
 		examine_list += "<span class='notice'>[material.special_desc]</span>"
 	for(var/line in trait_lines())

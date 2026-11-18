@@ -167,5 +167,55 @@
 	ship.update_quadrants()
 	TEST_ASSERT_EQUAL(stripped, round(P.damage * 0.25), "Diament w powłoce zdarł [stripped] płyt zamiast ćwierci obrażeń")
 
+/// AQUILA - rework amunicji: grubość pancerza okrętów AI i przebicie pocisków (model jak w Nebulous)
+/datum/unit_test/ammo_rework_thickness
+
+/datum/unit_test/ammo_rework_thickness/Run()
+	TEST_ASSERT_EQUAL(aq_armor_class_index(MASS_TINY), 1, "Myśliwiec nie jest w najlżejszej klasie")
+	TEST_ASSERT_EQUAL(aq_armor_class_index(MASS_SMALL), 2, "Mały okręt nie jest lekki")
+	TEST_ASSERT_EQUAL(aq_armor_class_index(MASS_MEDIUM), 3, "Średni okręt nie jest średni")
+	TEST_ASSERT_EQUAL(aq_armor_class_index(MASS_LARGE), 4, "Duży okręt nie jest ciężki")
+	TEST_ASSERT_EQUAL(aq_armor_class_index(MASS_TITAN), 5, "Tytan nie jest superciężki")
+	// HE (25) przebija myśliwce i lekkie, od średnich odbija się
+	TEST_ASSERT_EQUAL(aq_penetration_mult(25, 5), 1, "HE nie przebija myśliwca")
+	TEST_ASSERT_EQUAL(aq_penetration_mult(25, 40), 0.1, "HE przebija średni okręt")
+	// APHE (50) przelatuje myśliwiec na wylot, ciężkiego nie przebija
+	TEST_ASSERT_EQUAL(aq_penetration_mult(50, 5), 0.35, "APHE nie przelatuje myśliwca na wylot")
+	TEST_ASSERT_EQUAL(aq_penetration_mult(50, 40), 1, "APHE nie zadaje pełnych obrażeń średniemu okrętowi")
+	TEST_ASSERT_EQUAL(aq_penetration_mult(50, 60), 0.1, "APHE przebija ciężki okręt")
+	// AP (80) przelatuje lekkie na wylot, ciężkie i superciężkie przebija
+	TEST_ASSERT_EQUAL(aq_penetration_mult(80, 20), 0.35, "AP nie przelatuje lekkiego okrętu na wylot")
+	TEST_ASSERT_EQUAL(aq_penetration_mult(80, 40), 1, "AP nie zadaje pełnych obrażeń średniemu okrętowi")
+	TEST_ASSERT_EQUAL(aq_penetration_mult(80, 80), 1, "AP nie przebija superciężkiego okrętu")
+
+	// Pocisk AP z uranowym rdzeniem: przebicie typu + rdzeń; burtówka N dodaje swoje
+	var/obj/item/projectile/bullet/mac_round/shell = allocate(/obj/item/projectile/bullet/mac_round)
+	apply_forged_munition(shell, get_munition_material(/datum/material/uranium), get_munition_quality(/datum/munition_quality), get_munition_filler(/datum/munition_filler/ap))
+	TEST_ASSERT_EQUAL(shell.aq_get_penetration(), 95, "Przebicie AP z uranem")
+	var/obj/item/projectile/bullet/broadside/uranium/broadside = allocate(/obj/item/projectile/bullet/broadside/uranium)
+	TEST_ASSERT_EQUAL(broadside.aq_get_penetration(), 65, "Przebicie burtówki N")
+	var/obj/item/projectile/guided_munition/torpedo/torpedo = allocate(/obj/item/projectile/guided_munition/torpedo)
+	TEST_ASSERT(isnull(torpedo.aq_get_penetration()), "Torpeda weszła do modelu grubości pancerza")
+
+	// Okręt gracza zostaje na pancerzu procentowym, okręt AI liczy się modelem
+	var/obj/structure/overmap/ship = SSstar_system.find_main_overmap()
+	if(!ship)
+		return
+	var/obj/item/projectile/bullet/mac_round/he_shell = allocate(/obj/item/projectile/bullet/mac_round)
+	apply_forged_munition(he_shell, get_munition_material(/datum/material/iron), get_munition_quality(/datum/munition_quality), get_munition_filler(/datum/munition_filler/he))
+	var/before = he_shell.damage
+	var/old_ai = ship.ai_controlled
+	var/old_thickness = ship.aq_armor_thickness
+	ship.ai_controlled = FALSE
+	ship.aq_apply_thickness_model(he_shell)
+	TEST_ASSERT_EQUAL(he_shell.damage, before, "Model grubości zadziałał na okręt gracza")
+	ship.ai_controlled = TRUE
+	ship.aq_armor_thickness = 60
+	ship.aq_apply_thickness_model(he_shell)
+	ship.ai_controlled = old_ai
+	ship.aq_armor_thickness = old_thickness
+	TEST_ASSERT_EQUAL(he_shell.damage, round(before * 0.1, 0.1), "HE nie odbił się od ciężkiego okrętu AI")
+	TEST_ASSERT_EQUAL(he_shell.armour_penetration, 100, "Po modelu grubości pancerz procentowy dalej działa")
+
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL

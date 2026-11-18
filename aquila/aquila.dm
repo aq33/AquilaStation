@@ -1092,6 +1092,7 @@
 #include "code\modules\munitions\nsv_ship_armament.dm"
 #include "code\modules\munitions\deck_gun_calibrator.dm"
 #include "code\modules\munitions\nsv_magneton_sparrowhawk.dm"
+#include "code\modules\munitions\armor_penetration.dm"
 #include "code\modules\munitions\flak_mount.dm"
 #include "code\modules\overmap\overmap_scale.dm"
 #include "code\modules\overmap\ai_morale.dm"
