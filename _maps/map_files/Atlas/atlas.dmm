@@ -10185,14 +10185,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/monotile/steel,
 /area/hallway/nsv/deck2/primary)
-"zZ" = (
-/obj/effect/turf_decal/tile/ship/yellow/orlen{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/ship/blue/orlen,
-/obj/structure/cable,
-/turf/open/floor/durasteel/techfloor_grid,
-/area/engine/atmos)
 "Ab" = (
 /obj/structure/rack,
 /obj/item/storage/belt/utility,
@@ -11968,6 +11960,15 @@
 /obj/structure/lattice/catwalk/over/ship,
 /turf/open/floor/monotile/steel,
 /area/nsv/weapons)
+"FD" = (
+/obj/effect/turf_decal/tile/ship/yellow/orlen{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/ship/blue/orlen,
+/obj/structure/cable,
+/obj/machinery/station_map/engineering/directional/north,
+/turf/open/floor/durasteel/techfloor_grid,
+/area/engine/atmos)
 "FE" = (
 /obj/machinery/airalarm{
 	dir = 1;
@@ -47499,7 +47500,7 @@ GO
 GO
 GO
 GO
-zZ
+FD
 Al
 vi
 mB

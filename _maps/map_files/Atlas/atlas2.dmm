@@ -4045,24 +4045,6 @@
 /obj/machinery/ore_silo,
 /turf/open/floor/durasteel/lino,
 /area/ai_monitored/nuke_storage)
-"ke" = (
-/obj/effect/turf_decal/tile/ship/brown{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/ship/brown{
-	dir = 8
-	},
-/obj/machinery/camera/autoname{
-	dir = 1
-	},
-/obj/effect/turf_decal/stripes/corner{
-	dir = 4
-	},
-/obj/structure/sign/poster/official/random{
-	pixel_y = -32
-	},
-/turf/open/floor/monotile/dark,
-/area/bridge/cic)
 "kh" = (
 /obj/structure/railing{
 	dir = 1
@@ -8593,6 +8575,25 @@
 /obj/effect/turf_decal/tile/ship/green,
 /turf/open/floor/durasteel/alt,
 /area/hallway/nsv/deck1/hallway)
+"Bm" = (
+/obj/effect/turf_decal/tile/ship/brown{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/ship/brown{
+	dir = 8
+	},
+/obj/machinery/camera/autoname{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/corner{
+	dir = 4
+	},
+/obj/structure/sign/poster/official/random{
+	pixel_y = -32
+	},
+/obj/machinery/station_map/engineering/directional/east,
+/turf/open/floor/monotile/dark,
+/area/bridge/cic)
 "Bp" = (
 /obj/structure/fluff/vls_hatch,
 /turf/open/openspace,
@@ -49062,7 +49063,7 @@ cQ
 jf
 Op
 ft
-ke
+Bm
 Tc
 ay
 Af

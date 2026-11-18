@@ -4714,13 +4714,6 @@
 	},
 /turf/open/floor/carpet/ship,
 /area/hallway/primary/starboard)
-"dCa" = (
-/obj/structure/closet/emcloset,
-/obj/machinery/camera/autoname{
-	dir = 10
-	},
-/turf/open/floor/circuit,
-/area/bridge/cic)
 "dCn" = (
 /obj/machinery/xenoarchaeology_machine/conductor,
 /obj/machinery/light{
@@ -6024,6 +6017,10 @@
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/durasteel/techfloor_grid,
 /area/science/xenobiology)
+"eEw" = (
+/obj/machinery/station_map/engineering/directional/west,
+/turf/open/floor/carpet/ship/orange_carpet,
+/area/engine/engineering/reactor_control)
 "eEN" = (
 /obj/machinery/computer/boarding_guns{
 	dir = 1
@@ -24085,6 +24082,14 @@
 	},
 /turf/open/floor/carpet/police,
 /area/security/detectives_office)
+"teV" = (
+/obj/structure/closet/emcloset,
+/obj/machinery/camera/autoname{
+	dir = 10
+	},
+/obj/machinery/station_map/engineering/directional/south,
+/turf/open/floor/circuit,
+/area/bridge/cic)
 "tgf" = (
 /obj/structure/cable/yellow,
 /obj/item/plant_tray/pot/random,
@@ -39489,7 +39494,7 @@ jwd
 nkk
 kuy
 yjs
-yjs
+eEw
 vlF
 yjs
 kBR
@@ -61308,7 +61313,7 @@ mKi
 iCl
 ofn
 iXX
-dCa
+teV
 wuv
 wuv
 wuv

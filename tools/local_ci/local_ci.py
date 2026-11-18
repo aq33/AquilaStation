@@ -26,6 +26,7 @@ REPO = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 CACHE = os.path.join(REPO, "tools", "bootstrap", ".cache")
 JQ_VERSION = "1.7.1"
 DME = "nsv13.dme"
+MAP_SHARDS = 3
 
 
 def dependency(key):
@@ -255,20 +256,25 @@ def step_dreamchecker(r):
 
 
 def step_maps(r):
-	code, out = r.run([os.path.join(REPO, "tools", "build", "build.bat"), "dm-maps-include"])
-	if code:
-		return code, out
+	"""Mapy w kilku kompilacjach po kolei (części jak w jobach compile_all_maps): dm wczytuje mapy w czasie
+	rosnącym z kwadratem ich liczby, więc MAP_SHARDS krótkich kompilacji trwa krócej niż jedna ze wszystkimi."""
+	templates = os.path.join(REPO, "_maps", "templates.dm")
+	code, outs = 0, []
 	try:
-		code, base, out = r.compile_copy("maps", ["CIBUILDING", "CITESTING", "ALL_MAPS"], timeout=3600)
+		for shard in range(1, MAP_SHARDS + 1):
+			part_code, out = r.run([os.path.join(REPO, "tools", "build", "build.bat"), "dm-maps-include", f"--map-shard={shard}/{MAP_SHARDS}"])
+			if not part_code:
+				part_code, base, out = r.compile_copy("maps", ["CIBUILDING", "CITESTING", "ALL_MAPS"], timeout=3600)
+				r.cleanup_copy(base)
+				m = re.search(r"(\d+) errors?, (\d+) warnings?", out)
+				if m and m.group(1) != "0":
+					part_code = part_code or 1
+			code = code or part_code
+			outs.append(f"Część {shard}/{MAP_SHARDS}:\n{out.strip()}")
 	finally:
-		templates = os.path.join(REPO, "_maps", "templates.dm")
 		if os.path.exists(templates):
 			os.remove(templates)
-	r.cleanup_copy(base)
-	m = re.search(r"(\d+) errors?, (\d+) warnings?", out)
-	if m and m.group(1) != "0":
-		code = code or 1
-	return code, out
+	return code, "\n".join(outs)
 
 
 def link_or_copy(source, destination):
@@ -362,13 +368,13 @@ def step_tests(r):
 			for shard, proc in running.items():
 				if proc.poll() is not None:
 					continue
-				# 516 potrafi wisieć po zamknięciu świata (zob. tools/ci/run_server.sh): po „Shutdown complete” czekamy 15 s i zabijamy
+				# 516 potrafi wisieć po zamknięciu świata (zob. tools/ci/run_server.sh): po „Shutdown complete” czekamy 3 s i zabijamy
 				runtime_log = os.path.join(test_deploy_dir(shard), "data", "logs", "ci", "runtime.log")
 				if shard not in shutdown_seen and os.path.exists(runtime_log):
 					with open(runtime_log, encoding="utf-8", errors="replace") as f:
 						if "Shutdown complete" in f.read():
 							shutdown_seen[shard] = time.time()
-				if shard in shutdown_seen and time.time() - shutdown_seen[shard] > 15:
+				if shard in shutdown_seen and time.time() - shutdown_seen[shard] > 3:
 					proc.kill()
 			time.sleep(2)
 	finally:
