@@ -1331,3 +1331,5 @@
   - code_imp: Testy w CI nie szukają referencji przy każdym wycieku (bez kilkuminutowych
       zamrożeń), a na końcu każdej części wypisują do logu obiekty, które nie zwolniły
       się po usunięciu.
+  - bugfix: Misja na małej planecie zawsze dostaje punkt badawczy albo schron kolonii.
+  - code_imp: Krótsze testy planet w CI.
