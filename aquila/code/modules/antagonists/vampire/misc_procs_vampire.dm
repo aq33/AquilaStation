@@ -19,6 +19,7 @@
 		power.deactivate_power()
 	powers -= power
 	power.Remove(owner.current)
+	power.vampiredatum_power = null // zdjęta moc trzymała rolę (wyciek po usunięciu wampira); Grant() ustawia ją od nowa
 
 /**
  * When a Vampire breaks the Masquerade, they get their HUD icon changed, and Malkavian Vampires get alerted.
