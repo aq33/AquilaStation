@@ -102,6 +102,9 @@ export const DmTarget = new Juke.Target({
     'icons/**',
     'interface/**',
     `${DME_NAME}.dme`,
+    // AQ EDIT - lista map z DmMapsIncludeTarget: bez niej kompilacja kolejnej części (--map-shard) w tym samym
+    // folderze była pomijana jako aktualna. Glob, bo zwykła ścieżka do nieistniejącego pliku psuje porównanie dat
+    '_maps/templates.dm*',
   ],
   outputs: [
     `${DME_NAME}.dmb`,

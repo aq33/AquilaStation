@@ -93,7 +93,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ~/apt-i386
-          key: apt-i386-${{ steps.image.outputs.version }}-libssl3-libcurl4
+          key: apt-i386-v2-${{ steps.image.outputs.version }}-libssl3-libcurl4
       - name: Install libcurl (needed by BYOND 516.1664+ on Linux)
         run: APT_DEB_CACHE=$HOME/apt-i386 bash tools/ci/apt_install.sh libssl3:i386 libcurl4:i386
       - name: Compile All Maps
@@ -137,7 +137,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ~/apt-i386
-          key: apt-i386-${{ steps.image.outputs.version }}-libssl3-libcurl4
+          key: apt-i386-v2-${{ steps.image.outputs.version }}-libssl3-libcurl4
       - name: Install rust-g
         run: |
           APT_DEB_CACHE=$HOME/apt-i386 bash tools/ci/apt_install.sh libssl3:i386 libcurl4:i386

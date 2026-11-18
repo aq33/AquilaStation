@@ -12,12 +12,21 @@ set -u
 
 sudo dpkg --add-architecture i386
 
+# Czy każdy z podanych pakietów jest zainstalowany
+all_installed() {
+	local pkg
+	for pkg in "$@"; do
+		[ "$(dpkg-query -W -f='${Status}' "$pkg" 2> /dev/null)" = "install ok installed" ] || return 1
+	done
+}
+
 if [ -n "${APT_DEB_CACHE:-}" ] && ls "$APT_DEB_CACHE"/*.deb > /dev/null 2>&1; then
-	if sudo dpkg -i "$APT_DEB_CACHE"/*.deb; then
+	# Sam sukces dpkg nie wystarcza: niepełny cache zainstalowałby tylko część pakietów
+	if sudo dpkg -i "$APT_DEB_CACHE"/*.deb && all_installed "$@"; then
 		echo "Zainstalowano z cache: $(ls "$APT_DEB_CACHE" | wc -l) paczek"
 		exit 0
 	fi
-	echo "Instalacja z cache nie wyszła, pobieram paczki od nowa"
+	echo "Instalacja z cache nie dała wszystkich pakietów, pobieram paczki od nowa"
 	rm -f "$APT_DEB_CACHE"/*.deb
 fi
 
@@ -39,18 +48,16 @@ if ! getent hosts azure.archive.ubuntu.com > /dev/null; then
 	done
 fi
 
-# Paczki, które leżały w archiwum apt przed instalacją, nie należą do tej instalacji i nie idą do cache
-before=$(ls /var/cache/apt/archives/*.deb 2> /dev/null || true)
+# Puste archiwum apt przed instalacją: po niej leżą w nim dokładnie paczki tej instalacji, więc cache jest pełny
+# (paczka, która leżała tam wcześniej, nie zostałaby pobrana ponownie i brakowałoby jej w cache)
+sudo apt-get clean
 
 for attempt in 1 2 3; do
 	sudo apt-get update -qq || true
 	if sudo apt-get install -y --no-install-recommends -o APT::Keep-Downloaded-Packages=true "$@"; then
 		if [ -n "${APT_DEB_CACHE:-}" ]; then
 			mkdir -p "$APT_DEB_CACHE"
-			for deb in /var/cache/apt/archives/*.deb; do
-				[ -f "$deb" ] || continue
-				echo "$before" | grep -qxF "$deb" || cp "$deb" "$APT_DEB_CACHE"/
-			done
+			cp /var/cache/apt/archives/*.deb "$APT_DEB_CACHE"/ 2> /dev/null || true
 		fi
 		exit 0
 	fi
