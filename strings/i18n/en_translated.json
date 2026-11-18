@@ -26268,5 +26268,16 @@
 "${mission.reward} kr dla działu ${mission.department}": "${mission.reward} cr for ${mission.department}",
 "). Zniżka na towar: ${reputation.discount}%.": "). Discount on goods: ${reputation.discount}%.",
 "z ${reputation.next} do następnego": "of ${reputation.next} to the next",
-"(zostało ${mission.time_left} min)": "(${mission.time_left} min left)"
+"(zostało ${mission.time_left} min)": "(${mission.time_left} min left)",
+"uśpiony pradawny horror": "dormant eldritch horror",
+"Zwinięte, oślizgłe plugastwo. Śpi. Chyba.": "A coiled, slimy abomination. It is asleep. Probably.",
+"[ADMIN_LOOKUPFLW(horror)] budzi pradawnego horrora w klatce xenobio.": "[ADMIN_LOOKUPFLW(horror)] wakes up an eldritch horror in a xenobiology cell.",
+"Chcę być celem antagonistów": "I want to be an antagonist target",
+"Gdy antagonista losuje cel (zabójstwo, porwanie, ochrona i inne), w pierwszej kolejności wybiera graczy, których postać ma tę opcję.": "When an antagonist rolls a target (assassination, kidnapping, protection and others), players whose character has this option are picked first.",
+"cisza": "silence",
+"za krótko": "too short",
+"za długo": "too long",
+"rozpoznawanie mowy nie odpowiada": "speech recognition is not responding",
+"zły format nagrania": "bad recording format",
+"brak zgody na wysyłanie głosu, odśwież stronę czatu głosowego": "no consent to send your voice, refresh the voice chat page"
 }
