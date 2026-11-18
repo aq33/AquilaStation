@@ -57,7 +57,7 @@
 		yellow_pages_dat += "[TI.stock]× [TI.name] ([TI.price] za szt.) - <i>[TI.desc]</i><br /><br />"
 	for(var/itemPath in special_offers)
 		var/datum/trader_item/TI = new itemPath()
-		if(system_type == SSstar_system.find_main_overmap().faction && F.tickets >= TI.special_requirement) //Right now we use faction tickets to unlock better items
+		if((system_type == SSstar_system.find_main_overmap().faction && F.tickets >= TI.special_requirement) || aq_special_unlocked()) //Right now we use faction tickets to unlock better items // AQ EDIT - albo reputacja u stacji (trader_reputation.dm)
 			TI.name = "SPECJALNA OFERTA! " + TI.name //Advertising is very important
 			TI.price = round(rand((2*TI.price)/3, TI.price*2)) //These will be more expensive by default already and have less chaotic prices
 			TI.stock = round(rand(TI.stock/2, TI.stock*2))
@@ -444,11 +444,14 @@
 	if(OM)
 		account = (OM.faction == "nanotrasen") ? ACCOUNT_CAR : ACCOUNT_SYN
 	var/datum/bank_account/D = SSeconomy.get_dep_account(account)
-	if(!D || D.account_balance <= item.price)
+	// AQ EDIT START - zniżka za reputację u stacji (trader_reputation.dm)
+	var/price = aq_price(item)
+	if(!D || D.account_balance <= price)
 		SEND_SOUND(user, 'nsv13/sound/effects/ship/freespace2/computer/textdraw.wav')
 		to_chat(user, "<span class='boldnotice'>[pick(on_fail)]</span>")
 		return FALSE
-	D.adjust_money(-item.price)
+	D.adjust_money(-price)
+	// AQ EDIT END
 	if(user.overmap_ship)
 		user.get_overmap().hail(pick(on_purchase), src)
 	item.on_purchase(user.get_overmap())

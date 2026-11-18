@@ -12707,15 +12707,6 @@
 /obj/effect/turf_decal/tile/yellow,
 /turf/open/floor/plasteel/tiled/light,
 /area/bridge/cic)
-"QO" = (
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
-	},
-/obj/machinery/computer/ship/fighter_launcher{
-	dir = 1
-	},
-/turf/open/floor/plasteel/tiled/light,
-/area/bridge/cic)
 "QQ" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -12919,6 +12910,16 @@
 	},
 /turf/open/floor/plasteel/tiled/light,
 /area/science/lab)
+"Rx" = (
+/obj/effect/turf_decal/tile/yellow{
+	dir = 1
+	},
+/obj/machinery/computer/ship/fighter_launcher{
+	dir = 1
+	},
+/obj/machinery/station_map/engineering/directional/south,
+/turf/open/floor/plasteel/tiled/light,
+/area/bridge/cic)
 "Rz" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/auto_name/north,
@@ -55801,7 +55802,7 @@ SZ
 bV
 bV
 yN
-QO
+Rx
 fx
 fx
 az

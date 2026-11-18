@@ -35,6 +35,15 @@ GLOBAL_LIST_EMPTY(aq_ship_contracts)
 	var/id
 	/// Dlaczego zlecenie się nie udało
 	var/fail_reason
+	/// Misja okrętu od handlarza (trader_missions.dm): osobna pula ofert i osobny limit przyjętych
+	var/is_mission = FALSE
+	/// Ile czasu na wykonanie od przyjęcia
+	var/duration = CONTRACT_DEADLINE
+	/// Reputacja u handlarza stacji za wykonanie i za porażkę (trader_reputation.dm)
+	var/reputation = 0
+	var/fail_reputation = 0
+	/// Nagrody rzeczowe kapsułą na okręt: typ -> nazwa w oknie
+	var/list/reward_items
 
 /datum/aq_contract/New(obj/structure/overmap/trader/station)
 	. = ..()
@@ -55,7 +64,7 @@ GLOBAL_LIST_EMPTY(aq_ship_contracts)
 	if(state != CONTRACT_OFFERED)
 		return FALSE
 	state = CONTRACT_ACTIVE
-	deadline = world.time + CONTRACT_DEADLINE
+	deadline = world.time + duration
 	GLOB.aq_ship_contracts += src
 	START_PROCESSING(SSprocessing, src)
 	on_accept(user)
@@ -95,7 +104,17 @@ GLOBAL_LIST_EMPTY(aq_ship_contracts)
 	if(research_points)
 		SSresearch.science_tech.add_point_list(list(TECHWEB_POINT_TYPE_GENERIC = research_points))
 	announce("Zlecenie wykonane: [name]. Dział [department_name] otrzymuje [reward] kredytów[research_points ? " i [research_points] punktów badań" : ""].")
+	give_extra_rewards()
 	on_end()
+
+/// Nagrody rzeczowe kapsułą na okręt i reputacja u handlarza stacji
+/datum/aq_contract/proc/give_extra_rewards()
+	var/obj/structure/overmap/ship = SSstar_system.find_main_overmap()
+	if(ship)
+		for(var/path in reward_items)
+			ship.send_supplypod(path, station)
+	if(reputation)
+		station?.inhabited_trader?.aq_adjust_reputation(reputation)
 
 /datum/aq_contract/proc/fail(reason)
 	if(state != CONTRACT_ACTIVE)
@@ -104,6 +123,8 @@ GLOBAL_LIST_EMPTY(aq_ship_contracts)
 	fail_reason = reason
 	STOP_PROCESSING(SSprocessing, src)
 	announce("Zlecenie nieudane: [name] ([reason]).")
+	if(fail_reputation)
+		station?.inhabited_trader?.aq_adjust_reputation(-fail_reputation)
 	on_end()
 
 /// Stany do sprawdzania spoza tego pliku (konsola zgłoszeń, testy): define'y stanów są tu #undef
@@ -142,6 +163,9 @@ GLOBAL_LIST_EMPTY(aq_ship_contracts)
 	return lowertext(venue.display_name)
 
 /datum/aq_contract/proc/ui_entry()
+	var/list/items = list()
+	for(var/path in reward_items)
+		items += reward_items[path]
 	return list(
 		"id" = id,
 		"name" = name,
@@ -150,8 +174,15 @@ GLOBAL_LIST_EMPTY(aq_ship_contracts)
 		"reward" = reward,
 		"research" = research_points,
 		"state" = state,
-		"time_left" = state == CONTRACT_ACTIVE ? max(0, round((deadline - world.time) / 600)) : null
+		"time_left" = state == CONTRACT_ACTIVE ? max(0, round((deadline - world.time) / 600)) : null,
+		"items" = items,
+		"reputation" = reputation,
+		"progress" = state == CONTRACT_ACTIVE ? progress_text() : null
 	)
+
+/// Postęp w toku (okno handlarza, konsola zgłoszeń); null, gdy nie ma czego pokazać
+/datum/aq_contract/proc/progress_text()
+	return null
 
 // ---------------------------------------------------------------- dostawy
 
@@ -589,23 +620,27 @@ GLOBAL_LIST_INIT(aq_contract_types, list(
 		if(C.station == src && C.state == CONTRACT_ACTIVE)
 			. += C
 
-/proc/aq_active_contract_count()
+/// Przyjęte zlecenia działów albo (missions = TRUE) misje okrętu od handlarzy
+/proc/aq_active_contract_count(missions = FALSE)
 	. = 0
 	for(var/datum/aq_contract/C as anything in GLOB.aq_ship_contracts)
-		if(C.state == CONTRACT_ACTIVE)
+		if(C.state == CONTRACT_ACTIVE && C.is_mission == missions)
 			.++
 
 /// Przyjęcie oferty z okna handlarza; zwraca komunikat błędu albo null
 /obj/structure/overmap/trader/proc/aq_accept_contract(id, mob/user)
-	if(aq_active_contract_count() >= CONTRACT_MAX_ACTIVE)
-		return "Okręt ma już [CONTRACT_MAX_ACTIVE] przyjęte zlecenia."
-	for(var/datum/aq_contract/C as anything in aq_get_offers())
+	for(var/datum/aq_contract/C as anything in aq_get_offers() + aq_get_mission_offers())
 		if(C.id != id)
 			continue
+		if(!C.is_mission && aq_active_contract_count() >= CONTRACT_MAX_ACTIVE)
+			return "Okręt ma już [CONTRACT_MAX_ACTIVE] przyjęte zlecenia."
+		if(C.is_mission && aq_active_contract_count(TRUE) >= aq_max_missions())
+			return "Okręt ma już [aq_max_missions()] przyjęte misje."
 		var/error = C.accept_error()
 		if(error)
 			return error
 		aq_contract_offers -= C
+		aq_mission_offers -= C
 		if(!C.accept(user))
 			return "Nie udało się przyjąć zlecenia."
 		// on_accept mógł od razu zakończyć zlecenie porażką (np. portal albo ambulatorium zniknęły po sprawdzeniu)
@@ -655,6 +690,7 @@ GLOBAL_LIST_INIT(aq_contract_types, list(
 			C.fail("stacja zniszczona")
 		C.station = null
 	QDEL_LIST(aq_contract_offers)
+	QDEL_LIST(aq_mission_offers)
 	return ..()
 
 /datum/trader/ui_data(mob/user)
@@ -667,7 +703,7 @@ GLOBAL_LIST_INIT(aq_contract_types, list(
 		offers += list(C.ui_entry())
 	var/list/active = list()
 	for(var/datum/aq_contract/C as anything in GLOB.aq_ship_contracts)
-		if(C.station == T)
+		if(C.station == T && !C.is_mission)
 			active += list(C.ui_entry())
 	.["aq_contracts"] = list("offers" = offers, "active" = active, "max_active" = CONTRACT_MAX_ACTIVE, "active_count" = aq_active_contract_count())
 

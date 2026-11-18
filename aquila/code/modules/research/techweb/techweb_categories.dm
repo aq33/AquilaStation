@@ -18,6 +18,7 @@ GLOBAL_LIST_INIT(techweb_category_overrides, list(
 	"bitrunning" = "computing",
 	"exodrone" = "ship",
 	"ftl_slipstream" = "ship",
+	"ftl_warp" = "ship",
 	"area_inerts" = "ship",
 	"job_itemsets" = "robotics",
 	"job_itemsets_sec" = "robotics",

@@ -38,9 +38,6 @@
 		var/list/dims = GLOB.hexmap.sectors[sec]
 		sector_list += list(list("id" = text2num(sec), "name" = hex_sector_name(text2num(sec)), "cols" = dims["cols"], "rows" = dims["rows"]))
 	data["sectors"] = sector_list
-	data["cost_hex"] = HEX_FTL_COST_HEX
-	data["cost_gate"] = HEX_FTL_COST_GATE
-	data["cooldown"] = HEX_FTL_COOLDOWN / 10
 	var/list/terrains = list()
 	hex_terrain(HEX_TERRAIN_EMPTY)
 	for(var/id in GLOB.hex_terrains)
@@ -74,6 +71,12 @@
 		"lockout" = linked.ftl_drive?.lockout,
 		"safety_override" = linked.ftl_safety_override,
 		"in_transit" = FALSE,
+		// koszty i czasy z bonusem układu FTL (hex_ftl_chip.dm); okno liczy z nich progi ładunku jak hex_charge_text()
+		"cost_hex" = linked.hex_cost(0, 1),
+		"cost_gate" = linked.hex_cost(1, 0),
+		"capacity" = linked.hex_capacity(),
+		"cooldown_total" = linked.hex_cooldown_time() / 10,
+		"startup" = linked.hex_startup_delay() / 10,
 	)
 	if(info?["target_system"])
 		SSstar_system.update_pos(linked)
@@ -88,6 +91,7 @@
 		ship["to_hex"] = to_hex?.id
 		ship["time_left"] = max(0, round((info["to_time"] - world.time) / 10, 1))
 	data["ship"] = ship
+	data["chip"] = hex_chip_ui_data()
 
 	var/list/systems_out = list()
 	for(var/datum/star_system/S as anything in SSstar_system.systems)
@@ -153,7 +157,7 @@
 	// Zasięg: kafle, na które okręt może skoczyć teraz
 	var/list/reach = list()
 	if(here && !ship["in_transit"] && !linked.hex_cooldown_left() && !ship["jumping"])
-		var/list/costs = GLOB.hexmap.reachable(here, linked.faction, linked.hex_charge())
+		var/list/costs = GLOB.hexmap.reachable(here, linked.faction, linked.hex_charge(), linked)
 		for(var/datum/hex/H as anything in costs)
 			reach[H.id] = costs[H]
 	data["reach"] = reach
@@ -215,14 +219,15 @@
 			for(var/datum/hex/P as anything in route["full"])
 				full_ids += P.id
 			var/datum/hex/stopped = route["stopped"]
+			var/cost = linked.hex_route_cost(route)
 			out["route"] = list(
 				"path" = path_ids,
 				"full" = full_ids,
-				"cost" = route["cost"],
+				"cost" = cost,
 				"hexes" = route["hexes"],
 				"stopped" = stopped?.id,
 				"stopped_name" = stopped?.display_name(),
-				"blocker" = linked.hex_jump_blocker(route["cost"]),
+				"blocker" = linked.hex_jump_blocker(cost),
 			)
 		else
 			out["route"] = list("none" = TRUE)
@@ -234,7 +239,7 @@
 	// Stare akcje skoku ominęłyby trasę, koszt i chłodzenie mapy hex
 	if(action in list("select_system", "jump", "cancel_jump"))
 		return TRUE
-	if(!(action in list("hex_select", "hex_jump", "hex_cancel", "hex_nuke")))
+	if(!(action in list("hex_select", "hex_jump", "hex_cancel", "hex_nuke", "hex_chip_bonus")))
 		return ..()
 	hex_ui_cache = null // po akcji okno dostaje świeże dane, nie te sprzed kliknięcia
 	if(!linked)
@@ -280,6 +285,12 @@
 				return TRUE
 			if(linked.hex_fire_strategic_nuke(nuke_target, usr))
 				playsound(src, 'nsv13/sound/effects/computer/alarm_3.ogg', 50, FALSE)
+			return TRUE
+		if("hex_chip_bonus")
+			if(!can_control_ship)
+				return
+			if(hex_set_chip_bonus(params["bonus"], usr))
+				playsound(src, 'nsv13/sound/effects/computer/scroll_start.ogg', 50, TRUE)
 			return TRUE
 		if("hex_cancel")
 			if(!can_control_ship || linked.ftl_drive?.lockout)

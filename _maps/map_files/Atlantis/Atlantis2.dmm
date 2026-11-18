@@ -22976,6 +22976,10 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/nsv/deck1/port/aft)
+"wJG" = (
+/obj/machinery/station_map/engineering/directional/south,
+/turf/open/floor/monotile/dark,
+/area/bridge/cic)
 "wKw" = (
 /obj/structure/chair/fancy/corp,
 /turf/open/floor/carpet/royalblack,
@@ -57288,7 +57292,7 @@ nub
 sxQ
 jJE
 wOh
-mqY
+wJG
 qti
 cKR
 wYJ

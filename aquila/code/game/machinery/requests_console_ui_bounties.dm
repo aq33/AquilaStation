@@ -101,7 +101,7 @@
 			"name" = contract.name,
 			"description" = contract.desc,
 			"reward" = "[contract.reward] kr[contract.research_points ? " + [contract.research_points] pkt badań" : ""]",
-			"progress" = "zostało [max(0, round((contract.deadline - world.time) / 600))] min",
+			"progress" = "[contract.progress_text() ? "[contract.progress_text()], " : ""]zostało [max(0, round((contract.deadline - world.time) / 600))] min",
 			"source" = contract.station ? contract.station.name : "Stacja handlowa",
 			"where" = contract.where_to_deliver(),
 			"department" = contract.department_name,
