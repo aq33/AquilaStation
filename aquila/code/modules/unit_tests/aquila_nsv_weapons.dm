@@ -177,7 +177,7 @@
 
 /datum/unit_test/nsv_magneton_sparrowhawk/Run()
 	var/datum/techweb_node/node = SSresearch.techweb_node_by_id("macro_ballistics")
-	TEST_ASSERT("naval_shell_homing" in node.design_ids, "Makrobalistyka nie ma Magnetonu")
+	TEST_ASSERT(!("naval_shell_homing" in node.design_ids), "Magneton jest w protolathe, a ma być tylko do kupienia")
 	node = SSresearch.techweb_node_by_id("advanced_torpedo_components")
 	TEST_ASSERT("cruise_missile_warhead" in node.design_ids, "Amunicja kierowana II nie ma głowicy Sparrowhawka")
 	var/list/stock = aq_test_trader_stock(/datum/trader/armsdealer)
@@ -203,6 +203,11 @@
 	sparrowhawk.forceMove(get_turf(vls))
 	TEST_ASSERT(sparrowhawk in vls.ammo, "VLS nie przyjął Sparrowhawka")
 	TEST_ASSERT_EQUAL(sparrowhawk.projectile_type, /obj/item/projectile/guided_munition/missile/cruise, "Sparrowhawk strzela zwykłą rakietą")
+	// Rework amunicji: ciężka rakieta zajmuje całą tubę i leci szybciej
+	TEST_ASSERT(initial(cruise.speed) < initial(missile.speed), "Sparrowhawk nie leci szybciej od zwykłej rakiety")
+	var/obj/item/ship_weapon/ammunition/missile/second = allocate(/obj/item/ship_weapon/ammunition/missile, get_step(run_loc_floor_bottom_left, EAST))
+	second.forceMove(get_turf(vls))
+	TEST_ASSERT(!(second in vls.ammo), "Do tuby VLS ze Sparrowhawkiem weszła druga rakieta")
 
 // Profesje bez przydziału do drużyny: register_squad() po 5 s trafiłby w usunięte już moby testu.
 // Inna frakcja, żeby SSjob nie wziął ich za prawdziwe profesje (SetupOccupations() bierze tylko „Station”)
