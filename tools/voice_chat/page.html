@@ -33,31 +33,145 @@
 </head>
 <body>
 <main>
-	<h1>Czat głosowy Aquili</h1>
-	<p class="sub">Zostaw tę kartę otwartą i wróć do gry. Trzymaj klawisz mówienia, żeby postać powiedziała to, co mówisz.</p>
+	<h1 data-t="heading">Czat głosowy Aquili</h1>
+	<p class="sub" data-t="sub">Zostaw tę kartę otwartą i wróć do gry. Trzymaj klawisz mówienia, żeby postać powiedziała to, co mówisz.</p>
 	<div class="card consent" id="consent" hidden>
-		<p><strong>Zanim włączysz mikrofon</strong></p>
-		<p>Ten serwer zamienia mowę na tekst w zewnętrznej usłudze <strong id="provider-name"></strong>. Gdy trzymasz klawisz mówienia, nagranie twojego głosu trafia do tej firmy, a tekst wraca do gry. Nagranie obejmuje też ok. 0,4 s przed wciśnięciem klawisza i 0,25 s po jego puszczeniu (żeby nie ucinać pierwszego i ostatniego słowa). Poza tym nic nie jest wysyłane.</p>
-		<p id="consent-saves" hidden>Serwis zapisuje też nagrania na serwerze gry do diagnostyki.</p>
-		<p>Zasady przetwarzania danych: <a id="privacy-link" target="_blank" rel="noopener noreferrer"></a></p>
-		<p><button id="agree">Zgadzam się, włącz mikrofon</button></p>
+		<p><strong data-t="consent_title">Zanim włączysz mikrofon</strong></p>
+		<p><span data-t="consent_before">Ten serwer zamienia mowę na tekst w zewnętrznej usłudze</span> <strong id="provider-name"></strong><span data-t="consent_after">. Gdy trzymasz klawisz mówienia, nagranie twojego głosu trafia do tej firmy, a tekst wraca do gry. Nagranie obejmuje też ok. 0,4 s przed wciśnięciem klawisza i 0,25 s po jego puszczeniu (żeby nie ucinać pierwszego i ostatniego słowa). Poza tym nic nie jest wysyłane.</span></p>
+		<p id="consent-saves" data-t="consent_saves" hidden>Serwis zapisuje też nagrania na serwerze gry do diagnostyki.</p>
+		<p><span data-t="privacy_rules">Zasady przetwarzania danych:</span> <a id="privacy-link" target="_blank" rel="noopener noreferrer"></a></p>
+		<p><button id="agree" data-t="agree">Zgadzam się, włącz mikrofon</button></p>
 	</div>
 	<div class="card">
-		<div id="status" class="bad">Łączenie…</div>
+		<div id="status" class="bad" data-t="connecting">Łączenie…</div>
 		<div id="hint"></div>
-		<p><button id="enable" hidden>Włącz mikrofon</button></p>
+		<p><button id="enable" data-t="enable" hidden>Włącz mikrofon</button></p>
 		<div class="meter"><div id="level"></div></div>
 		<p class="small" id="privacy-note"></p>
-		<p class="small"><label><input type="checkbox" id="cue"> Krótki dźwięk po każdym nagraniu</label></p>
+		<p class="small"><label><input type="checkbox" id="cue"> <span data-t="cue">Krótki dźwięk po każdym nagraniu</span></label></p>
 	</div>
 	<div class="card">
-		<strong>Ostatnio rozpoznane</strong>
-		<ul id="log"><li class="err">Jeszcze nic.</li></ul>
+		<strong data-t="recent">Ostatnio rozpoznane</strong>
+		<ul id="log"><li class="err" data-t="log_empty">Jeszcze nic.</li></ul>
 	</div>
 </main>
 <script>
 "use strict";
 const token = new URLSearchParams(location.search).get("t") || "";
+
+// Teksty strony. Gra dopisuje do linku l=en graczowi z angielską wersją gry (jego mowa jest też rozpoznawana po angielsku),
+// a serwis potwierdza język w powitaniu (hello).
+const TEXTS = {
+	pl: {
+		title: "Aquila – czat głosowy",
+		heading: "Czat głosowy Aquili",
+		sub: "Zostaw tę kartę otwartą i wróć do gry. Trzymaj klawisz mówienia, żeby postać powiedziała to, co mówisz.",
+		consent_title: "Zanim włączysz mikrofon",
+		consent_before: "Ten serwer zamienia mowę na tekst w zewnętrznej usłudze",
+		consent_after: ". Gdy trzymasz klawisz mówienia, nagranie twojego głosu trafia do tej firmy, a tekst wraca do gry. Nagranie obejmuje też ok. 0,4 s przed wciśnięciem klawisza i 0,25 s po jego puszczeniu (żeby nie ucinać pierwszego i ostatniego słowa). Poza tym nic nie jest wysyłane.",
+		consent_saves: "Serwis zapisuje też nagrania na serwerze gry do diagnostyki.",
+		privacy_rules: "Zasady przetwarzania danych:",
+		agree: "Zgadzam się, włącz mikrofon",
+		enable: "Włącz mikrofon",
+		cue: "Krótki dźwięk po każdym nagraniu",
+		recent: "Ostatnio rozpoznane",
+		log_empty: "Jeszcze nic.",
+		connecting: "Łączenie…",
+		replaced: "Strona otwarta w innej karcie",
+		replaced_hint: "Ta karta jest odłączona. Jeśli to nie ty otworzyłeś stronę, kliknij „Czat głosowy” w grze: nowy link unieważni stary.",
+		recording: "Nagrywam…",
+		recording_hint: "Puść klawisz w grze, kiedy skończysz mówić.",
+		ready: "Gotowe. Możesz wrócić do gry.",
+		ready_hint: "Trzymaj klawisz mówienia (domyślnie N, radio: U, kanał działu: J).",
+		no_link: "Brak połączenia z grą",
+		no_link_hint: "Kliknij „Czat głosowy” w grze, jeśli to nie wróci samo.",
+		click_to_enable: "Kliknij, żeby włączyć mikrofon",
+		no_mic: "Brak dostępu do mikrofonu",
+		no_mic_hint: "Zezwól przeglądarce na mikrofon (ikona w pasku adresu) i kliknij przycisk.",
+		send_failed: "Nie udało się wysłać nagrania.",
+		not_recognised: "Nie rozpoznano mowy.",
+		cloud_note: (name) => `Rozpoznawanie mowy: ${name} (zewnętrzna usługa). `,
+		revoke: "Cofnij zgodę",
+		local_note: "Rozpoznawanie mowy na serwerze gry, nagrania nie trafiają do zewnętrznych firm.",
+		saves_note: " Serwis zapisuje nagrania do diagnostyki.",
+		service_down: "Serwis czatu głosowego nie odpowiada",
+		service_down_hint: "Odśwież stronę za chwilę.",
+		mic_off: "Mikrofon wyłączony",
+		mic_off_hint: "Przeczytaj informację wyżej i zdecyduj, czy włączyć czat głosowy.",
+		enabling: "Włączanie mikrofonu…",
+		bad_link: "Zły link",
+		bad_link_hint: "Otwórz tę stronę z gry: komenda „Czat głosowy” w zakładce OOC.",
+	},
+	en: {
+		title: "Aquila – voice chat",
+		heading: "Aquila voice chat",
+		sub: "Keep this tab open and go back to the game. Hold the talk key and your character will say what you say.",
+		consent_title: "Before you turn on the microphone",
+		consent_before: "This server turns speech into text with an external service,",
+		consent_after: ". While you hold the talk key, a recording of your voice goes to that company and the text comes back to the game. The recording also covers about 0.4 s before you press the key and 0.25 s after you release it (so the first and last words are not cut off). Nothing else is sent.",
+		consent_saves: "The service also saves recordings on the game server for diagnostics.",
+		privacy_rules: "Privacy policy:",
+		agree: "I agree, turn on the microphone",
+		enable: "Turn on the microphone",
+		cue: "Short beep after every recording",
+		recent: "Recently recognised",
+		log_empty: "Nothing yet.",
+		connecting: "Connecting…",
+		replaced: "Page opened in another tab",
+		replaced_hint: "This tab is disconnected. If you did not open the page yourself, click “Voice chat” in the game: a new link cancels the old one.",
+		recording: "Recording…",
+		recording_hint: "Release the key in the game when you finish speaking.",
+		ready: "Ready. You can go back to the game.",
+		ready_hint: "Hold the talk key (default N, radio: U, department channel: J).",
+		no_link: "Not connected to the game",
+		no_link_hint: "Click “Voice chat” in the game if this does not come back on its own.",
+		click_to_enable: "Click to turn on the microphone",
+		no_mic: "No access to the microphone",
+		no_mic_hint: "Allow the microphone in your browser (icon in the address bar) and click the button.",
+		send_failed: "Could not send the recording.",
+		not_recognised: "Speech not recognised.",
+		cloud_note: (name) => `Speech recognition: ${name} (external service). `,
+		revoke: "Withdraw consent",
+		local_note: "Speech recognition runs on the game server, recordings do not go to external companies.",
+		saves_note: " The service saves recordings for diagnostics.",
+		service_down: "The voice chat service is not responding",
+		service_down_hint: "Refresh the page in a moment.",
+		mic_off: "Microphone off",
+		mic_off_hint: "Read the information above and decide whether to turn on voice chat.",
+		enabling: "Turning on the microphone…",
+		bad_link: "Bad link",
+		bad_link_hint: "Open this page from the game: the “Voice chat” command in the OOC tab.",
+	},
+};
+// Błędy od serwisu (idą też do czatu gry po polsku, gdzie tłumaczy je słownik gry)
+const SERVICE_ERRORS_EN = {
+	"cisza": "silence",
+	"za krótko": "too short",
+	"za długo": "too long",
+	"nie rozpoznano mowy": "speech not recognised",
+	"zły format nagrania": "bad recording format",
+	"rozpoznawanie mowy nie odpowiada": "speech recognition is not responding",
+	"brak zgody na wysyłanie głosu, odśwież stronę czatu głosowego": "no consent to send your voice, refresh the voice chat page",
+};
+let lang = new URLSearchParams(location.search).get("l") === "en" ? "en" : "pl";
+const t = (key) => TEXTS[lang][key];
+const serviceError = (text) => (lang === "en" && SERVICE_ERRORS_EN[text]) || text;
+let lastStatus = null;  // [klucz, klasa, klucz podpowiedzi, dopisek] do odświeżenia po zmianie języka
+
+function setLanguage(next) {
+	if ((next === "en" || next === "pl") && next !== lang) {
+		lang = next;
+		applyLanguage();
+		showPrivacyNote();
+	}
+}
+
+function applyLanguage() {
+	document.documentElement.lang = lang;
+	for (const node of document.querySelectorAll("[data-t]")) node.textContent = t(node.dataset.t);
+	if (lastStatus) setStatus(...lastStatus);
+	else document.title = t("title");
+}
 const TARGET_RATE = 16000;
 const PRE_ROLL = 0.4;  // sekundy sprzed wciśnięcia klawisza (opóźnienie sieci)
 const POST_ROLL = 0.25;  // sekundy po puszczeniu klawisza (ludzie puszczają za wcześnie)
@@ -102,19 +216,21 @@ function playCue() {
 	osc.stop(ctx.currentTime + 0.08);
 }
 
-function setStatus(text, cls, hint) {
-	el("status").textContent = text;
+/// Stan i podpowiedź jako klucze z TEXTS (extra: dopisek bez tłumaczenia, np. nazwa błędu przeglądarki)
+function setStatus(key, cls, hintKey, extra) {
+	lastStatus = [key, cls, hintKey, extra];
+	el("status").textContent = t(key);
 	el("status").className = cls;
-	el("hint").textContent = hint || "";
-	document.title = (cls === "rec" ? "🔴 " : "") + "Aquila – czat głosowy";
+	el("hint").textContent = (hintKey ? t(hintKey) : "") + (extra || "");
+	document.title = (cls === "rec" ? "🔴 " : "") + t("title");
 }
 
 function refreshStatus() {
 	if (!micReady) return;
-	if (replaced) setStatus("Strona otwarta w innej karcie", "bad", "Ta karta jest odłączona. Jeśli to nie ty otworzyłeś stronę, kliknij „Czat głosowy” w grze: nowy link unieważni stary.");
-	else if (recording && !recording.stopping) setStatus("Nagrywam…", "rec", "Puść klawisz w grze, kiedy skończysz mówić.");
-	else if (linked) setStatus("Gotowe. Możesz wrócić do gry.", "ok", "Trzymaj klawisz mówienia (domyślnie N, radio: U, kanał działu: J).");
-	else setStatus("Brak połączenia z grą", "bad", "Kliknij „Czat głosowy” w grze, jeśli to nie wróci samo.");
+	if (replaced) setStatus("replaced", "bad", "replaced_hint");
+	else if (recording && !recording.stopping) setStatus("recording", "rec", "recording_hint");
+	else if (linked) setStatus("ready", "ok", "ready_hint");
+	else setStatus("no_link", "bad", "no_link_hint");
 }
 
 function addLog(text, isErr) {
@@ -167,7 +283,7 @@ async function enableMic() {
 		if (ctx.state !== "running") await ctx.resume();
 		if (ctx.state !== "running") {
 			el("enable").hidden = false;
-			setStatus("Kliknij, żeby włączyć mikrofon", "bad");
+			setStatus("click_to_enable", "bad");
 			return;
 		}
 		micReady = true;
@@ -179,7 +295,7 @@ async function enableMic() {
 		}
 	} catch (err) {
 		el("enable").hidden = false;
-		setStatus("Brak dostępu do mikrofonu", "bad", "Zezwól przeglądarce na mikrofon (ikona w pasku adresu) i kliknij przycisk. (" + err.name + ")");
+		setStatus("no_mic", "bad", "no_mic_hint", " (" + err.name + ")");
 	}
 }
 
@@ -278,7 +394,7 @@ function finishRec(rec) {
 		method: "POST",
 		headers: { "Content-Type": "audio/wav" },
 		body: silent ? new Blob([]) : encodeWav(samples, TARGET_RATE),
-	}).catch(() => addLog("Nie udało się wysłać nagrania.", true));
+	}).catch(() => addLog(t("send_failed"), true));
 }
 
 function resample(input, from, to) {
@@ -317,6 +433,13 @@ function connect() {
 		const data = JSON.parse(e.data);
 		conn = data.conn || "";
 		el("hint").dataset.ckey = data.ckey;
+		// Gracz zmienił język gry po otwarciu strony (stary link): serwis zna aktualny
+		setLanguage(data.lang);
+		refreshStatus();
+	});
+	// Zmiana języka gry przy otwartej karcie (null = domyślny serwisu, czyli polski)
+	es.addEventListener("lang", (e) => {
+		setLanguage(JSON.parse(e.data).lang || "pl");
 		refreshStatus();
 	});
 	es.addEventListener("start", (e) => startRec(JSON.parse(e.data)));
@@ -325,7 +448,7 @@ function connect() {
 	es.addEventListener("result", (e) => {
 		const data = JSON.parse(e.data);
 		if (data.text) addLog(data.text);
-		else addLog(data.error || "Nie rozpoznano mowy.", true);
+		else addLog(data.error ? serviceError(data.error) : t("not_recognised"), true);
 	});
 	es.addEventListener("ended", () => {
 		// Gracz wyszedł z gry albo dostał nowy link: nic, co teraz nagrywamy, nie zostanie przyjęte.
@@ -360,23 +483,23 @@ function showPrivacyNote() {
 	const note = el("privacy-note");
 	note.textContent = "";
 	if (info.provider) {
-		note.append(`Rozpoznawanie mowy: ${info.provider_name} (zewnętrzna usługa). `);
+		note.append(t("cloud_note")(info.provider_name));
 		if (!consent) return;
 		const revoke = document.createElement("button");
 		revoke.className = "link";
-		revoke.textContent = "Cofnij zgodę";
+		revoke.textContent = t("revoke");
 		revoke.addEventListener("click", () => { store("aq_voice_consent", null); location.reload(); });
 		note.append(revoke);
 	} else {
-		note.append("Rozpoznawanie mowy na serwerze gry, nagrania nie trafiają do zewnętrznych firm.");
+		note.append(t("local_note"));
 	}
-	if (info.saves_recordings) note.append(" Serwis zapisuje nagrania do diagnostyki.");
+	if (info.saves_recordings) note.append(t("saves_note"));
 }
 
 /// Pyta serwis, dokąd idzie nagranie. Bez odpowiedzi zakładamy chmurę (zgoda zawsze wymagana).
 async function loadInfo() {
 	try {
-		const resp = await fetch("/info", { cache: "no-store" });
+		const resp = await fetch(`/info?t=${token}`, { cache: "no-store" });
 		if (resp.ok) return await resp.json();
 	} catch (err) { /* serwis niedostępny */ }
 	return null;
@@ -385,11 +508,20 @@ async function loadInfo() {
 async function start() {
 	const loaded = await loadInfo();
 	if (!loaded) {
-		setStatus("Serwis czatu głosowego nie odpowiada", "bad", "Odśwież stronę za chwilę.");
+		setStatus("service_down", "bad", "service_down_hint");
 		setTimeout(start, 5000);
 		return;
 	}
+	// Serwis jeszcze nie zna sesji (świeżo po restarcie, przed synchronizacją z grą, która idzie co sekundę): bez języka
+	// gracza nie pokazujemy zgody. Bez sesji strona i tak nie działa (serwis nie przyjmie nagrania), więc czekamy do skutku.
+	if (!loaded.lang) {
+		setStatus("connecting", "bad");
+		setTimeout(start, 2000);
+		return;
+	}
 	info = loaded;
+	// Język gracza znany przed ekranem zgody (stary link bez l=en po zmianie języka gry)
+	setLanguage(info.lang);
 	if (info.provider && stored("aq_voice_consent") !== info.provider) {
 		showPrivacyNote();
 		el("provider-name").textContent = info.provider_name;
@@ -397,12 +529,12 @@ async function start() {
 		el("privacy-link").href = info.privacy_url;
 		el("consent-saves").hidden = !info.saves_recordings;
 		el("consent").hidden = false;
-		setStatus("Mikrofon wyłączony", "bad", "Przeczytaj informację wyżej i zdecyduj, czy włączyć czat głosowy.");
+		setStatus("mic_off", "bad", "mic_off_hint");
 		return;
 	}
 	consent = info.provider || "";
 	showPrivacyNote();
-	setStatus("Włączanie mikrofonu…", "bad");
+	setStatus("enabling", "bad");
 	enableMic();
 }
 
@@ -411,15 +543,16 @@ el("agree").addEventListener("click", () => {
 	consent = info.provider;
 	el("consent").hidden = true;
 	showPrivacyNote();
-	setStatus("Włączanie mikrofonu…", "bad");
+	setStatus("enabling", "bad");
 	enableMic();
 });
 // Odświeżenie albo zamknięcie karty zwalnia połączenie od razu (inaczej nowa karta wyglądałaby na przejęcie strony).
 window.addEventListener("pagehide", () => {
 	if (linked && conn) navigator.sendBeacon(`/bye?t=${token}&c=${conn}`);
 });
+applyLanguage();
 if (!/^[0-9a-f]{32}$/.test(token)) {
-	setStatus("Zły link", "bad", "Otwórz tę stronę z gry: komenda „Czat głosowy” w zakładce OOC.");
+	setStatus("bad_link", "bad", "bad_link_hint");
 } else {
 	start();
 }

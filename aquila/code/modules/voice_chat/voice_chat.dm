@@ -165,6 +165,19 @@ SUBSYSTEM_DEF(voice_chat)
 		session_map[session.token] = ckey
 	return session_map
 
+/// Język, w którym gracz mówi i czyta stronę: "pl" albo "en". Angielski daje moduł i18n (i18n/voice_chat_language.dm).
+/datum/controller/subsystem/voice_chat/proc/player_language(client/player)
+	return "pl"
+
+/// token -> język dla graczy spoza polskiej wersji: serwis rozpoznaje ich mowę w tym języku. Reszta mówi po polsku.
+/datum/controller/subsystem/voice_chat/proc/session_languages(list/session_map)
+	var/list/languages = list()
+	for(var/token in session_map)
+		var/language = player_language(GLOB.directory[session_map[token]])
+		if(language != "pl")
+			languages[token] = language
+	return languages
+
 /datum/controller/subsystem/voice_chat/proc/anyone_awaiting()
 	for(var/ckey in sessions)
 		var/datum/voice_chat_session/session = sessions[ckey]
@@ -175,7 +188,7 @@ SUBSYSTEM_DEF(voice_chat)
 /datum/controller/subsystem/voice_chat/proc/send_sync(list/session_map)
 	in_flight_cmds = pending_cmds
 	pending_cmds = list()
-	var/list/payload = list("sessions" = session_map, "cmds" = in_flight_cmds)
+	var/list/payload = list("sessions" = session_map, "cmds" = in_flight_cmds, "languages" = session_languages(session_map))
 	next_idle_sync = world.time + VOICE_CHAT_IDLE_SYNC
 	sync_request = new
 	sync_request.prepare(RUSTG_HTTP_METHOD_POST, "[CONFIG_GET(string/voice_chat_service_url)]/api/sync", json_encode(payload), list(
@@ -367,7 +380,9 @@ SUBSYSTEM_DEF(voice_chat)
 		save_tokens()
 		next_idle_sync = 0
 	session.opened_at = world.time
-	var/url = "[CONFIG_GET(string/voice_chat_public_url)]/?t=[session.token]"
+	// l=en: strona po angielsku od pierwszego wyświetlenia (język rozpoznawania serwis dostaje w synchronizacji)
+	var/language = player_language(player)
+	var/url = "[CONFIG_GET(string/voice_chat_public_url)]/?t=[session.token][language == "pl" ? "" : "&l=[language]"]"
 	player << link(url)
 	// Sam adres zawiera token, więc w czacie jest tylko klikalne słowo (zrzut ekranu ani stream go nie zdradzą).
 	to_chat(player, span_notice("Otwieram stronę czatu głosowego w przeglądarce. Zezwól na mikrofon, zostaw kartę otwartą i wróć do gry. Jeśli nic się nie otworzyło, kliknij <a href='[url]'>ten link</a>. Nie pokazuj go nikomu: kto go ma, może mówić za twoją postać."))
