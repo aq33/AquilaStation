@@ -83,6 +83,7 @@ GLOBAL_LIST_INIT(allowed_translations, list(
 	if(length(returnerrors))
 		return returnerrors
 
+	interpreter?.garbage_collect() // poprzedni interpreter trzymał kompilator w Compiler/container (wyciek po rekompilacji)
 	interpreter = new(program)
 	interpreter.persist = TRUE
 	interpreter.Compiler = src
