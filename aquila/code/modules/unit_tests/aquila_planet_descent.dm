@@ -59,14 +59,21 @@
 	var/obj/docking_port/mobile/sabre/shuttle_port = home.docked
 	TEST_ASSERT(istype(shuttle_port), "The Sabre template didn't dock at its port")
 	var/obj/structure/overmap/small_craft/transport/sabre/shuttle/sabre = shuttle_port.craft
-	// Z kokpitu widać zejście przez szyby: przednią, boczne w narożnikach i dwa okna w burtach
+	// Z kokpitu widać, co jest wokół promu: żadna ściana Sabre nie zasłania widoku, a szyby mają swoją nazwę
 	var/windows = 0
-	for(var/turf/closed/indestructible/dropship/sabre_window/window in shuttle_port.return_turfs())
-		TEST_ASSERT(!window.opacity, "A Sabre cockpit window blocks the view")
-		windows++
+	for(var/turf/closed/wall in shuttle_port.return_turfs())
+		TEST_ASSERT(!wall.opacity, "A Sabre hull wall [wall.type] blocks the view")
+		if(istype(wall, /turf/closed/indestructible/dropship/sabre_window))
+			windows++
 	TEST_ASSERT_EQUAL(windows, 7, "The Sabre cockpit should have seven windows")
 	sabre.set_fuel(500)
 	TEST_ASSERT(sabre.shuttle_launch(), "The Sabre didn't launch")
+	// W locie wokół kadłuba jest tylko własny kosmos parkingu: z promu nie widać skał sąsiedniej rezerwacji
+	var/datum/turf_reservation/parking = sabre.shuttle_parking_reservation
+	for(var/turf/hull_turf as anything in shuttle_port.return_turfs())
+		for(var/dir in GLOB.alldirs)
+			var/turf/far = get_ranged_target_turf(hull_turf, dir, 10)
+			TEST_ASSERT(SSmapping.used_turfs[far] == parking, "The parking around the Sabre ends closer than 10 tiles from its hull ([COORD(far)])")
 
 	var/obj/structure/overmap/planet/planet = host.current_system.add_planet(/datum/planet_type/lava, clamp(host.x + 20, 30, world.maxx - 40), clamp(host.y, 30, world.maxy - 40))
 	TEST_ASSERT(planet_test_fast_surface(planet), "The planet surface didn't generate")
@@ -92,6 +99,9 @@
 	TEST_ASSERT(sabre.planet_descent.shadow, "No hull shadow over the ground during the approach")
 	sabre.planet_descent.finish()
 	TEST_ASSERT(!sabre.planet_descent, "The descent didn't end after touchdown")
+	// Kadłub Sabre nie zasłania widoku także po dokowaniu na planecie (dokowanie kopiuje pola)
+	for(var/turf/closed/wall in shuttle_port.return_turfs())
+		TEST_ASSERT(!wall.opacity, "A Sabre hull wall [wall.type] blocks the view after landing on the planet")
 	TEST_ASSERT_EQUAL(shuttle_port.docked, port, "The interior isn't on the landing spot after the descent.")
 	TEST_ASSERT_EQUAL(sabre.shuttle_docked_at, port, "The Sabre doesn't count as landed after the descent")
 

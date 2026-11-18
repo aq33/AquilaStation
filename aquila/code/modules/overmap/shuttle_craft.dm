@@ -11,6 +11,9 @@
 #define SHUTTLE_CRAFT_ASTEROID_WAIT (30 SECONDS)
 /// Jak długo po starcie prom nie dokuje z powrotem do gospodarza, na którego jeszcze nachodzi
 #define SHUTTLE_CRAFT_LAUNCH_GRACE (15 SECONDS)
+/// Pusty kosmos wokół wnętrza w locie (pola z każdej strony): szerszy niż pół widoku, żeby z promu nie było widać
+/// sąsiednich rezerwacji (np. skał na krawędzi powierzchni planety) i żeby widok nieba przy zejściu był pełny
+#define SHUTTLE_CRAFT_PARKING_MARGIN 11
 
 /// Miejsce lądowania wybrane przez komputer dokowania albo parking w rezerwacji; wymiary i kierunek jak u promu
 /obj/docking_port/stationary/shuttle_craft_spot
@@ -162,12 +165,12 @@
 	var/list/box = shuttle_port.return_coords(0, 0, shuttle_port.dir)
 	var/min_x = min(box[1], box[3])
 	var/min_y = min(box[2], box[4])
-	shuttle_parking_reservation = SSmapping.RequestBlockReservation(abs(box[3] - box[1]) + 3, abs(box[4] - box[2]) + 3)
+	shuttle_parking_reservation = SSmapping.RequestBlockReservation(abs(box[3] - box[1]) + 1 + 2 * SHUTTLE_CRAFT_PARKING_MARGIN, abs(box[4] - box[2]) + 1 + 2 * SHUTTLE_CRAFT_PARKING_MARGIN)
 	if(!shuttle_parking_reservation)
 		return
 	shuttle_parking_reservation.overmap_fallback = src
 	var/list/bl = shuttle_parking_reservation.bottom_left_coords
-	shuttle_parking = shuttle_new_spot(locate(bl[1] + 1 - min_x, bl[2] + 1 - min_y, bl[3]), "parking [name]")
+	shuttle_parking = shuttle_new_spot(locate(bl[1] + SHUTTLE_CRAFT_PARKING_MARGIN - min_x, bl[2] + SHUTTLE_CRAFT_PARKING_MARGIN - min_y, bl[3]), "parking [name]")
 	return shuttle_parking
 
 /// Czy można teraz wystartować (paliwo, silniki); komunikat dla gracza przy odmowie
@@ -522,3 +525,4 @@
 #undef SHUTTLE_CRAFT_SEARCH_RANGE
 #undef SHUTTLE_CRAFT_ASTEROID_WAIT
 #undef SHUTTLE_CRAFT_LAUNCH_GRACE
+#undef SHUTTLE_CRAFT_PARKING_MARGIN
