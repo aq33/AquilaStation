@@ -154,6 +154,22 @@ class VoiceServerTest(unittest.TestCase):
 	def test_english_hallucinations_are_dropped(self):
 		self.assertEqual(voice_server.clean_text("Thanks for watching!"), "")
 		self.assertEqual(voice_server.clean_text("Security to the bridge."), "Security to the bridge.")
+		# Te same słowa w zwykłej mowie zostają
+		self.assertEqual(voice_server.clean_text("Thanks for watching my back."), "Thanks for watching my back.")
+		self.assertEqual(voice_server.clean_text("Please subscribe me to medical."), "Please subscribe me to medical.")
+
+	def test_language_change_reaches_open_page(self):
+		import queue
+		state = voice_server.State()
+		state.sync({TOKEN: "ckey"}, [])
+		events = queue.Queue()
+		state.sessions[TOKEN].listener = (events, "conn")
+		state.sync({TOKEN: "ckey"}, [], {TOKEN: "en"})
+		self.assertEqual(events.get_nowait(), ("lang", {"lang": "en"}))
+		state.sync({TOKEN: "ckey"}, [], {TOKEN: "en"})
+		self.assertTrue(events.empty(), "Bez zmiany języka strona nie dostaje zdarzenia")
+		state.sync({TOKEN: "ckey"}, [])
+		self.assertEqual(events.get_nowait(), ("lang", {"lang": None}))
 
 
 if __name__ == "__main__":

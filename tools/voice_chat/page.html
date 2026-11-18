@@ -158,6 +158,14 @@ const t = (key) => TEXTS[lang][key];
 const serviceError = (text) => (lang === "en" && SERVICE_ERRORS_EN[text]) || text;
 let lastStatus = null;  // [klucz, klasa, klucz podpowiedzi, dopisek] do odświeżenia po zmianie języka
 
+function setLanguage(next) {
+	if ((next === "en" || next === "pl") && next !== lang) {
+		lang = next;
+		applyLanguage();
+		showPrivacyNote();
+	}
+}
+
 function applyLanguage() {
 	document.documentElement.lang = lang;
 	for (const node of document.querySelectorAll("[data-t]")) node.textContent = t(node.dataset.t);
@@ -426,11 +434,12 @@ function connect() {
 		conn = data.conn || "";
 		el("hint").dataset.ckey = data.ckey;
 		// Gracz zmienił język gry po otwarciu strony (stary link): serwis zna aktualny
-		if ((data.lang === "en" || data.lang === "pl") && data.lang !== lang) {
-			lang = data.lang;
-			applyLanguage();
-			showPrivacyNote();
-		}
+		setLanguage(data.lang);
+		refreshStatus();
+	});
+	// Zmiana języka gry przy otwartej karcie (null = domyślny serwisu, czyli polski)
+	es.addEventListener("lang", (e) => {
+		setLanguage(JSON.parse(e.data).lang || "pl");
 		refreshStatus();
 	});
 	es.addEventListener("start", (e) => startRec(JSON.parse(e.data)));

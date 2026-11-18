@@ -18,7 +18,8 @@
 	var/turf/start = get_turf(src)
 	var/from_hand = quickstart && thrown_from_hand_time == world.time
 	. = ..()
-	if(from_hand && !QDELETED(src))
+	// Tylko na mapie: przedmiot złapany albo wrzucony do pojemnika w tym samym ticku przesuwałby ikonę w ręce
+	if(from_hand && !QDELETED(src) && isturf(loc))
 		smooth_throw_start(start, speed)
 
 /// Cofa obraz przedmiotu na pole startu rzutu i płynnie zdejmuje przesunięcie

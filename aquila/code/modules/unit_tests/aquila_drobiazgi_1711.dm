@@ -76,6 +76,9 @@
 	volunteer.mind.key = "aqtestoptinvolunteer"
 	bystander.mind.key = "aqtestoptinbystander"
 	traitor.mind.key = "aqtestoptintraitor"
+	// Gracze są w grze (klient testowy): opcja nie działa dla tych, którzy wyszli
+	volunteer.mock_client = new
+	bystander.mock_client = new
 
 	var/datum/preferences/prefs = new
 	prefs.antag_target_opt_in = TRUE
@@ -83,20 +86,39 @@
 	var/datum/preferences/other_prefs = new
 	GLOB.preferences_datums["aqtestoptinbystander"] = other_prefs
 
-	var/list/opted_in = opted_in_antag_targets(list(volunteer.mind, bystander.mind))
+	var/datum/objective/aquila_test_opt_in_probe/objective = new
+	objective.owner = traitor.mind
+	objective.crew = list(volunteer.mind, bystander.mind)
+	// Inny antagonista, który już ma chętnego na celu
+	var/datum/antagonist/other_antag = new /datum/antagonist/custom
+	var/datum/objective/taken = new
 	. = TRUE
+	var/list/opted_in = opted_in_antag_targets(list(volunteer.mind, bystander.mind))
 	if(length(opted_in) != 1 || opted_in[1] != volunteer.mind)
 		. = Fail("opted_in_antag_targets returned [length(opted_in)] minds instead of only the volunteer")
 	else
-		var/datum/objective/aquila_test_opt_in_probe/objective = new
-		objective.owner = traitor.mind
-		objective.crew = list(volunteer.mind, bystander.mind)
 		for(var/i in 1 to 10)
 			if(objective.find_target() != volunteer.mind)
 				. = Fail("find_target picked someone other than the opted-in player")
 				break
-		qdel(objective)
+		// Chętny, który wyszedł z gry, nie ma pierwszeństwa
+		var/datum/client_interface/volunteer_client = volunteer.mock_client
+		volunteer.mock_client = null
+		if(length(opted_in_antag_targets(list(volunteer.mind))))
+			. = Fail("An opted-in player who left the game still gets priority")
+		volunteer.mock_client = volunteer_client
+		// Chętny, który jest już celem innego antagonisty, nie zbiera celów wszystkich antagów
+		taken.target = volunteer.mind
+		other_antag.objectives += taken
+		if(length(opted_in_antag_targets(list(volunteer.mind))))
+			. = Fail("An opted-in player already targeted by another antagonist still gets priority")
 
+	other_antag.objectives -= taken
+	qdel(taken)
+	qdel(other_antag)
+	qdel(objective)
+	QDEL_NULL(volunteer.mock_client)
+	QDEL_NULL(bystander.mock_client)
 	GLOB.preferences_datums -= "aqtestoptinvolunteer"
 	GLOB.preferences_datums -= "aqtestoptinbystander"
 

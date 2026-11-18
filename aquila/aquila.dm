@@ -2748,6 +2748,7 @@
 #include "code\modules\i18n\foreigner_names.dm"
 #include "code\modules\i18n\squad_orders.dm"
 #include "code\modules\i18n\voice_chat_language.dm"
+#include "code\modules\i18n\fabricator_search.dm"
 // Komora testowa dla obcokrajowca (zestaw używa przedmiotu z modułu, więc odpina się razem z nim)
 #include "code\modules\test_chamber\kits\pr_565_obcokrajowiec.dm"
 #include "code\modules\test_chamber\kits\pr_608_ekonomia_malf_statystyki.dm"

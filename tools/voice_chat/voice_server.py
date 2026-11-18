@@ -50,10 +50,15 @@ HALLUCINATIONS = (
 	"zasubskrybuj",
 	"tłumaczenie:",
 	"www.",
+)
+# Angielskie halucynacje Whispera odrzucane tylko jako cała wypowiedź: te słowa padają też w zwykłej mowie
+# („thanks for watching my back”)
+HALLUCINATIONS_WHOLE = (
 	"thanks for watching",
 	"thank you for watching",
-	"subtitles by",
+	"thank you so much for watching",
 	"please subscribe",
+	"subtitles by the amaraorg community",
 )
 
 
@@ -98,7 +103,12 @@ class State:
 				else:
 					self.sessions[token].ckey = ckey
 				language = languages.get(token)
-				self.sessions[token].language = language if language in LANGUAGES else None
+				language = language if language in LANGUAGES else None
+				session = self.sessions[token]
+				if session.language != language:
+					session.language = language
+					# Otwarta strona przełącza język od razu (gracz zmienił język gry przy otwartej karcie)
+					session.push("lang", {"lang": language})
 			# Polecenia przed usunięciem sesji: „cancel” dla gracza, który właśnie wyszedł, musi dojść do jego strony.
 			for cmd in cmds:
 				if not isinstance(cmd, dict):
@@ -184,6 +194,8 @@ def clean_text(text):
 	text = re.sub(r"\s+", " ", text).strip().lstrip("-– ").strip()
 	lowered = text.lower()
 	if any(h in lowered for h in HALLUCINATIONS):
+		return ""
+	if re.sub(r"[^\w\s]", "", lowered).strip() in HALLUCINATIONS_WHOLE:
 		return ""
 	if not re.search(r"\w", text):
 		return ""

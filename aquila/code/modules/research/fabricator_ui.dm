@@ -36,7 +36,7 @@
 		output[design.id] = list(
 			"name" = design.name,
 			// angielska nazwa do wyszukiwania także w polskiej wersji (gracze znają „multitool”, „RCD”)
-			"nameEn" = i18n_en_exact(design.name),
+			"nameEn" = design.english_name(),
 			"desc" = design.desc,
 			"cost" = cost,
 			"reagentCost" = reagent_cost,
@@ -63,3 +63,7 @@
 			"color" = material.greyscale_colors || material.color,
 		))
 	return output
+
+/// Angielska nazwa projektu do wyszukiwarki fabrykatorów albo null. Słownik daje moduł i18n (i18n/fabricator_search.dm).
+/datum/design/proc/english_name()
+	return null
