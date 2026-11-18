@@ -39,7 +39,7 @@
 	if (count >= max_ammo)
 		return FALSE
 
-	add_overlay(icon("[icon]","[overlay_name]",frame = new_frame))
+	add_overlay(icon(icon, overlay_name, frame = new_frame)) // AQ EDIT - plik ikony zamiast ścieżki tekstowej (bad icon operation, gdy .dmi nie leży obok gry)
 	return TRUE
 
 /obj/item/ammo_box/magazine/nsv/examine(mob/user)

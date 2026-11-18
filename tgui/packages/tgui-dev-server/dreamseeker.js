@@ -21,6 +21,8 @@ export class DreamSeeker {
     this.addr = addr;
     this.client = axios.create({
       baseURL: `http://${addr}/`,
+      // AQUILA EDIT - Dream Seeker jest lokalny: bez proxy z HTTP_PROXY (nowy axios inaczej czyta NO_PROXY)
+      proxy: false,
     });
   }
 
