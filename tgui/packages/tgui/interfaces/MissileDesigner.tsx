@@ -22,10 +22,17 @@ type Summary = {
 
 type Design = {
   name: string;
-  body: string;
   engine: string;
   seeker: string;
   summary: Summary;
+};
+
+// Część leżąca na stole: slot to "engine" albo "seeker"
+type Part = {
+  name: string;
+  slot: string;
+  option: string;
+  target: string;
 };
 
 // index to trwały numer projektu (missile_design.dm), nie pozycja na liście
@@ -35,12 +42,12 @@ type Data = {
   draft: Design;
   designs: SavedDesign[];
   options: Record<string, string[]>;
+  part: Part | null;
   printing: boolean;
   can_use: boolean;
 };
 
 const SLOTS: [string, string][] = [
-  ['body', 'Kadłub'],
   ['engine', 'Silnik'],
   ['seeker', 'Naprowadzanie'],
 ];
@@ -61,7 +68,7 @@ const factorColor = (value: number, higherIsBetter = true) => {
 
 export const MissileDesigner = () => {
   const { act, data } = useBackend<Data>();
-  const { draft, designs, options, printing, can_use } = data;
+  const { draft, designs, options, part, printing, can_use } = data;
   const s = draft.summary;
   return (
     <Window width={560} height={560}>
@@ -74,22 +81,9 @@ export const MissileDesigner = () => {
         <Section
           title="Projekt"
           buttons={
-            <>
-              <Button
-                icon="save"
-                disabled={!can_use}
-                onClick={() => act('save')}
-              >
-                Zapisz
-              </Button>
-              <Button
-                icon="print"
-                disabled={!can_use || printing}
-                onClick={() => act('print')}
-              >
-                {printing ? 'Drukowanie...' : 'Drukuj chip'}
-              </Button>
-            </>
+            <Button icon="save" disabled={!can_use} onClick={() => act('save')}>
+              Zapisz
+            </Button>
           }
         >
           <LabeledList>
@@ -119,6 +113,44 @@ export const MissileDesigner = () => {
             {SEEKER_INFO[draft.seeker]}
           </Box>
         </Section>
+        <Section
+          title="Część na stole"
+          buttons={
+            <>
+              <Button
+                icon="wrench"
+                disabled={
+                  !can_use || printing || !part || part.option === part.target
+                }
+                onClick={() => act('rework')}
+              >
+                {printing ? 'Przerabianie...' : 'Przerób'}
+              </Button>
+              <Button
+                icon="eject"
+                disabled={!part || printing}
+                onClick={() => act('eject')}
+              >
+                Zdejmij
+              </Button>
+            </>
+          }
+        >
+          {part ? (
+            <LabeledList>
+              <LabeledList.Item label="Część">{part.name}</LabeledList.Item>
+              <LabeledList.Item label="Teraz">{part.option}</LabeledList.Item>
+              <LabeledList.Item label="Po przeróbce">
+                {part.target}
+              </LabeledList.Item>
+            </LabeledList>
+          ) : (
+            <Box color="label">
+              Połóż na stole układ napędowy albo układ naprowadzania. Stół
+              ustawi go według projektu.
+            </Box>
+          )}
+        </Section>
         <Section title="Parametry względem zwykłego pocisku">
           <Stack>
             <Stack.Item grow>
@@ -147,18 +179,20 @@ export const MissileDesigner = () => {
             </Stack.Item>
           </Stack>
           <Box mt={1} color="label">
-            Chip włóż do obudowy torpedy albo rakiety przed spawaniem. Głowicę
-            bojową wkładasz jak zwykle.
+            Przerobione części składasz w obudowę torpedy albo rakiety jak
+            zwykle. Głowicę bojową wkładasz jak dotąd.
           </Box>
         </Section>
         <Section title="Zapisane projekty">
-          {!designs.length && <Box color="label">Brak zapisanych projektów.</Box>}
+          {!designs.length && (
+            <Box color="label">Brak zapisanych projektów.</Box>
+          )}
           <Table>
             {designs.map((design) => (
               <Table.Row key={design.index} className="candystripe">
                 <Table.Cell bold>{design.name}</Table.Cell>
                 <Table.Cell color="label">
-                  {design.body}, {design.engine}, {design.seeker}
+                  {design.engine}, {design.seeker}
                 </Table.Cell>
                 <Table.Cell collapsing>
                   <Button

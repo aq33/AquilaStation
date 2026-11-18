@@ -1,5 +1,5 @@
-// AQUILA - okno pieca łukowego kuźni amunicji (zamiast form odlewniczych): wyrób, materiał albo stop, klasa,
-// koszt z silosu i właściwości wyrobu.
+// AQUILA - okno pieca łukowego kuźni amunicji (zamiast form odlewniczych): wyrób, rdzeń i powłoka, typ pocisku,
+// klasa, koszt z silosu i właściwości wyrobu.
 
 import {
   Box,
@@ -17,6 +17,13 @@ import { Window } from '../layouts';
 type Product = {
   id: string;
   name: string;
+  node: string | null;
+};
+
+type ShellType = {
+  id: string;
+  name: string;
+  desc: string;
 };
 
 type Group = {
@@ -58,9 +65,14 @@ type Data = {
   working_heat: number | null;
   selected_product: string;
   selected_material: string;
-  selected_alloy: string | null;
+  selected_coating: string | null;
   selected_quality: number;
+  has_quality: boolean;
   uses_material: boolean;
+  shell_types: ShellType[];
+  uses_shell_type: boolean;
+  selected_shell_type: string;
+  effects: string[];
   locked: string[];
   materials: Material[];
   cost: Cost[];
@@ -79,16 +91,18 @@ export const MunitionsForge = (props) => {
     cost = [],
     stats = [],
     locked = [],
+    shell_types = [],
+    effects = [],
   } = data;
   const current = materials.find((m) => m.id === data.selected_material);
-  const alloyOptions = [
-    'bez stopu',
+  const coatingOptions = [
+    'jak rdzeń',
     ...materials
       .filter((m) => m.id !== data.selected_material)
       .map((m) => m.name),
   ];
-  const alloyName =
-    materials.find((m) => m.id === data.selected_alloy)?.name || 'bez stopu';
+  const coatingName =
+    materials.find((m) => m.id === data.selected_coating)?.name || 'jak rdzeń';
   return (
     <Window width={720} height={560} title="Piec łukowy">
       <Window.Content>
@@ -119,8 +133,8 @@ export const MunitionsForge = (props) => {
                       selected={item.id === data.selected_product}
                       disabled={locked.includes(item.id)}
                       tooltip={
-                        locked.includes(item.id)
-                          ? 'Wymaga zbadania głowic torped w R&D.'
+                        locked.includes(item.id) && item.node
+                          ? `Wymaga zbadania w R&D: ${item.node}.`
                           : undefined
                       }
                       onClick={() => act('select_product', { id: item.id })}
@@ -136,6 +150,9 @@ export const MunitionsForge = (props) => {
             <Section fill scrollable title="Materiał i klasa">
               {data.uses_material ? (
                 <>
+                  <Box color="label" mb={0.5}>
+                    Rdzeń: obrażenia, przebicie i prędkość
+                  </Box>
                   {materials.map((mat) => (
                     <Button
                       key={mat.id}
@@ -147,49 +164,75 @@ export const MunitionsForge = (props) => {
                     </Button>
                   ))}
                   <Box color="label" mt={1} mb={0.5}>
-                    Stop: drugi składnik po połowie
+                    Powłoka (ćwierć odlewu): efekt specjalny i odporność
                   </Box>
                   <Dropdown
                     width="100%"
-                    selected={alloyName}
-                    options={alloyOptions}
+                    selected={coatingName}
+                    options={coatingOptions}
                     onSelected={(value) =>
-                      act('select_alloy', {
-                        id:
-                          materials.find((m) => m.name === value)?.id || '',
+                      act('select_coating', {
+                        id: materials.find((m) => m.name === value)?.id || '',
                       })
                     }
                   />
                 </>
               ) : (
                 <Box color="label">
-                  Wypełnienia i zapalniki mają stałe receptury. Wymagane
-                  materiały pokazuje lista kosztów.
+                  {data.has_quality
+                    ? 'Zapalniki mają stałe receptury. Wymagane materiały pokazuje lista kosztów.'
+                    : 'Część fabryczna: stała receptura, bez klasy. Piec wyrzuca ją od razu gotową.'}
                 </Box>
               )}
-              <Box color="label" mt={1} mb={0.5}>
-                Klasa jakości
-              </Box>
-              <Stack>
-                {qualities.map((quality) => (
-                  <Stack.Item key={quality.level}>
-                    <Button
-                      selected={quality.level === data.selected_quality}
-                      tooltip={quality.name}
-                      onClick={() =>
-                        act('select_quality', { level: quality.level })
-                      }
-                    >
-                      {quality.roman}
-                    </Button>
-                  </Stack.Item>
-                ))}
-              </Stack>
-              <Box mt={1} color={data.rough ? 'average' : 'good'}>
-                {data.rough
-                  ? 'Klasa I: młot wykuje ją sam, ale amunicja szybciej zużywa broń i może ją zaciąć.'
-                  : 'Wyższą klasę trzeba wykuć ręcznie pod młotem; pudła obniżają klasę.'}
-              </Box>
+              {!!data.uses_shell_type && (
+                <>
+                  <Box color="label" mt={1} mb={0.5}>
+                    Typ pocisku
+                  </Box>
+                  <Stack>
+                    {shell_types.map((shellType) => (
+                      <Stack.Item key={shellType.id}>
+                        <Button
+                          selected={shellType.id === data.selected_shell_type}
+                          tooltip={shellType.desc}
+                          onClick={() =>
+                            act('select_shell_type', { id: shellType.id })
+                          }
+                        >
+                          {shellType.name}
+                        </Button>
+                      </Stack.Item>
+                    ))}
+                  </Stack>
+                </>
+              )}
+              {!!data.has_quality && (
+                <>
+                  <Box color="label" mt={1} mb={0.5}>
+                    Klasa jakości
+                  </Box>
+                  <Stack>
+                    {qualities.map((quality) => (
+                      <Stack.Item key={quality.level}>
+                        <Button
+                          selected={quality.level === data.selected_quality}
+                          tooltip={quality.name}
+                          onClick={() =>
+                            act('select_quality', { level: quality.level })
+                          }
+                        >
+                          {quality.roman}
+                        </Button>
+                      </Stack.Item>
+                    ))}
+                  </Stack>
+                  <Box mt={1} color={data.rough ? 'average' : 'good'}>
+                    {data.rough
+                      ? 'Klasa I: młot wykuje ją sam, ale amunicja szybciej zużywa broń i może ją zaciąć.'
+                      : 'Wyższą klasę trzeba wykuć ręcznie pod młotem; pudła obniżają klasę.'}
+                  </Box>
+                </>
+              )}
             </Section>
           </Stack.Item>
           <Stack.Item grow>
@@ -208,6 +251,11 @@ export const MunitionsForge = (props) => {
                   </LabeledList.Item>
                 ))}
               </LabeledList>
+              {effects.map((effect) => (
+                <Box key={effect} mt={0.5} color="label">
+                  {effect}
+                </Box>
+              ))}
               <Button
                 fluid
                 mt={1}
