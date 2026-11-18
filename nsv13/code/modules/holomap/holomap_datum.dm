@@ -85,4 +85,7 @@
 	legend.pixel_x = 192
 	legend.pixel_y = 224
 
-	update_map(overlays_to_use = list(legend))
+	// AQ EDIT START - lista z samym obrazkiem nie ma formatu legendy ("icon"/"markers"): runtime "bad index" przy każdej mapie poza planem pokładu
+	update_map()
+	base_map.add_overlay(legend)
+	// AQ EDIT END

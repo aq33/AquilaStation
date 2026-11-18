@@ -2705,6 +2705,11 @@
 /obj/item/radio/intercom/directional/west,
 /turf/open/floor/plasteel/white,
 /area/science/server)
+"gT" = (
+/obj/structure/table/wood,
+/obj/machinery/station_map/engineering/directional/south,
+/turf/open/floor/wood,
+/area/bridge/meeting_room)
 "gU" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
 	dir = 1
@@ -14043,6 +14048,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/courtroom)
+"Vx" = (
+/obj/machinery/station_map/engineering/directional/north,
+/turf/open/floor/plasteel/dark/side,
+/area/engine/engineering)
 "Vy" = (
 /obj/machinery/light{
 	dir = 8
@@ -14304,10 +14313,6 @@
 	dir = 4
 	},
 /area/chapel/main)
-"Wn" = (
-/obj/structure/table/wood,
-/turf/open/floor/wood,
-/area/bridge/meeting_room)
 "Wo" = (
 /obj/machinery/atmospherics/pipe/simple/dark/visible/layer4{
 	dir = 4
@@ -37089,7 +37094,7 @@ EM
 EM
 EM
 Tw
-DN
+Vx
 cr
 fn
 ax
@@ -58426,7 +58431,7 @@ OD
 Gc
 qe
 UB
-Wn
+gT
 fU
 Qc
 UK

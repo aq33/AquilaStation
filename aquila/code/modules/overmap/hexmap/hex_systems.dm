@@ -29,6 +29,8 @@
 			for(var/i in 1 to rand(6, 10))
 				var/obj/structure/space_mine/M = new /obj/structure/space_mine(null, "syndicate", src)
 				contents_positions[M] = list("x" = rand(5, world.maxx - 5), "y" = rand(5, world.maxy - 5))
+		if(HEX_TERRAIN_WORMHOLE)
+			hex.hex_spawn_wormhole_anomaly() // skan sondą daje punkty tuneli (badania układów FTL, hex_ftl_chip.dm)
 
 /datum/star_system/random/hex_empty/remove_ship(obj/structure/overmap/OM, turf/new_location, is_ftl_jump = TRUE)
 	. = ..()

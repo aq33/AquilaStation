@@ -90,11 +90,26 @@ type Ship = {
   lockout: boolean;
   safety_override: boolean;
   in_transit: boolean;
+  // koszty i czasy z bonusem układu FTL (hex_ftl_chip.dm)
+  cost_hex: number;
+  cost_gate: number;
+  capacity: number;
+  cooldown_total: number;
+  startup: number;
   from?: string;
   from_hex?: string;
   to?: string;
   to_hex?: string;
   time_left?: number;
+};
+
+type ChipBonus = { id: string; name: string; desc: string };
+
+type Chip = {
+  name: string;
+  tier: number;
+  bonus: string;
+  bonuses: ChipBonus[];
 };
 
 type Route = {
@@ -156,9 +171,7 @@ type Data = {
   reach: Record<string, number>;
   selected: Selected | null;
   sectors: Sector[];
-  cost_hex: number;
-  cost_gate: number;
-  cooldown: number;
+  chip: Chip | null;
   terrains: Terrain[];
   terrain: Record<string, string>;
   wormholes: { a: string; b: string }[];
@@ -321,10 +334,15 @@ const hexDistance = (a: Cell, b: Cell) =>
 
 const percent = (value: number) => `${Math.ceil(value - 0.001)}%`;
 
-// Ładunek zaokrąglony w górę jak koszty (2/3 to 67%), ale nigdy nie pokazuje kosztu, którego jeszcze nie pokrywa (hex_charge_text w DM)
-const chargeText = (charge: number, costHex: number) => {
+// Ładunek zaokrąglony w górę jak koszty (2/3 to 67%), ale nigdy nie pokazuje kosztu, którego jeszcze nie pokrywa (hex_charge_text w DM,
+// progi z hex_charge_thresholds(): kafel, brama i pojemność napędu z bonusem układu FTL, do tego koszt wybranej trasy)
+const chargeText = (charge: number, ship: Ship, routeCost?: number) => {
   let shown = Math.ceil(charge - 0.001);
-  for (const threshold of [costHex, costHex * 2, 100]) {
+  const thresholds = [ship.cost_hex, ship.cost_gate, ship.capacity];
+  if (routeCost) {
+    thresholds.push(routeCost);
+  }
+  for (const threshold of thresholds) {
     if (charge + 0.001 < threshold) {
       shown = Math.min(shown, Math.ceil(threshold - 0.001) - 1);
     }
@@ -461,9 +479,7 @@ export const HexStarmap = () => {
     reach = {},
     selected,
     sectors = [],
-    cost_hex,
-    cost_gate,
-    cooldown,
+    chip,
     terrains = [],
     terrain = {},
     wormholes = [],
@@ -1163,14 +1179,14 @@ export const HexStarmap = () => {
                   <ProgressBar
                     value={ship.charge}
                     minValue={0}
-                    maxValue={100}
+                    maxValue={ship.capacity}
                     ranges={{
                       good: [100 - 0.001, Infinity],
-                      average: [cost_hex, 100 - 0.001],
-                      bad: [-Infinity, cost_hex],
+                      average: [ship.cost_hex, 100 - 0.001],
+                      bad: [-Infinity, ship.cost_hex],
                     }}
                   >
-                    {chargeText(ship.charge, cost_hex)}
+                    {chargeText(ship.charge, ship, route?.cost)}
                   </ProgressBar>
                   <LabeledList>
                     <LabeledList.Item label="Stan">
@@ -1181,10 +1197,10 @@ export const HexStarmap = () => {
                       {nukes_loaded}
                     </LabeledList.Item>
                     <LabeledList.Item label="Koszt skoku">
-                      {`kafel ${percent(cost_hex)}, brama ${percent(cost_gate)}`}
+                      {`kafel ${percent(ship.cost_hex)}, brama ${percent(ship.cost_gate)}`}
                     </LabeledList.Item>
-                    <LabeledList.Item label="Po skoku">
-                      {`${cooldown} s chłodzenia bez ładowania`}
+                    <LabeledList.Item label="Rozruch i stygnięcie">
+                      {`${ship.startup} s rozruchu, po skoku ${ship.cooldown_total} s bez ładowania`}
                     </LabeledList.Item>
                     {ship.in_transit ? (
                       <LabeledList.Item label="Lot">
@@ -1212,6 +1228,11 @@ export const HexStarmap = () => {
                       Anuluj skok (ładunek zostaje)
                     </Button>
                   )}
+                  <ChipPanel
+                    chip={chip}
+                    canControl={!!can_control && !ship.jumping}
+                    onBonus={(bonus) => act('hex_chip_bonus', { bonus })}
+                  />
                 </Section>
               </Stack.Item>
               <Stack.Item grow basis={0}>
@@ -1320,6 +1341,47 @@ export const HexStarmap = () => {
         </Stack>
       </Window.Content>
     </Window>
+  );
+};
+
+// Układ FTL w konsoli (hex_ftl_chip.dm): jeden bonus skoku do wyboru, koszty liczy DM
+const ChipPanel = (props: {
+  chip: Chip | null;
+  canControl: boolean;
+  onBonus: (bonus: string) => void;
+}) => {
+  const { chip, canControl, onBonus } = props;
+  if (!chip) {
+    return (
+      <Box mt={1} color="label" fontSize="11px">
+        Bez układu FTL. Matrycę strumienia albo układ warp włóż do tej konsoli.
+      </Box>
+    );
+  }
+  const current = chip.bonuses.find((bonus) => bonus.id === chip.bonus);
+  return (
+    <Box mt={1}>
+      <Box bold mb={0.5}>
+        {chip.name}
+      </Box>
+      {chip.bonuses.map((bonus) => (
+        <Button
+          key={bonus.id}
+          fluid
+          selected={bonus.id === chip.bonus}
+          disabled={!canControl}
+          tooltip={bonus.desc}
+          onClick={() => onBonus(bonus.id)}
+        >
+          {bonus.name}
+        </Button>
+      ))}
+      {!!current && (
+        <Box mt={0.5} color="label" fontSize="11px">
+          {current.desc}
+        </Box>
+      )}
+    </Box>
   );
 };
 

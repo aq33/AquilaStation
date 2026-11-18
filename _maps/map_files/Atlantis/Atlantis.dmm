@@ -4432,6 +4432,13 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/storage/primary)
+"dAS" = (
+/obj/effect/turf_decal/tile/ship/half/yellow/orlen{
+	dir = 1
+	},
+/obj/machinery/station_map/engineering/directional/west,
+/turf/open/floor/monotile/dark,
+/area/engine/engineering)
 "dBr" = (
 /obj/machinery/atmospherics/pipe/simple/orange/hidden{
 	dir = 6
@@ -50449,7 +50456,7 @@ hFd
 wzo
 wzo
 rqm
-iKr
+dAS
 idI
 ujB
 bpu

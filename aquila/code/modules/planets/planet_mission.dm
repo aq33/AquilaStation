@@ -176,7 +176,18 @@
 				break
 		if(far_enough)
 			return T
-	return fallback
+	if(fallback)
+		return fallback
+	// Na małej planecie z dużą ilością lawy dobre pola to kilka procent powierzchni i losowe próby potrafiły nie trafić
+	// w żadne (misja zostawała bez punktu): wtedy przegląd wszystkich pasujących pól w losowej kolejności
+	var/list/candidates = list()
+	for(var/turf/T as anything in inner)
+		if(!is_planet_hazard_turf(T) && T.loc == surface.surface_area && !(T.flags_1 & NO_RUINS_1))
+			candidates += T
+	shuffle_inplace(candidates)
+	for(var/turf/T as anything in candidates)
+		if(!clearance || site_clear(surface, T, clearance))
+			return T
 
 /// Czy w promieniu radius od pola nie ma ruin, lądowisk ani krawędzi planety
 /datum/overmap_objective/planet/proc/site_clear(datum/planet_surface/surface, turf/center, radius)

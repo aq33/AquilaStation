@@ -33,13 +33,13 @@
 		return FALSE
 	return world.time <= hex_pending_time + max(HEX_FTL_STARTUP, ftl_drive?.ftl_startup_time) + 5 SECONDS
 
-/// Naładowanie napędu w procentach (0–100), bez zaokrąglenia: koszty to ułamki (1/3, 2/3)
+/// Naładowanie napędu w procentach (0–100, z bonusem zasięgu układu FTL do hex_capacity()), bez zaokrąglenia: koszty to ułamki (1/3, 2/3)
 /obj/structure/overmap/proc/hex_charge()
 	if(istype(ftl_drive, /obj/machinery/computer/ship/ftl_core))
-		return clamp(ftl_drive.progress / ftl_drive.req_charge * 100, 0, 100)
+		return clamp(ftl_drive.progress / ftl_drive.req_charge * 100, 0, hex_capacity())
 	var/obj/machinery/computer/ship/ftl_computer/legacy = ftl_drive
 	if(istype(legacy))
-		return clamp(legacy.progress / legacy.spoolup_time * 100, 0, 100)
+		return clamp(legacy.progress / legacy.spoolup_time * 100, 0, hex_capacity())
 	return 0
 
 /// Procent do pokazania graczom (koszt 1/3 pokazujemy jako 34%, żeby trzy skoki zgadzały się z pełnym napędem)
@@ -47,10 +47,10 @@
 	return "[CEILING(value - 0.001, 1)]%"
 
 /// Ładunek do pokazania graczom: w górę jak koszty skoków (2/3 to 67%), ale nigdy nie pokazuje kosztu, którego jeszcze nie pokrywa.
-/// To samo liczy chargeText() w HexStarmap.tsx
-/proc/hex_charge_text(charge)
+/// Progi to koszt kafla, bramy i pełny napęd (z układem FTL: hex_charge_thresholds()). To samo liczy chargeText() w HexStarmap.tsx
+/proc/hex_charge_text(charge, list/thresholds = list(HEX_FTL_COST_HEX, HEX_FTL_COST_GATE, HEX_FTL_FULL_CHARGE))
 	var/shown = CEILING(charge - 0.001, 1)
-	for(var/threshold in list(HEX_FTL_COST_HEX, HEX_FTL_COST_GATE, HEX_FTL_FULL_CHARGE))
+	for(var/threshold in thresholds)
 		if(charge + 0.001 < threshold)
 			shown = min(shown, CEILING(threshold - 0.001, 1) - 1)
 	return "[max(shown, 0)]%"
@@ -76,7 +76,7 @@
 	if(world.time < hex_cooldown_until)
 		return "Napęd stygnie po skoku: jeszcze [hex_cooldown_left()] s."
 	if(hex_charge() + 0.001 < cost)
-		return "Za mało naładowania napędu: [hex_charge_text(hex_charge())] z potrzebnych [hex_percent_text(cost)]."
+		return "Za mało naładowania napędu: [hex_charge_text(hex_charge(), hex_charge_thresholds() + cost)] z potrzebnych [hex_percent_text(cost)]."
 	return null
 
 /**
@@ -92,7 +92,8 @@
 		if(user)
 			to_chat(user, "<span class='warning'>Brak trasy do tego kafla.</span>")
 		return FALSE
-	var/reason = hex_jump_blocker(route["cost"])
+	var/cost = hex_route_cost(route) // z bonusem układu FTL (hex_ftl_chip.dm)
+	var/reason = hex_jump_blocker(cost)
 	if(reason)
 		if(user)
 			to_chat(user, "<span class='warning'>[reason]</span>")
@@ -100,10 +101,10 @@
 	var/list/path = route["path"]
 	var/datum/hex/destination = path[length(path)]
 	var/datum/star_system/target_system = GLOB.hexmap.system_for(destination)
-	hex_set_pending(route["cost"], route["hexes"])
+	hex_set_pending(cost, route["hexes"])
 	hex_flight_path = path
 	if(user)
-		log_game("[key_name(user)] ordered [src] to jump [route["hexes"]] hexes to [destination.id] ([target_system.name]) for [route["cost"]]% charge.")
+		log_game("[key_name(user)] ordered [src] to jump [route["hexes"]] hexes to [destination.id] ([target_system.name]) for [cost]% charge.")
 	ftl_drive.jump(target_system)
 	return TRUE
 
@@ -120,9 +121,9 @@
 	hex_resume_charging()
 	return TRUE
 
-/// Rozruch przed skokiem: skok po hexach ma krótszy (begin_jump w ftl_jump.dm, hook AQ EDIT)
+/// Rozruch przed skokiem: skok po hexach ma krótszy (begin_jump w ftl_jump.dm, hook AQ EDIT), z układem FTL jeszcze krótszy
 /obj/structure/overmap/proc/hex_startup_time()
-	return (hex_pending_cost && hex_pending_fresh()) ? HEX_FTL_STARTUP : ftl_drive.ftl_startup_time
+	return (hex_pending_cost && hex_pending_fresh()) ? hex_startup_delay() : ftl_drive.ftl_startup_time
 
 /obj/structure/overmap/proc/hex_startup_sound()
 	return (hex_pending_cost && hex_pending_fresh()) ? HEX_FTL_START_SOUND : ftl_drive.ftl_start
@@ -144,7 +145,7 @@
 		return FALSE
 	var/cost = hex_pending_cost
 	hex_clear_pending()
-	hex_cooldown_until = world.time + HEX_FTL_COOLDOWN
+	hex_cooldown_until = world.time + hex_cooldown_time()
 	var/empty = FALSE
 	if(istype(ftl_drive, /obj/machinery/computer/ship/ftl_core))
 		var/left = max(0, ftl_drive.progress - ftl_drive.req_charge * cost / 100)
@@ -182,6 +183,9 @@
 	if(legacy.progress >= legacy.spoolup_time)
 		legacy.ftl_state = FTL_STATE_READY
 		legacy.icon_state = "ftl_ready"
+		// bonus zasięgu układu FTL: pełny napęd ładuje się dalej, do pojemności (process() niżej)
+		if(legacy.progress < legacy.spoolup_time * hex_capacity() / 100)
+			START_PROCESSING(SSmachines, legacy)
 		return
 	legacy.ftl_state = FTL_STATE_SPOOLING
 	legacy.icon_state = "ftl_charging"
@@ -203,11 +207,38 @@
 		return
 	if(linked && world.time < linked.hex_cooldown_until)
 		return
+	// Bonus zasięgu układu FTL: pełny napęd ładuje się dalej, do pojemności. Bazowy process() przy pełnym napędzie
+	// zgłasza gotowość i kończy przetwarzanie, więc nadwyżkę ładuje ta gałąź (gotowość zgłasza raz).
+	if(linked && progress >= spoolup_time)
+		var/limit = spoolup_time * linked.hex_capacity() / 100
+		if(limit > spoolup_time)
+			if(ftl_state != FTL_STATE_READY)
+				ready_ftl()
+			if(progress < limit)
+				progress = min(progress + progress_rate, limit)
+				use_power = 500
+				return
+			use_power = 300
+			return PROCESS_KILL
 	return ..()
 
 /obj/machinery/computer/ship/ftl_core/process(delta_time)
 	if(linked && world.time < linked.hex_cooldown_until && ftl_state != FTL_STATE_JUMPING)
 		return
+	// Bonus zasięgu układu FTL: pełny rdzeń ładuje się dalej, do pojemności. Bazowy process() przycina ładunek
+	// do req_charge, więc nadwyżkę ładuje ta gałąź; bez aktywnych pylonów nadwyżka powoli spada, ale nie poniżej pełnego.
+	var/limit = linked ? req_charge * linked.hex_capacity() / 100 : req_charge
+	if(limit > req_charge && progress >= req_charge && ftl_state != FTL_STATE_JUMPING && active && is_operational && anchored && length(pylons))
+		var/gained = 0
+		for(var/obj/machinery/atmospherics/components/binary/drive_pylon/P as anything in pylons)
+			if(P.pylon_state == PYLON_STATE_ACTIVE)
+				gained += round(charge_rate * delta_time, 0.1)
+		// pełny rdzeń bez nadwyżki i bez pylonów: zwykłe rozładowanie z bazowego process()
+		if(gained || progress > req_charge)
+			progress = gained ? min(progress + gained, limit) : max(progress - 1, req_charge)
+			if(ftl_state != FTL_STATE_READY)
+				ready_ftl()
+			return
 	return ..()
 
 /// Skok awaryjny na mapie hex: losowy kafel w promieniu 1–2 w tym samym sektorze (jak dotąd: z obrażeniami i bez celu)
