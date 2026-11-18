@@ -1338,3 +1338,5 @@
   - bugfix: Zniszczony Sabre nie wysadza już wnętrza innego Sabre ani hangaru, w którym
       tamten stoi.
   - code_imp: Testy ze strzałem nie padają już losowo przez niewypał fabrycznego naboju.
+  - code_imp: Zaktualizowano biblioteki interfejsu z lukami bezpieczeństwa (m.in.
+      DOMPurify czyszczący HTML w oknach i czacie).
