@@ -85,6 +85,12 @@
 	var/mob/M = current_mob
 	if(QDELETED(M) || !(src in M.client?.parallax_layers))
 		return
+	force_recheck(M)
+
+/// Świeży wybór planety z pominięciem zapamiętanego (timer nie trafia w next_check, więc bez tego wynik
+/// mógł być starszy niż PLANET_SKY_RECHECK_DELAY)
+/atom/movable/screen/parallax_layer/planet_sky/proc/force_recheck(mob/M)
+	next_check = 0
 	update_status(M)
 
 /atom/movable/screen/parallax_layer/planet_sky/Destroy()

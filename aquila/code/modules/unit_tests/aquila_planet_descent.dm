@@ -114,6 +114,8 @@
 		TEST_ASSERT(!wall.opacity, "A Sabre hull wall [wall.type] blocks the view after landing on the planet")
 	TEST_ASSERT_EQUAL(shuttle_port.docked, port, "The interior isn't on the landing spot after the descent.")
 	TEST_ASSERT_EQUAL(sabre.shuttle_docked_at, port, "The Sabre doesn't count as landed after the descent")
+	for(var/turf/T as anything in shuttle_hull_turfs(shuttle_port))
+		TEST_ASSERT(!(locate(/obj/effect/planet_landing_blocker) in T), "A landing blocker stayed under the hull after touchdown")
 
 	// Start z planety i drugie zejście, przerwane: prom odleciał znad planety, zanim zszedł
 	TEST_ASSERT(sabre.shuttle_launch(), "The Sabre didn't take off from the planet")
@@ -153,6 +155,17 @@
 	TEST_ASSERT(!QDELETED(obstacle), "Landing on an occupied spot deleted what stood there")
 	TEST_ASSERT(!planet_descent_reserved(blocked, null), "The landing spot stayed reserved after the aborted descent")
 	qdel(obstacle)
+
+	// Leżący człowiek (density FALSE) też blokuje lądowisko: dokowanie by go zabiło
+	var/obj/docking_port/stationary/fourth_port = sabre.shuttle_find_landing(planet)
+	TEST_ASSERT(fourth_port, "No landing spot for the lying mob check")
+	var/list/fourth_footprint = sabre.planet_landing_footprint(fourth_port)
+	var/mob/living/carbon/human/lying = allocate(/mob/living/carbon/human, fourth_footprint[1])
+	lying.density = FALSE
+	TEST_ASSERT(!sabre.planet_landing_spot_free(planet, fourth_port), "A lying person doesn't block the landing spot")
+	qdel(lying)
+	TEST_ASSERT(sabre.planet_landing_spot_free(planet, fourth_port), "The landing spot stays blocked after the person left")
+	qdel(fourth_port, TRUE)
 
 	TEST_ASSERT(sabre.shuttle_land(host, home), "The Sabre didn't land back home")
 	shuttle_port.jumpToNullSpace()

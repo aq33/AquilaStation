@@ -74,5 +74,38 @@
 	TEST_ASSERT_EQUAL(length(sky.vis_contents), 0, "The sky still shows a planet")
 
 
+/// AQUILA - planeta na niebie: odświeżenie z timera wybiera planetę od nowa, nawet gdy zapamiętany wybór jest jeszcze
+/// ważny (timer nie trafia w next_check, więc niebo pokazywało starą planetę o jeden okres dłużej)
+/datum/unit_test/planet_sky_recheck
+	var/obj/structure/overmap/planet/test_planet
+	var/atom/movable/screen/parallax_layer/planet_sky/sky
+
+/datum/unit_test/planet_sky_recheck/Destroy()
+	if(test_planet && !QDELETED(test_planet))
+		qdel(test_planet, TRUE)
+	test_planet = null
+	QDEL_NULL(sky)
+	return ..()
+
+/datum/unit_test/planet_sky_recheck/Run()
+	var/obj/structure/overmap/host = SSstar_system.find_main_overmap()
+	TEST_ASSERT(host?.current_system?.occupying_z, "No main ship in a loaded star system")
+	// Poziom testowy nie należy do okrętu: pasażer stoi na pierwszym poziomie okrętu (wystarczy do get_overmap)
+	var/list/ship_levels = SSmapping.levels_by_trait(ZTRAIT_STATION)
+	TEST_ASSERT(length(ship_levels), "No main ship level")
+	var/mob/living/carbon/human/passenger = allocate(/mob/living/carbon/human, locate(round(world.maxx / 2), round(world.maxy / 2), ship_levels[1]))
+	TEST_ASSERT_EQUAL(passenger.get_overmap(), host, "The test passenger isn't aboard the main ship")
+	// Nowa planeta tuż przy okręcie: najbliższa ze wszystkich w układzie
+	test_planet = host.current_system.add_planet(/datum/planet_type/jungle, host.x, host.y)
+	var/datum/planet_type/stale = GLOB.planet_type_prototypes[/datum/planet_type/moon]
+	sky = new(null, world.view)
+	sky.checked_system = host.current_system
+	sky.checked_type = stale
+	sky.next_check = world.time + 1 HOURS
+	sky.update_status(passenger)
+	TEST_ASSERT_EQUAL(sky.shown_type, stale, "A parallax update inside the recheck delay should keep the remembered planet")
+	sky.force_recheck(passenger)
+	TEST_ASSERT_EQUAL(sky.shown_type, test_planet.planet_type, "The timed recheck kept the stale planet instead of picking the nearest one")
+
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL

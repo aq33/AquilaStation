@@ -193,9 +193,15 @@ GLOBAL_LIST_EMPTY(planet_descents)
 		if(!QDELETED(landing) && !QDELETED(target))
 			landing.planet_landing_cancelled(target)
 		return
+	// Dokowanie usypia (CHECK_TICK w initiate_docking) przed przeniesieniem kadłuba: na ten czas obrys zamykają
+	// niewidzialne blokady, żeby nikt nie wszedł na pole, które zaraz zajmie kadłub
+	var/list/blockers = list()
+	for(var/turf/T as anything in footprint)
+		blockers += new /obj/effect/planet_landing_blocker(T)
 	finishing = TRUE
 	var/landed = landing.shuttle_land(target, port)
 	finishing = FALSE
+	QDEL_LIST(blockers)
 	port = null // port przejął prom albo shuttle_land go usunął
 	qdel(src)
 	if(!landed)
@@ -253,6 +259,13 @@ GLOBAL_LIST_EMPTY(planet_descents)
 /// Pomarańczowa poświata w kabinie przy wejściu w atmosferę (alfa pulsuje z /datum/planet_descent/proc/cabin_effects)
 /atom/movable/screen/fullscreen/color_vision/planet_reentry
 	color = "#ff7a20"
+
+/// Blokada pola lądowiska na czas dokowania: nie da się na nie wejść (prom zaraz je zajmie)
+/obj/effect/planet_landing_blocker
+	density = TRUE
+	anchored = TRUE
+	invisibility = INVISIBILITY_ABSTRACT
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /// Żar na polu przy kadłubie, od strony kadłuba
 /obj/effect/temp_visual/planet_reentry
