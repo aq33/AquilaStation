@@ -1293,6 +1293,7 @@
 	// Cel trybu trudnego: pusty Dolos nie zalicza celu, dopóki boss wraca z pościgu; po jego powrocie i pokonaniu tak
 	var/away_status = 0
 	var/home_status = 1
+	var/kept_status = 1
 	if(GLOB.hex_war)
 		var/list/commanders_before = GLOB.hex_war.commanders.Copy()
 		var/datum/hex_commander/C = GLOB.hex_war.nemesis_commander("dolos")
@@ -1310,6 +1311,9 @@
 		F.current_system = home
 		objective.check_completion()
 		home_status = objective.status
+		F.current_system = null // kolejny pościg po zaliczeniu celu
+		objective.check_completion()
+		kept_status = objective.status
 		qdel(objective)
 		home.enemies_in_system = old_enemies
 		C.fleet = old_fleet
@@ -1321,6 +1325,7 @@
 	TEST_ASSERT_EQUAL(order, HEX_ORDER_IDLE, "A boss that could not get home kept trying forever")
 	TEST_ASSERT_EQUAL(away_status, 0, "The Dolos objective completed while the boss was still on its way home")
 	TEST_ASSERT_EQUAL(home_status, 1, "The Dolos objective did not complete with the boss home and Dolos cleared")
+	TEST_ASSERT_EQUAL(kept_status, 1, "A completed Dolos objective reopened when the boss left on another hunt")
 
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL

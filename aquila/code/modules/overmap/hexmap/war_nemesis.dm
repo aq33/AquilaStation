@@ -347,10 +347,12 @@ GLOBAL_LIST_INIT(hex_nemeses, list(
 	return FALSE
 
 // Cel trybu trudnego włączonego w trakcie rundy, gdy boss Dolos ściga okręt: Dolos jest pusty, bo boss dopiero wraca.
-// Cel czeka, aż boss stanie w układzie (i zostanie pokonany) albo padnie po drodze.
+// Cel czeka, aż boss stanie w układzie (i zostanie pokonany) albo padnie po drodze. Zaliczony cel zostaje zaliczony,
+// nawet gdy boss później znów wyruszy w pościg.
 /datum/overmap_objective/clear_system/dolos/check_completion()
+	var/was_open = (status == 0)
 	. = ..()
-	if(status == 1 && hex_nemesis_boss_away(target_system))
+	if(was_open && status == 1 && hex_nemesis_boss_away(target_system))
 		status = 0
 
 /// Boss jest celem trybu trudnego: przerywa pościg i wraca, a pod nieobecność rannego albo poległego dowódcy
