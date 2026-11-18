@@ -7,6 +7,40 @@
 /datum/unit_test/overmap_explode_own_area
 	/// Epicentra wybuchów, które zaczęły się w trakcie testu
 	var/list/epicenters = list()
+	// Wszystko, co test postawił na mapie: Destroy() zwalnia to także wtedy, gdy asercja przerwie Run()
+	var/datum/turf_reservation/hangar
+	var/list/obj/docking_port/stationary/sabre/mining/ports = list()
+	var/list/obj/docking_port/mobile/sabre/interiors = list()
+	var/list/obj/structure/overmap/small_craft/transport/sabre/shuttle/crafts = list()
+	/// Parking drugiego Sabre: jednostka bez wnętrza nie sprząta go po sobie
+	var/obj/docking_port/stationary/parking
+	var/datum/turf_reservation/parking_reservation
+
+/datum/unit_test/overmap_explode_own_area/Destroy()
+	UnregisterSignal(SSdcs, COMSIG_GLOB_EXPLOSION)
+	// Najpierw jednostki (ta w locie zabiera wnętrze i parking ze sobą), potem wnętrza, które zostały w dokach
+	for(var/obj/structure/overmap/craft as anything in crafts)
+		if(!QDELETED(craft))
+			qdel(craft)
+	for(var/obj/docking_port/mobile/interior as anything in interiors)
+		if(!QDELETED(interior))
+			interior.jumpToNullSpace()
+	if(!QDELETED(parking))
+		qdel(parking, TRUE)
+	if(!QDELETED(parking_reservation))
+		qdel(parking_reservation)
+	for(var/obj/docking_port/stationary/port as anything in ports)
+		if(!QDELETED(port))
+			qdel(port, TRUE)
+	if(!QDELETED(hangar))
+		qdel(hangar)
+	crafts = null
+	interiors = null
+	ports = null
+	parking = null
+	parking_reservation = null
+	hangar = null
+	return ..()
 
 /datum/unit_test/overmap_explode_own_area/proc/on_explosion(datum/source, turf/epicenter)
 	SIGNAL_HANDLER
@@ -15,23 +49,22 @@
 /datum/unit_test/overmap_explode_own_area/Run()
 	var/obj/structure/overmap/host = SSstar_system.find_main_overmap()
 	TEST_ASSERT(host?.current_system, "No main ship in a star system to dock at")
-	var/datum/turf_reservation/hangar = SSmapping.RequestBlockReservation(30, 30)
+	hangar = SSmapping.RequestBlockReservation(30, 30)
 	hangar.overmap_fallback = host
 	var/list/bl = hangar.bottom_left_coords
-	var/list/obj/docking_port/stationary/sabre/mining/ports = list()
-	var/list/obj/docking_port/mobile/sabre/interiors = list()
-	var/list/obj/structure/overmap/small_craft/transport/sabre/shuttle/crafts = list()
 	// Wczytanie szablonu usypia, więc new() wraca przed zadokowaniem; drugi port dopiero po pierwszym
 	for(var/index in 1 to 2)
 		var/obj/docking_port/stationary/sabre/mining/port = new(locate(bl[1] + 1 + (index - 1) * 14, bl[2] + 1, bl[3]))
+		ports += port
 		var/timeout = world.time + 30 SECONDS
 		while(!port.docked && world.time < timeout)
 			sleep(1)
 		var/obj/docking_port/mobile/sabre/interior = port.docked
-		TEST_ASSERT(istype(interior) && interior.craft, "Sabre [index] didn't dock at its port with a craft")
-		ports += port
-		interiors += interior
-		crafts += interior.craft
+		if(istype(interior))
+			interiors += interior
+			if(interior.craft)
+				crafts += interior.craft
+		TEST_ASSERT(length(crafts) == index, "Sabre [index] didn't dock at its port with a craft")
 	var/area/first_area = crafts[1].linked_areas[1]
 	var/area/second_area = crafts[2].linked_areas[1]
 	TEST_ASSERT(first_area != second_area && first_area.type == second_area.type, "The two Sabre interiors should be separate areas of one type")
@@ -41,17 +74,13 @@
 	// więc zginęłaby razem z nim i wybuch trafiłby jeszcze w jej własne pola
 	crafts[2].set_fuel(500)
 	TEST_ASSERT(crafts[2].shuttle_launch(), "The second Sabre didn't launch")
-	// Bez wnętrza jednostka nie sprząta po sobie parkingu
-	var/obj/docking_port/stationary/parking = crafts[2].shuttle_parking
-	var/datum/turf_reservation/parking_reservation = crafts[2].shuttle_parking_reservation
+	parking = crafts[2].shuttle_parking
+	parking_reservation = crafts[2].shuttle_parking_reservation
 	RegisterSignal(SSdcs, COMSIG_GLOB_EXPLOSION, PROC_REF(on_explosion))
 	interiors[2].jumpToNullSpace()
 	qdel(crafts[2])
 	var/turf/wrong = length(epicenters) ? epicenters[1] : null
 	TEST_ASSERT(!wrong, "Deleting a Sabre with no interior left started an explosion in [wrong ? "[get_area(wrong)] [AREACOORD(wrong)]" : "nowhere"]")
-	if(!QDELETED(parking))
-		qdel(parking, TRUE)
-	qdel(parking_reservation)
 
 	// Pierwszy Sabre ginie z wnętrzem: wybuch jest w jego własnym wnętrzu
 	qdel(crafts[1])
@@ -59,10 +88,5 @@
 	TEST_ASSERT(length(epicenters) == 1, "Deleting a Sabre with its interior started [length(epicenters)] explosions, expected 1")
 	var/turf/epicenter = epicenters[1]
 	TEST_ASSERT(get_area(epicenter) == first_area, "The destroyed Sabre blew up [get_area(epicenter)] [AREACOORD(epicenter)], not its own interior")
-
-	interiors[1].jumpToNullSpace()
-	qdel(ports[1], TRUE)
-	qdel(ports[2], TRUE)
-	qdel(hangar)
 
 #undef TEST_ASSERT
