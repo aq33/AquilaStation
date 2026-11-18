@@ -15,5 +15,5 @@
 #define GROD_CROWNSPIDER_HEALTH 30
 /// Najmniejsze obrażenia mózgu po przejęciu ciała przez koronę
 #define GROD_CROWN_INFEST_DAMAGE 30
-/// Kieszenie górnych dłoni mieszczą rzeczy najwyżej tej wielkości
-#define GROD_POCKET_MAX_WEIGHT WEIGHT_CLASS_NORMAL
+/// Ile rąk ma Grod (dwie zwykłe i para na odnóżach)
+#define GROD_HANDS 4

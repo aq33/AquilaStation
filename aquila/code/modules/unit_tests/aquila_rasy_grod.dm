@@ -35,7 +35,7 @@
 	TEST_ASSERT(GLOB.species_list[SPECIES_GROD], "The grod species is not registered")
 	TEST_ASSERT_EQUAL(length(GLOB.grod_first), 24, "The grod name letters did not load")
 
-/// Grod: korona na głowie, cechy, imię, język, ubrania tylko z jego sprite'ami, górne dłonie, odłączenie korony i przejęcie ciała
+/// Grod: korona na głowie, cechy, imię, język, ubrania tylko z jego sprite'ami, cztery ręce, odłączenie korony i przejęcie ciała
 /datum/unit_test/aquila_rasy_grod
 
 /datum/unit_test/aquila_rasy_grod/Run()
@@ -62,24 +62,20 @@
 	TEST_ASSERT(H.equip_to_slot_if_possible(tophat, ITEM_SLOT_HEAD, disable_warning = TRUE), "A grod cannot wear a grod top hat")
 	TEST_ASSERT(!aquila_grod_has_overlay(H, BODY_FRONT_LAYER, "m_grod_crown_crown_FRONT"), "The crown shows through the top hat")
 
-	// Górne dłonie: mała rzecz wchodzi, duża nie, po śmierci wszystko spada
-	var/datum/component/grod_pockets/pockets = H.GetComponent(/datum/component/grod_pockets)
-	TEST_ASSERT(pockets, "A grod has no upper hands")
+	// Cztery ręce (jak Koa w BeeStation/BeeStation-Hornet#14185): dłonie 3 i 4 na odnóżach trzymają rzeczy jak zwykłe ręce
+	TEST_ASSERT_EQUAL(length(H.held_items), GROD_HANDS, "A grod does not have four hands")
+	TEST_ASSERT(istype(H.hand_bodyparts[3], /obj/item/bodypart/l_leg/grod), "The third hand is not on the grod's legs")
 	var/obj/item/pen/pen = allocate(/obj/item/pen)
-	H.put_in_active_hand(pen)
-	pockets.use_pocket(1, pen)
-	TEST_ASSERT_EQUAL(pockets.item_slots[1], pen, "A pen did not go into the upper hand")
-	TEST_ASSERT_EQUAL(pen.loc, H, "The pen in the upper hand is not carried")
+	TEST_ASSERT(H.put_in_hand(pen, 3), "A grod cannot hold a pen in the third hand")
+	TEST_ASSERT_EQUAL(H.get_item_for_held_index(3), pen, "The pen is not in the third hand")
 	var/obj/item/storage/toolbox/toolbox = allocate(/obj/item/storage/toolbox)
-	H.put_in_active_hand(toolbox)
-	pockets.use_pocket(2, toolbox)
-	TEST_ASSERT(isnull(pockets.item_slots[2]), "A toolbox fit into the upper hand")
+	TEST_ASSERT(H.put_in_hand(toolbox, 4), "A grod cannot hold a toolbox in the fourth hand")
+	TEST_ASSERT(!H.dna.species.walk_animation_legs, "A grod without legs swings its legs when walking")
 
 	// Odłączenie korony: gracz w pająku, ciało bez mózgu, potem przejęcie ciała człowieka, które staje się Grodem
 	var/mob/living/simple_animal/hostile/grod_crown/spider = grod_leave_body(H)
 	TEST_ASSERT(spider?.crown, "The crown did not leave the body as a spider")
 	TEST_ASSERT(!H.getorganslot(ORGAN_SLOT_BRAIN), "The crown is still in the body")
-	TEST_ASSERT(isnull(pockets.item_slots[1]), "The upper hands did not let go after the body died")
 	var/mob/living/carbon/human/host = allocate(/mob/living/carbon/human, run_loc_floor_bottom_left)
 	TEST_ASSERT(spider.try_infest(host), "The spider did not react to a body with a brain")
 	TEST_ASSERT(!QDELETED(spider), "The spider entered a body that still has a brain")
@@ -102,3 +98,17 @@
 
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL
+
+/// Zmiana rasy z Groda na inną zabiera drugą parę rąk, a rzecz z trzeciej ręki spada
+/datum/unit_test/aquila_rasy_grod_hands_loss
+
+/datum/unit_test/aquila_rasy_grod_hands_loss/Run()
+	var/mob/living/carbon/human/H = allocate(/mob/living/carbon/human, run_loc_floor_bottom_left)
+	H.set_species(/datum/species/grod)
+	var/obj/item/pen/pen = allocate(/obj/item/pen)
+	H.put_in_hand(pen, 3)
+	H.set_species(/datum/species/human)
+	if(length(H.held_items) != 2)
+		return Fail("A human kept [length(H.held_items)] hands after being a grod")
+	if(pen.loc == H)
+		return Fail("The item in the third hand stayed with a body that has no third hand")

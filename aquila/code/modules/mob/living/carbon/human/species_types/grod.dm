@@ -251,6 +251,9 @@ GLOBAL_LIST_INIT(grod_accessory_names, list(
 	toxmod = 0.8
 	staminamod = 1.2
 	species_language_holder = /datum/language_holder/grod
+	offset_features = list(OFFSET_UNIFORM = list(0,0), OFFSET_ID = list(0,0), OFFSET_GLOVES = list(0,0), OFFSET_GLASSES = list(0,0), OFFSET_EARS = list(0,0), OFFSET_SHOES = list(0,0), OFFSET_S_STORE = list(0,0), OFFSET_FACEMASK = list(0,0), OFFSET_HEAD = list(0,0), OFFSET_FACE = list(0,0), OFFSET_BELT = list(0,0), OFFSET_BACK = list(0,0), OFFSET_SUIT = list(0,0), OFFSET_NECK = list(0,0), OFFSET_RIGHT_HAND = list(2,-4), OFFSET_LEFT_HAND = list(-1,-4))
+	/// Grod nie ma nóg: z przodu i z tyłu w chodzie ruszają się tylko ręce (walk_animation.dm)
+	walk_animation_legs = FALSE
 	changesource_flags = MIRROR_BADMIN | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN
 	species_chest = /obj/item/bodypart/chest/grod
 	species_head = /obj/item/bodypart/head/grod
@@ -283,7 +286,7 @@ GLOBAL_LIST_INIT(grod_last, world.file2list("strings/names/grod_last.txt"))
 		if(!C.dna.features[feature])
 			C.dna.features[feature] = default_features[feature]
 	C.update_body()
-	C.AddComponent(/datum/component/grod_pockets)
+	grod_set_hands(C, GROD_HANDS)
 	if(!crownspider)
 		crownspider = new
 	crownspider.Grant(C)
@@ -295,10 +298,35 @@ GLOBAL_LIST_INIT(grod_last, world.file2list("strings/names/grod_last.txt"))
 
 /datum/species/grod/on_species_loss(mob/living/carbon/human/C, datum/species/new_species, pref_load)
 	. = ..()
-	qdel(C.GetComponent(/datum/component/grod_pockets))
+	grod_set_hands(C, 2)
 	if(crownspider)
 		crownspider.Remove(C)
 		QDEL_NULL(crownspider)
+
+/// Druga para rąk (jak Koa w BeeStation/BeeStation-Hornet#14185): dłonie 3 i 4 są na odnóżach (held_index nóg Groda).
+/// Ciało dokłada ich części przy podpięciu kończyn, a tu poszerzamy listę trzymanych rzeczy i sloty dłoni w HUD-zie.
+/datum/species/grod/proc/grod_set_hands(mob/living/carbon/human/C, amount)
+	if(length(C.held_items) > amount)
+		for(var/index in length(C.held_items) to amount + 1 step -1)
+			C.dropItemToGround(C.held_items[index], TRUE)
+	C.held_items.len = amount
+	if(C.active_hand_index > amount)
+		C.swap_hand(1)
+	if(C.hud_used)
+		C.hud_used.build_hand_slots()
+		C.hud_used.show_hud(C.hud_used.hud_version)
+
+/// Rzeczy w górnej parze rąk wiszą wyżej, przy górnych dłoniach na sprite'ach
+/datum/species/grod/get_item_offsets_for_index(obj/item/I)
+	var/mob/living/carbon/holder = I.loc
+	if(!istype(holder))
+		return null
+	switch(holder.get_held_index_of_item(I))
+		if(3)
+			return list("x" = -2, "y" = 1)
+		if(4)
+			return list("x" = 3, "y" = 1)
+	return null
 
 /datum/species/grod/Destroy()
 	QDEL_NULL(crownspider)
@@ -395,16 +423,20 @@ GLOBAL_LIST_INIT(grod_last, world.file2list("strings/names/grod_last.txt"))
 	should_draw_greyscale = TRUE
 
 /obj/item/bodypart/l_leg/grod
+	name = "lewe odnóża"
 	icon = GROD_ICON_BODY
 	static_icon = GROD_ICON_BODY
 	limb_id = SPECIES_GROD
 	should_draw_greyscale = TRUE
+	held_index = 3
 
 /obj/item/bodypart/r_leg/grod
+	name = "prawe odnóża"
 	icon = GROD_ICON_BODY
 	static_icon = GROD_ICON_BODY
 	limb_id = SPECIES_GROD
 	should_draw_greyscale = TRUE
+	held_index = 4
 
 /obj/item/organ/tongue/grod
 	name = "rozwidlony język"
@@ -678,8 +710,8 @@ GLOBAL_LIST_INIT(grod_job_hats, list(
 		list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = "hand-paper",
-			SPECIES_PERK_NAME = "Górne dłonie",
-			SPECIES_PERK_DESC = "Druga para dłoni trzyma dwie małe rzeczy w kieszeniach nad rękami w HUD-zie.",
+			SPECIES_PERK_NAME = "Cztery ręce",
+			SPECIES_PERK_DESC = "Masz drugą parę rąk na odnóżach: trzymają i używają przedmiotów jak zwykłe dłonie, a w HUD-zie mają własne sloty nad rękami.",
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,

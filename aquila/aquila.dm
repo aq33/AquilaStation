@@ -941,7 +941,6 @@
 #include "code\modules\mob\living\carbon\human\species_types\squidpeople.dm"
 #include "code\modules\mob\living\carbon\human\species_types\grod.dm"
 #include "code\modules\mob\living\carbon\human\species_types\grod_crown.dm"
-#include "code\_onclick\hud\grod.dm"
 #include "code\modules\mob\living\carbon\human\species_types\zombies.dm"
 #include "code\modules\mob\living\carbon\monkey\monkey.dm"
 #include "code\modules\mob\living\death.dm"

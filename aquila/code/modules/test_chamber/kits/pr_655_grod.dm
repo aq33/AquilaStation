@@ -6,7 +6,7 @@
 	description = "Dwa Grody, człowiek do przejęcia i ubrania do sprawdzenia. \
 	1) Wejdź w Groda (admin: Aghost → posiądź): korona na głowie, ogon, wzory; załóż szary kombinezon (szara kamizelka Groda), buty, rękawice i cylinder (zasłania koronę). \
 	Skafander EVA i kask nie wchodzą. Plecak, pas, słuchawki i maska wchodzą. \
-	2) Górne dłonie: w HUD-zie nad rękami dwie kieszenie; kliknij kieszeń z długopisem w ręce, potem pustą ręką, żeby wyjąć; skrzynka się nie mieści. \
+	2) Cztery ręce: w HUD-zie nad zwykłymi dłońmi są dwie górne; przełącz dłoń (X albo klik w slot), weź w nie długopis i skrzynkę i użyj ich. Chód: z boku ruszają się ręce i ciało, z przodu i z tyłu tylko ręce. \
 	3) Akcja „Odłącz koronę”: wychodzisz jako pająk-korona, ciało umiera. Wyjmij mózg człowiekowi (piła) i kliknij go pająkiem: po 5 s przejmujesz ciało, które staje się Grodem. \
 	4) Drugiego Groda podnieś po odłączeniu korony i załóż pająka na głowę. 5) Okno postaci: rasa Grod, korona, wzory z kolorem, ogon; imię z przycisku losowania (Eta'Thra Boski). \
 	6) Mów w języku Poh'lan (,c) i krzyknij."
