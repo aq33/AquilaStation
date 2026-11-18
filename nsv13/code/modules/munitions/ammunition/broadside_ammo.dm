@@ -92,13 +92,17 @@
 		playsound(user, 'nsv13/sound/effects/ship/mac_load.ogg', 20)
 		sleep(0.5 SECONDS)
 		for(var/i in 1 to amount_to_pack)
+			// AQ EDIT START - kuźnia amunicji: pocisk przejmuje materiał, klasę i typ swojej łuski
+			var/obj/item/ship_weapon/ammunition/broadside_shell/shell
 			if(plasma)
 				if(uranium)
-					new /obj/item/ship_weapon/ammunition/broadside_shell/uranium(get_turf(src))
+					shell = new /obj/item/ship_weapon/ammunition/broadside_shell/uranium(get_turf(src))
 				else
-					new /obj/item/ship_weapon/ammunition/broadside_shell/plasma(get_turf(src))
+					shell = new /obj/item/ship_weapon/ammunition/broadside_shell/plasma(get_turf(src))
 			else if(gunpowder)
-				new /obj/item/ship_weapon/ammunition/broadside_shell(get_turf(src))
+				shell = new /obj/item/ship_weapon/ammunition/broadside_shell(get_turf(src))
+			aq_apply_casing_munition(shell, i)
+			// AQ EDIT END
 		reset()
 		return TRUE
 	else
@@ -110,6 +114,7 @@
 			casing_amount++
 			to_chat(user, "<span class='notice'>Dodajesz [A] na stół.</span>")
 			A.forceMove(src)
+			aq_store_casing_munition(A) // AQ EDIT - kuźnia amunicji: zapamiętuje materiał łuski przed jej usunięciem
 			qdel(A)
 			playsound(user, 'sound/items/screwdriver2.ogg', 30)
 			add_overlay("casing-[casing_amount]")

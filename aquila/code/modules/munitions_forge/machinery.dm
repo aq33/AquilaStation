@@ -1,5 +1,5 @@
 // AQUILA - kuźnia amunicji: maszyny linii (logika na wzór smithingu z Paradise, zestaw maszyn jak kowalstwo z Monkestation).
-// Piec łukowy (silos, okno wyboru wyrobu, materiału lub stopu i klasy, dogrzewanie) -> młot mechaniczny -> stół montażowy.
+// Piec łukowy (silos, okno wyboru wyrobu, rdzenia, powłoki, typu pocisku i klasy, dogrzewanie) -> młot mechaniczny -> stół montażowy.
 // Sprite'y: Monkestation/Monkestation2.0 (arc forge, kowadło, stół montażowy), CC BY-SA 3.0.
 
 /obj/machinery/munitions_forge
@@ -178,46 +178,19 @@
 /obj/machinery/munitions_forge/proc/ping()
 	playsound(src, 'sound/machines/ping.ogg', 50, FALSE)
 
-/// Wybór materiału albo stopu dwóch materiałów, z których starczy na odlew. amount to ilość przed mnożnikiem materiału.
-/proc/choose_munition_material(mob/user, datum/component/material_container/container, amount, title, allow_alloys = TRUE)
+/// Wybór materiału, z którego starczy na pokrycie (galwanizer). amount to ilość przed mnożnikiem materiału.
+/proc/choose_munition_material(mob/user, datum/component/material_container/container, amount, title)
 	var/list/choices = list()
 	for(var/key in GLOB.munition_materials)
 		var/datum/munition_material/M = GLOB.munition_materials[key]
 		var/list/cost = M.get_cost(amount)
 		if(container.has_materials(cost))
 			choices["[M.name] ([munition_cost_text(cost)])"] = M
-	var/alloy_choice = "stop dwóch materiałów..."
-	if(allow_alloys)
-		choices[alloy_choice] = TRUE
+	if(!length(choices))
+		to_chat(user, "<span class='warning'>W silosie nie starczy żadnego materiału.</span>")
+		return null
 	var/choice = tgui_input_list(user, "Z jakiego materiału?", title, choices)
-	if(!choice)
-		return null
-	if(choice != alloy_choice)
-		return choices[choice]
-	// stop: każdy składnik idzie po połowie
-	var/list/firsts = list()
-	for(var/key in GLOB.munition_materials)
-		var/datum/munition_material/M = GLOB.munition_materials[key]
-		if(container.has_enough_of_material(M.material_type, round(amount * M.sheets_mult * 0.5)))
-			firsts[M.name] = M
-	var/first_choice = tgui_input_list(user, "Pierwszy składnik stopu (połowa odlewu)", title, firsts)
-	if(!first_choice)
-		return null
-	var/datum/munition_material/first = firsts[first_choice]
-	var/list/seconds = list()
-	for(var/key in GLOB.munition_materials)
-		var/datum/munition_material/M = GLOB.munition_materials[key]
-		if(M == first)
-			continue
-		var/datum/munition_material/alloy = get_munition_alloy(first, M)
-		var/list/cost = alloy.get_cost(amount)
-		if(container.has_materials(cost))
-			seconds["[alloy.name] ([munition_cost_text(cost)])"] = alloy
-	if(!length(seconds))
-		to_chat(user, "<span class='warning'>Nie starczy materiału na żaden stop z: [first.name].</span>")
-		return null
-	var/second_choice = tgui_input_list(user, "Drugi składnik stopu", title, seconds)
-	return second_choice ? seconds[second_choice] : null
+	return choice ? choices[choice] : null
 
 /// "2 ark. uran + 1 ark. tytan" do list wyboru
 /proc/munition_cost_text(list/cost)
@@ -231,7 +204,7 @@
 
 /obj/machinery/munitions_forge/arc_forge
 	name = "piec łukowy"
-	desc = "Wielki piec połączony z silosem rudy. W oknie wybierasz wyrób, materiał albo stop dwóch materiałów i klasę jakości, a piec odlewa część i dogrzewa ostygnięte odlewy. Multitool z buforem silosu łączy go z silosem."
+	desc = "Wielki piec połączony z silosem rudy. W oknie wybierasz wyrób, rdzeń i powłokę, typ pocisku i klasę jakości, a piec odlewa część i dogrzewa ostygnięte odlewy. Multitool z buforem silosu łączy go z silosem."
 	icon = 'aquila/icons/obj/munitions_forge/arc_forge.dmi'
 	icon_state = "arc_forge"
 	bound_width = 96
@@ -244,10 +217,11 @@
 	operation_sound = 'sound/machines/hiss.ogg'
 	var/datum/component/remote_materials/materials
 	var/obj/item/munition_part/produced_part
-	/// Wybór w oknie pieca: wyrób (typ części), materiał, drugi składnik stopu (null = czysty materiał) i klasa
+	/// Wybór w oknie pieca: wyrób (typ części), rdzeń, powłoka (null = z materiału rdzenia), typ pocisku i klasa
 	var/selected_product = /obj/item/munition_part/body/casings/c9mm
 	var/datum/munition_material/selected_material
-	var/datum/munition_material/selected_alloy
+	var/datum/munition_material/selected_coating
+	var/datum/munition_filler/selected_shell_type = /datum/munition_filler/aphe
 	var/datum/munition_quality/selected_quality = /datum/munition_quality
 	/// Mnożnik zużycia materiału (mniej = taniej)
 	var/efficiency = 1
@@ -259,6 +233,7 @@
 	var/pending_product
 	var/datum/munition_material/pending_material
 	var/datum/munition_quality/pending_quality
+	var/datum/munition_filler/pending_shell_type
 
 /obj/machinery/munitions_forge/arc_forge/Initialize(mapload)
 	. = ..()
@@ -272,7 +247,7 @@
 		materials.mat_container.retrieve_all(drop_location())
 	materials = null
 	selected_material = null
-	selected_alloy = null
+	selected_coating = null
 	if(produced_part)
 		produced_part.forceMove(drop_location())
 		produced_part = null
@@ -375,24 +350,39 @@
 	operation_time = cast_time
 	return ..()
 
-/// Materiał wybranego odlewu: czysty albo stop z drugim składnikiem
+/// Materiał wybranego odlewu: czysty albo rdzeń w powłoce z innego materiału
 /obj/machinery/munitions_forge/arc_forge/proc/current_material()
 	RETURN_TYPE(/datum/munition_material)
-	if(selected_alloy && selected_alloy != selected_material)
-		return get_munition_alloy(selected_material, selected_alloy) || selected_material
-	return selected_material
+	return get_munition_layered(selected_coating, selected_material) || selected_material
+
+/// Czy wybrany wyrób ma klasę jakości (części fabryczne nie mają)
+/obj/machinery/munitions_forge/arc_forge/proc/selected_has_quality()
+	return !ispath(selected_product, /obj/item/munition_part/simple)
+
+/// Typ pocisku wybranego odlewu albo null, gdy wyrób go nie ma
+/obj/machinery/munitions_forge/arc_forge/proc/current_shell_type()
+	RETURN_TYPE(/datum/munition_filler)
+	if(!ispath(selected_product, /obj/item/munition_part/body))
+		return null
+	var/obj/item/munition_part/body/body_path = selected_product
+	if(!initial(body_path.uses_shell_type))
+		return null
+	return get_munition_filler(selected_shell_type)
 
 /// Koszt wybranego odlewu: typ materiału -> jednostki
 /obj/machinery/munitions_forge/arc_forge/proc/current_cost()
-	var/datum/munition_quality/quality = get_munition_quality(selected_quality)
-	if(ispath(selected_product, /obj/item/munition_part/body))
-		var/obj/item/munition_part/body/body_path = selected_product
-		return current_material().get_cost(initial(body_path.material_amount) * quality.material_mult * efficiency)
-	// base_cost to lista, a initial() na listach nie działa — jak w Paradise czytamy ją z tymczasowej instancji
+	var/datum/munition_quality/quality = get_munition_quality(selected_has_quality() ? selected_quality : /datum/munition_quality)
+	var/mult = quality.material_mult * efficiency
+	// base_cost i extra_cost to listy, a initial() na listach nie działa — jak w Paradise czytamy je z tymczasowej instancji
 	var/obj/item/munition_part/temp = new selected_product(null)
 	. = list()
-	for(var/mat in temp.base_cost)
-		.[mat] = round(temp.base_cost[mat] * quality.material_mult * efficiency)
+	var/list/fixed = temp.base_cost
+	if(istype(temp, /obj/item/munition_part/body))
+		var/obj/item/munition_part/body/body = temp
+		. = current_material().get_cost(body.material_amount * mult)
+		fixed = body.extra_cost
+	for(var/mat in fixed)
+		.[mat] += round(fixed[mat] * mult)
 	qdel(temp)
 
 /// Pobiera materiał na wybrany w oknie odlew. TRUE = można lać.
@@ -411,7 +401,7 @@
 		to_chat(user, "<span class='warning'>Silos jest zablokowany.</span>")
 		return FALSE
 	var/obj/item/munition_part/product = selected_product
-	var/datum/munition_quality/quality = get_munition_quality(selected_quality)
+	var/datum/munition_quality/quality = get_munition_quality(selected_has_quality() ? selected_quality : /datum/munition_quality)
 	var/datum/munition_material/material = ispath(product, /obj/item/munition_part/body) ? current_material() : null
 	var/list/cost = current_cost()
 	if(!container.has_materials(cost))
@@ -423,6 +413,7 @@
 	pending_material = material
 	pending_quality = quality
 	pending_product = product
+	pending_shell_type = current_shell_type()
 	to_chat(user, "<span class='notice'>Wlewasz płynny metal...</span>")
 	return TRUE
 
@@ -430,21 +421,35 @@
 	if(!pending_product)
 		working_part?.heat_up(heat_amount)
 		return
+	if(ispath(pending_product, /obj/item/munition_part/simple))
+		// Część fabryczna wychodzi z pieca od razu gotowa
+		var/obj/item/munition_part/simple/simple_path = pending_product
+		var/product_path = initial(simple_path.product_path)
+		for(var/i in 1 to initial(simple_path.product_count))
+			new product_path(drop_location())
+		SSblackbox.record_feedback("tally", "munitions_forge_production", 1, "[pending_product]")
+		visible_message("<span class='notice'>[src] wyrzuca gotowy odlew: [initial(simple_path.name)].</span>")
+		clear_pending()
+		ping()
+		return
 	var/obj/item/munition_part/part = new pending_product(src)
 	if(istype(part, /obj/item/munition_part/body))
 		var/obj/item/munition_part/body/body = part
 		body.set_material(pending_material)
+		body.shell_type = pending_shell_type
 	part.cast_finished(pending_quality)
 	produced_part = part
-	pending_product = null
-	pending_material = null
-	pending_quality = null
+	clear_pending()
 	ping()
 
-/obj/machinery/munitions_forge/arc_forge/abort_operation()
+/obj/machinery/munitions_forge/arc_forge/proc/clear_pending()
 	pending_product = null
 	pending_material = null
 	pending_quality = null
+	pending_shell_type = null
+
+/obj/machinery/munitions_forge/arc_forge/abort_operation()
+	clear_pending()
 
 /obj/machinery/munitions_forge/arc_forge/special_attack(mob/living/user, mob/living/carbon/target)
 	target.visible_message("<span class='danger'>[user] wpycha głowę [target] do [src]!</span>", \
@@ -557,21 +562,19 @@
 
 /obj/machinery/munitions_forge/assembly_bench
 	name = "stół montażowy amunicji"
-	desc = "Stół, na którym z korpusu, wypełnienia i zapalnika składa się gotową amunicję. Wypełnienie nie jest wymagane."
+	desc = "Stół, na którym z korpusu i zapalnika składa się gotową amunicję. Korpusy pocisków artylerii i łusek burtowych składa się bez zapalnika."
 	icon_state = "crafting_bench_empty"
 	circuit = /obj/item/circuitboard/machine/munitions_assembly_bench
 	use_power = NO_POWER_USE
 	operation_time = 5 SECONDS
 	operation_sound = 'sound/items/ratchet.ogg'
 	var/obj/item/munition_part/body/body
-	var/obj/item/munition_part/filler/filler
 	var/obj/item/munition_part/fuze/fuze
 
 /obj/machinery/munitions_forge/assembly_bench/Destroy()
-	for(var/obj/item/munition_part/part in list(body, filler, fuze))
+	for(var/obj/item/munition_part/part in list(body, fuze))
 		part.forceMove(drop_location())
 	body = null
-	filler = null
 	fuze = null
 	return ..()
 
@@ -579,8 +582,6 @@
 	. = ..()
 	if(gone == body)
 		body = null
-	else if(gone == filler)
-		filler = null
 	else if(gone == fuze)
 		fuze = null
 
@@ -593,8 +594,7 @@
 /obj/machinery/munitions_forge/assembly_bench/examine(mob/user)
 	. = ..()
 	. += "<span class='notice'>Korpus: [body ? body : "brak"].</span>"
-	. += "<span class='notice'>Wypełnienie: [filler ? filler : "brak (zwykła amunicja)"].</span>"
-	. += "<span class='notice'>Zapalnik: [fuze ? fuze : "brak"].</span>"
+	. += "<span class='notice'>Zapalnik: [fuze ? fuze : (body && !body.fuze_type ? "niepotrzebny" : "brak")].</span>"
 	. += "<span class='notice'>Alt+klik zdejmuje wszystkie części.</span>"
 
 /obj/machinery/munitions_forge/assembly_bench/attackby(obj/item/I, mob/living/user, params)
@@ -616,9 +616,6 @@
 	if(istype(part, /obj/item/munition_part/body))
 		old_part = body
 		body = part
-	else if(istype(part, /obj/item/munition_part/filler))
-		old_part = filler
-		filler = part
 	else
 		old_part = fuze
 		fuze = part
@@ -633,7 +630,7 @@
 	if(operating)
 		to_chat(user, "<span class='warning'>Na [src] trwa montaż!</span>")
 		return
-	var/list/parts = list(body, filler, fuze) - null
+	var/list/parts = list(body, fuze) - null
 	if(!length(parts))
 		to_chat(user, "<span class='notice'>Na [src] nic nie ma.</span>")
 		return
@@ -649,37 +646,38 @@
 	if(!body)
 		to_chat(user, "<span class='warning'>Brakuje korpusu.</span>")
 		return FALSE
-	if(!fuze)
-		to_chat(user, "<span class='warning'>Brakuje zapalnika.</span>")
-		return FALSE
-	if(!istype(fuze, body.fuze_type))
-		var/obj/item/munition_part/needed = body.fuze_type
-		to_chat(user, "<span class='warning'>Do [body] pasuje [initial(needed.name)], a nie [fuze].</span>")
+	if(body.fuze_type)
+		if(!fuze)
+			to_chat(user, "<span class='warning'>Brakuje zapalnika.</span>")
+			return FALSE
+		if(!istype(fuze, body.fuze_type))
+			var/obj/item/munition_part/needed = body.fuze_type
+			to_chat(user, "<span class='warning'>Do [body] pasuje [initial(needed.name)], a nie [fuze].</span>")
+			return FALSE
+	else if(fuze)
+		to_chat(user, "<span class='warning'>[body] składa się bez zapalnika. Zdejmij [fuze] ze stołu.</span>")
 		return FALSE
 	operating = TRUE
 	playsound(src, operation_sound, 50, TRUE)
 	var/success = do_after(user, operation_time, target = src)
 	operating = FALSE
-	if(!success || !body || !fuze)
+	if(!success || !body || (body.fuze_type && !fuze))
 		return FALSE
 	complete_operation(user)
 	return TRUE
 
 /obj/machinery/munitions_forge/assembly_bench/complete_operation(mob/user)
-	if(!body || !fuze)
+	if(!body || (body.fuze_type && !fuze))
 		return
 	// Jak w Paradise: wyrób dostaje najniższą jakość ze wszystkich części
 	var/datum/munition_quality/lowest = body.quality
-	for(var/obj/item/munition_part/part in list(fuze, filler))
-		if(part.quality.bonus < lowest.bonus)
-			lowest = part.quality
-	var/datum/munition_filler/filler_datum = filler ? get_munition_filler(filler.filler_type) : null
-	var/list/products = body.create_product(drop_location(), lowest, filler_datum)
+	if(fuze && fuze.quality.bonus < lowest.bonus)
+		lowest = fuze.quality
+	var/list/products = body.create_product(drop_location(), lowest)
 	SSblackbox.record_feedback("tally", "munitions_forge_production", 1, "[body.type]")
 	QDEL_NULL(body)
-	QDEL_NULL(fuze)
-	if(filler)
-		QDEL_NULL(filler)
+	if(fuze)
+		QDEL_NULL(fuze)
 	ping()
 	if(length(products))
 		visible_message("<span class='notice'>Na [src] leży gotowy wyrób: [products[1]][length(products) > 1 ? " ×[length(products)]" : ""].</span>")
