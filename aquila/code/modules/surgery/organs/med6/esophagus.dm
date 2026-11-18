@@ -133,6 +133,8 @@
 	remove_status_effect(/datum/status_effect/aq_choking)
 
 /datum/status_effect/aq_choking/proc/cough_out(mob/living/helper)
+	if(QDELETED(src) || !owner) // już wykasłany (tick() mógł zrobić to sam)
+		return
 	if(helper)
 		owner.visible_message("<span class='notice'>[helper] wypycha kęs z gardła [owner]!</span>", "<span class='notice'>[helper] wypycha ci kęs z gardła. Możesz oddychać!</span>")
 	else

@@ -1,11 +1,7 @@
 /datum/test_chamber_kit/pr_652_med6
 	name = "PR 652 (część 2): AquilaMed 6: trzustka, przełyk, kręgosłup, pary płuc i nerek"
 	pr = "aq33/AquilaStation#652"
-	description = "1) Trzustka: wytnij ją komuś i nakarm go słodyczami (cukier z zestawu): senność, mdłości, linia hiperglikemii w skanerze; insulina pomaga. Trzustka cybernetyczna po emagu dosypuje stymulanty. \
-	2) Przełyk: jedz na leżąco, aż kęs utknie (nie mówisz, nie oddychasz); ktoś obok klika klatkę bez trybu walki (chwyt Heimlicha). Bez przełyku nie da się jeść ani pić. \
-	3) Kręgosłup: wyjmij go operacją z klatki: bezwładne ręce i nogi. Wszczep kręgosłup tytanowy, potem operacja połączenia pnia mózgu na otwartej czaszce. \
-	4) Płuca i nerki: operacja wycięcia jednej nerki daje osobną nerkę, operacja dołączenia wszywa ją komuś, komu jej brakuje. \
-	Sprawdź kliknięcia w obu trybach sterowania (combat mode i intencje)."
+	description = "Część 2 (AquilaMed 6). Pacjenci z części 1 stoją obok.<br>1) Trzustka: wytnij ją „Pacjentowi” i daj cukier z zestawu: senność, mdłości, w skanerze „Brak trzustki” i hiperglikemia; insulina pomaga. Trzustka cybernetyczna po emagu dosypuje stymulanty.<br>2) Przełyk: jedz na leżąco, aż kęs utknie (nie mówisz, nie oddychasz); ktoś obok klika twoją klatkę bez trybu walki (chwyt Heimlicha).<br>3) Kręgosłup: wyjmij go operacją z klatki (bezwładne ręce i nogi, skaner: „Brak kręgosłupa”), wszczep tytanowy, potem połączenie pnia mózgu na otwartej czaszce.<br>4) Nerki: wycięcie jednej nerki daje osobną „lewą nerkę”, dołączenie nerki (lewa nerka w ręce) wszywa ją z powrotem.<br>Kliknięcia sprawdź w obu trybach sterowania (combat mode i intencje)."
 	items = list(
 		/obj/item/storage/backpack/duffelbag/med/surgery = 1,
 		/obj/item/surgical_drapes = 1,

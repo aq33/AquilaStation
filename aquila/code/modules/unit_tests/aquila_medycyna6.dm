@@ -26,6 +26,9 @@
 	sugar.on_mob_life(patient)
 	TEST_ASSERT(sugar.metabolization_rate < initial(sugar.metabolization_rate), "Sugar burns at full speed without a pancreas")
 	TEST_ASSERT(patient.drowsyness > 0, "High blood sugar without a pancreas brings no drowsiness")
+	// The scanner names the missing organ and the hyperglycemia (playtest: the line hung on the organ that was gone)
+	var/scan = jointext(patient.aq_organ_scan_lines(), " ")
+	TEST_ASSERT(findtext(scan, "Brak trzustki") && findtext(scan, "Hiperglikemia"), "The scanner does not show a missing pancreas and the hyperglycemia: [scan]")
 	qdel(pancreas)
 
 	// An emagged cybernetic pancreas stops burning sugar and pumps stimulants
@@ -112,6 +115,7 @@
 	TEST_ASSERT(HAS_TRAIT(patient, TRAIT_PARALYSIS_L_LEG) && !HAS_TRAIT(patient, TRAIT_PARALYSIS_L_ARM), "A dead spine does not paralyse only the legs")
 	spine.Remove(patient)
 	TEST_ASSERT(HAS_TRAIT(patient, TRAIT_PARALYSIS_L_ARM) && HAS_TRAIT(patient, TRAIT_PARALYSIS_R_LEG), "A body without a spine can move")
+	TEST_ASSERT(findtext(jointext(patient.aq_organ_scan_lines(), " "), "Brak kręgosłupa"), "The scanner does not explain the paralysis of a body without a spine")
 	qdel(spine)
 
 	var/obj/item/organ/aq_spine/cybernetic/titanium = new()
@@ -139,7 +143,7 @@
 	TEST_ASSERT(istype(donated) && donated.aq_sides == AQ_SIDE_LEFT && kidneys.aq_sides == AQ_SIDE_RIGHT, "Splitting did not leave one kidney in the body and give the other")
 	TEST_ASSERT(kidneys.aq_efficiency() < full, "One kidney filters as well as two")
 	var/datum/surgery_operation/organ/aq_join_pair/kidneys/join = new()
-	TEST_ASSERT(join.state_check(kidneys) && join.snowflake_check_availability(patient, patient, donated, BODY_ZONE_PRECISE_GROIN), "The missing kidney cannot be sewn back")
+	TEST_ASSERT(join.state_check(kidneys) && join.snowflake_check_availability(kidneys, patient, donated, BODY_ZONE_PRECISE_GROIN), "The missing kidney cannot be sewn back")
 	join.on_success(kidneys, patient, donated, list())
 	TEST_ASSERT(kidneys.aq_sides == AQ_SIDES_BOTH && QDELETED(donated), "Sewing the kidney back did not make a pair")
 	qdel(split)

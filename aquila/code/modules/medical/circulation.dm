@@ -184,7 +184,7 @@ GLOBAL_LIST_INIT(aq_pulse_reagents, list(
 	var/obj/item/organ/heart/heart = getorganslot(ORGAN_SLOT_HEART)
 	if(!heart || stat == DEAD || HAS_TRAIT(src, TRAIT_FAKEDEATH) || (heart.organ_flags & ORGAN_SYNTHETIC)) // udawana śmierć wygląda jak śmierć
 		return
-	. += "<span class='info'>Tętno: [heart.aq_pulse_text()].</span>"
+	. += "<span class='info'>Puls: [heart.aq_pulse_text()].</span>"
 
 // --- RKO ---
 

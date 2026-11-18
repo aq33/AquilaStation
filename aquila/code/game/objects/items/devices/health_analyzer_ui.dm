@@ -135,7 +135,7 @@
 		else
 			body += list(aq_injury("Zgon, nie do defibrylacji", "Napraw serce i mózg, potem defibrylacja; albo klonowanie"))
 	else if(heart && !heart.beating)
-		body += list(aq_injury("Zatrzymanie akcji serca", "Defibrylacja"))
+		body += list(aq_injury("Zatrzymanie akcji serca", "RKO (pomoc w klatkę piersiową), defibrylacja"))
 	if(target.is_bleeding())
 		body += list(aq_injury("Krwawienie", "Bandaż, uciskanie, kauteryzacja", target.get_bleed_rate_string()))
 	else if(target.is_bandaged())

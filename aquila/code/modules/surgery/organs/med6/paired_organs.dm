@@ -54,6 +54,14 @@
 	else
 		name = "[left ? "lewe" : "prawe"] [(organ_flags & ORGAN_SYNTHETIC) ? "płuco cybernetyczne" : "płuco"]"
 
+/// One half in the accusative for surgery messages ("wycinasz lewą nerkę", "wszywasz prawe płuco")
+/obj/item/organ/proc/aq_half_accusative()
+	var/left = aq_sides & AQ_SIDE_LEFT
+	var/cyber = organ_flags & ORGAN_SYNTHETIC
+	if(istype(src, /obj/item/organ/kidneys))
+		return "[left ? "lewą" : "prawą"] nerkę[cyber ? " cybernetyczną" : ""]"
+	return "[left ? "lewe" : "prawe"] płuco[cyber ? " cybernetyczne" : ""]"
+
 /obj/item/organ/examine(mob/user)
 	. = ..()
 	if(aq_paired && aq_sides != AQ_SIDES_BOTH)
@@ -122,7 +130,7 @@
 	half.aq_update_half()
 	organ.aq_sides &= ~side
 	organ.aq_update_half()
-	display_results(surgeon, organ.owner, span_notice("Wycinasz [half.name]."), span_notice("[surgeon] wycina [half.name] [FORMAT_ORGAN_OWNER(organ)]."), span_notice("[surgeon] wycina coś z [FORMAT_ORGAN_OWNER(organ)]."))
+	display_results(surgeon, organ.owner, span_notice("Wycinasz [half.aq_half_accusative()]."), span_notice("[surgeon] wycina [half.aq_half_accusative()] [FORMAT_ORGAN_OWNER(organ)]."), span_notice("[surgeon] wycina coś z [FORMAT_ORGAN_OWNER(organ)]."))
 
 /datum/surgery_operation/organ/aq_split_pair/on_failure(obj/item/organ/organ, mob/living/surgeon, obj/item/tool, list/operation_args)
 	organ.applyOrganDamage(15)
@@ -157,11 +165,12 @@
 	return list("w ciele brakuje jednej strony", "w ręce narząd z brakującą stroną") + ..()
 
 /datum/surgery_operation/organ/aq_join_pair/snowflake_check_availability(atom/movable/operating_on, mob/living/surgeon, obj/item/organ/tool, operated_zone)
-	var/obj/item/organ/organ = get_operation_target(operating_on, operated_zone)
+	// the surgery hands the organ itself (check_availability), get_operation_target only for a body or a limb
+	var/obj/item/organ/organ = isorgan(operating_on) ? operating_on : get_operation_target(operating_on, operated_zone)
 	return istype(tool) && istype(organ) && istype(tool, target_type) && tool.aq_paired && tool.aq_sides == (AQ_SIDES_BOTH & ~organ.aq_sides) && tool.status == organ.status
 
-/datum/surgery_operation/organ/aq_join_pair/on_preop(obj/item/organ/organ, mob/living/surgeon, obj/item/tool, list/operation_args)
-	display_results(surgeon, organ.owner, span_notice("Zaczynasz wszywać [tool]..."), span_notice("[surgeon] zaczyna wszywać [tool] [FORMAT_ORGAN_OWNER(organ)]."), span_notice("[surgeon] zaczyna operację."))
+/datum/surgery_operation/organ/aq_join_pair/on_preop(obj/item/organ/organ, mob/living/surgeon, obj/item/organ/tool, list/operation_args)
+	display_results(surgeon, organ.owner, span_notice("Zaczynasz wszywać [tool.aq_half_accusative()]..."), span_notice("[surgeon] zaczyna wszywać [tool.aq_half_accusative()] [FORMAT_ORGAN_OWNER(organ)]."), span_notice("[surgeon] zaczyna operację."))
 	display_pain(organ.owner, "Czujesz głęboki ucisk w środku!")
 
 /datum/surgery_operation/organ/aq_join_pair/on_success(obj/item/organ/organ, mob/living/surgeon, obj/item/organ/tool, list/operation_args)
@@ -170,7 +179,7 @@
 	organ.aq_sides |= tool.aq_sides
 	organ.setOrganDamage((organ.damage + tool.damage) / 2)
 	organ.aq_update_half()
-	display_results(surgeon, organ.owner, span_notice("Wszywasz [tool]. Para znów jest cała."), span_notice("[surgeon] wszywa [tool] [FORMAT_ORGAN_OWNER(organ)]."), span_notice("[surgeon] kończy operację."))
+	display_results(surgeon, organ.owner, span_notice("Wszywasz [tool.aq_half_accusative()]. Para znów jest cała."), span_notice("[surgeon] wszywa [tool.aq_half_accusative()] [FORMAT_ORGAN_OWNER(organ)]."), span_notice("[surgeon] kończy operację."))
 	qdel(tool)
 
 /datum/surgery_operation/organ/aq_join_pair/lungs

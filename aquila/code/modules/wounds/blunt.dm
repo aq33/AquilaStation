@@ -197,7 +197,7 @@
 	name = "Pęknięcie kości"
 	desc = "Słyszysz chrupnięcie kości"
 	examine_desc = "spuchniętą, posiniaczoną kończynę"
-	treat_text = "Unieruchom bandażem, zrośnie się po kilku minutach. Albo żel kostny i taśma chirurgiczna (bolesne, ok. 4 minuty), albo operacja nastawienia kości."
+	treat_text = "Unieruchom szyną (albo bandażem), zrośnie się po kilku minutach. Albo żel kostny i taśma chirurgiczna (bolesne, ok. 4 minuty), albo operacja nastawienia kości."
 	severity = WOUND_SEVERITY_SEVERE
 	threshold = 60
 	heal_time = 3 MINUTES
@@ -210,7 +210,7 @@
 	name = "Złamanie otwarte"
 	desc = "Kość przebija ci skórę"
 	examine_desc = "kość sterczącą z rany"
-	treat_text = "Operacja nastawienia kości. W nagłym wypadku żel kostny, potem taśma chirurgiczna (bardzo bolesne, ok. 8 minut). Bandaż tylko unieruchamia."
+	treat_text = "Operacja nastawienia kości. W nagłym wypadku żel kostny, potem taśma chirurgiczna (bardzo bolesne, ok. 8 minut). Szyna albo bandaż tylko unieruchamia."
 	severity = WOUND_SEVERITY_CRITICAL
 	threshold = 115
 	regen_time = 8 MINUTES

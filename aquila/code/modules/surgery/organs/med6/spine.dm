@@ -68,6 +68,9 @@
 /obj/item/organ/proc/aq_treat_hint()
 	return "Operacja, leki na narząd"
 
+/obj/item/organ/brain/aq_treat_hint()
+	return "Mannitol, naprawa mózgu (operacja); przy zatrzymaniu krążenia najpierw RKO"
+
 /obj/item/organ/aq_spine/aq_treat_hint()
 	return "Goi się sam; zniszczony: wymiana kręgosłupa i połączenie pnia mózgu"
 
