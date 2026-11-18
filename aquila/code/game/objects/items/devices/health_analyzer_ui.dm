@@ -222,7 +222,7 @@
 			if(istype(head) && IS_ORGANIC_LIMB(head) && head.aq_teeth < 32) // medical/teeth.dm
 				part += list(aq_injury("Brakujące zęby", "Wstawienie zęba (operacja)", 32 - head.aq_teeth, 1))
 		for(var/obj/item/organ/organ as anything in target.internal_organs)
-			if(check_zone(organ.zone) != zone || !organ.damage || organ.aq_scanner_hidden) // oczy, usta i pachwina należą do głowy i klatki; błona maskująca (organ_mods_eris.dm)
+			if(check_zone(organ.zone) != zone || !organ.damage) // oczy, usta i pachwina należą do głowy i klatki
 				continue
 			var/failing = organ.organ_flags & ORGAN_FAILING
 			part += list(aq_injury("[capitalize(organ.name)] [failing ? "niewydolny" : "uszkodzony"]", organ.aq_treat_hint(), advanced ? round(organ.damage) : null, failing ? 2 : 1))

@@ -4519,21 +4519,3 @@ Nazwy obszarów są w większości przetłumaczone. Nowe nazwy budujemy z tych k
 | Frontiersmen | Pogranicznicy | m mn.; nowe (frakcja z ruin Shiptesta, u nas piraci) |
 | Corporate Resort / Cybersun Pad / Frontiersman Moat / Cave Gunsmith / Frontiersmen Depot | Kurort Korporacyjny / Lądowisko Cybersun / Fosa Pograniczników / Jaskiniowy Rusznikarz / Składnica Pograniczników | nowe (ruiny plaży) |
 
-### NIF (Nanite Implant Framework, port z Monkestation)
-
-| EN | PL | rodzaj/uwagi |
-|---|---|---|
-| Nanite Implant Framework (NIF) | Nanitowa Platforma Implantów (NIF) | ż; nowe; skrót „NIF” m, odmiana „NIF-u, NIF-em” |
-| Standard / Econo-Deck / Trial-Lite Type NIF | NIF typu Standard / Econo-Deck / Trial-Lite | m; nowe; nazwy modeli bez tłumaczenia |
-| NIFSoft | NIFSoft | m; nowe; odmiana „NIFSoftu, NIFSofty” |
-| NIFSoft datadisk | dysk z danymi NIFSoft | m; nowe |
-| NIFSoft Catalog | Katalog NIFSoftów | m; nowe (program PDA) |
-| Scrying Lens | soczewka jasnowidza | ż; nowe (NIFSofty z HUD-ami) |
-| Scrying Lens Adapter | adapter soczewki jasnowidza | m; nowe |
-| Automatic Appraisal | Automatyczna wycena | ż; nowe |
-| Hivemind (NIFSoft) | Rój umysłów | m; nowe; nie mylić z antagonistą „Nosiciel roju” |
-| Hivemind Interface Device | interfejs roju umysłów | m; nowe |
-| Poem of Communal Souls / Verses | Poemat Wspólnych Dusz / wersy | m / m mn.; nowe |
-| NIF-Cutter ('Wrangler', 'Scalpel') | przecinak NIF („Wrangler”, „Skalpel”) | m; nowe |
-| Cerulean NIF Regenerator | regenerator NIF Cerulean | m; nowe |
-| Altspace Coven | Altspace Coven | m; nazwa własna, bez tłumaczenia |

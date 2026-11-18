@@ -879,7 +879,7 @@
 	TEST_ASSERT(!console.can_scan(patient.dna, patient, null, FALSE), "A body without a stack can be cloned")
 	TEST_ASSERT(console.can_scan(patient.dna, patient, null, TRUE), "A body without a stack cannot be scanned body-only")
 
-/// Bay augments: armor, muscles, aim; Eris organ upgrades
+/// Bay augments: armor, muscles, aim
 /datum/unit_test/aquila_augments
 
 /datum/unit_test/aquila_augments/Run()
@@ -896,25 +896,6 @@
 	TEST_ASSERT(patient.unarmed_damage_bonus > 0, "The muscle augment gives no punch bonus")
 	qdel(muscle)
 	TEST_ASSERT(patient.unarmed_damage_bonus == 0, "The muscle bonus stays after removal")
-
-	// Organ upgrades go into a removed organ only, two per organ
-	var/obj/item/organ/liver/liver = patient.getorganslot(ORGAN_SLOT_LIVER)
-	var/obj/item/aq_organ_mod/durable/durable = new(patient.loc)
-	TEST_ASSERT(!durable.try_apply(liver, patient), "An upgrade went into an organ still in the body")
-	liver.Remove(patient)
-	var/max_health = liver.maxHealth
-	patient.put_in_active_hand(durable)
-	TEST_ASSERT(durable.try_apply(liver, patient), "An upgrade did not go into a removed organ")
-	TEST_ASSERT(liver.maxHealth > max_health, "The durable membrane did not toughen the organ")
-	var/obj/item/aq_organ_mod/stem_cells/cells = new(patient.loc)
-	patient.put_in_active_hand(cells)
-	TEST_ASSERT(cells.try_apply(liver, patient), "A second upgrade did not fit")
-	var/obj/item/aq_organ_mod/symbiont/symbiont = new(patient.loc)
-	patient.put_in_active_hand(symbiont)
-	TEST_ASSERT(!symbiont.try_apply(liver, patient), "A third upgrade fit without gel")
-	var/damage = liver.damage
-	liver.applyOrganDamage(10)
-	TEST_ASSERT(liver.damage - damage < 10, "Stem cells did not lower the damage")
 
 /// A spider-bot takes an MMI, gives it a body and drops it when destroyed
 /datum/unit_test/aquila_spiderbot
@@ -983,29 +964,6 @@
 	var/expected = max(10, 2000 / beer.boozepwr)
 	TEST_ASSERT(aq_addiction_threshold_of(/datum/reagent/consumable/ethanol/beer) == expected, "Beer shows [aq_addiction_threshold_of(/datum/reagent/consumable/ethanol/beer)] instead of [expected]")
 	TEST_ASSERT(aq_addiction_threshold_of(/datum/reagent/water) == 0, "Water shows an addiction threshold")
-
-/// Upgrades come back out with a hemostat (not stem cells), the surgery bag has amputation shears
-/datum/unit_test/aquila_organ_mod_removal
-
-/datum/unit_test/aquila_organ_mod_removal/Run()
-	var/mob/living/carbon/human/surgeon = allocate(/mob/living/carbon/human)
-	var/obj/item/organ/liver/liver = allocate(/obj/item/organ/liver)
-	var/max_health = liver.maxHealth
-	var/obj/item/aq_organ_mod/durable/durable = new(surgeon.loc)
-	surgeon.put_in_active_hand(durable)
-	durable.try_apply(liver, surgeon)
-	var/obj/item/aq_organ_mod/stem_cells/cells = new(surgeon.loc)
-	surgeon.put_in_active_hand(cells)
-	cells.try_apply(liver, surgeon)
-	TEST_ASSERT(liver.aq_mod_slots == 0, "Two upgrades did not fill the organ")
-	surgeon.dropItemToGround(surgeon.get_active_held_item())
-	TEST_ASSERT(liver.aq_remove_mod(surgeon), "The hemostat took no upgrade out")
-	TEST_ASSERT(liver.maxHealth == max_health && liver.aq_mod_slots == 1, "Removing the durable membrane did not undo it")
-	TEST_ASSERT(!liver.aq_remove_mod(surgeon), "Stem cells came back out")
-	TEST_ASSERT(liver.aq_damage_mult < 1, "Stem cells stopped working")
-
-	var/obj/item/storage/backpack/duffelbag/med/surgery/bag = allocate(/obj/item/storage/backpack/duffelbag/med/surgery)
-	TEST_ASSERT(locate(/obj/item/shears) in bag, "The surgery bag has no amputation shears")
 
 /// Review max fixes: circulation, hypothermia, CPR, scanner
 /datum/unit_test/aquila_med5_review_body
@@ -1093,25 +1051,6 @@
 /datum/unit_test/aquila_med5_review_items/Run()
 	var/mob/living/carbon/human/patient = allocate(/mob/living/carbon/human)
 
-	// "Set exactly X" ignores the upgrade multiplier: a brain set to max still fails
-	var/obj/item/organ/brain/brain = patient.getorganslot(ORGAN_SLOT_BRAIN)
-	brain.aq_damage_mult = 0.9
-	brain.setOrganDamage(brain.maxHealth)
-	TEST_ASSERT(brain.damage == brain.maxHealth, "A brain with an upgrade cannot be set to max damage ([brain.damage])")
-	brain.aq_damage_mult = 1
-	brain.setOrganDamage(0)
-
-	// Removing the durable membrane from a dead organ leaves it dead
-	var/obj/item/organ/liver/liver = allocate(/obj/item/organ/liver)
-	liver.setOrganDamage(liver.maxHealth)
-	var/obj/item/aq_organ_mod/durable/durable = new(patient.loc)
-	patient.put_in_active_hand(durable)
-	durable.try_apply(liver, patient)
-	TEST_ASSERT(!(liver.organ_flags & ORGAN_FAILING), "The durable membrane did not lift the failure")
-	patient.dropItemToGround(patient.get_active_held_item())
-	liver.aq_remove_mod(patient)
-	TEST_ASSERT(liver.organ_flags & ORGAN_FAILING, "Removing the membrane brought a dead organ back")
-
 	// Claws survive being put away; the translator implant does not stun on EMP
 	var/obj/item/organ/cyberimp/arm/aq_claws/claws = new()
 	claws.Insert(patient)
@@ -1124,17 +1063,6 @@
 	TEST_ASSERT(HAS_TRAIT(patient, TRAIT_AQ_TRANSLATOR), "The translator implant does not translate")
 	translator.emp_act(EMP_HEAVY)
 	TEST_ASSERT(!patient.IsStun() && !HAS_TRAIT(patient, TRAIT_AQ_TRANSLATOR), "The translator implant stuns or keeps working after an EMP")
-
-	// Bypass tubules never feed past "fed"
-	var/obj/item/organ/eyes/eyes = patient.getorganslot(ORGAN_SLOT_EYES) // eyes do not touch nutrition themselves
-	eyes.aq_hunger = -0.03
-	patient.set_nutrition(NUTRITION_LEVEL_FED + 50)
-	eyes.on_life()
-	TEST_ASSERT(patient.nutrition == NUTRITION_LEVEL_FED + 50, "Bypass tubules feed a full body")
-	patient.set_nutrition(NUTRITION_LEVEL_HUNGRY)
-	eyes.on_life()
-	TEST_ASSERT(patient.nutrition > NUTRITION_LEVEL_HUNGRY, "Bypass tubules spare no food")
-	eyes.aq_hunger = 0
 
 	// Addictions: no false end for someone never addicted, no end every tick while satisfied
 	patient.mind_initialize()
