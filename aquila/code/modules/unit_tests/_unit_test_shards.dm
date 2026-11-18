@@ -10,16 +10,27 @@
  * Kawałki mają trwać podobnie długo, a nie mieć po tyle samo testów: kilkanaście testów trwa po kilkadziesiąt sekund
  * (planety), a reszta ułamki sekundy, więc przy równej liczbie testów jedna część trwała trzy razy dłużej od pozostałych.
  * Czasy wolnych testów są w _unit_test_weights.dm (odświeża je tools/ci/unit_test_weights.py).
+ *
+ * Testy z aquila_unit_test_every_shard() nie biorą udziału w podziale: idą na koniec każdej części (i całej listy).
  */
 
 /// Waga testu, którego nie ma w aquila_unit_test_weights() (średni czas krótkiego testu w sekundach)
 #define AQUILA_UNIT_TEST_DEFAULT_WEIGHT 0.05
 
 /proc/aquila_unit_test_shard(list/tests)
+	var/list/every_shard = tests & aquila_unit_test_every_shard()
+	var/list/rest = tests - every_shard
 	var/setting = world.GetConfig("env", "UNIT_TEST_SHARD")
-	if(!setting)
-		return tests
-	return aquila_unit_test_shard_of(tests, setting)
+	if(setting)
+		rest = aquila_unit_test_shard_of(rest, setting)
+	return rest + every_shard
+
+/// Testy wykonywane na samym końcu każdej części, bo sprawdzają, co zostawiły po sobie wszystkie poprzednie
+/proc/aquila_unit_test_every_shard()
+	. = list()
+#ifdef UNIT_TESTS
+	. += /datum/unit_test/aquila_gc_guard
+#endif
 
 /// Część listy testów dla ustawienia "numer/liczba"; przy złym ustawieniu cała lista. Wagi domyślnie z aquila_unit_test_weights()
 /proc/aquila_unit_test_shard_of(list/tests, setting, list/weights)

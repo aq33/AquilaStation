@@ -18,6 +18,9 @@
 	TEST_ASSERT(length(aquila_unit_test_shard_of(tests, "4/3")) == length(tests), "A part number above the count did not run every test")
 	TEST_ASSERT(length(aquila_unit_test_shard_of(tests, "abc")) == length(tests), "A malformed setting did not run every test")
 	TEST_ASSERT(length(aquila_unit_test_shard_of(tests, "1.5/3")) == length(tests), "A fractional part number did not run every test")
+	// Strażnik wycieków idzie na koniec każdej części, niezależnie od miejsca na posortowanej liście
+	var/list/with_guard = aquila_unit_test_shard(list(/datum/unit_test/aquila_gc_guard, /datum/unit_test/aquila_unit_test_shards))
+	TEST_ASSERT(length(with_guard) && with_guard[length(with_guard)] == /datum/unit_test/aquila_gc_guard, "The leak guard is not the last test of the part: [with_guard.Join(",")]")
 
 /// AQUILA - części testów mają trwać podobnie długo: wolny test dostaje część dla siebie, a nie ciągnie za sobą trzeciej części listy
 /datum/unit_test/aquila_unit_test_shards_weighted
