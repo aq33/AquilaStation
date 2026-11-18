@@ -51,7 +51,10 @@
 	TEST_ASSERT(walls > 0, "The lava planet has no rock (caves)")
 	TEST_ASSERT(walls + lava < length(inner), "The lava planet has no walkable ground")
 
-	TEST_ASSERT_EQUAL(length(surface.landing_zones), PLANET_LANDING_ZONES, "Wrong number of landing zones")
+	// Przy losowej ruinie głównej generator potrafi zmieścić o jedno lądowisko mniej (zgłasza to adminom): test nie może
+	// od tego zależeć, ale powierzchnia bez ruiny głównej ma mieć komplet
+	var/min_zones = surface.main_ruin ? PLANET_LANDING_ZONES - 1 : PLANET_LANDING_ZONES
+	TEST_ASSERT(length(surface.landing_zones) >= min_zones && length(surface.landing_zones) <= PLANET_LANDING_ZONES, "Wrong number of landing zones: [length(surface.landing_zones)] (main ruin [surface.main_ruin?.name || "none"])")
 	for(var/turf/zone as anything in surface.landing_zones)
 		for(var/turf/T as anything in RANGE_TURFS(round(PLANET_LANDING_ZONE_SIZE / 2), zone))
 			TEST_ASSERT(isopenturf(T) && !islava(T), "Landing zone [surface.landing_zones[zone]] has blocked ground at [T.x],[T.y] ([T.type])")
@@ -377,12 +380,24 @@
 /datum/overmap_objective/planet/evacuation/test/is_delivered(atom/movable/AM)
 	return get_dist(AM, home_turf) <= 3 && AM.z == home_turf.z
 
-/// AQUILA - planety: pocisk wycelowany w planetę trafia ją nad środkiem, a uderzenie spada przy znaczniku z lornetki
-/datum/unit_test/planet_bombardment
+/// AQUILA - planety: mechaniki na gotowej powierzchni (ostrzał z orbity, kapsuła desantowa, misje badania i ewakuacji).
+/// Jedna mała powierzchnia na wszystkie: każda osobna generowała się w CI 20–40 s, a te sprawdzenia jej nie zmieniają
+/// na tyle, żeby sobie przeszkadzały. Każde sprawdzenie to osobna procka: porażka jednego nie przerywa pozostałych.
+/datum/unit_test/planet_surface_mechanics
 
-/datum/unit_test/planet_bombardment/Run()
-	var/obj/structure/overmap/planet/planet = new(run_loc_floor_bottom_left, /datum/planet_type/lava)
+/datum/unit_test/planet_surface_mechanics/Run()
+	var/obj/structure/overmap/planet/planet = new(run_loc_floor_top_right, /datum/planet_type/lava)
 	TEST_ASSERT(planet_test_fast_surface(planet), "The surface didn't generate")
+	check_bombardment(planet)
+	check_drop_pod(planet)
+	check_survey_mission(planet)
+	check_evacuation_mission(planet)
+	check_site_fallback(planet)
+	planet.surface.unload()
+	qdel(planet, TRUE)
+
+/// Pocisk wycelowany w planetę trafia ją nad środkiem, a uderzenie spada przy znaczniku z lornetki
+/datum/unit_test/planet_surface_mechanics/proc/check_bombardment(obj/structure/overmap/planet/planet)
 	var/turf/ground = planet_ground_turf(planet.surface)
 	TEST_ASSERT(get_planet_of(ground) == planet, "A landing zone turf isn't recognised as the planet surface")
 	TEST_ASSERT(!get_planet_of(run_loc_floor_bottom_left), "A ship turf is recognised as a planet surface")
@@ -431,15 +446,9 @@
 
 	qdel(laser)
 	qdel(shell)
-	planet.surface.unload()
-	qdel(planet, TRUE)
 
-/// AQUILA - planety: kapsuła desantowa ląduje tylko na gruncie planety i zabiera siedzącego
-/datum/unit_test/planet_drop_pod
-
-/datum/unit_test/planet_drop_pod/Run()
-	var/obj/structure/overmap/planet/planet = new(run_loc_floor_top_right, /datum/planet_type/lava)
-	TEST_ASSERT(planet_test_fast_surface(planet), "The surface didn't generate")
+/// Kapsuła desantowa ląduje tylko na gruncie planety i zabiera siedzącego
+/datum/unit_test/planet_surface_mechanics/proc/check_drop_pod(obj/structure/overmap/planet/planet)
 	var/turf/ground = planet_ground_turf(planet.surface)
 	var/obj/machinery/drop_pod_bay/bay = allocate(/obj/machinery/drop_pod_bay, run_loc_floor_bottom_left)
 	TEST_ASSERT(bay.can_land_at(ground), "The drop pod can't land on a landing zone")
@@ -459,51 +468,46 @@
 	bay.launch(trooper)
 	TEST_ASSERT(istype(trooper.loc, /obj/structure/drop_pod), "The trooper isn't in the drop pod ([trooper.loc?.type])")
 	TEST_ASSERT(!bay.ready, "The bay is ready right after launching")
-	// Kapsuła leci kilka sekund (tranzyt, spadanie, otwarcie): żołnierz ma wysiąść na planecie
-	sleep(15 SECONDS)
+	// Lot trwa kilkanaście sekund na timerach (start, tranzyt, spadanie, otwarcie): test woła od razu spadanie i otwarcie,
+	// zamiast czekać prawdziwy czas
+	var/obj/structure/drop_pod/pod = trooper.loc
+	pod.fall(ground)
+	pod.open()
 	TEST_ASSERT(planet.surface.contains(get_turf(trooper)), "The trooper didn't land on the planet ([AREACOORD(trooper)])")
-	TEST_ASSERT(get_dist(trooper, ground) <= 3, "The trooper landed too far from the target")
+	TEST_ASSERT_EQUAL(get_turf(trooper), ground, "The trooper didn't get out of the pod at the landing spot")
 	trooper.forceMove(run_loc_floor_bottom_left)
-	planet.surface.unload()
-	qdel(planet, TRUE)
+	qdel(pod)
 
-/// AQUILA - planety: badanie planety zalicza się po sondzie i czterech rodzajach próbek na okręcie
-/datum/unit_test/planet_survey_mission
-
-/datum/unit_test/planet_survey_mission/Run()
+/// Badanie planety zalicza się po sondzie i czterech rodzajach próbek na okręcie
+/datum/unit_test/planet_surface_mechanics/proc/check_survey_mission(obj/structure/overmap/planet/planet)
 	var/datum/overmap_objective/planet/survey/test/mission = new(SSstar_system.systems[1])
 	mission.home_turf = run_loc_floor_bottom_left
-	mission.target_planet = new(run_loc_floor_top_right, /datum/planet_type/lava)
-	TEST_ASSERT(planet_test_fast_surface(mission.target_planet), "The surface didn't generate")
+	mission.target_planet = planet
 	mission.setup_site()
 	TEST_ASSERT(mission.site, "The survey site wasn't placed")
-	TEST_ASSERT(mission.target_planet.surface.contains(get_turf(mission.site)), "The survey site isn't on the planet")
+	TEST_ASSERT(planet.surface.contains(get_turf(mission.site)), "The survey site isn't on the planet")
+	var/list/samples = list()
 	for(var/sample_type in list("rock", "flora", "fauna"))
-		allocate(/obj/item/planet_sample, run_loc_floor_bottom_left, mission.target_planet, sample_type)
+		samples += allocate(/obj/item/planet_sample, run_loc_floor_bottom_left, planet, sample_type)
 	mission.probe_done = TRUE
 	mission.check_completion()
 	TEST_ASSERT_EQUAL(mission.status, 0, "The survey finished with only three kinds of samples")
-	allocate(/obj/item/planet_sample, run_loc_floor_bottom_left, mission.target_planet, "atmosphere")
+	samples += allocate(/obj/item/planet_sample, run_loc_floor_bottom_left, planet, "atmosphere")
 	mission.check_completion()
 	TEST_ASSERT_EQUAL(mission.status, 1, "The survey didn't finish with all samples delivered and the probe done")
-	var/obj/structure/overmap/planet/planet = mission.target_planet
 	qdel(mission)
-	planet.surface.unload()
-	qdel(planet, TRUE)
+	QDEL_LIST(samples)
 
-/// AQUILA - planety: ewakuacja stawia schron z kolonistami i zalicza się, gdy trzech jest żywych na okręcie
-/datum/unit_test/planet_evacuation_mission
-
-/datum/unit_test/planet_evacuation_mission/Run()
+/// Ewakuacja stawia schron z kolonistami i zalicza się, gdy trzech jest żywych na okręcie
+/datum/unit_test/planet_surface_mechanics/proc/check_evacuation_mission(obj/structure/overmap/planet/planet)
 	var/datum/overmap_objective/planet/evacuation/test/mission = new(SSstar_system.systems[1])
 	mission.home_turf = run_loc_floor_bottom_left
-	mission.target_planet = new(run_loc_floor_top_right, /datum/planet_type/lava)
-	TEST_ASSERT(planet_test_fast_surface(mission.target_planet), "The surface didn't generate")
+	mission.target_planet = planet
 	mission.setup_site()
 	TEST_ASSERT(mission.colony_ready, "The colony wasn't set up")
 	TEST_ASSERT_EQUAL(length(mission.colonists), 4, "Wrong number of colonists")
 	for(var/mob/living/carbon/human/colonist as anything in mission.colonists)
-		TEST_ASSERT(mission.target_planet.surface.contains(get_turf(colonist)), "A colonist isn't on the planet")
+		TEST_ASSERT(planet.surface.contains(get_turf(colonist)), "A colonist isn't on the planet")
 	mission.check_completion()
 	TEST_ASSERT_EQUAL(mission.status, 0, "The evacuation finished with everyone still on the planet")
 	for(var/i in 1 to 3)
@@ -512,11 +516,30 @@
 	mission.check_completion()
 	TEST_ASSERT_EQUAL(mission.status, 1, "The evacuation didn't finish with three colonists on the ship")
 	var/list/colonists = mission.colonists.Copy()
-	var/obj/structure/overmap/planet/planet = mission.target_planet
 	qdel(mission)
 	QDEL_LIST(colonists)
-	planet.surface.unload()
-	qdel(planet, TRUE)
+
+/// Punkt misji znajduje się, nawet gdy dobre pola to ułamek powierzchni (losowe próby nie trafiały na małej planecie z lawą)
+/datum/unit_test/planet_surface_mechanics/proc/check_site_fallback(obj/structure/overmap/planet/planet)
+	var/datum/planet_surface/surface = planet.surface
+	var/turf/only_spot
+	var/list/blocked = list()
+	for(var/turf/T as anything in surface.inner_turfs())
+		if(is_planet_hazard_turf(T) || T.loc != surface.surface_area || (T.flags_1 & NO_RUINS_1))
+			continue
+		if(!only_spot)
+			only_spot = T
+			continue
+		T.flags_1 |= NO_RUINS_1
+		blocked += T
+	TEST_ASSERT(only_spot, "The surface has no turf for a mission site")
+	var/datum/overmap_objective/planet/survey/test/mission = new(SSstar_system.systems[1])
+	mission.target_planet = planet
+	var/turf/picked = mission.pick_site_turf()
+	for(var/turf/T as anything in blocked)
+		T.flags_1 &= ~NO_RUINS_1
+	qdel(mission)
+	TEST_ASSERT_EQUAL(picked, only_spot, "The mission didn't find the only free turf for its site")
 
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL

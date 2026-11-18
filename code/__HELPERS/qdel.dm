@@ -1,4 +1,4 @@
-#define QDEL_IN(item, time) addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(qdel), item), time, TIMER_STOPPABLE)
+#define QDEL_IN(item, time) aquila_qdel_in(item, time) // AQ EDIT - timer należy do obiektu, nie trzyma go po wcześniejszym usunięciu (aquila/code/datums/gc_leaks.dm)
 #define QDEL_IN_CLIENT_TIME(item, time) addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(qdel), item), time, TIMER_STOPPABLE | TIMER_CLIENT_TIME)
 #define QDEL_NULL(item) qdel(item); item = null
 #define QDEL_LIST(L) if(L) { for(var/I in L) qdel(I); L.Cut(); }

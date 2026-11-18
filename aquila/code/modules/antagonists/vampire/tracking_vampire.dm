@@ -1,6 +1,8 @@
 /datum/antagonist/vampire/proc/setup_tracker(mob/living/body)
 	cleanup_tracker()
 	tracker = new(body, REF(src))
+	// AQUILA - namiernik siedzi w ciele i ginie razem z nim, a rola (na umyśle) dalej go trzymała (wyciek w testach)
+	RegisterSignal(tracker, COMSIG_PARENT_QDELETING, PROC_REF(on_tracker_deleted))
 
 	for(var/datum/antagonist/vassal/vassal in vassals)
 		vassal.monitor?.add_to_tracking_network(tracker.tracking_beacon)
@@ -18,7 +20,16 @@
 				if(vassal.monitor.updating?.hud_used)
 					vassal.monitor.updating.hud_used.team_finder_arrows -= arrow
 				qdel(arrow)
-		QDEL_NULL(tracker)
+		UnregisterSignal(tracker, COMSIG_PARENT_QDELETING)
+		if(QDELING(tracker)) // wołane z on_tracker_deleted(): namiernik już jest usuwany
+			tracker = null
+		else
+			QDEL_NULL(tracker)
+
+/// Namiernik usunięty razem z ciałem: zdejmij go z sieci wasali i zapomnij
+/datum/antagonist/vampire/proc/on_tracker_deleted(datum/source)
+	SIGNAL_HANDLER
+	cleanup_tracker()
 
 /**
  * An abstract object contained within the vampire, used to host the team_monitor component.

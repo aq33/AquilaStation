@@ -12,6 +12,12 @@ on:
     branches:
       - master
 
+# AQUILA - nowy push do PR-a anuluje przebieg poprzedniego commita (17.11.2026: 22 z 62 przebiegow liczylo
+# commit, ktory juz nie byl ostatni). Przebiegi mastera maja grupe na commit, wiec zaden nie jest anulowany.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.sha }}
+  cancel-in-progress: true
+
 jobs:
   run_linters:
     runs-on: ubuntu-22.04
@@ -59,7 +65,15 @@ jobs:
           git fetch --no-tags --depth=1 origin ${{ github.base_ref }}
           python tools/i18n/list_missing.py --changed origin/${{ github.base_ref }}
   compile_all_maps:
+    # AQUILA - mapy w rownoleglych czesciach (--map-shard, tools/build/build.js). dm wczytuje mapy w czasie rosnacym
+    # z kwadratem ich liczby: 821 map w jednym jobie to 376 s samego wczytywania.
+    # Liczba czesci to tylko lista matrix.shard
+    name: compile_all_maps (${{ matrix.shard }}/${{ strategy.job-total }})
     runs-on: ubuntu-22.04
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [1, 2, 3]
     steps:
       - uses: actions/checkout@v2
       - name: Setup cache
@@ -71,13 +85,21 @@ jobs:
       - name: Install BYOND
         if: steps.cache-byond.outputs.cache-hit != 'true'
         run: bash tools/ci/install_byond.sh
+      # AQUILA - paczki i386 z cache zamiast apt-get update i pobierania w kazdym jobie (tools/ci/apt_install.sh)
+      - name: Runner image version
+        id: image
+        run: echo "version=${ImageOS}-${ImageVersion}" >> "$GITHUB_OUTPUT"
+      - name: Setup i386 package cache
+        uses: actions/cache@v3
+        with:
+          path: ~/apt-i386
+          key: apt-i386-v2-${{ steps.image.outputs.version }}-libssl3-libcurl4
       - name: Install libcurl (needed by BYOND 516.1664+ on Linux)
-        run: bash tools/ci/apt_install.sh libcurl4:i386
+        run: APT_DEB_CACHE=$HOME/apt-i386 bash tools/ci/apt_install.sh libssl3:i386 libcurl4:i386
       - name: Compile All Maps
         run: |
           source $HOME/BYOND/byond/bin/byondsetup
-          python3 tools/ci/template_dm_generator.py
-          tools/build/build --ci dm -DCIBUILDING -DCITESTING -DALL_MAPS
+          tools/build/build --ci dm -DCIBUILDING -DCITESTING -DALL_MAPS --map-shard=${{ matrix.shard }}/${{ strategy.job-total }}
   run_all_tests:
     # AQUILA - testy w rownoleglych czesciach (UNIT_TEST_SHARD, aquila/code/modules/unit_tests/_unit_test_shards.dm).
     # Liczba czesci to tylko lista matrix.shard; nazwa i zmienna biora ja ze strategy.job-total
@@ -86,17 +108,11 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        shard: [1, 2, 3]
+        shard: [1, 2, 3, 4]
     # AQUILA - wiszacy serwer przed "Shutdown complete" czekalby do domyslnych 6 godzin
     timeout-minutes: 90
-    services:
-      mysql:
-        image: mysql:latest
-        env:
-          MYSQL_ROOT_PASSWORD: root
-        ports:
-          - 3306
-        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+    # AQUILA - bez kontenera uslugi mysql: testy lacza sie z MySQL-em runnera (127.0.0.1:3306, krok "Setup database"),
+    # a kontener wystawial losowy port i nikt z niego nie korzystal. Jego pobranie zajmowalo ok. 25 s kazdej czesci.
     steps:
       - uses: actions/checkout@v2
       - name: Setup cache
@@ -113,9 +129,18 @@ jobs:
           sudo systemctl start mysql
           mysql -u root -proot -e 'CREATE DATABASE bee_ci;'
           mysql -u root -proot bee_ci < SQL/beestation_schema.sql
+      # AQUILA - paczki i386 z cache zamiast apt-get update i pobierania w kazdym jobie (tools/ci/apt_install.sh)
+      - name: Runner image version
+        id: image
+        run: echo "version=${ImageOS}-${ImageVersion}" >> "$GITHUB_OUTPUT"
+      - name: Setup i386 package cache
+        uses: actions/cache@v3
+        with:
+          path: ~/apt-i386
+          key: apt-i386-v2-${{ steps.image.outputs.version }}-libssl3-libcurl4
       - name: Install rust-g
         run: |
-          bash tools/ci/apt_install.sh libssl3:i386 libcurl4:i386
+          APT_DEB_CACHE=$HOME/apt-i386 bash tools/ci/apt_install.sh libssl3:i386 libcurl4:i386
           bash tools/ci/install_rust_g.sh
       - name: Install auxmos
         run: |
