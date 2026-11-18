@@ -44,6 +44,9 @@ GLOBAL_LIST_INIT(diona_pbody_list, init_sprite_accessory_subtypes(/datum/sprite_
 		var/on_head = key == FEATURE_PSYPHOZA_CAP || findtext(accessory.icon_state, "head")
 		if(on_head && !head)
 			continue
+		// Kapelusz psyfozy chowa się pod każdym nakryciem głowy (rysował się nad hełmem i kaskiem)
+		if(key == FEATURE_PSYPHOZA_CAP && H.head)
+			continue
 		// U Bee wyrostki na tułowiu chowa strój zakrywający kombinezon, a oczy diony to, co zakrywa oczy albo włosy
 		if(!on_head && suit_hides_body)
 			continue
