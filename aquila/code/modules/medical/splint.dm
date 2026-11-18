@@ -107,6 +107,8 @@
 	var/datum/wound/blunt/fracture = replacement
 	if(istype(fracture))
 		fracture.splinted = TRUE
+		fracture.treated = TRUE // szyna zawsze opatruje złamanie (apply_splint)
+		fracture.victim?.update_wound_slowdown()
 	else if(aq_splint_drop) // healed into nothing that holds a splint
 		new /obj/item/stack/medical/splint/one(aq_splint_drop)
 	aq_splint_drop = null

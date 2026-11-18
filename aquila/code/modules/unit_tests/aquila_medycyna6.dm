@@ -58,6 +58,28 @@
 	choking.cough_out()
 	TEST_ASSERT(!patient.has_status_effect(/datum/status_effect/aq_choking) && !HAS_TRAIT(patient, TRAIT_MUTE), "Coughing the bite out did not clear the choking")
 
+	// A body that dies choking does not keep choking after revival, an admin heal clears it too
+	var/mob/living/carbon/human/victim = allocate(/mob/living/carbon/human)
+	var/datum/status_effect/aq_choking/dead_choke = victim.apply_status_effect(/datum/status_effect/aq_choking)
+	victim.death()
+	dead_choke.tick()
+	TEST_ASSERT(!victim.has_status_effect(/datum/status_effect/aq_choking), "Choking stayed on a dead body")
+	victim.revive(full_heal = TRUE, admin_revive = TRUE)
+	victim.apply_status_effect(/datum/status_effect/aq_choking)
+	victim.fully_heal(TRUE)
+	TEST_ASSERT(!victim.has_status_effect(/datum/status_effect/aq_choking), "A full heal left the choking on")
+
+	// Heimlich by a medic with a mind (default martial art) on the chest
+	var/mob/living/carbon/human/medic = allocate(/mob/living/carbon/human)
+	medic.mind_initialize()
+	medic.zone_selected = BODY_ZONE_CHEST
+	patient.apply_status_effect(/datum/status_effect/aq_choking)
+	for(var/i in 1 to 10)
+		if(!patient.has_status_effect(/datum/status_effect/aq_choking))
+			break
+		medic.dna.species.help(medic, patient, medic.mind.martial_art)
+	TEST_ASSERT(!patient.has_status_effect(/datum/status_effect/aq_choking), "Ten Heimlich manoeuvres by a medic with a mind never cleared the choking")
+
 	// Swallowed acid burns it; without it nothing goes down
 	var/obj/item/reagent_containers/food/drinks/drinkingglass/glass = allocate(/obj/item/reagent_containers/food/drinks/drinkingglass)
 	TEST_ASSERT(glass.canconsume(patient, patient), "A healthy body cannot drink")
@@ -81,6 +103,10 @@
 
 	patient.aq_injure_spine(WOUND_SEVERITY_CRITICAL)
 	TEST_ASSERT(spine.damage >= spine.fracture_damage, "A broken spine did not hurt the spine organ")
+	var/after_fracture = spine.damage
+	patient.aq_injure_spine(WOUND_SEVERITY_CRITICAL)
+	patient.aq_injure_spine(WOUND_SEVERITY_SEVERE)
+	TEST_ASSERT(spine.damage == after_fracture, "The same spine wound returned again hurt the spine organ again")
 	var/obj/item/bodypart/chest = patient.get_bodypart(BODY_ZONE_CHEST)
 	qdel(chest.get_wound(WOUND_SPINE))
 

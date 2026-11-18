@@ -90,7 +90,7 @@
 /// Vomiting blood tears the esophagus a little
 /mob/living/carbon/vomit(lost_nutrition = 10, blood = FALSE, stun = TRUE, distance = 1, message = TRUE, toxic = FALSE)
 	. = ..()
-	if(. && blood)
+	if(. && blood && has_mouth() && !HAS_TRAIT(src, TRAIT_NOHUNGER) && !HAS_TRAIT(src, TRAIT_NOVOMIT))
 		var/obj/item/organ/esophagus/esophagus = getorganslot(ORGAN_SLOT_ESOPHAGUS)
 		esophagus?.applyOrganDamage(2)
 
@@ -116,7 +116,8 @@
 	REMOVE_TRAIT(owner, TRAIT_MUTE, AQ_CHOKING_TRAIT)
 
 /datum/status_effect/aq_choking/tick()
-	if(owner.stat == DEAD)
+	if(owner.stat == DEAD) // po wskrzeszeniu ciało nie dusi się dalej od tego samego kęsa
+		qdel(src)
 		return
 	var/mob/living/carbon/C = owner
 	if(istype(C))
@@ -127,6 +128,10 @@
 	if(owner.stat == CONSCIOUS && prob(30))
 		owner.emote("gasp")
 
+/mob/living/fully_heal(admin_revive = 0)
+	. = ..()
+	remove_status_effect(/datum/status_effect/aq_choking)
+
 /datum/status_effect/aq_choking/proc/cough_out(mob/living/helper)
 	if(helper)
 		owner.visible_message("<span class='notice'>[helper] wypycha kęs z gardła [owner]!</span>", "<span class='notice'>[helper] wypycha ci kęs z gardła. Możesz oddychać!</span>")
@@ -136,9 +141,11 @@
 
 /// Heimlich manoeuvre: a help click on the chest of someone who chokes
 /datum/species/help(mob/living/carbon/human/user, mob/living/carbon/human/target, datum/martial_art/attacker_style)
+	if(attacker_style?.help_act(user, target) == MARTIAL_ATTACK_SUCCESS)
+		return TRUE
 	var/datum/status_effect/aq_choking/choking = target?.has_status_effect(/datum/status_effect/aq_choking)
-	if(attacker_style || !choking || user == target || user.zone_selected != BODY_ZONE_CHEST)
-		return ..()
+	if(!choking || user == target || user.zone_selected != BODY_ZONE_CHEST)
+		return ..(user, target, null)
 	user.visible_message("<span class='notice'>[user] obejmuje [target] od tyłu i mocno uciska brzuch.</span>", "<span class='notice'>Obejmujesz [target] od tyłu i uciskasz brzuch.</span>")
 	if(!do_after(user, 2 SECONDS, target = target))
 		return TRUE

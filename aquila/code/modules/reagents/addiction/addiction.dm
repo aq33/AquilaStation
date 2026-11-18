@@ -131,6 +131,9 @@ GLOBAL_LIST_INIT(aq_addictions, aq_init_addictions())
 /datum/addiction/proc/on_gain_points(datum/mind/victim_mind, new_amount, last_amount)
 	if(new_amount < gain_threshold || last_amount >= gain_threshold)
 		return
+	// Już uzależniony: cykl zostaje, process_addiction() raz zdejmie skutki odstawienia
+	if(LAZYACCESS(victim_mind.aq_active_addictions, type))
+		return
 	LAZYSET(victim_mind.aq_active_addictions, type, 1)
 	victim_mind.current?.log_message("uzależnił(a) się od: [name].", LOG_GAME)
 
@@ -321,7 +324,7 @@ GLOBAL_LIST_INIT(aq_addictions, aq_init_addictions())
 
 /// Ordinary coffee is a weak stimulant: the NSV "coffee addict" quirk needs it, a cup now and then never addicts
 /datum/reagent/consumable/coffee
-	addiction_types = list(/datum/addiction/stimulants = 5)
+	addiction_types = list(/datum/addiction/stimulants = 300) // jednostki do uzależnienia: dwa razy więcej niż kawa marynarki
 
 /datum/reagent/drug/happiness
 	addiction_types = list(/datum/addiction/hallucinogens = 30)

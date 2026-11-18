@@ -26,6 +26,7 @@
 	/// Damage one spine wound does
 	var/bruise_damage = 10
 	var/fracture_damage = 35
+	var/was_failing = FALSE
 
 /obj/item/organ/aq_spine/cybernetic
 	name = "kręgosłup tytanowy"
@@ -61,7 +62,10 @@
 
 /obj/item/organ/aq_spine/on_life()
 	. = ..()
-	owner?.aq_update_spine_paralysis()
+	var/failing = !!(organ_flags & ORGAN_FAILING)
+	if(failing != was_failing) // tylko przy zmianie, nie co tick
+		was_failing = failing
+		owner?.aq_update_spine_paralysis()
 
 /obj/item/organ/aq_spine/aq_scan_line()
 	if(organ_flags & ORGAN_FAILING)
@@ -77,22 +81,27 @@
 			wanted = list(TRAIT_PARALYSIS_L_LEG, TRAIT_PARALYSIS_R_LEG, TRAIT_PARALYSIS_L_ARM, TRAIT_PARALYSIS_R_ARM)
 		else if(spine.organ_flags & ORGAN_FAILING)
 			wanted = list(TRAIT_PARALYSIS_L_LEG, TRAIT_PARALYSIS_R_LEG)
+	aq_set_limb_paralysis(AQ_SPINE_ORGAN_TRAIT, wanted)
+
+/// Sets exactly these limb paralysis traits from one source (the others from it go); TRUE when something changed
+/mob/living/carbon/proc/aq_set_limb_paralysis(source, list/wanted_traits)
 	var/changed = FALSE
 	for(var/trait in list(TRAIT_PARALYSIS_L_LEG, TRAIT_PARALYSIS_R_LEG, TRAIT_PARALYSIS_L_ARM, TRAIT_PARALYSIS_R_ARM))
-		var/has = HAS_TRAIT_FROM(src, trait, AQ_SPINE_ORGAN_TRAIT)
-		if((trait in wanted) && !has)
-			ADD_TRAIT(src, trait, AQ_SPINE_ORGAN_TRAIT)
+		var/has = HAS_TRAIT_FROM(src, trait, source)
+		if((trait in wanted_traits) && !has)
+			ADD_TRAIT(src, trait, source)
 			changed = TRUE
-		else if(!(trait in wanted) && has)
-			REMOVE_TRAIT(src, trait, AQ_SPINE_ORGAN_TRAIT)
+		else if(!(trait in wanted_traits) && has)
+			REMOVE_TRAIT(src, trait, source)
 			changed = TRUE
 	if(!changed)
-		return
+		return FALSE
 	// Bee keeps the old disabled state of a limb, so the paralysis is cleared by hand (as in wounds/spinal.dm)
 	for(var/obj/item/bodypart/part as anything in bodyparts)
 		if(part.disabled == BODYPART_DISABLED_PARALYSIS && !HAS_TRAIT(part, TRAIT_PARALYSIS))
 			part.set_disabled(BODYPART_NOT_DISABLED)
 	update_disabled_bodyparts()
+	return TRUE
 
 /// Spine wounds hurt the spine organ; a titanium spine does not break; no spine, nothing to hurt
 /mob/living/carbon/aq_injure_spine(severity = WOUND_SEVERITY_SEVERE, cervical = FALSE)
@@ -104,8 +113,10 @@
 		return null
 	if(spine.organ_flags & ORGAN_SYNTHETIC)
 		severity = min(severity, WOUND_SEVERITY_SEVERE)
+	var/obj/item/bodypart/chest = get_bodypart(BODY_ZONE_CHEST)
+	var/datum/wound/before = chest?.get_wound(WOUND_SPINE)
 	. = ..(severity, cervical)
-	if(.)
+	if(. && . != before) // ta sama rana zwrócona bez zmian nie uszkadza kręgosłupa drugi raz
 		spine.applyOrganDamage(severity >= WOUND_SEVERITY_CRITICAL ? spine.fracture_damage : spine.bruise_damage)
 
 /// A transplanted spine is not joined to the brain yet

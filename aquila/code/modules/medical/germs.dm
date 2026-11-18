@@ -147,6 +147,9 @@
 /// Germs one operation step carries into an open limb, from the tool, the hands, the place, the mess and the people around
 /datum/surgery_operation/proc/aq_spread_surgery_germs(atom/movable/operating_on, mob/living/surgeon, tool)
 	var/obj/item/bodypart/limb = operating_on
+	if(isorgan(operating_on)) // operacja na narządzie: zarazki idą do kończyny, w której leży
+		var/obj/item/organ/organ = operating_on
+		limb = organ.get_bodypart_owner()
 	if(!istype(limb) || !limb.owner || !IS_ORGANIC_LIMB(limb) || !LIMB_HAS_ANY_SURGERY_STATE(limb, ALL_SURGERY_SKIN_STATES))
 		return
 	var/mob/living/carbon/patient = limb.owner

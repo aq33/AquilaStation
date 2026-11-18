@@ -1058,6 +1058,10 @@
 	patient.update_mobility()
 	TEST_ASSERT(patient.health >= 0, "The stopped heart lowered health (setup)")
 	TEST_ASSERT(medic.dna.species.aq_wants_cpr(medic, patient), "A lying patient with a stopped heart and full health gets no CPR")
+	// A medic with a mind carries the default martial art: the help click still starts CPR
+	medic.mind_initialize()
+	medic.dna.species.help(medic, patient, medic.mind.martial_art)
+	TEST_ASSERT(patient.aq_cpr_until > world.time, "A medic with the default martial art shakes a stopped heart instead of CPR")
 	heart.Restart()
 	TEST_ASSERT(!medic.dna.species.aq_wants_cpr(medic, patient), "A beating heart gets CPR instead of a shake")
 	ADD_TRAIT(patient, TRAIT_FAKEDEATH, "test")
@@ -1103,7 +1107,7 @@
 	fracture.apply_wound(leg, silent = TRUE)
 	fracture.splinted = TRUE
 	var/datum/wound/blunt/worse = fracture.replace_with(/datum/wound/blunt/compound)
-	TEST_ASSERT(istype(worse) && worse.splinted, "The splint fell off when the fracture got worse")
+	TEST_ASSERT(istype(worse) && worse.splinted && worse.treated, "The splint fell off when the fracture got worse")
 	TEST_ASSERT(!(locate(/obj/item/stack/medical/splint) in get_turf(stitched)), "The splint dropped although it moved to the new wound")
 	qdel(worse)
 	var/obj/item/bodypart/burnt = stitched.get_bodypart(BODY_ZONE_R_ARM)
@@ -1178,6 +1182,14 @@
 	patient.mind.aq_remove_addiction_points(/datum/addiction/opioids, 300)
 	TEST_ASSERT(patient.disgust == 50, "Losing points of an addiction never had ended a withdrawal")
 	TEST_ASSERT(length(GLOB.chemical_reagents_list[/datum/reagent/consumable/coffee].aq_get_addiction_types()), "Coffee does not feed the coffee addict quirk")
+
+	// Points crossing the threshold again keep the running withdrawal cycle (process_addiction ends it once)
+	var/datum/addiction/stims = GLOB.aq_addictions[/datum/addiction/stimulants]
+	patient.mind.aq_add_addiction_points(/datum/addiction/stimulants, stims.gain_threshold + 10)
+	LAZYSET(patient.mind.aq_active_addictions, /datum/addiction/stimulants, 500)
+	patient.mind.aq_remove_addiction_points(/datum/addiction/stimulants, 20)
+	patient.mind.aq_add_addiction_points(/datum/addiction/stimulants, 20)
+	TEST_ASSERT(LAZYACCESS(patient.mind.aq_active_addictions, /datum/addiction/stimulants) == 500, "Crossing the addiction threshold again reset a running withdrawal")
 
 	// The recycler never takes a brain; an empty organ box spends no coolant; the printer gives biomass back
 	var/obj/machinery/aq_biomass_recycler/recycler = allocate(/obj/machinery/aq_biomass_recycler)

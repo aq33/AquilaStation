@@ -70,8 +70,10 @@ GLOBAL_LIST_INIT(aq_tissue_limb_zones, list(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BO
 		owner?.aq_update_tissues()
 
 /obj/item/organ/aq_tissue/applyOrganDamage(d, maximum = maxHealth)
+	var/damage_before = damage
 	. = ..()
-	if(owner && kind == AQ_TISSUE_MUSCLE && (zone == BODY_ZONE_L_LEG || zone == BODY_ZONE_R_LEG))
+	// on_life leczy co tick, także przy zerowych obrażeniach: przeliczaj tylko przy realnej zmianie
+	if(owner && damage != damage_before && kind == AQ_TISSUE_MUSCLE && (zone == BODY_ZONE_L_LEG || zone == BODY_ZONE_R_LEG))
 		owner.aq_update_tissues() // spowolnienie zależy od uszkodzenia
 
 /obj/item/organ/aq_tissue/proc/aq_wound_damage(amount)
@@ -198,24 +200,11 @@ GLOBAL_LIST_INIT(aq_tissue_limb_zones, list(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BO
 		add_movespeed_modifier("aq_tissue_muscles", update = TRUE, priority = 100, override = TRUE, multiplicative_slowdown = slowdown)
 	else
 		remove_movespeed_modifier("aq_tissue_muscles")
-	var/changed = FALSE
 	var/static/list/zone_traits = list(BODY_ZONE_L_ARM = TRAIT_PARALYSIS_L_ARM, BODY_ZONE_R_ARM = TRAIT_PARALYSIS_R_ARM, BODY_ZONE_L_LEG = TRAIT_PARALYSIS_L_LEG, BODY_ZONE_R_LEG = TRAIT_PARALYSIS_R_LEG)
-	for(var/zone in zone_traits)
-		var/trait = zone_traits[zone]
-		var/has = HAS_TRAIT_FROM(src, trait, AQ_TISSUE_TRAIT)
-		if((zone in paralysed) && !has)
-			ADD_TRAIT(src, trait, AQ_TISSUE_TRAIT)
-			changed = TRUE
-		else if(!(zone in paralysed) && has)
-			REMOVE_TRAIT(src, trait, AQ_TISSUE_TRAIT)
-			changed = TRUE
-	if(!changed)
-		return
-	// Bee keeps the old disabled state of a limb, so the paralysis is cleared by hand (as in wounds/spinal.dm)
-	for(var/obj/item/bodypart/part as anything in bodyparts)
-		if(part.disabled == BODYPART_DISABLED_PARALYSIS && !HAS_TRAIT(part, TRAIT_PARALYSIS))
-			part.set_disabled(BODYPART_NOT_DISABLED)
-	update_disabled_bodyparts()
+	var/list/wanted = list()
+	for(var/zone in paralysed)
+		wanted += zone_traits[zone]
+	aq_set_limb_paralysis(AQ_TISSUE_TRAIT, wanted) // spine.dm
 
 /// A limb without blood slowly dies
 /mob/living/carbon/human/Life()

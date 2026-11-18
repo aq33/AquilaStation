@@ -77,4 +77,33 @@
 	TEST_ASSERT(!patient.GetComponent(/datum/component/money_sense), "The NIFSoft effect stayed after the NIF was destroyed")
 	TEST_ASSERT(patient.physiology.hunger_mod == hunger_before, "Destroying the NIF did not restore hunger")
 
+	// EMP zdejmuje tylko własne ogłuszenie implantu: krótsze ogłuszenie z innego źródła zostaje
+	var/obj/item/organ/cyberimp/brain/nif/debug/emp_nif = new()
+	emp_nif.Insert(patient)
+	patient.SetStun(50)
+	emp_nif.emp_act(EMP_HEAVY)
+	TEST_ASSERT(patient.AmountStun() > 0 && patient.AmountStun() <= 50, "EMP on a NIF changed a stun from another source ([patient.AmountStun()])")
+	patient.SetStun(0)
+
+	// Cudzy NIF odbija się przed wymianą: własny zostaje na miejscu
+	var/mob/living/carbon/human/stranger = allocate(/mob/living/carbon/human)
+	var/obj/item/organ/cyberimp/brain/nif/standard/foreign = new()
+	foreign.linked_mob = stranger
+	foreign.stored_ckey = "aq_test_other_owner"
+	TEST_ASSERT(!foreign.Insert(patient), "A NIF bound to someone else went in")
+	TEST_ASSERT(patient.getorganslot(ORGAN_SLOT_BRAIN_NIF) == emp_nif, "A refused foreign NIF pushed out the host's own NIF")
+	foreign.linked_mob = null
+	qdel(foreign)
+	emp_nif.Remove(patient)
+	qdel(emp_nif)
+
+	// Fabryczny program instaluje się po zakończeniu kalibracji
+	var/obj/item/organ/cyberimp/brain/nif/standard/fresh = new()
+	fresh.Insert(patient)
+	fresh.calibration_duration = world.time
+	fresh.perform_calibration()
+	TEST_ASSERT(fresh.is_calibrated && patient.find_nifsoft(/datum/nifsoft/soul_poem), "The preinstalled NIFSoft did not install after calibration")
+	fresh.Remove(patient)
+	qdel(fresh)
+
 #undef TEST_ASSERT

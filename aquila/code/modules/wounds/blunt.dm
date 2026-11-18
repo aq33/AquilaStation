@@ -143,7 +143,7 @@
 
 /datum/wound/blunt/process(delta_time)
 	. = ..()
-	if(QDELETED(src) || !taped || victim.stat == DEAD)
+	if(QDELETED(src) || !taped || victim.stat == DEAD || victim.IsInStasis())
 		return
 	regen_progress += delta_time SECONDS
 	if(!(victim.mobility_flags & MOBILITY_STAND))

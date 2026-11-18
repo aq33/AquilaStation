@@ -315,25 +315,31 @@ GLOBAL_LIST_EMPTY(nif_hivemind_users)
 
 /// Pyta o wiadomość i wysyła ją do całego roju
 /obj/item/hivemind_keyboard/proc/send_message(mob/living/carbon/human/user)
-	if(QDELETED(connected_network))
+	// Pisać może tylko właściciel interfejsu: cudza ręka nie podpisze się jego imieniem
+	var/mob/living/carbon/human/keyboard_owner = source_user?.resolve()
+	if(!keyboard_owner || user != keyboard_owner)
+		to_chat(user, span_warning("Interfejs nie reaguje na twoje gesty."))
+		return
+	// Wiadomość idzie do sieci wybranej przy otwarciu okna, nie do tej, na którą przełączono w trakcie pisania
+	var/datum/component/mind_linker/active_linking/nif/target_network = connected_network
+	if(QDELETED(target_network))
 		to_chat(user, span_warning("Połączenie chyba zostało zerwane."))
 		return
-	var/message = tgui_input_text(user, "Wpisz wiadomość do wysłania.", "Telepatia: [connected_network.name]")
-	if(!message || QDELETED(src) || QDELETED(user) || user.stat == DEAD)
+	var/message = tgui_input_text(user, "Wpisz wiadomość do wysłania.", "Telepatia: [target_network.name]")
+	if(!message || QDELETED(src) || QDELETED(user) || user.stat == DEAD || user != source_user?.resolve())
 		return
 
-	if(QDELETED(connected_network))
+	if(QDELETED(target_network) || !(user == target_network.parent || (user in target_network.linked_mobs)))
 		to_chat(user, span_warning("Połączenie chyba zostało zerwane."))
 		return
 
-	var/mob/living/carbon/human/keyboard_owner = source_user?.resolve() || user
-	var/mob/living/network_owner = connected_network.parent
+	var/mob/living/network_owner = target_network.parent
 	var/hivemind_icon = icon2html('aquila/icons/monke/nif/nif_chat.dmi', user.client, "phone") || ""
 
-	var/formatted_message = "<i><font color=[connected_network.chat_color]>\[[hivemind_icon][connected_network.name]\] <b>[keyboard_owner]:</b> [message]</font></i>"
-	log_directed_talk(user, network_owner, message, LOG_SAY, "mind link ([connected_network.network_name])")
+	var/formatted_message = "<i><font color=[target_network.chat_color]>\[[hivemind_icon][target_network.name]\] <b>[keyboard_owner]:</b> [message]</font></i>"
+	log_directed_talk(user, network_owner, message, LOG_SAY, "mind link ([target_network.network_name])")
 
-	var/list/all_who_can_hear = connected_network.linked_mobs.Copy()
+	var/list/all_who_can_hear = target_network.linked_mobs.Copy()
 	all_who_can_hear |= network_owner
 
 	for(var/mob/living/recipient as anything in all_who_can_hear)

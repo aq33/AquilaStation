@@ -220,8 +220,11 @@ GLOBAL_LIST_INIT(aq_pulse_reagents, list(
 /// A stopped heart does not lower health any more (the core only offers CPR below 0 health), so a lying patient
 /// in cardiac arrest gets CPR on a help click too, with the same checks as the core
 /datum/species/help(mob/living/carbon/human/user, mob/living/carbon/human/target, datum/martial_art/attacker_style)
-	if(attacker_style || !aq_wants_cpr(user, target))
-		return ..()
+	// Każdy umysł ma domyślną sztukę walki: liczy się tylko udany chwyt, potem sztuka walki już nie wchodzi drugi raz
+	if(attacker_style?.help_act(user, target) == MARTIAL_ATTACK_SUCCESS)
+		return TRUE
+	if(!aq_wants_cpr(user, target))
+		return ..(user, target, null)
 	if(HAS_TRAIT(user, TRAIT_NOBREATH))
 		to_chat(user, "<span class='notice'>Nie oddychasz, więc nie możesz przeprowadzić resuscytacji.</span>")
 	else if(!user.getorganslot(ORGAN_SLOT_LUNGS))

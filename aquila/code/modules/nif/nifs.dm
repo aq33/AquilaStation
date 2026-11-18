@@ -117,16 +117,15 @@
 	return ..()
 
 /obj/item/organ/cyberimp/brain/nif/Insert(mob/living/carbon/insertee, special = FALSE, drop_if_replaced = TRUE)
+	// Ochrona przed kradzieżą przed bazowym Insert(): ten wyjąłby najpierw działający NIF nosiciela
+	if(!ishuman(insertee) || (linked_mob && stored_ckey != insertee.ckey && theft_protection))
+		insertee?.audible_message(span_warning("[src] brzęczy ostrzegawczo i nie chce się połączyć."))
+		if(insertee)
+			playsound(insertee, 'sound/machines/buzz-sigh.ogg', 30, TRUE)
+		return FALSE
 	. = ..()
 	if(owner != insertee)
 		return
-
-	if(!ishuman(insertee) || (linked_mob && stored_ckey != insertee.ckey && theft_protection))
-		insertee.audible_message(span_warning("[src] brzęczy ostrzegawczo i sam wysuwa się z głowy."))
-		playsound(insertee, 'sound/machines/buzz-sigh.ogg', 30, TRUE)
-		Remove(insertee)
-		forceMove(insertee.drop_location())
-		return FALSE
 
 	linked_mob = insertee
 	stored_ckey = linked_mob.ckey
@@ -140,7 +139,8 @@
 	linked_mob.AddComponent(/datum/component/nif_examine)
 	RegisterSignal(linked_mob, COMSIG_MOB_DEATH, PROC_REF(damage_on_death))
 
-	if(length(preinstalled_nifsofts) && !length(loaded_nifsofts))
+	// Nieskalibrowany NIF nic nie instaluje: fabryczne programy wchodzą po kalibracji (perform_calibration)
+	if(is_calibrated && length(preinstalled_nifsofts) && !length(loaded_nifsofts))
 		send_message("Wczytywanie fabrycznych NIFSoftów, proszę czekać...")
 		addtimer(CALLBACK(src, PROC_REF(install_preinstalled_nifsofts)), 3 SECONDS)
 
@@ -305,6 +305,8 @@
 			send_message("Kalibracja zakończona.")
 			calibrating = FALSE
 			is_calibrated = TRUE
+			if(length(preinstalled_nifsofts) && !length(loaded_nifsofts))
+				install_preinstalled_nifsofts()
 
 /// Dodaje program do NIF-u. Woła go /datum/nifsoft/New()
 /obj/item/organ/cyberimp/brain/nif/proc/install_nifsoft(datum/nifsoft/loaded_nifsoft)
@@ -392,10 +394,11 @@
 	return FALSE
 
 /obj/item/organ/cyberimp/brain/nif/emp_act(severity)
+	var/stun_before = owner?.AmountStun()
 	. = ..()
 	if(!owner || . & EMP_PROTECT_SELF)
 		return
-	owner.AdjustStun(-200 / severity) // znosi ogłuszenie z bazowego implantu mózgu
+	owner.SetStun(stun_before) // znosi tylko ogłuszenie z bazowego implantu mózgu, cudze zostaje
 	to_chat(owner, span_warning("Czujesz kłujący ból głowy!"))
 	if(!durability_loss_vulnerable)
 		return FALSE
