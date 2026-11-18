@@ -1713,7 +1713,6 @@
 #include "code\modules\surgery\organs\med6\paired_organs.dm"
 #include "code\modules\surgery\organs\med6\pancreas.dm"
 #include "code\modules\surgery\organs\med6\spine.dm"
-#include "code\modules\surgery\organs\med6\tissues.dm"
 #include "code\modules\nif\nifs.dm"
 #include "code\modules\nif\nifs_tgui.dm"
 #include "code\modules\nif\nif_actions.dm"

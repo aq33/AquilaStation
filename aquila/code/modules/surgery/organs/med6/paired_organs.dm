@@ -4,17 +4,13 @@
 // w core zna jeden narząd płuc i jeden nerek, więc para zostaje jednym narządem, który pamięta, które strony ma:
 // - operacja „wycięcie jednego płuca/jednej nerki” zostawia w ciele połowę i daje drugą jako osobny narząd do
 //   przeszczepu (żywy dawca nerki); „dołączenie” wszywa brakującą stronę z takiego narządu;
-// - jedno płuco: płytszy oddech (trochę niedotlenienia przy wysiłku), jedna nerka filtruje słabiej i szybciej się psuje;
-// - odma: głęboka rana kłuta albo cięta klatki piersiowej i złamane żebra mogą zapaść płuco. Pomaga odbarczenie
-//   pustą strzykawką w klatkę (bez trybu walki), zapadnięte oba płuca to brak oddechu.
+// - jedno płuco: płytszy oddech (trochę niedotlenienia przy wysiłku), jedna nerka filtruje słabiej i szybciej się psuje.
 
 /obj/item/organ
 	/// AquilaMed 6: this organ is a left and right pair
 	var/aq_paired = FALSE
 	/// Which sides of the pair it has
 	var/aq_sides = AQ_SIDES_BOTH
-	/// Collapsed sides (lungs: pneumothorax)
-	var/aq_collapsed = NONE
 	/// Name of one half for messages ("płuco", "nerka")
 	var/aq_half_name
 	/// Icon state prefix of a half in organs_med6.dmi
@@ -34,10 +30,9 @@
 	. = ..()
 	aq_paired = (type == /obj/item/organ/lungs || type == /obj/item/organ/lungs/cybernetic || type == /obj/item/organ/lungs/cybernetic/upgraded)
 
-/// Sides that work: present and not collapsed
+/// Sides the pair has
 /obj/item/organ/proc/aq_working_sides()
-	var/working = aq_sides & ~aq_collapsed
-	return !!(working & AQ_SIDE_LEFT) + !!(working & AQ_SIDE_RIGHT)
+	return !!(aq_sides & AQ_SIDE_LEFT) + !!(aq_sides & AQ_SIDE_RIGHT)
 
 /obj/item/organ/proc/aq_side_name(side)
 	return side == AQ_SIDE_LEFT ? "lewe" : "prawe"
@@ -68,87 +63,15 @@
 	. = ..()
 	if(. || !aq_paired)
 		return
-	if(aq_collapsed)
-		var/list/sides = list()
-		for(var/side in list(AQ_SIDE_LEFT, AQ_SIDE_RIGHT))
-			if(aq_collapsed & side)
-				sides += aq_side_name(side)
-		return "<b>Odma opłucnowa:</b> zapadnięte [jointext(sides, " i ")] płuco. Odbarcz pustą strzykawką w klatkę piersiową."
 	if(aq_sides != AQ_SIDES_BOTH)
 		return "Tylko [(aq_sides & AQ_SIDE_LEFT) ? "lewa" : "prawa"] strona: [aq_half_name == "nerka" ? "jedna nerka" : "jedno płuco"]."
 
 // --- Płuca ---
 
 /obj/item/organ/lungs/check_breath(datum/gas_mixture/breath, mob/living/carbon/human/H)
-	if(aq_paired && aq_working_sides() == 0) // oba zapadnięte: powietrze nie wchodzi
-		return ..(null, H)
 	. = ..()
 	if(aq_paired && aq_working_sides() == 1 && H.getOxyLoss() < 20 && !H.failed_last_breath)
 		H.adjustOxyLoss(H.m_intent == MOVE_INTENT_RUN ? 0.6 : 0.2)
-
-/// Pneumothorax: one side collapses
-/obj/item/organ/lungs/proc/aq_collapse(side)
-	if(!aq_paired)
-		return FALSE
-	if(!side)
-		var/list/open = list()
-		for(var/check in list(AQ_SIDE_LEFT, AQ_SIDE_RIGHT))
-			if((aq_sides & check) && !(aq_collapsed & check))
-				open += check
-		if(!length(open))
-			return FALSE
-		side = pick(open)
-	if(!(aq_sides & side) || (aq_collapsed & side))
-		return FALSE
-	aq_collapsed |= side
-	if(owner)
-		to_chat(owner, "<span class='userdanger'>Coś pęka ci w piersi, a [aq_side_name(side)] płuco przestaje się nabierać powietrza!</span>")
-	return TRUE
-
-/obj/item/organ/lungs/proc/aq_decompress()
-	if(!aq_collapsed)
-		return FALSE
-	aq_collapsed = NONE
-	return TRUE
-
-/obj/item/organ/lungs/Remove(mob/living/carbon/M, special = 0)
-	aq_collapsed = NONE // poza ciałem płuco nie ma opłucnej
-	return ..()
-
-/// A deep stab or cut in the chest can collapse a lung
-/datum/wound/pierce/on_apply()
-	. = ..()
-	aq_roll_pneumothorax(10 * severity)
-
-/datum/wound/slash/on_apply()
-	. = ..()
-	aq_roll_pneumothorax(5 * severity)
-
-/datum/wound/blunt/on_apply()
-	. = ..()
-	if(severity >= WOUND_SEVERITY_CRITICAL) // żebra przebijają opłucną
-		aq_roll_pneumothorax(15)
-
-/datum/wound/proc/aq_roll_pneumothorax(chance)
-	if(aq_from_treatment || limb?.body_zone != BODY_ZONE_CHEST || severity < WOUND_SEVERITY_SEVERE || !victim || !prob(chance))
-		return
-	var/obj/item/organ/lungs/lungs = victim.getorganslot(ORGAN_SLOT_LUNGS)
-	lungs?.aq_collapse()
-
-/// Needle decompression: an empty syringe into the chest of someone with a collapsed lung
-/obj/item/reagent_containers/syringe/afterattack(atom/target, mob/user, proximity)
-	var/mob/living/carbon/patient = target
-	if(!proximity || !istype(patient) || reagents.total_volume || user.combat_mode || user.zone_selected != BODY_ZONE_CHEST)
-		return ..()
-	var/obj/item/organ/lungs/lungs = patient.getorganslot(ORGAN_SLOT_LUNGS)
-	if(!lungs?.aq_collapsed)
-		return ..()
-	user.visible_message("<span class='notice'>[user] wbija [src] między żebra [patient].</span>", "<span class='notice'>Wbijasz [src] między żebra [patient], żeby wypuścić powietrze z opłucnej...</span>")
-	if(!do_after(user, 3 SECONDS, target = patient) || QDELETED(lungs) || lungs.owner != patient)
-		return
-	if(lungs.aq_decompress())
-		patient.visible_message("<span class='notice'>Z [src] syczy powietrze, a [patient] znów łapie głęboki oddech.</span>")
-		patient.adjustBruteLoss(1)
 
 // --- Nerki ---
 
@@ -183,10 +106,8 @@
 /datum/surgery_operation/organ/aq_split_pair/all_required_strings()
 	return list("narząd ma obie strony") + ..()
 
-/// Collapsed side first, otherwise the left one (as in a living kidney donation)
+/// The left one, as in a living kidney donation
 /datum/surgery_operation/organ/aq_split_pair/proc/pick_side(obj/item/organ/organ)
-	if(organ.aq_collapsed & AQ_SIDE_RIGHT)
-		return AQ_SIDE_RIGHT
 	return AQ_SIDE_LEFT
 
 /datum/surgery_operation/organ/aq_split_pair/on_preop(obj/item/organ/organ, mob/living/surgeon, obj/item/tool, list/operation_args)
@@ -200,7 +121,6 @@
 	half.setOrganDamage(organ.damage)
 	half.aq_update_half()
 	organ.aq_sides &= ~side
-	organ.aq_collapsed &= ~side
 	organ.aq_update_half()
 	display_results(surgeon, organ.owner, span_notice("Wycinasz [half.name]."), span_notice("[surgeon] wycina [half.name] [FORMAT_ORGAN_OWNER(organ)]."), span_notice("[surgeon] wycina coś z [FORMAT_ORGAN_OWNER(organ)]."))
 

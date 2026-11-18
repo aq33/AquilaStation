@@ -55,4 +55,4 @@
 
 /datum/techweb_node/cyber_organs/New()
 	. = ..()
-	design_ids += list("aq_cybernetic_kidneys", "aq_cybernetic_spleen", "aq_cybernetic_intestines", "aq_cybernetic_adrenals", "aq_cybernetic_pancreas", "aq_cybernetic_spine", "aq_titanium_bone", "aq_hydraulic_muscle", "aq_synthetic_vessels", "aq_synthesizer")
+	design_ids += list("aq_cybernetic_kidneys", "aq_cybernetic_spleen", "aq_cybernetic_intestines", "aq_cybernetic_adrenals", "aq_cybernetic_pancreas", "aq_cybernetic_spine", "aq_synthesizer")

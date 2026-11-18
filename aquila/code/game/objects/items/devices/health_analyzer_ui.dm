@@ -225,7 +225,7 @@
 			if(check_zone(organ.zone) != zone || !organ.damage || organ.aq_scanner_hidden) // oczy, usta i pachwina należą do głowy i klatki; błona maskująca (organ_mods_eris.dm)
 				continue
 			var/failing = organ.organ_flags & ORGAN_FAILING
-			part += list(aq_injury("[capitalize(organ.name)] [failing ? "niewydolny" : "uszkodzony"]", "Operacja, leki na narząd", advanced ? round(organ.damage) : null, failing ? 2 : 1))
+			part += list(aq_injury("[capitalize(organ.name)] [failing ? "niewydolny" : "uszkodzony"]", organ.aq_treat_hint(), advanced ? round(organ.damage) : null, failing ? 2 : 1))
 		injuries[zone] = part
 	data["injuries"] = injuries
 	data["wounds"] = wounds

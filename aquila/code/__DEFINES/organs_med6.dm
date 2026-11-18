@@ -11,8 +11,3 @@
 #define AQ_SIDE_LEFT (1<<0)
 #define AQ_SIDE_RIGHT (1<<1)
 #define AQ_SIDES_BOTH (AQ_SIDE_LEFT|AQ_SIDE_RIGHT)
-
-/// Tkanki kończyn (surgery/organs/med6/tissues.dm)
-#define AQ_TISSUE_BONE (1<<0)
-#define AQ_TISSUE_MUSCLE (1<<1)
-#define AQ_TISSUE_VESSELS (1<<2)
