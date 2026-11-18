@@ -1,6 +1,6 @@
-/datum/test_chamber_kit/pr_667
-	name = "PR 667: AquilaMed 6: trzustka, przełyk, kręgosłup, pary płuc i nerek, tkanki kończyn, NIF"
-	pr = "aq33/AquilaStation#667"
+/datum/test_chamber_kit/pr_652_med6
+	name = "PR 652 (część 2): AquilaMed 6: trzustka, przełyk, kręgosłup, pary płuc i nerek, tkanki kończyn, NIF"
+	pr = "aq33/AquilaStation#652"
 	description = "1) Trzustka: wytnij ją komuś i nakarm go słodyczami (cukier z zestawu): senność, mdłości, linia hiperglikemii w skanerze; insulina pomaga. Trzustka cybernetyczna po emagu dosypuje stymulanty. \
 	2) Przełyk: jedz na leżąco, aż kęs utknie (nie mówisz, nie oddychasz); ktoś obok klika klatkę bez trybu walki (chwyt Heimlicha). Bez przełyku nie da się jeść ani pić. \
 	3) Kręgosłup: wyjmij go operacją z klatki: bezwładne ręce i nogi. Wszczep kręgosłup tytanowy, potem operacja połączenia pnia mózgu na otwartej czaszce. \
