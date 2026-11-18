@@ -20,7 +20,8 @@
 	. = ..()
 	// Tylko na mapie: przedmiot złapany albo wrzucony do pojemnika w tym samym ticku przesuwałby ikonę w ręce
 	if(from_hand && !QDELETED(src) && isturf(loc))
-		smooth_throw_start(start, speed)
+		// Prędkość z datumu rzutu: throw_at dolicza do niej pęd biegnącego rzucającego
+		smooth_throw_start(start, throwing?.speed || speed)
 
 /// Cofa obraz przedmiotu na pole startu rzutu i płynnie zdejmuje przesunięcie
 /obj/item/proc/smooth_throw_start(turf/start, speed)

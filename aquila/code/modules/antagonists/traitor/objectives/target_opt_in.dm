@@ -18,12 +18,16 @@
 	var/datum/preferences/prefs = GLOB.preferences_datums[ckey(candidate.key)]
 	return prefs?.active_character?.features["antag_target_opt_in"] ? TRUE : FALSE
 
-/// Czy umysł jest już celem któregoś celu (objective) innego antagonisty
+/// Czy umysł jest już celem któregoś celu (objective) albo kontraktu innego antagonisty
 /proc/is_antag_objective_target(datum/mind/candidate)
 	for(var/datum/antagonist/antag as anything in GLOB.antagonists)
 		for(var/datum/objective/objective as anything in antag.objectives)
 			if(objective.target == candidate)
 				return TRUE
+		// Cele kontraktora nie trafiają do objectives, tylko do jego huba
+		var/datum/antagonist/traitor/traitor = antag
+		if(istype(traitor) && (candidate in traitor.contractor_hub?.assigned_targets))
+			return TRUE
 	return FALSE
 
 /// Kandydaci z listy, którzy sami chcą być celem: tylko obecni w grze (preferencje zostają też po wyjściu)

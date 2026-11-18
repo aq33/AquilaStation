@@ -151,6 +151,37 @@ class VoiceServerTest(unittest.TestCase):
 		voice_server.transcribe_elevenlabs(args, wav(), "pl")
 		self.assertEqual(sent["keyterms"], ["syndykat"])
 
+	def test_prompt_follows_recording_not_service_default(self):
+		args = make_args("elevenlabs")
+		args.language = "en"  # operator z domyślnym angielskim
+		self.assertEqual(voice_server.prompt_for(args, "en"), "Hello, this is the captain.")
+		self.assertEqual(voice_server.prompt_for(args, "pl"), "Halo, tu kapitan.")
+		sent = {}
+		original = voice_server.post_multipart
+		voice_server.post_multipart = lambda url, fields, data, headers=None: sent.update(fields) or {"text": "ok"}
+		self.addCleanup(setattr, voice_server, "post_multipart", original)
+		voice_server.transcribe_elevenlabs(args, wav(), "en")
+		self.assertNotIn("keyterms", sent, "Polskie słownictwo poszło do angielskiego nagrania")
+
+	def test_language_is_fixed_at_start(self):
+		self.start_server("elevenlabs")
+		self.sync(languages={TOKEN: "en"})
+		conn = self.connect_page()
+		self.sync([{"token": TOKEN, "cmd": "start", "seq": 1, "channel": "say"}], {TOKEN: "en"})
+		self.sync()  # gracz przełączył grę na polski w trakcie mówienia
+		status, _ = self.request(f"/audio?t={TOKEN}&c={conn}&seq=1&consent=elevenlabs", wav(), {"Content-Type": "audio/wav"})
+		self.assertEqual(status, 200)
+		self.assertEqual(self.languages, ["en"], "Nagranie rozpoznane w języku zmienionym po starcie")
+
+	def test_info_gives_language_before_consent(self):
+		self.start_server("elevenlabs")
+		self.sync(languages={TOKEN: "en"})
+		status, body = self.request(f"/info?t={TOKEN}")
+		self.assertEqual(status, 200)
+		self.assertEqual(body["lang"], "en", "Strona nie zna języka gracza przed ekranem zgody")
+		status, body = self.request("/info")
+		self.assertNotIn("lang", body)
+
 	def test_english_hallucinations_are_dropped(self):
 		self.assertEqual(voice_server.clean_text("Thanks for watching!"), "")
 		self.assertEqual(voice_server.clean_text("Security to the bridge."), "Security to the bridge.")

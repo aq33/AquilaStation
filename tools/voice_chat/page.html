@@ -499,7 +499,7 @@ function showPrivacyNote() {
 /// Pyta serwis, dokąd idzie nagranie. Bez odpowiedzi zakładamy chmurę (zgoda zawsze wymagana).
 async function loadInfo() {
 	try {
-		const resp = await fetch("/info", { cache: "no-store" });
+		const resp = await fetch(`/info?t=${token}`, { cache: "no-store" });
 		if (resp.ok) return await resp.json();
 	} catch (err) { /* serwis niedostępny */ }
 	return null;
@@ -513,6 +513,8 @@ async function start() {
 		return;
 	}
 	info = loaded;
+	// Język gracza znany przed ekranem zgody (stary link bez l=en po zmianie języka gry)
+	setLanguage(info.lang);
 	if (info.provider && stored("aq_voice_consent") !== info.provider) {
 		showPrivacyNote();
 		el("provider-name").textContent = info.provider_name;

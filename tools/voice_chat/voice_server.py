@@ -71,7 +71,7 @@ class Session:
 		# Nowa karta z tym samym tokenem odłącza starą, a nagranie przyjmujemy tylko od bieżącej.
 		self.listener = None
 		self.replaced = False  # nowa karta odłączyła starą (gra ostrzega gracza)
-		self.pending = {}  # seq -> (kanał, time.monotonic() polecenia start)
+		self.pending = {}  # seq -> (kanał, time.monotonic() polecenia start, język sesji w chwili startu)
 		self.consent_logged = None  # dostawca, na którego zgodę tej sesji już zapisano w logu
 
 	@property
@@ -124,7 +124,7 @@ class State:
 					channel = cmd.get("channel")
 					if channel not in CHANNELS:
 						continue
-					session.pending[seq] = (channel, time.monotonic())
+					session.pending[seq] = (channel, time.monotonic(), session.language)
 					session.push("start", {"seq": seq, "channel": channel, "max": cmd.get("max", 15)})
 				elif cmd.get("cmd") == "stop":
 					session.push("stop", {"seq": seq})
@@ -136,7 +136,7 @@ class State:
 					self.sessions.pop(token).push("ended", {})
 			now = time.monotonic()
 			for session in self.sessions.values():
-				for seq, (_, started) in list(session.pending.items()):
+				for seq, (_, started, _) in list(session.pending.items()):
 					if now - started > PENDING_TTL:
 						del session.pending[seq]
 			results, self.results = self.results, []
@@ -151,9 +151,10 @@ class State:
 		with self.lock:
 			session = self.sessions.get(token)
 			if not session or not session.listener or not hmac.compare_digest(session.listener[1].encode(), conn.encode("utf-8", "surrogateescape")):
-				return None, None
+				return None, None, None
 			entry = session.pending.pop(seq, None)
-			return session, entry[0] if entry else None
+			# Język z chwili startu: zmiana języka w trakcie nagrania działa dopiero od następnego
+			return (session, entry[0], entry[2]) if entry else (session, None, None)
 
 	def release(self, token, conn):
 		"""Karta zamknięta albo odświeżona: zwalniamy jej połączenie od razu, bez czekania na zerwane gniazdo."""
@@ -225,7 +226,9 @@ def post_multipart(url, fields, wav, headers=None, timeout=30):
 # Dostawcy rozpoznawania mowy. Każdy dostaje nagranie WAV 16 kHz mono i zwraca surowy tekst.
 def prompt_for(args, language):
 	"""Podpowiedź ze słownictwem gry w języku nagrania (polska podpowiedź psułaby angielską mowę)."""
-	return args.prompt if language == args.language else args.prompt_en if language == "en" else ""
+	if language == "en":
+		return args.prompt_en
+	return args.prompt if language == "pl" else ""
 
 
 def transcribe_whisper(args, wav, language):
@@ -244,7 +247,7 @@ ELEVENLABS_LANGUAGES = {"pl": "pol", "en": "eng"}
 
 def transcribe_elevenlabs(args, wav, language):
 	fields = {"model_id": args.model or "scribe_v2", "language_code": ELEVENLABS_LANGUAGES.get(language, language), "tag_audio_events": "false"}
-	if args.keyterms and language == args.language:  # słownictwo z keyterms.txt jest polskie
+	if args.keyterms and language == "pl":  # słownictwo z keyterms.txt jest polskie
 		fields["keyterms"] = args.keyterms  # słowa z gry, do których model ma się skłaniać (+20% ceny)
 	headers = {"xi-api-key": args.api_key}
 	return post_multipart("https://api.elevenlabs.io/v1/speech-to-text", fields, wav, headers).get("text", "")
@@ -374,7 +377,14 @@ class Handler(BaseHTTPRequestHandler):
 		if url.path == "/health":
 			return self.send_body(200, {"ok": True})
 		if url.path == "/info":
-			return self.send_body(200, privacy_info(self.server.args))
+			info = privacy_info(self.server.args)
+			# Język gracza przed ekranem zgody (stary link bez l=en): zgoda ma być w jego języku
+			token = self.token_arg(query)
+			with self.server.state.lock:
+				session = self.server.state.sessions.get(token) if token else None
+				if session:
+					info["lang"] = session.language or self.server.args.language
+			return self.send_body(200, info)
 		self.send_body(404, {"error": "nie ma takiej strony"})
 
 	def do_POST(self):
@@ -467,7 +477,7 @@ class Handler(BaseHTTPRequestHandler):
 		if body is None:
 			return self.send_body(413, {"error": "za długie nagranie"})
 		conn = (query.get("c") or [""])[0]
-		session, channel = self.server.state.take_pending(token, seq, conn) if token else (None, None)
+		session, channel, language = self.server.state.take_pending(token, seq, conn) if token else (None, None, None)
 		if not channel:
 			# Strona może wysłać tylko to, o co poprosiła gra (gracz trzymał klawisz).
 			return self.send_body(409, {"error": "gra nie czeka na to nagranie"})
@@ -498,14 +508,14 @@ class Handler(BaseHTTPRequestHandler):
 		saved = save_recording(self.server.args, session, seq, body)
 		started = time.monotonic()
 		try:
-			raw = transcribe(self.server.args, body, session.language)
+			raw = transcribe(self.server.args, body, language)
 		except (urllib.error.URLError, OSError, ValueError) as e:
 			state.add_result(session, seq, channel, "", "rozpoznawanie mowy nie odpowiada")
 			print(f"[glos] błąd rozpoznawania ({self.server.args.backend}): {e}", flush=True)
 			return self.send_body(502, {"error": "rozpoznawanie mowy nie odpowiada"})
 		text = clean_text(raw)
 		took = time.monotonic() - started
-		print(f"[glos] {session.ckey} ({channel}, {session.language or self.server.args.language}, {seconds:.1f} s nagrania, {took:.2f} s): {raw.strip()!r} -> {text!r}", flush=True)
+		print(f"[glos] {session.ckey} ({channel}, {language or self.server.args.language}, {seconds:.1f} s nagrania, {took:.2f} s): {raw.strip()!r} -> {text!r}", flush=True)
 		if saved:
 			with open(saved + ".txt", "w", encoding="utf-8") as f:
 				f.write(raw.strip() + "\n")

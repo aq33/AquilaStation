@@ -115,6 +115,16 @@
 		if(length(opted_in_antag_targets(list(volunteer.mind))))
 			. = Fail("An opted-in player already targeted by another antagonist still gets priority")
 
+		other_antag.objectives -= taken
+		// Cel kontraktu (hub kontraktora, poza objectives) też zajmuje chętnego
+		var/datum/antagonist/traitor/contractor = new
+		contractor.contractor_hub = new
+		contractor.contractor_hub.assigned_targets += volunteer.mind
+		if(length(opted_in_antag_targets(list(volunteer.mind))))
+			. = Fail("An opted-in player who is a contract target still gets priority")
+		QDEL_NULL(contractor.contractor_hub)
+		qdel(contractor)
+
 		// Losowy wygląd postaci (be_random_body) nie kasuje opcji
 		prefs.active_character.randomise()
 		if(!wants_to_be_antag_target(volunteer.mind))
