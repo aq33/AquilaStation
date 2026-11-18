@@ -2500,6 +2500,7 @@
 #include "code\modules\unit_tests\aquila_planet_review_fixes.dm"
 #include "code\modules\unit_tests\aquila_sabre_shuttle.dm"
 #include "code\modules\unit_tests\aquila_sabre_tether.dm"
+#include "code\modules\unit_tests\aquila_overmap_explode_area.dm"
 #include "code\modules\unit_tests\aquila_custom_shuttle_overmap.dm"
 #include "code\modules\unit_tests\aquila_ship_thrusters.dm"
 #include "code\modules\unit_tests\aquila_he_pipe_no_network.dm"
