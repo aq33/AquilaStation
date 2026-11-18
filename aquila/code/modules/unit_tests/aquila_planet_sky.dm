@@ -1,0 +1,71 @@
+// The upstream assert macros are #undef'd at the end of code/modules/unit_tests/_unit_tests.dm, so this modular test carries its own copies
+#define TEST_ASSERT(assertion, reason) if (!(assertion)) { return Fail("Assertion failed: [reason || "No reason"]") }
+
+#define TEST_ASSERT_EQUAL(a, b, message) do { \
+	var/lhs = ##a; \
+	var/rhs = ##b; \
+	if (lhs != rhs) { \
+		return Fail("Expected [isnull(lhs) ? "null" : lhs] to be equal to [isnull(rhs) ? "null" : rhs].[message ? " [message]" : ""]"); \
+	} \
+} while (FALSE)
+
+/// AQUILA - planeta na niebie: każdy typ planety widoczny z okrętu ma swoje tekstury w plikach generatora
+/datum/unit_test/planet_sky_states
+
+/datum/unit_test/planet_sky_states/Run()
+	var/list/surface_states = icon_states('aquila/icons/effects/planet_sky_surface.dmi')
+	var/list/disk_states = icon_states('aquila/icons/effects/planet_sky_disk.dmi')
+	for(var/state in list("base", "displace", "mask", "shade", "atmosphere"))
+		TEST_ASSERT(state in disk_states, "planet_sky_disk.dmi has no state [state]")
+	var/shown = 0
+	for(var/planet_type in GLOB.planet_type_prototypes)
+		var/datum/planet_type/prototype = GLOB.planet_type_prototypes[planet_type]
+		if(!prototype.sky_state)
+			continue
+		shown++
+		TEST_ASSERT(prototype.sky_state in surface_states, "[planet_type] has sky_state [prototype.sky_state] missing from planet_sky_surface.dmi")
+		if(prototype.sky_clouds)
+			TEST_ASSERT(prototype.sky_clouds in surface_states, "[planet_type] has sky_clouds [prototype.sky_clouds] missing from planet_sky_surface.dmi")
+		TEST_ASSERT(prototype.sky_scale > 0, "[planet_type] has no sky_scale")
+	TEST_ASSERT(shown > 0, "No planet type is visible in the sky")
+	TEST_ASSERT(!GLOB.planet_type_prototypes[/datum/planet_type/asteroid]?.sky_state, "An asteroid field shouldn't show up as a planet in the sky")
+
+/// AQUILA - planeta na niebie: wybór najbliższej planety i składanie obrazu (tarcza z filtrami, chmury, poświata)
+/datum/unit_test/planet_sky_layer
+
+/datum/unit_test/planet_sky_layer/Run()
+	var/turf/viewer = run_loc_floor_bottom_left
+	var/obj/structure/overmap/planet/hidden = new(viewer, /datum/planet_type/asteroid)
+	var/obj/structure/overmap/planet/near = new(locate(viewer.x + 1, viewer.y + 1, viewer.z), /datum/planet_type/moon)
+	var/obj/structure/overmap/planet/far = new(run_loc_floor_top_right, /datum/planet_type/lava)
+	var/list/planets = list(far, hidden, near)
+	TEST_ASSERT_EQUAL(pick_sky_planet(planets, viewer), near, "The nearest planet visible in the sky wasn't picked")
+	TEST_ASSERT_EQUAL(pick_sky_planet(list(far, hidden), viewer), far, "An asteroid field was picked instead of a planet")
+	TEST_ASSERT_EQUAL(pick_sky_planet(list(hidden), viewer), null, "An asteroid field showed up in the sky")
+
+	var/atom/movable/screen/parallax_layer/planet_sky/sky = new(null, world.view)
+	sky.show_planet(far.planet_type, TRUE)
+	TEST_ASSERT(sky.body in sky.vis_contents, "The planet disk isn't shown")
+	TEST_ASSERT(sky.shade in sky.vis_contents, "The planet shadow isn't shown")
+	TEST_ASSERT(sky.atmosphere in sky.vis_contents, "A planet with an atmosphere has no glow")
+	TEST_ASSERT_EQUAL(length(sky.body.filters), 2, "The disk should bend the texture (displace) and cut it to a circle (alpha)")
+	TEST_ASSERT_EQUAL(length(sky.body.vis_contents), 4, "A planet with clouds should have two surface and two cloud strips")
+	var/obj/effect/overlay/planet_sky_part/strip = sky.surface_strips[1]
+	TEST_ASSERT_EQUAL(strip.icon_state, far.planet_type.sky_state, "The surface strip doesn't show the planet type")
+	TEST_ASSERT_EQUAL(sky.body.transform.a, far.planet_type.sky_scale, "The disk isn't scaled for the planet type")
+
+	sky.show_planet(near.planet_type, FALSE)
+	TEST_ASSERT(!(sky.atmosphere in sky.vis_contents), "A moon without an atmosphere still glows")
+	TEST_ASSERT_EQUAL(length(sky.body.vis_contents), 2, "A planet without clouds still shows cloud strips")
+	TEST_ASSERT_EQUAL(sky.body.transform.a, near.planet_type.sky_scale, "The disk wasn't rescaled for the new planet")
+
+	sky.show_planet(null)
+	TEST_ASSERT_EQUAL(length(sky.vis_contents), 0, "The sky still shows a planet")
+
+	qdel(sky)
+	qdel(hidden, TRUE)
+	qdel(near, TRUE)
+	qdel(far, TRUE)
+
+#undef TEST_ASSERT
+#undef TEST_ASSERT_EQUAL

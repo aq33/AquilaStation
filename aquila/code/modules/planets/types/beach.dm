@@ -3,6 +3,9 @@
 // Ciepła i oddychalna atmosfera, deszcze i burze (pogoda „lush”), płycizny z rybami i głębia, w której trzeba płynąć.
 
 /datum/planet_type/beach
+	sky_state = "beach"
+	sky_clouds = "clouds"
+	sky_atmosphere_color = "#8cc8ff"
 	name = "planeta oceaniczna"
 	desc = "Wzorcowe miejsce na urlop: ciepło, wygodnie i da się oddychać. Piaszczyste plaże, łąki i dżungla między płyciznami a głębinami oceanu."
 	overmap_icon_state = "planet_ocean"
