@@ -628,14 +628,13 @@
 		TEST_ASSERT(patient.getToxLoss() == tox, "A catheter did not hold off the urine poisoning")
 
 
-/// Adrenals hold the adrenaline reserve, marrow makes blood and rejects another blood type
+/// Adrenals hold the adrenaline reserve
 /datum/unit_test/aquila_glands
 
 /datum/unit_test/aquila_glands/Run()
 	var/mob/living/carbon/human/patient = allocate(/mob/living/carbon/human)
 	var/obj/item/organ/adrenals/adrenals = patient.getorganslot(ORGAN_SLOT_ADRENALS)
-	var/obj/item/organ/marrow/marrow = patient.getorganslot(ORGAN_SLOT_MARROW)
-	TEST_ASSERT(istype(adrenals) && istype(marrow), "A human has no adrenals or marrow")
+	TEST_ASSERT(istype(adrenals), "A human has no adrenals")
 
 	// Damaged glands hold less, none hold nothing, cybernetic hold more
 	TEST_ASSERT(patient.aq_adrenal_capacity() == 100, "Healthy adrenals do not hold the full reserve")
@@ -651,32 +650,6 @@
 	for(var/i in 1 to 400)
 		patient.aq_handle_adrenal_glands()
 	TEST_ASSERT(patient.aq_adrenal_reserve > 100, "Cybernetic adrenals do not hold more")
-
-	// Blood regeneration follows the marrow
-	var/healthy = patient.get_heart_blood_regeneration_multiplier()
-	TEST_ASSERT(healthy > 0, "No blood regeneration with healthy marrow")
-	marrow.applyOrganDamage(marrow.maxHealth / 2)
-	TEST_ASSERT(patient.get_heart_blood_regeneration_multiplier() < healthy, "Damaged marrow makes blood as fast")
-	marrow.Remove(patient)
-	TEST_ASSERT(patient.get_heart_blood_regeneration_multiplier() < healthy / 5, "Blood comes back without marrow")
-
-	// Marrow from a donor of another blood type is rejected
-	marrow.setOrganDamage(0)
-	marrow.donor_blood_type = patient.dna.blood_type == "O-" ? "AB+" : "O-"
-	marrow.Insert(patient)
-	TEST_ASSERT(marrow.is_rejected(), "Marrow of another blood type is not rejected")
-	var/tox = patient.getToxLoss()
-	marrow.on_life()
-	TEST_ASSERT(patient.getToxLoss() > tox && marrow.damage > 0, "Rejected marrow does no harm")
-	marrow.donor_blood_type = patient.dna.blood_type
-	TEST_ASSERT(!marrow.is_rejected(), "Marrow of the same blood type is rejected")
-
-	// Radiation hurts the marrow
-	marrow.setOrganDamage(0)
-	ADD_TRAIT(patient, TRAIT_IRRADIATED, "test")
-	marrow.on_life()
-	TEST_ASSERT(marrow.damage > 0, "Radiation does not hurt the marrow")
-	REMOVE_TRAIT(patient, TRAIT_IRRADIATED, "test")
 
 /// The larynx gives the voice: none means mute, a transplanted one speaks with the donor's voice
 /datum/unit_test/aquila_larynx

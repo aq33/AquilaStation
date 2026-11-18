@@ -8,7 +8,6 @@
 	var/obj/item/organ/spleen/mutantspleen = /obj/item/organ/spleen
 	var/obj/item/organ/intestines/mutantintestines = /obj/item/organ/intestines
 	var/obj/item/organ/adrenals/mutantadrenals = /obj/item/organ/adrenals
-	var/obj/item/organ/marrow/mutantmarrow = /obj/item/organ/marrow
 
 /// Does this species get the AquilaMed 5 organs of a body with blood
 /datum/species/proc/aq_has_med5_organs()
@@ -32,7 +31,6 @@
 	aq_regenerate_organ(C, ORGAN_SLOT_SPLEEN, wanted ? mutantspleen : null, replace_current)
 	aq_regenerate_organ(C, ORGAN_SLOT_INTESTINES, wanted ? mutantintestines : null, replace_current)
 	aq_regenerate_organ(C, ORGAN_SLOT_ADRENALS, wanted ? mutantadrenals : null, replace_current)
-	aq_regenerate_organ(C, ORGAN_SLOT_MARROW, wanted ? mutantmarrow : null, replace_current)
 	aq_regenerate_organ(C, ORGAN_SLOT_LARYNX, aq_larynx_type(), replace_current)
 	// Without a stack by choice: none is given, but one a medic implanted later stays (cortical_stack.dm)
 	if(!C.has_quirk(/datum/quirk/no_cortical_stack))
@@ -43,10 +41,9 @@
 	internal_organs += new /obj/item/organ/spleen
 	internal_organs += new /obj/item/organ/intestines
 	internal_organs += new /obj/item/organ/adrenals
-	internal_organs += new /obj/item/organ/marrow
 	internal_organs += new /obj/item/organ/larynx
 	return ..()
 
 /datum/techweb_node/cyber_organs/New()
 	. = ..()
-	design_ids += list("aq_cybernetic_kidneys", "aq_cybernetic_spleen", "aq_cybernetic_intestines", "aq_cybernetic_adrenals", "aq_cybernetic_marrow", "aq_synthesizer")
+	design_ids += list("aq_cybernetic_kidneys", "aq_cybernetic_spleen", "aq_cybernetic_intestines", "aq_cybernetic_adrenals", "aq_synthesizer")

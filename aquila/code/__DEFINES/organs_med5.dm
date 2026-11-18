@@ -4,7 +4,6 @@
 #define ORGAN_SLOT_SPLEEN "spleen"
 #define ORGAN_SLOT_INTESTINES "intestines"
 #define ORGAN_SLOT_ADRENALS "adrenals"
-#define ORGAN_SLOT_MARROW "marrow"
 #define ORGAN_SLOT_LARYNX "larynx"
 #define ORGAN_SLOT_CORTICAL_STACK "cortical_stack"
 #define ORGAN_SLOT_AQ_TRANSLATOR "aq_translator_implant"
