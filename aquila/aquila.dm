@@ -678,6 +678,7 @@
 #include "code\modules\client\preferences.dm"
 #include "code\modules\client\preferences_toggles.dm"
 #include "code\modules\client\preferences_menu\preference_entry.dm"
+#include "code\modules\client\preferences_menu\display_names_pl.dm"
 #include "code\modules\client\preferences_menu\entries_character.dm"
 #include "code\modules\client\preferences_menu\entries_player.dm"
 #include "code\modules\client\preferences_menu\middleware.dm"
