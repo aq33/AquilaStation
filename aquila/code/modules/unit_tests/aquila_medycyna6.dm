@@ -91,7 +91,7 @@
 	TEST_ASSERT(!patient.aq_can_swallow() && !glass.canconsume(patient, patient), "A body without an esophagus can drink")
 	qdel(esophagus)
 
-/// AQUILA - AquilaMed 6 spine organ: spine wounds hurt it, a dead one paralyses the legs, none paralyses everything,
+/// AQUILA - AquilaMed 6 spine organ: fractures stay wounds, a dead one paralyses the legs, none paralyses everything,
 /// a titanium one does not break
 /datum/unit_test/aquila_spine_organ
 
@@ -101,12 +101,9 @@
 	TEST_ASSERT(istype(spine), "A human has no spine")
 	TEST_ASSERT(!HAS_TRAIT(patient, TRAIT_PARALYSIS_L_LEG), "A healthy spine paralyses the legs")
 
+	// A broken spine is only the wound: the organ is not hurt twice for it
 	patient.aq_injure_spine(WOUND_SEVERITY_CRITICAL)
-	TEST_ASSERT(spine.damage >= spine.fracture_damage, "A broken spine did not hurt the spine organ")
-	var/after_fracture = spine.damage
-	patient.aq_injure_spine(WOUND_SEVERITY_CRITICAL)
-	patient.aq_injure_spine(WOUND_SEVERITY_SEVERE)
-	TEST_ASSERT(spine.damage == after_fracture, "The same spine wound returned again hurt the spine organ again")
+	TEST_ASSERT(!spine.damage, "A spine fracture also damaged the spine organ")
 	var/obj/item/bodypart/chest = patient.get_bodypart(BODY_ZONE_CHEST)
 	qdel(chest.get_wound(WOUND_SPINE))
 

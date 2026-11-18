@@ -3148,7 +3148,6 @@ Odmianę stref daje helper `strefa_pl(zone, biernik)` z `aquila/code/__HELPERS/p
 | translator implant | implant tłumacza | m; nowe (AquilaMed 5) |
 | subdermal armor / muscle reinforcement / aiming booster / repair nanites / combat claws | podskórna siatka pancerna / wzmocnienie mięśni / wzmacniacz celowania / nanity naprawcze / pazury bojowe | nowe (AquilaMed 5, z Bay/Torch) |
 | improved capillaries / durable membrane / stem cells / visceral symbiont / bypass tubules / biostructure gel / masked membrane | ulepszone naczynia włosowate / błona trwała / komórki macierzyste / symbiont trzewny / kanaliki bocznikujące / żel biostrukturalny / błona maskująca | nowe (AquilaMed 5, z Eris) |
-| aberrant organ / organ scaffold / organoid / teratoma / biomass recycler / organ printer | narząd aberracyjny / rusztowanie narządu / organoid / teratoma / przetwornik biomasy / drukarka narządów | nowe (AquilaMed 5, z Eris) |
 | spider-bot | pająk-robot | m; nowe (AquilaMed 5, z Paradise) |
 | medical spray | spray medyczny | m; nowe |
 | spray bottle | spryskiwacz | m; istniejące |

@@ -1,7 +1,7 @@
 // AQUILA - kręgosłup jako narząd (AquilaMed 6, etap 4). Projekt własny: tg ma tylko implant w slocie "spine".
-// Rany kręgosłupa z medycyny 4 (wounds/spinal.dm) zostają, a narząd dokłada do nich:
-// - każde stłuczenie i złamanie uszkadza kręgosłup; zniszczony paraliżuje nogi na stałe, aż do wymiany;
-// - bez kręgosłupa bezwładne są ręce i nogi;
+// Urazy kręgosłupa to dalej rany z medycyny 4 (wounds/spinal.dm): stłuczenie i złamanie nie uszkadzają narządu,
+// żeby nie dublować złamania. Narząd dokłada tylko to, czego rana nie ma:
+// - bez kręgosłupa bezwładne są ręce i nogi, zniszczony (zgniły przed przeszczepem, uszkodzony EMP) paraliżuje nogi;
 // - przeszczepiony kręgosłup trzeba połączyć z mózgiem tą samą operacją co po przeszczepie głowy (medical/brainstem.dm);
 // - tytanowy (cybernetyczny) nie łamie się, rdzeń można najwyżej stłuc; impuls EMP na chwilę wyłącza nogi.
 
@@ -23,9 +23,6 @@
 	high_threshold_passed = "<span class='warning'>Nogi drętwieją, a ból w plecach nie mija.</span>"
 	now_failing = "<span class='danger'>Przestajesz czuć nogi.</span>"
 	now_fixed = "<span class='info'>Czucie w nogach wraca.</span>"
-	/// Damage one spine wound does
-	var/bruise_damage = 10
-	var/fracture_damage = 35
 	var/was_failing = FALSE
 
 /obj/item/organ/aq_spine/cybernetic
@@ -116,7 +113,7 @@
 	update_disabled_bodyparts()
 	return TRUE
 
-/// Spine wounds hurt the spine organ; a titanium spine does not break; no spine, nothing to hurt
+/// A titanium spine does not break; no spine, nothing to injure. The wound itself stays the only injury
 /mob/living/carbon/aq_injure_spine(severity = WOUND_SEVERITY_SEVERE, cervical = FALSE)
 	var/mob/living/carbon/human/H = src
 	if(!istype(H) || !H.dna?.species?.mutantspine || !H.dna.species.aq_has_med5_organs())
@@ -126,11 +123,7 @@
 		return null
 	if(spine.organ_flags & ORGAN_SYNTHETIC)
 		severity = min(severity, WOUND_SEVERITY_SEVERE)
-	var/obj/item/bodypart/chest = get_bodypart(BODY_ZONE_CHEST)
-	var/datum/wound/before = chest?.get_wound(WOUND_SPINE)
-	. = ..(severity, cervical)
-	if(. && . != before) // ta sama rana zwrócona bez zmian nie uszkadza kręgosłupa drugi raz
-		spine.applyOrganDamage(severity >= WOUND_SEVERITY_CRITICAL ? spine.fracture_damage : spine.bruise_damage)
+	return ..(severity, cervical)
 
 /// A transplanted spine is not joined to the brain yet
 /datum/surgery_operation/limb/organ_manipulation/on_success_insert_organ(obj/item/bodypart/limb, mob/living/surgeon, operated_zone, obj/item/tool)

@@ -10,7 +10,7 @@
 	6) Głowa i mózg: przeszczep mózgu albo przyszycie głowy daje bezwładne ręce i nogi, operacja połączenia pnia mózgu na otwartej czaszce je przywraca, potem 5 minut osłabienia. \
 	7) Skafander: załóż skafander i bij się w tors: czasem się zatnie. Ktoś inny wycina go spawarką (bez trybu walki, cel: tors), taśma zakleja rozcięcie. \
 	8) Zwłoki: zabij kogoś, wstrzyknij 5 j. rezadonu, zrób z niego wysuszone ciało (VV) i operacja odbudowy tkanek; balsamowanie formaldehydem z zestawu. \
-	9) Stos korowy: wyjmij go z kogoś i spróbuj sklonować (konsola odmawia). Implanty z zestawu: podskórny pancerz, wzmacniacz celowania, ulepszenia narządów z Eris (na wyjętym narządzie), rusztowanie z organoidami (teratoma, nożem). \
+	9) Stos korowy: wyjmij go z kogoś i spróbuj sklonować (konsola odmawia). Implanty z zestawu: podskórny pancerz, wzmacniacz celowania, ulepszenia narządów z Eris (na wyjętym narządzie). \
 	10) Pająk-robot: włóż MMI z mózgiem, chodź po wentylacji. \
 	Sprawdź kliknięcia narzędziami w obu trybach sterowania (combat mode i intencje)."
 	items = list(
@@ -37,8 +37,6 @@
 		/obj/item/organ/cyberimp/brain/aq_aim = 1,
 		/obj/item/aq_organ_mod/durable = 1,
 		/obj/item/aq_organ_mod/stem_cells = 1,
-		/obj/item/organ/aq_aberrant = 1,
-		/obj/item/aq_teratoma = 3,
 		/obj/item/mmi = 1,
 	)
 

@@ -916,38 +916,6 @@
 	liver.applyOrganDamage(10)
 	TEST_ASSERT(liver.damage - damage < 10, "Stem cells did not lower the damage")
 
-/// Aberrant organ: three organoids in a scaffold, in the chest it reacts to its input
-/datum/unit_test/aquila_aberrant
-
-/datum/unit_test/aquila_aberrant/Run()
-	var/mob/living/carbon/human/patient = allocate(/mob/living/carbon/human)
-	var/obj/item/organ/aq_aberrant/scaffold = allocate(/obj/item/organ/aq_aberrant)
-	var/obj/item/aq_organoid/input/reagent/input = new(patient.loc)
-	input.trigger_reagent = /datum/reagent/water
-	var/obj/item/aq_organoid/process/tubular/processor = new(patient.loc)
-	var/obj/item/aq_organoid/output/reagent/output = new(patient.loc)
-	output.made_reagent = /datum/reagent/medicine/spaceacillin
-	for(var/obj/item/aq_organoid/organoid in list(input, processor, output))
-		patient.put_in_active_hand(organoid)
-		scaffold.attackby(organoid, patient)
-	TEST_ASSERT(scaffold.is_complete(), "The scaffold did not take the three organoids")
-	scaffold.Insert(patient)
-	TEST_ASSERT(scaffold.owner == patient && findtext(scaffold.slot, "aq_aberrant"), "The aberrant organ did not go into an extra slot")
-	scaffold.on_life()
-	TEST_ASSERT(!patient.reagents.has_reagent(/datum/reagent/medicine/spaceacillin), "The organ acted without its input")
-	patient.reagents.add_reagent(/datum/reagent/water, 5)
-	scaffold.on_life()
-	TEST_ASSERT(patient.reagents.has_reagent(/datum/reagent/medicine/spaceacillin), "The organ did not act on its input")
-
-	// The organ printer prints from biomass made by the recycler
-	var/obj/machinery/aq_biomass_recycler/recycler = allocate(/obj/machinery/aq_biomass_recycler)
-	var/obj/item/aq_teratoma/teratoma = allocate(/obj/item/aq_teratoma)
-	TEST_ASSERT(recycler.biomass_value(teratoma) > 0, "The recycler does not take a teratoma")
-	var/obj/machinery/aq_organ_printer/printer = allocate(/obj/machinery/aq_organ_printer)
-	printer.finish_print(/obj/item/aq_organoid/output)
-	var/obj/item/aq_organoid/output/printed = locate() in printer.drop_location()
-	TEST_ASSERT(printed && printed.type != /obj/item/aq_organoid/output, "The printer did not print a real organoid")
-
 /// A spider-bot takes an MMI, gives it a body and drops it when destroyed
 /datum/unit_test/aquila_spiderbot
 
@@ -1144,13 +1112,6 @@
 	liver.aq_remove_mod(patient)
 	TEST_ASSERT(liver.organ_flags & ORGAN_FAILING, "Removing the membrane brought a dead organ back")
 
-	// A second aberrant organ finds a free slot before surgery checks it
-	var/obj/item/organ/aq_aberrant/first = new()
-	first.Insert(patient)
-	var/obj/item/organ/aq_aberrant/second = allocate(/obj/item/organ/aq_aberrant)
-	second.aq_pick_slot(patient)
-	TEST_ASSERT(second.slot != first.slot && !patient.getorganslot(second.slot), "A second aberrant organ gets no free slot")
-
 	// Claws survive being put away; the translator implant does not stun on EMP
 	var/obj/item/organ/cyberimp/arm/aq_claws/claws = new()
 	claws.Insert(patient)
@@ -1191,21 +1152,11 @@
 	patient.mind.aq_add_addiction_points(/datum/addiction/stimulants, 20)
 	TEST_ASSERT(LAZYACCESS(patient.mind.aq_active_addictions, /datum/addiction/stimulants) == 500, "Crossing the addiction threshold again reset a running withdrawal")
 
-	// The recycler never takes a brain; an empty organ box spends no coolant; the printer gives biomass back
-	var/obj/machinery/aq_biomass_recycler/recycler = allocate(/obj/machinery/aq_biomass_recycler)
-	TEST_ASSERT(!recycler.biomass_value(brain), "The biomass recycler takes a brain")
+	// An empty organ box spends no coolant
 	var/obj/item/storage/organbox/box = allocate(/obj/item/storage/organbox)
 	box.reagents.add_reagent(/datum/reagent/consumable/ice, 10)
 	box.process(2)
 	TEST_ASSERT(box.reagents.get_reagent_amount(/datum/reagent/consumable/ice) == 10, "An empty organ box spent coolant")
-	var/obj/machinery/aq_organ_printer/printer = allocate(/obj/machinery/aq_organ_printer)
-	var/turf/printer_turf = get_turf(printer)
-	printer.biomass = 30
-	qdel(printer)
-	var/refunded = 0
-	for(var/obj/item/stack/aq_biomass/cubes in printer_turf)
-		refunded += cubes.amount
-	TEST_ASSERT(refunded == 30, "Taking the printer apart lost the biomass ([refunded])")
 
 	// A fist can knock teeth out
 	var/mob/living/carbon/human/boxer = allocate(/mob/living/carbon/human)
@@ -1217,9 +1168,4 @@
 			break
 	TEST_ASSERT(knocked, "100 punches to the mouth never knocked a tooth out")
 
-	// Green slime extract with blood grows a teratoma
-	var/obj/item/slime_extract/green/extract = allocate(/obj/item/slime_extract/green)
-	var/turf/extract_turf = get_turf(extract) // the reaction uses the extract up
-	extract.reagents.add_reagent(/datum/reagent/blood, 1)
-	TEST_ASSERT(locate(/obj/item/aq_teratoma) in extract_turf, "A green extract with blood grew no teratoma")
 #undef TEST_ASSERT

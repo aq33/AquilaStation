@@ -1700,7 +1700,6 @@
 #include "code\modules\medical\embalming.dm"
 #include "code\modules\clothing\spacesuit_jam.dm"
 #include "code\modules\mob\living\simple_animal\spiderbot.dm"
-#include "code\modules\surgery\organs\med5\aberrant.dm"
 #include "code\modules\surgery\organs\med5\abdomen.dm"
 #include "code\modules\surgery\organs\med5\augments_bay.dm"
 #include "code\modules\surgery\organs\med5\cortical_stack.dm"
