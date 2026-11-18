@@ -2789,6 +2789,7 @@
 #include "code\modules\test_chamber\kits\pr_610_zbiorczy_1011.dm"
 #include "code\modules\test_chamber\kits\pr_637_tlumacz_na_zywo.dm"
 #include "code\modules\test_chamber\kits\pr_654_drobiazgi_1711.dm"
+#include "code\modules\test_chamber\kits\pr_670_grod.dm"
 
 // Profiler byond-tracy: MUSI być ostatnim include'em całego builda (BYOND inicjuje zmienne statyczne od końca,
 // więc ta rusza pierwsza, przed Master i mapą). Opis: tools/tracy/README.md
