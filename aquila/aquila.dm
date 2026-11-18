@@ -877,6 +877,8 @@
 #include "code\modules\munitions_forge\electroplater.dm"
 #include "code\modules\munitions_forge\export.dm"
 #include "code\modules\munitions_forge\armor_insert.dm"
+#include "code\modules\munitions_forge\artillery_sources.dm"
+#include "code\modules\munitions_forge\railgun_preview.dm"
 // Mechanik: skaner maszyn, czytnik schematów, flatpacker z tg i paczki
 #include "code\modules\mechanic\schematics.dm"
 #include "code\modules\mechanic\scanner.dm"
@@ -1096,6 +1098,7 @@
 #include "code\modules\munitions\nsv_ship_armament.dm"
 #include "code\modules\munitions\deck_gun_calibrator.dm"
 #include "code\modules\munitions\nsv_magneton_sparrowhawk.dm"
+#include "code\modules\munitions\armor_penetration.dm"
 #include "code\modules\munitions\flak_mount.dm"
 #include "code\modules\overmap\overmap_scale.dm"
 #include "code\modules\overmap\ai_morale.dm"
@@ -1335,6 +1338,7 @@
 // #include "code\modules\test_chamber\kits\pr_420_traitor_cele.dm"
 #include "code\modules\test_chamber\kits\test_subjects.dm"
 // Komora testowa - zestawy PR-ów niżej (usuwać razem z plikiem zestawu po przetestowaniu)
+#include "code\modules\test_chamber\kits\pr_665_rework_amunicji.dm"
 #include "code\modules\test_chamber\kits\pr_nsvprzyw_statek.dm"
 #include "code\modules\test_chamber\kits\pr_nsvprzyw_misje.dm"
 #include "code\modules\test_chamber\kits\pr_nsvprzyw_eventy.dm"
@@ -2636,6 +2640,7 @@
 #include "code\modules\unit_tests\aquila_soft_lighting.dm"
 #include "code\modules\unit_tests\aquila_spesstv.dm"
 #include "code\modules\unit_tests\aquila_munitions_forge.dm"
+#include "code\modules\unit_tests\aquila_ammo_rework.dm"
 #include "code\modules\unit_tests\aquila_rough_munitions.dm"
 #include "code\modules\unit_tests\aquila_armor_insert.dm"
 #include "code\modules\unit_tests\aquila_mechanic.dm"

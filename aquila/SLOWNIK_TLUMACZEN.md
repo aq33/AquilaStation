@@ -1201,6 +1201,10 @@ Nazwy gazów są widoczne w skanerach, kanistrach i oknach TGUI. Jeśli nazwa ga
 | fighter | myśliwiec | m; istniejące (33×) |
 | hardpoint | punkt mocowania | m; nowe |
 | munitions forge | kuźnia amunicji | ż; istniejące |
+| shell type AP / HE / APHE | typ pocisku: przeciwpancerny / odłamkowo-burzący / przeciwpancerny odłamkowo-burzący | m; nowe (rework amunicji); skróty AP, HE, APHE zostają |
+| coating / core (forged body) | powłoka / rdzeń | ż / m; nowe (rework amunicji): „uran w powłoce: srebro” |
+| factory part (forge) | część fabryczna | ż; nowe (rework amunicji) |
+| factory shell | fabryczny pocisk | m; nowe (rework amunicji) |
 | DRADIS | DRADIS | m/ndm; istniejące |
 | radar | radar | m; istniejące (26×) |
 | squad (NSV13) | drużyna | ż; istniejące (28× przed tłumaczeniem całości, ponad 100× po nim): „pager drużyny”, „dowódca drużyny”, „Drużyna Alpha”, „Zarządzanie drużynami”, „Preferowana drużyna (GQ)”. Odrzucone: „oddział” (dla squad), „skład” (od reworku drużyn także automat to „automat drużyny”). „Oddział” zostaje dla ERT i jednostek wojskowych („oddział reagowania Centrali”, „oddział HONK”). „Roster” w tabeli to „Skład” |
