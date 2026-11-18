@@ -2794,7 +2794,7 @@
 #include "code\modules\test_chamber\kits\pr_610_zbiorczy_1011.dm"
 #include "code\modules\test_chamber\kits\pr_637_tlumacz_na_zywo.dm"
 #include "code\modules\test_chamber\kits\pr_654_drobiazgi_1711.dm"
-#include "code\modules\test_chamber\kits\pr_670_grod.dm"
+#include "code\modules\test_chamber\kits\pr_655_grod.dm"
 
 // Rasy z innych kodów (okno postaci, 17.11.2026): Małpolud i Floranin z Monke, Mięsoczłowiek z Fulpa
 #include "code\__DEFINES\species_monke.dm"

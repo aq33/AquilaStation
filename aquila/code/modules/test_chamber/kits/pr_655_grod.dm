@@ -1,8 +1,8 @@
-// aq33/AquilaStation#670 - rasa Grod (port BeeStation/BeeStation-Hornet#7202)
+// aq33/AquilaStation#655 - rasa Grod (port BeeStation/BeeStation-Hornet#7202)
 
-/datum/test_chamber_kit/pr_670
-	name = "PR 670: rasa Grod"
-	pr = "aq33/AquilaStation#670"
+/datum/test_chamber_kit/pr_655_grod
+	name = "PR 655: rasa Grod"
+	pr = "aq33/AquilaStation#655"
 	description = "Dwa Grody, człowiek do przejęcia i ubrania do sprawdzenia. \
 	1) Wejdź w Groda (admin: Aghost → posiądź): korona na głowie, ogon, wzory; załóż szary kombinezon (szara kamizelka Groda), buty, rękawice i cylinder (zasłania koronę). \
 	Skafander EVA i kask nie wchodzą. Plecak, pas, słuchawki i maska wchodzą. \
