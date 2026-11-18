@@ -505,7 +505,6 @@ async function loadInfo() {
 	return null;
 }
 
-let infoTries = 0;
 async function start() {
 	const loaded = await loadInfo();
 	if (!loaded) {
@@ -513,9 +512,9 @@ async function start() {
 		setTimeout(start, 5000);
 		return;
 	}
-	// Serwis jeszcze nie zna sesji (świeżo po restarcie, przed synchronizacją z grą): bez języka gracza nie pokazujemy
-	// zgody, chwilę czekamy na synchronizację (gra robi ją co kilka sekund), a potem zostaje język z linku
-	if (!loaded.lang && infoTries++ < 5) {
+	// Serwis jeszcze nie zna sesji (świeżo po restarcie, przed synchronizacją z grą, która idzie co sekundę): bez języka
+	// gracza nie pokazujemy zgody. Bez sesji strona i tak nie działa (serwis nie przyjmie nagrania), więc czekamy do skutku.
+	if (!loaded.lang) {
 		setStatus("connecting", "bad");
 		setTimeout(start, 2000);
 		return;
