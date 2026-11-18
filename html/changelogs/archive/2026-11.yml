@@ -1366,3 +1366,20 @@
       wybierają takich graczy na cel w pierwszej kolejności.'
   - rscadd: 'Czat głosowy po angielsku: gracz z angielską wersją gry dostaje stronę
       po angielsku, a jego mowa jest rozpoznawana po angielsku.'
+  - balance: Pociski artylerii, łuski i ładunki burtowe oraz rdzeń działa plazmowego
+      robi kuźnia amunicji zamiast protolathe, po tym samym koszcie i badaniu.
+  - rscadd: Pociski artylerii i burtówki mają typy AP, HE i APHE; cargo sprzedaje
+      fabryczne pociski i łuski w trzech typach.
+  - rscadd: Korpus z kuźni ma rdzeń (obrażenia, przebicie, prędkość) i powłokę (efekt
+      specjalny); nowe efekty złota, diamentu, bluespace, miedzi i srebra.
+  - rscadd: Kuźnia railguna pokazuje obrażenia, przebicie i prędkość pocisku i kanistra
+      przed wykuciem.
+  - tweak: Stół projektowy pocisków przerabia silnik i naprowadzanie zamiast drukować
+      chip.
+  - balance: 'Sparrowhawk to ciężka rakieta: szybszy, zajmuje całą tubę VLS, droższa
+      głowica, paczka głowic w cargo.'
+  - balance: Magneton jest tylko do kupienia u handlarza.
+  - balance: 'Okręty AI mają grubość pancerza według klasy: HE odbija się od ciężkich
+      okrętów, AP przelatuje myśliwce i lekkie okręty na wylot, APHE jest na lekkie
+      i średnie.'
+  - rscdel: Kuźnia nie robi już obudów głowic, a wypełnienia zastąpiły typy pocisków.
