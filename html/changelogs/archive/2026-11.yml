@@ -1335,3 +1335,6 @@
   - code_imp: Krótsze testy planet w CI.
   - code_imp: 'CI: mapy kompilują się w trzech równoległych częściach, części testów
       mają podobny czas, a nowy push do PR-a anuluje przebieg poprzedniego commita.'
+  - bugfix: Zniszczony Sabre nie wysadza już wnętrza innego Sabre ani hangaru, w którym
+      tamten stoi.
+  - code_imp: Testy ze strzałem nie padają już losowo przez niewypał fabrycznego naboju.
