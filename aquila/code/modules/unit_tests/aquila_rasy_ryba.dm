@@ -22,6 +22,8 @@
 		TEST_ASSERT(icon_exists(AQUARIAN_ICON, state), "Missing aquarian sprite [state]")
 	for(var/fish in GLOB.aquarian_fish)
 		TEST_ASSERT(icon_exists(AQUARIAN_ICON, "fish_[fish]"), "Missing fish sprite fish_[fish]")
+		TEST_ASSERT(icon_exists(AQUARIAN_ICON, "fish_flop_[fish]"), "Missing flopping fish sprite fish_flop_[fish]")
+		TEST_ASSERT(icon_exists(AQUARIAN_ICON, "fish_dead_[fish]"), "Missing dead fish sprite fish_dead_[fish]")
 	var/datum/preference/choiced/fish_entry = GLOB.preference_entries_by_key["feature_aquarian_fish"]
 	TEST_ASSERT(istype(fish_entry), "No preference entry for the fish")
 	TEST_ASSERT_EQUAL(length(fish_entry.get_choices()), 10, "There should be ten fish to choose from")
@@ -138,6 +140,89 @@
 	TEST_ASSERT_EQUAL(aquarian_dome(shell), dome, "The dome did not fit the new armour")
 	TEST_ASSERT_EQUAL(shell.dna.features[FEATURE_AQUARIAN_FISH], "clownfish", "The fish did not move with its dome")
 	qdel(shell)
+
+/// Rozbity klosz: rybka wypada, przeżyje w naczyniu z wodą, wraca do nowego klosza i pancerza, a w trybie walki da się ją dobić
+/datum/unit_test/aquila_rasy_ryba_rozbity_klosz
+
+/datum/unit_test/aquila_rasy_ryba_rozbity_klosz/Run()
+	var/mob/living/carbon/human/H = allocate(/mob/living/carbon/human, run_loc_floor_bottom_left)
+	H.set_species(/datum/species/aquarian)
+	var/mob/living/carbon/human/helper = allocate(/mob/living/carbon/human, run_loc_floor_bottom_left)
+	var/obj/item/organ/brain/aquarian/dome = aquarian_dome(H)
+	TEST_ASSERT(dome, "The aquarian has no dome")
+
+	// Mocno rozbita głowa rozpryskuje klosz: rybka na podłodze, bez wody, pancerz bez klosza
+	var/obj/item/bodypart/head/head = H.get_bodypart(BODY_ZONE_HEAD)
+	head.receive_damage(brute = AQUARIAN_SHATTER_DAMAGE)
+	dome.on_life()
+	TEST_ASSERT(dome.shattered, "A smashed head did not shatter the dome")
+	TEST_ASSERT(!H.getorganslot(ORGAN_SLOT_BRAIN), "The fish stayed in the armour after the dome shattered")
+	TEST_ASSERT_EQUAL(dome.loc, get_turf(H), "The fish did not fall on the floor")
+	TEST_ASSERT_EQUAL(dome.water_amount(), 0, "A shattered dome still holds water")
+	TEST_ASSERT(locate(/obj/item/shard) in get_turf(H), "A shattered dome left no glass shards")
+	TEST_ASSERT_EQUAL(dome.icon_state, "fish_flop_goldfish", "A fish out of water is not flopping")
+	TEST_ASSERT_EQUAL(H.stat, DEAD, "The armour kept working without its dome")
+	dome.on_death()
+	TEST_ASSERT(dome.fish_oxyloss > 0, "A fish out of water does not suffocate")
+
+	// Do naczynia: za mało wody nie wystarczy, pełna zlewka tak
+	var/obj/item/reagent_containers/glass/beaker/large/beaker = allocate(/obj/item/reagent_containers/glass/beaker/large)
+	beaker.reagents.add_reagent(/datum/reagent/water, 5)
+	dome.enter_vessel(beaker, helper)
+	TEST_ASSERT(!dome.vessel, "The fish went into a beaker with almost no water")
+	beaker.reagents.add_reagent(/datum/reagent/water, 75)
+	dome.enter_vessel(beaker, helper)
+	TEST_ASSERT_EQUAL(dome.vessel, beaker, "The fish did not go into a beaker of water")
+	TEST_ASSERT_EQUAL(beaker.loc, dome, "The beaker is not carried with the fish")
+	TEST_ASSERT_EQUAL(dome.water_amount(), 80, "The water did not come with the beaker")
+	var/oxyloss_before = dome.fish_oxyloss
+	dome.on_death()
+	TEST_ASSERT(dome.fish_oxyloss < oxyloss_before, "The fish does not recover in a beaker of water")
+
+	// Wylanie z naczynia: rybka znów na podłodze, zlewka w ręce
+	dome.attack_self(helper)
+	TEST_ASSERT(!dome.vessel, "Pouring the fish out left it in the beaker")
+	TEST_ASSERT(beaker in helper.held_items, "The beaker did not stay in the hand")
+	TEST_ASSERT_EQUAL(dome.water_amount(), 0, "The water stayed with the poured out fish")
+	beaker.reagents.add_reagent(/datum/reagent/water, 50)
+	dome.enter_vessel(beaker, helper)
+	TEST_ASSERT_EQUAL(dome.vessel, beaker, "The fish did not go back into the beaker")
+
+	// Do nowego klosza (z naczyniem): znów zwykły klosz z wodą, naczynie zostaje
+	var/obj/item/reagent_containers/glass/aquarian_dome/new_dome = allocate(/obj/item/reagent_containers/glass/aquarian_dome)
+	new_dome.reagents.add_reagent(/datum/reagent/water, 40)
+	dome.enter_vessel(new_dome, helper)
+	TEST_ASSERT(!dome.shattered, "The fish in a new dome is still treated as out of its dome")
+	TEST_ASSERT(!dome.vessel, "The beaker stayed with the fish after moving it to a new dome")
+	TEST_ASSERT(QDELETED(new_dome), "The empty dome was not used up")
+	TEST_ASSERT_EQUAL(dome.water_amount(), 90, "The new dome did not get the water of the beaker and its own")
+	TEST_ASSERT(!QDELETED(beaker) && beaker.loc != dome, "The beaker disappeared with the fish")
+	TEST_ASSERT_EQUAL(dome.icon_state, "dome_item", "The restored dome is not drawn as a dome")
+	var/mob/living/carbon/human/shell = aquarian_create_shell(run_loc_floor_bottom_left)
+	dome.Insert(shell)
+	TEST_ASSERT_EQUAL(aquarian_dome(shell), dome, "The restored dome did not fit a new armour")
+	qdel(shell)
+
+	// Leżący klosz rozbity skrzynką w trybie walki, potem rybka dobita
+	var/mob/living/carbon/human/H2 = allocate(/mob/living/carbon/human, run_loc_floor_bottom_left)
+	H2.set_species(/datum/species/aquarian)
+	var/obj/item/organ/brain/aquarian/dome2 = aquarian_dome(H2)
+	dome2.Remove(H2)
+	dome2.forceMove(run_loc_floor_bottom_left)
+	var/obj/item/storage/toolbox/toolbox = allocate(/obj/item/storage/toolbox)
+	helper.combat_mode = TRUE
+	for(var/i in 1 to 10)
+		if(dome2.shattered)
+			break
+		dome2.attackby(toolbox, helper)
+	TEST_ASSERT(dome2.shattered, "Hitting a loose dome with a toolbox in combat mode did not break it")
+	dome2.attack_hand(helper)
+	TEST_ASSERT(dome2.brain_death, "Squashing the fish in combat mode did not kill it")
+	TEST_ASSERT_EQUAL(dome2.icon_state, "fish_dead_goldfish", "A dead fish is still flopping")
+	helper.combat_mode = FALSE
+	qdel(dome2)
+	for(var/obj/item/shard/shard in run_loc_floor_bottom_left)
+		qdel(shard)
 
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL

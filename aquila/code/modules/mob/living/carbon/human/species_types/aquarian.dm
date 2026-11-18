@@ -225,6 +225,12 @@ GLOBAL_LIST_INIT(aquarian_fish, list(
 	var/cracked = FALSE
 	/// Poziom wody na rysunku: 0 pusto, 1 mało, 2 dość
 	var/drawn_water_state = 2
+	/// Klosz się rozbił: zostaje sama rybka (na podłodze albo w naczyniu)
+	var/shattered = FALSE
+	/// Naczynie z wodą, do którego przełożono rybkę z rozbitego klosza (woda z niego jest w reagentach organu)
+	var/obj/item/reagent_containers/vessel
+	/// Ile siły uderzeń wytrzyma jeszcze leżący klosz
+	var/dome_integrity = AQUARIAN_DOME_INTEGRITY
 	COOLDOWN_DECLARE(warning_cooldown)
 
 /obj/item/organ/brain/aquarian/Initialize(mapload)
@@ -264,15 +270,46 @@ GLOBAL_LIST_INIT(aquarian_fish, list(
 /// Leżący klosz: woda i kołnierz są w stanie dome_item, nad nimi ryba (przesunięta w dół jak cały klosz) i przód
 /obj/item/organ/brain/aquarian/update_overlays()
 	. = ..()
-	var/mutable_appearance/fish = mutable_appearance(AQUARIAN_ICON, "fish_[aquarian_valid_fish(fish_type)]")
+	var/fish_state = aquarian_valid_fish(fish_type)
+	if(shattered && !vessel)
+		return // sama rybka: rysuje ją icon_state (fish_flop_X albo fish_dead_X)
+	if(vessel?.fill_icon_thresholds && reagents.total_volume)
+		// Poziom wody jak w samym naczyniu (woda jest w reagentach organu, nie naczynia)
+		var/fill_name = vessel.fill_icon_state || vessel.icon_state
+		var/percent = round(reagents.total_volume / reagents.maximum_volume * 100)
+		var/fill_level = vessel.fill_icon_thresholds[1]
+		for(var/threshold in vessel.fill_icon_thresholds)
+			if(threshold <= percent)
+				fill_level = threshold
+		var/mutable_appearance/filling = mutable_appearance('icons/obj/reagentfillings.dmi', "[fill_name][fill_level]")
+		filling.color = mix_color_from_reagents(reagents.reagent_list)
+		. += filling
+	var/mutable_appearance/fish = mutable_appearance(AQUARIAN_ICON, "fish_[fish_state]")
 	fish.pixel_y = -AQUARIAN_ITEM_SHIFT
 	. += fish
-	. += mutable_appearance(AQUARIAN_ICON, "dome_item_front")
+	if(!vessel)
+		. += mutable_appearance(AQUARIAN_ICON, "dome_item_front")
+
+/obj/item/organ/brain/aquarian/update_icon_state()
+	. = ..()
+	// W naczyniu przedmiot wygląda jak to naczynie (z rybką w nakładce)
+	icon = vessel ? vessel.icon : AQUARIAN_ICON
+	if(!shattered)
+		icon_state = "dome_item"
+	else if(vessel)
+		icon_state = vessel.icon_state
+	else
+		icon_state = "[fish_alive_out_of_water() ? "fish_flop" : "fish_dead"]_[aquarian_valid_fish(fish_type)]"
 
 /obj/item/organ/brain/aquarian/examine(mob/user)
 	. = ..()
 	. += water_examine_text()
-	. += "<span class='notice'>Pływa w nim [lowertext(GLOB.aquarian_fish[aquarian_valid_fish(fish_type)])].</span>"
+	if(!shattered || vessel)
+		. += "<span class='notice'>[vessel ? "W naczyniu" : "W kloszu"] pływa [lowertext(GLOB.aquarian_fish[aquarian_valid_fish(fish_type)])].</span>"
+	if(shattered && !vessel && !brain_death)
+		. += "<span class='notice'>Można ją wpuścić do zlewki, wiadra albo szklanki z wodą, przełożyć do nowego klosza z fabrykatora egzoszkieletów albo dobić w trybie walki.</span>"
+	if(vessel)
+		. += "<span class='notice'>Użyj w ręce, żeby wylać rybkę z naczynia. Do nowego klosza przełożysz ją, klikając naczyniem w pusty klosz.</span>"
 
 /// Woda (bez innych reagentów), którą rybka może oddychać
 /obj/item/organ/brain/aquarian/proc/water_amount()
@@ -288,6 +325,10 @@ GLOBAL_LIST_INIT(aquarian_fish, list(
 
 /obj/item/organ/brain/aquarian/proc/fish_alive()
 	return !brain_death && !(organ_flags & ORGAN_FAILING) && water_amount() >= 1 && fish_oxyloss < 150
+
+/// Rybka jeszcze żyje (choćby rzucała się bez wody)
+/obj/item/organ/brain/aquarian/proc/fish_alive_out_of_water()
+	return !brain_death && !(organ_flags & ORGAN_FAILING)
 
 /// Warstwy klosza na kołnierzu, od tyłu: woda (zabarwiona, przy małej ilości blada, przy pustym kloszu brak), ryba, przód z odblaskiem
 /obj/item/organ/brain/aquarian/proc/dome_overlays(layer, dir = 0)
@@ -306,6 +347,14 @@ GLOBAL_LIST_INIT(aquarian_fish, list(
 
 /obj/item/organ/brain/aquarian/proc/water_examine_text()
 	var/list/lines = list()
+	if(shattered && !vessel)
+		if(fish_alive_out_of_water())
+			return "<span class='danger'>Rybka rzuca się bez wody i się dusi!</span>"
+		return "<span class='warning'>Rybka nie żyje.</span>"
+	if(vessel)
+		if(water_state())
+			return "<span class='notice'>W naczyniu jest [round(water_amount())] j. wody.</span>"
+		return "<span class='danger'>W naczyniu nie ma wody, a rybka rzuca się na dnie!</span>"
 	switch(water_state())
 		if(0)
 			lines += "<span class='danger'>Klosz jest pusty, a rybka rzuca się na dnie!</span>"
@@ -364,6 +413,10 @@ GLOBAL_LIST_INIT(aquarian_fish, list(
 
 	// Pęknięty klosz cieknie, póki ktoś nie zaspawa głowy
 	var/obj/item/bodypart/head/head = C.get_bodypart(BODY_ZONE_HEAD)
+	// Mocno rozbita głowa: klosz rozpryskuje się, a rybka wypada na podłogę
+	if(head && head.brute_dam >= AQUARIAN_SHATTER_DAMAGE)
+		shatter()
+		return
 	if(head && head.brute_dam >= AQUARIAN_CRACK_DAMAGE && reagents.total_volume)
 		if(!cracked)
 			cracked = TRUE
@@ -432,17 +485,213 @@ GLOBAL_LIST_INIT(aquarian_fish, list(
 		brain_death = TRUE
 		setOrganDamage(maxHealth)
 		brainmob?.death()
+		update_appearance()
 
 /obj/item/organ/brain/aquarian/attackby(obj/item/O, mob/user, params)
-	if(isliving(user) && (istype(O, /obj/item/fish_feed) || aquarian_pourable(O)))
-		fill_from(O, user)
+	if(!isliving(user))
+		return ..()
+	var/mob/living/living_user = user
+	if(shattered && !vessel)
+		if(living_user.combat_mode)
+			squash(living_user, O)
+		else if(istype(O, /obj/item/reagent_containers))
+			enter_vessel(O, living_user)
+		return TRUE // rybki nie bijemy jak mózgu
+	if(istype(O, /obj/item/fish_feed) || aquarian_pourable(O))
+		fill_from(O, living_user)
+		return TRUE
+	if(!shattered && !owner && living_user.combat_mode && O.force && O.damtype == BRUTE)
+		hit_dome(O, living_user)
 		return TRUE
 	return ..()
+
+/// Rybka (albo naczynie z rybką) kliknięta w naczynie z wodą albo w pusty klosz
+/obj/item/organ/brain/aquarian/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+	. = ..()
+	if(!proximity_flag || !shattered || !isliving(user) || !istype(target, /obj/item/reagent_containers))
+		return
+	if(vessel && !istype(target, /obj/item/reagent_containers/glass/aquarian_dome))
+		return
+	enter_vessel(target, user)
+
+/// W trybie walki pustą ręką rozgniata się rybkę leżącą na podłodze
+/obj/item/organ/brain/aquarian/attack_hand(mob/user, modifiers)
+	if(shattered && !vessel && isturf(loc) && isliving(user) && user.combat_mode)
+		squash(user)
+		return TRUE
+	return ..()
+
+/// Wylewanie rybki z naczynia: woda chlusta na podłogę, rybka razem z nią
+/obj/item/organ/brain/aquarian/attack_self(mob/user)
+	if(!vessel)
+		return ..()
+	var/turf/T = get_turf(src)
+	var/obj/item/reagent_containers/old_vessel = vessel
+	vessel = null
+	spill(reagents.total_volume)
+	reagents.maximum_volume = AQUARIAN_DOME_VOLUME
+	old_vessel.forceMove(T)
+	forceMove(T)
+	user.put_in_hands(old_vessel)
+	user.visible_message("<span class='warning'>[user] wylewa rybkę z [old_vessel] na podłogę!</span>", \
+		"<span class='warning'>Wylewasz rybkę z [old_vessel] na podłogę.</span>")
+	to_chat(brainmob, "<span class='userdanger'>Wylatujesz z wody na podłogę!</span>")
+	refresh_fish_name()
+	update_appearance()
+
+/// Rzucony klosz rozbija się o to, w co trafi (chyba że ktoś go złapie)
+/obj/item/organ/brain/aquarian/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
+	. = ..()
+	if(!shattered && !owner && !QDELETED(src) && !ismob(loc))
+		shatter()
+
+/// Uderzenie bronią w leżący klosz. Po kilku mocnych ciosach szkło nie wytrzymuje.
+/obj/item/organ/brain/aquarian/proc/hit_dome(obj/item/weapon, mob/living/user)
+	user.changeNext_move(CLICK_CD_MELEE)
+	user.do_attack_animation(src)
+	dome_integrity -= weapon.force
+	log_combat(user, brainmob || src, "hit the aquarian dome", weapon)
+	if(dome_integrity <= 0)
+		shatter()
+		return
+	playsound(src, 'sound/effects/glasshit.ogg', 50, TRUE)
+	user.visible_message("<span class='danger'>[user] uderza w [src] za pomocą [weapon]! Szkło pęka.</span>", \
+		"<span class='danger'>Uderzasz w [src] za pomocą [weapon]. Szkło pęka.</span>")
+
+/// Klosz rozpryskuje się: woda na podłogę, odłamki obok, a rybka zostaje sama i rzuca się bez wody
+/obj/item/organ/brain/aquarian/proc/shatter()
+	if(shattered)
+		return
+	var/mob/living/carbon/wearer = owner
+	var/turf/T = get_turf(wearer || src)
+	if(!T)
+		return
+	shattered = TRUE
+	cracked = FALSE
+	if(wearer)
+		Remove(wearer)
+	forceMove(T)
+	T.add_liquid_from_reagents(reagents, amount = reagents.total_volume)
+	reagents.clear_reagents()
+	new /obj/item/shard(T)
+	playsound(T, 'sound/effects/glassbr3.ogg', 70, TRUE)
+	if(wearer)
+		wearer.visible_message("<span class='danger'>Klosz [wearer] rozpryskuje się na kawałki, a rybka wypada na podłogę!</span>")
+		if(wearer.stat != DEAD)
+			wearer.death()
+	else
+		T.visible_message("<span class='danger'>Klosz rozpryskuje się na kawałki, a rybka wypada na podłogę!</span>")
+	to_chat(brainmob, "<span class='userdanger'>Twój klosz pęka! Wypadasz na podłogę i rzucasz się bez wody!</span>")
+	refresh_fish_name()
+	update_appearance()
+
+/// Rybka do naczynia z wodą (zlewka, wiadro, szklanka) albo do nowego klosza
+/obj/item/organ/brain/aquarian/proc/enter_vessel(obj/item/reagent_containers/new_vessel, mob/living/user)
+	if(istype(new_vessel, /obj/item/reagent_containers/glass/aquarian_dome))
+		restore_dome(new_vessel, user)
+		return
+	if(vessel)
+		return
+	if(!new_vessel.is_open_container() || new_vessel.reagents.maximum_volume < AQUARIAN_VESSEL_MIN_VOLUME || \
+		!(istype(new_vessel, /obj/item/reagent_containers/glass) || istype(new_vessel, /obj/item/reagent_containers/food/drinks)))
+		to_chat(user, "<span class='warning'>Rybka nie zmieści się w [new_vessel]. Potrzeba otwartego naczynia na co najmniej [AQUARIAN_VESSEL_MIN_VOLUME] j.: zlewki, wiadra albo szklanki.</span>")
+		return
+	if(new_vessel.reagents.get_reagent_amount(/datum/reagent/water) < AQUARIAN_VESSEL_MIN_WATER)
+		to_chat(user, "<span class='warning'>W [new_vessel] jest za mało wody dla rybki.</span>")
+		return
+	var/vessel_in_hand = (new_vessel.loc == user)
+	var/fish_in_hand = (loc == user)
+	if(vessel_in_hand && !user.temporarilyRemoveItemFromInventory(new_vessel))
+		return
+	var/turf/T = get_turf(new_vessel)
+	new_vessel.forceMove(src)
+	vessel = new_vessel
+	reagents.maximum_volume = new_vessel.reagents.maximum_volume
+	new_vessel.reagents.trans_to(src, new_vessel.reagents.total_volume, transfered_by = user)
+	if(!fish_in_hand)
+		forceMove(T)
+		if(vessel_in_hand)
+			user.put_in_hands(src)
+	playsound(src, 'sound/effects/slosh.ogg', 25, TRUE)
+	user.visible_message("<span class='notice'>[user] wpuszcza rybkę do [new_vessel].</span>", \
+		"<span class='notice'>Wpuszczasz rybkę do [new_vessel]. Rybka znów ma wodę.</span>")
+	to_chat(brainmob, "<span class='notice'>Znów jesteś w wodzie!</span>")
+	refresh_fish_name()
+	update_appearance()
+
+/// Rybka do nowego, pustego klosza: znów jest klosz, który zamocuje się na pancerzu
+/obj/item/organ/brain/aquarian/proc/restore_dome(obj/item/reagent_containers/glass/aquarian_dome/new_dome, mob/living/user)
+	var/dome_in_hand = (new_dome.loc == user)
+	var/fish_in_hand = (loc == user)
+	var/turf/T = get_turf(new_dome)
+	if(vessel)
+		var/obj/item/reagent_containers/old_vessel = vessel
+		vessel = null
+		old_vessel.forceMove(T)
+		if(fish_in_hand)
+			user.temporarilyRemoveItemFromInventory(src)
+			user.put_in_hands(old_vessel)
+	if(reagents.total_volume > AQUARIAN_DOME_VOLUME)
+		spill(reagents.total_volume - AQUARIAN_DOME_VOLUME)
+	reagents.maximum_volume = AQUARIAN_DOME_VOLUME
+	new_dome.reagents.trans_to(src, new_dome.reagents.total_volume, transfered_by = user)
+	shattered = FALSE
+	cracked = FALSE
+	dome_integrity = initial(dome_integrity)
+	if(dome_in_hand)
+		user.temporarilyRemoveItemFromInventory(new_dome)
+	qdel(new_dome)
+	forceMove(T)
+	if(dome_in_hand || fish_in_hand)
+		user.put_in_hands(src)
+	playsound(src, 'sound/effects/slosh.ogg', 25, TRUE)
+	user.visible_message("<span class='notice'>[user] przekłada rybkę do nowego klosza.</span>", \
+		"<span class='notice'>Przekładasz rybkę do nowego klosza. Teraz można go zamocować na pancerzu.</span>")
+	to_chat(brainmob, "<span class='notice'>Pływasz w nowym kloszu!</span>")
+	refresh_fish_name()
+	update_appearance()
+
+/// Dobicie rybki leżącej bez wody
+/obj/item/organ/brain/aquarian/proc/squash(mob/living/user, obj/item/weapon)
+	if(!fish_alive_out_of_water())
+		to_chat(user, "<span class='warning'>Ta rybka już nie żyje.</span>")
+		return
+	user.changeNext_move(CLICK_CD_MELEE)
+	user.do_attack_animation(src)
+	user.visible_message("<span class='danger'>[user] rozgniata rybkę[weapon ? " za pomocą [weapon]" : ""]!</span>", \
+		"<span class='danger'>Rozgniatasz rybkę[weapon ? " za pomocą [weapon]" : ""].</span>")
+	playsound(src, 'sound/effects/splat.ogg', 50, TRUE)
+	log_combat(user, brainmob || src, "squashed the aquarian fish", weapon)
+	fish_oxyloss = 200
+	brain_death = TRUE
+	setOrganDamage(maxHealth)
+	brainmob?.death()
+	refresh_fish_name()
+	update_appearance()
+
+/// Nazwa zależna od tego, gdzie jest rybka, z imieniem postaci
+/obj/item/organ/brain/aquarian/proc/refresh_fish_name()
+	var/base = initial(name)
+	desc = initial(desc)
+	if(shattered)
+		if(vessel)
+			base = "[vessel.name] z rybką"
+			desc = "Akwarianin bez klosza: mała rybka w naczyniu z wodą. Przeżyje, póki ma wodę, ale żeby wrócić do pancerza, potrzebuje nowego klosza."
+		else if(fish_alive_out_of_water())
+			base = "rybka"
+			desc = "Akwarianin bez klosza: mała rybka, która rzuca się na podłodze i dusi bez wody. Trzeba ją szybko wpuścić do wody."
+		else
+			base = "martwa rybka"
+			desc = "Mała, martwa rybka. Kiedyś był to Akwarianin."
+	name = brainmob ? "[base] ([brainmob.real_name])" : base
 
 /// Wkładanie klosza w pancerz bez klosza (np. nowy z fabrykatora egzoszkieletów)
 /obj/item/organ/brain/aquarian/attack(mob/living/carbon/human/target, mob/living/user, params)
 	if(!ishuman(target) || !isaquarian(target) || user.combat_mode || aquarian_dome(target))
 		return ..()
+	if(shattered)
+		to_chat(user, "<span class='warning'>Rybki nie zamocujesz na pancerzu bez klosza. Najpierw przełóż ją do nowego klosza z fabrykatora egzoszkieletów.</span>")
+		return TRUE
 	if(!target.get_bodypart(BODY_ZONE_HEAD))
 		to_chat(user, "<span class='warning'>[target] nie ma kołnierza, na który dałoby się założyć klosz.</span>")
 		return TRUE
@@ -731,9 +980,48 @@ GLOBAL_LIST_INIT(aquarian_fish, list(
 	construction_time = 400
 	category = list("Cyborg")
 
+// Nowy klosz z fabrykatora egzoszkieletów: do niego przekłada się rybkę z rozbitego klosza
+
+/obj/item/reagent_containers/glass/aquarian_dome
+	name = "pusty klosz akwarianina"
+	desc = "Nowy szklany klosz z kołnierzem. Nalej do niego wody, przełóż rybkę (albo naczynie z rybką), a potem zamocuj klosz na pancerzu."
+	icon = AQUARIAN_ICON
+	icon_state = "dome_item"
+	alpha = 90
+	volume = AQUARIAN_DOME_VOLUME
+	possible_transfer_amounts = list(5, 10, 25, 50, 100)
+	w_class = WEIGHT_CLASS_NORMAL
+
+/// update_icon() pojemników przekazuje dont_fill jako updates i nie odświeża stanu ikony, więc odświeżamy wprost
+/obj/item/reagent_containers/glass/aquarian_dome/on_reagent_change(changetype)
+	. = ..()
+	update_appearance()
+
+/// Szkło klosza to warstwa wody: pusty klosz jest jej bladą wersją, oprawa zostaje w pełnym kolorze
+/obj/item/reagent_containers/glass/aquarian_dome/update_icon_state()
+	. = ..()
+	icon_state = "dome_item"
+	alpha = reagents?.total_volume ? 255 : 90
+
+/obj/item/reagent_containers/glass/aquarian_dome/update_overlays()
+	. = ..()
+	var/mutable_appearance/frame = mutable_appearance(AQUARIAN_ICON, "dome_item_front")
+	frame.appearance_flags |= RESET_ALPHA
+	. += frame
+
+/datum/design/aquarian_dome
+	name = "Klosz akwarianina"
+	desc = "Pusty szklany klosz z kołnierzem. Przełożysz do niego rybkę z rozbitego klosza."
+	id = "aquarian_dome"
+	build_type = MECHFAB
+	build_path = /obj/item/reagent_containers/glass/aquarian_dome
+	materials = list(/datum/material/glass = 4000)
+	construction_time = 100
+	category = list("Cyborg")
+
 /datum/techweb_node/cyborg/New()
 	. = ..()
-	design_ids += "aquarian_shell"
+	design_ids += list("aquarian_shell", "aquarian_dome")
 
 // Okno postaci
 
@@ -835,7 +1123,8 @@ GLOBAL_LIST_INIT(aquarian_fish, list(
 			SPECIES_PERK_ICON = "tint",
 			SPECIES_PERK_NAME = "Ryba bez wody",
 			SPECIES_PERK_DESC = "Rybka oddycha wodą z klosza. Gdy wody jest mało, dusi się, a w pustym kloszu umiera. \
-				Od uderzeń w głowę klosz pęka i woda wycieka, dopóki ktoś nie zaspawa głowy.",
+				Od uderzeń w głowę klosz pęka i woda wycieka, dopóki ktoś nie zaspawa głowy. Mocno rozbity klosz rozpryskuje się, \
+				a rybka wypada na podłogę: przeżyje tylko, jeśli ktoś szybko wpuści ją do wody albo do nowego klosza.",
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,

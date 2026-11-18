@@ -12,6 +12,8 @@
 	nakładki Psyfozy (widzenie psychiczne), rozpad Diony na nimfy po śmierci, kończynę Mięsoczłowieka po odcięciu. \
 	5) Akwarianin: uderzaj go w głowę → woda w kloszu ubywa, bez wody ryba się dusi; dolej wodę zlewką; nakarm karmą dla ryb. \
 	Zniszcz pancerz (gib) → zostaje klosz z rybą, włóż go do MMI; zestaw pancerza złóż w dłoni. \
+	Rozbij klosz (skrzynką w głowę albo w leżący klosz w trybie walki, albo rzuć nim) → rybka rzuca się na podłodze; wpuść ją do zlewki z wodą, \
+	wylej (użyj w ręce), przełóż do pustego klosza z wodą i zamocuj na pancerzu. Drugą rybkę rozgnieć w trybie walki. \
 	6) Quirki: wybierz kilka nowych w oknie postaci i zespawnuj się (Łysina z peruką, Kolorysta ze sprayem do włosów, Właściciel zwierzaka)."
 	items = list(
 		/mob/living/carbon/human/species/simian = 1,
@@ -26,6 +28,7 @@
 		/obj/item/aquarian_shell_kit = 1,
 		/obj/item/fish_feed = 1,
 		/obj/item/reagent_containers/glass/beaker/large = 1,
+		/obj/item/reagent_containers/glass/aquarian_dome = 1,
 		/obj/item/mmi = 1,
 		/obj/item/dyespray = 1,
 		/obj/item/clothing/under/color/grey = 3,

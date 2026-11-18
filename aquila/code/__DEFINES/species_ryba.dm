@@ -34,3 +34,12 @@
 #define AQUARIAN_SUFFOCATION_EMPTY 8
 /// Ile duszenia na cykl życia przy za małej ilości wody albo zamarzniętej wodzie
 #define AQUARIAN_SUFFOCATION_LOW 2
+
+/// Obrażenia głowy, od których klosz na pancerzu rozpryskuje się, a rybka wypada na podłogę
+#define AQUARIAN_SHATTER_DAMAGE 60
+/// Ile siły uderzeń wytrzyma leżący klosz, zanim się rozbije
+#define AQUARIAN_DOME_INTEGRITY 30
+/// Najmniejsza pojemność naczynia, w którym zmieści się rybka
+#define AQUARIAN_VESSEL_MIN_VOLUME 50
+/// Ile wody musi być w naczyniu, żeby wpuścić do niego rybkę
+#define AQUARIAN_VESSEL_MIN_WATER 10
