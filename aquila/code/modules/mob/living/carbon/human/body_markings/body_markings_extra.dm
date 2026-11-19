@@ -599,15 +599,10 @@
 	name = "Kocie pręgi na piersi"
 	zones = list(BODY_ZONE_CHEST)
 
-/datum/aq_body_marking/catwomanleft // Polaris: /datum/sprite_accessory/marking/vr/catwoman_lleg (Catwoman left leg stripes)
-	id = "catwomanleft"
-	name = "Kocie pręgi na lewej nodze"
-	zones = list(BODY_ZONE_L_LEG)
-
-/datum/aq_body_marking/catwomanright // Polaris: /datum/sprite_accessory/marking/vr/catwoman_rleg (Catwoman right leg stripes)
-	id = "catwomanright"
-	name = "Kocie pręgi na prawej nodze"
-	zones = list(BODY_ZONE_R_LEG)
+/datum/aq_body_marking/catwoman_leg // Polaris: /datum/sprite_accessory/marking/vr/catwoman_lleg (Catwoman left leg stripes); Polaris: /datum/sprite_accessory/marking/vr/catwoman_rleg (Catwoman right leg stripes)
+	id = "catwoman_leg"
+	name = "Kocie pręgi na nodze"
+	zones = list(BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
 
 /datum/aq_body_marking/claws // Polaris: /datum/sprite_accessory/marking/vr/claws (Claws)
 	id = "claws"
@@ -1074,35 +1069,35 @@
 	name = "Blizna na czole, prawa"
 	zones = list(BODY_ZONE_HEAD)
 
-/datum/aq_body_marking/scar_arm_left_l // Polaris: /datum/sprite_accessory/marking/scar_left_arm_lower (Scar, Left Arm (Lower))
-	id = "scar_arm_left_l"
-	name = "Blizna, lewe przedramię"
-	zones = list(BODY_ZONE_L_ARM)
+/datum/aq_body_marking/scar_forearm // Polaris: /datum/sprite_accessory/marking/scar_left_arm_lower (Scar, Left Arm (Lower)); Polaris: /datum/sprite_accessory/marking/scar_right_arm_lower (Scar, Right Arm (Lower))
+	id = "scar_forearm"
+	name = "Blizna na przedramieniu"
+	zones = list(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM)
 
-/datum/aq_body_marking/scar_arm_left_u // Polaris: /datum/sprite_accessory/marking/scar_left_arm_upper (Scar, Left Arm (Upper))
-	id = "scar_arm_left_u"
-	name = "Blizna, lewe ramię"
-	zones = list(BODY_ZONE_L_ARM)
+/datum/aq_body_marking/scar_upper_arm // Polaris: /datum/sprite_accessory/marking/scar_left_arm_upper (Scar, Left Arm (Upper)); Polaris: /datum/sprite_accessory/marking/scar_right_arm_upper (Scar, Right Arm (Upper))
+	id = "scar_upper_arm"
+	name = "Blizna na ramieniu"
+	zones = list(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM)
 
-/datum/aq_body_marking/scar_left_foot // Polaris: /datum/sprite_accessory/marking/scar_left_foot (Scar, Left Foot)
-	id = "scar_left_foot"
-	name = "Blizna, lewa stopa"
-	zones = list(BODY_ZONE_L_LEG)
+/datum/aq_body_marking/scar_foot // Polaris: /datum/sprite_accessory/marking/scar_left_foot (Scar, Left Foot); Polaris: /datum/sprite_accessory/marking/scar_right_foot (Scar, Right Foot)
+	id = "scar_foot"
+	name = "Blizna na stopie"
+	zones = list(BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
 
-/datum/aq_body_marking/scar_hand_left // Polaris: /datum/sprite_accessory/marking/scar_left_hand (Scar, Left Hand)
-	id = "scar_hand_left"
-	name = "Blizna, lewa dłoń"
-	zones = list(BODY_ZONE_PRECISE_L_HAND)
+/datum/aq_body_marking/scar_hand // Polaris: /datum/sprite_accessory/marking/scar_left_hand (Scar, Left Hand); Polaris: /datum/sprite_accessory/marking/scar_right_hand (Scar, Right Hand)
+	id = "scar_hand"
+	name = "Blizna na dłoni"
+	zones = list(BODY_ZONE_PRECISE_L_HAND, BODY_ZONE_PRECISE_R_HAND)
 
-/datum/aq_body_marking/scar_leg_left_l // Polaris: /datum/sprite_accessory/marking/scar_left_leg_lower (Scar, Left Leg (Lower))
-	id = "scar_leg_left_l"
-	name = "Blizna, lewa łydka"
-	zones = list(BODY_ZONE_L_LEG)
+/datum/aq_body_marking/scar_calf // Polaris: /datum/sprite_accessory/marking/scar_left_leg_lower (Scar, Left Leg (Lower)); Polaris: /datum/sprite_accessory/marking/scar_right_leg_lower (Scar, Right Leg (Lower))
+	id = "scar_calf"
+	name = "Blizna na łydce"
+	zones = list(BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
 
-/datum/aq_body_marking/scar_leg_left_u // Polaris: /datum/sprite_accessory/marking/scar_left_leg_upper (Scar, Left Leg (Upper))
-	id = "scar_leg_left_u"
-	name = "Blizna, lewe udo"
-	zones = list(BODY_ZONE_L_LEG)
+/datum/aq_body_marking/scar_thigh // Polaris: /datum/sprite_accessory/marking/scar_left_leg_upper (Scar, Left Leg (Upper)); Polaris: /datum/sprite_accessory/marking/scar_right_leg_upper (Scar, Right Leg (Upper))
+	id = "scar_thigh"
+	name = "Blizna na udzie"
+	zones = list(BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
 
 /datum/aq_body_marking/scar_eye_l // Polaris: /datum/sprite_accessory/marking/scar_eye_left (Scar, Over Eye (Left))
 	id = "scar_eye_l"
@@ -1113,36 +1108,6 @@
 	id = "scar_eye_r"
 	name = "Blizna nad prawym okiem"
 	zones = list(BODY_ZONE_HEAD)
-
-/datum/aq_body_marking/scar_arm_right_l // Polaris: /datum/sprite_accessory/marking/scar_right_arm_lower (Scar, Right Arm (Lower))
-	id = "scar_arm_right_l"
-	name = "Blizna, prawe przedramię"
-	zones = list(BODY_ZONE_R_ARM)
-
-/datum/aq_body_marking/scar_arm_right_u // Polaris: /datum/sprite_accessory/marking/scar_right_arm_upper (Scar, Right Arm (Upper))
-	id = "scar_arm_right_u"
-	name = "Blizna, prawe ramię"
-	zones = list(BODY_ZONE_R_ARM)
-
-/datum/aq_body_marking/scar_right_foot // Polaris: /datum/sprite_accessory/marking/scar_right_foot (Scar, Right Foot)
-	id = "scar_right_foot"
-	name = "Blizna, prawa stopa"
-	zones = list(BODY_ZONE_R_LEG)
-
-/datum/aq_body_marking/scar_hand_right // Polaris: /datum/sprite_accessory/marking/scar_right_hand (Scar, Right Hand)
-	id = "scar_hand_right"
-	name = "Blizna, prawa dłoń"
-	zones = list(BODY_ZONE_PRECISE_R_HAND)
-
-/datum/aq_body_marking/scar_right_leg_l // Polaris: /datum/sprite_accessory/marking/scar_right_leg_lower (Scar, Right Leg (Lower))
-	id = "scar_right_leg_l"
-	name = "Blizna, prawa łydka"
-	zones = list(BODY_ZONE_R_LEG)
-
-/datum/aq_body_marking/scar_right_leg_u // Polaris: /datum/sprite_accessory/marking/scar_right_leg_upper (Scar, Right Leg (Upper))
-	id = "scar_right_leg_u"
-	name = "Blizna, prawe udo"
-	zones = list(BODY_ZONE_R_LEG)
 
 /datum/aq_body_marking/shaggy // Polaris: /datum/sprite_accessory/marking/vr/shaggy_mane (Shaggy mane/feathers)
 	id = "shaggy"
