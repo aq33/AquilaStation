@@ -25,7 +25,7 @@
 /datum/unit_test/aquila_cyborg_modules/Run()
 	var/list/crew_modules = list()
 	aquila_add_cyborg_modules(crew_modules)
-	TEST_ASSERT(length(crew_modules) == 11, "Kółko wyboru dostało [length(crew_modules)] modułów Aquili zamiast 11")
+	TEST_ASSERT(length(crew_modules) == 4, "Kółko wyboru dostało [length(crew_modules)] modułów Aquili zamiast 4")
 	var/list/all_modules = list()
 	for(var/key in crew_modules)
 		all_modules += crew_modules[key]
@@ -40,6 +40,14 @@
 		for(var/obj/item/tool in cyborg.module.basic_modules)
 			TEST_ASSERT(tool in cyborg.module.modules, "[module_type]: narzędzie [tool.type] nie trafiło do modułu")
 			TEST_ASSERT(HAS_TRAIT(tool, TRAIT_NODROP), "[module_type]: narzędzie [tool.type] da się upuścić")
+		for(var/skin in cyborg.module.borg_skins)
+			var/list/details = cyborg.module.borg_skins[skin]
+			var/skin_file = details[SKIN_ICON] || 'icons/mob/robots.dmi'
+			TEST_ASSERT(details[SKIN_ICON_STATE] in icon_states(skin_file), "[module_type]: skin [skin] wskazuje brakujący stan [details[SKIN_ICON_STATE]]")
+
+	// Skiny scalonych modułów (Chemiczny, Chirurgiczny, Ratowniczy, Budowlany, Biurowy, Magazynowy, Hydroponiczny) wskazują istniejące stany
+	for(var/module_type in list(/obj/item/robot_module/medical, /obj/item/robot_module/engineering, /obj/item/robot_module/cargo, /obj/item/robot_module/butler))
+		var/mob/living/silicon/robot/cyborg = aq_cyborg_with_module(module_type)
 		for(var/skin in cyborg.module.borg_skins)
 			var/list/details = cyborg.module.borg_skins[skin]
 			var/skin_file = details[SKIN_ICON] || 'icons/mob/robots.dmi'
@@ -82,7 +90,7 @@
 	for(var/obj/item/upgrade_type as anything in upgrades)
 		TEST_ASSERT(built[upgrade_type], "Ulepszenia [upgrade_type] nie da się zbudować")
 		TEST_ASSERT(initial(upgrade_type.icon_state) in icon_states(initial(upgrade_type.icon)), "Ulepszenie [upgrade_type] nie ma ikony [initial(upgrade_type.icon_state)]")
-	TEST_ASSERT(length(upgrades) == 40, "Ulepszeń jest [length(upgrades)] zamiast 40")
+	TEST_ASSERT(length(upgrades) == 43, "Ulepszeń jest [length(upgrades)] zamiast 43")
 
 /// Każde ulepszenie instaluje się w pasującym module, odmawia w niepasującym, a po wyjęciu zdejmuje narzędzia
 /datum/unit_test/aquila_cyborg_upgrades
@@ -106,21 +114,24 @@
 		/obj/item/borg/upgrade/aquila/xenobiology = list(/obj/item/robot_module/research, /obj/item/robot_module/medical),
 		/obj/item/borg/upgrade/aquila/anomaly_vision = list(/obj/item/robot_module/research, /obj/item/robot_module/miner),
 		/obj/item/borg/upgrade/aquila/advanced_analyzer = list(/obj/item/robot_module/medical, /obj/item/robot_module/engineering),
-		/obj/item/borg/upgrade/aquila/surgical_omnitool = list(/obj/item/robot_module/medical/surgeon, /obj/item/robot_module/engineering),
+		/obj/item/borg/upgrade/aquila/surgical_omnitool = list(/obj/item/robot_module/medical, /obj/item/robot_module/engineering),
 		/obj/item/borg/upgrade/aquila/advanced_surgery = list(/obj/item/robot_module/medical, /obj/item/robot_module/janitor),
-		/obj/item/borg/upgrade/aquila/organ_synthesizer = list(/obj/item/robot_module/medical/surgeon, /obj/item/robot_module/medical),
-		/obj/item/borg/upgrade/aquila/blood_synthesizer = list(/obj/item/robot_module/medical/rescue, /obj/item/robot_module/miner),
-		/obj/item/borg/upgrade/aquila/holo_stretcher = list(/obj/item/robot_module/medical/rescue, /obj/item/robot_module/engineering),
-		/obj/item/borg/upgrade/aquila/breathing_bag = list(/obj/item/robot_module/medical/rescue, /obj/item/robot_module/security),
+		/obj/item/borg/upgrade/aquila/organ_synthesizer = list(/obj/item/robot_module/medical, /obj/item/robot_module/engineering),
+		/obj/item/borg/upgrade/aquila/blood_synthesizer = list(/obj/item/robot_module/medical, /obj/item/robot_module/miner),
+		/obj/item/borg/upgrade/aquila/holo_stretcher = list(/obj/item/robot_module/medical, /obj/item/robot_module/engineering),
+		/obj/item/borg/upgrade/aquila/breathing_bag = list(/obj/item/robot_module/medical, /obj/item/robot_module/security),
+		/obj/item/borg/upgrade/aquila/chemistry_kit = list(/obj/item/robot_module/medical, /obj/item/robot_module/cargo),
+		/obj/item/borg/upgrade/aquila/rescue_kit = list(/obj/item/robot_module/medical, /obj/item/robot_module/engineering),
 		/obj/item/borg/upgrade/aquila/medigripper = list(/obj/item/robot_module/medical, /obj/item/robot_module/cargo),
 		/obj/item/borg/upgrade/aquila/chemistry_gripper = list(/obj/item/robot_module/medical, /obj/item/robot_module/research),
-		/obj/item/borg/upgrade/aquila/bluespace_beaker = list(/obj/item/robot_module/medical/chemistry, /obj/item/robot_module/butler),
+		/obj/item/borg/upgrade/aquila/bluespace_beaker = list(/obj/item/robot_module/medical, /obj/item/robot_module/butler),
 		/obj/item/borg/upgrade/aquila/spectro_scanner = list(/obj/item/robot_module/medical, /obj/item/robot_module/research),
 		/obj/item/borg/upgrade/aquila/advanced_cutter = list(/obj/item/robot_module/miner, /obj/item/robot_module/engineering),
 		/obj/item/borg/upgrade/aquila/ore_processor = list(/obj/item/robot_module/exploration, /obj/item/robot_module/engineering),
 		/obj/item/borg/upgrade/aquila/nightvision = list(/obj/item/robot_module/exploration, /obj/item/robot_module/medical),
 		/obj/item/borg/upgrade/aquila/toggle/floodlight = list(/obj/item/robot_module/exploration, /obj/item/robot_module/janitor),
-		/obj/item/borg/upgrade/aquila/cargo_teleporter = list(/obj/item/robot_module/cargo/logistics, /obj/item/robot_module/medical),
+		/obj/item/borg/upgrade/aquila/cargo_teleporter = list(/obj/item/robot_module/cargo, /obj/item/robot_module/medical),
+		/obj/item/borg/upgrade/aquila/paperwork_kit = list(/obj/item/robot_module/cargo, /obj/item/robot_module/medical),
 		/obj/item/borg/upgrade/aquila/lethal_unlock = list(/obj/item/robot_module/security, /obj/item/robot_module/peacekeeper),
 		/obj/item/borg/upgrade/aquila/bola_launcher = list(/obj/item/robot_module/peacekeeper, /obj/item/robot_module/detective),
 		/obj/item/borg/upgrade/aquila/toggle/personal_shield = list(/obj/item/robot_module/security, /obj/item/robot_module/janitor),
@@ -229,8 +240,10 @@
 /datum/unit_test/aquila_cyborg_tools
 
 /datum/unit_test/aquila_cyborg_tools/Run()
-	var/mob/living/silicon/robot/chemist = aq_cyborg_with_module(/obj/item/robot_module/medical/chemistry)
+	var/mob/living/silicon/robot/chemist = aq_cyborg_with_module(/obj/item/robot_module/medical)
 	chemist.cell.charge = chemist.cell.maxcharge
+	var/obj/item/borg/upgrade/aquila/chemistry_kit/chem_kit = allocate(/obj/item/borg/upgrade/aquila/chemistry_kit)
+	TEST_ASSERT(chem_kit.action(chemist, chemist), "Zestaw chemiczny nie wszedł do modułu medycznego")
 	var/obj/item/borg/chem_master/chem_master = chemist.aq_find_module_item(/obj/item/borg/chem_master)
 	var/obj/item/reagent_containers/glass/beaker/beaker = allocate(/obj/item/reagent_containers/glass/beaker)
 	beaker.reagents.add_reagent(/datum/reagent/medicine/bicaridine, 20)
@@ -272,7 +285,7 @@
 	qdel(sheets)
 
 	// Teleporter ładunku
-	var/mob/living/silicon/robot/porter = aq_cyborg_with_module(/obj/item/robot_module/cargo/logistics)
+	var/mob/living/silicon/robot/porter = aq_cyborg_with_module(/obj/item/robot_module/cargo)
 	porter.cell.charge = porter.cell.maxcharge
 	var/obj/item/borg/cargo_teleporter/teleporter = allocate(/obj/item/borg/cargo_teleporter)
 	teleporter.destination = WEAKREF(run_loc_floor_top_right)

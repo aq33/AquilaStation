@@ -1,12 +1,12 @@
 /datum/test_chamber_kit/pr_672_cyborgi
 	name = "Cyborgi: nowe moduły i ulepszenia"
 	pr = "aq33/AquilaStation#672"
-	description = "1) Wejdź w cyborga (ghost → przejmij jednego z dwóch) i wybierz moduł z kółka: sprawdź nowe moduły (Naukowy, Chemiczny, Chirurgiczny, Ratowniczy, Budowlany, Eksploracyjny, Detektyw, Brobocop, Biurowy, Magazynowy, Wielozadaniowy) - każdy ma kółko skinów i swoje narzędzia. \
+	description = "1) Wejdź w cyborga (ghost → przejmij jednego z dwóch) i wybierz moduł z kółka: sprawdź nowe moduły (Naukowy, Eksploracyjny, Detektyw, Brobocop) - każdy ma kółko skinów i swoje narzędzia. Medyczny, Inżynieryjny, Zaopatrzeniowy i Usługowy mają dodatkowe skiny scalonych modułów. \
 	2) Ulepszenia leżą obok: otwórz panel cyborga (łom, ID), włóż ulepszenie. Pasujące wchodzi, niepasujące odmawia („Nie ma punktu mocowania”). \
 	3) Odblokowanie trybu zabójczego (moduł Ochrony z wybieraka): przy zielonym alarmie przełączenie na laser odmawia, przy czerwonym działa, a po odwołaniu alarmu broń sama wraca na obezwładnianie. \
 	4) Magnetyczne przyczepy: włącz przyciskiem akcji i otwórz śluzę na kosmos (albo rozbij okno) - cyborg nie daje się wyssać, rusza się wolniej. \
 	5) Osobista tarcza, reflektor i autoczyściciel: przyciski akcji, ładunek ogniwa spada. Kabel zasilania: kliknij APC i węzeł kabla w trybie pobierania. \
-	6) Narzędzia: mini-CheMaster na zlewce z lekami, dozownik odczynników, skaner widmowy na człowieku, syntezator krwi na pustym worku, worek oddechowy na niedotlenionym, syntezator organów, teleporter ładunku (ustaw cel w ręce, kliknij skrzynię), przenośna huta z rudą w torbie, omni-tool (wybór trybu w ręce), narzędzie do łatania podłóg na dziurze, wzrok anomalii przy anomalii, N.O.I.R. przy krwi i łuskach. Sprawdź w combat mode i w trybie intencji."
+	6) Narzędzia: zestaw chemiczny w module Medycznym (mini-CheMaster na zlewce z lekami, dozownik odczynników), zestaw ratowniczy (dopalacze, rozwieracz na zasilanej śluzie), zestaw biurowy w Zaopatrzeniowym (drukarka papieru), skaner widmowy na człowieku, syntezator krwi na pustym worku, worek oddechowy na niedotlenionym, syntezator organów, teleporter ładunku (ustaw cel w ręce, kliknij skrzynię), przenośna huta z rudą w torbie, omni-tool (wybór trybu w ręce), narzędzie do łatania podłóg na dziurze, wzrok anomalii przy anomalii, N.O.I.R. przy krwi i łuskach. Sprawdź w combat mode i w trybie intencji."
 	items = list(
 		/mob/living/silicon/robot = 2,
 		/obj/item/crowbar = 1,
@@ -42,10 +42,13 @@
 		/obj/item/borg/upgrade/aquila/chemistry_gripper = 1,
 		/obj/item/borg/upgrade/aquila/bluespace_beaker = 1,
 		/obj/item/borg/upgrade/aquila/spectro_scanner = 1,
+		/obj/item/borg/upgrade/aquila/chemistry_kit = 1,
+		/obj/item/borg/upgrade/aquila/rescue_kit = 1,
 		/obj/item/borg/upgrade/aquila/advanced_cutter = 1,
 		/obj/item/borg/upgrade/aquila/ore_processor = 1,
 		/obj/item/borg/upgrade/aquila/nightvision = 1,
 		/obj/item/borg/upgrade/aquila/cargo_teleporter = 1,
+		/obj/item/borg/upgrade/aquila/paperwork_kit = 1,
 		/obj/item/borg/upgrade/aquila/bola_launcher = 1,
 		/obj/item/borg/upgrade/aquila/forensic_scanner = 1,
 		/obj/item/borg/upgrade/aquila/noir = 1,

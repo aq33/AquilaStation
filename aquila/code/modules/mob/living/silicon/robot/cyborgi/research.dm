@@ -56,6 +56,15 @@
 	construction_time = 80
 	category = list("Cyborg Upgrade Modules")
 
+/datum/design/aq_borg_upgrade_paperwork_kit
+	name = "Ulepszenie cyborga (zestaw biurowy)"
+	id = "aq_borg_upgrade_paperwork_kit"
+	build_type = MECHFAB
+	build_path = /obj/item/borg/upgrade/aquila/paperwork_kit
+	materials = list(/datum/material/iron = 2000, /datum/material/glass = 1000)
+	construction_time = 60
+	category = list("Cyborg Upgrade Modules")
+
 /datum/design/aq_borg_upgrade_science_circuits
 	name = "Ulepszenie cyborga (aparat naukowy: układy scalone)"
 	id = "aq_borg_upgrade_science_circuits"
@@ -89,6 +98,24 @@
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/aquila/chemistry_gripper
 	materials = list(/datum/material/iron = 4000, /datum/material/glass = 1000)
+	construction_time = 80
+	category = list("Cyborg Upgrade Modules")
+
+/datum/design/aq_borg_upgrade_chemistry_kit
+	name = "Ulepszenie cyborga (zestaw chemiczny)"
+	id = "aq_borg_upgrade_chemistry_kit"
+	build_type = MECHFAB
+	build_path = /obj/item/borg/upgrade/aquila/chemistry_kit
+	materials = list(/datum/material/iron = 4000, /datum/material/glass = 3000, /datum/material/silver = 1000)
+	construction_time = 80
+	category = list("Cyborg Upgrade Modules")
+
+/datum/design/aq_borg_upgrade_rescue_kit
+	name = "Ulepszenie cyborga (zestaw ratowniczy)"
+	id = "aq_borg_upgrade_rescue_kit"
+	build_type = MECHFAB
+	build_path = /obj/item/borg/upgrade/aquila/rescue_kit
+	materials = list(/datum/material/iron = 5000, /datum/material/glass = 1000, /datum/material/titanium = 2000)
 	construction_time = 80
 	category = list("Cyborg Upgrade Modules")
 
@@ -364,7 +391,7 @@
 
 /datum/techweb_node/cyborg/New()
 	. = ..()
-	design_ids += list("aq_borg_upgrade_magnetic_traction", "aq_borg_upgrade_recharge_pack", "aq_borg_upgrade_power_connector", "aq_borg_upgrade_gps", "aq_borg_upgrade_death_alarm", "aq_borg_upgrade_plating_repair", "aq_borg_upgrade_science_circuits", "aq_borg_upgrade_xenobiology", "aq_borg_upgrade_medigripper", "aq_borg_upgrade_chemistry_gripper", "aq_borg_upgrade_breathing_bag", "aq_borg_upgrade_spectro_scanner", "aq_borg_upgrade_plunger", "aq_borg_upgrade_push_broom", "aq_borg_upgrade_cookbook", "aq_borg_upgrade_floodlight")
+	design_ids += list("aq_borg_upgrade_magnetic_traction", "aq_borg_upgrade_recharge_pack", "aq_borg_upgrade_power_connector", "aq_borg_upgrade_gps", "aq_borg_upgrade_death_alarm", "aq_borg_upgrade_plating_repair", "aq_borg_upgrade_paperwork_kit", "aq_borg_upgrade_science_circuits", "aq_borg_upgrade_xenobiology", "aq_borg_upgrade_medigripper", "aq_borg_upgrade_chemistry_gripper", "aq_borg_upgrade_breathing_bag", "aq_borg_upgrade_spectro_scanner", "aq_borg_upgrade_plunger", "aq_borg_upgrade_push_broom", "aq_borg_upgrade_cookbook", "aq_borg_upgrade_floodlight")
 
 /datum/techweb_node/cyborg_upg_util/New()
 	. = ..()
@@ -372,7 +399,7 @@
 
 /datum/techweb_node/cyborg_upg_med/New()
 	. = ..()
-	design_ids += list("aq_borg_upgrade_advanced_analyzer", "aq_borg_upgrade_surgical_omnitool", "aq_borg_upgrade_advanced_surgery", "aq_borg_upgrade_organ_synthesizer", "aq_borg_upgrade_blood_synthesizer", "aq_borg_upgrade_holo_stretcher", "aq_borg_upgrade_bluespace_beaker")
+	design_ids += list("aq_borg_upgrade_advanced_analyzer", "aq_borg_upgrade_surgical_omnitool", "aq_borg_upgrade_advanced_surgery", "aq_borg_upgrade_organ_synthesizer", "aq_borg_upgrade_blood_synthesizer", "aq_borg_upgrade_holo_stretcher", "aq_borg_upgrade_bluespace_beaker", "aq_borg_upgrade_chemistry_kit", "aq_borg_upgrade_rescue_kit")
 
 /datum/techweb_node/cyborg_upg_security/New()
 	. = ..()

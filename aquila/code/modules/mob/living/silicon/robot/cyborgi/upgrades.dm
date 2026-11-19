@@ -462,13 +462,13 @@
 	aq_items = list(/obj/item/scalpel/advanced, /obj/item/retractor/advanced, /obj/item/surgicaldrill/advanced)
 	aq_replaces = list(/obj/item/scalpel, /obj/item/circular_saw, /obj/item/retractor, /obj/item/hemostat, /obj/item/surgicaldrill, /obj/item/cautery)
 
-/// Syntezator organów (Chaotic Onyx) - tylko chirurg
+/// Syntezator organów (Chaotic Onyx)
 /obj/item/borg/upgrade/aquila/organ_synthesizer
 	name = "syntezator organów cyborga"
 	desc = "Syntezuje proste narządy syntetyczne (serce, płuca, wątroba, żołądek) z energii ogniwa, powoli."
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "heart-c"
-	module_type = list(/obj/item/robot_module/medical/surgeon)
+	module_type = AQ_BORG_MEDICAL
 	module_flags = BORG_MODULE_MEDICAL
 	aq_items = list(/obj/item/borg/organ_synthesizer)
 
@@ -533,6 +533,26 @@
 	module_flags = BORG_MODULE_MEDICAL
 	aq_items = list(/obj/item/borg/apparatus/beaker/bluespace)
 	aq_replaces = list(/obj/item/borg/apparatus/beaker)
+
+/// Zestaw chemiczny (Goonstation „ChemBot”, dawny moduł Chemiczny): mini-CheMaster i dozownik odczynników
+/obj/item/borg/upgrade/aquila/chemistry_kit
+	name = "zestaw chemiczny cyborga"
+	desc = "Mini-CheMaster do tabletek, plastrów i butelek oraz mały dozownik podstawowych odczynników zasilany z ogniwa."
+	icon = 'icons/obj/chemical.dmi'
+	icon_state = "mixer0"
+	module_type = AQ_BORG_MEDICAL
+	module_flags = BORG_MODULE_MEDICAL
+	aq_items = list(/obj/item/borg/chem_master, /obj/item/reagent_containers/borghypo/chem_dispenser)
+
+/// Zestaw ratowniczy (Aurora/CEV-Eris „Rescue”, dawny moduł Ratowniczy): dopalacze i hydrauliczny rozwieracz drzwi
+/obj/item/borg/upgrade/aquila/rescue_kit
+	name = "zestaw ratowniczy cyborga"
+	desc = "Dopalacze w podwoziu na szybki dojazd do rannych i hydrauliczny rozwieracz, który podważa także zasilane śluzy."
+	icon = 'icons/obj/tools.dmi'
+	icon_state = "jaws_pry"
+	module_type = AQ_BORG_MEDICAL
+	module_flags = BORG_MODULE_MEDICAL
+	aq_items = list(/obj/item/borg/rescue_boosters, /obj/item/crowbar/cyborg/aquila_rescue)
 
 /// Skaner widmowy (Goonstation)
 /obj/item/borg/upgrade/aquila/spectro_scanner
@@ -609,6 +629,16 @@
 	icon_state = "hand_tele"
 	module_type = list(/obj/item/robot_module/cargo, /obj/item/robot_module/exploration)
 	aq_items = list(/obj/item/borg/cargo_teleporter)
+
+/// Zestaw biurowy (Bay/Aurora „Clerical”, dawny moduł Biurowy): drukarka papieru i chwytak biurowy
+/obj/item/borg/upgrade/aquila/paperwork_kit
+	name = "zestaw biurowy cyborga"
+	desc = "Drukarka papieru z tonera cyborga i chwytak do papieru, teczek, zdjęć i podkładek."
+	icon = 'icons/obj/bureaucracy.dmi'
+	icon_state = "paper_bin1"
+	module_type = list(/obj/item/robot_module/cargo)
+	module_flags = BORG_MODULE_CARGO
+	aq_items = list(/obj/item/borg/paper_dispenser, /obj/item/borg/apparatus/aquila/paperwork)
 
 // ================================================================ Ochrona i śledztwo
 

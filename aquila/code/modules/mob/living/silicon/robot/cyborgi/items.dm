@@ -815,7 +815,7 @@
 /// Dopalacze ratownika (Aurora „rescue mobility”): szybszy ruch kosztem energii
 /obj/item/borg/rescue_boosters
 	name = "dopalacze ratownicze"
-	desc = "Silniczki w podwoziu cyborga ratowniczego: użyj w ręce, żeby przyspieszyć. Zużywają energię, dopóki są włączone i trzymane."
+	desc = "Silniczki w podwoziu cyborga: użyj w ręce, żeby przyspieszyć. Zużywają energię, dopóki są włączone i trzymane."
 	icon = 'icons/obj/module.dmi'
 	icon_state = "cyborg_upgrade2"
 	/// Koszt energii co sekundę
