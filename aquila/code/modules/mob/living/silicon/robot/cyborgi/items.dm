@@ -935,6 +935,37 @@
 		return FALSE
 	return ..()
 
+/// Glock-13BR cyborga ochrony (NSV): ostra amunicja tylko wtedy, gdy wolno broni z trybem zabójczym (czerwony alarm albo abordaż).
+/// Zhakowany cyborg strzela ostrą bez ograniczeń.
+/obj/item/gun/energy/printer/glock
+	desc = "Wbudowany pistolet 9 mm dla cyborgów ochrony Nanotrasen. Ostra amunicja działa tylko przy czerwonym alarmie albo w trakcie abordażu, poza tym strzela gumowymi kulami."
+
+/obj/item/gun/energy/printer/glock/proc/aq_lethal_selected()
+	var/obj/item/ammo_casing/energy/shot = ammo_type[select]
+	return !ispath(shot.projectile_type, /obj/item/projectile/bullet/c9mm/rubber)
+
+/obj/item/gun/energy/printer/glock/proc/aq_lethal_blocked(mob/living/user)
+	if(!aq_lethal_selected())
+		return FALSE
+	if(iscyborg(user))
+		var/mob/living/silicon/robot/cyborg = user
+		if(cyborg.emagged)
+			return FALSE
+	return !aquila_cyborg_lethal_allowed(user)
+
+/obj/item/gun/energy/printer/glock/select_fire(mob/living/user)
+	. = ..()
+	if(aq_lethal_blocked(user))
+		..() // z powrotem na gumowe kule
+		to_chat(user, "<span class='warning'>Ostra amunicja jest zablokowana: potrzebny czerwony alarm albo abordaż.</span>")
+
+/obj/item/gun/energy/printer/glock/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0, aimed = FALSE)
+	if(aq_lethal_blocked(user))
+		select_fire(user)
+		to_chat(user, "<span class='warning'>Alarm odwołany: pistolet wraca do gumowych kul.</span>")
+		return FALSE
+	return ..()
+
 /// Pocisk wyrzutni bol (Tegustation „energy bola launcher”), na naszej boli energetycznej cyborga
 /obj/item/ammo_casing/energy/aquila_bola
 	projectile_type = /obj/item/projectile/energy/trap/cyborg

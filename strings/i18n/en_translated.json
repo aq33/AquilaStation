@@ -29846,5 +29846,8 @@
 "butelka omnizyny": "omnizine bottle",
 "Butelka omnizyny do sprawdzenia implantu bezpieczeństwa przedawkowania.": "A bottle of omnizine for testing the overdose safety implant.",
 "Proteza zakładana od startu rundy. Marki różnią się wyglądem i cechami, kinetyczna nie pozwala strzelać, zaawansowana jest najmocniejsza.": "A prosthesis fitted from the start of the round. Brands differ in look and traits, the kinetic one doesn't let you shoot, the advanced one is the strongest.",
-"Organ wymieniany od startu rundy na cybernetyczny. Cybernetyka obciąża psychikę (cyberpsychoza).": "An organ replaced with a cybernetic one from the start of the round. Cybernetics burden the mind (cyberpsychosis)."
+"Organ wymieniany od startu rundy na cybernetyczny. Cybernetyka obciąża psychikę (cyberpsychoza).": "An organ replaced with a cybernetic one from the start of the round. Cybernetics burden the mind (cyberpsychosis).",
+"Wbudowany pistolet 9 mm dla cyborgów ochrony Nanotrasen. Ostra amunicja działa tylko przy czerwonym alarmie albo w trakcie abordażu, poza tym strzela gumowymi kulami.": "A built-in 9 mm pistol for Nanotrasen security cyborgs. Live rounds work only on red alert or during a boarding action; otherwise it fires rubber bullets.",
+"<span class='warning'>Ostra amunicja jest zablokowana: potrzebny czerwony alarm albo abordaż.</span>": "<span class='warning'>Live rounds are locked: red alert or a boarding action is required.</span>",
+"<span class='warning'>Alarm odwołany: pistolet wraca do gumowych kul.</span>": "<span class='warning'>Alert lifted: the pistol switches back to rubber bullets.</span>"
 }

@@ -300,4 +300,40 @@
 	var/message = alarm.aq_message(guard)
 	TEST_ASSERT(findtext(message, guard.real_name) && findtext(message, get_area_name(guard, TRUE)), "Alarm zniszczenia nie podaje nazwy albo miejsca: [message]")
 
+/// Glock-13BR cyborga ochrony: ostra amunicja tylko przy czerwonym alarmie albo abordażu, zhakowany bez ograniczeń
+/datum/unit_test/aquila_cyborg_glock_lock
+
+/datum/unit_test/aquila_cyborg_glock_lock/Run()
+	var/old_level = GLOB.security_level
+	var/mob/living/silicon/robot/cyborg = aq_cyborg_with_module(/obj/item/robot_module/security)
+	var/obj/item/gun/energy/printer/glock/glock = cyborg.aq_find_module_item(/obj/item/gun/energy/printer/glock)
+	TEST_ASSERT(glock, "Moduł ochrony nie ma Glocka")
+	TEST_ASSERT(!glock.aq_lethal_selected(), "Glock nie startuje na gumowych kulach")
+
+	GLOB.security_level = SEC_LEVEL_GREEN
+	var/allowed_green = aquila_cyborg_lethal_allowed(cyborg)
+	glock.select_fire(cyborg)
+	var/lethal_at_green = glock.aq_lethal_selected()
+
+	GLOB.security_level = SEC_LEVEL_RED
+	glock.select_fire(cyborg)
+	var/lethal_at_red = glock.aq_lethal_selected()
+
+	GLOB.security_level = SEC_LEVEL_GREEN
+	var/fired = glock.process_fire(run_loc_floor_top_right, cyborg)
+	var/lethal_after = glock.aq_lethal_selected()
+
+	cyborg.emagged = TRUE
+	glock.select_fire(cyborg)
+	var/lethal_emagged = glock.aq_lethal_selected()
+	cyborg.emagged = FALSE
+	GLOB.security_level = old_level
+
+	TEST_ASSERT(lethal_at_red, "Przy czerwonym alarmie Glock nie przełączył się na ostrą amunicję")
+	TEST_ASSERT(lethal_emagged, "Zhakowany cyborg nie może strzelać ostrą amunicją")
+	if(!allowed_green)
+		TEST_ASSERT(!lethal_at_green, "Przy zielonym alarmie Glock przełączył się na ostrą amunicję")
+		TEST_ASSERT(!fired, "Glock strzelił ostrą amunicją po odwołaniu alarmu")
+		TEST_ASSERT(!lethal_after, "Po odwołaniu alarmu Glock nie wrócił do gumowych kul")
+
 #undef TEST_ASSERT
