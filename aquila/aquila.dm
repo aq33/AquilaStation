@@ -2790,6 +2790,19 @@
 #include "code\modules\test_chamber\kits\pr_637_tlumacz_na_zywo.dm"
 #include "code\modules\test_chamber\kits\pr_654_drobiazgi_1711.dm"
 
+// BOTY: drzewa zachowań z tg (hybryda z planning subtrees), basic boty i nowe boty
+#include "code\__DEFINES\behavior_trees.dm"
+#include "code\datums\ai\behavior_tree\bt_node.dm"
+#include "code\datums\ai\behavior_tree\bt_subtree.dm"
+#include "code\datums\ai\behavior_tree\bt_composites.dm"
+#include "code\datums\ai\behavior_tree\bt_decorators.dm"
+#include "code\datums\ai\behavior_tree\bt_behavior.dm"
+#include "code\datums\ai\behavior_tree\bt_controller.dm"
+#include "code\datums\ai\behavior_tree\bt_generic.dm"
+#include "code\datums\ai\behavior_tree\bt_viewer.dm"
+#include "code\datums\ai\behavior_tree\_compiled_trees.dm"
+// BOTY: koniec
+
 // Profiler byond-tracy: MUSI być ostatnim include'em całego builda (BYOND inicjuje zmienne statyczne od końca,
 // więc ta rusza pierwsza, przed Master i mapą). Opis: tools/tracy/README.md
 #include "code\modules\tracy\tracy.dm"
