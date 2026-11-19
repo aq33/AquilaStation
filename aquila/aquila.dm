@@ -2890,7 +2890,6 @@
 #include "code\datums\traits\extra\nastroj_gracz.dm"
 #include "code\datums\traits\extra\nastroj_fani.dm"
 #include "code\datums\traits\extra\nastroj_plakaty.dm"
-#include "code\datums\traits\extra\nastroj_nieprzespany.dm"
 #include "code\datums\traits\extra\nastroj_przeklety.dm"
 #include "code\datums\traits\extra\nastroj_cialo.dm"
 #include "code\datums\traits\extra\nastroj_ogien.dm"

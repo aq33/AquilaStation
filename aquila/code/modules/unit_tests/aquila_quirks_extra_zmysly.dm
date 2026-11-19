@@ -11,7 +11,7 @@
 	var/turf/open/floor = run_loc_floor_bottom_left
 	var/static/list/quirk_types = list(
 		/datum/quirk/bald, /datum/quirk/shifty_eyes, /datum/quirk/clumsy, /datum/quirk/illiterate, /datum/quirk/photophobia,
-		/datum/quirk/softspoken, /datum/quirk/throwingarm, /datum/quirk/linguist, /datum/quirk/anosmia, /datum/quirk/scarred_eye,
+		/datum/quirk/softspoken, /datum/quirk/throwingarm, /datum/quirk/anosmia, /datum/quirk/scarred_eye,
 		/datum/quirk/touchy, /datum/quirk/fluoride_stare, /datum/quirk/keen_nose, /datum/quirk/personal_space, /datum/quirk/snoring,
 		/datum/quirk/life_savings, /datum/quirk/dirty, /datum/quirk/pet_owner, /datum/quirk/colorist,
 	)
@@ -77,16 +77,6 @@
 	TEST_ASSERT_EQUAL(throw_data.maxrange, initial(crayon.throw_range) + 2, "Throwing Arm did not add range")
 	SSthrowing.processing -= crayon
 	qdel(throw_data)
-
-	// Lingwista: nowe języki, które znikają razem z cechą
-	var/mob/living/carbon/human/linguist = allocate(/mob/living/carbon/human, floor)
-	linguist.add_quirk(/datum/quirk/linguist, TRUE)
-	var/datum/quirk/linguist/linguist_quirk = locate() in linguist.roundstart_quirks
-	TEST_ASSERT(length(linguist_quirk?.granted_languages), "Linguist gave no languages")
-	var/learned_language = linguist_quirk.granted_languages[1]
-	TEST_ASSERT(linguist.has_language(learned_language), "The Linguist language is not understood")
-	linguist.remove_quirk(/datum/quirk/linguist)
-	TEST_ASSERT(!linguist.has_language(learned_language), "Losing Linguist left the language")
 
 	// Anosmia: dym nie pachnie; Czuły Nos: zapach trzymanego pojemnika przy oglądaniu
 	for(var/datum/pollution/old_pollution as anything in SSpollution.all_polution.Copy())

@@ -1,9 +1,9 @@
 // AQUILA - cechy (quirki) z innych kodów, grupa „zmysły”
-// Łysina, Rozbiegane Oczy, Niezdara, Analfabeta, Światłowstręt, Cichy Głos, Mocny Rzut, Lingwista, Anosmia,
+// Łysina, Rozbiegane Oczy, Niezdara, Analfabeta, Światłowstręt, Cichy Głos, Mocny Rzut, Anosmia,
 // Okaleczone Oko, Dotykalski, Bez Powiek, Czuły Nos, Przestrzeń Osobista, Chrapanie, Oszczędności Życia, Brudas,
 // Właściciel Zwierzaka, Kolorysta.
 // Źródła: tgstation (code/datums/quirks/), Skyrat/Bubber (life_savings, dirty, pet_owner), Monkestation (colorist),
-// VOREStation (personal_space), Space Station 14 (Snoring), BeeStation/Skyrat (linguist).
+// VOREStation (personal_space), Space Station 14 (Snoring).
 
 #define TRAIT_SHIFTY_EYES "shifty_eyes"
 #define TRAIT_THROWINGARM "throwing_arm"
@@ -16,8 +16,6 @@
 
 /// Źródło krótkowzroczności od okaleczonego oka (inne niż ROUNDSTART_TRAIT cechy Krótkowzroczny)
 #define SCARRED_EYE_TRAIT "scarred_eye"
-/// Źródło języków od cechy Lingwista
-#define LANGUAGE_LINGUIST "linguist"
 
 /// Cechy, które się wykluczają (nazwy jak w oknie postaci)
 /datum/controller/subsystem/processing/quirks/Initialize(timeofday)
@@ -25,7 +23,6 @@
 	quirk_blacklist += list(
 		list("Anosmia", "Czuły Nos"),
 		list("Brudas", "Czyścioszek"),
-		list("Lingwista", "Poliglota"),
 		list("Okaleczone Oko", "Ślepota"),
 	)
 
@@ -263,48 +260,6 @@
 		update_icon()
 		return
 	return ..()
-
-// ---------------------------------------------------------------------------
-// Lingwista (Skyrat/VORE: dodatkowe języki; wersja Bee z ikonami języków u nas nic by nie zmieniła,
-// bo ikony widać zawsze). Dwa dodatkowe języki, Poliglota daje jeden.
-// ---------------------------------------------------------------------------
-
-/datum/quirk/linguist
-	name = "Lingwista"
-	desc = "Języki to twoja pasja: znasz dwa dodatkowe języki. Czy możesz nimi mówić, zależy od twojej anatomii."
-	icon = "language"
-	value = 2
-	gain_text = "<span class='notice'>Głowę masz pełną słówek z obcych języków.</span>"
-	lose_text = "<span class='danger'>Zapominasz obce języki, których się nauczyłeś.</span>"
-	medical_record_text = "Pacjent biegle posługuje się kilkoma językami."
-	/// Języki nadane przez cechę, zabierane przy jej utracie
-	var/list/granted_languages = list()
-
-/datum/quirk/linguist/on_spawn()
-	var/mob/living/carbon/human/H = quirk_holder
-	if(!H.language_holder)
-		return
-	var/obj/item/organ/tongue/T = H.getorganslot(ORGAN_SLOT_TONGUE)
-	if(!T)
-		return
-	var/list/languages_possible = T.languages_possible
-	languages_possible = languages_possible - typecacheof(/datum/language/codespeak) - typecacheof(/datum/language/narsie) - typecacheof(/datum/language/ratvar)
-	languages_possible = languages_possible - H.language_holder.understood_languages
-	languages_possible = languages_possible - H.language_holder.spoken_languages
-	languages_possible = languages_possible - H.language_holder.blocked_languages
-	for(var/i in 1 to 2)
-		if(!length(languages_possible))
-			break
-		var/datum/language/new_language = pick_n_take(languages_possible)
-		H.grant_language(new_language, TRUE, TRUE, LANGUAGE_LINGUIST)
-		granted_languages += new_language
-
-/datum/quirk/linguist/remove()
-	if(QDELETED(quirk_holder))
-		return
-	for(var/language in granted_languages)
-		quirk_holder.remove_language(language, TRUE, TRUE, LANGUAGE_LINGUIST)
-	granted_languages.Cut()
 
 // ---------------------------------------------------------------------------
 // Anosmia (tg). Blokuje zapachy z modułu pollution i miazmę (choroba z miazmy zostaje).

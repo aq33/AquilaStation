@@ -64,7 +64,6 @@
 		list(/datum/quirk/empath, /datum/quirk/evil),
 		list(/datum/quirk/extrovert, /datum/quirk/introvert),
 		list(/datum/quirk/pyromania, /datum/quirk/pyrophobia),
-		list(/datum/quirk/all_nighter, /datum/quirk/heavy_sleeper),
 	)
 	for(var/list/group as anything in exclusive_groups)
 		var/list/names = list()

@@ -23,7 +23,7 @@
 /datum/unit_test/aquila_quirks_extra_nastroj/Run()
 	var/list/quirk_types = list(
 		/datum/quirk/monophobia, /datum/quirk/claustrophobia, /datum/quirk/gamer, /datum/quirk/clown_enjoyer,
-		/datum/quirk/mime_fan, /datum/quirk/poster_boy, /datum/quirk/all_nighter, /datum/quirk/cursed,
+		/datum/quirk/mime_fan, /datum/quirk/poster_boy, /datum/quirk/cursed,
 		/datum/quirk/evil, /datum/quirk/transhumanist, /datum/quirk/body_purist, /datum/quirk/pyromania,
 		/datum/quirk/pyrophobia, /datum/quirk/kleptomaniac, /datum/quirk/joker, /datum/quirk/extrovert,
 		/datum/quirk/introvert, /datum/quirk/bad_touch, /datum/quirk/snob, /datum/quirk/nervous,
@@ -121,14 +121,6 @@
 	poster_boy.mind_initialize()
 	poster.on_seen(poster_boy)
 	TEST_ASSERT(mood_event(poster_boy, "poster_mood"), "Seeing the poster did not cheer anyone up")
-
-	// Zarwana noc: zły nastrój, który znika po kawie
-	var/mob/living/carbon/human/sleepy = make_human()
-	var/datum/quirk/all_nighter/all_nighter = give_quirk(sleepy, /datum/quirk/all_nighter)
-	TEST_ASSERT(mood_event(sleepy, "all_nighter"), "All nighter gave no bad mood")
-	sleepy.reagents.add_reagent(/datum/reagent/consumable/coffee, 10)
-	all_nighter.on_process(1)
-	TEST_ASSERT(!mood_event(sleepy, "all_nighter"), "Coffee did not help the all nighter")
 
 	// Przeklęty: omen, a groźne poślizgnięcie rani głowę
 	var/mob/living/carbon/human/cursed = make_human()

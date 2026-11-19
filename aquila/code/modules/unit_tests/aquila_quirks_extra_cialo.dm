@@ -11,7 +11,7 @@
 		/datum/quirk/hemophilia, /datum/quirk/hemiplegic, /datum/quirk/food_allergic, /datum/quirk/numb,
 		/datum/quirk/prosthetic_organ, /datum/quirk/quadruple_amputee, /datum/quirk/tin_man, /datum/quirk/chronic_illness,
 		/datum/quirk/immunodeficiency, /datum/quirk/strong_stomach, /datum/quirk/limper, /datum/quirk/hardened_soles,
-		/datum/quirk/hungry, /datum/quirk/fragile, /datum/quirk/death_mimicry,
+		/datum/quirk/hungry, /datum/quirk/death_mimicry,
 	)
 	// Każda cecha jest w oknie postaci, dodaje się z efektami startowymi i usuwa bez błędów
 	for(var/quirk_type in quirk_types)
@@ -175,18 +175,12 @@
 	caltrop.on_entered(get_turf(spikes), hard_feet)
 	TEST_ASSERT_EQUAL(hard_feet.getBruteLoss(), 0, "Spikes hurt hardened soles")
 
-	// Wiecznie głodny i Kruchość: mnożniki fizjologii wracają po usunięciu
+	// Wiecznie głodny: mnożnik fizjologii wraca po usunięciu
 	var/mob/living/carbon/human/hungry = allocate(/mob/living/carbon/human, run_loc_floor_bottom_left)
 	hungry.add_quirk(/datum/quirk/hungry)
 	TEST_ASSERT_EQUAL(hungry.physiology.hunger_mod, 2, "Hungry does not double the hunger")
 	hungry.remove_quirk(/datum/quirk/hungry)
 	TEST_ASSERT_EQUAL(hungry.physiology.hunger_mod, 1, "The hunger stayed doubled after removing the quirk")
-	var/mob/living/carbon/human/fragile = allocate(/mob/living/carbon/human, run_loc_floor_bottom_left)
-	fragile.add_quirk(/datum/quirk/fragile)
-	TEST_ASSERT_EQUAL(fragile.physiology.brute_mod, 1.25, "Fragility does not raise brute damage")
-	TEST_ASSERT_EQUAL(fragile.physiology.burn_mod, 1.25, "Fragility does not raise burn damage")
-	fragile.remove_quirk(/datum/quirk/fragile)
-	TEST_ASSERT_EQUAL(fragile.physiology.brute_mod, 1, "Brute damage stayed raised after removing fragility")
 
 	// Udawanie śmierci: deathgasp usypia i udaje śmierć
 	var/mob/living/carbon/human/actor = allocate(/mob/living/carbon/human, run_loc_floor_bottom_left)

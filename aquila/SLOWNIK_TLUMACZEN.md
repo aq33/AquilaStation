@@ -4521,7 +4521,6 @@ Nazwy obszarów są w większości przetłumaczone. Nowe nazwy budujemy z tych k
 
 | Clown Enjoyer / Mime Fan | Miłośnik Klaunów / Fan Mima | m; cechy postaci (przypinka klauna/mima) |
 | homemade poster / Poster Boy | plakat domowej roboty / Plakaciarz | m; cecha postaci |
-| All Nighter | Zarwana Noc | ż; cecha postaci |
 | Body Purist / Transhumanist | Purysta Ciała / Transhumanista | m; cechy postaci |
 | Fundamentally Evil | Z Gruntu Zły | m; cecha postaci |
 | Pseudobulbar Affect | Afekt Pseudobulbarny | m; cecha postaci |

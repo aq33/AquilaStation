@@ -24,7 +24,6 @@
 /// Limper: slowdown without a cane (our critical blunt wound limps with 1.5; tg: "same as compound fracture")
 #define AQ_LIMPER_SLOWDOWN 1.5
 #define AQ_HUNGRY_MOD 2
-#define AQ_FRAGILE_MOD 1.25
 
 /// Puts a starting item from a quirk into the backpack, a pocket or the hands. Returns where it went (Polish text).
 /datum/quirk/proc/aq_cialo_give_item(obj/item/item)
@@ -800,31 +799,6 @@ GLOBAL_LIST_INIT(aq_surplus_organs, list(
 	H.physiology?.hunger_mod /= AQ_HUNGRY_MOD
 
 // ---------------------------------------------------------------------------
-// Kruchość (Skyrat: Fragility): obrażenia fizyczne i od oparzeń o 25% większe. Bez ustawiania mnożnika
-// w oknie postaci (Skyrat: 1,25-5), stałe 1,25.
-
-/datum/quirk/fragile
-	name = "Kruchość"
-	desc = "Czujesz się niesamowicie krucho. Oparzenia i stłuczenia bolą cię bardziej niż przeciętną osobę!"
-	icon = "user-injured"
-	value = -2
-	gain_text = "<span class='danger'>Czujesz się niesamowicie krucho.</span>"
-	lose_text = "<span class='notice'>Kruchość mija.</span>"
-	medical_record_text = "Ciało pacjenta przywykło do niskiej grawitacji. Niestety, niska grawitacja nie sprzyja rozwojowi mocnych kości."
-
-/datum/quirk/fragile/add()
-	var/mob/living/carbon/human/H = quirk_holder
-	H.physiology.brute_mod *= AQ_FRAGILE_MOD
-	H.physiology.burn_mod *= AQ_FRAGILE_MOD
-
-/datum/quirk/fragile/remove()
-	var/mob/living/carbon/human/H = quirk_holder
-	if(!H.physiology)
-		return
-	H.physiology.brute_mod /= AQ_FRAGILE_MOD
-	H.physiology.burn_mod /= AQ_FRAGILE_MOD
-
-// ---------------------------------------------------------------------------
 // Udawanie śmierci (tg: Death Mimicry): emotka „deathgasp” usypia na 30 s i na ten czas wyglądasz na martwego.
 
 /datum/quirk/death_mimicry
@@ -852,4 +826,3 @@ GLOBAL_LIST_INIT(aq_surplus_organs, list(
 #undef AQ_HEMOPHILIA_BLEED_MOD
 #undef AQ_LIMPER_SLOWDOWN
 #undef AQ_HUNGRY_MOD
-#undef AQ_FRAGILE_MOD
