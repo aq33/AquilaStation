@@ -80,7 +80,7 @@ def jsx_items():
     is_polish = lm.polish_run_detector(lm.load_known(lm.SOURCES))
     items = []
     for item in json.load(open(JSX_DUMP, encoding="utf-8")):
-        if not is_polish("".join(item["texts"])):
+        if not is_polish(" ".join(item["texts"])):
             continue
         slots = []
         for src in item["slots"]:

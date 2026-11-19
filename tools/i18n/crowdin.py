@@ -36,6 +36,7 @@ import list_missing as lm  # noqa: E402
 # lm.load_known: wygrywa pierwszy plik, więc kolejność jak w build_chat_dict.py od końca
 SOURCES = ["strings/i18n/en_all.json", "strings/i18n/en_manual.json", "strings/i18n/en_original.json",
            "strings/i18n/en_translated.json"]
+TRANSLATED = "strings/i18n/en_translated.json"
 # przy wprowadzaniu poprawki zmieniamy też mapy, żeby var-edity i porównania w kodzie się zgadzały
 APPLY_PATHSPECS = lm.PATHSPECS + ["*.dmm"]
 SKIP_DIRS = {"code", "modules", "game", "packages", "objects", "interfaces"}
@@ -236,6 +237,7 @@ def apply(args):
 
     changed_files = collections.Counter()
     if fixes:
+        carry_english(fixes, known)
         for path in player_files(APPLY_PATHSPECS):
             lines = read_lines(path)
             if lines is None:
@@ -272,6 +274,29 @@ def apply(args):
     if args.github_output:
         with open(args.github_output, "a", encoding="utf-8") as f:
             f.write(f"changed={'true' if changed_files else 'false'}\n")
+
+
+def carry_english(fixes, known):
+    """Poprawiony polski tekst to nowy klucz słownika EN: przenosi na niego angielski odpowiednik
+    starego (inaczej wersja angielska traci tekst, a CI odrzuca PR jako tekst bez angielskiego)
+    i przebudowuje słowniki czatu i okien."""
+    with open(TRANSLATED, encoding="utf-8") as f:
+        translated = json.load(f)
+    added = 0
+    for old, new in fixes.items():
+        if old in known and new not in translated:
+            # tekst celowo bez tłumaczenia (para tekst -> ten sam tekst) zostaje taki jak nowy polski
+            translated[new] = new if known[old] == old else known[old]
+            added += 1
+    if not added:
+        return
+    if lm.jsx_ast.dump() is None:
+        # bez drzewa składni build_chat_dict.py zbudowałby słownik okien bez ich zdań
+        raise RuntimeError("Brak drzewa składni okien tgui (zależności tgui: tools/build/build yarn)")
+    with open(TRANSLATED, "w", encoding="utf-8", newline="\n") as f:
+        json.dump(translated, f, ensure_ascii=False, indent=0)
+        f.write("\n")
+    subprocess.run([sys.executable, os.path.join(os.path.dirname(__file__), "build_chat_dict.py")], check=True)
 
 
 def md(text):

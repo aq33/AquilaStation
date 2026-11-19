@@ -77,22 +77,36 @@ def polish_detector(known):
     return detect
 
 
-def polish_run_detector(known):
+def polish_run_detector(known, detect=None):
     """Polski tekst okna. Sam jsx_runs.is_polish_run patrzy tylko na ogonki i stoplistę, więc
-    "Mapa taktyczna" czy "Brak celu dodatkowego" przechodziły jako nie-polskie: tu też słownik."""
-    detect = polish_detector(known)
+    "Mapa taktyczna" czy "Brak celu dodatkowego" przechodziły jako nie-polskie: tu też słownik.
+    detect: gotowy polish_detector(known), żeby nie liczyć słownika drugi raz."""
+    detect = detect or polish_detector(known)
     return lambda literal: jsx_runs.is_polish_run(literal) or detect(jsx_runs.plain(literal))
 
 
-def line_literals(path, line):
-    """Literały linii i napisy wewnątrz ich wstawek ([on ? "włączony" : "wyłączony"])."""
-    if path.endswith(jsx_runs.JSX_EXT) and jsx_ast.dump() is not None:
-        # tekst JSX daje drzewo składni; ze skanu linii tylko napisy w cudzysłowach (label: 'Stado'), które
-        # tłumaczy w oknie tgui/i18nDom.ts. Linia "? 'Tekst'" jako cały tekst JSX to był szum
-        stripped = line.strip()
-        if stripped.startswith(("//", "*", "/*")):
-            return []
-        return [m.group(2) for m in ep.QUOTED_JS.finditer(line)]
+# napis w kodzie okna, a nie apostrof w tekście JSX ("Kliknij 'Start', żeby"): przed nim operator, nawias,
+# przecinek albo początek linii, za nim to samo albo koniec linii
+CODE_BEFORE = re.compile(r"(?:^|[=:(\[{,?|&+!]|\breturn|\bcase|=>)\s*$")
+CODE_AFTER = re.compile(r"^\s*(?:$|[,;:)\]}?|&+]|/?>|\w+=)")
+
+
+def window_code_strings(line):
+    """Napisy w cudzysłowach z linii kodu okna (label: 'Stado', x || 'brak'), które tłumaczy w oknie
+    tgui/i18nDom.ts. Tekst JSX bierzemy z drzewa składni, więc cała linia jako tekst odpada."""
+    if line.strip().startswith(("//", "*", "/*")):
+        return []
+    return [m.group(2) for m in ep.QUOTED_JS.finditer(line)
+            if CODE_BEFORE.search(line[:m.start()]) and CODE_AFTER.match(line[m.end():])]
+
+
+def line_literals(path, line, windows_from_ast=False):
+    """Literały linii i napisy wewnątrz ich wstawek ([on ? "włączony" : "wyłączony"]).
+    windows_from_ast: okna mają teksty z drzewa składni, ze skanu linii tylko napisy w kodzie."""
+    if windows_from_ast and path.endswith(jsx_runs.JSX_EXT):
+        return window_code_strings(line)
+    if path.endswith(".dm") and line.strip().startswith(("*", "/*")):
+        return []  # komentarz blokowy (/** ... */): cudzysłowy w opisie to nie tekst gracza
     found = ep.literals(path, line)
     if path.endswith(".dm"):
         for lit in list(found):
@@ -105,7 +119,8 @@ def missing_literals(known):
     files = subprocess.run(["git", "ls-files", "-z", *PATHSPECS],
                            capture_output=True, text=True, encoding="utf-8", check=True).stdout.split("\0")[:-1]
     is_polish = polish_detector(known)
-    is_polish_run = polish_run_detector(known)
+    is_polish_run = polish_run_detector(known, is_polish)
+    windows_from_ast = jsx_ast.dump() is not None
     found = {}
     for path in files:
         if ep.SKIP_PATH.search(path) or NOT_PLAYER_TEXT.search(path):
@@ -119,7 +134,7 @@ def missing_literals(known):
         for lit, number in jsx_missing(path, content, known, is_polish_run):
             found.setdefault(lit, {"pl": lit, "file": path, "line": number, "code": lit[:200]})
         for number, line in enumerate(lines, 1):
-            for lit in line_literals(path, line):
+            for lit in line_literals(path, line, windows_from_ast):
                 if lit in known or lit in found:
                     continue
                 if is_polish(lit):
@@ -155,12 +170,34 @@ def jsx_missing(path, content, known, is_polish_run):
     return out
 
 
+def normalized(text):
+    return re.sub(r"\s+", " ", text).strip()
+
+
+def in_base(base, path, literal, cache):
+    """Czy ten sam tekst był już w tym pliku w base (linia tylko przeniesiona albo przeformatowana).
+    Wykrywanie polskiego zależy od słownika, więc bez tego ruszenie starej linii mogło nagle zablokować CI.
+    Porównuje całe literały (ze skanu linii i zdań okien), nie podciągi: nowe "Bez" to nie stare "Bez broni"."""
+    if path not in cache:
+        shown = subprocess.run(["git", "show", f"{base}:{path}"], capture_output=True, text=True,
+                               encoding="utf-8", errors="replace")
+        literals = set()
+        if shown.returncode == 0:
+            for line in ep.logical_lines(path, shown.stdout.splitlines()):
+                literals.update(line_literals(path, line))
+            if path.endswith(jsx_runs.JSX_EXT):
+                literals.update(lit for lit, _ in jsx_runs.runs(shown.stdout))
+        cache[path] = {normalized(lit) for lit in literals}
+    return normalized(literal) in cache[path]
+
+
 def changed_missing(known, base):
-    """Polskie literały w liniach dodanych względem base, bez angielskiego."""
+    """Polskie literały w liniach dodanych względem base, bez angielskiego. Pomija teksty, które
+    w tym pliku już były (ich braki pokazuje pełny skan bez --changed)."""
     diff = subprocess.run(["git", "diff", "-U0", "--no-renames", base, "--", *PATHSPECS],
                           capture_output=True, text=True, encoding="utf-8", check=True).stdout
     is_polish = polish_detector(known)
-    is_polish_run = polish_run_detector(known)
+    is_polish_run = polish_run_detector(known, is_polish)
     path, number, found = None, 0, []
     added = {}  # okno -> numery dodanych linii
     # teksty okien z drzewa składni (zdania przez kilka linii); bez Node ze skanu linii jak DM
@@ -174,14 +211,10 @@ def changed_missing(known, base):
             if not ep.SKIP_PATH.search(path) and not NOT_PLAYER_TEXT.search(path):
                 if windows_from_ast and path.endswith(jsx_runs.JSX_EXT):
                     added.setdefault(path, set()).add(number)
-                    # napisy w kodzie okna poza tekstem JSX (label: 'Stado')
-                    for lit in line_literals(path, line[1:]):
-                        if lit not in known and is_polish(lit):
-                            found.append((path, number, lit))
-                else:
-                    for lit in line_literals(path, line[1:]):
-                        if lit not in known and is_polish(lit):
-                            found.append((path, number, lit))
+                # w oknach z drzewem składni: napisy w kodzie poza tekstem JSX (label: 'Stado')
+                for lit in line_literals(path, line[1:], windows_from_ast):
+                    if lit not in known and is_polish(lit):
+                        found.append((path, number, lit))
             number += 1
     # tylko teksty, które nachodzą na dodane linie: stare zdania okna nie wracają w każdym PR-ze
     for path, lines in sorted(added.items()):
@@ -191,9 +224,12 @@ def changed_missing(known, base):
             for lit, first, last in jsx_missing_ranges(path, f.read(), known, is_polish_run):
                 if any(first <= n <= last for n in lines):
                     found.append((path, first, lit))
-    # atrybut JSX (tooltip="...") jest i w drzewie składni, i w skanie linii
-    seen = set()
-    return [item for item in found if (item[0], item[2]) not in seen and not seen.add((item[0], item[2]))]
+    # atrybut JSX (tooltip="...") bywa i w drzewie składni, i w skanie linii: raz na plik i tekst
+    unique, cache = {}, {}
+    for path, number, lit in found:
+        if (path, lit) not in unique and not in_base(base, path, lit, cache):
+            unique[(path, lit)] = (path, number, lit)
+    return list(unique.values())
 
 
 def main():
@@ -213,7 +249,8 @@ def main():
             level = "error" if args.strict else "warning"
             print(f"::{level} file={path},line={number}::Tekst bez angielskiego odpowiednika: {text}")
         print(f"nowych polskich tekstów bez angielskiego: {len(found)}"
-              + (" (dopisz je do strings/i18n/en_translated.json i uruchom tools/i18n/build_chat_dict.py)"
+              + (" (dopisz je do strings/i18n/en_translated.json i uruchom tools/i18n/build_chat_dict.py;"
+                 " tekst, który nie trafia do gracza, jako parę tekst -> ten sam tekst)"
                  if found else ""))
         if found and args.strict:
             sys.exit(1)
