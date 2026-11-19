@@ -4519,26 +4519,22 @@ Nazwy obszarów są w większości przetłumaczone. Nowe nazwy budujemy z tych k
 | Frontiersmen | Pogranicznicy | m mn.; nowe (frakcja z ruin Shiptesta, u nas piraci) |
 | Corporate Resort / Cybersun Pad / Frontiersman Moat / Cave Gunsmith / Frontiersmen Depot | Kurort Korporacyjny / Lądowisko Cybersun / Fosa Pograniczników / Jaskiniowy Rusznikarz / Składnica Pograniczników | nowe (ruiny plaży) |
 
-## 25. Mechy: sloty, ciepło, nowe podwozia i wyposażenie (2026-11)
+## 25. Mechy: sloty, overclock, nowe podwozia i wyposażenie (2026-11)
 
 | Angielski | Polski | Uwagi |
 |---|---|---|
 | left arm / right arm (slot) | lewe ramię / prawe ramię | n; nowe |
 | utility / power / armor (slot) | użytkowe / zasilanie / pancerz | nowe (nazwy slotów w oknie mecha) |
 | overclock | overclock | m; nowe (termin graczy, bez tłumaczenia) |
-| heat / overheat | ciepło / przegrzanie | n; nowe |
-| thermal fuse | bezpiecznik termiczny | m; nowe |
 | directional armor | pancerz kierunkowy | m; nowe |
 | armor plating (mech part) | płyta pancerza egzoszkieletu | ż; nowe |
 | conversion kit | zestaw konwersji | m; istniejące |
-| heat sink / radiator loop / active cooling | zbiornik ciepła / pętla radiatora / aktywny układ chłodzenia | nowe |
 | drop system / drop beacon | system zrzutu orbitalnego / latarnia zrzutu | nowe |
 | remote control pod | kokpit zdalnego sterowania | m; nowe |
-| passenger compartment / jail cell / stretcher | przedział pasażerski / cela / nosze | nowe |
+| jail cell / stretcher | cela / nosze | nowe |
 | firing port weapon | broń portów strzeleckich | ż; nowe |
-| gunner module / weapons loader | moduł strzelca / ładowarka uzbrojenia | nowe |
+| weapons loader | ładowarka uzbrojenia | ż; nowe |
 | ore storage module | moduł ładowni rud | m; nowe |
-| modular mech / parts kit | mech modułowy / zestaw części | nowe; zestawy: ładowacz, lekki, bojowy, ciężki |
 | Clarke, Paddy, Savannah-Ivanov, Red Sunday, Sentinel | bez zmian | nazwy własne podwozi |
 | Skyfall / Ivanov strike | Skyfall / uderzenie Ivanov | nowe |
 ## Cyborgi: moduły i ulepszenia (Aquila)

@@ -78,7 +78,6 @@
 	if(!do_after(user, 2 SECONDS, target = src))
 		return
 	use_power(1000)
-	aq_adjust_heat(20)
 	COOLDOWN_START(src, skyfall_cd, 30 SECONDS)
 	var/turf/landing = get_turf(src)
 	for(var/i in 1 to 6)
@@ -130,7 +129,6 @@
 	if(!target || !COOLDOWN_FINISHED(src, ivanov_cd) || !has_charge(2000))
 		return
 	use_power(2000)
-	aq_adjust_heat(15)
 	COOLDOWN_START(src, ivanov_cd, 2 MINUTES)
 	occupant_message("<span class='danger'>Uderzenie Ivanov odpalone!</span>")
 	log_message("Ivanov strike at [AREACOORD(target)].", LOG_MECHA)

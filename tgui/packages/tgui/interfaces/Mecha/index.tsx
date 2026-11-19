@@ -11,7 +11,7 @@ import {
 import { useBackend } from '../../backend';
 import { Window } from '../../layouts';
 import { AlertPane } from './AlertPane';
-import { AqSystemsPane } from './AqSystemsPane'; // AQ EDIT - sloty i ciepło
+import { AqSystemsPane } from './AqSystemsPane'; // AQ EDIT - sloty i overclock
 import type { MainData } from './data';
 import { ModulesPane } from './ModulesPane';
 
@@ -31,7 +31,7 @@ export const Mecha = (props) => {
               <Stack.Item>
                 <AlertPane />
               </Stack.Item>
-              {/* AQ EDIT - sloty, ciepło i overclock */}
+              {/* AQ EDIT - sloty i overclock */}
               <Stack.Item>
                 <AqSystemsPane />
               </Stack.Item>

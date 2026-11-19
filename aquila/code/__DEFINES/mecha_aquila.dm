@@ -1,4 +1,4 @@
-// AQUILA - system mechów (sloty, ciepło, dwa miejsca, zdalne sterowanie). Wzór: tg/Bee (sloty), Yogstation (ciepło, broń wręcz).
+// AQUILA - system mechów (sloty, overclock, dwa miejsca, zdalne sterowanie). Wzór: tg/Bee (sloty, overclock), Yogstation (broń wręcz).
 
 // Kategorie slotów podwozia (jak MECHA_L_ARM/... w tg)
 #define AQ_MECHA_L_ARM "l_arm"
@@ -13,15 +13,8 @@
 /// Wyposażenie zamontowane ponad limit (gotowe mechy z mapy i od admina)
 #define AQ_MECHA_SLOT_OVERFLOW "overflow"
 
-// Ciepło (jak overheat w Yogstation)
-#define AQ_MECHA_HEAT_WARNING 50
-#define AQ_MECHA_HEAT_DANGER 100
-#define AQ_MECHA_HEAT_MAX 150
-/// Chłodzenie bierne na sekundę, gdy overclock jest wyłączony
-#define AQ_MECHA_PASSIVE_COOLING 3
-/// Grzanie na sekundę przy włączonym overclocku
-#define AQ_MECHA_OVERCLOCK_HEAT 8
-/// Ile bezpieczników ma mech
-#define AQ_MECHA_FUSES 3
-/// Ile kabla na wymianę jednego bezpiecznika
-#define AQ_MECHA_FUSE_CABLE 3
+// Overclock (overclock_mode z tg, z czasem odnowienia zamiast ciepła)
+/// Jak długo działa włączony overclock
+#define AQ_MECHA_OVERCLOCK_DURATION (15 SECONDS)
+/// Odnowienie overclocku po jego wyłączeniu
+#define AQ_MECHA_OVERCLOCK_COOLDOWN (45 SECONDS)

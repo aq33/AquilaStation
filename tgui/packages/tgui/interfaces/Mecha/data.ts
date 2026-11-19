@@ -44,14 +44,9 @@ export type MainData = {
 
   /** AQUILA: systemy mecha (aquila/code/modules/mecha_rework/ui.dm) */
   aq_slots?: AqSlot[];
-  aq_heat?: number;
-  aq_heat_warning?: number;
-  aq_heat_danger?: number;
-  aq_heat_max?: number;
   aq_overclock?: BooleanLike;
-  aq_fuses?: number;
-  aq_fuses_max?: number;
-  aq_fuse_safety?: BooleanLike;
+  aq_overclock_left?: number;
+  aq_overclock_cooldown?: number;
   aq_facing?: number[];
   aq_plating?: string | null;
   aq_copilot?: string | null;

@@ -76,7 +76,6 @@
 	N.maint_access = M.maint_access
 	N.strafe = M.strafe
 	N.obj_integrity = min(M.obj_integrity, N.max_integrity)
-	N.aq_fuses = M.aq_fuses
 	N.setDir(M.dir)
 	M.wreckage = null
 	qdel(M)
@@ -201,7 +200,6 @@
 		return
 	use_power(charge_power)
 	COOLDOWN_START(src, charge_cd, charge_cooldown)
-	aq_adjust_heat(15)
 	visible_message("<span class='danger'>[src] rusza do szarży!</span>")
 	playsound(src, 'sound/mecha/mechstep.ogg', 70, TRUE)
 	for(var/i in 1 to charge_distance)

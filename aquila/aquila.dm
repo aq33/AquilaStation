@@ -2846,12 +2846,12 @@
 #include "code\modules\test_chamber\kits\pr_637_tlumacz_na_zywo.dm"
 #include "code\modules\test_chamber\kits\pr_654_drobiazgi_1711.dm"
 
-// MECHY: system mechów na /obj/mecha (sloty, wymienne części, overclock z ciepłem, kierunkowy pancerz, broń wręcz,
+// MECHY: system mechów na /obj/mecha (sloty, wymienne części, overclock z czasem odnowienia, kierunkowy pancerz, broń wręcz,
 // amunicja, konwersje, zakup w cargo, warsztat, zdalne sterowanie, zrzut z orbity, dwa miejsca), nowe podwozia, skiny i wyposażenie
 #include "code\__DEFINES\mecha_aquila.dm"
 #include "code\modules\mecha_rework\slots.dm"
 #include "code\modules\mecha_rework\parts.dm"
-#include "code\modules\mecha_rework\heat.dm"
+#include "code\modules\mecha_rework\overclock.dm"
 #include "code\modules\mecha_rework\armor_facing.dm"
 #include "code\modules\mecha_rework\copilot.dm"
 #include "code\modules\mecha_rework\remote.dm"
@@ -2866,7 +2866,6 @@
 #include "code\modules\mecha_rework\chassis\paddy.dm"
 #include "code\modules\mecha_rework\chassis\savannah.dm"
 #include "code\modules\mecha_rework\chassis\sentinel.dm"
-#include "code\modules\mecha_rework\chassis\modular.dm"
 #include "code\modules\mecha_rework\equipment\melee.dm"
 #include "code\modules\mecha_rework\equipment\weapons.dm"
 #include "code\modules\mecha_rework\equipment\tools.dm"

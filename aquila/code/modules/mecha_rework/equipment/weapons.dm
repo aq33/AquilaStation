@@ -30,12 +30,10 @@
 	projectile_delay = 1.5
 	fire_sound = 'sound/weapons/gunshot_smg.ogg'
 	harmful = TRUE
-	aq_magazine_only = TRUE
 	aq_ammo_type = "umg2"
 	aq_ammo_cache = 60
 	aq_ammo_cache_max = 240
 	aq_calibers = list("a762", "n762")
-	aq_heat_cost = 2
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/aq_executor
 	name = "\improper karabin mecha Executor"
@@ -47,12 +45,10 @@
 	projectiles = 10
 	fire_sound = 'sound/weapons/sniper_shot.ogg'
 	harmful = TRUE
-	aq_magazine_only = TRUE
 	aq_ammo_type = "executor"
 	aq_ammo_cache = 10
 	aq_ammo_cache_max = 50
 	aq_calibers = list(".50")
-	aq_heat_cost = 6
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/aq_sentinel_cannon
 	name = "działo Sentinela"
@@ -68,11 +64,9 @@
 	projectile_delay = 1
 	fire_sound = 'aquila/sound/mecha/lighttankgun.ogg'
 	harmful = TRUE
-	aq_magazine_only = TRUE
 	aq_ammo_type = "sentinel"
 	aq_ammo_cache = 10
 	aq_ammo_cache_max = 30
-	aq_heat_cost = 15
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/aq_sentinel_cannon/can_attach(obj/mecha/M)
 	if(!istype(M, /obj/mecha/combat/aq_sentinel))
@@ -103,7 +97,6 @@
 	projectile_delay = 1
 	fire_sound = 'sound/weapons/lasercannonfire.ogg'
 	harmful = TRUE
-	aq_heat_cost = 12
 
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/aq_sentinel_laser/can_attach(obj/mecha/M)
 	if(!istype(M, /obj/mecha/combat/aq_sentinel))
@@ -118,12 +111,10 @@
 	equip_cooldown = 10
 	projectile = /obj/item/projectile/bullet/aq_mech_venom
 	projectiles = 24
-	projectile_energy_cost = 25
 	fire_sound = 'sound/weapons/gunshot_smg.ogg'
 	harmful = TRUE
 	aq_ammo_cache_max = 96
 	aq_calibers = list(".45")
-	aq_heat_cost = 5
 
 /obj/item/projectile/bullet/aq_mech_venom
 	name = "pocisk z jadem"
@@ -138,7 +129,7 @@
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/aq_fpw
 	name = "\improper broń portów strzeleckich M56 FPW"
-	desc = "Karabin w porcie strzeleckim kabiny (CM-SS13). Strzela nim drugi załogant albo pasażer z wnętrza mecha, w dowolną stronę, niezależnie od tego, dokąd patrzy mech."
+	desc = "Karabin w porcie strzeleckim kabiny (CM-SS13). Strzela nim drugi załogant z wnętrza mecha, w dowolną stronę, niezależnie od tego, dokąd patrzy mech."
 	icon = 'aquila/icons/mecha/aq_mecha_equipment.dmi'
 	icon_state = "aq_fpw"
 	equip_cooldown = 6
@@ -150,14 +141,13 @@
 	randomspread = 1
 	fire_sound = 'sound/weapons/gunshot_smg.ogg'
 	harmful = TRUE
-	aq_magazine_only = TRUE
 	aq_ammo_type = "fpw"
 	aq_ammo_cache = 30
 	aq_ammo_cache_max = 180
 	aq_calibers = list("10mm")
 	COOLDOWN_DECLARE(port_cooldown)
 
-/// Strzał z portu: bez sprawdzania kierunku mecha, strzelcem jest pasażer
+/// Strzał z portu: bez sprawdzania kierunku mecha, strzelcem jest drugi załogant
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/aq_fpw/proc/port_fire(atom/target, mob/living/shooter, params)
 	if(!COOLDOWN_FINISHED(src, port_cooldown) || chassis.equipment_disabled)
 		return FALSE
@@ -187,23 +177,13 @@
 	SStgui.update_uis(chassis)
 	return TRUE
 
-/obj/mecha/proc/aq_is_passenger(mob/user)
-	for(var/obj/item/mecha_parts/mecha_equipment/aq_utility/carrier/passenger_compartment/P in equipment)
-		if(user in P.carried)
-			return TRUE
-	return FALSE
-
 /obj/mecha/click_action(atom/target, mob/user, params)
-	if(user != occupant && (user == aq_copilot || aq_is_passenger(user)))
+	if(user != occupant && user == aq_copilot)
 		if(user.incapacitated() || phasing || !get_charge())
 			return
 		var/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/aq_fpw/port = locate() in equipment
 		if(port)
 			INVOKE_ASYNC(port, TYPE_PROC_REF(/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/aq_fpw, port_fire), target, user, params)
-			return
-		var/obj/item/mecha_parts/mecha_equipment/weapon/gun = selected
-		if(istype(gun) && gun.projectile && ispath(gun.projectile, /obj/item/projectile) && (locate(/obj/item/mecha_parts/mecha_equipment/aq_utility/gunner) in equipment))
-			INVOKE_ASYNC(gun, TYPE_PROC_REF(/obj/item/mecha_parts/mecha_equipment/weapon, aq_turret_fire), target, user, params)
 		return
 	return ..()
 
@@ -218,11 +198,9 @@
 	projectiles = 4
 	fire_sound = 'sound/weapons/grenadelaunch.ogg'
 	harmful = TRUE
-	aq_magazine_only = TRUE
 	aq_ammo_type = "smilgas"
 	aq_ammo_cache = 4
 	aq_ammo_cache_max = 8
-	aq_heat_cost = 8
 
 /obj/item/projectile/bullet/aq_smilgas
 	name = "rakieta kierowana"
@@ -254,7 +232,6 @@
 	equip_cooldown = 60
 	projectile = /obj/item/projectile/bullet/aq_breaching
 	projectiles = 6
-	projectile_energy_cost = 1000
 	fire_sound = 'sound/weapons/grenadelaunch.ogg'
 	harmful = TRUE
 	aq_ammo_type = "missiles_br"
@@ -291,7 +268,6 @@
 	projectile = /obj/item/projectile/beam/xray
 	fire_sound = 'sound/weapons/laser3.ogg'
 	harmful = TRUE
-	aq_heat_cost = 6
 
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/aq_gamma
 	name = "laser gamma egzoszkieletu"
@@ -303,7 +279,6 @@
 	projectile = /obj/item/projectile/beam/aq_gamma
 	fire_sound = 'sound/weapons/laser3.ogg'
 	harmful = TRUE
-	aq_heat_cost = 4
 
 /obj/item/projectile/beam/aq_gamma
 	name = "wiązka gamma"
@@ -312,60 +287,6 @@
 	damage_type = TOX
 	irradiate = 600
 	light_color = LIGHT_COLOR_GREEN
-
-/obj/item/mecha_parts/mecha_equipment/weapon/energy/aq_immolation
-	name = "\improper działo wiązki podpalającej ZFI"
-	desc = "Wiązka podpalająca cel na dystansie (Paradise). Pali i podpala boarderów oraz faunę planet."
-	icon = 'aquila/icons/mecha/aq_mecha_equipment.dmi'
-	icon_state = "aq_immolation"
-	equip_cooldown = 25
-	energy_drain = 200
-	projectile = /obj/item/projectile/beam/aq_immolation
-	fire_sound = 'sound/weapons/laser3.ogg'
-	harmful = TRUE
-	aq_heat_cost = 8
-
-/obj/item/projectile/beam/aq_immolation
-	name = "wiązka podpalająca"
-	icon_state = "red_laser"
-	damage = 15
-	damage_type = BURN
-
-/obj/item/projectile/beam/aq_immolation/on_hit(atom/target, blocked = FALSE)
-	. = ..()
-	if(isliving(target) && blocked < 100)
-		var/mob/living/L = target
-		L.adjust_fire_stacks(3)
-		L.IgniteMob()
-
-/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/aq_incendiary_cannon
-	name = "działo zapalające egzoszkieletu"
-	desc = "Działo strzelające pociskami zapalającymi (Polaris, VOREStation). Każde trafienie rozlewa ogień wokół celu."
-	icon = 'aquila/icons/mecha/aq_mecha_equipment.dmi'
-	icon_state = "aq_incendiary"
-	equip_cooldown = 30
-	projectile = /obj/item/projectile/bullet/aq_incendiary_shell
-	projectiles = 8
-	projectile_energy_cost = 300
-	fire_sound = 'sound/weapons/grenadelaunch.ogg'
-	harmful = TRUE
-	aq_heat_cost = 6
-
-/obj/item/projectile/bullet/aq_incendiary_shell
-	name = "pocisk zapalający"
-	icon_state = "missile"
-	damage = 15
-	damage_type = BURN
-
-/obj/item/projectile/bullet/aq_incendiary_shell/on_hit(atom/target, blocked = FALSE)
-	. = ..()
-	var/turf/T = get_turf(target)
-	for(var/turf/open/O in range(1, T))
-		O.hotspot_expose(1000, 100)
-	for(var/mob/living/L in range(1, T))
-		L.adjust_fire_stacks(2)
-		L.IgniteMob()
-	return BULLET_ACT_HIT
 
 /obj/item/mecha_parts/mecha_equipment/weapon/aq_flamethrower
 	name = "montowany miotacz ognia"
@@ -376,7 +297,6 @@
 	equip_cooldown = 20
 	energy_drain = 30
 	harmful = TRUE
-	aq_heat_cost = 5
 	fire_sound = 'aquila/sound/weapons/flamethrower.ogg'
 	var/per_shot = 5
 
@@ -442,9 +362,9 @@
 	fire_sound = 'sound/weapons/grenadelaunch.ogg'
 	projectiles = 6
 	missile_speed = 1.5
-	projectile_energy_cost = 300
 	equip_cooldown = 40
 	harmful = FALSE
+	aq_ammo_cache_max = 12
 	var/flare_mode = FALSE
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/aq_mkv7/aq_allows_working()
@@ -480,9 +400,9 @@
 	fire_sound = 'sound/weapons/grenadelaunch.ogg'
 	projectiles = 10
 	missile_speed = 2
-	projectile_energy_cost = 200
 	equip_cooldown = 20
 	harmful = FALSE
+	aq_ammo_cache_max = 20
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/aq_bola/aq_allows_working()
 	return TRUE
@@ -494,7 +414,6 @@
 	icon_state = "aq_stinger"
 	projectile = /obj/item/grenade/stingbang
 	projectiles = 6
-	projectile_energy_cost = 600
 	harmful = FALSE
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/flashbang/aq_stinger/aq_allows_working()
@@ -538,10 +457,8 @@
 	projectiles_per_shot = 1
 	fire_sound = 'sound/weapons/gunshot.ogg'
 	harmful = TRUE
-	aq_magazine_only = TRUE
 	aq_ammo_cache = 0
 	aq_ammo_cache_max = 100
-	aq_heat_cost = 3
 
 /obj/item/projectile/bullet/aq_forge_slug
 	name = "kulka z fabrykatora"
@@ -575,40 +492,6 @@
 				return
 	return ..()
 
-/// Strzał z wieżyczki modułu strzelca: drugi załogant strzela wybraną bronią w dowolną stronę
-/obj/item/mecha_parts/mecha_equipment/weapon/proc/aq_turret_fire(atom/target, mob/living/shooter, params)
-	if(!chassis || !equip_ready || chassis.equipment_disabled)
-		return FALSE
-	if(harmful && HAS_TRAIT(shooter, TRAIT_PACIFISM))
-		return FALSE
-	var/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/B = src
-	var/shots = projectiles_per_shot
-	if(istype(B))
-		shots = min(shots, B.projectiles)
-	else if(energy_drain)
-		shots = min(shots, round(chassis.get_charge() / energy_drain))
-	if(shots <= 0)
-		return FALSE
-	var/turf/curloc = get_turf(chassis)
-	if(!curloc || get_turf(target) == curloc)
-		return FALSE
-	set_ready_state(0)
-	if(!istype(B))
-		chassis.use_power(energy_drain * shots)
-	addtimer(CALLBACK(src, PROC_REF(set_ready_state), 1), equip_cooldown)
-	for(var/i in 1 to shots)
-		var/obj/item/projectile/P = new projectile(curloc)
-		P.firer = shooter
-		P.original = target
-		P.preparePixelProjectile(target, shooter, params, variance ? round((rand() - 0.5) * variance) : 0)
-		P.fire()
-		playsound(chassis, fire_sound, 50, TRUE)
-		if(istype(B))
-			B.projectiles--
-		sleep(max(0, projectile_delay))
-	log_combat(shooter, target, "fired at", src, "(wieżyczka modułu strzelca)")
-	SStgui.update_uis(chassis)
-	return TRUE
 
 // ---------------------------------------------------------------- staza
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/aq_stasis

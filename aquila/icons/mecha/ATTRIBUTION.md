@@ -9,10 +9,9 @@ Złożone skryptem z oryginałów (kopie stanów, warstwy części złożone w j
 | `aq_mecha.dmi`: clipdurand, inteqgygax, mpgygax, clipripley, hauler | Shiptest (`icons/mecha/mecha.dmi`) | CC BY-SA 3.0 |
 | `aq_mecha_tall.dmi`: savannah_ivanov | /tg/station (`icons/mob/rideables/coop_mech.dmi`) | CC BY-SA 3.0 |
 | `aq_mecha_tall.dmi`: redsunday | Nova Sector (`modular_nova/modules/xenoarchartifacts/icons/coop_mech.dmi`) | CC BY-SA 3.0 |
-| `aq_mecha_large.dmi`: sentinel, syntinel | MonkeStation 2.0 (`icons/mob/rideables/largetanks.dmi`) | CC BY-SA 3.0 |
-| `aq_mecha_modular_*.dmi` | CEV Eris (`icons/mechs/mech_parts.dmi`, `mech_wreckage.dmi`): korpus, głowa, nogi i ramiona jednej klasy złożone warstwami, kolor przez maskę jak w grze | CC BY-SA 3.0 |
-| `aq_mech_construct.dmi`, `aq_mech_construction.dmi` | Yogstation (Clarke), /tg/station (Savannah-Ivanov), CEV Eris (części mecha modułowego), nasze części i kroki Duranda oraz Gygaxa przemalowane (Sentinel, mech modułowy) | CC BY-SA 3.0 |
-| `aq_mecha_equipment.dmi`: broń wręcz, chłodzenie, gąsienice, wyrzut, laser rentgenowski, K0-B3, RPD | Yogstation (`icons/mecha/mecha_equipment.dmi`) | CC BY-SA 3.0 |
+| `aq_mecha_large.dmi`: sentinel | MonkeStation 2.0 (`icons/mob/rideables/largetanks.dmi`) | CC BY-SA 3.0 |
+| `aq_mech_construct.dmi`, `aq_mech_construction.dmi` | Yogstation (Clarke), /tg/station (Savannah-Ivanov), nasze części i kroki Duranda przemalowane (Sentinel) | CC BY-SA 3.0 |
+| `aq_mecha_equipment.dmi`: broń wręcz, gąsienice, wyrzut, laser rentgenowski, K0-B3, RPD | Yogstation (`icons/mecha/mecha_equipment.dmi`) | CC BY-SA 3.0 |
 | `aq_mecha_equipment.dmi`: kamera, izolacja EMP, chwytak i zestaw Paddy, ładownia rud, miotacz, staza, sleeper, radio, zbiornik | /tg/station (`icons/obj/devices/mecha_equipment.dmi`) | CC BY-SA 3.0 |
 | `aq_mecha_equipment.dmi`: wzmacniacz światła, nosze, Executor, działa Sentinela | MonkeStation 2.0 (`icons/obj/devices/mecha_equipment.dmi`) | CC BY-SA 3.0 |
 | `aq_mecha_equipment.dmi`: stany `aq_*` | przemalowane stany z naszego `icons/mecha/mecha_equipment.dmi` i z Yogstation | CC BY-SA 3.0 |

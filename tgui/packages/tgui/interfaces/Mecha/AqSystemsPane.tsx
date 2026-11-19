@@ -1,28 +1,17 @@
-import {
-  Box,
-  Button,
-  LabeledList,
-  ProgressBar,
-  Section,
-} from 'tgui-core/components';
+import { Box, Button, LabeledList, Section } from 'tgui-core/components';
 
 import { useBackend } from '../../backend';
 import type { MainData } from './data';
 
-// AQUILA: sloty, ciepło, overclock i pancerz kierunkowy
+// AQUILA: sloty, overclock i pancerz kierunkowy
 // (aquila/code/modules/mecha_rework/ui.dm)
 export const AqSystemsPane = (props) => {
   const { act, data } = useBackend<MainData>();
   const {
     aq_slots = [],
-    aq_heat = 0,
-    aq_heat_warning = 50,
-    aq_heat_danger = 100,
-    aq_heat_max = 150,
     aq_overclock,
-    aq_fuses = 0,
-    aq_fuses_max = 3,
-    aq_fuse_safety,
+    aq_overclock_left = 0,
+    aq_overclock_cooldown = 0,
     aq_facing = [1, 1, 1],
     aq_plating,
     aq_copilot,
@@ -32,45 +21,26 @@ export const AqSystemsPane = (props) => {
     <Section title="Systemy">
       <LabeledList>
         <LabeledList.Item
-          label="Ciepło"
+          label="Overclock"
           buttons={
             <Button
               icon="bolt"
               selected={!!aq_overclock}
-              tooltip="Szybszy krok i przeładowanie, rosnące ciepło"
+              disabled={!aq_overclock && aq_overclock_cooldown > 0}
+              tooltip="Na chwilę szybszy krok i przeładowanie kosztem energii, potem odnowienie"
               onClick={() => act('aq_overclock')}
             >
               Overclock
             </Button>
           }
         >
-          <ProgressBar
-            value={aq_heat}
-            minValue={0}
-            maxValue={aq_heat_max}
-            ranges={{
-              good: [-Infinity, aq_heat_warning],
-              average: [aq_heat_warning, aq_heat_danger],
-              bad: [aq_heat_danger, Infinity],
-            }}
-          >
-            {aq_heat} / {aq_heat_max}
-          </ProgressBar>
-        </LabeledList.Item>
-        <LabeledList.Item
-          label="Bezpieczniki"
-          buttons={
-            <Button
-              icon="shield-alt"
-              selected={!!aq_fuse_safety}
-              tooltip="Wyłączone: przy przegrzaniu overclock nie gaśnie, a mech się smaży"
-              onClick={() => act('aq_fuse_safety')}
-            >
-              Zabezpieczenie
-            </Button>
-          }
-        >
-          {aq_fuses} / {aq_fuses_max}
+          {aq_overclock ? (
+            <Box color="good">Włączony, zostało {aq_overclock_left} s</Box>
+          ) : aq_overclock_cooldown > 0 ? (
+            <Box color="average">Odnowienie: {aq_overclock_cooldown} s</Box>
+          ) : (
+            'Gotowy'
+          )}
         </LabeledList.Item>
         <LabeledList.Item label="Pancerz">
           przód ×{aq_facing[0]}, boki ×{aq_facing[1]}, tył ×{aq_facing[2]}

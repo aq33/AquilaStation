@@ -1411,7 +1411,7 @@ Of the logic files, 182 contain an AQ/AQUILA marker or an `aquila/` resource; th
 
 </details>
 
-## Mechs: slots, heat, two seats, remote control (aquila/code/modules/mecha_rework/)
+## Mechs: slots, overclock, two seats, remote control (aquila/code/modules/mecha_rework/)
 
 Everything is layered on top of the old `/obj/mecha` (no migration to `/obj/vehicle/sealed/mecha`). Overrides that return early
 without `..()` in one branch and call `..()` otherwise (partial overrides, class B):
@@ -1419,12 +1419,16 @@ without `..()` in one branch and call `..()` otherwise (partial overrides, class
 | Proc | File | Branch without `..()` |
 |---|---|---|
 | `/obj/mecha/relaymove()` | `copilot.dm`, `equipment/utility.dm` | the second crew member drives (`domove()`), the gunner cannot move while a driver is aboard, a prisoner in the jail cell cannot leave by moving |
-| `/obj/mecha/container_resist()` | `copilot.dm`, `remote.dm`, `equipment/utility.dm` | driver leaves their seat, remote pilot ends the link, prisoner breaks out of the cell (30 s), passenger/stretcher leaves |
+| `/obj/mecha/container_resist()` | `copilot.dm`, `remote.dm`, `equipment/utility.dm` | driver leaves their seat, remote pilot ends the link, prisoner breaks out of the cell (30 s), a patient leaves the stretcher |
 | `/obj/mecha/go_out()` | `remote.dm` | remote pilot: `aq_end_remote()` instead of moving the pilot to the mech |
-| `/obj/mecha/click_action()` | `equipment/weapons.dm`, `chassis/savannah.dm` | driver/passenger fire the firing-port weapon or the gunner-module turret; Savannah gunner picks the Ivanov strike target |
-| `/obj/mecha/MouseDrop_T()` | `copilot.dm`, `equipment/utility.dm` | second seat, passenger compartment, jail cell and stretcher loading |
+| `/obj/mecha/click_action()` | `equipment/weapons.dm`, `chassis/savannah.dm` | the driver fires the firing-port weapon; Savannah gunner picks the Ivanov strike target |
+| `/obj/mecha/MouseDrop_T()` | `copilot.dm`, `equipment/utility.dm` | second seat, jail cell and stretcher loading |
 | `/obj/item/mecha_parts/mecha_equipment/weapon/can_attach()` | `equipment/weapons.dm` | non-lethal launchers (`aq_allows_working()`) also fit working mechs |
 | `/obj/item/mecha_parts/mecha_equipment/aq_conversion_kit/attach()` | `conversion.dm` | like core `ripleyupgrade/attach()`: replaces the mech instead of mounting |
+
+Full override without `..()`: `/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/rearm()` (`ammo.dm`). The core refills
+ballistic mech weapons from the power cell (`projectile_energy_cost`); ours reloads only from the weapon's ammo storage
+(mech ammo boxes, matching casings and magazines, or the items a launcher fires), for every ballistic mech weapon.
 
 `/obj/item/mecha_parts/mecha_equipment/can_attach()` now also requires a free slot (`aq_free_slot_for()`), and `attach()` records the
 slot; `max_equip` is recalculated from the slot limits (+4 for slotless modules), so core `equipment.len < max_equip` checks still pass.

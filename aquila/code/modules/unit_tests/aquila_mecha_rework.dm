@@ -40,8 +40,8 @@
 	plate3.attach(phazon)
 	TEST_ASSERT(plate4.can_attach(phazon), "Phazon has no second armor slot")
 	var/obj/mecha/working/lockermech/locker = allocate(/obj/mecha/working/lockermech)
-	var/obj/item/mecha_parts/mecha_equipment/aq_cooling/active/cooler = allocate(/obj/item/mecha_parts/mecha_equipment/aq_cooling/active)
-	TEST_ASSERT(!cooler.can_attach(locker), "locker mech accepted a power module")
+	var/obj/item/mecha_parts/mecha_equipment/tesla_energy_relay/relay = allocate(/obj/item/mecha_parts/mecha_equipment/tesla_energy_relay)
+	TEST_ASSERT(!relay.can_attach(locker), "locker mech accepted a power module")
 
 	// Every existing module has a valid slot
 	for(var/path in subtypesof(/obj/item/mecha_parts/mecha_equipment))
@@ -49,7 +49,7 @@
 		var/slot = initial(E.aq_slot) || (initial(E.selectable) ? AQ_MECHA_SLOT_ARM : AQ_MECHA_UTILITY)
 		TEST_ASSERT(slot in list(AQ_MECHA_SLOT_ARM, AQ_MECHA_UTILITY, AQ_MECHA_POWER, AQ_MECHA_ARMOR, AQ_MECHA_SLOT_NONE), "[path] has an unknown slot [slot]")
 
-/// Overclock grzeje mecha, bezpiecznik przepala się przy maksimum, chłodzenie zbija ciepło
+/// Overclock przyspiesza krok, sam gaśnie po czasie i nie da się go włączyć w czasie odnowienia
 /datum/unit_test/aquila_mecha_overclock
 
 /datum/unit_test/aquila_mecha_overclock/Run()
@@ -58,19 +58,20 @@
 	mech.aq_set_overclock(TRUE)
 	TEST_ASSERT(mech.aq_overclock, "overclock did not turn on")
 	TEST_ASSERT(mech.step_in < base_step, "overclock did not speed up the step")
-	mech.aq_process_heat(2)
-	TEST_ASSERT(mech.aq_heat > 0, "overclock did not heat the mech")
-	var/fuses = mech.aq_fuses
-	mech.aq_adjust_heat(AQ_MECHA_HEAT_MAX)
-	TEST_ASSERT_EQUAL(mech.aq_fuses, fuses - 1, "fuse did not blow at max heat")
-	TEST_ASSERT(!mech.aq_overclock, "blown fuse did not turn overclock off")
+	mech.aq_process_overclock(2)
+	TEST_ASSERT(mech.aq_overclock, "overclock turned off before its time ran out")
+	// Czas działania minął: overclock gaśnie i zaczyna się odnowienie
+	mech.aq_overclock_end = world.time
+	mech.aq_process_overclock(2)
+	TEST_ASSERT(!mech.aq_overclock, "overclock did not turn off after its duration")
 	TEST_ASSERT_EQUAL(mech.step_in, base_step, "step not restored after overclock")
-	var/heat = mech.aq_heat
-	var/obj/item/mecha_parts/mecha_equipment/aq_cooling/passive/radiator = allocate(/obj/item/mecha_parts/mecha_equipment/aq_cooling/passive)
-	radiator.attach(mech)
-	mech.aq_process_heat(2)
-	TEST_ASSERT(mech.aq_heat < heat, "mech did not cool down")
-	mech.equipment_disabled = FALSE
+	mech.aq_set_overclock(TRUE)
+	TEST_ASSERT(!mech.aq_overclock, "overclock turned on during its cooldown")
+	// Po odnowieniu znowu działa
+	COOLDOWN_RESET(mech, aq_overclock_cooldown)
+	mech.aq_set_overclock(TRUE)
+	TEST_ASSERT(mech.aq_overclock, "overclock did not turn on after the cooldown")
+	mech.aq_set_overclock(FALSE)
 
 /// Kierunkowy pancerz: trafienie od przodu zadaje mniej obrażeń niż od tyłu
 /datum/unit_test/aquila_mecha_facing
@@ -122,11 +123,47 @@
 	var/obj/mecha/combat/gygax/gygax = allocate(/obj/mecha/combat/gygax)
 	TEST_ASSERT(!gygax.aq_has_copilot_seat(), "Gygax has a second seat")
 
+/// Każda broń balistyczna mecha (także stara) przeładowuje się tylko z zapasu: nie z ogniwa, tylko ze skrzynek,
+/// nabojów albo z tego, co wyrzutnia wystrzeliwuje
+/datum/unit_test/aquila_mecha_ammo
+
+/datum/unit_test/aquila_mecha_ammo/Run()
+	var/obj/mecha/combat/gygax/mech = allocate(/obj/mecha/combat/gygax)
+	var/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/lmg/lmg = allocate(/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/lmg)
+	lmg.attach(mech)
+	lmg.projectiles = 0
+	var/charge = mech.get_charge()
+	TEST_ASSERT(!lmg.rearm(), "LMG rearmed without ammo in storage")
+	TEST_ASSERT_EQUAL(lmg.projectiles, 0, "LMG refilled from the power cell")
+	TEST_ASSERT_EQUAL(mech.get_charge(), charge, "rearm used the power cell")
+	var/obj/item/mecha_ammo/lmg/box = allocate(/obj/item/mecha_ammo/lmg)
+	TEST_ASSERT(mech.aq_load_ammo(box), "LMG ammo box did not load")
+	TEST_ASSERT(lmg.rearm(), "LMG did not rearm from storage")
+	TEST_ASSERT_EQUAL(lmg.projectiles, initial(lmg.projectiles), "LMG not full after rearm")
+	// Granatnik ładuje się granatami hukowymi
+	var/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/flashbang/launcher = allocate(/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/flashbang)
+	launcher.attach(mech)
+	launcher.projectiles = 0
+	var/obj/item/grenade/flashbang/bang = allocate(/obj/item/grenade/flashbang)
+	TEST_ASSERT(mech.aq_load_ammo(bang), "flashbang did not load into the grenade launcher")
+	TEST_ASSERT(QDELETED(bang), "loaded flashbang still exists")
+	TEST_ASSERT_EQUAL(launcher.aq_ammo_cache, 1, "launcher storage after loading one flashbang")
+	TEST_ASSERT(launcher.rearm(), "launcher did not rearm from storage")
+	TEST_ASSERT_EQUAL(launcher.projectiles, 1, "launcher rounds after rearm")
+	// Każda broń balistyczna ma czym się ładować
+	for(var/path in subtypesof(/obj/item/mecha_parts/mecha_equipment/weapon/ballistic))
+		var/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/gun = path
+		if(!initial(gun.projectiles))
+			continue
+		TEST_ASSERT(initial(gun.aq_ammo_cache_max), "[path] has no ammo storage")
+		var/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/G = allocate(path)
+		TEST_ASSERT(G.aq_ammo_type || length(G.aq_calibers) || G.aq_item_ammo_type() || istype(G, /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/aq_forge_cannon), "[path] has no way to load ammo")
+
 /// Każde nowe podwozie i każda pozycja wyposażenia z planu tworzy się i montuje w pasującym mechu
 /datum/unit_test/aquila_mecha_content
 
 /datum/unit_test/aquila_mecha_content/Run()
-	TEST_ASSERT_EQUAL(length(GLOB.aq_mecha_plan_equipment), 71, "plan equipment count")
+	TEST_ASSERT_EQUAL(length(GLOB.aq_mecha_plan_equipment), 56, "plan equipment count")
 	for(var/path in GLOB.aq_mecha_new_chassis)
 		var/obj/mecha/M = allocate(path)
 		TEST_ASSERT(!QDELETED(M), "[path] failed to initialize")
