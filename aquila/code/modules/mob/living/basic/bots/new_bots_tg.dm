@@ -109,8 +109,7 @@
 
 /**
  * Donk Exenteration Drone: wrogi dron obronny Donk Co. z ruin. Patroluje i tnie każdego bez implantu
- * Syndykatu (frakcja „Syndicate”). W tg budowy nie ma; u nas da się go złożyć z części Syndykatu,
- * a zbudowany przez załogę ma frakcję budującego.
+ * Syndykatu (frakcja „Syndicate”). W tg budowy nie ma; u nas jest tylko gotowy dron w uplinku (cięcie R29).
  */
 /mob/living/basic/bot/dedbot
 	name = "\improper Donk Exenteration Drone"
@@ -170,21 +169,19 @@
 	new /obj/effect/gibspawner/robot(drop_location())
 	return ..()
 
-/datum/crafting_recipe/dedbot
+/// Gotowy dron z uplinka (w tg budowy ani pozycji w uplinku nie ma). Zostaje w frakcji Syndykatu,
+/// a kupujący dostaje wspólną frakcję z dronem, więc ten go nie tnie.
+/datum/uplink_item/dangerous/aq_dedbot
 	name = "Donk Exenteration Drone"
-	result = /mob/living/basic/bot/dedbot
-	reqs = list(
-		/obj/item/hatchet = 2,
-		/obj/item/assembly/prox_sensor = 1,
-		/obj/item/stack/sheet/plasteel = 5,
-		/obj/item/stack/telecrystal = 1,
-	)
-	tools = list(TOOL_WELDER, TOOL_SCREWDRIVER)
-	time = 10 SECONDS
-	category = CAT_ROBOT
+	desc = "Dron obronny Donk Co. z obracającymi się ostrzami. Pojawia się pod tobą włączony, chodzi po prostej trasie i tnie każdego, kto nie ma implantu znacznika Syndykatu. Ciebie zna i oszczędza."
+	item = /mob/living/basic/bot/dedbot
+	cost = 8
+	surplus = 0
 
-/datum/crafting_recipe/dedbot/on_craft_completion(mob/user, atom/result)
-	. = ..()
-	var/mob/living/basic/bot/dedbot/drone = result
+/datum/uplink_item/dangerous/aq_dedbot/spawn_item(spawn_path, mob/user, datum/component/uplink/U)
+	var/mob/living/basic/bot/dedbot/drone = ..()
 	if(istype(drone) && user)
-		drone.faction = user.faction.Copy()
+		var/owner_faction = "dedbot_[REF(user)]"
+		drone.faction |= owner_faction
+		user.faction |= owner_faction
+	return drone

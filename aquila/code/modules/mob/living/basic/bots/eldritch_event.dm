@@ -34,6 +34,6 @@
 		var/mob/living/basic/bot/spawned = new bot_type(turfs[i])
 		announce_to_ghosts(spawned)
 	if(prob(25) && length(turfs) > bot_count)
-		var/mob/living/basic/bot/guardbuddy/evil/evilbot = new(turfs[bot_count + 1])
+		var/mob/living/basic/bot/secbuddy/evilbot = new(turfs[bot_count + 1])
 		announce_to_ghosts(evilbot)
 	log_game("Eldritch bots event spawned [bot_count] bots.")

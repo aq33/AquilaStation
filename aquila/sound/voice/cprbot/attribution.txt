@@ -1,1 +1,0 @@
-CPR, CPRbot_beep, CPRbot_poweron, CPRbot_poweroff (.ogg) z CM-SS13 (cmss13-devs/cmss13, sound/CPRbot/), CC BY-SA 3.0.

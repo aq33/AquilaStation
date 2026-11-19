@@ -1,5 +1,5 @@
 // Sterowanie basic botami z PDA (program „Zdalny kontroler botów”) i z konsoli SI („Sterowanie robotami”).
-// Stare boty są w GLOB.bots_list i obsługuje je kod z core; tu dokładamy GLOB.basic_bots_list nadpisaniami z ..().
+// MULEbot (stara baza) jest w GLOB.bots_list i obsługuje go kod z core; tu dokładamy GLOB.basic_bots_list nadpisaniami z ..().
 
 /// Czy bot jest na tym samym okręcie albo pokładzie co punkt odniesienia
 /mob/living/basic/bot/proc/remote_visible_from(atom/reference)

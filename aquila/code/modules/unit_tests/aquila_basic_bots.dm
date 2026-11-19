@@ -87,7 +87,7 @@
 	TEST_ASSERT(QDELETED(stain), "Cleanbot na drzewie nie posprzątał plamy na swoim kafelku: [jointext(bot.ai_controller.get_behavior_tree_lines(), " | ")]")
 	TEST_ASSERT(!bot.ai_controller.blackboard[BB_BOT_WORK_TARGET], "Po pracy cel został w tablicy")
 
-/// AQUILA - BOTY: kluczowe zachowania botów (leczenie, łatanie, resuscytacja, areszt, pobranie krwi)
+/// AQUILA - BOTY: kluczowe zachowania botów (leczenie, łatanie, areszt, Secbuddy, D.E.D.bot z uplinka, pobranie krwi)
 /datum/unit_test/aquila_basic_bot_behaviors
 
 /datum/unit_test/aquila_basic_bot_behaviors/Run()
@@ -118,16 +118,24 @@
 	QDEL_NULL(patient.handcuffed)
 	patient.SetParalyzed(0)
 
-	// CPRbot robi resuscytację osobie w stanie krytycznym na swoim kafelku
-	patient.forceMove(start)
-	patient.fully_heal()
-	patient.adjustOxyLoss(150)
-	var/mob/living/basic/bot/cprbot/cprbot = allocate(/mob/living/basic/bot/cprbot, start)
-	TEST_ASSERT(cprbot.needs_cpr(patient), "CPRbot nie widzi potrzeby resuscytacji")
-	var/oxy_before = patient.getOxyLoss()
-	cprbot.work_on_target(patient)
-	TEST_ASSERT(patient.getOxyLoss() < oxy_before, "CPRbot nie zmniejszył niedotlenienia")
-	qdel(cprbot)
+	// Zły Secbuddy (event eldritchowych botów) ogłusza każdego przytomnego obok
+	var/mob/living/basic/bot/secbuddy/secbuddy = allocate(/mob/living/basic/bot/secbuddy, start)
+	TEST_ASSERT(secbuddy.is_valid_work_target(patient), "Secbuddy nie uznaje przytomnego człowieka za cel")
+	secbuddy.work_on_target(patient)
+	TEST_ASSERT(patient.IsParalyzed(), "Secbuddy nie ogłuszył celu")
+	qdel(secbuddy)
+	patient.SetParalyzed(0)
+
+	// D.E.D.bot z uplinka oszczędza kupującego, ale tnie innych spoza Syndykatu
+	var/mob/living/carbon/human/bystander = allocate(/mob/living/carbon/human, next)
+	var/datum/uplink_item/dangerous/aq_dedbot/dedbot_item = new
+	var/mob/living/basic/bot/dedbot/dedbot = dedbot_item.spawn_item(dedbot_item.item, patient)
+	TEST_ASSERT(istype(dedbot), "Uplink nie dał D.E.D.bota")
+	TEST_ASSERT(!dedbot.is_valid_work_target(patient), "D.E.D.bot z uplinka chce ciąć kupującego")
+	TEST_ASSERT(dedbot.is_valid_work_target(bystander), "D.E.D.bot z uplinka nie tnie obcych")
+	qdel(dedbot)
+	qdel(dedbot_item)
+	qdel(bystander)
 	patient.fully_heal()
 
 	// Doctor Acula pobiera krew od zdrowego dawcy do worka

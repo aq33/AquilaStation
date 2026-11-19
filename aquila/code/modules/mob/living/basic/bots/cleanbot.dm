@@ -1,4 +1,4 @@
-// Cleanbot na basic bocie (zachowanie naszego starego /mob/living/simple_animal/bot/cleanbot z Bee + odchody z Aquili,
+// Cleanbot na basic bocie (zachowanie dawnego /mob/living/simple_animal/bot/cleanbot z Bee + odchody z Aquili,
 // pomysły z tg code/modules/mob/living/basic/bots/cleanbot: kwas na leżących po zhakowaniu, piana).
 
 /mob/living/basic/bot/cleanbot
@@ -227,3 +227,19 @@
 /mob/living/basic/bot/cleanbot/larry/Destroy()
 	QDEL_NULL(knife)
 	return ..()
+
+/// Rama Larry'ego (z drukarki), czujnik zbliżeniowy robi z niej zespół Larry'ego
+/obj/item/larryframe
+	name = "rama Larry'ego"
+	desc = "Obudowa, która służy za podstawę do budowy Larrych."
+	icon = 'icons/obj/janitor.dmi'
+	icon_state = "larryframe"
+
+/obj/item/larryframe/attackby(obj/O, mob/user, params)
+	if(isprox(O))
+		to_chat(user, "<span class='notice'>Dodajesz [O] do [src].</span>")
+		qdel(O)
+		qdel(src)
+		user.put_in_hands(new /obj/item/bot_assembly/larry)
+	else
+		..()

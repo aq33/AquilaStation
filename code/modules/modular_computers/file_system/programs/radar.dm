@@ -301,10 +301,6 @@
 			var/mob/living/basic/bot/cleanbot/basic_cleanbot = custodial_tools
 			tool_name = "[basic_cleanbot.name] - [basic_cleanbot.is_bot_on() ? "włączony" : "wyłączony"]" // AQ EDIT END
 
-		if(istype(custodial_tools, /mob/living/simple_animal/bot/cleanbot))
-			var/mob/living/simple_animal/bot/cleanbot/cleanbots = custodial_tools
-			tool_name = "[cleanbots.name] - [cleanbots.on ? "włączony" : "wyłączony"]"
-
 		var/list/tool_information = list(
 			ref = REF(custodial_tools),
 			name = tool_name,

@@ -1,5 +1,7 @@
-// Medibot na basic bocie. Zachowanie naszego starego /mob/living/simple_animal/bot/medbot (Bee + polskie głosy Aquili),
+// Medibot na basic bocie. Zachowanie dawnego /mob/living/simple_animal/bot/medbot (Bee + polskie głosy Aquili),
 // wygląd z tg (medbot_<apteczka>_idle/active + nakładki), Kerfuś i John Debug z NSV13.
+
+GLOBAL_VAR(medibot_unique_id_gen)
 
 #define BMEDBOT_PANIC_NONE 0
 #define BMEDBOT_PANIC_LOW 15
