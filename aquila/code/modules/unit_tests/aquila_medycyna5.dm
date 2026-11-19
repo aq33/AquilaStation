@@ -879,6 +879,15 @@
 	TEST_ASSERT(!console.can_scan(patient.dna, patient, null, FALSE), "A body without a stack can be cloned")
 	TEST_ASSERT(console.can_scan(patient.dna, patient, null, TRUE), "A body without a stack cannot be scanned body-only")
 
+/// The robot first aid kit carries nanopaste and still has room for everything it starts with
+/datum/unit_test/aquila_robot_firstaid_nanopaste
+
+/datum/unit_test/aquila_robot_firstaid_nanopaste/Run()
+	var/obj/item/storage/firstaid/robot/kit = allocate(/obj/item/storage/firstaid/robot)
+	TEST_ASSERT(locate(/obj/item/stack/medical/nanopaste) in kit, "The robot first aid kit has no nanopaste")
+	var/datum/component/storage/storage = kit.GetComponent(/datum/component/storage)
+	TEST_ASSERT(length(kit.contents) <= storage.max_items, "The robot first aid kit starts with [length(kit.contents)] items but holds [storage.max_items]")
+
 /// Bay augments: armor
 /datum/unit_test/aquila_augments
 

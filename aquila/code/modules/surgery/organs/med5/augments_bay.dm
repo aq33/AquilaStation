@@ -7,7 +7,6 @@
 
 #define ORGAN_SLOT_AQ_SUBDERMAL "aq_subdermal_armor"
 #define ORGAN_SLOT_AQ_AIM "aq_aim"
-#define ORGAN_SLOT_AQ_NANITES "aq_repair_nanites"
 #define TRAIT_AQ_STEADY_AIM "aq_steady_aim"
 
 /// Subdermal armor plates: the skin takes blows and bullets better
@@ -59,27 +58,6 @@
 	if(user && HAS_TRAIT(user, TRAIT_AQ_STEADY_AIM))
 		. *= 0.5
 
-/// Repair nanites: slowly mend prosthetic limbs
-/obj/item/organ/cyberimp/chest/aq_repair_nanites
-	name = "nanity naprawcze"
-	desc = "Rój nanitów w krwiobiegu, który powoli łata protezy kończyn. Organicznego ciała nie leczy."
-	icon = 'aquila/icons/obj/medical/augments_bay.dmi'
-	icon_state = "leukosuite"
-	slot = ORGAN_SLOT_AQ_NANITES
-	implant_color = null
-
-/obj/item/organ/cyberimp/chest/aq_repair_nanites/on_life()
-	. = ..()
-	if(!owner || owner.stat == DEAD || (organ_flags & ORGAN_FAILING))
-		return
-	// The same filter picks and heals the limbs, with health and overlays updated once (as the nanite programs do)
-	owner.heal_overall_damage(0.5, 0.5, required_status = BODYTYPE_ROBOTIC)
-
-/obj/item/organ/cyberimp/chest/aq_repair_nanites/emp_act(severity)
-	. = ..()
-	if(!(. & EMP_PROTECT_SELF))
-		applyOrganDamage(40 / severity)
-
 // --- Projekty R&D ---
 
 /datum/design/aq_subdermal_armor
@@ -104,20 +82,9 @@
 	category = list("Implants", "Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL | DEPARTMENTAL_FLAG_SECURITY
 
-/datum/design/aq_repair_nanites
-	name = "Nanity naprawcze"
-	desc = "Implant: nanity łatające protezy kończyn."
-	id = "aq_repair_nanites"
-	build_type = PROTOLATHE | MECHFAB
-	construction_time = 60
-	materials = list(/datum/material/iron = 600, /datum/material/glass = 600, /datum/material/silver = 400, /datum/material/diamond = 200)
-	build_path = /obj/item/organ/cyberimp/chest/aq_repair_nanites
-	category = list("Implants", "Medical Designs")
-	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL | DEPARTMENTAL_FLAG_SCIENCE
-
 /datum/techweb_node/adv_cyber_implants/New()
 	. = ..()
-	design_ids += list("aq_subdermal_armor", "aq_repair_nanites")
+	design_ids += list("aq_subdermal_armor")
 
 /datum/techweb_node/combat_cyber_implants/New()
 	. = ..()
@@ -125,7 +92,6 @@
 
 #undef ORGAN_SLOT_AQ_SUBDERMAL
 #undef ORGAN_SLOT_AQ_AIM
-#undef ORGAN_SLOT_AQ_NANITES
 #undef TRAIT_AQ_STEADY_AIM
 
 // ERT: ochrona w pełnym alarmie dostaje parę ostrzy modliszki C.H.R.O.M.A.T.A. (wersja z R&D Nanotrasen,
