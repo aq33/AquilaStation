@@ -16,6 +16,7 @@
 		var/name = initial(accessory.name)
 		var/list/style_list = ispath(path, /datum/sprite_accessory/hair) ? GLOB.hair_styles_list : GLOB.facial_hair_styles_list
 		TEST_ASSERT(style_list[name] && style_list[name].type == path, "[path] ([name]) is missing from its style list or shares its name with another style")
-	TEST_ASSERT(hair_count >= 400, "Only [hair_count] imported hair and facial hair styles, expected over 400")
+	// Po odrzuceniu dubli kształtu (przegląd bloatu, S2) zostało 237 pozycji
+	TEST_ASSERT(hair_count >= 230, "Only [hair_count] imported hair and facial hair styles, expected over 230")
 
 #undef TEST_ASSERT

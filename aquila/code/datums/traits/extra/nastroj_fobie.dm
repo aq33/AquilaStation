@@ -37,13 +37,20 @@
 /datum/brain_trauma/mild/phobia/on_life()
 	if((phobia_type == AQ_PHOBIA_FIRE || phobia_type == AQ_PHOBIA_CONFINED) && world.time > aq_next_special_check && owner.stat < UNCONSCIOUS && !HAS_TRAIT(owner, TRAIT_FEARLESS))
 		aq_next_special_check = world.time + 5 SECONDS
+		// Rzecz w freak_out() straszy tylko o 1 punkt, który on_life() zaraz zdejmuje. Zamknięcie i ogień straszą jak żywa
+		// istota (+4), więc dokładamy różnicę przed wywołaniem.
+		var/atom/scare
 		if(phobia_type == AQ_PHOBIA_CONFINED)
 			if(!isturf(owner.loc))
-				freak_out(owner.loc)
+				scare = owner.loc
 		else if(owner.on_fire)
-			freak_out(owner)
+			scare = owner
 		else if(!is_blind(owner))
 			var/list/fires = aq_nearby_fire_sources(owner, 7)
 			if(length(fires))
-				freak_out(fires[1])
+				scare = fires[1]
+		if(scare)
+			if(!isliving(scare))
+				fearscore += 3
+			freak_out(scare)
 	return ..()
