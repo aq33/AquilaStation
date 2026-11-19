@@ -718,7 +718,9 @@ GLOBAL_DATUM_INIT(operations, /datum/operation_holder, new)
 		return image(icon = 'icons/obj/surgery.dmi', icon_state = "surgery_arms")
 	if(body_zone == BODY_ZONE_L_LEG || body_zone == BODY_ZONE_R_LEG)
 		return image(icon = 'icons/obj/surgery.dmi', icon_state = "surgery_legs")
-	return get_default_radial_image()
+	// AQUILA - not get_default_radial_image(): organ operations route that back here, so a zone without a picture
+	// (the groin) recursed forever. A fixed generic picture ends it for every such operation.
+	return image(icon = 'icons/obj/surgery.dmi', icon_state = "surgery_any")
 
 /// AQUILA - obrazek przedmiotu z typu (zamiast ikon z tg icons/hud/surgery_radial.dmi, których nie mamy)
 /datum/surgery_operation/proc/get_item_radial_image(obj/item/item_type)
@@ -896,6 +898,8 @@ GLOBAL_DATUM_INIT(operations, /datum/operation_holder, new)
 			result |= ITEM_INTERACT_SUCCESS
 			if(patient)
 				update_surgery_mood(patient, SURGERY_STATE_SUCCESS)
+
+		aq_spread_surgery_germs(operating_on, surgeon, tool) // AquilaMed 5: brud narzędzi, rąk i miejsca (medical/germs.dm)
 
 		if(consumes_stack_tool && isstack(tool))
 			var/obj/item/stack/tool_stack = tool

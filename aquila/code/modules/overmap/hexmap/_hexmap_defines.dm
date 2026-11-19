@@ -19,6 +19,12 @@
 /// Czas lotu: stała część + za każdy hex trasy
 #define HEX_FTL_TRAVEL_BASE (20 SECONDS)
 #define HEX_FTL_TRAVEL_PER_HEX (10 SECONDS)
+
+/// Bonusy układu FTL w konsoli nawigacji (hex_ftl_chip.dm): wybiera się jeden, poziom układu (2 albo 3) ustala jego siłę
+#define HEX_CHIP_CHEAP "cheap"
+#define HEX_CHIP_DOUBLE "double"
+#define HEX_CHIP_QUICK "quick"
+#define HEX_CHIP_RANGE "range"
 /// Skok awaryjny trafia w losowy hex w tym promieniu
 #define HEX_EMERGENCY_MIN 1
 #define HEX_EMERGENCY_MAX 2
@@ -137,6 +143,13 @@
 #define HEX_ORDER_HOME "home"
 #define HEX_ORDER_HUNT "hunt"
 #define HEX_ORDER_CONVOY "convoy"
+
+/// Pościg nemezis (Komitet Powitalny Dolos): pierwszy krok po wykryciu okrętu gracza, potem kroki co tyle
+#define HEX_NEMESIS_HUNT_FIRST (1 MINUTES)
+#define HEX_NEMESIS_HUNT_STEP_MIN (1 MINUTES)
+#define HEX_NEMESIS_HUNT_STEP_MAX (3 MINUTES)
+/// Tyle kroków powrotu w miejscu i boss przestaje wracać (czeka, gdzie jest)
+#define HEX_NEMESIS_STUCK_LIMIT 5
 
 /// Los dowódcy
 #define HEX_CMD_ACTIVE "active"

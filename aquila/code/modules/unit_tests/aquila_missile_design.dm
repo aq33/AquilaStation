@@ -1,46 +1,63 @@
 // The upstream assert macros are #undef'd at the end of code/modules/unit_tests/_unit_tests.dm, so this modular test carries its own copies
 #define TEST_ASSERT(assertion, reason) if (!(assertion)) { return Fail("Assertion failed: [reason || "No reason"]") }
 
-/// AQUILA - projekt pocisku: chip w obudowie przechodzi na gotową torpedę i na pocisk, a moduły zmieniają jego parametry
+/// AQUILA - projekt pocisku: stół przerabia silnik i naprowadzanie, a projekt z części przechodzi na torpedę i pocisk
 /datum/unit_test/missile_design
 	var/obj/item/ship_weapon/ammunition/torpedo/torpedo_casing/casing
+	var/obj/item/ship_weapon/ammunition/torpedo/torpedo_casing/plain_casing
 	var/obj/item/ship_weapon/parts/missile/warhead/torpedo/warhead
+	var/obj/item/ship_weapon/parts/missile/warhead/torpedo/plain_warhead
 	var/obj/item/ship_weapon/ammunition/torpedo/built
+	var/obj/item/ship_weapon/ammunition/torpedo/plain_built
 	var/obj/item/projectile/guided_munition/torpedo/proj
-	var/obj/item/missile_design_chip/chip
 
 /datum/unit_test/missile_design/Run()
 	var/datum/missile_design/D = new
 	D.name = "Test"
 	D.engine = "sprint"
-	D.body = "opancerzony"
 	D.seeker = "brak"
-	TEST_ASSERT(abs(D.mult("speed") - 0.6 * 1.15 * 0.9) < 0.001, "Speed modifiers of the design don't multiply")
-	TEST_ASSERT(abs(D.mult("integrity") - 1.8) < 0.001, "The armoured body doesn't raise integrity")
+	TEST_ASSERT(abs(D.mult("speed") - 0.6 * 0.9) < 0.001, "Speed modifiers of the design don't multiply")
+	TEST_ASSERT(D.mult("integrity") == 1, "A design without a body option changes integrity")
 	TEST_ASSERT(D.mult("turn") == 0, "An unguided design can still turn")
+	qdel(D)
 
-	// Chip do obudowy, głowica w obudowie, jak przy składaniu
+	// Stół przerabia układ napędowy leżący na nim
 	casing = new(run_loc_floor_bottom_left)
-	chip = new(run_loc_floor_bottom_left)
-	chip.design = D
-	var/mob/living/carbon/human/user = allocate(/mob/living/carbon/human)
-	casing.insert_missile_design_chip(chip, user)
-	TEST_ASSERT(casing.GetComponent(/datum/component/missile_design), "The design chip didn't program the casing")
-	chip = null
+	var/obj/item/ship_weapon/parts/missile/propulsion_system/engine = new(casing)
+	var/obj/item/ship_weapon/parts/missile/guidance_system/guidance = new(casing)
+	TEST_ASSERT(engine.aq_design_option == "standardowy", "A new propulsion system isn't standard")
+	TEST_ASSERT(guidance.aq_design_option == "radar", "A new guidance system doesn't use radar")
+	var/obj/machinery/missile_design_table/rework_table = allocate(/obj/machinery/missile_design_table, run_loc_floor_bottom_left)
+	engine.forceMove(rework_table)
+	rework_table.loaded_part = engine
+	rework_table.finish_rework(engine, "sprint")
+	TEST_ASSERT(engine.aq_design_option == "sprint", "The design table didn't rework the propulsion system")
+	engine.forceMove(casing)
+	TEST_ASSERT(!rework_table.loaded_part, "The table still holds a part that was taken off")
+	guidance.set_design_option("brak")
+
+	// Składanie: projekt wynika z części w obudowie
 	warhead = new(casing)
 	built = new /obj/item/ship_weapon/ammunition/torpedo(run_loc_floor_bottom_left)
 	transfer_forged_munition(warhead, built)
 	var/datum/component/missile_design/MD = built.GetComponent(/datum/component/missile_design)
-	TEST_ASSERT(MD && MD.design.name == "Test", "The design didn't pass from the casing to the finished torpedo")
+	TEST_ASSERT(MD && MD.design.engine == "sprint" && MD.design.seeker == "brak", "The design didn't pass from the reworked parts to the finished torpedo")
+
+	// Niezmienione części nie dają projektu
+	plain_casing = new(run_loc_floor_bottom_left)
+	new /obj/item/ship_weapon/parts/missile/propulsion_system(plain_casing)
+	new /obj/item/ship_weapon/parts/missile/guidance_system(plain_casing)
+	plain_warhead = new(plain_casing)
+	plain_built = new /obj/item/ship_weapon/ammunition/torpedo(run_loc_floor_bottom_left)
+	transfer_forged_munition(plain_warhead, plain_built)
+	TEST_ASSERT(!plain_built.GetComponent(/datum/component/missile_design), "Standard parts gave the torpedo a design")
 
 	// Z torpedy na pocisk: parametry i brak naprowadzania
 	proj = new(run_loc_floor_bottom_left)
 	var/base_speed = proj.speed
-	var/base_integrity = proj.max_integrity
 	var/base_range = proj.range
 	transfer_forged_munition(built, proj)
-	TEST_ASSERT(abs(proj.speed - base_speed * D.mult("speed")) < 0.001, "The design didn't change the projectile speed")
-	TEST_ASSERT(proj.max_integrity == round(base_integrity * 1.8), "The design didn't change the projectile integrity")
+	TEST_ASSERT(abs(proj.speed - base_speed * 0.6 * 0.9) < 0.001, "The design didn't change the projectile speed")
 	TEST_ASSERT(proj.range == round(base_range * 0.6), "The sprint engine didn't shorten the range")
 	TEST_ASSERT(!proj.homing, "An unguided projectile still homes")
 
@@ -85,9 +102,11 @@
 /datum/unit_test/missile_design/Destroy()
 	QDEL_NULL(proj)
 	QDEL_NULL(built)
+	QDEL_NULL(plain_built)
 	QDEL_NULL(warhead)
+	QDEL_NULL(plain_warhead)
 	QDEL_NULL(casing)
-	QDEL_NULL(chip)
+	QDEL_NULL(plain_casing)
 	return ..()
 
 #undef TEST_ASSERT

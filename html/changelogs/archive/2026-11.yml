@@ -1324,3 +1324,93 @@
   - bugfix: 'Usunięte drzwi i alarmy powietrza nie zostają w pamięci. Kliknięcie ręką
       podłogi pod otwartymi drzwiami je zamyka, jak było zaplanowane (chyba że coś
       ciągniesz: wtedy przeciągasz to na pole drzwi).'
+'2026-11-18':
+  Joker66613:
+  - bugfix: Zniszczone okręty, floty, usunięte postacie, cyborgi i SI nie zostają
+      już w pamięci serwera.
+  - code_imp: Testy w CI nie szukają referencji przy każdym wycieku (bez kilkuminutowych
+      zamrożeń), a na końcu każdej części wypisują do logu obiekty, które nie zwolniły
+      się po usunięciu.
+  - bugfix: Misja na małej planecie zawsze dostaje punkt badawczy albo schron kolonii.
+  - code_imp: Krótsze testy planet w CI.
+  - code_imp: 'CI: mapy kompilują się w trzech równoległych częściach, części testów
+      mają podobny czas, a nowy push do PR-a anuluje przebieg poprzedniego commita.'
+  - bugfix: Zniszczony Sabre nie wysadza już wnętrza innego Sabre ani hangaru, w którym
+      tamten stoi.
+  - code_imp: Testy ze strzałem nie padają już losowo przez niewypał fabrycznego naboju.
+  - code_imp: Zaktualizowano biblioteki interfejsu z lukami bezpieczeństwa (m.in.
+      DOMPurify czyszczący HTML w oknach i czacie).
+  - rscadd: Trzylufowe działo pokładowe Yamato, moduł kalibracji działa, pociski Magneton
+      i Sparrowhawk oraz nowe badanie „Uzbrojenie okrętowe” z płytkami dział Gaussa,
+      VLS i działa pokładowego.
+  - rscadd: Moduły podkręcania studni nanonaprawczej (badania, Minsky, wyjmowanie
+      łomem) i inżynieryjna holomapa z alarmami na mostku i w inżynierii.
+  - rscadd: Układy FTL wkłada się do konsoli nawigacji i wybiera jeden bonus skoku;
+      układ warp u Minsky'ego i w badaniach.
+  - rscadd: Misje od handlarzy i reputacja u stacji ze zniżkami.
+  - rscadd: Wydarzenia „Samotny łowca” i „Szczury z pasa” na mapie galaktyki.
+  - rscadd: Kucharz zna przepis na głodny worek prochu.
+  - bugfix: Flak na Atlantis i flak okrętów AI strzela; płytka i amunicja flaku w
+      badaniach, amunicja w zaopatrzeniu.
+  - bugfix: Holomapa poza planem pokładu nie wywala błędu.
+  - code_imp: Cotygodniowe automatyczne aktualizacje zależności TGUI i akcji GitHub
+      (Dependabot).
+  - code_imp: CI ostrzega o nowych wolnych testach i o zbyt długiej kompilacji map.
+  - rscadd: Wyszukiwarka w autolathe, protolathe i innych fabrykatorach znajduje projekty
+      także po angielskiej nazwie.
+  - tweak: Przedmiot rzucony z ręki leci od rzucającego, zamiast pojawiać się od razu
+      kilka pól dalej.
+  - rscadd: W klatce xenobio może się pojawić uśpiony pradawny horror, którego może
+      przejąć duch.
+  - rscadd: 'Opcja postaci „Chcę być celem antagonistów” w kreatorze postaci: antagoniści
+      wybierają takich graczy na cel w pierwszej kolejności.'
+  - rscadd: 'Czat głosowy po angielsku: gracz z angielską wersją gry dostaje stronę
+      po angielsku, a jego mowa jest rozpoznawana po angielsku.'
+  - balance: Pociski artylerii, łuski i ładunki burtowe oraz rdzeń działa plazmowego
+      robi kuźnia amunicji zamiast protolathe, po tym samym koszcie i badaniu.
+  - rscadd: Pociski artylerii i burtówki mają typy AP, HE i APHE; cargo sprzedaje
+      fabryczne pociski i łuski w trzech typach.
+  - rscadd: Korpus z kuźni ma rdzeń (obrażenia, przebicie, prędkość) i powłokę (efekt
+      specjalny); nowe efekty złota, diamentu, bluespace, miedzi i srebra.
+  - rscadd: Kuźnia railguna pokazuje obrażenia, przebicie i prędkość pocisku i kanistra
+      przed wykuciem.
+  - tweak: Stół projektowy pocisków przerabia silnik i naprowadzanie zamiast drukować
+      chip.
+  - balance: 'Sparrowhawk to ciężka rakieta: szybszy, zajmuje całą tubę VLS, droższa
+      głowica, paczka głowic w cargo.'
+  - balance: Magneton jest tylko do kupienia u handlarza.
+  - balance: 'Okręty AI mają grubość pancerza według klasy: HE odbija się od ciężkich
+      okrętów, AP przelatuje myśliwce i lekkie okręty na wylot, APHE jest na lekkie
+      i średnie.'
+  - rscdel: Kuźnia nie robi już obudów głowic, a wypełnienia zastąpiły typy pocisków.
+'2026-11-19':
+  Joker66613:
+  - rscadd: Szyny, kule, nożyce do amputacji, nanopasta, młotek neurologiczny, zestaw
+      ratownika, taśma medyczna, kroplówka z rur, astma z inhalatorem.
+  - rscadd: 'Nowe leki: paracetamol, tramadol, oksykodon, citalopram, paroksetyna,
+      metylofenidat, albuterol, nalokson.'
+  - rscadd: Uzależnienia z tg, zarazki i sterylność (autoklaw, zakażenie, sepsa),
+      puls i zatrzymanie krążenia, niedotlenienie mózgu, hipotermia i odmrożenia.
+  - rscadd: 'Nowe narządy: nerki, śledziona, jelita, nadnercza, krtań i syntezator
+      mowy; pęknięcia pęcherza i cewnik; przerwane nerwy.'
+  - rscadd: Zęby, pień mózgu po przeszczepie, zacinający się skafander, odbudowa tkanek
+      huska, balsamowanie, stos korowy jako warunek klonowania.
+  - rscadd: Implant tłumacza, augmenty z Bay (podskórny pancerz, mięśnie, wzmacniacz
+      celowania, nanity naprawcze, pazury i kusza w uplinku), pająk-robot z MMI.
+  - imageadd: Sprite'y narządów z Goonstation, augmentów i stosu korowego z Bay, zębów
+      z /vg/, pająka-robota z Paradise.
+  - rscadd: 'Trzustka: bez niej albo z niewydolną cukier spala się wolno i grozi hiperglikemia;
+      trzustka cybernetyczna.'
+  - rscadd: 'Przełyk: zadławienie kęsem i chwyt Heimlicha, bez przełyku nie da się
+      jeść ani pić, kwasy go parzą.'
+  - rscadd: 'Kręgosłup jako narząd: zniszczony paraliżuje nogi, przeszczepiony wymaga
+      połączenia pnia mózgu, kręgosłup tytanowy.'
+  - rscadd: 'Lewe i prawe płuco oraz nerka: wycięcie i przeszczep jednej strony.'
+  - imageadd: Sprite'y trzustki i połówek płuc i nerek z Goonstation.
+  - rscadd: 'SSV Fist of Sol strzeże bramy Romulus, a SGV Alicorn czai się w Veneto.
+      Obaj bossowie mają stałych dowódców (nemezis) w zakładce „Dowódcy”: pokonani
+      uciekają i wracają do swoich układów albo giną na całą kampanię.'
+  - bugfix: Flota SGV Alicorn nie ma już niszczyciela i krążownika Syndykatu, które
+      strzelały do Alicorna.
+  - rscadd: 'Komitet Powitalny Dolos jest trzecim nemezis: stoi w Dolos Remnants i
+      ściga okręt, który przeleci obok. Flota Pozostałość zniknęła z Oasis Fidei.'

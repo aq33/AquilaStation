@@ -1201,6 +1201,10 @@ Nazwy gazów są widoczne w skanerach, kanistrach i oknach TGUI. Jeśli nazwa ga
 | fighter | myśliwiec | m; istniejące (33×) |
 | hardpoint | punkt mocowania | m; nowe |
 | munitions forge | kuźnia amunicji | ż; istniejące |
+| shell type AP / HE / APHE | typ pocisku: przeciwpancerny / odłamkowo-burzący / przeciwpancerny odłamkowo-burzący | m; nowe (rework amunicji); skróty AP, HE, APHE zostają |
+| coating / core (forged body) | powłoka / rdzeń | ż / m; nowe (rework amunicji): „uran w powłoce: srebro” |
+| factory part (forge) | część fabryczna | ż; nowe (rework amunicji) |
+| factory shell | fabryczny pocisk | m; nowe (rework amunicji) |
 | DRADIS | DRADIS | m/ndm; istniejące |
 | radar | radar | m; istniejące (26×) |
 | squad (NSV13) | drużyna | ż; istniejące (28× przed tłumaczeniem całości, ponad 100× po nim): „pager drużyny”, „dowódca drużyny”, „Drużyna Alpha”, „Zarządzanie drużynami”, „Preferowana drużyna (GQ)”. Odrzucone: „oddział” (dla squad), „skład” (od reworku drużyn także automat to „automat drużyny”). „Oddział” zostaje dla ERT i jednostek wojskowych („oddział reagowania Centrali”, „oddział HONK”). „Roster” w tabeli to „Skład” |
@@ -3111,6 +3115,40 @@ Odmianę stref daje helper `strefa_pl(zone, biernik)` z `aquila/code/__HELPERS/p
 | cyborg hypospray / epinephrine injector / laughter injector | hypospray cyborga / iniektor epinefryny / iniektor śmiechu | m; nowe (borghypo) |
 | chemical bag / blood pack | worek chemiczny / worek z krwią | m; istniejące („Worki”) |
 | IV drip / saline drip | kroplówka / kroplówka z solą fizjologiczną | ż; istniejące |
+| automated IV drip | automatyczna kroplówka | ż; nowe (AquilaMed 5) |
+| splint / makeshift splint | szyna / prowizoryczna szyna | ż; nowe (AquilaMed 5) |
+| crutch / wooden crutch | kula medyczna / drewniana kula | ż; nowe (AquilaMed 5) |
+| amputation shears | nożyce do amputacji | mn; nowe (AquilaMed 5) |
+| nanopaste | nanopasta | ż; nowe (AquilaMed 5) |
+| reflex hammer | młotek neurologiczny | m; nowe (AquilaMed 5) |
+| inhaler / inhaler canister | inhalator / kanister do inhalatora | m; nowe (AquilaMed 5) |
+| organ transport box | chłodzony pojemnik na narządy | m; nowe (AquilaMed 5) |
+| EMT belt | pas ratownika | m; nowe (AquilaMed 5) |
+| paramedic penlight | latarka UV ratownika | ż; nowe (AquilaMed 5) |
+| emergency first-aid autoinjector (ekit) | medipen pierwszej pomocy | m; nowe (AquilaMed 5) |
+| medical tape | taśma medyczna | ż; nowe (AquilaMed 5) |
+| asthma / asthma attack | astma / atak astmy | ż/m; nowe (AquilaMed 5) |
+| paracetamol / tramadol / oxycodone | Paracetamol / Tramadol / Oksykodon | reagenty; nowe (AquilaMed 5) |
+| citalopram / paroxetine / methylphenidate / albuterol | Citalopram / Paroksetyna / Metylofenidat / Albuterol | reagenty; nowe (AquilaMed 5) |
+| naloxone | Nalokson | reagent; nowe (AquilaMed 5) |
+| autoclave | autoklaw | m; nowe (AquilaMed 5) |
+| hypothermia / frostbite (first, second, third degree) | hipotermia / odmrożenie (pierwszego, drugiego, trzeciego stopnia) | nowe (AquilaMed 5) |
+| pulse / cardiac arrest / CPR | tętno / zatrzymanie krążenia / RKO | nowe (AquilaMed 5) |
+| germs / infection / sepsis | zarazki / zakażenie / sepsa | nowe (AquilaMed 5) |
+| opioid / stimulant / hallucinogen addiction, withdrawal | uzależnienie od opioidów / stymulantów / halucynogenów, odstawienie | nowe (AquilaMed 5, uzależnienia z tg) |
+| kidneys / spleen / intestines / catheter | nerki / śledziona / jelita / cewnik | nowe (AquilaMed 5) |
+| adrenal glands | nadnercza | nowe (AquilaMed 5) |
+| larynx / vocal cords / speech synthesizer | krtań / struny głosowe / syntezator mowy | nowe (AquilaMed 5) |
+| nerve / cut nerve / nerve suture | nerw / przerwany nerw / zszycie nerwu | nowe (AquilaMed 5) |
+| teeth / prosthetic teeth / gold teeth / lisp | zęby / sztuczne zęby / złote zęby / seplenienie | nowe (AquilaMed 5, port z /vg/) |
+| brain stem / transplant weakness | pień mózgu / osłabienie po przeszczepie | nowe (AquilaMed 5) |
+| jammed suit / cut open | zacięty skafander / rozcięty | nowe (AquilaMed 5) |
+| unhusking / embalming | odbudowa tkanek (odhuskowanie) / balsamowanie | nowe (AquilaMed 5) |
+| cortical stack | stos korowy | m; nowe (AquilaMed 5, z Bay) |
+| translator implant | implant tłumacza | m; nowe (AquilaMed 5) |
+| subdermal armor / muscle reinforcement / aiming booster / repair nanites / combat claws | podskórna siatka pancerna / wzmocnienie mięśni / wzmacniacz celowania / nanity naprawcze / pazury bojowe | nowe (AquilaMed 5, z Bay/Torch) |
+| improved capillaries / durable membrane / stem cells / visceral symbiont / bypass tubules / biostructure gel / masked membrane | ulepszone naczynia włosowate / błona trwała / komórki macierzyste / symbiont trzewny / kanaliki bocznikujące / żel biostrukturalny / błona maskująca | nowe (AquilaMed 5, z Eris) |
+| spider-bot | pająk-robot | m; nowe (AquilaMed 5, z Paradise) |
 | medical spray | spray medyczny | m; nowe |
 | spray bottle | spryskiwacz | m; istniejące |
 | chem sprayer | rozpylacz chemiczny | m; istniejące („rozpylacz”) |
@@ -4480,3 +4518,4 @@ Nazwy obszarów są w większości przetłumaczone. Nowe nazwy budujemy z tych k
 | wet rocky ground | mokre skaliste podłoże | n; nowe (planeta wodna) |
 | Frontiersmen | Pogranicznicy | m mn.; nowe (frakcja z ruin Shiptesta, u nas piraci) |
 | Corporate Resort / Cybersun Pad / Frontiersman Moat / Cave Gunsmith / Frontiersmen Depot | Kurort Korporacyjny / Lądowisko Cybersun / Fosa Pograniczników / Jaskiniowy Rusznikarz / Składnica Pograniczników | nowe (ruiny plaży) |
+

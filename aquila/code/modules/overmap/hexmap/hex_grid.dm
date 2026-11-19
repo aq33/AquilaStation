@@ -243,7 +243,7 @@ GLOBAL_LIST_INIT(hex_axial_dirs, list(list(1, 0), list(1, -1), list(0, -1), list
 
 /// Koszt przejścia z hexa na sąsiedni, w procentach naładowania
 /datum/hexmap/proc/step_cost(datum/hex/from_hex, datum/hex/to_hex)
-	return from_hex.sector != to_hex.sector ? HEX_FTL_COST_GATE : HEX_FTL_COST_HEX
+	return is_gate_step(from_hex, to_hex) ? HEX_FTL_COST_GATE : HEX_FTL_COST_HEX
 
 /// Teren, przez który nikt nie przelatuje (czarna dziura)
 /datum/hexmap/proc/blocks(datum/hex/H)
@@ -258,7 +258,8 @@ GLOBAL_LIST_INIT(hex_axial_dirs, list(list(1, 0), list(1, -1), list(0, -1), list
 /**
  * Najkrótsza trasa skoku. Zagrożeń nie da się przeskoczyć: trasę liczymy po wszystkich kaflach,
  * a potem ucinamy ją na pierwszym zagrożeniu przed celem.
- * Zwraca list("path" = hexy od startu do miejsca zatrzymania, "full" = cała trasa do celu, "cost", "hexes", "stopped" = hex albo null)
+ * Zwraca list("path" = hexy od startu do miejsca zatrzymania, "full" = cała trasa do celu, "cost", "hexes", "gates" = ile z nich to bramy,
+ * "stopped" = hex albo null). "cost" jest bez bonusu układu FTL: koszt dla okrętu liczy hex_route_cost() (hex_ftl_chip.dm).
  */
 /datum/hexmap/proc/route(datum/hex/start, datum/hex/dest, faction, max_cost = 400)
 	if(!start || !dest || start == dest || blocks(dest))
@@ -329,20 +330,33 @@ GLOBAL_LIST_INIT(hex_axial_dirs, list(list(1, 0), list(1, -1), list(0, -1), list
 			break
 	var/list/path = stop_index ? full.Copy(1, stop_index + 1) : full.Copy()
 	var/cost = 0
+	var/gates = 0
 	for(var/i in 2 to length(path))
 		cost += step_cost(path[i - 1], path[i])
-	return list("path" = path, "full" = full, "cost" = cost, "hexes" = length(path) - 1, "stopped" = stop_index ? path[length(path)] : null)
+		if(is_gate_step(path[i - 1], path[i]))
+			gates++
+	return list("path" = path, "full" = full, "cost" = cost, "hexes" = length(path) - 1, "gates" = gates, "stopped" = stop_index ? path[length(path)] : null)
+
+/// Krok przez bramę do innego sektora (droższy od zwykłego kafla)
+/datum/hexmap/proc/is_gate_step(datum/hex/from_hex, datum/hex/to_hex)
+	return from_hex.sector != to_hex.sector
 
 /**
  * Hexy osiągalne z danym budżetem naładowania; zagrożenie kończy trasę, więc za nim nic nie jest osiągalne.
- * Zwraca hex -> koszt.
+ * Z okrętem koszt liczy jego układ FTL (hex_cost(), jak hex_route_cost() dla skoku). Zwraca hex -> koszt.
  */
-/datum/hexmap/proc/reachable(datum/hex/from, faction, budget)
+/datum/hexmap/proc/reachable(datum/hex/from, faction, budget, obj/structure/overmap/ship)
 	. = list()
-	if(!from || budget < HEX_FTL_COST_HEX)
+	if(!from || budget + 0.001 < (ship ? ship.hex_cost(0, 1) : HEX_FTL_COST_HEX))
 		return
 	var/list/dist = list()
+	// bramy i zwykłe kafle wybranej drogi: z nich koszt dla okrętu (dwa kafle za cenę jednego nie sumuje się krokami)
+	var/list/gate_steps = list()
+	var/list/hex_steps = list()
+	var/list/paid = list()
 	dist[from] = 0
+	gate_steps[from] = 0
+	hex_steps[from] = 0
 	var/list/open = list(from)
 	while(length(open))
 		var/datum/hex/best
@@ -358,14 +372,21 @@ GLOBAL_LIST_INIT(hex_axial_dirs, list(list(1, 0), list(1, -1), list(0, -1), list
 			if(blocks(N))
 				continue
 			var/d = best_d + step_cost(best, N)
-			if(d > budget)
+			var/gate = is_gate_step(best, N)
+			var/g = gate_steps[best] + (gate ? 1 : 0)
+			var/h = hex_steps[best] + (gate ? 0 : 1)
+			var/real = ship ? ship.hex_cost(g, h) : d
+			if(real > budget + 0.001)
 				continue
 			if(isnull(dist[N]) || d < dist[N])
 				dist[N] = d
+				gate_steps[N] = g
+				hex_steps[N] = h
+				paid[N] = real
 				open |= N
 	for(var/datum/hex/H as anything in dist)
 		if(H != from)
-			.[H] = dist[H]
+			.[H] = paid[H]
 
 /// Układ hexa; pusty hex dostaje go przy pierwszym wejściu
 /datum/hexmap/proc/system_for(datum/hex/H)
@@ -379,14 +400,15 @@ GLOBAL_LIST_INIT(hex_axial_dirs, list(list(1, 0), list(1, -1), list(0, -1), list
 	S.apply_hex_terrain()
 	return S
 
-/// Czy frakcje są sobie wrogie (NT, SolGov i WhiteRapids to jeden blok; piraci wrodzy wszystkim; niezależni nikomu)
+/// Czy frakcje są sobie wrogie (NT, SolGov i WhiteRapids to jeden blok; piraci i nieznana frakcja Alicorna wrodzy wszystkim;
+/// niezależni nikomu)
 /proc/hex_factions_hostile(a, b)
-	var/static/list/blocs = list("nanotrasen" = "nt", "solgov" = "nt", "whiterapids" = "nt", "syndicate" = "syn", "pirate" = "pir", "unaligned" = "neu")
+	var/static/list/blocs = list("nanotrasen" = "nt", "solgov" = "nt", "whiterapids" = "nt", "syndicate" = "syn", "pirate" = "pir", "hostile" = "hos", "unaligned" = "neu")
 	var/A = blocs[a]
 	var/B = blocs[b]
 	if(!A || !B || A == B)
 		return FALSE
-	if(A == "pir" || B == "pir")
+	if(A == "pir" || B == "pir" || A == "hos" || B == "hos")
 		return TRUE
 	if(A == "neu" || B == "neu")
 		return FALSE

@@ -45,6 +45,7 @@
 			/obj/machinery/plumbing/pill_press = 20,
 			/obj/machinery/plumbing/patch_dispenser = 20,
 			/obj/machinery/plumbing/bottle_dispenser = 20,
+			/obj/machinery/iv_drip/plumbing = 20, // AquilaMed 5 (medical/iv_plumbing.dm)
 		),
 	)
 
@@ -195,12 +196,15 @@
 	. = ..()
 	if(!prox_check(proximity))
 		return
-	if(istype(target, /obj/machinery/plumbing) || istype(target, /obj/machinery/duct))
+	if(istype(target, /obj/machinery/plumbing) || istype(target, /obj/machinery/duct) || istype(target, /obj/machinery/iv_drip/plumbing))
 		var/obj/machinery/machine = target
-		if(istype(machine, /obj/machinery/plumbing) && machine.anchored)
+		if(!istype(machine, /obj/machinery/duct) && machine.anchored)
 			to_chat(user, "<span class='warning'>Najpierw odkręć [machine.name]!</span>")
 			return
 		if(do_after(user, 2 SECONDS, target = machine))
+			if(!istype(machine, /obj/machinery/duct) && machine.anchored) // ktoś mógł ją przykręcić w trakcie
+				to_chat(user, "<span class='warning'>Najpierw odkręć [machine.name]!</span>")
+				return
 			machine.deconstruct() //Let's not substract matter
 			playsound(get_turf(src), 'sound/machines/click.ogg', 50, TRUE) //this is just such a great sound effect
 		return
