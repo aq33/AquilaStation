@@ -98,6 +98,13 @@
 		headset.aq_update_translator_wearer()
 		to_chat(aq_spawn_reader(M), span_notice("Nie znasz polskiego, a załoga nie zna angielskiego. Czip tłumacza w twoich słuchawkach tłumaczy ci polską mowę, dopóki masz je na uszach, a załoga rozumie cię przez własne czipy."))
 		return
+	// AquilaMed 5: bez słuchawek człowiek dostaje implant tłumacza (translator_implant.dm), reszta tłumacza kieszonkowego
+	var/obj/item/bodypart/head = get_bodypart(BODY_ZONE_HEAD)
+	if(ishuman(src) && head && IS_ORGANIC_LIMB(head) && !getorganslot(ORGAN_SLOT_AQ_TRANSLATOR))
+		var/obj/item/organ/cyberimp/aq_translator/implant = new()
+		implant.Insert(src, TRUE)
+		to_chat(aq_spawn_reader(M), span_notice("Nie znasz polskiego, a załoga nie zna angielskiego. Implant tłumacza w twojej głowie tłumaczy ci polską mowę, a załoga rozumie cię przez własne czipy."))
+		return
 	var/obj/item/aquila_translator/translator = new(get_turf(src))
 	var/where = equip_in_one_of_slots(translator, list("w lewej kieszeni" = ITEM_SLOT_LPOCKET, "w prawej kieszeni" = ITEM_SLOT_RPOCKET), qdel_on_fail = FALSE)
 	if(!where && put_in_hands(translator))
