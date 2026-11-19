@@ -8,7 +8,7 @@
 	icon_state = "hair_aq_hightight"
 
 /datum/sprite_accessory/hair/aq_hitop_yog // YogStation: /datum/sprite_accessory/hair/hitop
-	name = "Hitop (Yog)"
+	name = "Hitop 2"
 	icon = 'aquila/icons/mob/human_face_extra.dmi'
 	icon_state = "hair_aq_hitop_yog"
 
@@ -28,7 +28,7 @@
 	icon_state = "hair_aq_bun_head_4"
 
 /datum/sprite_accessory/hair/aq_crewcut_citadel // Citadel Station (citadel-main): /datum/sprite_accessory/hair/crew
-	name = "Crewcut (Citadel)"
+	name = "Crewcut 2"
 	icon = 'aquila/icons/mob/human_face_extra.dmi'
 	icon_state = "hair_aq_crewcut_citadel"
 
@@ -163,7 +163,7 @@
 	icon_state = "hair_aq_curly"
 
 /datum/sprite_accessory/hair/aq_dreadlocks_tg // /tg/station: /datum/sprite_accessory/hair/dreadlocks
-	name = "Dreadlocks (tg)"
+	name = "Dreadlocks 2"
 	icon = 'aquila/icons/mob/human_face_extra.dmi'
 	icon_state = "hair_aq_dreadlocks_tg"
 
@@ -213,7 +213,7 @@
 	icon_state = "hair_aq_astolfo"
 
 /datum/sprite_accessory/hair/aq_balding_hair_tg // /tg/station: /datum/sprite_accessory/hair/balding
-	name = "Balding Hair (tg)"
+	name = "Balding Hair 2"
 	icon = 'aquila/icons/mob/human_face_extra.dmi'
 	icon_state = "hair_aq_balding_hair_tg"
 
@@ -223,7 +223,7 @@
 	icon_state = "hair_aq_baum"
 
 /datum/sprite_accessory/hair/aq_bedhead_tg // /tg/station: /datum/sprite_accessory/hair/bedhead
-	name = "Bedhead (tg)"
+	name = "Bedhead 4"
 	icon = 'aquila/icons/mob/human_face_extra.dmi'
 	icon_state = "hair_aq_bedhead_tg"
 
@@ -263,7 +263,7 @@
 	icon_state = "hair_aq_cotton"
 
 /datum/sprite_accessory/hair/aq_cut_hair_tg // /tg/station: /datum/sprite_accessory/hair/cut
-	name = "Cut Hair (tg)"
+	name = "Cut Hair 2"
 	icon = 'aquila/icons/mob/human_face_extra.dmi'
 	icon_state = "hair_aq_cut_hair_tg"
 
@@ -278,7 +278,7 @@
 	icon_state = "hair_aq_donut_bun"
 
 /datum/sprite_accessory/hair/aq_flow_hair_tg // /tg/station: /datum/sprite_accessory/hair/flow_hair
-	name = "Flow Hair (tg)"
+	name = "Flow Hair 2"
 	icon = 'aquila/icons/mob/human_face_extra.dmi'
 	icon_state = "hair_aq_flow_hair_tg"
 
@@ -313,7 +313,7 @@
 	icon_state = "hair_aq_glam_metal"
 
 /datum/sprite_accessory/hair/aq_half_banged_hair_tg // /tg/station: /datum/sprite_accessory/hair/halfbang
-	name = "Half-banged Hair (tg)"
+	name = "Half-banged Hair 3"
 	icon = 'aquila/icons/mob/human_face_extra.dmi'
 	icon_state = "hair_aq_half_banged_hair_tg"
 
@@ -323,17 +323,17 @@
 	icon_state = "hair_aq_half_shaved_2"
 
 /datum/sprite_accessory/hair/aq_jade_tg // /tg/station: /datum/sprite_accessory/hair/jade
-	name = "Jade (tg)"
+	name = "Jade 2"
 	icon = 'aquila/icons/mob/human_face_extra.dmi'
 	icon_state = "hair_aq_jade_tg"
 
 /datum/sprite_accessory/hair/aq_jensen_hair_tg // /tg/station: /datum/sprite_accessory/hair/jensen
-	name = "Jensen Hair (tg)"
+	name = "Jensen Hair 2"
 	icon = 'aquila/icons/mob/human_face_extra.dmi'
 	icon_state = "hair_aq_jensen_hair_tg"
 
 /datum/sprite_accessory/hair/aq_kusanagi_hair_tg // /tg/station: /datum/sprite_accessory/hair/kusangi
-	name = "Kusanagi Hair (tg)"
+	name = "Kusanagi Hair 2"
 	icon = 'aquila/icons/mob/human_face_extra.dmi'
 	icon_state = "hair_aq_kusanagi_hair_tg"
 
@@ -348,7 +348,7 @@
 	icon_state = "hair_aq_medium_gloomy_bangs"
 
 /datum/sprite_accessory/hair/aq_mohawk_tg // /tg/station: /datum/sprite_accessory/hair/mohawk
-	name = "Mohawk (tg)"
+	name = "Mohawk 2"
 	icon = 'aquila/icons/mob/human_face_extra.dmi'
 	icon_state = "hair_aq_mohawk_tg"
 
@@ -358,17 +358,17 @@
 	icon_state = "hair_aq_over_eye_2"
 
 /datum/sprite_accessory/hair/aq_ponytail_tg // /tg/station: /datum/sprite_accessory/hair/ponytail1
-	name = "Ponytail (tg)"
+	name = "Ponytail 8"
 	icon = 'aquila/icons/mob/human_face_extra.dmi'
 	icon_state = "hair_aq_ponytail_tg"
 
 /datum/sprite_accessory/hair/aq_ponytail_2_tg // /tg/station: /datum/sprite_accessory/hair/ponytail2
-	name = "Ponytail 2 (tg)"
+	name = "Ponytail 2b"
 	icon = 'aquila/icons/mob/human_face_extra.dmi'
 	icon_state = "hair_aq_ponytail_2_tg"
 
 /datum/sprite_accessory/hair/aq_ponytail_5_tg // /tg/station: /datum/sprite_accessory/hair/ponytail5
-	name = "Ponytail 5 (tg)"
+	name = "Ponytail 5b"
 	icon = 'aquila/icons/mob/human_face_extra.dmi'
 	icon_state = "hair_aq_ponytail_5_tg"
 
@@ -383,7 +383,7 @@
 	icon_state = "hair_aq_shorter_long_bedhead"
 
 /datum/sprite_accessory/hair/aq_shoulder_length_hair_tg // /tg/station: /datum/sprite_accessory/hair/shoulderlength
-	name = "Shoulder-length Hair (tg)"
+	name = "Shoulder-length Hair 2"
 	icon = 'aquila/icons/mob/human_face_extra.dmi'
 	icon_state = "hair_aq_shoulder_length_hair_tg"
 
@@ -428,7 +428,7 @@
 	icon_state = "hair_aq_very_long_gloomy_bangs"
 
 /datum/sprite_accessory/hair/aq_very_long_hair_tg // /tg/station: /datum/sprite_accessory/hair/longer
-	name = "Very Long Hair (tg)"
+	name = "Very Long Hair 3"
 	icon = 'aquila/icons/mob/human_face_extra.dmi'
 	icon_state = "hair_aq_very_long_hair_tg"
 
@@ -458,7 +458,7 @@
 	icon_state = "hair_aq_blunt_bangs_alt"
 
 /datum/sprite_accessory/hair/aq_braided_tg // /tg/station: /datum/sprite_accessory/hair/braided
-	name = "Braided (tg)"
+	name = "Braided 2"
 	icon = 'aquila/icons/mob/human_face_extra.dmi'
 	icon_state = "hair_aq_braided_tg"
 
@@ -488,7 +488,7 @@
 	icon_state = "hair_aq_gentle_bun"
 
 /datum/sprite_accessory/hair/aq_half_shaved_bay // Baystation12: /datum/sprite_accessory/hair/halfshaved
-	name = "Half-Shaved (Bay)"
+	name = "Half-shaved 3"
 	icon = 'aquila/icons/mob/human_face_extra.dmi'
 	icon_state = "hair_aq_half_shaved_bay"
 
@@ -528,7 +528,7 @@
 	icon_state = "hair_aq_long_over_eye_alt"
 
 /datum/sprite_accessory/hair/aq_long_side_part_tg // /tg/station: /datum/sprite_accessory/hair/sidepartlongalt
-	name = "Long Side Part (tg)"
+	name = "Long Side Part 2"
 	icon = 'aquila/icons/mob/human_face_extra.dmi'
 	icon_state = "hair_aq_long_side_part_tg"
 
@@ -568,32 +568,32 @@
 	icon_state = "hair_aq_new_you"
 
 /datum/sprite_accessory/hair/aq_over_eye_skyrat // Skyrat-tg: /datum/sprite_accessory/hair/skyrat/over_eye
-	name = "Over eye (Skyrat)"
+	name = "Over Eye 3"
 	icon = 'aquila/icons/mob/human_face_extra.dmi'
 	icon_state = "hair_aq_over_eye_skyrat"
 
 /datum/sprite_accessory/hair/aq_pigtails_tg // /tg/station: /datum/sprite_accessory/hair/kagami
-	name = "Pigtails (tg)"
+	name = "Pigtails 5"
 	icon = 'aquila/icons/mob/human_face_extra.dmi'
 	icon_state = "hair_aq_pigtails_tg"
 
 /datum/sprite_accessory/hair/aq_pigtails_2_tg // /tg/station: /datum/sprite_accessory/hair/pigtail
-	name = "Pigtails 2 (tg)"
+	name = "Pigtails 2b"
 	icon = 'aquila/icons/mob/human_face_extra.dmi'
 	icon_state = "hair_aq_pigtails_2_tg"
 
 /datum/sprite_accessory/hair/aq_ponytail_country_tg // /tg/station: /datum/sprite_accessory/hair/countryponytail
-	name = "Ponytail (Country) (tg)"
+	name = "Ponytail (Country) 2"
 	icon = 'aquila/icons/mob/human_face_extra.dmi'
 	icon_state = "hair_aq_ponytail_country_tg"
 
 /datum/sprite_accessory/hair/aq_ponytail_6_tg // /tg/station: /datum/sprite_accessory/hair/ponytail6
-	name = "Ponytail 6 (tg)"
+	name = "Ponytail 6b"
 	icon = 'aquila/icons/mob/human_face_extra.dmi'
 	icon_state = "hair_aq_ponytail_6_tg"
 
 /datum/sprite_accessory/hair/aq_ponytail_7_tg // /tg/station: /datum/sprite_accessory/hair/ponytail7
-	name = "Ponytail 7 (tg)"
+	name = "Ponytail 7b"
 	icon = 'aquila/icons/mob/human_face_extra.dmi'
 	icon_state = "hair_aq_ponytail_7_tg"
 
@@ -643,7 +643,7 @@
 	icon_state = "hair_aq_straight_long"
 
 /datum/sprite_accessory/hair/aq_tress_shoulder_tg // /tg/station: /datum/sprite_accessory/hair/tressshoulder
-	name = "Tress Shoulder (tg)"
+	name = "Tress Shoulder 2"
 	icon = 'aquila/icons/mob/human_face_extra.dmi'
 	icon_state = "hair_aq_tress_shoulder_tg"
 
@@ -743,7 +743,7 @@
 	icon_state = "hair_aq_low_ponytail"
 
 /datum/sprite_accessory/hair/aq_messy_bay // Baystation12: /datum/sprite_accessory/hair/messyhair
-	name = "Messy (Bay)"
+	name = "Messy 3"
 	icon = 'aquila/icons/mob/human_face_extra.dmi'
 	icon_state = "hair_aq_messy_bay"
 
@@ -778,7 +778,7 @@
 	icon_state = "hair_aq_phoenix_half_shaven"
 
 /datum/sprite_accessory/hair/aq_pigtails_2_skyrat // Skyrat-tg: /datum/sprite_accessory/hair/pigtail
-	name = "Pigtails 2 (Skyrat)"
+	name = "Pigtails 2c"
 	icon = 'aquila/icons/mob/human_face_extra.dmi'
 	icon_state = "hair_aq_pigtails_2_skyrat"
 
@@ -788,7 +788,7 @@
 	icon_state = "hair_aq_ponytail_sharp"
 
 /datum/sprite_accessory/hair/aq_ponytail_6_bay // Baystation12: /datum/sprite_accessory/hair/ponytail6
-	name = "Ponytail 6 (Bay)"
+	name = "Ponytail 6c"
 	icon = 'aquila/icons/mob/human_face_extra.dmi'
 	icon_state = "hair_aq_ponytail_6_bay"
 
@@ -963,7 +963,7 @@
 	icon_state = "hair_aq_mohawk_tall"
 
 /datum/sprite_accessory/hair/aq_mullet_tg // /tg/station: /datum/sprite_accessory/hair/mullet
-	name = "Mullet (tg)"
+	name = "Mullet 2"
 	icon = 'aquila/icons/mob/human_face_extra.dmi'
 	icon_state = "hair_aq_mullet_tg"
 
@@ -988,7 +988,7 @@
 	icon_state = "hair_aq_ponytail_wavy"
 
 /datum/sprite_accessory/hair/aq_ponytail_7_bay // Baystation12: /datum/sprite_accessory/hair/ponytail7
-	name = "Ponytail 7 (Bay)"
+	name = "Ponytail 7c"
 	icon = 'aquila/icons/mob/human_face_extra.dmi'
 	icon_state = "hair_aq_ponytail_7_bay"
 
