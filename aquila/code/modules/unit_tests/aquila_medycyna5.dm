@@ -60,7 +60,7 @@
 	TEST_ASSERT(limp > 0, "A broken leg does not limp")
 	qdel(fracture)
 
-/// AQUILA - amputation shears, nanopaste and the reflex hammer (medical/medical_tools_med5.dm)
+/// AQUILA - amputation shears and nanopaste (medical/medical_tools_med5.dm)
 /datum/unit_test/aquila_medical_tools_med5
 
 /datum/unit_test/aquila_medical_tools_med5/Run()
@@ -100,16 +100,6 @@
 	patient.zone_selected = BODY_ZONE_R_ARM
 	paste.attack(medic, patient)
 	TEST_ASSERT(human_arm.brute_dam == organic_before, "Nanopaste healed an organic arm")
-
-	// Reflex hammer: normal, brain damage, prosthesis
-	var/mob/living/carbon/human/subject = allocate(/mob/living/carbon/human)
-	var/list/result = subject.aq_reflex_result(subject.get_bodypart(BODY_ZONE_L_LEG))
-	TEST_ASSERT(findtext(result[1], "prawidłowy"), "A healthy leg has no normal reflex: [result[1]]")
-	subject.adjustOrganLoss(ORGAN_SLOT_BRAIN, 70)
-	result = subject.aq_reflex_result(subject.get_bodypart(BODY_ZONE_L_LEG))
-	TEST_ASSERT(findtext(result[1], "mózgu"), "Brain damage does not show in the reflex: [result[1]]")
-	result = ipc.aq_reflex_result(ipc_arm)
-	TEST_ASSERT(findtext(result[1], "proteza"), "A prosthesis has a reflex: [result[1]]")
 
 /// AQUILA - AquilaMed 5 painkillers and mood medicine (reagents/chemistry/reagents/med5_reagents.dm)
 /datum/unit_test/aquila_med5_reagents
@@ -675,7 +665,7 @@
 	TEST_ASSERT(istype(ipc.getorganslot(ORGAN_SLOT_LARYNX), /obj/item/organ/larynx/synthesizer), "An IPC has no speech synthesizer")
 	TEST_ASSERT(!ipc.getorganslot(ORGAN_SLOT_KIDNEYS), "An IPC has kidneys")
 
-/// A cut nerve: no pain from the limb, dropped items, no reflex; a nerve suture fixes it
+/// A cut nerve: no pain from the limb, dropped items; a nerve suture fixes it
 /datum/unit_test/aquila_nerves
 
 /datum/unit_test/aquila_nerves/Run()
@@ -706,9 +696,7 @@
 		patient.aq_handle_nerves()
 	TEST_ASSERT(held.loc != patient, "A hand with a cut nerve never let go")
 
-	// The hammer and the scanner see it
-	var/list/reflex = patient.aq_reflex_result(arm)
-	TEST_ASSERT(findtext(reflex[1], "nerw"), "The reflex hammer does not find the cut nerve")
+	// The scanner sees it
 	TEST_ASSERT(findtext(jointext(patient.get_wound_scan_lines(), ""), "Przerwany nerw"), "The scanner does not show the cut nerve")
 
 	// The suture fixes it

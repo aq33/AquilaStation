@@ -1,7 +1,7 @@
 // AQUILA - nerwy w kończynach (AquilaMed 5, etap 6). Ciężka rana cięta albo kłuta ręki lub nogi może przerwać nerw:
 // kończyna przestaje boleć (ból jej ran nie liczy się do bólu), ręka z przerwanym nerwem upuszcza to, co trzyma,
-// a noga podwija się przy chodzeniu (kula albo laska trzymają). Młotek neurologiczny i analizator pokazują przerwany
-// nerw, naprawia go operacja zszycia nerwu.
+// a noga podwija się przy chodzeniu (kula albo laska trzymają). Analizator pokazuje przerwany nerw, naprawia go
+// operacja zszycia nerwu.
 
 /// Chance per severe or critical slash / pierce wound on an arm or a leg
 #define AQ_NERVE_CUT_CHANCE_SEVERE 15
@@ -72,12 +72,6 @@
 		Knockdown(1.5 SECONDS)
 		visible_message("<span class='warning'>Noga podwija się pod [src]!</span>", "<span class='warning'>Noga ([strefa_pl(zone)]) podwija się pod tobą!</span>")
 		return
-
-/// The reflex hammer finds no reflex below a cut nerve (medical/medical_tools_med5.dm)
-/mob/living/carbon/aq_reflex_result(obj/item/bodypart/limb)
-	if(limb.aq_nerve_cut && IS_ORGANIC_LIMB(limb) && stat != DEAD)
-		return list("Brak odruchu i czucia w tej kończynie: przerwany nerw. Potrzebne zszycie nerwu.", "warning")
-	return ..()
 
 /mob/living/carbon/human/get_wound_scan_lines()
 	. = ..()
