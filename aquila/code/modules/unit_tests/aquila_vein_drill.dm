@@ -1,4 +1,4 @@
-// AQUILA - test wiertła, żył rud (klasy 1-4) i misji „Próbki geologiczne” i „Głęboki odwiert”. Bez czekania na czas gry: cykle wydobycia i wyjścia
+// AQUILA - test wiertła, żył rud (klasy 1-4) i misji „Odwiert” (klasy 1-3: próbki z wiertła, klasa 4: głęboki odwiert). Bez czekania na czas gry: cykle wydobycia i wyjścia
 // mobów z wyrw są wywoływane wprost.
 
 // Upstreamowe makra asercji są #undef na końcu code/modules/unit_tests/_unit_tests.dm, więc test ma własne kopie
@@ -239,6 +239,34 @@
 		qdel(mob)
 	for(var/obj/item/stack/ore/ore in range(2, T))
 		qdel(ore)
+
+/// Jeden tryb „Odwiert” w wyborze kapitana: losuje cel klasy 1-3 albo klasy 4, osobnego trybu głębokiego odwiertu nie ma
+/datum/unit_test/aquila_drill_mode
+
+/datum/unit_test/aquila_drill_mode/Run()
+	TEST_ASSERT(isnull(text2path("/datum/overmap_gamemode/planet_deep_vein")), "The separate deep vein mode still exists")
+	TEST_ASSERT_EQUAL(GLOB.mission_choice_names["planet_drill"], "Odwiert", "The drill mode has the wrong name in the captain's choice")
+	var/list/seen = list()
+	for(var/i in 1 to 40)
+		var/datum/overmap_gamemode/planet_drill/mode = new
+		TEST_ASSERT_EQUAL(length(mode.fixed_objectives), 1, "The drill mode doesn't have exactly one objective")
+		var/objective_type = mode.fixed_objectives[1]
+		TEST_ASSERT(objective_type == /datum/overmap_objective/planet/drill_samples || objective_type == /datum/overmap_objective/planet/deep_vein, "The drill mode rolled [objective_type]")
+		seen[objective_type] = TRUE
+		// Świeży tryb ma w objectives typy, a nie cele: Destroy() wołałby na nich qdel
+		mode.objectives = null
+		qdel(mode)
+	TEST_ASSERT(seen[/datum/overmap_objective/planet/drill_samples] && seen[/datum/overmap_objective/planet/deep_vein], "The drill mode never rolls one of the vein classes")
+	// Nagrody bez zmian: klasy 1-3 skalują się z klasą, klasa 4 zostaje przy swojej
+	var/datum/overmap_objective/planet/drill_samples/samples = new
+	TEST_ASSERT(samples.class_wanted in 1 to 3, "The sample drilling rolled class [samples.class_wanted]")
+	TEST_ASSERT_EQUAL(samples.payout, 10000 + 10000 * samples.class_wanted, "The class [samples.class_wanted] reward changed")
+	TEST_ASSERT_EQUAL(samples.name, "Odwiert: żyła klasy [samples.class_wanted]", "The drilling objective name doesn't show the vein class")
+	qdel(samples)
+	var/datum/overmap_objective/planet/deep_vein/deep = new
+	TEST_ASSERT_EQUAL(deep.required_vein_class, 4, "The class 4 drilling doesn't want a class 4 vein")
+	TEST_ASSERT_EQUAL(deep.payout, 50000, "The class 4 reward changed")
+	qdel(deep)
 
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL
