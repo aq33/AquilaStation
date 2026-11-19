@@ -349,8 +349,15 @@ def load_sources(args):
 
 
 def write_all(args):
-    with open(args.all, "w", encoding="utf-8") as f:
-        f.write(args.all_text)  # nowa linia na końcu: wymaga jej check_grep.sh
+    """Zapis przez plik tymczasowy i podmianę: przerwany zapis zostawia poprzedni, poprawny en_all.json."""
+    tmp = args.all + ".tmp"
+    try:
+        with open(tmp, "w", encoding="utf-8") as f:
+            f.write(args.all_text)  # nowa linia na końcu: wymaga jej check_grep.sh
+        os.replace(tmp, args.all)
+    finally:
+        if os.path.exists(tmp):
+            os.remove(tmp)
 
 
 def load_ui_pairs():
