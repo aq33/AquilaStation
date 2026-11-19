@@ -107,7 +107,7 @@
 		return
 	var/datum/star_system/random/hex_empty/S = GLOB.hexmap.system_for(empty)
 	SSstar_system.spawn_ship(/obj/structure/overmap/nanotrasen/mining_cruiser/aquila_hex_freighter/civilian/independent, S)
-	SSstar_system.spawn_anomaly(/obj/effect/overmap_anomaly/hazard/nebula, S)
+	SSstar_system.spawn_anomaly(/obj/effect/overmap_anomaly/hazard/speed/debris_field, S)
 	if(!S.try_release())
 		return "Pusty kafel z cywilem i strefą nie zwolnił się"
 	if(empty.system)

@@ -7,8 +7,10 @@
 /// Szansa (%) na jedną losową strefę w układzie, którego teren nie ma własnej tabeli
 #define HAZARD_RANDOM_ZONE_CHANCE 10
 
-/// Kafle mapy hex bez stref zagrożeń: pusta przestrzeń i kafle, których treść daje sama mapa (eventy, miny, sygnał)
-GLOBAL_LIST_INIT(hazard_quiet_terrains, list("empty", "signal", "carp", "anom", "wh", "mines"))
+/// Kafle mapy hex bez stref zagrożeń: pusta przestrzeń i kafle, których treść daje sama mapa (eventy, miny, sygnał).
+/// Pole asteroid, mgławica, burze, promieniowanie i rozbłyski mają własne eventy kafla (hexmap/hex_terrain.dm), więc strefy
+/// w układzie by je dublowały.
+GLOBAL_LIST_INIT(hazard_quiet_terrains, list("empty", "signal", "carp", "anom", "wh", "mines", "meteor", "nebula", "estorm", "storm", "rad", "flare"))
 
 /datum/star_system
 	/// AQUILA - strefy zagrożeń już rozmieszczone (apply_system_effects() bywa wołane więcej niż raz)
@@ -54,49 +56,24 @@ GLOBAL_LIST_INIT(hazard_quiet_terrains, list("empty", "signal", "carp", "anom", 
 /// Wagi typów stref dla terenu; null = teren bez własnych stref
 /proc/get_overmap_hazard_table(terrain)
 	switch(terrain)
-		if("meteor") // Pole asteroid
-			return list(
-				/obj/effect/overmap_anomaly/hazard/speed/asteroid_field/minor = 3,
-				/obj/effect/overmap_anomaly/hazard/speed/asteroid_field = 4,
-				/obj/effect/overmap_anomaly/hazard/speed/asteroid_field/major = 2,
-			)
 		if("junk") // Złomowisko
 			return list(
 				/obj/effect/overmap_anomaly/hazard/speed/debris_field = 5,
 				/obj/effect/overmap_anomaly/hazard/speed/debris_field/dense = 2,
-				/obj/effect/overmap_anomaly/hazard/speed/asteroid_field/minor = 1,
 			)
-		if("nebula")
-			return list(
-				/obj/effect/overmap_anomaly/hazard/nebula = 8,
-				/obj/effect/overmap_anomaly/hazard/ion_storm = 1,
-			)
-		if("estorm", "storm") // Burza elektryczna i burza jonowa
-			return list(/obj/effect/overmap_anomaly/hazard/ion_storm = 1)
-		if("rad")
-			return list(/obj/effect/overmap_anomaly/hazard/radiation = 1)
-		if("flare") // Aktywność gwiazdy
-			return list(/obj/effect/overmap_anomaly/hazard/solar_flare = 1)
 		if("grav")
 			return list(/obj/effect/overmap_anomaly/hazard/gravity_well = 1)
 		if("comet")
 			return list(/obj/effect/overmap_anomaly/hazard/speed/debris_field = 1)
 		if("bh") // Czarna dziura: jak dawniej w układach NSV
-			return list(
-				/obj/effect/overmap_anomaly/hazard/speed/debris_field = 3,
-				/obj/effect/overmap_anomaly/hazard/ion_storm = 1,
-			)
+			return list(/obj/effect/overmap_anomaly/hazard/speed/debris_field = 1)
 	return null
 
 /// Ile stref dostaje teren z własną tabelą
 /proc/get_overmap_hazard_count(terrain)
 	switch(terrain)
-		if("meteor", "junk", "nebula")
+		if("junk")
 			return rand(1, 3)
-		if("storm")
-			return rand(2, 3)
-		if("estorm", "flare", "rad")
-			return rand(1, 2)
 		if("grav", "comet")
 			return 1
 	return rand(0, 2)
@@ -114,12 +91,7 @@ GLOBAL_LIST_INIT(hazard_quiet_terrains, list("empty", "signal", "carp", "anom", 
 	else
 		if(!prob(HAZARD_RANDOM_ZONE_CHANCE))
 			return
-		table = list(
-			/obj/effect/overmap_anomaly/hazard/speed/asteroid_field/minor = 3,
-			/obj/effect/overmap_anomaly/hazard/speed/debris_field = 2,
-			/obj/effect/overmap_anomaly/hazard/nebula = 2,
-			/obj/effect/overmap_anomaly/hazard/ion_storm = 1,
-		)
+		table = list(/obj/effect/overmap_anomaly/hazard/speed/debris_field = 1)
 		amount = 1
 	for(var/i in 1 to amount)
 		var/zone = SSstar_system.spawn_anomaly(pickweight(table), src)

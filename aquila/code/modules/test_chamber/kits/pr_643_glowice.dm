@@ -17,8 +17,8 @@
 	description = "Odłamki: zespawnuj przy okręcie wrogi okręt i daj mu zbić pancerz ćwiartki; trafienie przez zbity pancerz wypuszcza za poszyciem odłamki w głąb, a przy głębokim wyłomie idzie seria małych wybuchów w kierunku lotu; pocisk przebija się przez ściany najdalej na głębokość wyłomu od burty, także przy trafieniu w starą dziurę. \
 		Wybuch amunicji: podpal worek prochu (np. zapalniczką i plazmą na podłodze) albo strzel w niego; po 2–4 s syczenia wybucha, a wyjęty z ognia stygnie. \
 		Kalibracja: przy MAC, railgunie albo dziale pokładowym odkręć panel śrubokrętem i użyj multitoola, odgadnij 4 cyfry (6 prób); spalony aktuator wyjmij łomem i włóż manipulator; strzał z otwartym panelem poraża. \
-		Strefy: Debug > Toggle overmap hazards; w układzie z polem szczątków albo mgławicą widać strefy na DRADIS; szybki przelot przez pole asteroid ściąga meteory, mgławica ukrywa i zakłóca radio, burza zrywa maskowanie. \
-		Nowe strefy: zespawnuj przy okręcie /obj/effect/overmap_anomaly/hazard/radiation (impulsy promieniowania na pokładzie) albo /obj/effect/overmap_anomaly/hazard/gravity_well (ciągnie do środka, z wyłączonymi silnikami nie uciekniesz). \
+		Strefy: Debug > Toggle overmap hazards; na kaflu złomowiska widać na DRADIS pola szczątków; szybki przelot przez pole ściąga odłamki, a pole ukrywa okręt i zakłóca radio. Pole asteroid, mgławica, burze, promieniowanie i rozbłyski nie mają stref, bo robią je eventy kafla. \
+		Pole przyciągania: zespawnuj przy okręcie /obj/effect/overmap_anomaly/hazard/gravity_well (ciągnie do środka, z wyłączonymi silnikami nie uciekniesz). \
 		Tło według terenu: w View Variables obecnego układu ustaw hex_terrain_id (meteor, junk, nebula, estorm, storm, rad, flare, anom, grav, carp, wh, comet, mines), potem Call Proc force_parallax_update z 0 na okręcie; nad tłem układu pojawia się pył, szczątki, mgła, błyski, zorza, poświata, karpie albo miny. \
 		Martwa załoga: na okręcie Syndykatu po pierwszym trafieniu View Variables > ship_modules, w każdym module crew_lost = 1, potem Call Proc apply_effects na ship_modules; okręt milknie, przestaje strzelać i dryfuje."
 	items = list(
