@@ -61,7 +61,7 @@
 /datum/test_chamber_kit/pr_672_mechy_wyposazenie
 	name = "PR 672: mechy - wyposażenie"
 	pr = "aq33/AquilaStation#672"
-	description = "Wszystkie 71 pozycji wyposażenia z planu obok Gygaxa, Ripleya i Odyseusza. Sprawdź broń wręcz (cios w cel, zamach w combat mode), \
+	description = "Wszystkie 64 pozycje wyposażenia z planu obok Gygaxa, Ripleya i Odyseusza. Sprawdź broń wręcz (cios w cel, zamach w combat mode), \
 	amunicję (skrzynki i magazynki użyte na mechu), autolat (arkusze użyte na mechu, „drukuj” w oknie), wiele modułów z przyciskami akcji."
 	items = list(
 		/obj/mecha/combat/gygax = 2,

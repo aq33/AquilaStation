@@ -822,33 +822,6 @@
 	construction_time = 150
 	category = list("Exosuit Equipment")
 
-/datum/design/aq_mech_katana
-	name = "Wyposażenie egzoszkieletu (Katana HR-2 \"Ronin\")"
-	id = "aq_mech_katana"
-	build_type = MECHFAB
-	build_path = /obj/item/mecha_parts/mecha_equipment/aq_melee/katana
-	materials = list(/datum/material/iron = 20000, /datum/material/titanium = 5000, /datum/material/silver = 2000)
-	construction_time = 150
-	category = list("Exosuit Equipment")
-
-/datum/design/aq_mech_scythe
-	name = "Wyposażenie egzoszkieletu (Kosa hydrauliczna)"
-	id = "aq_mech_scythe"
-	build_type = MECHFAB
-	build_path = /obj/item/mecha_parts/mecha_equipment/aq_melee/scythe
-	materials = list(/datum/material/iron = 15000)
-	construction_time = 150
-	category = list("Exosuit Equipment")
-
-/datum/design/aq_mech_spear
-	name = "Wyposażenie egzoszkieletu (Krótka włócznia S5-C \"White Witch\")"
-	id = "aq_mech_spear"
-	build_type = MECHFAB
-	build_path = /obj/item/mecha_parts/mecha_equipment/aq_melee/spear
-	materials = list(/datum/material/iron = 20000, /datum/material/titanium = 5000)
-	construction_time = 150
-	category = list("Exosuit Equipment")
-
 /datum/design/aq_mech_maul
 	name = "Wyposażenie egzoszkieletu (Ciężki młot ASW-8 \"Barbatos\")"
 	id = "aq_mech_maul"
@@ -858,30 +831,12 @@
 	construction_time = 200
 	category = list("Exosuit Equipment")
 
-/datum/design/aq_mech_rocket_fist
-	name = "Wyposażenie egzoszkieletu (Pięść rakietowa RS-77 \"Atom Smasher\")"
-	id = "aq_mech_rocket_fist"
-	build_type = MECHFAB
-	build_path = /obj/item/mecha_parts/mecha_equipment/aq_melee/rocket_fist
-	materials = list(/datum/material/iron = 25000, /datum/material/plasma = 3000)
-	construction_time = 150
-	category = list("Exosuit Equipment")
-
 /datum/design/aq_mech_baton
 	name = "Wyposażenie egzoszkieletu (Ciężka pałka ogłuszająca AV-98 \"Ingram\")"
 	id = "aq_mech_baton"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/aq_melee/baton
 	materials = list(/datum/material/iron = 15000, /datum/material/gold = 3000)
-	construction_time = 150
-	category = list("Exosuit Equipment")
-
-/datum/design/aq_mech_ihs_baton
-	name = "Wyposażenie egzoszkieletu (Pałka zgodności IHS)"
-	id = "aq_mech_ihs_baton"
-	build_type = MECHFAB
-	build_path = /obj/item/mecha_parts/mecha_equipment/aq_melee/baton/ihs
-	materials = list(/datum/material/iron = 15000, /datum/material/gold = 4000, /datum/material/silver = 2000)
 	construction_time = 150
 	category = list("Exosuit Equipment")
 
@@ -982,24 +937,6 @@
 	build_path = /obj/item/mecha_parts/mecha_equipment/aq_utility/cloak
 	materials = list(/datum/material/iron = 10000, /datum/material/glass = 15000, /datum/material/diamond = 4000, /datum/material/bluespace = 2000)
 	construction_time = 300
-	category = list("Exosuit Equipment")
-
-/datum/design/aq_mech_energy_axe
-	name = "Wyposażenie egzoszkieletu (Topór energetyczny SH-NT \"Killerhurtz\")"
-	id = "aq_mech_energy_axe"
-	build_type = MECHFAB
-	build_path = /obj/item/mecha_parts/mecha_equipment/aq_melee/energy_axe
-	materials = list(/datum/material/iron = 30000, /datum/material/plasma = 10000, /datum/material/diamond = 3000)
-	construction_time = 300
-	category = list("Exosuit Equipment")
-
-/datum/design/aq_mech_cutlass
-	name = "Wyposażenie egzoszkieletu (Kordelas energetyczny egzoszkieletu)"
-	id = "aq_mech_cutlass"
-	build_type = MECHFAB
-	build_path = /obj/item/mecha_parts/mecha_equipment/aq_melee/cutlass
-	materials = list(/datum/material/iron = 20000, /datum/material/plasma = 8000, /datum/material/diamond = 2000)
-	construction_time = 250
 	category = list("Exosuit Equipment")
 
 /datum/design/aq_mech_dampener
@@ -1163,7 +1100,7 @@
 	prereq_ids = list("sec_basic", "base")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 2500
-	design_ids = list("aq_mech_paddy_kit", "aq_mech_paddy_claw", "aq_mech_jail_cell", "aq_mech_baton", "aq_mech_ihs_baton", "aq_mech_bola", "aq_mech_stinger", "aq_mech_flash", "aq_mech_ammo_lmg", "aq_mech_ammo_incendiary", "aq_mech_ammo_scattershot", "aq_mech_ammo_missiles")
+	design_ids = list("aq_mech_paddy_kit", "aq_mech_paddy_claw", "aq_mech_jail_cell", "aq_mech_baton", "aq_mech_bola", "aq_mech_stinger", "aq_mech_flash", "aq_mech_ammo_lmg", "aq_mech_ammo_incendiary", "aq_mech_ammo_scattershot", "aq_mech_ammo_missiles")
 
 /datum/techweb_node/aq_mech_adv
 	id = "aq_mech_adv"
@@ -1179,11 +1116,11 @@
 	id = "aq_mech_melee"
 	tech_tier = 3
 	display_name = "Broń wręcz egzoszkieletów"
-	description = "Miecze, młoty, włócznie i pięść rakietowa dla mechów."
+	description = "Ostrze i młot dla mechów bojowych."
 	prereq_ids = list("adv_mecha", "weaponry")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 3000)
 	export_price = 3000
-	design_ids = list("aq_mech_shortsword", "aq_mech_katana", "aq_mech_scythe", "aq_mech_spear", "aq_mech_maul", "aq_mech_rocket_fist")
+	design_ids = list("aq_mech_shortsword", "aq_mech_maul")
 
 /datum/techweb_node/aq_mech_advanced
 	id = "aq_mech_advanced"
@@ -1229,8 +1166,8 @@
 	id = "aq_mech_illegal"
 	tech_tier = 5
 	display_name = "Nielegalne wyposażenie mechów"
-	description = "Sprzęt Syndykatu i ERT: maskowanie, topór energetyczny, rakiety kierowane, karabinek z jadem."
+	description = "Sprzęt Syndykatu i ERT: maskowanie, rakiety kierowane, karabinek z jadem."
 	prereq_ids = list("syndicate_basic", "aq_mech_adv")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 7500)
 	export_price = 7500
-	design_ids = list("aq_mech_venom", "aq_mech_cloak", "aq_mech_energy_axe", "aq_mech_cutlass", "aq_mech_dampener", "aq_mech_smilgas", "aq_mech_dark_gygax_kit", "aq_mech_ammo_smilgas")
+	design_ids = list("aq_mech_venom", "aq_mech_cloak", "aq_mech_dampener", "aq_mech_smilgas", "aq_mech_dark_gygax_kit", "aq_mech_ammo_smilgas")

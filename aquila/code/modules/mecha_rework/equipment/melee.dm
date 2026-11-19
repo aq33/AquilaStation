@@ -1,9 +1,10 @@
 // AQUILA - broń wręcz mechów (port z Yogstation, code/game/mecha/equipment/weapons/melee_weapons.dm, ten sam /obj/mecha).
-// Zamiast pustej pięści mech uderza bronią: cios precyzyjny w cel (zasięg 1, włócznia 2) albo zamach w trzy pola przed sobą
+// Zamiast pustej pięści mech uderza bronią: cios precyzyjny w cel (zasięg 1) albo zamach w trzy pola przed sobą
 // (kliknięcie podłogi w combat mode / na intencji harm). Typ obrażeń, przebicie pancerza, premia na faunę i na konstrukcje
 // zależą od broni. Różnice wobec Yoga: obrażenia nakładamy przez nasze apply_damage (bez ran i krwawienia z wound_bonus),
 // parowanie liczy run_obj_armor (bonus do deflect_chance, gdy broń jest wybrana), zamiast efektu sweep_attack jest firing_effect.
-// Dodatkowo z innych kodów: pałka IHS (CEV Eris), kordelas energetyczny (Sojourn), zgniatacz górniczy (Paradise), mega mop WLLY (Paradise).
+// Zostaje pięć broni: ostrze (krótki miecz GD6), młot ASW-8, pałka ogłuszająca AV-98 oraz z innych kodów zgniatacz górniczy
+// (Paradise) i mega mop WLLY (Paradise).
 
 /obj/item/mecha_parts/mecha_equipment/aq_melee
 	name = "broń wręcz egzoszkieletu"
@@ -185,7 +186,7 @@
 /obj/item/mecha_parts/mecha_equipment/aq_melee/proc/special_hit(atom/target)
 	return
 
-// ---------------------------------------------------------------- miecze i pochodne
+// ---------------------------------------------------------------- ostrze, pałka, młot
 /obj/item/mecha_parts/mecha_equipment/aq_melee/shortsword
 	name = "\improper krótki miecz GD6 \"Jaeger\""
 	desc = "Wysuwane ostrze montowane na ramieniu mecha. Szybkie i lżejsze cięcia, a mała masa pozwala parować część ataków."
@@ -204,49 +205,6 @@
 /obj/item/mecha_parts/mecha_equipment/aq_melee/shortsword/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/butchering, 3 SECONDS, 120)
-
-/obj/item/mecha_parts/mecha_equipment/aq_melee/energy_axe
-	name = "\improper topór energetyczny SH-NT \"Killerhurtz\""
-	desc = "Przerośnięty, niszczycielski topór z zasilanym ostrzem. Za duży dla człowieka, ale mech uniesie go bez trudu. Tnie nawet ściany, za to pożera prąd."
-	icon_state = "mecha_energy_axe"
-	cleave = TRUE
-	precise_attacks = FALSE
-	energy_drain = 40
-	aq_heat_cost = 8
-	weapon_damage = 30
-	fauna_damage_bonus = 30
-	base_armor_piercing = 40
-	structure_damage_mult = 4
-	mech_damage_multiplier = 0.75
-	minimum_damage = 40
-	attack_speed_modifier = 1.5
-	mob_strike_sound = 'sound/weapons/blade1.ogg'
-
-/obj/item/mecha_parts/mecha_equipment/aq_melee/energy_axe/special_hit(atom/A)
-	if(iswallturf(A))
-		var/turf/closed/wall/W = A
-		playsound(W, 'sound/weapons/blade1.ogg', 50)
-		W.dismantle_wall()
-
-/obj/item/mecha_parts/mecha_equipment/aq_melee/katana
-	name = "\improper katana HR-2 \"Ronin\""
-	desc = "Przerośnięta, lekka kopia dawnego ostrza. Szybkie, precyzyjne cięcia i dobre parowanie, ale bez zamachu."
-	icon_state = "mecha_katana"
-	attack_sharpness = IS_SHARP
-	energy_drain = 2
-	aq_heat_cost = 3
-	precise_weapon_damage = 10
-	attack_speed_modifier = 0.7
-	fauna_damage_bonus = 20
-	deflect_bonus = 20
-	base_armor_piercing = 20
-	structure_damage_mult = 2
-	minimum_damage = 20
-
-/obj/item/mecha_parts/mecha_equipment/aq_melee/katana/special_hit(atom/A)
-	if(ishuman(A))
-		var/mob/living/carbon/human/H = A
-		H.bleed_rate = min(H.bleed_rate + 3, 15) // Yog: większe rany cięte, u nas krwawienie
 
 /obj/item/mecha_parts/mecha_equipment/aq_melee/baton
 	name = "\improper ciężka pałka ogłuszająca AV-98 \"Ingram\""
@@ -280,15 +238,6 @@
 	if(isliving(target))
 		step_away(target, chassis)
 
-/obj/item/mecha_parts/mecha_equipment/aq_melee/baton/ihs
-	name = "\improper pałka zgodności IHS"
-	desc = "Pałka paraliżująca prądem z mechów ochrony Ironhammer (CEV Eris). Mocniej razi, ale wolniej się ładuje."
-	icon_state = "aq_ihs_baton"
-	cleave = FALSE
-	baton_stamina = 90
-	attack_speed_modifier = 2.5
-	energy_drain = 40
-
 /obj/item/mecha_parts/mecha_equipment/aq_melee/maul
 	name = "\improper ciężki młot ASW-8 \"Barbatos\""
 	desc = "Masywny, nieporęczny młot. Wolne, potężne ciosy odrzucają cel i kruszą konstrukcje: dobry do wyważania przejść przy abordażu."
@@ -310,77 +259,6 @@
 		var/mob/living/L = A
 		var/turf/throwtarget = get_edge_target_turf(chassis, get_dir(chassis, get_step_away(L, chassis)))
 		L.throw_at(throwtarget, 8, 2, chassis)
-
-/obj/item/mecha_parts/mecha_equipment/aq_melee/spear
-	name = "\improper krótka włócznia S5-C \"White Witch\""
-	desc = "Utwardzony, teleskopowy pręt z ostrym grotem. Sięga na dwa pola i przebija pancerz mechów, raniąc pilota w środku."
-	icon_state = "mecha_spear"
-	energy_drain = 3
-	aq_heat_cost = 5
-	extended_range = 1
-	precise_weapon_damage = 10
-	minimum_damage = 20
-	attack_speed_modifier = 1.6
-	attack_sharpness = IS_SHARP
-	base_armor_piercing = 40
-	structure_damage_mult = 1.5
-	mech_damage_multiplier = 1
-	hit_effect = ATTACK_EFFECT_KICK
-
-/obj/item/mecha_parts/mecha_equipment/aq_melee/spear/special_hit(atom/target)
-	if(ismecha(target))
-		var/obj/mecha/M = target
-		if(isliving(M.occupant))
-			hit_living(M.occupant, max(chassis.force + precise_weapon_damage, minimum_damage) * 0.5, base_armor_piercing, TRUE)
-			to_chat(M.occupant, "<span class='userdanger'>[chassis.name] przebija pancerz włócznią i rani cię!</span>")
-
-/obj/item/mecha_parts/mecha_equipment/aq_melee/rocket_fist
-	name = "\improper pięść rakietowa RS-77 \"Atom Smasher\""
-	desc = "Wielka metalowa pięść z silniczkami manewrowymi: każdy cios jest mocniejszy, a mech szybciej wraca do gardy. Jedyna broń wręcz, która nie wymaga mecha bojowego."
-	icon_state = "mecha_rocket_fist"
-	combat_only = FALSE
-	weapon_damage = 20
-	attack_speed_modifier = 0.8
-	mech_flags = EXOSUIT_MODULE_COMBAT | EXOSUIT_MODULE_RIPLEY
-	hit_effect = ATTACK_EFFECT_SMASH
-
-/obj/item/mecha_parts/mecha_equipment/aq_melee/rocket_fist/precise_attack(atom/target)
-	chassis.force += weapon_damage
-	target.mech_melee_attack(chassis)
-	chassis.force -= weapon_damage
-
-/obj/item/mecha_parts/mecha_equipment/aq_melee/scythe
-	name = "kosa hydrauliczna"
-	desc = "Duże narzędzie tnące do usuwania rozrastających się roślin. Szeroki zamach trafia kilka celów naraz."
-	icon_state = "mecha_scythe"
-	combat_only = FALSE
-	cleave = TRUE
-	precise_attacks = TRUE
-	attack_sharpness = IS_SHARP
-	equip_cooldown = 5
-	minimum_damage = 5
-	mech_flags = EXOSUIT_MODULE_COMBAT | EXOSUIT_MODULE_RIPLEY
-
-/obj/item/mecha_parts/mecha_equipment/aq_melee/scythe/special_hit(atom/target)
-	if(istype(target, /obj/structure/spacevine))
-		qdel(target)
-	else if(istype(target, /obj/structure/glowshroom))
-		qdel(target)
-
-/obj/item/mecha_parts/mecha_equipment/aq_melee/cutlass
-	name = "kordelas energetyczny egzoszkieletu"
-	desc = "Energetyczne ostrze mecha (Sojourn) zadające ciężkie oparzenia. Cięcie przypala ranę."
-	icon_state = "aq_cutlass"
-	cleave = TRUE
-	dam_type = BURN
-	energy_drain = 25
-	aq_heat_cost = 6
-	weapon_damage = 15
-	precise_weapon_damage = 25
-	base_armor_piercing = 30
-	deflect_bonus = 10
-	minimum_damage = 25
-	mob_strike_sound = 'sound/weapons/blade1.ogg'
 
 /obj/item/mecha_parts/mecha_equipment/aq_melee/crusher
 	name = "zgniatacz górniczy egzoszkieletu"

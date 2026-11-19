@@ -126,7 +126,7 @@
 /datum/unit_test/aquila_mecha_content
 
 /datum/unit_test/aquila_mecha_content/Run()
-	TEST_ASSERT_EQUAL(length(GLOB.aq_mecha_plan_equipment), 71, "plan equipment count")
+	TEST_ASSERT_EQUAL(length(GLOB.aq_mecha_plan_equipment), 64, "plan equipment count")
 	for(var/path in GLOB.aq_mecha_new_chassis)
 		var/obj/mecha/M = allocate(path)
 		TEST_ASSERT(!QDELETED(M), "[path] failed to initialize")
