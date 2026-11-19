@@ -1405,3 +1405,8 @@ without `..()` in one branch and call `..()` otherwise (partial overrides, class
 `/obj/item/mecha_parts/mecha_equipment/can_attach()` now also requires a free slot (`aq_free_slot_for()`), and `attach()` records the
 slot; `max_equip` is recalculated from the slot limits (+4 for slotless modules), so core `equipment.len < max_equip` checks still pass.
 Prebuilt mechs that attach more than their limits get the extra modules in the `overflow` slot.
+## Cyborgi: nowe moduły i ulepszenia
+
+| Hook | Location | Feature |
+|---|---|---|
+| `aquila_add_cyborg_modules(GLOB.cyborg_module_list)` after the module list is built, and `aquila_cyborg_module_radial_icon(module)` as the icon file of the radial entries, in `/mob/living/silicon/robot/proc/pick_module()` (AQ EDIT lines) | `code/modules/mob/living/silicon/robot/robot.dm` | New crew modules (Naukowy, Chemiczny, Chirurgiczny, Ratowniczy, Budowlany, Eksploracyjny, Detektyw, Brobocop, Hydroponiczny, Biurowy, Magazynowy, Wielozadaniowy) in the module radial; their default look lives in `aquila/icons/mob/silicon/robots_aquila_modules.dmi`. Code: `aquila/code/modules/mob/living/silicon/robot/cyborgi/`. Test: `aquila_cyborg_modules` |

@@ -259,6 +259,7 @@
 		) //NSV13 - Cargo and Munition Borgs
 		if(!CONFIG_GET(flag/disable_peaceborg))
 			GLOB.cyborg_module_list["Peacekeeper"] = /obj/item/robot_module/peacekeeper
+		aquila_add_cyborg_modules(GLOB.cyborg_module_list) // AQ EDIT - moduły cyborgów Aquili
 
 		for(var/module in GLOB.cyborg_module_list)
 			// Creating the list here since we know all the module icons will need them right after.
@@ -269,7 +270,7 @@
 		for(var/option in GLOB.cyborg_module_list)
 			var/obj/item/robot_module/module = GLOB.cyborg_module_list[option]
 			var/module_icon = initial(module.cyborg_base_icon)
-			GLOB.cyborg_base_modules_icon_list[option] = image(icon = 'icons/mob/robots.dmi', icon_state = module_icon)
+			GLOB.cyborg_base_modules_icon_list[option] = image(icon = aquila_cyborg_module_radial_icon(module), icon_state = module_icon) // AQ EDIT - ikony modułów Aquili we własnym pliku
 
 	var/input_module = show_radial_menu(src, src, GLOB.cyborg_base_modules_icon_list, radius = 42)
 	if(!input_module || module.type != /obj/item/robot_module)
