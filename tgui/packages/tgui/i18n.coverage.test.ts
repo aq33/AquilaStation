@@ -45,6 +45,28 @@ const textOf = (node: unknown): string => {
   return (Array.isArray(children) ? children : [children]).map(textOf).join('');
 };
 
+/** Polskie zdanie tak, jak pokazałoby je okno bez tłumaczenia (fragmenty przeplecione wstawkami) */
+const polishOf = (texts: string[], slots: string[]): string =>
+  texts.reduce(
+    (out, text, i) => out + text + (i < slots.length ? slots[i] : ''),
+    '',
+  );
+
+/** Zdanie zostało po polsku: polskie litery lub słowa albo wynik bez zmiany. Wejście to same polskie
+ * teksty, więc bez zmiany ("Mapa taktyczna", "Mapa sektora 7") też zostało po polsku */
+const leftPolish = (item: { en: string; texts: string[]; slots: string[] }) =>
+  POLISH_LEFT.test(item.en) || item.en === polishOf(item.texts, item.slots);
+
+it('niezmienione zdanie bez ogonków liczy się jako nieprzetłumaczone', () => {
+  const texts = ['Mapa sektora ', ''];
+  const slots = ['7'];
+  expect(leftPolish({ en: 'Mapa sektora 7', texts, slots })).toBe(true);
+  expect(leftPolish({ en: 'Sector map 7', texts, slots })).toBe(false);
+  expect(
+    leftPolish({ en: 'Mapa taktyczna', texts: ['Mapa taktyczna'], slots: [] }),
+  ).toBe(true);
+});
+
 const jsxInput = process.env.I18N_JSX;
 
 (jsxInput ? it : it.skip)('teksty owinięte przy budowie po angielsku', () => {
@@ -68,11 +90,7 @@ const jsxInput = process.env.I18N_JSX;
             ? ts(item.texts, item.slots)
             : textOf(tt(item.texts, item.slots)),
     }))
-    // wejście to same polskie teksty, więc bez zmiany ("Mapa taktyczna") też zostało po polsku
-    .filter(
-      ({ en, kind, texts }) =>
-        POLISH_LEFT.test(en) || (kind === 't' && en === texts[0]),
-    );
+    .filter(leftPolish);
   setLanguage('pl');
   writeFileSync(
     process.env.I18N_JSX_OUT!,

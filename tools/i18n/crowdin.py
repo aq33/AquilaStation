@@ -237,6 +237,9 @@ def apply(args):
 
     changed_files = collections.Counter()
     if fixes:
+        # przed zmianą czegokolwiek: bez drzewa składni build_chat_dict.py zbudowałby słownik okien bez ich zdań
+        if lm.jsx_ast.dump() is None:
+            raise RuntimeError("Brak drzewa składni okien tgui (zależności tgui: tools/build/build yarn)")
         carry_english(fixes, known)
         for path in player_files(APPLY_PATHSPECS):
             lines = read_lines(path)
@@ -253,6 +256,10 @@ def apply(args):
             if changed_files[path]:
                 with open(path, "w", encoding="utf-8", newline="") as f:
                     f.write("\n".join(out))
+    if changed_files:
+        # po zapisie kodu: build_chat_dict.py bierze do słowników teksty, które są w kodzie, więc nowy
+        # polski tekst wejdzie dopiero teraz. Także gdy nic nie trzeba było dopisać do en_translated.json
+        subprocess.run([sys.executable, os.path.join(os.path.dirname(__file__), "build_chat_dict.py")], check=True)
 
     report = [f"Zatwierdzone poprawki z Crowdina: **{len(fixes)}** tekstów w **{len(changed_files)}** plikach."]
     if fixes:
@@ -278,8 +285,8 @@ def apply(args):
 
 def carry_english(fixes, known):
     """Poprawiony polski tekst to nowy klucz słownika EN: przenosi na niego angielski odpowiednik
-    starego (inaczej wersja angielska traci tekst, a CI odrzuca PR jako tekst bez angielskiego)
-    i przebudowuje słowniki czatu i okien."""
+    starego (inaczej wersja angielska traci tekst, a CI odrzuca PR jako tekst bez angielskiego).
+    Słowniki czatu i okien przebudowuje apply po zapisaniu kodu."""
     with open(TRANSLATED, encoding="utf-8") as f:
         translated = json.load(f)
     added = 0
@@ -288,15 +295,10 @@ def carry_english(fixes, known):
             # tekst celowo bez tłumaczenia (para tekst -> ten sam tekst) zostaje taki jak nowy polski
             translated[new] = new if known[old] == old else known[old]
             added += 1
-    if not added:
-        return
-    if lm.jsx_ast.dump() is None:
-        # bez drzewa składni build_chat_dict.py zbudowałby słownik okien bez ich zdań
-        raise RuntimeError("Brak drzewa składni okien tgui (zależności tgui: tools/build/build yarn)")
-    with open(TRANSLATED, "w", encoding="utf-8", newline="\n") as f:
-        json.dump(translated, f, ensure_ascii=False, indent=0)
-        f.write("\n")
-    subprocess.run([sys.executable, os.path.join(os.path.dirname(__file__), "build_chat_dict.py")], check=True)
+    if added:
+        with open(TRANSLATED, "w", encoding="utf-8", newline="\n") as f:
+            json.dump(translated, f, ensure_ascii=False, indent=0)
+            f.write("\n")
 
 
 def md(text):
