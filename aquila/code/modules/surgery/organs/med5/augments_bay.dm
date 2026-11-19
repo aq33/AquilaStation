@@ -1,7 +1,7 @@
 // AQUILA - augmenty z Baystation12/Torch (AquilaMed 5, etap 12). Pomysły z code/modules/augment/ (Bay), sprite'y z
 // Bay icons/obj/augment.dmi (CC BY-SA 3.0). Dopisane tylko te, których nie było: polinarzędzia, przechwytywacz synaps
 // (restart OUN), ostrza i działka w ramieniu już mamy z tg/Bee. Cywilne idą z R&D (protolathe i fabrykator robotyki),
-// broń w ramieniu (pazury, kusza) z uplinku, czarnego rynku i dla ochrony ERT w pełnym alarmie (pazury).
+// broń w ramieniu (kusza) z uplinku i czarnego rynku. Pazury z Bay usunięte: dublowały ostrza modliszki.
 // Różnice od Bay: zamiast systemu slotów augmentów z Bay zwykłe implanty cybernetyczne (wszczepia je operacja na
 // narządach albo autochirurg), pancerz i mięśnie przez physiology, celowanie przez rozrzut broni z gunplay/recoil.dm.
 
@@ -106,29 +106,6 @@
 
 // --- Broń w ramieniu (tylko uplink) ---
 
-/obj/item/aq_implant_claws
-	name = "pazury bojowe"
-	desc = "Trzy ostrza wysuwane spomiędzy kłykci. Nie odrastają."
-	icon = 'aquila/icons/obj/medical/augments_bay.dmi'
-	icon_state = "wolverine"
-	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
-	item_state = "knife"
-	force = 16
-	w_class = WEIGHT_CLASS_BULKY
-	sharpness = IS_SHARP
-	attack_verb = list("tnie", "dźga", "rozrywa")
-	hitsound = 'sound/weapons/bladeslice.ogg'
-	bleed_force = BLEED_CUT
-
-/obj/item/organ/cyberimp/arm/aq_claws
-	name = "implant pazurów bojowych"
-	desc = "Pochwa z trzema ostrzami wszczepiana w dłoń. Pazury wysuwają się na myśl właściciela."
-	icon = 'aquila/icons/obj/medical/augments_bay.dmi'
-	icon_state = "wolverine"
-	items_to_create = list(/obj/item/aq_implant_claws)
-	implant_color = null
-
 /obj/item/organ/cyberimp/arm/aq_crossbow
 	name = "implant kuszy energetycznej"
 	desc = "Miniaturowa kusza energetyczna ukryta w przedramieniu. Strzela bełtami z obezwładniającą toksyną."
@@ -137,20 +114,9 @@
 	items_to_create = list(/obj/item/gun/energy/kinetic_accelerator/crossbow)
 	implant_color = null
 
-/obj/item/autosurgeon/syndicate/aq_claws
-	name = "podejrzany autochirurg (pazury bojowe)"
-	starting_organ = list(/obj/item/organ/cyberimp/arm/aq_claws)
-
 /obj/item/autosurgeon/syndicate/aq_crossbow
 	name = "podejrzany autochirurg (kusza w ramieniu)"
 	starting_organ = list(/obj/item/organ/cyberimp/arm/aq_crossbow)
-
-/datum/uplink_item/implants/aq_claws
-	name = "Implant pazurów bojowych"
-	desc = "Pazury wysuwane z dłoni na myśl właściciela, ostre i nie do wytrącenia z ręki. W zestawie autochirurg."
-	item = /obj/item/autosurgeon/syndicate/aq_claws
-	cost = 8
-	surplus = 20
 
 /datum/uplink_item/implants/aq_crossbow
 	name = "Implant kuszy energetycznej"
@@ -220,26 +186,19 @@
 #undef ORGAN_SLOT_AQ_NANITES
 #undef TRAIT_AQ_STEADY_AIM
 
-// ERT: ochrona w pełnym alarmie dostaje pazury, czarny rynek ma oba implanty (łup)
+// ERT: ochrona w pełnym alarmie dostaje parę ostrzy modliszki C.H.R.O.M.A.T.A. (wersja z R&D Nanotrasen,
+// cybernetics/mantis_blades.dm); czarny rynek ma kuszę w przedramieniu (łup)
 /datum/outfit/ert/security/alert
 	backpack_contents = list(/obj/item/storage/box/engineer=1,
 		/obj/item/storage/box/handcuffs=1,
 		/obj/item/melee/baton/loaded=1,
 		/obj/item/gun/energy/pulse/carbine/loyalpin=1,
-		/obj/item/autosurgeon/aq_claws_ert=1)
+		/obj/item/autosurgeon/aq_mantis_ert=1)
 
-/obj/item/autosurgeon/aq_claws_ert
-	name = "autochirurg (pazury bojowe)"
+/obj/item/autosurgeon/aq_mantis_ert
+	name = "autochirurg (ostrza modliszki)"
 	uses = 1
-	starting_organ = list(/obj/item/organ/cyberimp/arm/aq_claws)
-
-/datum/market_item/shoddy_implant/aq_claws
-	name = "Używane pazury bojowe"
-	desc = "Implant pazurów z odzysku, z autochirurgiem. Ktoś je już nosił."
-	item = /obj/item/autosurgeon/syndicate/aq_claws
-	price_min = MARKET_CRATE_VALUE * 4
-	price_max = MARKET_CRATE_VALUE * 6
-	availability_prob = 25
+	starting_organ = list(/obj/item/organ/cyberimp/arm/mantis, /obj/item/organ/cyberimp/arm/mantis/l)
 
 /datum/market_item/shoddy_implant/aq_crossbow
 	name = "Używana kusza w przedramieniu"

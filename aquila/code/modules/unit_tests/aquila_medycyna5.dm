@@ -1047,13 +1047,7 @@
 /datum/unit_test/aquila_med5_review_items/Run()
 	var/mob/living/carbon/human/patient = allocate(/mob/living/carbon/human)
 
-	// Claws survive being put away; the translator implant does not stun on EMP
-	var/obj/item/organ/cyberimp/arm/aq_claws/claws = new()
-	claws.Insert(patient)
-	var/obj/item/blades = locate(/obj/item/aq_implant_claws) in claws
-	claws.Extend(blades)
-	claws.Retract()
-	TEST_ASSERT(!QDELETED(blades) && (blades in claws), "The claws vanished when put away")
+	// The translator implant does not stun on EMP
 	var/obj/item/organ/cyberimp/aq_translator/translator = new()
 	translator.Insert(patient)
 	TEST_ASSERT(HAS_TRAIT(patient, TRAIT_AQ_TRANSLATOR), "The translator implant does not translate")
