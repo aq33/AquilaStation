@@ -9330,10 +9330,6 @@
 	},
 /turf/open/floor/plasteel/chapel,
 /area/chapel/main)
-"DZ" = (
-/obj/machinery/missile_design_table,
-/turf/open/floor/engine,
-/area/nsv/weapons/fore)
 "Ea" = (
 /obj/structure/disposalpipe/segment{
 	dir = 10
@@ -67938,7 +67934,7 @@ yO
 OU
 Qz
 SP
-DZ
+SP
 gK
 jb
 oe

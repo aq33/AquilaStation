@@ -8229,7 +8229,6 @@
 /obj/machinery/camera/autoname{
 	dir = 5
 	},
-/obj/machinery/missile_design_table,
 /turf/open/floor/carpet/ship/beige_carpet,
 /area/nsv/weapons/port)
 "gpZ" = (
