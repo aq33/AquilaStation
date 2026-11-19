@@ -1385,3 +1385,9 @@ Of the logic files, 182 contain an AQ/AQUILA marker or an `aquila/` resource; th
 - `nsv13/code/modules/research/astrometrics.dm`
 
 </details>
+
+## Cyborgi: nowe moduły i ulepszenia
+
+| Hook | Location | Feature |
+|---|---|---|
+| `aquila_add_cyborg_modules(GLOB.cyborg_module_list)` after the module list is built, and `aquila_cyborg_module_radial_icon(module)` as the icon file of the radial entries, in `/mob/living/silicon/robot/proc/pick_module()` (AQ EDIT lines) | `code/modules/mob/living/silicon/robot/robot.dm` | New crew modules (Naukowy, Chemiczny, Chirurgiczny, Ratowniczy, Budowlany, Eksploracyjny, Detektyw, Brobocop, Hydroponiczny, Biurowy, Magazynowy, Wielozadaniowy) in the module radial; their default look lives in `aquila/icons/mob/silicon/robots_aquila_modules.dmi`. Code: `aquila/code/modules/mob/living/silicon/robot/cyborgi/`. Test: `aquila_cyborg_modules` |

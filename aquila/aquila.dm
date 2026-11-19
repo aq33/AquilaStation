@@ -1335,6 +1335,7 @@
 // #include "code\modules\test_chamber\kits\pr_420_traitor_cele.dm"
 #include "code\modules\test_chamber\kits\test_subjects.dm"
 // Komora testowa - zestawy PR-ów niżej (usuwać razem z plikiem zestawu po przetestowaniu)
+#include "code\modules\test_chamber\kits\pr_XXX_cyborgi.dm"
 #include "code\modules\test_chamber\kits\pr_665_rework_amunicji.dm"
 #include "code\modules\test_chamber\kits\pr_nsvprzyw_statek.dm"
 #include "code\modules\test_chamber\kits\pr_nsvprzyw_misje.dm"
@@ -2400,6 +2401,7 @@
 #include "code\modules\unit_tests\_unit_test_weights.dm"
 
 #ifdef UNIT_TESTS
+#include "code\modules\unit_tests\aquila_cyborgi.dm"
 #include "code\modules\unit_tests\aquila_nano_well_oc.dm"
 #include "code\modules\unit_tests\aquila_station_map_engineering.dm"
 #include "code\modules\unit_tests\aquila_basic_tg_fauna.dm"
@@ -2789,6 +2791,15 @@
 #include "code\modules\test_chamber\kits\pr_610_zbiorczy_1011.dm"
 #include "code\modules\test_chamber\kits\pr_637_tlumacz_na_zywo.dm"
 #include "code\modules\test_chamber\kits\pr_654_drobiazgi_1711.dm"
+
+// CYBORGI: nowe moduły (Naukowy, Chemiczny, Chirurgiczny, Ratowniczy, Budowlany, Eksploracyjny, Detektyw, Brobocop,
+// Hydroponiczny, Biurowy, Magazynowy, Wielozadaniowy, zaawansowane, Zagubiony) i ulepszenia cyborgów
+#include "code\modules\mob\living\silicon\robot\cyborgi\_cyborgi_core.dm"
+#include "code\modules\mob\living\silicon\robot\cyborgi\items.dm"
+#include "code\modules\mob\living\silicon\robot\cyborgi\modules.dm"
+#include "code\modules\mob\living\silicon\robot\cyborgi\lost.dm"
+#include "code\modules\mob\living\silicon\robot\cyborgi\upgrades.dm"
+#include "code\modules\mob\living\silicon\robot\cyborgi\research.dm"
 
 // Profiler byond-tracy: MUSI być ostatnim include'em całego builda (BYOND inicjuje zmienne statyczne od końca,
 // więc ta rusza pierwsza, przed Master i mapą). Opis: tools/tracy/README.md
