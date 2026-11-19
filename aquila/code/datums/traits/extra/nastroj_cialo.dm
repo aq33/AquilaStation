@@ -17,6 +17,9 @@
 		var/obj/item/bodypart/limb = part
 		return !!(limb.bodytype & BODYTYPE_ROBOTIC)
 	if(istype(part, /obj/item/organ))
+		// Stos korowy (AquilaMed 5) ma od startu każdy z krwią, więc nie świadczy o cybernetyzacji
+		if(istype(part, /obj/item/organ/cortical_stack))
+			return FALSE
 		var/obj/item/organ/organ = part
 		return !!(organ.organ_flags & ORGAN_SYNTHETIC)
 	return FALSE
@@ -97,7 +100,9 @@
 			other_bodytypes = TRUE
 	if(!limbs_only)
 		for(var/obj/item/organ/organ as anything in target.internal_organs)
-			if(organ.organ_flags & ORGAN_SYNTHETIC)
+			if(istype(organ, /obj/item/organ/cortical_stack))
+				continue
+			if(aq_is_cybernetic_part(organ))
 				silicon_bodytypes += 0.25
 			else
 				organic_bodytypes += 0.02
