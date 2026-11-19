@@ -4698,7 +4698,7 @@ Nazwy obszarów są w większości przetłumaczone. Nowe nazwy budujemy z tych k
 | personality (bot) / personality matrix | osobowość / matryca osobowości | ż; nowe (przełącznik w panelu: duchy mogą przejąć bota) |
 | maintenance panel / control panel (bot) | panel serwisowy / panel sterowania | m; istniejące |
 | Repairbot | Repairbot | m; nowe (następca floorbota, nazwa bez zmian) |
-| Vibebot / Cambot / Digbot / Farmbot / CPRbot / BarBuddy / Secbuddy | bez zmian | m; nowe, nazwy modeli |
+| Vibebot / Cambot / Digbot / Farmbot / BarBuddy / Secbuddy | bez zmian | m; nowe, nazwy modeli |
 | Dramatic Chef (chefbot) | Dramatyczny kucharz | m; nowe |
 | Doctor Acula (bloodbot) | Doctor Acula | m; nowe, nazwa własna |
 | Donk Exenteration Drone (D.E.D.bot, Ex-Drone) | Donk Exenteration Drone, D.E.D.bot, Ex-Dron | m; nowe |

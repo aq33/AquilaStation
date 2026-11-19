@@ -1,6 +1,5 @@
 Ikony botów (część BOTY):
 - tg_bots.dmi: repairbot*, vibebot*, ded_drone* z tgstation (icons/mob/silicon/aibots.dmi, tgstation/tgstation@5ee81d6), CC BY-SA 3.0.
 - goon_bots.dmi: chefbot*, cambot*, digbot* z Goonstation (icons/obj/bots/aibots.dmi), buddy-* z robuddy/pr-6.dmi, secbuddy-face-* z robuddy/hemera-secbuddy-faces.dmi; CC BY-NC-SA 3.0 (patrz aquila/GOON_ASSETS.md).
-- other_bots.dmi: cprbot* z CM-SS13 (cmss13-devs/cmss13, icons/obj/structures/machinery/aibots.dmi), CC BY-SA 3.0;
-  bloodbot* z /vg/station (vgstation-coders/vgstation13, icons/obj/aibots.dmi), CC BY-SA 3.0;
+- other_bots.dmi: bloodbot* z /vg/station (vgstation-coders/vgstation13, icons/obj/aibots.dmi), CC BY-SA 3.0;
   frightbot*, screambot* z HippieStation (HippieStation/HippieStationdeprecated2020, hippiestation/icons/obj/aibots_new.dmi), CC BY-SA 3.0.
