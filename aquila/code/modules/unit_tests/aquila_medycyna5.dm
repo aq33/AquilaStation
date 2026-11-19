@@ -814,27 +814,6 @@
 	TEST_ASSERT(!suit.aq_jammed && suit.loc != wearer, "The rescuer did not cut the suit off")
 	TEST_ASSERT(suit.aq_cut && !(suit.clothing_flags & STOPSPRESSUREDAMAGE), "The cut suit still holds pressure")
 
-/// Embalmed organs do not rot
-/datum/unit_test/aquila_embalming
-
-/datum/unit_test/aquila_embalming/Run()
-	var/mob/living/carbon/human/corpse = allocate(/mob/living/carbon/human)
-	corpse.death()
-	var/obj/item/bodypart/chest = corpse.get_bodypart(BODY_ZONE_CHEST)
-	var/obj/item/reagent_containers/glass/beaker/beaker = allocate(/obj/item/reagent_containers/glass/beaker)
-	beaker.reagents.add_reagent(/datum/reagent/toxin/formaldehyde, 20)
-	var/datum/surgery_operation/limb/aq_embalm/embalm = new()
-	TEST_ASSERT(embalm.state_check(chest) && embalm.tool_check(beaker), "A corpse cannot be embalmed")
-	embalm.on_success(chest, corpse, beaker, list())
-	qdel(embalm)
-	TEST_ASSERT(HAS_TRAIT(corpse, TRAIT_AQ_EMBALMED), "The corpse was not embalmed")
-	corpse.reagents.clear_reagents()
-	var/obj/item/organ/liver/liver = corpse.getorganslot(ORGAN_SLOT_LIVER)
-	var/damage = liver.damage
-	for(var/i in 1 to 20)
-		liver.on_death()
-	TEST_ASSERT(liver.damage == damage, "The organs of an embalmed corpse rot")
-
 /// The cloning console reads the mind only from a cortical stack
 /datum/unit_test/aquila_cortical_stack
 

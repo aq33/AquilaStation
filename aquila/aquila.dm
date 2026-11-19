@@ -1698,7 +1698,6 @@
 #include "code\modules\medical\nerves.dm"
 #include "code\modules\medical\teeth.dm"
 #include "code\modules\medical\brainstem.dm"
-#include "code\modules\medical\embalming.dm"
 #include "code\modules\clothing\spacesuit_jam.dm"
 #include "code\modules\mob\living\simple_animal\spiderbot.dm"
 #include "code\modules\surgery\organs\med5\abdomen.dm"
