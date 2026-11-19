@@ -20,35 +20,6 @@
 /obj/item/robot_module
 	/// AQUILA: plik z domyślnym wyglądem modułu (przy wyborze bez skina, np. moduł z ulepszenia albo admina)
 	var/aq_base_icon_file
-	/// AQUILA: kanał radia działu (alarm śmierci cyborga)
-	var/aq_department_channel = RADIO_CHANNEL_SCIENCE
-
-/obj/item/robot_module/medical
-	aq_department_channel = RADIO_CHANNEL_MEDICAL
-
-/obj/item/robot_module/engineering
-	aq_department_channel = RADIO_CHANNEL_ENGINEERING
-
-/obj/item/robot_module/security
-	aq_department_channel = RADIO_CHANNEL_SECURITY
-
-/obj/item/robot_module/peacekeeper
-	aq_department_channel = RADIO_CHANNEL_SECURITY
-
-/obj/item/robot_module/janitor
-	aq_department_channel = RADIO_CHANNEL_SERVICE
-
-/obj/item/robot_module/butler
-	aq_department_channel = RADIO_CHANNEL_SERVICE
-
-/obj/item/robot_module/clown
-	aq_department_channel = RADIO_CHANNEL_SERVICE
-
-/obj/item/robot_module/miner
-	aq_department_channel = RADIO_CHANNEL_SUPPLY
-
-/obj/item/robot_module/cargo
-	aq_department_channel = RADIO_CHANNEL_SUPPLY
 
 /// Moduły dodane przez Aquilę w kółku wyboru modułu (hook w /mob/living/silicon/robot/proc/pick_module)
 /proc/aquila_add_cyborg_modules(list/module_list)

@@ -38,24 +38,6 @@
 	construction_time = 60
 	category = list("Cyborg Upgrade Modules")
 
-/datum/design/aq_borg_upgrade_death_alarm
-	name = "Ulepszenie cyborga (alarm zniszczenia)"
-	id = "aq_borg_upgrade_death_alarm"
-	build_type = MECHFAB
-	build_path = /obj/item/borg/upgrade/aquila/death_alarm
-	materials = list(/datum/material/iron = 2000, /datum/material/glass = 2000)
-	construction_time = 60
-	category = list("Cyborg Upgrade Modules")
-
-/datum/design/aq_borg_upgrade_plating_repair
-	name = "Ulepszenie cyborga (narzędzie do łatania podłóg)"
-	id = "aq_borg_upgrade_plating_repair"
-	build_type = MECHFAB
-	build_path = /obj/item/borg/upgrade/aquila/plating_repair
-	materials = list(/datum/material/iron = 4000, /datum/material/glass = 1500)
-	construction_time = 80
-	category = list("Cyborg Upgrade Modules")
-
 /datum/design/aq_borg_upgrade_paperwork_kit
 	name = "Ulepszenie cyborga (zestaw biurowy)"
 	id = "aq_borg_upgrade_paperwork_kit"
@@ -188,15 +170,6 @@
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/aquila/inducer
 	materials = list(/datum/material/iron = 5000, /datum/material/glass = 2500, /datum/material/silver = 2000)
-	construction_time = 100
-	category = list("Cyborg Upgrade Modules")
-
-/datum/design/aq_borg_upgrade_rld
-	name = "Ulepszenie cyborga (RLD)"
-	id = "aq_borg_upgrade_rld"
-	build_type = MECHFAB
-	build_path = /obj/item/borg/upgrade/aquila/rld
-	materials = list(/datum/material/iron = 8000, /datum/material/glass = 4000, /datum/material/silver = 1000)
 	construction_time = 100
 	category = list("Cyborg Upgrade Modules")
 
@@ -391,11 +364,11 @@
 
 /datum/techweb_node/cyborg/New()
 	. = ..()
-	design_ids += list("aq_borg_upgrade_magnetic_traction", "aq_borg_upgrade_recharge_pack", "aq_borg_upgrade_power_connector", "aq_borg_upgrade_gps", "aq_borg_upgrade_death_alarm", "aq_borg_upgrade_plating_repair", "aq_borg_upgrade_paperwork_kit", "aq_borg_upgrade_science_circuits", "aq_borg_upgrade_xenobiology", "aq_borg_upgrade_medigripper", "aq_borg_upgrade_chemistry_gripper", "aq_borg_upgrade_breathing_bag", "aq_borg_upgrade_spectro_scanner", "aq_borg_upgrade_plunger", "aq_borg_upgrade_push_broom", "aq_borg_upgrade_cookbook", "aq_borg_upgrade_floodlight")
+	design_ids += list("aq_borg_upgrade_magnetic_traction", "aq_borg_upgrade_recharge_pack", "aq_borg_upgrade_power_connector", "aq_borg_upgrade_gps", "aq_borg_upgrade_paperwork_kit", "aq_borg_upgrade_science_circuits", "aq_borg_upgrade_xenobiology", "aq_borg_upgrade_medigripper", "aq_borg_upgrade_chemistry_gripper", "aq_borg_upgrade_breathing_bag", "aq_borg_upgrade_spectro_scanner", "aq_borg_upgrade_plunger", "aq_borg_upgrade_push_broom", "aq_borg_upgrade_cookbook", "aq_borg_upgrade_floodlight")
 
 /datum/techweb_node/cyborg_upg_util/New()
 	. = ..()
-	design_ids += list("aq_borg_upgrade_power_saver", "aq_borg_upgrade_inducer", "aq_borg_upgrade_rld", "aq_borg_upgrade_bluespace_rped", "aq_borg_upgrade_engineering_omnitool", "aq_borg_upgrade_nightvision_mesons", "aq_borg_upgrade_nightvision", "aq_borg_upgrade_anomaly_vision", "aq_borg_upgrade_advanced_cutter", "aq_borg_upgrade_ore_processor", "aq_borg_upgrade_cargo_teleporter", "aq_borg_upgrade_autocleaner", "aq_borg_upgrade_forensic_scanner", "aq_borg_upgrade_noir")
+	design_ids += list("aq_borg_upgrade_power_saver", "aq_borg_upgrade_inducer", "aq_borg_upgrade_bluespace_rped", "aq_borg_upgrade_engineering_omnitool", "aq_borg_upgrade_nightvision_mesons", "aq_borg_upgrade_nightvision", "aq_borg_upgrade_anomaly_vision", "aq_borg_upgrade_advanced_cutter", "aq_borg_upgrade_ore_processor", "aq_borg_upgrade_cargo_teleporter", "aq_borg_upgrade_autocleaner", "aq_borg_upgrade_forensic_scanner", "aq_borg_upgrade_noir")
 
 /datum/techweb_node/cyborg_upg_med/New()
 	. = ..()

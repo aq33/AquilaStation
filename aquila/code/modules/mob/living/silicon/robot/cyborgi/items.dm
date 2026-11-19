@@ -596,88 +596,10 @@
 
 // ================================================================ Inżynieria i budowa
 
-/// RLD cyborga (Nova Sector „cyborg RLD”): lampy z energii ogniwa
-/obj/item/construction/rld/cyborg
-	name = "RLD cyborga"
-	desc = "Szybki oświetlacz zasilany z ogniwa cyborga: stawia lampy, oprawy i świetliki."
-	no_ammo_message = "<span class='warning'>Za mało ładunku.</span>"
-	/// Ile energii za jednostkę materii
-	var/energyfactor = 50
-
-/obj/item/construction/rld/cyborg/useResource(amount, mob/user)
-	if(!iscyborg(user))
-		return 0
-	var/mob/living/silicon/robot/borgy = user
-	if(!borgy.cell)
-		to_chat(user, no_ammo_message)
-		return 0
-	. = borgy.cell.use(amount * energyfactor)
-	if(!.)
-		to_chat(user, no_ammo_message)
-
-/obj/item/construction/rld/cyborg/checkResource(amount, mob/user)
-	if(!iscyborg(user))
-		return 0
-	var/mob/living/silicon/robot/borgy = user
-	if(!borgy.cell)
-		to_chat(user, no_ammo_message)
-		return 0
-	. = borgy.cell.charge >= (amount * energyfactor)
-	if(!.)
-		to_chat(user, no_ammo_message)
-
 /// RPED bluespace cyborga (tg/Monkestation „BRPED”)
 /obj/item/storage/part_replacer/bluespace/cyborg
 	name = "RPED bluespace cyborga"
 	desc = "Wbudowany RPED bluespace: wymienia części maszyn z odległości i mieści dużo więcej części."
-
-/// Narzędzie do łatania podłóg (tg „plating repair tool”): kładzie poszycie na dziurze, naprawia i kafelkuje
-/obj/item/borg/plating_repair
-	name = "narzędzie do łatania podłóg"
-	desc = "Kliknij nim dziurę w podłodze, żeby położyć poszycie, uszkodzone poszycie, żeby je naprawić, a gołe poszycie, żeby je wyłożyć płytkami. Zasilane z ogniwa."
-	icon = 'icons/obj/tools.dmi'
-	icon_state = "rcd"
-	color = "#C0C0FF"
-	item_flags = NOBLUDGEON
-	/// Koszt energii jednej operacji
-	var/charge_cost = 250
-
-/obj/item/borg/plating_repair/afterattack(atom/target, mob/living/silicon/robot/user, proximity_flag)
-	. = ..()
-	if(!proximity_flag || !iscyborg(user))
-		return
-	var/turf/target_turf = get_turf(target)
-	if(!target_turf || !isturf(target))
-		return
-	if(!user.aq_use_charge(charge_cost))
-		balloon_alert(user, "za mało energii!")
-		return
-	if(isspaceturf(target_turf) || istype(target_turf, /turf/open/openspace))
-		target_turf.PlaceOnTop(/turf/open/floor/plating, flags = CHANGETURF_INHERIT_AIR)
-		balloon_alert(user, "poszycie położone")
-	else if(istype(target_turf, /turf/open/floor/plating))
-		var/turf/open/floor/plating/plating = target_turf
-		if(plating.broken || plating.burnt)
-			plating.broken = FALSE
-			plating.burnt = FALSE
-			plating.icon_state = plating.icon_plating
-			plating.update_icon()
-			balloon_alert(user, "poszycie naprawione")
-		else
-			plating.PlaceOnTop(/turf/open/floor/plasteel, flags = CHANGETURF_INHERIT_AIR)
-			balloon_alert(user, "płytki położone")
-	else if(istype(target_turf, /turf/open/floor))
-		var/turf/open/floor/floor = target_turf
-		if(!floor.broken && !floor.burnt)
-			balloon_alert(user, "podłoga jest cała")
-			return
-		floor.broken = FALSE
-		floor.burnt = FALSE
-		floor.update_icon()
-		balloon_alert(user, "podłoga naprawiona")
-	else
-		return
-	playsound(target_turf, 'sound/items/deconstruct.ogg', 40, TRUE)
 
 /// Wspólny omni-tool cyborga (tg „cyborg omnitool”): jedno narzędzie z wyborem trybu w ręce
 /obj/item/borg/aquila_omnitool
@@ -744,71 +666,51 @@
 
 // ================================================================ Porządki
 
-/// Miotła cyborga (tg „experimental push broom”): zgarnia do 20 przedmiotów z kafelka przed sobą, także w ruchu
-/obj/item/borg/push_broom
-	name = "eksperymentalna miotła cyborga"
-	desc = "Kliknij kafelek, żeby zgarnąć z niego śmieci o kafelek dalej (prosto do kosza, jeśli tam stoi). Użyj w ręce, żeby zamiatać przy każdym kroku."
-	icon = 'icons/obj/janitor.dmi'
-	icon_state = "broom1"
-	/// Czy zamiata w ruchu
-	var/sweeping = FALSE
+/// Miotła cyborga (tg „experimental push broom”): nasza miotła. Cyborg nie ma drugiej ręki, więc zamiatanie
+/// w ruchu włącza się użyciem w ręce i liczy się wtedy jako chwyt oburącz (zamiatanie kliknięciem w miotle)
+/obj/item/pushbroom/cyborg
+	desc = "Wbudowana miotła cyborga. Użyj w ręce, żeby zamiatać: śmieci z kafelka przed tobą lądują kafelek dalej (prosto do kosza, jeśli tam stoi), przy każdym kroku i po kliknięciu kafelka."
+	/// Cyborg, który zamiata w ruchu
 	var/mob/living/sweeper
 
-/obj/item/borg/push_broom/attack_self(mob/user)
-	if(sweeping)
+/obj/item/pushbroom/cyborg/Initialize(mapload)
+	. = ..()
+	RegisterSignal(src, COMSIG_ITEM_CHECK_WIELDED, PROC_REF(aq_check_sweeping))
+
+/obj/item/pushbroom/cyborg/ComponentInitialize()
+	. = ..()
+	AddComponent(/datum/component/two_handed, ignore_attack_self = TRUE)
+
+/obj/item/pushbroom/cyborg/attack_self(mob/user)
+	. = ..()
+	if(sweeper)
 		aq_stop_sweeping()
 		balloon_alert(user, "przestajesz zamiatać")
 		return
-	sweeping = TRUE
 	sweeper = user
-	RegisterSignal(user, COMSIG_MOVABLE_MOVED, PROC_REF(aq_on_move))
+	RegisterSignal(user, COMSIG_MOVABLE_MOVED, PROC_REF(sweep))
 	balloon_alert(user, "zamiatasz w ruchu")
 
-/obj/item/borg/push_broom/cyborg_unequip(mob/user)
+/obj/item/pushbroom/cyborg/cyborg_unequip(mob/user)
 	. = ..()
 	aq_stop_sweeping()
 
-/obj/item/borg/push_broom/Destroy()
+/obj/item/pushbroom/cyborg/Destroy()
 	aq_stop_sweeping()
 	return ..()
 
-/obj/item/borg/push_broom/proc/aq_stop_sweeping()
+/obj/item/pushbroom/cyborg/janicart_insert(mob/user, obj/structure/janitorialcart/J)
+	return // wbudowana w moduł, nie zostaje w wózku
+
+/obj/item/pushbroom/cyborg/proc/aq_stop_sweeping()
 	if(sweeper)
 		UnregisterSignal(sweeper, COMSIG_MOVABLE_MOVED)
 	sweeper = null
-	sweeping = FALSE
 
-/obj/item/borg/push_broom/proc/aq_on_move(mob/living/source)
+/obj/item/pushbroom/cyborg/proc/aq_check_sweeping(obj/item/source)
 	SIGNAL_HANDLER
-	aq_sweep(source, get_turf(source))
-
-/obj/item/borg/push_broom/afterattack(atom/target, mob/user, proximity_flag)
-	. = ..()
-	if(proximity_flag)
-		aq_sweep(user, get_turf(target))
-
-/// Zgarnia śmieci z kafelka target o kafelek w stronę, w którą patrzy user; zwraca liczbę przesuniętych
-/obj/item/borg/push_broom/proc/aq_sweep(mob/user, turf/target)
-	. = 0
-	if(!target || locate(/obj/structure/table) in target)
-		return
-	var/movedir = user.dir & ~(UP|DOWN)
-	var/turf/next_turf = get_step(target, movedir)
-	if(!next_turf)
-		return
-	var/obj/machinery/disposal/bin/bin = locate(/obj/machinery/disposal/bin) in next_turf
-	for(var/obj/item/garbage in target)
-		if(garbage.anchored || garbage == src || HAS_TRAIT(garbage, TRAIT_NODROP))
-			continue
-		if(bin)
-			garbage.forceMove(bin)
-		else
-			garbage.Move(next_turf, movedir)
-		.++
-		if(. >= 20)
-			break
-	if(.)
-		playsound(user, 'sound/weapons/thudswoosh.ogg', 20, TRUE)
+	if(sweeper)
+		return COMPONENT_IS_WIELDED
 
 // ================================================================ Ratownictwo
 

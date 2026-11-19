@@ -35,7 +35,6 @@
 	aq_base_icon_file = AQ_CYBORG_ICON_MODULES
 	moduleselect_icon = "standard"
 	hat_offset = -2
-	aq_department_channel = RADIO_CHANNEL_SCIENCE
 	borg_skins = list(
 		"Droid" = list(SKIN_ICON_STATE = "aq_sci_droid", SKIN_ICON = AQ_CYBORG_ICON_MODULES),
 		"Dron" = list(SKIN_ICON_STATE = "aq_sci_drone", SKIN_ICON = AQ_CYBORG_ICON_MODULES),
@@ -69,7 +68,6 @@
 	aq_base_icon_file = AQ_CYBORG_ICON_MODULES
 	moduleselect_icon = "miner"
 	hat_offset = -4
-	aq_department_channel = RADIO_CHANNEL_SUPPLY
 	borg_skins = list(
 		"Dron zwiadowczy" = list(SKIN_ICON_STATE = "aq_expl_drone", SKIN_ICON = AQ_CYBORG_ICON_MODULES),
 		"Eyebot" = list(SKIN_ICON_STATE = "aq_expl_eyebot", SKIN_ICON = AQ_CYBORG_ICON_MODULES),
@@ -115,7 +113,6 @@
 	aq_base_icon_file = AQ_CYBORG_ICON_MODULES
 	moduleselect_icon = "security"
 	hat_offset = -4
-	aq_department_channel = RADIO_CHANNEL_SECURITY
 	borg_skins = list(
 		"Dron śledczy" = list(SKIN_ICON_STATE = "aq_det_drone", SKIN_ICON = AQ_CYBORG_ICON_MODULES),
 		"Eyebot" = list(SKIN_ICON_STATE = "aq_det_eyebot", SKIN_ICON = AQ_CYBORG_ICON_MODULES),
@@ -147,7 +144,6 @@
 	aq_base_icon_file = AQ_CYBORG_ICON_MODULES
 	moduleselect_icon = "brobot"
 	hat_offset = 0
-	aq_department_channel = RADIO_CHANNEL_SECURITY
 	borg_skins = list(
 		"BroBot" = list(SKIN_ICON_STATE = "aq_bro_brobot", SKIN_ICON = AQ_CYBORG_ICON_MODULES),
 		"Bro" = list(SKIN_ICON_STATE = "brobot", SKIN_LIGHT_KEY = "service"),

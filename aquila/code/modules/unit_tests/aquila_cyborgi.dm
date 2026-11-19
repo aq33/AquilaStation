@@ -90,7 +90,7 @@
 	for(var/obj/item/upgrade_type as anything in upgrades)
 		TEST_ASSERT(built[upgrade_type], "Ulepszenia [upgrade_type] nie da się zbudować")
 		TEST_ASSERT(initial(upgrade_type.icon_state) in icon_states(initial(upgrade_type.icon)), "Ulepszenie [upgrade_type] nie ma ikony [initial(upgrade_type.icon_state)]")
-	TEST_ASSERT(length(upgrades) == 43, "Ulepszeń jest [length(upgrades)] zamiast 43")
+	TEST_ASSERT(length(upgrades) == 40, "Ulepszeń jest [length(upgrades)] zamiast 40")
 
 /// Każde ulepszenie instaluje się w pasującym module, odmawia w niepasującym, a po wyjęciu zdejmuje narzędzia
 /datum/unit_test/aquila_cyborg_upgrades
@@ -102,13 +102,10 @@
 		/obj/item/borg/upgrade/aquila/power_saver = list(/obj/item/robot_module/research, null),
 		/obj/item/borg/upgrade/aquila/power_connector = list(/obj/item/robot_module/exploration, null),
 		/obj/item/borg/upgrade/aquila/gps = list(/obj/item/robot_module/medical, null),
-		/obj/item/borg/upgrade/aquila/death_alarm = list(/obj/item/robot_module/engineering, null),
 		/obj/item/borg/upgrade/aquila/toggle/autocleaner = list(/obj/item/robot_module/butler, /obj/item/robot_module/janitor),
 		/obj/item/borg/upgrade/aquila/inducer = list(/obj/item/robot_module/engineering, /obj/item/robot_module/medical),
-		/obj/item/borg/upgrade/aquila/rld = list(/obj/item/robot_module/engineering, /obj/item/robot_module/janitor),
 		/obj/item/borg/upgrade/aquila/bluespace_rped = list(/obj/item/robot_module/research, /obj/item/robot_module/miner),
 		/obj/item/borg/upgrade/aquila/engineering_omnitool = list(/obj/item/robot_module/engineering, /obj/item/robot_module/research),
-		/obj/item/borg/upgrade/aquila/plating_repair = list(/obj/item/robot_module/janitor, /obj/item/robot_module/medical),
 		/obj/item/borg/upgrade/aquila/nightvision_mesons = list(/obj/item/robot_module/miner, /obj/item/robot_module/medical),
 		/obj/item/borg/upgrade/aquila/science_circuits = list(/obj/item/robot_module/research, /obj/item/robot_module/engineering),
 		/obj/item/borg/upgrade/aquila/xenobiology = list(/obj/item/robot_module/research, /obj/item/robot_module/medical),
@@ -236,7 +233,7 @@
 	engineer_traction.aq_set_active(FALSE)
 	TEST_ASSERT(engineer.magpulse, "Wyłączenie przyczep zdjęło magnesy modułu inżynieryjnego")
 
-/// Narzędzia z nową logiką robią to, co mają: tabletki, sztabki, krew, teleport skrzyni, tarcza, oszczędzanie energii, alarm
+/// Narzędzia z nową logiką robią to, co mają: tabletki, sztabki, krew, teleport skrzyni, tarcza, oszczędzanie energii
 /datum/unit_test/aquila_cyborg_tools
 
 /datum/unit_test/aquila_cyborg_tools/Run()
@@ -305,10 +302,28 @@
 	TEST_ASSERT(guard.getBruteLoss() == 4, "Tarcza przepuściła [guard.getBruteLoss()] obrażeń zamiast 4")
 	shield.aq_set_active(FALSE)
 
-	// Alarm zniszczenia podaje, kto padł i gdzie
-	var/obj/item/borg/upgrade/aquila/death_alarm/alarm = allocate(/obj/item/borg/upgrade/aquila/death_alarm)
-	var/message = alarm.aq_message(guard)
-	TEST_ASSERT(findtext(message, guard.real_name) && findtext(message, get_area_name(guard, TRUE)), "Alarm zniszczenia nie podaje nazwy albo miejsca: [message]")
+/// Miotła cyborga to nasza miotła: użyta w ręce zamiata w ruchu (jak chwycona oburącz), po ponownym użyciu przestaje
+/datum/unit_test/aquila_cyborg_push_broom
+
+/datum/unit_test/aquila_cyborg_push_broom/Run()
+	var/mob/living/silicon/robot/janitor = aq_cyborg_with_module(/obj/item/robot_module/janitor)
+	var/obj/item/borg/upgrade/aquila/push_broom/upgrade = allocate(/obj/item/borg/upgrade/aquila/push_broom)
+	TEST_ASSERT(upgrade.action(janitor, janitor), "Miotła nie weszła do modułu porządkowego")
+	var/obj/item/pushbroom/cyborg/broom = janitor.aq_find_module_item(/obj/item/pushbroom/cyborg)
+	TEST_ASSERT(broom, "Ulepszenie nie dało miotły")
+	TEST_ASSERT(!ISWIELDED(broom), "Miotła zamiata przed użyciem w ręce")
+	broom.attack_self(janitor)
+	TEST_ASSERT(ISWIELDED(broom), "Użyta w ręce miotła nie zamiata")
+	// Krok na kafelek ze śmieciem przesuwa śmieć o kafelek dalej
+	var/turf/start = run_loc_floor_bottom_left
+	var/turf/middle = get_step(start, NORTH)
+	var/turf/far = get_step(middle, NORTH)
+	janitor.forceMove(start)
+	var/obj/item/trash = allocate(/obj/item/trash/chips, middle)
+	janitor.Move(middle, NORTH)
+	TEST_ASSERT(get_turf(trash) == far, "Miotła nie zgarnęła śmiecia w ruchu")
+	broom.attack_self(janitor)
+	TEST_ASSERT(!ISWIELDED(broom) && !broom.sweeper, "Miotła zamiata po wyłączeniu")
 
 /// Glock-13BR cyborga ochrony: ostra amunicja tylko przy czerwonym alarmie albo abordażu, zhakowany bez ograniczeń
 /datum/unit_test/aquila_cyborg_glock_lock

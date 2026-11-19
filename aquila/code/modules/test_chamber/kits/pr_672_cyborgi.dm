@@ -6,7 +6,7 @@
 	3) Odblokowanie trybu zabójczego (moduł Ochrony z wybieraka): przy zielonym alarmie przełączenie na laser odmawia, przy czerwonym działa, a po odwołaniu alarmu broń sama wraca na obezwładnianie. \
 	4) Magnetyczne przyczepy: włącz przyciskiem akcji i otwórz śluzę na kosmos (albo rozbij okno) - cyborg nie daje się wyssać, rusza się wolniej. \
 	5) Osobista tarcza, reflektor i autoczyściciel: przyciski akcji, ładunek ogniwa spada. Kabel zasilania: kliknij APC i węzeł kabla w trybie pobierania. \
-	6) Narzędzia: zestaw chemiczny w module Medycznym (mini-CheMaster na zlewce z lekami, dozownik odczynników), zestaw ratowniczy (dopalacze, rozwieracz na zasilanej śluzie), zestaw biurowy w Zaopatrzeniowym (drukarka papieru), skaner widmowy na człowieku, syntezator krwi na pustym worku, worek oddechowy na niedotlenionym, syntezator organów, teleporter ładunku (ustaw cel w ręce, kliknij skrzynię), przenośna huta z rudą w torbie, omni-tool (wybór trybu w ręce), narzędzie do łatania podłóg na dziurze, wzrok anomalii przy anomalii, N.O.I.R. przy krwi i łuskach. Sprawdź w combat mode i w trybie intencji."
+	6) Narzędzia: zestaw chemiczny w module Medycznym (mini-CheMaster na zlewce z lekami, dozownik odczynników), zestaw ratowniczy (dopalacze, rozwieracz na zasilanej śluzie), zestaw biurowy w Zaopatrzeniowym (drukarka papieru), skaner widmowy na człowieku, syntezator krwi na pustym worku, worek oddechowy na niedotlenionym, syntezator organów, teleporter ładunku (ustaw cel w ręce, kliknij skrzynię), przenośna huta z rudą w torbie, omni-tool (wybór trybu w ręce), miotła w module porządkowym (użyj w ręce i przejdź po śmieciach), wzrok anomalii przy anomalii, N.O.I.R. przy krwi i łuskach. Sprawdź w combat mode i w trybie intencji."
 	items = list(
 		/mob/living/silicon/robot = 2,
 		/obj/item/crowbar = 1,
@@ -20,13 +20,10 @@
 		/obj/item/borg/upgrade/aquila/power_connector = 1,
 		/obj/item/borg/upgrade/aquila/power_saver = 1,
 		/obj/item/borg/upgrade/aquila/recharge_pack = 2,
-		/obj/item/borg/upgrade/aquila/death_alarm = 1,
 		/obj/item/borg/upgrade/aquila/gps = 1,
 		/obj/item/borg/upgrade/aquila/inducer = 1,
-		/obj/item/borg/upgrade/aquila/rld = 1,
 		/obj/item/borg/upgrade/aquila/bluespace_rped = 1,
 		/obj/item/borg/upgrade/aquila/engineering_omnitool = 1,
-		/obj/item/borg/upgrade/aquila/plating_repair = 1,
 		/obj/item/borg/upgrade/aquila/nightvision_mesons = 1,
 		/obj/item/borg/upgrade/aquila/science_circuits = 1,
 		/obj/item/borg/upgrade/aquila/xenobiology = 1,

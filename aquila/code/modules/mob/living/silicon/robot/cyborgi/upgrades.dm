@@ -243,67 +243,6 @@
 	for(var/obj/item/gps/cyborg/gps in aq_added)
 		gps.gpstag = "BORG[R.ident]"
 
-/// Alarm zniszczenia (Chaotic Onyx, mechanizm jak w alarmie śmierci Goonstation): komunikat na kanał działu
-/obj/item/borg/upgrade/aquila/death_alarm
-	name = "alarm zniszczenia cyborga"
-	desc = "Przy zniszczeniu cyborga nadaje na kanał działu i do robotyki, gdzie i od czego zginął."
-	icon = 'icons/obj/module.dmi'
-	icon_state = "radio"
-	var/mob/living/silicon/robot/owner
-	var/obj/item/radio/alert_radio
-
-/obj/item/borg/upgrade/aquila/death_alarm/action(mob/living/silicon/robot/R, user = usr)
-	. = ..()
-	if(!.)
-		return
-	if(locate(/obj/item/borg/upgrade/aquila/death_alarm) in R.upgrades)
-		to_chat(user, "<span class='warning'>Ta jednostka ma już alarm zniszczenia.</span>")
-		return FALSE
-	owner = R
-	RegisterSignal(R, COMSIG_MOB_DEATH, PROC_REF(aq_on_death))
-
-/obj/item/borg/upgrade/aquila/death_alarm/deactivate(mob/living/silicon/robot/R, user = usr)
-	. = ..()
-	if(!.)
-		return
-	UnregisterSignal(R, COMSIG_MOB_DEATH)
-	owner = null
-
-/obj/item/borg/upgrade/aquila/death_alarm/Destroy()
-	if(owner)
-		UnregisterSignal(owner, COMSIG_MOB_DEATH)
-	owner = null
-	QDEL_NULL(alert_radio)
-	return ..()
-
-/obj/item/borg/upgrade/aquila/death_alarm/proc/aq_on_death(mob/living/silicon/robot/source, gibbed)
-	SIGNAL_HANDLER
-	INVOKE_ASYNC(src, PROC_REF(aq_broadcast), source)
-
-/// Treść komunikatu (osobno, żeby test mógł ją sprawdzić bez radia)
-/obj/item/borg/upgrade/aquila/death_alarm/proc/aq_message(mob/living/silicon/robot/source)
-	var/cause = "przyczyna nieznana"
-	if(source.getBruteLoss() > source.getFireLoss())
-		cause = "uszkodzenia mechaniczne"
-	else if(source.getFireLoss() > 0)
-		cause = "przegrzanie i oparzenia"
-	if(source.lastattacker)
-		cause += ", ostatni atak: [source.lastattacker]"
-	return "Alarm zniszczenia: [source.real_name] padł w: [get_area_name(source, TRUE)] ([cause])."
-
-/obj/item/borg/upgrade/aquila/death_alarm/proc/aq_broadcast(mob/living/silicon/robot/source)
-	if(!alert_radio)
-		alert_radio = new(src)
-		alert_radio.keyslot = new /obj/item/encryptionkey/heads/captain(alert_radio)
-		alert_radio.recalculateChannels()
-		alert_radio.listening = FALSE
-		alert_radio.canhear_range = 0
-	var/message = aq_message(source)
-	var/channel = source.module?.aq_department_channel || RADIO_CHANNEL_SCIENCE
-	alert_radio.talk_into(src, message, channel)
-	if(channel != RADIO_CHANNEL_SCIENCE)
-		alert_radio.talk_into(src, message, RADIO_CHANNEL_SCIENCE)
-
 /// Autoczyściciel (Yogstation „janitor autocleaner”, floor buffer z Paradise): czyści kafelek przy każdym kroku
 /obj/item/borg/upgrade/aquila/toggle/autocleaner
 	name = "autoczyściciel cyborga"
@@ -331,16 +270,6 @@
 	module_type = AQ_BORG_ENGINEERING
 	module_flags = BORG_MODULE_ENGINEERING
 	aq_items = list(/obj/item/inducer/cyborg)
-
-/// RLD cyborga (Nova Sector)
-/obj/item/borg/upgrade/aquila/rld
-	name = "RLD cyborga"
-	desc = "Szybki oświetlacz zasilany z ogniwa: lampy, oprawy i świetliki po trafieniach w okręt."
-	icon = 'icons/obj/tools.dmi'
-	icon_state = "rld-5"
-	module_type = AQ_BORG_ENGINEERING
-	module_flags = BORG_MODULE_ENGINEERING
-	aq_items = list(/obj/item/construction/rld/cyborg)
 
 /// RPED bluespace (tg/Monkestation): zastępuje RPED cyborga i przejmuje jego części
 /obj/item/borg/upgrade/aquila/bluespace_rped
@@ -375,16 +304,6 @@
 	module_flags = BORG_MODULE_ENGINEERING
 	aq_items = list(/obj/item/borg/aquila_omnitool/engineering)
 	aq_replaces = list(/obj/item/screwdriver/cyborg, /obj/item/wrench/cyborg, /obj/item/crowbar/cyborg, /obj/item/wirecutters/cyborg)
-
-/// Narzędzie do łatania podłóg (tg „plating repair tool”)
-/obj/item/borg/upgrade/aquila/plating_repair
-	name = "narzędzie do łatania podłóg"
-	desc = "Jednym kliknięciem kładzie poszycie na dziurę w podłodze, naprawia je i wykłada płytkami."
-	icon = 'icons/obj/tools.dmi'
-	icon_state = "rcd"
-	module_type = list(/obj/item/robot_module/engineering, /obj/item/robot_module/saboteur, /obj/item/robot_module/janitor)
-	module_flags = BORG_MODULE_ENGINEERING
-	aq_items = list(/obj/item/borg/plating_repair)
 
 /// Noktowizyjne mezony (Yogstation)
 /obj/item/borg/upgrade/aquila/nightvision_mesons
@@ -745,15 +664,15 @@
 	module_flags = BORG_MODULE_JANITOR
 	aq_items = list(/obj/item/plunger)
 
-/// Eksperymentalna miotła (tg)
+/// Eksperymentalna miotła (tg): nasza zwykła miotła w wersji dla cyborga
 /obj/item/borg/upgrade/aquila/push_broom
 	name = "eksperymentalna miotła cyborga"
-	desc = "Miotła zgarniająca śmieci z kafelka przed cyborgiem, także w ruchu (prosto do kosza, jeśli tam stoi)."
+	desc = "Wbudowana miotła: zgarnia śmieci z kafelka przed cyborgiem, także w ruchu (prosto do kosza, jeśli tam stoi)."
 	icon = 'icons/obj/janitor.dmi'
 	icon_state = "broom0"
 	module_type = list(/obj/item/robot_module/janitor)
 	module_flags = BORG_MODULE_JANITOR
-	aq_items = list(/obj/item/borg/push_broom)
+	aq_items = list(/obj/item/pushbroom/cyborg)
 
 /// Książka kucharska (tg „cookbook”): nasz katalog przepisów w tablecie cyborga
 /obj/item/borg/upgrade/aquila/cookbook
