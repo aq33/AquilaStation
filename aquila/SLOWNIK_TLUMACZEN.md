@@ -4655,3 +4655,24 @@ Nazwy obszarów są w większości przetłumaczone. Nowe nazwy budujemy z tych k
 | circadian conditioner / skeletal bracing / timepiece implant | regulator rytmu dobowego / wzmocnienie stawów / wszczepiony zegarek | nowe (implanty drobne) |
 | voltaic combat cyberheart / voltaic overdrive | woltaiczne serce bojowe / woltaiczne przeciążenie | n / n; nowe (tg) |
 | psychoscope / neuromod / neuromod shell | psychoskop / neuromod / powłoka neuromodu | m / m / ż; nowe (Chaotic Onyx) |
+## Boty (część BOTY: basic boty na drzewach zachowań)
+
+| EN | PL | rodzaj/uwagi |
+|---|---|---|
+| behavior tree | drzewo zachowań | n; nowe (AI, verb admina „Pokaż drzewo zachowań”) |
+| blackboard (AI) | tablica | ż; nowe (podgląd drzewa) |
+| personality (bot) / personality matrix | osobowość / matryca osobowości | ż; nowe (przełącznik w panelu: duchy mogą przejąć bota) |
+| maintenance panel / control panel (bot) | panel serwisowy / panel sterowania | m; istniejące |
+| Repairbot | Repairbot | m; nowe (następca floorbota, nazwa bez zmian) |
+| Vibebot / Cambot / Digbot / Farmbot / CPRbot / Guardbuddy / BarBuddy / Secbuddy | bez zmian | m; nowe, nazwy modeli |
+| Dramatic Chef (chefbot) | Dramatyczny kucharz | m; nowe |
+| Doctor Acula (bloodbot) | Doctor Acula | m; nowe, nazwa własna |
+| Donk Exenteration Drone (D.E.D.bot, Ex-Drone) | Donk Exenteration Drone, D.E.D.bot, Ex-Dron | m; nowe |
+| exenteration drone | dron eksenteracyjny | m; nowe |
+| frightbot / screambot / buttbot | frightbot / screambot / tyłkobot | m; tyłkobot istniejące |
+| eldritch bots | eldritchowe boty | m mn.; nowe (event) |
+| vibing scanners | skanery wajbu | m mn.; nowe |
+| task module (Guardbuddy) | moduł zadań | m; nowe |
+| bodyguard / guide (Guardbuddy program) | ochrona osoby / przewodnik | nowe |
+| buddy (protected person) | podopieczny | m; nowe |
+| bot elevator | winda dla botów | ż; istniejące |

@@ -36,17 +36,17 @@ SUBSYSTEM_DEF(traumas)
 					   )
 
 	phobia_mobs = list("spiders"  = typecacheof(list(/mob/living/simple_animal/hostile/spider)),
-					   "security" = typecacheof(list(/mob/living/simple_animal/bot/secbot, /mob/living/simple_animal/bot/ed209)),
+					   "security" = typecacheof(list(/mob/living/simple_animal/bot/secbot, /mob/living/simple_animal/bot/ed209, /mob/living/basic/bot/secbot)), // AQ EDIT - basic boty
 					   "lizards"  = typecacheof(list(/mob/living/basic/lizard)), // AQ EDIT - basic moby
 					   "skeletons" = typecacheof(list(/mob/living/basic/skeleton)), // AQ EDIT - basic moby
 					   "snakes"   = typecacheof(list(/mob/living/basic/snake)), // AQ EDIT - basic moby
 					   "robots"   = typecacheof(list(/mob/living/silicon/robot, /mob/living/silicon/ai,
-					   /mob/living/simple_animal/drone, /mob/living/simple_animal/bot, /mob/living/simple_animal/hostile/swarmer)),
-					   "doctors"   = typecacheof(list(/mob/living/simple_animal/bot/medbot)),
+					   /mob/living/simple_animal/drone, /mob/living/simple_animal/bot, /mob/living/basic/bot, /mob/living/simple_animal/hostile/swarmer)), // AQ EDIT - basic boty
+					   "doctors"   = typecacheof(list(/mob/living/simple_animal/bot/medbot, /mob/living/basic/bot/medbot)), // AQ EDIT - basic boty
 					   "the supernatural"   = typecacheof(list(/mob/living/simple_animal/hostile/construct,
 					   /mob/living/simple_animal/revenant, /mob/living/simple_animal/shade, /mob/living/simple_animal/horror)), // AQ EDIT - Yogstation#13033 horror
 					   "aliens"   = typecacheof(list(/mob/living/carbon/alien, /mob/living/simple_animal/slime)),
-					   "conspiracies" = typecacheof(list(/mob/living/simple_animal/bot/secbot, /mob/living/simple_animal/bot/ed209, /mob/living/simple_animal/drone,
+					   "conspiracies" = typecacheof(list(/mob/living/simple_animal/bot/secbot, /mob/living/simple_animal/bot/ed209, /mob/living/basic/bot/secbot, /mob/living/simple_animal/drone, // AQ EDIT - basic boty
 					   /mob/living/basic/pet/penguin)), // AQ EDIT - basic moby
 					   "birds" = typecacheof(list(/mob/living/simple_animal/parrot, /mob/living/basic/chick, /mob/living/basic/chicken, /mob/living/basic/turkey, // AQ EDIT - basic moby
 					   /mob/living/basic/pet/penguin)), // AQ EDIT - basic moby

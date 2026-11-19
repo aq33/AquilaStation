@@ -1,7 +1,9 @@
 #include "code\__DEFINES\antagonists.dm"
 #include "code\__DEFINES\atom_hud.dm"
 #include "code\__DEFINES\attack_animations.dm"
+#include "code\__DEFINES\basic_bots.dm"
 #include "code\__DEFINES\basic_mobs_fauna.dm"
+#include "code\__DEFINES\behavior_trees.dm"
 #include "code\__DEFINES\bitrunning.dm"
 #include "code\__DEFINES\bingle.dm"
 #include "code\__DEFINES\bladder.dm"
@@ -1342,6 +1344,7 @@
 #include "code\modules\test_chamber\kits\pr_XXX_implanty.dm"
 #include "code\modules\test_chamber\kits\pr_XXX_nif.dm"
 #include "code\modules\test_chamber\kits\pr_XXX_robotyka.dm"
+#include "code\modules\test_chamber\kits\pr_XXX_boty.dm"
 #include "code\modules\test_chamber\kits\pr_665_rework_amunicji.dm"
 #include "code\modules\test_chamber\kits\pr_nsvprzyw_statek.dm"
 #include "code\modules\test_chamber\kits\pr_nsvprzyw_misje.dm"
@@ -2770,6 +2773,8 @@
 #include "code\modules\unit_tests\weighted_rotation.dm"
 #include "code\modules\unit_tests\window_singularity_pull.dm"
 #include "code\modules\vehicles\ridden.dm"
+// BOTY: testy
+#include "code\modules\unit_tests\aquila_basic_bots.dm"
 #endif
 
 // Heretyk z tg (osobny plik z includami)
@@ -2884,6 +2889,32 @@
 #include "code\modules\robotics\anomalock_heart.dm"
 #include "code\modules\robotics\neuromods.dm"
 #include "code\modules\robotics\robotics_research.dm"
+// BOTY: drzewa zachowań z tg (hybryda z planning subtrees), basic boty i nowe boty
+#include "code\datums\ai\behavior_tree\bt_node.dm"
+#include "code\datums\ai\behavior_tree\bt_subtree.dm"
+#include "code\datums\ai\behavior_tree\bt_composites.dm"
+#include "code\datums\ai\behavior_tree\bt_decorators.dm"
+#include "code\datums\ai\behavior_tree\bt_behavior.dm"
+#include "code\datums\ai\behavior_tree\bt_controller.dm"
+#include "code\datums\ai\behavior_tree\bt_generic.dm"
+#include "code\datums\ai\behavior_tree\bt_viewer.dm"
+#include "code\datums\ai\behavior_tree\_compiled_trees.dm"
+#include "code\modules\mob\living\basic\bots\_bots.dm"
+#include "code\modules\mob\living\basic\bots\bot_ai.dm"
+#include "code\modules\mob\living\basic\bots\bot_hud.dm"
+#include "code\modules\mob\living\basic\bots\bot_control.dm"
+#include "code\modules\mob\living\basic\bots\cleanbot.dm"
+#include "code\modules\mob\living\basic\bots\medbot.dm"
+#include "code\modules\mob\living\basic\bots\secbot.dm"
+#include "code\modules\mob\living\basic\bots\firebot_honkbot.dm"
+#include "code\modules\mob\living\basic\bots\hugbot.dm"
+#include "code\modules\mob\living\basic\bots\atmosbot.dm"
+#include "code\modules\mob\living\basic\bots\repairbot.dm"
+#include "code\modules\mob\living\basic\bots\new_bots_tg.dm"
+#include "code\modules\mob\living\basic\bots\new_bots_goon.dm"
+#include "code\modules\mob\living\basic\bots\new_bots_other.dm"
+#include "code\modules\mob\living\basic\bots\eldritch_event.dm"
+// BOTY: koniec
 
 // Profiler byond-tracy: MUSI być ostatnim include'em całego builda (BYOND inicjuje zmienne statyczne od końca,
 // więc ta rusza pierwsza, przed Master i mapą). Opis: tools/tracy/README.md

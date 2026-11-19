@@ -5,13 +5,12 @@
 /datum/unit_test/aquila_cleanbot_feces
 
 /datum/unit_test/aquila_cleanbot_feces/Run()
-	var/mob/living/simple_animal/bot/cleanbot/bot = allocate(/mob/living/simple_animal/bot/cleanbot)
+	var/mob/living/basic/bot/cleanbot/bot = allocate(/mob/living/basic/bot/cleanbot)
 	var/obj/effect/decal/cleanable/feces/poop = allocate(/obj/effect/decal/cleanable/feces)
-	TEST_ASSERT(bot.process_scan(poop) == poop, "The cleanbot doesn't target feces")
+	TEST_ASSERT(is_type_in_typecache(poop, bot.work_target_types) && bot.is_valid_work_target(poop), "The cleanbot doesn't target feces")
 	// Przełączenie opcji przebudowuje listę celów od nowa, odchody mają w niej zostać
-	bot.blood = !bot.blood
-	bot.get_targets()
-	TEST_ASSERT(bot.process_scan(poop) == poop, "The cleanbot forgets feces after its settings change")
+	bot.bot_custom_act("clean_blood")
+	TEST_ASSERT(is_type_in_typecache(poop, bot.work_target_types), "The cleanbot forgets feces after its settings change")
 
 /// AQUILA - minimapa skalowana o ułamek ma się skalować po pikselach razem z nakładkami (wcześniej rozmyta)
 /datum/unit_test/aquila_holomap_pixel_scale

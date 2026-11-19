@@ -18,3 +18,13 @@ Stany z `goonstation/icons/mob/robots.dmi` (https://github.com/goonstation/goons
 | `aquila/icons/mob/silicon/robots_aquila_modules.dmi` | `aq_cons_conbot` | `ConBot` |
 | `aquila/icons/mob/silicon/robots_aquila_modules.dmi` | `aq_bro_brobot` | `BroBot` |
 | `aquila/icons/mob/silicon/robots_aquila_modules.dmi` | `aq_chem_chembot` | `ChemBot` |
+## Boty z Goonstation (część BOTY)
+
+Bezpośrednio z repozytorium goonstation/goonstation, ta sama licencja **CC BY-NC-SA 3.0**.
+
+| Plik u nas | Źródło w Goonstation | Autor |
+|---|---|---|
+| `aquila/icons/mob/bots/goon_bots.dmi` (stany `chefbot*`, `cambot*`, `digbot*`) | `icons/obj/bots/aibots.dmi` | Goonstation |
+| `aquila/icons/mob/bots/goon_bots.dmi` (stany `buddy-*`) | `icons/obj/bots/robuddy/pr-6.dmi` | Goonstation |
+| `aquila/icons/mob/bots/goon_bots.dmi` (stany `secbuddy-face-*`) | `icons/obj/bots/robuddy/hemera-secbuddy-faces.dmi` | Goonstation |
+| `aquila/sound/voice/chefbot/dramatic.ogg` | `sound/effects/dramatic.ogg` | Goonstation |

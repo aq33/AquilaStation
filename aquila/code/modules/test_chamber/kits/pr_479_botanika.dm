@@ -33,7 +33,7 @@
 		/obj/item/plant_seeds/preset/butt = 1,
 		/obj/item/plant_seeds/preset/glowshroom = 1,
 		/obj/item/book/manual/wiki/hydroponics/tutorial = 1,
-		/mob/living/simple_animal/bot/turtle = 1,
+		/mob/living/basic/bot/turtle = 1,
 	)
 
 /datum/test_chamber_kit/pr_479/setup(list/spawned, list/turfs, turf/center, mob/user)

@@ -209,6 +209,10 @@ def step_mapconn(r):
 	return r.run([r.python, "tools/ci/check_map_connections.py"], env={"PYTHONUTF8": "1"})
 
 
+def step_bt(r):
+	return r.run([r.python, "tools/build_bt.py", "--check"], env={"PYTHONUTF8": "1"})
+
+
 def step_dmi(r):
 	return r.run([r.python, "-m", "dmi.test"], cwd=os.path.join(REPO, "tools"))
 
@@ -416,6 +420,7 @@ STEPS = [
 	("grep", "check_grep.sh", step_grep, "base"),
 	("altclick", "Alt+klik a RPG Loot", step_altclick, "base"),
 	("mapconn", "Rury i kable na mapach", step_mapconn, "base"),
+	("bt", "Drzewa zachowań skompilowane (build_bt.py)", step_bt, "base"),
 	("dmi", "Testy biblioteki dmi", step_dmi, "base"),
 	("mapmerge", "Testy mapmerge2", step_mapmerge, "base"),
 	("i18n", "Teksty bez angielskiego (ostrzeżenia)", step_i18n, "base"),

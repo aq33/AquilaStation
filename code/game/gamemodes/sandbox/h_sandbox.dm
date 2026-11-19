@@ -68,9 +68,9 @@ GLOBAL_VAR_INIT(hsboxspawn, TRUE)
 			list("Zbiornik z wodą", "hsbspawn", /obj/structure/reagent_dispensers/watertank),
 		),
 		"Boty" = list(
-			list("Cleanbot", "hsbspawn", /mob/living/simple_animal/bot/cleanbot),
-			list("Floorbot", "hsbspawn", /mob/living/simple_animal/bot/floorbot),
-			list("Medbot", "hsbspawn", /mob/living/simple_animal/bot/medbot),
+			list("Cleanbot", "hsbspawn", /mob/living/basic/bot/cleanbot), // AQ EDIT - basic boty
+			list("Floorbot", "hsbspawn", /mob/living/basic/bot/repairbot), // AQ EDIT - basic boty
+			list("Medbot", "hsbspawn", /mob/living/basic/bot/medbot), // AQ EDIT - basic boty
 		),
 		"Kanistry" = list(
 			list("Kanister O2", "hsbspawn", /obj/machinery/portable_atmospherics/canister/oxygen),

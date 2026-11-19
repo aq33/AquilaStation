@@ -793,7 +793,7 @@
 	desc = "An injector with a cocktail of nanomachines and chemicals, this device can seemingly raise animals from the dead, making them become friendly to the user. Unfortunately, the process is useless on higher forms of life and incredibly costly, so these were hidden in storage until an executive thought they'd be great motivation for some of their employees. soley exists to ressurect ian."
 	},
 /obj/effect/decal/cleanable/dirt,
-/mob/living/simple_animal/bot/medbot{
+/mob/living/basic/bot/medbot{
 	name = "\improper emergency medibot";
 	pixel_x = -3;
 	pixel_y = 2

@@ -1057,7 +1057,7 @@
 /area/ruin/unpowered/planet_waste/smugglerbunker/exterior)
 "ib" = (
 /obj/machinery/airalarm/directional/east,
-/mob/living/simple_animal/bot/cleanbot,
+/mob/living/basic/bot/cleanbot,
 /turf/open/floor/plasteel/tech/grid,
 /area/ruin/unpowered/planet_waste/smugglerbunker/medbay)
 "ig" = (
@@ -3477,7 +3477,7 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/unpowered/planet_waste/smugglerbunker/cargo)
 "Av" = (
-/mob/living/simple_animal/bot/cleanbot,
+/mob/living/basic/bot/cleanbot,
 /obj/structure/cable,
 /obj/machinery/power/apc/auto_name/north{
 	start_charge = 0

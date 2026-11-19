@@ -61,6 +61,11 @@
 		for(var/mob/living/simple_animal/bot/bot in GLOB.alive_mob_list)
 			if(prob(botEmagChance))
 				bot.emag_act()
+		// AQ EDIT START - basic boty
+		for(var/mob/living/basic/bot/basic_bot as anything in GLOB.basic_bots_list)
+			if(prob(botEmagChance))
+				basic_bot.remote_malfunction()
+		// AQ EDIT END
 
 /proc/generate_ion_law()
 	var/ionspecies = pick_list(ION_FILE, "ionspecies")
