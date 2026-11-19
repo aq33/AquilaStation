@@ -1335,6 +1335,7 @@
 // #include "code\modules\test_chamber\kits\pr_420_traitor_cele.dm"
 #include "code\modules\test_chamber\kits\test_subjects.dm"
 // Komora testowa - zestawy PR-ów niżej (usuwać razem z plikiem zestawu po przetestowaniu)
+#include "code\modules\test_chamber\kits\pr_XXX_nif.dm"
 #include "code\modules\test_chamber\kits\pr_665_rework_amunicji.dm"
 #include "code\modules\test_chamber\kits\pr_nsvprzyw_statek.dm"
 #include "code\modules\test_chamber\kits\pr_nsvprzyw_misje.dm"
@@ -2577,6 +2578,7 @@
 #include "code\modules\unit_tests\aquila_chrono_legionnaire.dm"
 #include "code\modules\unit_tests\aquila_crafting.dm"
 #include "code\modules\unit_tests\aquila_cybernetics.dm"
+#include "code\modules\unit_tests\aquila_nif.dm"
 #include "code\modules\unit_tests\aquila_monke_misc.dm"
 #include "code\modules\unit_tests\aquila_monke_ingame.dm"
 #include "code\modules\unit_tests\aquila_citationinator.dm"
@@ -2789,6 +2791,22 @@
 #include "code\modules\test_chamber\kits\pr_610_zbiorczy_1011.dm"
 #include "code\modules\test_chamber\kits\pr_637_tlumacz_na_zywo.dm"
 #include "code\modules\test_chamber\kits\pr_654_drobiazgi_1711.dm"
+
+// Implanty: implanty, augmenty i NIF (część IMPLANTY wdrożenia robotyki; NIF port z Monkestation)
+#include "code\__DEFINES\nif.dm"
+#include "code\modules\nif\nifs.dm"
+#include "code\modules\nif\nifs_tgui.dm"
+#include "code\modules\nif\nif_actions.dm"
+#include "code\modules\nif\nif_implants.dm"
+#include "code\modules\nif\nifsofts.dm"
+#include "code\modules\nif\nifsofts\action_granter.dm"
+#include "code\modules\nif\nifsofts\hivemind.dm"
+#include "code\modules\nif\nifsofts\huds.dm"
+#include "code\modules\nif\nifsofts\money_sense.dm"
+#include "code\modules\nif\nifsofts\soul_poem.dm"
+#include "code\modules\nif\nifsoft_catalog.dm"
+#include "code\modules\nif\misc_devices.dm"
+#include "code\modules\nif\nif_shop.dm"
 
 // Profiler byond-tracy: MUSI być ostatnim include'em całego builda (BYOND inicjuje zmienne statyczne od końca,
 // więc ta rusza pierwsza, przed Master i mapą). Opis: tools/tracy/README.md
