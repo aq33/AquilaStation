@@ -71,6 +71,9 @@
 	if(sugar > AQ_HYPERGLYCEMIA_SUGAR && aq_sugar_clearance() < 0.6)
 		return "<b>Hiperglikemia:</b> [round(sugar, 1)] j. cukru we krwi, trzustka nie nadąża. Podaj insulinę."
 
+/obj/item/organ/pancreas/aq_treat_hint()
+	return "Insulina doraźnie; niewydolna: przeszczep albo trzustka cybernetyczna"
+
 /// Sugar burning speed of this body (1 = healthy pancreas)
 /mob/living/carbon/proc/aq_sugar_clearance()
 	var/mob/living/carbon/human/H = src
@@ -82,7 +85,8 @@
 /datum/reagent/consumable/sugar/on_mob_life(mob/living/carbon/M)
 	var/clearance = M.aq_sugar_clearance()
 	metabolization_rate = initial(metabolization_rate) * clearance
-	if(clearance < 0.6 && volume > AQ_HYPERGLYCEMIA_SUGAR)
+	var/obj/item/organ/pancreas/pancreas = M.getorganslot(ORGAN_SLOT_PANCREAS)
+	if(clearance < 0.6 && volume > AQ_HYPERGLYCEMIA_SUGAR && !(pancreas?.obj_flags & EMAGGED))
 		M.drowsyness = max(M.drowsyness, 3)
 		M.blur_eyes(2)
 		if(prob(5))

@@ -36,6 +36,11 @@
 	cyber.Insert(patient)
 	TEST_ASSERT(patient.aq_sugar_clearance() == 1, "A cybernetic pancreas does not work like a healthy one")
 	cyber.emag_act(patient)
+	patient.drowsyness = 0
+	patient.reagents.add_reagent(/datum/reagent/consumable/sugar, 60)
+	var/datum/reagent/consumable/sugar/emag_sugar = patient.reagents.has_reagent(/datum/reagent/consumable/sugar)
+	emag_sugar.on_mob_life(patient)
+	TEST_ASSERT(!patient.drowsyness, "An emagged pancreas makes the host drowsy on top of its stimulants")
 	cyber.on_life()
 	TEST_ASSERT(patient.aq_sugar_clearance() == 0.25 && patient.reagents.has_reagent(/datum/reagent/medicine/ephedrine), "An emagged pancreas still burns sugar or gives no stimulants")
 
@@ -103,6 +108,14 @@
 	var/obj/item/organ/aq_spine/spine = patient.getorganslot(ORGAN_SLOT_AQ_SPINE)
 	TEST_ASSERT(istype(spine), "A human has no spine")
 	TEST_ASSERT(!HAS_TRAIT(patient, TRAIT_PARALYSIS_L_LEG), "A healthy spine paralyses the legs")
+
+	// An organ regeneration swaps the spine without dropping what the hands hold (review: special removal paralysed for a moment)
+	var/obj/item/held = allocate(/obj/item/toy/crayon/red)
+	patient.put_in_active_hand(held)
+	patient.dna.species.regenerate_organs(patient, null, TRUE) // organ swap as in a species change, without new limbs
+	spine = patient.getorganslot(ORGAN_SLOT_AQ_SPINE)
+	TEST_ASSERT(istype(spine) && patient.is_holding(held), "A species change dropped the held item through the spine swap")
+	TEST_ASSERT(!HAS_TRAIT(patient, TRAIT_PARALYSIS_L_ARM), "A species change left the spine paralysis on")
 
 	// A broken spine is only the wound: the organ is not hurt twice for it
 	patient.aq_injure_spine(WOUND_SEVERITY_CRITICAL)

@@ -54,7 +54,8 @@
 
 /obj/item/organ/aq_spine/Remove(mob/living/carbon/M, special = 0)
 	. = ..()
-	if(M && !QDELETED(M) && M.loc) // a body being deleted or a fresh dummy has nowhere to fall
+	// special = an organ swap (species regeneration): the new spine comes right after, regenerate_organs() refreshes once
+	if(!special && M && !QDELETED(M) && M.loc)
 		M.aq_update_spine_paralysis()
 
 /obj/item/organ/aq_spine/on_life()
@@ -64,21 +65,8 @@
 		was_failing = failing
 		owner?.aq_update_spine_paralysis()
 
-/// Podpowiedź leczenia w oknie analizatora
-/obj/item/organ/proc/aq_treat_hint()
-	return "Operacja, leki na narząd"
-
-/obj/item/organ/brain/aq_treat_hint()
-	return "Mannitol, naprawa mózgu (operacja); przy zatrzymaniu krążenia najpierw RKO"
-
 /obj/item/organ/aq_spine/aq_treat_hint()
 	return "Goi się sam; zniszczony: wymiana kręgosłupa i połączenie pnia mózgu"
-
-/obj/item/organ/pancreas/aq_treat_hint()
-	return "Insulina doraźnie; niewydolna: przeszczep albo trzustka cybernetyczna"
-
-/obj/item/organ/esophagus/aq_treat_hint()
-	return "Goi się sam; zniszczony: wymiana przełyku"
 
 /obj/item/organ/aq_spine/aq_scan_line()
 	if(organ_flags & ORGAN_FAILING)

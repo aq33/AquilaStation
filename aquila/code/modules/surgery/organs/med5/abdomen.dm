@@ -45,6 +45,7 @@
 	if(!istype(H) || !H.dna?.species?.aq_has_med5_organs())
 		return
 	var/datum/species/S = H.dna.species
+	var/list/species_type = S.aq_med5_organ_types() // species_organs.dm
 	var/static/list/effects = list(
 		ORGAN_SLOT_KIDNEYS = list("nerek", "toksyny we krwi rosną; dializa w sleeperze albo przeszczep"),
 		ORGAN_SLOT_SPLEEN = list("śledziony", "brak zapasu krwi"),
@@ -54,11 +55,6 @@
 		ORGAN_SLOT_PANCREAS = list("trzustki", "cukier spala się wolno, grozi hiperglikemia; insulina doraźnie"),
 		ORGAN_SLOT_ESOPHAGUS = list("przełyku", "pacjent nie może jeść ani pić"),
 		ORGAN_SLOT_AQ_SPINE = list("kręgosłupa", "ręce i nogi bezwładne; po wszczepieniu połącz pień mózgu"),
-	)
-	var/list/species_type = list(
-		ORGAN_SLOT_KIDNEYS = S.mutantkidneys, ORGAN_SLOT_SPLEEN = S.mutantspleen, ORGAN_SLOT_INTESTINES = S.mutantintestines,
-		ORGAN_SLOT_ADRENALS = S.mutantadrenals, ORGAN_SLOT_LARYNX = S.aq_larynx_type(), ORGAN_SLOT_PANCREAS = S.mutantpancreas,
-		ORGAN_SLOT_ESOPHAGUS = S.mutantesophagus, ORGAN_SLOT_AQ_SPINE = S.mutantspine,
 	)
 	for(var/slot in effects)
 		if(!species_type[slot] || getorganslot(slot))
@@ -72,6 +68,13 @@
 
 /obj/item/organ/proc/aq_scan_line()
 	return null
+
+/// Treatment hint in the health analyzer window (health_analyzer_ui.dm)
+/obj/item/organ/proc/aq_treat_hint()
+	return "Operacja, leki na narząd"
+
+/obj/item/organ/brain/aq_treat_hint()
+	return "Mannitol, naprawa mózgu (operacja); przy zatrzymaniu krążenia najpierw RKO"
 
 // --- Śledziona ---
 

@@ -26,6 +26,9 @@
 	if(organ_flags & ORGAN_FAILING)
 		return "<b>Zniszczony przełyk:</b> pacjent nie może jeść ani pić. Wymień przełyk."
 
+/obj/item/organ/esophagus/aq_treat_hint()
+	return "Goi się sam; zniszczony: wymiana przełyku"
+
 /// Can this body swallow at all
 /mob/living/carbon/proc/aq_can_swallow()
 	var/mob/living/carbon/human/H = src
@@ -43,7 +46,7 @@
 		return 0
 	. = 0.5
 	if(!(mobility_flags & MOBILITY_STAND))
-		. += 8
+		. += 2
 	. += 20 * esophagus.damage / esophagus.maxHealth
 
 /mob/living/carbon/proc/aq_swallow_refusal(mob/living/feeder)
@@ -105,7 +108,7 @@
 /atom/movable/screen/alert/status_effect/aq_choking
 	name = "Zadławienie"
 	desc = "Kęs utknął ci w gardle. Nie możesz oddychać ani mówić. Ktoś musi uderzyć cię w plecy albo zrobić chwyt Heimlicha."
-	icon_state = "asleep"
+	icon_state = "not_enough_oxy"
 
 /datum/status_effect/aq_choking/on_apply()
 	ADD_TRAIT(owner, TRAIT_MUTE, AQ_CHOKING_TRAIT)
@@ -122,7 +125,7 @@
 	var/mob/living/carbon/C = owner
 	if(istype(C))
 		C.losebreath = max(C.losebreath, 3)
-	if(prob(owner.stat == CONSCIOUS ? 4 : 1))
+	if(prob(owner.stat == CONSCIOUS ? 5 : 3))
 		cough_out()
 		return
 	if(owner.stat == CONSCIOUS && prob(30))
