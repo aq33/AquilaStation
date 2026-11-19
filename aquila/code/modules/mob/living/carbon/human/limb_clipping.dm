@@ -1,5 +1,5 @@
-// Kończyny ras o innej sylwetce niż ludzka pod ubraniem. Stroje są rysowane na ludzki obrys, więc długie ręce mięsoczłowieka,
-// pnącza diony czy szeroki pancerz Akwarianina wystawały spod rękawów i skafandrów. Gdy ubranie zakrywa część ciała,
+// Kończyny ras o innej sylwetce niż ludzka pod ubraniem. Stroje są rysowane na ludzki obrys, więc długie ręce mięsoczłowieka
+// czy szeroki pancerz Akwarianina wystawały spod rękawów i skafandrów. Gdy ubranie zakrywa część ciała,
 // ta część rysuje się przycięta do kształtu ludzkiej (icons/mob/human_parts_greyscale.dmi). Dłonie przycina dopiero strój wierzchni.
 
 /datum/species
@@ -7,9 +7,6 @@
 	var/clip_limbs_under_clothes = FALSE
 
 /datum/species/beefman
-	clip_limbs_under_clothes = TRUE
-
-/datum/species/diona
 	clip_limbs_under_clothes = TRUE
 
 /datum/species/aquarian

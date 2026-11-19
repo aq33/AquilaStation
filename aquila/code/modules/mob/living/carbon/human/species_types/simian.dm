@@ -195,7 +195,7 @@ GLOBAL_LIST_INIT(simian_tails_list, monke_init_accessories(/datum/sprite_accesso
 	. = ..()
 	var/datum/character_save/character = prefs.active_character
 	var/datum/species/species = character.pref_species
-	if(!istype(species, /datum/species/simian) && !istype(species, /datum/species/floran))
+	if(!istype(species, /datum/species/simian))
 		return
 	for(var/feature in species.default_features)
 		if(isnull(character.features[feature]))

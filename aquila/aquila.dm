@@ -2842,21 +2842,18 @@
 #include "code\modules\test_chamber\kits\pr_654_drobiazgi_1711.dm"
 #include "code\modules\test_chamber\kits\pr_655_grod.dm"
 
-// Rasy z innych kodów (okno postaci, 17.11.2026): Małpolud i Floranin z Monke, Mięsoczłowiek z Fulpa
+// Rasy z innych kodów (okno postaci, 17.11.2026): Małpolud z Monke, Mięsoczłowiek z Fulpa
 #include "code\__DEFINES\species_monke.dm"
 #include "code\__DEFINES\species_fulp.dm"
 #include "code\modules\mob\living\carbon\human\species_types\simian.dm"
-#include "code\modules\mob\living\carbon\human\species_types\floran.dm"
 #include "code\modules\mob\living\carbon\human\species_types\beefman.dm"
 #include "code\modules\mob\living\carbon\human\species_types\beefman_clothing.dm"
 #include "code\modules\mob\living\carbon\human\species_types\beefman_phobetor.dm"
 #include "code\modules\mob\living\carbon\human\species_types\beefman_preferences.dm"
-// Psyfoza i Diona z BeeStation-Hornet
+// Psyfoza z BeeStation-Hornet
 #include "code\__DEFINES\species_bee.dm"
 #include "code\modules\mob\living\carbon\human\species_types\bee_features.dm"
 #include "code\modules\mob\living\carbon\human\species_types\psyphoza.dm"
-#include "code\modules\mob\living\carbon\human\species_types\diona.dm"
-#include "code\modules\mob\living\simple_animal\hostile\retaliate\nymph.dm"
 #include "code\modules\client\preferences_menu\entries_species_bee.dm"
 // Mops i Żaba z Goonstation (ciało przełożone na nasz szablon)
 #include "code\__DEFINES\species_goon.dm"

@@ -17,10 +17,8 @@
 	6) Quirki: wybierz kilka nowych w oknie postaci i zespawnuj się (Łysina z peruką, Kolorysta ze sprayem do włosów, Właściciel zwierzaka)."
 	items = list(
 		/mob/living/carbon/human/species/simian = 1,
-		/mob/living/carbon/human/species/floran = 1,
 		/mob/living/carbon/human/species/beefman = 1,
 		/mob/living/carbon/human/species/psyphoza = 1,
-		/mob/living/carbon/human/species/diona = 1,
 		/mob/living/carbon/human/species/pug = 1,
 		/mob/living/carbon/human/species/amphibian = 1,
 		/mob/living/carbon/human/species/vox = 1,

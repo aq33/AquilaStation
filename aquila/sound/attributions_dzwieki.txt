@@ -93,6 +93,6 @@ Okno postaci (17.11.2026):
   voice/scream/goon_*, voice/goon/*, misc/fart/goon_*   goonstation/goonstation (sound/voice/screams, sound/misc/talk, sound/voice/farts), CC BY-NC-SA 3.0
   voice/simian/*   Monkestation/Monkestation2.0, CC-BY-SA 3.0
   species/beefman/*   fulpstation/fulpstation (fulp_modules), CC-BY-SA 3.0
-  voice/psyphoza/*, emotes/diona/*   BeeStation/BeeStation-Hornet, CC-BY-SA 3.0
+  voice/psyphoza/*   BeeStation/BeeStation-Hornet, CC-BY-SA 3.0
   species/pug/*, species/amphibian/*   goonstation/goonstation (sound/voice/screams, sound/voice/pug_*, snore, urf, farts/frogfart, impact_sounds), CC BY-NC-SA 3.0
   voice/vox/*   yogstation13/Yogstation, CC-BY-SA 3.0 (voxrustle.ogg: sound-ideas, freesfx.co.uk)
