@@ -198,7 +198,7 @@
 
 
 /datum/crafting_recipe/floorbot
-	name = "floorbot"
+	name = "repairbot" // AQ EDIT - basic boty: repairbot zamiast floorbota
 	result = /mob/living/basic/bot/repairbot // AQ EDIT - basic boty
 	reqs = list(/obj/item/storage/toolbox = 1,
 				/obj/item/stack/tile/plasteel = 10,

@@ -2813,6 +2813,10 @@
 #include "code\modules\mob\living\basic\bots\hugbot.dm"
 #include "code\modules\mob\living\basic\bots\atmosbot.dm"
 #include "code\modules\mob\living\basic\bots\repairbot.dm"
+#include "code\modules\mob\living\basic\bots\new_bots_tg.dm"
+#include "code\modules\mob\living\basic\bots\new_bots_goon.dm"
+#include "code\modules\mob\living\basic\bots\new_bots_other.dm"
+#include "code\modules\mob\living\basic\bots\eldritch_event.dm"
 // BOTY: koniec
 
 // Profiler byond-tracy: MUSI być ostatnim include'em całego builda (BYOND inicjuje zmienne statyczne od końca,
