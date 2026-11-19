@@ -1,10 +1,12 @@
 // AQUILA - projekty robotyki w drzewku badań (reszta węzłów jest przy swoich projektach: implanty w robotics_implants.dm,
 // serce w anomalock_heart.dm, psychoskop w neuromods.dm).
 
-/// Od startu rundy: klucz resetu syntetyka (IPC nie wstaje sam po naprawie), łatki naprawcze i tanie protezy kinetyczne
+/// Od startu rundy: klucz resetu syntetyka (IPC nie wstaje sam po naprawie), łatki naprawcze, tanie protezy kinetyczne
+/// i organy chłodzenia (IPC idące na abordaż w próżnię potrzebują chłodzenia cieczą od pierwszej minuty)
 /datum/techweb_node/base/New()
 	. = ..()
-	design_ids += list("aq_synth_reset_key", "aq_robo_patch", "aq_kinetic_l_arm", "aq_kinetic_r_arm", "aq_kinetic_l_leg", "aq_kinetic_r_leg")
+	design_ids += list("aq_synth_reset_key", "aq_robo_patch", "aq_kinetic_l_arm", "aq_kinetic_r_arm", "aq_kinetic_l_leg", "aq_kinetic_r_leg", \
+		"aq_cooling_air", "aq_cooling_liquid", "aq_cooling_passive")
 
 /// Apteczka syntetyka razem z resztą podstawowej biotechnologii
 /datum/techweb_node/biotech/New()
@@ -15,8 +17,3 @@
 /datum/techweb_node/adv_robotics/New()
 	. = ..()
 	design_ids += list("aq_adv_l_arm", "aq_adv_r_arm", "aq_adv_l_leg", "aq_adv_r_leg")
-
-/// Organy chłodzenia syntetyków razem z organami cybernetycznymi
-/datum/techweb_node/cyber_organs/New()
-	. = ..()
-	design_ids += list("aq_cooling_air", "aq_cooling_liquid", "aq_cooling_passive")
