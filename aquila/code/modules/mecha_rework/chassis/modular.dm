@@ -61,6 +61,7 @@
 		E.aq_mounted_slot = slot
 		var/list/L = aq_equip_by_category[slot]
 		L |= E
+	aq_update_max_equip()
 	update_icon()
 
 /obj/mecha/combat/aq_modular/attackby(obj/item/W, mob/user, params)

@@ -182,5 +182,40 @@
 	var/obj/mecha/combat/gygax/dark/dark = allocate(/obj/mecha/combat/gygax/dark)
 	TEST_ASSERT(!length(dark.aq_available_skins()), "an antag chassis got crew skins")
 
+/// Obecne podwozia działają po zmianie: gotowe mechy mają wyposażenie w slotach, nasze dodatki (piana kadłubowa, inteligentna
+/// piana, chaingun na kulki, szafkowy mech) dalej się montują, a szafkowy mech bierze najwyżej dwa narzędzia
+/datum/unit_test/aquila_mecha_existing
+
+/datum/unit_test/aquila_mecha_existing/Run()
+	for(var/path in subtypesof(/obj/mecha) - GLOB.aq_mecha_new_chassis)
+		var/obj/mecha/M = allocate(path)
+		TEST_ASSERT(M.aq_equip_by_category, "[path] has no slot lists")
+		var/counted = 0
+		for(var/key in M.aq_equip_by_category)
+			counted += length(M.aq_equip_by_category[key])
+		TEST_ASSERT_EQUAL(counted, length(M.equipment), "[path] modules missing from slot lists")
+		TEST_ASSERT(M.max_equip >= length(M.equipment), "[path] max_equip below mounted modules")
+	var/obj/mecha/working/ripley/ripley = allocate(/obj/mecha/working/ripley)
+	var/obj/item/mecha_parts/mecha_equipment/extinguisher/hull_repair_juice/foam = allocate(/obj/item/mecha_parts/mecha_equipment/extinguisher/hull_repair_juice)
+	TEST_ASSERT(foam.can_attach(ripley), "hull foam does not fit a Ripley")
+	foam.attach(ripley)
+	var/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/smart_foam/smart = allocate(/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/smart_foam)
+	TEST_ASSERT(smart.can_attach(ripley), "smart foam launcher does not fit a Ripley")
+	smart.attach(ripley)
+	var/obj/item/mecha_parts/mecha_equipment/drill/drill = allocate(/obj/item/mecha_parts/mecha_equipment/drill)
+	TEST_ASSERT(!drill.can_attach(ripley), "Ripley took a third arm module")
+	var/obj/mecha/combat/gygax/gygax = allocate(/obj/mecha/combat/gygax)
+	var/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/BBchaingun/toy = allocate(/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/BBchaingun)
+	TEST_ASSERT(toy.can_attach(gygax), "toy chaingun does not fit a Gygax")
+	var/obj/mecha/working/lockermech/locker = allocate(/obj/mecha/working/lockermech)
+	var/obj/item/mecha_parts/mecha_equipment/drill/makeshift/tool1 = allocate(/obj/item/mecha_parts/mecha_equipment/drill/makeshift)
+	var/obj/item/mecha_parts/mecha_equipment/hydraulic_clamp/makeshift/tool2 = allocate(/obj/item/mecha_parts/mecha_equipment/hydraulic_clamp/makeshift)
+	var/obj/item/mecha_parts/mecha_equipment/weapon/energy/makeshift/tool3 = allocate(/obj/item/mecha_parts/mecha_equipment/weapon/energy/makeshift)
+	TEST_ASSERT(tool1.can_attach(locker), "makeshift drill does not fit the locker mech")
+	tool1.attach(locker)
+	TEST_ASSERT(tool2.can_attach(locker), "makeshift clamp does not fit the locker mech")
+	tool2.attach(locker)
+	TEST_ASSERT(!tool3.can_attach(locker), "locker mech took a third tool")
+
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL

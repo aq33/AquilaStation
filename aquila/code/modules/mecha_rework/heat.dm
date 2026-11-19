@@ -114,11 +114,19 @@
 	aq_overclock_action.UpdateButtonIcon()
 	log_message("Toggled overclock: [state].", LOG_MECHA)
 
-/// Overclock skraca też czas przeładowania wyposażenia
-/obj/item/mecha_parts/mecha_equipment/start_cooldown()
-	. = ..()
+/// Po każdym użyciu modułu: ciepło (i zdjęcie maskowania, utility.dm)
+/obj/item/mecha_parts/mecha_equipment/proc/aq_on_used()
 	if(chassis && aq_heat_cost)
 		chassis.aq_adjust_heat(aq_heat_cost)
+
+/obj/item/mecha_parts/mecha_equipment/start_cooldown()
+	. = ..()
+	aq_on_used()
+
+// rdzeniowe start_cooldown() broni energetycznej nie woła ..()
+/obj/item/mecha_parts/mecha_equipment/weapon/energy/start_cooldown()
+	. = ..()
+	aq_on_used()
 
 /obj/item/mecha_parts/mecha_equipment
 	/// Ile ciepła daje jedno użycie (broń wręcz z Yogstation, ciężka broń)

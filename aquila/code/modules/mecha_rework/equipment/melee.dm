@@ -61,8 +61,7 @@
 /obj/item/mecha_parts/mecha_equipment/aq_melee/start_cooldown()
 	set_ready_state(0)
 	chassis.use_power(energy_drain)
-	if(aq_heat_cost)
-		chassis.aq_adjust_heat(aq_heat_cost)
+	aq_on_used()
 	var/cd = chassis.melee_cooldown * attack_speed_modifier
 	if(chassis.aq_overclock)
 		cd /= chassis.aq_overclock_coeff

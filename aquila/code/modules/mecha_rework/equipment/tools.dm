@@ -145,8 +145,9 @@
 			if(!C)
 				return 0
 			var/datum/gas_mixture/removed = T.remove_air_ratio(0.5)
-			if(removed)
-				C.return_air().merge(removed)
+			var/datum/gas_mixture/tank_air = C.return_air()
+			if(removed && tank_air)
+				tank_air.merge(removed)
 			T.air_update_turf()
 			occupant_message("<span class='notice'>Wypompowujesz powietrze z pola do zbiornika.</span>")
 	return 1

@@ -52,8 +52,14 @@
 		total += aq_max_equip_by_category[key]
 	aq_equip_by_category[AQ_MECHA_SLOT_OVERFLOW] = list()
 	aq_equip_by_category[AQ_MECHA_SLOT_NONE] = list()
-	// Rdzeń sprawdza equipment.len < max_equip; limit liczą teraz sloty, więc zapas na moduły bez slotu
-	max_equip = total + 4
+	aq_update_max_equip()
+
+/// Rdzeń (i kilka starszych can_attach bez ..()) sprawdza equipment.len < max_equip: suma slotów plus moduły bez slotu
+/obj/mecha/proc/aq_update_max_equip()
+	var/total = 0
+	for(var/key in aq_max_equip_by_category)
+		total += aq_max_equip_by_category[key]
+	max_equip = total + length(aq_equip_by_category?[AQ_MECHA_SLOT_NONE]) + length(aq_equip_by_category?[AQ_MECHA_SLOT_OVERFLOW])
 
 /obj/mecha/proc/aq_slot_used(key)
 	aq_init_slots()
@@ -97,6 +103,7 @@
 	aq_mounted_slot = slot
 	var/list/L = M.aq_equip_by_category[slot]
 	L |= src
+	M.aq_update_max_equip()
 
 /obj/item/mecha_parts/mecha_equipment/proc/aq_clear_slot()
 	if(!chassis || !aq_mounted_slot)
@@ -105,6 +112,7 @@
 	var/list/L = chassis.aq_equip_by_category?[aq_mounted_slot]
 	L?.Remove(src)
 	aq_mounted_slot = null
+	chassis.aq_update_max_equip()
 
 /obj/item/mecha_parts/mecha_equipment/detach(atom/moveto = null)
 	var/obj/mecha/old = chassis
@@ -114,6 +122,7 @@
 		var/list/L = old.aq_equip_by_category?[old_slot]
 		L?.Remove(src)
 		aq_mounted_slot = null
+		old.aq_update_max_equip()
 
 /obj/item/mecha_parts/mecha_equipment/Destroy()
 	aq_clear_slot()
@@ -193,3 +202,19 @@
 
 /obj/item/mecha_parts/mecha_equipment/ripleyupgrade
 	aq_slot = AQ_MECHA_SLOT_NONE
+
+// can_attach bez ..() (sprawdzają tylko equipment.len): dokładamy sprawdzenie slotu
+/obj/item/mecha_parts/mecha_equipment/weapon/energy/plasma/can_attach(obj/mecha/M)
+	return ..() && M.aq_free_slot_for(src)
+
+/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/smart_foam/can_attach(obj/mecha/M)
+	return ..() && M.aq_free_slot_for(src)
+
+/obj/item/mecha_parts/mecha_equipment/drill/makeshift/can_attach(obj/mecha/M)
+	return ..() && M.aq_free_slot_for(src)
+
+/obj/item/mecha_parts/mecha_equipment/hydraulic_clamp/makeshift/can_attach(obj/mecha/M)
+	return ..() && M.aq_free_slot_for(src)
+
+/obj/item/mecha_parts/mecha_equipment/weapon/energy/makeshift/can_attach(obj/mecha/M)
+	return ..() && M.aq_free_slot_for(src)

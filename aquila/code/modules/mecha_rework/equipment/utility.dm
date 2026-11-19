@@ -406,7 +406,7 @@
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 
-/obj/item/mecha_parts/mecha_equipment/start_cooldown()
+/obj/item/mecha_parts/mecha_equipment/aq_on_used()
 	. = ..()
 	if(chassis && harmful)
 		for(var/obj/item/mecha_parts/mecha_equipment/aq_utility/cloak/C in chassis.equipment)
