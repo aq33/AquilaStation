@@ -1,17 +1,47 @@
 """Testy skanu tekstów bez angielskiego (list_missing.py): napisy w kodzie okien i komentarze DM.
 
 Uruchomienie: python tools/i18n/test_list_missing.py (z katalogu repozytorium).
-Zdania okien z drzewa składni są podstawione w teście, więc nie trzeba Node ani zależności tgui.
+Większość testów podstawia zdania okien, więc nie trzeba Node. RealLoader bierze zdania z prawdziwego
+loadera tgui/i18n-jsx.cjs i bez zależności tgui się pomija (w CI działa, bo krok idzie po budowie tgui).
 """
 
 import os
 import sys
+import tempfile
 import unittest
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import jsx_ast  # noqa: E402
 import list_missing as lm  # noqa: E402
 
 WINDOW = "tgui/packages/tgui/interfaces/Test.tsx"
+
+
+class RealLoader(unittest.TestCase):
+    """Kolumny zrzutu loadera (UTF-16 w JS) i skanera (Python) muszą się zgadzać też przy emoji."""
+
+    LINE = "  const x = '😀😀'; return <Box>{'żółty przycisk'} teraz.</Box>;"
+
+    def setUp(self):
+        fd, self.path = tempfile.mkstemp(suffix=".tsx")
+        with os.fdopen(fd, "w", encoding="utf-8") as f:
+            f.write("export const A = () => {\n" + self.LINE + "\n};\n")
+        self.items = jsx_ast.dump_file(self.path, WINDOW)
+        if self.items is None:
+            self.skipTest("brak Node albo zależności tgui (tools/build/build yarn)")
+        self.saved = lm._sentences
+        lm._sentences = lm.sentence_spans(self.items)
+
+    def tearDown(self):
+        os.remove(self.path)
+        if hasattr(self, "saved"):
+            lm._sentences = self.saved
+
+    def test_fragment_zdania_po_emoji(self):
+        self.assertIn("żółty przycisk teraz.", [item["literal"] for item in self.items])
+        found = lm.scan_literals(WINDOW, 2, self.LINE, True)
+        self.assertNotIn("żółty przycisk", found)
+        self.assertIn("😀😀", found)  # napis przed zdaniem to osobny tekst
 
 
 class WindowCodeStrings(unittest.TestCase):

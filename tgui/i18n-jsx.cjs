@@ -332,9 +332,43 @@ module.exports = function i18nJsxLoader(source) {
   }
   return transform(source, file);
 };
+/**
+ * Zdania pliku do zrzutu: linie od 1 i kolumny od 0 początku i końca samego tekstu. Kolumny są w
+ * jednostkach UTF-16 (indeksy napisów w JS): tools/i18n/list_missing.py liczy w tych samych.
+ */
+function dumpItems(source, fileName, rel) {
+  return collect(source, fileName).map((item) => {
+    // zakres zdania JSX bywa otoczony białym znakiem (także \n): linie liczymy od samego tekstu
+    const span = source.slice(item.start, item.end);
+    const start = item.start + (span.length - span.trimStart().length);
+    const end = Math.max(start, item.start + span.trimEnd().length);
+    return {
+      file: rel,
+      line: source.slice(0, start).split('\n').length,
+      endLine: source.slice(0, end).split('\n').length,
+      // napis z tej samej linii poza zdaniem to osobny tekst
+      column: start - (source.lastIndexOf('\n', start - 1) + 1),
+      endColumn: end - (source.lastIndexOf('\n', end - 1) + 1),
+      kind: item.kind,
+      texts: item.texts,
+      slots: item.slots,
+    };
+  });
+}
+
 module.exports.transform = transform;
 module.exports.collect = collect;
 module.exports.cleanJsxText = cleanJsxText;
+module.exports.dumpItems = dumpItems;
+
+/** node i18n-jsx.cjs dump-file <źródło> <ścieżka w zrzucie> <plik>: zdania jednego pliku (testy narzędzi) */
+if (require.main === module && process.argv[2] === 'dump-file') {
+  const [, , , source, rel, outFile] = process.argv;
+  fs.writeFileSync(
+    outFile,
+    JSON.stringify(dumpItems(fs.readFileSync(source, 'utf8'), source, rel)),
+  );
+}
 
 /** node i18n-jsx.cjs dump <plik>: zdania wszystkich okien do testu pokrycia */
 if (require.main === module && process.argv[2] === 'dump') {
@@ -350,24 +384,7 @@ if (require.main === module && process.argv[2] === 'dump') {
         const rel = path
           .relative(path.resolve(__dirname, '..'), full)
           .replace(/\\/g, '/');
-        const source = fs.readFileSync(full, 'utf8');
-        for (const item of collect(source, full)) {
-          // zakres zdania JSX bywa otoczony białym znakiem (także \n): linie liczymy od samego tekstu
-          const span = source.slice(item.start, item.end);
-          const start = item.start + (span.length - span.trimStart().length);
-          const end = Math.max(start, item.start + span.trimEnd().length);
-          out.push({
-            file: rel,
-            line: source.slice(0, start).split('\n').length,
-            endLine: source.slice(0, end).split('\n').length,
-            // kolumny (od 0) początku i końca zdania: napis z tej samej linii poza zdaniem to osobny tekst
-            column: start - (source.lastIndexOf('\n', start - 1) + 1),
-            endColumn: end - (source.lastIndexOf('\n', end - 1) + 1),
-            kind: item.kind,
-            texts: item.texts,
-            slots: item.slots,
-          });
-        }
+        out.push(...dumpItems(fs.readFileSync(full, 'utf8'), full, rel));
       }
     }
   };

@@ -34,12 +34,8 @@ def literal(item):
     return out.strip()
 
 
-def dump():
-    """Lista {file, line, kind, texts, slots, literal} wszystkich okien albo None (bez Node)."""
-    global _cache
-    if _cache is not _UNSET:
-        return _cache
-    _cache = None  # porażka też zostaje zapamiętana: bez Node nie próbujemy przy każdym pliku
+def _run_loader(*args):
+    """Wynik `node i18n-jsx.cjs <args> <plik wyjścia>` z kluczami słownika albo None (bez Node)."""
     tgui = os.path.join(ROOT, "tgui")
     releases = os.path.join(tgui, ".yarn", "releases")
     node = os.path.join(ROOT, "tools", "bootstrap", "node.bat" if os.name == "nt" else "node")
@@ -51,7 +47,7 @@ def dump():
     fd, out = tempfile.mkstemp(suffix=".json")
     os.close(fd)
     try:
-        done = subprocess.run([node, os.path.join(".yarn", "releases", yarn), "node", "i18n-jsx.cjs", "dump", out],
+        done = subprocess.run([node, os.path.join(".yarn", "releases", yarn), "node", "i18n-jsx.cjs", *args, out],
                               cwd=tgui, capture_output=True, shell=os.name == "nt")
         if done.returncode != 0:
             return None
@@ -61,5 +57,20 @@ def dump():
         os.remove(out)
     for item in items:
         item["literal"] = literal(item)
-    _cache = items
     return items
+
+
+def dump():
+    """Lista {file, line, endLine, column, endColumn, kind, texts, slots, literal} wszystkich okien
+    albo None (bez Node). Kolumny w jednostkach UTF-16."""
+    global _cache
+    if _cache is not _UNSET:
+        return _cache
+    # porażka też zostaje zapamiętana: bez Node nie próbujemy przy każdym pliku
+    _cache = _run_loader("dump")
+    return _cache
+
+
+def dump_file(source_path, rel):
+    """Jak dump(), ale dla jednego pliku z dowolnego miejsca (testy); rel to ścieżka w polu file."""
+    return _run_loader("dump-file", os.path.abspath(source_path), rel)

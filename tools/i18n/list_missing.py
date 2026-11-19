@@ -94,11 +94,16 @@ CODE_AFTER = re.compile(r"^\s*(?:$|[,;:)\]}?|&+]|/?>|\w+=|\.\w|(?:as|satisfies)\
 def window_code_matches(line):
     """(napis, kolumna cudzysłowu) dla napisów w cudzysłowach z linii kodu okna (label: 'Stado',
     x || 'brak'), które tłumaczy w oknie tgui/i18nDom.ts. Tekst JSX bierzemy z drzewa składni,
-    więc cała linia jako tekst odpada."""
+    więc cała linia jako tekst odpada. Kolumna w jednostkach UTF-16 jak w zrzucie zdań okien
+    (i18n-jsx.cjs dumpItems): emoji przed napisem to dwie jednostki, nie jeden znak Pythona."""
     if line.strip().startswith(("//", "*", "/*")):
         return []
-    return [(m.group(2), m.start()) for m in ep.QUOTED_JS.finditer(line)
+    return [(m.group(2), utf16_len(line[:m.start()])) for m in ep.QUOTED_JS.finditer(line)
             if CODE_BEFORE.search(line[:m.start()]) and CODE_AFTER.match(line[m.end():])]
+
+
+def utf16_len(text):
+    return len(text.encode("utf-16-le")) // 2
 
 
 def window_code_strings(line):
@@ -115,12 +120,18 @@ def in_window_sentence(path, number, column):
     położenie, nie treść: label: 'żółty przycisk' obok takiego zdania w tej samej linii to osobny tekst."""
     global _sentences
     if _sentences is None:
-        _sentences = {}
-        for item in jsx_ast.dump() or []:
-            end_line = item.get("endLine", item["line"])
-            _sentences.setdefault(item["file"], []).append(
-                ((item["line"], item.get("column", 0)), (end_line, item.get("endColumn", 10 ** 9))))
+        _sentences = sentence_spans(jsx_ast.dump() or [])
     return any(start <= (number, column) < end for start, end in _sentences.get(path, ()))
+
+
+def sentence_spans(items):
+    """plik -> zakresy zdań ((linia, kolumna), (linia, kolumna)) ze zrzutu loadera (kolumny UTF-16)."""
+    spans = {}
+    for item in items:
+        end_line = item.get("endLine", item["line"])
+        spans.setdefault(item["file"], []).append(
+            ((item["line"], item.get("column", 0)), (end_line, item.get("endColumn", 10 ** 9))))
+    return spans
 
 
 def scan_literals(path, number, line, windows_from_ast):
