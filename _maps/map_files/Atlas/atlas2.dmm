@@ -13178,6 +13178,21 @@
 /obj/structure/extinguisher_cabinet/south,
 /turf/open/floor/durasteel/techfloor,
 /area/ai_monitored/turret_protected/aisat)
+"QH" = (
+/obj/effect/turf_decal/tile/ship/blue/nfz{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/ship/blue/nfz{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/ship/blue/nfz,
+/obj/machinery/airalarm/directional/east,
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/autoclave,
+/turf/open/floor/plasteel/white,
+/area/medical/medbay)
 "QI" = (
 /obj/structure/sign/directions/engineering,
 /obj/structure/sign/directions/security{
@@ -52662,7 +52677,7 @@ yP
 sG
 Wa
 CN
-Ox
+QH
 Hf
 pV
 cH

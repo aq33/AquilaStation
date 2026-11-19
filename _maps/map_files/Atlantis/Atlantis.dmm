@@ -8007,7 +8007,6 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/machinery/missile_design_table,
 /turf/open/floor/durasteel/techfloor_grid,
 /area/nsv/weapons/artillery)
 "gIo" = (
@@ -14569,12 +14568,12 @@
 	id = "atlas1";
 	name = "AP shells"
 	},
-/obj/item/ship_weapon/ammunition/naval_artillery/ap,
-/obj/item/ship_weapon/ammunition/naval_artillery/ap,
-/obj/item/ship_weapon/ammunition/naval_artillery/ap,
-/obj/item/ship_weapon/ammunition/naval_artillery/ap,
-/obj/item/ship_weapon/ammunition/naval_artillery/ap,
-/obj/item/ship_weapon/ammunition/naval_artillery/ap,
+/obj/item/ship_weapon/ammunition/naval_artillery/factory/ap,
+/obj/item/ship_weapon/ammunition/naval_artillery/factory/ap,
+/obj/item/ship_weapon/ammunition/naval_artillery/factory/ap,
+/obj/item/ship_weapon/ammunition/naval_artillery/factory/ap,
+/obj/item/ship_weapon/ammunition/naval_artillery/factory/ap,
+/obj/item/ship_weapon/ammunition/naval_artillery/factory/ap,
 /turf/open/floor/monotile/dark,
 /area/nsv/weapons)
 "mcB" = (
