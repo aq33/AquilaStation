@@ -72,7 +72,7 @@ const ReputationInfo = (props: { reputation: Reputation }) => {
   const { reputation } = props;
   return (
     <Box mb={1}>
-      Reputacja u stacji: <b>{reputation.level}</b> ({reputation.points} pkt
+      Reputacja u frakcji stacji: <b>{reputation.level}</b> ({reputation.points} pkt
       {reputation.next !== null && <> z {reputation.next} do następnego</>}
       ). Zniżka na towar: {reputation.discount}%.
       {reputation.special && (

@@ -28,7 +28,8 @@ GLOBAL_VAR_INIT(civilian_fake_iff_chance, 0)
 GLOBAL_VAR_INIT(civilian_fake_iff_chance, 15)
 #endif
 
-/// Reputacja okrętu gracza u frakcji cywilów (100 = neutralnie, poniżej 0 kupcy nie handlują)
+/// Reputacja okrętu gracza u frakcji (100 = neutralnie, poniżej 0 kupcy nie handlują, powyżej zniżki: trader_reputation.dm).
+/// Wpisy innych frakcji powstają przy pierwszej misji ich stacji.
 GLOBAL_LIST_INIT(civilian_standing, list("nanotrasen" = 100, "unaligned" = 100))
 
 /// Nazwy, pod którymi wróg z fałszywym IFF udaje cywila
@@ -189,57 +190,45 @@ GLOBAL_LIST_INIT(civilian_fake_iff_names, list("frachtowiec niezależny", "trans
 /proc/adjust_civilian_standing(faction_key, delta)
 	if(isnull(GLOB.civilian_standing[faction_key]))
 		return
-	GLOB.civilian_standing[faction_key] = clamp(GLOB.civilian_standing[faction_key] + delta, -100, 100)
+	GLOB.civilian_standing[faction_key] = clamp(GLOB.civilian_standing[faction_key] + delta, -100, 250)
 
 // ---- Reputacja u kupców ----
 
-/// Klucz reputacji dla frakcji kupca; null = kupiec, którego reputacja cywilna nie dotyczy
+/// Klucz reputacji dla frakcji kupca (te same nazwy co frakcje okrętów cywilnych)
 /datum/trader/proc/civilian_standing_key()
-	if(faction_type == FACTION_ID_NT)
-		return "nanotrasen"
-	if(faction_type == FACTION_ID_UNALIGNED)
-		return "unaligned"
+	switch(faction_type)
+		if(FACTION_ID_NT)
+			return "nanotrasen"
+		if(FACTION_ID_UNALIGNED)
+			return "unaligned"
+		if(FACTION_ID_SYNDICATE)
+			return "syndicate"
+		if(FACTION_ID_SOLGOV)
+			return "solgov"
+		if(FACTION_ID_UNATHI)
+			return "unathi"
+		if(FACTION_ID_PIRATES)
+			return "pirate"
 	return null
 
-/// Mnożnik cen: pełna reputacja 1, zero reputacji 1,5
+/// Narzut za złą reputację: neutralna i wyższa 1, zero reputacji 1,5 (zniżki za dobrą: trader_reputation.dm)
 /datum/trader/proc/civilian_price_mult()
 	var/key = civilian_standing_key()
-	if(!key)
+	if(!key || isnull(GLOB.civilian_standing[key]))
 		return 1
 	var/standing = GLOB.civilian_standing[key]
 	return standing >= 100 ? 1 : 1 + (100 - max(standing, 0)) / 200
 
 /datum/trader/proc/refuses_trade()
 	var/key = civilian_standing_key()
-	return key && GLOB.civilian_standing[key] < 0
+	return key && !isnull(GLOB.civilian_standing[key]) && GLOB.civilian_standing[key] < 0
 
-/datum/trader/ui_data(mob/user)
-	. = ..()
-	var/list/data = .
-	if(refuses_trade())
-		data["greeting"] = "Nie handlujemy z okrętem, który strzela do cywilów."
-	var/mult = civilian_price_mult()
-	if(mult == 1)
-		return
-	for(var/list/item_info as anything in data["items_info"])
-		var/datum/trader_item/item = locate(item_info["id"])
-		if(!istype(item))
-			continue
-		item_info["price"] = round(item.price * mult)
-		item_info["desc"] = "[item_info["price"]]$ - [item.desc]"
-
+// Cena z narzutem i zniżką liczy aq_price() (trader_reputation.dm)
 /datum/trader/attempt_purchase(datum/trader_item/item, mob/living/carbon/user)
 	if(refuses_trade())
 		to_chat(user, "<span class='warning'>[name] odmawia handlu: wasz okręt strzela do cywilów.</span>")
 		return FALSE
-	var/mult = civilian_price_mult()
-	if(mult == 1)
-		return ..()
-	var/base_price = item.price
-	item.price = round(base_price * mult)
-	. = ..()
-	if(!QDELETED(item))
-		item.price = base_price
+	return ..()
 
 // ---- Ruch cywilny w układach ----
 
