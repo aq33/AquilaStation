@@ -111,6 +111,9 @@
 	sky.recheck_sky()
 	TEST_ASSERT(!sky.recheck_timer, "The sky recheck loop kept running without a client")
 	TEST_ASSERT(!sky.current_mob, "The sky layer kept a reference to the mob without a client")
+	// Paralaksa włączona z powrotem (create_parallax woła force_recheck): pętla odświeżania rusza bez ruchu gracza
+	sky.force_recheck(passenger)
+	TEST_ASSERT(sky.recheck_timer, "The sky recheck loop didn't resume when the layer came back")
 
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL

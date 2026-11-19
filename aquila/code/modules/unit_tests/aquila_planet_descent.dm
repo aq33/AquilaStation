@@ -56,6 +56,13 @@
 	return ..()
 
 /datum/unit_test/planet_descent_landing/Run()
+	// Parking w locie: pełny zapas dla zwykłego promu, mniejszy dla bardzo dużego, a za duży prom w ogóle nie rezerwuje
+	// (każda próba dodawałaby nowy poziom rezerwacji)
+	var/usable = min(world.maxx, world.maxy) - 2 * SHUTTLE_TRANSIT_BORDER + 1
+	TEST_ASSERT(shuttle_parking_margin(9, 9) >= 10, "A Sabre-sized shuttle doesn't get the full empty parking margin")
+	var/big_margin = shuttle_parking_margin(usable - 6, 9)
+	TEST_ASSERT(big_margin >= 1 && usable - 6 + 2 * big_margin <= usable, "A very big shuttle's parking doesn't fit on a reserved level")
+	TEST_ASSERT_EQUAL(shuttle_parking_margin(usable, 9), -1, "A shuttle bigger than a reserved level still asks for a parking reservation")
 	var/obj/structure/overmap/host = SSstar_system.find_main_overmap()
 	TEST_ASSERT(host?.current_system?.occupying_z, "No main ship in a loaded star system")
 	var/datum/turf_reservation/hangar = SSmapping.RequestBlockReservation(30, 30)
@@ -167,17 +174,22 @@
 	TEST_ASSERT(sabre.planet_landing_spot_free(planet, fourth_port), "The landing spot stays blocked after the person left")
 	// Blokada lądowiska trzyma przez całe dokowanie: toShuttleMove() (preflight_check, pole po polu) jej nie usuwa,
 	// a nikt nie wejdzie na zablokowane pole w czasie CHECK_TICK przed przeniesieniem kadłuba
-	var/turf/probe = fourth_footprint[1]
+	// Pole obrysu na krawędzi, obok którego da się stanąć (powierzchnia jest losowa, więc szukamy po całym obrysie)
+	var/turf/probe
+	var/turf/beside
+	for(var/turf/edge as anything in fourth_footprint)
+		for(var/dir in GLOB.cardinals)
+			var/turf/T = get_step(edge, dir)
+			if(T && !(T in fourth_footprint) && sabre.shuttle_landing_turf_free(planet, T))
+				probe = edge
+				beside = T
+				break
+		if(beside)
+			break
+	TEST_ASSERT(beside, "No free tile next to the landing spot")
 	var/obj/effect/planet_landing_blocker/blocker = new(probe)
 	probe.toShuttleMove(shuttle_hull_turfs(shuttle_port)[1], MOVE_TURF, shuttle_port)
 	TEST_ASSERT(!QDELETED(blocker), "The docking deleted a landing blocker before the hull arrived")
-	var/turf/beside
-	for(var/dir in GLOB.cardinals)
-		var/turf/T = get_step(probe, dir)
-		if(T && !T.density && !(T in fourth_footprint))
-			beside = T
-			break
-	TEST_ASSERT(beside, "No free tile next to the landing spot")
 	var/mob/living/carbon/human/walker = allocate(/mob/living/carbon/human, beside)
 	walker.Move(probe, get_dir(beside, probe))
 	TEST_ASSERT(get_turf(walker) != probe, "Someone walked onto a blocked landing tile during docking")

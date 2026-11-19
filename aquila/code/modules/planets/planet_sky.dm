@@ -118,7 +118,8 @@
 
 /atom/movable/screen/parallax_layer/planet_sky/update_status(mob/M)
 	. = ..()
-	if(!recheck_timer && M?.client)
+	// Bez klienta pętla sama się zatrzyma przy pierwszym sprawdzeniu (recheck_sky)
+	if(!recheck_timer && M)
 		recheck_timer = addtimer(CALLBACK(src, PROC_REF(recheck_sky)), PLANET_SKY_RECHECK_DELAY, TIMER_STOPPABLE | TIMER_LOOP)
 	var/datum/planet_type/wanted = find_sky_planet_type(M)
 	if(wanted != shown_type)
@@ -219,6 +220,9 @@
 		C.parallax_layers_cached += sky
 	C.parallax_layers |= sky
 	C.screen |= sky
+	// Warstwa z cache'u po ponownym włączeniu paralaksy: timer mógł się zatrzymać, a nieruchome oko nie wywoła
+	// update_status(); świeże sprawdzenie od razu pokazuje planetę i wznawia pętlę
+	sky.force_recheck(screenmob)
 
 #undef PLANET_SKY_TEXTURE_WIDTH
 #undef PLANET_SKY_DISK_SIZE

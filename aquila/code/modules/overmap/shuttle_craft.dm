@@ -163,6 +163,16 @@
 	spot.name = spot_name
 	return spot
 
+/// Pusty kosmos wokół wnętrza w locie dla promu o tych wymiarach: SHUTTLE_CRAFT_PARKING_MARGIN, a dla promu, który
+/// z nim nie zmieści się na poziomie rezerwacji, mniej (co najmniej 1 pole, jak przed powiększeniem). -1: prom jest
+/// większy niż użyteczna część poziomu rezerwacji
+/proc/shuttle_parking_margin(width, height)
+	var/usable = min(world.maxx, world.maxy) - 2 * SHUTTLE_TRANSIT_BORDER + 1
+	var/biggest = max(width, height)
+	if(biggest + 2 > usable)
+		return -1
+	return min(SHUTTLE_CRAFT_PARKING_MARGIN, round((usable - biggest) / 2))
+
 /// Prywatny port w rezerwacji, na którym wnętrze czeka w locie
 /obj/structure/overmap/small_craft/transport/proc/shuttle_make_parking()
 	if(shuttle_parking)
@@ -170,12 +180,17 @@
 	var/list/box = shuttle_port.return_coords(0, 0, shuttle_port.dir)
 	var/min_x = min(box[1], box[3])
 	var/min_y = min(box[2], box[4])
-	shuttle_parking_reservation = SSmapping.RequestBlockReservation(abs(box[3] - box[1]) + 1 + 2 * SHUTTLE_CRAFT_PARKING_MARGIN, abs(box[4] - box[2]) + 1 + 2 * SHUTTLE_CRAFT_PARKING_MARGIN)
+	var/width = abs(box[3] - box[1]) + 1
+	var/height = abs(box[4] - box[2]) + 1
+	var/margin = shuttle_parking_margin(width, height)
+	if(margin < 0) // nie zmieści się na żadnym poziomie rezerwacji: RequestBlockReservation dodawałby nowy przy każdej próbie
+		return
+	shuttle_parking_reservation = SSmapping.RequestBlockReservation(width + 2 * margin, height + 2 * margin)
 	if(!shuttle_parking_reservation)
 		return
 	shuttle_parking_reservation.overmap_fallback = src
 	var/list/bl = shuttle_parking_reservation.bottom_left_coords
-	shuttle_parking = shuttle_new_spot(locate(bl[1] + SHUTTLE_CRAFT_PARKING_MARGIN - min_x, bl[2] + SHUTTLE_CRAFT_PARKING_MARGIN - min_y, bl[3]), "parking [name]")
+	shuttle_parking = shuttle_new_spot(locate(bl[1] + margin - min_x, bl[2] + margin - min_y, bl[3]), "parking [name]")
 	return shuttle_parking
 
 /// Czy można teraz wystartować (paliwo, silniki); komunikat dla gracza przy odmowie
