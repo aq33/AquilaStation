@@ -27527,7 +27527,6 @@
 "<span class='boldwarning'>To pomieszczenie wygląda okropnie!</span>\\n": "<span class='boldwarning'>This room looks terrible!</span>\\n",
 "<span class='warning'>To pomieszczenie wygląda naprawdę źle.</span>\\n": "<span class='warning'>This room looks really bad.</span>\\n",
 "Niechęć do Dotyku": "Bad Touch",
-"Nie lubisz przytulania. Wolisz, żeby ludzie dali ci święty spokój.": "You don't like hugs. You'd really prefer if people just left you alone.",
 "<span class='danger'>Chcesz tylko, żeby ludzie zostawili cię w spokoju.</span>": "<span class='danger'>You just want people to leave you alone.</span>",
 "<span class='notice'>Przydałby ci się porządny przytulas.</span>": "<span class='notice'>You could use a big hug.</span>",
 "Pacjent nie znosi dotyku. Możliwa niezdiagnozowana hafefobia.": "Patient has disdain for being touched. Potentially has undiagnosed haphephobia.",
@@ -27871,10 +27870,6 @@
 "<span class='warning'>Z zakrytą twarzą nie poczujesz zapachu zawartości.</span>": "<span class='warning'>You can't get a whiff of the contents with your face covered.</span>",
 "<span class='notice'>Wąchasz zawartość. Czujesz zapach: [reagents.generate_taste_message(10)].</span>": "<span class='notice'>You catch a whiff of the contents. It smells like [reagents.generate_taste_message(10)].</span>",
 "Przestrzeń Osobista": "Personal Space Bubble",
-"Zręcznie unikasz niechcianego kontaktu fizycznego: odruchowo wymykasz się z przytuleń, głaskania i uścisków dłoni.": "You are adept at avoiding unwanted physical contact and dodge it with ease. You will reflexively dodge any attempt to hug, pat you or shake your hand.",
-"<span class='notice'>Wolisz, żeby inni trzymali ręce przy sobie.</span>": "<span class='notice'>You'd rather people keep their hands to themselves.</span>",
-"<span class='notice'>Dotyk innych już ci nie przeszkadza.</span>": "<span class='notice'>Other people's touch no longer bothers you.</span>",
-"Pacjent odruchowo unika dotyku podczas badania.": "Patient reflexively avoids being touched during examination.",
 "<span class='notice'>[src] zręcznie unika dotyku [M].</span>": "<span class='notice'>[src] deftly dodges [M]'s touch.</span>",
 "<span class='notice'>Zręcznie unikasz dotyku [M].</span>": "<span class='notice'>You deftly dodge [M]'s touch.</span>",
 "Chrapanie": "Snoring",
@@ -29299,5 +29294,6 @@
 "Cztery ręce": "Four hands",
 "Masz drugą parę rąk na odnóżach: trzymają i używają przedmiotów jak zwykłe dłonie, a w HUD-zie mają własne sloty nad rękami.": "You have a second pair of hands on your legs: they hold and use items like normal hands and have their own slots above your hands on the HUD.",
 "lewe odnóża": "left legs",
-"prawe odnóża": "right legs"
+"prawe odnóża": "right legs",
+"Nie lubisz przytulania i odruchowo wymykasz się z przytuleń, głaskania i uścisków dłoni. Gdy ktoś cię złapie albo dotknie, kiedy leżysz lub jesteś skrępowany, psuje ci to humor.": "You don't like hugs and reflexively dodge hugs, pats and handshakes. Being grabbed, or touched while you're down or restrained, ruins your mood."
 }

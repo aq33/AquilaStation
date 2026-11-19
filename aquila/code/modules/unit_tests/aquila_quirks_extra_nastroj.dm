@@ -205,14 +205,22 @@
 	snob_quirk.on_process(1)
 	TEST_ASSERT(istype(mood_event(snob, "area_beauty"), /datum/mood_event/horridroom), "A pile of trash did not bother the snob")
 
-	// Niechęć do dotyku: przytulas drażni zamiast cieszyć
+	// Niechęć do dotyku: stojąc unika przytulenia, a gdy nie może (leży), przytulas drażni zamiast cieszyć
 	var/mob/living/carbon/human/untouchable = make_human()
 	give_quirk(untouchable, /datum/quirk/bad_touch)
 	var/mob/living/carbon/human/hugger = make_human()
 	hugger.zone_selected = BODY_ZONE_CHEST
 	untouchable.help_shake_act(hugger)
-	TEST_ASSERT(mood_event(untouchable, "bad_touch"), "A hug did not upset someone who hates touch")
+	TEST_ASSERT(!mood_event(untouchable, "hug"), "Someone who hates touch did not dodge a hug")
+	TEST_ASSERT(!mood_event(untouchable, "bad_touch"), "A dodged hug still upset someone who hates touch")
+	untouchable.Paralyze(10 SECONDS)
+	untouchable.help_shake_act(hugger)
+	TEST_ASSERT(mood_event(untouchable, "bad_touch"), "A touch that could not be dodged did not upset someone who hates touch")
 	TEST_ASSERT(!mood_event(untouchable, "hug"), "Someone who hates touch enjoyed a hug")
+	untouchable.SetParalyzed(0)
+	untouchable.remove_quirk(/datum/quirk/bad_touch)
+	untouchable.help_shake_act(hugger)
+	TEST_ASSERT(mood_event(untouchable, "hug"), "A hug without the touch aversion did not land")
 
 	// Nerwowy: atak paniki
 	var/mob/living/carbon/human/nervous = make_human()

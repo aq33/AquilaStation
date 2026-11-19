@@ -12,7 +12,7 @@
 	var/static/list/quirk_types = list(
 		/datum/quirk/bald, /datum/quirk/shifty_eyes, /datum/quirk/clumsy, /datum/quirk/illiterate, /datum/quirk/photophobia,
 		/datum/quirk/softspoken, /datum/quirk/throwingarm, /datum/quirk/anosmia, /datum/quirk/scarred_eye,
-		/datum/quirk/touchy, /datum/quirk/fluoride_stare, /datum/quirk/keen_nose, /datum/quirk/personal_space, /datum/quirk/snoring,
+		/datum/quirk/touchy, /datum/quirk/fluoride_stare, /datum/quirk/keen_nose, /datum/quirk/snoring,
 		/datum/quirk/life_savings, /datum/quirk/dirty, /datum/quirk/pet_owner, /datum/quirk/colorist,
 	)
 	// Każda cecha jest w oknie postaci, dodaje się z efektami startowymi i zdejmuje
@@ -43,7 +43,7 @@
 	TEST_ASSERT_EQUAL(bald.hair_style, "Business Hair", "Losing Smooth-Headed did not bring the hair back")
 	TEST_ASSERT(!mood.mood_events["bad_hair_day"], "Losing Smooth-Headed left the hair moodlet")
 
-	// Traity: Rozbiegane Oczy, Niezdara, Analfabeta, Cichy Głos, Dotykalski, Czuły Nos, Przestrzeń Osobista
+	// Traity: Rozbiegane Oczy, Niezdara, Analfabeta, Cichy Głos, Dotykalski, Czuły Nos
 	var/mob/living/carbon/human/traits = allocate(/mob/living/carbon/human, floor)
 	TEST_ASSERT(traits.is_literate(), "The test human cannot read before the quirk")
 	traits.add_quirk(/datum/quirk/shifty_eyes)
@@ -128,18 +128,6 @@
 	TEST_ASSERT_EQUAL(stare.last_wet, world.time, "Saline did not wet the eyes")
 	starer.remove_quirk(/datum/quirk/fluoride_stare)
 	TEST_ASSERT(!HAS_TRAIT(starer, TRAIT_NO_EYELIDS), "Losing Fluoride Stare did not bring the eyelids back")
-
-	// Przestrzeń Osobista: przytulenie nie dochodzi do skutku
-	var/mob/living/carbon/human/loner = allocate(/mob/living/carbon/human, floor)
-	var/mob/living/carbon/human/hugger = allocate(/mob/living/carbon/human, floor)
-	loner.add_quirk(/datum/quirk/personal_space)
-	hugger.zone_selected = BODY_ZONE_CHEST
-	var/datum/component/mood/loner_mood = loner.GetComponent(/datum/component/mood)
-	loner.help_shake_act(hugger)
-	TEST_ASSERT(!loner_mood.mood_events["hug"], "Personal Space did not dodge a hug")
-	loner.remove_quirk(/datum/quirk/personal_space)
-	loner.help_shake_act(hugger)
-	TEST_ASSERT(loner_mood.mood_events["hug"], "A hug without Personal Space did not land")
 
 	// Chrapanie: śpiący chrapie
 	var/mob/living/carbon/human/sleeper = allocate(/mob/living/carbon/human, floor)

@@ -1,9 +1,9 @@
 // AQUILA - cechy (quirki) z innych kodów, grupa „zmysły”
 // Łysina, Rozbiegane Oczy, Niezdara, Analfabeta, Światłowstręt, Cichy Głos, Mocny Rzut, Anosmia,
-// Okaleczone Oko, Dotykalski, Bez Powiek, Czuły Nos, Przestrzeń Osobista, Chrapanie, Oszczędności Życia, Brudas,
+// Okaleczone Oko, Dotykalski, Bez Powiek, Czuły Nos, Chrapanie, Oszczędności Życia, Brudas,
 // Właściciel Zwierzaka, Kolorysta.
 // Źródła: tgstation (code/datums/quirks/), Skyrat/Bubber (life_savings, dirty, pet_owner), Monkestation (colorist),
-// VOREStation (personal_space), Space Station 14 (Snoring).
+// Space Station 14 (Snoring).
 
 #define TRAIT_SHIFTY_EYES "shifty_eyes"
 #define TRAIT_THROWINGARM "throwing_arm"
@@ -11,7 +11,6 @@
 #define TRAIT_KEEN_NOSE "keen_nose"
 #define TRAIT_NO_EYELIDS "no_eyelids"
 #define TRAIT_TOUCHY "touchy"
-#define TRAIT_PERSONAL_SPACE "personal_space"
 #define TRAIT_AQ_DIRTY "aq_dirty"
 
 /// Źródło krótkowzroczności od okaleczonego oka (inne niż ROUNDSTART_TRAIT cechy Krótkowzroczny)
@@ -465,27 +464,6 @@
 	if(sniffer.is_mouth_covered())
 		return "<span class='warning'>Z zakrytą twarzą nie poczujesz zapachu zawartości.</span>"
 	return "<span class='notice'>Wąchasz zawartość. Czujesz zapach: [reagents.generate_taste_message(10)].</span>"
-
-// ---------------------------------------------------------------------------
-// Przestrzeń Osobista (VOREStation: Personal Space Bubble): unik przed przytuleniem, głaskaniem i uściskiem dłoni
-// ---------------------------------------------------------------------------
-
-/datum/quirk/personal_space
-	name = "Przestrzeń Osobista"
-	desc = "Zręcznie unikasz niechcianego kontaktu fizycznego: odruchowo wymykasz się z przytuleń, głaskania i uścisków dłoni."
-	icon = "people-arrows"
-	value = 0
-	mob_trait = TRAIT_PERSONAL_SPACE
-	gain_text = "<span class='notice'>Wolisz, żeby inni trzymali ręce przy sobie.</span>"
-	lose_text = "<span class='notice'>Dotyk innych już ci nie przeszkadza.</span>"
-	medical_record_text = "Pacjent odruchowo unika dotyku podczas badania."
-
-/mob/living/carbon/human/help_shake_act(mob/living/carbon/M)
-	if(M != src && HAS_TRAIT(src, TRAIT_PERSONAL_SPACE) && stat == CONSCIOUS && (mobility_flags & MOBILITY_STAND) && !restrained() && !on_fire)
-		visible_message("<span class='notice'>[src] zręcznie unika dotyku [M].</span>", \
-			"<span class='notice'>Zręcznie unikasz dotyku [M].</span>")
-		return
-	return ..()
 
 // ---------------------------------------------------------------------------
 // Chrapanie (SS14/Einstein Engines: Snoring): emotka chrapania we śnie

@@ -153,7 +153,7 @@
 
 /datum/quirk/bad_touch
 	name = "Niechęć do Dotyku"
-	desc = "Nie lubisz przytulania. Wolisz, żeby ludzie dali ci święty spokój."
+	desc = "Nie lubisz przytulania i odruchowo wymykasz się z przytuleń, głaskania i uścisków dłoni. Gdy ktoś cię złapie albo dotknie, kiedy leżysz lub jesteś skrępowany, psuje ci to humor."
 	icon = "hand-paper"
 	value = -1
 	mob_trait = TRAIT_BADTOUCH
@@ -186,6 +186,15 @@
 	SEND_SIGNAL(src, COMSIG_CLEAR_MOOD_EVENT, "friendly_hug")
 	SEND_SIGNAL(src, COMSIG_CLEAR_MOOD_EVENT, "headpat")
 	aq_uncomfortable_touch()
+
+/// Unik przed przytuleniem, głaskaniem i uściskiem dłoni (dawniej osobna cecha Przestrzeń Osobista z VOREStation).
+/// Nie da się uniknąć, gdy leżysz, jesteś skrępowany albo płoniesz: wtedy dotyk dochodzi do skutku i psuje humor.
+/mob/living/carbon/human/help_shake_act(mob/living/carbon/M)
+	if(M != src && HAS_TRAIT(src, TRAIT_BADTOUCH) && stat == CONSCIOUS && (mobility_flags & MOBILITY_STAND) && !restrained() && !on_fire)
+		visible_message("<span class='notice'>[src] zręcznie unika dotyku [M].</span>", \
+			"<span class='notice'>Zręcznie unikasz dotyku [M].</span>")
+		return
+	return ..()
 
 /mob/living/start_pulling(atom/movable/AM, state, force = pull_force, supress_message = FALSE)
 	. = ..()
