@@ -44,6 +44,8 @@ STATIC_NODES: dict[str, str] = {
     'sequence': '/datum/bt_node/composite/sequence',
     'parallel': '/datum/bt_node/composite/parallel',
     'subplan':  '/datum/bt_node/composite/subplan',
+    # AQUILA: selektor reaktywny (co tik od pierwszego dziecka), aquila/code/modules/mob/living/basic/bots/bot_ai.dm
+    'reactive_selector': '/datum/bt_node/composite/selector/reactive',
 }
 
 # Source JSON structural keys that are consumed/transformed during compilation. please keep these updated if u add new stuff :D

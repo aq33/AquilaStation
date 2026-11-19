@@ -128,6 +128,12 @@
 	async_finished = TRUE
 	async_running = FALSE
 
+/// AQUILA: zeruje stan asynchroniczny bez kończenia liścia, żeby kolejny perform() mógł zacząć nową pracę (bot_perform_work)
+/datum/bt_node/ai_behavior/proc/clear_async()
+	async_running = FALSE
+	async_finished = FALSE
+	async_result_flags = NONE
+
 /datum/bt_node/ai_behavior/proc/modify_cooldown(new_next_perform_time)
 	next_perform_time = new_next_perform_time
 

@@ -2801,6 +2801,12 @@
 #include "code\datums\ai\behavior_tree\bt_generic.dm"
 #include "code\datums\ai\behavior_tree\bt_viewer.dm"
 #include "code\datums\ai\behavior_tree\_compiled_trees.dm"
+#include "code\__DEFINES\basic_bots.dm"
+#include "code\modules\mob\living\basic\bots\_bots.dm"
+#include "code\modules\mob\living\basic\bots\bot_ai.dm"
+#include "code\modules\mob\living\basic\bots\bot_hud.dm"
+#include "code\modules\mob\living\basic\bots\bot_control.dm"
+#include "code\modules\mob\living\basic\bots\cleanbot.dm"
 // BOTY: koniec
 
 // Profiler byond-tracy: MUSI być ostatnim include'em całego builda (BYOND inicjuje zmienne statyczne od końca,
