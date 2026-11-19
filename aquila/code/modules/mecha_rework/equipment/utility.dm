@@ -204,7 +204,7 @@
 	clear()
 	return ..()
 
-/// Moduł, który wiezie człowieka w mechu (pasażer, cela, nosze). Człowiek siedzi w zawartości mecha.
+/// Moduł, który wiezie człowieka w mechu (cela, nosze). Człowiek siedzi w zawartości mecha.
 /obj/item/mecha_parts/mecha_equipment/aq_utility/carrier
 	var/max_carried = 1
 	var/list/mob/living/carried = list()
@@ -280,26 +280,10 @@
 				to_chat(L, "<span class='warning'>Lądujesz w: [C.name] ([src]).</span>")
 			return
 		return ..()
-	// Pasażer wsiada sam, gdy pilot już siedzi
-	if(occupant && (!aq_has_copilot_seat() || aq_copilot))
-		var/obj/item/mecha_parts/mecha_equipment/aq_utility/carrier/passenger_compartment/P = locate() in equipment
-		if(P?.can_carry(M))
-			visible_message("[user] wchodzi do przedziału pasażerskiego [src].")
-			if(do_after(user, P.load_time, target = src) && P.chassis == src)
-				P.load(user)
-			return
 	return ..()
 
 /obj/item/mecha_parts/mecha_equipment/aq_utility/carrier/proc/accepts_from_outside(mob/living/M)
 	return FALSE
-
-/obj/item/mecha_parts/mecha_equipment/aq_utility/carrier/passenger_compartment
-	name = "przedział pasażerski egzoszkieletu"
-	desc = "Fotel z pasami za kabiną (Aurora i inne): przewozi pasażera wewnątrz mecha. Pasażer wsiada przeciągając się na mecha, a wysiada ruchem. Z portami strzeleckimi może strzelać z wnętrza."
-	icon_state = "aq_passenger"
-
-/obj/item/mecha_parts/mecha_equipment/aq_utility/carrier/passenger_compartment/accepts_from_outside(mob/living/M)
-	return M.stat != CONSCIOUS
 
 /obj/item/mecha_parts/mecha_equipment/aq_utility/carrier/stretcher
 	name = "montowane nosze egzoszkieletu"
@@ -349,11 +333,6 @@
 		C.unload(user)
 		return
 	return ..()
-
-/obj/item/mecha_parts/mecha_equipment/aq_utility/gunner
-	name = "moduł strzelca"
-	desc = "Moduł z podów (Goonstation): wieżyczka pod wybraną bronią, z której drugi załogant albo pasażer strzela w dowolną stronę."
-	icon_state = "aq_gunner"
 
 /obj/item/mecha_parts/mecha_equipment/aq_utility/weapons_loader
 	name = "ładowarka uzbrojenia"
@@ -454,13 +433,6 @@
 	else
 		user.client.view_size.resetToDefault()
 	chassis.occupant_message("Przybliżenie: [chassis.zoom_mode ? "włączone" : "wyłączone"].")
-
-/obj/item/mecha_parts/mecha_equipment/aq_utility/zoom/artillery
-	name = "moduł artyleryjski egzoszkieletu"
-	desc = "Daleki widok i namierzanie (CM-SS13) dla broni dalekiego zasięgu: dużo większe przybliżenie niż zwykła optyka. Dla strzelca Savannah i rakiet kierowanych."
-	icon_state = "aq_artillery"
-	zoom_range = 8
-	mech_flags = EXOSUIT_MODULE_COMBAT
 
 /obj/item/mecha_parts/mecha_equipment/aq_utility/camera
 	name = "kamera egzoszkieletu"

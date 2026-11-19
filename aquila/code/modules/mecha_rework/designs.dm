@@ -552,15 +552,6 @@
 	construction_time = 150
 	category = list("Exosuit Equipment")
 
-/datum/design/aq_mech_artillery
-	name = "Wyposażenie egzoszkieletu (Moduł artyleryjski egzoszkieletu)"
-	id = "aq_mech_artillery"
-	build_type = MECHFAB
-	build_path = /obj/item/mecha_parts/mecha_equipment/aq_utility/zoom/artillery
-	materials = list(/datum/material/iron = 8000, /datum/material/glass = 15000, /datum/material/gold = 3000)
-	construction_time = 150
-	category = list("Exosuit Equipment")
-
 /datum/design/aq_mech_radar
 	name = "Wyposażenie egzoszkieletu (Antena radarowa U-56)"
 	id = "aq_mech_radar"
@@ -585,24 +576,6 @@
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/aq_armor/shocker
 	materials = list(/datum/material/iron = 10000, /datum/material/gold = 5000)
-	construction_time = 150
-	category = list("Exosuit Equipment")
-
-/datum/design/aq_mech_passenger
-	name = "Wyposażenie egzoszkieletu (Przedział pasażerski egzoszkieletu)"
-	id = "aq_mech_passenger"
-	build_type = MECHFAB
-	build_path = /obj/item/mecha_parts/mecha_equipment/aq_utility/carrier/passenger_compartment
-	materials = list(/datum/material/iron = 20000, /datum/material/glass = 5000)
-	construction_time = 150
-	category = list("Exosuit Equipment")
-
-/datum/design/aq_mech_gunner
-	name = "Wyposażenie egzoszkieletu (Moduł strzelca)"
-	id = "aq_mech_gunner"
-	build_type = MECHFAB
-	build_path = /obj/item/mecha_parts/mecha_equipment/aq_utility/gunner
-	materials = list(/datum/material/iron = 15000, /datum/material/glass = 5000)
 	construction_time = 150
 	category = list("Exosuit Equipment")
 
@@ -685,15 +658,6 @@
 	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/aq_fpw
 	materials = list(/datum/material/iron = 15000)
 	construction_time = 150
-	category = list("Exosuit Equipment")
-
-/datum/design/aq_mech_incendiary
-	name = "Wyposażenie egzoszkieletu (Działo zapalające egzoszkieletu)"
-	id = "aq_mech_incendiary"
-	build_type = MECHFAB
-	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/aq_incendiary_cannon
-	materials = list(/datum/material/iron = 20000, /datum/material/plasma = 8000)
-	construction_time = 200
 	category = list("Exosuit Equipment")
 
 /datum/design/aq_mech_flamethrower
@@ -846,15 +810,6 @@
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/energy/aq_xray
 	materials = list(/datum/material/iron = 20000, /datum/material/glass = 10000, /datum/material/uranium = 10000, /datum/material/diamond = 2000)
-	construction_time = 250
-	category = list("Exosuit Equipment")
-
-/datum/design/aq_mech_immolation
-	name = "Wyposażenie egzoszkieletu (Działo wiązki podpalającej ZFI)"
-	id = "aq_mech_immolation"
-	build_type = MECHFAB
-	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/energy/aq_immolation
-	materials = list(/datum/material/iron = 20000, /datum/material/glass = 10000, /datum/material/plasma = 10000)
 	construction_time = 250
 	category = list("Exosuit Equipment")
 
@@ -1083,7 +1038,7 @@
 	prereq_ids = list("adv_mecha")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 3500)
 	export_price = 3500
-	design_ids = list("aq_mech_rpd", "aq_mech_ore_summoner", "aq_mech_jumpjet", "aq_mech_airshield", "aq_mech_autolathe", "aq_mech_fobricator", "aq_mech_tractor", "aq_mech_artillery", "aq_mech_radar", "aq_mech_ablative", "aq_mech_shocker", "aq_mech_passenger", "aq_mech_gunner", "aq_mech_weapons_loader", "aq_mech_remote", "aq_mech_drop_system", "aq_mech_drop_beacon", "aq_mech_plating_reinforced", "aq_mech_plating_composite", "aq_mech_umg2", "aq_mech_executor", "aq_mech_fpw", "aq_mech_incendiary", "aq_mech_flamethrower", "aq_mech_gamma", "aq_mech_entry_device", "aq_mech_breaching", "aq_mech_dropwall", "aq_mech_forge_cannon", "aq_mech_clip_ripley_kit", "aq_mech_paladin_kit", "aq_mech_basenji_kit", "aq_mech_mp_kit", "aq_mech_ammo_breaching", "aq_mech_ammo_umg2", "aq_mech_ammo_executor", "aq_mech_ammo_fpw", "aq_mecha_remote_pod")
+	design_ids = list("aq_mech_rpd", "aq_mech_ore_summoner", "aq_mech_jumpjet", "aq_mech_airshield", "aq_mech_autolathe", "aq_mech_fobricator", "aq_mech_tractor", "aq_mech_radar", "aq_mech_ablative", "aq_mech_shocker", "aq_mech_weapons_loader", "aq_mech_remote", "aq_mech_drop_system", "aq_mech_drop_beacon", "aq_mech_plating_reinforced", "aq_mech_plating_composite", "aq_mech_umg2", "aq_mech_executor", "aq_mech_fpw", "aq_mech_flamethrower", "aq_mech_gamma", "aq_mech_entry_device", "aq_mech_breaching", "aq_mech_dropwall", "aq_mech_forge_cannon", "aq_mech_clip_ripley_kit", "aq_mech_paladin_kit", "aq_mech_basenji_kit", "aq_mech_mp_kit", "aq_mech_ammo_breaching", "aq_mech_ammo_umg2", "aq_mech_ammo_executor", "aq_mech_ammo_fpw", "aq_mecha_remote_pod")
 
 /datum/techweb_node/aq_mech_melee
 	id = "aq_mech_melee"
@@ -1099,11 +1054,11 @@
 	id = "aq_mech_advanced"
 	tech_tier = 4
 	display_name = "Eksperymentalne systemy mechów"
-	description = "Laser rentgenowski, wiązka podpalająca, ładunek stazy i dron-tarcza."
+	description = "Laser rentgenowski, ładunek stazy i dron-tarcza."
 	prereq_ids = list("aq_mech_adv", "adv_beam_weapons")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 5000)
 	export_price = 5000
-	design_ids = list("aq_mech_xray", "aq_mech_immolation", "aq_mech_stasis", "aq_mech_shield_droid")
+	design_ids = list("aq_mech_xray", "aq_mech_stasis", "aq_mech_shield_droid")
 
 /datum/techweb_node/aq_mech_savannah
 	id = "aq_mech_savannah"

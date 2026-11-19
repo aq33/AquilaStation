@@ -1,6 +1,6 @@
 // AQUILA - katalog mechów: pozycje wyposażenia z planu i nowe podwozia (używane przez testy i komorę testową)
 
-/// AQUILA - mechy: 61 pozycji wyposażenia z planu (nazwa z planu => typ)
+/// AQUILA - mechy: 56 pozycji wyposażenia z planu (nazwa z planu => typ)
 GLOBAL_LIST_INIT(aq_mecha_plan_equipment, list(
 	"ATMOS module" = /obj/item/mecha_parts/mecha_equipment/aq_tool/atmos,
 	"Exosuit light amplification module" = /obj/item/mecha_parts/mecha_equipment/aq_utility/light_amp,
@@ -25,7 +25,6 @@ GLOBAL_LIST_INIT(aq_mecha_plan_equipment, list(
 	"K0-B3 (venom)" = /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/aq_venom,
 	"UMG-2 MG" = /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/aq_umg2,
 	"Rescue jaw" = /obj/item/mecha_parts/mecha_equipment/aq_tool/rescue_jaw,
-	"Incendiary cannon" = /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/aq_incendiary_cannon,
 	"Inflatables" = /obj/item/mecha_parts/mecha_equipment/aq_tool/inflatables,
 	"PCMK-6 Bola launcher" = /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/aq_bola,
 	"Mounted flamethrower" = /obj/item/mecha_parts/mecha_equipment/weapon/aq_flamethrower,
@@ -39,23 +38,19 @@ GLOBAL_LIST_INIT(aq_mecha_plan_equipment, list(
 	"Jumpjet" = /obj/item/mecha_parts/mecha_equipment/aq_utility/jumpjet,
 	"GD6" = /obj/item/mecha_parts/mecha_equipment/aq_melee/shortsword,
 	"Magnetic treads" = /obj/item/mecha_parts/mecha_equipment/aq_utility/magtreads,
-	"Artillery Module" = /obj/item/mecha_parts/mecha_equipment/aq_utility/zoom/artillery,
 	"Exosuit crusher" = /obj/item/mecha_parts/mecha_equipment/aq_melee/crusher,
 	"Stasis Charger" = /obj/item/mecha_parts/mecha_equipment/weapon/energy/aq_stasis,
 	"Mounted RPD" = /obj/item/mecha_parts/mecha_equipment/aq_tool/rpd,
-	"ZFI Immolation Beam Gun" = /obj/item/mecha_parts/mecha_equipment/weapon/energy/aq_immolation,
 	"Towing hook" = /obj/item/mecha_parts/mecha_equipment/aq_towing_hook,
 	"Exosuit ballistic shield" = /obj/item/mecha_parts/mecha_equipment/aq_ballistic_shield,
 	"Mounted health analyzer" = /obj/item/mecha_parts/mecha_equipment/aq_health_analyzer,
 	"Engineering toolset" = /obj/item/mecha_parts/mecha_equipment/aq_tool/toolset,
 	"Exosuit flash" = /obj/item/mecha_parts/mecha_equipment/weapon/aq_flash,
 	"Gamma laser" = /obj/item/mecha_parts/mecha_equipment/weapon/energy/aq_gamma,
-	"Passenger compartment" = /obj/item/mecha_parts/mecha_equipment/aq_utility/carrier/passenger_compartment,
 	"AV-98 (pałka)" = /obj/item/mecha_parts/mecha_equipment/aq_melee/baton,
 	"U-56 Radar Antenna" = /obj/item/mecha_parts/mecha_equipment/aq_utility/radar,
 	"Forklifting bars" = /obj/item/mecha_parts/mecha_equipment/aq_tool/forklift,
 	"Stinger grenade launcher" = /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/flashbang/aq_stinger,
-	"Gunner Module" = /obj/item/mecha_parts/mecha_equipment/aq_utility/gunner,
 	"Mounted ore summoner" = /obj/item/mecha_parts/mecha_equipment/aq_ore_summoner,
 	"Defence shocker" = /obj/item/mecha_parts/mecha_equipment/aq_armor/shocker,
 	"Enhanced zoom" = /obj/item/mecha_parts/mecha_equipment/aq_utility/zoom,

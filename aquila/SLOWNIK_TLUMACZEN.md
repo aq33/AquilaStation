@@ -4531,9 +4531,9 @@ Nazwy obszarów są w większości przetłumaczone. Nowe nazwy budujemy z tych k
 | conversion kit | zestaw konwersji | m; istniejące |
 | drop system / drop beacon | system zrzutu orbitalnego / latarnia zrzutu | nowe |
 | remote control pod | kokpit zdalnego sterowania | m; nowe |
-| passenger compartment / jail cell / stretcher | przedział pasażerski / cela / nosze | nowe |
+| jail cell / stretcher | cela / nosze | nowe |
 | firing port weapon | broń portów strzeleckich | ż; nowe |
-| gunner module / weapons loader | moduł strzelca / ładowarka uzbrojenia | nowe |
+| weapons loader | ładowarka uzbrojenia | ż; nowe |
 | ore storage module | moduł ładowni rud | m; nowe |
 | Clarke, Paddy, Savannah-Ivanov, Red Sunday, Sentinel | bez zmian | nazwy własne podwozi |
 | Skyfall / Ivanov strike | Skyfall / uderzenie Ivanov | nowe |

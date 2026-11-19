@@ -123,11 +123,47 @@
 	var/obj/mecha/combat/gygax/gygax = allocate(/obj/mecha/combat/gygax)
 	TEST_ASSERT(!gygax.aq_has_copilot_seat(), "Gygax has a second seat")
 
+/// Każda broń balistyczna mecha (także stara) przeładowuje się tylko z zapasu: nie z ogniwa, tylko ze skrzynek,
+/// nabojów albo z tego, co wyrzutnia wystrzeliwuje
+/datum/unit_test/aquila_mecha_ammo
+
+/datum/unit_test/aquila_mecha_ammo/Run()
+	var/obj/mecha/combat/gygax/mech = allocate(/obj/mecha/combat/gygax)
+	var/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/lmg/lmg = allocate(/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/lmg)
+	lmg.attach(mech)
+	lmg.projectiles = 0
+	var/charge = mech.get_charge()
+	TEST_ASSERT(!lmg.rearm(), "LMG rearmed without ammo in storage")
+	TEST_ASSERT_EQUAL(lmg.projectiles, 0, "LMG refilled from the power cell")
+	TEST_ASSERT_EQUAL(mech.get_charge(), charge, "rearm used the power cell")
+	var/obj/item/mecha_ammo/lmg/box = allocate(/obj/item/mecha_ammo/lmg)
+	TEST_ASSERT(mech.aq_load_ammo(box), "LMG ammo box did not load")
+	TEST_ASSERT(lmg.rearm(), "LMG did not rearm from storage")
+	TEST_ASSERT_EQUAL(lmg.projectiles, initial(lmg.projectiles), "LMG not full after rearm")
+	// Granatnik ładuje się granatami hukowymi
+	var/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/flashbang/launcher = allocate(/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/flashbang)
+	launcher.attach(mech)
+	launcher.projectiles = 0
+	var/obj/item/grenade/flashbang/bang = allocate(/obj/item/grenade/flashbang)
+	TEST_ASSERT(mech.aq_load_ammo(bang), "flashbang did not load into the grenade launcher")
+	TEST_ASSERT(QDELETED(bang), "loaded flashbang still exists")
+	TEST_ASSERT_EQUAL(launcher.aq_ammo_cache, 1, "launcher storage after loading one flashbang")
+	TEST_ASSERT(launcher.rearm(), "launcher did not rearm from storage")
+	TEST_ASSERT_EQUAL(launcher.projectiles, 1, "launcher rounds after rearm")
+	// Każda broń balistyczna ma czym się ładować
+	for(var/path in subtypesof(/obj/item/mecha_parts/mecha_equipment/weapon/ballistic))
+		var/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/gun = path
+		if(!initial(gun.projectiles))
+			continue
+		TEST_ASSERT(initial(gun.aq_ammo_cache_max), "[path] has no ammo storage")
+		var/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/G = allocate(path)
+		TEST_ASSERT(G.aq_ammo_type || length(G.aq_calibers) || G.aq_item_ammo_type() || istype(G, /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/aq_forge_cannon), "[path] has no way to load ammo")
+
 /// Każde nowe podwozie i każda pozycja wyposażenia z planu tworzy się i montuje w pasującym mechu
 /datum/unit_test/aquila_mecha_content
 
 /datum/unit_test/aquila_mecha_content/Run()
-	TEST_ASSERT_EQUAL(length(GLOB.aq_mecha_plan_equipment), 61, "plan equipment count")
+	TEST_ASSERT_EQUAL(length(GLOB.aq_mecha_plan_equipment), 56, "plan equipment count")
 	for(var/path in GLOB.aq_mecha_new_chassis)
 		var/obj/mecha/M = allocate(path)
 		TEST_ASSERT(!QDELETED(M), "[path] failed to initialize")
