@@ -519,8 +519,7 @@ const NewscasterChannelBox = (_) => {
                 icon="ban"
                 content={channelCensored ? 'Zdejmij D-Notice' : 'D-Notice'}
                 color={channelCensored ? 'red' : null}
-                tooltip="Ocenzuruj cały kanał i jego \
-                  treść jako groźne dla stacji."
+                tooltip="Ocenzuruj cały kanał i jego treść jako groźne dla stacji."
                 disabled={!security_mode || !viewing_channel}
                 onClick={() =>
                   act('channelDNotice', {

@@ -11,6 +11,7 @@ Bez Node (brak tools/bootstrap) zwraca None i narzędzia wracają do starego ska
 
 import json
 import os
+import re
 import subprocess
 import tempfile
 
@@ -34,12 +35,36 @@ def literal(item):
     return out.strip()
 
 
-def dump():
-    """Lista {file, line, kind, texts, slots, literal} wszystkich okien albo None (bez Node)."""
-    global _cache
-    if _cache is not _UNSET:
-        return _cache
-    _cache = None  # porażka też zostaje zapamiętana: bez Node nie próbujemy przy każdym pliku
+def _run_loader(*args):
+    """Zdania z `node i18n-jsx.cjs <args> <plik wyjścia>` z kluczami słownika albo None (bez Node)."""
+    items = _run_node(*args)
+    if items is None:
+        return None
+    for item in items:
+        item["literal"] = literal(item)
+    return items
+
+
+# zakres loadera, kiedy nie ma Node (kopia INCLUDED/EXCLUDED z tgui/i18n-jsx.cjs; z Node bierzemy oryginał)
+SCOPE_FALLBACK = {
+    "included": r"[\\/]packages[\\/](tgui|tgui-panel|tgui-escape-menu)[\\/].*\.[jt]sx$",
+    "excluded": r"[\\/]i18n|\.test\.[jt]sx?$|[\\/]__tests__[\\/]",
+}
+_scope = None
+
+
+def in_loader_scope(path):
+    """Czy loader webpacka owija teksty tego pliku (inne okna, np. tgui-say, mają teksty tylko w kodzie)."""
+    global _scope
+    if _scope is None:
+        scope = _run_node("scope") or SCOPE_FALLBACK
+        _scope = (re.compile(scope["included"]), re.compile(scope["excluded"]))
+    included, excluded = _scope
+    return bool(included.search(path)) and not excluded.search(path)
+
+
+def _run_node(*args):
+    """JSON z `node i18n-jsx.cjs <args> <plik wyjścia>` albo None (bez Node albo zależności tgui)."""
     tgui = os.path.join(ROOT, "tgui")
     releases = os.path.join(tgui, ".yarn", "releases")
     node = os.path.join(ROOT, "tools", "bootstrap", "node.bat" if os.name == "nt" else "node")
@@ -51,15 +76,27 @@ def dump():
     fd, out = tempfile.mkstemp(suffix=".json")
     os.close(fd)
     try:
-        done = subprocess.run([node, os.path.join(".yarn", "releases", yarn), "node", "i18n-jsx.cjs", "dump", out],
+        done = subprocess.run([node, os.path.join(".yarn", "releases", yarn), "node", "i18n-jsx.cjs", *args, out],
                               cwd=tgui, capture_output=True, shell=os.name == "nt")
         if done.returncode != 0:
             return None
         with open(out, encoding="utf-8") as f:
-            items = json.load(f)
+            return json.load(f)
     finally:
         os.remove(out)
-    for item in items:
-        item["literal"] = literal(item)
-    _cache = items
-    return items
+
+
+def dump():
+    """Lista {file, line, endLine, column, endColumn, kind, texts, slots, literal} wszystkich okien
+    albo None (bez Node). Kolumny w jednostkach UTF-16."""
+    global _cache
+    if _cache is not _UNSET:
+        return _cache
+    # porażka też zostaje zapamiętana: bez Node nie próbujemy przy każdym pliku
+    _cache = _run_loader("dump")
+    return _cache
+
+
+def dump_file(source_path, rel):
+    """Jak dump(), ale dla jednego pliku z dowolnego miejsca (testy); rel to ścieżka w polu file."""
+    return _run_loader("dump-file", os.path.abspath(source_path), rel)
