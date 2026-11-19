@@ -108,4 +108,4 @@
 		return FALSE
 	if(isanimal(animal))
 		return !ishostile(animal) && !istype(animal, /mob/living/simple_animal/bot)
-	return isbasicmob(animal) && !is_hostile_basicmob(animal)
+	return isbasicmob(animal) && !is_hostile_basicmob(animal) && !isbasicbot(animal)

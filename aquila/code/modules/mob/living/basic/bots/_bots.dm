@@ -178,6 +178,10 @@ GLOBAL_LIST_EMPTY(basic_bots_list)
 		return span_bad("Nieaktywny")
 	return span_average(mode)
 
+/// Czy bot jest włączony (dla kodu core, który nie widzi define'ów BOT_MODE_*)
+/mob/living/basic/bot/proc/is_bot_on()
+	return !!(bot_mode_flags & BOT_MODE_ON)
+
 /mob/living/basic/bot/proc/is_emagged()
 	return !!(bot_access_flags & BOT_COVER_EMAGGED)
 
@@ -268,6 +272,14 @@ GLOBAL_LIST_EMPTY(basic_bots_list)
 		log_combat(user, src, "emagged")
 	emag_effects(user)
 	return TRUE
+
+/// Zdalna awaria (burza jonowa, rewenant): otwiera panel i zhakowuje bota
+/mob/living/basic/bot/proc/remote_malfunction()
+	if(is_emagged())
+		return
+	bot_access_flags &= ~BOT_COVER_LOCKED
+	bot_access_flags |= BOT_COVER_MAINTS_OPEN
+	emag_act()
 
 /// Efekty zhakowania konkretnego bota
 /mob/living/basic/bot/proc/emag_effects(mob/user)

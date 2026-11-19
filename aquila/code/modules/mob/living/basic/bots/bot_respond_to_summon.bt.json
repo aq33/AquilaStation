@@ -10,7 +10,7 @@
 		"children": [
 			{
 				"type": "leaf",
-				"behavior": "/datum/bt_node/ai_behavior/move_to_target/summon",
+				"behavior": "/datum/bt_node/ai_behavior/move_to_target/multiz/summon",
 				"vars": {
 					"target_key": "BB_BOT_SUMMON_TARGET",
 					"required_dist": 0,

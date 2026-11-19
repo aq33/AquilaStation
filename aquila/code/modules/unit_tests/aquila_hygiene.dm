@@ -14,7 +14,7 @@
 	TEST_ASSERT(stinky.miasma_emission(10) > 0, "A dirty human does not release miasma")
 
 	// A hygienebot goes after them and washes them back to normal
-	var/mob/living/simple_animal/bot/hygienebot/bot = allocate(/mob/living/simple_animal/bot/hygienebot)
+	var/mob/living/basic/bot/hygienebot/bot = allocate(/mob/living/basic/bot/hygienebot)
 	TEST_ASSERT(bot.needs_washing(stinky), "A hygienebot ignores a dirty human")
 	bot.do_wash(stinky)
 	bot.do_wash(stinky)

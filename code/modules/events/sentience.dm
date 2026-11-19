@@ -11,7 +11,7 @@ GLOBAL_LIST_INIT(high_priority_sentience, typecacheof(list(
 	/mob/living/basic/carp/pet/cayenne, // AQ EDIT - basic moby
 	/mob/living/basic/butterfly, // AQ EDIT - basic moby
 	/mob/living/basic/snake, // AQ EDIT - basic moby
-	/mob/living/simple_animal/bot/secbot/beepsky
+	/mob/living/basic/bot/secbot/beepsky // AQ EDIT - basic boty
 )))
 
 /datum/round_event_control/sentience

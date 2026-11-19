@@ -363,10 +363,10 @@
 	if(QDELETED(M) || M.stat == DEAD)
 		return
 	var/static/list/possible_bots = list(
-		/mob/living/simple_animal/bot/medbot,
-		/mob/living/simple_animal/bot/secbot,
-		/mob/living/simple_animal/bot/floorbot,
-		/mob/living/simple_animal/bot/buttbot,
+		/mob/living/basic/bot/medbot,
+		/mob/living/basic/bot/secbot,
+		/mob/living/basic/bot/repairbot,
+		/mob/living/basic/bot/buttbot,
 	)
 	var/bot_type = pick(possible_bots)
 	var/mob/living/newbot = new bot_type(get_turf(M))

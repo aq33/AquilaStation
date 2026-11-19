@@ -1,235 +1,166 @@
 // AQUILA - Hygienebot, ported from tgstation (#49613, constructible since #55089) and hooked into NSV13's hygiene.
 // It hunts down people who stink or wear bloody clothes and hoses them down until they are clean.
+// Od części BOTY to basic bot na drzewie zachowań (aquila/code/modules/mob/living/basic/bots/), pościg przez wspólny schemat pracy.
 
-/mob/living/simple_animal/bot/hygienebot
+/mob/living/basic/bot/hygienebot
 	name = "\improper Hygienebot"
 	desc = "Latający robot sprzątający. Ściga każdego, kto nie umie porządnie się umyć!"
 	icon = 'aquila/icons/mob/hygienebot.dmi'
 	icon_state = "hygienebot"
-	density = FALSE
-	anchored = FALSE
-	health = 100
 	maxHealth = 100
+	health = 100
 	radio_key = /obj/item/encryptionkey/headset_service
 	radio_channel = RADIO_CHANNEL_SERVICE
-	bot_type = HYGIENE_BOT
 	model = "Hygienebot"
-	bot_core_type = /obj/machinery/bot_core/hygienebot
-	window_id = "autoclean"
-	window_name = "Automatyczny Czyściciel Załogi X2"
-	pass_flags = PASSMOB
-	path_image_color = "#993299"
-	allow_pai = FALSE
+	hackables = "pompa wody"
 	layer = ABOVE_MOB_LAYER
-
-	/// The human the bot is trying to wash
-	var/mob/living/carbon/human/target
-	/// Movement delay, drops the longer the target runs away
-	var/currentspeed = 5
-	/// Is the bot spraying water (or fire) on its own tile?
+	bot_mode_flags = BOT_MODE_ON | BOT_MODE_REMOTE_ENABLED
+	work_mode = BBOT_CLEANING
+	work_reach = 0
+	work_interval = 2 SECONDS
+	speed = 2
+	possessed_message = "Jesteś hygienebotem! Myj każdego, kto śmierdzi."
+	emagged_message = "Jesteś zepsutym hygienebotem! Twoja woda to ogień."
+	/// Czy bot spryskuje swój kafelek (wodą albo ogniem)
 	var/washing = FALSE
-	/// Has the target been running away long enough to make the bot swear?
-	var/mad = FALSE
-	/// When the previous or current target was last found
-	var/last_found
-	/// Name of the previous target, so the bot doesn't pick them again straight away
+	/// Cel ucieka dość długo, żeby bot klął
+	var/frustration = 0
+	/// Imię poprzedniego celu i kiedy go znalazł
 	var/oldtarget_name
+	var/last_found = 0
 
-/mob/living/simple_animal/bot/hygienebot/Initialize(mapload)
+/mob/living/basic/bot/hygienebot/Initialize(mapload)
+	additional_access = list(ACCESS_JANITOR)
 	. = ..()
-	update_icon()
-	var/datum/job/janitor/J = new /datum/job/janitor
-	access_card.access += J.get_access()
-	prev_access = access_card.access
 
-/mob/living/simple_animal/bot/hygienebot/Destroy()
-	target = null
-	return ..()
+/mob/living/basic/bot/hygienebot/req_bot_access()
+	return list(ACCESS_JANITOR)
 
-/mob/living/simple_animal/bot/hygienebot/set_custom_texts()
-	text_hack = "Psujesz pompę wody [name]."
-	text_dehack = "Oprogramowanie [name] zostało zresetowane!"
-	text_dehack_fail = "[name] nie reaguje na twój kod naprawczy!"
-
-/mob/living/simple_animal/bot/hygienebot/explode()
-	walk_to(src, 0)
-	visible_message("<span class='boldannounce'>[src] rozpada się w pianowym wybuchu!</span>")
-	do_sparks(3, TRUE, src)
-	on = FALSE
-	new /obj/effect/particle_effect/foam(loc)
-	..()
-
-/mob/living/simple_animal/bot/hygienebot/update_icon_state()
-	. = ..() // Sets "hygienebot[on]", which this sprite sheet doesn't have
-	icon_state = on ? "hygienebot-on" : "hygienebot"
-
-/mob/living/simple_animal/bot/hygienebot/update_overlays()
+/mob/living/basic/bot/hygienebot/update_icon_state()
 	. = ..()
-	if(on)
+	icon_state = (bot_mode_flags & BOT_MODE_ON) ? "hygienebot-on" : "hygienebot"
+
+/mob/living/basic/bot/hygienebot/update_overlays()
+	. = ..()
+	if(bot_mode_flags & BOT_MODE_ON)
 		. += mutable_appearance(icon, "hygienebot-flame")
 	if(washing)
-		. += mutable_appearance(icon, emagged == 2 ? "hygienebot-fire" : "hygienebot-water")
+		. += mutable_appearance(icon, is_emagged() ? "hygienebot-fire" : "hygienebot-water")
 
-/mob/living/simple_animal/bot/hygienebot/turn_off()
-	..()
-	mode = BOT_IDLE
+/mob/living/basic/bot/hygienebot/explode()
+	visible_message(span_boldnotice("[src] rozpada się w pianowym wybuchu!"))
+	new /obj/effect/particle_effect/foam(loc)
+	return ..()
 
-/mob/living/simple_animal/bot/hygienebot/bot_reset()
-	..()
-	target = null
-	oldtarget_name = null
-	walk_to(src, 0)
-	last_found = world.time
-	stop_washing()
-
-/mob/living/simple_animal/bot/hygienebot/handle_automated_action()
-	if(!..())
-		return
-
-	if(washing)
-		do_wash(loc)
-		for(var/atom/movable/AM in loc)
-			if(AM != src)
-				do_wash(AM)
-		if(isopenturf(loc) && emagged != 2)
-			var/turf/open/tile = loc
-			tile.MakeSlippery(TURF_WET_WATER, min_wet_time = 10 SECONDS, wet_time_to_add = 5 SECONDS)
-
-	switch(mode)
-		if(BOT_IDLE)
-			walk_to(src, 0)
-			look_for_lowhygiene()
-			if(!mode && auto_patrol)
-				mode = BOT_START_PATROL
-
-		if(BOT_HUNT)
-			if(emagged == 2)
-				currentspeed = 3.5
-				start_washing()
-				mad = TRUE
-			else
-				switch(frustration)
-					if(0 to 4)
-						currentspeed = 5
-						mad = FALSE
-					if(5 to INFINITY)
-						currentspeed = 2.5
-						mad = TRUE
-			if(QDELETED(target) || is_clean(target))
-				back_to_idle()
-				return
-			if(target.loc == loc && isturf(target.loc))
-				start_washing()
-				if(mad)
-					speak(pick("No, kurwa, nareszcie.", "Wreszcie, dzięki Bogu.", "Nareszcie się zatrzymałeś, brudasie."))
-					playsound(loc, 'aquila/sound/effects/hygienebot_angry.ogg', 60, TRUE)
-					mad = FALSE
-				mode = BOT_CLEANING
-				return
-			stop_washing()
-			var/olddist = get_dist(src, target)
-			if(olddist > 20 || frustration > 100) // Give up and look for someone else
-				back_to_idle()
-				return
-			walk_to(src, target, 0, currentspeed)
-			if(mad && prob(min(frustration * 2, 60)))
-				playsound(loc, 'aquila/sound/effects/hygienebot_angry.ogg', 60, TRUE)
-				speak(pick("Wracaj tu, ty śmierdzący gnoju!", "STÓJ ALBO PRZETNĘ CI TĘTNICE!", "Daj się, kurwa, umyć, dupku!", "STÓJ. NIE. UCIEKAJ.", "Albo się zatrzymasz, albo wywlekę cię przez śluzę.", "Chcę cię tylko, kurwa, umyć, troglodyto.", "Jak nie wrócisz, to otoczę cię zieloną chmurą."))
-			if(get_dist(src, target) >= olddist)
-				frustration++
-			else
-				frustration = 0
-
-		if(BOT_CLEANING) // Hosing the target down
-			if(QDELETED(target))
-				back_to_idle()
-				return
-			if(is_clean(target))
-				speak("Miłego, czystego dnia!")
-				playsound(loc, 'aquila/sound/effects/hygienebot_happy.ogg', 60, TRUE)
-				back_to_idle()
-				return
-			if(target.loc != loc || !isturf(target.loc))
-				back_to_hunt()
-
-		if(BOT_START_PATROL)
-			look_for_lowhygiene()
-			if(mode == BOT_START_PATROL)
-				start_patrol()
-
-		if(BOT_PATROL)
-			look_for_lowhygiene()
-			if(mode == BOT_PATROL)
-				bot_patrol()
-
-/mob/living/simple_animal/bot/hygienebot/proc/back_to_idle()
-	mode = BOT_IDLE
-	walk_to(src, 0)
-	target = null
+/mob/living/basic/bot/hygienebot/bot_reset(bypass_ai_reset)
+	. = ..()
 	frustration = 0
-	last_found = world.time
 	stop_washing()
 
-/mob/living/simple_animal/bot/hygienebot/proc/back_to_hunt()
+/mob/living/basic/bot/hygienebot/is_valid_work_target(atom/target)
+	if(!ishuman(target))
+		return FALSE
+	if(target.name == oldtarget_name && world.time < last_found + 10 SECONDS)
+		return FALSE
+	return needs_washing(target)
+
+/mob/living/basic/bot/hygienebot/on_work_target_found(atom/target)
+	oldtarget_name = target.name
 	frustration = 0
-	mode = BOT_HUNT
-	stop_washing()
+	speak("Wykryto niehigienicznego klienta. Proszę stać spokojnie, zaraz cię umyję.")
+	playsound(loc, 'aquila/sound/effects/hygienebot_happy.ogg', 60, TRUE)
+	visible_message("<b>[src]</b> wskazuje na [target.name]!")
+	update_bot_mode(BBOT_HUNT)
 
-/mob/living/simple_animal/bot/hygienebot/proc/look_for_lowhygiene()
-	for(var/mob/living/carbon/human/H in view(7, src))
-		if(H.name == oldtarget_name && world.time < last_found + 10 SECONDS)
-			continue
-		if(!needs_washing(H))
-			continue
-		target = H
-		oldtarget_name = H.name
-		speak("Wykryto niehigienicznego klienta. Proszę stać spokojnie, zaraz cię umyję.")
-		playsound(loc, 'aquila/sound/effects/hygienebot_happy.ogg', 60, TRUE)
-		visible_message("<b>[src]</b> wskazuje na [H.name]!")
-		mode = BOT_HUNT
+/mob/living/basic/bot/hygienebot/work_on_target(atom/target)
+	var/mob/living/carbon/human/dirty = target
+	if(!istype(dirty) || is_clean(dirty))
+		if(istype(dirty))
+			speak("Miłego, czystego dnia!")
+			playsound(loc, 'aquila/sound/effects/hygienebot_happy.ogg', 60, TRUE)
+		last_found = world.time
+		stop_washing()
+		return BOT_WORK_DONE
+	if(dirty.loc != loc || !isturf(dirty.loc))
+		stop_washing()
+		frustration++
+		return BOT_WORK_OUT_OF_REACH
+	if(frustration >= 5)
+		speak(pick("No, kurwa, nareszcie.", "Wreszcie, dzięki Bogu.", "Nareszcie się zatrzymałeś, brudasie."))
+		playsound(loc, 'aquila/sound/effects/hygienebot_angry.ogg', 60, TRUE)
+		frustration = 0
+	start_washing()
+	wash_tile()
+	return BOT_WORK_CONTINUE
+
+/// Spryskuje swój kafelek i wszystko na nim
+/mob/living/basic/bot/hygienebot/proc/wash_tile()
+	do_wash(loc)
+	for(var/atom/movable/thing in loc)
+		if(thing != src)
+			do_wash(thing)
+	if(isopenturf(loc) && !is_emagged())
+		var/turf/open/tile = loc
+		tile.MakeSlippery(TURF_WET_WATER, min_wet_time = 10 SECONDS, wet_time_to_add = 5 SECONDS)
+
+/// Ściga uciekającego: zhakowany pali po drodze, a długi pościg kończy się wyzwiskami
+/mob/living/basic/bot/hygienebot/Life(seconds, times_fired)
+	. = ..()
+	var/mob/living/carbon/human/dirty = ai_controller?.blackboard[BB_BOT_WORK_TARGET]
+	if(stat || !istype(dirty) || dirty.loc == loc)
 		return
+	if(is_emagged())
+		start_washing()
+		wash_tile()
+		return
+	frustration++
+	if(frustration >= 5 && prob(min(frustration * 2, 60)))
+		playsound(loc, 'aquila/sound/effects/hygienebot_angry.ogg', 60, TRUE)
+		speak(pick("Wracaj tu, ty śmierdzący gnoju!", "STÓJ ALBO PRZETNĘ CI TĘTNICE!", "Daj się, kurwa, umyć, dupku!", "STÓJ. NIE. UCIEKAJ.", "Albo się zatrzymasz, albo wywlekę cię przez śluzę.", "Chcę cię tylko, kurwa, umyć, troglodyto.", "Jak nie wrócisz, to otoczę cię zieloną chmurą."))
+	if(frustration > 50)
+		bot_reset()
 
-/mob/living/simple_animal/bot/hygienebot/proc/start_washing()
+/mob/living/basic/bot/hygienebot/proc/start_washing()
 	if(washing)
 		return
 	washing = TRUE
-	update_icon()
+	update_appearance()
 
-/mob/living/simple_animal/bot/hygienebot/proc/stop_washing()
+/mob/living/basic/bot/hygienebot/proc/stop_washing()
 	if(!washing)
 		return
 	washing = FALSE
-	update_icon()
+	update_appearance()
 
 /// Whether the bot should go after this person
-/mob/living/simple_animal/bot/hygienebot/proc/needs_washing(mob/living/carbon/human/H)
+/mob/living/basic/bot/hygienebot/proc/needs_washing(mob/living/carbon/human/H)
 	if(H.stat == DEAD)
 		return FALSE
-	if(emagged == 2)
+	if(is_emagged())
 		return TRUE
 	if(H.hygiene <= HYGIENE_LEVEL_DIRTY && !HAS_TRAIT(H, TRAIT_ALWAYS_CLEAN))
 		return TRUE
 	return has_bloody_clothes(H)
 
 /// Whether the bot is done with this person. Stricter than needs_washing(), so a target is washed back up to normal
-/mob/living/simple_animal/bot/hygienebot/proc/is_clean(mob/living/carbon/human/H)
+/mob/living/basic/bot/hygienebot/proc/is_clean(mob/living/carbon/human/H)
 	if(H.stat == DEAD)
 		return TRUE
-	if(emagged == 2)
+	if(is_emagged())
 		return FALSE
 	if(H.hygiene < HYGIENE_LEVEL_NORMAL && !HAS_TRAIT(H, TRAIT_ALWAYS_CLEAN))
 		return FALSE
 	return !has_bloody_clothes(H)
 
-/mob/living/simple_animal/bot/hygienebot/proc/has_bloody_clothes(mob/living/carbon/human/H)
+/mob/living/basic/bot/hygienebot/proc/has_bloody_clothes(mob/living/carbon/human/H)
 	for(var/slot in list(ITEM_SLOT_HEAD, ITEM_SLOT_MASK, ITEM_SLOT_ICLOTHING, ITEM_SLOT_OCLOTHING, ITEM_SLOT_FEET))
 		var/obj/item/I = H.get_item_by_slot(slot)
 		if(I && HAS_BLOOD_DNA(I))
 			return TRUE
 	return FALSE
 
-/mob/living/simple_animal/bot/hygienebot/proc/do_wash(atom/A)
-	if(emagged == 2)
+/mob/living/basic/bot/hygienebot/proc/do_wash(atom/A)
+	if(is_emagged())
 		A.fire_act()
 		return
 	SEND_SIGNAL(A, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_STRENGTH_BLOOD)
@@ -252,9 +183,6 @@
 	if(ishuman(C))
 		var/mob/living/carbon/human/H = C
 		H.adjust_hygiene(HYGIENEBOT_WASH_AMOUNT)
-
-/obj/machinery/bot_core/hygienebot
-	req_one_access = list(ACCESS_JANITOR, ACCESS_ROBOTICS)
 
 // Construction: 2 metal sheets -> weld a water hole -> proximity sensor -> 1 fluid duct
 /obj/item/bot_assembly/hygienebot
@@ -304,7 +232,7 @@
 				to_chat(user, "<span class='notice'>Zaczynasz podłączać rurę do [src]...</span>")
 				if(do_after(user, 4 SECONDS, target = src) && D.use(1))
 					to_chat(user, "<span class='notice'>Podłączasz rurę do [src].</span>")
-					var/mob/living/simple_animal/bot/hygienebot/H = new(drop_location())
+					var/mob/living/basic/bot/hygienebot/H = new(drop_location())
 					H.name = created_name
 					qdel(src)
 				return

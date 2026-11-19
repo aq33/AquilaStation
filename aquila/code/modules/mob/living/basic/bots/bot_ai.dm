@@ -301,7 +301,10 @@
 		return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_FAILED
 	var/next_location = prev_beacon.codes?[NAVBEACON_PATROL_NEXT]
 	var/atom/final_target
-	for(var/obj/machinery/navbeacon/beacon as anything in GLOB.navbeacons["[bot_pawn.z]"])
+	// NSV13: nadajniki całego okrętu, więc patrol przechodzi windami między pokładami
+	var/obj/structure/overmap/ship = bot_pawn.get_overmap()
+	var/list/beacons = ship ? ship.beacons_in_ship : GLOB.navbeacons["[bot_pawn.z]"]
+	for(var/obj/machinery/navbeacon/beacon as anything in beacons)
 		if(next_location && beacon.location == next_location)
 			final_target = beacon
 			break
@@ -326,7 +329,7 @@
 	controller.clear_blackboard_key(target_key)
 	return AI_BEHAVIOR_INSTANT | AI_BEHAVIOR_SUCCEEDED
 
-/datum/bt_node/ai_behavior/move_to_target/beacon/finish_action(datum/ai_controller/controller, succeeded)
+/datum/bt_node/ai_behavior/move_to_target/multiz/beacon/finish_action(datum/ai_controller/controller, succeeded)
 	if(!succeeded && movement_failed)
 		controller.clear_blackboard_key(target_key)
 		controller.set_blackboard_key(BB_BOT_BEACON_COOLDOWN, world.time + 30 SECONDS)
@@ -348,7 +351,7 @@
 	controller.clear_blackboard_key(target_key)
 	return AI_BEHAVIOR_INSTANT | AI_BEHAVIOR_SUCCEEDED
 
-/datum/bt_node/ai_behavior/move_to_target/summon/finish_action(datum/ai_controller/controller, succeeded)
+/datum/bt_node/ai_behavior/move_to_target/multiz/summon/finish_action(datum/ai_controller/controller, succeeded)
 	if(!succeeded && movement_failed)
 		var/mob/living/basic/bot/bot_pawn = controller.pawn
 		bot_pawn.speak("Nie mogę dotrzeć na miejsce wezwania.", bot_pawn.radio_channel)
@@ -367,3 +370,61 @@
 /// Wspólny schemat pracy: znajdź cel, dojdź, pracuj
 /datum/bt_node/subtree/bot_work
 	behavior_tree_json = "aquila/code/modules/mob/living/basic/bots/bot_work.bt.json"
+
+// --- Windy dla botów (NSV13): wezwanie i patrol na innym pokładzie
+
+/// Najbliższa winda na tym pokładzie, która jedzie w danym kierunku (UP/DOWN)
+/mob/living/basic/bot/proc/find_nearest_bot_elevator(direction)
+	var/obj/structure/bot_elevator/best
+	for(var/obj/structure/bot_elevator/elevator as anything in GLOB.bot_elevator)
+		if(elevator.z != z)
+			continue
+		if((direction == UP && !elevator.up) || (direction == DOWN && !elevator.down))
+			continue
+		if(best && get_dist_euclidian(elevator, src) > get_dist_euclidian(best, src))
+			continue
+		best = elevator
+	return best
+
+/**
+ * Idzie do celu, także na innym pokładzie: najpierw do windy dla botów w dobrą stronę, wjeżdża, potem dalej.
+ * Na tym samym pokładzie działa jak zwykłe move_to_target.
+ */
+/datum/bt_node/ai_behavior/move_to_target/multiz
+	VAR_PRIVATE/obj/structure/bot_elevator/elevator_target
+
+/datum/bt_node/ai_behavior/move_to_target/multiz/perform(seconds_per_tick, datum/ai_controller/controller)
+	var/atom/target = controller.blackboard[target_key]
+	var/mob/living/basic/bot/bot_pawn = controller.pawn
+	var/turf/target_turf = get_turf(target)
+	if(QDELETED(target) || !target_turf || !istype(bot_pawn))
+		return AI_BEHAVIOR_FAILED
+	if(target_turf.z == bot_pawn.z)
+		if(elevator_target)
+			elevator_target = null
+			tracked_target_reset(controller, target)
+		return ..()
+	if(movement_failed)
+		return AI_BEHAVIOR_INSTANT | AI_BEHAVIOR_FAILED
+	var/direction = target_turf.z > bot_pawn.z ? UP : DOWN
+	if(!elevator_target || elevator_target.z != bot_pawn.z)
+		elevator_target = bot_pawn.find_nearest_bot_elevator(direction)
+		if(!elevator_target)
+			return AI_BEHAVIOR_INSTANT | AI_BEHAVIOR_FAILED
+		controller.ai_movement.start_moving_towards(controller, elevator_target, 0)
+	else if(!controller.ai_movement.moving_controllers[controller])
+		controller.ai_movement.start_moving_towards(controller, elevator_target, 0)
+	if(get_turf(bot_pawn) == get_turf(elevator_target))
+		controller.ai_movement.stop_moving_towards(controller)
+		var/obj/structure/bot_elevator/next = direction == UP ? elevator_target.up : elevator_target.down
+		if(next)
+			elevator_target.travel(direction == UP, bot_pawn, FALSE, next, FALSE)
+		elevator_target = null
+	return AI_BEHAVIOR_INSTANT
+
+/datum/bt_node/ai_behavior/move_to_target/multiz/proc/tracked_target_reset(datum/ai_controller/controller, atom/target)
+	controller.ai_movement.start_moving_towards(controller, target, required_dist)
+
+/datum/bt_node/ai_behavior/move_to_target/multiz/finish_action(datum/ai_controller/controller, succeeded)
+	elevator_target = null
+	return ..()

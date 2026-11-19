@@ -66,7 +66,7 @@
 			data["medical"] = medical_record_data()
 		if(6)
 			var/list/medbots = list()
-			for(var/mob/living/simple_animal/bot/medbot/medbot in GLOB.alive_mob_list)
+			for(var/mob/living/basic/bot/medbot/medbot in GLOB.alive_mob_list)
 				if(medbot.get_virtual_z_level() != get_virtual_z_level())
 					continue
 				var/turf/medbot_turf = get_turf(medbot)
@@ -78,7 +78,7 @@
 					"x" = medbot_turf.x,
 					"y" = medbot_turf.y,
 					"area" = medbot_area?.name,
-					"on" = !!medbot.on,
+					"on" = medbot.is_bot_on(),
 				))
 			data["medbots"] = medbots
 	return data

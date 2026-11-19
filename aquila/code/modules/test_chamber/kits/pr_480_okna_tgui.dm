@@ -12,9 +12,9 @@
 		8) Poza komorą: Esc (menu), preferencje, wybór profesji, panel gracza (także jako duch), Spawn → oczekiwane: okna otwierają się po polsku."
 	items = list(
 		/mob/living/carbon/human = 2,
-		/mob/living/simple_animal/bot/cleanbot = 1,
-		/mob/living/simple_animal/bot/medbot = 1,
-		/mob/living/simple_animal/bot/floorbot = 1,
+		/mob/living/basic/bot/cleanbot = 1,
+		/mob/living/basic/bot/medbot = 1,
+		/mob/living/basic/bot/repairbot = 1,
 		/obj/machinery/computer/slot_machine = 1,
 		/obj/structure/reflector/single = 1,
 		/obj/item/construction/rcd/loaded = 1,
