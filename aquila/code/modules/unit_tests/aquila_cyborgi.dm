@@ -25,7 +25,7 @@
 /datum/unit_test/aquila_cyborg_modules/Run()
 	var/list/crew_modules = list()
 	aquila_add_cyborg_modules(crew_modules)
-	TEST_ASSERT(length(crew_modules) == 12, "Kółko wyboru dostało [length(crew_modules)] modułów Aquili zamiast 12")
+	TEST_ASSERT(length(crew_modules) == 11, "Kółko wyboru dostało [length(crew_modules)] modułów Aquili zamiast 11")
 	var/list/all_modules = list()
 	for(var/key in crew_modules)
 		all_modules += crew_modules[key]

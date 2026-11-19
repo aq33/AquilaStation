@@ -1024,7 +1024,7 @@
 /obj/item/citationinator/cyborg/emag_act(mob/user)
 	return
 
-// ================================================================ Biuro, kuchnia, botanika, śledztwo
+// ================================================================ Biuro, kuchnia, śledztwo
 
 /// Drukarka papieru (Bay „form printer”): papier z tonera cyborga
 /obj/item/borg/paper_dispenser
@@ -1062,10 +1062,6 @@
 		return
 	user.modularInterface.open_program(user, program)
 	user.modularInterface.interact(user)
-
-/// Somatopromiennik cyborga (Bay/Goon floragun)
-/obj/item/gun/energy/floragun/cyborg
-	requires_wielding = FALSE
 
 /// Spray z luminolem cyborga (nasz luminol z aquila/code/modules/detectivework/luminol.dm)
 /obj/item/reagent_containers/spray/cyborg/luminol

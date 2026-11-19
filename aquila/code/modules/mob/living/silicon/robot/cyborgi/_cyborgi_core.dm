@@ -60,7 +60,6 @@
 	module_list["Exploration"] = /obj/item/robot_module/exploration
 	module_list["Detective"] = /obj/item/robot_module/detective
 	module_list["Brobocop"] = /obj/item/robot_module/brobocop
-	module_list["Hydroponics"] = /obj/item/robot_module/hydroponics
 	module_list["Clerical"] = /obj/item/robot_module/cargo/clerical
 	module_list["Logistics"] = /obj/item/robot_module/cargo/logistics
 	module_list["Multirole"] = /obj/item/robot_module/standard/multirole

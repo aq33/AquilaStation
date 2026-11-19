@@ -303,36 +303,6 @@
 	..()
 	to_chat(loc, "<span class='userdanger'>Brobocop pilnuje papierów: akt, mandatów i taśmy. Nadal przestrzegasz swoich praw, a NIE prawa kosmicznego.</span>")
 
-// ---------------------------------------------------------------- Hydroponiczny (Bay „Cultivator”, Goon)
-
-/obj/item/robot_module/hydroponics
-	name = "Hydroponiczny"
-	basic_modules = list(
-		/obj/item/assembly/flash/cyborg,
-		/obj/item/borg/charger,
-		/obj/item/extinguisher/mini,
-		/obj/item/plant_scanner,
-		/obj/item/cultivator,
-		/obj/item/hatchet,
-		/obj/item/shovel/spade,
-		/obj/item/reagent_containers/glass/bucket,
-		/obj/item/storage/bag/plants/portaseeder,
-		/obj/item/gun/energy/floragun/cyborg,
-		/obj/item/reagent_containers/spray/cyborg/plantbgone,
-		/obj/item/reagent_containers/syringe,
-		/obj/item/reagent_containers/dropper)
-	emag_modules = list(/obj/item/borg/stun)
-	cyborg_base_icon = "aq_hydro_drone"
-	aq_base_icon_file = AQ_CYBORG_ICON_MODULES
-	moduleselect_icon = "hydroponics"
-	hat_offset = -4
-	aq_department_channel = RADIO_CHANNEL_SERVICE
-	borg_skins = list(
-		"Dron ogrodnik" = list(SKIN_ICON_STATE = "aq_hydro_drone", SKIN_ICON = AQ_CYBORG_ICON_MODULES),
-		"Hydrobot" = list(SKIN_ICON_STATE = "hydrobot"),
-		"Roomba" = list(SKIN_ICON_STATE = "zoomba_green"),
-	)
-
 // ---------------------------------------------------------------- Biurowy (Bay/Aurora „Clerical”) - papierologia bez magazynu
 
 /obj/item/robot_module/cargo/clerical
