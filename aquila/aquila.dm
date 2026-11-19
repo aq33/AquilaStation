@@ -2818,6 +2818,12 @@
 #include "code\modules\mecha_rework\equipment\armor.dm"
 #include "code\modules\mecha_rework\equipment\workshop.dm"
 #include "code\modules\mecha_rework\designs.dm"
+#include "code\modules\mecha_rework\catalog.dm"
+#ifdef UNIT_TESTS
+#include "code\modules\unit_tests\aquila_mecha_rework.dm"
+#endif
+// Komora testowa
+#include "code\modules\test_chamber\kits\pr_XXX_mechy.dm"
 // MECHY: koniec
 
 // Profiler byond-tracy: MUSI być ostatnim include'em całego builda (BYOND inicjuje zmienne statyczne od końca,

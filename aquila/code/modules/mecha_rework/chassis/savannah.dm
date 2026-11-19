@@ -32,9 +32,9 @@
 	COOLDOWN_DECLARE(ivanov_cd)
 
 /obj/mecha/combat/aq_savannah/Destroy()
+	. = ..()
 	QDEL_NULL(skyfall_action)
 	QDEL_NULL(ivanov_action)
-	return ..()
 
 /obj/mecha/combat/aq_savannah/update_icon()
 	. = ..()

@@ -1,0 +1,2 @@
+mechasword.ogg - Yogstation (sound/weapons/mechasword.ogg); w Yogu opisany jako nagranie zamachu miecza z Titanfall 2 (Respawn/EA), licencja jak zasoby Yoga (CC BY-SA 3.0)
+lighttankgun.ogg - MonkeStation 2.0 (sound/items/weapons/gun/general/lighttankgun.ogg), CC BY-SA 3.0

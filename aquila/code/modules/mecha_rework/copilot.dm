@@ -97,8 +97,8 @@
 	if(aq_copilot)
 		aq_copilot.SetSleeping(destruction_sleep_duration)
 		aq_copilot_out()
+	. = ..()
 	QDEL_NULL(aq_copilot_eject_action)
-	return ..()
 
 /obj/mecha/relaymove(mob/user, direction)
 	if(aq_copilot && user == aq_copilot)

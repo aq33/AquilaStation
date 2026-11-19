@@ -190,8 +190,8 @@
 	charge_action.Remove(user)
 
 /obj/mecha/combat/gygax/aq_basenji/Destroy()
+	. = ..()
 	QDEL_NULL(charge_action)
-	return ..()
 
 /obj/mecha/combat/gygax/aq_basenji/proc/charge()
 	if(!COOLDOWN_FINISHED(src, charge_cd))

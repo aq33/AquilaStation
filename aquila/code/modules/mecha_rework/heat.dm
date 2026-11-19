@@ -33,8 +33,8 @@
 	aq_overclock_action.Remove(user)
 
 /obj/mecha/Destroy()
+	. = ..()
 	QDEL_NULL(aq_overclock_action)
-	return ..()
 
 /obj/mecha/process(delta_time)
 	. = ..()

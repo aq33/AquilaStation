@@ -25,8 +25,8 @@
 	cell.attach(src)
 
 /obj/mecha/working/ripley/aq_paddy/Destroy()
+	. = ..()
 	QDEL_NULL(sirens_action)
-	return ..()
 
 /obj/mecha/working/ripley/aq_paddy/GrantActions(mob/living/user, human_occupant = 0)
 	. = ..()
