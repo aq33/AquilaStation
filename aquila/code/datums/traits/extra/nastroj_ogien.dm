@@ -1,5 +1,4 @@
-// Piromania i pirofobia (tg). Pirofobia w tg działa przez /datum/component/fearful, którego nie mamy:
-// tu jest prostsza wersja z nastrojem, drżeniem i paniką przy płonięciu.
+// Piromania (tg). Lęk przed ogniem jest rodzajem Fobii (nastroj_fobie.dm).
 
 /datum/quirk/pyromania
 	name = "Piromania"
@@ -68,53 +67,3 @@
 
 /datum/mood_event/pyromania/add_effects(fire_size = 0)
 	mood_change = fire_size
-
-/datum/quirk/pyrophobia
-	name = "Pirofobia"
-	desc = "Panicznie boisz się ognia i płomieni."
-	icon = "fire-extinguisher"
-	value = -1
-	mood_quirk = TRUE
-	process = TRUE
-	medical_record_text = "Pacjent boi się ognia."
-	/// Ostatnio policzone płomienie
-	var/last_fire_size = -1
-	/// Kiedy znów może wpaść w panikę przy płonięciu
-	COOLDOWN_DECLARE(panic_cd)
-
-/datum/quirk/pyrophobia/remove()
-	SEND_SIGNAL(quirk_holder, COMSIG_CLEAR_MOOD_EVENT, "pyrophobia")
-
-/datum/quirk/pyrophobia/on_process(delta_time)
-	if(quirk_holder.stat > SOFT_CRIT || HAS_TRAIT(quirk_holder, TRAIT_FEARLESS))
-		return
-	var/fire_size = aq_count_nearby_fire_sources(quirk_holder)
-	if(fire_size != last_fire_size)
-		SEND_SIGNAL(quirk_holder, COMSIG_CLEAR_MOOD_EVENT, "pyrophobia")
-		if(fire_size >= 1)
-			SEND_SIGNAL(quirk_holder, COMSIG_ADD_MOOD_EVENT, "pyrophobia", /datum/mood_event/pyrophobia, fire_size)
-	last_fire_size = fire_size
-	if(fire_size < 1)
-		return
-
-	// Psykodyna łagodzi reakcję (jak w opisie objawów z tg)
-	var/calmed = quirk_holder.reagents?.has_reagent(/datum/reagent/medicine/psicodine)
-	if(!calmed)
-		quirk_holder.Jitter(5)
-		if(DT_PROB(10, delta_time))
-			quirk_holder.stuttering = max(quirk_holder.stuttering, 5)
-			to_chat(quirk_holder, "<span class='warning'>Ogień! Muszę się od niego oddalić!</span>")
-
-	// Płonący pirofob rzuca się na ziemię i tarza (tg: terror_handler/force_stop_drop_roll)
-	if(quirk_holder.on_fire && COOLDOWN_FINISHED(src, panic_cd) && quirk_holder.stat == CONSCIOUS)
-		COOLDOWN_START(src, panic_cd, 10 SECONDS)
-		to_chat(quirk_holder, "<span class='userdanger'>Płoniesz! Panika przejmuje kontrolę!</span>")
-		INVOKE_ASYNC(quirk_holder, TYPE_PROC_REF(/mob, emote), "scream")
-		INVOKE_ASYNC(quirk_holder, TYPE_PROC_REF(/mob/living, resist_fire))
-
-/datum/mood_event/pyrophobia
-	description = "<span class='warning'>Widzę ogień i nie podoba mi się to!</span>\n"
-	mood_change = -1
-
-/datum/mood_event/pyrophobia/add_effects(fire_size = 0)
-	mood_change = -1 * fire_size

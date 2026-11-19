@@ -22,10 +22,10 @@
 
 /datum/unit_test/aquila_quirks_extra_nastroj/Run()
 	var/list/quirk_types = list(
-		/datum/quirk/monophobia, /datum/quirk/claustrophobia, /datum/quirk/gamer, /datum/quirk/clown_enjoyer,
+		/datum/quirk/monophobia, /datum/quirk/gamer, /datum/quirk/clown_enjoyer,
 		/datum/quirk/mime_fan, /datum/quirk/poster_boy, /datum/quirk/cursed,
 		/datum/quirk/evil, /datum/quirk/transhumanist, /datum/quirk/body_purist, /datum/quirk/pyromania,
-		/datum/quirk/pyrophobia, /datum/quirk/kleptomaniac, /datum/quirk/joker, /datum/quirk/extrovert,
+		/datum/quirk/kleptomaniac, /datum/quirk/joker, /datum/quirk/extrovert,
 		/datum/quirk/introvert, /datum/quirk/bad_touch, /datum/quirk/snob, /datum/quirk/nervous,
 	)
 	// Każda cecha jest w oknie preferencji, ma ikonę, dodaje się i usuwa razem ze swoim traitem
@@ -70,16 +70,20 @@
 	var/list/taken = thief.held_items - null
 	TEST_ASSERT(length(taken) == 1, "The kleptomaniac did not pick up anything")
 
-	// Klaustrofobia: w szafce panika, na podłodze spokój
+	// Fobia ciasnych miejsc (dawniej Klaustrofobia): w szafce strach, na podłodze spokój
 	var/mob/living/carbon/human/boxed = make_human()
-	var/datum/quirk/claustrophobia/claustrophobia = give_quirk(boxed, /datum/quirk/claustrophobia)
+	var/datum/brain_trauma/mild/phobia/confined = new(AQ_PHOBIA_CONFINED)
+	boxed.gain_trauma(confined, TRAUMA_RESILIENCE_ABSOLUTE)
+	TEST_ASSERT(SStraumas.phobia_types[AQ_PHOBIA_CONFINED], "Confined spaces are not on the Phobia list")
 	var/obj/structure/closet/locker = allocate(/obj/structure/closet, run_loc_floor_bottom_left)
 	boxed.forceMove(locker)
-	claustrophobia.on_process(1)
-	TEST_ASSERT(mood_event(boxed, "claustrophobia"), "Claustrophobia did not panic inside a locker")
+	confined.on_life()
+	TEST_ASSERT(confined.fearscore > 0, "A fear of confined spaces did not trigger inside a locker")
 	boxed.forceMove(run_loc_floor_bottom_left)
-	claustrophobia.on_process(1)
-	TEST_ASSERT(!mood_event(boxed, "claustrophobia"), "Claustrophobia stayed after leaving the locker")
+	var/confined_fear = confined.fearscore
+	confined.aq_next_special_check = 0
+	confined.on_life()
+	TEST_ASSERT(confined.fearscore <= confined_fear, "A fear of confined spaces grew on an open floor")
 
 	// Gracz: dieta, wygrana na automacie, przegrana
 	var/mob/living/carbon/human/gamer = make_human()
@@ -176,7 +180,7 @@
 	TEST_ASSERT(purist_mood, "A robotic arm did not upset the body purist")
 	TEST_ASSERT_EQUAL(purist_mood.mood_change, -10, "Wrong body purist mood for one robotic part")
 
-	// Piromania i pirofobia: ogień obok zmienia nastrój, piroman lepiej znosi gorąco
+	// Piromania: ogień obok poprawia nastrój, piroman lepiej znosi gorąco
 	var/obj/item/lighter/lighter = allocate(/obj/item/lighter, run_loc_floor_bottom_left)
 	lighter.lit = TRUE
 	var/mob/living/carbon/human/pyro = make_human()
@@ -187,14 +191,18 @@
 	TEST_ASSERT(pyro_mood && pyro_mood.mood_change > 0, "A lit lighter did not please the pyromaniac")
 	pyro.remove_quirk(/datum/quirk/pyromania)
 	TEST_ASSERT(abs(pyro.physiology.heat_mod - 1) < 0.01, "Removing pyromania did not restore heat damage")
+	// Fobia ognia (dawniej Pirofobia): zapalona zapalniczka straszy, zgaszona już nie
 	var/mob/living/carbon/human/firefearer = make_human()
-	var/datum/quirk/pyrophobia/pyrophobia = give_quirk(firefearer, /datum/quirk/pyrophobia)
-	pyrophobia.on_process(1)
-	var/datum/mood_event/fear_mood = mood_event(firefearer, "pyrophobia")
-	TEST_ASSERT(fear_mood && fear_mood.mood_change < 0, "A lit lighter did not scare the pyrophobe")
+	var/datum/brain_trauma/mild/phobia/fire_fear = new(AQ_PHOBIA_FIRE)
+	firefearer.gain_trauma(fire_fear, TRAUMA_RESILIENCE_ABSOLUTE)
+	TEST_ASSERT(SStraumas.phobia_types[AQ_PHOBIA_FIRE], "Fire is not on the Phobia list")
+	fire_fear.on_life()
+	TEST_ASSERT(fire_fear.fearscore > 0, "A lit lighter did not scare someone afraid of fire")
 	lighter.lit = FALSE
-	pyrophobia.on_process(1)
-	TEST_ASSERT(!mood_event(firefearer, "pyrophobia"), "The fear stayed without fire")
+	var/fire_fear_score = fire_fear.fearscore
+	fire_fear.aq_next_special_check = 0
+	fire_fear.on_life()
+	TEST_ASSERT(fire_fear.fearscore <= fire_fear_score, "The fear of fire grew without fire")
 
 	// Snob: bałagan psuje humor
 	var/mob/living/carbon/human/snob = make_human()

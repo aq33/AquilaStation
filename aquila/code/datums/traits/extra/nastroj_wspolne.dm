@@ -63,7 +63,6 @@
 		list(/datum/quirk/transhumanist, /datum/quirk/body_purist),
 		list(/datum/quirk/empath, /datum/quirk/evil),
 		list(/datum/quirk/extrovert, /datum/quirk/introvert),
-		list(/datum/quirk/pyromania, /datum/quirk/pyrophobia),
 	)
 	for(var/list/group as anything in exclusive_groups)
 		var/list/names = list()
@@ -90,37 +89,41 @@
 
 /// Liczy otwarte płomienie w zasięgu wzroku (tg: /atom/proc/count_nearby_fire_sources, bez wag)
 /proc/aq_count_nearby_fire_sources(atom/center, radius = 5)
-	var/fire_size = 0
+	return length(aq_nearby_fire_sources(center, radius))
+
+/// Otwarte płomienie w zasięgu wzroku: płonące moby, ogniska, kominki, flary, zapałki, zapalniczki, pożar i płonące przedmioty
+/proc/aq_nearby_fire_sources(atom/center, radius = 5)
+	var/list/fires = list()
 	for(var/atom/movable/thing in view(radius, center))
 		if(isliving(thing))
 			var/mob/living/burning_mob = thing
 			if(burning_mob.on_fire)
-				fire_size++
+				fires += thing
 			continue
 		if(istype(thing, /obj/structure/bonfire))
 			var/obj/structure/bonfire/bonfire = thing
 			if(bonfire.burning)
-				fire_size++
+				fires += thing
 		else if(istype(thing, /obj/structure/fireplace))
 			var/obj/structure/fireplace/fireplace = thing
 			if(fireplace.lit)
-				fire_size++
+				fires += thing
 		else if(istype(thing, /obj/item/flashlight/flare))
 			var/obj/item/flashlight/flare/flare = thing
 			if(flare.on)
-				fire_size++
+				fires += thing
 		else if(istype(thing, /obj/item/match))
 			var/obj/item/match/match = thing
 			if(match.lit)
-				fire_size++
+				fires += thing
 		else if(istype(thing, /obj/item/lighter))
 			var/obj/item/lighter/lighter = thing
 			if(lighter.lit)
-				fire_size++
+				fires += thing
 		else if(istype(thing, /obj/effect/hotspot))
-			fire_size++
+			fires += thing
 		else if(isobj(thing))
 			var/obj/burning_obj = thing
 			if(burning_obj.resistance_flags & ON_FIRE)
-				fire_size++
-	return fire_size
+				fires += thing
+	return fires
