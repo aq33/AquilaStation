@@ -1,19 +1,19 @@
 // Atmosbot z Bee na basic bocie: łata wyłomy holobarierą, dopompowuje powietrze, filtruje gazy, pilnuje temperatury.
 
-#define ATMOSBOT_MAX_AREA_SCAN 100
-#define ATMOSBOT_BARRIER_COOLDOWN_TIME (15 SECONDS)
-#define ATMOSBOT_MAX_PRESSURE_CHANGE 150
-#define ATMOSBOT_MAX_SCRUB_CHANGE 15
-#define ATMOSBOT_CHECK_BREACH 0
-#define ATMOSBOT_LOW_OXYGEN 1
-#define ATMOSBOT_HIGH_TOXINS 2
-#define ATMOSBOT_BAD_TEMP 3
-#define ATMOSBOT_AREA_STABLE 4
-#define ATMOSBOT_NOTHING 0
-#define ATMOSBOT_DEPLOY_BARRIER 1
-#define ATMOSBOT_VENT_AIR 2
-#define ATMOSBOT_SCRUB_TOXINS 3
-#define ATMOSBOT_TEMPERATURE_CONTROL 4
+#define BATMOS_MAX_AREA_SCAN 100
+#define BATMOS_BARRIER_COOLDOWN_TIME (15 SECONDS)
+#define BATMOS_MAX_PRESSURE_CHANGE 150
+#define BATMOS_MAX_SCRUB_CHANGE 15
+#define BATMOS_CHECK_BREACH 0
+#define BATMOS_LOW_OXYGEN 1
+#define BATMOS_HIGH_TOXINS 2
+#define BATMOS_BAD_TEMP 3
+#define BATMOS_AREA_STABLE 4
+#define BATMOS_NOTHING 0
+#define BATMOS_DEPLOY_BARRIER 1
+#define BATMOS_VENT_AIR 2
+#define BATMOS_SCRUB_TOXINS 3
+#define BATMOS_TEMPERATURE_CONTROL 4
 
 /mob/living/basic/bot/atmosbot
 	name = "\improper Atmosbot"
@@ -31,7 +31,7 @@
 	possessed_message = "Jesteś atmosbotem! Pilnuj, żeby załoga miała czym oddychać."
 	emagged_message = "Jesteś zepsutym atmosbotem! Zatruwaj powietrze dwutlenkiem węgla."
 	/// Co bot robi z bieżącym celem
-	var/action = ATMOSBOT_NOTHING
+	var/action = BATMOS_NOTHING
 	/// Ciśnienie, przy którym szuka wyłomu
 	var/breached_pressure = 20
 	var/temperature_control = FALSE
@@ -67,7 +67,7 @@
 /mob/living/basic/bot/atmosbot/update_icon_state()
 	. = ..()
 	var/on = !!(bot_mode_flags & BOT_MODE_ON)
-	if(action == ATMOSBOT_VENT_AIR && is_emagged())
+	if(action == BATMOS_VENT_AIR && is_emagged())
 		icon_state = "atmosbot[on][on ? "_5" : ""]"
 		return
 	icon_state = "atmosbot[on][on ? "_[action]" : ""]"
@@ -82,31 +82,31 @@
 /// Ocena powietrza i wybór działania: kandydatem jest jeden kafelek (wyłom albo miejsce na wentylację)
 /mob/living/basic/bot/atmosbot/get_work_candidates()
 	var/turf/our_turf = get_turf(src)
-	action = ATMOSBOT_NOTHING
+	action = BATMOS_NOTHING
 	if(!our_turf || isspaceturf(our_turf))
 		return list()
 	var/turf/target
 	switch(check_area_atmos())
-		if(ATMOSBOT_CHECK_BREACH)
+		if(BATMOS_CHECK_BREACH)
 			if(COOLDOWN_FINISHED(src, barrier_cooldown))
 				target = return_nearest_breach()
-				action = ATMOSBOT_DEPLOY_BARRIER
+				action = BATMOS_DEPLOY_BARRIER
 			if(!target)
 				target = get_vent_turf()
-				action = ATMOSBOT_VENT_AIR
-		if(ATMOSBOT_LOW_OXYGEN)
+				action = BATMOS_VENT_AIR
+		if(BATMOS_LOW_OXYGEN)
 			target = get_vent_turf()
-			action = ATMOSBOT_VENT_AIR
-		if(ATMOSBOT_HIGH_TOXINS)
+			action = BATMOS_VENT_AIR
+		if(BATMOS_HIGH_TOXINS)
 			target = get_vent_turf()
-			action = ATMOSBOT_SCRUB_TOXINS
-		if(ATMOSBOT_BAD_TEMP)
+			action = BATMOS_SCRUB_TOXINS
+		if(BATMOS_BAD_TEMP)
 			target = get_vent_turf()
-			action = ATMOSBOT_TEMPERATURE_CONTROL
-		if(ATMOSBOT_AREA_STABLE)
+			action = BATMOS_TEMPERATURE_CONTROL
+		if(BATMOS_AREA_STABLE)
 			if(is_emagged() && prob(20))
 				target = get_vent_turf()
-				action = ATMOSBOT_VENT_AIR
+				action = BATMOS_VENT_AIR
 	update_appearance()
 	return target ? list(target) : list()
 
@@ -114,13 +114,13 @@
 	if(get_turf(src) != get_turf(target))
 		return BOT_WORK_OUT_OF_REACH
 	switch(action)
-		if(ATMOSBOT_DEPLOY_BARRIER)
+		if(BATMOS_DEPLOY_BARRIER)
 			deploy_holobarrier()
-		if(ATMOSBOT_VENT_AIR)
+		if(BATMOS_VENT_AIR)
 			vent_air()
-		if(ATMOSBOT_SCRUB_TOXINS)
+		if(BATMOS_SCRUB_TOXINS)
 			scrub_toxins()
-		if(ATMOSBOT_TEMPERATURE_CONTROL)
+		if(BATMOS_TEMPERATURE_CONTROL)
 			change_temperature()
 	return BOT_WORK_DONE
 
@@ -132,7 +132,7 @@
 	var/datum/gas_mixture/environment = loc.return_air()
 	if(!environment)
 		return
-	var/pressure_delta = min(ATMOSBOT_MAX_PRESSURE_CHANGE, (ONE_ATMOSPHERE - environment.return_pressure()))
+	var/pressure_delta = min(BATMOS_MAX_PRESSURE_CHANGE, (ONE_ATMOSPHERE - environment.return_pressure()))
 	if(pressure_delta <= 0)
 		return
 	var/transfer_moles = pressure_delta * environment.return_volume() / (T20C * R_IDEAL_GAS_EQUATION)
@@ -149,29 +149,29 @@
 		return
 	for(var/gas_id in gasses)
 		if(gasses[gas_id])
-			environment.adjust_moles(gas_id, -min(environment.get_moles(gas_id), ATMOSBOT_MAX_SCRUB_CHANGE))
+			environment.adjust_moles(gas_id, -min(environment.get_moles(gas_id), BATMOS_MAX_SCRUB_CHANGE))
 
 /mob/living/basic/bot/atmosbot/proc/deploy_holobarrier()
 	qdel(deployed_holobarrier?.resolve())
 	deployed_holobarrier = WEAKREF(new /obj/structure/holosign/barrier/atmos(get_turf(src)))
-	COOLDOWN_START(src, barrier_cooldown, ATMOSBOT_BARRIER_COOLDOWN_TIME)
+	COOLDOWN_START(src, barrier_cooldown, BATMOS_BARRIER_COOLDOWN_TIME)
 
 /mob/living/basic/bot/atmosbot/proc/check_area_atmos()
 	var/datum/gas_mixture/gas_mix = loc.return_air()
 	if(!gas_mix)
-		return ATMOSBOT_AREA_STABLE
+		return BATMOS_AREA_STABLE
 	if(gas_mix.return_pressure() < breached_pressure)
-		return ATMOSBOT_CHECK_BREACH
+		return BATMOS_CHECK_BREACH
 	if(!is_emagged())
 		for(var/gas_id in gasses)
 			if(gasses[gas_id] && gas_mix.get_moles(gas_id) > 0.2)
-				return ATMOSBOT_HIGH_TOXINS
+				return BATMOS_HIGH_TOXINS
 	var/partial_pressure = R_IDEAL_GAS_EQUATION * gas_mix.return_temperature() / gas_mix.return_volume()
 	if(gas_mix.get_moles(GAS_O2) * partial_pressure < 20 || gas_mix.return_pressure() < WARNING_LOW_PRESSURE)
-		return ATMOSBOT_LOW_OXYGEN
+		return BATMOS_LOW_OXYGEN
 	if(temperature_control && abs(gas_mix.return_temperature() - ideal_temperature) > 0.5)
-		return ATMOSBOT_BAD_TEMP
-	return ATMOSBOT_AREA_STABLE
+		return BATMOS_BAD_TEMP
+	return BATMOS_AREA_STABLE
 
 /mob/living/basic/bot/atmosbot/proc/get_vent_turf()
 	var/turf/target_turf = get_turf(src)
@@ -187,7 +187,7 @@
 	var/turf/origin = get_turf(src)
 	if(origin.blocks_air)
 		return null
-	var/room_limit = ATMOSBOT_MAX_AREA_SCAN
+	var/room_limit = BATMOS_MAX_AREA_SCAN
 	var/list/checked_turfs = list()
 	var/list/to_check_turfs = list(origin)
 	while(room_limit > 0 && length(to_check_turfs))
@@ -269,17 +269,17 @@
 	qdel(deployed_holobarrier?.resolve())
 	return ..()
 
-#undef ATMOSBOT_MAX_AREA_SCAN
-#undef ATMOSBOT_BARRIER_COOLDOWN_TIME
-#undef ATMOSBOT_MAX_PRESSURE_CHANGE
-#undef ATMOSBOT_MAX_SCRUB_CHANGE
-#undef ATMOSBOT_CHECK_BREACH
-#undef ATMOSBOT_LOW_OXYGEN
-#undef ATMOSBOT_HIGH_TOXINS
-#undef ATMOSBOT_BAD_TEMP
-#undef ATMOSBOT_AREA_STABLE
-#undef ATMOSBOT_NOTHING
-#undef ATMOSBOT_DEPLOY_BARRIER
-#undef ATMOSBOT_VENT_AIR
-#undef ATMOSBOT_SCRUB_TOXINS
-#undef ATMOSBOT_TEMPERATURE_CONTROL
+#undef BATMOS_MAX_AREA_SCAN
+#undef BATMOS_BARRIER_COOLDOWN_TIME
+#undef BATMOS_MAX_PRESSURE_CHANGE
+#undef BATMOS_MAX_SCRUB_CHANGE
+#undef BATMOS_CHECK_BREACH
+#undef BATMOS_LOW_OXYGEN
+#undef BATMOS_HIGH_TOXINS
+#undef BATMOS_BAD_TEMP
+#undef BATMOS_AREA_STABLE
+#undef BATMOS_NOTHING
+#undef BATMOS_DEPLOY_BARRIER
+#undef BATMOS_VENT_AIR
+#undef BATMOS_SCRUB_TOXINS
+#undef BATMOS_TEMPERATURE_CONTROL

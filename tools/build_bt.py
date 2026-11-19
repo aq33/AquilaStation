@@ -334,7 +334,7 @@ def main() -> int:
 
             # either write or check depending on flag
             if check_mode:
-                existing = compiled_path.read_text(encoding='utf-8', newline='') if compiled_path.exists() else ''
+                existing = open(compiled_path, encoding='utf-8', newline='').read() if compiled_path.exists() else ''
                 if existing != compiled_text:
                     print(f'OUT OF DATE: {compiled_path.relative_to(repo_root)}', file=sys.stderr)
                     dirty += 1
@@ -353,7 +353,7 @@ def main() -> int:
 
     index_text = build_index(repo_root, generated_dir, sorted(produced.items(), key=lambda kv: kv[1].relative_to(repo_root).as_posix()))
     if check_mode:
-        existing = index_path.read_text(encoding='utf-8', newline='') if index_path.exists() else ''
+        existing = open(index_path, encoding='utf-8', newline='').read() if index_path.exists() else ''
         if existing != index_text:
             print(f'OUT OF DATE: {index_path.relative_to(repo_root)}', file=sys.stderr)
             dirty += 1

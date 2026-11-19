@@ -263,7 +263,7 @@
 /datum/bt_node/ai_behavior/bot_idle_chatter/perform(seconds_per_tick, datum/ai_controller/controller)
 	var/mob/living/basic/bot/bot_pawn = controller.pawn
 	if(istype(bot_pawn) && !bot_pawn.client && prob(chance))
-		bot_pawn.idle_chatter()
+		INVOKE_ASYNC(bot_pawn, TYPE_PROC_REF(/mob/living/basic/bot, idle_chatter))
 	return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_SUCCEEDED
 
 /// Najbliższy nadajnik patrolu na tym pokładzie
@@ -354,7 +354,7 @@
 /datum/bt_node/ai_behavior/move_to_target/multiz/summon/finish_action(datum/ai_controller/controller, succeeded)
 	if(!succeeded && movement_failed)
 		var/mob/living/basic/bot/bot_pawn = controller.pawn
-		bot_pawn.speak("Nie mogę dotrzeć na miejsce wezwania.", bot_pawn.radio_channel)
+		INVOKE_ASYNC(bot_pawn, TYPE_PROC_REF(/mob/living/basic/bot, speak), "Nie mogę dotrzeć na miejsce wezwania.", bot_pawn.radio_channel)
 		controller.clear_blackboard_key(target_key)
 		bot_pawn.bot_reset()
 	return ..()
@@ -418,7 +418,7 @@
 		controller.ai_movement.stop_moving_towards(controller)
 		var/obj/structure/bot_elevator/next = direction == UP ? elevator_target.up : elevator_target.down
 		if(next)
-			elevator_target.travel(direction == UP, bot_pawn, FALSE, next, FALSE)
+			INVOKE_ASYNC(elevator_target, TYPE_PROC_REF(/obj/structure/bot_elevator, travel), direction == UP, bot_pawn, FALSE, next, FALSE)
 		elevator_target = null
 	return AI_BEHAVIOR_INSTANT
 

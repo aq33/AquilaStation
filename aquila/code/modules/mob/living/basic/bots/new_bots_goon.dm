@@ -132,7 +132,7 @@
 /mob/living/basic/bot/guardbuddy/proc/on_buddy_attacked(datum/source, atom/attacker)
 	SIGNAL_HANDLER
 	if(isliving(attacker) && attacker != src)
-		set_threat(attacker)
+		INVOKE_ASYNC(src, PROC_REF(set_threat), attacker)
 
 /mob/living/basic/bot/guardbuddy/proc/set_threat(mob/living/attacker)
 	if(!istype(attacker) || client || stat)

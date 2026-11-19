@@ -164,7 +164,7 @@
 		if(victim == src || (!is_emagged() && faction_check_mob(victim)))
 			continue
 		to_chat(victim, span_warning("Ostrza [src] cię tną!"))
-		victim.apply_damage(damage_dealt, BRUTE, pick(BODY_ZONE_CHEST, BODY_ZONE_CHEST, BODY_ZONE_R_ARM, BODY_ZONE_L_ARM, BODY_ZONE_R_LEG, BODY_ZONE_L_LEG), sharpness = SHARP_EDGED)
+		victim.apply_damage(damage_dealt, BRUTE, pick(BODY_ZONE_CHEST, BODY_ZONE_CHEST, BODY_ZONE_R_ARM, BODY_ZONE_L_ARM, BODY_ZONE_R_LEG, BODY_ZONE_L_LEG))
 
 /mob/living/basic/bot/dedbot/explode()
 	new /obj/effect/gibspawner/robot(drop_location())

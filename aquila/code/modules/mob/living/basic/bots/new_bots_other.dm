@@ -382,7 +382,7 @@
 		if(victim.stat == DEAD)
 			return BOT_WORK_DONE
 		playsound(src, 'sound/weapons/bladeslice.ogg', 50, TRUE)
-		victim.apply_damage(8, BRUTE, sharpness = SHARP_EDGED)
+		victim.apply_damage(8, BRUTE)
 		victim.visible_message(span_danger("[src] tnie [victim] motyką!"), span_userdanger("[src] tnie cię motyką!"))
 		return BOT_WORK_CONTINUE
 	flick("farmbot_water", src)
