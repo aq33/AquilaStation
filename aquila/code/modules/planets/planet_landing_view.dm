@@ -1,11 +1,11 @@
 // AQUILA - port widoku lądowania z voidcrew/Voidcrew#588 (Jackriip): to, co widać z ziemi, gdy prom z wnętrzem schodzi
 // na planetę albo z niej startuje (cień kadłuba na lądowisku, spadający obraz promu, kurz od dysz, odlot w stronę dziobu),
-// prawdziwy teren za oknami promu tuż przed przyziemieniem i dźwięki lądowania (aquila/sound/planets/landing, CC BY-SA 3.0).
+// i dźwięki lądowania (aquila/sound/planets/landing, CC BY-SA 3.0). Teren lądowiska widziany z pokładu jest w
+// planet_landing_ground.dm.
 // Pokaz z pokładu (planeta, niebo, chmury) i przebieg zejścia są w planet_descent.dm.
 //
 // Różnice względem oryginału: obraz promu nie niesie własnego światła (u nas oświetlenie pól jest obiektem na płaszczyźnie
 // światła, nie podkładem pola) i nie zasłania kadłuba po przyziemieniu, bo nasze oświetlenie przebudowuje się od razu.
-// Teren za oknami to prawdziwe pola planety w vis_contents (bez zdjęć z rust-g i płaszczyzny maski z nowego tg).
 
 /// Cień kadłuba pojawia się na lądowisku tyle przed przyziemieniem, a spadający prom tyle
 #define PLANET_LANDING_SHADOW_LEAD (6 SECONDS)
@@ -40,8 +40,6 @@
 /// Dźwięki przy lądowisku: do tylu pól od kadłuba pełna głośność, do tylu słychać w ogóle
 #define PLANET_LANDING_SOUND_FULL 20
 #define PLANET_LANDING_SOUND_REACH 80
-/// Jak daleko od kadłuba widać z promu prawdziwy teren w ostatniej fazie zejścia
-#define PLANET_GROUND_VIEW_RANGE 9
 
 /// Dźwięk i drżenie dla ludzi przy lądowisku (na poziomie pól [site_turfs]): dźwięk płynie z najbliższej części obrysu,
 /// drżenie czują tylko ci do PLANET_LANDING_SHAKE_RANGE pól od niego
@@ -266,18 +264,6 @@
 	layer = ABOVE_OPEN_TURF_LAYER - 0.01
 	blur_size = 6
 
-/// Okno na prawdziwy teren planety: pole kosmosu przy promie schodzącym na planetę pokazuje odpowiadające mu pole lądowiska
-/// (z tym, co na nim stoi, i jego oświetleniem), tuż nad kosmosem, pod kadłubem
-/obj/effect/abstract/planet_ground_window
-	name = ""
-	anchored = TRUE
-	density = FALSE
-	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-	plane = FLOOR_PLANE
-	layer = SPACE_LAYER + 0.01
-	appearance_flags = PIXEL_SCALE
-	alpha = 0
-
 /**
  * Start z planety widziany z ziemi: obraz kadłuba unosi się, rusza do przodu i odlatuje w stronę dziobu, kurz leci spod
  * rufy, a cień zostaje na lądowisku, potem sunie za promem i blednie. Potem wszystko usuwa się samo.
@@ -372,59 +358,23 @@
 	animate(ground_proxy, pixel_y = PLANET_LANDING_PROXY_FINAL_HEIGHT, time = high_part, easing = QUAD_EASING | EASE_OUT)
 	animate(pixel_y = PLANET_LANDING_PROXY_HOVER, time = time_left - high_part, easing = SINE_EASING | EASE_OUT)
 
-/// Dysze dosięgają ziemi: kurz spod krawędzi lądowiska
+/// Dysze dosięgają ziemi: kurz spod krawędzi lądowiska, a dla załogi taki sam przy kadłubie na parkingu (obraz terenu
+/// pod promem jest nieruchomy, kurzu z lądowiska na nim nie ma)
 /datum/planet_descent/proc/thruster_wash()
 	planet_landing_wash(berth, PLANET_LANDING_WASH_PUFFS, PLANET_LANDING_WASH_CHANCE, PLANET_LANDING_WASH_PUSH)
+	planet_landing_wash(hull_order, PLANET_LANDING_WASH_PUFFS, PLANET_LANDING_WASH_CHANCE, PLANET_LANDING_WASH_PUSH)
 
-/// Ostatnia faza: za oknami pojawia się prawdziwy teren wokół lądowiska (pola kosmosu przy kadłubie pokazują pola planety,
-/// na których stanie prom). Widać na nim cień kadłuba i kurz od dysz, tak jak zobaczą je ludzie na ziemi
-/// fade_start, fade_time - po jakim czasie od początku podejścia teren zaczyna się pojawiać i jak długo
-/datum/planet_descent/proc/show_ground_window(fade_start, fade_time)
-	var/obj/docking_port/mobile/shuttle = craft?.shuttle_port
-	if(!shuttle || !port || !length(hull_order) || length(ground_windows))
-		return
-	var/list/hull_set = list()
-	for(var/turf/T as anything in hull_order)
-		hull_set[T] = TRUE
-	var/turf/first = hull_order[1]
-	var/min_x = INFINITY
-	var/max_x = -INFINITY
-	var/min_y = INFINITY
-	var/max_y = -INFINITY
-	for(var/turf/T as anything in hull_order)
-		min_x = min(min_x, T.x)
-		max_x = max(max_x, T.x)
-		min_y = min(min_y, T.y)
-		max_y = max(max_y, T.y)
-	var/turns = rotation / 90
-	var/list/area_turfs = block(locate(max(1, min_x - PLANET_GROUND_VIEW_RANGE), max(1, min_y - PLANET_GROUND_VIEW_RANGE), first.z), locate(min(world.maxx, max_x + PLANET_GROUND_VIEW_RANGE), min(world.maxy, max_y + PLANET_GROUND_VIEW_RANGE), first.z))
-	for(var/turf/T as anything in area_turfs)
-		if(hull_set[T] || !isspaceturf(T))
-			continue
-		var/offset_x = T.x - shuttle.x
-		var/offset_y = T.y - shuttle.y
-		for(var/i = 0, i < turns, i++)
-			var/old_x = offset_x
-			offset_x = offset_y
-			offset_y = -old_x
-		var/turf/ground = locate(port.x + offset_x, port.y + offset_y, port.z)
-		if(!ground)
-			continue
-		var/obj/effect/abstract/planet_ground_window/window = new(T)
-		window.vis_contents += ground
-		// W locie świat wokół kadłuba jest obrócony odwrotnie do obrotu kadłuba przy dokowaniu
-		if(rotation)
-			window.transform = matrix().Turn(-rotation)
-		animate(window, alpha = 0, time = fade_start)
-		animate(alpha = 255, time = fade_time, easing = SINE_EASING | EASE_IN)
-		ground_windows += window
-
-/// Usuwa widok z ziemi i teren za oknami; przy przerwanym zejściu wszystko blednie zamiast zniknąć
+/// Usuwa widok z ziemi i teren pod promem; przy przerwanym zejściu wszystko blednie zamiast zniknąć
 /datum/planet_descent/proc/clear_ground(fade = FALSE)
-	var/list/leftovers = list(ground_shadow, ground_proxy) + ground_windows
+	if(ground_view)
+		if(fade)
+			ground_view.fade_away()
+		else
+			qdel(ground_view)
+		ground_view = null
+	var/list/leftovers = list(ground_shadow, ground_proxy)
 	ground_shadow = null
 	ground_proxy = null
-	ground_windows = list()
 	for(var/atom/movable/thing as anything in leftovers)
 		if(QDELETED(thing))
 			continue
@@ -465,4 +415,3 @@
 #undef PLANET_LANDING_SHAKE_RANGE
 #undef PLANET_LANDING_SOUND_FULL
 #undef PLANET_LANDING_SOUND_REACH
-#undef PLANET_GROUND_VIEW_RANGE

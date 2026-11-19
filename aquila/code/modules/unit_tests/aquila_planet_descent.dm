@@ -22,10 +22,8 @@
 	TEST_ASSERT_EQUAL(sky.shown_type, jungle, "The descent doesn't show the planet it lands on")
 	TEST_ASSERT(sky.sky_fill in sky.vis_contents, "No atmosphere sky during the descent")
 	TEST_ASSERT_EQUAL(sky.sky_fill.color, jungle.sky_atmosphere_color, "The descent sky isn't the planet's atmosphere colour")
-	for(var/obj/effect/overlay/planet_sky_part/part as anything in sky.streak_parts + sky.rush_parts)
-		TEST_ASSERT(part in sky.vis_contents, "A streak or cloud part is missing from the descent")
-	var/obj/effect/overlay/planet_sky_part/rush = sky.rush_parts[1]
-	TEST_ASSERT_EQUAL(rush.icon_state, jungle.sky_clouds, "The clouds rushing past aren't the planet's clouds")
+	for(var/obj/effect/overlay/planet_sky_part/part as anything in sky.streak_parts)
+		TEST_ASSERT(part in sky.vis_contents, "A streak part is missing from the descent")
 	// W trakcie pokazu zwykłe sprawdzanie planety (bez okrętu: null) nie może jej schować
 	sky.update_status(null)
 	TEST_ASSERT_EQUAL(sky.shown_type, jungle, "A parallax update hid the planet in the middle of the descent")
@@ -114,20 +112,25 @@
 	TEST_ASSERT(!QDELETED(port), "A second landing call deleted the landing spot of the descent")
 	// Fazy pokazu bez klientów: żar przy kadłubie, iskry i lampy w kabinie nie mogą się wysypać
 	sabre.planet_descent.reentry()
-	sabre.planet_descent.clouds()
 	sabre.planet_descent.approach()
 	var/datum/planet_descent/descent = sabre.planet_descent
 	TEST_ASSERT(descent.shadow, "No hull shadow over the ground during the approach")
 	TEST_ASSERT_EQUAL(length(descent.berth), length(descent.hull_order), "The hull and the landing spot don't pair up tile for tile")
 	TEST_ASSERT_EQUAL(length(descent.berth), length(sabre.planet_landing_footprint(port)), "The landing spot of the ground view isn't the hull footprint")
-	// Ostatnia faza: za oknami prawdziwy teren lądowiska, pole w pole tak, jak stanie kadłub
-	TEST_ASSERT(length(descent.ground_windows), "No real ground beside the hull in the last phase of the descent")
-	var/list/windows_seen = descent.ground_windows.Copy()
+	// Ostatnia faza: pod promem prawdziwy teren lądowiska, środek w środek tak, jak stanie kadłub, przycięty maską do pól
+	// kosmosu wokół kadłuba
+	var/datum/planet_ground_view/ground = descent.ground_view
+	TEST_ASSERT(ground, "No real ground under the shuttle in the last phase of the descent")
+	TEST_ASSERT(length(ground.close_picture.overlays), "The close-up picture of the landing site is empty")
 	if(!descent.rotation)
-		for(var/obj/effect/abstract/planet_ground_window/window as anything in windows_seen)
-			var/turf/shown = window.vis_contents[1]
-			var/turf/window_turf = window.loc
-			TEST_ASSERT(shown && shown.x - port.x == window_turf.x - shuttle_port.x && shown.y - port.y == window_turf.y - shuttle_port.y && shown.z == port.z, "A window beside the hull shows the wrong part of the landing site")
+		TEST_ASSERT(ground.ground_x - port.x == ground.hull_x - shuttle_port.x && ground.ground_y - port.y == ground.hull_y - shuttle_port.y, "The ground picture isn't centred where the hull will stand")
+	TEST_ASSERT(length(ground.masked_turfs), "The ground picture has no mask: nothing of it would be seen")
+	var/list/hull_now = shuttle_hull_turfs(shuttle_port)
+	for(var/turf/masked as anything in ground.masked_turfs)
+		TEST_ASSERT(!(masked in hull_now), "The ground picture's mask covers the hull at [COORD(masked)]")
+	// Obraz z daleka (rust-g; w zejściu piecze się w tle, tu mały wycinek, żeby test nie czekał): 2 piksele na pole
+	var/icon/aerial = planet_ground_aerial(port.x, port.y, port.z, 4, 2, null, planet.surface.reservation)
+	TEST_ASSERT(aerial && aerial.Width() == 16 && aerial.Height() == 16, "No picture of the ground from afar")
 	// Z ziemi: cień na lądowisku, spadający obraz promu i kurz od dysz
 	descent.show_ground_shadow()
 	descent.show_ground_proxy()
@@ -140,8 +143,7 @@
 	descent.finish()
 	TEST_ASSERT(!sabre.planet_descent, "The descent didn't end after touchdown")
 	TEST_ASSERT(QDELETED(falling), "The picture of the falling shuttle stayed over the landed hull")
-	for(var/obj/effect/abstract/planet_ground_window/window as anything in windows_seen)
-		TEST_ASSERT(QDELETED(window), "A window on the landing site stayed in the flight parking after touchdown")
+	TEST_ASSERT(QDELETED(ground), "The ground picture stayed in the flight parking after touchdown")
 	// Kadłub Sabre nie zasłania widoku także po dokowaniu na planecie (dokowanie kopiuje pola)
 	for(var/turf/closed/wall in shuttle_port.return_turfs())
 		TEST_ASSERT(!wall.opacity, "A Sabre hull wall [wall.type] blocks the view after landing on the planet")
