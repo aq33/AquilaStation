@@ -591,13 +591,17 @@
 		verdict = pick(0, 1, 1, 2)
 	switch(verdict)
 		if(0)
-			say("[chef ? "[uppertext(chef.name)]! " : ""]TO DANIE [pick("JEST SUROWE", "JEST BEZ SMAKU", "JEST NIEDOGOTOWANE", "JEST ROZGOTOWANE", "JEST NIEJADALNE", "JEST ZJEŁCZAŁE", "JEST OBRZYDLIWE", "WYGLĄDA JAK WYMIOCINY NIEMOWLAKA", "WYGLĄDA JAK STOS GNIJĄCYCH MUCH")]!")
+			var/complaint = pick("JEST SUROWE", "JEST BEZ SMAKU", "JEST NIEDOGOTOWANE", "JEST ROZGOTOWANE", "JEST NIEJADALNE", "JEST ZJEŁCZAŁE", "JEST OBRZYDLIWE", "WYGLĄDA JAK WYMIOCINY NIEMOWLAKA", "WYGLĄDA JAK STOS GNIJĄCYCH MUCH")
+			var/chef_name = chef ? "[uppertext(chef.name)]! " : ""
+			say("[chef_name]TO DANIE [complaint]!")
 			visible_message(span_danger("[src] depcze [dish] z furią!"))
 			qdel(dish)
 		if(1)
-			say("[chef ? "[uppertext(chef.name)]! " : ""]TO JEST... ZNOŚNE. NASTĘPNYM RAZEM POSTARAJ SIĘ BARDZIEJ!")
+			var/chef_name = chef ? "[uppertext(chef.name)]! " : ""
+			say("[chef_name]TO JEST... ZNOŚNE. NASTĘPNYM RAZEM POSTARAJ SIĘ BARDZIEJ!")
 		if(2)
-			say("[chef ? "[chef.name], " : ""]to... to jest naprawdę dobre. Nie mów nikomu, że to powiedziałem.")
+			var/chef_name = chef ? "[chef.name], " : ""
+			say("[chef_name]to... to jest naprawdę dobre. Nie mów nikomu, że to powiedziałem.")
 	return BOT_WORK_DONE
 
 /// Kucharz w zasięgu wzroku (albo ktokolwiek, jeśli kucharza nie ma)
