@@ -1,6 +1,6 @@
 // AQUILA - katalog mechów: pozycje wyposażenia z planu i nowe podwozia (używane przez testy i komorę testową)
 
-/// AQUILA - mechy: 64 pozycje wyposażenia z planu (nazwa z planu => typ)
+/// AQUILA - mechy: 61 pozycji wyposażenia z planu (nazwa z planu => typ)
 GLOBAL_LIST_INIT(aq_mecha_plan_equipment, list(
 	"ATMOS module" = /obj/item/mecha_parts/mecha_equipment/aq_tool/atmos,
 	"Exosuit light amplification module" = /obj/item/mecha_parts/mecha_equipment/aq_utility/light_amp,
@@ -9,7 +9,6 @@ GLOBAL_LIST_INIT(aq_mecha_plan_equipment, list(
 	"ASW-8 (młot)" = /obj/item/mecha_parts/mecha_equipment/aq_melee/maul,
 	"Cloak (maskowanie)" = /obj/item/mecha_parts/mecha_equipment/aq_utility/cloak,
 	"M/RP-66 'Smilgas' anti-tank guided rocket pod" = /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/aq_smilgas,
-	"Mounted radiator loop" = /obj/item/mecha_parts/mecha_equipment/aq_cooling/passive,
 	"M56 FPW (firing port weapon)" = /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/aq_fpw,
 	"Hydraulic claw (Paddy)" = /obj/item/mecha_parts/mecha_equipment/aq_tool/paddy_claw,
 	"Executor Mech Rifle" = /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/aq_executor,
@@ -56,14 +55,12 @@ GLOBAL_LIST_INIT(aq_mecha_plan_equipment, list(
 	"U-56 Radar Antenna" = /obj/item/mecha_parts/mecha_equipment/aq_utility/radar,
 	"Forklifting bars" = /obj/item/mecha_parts/mecha_equipment/aq_tool/forklift,
 	"Stinger grenade launcher" = /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/flashbang/aq_stinger,
-	"Heat sink" = /obj/item/mecha_parts/mecha_equipment/aq_heat_sink,
 	"Gunner Module" = /obj/item/mecha_parts/mecha_equipment/aq_utility/gunner,
 	"Mounted ore summoner" = /obj/item/mecha_parts/mecha_equipment/aq_ore_summoner,
 	"Defence shocker" = /obj/item/mecha_parts/mecha_equipment/aq_armor/shocker,
 	"Enhanced zoom" = /obj/item/mecha_parts/mecha_equipment/aq_utility/zoom,
 	"Mounted stretcher" = /obj/item/mecha_parts/mecha_equipment/aq_utility/carrier/stretcher,
 	"Sentinel Cannon" = /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/aq_sentinel_cannon,
-	"Active cooling" = /obj/item/mecha_parts/mecha_equipment/aq_cooling/active,
 	"Mounted Jail Cell" = /obj/item/mecha_parts/mecha_equipment/aq_utility/carrier/jail_cell,
 	"Exosuit airshield" = /obj/item/mecha_parts/mecha_equipment/aq_utility/airshield,
 ))

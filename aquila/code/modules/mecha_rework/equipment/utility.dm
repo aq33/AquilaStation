@@ -90,7 +90,6 @@
 		return
 	chassis.use_power(energy_drain)
 	COOLDOWN_START(src, jump_cd, 10 SECONDS)
-	chassis.aq_adjust_heat(10)
 	playsound(chassis, 'sound/effects/podwoosh.ogg', 50, TRUE)
 	chassis.visible_message("<span class='warning'>[chassis] wybija się w powietrze!</span>")
 	var/old_layer = chassis.layer

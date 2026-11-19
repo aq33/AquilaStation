@@ -37,12 +37,11 @@
 
 /datum/supply_pack/engineering/aq_mech_equipment
 	name = "Skrzynia wyposażenia mechów"
-	desc = "Zestaw narzędzi inżynieryjnych, szczęki ratownicze, aktywne chłodzenie i płyta pancerza dla mechów roboczych."
+	desc = "Zestaw narzędzi inżynieryjnych, szczęki ratownicze i płyta pancerza dla mechów roboczych."
 	cost = 2500
 	access_budget = FALSE
 	contains = list(/obj/item/mecha_parts/mecha_equipment/aq_tool/toolset,
 					/obj/item/mecha_parts/mecha_equipment/aq_tool/rescue_jaw,
-					/obj/item/mecha_parts/mecha_equipment/aq_cooling/active,
 					/obj/item/mecha_parts/aq_armor_plating)
 	crate_name = "skrzynia wyposażenia mechów"
 

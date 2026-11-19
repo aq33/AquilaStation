@@ -1,10 +1,10 @@
-// aq33/AquilaStation#672 - mechy: system slotów, ciepło, kierunkowy pancerz, nowe podwozia, skiny i wyposażenie
+// aq33/AquilaStation#672 - mechy: system slotów, overclock, kierunkowy pancerz, nowe podwozia, skiny i wyposażenie
 
 /datum/test_chamber_kit/pr_672_mechy
 	name = "PR 672: mechy - podwozia"
 	pr = "aq33/AquilaStation#672"
-	description = "Nowe podwozia i zestawy konwersji. Sprawdź: sloty w oknie mecha (dwie bronie w ramionach, trzecia odmawia), overclock (pasek ciepła, \
-	bezpiecznik przy 150, wymiana kablem przy otwartej klapie), Savannah z dwoma osobami (drugi prowadzi i skacze Skyfall, pierwszy strzela i odpala Ivanov), \
+	description = "Nowe podwozia i zestawy konwersji. Sprawdź: sloty w oknie mecha (dwie bronie w ramionach, trzecia odmawia), overclock (działa 15 s, potem 45 s odnowienia, \
+	stan i czas w oknie mecha), Savannah z dwoma osobami (drugi prowadzi i skacze Skyfall, pierwszy strzela i odpala Ivanov), \
 	Paddy (syreny, cela, chwytak), Clarke (ruda z pola do ładowni, bez jazdy skosem przy strafe), Sentinel (burzy ściany), \
 	Basenji (szarża), konwersja Ripleya na Paddy i CLIP MK-IV (protokoły serwisowe włączone, mech pusty). Kokpit zdalnego sterowania: odbiornik w Gygaxie, usiądź w kokpicie. \
 	Zrzut: system zrzutu w Gygaxie, latarnia postawiona kilka kratek dalej."
@@ -27,7 +27,6 @@
 		/obj/item/mecha_parts/mecha_equipment/aq_drop_system = 1,
 		/obj/item/aq_mech_drop_beacon = 1,
 		/obj/item/mecha_parts/mecha_equipment/aq_tool/paddy_claw = 1,
-		/obj/item/stack/cable_coil = 1,
 		/obj/item/card/id/captains_spare = 1,
 		/obj/item/storage/toolbox/mechanical = 1,
 	)
@@ -61,7 +60,7 @@
 /datum/test_chamber_kit/pr_672_mechy_wyposazenie
 	name = "PR 672: mechy - wyposażenie"
 	pr = "aq33/AquilaStation#672"
-	description = "Wszystkie 64 pozycje wyposażenia z planu obok Gygaxa, Ripleya i Odyseusza. Sprawdź broń wręcz (cios w cel, zamach w combat mode), \
+	description = "Wszystkie 61 pozycji wyposażenia z planu obok Gygaxa, Ripleya i Odyseusza. Sprawdź broń wręcz (cios w cel, zamach w combat mode), \
 	amunicję (skrzynki i magazynki użyte na mechu), autolat (arkusze użyte na mechu, „drukuj” w oknie), wiele modułów z przyciskami akcji."
 	items = list(
 		/obj/mecha/combat/gygax = 2,

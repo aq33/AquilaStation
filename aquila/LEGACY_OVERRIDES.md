@@ -1415,7 +1415,7 @@ Of the logic files, 182 contain an AQ/AQUILA marker or an `aquila/` resource; th
 
 </details>
 
-## Mechs: slots, heat, two seats, remote control (aquila/code/modules/mecha_rework/)
+## Mechs: slots, overclock, two seats, remote control (aquila/code/modules/mecha_rework/)
 
 Everything is layered on top of the old `/obj/mecha` (no migration to `/obj/vehicle/sealed/mecha`). Overrides that return early
 without `..()` in one branch and call `..()` otherwise (partial overrides, class B):

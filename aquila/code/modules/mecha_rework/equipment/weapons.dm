@@ -35,7 +35,6 @@
 	aq_ammo_cache = 60
 	aq_ammo_cache_max = 240
 	aq_calibers = list("a762", "n762")
-	aq_heat_cost = 2
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/aq_executor
 	name = "\improper karabin mecha Executor"
@@ -52,7 +51,6 @@
 	aq_ammo_cache = 10
 	aq_ammo_cache_max = 50
 	aq_calibers = list(".50")
-	aq_heat_cost = 6
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/aq_sentinel_cannon
 	name = "działo Sentinela"
@@ -72,7 +70,6 @@
 	aq_ammo_type = "sentinel"
 	aq_ammo_cache = 10
 	aq_ammo_cache_max = 30
-	aq_heat_cost = 15
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/aq_sentinel_cannon/can_attach(obj/mecha/M)
 	if(!istype(M, /obj/mecha/combat/aq_sentinel))
@@ -103,7 +100,6 @@
 	projectile_delay = 1
 	fire_sound = 'sound/weapons/lasercannonfire.ogg'
 	harmful = TRUE
-	aq_heat_cost = 12
 
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/aq_sentinel_laser/can_attach(obj/mecha/M)
 	if(!istype(M, /obj/mecha/combat/aq_sentinel))
@@ -123,7 +119,6 @@
 	harmful = TRUE
 	aq_ammo_cache_max = 96
 	aq_calibers = list(".45")
-	aq_heat_cost = 5
 
 /obj/item/projectile/bullet/aq_mech_venom
 	name = "pocisk z jadem"
@@ -222,7 +217,6 @@
 	aq_ammo_type = "smilgas"
 	aq_ammo_cache = 4
 	aq_ammo_cache_max = 8
-	aq_heat_cost = 8
 
 /obj/item/projectile/bullet/aq_smilgas
 	name = "rakieta kierowana"
@@ -291,7 +285,6 @@
 	projectile = /obj/item/projectile/beam/xray
 	fire_sound = 'sound/weapons/laser3.ogg'
 	harmful = TRUE
-	aq_heat_cost = 6
 
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/aq_gamma
 	name = "laser gamma egzoszkieletu"
@@ -303,7 +296,6 @@
 	projectile = /obj/item/projectile/beam/aq_gamma
 	fire_sound = 'sound/weapons/laser3.ogg'
 	harmful = TRUE
-	aq_heat_cost = 4
 
 /obj/item/projectile/beam/aq_gamma
 	name = "wiązka gamma"
@@ -323,7 +315,6 @@
 	projectile = /obj/item/projectile/beam/aq_immolation
 	fire_sound = 'sound/weapons/laser3.ogg'
 	harmful = TRUE
-	aq_heat_cost = 8
 
 /obj/item/projectile/beam/aq_immolation
 	name = "wiązka podpalająca"
@@ -349,7 +340,6 @@
 	projectile_energy_cost = 300
 	fire_sound = 'sound/weapons/grenadelaunch.ogg'
 	harmful = TRUE
-	aq_heat_cost = 6
 
 /obj/item/projectile/bullet/aq_incendiary_shell
 	name = "pocisk zapalający"
@@ -376,7 +366,6 @@
 	equip_cooldown = 20
 	energy_drain = 30
 	harmful = TRUE
-	aq_heat_cost = 5
 	fire_sound = 'aquila/sound/weapons/flamethrower.ogg'
 	var/per_shot = 5
 
@@ -541,7 +530,6 @@
 	aq_magazine_only = TRUE
 	aq_ammo_cache = 0
 	aq_ammo_cache_max = 100
-	aq_heat_cost = 3
 
 /obj/item/projectile/bullet/aq_forge_slug
 	name = "kulka z fabrykatora"

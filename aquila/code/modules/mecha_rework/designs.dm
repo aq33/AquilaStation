@@ -426,24 +426,6 @@
 	construction_time = 50
 	category = list("Exosuit Equipment")
 
-/datum/design/aq_mech_active_cooling
-	name = "Wyposażenie egzoszkieletu (Aktywny układ chłodzenia)"
-	id = "aq_mech_active_cooling"
-	build_type = MECHFAB
-	build_path = /obj/item/mecha_parts/mecha_equipment/aq_cooling/active
-	materials = list(/datum/material/iron = 10000, /datum/material/silver = 3000)
-	construction_time = 100
-	category = list("Exosuit Equipment")
-
-/datum/design/aq_mech_radiator
-	name = "Wyposażenie egzoszkieletu (Montowana pętla radiatora)"
-	id = "aq_mech_radiator"
-	build_type = MECHFAB
-	build_path = /obj/item/mecha_parts/mecha_equipment/aq_cooling/passive
-	materials = list(/datum/material/iron = 10000)
-	construction_time = 100
-	category = list("Exosuit Equipment")
-
 /datum/design/aq_mech_ballistic_shield
 	name = "Wyposażenie egzoszkieletu (Tarcza balistyczna egzoszkieletu)"
 	id = "aq_mech_ballistic_shield"
@@ -567,15 +549,6 @@
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/aq_tool/tractor
 	materials = list(/datum/material/iron = 10000, /datum/material/glass = 5000, /datum/material/silver = 5000)
-	construction_time = 150
-	category = list("Exosuit Equipment")
-
-/datum/design/aq_mech_heat_sink
-	name = "Wyposażenie egzoszkieletu (Zbiornik ciepła)"
-	id = "aq_mech_heat_sink"
-	build_type = MECHFAB
-	build_path = /obj/item/mecha_parts/mecha_equipment/aq_heat_sink
-	materials = list(/datum/material/iron = 15000, /datum/material/silver = 5000)
 	construction_time = 150
 	category = list("Exosuit Equipment")
 
@@ -1078,9 +1051,9 @@
 	id = "aq_mech_basic"
 	tech_tier = 1
 	display_name = "Wyposażenie mechów: podstawy"
-	description = "Narzędzia, chłodzenie, sensory i płyty pancerza dla wszystkich egzoszkieletów."
+	description = "Narzędzia, sensory i płyty pancerza dla wszystkich egzoszkieletów."
 	starting_node = TRUE
-	design_ids = list("aq_mech_toolset", "aq_mech_torch", "aq_mech_atmos", "aq_mech_rescue_jaw", "aq_mech_inflatables", "aq_mech_forklift", "aq_mech_towing", "aq_mech_super_spray", "aq_mech_mop", "aq_mech_magtreads", "aq_mech_ejection", "aq_mech_health_analyzer", "aq_mech_stretcher", "aq_mech_light_amp", "aq_mech_zoom", "aq_mech_camera", "aq_mech_active_cooling", "aq_mech_radiator", "aq_mech_ballistic_shield", "aq_mech_crusher", "aq_mech_mkv7", "aq_mech_plating")
+	design_ids = list("aq_mech_toolset", "aq_mech_torch", "aq_mech_atmos", "aq_mech_rescue_jaw", "aq_mech_inflatables", "aq_mech_forklift", "aq_mech_towing", "aq_mech_super_spray", "aq_mech_mop", "aq_mech_magtreads", "aq_mech_ejection", "aq_mech_health_analyzer", "aq_mech_stretcher", "aq_mech_light_amp", "aq_mech_zoom", "aq_mech_camera", "aq_mech_ballistic_shield", "aq_mech_crusher", "aq_mech_mkv7", "aq_mech_plating")
 
 /datum/techweb_node/aq_mech_clarke
 	id = "aq_mech_clarke"
@@ -1110,7 +1083,7 @@
 	prereq_ids = list("adv_mecha")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 3500)
 	export_price = 3500
-	design_ids = list("aq_mech_rpd", "aq_mech_ore_summoner", "aq_mech_jumpjet", "aq_mech_airshield", "aq_mech_autolathe", "aq_mech_fobricator", "aq_mech_tractor", "aq_mech_heat_sink", "aq_mech_artillery", "aq_mech_radar", "aq_mech_ablative", "aq_mech_shocker", "aq_mech_passenger", "aq_mech_gunner", "aq_mech_weapons_loader", "aq_mech_remote", "aq_mech_drop_system", "aq_mech_drop_beacon", "aq_mech_plating_reinforced", "aq_mech_plating_composite", "aq_mech_umg2", "aq_mech_executor", "aq_mech_fpw", "aq_mech_incendiary", "aq_mech_flamethrower", "aq_mech_gamma", "aq_mech_entry_device", "aq_mech_breaching", "aq_mech_dropwall", "aq_mech_forge_cannon", "aq_mech_clip_ripley_kit", "aq_mech_paladin_kit", "aq_mech_basenji_kit", "aq_mech_mp_kit", "aq_mech_ammo_breaching", "aq_mech_ammo_umg2", "aq_mech_ammo_executor", "aq_mech_ammo_fpw", "aq_mecha_remote_pod")
+	design_ids = list("aq_mech_rpd", "aq_mech_ore_summoner", "aq_mech_jumpjet", "aq_mech_airshield", "aq_mech_autolathe", "aq_mech_fobricator", "aq_mech_tractor", "aq_mech_artillery", "aq_mech_radar", "aq_mech_ablative", "aq_mech_shocker", "aq_mech_passenger", "aq_mech_gunner", "aq_mech_weapons_loader", "aq_mech_remote", "aq_mech_drop_system", "aq_mech_drop_beacon", "aq_mech_plating_reinforced", "aq_mech_plating_composite", "aq_mech_umg2", "aq_mech_executor", "aq_mech_fpw", "aq_mech_incendiary", "aq_mech_flamethrower", "aq_mech_gamma", "aq_mech_entry_device", "aq_mech_breaching", "aq_mech_dropwall", "aq_mech_forge_cannon", "aq_mech_clip_ripley_kit", "aq_mech_paladin_kit", "aq_mech_basenji_kit", "aq_mech_mp_kit", "aq_mech_ammo_breaching", "aq_mech_ammo_umg2", "aq_mech_ammo_executor", "aq_mech_ammo_fpw", "aq_mecha_remote_pod")
 
 /datum/techweb_node/aq_mech_melee
 	id = "aq_mech_melee"

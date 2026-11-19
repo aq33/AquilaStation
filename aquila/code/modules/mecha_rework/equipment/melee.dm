@@ -193,7 +193,6 @@
 	cleave = TRUE
 	attack_sharpness = IS_SHARP
 	energy_drain = 2
-	aq_heat_cost = 3
 	weapon_damage = 10
 	precise_weapon_damage = 15
 	fauna_damage_bonus = 30
@@ -213,7 +212,6 @@
 	cleave = TRUE
 	combat_only = FALSE
 	energy_drain = 30
-	aq_heat_cost = 15
 	attack_speed_modifier = 2
 	structure_damage_mult = 1
 	precise_weapon_damage = -25
@@ -244,7 +242,6 @@
 	icon_state = "mecha_maul"
 	cleave = TRUE
 	energy_drain = 4
-	aq_heat_cost = 8
 	weapon_damage = 25
 	precise_weapon_damage = 30
 	attack_speed_modifier = 2.5
@@ -281,7 +278,6 @@
 	precise_attacks = FALSE
 	harmful = FALSE
 	energy_drain = 5
-	aq_heat_cost = 1
 	weapon_damage = 0
 	structure_damage_mult = 0
 	attack_sound = 'sound/effects/slosh.ogg'

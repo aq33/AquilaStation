@@ -1,4 +1,4 @@
-// AQUILA - dane systemów mecha do okna TGUI "Mecha" (panel AqSystemsPane.tsx): sloty, ciepło, overclock, bezpieczniki,
+// AQUILA - dane systemów mecha do okna TGUI "Mecha" (panel AqSystemsPane.tsx): sloty, overclock,
 // pancerz kierunkowy, płyta pancerza i drugi załogant.
 
 /obj/mecha/ui_data(mob/user)
@@ -14,14 +14,9 @@
 			continue
 		slots += list(list("key" = key, "name" = aq_mecha_slot_name(key), "used" = length(names), "max" = max_slots, "modules" = names))
 	data["aq_slots"] = slots
-	data["aq_heat"] = round(aq_heat, 1)
-	data["aq_heat_warning"] = AQ_MECHA_HEAT_WARNING
-	data["aq_heat_danger"] = AQ_MECHA_HEAT_DANGER
-	data["aq_heat_max"] = AQ_MECHA_HEAT_MAX
 	data["aq_overclock"] = aq_overclock
-	data["aq_fuses"] = aq_fuses
-	data["aq_fuses_max"] = AQ_MECHA_FUSES
-	data["aq_fuse_safety"] = aq_fuse_safety
+	data["aq_overclock_left"] = aq_overclock ? round(max(0, aq_overclock_end - world.time) / 10) : 0
+	data["aq_overclock_cooldown"] = round(COOLDOWN_TIMELEFT(src, aq_overclock_cooldown) / 10)
 	data["aq_facing"] = list(facing_modifiers[MECHA_FRONT_ARMOUR], facing_modifiers[MECHA_SIDE_ARMOUR], facing_modifiers[MECHA_BACK_ARMOUR])
 	data["aq_plating"] = aq_plating?.name
 	data["aq_copilot"] = aq_copilot ? "[aq_copilot]" : null
@@ -34,12 +29,5 @@
 			if(usr != occupant || usr.incapacitated())
 				return
 			aq_set_overclock(!aq_overclock)
-			return TRUE
-		if("aq_fuse_safety")
-			if(usr != occupant || usr.incapacitated())
-				return
-			aq_fuse_safety = !aq_fuse_safety
-			occupant_message(aq_fuse_safety ? "<span class='notice'>Zabezpieczenie termiczne włączone.</span>" : "<span class='danger'>Zabezpieczenie termiczne wyłączone: przy przegrzaniu mech będzie się smażył zamiast wyłączyć overclock.</span>")
-			log_message("Thermal fuse safety: [aq_fuse_safety].", LOG_MECHA)
 			return TRUE
 	return ..()
