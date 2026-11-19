@@ -68,7 +68,11 @@ const jsxInput = process.env.I18N_JSX;
             ? ts(item.texts, item.slots)
             : textOf(tt(item.texts, item.slots)),
     }))
-    .filter(({ en }) => POLISH_LEFT.test(en));
+    // wejście to same polskie teksty, więc bez zmiany ("Mapa taktyczna") też zostało po polsku
+    .filter(
+      ({ en, kind, texts }) =>
+        POLISH_LEFT.test(en) || (kind === 't' && en === texts[0]),
+    );
   setLanguage('pl');
   writeFileSync(
     process.env.I18N_JSX_OUT!,

@@ -57,13 +57,14 @@ jobs:
           tools/bootstrap/python -m dmi.test
           tools/bootstrap/python -m mapmerge2.dmm_test
           ~/dreamchecker
-      # AQUILA - wersja angielska (moduł do odpięcia): nowe polskie teksty bez wpisu w słowniku EN jako
-      # ostrzeżenia, PR-a nie blokuje. Teksty okien z drzewa składni (tgui/i18n-jsx.cjs), więc po budowie tgui
+      # AQUILA - wersja angielska (moduł do odpięcia): nowy polski tekst bez wpisu w słowniku EN to błąd
+      # (--strict), bo ostrzeżeń nikt nie czytał i luki wchodziły do mastera. Teksty okien z drzewa składni
+      # (tgui/i18n-jsx.cjs), więc po budowie tgui
       - name: Teksty bez angielskiego
         if: github.event_name == 'pull_request'
         run: |
           git fetch --no-tags --depth=1 origin ${{ github.base_ref }}
-          python tools/i18n/list_missing.py --changed origin/${{ github.base_ref }}
+          python tools/i18n/list_missing.py --changed origin/${{ github.base_ref }} --strict
   compile_all_maps:
     # AQUILA - mapy w rownoleglych czesciach (--map-shard, tools/build/build.js). dm wczytuje mapy w czasie rosnacym
     # z kwadratem ich liczby: 821 map w jednym jobie to 376 s samego wczytywania.
