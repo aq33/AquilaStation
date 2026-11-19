@@ -408,7 +408,7 @@
 		var/atom/checking = occupant.loc
 		// recursive check to handle all cases regarding very nested occupants,
 		// such as brainmob inside brainitem inside MMI inside mecha
-		while (!isnull(checking))
+		while (!isnull(checking) && occupant != aq_remote_pilot) // AQ EDIT - pilot zdalny (aquila/code/modules/mecha_rework/remote.dm) siedzi w konsoli, nie w mechu
 			if (isturf(checking))
 				// hit a turf before hitting the mecha, seems like they have
 				// been moved out
