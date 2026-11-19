@@ -340,6 +340,8 @@ Oznaczenia w kolumnie uwag:
 | security X (ubranie, sprzęt żandarma) | X żandarmski / żandarmska | istniejące: „plecak żandarmski”, „mundur żandarmski”, „Mundurownia Żandarmska”, „Zbrojownia Żandarmska”; zostaje „taśma policyjna” (ogólny termin). Zawody ochrony to Żandarm, Komendant, Naczelnik, Aspirant. |
 | cargo X (ubranie zaopatrzenia) | X InPostu | istniejące: „kombinezon magazyniera InPostu”, „czapka InPostu”, „Mundurownia InPost”. Wylot z rury to „paczkomat”. Zawody i kanał radia zostają. |
 | engineering X (ubranie inżyniera) | X Orlenu | istniejące: „kombinezon inżyniera Orlenu”, „kask Orlenu”, „Mundurownia Orlenu”. Zawody i kanał radia zostają: Inżynier, Technik Atmosferyki, Główny Inżynier, Inżynieria. |
+| medical X (ubranie personelu medycznego) | X NFZ | istniejące: „kombinezon lekarza NFZ”, „czapka NFZ”, „Mundurownia NFZ (chemia)”. |
+| wersja angielska marek | oryginał bez marki | W `strings/i18n/en_translated.json` Żandarmeria, Orlen, InPost i NFZ wracają do oryginałów tg: „Mundurownia Orlenu” → EngiDrobe, „Mundurownia NFZ (chemia)” → ChemDrobe, „Mundurownia InPost” → CargoDrobe, „beret InPostu” → cargo beret, „paczkomat” → mail outlet. Tak jak „Mundurownia Żandarmska” → SecDrobe. |
 | Syndicate X | X Syndykatu | m; istniejące (245×), np. „zestaw słuchawkowy Syndykatu”, „uśpiacz Syndykatu”. |
 | Nanotrasen X | X Nanotrasen | nazwa firmy po rzeczowniku nieodmienna; istniejące: „kapsuła zaopatrzeniowa Nanotrasen”. W zdaniu odmiana „Nanotrasenu” dopuszczalna. |
 | CentCom X | X Centrali | istniejące (111×); odrzucone: „CentComu” (11×). |

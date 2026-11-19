@@ -324,7 +324,7 @@ def load_json(path):
 
 
 def load_sources(args):
-    """Scala źródła i zapisuje en_all.json.
+    """Scala źródła; en_all.json zapisuje write_all() na końcu main.
 
     Świeże en_pairs.json (+ oryginały portów) zastępują bazę; bez nich (brak historii
     albo klonów innych serwerów) bazą jest en_all.json z repo. Na wierzch idą
@@ -342,10 +342,22 @@ def load_sources(args):
     # oryginały portów znalezione dla tłumaczeń zwrotnych i złych par (tools/i18n/match_originals.py)
     merged.update(load_json(args.original))
     merged.update(load_json(args.manual))
-    with open(args.all, "w", encoding="utf-8") as f:
-        json.dump(dict(sorted(merged.items())), f, ensure_ascii=False, indent=0)
-        f.write("\n")  # check_grep.sh wymaga nowej linii na końcu pliku
+    # zapis dopiero po wszystkich słownikach: obecność tekstu w en_all.json znaczy, że cała przebudowa
+    # się udała (crowdin.py apply sprawdza to przy ponowieniu po błędzie)
+    args.all_text = json.dumps(dict(sorted(merged.items())), ensure_ascii=False, indent=0) + "\n"
     return merged
+
+
+def write_all(args):
+    """Zapis przez plik tymczasowy i podmianę: przerwany zapis zostawia poprzedni, poprawny en_all.json."""
+    tmp = args.all + ".tmp"
+    try:
+        with open(tmp, "w", encoding="utf-8") as f:
+            f.write(args.all_text)  # nowa linia na końcu: wymaga jej check_grep.sh
+        os.replace(tmp, args.all)
+    finally:
+        if os.path.exists(tmp):
+            os.remove(tmp)
 
 
 def load_ui_pairs():
@@ -679,6 +691,7 @@ def main():
     with open(WINDOWS_OUT, "w", encoding="utf-8") as f:
         json.dump(windows, f, ensure_ascii=False, separators=(",", ":"))
         f.write("\n")  # check_grep.sh wymaga nowej linii na końcu pliku
+    write_all(args)
     stats["słownik okien: stałe"] = len(windows["exact"])
     stats["słownik okien: szablony"] = len(windows["templates"])
     sys.stdout.reconfigure(encoding="utf-8")

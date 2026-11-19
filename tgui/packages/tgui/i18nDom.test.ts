@@ -24,6 +24,13 @@ const DICTIONARY = {
       ],
       { '0': ['odblokować', 'zablokować'] },
     ],
+    // kable w Wires.tsx: podpis z warunkiem w atrybucie aria-label
+    [
+      'kabel',
+      ['', ' kabel: ', ''],
+      [['?', 0, ['Repair', 'Cut']], ' wire: ', [1]],
+      { '0': ['Napraw', 'Przetnij'] },
+    ],
   ],
 };
 
@@ -108,6 +115,29 @@ describe('setupDomTranslation', () => {
       'Szukaj',
     );
     expect(other.getAttribute('placeholder')).toBe('Coś nowego');
+  });
+
+  it('tłumaczy aria-label obu gałęzi warunku i wraca na polski', async () => {
+    document.body.innerHTML =
+      '<svg><g id="cut" aria-label="Przetnij kabel: Ciśnienie"></g><g id="mend" aria-label="Napraw kabel: Ciśnienie"></g></svg>';
+    const store = createStore();
+    setupDomTranslation(store as any);
+    store.setLanguage('en');
+    await flush();
+    const cut = document.getElementById('cut')!;
+    const mend = document.getElementById('mend')!;
+    expect(cut.getAttribute('aria-label')).toBe('Cut wire: Pressure');
+    expect(mend.getAttribute('aria-label')).toBe('Repair wire: Pressure');
+
+    // React przełącza kabel (przecięty -> naprawiony): nowa wartość też po angielsku
+    cut.setAttribute('aria-label', 'Napraw kabel: Ciśnienie');
+    await flush();
+    expect(cut.getAttribute('aria-label')).toBe('Repair wire: Pressure');
+
+    store.setLanguage('pl');
+    await flush();
+    expect(cut.getAttribute('aria-label')).toBe('Napraw kabel: Ciśnienie');
+    expect(mend.getAttribute('aria-label')).toBe('Napraw kabel: Ciśnienie');
   });
 
   it('tłumaczy zdanie przecięte wstawką i etykietę z dwukropkiem', async () => {
