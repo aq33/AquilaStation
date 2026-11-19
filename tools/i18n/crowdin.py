@@ -219,10 +219,13 @@ def apply(args):
     translations = load_translations(args.folder)
 
     fixes, rejected, stale = {}, [], 0
+    in_code = {lit.strip() for lit in found}
+    applied_before = 0  # poprawki, które już są w kodzie (np. ponowienie po błędzie build_chat_dict.py)
     for key, message in translations.items():
         old = by_key.get(key)
         if old is None:
             stale += 1  # tekst zniknął z kodu albo już poprawiony
+            applied_before += message.strip() in in_code
             continue
         new = keep_edges(old, message)
         if new == old:
@@ -236,10 +239,10 @@ def apply(args):
         fixes[old] = new
 
     changed_files = collections.Counter()
+    # przed zmianą czegokolwiek: bez drzewa składni build_chat_dict.py zbudowałby słownik okien bez ich zdań
+    if (fixes or applied_before) and lm.jsx_ast.dump() is None:
+        raise RuntimeError("Brak drzewa składni okien tgui (zależności tgui: tools/build/build yarn)")
     if fixes:
-        # przed zmianą czegokolwiek: bez drzewa składni build_chat_dict.py zbudowałby słownik okien bez ich zdań
-        if lm.jsx_ast.dump() is None:
-            raise RuntimeError("Brak drzewa składni okien tgui (zależności tgui: tools/build/build yarn)")
         carry_english(fixes, known)
         for path in player_files(APPLY_PATHSPECS):
             lines = read_lines(path)
@@ -256,9 +259,10 @@ def apply(args):
             if changed_files[path]:
                 with open(path, "w", encoding="utf-8", newline="") as f:
                     f.write("\n".join(out))
-    if changed_files:
+    if changed_files or applied_before:
         # po zapisie kodu: build_chat_dict.py bierze do słowników teksty, które są w kodzie, więc nowy
-        # polski tekst wejdzie dopiero teraz. Także gdy nic nie trzeba było dopisać do en_translated.json
+        # polski tekst wejdzie dopiero teraz. Także gdy nic nie trzeba było dopisać do en_translated.json,
+        # i przy ponowieniu, gdy kod jest już poprawiony, a przebudowa wcześniej się nie udała
         subprocess.run([sys.executable, os.path.join(os.path.dirname(__file__), "build_chat_dict.py")], check=True)
 
     report = [f"Zatwierdzone poprawki z Crowdina: **{len(fixes)}** tekstów w **{len(changed_files)}** plikach."]

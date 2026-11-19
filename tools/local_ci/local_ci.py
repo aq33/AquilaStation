@@ -234,8 +234,12 @@ def step_i18n(r):
 	# brak bazy to błąd narzędzia, nie brakujące tłumaczenia: bez tego krok po cichu by nic nie sprawdzał
 	if subprocess.run(["git", "rev-parse", "--verify", "--quiet", base], cwd=REPO, capture_output=True).returncode:
 		raise RuntimeError(f"Nie ma gałęzi bazowej {base}; podaj --baza albo zrób git fetch")
-	code, out = r.run([r.python, "tools/i18n/list_missing.py", "--changed", base, "--strict"], env={"PYTHONUTF8": "1"})
-	return code, out
+	# testy samego skanera (bez Node), potem teksty bez angielskiego
+	code, out = r.run([r.python, "tools/i18n/test_list_missing.py"], env={"PYTHONUTF8": "1"})
+	if code:
+		return code, out
+	code, more = r.run([r.python, "tools/i18n/list_missing.py", "--changed", base, "--strict"], env={"PYTHONUTF8": "1"})
+	return code, out + more
 
 
 def step_tgui(r):

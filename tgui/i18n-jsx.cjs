@@ -360,6 +360,9 @@ if (require.main === module && process.argv[2] === 'dump') {
             file: rel,
             line: source.slice(0, start).split('\n').length,
             endLine: source.slice(0, end).split('\n').length,
+            // kolumny (od 0) początku i końca zdania: napis z tej samej linii poza zdaniem to osobny tekst
+            column: start - (source.lastIndexOf('\n', start - 1) + 1),
+            endColumn: end - (source.lastIndexOf('\n', end - 1) + 1),
             kind: item.kind,
             texts: item.texts,
             slots: item.slots,

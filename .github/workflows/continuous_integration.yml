@@ -64,6 +64,7 @@ jobs:
         if: github.event_name == 'pull_request'
         run: |
           git fetch --no-tags --depth=1 origin ${{ github.base_ref }}
+          python tools/i18n/test_list_missing.py
           python tools/i18n/list_missing.py --changed origin/${{ github.base_ref }} --strict
   compile_all_maps:
     # AQUILA - mapy w rownoleglych czesciach (--map-shard, tools/build/build.js). dm wczytuje mapy w czasie rosnacym

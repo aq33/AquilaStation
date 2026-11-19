@@ -91,36 +91,47 @@ CODE_BEFORE = re.compile(r"(?:^|[=:(\[{,?|&+!]|\breturn|\bcase|=>)\s*$")
 CODE_AFTER = re.compile(r"^\s*(?:$|[,;:)\]}?|&+]|/?>|\w+=|\.\w|(?:as|satisfies)\b)")
 
 
-def window_code_strings(line):
-    """Napisy w cudzysłowach z linii kodu okna (label: 'Stado', x || 'brak'), które tłumaczy w oknie
-    tgui/i18nDom.ts. Tekst JSX bierzemy z drzewa składni, więc cała linia jako tekst odpada."""
+def window_code_matches(line):
+    """(napis, kolumna cudzysłowu) dla napisów w cudzysłowach z linii kodu okna (label: 'Stado',
+    x || 'brak'), które tłumaczy w oknie tgui/i18nDom.ts. Tekst JSX bierzemy z drzewa składni,
+    więc cała linia jako tekst odpada."""
     if line.strip().startswith(("//", "*", "/*")):
         return []
-    return [m.group(2) for m in ep.QUOTED_JS.finditer(line)
+    return [(m.group(2), m.start()) for m in ep.QUOTED_JS.finditer(line)
             if CODE_BEFORE.search(line[:m.start()]) and CODE_AFTER.match(line[m.end():])]
 
 
+def window_code_strings(line):
+    return [lit for lit, _ in window_code_matches(line)]
+
+
+# plik -> [((linia, kolumna) początku, (linia, kolumna) końca)] zdań okien z drzewa składni
 _sentences = None
 
 
-def in_window_sentence(path, number, literal):
-    """Napis wewnątrz zdania okna (<Box>Wybierz {'żółty przycisk'} teraz.</Box>): loader tłumaczy całe
-    zdanie z drzewa składni, więc sam napis nie potrzebuje osobnego wpisu."""
+def in_window_sentence(path, number, column):
+    """Napis w miejscu (linia, kolumna) leży w zdaniu okna (<Box>Wybierz {'żółty przycisk'} teraz.</Box>):
+    loader tłumaczy całe zdanie z drzewa składni, więc sam napis nie potrzebuje osobnego wpisu. Liczy się
+    położenie, nie treść: label: 'żółty przycisk' obok takiego zdania w tej samej linii to osobny tekst."""
     global _sentences
     if _sentences is None:
         _sentences = {}
         for item in jsx_ast.dump() or []:
+            end_line = item.get("endLine", item["line"])
             _sentences.setdefault(item["file"], []).append(
-                (item["line"], item.get("endLine", item["line"]), item["literal"]))
-    return any(first <= number <= last and literal in sentence
-               for first, last, sentence in _sentences.get(path, ()))
+                ((item["line"], item.get("column", 0)), (end_line, item.get("endColumn", 10 ** 9))))
+    return any(start <= (number, column) < end for start, end in _sentences.get(path, ()))
 
 
-def line_literals(path, line, windows_from_ast=False):
-    """Literały linii i napisy wewnątrz ich wstawek ([on ? "włączony" : "wyłączony"]).
-    windows_from_ast: okna mają teksty z drzewa składni, ze skanu linii tylko napisy w kodzie."""
+def scan_literals(path, number, line, windows_from_ast):
+    """Literały linii do sprawdzenia. W oknach z drzewem składni tylko napisy w kodzie spoza zdań okien."""
     if windows_from_ast and path.endswith(jsx_runs.JSX_EXT):
-        return window_code_strings(line)
+        return [lit for lit, column in window_code_matches(line) if not in_window_sentence(path, number, column)]
+    return line_literals(path, line)
+
+
+def line_literals(path, line):
+    """Literały linii i napisy wewnątrz ich wstawek ([on ? "włączony" : "wyłączony"])."""
     if path.endswith(".dm") and line.strip().startswith(("*", "/*")):
         return []  # komentarz blokowy (/** ... */): cudzysłowy w opisie to nie tekst gracza
     found = ep.literals(path, line)
@@ -150,8 +161,8 @@ def missing_literals(known):
         for lit, number in jsx_missing(path, content, known, is_polish_run):
             found.setdefault(lit, {"pl": lit, "file": path, "line": number, "code": lit[:200]})
         for number, line in enumerate(lines, 1):
-            for lit in line_literals(path, line, windows_from_ast):
-                if lit in known or lit in found or (windows_from_ast and in_window_sentence(path, number, lit)):
+            for lit in scan_literals(path, number, line, windows_from_ast):
+                if lit in known or lit in found:
                     continue
                 if is_polish(lit):
                     found[lit] = {"pl": lit, "file": path, "line": number, "code": line.strip()[:200]}
@@ -228,9 +239,8 @@ def changed_missing(known, base):
                 if windows_from_ast and path.endswith(jsx_runs.JSX_EXT):
                     added.setdefault(path, set()).add(number)
                 # w oknach z drzewem składni: napisy w kodzie poza tekstem JSX (label: 'Stado')
-                for lit in line_literals(path, line[1:], windows_from_ast):
-                    if lit not in known and is_polish(lit) and not (
-                            windows_from_ast and in_window_sentence(path, number, lit)):
+                for lit in scan_literals(path, number, line[1:], windows_from_ast):
+                    if lit not in known and is_polish(lit):
                         found.append((path, number, lit))
             number += 1
     # tylko teksty, które nachodzą na dodane linie: stare zdania okna nie wracają w każdym PR-ze

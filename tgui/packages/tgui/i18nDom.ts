@@ -3,7 +3,7 @@
  *
  * Okna mają teksty w JSX i w danych z DM, po polsku. Zamiast przepisywać
  * setki okien na t(), przy języku EN podmieniamy gotowe teksty na stronie:
- * węzły tekstowe oraz atrybuty placeholder i title. MutationObserver łapie
+ * węzły tekstowe oraz atrybuty placeholder, title i aria-label. MutationObserver łapie
  * każdą zmianę, którą robi React, więc tłumaczenie nadąża za odświeżaniem.
  *
  * Pomijamy pola edycji (input, textarea, contenteditable): tekst wpisany przez
@@ -22,7 +22,8 @@ import {
   translateUiText,
 } from './i18n';
 
-const ATTRIBUTES = ['placeholder', 'title'];
+// aria-label: podpis elementów SVG i przycisków bez tekstu (np. kable w Wires.tsx)
+const ATTRIBUTES = ['placeholder', 'title', 'aria-label'];
 const SKIPPED_TAGS = new Set(['SCRIPT', 'STYLE', 'TEXTAREA', 'INPUT']);
 
 /** Polski oryginał węzła, żeby po powrocie na PL przywrócić tekst */
