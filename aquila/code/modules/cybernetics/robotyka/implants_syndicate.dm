@@ -1,5 +1,5 @@
 // AQUILA - implanty antagonistów (uplink, czarny rynek). Wdrożenie robotyki, część IMPLANTY.
-// Źródła: Paradise (traitor/mindslave, shock, supercharge), /tg/station (camouflage, nuclear_operative, smoke,
+// Źródła: Paradise (traitor/mindslave, shock), /tg/station (nuclear_operative,
 // explosive/deniability), Goonstation (revenge/zappy), Citadel (hijack, warp), CEV-Eris (spying), SS220 (fake_mindshield),
 // Shiptest (razorwing), MonkeStation (sponsorship).
 
@@ -47,52 +47,6 @@
 /obj/item/implanter/aq_mindslave
 	name = "implanter (zniewolenie umysłu)"
 	imp_type = /obj/item/implant/aq_mindslave
-
-// ---------------------------------------------------------------------------
-// Kamuflaż eksperymentalny (/tg/station /obj/item/implant/camouflage)
-
-/obj/item/implant/aq_camouflage
-	name = "eksperymentalny implant kamuflażu"
-	desc = "Po włączeniu nosiciel zlewa się z otoczeniem i staje się prawie niewidoczny. Impuls EMP może go wyłączyć."
-	icon_state = "storage"
-	/// Czy kamuflaż jest włączony
-	var/cloaked = FALSE
-	/// Przezroczystość nosiciela w kamuflażu
-	var/cloak_alpha = 35
-
-/obj/item/implant/aq_camouflage/get_data()
-	return "<b>Specyfikacja implantu:</b><BR><b>Nazwa:</b> eksperymentalny kamuflaż<BR><b>Ważne uwagi:</b> <font color='red'>Nielegalny</font><BR><b>Działanie:</b> przycisk włącza i wyłącza kamuflaż, który czyni nosiciela prawie niewidocznym. Impuls EMP może go wyłączyć."
-
-/obj/item/implant/aq_camouflage/activate()
-	. = ..()
-	toggle_cloak(!cloaked)
-
-/obj/item/implant/aq_camouflage/proc/toggle_cloak(new_state)
-	if(!imp_in || cloaked == new_state)
-		return
-	cloaked = new_state
-	if(cloaked)
-		animate(imp_in, alpha = cloak_alpha, time = 1 SECONDS)
-		to_chat(imp_in, span_notice("Zlewasz się z otoczeniem."))
-	else
-		animate(imp_in, alpha = 255, time = 1 SECONDS)
-		do_sparks(2, FALSE, imp_in)
-		to_chat(imp_in, span_notice("Kamuflaż gaśnie."))
-
-/obj/item/implant/aq_camouflage/removed(mob/living/source, silent = FALSE, special = 0)
-	toggle_cloak(FALSE)
-	return ..()
-
-/obj/item/implant/aq_camouflage/emp_act(severity)
-	. = ..()
-	if(. & EMP_PROTECT_SELF)
-		return
-	if(cloaked && prob(severity == EMP_HEAVY ? 100 : 50))
-		toggle_cloak(FALSE)
-
-/obj/item/implanter/aq_camouflage
-	name = "implanter (kamuflaż eksperymentalny)"
-	imp_type = /obj/item/implant/aq_camouflage
 
 // ---------------------------------------------------------------------------
 // Znacznik drużyny Syndykatu (/tg/station /obj/item/implant/nuclear_operative).
@@ -489,44 +443,18 @@
 	imp_type = /obj/item/implant/aq_warp
 
 // ---------------------------------------------------------------------------
-// Doładowanie dla IPC (Paradise /obj/item/bio_chip/supercharge)
+// Implant adrenaliny (core /obj/item/implant/adrenalin) działa też na IPC, zamiast osobnego implantu doładowania
+// (Paradise /obj/item/bio_chip/supercharge). Ogłuszenia zdejmuje core; koktajl leków na syntetyka nie działa,
+// więc IPC dostaje to, co dawało doładowanie: chwilowe przyspieszenie i łatanie uszkodzeń.
 
-/obj/item/implant/aq_supercharge
-	name = "implant doładowania"
-	desc = "Wersja implantu adrenaliny dla IPC: zdejmuje ogłuszenia i podkręca podzespoły."
-	icon_state = "adrenal"
-	uses = 3
-
-/obj/item/implant/aq_supercharge/get_data()
-	return "<b>Specyfikacja implantu:</b><BR><b>Nazwa:</b> doładowanie Cybersun<BR><b>Ważne uwagi:</b> <font color='red'>Nielegalny</font><BR><b>Działanie:</b> u syntetyka (IPC) zdejmuje ogłuszenia, przywraca siły, na chwilę przyspiesza i łata uszkodzenia. U organicznych nie działa.<BR><b>Użycia:</b> [uses]"
-
-/obj/item/implant/aq_supercharge/activate()
+/obj/item/implant/adrenalin/activate()
+	var/mob/living/carbon/human/synth = isipc(imp_in) ? imp_in : null
 	. = ..()
-	if(!imp_in)
+	if(!synth)
 		return
-	if(!isipc(imp_in))
-		to_chat(imp_in, span_warning("Implant doładowania nie znajduje syntetycznych podzespołów."))
-		return
-	uses--
-	to_chat(imp_in, span_notice("Twoje podzespoły przechodzą w tryb doładowania!"))
-	imp_in.SetStun(0)
-	imp_in.SetKnockdown(0)
-	imp_in.SetUnconscious(0)
-	imp_in.SetParalyzed(0)
-	imp_in.SetImmobilized(0)
-	imp_in.adjustStaminaLoss(-75)
-	imp_in.set_resting(FALSE)
-	imp_in.update_mobility()
-	imp_in.adjustBruteLoss(-10)
-	imp_in.adjustFireLoss(-10)
-	imp_in.add_movespeed_modifier("aq_supercharge", update = TRUE, priority = 100, multiplicative_slowdown = -0.5)
-	addtimer(CALLBACK(imp_in, TYPE_PROC_REF(/mob, remove_movespeed_modifier), "aq_supercharge"), 10 SECONDS)
-	if(!uses)
-		qdel(src)
-
-/obj/item/implanter/aq_supercharge
-	name = "implanter (doładowanie)"
-	imp_type = /obj/item/implant/aq_supercharge
+	synth.heal_overall_damage(10, 10, 0, BODYTYPE_ROBOTIC)
+	synth.add_movespeed_modifier("aq_adrenalin_ipc", update = TRUE, priority = 100, multiplicative_slowdown = -0.5)
+	addtimer(CALLBACK(synth, TYPE_PROC_REF(/mob, remove_movespeed_modifier), "aq_adrenalin_ipc"), 10 SECONDS)
 
 // ---------------------------------------------------------------------------
 // Taktyczne wyparcie się (/tg/station /obj/item/implant/explosive/deniability)
@@ -609,34 +537,6 @@
 /obj/item/implanter/aq_fake_mindshield
 	name = "implanter (fałszywa ochrona umysłu)"
 	imp_type = /obj/item/implant/aq_fake_mindshield
-
-// ---------------------------------------------------------------------------
-// Dym (/tg/station /obj/item/implant/smoke)
-
-/obj/item/implant/aq_smoke
-	name = "implant dymny"
-	desc = "Po aktywacji wypuszcza chmurę dymu wokół nosiciela. Trzy użycia."
-	icon = 'aquila/icons/obj/cybernetics/robotyka_implanty.dmi'
-	icon_state = "smoke"
-	uses = 3
-
-/obj/item/implant/aq_smoke/get_data()
-	return "<b>Specyfikacja implantu:</b><BR><b>Ważne uwagi:</b> <font color='red'>Nielegalny</font><BR><b>Działanie:</b> przycisk wypuszcza gęstą chmurę dymu wokół nosiciela.<BR><b>Użycia:</b> [uses]"
-
-/obj/item/implant/aq_smoke/activate()
-	. = ..()
-	if(!imp_in)
-		return
-	uses--
-	var/datum/effect_system/smoke_spread/bad/smoke = new
-	smoke.set_up(6, get_turf(imp_in))
-	smoke.start()
-	if(!uses)
-		qdel(src)
-
-/obj/item/implanter/aq_smoke
-	name = "implanter (dymny)"
-	imp_type = /obj/item/implant/aq_smoke
 
 // ---------------------------------------------------------------------------
 // Ostrza skrzydeł ćmy (Shiptest /obj/item/implant/razorwing)

@@ -1,6 +1,6 @@
 // AQUILA - implanty dla załogi (medycyna, R&D, ochrona). Wdrożenie robotyki, część IMPLANTY.
-// Źródła: Goonstation (antirot, robotalk, access), BurgerStation (iff), YogStation (empshield),
-// /tg/station (tacmap, teleport_blocker). Bezpiecznik przedawkowania i zakłócacz augmentów: robotics/robotics_implants.dm.
+// Źródła: Goonstation (antirot, access), BurgerStation (iff), YogStation (empshield),
+// /tg/station (tacmap, teleport_blocker). Zakłócacz augmentów: robotics/robotics_implants.dm.
 
 // ---------------------------------------------------------------------------
 // Rotbusttec: formaldehyd po śmierci (Goonstation /obj/item/implant/antirot)
@@ -30,39 +30,6 @@
 	name = "etui na implant – „Rotbusttec”"
 	desc = "Szklane etui z implantem Rotbusttec. Po śmierci nosiciela konserwuje ciało formaldehydem."
 	imp_type = /obj/item/implant/aq_antirot
-
-// ---------------------------------------------------------------------------
-// Tłumacz maszynowy: język binarny i kanał silikonów (Goonstation /obj/item/implant/robotalk)
-
-/obj/item/implant/aq_robotalk
-	name = "implant tłumacza maszynowego"
-	desc = "Pozwala rozumieć i używać kanału silikonów oraz języka binarnego."
-	icon_state = "lighting_bolt"
-	activated = FALSE
-
-/obj/item/implant/aq_robotalk/get_data()
-	return "<b>Specyfikacja implantu:</b><BR><b>Nazwa:</b> tłumacz maszynowy<BR><b>Działanie:</b> nosiciel rozumie i mówi kodem maszynowym, słyszy kanał binarny silikonów i może na nim mówić (prefiks :b), bez słuchawek z tłumaczem."
-
-/obj/item/implant/aq_robotalk/implant(mob/living/target, mob/user, silent = FALSE, force = FALSE)
-	. = ..()
-	if(!.)
-		return
-	ADD_TRAIT(target, TRAIT_AQ_BINARY_SPEAKER, REF(src))
-	target.grant_language(/datum/language/machine, TRUE, TRUE, REF(src))
-
-/obj/item/implant/aq_robotalk/removed(mob/living/source, silent = FALSE, special = 0)
-	REMOVE_TRAIT(source, TRAIT_AQ_BINARY_SPEAKER, REF(src))
-	source.remove_language(/datum/language/machine, TRUE, TRUE, REF(src))
-	return ..()
-
-/obj/item/implanter/aq_robotalk
-	name = "implanter (tłumacz maszynowy)"
-	imp_type = /obj/item/implant/aq_robotalk
-
-/obj/item/implantcase/aq_robotalk
-	name = "etui na implant – „Tłumacz maszynowy”"
-	desc = "Szklane etui z implantem tłumacza maszynowego."
-	imp_type = /obj/item/implant/aq_robotalk
 
 // ---------------------------------------------------------------------------
 // Tarcza EMP (YogStation /obj/item/implant/empshield)

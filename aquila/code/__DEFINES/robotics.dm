@@ -3,14 +3,8 @@
 // --- Sloty organów ---
 /// Organ chłodzenia syntetyka (chłodzenie powietrzem, cieczą, pasywny radiator)
 #define ORGAN_SLOT_AQ_COOLING "aq_cooling"
-/// Implant bezpieczeństwa przedawkowania
-#define ORGAN_SLOT_AQ_OD_SAFETY "aq_od_safety"
-/// Regulator rytmu dobowego
-#define ORGAN_SLOT_AQ_CIRCADIAN "aq_circadian"
 /// Wzmocnienie stawów
 #define ORGAN_SLOT_AQ_BRACING "aq_bracing"
-/// Wszczepiony zegarek
-#define ORGAN_SLOT_AQ_TIMEPIECE "aq_timepiece"
 
 // --- Źródła cech ---
 /// Świeżo przymocowana proteza bez kalibracji (TRAIT_PARALYSIS na kończynie)

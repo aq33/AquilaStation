@@ -18,14 +18,6 @@
 	id = "aq_implant_antirot"
 	build_path = /obj/item/implantcase/aq_antirot
 
-/datum/design/aq_implantcase/robotalk
-	name = "Etui z tłumaczem maszynowym"
-	desc = "Język binarny i kanał silikonów bez słuchawek."
-	id = "aq_implant_robotalk"
-	materials = list(/datum/material/iron = 500, /datum/material/glass = 500, /datum/material/gold = 300)
-	build_path = /obj/item/implantcase/aq_robotalk
-	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_MEDICAL
-
 /datum/design/aq_implantcase/empshield
 	name = "Etui z tarczą EMP"
 	desc = "Pochłania impulsy elektromagnetyczne, zanim dotrą do ciała."
@@ -85,40 +77,12 @@
 	build_path = /obj/item/organ/cyberimp/brain/aq_wire_interface
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL | DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_ENGINEERING
 
-/datum/design/aq_augment/diagnostics
-	name = "Procesor diagnostyczny"
-	desc = "Raport o stanie własnego ciała na żądanie."
-	id = "aq_ci_diagnostics"
-	build_path = /obj/item/organ/cyberimp/brain/aq_diagnostics
-
-/datum/design/aq_augment/jumpstarter
-	name = "Rozrusznik OUN"
-	desc = "Budzi nosiciela z utraty przytomności."
-	id = "aq_ci_jumpstarter"
-	materials = list(/datum/material/iron = 600, /datum/material/glass = 600, /datum/material/silver = 500, /datum/material/gold = 500, /datum/material/uranium = 300)
-	build_path = /obj/item/organ/cyberimp/brain/aq_jumpstarter
-
 /datum/design/aq_augment/emotional_manipulator
 	name = "Manipulator emocji"
 	desc = "Szczęście albo spokój na żądanie."
 	id = "aq_ci_emotional_manipulator"
 	build_path = /obj/item/organ/cyberimp/brain/aq_emotional_manipulator
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
-
-/datum/design/aq_augment/binoculars
-	name = "Adaptacyjna lornetka"
-	desc = "Przybliżanie obrazu w oczach."
-	id = "aq_ci_binoculars"
-	materials = list(/datum/material/iron = 600, /datum/material/glass = 1000, /datum/material/silver = 400)
-	build_path = /obj/item/organ/cyberimp/eyes/aq_binoculars
-
-/datum/design/aq_augment/meson_eyes
-	name = "Oczy mezonowe"
-	desc = "Cybernetyczne oczy z widzeniem mezonowym."
-	id = "aq_ci_meson_eyes"
-	materials = list(/datum/material/iron = 600, /datum/material/glass = 1000, /datum/material/silver = 300)
-	build_path = /obj/item/organ/eyes/robotic/aq_meson
-	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL | DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/aq_augment/map
 	name = "Implant mapy okrętu"
@@ -140,18 +104,16 @@
 	materials = list(/datum/material/iron = 600, /datum/material/glass = 300, /datum/material/copper = 300)
 	build_path = /obj/item/organ/cyberimp/aq_service_jack
 
-/datum/design/aq_augment/health_scanner
-	name = "Zintegrowany skaner zdrowia"
-	desc = "Analizator zdrowia wysuwany z dłoni."
-	id = "aq_ci_health_scanner"
-	build_path = /obj/item/organ/cyberimp/arm/aq_health_scanner
-	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
-
-/datum/design/aq_augment/cyborg_analyzer
-	name = "Wysuwany analizator cyborgów"
-	desc = "Analizator cyborgów i protez w palcu."
-	id = "aq_ci_cyborg_analyzer"
-	build_path = /obj/item/organ/cyberimp/arm/aq_cyborg_analyzer
+/datum/design/aq_robot_analyzer
+	name = "Analizator cyborgów"
+	desc = "Ręczny skaner stanu cyborgów, protez i robotycznych narządów."
+	id = "aq_robot_analyzer"
+	build_type = PROTOLATHE | MECHFAB
+	construction_time = 40
+	materials = list(/datum/material/iron = 500, /datum/material/glass = 300)
+	build_path = /obj/item/aq_robot_analyzer
+	category = list("Cyborg", "Medical Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/aq_augment/embedded
 	name = "Moduł wbudowanego przedmiotu"
@@ -170,7 +132,7 @@
 
 /datum/design/aq_augment/magboot
 	name = "Implant magnetycznych stóp"
-	desc = "Magbuty w nodze. Działa w parze: potrzebne dwa, śrubokręt przestawia stronę."
+	desc = "Magbuty w nodze. Wystarczy jeden implant, śrubokręt przestawia stronę."
 	id = "aq_ci_magboot"
 	materials = list(/datum/material/iron = 1500, /datum/material/glass = 300, /datum/material/silver = 500)
 	build_path = /obj/item/organ/cyberimp/leg/aq_magboot
@@ -192,22 +154,6 @@
 	build_path = /obj/item/organ/cyberimp/chest/aq_platelets
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL | DEPARTMENTAL_FLAG_SECURITY
 
-/datum/design/aq_augment/exoframe
-	name = "Egzoszkielet nośny"
-	desc = "Implant kręgosłupa: więcej zdrowia i siły."
-	id = "aq_ci_exoframe"
-	construction_time = 100
-	materials = list(/datum/material/iron = 4000, /datum/material/titanium = 2000, /datum/material/silver = 1000, /datum/material/glass = 500)
-	build_path = /obj/item/organ/cyberimp/chest/spinal/aq_exoframe
-
-/datum/design/aq_augment/herculean
-	name = "Grawitonowy implant kręgosłupa Herculean"
-	desc = "Implant kręgosłupa: rzuty, wspinaczka, siła ciosów."
-	id = "aq_ci_herculean"
-	construction_time = 100
-	materials = list(/datum/material/iron = 3000, /datum/material/titanium = 1500, /datum/material/silver = 1000, /datum/material/uranium = 1000)
-	build_path = /obj/item/organ/cyberimp/chest/spinal/aq_herculean
-
 /datum/design/aq_augment/ai_uplink
 	name = "Mózg z łączem SI"
 	desc = "Cybernetyczny mózg, przez który SI steruje w pełni zrobotyzowanym ciałem."
@@ -226,14 +172,6 @@
 	build_path = /obj/item/aq_v1_arm_shell
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
-/datum/design/aq_augment/tacvisor
-	name = "Taktyczny wizjer IFF"
-	desc = "Oczy z HUD-em ochrony i oceną zagrożenia, bez rozpoznawania twarzy."
-	id = "aq_ci_tacvisor"
-	materials = list(/datum/material/iron = 600, /datum/material/glass = 1000, /datum/material/silver = 500, /datum/material/gold = 500)
-	build_path = /obj/item/organ/eyes/robotic/aq_tacvisor
-	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
-
 /datum/design/aq_augment/monitor_eye
 	name = "Cyberoko z monitorem"
 	desc = "Podgląd sieci kamer z wbudowanego monitora."
@@ -249,11 +187,10 @@
 	id = "aq_crew_implants"
 	tech_tier = 4
 	display_name = "Implanty załogi"
-	description = "Implanty medyczne, łącznościowe i więzienne: konserwant pośmiertny, bezpiecznik przedawkowania, tłumacz maszynowy, tarcza EMP i zestaw ochrony."
+	description = "Implanty medyczne i więzienne: konserwant pośmiertny, tarcza EMP i zestaw ochrony."
 	prereq_ids = list("subdermal_implants", "datatheory")
 	design_ids = list(
 		"aq_implant_antirot",
-		"aq_implant_robotalk",
 		"aq_implant_empshield",
 		"aq_implant_access",
 		"aq_implant_iff",
@@ -267,18 +204,14 @@
 	id = "aq_augments"
 	tech_tier = 4
 	display_name = "Augmenty użytkowe"
-	description = "Augmenty do pracy: interfejs kabli, diagnostyka, lornetka i mezony w oczach, ośrodek smaku, port serwisowy, narzędzia w rękach i magnesy w stopach."
+	description = "Augmenty do pracy: interfejs kabli, mapa okrętu w oku, ośrodek smaku, port serwisowy, analizator cyborgów, hak w ręce i magnesy w stopach."
 	prereq_ids = list("cyber_implants", "robotics")
 	design_ids = list(
 		"aq_ci_wire_interface",
-		"aq_ci_diagnostics",
-		"aq_ci_binoculars",
-		"aq_ci_meson_eyes",
 		"aq_ci_map",
 		"aq_ci_gustatorial",
 		"aq_ci_service_jack",
-		"aq_ci_health_scanner",
-		"aq_ci_cyborg_analyzer",
+		"aq_robot_analyzer",
 		"aq_ci_climbing_hook",
 		"aq_ci_magboot",
 		"aq_ci_air_sac",
@@ -291,15 +224,11 @@
 	id = "aq_adv_augments"
 	tech_tier = 5
 	display_name = "Zaawansowane augmenty"
-	description = "Augmenty zmieniające ciało: implanty kręgosłupa, fabryki płytek, rozrusznik OUN, moduł wbudowanego przedmiotu, oczy ochrony i mózg z łączem SI."
+	description = "Augmenty zmieniające ciało: fabryki płytek, moduł wbudowanego przedmiotu i cyberoko z monitorem."
 	prereq_ids = list("aq_augments", "adv_cyber_implants", "adv_robotics")
 	design_ids = list(
-		"aq_ci_jumpstarter",
 		"aq_ci_embedded",
 		"aq_ci_platelets",
-		"aq_ci_exoframe",
-		"aq_ci_herculean",
-		"aq_ci_tacvisor",
 		"aq_ci_monitor_eye",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 5000)
@@ -323,18 +252,6 @@
 
 /obj/item/autosurgeon/syndicate/aq_single
 	uses = 1
-
-/obj/item/autosurgeon/syndicate/aq_single/tacvisor
-	name = "podejrzany autochirurg (taktyczny wizjer IFF)"
-	starting_organ = list(/obj/item/organ/eyes/robotic/aq_tacvisor)
-
-/obj/item/autosurgeon/syndicate/aq_single/hacking_deck
-	name = "podejrzany autochirurg (Binyat)"
-	starting_organ = list(/obj/item/organ/cyberimp/brain/aq_hacking_deck)
-
-/obj/item/autosurgeon/syndicate/aq_single/doorjack
-	name = "podejrzany autochirurg (doorjack)"
-	starting_organ = list(/obj/item/organ/cyberimp/arm/aq_doorjack)
 
 /obj/item/autosurgeon/syndicate/aq_single/sandevistan
 	name = "podejrzany autochirurg (Sandevistan)"
@@ -363,12 +280,6 @@
 	cost = 10
 	surplus = 20
 	player_minimum = 20
-
-/datum/uplink_item/implants/aq_camouflage
-	name = "Eksperymentalny implant kamuflażu"
-	desc = "Po włączeniu czyni cię prawie niewidocznym, dopóki nie wyłączysz go sam albo nie zrobi tego EMP."
-	item = /obj/item/implanter/aq_camouflage
-	cost = 7
 
 /datum/uplink_item/implants/aq_syndicate_iff
 	name = "Implant znacznika Syndykatu"
@@ -407,12 +318,6 @@
 	item = /obj/item/implanter/aq_warp
 	cost = 6
 
-/datum/uplink_item/implants/aq_supercharge
-	name = "Implant doładowania"
-	desc = "Adrenalina dla IPC: trzy razy zdejmuje ogłuszenia, przywraca siły, przyspiesza i łata uszkodzenia. Na organicznych nie działa."
-	item = /obj/item/implanter/aq_supercharge
-	cost = 5
-
 /datum/uplink_item/implants/aq_deniability
 	name = "Implant taktycznego wyparcia się"
 	desc = "Nie tracisz przytomności od ran, a w stanie krytycznym implant wybucha po 10 sekundach."
@@ -425,35 +330,11 @@
 	item = /obj/item/implanter/aq_fake_mindshield
 	cost = 4
 
-/datum/uplink_item/implants/aq_smoke
-	name = "Implant dymny"
-	desc = "Trzy razy wypuszcza gęstą chmurę dymu wokół ciebie."
-	item = /obj/item/implanter/aq_smoke
-	cost = 3
-
 /datum/uplink_item/implants/aq_tacmap
 	name = "Implant mapy taktycznej Syndykatu"
 	desc = "Hologram okrętu z pozycjami innych agentów z tym implantem."
 	item = /obj/item/implanter/aq_tacmap/syndicate
 	cost = 1
-
-/datum/uplink_item/implants/aq_tacvisor
-	name = "Taktyczny wizjer IFF"
-	desc = "Oczy z HUD-em ochrony i oceną zagrożenia. Nie rozpoznajesz za to twarzy ani imion. W zestawie autochirurg."
-	item = /obj/item/autosurgeon/syndicate/aq_single/tacvisor
-	cost = 5
-
-/datum/uplink_item/implants/aq_hacking_deck
-	name = "System hakowania bezprzewodowego Binyat"
-	desc = "Czip neuronowy, który szarpie przypadkowymi kablami wskazanej maszyny z odległości. W zestawie autochirurg."
-	item = /obj/item/autosurgeon/syndicate/aq_single/hacking_deck
-	cost = 7
-
-/datum/uplink_item/implants/aq_doorjack
-	name = "Implant doorjacka"
-	desc = "Łamacz zamków w ręce: przepala elektronikę drzwi w 3 sekundy. W zestawie autochirurg."
-	item = /obj/item/autosurgeon/syndicate/aq_single/doorjack
-	cost = 6
 
 /datum/uplink_item/implants/aq_sandevistan
 	name = "Implant kręgosłupa Sandevistan"
@@ -506,14 +387,6 @@
 	price_max = MARKET_CRATE_VALUE * 2
 	stock_max = 3
 	availability_prob = 60
-
-/datum/market_item/shoddy_implant/aq_joywire
-	name = "Ożywiacz przyjemności Midi-Sed"
-	desc = "Cyfrowa używka: stała euforia za cenę smaku, na zawsze."
-	item = /obj/item/organ/cyberimp/brain/aq_joywire
-	price_min = MARKET_CRATE_VALUE * 2
-	price_max = MARKET_CRATE_VALUE * 4
-	availability_prob = 50
 
 /datum/market_item/shoddy_implant/aq_emotional_manipulator
 	name = "Manipulator emocji"

@@ -239,7 +239,7 @@
 	TEST_ASSERT(!ipc.aq_overloader_level && !ipc.aq_overloader_cycles, "The reset did not clear the overloaders")
 
 	var/mob/living/carbon/human/human = allocate(/mob/living/carbon/human)
-	var/obj/item/aq_ipc_overloader/jitterbug/third = allocate(/obj/item/aq_ipc_overloader/jitterbug)
+	var/obj/item/aq_ipc_overloader/classic/third = allocate(/obj/item/aq_ipc_overloader/classic)
 	human.put_in_hands(third)
 	third.attack_self(human)
 	TEST_ASSERT(!human.aq_overloader_level && third.uses == 2, "An overloader worked on an organic")
@@ -360,7 +360,7 @@
 	aq_test_swap_limb(patient, /obj/item/bodypart/r_arm/robot)
 	var/load_two = patient.aq_cyberpsychosis_load()
 	TEST_ASSERT(load_two >= 24, "Prostheses do not load the mind ([load_two])")
-	var/obj/item/organ/cyberimp/chest/aq_od_safety/implant = new
+	var/obj/item/organ/cyberimp/chest/aq_bracing/implant = new
 	implant.Insert(patient)
 	TEST_ASSERT(patient.aq_cyberpsychosis_load() == load_two + implant.aq_cyberpsychosis_cost, "An implant cost is not counted")
 	aq_test_swap_limb(patient, /obj/item/bodypart/l_leg/robot)
@@ -382,7 +382,7 @@
 	var/mob/living/carbon/human/ipc = allocate(/mob/living/carbon/human/species/ipc)
 	TEST_ASSERT(ipc.aq_cyberpsychosis_capacity() == 100, "An IPC can get cyberpsychosis")
 
-/// AQUILA - implant zakłócający augmenty, implant skoku, bezpieczeństwo przedawkowania, implanty drobne
+/// AQUILA - implant zakłócający augmenty, implant skoku, wzmocnienie stawów
 /datum/unit_test/aquila_robotics_implants
 
 /datum/unit_test/aquila_robotics_implants/Run()
@@ -400,34 +400,27 @@
 	qdel(disrupter)
 	TEST_ASSERT(!HAS_TRAIT(prisoner, TRAIT_AQ_AUGMENTS_DISRUPTED), "The disruption stayed after removal")
 
-	// skok: tylko para w obu nogach daje akcję
+	// skok: jeden implant w dowolnej nodze daje akcję, drugi taki sam nic nie dodaje
 	var/mob/living/carbon/human/jumper = allocate(/mob/living/carbon/human)
 	var/obj/item/organ/cyberimp/leg/aq_jumpboots/right = new
 	right.Insert(jumper)
-	TEST_ASSERT(!(locate(/datum/action/innate/aq_implant_jump) in jumper.actions), "One jump implant is enough to jump")
-	var/obj/item/organ/cyberimp/leg/aq_jumpboots/l/left = new
+	TEST_ASSERT(locate(/datum/action/innate/aq_implant_jump) in jumper.actions, "One jump implant gives no jump")
+	var/obj/item/organ/cyberimp/leg/aq_jumpboots/left = new
+	left.zone = BODY_ZONE_L_LEG
+	left.SetSlotFromZone()
 	left.Insert(jumper)
-	TEST_ASSERT(locate(/datum/action/innate/aq_implant_jump) in jumper.actions, "A pair of jump implants gives no jump")
+	TEST_ASSERT(!left.jump_action, "A second jump implant gave a second jump")
 	left.Remove(jumper)
-	TEST_ASSERT(!(locate(/datum/action/innate/aq_implant_jump) in jumper.actions), "The jump stayed after one implant came out")
+	qdel(left)
+	right.Remove(jumper)
+	TEST_ASSERT(!(locate(/datum/action/innate/aq_implant_jump) in jumper.actions), "The jump stayed after the implant came out")
+	qdel(right)
 
-	// przedawkowanie: połowa nadmiaru znika
-	var/mob/living/carbon/human/addict = allocate(/mob/living/carbon/human)
-	var/obj/item/organ/cyberimp/chest/aq_od_safety/safety = new
-	safety.Insert(addict)
-	addict.reagents.add_reagent(/datum/reagent/medicine/omnizine, 40)
-	safety.on_life()
-	TEST_ASSERT(addict.reagents.get_reagent_amount(/datum/reagent/medicine/omnizine) <= 20, "The overdose implant did not purge the overdose")
-
-	// drobne
-	var/obj/item/organ/cyberimp/brain/aq_circadian/circadian = new
-	circadian.Insert(addict)
-	addict.drowsyness = 5
-	circadian.on_life()
-	TEST_ASSERT(addict.drowsyness < 5, "The circadian conditioner does not fight drowsiness")
+	// wzmocnienie stawów
+	var/mob/living/carbon/human/brawler = allocate(/mob/living/carbon/human)
 	var/obj/item/organ/cyberimp/chest/aq_bracing/bracing = new
-	bracing.Insert(addict)
-	TEST_ASSERT(addict.aq_bracing_wound_modifier() < 0, "Skeletal bracing does not protect the joints")
+	bracing.Insert(brawler)
+	TEST_ASSERT(brawler.aq_bracing_wound_modifier() < 0, "Skeletal bracing does not protect the joints")
 
 /// AQUILA - neuromody: skan psychoskopem, zapis w powłoce, wstrzyknięcie
 /datum/unit_test/aquila_neuromods

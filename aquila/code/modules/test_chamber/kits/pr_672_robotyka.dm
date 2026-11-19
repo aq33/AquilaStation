@@ -8,7 +8,7 @@
 	5) IPC: manekin IPC w próżni (na zewnątrz albo w pomieszczeniu bez powietrza) grzeje się (alert „Przegrzanie”, potem oparzenia); wymień mu chłodzenie na cieczą i sprawdź, że w próżni nadąża. Akcja chłodzenia pokazuje nagrzanie. \
 	6) Zabij IPC, napraw spawarką i kablem – nie wstaje sam; klucz resetu (bez trybu walki) albo operacja reaktywacji multitoolem przy otwartej klatce go budzi. Overloadery: wpnij IPC i patrz na komunikaty, trzy naraz robią awarię, klucz resetu je czyści. \
 	7) Cyberpsychoza: załóż sobie kilka protez i implantów (autochirurg) i poczekaj na objawy w czacie; neuratreksat w strzykawce je wstrzymuje. \
-	8) Implanty: zakłócacz augmentów (implanter) blokuje implant narzędziowy w ręce; para implantów skoku w nogach daje akcję Skok nad dziurą; implant przedawkowania usuwa nadmiar omnizyny; regulator rytmu, wzmocnienie stawów i zegarek. \
+	8) Implanty: zakłócacz augmentów (implanter) blokuje implant narzędziowy w ręce; jeden implant skoku w nodze daje akcję Skok nad dziurą; wzmocnienie stawów. \
 	9) Serce woltaiczne z rdzeniem: wszczep (w ręce, 5 s), zbij się do stanu krytycznego – 30 s na nogach. Psychoskop: zeskanuj karpia, zapisz neuromod w powłoce i wstrzyknij sobie. \
 	10) Kreator postaci: sekcja z wyborem rąk, nóg i organów (marki, kinetyczna, zaawansowana, organy cybernetyczne); po wejściu do rundy postać ma te protezy i organy, bez kalibracji. Sprawdź w combat mode i w starym trybie intencji (narzędzia leczą bez trybu walki / na intencji pomocy)."
 	items = list(
@@ -36,15 +36,10 @@
 		/obj/item/aq_synth_reset_key = 1,
 		/obj/item/reagent_containers/syringe = 2,
 		/obj/item/reagent_containers/glass/bottle/aq_neuratrextate = 1,
-		/obj/item/reagent_containers/glass/bottle/aq_omnizine = 1,
 		/obj/item/implanter/aq_anti_augment = 1,
 		/obj/item/autosurgeon/aq_robotyka/toolset = 1,
 		/obj/item/autosurgeon/aq_robotyka/jumpboots = 1,
-		/obj/item/autosurgeon/aq_robotyka/jumpboots_l = 1,
-		/obj/item/autosurgeon/aq_robotyka/od_safety = 1,
-		/obj/item/autosurgeon/aq_robotyka/circadian = 1,
 		/obj/item/autosurgeon/aq_robotyka/bracing = 1,
-		/obj/item/autosurgeon/aq_robotyka/timepiece = 1,
 		/obj/item/organ/heart/cybernetic/aq_anomalock/prebuilt = 1,
 		/obj/item/aq_psychoscope = 1,
 		/obj/item/aq_neuromod_shell = 2,
@@ -67,22 +62,6 @@
 /obj/item/autosurgeon/aq_robotyka/jumpboots
 	starting_organ = list(/obj/item/organ/cyberimp/leg/aq_jumpboots)
 
-/obj/item/autosurgeon/aq_robotyka/jumpboots_l
-	starting_organ = list(/obj/item/organ/cyberimp/leg/aq_jumpboots/l)
-
-/obj/item/autosurgeon/aq_robotyka/od_safety
-	starting_organ = list(/obj/item/organ/cyberimp/chest/aq_od_safety)
-
-/obj/item/autosurgeon/aq_robotyka/circadian
-	starting_organ = list(/obj/item/organ/cyberimp/brain/aq_circadian)
-
 /obj/item/autosurgeon/aq_robotyka/bracing
 	starting_organ = list(/obj/item/organ/cyberimp/chest/aq_bracing)
 
-/obj/item/autosurgeon/aq_robotyka/timepiece
-	starting_organ = list(/obj/item/organ/cyberimp/brain/aq_timepiece)
-
-/obj/item/reagent_containers/glass/bottle/aq_omnizine
-	name = "butelka omnizyny"
-	desc = "Butelka omnizyny do sprawdzenia implantu bezpieczeństwa przedawkowania."
-	list_reagents = list(/datum/reagent/medicine/omnizine = 30)

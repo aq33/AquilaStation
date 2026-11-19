@@ -1,8 +1,6 @@
 robotyka_implanty.dmi - stany skopiowane bez zmian z innych serwerów SS13 (implanty i augmenty z wdrożenia robotyki):
-  eyes_tacvisor, herculean_implant, brain-c, brain_implant_rebooter, brain_implant_connector
-                                       tgstation/tgstation icons/obj/medical/organs/organs.dmi, CC-BY-SA 3.0
-  smoke, minimap                       tgstation/tgstation icons/hud/implants.dmi, CC-BY-SA 3.0
-  doorjack                             tgstation/tgstation icons/obj/card.dmi, CC-BY-SA 3.0
+  brain-c, brain_implant_connector    tgstation/tgstation icons/obj/medical/organs/organs.dmi, CC-BY-SA 3.0
+  minimap                              tgstation/tgstation icons/hud/implants.dmi, CC-BY-SA 3.0
   climbingrope                         tgstation/tgstation icons/obj/mining.dmi, CC-BY-SA 3.0
   shell_cannon                         ParadiseSS13/Paradise icons/obj/surgery.dmi, CC-BY-SA 3.0
   shell_cannon_gun                     ParadiseSS13/Paradise icons/obj/guns/projectile.dmi (stan shell_cannon), CC-BY-SA 3.0
@@ -12,8 +10,7 @@ robotyka_implanty.dmi - stany skopiowane bez zmian z innych serwerów SS13 (impl
   platelet_factories                   Aurorastation/Aurora.3 icons/obj/organs/bioaugs.dmi, CC-BY-SA 3.0
   augment, emotional_manipulator       Aurorastation/Aurora.3 icons/obj/organs/augments.dmi, CC-BY-SA 3.0
   robotanalyzer                        Aurorastation/Aurora.3 icons/obj/item/scanner.dmi, CC-BY-SA 3.0
-  internal_air_system, adaptive_binoculars
-                                       Baystation12/Baystation12 icons/obj/augment.dmi, CC-BY-SA 3.0
+  internal_air_system                  Baystation12/Baystation12 icons/obj/augment.dmi, CC-BY-SA 3.0
   air_sac                              Baystation12/Baystation12 icons/obj/tank.dmi, CC-BY-SA 3.0
   imp_spinal, imp_spinal_on            tgstation/TerraGov-Marine-Corps icons/obj/items/implants.dmi, CC-BY-SA 3.0
 

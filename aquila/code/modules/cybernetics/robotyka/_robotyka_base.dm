@@ -39,7 +39,7 @@
 		return
 	return ..()
 
-// Kanał binarny bez słuchawek: tłumacz maszynowy i powłoka SI
+// Kanał binarny bez słuchawek: powłoka SI (mózg z łączem SI)
 /mob/living/carbon/human/binarycheck()
 	. = ..()
 	if(!. && stat < SOFT_CRIT && HAS_TRAIT(src, TRAIT_AQ_BINARY_SPEAKER))
@@ -74,19 +74,6 @@
 	if(isatom(src_object) && has_remote_machine_access(src_object))
 		return shared_ui_interaction(src_object)
 	return ..()
-
-// Grawitonowy kręgosłup: dalsze i szybsze rzuty
-/mob/living/carbon/throw_item(atom/target)
-	var/obj/item/organ/cyberimp/chest/spinal/aq_herculean/spine = getorganslot(ORGAN_SLOT_SPINAL)
-	var/obj/item/held = get_active_held_item()
-	if(!istype(spine) || !held || !spine.aq_augment_usable(TRUE))
-		return ..()
-	held.throw_range += spine.throw_range_bonus
-	held.throw_speed += spine.throw_speed_bonus
-	. = ..()
-	if(!QDELETED(held))
-		held.throw_range -= spine.throw_range_bonus
-		held.throw_speed -= spine.throw_speed_bonus
 
 // Ośrodek smaku: po skosztowaniu podaje skład
 /mob/living/carbon/taste(datum/reagents/from)

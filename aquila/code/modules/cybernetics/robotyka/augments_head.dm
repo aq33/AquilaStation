@@ -1,8 +1,7 @@
 // AQUILA - augmenty głowy: mózg, oczy, usta, kark. Wdrożenie robotyki, część IMPLANTY.
-// Źródła: Paradise (wire_interface), /tg/station (brain/cybernetic/ai, eyes/robotic/tacvisor), Shiptest (joywire),
-// Aurora (internal_diagnostics, emotional_manipulator, gustatorial, service_jack), Nova Sector (hackerman_deck),
-// Skyrat (anti_sleep), Goonstation (eye/cyber/monitor, eye/cyber/laser), Baystation12 (adaptive_binoculars),
-// MonkeStation (eyes/robotic/meson), SS220 (eyes/map).
+// Źródła: Paradise (wire_interface), /tg/station (brain/cybernetic/ai), Aurora (emotional_manipulator, gustatorial,
+// service_jack), Skyrat (anti_sleep, wcielony w implant restartu OUN), Goonstation (eye/cyber/monitor, eye/cyber/laser),
+// SS220 (eyes/map).
 
 #define AQ_ROBOTYKA_ICON 'aquila/icons/obj/cybernetics/robotyka_implanty.dmi'
 
@@ -171,165 +170,25 @@
 		brain.return_to_core()
 
 // ---------------------------------------------------------------------------
-// Ożywiacz przyjemności Midi-Sed (Shiptest /obj/item/organ/cyberimp/brain/joywire)
+// Implant restartu OUN (core cyberimp/brain/anti_stun) przejmuje rozrusznik OUN (Skyrat /obj/item/organ/internal/cyberimp/brain/anti_sleep):
+// poza skracaniem ogłuszeń budzi nosiciela, gdy ten straci przytomność poza zwykłym snem, potem ładuje się przez minutę.
 
-/obj/item/organ/cyberimp/brain/aq_joywire
-	name = "ożywiacz przyjemności Midi-Sed"
-	desc = "Uzależniający implant pobudzający ośrodek przyjemności. Mocno poprawia nastrój, ale na zawsze psuje smak, nawet po wyjęciu."
-	implant_color = "#FFABE0"
-	slot = ORGAN_SLOT_BRAIN_JOYWIRE
-	aq_cyberpsychosis_cost = 10
+/obj/item/organ/cyberimp/brain/anti_stun
+	desc = "Ten implant automatycznie przywraca ci kontrolę nad ośrodkowym układem nerwowym: skraca czas ogłuszenia i budzi z utraty przytomności."
+	/// Odnowienie wybudzenia
+	var/aq_wake_cooldown_time = 1 MINUTES
+	COOLDOWN_DECLARE(aq_wake_cooldown)
 
-/obj/item/organ/cyberimp/brain/aq_joywire/on_life()
+/obj/item/organ/cyberimp/brain/anti_stun/on_life()
 	. = ..()
-	if(!owner || !aq_augment_usable(TRUE))
-		return
-	SEND_SIGNAL(owner, COMSIG_ADD_MOOD_EVENT, "aq_joywire", /datum/mood_event/aq_joywire)
-	if(!HAS_TRAIT_FROM(owner, TRAIT_AGEUSIA, "aq_joywire_scar"))
-		ADD_TRAIT(owner, TRAIT_AGEUSIA, "aq_joywire_scar") // blizna zostaje po wyjęciu
-		to_chat(owner, span_notice("Smak jedzenia blednie. Kogo to obchodzi? Jest cudownie."))
-
-/obj/item/organ/cyberimp/brain/aq_joywire/Remove(mob/living/carbon/M, special = FALSE)
-	if(M)
-		SEND_SIGNAL(M, COMSIG_CLEAR_MOOD_EVENT, "aq_joywire")
-		SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "aq_joywire", /datum/mood_event/aq_joywire_withdrawal)
-	return ..()
-
-/obj/item/organ/cyberimp/brain/aq_joywire/emp_act(severity)
-	. = ..()
-	if(!owner || . & EMP_PROTECT_SELF)
-		return
-	organ_flags |= ORGAN_FAILING
-	SEND_SIGNAL(owner, COMSIG_CLEAR_MOOD_EVENT, "aq_joywire")
-	SEND_SIGNAL(owner, COMSIG_ADD_MOOD_EVENT, "aq_joywire_emp", /datum/mood_event/aq_joywire_emp)
-
-/datum/mood_event/aq_joywire
-	description = "<span class='nicegreen'>Wszystko jest cudowne. Wszystko jest cudowne. Wszystko jest cudowne.</span>\n"
-	mood_change = 8
-	timeout = 10 SECONDS
-
-/datum/mood_event/aq_joywire_withdrawal
-	description = "<span class='warning'>Gdzie się podziała radość? Wszystko jest szare i płaskie...</span>\n"
-	mood_change = -6
-	timeout = 10 MINUTES
-
-/datum/mood_event/aq_joywire_emp
-	description = "<span class='boldwarning'>Mój ożywiacz przyjemności się spalił. Wszystko jest okropne!</span>\n"
-	mood_change = -30
-	timeout = 5 MINUTES
-
-// ---------------------------------------------------------------------------
-// Procesor diagnostyczny (Aurora /obj/item/organ/internal/machine/internal_diagnostics)
-
-/obj/item/organ/cyberimp/brain/aq_diagnostics
-	name = "procesor diagnostyczny"
-	desc = "Czujniki stanu ciała syntetyka: na żądanie pokazują pełny raport o uszkodzeniach. Działa też w ciele organicznym."
-	implant_color = "#7FD1FF"
-	slot = ORGAN_SLOT_BRAIN_DIAGNOSTICS
-	actions_types = list(/datum/action/item_action/organ_action/use)
-	aq_cyberpsychosis_cost = 0
-
-/obj/item/organ/cyberimp/brain/aq_diagnostics/ui_action_click()
-	if(!aq_augment_usable())
-		return
-	to_chat(owner, span_notice("Procesor diagnostyczny przesyła raport o stanie ciała:"))
-	healthscan(owner, owner, 1, TRUE)
-
-// ---------------------------------------------------------------------------
-// System hakowania bezprzewodowego Binyat (Nova Sector /obj/item/organ/cyberimp/hackerman_deck)
-
-/obj/item/organ/cyberimp/brain/aq_hacking_deck
-	name = "system hakowania bezprzewodowego Binyat"
-	desc = "Czip neuronowy: wskazana pobliska maszyna dostaje ładunek, który sam próbuje ją zhakować, szarpiąc przypadkowymi kablami. Nie działa na cyborgi."
-	icon = AQ_ROBOTYKA_ICON
-	icon_state = "brain_implant_rebooter"
-	implant_overlay = null
-	slot = ORGAN_SLOT_BRAIN_HACKING
-	syndicate_implant = TRUE
-	actions_types = list(/datum/action/item_action/organ_action/toggle)
-	aq_cyberpsychosis_cost = 10
-	/// Czy czeka na wskazanie celu
-	var/armed = FALSE
-	/// Zasięg
-	var/hack_range = 7
-	/// Ile przypadkowych kabli szarpie
-	var/pulses = 3
-	COOLDOWN_DECLARE(hack_cooldown)
-
-/obj/item/organ/cyberimp/brain/aq_hacking_deck/ui_action_click()
-	if(!aq_augment_usable())
-		return
-	set_armed(!armed)
-
-/obj/item/organ/cyberimp/brain/aq_hacking_deck/proc/set_armed(new_state)
-	if(!owner)
-		return
-	armed = new_state
-	if(armed)
-		RegisterSignal(owner, COMSIG_MOB_CLICKON, PROC_REF(on_click), override = TRUE)
-		to_chat(owner, span_notice("Binyat gotowy. Kliknij maszynę w zasięgu wzroku."))
-	else
-		UnregisterSignal(owner, COMSIG_MOB_CLICKON)
-
-/obj/item/organ/cyberimp/brain/aq_hacking_deck/Remove(mob/living/carbon/M, special = FALSE)
-	if(M)
-		UnregisterSignal(M, COMSIG_MOB_CLICKON)
-	armed = FALSE
-	return ..()
-
-/obj/item/organ/cyberimp/brain/aq_hacking_deck/proc/on_click(mob/living/source, atom/target, list/modifiers)
-	SIGNAL_HANDLER
-	if(LAZYACCESS(modifiers, SHIFT_CLICK) || !ismachinery(target))
-		return
-	. = COMSIG_MOB_CANCEL_CLICKON
-	set_armed(FALSE)
-	if(!COOLDOWN_FINISHED(src, hack_cooldown))
-		to_chat(source, span_warning("Binyat jeszcze się chłodzi."))
-		return
-	if(get_dist(source, target) > hack_range || !(target in view(hack_range, source)))
-		to_chat(source, span_warning("Maszyna jest za daleko."))
-		return
-	var/obj/machinery/machine = target
-	if(!machine.wires || !length(machine.wires.colors))
-		to_chat(source, span_warning("Ładunek nie znajduje w [machine] żadnych kabli."))
-		return
-	COOLDOWN_START(src, hack_cooldown, 20 SECONDS)
-	to_chat(source, span_notice("Wysyłasz ładunek do [machine]..."))
-	addtimer(CALLBACK(src, PROC_REF(hack), machine), 3 SECONDS)
-
-/// Szarpie przypadkowe kable maszyny
-/obj/item/organ/cyberimp/brain/aq_hacking_deck/proc/hack(obj/machinery/machine)
-	if(QDELETED(machine) || !machine.wires || !owner)
-		return
-	for(var/i in 1 to pulses)
-		machine.wires.pulse_color(pick(machine.wires.colors), owner)
-	do_sparks(2, FALSE, machine)
-	to_chat(owner, span_notice("Ładunek przeszedł przez kable [machine]."))
-	log_game("[key_name(owner)] zhakował [machine] systemem Binyat w [AREACOORD(machine)].")
-
-// ---------------------------------------------------------------------------
-// Rozrusznik OUN (Skyrat /obj/item/organ/internal/cyberimp/brain/anti_sleep)
-
-/obj/item/organ/cyberimp/brain/aq_jumpstarter
-	name = "rozrusznik OUN"
-	desc = "Wstrząsem budzi nosiciela, gdy ten straci przytomność poza zwykłym snem. Potem musi się naładować."
-	implant_color = "#FFE14D"
-	slot = ORGAN_SLOT_BRAIN_JUMPSTARTER
-	aq_cyberpsychosis_cost = 10
-	/// Odnowienie
-	var/cooldown_time = 1 MINUTES
-	COOLDOWN_DECLARE(jump_cooldown)
-
-/obj/item/organ/cyberimp/brain/aq_jumpstarter/on_life()
-	. = ..()
-	if(!owner || owner.stat == DEAD || !COOLDOWN_FINISHED(src, jump_cooldown))
+	if(!owner || owner.stat == DEAD || !COOLDOWN_FINISHED(src, aq_wake_cooldown))
 		return
 	if(!owner.IsUnconscious() || owner.IsSleeping() || !aq_augment_usable(TRUE))
 		return
-	COOLDOWN_START(src, jump_cooldown, cooldown_time)
+	COOLDOWN_START(src, aq_wake_cooldown, aq_wake_cooldown_time)
 	owner.SetUnconscious(0)
 	owner.Jitter(5)
-	to_chat(owner, span_userdanger("Rozrusznik OUN wstrząsa twoim mózgiem i zrywa cię na nogi!"))
+	to_chat(owner, span_userdanger("Implant restartu OUN wstrząsa twoim mózgiem i zrywa cię na nogi!"))
 	playsound(owner, 'sound/machines/defib_zap.ogg', 30, TRUE)
 
 // ---------------------------------------------------------------------------
@@ -402,33 +261,6 @@
 // ===========================================================================
 // OCZY
 
-// Wizjer taktyczny IFF (/tg/station /obj/item/organ/eyes/robotic/tacvisor).
-// U tg zamienia ludzi w obrysy IFF; u nas HUD ochrony z oceną zagrożenia i brak rozpoznawania twarzy.
-/obj/item/organ/eyes/robotic/aq_tacvisor
-	name = "taktyczny wizjer IFF"
-	desc = "Wizjer wpięty w mózg: pokazuje dane ochrony i zagrożenie każdej osoby, ale nosiciel przestaje rozpoznawać twarze i imiona."
-	icon = AQ_ROBOTYKA_ICON
-	icon_state = "eyes_tacvisor"
-	eye_color = "3F3"
-	flash_protect = 2
-	aq_cyberpsychosis_cost = 10
-
-/obj/item/organ/eyes/robotic/aq_tacvisor/Insert(mob/living/carbon/M, special = FALSE, drop_if_replaced = FALSE)
-	. = ..()
-	if(owner != M)
-		return
-	var/datum/atom_hud/sec_hud = GLOB.huds[DATA_HUD_SECURITY_ADVANCED]
-	sec_hud.add_hud_to(M)
-	ADD_TRAIT(M, TRAIT_SECURITY_HUD, REF(src))
-	ADD_TRAIT(M, TRAIT_PROSOPAGNOSIA, REF(src))
-
-/obj/item/organ/eyes/robotic/aq_tacvisor/Remove(mob/living/carbon/M, special = FALSE)
-	var/datum/atom_hud/sec_hud = GLOB.huds[DATA_HUD_SECURITY_ADVANCED]
-	sec_hud.remove_hud_from(M)
-	REMOVE_TRAIT(M, TRAIT_SECURITY_HUD, REF(src))
-	REMOVE_TRAIT(M, TRAIT_PROSOPAGNOSIA, REF(src))
-	return ..()
-
 // ---------------------------------------------------------------------------
 // Cyberoko z monitorem (Goonstation /obj/item/organ/eye/cyber/monitor): podgląd sieci kamer
 
@@ -477,72 +309,6 @@
 	if(eye?.owner == user && eye.aq_augment_usable(TRUE))
 		return GLOB.conscious_state
 	return GLOB.never_state
-
-// ---------------------------------------------------------------------------
-// Adaptacyjna lornetka (Baystation12 /obj/item/organ/internal/augment/active/item/adaptive_binoculars)
-
-/obj/item/organ/cyberimp/eyes/aq_binoculars
-	name = "adaptacyjna lornetka"
-	desc = "Soczewki wysuwane na oczy przybliżają obraz jak lornetka, w kierunku, w którym patrzysz."
-	icon = AQ_ROBOTYKA_ICON
-	icon_state = "adaptive_binoculars"
-	implant_overlay = null
-	slot = ORGAN_SLOT_EYE_ZOOM
-	zone = BODY_ZONE_PRECISE_EYES
-	w_class = WEIGHT_CLASS_TINY
-	actions_types = list(/datum/action/item_action/organ_action/toggle)
-	aq_cyberpsychosis_cost = 5
-	/// Czy przybliża
-	var/zoomed = FALSE
-	/// Przesunięcie widoku w kratkach
-	var/zoom_offset = 7
-
-/obj/item/organ/cyberimp/eyes/aq_binoculars/ui_action_click()
-	if(!zoomed && !aq_augment_usable())
-		return
-	set_zoom(!zoomed)
-
-/obj/item/organ/cyberimp/eyes/aq_binoculars/proc/set_zoom(new_state)
-	if(!owner?.client)
-		zoomed = FALSE
-		return
-	zoomed = new_state
-	if(zoomed)
-		RegisterSignal(owner, COMSIG_ATOM_DIR_CHANGE, PROC_REF(on_dir_change), override = TRUE)
-		owner.client.view_size.zoomOut(0, zoom_offset, owner.dir)
-		to_chat(owner, span_notice("Soczewki wysuwają się i przybliżają obraz."))
-	else
-		UnregisterSignal(owner, COMSIG_ATOM_DIR_CHANGE)
-		owner.client.view_size.zoomIn()
-
-/obj/item/organ/cyberimp/eyes/aq_binoculars/proc/on_dir_change(datum/source, old_dir, new_dir)
-	SIGNAL_HANDLER
-	owner?.client?.view_size.zoomOut(0, zoom_offset, new_dir)
-
-/obj/item/organ/cyberimp/eyes/aq_binoculars/Remove(mob/living/carbon/M, special = FALSE)
-	if(zoomed)
-		set_zoom(FALSE)
-	return ..()
-
-/obj/item/organ/cyberimp/eyes/aq_binoculars/emp_act(severity)
-	. = ..()
-	if(!owner || . & EMP_PROTECT_SELF || !zoomed)
-		return
-	set_zoom(FALSE)
-	owner.blind_eyes(10)
-	owner.blur_eyes(20)
-	to_chat(owner, span_warning("Soczewki gwałtownie się zamykają!"))
-
-// ---------------------------------------------------------------------------
-// Oczy mezonowe (MonkeStation /obj/item/organ/internal/eyes/robotic/meson)
-
-/obj/item/organ/eyes/robotic/aq_meson
-	name = "oczy mezonowe"
-	desc = "Cybernetyczne oczy, które pokazują układ ścian i konstrukcji jak gogle mezonowe."
-	eye_color = "0C4"
-	sight_flags = SEE_TURFS
-	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
-	aq_cyberpsychosis_cost = 5
 
 // ---------------------------------------------------------------------------
 // Mapa okrętu w oku (SS220 /obj/item/organ/internal/cyberimp/eyes/map): holomapa na żądanie
