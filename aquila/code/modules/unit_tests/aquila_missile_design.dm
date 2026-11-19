@@ -43,7 +43,7 @@
 	TEST_ASSERT(!casing.GetComponent(/datum/component/missile_design), "A multitool retuned a torpedo without munitions access")
 	var/obj/item/card/id/card = allocate(/obj/item/card/id)
 	card.access = list(ACCESS_MUNITIONS)
-	user.equip_to_slot_or_del(card, ITEM_SLOT_ID)
+	user.put_in_inactive_hand(card) // get_idcard sprawdza ręce, a slot ID bez munduru odrzuca kartę
 	TEST_ASSERT(casing.aq_can_tune_missile(user), "A munitions ID does not allow retuning a torpedo")
 
 	// Wybór z menu sprawdza się jeszcze raz po jego zamknięciu: bez multitoola w ręce nic się nie zmienia
