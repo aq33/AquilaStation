@@ -118,6 +118,7 @@ GLOBAL_LIST_INIT(hex_war_factions, list("nanotrasen", "solgov", "syndicate", "pi
 	ready = TRUE
 	apply_hq_relocations()
 	remove_occupied_garrisons()
+	setup_nemeses()
 	reinforce_hq_garrisons()
 	announce_war_end()
 	addtimer(CALLBACK(src, PROC_REF(tick)), HEX_WAR_TICK)
@@ -132,7 +133,7 @@ GLOBAL_LIST_INIT(hex_war_factions, list("nanotrasen", "solgov", "syndicate", "pi
 			if(QDELETED(F) || F.war_controlled || F.fleet_trait != FLEET_TRAIT_DEFENSE || !hex_factions_allied(F.alignment, S.owner))
 				continue
 			log_game("HEXWAR: no garrison returns to occupied [S] ([F.name] removed)")
-			F.hex_war_dispose()
+			F.hex_war_dispose(keep_alignment = TRUE)
 
 /// Start rundy: garnizony kwater głównych (floty obronne układu, poza sztabem) są równe najsilniejszemu z nich, najmniej
 /// HEX_WAR_HQ_GARRISON okrętów. Inaczej o wyniku wojny decydował układ mapy: Medea miała 2–3 okręty, Rubicon 12.
@@ -418,7 +419,8 @@ GLOBAL_LIST_INIT(hex_war_factions, list("nanotrasen", "solgov", "syndicate", "pi
 
 /// Usuwa flotę razem z okrętami (konwój po rozładunku, floty zastąpione zapisem kampanii). Okręty najpierw odpinamy,
 /// bo usunięcie ostatniego przez remove_ship() wołałoby defeat(): ogłoszenie porażki i napięcie wojny za zwykłą dostawę.
-/datum/fleet/proc/hex_war_dispose()
+/// keep_alignment: układ zostaje przy obecnym alignment (garnizon zdjęty z zajętego układu nie może oddać go właścicielowi).
+/datum/fleet/proc/hex_war_dispose(keep_alignment = FALSE)
 	var/list/ships = all_ships.Copy()
 	for(var/obj/structure/overmap/OM as anything in ships)
 		UnregisterSignal(OM, list(COMSIG_PARENT_QDELETING, COMSIG_SHIP_IFF_CHANGE))
@@ -427,7 +429,7 @@ GLOBAL_LIST_INIT(hex_war_factions, list("nanotrasen", "solgov", "syndicate", "pi
 		if(!QDELETED(OM))
 			qdel(OM)
 	current_system?.fleets -= src
-	if(current_system && !length(current_system.fleets))
+	if(current_system && !length(current_system.fleets) && !keep_alignment)
 		current_system.alignment = current_system.owner
 	qdel(src)
 
