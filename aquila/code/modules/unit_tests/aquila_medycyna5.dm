@@ -156,7 +156,7 @@
 	box.process(1)
 	TEST_ASSERT(!(heart.organ_flags & ORGAN_FROZEN), "The heart stayed frozen after the coolant ran out")
 
-/// AQUILA - asthma (medical/asthma.dm): albuterol takes the inflammation off, narrow airways choke, an attack is cured by albuterol
+/// AQUILA - asthma (medical/asthma.dm): salbutamol takes the inflammation off, narrow airways choke, an attack is cured by salbutamol
 /datum/unit_test/aquila_asthma
 
 /datum/unit_test/aquila_asthma/Run()
@@ -170,28 +170,28 @@
 	asthma.apply_breathing_effects(1)
 	TEST_ASSERT(patient.getOxyLoss() > oxy, "Narrow airways did not choke")
 
-	// A puff of albuterol takes inflammation off at once, then more while in the blood
-	var/obj/item/inhaler/albuterol/inhaler = allocate(/obj/item/inhaler/albuterol)
+	// A puff of salbutamol takes inflammation off at once, then more while in the blood
+	var/obj/item/inhaler/salbutamol/inhaler = allocate(/obj/item/inhaler/salbutamol)
 	inhaler.canister.puff(patient, patient)
-	TEST_ASSERT(patient.reagents.has_reagent(/datum/reagent/medicine/albuterol), "The inhaler gave no albuterol")
+	TEST_ASSERT(patient.reagents.has_reagent(/datum/reagent/medicine/salbutamol), "The inhaler gave no salbutamol")
 	patient.reagents.metabolize(patient, can_overdose = TRUE)
-	TEST_ASSERT(asthma.inflammation < 400, "Albuterol did not take inflammation off at once ([asthma.inflammation])")
+	TEST_ASSERT(asthma.inflammation < 400, "Salbutamol did not take inflammation off at once ([asthma.inflammation])")
 	var/after_puff = asthma.inflammation
 	asthma.last_process = world.time - 2 SECONDS
 	asthma.on_process()
-	TEST_ASSERT(asthma.inflammation < after_puff, "Albuterol in the blood did not keep taking inflammation off")
+	TEST_ASSERT(asthma.inflammation < after_puff, "Salbutamol in the blood did not keep taking inflammation off")
 
-	// An attack is cured by albuterol
+	// An attack is cured by salbutamol
 	patient.reagents.clear_reagents()
 	asthma.start_attack()
 	var/datum/disease/asthma_attack/attack = asthma.current_attack
 	TEST_ASSERT(attack && (attack in patient.diseases), "No asthma attack started")
-	patient.reagents.add_reagent(/datum/reagent/medicine/albuterol, 20)
+	patient.reagents.add_reagent(/datum/reagent/medicine/salbutamol, 20)
 	for(var/i in 1 to 200)
 		if(QDELETED(attack))
 			break
 		attack.stage_act()
-	TEST_ASSERT(QDELETED(attack), "Albuterol did not cure the asthma attack in 200 ticks")
+	TEST_ASSERT(QDELETED(attack), "Salbutamol did not cure the asthma attack in 200 ticks")
 	TEST_ASSERT(!asthma.current_attack, "The quirk still holds the cured attack")
 	qdel(asthma)
 
@@ -993,10 +993,6 @@
 	ADD_TRAIT(patient, TRAIT_FAKEDEATH, "test")
 	TEST_ASSERT(!length(patient.aq_pulse_scan_lines()), "The pulse line shows through fake death")
 	REMOVE_TRAIT(patient, TRAIT_FAKEDEATH, "test")
-
-	// Albuterol is only made with heat: the survival medipen keeps its epinephrine and salbutamol
-	var/obj/item/reagent_containers/hypospray/medipen/survival/pen = allocate(/obj/item/reagent_containers/hypospray/medipen/survival)
-	TEST_ASSERT(pen.reagents.has_reagent(/datum/reagent/medicine/epinephrine) && !pen.reagents.has_reagent(/datum/reagent/medicine/albuterol), "The survival medipen turned into albuterol")
 
 	// A fist (bodypart passed as def_zone) can rupture the spleen; armor counts
 	var/mob/living/carbon/human/boxed = allocate(/mob/living/carbon/human)

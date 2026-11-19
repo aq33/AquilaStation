@@ -121,8 +121,6 @@
 	products[/obj/item/reagent_containers/hypospray/medipen/salbutamol] = 3
 	products[/obj/item/reagent_containers/hypospray/medipen/penacid] = 3
 	products[/obj/item/reagent_containers/hypospray/medipen/ekit] = 2
-	products[/obj/item/inhaler/albuterol] = 2
-	products[/obj/item/reagent_containers/inhaler_canister/albuterol] = 3
 	products[/obj/item/barrier_tape_roll/medical] = 2
 	products[/obj/item/reagent_containers/hypospray/medipen/naloxone] = 2
 	products[/obj/item/catheter] = 4
