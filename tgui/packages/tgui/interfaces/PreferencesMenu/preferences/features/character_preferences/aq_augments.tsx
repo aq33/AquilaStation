@@ -3,10 +3,10 @@ import { FeatureChoiced } from '../base';
 import { FeatureButtonedDropdownInput } from '../dropdowns';
 
 const limbDescription =
-  'Proteza zakładana od startu rundy. Marki różnią się wyglądem i cechami, kinetyczna nie pozwala strzelać, zaawansowana jest najmocniejsza.';
+  'Proteza zakładana od startu rundy: tania albo zwykła w wyglądzie wybranej marki. Zaawansowane protezy daje robotyk w grze. Kończyna, którą zajęła cecha, zostaje z cechy.';
 
 const organDescription =
-  'Organ wymieniany od startu rundy na cybernetyczny. Cybernetyka obciąża psychikę (cyberpsychoza).';
+  'Organ wymieniany od startu rundy na cybernetyczny. Ulepszone organy daje robotyk w grze. Organ, który zajęła cecha, zostaje z cechy. Cybernetyka obciąża psychikę (cyberpsychoza).';
 
 export const aq_aug_l_arm: FeatureChoiced = {
   name: 'Lewa ręka',

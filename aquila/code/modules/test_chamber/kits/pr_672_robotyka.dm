@@ -10,7 +10,7 @@
 	7) Cyberpsychoza: załóż sobie kilka protez i implantów (autochirurg) i poczekaj na objawy w czacie; neuratreksat w strzykawce je wstrzymuje. \
 	8) Implanty: zakłócacz augmentów (implanter) blokuje implant narzędziowy w ręce; jeden implant skoku w nodze daje akcję Skok nad dziurą; wzmocnienie stawów. \
 	9) Serce woltaiczne z rdzeniem: wszczep (w ręce, 5 s), zbij się do stanu krytycznego – 30 s na nogach. Psychoskop: zeskanuj karpia, zapisz neuromod w powłoce i wstrzyknij sobie. \
-	10) Kreator postaci: sekcja z wyborem rąk, nóg i organów (marki, kinetyczna, zaawansowana, organy cybernetyczne); po wejściu do rundy postać ma te protezy i organy, bez kalibracji. Sprawdź w combat mode i w starym trybie intencji (narzędzia leczą bez trybu walki / na intencji pomocy)."
+	10) Kreator postaci: sekcja z wyborem rąk i nóg (ciało, tania proteza, proteza marki jako sam wygląd) i organów (organiczne albo cybernetyczne), bez zaawansowanych protez i ulepszonych organów; po wejściu do rundy postać ma te protezy i organy. Z cechą Poczwórna amputacja znika wybór kończyn, z Blaszanym drwalem wybór organów (po scaleniu aq33/AquilaStation#655); z cechą Proteza wybrana proteza nie zastępuje kończyny wylosowanej przez cechę. Sprawdź w combat mode i w starym trybie intencji (narzędzia leczą bez trybu walki / na intencji pomocy)."
 	items = list(
 		/obj/item/bodypart/r_arm/robot = 2,
 		/obj/item/bodypart/l_arm/robot/aq_advanced = 1,

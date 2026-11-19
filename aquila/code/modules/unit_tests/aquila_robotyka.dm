@@ -367,17 +367,32 @@
 	var/mob/living/carbon/human/veteran = allocate(/mob/living/carbon/human)
 	veteran.aq_apply_lobby_augments(list(
 		"aq_aug_l_arm" = "bishop",
-		"aq_aug_r_leg" = "advanced",
+		"aq_aug_r_leg" = "surplus",
+		"aq_aug_l_leg" = "advanced",
 		"aq_aug_heart" = "cybernetic",
 		"aq_aug_lungs" = "upgraded",
 		"aq_aug_r_arm" = "organic",
 	))
 	var/obj/item/bodypart/l_arm = veteran.get_bodypart(BODY_ZONE_L_ARM)
 	TEST_ASSERT(l_arm.aq_brand?.id == "bishop", "The lobby did not give a Bishop arm")
-	TEST_ASSERT(istype(veteran.get_bodypart(BODY_ZONE_R_LEG), /obj/item/bodypart/r_leg/robot/aq_advanced), "The lobby did not give an advanced leg")
+	TEST_ASSERT(istype(veteran.get_bodypart(BODY_ZONE_R_LEG), /obj/item/bodypart/r_leg/robot/surplus), "The lobby did not give a surplus leg")
+	TEST_ASSERT(IS_ORGANIC_LIMB(veteran.get_bodypart(BODY_ZONE_L_LEG)), "The lobby still gives advanced prostheses")
 	TEST_ASSERT(IS_ORGANIC_LIMB(veteran.get_bodypart(BODY_ZONE_R_ARM)), "An organic choice replaced the arm")
 	TEST_ASSERT(istype(veteran.getorganslot(ORGAN_SLOT_HEART), /obj/item/organ/heart/cybernetic), "The lobby did not give a cybernetic heart")
-	TEST_ASSERT(istype(veteran.getorganslot(ORGAN_SLOT_LUNGS), /obj/item/organ/lungs/cybernetic/upgraded), "The lobby did not give upgraded lungs")
+	TEST_ASSERT(!istype(veteran.getorganslot(ORGAN_SLOT_LUNGS), /obj/item/organ/lungs/cybernetic), "The lobby still gives upgraded organs")
+
+	// część ciała zajęta przez cechę (tu: tania proteza z cechy Proteza) zostaje z cechy
+	var/mob/living/carbon/human/amputee = allocate(/mob/living/carbon/human)
+	var/obj/item/bodypart/quirk_arm = aq_test_swap_limb(amputee, /obj/item/bodypart/l_arm/robot/surplus)
+	amputee.aq_apply_lobby_augments(list("aq_aug_l_arm" = "bishop"))
+	TEST_ASSERT(amputee.get_bodypart(BODY_ZONE_L_ARM) == quirk_arm && !quirk_arm.aq_brand, "The lobby replaced a prosthesis from a quirk")
+
+	// cecha zajmująca całą grupę chowa wybór w kreatorze; cech spoza buildu (aq33/AquilaStation#655) nie liczy
+	var/datum/quirk/prosthetic = /datum/quirk/prosthetic_limb
+	var/list/quirk_names = list(initial(prosthetic.name))
+	TEST_ASSERT(aq_quirks_block_augment(quirk_names, list("/datum/quirk/prosthetic_limb")), "A blocking quirk did not block the lobby choice")
+	TEST_ASSERT(!aq_quirks_block_augment(quirk_names, list("/datum/quirk/aq_no_such_quirk")), "A quirk missing from the build blocked the lobby choice")
+	TEST_ASSERT(!aq_quirks_block_augment(list(), list("/datum/quirk/prosthetic_limb")), "No quirks blocked the lobby choice")
 
 	// każdy wybór w kreatorze ma polską nazwę i jest poprawny
 	for(var/pref_type in subtypesof(/datum/preference/choiced/aq_augment))
