@@ -24,20 +24,17 @@
 		TEST_ASSERT(H.remove_quirk(quirk_type), "Quirk [quirk_type] could not be removed")
 		TEST_ASSERT(!H.has_quirk(quirk_type), "Quirk [quirk_type] is still there after removing it")
 
-	// Alergia na leki: alergen daje histaminę i toksyny, epinefryna wstrzymuje reakcję
+	// Alergia na leki: alergeny z listy mutacji „Alergia na chemikalia”, alergen wywołuje tę samą reakcję
 	var/mob/living/carbon/human/allergic = allocate(/mob/living/carbon/human, run_loc_floor_bottom_left)
 	allergic.add_quirk(/datum/quirk/allergic)
 	var/datum/quirk/allergic/allergy = locate() in allergic.roundstart_quirks
 	TEST_ASSERT(length(allergy.allergies), "Medicine allergy picked no allergens")
-	var/allergen = allergy.allergies[1]
-	allergic.reagents.add_reagent(allergen, 5)
-	allergy.on_process(1)
-	TEST_ASSERT(allergic.reagents.has_reagent(/datum/reagent/toxin/histamine), "An allergen gave no histamine")
-	allergic.reagents.clear_reagents()
-	allergic.reagents.add_reagent(allergen, 5)
-	allergic.reagents.add_reagent(/datum/reagent/medicine/epinephrine, 5)
-	allergy.on_process(1)
-	TEST_ASSERT(!allergic.reagents.has_reagent(/datum/reagent/toxin/histamine), "Epinephrine did not stop the allergic reaction")
+	for(var/path in allergy.allergies)
+		TEST_ASSERT(aq_chemical_allergy_reagents()[path], "Medicine allergy picked [path] from outside the chemical allergy list")
+	allergic.reagents.add_reagent(allergy.allergies[1], 5)
+	for(var/i in 1 to 10)
+		allergy.on_process(2)
+	TEST_ASSERT(allergic.disgust > 0 || allergic.getToxLoss() > 0, "An allergen gave no allergic reaction")
 
 	// Narkolepsja: trwały uraz mózgu, znika z cechą
 	var/mob/living/carbon/human/sleepy = allocate(/mob/living/carbon/human, run_loc_floor_bottom_left)

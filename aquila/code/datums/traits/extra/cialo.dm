@@ -51,26 +51,9 @@
 	)
 
 // ---------------------------------------------------------------------------
-// Alergia na leki (tg: Extreme Medicine Allergy). Bez nieśmiertelnika z tg: lista alergenów trafia do karty medycznej
-// i na czat. Epinefryna nie wstrzymuje u nas metabolizmu, tylko reakcję alergiczną.
-
-/// Medicines nobody is allergic to (tg allergy_reagent_blacklist, the ones we have)
-GLOBAL_LIST_INIT(aq_allergy_reagent_blacklist, typecacheof(list(
-	/datum/reagent/medicine/changelingadrenaline,
-	/datum/reagent/medicine/changelinghaste,
-	/datum/reagent/medicine/diphenhydramine,
-	/datum/reagent/medicine/epinephrine,
-	/datum/reagent/medicine/insulin,
-	/datum/reagent/medicine/muscle_stimulant,
-	/datum/reagent/medicine/omnizine/godblood,
-	/datum/reagent/medicine/regen_jelly,
-	/datum/reagent/medicine/salbutamol,
-	/datum/reagent/medicine/salglu_solution,
-	/datum/reagent/medicine/strange_reagent,
-	/datum/reagent/medicine/synaptizine/synaptizinevirusfood,
-	/datum/reagent/medicine/syndicate_nanites,
-	/datum/reagent/medicine/sansufentanyl,
-)))
+// Alergia na leki (tg: Extreme Medicine Allergy). Alergeny i reakcja jak w mutacji „Alergia na chemikalia”
+// (aquila/code/datums/mutations/tg/body.dm), ale cecha uczula tylko na kilka wylosowanych środków. Bez nieśmiertelnika
+// z tg: lista alergenów trafia do karty medycznej i na czat.
 
 /datum/quirk/allergic
 	name = "Alergia na leki"
@@ -87,9 +70,7 @@ GLOBAL_LIST_INIT(aq_allergy_reagent_blacklist, typecacheof(list(
 
 /datum/quirk/allergic/add()
 	var/list/chem_list = list()
-	for(var/path in subtypesof(/datum/reagent/medicine))
-		if(GLOB.aq_allergy_reagent_blacklist[path])
-			continue
+	for(var/path in aq_chemical_allergy_reagents())
 		var/datum/reagent/chem = GLOB.chemical_reagents_list[path]
 		if(!chem?.name || (chem.chem_flags & CHEMICAL_NOT_SYNTH))
 			continue
@@ -112,17 +93,10 @@ GLOBAL_LIST_INIT(aq_allergy_reagent_blacklist, typecacheof(list(
 	var/mob/living/carbon/C = quirk_holder
 	if(!istype(C) || !C.reagents || C.IsInStasis())
 		return
-	for(var/datum/reagent/chem as anything in C.reagents.reagent_list.Copy())
-		if(!(chem.type in allergies))
-			continue
-		// Epinefryna powstrzymuje reakcję, ale nie usuwa alergenu z krwi
-		if(C.reagents.has_reagent(/datum/reagent/medicine/epinephrine))
+	for(var/datum/reagent/chem as anything in C.reagents.reagent_list)
+		if((chem.type in allergies) && chem.volume >= 1)
+			aq_chemical_allergy_reaction(C, delta_time)
 			return
-		C.adjustToxLoss(3 * delta_time)
-		C.reagents.add_reagent(/datum/reagent/toxin/histamine, 3 * delta_time)
-		if(DT_PROB(10, delta_time))
-			C.vomit()
-			C.adjustOrganLoss(pick(ORGAN_SLOT_BRAIN, ORGAN_SLOT_APPENDIX, ORGAN_SLOT_LUNGS, ORGAN_SLOT_HEART, ORGAN_SLOT_LIVER, ORGAN_SLOT_STOMACH), 10)
 
 // ---------------------------------------------------------------------------
 // Narkolepsja (tg). Trwały uraz jak tg narcolepsy/permanent: rzadziej zasypiasz, ale śpisz dłużej; przed snem
