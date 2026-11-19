@@ -22,6 +22,9 @@
 /// Painkiller -> how much pain it takes off (cmss13/TGMC scale)
 GLOBAL_LIST_INIT(aq_painkillers, list(
 	/datum/reagent/medicine/morphine = 80,
+	/datum/reagent/medicine/oxycodone = 70, // AquilaMed 5 (reagents/chemistry/reagents/med5_reagents.dm)
+	/datum/reagent/medicine/tramadol = 50,
+	/datum/reagent/medicine/paracetamol = 25,
 	/datum/reagent/drug/ketamine = 60,
 	/datum/reagent/toxin/fentanyl = 60,
 	/datum/reagent/drug/krokodil = 50,
@@ -70,6 +73,7 @@ GLOBAL_LIST_INIT(aq_painkillers, list(
 		. += wound.get_pain()
 	if(LIMB_HAS_ANY_SURGERY_STATE(limb, ALL_SURGERY_SKIN_STATES))
 		. += 15
+	. += limb.aq_infection_pain() // zakażenie (medical/germs.dm)
 
 /// Pain computed from the body, before painkillers
 /mob/living/carbon/human/proc/aq_compute_pain()
@@ -91,6 +95,7 @@ GLOBAL_LIST_INIT(aq_painkillers, list(
 		if(organ.damage > 0 && organ.slot != ORGAN_SLOT_BRAIN && organ.status == ORGAN_ORGANIC)
 			. += organ.damage * 0.3
 	. += 5 * LAZYLEN(aq_tourniquets)
+	. += aq_withdrawal_pain // odstawienie opioidów (reagents/addiction/addiction.dm)
 
 /// How much the painkillers and adrenaline in the blood take off a pain this big
 /mob/living/carbon/human/proc/aq_pain_suppression(raw_pain)
