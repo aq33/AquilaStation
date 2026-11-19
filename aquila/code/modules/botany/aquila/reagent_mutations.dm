@@ -133,20 +133,10 @@ GLOBAL_LIST_INIT(plant_extra_reagent_mutations, build_plant_mutation_sets(TRUE))
 
 #undef REAGENT_MUTATION_CHANCE
 
-// Mutacje od odczynnika dla roślin, które już mamy. Przez rejestr, a nie zmienną typu: zmienną dziedziczyłyby odmiany
-// (jagoda śmierci, pomidor zabójca, melon miodowy) i od zwykłego odczynnika leczącego cofałyby się do odmiany odczynnikowej
-/datum/plant_mutation_set/podstawowe
-	reagent_mutations = list(
-		/datum/plant_feature/fruit/tomato = list(/datum/plant_feature/fruit/tomato/blood = list(/datum/reagent/blood = 10)),
-		/datum/plant_feature/fruit/watermelon = list(/datum/plant_feature/fruit/watermelon/holy = list(/datum/reagent/water/holywater = 10)),
-		/datum/plant_feature/fruit/apple = list(/datum/plant_feature/fruit/apple/gold = list(/datum/reagent/gold = 5)),
-		/datum/plant_feature/fruit/berry = list(/datum/plant_feature/fruit/berry/poison = list(/datum/reagent/toxin = 10)),
-	)
-
 /datum/dictionary_entry/reagent_mutations
 	title = "Chemiczna perswazja"
 	body = "(Niektóre rośliny mutują od konkretnego odczynnika w tacy, bez pieca radiacyjnego. Wlej odczynnik do tacy i poczekaj: gdy roślina zareaguje, zużyje go i zmieni odmianę.)\n\
 	\n\
 	Tu pojawi się historia.\n\
 	\n\
-	(Sprawdzone połączenia: pomidor i krew, arbuz i woda święcona, jabłko i złoto, jagody i toksyna. Reszty trzeba szukać samemu.)"
+	(Sprawdzone połączenia: pomarańcza i krew, pomarańcza i żelazo, pomidor i flogiston. Reszty trzeba szukać samemu.)"

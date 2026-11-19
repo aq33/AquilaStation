@@ -63,10 +63,10 @@
 	distill_reagent = /datum/reagent/consumable/ethanol/tequila
 
 /*
-	Grzyby świetlne (Monke: lightshroom), czerwone, niebieskie i zielone, w jaskiniach planet wulkanicznych
+	Grzyby świetlne (Monke: lightshroom), w jaskiniach planet wulkanicznych. U Monke w trzech kolorach, u nas jedna roślina (czerwona)
 */
 /obj/structure/flora/ash/lightshroom
-	name = "czerwone grzyby świetlne"
+	name = "grzyby świetlne"
 	desc = "Dziwne, świecące grzyby, które rosną tam, gdzie pod ziemią biją źródła ciekłej plazmy."
 	icon = 'aquila/icons/planets/flora/cieple_flora.dmi'
 	icon_state = "lightshroom_red"
@@ -80,24 +80,10 @@
 	. = ..()
 	icon_state = initial(icon_state)
 
-/obj/structure/flora/ash/lightshroom/blue
-	name = "niebieskie grzyby świetlne"
-	icon_state = "lightshroom_blue"
-	base_icon_state = "lightshroom_blue"
-	seed_type = /obj/item/plant_seeds/preset/lightshroom_blue
-	light_color = "#6699FF"
-
-/obj/structure/flora/ash/lightshroom/green
-	name = "zielone grzyby świetlne"
-	icon_state = "lightshroom_green"
-	base_icon_state = "lightshroom_green"
-	seed_type = /obj/item/plant_seeds/preset/lightshroom_green
-	light_color = "#99FF99"
-
 // Podtyp świecącego grzyba: bierze od niego świecącą poświatę owocu w tacy, resztę ustawia od nowa
 /datum/plant_feature/fruit/mushroom/glowshroom/lightshroom
 	species_name = "lux fungus ruber"
-	name = "czerwony grzyb świetlny"
+	name = "grzyb świetlny"
 	icon_state = "fly"
 	colour_overlay = "fly_colour"
 	colour_override = "#ff5050"
@@ -111,59 +97,17 @@
 	mutations = list()
 	genetic_budget = 3
 
-/datum/plant_feature/fruit/mushroom/glowshroom/lightshroom/blue
-	species_name = "lux fungus caeruleus"
-	name = "niebieski grzyb świetlny"
-	colour_override = "#5080ff"
-	seed_icon_state = "mycelium-lightshroom_blue"
-	fruit_product = /obj/item/food/grown/ash_flora/lightshroom_blue
-	plant_traits = list(/datum/plant_trait/fruit/biolight/blue, /datum/plant_trait/reagent/fruit/nutriment)
-
-/datum/plant_feature/fruit/mushroom/glowshroom/lightshroom/green
-	species_name = "lux fungus viridis"
-	name = "zielony grzyb świetlny"
-	colour_override = "#60e060"
-	seed_icon_state = "mycelium-lightshroom_green"
-	fruit_product = /obj/item/food/grown/ash_flora/lightshroom_green
-	plant_traits = list(/datum/plant_trait/fruit/biolight/green, /datum/plant_trait/reagent/fruit/nutriment)
-
 /obj/item/plant_seeds/preset/lightshroom_red
-	name = "zarodniki: czerwony grzyb świetlny (dowolne podłoże)"
-	name_override = "czerwony grzyb świetlny"
+	name = "zarodniki: grzyb świetlny (dowolne podłoże)"
+	name_override = "grzyb świetlny"
 	plant_features = list(/datum/plant_feature/roots/hyphae, /datum/plant_feature/body/mushroom, /datum/plant_feature/fruit/mushroom/glowshroom/lightshroom)
 
-/obj/item/plant_seeds/preset/lightshroom_blue
-	name = "zarodniki: niebieski grzyb świetlny (dowolne podłoże)"
-	name_override = "niebieski grzyb świetlny"
-	plant_features = list(/datum/plant_feature/roots/hyphae, /datum/plant_feature/body/mushroom, /datum/plant_feature/fruit/mushroom/glowshroom/lightshroom/blue)
-
-/obj/item/plant_seeds/preset/lightshroom_green
-	name = "zarodniki: zielony grzyb świetlny (dowolne podłoże)"
-	name_override = "zielony grzyb świetlny"
-	plant_features = list(/datum/plant_feature/roots/hyphae, /datum/plant_feature/body/mushroom, /datum/plant_feature/fruit/mushroom/glowshroom/lightshroom/green)
-
 /obj/item/food/grown/ash_flora/lightshroom_red
-	name = "czerwony grzyb świetlny"
+	name = "grzyb świetlny"
 	desc = "Świecący grzyb."
 	icon = 'aquila/icons/planets/flora/cieple_flora_harvest.dmi'
 	icon_state = "lightshroom_red"
 	seed = /obj/item/plant_seeds/preset/lightshroom_red
-	wine_power = 40
-
-/obj/item/food/grown/ash_flora/lightshroom_blue
-	name = "niebieski grzyb świetlny"
-	desc = "Świecący grzyb."
-	icon = 'aquila/icons/planets/flora/cieple_flora_harvest.dmi'
-	icon_state = "lightshroom_blue"
-	seed = /obj/item/plant_seeds/preset/lightshroom_blue
-	wine_power = 40
-
-/obj/item/food/grown/ash_flora/lightshroom_green
-	name = "zielony grzyb świetlny"
-	desc = "Świecący grzyb."
-	icon = 'aquila/icons/planets/flora/cieple_flora_harvest.dmi'
-	icon_state = "lightshroom_green"
-	seed = /obj/item/plant_seeds/preset/lightshroom_green
 	wine_power = 40
 
 /*
