@@ -6,8 +6,8 @@
 	blackboard = list(
 		BB_UNREACHABLE_LIST_COOLDOWN = 45 SECONDS,
 	)
-	ai_movement = /datum/ai_movement/jps
-	max_target_distance = 25
+	ai_movement = /datum/ai_movement/jps/bot
+	max_target_distance = 60
 	can_idle = FALSE
 	/// Klucze czyszczone przy resecie bota
 	var/list/reset_keys = list(
@@ -16,6 +16,11 @@
 		BB_BOT_SUMMON_TARGET,
 		BB_BOT_WORK_TARGET,
 	)
+
+/// Dłuższe ścieżki dla botów (tg: AI_BOT_PATH_LENGTH), nadajniki patrolu bywają daleko od siebie
+/datum/ai_movement/jps/bot
+	maximum_length = 60
+	max_pathing_attempts = 25
 
 /datum/ai_controller/basic_controller/bot/TryPossessPawn(atom/new_pawn)
 	if(!isbasicbot(new_pawn))
@@ -148,7 +153,7 @@
  */
 /datum/bt_node/ai_behavior/bot_find_work
 	var/target_key = BB_BOT_WORK_TARGET
-	var/pathing_distance = 25
+	var/pathing_distance = 60
 	time_between_perform = 2 SECONDS
 	VAR_PRIVATE/list/candidate_stash
 
@@ -275,8 +280,11 @@
 	var/mob/living/basic/bot/bot_pawn = controller.pawn
 	var/atom/final_target
 	var/atom/previous_target = controller.blackboard[BB_PREVIOUS_BEACON_TARGET]
-	for(var/obj/machinery/navbeacon/beacon as anything in GLOB.navbeacons["[bot_pawn.z]"])
-		if(isnull(beacon.codes?[NAVBEACON_PATROL_NEXT]))
+	// NSV13: nadajniki patrolu są przypisane do okrętu (beacons_in_ship), nie wszystkie mają kod „patrol”
+	var/obj/structure/overmap/ship = bot_pawn.get_overmap()
+	var/list/beacons = ship ? ship.beacons_in_ship : GLOB.navbeacons["[bot_pawn.z]"]
+	for(var/obj/machinery/navbeacon/beacon as anything in beacons)
+		if(beacon.z != bot_pawn.z || isnull(beacon.codes?[NAVBEACON_PATROL_NEXT]))
 			continue
 		var/dist = get_dist(bot_pawn, beacon)
 		if(beacon == previous_target || dist <= 1 || dist > closest_distance)
@@ -392,6 +400,17 @@
  */
 /datum/bt_node/ai_behavior/move_to_target/multiz
 	VAR_PRIVATE/obj/structure/bot_elevator/elevator_target
+
+/datum/bt_node/ai_behavior/move_to_target/multiz/setup(datum/ai_controller/controller)
+	var/atom/target = controller.blackboard[target_key]
+	var/turf/target_turf = get_turf(target)
+	if(QDELETED(target) || !target_turf)
+		return FALSE
+	if(target_turf.z == controller.pawn.z)
+		return ..()
+	// inny pokład: ruch do windy zaczyna perform(), nie ścieżka do celu (JPS nie przechodzi między poziomami)
+	RegisterSignal(controller.pawn, COMSIG_MOB_AI_MOVEMENT_FAILED, PROC_REF(on_movement_failed))
+	return TRUE
 
 /datum/bt_node/ai_behavior/move_to_target/multiz/perform(seconds_per_tick, datum/ai_controller/controller)
 	var/atom/target = controller.blackboard[target_key]
