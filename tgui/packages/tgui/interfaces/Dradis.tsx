@@ -1,10 +1,17 @@
 import { CSSProperties, useState } from 'react';
-import { Box, Button, Knob, ProgressBar, Section } from 'tgui-core/components';
+import { Box, Button, Knob } from 'tgui-core/components';
 
 // NSV13
 import { useBackend } from '../backend';
 import { Map } from '../components';
-import { Window } from '../layouts';
+import {
+  COLOR,
+  ConsoleBar,
+  ConsoleBody,
+  ConsoleMeter,
+  ConsolePanel,
+  ConsoleWindow,
+} from './common/ShipConsole';
 
 type Data = {
   can_radar_pulse: any;
@@ -323,145 +330,120 @@ export const DradisContent = (props) => {
     focus_y,
   );
 
+  const knob = (
+    label: string,
+    value: number,
+    action: string,
+    payload: (value: number) => object,
+    unit = 'siła skanu',
+    min = 0,
+    max = 100,
+  ) => (
+    <span style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
+      <span style={{ color: COLOR.muted }}>{label}</span>
+      <Knob
+        tickWhileDragging
+        color={value ? 'green' : undefined}
+        value={value}
+        unit={unit}
+        minValue={min}
+        maxValue={max}
+        step={1}
+        stepPixelSize={1}
+        onChange={(e, next) => act(action, payload(next))}
+      />
+    </span>
+  );
+
   return (
-    <Section
-      title="Ustawienia:"
-      buttons={
-        <>
-          <Button icon="search-plus" onClick={() => act('zoomin')} />
-          <Button icon="search-minus" onClick={() => act('zoomout')} />
-          {/* AQ EDIT - przy konsoli sensorów radarem steruje operator */}
-          {!!data.can_use_radar && !data.sensor_station && (
-            <>
-              <Button
-                content="Impuls radaru"
-                icon="bullseye"
-                disabled={!data.can_radar_pulse}
-                onClick={() => act('radar_pulse')}
-              />
-              <Button
-                content={data.sensor_mode}
-                icon="project-diagram"
-                onClick={() => act('sensor_mode')}
-              />
-              <Button
-                content={data.pulse_delay}
-                icon="stopwatch"
-                onClick={() => act('radar_delay')}
-              />
-            </>
-          )}
-          <Button
-            content="Wyśrodkuj"
-            icon="camera"
-            onClick={() => setFocusKey(focusKey + 1)}
-          />
-          {!!data.can_target && (
+    <>
+      <ConsoleBar>
+        <Button icon="search-plus" onClick={() => act('zoomin')} />
+        <Button icon="search-minus" onClick={() => act('zoomout')} />
+        {/* AQ EDIT - przy konsoli sensorów radarem steruje operator */}
+        {!!data.can_use_radar && !data.sensor_station && (
+          <>
             <Button
-              content={dradis_targeting ? 'Celowanie' : 'Wywoływanie'}
-              icon={dradis_targeting ? 'bullseye' : 'square-o'}
-              disabled={!data.can_target}
-              color={data.dradis_targeting ? 'bad' : 'good'}
-              onClick={() => act('dradis_targeting')}
-            />
-          )}
-        </>
-      }
-    >
-      {/* AQ EDIT START - własna sygnatura okrętu */}
-      {!!data.sensor_signatures && (
-        <Box mb={1}>
-          <ProgressBar
-            value={Math.min(data.own_signature / 2, 1)}
-            ranges={{
-              good: [0, 0.45],
-              average: [0.45, 0.7],
-              bad: [0.7, 1],
-            }}
+              icon="bullseye"
+              disabled={!data.can_radar_pulse}
+              onClick={() => act('radar_pulse')}
+            >
+              Impuls radaru
+            </Button>
+            <Button icon="project-diagram" onClick={() => act('sensor_mode')}>
+              {data.sensor_mode}
+            </Button>
+            <Button icon="stopwatch" onClick={() => act('radar_delay')}>
+              {data.pulse_delay}
+            </Button>
+          </>
+        )}
+        <Button icon="camera" onClick={() => setFocusKey(focusKey + 1)}>
+          Wyśrodkuj
+        </Button>
+        {!!data.can_target && (
+          <Button
+            icon={dradis_targeting ? 'bullseye' : 'square-o'}
+            color={data.dradis_targeting ? 'bad' : 'good'}
+            onClick={() => act('dradis_targeting')}
           >
-            {'Twoja sygnatura: ' +
-              data.own_signature.toFixed(2).replace('.', ',') +
-              ' · AI widzi cię z ~' +
-              data.seen_from +
-              ' pól (~' +
-              data.seen_from_pulse +
-              ', gdy pulsuje)'}
-          </ProgressBar>
-        </Box>
-      )}
-      {/* AQ EDIT END */}
-      Sojusznicy:
-      <Knob
-        tickWhileDragging
-        inline
-        mx={1}
-        color={!!showFriendlies && 'green'}
-        value={showFriendlies}
-        unit="siła skanu"
-        minValue={0}
-        maxValue={100}
-        step={1}
-        stepPixelSize={1}
-        onChange={(e, value) => act('showFriendlies', { alpha: value })}
-      />
-      Wrogowie:
-      <Knob
-        tickWhileDragging
-        inline
-        mx={1}
-        color={!!showEnemies && 'green'}
-        value={showEnemies}
-        unit="siła skanu"
-        minValue={0}
-        maxValue={100}
-        step={1}
-        stepPixelSize={1}
-        onChange={(e, value) => act('showEnemies', { alpha: value })}
-      />
-      Asteroidy:
-      <Knob
-        tickWhileDragging
-        inline
-        mx={1}
-        color={!!showAsteroids && 'green'}
-        value={showAsteroids}
-        unit="siła skanu"
-        minValue={0}
-        maxValue={100}
-        step={1}
-        stepPixelSize={1}
-        onChange={(e, value) => act('showAsteroids', { alpha: value })}
-      />
-      Anomalie:
-      <Knob
-        tickWhileDragging
-        inline
-        mx={1}
-        color={!!showAnomalies && 'green'}
-        value={showAnomalies}
-        unit="siła skanu"
-        minValue={0}
-        maxValue={100}
-        step={1}
-        stepPixelSize={1}
-        onChange={(e, value) => act('showAnomalies', { alpha: value })}
-      />
-      Przybliżenie:
-      <Knob
-        tickWhileDragging
-        inline
-        mx={1}
-        color="green"
-        value={zoom_factor * 100}
-        unit="%"
-        minValue={zoom_factor_min * 100}
-        maxValue={zoom_factor_max * 100}
-        step={1}
-        stepPixelSize={1}
-        onChange={(e, value) => act('setZoom', { zoom: value })}
-      />
-      {dradis}
-    </Section>
+            {dradis_targeting ? 'Celowanie' : 'Wywoływanie'}
+          </Button>
+        )}
+      </ConsoleBar>
+      <ConsoleBody>
+        {/* AQ EDIT START - własna sygnatura okrętu */}
+        {!!data.sensor_signatures && (
+          <ConsolePanel title="Twoja sygnatura">
+            <ConsoleMeter
+              value={Math.min(data.own_signature / 2, 1)}
+              colour={
+                data.own_signature / 2 < 0.45
+                  ? COLOR.good
+                  : data.own_signature / 2 < 0.7
+                    ? COLOR.warn
+                    : COLOR.bad
+              }
+              label={data.own_signature.toFixed(2).replace('.', ',')}
+            />
+            <Box style={{ color: COLOR.muted, marginTop: '4px' }}>
+              {'AI widzi cię z ~' +
+                data.seen_from +
+                ' pól (~' +
+                data.seen_from_pulse +
+                ', gdy pulsuje)'}
+            </Box>
+          </ConsolePanel>
+        )}
+        {/* AQ EDIT END */}
+        <ConsolePanel title="Filtry">
+          <Box style={{ display: 'flex', flexWrap: 'wrap', gap: '6px 16px' }}>
+            {knob('Sojusznicy', showFriendlies, 'showFriendlies', (alpha) => ({
+              alpha,
+            }))}
+            {knob('Wrogowie', showEnemies, 'showEnemies', (alpha) => ({
+              alpha,
+            }))}
+            {knob('Asteroidy', showAsteroids, 'showAsteroids', (alpha) => ({
+              alpha,
+            }))}
+            {knob('Anomalie', showAnomalies, 'showAnomalies', (alpha) => ({
+              alpha,
+            }))}
+            {knob(
+              'Przybliżenie',
+              zoom_factor * 100,
+              'setZoom',
+              (zoom) => ({ zoom }),
+              '%',
+              zoom_factor_min * 100,
+              zoom_factor_max * 100,
+            )}
+          </Box>
+        </ConsolePanel>
+        <Box style={{ padding: '8px 10px' }}>{dradis}</Box>
+      </ConsoleBody>
+    </>
   );
 };
 
@@ -469,8 +451,8 @@ export const Dradis = (props) => {
   let content = DradisContent(props);
 
   return (
-    <Window theme="hackerman" width={700} height={750}>
-      <Window.Content scrollable>{content}</Window.Content>
-    </Window>
+    <ConsoleWindow width={700} height={750}>
+      {content}
+    </ConsoleWindow>
   );
 };

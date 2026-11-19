@@ -1,37 +1,61 @@
 import { CSSProperties } from 'react';
-import { Button, ProgressBar, Section } from 'tgui-core/components';
+import { Box, Button } from 'tgui-core/components';
+import type { BooleanLike } from 'tgui-core/react';
 
 // NSV13
 import { useBackend } from '../backend';
 import { Map, StarButton } from '../components';
-import { Window } from '../layouts';
+import { t } from '../i18n';
+import {
+  COLOR,
+  ConsoleBar,
+  ConsoleBody,
+  ConsoleEmpty,
+  ConsoleMeter,
+  ConsolePanel,
+  ConsoleRow,
+  ConsoleTabs,
+  ConsoleWindow,
+  MONO,
+} from './common/ShipConsole';
+import { FTLDriveTab, type FtlTabData } from './FTLComputer';
+
+type Position = {
+  in_transit: BooleanLike;
+  star_name?: string;
+  star_id?: string;
+  from_name?: string;
+  from_id?: string;
+  to_name?: string;
+  to_id?: string;
+  time_left?: number;
+};
 
 type Data = {
   alignment: any;
   can_cancel: any;
+  can_control: BooleanLike;
   can_jump: any;
+  current_sector: number;
   focus_x: any;
   focus_y: any;
   freepointer_cos: any;
   freepointer_sin: any;
   freepointer_x: any;
   freepointer_y: any;
-  from_star_id: any;
-  from_star_name: any;
+  ftl?: FtlTabData;
+  ftl_console: BooleanLike;
   ftl_goal: any;
   ftl_progress: any;
   ftl_safety_override: any;
-  in_transit: any;
   lines: any;
+  position?: Position;
   scale_factor: any;
   screen: any;
+  selected_name: string | null;
   star_dist: any;
-  star_id: any;
   star_name: any;
   star_systems: any;
-  time_left: any;
-  to_star_id: any;
-  to_star_name: any;
   travelling: any;
 };
 
@@ -129,139 +153,254 @@ export const drawStarmap = (props, starCallback) => {
   );
 };
 
+// AQUILA: okno „Nawigacja i skok” (konsola nawigacji i stary komputer FTL) w wyglądzie konsol okrętu.
+// Zakładka to ekran po stronie DM: 0 okręt, 1 mapa, 2 wybrany układ, 3 napęd FTL.
+type Tab = '0' | '1' | '2' | '3';
+const TAB_ACTIONS: Record<Tab, string> = {
+  '0': 'shipinf',
+  '1': 'map',
+  '2': 'system',
+  '3': 'ftl_tab',
+};
+
+/** Przycisk z nazwą układu, który otwiera jego zakładkę */
+const StarLink = (props: { name?: string; id?: string }) => {
+  const { act } = useBackend();
+  if (!props.name) {
+    return <span style={{ color: COLOR.muted }}>—</span>;
+  }
+  return (
+    <Button
+      compact
+      icon="star"
+      tooltip="Kliknij, żeby zobaczyć informacje o gwieździe"
+      onClick={() => act('select_system', { star_id: props.id })}
+    >
+      {props.name}
+    </Button>
+  );
+};
+
+/** Pasek ładowania napędu */
+const DriveMeter = (props: { width?: string }) => {
+  const { data } = useBackend<Data>();
+  const value = data.ftl_goal ? data.ftl_progress / data.ftl_goal : 0;
+  return (
+    <ConsoleMeter
+      value={value}
+      width={props.width}
+      colour={
+        value >= 0.95 ? COLOR.good : value >= 0.15 ? COLOR.warn : COLOR.bad
+      }
+    />
+  );
+};
+
+const PositionRows = (props: { position: Position }) => {
+  const { position } = props;
+  if (position.in_transit) {
+    return (
+      <>
+        <ConsoleRow label="W drodze z:">
+          <StarLink name={position.from_name} id={position.from_id} />
+        </ConsoleRow>
+        <ConsoleRow label="Do:">
+          <StarLink name={position.to_name} id={position.to_id} />
+        </ConsoleRow>
+        <ConsoleRow label="ETA:">
+          {Math.round(position.time_left || 0) + ' min'}
+        </ConsoleRow>
+      </>
+    );
+  }
+  return (
+    <ConsoleRow label="Obecny układ:">
+      <StarLink name={position.star_name} id={position.star_id} />
+    </ConsoleRow>
+  );
+};
+
+const ShipTab = () => {
+  const { data } = useBackend<Data>();
+  return (
+    <>
+      <ConsolePanel title="Położenie okrętu">
+        <PositionRows position={data.position || { in_transit: false }} />
+      </ConsolePanel>
+      <ConsolePanel title="Stan napędu">
+        <DriveMeter />
+        <Box style={{ marginTop: '6px' }}>
+          <ConsoleRow
+            label="Bezpieczniki FTL:"
+            colour={data.ftl_safety_override ? COLOR.bad : COLOR.good}
+          >
+            {data.ftl_safety_override ? t('nadpisane') : t('aktywne')}
+          </ConsoleRow>
+        </Box>
+      </ConsolePanel>
+    </>
+  );
+};
+
+const MapTab = (props) => {
+  const { act, data } = useBackend<Data>();
+  if (!data.star_systems || !data.lines) {
+    return (
+      <ConsolePanel>
+        <ConsoleEmpty>Brak danych mapy gwiezdnej.</ConsoleEmpty>
+      </ConsolePanel>
+    );
+  }
+  return (
+    <ConsolePanel
+      title="Mapa gwiezdna"
+      right={
+        <>
+          <span style={{ color: COLOR.muted, marginRight: '8px' }}>
+            Sektor {data.current_sector}
+          </span>
+          <Button compact icon="bullseye" onClick={() => act('sector')}>
+            Zmień sektor
+          </Button>
+        </>
+      }
+    >
+      {drawStarmap(props, (system) =>
+        act('select_system', { star_id: system.star_id }),
+      )}
+    </ConsolePanel>
+  );
+};
+
+const SystemTab = () => {
+  const { act, data } = useBackend<Data>();
+  if (!data.star_name) {
+    return (
+      <ConsolePanel>
+        <ConsoleEmpty>Wybierz układ na mapie gwiezdnej.</ConsoleEmpty>
+      </ConsolePanel>
+    );
+  }
+  return (
+    <>
+      <ConsolePanel title={data.star_name}>
+        <ConsoleRow label="Odległość:">
+          {(data.star_dist || 0) + ' l.ś.'}
+        </ConsoleRow>
+        <ConsoleRow label="Przynależność:">
+          {data.alignment ? data.alignment : t('Nieznana')}
+        </ConsoleRow>
+        <Box style={{ marginTop: '8px', display: 'flex', gap: '6px' }}>
+          <Button
+            icon="arrow-right"
+            color={data.ftl_safety_override ? 'red' : 'default'}
+            disabled={!data.can_jump}
+            onClick={() => act('nav_jump')}
+          >
+            Skok
+          </Button>
+          <Button
+            icon="stop-circle-o"
+            disabled={!data.can_cancel}
+            onClick={() => act('nav_cancel_jump')}
+          >
+            Anuluj skok
+          </Button>
+        </Box>
+        {!data.can_control && (
+          <Box style={{ color: COLOR.muted, marginTop: '6px' }}>
+            Ta konsola tylko pokazuje mapę. Skok wykonuje się z konsoli
+            nawigacji na mostku.
+          </Box>
+        )}
+      </ConsolePanel>
+      <ConsolePanel title="Stan napędu">
+        <DriveMeter />
+      </ConsolePanel>
+    </>
+  );
+};
+
+const StatusBar = () => {
+  const { act, data } = useBackend<Data>();
+  const position = data.position || { in_transit: false };
+  return (
+    <ConsoleBar>
+      <span style={{ color: COLOR.muted }}>Położenie:</span>
+      <span style={{ fontFamily: MONO }}>
+        {position.in_transit
+          ? (position.from_name || '?') +
+            ' → ' +
+            (position.to_name || '?') +
+            ' (' +
+            Math.round(position.time_left || 0) +
+            ' min)'
+          : position.star_name || '—'}
+      </span>
+      <span
+        style={{
+          display: 'inline-flex',
+          alignItems: 'center',
+          gap: '6px',
+          marginLeft: 'auto',
+        }}
+      >
+        <span style={{ color: COLOR.muted }}>Napęd:</span>
+        <DriveMeter width="150px" />
+      </span>
+      {!!data.ftl_safety_override && (
+        <span style={{ color: COLOR.bad, fontWeight: 600 }}>
+          NADPISANIE BEZPIECZNIKÓW FTL
+        </span>
+      )}
+      {!!data.can_cancel && (
+        <Button
+          compact
+          color="red"
+          icon="stop-circle-o"
+          onClick={() => act('nav_cancel_jump')}
+        >
+          Anuluj skok
+        </Button>
+      )}
+    </ConsoleBar>
+  );
+};
+
 export const Starmap = (props) => {
   const { act, data } = useBackend<Data>();
-  const screen = data.screen;
-  const can_cancel = data.can_cancel;
-
-  const handleSystemAction = (system) =>
-    act('select_system', { star_id: system.star_id });
+  const screen = String(data.screen ?? 1) as Tab;
+  const ftl = data.ftl;
+  const tabs: [Tab, string][] = [
+    ['1', t('Mapa gwiezdna')],
+    ['0', t('Okręt')],
+    [
+      '2',
+      data.selected_name
+        ? t('Układ') + ': ' + data.selected_name
+        : t('Wybrany układ'),
+    ],
+  ];
+  if (ftl) {
+    tabs.push(['3', t('Napęd FTL')]);
+  }
 
   return (
-    <Window theme="ntos" width={800} height={660}>
-      <Window.Content scrollable>
-        <Section>
-          {screen === 0 && (
-            <>
-              <Button
-                content="Informacje o statku"
-                icon="info-circle"
-                onClick={() => act('shipinf')}
-              />
-              <Button
-                content="Pokaż mapę"
-                icon="map"
-                onClick={() => act('map')}
-              />
-              <Section title="Stan napędu:">
-                <ProgressBar
-                  value={(data.ftl_progress / data.ftl_goal) * 100 * 0.01}
-                  ranges={{
-                    good: [0.95, Infinity],
-                    average: [0.15, 0.9],
-                    bad: [-Infinity, 0.15],
-                  }}
-                />
-              </Section>
-              {(!!data.in_transit && (
-                <Section title="Obecny układ:">
-                  W drodze z:
-                  <Button
-                    content={data.from_star_name}
-                    tooltip="Kliknij, żeby zobaczyć informacje o gwieździe"
-                    icon="star"
-                    onClick={() =>
-                      act('select_system', { star_id: data.from_star_id })
-                    }
-                  />
-                  Do:
-                  <Button
-                    content={data.to_star_name}
-                    tooltip="Kliknij, żeby zobaczyć informacje o gwieździe"
-                    icon="star"
-                    onClick={() =>
-                      act('select_system', { star_id: data.to_star_id })
-                    }
-                  />
-                  ETA: {Math.round(data.time_left)}
-                </Section>
-              )) || (
-                <Section title="Obecny układ:">
-                  <Button
-                    content={data.star_name}
-                    tooltip="Kliknij, żeby zobaczyć informacje o gwieździe"
-                    icon="star"
-                    onClick={() => act('star_id', { star_id: data.star_id })}
-                  />
-                </Section>
-              )}
-            </>
-          )}
-          {screen === 1 && (
-            <>
-              <Button
-                content="Informacje o statku"
-                icon="info-circle"
-                onClick={() => act('shipinf')}
-              />
-              <Button
-                content="Pokaż mapę"
-                icon="map"
-                onClick={() => act('map')}
-              />
-              <Button
-                content="Zmień sektor"
-                icon="bullseye"
-                onClick={() => act('sector')}
-              />
-            </>
-          )}
-          {screen === 1 && drawStarmap(props, handleSystemAction)}
-          {screen === 2 && (
-            <>
-              <Button
-                content="Informacje o statku"
-                icon="info-circle"
-                onClick={() => act('shipinf')}
-              />
-              <Button
-                content="Pokaż mapę"
-                icon="map"
-                onClick={() => act('map')}
-              />
-              <Section title={data.star_name}>
-                Odległość: {data.star_dist ? data.star_dist + ' ly' : '0 ly'}
-                <br />
-                Przynależność: {data.alignment ? data.alignment : 'Nieznana'}
-                <br />
-                <Button
-                  content="Skok"
-                  icon="arrow-right"
-                  color={data.ftl_safety_override ? 'red' : 'default'}
-                  disabled={!data.can_jump}
-                  onClick={() => act('jump')}
-                />
-                <Button
-                  content="Anuluj skok"
-                  icon="stop-circle-o"
-                  disabled={!can_cancel}
-                  onClick={() => act('cancel_jump')}
-                />
-              </Section>
-              <Section title="Stan napędu:">
-                <ProgressBar
-                  value={(data.ftl_progress / data.ftl_goal) * 100 * 0.01}
-                  ranges={{
-                    good: [0.95, Infinity],
-                    average: [0.15, 0.9],
-                    bad: [-Infinity, 0.15],
-                  }}
-                />
-              </Section>
-            </>
-          )}
-        </Section>
-      </Window.Content>
-    </Window>
+    <ConsoleWindow width={820} height={760} title="Nawigacja i skok">
+      <StatusBar />
+      <ConsoleTabs
+        tabs={tabs}
+        active={screen}
+        onChange={(tab) => act(TAB_ACTIONS[tab])}
+      />
+      <ConsoleBody>
+        {screen === '0' && <ShipTab />}
+        {screen === '1' && <MapTab {...props} />}
+        {screen === '2' && <SystemTab />}
+        {screen === '3' && !!ftl && (
+          <FTLDriveTab ftl={ftl} safetyOverride={!!data.ftl_safety_override} />
+        )}
+      </ConsoleBody>
+    </ConsoleWindow>
   );
 };

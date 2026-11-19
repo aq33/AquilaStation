@@ -84,7 +84,6 @@
 	TEST_ASSERT(haunt, "Revenant has no Haunt Object")
 	TEST_ASSERT(locate(/obj/effect/proc_holder/spell/aoe_turf/revenant/vortex) in rev.mob_spell_list, "Revenant has no Vortex")
 	TEST_ASSERT(locate(/obj/effect/proc_holder/spell/aoe_turf/revenant/vortex/scatter) in rev.mob_spell_list, "Revenant has no Scatter")
-
 	var/mob/living/carbon/human/victim = allocate(/mob/living/carbon/human, get_step(right, EAST))
 	var/obj/item/wrench/wrench = allocate(/obj/item/wrench, right)
 	var/old_throwforce = wrench.throwforce
@@ -92,6 +91,11 @@
 	var/turf/far_turf = get_step(get_step(right, EAST), EAST)
 	for(var/i in 1 to haunt.max_targets + 1)
 		allocate(/obj/item/screwdriver, far_turf)
+	// Przedmioty zostawione w pokoju testowym przez wcześniejsze testy (np. części dział) psuły wybór najbliższego
+	for(var/obj/item/leftover in range(7, left))
+		if(isturf(leftover.loc) && !(leftover in allocated))
+			log_test("revenant_haunt_object: usuwam pozostałość [leftover] ([leftover.type]) na [leftover.x],[leftover.y]")
+			qdel(leftover, TRUE) // force: elektronika spustowa bez niego zostaje (QDEL_HINT_LETMELIVE)
 	var/list/candidates = haunt.get_haunt_candidates(rev)
 	TEST_ASSERT_EQUAL(length(candidates), haunt.max_targets, "Haunt Object did not cap its targets")
 	TEST_ASSERT_EQUAL(candidates[1], wrench, "Haunt Object did not pick the closest item first")

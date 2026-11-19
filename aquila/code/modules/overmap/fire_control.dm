@@ -86,6 +86,8 @@
 		)
 		if(painted)
 			contact["armour"] = OM.get_armour_report()
+			contact["modules"] = OM.ship_modules_report() // siatka modułów do celowania (modules/module_targeting.dm)
+			contact["aim"] = LAZYACCESS(aim_modules, OM) || 0
 		. += list(contact)
 
 /obj/machinery/computer/ship/tactical/ui_data(mob/user)
@@ -94,6 +96,7 @@
 	if(!uses_fire_control())
 		return
 	linked.prune_designations()
+	linked.prune_aim_modules()
 	var/range = linked.sensor_console ? linked.sensor_console.sensor_range : SENSOR_RANGE_DEFAULT
 	data["fire_control"] = TRUE
 	data["own_armour"] = linked.get_armour_report()
@@ -104,10 +107,56 @@
 	data["gun_range"] = FIRE_CONTROL_GUN_RANGE
 	data["hail_range"] = FIRE_CONTROL_HAIL_RANGE
 	data["gunner"] = !!linked.gunner
+	// wabiki i zagłuszacz (overmap/modules/decoys.dm)
+	data["flares"] = linked.flares
+	data["max_flares"] = linked.max_flares
+	data["chaff"] = linked.chaff
+	data["max_chaff"] = linked.max_chaff
+	data["jammer"] = linked.jammer_active
+	// harpun (overmap/modules/harpoon.dm)
+	data["harpoon"] = linked.has_harpoon
+	var/datum/overmap_tether/tether = linked.harpoon_tether
+	data["tether"] = tether ? list("name" = tether.target.name, "length" = round(tether.length, 0.5), "rope" = max(0, tether.rope_hp), "reeling" = tether.reeling, "boarded" = tether.boarded) : null
+	// obrona punktowa: ustawienia z dawnej osobnej konsoli AMS (autonomy.dm)
+	var/list/ams_modes = list()
+	for(var/datum/ams_mode/mode as anything in linked.ams_modes)
+		ams_modes += list(list("id" = "\ref[mode]", "name" = mode.name, "desc" = mode.desc, "enabled" = mode.enabled))
+	data["ams"] = length(ams_modes) ? list("modes" = ams_modes, "painted" = linked.ams_data_source == AMS_PAINTED_TARGETS, "shot_limit" = linked.ams_shot_limit) : null
 
 /obj/machinery/computer/ship/tactical/ui_act(action, params, datum/tgui/ui)
 	. = ..()
-	if(. || !linked || !(action in list("fc_lockon", "fc_fire_target", "fc_dump", "fc_hail")))
+	if(!. && linked && (action in list("fc_flares", "fc_chaff", "fc_jammer", "fc_reel", "fc_cut", "fc_ams_source", "fc_ams_mode", "fc_ams_limit")))
+		switch(action)
+			if("fc_ams_source")
+				linked.ams_data_source = linked.ams_data_source == AMS_LOCKED_TARGETS ? AMS_PAINTED_TARGETS : AMS_LOCKED_TARGETS
+			if("fc_ams_mode")
+				var/datum/ams_mode/mode = locate(params["id"])
+				if(mode in linked.ams_modes)
+					linked.ams_shots_fired = 0
+					mode.enabled = !mode.enabled
+			if("fc_ams_limit")
+				linked.ams_shot_limit = sanitize_integer(params["shot_limit"], 1, 100, 5)
+			if("fc_flares")
+				linked.deploy_decoy("flare")
+			if("fc_chaff")
+				linked.deploy_decoy("chaff")
+			if("fc_jammer")
+				linked.toggle_jammer()
+			if("fc_reel")
+				if(linked.harpoon_tether)
+					linked.harpoon_tether.reeling = !linked.harpoon_tether.reeling
+			if("fc_cut")
+				linked.harpoon_tether?.snap("Lina harpuna odcięta.")
+		return TRUE
+	if(!. && linked && action == "fc_harpoon")
+		var/obj/structure/overmap/harpoon_target = locate(params["id"])
+		var/reason = linked.harpoon_blocked(harpoon_target)
+		if(reason)
+			to_chat(usr, "<span class='warning'>[reason]</span>")
+		else
+			linked.fire_harpoon(harpoon_target)
+		return TRUE
+	if(. || !linked || !(action in list("fc_lockon", "fc_fire_target", "fc_dump", "fc_hail", "fc_aim_module")))
 		return
 	var/obj/structure/overmap/target = locate(params["id"])
 	if(!istype(target) || QDELETED(target) || target == linked || target.z != linked.z)
@@ -119,6 +168,9 @@
 		if("fc_fire_target")
 			if(LAZYFIND(linked.target_painted, target))
 				linked.select_target(target)
+		if("fc_aim_module")
+			if(LAZYFIND(linked.target_painted, target))
+				linked.set_aim_module(target, text2num(params["index"]))
 		if("fc_dump")
 			if(LAZYFIND(linked.target_painted, target))
 				linked.dump_lock(target)

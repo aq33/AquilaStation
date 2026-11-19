@@ -241,7 +241,7 @@
 	if(left)
 		return "The wave fleet stayed in [S] after the defence mission failed"
 
-/// Porażka misji obniża reputację u stacji, która ją zleciła
+/// Porażka misji obniża reputację u frakcji stacji, która ją zleciła
 /datum/unit_test/aquila_trader_missions/proc/check_fail_reputation()
 	var/obj/structure/overmap/trader/station
 	for(var/datum/trader/candidate as anything in SSstar_system.traders)
@@ -250,15 +250,26 @@
 			break
 	if(station?.inhabited_trader)
 		var/datum/trader/owner = station.inhabited_trader
-		var/old_reputation = owner.aq_reputation
-		owner.aq_reputation = 30
+		var/key = owner.civilian_standing_key()
+		var/old_reputation = owner.aq_reputation()
+		GLOB.civilian_standing[key] = 130
 		var/datum/aq_contract/mission/explore/mission = new(station)
 		mission.state = "w toku"
 		mission.deadline = world.time + 10 MINUTES
 		mission.fail("test")
-		if(owner.aq_reputation != 30 - mission.fail_reputation)
-			. = "A failed mission didn't lower the reputation ([owner.aq_reputation])"
-		owner.aq_reputation = old_reputation
+		if(owner.aq_reputation() != 130 - mission.fail_reputation)
+			. = "A failed mission didn't lower the faction reputation ([owner.aq_reputation()])"
+		// Jedna reputacja: zniżka z misji i narzut za ostrzał cywilów liczą się z tej samej liczby
+		GLOB.civilian_standing[key] = 200
+		var/datum/trader_item/probe = new
+		probe.price = 1000
+		if(!. && owner.aq_price(probe) != 850)
+			. = "Honorary reputation gives the price [owner.aq_price(probe)] instead of 850"
+		GLOB.civilian_standing[key] = 0
+		if(!. && owner.aq_price(probe) != 1500)
+			. = "Zero reputation gives the price [owner.aq_price(probe)] instead of 1500"
+		qdel(probe)
+		GLOB.civilian_standing[key] = old_reputation
 		qdel(mission)
 
 /datum/unit_test/aquila_trader_missions/proc/check_offers()
