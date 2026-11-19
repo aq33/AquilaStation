@@ -1,12 +1,11 @@
 // Rework systemów okrętu (gałąź naped-okretu): dysze, podział mocy, matryce sensorów, maska tarczy, kalibracja FTL,
-// stół projektowy pocisków i nowe ładunki, Echo, zlecenia działów
+// ustawianie pocisków multitoolem i nowe ładunki, Echo, zlecenia działów
 
 /datum/test_chamber_kit/pr_naped_missiles
 	name = "Okręt: projekty pocisków i ładunki"
 	pr = "aq33/AquilaStation#644"
-	description = "Zestaw: stół projektowy pocisków, obudowy torped i rakiet, wszystkie nowe głowice, części i narzędzia, karta uzbrojenia. 1) Stół projektowy (karta z zestawu): wybierz silnik i naprowadzanie (brak, podczerwień, radar, z okrętu) i zapisz projekt. Połóż na stole układ napędowy albo układ naprowadzania i kliknij „Przerób”. Okno pokazuje prędkość, zasięg i odporność względem zwykłej torpedy. 2) Złóż torpedę z przerobionych części (napęd, naprowadzanie, karta IFF, głowica, kabel, śrubokręt); examine gotowej torpedy pokazuje projekt. 3) Nowe głowice: dyfuzor tarcz (torpeda zdejmuje celowi połowę tarczy, rakieta 1/3, sam rani słabo), sonda czujnikowa (nie rani, zostawia boję na 3 minuty, DRADIS pokazuje kontakty w promieniu 12 pól z dokładnym położeniem), rakieta zakłócająca (EMP). Strzelanie i efekty na overmapie sprawdź na statku: torpedy i rakiety z zestawu przenieś do wyrzutni (receptury głowic są w protolacie uzbrojenia: sondy w Amunicji kierowanej II, EMP i dyfuzory w Prototypie głowicy zakłócającej)."
+	description = "Zestaw: obudowy torped i rakiet, wszystkie nowe głowice, części i narzędzia, karta uzbrojenia. 1) Multitool na obudowie torpedy albo rakiety (także na gotowej amunicji) otwiera menu: silnik (sprint, standardowy, marszowy) i naprowadzanie (brak, podczerwień, radar, z okrętu). Examine pokazuje ustawienie. 2) Złóż torpedę w ustawionej obudowie (napęd, naprowadzanie, karta IFF, głowica, kabel, śrubokręt); examine gotowej torpedy pokazuje ustawienie. 3) Nowe głowice: dyfuzor tarcz (torpeda zdejmuje celowi połowę tarczy, rakieta 1/3, sam rani słabo), sonda czujnikowa (nie rani, zostawia boję na 3 minuty, DRADIS pokazuje kontakty w promieniu 12 pól z dokładnym położeniem), rakieta zakłócająca (EMP). Strzelanie i efekty na overmapie sprawdź na statku: torpedy i rakiety z zestawu przenieś do wyrzutni (receptury głowic są w protolacie uzbrojenia: sondy w Amunicji kierowanej II, EMP i dyfuzory w Prototypie głowicy zakłócającej)."
 	items = list(
-		/obj/machinery/missile_design_table = 1,
 		/obj/item/ship_weapon/ammunition/torpedo/torpedo_casing = 2,
 		/obj/item/ship_weapon/ammunition/missile/missile_casing = 2,
 		/obj/item/ship_weapon/parts/missile/warhead/diffuser = 1,
