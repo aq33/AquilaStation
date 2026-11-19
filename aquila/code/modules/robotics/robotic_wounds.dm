@@ -4,9 +4,8 @@
 // postrzępione i przecięte przewody, przegrzane obwody i wypaczoną blachę. Liczby i kroki leczenia są nasze, krótsze niż w Novie:
 // - uderzenia: luźne śruby (śrubokręt) <- wgniecenie obudowy (spawarka) <- zgniecione serwa (klucz),
 // - cięcia i postrzały: postrzępione przewody (kabel) <- przecięte przewody (kabel x3),
-// - oparzenia: przegrzane obwody (gaśnica albo łatka, potem stygnie sama) <- wypaczona blacha (spawarka).
-// Cięższa rana po naprawie zamienia się w lżejszą. Łatka naprawcza (synth_repair.dm) naprawia każdą lekką ranę od razu,
-// a cięższą zabezpiecza, żeby sama doszła do siebie. Narzędziem leczy się bez trybu walki, celując w kończynę.
+// - oparzenia: przegrzane obwody (gaśnica, potem stygnie sama) <- wypaczona blacha (spawarka).
+// Cięższa rana po naprawie zamienia się w lżejszą. Narzędziem leczy się bez trybu walki, celując w kończynę.
 // Kołki i protezy kinetyczne (limb_types.dm) nie mają ran: nie są ani organiczne, ani robotyczne.
 
 // --- Losowanie ---
@@ -100,13 +99,9 @@
 	return item.tool_behaviour == repair_tool
 
 /datum/wound/aq_robotic/can_treat_with(obj/item/item)
-	if(istype(item, /obj/item/stack/medical/aq_robo_patch))
-		return !treated
 	return is_repair_tool(item)
 
 /datum/wound/aq_robotic/treat(obj/item/item, mob/user)
-	if(istype(item, /obj/item/stack/medical/aq_robo_patch))
-		return apply_patch(item, user)
 	var/self = user == victim
 	user.visible_message("<span class='notice'>[user] zaczyna naprawiać [lowertext(name)] ([limb.name]) [victim].</span>", \
 		"<span class='notice'>Zaczynasz naprawiać [lowertext(name)] ([limb.name])[self ? "" : " [victim]"].</span>")
@@ -141,27 +136,6 @@
 		replaced = TRUE // naprawiona proteza nie zostawia blizny
 		qdel(src)
 
-/// Łatka naprawcza: lekka rana znika, cięższa jest zabezpieczona i sama dochodzi do siebie
-/datum/wound/aq_robotic/proc/apply_patch(obj/item/stack/medical/aq_robo_patch/patch, mob/user, delay)
-	var/self = user == victim
-	user.visible_message("<span class='notice'>[user] nakłada łatkę naprawczą na [limb.name] [victim].</span>", "<span class='notice'>Nakładasz łatkę naprawczą na [limb.name][self ? "" : " [victim]"].</span>")
-	if(isnull(delay))
-		delay = self ? 3 SECONDS : 1.5 SECONDS
-	if(delay && !do_mob(user, victim, delay))
-		return FALSE
-	if(QDELETED(src) || treated || !patch.use(1))
-		return FALSE
-	if(severity <= WOUND_SEVERITY_MODERATE)
-		to_chat(user, "<span class='green'>Nanity w łatce naprawiają [lowertext(name)] ([limb.name]).</span>")
-		replaced = TRUE
-		qdel(src)
-		return TRUE
-	treated = TRUE
-	heal_time = 1 MINUTES
-	victim.update_wound_slowdown()
-	to_chat(user, "<span class='green'>Łatka zabezpiecza [lowertext(name)] ([limb.name]). Nanity naprawią resztę w ciągu minuty.</span>")
-	return TRUE
-
 /datum/wound/aq_robotic/get_scan_text()
 	var/status = treated ? " (zabezpieczone, naprawia się)" : ""
 	return "[capitalize(limb.name)]: <b>[name]</b>[status]. [treat_text]"
@@ -175,7 +149,7 @@
 	name = "Luźne śruby"
 	desc = "Śruby w obudowie protezy się poluzowały"
 	examine_desc = "poluzowaną, grzechoczącą obudowę"
-	treat_text = "Dokręć śrubokrętem albo nałóż łatkę naprawczą."
+	treat_text = "Dokręć śrubokrętem."
 	severity = WOUND_SEVERITY_MODERATE
 	threshold = 35
 	threshold_penalty = 5
@@ -189,7 +163,7 @@
 	name = "Wgniecenie obudowy"
 	desc = "Obudowa protezy wgniata się i blokuje stawy"
 	examine_desc = "mocno wgniecioną obudowę"
-	treat_text = "Wyklep i zaspawaj spawarką, potem dokręć śruby. Łatka naprawcza zabezpiecza."
+	treat_text = "Wyklep i zaspawaj spawarką, potem dokręć śruby."
 	severity = WOUND_SEVERITY_SEVERE
 	threshold = 60
 	threshold_penalty = 15
@@ -204,7 +178,7 @@
 	name = "Zgniecione serwa"
 	desc = "Serwa protezy zgniatają się i przestają słuchać"
 	examine_desc = "zgniecioną kończynę z wystającymi serwami"
-	treat_text = "Wyprostuj szkielet kluczem, potem spawarka i śrubokręt. Łatka naprawcza zabezpiecza."
+	treat_text = "Wyprostuj szkielet kluczem, potem spawarka i śrubokręt."
 	severity = WOUND_SEVERITY_CRITICAL
 	threshold = 110
 	threshold_penalty = 25
@@ -252,7 +226,7 @@
 	name = "Postrzępione przewody"
 	desc = "Przewody w protezie strzępią się i iskrzą"
 	examine_desc = "wystające, postrzępione przewody"
-	treat_text = "Wymień przewody kablem albo nałóż łatkę naprawczą."
+	treat_text = "Wymień przewody kablem."
 	severity = WOUND_SEVERITY_MODERATE
 	threshold = 35
 	series_threshold_penalty = 15
@@ -265,7 +239,7 @@
 	name = "Przecięte przewody"
 	desc = "Przewody w protezie są przecięte i zwierają"
 	examine_desc = "przecięte, zwierające przewody"
-	treat_text = "Wymień przewody (trzy odcinki kabla). Łatka naprawcza zabezpiecza."
+	treat_text = "Wymień przewody (trzy odcinki kabla)."
 	severity = WOUND_SEVERITY_SEVERE
 	threshold = 65
 	threshold_penalty = 15
@@ -297,7 +271,7 @@
 	name = "Przegrzane obwody"
 	desc = "Obwody w protezie przegrzewają się"
 	examine_desc = "rozgrzaną do czerwoności obudowę"
-	treat_text = "Schłodź gaśnicą albo nałóż łatkę naprawczą, potem ostygnie sama."
+	treat_text = "Schłodź gaśnicą, potem ostygnie sama."
 	severity = WOUND_SEVERITY_SEVERE
 	threshold = 80
 	threshold_penalty = 10
@@ -318,7 +292,7 @@
 	name = "Wypaczona blacha"
 	desc = "Blacha protezy wypacza się od żaru"
 	examine_desc = "wypaczoną, nadtopioną blachę"
-	treat_text = "Wyprostuj spawarką, potem schłodź. Łatka naprawcza zabezpiecza."
+	treat_text = "Wyprostuj spawarką, potem schłodź."
 	severity = WOUND_SEVERITY_CRITICAL
 	threshold = 140
 	threshold_penalty = 20

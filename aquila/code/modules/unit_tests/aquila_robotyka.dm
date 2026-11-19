@@ -138,7 +138,7 @@
 	shielded.aq_emp_effect(EMP_LIGHT)
 	TEST_ASSERT(shielded.burn_dam < AQ_LIMB_EMP_BURN, "A Bishop limb is not shielded from EMP")
 
-/// AQUILA - rany robotyczne: pojawiają się na protezie, naprawa narzędziem i łatką
+/// AQUILA - rany robotyczne: pojawiają się na protezie, naprawa narzędziami
 /datum/unit_test/aquila_robotic_wounds
 
 /datum/unit_test/aquila_robotic_wounds/Run()
@@ -158,13 +158,17 @@
 	TEST_ASSERT(istype(dent, /datum/wound/aq_robotic/blunt/dent), "Fixed servos did not leave a dent")
 	TEST_ASSERT(arm.disabled != BODYPART_DISABLED_PARALYSIS, "The arm stayed paralysed after the servos were fixed")
 
-	// łatka: cięższą ranę zabezpiecza, lżejszą usuwa
-	var/obj/item/stack/medical/aq_robo_patch/patch = allocate(/obj/item/stack/medical/aq_robo_patch)
+	// spawarka zamienia wgniecenie w luźne śruby, śrubokręt je usuwa
+	var/obj/item/weldingtool/welder = allocate(/obj/item/weldingtool)
 	var/datum/wound/aq_robotic/dent_wound = dent
-	TEST_ASSERT(dent_wound.apply_patch(patch, doctor, 0), "The patch did not go on the dent")
-	TEST_ASSERT(dent_wound.treated && dent_wound.heal_time, "A patched dent does not heal by itself")
-	dent_wound.replaced = TRUE
-	qdel(dent_wound)
+	TEST_ASSERT(dent_wound.can_treat_with(welder), "A welder cannot fix a dent")
+	dent_wound.finish_repair()
+	var/datum/wound/aq_robotic/loose = arm.get_wound(WOUND_AQ_ROBOTIC_BLUNT)
+	TEST_ASSERT(istype(loose, /datum/wound/aq_robotic/blunt/loose), "A fixed dent did not leave loose screws ([loose?.type])")
+	var/obj/item/screwdriver/screwdriver = allocate(/obj/item/screwdriver)
+	TEST_ASSERT(loose.can_treat_with(screwdriver), "A screwdriver cannot tighten loose screws")
+	loose.finish_repair()
+	TEST_ASSERT(!arm.get_wound(WOUND_AQ_ROBOTIC_BLUNT), "Loose screws stayed after the repair")
 
 	var/datum/wound/frayed = patient.check_wounding(arm, 25, WOUND_SLASH, 0)
 	if(!frayed) // rzut losowy, więc wymuszamy lekką ranę
@@ -176,8 +180,12 @@
 		worse.finish_repair()
 		frayed = arm.get_wound(WOUND_AQ_ROBOTIC_ELECTRIC)
 	var/datum/wound/aq_robotic/frayed_wound = frayed
-	TEST_ASSERT(frayed_wound.apply_patch(patch, doctor, 0), "The patch did not fix frayed wires")
-	TEST_ASSERT(QDELETED(frayed_wound) && !arm.get_wound(WOUND_AQ_ROBOTIC_ELECTRIC), "Frayed wires stayed after the patch")
+	var/obj/item/stack/cable_coil/cable = allocate(/obj/item/stack/cable_coil)
+	var/cable_before = cable.amount
+	TEST_ASSERT(frayed_wound.can_treat_with(cable), "Cable cannot fix frayed wires")
+	TEST_ASSERT(frayed_wound.use_repair_item(cable, doctor) && cable.amount < cable_before, "Fixing frayed wires used no cable")
+	frayed_wound.finish_repair()
+	TEST_ASSERT(QDELETED(frayed_wound) && !arm.get_wound(WOUND_AQ_ROBOTIC_ELECTRIC), "Frayed wires stayed after the repair")
 
 	var/datum/wound/heat = patient.check_wounding(arm, 25, WOUND_BURN, 500)
 	TEST_ASSERT(istype(heat, /datum/wound/aq_robotic/heat/warped), "Heavy burns did not warp the plating ([heat?.type])")
@@ -273,44 +281,6 @@
 	ipc.Dizzy(20)
 	key.repair_software(ipc, robotist)
 	TEST_ASSERT(!ipc.dizziness, "The reset key did not fix software errors")
-
-/// AQUILA - leki i materiały naprawcze dla syntetyków
-/datum/unit_test/aquila_synth_repair_items
-
-/datum/unit_test/aquila_synth_repair_items/Run()
-	var/mob/living/carbon/human/patient = allocate(/mob/living/carbon/human)
-	var/mob/living/carbon/human/doctor = allocate(/mob/living/carbon/human)
-	var/obj/item/bodypart/arm = aq_test_swap_limb(patient, /obj/item/bodypart/r_arm/robot)
-	arm.receive_damage(20, 20)
-	var/obj/item/stack/medical/aq_robo_patch/patch = allocate(/obj/item/stack/medical/aq_robo_patch)
-	doctor.zone_selected = BODY_ZONE_R_ARM
-	var/damage_before = arm.get_damage()
-	patch.attack(patient, doctor)
-	TEST_ASSERT(arm.get_damage() < damage_before, "A repair patch did not mend the prosthesis")
-	doctor.zone_selected = BODY_ZONE_L_ARM
-	var/obj/item/bodypart/flesh = patient.get_bodypart(BODY_ZONE_L_ARM)
-	flesh.receive_damage(10)
-	patch.attack(patient, doctor)
-	TEST_ASSERT(flesh.brute_dam >= 10, "A repair patch healed flesh")
-
-	damage_before = arm.get_damage()
-	patient.aq_nanite_repair(5, 5)
-	TEST_ASSERT(arm.get_damage() < damage_before, "Nanite slurry did not repair the prosthesis")
-	var/mob/living/carbon/human/ipc = allocate(/mob/living/carbon/human/species/ipc)
-	var/obj/item/organ/heart/heart = ipc.getorganslot(ORGAN_SLOT_HEART)
-	heart.applyOrganDamage(20)
-	ipc.aq_nanite_repair(5, 5)
-	TEST_ASSERT(heart.damage < 20, "Nanite slurry did not repair a synthetic organ")
-
-	var/datum/reagent/medicine/aq_nanite_slurry/slurry = new
-	arm.receive_damage(20)
-	damage_before = arm.get_damage()
-	slurry.reaction_mob(patient, TOUCH, 10, FALSE, 0, arm)
-	TEST_ASSERT(arm.get_damage() < damage_before, "The repair spray did not mend the prosthesis it hit")
-	qdel(slurry)
-
-	var/obj/item/storage/firstaid/aq_synthetic/kit = allocate(/obj/item/storage/firstaid/aq_synthetic)
-	TEST_ASSERT(locate(/obj/item/aq_synth_reset_key) in kit, "The synthetic first aid kit has no reset key")
 
 /// AQUILA - chirurgia mechaniczna: czyszczenie układu, reaktywacja, wygląd protezy i twarzy IPC
 /datum/unit_test/aquila_synth_surgery

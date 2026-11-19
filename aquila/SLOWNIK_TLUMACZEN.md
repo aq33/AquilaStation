@@ -4658,10 +4658,6 @@ Nazwy obszarów są w większości przetłumaczone. Nowe nazwy budujemy z tych k
 | overheating (synthetic) | przegrzanie | n; nowe (alert IPC) |
 | IPC overloader | overloader | m; nowe (cyfrowa używka IPC, nazwa własna Aurory) |
 | synthetic reset key | klucz resetu syntetyka | m; nowe (CM-SS13) |
-| repair patch | łatka naprawcza | ż; nowe |
-| nanite slurry | zawiesina nanitów | ż; nowe (reagent) |
-| repair spray | spray naprawczy | m; nowe |
-| synthetic first aid kit | apteczka syntetyka | ż; nowe |
 | system purge (surgery) | czyszczenie układu | n; nowe (operacja) |
 | synthetic reactivation (surgery) | reaktywacja syntetyka | ż; nowe (operacja) |
 | cyberpsychosis | cyberpsychoza | ż; nowe |

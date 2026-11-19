@@ -115,17 +115,6 @@
 	category = list("Cyborg", "Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL | DEPARTMENTAL_FLAG_SCIENCE
 
-/datum/design/aq_synth_firstaid
-	name = "Apteczka syntetyka"
-	desc = "Apteczka do napraw syntetyków i protez."
-	id = "aq_synth_firstaid"
-	build_type = PROTOLATHE
-	construction_time = 100
-	materials = list(/datum/material/iron = 4000, /datum/material/glass = 1000, /datum/material/gold = 500, /datum/material/plastic = 1500)
-	build_path = /obj/item/storage/firstaid/aq_synthetic
-	category = list("Medical Designs")
-	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
-
 /// IPC nie wstaje sam po naprawie obrażeń: potrzebny klucz resetu albo reaktywacja
 /datum/species/ipc/New()
 	. = ..()

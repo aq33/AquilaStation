@@ -4,7 +4,7 @@
 	description = "1) Protezy: przyszyj robotyczną rękę operacją – nie słucha, dopóki nie skalibrujesz jej multitoolem albo hemostatem (bez trybu walki, celując w rękę). Kołek i protezę kinetyczną przyłóż do kikuta (3 s); z kinetyczną nie strzelisz. Zaawansowana ręka bije mocniej. \
 	2) Marki: włóż protezę do maszyny do dopasowania augmentacji, wybierz styl i obejrzyj ją (marka i cechy). Przy otwartej klapie multitool daje operację zmiany marki. Vey-Med na manekinie wygląda jak skóra, z bliska widać protezę, po uszkodzeniu wyłazi metal. \
 	3) EMP: granat EMP przy manekinie z protezami – proteza iskrzy, obrywa i na chwilę przestaje działać, ciało nie pada na 20 s. \
-	4) Rany robotyczne: bij protezę klubem i tnij nożem – luźne śruby/wgniecenia/zgniecione serwa i przewody; naprawiaj kluczem, spawarką, śrubokrętem, kablem, gaśnicą albo łatką naprawczą (skaner pokazuje, czym). \
+	4) Rany robotyczne: bij protezę klubem i tnij nożem – luźne śruby/wgniecenia/zgniecione serwa i przewody; naprawiaj kluczem, spawarką, śrubokrętem, kablem albo gaśnicą (skaner pokazuje, czym). \
 	5) IPC: manekin IPC w próżni (na zewnątrz albo w pomieszczeniu bez powietrza) grzeje się (alert „Przegrzanie”, potem oparzenia); wymień mu chłodzenie na cieczą i sprawdź, że w próżni nadąża. Akcja chłodzenia pokazuje nagrzanie. \
 	6) Zabij IPC, napraw spawarką i kablem – nie wstaje sam; klucz resetu (bez trybu walki) albo operacja reaktywacji multitoolem przy otwartej klatce go budzi. Overloadery: wpnij IPC i patrz na komunikaty, trzy naraz robią awarię, klucz resetu je czyści. \
 	7) Cyberpsychoza: załóż sobie kilka protez i implantów (autochirurg) i poczekaj na objawy w czacie; neuratreksat w strzykawce je wstrzymuje. \
@@ -27,9 +27,6 @@
 		/obj/item/grenade/empgrenade = 2,
 		/obj/item/melee/classic_baton = 1,
 		/obj/item/kitchen/knife = 1,
-		/obj/item/storage/firstaid/aq_synthetic = 1,
-		/obj/item/stack/medical/aq_robo_patch = 1,
-		/obj/item/reagent_containers/medspray/aq_nanite = 1,
 		/obj/item/organ/aq_cooling/liquid = 1,
 		/obj/item/organ/aq_cooling/passive = 1,
 		/obj/item/storage/box/aq_overloaders = 1,
