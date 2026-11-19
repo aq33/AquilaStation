@@ -31,13 +31,11 @@
 	if(!IsInStasis())
 		if(stat != DEAD && undergoing_cardiac_arrest())
 			//heart attack stuff
+			// AQ EDIT START - AquilaMed 5: bez krążenia umiera mózg (aquila/code/modules/medical/circulation.dm), nie ciało
 			var/we_breath = !HAS_TRAIT_FROM(src, TRAIT_NOBREATH, SPECIES_TRAIT)
-
 			if(we_breath)
-				adjustOxyLoss(8)
 				Unconscious(80)
-			// Tissues die without blood circulation
-			adjustBruteLoss(2)
+			// AQ EDIT END
 
 		if(stat != DEAD)
 			//NSV13 - Handle hygiene

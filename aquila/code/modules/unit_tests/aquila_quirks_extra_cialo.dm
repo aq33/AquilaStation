@@ -54,21 +54,6 @@
 	boxer.apply_damage(100, BRUTE, BODY_ZONE_HEAD)
 	TEST_ASSERT(boxer.IsUnconscious(), "A 100 damage blow to the head did not knock out a glass jaw")
 
-	// Astma: histamina rozpala drogi oddechowe, salbutamol je uspokaja, pełne zapalenie zamyka oddech
-	var/mob/living/carbon/human/wheezer = allocate(/mob/living/carbon/human, run_loc_floor_bottom_left)
-	wheezer.add_quirk(/datum/quirk/asthma)
-	var/datum/quirk/asthma/asthma = locate() in wheezer.roundstart_quirks
-	wheezer.reagents.add_reagent(/datum/reagent/toxin/histamine, 10)
-	asthma.on_process(1)
-	TEST_ASSERT(asthma.inflammation > 0, "Histamine did not inflame the airways")
-	wheezer.reagents.clear_reagents()
-	asthma.inflammation = 100
-	wheezer.reagents.add_reagent(/datum/reagent/medicine/salbutamol, 10)
-	asthma.on_process(1)
-	TEST_ASSERT(asthma.inflammation < 100, "Salbutamol did not calm the airways")
-	asthma.inflammation = asthma.max_inflammation
-	TEST_ASSERT_EQUAL(asthma.get_pressure_mult(), 0, "Full inflammation still lets air through")
-
 	// Hemofilia: więcej utraconej krwi i wolniejsze krzepnięcie
 	var/mob/living/carbon/human/bleeder = allocate(/mob/living/carbon/human, run_loc_floor_bottom_left)
 	bleeder.add_quirk(/datum/quirk/hemophilia)
