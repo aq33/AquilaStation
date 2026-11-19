@@ -19,7 +19,7 @@
 	var/obj/item/bodypart/arm = aq_test_swap_limb(patient, /obj/item/bodypart/l_arm/robot)
 	TEST_ASSERT(arm.aq_set_brand("shellguard"), "A robotic arm did not take a brand")
 	TEST_ASSERT("[arm.static_icon]" == "[GLOB.aq_robolimb_brands["shellguard"].limb_icon]", "The brand did not change the sprite")
-	var/obj/item/bodypart/plain = allocate(/obj/item/bodypart/r_arm/robot)
+	var/obj/item/bodypart/plain = aq_test_swap_limb(patient, /obj/item/bodypart/r_arm/robot)
 	arm.receive_damage(20)
 	plain.receive_damage(20)
 	TEST_ASSERT(arm.brute_dam == plain.brute_dam, "A brand changed the damage taken ([arm.brute_dam] vs [plain.brute_dam])")
