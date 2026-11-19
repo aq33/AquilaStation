@@ -6,5 +6,3 @@ anomalock_heart.dmi (anomalock_heart, anomalock_heart-core) - /tg/station (tgsta
 
 ../../mob/augmentation/:
 advanced_augments.dmi - /tg/station (tgstation/tgstation), icons/mob/augmentation/advanced_augments.dmi, CC BY-SA 3.0
-ghetto.dmi - /tg/station (tgstation/tgstation), icons/mob/human/species/ghetto.dmi, CC BY-SA 3.0
-kinetic.dmi - Bubberstation (Bubberstation/Bubberstation#4861), modular_zubbers/icons/mob/human/kinetic.dmi, CC BY-SA 3.0

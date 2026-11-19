@@ -10,7 +10,7 @@
 		qdel(old_limb)
 	return new_limb
 
-/// AQUILA - marki protez: wygląd, mnożniki obrażeń, realistyczna skóra, oględziny, maszyna do dopasowania
+/// AQUILA - marki protez: sam wygląd (bez mnożników), realistyczna skóra, oględziny, maszyna do dopasowania
 /datum/unit_test/aquila_robolimb_brands
 
 /datum/unit_test/aquila_robolimb_brands/Run()
@@ -19,8 +19,10 @@
 	var/obj/item/bodypart/arm = aq_test_swap_limb(patient, /obj/item/bodypart/l_arm/robot)
 	TEST_ASSERT(arm.aq_set_brand("shellguard"), "A robotic arm did not take a brand")
 	TEST_ASSERT("[arm.static_icon]" == "[GLOB.aq_robolimb_brands["shellguard"].limb_icon]", "The brand did not change the sprite")
+	var/obj/item/bodypart/plain = allocate(/obj/item/bodypart/r_arm/robot)
 	arm.receive_damage(20)
-	TEST_ASSERT(arm.brute_dam < 20 - arm.brute_reduction, "Shellguard armour did not lower brute damage ([arm.brute_dam])")
+	plain.receive_damage(20)
+	TEST_ASSERT(arm.brute_dam == plain.brute_dam, "A brand changed the damage taken ([arm.brute_dam] vs [plain.brute_dam])")
 	TEST_ASSERT(length(patient.aq_prosthetic_examine_lines(viewer)), "A branded prosthesis is not seen on examine")
 
 	var/obj/item/bodypart/leg = aq_test_swap_limb(patient, /obj/item/bodypart/l_leg/robot)
@@ -31,7 +33,6 @@
 	TEST_ASSERT(!findtext(jointext(lines, ""), "ukryta pod sztuczną skórą"), "A lifelike prosthesis is seen from afar")
 	leg.receive_damage(leg.max_damage)
 	TEST_ASSERT(!leg.aq_lifelike_disguised(), "A wrecked lifelike prosthesis still hides its metal")
-	TEST_ASSERT(patient.aq_limb_feels_pain(leg) || leg.disabled == BODYPART_DISABLED_PARALYSIS, "A Vey-Med limb does not feel pain")
 
 	var/obj/item/bodypart/r_arm/robot/loose = allocate(/obj/item/bodypart/r_arm/robot)
 	loose.static_icon = 'nsv13/icons/mob/augmentation/bishop.dmi'
@@ -41,7 +42,7 @@
 	var/obj/item/bodypart/l_arm/robot/aq_advanced/advanced = allocate(/obj/item/bodypart/l_arm/robot/aq_advanced)
 	TEST_ASSERT(!advanced.aq_set_brand("xion"), "An advanced prosthesis lost its own look to a brand")
 
-/// AQUILA - zaawansowane, kinetyczne i prowizoryczne protezy
+/// AQUILA - zaawansowane protezy i ręka ze złomu
 /datum/unit_test/aquila_prosthetic_tiers
 
 /datum/unit_test/aquila_prosthetic_tiers/Run()
@@ -54,51 +55,22 @@
 	TEST_ASSERT(patient.unarmed_damage_bonus == bonus_before, "The punch bonus stayed after the arm came off")
 	advanced.attach_limb(patient, TRUE)
 
-	// proteza kinetyczna: zakładana bez operacji, bez strzelania
-	var/obj/item/bodypart/l_arm/aq_kinetic/kinetic = allocate(/obj/item/bodypart/l_arm/aq_kinetic)
-	var/obj/item/bodypart/old_arm = patient.get_bodypart(BODY_ZONE_L_ARM)
-	old_arm.drop_limb()
-	qdel(old_arm)
-	patient.put_in_r_hand(kinetic)
-	TEST_ASSERT(kinetic.aq_easy_attach_to(patient, patient), "A kinetic arm did not snap onto the stump")
-	TEST_ASSERT(patient.get_bodypart(BODY_ZONE_L_ARM) == kinetic, "The kinetic arm is not attached")
-	TEST_ASSERT(HAS_TRAIT(patient, TRAIT_NOGUNS), "A kinetic arm lets its owner shoot")
-	TEST_ASSERT(!kinetic.aq_needs_calibration(), "A kinetic arm needs calibration")
-	kinetic.drop_limb()
-	TEST_ASSERT(!HAS_TRAIT(patient, TRAIT_NOGUNS), "The chunky fingers stayed after the kinetic arm came off")
-
-	// drewniany kołek: z menu wytwarzania, obrywa mocniej
-	var/datum/crafting_recipe/aq_peg_l_leg/recipe = new
-	TEST_ASSERT(recipe.result == /obj/item/bodypart/l_leg/aq_peg && recipe.reqs[/obj/item/stack/sheet/mineral/wood] == 2, "The peg leg recipe is wrong")
+	// ręka ze złomu: tania proteza z menu wytwarzania
+	var/datum/crafting_recipe/aq_scrap_l_arm/recipe = new
+	TEST_ASSERT(recipe.result == /obj/item/bodypart/l_arm/robot/surplus, "The scrap arm recipe does not make a surplus arm")
 	qdel(recipe)
-	var/obj/item/bodypart/peg = aq_test_swap_limb(patient, /obj/item/bodypart/l_leg/aq_peg)
-	peg.receive_damage(10)
-	TEST_ASSERT(peg.brute_dam >= 12, "A peg leg does not take extra damage ([peg.brute_dam])")
-	TEST_ASSERT(!peg.aq_emp_effect(EMP_HEAVY), "EMP damaged a wooden peg")
 
-/// AQUILA - kalibracja świeżo przyszytej protezy
-/datum/unit_test/aquila_prosthetic_calibration
+/// AQUILA - przyszyta proteza działa od razu, bez kalibracji
+/datum/unit_test/aquila_prosthetic_no_calibration
 
-/datum/unit_test/aquila_prosthetic_calibration/Run()
+/datum/unit_test/aquila_prosthetic_no_calibration/Run()
 	var/mob/living/carbon/human/patient = allocate(/mob/living/carbon/human)
-	var/mob/living/carbon/human/doctor = allocate(/mob/living/carbon/human)
 	var/obj/item/bodypart/old_arm = patient.get_bodypart(BODY_ZONE_R_ARM)
 	old_arm.drop_limb()
 	qdel(old_arm)
 	var/obj/item/bodypart/r_arm/robot/arm = allocate(/obj/item/bodypart/r_arm/robot)
 	arm.attach_limb(patient)
-	TEST_ASSERT(arm.aq_needs_calibration(), "A freshly attached prosthesis works without calibration")
-	TEST_ASSERT(arm.disabled == BODYPART_DISABLED_PARALYSIS, "An uncalibrated prosthesis is not disabled")
-	var/obj/item/multitool/tool = allocate(/obj/item/multitool)
-	TEST_ASSERT(arm.aq_calibrate(doctor, tool, 0), "Calibration failed")
-	TEST_ASSERT(!arm.aq_needs_calibration() && arm.disabled == BODYPART_NOT_DISABLED, "The calibrated prosthesis still does not work")
-
-	// syntetyk przypina kończyny sam, bez kalibracji
-	var/mob/living/carbon/human/ipc = allocate(/mob/living/carbon/human/species/ipc)
-	var/obj/item/bodypart/ipc_arm = ipc.get_bodypart(BODY_ZONE_L_ARM)
-	ipc_arm.drop_limb()
-	ipc_arm.attach_limb(ipc)
-	TEST_ASSERT(!ipc_arm.aq_needs_calibration(), "An IPC needs calibration for its own arm")
+	TEST_ASSERT(arm.disabled == BODYPART_NOT_DISABLED, "A freshly attached prosthesis does not work")
 
 /// AQUILA - szybkie odłączanie protez (cecha „Mocowania protez”)
 /datum/unit_test/aquila_limb_mounts
@@ -114,7 +86,7 @@
 	TEST_ASSERT(!patient.get_bodypart(BODY_ZONE_L_ARM), "The detached prosthesis is still attached")
 	TEST_ASSERT(patient.is_holding(arm), "The detached prosthesis is not in hand (it is in [arm.loc])")
 	TEST_ASSERT(arm.aq_easy_attach_to(patient, patient), "The prosthesis did not click back in")
-	TEST_ASSERT(patient.get_bodypart(BODY_ZONE_L_ARM) == arm && !arm.aq_needs_calibration(), "A remounted prosthesis needs calibration")
+	TEST_ASSERT(patient.get_bodypart(BODY_ZONE_L_ARM) == arm && arm.disabled == BODYPART_NOT_DISABLED, "A remounted prosthesis does not work")
 
 /// AQUILA - EMP rani i paraliżuje protezy, ciało zostaje w spokoju
 /datum/unit_test/aquila_limb_emp
@@ -132,11 +104,6 @@
 	TEST_ASSERT(!patient.IsParalyzed(), "EMP still paralysed the whole body of a human with a prosthesis")
 	arm.aq_emp_recover()
 	TEST_ASSERT(!HAS_TRAIT_FROM(arm, TRAIT_PARALYSIS, AQ_LIMB_EMP_TRAIT), "The prosthesis did not recover from EMP")
-
-	var/obj/item/bodypart/shielded = aq_test_swap_limb(patient, /obj/item/bodypart/l_leg/robot)
-	shielded.aq_set_brand("bishop")
-	shielded.aq_emp_effect(EMP_LIGHT)
-	TEST_ASSERT(shielded.burn_dam < AQ_LIMB_EMP_BURN, "A Bishop limb is not shielded from EMP")
 
 /// AQUILA - rany robotyczne: pojawiają się na protezie, naprawa narzędziami
 /datum/unit_test/aquila_robotic_wounds
@@ -401,16 +368,13 @@
 	veteran.aq_apply_lobby_augments(list(
 		"aq_aug_l_arm" = "bishop",
 		"aq_aug_r_leg" = "advanced",
-		"aq_aug_l_leg" = "kinetic",
 		"aq_aug_heart" = "cybernetic",
 		"aq_aug_lungs" = "upgraded",
 		"aq_aug_r_arm" = "organic",
 	))
 	var/obj/item/bodypart/l_arm = veteran.get_bodypart(BODY_ZONE_L_ARM)
 	TEST_ASSERT(l_arm.aq_brand?.id == "bishop", "The lobby did not give a Bishop arm")
-	TEST_ASSERT(!l_arm.aq_needs_calibration(), "A lobby prosthesis needs calibration")
 	TEST_ASSERT(istype(veteran.get_bodypart(BODY_ZONE_R_LEG), /obj/item/bodypart/r_leg/robot/aq_advanced), "The lobby did not give an advanced leg")
-	TEST_ASSERT(istype(veteran.get_bodypart(BODY_ZONE_L_LEG), /obj/item/bodypart/l_leg/aq_kinetic), "The lobby did not give a kinetic leg")
 	TEST_ASSERT(IS_ORGANIC_LIMB(veteran.get_bodypart(BODY_ZONE_R_ARM)), "An organic choice replaced the arm")
 	TEST_ASSERT(istype(veteran.getorganslot(ORGAN_SLOT_HEART), /obj/item/organ/heart/cybernetic), "The lobby did not give a cybernetic heart")
 	TEST_ASSERT(istype(veteran.getorganslot(ORGAN_SLOT_LUNGS), /obj/item/organ/lungs/cybernetic/upgraded), "The lobby did not give upgraded lungs")

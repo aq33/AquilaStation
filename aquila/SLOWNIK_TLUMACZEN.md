@@ -4647,9 +4647,6 @@ Nazwy obszarów są w większości przetłumaczone. Nowe nazwy budujemy z tych k
 | vortex feedback arm | ramię ze sprzężeniem wirowym | n; nowe |
 | prosthesis brand / robolimb manufacturer | marka protezy | ż; nowe (robotyka) |
 | advanced robotic limb | zaawansowana proteza | ż; nowe (robotyka) |
-| kinetic prosthetic | proteza kinetyczna | ż; nowe (robotyka, Bubberstation) |
-| peg arm / peg leg | drewniana proteza ręki / drewniana noga | ż; nowe (robotyka, tg ghetto parts) |
-| calibration (prosthesis) | kalibracja protezy | ż; nowe (robotyka) |
 | Cybernetic Limb Mounts (quirk) | Mocowania protez | n mn.; nowe (cecha) |
 | robotic wounds: loose screws / dented casing / crushed servos | luźne śruby / wgniecenie obudowy / zgniecione serwa | nowe (rany robotyczne) |
 | frayed wiring / severed wiring | postrzępione przewody / przecięte przewody | nowe (rany robotyczne) |

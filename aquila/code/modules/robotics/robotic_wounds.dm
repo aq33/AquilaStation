@@ -302,16 +302,13 @@
 
 // --- Narzędzia na ludziach ---
 
-/// Kalibracja protezy albo naprawa rany robotycznej narzędziem (bez trybu walki). Zwraca TRUE, gdy kliknięcie zostało obsłużone.
+/// Naprawa rany robotycznej narzędziem (bez trybu walki). Zwraca TRUE, gdy kliknięcie zostało obsłużone.
 /obj/item/proc/aq_robotics_tool_act(mob/living/carbon/patient, mob/living/user)
 	if(!iscarbon(patient) || !isliving(user) || user.combat_mode || (patient in user.do_afters))
 		return FALSE
 	var/obj/item/bodypart/limb = patient.get_bodypart(check_zone(user.zone_selected))
 	if(!limb)
 		return FALSE
-	if(limb.aq_needs_calibration() && (tool_behaviour == TOOL_MULTITOOL || tool_behaviour == TOOL_HEMOSTAT))
-		INVOKE_ASYNC(limb, TYPE_PROC_REF(/obj/item/bodypart, aq_calibrate), user, src)
-		return TRUE
 	for(var/datum/wound/aq_robotic/wound in limb.wounds)
 		if(wound.can_treat_with(src))
 			INVOKE_ASYNC(wound, TYPE_PROC_REF(/datum/wound, treat), src, user)
@@ -334,16 +331,6 @@
 	return ..()
 
 /obj/item/wrench/attack(mob/living/M, mob/living/user)
-	if(aq_robotics_tool_act(M, user))
-		return
-	return ..()
-
-/obj/item/multitool/attack(mob/living/M, mob/living/user)
-	if(aq_robotics_tool_act(M, user))
-		return
-	return ..()
-
-/obj/item/hemostat/attack(mob/living/M, mob/living/user)
 	if(aq_robotics_tool_act(M, user))
 		return
 	return ..()

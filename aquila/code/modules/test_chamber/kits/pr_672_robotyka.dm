@@ -1,8 +1,8 @@
 /datum/test_chamber_kit/pr_672_robotyka
 	name = "Robotyka: protezy, syntetycy, cyberpsychoza i implanty"
 	pr = "aq33/AquilaStation#672"
-	description = "1) Protezy: przyszyj robotyczną rękę operacją – nie słucha, dopóki nie skalibrujesz jej multitoolem albo hemostatem (bez trybu walki, celując w rękę). Kołek i protezę kinetyczną przyłóż do kikuta (3 s); z kinetyczną nie strzelisz. Zaawansowana ręka bije mocniej. \
-	2) Marki: włóż protezę do maszyny do dopasowania augmentacji, wybierz styl i obejrzyj ją (marka i cechy). Przy otwartej klapie multitool daje operację zmiany marki. Vey-Med na manekinie wygląda jak skóra, z bliska widać protezę, po uszkodzeniu wyłazi metal. \
+	description = "1) Protezy: trzy klasy (tania, zwykła, zaawansowana). Przyszyj robotyczną rękę operacją: działa od razu, bez kalibracji. Zaawansowana ręka bije mocniej. Ręka ze złomu jest w menu wytwarzania (Robotyka). \
+	2) Marki to sam wygląd: włóż protezę do maszyny do dopasowania augmentacji, wybierz styl i obejrzyj ją (marka bez cech). Przy otwartej klapie multitool daje operację zmiany marki. Vey-Med na manekinie wygląda jak skóra, z bliska widać protezę, po uszkodzeniu wyłazi metal. \
 	3) EMP: granat EMP przy manekinie z protezami – proteza iskrzy, obrywa i na chwilę przestaje działać, ciało nie pada na 20 s. \
 	4) Rany robotyczne: bij protezę klubem i tnij nożem – luźne śruby/wgniecenia/zgniecione serwa i przewody; naprawiaj kluczem, spawarką, śrubokrętem, kablem albo gaśnicą (skaner pokazuje, czym). \
 	5) IPC: nie ma osobnego paska ciepła ani organów chłodzenia; w próżni nie grzeje się, a przegrzany ogniem albo gorącem dymi jak przed robotyką. \
@@ -14,8 +14,6 @@
 	items = list(
 		/obj/item/bodypart/r_arm/robot = 2,
 		/obj/item/bodypart/l_arm/robot/aq_advanced = 1,
-		/obj/item/bodypart/l_arm/aq_kinetic = 1,
-		/obj/item/bodypart/l_leg/aq_peg = 1,
 		/obj/item/bodypart/l_leg/robot = 1,
 		/obj/machinery/aug_manipulator = 1,
 		/obj/item/storage/toolbox/mechanical = 1,

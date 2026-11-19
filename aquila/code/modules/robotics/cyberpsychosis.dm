@@ -172,11 +172,4 @@ GLOBAL_LIST_INIT(aq_cyberpsychosis_critical, list(
 	. = ..()
 	if(QDELETED(src) || notransform || stat == DEAD)
 		return
-	var/repaired = FALSE
-	for(var/obj/item/bodypart/limb as anything in bodyparts)
-		if(limb.aq_brand?.self_repair && limb.aq_brand_life(SSMOBS_DT))
-			repaired = TRUE
-	if(repaired)
-		updatehealth()
-		update_damage_overlays()
 	aq_cyberpsychosis_tick()

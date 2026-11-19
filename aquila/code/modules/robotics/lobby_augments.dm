@@ -14,7 +14,6 @@
 
 #define AQ_AUG_ORGANIC "organic"
 #define AQ_AUG_SURPLUS "surplus"
-#define AQ_AUG_KINETIC "kinetic"
 #define AQ_AUG_ADVANCED "advanced"
 #define AQ_AUG_CYBERNETIC "cybernetic"
 #define AQ_AUG_UPGRADED "upgraded"
@@ -47,7 +46,7 @@
 	var/zone
 
 /datum/preference/choiced/aq_augment/limb/init_possible_values()
-	. = list(AQ_AUG_ORGANIC, AQ_AUG_SURPLUS, AQ_AUG_KINETIC, AQ_AUG_ADVANCED)
+	. = list(AQ_AUG_ORGANIC, AQ_AUG_SURPLUS, AQ_AUG_ADVANCED)
 	for(var/id in GLOB.aq_robolimb_brands)
 		. += id
 
@@ -55,7 +54,6 @@
 	. = list(
 		AQ_AUG_ORGANIC = "Ciało",
 		AQ_AUG_SURPLUS = "Tania proteza",
-		AQ_AUG_KINETIC = "Proteza kinetyczna",
 		AQ_AUG_ADVANCED = "Zaawansowana proteza",
 	)
 	for(var/id in GLOB.aq_robolimb_brands)
@@ -183,16 +181,6 @@
 					return /obj/item/bodypart/l_leg/robot/surplus
 				if(BODY_ZONE_R_LEG)
 					return /obj/item/bodypart/r_leg/robot/surplus
-		if(AQ_AUG_KINETIC)
-			switch(zone)
-				if(BODY_ZONE_L_ARM)
-					return /obj/item/bodypart/l_arm/aq_kinetic
-				if(BODY_ZONE_R_ARM)
-					return /obj/item/bodypart/r_arm/aq_kinetic
-				if(BODY_ZONE_L_LEG)
-					return /obj/item/bodypart/l_leg/aq_kinetic
-				if(BODY_ZONE_R_LEG)
-					return /obj/item/bodypart/r_leg/aq_kinetic
 		if(AQ_AUG_ADVANCED)
 			switch(zone)
 				if(BODY_ZONE_L_ARM)
@@ -247,7 +235,6 @@
 
 #undef AQ_AUG_ORGANIC
 #undef AQ_AUG_SURPLUS
-#undef AQ_AUG_KINETIC
 #undef AQ_AUG_ADVANCED
 #undef AQ_AUG_CYBERNETIC
 #undef AQ_AUG_UPGRADED

@@ -5,8 +5,6 @@
 #define ORGAN_SLOT_AQ_BRACING "aq_bracing"
 
 // --- Źródła cech ---
-/// Świeżo przymocowana proteza bez kalibracji (TRAIT_PARALYSIS na kończynie)
-#define AQ_UNCALIBRATED_TRAIT "aq_uncalibrated"
 /// Paraliż kończyny po EMP
 #define AQ_LIMB_EMP_TRAIT "aq_limb_emp"
 /// Cecha „Mocowania protez”: odpinanie i przypinanie własnych protez bez operacji
