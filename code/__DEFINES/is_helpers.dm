@@ -147,7 +147,7 @@ GLOBAL_LIST_INIT(turfs_without_ground, typecacheof(list(
 
 #define ishorror(A) (istype(A, /mob/living/simple_animal/horror)) // AQ EDIT - Yogstation#13033
 
-#define isbot(A) (istype(A, /mob/living/simple_animal/bot))
+#define isbot(A) (istype(A, /mob/living/simple_animal/bot) || istype(A, /mob/living/basic/bot)) // AQ EDIT - basic boty (aquila/code/modules/mob/living/basic/bots/)
 
 #define isshade(A) (istype(A, /mob/living/simple_animal/shade))
 

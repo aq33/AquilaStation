@@ -33,7 +33,7 @@
 		/obj/item/organ/butt = 1,
 		/obj/structure/closet/crate/coffin = 1,
 		/obj/item/crowbar = 1,
-		/mob/living/simple_animal/bot/buttbot = 1,
+		/mob/living/basic/bot/buttbot = 1,
 		/obj/item/food/grown/buttflower = 2,
 		/obj/item/plant_seeds/preset/butt = 1,
 		/mob/living/carbon/human = 1,

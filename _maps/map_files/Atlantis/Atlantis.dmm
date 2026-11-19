@@ -5208,7 +5208,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 8
 	},
-/mob/living/simple_animal/bot/secbot/armsky,
+/mob/living/basic/bot/secbot/armsky,
 /turf/open/floor/durasteel/techfloor_grid,
 /area/ai_monitored/security/armory)
 "eol" = (
@@ -12215,7 +12215,7 @@
 /turf/open/floor/durasteel/techfloor_grid,
 /area/security/brig)
 "kgf" = (
-/mob/living/simple_animal/bot/secbot/armsky,
+/mob/living/basic/bot/secbot/armsky,
 /turf/open/floor/engine,
 /area/ai_monitored/security/armory/lockup)
 "kgh" = (
@@ -26343,7 +26343,7 @@
 	},
 /area/maintenance/nsv/deck2/port)
 "vON" = (
-/mob/living/simple_animal/bot/cleanbot,
+/mob/living/basic/bot/cleanbot,
 /turf/open/floor/monotile/steel,
 /area/engine/engineering)
 "vPC" = (

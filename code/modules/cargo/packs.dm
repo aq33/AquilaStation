@@ -137,10 +137,10 @@
 	name = "Skrzynia ratunkowa – roboty i butle"
 	desc = "Wybuchy cię dołują? Te zapasy na pewno załatają dziury, i w stacji, i w ludziach! Zawiera dwa floorboty, dwa mediboty, pięć masek tlenowych i pięć małych butli z tlenem."
 	cost = 1500
-	contains = list(/mob/living/simple_animal/bot/floorbot,
-					/mob/living/simple_animal/bot/floorbot,
-					/mob/living/simple_animal/bot/medbot,
-					/mob/living/simple_animal/bot/medbot,
+	contains = list(/mob/living/basic/bot/repairbot, // AQ EDIT - basic boty
+					/mob/living/basic/bot/repairbot, // AQ EDIT - basic boty
+					/mob/living/basic/bot/medbot, // AQ EDIT - basic boty
+					/mob/living/basic/bot/medbot, // AQ EDIT - basic boty
 					/obj/item/tank/internals/air,
 					/obj/item/tank/internals/air,
 					/obj/item/tank/internals/air,
@@ -158,8 +158,8 @@
 	name = "Skrzynia ratunkowa – medycyna"
 	desc = "Na wypadek, gdy wszystko się sypie, a lekarze nie nadążają. Zawiera kapsułę medyczną 7x5 i 2 mediboty na nagłe wypadki."
 	cost = 1100
-	contains = list(/mob/living/simple_animal/bot/medbot,
-					/mob/living/simple_animal/bot/medbot,
+	contains = list(/mob/living/basic/bot/medbot, // AQ EDIT - basic boty
+					/mob/living/basic/bot/medbot, // AQ EDIT - basic boty
 					/obj/item/survivalcapsule/medical)
 	crate_name = "ratunkowa skrzynia medyczna"
 	crate_type = /obj/structure/closet/crate/medical

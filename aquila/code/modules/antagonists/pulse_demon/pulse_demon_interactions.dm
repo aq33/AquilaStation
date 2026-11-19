@@ -112,7 +112,7 @@
 	if(user != src || stat || !direction)
 		return
 	if(current_bot)
-		if(!current_bot.on)
+		if(!current_bot.pulse_bot_powered())
 			to_chat(src, "<span class='warning'>[current_bot] jest wyłączony!</span>")
 			return
 		if(bot_movedelay <= world.time)
@@ -141,7 +141,7 @@
 /// Puszcza przejętego bota
 /mob/living/simple_animal/pulse_demon/proc/release_bot()
 	if(current_bot)
-		current_bot.pulse_hijacked = FALSE
+		current_bot.set_pulse_hijacked(FALSE)
 		current_bot = null
 
 /mob/living/simple_animal/pulse_demon/proc/do_hijack_robot(mob/living/silicon/robot/R)
@@ -179,10 +179,55 @@
 	to_chat(user, "<span class='notice'>Wyjdziesz, skacząc do przejętego APC.</span>")
 	user.forceMove(src)
 	user.current_bot = src
-	pulse_hijacked = TRUE
+	set_pulse_hijacked(TRUE)
+
+/// Bot przejęty przez demona (stary i basic bot): czy ma zasilanie, przejęcie, kliknięcie celu
+/mob/living/proc/pulse_bot_powered()
+	return FALSE
+
+/mob/living/proc/set_pulse_hijacked(state)
+	return
+
+/mob/living/proc/attack_integrated_pulsedemon(mob/living/simple_animal/pulse_demon/user, atom/A)
+	return
+
+/mob/living/simple_animal/bot/pulse_bot_powered()
+	return on
+
+/mob/living/simple_animal/bot/set_pulse_hijacked(state)
+	pulse_hijacked = state
+
+/mob/living/basic/bot/var/pulse_hijacked = FALSE
+
+/mob/living/basic/bot/pulse_bot_powered()
+	return is_bot_on()
+
+/mob/living/basic/bot/set_pulse_hijacked(state)
+	pulse_hijacked = state
+	if(state)
+		ADD_TRAIT(src, TRAIT_AI_PAUSED, "pulse_demon")
+	else
+		REMOVE_TRAIT(src, TRAIT_AI_PAUSED, "pulse_demon")
+
+/mob/living/basic/bot/attack_pulsedemon(mob/living/simple_animal/pulse_demon/user)
+	if(user.loc == src)
+		return
+	to_chat(user, "<span class='warning'>Jesteś w środku [src]. Jeśli zostanie zniszczony, wypadniesz na ziemię i możesz zginąć, jeśli nie będzie pod tobą kabla.</span>")
+	to_chat(user, "<span class='notice'>Wyjdziesz, skacząc do przejętego APC.</span>")
+	user.forceMove(src)
+	user.current_bot = src
+	set_pulse_hijacked(TRUE)
+
+/mob/living/basic/bot/attack_integrated_pulsedemon(mob/living/simple_animal/pulse_demon/user, atom/A)
+	if(!is_bot_on())
+		return
+	if(Adjacent(A))
+		UnarmedAttack(A, TRUE)
+	else
+		RangedAttack(A)
 
 /// Demon w bocie klika cel
-/mob/living/simple_animal/bot/proc/attack_integrated_pulsedemon(mob/living/simple_animal/pulse_demon/user, atom/A)
+/mob/living/simple_animal/bot/attack_integrated_pulsedemon(mob/living/simple_animal/pulse_demon/user, atom/A)
 	if(!on)
 		return
 	if(Adjacent(A))

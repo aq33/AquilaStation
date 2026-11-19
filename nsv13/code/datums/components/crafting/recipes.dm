@@ -22,7 +22,7 @@
 
 /datum/crafting_recipe/medbot/catmedbot
 	name = "Kerfuś"
-	result = /mob/living/simple_animal/bot/medbot/catmedbot
+	result = /mob/living/basic/bot/medbot/catmedbot
 	reqs = list(
 		/obj/item/healthanalyzer = 1,
 		/obj/item/storage/firstaid = 1,

@@ -36,6 +36,9 @@ type Settings = {
   pai_active: BooleanLike;
   patrol_station: BooleanLike;
   power: BooleanLike;
+  // AQUILA: basic boty - przełącznik osobowości (duchy mogą przejąć bota)
+  personality?: BooleanLike;
+  possession_enabled?: BooleanLike;
 };
 
 type ScrubGas = {
@@ -76,6 +79,14 @@ const CONTROL_LABELS: Record<string, string> = {
   hug_mode: 'Tryb pracy',
   pink_wire: 'Różowy przewód',
   water_trays: 'Podlewanie',
+  // AQUILA: basic boty
+  iron_stack: 'Żelazo',
+  glass_stack: 'Szkło',
+  fix_girders: 'Ściany na dźwigarach',
+  fix_windows: 'Szyby',
+  guardbuddy_program: 'Program',
+  guardbuddy_clear_buddy: 'Podopieczny',
+  eject_blood_bags: 'Worki z krwią',
 };
 
 const CONTROL_TOOLTIPS: Record<string, string> = {
@@ -98,6 +109,8 @@ const CONTROL_TOOLTIPS: Record<string, string> = {
   critical_alerts: 'Zgłasza pacjentów w stanie krytycznym.',
   temperature_control: 'Utrzymuje temperaturę docelową.',
   water_trays: 'Podlewa tace hydroponiczne.',
+  fix_girders: 'Stawia ściany na dźwigarach z zapasu żelaza.',
+  fix_windows: 'Wstawia szyby w kraty i łata uszkodzone okna.',
 };
 
 const LINE_DIRECTIONS: Record<string, string> = {
@@ -189,7 +202,7 @@ function TabDisplay(props) {
     emagged,
     has_access,
     locked,
-    settings: { allow_possession },
+    settings: { allow_possession, personality },
   } = data;
 
   return (
@@ -210,6 +223,16 @@ function TabDisplay(props) {
         </Button>
       )}
       {!!allow_possession && <PaiButton />}
+      {!!allow_possession && !!personality && <PersonalityButton />}
+      {!!personality && (
+        <Button
+          color="transparent"
+          icon="pen"
+          disabled={!has_access && !can_hack}
+          onClick={() => act('rename')}
+          tooltip="Zmienia nazwę bota."
+        />
+      )}
       <Button
         color="transparent"
         disabled={!has_access && !can_hack}
@@ -221,6 +244,30 @@ function TabDisplay(props) {
         Blokada
       </Button>
     </>
+  );
+}
+
+/** Osobowość: duchy mogą przejąć bota */
+function PersonalityButton(props) {
+  const { act, data } = useBackend<Data>();
+  const {
+    settings: { possession_enabled, pai_inserted },
+  } = data;
+
+  return (
+    <Button
+      icon="ghost"
+      disabled={!!pai_inserted}
+      selected={!!possession_enabled}
+      onClick={() => act('toggle_personality')}
+      tooltip={
+        possession_enabled
+          ? 'Resetuje matrycę osobowości (gracz w bocie wraca do duchów).'
+          : 'Pozwala duchom przejąć bota.'
+      }
+    >
+      Osobowość
+    </Button>
   );
 }
 
@@ -330,7 +377,18 @@ enum ControlType {
   HugbotSanity = 'max_sanity',
   HugbotMode = 'hug_mode',
   HugbotWire = 'pink_wire',
+  RepairbotIron = 'iron_stack',
+  RepairbotGlass = 'glass_stack',
+  GuardbuddyProgram = 'guardbuddy_program',
+  GuardbuddyBuddy = 'guardbuddy_clear_buddy',
+  BloodBags = 'eject_blood_bags',
 }
+
+const GUARDBUDDY_PROGRAMS: Record<string, string> = {
+  patrol: 'Patrol',
+  ochrona: 'Ochrona osoby',
+  przewodnik: 'Przewodnik',
+};
 
 const HUG_MODES: Record<string, string> = {
   hug: 'Przytulanie',
@@ -409,6 +467,33 @@ function ControlHelper(props: ControlProps) {
           {HUG_MODES[String(control[1])] || String(control[1])}
         </Button>
       );
+    case ControlType.RepairbotIron:
+      return <StackButton control={control} action="eject_iron" />;
+    case ControlType.RepairbotGlass:
+      return <StackButton control={control} action="eject_glass" />;
+    case ControlType.BloodBags:
+      return <StackButton control={control} action="eject_blood_bags" />;
+    case ControlType.GuardbuddyProgram:
+      return (
+        <Button
+          icon="microchip"
+          onClick={() => act(control[0])}
+          tooltip="Kliknij, by zmienić program."
+        >
+          {GUARDBUDDY_PROGRAMS[String(control[1])] || String(control[1])}
+        </Button>
+      );
+    case ControlType.GuardbuddyBuddy:
+      return (
+        <Button
+          icon="user-xmark"
+          disabled={!control[1]}
+          onClick={() => act(control[0])}
+          tooltip="Przeciągnij kartę po bocie, by przypisać podopiecznego."
+        >
+          {control[1] ? 'Zwolnij' : 'Brak'}
+        </Button>
+      );
     case ControlType.HugbotWire:
       return (
         <Button
@@ -432,6 +517,23 @@ function ControlHelper(props: ControlProps) {
         </Tooltip>
       );
   }
+}
+
+/** Zapas w bocie (liczba) z wysuwaniem */
+function StackButton(props: ControlProps & { action: string }) {
+  const { act } = useBackend<Data>();
+  const { control, action } = props;
+
+  return (
+    <Button
+      disabled={!control[1]}
+      icon={control[1] ? 'eject' : ''}
+      onClick={() => act(action)}
+      tooltip="Zapas w bocie; kliknij, by go wysunąć."
+    >
+      {control[1] ? `${control[1]}` : 'Pusto'}
+    </Button>
+  );
 }
 
 /** Suwak progu leczenia medbota */

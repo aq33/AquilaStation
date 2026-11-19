@@ -2284,7 +2284,7 @@
 	pixel_y = -24
 	},
 /obj/structure/cable/yellow,
-/mob/living/simple_animal/bot/medbot{
+/mob/living/basic/bot/medbot{
 	name = "Accidents Happen"
 	},
 /turf/open/floor/plasteel/dark,
@@ -4048,7 +4048,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
-/mob/living/simple_animal/bot/cleanbot,
+/mob/living/basic/bot/cleanbot,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/hotel/custodial)
 "mf" = (

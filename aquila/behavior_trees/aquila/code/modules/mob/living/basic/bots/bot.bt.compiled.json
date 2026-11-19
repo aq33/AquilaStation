@@ -1,0 +1,1 @@
+{"type":"/datum/bt_node/composite/selector/reactive","children":[{"type":"/datum/bt_node/subtree/bot_respond_to_summon"},{"type":"/datum/bt_node/subtree/bot_work"},{"type":"/datum/bt_node/subtree/bot_patrol"},{"type":"/datum/bt_node/ai_behavior/bot_idle_chatter"}]}

@@ -401,7 +401,7 @@
 	if(istype(W, /obj/item/assembly/prox_sensor))
 		if(!can_finish_build(W, user))
 			return
-		var/mob/living/simple_animal/bot/hugbot/A = new(drop_location())
+		var/mob/living/basic/bot/medbot/hugbot/A = new(drop_location()) // AQ EDIT - basic boty
 		A.name = created_name
 		A.robot_arm = W.type
 		to_chat(user, "<span class='notice'>Dodajesz [W] do [src]. Bip bup!</span>")

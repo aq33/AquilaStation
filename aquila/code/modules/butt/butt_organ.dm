@@ -143,7 +143,7 @@
 		if(!user.temporarilyRemoveItemFromInventory(W))
 			return
 		qdel(W)
-		var/mob/living/simple_animal/bot/buttbot/B = new(get_turf(src))
+		var/mob/living/basic/bot/buttbot/B = new(get_turf(src))
 		if(istype(src, /obj/item/organ/butt/xeno))
 			B.make_xeno()
 		to_chat(user, "<span class='notice'>Dodajesz ramię robota do tyłka i... Co?</span>")

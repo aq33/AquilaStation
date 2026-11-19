@@ -16,7 +16,7 @@
 	beepsky_chance += min(level, 5) //1% chance per crate an item will be replaced with a beepsky and the crate stops spawning items. Doesnt act as a hardcap, making nullcrates far riskier and less predictable
 	while(crate_value)
 		if(prob(beepsky_chance) && prob(50))
-			new /mob/living/simple_animal/bot/secbot/grievous/nullcrate(C)
+			new /mob/living/basic/bot/secbot/grievous/nullcrate(C)
 			crate_value = 0
 			beepsky_chance = 0
 			level += 1

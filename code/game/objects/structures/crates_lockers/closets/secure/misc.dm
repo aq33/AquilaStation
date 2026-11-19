@@ -47,7 +47,7 @@
 	new /obj/item/storage/firstaid/brute(src)
 	new /obj/item/storage/firstaid/regular(src)
 	new /obj/item/defibrillator/compact/combat/loaded(src)
-	new /mob/living/simple_animal/bot/medbot(src)
+	new /mob/living/basic/bot/medbot(src) // AQ EDIT - basic boty
 
 /obj/structure/closet/secure_closet/ertEngi
 	name = "szafka Inżyniera Kryzysowego Reagowania"

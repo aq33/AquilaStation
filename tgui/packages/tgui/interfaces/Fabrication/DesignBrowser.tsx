@@ -73,6 +73,7 @@ const DM_CATEGORY_TITLES: Record<string, string> = {
   'Medical Nanites': 'Nanity medyczne',
   'Mining Designs': 'Projekty górnicze',
   Misc: 'Różne',
+  Modular: 'Mech modułowy',
   'Misc. Machinery': 'Różne maszyny',
   'MOD Construction': 'Budowa MOD',
   'MOD Modules': 'Moduły MOD',
