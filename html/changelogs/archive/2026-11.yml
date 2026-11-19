@@ -1407,3 +1407,10 @@
       połączenia pnia mózgu, kręgosłup tytanowy.'
   - rscadd: 'Lewe i prawe płuco oraz nerka: wycięcie i przeszczep jednej strony.'
   - imageadd: Sprite'y trzustki i połówek płuc i nerek z Goonstation.
+  - rscadd: 'SSV Fist of Sol strzeże bramy Romulus, a SGV Alicorn czai się w Veneto.
+      Obaj bossowie mają stałych dowódców (nemezis) w zakładce „Dowódcy”: pokonani
+      uciekają i wracają do swoich układów albo giną na całą kampanię.'
+  - bugfix: Flota SGV Alicorn nie ma już niszczyciela i krążownika Syndykatu, które
+      strzelały do Alicorna.
+  - rscadd: 'Komitet Powitalny Dolos jest trzecim nemezis: stoi w Dolos Remnants i
+      ściga okręt, który przeleci obok. Flota Pozostałość zniknęła z Oasis Fidei.'

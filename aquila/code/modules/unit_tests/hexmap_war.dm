@@ -973,5 +973,359 @@
 	TEST_ASSERT(chosen.alignment != "pirate", "Pirates went for their own system ([chosen])")
 
 
+/// Nemezis: boss w swoim układzie dostaje stałego dowódcę, poległy nie wraca, ranny wraca z bossem do swojego układu,
+/// a zapis kampanii zachowuje go jako nemezis (nie oznacza go jako rannego za brak floty sztabu)
+/datum/unit_test/hexmap_war_nemesis
+
+/datum/unit_test/hexmap_war_nemesis/Run()
+	if(!GLOB.hexmap?.built)
+		return
+	var/list/info = GLOB.hex_nemeses["fistofsol"]
+	var/datum/star_system/home = SSstar_system.system_by_id(info["home"])
+	if(!home?.hex)
+		return // mapa testowa bez Romulusa
+	var/fleet_type = info["fleet"]
+	// Bossowie z mapy gwiezdnej czekają poza układami, a test używa własnej wojny, żeby nie ruszać dowódców kampanii
+	var/list/originals = list() // flota -> układ
+	var/list/alignments = list() // układ -> alignment
+	for(var/id in GLOB.hex_nemeses)
+		var/datum/star_system/S = SSstar_system.system_by_id(GLOB.hex_nemeses[id]["home"])
+		if(!S)
+			continue
+		alignments[S] = S.alignment
+		var/datum/fleet/original = hex_nemesis_fleet(S, GLOB.hex_nemeses[id]["fleet"])
+		if(original)
+			S.fleets -= original
+			originals[original] = S
+	var/datum/hex_war/war = new
+	var/datum/fleet/boss = home.spawn_fleet(fleet_type)
+	war.setup_nemeses()
+	var/datum/hex_commander/C = war.nemesis_commander("fistofsol")
+	var/boss_commander = boss.commander
+	var/boss_name = boss.name
+	var/same_commander = (war.nemesis_commander("fistofsol") == C) && (length(war.commanders) == length(GLOB.hex_nemeses))
+	C.status = HEX_CMD_DEAD
+	war.setup_nemeses()
+	var/dead_boss = hex_nemesis_fleet(home, fleet_type)
+	C.status = HEX_CMD_WOUNDED
+	C.fleet = null
+	war.nemesis_return(C)
+	var/datum/fleet/returned = hex_nemesis_fleet(home, fleet_type)
+	var/returned_commander = returned?.commander
+	var/returned_status = C.status
+	// Sprzątanie: floty bossów z wojny testu znikają, oryginały wracają do układów
+	for(var/datum/star_system/S as anything in alignments)
+		for(var/datum/fleet/F as anything in S.fleets.Copy())
+			if(F.commander && (F.commander in war.commanders))
+				F.commander = null
+				F.hex_war_dispose()
+	for(var/datum/fleet/original as anything in originals)
+		var/datum/star_system/S = originals[original]
+		S.fleets += original
+	for(var/datum/star_system/S as anything in alignments)
+		S.alignment = alignments[S]
+	TEST_ASSERT_EQUAL(boss_commander, C, "The boss fleet did not get its nemesis commander")
+	TEST_ASSERT(findtext(boss_name, C.last_name), "The boss fleet name has no commander: [boss_name]")
+	TEST_ASSERT(same_commander, "The nemesis commander is not unique")
+	TEST_ASSERT(!dead_boss, "The boss of a dead nemesis stayed in [home]")
+	TEST_ASSERT_EQUAL(returned_commander, C, "A wounded nemesis did not come back with his boss to [home]")
+	TEST_ASSERT_EQUAL(returned_status, HEX_CMD_ACTIVE, "A returned nemesis is not active")
+
+	// Układ zajęty przez wroga na koniec rundy: garnizon bossa znika, zajęcie zostaje, a dowódca wraca później
+	var/datum/hex_war/occupied_war = new
+	for(var/datum/fleet/original as anything in originals)
+		var/datum/star_system/S = originals[original]
+		S.fleets -= original
+	var/datum/fleet/occupied_boss = home.spawn_fleet(fleet_type)
+	home.alignment = "nanotrasen"
+	occupied_war.remove_occupied_garrisons()
+	var/occupied_alignment = home.alignment
+	var/garrison_left = hex_nemesis_fleet(home, fleet_type)
+	occupied_war.setup_nemeses()
+	var/datum/hex_commander/occupied_commander = occupied_war.nemesis_commander("fistofsol")
+	var/occupied_status = occupied_commander.status
+	var/occupied_respawn = hex_nemesis_fleet(home, fleet_type)
+	// Kontratak: ranny wraca do układu z flotą okupanta, ale układ zajmie dopiero zwycięzca walki
+	var/datum/fleet/occupier = home.spawn_fleet(/datum/fleet/nanotrasen/light)
+	occupied_commander.fleet = null
+	occupied_war.nemesis_return(occupied_commander)
+	var/counter_boss = hex_nemesis_fleet(home, fleet_type)
+	var/counter_alignment = home.alignment
+	occupier?.hex_war_dispose()
+	for(var/datum/star_system/S as anything in alignments)
+		for(var/datum/fleet/F as anything in S.fleets.Copy())
+			if(F.commander && (F.commander in occupied_war.commanders))
+				F.commander = null
+				F.hex_war_dispose()
+	if(!QDELETED(occupied_boss))
+		occupied_boss.hex_war_dispose()
+	for(var/datum/fleet/original as anything in originals)
+		var/datum/star_system/S = originals[original]
+		S.fleets += original
+	for(var/datum/star_system/S as anything in alignments)
+		S.alignment = alignments[S]
+	TEST_ASSERT_EQUAL(occupied_alignment, "nanotrasen", "Removing the boss garrison gave the occupied [home] back to its owner")
+	TEST_ASSERT(!garrison_left, "The boss garrison returned to the occupied [home]")
+	TEST_ASSERT(!occupied_respawn, "The nemesis boss spawned in the occupied [home] at round start")
+	TEST_ASSERT_EQUAL(occupied_status, HEX_CMD_WOUNDED, "A nemesis whose home is occupied is not waiting to return")
+	TEST_ASSERT(counter_boss, "A returning nemesis did not come back to its occupied [home]")
+	TEST_ASSERT_EQUAL(counter_alignment, "nanotrasen", "A returning nemesis took [home] before beating the occupying fleet")
+
+	// Zapis: nemezis bez floty sztabu zostaje aktywny i dalej jest nemezis
+	var/datum/hex_war/saved_war = new
+	var/list/protected = list()
+	for(var/datum/fleet/F as anything in hex_all_fleets())
+		if(F.hex_war_adoptable())
+			F.war_controlled = TRUE
+			protected += F
+	var/list/entry = list("id" = 5, "faction" = "syndicate", "first" = "Lucan", "last" = "Draven", "rank" = 3, "status" = HEX_CMD_ACTIVE, "return_in" = 0, "nemesis" = "fistofsol")
+	saved_war.restore(list("fleets" = list(), "next_id" = 6, "commanders" = list(entry)))
+	for(var/datum/fleet/F as anything in protected)
+		F.war_controlled = FALSE
+	var/datum/hex_commander/R = length(saved_war.commanders) ? saved_war.commanders[1] : null
+	TEST_ASSERT_EQUAL(R?.nemesis, "fistofsol", "The campaign save lost the nemesis id")
+	TEST_ASSERT_EQUAL(R?.status, HEX_CMD_ACTIVE, "A nemesis without a staff fleet came back wounded from the save")
+
+/// Alicorn leci sam: bez eskorty Syndykatu, która strzelała do niego jako do innej frakcji
+/datum/unit_test/hexmap_alicorn_alone
+
+/datum/unit_test/hexmap_alicorn_alone/Run()
+	var/datum/star_system/S = SSstar_system.system_by_id("Staging") || SSstar_system.systems[1]
+	var/old_alignment = S.alignment
+	var/datum/fleet/F = S.spawn_fleet(/datum/fleet/hostile/alicorn_boss)
+	var/list/factions = list()
+	var/count = 0
+	for(var/obj/structure/overmap/OM as anything in F.all_ships)
+		factions |= OM.faction
+		count++
+	var/alignment = F.alignment
+	F.hex_war_dispose()
+	S.alignment = old_alignment
+	TEST_ASSERT(count >= 1, "The Alicorn fleet has no ships")
+	TEST_ASSERT_EQUAL(english_list(factions), "hostile", "The Alicorn fleet mixes ship factions")
+	TEST_ASSERT_EQUAL(alignment, "hostile", "The Alicorn fleet does not belong to its ships' faction")
+
+
+/// Komitet Powitalny Dolos: flota 6–8 okrętów ze stałym dowódcą, Pozostałość połączona z nim (znika z mapy gwiezdnej),
+/// pościg za okrętem przelatującym obok, koniec pościgu po skokach i powrót do Dolos, bez wędrówki zwykłym timerem ruchu,
+/// a w trybie trudnym flota bez dowódcy pod nieobecność poległego, którą ranny przejmuje po powrocie
+/datum/unit_test/hexmap_war_nemesis_dolos
+
+/datum/unit_test/hexmap_war_nemesis_dolos/Run()
+	if(!GLOB.hexmap?.built)
+		return
+	var/list/info = GLOB.hex_nemeses["dolos"]
+	TEST_ASSERT(info, "There is no Dolos nemesis")
+	var/datum/star_system/home = SSstar_system.system_by_id(info["home"])
+	if(!home?.hex)
+		return // mapa testowa bez Dolos Remnants
+	var/fleet_type = info["fleet"]
+	// Sąsiedni kafel, na który flota może przejść, i kafel daleko od Dolos
+	var/datum/hex/near
+	for(var/datum/hex/N as anything in GLOB.hexmap.neighbours(home.hex))
+		if(!GLOB.hexmap.blocks(N) && !length(N.system?.fleets) && GLOB.hexmap.route(home.hex, N, "syndicate", 5000))
+			near = N
+			break
+	var/datum/hex/far
+	for(var/datum/hex/H as anything in GLOB.hexmap.hexes_in_range(home.hex, 4))
+		if(GLOB.hexmap.distance(home.hex, H) >= 3)
+			far = H
+			break
+	if(!near || !far)
+		return
+	var/datum/star_system/near_system = GLOB.hexmap.system_for(near)
+	// Bossowie kampanii czekają poza układami, a test używa własnej wojny, żeby nie ruszać dowódców kampanii
+	var/list/originals = list() // flota -> układ
+	var/list/alignments = list() // układ -> alignment
+	alignments[near_system] = near_system.alignment
+	for(var/id in GLOB.hex_nemeses)
+		var/datum/star_system/S = SSstar_system.system_by_id(GLOB.hex_nemeses[id]["home"])
+		if(!S)
+			continue
+		alignments[S] = S.alignment
+		for(var/datum/fleet/original as anything in S.fleets.Copy())
+			S.fleets -= original
+			originals[original] = S
+	// Pozostałość z zapisanej mapy gwiezdnej (mała, żeby test nie stawiał 24 okrętów)
+	var/datum/star_system/oasis = SSstar_system.system_by_id("Oasis Fidei") || near_system
+	var/old_oasis_fleet = oasis.fleet_type
+	alignments[oasis] = oasis.alignment
+	oasis.fleet_type = "/datum/fleet/remnant"
+	var/datum/fleet/remnant = oasis.spawn_fleet(/datum/fleet/remnant, FLEET_DIFFICULTY_EASY)
+
+	var/datum/hex_war/war = new
+	war.setup_nemeses()
+	var/remnant_gone = QDELETED(remnant) && !(remnant in oasis.fleets)
+	var/remnant_type_left = oasis.fleet_type
+	var/datum/hex_commander/C = war.nemesis_commander("dolos")
+	var/datum/fleet/boss = hex_nemesis_fleet(home, fleet_type)
+	var/ships = 0
+	var/boss_commander
+	var/boss_name
+	var/steps = 0
+	var/spots_near = FALSE
+	var/spots_far = TRUE
+	var/wandered = TRUE
+	var/far_order
+	var/near_order
+	var/hunt_moved = FALSE
+	var/hunt_system
+	var/hunt_left
+	var/fight_order
+	var/fight_system
+	var/back_system
+	var/back_order
+	if(boss)
+		ships = boss.hex_war_ship_count()
+		boss_commander = boss.commander
+		boss_name = boss.name
+		steps = boss.nemesis_hunt_steps
+		spots_near = boss.nemesis_spots(list(near))
+		spots_far = boss.nemesis_spots(list(far))
+		// Zwykły timer ruchu nie prowadzi bossa nigdzie
+		boss.move()
+		wandered = boss.current_system != home
+		// Przylot okrętu gracza: daleko nic, obok Dolos pościg (bez okrętu na mapie testowej pościg zaczyna test)
+		var/obj/structure/overmap/ship = SSstar_system.find_main_overmap()
+		if(ship && hex_factions_hostile(boss.alignment, ship.faction))
+			war.nemesis_sighting(ship, near_system, list(far))
+			far_order = boss.war_order
+			war.nemesis_sighting(ship, near_system, list(near))
+			near_order = boss.war_order
+			if(boss.nemesis_hunt_timer)
+				deltimer(boss.nemesis_hunt_timer)
+				boss.nemesis_hunt_timer = null
+		else
+			far_order = HEX_ORDER_IDLE
+			near_order = HEX_ORDER_HUNT
+			boss.nemesis_start_hunt(near_system)
+		// Pościg: kafel za okrętem, potem walka z okrętem w tym samym kaflu mimo wyczerpanych skoków
+		hunt_moved = boss.nemesis_hunt_move(near_system)
+		hunt_system = boss.current_system
+		hunt_left = boss.nemesis_hunt_left
+		boss.nemesis_hunt_left = 0
+		boss.nemesis_hunt_move(near_system)
+		fight_order = boss.war_order
+		fight_system = boss.current_system
+		// Okręt zgubiony (albo poza zasięgiem): boss przerywa pościg i wraca do Dolos, tam czeka
+		boss.nemesis_hunt_move(null)
+		back_system = boss.current_system
+		back_order = boss.war_order
+	// Tryb trudny: poległy dowódca, w Dolos staje flota bez dowódcy, a ranny po powrocie ją przejmuje
+	if(boss)
+		boss.commander = null
+		boss.hex_war_dispose()
+	C.fleet = null
+	C.status = HEX_CMD_DEAD
+	war.nemesis_objective_boss("dolos")
+	var/datum/fleet/leaderless = hex_nemesis_fleet(home, fleet_type)
+	var/leaderless_commander = leaderless?.commander
+	C.status = HEX_CMD_WOUNDED
+	war.nemesis_return(C)
+	var/taken_over = (C.fleet == leaderless) && leaderless
+	var/boss_fleets = 0
+	for(var/datum/fleet/F as anything in home.fleets)
+		if(istype(F, fleet_type))
+			boss_fleets++
+	// Sprzątanie: floty bossów z wojny testu znikają, oryginały wracają do układów
+	for(var/datum/star_system/S as anything in alignments)
+		for(var/datum/fleet/F as anything in S.fleets.Copy())
+			if(istype(F, fleet_type) || (F.commander && (F.commander in war.commanders)))
+				F.commander = null
+				F.hex_war_dispose()
+	if(!QDELETED(remnant))
+		remnant.hex_war_dispose()
+	for(var/datum/fleet/original as anything in originals)
+		var/datum/star_system/S = originals[original]
+		S.fleets += original
+	for(var/datum/star_system/S as anything in alignments)
+		S.alignment = alignments[S]
+	oasis.fleet_type = old_oasis_fleet
+	var/datum/star_system/random/hex_empty/E = near_system
+	if(istype(E))
+		E.try_release()
+	TEST_ASSERT(remnant_gone, "The Remnant fleet stayed after the Dolos nemesis setup")
+	TEST_ASSERT(!remnant_type_left, "The star map still spawns the Remnant in [oasis]")
+	TEST_ASSERT(ships >= 6 && ships <= 8, "The Dolos boss has [ships] ships instead of 6-8")
+	TEST_ASSERT_EQUAL(boss_commander, C, "The Dolos boss did not get its nemesis commander")
+	TEST_ASSERT(findtext(boss_name, C.last_name), "The Dolos boss name has no commander: [boss_name]")
+	TEST_ASSERT(spots_near, "The Dolos boss did not notice a ship next to it")
+	TEST_ASSERT(!spots_far, "The Dolos boss noticed a ship three tiles away")
+	TEST_ASSERT(!wandered, "The Dolos boss left [home] on its own move timer")
+	TEST_ASSERT_EQUAL(far_order, HEX_ORDER_IDLE, "The Dolos boss started a hunt for a ship far away")
+	TEST_ASSERT_EQUAL(near_order, HEX_ORDER_HUNT, "The Dolos boss did not hunt a ship passing next to it")
+	TEST_ASSERT(hunt_moved, "The hunting Dolos boss did not follow the ship")
+	TEST_ASSERT_EQUAL(hunt_system, near_system, "The hunting Dolos boss went somewhere else")
+	TEST_ASSERT_EQUAL(hunt_left, steps - 1, "A hunt step was not counted")
+	TEST_ASSERT_EQUAL(fight_order, HEX_ORDER_HUNT, "The Dolos boss gave up the hunt in the middle of a fight")
+	TEST_ASSERT_EQUAL(fight_system, near_system, "The Dolos boss left the fight with the hunted ship")
+	TEST_ASSERT_EQUAL(back_system, home, "The Dolos boss did not come back to [home] after the hunt")
+	TEST_ASSERT_EQUAL(back_order, HEX_ORDER_IDLE, "The Dolos boss is not waiting in [home] after the hunt")
+	TEST_ASSERT(leaderless && !leaderless_commander, "The hard mode objective has no Dolos fleet to fight while the nemesis is dead")
+	TEST_ASSERT(taken_over, "The returning nemesis did not take over its leaderless fleet")
+	TEST_ASSERT_EQUAL(boss_fleets, 1, "The returning nemesis brought a second boss fleet to [home]")
+
+/// Przegląd aq33/AquilaStation#651: Alicorn wrogi wszystkim w logice wojny, wylot bez zaplanowanego skoku nie zostawia
+/// trasy, a powrót bossa, który stoi w miejscu, kończy się po kilku próbach
+/datum/unit_test/hexmap_nemesis_review
+
+/datum/unit_test/hexmap_nemesis_review/Run()
+	TEST_ASSERT(hex_factions_hostile("hostile", "nanotrasen") && hex_factions_hostile("syndicate", "hostile"), "The Alicorn faction is neutral in the hex war")
+	TEST_ASSERT(!hex_factions_hostile("hostile", "hostile"), "The Alicorn faction is hostile to itself")
+	var/obj/structure/overmap/ship = SSstar_system.find_main_overmap()
+	if(ship)
+		var/list/old_path = ship.hex_flight_path
+		ship.hex_flight_path = list("x")
+		ship.hex_on_departure(TRUE) // skok awaryjny / misjump: nie zaplanowany skok po kaflach
+		TEST_ASSERT(isnull(ship.hex_flight_path), "A non-hex departure kept the planned route")
+		ship.hex_flight_path = old_path
+	if(!GLOB.hexmap?.built)
+		return
+	var/datum/star_system/home = SSstar_system.system_by_id(GLOB.hex_nemeses["dolos"]["home"])
+	if(!home?.hex)
+		return
+	var/datum/fleet/dolos/boss/F = new
+	F.current_system = home
+	F.hex_war_set_order(HEX_ORDER_HOME, home)
+	for(var/i in 1 to HEX_NEMESIS_STUCK_LIMIT)
+		F.nemesis_note_stuck()
+	var/order = F.war_order
+	// Cel trybu trudnego: pusty Dolos nie zalicza celu, dopóki boss wraca z pościgu; po jego powrocie i pokonaniu tak
+	var/away_status = 0
+	var/home_status = 1
+	var/kept_status = 1
+	if(GLOB.hex_war)
+		var/list/commanders_before = GLOB.hex_war.commanders.Copy()
+		var/datum/hex_commander/C = GLOB.hex_war.nemesis_commander("dolos")
+		var/datum/fleet/old_fleet = C.fleet
+		var/old_status = C.status
+		var/list/old_enemies = home.enemies_in_system
+		C.fleet = F
+		C.status = HEX_CMD_ACTIVE
+		home.enemies_in_system = list()
+		var/datum/overmap_objective/clear_system/dolos/objective = new
+		objective.target_system = home
+		F.current_system = null
+		objective.check_completion()
+		away_status = objective.status
+		F.current_system = home
+		objective.check_completion()
+		home_status = objective.status
+		F.current_system = null // kolejny pościg po zaliczeniu celu
+		objective.check_completion()
+		kept_status = objective.status
+		qdel(objective)
+		home.enemies_in_system = old_enemies
+		C.fleet = old_fleet
+		C.status = old_status
+		if(!(C in commanders_before)) // dowódca założony na potrzeby testu
+			GLOB.hex_war.commanders -= C
+	F.current_system = null
+	qdel(F)
+	TEST_ASSERT_EQUAL(order, HEX_ORDER_IDLE, "A boss that could not get home kept trying forever")
+	TEST_ASSERT_EQUAL(away_status, 0, "The Dolos objective completed while the boss was still on its way home")
+	TEST_ASSERT_EQUAL(home_status, 1, "The Dolos objective did not complete with the boss home and Dolos cleared")
+	TEST_ASSERT_EQUAL(kept_status, 1, "A completed Dolos objective reopened when the boss left on another hunt")
+
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL
