@@ -2807,6 +2807,9 @@
 #include "code\modules\mob\living\basic\bots\bot_hud.dm"
 #include "code\modules\mob\living\basic\bots\bot_control.dm"
 #include "code\modules\mob\living\basic\bots\cleanbot.dm"
+#include "code\modules\mob\living\basic\bots\medbot.dm"
+#include "code\modules\mob\living\basic\bots\secbot.dm"
+#include "code\modules\mob\living\basic\bots\firebot_honkbot.dm"
 // BOTY: koniec
 
 // Profiler byond-tracy: MUSI być ostatnim include'em całego builda (BYOND inicjuje zmienne statyczne od końca,
