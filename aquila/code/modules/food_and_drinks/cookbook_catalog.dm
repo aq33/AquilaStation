@@ -91,6 +91,14 @@ GLOBAL_LIST_EMPTY(food_transformations)
 			catalog += list(cookbook_entry(result, reaction.name, "Mieszanki", ingredients, tools))
 		qdel(reaction)
 
+	// Przepisy krokowe (aquila/code/modules/cooking)
+	var/list/step_cookbook = get_cooking_cookbook()
+	for(var/category in step_cookbook)
+		for(var/list/step_entry as anything in step_cookbook[category])
+			var/list/entry = cookbook_entry(text2path(step_entry["path"]), null, "Krok po kroku", list(), list(step_entry["container"]), category)
+			entry["steps"] = step_entry["instructions"]
+			catalog += list(entry)
+
 	probe_food_transformations()
 	var/static/list/method_names = list("bake" = "Piekarnik", "grill" = "Grill", "process" = "Krojenie")
 	var/static/list/tool_names = list(TOOL_KNIFE = "nóż", TOOL_ROLLINGPIN = "wałek", TOOL_SAW = "piła")
@@ -178,7 +186,7 @@ GLOBAL_LIST_EMPTY(food_transformations)
 	filedesc = "Książka kucharska"
 	category = PROGRAM_CATEGORY_CREW
 	program_icon_state = "generic"
-	extended_desc = "Przepisy na jedzenie: stół, procesor, mikrofalówka, grill, piekarnik i krojenie, z wyszukiwarką po daniu albo składniku."
+	extended_desc = "Przepisy na jedzenie: stół, gotowanie krok po kroku, procesor, mikrofalówka, grill, piekarnik i krojenie, z wyszukiwarką po daniu albo składniku."
 	size = 2
 	tgui_id = "NtosCookbook"
 	program_icon = "utensils"

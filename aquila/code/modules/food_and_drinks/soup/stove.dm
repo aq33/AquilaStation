@@ -35,6 +35,8 @@
 	var/container_y = 8
 	/// Modifies how much temperature is exposed to the reagents, and in turn modifies how fast the reagents are heated.
 	var/heat_coefficient = 0.033
+	/// Palnik z ogniem i minutnikiem: gotowanie krok po kroku na patelni i w rondlu, ogień zup
+	var/datum/cooking_surface/burner/burner
 
 /datum/component/stove/Initialize(container_x = 0, container_y = 8, obj/item/spawn_container)
 	if(!ismachinery(parent))
@@ -42,6 +44,8 @@
 
 	src.container_x = container_x
 	src.container_y = container_y
+	burner = new(parent)
+	burner.name = "palnik"
 
 	// To allow maploaded pots on top of your stove.
 	if(spawn_container)
@@ -78,6 +82,7 @@
 /datum/component/stove/Destroy(force)
 	STOP_PROCESSING(SSobj, src)
 	QDEL_NULL(soup_smoke)
+	QDEL_NULL(burner)
 	container = null
 	return ..()
 
@@ -87,7 +92,12 @@
 		turn_off()
 		return
 
-	container?.reagents?.expose_temperature(SOUP_BURN_TEMP + 80, heat_coefficient)
+	var/heat_factor = real_parent.kitchen_heat_factor()
+	if(istype(container, /obj/item/reagent_containers/cooking))
+		burner.process_cooking(delta_time, heat_factor)
+	else
+		// Ogień zup: niski trzyma ciepło, średni gotuje, wysoki gotuje szybciej, ale przypala
+		container?.reagents?.expose_temperature(soup_target_temperature(), heat_coefficient * heat_factor)
 	real_parent.use_power(real_parent.active_power_usage)
 	update_smoke_type()
 
@@ -101,12 +111,16 @@
 		return
 	START_PROCESSING(SSobj, src)
 	on = TRUE
+	burner.turn_on()
+	real_parent.kitchen_heat?.set_heating(TRUE)
 	real_parent.update_appearance(UPDATE_OVERLAYS)
 
 /datum/component/stove/proc/turn_off()
 	var/obj/machinery/real_parent = parent
 	STOP_PROCESSING(SSobj, src)
 	on = FALSE
+	burner?.turn_off()
+	real_parent.kitchen_heat?.set_heating(FALSE)
 	real_parent.update_appearance(UPDATE_OVERLAYS)
 
 /// Włącza albo wyłącza palniki
@@ -133,11 +147,43 @@
 	SIGNAL_HANDLER
 	if(!user.canUseTopic(source, BE_CLOSE))
 		return
-	toggle_burners(user)
+	INVOKE_ASYNC(src, PROC_REF(open_settings), user)
 	return COMPONENT_INTERCEPT_ALT
+
+/// Alt+klik: ustawienia palnika (i piekarnika w kuchni), potem zgranie stanu włączenia z palnikiem
+/datum/component/stove/proc/open_settings(mob/user)
+	cooking_settings_menu(parent, user)
+	if(QDELETED(src))
+		return
+	if(burner.on && !on)
+		burner.on = FALSE
+		toggle_burners(user)
+	else if(!burner.on && on)
+		burner.on = TRUE
+		toggle_burners(user)
+
+/// Docelowa temperatura garnka z zupą przy ustawionym ogniu
+/datum/component/stove/proc/soup_target_temperature()
+	switch(burner.temperature)
+		if(COOK_TEMP_LOW)
+			return T0C + 75
+		if(COOK_TEMP_HIGH)
+			return SOUP_BURN_TEMP + 80
+	return 500
 
 /datum/component/stove/proc/on_attackby(obj/machinery/source, obj/item/attacking_item, mob/user, params)
 	SIGNAL_HANDLER
+
+	if(istype(attacking_item, /obj/item/reagent_containers/cooking))
+		if(!burner.accepts(attacking_item))
+			return // naczynie do piekarnika obsłuży piekarnik kuchni
+		if(!isnull(container))
+			to_chat(user, span_warning("Na palniku już coś stoi."))
+			return COMPONENT_NO_AFTERATTACK
+		if(user.transferItemToLoc(attacking_item, parent))
+			add_container(attacking_item, user)
+			to_chat(user, span_notice("Stawiasz [attacking_item] na [parent]."))
+		return COMPONENT_NO_AFTERATTACK
 
 	if(!attacking_item.is_open_container() || !attacking_item.reagents)
 		return
@@ -192,7 +238,9 @@
 /datum/component/stove/proc/on_examine(obj/machinery/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
 
-	examine_list += span_notice("Palniki [on ? "wyłączysz" : "włączysz"] [user.secondary_click_text()] albo Alt+klikiem.")
+	var/obj/machinery/real_parent = parent
+	examine_list += span_notice("Palniki [on ? "wyłączysz" : "włączysz"] [user.secondary_click_text()]. <b>Alt+klik</b>: ustawienia (ogień, minutnik).")
+	examine_list += span_notice("[capitalize(burner.describe())]. Sprzęt jest [real_parent.kitchen_heat?.describe() || "zimny"].")
 	if(container)
 		examine_list += span_notice("Na palnikach stoi [container].")
 
@@ -202,6 +250,7 @@
 	for(var/obj/item/stock_parts/micro_laser/part in source.component_parts)
 		new_multiplier += (part.rating * 0.5)
 	heat_coefficient = initial(heat_coefficient) * max(round(new_multiplier), 1)
+	source.refresh_kitchen_heat()
 
 /datum/component/stove/proc/add_container(obj/item/new_container, mob/user)
 	var/obj/real_parent = parent
@@ -212,6 +261,10 @@
 	container = new_container
 	container.pixel_x = container_x
 	container.pixel_y = container_y
+	burner.set_container(new_container)
+	if(istype(new_container, /obj/item/reagent_containers/cooking))
+		var/obj/item/reagent_containers/cooking/pan = new_container
+		pan.make_mini()
 
 	update_smoke_type()
 	real_parent.update_appearance(UPDATE_OVERLAYS)
@@ -224,6 +277,10 @@
 
 	container.pixel_x = container.base_pixel_x
 	container.pixel_y = container.base_pixel_y
+	if(istype(container, /obj/item/reagent_containers/cooking))
+		var/obj/item/reagent_containers/cooking/pan = container
+		pan.unmake_mini()
+	burner.clear_container()
 	container = null
 
 	update_smoke_type()
@@ -271,8 +328,18 @@
 	active_power_usage = 40
 
 /obj/machinery/stove/Initialize(mapload)
+	kitchen_heat = new
 	. = ..()
 	AddComponent(/datum/component/stove, container_x = -6, container_y = 16)
+	refresh_kitchen_heat()
+
+/obj/machinery/stove/Destroy()
+	QDEL_NULL(kitchen_heat)
+	return ..()
+
+/obj/machinery/stove/get_cooking_surfaces()
+	var/datum/component/stove/stove = GetComponent(/datum/component/stove)
+	return stove ? list(stove.burner) : list()
 
 /obj/machinery/stove/RefreshParts()
 	. = ..()
@@ -305,6 +372,10 @@
 		mapload_container = new(loc)
 	AddComponent(/datum/component/stove, container_x = -6, container_y = 14, spawn_container = mapload_container)
 
+/obj/machinery/oven/range/get_cooking_surfaces()
+	var/datum/component/stove/stove = GetComponent(/datum/component/stove)
+	return stove ? list(stove.burner, chamber) : list(chamber)
+
 /obj/machinery/oven/range/RefreshParts()
 	. = ..()
 	var/datum/component/stove/stove = GetComponent(/datum/component/stove)
@@ -313,7 +384,7 @@
 // Nasz piekarnik ma stany „oven_*” wpisane na sztywno, kuchnia rysuje swoje „range_*”
 /obj/machinery/oven/range/update_icon_state()
 	. = ..()
-	icon_state = (!open && used_tray?.contents.len) ? "range_on" : "range_off"
+	icon_state = (!open && (used_tray?.contents.len || chamber?.container)) ? "range_on" : "range_off"
 
 /obj/machinery/oven/range/update_overlays()
 	. = ..()

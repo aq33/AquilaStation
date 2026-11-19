@@ -40,6 +40,8 @@ GLOBAL_LIST_EMPTY(order_console_products)
 	var/list/datum/orderable_item/grocery_list = list()
 	///For blackbox logging, what kind of order is this? set nothing to not tally, like golem orders
 	var/blackbox_key
+	///Number of free items left (tg free_uses, e.g. from the cooking voucher). null hides the counter in the UI.
+	var/free_uses = null
 
 /obj/machinery/computer/order_console/Initialize(mapload)
 	. = ..()
@@ -53,8 +55,15 @@ GLOBAL_LIST_EMPTY(order_console_products)
 
 /obj/machinery/computer/order_console/proc/get_total_cost()
 	var/cost = 0
+	var/free_uses_remaining = free_uses || 0
 	for(var/datum/orderable_item/item as anything in grocery_list)
-		cost += grocery_list[item] * item.cost_per_order
+		if(free_uses_remaining >= grocery_list[item])
+			free_uses_remaining -= grocery_list[item]
+		else if(free_uses_remaining >= 1)
+			cost += (grocery_list[item] - free_uses_remaining) * item.cost_per_order
+			free_uses_remaining = 0
+		else
+			cost += grocery_list[item] * item.cost_per_order
 	return cost
 
 /obj/machinery/computer/order_console/ui_interact(mob/user, datum/tgui/ui)
@@ -74,7 +83,7 @@ GLOBAL_LIST_EMPTY(order_console_products)
 /obj/machinery/computer/order_console/ui_data(mob/user)
 	var/list/data = list()
 	data["total_cost"] = get_total_cost()
-	data["free_uses"] = null
+	data["free_uses"] = free_uses
 	data["off_cooldown"] = COOLDOWN_FINISHED(src, order_cooldown)
 	data["item_amts"] = list()
 
@@ -203,6 +212,8 @@ GLOBAL_LIST_EMPTY(order_console_products)
 	if(final_cost > 0 && !subtract_points(final_cost, card))
 		say("Przykro mi, ale masz za mało [credit_type].")
 		return FALSE
+	if(isnum(free_uses)) // już odliczone w koszcie
+		free_uses = max(0, free_uses - counterlist_sum(grocery_list))
 	return TRUE
 
 /// Odejmuje punkty z karty. Zwraca TRUE, jeśli się udało.

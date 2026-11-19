@@ -48,6 +48,7 @@ type Data = {
   order_categories: string[];
   order_datums: OrderDatum[];
   points: number;
+  points_label?: string;
   purchase_tooltip: string;
   total_cost: number;
   free_uses: number | null;
@@ -419,6 +420,7 @@ export function ProduceConsole(props) {
   const {
     credit_type,
     points = 0,
+    points_label,
     off_cooldown,
     order_categories,
     item_amts,
@@ -477,6 +479,9 @@ export function ProduceConsole(props) {
                         {condensed ? 'Rozwiń' : 'Zwiń'}
                       </Button>
                     </Stack.Item>
+                    {!!points_label && (
+                      <Stack.Item color="label">{points_label}</Stack.Item>
+                    )}
                     <Stack.Item>
                       {points} <CreditIcon credit_type={credit_type} />
                     </Stack.Item>
