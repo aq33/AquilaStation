@@ -4668,7 +4668,6 @@ Nazwy obszarów są w większości przetłumaczone. Nowe nazwy budujemy z tych k
 | neuratrextate | neuratreksat | m; nowe (reagent, Citadel RP) |
 | augmentation disrupter implant | implant zakłócający augmenty | m; nowe |
 | jumpboots implant | implant skoku | m; nowe |
-| death alarm implant | alarm śmierci | m; nowe |
 | skeletal bracing | wzmocnienie stawów | n; nowe |
 | voltaic combat cyberheart / voltaic overdrive | woltaiczne serce bojowe / woltaiczne przeciążenie | n / n; nowe (tg) |
 | psychoscope / neuromod / neuromod shell | psychoskop / neuromod / powłoka neuromodu | m / m / ż; nowe (Chaotic Onyx) |

@@ -176,6 +176,18 @@
 	TEST_ASSERT(!HAS_TRAIT(patient, TRAIT_FAKE_MINDSHIELD), "The fake mindshield did not switch off")
 	qdel(fake)
 
+	// Implant agonalny: wybrany kanał radia, wchodzi też do cyborga
+	var/mob/living/silicon/robot/borg = allocate(/mob/living/silicon/robot)
+	var/obj/item/implant/deathrattle/aq_medical/rattle = new()
+	TEST_ASSERT(rattle.implant(borg), "The deathrattle implant did not go into a cyborg")
+	TEST_ASSERT(rattle in borg.implants, "The cyborg does not carry the deathrattle implant")
+	TEST_ASSERT(findtext(rattle.aq_death_message(borg), borg.real_name), "The deathrattle message does not name the dead")
+	borg.death()
+	TEST_ASSERT(rattle.aq_alert_radio, "The deathrattle implant did not report the cyborg's death on the radio")
+	var/obj/item/implant/deathrattle/plain = new()
+	TEST_ASSERT(!plain.aq_radio_channel, "A plain deathrattle implant broadcasts by default")
+	qdel(plain)
+
 	// Ostre skrzydła: tylko ćmoludzie, rani sąsiadów
 	TEST_ASSERT(!aq_self_implant(patient, /obj/item/implanter/aq_razorwing), "Razor wings went into a human")
 	var/mob/living/carbon/human/moth = allocate(/mob/living/carbon/human)

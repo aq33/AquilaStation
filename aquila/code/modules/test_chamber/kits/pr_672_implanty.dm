@@ -2,13 +2,15 @@
 	name = "PR 672: implanty i augmenty robotyki"
 	pr = "aq33/AquilaStation#672"
 	description = "Implanty (implantery na sobie albo na króliku): \
-	1) Rotbusttec: zabij królika, w krwi jest formaldehyd. Tarcza EMP: granat EMP nie rusza implantów, seria granatów ją przeciąża. \
+	1) Rotbusttec: zabij królika, w krwi jest formaldehyd. Implant agonalny (etui z kanałem medycznym, przełóż do implantera): przycisk implantu wybiera kanał radia, po śmierci nosiciela zgłoszenie idzie na ten kanał; wszczep go też cyborgowi. Tarcza EMP: granat EMP nie rusza implantów, seria granatów ją przeciąża. \
 	2) Ochrona: dostęp (przyłóż kartę do implantera przed wszczepieniem, drzwi bez karty, 8 otwarć), swój-obcy (dwie osoby, strzał przez sojusznika), mapa taktyczna (przycisk holomapy, dwa implanty widzą się), zakłócacz (augmenty milkną), uziemienie (teleporter ręczny: odrzut i paraliż). \
 	3) Antag: zniewolenie (wszczep królikowi z umysłem), znacznik Syndykatu, moc (środkowy przycisk, stań na kablu pod napięciem; w trybie walki i bez), zemsta (zabij nosiciela), przejęcie (włącz, kliknij APC obok, potem maszyny w pomieszczeniu), szpiegowski, cofnięcie, adrenalina (core, na IPC też działa: zdejmuje ogłuszenie, przyspiesza i łata), wyparcie się, fałszywa ochrona umysłu (HUD ochrony), ostre skrzydła (ćma), sponsorski. \
 	Augmenty (autochirurg albo operacja na narządach): interfejs kabli (otwórz panel drzwi), mózg z łączem SI (wymień mózg w ciele z samymi robotycznymi narządami, SI klika ciało), implant restartu OUN (core, teraz budzi też z utraty przytomności), manipulator emocji, cyberoko z monitorem, mapa okrętu, laserowe oczy, płytki krwi, worek powietrza (z maską), kamuflaż optyczny, Sandevistan, podkręcacz, ośrodek smaku, port EMSI (multitool bez trybu walki), analizator cyborgów (przedmiot), moduł wbudowanego przedmiotu, hak (stań pod dziurą), wyrzutnia nabojów, ramię wirowe (obudowa + rdzeń wiru), magnetyczne stopy (jeden implant w dowolnej nodze). \
 	Sprawdź kliknięcia w obu trybach sterowania (combat mode i intencje)."
 	items = list(
 		/obj/item/implanter/aq_antirot = 1,
+		/obj/item/implantcase/deathrattle/aq_medical = 2,
+		/obj/item/implanter = 1,
 		/obj/item/implanter/aq_empshield = 1,
 		/obj/item/implanter/aq_access = 1,
 		/obj/item/implanter/aq_iff = 2,
