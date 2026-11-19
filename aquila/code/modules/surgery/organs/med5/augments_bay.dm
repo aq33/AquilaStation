@@ -1,7 +1,7 @@
 // AQUILA - augmenty z Baystation12/Torch (AquilaMed 5, etap 12). Pomysły z code/modules/augment/ (Bay), sprite'y z
 // Bay icons/obj/augment.dmi (CC BY-SA 3.0). Dopisane tylko te, których nie było: polinarzędzia, przechwytywacz synaps
-// (restart OUN), ostrza i działka w ramieniu już mamy z tg/Bee. Cywilne idą z R&D (protolathe i fabrykator robotyki),
-// broń w ramieniu (kusza) z uplinku i czarnego rynku. Pazury z Bay usunięte: dublowały ostrza modliszki.
+// (restart OUN), ostrza i działka w ramieniu już mamy z tg/Bee. Idą z R&D (protolathe i fabrykator robotyki).
+// Pazury i kusza z Bay usunięte: dublowały ostrza modliszki i mini kuszę z uplinku.
 // Różnice od Bay: zamiast systemu slotów augmentów z Bay zwykłe implanty cybernetyczne (wszczepia je operacja na
 // narządach albo autochirurg), pancerz i mięśnie przez physiology, celowanie przez rozrzut broni z gunplay/recoil.dm.
 
@@ -104,28 +104,6 @@
 	if(!(. & EMP_PROTECT_SELF))
 		applyOrganDamage(40 / severity)
 
-// --- Broń w ramieniu (tylko uplink) ---
-
-/obj/item/organ/cyberimp/arm/aq_crossbow
-	name = "implant kuszy energetycznej"
-	desc = "Miniaturowa kusza energetyczna ukryta w przedramieniu. Strzela bełtami z obezwładniającą toksyną."
-	icon = 'aquila/icons/obj/medical/augments_bay.dmi'
-	icon_state = "circuit"
-	items_to_create = list(/obj/item/gun/energy/kinetic_accelerator/crossbow)
-	implant_color = null
-
-/obj/item/autosurgeon/syndicate/aq_crossbow
-	name = "podejrzany autochirurg (kusza w ramieniu)"
-	starting_organ = list(/obj/item/organ/cyberimp/arm/aq_crossbow)
-
-/datum/uplink_item/implants/aq_crossbow
-	name = "Implant kuszy energetycznej"
-	desc = "Miniaturowa kusza energetyczna ukryta w przedramieniu, nie do wytrącenia z ręki. W zestawie autochirurg."
-	item = /obj/item/autosurgeon/syndicate/aq_crossbow
-	cost = 14
-	surplus = 10
-	purchasable_from = ~(UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS)
-
 // --- Projekty R&D ---
 
 /datum/design/aq_subdermal_armor
@@ -187,7 +165,7 @@
 #undef TRAIT_AQ_STEADY_AIM
 
 // ERT: ochrona w pełnym alarmie dostaje parę ostrzy modliszki C.H.R.O.M.A.T.A. (wersja z R&D Nanotrasen,
-// cybernetics/mantis_blades.dm); czarny rynek ma kuszę w przedramieniu (łup)
+// cybernetics/mantis_blades.dm)
 /datum/outfit/ert/security/alert
 	backpack_contents = list(/obj/item/storage/box/engineer=1,
 		/obj/item/storage/box/handcuffs=1,
@@ -199,11 +177,3 @@
 	name = "autochirurg (ostrza modliszki)"
 	uses = 1
 	starting_organ = list(/obj/item/organ/cyberimp/arm/mantis, /obj/item/organ/cyberimp/arm/mantis/l)
-
-/datum/market_item/shoddy_implant/aq_crossbow
-	name = "Używana kusza w przedramieniu"
-	desc = "Implant miniaturowej kuszy energetycznej z odzysku, z autochirurgiem."
-	item = /obj/item/autosurgeon/syndicate/aq_crossbow
-	price_min = MARKET_CRATE_VALUE * 6
-	price_max = MARKET_CRATE_VALUE * 9
-	availability_prob = 15
