@@ -107,9 +107,11 @@
 	sky.force_recheck(passenger)
 	TEST_ASSERT_EQUAL(sky.shown_type, test_planet.planet_type, "The timed recheck kept the stale planet instead of picking the nearest one")
 	// Bez klienta pętla odświeżania się kończy i puszcza postać (warstwy paralaksy zostają po wyjściu gracza)
-	sky.recheck_timer = addtimer(CALLBACK(sky, TYPE_PROC_REF(/atom/movable/screen/parallax_layer/planet_sky, recheck_sky)), 10 SECONDS, TIMER_STOPPABLE | TIMER_LOOP)
+	var/first_timer = sky.recheck_timer
+	TEST_ASSERT(first_timer, "A parallax update didn't start the sky recheck loop")
 	sky.recheck_sky()
 	TEST_ASSERT(!sky.recheck_timer, "The sky recheck loop kept running without a client")
+	TEST_ASSERT(!SStimer.timer_id_dict[first_timer], "The stopped sky recheck timer is still scheduled")
 	TEST_ASSERT(!sky.current_mob, "The sky layer kept a reference to the mob without a client")
 	// Paralaksa włączona z powrotem (create_parallax woła force_recheck): pętla odświeżania rusza bez ruchu gracza
 	sky.force_recheck(passenger)
