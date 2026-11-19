@@ -1,8 +1,7 @@
-// AQUILA - narzędzia medyczne AquilaMed 5: nożyce do amputacji, nanopasta, młotek na odruchy.
-// Nożyce i młotek: tgstation (code/modules/surgery/surgery_tools.dm, code/game/objects/items/tools/medical/reflex_hammer.dm),
-// nanopasta: Baystation12 (code/game/objects/items/stacks/nanopaste.dm). Sprite'y z tych repozytoriów (CC-BY-SA 3.0).
-// Różnice: nożyce działają tylko na leżącym, skutym albo nieprzytomnym pacjencie i tylko na rękach i nogach;
-// młotek u nas diagnozuje kręgosłup i mózg (w tg tylko podrzuca nogę).
+// AQUILA - narzędzia medyczne AquilaMed 5: nożyce do amputacji, nanopasta.
+// Nożyce: tgstation (code/modules/surgery/surgery_tools.dm), nanopasta: Baystation12
+// (code/game/objects/items/stacks/nanopaste.dm). Sprite'y z tych repozytoriów (CC-BY-SA 3.0).
+// Różnice: nożyce działają tylko na leżącym, skutym albo nieprzytomnym pacjencie i tylko na rękach i nogach.
 
 /// Time to snip a healthy limb and a destroyed one
 #define AQ_SHEARS_TIME_HEALTHY (15 SECONDS)
@@ -125,59 +124,6 @@
 		patient.update_damage_overlays() // dents and scorch marks go from the sprite, as with a welder or cable
 	patient.updatehealth()
 	user.visible_message("<span class='notice'>[user] smaruje nanopastą [limb.name] [patient].</span>", "<span class='notice'>Smarujesz nanopastą [limb.name] [patient == user ? "" : "[patient]"].</span>")
-
-// --- Młotek na odruchy ---
-
-/obj/item/reflexhammer
-	name = "młotek neurologiczny"
-	desc = "Mały młotek z gumowym obuchem do badania odruchów. Uderz nim w rękę albo nogę bez combat mode: odruch powie, czy działają nerwy, kręgosłup i mózg."
-	icon = 'aquila/icons/obj/medical/medycyna5.dmi'
-	icon_state = "reflex_hammer"
-	force = 1
-	throwforce = 1
-	w_class = WEIGHT_CLASS_TINY
-	custom_materials = list(/datum/material/iron = 75, /datum/material/plastic = 50)
-	attack_verb = list("bada", "stuka", "puka")
-
-/obj/item/reflexhammer/attack(mob/living/M, mob/living/user)
-	if(!iscarbon(M) || user.combat_mode)
-		return ..()
-	var/mob/living/carbon/patient = M
-	var/zone = check_zone(user.zone_selected)
-	if(zone != BODY_ZONE_L_ARM && zone != BODY_ZONE_R_ARM && zone != BODY_ZONE_L_LEG && zone != BODY_ZONE_R_LEG)
-		to_chat(user, "<span class='notice'>Odruchy bada się na łokciu albo kolanie: wyceluj w rękę albo nogę.</span>")
-		return
-	var/obj/item/bodypart/limb = patient.get_bodypart(zone)
-	if(!limb)
-		to_chat(user, "<span class='warning'>[patient] nie ma tej kończyny.</span>")
-		return
-	user.changeNext_move(CLICK_CD_MELEE)
-	playsound(get_turf(patient), 'sound/effects/hit_punch.ogg', 10, TRUE, -4)
-	var/is_leg = zone == BODY_ZONE_L_LEG || zone == BODY_ZONE_R_LEG
-	user.visible_message("<span class='notice'>[user] stuka młotkiem [is_leg ? "w kolano" : "w łokieć"] [patient].</span>", "<span class='notice'>Stukasz młotkiem [is_leg ? "w kolano" : "w łokieć"] [patient].</span>", ignored_mobs = patient)
-	to_chat(patient, "<span class='notice'>[user] stuka cię młotkiem [is_leg ? "w kolano" : "w łokieć"].</span>")
-	var/list/result = patient.aq_reflex_result(limb)
-	to_chat(user, "<span class='[result[2]]'>[result[1]]</span>")
-
-/// What the reflex hammer finds on a limb: list(text, span class)
-/mob/living/carbon/proc/aq_reflex_result(obj/item/bodypart/limb)
-	var/is_leg = limb.body_zone == BODY_ZONE_L_LEG || limb.body_zone == BODY_ZONE_R_LEG
-	if(!IS_ORGANIC_LIMB(limb))
-		return list("Brak odruchu: to proteza.", "notice")
-	if(stat == DEAD)
-		return list("Brak odruchu: pacjent nie żyje.", "warning")
-	if(limb.disabled == BODYPART_DISABLED_PARALYSIS)
-		return list("Brak odruchu. Kończyna jest bezwładna: przerwany rdzeń kręgowy albo uszkodzony mózg.", "warning")
-	var/brain_damage = getOrganLoss(ORGAN_SLOT_BRAIN)
-	if(brain_damage >= 60)
-		return list("Odruch gwałtowny i rozlany, [is_leg ? "noga" : "ręka"] drga jeszcze długo: ciężkie uszkodzenie mózgu.", "warning")
-	if(brain_damage >= 20)
-		return list("Odruch przesadnie żywy: możliwe uszkodzenie mózgu.", "warning")
-	var/obj/item/bodypart/chest = get_bodypart(BODY_ZONE_CHEST)
-	for(var/datum/wound/wound as anything in chest?.wounds)
-		if(istype(wound, /datum/wound/spinal/bruise) && is_leg)
-			return list("Odruch słaby i opóźniony: stłuczony rdzeń kręgowy.", "warning")
-	return list("Odruch prawidłowy: [is_leg ? "noga podskakuje" : "przedramię zgina się"] od razu.", "notice")
 
 #undef AQ_SHEARS_TIME_HEALTHY
 #undef AQ_SHEARS_TIME_DESTROYED

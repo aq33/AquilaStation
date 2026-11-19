@@ -554,7 +554,7 @@
 	if (!reagent_type)
 		reagent_type = pick(drug_list)
 	reagent_instance = new reagent_type()
-	H.reagents.addiction_list.Add(reagent_instance)
+	// AQ EDIT - usunięte reagents.addiction_list z Bee: nałóg podtrzymuje aq_keep_addicted (aquila/code/modules/reagents/addiction/addiction.dm)
 	var/current_turf = get_turf(quirk_holder)
 	if (!drug_container_type)
 		drug_container_type = /obj/item/storage/pill_bottle
@@ -587,17 +587,7 @@
 /datum/quirk/junkie/proc/announce_drugs()
 	to_chat(quirk_holder, "<span class='boldnotice'>Masz [initial(drug_container_type.name)] [initial(reagent_type.name)] [where_drug]. Lepiej żeby tyle ci wsytarczyło...</span>")
 
-/datum/quirk/junkie/on_process()
-	var/mob/living/carbon/human/H = quirk_holder
-	if(world.time > next_process)
-		next_process = world.time + process_interval
-		if(!H.reagents.addiction_list.Find(reagent_instance))
-			if(QDELETED(reagent_instance))
-				reagent_instance = new reagent_type()
-			else
-				reagent_instance.addiction_stage = 0
-			H.reagents.addiction_list += reagent_instance
-			to_chat(quirk_holder, "<span class='danger'>Myślałeś, że pokonałeś już nałóg, ale potzrebujesz kolejnej dawki [reagent_instance.name]...</span>")
+// AQ EDIT - usunięte on_process ćpuna z Bee (reagents.addiction_list): jest w aquila/code/modules/reagents/addiction/addiction.dm
 
 /datum/quirk/junkie/smoker
 	name = "Palacz"
