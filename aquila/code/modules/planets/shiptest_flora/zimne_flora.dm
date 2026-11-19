@@ -386,14 +386,14 @@
 	plant_features = list(/datum/plant_feature/roots/hyphae, /datum/plant_feature/body/mushroom, /datum/plant_feature/fruit/mushroom/glowbell/cavern_candle)
 
 /obj/item/plant_seeds/preset/algae
-	name = "nasiona: glony (woda)"
+	name = "nasiona: glony (dowolne podłoże)"
 	name_override = "glony"
-	plant_features = list(/datum/plant_feature/roots/water, /datum/plant_feature/body/tuber/lavaland, /datum/plant_feature/fruit/algae)
+	plant_features = list(/datum/plant_feature/roots, /datum/plant_feature/body/tuber/lavaland, /datum/plant_feature/fruit/algae)
 
 /obj/item/plant_seeds/preset/seaweed
-	name = "nasiona: wodorosty (woda)"
+	name = "nasiona: wodorosty (dowolne podłoże)"
 	name_override = "wodorosty"
-	plant_features = list(/datum/plant_feature/roots/water, /datum/plant_feature/body/tuber/lavaland, /datum/plant_feature/fruit/seaweed)
+	plant_features = list(/datum/plant_feature/roots, /datum/plant_feature/body/tuber/lavaland, /datum/plant_feature/fruit/seaweed)
 
 // Plony
 
