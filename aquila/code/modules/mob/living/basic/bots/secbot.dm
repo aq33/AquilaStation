@@ -38,6 +38,8 @@
 	/// Ostatnio ściganych chwilę ignoruje
 	var/oldtarget_name
 	var/last_found = 0
+	/// Ile trwa skuwanie
+	var/cuff_time = 6 SECONDS
 
 /mob/living/basic/bot/secbot/Initialize(mapload)
 	additional_access = list(ACCESS_SECURITY, ACCESS_SEC_DOORS, ACCESS_FORENSICS_LOCKERS, ACCESS_MORGUE, ACCESS_MAINT_TUNNELS, ACCESS_COURT, ACCESS_BRIG)
@@ -111,7 +113,7 @@
 	update_bot_mode(BBOT_ARREST)
 	playsound(src, 'sound/weapons/cablecuff.ogg', 30, TRUE, -2)
 	suspect.visible_message(span_danger("[src] próbuje założyć opaski zaciskowe [suspect]!"), span_userdanger("[src] próbuje założyć ci opaski zaciskowe!"))
-	sleep(6 SECONDS)
+	sleep(cuff_time)
 	if(QDELETED(src) || QDELETED(suspect) || !(bot_mode_flags & BOT_MODE_ON) || !Adjacent(suspect) || !isturf(suspect.loc))
 		return BOT_WORK_CONTINUE
 	if(!suspect.handcuffed)

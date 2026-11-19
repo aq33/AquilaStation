@@ -1337,6 +1337,7 @@
 // #include "code\modules\test_chamber\kits\pr_420_traitor_cele.dm"
 #include "code\modules\test_chamber\kits\test_subjects.dm"
 // Komora testowa - zestawy PR-ów niżej (usuwać razem z plikiem zestawu po przetestowaniu)
+#include "code\modules\test_chamber\kits\pr_XXX_boty.dm"
 #include "code\modules\test_chamber\kits\pr_665_rework_amunicji.dm"
 #include "code\modules\test_chamber\kits\pr_nsvprzyw_statek.dm"
 #include "code\modules\test_chamber\kits\pr_nsvprzyw_misje.dm"
@@ -2761,6 +2762,8 @@
 #include "code\modules\unit_tests\weighted_rotation.dm"
 #include "code\modules\unit_tests\window_singularity_pull.dm"
 #include "code\modules\vehicles\ridden.dm"
+// BOTY: testy
+#include "code\modules\unit_tests\aquila_basic_bots.dm"
 #endif
 
 // Heretyk z tg (osobny plik z includami)

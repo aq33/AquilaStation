@@ -53,6 +53,8 @@
 	var/medibot_counter = 0
 	/// Pacjent leczony w tej chwili
 	var/datum/weakref/current_patient
+	/// Ile trwa jedno opatrzenie
+	var/heal_time = 2 SECONDS
 
 /mob/living/basic/bot/medbot/Initialize(mapload, new_skin)
 	additional_access = list(ACCESS_MEDICAL, ACCESS_MORGUE, ACCESS_SURGERY, ACCESS_CHEMISTRY, ACCESS_VIROLOGY, ACCESS_GENETICS, ACCESS_MAINT_TUNNELS)
@@ -210,7 +212,7 @@
 		return BOT_WORK_DONE
 	update_bot_mode(BBOT_HEALING)
 	patient.visible_message(span_danger("[src] próbuje opatrzyć rany [patient]!"), span_userdanger("[src] próbuje opatrzyć twoje rany!"))
-	if(!do_mob(src, patient, 2 SECONDS) || get_dist(src, patient) > 1 || !(bot_mode_flags & BOT_MODE_ON))
+	if(!do_mob(src, patient, heal_time) || get_dist(src, patient) > 1 || !(bot_mode_flags & BOT_MODE_ON))
 		visible_message("[src] chowa swoje narzędzia.")
 		set_patient(null)
 		update_bot_mode(BBOT_IDLE)

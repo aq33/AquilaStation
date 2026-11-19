@@ -390,6 +390,10 @@
 	additional_access = list(ACCESS_BAR)
 	. = ..()
 
+/mob/living/basic/bot/barbuddy/update_icon_state()
+	. = ..()
+	icon_state = "buddy-body"
+
 /mob/living/basic/bot/barbuddy/update_overlays()
 	. = ..()
 	. += mutable_appearance(icon, "buddy-frame")
