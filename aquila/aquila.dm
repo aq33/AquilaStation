@@ -2790,6 +2790,20 @@
 #include "code\modules\test_chamber\kits\pr_637_tlumacz_na_zywo.dm"
 #include "code\modules\test_chamber\kits\pr_654_drobiazgi_1711.dm"
 
+// ROBOTYKA: protezy (marki, zaawansowane, kinetyczne, prowizoryczne, kalibracja, EMP, rany robotyczne, wybór w lobby),
+// syntetycy (chłodzenie, używki, klucz resetu, materiały naprawcze, chirurgia), cyberpsychoza i implanty (aquila/code/modules/robotics/)
+#include "code\__DEFINES\robotics.dm"
+#include "code\modules\robotics\cyberpsychosis_cost.dm"
+#include "code\modules\robotics\limb_brands.dm"
+#include "code\modules\robotics\limb_types.dm"
+#include "code\modules\robotics\limb_emp.dm"
+#include "code\modules\robotics\limb_calibration.dm"
+#include "code\modules\robotics\robotic_wounds.dm"
+#include "code\modules\robotics\synth_cooling.dm"
+#include "code\modules\robotics\synth_repair.dm"
+#include "code\modules\robotics\synth_reset_key.dm"
+#include "code\modules\robotics\ipc_overloaders.dm"
+
 // Profiler byond-tracy: MUSI być ostatnim include'em całego builda (BYOND inicjuje zmienne statyczne od końca,
 // więc ta rusza pierwsza, przed Master i mapą). Opis: tools/tracy/README.md
 #include "code\modules\tracy\tracy.dm"
