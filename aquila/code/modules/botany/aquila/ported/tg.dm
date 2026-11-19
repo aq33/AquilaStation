@@ -863,7 +863,7 @@
 	icon_state = "drakebeet"
 	bite_consumption_mod = 2
 	foodtypes = VEGETABLES
-	tastes = list("słodki burak" = 1, "ostrość" = 1)
+	tastes = list("słodki burak" = 1, "pikantność" = 1)
 	wine_power = 66
 
 /*
