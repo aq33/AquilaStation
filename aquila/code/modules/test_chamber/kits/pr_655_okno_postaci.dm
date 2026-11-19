@@ -16,7 +16,6 @@
 	wylej (użyj w ręce), przełóż do pustego klosza z wodą i zamocuj na pancerzu. Drugą rybkę rozgnieć w trybie walki. \
 	6) Quirki: wybierz kilka nowych w oknie postaci i zespawnuj się (Łysina z peruką, Kolorysta ze sprayem do włosów, Właściciel zwierzaka)."
 	items = list(
-		/mob/living/carbon/human/species/simian = 1,
 		/mob/living/carbon/human/species/beefman = 1,
 		/mob/living/carbon/human/species/psyphoza = 1,
 		/mob/living/carbon/human/species/pug = 1,

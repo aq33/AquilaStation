@@ -86,9 +86,6 @@ GLOBAL_LIST_INIT(aq_body_marking_zones, list(BODY_ZONE_HEAD, BODY_ZONE_CHEST, BO
 /datum/species/apid
 	aq_body_markings = TRUE
 
-/datum/species/simian
-	aq_body_markings = TRUE
-
 /datum/species/squid
 	aq_body_markings = TRUE
 

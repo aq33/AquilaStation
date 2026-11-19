@@ -446,3 +446,37 @@ GLOBAL_LIST_INIT(pug_scents, list(
 #undef PUG_OXY_MULTIPLIER
 #undef PUG_WOOF_STAMINA
 #undef PUG_FETCH_CHANCE
+
+// Wspólne z Żabą (amphibian.dm): nakładki oczu i dodatkowe warstwy rysowane po core (wcześniej w pliku małpoluda z Monke)
+/// Podmienia plik ikony nakładki oczu narysowanej przez handle_body() (core rysuje oczy zawsze z human_face.dmi)
+/datum/species/proc/monke_replace_eye_icon(mob/living/carbon/human/H, eye_icon)
+	var/list/standing = H.overlays_standing[BODY_LAYER]
+	var/obj/item/organ/eyes/eyes = H.getorganslot(ORGAN_SLOT_EYES)
+	if(!length(standing) || !eyes || !icon_exists(eye_icon, eyes.eye_icon_state))
+		return
+	var/list/old_eyes = list()
+	for(var/mutable_appearance/overlay in standing)
+		if(overlay.icon == 'icons/mob/human_face.dmi' && overlay.icon_state == eyes.eye_icon_state)
+			old_eyes += overlay
+	if(!length(old_eyes))
+		return
+	// Najpierw zdejmujemy nakładki w starej postaci: cut_overlay szuka dokładnie tego wyglądu, który został nałożony
+	H.remove_overlay(BODY_LAYER)
+	for(var/mutable_appearance/overlay as anything in old_eyes)
+		overlay.icon = eye_icon
+	H.overlays_standing[BODY_LAYER] = standing
+	H.apply_overlay(BODY_LAYER)
+	// Mruganie bierze kształt oczu z tego samego pliku
+	if(H.eyelid)
+		H.eyelid.icon = eye_icon
+
+/// Dokłada nakładki rasy do warstw już narysowanych przez core. to_add: "[warstwa]" -> lista nakładek
+/datum/species/proc/monke_add_layer_overlays(mob/living/carbon/human/H, list/to_add)
+	for(var/layer_key in to_add)
+		var/layer = text2num(layer_key)
+		var/list/existing = H.overlays_standing[layer]
+		H.remove_overlay(layer)
+		var/list/combined = existing ? existing.Copy() : list()
+		combined += to_add[layer_key]
+		H.overlays_standing[layer] = combined
+		H.apply_overlay(layer)

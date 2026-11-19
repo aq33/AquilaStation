@@ -2842,10 +2842,8 @@
 #include "code\modules\test_chamber\kits\pr_654_drobiazgi_1711.dm"
 #include "code\modules\test_chamber\kits\pr_655_grod.dm"
 
-// Rasy z innych kodów (okno postaci, 17.11.2026): Małpolud z Monke, Mięsoczłowiek z Fulpa
-#include "code\__DEFINES\species_monke.dm"
+// Rasy z innych kodów (okno postaci, 17.11.2026): Mięsoczłowiek z Fulpa
 #include "code\__DEFINES\species_fulp.dm"
-#include "code\modules\mob\living\carbon\human\species_types\simian.dm"
 #include "code\modules\mob\living\carbon\human\species_types\beefman.dm"
 #include "code\modules\mob\living\carbon\human\species_types\beefman_clothing.dm"
 #include "code\modules\mob\living\carbon\human\species_types\beefman_phobetor.dm"
@@ -2874,7 +2872,6 @@
 #include "code\modules\unit_tests\aquila_limb_clipping.dm"
 #include "code\modules\unit_tests\aquila_rasy_vox.dm"
 #include "code\modules\unit_tests\aquila_rasy_goon.dm"
-#include "code\modules\unit_tests\aquila_rasy_monke.dm"
 #include "code\modules\unit_tests\aquila_rasy_fulp.dm"
 #include "code\modules\unit_tests\aquila_rasy_bee.dm"
 #endif

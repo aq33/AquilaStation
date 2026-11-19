@@ -4532,7 +4532,6 @@ Nazwy obszarów są w większości przetłumaczone. Nowe nazwy budujemy z tych k
 | Sansufentanyl | Sansufentanyl | m; reagent, bez zmian |
 | hair dye spray | farba do włosów w sprayu | ż; cecha Kolorysta |
 | Speech voice / Species voice | głos mowy / głos gatunku | m; okno postaci (głosy z Goona) |
-| Simian | Małpolud | m; rasa, l.mn. małpoludzie |
 | Beefman | Mięsoczłowiek | m; rasa, l.mn. mięsoludzie |
 | Phobetor Tear | rozdarcie Fobetora | n; Mięsoczłowiek |
 | Sleepless Dreamer | Bezsenny śniący | m; Mięsoczłowiek |
