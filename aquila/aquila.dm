@@ -1350,6 +1350,7 @@
 #include "code\modules\test_chamber\kits\test_subjects.dm"
 // Komora testowa - zestawy PR-ów niżej (usuwać razem z plikiem zestawu po przetestowaniu)
 #include "code\modules\test_chamber\kits\pr_665_rework_amunicji.dm"
+#include "code\modules\test_chamber\kits\pr_675_kuchnia_krokowa.dm"
 #include "code\modules\test_chamber\kits\pr_nsvprzyw_statek.dm"
 #include "code\modules\test_chamber\kits\pr_nsvprzyw_misje.dm"
 #include "code\modules\test_chamber\kits\pr_nsvprzyw_eventy.dm"
