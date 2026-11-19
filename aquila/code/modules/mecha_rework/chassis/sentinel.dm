@@ -1,7 +1,7 @@
 // AQUILA - Sentinel (MonkeStation, code/modules/vehicles/mecha/combat/sentinel.dm): superciężki kroczący taran oblężniczy.
 // Jedno ramię na działo w wieży (prawego brak), dużo slotów pancerza, burzy ściany, w które wchodzi. Wolny.
-// Syntinel to wersja Syndykatu z działem zamiast lasera. W Monke Sentinela nie da się zbudować; u nas ma części
-// (przemalowane części Duranda, bo Monke nie ma ich sprite'ów) i projekty w zaawansowanym węźle uzbrojenia mechów.
+// W Monke Sentinela nie da się zbudować; u nas ma części (przemalowane części Duranda, bo Monke nie ma ich sprite'ów)
+// i projekty w zaawansowanym węźle uzbrojenia mechów.
 
 /obj/mecha/combat/aq_sentinel
 	name = "\improper Sentinel"
@@ -38,29 +38,11 @@
 	var/obj/item/mecha_parts/mecha_equipment/ME = new /obj/item/mecha_parts/mecha_equipment/weapon/energy/aq_sentinel_laser(src)
 	ME.attach(src)
 
-/obj/mecha/combat/aq_sentinel/syndicate
-	name = "\improper Sentinel Syndykatu"
-	desc = "Superciężki kroczący pojazd oblężniczy w czerwono-czarnych barwach, z działem zamiast lasera."
-	icon_state = "syntinel"
-	wreckage = /obj/structure/mecha_wreckage/aq_sentinel/syndicate
-	operation_req_access = list(ACCESS_SYNDICATE)
-	internals_req_access = list(ACCESS_SYNDICATE)
-	aq_antag_chassis = TRUE
-
-/obj/mecha/combat/aq_sentinel/syndicate/loaded/Initialize(mapload)
-	. = ..()
-	var/obj/item/mecha_parts/mecha_equipment/ME = new /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/aq_sentinel_cannon(src)
-	ME.attach(src)
-
 /obj/structure/mecha_wreckage/aq_sentinel
 	name = "wrak Sentinela"
 	icon = 'aquila/icons/mecha/aq_mecha_large.dmi'
 	icon_state = "sentinel-broken"
 	pixel_x = -24
-
-/obj/structure/mecha_wreckage/aq_sentinel/syndicate
-	name = "wrak Sentinela Syndykatu"
-	icon_state = "syntinel-broken"
 
 // ---------------------------------------------------------------- budowa
 /obj/item/mecha_parts/chassis/aq/sentinel

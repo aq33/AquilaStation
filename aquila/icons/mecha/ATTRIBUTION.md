@@ -9,7 +9,7 @@ Złożone skryptem z oryginałów (kopie stanów, warstwy części złożone w j
 | `aq_mecha.dmi`: clipdurand, inteqgygax, mpgygax, clipripley, hauler | Shiptest (`icons/mecha/mecha.dmi`) | CC BY-SA 3.0 |
 | `aq_mecha_tall.dmi`: savannah_ivanov | /tg/station (`icons/mob/rideables/coop_mech.dmi`) | CC BY-SA 3.0 |
 | `aq_mecha_tall.dmi`: redsunday | Nova Sector (`modular_nova/modules/xenoarchartifacts/icons/coop_mech.dmi`) | CC BY-SA 3.0 |
-| `aq_mecha_large.dmi`: sentinel, syntinel | MonkeStation 2.0 (`icons/mob/rideables/largetanks.dmi`) | CC BY-SA 3.0 |
+| `aq_mecha_large.dmi`: sentinel | MonkeStation 2.0 (`icons/mob/rideables/largetanks.dmi`) | CC BY-SA 3.0 |
 | `aq_mecha_modular_*.dmi` | CEV Eris (`icons/mechs/mech_parts.dmi`, `mech_wreckage.dmi`): korpus, głowa, nogi i ramiona jednej klasy złożone warstwami, kolor przez maskę jak w grze | CC BY-SA 3.0 |
 | `aq_mech_construct.dmi`, `aq_mech_construction.dmi` | Yogstation (Clarke), /tg/station (Savannah-Ivanov), CEV Eris (części mecha modułowego), nasze części i kroki Duranda oraz Gygaxa przemalowane (Sentinel, mech modułowy) | CC BY-SA 3.0 |
 | `aq_mecha_equipment.dmi`: broń wręcz, chłodzenie, gąsienice, wyrzut, laser rentgenowski, K0-B3, RPD | Yogstation (`icons/mecha/mecha_equipment.dmi`) | CC BY-SA 3.0 |
