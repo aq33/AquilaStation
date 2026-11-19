@@ -88,6 +88,7 @@ The other ~60 same-type redefinitions in `aquila/` call `..()`, so they are alre
 
 | Hook | Location | Feature |
 |---|---|---|
+| `&& occupant != aq_remote_pilot` in the occupant location loop of `/obj/mecha/process()` (AQ EDIT line) | `code/game/mecha/mecha.dm` | Remote mech control (`aquila/code/modules/mecha_rework/remote.dm`): the remote pilot is the mech's `occupant` but sits in the remote pod, so the core check that drops an occupant standing on a turf would end the link every tick. Test: `aquila_mecha_two_seats` (seats), remote control has no unit test (needs a client). |
 | `update_map()` + `base_map.add_overlay(legend)` instead of `update_map(overlays_to_use = list(legend))` in `/datum/station_holomap/proc/initialize_holomap_bogus()` (AQ EDIT block) | `nsv13/code/modules/holomap/holomap_datum.dm` | A wall holomap outside a mapped deck (built from the research board off the ship plan, test chamber) passed a bare image where `update_map()` expects legend entries (`"icon"`/`"markers"`): runtime "bad index" on every setup. Test: `aquila_station_map_engineering` |
 | `exclude_these.vars.Copy()` with `controller_vars["vars"] = null` in `/datum/controller/global_vars/New()` (AQ EDIT block, port from tg) | `code/controllers/globals.dm` | The nested `vars` entry of a datum's `vars` list holds a reference to the datum, so the throwaway `/datum/controller` never got collected. In CI every test shard longer than 5 minutes ran a ~3 minute reference search for it (`FIND_REF_NO_CHECK_TICK` freezes the world). |
 | `icon(icon, overlay_name, frame = new_frame)` instead of `icon("[icon]","[overlay_name]",frame = new_frame)` in `/obj/item/ammo_box/magazine/nsv/update_icon()` (AQ EDIT line) | `nsv13/code/modules/munitions/ammunition/magazines.dm` | The text path loads the .dmi from disk at runtime; without the file next to the game (CI test copies) every partly used magazine threw "bad icon operation". Flak magazines are now buildable and in cargo, so the test chamber hit it. Test: `test_chamber` |
@@ -1385,3 +1386,22 @@ Of the logic files, 182 contain an AQ/AQUILA marker or an `aquila/` resource; th
 - `nsv13/code/modules/research/astrometrics.dm`
 
 </details>
+
+## Mechs: slots, heat, two seats, remote control (aquila/code/modules/mecha_rework/)
+
+Everything is layered on top of the old `/obj/mecha` (no migration to `/obj/vehicle/sealed/mecha`). Overrides that return early
+without `..()` in one branch and call `..()` otherwise (partial overrides, class B):
+
+| Proc | File | Branch without `..()` |
+|---|---|---|
+| `/obj/mecha/relaymove()` | `copilot.dm`, `equipment/utility.dm` | the second crew member drives (`domove()`), the gunner cannot move while a driver is aboard, a prisoner in the jail cell cannot leave by moving |
+| `/obj/mecha/container_resist()` | `copilot.dm`, `remote.dm`, `equipment/utility.dm` | driver leaves their seat, remote pilot ends the link, prisoner breaks out of the cell (30 s), passenger/stretcher leaves |
+| `/obj/mecha/go_out()` | `remote.dm` | remote pilot: `aq_end_remote()` instead of moving the pilot to the mech |
+| `/obj/mecha/click_action()` | `equipment/weapons.dm`, `chassis/savannah.dm` | driver/passenger fire the firing-port weapon or the gunner-module turret; Savannah gunner picks the Ivanov strike target |
+| `/obj/mecha/MouseDrop_T()` | `copilot.dm`, `equipment/utility.dm` | second seat, passenger compartment, jail cell and stretcher loading |
+| `/obj/item/mecha_parts/mecha_equipment/weapon/can_attach()` | `equipment/weapons.dm` | non-lethal launchers (`aq_allows_working()`) also fit working mechs |
+| `/obj/item/mecha_parts/mecha_equipment/aq_conversion_kit/attach()` | `conversion.dm` | like core `ripleyupgrade/attach()`: replaces the mech instead of mounting |
+
+`/obj/item/mecha_parts/mecha_equipment/can_attach()` now also requires a free slot (`aq_free_slot_for()`), and `attach()` records the
+slot; `max_equip` is recalculated from the slot limits (+4 for slotless modules), so core `equipment.len < max_equip` checks still pass.
+Prebuilt mechs that attach more than their limits get the extra modules in the `overflow` slot.

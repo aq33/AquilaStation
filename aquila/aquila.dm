@@ -2790,6 +2790,42 @@
 #include "code\modules\test_chamber\kits\pr_637_tlumacz_na_zywo.dm"
 #include "code\modules\test_chamber\kits\pr_654_drobiazgi_1711.dm"
 
+// MECHY: system mechów na /obj/mecha (sloty, wymienne części, overclock z ciepłem, kierunkowy pancerz, broń wręcz,
+// amunicja, konwersje, zakup w cargo, warsztat, zdalne sterowanie, zrzut z orbity, dwa miejsca), nowe podwozia, skiny i wyposażenie
+#include "code\__DEFINES\mecha_aquila.dm"
+#include "code\modules\mecha_rework\slots.dm"
+#include "code\modules\mecha_rework\parts.dm"
+#include "code\modules\mecha_rework\heat.dm"
+#include "code\modules\mecha_rework\armor_facing.dm"
+#include "code\modules\mecha_rework\copilot.dm"
+#include "code\modules\mecha_rework\remote.dm"
+#include "code\modules\mecha_rework\drop.dm"
+#include "code\modules\mecha_rework\ammo.dm"
+#include "code\modules\mecha_rework\skins.dm"
+#include "code\modules\mecha_rework\conversion.dm"
+#include "code\modules\mecha_rework\construction.dm"
+#include "code\modules\mecha_rework\ui.dm"
+#include "code\modules\mecha_rework\cargo.dm"
+#include "code\modules\mecha_rework\chassis\clarke.dm"
+#include "code\modules\mecha_rework\chassis\paddy.dm"
+#include "code\modules\mecha_rework\chassis\savannah.dm"
+#include "code\modules\mecha_rework\chassis\sentinel.dm"
+#include "code\modules\mecha_rework\chassis\modular.dm"
+#include "code\modules\mecha_rework\equipment\melee.dm"
+#include "code\modules\mecha_rework\equipment\weapons.dm"
+#include "code\modules\mecha_rework\equipment\tools.dm"
+#include "code\modules\mecha_rework\equipment\utility.dm"
+#include "code\modules\mecha_rework\equipment\armor.dm"
+#include "code\modules\mecha_rework\equipment\workshop.dm"
+#include "code\modules\mecha_rework\designs.dm"
+#include "code\modules\mecha_rework\catalog.dm"
+#ifdef UNIT_TESTS
+#include "code\modules\unit_tests\aquila_mecha_rework.dm"
+#endif
+// Komora testowa
+#include "code\modules\test_chamber\kits\pr_XXX_mechy.dm"
+// MECHY: koniec
+
 // Profiler byond-tracy: MUSI być ostatnim include'em całego builda (BYOND inicjuje zmienne statyczne od końca,
 // więc ta rusza pierwsza, przed Master i mapą). Opis: tools/tracy/README.md
 #include "code\modules\tracy\tracy.dm"
