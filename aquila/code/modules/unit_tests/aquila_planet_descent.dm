@@ -93,7 +93,10 @@
 
 	var/obj/structure/overmap/planet/planet = host.current_system.add_planet(/datum/planet_type/lava, clamp(host.x + 20, 30, world.maxx - 40), clamp(host.y, 30, world.maxy - 40))
 	test_planet = planet
-	TEST_ASSERT(planet_test_fast_surface(planet), "The planet surface didn't generate")
+	// Mniejsza niż karłowata powierzchnia (jedno lądowisko wystarczy): generowanie lawowej trwało w CI ponad 20 s
+	planet.planet_type.surface_size = 47
+	planet.surface.skip_ruins = TRUE
+	TEST_ASSERT(planet.surface.generate(), "The planet surface didn't generate")
 	sabre.forceMove(planet.center_turf())
 	// Szukanie miejsca usypia (CHECK_TICK): prom z prędkością ze startu odleciałby w tym czasie znad planety
 	sabre.velocity._set(0, 0)
@@ -113,9 +116,32 @@
 	sabre.planet_descent.reentry()
 	sabre.planet_descent.clouds()
 	sabre.planet_descent.approach()
-	TEST_ASSERT(sabre.planet_descent.shadow, "No hull shadow over the ground during the approach")
-	sabre.planet_descent.finish()
+	var/datum/planet_descent/descent = sabre.planet_descent
+	TEST_ASSERT(descent.shadow, "No hull shadow over the ground during the approach")
+	TEST_ASSERT_EQUAL(length(descent.berth), length(descent.hull_order), "The hull and the landing spot don't pair up tile for tile")
+	TEST_ASSERT_EQUAL(length(descent.berth), length(sabre.planet_landing_footprint(port)), "The landing spot of the ground view isn't the hull footprint")
+	// Ostatnia faza: za oknami prawdziwy teren lądowiska, pole w pole tak, jak stanie kadłub
+	TEST_ASSERT(length(descent.ground_windows), "No real ground beside the hull in the last phase of the descent")
+	var/list/windows_seen = descent.ground_windows.Copy()
+	if(!descent.rotation)
+		for(var/obj/effect/abstract/planet_ground_window/window as anything in windows_seen)
+			var/turf/shown = window.vis_contents[1]
+			var/turf/window_turf = window.loc
+			TEST_ASSERT(shown && shown.x - port.x == window_turf.x - shuttle_port.x && shown.y - port.y == window_turf.y - shuttle_port.y && shown.z == port.z, "A window beside the hull shows the wrong part of the landing site")
+	// Z ziemi: cień na lądowisku, spadający obraz promu i kurz od dysz
+	descent.show_ground_shadow()
+	descent.show_ground_proxy()
+	descent.thruster_wash()
+	TEST_ASSERT(descent.ground_shadow, "No hull shadow on the landing site")
+	TEST_ASSERT(descent.ground_shadow.z == port.z, "The hull shadow isn't on the planet")
+	var/obj/effect/abstract/planet_landing_proxy/falling = descent.ground_proxy
+	TEST_ASSERT(falling && length(falling.overlays), "No picture of the shuttle falling onto the landing site")
+	TEST_ASSERT(falling.z == port.z, "The falling shuttle isn't over the planet")
+	descent.finish()
 	TEST_ASSERT(!sabre.planet_descent, "The descent didn't end after touchdown")
+	TEST_ASSERT(QDELETED(falling), "The picture of the falling shuttle stayed over the landed hull")
+	for(var/obj/effect/abstract/planet_ground_window/window as anything in windows_seen)
+		TEST_ASSERT(QDELETED(window), "A window on the landing site stayed in the flight parking after touchdown")
 	// Kadłub Sabre nie zasłania widoku także po dokowaniu na planecie (dokowanie kopiuje pola)
 	for(var/turf/closed/wall in shuttle_port.return_turfs())
 		TEST_ASSERT(!wall.opacity, "A Sabre hull wall [wall.type] blocks the view after landing on the planet")
@@ -124,8 +150,12 @@
 	for(var/turf/T as anything in shuttle_hull_turfs(shuttle_port))
 		TEST_ASSERT(!(locate(/obj/effect/planet_landing_blocker) in T), "A landing blocker stayed under the hull after touchdown")
 
-	// Start z planety i drugie zejście, przerwane: prom odleciał znad planety, zanim zszedł
+	// Start z planety i drugie zejście, przerwane: prom odleciał znad planety, zanim zszedł. Z ziemi obraz promu odlatuje
+	// z miejsca, w którym stał
+	var/turf/site_center = planet_landing_center(shuttle_hull_turfs(shuttle_port))
 	TEST_ASSERT(sabre.shuttle_launch(), "The Sabre didn't take off from the planet")
+	var/obj/effect/abstract/planet_landing_proxy/leaving = locate() in site_center
+	TEST_ASSERT(leaving && length(leaving.overlays), "No picture of the shuttle leaving the landing site")
 	sabre.forceMove(planet.center_turf())
 	// Szukanie miejsca usypia (CHECK_TICK): prom z prędkością ze startu odleciałby w tym czasie znad planety
 	sabre.velocity._set(0, 0)
@@ -199,7 +229,7 @@
 	// Kurz przy przyziemieniu: w kolorze chmur planety, gdy typ go ustawia (wulkaniczna: popiół), inaczej piaskowy
 	var/turf/dust_turf = planet.surface.landing_zones[1]
 	planet_touchdown_effects(null, planet, list(dust_turf))
-	var/obj/effect/temp_visual/small_smoke/halfsecond/dust = locate() in dust_turf
+	var/obj/effect/temp_visual/planet_landing_dust/dust = locate() in dust_turf
 	TEST_ASSERT(dust, "No dust at touchdown")
 	TEST_ASSERT_EQUAL(dust.color, planet.planet_type.sky_cloud_color, "Touchdown dust doesn't take the planet's ash colour")
 	var/datum/planet_type/lava_type = planet.planet_type
@@ -208,7 +238,7 @@
 	qdel(dust)
 	planet_touchdown_effects(null, planet, list(dust_turf))
 	dust = null
-	for(var/obj/effect/temp_visual/small_smoke/halfsecond/fresh in dust_turf)
+	for(var/obj/effect/temp_visual/planet_landing_dust/fresh in dust_turf)
 		if(!QDELETED(fresh))
 			dust = fresh
 	lava_type.sky_cloud_color = old_cloud_color

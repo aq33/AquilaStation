@@ -7,12 +7,13 @@
 	3) Skok FTL: w czasie skoku planeta znika, po wyjściu w układzie bez planety niebo jest puste (negatyw), w układzie z planetą pojawia się jej obraz. Na powierzchni planety jej samej na niebie nie ma (negatyw). \
 	4) Konsola pilota (widok overmapy): planeta z nieba się nie pokazuje (negatyw), na overmapie jest tylko jej zwykły sprite. Preferencje, wyłączona paralaksa: brak planety. \
 	5) Sabre (z doku w hangarze): start, lot nad planetę w trybie dokowania, wybór lądowiska, „Wyląduj tutaj” w kamerze. Prom nie staje od razu na ziemi, tylko przez ok. 11 s schodzi. \
-	6) Z kokpitu i ze skrzydeł: planeta rośnie, aż wypełni niebo; potem niebo w kolorze atmosfery ze smugami, pomarańczowy żar na kosmosie przy kadłubie, chmury planety przelatujące przez ekran, powiększony teren pod promem z kurczącym się cieniem kadłuba, na końcu przyziemienie z drżeniem i bryzgami na wodzie albo kurzem na lądzie. \
+	6) Z kokpitu i ze skrzydeł: planeta rośnie, aż wypełni niebo; potem niebo w kolorze atmosfery ze smugami, pomarańczowy żar na kosmosie przy kadłubie, chmury planety przelatujące przez ekran, powiększony teren pod promem z kurczącym się cieniem kadłuba, w ostatnich 2 s za oknami prawdziwy teren lądowiska (to, co na nim stoi, cień promu i kurz od dysz), na końcu przyziemienie z drżeniem i bryzgami na wodzie albo kurzem na lądzie. Dźwięki: rozruch silników, wejście w atmosferę, chmury, dysze, przyziemienie. \
 	7) W kabinie w czasie wejścia w atmosferę: pomarańczowa pulsująca poświata na całym ekranie i iskry z paneli. \
 	8) Kadłub Sabre: z kokpitu widać całe otoczenie promu (hangar, kosmos, planetę), bez czarnych plam; szyby (przednia, w narożnikach i dwie nowe w burtach) nazywają się „szyba kokpitu”. W locie wokół promu jest tylko kosmos, bez skał ani innych obiektów z sąsiednich miejsc (negatyw). \
 	9) Księżyc (bez atmosfery): od razu teren pod promem, bez nieba, żaru i chmur. \
-	10) Start z planety (nikt na skrzydle): chmury lecą w dół, niebo blednie, planeta maleje do zwykłej wielkości za oknami; tam, gdzie stał prom, zostaje kurz. \
-	11) W czasie zejścia promem nie da się sterować (negatyw). Wyłączenie trybu dokowania albo skok FTL okrętu w trakcie zejścia: prom nie ląduje, komunikat o przerwanym lądowaniu, komputer dokowania znów działa."
+	10) Start z planety (nikt na skrzydle): chmury lecą w dół, niebo blednie, planeta maleje do zwykłej wielkości za oknami, słychać start. \
+	11) W czasie zejścia promem nie da się sterować (negatyw). Wyłączenie trybu dokowania albo skok FTL okrętu w trakcie zejścia: prom nie ląduje, planeta i niebo bledną w kosmos (nie znikają nagle), komunikat o przerwanym lądowaniu, komputer dokowania znów działa. \
+	12) Z ziemi (drugi gracz albo duch przy lądowisku): ok. 6 s przed przyziemieniem słychać nadlatujący prom, a na lądowisku pojawia się blady, szeroki cień, który ciemnieje i zwęża się do obrysu promu; 3 s przed przyziemieniem z góry spada obraz promu (z ludźmi w środku), zawisa tuż nad ziemią, spod krawędzi leci kurz od dysz, potem stoi prawdziwy prom. Start: prom unosi się i odlatuje w stronę kokpitu, kurz leci spod rufy, cień sunie za nim i blednie. Przerwane zejście: cień i obraz bledną."
 	items = list()
 
 /datum/test_chamber_kit/pr_668/setup(list/spawned, list/turfs, turf/center, mob/user)

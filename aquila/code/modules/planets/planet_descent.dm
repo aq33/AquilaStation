@@ -2,6 +2,7 @@
 // prom przez kilkanaście sekund schodzi: planeta za oknami rośnie, aż wypełni niebo (warstwa planety z planet_sky.dm),
 // kadłub żarzy się w atmosferze, przez niebo lecą smugi i chmury, pod promem rośnie powiększony teren z cieniem kadłuba,
 // a na końcu prom dokuje na lądowisku z bryzgami albo kurzem. Start z planety pokazuje to samo w odwrotnej kolejności.
+// Widok z ziemi, prawdziwy teren za oknami i dźwięki (port z voidcrew/Voidcrew#588) są w planet_landing_view.dm.
 
 /// Fazy zejścia (czas trwania każdej)
 #define PLANET_DESCENT_ZOOM (3.5 SECONDS)
@@ -16,6 +17,12 @@
 #define PLANET_DESCENT_GROUND_SCALE 48
 /// Ile razy większy od kadłuba jest cień na początku podejścia (prom wysoko nad ziemią)
 #define PLANET_DESCENT_SHADOW_SCALE 2
+/// Widok z ziemi: cień na lądowisku i spadający obraz promu pojawiają się tyle przed przyziemieniem
+#define PLANET_DESCENT_GROUND_SHADOW_LEAD (6 SECONDS)
+#define PLANET_DESCENT_GROUND_PROXY_LEAD (3 SECONDS)
+/// Kurz przy przyziemieniu: szansa na pole krawędzi i najwięcej obłoczków
+#define PLANET_TOUCHDOWN_DUST_CHANCE 40
+#define PLANET_TOUCHDOWN_DUST_MAX 12
 
 /obj/structure/overmap/small_craft/transport
 	/// Trwające zejście na planetę (prom wisi nad nią i nie da się nim sterować)
@@ -56,13 +63,42 @@ GLOBAL_LIST_EMPTY(planet_descents)
 	/// Ludzie z pomarańczową poświatą w kabinie (zdejmowana po przejściu przez atmosferę albo przy przerwaniu)
 	var/list/tinted = list()
 	var/list/timers = list()
+	/// Pola kadłuba w locie i pola lądowiska, na których każde z nich stanie (ta sama kolejność)
+	var/list/hull_order = list()
+	var/list/berth = list()
+	/// O ile stopni (zgodnie ze wskazówkami zegara) dokowanie obróci kadłub
+	var/rotation = 0
+	/// world.time przyziemienia
+	var/touchdown_time
+	/// Widok z ziemi: cień kadłuba na lądowisku i spadający obraz promu (planet_landing_view.dm)
+	var/obj/effect/abstract/planet_descent_shadow/ground/ground_shadow
+	var/obj/effect/abstract/planet_landing_proxy/ground_proxy
+	/// Pola prawdziwego terenu za oknami promu w ostatniej fazie
+	var/list/ground_windows = list()
+	/// Prom zadokował: przy usuwaniu pokaz kończy się od razu, a nie blednie jak przy przerwanym zejściu
+	var/landed = FALSE
 
 /datum/planet_descent/New(obj/structure/overmap/small_craft/transport/new_craft, obj/structure/overmap/planet/new_planet, obj/docking_port/stationary/new_port)
 	craft = new_craft
 	planet = new_planet
 	port = new_port
-	for(var/turf/T as anything in craft.planet_landing_footprint(port))
-		footprint[T] = TRUE
+	// To samo przesunięcie co w planet_landing_footprint, z parą pole kadłuba - pole lądowiska dla obrazu promu i okien
+	if(!length(craft.hull_offsets))
+		craft.shuttle_cache_offsets()
+	var/obj/docking_port/mobile/shuttle = craft.shuttle_port
+	var/list/turned = craft.shuttle_rotate_offsets(craft.hull_offsets, port.dir)
+	for(var/i in 1 to length(turned))
+		var/list/offset = craft.hull_offsets[i]
+		var/list/turned_offset = turned[i]
+		var/turf/berth_turf = locate(port.x + turned_offset[1], port.y + turned_offset[2], port.z)
+		if(!berth_turf)
+			continue
+		footprint[berth_turf] = TRUE
+		var/turf/hull_turf = locate(shuttle.x + offset[1], shuttle.y + offset[2], shuttle.z)
+		if(hull_turf)
+			hull_order += hull_turf
+			berth += berth_turf
+	rotation = (dir2angle(port.dir) - dir2angle(shuttle.dir) + 360) % 360
 	GLOB.planet_descents += src
 
 /datum/planet_descent/Destroy()
@@ -71,9 +107,13 @@ GLOBAL_LIST_EMPTY(planet_descents)
 	for(var/timer in timers)
 		deltimer(timer)
 	timers.Cut()
-	stop_viewers()
+	// Przerwane zejście: planeta, niebo i to, co widać z ziemi, bledną zamiast zniknąć
+	stop_viewers(fade = !landed)
+	clear_ground(fade = !landed)
 	clear_cabin_glow()
 	QDEL_NULL(shadow)
+	hull_order = null
+	berth = null
 	// Zejście przerwane, zanim prom zadokował (prom zniszczony): port na powierzchni nikomu się już nie przyda
 	if(istype(port, /obj/docking_port/stationary/shuttle_craft_spot) && !port.docked && !QDELETED(port))
 		qdel(port, TRUE)
@@ -92,10 +132,10 @@ GLOBAL_LIST_EMPTY(planet_descents)
 		if(sky)
 			. += sky
 
-/datum/planet_descent/proc/stop_viewers()
+/datum/planet_descent/proc/stop_viewers(fade = FALSE)
 	for(var/atom/movable/screen/parallax_layer/planet_sky/sky as anything in viewers)
 		if(!QDELETED(sky))
-			sky.end_descent()
+			sky.end_descent(fade)
 	viewers.Cut()
 
 /datum/planet_descent/proc/start()
@@ -108,7 +148,8 @@ GLOBAL_LIST_EMPTY(planet_descents)
 	viewers = viewer_layers()
 	for(var/atom/movable/screen/parallax_layer/planet_sky/sky as anything in viewers)
 		sky.play_descent(planet_type)
-	craft.relay('sound/effects/space_wind.ogg', span_notice("[craft] schodzi z orbity nad [planet]. Trzymajcie się czegoś."))
+	craft.relay(null, span_notice("[craft] schodzi z orbity nad [planet]. Trzymajcie się czegoś."))
+	crew_sound('aquila/sound/planets/landing/spool.ogg', 50)
 	shake_crew(2, 1)
 	// Bez atmosfery (księżyc) nie ma żaru ani chmur: od razu teren pod promem, jak w pokazie na warstwie planety
 	var/reentry_at = PLANET_DESCENT_ZOOM
@@ -118,7 +159,14 @@ GLOBAL_LIST_EMPTY(planet_descents)
 		timers += addtimer(CALLBACK(src, PROC_REF(reentry)), reentry_at, TIMER_STOPPABLE)
 		timers += addtimer(CALLBACK(src, PROC_REF(clouds)), reentry_at + PLANET_DESCENT_REENTRY, TIMER_STOPPABLE)
 	timers += addtimer(CALLBACK(src, PROC_REF(approach)), approach_at, TIMER_STOPPABLE)
-	timers += addtimer(CALLBACK(src, PROC_REF(finish)), approach_at + PLANET_DESCENT_APPROACH, TIMER_STOPPABLE)
+	var/total = approach_at + PLANET_DESCENT_APPROACH
+	touchdown_time = world.time + total
+	timers += addtimer(CALLBACK(src, PROC_REF(finish)), total, TIMER_STOPPABLE)
+	// Z ziemi: cień na lądowisku, spadający prom i kurz od dysz w ostatnich chwilach
+	timers += addtimer(CALLBACK(src, PROC_REF(show_ground_shadow)), max(0, total - PLANET_DESCENT_GROUND_SHADOW_LEAD), TIMER_STOPPABLE)
+	timers += addtimer(CALLBACK(src, PROC_REF(show_ground_proxy)), max(0, total - PLANET_DESCENT_GROUND_PROXY_LEAD), TIMER_STOPPABLE)
+	for(var/lead in list(1.4 SECONDS, 0.9 SECONDS, 0.4 SECONDS))
+		timers += addtimer(CALLBACK(src, PROC_REF(thruster_wash)), max(0, total - lead), TIMER_STOPPABLE)
 
 /datum/planet_descent/proc/shake_crew(duration, strength)
 	for(var/mob/M as anything in craft?.mobs_in_ship)
@@ -127,7 +175,8 @@ GLOBAL_LIST_EMPTY(planet_descents)
 
 /// Wejście w atmosferę: żar na kosmosie przy kadłubie, wiatr, trzęsienie
 /datum/planet_descent/proc/reentry()
-	craft.relay('sound/effects/space_wind_big.ogg', span_warning("Kadłub [craft] rozgrzewa się w atmosferze [planet], prom trzęsie się."))
+	craft.relay(null, span_warning("Kadłub [craft] rozgrzewa się w atmosferze [planet], prom trzęsie się."))
+	crew_sound('aquila/sound/planets/landing/entry.ogg', 65)
 	shake_crew(PLANET_DESCENT_REENTRY / 2, 2)
 	for(var/list/edge as anything in hull_edges(craft.shuttle_port))
 		new /obj/effect/temp_visual/planet_reentry(edge[1], edge[2], PLANET_DESCENT_REENTRY + PLANET_DESCENT_CLOUDS / 2)
@@ -160,11 +209,14 @@ GLOBAL_LIST_EMPTY(planet_descents)
 /datum/planet_descent/proc/clouds()
 	clear_cabin_glow()
 	craft.relay(null, span_notice("[craft] przebija chmury i podchodzi do lądowiska."))
+	crew_sound('aquila/sound/planets/landing/clouds.ogg', 45)
 	shake_crew(PLANET_DESCENT_CLOUDS, 1)
 
 /// Ostatnia faza: pod promem teren, a cień kadłuba kurczy się z dużej, miękkiej plamy do obrysu promu (widać go z każdej
 /// strony kadłuba, także zza ścian, które zasłaniają część nieba)
 /datum/planet_descent/proc/approach()
+	crew_sound('aquila/sound/planets/landing/thrusters.ogg', 50)
+	show_ground_window(PLANET_DESCENT_APPROACH * 0.35, PLANET_DESCENT_APPROACH * 0.45)
 	var/list/hull = shuttle_hull_turfs(craft.shuttle_port)
 	if(!length(hull))
 		return
@@ -199,17 +251,24 @@ GLOBAL_LIST_EMPTY(planet_descents)
 	var/list/blockers = list()
 	for(var/turf/T as anything in footprint)
 		blockers += new /obj/effect/planet_landing_blocker(T)
+	// Obraz promu siada na ziemi tuż przed tym, jak stanie na niej prawdziwy kadłub
+	if(ground_proxy)
+		animate(ground_proxy, pixel_y = 0, time = 0.2 SECONDS, easing = QUAD_EASING | EASE_IN)
+	var/list/site = berth.Copy()
 	finishing = TRUE
-	var/landed = landing.shuttle_land(target, port)
+	var/docked = landing.shuttle_land(target, port)
 	finishing = FALSE
 	QDEL_LIST(blockers)
 	port = null // port przejął prom albo shuttle_land go usunął
+	landed = docked
 	qdel(src)
-	if(!landed)
+	if(!docked)
 		if(!QDELETED(landing) && !QDELETED(target))
 			landing.planet_landing_cancelled(target)
 		return
 	planet_touchdown_effects(landing.shuttle_port, target)
+	// Po dokowaniu załoga też jest na planecie: przyziemienie słyszą i czują wszyscy przy lądowisku
+	planet_landing_jolt(site, 'aquila/sound/planets/landing/touchdown.ogg', 70, shake_strength = 1)
 	for(var/mob/M as anything in landing.mobs_in_ship)
 		if(M.client)
 			shake_camera(M, 3, 3)
@@ -228,29 +287,36 @@ GLOBAL_LIST_EMPTY(planet_descents)
 			if(outside && !hull[outside])
 				. += list(list(outside, turn(dir, 180)))
 
-/// Bryzgi na wodzie, kurz na lądzie, wokół kadłuba stojącego na planecie (przy lądowaniu i przy starcie)
+/// Bryzgi na wodzie, kurz na lądzie wokół kadłuba stojącego na planecie. turfs: zamiast krawędzi kadłuba te pola, z kurzem
+/// w losowych kierunkach i na każdym z nich
 /proc/planet_touchdown_effects(obj/docking_port/mobile/shuttle, obj/structure/overmap/planet/planet, list/turfs)
-	var/list/where = turfs
-	if(!where)
-		where = list()
-		for(var/list/edge as anything in hull_edges(shuttle))
-			where |= edge[1]
+	// lista (pole, kierunek, w którym kurz odlatuje od kadłuba)
+	var/list/edges = list()
+	if(turfs)
+		for(var/turf/T as anything in turfs)
+			edges += list(list(T, pick(GLOB.cardinals)))
+	else
+		for(var/list/edge as anything in shuffle(hull_edges(shuttle)))
+			edges += list(list(edge[1], turn(edge[2], 180)))
+	var/dust_color = planet_dust_color(planet)
 	var/splashed = FALSE
-	var/index = 0
-	for(var/turf/T as anything in where)
-		if(index++ % 2) // co drugie pole wystarczy, a efektów nie ma setek
-			continue
+	var/puffs = 0
+	for(var/list/edge as anything in edges)
+		var/turf/T = edge[1]
 		if(istype(T, /turf/open/water) || istype(T, /turf/open/lava))
-			new /obj/effect/temp_visual/liquid_splash(T)
-			splashed = TRUE
-		else if(!T.density)
-			var/obj/effect/temp_visual/small_smoke/halfsecond/dust = new(T)
-			// Kolor chmur tylko wtedy, gdy typ planety go ustawia (domyślny jest biały); inaczej piaskowy pył
-			var/cloud_color = planet?.planet_type?.sky_cloud_color
-			dust.color = (cloud_color && cloud_color != "#ffffff") ? cloud_color : "#c8b890"
-	var/turf/center = get_turf(shuttle) || (length(where) ? where[1] : null)
-	if(center)
-		playsound(center, splashed ? 'sound/effects/splash.ogg' : 'sound/effects/meteorimpact.ogg', 60, TRUE)
+			if(turfs || prob(50))
+				new /obj/effect/temp_visual/liquid_splash(T)
+				splashed = TRUE
+			continue
+		if(T.density || (!turfs && (puffs >= PLANET_TOUCHDOWN_DUST_MAX || !prob(PLANET_TOUCHDOWN_DUST_CHANCE))))
+			continue
+		new /obj/effect/temp_visual/planet_landing_dust(T, edge[2], 1, dust_color)
+		puffs++
+	if(splashed)
+		var/list/first_edge = length(edges) ? edges[1] : null
+		var/turf/center = get_turf(shuttle) || first_edge?[1]
+		if(center)
+			playsound(center, 'sound/effects/splash.ogg', 60, TRUE)
 
 /// Pomarańczowa poświata w kabinie przy wejściu w atmosferę (alfa pulsuje z /datum/planet_descent/proc/cabin_effects)
 /atom/movable/screen/fullscreen/color_vision/planet_reentry
@@ -293,6 +359,8 @@ GLOBAL_LIST_EMPTY(planet_descents)
 	appearance_flags = KEEP_TOGETHER | PIXEL_SCALE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	alpha = 0
+	/// Rozmycie brzegu cienia (piksele)
+	var/blur_size = 3
 
 /// hull: pola kadłuba; cień leży na środku kadłuba, więc skaluje się wokół niego
 /obj/effect/abstract/planet_descent_shadow/Initialize(mapload, list/hull)
@@ -305,7 +373,7 @@ GLOBAL_LIST_EMPTY(planet_descents)
 		part.pixel_y = (T.y - anchor.y) * world.icon_size
 		parts += part
 	add_overlay(parts)
-	filters += filter(type = "blur", size = 3)
+	filters += filter(type = "blur", size = blur_size)
 
 // ---------------------------------------------------------------------------
 // Warstwa planety: zejście i start
@@ -449,9 +517,17 @@ GLOBAL_LIST_EMPTY(planet_descents)
 		animate(rush, pixel_y = start_y - 1536, time = PLANET_ASCENT_SKY)
 		animate(alpha = 0, time = 2)
 
-/// Koniec pokazu: części pokazu znikają, a planeta wraca do zwykłego wyboru (przy następnym update_status)
-/atom/movable/screen/parallax_layer/planet_sky/proc/end_descent()
+/// Koniec pokazu: części pokazu znikają, a planeta wraca do zwykłego wyboru (przy następnym update_status).
+/// fade: przerwane zejście, planeta i niebo bledną w kosmos, a po chwili wraca zwykły widok
+/atom/movable/screen/parallax_layer/planet_sky/proc/end_descent(fade = FALSE)
 	if(!descent_active)
+		return
+	if(fade)
+		var/list/parts = list(body, shade, atmosphere, sky_fill) + streak_parts + rush_parts
+		for(var/obj/effect/overlay/planet_sky_part/part as anything in parts)
+			if(part)
+				animate(part, alpha = 0, time = 1.2 SECONDS, easing = SINE_EASING)
+		addtimer(CALLBACK(src, PROC_REF(end_descent)), 1.3 SECONDS)
 		return
 	descent_active = FALSE
 	if(sky_fill)
@@ -520,15 +596,38 @@ GLOBAL_LIST_EMPTY(planet_descents)
 
 /obj/structure/overmap/small_craft/transport/shuttle_launch(mob/user)
 	var/obj/structure/overmap/planet/planet = get_overmap()
-	// Pola pod kadłubem: po starcie znów są gruntem planety, a kurz zostaje tam, gdzie stał prom
-	var/list/site
-	if(istype(planet) && shuttle_port)
-		site = shuttle_hull_turfs(shuttle_port)
+	// Port na planecie (po starcie go nie ma): z niego widok z ziemi wie, gdzie i jak obrócony stał kadłub
+	var/site_x
+	var/site_y
+	var/site_z
+	var/site_dir
+	if(istype(planet) && shuttle_port && shuttle_docked_at)
+		site_x = shuttle_docked_at.x
+		site_y = shuttle_docked_at.y
+		site_z = shuttle_docked_at.z
+		site_dir = shuttle_docked_at.dir
 	. = ..()
 	if(!. || !istype(planet))
 		return
-	planet_touchdown_effects(null, planet, site)
-	relay('sound/effects/space_wind_big.ogg', span_notice("[src] wznosi się przez atmosferę [planet] na orbitę."))
+	if(site_z)
+		// Kadłub już w locie: obraz z jego pól odlatuje z lądowiska (hull_offsets są po starcie liczone od nowa)
+		var/list/sources = list()
+		var/list/places = list()
+		var/list/turned = shuttle_rotate_offsets(hull_offsets, site_dir)
+		for(var/i in 1 to length(turned))
+			var/list/offset = hull_offsets[i]
+			var/list/turned_offset = turned[i]
+			var/turf/source = locate(shuttle_port.x + offset[1], shuttle_port.y + offset[2], shuttle_port.z)
+			var/turf/place = locate(site_x + turned_offset[1], site_y + turned_offset[2], site_z)
+			if(source && place)
+				sources += source
+				places += place
+		var/datum/planet_launch_view/launch_view = new(sources, places, (dir2angle(site_dir) - dir2angle(shuttle_port.dir) + 360) % 360)
+		launch_view.lift_off()
+	relay(null, span_notice("[src] wznosi się przez atmosferę [planet] na orbitę."))
+	for(var/mob/M as anything in mobs_in_ship)
+		if(M.client && M.can_hear())
+			SEND_SOUND(M, sound('aquila/sound/planets/landing/launch.ogg', volume = 60))
 	for(var/mob/M as anything in mobs_in_ship)
 		if(!M.client)
 			continue
@@ -545,3 +644,7 @@ GLOBAL_LIST_EMPTY(planet_descents)
 #undef PLANET_DESCENT_SKY_SCALE
 #undef PLANET_DESCENT_GROUND_SCALE
 #undef PLANET_DESCENT_SHADOW_SCALE
+#undef PLANET_DESCENT_GROUND_SHADOW_LEAD
+#undef PLANET_DESCENT_GROUND_PROXY_LEAD
+#undef PLANET_TOUCHDOWN_DUST_CHANCE
+#undef PLANET_TOUCHDOWN_DUST_MAX
