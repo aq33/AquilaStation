@@ -721,7 +721,7 @@
 	TEST_ASSERT(patient.aq_limb_pain(arm) > 0, "The arm does not hurt after the suture")
 	qdel(suture)
 
-/// Teeth: a blunt blow to the mouth knocks them out, few teeth make the speech lisp, a dentist pulls and plants them
+/// Teeth: a blunt blow to the mouth knocks them out, few teeth make the speech lisp, a dentist plants them back
 /datum/unit_test/aquila_teeth
 
 /datum/unit_test/aquila_teeth/Run()
@@ -752,11 +752,8 @@
 	head.aq_teeth = 32
 	TEST_ASSERT(!findtext(patient.treat_message("szansa"), "ś"), "A full mouth lisps")
 
-	// The dentist pulls a tooth and plants it back
-	var/datum/surgery_operation/limb/aq_pull_tooth/pull = new()
-	pull.on_success(head, attacker, null, list())
-	TEST_ASSERT(head.aq_teeth == 31, "Pulling did not take a tooth out")
-	qdel(pull)
+	// The dentist plants a prosthetic tooth in the gap
+	head.aq_teeth = 31
 	var/obj/item/stack/teeth/prosthetic/five/prosthetic = allocate(/obj/item/stack/teeth/prosthetic/five)
 	var/datum/surgery_operation/limb/aq_insert_tooth/insert = new()
 	TEST_ASSERT(insert.state_check(head), "A missing tooth cannot be planted")

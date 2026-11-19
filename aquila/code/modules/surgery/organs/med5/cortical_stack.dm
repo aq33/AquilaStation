@@ -80,4 +80,4 @@
 
 /datum/techweb_node/biotech/New()
 	. = ..()
-	design_ids += list("aq_cortical_stack", "aq_prosthetic_teeth", "aq_gold_teeth")
+	design_ids += list("aq_cortical_stack", "aq_prosthetic_teeth")
