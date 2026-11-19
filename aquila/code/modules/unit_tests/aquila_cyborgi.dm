@@ -61,6 +61,29 @@
 	TEST_ASSERT(!lost.connected_ai && !lost.lawupdate, "Zagubiony jest połączony z SI")
 	TEST_ASSERT(!(ACCESS_HEADS in lost.internal_id_card.access), "Zagubiony ma dostęp dowództwa")
 
+/// Każde nowe ulepszenie ma projekt w fabrykatorze, który jest w sieci badań, i ikonę z istniejącym stanem
+/datum/unit_test/aquila_cyborg_designs
+
+/datum/unit_test/aquila_cyborg_designs/Run()
+	var/list/in_nodes = list()
+	for(var/node_id in SSresearch.techweb_nodes)
+		var/datum/techweb_node/node = SSresearch.techweb_nodes[node_id]
+		for(var/design_id in node.design_ids)
+			in_nodes[design_id] = TRUE
+	var/list/built = list()
+	for(var/datum/design/design_type as anything in subtypesof(/datum/design))
+		var/design_id = initial(design_type.id)
+		if(!findtext(design_id, "aq_borg_"))
+			continue
+		TEST_ASSERT(in_nodes[design_id], "Projekt [design_id] nie jest w żadnym węźle badań")
+		TEST_ASSERT(initial(design_type.build_type) & MECHFAB, "Projekt [design_id] nie jest z fabrykatora egzoszkieletów")
+		built[initial(design_type.build_path)] = TRUE
+	var/list/upgrades = subtypesof(/obj/item/borg/upgrade/aquila) + subtypesof(/obj/item/borg/upgrade/transform/aquila_advanced) - /obj/item/borg/upgrade/aquila/toggle
+	for(var/obj/item/upgrade_type as anything in upgrades)
+		TEST_ASSERT(built[upgrade_type], "Ulepszenia [upgrade_type] nie da się zbudować")
+		TEST_ASSERT(initial(upgrade_type.icon_state) in icon_states(initial(upgrade_type.icon)), "Ulepszenie [upgrade_type] nie ma ikony [initial(upgrade_type.icon_state)]")
+	TEST_ASSERT(length(upgrades) == 43, "Ulepszeń i wybieraków jest [length(upgrades)] zamiast 43")
+
 /// Każde ulepszenie instaluje się w pasującym module, odmawia w niepasującym, a po wyjęciu zdejmuje narzędzia
 /datum/unit_test/aquila_cyborg_upgrades
 

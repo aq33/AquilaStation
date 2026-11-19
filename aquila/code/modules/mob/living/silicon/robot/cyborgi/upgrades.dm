@@ -648,12 +648,18 @@
 
 /obj/item/borg/upgrade/aquila/toggle/personal_shield/aq_enable(mob/living/silicon/robot/R)
 	R.aq_personal_shield = src
-	R.add_overlay(mutable_appearance('icons/effects/effects.dmi', "shield-old"))
+	R.update_icons()
 
 /obj/item/borg/upgrade/aquila/toggle/personal_shield/aq_disable(mob/living/silicon/robot/R)
 	if(R.aq_personal_shield == src)
 		R.aq_personal_shield = null
-	R.cut_overlay(mutable_appearance('icons/effects/effects.dmi', "shield-old"))
+	R.update_icons()
+
+// update_icons() czyści nakładki, więc tarczę rysujemy po nim
+/mob/living/silicon/robot/update_icons()
+	. = ..()
+	if(aq_personal_shield)
+		add_overlay(mutable_appearance('icons/effects/effects.dmi', "shield-old"))
 
 /// Zwraca obrażenia po tarczy
 /obj/item/borg/upgrade/aquila/toggle/personal_shield/proc/aq_absorb(mob/living/silicon/robot/R, damage)

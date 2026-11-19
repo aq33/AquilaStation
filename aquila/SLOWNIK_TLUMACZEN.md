@@ -4484,3 +4484,46 @@ Nazwy obszarów są w większości przetłumaczone. Nowe nazwy budujemy z tych k
 | wet rocky ground | mokre skaliste podłoże | n; nowe (planeta wodna) |
 | Frontiersmen | Pogranicznicy | m mn.; nowe (frakcja z ruin Shiptesta, u nas piraci) |
 | Corporate Resort / Cybersun Pad / Frontiersman Moat / Cave Gunsmith / Frontiersmen Depot | Kurort Korporacyjny / Lądowisko Cybersun / Fosa Pograniczników / Jaskiniowy Rusznikarz / Składnica Pograniczników | nowe (ruiny plaży) |
+
+## Cyborgi: moduły i ulepszenia (Aquila)
+
+| EN | PL | Uwagi |
+|---|---|---|
+| Research / Science module | moduł Naukowy | m; nowe |
+| Chemistry module | moduł Chemiczny | m; nowe |
+| Surgeon module | moduł Chirurgiczny | m; nowe |
+| Rescue module | moduł Ratowniczy | m; nowe |
+| Construction module | moduł Budowlany | m; nowe |
+| Exploration module | moduł Eksploracyjny | m; nowe |
+| Detective module | moduł Detektyw | m; nowe |
+| Brobocop | Brobocop | m; nazwa własna (Goonstation) |
+| Hydroponics module | moduł Hydroponiczny | m; nowe |
+| Clerical module | moduł Biurowy | m; nowe |
+| Logistics module | moduł Magazynowy | m; nowe |
+| Multirole module | moduł Wielozadaniowy | m; nowe |
+| Lost (cyborg) | Zagubiony (zagubiony cyborg) | m; nowe |
+| Advanced Engineering / Medical / Miner | Zaawansowany inżynieryjny / medyczny / górniczy | m; nowe |
+| module picker (borg transform board) | wybierak modułu cyborga | m; istniejące |
+| gripper | chwytak | m; nowe |
+| magnetic traction | magnetyczne przyczepy | ż mn.; nowe |
+| power saver | oszczędzacz energii | m; nowe |
+| recharge pack | pakiet doładowania | m; nowe |
+| power connector | kabel zasilania | m; nowe (nasze „złącze zasilania” to `/obj/item/borg/charger`) |
+| death alarm (cyborg) | alarm zniszczenia | m; nowe (dla ludzi zostaje „alarm śmierci”) |
+| lethal mode unlock | odblokowanie trybu zabójczego | n; nowe |
+| personal shield | osobista tarcza | ż; nowe |
+| floodlight | reflektor | m; nowe |
+| plating repair tool | narzędzie do łatania podłóg | n; nowe |
+| push broom | miotła | ż; istniejące |
+| plunger | przepychacz | m; nowe |
+| autocleaner | autoczyściciel | m; nowe |
+| omni-tool | omni-tool | m; nowe |
+| portable ore processor | przenośna huta | ż; nowe |
+| cargo teleporter | teleporter ładunku | m; nowe |
+| holo stretcher | holograficzne nosze | ż mn.; nowe |
+| breathing bag (Ambu bag) | worek oddechowy | m; nowe |
+| spectroscopic scanner | skaner widmowy | m; nowe |
+| anomalous vision | wzrok anomalii | m; nowe |
+| N.O.I.R. vision | wzrok N.O.I.R. | m; nowe |
+| records scanner | skaner akt | m; nowe |
+| energy bola launcher | wyrzutnia bol energetycznych | ż; nowe |

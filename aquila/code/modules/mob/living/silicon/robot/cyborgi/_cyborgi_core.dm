@@ -96,12 +96,16 @@
 /obj/item/robot_module/proc/aq_on_remove(mob/living/silicon/robot/cyborg)
 	return
 
-/// Większe magazyny materiałów (zaawansowane moduły): mnożnik pojemności i odnawiania
+/// Większe magazyny materiałów (zaawansowane moduły): mnożnik pojemności i odnawiania.
+/// Woła się po każdym rebuild_modules(), ale powiększa tylko nowe magazyny (bez darmowego uzupełnienia przy montażu ulepszeń)
 /obj/item/robot_module/proc/aq_scale_storages(multiplier)
 	for(var/datum/robot_energy_storage/storage in storages)
-		storage.max_energy = round(initial(storage.max_energy) * multiplier)
+		var/target = round(initial(storage.max_energy) * multiplier)
+		if(storage.max_energy == target)
+			continue
+		storage.max_energy = target
 		storage.recharge_rate = round(initial(storage.recharge_rate) * multiplier)
-		storage.energy = storage.max_energy
+		storage.energy = target
 
 /// Szuka narzędzia danego typu w module cyborga
 /mob/living/silicon/robot/proc/aq_find_module_item(item_type)
