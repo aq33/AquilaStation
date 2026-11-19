@@ -61,7 +61,7 @@
 
 /datum/quirk/introvert
 	name = "Introwertyk"
-	desc = "Energii dodaje ci czas spędzony w samotności, a wolne chwile najchętniej spędzasz w bibliotece."
+	desc = "Energii dodaje ci czas spędzony w samotności, a wolne chwile najchętniej spędzasz w bibliotece, w kwaterach albo w kaplicy."
 	icon = "book-reader"
 	value = 0
 	mob_trait = TRAIT_INTROVERT
@@ -80,10 +80,14 @@
 
 /datum/quirk/introvert/proc/on_enter_area(datum/source, area/new_area)
 	SIGNAL_HANDLER
-	if(istype(new_area, /area/library))
+	if(new_area && aq_introvert_quiet_area(new_area.type))
 		SEND_SIGNAL(quirk_holder, COMSIG_ADD_MOOD_EVENT, "introvert_area", /datum/mood_event/introvert_library)
 	else
 		SEND_SIGNAL(quirk_holder, COMSIG_CLEAR_MOOD_EVENT, "introvert_area")
+
+/// Gdzie introwertyk odpoczywa. Biblioteka jest tylko na części map, więc spokój dają też kwatery załogi i kaplica.
+/proc/aq_introvert_quiet_area(area_type)
+	return ispath(area_type, /area/library) || ispath(area_type, /area/crew_quarters/dorms) || ispath(area_type, /area/chapel)
 
 /area/crew_quarters/bar/mood_check(mob/living/carbon/subject)
 	if(HAS_TRAIT(subject, TRAIT_INTROVERT))
@@ -95,7 +99,7 @@
 	mood_change = 3
 
 /datum/mood_event/introvert_library
-	description = "<span class='nicegreen'>Uwielbiam przebywać w bibliotece!</span>\n"
+	description = "<span class='nicegreen'>Uwielbiam spokój w cichym miejscu!</span>\n"
 	mood_change = 5
 
 // --- Snob ---

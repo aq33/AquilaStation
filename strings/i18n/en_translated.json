@@ -27513,12 +27513,10 @@
 "<span class='danger'>Masz już dość barów.</span>": "<span class='danger'>You feel like you're over the bar scene.</span>",
 "Pacjent nie potrafi się zamknąć.": "Patient will not shut the hell up.",
 "Introwertyk": "Introvert",
-"Energii dodaje ci czas spędzony w samotności, a wolne chwile najchętniej spędzasz w bibliotece.": "You are energized by having time to yourself, and enjoy spending your free time in the library.",
 "<span class='notice'>Masz ochotę poczytać w spokoju dobrą książkę.</span>": "<span class='notice'>You feel like reading a good book quietly.</span>",
 "<span class='danger'>Biblioteki wydają ci się nudne.</span>": "<span class='danger'>You feel like libraries are boring.</span>",
 "Pacjent niewiele mówi.": "Patient doesn't seem to say much.",
 "<span class='nicegreen'>Uwielbiam towarzystwo w barze!</span>\\n": "<span class='nicegreen'>I love the company in the bar!</span>\\n",
-"<span class='nicegreen'>Uwielbiam przebywać w bibliotece!</span>\\n": "<span class='nicegreen'>I love being in the library!</span>\\n",
 "Snob": "Snob",
 "Liczą się dla ciebie rzeczy wysokiej klasy. Jeśli pomieszczenie nie wygląda porządnie, to szkoda w nim przebywać, prawda?": "You care about the finer things, if a room doesn't look nice its just not really worth it, is it?",
 "<span class='notice'>Czujesz, że wiesz, jak powinny wyglądać rzeczy.</span>": "<span class='notice'>You feel like you understand what things should look like.</span>",
@@ -29285,5 +29283,6 @@
 "Masz drugą parę rąk na odnóżach: trzymają i używają przedmiotów jak zwykłe dłonie, a w HUD-zie mają własne sloty nad rękami.": "You have a second pair of hands on your legs: they hold and use items like normal hands and have their own slots above your hands on the HUD.",
 "lewe odnóża": "left legs",
 "prawe odnóża": "right legs",
-"Nie lubisz przytulania i odruchowo wymykasz się z przytuleń, głaskania i uścisków dłoni. Gdy ktoś cię złapie albo dotknie, kiedy leżysz lub jesteś skrępowany, psuje ci to humor.": "You don't like hugs and reflexively dodge hugs, pats and handshakes. Being grabbed, or touched while you're down or restrained, ruins your mood."
+"Nie lubisz przytulania i odruchowo wymykasz się z przytuleń, głaskania i uścisków dłoni. Gdy ktoś cię złapie albo dotknie, kiedy leżysz lub jesteś skrępowany, psuje ci to humor.": "You don't like hugs and reflexively dodge hugs, pats and handshakes. Being grabbed, or touched while you're down or restrained, ruins your mood.",
+"Energii dodaje ci czas spędzony w samotności, a wolne chwile najchętniej spędzasz w bibliotece, w kwaterach albo w kaplicy.": "Time spent alone recharges you, and you'd rather spend your free time in the library, your quarters or the chapel."
 }

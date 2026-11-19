@@ -249,6 +249,11 @@
 	var/area/crew_quarters/bar/bar_area = GLOB.areas_by_type[/area/crew_quarters/bar]
 	if(bar_area)
 		TEST_ASSERT(!bar_area.mood_check(introvert), "The bar still cheers up an introvert")
+	// Spokój daje biblioteka, kwatery i kaplica (biblioteki nie ma na każdej mapie), a bar i korytarz nie
+	for(var/area_type in list(/area/library, /area/crew_quarters/dorms, /area/crew_quarters/dorms/nsv/nature_deck, /area/chapel/main))
+		TEST_ASSERT(aq_introvert_quiet_area(area_type), "[area_type] does not calm the introvert")
+	TEST_ASSERT(!aq_introvert_quiet_area(/area/crew_quarters/bar), "The bar calms the introvert")
+	TEST_ASSERT(!aq_introvert_quiet_area(/area/hallway), "A hallway calms the introvert")
 
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL
