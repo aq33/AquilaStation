@@ -4460,7 +4460,7 @@ Nazwy obszarów są w większości przetłumaczone. Nowe nazwy budujemy z tych k
 | FTL calibration / pylon tuning | kalibracja pylonów | ż; nowe |
 | design chip | chip projektu | m; nowe |
 | shield diffuser | dyfuzor tarcz | m; nowe; głowica |
-| sensor probe / probe buoy | sonda czujnikowa / boja czujnikowa | ż; nowe |
+| sensor buoy (NTP-S torpedo) | boja czujnikowa | ż; nowe |
 | department contract | zlecenie dla działu | n; nowe; „zlecenia działów” |
 
 ## 14. Marki, firmy, producenci

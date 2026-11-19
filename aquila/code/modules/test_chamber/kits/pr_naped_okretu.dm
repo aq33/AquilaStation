@@ -4,7 +4,7 @@
 /datum/test_chamber_kit/pr_naped_missiles
 	name = "Okręt: projekty pocisków i ładunki"
 	pr = "aq33/AquilaStation#644"
-	description = "Zestaw: obudowy torped i rakiet, wszystkie nowe głowice, części i narzędzia, karta uzbrojenia. 1) Multitool na obudowie torpedy albo rakiety (także na gotowej amunicji) otwiera menu: silnik (sprint, standardowy, marszowy) i naprowadzanie (brak, podczerwień, radar, z okrętu). Examine pokazuje ustawienie. 2) Złóż torpedę w ustawionej obudowie (napęd, naprowadzanie, karta IFF, głowica, kabel, śrubokręt); examine gotowej torpedy pokazuje ustawienie. 3) Nowe głowice: dyfuzor tarcz (torpeda zdejmuje celowi połowę tarczy, rakieta 1/3, sam rani słabo), sonda czujnikowa (nie rani, zostawia boję na 3 minuty, DRADIS pokazuje kontakty w promieniu 12 pól z dokładnym położeniem), rakieta zakłócająca (EMP). Strzelanie i efekty na overmapie sprawdź na statku: torpedy i rakiety z zestawu przenieś do wyrzutni (receptury głowic są w protolacie uzbrojenia: sondy w Amunicji kierowanej II, EMP i dyfuzory w Prototypie głowicy zakłócającej)."
+	description = "Zestaw: obudowy torped i rakiet, wszystkie nowe głowice, części i narzędzia, karta uzbrojenia. 1) Multitool na obudowie torpedy albo rakiety (także na gotowej amunicji) otwiera menu: silnik (sprint, standardowy, marszowy) i naprowadzanie (brak, podczerwień, radar, z okrętu). Examine pokazuje ustawienie. 2) Złóż torpedę w ustawionej obudowie (napęd, naprowadzanie, karta IFF, głowica, kabel, śrubokręt); examine gotowej torpedy pokazuje ustawienie. 3) Nowe głowice: dyfuzor tarcz (torpeda zdejmuje celowi połowę tarczy, rakieta 1/3, sam rani słabo), boja czujnikowa NTP-S w torpedzie (nie rani, zostawia boję na 3 minuty, DRADIS pokazuje kontakty w promieniu 12 pól z dokładnym położeniem), rakieta zakłócająca (EMP). Strzelanie i efekty na overmapie sprawdź na statku: torpedy i rakiety z zestawu przenieś do wyrzutni (receptury głowic są w protolacie uzbrojenia: boja czujnikowa w Amunicji kierowanej II, EMP i dyfuzory w Prototypie głowicy zakłócającej)."
 	items = list(
 		/obj/item/ship_weapon/ammunition/torpedo/torpedo_casing = 2,
 		/obj/item/ship_weapon/ammunition/missile/missile_casing = 2,
@@ -12,7 +12,6 @@
 		/obj/item/ship_weapon/parts/missile/warhead/sensor_probe = 1,
 		/obj/item/ship_weapon/parts/missile/warhead/emp = 1,
 		/obj/item/ship_weapon/parts/missile/warhead/diffuser_missile = 1,
-		/obj/item/ship_weapon/parts/missile/warhead/sensor_probe_missile = 1,
 		/obj/item/ship_weapon/parts/missile/propulsion_system = 4,
 		/obj/item/ship_weapon/parts/missile/guidance_system = 4,
 		/obj/item/ship_weapon/parts/missile/iff_card = 4,
