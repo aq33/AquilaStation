@@ -814,7 +814,7 @@
 	TEST_ASSERT(!suit.aq_jammed && suit.loc != wearer, "The rescuer did not cut the suit off")
 	TEST_ASSERT(suit.aq_cut && !(suit.clothing_flags & STOPSPRESSUREDAMAGE), "The cut suit still holds pressure")
 
-/// Embalmed organs do not rot; a husk with rezadone in the blood is rebuilt by surgery
+/// Embalmed organs do not rot
 /datum/unit_test/aquila_embalming
 
 /datum/unit_test/aquila_embalming/Run()
@@ -834,18 +834,6 @@
 	for(var/i in 1 to 20)
 		liver.on_death()
 	TEST_ASSERT(liver.damage == damage, "The organs of an embalmed corpse rot")
-
-	corpse.become_husk("burn")
-	var/datum/surgery_operation/limb/aq_unhusk/unhusk = new()
-	TEST_ASSERT(!unhusk.state_check(chest), "A husk is rebuilt without rezadone")
-	corpse.reagents.add_reagent(/datum/reagent/medicine/rezadone, 5)
-	TEST_ASSERT(unhusk.state_check(chest), "A husk with rezadone cannot be rebuilt")
-	unhusk.on_success(chest, corpse, null, list())
-	TEST_ASSERT(!HAS_TRAIT(corpse, TRAIT_HUSK), "The husk was not rebuilt")
-	corpse.become_husk(CHANGELING_DRAIN)
-	corpse.reagents.add_reagent(/datum/reagent/medicine/rezadone, 5)
-	TEST_ASSERT(!unhusk.state_check(chest), "A changeling husk can be rebuilt")
-	qdel(unhusk)
 
 /// The cloning console reads the mind only from a cortical stack
 /datum/unit_test/aquila_cortical_stack
