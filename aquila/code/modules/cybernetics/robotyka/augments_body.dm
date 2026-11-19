@@ -17,7 +17,7 @@
 	icon_state = "platelet_factories"
 	implant_overlay = null
 	slot = ORGAN_SLOT_AQ_BLOOD_AUG
-	aq_cyberpsychosis_cost = 2
+	aq_cyberpsychosis_cost = 10
 	/// Mnożnik krwawienia
 	var/bleed_multiplier = 0.2
 	/// Szansa na zakrzep w każdym cyklu życia (co 2 s), w promilach
@@ -63,7 +63,7 @@
 	implant_overlay = null
 	slot = ORGAN_SLOT_AQ_AIR_SAC
 	actions_types = list(/datum/action/item_action/organ_action/toggle)
-	aq_cyberpsychosis_cost = 1
+	aq_cyberpsychosis_cost = 5
 	/// Worek z powietrzem
 	var/obj/item/tank/internals/aq_air_sac/sac
 
@@ -157,7 +157,7 @@
 	slot = ORGAN_SLOT_AQ_CAMO
 	syndicate_implant = TRUE
 	actions_types = list(/datum/action/item_action/organ_action/toggle)
-	aq_cyberpsychosis_cost = 3
+	aq_cyberpsychosis_cost = 18
 	/// Czy kamuflaż działa
 	var/active = FALSE
 	/// Przezroczystość nosiciela
@@ -212,7 +212,7 @@
 	icon_state = "chest_implant"
 	implant_overlay = "chest_implant_overlay"
 	implant_color = "#9AA3AD"
-	aq_cyberpsychosis_cost = 2
+	aq_cyberpsychosis_cost = 10
 	/// Premia do maksymalnego zdrowia
 	var/health_bonus = 20
 	/// Mnożnik obrażeń od uderzeń
@@ -260,7 +260,7 @@
 	implant_overlay = null
 	syndicate_implant = TRUE
 	actions_types = list(/datum/action/item_action/organ_action/use)
-	aq_cyberpsychosis_cost = 3
+	aq_cyberpsychosis_cost = 18
 	/// Czy działa
 	var/active = FALSE
 	/// Ile trwa przyspieszenie
@@ -353,7 +353,7 @@
 	implant_overlay = null
 	syndicate_implant = TRUE
 	actions_types = list(/datum/action/item_action/organ_action/toggle)
-	aq_cyberpsychosis_cost = 3
+	aq_cyberpsychosis_cost = 18
 	/// Czy działa
 	var/active = FALSE
 	/// Licznik przegrzania: +1 na cykl włączony, -2 wyłączony
@@ -439,7 +439,7 @@
 	desc = "Tania podróbka neuronowego podkręcacza. Zostawia ładną poświatę powidoków i nic poza tym."
 	syndicate_implant = FALSE
 	toy = TRUE
-	aq_cyberpsychosis_cost = 1
+	aq_cyberpsychosis_cost = 5
 
 // ---------------------------------------------------------------------------
 // Grawitonowy implant kręgosłupa Herculean (/tg/station /obj/item/organ/cyberimp/chest/spine)
@@ -450,7 +450,7 @@
 	icon = AQ_ROBOTYKA_ICON
 	icon_state = "herculean_implant"
 	implant_overlay = null
-	aq_cyberpsychosis_cost = 2
+	aq_cyberpsychosis_cost = 10
 	/// Premia do ciosów
 	var/punch_bonus = 4
 	/// Premia do zasięgu rzutu
@@ -492,7 +492,7 @@
 	name = "zintegrowany skaner zdrowia"
 	desc = "Wysuwany z dłoni analizator zdrowia, który bada pacjenta dotykiem."
 	items_to_create = list(/obj/item/healthanalyzer)
-	aq_cyberpsychosis_cost = 1
+	aq_cyberpsychosis_cost = 5
 
 /obj/item/organ/cyberimp/arm/aq_health_scanner/l
 	zone = BODY_ZONE_L_ARM
@@ -502,7 +502,7 @@
 	name = "wysuwany analizator cyborgów"
 	desc = "Analizator cyborgów i protez wysuwany z palca, do diagnozy na miejscu."
 	items_to_create = list(/obj/item/aq_robot_analyzer)
-	aq_cyberpsychosis_cost = 1
+	aq_cyberpsychosis_cost = 5
 
 /obj/item/organ/cyberimp/arm/aq_cyborg_analyzer/l
 	zone = BODY_ZONE_L_ARM
@@ -554,7 +554,7 @@
 /obj/item/organ/cyberimp/arm/aq_embedded
 	name = "moduł wbudowanego przedmiotu"
 	desc = "Uniwersalny moduł w ręce: włóż do niego przedmiot nie większy niż zwykły, a będzie się błyskawicznie wysuwać z dłoni. Nożyce do drutu wyjmują przedmiot z modułu."
-	aq_cyberpsychosis_cost = 2
+	aq_cyberpsychosis_cost = 10
 
 /obj/item/organ/cyberimp/arm/aq_embedded/l
 	zone = BODY_ZONE_L_ARM
@@ -606,7 +606,7 @@
 	desc = "Wbudowany w rękę doorjack, którym można sforsować zamek drzwi."
 	syndicate_implant = TRUE
 	items_to_create = list(/obj/item/aq_doorjack)
-	aq_cyberpsychosis_cost = 2
+	aq_cyberpsychosis_cost = 10
 
 /obj/item/organ/cyberimp/arm/aq_doorjack/l
 	zone = BODY_ZONE_L_ARM
@@ -642,7 +642,7 @@
 	name = "implant haka wspinaczkowego"
 	desc = "Wszczepiony hak z liną do wspinania się na wyższe piętro przez dziurę w suficie."
 	items_to_create = list(/obj/item/aq_climbing_hook)
-	aq_cyberpsychosis_cost = 1
+	aq_cyberpsychosis_cost = 5
 
 /obj/item/organ/cyberimp/arm/aq_climbing_hook/l
 	zone = BODY_ZONE_L_ARM
@@ -697,7 +697,7 @@
 	icon_state = "shell_cannon"
 	syndicate_implant = TRUE
 	items_to_create = list(/obj/item/gun/ballistic/shotgun/doublebarrel/aq_shell_launcher)
-	aq_cyberpsychosis_cost = 3
+	aq_cyberpsychosis_cost = 18
 
 /obj/item/organ/cyberimp/arm/aq_shell_launcher/l
 	zone = BODY_ZONE_L_ARM
@@ -754,7 +754,7 @@
 	icon_state = "v1_arm"
 	zone = BODY_ZONE_L_ARM
 	items_to_create = list(/obj/item/aq_v1_arm)
-	aq_cyberpsychosis_cost = 3
+	aq_cyberpsychosis_cost = 18
 
 /obj/item/organ/cyberimp/arm/aq_v1_arm/emp_act(severity)
 	. = ..()
@@ -822,7 +822,7 @@
 	name = "implant magnetycznych stóp"
 	desc = "Magnes w stopie działa jak magbuty. Potrzebuje drugiego takiego implantu w drugiej nodze."
 	double_legged_type = /obj/item/organ/cyberimp/leg/aq_magboot
-	aq_cyberpsychosis_cost = 1
+	aq_cyberpsychosis_cost = 5
 	/// Akcja przełączania (tylko na jednym z pary)
 	var/datum/action/innate/aq_maglock/maglock
 

@@ -16,7 +16,7 @@
 #define ORGAN_SLOT_AQ_SERVICE_JACK "aq_service_jack"
 
 /// Augmenty nosiciela nie działają (implant zakłócający augmenty)
-#define TRAIT_AQ_AUGMENTS_DISRUPTED "aq_augments_disrupted"
+// TRAIT_AQ_AUGMENTS_DISRUPTED: w __DEFINES/robotics.dm (część ROBOTYKA)
 /// Słyszy i mówi na kanale binarnym bez słuchawek (tłumacz maszynowy, powłoka SI)
 #define TRAIT_AQ_BINARY_SPEAKER "aq_binary_speaker"
 

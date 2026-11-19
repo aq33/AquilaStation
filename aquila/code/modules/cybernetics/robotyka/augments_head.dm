@@ -18,7 +18,7 @@
 	implant_overlay = null
 	implant_color = "#FFF782"
 	slot = ORGAN_SLOT_BRAIN_WIRE_INTERFACE
-	aq_cyberpsychosis_cost = 1
+	aq_cyberpsychosis_cost = 5
 	/// Do kiedy EMP zaślepia interfejs
 	var/blind_until = 0
 
@@ -54,7 +54,7 @@
 	status = ORGAN_ROBOTIC
 	organ_flags = ORGAN_SYNTHETIC | ORGAN_VITAL
 	decoy_override = TRUE // nie tworzy brainmoba: świadomość należy do SI
-	aq_cyberpsychosis_cost = 3
+	aq_cyberpsychosis_cost = 18
 	/// SI, która teraz steruje ciałem
 	var/mob/living/silicon/ai/controlling_ai
 	/// Przycisk powrotu do rdzenia
@@ -178,7 +178,7 @@
 	desc = "Uzależniający implant pobudzający ośrodek przyjemności. Mocno poprawia nastrój, ale na zawsze psuje smak, nawet po wyjęciu."
 	implant_color = "#FFABE0"
 	slot = ORGAN_SLOT_BRAIN_JOYWIRE
-	aq_cyberpsychosis_cost = 2
+	aq_cyberpsychosis_cost = 10
 
 /obj/item/organ/cyberimp/brain/aq_joywire/on_life()
 	. = ..()
@@ -247,7 +247,7 @@
 	slot = ORGAN_SLOT_BRAIN_HACKING
 	syndicate_implant = TRUE
 	actions_types = list(/datum/action/item_action/organ_action/toggle)
-	aq_cyberpsychosis_cost = 2
+	aq_cyberpsychosis_cost = 10
 	/// Czy czeka na wskazanie celu
 	var/armed = FALSE
 	/// Zasięg
@@ -315,7 +315,7 @@
 	desc = "Wstrząsem budzi nosiciela, gdy ten straci przytomność poza zwykłym snem. Potem musi się naładować."
 	implant_color = "#FFE14D"
 	slot = ORGAN_SLOT_BRAIN_JUMPSTARTER
-	aq_cyberpsychosis_cost = 2
+	aq_cyberpsychosis_cost = 10
 	/// Odnowienie
 	var/cooldown_time = 1 MINUTES
 	COOLDOWN_DECLARE(jump_cooldown)
@@ -343,7 +343,7 @@
 	implant_overlay = null
 	slot = ORGAN_SLOT_BRAIN_EMOTION
 	actions_types = list(/datum/action/item_action/organ_action/use)
-	aq_cyberpsychosis_cost = 2
+	aq_cyberpsychosis_cost = 10
 	/// Tryb: null, "happy" albo "calm"
 	var/mode
 	/// Kiedy następny komunikat
@@ -411,7 +411,7 @@
 	icon_state = "eyes_tacvisor"
 	eye_color = "3F3"
 	flash_protect = 2
-	aq_cyberpsychosis_cost = 2
+	aq_cyberpsychosis_cost = 10
 
 /obj/item/organ/eyes/robotic/aq_tacvisor/Insert(mob/living/carbon/M, special = FALSE, drop_if_replaced = FALSE)
 	. = ..()
@@ -439,7 +439,7 @@
 	icon_state = "eye-monitor"
 	eye_color = "39F"
 	actions_types = list(/datum/action/item_action/organ_action/use)
-	aq_cyberpsychosis_cost = 1
+	aq_cyberpsychosis_cost = 5
 	/// Wbudowana konsola kamer
 	var/obj/machinery/computer/security/aq_eye_monitor/monitor
 
@@ -491,7 +491,7 @@
 	zone = BODY_ZONE_PRECISE_EYES
 	w_class = WEIGHT_CLASS_TINY
 	actions_types = list(/datum/action/item_action/organ_action/toggle)
-	aq_cyberpsychosis_cost = 1
+	aq_cyberpsychosis_cost = 5
 	/// Czy przybliża
 	var/zoomed = FALSE
 	/// Przesunięcie widoku w kratkach
@@ -542,7 +542,7 @@
 	eye_color = "0C4"
 	sight_flags = SEE_TURFS
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
-	aq_cyberpsychosis_cost = 1
+	aq_cyberpsychosis_cost = 5
 
 // ---------------------------------------------------------------------------
 // Mapa okrętu w oku (SS220 /obj/item/organ/internal/cyberimp/eyes/map): holomapa na żądanie
@@ -556,7 +556,7 @@
 	slot = ORGAN_SLOT_EYE_MAP
 	zone = BODY_ZONE_PRECISE_EYES
 	w_class = WEIGHT_CLASS_TINY
-	aq_cyberpsychosis_cost = 1
+	aq_cyberpsychosis_cost = 5
 
 /obj/item/organ/cyberimp/eyes/aq_map/Insert(mob/living/carbon/M, special = FALSE, drop_if_replaced = TRUE)
 	. = ..()
@@ -584,7 +584,7 @@
 	icon_state = "eye-laser"
 	eye_color = "F00"
 	actions_types = list(/datum/action/item_action/organ_action/toggle)
-	aq_cyberpsychosis_cost = 3
+	aq_cyberpsychosis_cost = 18
 	/// Czy czeka na cel
 	var/armed = FALSE
 	/// Odnowienie strzału
@@ -655,7 +655,7 @@
 	slot = ORGAN_SLOT_AQ_GUSTATORIAL
 	w_class = WEIGHT_CLASS_TINY
 	actions_types = list(/datum/action/item_action/organ_action/use)
-	aq_cyberpsychosis_cost = 1
+	aq_cyberpsychosis_cost = 5
 
 /obj/item/organ/cyberimp/aq_gustatorial/ui_action_click()
 	if(!aq_augment_usable())

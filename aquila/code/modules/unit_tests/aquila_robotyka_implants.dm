@@ -33,16 +33,6 @@
 	qdel(robotalk)
 	TEST_ASSERT(!patient.binarycheck(), "The binary channel stayed after removal")
 
-	// Bezpiecznik przedawkowania
-	var/obj/item/implant/aq_od_purge/purge = aq_self_implant(patient, /obj/item/implanter/aq_od_purge)
-	TEST_ASSERT(purge, "The overdose purge did not go in")
-	var/datum/reagent/overdosed = /datum/reagent/medicine/ephedrine
-	var/threshold = initial(overdosed.overdose_threshold)
-	patient.reagents.add_reagent(overdosed, threshold + 20)
-	TEST_ASSERT(purge.purge_overdoses() == 1, "The purge did not touch an overdosed reagent")
-	TEST_ASSERT(patient.reagents.get_reagent_amount(overdosed) < threshold + 20, "The overdosed reagent was not reduced")
-	patient.reagents.clear_reagents()
-
 	// Tarcza EMP
 	var/obj/item/implant/aq_empshield/shield = aq_self_implant(patient, /obj/item/implanter/aq_empshield)
 	TEST_ASSERT(shield, "The EMP shield did not go in")

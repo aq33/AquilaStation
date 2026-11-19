@@ -18,13 +18,6 @@
 	id = "aq_implant_antirot"
 	build_path = /obj/item/implantcase/aq_antirot
 
-/datum/design/aq_implantcase/od_purge
-	name = "Etui z bezpiecznikiem przedawkowania"
-	desc = "Usuwa nadmiar substancji przy przedawkowaniu."
-	id = "aq_implant_od_purge"
-	materials = list(/datum/material/iron = 500, /datum/material/glass = 500, /datum/material/silver = 300)
-	build_path = /obj/item/implantcase/aq_od_purge
-
 /datum/design/aq_implantcase/robotalk
 	name = "Etui z tłumaczem maszynowym"
 	desc = "Język binarny i kanał silikonów bez słuchawek."
@@ -62,13 +55,6 @@
 	desc = "Hologram okrętu z pozycjami innych nosicieli."
 	id = "aq_implant_tacmap"
 	build_path = /obj/item/implantcase/aq_tacmap
-	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
-
-/datum/design/aq_implantcase/anti_augment
-	name = "Etui z zakłócaczem augmentów"
-	desc = "Zakłóca augmenty nosiciela. Dla więźniów."
-	id = "aq_implant_anti_augment"
-	build_path = /obj/item/implantcase/aq_anti_augment
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 
 /datum/design/aq_implantcase/teleport_blocker
@@ -267,13 +253,11 @@
 	prereq_ids = list("subdermal_implants", "datatheory")
 	design_ids = list(
 		"aq_implant_antirot",
-		"aq_implant_od_purge",
 		"aq_implant_robotalk",
 		"aq_implant_empshield",
 		"aq_implant_access",
 		"aq_implant_iff",
 		"aq_implant_tacmap",
-		"aq_implant_anti_augment",
 		"aq_implant_teleport_blocker",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)

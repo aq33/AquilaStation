@@ -1,6 +1,6 @@
 // AQUILA - implanty dla załogi (medycyna, R&D, ochrona). Wdrożenie robotyki, część IMPLANTY.
-// Źródła: Goonstation (antirot, robotalk, access), BurgerStation (od_purge, iff), YogStation (empshield),
-// /tg/station (tacmap, teleport_blocker), Aurora (anti_augment).
+// Źródła: Goonstation (antirot, robotalk, access), BurgerStation (iff), YogStation (empshield),
+// /tg/station (tacmap, teleport_blocker). Bezpiecznik przedawkowania i zakłócacz augmentów: robotics/robotics_implants.dm.
 
 // ---------------------------------------------------------------------------
 // Rotbusttec: formaldehyd po śmierci (Goonstation /obj/item/implant/antirot)
@@ -63,60 +63,6 @@
 	name = "etui na implant – „Tłumacz maszynowy”"
 	desc = "Szklane etui z implantem tłumacza maszynowego."
 	imp_type = /obj/item/implant/aq_robotalk
-
-// ---------------------------------------------------------------------------
-// Bezpiecznik przedawkowania (BurgerStation /obj/item/organ/internal/implant/torso/od_purge)
-
-/obj/item/implant/aq_od_purge
-	name = "implant bezpiecznika przedawkowania"
-	desc = "Gdy jakiejś substancji we krwi jest więcej niż próg przedawkowania, co chwilę usuwa połowę jej ilości."
-	icon_state = "reagents"
-	activated = FALSE
-	/// Co ile sprawdza krew
-	var/purge_interval = 5 SECONDS
-	COOLDOWN_DECLARE(purge_cooldown)
-
-/obj/item/implant/aq_od_purge/get_data()
-	return "<b>Specyfikacja implantu:</b><BR><b>Nazwa:</b> bezpiecznik przedawkowania<BR><b>Działanie:</b> co kilka sekund usuwa połowę każdej substancji, której ilość we krwi przekracza próg przedawkowania. Nie usuwa dawek poniżej progu."
-
-/obj/item/implant/aq_od_purge/implant(mob/living/target, mob/user, silent = FALSE, force = FALSE)
-	. = ..()
-	if(.)
-		START_PROCESSING(SSobj, src)
-
-/obj/item/implant/aq_od_purge/removed(mob/living/source, silent = FALSE, special = 0)
-	STOP_PROCESSING(SSobj, src)
-	return ..()
-
-/obj/item/implant/aq_od_purge/Destroy()
-	STOP_PROCESSING(SSobj, src)
-	return ..()
-
-/obj/item/implant/aq_od_purge/process(delta_time)
-	if(!imp_in?.reagents || !COOLDOWN_FINISHED(src, purge_cooldown))
-		return
-	COOLDOWN_START(src, purge_cooldown, purge_interval)
-	purge_overdoses()
-
-/// Usuwa połowę każdej substancji ponad progiem przedawkowania. Zwraca liczbę oczyszczonych substancji.
-/obj/item/implant/aq_od_purge/proc/purge_overdoses()
-	. = 0
-	for(var/datum/reagent/reagent as anything in imp_in.reagents.reagent_list)
-		if(!reagent.overdose_threshold || reagent.volume <= reagent.overdose_threshold)
-			continue
-		imp_in.reagents.remove_reagent(reagent.type, reagent.volume / 2)
-		.++
-	if(.)
-		to_chat(imp_in, span_notice("Czujesz chłodne ukłucie: implant oczyszcza krew z nadmiaru substancji."))
-
-/obj/item/implanter/aq_od_purge
-	name = "implanter (bezpiecznik przedawkowania)"
-	imp_type = /obj/item/implant/aq_od_purge
-
-/obj/item/implantcase/aq_od_purge
-	name = "etui na implant – „Bezpiecznik przedawkowania”"
-	desc = "Szklane etui z implantem, który usuwa nadmiar substancji przy przedawkowaniu."
-	imp_type = /obj/item/implant/aq_od_purge
 
 // ---------------------------------------------------------------------------
 // Tarcza EMP (YogStation /obj/item/implant/empshield)
@@ -352,51 +298,6 @@
 	name = "etui na implant – „Swój-obcy”"
 	desc = "Szklane etui z implantem swój-obcy ochrony."
 	imp_type = /obj/item/implant/aq_iff
-
-// ---------------------------------------------------------------------------
-// Zakłócacz augmentów (Aurora /obj/item/implant/anti_augment)
-
-/obj/item/implant/aq_anti_augment
-	name = "implant zakłócający augmenty"
-	desc = "Emituje sygnał, który zakłóca działanie większości augmentów i implantów cybernetycznych nosiciela."
-	icon_state = "emp"
-	activated = FALSE
-
-/obj/item/implant/aq_anti_augment/get_data()
-	return "<b>Specyfikacja implantu:</b><BR><b>Nazwa:</b> zakłócacz augmentów<BR><b>Działanie:</b> przyciski implantów cybernetycznych nosiciela nie działają, narzędzia nie wysuwają się z rąk, a wysunięte się chowają.<BR><b>Uwaga:</b> silny impuls EMP może go zniszczyć."
-
-/obj/item/implant/aq_anti_augment/implant(mob/living/target, mob/user, silent = FALSE, force = FALSE)
-	. = ..()
-	if(!. || !iscarbon(target))
-		return
-	ADD_TRAIT(target, TRAIT_AQ_AUGMENTS_DISRUPTED, REF(src))
-	var/mob/living/carbon/carbon_target = target
-	for(var/obj/item/organ/cyberimp/arm/arm_implant in carbon_target.internal_organs)
-		arm_implant.Retract()
-	if(!silent)
-		to_chat(target, span_warning("Twoje augmenty milkną."))
-
-/obj/item/implant/aq_anti_augment/removed(mob/living/source, silent = FALSE, special = 0)
-	REMOVE_TRAIT(source, TRAIT_AQ_AUGMENTS_DISRUPTED, REF(src))
-	return ..()
-
-/obj/item/implant/aq_anti_augment/emp_act(severity)
-	. = ..()
-	if(. & EMP_PROTECT_SELF)
-		return
-	if(prob(severity == EMP_HEAVY ? 75 : 50))
-		if(imp_in)
-			to_chat(imp_in, span_notice("Coś w twoim ciele cicho trzaska."))
-		qdel(src)
-
-/obj/item/implanter/aq_anti_augment
-	name = "implanter (zakłócacz augmentów)"
-	imp_type = /obj/item/implant/aq_anti_augment
-
-/obj/item/implantcase/aq_anti_augment
-	name = "etui na implant – „Zakłócacz augmentów”"
-	desc = "Szklane etui z implantem, który zakłóca augmenty nosiciela."
-	imp_type = /obj/item/implant/aq_anti_augment
 
 // ---------------------------------------------------------------------------
 // Uziemienie bluespace (/tg/station /obj/item/implant/teleport_blocker)

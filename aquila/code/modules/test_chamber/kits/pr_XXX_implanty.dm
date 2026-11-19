@@ -10,12 +10,10 @@
 	items = list(
 		/obj/item/implanter/aq_antirot = 1,
 		/obj/item/implanter/aq_robotalk = 1,
-		/obj/item/implanter/aq_od_purge = 1,
 		/obj/item/implanter/aq_empshield = 1,
 		/obj/item/implanter/aq_access = 1,
 		/obj/item/implanter/aq_iff = 2,
 		/obj/item/implanter/aq_tacmap = 2,
-		/obj/item/implanter/aq_anti_augment = 1,
 		/obj/item/implanter/aq_teleport_blocker = 1,
 		/obj/item/implanter/aq_mindslave = 1,
 		/obj/item/implanter/aq_camouflage = 1,

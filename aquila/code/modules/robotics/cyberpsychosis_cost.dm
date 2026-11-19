@@ -1,7 +1,6 @@
 // AQUILA - koszt cyberpsychozy na implantach cybernetycznych (cyberpsychosis.dm).
-// UWAGA przy scalaniu: tę samą zmienną dodaje część IMPLANTY. Jeśli jest już zdefiniowana tam, usuń ten plik
-// i jego include z aquila/aquila.dm (dwie definicje tej samej zmiennej się nie skompilują).
+// Zmienna jest zadeklarowana na /obj/item/organ w cybernetics/robotyka/_robotyka_base.dm (domyślnie 0);
+// tu tylko domyślny koszt dla wszystkich implantów cybernetycznych.
 
 /obj/item/organ/cyberimp
-	/// Ile „pojemności psychiki” zabiera ten implant (cyberpsychoza, pojemność 100)
-	var/aq_cyberpsychosis_cost = 5
+	aq_cyberpsychosis_cost = 5
