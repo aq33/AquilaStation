@@ -316,9 +316,6 @@ GLOBAL_LIST_INIT(aq_addictions, aq_init_addictions())
 /datum/reagent/medicine/ephedrine
 	addiction_types = list(/datum/addiction/stimulants = 75)
 
-/datum/reagent/medicine/methylphenidate
-	addiction_types = list(/datum/addiction/stimulants = 60)
-
 /datum/reagent/consumable/navy_coffee
 	addiction_types = list(/datum/addiction/stimulants = 150)
 

@@ -1,6 +1,6 @@
 // AQUILA - leki AquilaMed 5 z Baystation12 (code/modules/reagents/chemistry/reagents/medicine.dm, Chemistry-Recipes.dm).
 // Przeciwbólowe: paracetamol, tramadol, oksykodon. Siłę przeciwbólową mają w GLOB.aq_painkillers (pain/pain.dm).
-// Na nastrój: citalopram, metylofenidat (antydepresanty Bay, u nas przez moodlety Bee).
+// Na nastrój: citalopram (antydepresant Bay, u nas przez moodlety Bee).
 // Receptury jak w Bay, inaprowalinę zastępuje nasza epinefryna. Progi uzależnień są w
 // addiction_types (reagents/addiction/addiction.dm, uzależnienia z tg).
 
@@ -111,55 +111,16 @@
 		C.vomit(10)
 	..()
 
-/datum/reagent/medicine/methylphenidate
-	name = "Metylofenidat"
-	description = "Stymulant poprawiający skupienie: uspokaja drżenie, rozjaśnia myśli i zawroty głowy. Brany regularnie uzależnia, przedawkowanie obciąża serce."
-	reagent_state = LIQUID
-	color = "#BF80BF"
-	taste_description = "miętowa gorycz"
-	metabolization_rate = 0.2 * REAGENTS_METABOLISM
-	overdose_threshold = 30
-
-/datum/reagent/medicine/methylphenidate/on_mob_life(mob/living/carbon/M)
-	M.jitteriness = max(0, M.jitteriness - 5)
-	M.confused = max(0, M.confused - 2)
-	M.dizziness = max(0, M.dizziness - 2)
-	if(current_cycle >= 5)
-		SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "aq_methylphenidate", /datum/mood_event/aq_methylphenidate)
-	..()
-
-/datum/reagent/medicine/methylphenidate/on_mob_end_metabolize(mob/living/L)
-	SEND_SIGNAL(L, COMSIG_CLEAR_MOOD_EVENT, "aq_methylphenidate")
-	..()
-
-/datum/reagent/medicine/methylphenidate/overdose_process(mob/living/M)
-	M.adjustOrganLoss(ORGAN_SLOT_HEART, 0.5)
-	M.Jitter(5)
-	if(prob(5))
-		to_chat(M, "<span class='warning'>Serce wali ci jak oszalałe.</span>")
-	..()
-	return TRUE
-
 /datum/mood_event/aq_citalopram
 	description = "<span class='nicegreen'>Jest mi spokojniej niż zwykle.</span>\n"
 	mood_change = 4
 	timeout = 5 MINUTES
-
-/datum/mood_event/aq_methylphenidate
-	description = "<span class='nicegreen'>Myśli są jasne i poukładane.</span>\n"
-	mood_change = 2
 
 /datum/chemical_reaction/citalopram
 	name = "Citalopram"
 	id = /datum/reagent/medicine/citalopram
 	results = list(/datum/reagent/medicine/citalopram = 2)
 	required_reagents = list(/datum/reagent/toxin/mindbreaker = 1, /datum/reagent/carbon = 1)
-
-/datum/chemical_reaction/methylphenidate
-	name = "Metylofenidat"
-	id = /datum/reagent/medicine/methylphenidate
-	results = list(/datum/reagent/medicine/methylphenidate = 2)
-	required_reagents = list(/datum/reagent/toxin/mindbreaker = 1, /datum/reagent/lithium = 1)
 
 // --- Pigułki, fiolki, butelki ---
 
@@ -189,13 +150,6 @@
 	desc = "Łagodny antydepresant."
 	icon_state = "pill_shape_tablet_pink_lined"
 	list_reagents = list(/datum/reagent/medicine/citalopram = 10)
-	rename_with_volume = TRUE
-
-/obj/item/reagent_containers/pill/methylphenidate
-	name = "pigułka: metylofenidat"
-	desc = "Poprawia skupienie. Uzależnia."
-	icon_state = "pill_shape_tablet_skyblue_lined"
-	list_reagents = list(/datum/reagent/medicine/methylphenidate = 10)
 	rename_with_volume = TRUE
 
 /obj/item/reagent_containers/pill/pax
@@ -236,14 +190,6 @@
 /obj/item/storage/pill_bottle/citalopram/PopulateContents()
 	for(var/i in 1 to 7)
 		new /obj/item/reagent_containers/pill/citalopram(src)
-
-/obj/item/storage/pill_bottle/methylphenidate
-	name = "pojemnik z pigułkami: Metylofenidat"
-	desc = "Zawiera lek na skupienie. Uzależnia."
-
-/obj/item/storage/pill_bottle/methylphenidate/PopulateContents()
-	for(var/i in 1 to 5)
-		new /obj/item/reagent_containers/pill/methylphenidate(src)
 
 /obj/item/storage/pill_bottle/pax
 	name = "pojemnik z pigułkami: Pax"
