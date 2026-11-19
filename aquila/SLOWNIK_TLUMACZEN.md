@@ -4605,13 +4605,10 @@ Nazwy obszarów są w większości przetłumaczone. Nowe nazwy budujemy z tych k
 | augment | augment | m; nowe; ogólna nazwa wszczepów cybernetycznych (cyberimp, cyberorgan, bioaugment) |
 | cyberpsychosis | cyberpsychoza | ż; nowe; koszt augmentu w punktach (0-3) |
 | Rotbusttec implant | implant Rotbusttec | m; nowe; nazwa własna bez tłumaczenia |
-| machine translator implant | implant tłumacza maszynowego | m; nowe |
-| overdose safety implant | implant bezpiecznika przedawkowania | m; nowe |
 | tactical map implant | implant mapy taktycznej | m; nowe |
 | mindslave implant | implant zniewolenia umysłu | m; nowe |
 | razorwing implant | implant ostrych skrzydeł | m; nowe |
 | sponsorship implant | implant sponsorski | m; nowe |
-| experimental camouflage implant | eksperymentalny implant kamuflażu | m; nowe |
 | Syndicate IFF implant | implant znacznika Syndykatu | m; nowe |
 | IFF implant | implant swój-obcy | m; nowe |
 | EMP shield implant | implant tarczy EMP | m; nowe |
@@ -4621,25 +4618,15 @@ Nazwy obszarów są w większości przetłumaczone. Nowe nazwy budujemy z tych k
 | hijack implant | implant przejęcia | m; nowe |
 | spying implant | implant szpiegowski | m; nowe |
 | warp implant | implant cofnięcia | m; nowe |
-| supercharge bio-chip | implant doładowania | m; nowe |
 | tactical deniability implant | implant taktycznego wyparcia się | m; nowe |
 | fake mindshield | fałszywa ochrona umysłu | ż; nowe |
 | augmentation disrupter | zakłócacz augmentów | m; nowe |
-| smoke implant | implant dymny | m; nowe |
 | bluespace grounding implant | implant uziemienia bluespace | m; nowe |
 | wire interface implant | implant interfejsu kabli | m; nowe |
 | AI-uplink brain | mózg z łączem SI | m; nowe |
 | platelet factories | fabryki płytek krwi | ż mn.; nowe |
-| integrated health scanner | zintegrowany skaner zdrowia | m; nowe |
-| Midi-Sed pleasure vivifier | ożywiacz przyjemności Midi-Sed | m; nowe |
-| exoframe | egzoszkielet nośny | m; nowe |
 | embedded object module | moduł wbudowanego przedmiotu | m; nowe |
-| diagnostic processor | procesor diagnostyczny | m; nowe |
-| tactical IFF visor | taktyczny wizjer IFF | m; nowe |
 | cyborg analyzer | analizator cyborgów | m; nowe |
-| Binyat wireless hacking system | system hakowania bezprzewodowego Binyat | m; nowe |
-| CNS jumpstarter | rozrusznik OUN | m; nowe |
-| doorjack | doorjack | m; nowe; bez tłumaczenia |
 | monitor cybereye | cyberoko z monitorem | n; nowe |
 | magboot implant | implant magnetycznych stóp | m; nowe |
 | Sandevistan | Sandevistan | m; nazwa własna |
@@ -4647,42 +4634,28 @@ Nazwy obszarów są w większości przetłumaczone. Nowe nazwy budujemy z tych k
 | optical camo implant | implant kamuflażu optycznego | m; nowe |
 | gustatorial centre | ośrodek smaku | m; nowe |
 | climbing hook | hak wspinaczkowy | m; nowe |
-| adaptive binoculars | adaptacyjna lornetka | ż; nowe |
 | neural overclocker | neuronowy podkręcacz | m; nowe |
-| meson eyes | oczy mezonowe | n mn.; nowe |
 | EMSI datajack | port serwisowy EMSI | m; nowe |
 | shell launch system | wyrzutnia nabojów | ż; nowe |
 | emotional manipulator | manipulator emocji | m; nowe |
-| Herculean gravitronic spinal implant | grawitonowy implant kręgosłupa Herculean | m; nowe |
 | citizen map implant | implant mapy okrętu | m; nowe |
 | laser cybereye | laserowe cyberoczy | n mn.; nowe |
 | vortex feedback arm | ramię ze sprzężeniem wirowym | n; nowe |
 | prosthesis brand / robolimb manufacturer | marka protezy | ż; nowe (robotyka) |
 | advanced robotic limb | zaawansowana proteza | ż; nowe (robotyka) |
-| kinetic prosthetic | proteza kinetyczna | ż; nowe (robotyka, Bubberstation) |
-| peg arm / peg leg | drewniana proteza ręki / drewniana noga | ż; nowe (robotyka, tg ghetto parts) |
-| calibration (prosthesis) | kalibracja protezy | ż; nowe (robotyka) |
 | Cybernetic Limb Mounts (quirk) | Mocowania protez | n mn.; nowe (cecha) |
 | robotic wounds: loose screws / dented casing / crushed servos | luźne śruby / wgniecenie obudowy / zgniecione serwa | nowe (rany robotyczne) |
 | frayed wiring / severed wiring | postrzępione przewody / przecięte przewody | nowe (rany robotyczne) |
 | overheated circuits / warped plating | przegrzane obwody / wypaczona blacha | nowe (rany robotyczne) |
-| air cooling unit / liquid cooling unit / passive heatsink | chłodzenie powietrzem / chłodzenie cieczą / pasywny radiator | n / n / m; nowe (organy IPC) |
-| overheating (synthetic) | przegrzanie | n; nowe (alert IPC) |
 | IPC overloader | overloader | m; nowe (cyfrowa używka IPC, nazwa własna Aurory) |
 | synthetic reset key | klucz resetu syntetyka | m; nowe (CM-SS13) |
-| repair patch | łatka naprawcza | ż; nowe |
-| nanite slurry | zawiesina nanitów | ż; nowe (reagent) |
-| repair spray | spray naprawczy | m; nowe |
-| synthetic first aid kit | apteczka syntetyka | ż; nowe |
 | system purge (surgery) | czyszczenie układu | n; nowe (operacja) |
 | synthetic reactivation (surgery) | reaktywacja syntetyka | ż; nowe (operacja) |
 | cyberpsychosis | cyberpsychoza | ż; nowe |
 | neuratrextate | neuratreksat | m; nowe (reagent, Citadel RP) |
 | augmentation disrupter implant | implant zakłócający augmenty | m; nowe |
 | jumpboots implant | implant skoku | m; nowe |
-| overdose safety implant | implant bezpieczeństwa przedawkowania | m; nowe |
-| death alarm implant | alarm śmierci | m; nowe |
-| circadian conditioner / skeletal bracing / timepiece implant | regulator rytmu dobowego / wzmocnienie stawów / wszczepiony zegarek | nowe (implanty drobne) |
+| skeletal bracing | wzmocnienie stawów | n; nowe |
 | voltaic combat cyberheart / voltaic overdrive | woltaiczne serce bojowe / woltaiczne przeciążenie | n / n; nowe (tg) |
 | psychoscope / neuromod / neuromod shell | psychoskop / neuromod / powłoka neuromodu | m / m / ż; nowe (Chaotic Onyx) |
 ## Boty (część BOTY: basic boty na drzewach zachowań)

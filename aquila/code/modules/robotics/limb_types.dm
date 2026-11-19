@@ -1,24 +1,11 @@
-// AQUILA - nowe rodzaje protez:
-// - zaawansowane protezy (tg code/modules/surgery/bodyparts/robot_bodyparts.dm, /obj/item/bodypart/arm/left/robot/advanced):
-//   mocniejsze ciosy, większa wytrzymałość, mniej obrażeń przenoszonych na ciało; drukowane w fabrykatorze egzoszkieletów po badaniach,
-// - protezy kinetyczne (Bubberstation#4861, modular_zubbers/code/modules/surgery/bodyparts/kinetic.dm): tanie, bez elektroniki,
-//   „grube palce” (bez broni palnej), łatwo odpadają i łatwo się je zakłada,
-// - prowizoryczne protezy (tg code/modules/surgery/bodyparts/ghetto_parts.dm, slapcraft z Daedalus Dock): drewniany kołek
-//   z dwóch desek albo ręka ze złomu, z menu wytwarzania, bez fabrykatora.
-// Kołki i protezy kinetyczne nie są ani organiczne, ani robotyczne (BODYTYPE_HUMANOID): EMP, rany i chirurgia ich nie dotyczą,
-// a zniszczone wymienia się na nowe. Ciosy liczymy przez unarmed_damage_bonus (u nas obrażenia pięści są na gatunku).
-// Ikony: tg (advanced_augments.dmi, ghetto.dmi, CC BY-SA 3.0), Bubberstation (kinetic.dmi, CC BY-SA 3.0).
+// AQUILA - trzy klasy protez: tania (robot/surplus z core, też ręka ze złomu z menu wytwarzania), zwykła (robot z core)
+// i zaawansowana (tg code/modules/surgery/bodyparts/robot_bodyparts.dm, /obj/item/bodypart/arm/left/robot/advanced):
+// mocniejsze ciosy, większa wytrzymałość, mniej obrażeń przenoszonych na ciało; drukowana w fabrykatorze egzoszkieletów po badaniach.
+// Ciosy liczymy przez unarmed_damage_bonus (u nas obrażenia pięści są na gatunku). Ikony: tg (advanced_augments.dmi, CC BY-SA 3.0).
 
 /obj/item/bodypart
-	/// AQUILA - mnożniki obrażeń kończyny niezależne od marki (kołki, protezy kinetyczne)
-	var/aq_brute_mod = 1
-	var/aq_burn_mod = 1
 	/// AQUILA - premia do ciosów, póki kończyna jest przyczepiona
 	var/aq_unarmed_bonus = 0
-	/// AQUILA - kończyna bez precyzji: właściciel nie strzela z broni palnej (tg TRAIT_CHUNKYFINGERS)
-	var/aq_chunky_fingers = FALSE
-	/// AQUILA - zakłada się ją bez operacji, przykładając do kikuta (tg TRAIT_EASY_ATTACH)
-	var/aq_easy_attach = FALSE
 	/// AQUILA - koszt cyberpsychozy, null = wartość domyślna z aq_cyberpsychosis_load()
 	var/aq_cyberpsychosis_cost
 
@@ -92,198 +79,7 @@
 	id = "aq_adv_r_leg"
 	build_path = /obj/item/bodypart/r_leg/robot/aq_advanced
 
-// --- Protezy kinetyczne ---
-
-/obj/item/bodypart/l_arm/aq_kinetic
-	name = "lewa proteza kinetyczna"
-	desc = "Prosta, ale zgrabna proteza. Oddaje część sprawności i wygląda jak ręka, ale nie ma precyzji: nie da się nią strzelać."
-	static_icon = 'aquila/icons/mob/augmentation/kinetic.dmi'
-	icon = null
-	icon_state = "kinetic_l_arm"
-	limb_id = "kinetic"
-	should_draw_greyscale = FALSE
-	is_dimorphic = FALSE
-	bodytype = BODYTYPE_HUMANOID
-	change_exempt_flags = BP_BLOCK_CHANGE_SPECIES
-	max_damage = 20
-	body_damage_coeff = 0.5
-	aq_chunky_fingers = TRUE
-	aq_easy_attach = TRUE
-	aq_cyberpsychosis_cost = 0
-
-/obj/item/bodypart/r_arm/aq_kinetic
-	name = "prawa proteza kinetyczna"
-	desc = "Prosta, ale zgrabna proteza. Oddaje część sprawności i wygląda jak ręka, ale nie ma precyzji: nie da się nią strzelać."
-	static_icon = 'aquila/icons/mob/augmentation/kinetic.dmi'
-	icon = null
-	icon_state = "kinetic_r_arm"
-	limb_id = "kinetic"
-	should_draw_greyscale = FALSE
-	is_dimorphic = FALSE
-	bodytype = BODYTYPE_HUMANOID
-	change_exempt_flags = BP_BLOCK_CHANGE_SPECIES
-	max_damage = 20
-	body_damage_coeff = 0.5
-	aq_chunky_fingers = TRUE
-	aq_easy_attach = TRUE
-	aq_cyberpsychosis_cost = 0
-
-/obj/item/bodypart/l_leg/aq_kinetic
-	name = "lewa proteza kinetyczna nogi"
-	desc = "Prosta, ale zgrabna proteza z płozą zamiast stopy. Chodzi się na niej normalnie."
-	static_icon = 'aquila/icons/mob/augmentation/kinetic.dmi'
-	icon = null
-	icon_state = "kinetic_l_leg"
-	limb_id = "kinetic"
-	should_draw_greyscale = FALSE
-	is_dimorphic = FALSE
-	bodytype = BODYTYPE_HUMANOID
-	change_exempt_flags = BP_BLOCK_CHANGE_SPECIES
-	max_damage = 20
-	body_damage_coeff = 0.5
-	aq_easy_attach = TRUE
-	aq_cyberpsychosis_cost = 0
-
-/obj/item/bodypart/r_leg/aq_kinetic
-	name = "prawa proteza kinetyczna nogi"
-	desc = "Prosta, ale zgrabna proteza z płozą zamiast stopy. Chodzi się na niej normalnie."
-	static_icon = 'aquila/icons/mob/augmentation/kinetic.dmi'
-	icon = null
-	icon_state = "kinetic_r_leg"
-	limb_id = "kinetic"
-	should_draw_greyscale = FALSE
-	is_dimorphic = FALSE
-	bodytype = BODYTYPE_HUMANOID
-	change_exempt_flags = BP_BLOCK_CHANGE_SPECIES
-	max_damage = 20
-	body_damage_coeff = 0.5
-	aq_easy_attach = TRUE
-	aq_cyberpsychosis_cost = 0
-
-/datum/design/aq_kinetic_limb
-	name = "Proteza kinetyczna"
-	desc = "Tania proteza kończyny bez elektroniki."
-	build_type = PROTOLATHE | MECHFAB
-	construction_time = 100
-	materials = list(/datum/material/iron = 2000, /datum/material/plastic = 1000)
-	category = list("Cyborg", "Medical Designs")
-	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
-
-/datum/design/aq_kinetic_limb/l_arm
-	name = "Lewa proteza kinetyczna"
-	id = "aq_kinetic_l_arm"
-	build_path = /obj/item/bodypart/l_arm/aq_kinetic
-
-/datum/design/aq_kinetic_limb/r_arm
-	name = "Prawa proteza kinetyczna"
-	id = "aq_kinetic_r_arm"
-	build_path = /obj/item/bodypart/r_arm/aq_kinetic
-
-/datum/design/aq_kinetic_limb/l_leg
-	name = "Lewa proteza kinetyczna nogi"
-	id = "aq_kinetic_l_leg"
-	build_path = /obj/item/bodypart/l_leg/aq_kinetic
-
-/datum/design/aq_kinetic_limb/r_leg
-	name = "Prawa proteza kinetyczna nogi"
-	id = "aq_kinetic_r_leg"
-	build_path = /obj/item/bodypart/r_leg/aq_kinetic
-
-// --- Prowizoryczne protezy ---
-
-/obj/item/bodypart/l_arm/aq_peg
-	name = "lewa drewniana proteza ręki"
-	desc = "Z grubsza ociosany kołek w miejscu przedramienia. Prosty i wytrzymały, zrobiony w pośpiechu z tego, co było pod ręką."
-	static_icon = 'aquila/icons/mob/augmentation/ghetto.dmi'
-	icon = null
-	icon_state = "peg_l_arm"
-	limb_id = "peg"
-	should_draw_greyscale = FALSE
-	is_dimorphic = FALSE
-	bodytype = BODYTYPE_HUMANOID
-	change_exempt_flags = BP_BLOCK_CHANGE_SPECIES
-	aq_brute_mod = 1.2
-	aq_burn_mod = 1.5
-	aq_chunky_fingers = TRUE
-	aq_easy_attach = TRUE
-	aq_cyberpsychosis_cost = 0
-
-/obj/item/bodypart/r_arm/aq_peg
-	name = "prawa drewniana proteza ręki"
-	desc = "Z grubsza ociosany kołek w miejscu przedramienia. Prosty i wytrzymały, zrobiony w pośpiechu z tego, co było pod ręką."
-	static_icon = 'aquila/icons/mob/augmentation/ghetto.dmi'
-	icon = null
-	icon_state = "peg_r_arm"
-	limb_id = "peg"
-	should_draw_greyscale = FALSE
-	is_dimorphic = FALSE
-	bodytype = BODYTYPE_HUMANOID
-	change_exempt_flags = BP_BLOCK_CHANGE_SPECIES
-	aq_brute_mod = 1.2
-	aq_burn_mod = 1.5
-	aq_chunky_fingers = TRUE
-	aq_easy_attach = TRUE
-	aq_cyberpsychosis_cost = 0
-
-/obj/item/bodypart/l_leg/aq_peg
-	name = "lewa drewniana noga"
-	desc = "Podejrzanie przypomina nogę od stołu. Chwieje się i skrzypi przy każdym kroku, ale da się na niej chodzić."
-	static_icon = 'aquila/icons/mob/augmentation/ghetto.dmi'
-	icon = null
-	icon_state = "peg_l_leg"
-	limb_id = "peg"
-	should_draw_greyscale = FALSE
-	is_dimorphic = FALSE
-	bodytype = BODYTYPE_HUMANOID
-	change_exempt_flags = BP_BLOCK_CHANGE_SPECIES
-	aq_brute_mod = 1.2
-	aq_burn_mod = 1.5
-	aq_easy_attach = TRUE
-	aq_cyberpsychosis_cost = 0
-
-/obj/item/bodypart/r_leg/aq_peg
-	name = "prawa drewniana noga"
-	desc = "Podejrzanie przypomina nogę od stołu. Chwieje się i skrzypi przy każdym kroku, ale da się na niej chodzić."
-	static_icon = 'aquila/icons/mob/augmentation/ghetto.dmi'
-	icon = null
-	icon_state = "peg_r_leg"
-	limb_id = "peg"
-	should_draw_greyscale = FALSE
-	is_dimorphic = FALSE
-	bodytype = BODYTYPE_HUMANOID
-	change_exempt_flags = BP_BLOCK_CHANGE_SPECIES
-	aq_brute_mod = 1.2
-	aq_burn_mod = 1.5
-	aq_easy_attach = TRUE
-	aq_cyberpsychosis_cost = 0
-
-/datum/crafting_recipe/aq_peg_l_arm
-	name = "lewa drewniana proteza ręki"
-	result = /obj/item/bodypart/l_arm/aq_peg
-	time = 5 SECONDS
-	reqs = list(/obj/item/stack/sheet/mineral/wood = 2, /obj/item/stack/sticky_tape = 1)
-	category = CAT_ROBOT
-
-/datum/crafting_recipe/aq_peg_r_arm
-	name = "prawa drewniana proteza ręki"
-	result = /obj/item/bodypart/r_arm/aq_peg
-	time = 5 SECONDS
-	reqs = list(/obj/item/stack/sheet/mineral/wood = 2, /obj/item/stack/sticky_tape = 1)
-	category = CAT_ROBOT
-
-/datum/crafting_recipe/aq_peg_l_leg
-	name = "lewa drewniana noga"
-	result = /obj/item/bodypart/l_leg/aq_peg
-	time = 5 SECONDS
-	reqs = list(/obj/item/stack/sheet/mineral/wood = 2, /obj/item/stack/sticky_tape = 1)
-	category = CAT_ROBOT
-
-/datum/crafting_recipe/aq_peg_r_leg
-	name = "prawa drewniana noga"
-	result = /obj/item/bodypart/r_leg/aq_peg
-	time = 5 SECONDS
-	reqs = list(/obj/item/stack/sheet/mineral/wood = 2, /obj/item/stack/sticky_tape = 1)
-	category = CAT_ROBOT
+// --- Proteza ze złomu ---
 
 /// Ręka ze złomu (CEV Eris makeshift_arm): tania proteza surplus z prętów i kabla, z obudową z blachy
 /datum/crafting_recipe/aq_scrap_l_arm
@@ -304,15 +100,7 @@
 
 // --- Przyczepianie i odczepianie ---
 
-/// Kołki i protezy kinetyczne zakłada się, przykładając je do kikuta (tg TRAIT_EASY_ATTACH)
-/obj/item/bodypart/attack(mob/living/carbon/C, mob/user)
-	if(aq_easy_attach && ishuman(C) && !animal_origin && !C.get_bodypart(body_zone) && isliving(user))
-		var/mob/living/living_user = user
-		if(!living_user.combat_mode)
-			INVOKE_ASYNC(src, PROC_REF(aq_easy_attach_to), C, user)
-			return
-	return ..()
-
+/// Przypięcie protezy do kikuta bez operacji (cecha „Mocowania protez”, limb_mounts.dm)
 /obj/item/bodypart/proc/aq_easy_attach_to(mob/living/carbon/human/target, mob/user)
 	user.visible_message("<span class='notice'>[user] przykłada [name] do kikuta [target == user ? "" : "[target] "]([strefa_pl(body_zone)]).</span>", \
 		"<span class='notice'>Przykładasz [name] do kikuta ([strefa_pl(body_zone)]).</span>")
@@ -331,8 +119,6 @@
 	if(aq_unarmed_bonus && ishuman(C))
 		var/mob/living/carbon/human/H = C
 		H.unarmed_damage_bonus += aq_unarmed_bonus
-	if(aq_chunky_fingers)
-		ADD_TRAIT(C, TRAIT_NOGUNS, REF(src))
 	if(aq_brand?.lifelike)
 		if(!aq_lifelike_icon && ishuman(C))
 			var/mob/living/carbon/human/H = C
@@ -349,8 +135,6 @@
 		if(aq_unarmed_bonus && ishuman(old_owner))
 			var/mob/living/carbon/human/H = old_owner
 			H.unarmed_damage_bonus -= aq_unarmed_bonus
-		if(aq_chunky_fingers)
-			REMOVE_TRAIT(old_owner, TRAIT_NOGUNS, REF(src))
 	return ..()
 
 /// Typ kończyny gatunku dla strefy

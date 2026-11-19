@@ -1,11 +1,8 @@
 Ikony robotyki (aquila/code/modules/robotics/):
 
 synth_reset_key.dmi (reset_key, reset_key_on) - CM-SS13 (cmss13-devs/cmss13), icons/obj/items/synth/synth_reset_key.dmi, CC BY-SA 3.0
-synth_organs.dmi (ipc_fans, ipc_liquid_cooler, ipc_heatsink) - Aurora Station (Aurorastation/Aurora.3), icons/obj/organs/ipc_organs.dmi, CC BY-SA 3.0
 ipc_overloaders.dmi - Aurora Station (Aurorastation/Aurora.3), icons/obj/item/ipc_overloaders.dmi, CC BY-SA 3.0
 anomalock_heart.dmi (anomalock_heart, anomalock_heart-core) - /tg/station (tgstation/tgstation), icons/obj/medical/organs/organs.dmi, CC BY-SA 3.0
 
 ../../mob/augmentation/:
 advanced_augments.dmi - /tg/station (tgstation/tgstation), icons/mob/augmentation/advanced_augments.dmi, CC BY-SA 3.0
-ghetto.dmi - /tg/station (tgstation/tgstation), icons/mob/human/species/ghetto.dmi, CC BY-SA 3.0
-kinetic.dmi - Bubberstation (Bubberstation/Bubberstation#4861), modular_zubbers/icons/mob/human/kinetic.dmi, CC BY-SA 3.0

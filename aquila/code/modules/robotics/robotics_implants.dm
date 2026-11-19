@@ -2,14 +2,10 @@
 // - implant zakłócający augmenty (Aurora code/game/objects/items/weapons/implants/implants/anti-augment.dm): dopóki siedzi
 //   w nosicielu, jego implanty cybernetyczne się nie uruchamiają (przyciski akcji, implanty rąk się chowają, pasywne implanty
 //   chemiczne i odżywcze stają). EMP może go spalić (lekkie 50%, silne 75%). Dla ochrony, w brygu na zcyborgizowanych więźniów,
-// - implant skoku w nogach (SS220 code/modules/surgery/organs/augments_legs.dm, jumpboots): w obu nogach daje akcję skoku
-//   o 4 pola w kierunku patrzenia, nad przepaściami i dziurami w kadłubie, co 6 s; bez grawitacji nie działa,
-// - implant bezpieczeństwa przedawkowania (BurgerStation code/_core/obj/item/organs/internal/implant/misc.dm, od_purge):
-//   gdy substancja przekroczy próg przedawkowania, implant usuwa połowę jej ilości i pika; obok jednorazowy alarm śmierci
-//   nadający na kanale medycznym,
-// - implanty kosmetyczne i drobne (Daedalus Dock augments_fluff.dm, Baystation12 augment/passive/fluff.dm, Aurora timepiece.dm):
-//   regulator rytmu dobowego (krótsza senność, przytomność po lekach nasennych szybciej wraca), wzmocnienie stawów (trudniej
-//   o rany od uderzeń i zwichnięcia), wszczepiony zegarek (akcja z godziną statku).
+// - implant skoku w nodze (SS220 code/modules/surgery/organs/augments_legs.dm, jumpboots): u SS220 para w obu nogach,
+//   u nas jeden implant w dowolnej nodze; akcja skoku o 4 pola w kierunku patrzenia, nad przepaściami i dziurami w kadłubie,
+//   co 6 s; bez grawitacji nie działa,
+// - wzmocnienie stawów (Daedalus Dock augments_fluff.dm): trudniej o rany od uderzeń i zwichnięcia.
 // Ikony: istniejące ikony implantów i akcji.
 
 // --- Implant zakłócający augmenty ---
@@ -128,40 +124,22 @@
 
 /obj/item/organ/cyberimp/leg/aq_jumpboots
 	name = "implant skoku"
-	desc = "Wszczep z napędem odrzutowym w nodze. Para takich implantów pozwala przeskoczyć do czterech pól, także nad przepaścią."
+	desc = "Wszczep z napędem odrzutowym w nodze. Pozwala przeskoczyć do czterech pól, także nad przepaścią. Wystarczy jeden implant w dowolnej nodze."
 	icon_state = "implant-toolkit"
 	implant_color = "#4a9ed6"
-	double_legged_type = /obj/item/organ/cyberimp/leg/aq_jumpboots
 	aq_cyberpsychosis_cost = 6
-	/// Akcja skoku (tylko na jednym implancie z pary)
+	/// Akcja skoku
 	var/datum/action/innate/aq_implant_jump/jump_action
 
-/obj/item/organ/cyberimp/leg/aq_jumpboots/l
-	zone = BODY_ZONE_L_LEG
-
-/obj/item/organ/cyberimp/leg/aq_jumpboots/Insert(mob/living/carbon/M, special = FALSE, drop_if_replaced = TRUE)
-	. = ..()
-	aq_update_jump(M)
-
-/obj/item/organ/cyberimp/leg/aq_jumpboots/Remove(mob/living/carbon/M, special = FALSE)
-	var/obj/item/organ/cyberimp/leg/aq_jumpboots/partner = get_partner(M)
-	. = ..()
-	QDEL_NULL(jump_action)
-	partner?.aq_update_jump(M)
-
-/// Akcja jest na implancie w prawej nodze, gdy para jest kompletna
-/obj/item/organ/cyberimp/leg/aq_jumpboots/proc/aq_update_jump(mob/living/carbon/M)
-	var/obj/item/organ/cyberimp/leg/aq_jumpboots/partner = get_partner(M)
-	var/obj/item/organ/cyberimp/leg/aq_jumpboots/leader = slot == ORGAN_SLOT_RIGHT_LEG_AUG ? src : partner
-	var/obj/item/organ/cyberimp/leg/aq_jumpboots/follower = leader == src ? partner : src
-	if(follower)
-		QDEL_NULL(follower.jump_action)
-	if(!partner || owner != M)
-		QDEL_NULL(jump_action)
+/obj/item/organ/cyberimp/leg/aq_jumpboots/on_full_insert(mob/living/carbon/user)
+	if(aq_duplicate_in_other_leg(user))
 		return
-	if(!leader.jump_action)
-		leader.jump_action = new(leader)
-		leader.jump_action.Grant(M)
+	if(!jump_action)
+		jump_action = new(src)
+	jump_action.Grant(user)
+
+/obj/item/organ/cyberimp/leg/aq_jumpboots/on_full_remove(mob/living/carbon/user)
+	QDEL_NULL(jump_action)
 
 /obj/item/organ/cyberimp/leg/aq_jumpboots/Destroy()
 	QDEL_NULL(jump_action)
@@ -208,7 +186,7 @@
 
 /datum/design/aq_jumpboots
 	name = "Implant skoku"
-	desc = "Wszczep z napędem w nogę. Działa w parze, po jednym w każdej nodze."
+	desc = "Wszczep z napędem w nogę: skok o cztery pola, także nad przepaścią."
 	id = "aq_ci_jumpboots"
 	build_type = PROTOLATHE | MECHFAB
 	construction_time = 60
@@ -217,124 +195,89 @@
 	category = list("Implants", "Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL | DEPARTMENTAL_FLAG_SECURITY
 
-// --- Implant bezpieczeństwa przedawkowania ---
+// --- Implant agonalny: kanał radia i cyborgi ---
+// Zamiast osobnego alarmu śmierci (BurgerStation death_alarm) implant agonalny z core (/obj/item/implant/deathrattle) dostaje
+// przycisk wyboru kanału radia: po śmierci nosiciela nadaje zgłoszenie na wybranym kanale (w tym medycznym), a grupa implantów
+// działa jak dotąd. Da się go wszczepić cyborgowi zwykłym implanterem (inne implanty cyborgów nie przyjmują).
 
-/obj/item/organ/cyberimp/chest/aq_od_safety
-	name = "implant bezpieczeństwa przedawkowania"
-	desc = "Pilnuje krwi i usuwa połowę substancji, gdy tylko przekroczy próg przedawkowania."
-	icon_state = "chest_implant"
-	implant_color = "#7fd67f"
-	slot = ORGAN_SLOT_AQ_OD_SAFETY
-	aq_cyberpsychosis_cost = 3
-	COOLDOWN_DECLARE(beep_cooldown)
+/obj/item/implant/deathrattle
+	activated = TRUE
+	/// Kanał radia, na który implant zgłasza śmierć nosiciela (null = tylko grupa implantów)
+	var/aq_radio_channel
+	/// Radio bez głośnika, przez które idzie zgłoszenie
+	var/obj/item/radio/aq_alert_radio
 
-/obj/item/organ/cyberimp/chest/aq_od_safety/on_life()
-	. = ..()
-	if(!owner?.reagents || (organ_flags & ORGAN_FAILING) || aq_is_disrupted())
-		return
-	var/purged = FALSE
-	for(var/datum/reagent/reagent as anything in owner.reagents.reagent_list)
-		if(!reagent.overdose_threshold || reagent.volume < reagent.overdose_threshold)
-			continue
-		owner.reagents.remove_reagent(reagent.type, reagent.volume * 0.5)
-		purged = TRUE
-	if(purged && COOLDOWN_FINISHED(src, beep_cooldown))
-		COOLDOWN_START(src, beep_cooldown, 10 SECONDS)
-		playsound(owner, 'sound/machines/twobeep.ogg', 30, TRUE)
-		to_chat(owner, "<span class='notice'>[src] pika i coś w twojej krwi rzednie.</span>")
-
-/obj/item/organ/cyberimp/chest/aq_od_safety/emp_act(severity)
-	. = ..()
-	if(!owner || . & EMP_PROTECT_SELF)
-		return
-	organ_flags |= ORGAN_FAILING
-	addtimer(CALLBACK(src, PROC_REF(reboot)), 60 SECONDS / severity)
-
-/obj/item/organ/cyberimp/chest/aq_od_safety/proc/reboot()
-	organ_flags &= ~ORGAN_FAILING
-
-/datum/design/aq_od_safety
-	name = "Implant bezpieczeństwa przedawkowania"
-	desc = "Usuwa substancje, zanim dojdzie do przedawkowania."
-	id = "aq_ci_od_safety"
-	build_type = PROTOLATHE | MECHFAB
-	construction_time = 50
-	materials = list(/datum/material/iron = 1000, /datum/material/glass = 1000, /datum/material/silver = 500)
-	build_path = /obj/item/organ/cyberimp/chest/aq_od_safety
-	category = list("Implants", "Medical Designs")
-	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
-
-/// Jednorazowy alarm śmierci na kanale medycznym (BurgerStation death_alarm)
-/obj/item/implant/aq_death_alarm
-	name = "alarm śmierci"
-	desc = "Implant, który po śmierci nosiciela raz nadaje komunikat na kanale medycznym."
-	activated = FALSE
-
-/obj/item/implant/aq_death_alarm/get_data()
-	return "<b>Dane implantu:</b><BR><b>Działanie:</b> po śmierci nosiciela nadaje jeden komunikat na kanale medycznym, potem się wyłącza."
-
-/obj/item/implant/aq_death_alarm/implant(mob/living/target, mob/user, silent = FALSE, force = FALSE)
-	. = ..()
-	if(.)
-		RegisterSignal(target, COMSIG_MOB_DEATH, PROC_REF(on_death_alarm))
-
-/obj/item/implant/aq_death_alarm/removed(mob/living/source, silent = FALSE, special = 0)
-	UnregisterSignal(source, COMSIG_MOB_DEATH)
+/obj/item/implant/deathrattle/Destroy()
+	QDEL_NULL(aq_alert_radio)
 	return ..()
 
-/obj/item/implant/aq_death_alarm/proc/on_death_alarm(mob/living/source)
-	SIGNAL_HANDLER
-	var/area/where = get_area(source)
-	broadcast_alarm("Alarm medyczny: [source.real_name] nie żyje ([where?.name || "nieznane miejsce"]).")
-	qdel(src)
+/obj/item/implant/deathrattle/implant(mob/living/target, mob/user, silent = FALSE, force = FALSE)
+	if(iscyborg(target))
+		force = TRUE
+	return ..()
 
-/// Nadaje na kanale medycznym przez wspólne radio stacji
-/obj/item/implant/aq_death_alarm/proc/broadcast_alarm(message)
-	var/obj/item/radio/radio = new /obj/item/radio(src)
-	radio.listening = FALSE
-	radio.set_frequency(FREQ_MEDICAL)
-	radio.talk_into(src, message, RADIO_CHANNEL_MEDICAL)
-	qdel(radio)
+/obj/item/implant/deathrattle/activate()
+	. = ..()
+	if(imp_in)
+		INVOKE_ASYNC(src, PROC_REF(aq_pick_channel), imp_in)
 
-/obj/item/implantcase/aq_death_alarm
-	name = "etui na implant – „Alarm śmierci”"
-	desc = "Szklane etui z implantem alarmu śmierci."
-	imp_type = /obj/item/implant/aq_death_alarm
+/// Kanały, na które implant może nadawać
+/obj/item/implant/deathrattle/proc/aq_channels()
+	return list(RADIO_CHANNEL_MEDICAL, RADIO_CHANNEL_COMMON, RADIO_CHANNEL_SECURITY, RADIO_CHANNEL_ENGINEERING, RADIO_CHANNEL_SCIENCE, \
+		RADIO_CHANNEL_COMMAND, RADIO_CHANNEL_SUPPLY, RADIO_CHANNEL_SERVICE, RADIO_CHANNEL_MUNITIONS)
 
-/datum/design/aq_death_alarm
-	name = "Etui z implantem alarmu śmierci"
-	desc = "Implant, który po śmierci nosiciela woła lekarzy."
-	id = "aq_implant_death_alarm"
+/obj/item/implant/deathrattle/proc/aq_pick_channel(mob/living/user)
+	var/list/choices = list("Wyłączony") + aq_channels()
+	var/picked = tgui_input_list(user, "Na który kanał radia implant ma zgłosić twoją śmierć?", "Implant agonalny", choices, aq_radio_channel || "Wyłączony")
+	if(!picked || QDELETED(src) || imp_in != user)
+		return
+	aq_radio_channel = (picked in aq_channels()) ? picked : null
+	if(aq_radio_channel)
+		to_chat(user, span_notice("Implant agonalny zgłosi twoją śmierć na kanale: [aq_radio_channel]."))
+	else
+		to_chat(user, span_notice("Implant agonalny nie nadaje na radiu."))
+
+/obj/item/implant/deathrattle/on_mob_death(mob/living/L, gibbed)
+	. = ..()
+	if(aq_radio_channel && L == imp_in)
+		aq_broadcast_death(L)
+
+/// Treść zgłoszenia (osobno, żeby test mógł ją sprawdzić bez radia)
+/obj/item/implant/deathrattle/proc/aq_death_message(mob/living/victim)
+	return "Implant agonalny: [victim.real_name] nie żyje ([get_area_name(victim, TRUE) || "nieznane miejsce"])."
+
+/obj/item/implant/deathrattle/proc/aq_broadcast_death(mob/living/victim)
+	if(!aq_alert_radio)
+		aq_alert_radio = new(src)
+		aq_alert_radio.keyslot = new /obj/item/encryptionkey/heads/captain(aq_alert_radio)
+		aq_alert_radio.recalculateChannels()
+		aq_alert_radio.listening = FALSE
+		aq_alert_radio.canhear_range = 0
+	if(aq_radio_channel == RADIO_CHANNEL_COMMON)
+		aq_alert_radio.talk_into(src, aq_death_message(victim))
+	else
+		aq_alert_radio.talk_into(src, aq_death_message(victim), aq_radio_channel)
+
+/// Wersja dla załogi z protolathe: od razu ustawiona na kanał medyczny
+/obj/item/implant/deathrattle/aq_medical
+	aq_radio_channel = RADIO_CHANNEL_MEDICAL
+
+/obj/item/implantcase/deathrattle/aq_medical
+	name = "etui na implant – „Agonalny” (kanał medyczny)"
+	desc = "Szklane etui z implantem agonalnym, który zgłasza śmierć nosiciela na kanale medycznym. Działa też w cyborgach."
+	imp_type = /obj/item/implant/deathrattle/aq_medical
+
+/datum/design/aq_deathrattle
+	name = "Etui z implantem agonalnym"
+	desc = "Po śmierci nosiciela zgłasza ją na wybranym kanale radia, domyślnie medycznym. Działa też w cyborgach."
+	id = "aq_implant_deathrattle"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 500, /datum/material/glass = 500)
-	build_path = /obj/item/implantcase/aq_death_alarm
+	build_path = /obj/item/implantcase/deathrattle/aq_medical
 	category = list("Medical Designs")
-	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL | DEPARTMENTAL_FLAG_SECURITY
+	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL | DEPARTMENTAL_FLAG_SECURITY | DEPARTMENTAL_FLAG_SCIENCE
 
-// --- Implanty kosmetyczne i drobne ---
-
-/obj/item/organ/cyberimp/brain/aq_circadian
-	name = "regulator rytmu dobowego"
-	desc = "Mały implant mózgu, który reguluje hormony snu i czuwania. Pomaga na bezsenność, zmianę strefy czasowej i nocne wachty."
-	slot = ORGAN_SLOT_AQ_CIRCADIAN
-	implant_color = "#b2a0e0"
-	aq_cyberpsychosis_cost = 2
-
-/obj/item/organ/cyberimp/brain/aq_circadian/on_life()
-	. = ..()
-	if(!owner || aq_is_disrupted())
-		return
-	if(owner.drowsyness)
-		owner.drowsyness = max(owner.drowsyness - 1, 0)
-	if(owner.IsSleeping() && owner.stat != DEAD && !owner.reagents?.has_reagent(/datum/reagent/medicine/morphine))
-		owner.AdjustSleeping(-1 SECONDS)
-
-/// Mniejszy wstrząs od EMP niż zwykły implant mózgu: to tylko regulator hormonów
-/obj/item/organ/cyberimp/brain/aq_circadian/emp_act(severity)
-	if(owner)
-		owner.drowsyness = max(owner.drowsyness, 5)
-		to_chat(owner, "<span class='warning'>Nagle robisz się bardzo senny.</span>")
-	return EMP_PROTECT_SELF
+// --- Wzmocnienie stawów ---
 
 /obj/item/organ/cyberimp/chest/aq_bracing
 	name = "wzmocnienie stawów"
@@ -357,22 +300,6 @@
 		return -15
 	return 0
 
-/obj/item/organ/cyberimp/brain/aq_timepiece
-	name = "wszczepiony zegarek"
-	desc = "Malutki zegar w korze wzrokowej. Na żądanie wyświetla godzinę statku."
-	slot = ORGAN_SLOT_AQ_TIMEPIECE
-	implant_color = "#e0d070"
-	aq_cyberpsychosis_cost = 1
-	actions_types = list(/datum/action/item_action/organ_action/use)
-
-/obj/item/organ/cyberimp/brain/aq_timepiece/ui_action_click()
-	if(!owner)
-		return
-	to_chat(owner, "<span class='notice'>Przed oczami wyświetla się godzina: [station_time_timestamp()]. Runda trwa [DisplayTimeText(world.time - SSticker.round_start_time)].</span>")
-
-/obj/item/organ/cyberimp/brain/aq_timepiece/emp_act(severity)
-	return EMP_PROTECT_SELF
-
 /datum/design/aq_fluff_implant
 	name = "Implant drobny"
 	desc = "Drobny implant cybernetyczny."
@@ -382,25 +309,15 @@
 	category = list("Implants", "Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
-/datum/design/aq_fluff_implant/circadian
-	name = "Regulator rytmu dobowego"
-	id = "aq_ci_circadian"
-	build_path = /obj/item/organ/cyberimp/brain/aq_circadian
-
 /datum/design/aq_fluff_implant/bracing
 	name = "Wzmocnienie stawów"
 	id = "aq_ci_bracing"
 	materials = list(/datum/material/iron = 1000, /datum/material/titanium = 500)
 	build_path = /obj/item/organ/cyberimp/chest/aq_bracing
 
-/datum/design/aq_fluff_implant/timepiece
-	name = "Wszczepiony zegarek"
-	id = "aq_ci_timepiece"
-	build_path = /obj/item/organ/cyberimp/brain/aq_timepiece
-
 /datum/techweb_node/cyber_implants/New()
 	. = ..()
-	design_ids += list("aq_ci_circadian", "aq_ci_bracing", "aq_ci_timepiece", "aq_ci_od_safety", "aq_implant_death_alarm")
+	design_ids += list("aq_ci_bracing", "aq_implant_deathrattle")
 
 /datum/techweb_node/adv_cyber_implants/New()
 	. = ..()

@@ -24,15 +24,6 @@
 	corpse.death()
 	TEST_ASSERT(corpse.reagents.has_reagent(/datum/reagent/toxin/formaldehyde), "Rotbusttec injected no formaldehyde on death")
 
-	// Tłumacz maszynowy: kanał binarny bez słuchawek
-	TEST_ASSERT(!patient.binarycheck(), "A plain human already hears binary")
-	var/obj/item/implant/robotalk = aq_self_implant(patient, /obj/item/implanter/aq_robotalk)
-	TEST_ASSERT(robotalk, "The machine translator did not go in")
-	TEST_ASSERT(patient.binarycheck(), "The machine translator gave no binary channel")
-	TEST_ASSERT(patient.has_language(/datum/language/machine), "The machine translator gave no machine language")
-	qdel(robotalk)
-	TEST_ASSERT(!patient.binarycheck(), "The binary channel stayed after removal")
-
 	// Tarcza EMP
 	var/obj/item/implant/aq_empshield/shield = aq_self_implant(patient, /obj/item/implanter/aq_empshield)
 	TEST_ASSERT(shield, "The EMP shield did not go in")
@@ -101,14 +92,6 @@
 	qdel(mindslave)
 	TEST_ASSERT(!slave.mind.has_antag_datum(/datum/antagonist/brainwashed), "Removing the implant did not free the slave")
 
-	// Kamuflaż
-	var/obj/item/implant/aq_camouflage/camo = aq_self_implant(patient, /obj/item/implanter/aq_camouflage)
-	TEST_ASSERT(camo, "The camouflage implant did not go in")
-	camo.activate()
-	TEST_ASSERT(camo.cloaked, "The camouflage did not turn on")
-	qdel(camo)
-	TEST_ASSERT(patient.alpha == 255, "Removing the camouflage left the wearer transparent")
-
 	// Znacznik Syndykatu
 	var/obj/item/implant/syndie_tag = aq_self_implant(patient, /obj/item/implanter/aq_syndicate_iff)
 	TEST_ASSERT(FACTION_SYNDICATE in patient.faction, "The Syndicate tag gave no faction")
@@ -166,15 +149,19 @@
 	TEST_ASSERT(get_turf(other) == start, "The warp implant did not rewind the position")
 	qdel(warp)
 
-	// Doładowanie: tylko IPC, zdejmuje ogłuszenie
+	// Implant adrenaliny działa też na IPC: zdejmuje ogłuszenie, łata obudowę i przyspiesza
 	var/mob/living/carbon/human/ipc = allocate(/mob/living/carbon/human)
 	ipc.set_species(/datum/species/ipc)
-	var/obj/item/implant/aq_supercharge/supercharge = aq_self_implant(ipc, /obj/item/implanter/aq_supercharge)
-	TEST_ASSERT(supercharge, "The supercharge implant did not go in")
+	var/obj/item/implant/adrenalin/adrenalin = aq_self_implant(ipc, /obj/item/implanter/adrenalin)
+	TEST_ASSERT(adrenalin, "The adrenalin implant did not go into an IPC")
 	ipc.Paralyze(10 SECONDS)
-	supercharge.activate()
-	TEST_ASSERT(!ipc.IsParalyzed(), "The supercharge did not clear the stun")
-	TEST_ASSERT_EQUAL(supercharge.uses, 2, "The supercharge used no charge")
+	ipc.take_overall_damage(20, 20)
+	var/damage_before = ipc.getBruteLoss() + ipc.getFireLoss()
+	adrenalin.activate()
+	TEST_ASSERT(!ipc.IsParalyzed(), "The adrenalin implant did not clear the stun of an IPC")
+	TEST_ASSERT(ipc.getBruteLoss() + ipc.getFireLoss() < damage_before, "The adrenalin implant did not patch up an IPC")
+	TEST_ASSERT(ipc.has_movespeed_modifier("aq_adrenalin_ipc"), "The adrenalin implant did not speed up an IPC")
+	TEST_ASSERT_EQUAL(adrenalin.uses, 2, "The adrenalin implant used no charge")
 
 	// Taktyczne wyparcie się: bez utraty przytomności
 	var/obj/item/implant/deniability = aq_self_implant(other, /obj/item/implanter/aq_deniability)
@@ -189,15 +176,17 @@
 	TEST_ASSERT(!HAS_TRAIT(patient, TRAIT_FAKE_MINDSHIELD), "The fake mindshield did not switch off")
 	qdel(fake)
 
-	// Dym: trzy użycia
-	var/obj/item/implant/aq_smoke/smoke = aq_self_implant(patient, /obj/item/implanter/aq_smoke)
-	TEST_ASSERT(smoke, "The smoke implant did not go in")
-	smoke.activate()
-	TEST_ASSERT_EQUAL(smoke.uses, 2, "The smoke implant used no charge")
-	qdel(smoke)
-	// Dym zostaje na kafelkach testu: następny test krztusi się w nim, upuszcza przedmioty i przerywa do_after
-	for(var/obj/effect/particle_effect/smoke/cloud in range(10, patient))
-		qdel(cloud)
+	// Implant agonalny: wybrany kanał radia, wchodzi też do cyborga
+	var/mob/living/silicon/robot/borg = allocate(/mob/living/silicon/robot)
+	var/obj/item/implant/deathrattle/aq_medical/rattle = new()
+	TEST_ASSERT(rattle.implant(borg), "The deathrattle implant did not go into a cyborg")
+	TEST_ASSERT(rattle in borg.implants, "The cyborg does not carry the deathrattle implant")
+	TEST_ASSERT(findtext(rattle.aq_death_message(borg), borg.real_name), "The deathrattle message does not name the dead")
+	borg.death()
+	TEST_ASSERT(rattle.aq_alert_radio, "The deathrattle implant did not report the cyborg's death on the radio")
+	var/obj/item/implant/deathrattle/plain = new()
+	TEST_ASSERT(!plain.aq_radio_channel, "A plain deathrattle implant broadcasts by default")
+	qdel(plain)
 
 	// Ostre skrzydła: tylko ćmoludzie, rani sąsiadów
 	TEST_ASSERT(!aq_self_implant(patient, /obj/item/implanter/aq_razorwing), "Razor wings went into a human")
@@ -224,20 +213,14 @@
 	// Każdy augment da się wszczepić operacją na narządach i siedzi w swoim slocie
 	var/list/augment_types = list(
 		/obj/item/organ/cyberimp/brain/aq_wire_interface,
-		/obj/item/organ/cyberimp/brain/aq_joywire,
-		/obj/item/organ/cyberimp/brain/aq_diagnostics,
-		/obj/item/organ/cyberimp/brain/aq_hacking_deck,
-		/obj/item/organ/cyberimp/brain/aq_jumpstarter,
+		/obj/item/organ/cyberimp/brain/anti_stun,
 		/obj/item/organ/cyberimp/brain/aq_emotional_manipulator,
-		/obj/item/organ/cyberimp/eyes/aq_binoculars,
 		/obj/item/organ/cyberimp/eyes/aq_map,
 		/obj/item/organ/cyberimp/aq_gustatorial,
 		/obj/item/organ/cyberimp/aq_service_jack,
 		/obj/item/organ/cyberimp/chest/aq_platelets,
 		/obj/item/organ/cyberimp/chest/aq_air_sac,
 		/obj/item/organ/cyberimp/chest/aq_optical_camo,
-		/obj/item/organ/cyberimp/arm/aq_health_scanner,
-		/obj/item/organ/cyberimp/arm/aq_cyborg_analyzer/l,
 	)
 	var/list/inserted = list()
 	// narządy w klatce wymagają przepiłowanej kości (jak przy operacji)
@@ -255,20 +238,15 @@
 		TEST_ASSERT(augment.aq_cyberpsychosis_cost in list(0, 5, 10, 18), "[augment_type] has a cyberpsychosis cost outside the 0/5/10/18 scale")
 
 	TEST_ASSERT(HAS_TRAIT(patient, TRAIT_AQ_WIRE_INTERFACE), "The wire interface shows no wires")
-	var/obj/item/organ/cyberimp/brain/aq_joywire/joywire = inserted[/obj/item/organ/cyberimp/brain/aq_joywire]
-	joywire.on_life()
-	TEST_ASSERT(HAS_TRAIT(patient, TRAIT_AGEUSIA), "The joywire did not ruin the taste")
-	joywire.Remove(patient)
-	TEST_ASSERT(HAS_TRAIT(patient, TRAIT_AGEUSIA), "The taste came back after the joywire was removed")
-	var/obj/item/organ/cyberimp/brain/aq_diagnostics/diagnostics = inserted[/obj/item/organ/cyberimp/brain/aq_diagnostics]
-	diagnostics.ui_action_click()
-	var/obj/item/organ/cyberimp/brain/aq_hacking_deck/deck = inserted[/obj/item/organ/cyberimp/brain/aq_hacking_deck]
-	var/obj/machinery/door/airlock/door = allocate(/obj/machinery/door/airlock)
-	deck.hack(door)
-	var/obj/item/organ/cyberimp/brain/aq_jumpstarter/jumpstarter = inserted[/obj/item/organ/cyberimp/brain/aq_jumpstarter]
+	// implant restartu OUN (core) budzi z utraty przytomności, raz na minutę
+	var/obj/item/organ/cyberimp/brain/anti_stun/rebooter = inserted[/obj/item/organ/cyberimp/brain/anti_stun]
 	patient.Unconscious(10 SECONDS)
-	jumpstarter.on_life()
-	TEST_ASSERT(!patient.IsUnconscious(), "The CNS jumpstarter did not wake the host")
+	rebooter.on_life()
+	TEST_ASSERT(!patient.IsUnconscious(), "The CNS rebooter did not wake the host")
+	patient.Unconscious(10 SECONDS)
+	rebooter.on_life()
+	TEST_ASSERT(patient.IsUnconscious(), "The CNS rebooter woke the host again during its cooldown")
+	patient.SetUnconscious(0)
 	var/obj/item/organ/cyberimp/brain/aq_emotional_manipulator/emotions = inserted[/obj/item/organ/cyberimp/brain/aq_emotional_manipulator]
 	emotions.mode = "happy"
 	emotions.on_life()
@@ -302,39 +280,16 @@
 	TEST_ASSERT(!camo.active, "The optical camo worked while disrupted")
 	REMOVE_TRAIT(patient, TRAIT_AQ_AUGMENTS_DISRUPTED, "test")
 
-	// Narzędzia w rękach
-	var/obj/item/organ/cyberimp/arm/aq_health_scanner/scanner_arm = inserted[/obj/item/organ/cyberimp/arm/aq_health_scanner]
-	scanner_arm.ui_action_click()
-	TEST_ASSERT(istype(patient.get_item_for_held_index(2), /obj/item/healthanalyzer), "The health scanner did not extend")
-	scanner_arm.Retract()
-	var/obj/item/organ/cyberimp/arm/aq_cyborg_analyzer/analyzer_arm = inserted[/obj/item/organ/cyberimp/arm/aq_cyborg_analyzer/l]
-	analyzer_arm.ui_action_click()
-	var/obj/item/aq_robot_analyzer/analyzer = patient.get_item_for_held_index(1)
-	TEST_ASSERT(istype(analyzer), "The cyborg analyzer did not extend")
+	// Analizator cyborgów: zwykły przedmiot
+	var/obj/item/aq_robot_analyzer/analyzer = allocate(/obj/item/aq_robot_analyzer)
 	analyzer.scan(patient, patient)
-	analyzer_arm.Retract()
-	scanner_arm.Remove(patient)
-	analyzer_arm.Remove(patient)
 
-	// Kręgosłup przez autochirurga: egzoszkielet, potem Herculean, Sandevistan i podkręcacz (jeden slot)
-	var/old_max = patient.maxHealth
+	// Kręgosłup przez autochirurga: Sandevistan, potem podkręcacz (jeden slot)
 	var/obj/item/autosurgeon/surgeon = allocate(/obj/item/autosurgeon)
-	var/obj/item/organ/cyberimp/chest/spinal/aq_exoframe/exoframe = new(surgeon)
-	surgeon.storedorgan = list(exoframe)
+	var/obj/item/organ/cyberimp/chest/spinal/aq_sandevistan/sandy = new(surgeon)
+	surgeon.storedorgan = list(sandy)
 	surgeon.attack_self(patient)
-	TEST_ASSERT(patient.getorganslot(ORGAN_SLOT_SPINAL) == exoframe, "The autosurgeon did not implant the exoframe")
-	TEST_ASSERT_EQUAL(patient.maxHealth, old_max + exoframe.health_bonus, "The exoframe gave no health")
-	exoframe.Remove(patient)
-	TEST_ASSERT_EQUAL(patient.maxHealth, old_max, "The exoframe health stayed after removal")
-
-	var/obj/item/organ/cyberimp/chest/spinal/aq_herculean/herculean = allocate(/obj/item/organ/cyberimp/chest/spinal/aq_herculean)
-	herculean.Insert(patient)
-	TEST_ASSERT(HAS_TRAIT(patient, TRAIT_FREERUNNING) && patient.unarmed_damage_bonus >= herculean.punch_bonus, "Herculean gave no strength")
-	herculean.Remove(patient)
-	TEST_ASSERT(!HAS_TRAIT(patient, TRAIT_FREERUNNING), "Herculean climbing stayed after removal")
-
-	var/obj/item/organ/cyberimp/chest/spinal/aq_sandevistan/sandy = allocate(/obj/item/organ/cyberimp/chest/spinal/aq_sandevistan)
-	sandy.Insert(patient)
+	TEST_ASSERT(patient.getorganslot(ORGAN_SLOT_SPINAL) == sandy, "The autosurgeon did not implant Sandevistan")
 	var/old_move = patient.next_move_modifier
 	sandy.ui_action_click()
 	TEST_ASSERT(sandy.active && patient.next_move_modifier < old_move, "Sandevistan did not speed up the host")
@@ -351,17 +306,10 @@
 	overclocker.Remove(patient)
 	TEST_ASSERT(!overclocker.active && patient.next_move_modifier == old_move, "The overclocker stayed on after removal")
 
-	// Oczy (narządy): mezony, wizjer, monitor, laser
-	var/obj/item/organ/eyes/robotic/aq_meson/mesons = allocate(/obj/item/organ/eyes/robotic/aq_meson)
-	mesons.Insert(patient)
-	TEST_ASSERT(patient.getorganslot(ORGAN_SLOT_EYES) == mesons, "The meson eyes did not go in")
-	var/obj/item/organ/eyes/robotic/aq_tacvisor/visor = allocate(/obj/item/organ/eyes/robotic/aq_tacvisor)
-	visor.Insert(patient)
-	TEST_ASSERT(HAS_TRAIT(patient, TRAIT_PROSOPAGNOSIA), "The tactical visor did not hide faces")
-	visor.Remove(patient)
-	TEST_ASSERT(!HAS_TRAIT(patient, TRAIT_PROSOPAGNOSIA), "Face blindness stayed after the visor came out")
+	// Oczy (narządy): monitor, laser
 	var/obj/item/organ/eyes/robotic/aq_monitor/monitor = allocate(/obj/item/organ/eyes/robotic/aq_monitor)
 	monitor.Insert(patient)
+	TEST_ASSERT(patient.getorganslot(ORGAN_SLOT_EYES) == monitor, "The monitor eye did not go in")
 	monitor.ui_action_click()
 	TEST_ASSERT(monitor.monitor, "The monitor eye has no camera console")
 	monitor.Remove(patient)
@@ -385,12 +333,7 @@
 	embedded.Retract()
 	embedded.Remove(patient)
 
-	// Doorjack, hak i wyrzutnia nabojów: narzędzia w ręce
-	var/obj/item/organ/cyberimp/arm/aq_doorjack/doorjack = allocate(/obj/item/organ/cyberimp/arm/aq_doorjack)
-	doorjack.Insert(patient)
-	doorjack.ui_action_click()
-	TEST_ASSERT(istype(patient.get_item_for_held_index(2), /obj/item/aq_doorjack), "The doorjack did not extend")
-	doorjack.Remove(patient)
+	// Hak i wyrzutnia nabojów: narzędzia w ręce
 	var/obj/item/organ/cyberimp/arm/aq_climbing_hook/hook = allocate(/obj/item/organ/cyberimp/arm/aq_climbing_hook)
 	hook.Insert(patient)
 	hook.ui_action_click()
@@ -416,17 +359,20 @@
 	v1.Remove(patient)
 	qdel(v1)
 
-	// Magnetyczne stopy: działają w parze
-	var/obj/item/organ/cyberimp/leg/aq_magboot/right_leg = allocate(/obj/item/organ/cyberimp/leg/aq_magboot)
-	var/obj/item/organ/cyberimp/leg/aq_magboot/left_leg = allocate(/obj/item/organ/cyberimp/leg/aq_magboot/l)
-	right_leg.Insert(patient)
-	TEST_ASSERT(!right_leg.maglock, "One magboot implant already works")
-	left_leg.Insert(patient)
-	var/datum/action/innate/aq_maglock/maglock = left_leg.maglock || right_leg.maglock
-	TEST_ASSERT(maglock?.owner == patient, "A pair of magboot implants gave no toggle")
+	// Magnetyczne stopy: jeden implant wystarczy, drugi w drugiej nodze nic nie dodaje
+	var/obj/item/organ/cyberimp/leg/aq_magboot/magboot = allocate(/obj/item/organ/cyberimp/leg/aq_magboot)
+	magboot.Insert(patient)
+	var/datum/action/innate/aq_maglock/maglock = magboot.maglock
+	TEST_ASSERT(maglock?.owner == patient, "One magboot implant gave no toggle")
+	var/obj/item/organ/cyberimp/leg/aq_magboot/spare = allocate(/obj/item/organ/cyberimp/leg/aq_magboot)
+	spare.zone = BODY_ZONE_L_LEG
+	spare.SetSlotFromZone()
+	spare.Insert(patient)
+	TEST_ASSERT(!spare.maglock, "A second magboot implant gave a second toggle")
+	spare.Remove(patient)
 	maglock.Trigger()
-	TEST_ASSERT(HAS_TRAIT(patient, TRAIT_NEGATES_GRAVITY), "The magboot implants did not lock")
-	left_leg.Remove(patient)
+	TEST_ASSERT(HAS_TRAIT(patient, TRAIT_NEGATES_GRAVITY), "The magboot implant did not lock")
+	magboot.Remove(patient)
 	TEST_ASSERT(!HAS_TRAIT(patient, TRAIT_NEGATES_GRAVITY), "The magnets stayed on after removal")
 
 	// Mózg z łączem SI: zastępuje mózg, ciało żyje bez świadomości

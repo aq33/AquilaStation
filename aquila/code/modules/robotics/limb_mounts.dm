@@ -1,7 +1,7 @@
 // AQUILA - szybkie odłączanie protez (Nova Sector modular_nova/modules/robot_limb_detach/code/robot_limb_detach_quirk.dm,
 // Effigy local/code/datums/quirks/neutral_quirks/robot_limb_detach.dm). Cecha „Mocowania protez” (neutralna) daje akcję odpięcia
 // sprawnej robotycznej ręki albo nogi (5 s, bez ran, co 30 s) i pozwala przypiąć robotyczną kończynę z powrotem bez operacji
-// i bez kalibracji (przyłożenie do kikuta, 3 s). Głowy i klatki nie da się odpiąć. Pasuje do protezy-przedmiotu
+// (przyłożenie do kikuta, 3 s). Głowy i klatki nie da się odpiąć. Pasuje do protezy-przedmiotu
 // (item_as_prosthetic_limb) i do wymiany ręki na narzędziową albo oddania kończyny robotykowi do naprawy.
 
 /datum/quirk/aq_limb_mounts

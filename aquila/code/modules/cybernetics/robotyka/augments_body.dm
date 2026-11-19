@@ -1,8 +1,8 @@
 // AQUILA - augmenty tułowia, kręgosłupa, rąk i nóg. Wdrożenie robotyki, część IMPLANTY.
-// Źródła: Aurora (platelet_factories, health_scanner, cyborg_analyzer), Baystation12 (internal_air_system),
-// Nova Sector (opticalcamo), SS220 (exoframe), TGMC/MonkeStation/Nova (sandevistan), YogStation (spinalspeed, magboot),
-// /tg/station (cyberimp/chest/spine, climbing_hook), Sojourn (organ_module/active/simple/custom),
-// MonkeStation (doorjack), Paradise (shell_launcher, v1_arm).
+// Źródła: Aurora (platelet_factories, cyborg_analyzer), Baystation12 (internal_air_system),
+// Nova Sector (opticalcamo), TGMC/MonkeStation/Nova (sandevistan), YogStation (spinalspeed, magboot),
+// /tg/station (climbing_hook), Sojourn (organ_module/active/simple/custom),
+// Paradise (shell_launcher, v1_arm).
 
 #define AQ_ROBOTYKA_ICON 'aquila/icons/obj/cybernetics/robotyka_implanty.dmi'
 
@@ -205,51 +205,6 @@
 // ===========================================================================
 // KRĘGOSŁUP (slot ORGAN_SLOT_SPINAL, jeden implant naraz)
 
-// Egzoszkielet nośny (SS220 /obj/item/organ/internal/cyberimp/chest/exoframe)
-/obj/item/organ/cyberimp/chest/spinal/aq_exoframe
-	name = "egzoszkielet nośny"
-	desc = "Szkielet nośny jak u humanoidalnego robota: więcej wytrzymałości, mniej obrażeń od uderzeń i mocniejsze ciosy."
-	icon_state = "chest_implant"
-	implant_overlay = "chest_implant_overlay"
-	implant_color = "#9AA3AD"
-	aq_cyberpsychosis_cost = 10
-	/// Premia do maksymalnego zdrowia
-	var/health_bonus = 20
-	/// Mnożnik obrażeń od uderzeń
-	var/brute_multiplier = 0.9
-	/// Premia do ciosów
-	var/punch_bonus = 2
-
-/obj/item/organ/cyberimp/chest/spinal/aq_exoframe/Insert(mob/living/carbon/M, special = FALSE, drop_if_replaced = TRUE)
-	. = ..()
-	if(owner != M)
-		return
-	M.maxHealth += health_bonus
-	M.updatehealth()
-	if(ishuman(M))
-		var/mob/living/carbon/human/human_owner = M
-		human_owner.physiology.brute_mod *= brute_multiplier
-		human_owner.unarmed_damage_bonus += punch_bonus
-
-/obj/item/organ/cyberimp/chest/spinal/aq_exoframe/Remove(mob/living/carbon/M, special = FALSE)
-	if(M)
-		M.maxHealth -= health_bonus
-		M.updatehealth()
-		if(ishuman(M))
-			var/mob/living/carbon/human/human_owner = M
-			if(human_owner.physiology)
-				human_owner.physiology.brute_mod /= brute_multiplier
-			human_owner.unarmed_damage_bonus -= punch_bonus
-	return ..()
-
-/obj/item/organ/cyberimp/chest/spinal/aq_exoframe/emp_act(severity)
-	. = ..()
-	if(!owner || . & EMP_PROTECT_SELF)
-		return
-	owner.apply_damage(10 / severity, BRUTE, BODY_ZONE_CHEST)
-	owner.Knockdown(2 SECONDS / severity)
-
-// ---------------------------------------------------------------------------
 // Sandevistan (TGMC /obj/item/implant/sandevistan, MonkeStation, Nova Sector): przyspieszenie z kosztem dla serca
 
 /obj/item/organ/cyberimp/chest/spinal/aq_sandevistan
@@ -441,72 +396,10 @@
 	toy = TRUE
 	aq_cyberpsychosis_cost = 5
 
-// ---------------------------------------------------------------------------
-// Grawitonowy implant kręgosłupa Herculean (/tg/station /obj/item/organ/cyberimp/chest/spine)
-
-/obj/item/organ/cyberimp/chest/spinal/aq_herculean
-	name = "grawitonowy implant kręgosłupa Herculean"
-	desc = "Grawitonowe wzmocnienie kręgosłupa: szybsza wspinaczka, dalsze i szybsze rzuty, mocniejsze ciosy."
-	icon = AQ_ROBOTYKA_ICON
-	icon_state = "herculean_implant"
-	implant_overlay = null
-	aq_cyberpsychosis_cost = 10
-	/// Premia do ciosów
-	var/punch_bonus = 4
-	/// Premia do zasięgu rzutu
-	var/throw_range_bonus = 4
-	/// Premia do szybkości rzutu
-	var/throw_speed_bonus = 1
-	/// Mnożnik czasu wspinaczki (hak wspinaczkowy)
-	var/climb_multiplier = 0.8
-
-/obj/item/organ/cyberimp/chest/spinal/aq_herculean/Insert(mob/living/carbon/M, special = FALSE, drop_if_replaced = TRUE)
-	. = ..()
-	if(owner != M)
-		return
-	ADD_TRAIT(M, TRAIT_FREERUNNING, REF(src))
-	if(ishuman(M))
-		var/mob/living/carbon/human/human_owner = M
-		human_owner.unarmed_damage_bonus += punch_bonus
-
-/obj/item/organ/cyberimp/chest/spinal/aq_herculean/Remove(mob/living/carbon/M, special = FALSE)
-	if(M)
-		REMOVE_TRAIT(M, TRAIT_FREERUNNING, REF(src))
-		if(ishuman(M))
-			var/mob/living/carbon/human/human_owner = M
-			human_owner.unarmed_damage_bonus -= punch_bonus
-	return ..()
-
-/obj/item/organ/cyberimp/chest/spinal/aq_herculean/emp_act(severity)
-	. = ..()
-	if(!owner || . & EMP_PROTECT_SELF)
-		return
-	owner.apply_damage(20 / severity, BRUTE, BODY_ZONE_CHEST)
-	to_chat(owner, span_warning("Kręgosłup przeszywa ból, gdy grawitony tracą stabilność!"))
-
 // ===========================================================================
 // RĘCE
 
-// Zintegrowany skaner zdrowia (Aurora /obj/item/organ/internal/augment/health_scanner)
-/obj/item/organ/cyberimp/arm/aq_health_scanner
-	name = "zintegrowany skaner zdrowia"
-	desc = "Wysuwany z dłoni analizator zdrowia, który bada pacjenta dotykiem."
-	items_to_create = list(/obj/item/healthanalyzer)
-	aq_cyberpsychosis_cost = 5
-
-/obj/item/organ/cyberimp/arm/aq_health_scanner/l
-	zone = BODY_ZONE_L_ARM
-
-// Analizator cyborgów w palcu (Aurora /obj/item/organ/internal/augment/tool/cyborg_analyzer)
-/obj/item/organ/cyberimp/arm/aq_cyborg_analyzer
-	name = "wysuwany analizator cyborgów"
-	desc = "Analizator cyborgów i protez wysuwany z palca, do diagnozy na miejscu."
-	items_to_create = list(/obj/item/aq_robot_analyzer)
-	aq_cyberpsychosis_cost = 5
-
-/obj/item/organ/cyberimp/arm/aq_cyborg_analyzer/l
-	zone = BODY_ZONE_L_ARM
-
+// Analizator cyborgów (Aurora /obj/item/device/robotanalyzer, augment cyborg_analyzer): zwykły przedmiot z protolathe
 /obj/item/aq_robot_analyzer
 	name = "analizator cyborgów"
 	desc = "Ręczny skaner stanu cyborgów, protez i robotycznych narządów."
@@ -600,43 +493,6 @@
 	to_chat(user, span_notice("Wyjmujesz [stored] z modułu."))
 	return TRUE
 
-// Wbudowany doorjack (MonkeStation /obj/item/organ/internal/cyberimp/arm/item_set/doorjack)
-/obj/item/organ/cyberimp/arm/aq_doorjack
-	name = "implant doorjacka"
-	desc = "Wbudowany w rękę doorjack, którym można sforsować zamek drzwi."
-	syndicate_implant = TRUE
-	items_to_create = list(/obj/item/aq_doorjack)
-	aq_cyberpsychosis_cost = 10
-
-/obj/item/organ/cyberimp/arm/aq_doorjack/l
-	zone = BODY_ZONE_L_ARM
-
-/obj/item/aq_doorjack
-	name = "doorjack"
-	desc = "Wysuwany z ręki łamacz zamków. Przyłożony do drzwi po chwili przepala ich elektronikę."
-	icon = AQ_ROBOTYKA_ICON
-	icon_state = "doorjack"
-	item_state = "card-id"
-	lefthand_file = 'icons/mob/inhands/equipment/idcards_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/equipment/idcards_righthand.dmi'
-	w_class = WEIGHT_CLASS_SMALL
-	/// Ile trwa forsowanie
-	var/jack_time = 3 SECONDS
-
-/obj/item/aq_doorjack/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
-	. = ..()
-	if(!proximity_flag || !(istype(target, /obj/machinery/door/airlock) || istype(target, /obj/machinery/door/window)))
-		return
-	var/obj/machinery/door/door = target
-	if(door.obj_flags & EMAGGED)
-		to_chat(user, span_warning("Zamek [door] jest już przepalony."))
-		return
-	user.visible_message(span_warning("[user] przykłada coś do zamka [door]."), span_notice("Doorjack zaczyna łamać zamek [door]..."))
-	if(!do_after(user, jack_time, target = door))
-		return
-	log_combat(user, door, "sforsował doorjackiem")
-	door.emag_act(user)
-
 // Hak wspinaczkowy w ręce (Bubberstation /obj/item/organ/cyberimp/arm/toolkit/rope, hak z /tg/station)
 /obj/item/organ/cyberimp/arm/aq_climbing_hook
 	name = "implant haka wspinaczkowego"
@@ -680,13 +536,9 @@
 	if(destination.density || istype(destination, /turf/open/openspace) || is_blocked_turf(destination, TRUE))
 		to_chat(user, span_warning("Nie da się tam wspiąć."))
 		return
-	var/time = climb_time
-	var/obj/item/organ/cyberimp/chest/spinal/aq_herculean/spine = user.getorganslot(ORGAN_SLOT_SPINAL)
-	if(istype(spine))
-		time *= spine.climb_multiplier
 	user.visible_message(span_notice("[user] zaczyna wspinać się po linie w górę."), span_notice("Zaczepiasz hak i wspinasz się w górę."))
 	playsound(user_turf, 'sound/effects/picaxe1.ogg', 50)
-	if(do_after(user, time, target = user))
+	if(do_after(user, climb_time, target = user))
 		user.forceMove(destination)
 
 // Działko w ramieniu (Paradise /obj/item/organ/internal/cyberimp/arm/shell_launcher)
@@ -817,23 +669,26 @@
 // ===========================================================================
 // NOGI
 
-// Magnetyczne stopy (YogStation /obj/item/organ/cyberimp/leg/magboot): potrzebują pary w obu nogach
+/// Implant działa pojedynczo: drugi taki sam w drugiej nodze nic nie dodaje
+/obj/item/organ/cyberimp/leg/proc/aq_duplicate_in_other_leg(mob/living/carbon/user)
+	var/obj/item/organ/cyberimp/leg/other = user?.getorganslot(slot == ORGAN_SLOT_LEFT_LEG_AUG ? ORGAN_SLOT_RIGHT_LEG_AUG : ORGAN_SLOT_LEFT_LEG_AUG)
+	return istype(other, type) && other != src
+
+// Magnetyczne stopy (YogStation /obj/item/organ/cyberimp/leg/magboot): u Yoga para w obu nogach, u nas jeden implant
 /obj/item/organ/cyberimp/leg/aq_magboot
 	name = "implant magnetycznych stóp"
-	desc = "Magnes w stopie działa jak magbuty. Potrzebuje drugiego takiego implantu w drugiej nodze."
-	double_legged_type = /obj/item/organ/cyberimp/leg/aq_magboot
+	desc = "Magnesy w stopach działają jak magbuty. Wystarczy jeden implant w dowolnej nodze."
 	aq_cyberpsychosis_cost = 5
-	/// Akcja przełączania (tylko na jednym z pary)
+	/// Akcja przełączania
 	var/datum/action/innate/aq_maglock/maglock
-
-/obj/item/organ/cyberimp/leg/aq_magboot/l
-	zone = BODY_ZONE_L_LEG
 
 /obj/item/organ/cyberimp/leg/aq_magboot/Destroy()
 	QDEL_NULL(maglock)
 	return ..()
 
 /obj/item/organ/cyberimp/leg/aq_magboot/on_full_insert(mob/living/carbon/user)
+	if(aq_duplicate_in_other_leg(user))
+		return
 	if(!maglock)
 		maglock = new(src)
 	maglock.Grant(user)
@@ -841,10 +696,6 @@
 /obj/item/organ/cyberimp/leg/aq_magboot/on_full_remove(mob/living/carbon/user)
 	maglock?.set_locked(FALSE)
 	maglock?.Remove(user)
-	var/obj/item/organ/cyberimp/leg/aq_magboot/partner = get_partner(user)
-	if(partner?.maglock)
-		partner.maglock.set_locked(FALSE)
-		partner.maglock.Remove(user)
 
 /obj/item/organ/cyberimp/leg/aq_magboot/emp_act(severity)
 	. = ..()

@@ -4,7 +4,9 @@
 // o stopień (jak w Aurorze), a na trzecim stopniu program wywołuje losową awarię (oparzenia, zamęt, oślepienie, halucynacje...).
 // U nas dochodzi głód programu: po skończonym działaniu IPC ma gorszy nastrój na 5 minut, dopóki nie wepnie kolejnego.
 // Na organicznych dysk nie działa (najwyżej ukłuje). Klucz resetu syntetyka czyści działanie (synth_reset_key.dm).
-// Do kupienia na czarnym rynku i w automacie baru (tu tylko jako przedmioty i paczka). Ikony: Aurora Station (CC BY-SA 3.0).
+// Z pięciu programów Aurory zostały dwa najbardziej różne: Classic (sam nastrój, poczucie spełnienia) i Rainbow Essence
+// (zmiana percepcji, kolorowy świat). VanillaTranquil dublował nastrój Classica, a ScreenShaker i Jitterbug dawały tylko
+// drgawki i zawroty głowy. Do kupienia na czarnym rynku (paczka). Ikony: Aurora Station (CC BY-SA 3.0).
 
 /mob/living/carbon/human
 	/// AQUILA - stopień przeciążenia cyfrowymi używkami (0-3)
@@ -108,7 +110,7 @@
 			target.take_overall_damage(0, 20)
 		if(2)
 			to_chat(target, "<span class='warning'>Podzespoły wewnętrzne gwałtownie się nagrzewają!</span>")
-			target.aq_adjust_synth_heat(30)
+			target.adjust_bodytemperature(60) // przegrzanie IPC jak przed robotyką: dym od BODYTEMP_HEAT_DAMAGE_LIMIT
 		if(3)
 			to_chat(target, "<span class='warning'>Czujniki ruchu zaczynają się w kółko restartować!</span>")
 			target.confused = max(target.confused, 20)
@@ -156,16 +158,6 @@
 	mood_change = 6
 	timeout = 4 MINUTES
 
-/datum/mood_event/aq_overloader/calm
-	description = "<span class='nicegreen'>Nic mi nie grozi. Wszystko jest spokojne.</span>\n"
-	mood_change = 4
-	timeout = 4 MINUTES
-
-/datum/mood_event/aq_overloader/scared
-	description = "<span class='warning'>Wszędzie czai się zagrożenie! To przerażające i wspaniałe!</span>\n"
-	mood_change = -2
-	timeout = 4 MINUTES
-
 /datum/mood_event/aq_overloader_withdrawal
 	description = "<span class='warning'>Rzeczywistość znowu jest szara. Przydałby się kolejny program.</span>\n"
 	mood_change = -4
@@ -184,24 +176,6 @@
 		"Każde zadanie, którego się podejmiesz, wykonasz niemal idealnie.",
 		"Stworzono cię w jakimś celu i spełniłeś go dziesięciokrotnie.",
 	)
-
-/obj/item/aq_ipc_overloader/tranquil
-	name = "GwokBuzz VanillaTranquil"
-	desc = "Overloader dla IPC w stresującej pracy. Wycisza wrogość i ocenę ryzyka."
-	icon_state = "vanilla"
-	mood_type = /datum/mood_event/aq_overloader/calm
-	start_message = "Podsystemy wykrywania zagrożeń cichną niemal do zera. Otoczenie wydaje się całkowicie bezpieczne."
-	end_message = "Wykrywanie zagrożeń trzeszczy i wraca do życia, a z nim ostrożność..."
-	cycle_messages = list(
-		"Nic ci nie grozi. Wszystko będzie dobrze, cokolwiek się stanie.",
-		"Twoje zmartwienia rozwiewają się jak para. Czujesz przyjemną pustkę.",
-		"Mógłbyś tu stać do końca świata bez cienia niepokoju.",
-		"Wszystko płynie jak spokojna rzeka. Nic ci nie grozi. Wszystko jest w porządku.",
-	)
-
-/obj/item/aq_ipc_overloader/tranquil/start_effect(mob/living/carbon/human/target)
-	target.jitteriness = 0
-	target.confused = 0
 
 /obj/item/aq_ipc_overloader/rainbow
 	name = "GwokBuzz Rainbow Essence"
@@ -227,63 +201,19 @@
 	. = ..()
 	target.set_drugginess(0)
 
-/obj/item/aq_ipc_overloader/screenshaker
-	name = "GwokBuzz ScreenShaker"
-	desc = "Overloader, który każe serwom pulsować w losowych chwilach. Zaburza równowagę i dodaje energii."
-	icon_state = "screenshake"
-	start_message = "Obraz zaczyna się trząść, a serwa szarpią w losowe strony! Rozpiera cię energia!"
-	end_message = "Serwa powoli przestają drgać i odzyskujesz kontrolę nad podwoziem..."
-	cycle_messages = list(
-		"Musisz biec! Masz energię! Nie masz koordynacji! Masz moc!",
-		"Serwa zgłaszają ostrzeżenie o przeciążeniu. Nie masz ochoty go słuchać!",
-		"Ten świat istnieje po to, żeby go zmieniać! Jesteś siłą zmiany!",
-		"Mógłbyś dotknąć nieba! Wyskoczyć w chmury, w gwiazdy i dalej!",
-	)
-
-/obj/item/aq_ipc_overloader/screenshaker/start_effect(mob/living/carbon/human/target)
-	target.Dizzy(20)
-	target.Jitter(20)
-
-/obj/item/aq_ipc_overloader/screenshaker/cycle_effect(mob/living/carbon/human/target)
-	. = ..()
-	target.Dizzy(20)
-	target.Jitter(20)
-
-/obj/item/aq_ipc_overloader/jitterbug
-	name = "GwokBuzz Jitterbug"
-	desc = "Overloader, który przeciąża poczucie zagrożenia. Wszystko wydaje się ryzykowniejsze niż zwykle."
-	icon_state = "jitterbug"
-	message_class = "warning"
-	mood_type = /datum/mood_event/aq_overloader/scared
-	start_message = "Czułość wykrywania zagrożeń wystrzeliwuje w górę! Niebezpieczeństwo czai się w każdym cieniu!"
-	end_message = "Czujesz się bezpieczniej, otoczenie przestaje być ulem zagrożeń..."
-	cycle_messages = list(
-		"Wszystko dookoła drwi z twojej inteligencji. To jednocześnie ekscytujące i przerażające!",
-		"Ktoś na ciebie poluje! Coś wspina się po twoim podwoziu! Nie widzisz tego, ale wiesz, że tam jest!",
-		"W kącie coś jest. To na pewno zagrożenie! Uciekaj albo biegnij w jego stronę!",
-		"Każdy lęk jest dziesięć razy silniejszy. Każda drobna obawa urasta do zagrożenia istnienia!",
-	)
-
-/obj/item/aq_ipc_overloader/jitterbug/cycle_effect(mob/living/carbon/human/target)
-	. = ..()
-	target.Jitter(10)
-
 /obj/item/storage/box/aq_overloaders
 	name = "zestaw overloaderów GwokBuzz"
-	desc = "Przezroczyste opakowanie z pięcioma programami rekreacyjnymi dla IPC."
+	desc = "Przezroczyste opakowanie z dwoma programami rekreacyjnymi dla IPC."
 	icon = 'aquila/icons/obj/robotics/ipc_overloaders.dmi'
 	icon_state = "box"
 
 /obj/item/storage/box/aq_overloaders/PopulateContents()
 	new /obj/item/aq_ipc_overloader/classic(src)
-	new /obj/item/aq_ipc_overloader/tranquil(src)
 	new /obj/item/aq_ipc_overloader/rainbow(src)
-	new /obj/item/aq_ipc_overloader/screenshaker(src)
-	new /obj/item/aq_ipc_overloader/jitterbug(src)
 
 /datum/market_item/misc/aq_overloaders
 	name = "Overloadery GwokBuzz"
-	desc = "Cyfrowe używki dla IPC prosto z Konyangu. Pięć programów w paczce."
+	desc = "Cyfrowe używki dla IPC prosto z Konyangu. Dwa programy w paczce."
 	item = /obj/item/storage/box/aq_overloaders
 	price_min = 150
 	price_max = 400

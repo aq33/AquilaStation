@@ -1,8 +1,6 @@
-// AQUILA - marki protez z własnym wyglądem i cechami (robolimbs z Baystation12/Polarisa/Paradise: code/modules/organs/robolimbs.dm)
-// i protezy z realistyczną skórą (Polaris lifelike, Bay Vey-Med skintone).
-// Marka decyduje o sprite'cie (style z maszyny do dopasowania augmentacji, ikony NSV13 i tg), opisie przy oględzinach
-// i cechach: mnożniki obrażeń, odporność na EMP, czucie bólu, samonaprawa. Liczby są nasze: w Polarisie marki to głównie
-// wygląd (robo_brute_mod/robo_burn_mod ma tylko kilka), a w Erisie pancerz, którego nasze kończyny nie mają.
+// AQUILA - marki protez (robolimbs z Baystation12/Polarisa/Paradise: code/modules/organs/robolimbs.dm) i protezy
+// z realistyczną skórą (Polaris lifelike, Bay Vey-Med skintone). Marka to sam wygląd: sprite (style z maszyny do dopasowania
+// augmentacji, ikony NSV13 i tg) i opis przy oględzinach, bez cech (obrażeń, EMP, bólu, samonaprawy).
 // Vey-Med wygląda jak ciało w kolorze skóry właściciela i zdradza się dopiero z bliska albo po uszkodzeniu.
 // Kończyny IPC rysuje podwozie gatunku, więc marka ich nie zmienia.
 
@@ -17,19 +15,8 @@
 	var/limb_icon = 'icons/mob/augmentation/augments.dmi'
 	/// Wersja męska sprite'u, jeśli marka ma osobną
 	var/limb_icon_male
-	/// Mnożniki obrażeń kończyny
-	var/brute_mod = 1
-	var/burn_mod = 1
-	/// Mnożnik obrażeń i czasu paraliżu od EMP
-	var/emp_mod = 1
-	/// Kończyna przekazuje ból (czujniki nacisku podłączone do nerwów)
-	var/feels_pain = FALSE
 	/// Wygląda jak ciało w kolorze skóry właściciela
 	var/lifelike = FALSE
-	/// Obrażeń fizycznych naprawianych na sekundę, póki kończyna ma ponad połowę wytrzymałości
-	var/self_repair = 0
-	/// Krótko o cechach, do opisu w lobby i w oknie wyboru
-	var/traits_text = "bez dodatkowych cech"
 
 /datum/aq_robolimb_brand/proc/get_icon(gender)
 	if(limb_icon_male && gender == MALE)
@@ -41,77 +28,54 @@
 	name = "Nanotrasen"
 	desc = "Prosta i wydajna proteza z fabryk Nanotrasen."
 	limb_icon = 'icons/mob/augmentation/augments.dmi'
-	traits_text = "standardowa proteza"
 
 /datum/aq_robolimb_brand/nanotrasen_engineering
 	id = "nanotrasen_engineering"
 	name = "Nanotrasen (inżynieria)"
 	desc = "Proteza Nanotrasen w żółtej, izolowanej obudowie dla inżynierów."
 	limb_icon = 'icons/mob/augmentation/augments_engineer.dmi'
-	burn_mod = 0.85
-	traits_text = "mniej oparzeń"
 
 /datum/aq_robolimb_brand/nanotrasen_security
 	id = "nanotrasen_security"
 	name = "Nanotrasen (ochrona)"
 	desc = "Proteza Nanotrasen w czerwonej, wzmocnionej obudowie dla ochrony."
 	limb_icon = 'icons/mob/augmentation/augments_security.dmi'
-	brute_mod = 0.85
-	traits_text = "mniej obrażeń fizycznych"
 
 /datum/aq_robolimb_brand/nanotrasen_mining
 	id = "nanotrasen_mining"
 	name = "Nanotrasen (górnictwo)"
 	desc = "Toporna proteza Nanotrasen w brązowej obudowie dla górników."
 	limb_icon = 'icons/mob/augmentation/augments_mining.dmi'
-	brute_mod = 0.9
-	burn_mod = 1.1
-	traits_text = "mniej obrażeń fizycznych, więcej oparzeń"
 
 /datum/aq_robolimb_brand/bishop
 	id = "bishop"
 	name = "Bishop Cybernetics"
 	desc = "Biała obudowa z polimeru z niebieskimi holowyświetlaczami."
 	limb_icon = 'nsv13/icons/mob/augmentation/bishop.dmi'
-	brute_mod = 1.1
-	emp_mod = 0.5
-	traits_text = "ekranowana przed EMP, delikatniejsza obudowa"
 
 /datum/aq_robolimb_brand/shellguard
 	id = "shellguard"
 	name = "Shellguard Munitions"
 	desc = "Ciężka, wojskowa proteza w pancernej obudowie."
 	limb_icon = 'nsv13/icons/mob/augmentation/shellguard.dmi'
-	brute_mod = 0.8
-	burn_mod = 1.1
-	emp_mod = 1.25
-	traits_text = "wytrzymała na ciosy, wrażliwsza na EMP i ogień"
 
 /datum/aq_robolimb_brand/xion
 	id = "xion"
 	name = "Xion Manufacturing Group"
 	desc = "Minimalistyczna, przemysłowa obudowa w czerni i czerwieni."
 	limb_icon = 'nsv13/icons/mob/augmentation/xion.dmi'
-	burn_mod = 0.8
-	traits_text = "odporna na żar"
 
 /datum/aq_robolimb_brand/zenghu
 	id = "zenghu"
 	name = "Zeng-Hu Pharmaceuticals"
 	desc = "Gumowe pokrycie w kolorze ciała z widocznymi szwami."
 	limb_icon = 'nsv13/icons/mob/augmentation/zenghu.dmi'
-	feels_pain = TRUE
-	self_repair = 0.1
-	traits_text = "czuje ból, sama naprawia drobne uszkodzenia"
 
 /datum/aq_robolimb_brand/wardtakahashi
 	id = "wardtakahashi"
 	name = "Ward-Takahashi"
 	desc = "Smukła obudowa z czarnych i białych polimerów."
 	limb_icon = 'nsv13/icons/mob/augmentation/wardtakahashi.dmi'
-	brute_mod = 1.05
-	emp_mod = 0.75
-	traits_text = "częściowo ekranowana przed EMP"
 
 /datum/aq_robolimb_brand/veymed
 	id = "veymed"
@@ -119,11 +83,7 @@
 	desc = "Proteza najwyższej jakości, prawie nie do odróżnienia od ciała."
 	limb_icon = 'nsv13/icons/mob/augmentation/veymed.dmi'
 	limb_icon_male = 'nsv13/icons/mob/augmentation/veymedm.dmi'
-	brute_mod = 1.1
-	burn_mod = 1.1
-	feels_pain = TRUE
 	lifelike = TRUE
-	traits_text = "wygląda jak ciało, czuje ból, delikatniejsza"
 
 /// id -> marka
 GLOBAL_LIST_INIT(aq_robolimb_brands, aq_init_robolimb_brands())
@@ -217,11 +177,6 @@ GLOBAL_LIST_INIT(aq_robolimb_brands, aq_init_robolimb_brands())
 	species_color = old_limb.species_color
 
 /obj/item/bodypart/receive_damage(brute = 0, burn = 0, stamina = 0, blocked = 0, updating_health = TRUE, required_status = null)
-	brute *= aq_brute_mod
-	burn *= aq_burn_mod
-	if(aq_brand)
-		brute *= aq_brand.brute_mod
-		burn *= aq_brand.burn_mod
 	var/was_disguised = aq_lifelike_disguised()
 	. = ..()
 	if(was_disguised && !aq_lifelike_disguised() && owner)
@@ -231,7 +186,7 @@ GLOBAL_LIST_INIT(aq_robolimb_brands, aq_init_robolimb_brands())
 /obj/item/bodypart/examine(mob/user)
 	. = ..()
 	if(aq_brand)
-		. += "<span class='notice'>Proteza marki [aq_brand.name]: [aq_brand.desc] Cechy: [aq_brand.traits_text].</span>"
+		. += "<span class='notice'>Proteza marki [aq_brand.name]: [aq_brand.desc]</span>"
 
 /// Linijki przy oględzinach człowieka: widać protezy, a te z realistyczną skórą tylko z bliska albo po uszkodzeniu
 /mob/living/carbon/human/proc/aq_prosthetic_examine_lines(mob/user)
@@ -251,16 +206,3 @@ GLOBAL_LIST_INIT(aq_robolimb_brands, aq_init_robolimb_brands())
 	. = ..()
 	if(user != src)
 		. += aq_prosthetic_examine_lines(user)
-
-/// Marki Zeng-Hu i Vey-Med mają czujniki nacisku podłączone do nerwów (pain.dm)
-/mob/living/carbon/human/aq_limb_feels_pain(obj/item/bodypart/limb)
-	. = ..()
-	if(!. && limb.aq_brand?.feels_pain && limb.disabled != BODYPART_DISABLED_PARALYSIS)
-		return TRUE
-
-/// Samonaprawa marek (robotics_life.dm woła co tick życia)
-/obj/item/bodypart/proc/aq_brand_life(delta_time)
-	if(!aq_brand?.self_repair || !brute_dam || get_damage() > max_damage * 0.5)
-		return
-	heal_damage(aq_brand.self_repair * delta_time, 0, 0, null, FALSE)
-	return TRUE

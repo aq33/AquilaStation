@@ -10,7 +10,7 @@
 		qdel(old_limb)
 	return new_limb
 
-/// AQUILA - marki protez: wygląd, mnożniki obrażeń, realistyczna skóra, oględziny, maszyna do dopasowania
+/// AQUILA - marki protez: sam wygląd (bez mnożników), realistyczna skóra, oględziny, maszyna do dopasowania
 /datum/unit_test/aquila_robolimb_brands
 
 /datum/unit_test/aquila_robolimb_brands/Run()
@@ -19,8 +19,10 @@
 	var/obj/item/bodypart/arm = aq_test_swap_limb(patient, /obj/item/bodypart/l_arm/robot)
 	TEST_ASSERT(arm.aq_set_brand("shellguard"), "A robotic arm did not take a brand")
 	TEST_ASSERT("[arm.static_icon]" == "[GLOB.aq_robolimb_brands["shellguard"].limb_icon]", "The brand did not change the sprite")
+	var/obj/item/bodypart/plain = aq_test_swap_limb(patient, /obj/item/bodypart/r_arm/robot)
 	arm.receive_damage(20)
-	TEST_ASSERT(arm.brute_dam < 20 - arm.brute_reduction, "Shellguard armour did not lower brute damage ([arm.brute_dam])")
+	plain.receive_damage(20)
+	TEST_ASSERT(arm.brute_dam == plain.brute_dam, "A brand changed the damage taken ([arm.brute_dam] vs [plain.brute_dam])")
 	TEST_ASSERT(length(patient.aq_prosthetic_examine_lines(viewer)), "A branded prosthesis is not seen on examine")
 
 	var/obj/item/bodypart/leg = aq_test_swap_limb(patient, /obj/item/bodypart/l_leg/robot)
@@ -31,7 +33,6 @@
 	TEST_ASSERT(!findtext(jointext(lines, ""), "ukryta pod sztuczną skórą"), "A lifelike prosthesis is seen from afar")
 	leg.receive_damage(leg.max_damage)
 	TEST_ASSERT(!leg.aq_lifelike_disguised(), "A wrecked lifelike prosthesis still hides its metal")
-	TEST_ASSERT(patient.aq_limb_feels_pain(leg) || leg.disabled == BODYPART_DISABLED_PARALYSIS, "A Vey-Med limb does not feel pain")
 
 	var/obj/item/bodypart/r_arm/robot/loose = allocate(/obj/item/bodypart/r_arm/robot)
 	loose.static_icon = 'nsv13/icons/mob/augmentation/bishop.dmi'
@@ -41,7 +42,7 @@
 	var/obj/item/bodypart/l_arm/robot/aq_advanced/advanced = allocate(/obj/item/bodypart/l_arm/robot/aq_advanced)
 	TEST_ASSERT(!advanced.aq_set_brand("xion"), "An advanced prosthesis lost its own look to a brand")
 
-/// AQUILA - zaawansowane, kinetyczne i prowizoryczne protezy
+/// AQUILA - zaawansowane protezy i ręka ze złomu
 /datum/unit_test/aquila_prosthetic_tiers
 
 /datum/unit_test/aquila_prosthetic_tiers/Run()
@@ -54,51 +55,22 @@
 	TEST_ASSERT(patient.unarmed_damage_bonus == bonus_before, "The punch bonus stayed after the arm came off")
 	advanced.attach_limb(patient, TRUE)
 
-	// proteza kinetyczna: zakładana bez operacji, bez strzelania
-	var/obj/item/bodypart/l_arm/aq_kinetic/kinetic = allocate(/obj/item/bodypart/l_arm/aq_kinetic)
-	var/obj/item/bodypart/old_arm = patient.get_bodypart(BODY_ZONE_L_ARM)
-	old_arm.drop_limb()
-	qdel(old_arm)
-	patient.put_in_r_hand(kinetic)
-	TEST_ASSERT(kinetic.aq_easy_attach_to(patient, patient), "A kinetic arm did not snap onto the stump")
-	TEST_ASSERT(patient.get_bodypart(BODY_ZONE_L_ARM) == kinetic, "The kinetic arm is not attached")
-	TEST_ASSERT(HAS_TRAIT(patient, TRAIT_NOGUNS), "A kinetic arm lets its owner shoot")
-	TEST_ASSERT(!kinetic.aq_needs_calibration(), "A kinetic arm needs calibration")
-	kinetic.drop_limb()
-	TEST_ASSERT(!HAS_TRAIT(patient, TRAIT_NOGUNS), "The chunky fingers stayed after the kinetic arm came off")
-
-	// drewniany kołek: z menu wytwarzania, obrywa mocniej
-	var/datum/crafting_recipe/aq_peg_l_leg/recipe = new
-	TEST_ASSERT(recipe.result == /obj/item/bodypart/l_leg/aq_peg && recipe.reqs[/obj/item/stack/sheet/mineral/wood] == 2, "The peg leg recipe is wrong")
+	// ręka ze złomu: tania proteza z menu wytwarzania
+	var/datum/crafting_recipe/aq_scrap_l_arm/recipe = new
+	TEST_ASSERT(recipe.result == /obj/item/bodypart/l_arm/robot/surplus, "The scrap arm recipe does not make a surplus arm")
 	qdel(recipe)
-	var/obj/item/bodypart/peg = aq_test_swap_limb(patient, /obj/item/bodypart/l_leg/aq_peg)
-	peg.receive_damage(10)
-	TEST_ASSERT(peg.brute_dam >= 12, "A peg leg does not take extra damage ([peg.brute_dam])")
-	TEST_ASSERT(!peg.aq_emp_effect(EMP_HEAVY), "EMP damaged a wooden peg")
 
-/// AQUILA - kalibracja świeżo przyszytej protezy
-/datum/unit_test/aquila_prosthetic_calibration
+/// AQUILA - przyszyta proteza działa od razu, bez kalibracji
+/datum/unit_test/aquila_prosthetic_no_calibration
 
-/datum/unit_test/aquila_prosthetic_calibration/Run()
+/datum/unit_test/aquila_prosthetic_no_calibration/Run()
 	var/mob/living/carbon/human/patient = allocate(/mob/living/carbon/human)
-	var/mob/living/carbon/human/doctor = allocate(/mob/living/carbon/human)
 	var/obj/item/bodypart/old_arm = patient.get_bodypart(BODY_ZONE_R_ARM)
 	old_arm.drop_limb()
 	qdel(old_arm)
 	var/obj/item/bodypart/r_arm/robot/arm = allocate(/obj/item/bodypart/r_arm/robot)
 	arm.attach_limb(patient)
-	TEST_ASSERT(arm.aq_needs_calibration(), "A freshly attached prosthesis works without calibration")
-	TEST_ASSERT(arm.disabled == BODYPART_DISABLED_PARALYSIS, "An uncalibrated prosthesis is not disabled")
-	var/obj/item/multitool/tool = allocate(/obj/item/multitool)
-	TEST_ASSERT(arm.aq_calibrate(doctor, tool, 0), "Calibration failed")
-	TEST_ASSERT(!arm.aq_needs_calibration() && arm.disabled == BODYPART_NOT_DISABLED, "The calibrated prosthesis still does not work")
-
-	// syntetyk przypina kończyny sam, bez kalibracji
-	var/mob/living/carbon/human/ipc = allocate(/mob/living/carbon/human/species/ipc)
-	var/obj/item/bodypart/ipc_arm = ipc.get_bodypart(BODY_ZONE_L_ARM)
-	ipc_arm.drop_limb()
-	ipc_arm.attach_limb(ipc)
-	TEST_ASSERT(!ipc_arm.aq_needs_calibration(), "An IPC needs calibration for its own arm")
+	TEST_ASSERT(arm.disabled == BODYPART_NOT_DISABLED, "A freshly attached prosthesis does not work")
 
 /// AQUILA - szybkie odłączanie protez (cecha „Mocowania protez”)
 /datum/unit_test/aquila_limb_mounts
@@ -114,7 +86,7 @@
 	TEST_ASSERT(!patient.get_bodypart(BODY_ZONE_L_ARM), "The detached prosthesis is still attached")
 	TEST_ASSERT(patient.is_holding(arm), "The detached prosthesis is not in hand (it is in [arm.loc])")
 	TEST_ASSERT(arm.aq_easy_attach_to(patient, patient), "The prosthesis did not click back in")
-	TEST_ASSERT(patient.get_bodypart(BODY_ZONE_L_ARM) == arm && !arm.aq_needs_calibration(), "A remounted prosthesis needs calibration")
+	TEST_ASSERT(patient.get_bodypart(BODY_ZONE_L_ARM) == arm && arm.disabled == BODYPART_NOT_DISABLED, "A remounted prosthesis does not work")
 
 /// AQUILA - EMP rani i paraliżuje protezy, ciało zostaje w spokoju
 /datum/unit_test/aquila_limb_emp
@@ -133,12 +105,7 @@
 	arm.aq_emp_recover()
 	TEST_ASSERT(!HAS_TRAIT_FROM(arm, TRAIT_PARALYSIS, AQ_LIMB_EMP_TRAIT), "The prosthesis did not recover from EMP")
 
-	var/obj/item/bodypart/shielded = aq_test_swap_limb(patient, /obj/item/bodypart/l_leg/robot)
-	shielded.aq_set_brand("bishop")
-	shielded.aq_emp_effect(EMP_LIGHT)
-	TEST_ASSERT(shielded.burn_dam < AQ_LIMB_EMP_BURN, "A Bishop limb is not shielded from EMP")
-
-/// AQUILA - rany robotyczne: pojawiają się na protezie, naprawa narzędziem i łatką
+/// AQUILA - rany robotyczne: pojawiają się na protezie, naprawa narzędziami
 /datum/unit_test/aquila_robotic_wounds
 
 /datum/unit_test/aquila_robotic_wounds/Run()
@@ -158,13 +125,17 @@
 	TEST_ASSERT(istype(dent, /datum/wound/aq_robotic/blunt/dent), "Fixed servos did not leave a dent")
 	TEST_ASSERT(arm.disabled != BODYPART_DISABLED_PARALYSIS, "The arm stayed paralysed after the servos were fixed")
 
-	// łatka: cięższą ranę zabezpiecza, lżejszą usuwa
-	var/obj/item/stack/medical/aq_robo_patch/patch = allocate(/obj/item/stack/medical/aq_robo_patch)
+	// spawarka zamienia wgniecenie w luźne śruby, śrubokręt je usuwa
+	var/obj/item/weldingtool/welder = allocate(/obj/item/weldingtool)
 	var/datum/wound/aq_robotic/dent_wound = dent
-	TEST_ASSERT(dent_wound.apply_patch(patch, doctor, 0), "The patch did not go on the dent")
-	TEST_ASSERT(dent_wound.treated && dent_wound.heal_time, "A patched dent does not heal by itself")
-	dent_wound.replaced = TRUE
-	qdel(dent_wound)
+	TEST_ASSERT(dent_wound.can_treat_with(welder), "A welder cannot fix a dent")
+	dent_wound.finish_repair()
+	var/datum/wound/aq_robotic/loose = arm.get_wound(WOUND_AQ_ROBOTIC_BLUNT)
+	TEST_ASSERT(istype(loose, /datum/wound/aq_robotic/blunt/loose), "A fixed dent did not leave loose screws ([loose?.type])")
+	var/obj/item/screwdriver/screwdriver = allocate(/obj/item/screwdriver)
+	TEST_ASSERT(loose.can_treat_with(screwdriver), "A screwdriver cannot tighten loose screws")
+	loose.finish_repair()
+	TEST_ASSERT(!arm.get_wound(WOUND_AQ_ROBOTIC_BLUNT), "Loose screws stayed after the repair")
 
 	var/datum/wound/frayed = patient.check_wounding(arm, 25, WOUND_SLASH, 0)
 	if(!frayed) // rzut losowy, więc wymuszamy lekką ranę
@@ -176,8 +147,12 @@
 		worse.finish_repair()
 		frayed = arm.get_wound(WOUND_AQ_ROBOTIC_ELECTRIC)
 	var/datum/wound/aq_robotic/frayed_wound = frayed
-	TEST_ASSERT(frayed_wound.apply_patch(patch, doctor, 0), "The patch did not fix frayed wires")
-	TEST_ASSERT(QDELETED(frayed_wound) && !arm.get_wound(WOUND_AQ_ROBOTIC_ELECTRIC), "Frayed wires stayed after the patch")
+	var/obj/item/stack/cable_coil/cable = allocate(/obj/item/stack/cable_coil)
+	var/cable_before = cable.amount
+	TEST_ASSERT(frayed_wound.can_treat_with(cable), "Cable cannot fix frayed wires")
+	TEST_ASSERT(frayed_wound.use_repair_item(cable, doctor) && cable.amount < cable_before, "Fixing frayed wires used no cable")
+	frayed_wound.finish_repair()
+	TEST_ASSERT(QDELETED(frayed_wound) && !arm.get_wound(WOUND_AQ_ROBOTIC_ELECTRIC), "Frayed wires stayed after the repair")
 
 	var/datum/wound/heat = patient.check_wounding(arm, 25, WOUND_BURN, 500)
 	TEST_ASSERT(istype(heat, /datum/wound/aq_robotic/heat/warped), "Heavy burns did not warp the plating ([heat?.type])")
@@ -186,40 +161,6 @@
 	var/mob/living/carbon/human/ipc = allocate(/mob/living/carbon/human/species/ipc)
 	var/datum/wound/ipc_wound = ipc.check_wounding(ipc.get_bodypart(BODY_ZONE_L_LEG), 25, WOUND_BLUNT, 500)
 	TEST_ASSERT(istype(ipc_wound, /datum/wound/aq_robotic/blunt), "An IPC got no robotic wound")
-
-/// AQUILA - chłodzenie i przegrzewanie syntetyków
-/datum/unit_test/aquila_synth_cooling
-
-/datum/unit_test/aquila_synth_cooling/Run()
-	var/mob/living/carbon/human/ipc = allocate(/mob/living/carbon/human/species/ipc)
-	var/obj/item/organ/aq_cooling/air = ipc.getorganslot(ORGAN_SLOT_AQ_COOLING)
-	TEST_ASSERT(istype(air) && air.needs_air, "An IPC does not start with air cooling")
-
-	var/datum/gas_mixture/vacuum = new
-	TEST_ASSERT(!air.get_cooling(ipc, vacuum, TCMB), "Air cooling works in vacuum")
-	var/turf/our_turf = get_turf(ipc)
-	var/datum/gas_mixture/station_air = our_turf.return_air()
-	TEST_ASSERT(air.get_cooling(ipc, station_air, T20C) > AQ_SYNTH_HEAT_GAIN, "Air cooling does not keep up in normal air")
-	var/obj/item/organ/aq_cooling/liquid/liquid = new
-	TEST_ASSERT(liquid.get_cooling(ipc, vacuum, TCMB) > 0, "Liquid cooling does not work in vacuum")
-	qdel(liquid)
-
-	// bez chłodzenia rdzeń się grzeje, a od 75 parzy
-	air.Remove(ipc)
-	qdel(air)
-	ipc.aq_synth_heat = 0
-	ipc.aq_synth_heat_tick(10)
-	TEST_ASSERT(ipc.aq_synth_heat >= 10, "An IPC without cooling does not heat up ([ipc.aq_synth_heat])")
-	ipc.aq_synth_heat = AQ_SYNTH_HEAT_DAMAGE + 1
-	var/burn_before = ipc.getFireLoss()
-	ipc.aq_synth_heat_tick(2)
-	TEST_ASSERT(ipc.getFireLoss() > burn_before, "An overheating IPC takes no damage")
-	TEST_ASSERT(ipc.alerts["aq_synth_heat"], "An overheating IPC has no alert")
-
-	// człowiek się nie nagrzewa
-	var/mob/living/carbon/human/human = allocate(/mob/living/carbon/human)
-	human.aq_synth_heat_tick(10)
-	TEST_ASSERT(!human.aq_synth_heat, "A human heats up like a synthetic")
 
 /// AQUILA - cyfrowe używki dla IPC
 /datum/unit_test/aquila_ipc_overloaders
@@ -239,7 +180,7 @@
 	TEST_ASSERT(!ipc.aq_overloader_level && !ipc.aq_overloader_cycles, "The reset did not clear the overloaders")
 
 	var/mob/living/carbon/human/human = allocate(/mob/living/carbon/human)
-	var/obj/item/aq_ipc_overloader/jitterbug/third = allocate(/obj/item/aq_ipc_overloader/jitterbug)
+	var/obj/item/aq_ipc_overloader/classic/third = allocate(/obj/item/aq_ipc_overloader/classic)
 	human.put_in_hands(third)
 	third.attack_self(human)
 	TEST_ASSERT(!human.aq_overloader_level && third.uses == 2, "An overloader worked on an organic")
@@ -273,44 +214,6 @@
 	ipc.Dizzy(20)
 	key.repair_software(ipc, robotist)
 	TEST_ASSERT(!ipc.dizziness, "The reset key did not fix software errors")
-
-/// AQUILA - leki i materiały naprawcze dla syntetyków
-/datum/unit_test/aquila_synth_repair_items
-
-/datum/unit_test/aquila_synth_repair_items/Run()
-	var/mob/living/carbon/human/patient = allocate(/mob/living/carbon/human)
-	var/mob/living/carbon/human/doctor = allocate(/mob/living/carbon/human)
-	var/obj/item/bodypart/arm = aq_test_swap_limb(patient, /obj/item/bodypart/r_arm/robot)
-	arm.receive_damage(20, 20)
-	var/obj/item/stack/medical/aq_robo_patch/patch = allocate(/obj/item/stack/medical/aq_robo_patch)
-	doctor.zone_selected = BODY_ZONE_R_ARM
-	var/damage_before = arm.get_damage()
-	patch.attack(patient, doctor)
-	TEST_ASSERT(arm.get_damage() < damage_before, "A repair patch did not mend the prosthesis")
-	doctor.zone_selected = BODY_ZONE_L_ARM
-	var/obj/item/bodypart/flesh = patient.get_bodypart(BODY_ZONE_L_ARM)
-	flesh.receive_damage(10)
-	patch.attack(patient, doctor)
-	TEST_ASSERT(flesh.brute_dam >= 10, "A repair patch healed flesh")
-
-	damage_before = arm.get_damage()
-	patient.aq_nanite_repair(5, 5)
-	TEST_ASSERT(arm.get_damage() < damage_before, "Nanite slurry did not repair the prosthesis")
-	var/mob/living/carbon/human/ipc = allocate(/mob/living/carbon/human/species/ipc)
-	var/obj/item/organ/heart/heart = ipc.getorganslot(ORGAN_SLOT_HEART)
-	heart.applyOrganDamage(20)
-	ipc.aq_nanite_repair(5, 5)
-	TEST_ASSERT(heart.damage < 20, "Nanite slurry did not repair a synthetic organ")
-
-	var/datum/reagent/medicine/aq_nanite_slurry/slurry = new
-	arm.receive_damage(20)
-	damage_before = arm.get_damage()
-	slurry.reaction_mob(patient, TOUCH, 10, FALSE, 0, arm)
-	TEST_ASSERT(arm.get_damage() < damage_before, "The repair spray did not mend the prosthesis it hit")
-	qdel(slurry)
-
-	var/obj/item/storage/firstaid/aq_synthetic/kit = allocate(/obj/item/storage/firstaid/aq_synthetic)
-	TEST_ASSERT(locate(/obj/item/aq_synth_reset_key) in kit, "The synthetic first aid kit has no reset key")
 
 /// AQUILA - chirurgia mechaniczna: czyszczenie układu, reaktywacja, wygląd protezy i twarzy IPC
 /datum/unit_test/aquila_synth_surgery
@@ -360,7 +263,7 @@
 	aq_test_swap_limb(patient, /obj/item/bodypart/r_arm/robot)
 	var/load_two = patient.aq_cyberpsychosis_load()
 	TEST_ASSERT(load_two >= 24, "Prostheses do not load the mind ([load_two])")
-	var/obj/item/organ/cyberimp/chest/aq_od_safety/implant = new
+	var/obj/item/organ/cyberimp/chest/aq_bracing/implant = new
 	implant.Insert(patient)
 	TEST_ASSERT(patient.aq_cyberpsychosis_load() == load_two + implant.aq_cyberpsychosis_cost, "An implant cost is not counted")
 	aq_test_swap_limb(patient, /obj/item/bodypart/l_leg/robot)
@@ -382,7 +285,7 @@
 	var/mob/living/carbon/human/ipc = allocate(/mob/living/carbon/human/species/ipc)
 	TEST_ASSERT(ipc.aq_cyberpsychosis_capacity() == 100, "An IPC can get cyberpsychosis")
 
-/// AQUILA - implant zakłócający augmenty, implant skoku, bezpieczeństwo przedawkowania, implanty drobne
+/// AQUILA - implant zakłócający augmenty, implant skoku, wzmocnienie stawów
 /datum/unit_test/aquila_robotics_implants
 
 /datum/unit_test/aquila_robotics_implants/Run()
@@ -400,34 +303,27 @@
 	qdel(disrupter)
 	TEST_ASSERT(!HAS_TRAIT(prisoner, TRAIT_AQ_AUGMENTS_DISRUPTED), "The disruption stayed after removal")
 
-	// skok: tylko para w obu nogach daje akcję
+	// skok: jeden implant w dowolnej nodze daje akcję, drugi taki sam nic nie dodaje
 	var/mob/living/carbon/human/jumper = allocate(/mob/living/carbon/human)
 	var/obj/item/organ/cyberimp/leg/aq_jumpboots/right = new
 	right.Insert(jumper)
-	TEST_ASSERT(!(locate(/datum/action/innate/aq_implant_jump) in jumper.actions), "One jump implant is enough to jump")
-	var/obj/item/organ/cyberimp/leg/aq_jumpboots/l/left = new
+	TEST_ASSERT(locate(/datum/action/innate/aq_implant_jump) in jumper.actions, "One jump implant gives no jump")
+	var/obj/item/organ/cyberimp/leg/aq_jumpboots/left = new
+	left.zone = BODY_ZONE_L_LEG
+	left.SetSlotFromZone()
 	left.Insert(jumper)
-	TEST_ASSERT(locate(/datum/action/innate/aq_implant_jump) in jumper.actions, "A pair of jump implants gives no jump")
+	TEST_ASSERT(!left.jump_action, "A second jump implant gave a second jump")
 	left.Remove(jumper)
-	TEST_ASSERT(!(locate(/datum/action/innate/aq_implant_jump) in jumper.actions), "The jump stayed after one implant came out")
+	qdel(left)
+	right.Remove(jumper)
+	TEST_ASSERT(!(locate(/datum/action/innate/aq_implant_jump) in jumper.actions), "The jump stayed after the implant came out")
+	qdel(right)
 
-	// przedawkowanie: połowa nadmiaru znika
-	var/mob/living/carbon/human/addict = allocate(/mob/living/carbon/human)
-	var/obj/item/organ/cyberimp/chest/aq_od_safety/safety = new
-	safety.Insert(addict)
-	addict.reagents.add_reagent(/datum/reagent/medicine/omnizine, 40)
-	safety.on_life()
-	TEST_ASSERT(addict.reagents.get_reagent_amount(/datum/reagent/medicine/omnizine) <= 20, "The overdose implant did not purge the overdose")
-
-	// drobne
-	var/obj/item/organ/cyberimp/brain/aq_circadian/circadian = new
-	circadian.Insert(addict)
-	addict.drowsyness = 5
-	circadian.on_life()
-	TEST_ASSERT(addict.drowsyness < 5, "The circadian conditioner does not fight drowsiness")
+	// wzmocnienie stawów
+	var/mob/living/carbon/human/brawler = allocate(/mob/living/carbon/human)
 	var/obj/item/organ/cyberimp/chest/aq_bracing/bracing = new
-	bracing.Insert(addict)
-	TEST_ASSERT(addict.aq_bracing_wound_modifier() < 0, "Skeletal bracing does not protect the joints")
+	bracing.Insert(brawler)
+	TEST_ASSERT(brawler.aq_bracing_wound_modifier() < 0, "Skeletal bracing does not protect the joints")
 
 /// AQUILA - neuromody: skan psychoskopem, zapis w powłoce, wstrzyknięcie
 /datum/unit_test/aquila_neuromods
@@ -471,20 +367,32 @@
 	var/mob/living/carbon/human/veteran = allocate(/mob/living/carbon/human)
 	veteran.aq_apply_lobby_augments(list(
 		"aq_aug_l_arm" = "bishop",
-		"aq_aug_r_leg" = "advanced",
-		"aq_aug_l_leg" = "kinetic",
+		"aq_aug_r_leg" = "surplus",
+		"aq_aug_l_leg" = "advanced",
 		"aq_aug_heart" = "cybernetic",
 		"aq_aug_lungs" = "upgraded",
 		"aq_aug_r_arm" = "organic",
 	))
 	var/obj/item/bodypart/l_arm = veteran.get_bodypart(BODY_ZONE_L_ARM)
 	TEST_ASSERT(l_arm.aq_brand?.id == "bishop", "The lobby did not give a Bishop arm")
-	TEST_ASSERT(!l_arm.aq_needs_calibration(), "A lobby prosthesis needs calibration")
-	TEST_ASSERT(istype(veteran.get_bodypart(BODY_ZONE_R_LEG), /obj/item/bodypart/r_leg/robot/aq_advanced), "The lobby did not give an advanced leg")
-	TEST_ASSERT(istype(veteran.get_bodypart(BODY_ZONE_L_LEG), /obj/item/bodypart/l_leg/aq_kinetic), "The lobby did not give a kinetic leg")
+	TEST_ASSERT(istype(veteran.get_bodypart(BODY_ZONE_R_LEG), /obj/item/bodypart/r_leg/robot/surplus), "The lobby did not give a surplus leg")
+	TEST_ASSERT(IS_ORGANIC_LIMB(veteran.get_bodypart(BODY_ZONE_L_LEG)), "The lobby still gives advanced prostheses")
 	TEST_ASSERT(IS_ORGANIC_LIMB(veteran.get_bodypart(BODY_ZONE_R_ARM)), "An organic choice replaced the arm")
 	TEST_ASSERT(istype(veteran.getorganslot(ORGAN_SLOT_HEART), /obj/item/organ/heart/cybernetic), "The lobby did not give a cybernetic heart")
-	TEST_ASSERT(istype(veteran.getorganslot(ORGAN_SLOT_LUNGS), /obj/item/organ/lungs/cybernetic/upgraded), "The lobby did not give upgraded lungs")
+	TEST_ASSERT(!istype(veteran.getorganslot(ORGAN_SLOT_LUNGS), /obj/item/organ/lungs/cybernetic), "The lobby still gives upgraded organs")
+
+	// część ciała zajęta przez cechę (tu: tania proteza z cechy Proteza) zostaje z cechy
+	var/mob/living/carbon/human/amputee = allocate(/mob/living/carbon/human)
+	var/obj/item/bodypart/quirk_arm = aq_test_swap_limb(amputee, /obj/item/bodypart/l_arm/robot/surplus)
+	amputee.aq_apply_lobby_augments(list("aq_aug_l_arm" = "bishop"))
+	TEST_ASSERT(amputee.get_bodypart(BODY_ZONE_L_ARM) == quirk_arm && !quirk_arm.aq_brand, "The lobby replaced a prosthesis from a quirk")
+
+	// cecha zajmująca całą grupę chowa wybór w kreatorze; cech spoza buildu (aq33/AquilaStation#655) nie liczy
+	var/datum/quirk/prosthetic = /datum/quirk/prosthetic_limb
+	var/list/quirk_names = list(initial(prosthetic.name))
+	TEST_ASSERT(aq_quirks_block_augment(quirk_names, list("/datum/quirk/prosthetic_limb")), "A blocking quirk did not block the lobby choice")
+	TEST_ASSERT(!aq_quirks_block_augment(quirk_names, list("/datum/quirk/aq_no_such_quirk")), "A quirk missing from the build blocked the lobby choice")
+	TEST_ASSERT(!aq_quirks_block_augment(list(), list("/datum/quirk/prosthetic_limb")), "No quirks blocked the lobby choice")
 
 	// każdy wybór w kreatorze ma polską nazwę i jest poprawny
 	for(var/pref_type in subtypesof(/datum/preference/choiced/aq_augment))

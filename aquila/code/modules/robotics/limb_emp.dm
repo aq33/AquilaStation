@@ -2,7 +2,7 @@
 // Każda robotyczna kończyna dostaje 2 obrażenia fizyczne i 1,5 oparzenia (EMP silne: dwa razy tyle), sypie iskrami,
 // a gdy ma co najmniej 30% obrażeń, na 3 s (silne: 6 s) przestaje działać jak sparaliżowana. Wcześniej każda proteza
 // paraliżowała całe ciało na 10-20 s. Syntetyk (IPC) dostaje do tego krótkie porażenie całego ciała (2,5 s, silne 5 s),
-// żeby broń jonowa została na nich groźna. Marka protezy zmienia obrażenia i czas (emp_mod, limb_brands.dm).
+// żeby broń jonowa została na nich groźna. Marka protezy tego nie zmienia (marka to sam wygląd).
 // Hook: AQ EDIT w /mob/living/carbon/human/emp_act (code/modules/mob/living/carbon/human/human_defense.dm).
 
 /// Zwraca TRUE, gdy obsłużyło protezy (stara pętla w core się wtedy nie wykonuje)
@@ -24,10 +24,9 @@
 /obj/item/bodypart/proc/aq_emp_effect(severity)
 	if(IS_ORGANIC_LIMB(src) || !(bodytype & BODYTYPE_ROBOTIC))
 		return FALSE
-	var/mod = aq_brand ? aq_brand.emp_mod : 1
-	var/paralyze_time = AQ_LIMB_EMP_PARALYZE_TIME * mod
-	var/brute = AQ_LIMB_EMP_BRUTE * mod
-	var/burn = AQ_LIMB_EMP_BURN * mod
+	var/paralyze_time = AQ_LIMB_EMP_PARALYZE_TIME
+	var/brute = AQ_LIMB_EMP_BRUTE
+	var/burn = AQ_LIMB_EMP_BURN
 	if(severity == EMP_HEAVY)
 		paralyze_time *= 2
 		brute *= 2

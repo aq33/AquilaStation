@@ -169,7 +169,7 @@
 /datum/surgery_operation/limb/aq_prosthetic_restyle
 	name = "przeprogramowanie wyglądu protezy"
 	catalog_sections = list(SURGERY_SECTION_MECHANIC)
-	desc = "Przy otwartej klapie przeprogramowuje markę protezy: wygląd, opis i cechy producenta (limb_brands.dm)."
+	desc = "Przy otwartej klapie przeprogramowuje markę protezy: wygląd i opis producenta (limb_brands.dm)."
 	implements = list(
 		TOOL_MULTITOOL = 1,
 	)
@@ -193,7 +193,7 @@
 	var/list/choices = list()
 	for(var/id in GLOB.aq_robolimb_brands)
 		var/datum/aq_robolimb_brand/brand = GLOB.aq_robolimb_brands[id]
-		choices["[brand.name] ([brand.traits_text])"] = brand
+		choices[brand.name] = brand
 	var/picked = input(surgeon, "Wybierz markę protezy.", "Przeprogramowanie protezy") as null|anything in choices
 	operation_args[OPERATION_AQ_BRAND] = choices[picked]
 	return !!operation_args[OPERATION_AQ_BRAND]
