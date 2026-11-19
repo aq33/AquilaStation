@@ -6,7 +6,11 @@
 
 /datum/unit_test/aquila_cleanbot_feces/Run()
 	var/mob/living/basic/bot/cleanbot/bot = allocate(/mob/living/basic/bot/cleanbot)
+	// Plama zostawiona przez wcześniejszy test łączy się z nowymi odchodami i je usuwa (cel bez kafelka), więc kafelek ma być czysty
+	for(var/obj/effect/decal/cleanable/old_mess in run_loc_floor_bottom_left)
+		qdel(old_mess)
 	var/obj/effect/decal/cleanable/feces/poop = allocate(/obj/effect/decal/cleanable/feces)
+	TEST_ASSERT(!QDELETED(poop) && isturf(poop.loc), "The feces did not stay on the floor")
 	TEST_ASSERT(is_type_in_typecache(poop, bot.work_target_types) && bot.is_valid_work_target(poop), "The cleanbot doesn't target feces")
 	// Przełączenie opcji przebudowuje listę celów od nowa, odchody mają w niej zostać
 	bot.bot_custom_act("clean_blood")

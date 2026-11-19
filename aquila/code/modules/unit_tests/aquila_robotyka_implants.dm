@@ -249,7 +249,7 @@
 		inserted[augment_type] = augment
 	for(var/augment_type in augment_types)
 		var/obj/item/organ/augment = inserted[augment_type]
-		TEST_ASSERT(augment.aq_cyberpsychosis_cost >= 0 && augment.aq_cyberpsychosis_cost <= 3, "[augment_type] has a cyberpsychosis cost outside 0-3")
+		TEST_ASSERT(augment.aq_cyberpsychosis_cost in list(0, 5, 10, 18), "[augment_type] has a cyberpsychosis cost outside the 0/5/10/18 scale")
 
 	TEST_ASSERT(HAS_TRAIT(patient, TRAIT_AQ_WIRE_INTERFACE), "The wire interface shows no wires")
 	var/obj/item/organ/cyberimp/brain/aq_joywire/joywire = inserted[/obj/item/organ/cyberimp/brain/aq_joywire]
