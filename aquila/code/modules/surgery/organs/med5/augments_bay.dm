@@ -3,10 +3,9 @@
 // (restart OUN), ostrza i działka w ramieniu już mamy z tg/Bee. Idą z R&D (protolathe i fabrykator robotyki).
 // Pazury i kusza z Bay usunięte: dublowały ostrza modliszki i mini kuszę z uplinku.
 // Różnice od Bay: zamiast systemu slotów augmentów z Bay zwykłe implanty cybernetyczne (wszczepia je operacja na
-// narządach albo autochirurg), pancerz i mięśnie przez physiology, celowanie przez rozrzut broni z gunplay/recoil.dm.
+// narządach albo autochirurg), pancerz przez physiology, celowanie przez rozrzut broni z gunplay/recoil.dm.
 
 #define ORGAN_SLOT_AQ_SUBDERMAL "aq_subdermal_armor"
-#define ORGAN_SLOT_AQ_MUSCLE "aq_muscle"
 #define ORGAN_SLOT_AQ_AIM "aq_aim"
 #define ORGAN_SLOT_AQ_NANITES "aq_repair_nanites"
 #define TRAIT_AQ_STEADY_AIM "aq_steady_aim"
@@ -30,29 +29,6 @@
 	var/mob/living/carbon/human/H = M
 	if(istype(H))
 		H.physiology.armor = H.physiology.armor.modifyRating(melee = -15, bullet = -10)
-	return ..()
-
-/// Reinforced muscles: harder punches, less tiring blows
-/obj/item/organ/cyberimp/chest/aq_muscle
-	name = "wzmocnienie mięśni"
-	desc = "Syntetyczne włókna wplecione w mięśnie ramion i barków. Pięść uderza mocniej, a ciosy mniej męczą."
-	icon = 'aquila/icons/obj/medical/augments_bay.dmi'
-	icon_state = "muscule"
-	slot = ORGAN_SLOT_AQ_MUSCLE
-	implant_color = null
-
-/obj/item/organ/cyberimp/chest/aq_muscle/Insert(mob/living/carbon/M, special = 0, drop_if_replaced = TRUE)
-	. = ..()
-	var/mob/living/carbon/human/H = M
-	if(istype(H))
-		H.unarmed_damage_bonus += 4
-		H.physiology.stamina_mod *= 0.8
-
-/obj/item/organ/cyberimp/chest/aq_muscle/Remove(mob/living/carbon/M, special = 0)
-	var/mob/living/carbon/human/H = M
-	if(istype(H))
-		H.unarmed_damage_bonus -= 4
-		H.physiology.stamina_mod /= 0.8
 	return ..()
 
 /// Aiming booster: half the extra spread from moving, recoil and wounds
@@ -117,17 +93,6 @@
 	category = list("Implants", "Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
-/datum/design/aq_muscle
-	name = "Wzmocnienie mięśni"
-	desc = "Implant: syntetyczne włókna mięśniowe."
-	id = "aq_muscle"
-	build_type = PROTOLATHE | MECHFAB
-	construction_time = 60
-	materials = list(/datum/material/iron = 1000, /datum/material/glass = 500, /datum/material/silver = 500)
-	build_path = /obj/item/organ/cyberimp/chest/aq_muscle
-	category = list("Implants", "Medical Designs")
-	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
-
 /datum/design/aq_aim
 	name = "Wzmacniacz celowania"
 	desc = "Implant: koprocesor tłumiący drżenie rąk."
@@ -152,14 +117,13 @@
 
 /datum/techweb_node/adv_cyber_implants/New()
 	. = ..()
-	design_ids += list("aq_subdermal_armor", "aq_muscle", "aq_repair_nanites")
+	design_ids += list("aq_subdermal_armor", "aq_repair_nanites")
 
 /datum/techweb_node/combat_cyber_implants/New()
 	. = ..()
 	design_ids += list("aq_aim")
 
 #undef ORGAN_SLOT_AQ_SUBDERMAL
-#undef ORGAN_SLOT_AQ_MUSCLE
 #undef ORGAN_SLOT_AQ_AIM
 #undef ORGAN_SLOT_AQ_NANITES
 #undef TRAIT_AQ_STEADY_AIM

@@ -879,7 +879,7 @@
 	TEST_ASSERT(!console.can_scan(patient.dna, patient, null, FALSE), "A body without a stack can be cloned")
 	TEST_ASSERT(console.can_scan(patient.dna, patient, null, TRUE), "A body without a stack cannot be scanned body-only")
 
-/// Bay augments: armor, muscles, aim
+/// Bay augments: armor
 /datum/unit_test/aquila_augments
 
 /datum/unit_test/aquila_augments/Run()
@@ -891,11 +891,6 @@
 	armor.Remove(patient)
 	TEST_ASSERT(patient.physiology.armor.melee == melee, "Subdermal armor stays after removal")
 	qdel(armor)
-	var/obj/item/organ/cyberimp/chest/aq_muscle/muscle = new()
-	muscle.Insert(patient)
-	TEST_ASSERT(patient.unarmed_damage_bonus > 0, "The muscle augment gives no punch bonus")
-	qdel(muscle)
-	TEST_ASSERT(patient.unarmed_damage_bonus == 0, "The muscle bonus stays after removal")
 
 /// A spider-bot takes an MMI, gives it a body and drops it when destroyed
 /datum/unit_test/aquila_spiderbot
