@@ -28,6 +28,7 @@ type CookRecipe = {
   category: string | null;
   learned: boolean;
   amount?: number;
+  steps?: string[];
 };
 
 type Data = {
@@ -36,6 +37,7 @@ type Data = {
 
 const METHOD_ORDER = [
   'Stół',
+  'Krok po kroku',
   'Procesor',
   'Mikrofalówka',
   'Grill',
@@ -46,6 +48,8 @@ const METHOD_ORDER = [
 
 const METHOD_HINTS: Record<string, string> = {
   Stół: 'Połóż składniki na stole i wybierz danie w menu craftingu.',
+  'Krok po kroku':
+    'Wkładaj składniki po kolei do naczynia i gotuj je na maszynie. Alt+klik na maszynie ustawia ogień i minutnik. Kroki dodatkowe poprawiają jakość dania.',
   Procesor: 'Wrzuć składnik do procesora kuchennego i go włącz.',
   Mikrofalówka: 'Włóż do mikrofalówki i włącz.',
   Grill: 'Połóż na rozgrzanym grillu i poczekaj, nie dłużej, bo się spali.',
@@ -75,7 +79,8 @@ export const NtosCookbook = (props) => {
   const needle = query.trim().toLowerCase();
   const matches = (r: CookRecipe) =>
     r.name.toLowerCase().includes(needle) ||
-    r.ingredients.some((i) => i.name.toLowerCase().includes(needle));
+    r.ingredients.some((i) => i.name.toLowerCase().includes(needle)) ||
+    (r.steps || []).some((s) => s.toLowerCase().includes(needle));
 
   return (
     <NtosWindow width={520} height={640}>
@@ -195,14 +200,25 @@ const RecipeRow = (props: { recipe: CookRecipe }) => {
         )}
       </Box>
       {!!recipe.desc && <Box color="label">{recipe.desc}</Box>}
-      <Box mt={0.5}>
-        <Box inline color="good">
-          Z:
-        </Box>{' '}
-        {listIngredients(recipe.ingredients)}
-      </Box>
+      {recipe.ingredients.length > 0 && (
+        <Box mt={0.5}>
+          <Box inline color="good">
+            Z:
+          </Box>{' '}
+          {listIngredients(recipe.ingredients)}
+        </Box>
+      )}
       {recipe.tools.length > 0 && (
         <Box color="label">Potrzebne: {recipe.tools.join(', ')}</Box>
+      )}
+      {!!recipe.steps && (
+        <Box mt={0.5}>
+          {recipe.steps.map((stepText, index) => (
+            <Box key={index}>
+              {index + 1}. {stepText}
+            </Box>
+          ))}
+        </Box>
       )}
     </Box>
   );

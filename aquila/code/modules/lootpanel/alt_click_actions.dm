@@ -180,6 +180,9 @@
 /obj/item/reagent_containers/borghypo
 	alt_click_loot = FALSE
 
+/obj/item/reagent_containers/cooking
+	alt_click_loot = FALSE
+
 /obj/item/reagent_containers/food/drinks/coffee/empty
 	alt_click_loot = FALSE
 
@@ -333,6 +336,9 @@
 /obj/machinery/conveyor_switch
 	alt_click_loot = FALSE
 
+/obj/machinery/cooking_stovetop
+	alt_click_loot = FALSE
+
 /obj/machinery/defibrillator_mount
 	alt_click_loot = FALSE
 
@@ -379,6 +385,9 @@
 	alt_click_loot = FALSE
 
 /obj/machinery/netpod
+	alt_click_loot = FALSE
+
+/obj/machinery/oven
 	alt_click_loot = FALSE
 
 /obj/machinery/pdapainter
