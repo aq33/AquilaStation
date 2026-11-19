@@ -105,10 +105,7 @@
 	products[/obj/item/storage/pill_bottle/tramadol] = 2
 	products[/obj/item/storage/pill_bottle/citalopram] = 2
 	products[/obj/item/storage/pill_bottle/psicodine] = 2
-	products[/obj/item/reagent_containers/hypospray/medipen/salacid] = 3
-	products[/obj/item/reagent_containers/hypospray/medipen/oxandrolone] = 3
 	products[/obj/item/reagent_containers/hypospray/medipen/salbutamol] = 3
-	products[/obj/item/reagent_containers/hypospray/medipen/penacid] = 3
 	products[/obj/item/reagent_containers/hypospray/medipen/ekit] = 2
 	products[/obj/item/inhaler/salbutamol] = 2
 	products[/obj/item/reagent_containers/inhaler_canister/salbutamol] = 3

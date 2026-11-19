@@ -203,8 +203,8 @@
 
 /datum/unit_test/aquila_paramedic_kit/Run()
 	var/obj/item/storage/belt/medical/paramedic/belt = allocate(/obj/item/storage/belt/medical/paramedic)
-	TEST_ASSERT(locate(/obj/item/reagent_containers/hypospray/medipen/salacid) in belt, "The paramedic belt has no brute medipen")
-	TEST_ASSERT(locate(/obj/item/reagent_containers/hypospray/medipen/oxandrolone) in belt, "The paramedic belt has no burn medipen")
+	TEST_ASSERT(locate(/obj/item/reagent_containers/hypospray/medipen/salbutamol) in belt, "The paramedic belt has no salbutamol medipen")
+	TEST_ASSERT(locate(/obj/item/reagent_containers/hypospray/medipen/ekit) in belt, "The paramedic belt has no first aid medipen")
 	TEST_ASSERT(locate(/obj/item/flashlight/pen/paramedic) in belt, "The paramedic belt has no UV penlight")
 	var/datum/outfit/job/paramedic/outfit = new()
 	TEST_ASSERT(outfit.belt == /obj/item/storage/belt/medical/paramedic && outfit.pda_slot == ITEM_SLOT_RPOCKET, "The paramedic outfit has no belt or keeps the PDA on it")
