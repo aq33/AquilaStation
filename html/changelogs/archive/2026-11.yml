@@ -1383,3 +1383,27 @@
       okrętów, AP przelatuje myśliwce i lekkie okręty na wylot, APHE jest na lekkie
       i średnie.'
   - rscdel: Kuźnia nie robi już obudów głowic, a wypełnienia zastąpiły typy pocisków.
+'2026-11-19':
+  Joker66613:
+  - rscadd: Szyny, kule, nożyce do amputacji, nanopasta, młotek neurologiczny, zestaw
+      ratownika, taśma medyczna, kroplówka z rur, astma z inhalatorem.
+  - rscadd: 'Nowe leki: paracetamol, tramadol, oksykodon, citalopram, paroksetyna,
+      metylofenidat, albuterol, nalokson.'
+  - rscadd: Uzależnienia z tg, zarazki i sterylność (autoklaw, zakażenie, sepsa),
+      puls i zatrzymanie krążenia, niedotlenienie mózgu, hipotermia i odmrożenia.
+  - rscadd: 'Nowe narządy: nerki, śledziona, jelita, nadnercza, krtań i syntezator
+      mowy; pęknięcia pęcherza i cewnik; przerwane nerwy.'
+  - rscadd: Zęby, pień mózgu po przeszczepie, zacinający się skafander, odbudowa tkanek
+      huska, balsamowanie, stos korowy jako warunek klonowania.
+  - rscadd: Implant tłumacza, augmenty z Bay (podskórny pancerz, mięśnie, wzmacniacz
+      celowania, nanity naprawcze, pazury i kusza w uplinku), pająk-robot z MMI.
+  - imageadd: Sprite'y narządów z Goonstation, augmentów i stosu korowego z Bay, zębów
+      z /vg/, pająka-robota z Paradise.
+  - rscadd: 'Trzustka: bez niej albo z niewydolną cukier spala się wolno i grozi hiperglikemia;
+      trzustka cybernetyczna.'
+  - rscadd: 'Przełyk: zadławienie kęsem i chwyt Heimlicha, bez przełyku nie da się
+      jeść ani pić, kwasy go parzą.'
+  - rscadd: 'Kręgosłup jako narząd: zniszczony paraliżuje nogi, przeszczepiony wymaga
+      połączenia pnia mózgu, kręgosłup tytanowy.'
+  - rscadd: 'Lewe i prawe płuco oraz nerka: wycięcie i przeszczep jednej strony.'
+  - imageadd: Sprite'y trzustki i połówek płuc i nerek z Goonstation.
