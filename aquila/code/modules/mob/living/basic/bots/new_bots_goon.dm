@@ -2,7 +2,7 @@
  * Nowe boty z Goonstation (goonstation/goonstation, code/modules/robotics/bot/): Guardbuddy PR-6S (i zły Secbuddy,
  * czyli „Evilbot”), BarBuddy, Cambot, Chefbot, Digbot oraz eldritchowe boty z trybu katastrofy (disasters.dm).
  * Sprite'y: aquila/icons/mob/bots/goon_bots.dmi z goonstation (icons/obj/bots/aibots.dmi, robuddy/pr-6.dmi,
- * robuddy/hemera-secbuddy-faces.dmi), licencja CC BY-NC-SA 3.0 (projekt niekomercyjny, atrybucja w aquila/ATTRIBUTIONS).
+ * robuddy/hemera-secbuddy-faces.dmi), licencja CC BY-NC-SA 3.0 (projekt niekomercyjny, atrybucja w aquila/GOON_ASSETS.md).
  * Logika napisana od nowa na schemacie pracy basic botów, uproszczona względem Goona (opis różnic przy każdym bocie).
  */
 
@@ -708,7 +708,7 @@
 	category = CAT_ROBOT
 
 // --- Eldritchowe boty (Goon, disasters.dm): przeklęte, zhakowane wersje zwykłych botów, które same wybuchają
-// po minucie. U nas spawnuje je event „Eldritchowe boty” (aquila/code/modules/events/) albo admin.
+// po minucie. U nas spawnuje je event „Eldritchowe boty” (eldritch_event.dm obok) albo admin.
 
 /// Wspólne: zhakowany od startu, losowe imię, samozniszczenie
 /mob/living/basic/bot/proc/make_eldritch(list/names, self_destruct = TRUE)

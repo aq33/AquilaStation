@@ -53,6 +53,8 @@ jobs:
           python3 tools/ci/check_alt_click_loot.py
           # AQUILA - urwane rury i terminale bez kabla na mapach (stare błędy w tools/ci/map_connections_baseline.txt)
           python tools/ci/check_map_connections.py
+          # AQUILA - drzewa zachowań: skompilowane .bt.json i indeks w .rsc muszą być aktualne (python tools/build_bt.py)
+          python tools/build_bt.py --check
           tools/build/build --ci lint tgui-test tgui
           tools/bootstrap/python -m dmi.test
           tools/bootstrap/python -m mapmerge2.dmm_test

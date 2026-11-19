@@ -8,3 +8,14 @@ Licencja: **CC BY-NC-SA 3.0** (jak `goon/LICENSE.md`), NIE ogólna licencja asse
 | `aquila/icons/effects/sprint_dust.dmi` | `goon/icons/obj/effects.dmi` | mybluecorners (Goonstation #854, #878, #899) |
 | `aquila/icons/effects/interact.dmi` | `goon/icons/mob/interact.dmi` | Goonstation |
 | `aquila/sound/voice/gasp/*_gasp_1-5.ogg` | `goon/sounds/voice/gasp/` | Goonstation |
+
+## Boty z Goonstation (część BOTY)
+
+Bezpośrednio z repozytorium goonstation/goonstation, ta sama licencja **CC BY-NC-SA 3.0**.
+
+| Plik u nas | Źródło w Goonstation | Autor |
+|---|---|---|
+| `aquila/icons/mob/bots/goon_bots.dmi` (stany `chefbot*`, `cambot*`, `digbot*`) | `icons/obj/bots/aibots.dmi` | Goonstation |
+| `aquila/icons/mob/bots/goon_bots.dmi` (stany `buddy-*`) | `icons/obj/bots/robuddy/pr-6.dmi` | Goonstation |
+| `aquila/icons/mob/bots/goon_bots.dmi` (stany `secbuddy-face-*`) | `icons/obj/bots/robuddy/hemera-secbuddy-faces.dmi` | Goonstation |
+| `aquila/sound/voice/chefbot/dramatic.ogg` | `sound/effects/dramatic.ogg` | Goonstation |
