@@ -4,19 +4,16 @@
 // prawa burta, zachód = rufa, północ = lewa burta; wszystkie nasze statki mają dziób na wschodzie mapy).
 // Każda obejmuje swoją ćwiartkę wokół statku: zestawy sensorów (ai_sensor_suites.dm, player_sensors.dm) widzą cel
 // na zasięgu proporcjonalnym do zasięgu matrycy z jego strony (zasięg 10 = dzisiejszy pełny zasięg).
-// Zasięg ustawia operator na stanowisku rozpoznania; pobór z APC rośnie z kwadratem zasięgu (do 150 kW),
-// a matryca grzeje się i przy przegrzaniu sama się uszkadza i wyłącza. Bez działającej matrycy w danej ćwiartce
+// Działająca matryca ma stały zasięg SENSOR_ARRAY_RANGE i stały pobór z APC; obniża go tylko limit sensorów
+// z podziału mocy (ship_power.dm). Bez działającej matrycy w danej ćwiartce
 // zostaje tam tylko kamera szerokokątna na SENSOR_ARRAY_BLIND_OPTICAL zasięgu. Statek bez matryc na mapie (SI,
 // starsze mapy) widzi jak dotąd.
 
 #define SENSOR_ARRAY_MAX_RANGE 10
-/// Pobór na pełnym zasięgu: SENSOR_ARRAY_POWER_PER_RANGE2 * zasięg²
+/// Stały zasięg działającej matrycy
+#define SENSOR_ARRAY_RANGE 6
+/// Pobór: SENSOR_ARRAY_POWER_PER_RANGE2 * zasięg² (54 kW na stałym zasięgu)
 #define SENSOR_ARRAY_POWER_PER_RANGE2 1500
-/// Ciepło na cykl: pobór / to
-#define SENSOR_ARRAY_HEAT_DIVISOR 15000
-/// Chłodzenie na cykl: zasięg 6 (domyślny) jest stabilny cieplnie, od 7 matryca się grzeje
-#define SENSOR_ARRAY_COOLING 3.7
-#define SENSOR_ARRAY_CRITICAL_HEAT 50
 /// Ile zasięgu kamery zostaje, gdy matryca nie działa
 #define SENSOR_ARRAY_BLIND_OPTICAL 0.25
 /// Do jakiego ciśnienia (kPa) matryca uznaje kafel za próżnię
@@ -101,11 +98,8 @@
 	var/obj/structure/overmap/linked_ship
 	/// Czy operator ją włączył
 	var/on = TRUE
-	/// Bieżący zasięg (dochodzi do żądanego o 1 na cykl)
+	/// Bieżący zasięg: SENSOR_ARRAY_RANGE, gdy działa (mniej przy limicie mocy), 0 gdy nie
 	var/range = 0
-	/// Zasięg ustawiony przez operatora
-	var/desired_range = 6
-	var/heat = 0
 
 /obj/machinery/ship_sensor_array/Destroy()
 	unlink_ship()
@@ -152,25 +146,11 @@
 		link_to_ship(get_overmap())
 	vacuum_ok = in_vacuum()
 	var/working = on && !(machine_stat & (BROKEN|NOPOWER)) && vacuum_ok
-	var/target = working ? min(desired_range, allowed_range()) : 0
-	if(range < target)
-		range++
-	else if(range > target)
-		range--
+	range = working ? min(SENSOR_ARRAY_RANGE, allowed_range()) : 0
 	active_power_usage = SENSOR_ARRAY_POWER_PER_RANGE2 * range ** 2
 	use_power = range > 0 ? ACTIVE_POWER_USE : IDLE_POWER_USE
 	linked_ship?.get_ship_power().record(SHIP_POWER_SENSORS, active_power_usage, src, SENSOR_ARRAY_POWER_PER_RANGE2 * SENSOR_ARRAY_MAX_RANGE ** 2)
-	heat = max(0, heat + active_power_usage / SENSOR_ARRAY_HEAT_DIVISOR - SENSOR_ARRAY_COOLING)
-	if(heat > SENSOR_ARRAY_CRITICAL_HEAT)
-		overheat()
 	update_icon()
-
-/obj/machinery/ship_sensor_array/proc/overheat()
-	visible_message("<span class='danger'>[src] sypie iskrami i wyłącza się z przegrzania!</span>")
-	do_sparks(5, TRUE, src)
-	on = FALSE
-	heat = SENSOR_ARRAY_CRITICAL_HEAT * 0.6
-	take_damage(rand(30, 60), BURN, "fire", FALSE)
 
 /obj/machinery/ship_sensor_array/update_icon_state()
 	. = ..()
@@ -184,8 +164,6 @@
 	if(!is_working())
 		return
 	. += "sensors-effect[clamp(round(range / 2), 1, 5)]"
-	if(heat > SENSOR_ARRAY_CRITICAL_HEAT * 0.7)
-		. += "sensors-effect-hot"
 
 /// Zniszczona matryca zostaje jako wrak do naprawy spawarką
 /obj/machinery/ship_sensor_array/obj_destruction(damage_flag)
@@ -236,7 +214,7 @@
 
 /obj/machinery/ship_sensor_array/examine(mob/user)
 	. = ..()
-	. += "<span class='notice'>Stan: [status_text()], zasięg [range]/[SENSOR_ARRAY_MAX_RANGE], ciepło [round(heat)]/[SENSOR_ARRAY_CRITICAL_HEAT].</span>"
+	. += "<span class='notice'>Stan: [status_text()], zasięg [range]/[SENSOR_ARRAY_MAX_RANGE].</span>"
 	if(obj_integrity < max_integrity)
 		. += "<span class='notice'>Obudowa jest uszkodzona ([round(obj_integrity / max_integrity * 100)]%). Spawarka ją naprawi.</span>"
 
@@ -247,28 +225,19 @@
 	if(!linked || !linked.had_sensor_array)
 		return
 	var/list/arrays = list()
-	var/desired = SENSOR_ARRAY_MAX_RANGE
-	var/allowed = SENSOR_ARRAY_MAX_RANGE
 	var/any_on = FALSE
 	for(var/obj/machinery/ship_sensor_array/array as anything in linked.sensor_arrays)
-		desired = array.desired_range
-		allowed = array.allowed_range()
 		any_on = any_on || array.on
 		arrays += list(list(
 			"sector" = sensor_array_sector_name(array.dir),
 			"status" = array.status_text(),
 			"working" = array.is_working(),
 			"range" = array.range,
-			"heat" = round(array.heat),
 			"power" = display_power(array.active_power_usage)
 		))
 	.["sensor_array"] = list(
 		"arrays" = arrays,
-		"on" = any_on,
-		"desired_range" = desired,
-		"allowed_range" = allowed,
-		"max_range" = SENSOR_ARRAY_MAX_RANGE,
-		"critical_heat" = SENSOR_ARRAY_CRITICAL_HEAT
+		"on" = any_on
 	)
 
 /obj/machinery/computer/ship/dradis/sensors/ui_act(action, params)
@@ -276,13 +245,6 @@
 	if(. || isobserver(usr) || !linked)
 		return
 	switch(action)
-		if("array_range")
-			var/value = text2num(params["value"])
-			if(!isnum_safe(value))
-				return TRUE
-			for(var/obj/machinery/ship_sensor_array/array as anything in linked.sensor_arrays)
-				array.desired_range = clamp(round(value), 1, SENSOR_ARRAY_MAX_RANGE)
-			return TRUE
 		if("array_toggle")
 			var/turn_on = !!params["on"]
 			for(var/obj/machinery/ship_sensor_array/array as anything in linked.sensor_arrays)
@@ -291,10 +253,8 @@
 			return TRUE
 
 #undef SENSOR_ARRAY_MAX_RANGE
+#undef SENSOR_ARRAY_RANGE
 #undef SENSOR_ARRAY_POWER_PER_RANGE2
-#undef SENSOR_ARRAY_HEAT_DIVISOR
-#undef SENSOR_ARRAY_COOLING
-#undef SENSOR_ARRAY_CRITICAL_HEAT
 #undef SENSOR_ARRAY_BLIND_OPTICAL
 #undef SENSOR_ARRAY_VACUUM
 #undef SHIP_MAP_BOW_DIR

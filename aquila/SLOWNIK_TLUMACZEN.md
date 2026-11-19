@@ -4458,10 +4458,9 @@ Nazwy obszarów są w większości przetłumaczone. Nowe nazwy budujemy z tych k
 | cloak / cloaking (ship) | maska / maskowanie | ż / n; nowe; tryb generatora tarczy (nie „peleryna”) |
 | shield bubble | bańka tarczy | ż; nowe |
 | FTL calibration / pylon tuning | kalibracja pylonów | ż; nowe |
-| missile design table | stół projektowy pocisków | m; nowe |
 | design chip | chip projektu | m; nowe |
 | shield diffuser | dyfuzor tarcz | m; nowe; głowica |
-| sensor probe / probe buoy | sonda czujnikowa / boja czujnikowa | ż; nowe |
+| sensor buoy (NTP-S torpedo) | boja czujnikowa | ż; nowe |
 | department contract | zlecenie dla działu | n; nowe; „zlecenia działów” |
 
 ## 14. Marki, firmy, producenci

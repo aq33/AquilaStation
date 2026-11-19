@@ -34,7 +34,11 @@
 	/// Ile razy okręt strzelił (sensor_signature.dm); maska zdejmuje się po każdym strzale po jej włączeniu
 	var/aq_weapon_shots = 0
 
+/// Jedno oznaczenie „zamaskowany” dla obu sposobów: maska tarczy i maskowanie NSV (handle_cloak(TRUE): okręty AI
+/// Syndykatu, Alicorn, przedmiot PvP; strzał na chwilę je zdejmuje, wtedy alpha wraca do 255)
 /obj/structure/overmap/proc/is_cloaked()
+	if(alpha < 255 && !mouse_opacity)
+		return TRUE
 	var/obj/machinery/shield_generator/gen = shields
 	return istype(gen) && !QDELETED(gen) && gen.cloaked
 
@@ -113,8 +117,8 @@
 /// Strzał zdejmuje maskę od razu, a nie przy następnym process() generatora (do 2 s salwy w masce)
 /obj/structure/overmap/proc/aq_on_weapon_fired()
 	aq_weapon_shots++
-	if(is_cloaked())
-		var/obj/machinery/shield_generator/gen = shields
+	var/obj/machinery/shield_generator/gen = shields
+	if(istype(gen) && gen.cloaked)
 		gen.end_cloak("strzał")
 
 // Działka strzelców, Gauss i działa pokładowe strzelają przez fire_projectile z pominięciem fire_proc_chain
