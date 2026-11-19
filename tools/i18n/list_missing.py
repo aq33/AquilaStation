@@ -134,9 +134,15 @@ def sentence_spans(items):
     return spans
 
 
+def loader_window(path):
+    """Okno, którego teksty owija loader (tgui/i18n-jsx.cjs). Pozostałe pliki .tsx (np. tgui-say,
+    tgui-bench) mają teksty tylko w kodzie, więc idą przez zwykły skan linii."""
+    return path.endswith(jsx_runs.JSX_EXT) and jsx_ast.in_loader_scope(path)
+
+
 def scan_literals(path, number, line, windows_from_ast):
     """Literały linii do sprawdzenia. W oknach z drzewem składni tylko napisy w kodzie spoza zdań okien."""
-    if windows_from_ast and path.endswith(jsx_runs.JSX_EXT):
+    if windows_from_ast and loader_window(path):
         return [lit for lit, column in window_code_matches(line) if not in_window_sentence(path, number, column)]
     return line_literals(path, line)
 
@@ -183,7 +189,7 @@ def missing_literals(known):
 def jsx_missing_ranges(path, content, known, is_polish_run):
     """Jak jsx_missing, ale z zakresem linii tekstu: (literał, pierwsza linia, ostatnia linia)."""
     ast = jsx_ast.dump()
-    if ast is not None and path.endswith(jsx_runs.JSX_EXT):
+    if ast is not None and loader_window(path):
         return [(item["literal"], item["line"], item.get("endLine", item["line"])) for item in ast
                 if item["file"] == path and item["literal"] not in known
                 and is_polish_run(item["literal"])]
@@ -196,7 +202,7 @@ def jsx_missing(path, content, known, is_polish_run):
     if not path.endswith(jsx_runs.JSX_EXT):
         return []
     ast = jsx_ast.dump()
-    if ast is not None:
+    if ast is not None and loader_window(path):
         return [(item["literal"], item["line"]) for item in ast
                 if item["file"] == path and item["literal"] not in known
                 and is_polish_run(item["literal"])]
@@ -247,7 +253,7 @@ def changed_missing(known, base):
             number = int(m.group(1))
         elif line.startswith("+") and path:
             if not ep.SKIP_PATH.search(path) and not NOT_PLAYER_TEXT.search(path):
-                if windows_from_ast and path.endswith(jsx_runs.JSX_EXT):
+                if windows_from_ast and loader_window(path):
                     added.setdefault(path, set()).add(number)
                 # w oknach z drzewem składni: napisy w kodzie poza tekstem JSX (label: 'Stado')
                 for lit in scan_literals(path, number, line[1:], windows_from_ast):

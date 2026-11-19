@@ -11,6 +11,7 @@ Bez Node (brak tools/bootstrap) zwraca None i narzędzia wracają do starego ska
 
 import json
 import os
+import re
 import subprocess
 import tempfile
 
@@ -35,7 +36,35 @@ def literal(item):
 
 
 def _run_loader(*args):
-    """Wynik `node i18n-jsx.cjs <args> <plik wyjścia>` z kluczami słownika albo None (bez Node)."""
+    """Zdania z `node i18n-jsx.cjs <args> <plik wyjścia>` z kluczami słownika albo None (bez Node)."""
+    items = _run_node(*args)
+    if items is None:
+        return None
+    for item in items:
+        item["literal"] = literal(item)
+    return items
+
+
+# zakres loadera, kiedy nie ma Node (kopia INCLUDED/EXCLUDED z tgui/i18n-jsx.cjs; z Node bierzemy oryginał)
+SCOPE_FALLBACK = {
+    "included": r"[\\/]packages[\\/](tgui|tgui-panel|tgui-escape-menu)[\\/].*\.[jt]sx$",
+    "excluded": r"[\\/]i18n|\.test\.[jt]sx?$|[\\/]__tests__[\\/]",
+}
+_scope = None
+
+
+def in_loader_scope(path):
+    """Czy loader webpacka owija teksty tego pliku (inne okna, np. tgui-say, mają teksty tylko w kodzie)."""
+    global _scope
+    if _scope is None:
+        scope = _run_node("scope") or SCOPE_FALLBACK
+        _scope = (re.compile(scope["included"]), re.compile(scope["excluded"]))
+    included, excluded = _scope
+    return bool(included.search(path)) and not excluded.search(path)
+
+
+def _run_node(*args):
+    """JSON z `node i18n-jsx.cjs <args> <plik wyjścia>` albo None (bez Node albo zależności tgui)."""
     tgui = os.path.join(ROOT, "tgui")
     releases = os.path.join(tgui, ".yarn", "releases")
     node = os.path.join(ROOT, "tools", "bootstrap", "node.bat" if os.name == "nt" else "node")
@@ -52,12 +81,9 @@ def _run_loader(*args):
         if done.returncode != 0:
             return None
         with open(out, encoding="utf-8") as f:
-            items = json.load(f)
+            return json.load(f)
     finally:
         os.remove(out)
-    for item in items:
-        item["literal"] = literal(item)
-    return items
 
 
 def dump():

@@ -84,6 +84,21 @@ class WindowSentences(unittest.TestCase):
         self.assertFalse(lm.in_window_sentence(WINDOW, 4, 10))
 
 
+class LoaderScope(unittest.TestCase):
+    def test_okno_poza_loaderem_idzie_przez_skan_linii(self):
+        # tgui-say: loader go nie owija, więc tekst JSX z linii musi zostać sprawdzony
+        say = "tgui/packages/tgui-say/TguiSay.tsx"
+        self.assertTrue(lm.loader_window(WINDOW))
+        self.assertFalse(lm.loader_window(say))
+        self.assertIn("Mówisz na kanale drużyny", lm.scan_literals(say, 1, "  <Box>Mówisz na kanale drużyny</Box>", True))
+
+    def test_kopia_zakresu_zgodna_z_loaderem(self):
+        scope = jsx_ast._run_node("scope")
+        if scope is None:
+            self.skipTest("brak Node albo zależności tgui (tools/build/build yarn)")
+        self.assertEqual(scope, jsx_ast.SCOPE_FALLBACK)
+
+
 class DmComments(unittest.TestCase):
     def test_komentarz_blokowy(self):
         self.assertEqual(lm.line_literals("a.dm", ' * "raport" - aport'), [])

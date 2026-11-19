@@ -37,6 +37,7 @@ import list_missing as lm  # noqa: E402
 SOURCES = ["strings/i18n/en_all.json", "strings/i18n/en_manual.json", "strings/i18n/en_original.json",
            "strings/i18n/en_translated.json"]
 TRANSLATED = "strings/i18n/en_translated.json"
+BUILT = "strings/i18n/en_all.json"  # słownik zbudowany przez build_chat_dict.py
 # przy wprowadzaniu poprawki zmieniamy też mapy, żeby var-edity i porównania w kodzie się zgadzały
 APPLY_PATHSPECS = lm.PATHSPECS + ["*.dmm"]
 SKIP_DIRS = {"code", "modules", "game", "packages", "objects", "interfaces"}
@@ -220,12 +221,17 @@ def apply(args):
 
     fixes, rejected, stale = {}, [], 0
     in_code = {lit.strip() for lit in found}
-    applied_before = 0  # poprawki, które już są w kodzie (np. ponowienie po błędzie build_chat_dict.py)
+    with open(BUILT, encoding="utf-8") as f:
+        built = {pl.strip() for pl in json.load(f)}
+    # poprawki, które są już w kodzie, ale nie w zbudowanym słowniku: ponowienie po błędzie build_chat_dict.py.
+    # Tekst obecny w en_all.json słownik już ma, więc zwykłe stare tłumaczenia nie wymuszają przebudowy
+    applied_before = 0
     for key, message in translations.items():
         old = by_key.get(key)
         if old is None:
             stale += 1  # tekst zniknął z kodu albo już poprawiony
-            applied_before += message.strip() in in_code
+            text = message.strip()
+            applied_before += text in in_code and text not in built
             continue
         new = keep_edges(old, message)
         if new == old:

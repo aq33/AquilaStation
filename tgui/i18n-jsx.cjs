@@ -361,6 +361,14 @@ module.exports.collect = collect;
 module.exports.cleanJsxText = cleanJsxText;
 module.exports.dumpItems = dumpItems;
 
+/** node i18n-jsx.cjs scope <plik>: wyrażenia zakresu loadera dla narzędzi Pythona (tools/i18n/jsx_ast.py) */
+if (require.main === module && process.argv[2] === 'scope') {
+  fs.writeFileSync(
+    process.argv[3],
+    JSON.stringify({ included: INCLUDED.source, excluded: EXCLUDED.source }),
+  );
+}
+
 /** node i18n-jsx.cjs dump-file <źródło> <ścieżka w zrzucie> <plik>: zdania jednego pliku (testy narzędzi) */
 if (require.main === module && process.argv[2] === 'dump-file') {
   const [, , , source, rel, outFile] = process.argv;
