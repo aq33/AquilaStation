@@ -3129,7 +3129,7 @@ Odmianę stref daje helper `strefa_pl(zone, biernik)` z `aquila/code/__HELPERS/p
 | medical tape | taśma medyczna | ż; nowe (AquilaMed 5) |
 | asthma / asthma attack | astma / atak astmy | ż/m; nowe (AquilaMed 5) |
 | paracetamol / tramadol / oxycodone | Paracetamol / Tramadol / Oksykodon | reagenty; nowe (AquilaMed 5) |
-| citalopram / paroxetine / methylphenidate | Citalopram / Paroksetyna / Metylofenidat | reagenty; nowe (AquilaMed 5) |
+| citalopram / methylphenidate | Citalopram / Metylofenidat | reagenty; nowe (AquilaMed 5) |
 | naloxone | Nalokson | reagent; nowe (AquilaMed 5) |
 | autoclave | autoklaw | m; nowe (AquilaMed 5) |
 | hypothermia / frostbite (first, second, third degree) | hipotermia / odmrożenie (pierwszego, drugiego, trzeciego stopnia) | nowe (AquilaMed 5) |

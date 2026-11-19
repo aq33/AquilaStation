@@ -148,7 +148,6 @@
 	new /obj/item/reagent_containers/glass/bottle/oxycodone(src)
 	new /obj/item/reagent_containers/glass/bottle/tramadol(src)
 	new /obj/item/reagent_containers/glass/bottle/naloxone(src)
-	new /obj/item/storage/pill_bottle/paroxetine(src)
 	new /obj/item/storage/pill_bottle/methylphenidate(src)
 	new /obj/item/storage/pill_bottle/happiness(src)
 	new /obj/item/storage/pill_bottle/pax(src)
