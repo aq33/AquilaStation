@@ -84,8 +84,6 @@ const CONTROL_LABELS: Record<string, string> = {
   glass_stack: 'Szkło',
   fix_girders: 'Ściany na dźwigarach',
   fix_windows: 'Szyby',
-  guardbuddy_program: 'Program',
-  guardbuddy_clear_buddy: 'Podopieczny',
   eject_blood_bags: 'Worki z krwią',
 };
 
@@ -379,16 +377,8 @@ enum ControlType {
   HugbotWire = 'pink_wire',
   RepairbotIron = 'iron_stack',
   RepairbotGlass = 'glass_stack',
-  GuardbuddyProgram = 'guardbuddy_program',
-  GuardbuddyBuddy = 'guardbuddy_clear_buddy',
   BloodBags = 'eject_blood_bags',
 }
-
-const GUARDBUDDY_PROGRAMS: Record<string, string> = {
-  patrol: 'Patrol',
-  ochrona: 'Ochrona osoby',
-  przewodnik: 'Przewodnik',
-};
 
 const HUG_MODES: Record<string, string> = {
   hug: 'Przytulanie',
@@ -473,27 +463,6 @@ function ControlHelper(props: ControlProps) {
       return <StackButton control={control} action="eject_glass" />;
     case ControlType.BloodBags:
       return <StackButton control={control} action="eject_blood_bags" />;
-    case ControlType.GuardbuddyProgram:
-      return (
-        <Button
-          icon="microchip"
-          onClick={() => act(control[0])}
-          tooltip="Kliknij, by zmienić program."
-        >
-          {GUARDBUDDY_PROGRAMS[String(control[1])] || String(control[1])}
-        </Button>
-      );
-    case ControlType.GuardbuddyBuddy:
-      return (
-        <Button
-          icon="user-xmark"
-          disabled={!control[1]}
-          onClick={() => act(control[0])}
-          tooltip="Przeciągnij kartę po bocie, by przypisać podopiecznego."
-        >
-          {control[1] ? 'Zwolnij' : 'Brak'}
-        </Button>
-      );
     case ControlType.HugbotWire:
       return (
         <Button

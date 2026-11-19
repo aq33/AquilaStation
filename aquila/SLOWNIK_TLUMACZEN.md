@@ -4698,7 +4698,7 @@ Nazwy obszarów są w większości przetłumaczone. Nowe nazwy budujemy z tych k
 | personality (bot) / personality matrix | osobowość / matryca osobowości | ż; nowe (przełącznik w panelu: duchy mogą przejąć bota) |
 | maintenance panel / control panel (bot) | panel serwisowy / panel sterowania | m; istniejące |
 | Repairbot | Repairbot | m; nowe (następca floorbota, nazwa bez zmian) |
-| Vibebot / Cambot / Digbot / Farmbot / CPRbot / Guardbuddy / BarBuddy / Secbuddy | bez zmian | m; nowe, nazwy modeli |
+| Vibebot / Cambot / Digbot / Farmbot / CPRbot / BarBuddy / Secbuddy | bez zmian | m; nowe, nazwy modeli |
 | Dramatic Chef (chefbot) | Dramatyczny kucharz | m; nowe |
 | Doctor Acula (bloodbot) | Doctor Acula | m; nowe, nazwa własna |
 | Donk Exenteration Drone (D.E.D.bot, Ex-Drone) | Donk Exenteration Drone, D.E.D.bot, Ex-Dron | m; nowe |
@@ -4706,7 +4706,5 @@ Nazwy obszarów są w większości przetłumaczone. Nowe nazwy budujemy z tych k
 | frightbot / screambot / buttbot | frightbot / screambot / tyłkobot | m; tyłkobot istniejące |
 | eldritch bots | eldritchowe boty | m mn.; nowe (event) |
 | vibing scanners | skanery wajbu | m mn.; nowe |
-| task module (Guardbuddy) | moduł zadań | m; nowe |
-| bodyguard / guide (Guardbuddy program) | ochrona osoby / przewodnik | nowe |
-| buddy (protected person) | podopieczny | m; nowe |
+| task module (Secbuddy) | moduł zadań | m; nowe |
 | bot elevator | winda dla botów | ż; istniejące |

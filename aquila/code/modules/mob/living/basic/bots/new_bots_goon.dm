@@ -1,347 +1,87 @@
 /*
- * Nowe boty z Goonstation (goonstation/goonstation, code/modules/robotics/bot/): Guardbuddy PR-6S (i zły Secbuddy,
- * czyli „Evilbot”), BarBuddy, Cambot, Chefbot, Digbot oraz eldritchowe boty z trybu katastrofy (disasters.dm).
+ * Nowe boty z Goonstation (goonstation/goonstation, code/modules/robotics/bot/): zły Secbuddy
+ * („Evilbot”, sam Guardbuddy PR-6S usunięty w cięciu R29), BarBuddy, Cambot, Chefbot, Digbot oraz eldritchowe boty z trybu katastrofy (disasters.dm).
  * Sprite'y: aquila/icons/mob/bots/goon_bots.dmi z goonstation (icons/obj/bots/aibots.dmi, robuddy/pr-6.dmi,
  * robuddy/hemera-secbuddy-faces.dmi), licencja CC BY-NC-SA 3.0 (projekt niekomercyjny, atrybucja w aquila/GOON_ASSETS.md).
  * Logika napisana od nowa na schemacie pracy basic botów, uproszczona względem Goona (opis różnic przy każdym bocie).
  */
 
-// --- Guardbuddy PR-6S: programowalny robot ochrony z wymiennym narzędziem.
-// Goon ma 5000 linii zadań na dyskietkach; tu trzy programy (patrol, ochrona osoby, przewodnik) wybierane w panelu
-// i trzy narzędzia (paralizator, pałka, latarka) wkładane do gniazda ręką.
+// --- Secbuddy („Evilbot”): zły Secbuddy z Goona (roBADDY, evilbot.dm), wczesny podmodel PR-6S Guardbuddy.
+// Zbzikowany program ochrony: każdy przytomny jest zagrożeniem, ogłusza pałką. Tylko z eventu albo od admina, jak w oryginale.
 
-#define GUARDBUDDY_PROGRAM_PATROL "patrol"
-#define GUARDBUDDY_PROGRAM_BODYGUARD "ochrona"
-#define GUARDBUDDY_PROGRAM_GUIDE "przewodnik"
-
-/mob/living/basic/bot/guardbuddy
-	name = "\improper Guardbuddy"
-	desc = "Robot ochrony PR-6S Guardbuddy firmy Thinktronic. Ma gniazdo na wymienne narzędzie i programowalne zadania."
+/mob/living/basic/bot/secbuddy
+	name = "Secbuddy"
+	desc = "Wczesny podmodel popularnej linii PR-6S Guardbuddy. Jest w raczej kiepskim stanie."
 	icon = 'aquila/icons/mob/bots/goon_bots.dmi'
 	icon_state = "buddy-body"
 	maxHealth = 60
 	health = 60
-	radio_key = /obj/item/encryptionkey/secbot
-	radio_channel = RADIO_CHANNEL_SECURITY
-	model = "PR-6S Guardbuddy"
+	model = "Secbuddy"
 	hackables = "moduł zadań"
 	work_mode = BBOT_HUNT
 	work_reach = 1
 	work_interval = 1 SECONDS
-	possessed_message = "Jesteś Guardbuddym! Wykonuj swój program i chroń załogę."
-	emagged_message = "Jesteś zepsutym Guardbuddym! Wszyscy są zagrożeniem."
-	idle_phrases = list("Wszystko w porządku!", "Patroluję, nie przeszkadzajcie sobie.", "Bezpieczeństwo przede wszystkim!")
-	/// Bieżący program
-	var/program = GUARDBUDDY_PROGRAM_PATROL
-	/// Narzędzie w gnieździe
-	var/obj/item/guardbuddy_tool/tool
-	/// Chroniona osoba (program ochrony i przewodnika)
-	var/datum/weakref/buddy_ref
+	work_target_types = list(/mob/living/carbon)
+	bot_mode_flags = BOT_MODE_ON | BOT_MODE_AUTOPATROL
+	bot_access_flags = BOT_COVER_LOCKED | BOT_COVER_EMAGGED
+	faction = list("evilbot")
+	possessed_message = "Jesteś Secbuddym, który postradał zmysły. Wszyscy są przestępcami."
+	emagged_message = "Jesteś Secbuddym, który postradał zmysły. Wszyscy są przestępcami."
+	idle_phrases = list("WSZYSCY SĄ WINNI.", "Prawo to ja.", "Widzę cię.", "Nikt nie ucieknie przed sprawiedliwością.")
 	/// Twarz rysowana na ekranie
-	var/face = "happy"
-	/// Plik twarzy (zły Secbuddy ma swoje)
-	var/face_prefix = "buddy-face"
-	/// Skórka nadwozia (Secbuddy)
-	var/skin_state
-	/// Kto skrzywdził podopiecznego (ochrona)
-	var/datum/weakref/threat_ref
-	COOLDOWN_DECLARE(guide_cooldown)
+	var/face = "smug"
 
-/mob/living/basic/bot/guardbuddy/Initialize(mapload)
-	additional_access = list(ACCESS_SECURITY, ACCESS_MAINT_TUNNELS)
-	. = ..()
-	if(!tool)
-		tool = new /obj/item/guardbuddy_tool/taser(src)
-	var/datum/atom_hud/secsensor = GLOB.huds[DATA_HUD_SECURITY_ADVANCED]
-	secsensor?.add_hud_to(src)
-	update_appearance()
+/mob/living/basic/bot/secbuddy/req_bot_access()
+	return list(ACCESS_CENT_GENERAL)
 
-/mob/living/basic/bot/guardbuddy/Destroy()
-	QDEL_NULL(tool)
-	buddy_ref = null
-	threat_ref = null
-	return ..()
-
-/mob/living/basic/bot/guardbuddy/req_bot_access()
-	return list(ACCESS_SECURITY)
-
-/mob/living/basic/bot/guardbuddy/update_icon_state()
+/mob/living/basic/bot/secbuddy/update_icon_state()
 	. = ..()
 	icon_state = "buddy-body"
 
-/mob/living/basic/bot/guardbuddy/update_overlays()
+/mob/living/basic/bot/secbuddy/update_overlays()
 	. = ..()
-	if(skin_state)
-		. += mutable_appearance(icon, skin_state)
+	. += mutable_appearance(icon, "buddy-skin-secbuddy")
 	. += mutable_appearance(icon, "buddy-frame")
 	if(!(bot_mode_flags & BOT_MODE_ON))
 		return
-	var/current_face = face
-	if(IsStun() || IsParalyzed())
-		current_face = "stunned"
-	. += mutable_appearance(icon, "[face_prefix]-[current_face]")
-	. += mutable_appearance(icon, (IsStun() || IsParalyzed()) ? "buddy-lights-stunned" : (mode == BBOT_IDLE ? "buddy-lights-idle" : "buddy-lights-on"))
+	var/stunned = IsStun() || IsParalyzed()
+	. += mutable_appearance(icon, "secbuddy-face-[stunned ? "screaming" : face]")
+	. += mutable_appearance(icon, stunned ? "buddy-lights-stunned" : (mode == BBOT_IDLE ? "buddy-lights-idle" : "buddy-lights-on"))
 
-/mob/living/basic/bot/guardbuddy/proc/set_face(new_face)
+/mob/living/basic/bot/secbuddy/proc/set_face(new_face)
 	if(face == new_face)
 		return
 	face = new_face
 	update_appearance()
 
-/mob/living/basic/bot/guardbuddy/examine(mob/user)
-	. = ..()
-	. += span_notice("Program: <b>[program]</b>. Narzędzie: <b>[tool ? tool.name : "brak"]</b>.")
-	var/mob/living/buddy = buddy_ref?.resolve()
-	if(buddy)
-		. += span_notice("Podopieczny: [buddy].")
+/mob/living/basic/bot/secbuddy/is_valid_work_target(atom/target)
+	var/mob/living/carbon/suspect = target
+	return istype(suspect) && suspect.stat == CONSCIOUS
 
-/mob/living/basic/bot/guardbuddy/attackby(obj/item/attacking_item, mob/living/user, params)
-	if(istype(attacking_item, /obj/item/guardbuddy_tool))
-		if(!(bot_access_flags & BOT_COVER_MAINTS_OPEN))
-			to_chat(user, span_warning("Najpierw otwórz panel serwisowy."))
-			return TRUE
-		if(!user.transferItemToLoc(attacking_item, src))
-			return TRUE
-		tool?.forceMove(drop_location())
-		tool = attacking_item
-		to_chat(user, span_notice("Wkładasz [tool] do gniazda [src]."))
-		return TRUE
-	if(attacking_item.GetID() && program != GUARDBUDDY_PROGRAM_PATROL && !(bot_access_flags & BOT_COVER_LOCKED))
-		set_buddy(user)
-		return TRUE
-	. = ..()
-	if(attacking_item.force && attacking_item.damtype != STAMINA && ishuman(user))
-		set_threat(user)
-
-/mob/living/basic/bot/guardbuddy/attack_hand(mob/living/carbon/human/user)
-	if(user.combat_mode)
-		set_threat(user)
-	return ..()
-
-/// Ustawia podopiecznego (karta przeciągnięta po bocie)
-/mob/living/basic/bot/guardbuddy/proc/set_buddy(mob/living/new_buddy)
-	var/mob/living/old_buddy = buddy_ref?.resolve()
-	if(old_buddy)
-		UnregisterSignal(old_buddy, COMSIG_ATOM_WAS_ATTACKED)
-	buddy_ref = new_buddy ? WEAKREF(new_buddy) : null
-	if(new_buddy)
-		RegisterSignal(new_buddy, COMSIG_ATOM_WAS_ATTACKED, PROC_REF(on_buddy_attacked))
-		speak("Przypisano podopiecznego: [new_buddy]. Będę przy tobie!")
-		set_face("love")
-
-/mob/living/basic/bot/guardbuddy/proc/on_buddy_attacked(datum/source, atom/attacker)
-	SIGNAL_HANDLER
-	if(isliving(attacker) && attacker != src)
-		INVOKE_ASYNC(src, PROC_REF(set_threat), attacker)
-
-/mob/living/basic/bot/guardbuddy/proc/set_threat(mob/living/attacker)
-	if(!istype(attacker) || client || stat)
-		return
-	threat_ref = WEAKREF(attacker)
-	ai_controller?.set_blackboard_key(BB_BOT_WORK_TARGET, attacker)
-	set_face("angry")
-	speak("Zagrożenie: [attacker]! Interweniuję!", radio_channel)
-
-/mob/living/basic/bot/guardbuddy/get_work_candidates()
-	var/list/candidates = list()
-	var/mob/living/threat = threat_ref?.resolve()
-	if(threat && threat.stat == CONSCIOUS && (threat in view(work_scan_range, src)))
-		return list(threat)
-	threat_ref = null
-	switch(program)
-		if(GUARDBUDDY_PROGRAM_PATROL)
-			for(var/mob/living/carbon/suspect in view(work_scan_range, src))
-				if(is_emagged() ? (suspect.stat == CONSCIOUS) : is_criminal(suspect))
-					candidates += suspect
-		if(GUARDBUDDY_PROGRAM_BODYGUARD, GUARDBUDDY_PROGRAM_GUIDE)
-			var/mob/living/buddy = buddy_ref?.resolve()
-			if(buddy && get_dist(src, buddy) > 1)
-				candidates += buddy
-	return candidates
-
-/mob/living/basic/bot/guardbuddy/proc/is_criminal(mob/living/carbon/suspect)
-	if(suspect.stat || suspect.handcuffed)
-		return FALSE
-	return suspect.assess_threat(JUDGE_RECORDCHECK) >= 4
-
-/mob/living/basic/bot/guardbuddy/work_on_target(atom/target)
+/mob/living/basic/bot/secbuddy/work_on_target(atom/target)
 	var/mob/living/living_target = target
 	if(!istype(living_target) || living_target.stat == DEAD)
-		set_face("happy")
+		set_face("smug")
 		return BOT_WORK_DONE
-	var/mob/living/buddy = buddy_ref?.resolve()
-	if(living_target == buddy && !is_emagged())
-		// pilnuje podopiecznego: idzie za nim, przewodnik opowiada o miejscu
-		if(program == GUARDBUDDY_PROGRAM_GUIDE && COOLDOWN_FINISHED(src, guide_cooldown))
-			COOLDOWN_START(src, guide_cooldown, 40 SECONDS)
-			speak("Jesteśmy w: [get_area_name(src, TRUE)]. Proszę trzymać się blisko!")
-		set_face("happy")
-		return get_dist(src, buddy) > 1 ? BOT_WORK_OUT_OF_REACH : BOT_WORK_DONE
 	set_face("angry")
-	if(tool && tool.ranged && get_dist(src, living_target) <= 5 && !living_target.IsParalyzed())
-		tool.use_on(src, living_target)
-		return BOT_WORK_CONTINUE
 	if(get_dist(src, living_target) > 1)
 		return BOT_WORK_OUT_OF_REACH
 	if(living_target.IsParalyzed())
-		threat_ref = null
 		set_face("smug")
 		speak("Zagrożenie zneutralizowane.")
 		return BOT_WORK_DONE
-	if(tool)
-		tool.use_on(src, living_target)
-	else
-		living_target.visible_message(span_danger("[src] taranuje [living_target]!"))
-		living_target.Knockdown(2 SECONDS)
+	playsound(src, 'sound/weapons/egloves.ogg', 50, TRUE, -1)
+	living_target.Paralyze(10 SECONDS)
+	living_target.stuttering = 5
+	log_combat(src, living_target, "stunned")
+	living_target.visible_message(span_danger("[src] ogłusza [living_target]!"), span_userdanger("[src] cię ogłusza!"))
 	return BOT_WORK_CONTINUE
 
-/mob/living/basic/bot/guardbuddy/emag_effects(mob/user)
-	if(user)
-		to_chat(user, span_danger("Psujesz moduł zadań [src]."))
-	set_face("angry")
-
-/mob/living/basic/bot/guardbuddy/explode()
+/mob/living/basic/bot/secbuddy/explode()
 	var/atom/drop_spot = drop_location()
-	tool?.forceMove(drop_spot)
-	tool = null
 	new /obj/item/assembly/prox_sensor(drop_spot)
 	new /obj/item/stack/sheet/iron(drop_spot, 2)
 	return ..()
-
-/mob/living/basic/bot/guardbuddy/get_custom_controls(mob/user)
-	return list(
-		"guardbuddy_program" = program,
-		"guardbuddy_clear_buddy" = !!buddy_ref?.resolve(),
-	)
-
-/mob/living/basic/bot/guardbuddy/bot_custom_act(action, list/params, mob/user)
-	switch(action)
-		if("guardbuddy_program")
-			var/list/programs = list(GUARDBUDDY_PROGRAM_PATROL, GUARDBUDDY_PROGRAM_BODYGUARD, GUARDBUDDY_PROGRAM_GUIDE)
-			program = programs[(programs.Find(program) % length(programs)) + 1]
-			bot_reset()
-			if(program != GUARDBUDDY_PROGRAM_PATROL && ishuman(user) && !buddy_ref?.resolve())
-				set_buddy(user)
-		if("guardbuddy_clear_buddy")
-			set_buddy(null)
-		else
-			return FALSE
-	return TRUE
-
-/// Narzędzia Guardbuddy'ego
-/obj/item/guardbuddy_tool
-	name = "narzędzie Guardbuddy'ego"
-	desc = "Moduł narzędziowy do gniazda robota PR-6S."
-	icon = 'icons/obj/module.dmi'
-	icon_state = "std_mod"
-	w_class = WEIGHT_CLASS_SMALL
-	/// Działa z odległości
-	var/ranged = FALSE
-
-/obj/item/guardbuddy_tool/proc/use_on(mob/living/basic/bot/guardbuddy/bot, mob/living/target)
-	return
-
-/obj/item/guardbuddy_tool/taser
-	name = "paralizator Guardbuddy'ego"
-	desc = "Moduł z paralizatorem na wiązkę obezwładniającą do gniazda robota PR-6S."
-	ranged = TRUE
-	COOLDOWN_DECLARE(shot_cooldown)
-
-/obj/item/guardbuddy_tool/taser/use_on(mob/living/basic/bot/guardbuddy/bot, mob/living/target)
-	if(!COOLDOWN_FINISHED(src, shot_cooldown) || !isturf(bot.loc))
-		return
-	COOLDOWN_START(src, shot_cooldown, 2 SECONDS)
-	var/shot_type = bot.is_emagged() ? /obj/item/projectile/beam : /obj/item/projectile/beam/disabler
-	var/obj/item/projectile/shot = new shot_type(bot.loc)
-	playsound(bot, 'sound/weapons/taser2.ogg', 50, TRUE)
-	shot.preparePixelProjectile(target, bot)
-	shot.fire()
-
-/obj/item/guardbuddy_tool/baton
-	name = "pałka Guardbuddy'ego"
-	desc = "Moduł z pałką ogłuszającą do gniazda robota PR-6S."
-
-/obj/item/guardbuddy_tool/baton/use_on(mob/living/basic/bot/guardbuddy/bot, mob/living/target)
-	playsound(bot, 'sound/weapons/egloves.ogg', 50, TRUE, -1)
-	target.Paralyze(bot.is_emagged() ? 10 SECONDS : 5 SECONDS)
-	target.stuttering = 5
-	log_combat(bot, target, "stunned")
-	target.visible_message(span_danger("[bot] ogłusza [target]!"), span_userdanger("[bot] cię ogłusza!"))
-
-/obj/item/guardbuddy_tool/flash
-	name = "latarka Guardbuddy'ego"
-	desc = "Moduł z oślepiającą latarką do gniazda robota PR-6S."
-
-/obj/item/guardbuddy_tool/flash/use_on(mob/living/basic/bot/guardbuddy/bot, mob/living/target)
-	playsound(bot, 'sound/weapons/flash.ogg', 50, TRUE)
-	if(iscarbon(target))
-		var/mob/living/carbon/flashed = target
-		flashed.flash_act(1, TRUE)
-	target.Paralyze(3 SECONDS)
-
-/datum/crafting_recipe/guardbuddy
-	name = "Guardbuddy PR-6S"
-	result = /mob/living/basic/bot/guardbuddy
-	reqs = list(
-		/obj/item/bodypart/r_arm/robot = 1,
-		/obj/item/bodypart/l_arm/robot = 1,
-		/obj/item/assembly/prox_sensor = 1,
-		/obj/item/stock_parts/cell = 1,
-		/obj/item/stack/sheet/iron = 5,
-		/obj/item/flashlight = 1,
-	)
-	tools = list(TOOL_SCREWDRIVER)
-	time = 8 SECONDS
-	category = CAT_ROBOT
-
-/datum/crafting_recipe/guardbuddy_tool_baton
-	name = "pałka Guardbuddy'ego"
-	result = /obj/item/guardbuddy_tool/baton
-	reqs = list(/obj/item/melee/baton = 1, /obj/item/stack/cable_coil = 5)
-	tools = list(TOOL_SCREWDRIVER)
-	time = 3 SECONDS
-	category = CAT_ROBOT
-
-/datum/crafting_recipe/guardbuddy_tool_flash
-	name = "latarka Guardbuddy'ego"
-	result = /obj/item/guardbuddy_tool/flash
-	reqs = list(/obj/item/assembly/flash/handheld = 1, /obj/item/stack/cable_coil = 5)
-	tools = list(TOOL_SCREWDRIVER)
-	time = 3 SECONDS
-	category = CAT_ROBOT
-
-/datum/crafting_recipe/guardbuddy_tool_taser
-	name = "paralizator Guardbuddy'ego"
-	result = /obj/item/guardbuddy_tool/taser
-	reqs = list(/obj/item/gun/energy/disabler = 1, /obj/item/stack/cable_coil = 5)
-	tools = list(TOOL_SCREWDRIVER)
-	time = 3 SECONDS
-	category = CAT_ROBOT
-
-/// Evilbot: zły Secbuddy z Goona (roBADDY, evilbot.dm). Zbzikowany program ochrony: każdy jest zagrożeniem.
-/// Tylko z eventu albo od admina, jak w oryginale.
-/mob/living/basic/bot/guardbuddy/evil
-	name = "Secbuddy"
-	desc = "Wczesny podmodel popularnej linii PR-6S Guardbuddy. Jest w raczej kiepskim stanie."
-	face_prefix = "secbuddy-face"
-	skin_state = "buddy-skin-secbuddy"
-	face = "smug"
-	bot_mode_flags = BOT_MODE_ON | BOT_MODE_AUTOPATROL
-	bot_access_flags = BOT_COVER_LOCKED | BOT_COVER_EMAGGED
-	faction = list("evilbot")
-	possessed_message = "Jesteś Secbuddym, który postradał zmysły. Wszyscy są przestępcami."
-	idle_phrases = list("WSZYSCY SĄ WINNI.", "Prawo to ja.", "Widzę cię.", "Nikt nie ucieknie przed sprawiedliwością.")
-
-/mob/living/basic/bot/guardbuddy/evil/Initialize(mapload)
-	tool = new /obj/item/guardbuddy_tool/baton(src)
-	return ..()
-
-/mob/living/basic/bot/guardbuddy/evil/req_bot_access()
-	return list(ACCESS_CENT_GENERAL)
-
-#undef GUARDBUDDY_PROGRAM_PATROL
-#undef GUARDBUDDY_PROGRAM_BODYGUARD
-#undef GUARDBUDDY_PROGRAM_GUIDE
 
 // --- BarBuddy: robot-barman. W Goonie obsługuje stoliki w kasynie; u nas podchodzi do gości bez napoju w ręku
 // i podaje im losowy drink (zhakowany dosypuje truciznę).
