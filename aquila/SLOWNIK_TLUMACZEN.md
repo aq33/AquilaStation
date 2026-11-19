@@ -4503,3 +4503,63 @@ Nazwy obszarów są w większości przetłumaczone. Nowe nazwy budujemy z tych k
 | NIF-Cutter ('Wrangler', 'Scalpel') | przecinak NIF („Wrangler”, „Skalpel”) | m; nowe |
 | Cerulean NIF Regenerator | regenerator NIF Cerulean | m; nowe |
 | Altspace Coven | Altspace Coven | m; nazwa własna, bez tłumaczenia |
+
+### Implanty i augmenty (wdrożenie robotyki)
+
+| EN | PL | rodzaj/uwagi |
+|---|---|---|
+| augment | augment | m; nowe; ogólna nazwa wszczepów cybernetycznych (cyberimp, cyberorgan, bioaugment) |
+| cyberpsychosis | cyberpsychoza | ż; nowe; koszt augmentu w punktach (0-3) |
+| Rotbusttec implant | implant Rotbusttec | m; nowe; nazwa własna bez tłumaczenia |
+| machine translator implant | implant tłumacza maszynowego | m; nowe |
+| overdose safety implant | implant bezpiecznika przedawkowania | m; nowe |
+| tactical map implant | implant mapy taktycznej | m; nowe |
+| mindslave implant | implant zniewolenia umysłu | m; nowe |
+| razorwing implant | implant ostrych skrzydeł | m; nowe |
+| sponsorship implant | implant sponsorski | m; nowe |
+| experimental camouflage implant | eksperymentalny implant kamuflażu | m; nowe |
+| Syndicate IFF implant | implant znacznika Syndykatu | m; nowe |
+| IFF implant | implant swój-obcy | m; nowe |
+| EMP shield implant | implant tarczy EMP | m; nowe |
+| power bio-chip | implant mocy | m; nowe |
+| revenge implant | implant zemsty | m; nowe |
+| electronic access implant | implant elektronicznego dostępu | m; nowe |
+| hijack implant | implant przejęcia | m; nowe |
+| spying implant | implant szpiegowski | m; nowe |
+| warp implant | implant cofnięcia | m; nowe |
+| supercharge bio-chip | implant doładowania | m; nowe |
+| tactical deniability implant | implant taktycznego wyparcia się | m; nowe |
+| fake mindshield | fałszywa ochrona umysłu | ż; nowe |
+| augmentation disrupter | zakłócacz augmentów | m; nowe |
+| smoke implant | implant dymny | m; nowe |
+| bluespace grounding implant | implant uziemienia bluespace | m; nowe |
+| wire interface implant | implant interfejsu kabli | m; nowe |
+| AI-uplink brain | mózg z łączem SI | m; nowe |
+| platelet factories | fabryki płytek krwi | ż mn.; nowe |
+| integrated health scanner | zintegrowany skaner zdrowia | m; nowe |
+| Midi-Sed pleasure vivifier | ożywiacz przyjemności Midi-Sed | m; nowe |
+| exoframe | egzoszkielet nośny | m; nowe |
+| embedded object module | moduł wbudowanego przedmiotu | m; nowe |
+| diagnostic processor | procesor diagnostyczny | m; nowe |
+| tactical IFF visor | taktyczny wizjer IFF | m; nowe |
+| cyborg analyzer | analizator cyborgów | m; nowe |
+| Binyat wireless hacking system | system hakowania bezprzewodowego Binyat | m; nowe |
+| CNS jumpstarter | rozrusznik OUN | m; nowe |
+| doorjack | doorjack | m; nowe; bez tłumaczenia |
+| monitor cybereye | cyberoko z monitorem | n; nowe |
+| magboot implant | implant magnetycznych stóp | m; nowe |
+| Sandevistan | Sandevistan | m; nazwa własna |
+| internal air system / air sac | wewnętrzny system powietrza / worek powietrza | m; nowe |
+| optical camo implant | implant kamuflażu optycznego | m; nowe |
+| gustatorial centre | ośrodek smaku | m; nowe |
+| climbing hook | hak wspinaczkowy | m; nowe |
+| adaptive binoculars | adaptacyjna lornetka | ż; nowe |
+| neural overclocker | neuronowy podkręcacz | m; nowe |
+| meson eyes | oczy mezonowe | n mn.; nowe |
+| EMSI datajack | port serwisowy EMSI | m; nowe |
+| shell launch system | wyrzutnia nabojów | ż; nowe |
+| emotional manipulator | manipulator emocji | m; nowe |
+| Herculean gravitronic spinal implant | grawitonowy implant kręgosłupa Herculean | m; nowe |
+| citizen map implant | implant mapy okrętu | m; nowe |
+| laser cybereye | laserowe cyberoczy | n mn.; nowe |
+| vortex feedback arm | ramię ze sprzężeniem wirowym | n; nowe |
