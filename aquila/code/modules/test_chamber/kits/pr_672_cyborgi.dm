@@ -2,7 +2,7 @@
 	name = "Cyborgi: nowe moduły i ulepszenia"
 	pr = "aq33/AquilaStation#672"
 	description = "1) Wejdź w cyborga (ghost → przejmij jednego z dwóch) i wybierz moduł z kółka: sprawdź nowe moduły (Naukowy, Chemiczny, Chirurgiczny, Ratowniczy, Budowlany, Eksploracyjny, Detektyw, Brobocop, Hydroponiczny, Biurowy, Magazynowy, Wielozadaniowy) - każdy ma kółko skinów i swoje narzędzia. \
-	2) Ulepszenia leżą obok: otwórz panel cyborga (łom, ID), włóż ulepszenie. Pasujące wchodzi, niepasujące odmawia („Nie ma punktu mocowania”). Wybieraki zaawansowanych modułów działają tylko na Inżynieryjnym, Medycznym i Górniczym. \
+	2) Ulepszenia leżą obok: otwórz panel cyborga (łom, ID), włóż ulepszenie. Pasujące wchodzi, niepasujące odmawia („Nie ma punktu mocowania”). \
 	3) Odblokowanie trybu zabójczego (moduł Ochrony z wybieraka): przy zielonym alarmie przełączenie na laser odmawia, przy czerwonym działa, a po odwołaniu alarmu broń sama wraca na obezwładnianie. \
 	4) Magnetyczne przyczepy: włącz przyciskiem akcji i otwórz śluzę na kosmos (albo rozbij okno) - cyborg nie daje się wyssać, rusza się wolniej. \
 	5) Osobista tarcza, reflektor i autoczyściciel: przyciski akcji, ładunek ogniwa spada. Kabel zasilania: kliknij APC i węzeł kabla w trybie pobierania. \
@@ -12,9 +12,6 @@
 		/obj/item/crowbar = 1,
 		/obj/item/card/id/captains_spare = 1,
 		/obj/item/borg/upgrade/transform/security = 1,
-		/obj/item/borg/upgrade/transform/aquila_advanced/engineering = 1,
-		/obj/item/borg/upgrade/transform/aquila_advanced/medical = 1,
-		/obj/item/borg/upgrade/transform/aquila_advanced/miner = 1,
 		/obj/item/borg/upgrade/aquila/lethal_unlock = 1,
 		/obj/item/borg/upgrade/aquila/toggle/magnetic_traction = 1,
 		/obj/item/borg/upgrade/aquila/toggle/personal_shield = 1,

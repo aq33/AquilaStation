@@ -440,15 +440,15 @@
 	aq_items = list(/obj/item/healthanalyzer/advanced)
 	aq_replaces = list(/obj/item/healthanalyzer)
 
-/// Omni-tool chirurgiczny (tg)
+/// Omni-tool chirurgiczny (tg), z nastawiaczem kości (był w usuniętym zaawansowanym module medycznym)
 /obj/item/borg/upgrade/aquila/surgical_omnitool
 	name = "omni-tool chirurgiczny cyborga"
-	desc = "Zastępuje skalpel, hemostat, retraktor, kauter, piłę i wiertło jednym, szybszym narzędziem."
+	desc = "Zastępuje skalpel, hemostat, retraktor, kauter, piłę i wiertło jednym, szybszym narzędziem i dokłada nastawiacz kości."
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "scalpel"
 	module_type = AQ_BORG_MEDICAL
 	module_flags = BORG_MODULE_MEDICAL
-	aq_items = list(/obj/item/borg/aquila_omnitool/surgical)
+	aq_items = list(/obj/item/borg/aquila_omnitool/surgical, /obj/item/bonesetter)
 	aq_replaces = list(/obj/item/scalpel, /obj/item/hemostat, /obj/item/retractor, /obj/item/cautery, /obj/item/circular_saw, /obj/item/surgicaldrill)
 
 /// Zaawansowane narzędzia chirurgiczne (Skyrat/Nova, /vg/): laserowy skalpel, mechaniczne szczypce, narzędzie przyżegające
@@ -462,13 +462,13 @@
 	aq_items = list(/obj/item/scalpel/advanced, /obj/item/retractor/advanced, /obj/item/surgicaldrill/advanced)
 	aq_replaces = list(/obj/item/scalpel, /obj/item/circular_saw, /obj/item/retractor, /obj/item/hemostat, /obj/item/surgicaldrill, /obj/item/cautery)
 
-/// Syntezator organów (Chaotic Onyx) - tylko chirurg i zaawansowany medyczny
+/// Syntezator organów (Chaotic Onyx) - tylko chirurg
 /obj/item/borg/upgrade/aquila/organ_synthesizer
 	name = "syntezator organów cyborga"
 	desc = "Syntezuje proste narządy syntetyczne (serce, płuca, wątroba, żołądek) z energii ogniwa, powoli."
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "heart-c"
-	module_type = list(/obj/item/robot_module/medical/surgeon, /obj/item/robot_module/medical/advanced)
+	module_type = list(/obj/item/robot_module/medical/surgeon)
 	module_flags = BORG_MODULE_MEDICAL
 	aq_items = list(/obj/item/borg/organ_synthesizer)
 
@@ -755,40 +755,6 @@
 	if(installed_program && drive)
 		drive.remove_file(installed_program)
 	installed_program = null
-
-// ================================================================ Wybieraki zaawansowanych modułów (Chaotic Onyx)
-
-/obj/item/borg/upgrade/transform/aquila_advanced
-	name = "wybierak modułu cyborga (zaawansowany)"
-	icon_state = "cyborg_upgrade5"
-	require_module = TRUE
-
-/obj/item/borg/upgrade/transform/aquila_advanced/action(mob/living/silicon/robot/R, user = usr)
-	if(R.module?.type == new_module)
-		to_chat(user, "<span class='warning'>Ta jednostka ma już moduł „[initial(new_module.name)]”.</span>")
-		return FALSE
-	return ..()
-
-/obj/item/borg/upgrade/transform/aquila_advanced/engineering
-	name = "wybierak modułu cyborga (zaawansowany inżynieryjny)"
-	desc = "Zmienia cyborga inżynieryjnego w zaawansowanego: omni-tool, RPED bluespace i dwa razy większe zapasy materiałów."
-	module_type = list(/obj/item/robot_module/engineering)
-	module_flags = BORG_MODULE_ENGINEERING
-	new_module = /obj/item/robot_module/engineering/advanced
-
-/obj/item/borg/upgrade/transform/aquila_advanced/medical
-	name = "wybierak modułu cyborga (zaawansowany medyczny)"
-	desc = "Zmienia cyborga medycznego w zaawansowanego: zaawansowany analizator i omni-tool chirurgiczny."
-	module_type = list(/obj/item/robot_module/medical)
-	module_flags = BORG_MODULE_MEDICAL
-	new_module = /obj/item/robot_module/medical/advanced
-
-/obj/item/borg/upgrade/transform/aquila_advanced/miner
-	name = "wybierak modułu cyborga (zaawansowany górniczy)"
-	desc = "Zmienia cyborga górniczego w zaawansowanego: diamentowe wiertło, zaawansowany przecinak plazmowy i przenośna huta."
-	module_type = list(/obj/item/robot_module/miner)
-	module_flags = BORG_MODULE_MINER
-	new_module = /obj/item/robot_module/miner/advanced
 
 #undef AQ_BORG_ENGINEERING
 #undef AQ_BORG_MEDICAL

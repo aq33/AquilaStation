@@ -1,7 +1,6 @@
 // AQUILA - nowe moduły cyborgów (wzorowane na modułach z Baystation12, Aurory, CEV-Eris, Goonstation, Polarisa i Citadel RP).
 // Zestawy narzędzi są przełożone na nasze przedmioty; brakujące zastępują najbliższe nasze (opis w raporcie PR-a).
 // Skiny portowane do aquila/icons/mob/silicon/robots_aquila_modules.dmi (źródła: ATTRIBUTION_cyborgi.md).
-// Moduły zaawansowane (Inżynieryjny, Medyczny, Górniczy) wybiera się ulepszeniem z badań, jak w Chaotic Onyx.
 
 // ---------------------------------------------------------------- Naukowy (Bay/Aurora/Eris „Research”)
 
@@ -408,80 +407,3 @@
 		/obj/item/hand_labeler/cyborg,
 		/obj/item/pen/cyborg)
 	emag_modules = list(/obj/item/melee/transforming/energy/sword/cyborg)
-
-// ---------------------------------------------------------------- Zaawansowane moduły (Chaotic Onyx), wybierane ulepszeniem z badań
-
-/obj/item/robot_module/engineering/advanced
-	name = "Zaawansowany inżynieryjny"
-	basic_modules = list(
-		/obj/item/assembly/flash/cyborg,
-		/obj/item/borg/sight/meson,
-		/obj/item/borg/charger,
-		/obj/item/construction/rcd/borg,
-		/obj/item/pipe_dispenser,
-		/obj/item/extinguisher,
-		/obj/item/weldingtool/largetank/cyborg,
-		/obj/item/borg/aquila_omnitool/engineering,
-		/obj/item/multitool/cyborg,
-		/obj/item/t_scanner,
-		/obj/item/analyzer,
-		/obj/item/geiger_counter,
-		/obj/item/assembly/signaler/cyborg,
-		/obj/item/areaeditor/blueprints/cyborg,
-		/obj/item/electroadaptive_pseudocircuit,
-		/obj/item/storage/part_replacer/bluespace/cyborg,
-		/obj/item/stack/sheet/iron/cyborg,
-		/obj/item/stack/sheet/glass/cyborg,
-		/obj/item/stack/sheet/rglass/cyborg,
-		/obj/item/stack/rods/cyborg,
-		/obj/item/stack/tile/plasteel/cyborg,
-		/obj/item/stack/cable_coil/cyborg,
-		/obj/item/holosign_creator/atmos)
-
-/obj/item/robot_module/engineering/advanced/Initialize(mapload)
-	. = ..()
-	aq_scale_storages(2)
-
-/obj/item/robot_module/engineering/advanced/rebuild_modules()
-	. = ..()
-	aq_scale_storages(2)
-
-/obj/item/robot_module/medical/advanced
-	name = "Zaawansowany medyczny"
-	basic_modules = list(
-		/obj/item/assembly/flash/cyborg,
-		/obj/item/healthanalyzer/advanced,
-		/obj/item/borg/charger,
-		/obj/item/reagent_containers/borghypo/medical,
-		/obj/item/borg/apparatus/beaker,
-		/obj/item/reagent_containers/dropper,
-		/obj/item/reagent_containers/syringe,
-		/obj/item/surgical_drapes,
-		/obj/item/borg/aquila_omnitool/surgical,
-		/obj/item/blood_filter,
-		/obj/item/bonesetter,
-		/obj/item/extinguisher/mini,
-		/obj/item/roller/robo,
-		/obj/item/borg/cyborghug/medical,
-		/obj/item/stack/medical/bandage/cyborg,
-		/obj/item/organ_storage,
-		/obj/item/borg/lollipop)
-
-/obj/item/robot_module/miner/advanced
-	name = "Zaawansowany górniczy"
-	basic_modules = list(
-		/obj/item/assembly/flash/cyborg,
-		/obj/item/borg/sight/meson,
-		/obj/item/storage/bag/ore/cyborg,
-		/obj/item/pickaxe/drill/cyborg/diamond,
-		/obj/item/borg/charger,
-		/obj/item/crowbar/cyborg,
-		/obj/item/weldingtool/mini,
-		/obj/item/extinguisher/mini,
-		/obj/item/storage/bag/sheetsnatcher/borg,
-		/obj/item/gun/energy/kinetic_accelerator/cyborg,
-		/obj/item/gun/energy/plasmacutter/adv/cyborg,
-		/obj/item/borg/ore_processor,
-		/obj/item/gps/cyborg,
-		/obj/item/stack/marker_beacon)
-

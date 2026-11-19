@@ -362,33 +362,6 @@
 	construction_time = 150
 	category = list("Cyborg Upgrade Modules")
 
-/datum/design/aq_borg_transform_advanced_engineering
-	name = "Ulepszenie cyborga (zaawansowany moduł inżynieryjny)"
-	id = "aq_borg_transform_advanced_engineering"
-	build_type = MECHFAB
-	build_path = /obj/item/borg/upgrade/transform/aquila_advanced/engineering
-	materials = list(/datum/material/iron = 15000, /datum/material/glass = 10000, /datum/material/gold = 3000, /datum/material/bluespace = 1000)
-	construction_time = 150
-	category = list("Cyborg Upgrade Modules")
-
-/datum/design/aq_borg_transform_advanced_medical
-	name = "Ulepszenie cyborga (zaawansowany moduł medyczny)"
-	id = "aq_borg_transform_advanced_medical"
-	build_type = MECHFAB
-	build_path = /obj/item/borg/upgrade/transform/aquila_advanced/medical
-	materials = list(/datum/material/iron = 15000, /datum/material/glass = 10000, /datum/material/silver = 3000, /datum/material/gold = 2000)
-	construction_time = 150
-	category = list("Cyborg Upgrade Modules")
-
-/datum/design/aq_borg_transform_advanced_miner
-	name = "Ulepszenie cyborga (zaawansowany moduł górniczy)"
-	id = "aq_borg_transform_advanced_miner"
-	build_type = MECHFAB
-	build_path = /obj/item/borg/upgrade/transform/aquila_advanced/miner
-	materials = list(/datum/material/iron = 15000, /datum/material/glass = 5000, /datum/material/diamond = 2000, /datum/material/plasma = 3000)
-	construction_time = 150
-	category = list("Cyborg Upgrade Modules")
-
 /datum/techweb_node/cyborg/New()
 	. = ..()
 	design_ids += list("aq_borg_upgrade_magnetic_traction", "aq_borg_upgrade_recharge_pack", "aq_borg_upgrade_power_connector", "aq_borg_upgrade_gps", "aq_borg_upgrade_death_alarm", "aq_borg_upgrade_plating_repair", "aq_borg_upgrade_science_circuits", "aq_borg_upgrade_xenobiology", "aq_borg_upgrade_medigripper", "aq_borg_upgrade_chemistry_gripper", "aq_borg_upgrade_breathing_bag", "aq_borg_upgrade_spectro_scanner", "aq_borg_upgrade_plunger", "aq_borg_upgrade_push_broom", "aq_borg_upgrade_cookbook", "aq_borg_upgrade_floodlight")
@@ -408,7 +381,3 @@
 /datum/techweb_node/cyborg_upg_combat/New()
 	. = ..()
 	design_ids += list("aq_borg_upgrade_bola_launcher", "aq_borg_upgrade_personal_shield")
-
-/datum/techweb_node/adv_robotics/New()
-	. = ..()
-	design_ids += list("aq_borg_transform_advanced_engineering", "aq_borg_transform_advanced_medical", "aq_borg_transform_advanced_miner")

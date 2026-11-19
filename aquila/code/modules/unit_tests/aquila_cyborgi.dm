@@ -29,7 +29,7 @@
 	var/list/all_modules = list()
 	for(var/key in crew_modules)
 		all_modules += crew_modules[key]
-	all_modules += list(/obj/item/robot_module/engineering/advanced, /obj/item/robot_module/medical/advanced, /obj/item/robot_module/miner/advanced, /obj/item/robot_module/lost)
+	all_modules += /obj/item/robot_module/lost
 	for(var/module_type in all_modules)
 		var/obj/item/robot_module/module_path = module_type
 		var/icon_file = initial(module_path.aq_base_icon_file) || 'icons/mob/robots.dmi'
@@ -78,11 +78,11 @@
 		TEST_ASSERT(in_nodes[design_id], "Projekt [design_id] nie jest w żadnym węźle badań")
 		TEST_ASSERT(initial(design_type.build_type) & MECHFAB, "Projekt [design_id] nie jest z fabrykatora egzoszkieletów")
 		built[initial(design_type.build_path)] = TRUE
-	var/list/upgrades = subtypesof(/obj/item/borg/upgrade/aquila) + subtypesof(/obj/item/borg/upgrade/transform/aquila_advanced) - /obj/item/borg/upgrade/aquila/toggle
+	var/list/upgrades = subtypesof(/obj/item/borg/upgrade/aquila) - /obj/item/borg/upgrade/aquila/toggle
 	for(var/obj/item/upgrade_type as anything in upgrades)
 		TEST_ASSERT(built[upgrade_type], "Ulepszenia [upgrade_type] nie da się zbudować")
 		TEST_ASSERT(initial(upgrade_type.icon_state) in icon_states(initial(upgrade_type.icon)), "Ulepszenie [upgrade_type] nie ma ikony [initial(upgrade_type.icon_state)]")
-	TEST_ASSERT(length(upgrades) == 43, "Ulepszeń i wybieraków jest [length(upgrades)] zamiast 43")
+	TEST_ASSERT(length(upgrades) == 40, "Ulepszeń jest [length(upgrades)] zamiast 40")
 
 /// Każde ulepszenie instaluje się w pasującym module, odmawia w niepasującym, a po wyjęciu zdejmuje narzędzia
 /datum/unit_test/aquila_cyborg_upgrades
@@ -129,9 +129,6 @@
 		/obj/item/borg/upgrade/aquila/plunger = list(/obj/item/robot_module/janitor, /obj/item/robot_module/butler),
 		/obj/item/borg/upgrade/aquila/push_broom = list(/obj/item/robot_module/janitor, /obj/item/robot_module/engineering),
 		/obj/item/borg/upgrade/aquila/cookbook = list(/obj/item/robot_module/butler, /obj/item/robot_module/janitor),
-		/obj/item/borg/upgrade/transform/aquila_advanced/engineering = list(/obj/item/robot_module/engineering, /obj/item/robot_module/medical),
-		/obj/item/borg/upgrade/transform/aquila_advanced/medical = list(/obj/item/robot_module/medical, /obj/item/robot_module/engineering),
-		/obj/item/borg/upgrade/transform/aquila_advanced/miner = list(/obj/item/robot_module/miner, /obj/item/robot_module/engineering),
 	)
 	for(var/upgrade_type in cases)
 		var/list/modules = cases[upgrade_type]
@@ -143,8 +140,6 @@
 			TEST_ASSERT(!refused.action(wrong, wrong), "[upgrade_type] zainstalował się w module [modules[2]]")
 			TEST_ASSERT(wrong.module.type == modules[2], "[upgrade_type] zmienił niepasujący moduł")
 			TEST_ASSERT(length(wrong.module.modules) == tools_before, "[upgrade_type] dodał narzędzia mimo odmowy")
-		if(ispath(upgrade_type, /obj/item/borg/upgrade/transform))
-			continue // zmiana modułu pokazuje cyborgowi kółko skinów, sam moduł sprawdza aquila_cyborg_modules
 		var/mob/living/silicon/robot/cyborg = aq_cyborg_with_module(modules[1])
 		var/obj/item/borg/upgrade/aquila/upgrade = allocate(upgrade_type)
 		TEST_ASSERT(upgrade.action(cyborg, cyborg), "[upgrade_type] nie zainstalował się w module [modules[1]]")
@@ -263,8 +258,10 @@
 	TEST_ASSERT(blood && blood.data["blood_type"] == "O-", "Syntezator nie zrobił krwi 0 Rh-")
 
 	// Przenośna huta
-	var/mob/living/silicon/robot/miner = aq_cyborg_with_module(/obj/item/robot_module/miner/advanced)
+	var/mob/living/silicon/robot/miner = aq_cyborg_with_module(/obj/item/robot_module/miner)
 	miner.cell.charge = miner.cell.maxcharge
+	var/obj/item/borg/upgrade/aquila/ore_processor/furnace_upgrade = allocate(/obj/item/borg/upgrade/aquila/ore_processor)
+	TEST_ASSERT(furnace_upgrade.action(miner, miner), "Przenośna huta nie weszła do modułu górniczego")
 	var/obj/item/storage/bag/ore/ore_bag = miner.aq_find_module_item(/obj/item/storage/bag/ore)
 	var/obj/item/stack/ore/iron/ore = new(ore_bag, 5)
 	var/obj/item/borg/ore_processor/furnace = miner.aq_find_module_item(/obj/item/borg/ore_processor)
