@@ -1,6 +1,6 @@
-/datum/test_chamber_kit/pr_XXX_implanty
-	name = "PR XXX: implanty i augmenty robotyki"
-	pr = "aq33/AquilaStation#XXX"
+/datum/test_chamber_kit/pr_672_implanty
+	name = "PR 672: implanty i augmenty robotyki"
+	pr = "aq33/AquilaStation#672"
 	description = "Implanty (implantery na sobie albo na króliku): \
 	1) Rotbusttec: zabij królika, w krwi jest formaldehyd. Tłumacz maszynowy: mów przez :b. Bezpiecznik: wstrzyknij przedawkowanie efedryny, po kilku s połowa znika. Tarcza EMP: granat EMP nie rusza implantów, seria granatów ją przeciąża. \
 	2) Ochrona: dostęp (przyłóż kartę do implantera przed wszczepieniem, drzwi bez karty, 8 otwarć), swój-obcy (dwie osoby, strzał przez sojusznika), mapa taktyczna (przycisk holomapy, dwa implanty widzą się), zakłócacz (augmenty milkną), uziemienie (teleporter ręczny: odrzut i paraliż). \

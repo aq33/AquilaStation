@@ -1,6 +1,6 @@
-/datum/test_chamber_kit/pr_XXX_robotyka
+/datum/test_chamber_kit/pr_672_robotyka
 	name = "Robotyka: protezy, syntetycy, cyberpsychoza i implanty"
-	pr = "aq33/AquilaStation#XXX"
+	pr = "aq33/AquilaStation#672"
 	description = "1) Protezy: przyszyj robotyczną rękę operacją – nie słucha, dopóki nie skalibrujesz jej multitoolem albo hemostatem (bez trybu walki, celując w rękę). Kołek i protezę kinetyczną przyłóż do kikuta (3 s); z kinetyczną nie strzelisz. Zaawansowana ręka bije mocniej. \
 	2) Marki: włóż protezę do maszyny do dopasowania augmentacji, wybierz styl i obejrzyj ją (marka i cechy). Przy otwartej klapie multitool daje operację zmiany marki. Vey-Med na manekinie wygląda jak skóra, z bliska widać protezę, po uszkodzeniu wyłazi metal. \
 	3) EMP: granat EMP przy manekinie z protezami – proteza iskrzy, obrywa i na chwilę przestaje działać, ciało nie pada na 20 s. \

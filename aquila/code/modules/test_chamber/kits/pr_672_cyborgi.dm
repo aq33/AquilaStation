@@ -1,6 +1,6 @@
-/datum/test_chamber_kit/pr_XXX_cyborgi
+/datum/test_chamber_kit/pr_672_cyborgi
 	name = "Cyborgi: nowe moduły i ulepszenia"
-	pr = "aq33/AquilaStation#XXX"
+	pr = "aq33/AquilaStation#672"
 	description = "1) Wejdź w cyborga (ghost → przejmij jednego z dwóch) i wybierz moduł z kółka: sprawdź nowe moduły (Naukowy, Chemiczny, Chirurgiczny, Ratowniczy, Budowlany, Eksploracyjny, Detektyw, Brobocop, Hydroponiczny, Biurowy, Magazynowy, Wielozadaniowy) - każdy ma kółko skinów i swoje narzędzia. \
 	2) Ulepszenia leżą obok: otwórz panel cyborga (łom, ID), włóż ulepszenie. Pasujące wchodzi, niepasujące odmawia („Nie ma punktu mocowania”). Wybieraki zaawansowanych modułów działają tylko na Inżynieryjnym, Medycznym i Górniczym. \
 	3) Odblokowanie trybu zabójczego (moduł Ochrony z wybieraka): przy zielonym alarmie przełączenie na laser odmawia, przy czerwonym działa, a po odwołaniu alarmu broń sama wraca na obezwładnianie. \

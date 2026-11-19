@@ -1342,11 +1342,11 @@
 // #include "code\modules\test_chamber\kits\pr_420_traitor_cele.dm"
 #include "code\modules\test_chamber\kits\test_subjects.dm"
 // Komora testowa - zestawy PR-ów niżej (usuwać razem z plikiem zestawu po przetestowaniu)
-#include "code\modules\test_chamber\kits\pr_XXX_cyborgi.dm"
-#include "code\modules\test_chamber\kits\pr_XXX_implanty.dm"
-#include "code\modules\test_chamber\kits\pr_XXX_nif.dm"
-#include "code\modules\test_chamber\kits\pr_XXX_robotyka.dm"
-#include "code\modules\test_chamber\kits\pr_XXX_boty.dm"
+#include "code\modules\test_chamber\kits\pr_672_cyborgi.dm"
+#include "code\modules\test_chamber\kits\pr_672_implanty.dm"
+#include "code\modules\test_chamber\kits\pr_672_nif.dm"
+#include "code\modules\test_chamber\kits\pr_672_robotyka.dm"
+#include "code\modules\test_chamber\kits\pr_672_boty.dm"
 #include "code\modules\test_chamber\kits\pr_665_rework_amunicji.dm"
 #include "code\modules\test_chamber\kits\pr_nsvprzyw_statek.dm"
 #include "code\modules\test_chamber\kits\pr_nsvprzyw_misje.dm"
@@ -2879,7 +2879,7 @@
 #include "code\modules\unit_tests\aquila_mecha_rework.dm"
 #endif
 // Komora testowa
-#include "code\modules\test_chamber\kits\pr_XXX_mechy.dm"
+#include "code\modules\test_chamber\kits\pr_672_mechy.dm"
 // MECHY: koniec
 // CYBORGI: nowe moduły (Naukowy, Chemiczny, Chirurgiczny, Ratowniczy, Budowlany, Eksploracyjny, Detektyw, Brobocop,
 // Hydroponiczny, Biurowy, Magazynowy, Wielozadaniowy, zaawansowane, Zagubiony) i ulepszenia cyborgów

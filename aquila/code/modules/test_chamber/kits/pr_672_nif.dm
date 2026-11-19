@@ -1,6 +1,6 @@
-/datum/test_chamber_kit/pr_XXX_nif
-	name = "PR XXX: NIF (Nanitowa Platforma Implantów)"
-	pr = "aq33/AquilaStation#XXX"
+/datum/test_chamber_kit/pr_672_nif
+	name = "PR 672: NIF (Nanitowa Platforma Implantów)"
+	pr = "aq33/AquilaStation#672"
 	description = "1) Autochirurg z NIF typu Standard na siebie: kalibracja trwa kilka minut, na początku chwilowa ślepota, potem drobne mdłości lub zmęczenie. \
 	2) Po kalibracji akcja okna NIF-u: zasilanie z jedzenia i z krwi, lista programów, Poemat Wspólnych Dusz. \
 	3) Testowy NIF jest skalibrowany od razu: wgraj dyski (soczewka medyczna z adapterem okularów, rój umysłów dla dwóch osób, automatyczna wycena). \

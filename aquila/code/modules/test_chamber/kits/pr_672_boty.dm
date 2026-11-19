@@ -1,6 +1,6 @@
-/datum/test_chamber_kit/pr_XXX_boty
+/datum/test_chamber_kit/pr_672_boty
 	name = "Boty na drzewach zachowań: stare boty jako basic boty i nowe boty"
-	pr = "aq33/AquilaStation#XXX"
+	pr = "aq33/AquilaStation#672"
 	description = "Komora jest poza okrętem, więc patrol po nadajnikach i windy dla botów sprawdź na prawdziwej mapie; tu praca, panel i emag. \
 	1) Medibot: zrań się (nóż) i stań obok – medibot podjeżdża i leczy; przewróć go prawym przyciskiem (w trybie intencji na rozbrajaniu), prosi o pomoc, postaw go. Kerfuś i przytulobot obok: przytulobot przytula smutnego. \
 	2) Cleanbot: rozlej krew/brud (kredki, odchody) – sprząta; w panelu włącz Szkodniki i wypuść mysz. Repairbot: przestaw podłogę łomem na poszycie, połóż kratę (2 pręty) – z żelazem i szkłem z zestawu stawia szyby i ściany na dźwigarach (włóż arkusze do bota). \

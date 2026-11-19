@@ -1,8 +1,8 @@
-// aq33/AquilaStation#XXX - mechy: system slotów, ciepło, kierunkowy pancerz, nowe podwozia, skiny i wyposażenie
+// aq33/AquilaStation#672 - mechy: system slotów, ciepło, kierunkowy pancerz, nowe podwozia, skiny i wyposażenie
 
-/datum/test_chamber_kit/pr_XXX_mechy
-	name = "PR XXX: mechy - podwozia"
-	pr = "aq33/AquilaStation#XXX"
+/datum/test_chamber_kit/pr_672_mechy
+	name = "PR 672: mechy - podwozia"
+	pr = "aq33/AquilaStation#672"
 	description = "Nowe podwozia i zestawy konwersji. Sprawdź: sloty w oknie mecha (dwie bronie w ramionach, trzecia odmawia), overclock (pasek ciepła, \
 	bezpiecznik przy 150, wymiana kablem przy otwartej klapie), Savannah z dwoma osobami (drugi prowadzi i skacze Skyfall, pierwszy strzela i odpala Ivanov), \
 	Paddy (syreny, cela, chwytak), Clarke (ruda z pola do ładowni, bez jazdy skosem przy strafe), Sentinel (burzy ściany), mech modułowy (zestawy części przy otwartej klapie), \
@@ -35,9 +35,9 @@
 		/obj/item/storage/toolbox/mechanical = 1,
 	)
 
-/datum/test_chamber_kit/pr_XXX_mechy_budowa
-	name = "PR XXX: mechy - budowa i skiny"
-	pr = "aq33/AquilaStation#XXX"
+/datum/test_chamber_kit/pr_672_mechy_budowa
+	name = "PR 672: mechy - budowa i skiny"
+	pr = "aq33/AquilaStation#672"
 	description = "Fabrykator egzoszkieletów z materiałami: zakładki Clarke, Savannah-Ivanov, Red Sunday, Sentinel, mech modułowy (projekty po odblokowaniu węzłów w R&D). \
 	Zbuduj Clarke'a z części z zestawu: po ostatnim kroku ma się pokazać menu kołowe skinów (Carrion Crawler, mech eksploracyjny). \
 	Durand, Gygax, Phazon, Odysseus, H.O.N.K i Ripley też mają skiny przy budowie."
@@ -61,9 +61,9 @@
 		/obj/item/weldingtool/largetank = 1,
 	)
 
-/datum/test_chamber_kit/pr_XXX_mechy_wyposazenie
-	name = "PR XXX: mechy - wyposażenie"
-	pr = "aq33/AquilaStation#XXX"
+/datum/test_chamber_kit/pr_672_mechy_wyposazenie
+	name = "PR 672: mechy - wyposażenie"
+	pr = "aq33/AquilaStation#672"
 	description = "Wszystkie 71 pozycji wyposażenia z planu obok Gygaxa, Ripleya i Odyseusza. Sprawdź broń wręcz (cios w cel, zamach w combat mode), \
 	amunicję (skrzynki i magazynki użyte na mechu), autolat (arkusze użyte na mechu, „drukuj” w oknie), wiele modułów z przyciskami akcji."
 	items = list(
@@ -78,7 +78,7 @@
 		/obj/item/stack/sheet/glass/fifty = 1,
 	)
 
-/datum/test_chamber_kit/pr_XXX_mechy_wyposazenie/setup(list/spawned, list/turfs, turf/center, mob/user)
+/datum/test_chamber_kit/pr_672_mechy_wyposazenie/setup(list/spawned, list/turfs, turf/center, mob/user)
 	. = ..()
 	var/index = length(items) + 1
 	for(var/name in GLOB.aq_mecha_plan_equipment)
