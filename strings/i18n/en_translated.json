@@ -26525,8 +26525,6 @@
 "Zestaw przetrwania z medyczną maską oddechową i medipenem pierwszej pomocy.": "A survival box with a medical breath mask and an emergency first-aid medipen.",
 "szyna": "splint",
 "Modułowa szyna, która mocno unieruchamia złamaną kończynę: kość się nie przesuwa, mniej boli, a ręka nie upuszcza broni. Nie leczy, a kiedy kość się zrośnie, szynę da się założyć jeszcze raz.": "A modular splint that firmly holds a broken limb: the bone stays put, it hurts less and the hand does not drop its weapon. It does not heal, and once the bone knits the splint can be used again.",
-"prowizoryczna szyna": "makeshift splint",
-"Deski przywiązane taśmą. Unieruchomi złamaną kończynę tak jak bandaż, ale nic poza tym.": "Planks tied together with tape. Holds a broken limb like a bandage does, and nothing more.",
 "<span class='warning'>Tu nie ma złamania, które [src] mogłaby unieruchomić.</span>": "<span class='warning'>There is no fracture here for [src] to hold.</span>",
 "<span class='notice'>[user] zaczyna zakładać [splint.singular_name] na [limb.name] [victim].</span>": "<span class='notice'>[user] starts putting [splint.singular_name] on [victim]'s [limb.name].</span>",
 "<span class='notice'>Zaczynasz zakładać [splint.singular_name] na [limb.name] [self ? \"\" : \"[victim]\"].</span>": "<span class='notice'>You start putting [splint.singular_name] on [limb.name] [self ? \"\" : \"[victim]\"].</span>",

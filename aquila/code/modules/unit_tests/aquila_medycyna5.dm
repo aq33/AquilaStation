@@ -10,15 +10,13 @@
 	var/obj/item/bodypart/leg = patient.get_bodypart(BODY_ZONE_R_LEG)
 	var/obj/item/stack/medical/bandage/bandage = allocate(/obj/item/stack/medical/bandage)
 	var/obj/item/stack/medical/splint/splint = allocate(/obj/item/stack/medical/splint)
-	var/obj/item/stack/medical/splint/improvised/improvised = allocate(/obj/item/stack/medical/splint/improvised)
 
 	var/datum/wound/blunt/fracture/fracture = new()
 	fracture.apply_wound(leg, silent = TRUE)
-	TEST_ASSERT(fracture.can_treat_with(splint) && fracture.can_treat_with(improvised) && fracture.can_treat_with(bandage), "A bare fracture does not take a bandage and both splints")
+	TEST_ASSERT(fracture.can_treat_with(splint) && fracture.can_treat_with(bandage), "A bare fracture does not take a bandage and a splint")
 
-	// Bandaged: the improvised splint adds nothing, a real splint still goes on
+	// Bandaged: a splint still goes on
 	fracture.treated = TRUE
-	TEST_ASSERT(!fracture.can_treat_with(improvised), "An improvised splint goes over a bandage")
 	TEST_ASSERT(fracture.can_treat_with(splint), "A real splint does not go over a bandage")
 	var/bandaged_limp = fracture.get_limp_slowdown()
 	var/bandaged_pain = fracture.get_pain()
