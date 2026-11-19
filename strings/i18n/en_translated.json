@@ -1,4 +1,5 @@
 {
+"Ustawianie pocisku wymaga dostępu do zbrojowni.": "Tuning a missile requires munitions access.",
 "    \\\\ \\\\__\\\\    \\\\ \\\\__\\\\ \\\\__\\\\ \\\\__\\\\     Własność": "    \\\\ \\\\__\\\\    \\\\ \\\\__\\\\ \\\\__\\\\ \\\\__\\\\     Property",
 " &middot; [yt_tracks.len] utworów": " &middot; [yt_tracks.len] tracks",
 " (MARTWY)": " (DEAD)",
@@ -27155,7 +27156,7 @@
 "Jednorazowy cewnik z workiem. Opróżnia pęcherz pacjenta.": "A disposable catheter with a bag. Drains the patient's bladder.",
 "zszycie narządów brzucha": "abdominal organ suture",
 "Laparotomia (zszycie narządów brzucha)": "Laparotomy (abdominal organ suture)",
-"Zszywa rozerwane narządy brzucha i zatrzymuje krwotok wewnętrzny. Leczy też uszkodzoną śledzionę.": "Sutures torn abdominal organs and stops the internal bleeding. Also heals a damaged spleen.",
+"Zszywa narządy brzucha: śledzionę, jelita i pęcherz. Zatrzymuje krwotok wewnętrzny z pękniętej śledziony.": "Sutures the abdominal organs: spleen, intestines and bladder. Stops the internal bleeding from a ruptured spleen.",
 "Zszywasz narządy brzucha [FORMAT_ORGAN_OWNER(organ)].": "You suture the abdominal organs of [FORMAT_ORGAN_OWNER(organ)].",
 "[surgeon] zszywa narządy brzucha [FORMAT_ORGAN_OWNER(organ)].": "[surgeon] sutures the abdominal organs of [FORMAT_ORGAN_OWNER(organ)].",
 "Wszczepia ząb (własny albo sztuczny) w puste miejsce w szczęce. Dziąsło trzeba najpierw naciąć.": "Plants a tooth (natural or prosthetic) into an empty socket in the jaw. The gum has to be cut open first.",

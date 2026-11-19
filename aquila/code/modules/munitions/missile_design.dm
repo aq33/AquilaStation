@@ -70,10 +70,11 @@ GLOBAL_LIST_INIT(missile_design_options, list(
 	/// Czy radar pocisku już dał się ściągnąć wabikowi (raz)
 	var/decoy_checked = FALSE
 
+/// Bez projektu komponent zaczyna od ustawienia fabrycznego (multitool zmienia je potem pozycja po pozycji)
 /datum/component/missile_design/Initialize(datum/missile_design/design)
-	if(!isatom(parent) || !design)
+	if(!isatom(parent))
 		return COMPONENT_INCOMPATIBLE
-	src.design = design.copy()
+	src.design = design ? design.copy() : new /datum/missile_design
 	if(istype(parent, /obj/item/projectile/guided_munition))
 		apply_to_projectile(parent)
 	else
@@ -180,17 +181,32 @@ GLOBAL_LIST_INIT(missile_design_options, list(
 	. = ..()
 	. += "<span class='notice'>Multitool ustawia silnik i naprowadzanie.</span>"
 
-/// Menu radialne: silnik (3 opcje) i naprowadzanie (4 opcje)
+/// Menu radialne: silnik (3 opcje) i naprowadzanie (4 opcje). Jak dawny stół projektowy: tylko z dostępem do zbrojowni.
 /obj/item/ship_weapon/ammunition/proc/aq_missile_design_multitool(mob/living/user, obj/item/I)
-	var/list/choice = aq_pick_missile_option(user, I)
-	if(!choice || QDELETED(src) || !user.is_holding(I) || !user.Adjacent(src))
+	if(!aq_can_tune_missile(user))
+		to_chat(user, "<span class='warning'>Ustawianie pocisku wymaga dostępu do zbrojowni.</span>")
 		return
-	aq_set_missile_option(choice[1], choice[2])
+	aq_apply_missile_choice(user, I, aq_pick_missile_option(user, I))
+
+/// Czy ten ktoś może ustawiać pociski: dostęp do zbrojowni na identyfikatorze albo silikon
+/obj/item/ship_weapon/ammunition/proc/aq_can_tune_missile(mob/living/user)
+	if(issilicon(user))
+		return TRUE
+	var/obj/item/card/id/id = user.get_idcard(TRUE)
+	return istype(id) && (ACCESS_MUNITIONS in id.access)
+
+/// Wybór z menu po jego zamknięciu: menu czeka na gracza, więc wszystko sprawdza się jeszcze raz. TRUE, gdy ustawiono.
+/obj/item/ship_weapon/ammunition/proc/aq_apply_missile_choice(mob/living/user, obj/item/I, list/choice)
+	if(!choice || QDELETED(src) || !user.is_holding(I) || !user.Adjacent(src) || !aq_can_tune_missile(user))
+		return FALSE
+	if(!aq_set_missile_option(choice[1], choice[2]))
+		return FALSE
 	I.play_tool_sound(src)
 	var/datum/component/missile_design/MD = GetComponent(/datum/component/missile_design)
 	var/engine = MD ? MD.design.engine : "standardowy"
 	var/seeker = MD ? MD.design.seeker : MISSILE_SEEKER_RADAR
 	to_chat(user, "<span class='notice'>Ustawiasz [src]: silnik [engine], naprowadzanie: [seeker].</span>")
+	return TRUE
 
 /// Wybór z menu radialnego: list(slot, opcja) albo null
 /obj/item/ship_weapon/ammunition/proc/aq_pick_missile_option(mob/living/user, obj/item/I)
@@ -210,11 +226,7 @@ GLOBAL_LIST_INIT(missile_design_options, list(
 /obj/item/ship_weapon/ammunition/proc/aq_set_missile_option(slot, option)
 	if(!(slot in GLOB.missile_design_options) || !(option in GLOB.missile_design_options[slot]))
 		return FALSE
-	var/datum/component/missile_design/MD = GetComponent(/datum/component/missile_design)
-	if(!MD)
-		var/datum/missile_design/D = new
-		MD = AddComponent(/datum/component/missile_design, D)
-		qdel(D)
+	var/datum/component/missile_design/MD = GetComponent(/datum/component/missile_design) || AddComponent(/datum/component/missile_design)
 	MD.design.vars[slot] = option
 	if(MD.design.is_default())
 		qdel(MD)

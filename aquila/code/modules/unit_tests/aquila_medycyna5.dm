@@ -589,6 +589,15 @@
 	patient.adjust_nutrition(10)
 	TEST_ASSERT(patient.nutrition - nutrition == 10, "Nutrition outside the gut (IV, photosynthesis) is cut by the intestines")
 	TEST_ASSERT(patient.stool_type() >= 6, "Sick intestines give no diarrhea")
+	// The one abdominal surgery repairs the intestines too, and does not hurt a healthy spleen
+	spleen.setOrganDamage(0)
+	var/datum/surgery_operation/organ/repair/spleen/laparotomy = new()
+	TEST_ASSERT(laparotomy.state_check(spleen), "Damaged intestines with a healthy spleen cannot get the abdominal surgery")
+	laparotomy.on_success(spleen, patient, null, list())
+	TEST_ASSERT(intestines.damage <= intestines.maxHealth * 0.1, "The abdominal surgery did not repair the intestines")
+	TEST_ASSERT(!spleen.damage, "The abdominal surgery damaged a healthy spleen")
+	TEST_ASSERT(!laparotomy.state_check(spleen), "The abdominal surgery is still offered with every abdominal organ repaired")
+	qdel(laparotomy)
 	intestines.setOrganDamage(0)
 
 	// A catheter drains the bladder

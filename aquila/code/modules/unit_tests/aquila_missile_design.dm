@@ -36,6 +36,23 @@
 	user.put_in_hands(tool)
 	var/obj/item/ship_weapon/ammunition/torpedo/torpedo_casing/multitool_test/test_casing = new(run_loc_floor_bottom_left)
 	casing = test_casing
+
+	// Bez dostępu do zbrojowni (jak dawny stół projektowy) multitool niczego nie zmienia
+	test_casing.test_choices = list(list("seeker", "brak"))
+	tool.melee_attack_chain(user, casing)
+	TEST_ASSERT(!casing.GetComponent(/datum/component/missile_design), "A multitool retuned a torpedo without munitions access")
+	var/obj/item/card/id/card = allocate(/obj/item/card/id)
+	card.access = list(ACCESS_MUNITIONS)
+	user.equip_to_slot_or_del(card, ITEM_SLOT_ID)
+	TEST_ASSERT(casing.aq_can_tune_missile(user), "A munitions ID does not allow retuning a torpedo")
+
+	// Wybór z menu sprawdza się jeszcze raz po jego zamknięciu: bez multitoola w ręce nic się nie zmienia
+	user.dropItemToGround(tool)
+	TEST_ASSERT(!casing.aq_apply_missile_choice(user, tool, list("seeker", "brak")), "A menu choice applied after the multitool left the hand")
+	user.put_in_hands(tool)
+	TEST_ASSERT(!casing.aq_apply_missile_choice(user, tool, null), "A closed menu changed the torpedo")
+	TEST_ASSERT(!casing.GetComponent(/datum/component/missile_design), "A refused menu choice still left a design")
+
 	test_casing.test_choices = list(list("engine", "sprint"), list("seeker", "brak"))
 	tool.melee_attack_chain(user, casing)
 	var/datum/component/missile_design/CMD = casing.GetComponent(/datum/component/missile_design)

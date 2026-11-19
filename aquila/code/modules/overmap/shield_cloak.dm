@@ -33,28 +33,40 @@
 /obj/structure/overmap
 	/// Ile razy okręt strzelił (sensor_signature.dm); maska zdejmuje się po każdym strzale po jej włączeniu
 	var/aq_weapon_shots = 0
+	/// Czy działa maskowanie NSV (handle_cloak: okręty AI Syndykatu, Alicorn, przedmiot PvP)
+	var/aq_nsv_cloaked = FALSE
 
-/// Jedno oznaczenie „zamaskowany” dla obu sposobów: maska tarczy i maskowanie NSV (handle_cloak(TRUE): okręty AI
-/// Syndykatu, Alicorn, przedmiot PvP; strzał na chwilę je zdejmuje, wtedy alpha wraca do 255)
+/// Maskowanie NSV ustawia własną flagę: strzał zdejmuje je na chwilę (CLOAK_TEMPORARY_LOSS), a timer z handle_cloak(TRUE) przywraca
+/obj/structure/overmap/handle_cloak(state)
+	switch(state)
+		if(TRUE)
+			aq_nsv_cloaked = TRUE
+		if(FALSE, CLOAK_TEMPORARY_LOSS)
+			aq_nsv_cloaked = FALSE
+	return ..()
+
+/// Jedno oznaczenie „zamaskowany” dla obu sposobów (głowica na podczerwień gubi taki cel): maska tarczy i maskowanie NSV
 /obj/structure/overmap/proc/is_cloaked()
-	if(alpha < 255 && !mouse_opacity)
-		return TRUE
+	return aq_nsv_cloaked || aq_shield_cloaked()
+
+/// Maska generatora tarcz. Tylko ona obniża sygnaturę i zasięg radaru: maskowanie NSV ukrywa okręt samo (radar.dm, alpha)
+/obj/structure/overmap/proc/aq_shield_cloaked()
 	var/obj/machinery/shield_generator/gen = shields
 	return istype(gen) && !QDELETED(gen) && gen.cloaked
 
 /obj/structure/overmap/get_signature_size()
 	. = ..()
-	if(is_cloaked())
+	if(aq_shield_cloaked())
 		. *= SHIELD_CLOAK_SIGNATURE
 
 /obj/structure/overmap/get_signature_heat()
 	. = ..()
-	if(is_cloaked())
+	if(aq_shield_cloaked())
 		. *= SHIELD_CLOAK_SIGNATURE
 
-/// Ile zasięgu radaru zostaje wobec tego okrętu (maska)
+/// Ile zasięgu radaru zostaje wobec tego okrętu (maska tarczy)
 /obj/structure/overmap/proc/get_cloak_lidar_mult()
-	return is_cloaked() ? SHIELD_CLOAK_SIGNATURE : 1
+	return aq_shield_cloaked() ? SHIELD_CLOAK_SIGNATURE : 1
 
 /obj/structure/overmap/get_suite_range(suite, obj/structure/overmap/target)
 	. = ..()
@@ -117,8 +129,8 @@
 /// Strzał zdejmuje maskę od razu, a nie przy następnym process() generatora (do 2 s salwy w masce)
 /obj/structure/overmap/proc/aq_on_weapon_fired()
 	aq_weapon_shots++
-	var/obj/machinery/shield_generator/gen = shields
-	if(istype(gen) && gen.cloaked)
+	if(aq_shield_cloaked())
+		var/obj/machinery/shield_generator/gen = shields
 		gen.end_cloak("strzał")
 
 // Działka strzelców, Gauss i działa pokładowe strzelają przez fire_projectile z pominięciem fire_proc_chain

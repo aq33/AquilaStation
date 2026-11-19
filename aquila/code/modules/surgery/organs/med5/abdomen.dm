@@ -239,11 +239,12 @@
 /datum/surgery_operation/organ/repair/spleen/get_default_radial_image()
 	return get_item_radial_image(target_type)
 
-/// The one surgery for the abdominal organ injury (its state sits on the spleen)
+/// The one surgery for the abdominal organs: the spleen injury (internal bleeding) and damaged intestines and bladder.
+/// It is started on the spleen, the organ the injury state sits on.
 /datum/surgery_operation/organ/repair/spleen
 	name = "zszycie narządów brzucha"
 	rnd_name = "Laparotomia (zszycie narządów brzucha)"
-	desc = "Zszywa rozerwane narządy brzucha i zatrzymuje krwotok wewnętrzny. Leczy też uszkodzoną śledzionę."
+	desc = "Zszywa narządy brzucha: śledzionę, jelita i pęcherz. Zatrzymuje krwotok wewnętrzny z pękniętej śledziony."
 	implements = list(TOOL_HEMOSTAT = 1, /obj/item/stack/medical/suture = 1.2, TOOL_WIRECUTTER = 2.85)
 	time = 5 SECONDS
 	target_type = /obj/item/organ/spleen
@@ -253,11 +254,29 @@
 	preop_sound = 'sound/surgery/hemostat1.ogg'
 	success_sound = 'sound/surgery/organ1.ogg'
 
-/datum/surgery_operation/organ/repair/spleen/state_check(obj/item/organ/spleen/organ)
-	return organ.ruptured || ..()
+/// The spleen and the patient's intestines and bladder
+/datum/surgery_operation/organ/repair/spleen/proc/abdominal_organs(obj/item/organ/spleen/organ)
+	. = list(organ)
+	if(!organ.owner)
+		return
+	for(var/slot in list(ORGAN_SLOT_INTESTINES, ORGAN_SLOT_BLADDER))
+		var/obj/item/organ/abdominal = organ.owner.getorganslot(slot)
+		if(abdominal)
+			. += abdominal
 
+/datum/surgery_operation/organ/repair/spleen/state_check(obj/item/organ/spleen/organ)
+	if(organ.ruptured)
+		return TRUE
+	for(var/obj/item/organ/abdominal as anything in abdominal_organs(organ))
+		if(abdominal.damage > abdominal.maxHealth * required_damage_percent)
+			return TRUE
+	return FALSE
+
+/// Heals only what is damaged: the base repair sets the organ to heal_to_percent, which would hurt a healthy spleen
 /datum/surgery_operation/organ/repair/spleen/on_success(obj/item/organ/spleen/organ, mob/living/surgeon, obj/item/tool, list/operation_args)
-	. = ..()
+	for(var/obj/item/organ/abdominal as anything in abdominal_organs(organ))
+		if(abdominal.damage > abdominal.maxHealth * heal_to_percent)
+			abdominal.setOrganDamage(abdominal.maxHealth * heal_to_percent)
 	organ.ruptured = FALSE
 	display_results(surgeon, organ.owner, span_notice("Zszywasz narządy brzucha [FORMAT_ORGAN_OWNER(organ)]."), span_notice("[surgeon] zszywa narządy brzucha [FORMAT_ORGAN_OWNER(organ)]."), span_notice("[surgeon] kończy operację [FORMAT_ORGAN_OWNER(organ)]."))
 
