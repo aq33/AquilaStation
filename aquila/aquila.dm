@@ -2919,7 +2919,6 @@
 #include "code\modules\robotics\limb_emp.dm"
 #include "code\modules\robotics\limb_calibration.dm"
 #include "code\modules\robotics\robotic_wounds.dm"
-#include "code\modules\robotics\synth_cooling.dm"
 #include "code\modules\robotics\synth_reset_key.dm"
 #include "code\modules\robotics\ipc_overloaders.dm"
 #include "code\modules\robotics\synth_surgery.dm"

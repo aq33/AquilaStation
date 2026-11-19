@@ -1,8 +1,6 @@
 // AQUILA - robotyka: protezy, syntetycy, cyberpsychoza (aquila/code/modules/robotics/)
 
 // --- Sloty organów ---
-/// Organ chłodzenia syntetyka (chłodzenie powietrzem, cieczą, pasywny radiator)
-#define ORGAN_SLOT_AQ_COOLING "aq_cooling"
 /// Wzmocnienie stawów
 #define ORGAN_SLOT_AQ_BRACING "aq_bracing"
 
@@ -28,13 +26,6 @@
 #define WOUND_AQ_ROBOTIC_BLUNT "robotic_blunt"
 #define WOUND_AQ_ROBOTIC_ELECTRIC "robotic_electric"
 #define WOUND_AQ_ROBOTIC_HEAT "robotic_heat"
-
-// --- Nagrzanie syntetyka (0-100) ---
-#define AQ_SYNTH_HEAT_WARN 50
-#define AQ_SYNTH_HEAT_DAMAGE 75
-#define AQ_SYNTH_HEAT_CRITICAL 90
-/// Ile nagrzewa się ciało syntetyka na sekundę bez chłodzenia
-#define AQ_SYNTH_HEAT_GAIN 1
 
 // --- Cyberpsychoza (pojemność psychiki 100 minus obciążenie cybernetyką) ---
 #define AQ_CYBERPSYCHOSIS_MILD 80

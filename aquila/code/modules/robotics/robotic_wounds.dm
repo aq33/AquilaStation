@@ -263,9 +263,6 @@
 	if(treated)
 		return
 	limb.receive_damage(0, burn_rate * delta_time)
-	if(ishuman(victim))
-		var/mob/living/carbon/human/H = victim
-		H.aq_adjust_synth_heat(burn_rate * delta_time * 2) // syntetyk nagrzewa się od środka (synth_cooling.dm)
 
 /datum/wound/aq_robotic/heat/overheat
 	name = "Przegrzane obwody"

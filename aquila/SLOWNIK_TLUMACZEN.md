@@ -4654,8 +4654,6 @@ Nazwy obszarów są w większości przetłumaczone. Nowe nazwy budujemy z tych k
 | robotic wounds: loose screws / dented casing / crushed servos | luźne śruby / wgniecenie obudowy / zgniecione serwa | nowe (rany robotyczne) |
 | frayed wiring / severed wiring | postrzępione przewody / przecięte przewody | nowe (rany robotyczne) |
 | overheated circuits / warped plating | przegrzane obwody / wypaczona blacha | nowe (rany robotyczne) |
-| air cooling unit / liquid cooling unit / passive heatsink | chłodzenie powietrzem / chłodzenie cieczą / pasywny radiator | n / n / m; nowe (organy IPC) |
-| overheating (synthetic) | przegrzanie | n; nowe (alert IPC) |
 | IPC overloader | overloader | m; nowe (cyfrowa używka IPC, nazwa własna Aurory) |
 | synthetic reset key | klucz resetu syntetyka | m; nowe (CM-SS13) |
 | system purge (surgery) | czyszczenie układu | n; nowe (operacja) |

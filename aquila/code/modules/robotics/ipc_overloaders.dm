@@ -110,7 +110,7 @@
 			target.take_overall_damage(0, 20)
 		if(2)
 			to_chat(target, "<span class='warning'>Podzespoły wewnętrzne gwałtownie się nagrzewają!</span>")
-			target.aq_adjust_synth_heat(30)
+			target.adjust_bodytemperature(60) // przegrzanie IPC jak przed robotyką: dym od BODYTEMP_HEAT_DAMAGE_LIMIT
 		if(3)
 			to_chat(target, "<span class='warning'>Czujniki ruchu zaczynają się w kółko restartować!</span>")
 			target.confused = max(target.confused, 20)

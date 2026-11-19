@@ -195,40 +195,6 @@
 	var/datum/wound/ipc_wound = ipc.check_wounding(ipc.get_bodypart(BODY_ZONE_L_LEG), 25, WOUND_BLUNT, 500)
 	TEST_ASSERT(istype(ipc_wound, /datum/wound/aq_robotic/blunt), "An IPC got no robotic wound")
 
-/// AQUILA - chłodzenie i przegrzewanie syntetyków
-/datum/unit_test/aquila_synth_cooling
-
-/datum/unit_test/aquila_synth_cooling/Run()
-	var/mob/living/carbon/human/ipc = allocate(/mob/living/carbon/human/species/ipc)
-	var/obj/item/organ/aq_cooling/air = ipc.getorganslot(ORGAN_SLOT_AQ_COOLING)
-	TEST_ASSERT(istype(air) && air.needs_air, "An IPC does not start with air cooling")
-
-	var/datum/gas_mixture/vacuum = new
-	TEST_ASSERT(!air.get_cooling(ipc, vacuum, TCMB), "Air cooling works in vacuum")
-	var/turf/our_turf = get_turf(ipc)
-	var/datum/gas_mixture/station_air = our_turf.return_air()
-	TEST_ASSERT(air.get_cooling(ipc, station_air, T20C) > AQ_SYNTH_HEAT_GAIN, "Air cooling does not keep up in normal air")
-	var/obj/item/organ/aq_cooling/liquid/liquid = new
-	TEST_ASSERT(liquid.get_cooling(ipc, vacuum, TCMB) > 0, "Liquid cooling does not work in vacuum")
-	qdel(liquid)
-
-	// bez chłodzenia rdzeń się grzeje, a od 75 parzy
-	air.Remove(ipc)
-	qdel(air)
-	ipc.aq_synth_heat = 0
-	ipc.aq_synth_heat_tick(10)
-	TEST_ASSERT(ipc.aq_synth_heat >= 10, "An IPC without cooling does not heat up ([ipc.aq_synth_heat])")
-	ipc.aq_synth_heat = AQ_SYNTH_HEAT_DAMAGE + 1
-	var/burn_before = ipc.getFireLoss()
-	ipc.aq_synth_heat_tick(2)
-	TEST_ASSERT(ipc.getFireLoss() > burn_before, "An overheating IPC takes no damage")
-	TEST_ASSERT(ipc.alerts["aq_synth_heat"], "An overheating IPC has no alert")
-
-	// człowiek się nie nagrzewa
-	var/mob/living/carbon/human/human = allocate(/mob/living/carbon/human)
-	human.aq_synth_heat_tick(10)
-	TEST_ASSERT(!human.aq_synth_heat, "A human heats up like a synthetic")
-
 /// AQUILA - cyfrowe używki dla IPC
 /datum/unit_test/aquila_ipc_overloaders
 
