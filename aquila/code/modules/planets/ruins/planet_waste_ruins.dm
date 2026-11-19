@@ -236,9 +236,6 @@ GLOBAL_LIST_EMPTY(planet_battlefield_ruin_templates)
 /area/ruin/unpowered/planet_waste/recycle_bay/security_dorms
 	name = "Zakład Recyklingu – Kwatery Ochrony"
 	icon_state = "blue"
-/area/ruin/unpowered/planet_waste/recycle_bay/electrical
-	name = "Zakład Recyklingu – Rozdzielnia"
-	icon_state = "engine_smes"
 /area/ruin/unpowered/planet_waste/recycle_bay/telecommunications
 	name = "Zakład Recyklingu – Telekomunikacja"
 	icon_state = "tcomsatcham"
@@ -254,9 +251,6 @@ GLOBAL_LIST_EMPTY(planet_battlefield_ruin_templates)
 /area/ruin/unpowered/planet_waste/recycle_bay/officers_dorms
 	name = "Zakład Recyklingu – Kwatery Oficerów"
 	icon_state = "crew_quarters"
-/area/ruin/unpowered/planet_waste/recycle_bay/officers_office
-	name = "Zakład Recyklingu – Biuro Oficerów"
-	icon_state = "bridge"
 
 /area/ruin/unpowered/planet_waste/smugglerbunker
 	name = "Bunkier"
@@ -313,12 +307,6 @@ GLOBAL_LIST_EMPTY(planet_battlefield_ruin_templates)
 /area/ruin/unpowered/planet_battlefield
 	name = "Ruiny Pola Bitwy"
 	icon_state = "away"
-
-/area/ruin/unpowered/planet_battlefield/cave
-	name = "Jaskinia"
-	icon_state = "unexplored"
-	always_unpowered = TRUE
-	sound_environment = SOUND_ENVIRONMENT_CAVE
 
 /area/ruin/unpowered/planet_battlefield/shipbreaking
 	name = "Polowe Złomowisko"

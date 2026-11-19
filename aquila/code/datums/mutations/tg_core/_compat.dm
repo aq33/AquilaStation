@@ -74,12 +74,3 @@
 #ifndef COLOR_BRIGHT_BLUE
 #define COLOR_BRIGHT_BLUE "#2CB2E8"
 #endif
-
-/// tg is_path_in_list: czy ścieżka jest podtypem którejś ze ścieżek w liście
-/proc/tg_core_path_in_list(path, list/paths)
-	if(!ispath(path))
-		return FALSE
-	for(var/checked in paths)
-		if(ispath(path, checked))
-			return TRUE
-	return FALSE

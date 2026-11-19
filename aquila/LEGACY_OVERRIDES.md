@@ -985,6 +985,156 @@ String-only changes (Polish translations) in core: see the generated list below.
 - `aquila/code/modules/food_and_drinks/recipes/tablecraft/recipes_pie.dm` exists but is not included in `aquila.dm`. It is dead on master; including it would change crafting, so it was left alone.
 - The Aquila `/datum/admins/Topic()` override (`aquila/code/modules/admin/topic.dm`) handles `makeAntag` before core's `CheckAdminHref()` validation. It does call `check_rights(R_ADMIN)`. Worth hardening separately.
 
+## Haki `AQ EDIT` bez osobnego wpisu (inwentarz z audytu 18.11.2026)
+
+Pliki spoza `aquila/` z markerem `AQ EDIT`, których ta lista wcześniej nie wymieniała ani w tabelach, ani w opisach. Kolumna „Powód” to tekst z samych markerów (pierwsze opisy w pliku); szczegóły w kodzie przy markerze. Przy synchronizacji z upstreamem sprawdź każdy marker w zmienionym pliku. Lista powstała z porównania nazw plików z markerem z tym dokumentem; plik wymieniony gdziekolwiek wyżej nie trafił do tabeli.
+
+| Plik | Markerów | Powód (z markerów) |
+|---|---|---|
+| `code/__DEFINES/antagonists.dm` | 2 | chance for a traitor to get the objective of their job, if it has one (tgstation's JOB_PROB); chance for a blood brother team to get the beacon objective (BeeStation deploy_beacon directive) |
+| `code/__DEFINES/dcs/signals/signals_movable.dm` | 2 | drift (port BeeStation/BeeStation-Hornet#14864) |
+| `code/__DEFINES/dcs/signals/signals_obj/signals_machine/signals_machinery.dm` | 1 | from /obj/machinery/vending/vend(): (obj/item/vended_item) |
+| `code/__DEFINES/dcs/signals/signals_obj/signals_object.dm` | 2 | jetpack jako komponent (port BeeStation/BeeStation-Hornet#14864) |
+| `code/__DEFINES/inventory.dm` | 1 | (marker bez opisu) |
+| `code/__DEFINES/keybinding.dm` | 1 | port Bee #11899 |
+| `code/__DEFINES/plumbing.dm` | 1 | plumbing port from tg (tgstation/tgstation@1568dbe1da) |
+| `code/_onclick/hud/blob_overmind.dm` | 1 | screentips potrzebują /atom/MouseEntered() (port BeeStation #11938) |
+| `code/_onclick/hud/screen_objects.dm` | 1 | screentips potrzebują /atom/MouseEntered() (port BeeStation #11938) |
+| `code/controllers/subsystem/dbcore.dm` | 1 | pusta lista dawała INSERT ... () i błąd 1064 |
+| `code/controllers/subsystem/processing/quirks.dm` | 1 | names must match the translated quirk names, the English ones never matched anything |
+| `code/datums/brain_damage/hypnosis.dm` | 1 | halucynacje jako efekt statusu (Bee#13095) |
+| `code/datums/components/uplink.dm` | 2 | ikony i limit sztuk dla okna uplinka z tg; odśwież listę, gdy skończą się sztuki |
+| `code/datums/diseases/advance/symptoms/hallucigen.dm` | 1 | halucynacje jako efekt statusu (Bee#13095) |
+| `code/datums/diseases/advance/symptoms/organs.dm` | 1 | halucynacje jako efekt statusu (Bee#13095) |
+| `code/datums/materials/basemats.dm` | 4 | promieniowanie z Bee#13442: uranowe konstrukcje pulsują, przedmioty nie (górnik z rudą); promieniowanie z Bee#13442 |
+| `code/datums/mutations/body.dm` | 1 | halucynacje jako efekt statusu (Bee#13095) |
+| `code/datums/spawners_menu.dm` | 3 | spawners get taken/deleted through paths that never call SSmobs.update_spawners(), so keep the list live; is this spawner entry still usable? Taken, dead or deleted entries used to stay in the menu for the whole… |
+| `code/datums/traits/good.dm` | 1 | odporność na marskość |
+| `code/game/gamemodes/dynamic/dynamic.dm` | 4 | panel trybu gry w TGUI (DynamicGameModePanel) zamiast okna HTML; reszta akcji panelu jest w ui_act(); tu zostały tylko odnośniki z wiadomości dla adminów; dziennik zagrożenia jest teraz częścią panelu trybu gry… |
+| `code/game/gamemodes/meteor/meteors.dm` | 2 | continuous_move (port BeeStation/BeeStation-Hornet#14864); promieniowanie z Bee#13442 |
+| `code/game/machinery/PDApainter.dm` | 1 | (marker bez opisu) |
+| `code/game/machinery/computer/crew.dm` | 1 | bitrunning |
+| `code/game/machinery/dna_scanner.dm` | 1 | promieniowanie z Bee#13442 |
+| `code/game/machinery/doors/airlock_types.dm` | 1 | promieniowanie z Bee#13442 |
+| `code/game/machinery/recycler.dm` | 1 | zawartość usunięta razem z pojemnikiem wracała na kafel |
+| `code/game/machinery/telecomms/computers/logbrowser.dm` | 1 | okno HTML usunięte; TGUI w aquila/code/game/machinery/telecomms/telecomms_monitors_ui.dm |
+| `code/game/machinery/telecomms/computers/telemonitor.dm` | 1 | okno HTML usunięte; TGUI w aquila/code/game/machinery/telecomms/telecomms_monitors_ui.dm |
+| `code/game/objects/effects/effect_system/effect_system.dm` | 1 | start_delay, port BeeStation/BeeStation-Hornet#14864) |
+| `code/game/objects/effects/effect_system/effects_foam.dm` | 2 | fermichem |
+| `code/game/objects/effects/effect_system/effects_smoke.dm` | 2 | fermichem: reakcje w dymie od razu, jak w tg; fermichem |
+| `code/game/objects/effects/landmarks.dm` | 1 | bitrunning |
+| `code/game/objects/effects/mines.dm` | 1 | halucynacje jako efekt statusu (Bee#13095) |
+| `code/game/objects/effects/portals.dm` | 1 | start_delay, port BeeStation/BeeStation-Hornet#14864) |
+| `code/game/objects/items/RCD.dm` | 1 | the plumbing constructor lives in aquila/code/modules/plumbing/plumbing_constructor.dm |
+| `code/game/objects/items/clown_items.dm` | 2 | was user, so the soap washed the user's mouth instead of the target's; scrubbing someone with soap helps their hygiene (this sat in the mouth branch, where it could never run) |
+| `code/game/objects/items/devices/traitordevices.dm` | 1 | promieniowanie z Bee#13442 (natężenie 1-20%; Bee tylko usypia) |
+| `code/game/objects/items/grenades/syndieminibomb.dm` | 1 | promieniowanie z Bee#13442 |
+| `code/game/objects/items/implants/implant_exile.dm` | 1 | Exile implants mark the wearer for digital exile: put them into a netpod and they are sent to the Loop forever. |
+| `code/game/objects/items/scrolls.dm` | 1 | jak w tg: zwój teleportuje od razu po użyciu, bez okna HTML |
+| `code/game/objects/items/tanks/watertank.dm` | 2 | port Bee #11899; start_delay, port BeeStation/BeeStation-Hornet#14864) |
+| `code/game/objects/items/tools/wirebrush.dm` | 2 | promieniowanie z Bee#13442 |
+| `code/game/objects/structures/dresser.dm` | 3 | (marker bez opisu) |
+| `code/game/objects/structures/statues.dm` | 1 | promieniowanie z Bee#13442 |
+| `code/game/turfs/closed/wall/mineral_walls.dm` | 1 | promieniowanie z Bee#13442 |
+| `code/modules/admin/fun_balloon.dm` | 1 | halucynacje jako efekt statusu (Bee#13095) |
+| `code/modules/antagonists/changeling/cellular_emporium.dm` | 2 | wymagania wchłonięć w oknie z tg; ikony, wymagania i kategoria dla okna z tg |
+| `code/modules/antagonists/changeling/changeling.dm` | 1 | no more research download (yogstation13/Yogstation#20268) |
+| `code/modules/antagonists/changeling/powers/tiny_prick.dm` | 1 | halucynacje jako efekt statusu (Bee#13095) |
+| `code/modules/antagonists/clock_cult/scriptures/sentinels_compromise.dm` | 1 | halucynacje jako efekt statusu (Bee#13095) |
+| `code/modules/antagonists/hivemind/spells/hivemind_panic.dm` | 1 | halucynacje jako efekt statusu (Bee#13095) |
+| `code/modules/antagonists/ninja/ninja.dm` | 1 | yogstation13/Yogstation#20268 |
+| `code/modules/asset_cache/transports/asset_transport.dm` | 1 | niezarejestrowany asset: zamiast null.legacy pokaż nazwę |
+| `code/modules/atmospherics/machinery/atmosmachinery.dm` | 1 | reference may already be gone from nodes (mass destruction) |
+| `code/modules/cargo/bounties/assistant.dm` | 1 | botanika z Bee - doniczki z roślinami |
+| `code/modules/client/loadout/loadout.dm` | 1 | polska bielizna też nie |
+| `code/modules/clothing/chameleon.dm` | 2 | the helmet can be gone, and not every hardsuit has a helmettype |
+| `code/modules/clothing/glasses/engine_goggles.dm` | 1 | bez trybu radiacyjnego (promieniowanie z Bee#13442) |
+| `code/modules/clothing/suits/reactive_armour.dm` | 1 | halucynacje jako efekt statusu (Bee#13095) |
+| `code/modules/events/anomaly.dm` | 1 | własne nagranie ogłoszenia |
+| `code/modules/events/anomaly_bluespace.dm` | 1 | własne nagranie ogłoszenia |
+| `code/modules/events/anomaly_delimber.dm` | 1 | własne nagranie ogłoszenia |
+| `code/modules/events/anomaly_flux.dm` | 1 | własne nagranie ogłoszenia |
+| `code/modules/events/anomaly_grav.dm` | 1 | własne nagranie ogłoszenia |
+| `code/modules/events/anomaly_hallucination.dm` | 1 | własne nagranie ogłoszenia |
+| `code/modules/events/anomaly_pyro.dm` | 1 | własne nagranie ogłoszenia |
+| `code/modules/events/anomaly_vortex.dm` | 1 | własne nagranie ogłoszenia |
+| `code/modules/events/asteroid_impact.dm` | 1 | własne nagranie ogłoszenia |
+| `code/modules/events/aurora_caelus.dm` | 2 | własne nagranie ogłoszenia |
+| `code/modules/events/beer_clog.dm` | 1 | własne nagranie ogłoszenia |
+| `code/modules/events/bureaucratic_error.dm` | 2 | własne nagranie ogłoszenia; only jobs that exist on this map and allow it, GetJob() returns null for the rest |
+| `code/modules/events/communications_blackout.dm` | 2 | quasar and accretion disk systems kept rolling it, the default is 20; własne nagranie ogłoszenia |
+| `code/modules/events/electrical_storm.dm` | 1 | własne nagranie ogłoszenia |
+| `code/modules/events/fugitive_spawning.dm` | 1 | własne nagranie ogłoszenia |
+| `code/modules/events/high_priority_bounty.dm` | 1 | własne nagranie ogłoszenia |
+| `code/modules/events/immovable_rod.dm` | 2 | własne nagranie ogłoszenia; continuous_move (port BeeStation/BeeStation-Hornet#14864) |
+| `code/modules/events/major_dust.dm` | 1 | własne nagranie ogłoszenia |
+| `code/modules/events/mass_hallucination.dm` | 2 | halucynacje jako efekt statusu (Bee#13095), wybór jak w Bee |
+| `code/modules/events/operative.dm` | 1 | grows while the nuke disk is left alone, against 10 for every other event |
+| `code/modules/events/pirates.dm` | 2 | własne nagranie ogłoszenia |
+| `code/modules/events/plasma_decon.dm` | 2 | kill() here does nothing, New() adds us to SSevents.running after setup(). End quietly instead; własne nagranie ogłoszenia |
+| `code/modules/events/prison_break.dm` | 1 | własne nagranie ogłoszenia |
+| `code/modules/events/processor_overload.dm` | 1 | własne nagranie ogłoszenia |
+| `code/modules/events/supermatter_surge.dm` | 2 | własne nagranie ogłoszenia; admins can force it without a supermatter |
+| `code/modules/events/wizard/rpgloot.dm` | 1 | the item deletes us in its own Destroy(), deleting it back was a qdel loop |
+| `code/modules/events/wormholes.dm` | 1 | 400 przesuwanych co 3 ticki dawało TiDi ~55% na Padalcu |
+| `code/modules/jobs/job_types/mime.dm` | 1 | jak w tg: wybór układu z menu radialnego zamiast okna HTML |
+| `code/modules/jobs/job_types/shaft_miner.dm` | 2 | górnik przejął bitrunnera |
+| `code/modules/keybindings/setup.dm` | 2 | Esc: menu pod Esc (aquila/code/modules/escape_menu); przy tgui-say zamyka też okno mówienia |
+| `code/modules/library/lib_codex_gigas.dm` | 1 | wynik ostatnich poszukiwań, pokazywany w oknie BookViewer |
+| `code/modules/library/lib_items.dm` | 1 | okno TGUI BookViewer (na wzór MarkdownViewer z tg) zamiast okna HTML. |
+| `code/modules/mining/equipment/explorer_gear.dm` | 1 | halucynacje jako efekt statusu (Bee#13095) |
+| `code/modules/mob/dead/new_player/poll.dm` | 1 | ankiety graczy w oknie TGUI (PlayerPolls) zamiast okien HTML z formularzami. |
+| `code/modules/mob/living/carbon/human/human_movement.dm` | 1 | continuous_move, port BeeStation/BeeStation-Hornet#14864) |
+| `code/modules/mob/living/carbon/human/species_types/golems.dm` | 3 | promieniowanie z Bee#13442 |
+| `code/modules/mob/living/carbon/human/species_types/podpeople.dm` | 2 | TRAIT_RADHEALER jak Diona w Bee#13442; promieniowanie z Bee#13442 |
+| `code/modules/mob/living/carbon/human/status_procs.dm` | 3 | one path for both, see on_hygiene_changed(); only react to actual changes instead of rebuilding the smell overlay every Life() tick |
+| `code/modules/mob/living/living_sentience.dm` | 1 | iterate a copy, removing keys from the list we loop over skipped entries |
+| `code/modules/mob/living/silicon/pai/pai.dm` | 1 | continuous_move (port BeeStation/BeeStation-Hornet#14864) |
+| `code/modules/mob/living/silicon/robot/robot_movement.dm` | 1 | continuous_move (port BeeStation/BeeStation-Hornet#14864) |
+| `code/modules/mob/living/simple_animal/bot/mulebot.dm` | 4 | an elevator target without an elevator (moved by hand, elevator gone) used to stall the bot forever; forget the floor change in progress; with retarget the bot heads for its real destination again; no overmap (e.g.… |
+| `code/modules/mob/living/simple_animal/parrot.dm` | 1 | continuous_move (port BeeStation/BeeStation-Hornet#14864) |
+| `code/modules/mob/living/taste.dm` | 1 | halucynacje jako efekt statusu (Bee#13095) |
+| `code/modules/mob/mob_movement.dm` | 6 | drift (port BeeStation/BeeStation-Hornet#14864): w trakcie driftu (continuous_move) nie odpychamy się od niczego; drift (port BeeStation/BeeStation-Hornet#14864); drift (port BeeStation/BeeStation-Hornet#14864):… |
+| `code/modules/modular_computers/file_system/programs/phys_scanner.dm` | 3 | promieniowanie z Bee#13442 |
+| `code/modules/power/apc.dm` | 1 | port Bee #11899: dawniej intencja grab |
+| `code/modules/power/gravitygenerator.dm` | 1 | promieniowanie z Bee#13442 |
+| `code/modules/power/singularity/singularity.dm` | 1 | promieniowanie z Bee#13442: kolektory jak dawniej |
+| `code/modules/projectiles/guns/energy.dm` | 1 | cut_overlays() above wiped the flashlight/bayonet |
+| `code/modules/projectiles/guns/energy/energy_gun.dm` | 2 | promieniowanie z Bee#13442 |
+| `code/modules/projectiles/guns/energy/kinetic_accelerator.dm` | 1 | start with a clean slate so the empty overlay never stacks, then put the flashlight/bayonet back |
+| `code/modules/projectiles/projectile/special/mindflayer.dm` | 1 | halucynacje jako efekt statusu (Bee#13095) |
+| `code/modules/reagents/chemistry/reagents/drug_reagents.dm` | 10 | halucynacje jako efekt statusu (Bee#13095) |
+| `code/modules/reagents/chemistry/reagents/pyrotechnic_reagents.dm` | 1 | halucynacje jako efekt statusu (Bee#13095) |
+| `code/modules/research/nanites/nanite_programs/rogue.dm` | 2 | halucynacje jako efekt statusu (Bee#13095) |
+| `code/modules/research/nanites/nanite_programs/suppression.dm` | 2 | halucynacje jako efekt statusu (Bee#13095); podtyp losowy z kategorii |
+| `code/modules/security/crimes.dm` | 1 | PRESET_* są #undef na końcu genpop.dm (używa ich calculate_sentence) |
+| `code/modules/shuttle/super_cruise/shuttle_components/shuttle_docking.dm` | 1 | no supercruise here, shuttles are flown straight from the console (see nsv13/code/modules/shuttle/computer.dm) |
+| `code/modules/surgery/organs/vocal_cords.dm` | 1 | halucynacje jako efekt statusu (Bee#13095) |
+| `code/modules/tgui_input/checkboxes.dm` | 1 | port z tgstation: tgui_input_checkboxes (okno CheckboxInput) |
+| `code/modules/tgui_input/keycombo.dm` | 1 | port z tgstation: tgui_input_keycombo (okno KeyComboModal) |
+| `code/modules/tgui_input/list.dm` | 1 | płaskie dane jak w oknach Bee |
+| `code/modules/tgui_input/number.dm` | 1 | płaskie dane jak w oknach Bee |
+| `code/modules/tgui_input/say_modal/modal.dm` | 1 | klient wyrzucany (np. CID check) dostawał "bad client" |
+| `nsv13/code/game/machinery/inertial_dampener.dm` | 1 | promieniowanie z Bee#13442 |
+| `nsv13/code/game/objects/effects/decals/plutonium_sludge.dm` | 3 | promieniowanie z Bee#13442; promieniowanie z Bee#13442 (Bee usunął promieniowanie epicentrum) |
+| `nsv13/code/modules/client/fullscreen.dm` | 1 | szerszy widok w pełnym ekranie (aquila/code/modules/ui_porzadki/viewport.dm) |
+| `nsv13/code/modules/events/weather/deadly_radiation_storm.dm` | 2 | was named like the regular storm; was 10, radioactive systems roll it a lot |
+| `nsv13/code/modules/holomap/holomap_hud.dm` | 1 | standaryzacja combat mode: w starych intencjach disarm |
+| `nsv13/code/modules/mob/living/carbon/examine_tgui.dm` | 1 | podgląd postaci dopiero po otwarciu okna (aquila/code/modules/mob/examine_layout.dm) |
+| `nsv13/code/modules/mob/living/simple_animal/bot/hugbot.dm` | 1 | port Bee #11899: przewracanie prawym przyciskiem |
+| `nsv13/code/modules/munitions/ship_weapons/ballistic_weapons/revision2/automation.dm` | 15 | check the distance before touching the tracked turf, an alt-click from afar used to leave the arm watching nothing; Watches the turf in front of the arm while anchored, and nothing while unanchored.; any part of the… |
+| `nsv13/code/modules/overmap/fighters/fuel_tank.dm` | 12 | TRUE when pumping fuel out of fuel_target instead of into it; was transferring the container into itself; don't let the container's afterattack draw it straight back out; drain: pump fuel out of the target instead;… |
+| `nsv13/code/modules/overmap/lance.dm` | 1 | czyścimy referencje przed ewentualnym qdel, inaczej statek <-> lance trzymały się nawzajem |
+| `nsv13/code/modules/overmap/pdsr.dm` | 4 | promieniowanie z Bee#13442 |
+| `nsv13/code/modules/overmap/weapons/mines.dm` | 1 | continuous_move (port BeeStation/BeeStation-Hornet#14864) |
+| `nsv13/code/modules/power/gravitygenerator_modular.dm` | 1 | promieniowanie z Bee#13442 |
+| `nsv13/code/modules/power/reactor/control_rods.dm` | 1 | promieniowanie z Bee#13442 |
+| `nsv13/code/modules/reagents/chemistry/reagents/nsv_medicine_reagents.dm` | 2 | promieniowanie z Bee#13442: jak jodek potasu |
+| `tgui/packages/tgui/interfaces/GenPop.tsx` | 1 | tłumaczenie, kilka zarzutów naraz (czasy się sumują) |
+| `tgui/packages/tgui/interfaces/HybridWeapons.tsx` | 4 | przyciski etapów nabijają się paskiem (common/WeaponStageButton.tsx); dane etapu z cycle_stage_ui_data(); był Button |
+| `tgui/packages/tgui/interfaces/PlasmaGun.tsx` | 4 | przyciski etapów nabijają się paskiem (common/WeaponStageButton.tsx); dane etapu z cycle_stage_ui_data(); był Button |
+| `tools/build/lib/yarn.js` | 1 | the vendored Node is not on PATH on Linux |
+
 ## Generated inventory (core files differing from the upstream merge base)
 
 Produced by comparing every changed line with string literals, `'resource'` literals and comments masked out.

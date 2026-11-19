@@ -16,21 +16,6 @@
 	canvas.Blend(source, ICON_OVERLAY)
 	return canvas
 
-/// Kopia piksel po pikselu (pierwsza klatka, kierunek SOUTH). Dla małych ikon, gdy aq_normalized_icon nie wystarcza,
-/// np. gatunki z animowanymi nakładkami (jaszczur, ćma, oozeling, plazmaman) nie wchodziły do arkusza.
-/proc/aq_pixel_copy_icon(icon/source)
-	var/icon/first_frame = icon(source, "", SOUTH, 1)
-	var/width = first_frame.Width()
-	var/height = first_frame.Height()
-	var/icon/canvas = icon('icons/effects/effects.dmi', "nothing", SOUTH, 1)
-	canvas.Scale(width, height)
-	for(var/x in 1 to width)
-		for(var/y in 1 to height)
-			var/pixel = first_frame.GetPixel(x, y)
-			if(pixel)
-				canvas.DrawBox(pixel, x, y)
-	return canvas
-
 /// Ikony dla wpisów choiced z should_generate_icons. Duże listy (włosy) idą na osobne arkusze.
 /datum/asset/spritesheet/preferences
 	name = PREFERENCE_SHEET_NORMAL

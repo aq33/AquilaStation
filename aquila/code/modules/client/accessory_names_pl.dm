@@ -460,18 +460,3 @@ GLOBAL_LIST_INIT(accessory_names_pl, list(
 /// Nazwa akcesorium do wyświetlenia (polska, jeśli jest)
 /proc/accessory_name_pl(name)
 	return GLOB.accessory_names_pl[name] || name
-
-/// Lista polskich nazw do input() dla listy akcesoriów (kolejność zachowana)
-/proc/accessory_choices_pl(list/accessories)
-	. = list()
-	for(var/key in accessories)
-		. += accessory_name_pl(key)
-
-/// Zamienia wybraną polską nazwę z powrotem na klucz z listy akcesoriów
-/proc/accessory_key_pl(picked, list/accessories)
-	if(isnull(picked) || (picked in accessories))
-		return picked
-	for(var/key in accessories)
-		if(accessory_name_pl(key) == picked)
-			return key
-	return null

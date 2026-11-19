@@ -30,15 +30,3 @@
 	if(chest.draw_color)
 		belly.color = "#[chest.draw_color]"
 	. += belly
-
-/datum/species/proc/eat_text(fullness, eatverb, obj/O, mob/living/carbon/C, mob/user)
-	if(C == user)
-		if(fullness<=50)
-			user.visible_message("<span class='notice'>[user] gorączkowo [eatverb] [O], pochłaniając to!</span>", "<span class='>notice'Gorączkowo jesz [O], pochłaniając to!</span>")
-		else if((fullness > 50 && fullness < 150) || HAS_TRAIT(C, TRAIT_BOTTOMLESS_STOMACH))
-			user.visible_message("<span class='notice'>[user] łapczywie [eatverb] [O].</span>", "<span class='>notice'Łapczywie jesz [O].</span>")
-		else if(fullness > 500 && fullness < 600)
-			user.visible_message("<span class='notice'>[user] niechętnie [eatverb] kawałek [O].</span>", "<span class='notice'>Niechętnie jesz kawałek [O].</span>")
-		else if(fullness > (600 * (1 + C.overeatduration / 2000)))	// The more you eat - the more you can eat
-			user.visible_message("<span class='warning'>[user] nie może wcisnąć sobie do gardła już ani kawałka [O]!</span>", "<span class='warning'>Nie możesz wcisnąć sobie do gardła już ani kawałka [O]!</span>")
-			return FALSE
