@@ -1709,7 +1709,6 @@
 #include "code\modules\surgery\organs\med5\larynx.dm"
 #include "code\modules\surgery\organs\med5\species_organs.dm"
 #include "code\modules\surgery\organs\med6\esophagus.dm"
-#include "code\modules\surgery\organs\med6\paired_organs.dm"
 #include "code\modules\surgery\organs\med6\pancreas.dm"
 #include "code\modules\surgery\organs\med6\spine.dm"
 #include "code\modules\medical\iv_plumbing.dm"
