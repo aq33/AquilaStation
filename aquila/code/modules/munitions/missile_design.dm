@@ -137,6 +137,19 @@ GLOBAL_LIST_EMPTY(missile_designs)
 			return current
 	return current
 
+/// Wabik, który zwodzi ten pocisk: "flare" (podczerwień), "chaff" (radar) albo null (bez naprowadzania albo z okrętu).
+/// Pocisk bez projektu jak dawniej: torpeda leci na ciepło, rakieta na radar.
+/obj/item/projectile/guided_munition/proc/decoy_kind()
+	var/datum/component/missile_design/MD = GetComponent(/datum/component/missile_design)
+	if(!MD)
+		return istype(src, /obj/item/projectile/guided_munition/torpedo) ? "flare" : "chaff"
+	switch(MD.design.seeker)
+		if(MISSILE_SEEKER_IR)
+			return "flare"
+		if(MISSILE_SEEKER_RADAR)
+			return "chaff"
+	return null
+
 // --- Pocisk: naprowadzanie z projektu ---
 
 /obj/item/projectile/guided_munition/process_homing()

@@ -278,7 +278,7 @@ const TopBar = () => {
       <Button
         icon="fire-alt"
         disabled={!data.flares}
-        tooltip="Flary odciągają torpedy lecące w okręt."
+        tooltip="Flary odciągają pociski z głowicą na podczerwień (bez projektu: torpedy)."
         onClick={() => act('fc_flares')}
       >
         {'Flary ' + data.flares + '/' + data.max_flares}
@@ -286,7 +286,7 @@ const TopBar = () => {
       <Button
         icon="cloud"
         disabled={!data.chaff}
-        tooltip="Chaff zrywa rakiety naprowadzane radarem."
+        tooltip="Chaff zrywa pociski z głowicą radarową (bez projektu: rakiety)."
         onClick={() => act('fc_chaff')}
       >
         {'Chaff ' + data.chaff + '/' + data.max_chaff}
@@ -1183,7 +1183,7 @@ const ContactCard = (props: { contact: FireContact | undefined }) => {
               <Button
                 icon="anchor"
                 color="bad"
-                tooltip="Harpun z bliska (do 8 pól), gdy cel nie ma tarcz. Lina trzyma cel i nie pozwala mu skoczyć FTL."
+                tooltip="Harpun z bliska (do 8 pól), także przez tarcze. Lina trzyma cel i nie pozwala mu skoczyć FTL."
                 onClick={() => doIt('fc_harpoon')}
               >
                 Harpun

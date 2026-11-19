@@ -27534,8 +27534,6 @@
 "flara": "flare",
 "chmura chaffu": "chaff cloud",
 "wabik": "decoy",
-"Flary odciągają torpedy lecące w okręt.": "Flares lure away torpedoes flying at the ship.",
-"Chaff zrywa rakiety naprowadzane radarem.": "Chaff breaks the lock of radar-guided missiles.",
 "Zagłuszacz utrudnia namierzanie nas z daleka, ale zdradza naszą pozycję.": "The jammer makes us hard to lock from afar, but gives away our position.",
 "Zagłuszacz": "Jammer",
 "konsola kontroli uszkodzeń": "damage control console",
@@ -27562,7 +27560,6 @@
 "Harpun już trzyma cel.": "The harpoon is already holding a target.",
 "Wyrzutnia harpuna się przeładowuje.": "The harpoon launcher is reloading.",
 "Nieprawidłowy cel.": "Invalid target.",
-"Tarcze celu odbijają harpun.": "The target's shields deflect the harpoon.",
 "Harpun wystrzelony.": "Harpoon fired.",
 "Harpun chybił.": "The harpoon missed.",
 "Okręt trafiony harpunem! Lina nie pozwala skoczyć FTL.": "The ship has been harpooned! The line prevents an FTL jump.",
@@ -27578,7 +27575,6 @@
 "Wyrzutnia harpuna abordażowego. Strzela się z konsoli taktycznej, a gdy lina przyciągnie cel, obok otwiera się rękaw abordażowy.": "A boarding harpoon launcher. It is fired from the tactical console, and once the line pulls the target in, a boarding sleeve opens next to it.",
 "Zwijaj": "Reel in",
 "Odetnij": "Cut",
-"Harpun z bliska (do 8 pól), gdy cel nie ma tarcz. Lina trzyma cel i nie pozwala mu skoczyć FTL.": "Close-range harpoon (up to 8 tiles) against a target without shields. The line holds the target and stops it from jumping FTL.",
 "prom": "shuttle",
 "Mały prom, który trzyma się blisko okrętu.": "A small shuttle that keeps close to the ship.",
 "prom piracki": "pirate shuttle",
@@ -27845,5 +27841,8 @@
 "Głowica torpedy z visceratorami": "Viscerator torpedo warhead",
 "Projekt opancerzonej głowicy z rojem visceratorów.": "Design for an armoured warhead carrying a swarm of viscerators.",
 "Torpedy, które zamiast wielkiego wybuchu wpuszczają do wnętrza celu truciznę, huk albo rój visceratorów.": "Torpedoes that, instead of a big explosion, release poison, a flashbang or a swarm of viscerators inside the target.",
-"Po jednej głowicy torpedy chemicznej, ogłuszającej i z visceratorami. Każdą trzeba zamontować w obudowie torpedy.": "One chemical, one flashbang and one viscerator torpedo warhead. Each must be fitted into a torpedo casing."
+"Po jednej głowicy torpedy chemicznej, ogłuszającej i z visceratorami. Każdą trzeba zamontować w obudowie torpedy.": "One chemical, one flashbang and one viscerator torpedo warhead. Each must be fitted into a torpedo casing.",
+"Flary odciągają pociski z głowicą na podczerwień (bez projektu: torpedy).": "Flares lure away missiles with infrared seekers (without a design: torpedoes).",
+"Chaff zrywa pociski z głowicą radarową (bez projektu: rakiety).": "Chaff breaks the lock of missiles with radar seekers (without a design: missiles).",
+"Harpun z bliska (do 8 pól), także przez tarcze. Lina trzyma cel i nie pozwala mu skoczyć FTL.": "Close-range harpoon (up to 8 tiles), even through shields. The cable holds the target and stops it from jumping FTL."
 }

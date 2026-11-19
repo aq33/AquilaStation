@@ -1,5 +1,5 @@
-/// AQUILA - wabiki i zagłuszanie (aquila/code/modules/overmap/modules/decoys.dm): flara odciąga torpedę, ale nie rakietę,
-/// chaff odwrotnie, wabików ubywa i mają czas odnowienia, a zagłuszacz podnosi sygnaturę okrętu.
+/// AQUILA - wabiki i zagłuszanie (aquila/code/modules/overmap/modules/decoys.dm): flara odciąga torpedę i pocisk na podczerwień, ale nie rakietę radarową,
+/// chaff odwrotnie (według głowicy z projektu pocisku), wabików ubywa i mają czas odnowienia, a zagłuszacz podnosi sygnaturę okrętu.
 /datum/unit_test/aquila_decoys
 	var/obj/structure/overmap/small_craft/ship
 
@@ -26,6 +26,27 @@
 	ship.next_decoy = 0
 	if(ship.deploy_decoy("chaff", 100) != 1 || !istype(missile.homing_target, /obj/effect/overmap_decoy/chaff))
 		return Fail("Chaff nie zwiódł rakiety")
+	// Pocisk z projektu: flara myli głowicę na podczerwień (także w rakiecie), chaff radarową (także w torpedzie)
+	var/obj/item/projectile/guided_munition/missile/ir_missile = allocate(/obj/item/projectile/guided_munition/missile, get_turf(ship))
+	var/obj/item/projectile/guided_munition/torpedo/radar_torpedo = allocate(/obj/item/projectile/guided_munition/torpedo, get_turf(ship))
+	var/datum/missile_design/ir_design = new
+	ir_design.seeker = "podczerwień"
+	ir_missile.AddComponent(/datum/component/missile_design, ir_design)
+	var/datum/missile_design/radar_design = new
+	radar_design.seeker = "radar"
+	radar_torpedo.AddComponent(/datum/component/missile_design, radar_design)
+	ir_missile.set_homing_target(ship)
+	radar_torpedo.set_homing_target(ship)
+	ship.torpedoes_to_target = list(ir_missile, radar_torpedo)
+	ship.next_decoy = 0
+	ship.flares = ship.max_flares
+	ship.chaff = ship.max_chaff
+	if(ship.deploy_decoy("flare", 100) != 1 || !istype(ir_missile.homing_target, /obj/effect/overmap_decoy/flare) || radar_torpedo.homing_target != ship)
+		return Fail("Flara nie zwiodła rakiety na podczerwień albo zwiodła torpedę radarową")
+	ship.next_decoy = 0
+	if(ship.deploy_decoy("chaff", 100) != 1 || !istype(radar_torpedo.homing_target, /obj/effect/overmap_decoy/chaff))
+		return Fail("Chaff nie zwiódł torpedy z głowicą radarową")
+	ship.torpedoes_to_target = null
 	var/profile = ship.sensor_profile
 	ship.toggle_jammer()
 	if(ship.sensor_profile <= profile || !ship.jammer_active)

@@ -1,6 +1,7 @@
 /// AQUILA - wabiki i zagłuszanie (plan walki na overmapie, etap „chaff, flary, jammer”).
-/// Flary odciągają torpedy (naprowadzanie na ciepło), chaff zrywa rakiety (naprowadzanie radarowe). Wabik działa na pociski
-/// kierowane, które już lecą w okręt (torpedoes_to_target). Zagłuszacz wydłuża namierzanie okrętu i co jakiś czas zrywa
+/// Flary odciągają pociski z głowicą na podczerwień, chaff zrywa pociski z głowicą radarową, według naprowadzania z projektu
+/// pocisku (missile_design.dm, decoy_kind()); pocisk bez projektu: torpeda na ciepło, rakieta na radar. Torpeda-wabik NSV
+/// (DCY) zwodzi głowice radarowe osobno. Wabik działa na pociski kierowane, które już lecą w okręt (torpedoes_to_target). Zagłuszacz wydłuża namierzanie okrętu i co jakiś czas zrywa
 /// dalekie namiary, ale podnosi jego sygnaturę. Gracz używa ich w konsoli taktycznej, AI odpowiada wabikiem na pocisk.
 
 #define DECOY_RANGE 14
@@ -54,7 +55,7 @@
 	var/jammer_active = FALSE
 	var/jammer_timer
 
-/// Wypuszcza wabik; flara działa na torpedy, chaff na rakiety. Zwraca liczbę zwiedzionych pocisków albo FALSE.
+/// Wypuszcza wabik; flara działa na głowice na podczerwień, chaff na radarowe. Zwraca liczbę zwiedzionych pocisków albo FALSE.
 /obj/structure/overmap/proc/deploy_decoy(kind, seduce_chance = DECOY_SEDUCE_CHANCE)
 	if(world.time < next_decoy || QDELETED(src))
 		return FALSE
@@ -71,8 +72,7 @@
 	for(var/obj/item/projectile/guided_munition/proj as anything in torpedoes_to_target)
 		if(QDELETED(proj) || proj.homing_target != src)
 			continue
-		var/is_torpedo = istype(proj, /obj/item/projectile/guided_munition/torpedo)
-		if((kind == "flare") != is_torpedo)
+		if(proj.decoy_kind() != kind)
 			continue
 		if(overmap_dist(src, proj) > DECOY_RANGE || !prob(seduce_chance))
 			continue
@@ -126,7 +126,10 @@
 	. = ..()
 	if(!ai_controlled || !prob(60))
 		return
-	var/kind = istype(proj, /obj/item/projectile/guided_munition/torpedo) ? "flare" : "chaff"
+	var/obj/item/projectile/guided_munition/guided = proj
+	var/kind = istype(guided) ? guided.decoy_kind() : null
+	if(!kind)
+		return
 	addtimer(CALLBACK(src, PROC_REF(deploy_decoy), kind), rand(2, 5) SECONDS)
 
 /obj/structure/overmap/Destroy()

@@ -1,5 +1,5 @@
 /// AQUILA - harpun abordażowy (plan walki na overmapie, etap „abordaż”). Mają go okręty gracza i wrogie fregaty
-/// abordażowe. Harpun trafia cel bez tarcz z bliska i łączy okręty liną: lina ciągnie je do siebie jak sprężyna, a żaden
+/// abordażowe. Harpun trafia cel z bliska (bliżej niż zakłócacz EWAR, który działa do 20 pól), także przez tarcze, i łączy okręty liną: lina ciągnie je do siebie jak sprężyna, a żaden
 /// z nich nie skoczy FTL (silna interdykcja). Wciągarka skraca linę; z bliska wnętrze celu się wczytuje i przy harpunie
 /// na pokładzie gracza pojawia się rękaw abordażowy do celu, a fregata AI wysadza abordażystów na okręcie gracza.
 /// Linę da się odciąć z konsoli taktycznej, wróg próbuje ją przestrzelić, a zbyt mocno napięta pęka.
@@ -34,7 +34,7 @@
 	QDEL_NULL(tethered_by)
 	return ..()
 
-/// Tarcze celu są podniesione (generator na okręcie gracza albo komponent okrętu AI)
+/// Tarcze celu są podniesione (generator na okręcie gracza albo komponent okrętu AI); harpun ich nie sprawdza, kapsuła abordażowa tak
 /obj/structure/overmap/proc/harpoon_shields_up()
 	if(istype(shields, /datum/component/overmap_shields))
 		var/datum/component/overmap_shields/component = shields
@@ -56,8 +56,6 @@
 		return "Nieprawidłowy cel."
 	if(overmap_dist(src, target) > HARPOON_RANGE)
 		return "Cel za daleko na harpun (do [HARPOON_RANGE] pól)."
-	if(target.harpoon_shields_up())
-		return "Tarcze celu odbijają harpun."
 	return null
 
 /obj/structure/overmap/proc/fire_harpoon(obj/structure/overmap/target)
@@ -227,7 +225,7 @@
 		return
 	user.forceMove(get_turf(other_end))
 
-// Fregata abordażowa AI strzela harpunem w bliski cel bez tarcz
+// Fregata abordażowa AI strzela harpunem w bliski cel
 /obj/structure/overmap/ai_process()
 	. = ..()
 	if(!has_harpoon || !ai_controlled || harpoon_tether || !istype(last_target, /obj/structure/overmap) || !prob(20))
