@@ -18872,7 +18872,7 @@
 /area/tcommsat/computer)
 "oTg" = (
 /mob/living/basic/bot/secbot/beepsky{
-	start_patrolling = FALSE
+	start_patrolling = 0
 	},
 /turf/open/floor/carpet/police,
 /area/security/brig)

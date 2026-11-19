@@ -1495,7 +1495,7 @@
 /mob/living/basic/bot/secbot/beepsky{
 	desc = "Powered by the tears and sweat of laborers.";
 	name = "Prison Ofitser";
-	start_off = TRUE
+	start_off = 1
 	},
 /obj/structure/cable/yellow,
 /turf/open/floor/plasteel,

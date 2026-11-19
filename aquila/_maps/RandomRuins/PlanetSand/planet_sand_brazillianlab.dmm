@@ -435,7 +435,7 @@
 "nd" = (
 /mob/living/basic/bot/secbot{
 	desc = "Mały robot ochrony. Wygląda na wściekłego!";
-	start_emagged = TRUE;
+	start_emagged = 1;
 	name = "oficer Pustelnikowski";
 	faction = list("neutral","silicon","turret","hermit")
 	},
