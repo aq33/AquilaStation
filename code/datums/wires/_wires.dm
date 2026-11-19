@@ -259,6 +259,9 @@
 	else if(user.is_holding_item_of_type(/obj/item/areaeditor/blueprints) && (!randomize || holder_type == /obj/machinery/door/airlock))
 		reveal_wires = TRUE
 
+	else if(HAS_TRAIT(user, TRAIT_AQ_WIRE_INTERFACE)) // AQ EDIT - implant interfejsu kabli (Paradise)
+		reveal_wires = TRUE
+
 	for(var/color in colors)
 		payload.Add(list(list(
 			"color" = color,
