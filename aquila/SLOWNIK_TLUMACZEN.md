@@ -4538,7 +4538,6 @@ Nazwy obszarów są w większości przetłumaczone. Nowe nazwy budujemy z tych k
 | firing port weapon | broń portów strzeleckich | ż; nowe |
 | gunner module / weapons loader | moduł strzelca / ładowarka uzbrojenia | nowe |
 | ore storage module | moduł ładowni rud | m; nowe |
-| modular mech / parts kit | mech modułowy / zestaw części | nowe; zestawy: ładowacz, lekki, bojowy, ciężki |
 | Clarke, Paddy, Savannah-Ivanov, Red Sunday, Sentinel | bez zmian | nazwy własne podwozi |
 | Skyfall / Ivanov strike | Skyfall / uderzenie Ivanov | nowe |
 ## Cyborgi: moduły i ulepszenia (Aquila)

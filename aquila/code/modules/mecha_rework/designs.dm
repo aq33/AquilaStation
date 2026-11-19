@@ -218,87 +218,6 @@
 	construction_time = 600
 	category = list("Sentinel")
 
-/datum/design/aq_modular_chassis
-	name = "Rama egzoszkieletu (mech modułowy)"
-	id = "aq_modular_chassis"
-	build_type = MECHFAB
-	build_path = /obj/item/mecha_parts/chassis/aq/modular
-	materials = list(/datum/material/iron = 20000)
-	construction_time = 100
-	category = list("Modular")
-
-/datum/design/aq_modular_torso
-	name = "Korpus egzoszkieletu (mech modułowy)"
-	id = "aq_modular_torso"
-	build_type = MECHFAB
-	build_path = /obj/item/mecha_parts/part/aq/modular_torso
-	materials = list(/datum/material/iron = 20000, /datum/material/glass = 7500)
-	construction_time = 200
-	category = list("Modular")
-
-/datum/design/aq_modular_head
-	name = "Głowa egzoszkieletu (mech modułowy)"
-	id = "aq_modular_head"
-	build_type = MECHFAB
-	build_path = /obj/item/mecha_parts/part/aq/modular_head
-	materials = list(/datum/material/iron = 6000, /datum/material/glass = 10000)
-	construction_time = 100
-	category = list("Modular")
-
-/datum/design/aq_modular_arms
-	name = "Ramiona egzoszkieletu (mech modułowy)"
-	id = "aq_modular_arms"
-	build_type = MECHFAB
-	build_path = /obj/item/mecha_parts/part/aq/modular_arms
-	materials = list(/datum/material/iron = 25000)
-	construction_time = 150
-	category = list("Modular")
-
-/datum/design/aq_modular_legs
-	name = "Nogi egzoszkieletu (mech modułowy)"
-	id = "aq_modular_legs"
-	build_type = MECHFAB
-	build_path = /obj/item/mecha_parts/part/aq/modular_legs
-	materials = list(/datum/material/iron = 25000)
-	construction_time = 150
-	category = list("Modular")
-
-/datum/design/aq_modular_kit_loader
-	name = "Zestaw części mecha modułowego: ładowacz"
-	id = "aq_modular_kit_loader"
-	build_type = MECHFAB
-	build_path = /obj/item/mecha_parts/aq_modular_kit/loader
-	materials = list(/datum/material/iron = 20000)
-	construction_time = 150
-	category = list("Modular")
-
-/datum/design/aq_modular_kit_light
-	name = "Zestaw części mecha modułowego: lekki"
-	id = "aq_modular_kit_light"
-	build_type = MECHFAB
-	build_path = /obj/item/mecha_parts/aq_modular_kit/light
-	materials = list(/datum/material/iron = 15000, /datum/material/glass = 5000, /datum/material/silver = 3000)
-	construction_time = 150
-	category = list("Modular")
-
-/datum/design/aq_modular_kit_combat
-	name = "Zestaw części mecha modułowego: bojowy"
-	id = "aq_modular_kit_combat"
-	build_type = MECHFAB
-	build_path = /obj/item/mecha_parts/aq_modular_kit/combat
-	materials = list(/datum/material/iron = 25000, /datum/material/titanium = 5000, /datum/material/silver = 3000)
-	construction_time = 200
-	category = list("Modular")
-
-/datum/design/aq_modular_kit_heavy
-	name = "Zestaw części mecha modułowego: ciężki"
-	id = "aq_modular_kit_heavy"
-	build_type = MECHFAB
-	build_path = /obj/item/mecha_parts/aq_modular_kit/heavy
-	materials = list(/datum/material/iron = 35000, /datum/material/titanium = 10000, /datum/material/uranium = 5000)
-	construction_time = 250
-	category = list("Modular")
-
 /datum/design/board/aq_clarke_main
 	name = "Centralny moduł sterowania Clarke"
 	desc = "Pozwala zbudować płytkę: centralny moduł sterowania clarke."
@@ -360,30 +279,6 @@
 	desc = "Pozwala zbudować płytkę: moduł sterowania uzbrojeniem sentinela."
 	id = "aq_sentinel_targ"
 	build_path = /obj/item/circuitboard/mecha/aq_sentinel/targeting
-	category = list("Exosuit Modules")
-	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
-
-/datum/design/board/aq_modular_main
-	name = "Centralny moduł sterowania mecha modułowego"
-	desc = "Pozwala zbudować płytkę: centralny moduł sterowania mecha modułowego."
-	id = "aq_modular_main"
-	build_path = /obj/item/circuitboard/mecha/aq_modular/main
-	category = list("Exosuit Modules")
-	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
-
-/datum/design/board/aq_modular_peri
-	name = "Moduł sterowania peryferiami mecha modułowego"
-	desc = "Pozwala zbudować płytkę: moduł sterowania peryferiami mecha modułowego."
-	id = "aq_modular_peri"
-	build_path = /obj/item/circuitboard/mecha/aq_modular/peripherals
-	category = list("Exosuit Modules")
-	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
-
-/datum/design/board/aq_modular_targ
-	name = "Moduł sterowania uzbrojeniem mecha modułowego"
-	desc = "Pozwala zbudować płytkę: moduł sterowania uzbrojeniem mecha modułowego."
-	id = "aq_modular_targ"
-	build_path = /obj/item/circuitboard/mecha/aq_modular/targeting
 	category = list("Exosuit Modules")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
@@ -1329,16 +1224,6 @@
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 6000)
 	export_price = 6000
 	design_ids = list("aq_sentinel_chassis", "aq_sentinel_torso", "aq_sentinel_head", "aq_sentinel_left_arm", "aq_sentinel_right_arm", "aq_sentinel_left_leg", "aq_sentinel_right_leg", "aq_sentinel_armor", "aq_sentinel_main", "aq_sentinel_peri", "aq_sentinel_targ", "aq_mech_sentinel_cannon", "aq_mech_sentinel_laser", "aq_mech_ammo_sentinel")
-
-/datum/techweb_node/aq_mech_modular
-	id = "aq_mech_modular"
-	tech_tier = 3
-	display_name = "EGZOSZKIELET: mech modułowy"
-	description = "Uniwersalna rama na wymienne zestawy części: ładowacz, lekki, bojowy, ciężki."
-	prereq_ids = list("adv_mecha")
-	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 3000)
-	export_price = 3000
-	design_ids = list("aq_modular_chassis", "aq_modular_torso", "aq_modular_head", "aq_modular_arms", "aq_modular_legs", "aq_modular_kit_loader", "aq_modular_kit_light", "aq_modular_kit_combat", "aq_modular_kit_heavy", "aq_modular_main", "aq_modular_peri", "aq_modular_targ")
 
 /datum/techweb_node/aq_mech_illegal
 	id = "aq_mech_illegal"

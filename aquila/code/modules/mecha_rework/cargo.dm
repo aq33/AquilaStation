@@ -3,7 +3,7 @@
 
 /obj/machinery/modular_fabricator/exosuit_fab/Initialize(mapload)
 	categories = categories.Copy()
-	categories |= list("Clarke", "Savannah-Ivanov", "Red Sunday", "Sentinel", "Modular")
+	categories |= list("Clarke", "Savannah-Ivanov", "Red Sunday", "Sentinel")
 	return ..()
 
 /datum/supply_pack/engineering/aq_ripley_complete

@@ -82,7 +82,6 @@ GLOBAL_LIST_INIT(aq_mecha_new_chassis, list(
 	/obj/mecha/combat/aq_savannah,
 	/obj/mecha/combat/aq_savannah/red_sunday,
 	/obj/mecha/combat/aq_sentinel,
-	/obj/mecha/combat/aq_modular,
 	/obj/mecha/working/ripley/aq_clip,
 	/obj/mecha/combat/durand/aq_paladin,
 	/obj/mecha/combat/gygax/aq_basenji,

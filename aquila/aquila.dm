@@ -2868,7 +2868,6 @@
 #include "code\modules\mecha_rework\chassis\paddy.dm"
 #include "code\modules\mecha_rework\chassis\savannah.dm"
 #include "code\modules\mecha_rework\chassis\sentinel.dm"
-#include "code\modules\mecha_rework\chassis\modular.dm"
 #include "code\modules\mecha_rework\equipment\melee.dm"
 #include "code\modules\mecha_rework\equipment\weapons.dm"
 #include "code\modules\mecha_rework\equipment\tools.dm"
