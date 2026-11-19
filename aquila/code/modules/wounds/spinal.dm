@@ -46,6 +46,8 @@
 	var/obj/item/bodypart/leg = victim.get_bodypart(pick(BODY_ZONE_L_LEG, BODY_ZONE_R_LEG))
 	if(!leg || HAS_TRAIT_FROM(leg, TRAIT_PARALYSIS, AQ_SPINE_TWITCH_TRAIT))
 		return
+	if(victim.aq_walking_aids()) // kula trzyma ciężar (medical/splint.dm)
+		return
 	ADD_TRAIT(leg, TRAIT_PARALYSIS, AQ_SPINE_TWITCH_TRAIT)
 	leg.update_disabled()
 	to_chat(victim, "<span class='danger'>Prąd przeszywa ci kręgosłup, a [strefa_pl(leg.body_zone)] odmawia posłuszeństwa!</span>")
@@ -164,7 +166,8 @@
 	if(severity >= WOUND_SEVERITY_CRITICAL)
 		new_type = cervical ? /datum/wound/spinal/fracture/cervical : /datum/wound/spinal/fracture
 	if(existing)
-		if(existing.type == new_type || existing.severity > severity || istype(existing, /datum/wound/spinal/fracture/cervical))
+		// The unjoined brain stem (medical/brainstem.dm) already paralyses everything and needs its own surgery
+		if(existing.type == new_type || existing.severity > severity || istype(existing, /datum/wound/spinal/fracture/cervical) || istype(existing, /datum/wound/spinal/brainstem))
 			return existing
 		return existing.replace_with(new_type)
 	var/datum/wound/spinal/wound = new new_type()

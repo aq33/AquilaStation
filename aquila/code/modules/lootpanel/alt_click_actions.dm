@@ -270,6 +270,9 @@
 /obj/machinery/atmospherics
 	alt_click_loot = FALSE
 
+/obj/machinery/autoclave
+	alt_click_loot = FALSE
+
 /obj/machinery/aug_manipulator
 	alt_click_loot = FALSE
 

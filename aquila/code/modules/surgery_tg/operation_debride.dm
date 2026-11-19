@@ -46,6 +46,7 @@
 /datum/surgery_operation/limb/debride/on_success(obj/item/bodypart/limb, mob/living/surgeon, obj/item/tool, list/operation_args)
 	var/datum/wound/burn = limb.get_wound(WOUND_BURN)
 	qdel(burn)
+	limb.aq_add_germs(-30) // z martwą tkanką idzie część zarazków (medical/germs.dm)
 	limb.owner?.apply_damage(5, BRUTE, limb)
 	display_results(
 		surgeon,
