@@ -23,14 +23,14 @@
 /obj/item/bodypart/proc/aq_needs_calibration()
 	return HAS_TRAIT_FROM(src, TRAIT_PARALYSIS, AQ_UNCALIBRATED_TRAIT)
 
-/obj/item/bodypart/proc/aq_calibrate(mob/living/user, obj/item/tool)
+/obj/item/bodypart/proc/aq_calibrate(mob/living/user, obj/item/tool, delay = 2.5 SECONDS)
 	var/mob/living/carbon/patient = owner
 	if(!patient || !aq_needs_calibration())
 		return FALSE
 	user.visible_message("<span class='notice'>[user] zaczyna kalibrować protezę [patient] ([strefa_pl(body_zone)]).</span>", \
 		"<span class='notice'>Zaczynasz kalibrować protezę [user == patient ? "" : "[patient] "]([strefa_pl(body_zone)]).</span>")
 	playsound(patient, 'sound/surgery/tape_flip.ogg', 30, TRUE)
-	if(!do_mob(user, patient, 2.5 SECONDS))
+	if(delay && !do_mob(user, patient, delay))
 		return FALSE
 	if(owner != patient || !aq_needs_calibration())
 		return FALSE

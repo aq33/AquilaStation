@@ -43,6 +43,7 @@
 #include "code\__DEFINES\pollution.dm"
 #include "code\__DEFINES\preferences_menu.dm"
 #include "code\__DEFINES\restaurant.dm"
+#include "code\__DEFINES\robotics.dm"
 #include "code\__DEFINES\role_preferences.dm"
 #include "code\__DEFINES\say.dm"
 #include "code\__DEFINES\screentips.dm"
@@ -1335,6 +1336,7 @@
 // #include "code\modules\test_chamber\kits\pr_420_traitor_cele.dm"
 #include "code\modules\test_chamber\kits\test_subjects.dm"
 // Komora testowa - zestawy PR-ów niżej (usuwać razem z plikiem zestawu po przetestowaniu)
+#include "code\modules\test_chamber\kits\pr_XXX_robotyka.dm"
 #include "code\modules\test_chamber\kits\pr_665_rework_amunicji.dm"
 #include "code\modules\test_chamber\kits\pr_nsvprzyw_statek.dm"
 #include "code\modules\test_chamber\kits\pr_nsvprzyw_misje.dm"
@@ -2400,6 +2402,7 @@
 #include "code\modules\unit_tests\_unit_test_weights.dm"
 
 #ifdef UNIT_TESTS
+#include "code\modules\unit_tests\aquila_robotyka.dm"
 #include "code\modules\unit_tests\aquila_nano_well_oc.dm"
 #include "code\modules\unit_tests\aquila_station_map_engineering.dm"
 #include "code\modules\unit_tests\aquila_basic_tg_fauna.dm"
@@ -2792,7 +2795,6 @@
 
 // ROBOTYKA: protezy (marki, zaawansowane, kinetyczne, prowizoryczne, kalibracja, EMP, rany robotyczne, wybór w lobby),
 // syntetycy (chłodzenie, używki, klucz resetu, materiały naprawcze, chirurgia), cyberpsychoza i implanty (aquila/code/modules/robotics/)
-#include "code\__DEFINES\robotics.dm"
 #include "code\modules\robotics\cyberpsychosis_cost.dm"
 #include "code\modules\robotics\limb_brands.dm"
 #include "code\modules\robotics\limb_types.dm"
@@ -2803,6 +2805,14 @@
 #include "code\modules\robotics\synth_repair.dm"
 #include "code\modules\robotics\synth_reset_key.dm"
 #include "code\modules\robotics\ipc_overloaders.dm"
+#include "code\modules\robotics\synth_surgery.dm"
+#include "code\modules\robotics\limb_mounts.dm"
+#include "code\modules\robotics\lobby_augments.dm"
+#include "code\modules\robotics\cyberpsychosis.dm"
+#include "code\modules\robotics\robotics_implants.dm"
+#include "code\modules\robotics\anomalock_heart.dm"
+#include "code\modules\robotics\neuromods.dm"
+#include "code\modules\robotics\robotics_research.dm"
 
 // Profiler byond-tracy: MUSI być ostatnim include'em całego builda (BYOND inicjuje zmienne statyczne od końca,
 // więc ta rusza pierwsza, przed Master i mapą). Opis: tools/tracy/README.md

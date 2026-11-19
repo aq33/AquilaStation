@@ -32,7 +32,14 @@
 		paralyze_time *= 2
 		brute *= 2
 		burn *= 2
+	// EMP przechodzi przez obudowę: bez stałej redukcji obrażeń protez (brute_reduction, burn_reduction)
+	var/old_brute_reduction = brute_reduction
+	var/old_burn_reduction = burn_reduction
+	brute_reduction = 0
+	burn_reduction = 0
 	receive_damage(brute, burn)
+	brute_reduction = old_brute_reduction
+	burn_reduction = old_burn_reduction
 	do_sparks(1, FALSE, owner || src)
 	if(owner && aq_is_extremity() && paralyze_time > 0 && get_damage() / max_damage >= AQ_LIMB_EMP_PARALYZE_PERCENT)
 		ADD_TRAIT(src, TRAIT_PARALYSIS, AQ_LIMB_EMP_TRAIT)

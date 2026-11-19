@@ -81,7 +81,8 @@
 		return FALSE
 	target.notify_ghost_cloning("Ktoś restartuje twoje ciało!", source = target)
 	target.grab_ghost()
-	if(!target.revive())
+	target.revive() // ludzka wersja revive() nic nie zwraca, więc liczy się stat
+	if(target.stat == DEAD)
 		playsound(src, 'aquila/sound/robotics/reset_key_beep.ogg', 40, FALSE)
 		user.visible_message("<span class='warning'>[src] brzęczy: restart nieudany.</span>")
 		return FALSE
@@ -124,10 +125,6 @@
 	build_path = /obj/item/storage/firstaid/aq_synthetic
 	category = list("Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
-
-/datum/techweb_node/base/New()
-	. = ..()
-	design_ids += list("aq_synth_reset_key", "aq_robo_patch")
 
 /// IPC nie wstaje sam po naprawie obrażeń: potrzebny klucz resetu albo reaktywacja
 /datum/species/ipc/New()

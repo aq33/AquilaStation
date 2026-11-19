@@ -142,10 +142,12 @@
 		qdel(src)
 
 /// Łatka naprawcza: lekka rana znika, cięższa jest zabezpieczona i sama dochodzi do siebie
-/datum/wound/aq_robotic/proc/apply_patch(obj/item/stack/medical/aq_robo_patch/patch, mob/user)
+/datum/wound/aq_robotic/proc/apply_patch(obj/item/stack/medical/aq_robo_patch/patch, mob/user, delay)
 	var/self = user == victim
 	user.visible_message("<span class='notice'>[user] nakłada łatkę naprawczą na [limb.name] [victim].</span>", "<span class='notice'>Nakładasz łatkę naprawczą na [limb.name][self ? "" : " [victim]"].</span>")
-	if(!do_mob(user, victim, self ? 3 SECONDS : 1.5 SECONDS))
+	if(isnull(delay))
+		delay = self ? 3 SECONDS : 1.5 SECONDS
+	if(delay && !do_mob(user, victim, delay))
 		return FALSE
 	if(QDELETED(src) || treated || !patch.use(1))
 		return FALSE

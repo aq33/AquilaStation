@@ -4484,3 +4484,31 @@ Nazwy obszarów są w większości przetłumaczone. Nowe nazwy budujemy z tych k
 | wet rocky ground | mokre skaliste podłoże | n; nowe (planeta wodna) |
 | Frontiersmen | Pogranicznicy | m mn.; nowe (frakcja z ruin Shiptesta, u nas piraci) |
 | Corporate Resort / Cybersun Pad / Frontiersman Moat / Cave Gunsmith / Frontiersmen Depot | Kurort Korporacyjny / Lądowisko Cybersun / Fosa Pograniczników / Jaskiniowy Rusznikarz / Składnica Pograniczników | nowe (ruiny plaży) |
+| prosthesis brand / robolimb manufacturer | marka protezy | ż; nowe (robotyka) |
+| advanced robotic limb | zaawansowana proteza | ż; nowe (robotyka) |
+| kinetic prosthetic | proteza kinetyczna | ż; nowe (robotyka, Bubberstation) |
+| peg arm / peg leg | drewniana proteza ręki / drewniana noga | ż; nowe (robotyka, tg ghetto parts) |
+| calibration (prosthesis) | kalibracja protezy | ż; nowe (robotyka) |
+| Cybernetic Limb Mounts (quirk) | Mocowania protez | n mn.; nowe (cecha) |
+| robotic wounds: loose screws / dented casing / crushed servos | luźne śruby / wgniecenie obudowy / zgniecione serwa | nowe (rany robotyczne) |
+| frayed wiring / severed wiring | postrzępione przewody / przecięte przewody | nowe (rany robotyczne) |
+| overheated circuits / warped plating | przegrzane obwody / wypaczona blacha | nowe (rany robotyczne) |
+| air cooling unit / liquid cooling unit / passive heatsink | chłodzenie powietrzem / chłodzenie cieczą / pasywny radiator | n / n / m; nowe (organy IPC) |
+| overheating (synthetic) | przegrzanie | n; nowe (alert IPC) |
+| IPC overloader | overloader | m; nowe (cyfrowa używka IPC, nazwa własna Aurory) |
+| synthetic reset key | klucz resetu syntetyka | m; nowe (CM-SS13) |
+| repair patch | łatka naprawcza | ż; nowe |
+| nanite slurry | zawiesina nanitów | ż; nowe (reagent) |
+| repair spray | spray naprawczy | m; nowe |
+| synthetic first aid kit | apteczka syntetyka | ż; nowe |
+| system purge (surgery) | czyszczenie układu | n; nowe (operacja) |
+| synthetic reactivation (surgery) | reaktywacja syntetyka | ż; nowe (operacja) |
+| cyberpsychosis | cyberpsychoza | ż; nowe |
+| neuratrextate | neuratreksat | m; nowe (reagent, Citadel RP) |
+| augmentation disrupter implant | implant zakłócający augmenty | m; nowe |
+| jumpboots implant | implant skoku | m; nowe |
+| overdose safety implant | implant bezpieczeństwa przedawkowania | m; nowe |
+| death alarm implant | alarm śmierci | m; nowe |
+| circadian conditioner / skeletal bracing / timepiece implant | regulator rytmu dobowego / wzmocnienie stawów / wszczepiony zegarek | nowe (implanty drobne) |
+| voltaic combat cyberheart / voltaic overdrive | woltaiczne serce bojowe / woltaiczne przeciążenie | n / n; nowe (tg) |
+| psychoscope / neuromod / neuromod shell | psychoskop / neuromod / powłoka neuromodu | m / m / ż; nowe (Chaotic Onyx) |
