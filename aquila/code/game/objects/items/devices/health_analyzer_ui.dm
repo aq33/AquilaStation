@@ -89,6 +89,10 @@
 	var/circulation = 0
 	if(!dead && heart?.beating && !(heart.organ_flags & ORGAN_FAILING))
 		circulation = clamp(shown_blood / BLOOD_VOLUME_NORMAL, 0, 1.1) * (1 - 0.5 * heart.damage / heart.maxHealth)
+	// AquilaMed 5: chest compressions keep half the blood moving (medical/circulation.dm)
+	var/mob/living/carbon/human/cpr_target = target
+	if(!dead && istype(cpr_target) && !heart?.beating && world.time < cpr_target.aq_cpr_until)
+		circulation = clamp(shown_blood / BLOOD_VOLUME_NORMAL, 0, 1.1) * 0.5
 	if(!dead && HAS_TRAIT(target, TRAIT_NO_BLOOD))
 		circulation = 1
 	data["circulation"] = circulation
@@ -131,7 +135,7 @@
 		else
 			body += list(aq_injury("Zgon, nie do defibrylacji", "Napraw serce i mózg, potem defibrylacja; albo klonowanie"))
 	else if(heart && !heart.beating)
-		body += list(aq_injury("Zatrzymanie akcji serca", "Defibrylacja"))
+		body += list(aq_injury("Zatrzymanie akcji serca", "RKO (pomoc w klatkę piersiową), defibrylacja"))
 	if(target.is_bleeding())
 		body += list(aq_injury("Krwawienie", "Bandaż, uciskanie, kauteryzacja", target.get_bleed_rate_string()))
 	else if(target.is_bandaged())
@@ -184,6 +188,14 @@
 			continue
 		body += list(aq_injury("[disease.name] ([disease.form], [disease.spread_text])", disease.cure_text || "Nieznane", "[disease.stage]/[disease.max_stages]"))
 
+	// AquilaMed 5: infection, pulse and torn organs, the same lines as the text scan (the text gives the treatment)
+	if(!dead)
+		var/static/regex/html_tags = new("<\[^>]*>", "g")
+		for(var/line in target.aq_germ_scan_lines() + target.aq_pulse_scan_lines() + target.aq_organ_scan_lines())
+			body += list(aq_injury(html_tags.Replace(line, ""), ""))
+		var/datum/status_effect/aq_transplant_weakness/weakness = target.has_status_effect(/datum/status_effect/aq_transplant_weakness)
+		if(weakness)
+			body += list(aq_injury("Osłabienie po przeszczepie", "Mija samo", null, 1))
 	var/list/injuries = list("body" = body)
 	// Rany pokazane na sylwetce: strefa -> rany (nazwa, ciężkość 1-3, czy opatrzona)
 	var/list/wounds = list()
@@ -204,11 +216,16 @@
 				part += list(aq_injury("Tkwi w ciele: [embedded.name]", "Wyciągnij ręką albo hemostatem"))
 			for(var/obj/item/bullet_fragment/fragment in limb)
 				part += list(aq_injury("Pocisk w ciele", "Operacja usuwania ciał obcych"))
+			if(limb.aq_nerve_cut) // medical/nerves.dm
+				part += list(aq_injury("Przerwany nerw", "Zszycie nerwu (operacja)"))
+			var/obj/item/bodypart/head/head = limb
+			if(istype(head) && IS_ORGANIC_LIMB(head) && head.aq_teeth < 32) // medical/teeth.dm
+				part += list(aq_injury("Brakujące zęby", "Wstawienie zęba (operacja)", 32 - head.aq_teeth, 1))
 		for(var/obj/item/organ/organ as anything in target.internal_organs)
 			if(check_zone(organ.zone) != zone || !organ.damage) // oczy, usta i pachwina należą do głowy i klatki
 				continue
 			var/failing = organ.organ_flags & ORGAN_FAILING
-			part += list(aq_injury("[capitalize(organ.name)] [failing ? "niewydolny" : "uszkodzony"]", "Operacja, leki na narząd", advanced ? round(organ.damage) : null, failing ? 2 : 1))
+			part += list(aq_injury("[capitalize(organ.name)] [failing ? "niewydolny" : "uszkodzony"]", organ.aq_treat_hint(), advanced ? round(organ.damage) : null, failing ? 2 : 1))
 		injuries[zone] = part
 	data["injuries"] = injuries
 	data["wounds"] = wounds
