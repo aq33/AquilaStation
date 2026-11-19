@@ -168,7 +168,7 @@
 /turf/closed/mineral/random,
 /area/ruin/space/has_grav)
 "iC" = (
-/mob/living/simple_animal/bot/medbot{
+/mob/living/basic/bot/medbot{
 	desc = "A little medical robot. It has pizza grease stains on the chassis";
 	name = "Gary G.";
 	radio_key = null;

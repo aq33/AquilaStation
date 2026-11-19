@@ -38,13 +38,9 @@
 	/// Ostatnio ściganych chwilę ignoruje
 	var/oldtarget_name
 	var/last_found = 0
-	/// Bot zaczyna z włączonym patrolem (mapy)
-	var/start_patrolling = FALSE
 
 /mob/living/basic/bot/secbot/Initialize(mapload)
 	additional_access = list(ACCESS_SECURITY, ACCESS_SEC_DOORS, ACCESS_FORENSICS_LOCKERS, ACCESS_MORGUE, ACCESS_MAINT_TUNNELS, ACCESS_COURT, ACCESS_BRIG)
-	if(start_patrolling)
-		bot_mode_flags |= BOT_MODE_AUTOPATROL
 	. = ..()
 	var/datum/atom_hud/secsensor = GLOB.huds[DATA_HUD_SECURITY_ADVANCED]
 	secsensor?.add_hud_to(src)

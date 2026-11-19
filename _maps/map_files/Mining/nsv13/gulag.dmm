@@ -1492,10 +1492,10 @@
 /turf/open/floor/plating,
 /area/mine/laborcamp)
 "NK" = (
-/mob/living/simple_animal/bot/secbot/beepsky{
+/mob/living/basic/bot/secbot/beepsky{
 	desc = "Powered by the tears and sweat of laborers.";
 	name = "Prison Ofitser";
-	on = 0
+	start_off = TRUE
 	},
 /obj/structure/cable/yellow,
 /turf/open/floor/plasteel,

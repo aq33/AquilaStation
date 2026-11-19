@@ -2256,7 +2256,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 8
 	},
-/mob/living/simple_animal/bot/medbot/catmedbot,
+/mob/living/basic/bot/medbot/catmedbot,
 /turf/open/floor/monotile/light,
 /area/medical/medbay)
 "eE" = (
@@ -2804,7 +2804,7 @@
 "fW" = (
 /obj/structure/cable,
 /obj/machinery/ai_slipper,
-/mob/living/simple_animal/bot/secbot/pingsky,
+/mob/living/basic/bot/secbot/pingsky,
 /obj/structure/ethernet_cable{
 	icon_state = "1-8"
 	},

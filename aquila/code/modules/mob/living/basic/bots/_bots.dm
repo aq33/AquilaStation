@@ -98,6 +98,10 @@ GLOBAL_LIST_EMPTY(basic_bots_list)
 	var/list/original_faction
 	/// Nazwa przed pAI
 	var/pre_pai_name
+	/// Mapy: bot zaczyna z włączonym patrolem / wyłączony / zhakowany (dawne auto_patrol, on, emagged)
+	var/start_patrolling = null
+	var/start_off = FALSE
+	var/start_emagged = FALSE
 	/// Następne ogłoszenie duchom o osobowości
 	COOLDOWN_DECLARE(offer_ghosts_cooldown)
 
@@ -122,6 +126,10 @@ GLOBAL_LIST_EMPTY(basic_bots_list)
 	var/list/phrase_sounds
 
 /mob/living/basic/bot/Initialize(mapload)
+	if(!isnull(start_patrolling))
+		bot_mode_flags = start_patrolling ? (bot_mode_flags | BOT_MODE_AUTOPATROL) : (bot_mode_flags & ~BOT_MODE_AUTOPATROL)
+	if(start_off)
+		bot_mode_flags &= ~BOT_MODE_ON
 	. = ..()
 	GLOB.basic_bots_list += src
 	if(length(work_target_types))
@@ -148,7 +156,12 @@ GLOBAL_LIST_EMPTY(basic_bots_list)
 
 	ai_controller?.set_blackboard_key(BB_UNREACHABLE_LIST_COOLDOWN, unreachable_cooldown)
 	set_light_on(bot_mode_flags & BOT_MODE_ON)
+	update_mobility()
 	update_appearance()
+	if(start_emagged)
+		bot_access_flags |= BOT_COVER_EMAGGED | BOT_COVER_LOCKED
+		set_mode_flags(bot_mode_flags & ~BOT_MODE_REMOTE_ENABLED)
+		INVOKE_ASYNC(src, PROC_REF(emag_effects), null)
 
 /mob/living/basic/bot/Destroy()
 	GLOB.basic_bots_list -= src
