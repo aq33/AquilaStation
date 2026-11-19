@@ -195,6 +195,9 @@
 	smoke.activate()
 	TEST_ASSERT_EQUAL(smoke.uses, 2, "The smoke implant used no charge")
 	qdel(smoke)
+	// Dym zostaje na kafelkach testu: następny test krztusi się w nim, upuszcza przedmioty i przerywa do_after
+	for(var/obj/effect/particle_effect/smoke/cloud in range(10, patient))
+		qdel(cloud)
 
 	// Ostre skrzydła: tylko ćmoludzie, rani sąsiadów
 	TEST_ASSERT(!aq_self_implant(patient, /obj/item/implanter/aq_razorwing), "Razor wings went into a human")
