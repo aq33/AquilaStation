@@ -177,9 +177,9 @@
     },
     "/mob/living/basic/boss/blood_drunk_miner": "/mob/living/simple_animal/hostile/megafauna/blood_drunk_miner",
     "/mob/living/basic/bot/cleanbot/autopatrol": {
-      "path": "/mob/living/simple_animal/bot/cleanbot",
+      "path": "/mob/living/basic/bot/cleanbot",
       "vars": {
-        "auto_patrol": "1"
+        "start_patrolling": "1"
       }
     },
     "/mob/living/basic/butterfly": "/mob/living/basic/butterfly",

@@ -155,3 +155,38 @@
 		else
 			return FALSE
 	return TRUE
+
+// Budowa (z NSV13): pudełko przytulasów + ramię robota, potem czujnik zbliżeniowy
+/obj/item/bot_assembly/hugbot
+	desc = "To pudełko przytulasów z doczepionym ramieniem."
+	name = "niekompletny zespół przytulobota"
+	icon = 'nsv13/icons/mob/aibots.dmi'
+	icon_state = "hugbot_arm"
+	created_name = "przytulobot"
+
+/obj/item/bot_assembly/hugbot/attackby(obj/item/W, mob/user, params)
+	..()
+	if(istype(W, /obj/item/assembly/prox_sensor))
+		if(!can_finish_build(W, user))
+			return
+		var/mob/living/basic/bot/medbot/hugbot/A = new(drop_location())
+		A.name = created_name
+		A.robot_arm = W.type
+		to_chat(user, "<span class='notice'>Dodajesz [W] do [src]. Bip bup!</span>")
+		qdel(W)
+		qdel(src)
+
+/obj/item/storage/box/hug/attackby(obj/item/I, mob/user, params)
+	if((istype(I, /obj/item/bodypart/l_arm/robot)) || (istype(I, /obj/item/bodypart/r_arm/robot)))
+		if(contents.len) //prevent accidently deleting contents
+			to_chat(user, "<span class='warning'>Najpierw musisz opróżnić [src]!</span>")
+			return
+		if(!user.temporarilyRemoveItemFromInventory(I))
+			return
+		qdel(I)
+		to_chat(user, "<span class='notice'>Dodajesz [I] do [src]! Masz teraz zespół hugbota!</span>")
+		var/obj/item/bot_assembly/hugbot/A = new
+		qdel(src)
+		user.put_in_hands(A)
+	else
+		return ..()

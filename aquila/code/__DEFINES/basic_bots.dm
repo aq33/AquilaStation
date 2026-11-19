@@ -1,5 +1,5 @@
 // Basic boty (/mob/living/basic/bot) na drzewach zachowań, port bazy z tgstation (code/__DEFINES/robots.dm, ai/bot_keys.dm).
-// Stare boty (/mob/living/simple_animal/bot) używają liczbowych BOT_IDLE itd. z code/__DEFINES/robots.dm, więc tu
+// MULEbot na starej bazie (/mob/living/simple_animal/bot) używa liczbowych BOT_IDLE itd. z code/__DEFINES/robots.dm, więc tu
 // stany mają przedrostek BBOT_ i od razu polski tekst (pokazywany w panelu, PDA i konsoli SI).
 
 // Flagi trybu (bot_mode_flags)

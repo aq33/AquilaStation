@@ -8,7 +8,7 @@
  *   a drzewo (bot_work.bt.json) szuka celu, idzie do niego i pracuje; boty z innym rytmem (MULE) mają własne drzewo;
  * - opętanie przez ducha bez komponentu ghost_direct_control (nie mamy go): przełącznik „Osobowość” w panelu
  *   pozwala duchom przejąć bota kliknięciem (attack_ghost), z banem na ROLE_SENTIENCE;
- * - osobna lista GLOB.basic_bots_list (stare boty zostają w GLOB.bots_list), konsola SI i PDA widzą obie
+ * - osobna lista GLOB.basic_bots_list (MULEbot na starej bazie zostaje w GLOB.bots_list), konsola SI i PDA widzą obie
  *   (aquila/code/modules/mob/living/basic/bots/bot_control.dm);
  * - bez PA-systemu z głosami tg: speak() mówi i opcjonalnie gra dźwięk bota.
  */
