@@ -32,7 +32,8 @@
 /obj/item/organ/cyberimp/chest/aq_platelets/Remove(mob/living/carbon/M, special = FALSE)
 	if(ishuman(M))
 		var/mob/living/carbon/human/human_owner = M
-		human_owner.physiology.bleed_mod /= bleed_multiplier
+		if(human_owner.physiology) // w Destroy() ciała fizjologii już nie ma
+			human_owner.physiology.bleed_mod /= bleed_multiplier
 	return ..()
 
 /obj/item/organ/cyberimp/chest/aq_platelets/on_life()
@@ -178,7 +179,7 @@
 		return
 	active = new_state
 	animate(owner, alpha = active ? camo_alpha : 255, time = 0.5 SECONDS)
-	to_chat(owner, span_notice(active ? "Światło zagina się wokół ciebie." : "Kamuflaż optyczny gaśnie."))
+	to_chat(owner, span_notice((active ? "Światło zagina się wokół ciebie." : "Kamuflaż optyczny gaśnie.")))
 
 /obj/item/organ/cyberimp/chest/aq_optical_camo/on_life()
 	. = ..()
@@ -236,7 +237,8 @@
 		M.updatehealth()
 		if(ishuman(M))
 			var/mob/living/carbon/human/human_owner = M
-			human_owner.physiology.brute_mod /= brute_multiplier
+			if(human_owner.physiology)
+				human_owner.physiology.brute_mod /= brute_multiplier
 			human_owner.unarmed_damage_bonus -= punch_bonus
 	return ..()
 
@@ -560,7 +562,7 @@
 /obj/item/organ/cyberimp/arm/aq_embedded/examine(mob/user)
 	. = ..()
 	var/obj/item/stored = get_stored()
-	. += span_info(stored ? "W module siedzi [stored]." : "Moduł jest pusty.")
+	. += span_info((stored ? "W module siedzi [stored]." : "Moduł jest pusty."))
 
 /// Przedmiot w module
 /obj/item/organ/cyberimp/arm/aq_embedded/proc/get_stored()
@@ -882,6 +884,6 @@
 		user.remove_movespeed_modifier("aq_maglock")
 	button_icon_state = locked ? "magboots1" : "magboots0"
 	UpdateButtonIcon()
-	to_chat(user, span_notice(locked ? "Magnesy w stopach przywierają do podłogi." : "Magnesy w stopach puszczają."))
+	to_chat(user, span_notice((locked ? "Magnesy w stopach przywierają do podłogi." : "Magnesy w stopach puszczają.")))
 
 #undef AQ_ROBOTYKA_ICON

@@ -583,7 +583,7 @@
 /obj/item/implant/aq_fake_mindshield/activate()
 	. = ..()
 	set_shown(!shown)
-	to_chat(imp_in, span_notice(shown ? "Implant nadaje sygnał ochrony umysłu." : "Implant przestaje nadawać sygnał ochrony umysłu."))
+	to_chat(imp_in, span_notice((shown ? "Implant nadaje sygnał ochrony umysłu." : "Implant przestaje nadawać sygnał ochrony umysłu.")))
 
 /obj/item/implant/aq_fake_mindshield/proc/set_shown(new_state)
 	if(!imp_in)
@@ -738,7 +738,8 @@
 	if(ishuman(imp_in))
 		var/mob/living/carbon/human/human_host = imp_in
 		var/datum/bank_account/account = human_host.get_bank_account()
-		account?.adjust_money(ad_payment)
+		if(istype(account))
+			account.adjust_money(ad_payment)
 
 /obj/item/implanter/aq_sponsorship
 	name = "implanter (sponsorski)"

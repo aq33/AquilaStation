@@ -364,7 +364,7 @@
 			mode = null
 			SEND_SIGNAL(owner, COMSIG_CLEAR_MOOD_EVENT, "aq_emotion")
 	if(choice)
-		to_chat(owner, span_notice(mode ? "Manipulator emocji przestawia chemię twojego mózgu." : "Manipulator emocji się wyłącza."))
+		to_chat(owner, span_notice((mode ? "Manipulator emocji przestawia chemię twojego mózgu." : "Manipulator emocji się wyłącza.")))
 
 /obj/item/organ/cyberimp/brain/aq_emotional_manipulator/on_life()
 	. = ..()
@@ -382,7 +382,7 @@
 		owner.jitteriness = max(owner.jitteriness - 5, 0)
 	if(world.time >= next_message)
 		next_message = world.time + 5 MINUTES
-		to_chat(owner, span_notice(mode == "happy" ? "Ogarnia cię ciepła, bezprzyczynowa radość." : "Myśli płyną spokojnie i powoli."))
+		to_chat(owner, span_notice((mode == "happy" ? "Ogarnia cię ciepła, bezprzyczynowa radość." : "Myśli płyną spokojnie i powoli.")))
 
 /obj/item/organ/cyberimp/brain/aq_emotional_manipulator/Remove(mob/living/carbon/M, special = FALSE)
 	if(M)
@@ -453,7 +453,8 @@
 	if(!monitor)
 		monitor = new(src)
 		monitor.eye = src
-	monitor.ui_interact(owner)
+	if(owner.client) // konsola rejestruje obraz kamer w kliencie
+		monitor.ui_interact(owner)
 
 /obj/item/organ/eyes/robotic/aq_monitor/Remove(mob/living/carbon/M, special = FALSE)
 	if(monitor && M)

@@ -62,6 +62,8 @@
 #include "code\__DEFINES\wires.dm"
 #include "code\__DEFINES\wounds.dm"
 #include "code\__DEFINES\wounds_tg.dm"
+#include "code\__DEFINES\nif.dm"
+#include "code\__DEFINES\robotyka_implanty.dm"
 #include "code\__HELPERS\names.dm"
 #include "code\__HELPERS\game.dm"
 #include "code\__HELPERS\markov.dm"
@@ -1335,6 +1337,7 @@
 // #include "code\modules\test_chamber\kits\pr_420_traitor_cele.dm"
 #include "code\modules\test_chamber\kits\test_subjects.dm"
 // Komora testowa - zestawy PR-ów niżej (usuwać razem z plikiem zestawu po przetestowaniu)
+#include "code\modules\test_chamber\kits\pr_XXX_implanty.dm"
 #include "code\modules\test_chamber\kits\pr_XXX_nif.dm"
 #include "code\modules\test_chamber\kits\pr_665_rework_amunicji.dm"
 #include "code\modules\test_chamber\kits\pr_nsvprzyw_statek.dm"
@@ -2578,6 +2581,7 @@
 #include "code\modules\unit_tests\aquila_chrono_legionnaire.dm"
 #include "code\modules\unit_tests\aquila_crafting.dm"
 #include "code\modules\unit_tests\aquila_cybernetics.dm"
+#include "code\modules\unit_tests\aquila_robotyka_implants.dm"
 #include "code\modules\unit_tests\aquila_nif.dm"
 #include "code\modules\unit_tests\aquila_monke_misc.dm"
 #include "code\modules\unit_tests\aquila_monke_ingame.dm"
@@ -2793,7 +2797,6 @@
 #include "code\modules\test_chamber\kits\pr_654_drobiazgi_1711.dm"
 
 // Implanty: implanty, augmenty i NIF (część IMPLANTY wdrożenia robotyki; NIF port z Monkestation)
-#include "code\__DEFINES\nif.dm"
 #include "code\modules\nif\nifs.dm"
 #include "code\modules\nif\nifs_tgui.dm"
 #include "code\modules\nif\nif_actions.dm"
@@ -2807,7 +2810,6 @@
 #include "code\modules\nif\nifsoft_catalog.dm"
 #include "code\modules\nif\misc_devices.dm"
 #include "code\modules\nif\nif_shop.dm"
-#include "code\__DEFINES\robotyka_implanty.dm"
 #include "code\modules\cybernetics\robotyka\_robotyka_base.dm"
 #include "code\modules\cybernetics\robotyka\implants_crew.dm"
 #include "code\modules\cybernetics\robotyka\implants_syndicate.dm"
