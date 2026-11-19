@@ -550,8 +550,8 @@
 	patient.aq_filter_blood(0)
 	TEST_ASSERT(patient.getToxLoss() > tox, "Missing kidneys did not poison")
 
-/// AQUILA - spleen, intestines, bladder (surgery/organs/med5/abdomen.dm): the spleen releases blood and can rupture,
-/// punctured intestines let germs in and absorb worse, a ruptured bladder poisons and a catheter holds it off
+/// AQUILA - spleen, intestines, catheter (surgery/organs/med5/abdomen.dm): the spleen releases blood, heavy belly hits
+/// injure the abdominal organs until one suture surgery, damaged intestines absorb worse, a catheter drains the bladder
 /datum/unit_test/aquila_abdomen
 
 /datum/unit_test/aquila_abdomen/Run()
@@ -569,7 +569,7 @@
 	TEST_ASSERT(patient.blood_volume == after_release, "The spleen released blood again before the cooldown")
 	patient.blood_volume = BLOOD_VOLUME_NORMAL
 
-	// Heavy belly hits can rupture it: internal bleeding until stitched
+	// Heavy belly hits injure the abdominal organs: internal bleeding until stitched
 	for(var/i in 1 to 200)
 		if(spleen.ruptured)
 			break
@@ -579,20 +579,15 @@
 	var/blood = patient.blood_volume
 	spleen.on_life()
 	TEST_ASSERT(patient.blood_volume < blood, "A ruptured spleen does not bleed inside")
-	TEST_ASSERT(findtext(jointext(patient.aq_organ_scan_lines(), ""), "śledziona"), "The scanner does not show the ruptured spleen")
+	TEST_ASSERT(findtext(jointext(patient.aq_organ_scan_lines(), ""), "narządów brzucha"), "The scanner does not show the abdominal organ injury")
 	var/datum/surgery_operation/organ/repair/spleen/splenorrhaphy = new()
 	TEST_ASSERT(splenorrhaphy.state_check(spleen), "A ruptured spleen cannot be stitched")
 	splenorrhaphy.on_success(spleen, patient, null, list())
 	TEST_ASSERT(!spleen.ruptured, "Stitching did not close the spleen")
 	qdel(splenorrhaphy)
 
-	// Punctured intestines: germs in the belly, worse absorption, diarrhea
-	var/obj/item/bodypart/chest = patient.get_bodypart(BODY_ZONE_CHEST)
-	intestines.perforate()
-	TEST_ASSERT(intestines.perforated, "The intestines did not perforate")
-	var/germs = chest.aq_germs
-	intestines.on_life()
-	TEST_ASSERT(chest.aq_germs > germs, "Punctured intestines let no germs in")
+	// Damaged intestines: worse absorption, diarrhea
+	intestines.setOrganDamage(intestines.maxHealth * 0.6)
 	// Food from the stomach is partly lost, food straight into the blood (an IV) is not
 	var/obj/item/organ/stomach/stomach = patient.getorganslot(ORGAN_SLOT_STOMACH)
 	stomach.reagents.add_reagent(/datum/reagent/consumable/nutriment, 10)
@@ -601,31 +596,22 @@
 	stomach.digest()
 	var/left_stomach = stomach_before - stomach.reagents.get_reagent_amount(/datum/reagent/consumable/nutriment)
 	var/reached_blood = patient.reagents.get_reagent_amount(/datum/reagent/consumable/nutriment) - blood_before
-	TEST_ASSERT(left_stomach > 0 && reached_blood < left_stomach, "Punctured intestines absorbed everything ([reached_blood] of [left_stomach])")
+	TEST_ASSERT(left_stomach > 0 && reached_blood < left_stomach, "Damaged intestines absorbed everything ([reached_blood] of [left_stomach])")
 	var/nutrition = patient.nutrition
 	patient.adjust_nutrition(10)
 	TEST_ASSERT(patient.nutrition - nutrition == 10, "Nutrition outside the gut (IV, photosynthesis) is cut by the intestines")
 	TEST_ASSERT(patient.stool_type() >= 6, "Sick intestines give no diarrhea")
-	var/datum/surgery_operation/organ/repair/intestines/enterorrhaphy = new()
-	enterorrhaphy.on_success(intestines, patient, null, list())
-	TEST_ASSERT(!intestines.perforated, "Stitching did not close the intestines")
-	qdel(enterorrhaphy)
+	intestines.setOrganDamage(0)
 
-	// A ruptured bladder poisons, a catheter holds it off
-	var/obj/item/organ/bladder/bladder = patient.getorganslot(ORGAN_SLOT_BLADDER)
-	if(bladder)
-		bladder.ruptured = TRUE
-		var/tox = patient.getToxLoss()
-		bladder.on_life()
-		TEST_ASSERT(patient.getToxLoss() > tox, "A ruptured bladder does not poison")
+	// A catheter drains the bladder
+	if(patient.getorganslot(ORGAN_SLOT_BLADDER))
+		patient.urination = 10
 		var/mob/living/carbon/human/medic = allocate(/mob/living/carbon/human)
 		var/obj/item/catheter/catheter = allocate(/obj/item/catheter)
 		catheter.toolspeed = 0.01 // the test does not wait 4 seconds of game time
 		medic.set_combat_mode(FALSE)
 		catheter.attack(patient, medic)
-		tox = patient.getToxLoss()
-		bladder.on_life()
-		TEST_ASSERT(patient.getToxLoss() == tox, "A catheter did not hold off the urine poisoning")
+		TEST_ASSERT(!patient.urination, "A catheter did not drain the bladder")
 
 
 /// Adrenals hold the adrenaline reserve
@@ -998,7 +984,7 @@
 	TEST_ASSERT(!length(patient.aq_pulse_scan_lines()), "The pulse line shows through fake death")
 	REMOVE_TRAIT(patient, TRAIT_FAKEDEATH, "test")
 
-	// A fist (bodypart passed as def_zone) can rupture the spleen; armor counts
+	// A fist (bodypart passed as def_zone) can injure the abdominal organs; armor counts
 	var/mob/living/carbon/human/boxed = allocate(/mob/living/carbon/human)
 	var/obj/item/organ/spleen/spleen = boxed.getorganslot(ORGAN_SLOT_SPLEEN)
 	var/obj/item/bodypart/chest = boxed.get_bodypart(BODY_ZONE_CHEST)

@@ -1,13 +1,13 @@
-// AQUILA - śledziona, jelita i uszkodzenia pęcherza (AquilaMed 5, etap 6). Sprite'y śledziony i jelit z Goonstation
-// (icons/obj/items/organs/spleen.dmi, intestines.dmi, CC BY-NC-SA 3.0).
-// - Śledziona: przy utracie krwi raz na 5 minut wyrzuca zapas (10% krwi). Mocny cios tępy w brzuch może ją rozerwać:
-//   krwotok wewnętrzny, którego nie zatrzyma bandaż. Kończy go wycięcie śledziony albo operacja zszycia.
+// AQUILA - śledziona, jelita, uszkodzenie narządów brzucha i cewnik (AquilaMed 5, etap 6). Sprite'y śledziony i jelit
+// z Goonstation (icons/obj/items/organs/spleen.dmi, intestines.dmi, CC BY-NC-SA 3.0).
+// - Śledziona: przy utracie krwi raz na 5 minut wyrzuca zapas (10% krwi).
 // - Jelita: wchłaniają jedzenie. Uszkodzone wchłaniają gorzej i dają biegunkę (skala bristolska, bladder/bristol.dm).
-//   Rana kłuta albo postrzał brzucha może je przebić: zakażenie (medical/germs.dm), ból, operacja zszycia.
-// - Pęcherz (bladder/bladder.dm) może pęknąć od ciosu w brzuch: mocz zatruwa organizm. Cewnik opróżnia pęcherz
-//   i na 10 minut zatrzymuje zatrucie, naprawia operacja zszycia pęcherza.
+// - Uszkodzenie narządów brzucha: mocny cios tępy w brzuch może rozerwać narządy brzucha (stan trzyma śledziona).
+//   Krwotok wewnętrzny, którego nie zatrzyma bandaż; kończy go jedna operacja zszycia narządów brzucha albo wycięcie
+//   śledziony. Tylko od ciosów tępych: rany kłute i postrzały mają własny krwotok wewnętrzny (wounds/pierce.dm).
+// - Cewnik opróżnia pęcherz (bladder/bladder.dm).
 
-/// Brute damage to the belly at or above this can rupture the spleen or the bladder
+/// Brute damage to the belly at or above this can injure the abdominal organs
 #define AQ_RUPTURE_MIN_DAMAGE 15
 #define AQ_SPLEEN_RELEASE_COOLDOWN (5 MINUTES)
 
@@ -89,7 +89,7 @@
 	decay_factor = STANDARD_ORGAN_DECAY
 	low_threshold_passed = "<span class='info'>Coś kłuje cię w lewym boku.</span>"
 	high_threshold_passed = "<span class='warning'>Lewy bok boli coraz mocniej.</span>"
-	/// Torn: bleeds inside until removed or stitched
+	/// Abdominal organ injury: bleeds inside until stitched or the spleen is removed
 	var/ruptured = FALSE
 	var/next_release = 0
 
@@ -140,7 +140,7 @@
 
 /obj/item/organ/spleen/aq_scan_line()
 	if(ruptured)
-		return "<b>Krwotok wewnętrzny: pęknięta śledziona.</b> Wytnij śledzionę albo ją zszyj."
+		return "<b>Uszkodzenie narządów brzucha:</b> krwotok wewnętrzny. Zszyj narządy brzucha operacją."
 
 // --- Jelita ---
 
@@ -155,8 +155,6 @@
 	decay_factor = STANDARD_ORGAN_DECAY
 	low_threshold_passed = "<span class='info'>Brzuch burczy i skręca cię w nim.</span>"
 	high_threshold_passed = "<span class='warning'>Kurcze brzucha nie dają spokoju.</span>"
-	/// Punctured: lets germs into the belly until stitched
-	var/perforated = FALSE
 
 /obj/item/organ/intestines/cybernetic
 	name = "jelita cybernetyczne"
@@ -170,35 +168,11 @@
 	if(!(. & EMP_PROTECT_SELF))
 		applyOrganDamage(25 / severity)
 
-/obj/item/organ/intestines/Remove(mob/living/carbon/M, special = 0)
-	perforated = FALSE
-	return ..()
-
 /// How much of the food reaches the body, 0-1
 /obj/item/organ/intestines/proc/aq_absorption()
 	if(organ_flags & ORGAN_FAILING)
 		return 0.3
-	. = 1 - 0.5 * damage / maxHealth
-	if(perforated)
-		. *= 0.7
-
-/obj/item/organ/intestines/proc/perforate()
-	if(perforated || (organ_flags & ORGAN_SYNTHETIC))
-		return
-	perforated = TRUE
-	setOrganDamage(max(damage, low_threshold + 5))
-	to_chat(owner, "<span class='userdanger'>Coś rozrywa ci się w brzuchu, czujesz ostry, rozlewający się ból!</span>")
-
-/obj/item/organ/intestines/on_life()
-	. = ..()
-	if(!owner || owner.stat == DEAD || !perforated)
-		return
-	var/obj/item/bodypart/chest = owner.get_bodypart(BODY_ZONE_CHEST)
-	chest?.aq_add_germs(0.1)
-
-/obj/item/organ/intestines/aq_scan_line()
-	if(perforated)
-		return "<b>Przebite jelita.</b> Grozi zakażeniem: zszyj jelita operacją."
+	return 1 - 0.5 * damage / maxHealth
 
 /// Sick or missing intestines absorb less of the food passing from the stomach; the rest is lost. Only food that went
 /// through the stomach: photosynthesis, an IV drip or an injection are not touched.
@@ -219,78 +193,25 @@
 		if(gained > 0)
 			H.reagents.remove_reagent(food.type, gained * (1 - absorption))
 
-/// A full heal (admin, changeling revive, healing magic) closes ruptures and perforations too
+/// A full heal (admin, changeling revive, healing magic) closes the abdominal organ injury too
 /mob/living/carbon/fully_heal(admin_revive = FALSE)
 	. = ..()
 	var/obj/item/organ/spleen/spleen = getorganslot(ORGAN_SLOT_SPLEEN)
 	if(spleen)
 		spleen.ruptured = FALSE
-	var/obj/item/organ/intestines/intestines = getorganslot(ORGAN_SLOT_INTESTINES)
-	if(intestines)
-		intestines.perforated = FALSE
-	var/obj/item/organ/bladder/bladder = getorganslot(ORGAN_SLOT_BLADDER)
-	if(bladder)
-		bladder.ruptured = FALSE
 
 /mob/living/carbon/human/stool_type(list/reasons)
 	. = ..()
 	var/obj/item/organ/intestines/intestines = getorganslot(ORGAN_SLOT_INTESTINES)
-	if(intestines && (intestines.perforated || intestines.damage >= intestines.low_threshold))
+	if(intestines && intestines.damage >= intestines.low_threshold)
 		reasons?.Add("chore jelita")
 		. = max(., 6)
 
-/// A stab or a gunshot in the belly can puncture the intestines
-/datum/wound/pierce/on_apply()
-	. = ..()
-	if(aq_from_treatment || limb?.body_zone != BODY_ZONE_CHEST || !prob(15 * severity))
-		return
-	var/obj/item/organ/intestines/intestines = victim.getorganslot(ORGAN_SLOT_INTESTINES)
-	intestines?.perforate()
-
-// --- Pęcherz ---
-
-/obj/item/organ/bladder
-	/// Torn: urine leaks inside and poisons until stitched (a catheter holds it off)
-	var/ruptured = FALSE
-
-/obj/item/organ/bladder/Insert(mob/living/carbon/M, special = 0, drop_if_replaced = TRUE)
-	. = ..()
-	RegisterSignal(M, COMSIG_MOB_APPLY_DAMGE, PROC_REF(on_owner_damaged), override = TRUE)
-
-/obj/item/organ/bladder/Remove(mob/living/carbon/M, special = 0)
-	UnregisterSignal(M, COMSIG_MOB_APPLY_DAMGE)
-	ruptured = FALSE
-	return ..()
-
-/obj/item/organ/bladder/proc/on_owner_damaged(datum/source, incoming_damage, damagetype, def_zone)
-	SIGNAL_HANDLER
-	if(ruptured || !owner || !aq_is_belly_hit(damagetype, def_zone) || owner.aq_damage_after_armor(incoming_damage, def_zone) < AQ_RUPTURE_MIN_DAMAGE || !prob(6))
-		return
-	ruptured = TRUE
-	setOrganDamage(max(damage, high_threshold))
-	to_chat(owner, "<span class='userdanger'>Coś pęka ci w podbrzuszu, a ból rozlewa się na cały brzuch!</span>")
-
-/obj/item/organ/bladder/on_life()
-	. = ..()
-	if(!owner || owner.stat == DEAD || !ruptured)
-		return
-	var/mob/living/carbon/human/H = owner
-	if(istype(H) && world.time < H.aq_catheter_until)
-		return
-	if(owner.getToxLoss() < 60)
-		owner.adjustToxLoss(0.2)
-
-/obj/item/organ/bladder/aq_scan_line()
-	if(ruptured)
-		return "<b>Pęknięty pęcherz:</b> mocz zatruwa organizm. Cewnik pomaga na chwilę, naprawia operacja."
-
-/mob/living/carbon/human
-	/// A catheter keeps the urine out of a ruptured bladder until this time
-	var/aq_catheter_until = 0
+// --- Cewnik ---
 
 /obj/item/catheter
 	name = "cewnik"
-	desc = "Jednorazowy cewnik z workiem. Opróżnia pęcherz pacjenta, a przy pękniętym pęcherzu na 10 minut zatrzymuje zatrucie moczem."
+	desc = "Jednorazowy cewnik z workiem. Opróżnia pęcherz pacjenta."
 	icon = 'aquila/icons/obj/medical/medycyna5.dmi' // sprite z Paradise (icons/obj/surgery.dmi, tube), CC-BY-SA 3.0
 	icon_state = "catheter"
 	w_class = WEIGHT_CLASS_SMALL
@@ -309,26 +230,20 @@
 	var/drained = patient.urination
 	patient.urination = 0
 	patient.adjust_defecation(-drained)
-	patient.aq_catheter_until = world.time + 10 MINUTES
 	user.visible_message("<span class='notice'>[user] opróżnia pęcherz [patient] przez cewnik.</span>", "<span class='notice'>Opróżniasz pęcherz [patient] przez cewnik.</span>")
 	qdel(src)
 
-// --- Operacje zszycia ---
+// --- Zszycie narządów brzucha ---
 
-// Organs in the groin have no zone picture (get_generic_limb_radial_image), so these show the organ itself
+// Organs in the groin have no zone picture (get_generic_limb_radial_image), so this shows the organ itself
 /datum/surgery_operation/organ/repair/spleen/get_default_radial_image()
 	return get_item_radial_image(target_type)
 
-/datum/surgery_operation/organ/repair/intestines/get_default_radial_image()
-	return get_item_radial_image(target_type)
-
-/datum/surgery_operation/organ/repair/bladder/get_default_radial_image()
-	return get_item_radial_image(target_type)
-
+/// The one surgery for the abdominal organ injury (its state sits on the spleen)
 /datum/surgery_operation/organ/repair/spleen
-	name = "zszycie śledziony"
-	rnd_name = "Splenorafia (operacja śledziony)"
-	desc = "Zszywa pękniętą albo uszkodzoną śledzionę i zatrzymuje krwotok wewnętrzny."
+	name = "zszycie narządów brzucha"
+	rnd_name = "Laparotomia (zszycie narządów brzucha)"
+	desc = "Zszywa rozerwane narządy brzucha i zatrzymuje krwotok wewnętrzny. Leczy też uszkodzoną śledzionę."
 	implements = list(TOOL_HEMOSTAT = 1, /obj/item/stack/medical/suture = 1.2, TOOL_WIRECUTTER = 2.85)
 	time = 5 SECONDS
 	target_type = /obj/item/organ/spleen
@@ -344,49 +259,7 @@
 /datum/surgery_operation/organ/repair/spleen/on_success(obj/item/organ/spleen/organ, mob/living/surgeon, obj/item/tool, list/operation_args)
 	. = ..()
 	organ.ruptured = FALSE
-	display_results(surgeon, organ.owner, span_notice("Zszywasz śledzionę [FORMAT_ORGAN_OWNER(organ)]."), span_notice("[surgeon] zszywa śledzionę [FORMAT_ORGAN_OWNER(organ)]."), span_notice("[surgeon] kończy operację [FORMAT_ORGAN_OWNER(organ)]."))
-
-/datum/surgery_operation/organ/repair/intestines
-	name = "zszycie jelit"
-	rnd_name = "Zszycie jelit"
-	desc = "Zszywa przebite albo uszkodzone jelita."
-	implements = list(TOOL_HEMOSTAT = 1, /obj/item/stack/medical/suture = 1.2, TOOL_WIRECUTTER = 2.85)
-	time = 5 SECONDS
-	target_type = /obj/item/organ/intestines
-	heal_to_percent = 0.1
-	required_damage_percent = 0.1
-	repeatable = TRUE
-	preop_sound = 'sound/surgery/hemostat1.ogg'
-	success_sound = 'sound/surgery/organ1.ogg'
-
-/datum/surgery_operation/organ/repair/intestines/state_check(obj/item/organ/intestines/organ)
-	return organ.perforated || ..()
-
-/datum/surgery_operation/organ/repair/intestines/on_success(obj/item/organ/intestines/organ, mob/living/surgeon, obj/item/tool, list/operation_args)
-	. = ..()
-	organ.perforated = FALSE
-	display_results(surgeon, organ.owner, span_notice("Zszywasz jelita [FORMAT_ORGAN_OWNER(organ)]."), span_notice("[surgeon] zszywa jelita [FORMAT_ORGAN_OWNER(organ)]."), span_notice("[surgeon] kończy operację [FORMAT_ORGAN_OWNER(organ)]."))
-
-/datum/surgery_operation/organ/repair/bladder
-	name = "zszycie pęcherza"
-	rnd_name = "Zszycie pęcherza"
-	desc = "Zszywa pęknięty albo uszkodzony pęcherz."
-	implements = list(TOOL_HEMOSTAT = 1, /obj/item/stack/medical/suture = 1.2, TOOL_WIRECUTTER = 2.85)
-	time = 5 SECONDS
-	target_type = /obj/item/organ/bladder
-	heal_to_percent = 0.1
-	required_damage_percent = 0.1
-	repeatable = TRUE
-	preop_sound = 'sound/surgery/hemostat1.ogg'
-	success_sound = 'sound/surgery/organ1.ogg'
-
-/datum/surgery_operation/organ/repair/bladder/state_check(obj/item/organ/bladder/organ)
-	return organ.ruptured || ..()
-
-/datum/surgery_operation/organ/repair/bladder/on_success(obj/item/organ/bladder/organ, mob/living/surgeon, obj/item/tool, list/operation_args)
-	. = ..()
-	organ.ruptured = FALSE
-	display_results(surgeon, organ.owner, span_notice("Zszywasz pęcherz [FORMAT_ORGAN_OWNER(organ)]."), span_notice("[surgeon] zszywa pęcherz [FORMAT_ORGAN_OWNER(organ)]."), span_notice("[surgeon] kończy operację [FORMAT_ORGAN_OWNER(organ)]."))
+	display_results(surgeon, organ.owner, span_notice("Zszywasz narządy brzucha [FORMAT_ORGAN_OWNER(organ)]."), span_notice("[surgeon] zszywa narządy brzucha [FORMAT_ORGAN_OWNER(organ)]."), span_notice("[surgeon] kończy operację [FORMAT_ORGAN_OWNER(organ)]."))
 
 /datum/design/cybernetic_spleen
 	name = "Śledziona cybernetyczna"
