@@ -194,7 +194,8 @@ GLOBAL_LIST_EMPTY(planet_descents)
 			landing.planet_landing_cancelled(target)
 		return
 	// Dokowanie usypia (CHECK_TICK w initiate_docking) przed przeniesieniem kadłuba: na ten czas obrys zamykają
-	// niewidzialne blokady, żeby nikt nie wszedł na pole, które zaraz zajmie kadłub
+	// niewidzialne blokady, żeby nikt nie wszedł na pole, które zaraz zajmie kadłub. toShuttleMove() je pomija
+	// (AQ EDIT w on_move.dm), więc trzymają do przeniesienia kadłuba, a potem usuwa je ta procka
 	var/list/blockers = list()
 	for(var/turf/T as anything in footprint)
 		blockers += new /obj/effect/planet_landing_blocker(T)
@@ -212,13 +213,6 @@ GLOBAL_LIST_EMPTY(planet_descents)
 	for(var/mob/M as anything in landing.mobs_in_ship)
 		if(M.client)
 			shake_camera(M, 3, 3)
-
-/// Pola kadłuba: return_turfs() daje cały prostokąt portu, razem z rogami spoza promu (template_noop w mapie Sabre)
-/proc/shuttle_hull_turfs(obj/docking_port/mobile/shuttle)
-	. = list()
-	for(var/turf/T as anything in shuttle?.return_turfs())
-		if(shuttle.shuttle_areas[T.loc])
-			. += T
 
 /// Kosmos przy kadłubie: lista (pole, kierunek do kadłuba)
 /proc/hull_edges(obj/docking_port/mobile/shuttle)
@@ -251,7 +245,9 @@ GLOBAL_LIST_EMPTY(planet_descents)
 			splashed = TRUE
 		else if(!T.density)
 			var/obj/effect/temp_visual/small_smoke/halfsecond/dust = new(T)
-			dust.color = planet?.planet_type?.sky_cloud_color || "#c8b890"
+			// Kolor chmur tylko wtedy, gdy typ planety go ustawia (domyślny jest biały); inaczej piaskowy pył
+			var/cloud_color = planet?.planet_type?.sky_cloud_color
+			dust.color = (cloud_color && cloud_color != "#ffffff") ? cloud_color : "#c8b890"
 	var/turf/center = get_turf(shuttle) || (length(where) ? where[1] : null)
 	if(center)
 		playsound(center, splashed ? 'sound/effects/splash.ogg' : 'sound/effects/meteorimpact.ogg', 60, TRUE)
@@ -260,7 +256,8 @@ GLOBAL_LIST_EMPTY(planet_descents)
 /atom/movable/screen/fullscreen/color_vision/planet_reentry
 	color = "#ff7a20"
 
-/// Blokada pola lądowiska na czas dokowania: nie da się na nie wejść (prom zaraz je zajmie)
+/// Blokada pola lądowiska na czas dokowania: nie da się na nie wejść (prom zaraz je zajmie). toShuttleMove() jej nie
+/// usuwa (AQ EDIT w code/modules/shuttle/on_move.dm), robi to /datum/planet_descent/proc/finish po dokowaniu
 /obj/effect/planet_landing_blocker
 	density = TRUE
 	anchored = TRUE
@@ -486,7 +483,10 @@ GLOBAL_LIST_EMPTY(planet_descents)
 	if(!istype(OM, /obj/structure/overmap/planet) || planet_descent?.finishing)
 		return ..()
 	var/obj/structure/overmap/planet/planet = OM
-	if(planet_descent || shuttle_docked_at || !shuttle_port || !planet.craft_over_planet(src) || !planet_landing_spot_free(planet, port))
+	var/spot_taken = !planet_descent && !shuttle_docked_at && shuttle_port && !planet_landing_spot_free(planet, port)
+	if(spot_taken && pilot)
+		to_chat(pilot, span_warning("Na wybranym lądowisku ktoś albo coś stoi. Komputer dokowania nie zaczyna zejścia."))
+	if(planet_descent || shuttle_docked_at || !shuttle_port || !planet.craft_over_planet(src) || spot_taken)
 		// Port trwającego zejścia zostaje: drugie wywołanie (autopilot, ponowne dokowanie) nie może go zabrać
 		if(istype(port, /obj/docking_port/stationary/shuttle_craft_spot) && !port.docked && port != planet_descent?.port)
 			qdel(port, TRUE)
@@ -509,11 +509,14 @@ GLOBAL_LIST_EMPTY(planet_descents)
 
 /// Czy kadłub zmieści się na porcie (każde pole wolne, także od lądowisk innych schodzących promów)
 /obj/structure/overmap/small_craft/transport/proc/planet_landing_spot_free(obj/structure/overmap/planet/planet, obj/docking_port/stationary/port)
-	if(!port)
+	var/list/footprint = planet_landing_footprint(port)
+	// Pole poza mapą nie trafia do obrysu: wtedy obrys jest krótszy niż kadłub
+	if(!length(footprint) || length(footprint) != length(hull_offsets))
 		return FALSE
-	if(!length(hull_offsets))
-		shuttle_cache_offsets()
-	return shuttle_spot_free(planet, port.x, port.y, port.z, shuttle_rotate_offsets(hull_offsets, port.dir))
+	for(var/turf/T as anything in footprint)
+		if(!shuttle_landing_turf_free(planet, T))
+			return FALSE
+	return TRUE
 
 /obj/structure/overmap/small_craft/transport/shuttle_launch(mob/user)
 	var/obj/structure/overmap/planet/planet = get_overmap()

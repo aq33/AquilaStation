@@ -106,6 +106,11 @@
 	TEST_ASSERT_EQUAL(sky.shown_type, stale, "A parallax update inside the recheck delay should keep the remembered planet")
 	sky.force_recheck(passenger)
 	TEST_ASSERT_EQUAL(sky.shown_type, test_planet.planet_type, "The timed recheck kept the stale planet instead of picking the nearest one")
+	// Bez klienta pętla odświeżania się kończy i puszcza postać (warstwy paralaksy zostają po wyjściu gracza)
+	sky.recheck_timer = addtimer(CALLBACK(sky, TYPE_PROC_REF(/atom/movable/screen/parallax_layer/planet_sky, recheck_sky)), 10 SECONDS, TIMER_STOPPABLE | TIMER_LOOP)
+	sky.recheck_sky()
+	TEST_ASSERT(!sky.recheck_timer, "The sky recheck loop kept running without a client")
+	TEST_ASSERT(!sky.current_mob, "The sky layer kept a reference to the mob without a client")
 
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL

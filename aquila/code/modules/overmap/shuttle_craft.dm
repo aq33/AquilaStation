@@ -62,6 +62,13 @@
 		qdel(parking, TRUE)
 	qdel(parking_reservation)
 
+/// Pola kadłuba: return_turfs() daje cały prostokąt portu, razem z rogami spoza promu (template_noop w mapie Sabre)
+/proc/shuttle_hull_turfs(obj/docking_port/mobile/shuttle)
+	. = list()
+	for(var/turf/T as anything in shuttle?.return_turfs())
+		if(shuttle.shuttle_areas[T.loc])
+			. += T
+
 /// Łączy jednostkę z wnętrzem stojącym na porcie
 /obj/structure/overmap/small_craft/transport/proc/shuttle_link(obj/docking_port/mobile/port)
 	shuttle_port = port
@@ -107,9 +114,7 @@
 /obj/structure/overmap/small_craft/transport/proc/shuttle_cache_offsets()
 	hull_offsets = list()
 	exit_offsets = list()
-	for(var/turf/T as anything in shuttle_port.return_turfs())
-		if(!shuttle_port.shuttle_areas[T.loc])
-			continue
+	for(var/turf/T as anything in shuttle_hull_turfs(shuttle_port))
 		hull_offsets += list(list(T.x - shuttle_port.x, T.y - shuttle_port.y))
 	for(var/turf/outside as anything in shuttle_exit_turfs())
 		exit_offsets += list(list(outside.x - shuttle_port.x, outside.y - shuttle_port.y))

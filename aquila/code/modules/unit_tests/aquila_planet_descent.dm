@@ -165,7 +165,43 @@
 	TEST_ASSERT(!sabre.planet_landing_spot_free(planet, fourth_port), "A lying person doesn't block the landing spot")
 	qdel(lying)
 	TEST_ASSERT(sabre.planet_landing_spot_free(planet, fourth_port), "The landing spot stays blocked after the person left")
+	// Blokada lądowiska trzyma przez całe dokowanie: toShuttleMove() (preflight_check, pole po polu) jej nie usuwa,
+	// a nikt nie wejdzie na zablokowane pole w czasie CHECK_TICK przed przeniesieniem kadłuba
+	var/turf/probe = fourth_footprint[1]
+	var/obj/effect/planet_landing_blocker/blocker = new(probe)
+	probe.toShuttleMove(shuttle_hull_turfs(shuttle_port)[1], MOVE_TURF, shuttle_port)
+	TEST_ASSERT(!QDELETED(blocker), "The docking deleted a landing blocker before the hull arrived")
+	var/turf/beside
+	for(var/dir in GLOB.cardinals)
+		var/turf/T = get_step(probe, dir)
+		if(T && !T.density && !(T in fourth_footprint))
+			beside = T
+			break
+	TEST_ASSERT(beside, "No free tile next to the landing spot")
+	var/mob/living/carbon/human/walker = allocate(/mob/living/carbon/human, beside)
+	walker.Move(probe, get_dir(beside, probe))
+	TEST_ASSERT(get_turf(walker) != probe, "Someone walked onto a blocked landing tile during docking")
+	qdel(blocker)
 	qdel(fourth_port, TRUE)
+
+	// Kurz przy przyziemieniu: w kolorze chmur planety, gdy typ go ustawia (wulkaniczna: popiół), inaczej piaskowy
+	var/turf/dust_turf = planet.surface.landing_zones[1]
+	planet_touchdown_effects(null, planet, list(dust_turf))
+	var/obj/effect/temp_visual/small_smoke/halfsecond/dust = locate() in dust_turf
+	TEST_ASSERT(dust, "No dust at touchdown")
+	TEST_ASSERT_EQUAL(dust.color, planet.planet_type.sky_cloud_color, "Touchdown dust doesn't take the planet's ash colour")
+	var/datum/planet_type/lava_type = planet.planet_type
+	var/old_cloud_color = lava_type.sky_cloud_color
+	lava_type.sky_cloud_color = "#ffffff"
+	qdel(dust)
+	planet_touchdown_effects(null, planet, list(dust_turf))
+	dust = null
+	for(var/obj/effect/temp_visual/small_smoke/halfsecond/fresh in dust_turf)
+		if(!QDELETED(fresh))
+			dust = fresh
+	lava_type.sky_cloud_color = old_cloud_color
+	TEST_ASSERT_EQUAL(dust?.color, "#c8b890", "Touchdown dust on a planet with plain white clouds isn't sandy")
+	qdel(dust)
 
 	TEST_ASSERT(sabre.shuttle_land(host, home), "The Sabre didn't land back home")
 	shuttle_port.jumpToNullSpace()

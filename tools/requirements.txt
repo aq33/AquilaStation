@@ -1,7 +1,6 @@
 pygit2==1.11.1
 bidict==0.22.1
 Pillow==12.3.0
-numpy==2.2.6 # tools/planets/sky_planets.py
 
 # changelogs
 PyYaml==6.0

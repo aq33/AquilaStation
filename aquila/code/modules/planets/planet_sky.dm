@@ -76,16 +76,21 @@
 	var/list/surface_strips
 	var/list/cloud_strips
 
-/atom/movable/screen/parallax_layer/planet_sky/Initialize(mapload, view)
-	. = ..()
-	recheck_timer = addtimer(CALLBACK(src, PROC_REF(recheck_sky)), PLANET_SKY_RECHECK_DELAY, TIMER_STOPPABLE | TIMER_LOOP)
-
-/// Okręt mógł podlecieć do innej planety układu, a pasażer stoi przy oknie: wtedy update_parallax() nic nie woła
+/// Okręt mógł podlecieć do innej planety układu, a pasażer stoi przy oknie: wtedy update_parallax() nic nie woła.
+/// Bez klienta timer się kończy (rdzeń nie usuwa warstw paralaksy po wyjściu gracza, a pętla trzymałaby warstwę
+/// i postać na zawsze); następne update_status() uruchamia go znowu
 /atom/movable/screen/parallax_layer/planet_sky/proc/recheck_sky()
 	var/mob/M = current_mob
 	if(QDELETED(M) || !(src in M.client?.parallax_layers))
+		stop_recheck()
 		return
 	force_recheck(M)
+
+/atom/movable/screen/parallax_layer/planet_sky/proc/stop_recheck()
+	if(recheck_timer)
+		deltimer(recheck_timer)
+		recheck_timer = null
+	current_mob = null
 
 /// Świeży wybór planety z pominięciem zapamiętanego (timer nie trafia w next_check, więc bez tego wynik
 /// mógł być starszy niż PLANET_SKY_RECHECK_DELAY)
@@ -94,9 +99,7 @@
 	update_status(M)
 
 /atom/movable/screen/parallax_layer/planet_sky/Destroy()
-	if(recheck_timer)
-		deltimer(recheck_timer)
-		recheck_timer = null
+	stop_recheck()
 	vis_contents.Cut()
 	if(body)
 		body.vis_contents.Cut()
@@ -115,6 +118,8 @@
 
 /atom/movable/screen/parallax_layer/planet_sky/update_status(mob/M)
 	. = ..()
+	if(!recheck_timer && M?.client)
+		recheck_timer = addtimer(CALLBACK(src, PROC_REF(recheck_sky)), PLANET_SKY_RECHECK_DELAY, TIMER_STOPPABLE | TIMER_LOOP)
 	var/datum/planet_type/wanted = find_sky_planet_type(M)
 	if(wanted != shown_type)
 		show_planet(wanted)

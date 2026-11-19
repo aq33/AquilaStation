@@ -10,7 +10,8 @@ Wynik:
   aquila/icons/effects/planet_sky_streaks.dmi  (480 × 480) smugi pędu przy wejściu w atmosferę
   aquila/icons/effects/planet_descent.dmi      (32 × 32) wypełnienie nieba, cień promu, żar przy kadłubie
 
-Uruchomienie z katalogu repo: python tools/planets/sky_planets.py [--podglad katalog]
+Uruchomienie z katalogu repo: python tools/planets/sky_planets.py [--podglad katalog] (potrzebuje numpy, którego nie ma
+w tools/requirements.txt: python -m pip install numpy==2.2.6)
 --podglad zapisuje też PNG każdej planety złożonej tak jak w grze (do oceny bez uruchamiania gry).
 Wszystko jest generowane z ziarna, więc kolejne uruchomienie daje te same pliki.
 """
@@ -19,7 +20,10 @@ import math
 import os
 import sys
 
-import numpy as np
+try:
+	import numpy as np
+except ImportError:  # celowo poza tools/requirements.txt: generator uruchamia się ręcznie, CI go nie potrzebuje
+	sys.exit('Generator potrzebuje numpy: python -m pip install numpy==2.2.6')
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import dmilib  # noqa: E402
