@@ -946,12 +946,12 @@
 	id = "snake";
 	name = "AP shells"
 	},
-/obj/item/ship_weapon/ammunition/naval_artillery/ap,
-/obj/item/ship_weapon/ammunition/naval_artillery/ap,
-/obj/item/ship_weapon/ammunition/naval_artillery/ap,
-/obj/item/ship_weapon/ammunition/naval_artillery/ap,
-/obj/item/ship_weapon/ammunition/naval_artillery/ap,
-/obj/item/ship_weapon/ammunition/naval_artillery/ap,
+/obj/item/ship_weapon/ammunition/naval_artillery/factory/ap,
+/obj/item/ship_weapon/ammunition/naval_artillery/factory/ap,
+/obj/item/ship_weapon/ammunition/naval_artillery/factory/ap,
+/obj/item/ship_weapon/ammunition/naval_artillery/factory/ap,
+/obj/item/ship_weapon/ammunition/naval_artillery/factory/ap,
+/obj/item/ship_weapon/ammunition/naval_artillery/factory/ap,
 /obj/machinery/camera/autoname{
 	dir = 8
 	},
