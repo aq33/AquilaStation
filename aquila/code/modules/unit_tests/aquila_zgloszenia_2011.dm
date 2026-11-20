@@ -32,4 +32,15 @@
 	objective.mob_to_recover = null
 	qdel(objective)
 
+/// AQUILA - kompaktowy HUD (widok myśliwca) tylko w małych jednostkach, za sterem okrętu klasyczny panel
+/datum/unit_test/aquila_ship_hud_choice
+
+/datum/unit_test/aquila_ship_hud_choice/Run()
+	var/mob/living/carbon/human/H = allocate(/mob/living/carbon/human)
+	var/obj/structure/overmap/main = SSstar_system.find_main_overmap()
+	TEST_ASSERT(main, "No main ship")
+	var/obj/structure/overmap/small_craft/combat/light/fighter = allocate(/obj/structure/overmap/small_craft/combat/light)
+	TEST_ASSERT(!H.aq_wants_compact_ship_hud(main), "The ship's helm gave the compact fighter HUD")
+	TEST_ASSERT(H.aq_wants_compact_ship_hud(fighter), "A fighter didn't give the compact HUD by default")
+
 #undef TEST_ASSERT
