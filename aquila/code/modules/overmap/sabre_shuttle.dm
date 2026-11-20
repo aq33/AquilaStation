@@ -184,6 +184,22 @@
 	dir = newdir
 	transform = dropship_turf_transform(dir)
 
+/// Kadłub Sabre nie zasłania widoku: z kokpitu zawsze widać, co jest wokół promu (niebo, planetę przy zejściu na
+/// powierzchnię, hangar), jak w widoku z góry na cały statek. Bez tego z wnętrza widać tylko stożki przez okna
+/turf/closed/indestructible/dropship/sabre_hull
+	opacity = FALSE
+
+/// Szyby kokpitu Sabre (osobna nazwa i opis; widać przez nie tak jak przez resztę kadłuba)
+/turf/closed/indestructible/dropship/sabre_window
+	name = "szyba kokpitu"
+	desc = "Pancerna szyba w kadłubie Sabre. Widać przez nią, co dzieje się na zewnątrz."
+	opacity = FALSE
+
+/// Boczne okna w burtach kokpitu, w stylu szyb z narożników
+/turf/closed/indestructible/dropship/sabre_window/side
+	icon = 'aquila/icons/turf/sabre_window.dmi'
+	icon_state = "left"
+
 // Skrzydła (boczne gondole) to podłoga: można po nich podejść do wrót kokpitu i kliknięciem wejść do środka
 
 /turf/open/indestructible/dropship/sabre_wing
@@ -204,6 +220,7 @@
 
 /turf/closed/indestructible/dropship/entry/sabre
 	desc = "Masywne wrota. W doku wychodzi się nimi na zewnątrz, w locie są zablokowane."
+	opacity = FALSE // jak cały kadłub Sabre (sabre_hull)
 
 /turf/closed/indestructible/dropship/entry/sabre/Bumped(atom/movable/AM)
 	var/area/shuttle/sabre/A = loc
@@ -246,6 +263,7 @@
 
 /turf/closed/indestructible/dropship/sabre_hatch
 	name = "właz Sabre"
+	opacity = FALSE // jak cały kadłub Sabre (sabre_hull)
 	desc = "Właz w gondoli Sabre. Pustą ręką się wchodzi, a tu też montuje się części i naprawia kadłub. Paliwo (plazmę) wlewa się kanistrem w ładowni."
 
 /turf/closed/indestructible/dropship/sabre_hatch/proc/get_sabre()

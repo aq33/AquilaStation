@@ -93,6 +93,10 @@ GLOBAL_LIST_INIT(planet_type_prototypes, init_planet_type_prototypes())
 	return open_turf.planet_landing_hazard
 
 /datum/planet_type/lava
+	sky_state = "lava"
+	sky_clouds = "clouds_wisps"
+	sky_cloud_color = "#5a4a48"
+	sky_atmosphere_color = "#ff7a3a"
 	name = "planeta wulkaniczna"
 	desc = "Gorący świat bazaltu i rzek lawy, spowity popiołem. Bogaty w rudy, ale burze popiołu zabijają każdego bez osłony."
 	overmap_icon_state = "planet_red"

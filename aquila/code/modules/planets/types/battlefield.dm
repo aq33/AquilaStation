@@ -3,6 +3,10 @@
 // w ruins/planet_waste_ruins.dm. W Shiptest pole bitwy nie ma fauny poza żyłami i rzadkimi tarantulami w błocie.
 
 /datum/planet_type/battlefield
+	sky_state = "battlefield"
+	sky_clouds = "clouds_wisps"
+	sky_cloud_color = "#6a645a"
+	sky_atmosphere_color = "#c8b890"
 	name = "pole bitwy"
 	desc = "Wyniszczony świat po dawnej wojnie: zryta lejami ziemia, martwe lasy, skażona woda i wraki maszyn. Pod spękanym dnem wyschniętego morza leżą złoża rud."
 	overmap_icon_state = "planet_night"
