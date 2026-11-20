@@ -47,8 +47,7 @@ GLOBAL_LIST_INIT(mission_choice_names, list(
 	"derelict" = "Opuszczona stacja",
 	"planet_survey" = "Badanie planety",
 	"planet_evacuation" = "Ewakuacja kolonii",
-	"planet_drill" = "Próbki geologiczne",
-	"planet_deep_vein" = "Głęboki odwiert",
+	"planet_drill" = "Odwiert",
 ))
 
 /datum/controller/subsystem/overmap_mode/Initialize(start_timeofday)

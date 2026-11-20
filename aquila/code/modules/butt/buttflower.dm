@@ -21,7 +21,6 @@
 	taste_description = "bąki"
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_FUN | CHEMICAL_RNG_BOTANY
 	overdose_threshold = 30
-	addiction_threshold = 50
 
 /// Fart if we have a butt, otherwise suffer for it
 /datum/reagent/drug/fartium/proc/gas_up(mob/living/M, chance, toxdamage, pain_message)
@@ -40,8 +39,4 @@
 
 /datum/reagent/drug/fartium/overdose_process(mob/living/M)
 	gas_up(M, 9, 2, "Trochę boli cię brzuch, gdy narasta w tobie ciśnienie.")
-	return ..()
-
-/datum/reagent/drug/fartium/addiction_act_stage1(mob/living/M)
-	gas_up(M, 11, 3, "Boli cię brzuch, gdy narasta w tobie ciśnienie.")
 	return ..()

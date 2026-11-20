@@ -820,8 +820,7 @@
 		for(var/obj/item/restraints/R in contents) //actually remove cuffs from inventory
 			qdel(R)
 		update_handcuffed()
-		if(reagents)
-			reagents.addiction_list = list()
+		// AQ EDIT - usunięte czyszczenie reagents.addiction_list z Bee (uzależnienia z tg w umyśle)
 	cure_all_traumas(TRAUMA_RESILIENCE_MAGIC)
 	..()
 	// heal ears after healing traits, since ears check TRAIT_DEAF trait

@@ -87,7 +87,14 @@
 	description = "Monitor przybrzeżny ostrzeliwuje opancerzony bunkier. Potrzebne są przeciwpancerne pociski artylerii pokładowej."
 	reward = 3000
 	required_count = 3
-	wanted_types = list(/obj/item/ship_weapon/ammunition/naval_artillery/ap)
+	wanted_types = list(/obj/item/ship_weapon/ammunition/naval_artillery)
+
+/// Pocisk AP z kuźni (wypełnienie przeciwpancerne) albo fabryczny AP z cargo; stary naval_artillery/ap nie powstaje
+/datum/bounty/item/munitions/ap_shells/applies_to(obj/O)
+	if(!..())
+		return FALSE
+	var/datum/component/forged_munition/forged = O.GetComponent(/datum/component/forged_munition)
+	return istype(forged?.filler, /datum/munition_filler/ap)
 
 /datum/bounty/item/munitions/uranium_railgun
 	name = "Uranowe pociski do railguna"

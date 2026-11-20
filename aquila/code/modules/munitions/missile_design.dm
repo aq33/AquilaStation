@@ -1,13 +1,10 @@
 // AQUILA - projektowanie pocisków (rework systemów okrętu, etap D; inspiracja: Nebulous: Fleet Command).
-// Rework amunicji: stół projektowy w zbrojowni przerabia części torped i rakiet. Na stół kładzie się układ napędowy
-// albo układ naprowadzania, a stół ustawia go według projektu (silnik: sprint, standardowy, marszowy; naprowadzanie).
-// Przy składaniu gotowa amunicja bierze projekt z części w obudowie (apply_missile_parts_design) i przy strzale
-// przekazuje go pociskowi tą samą drogą co kuźnia amunicji (transfer_forged_munition). Głowica zostaje jak dotąd.
+// Silnik (sprint, standardowy, marszowy) i naprowadzanie ustawia się multitoolem na torpedzie albo rakiecie, także
+// na obudowie w trakcie składania (menu radialne). Obudowa przekazuje ustawienie gotowej amunicji przy składaniu,
+// a amunicja pociskowi przy strzale tą samą drogą co kuźnia amunicji (transfer_forged_munition). Głowica zostaje jak dotąd.
 // Naprowadzanie w locie: podczerwień gubi zimny cel i cel w masce, radar daje się ściągnąć wabikowi,
 // "z okrętu" leci na cel główny operatora rozpoznania, a pocisk bez naprowadzania leci prosto.
 
-/// Najwięcej zapisanych projektów pocisków (lista jest wspólna dla wszystkich stołów i żyje całą rundę)
-#define MISSILE_DESIGNS_MAX 30
 #define MISSILE_SEEKER_NONE "brak"
 #define MISSILE_SEEKER_IR "podczerwień"
 #define MISSILE_SEEKER_RADAR "radar"
@@ -33,23 +30,19 @@ GLOBAL_LIST_INIT(missile_design_options, list(
 	)
 ))
 
-/// Projekty zapisane na stołach w tej rundzie
-GLOBAL_LIST_EMPTY(missile_designs)
-
 /datum/missile_design
-	/// Trwały numer zapisanego projektu (okno wczytuje i usuwa po nim, a nie po pozycji na liście)
-	var/id = 0
-	var/static/next_id = 0
-	var/name = "nowy projekt"
 	var/engine = "standardowy"
 	var/seeker = MISSILE_SEEKER_RADAR
 
 /datum/missile_design/proc/copy()
 	var/datum/missile_design/D = new
-	D.name = name
 	D.engine = engine
 	D.seeker = seeker
 	return D
+
+/// Czy to ustawienie fabryczne (standardowy silnik, radar): takie nie zmienia pocisku
+/datum/missile_design/proc/is_default()
+	return engine == initial(engine) && seeker == initial(seeker)
 
 /// Mnożnik danej cechy ze wszystkich slotów
 /datum/missile_design/proc/mult(stat)
@@ -59,7 +52,7 @@ GLOBAL_LIST_EMPTY(missile_designs)
 		if(option && !isnull(option[stat]))
 			. *= option[stat]
 
-/// Parametry względem zwykłej torpedy/rakiety, do okna i opisu
+/// Parametry względem zwykłej torpedy/rakiety, do opisu
 /datum/missile_design/proc/summary()
 	return list(
 		"speed" = round(1 / mult("speed"), 0.01),
@@ -77,10 +70,11 @@ GLOBAL_LIST_EMPTY(missile_designs)
 	/// Czy radar pocisku już dał się ściągnąć wabikowi (raz)
 	var/decoy_checked = FALSE
 
+/// Bez projektu komponent zaczyna od ustawienia fabrycznego (multitool zmienia je potem pozycja po pozycji)
 /datum/component/missile_design/Initialize(datum/missile_design/design)
-	if(!isatom(parent) || !design)
+	if(!isatom(parent))
 		return COMPONENT_INCOMPATIBLE
-	src.design = design.copy()
+	src.design = design ? design.copy() : new /datum/missile_design
 	if(istype(parent, /obj/item/projectile/guided_munition))
 		apply_to_projectile(parent)
 	else
@@ -104,7 +98,7 @@ GLOBAL_LIST_EMPTY(missile_designs)
 /datum/component/missile_design/proc/on_examine(datum/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
 	var/list/s = design.summary()
-	examine_list += "<span class='notice'>Projekt z części: silnik [design.engine], naprowadzanie: [design.seeker].</span>"
+	examine_list += "<span class='notice'>Ustawienie: silnik [design.engine], naprowadzanie: [design.seeker].</span>"
 	examine_list += "<span class='notice'>Prędkość ×[s["speed"]], zasięg ×[s["range"]], odporność ×[s["integrity"]].</span>"
 
 /// Cel naprowadzania co krok (process_homing). Zwraca nowy cel albo null, gdy pocisk traci namiar.
@@ -169,237 +163,75 @@ GLOBAL_LIST_EMPTY(missile_designs)
 		var/obj/item/projectile/P = target
 		new_md?.launcher = P.overmap_firer
 
-/// Projekt z przerobionych części w obudowie: niestandardowy silnik albo naprowadzanie dają gotowej amunicji projekt
-/proc/apply_missile_parts_design(atom/casing, atom/target)
-	if(!casing || !target)
-		return
-	var/datum/missile_design/D = new
-	var/changed = FALSE
-	for(var/obj/item/ship_weapon/parts/missile/part in casing)
-		var/slot = part.aq_design_slot()
-		if(!slot || !part.aq_design_option)
-			continue
-		D.vars[slot] = part.aq_design_option
-		if(part.aq_design_option != part.aq_default_option())
-			changed = TRUE
-	if(changed)
-		D.name = "silnik [D.engine], [D.seeker]"
-		var/datum/component/missile_design/new_md = target.AddComponent(/datum/component/missile_design, D)
-		if(istype(target, /obj/item/projectile))
-			var/obj/item/projectile/P = target
-			new_md?.launcher = P.overmap_firer
-	qdel(D)
+// --- Ustawianie multitoolem ---
 
-// --- Części przerabiane na stole ---
-
-/obj/item/ship_weapon/parts/missile
-	/// Opcja z projektu ustawiona na stole projektowym (null = część, której stół nie przerabia)
-	var/aq_design_option
-
-/obj/item/ship_weapon/parts/missile/Initialize(mapload)
-	. = ..()
-	if(aq_design_slot() && !aq_design_option)
-		aq_design_option = aq_default_option()
-
-/// Pozycja projektu, którą zmienia ta część ("engine", "seeker") albo null
-/obj/item/ship_weapon/parts/missile/proc/aq_design_slot()
-	return null
-
-/obj/item/ship_weapon/parts/missile/proc/aq_default_option()
-	return null
-
-/obj/item/ship_weapon/parts/missile/proc/set_design_option(option)
-	aq_design_option = option
-	name = option == aq_default_option() ? initial(name) : "[initial(name)] ([option])"
-
-/obj/item/ship_weapon/parts/missile/examine(mob/user)
-	. = ..()
-	if(aq_design_slot())
-		. += "<span class='notice'>Ustawienie: [aq_design_option]. Stół projektowy pocisków może je zmienić.</span>"
-
-/obj/item/ship_weapon/parts/missile/propulsion_system/aq_design_slot()
-	return "engine"
-
-/obj/item/ship_weapon/parts/missile/propulsion_system/aq_default_option()
-	return "standardowy"
-
-/obj/item/ship_weapon/parts/missile/guidance_system/aq_design_slot()
-	return "seeker"
-
-/obj/item/ship_weapon/parts/missile/guidance_system/aq_default_option()
-	return MISSILE_SEEKER_RADAR
-
-// --- Stół projektowy ---
-
-/obj/machinery/missile_design_table
-	name = "stół projektowy pocisków"
-	desc = "Komputer projektowy zbrojowni: przerabia układ napędowy i układ naprowadzania torped i rakiet według projektu. Połóż część na stole, wybierz ustawienie i kliknij „Przerób”. Alt+klik zdejmuje część."
-	icon = 'icons/obj/machines/research.dmi'
-	icon_state = "tdoppler"
-	density = TRUE
-	anchored = TRUE
-	idle_power_usage = 100
-	req_one_access = list(ACCESS_MUNITIONS)
-	/// Projekt, nad którym ktoś pracuje
-	var/datum/missile_design/draft
-	/// Kiedy stół skończy przerabiać część
-	var/print_ready = 0
-	/// Część leżąca na stole
-	var/obj/item/ship_weapon/parts/missile/loaded_part
-
-/obj/machinery/missile_design_table/Initialize(mapload)
-	. = ..()
-	draft = new
-
-/obj/machinery/missile_design_table/Destroy()
-	QDEL_NULL(draft)
-	if(loaded_part)
-		loaded_part.forceMove(drop_location())
-		loaded_part = null
-	return ..()
-
-/obj/machinery/missile_design_table/Exited(atom/movable/gone, direction)
-	. = ..()
-	if(gone == loaded_part)
-		loaded_part = null
-		SStgui.update_uis(src)
-
-/obj/machinery/missile_design_table/examine(mob/user)
-	. = ..()
-	. += "<span class='notice'>Na stole: [loaded_part ? loaded_part : "nic"].</span>"
-
-/obj/machinery/missile_design_table/attackby(obj/item/I, mob/living/user, params)
-	var/obj/item/ship_weapon/parts/missile/part = I
-	if(!istype(part) || !part.aq_design_slot())
-		return ..()
-	if(world.time < print_ready)
-		to_chat(user, "<span class='warning'>[src] jeszcze przerabia część.</span>")
-		return TRUE
-	if(!user.transferItemToLoc(part, src))
-		return TRUE
-	var/obj/item/old_part = loaded_part
-	loaded_part = part
-	if(old_part)
-		old_part.forceMove(drop_location())
-		user.put_in_hands(old_part)
-	to_chat(user, "<span class='notice'>Kładziesz [part] na [src].</span>")
-	SStgui.update_uis(src)
+/obj/item/ship_weapon/ammunition/torpedo/multitool_act(mob/living/user, obj/item/I)
+	aq_missile_design_multitool(user, I)
 	return TRUE
 
-/obj/machinery/missile_design_table/AltClick(mob/living/user)
-	if(!istype(user) || !user.canUseTopic(src, BE_CLOSE))
-		return
-	eject_part(user)
+/obj/item/ship_weapon/ammunition/missile/multitool_act(mob/living/user, obj/item/I)
+	aq_missile_design_multitool(user, I)
+	return TRUE
 
-/obj/machinery/missile_design_table/proc/eject_part(mob/living/user)
-	if(!loaded_part)
-		return
-	if(world.time < print_ready)
-		to_chat(user, "<span class='warning'>[src] jeszcze przerabia część.</span>")
-		return
-	var/obj/item/part = loaded_part
-	loaded_part = null
-	part.forceMove(drop_location())
-	user?.put_in_hands(part)
+/obj/item/ship_weapon/ammunition/torpedo/examine(mob/user)
+	. = ..()
+	. += "<span class='notice'>Multitool ustawia silnik i naprowadzanie.</span>"
 
-/obj/machinery/missile_design_table/ui_interact(mob/user, datum/tgui/ui)
-	ui = SStgui.try_update_ui(user, src, ui)
-	if(!ui)
-		ui = new(user, src, "MissileDesigner", name)
-		ui.open()
+/obj/item/ship_weapon/ammunition/missile/examine(mob/user)
+	. = ..()
+	. += "<span class='notice'>Multitool ustawia silnik i naprowadzanie.</span>"
 
-/obj/machinery/missile_design_table/ui_data(mob/user)
-	var/list/designs = list()
-	for(var/datum/missile_design/D as anything in GLOB.missile_designs)
-		designs += list(list("index" = D.id, "name" = D.name, "engine" = D.engine, "seeker" = D.seeker))
-	var/list/options = list()
+/// Menu radialne: silnik (3 opcje) i naprowadzanie (4 opcje). Jak dawny stół projektowy: tylko z dostępem do zbrojowni.
+/obj/item/ship_weapon/ammunition/proc/aq_missile_design_multitool(mob/living/user, obj/item/I)
+	if(!aq_can_tune_missile(user))
+		to_chat(user, "<span class='warning'>Ustawianie pocisku wymaga dostępu do zbrojowni.</span>")
+		return
+	aq_apply_missile_choice(user, I, aq_pick_missile_option(user, I))
+
+/// Czy ten ktoś może ustawiać pociski: dostęp do zbrojowni na identyfikatorze albo silikon
+/obj/item/ship_weapon/ammunition/proc/aq_can_tune_missile(mob/living/user)
+	if(issilicon(user))
+		return TRUE
+	var/obj/item/card/id/id = user.get_idcard(TRUE)
+	return istype(id) && (ACCESS_MUNITIONS in id.access)
+
+/// Wybór z menu po jego zamknięciu: menu czeka na gracza, więc wszystko sprawdza się jeszcze raz. TRUE, gdy ustawiono.
+/obj/item/ship_weapon/ammunition/proc/aq_apply_missile_choice(mob/living/user, obj/item/I, list/choice)
+	if(!choice || QDELETED(src) || !user.is_holding(I) || !user.Adjacent(src) || !aq_can_tune_missile(user))
+		return FALSE
+	if(!aq_set_missile_option(choice[1], choice[2]))
+		return FALSE
+	I.play_tool_sound(src)
+	var/datum/component/missile_design/MD = GetComponent(/datum/component/missile_design)
+	var/engine = MD ? MD.design.engine : "standardowy"
+	var/seeker = MD ? MD.design.seeker : MISSILE_SEEKER_RADAR
+	to_chat(user, "<span class='notice'>Ustawiasz [src]: silnik [engine], naprowadzanie: [seeker].</span>")
+	return TRUE
+
+/// Wybór z menu radialnego: list(slot, opcja) albo null
+/obj/item/ship_weapon/ammunition/proc/aq_pick_missile_option(mob/living/user, obj/item/I)
+	var/static/list/slot_names = list("engine" = "silnik", "seeker" = "naprowadzanie")
+	var/static/list/slot_icons = list("engine" = "propulsion", "seeker" = "guidance")
+	var/list/items = list()
+	var/list/picks = list()
 	for(var/slot in GLOB.missile_design_options)
-		var/list/names = list()
 		for(var/option in GLOB.missile_design_options[slot])
-			names += option
-		options[slot] = names
-	var/list/part
-	if(loaded_part)
-		var/slot = loaded_part.aq_design_slot()
-		part = list("name" = "[loaded_part]", "slot" = slot, "option" = loaded_part.aq_design_option, "target" = draft.vars[slot])
-	return list(
-		"draft" = list("name" = draft.name, "engine" = draft.engine, "seeker" = draft.seeker, "summary" = draft.summary()),
-		"designs" = designs,
-		"options" = options,
-		"part" = part,
-		"printing" = world.time < print_ready,
-		"can_use" = allowed(user)
-	)
+			var/label = "[slot_names[slot]]: [option]"
+			items[label] = image(icon = 'nsv13/icons/obj/munitions.dmi', icon_state = slot_icons[slot])
+			picks[label] = list(slot, option)
+	var/label = show_radial_menu(user, src, items, require_near = TRUE, tooltips = TRUE)
+	return label ? picks[label] : null
 
-/obj/machinery/missile_design_table/ui_act(action, params)
-	. = ..()
-	if(.)
-		return
-	if(!allowed(usr))
-		to_chat(usr, "<span class='warning'>Brak dostępu do zbrojowni.</span>")
-		return TRUE
-	switch(action)
-		if("set_slot")
-			var/slot = params["slot"]
-			if(!(slot in GLOB.missile_design_options) || !(params["value"] in GLOB.missile_design_options[slot]))
-				return TRUE
-			draft.vars[slot] = params["value"]
-		if("rename")
-			var/new_name = reject_bad_name(params["name"], allow_numbers = TRUE, max_length = 32)
-			if(new_name)
-				draft.name = new_name
-		if("save")
-			if(length(GLOB.missile_designs) >= MISSILE_DESIGNS_MAX)
-				to_chat(usr, "<span class='warning'>Pamięć stołu jest pełna ([MISSILE_DESIGNS_MAX] projektów). Usuń któryś projekt.</span>")
-				return TRUE
-			var/datum/missile_design/saved = draft.copy()
-			saved.id = ++saved.next_id
-			GLOB.missile_designs += saved
-		if("load")
-			var/datum/missile_design/D = find_saved_design(params["index"])
-			if(D)
-				QDEL_NULL(draft)
-				draft = D.copy()
-		if("delete")
-			var/datum/missile_design/D = find_saved_design(params["index"])
-			if(D)
-				GLOB.missile_designs -= D
-				qdel(D)
-		if("rework")
-			if(world.time < print_ready || !powered() || !loaded_part)
-				return TRUE
-			var/slot = loaded_part.aq_design_slot()
-			var/option = draft.vars[slot]
-			if(option == loaded_part.aq_design_option)
-				to_chat(usr, "<span class='notice'>[loaded_part] ma już to ustawienie.</span>")
-				return TRUE
-			print_ready = world.time + 5 SECONDS
-			addtimer(CALLBACK(src, PROC_REF(finish_rework), loaded_part, option), 5 SECONDS)
-			playsound(src, 'sound/machines/terminal_processing.ogg', 50, TRUE)
-		if("eject")
-			eject_part(usr)
+/// Ustawia silnik albo naprowadzanie. Ustawienie fabryczne zdejmuje projekt, żeby amunicja zachowywała się jak dotąd.
+/obj/item/ship_weapon/ammunition/proc/aq_set_missile_option(slot, option)
+	if(!(slot in GLOB.missile_design_options) || !(option in GLOB.missile_design_options[slot]))
+		return FALSE
+	var/datum/component/missile_design/MD = GetComponent(/datum/component/missile_design) || AddComponent(/datum/component/missile_design)
+	MD.design.vars[slot] = option
+	if(MD.design.is_default())
+		qdel(MD)
 	return TRUE
 
-/// Zapisany projekt po trwałym numerze
-/obj/machinery/missile_design_table/proc/find_saved_design(id)
-	id = text2num(id)
-	for(var/datum/missile_design/D as anything in GLOB.missile_designs)
-		if(D.id == id)
-			return D
-	return null
-
-/obj/machinery/missile_design_table/proc/finish_rework(obj/item/ship_weapon/parts/missile/part, option)
-	if(QDELETED(src))
-		return
-	if(QDELETED(part) || part != loaded_part)
-		SStgui.update_uis(src)
-		return
-	part.set_design_option(option)
-	playsound(src, 'sound/machines/ping.ogg', 50, TRUE)
-	visible_message("<span class='notice'>[src] kończy przerabiać [part].</span>")
-	SStgui.update_uis(src) // okno nie ma autoupdate: bez tego przycisk zostawał na „Przerabianie...”
-
-#undef MISSILE_DESIGNS_MAX
 #undef MISSILE_SEEKER_NONE
 #undef MISSILE_SEEKER_IR
 #undef MISSILE_SEEKER_RADAR
