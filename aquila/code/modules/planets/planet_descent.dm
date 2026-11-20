@@ -398,6 +398,9 @@ GLOBAL_LIST_EMPTY(planet_descents)
 /atom/movable/screen/parallax_layer/planet_sky
 	/// Trwa pokaz zejścia albo startu: update_status nie przestawia wtedy planety
 	var/descent_active = FALSE
+	/// Odłożony koniec pokazu (po starcie albo po wygaszeniu przerwanego zejścia): nowy pokaz go anuluje, inaczej
+	/// spóźniony koniec zabrałby planetę z nowego zejścia
+	var/end_timer
 	/// Niebo w kolorze atmosfery i smugi pędu
 	var/obj/effect/overlay/planet_sky_part/sky_fill
 	var/list/streak_parts
@@ -405,6 +408,7 @@ GLOBAL_LIST_EMPTY(planet_descents)
 /atom/movable/screen/parallax_layer/planet_sky/Destroy()
 	QDEL_NULL(sky_fill)
 	QDEL_LIST(streak_parts)
+	cancel_end_timer()
 	return ..()
 
 /// Części pokazu zejścia (tworzone przy pierwszym zejściu)
@@ -448,6 +452,7 @@ GLOBAL_LIST_EMPTY(planet_descents)
 
 /// Pokaz zejścia (czasy jak w /datum/planet_descent): planeta rośnie, niebo, smugi, teren pod promem
 /atom/movable/screen/parallax_layer/planet_sky/proc/play_descent(datum/planet_type/planet_type)
+	cancel_end_timer()
 	descent_active = TRUE
 	show_planet(planet_type)
 	reset_descent_parts(planet_type)
@@ -480,6 +485,7 @@ GLOBAL_LIST_EMPTY(planet_descents)
 
 /// Pokaz startu z planety: niebo, potem planeta maleje do zwykłej wielkości za oknami
 /atom/movable/screen/parallax_layer/planet_sky/proc/play_ascent(datum/planet_type/planet_type)
+	cancel_end_timer()
 	descent_active = TRUE
 	show_planet(planet_type)
 	reset_descent_parts(planet_type)
@@ -496,12 +502,17 @@ GLOBAL_LIST_EMPTY(planet_descents)
 			animate(transform = normal, pixel_y = normal_y, alpha = 255, time = PLANET_ASCENT_ZOOM, easing = CUBIC_EASING | EASE_OUT)
 		else
 			animate(part, transform = normal, pixel_y = normal_y, alpha = 255, time = PLANET_ASCENT_ZOOM, easing = CUBIC_EASING | EASE_OUT)
-	addtimer(CALLBACK(src, PROC_REF(end_descent)), (has_air ? PLANET_ASCENT_SKY : 0) + PLANET_ASCENT_ZOOM + 1)
+	end_timer = addtimer(CALLBACK(src, PROC_REF(end_descent)), (has_air ? PLANET_ASCENT_SKY : 0) + PLANET_ASCENT_ZOOM + 1, TIMER_STOPPABLE)
 	if(!has_air)
 		return
 	sky_fill.alpha = 230
 	animate(sky_fill, time = PLANET_ASCENT_SKY / 2)
 	animate(alpha = 0, time = PLANET_ASCENT_SKY / 2)
+
+/atom/movable/screen/parallax_layer/planet_sky/proc/cancel_end_timer()
+	if(end_timer)
+		deltimer(end_timer)
+		end_timer = null
 
 /// Koniec pokazu: części pokazu znikają, a planeta wraca do zwykłego wyboru (przy następnym update_status).
 /// fade: przerwane zejście, planeta i niebo bledną w kosmos, a po chwili wraca zwykły widok
@@ -513,8 +524,10 @@ GLOBAL_LIST_EMPTY(planet_descents)
 		for(var/obj/effect/overlay/planet_sky_part/part as anything in parts)
 			if(part)
 				animate(part, alpha = 0, time = 1.2 SECONDS, easing = SINE_EASING)
-		addtimer(CALLBACK(src, PROC_REF(end_descent)), 1.3 SECONDS)
+		cancel_end_timer()
+		end_timer = addtimer(CALLBACK(src, PROC_REF(end_descent)), 1.3 SECONDS, TIMER_STOPPABLE)
 		return
+	end_timer = null
 	descent_active = FALSE
 	if(sky_fill)
 		animate(sky_fill)

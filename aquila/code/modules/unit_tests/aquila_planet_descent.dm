@@ -38,7 +38,26 @@
 	TEST_ASSERT_EQUAL(sky.shown_type, moon, "The take-off doesn't show the planet the shuttle leaves")
 	sky.end_descent()
 	TEST_ASSERT(!sky.descent_active, "The take-off show didn't end")
+
+	// Przerwane zejście blednie i kończy się z opóźnieniem; nowe zejście zaraz potem anuluje ten koniec, inaczej spóźniony
+	// koniec zabrałby planetę z nowego pokazu
+	sky.play_descent(jungle)
+	sky.end_descent(fade = TRUE)
+	TEST_ASSERT(sky.end_timer, "An aborted descent didn't schedule the end of its fade-out")
+	sky.play_descent(jungle)
+	TEST_ASSERT(!sky.end_timer, "A new descent kept the delayed end of the aborted one: it would cut the new show short")
+	TEST_ASSERT(sky.descent_active, "The new descent show didn't start after an aborted one")
+	sky.end_descent()
 	qdel(sky)
+
+	// Nakładki kopii pól w obrazie terenu: z płaszczyzny podłogi i gry przechodzą na płaszczyznę obrazu (inaczej rysowałyby
+	// się poza nim, bez maski), z innych płaszczyzn odpadają
+	var/mutable_appearance/on_game = mutable_appearance('aquila/icons/effects/planet_descent.dmi', "fill", plane = GAME_PLANE)
+	var/mutable_appearance/on_light = mutable_appearance('aquila/icons/effects/planet_descent.dmi', "fill", plane = LIGHTING_PLANE)
+	var/list/kept = planet_ground_world_layers(list(on_game, on_light))
+	TEST_ASSERT_EQUAL(length(kept), 1, "A ground picture part kept an overlay from a plane outside the world")
+	var/mutable_appearance/kept_layer = kept[1]
+	TEST_ASSERT_EQUAL(kept_layer.plane, FLOAT_PLANE, "A ground picture part kept an overlay on its own world plane, outside the picture's mask")
 
 /// AQUILA - Sabre na planecie nie dokuje od razu: schodzi, a dokuje dopiero na końcu zejścia. Zejście przerwane, bo prom
 /// nie jest już nad planetą, kończy się bez lądowania i z wolnym komputerem dokowania

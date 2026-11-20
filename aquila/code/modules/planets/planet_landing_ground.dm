@@ -220,12 +220,17 @@
 		part.underlays = planet_ground_world_layers(part.underlays)
 	return part
 
-/// Nakładki, które rysują się na płaszczyznach świata
+/// Nakładki, które rysują się na płaszczyznach świata, przeniesione na płaszczyznę obrazu terenu (FLOAT_PLANE): nakładka
+/// z jawną płaszczyzną podłogi albo gry rysowałaby się na niej, poza obrazem i bez maski
 /proc/planet_ground_world_layers(list/layers)
 	. = list()
 	for(var/mutable_appearance/over as anything in layers)
-		if(over.plane == FLOAT_PLANE || over.plane == FLOOR_PLANE || over.plane == GAME_PLANE)
+		if(over.plane == FLOAT_PLANE)
 			. += over
+		else if(over.plane == FLOOR_PLANE || over.plane == GAME_PLANE)
+			var/mutable_appearance/floated = new(over)
+			floated.plane = FLOAT_PLANE
+			. += floated
 
 /// Nakładki maski na polach kosmosu parkingu wokół kadłuba
 /datum/planet_ground_view/proc/mask()
