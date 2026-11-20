@@ -10,15 +10,13 @@
 	var/obj/item/bodypart/leg = patient.get_bodypart(BODY_ZONE_R_LEG)
 	var/obj/item/stack/medical/bandage/bandage = allocate(/obj/item/stack/medical/bandage)
 	var/obj/item/stack/medical/splint/splint = allocate(/obj/item/stack/medical/splint)
-	var/obj/item/stack/medical/splint/improvised/improvised = allocate(/obj/item/stack/medical/splint/improvised)
 
 	var/datum/wound/blunt/fracture/fracture = new()
 	fracture.apply_wound(leg, silent = TRUE)
-	TEST_ASSERT(fracture.can_treat_with(splint) && fracture.can_treat_with(improvised) && fracture.can_treat_with(bandage), "A bare fracture does not take a bandage and both splints")
+	TEST_ASSERT(fracture.can_treat_with(splint) && fracture.can_treat_with(bandage), "A bare fracture does not take a bandage and a splint")
 
-	// Bandaged: the improvised splint adds nothing, a real splint still goes on
+	// Bandaged: a splint still goes on
 	fracture.treated = TRUE
-	TEST_ASSERT(!fracture.can_treat_with(improvised), "An improvised splint goes over a bandage")
 	TEST_ASSERT(fracture.can_treat_with(splint), "A real splint does not go over a bandage")
 	var/bandaged_limp = fracture.get_limp_slowdown()
 	var/bandaged_pain = fracture.get_pain()
@@ -62,7 +60,7 @@
 	TEST_ASSERT(limp > 0, "A broken leg does not limp")
 	qdel(fracture)
 
-/// AQUILA - amputation shears, nanopaste and the reflex hammer (medical/medical_tools_med5.dm)
+/// AQUILA - amputation shears and nanopaste (medical/medical_tools_med5.dm)
 /datum/unit_test/aquila_medical_tools_med5
 
 /datum/unit_test/aquila_medical_tools_med5/Run()
@@ -102,16 +100,6 @@
 	patient.zone_selected = BODY_ZONE_R_ARM
 	paste.attack(medic, patient)
 	TEST_ASSERT(human_arm.brute_dam == organic_before, "Nanopaste healed an organic arm")
-
-	// Reflex hammer: normal, brain damage, prosthesis
-	var/mob/living/carbon/human/subject = allocate(/mob/living/carbon/human)
-	var/list/result = subject.aq_reflex_result(subject.get_bodypart(BODY_ZONE_L_LEG))
-	TEST_ASSERT(findtext(result[1], "prawidłowy"), "A healthy leg has no normal reflex: [result[1]]")
-	subject.adjustOrganLoss(ORGAN_SLOT_BRAIN, 70)
-	result = subject.aq_reflex_result(subject.get_bodypart(BODY_ZONE_L_LEG))
-	TEST_ASSERT(findtext(result[1], "mózgu"), "Brain damage does not show in the reflex: [result[1]]")
-	result = ipc.aq_reflex_result(ipc_arm)
-	TEST_ASSERT(findtext(result[1], "proteza"), "A prosthesis has a reflex: [result[1]]")
 
 /// AQUILA - AquilaMed 5 painkillers and mood medicine (reagents/chemistry/reagents/med5_reagents.dm)
 /datum/unit_test/aquila_med5_reagents
@@ -156,7 +144,7 @@
 	box.process(1)
 	TEST_ASSERT(!(heart.organ_flags & ORGAN_FROZEN), "The heart stayed frozen after the coolant ran out")
 
-/// AQUILA - asthma (medical/asthma.dm): albuterol takes the inflammation off, narrow airways choke, an attack is cured by albuterol
+/// AQUILA - asthma (medical/asthma.dm): salbutamol takes the inflammation off, narrow airways choke, an attack is cured by salbutamol
 /datum/unit_test/aquila_asthma
 
 /datum/unit_test/aquila_asthma/Run()
@@ -170,28 +158,28 @@
 	asthma.apply_breathing_effects(1)
 	TEST_ASSERT(patient.getOxyLoss() > oxy, "Narrow airways did not choke")
 
-	// A puff of albuterol takes inflammation off at once, then more while in the blood
-	var/obj/item/inhaler/albuterol/inhaler = allocate(/obj/item/inhaler/albuterol)
+	// A puff of salbutamol takes inflammation off at once, then more while in the blood
+	var/obj/item/inhaler/salbutamol/inhaler = allocate(/obj/item/inhaler/salbutamol)
 	inhaler.canister.puff(patient, patient)
-	TEST_ASSERT(patient.reagents.has_reagent(/datum/reagent/medicine/albuterol), "The inhaler gave no albuterol")
+	TEST_ASSERT(patient.reagents.has_reagent(/datum/reagent/medicine/salbutamol), "The inhaler gave no salbutamol")
 	patient.reagents.metabolize(patient, can_overdose = TRUE)
-	TEST_ASSERT(asthma.inflammation < 400, "Albuterol did not take inflammation off at once ([asthma.inflammation])")
+	TEST_ASSERT(asthma.inflammation < 400, "Salbutamol did not take inflammation off at once ([asthma.inflammation])")
 	var/after_puff = asthma.inflammation
 	asthma.last_process = world.time - 2 SECONDS
 	asthma.on_process()
-	TEST_ASSERT(asthma.inflammation < after_puff, "Albuterol in the blood did not keep taking inflammation off")
+	TEST_ASSERT(asthma.inflammation < after_puff, "Salbutamol in the blood did not keep taking inflammation off")
 
-	// An attack is cured by albuterol
+	// An attack is cured by salbutamol
 	patient.reagents.clear_reagents()
 	asthma.start_attack()
 	var/datum/disease/asthma_attack/attack = asthma.current_attack
 	TEST_ASSERT(attack && (attack in patient.diseases), "No asthma attack started")
-	patient.reagents.add_reagent(/datum/reagent/medicine/albuterol, 20)
+	patient.reagents.add_reagent(/datum/reagent/medicine/salbutamol, 20)
 	for(var/i in 1 to 200)
 		if(QDELETED(attack))
 			break
 		attack.stage_act()
-	TEST_ASSERT(QDELETED(attack), "Albuterol did not cure the asthma attack in 200 ticks")
+	TEST_ASSERT(QDELETED(attack), "Salbutamol did not cure the asthma attack in 200 ticks")
 	TEST_ASSERT(!asthma.current_attack, "The quirk still holds the cured attack")
 	qdel(asthma)
 
@@ -215,8 +203,8 @@
 
 /datum/unit_test/aquila_paramedic_kit/Run()
 	var/obj/item/storage/belt/medical/paramedic/belt = allocate(/obj/item/storage/belt/medical/paramedic)
-	TEST_ASSERT(locate(/obj/item/reagent_containers/hypospray/medipen/salacid) in belt, "The paramedic belt has no brute medipen")
-	TEST_ASSERT(locate(/obj/item/reagent_containers/hypospray/medipen/oxandrolone) in belt, "The paramedic belt has no burn medipen")
+	TEST_ASSERT(locate(/obj/item/reagent_containers/hypospray/medipen/salbutamol) in belt, "The paramedic belt has no salbutamol medipen")
+	TEST_ASSERT(locate(/obj/item/reagent_containers/hypospray/medipen/ekit) in belt, "The paramedic belt has no first aid medipen")
 	TEST_ASSERT(locate(/obj/item/flashlight/pen/paramedic) in belt, "The paramedic belt has no UV penlight")
 	var/datum/outfit/job/paramedic/outfit = new()
 	TEST_ASSERT(outfit.belt == /obj/item/storage/belt/medical/paramedic && outfit.pda_slot == ITEM_SLOT_RPOCKET, "The paramedic outfit has no belt or keeps the PDA on it")
@@ -550,8 +538,8 @@
 	patient.aq_filter_blood(0)
 	TEST_ASSERT(patient.getToxLoss() > tox, "Missing kidneys did not poison")
 
-/// AQUILA - spleen, intestines, bladder (surgery/organs/med5/abdomen.dm): the spleen releases blood and can rupture,
-/// punctured intestines let germs in and absorb worse, a ruptured bladder poisons and a catheter holds it off
+/// AQUILA - spleen, intestines, catheter (surgery/organs/med5/abdomen.dm): the spleen releases blood, heavy belly hits
+/// injure the abdominal organs until one suture surgery, damaged intestines absorb worse, a catheter drains the bladder
 /datum/unit_test/aquila_abdomen
 
 /datum/unit_test/aquila_abdomen/Run()
@@ -569,7 +557,7 @@
 	TEST_ASSERT(patient.blood_volume == after_release, "The spleen released blood again before the cooldown")
 	patient.blood_volume = BLOOD_VOLUME_NORMAL
 
-	// Heavy belly hits can rupture it: internal bleeding until stitched
+	// Heavy belly hits injure the abdominal organs: internal bleeding until stitched
 	for(var/i in 1 to 200)
 		if(spleen.ruptured)
 			break
@@ -579,20 +567,15 @@
 	var/blood = patient.blood_volume
 	spleen.on_life()
 	TEST_ASSERT(patient.blood_volume < blood, "A ruptured spleen does not bleed inside")
-	TEST_ASSERT(findtext(jointext(patient.aq_organ_scan_lines(), ""), "śledziona"), "The scanner does not show the ruptured spleen")
+	TEST_ASSERT(findtext(jointext(patient.aq_organ_scan_lines(), ""), "narządów brzucha"), "The scanner does not show the abdominal organ injury")
 	var/datum/surgery_operation/organ/repair/spleen/splenorrhaphy = new()
 	TEST_ASSERT(splenorrhaphy.state_check(spleen), "A ruptured spleen cannot be stitched")
 	splenorrhaphy.on_success(spleen, patient, null, list())
 	TEST_ASSERT(!spleen.ruptured, "Stitching did not close the spleen")
 	qdel(splenorrhaphy)
 
-	// Punctured intestines: germs in the belly, worse absorption, diarrhea
-	var/obj/item/bodypart/chest = patient.get_bodypart(BODY_ZONE_CHEST)
-	intestines.perforate()
-	TEST_ASSERT(intestines.perforated, "The intestines did not perforate")
-	var/germs = chest.aq_germs
-	intestines.on_life()
-	TEST_ASSERT(chest.aq_germs > germs, "Punctured intestines let no germs in")
+	// Damaged intestines: worse absorption, diarrhea
+	intestines.setOrganDamage(intestines.maxHealth * 0.6)
 	// Food from the stomach is partly lost, food straight into the blood (an IV) is not
 	var/obj/item/organ/stomach/stomach = patient.getorganslot(ORGAN_SLOT_STOMACH)
 	stomach.reagents.add_reagent(/datum/reagent/consumable/nutriment, 10)
@@ -601,31 +584,31 @@
 	stomach.digest()
 	var/left_stomach = stomach_before - stomach.reagents.get_reagent_amount(/datum/reagent/consumable/nutriment)
 	var/reached_blood = patient.reagents.get_reagent_amount(/datum/reagent/consumable/nutriment) - blood_before
-	TEST_ASSERT(left_stomach > 0 && reached_blood < left_stomach, "Punctured intestines absorbed everything ([reached_blood] of [left_stomach])")
+	TEST_ASSERT(left_stomach > 0 && reached_blood < left_stomach, "Damaged intestines absorbed everything ([reached_blood] of [left_stomach])")
 	var/nutrition = patient.nutrition
 	patient.adjust_nutrition(10)
 	TEST_ASSERT(patient.nutrition - nutrition == 10, "Nutrition outside the gut (IV, photosynthesis) is cut by the intestines")
 	TEST_ASSERT(patient.stool_type() >= 6, "Sick intestines give no diarrhea")
-	var/datum/surgery_operation/organ/repair/intestines/enterorrhaphy = new()
-	enterorrhaphy.on_success(intestines, patient, null, list())
-	TEST_ASSERT(!intestines.perforated, "Stitching did not close the intestines")
-	qdel(enterorrhaphy)
+	// The one abdominal surgery repairs the intestines too, and does not hurt a healthy spleen
+	spleen.setOrganDamage(0)
+	var/datum/surgery_operation/organ/repair/spleen/laparotomy = new()
+	TEST_ASSERT(laparotomy.state_check(spleen), "Damaged intestines with a healthy spleen cannot get the abdominal surgery")
+	laparotomy.on_success(spleen, patient, null, list())
+	TEST_ASSERT(intestines.damage <= intestines.maxHealth * 0.1, "The abdominal surgery did not repair the intestines")
+	TEST_ASSERT(!spleen.damage, "The abdominal surgery damaged a healthy spleen")
+	TEST_ASSERT(!laparotomy.state_check(spleen), "The abdominal surgery is still offered with every abdominal organ repaired")
+	qdel(laparotomy)
+	intestines.setOrganDamage(0)
 
-	// A ruptured bladder poisons, a catheter holds it off
-	var/obj/item/organ/bladder/bladder = patient.getorganslot(ORGAN_SLOT_BLADDER)
-	if(bladder)
-		bladder.ruptured = TRUE
-		var/tox = patient.getToxLoss()
-		bladder.on_life()
-		TEST_ASSERT(patient.getToxLoss() > tox, "A ruptured bladder does not poison")
+	// A catheter drains the bladder
+	if(patient.getorganslot(ORGAN_SLOT_BLADDER))
+		patient.urination = 10
 		var/mob/living/carbon/human/medic = allocate(/mob/living/carbon/human)
 		var/obj/item/catheter/catheter = allocate(/obj/item/catheter)
 		catheter.toolspeed = 0.01 // the test does not wait 4 seconds of game time
 		medic.set_combat_mode(FALSE)
 		catheter.attack(patient, medic)
-		tox = patient.getToxLoss()
-		bladder.on_life()
-		TEST_ASSERT(patient.getToxLoss() == tox, "A catheter did not hold off the urine poisoning")
+		TEST_ASSERT(!patient.urination, "A catheter did not drain the bladder")
 
 
 /// Adrenals hold the adrenaline reserve
@@ -691,7 +674,7 @@
 	TEST_ASSERT(istype(ipc.getorganslot(ORGAN_SLOT_LARYNX), /obj/item/organ/larynx/synthesizer), "An IPC has no speech synthesizer")
 	TEST_ASSERT(!ipc.getorganslot(ORGAN_SLOT_KIDNEYS), "An IPC has kidneys")
 
-/// A cut nerve: no pain from the limb, dropped items, no reflex; a nerve suture fixes it
+/// A cut nerve: no pain from the limb, dropped items; a nerve suture fixes it
 /datum/unit_test/aquila_nerves
 
 /datum/unit_test/aquila_nerves/Run()
@@ -722,9 +705,7 @@
 		patient.aq_handle_nerves()
 	TEST_ASSERT(held.loc != patient, "A hand with a cut nerve never let go")
 
-	// The hammer and the scanner see it
-	var/list/reflex = patient.aq_reflex_result(arm)
-	TEST_ASSERT(findtext(reflex[1], "nerw"), "The reflex hammer does not find the cut nerve")
+	// The scanner sees it
 	TEST_ASSERT(findtext(jointext(patient.get_wound_scan_lines(), ""), "Przerwany nerw"), "The scanner does not show the cut nerve")
 
 	// The suture fixes it
@@ -735,7 +716,7 @@
 	TEST_ASSERT(patient.aq_limb_pain(arm) > 0, "The arm does not hurt after the suture")
 	qdel(suture)
 
-/// Teeth: a blunt blow to the mouth knocks them out, few teeth make the speech lisp, a dentist pulls and plants them
+/// Teeth: a blunt blow to the mouth knocks them out, few teeth make the speech lisp, a dentist plants them back
 /datum/unit_test/aquila_teeth
 
 /datum/unit_test/aquila_teeth/Run()
@@ -766,11 +747,8 @@
 	head.aq_teeth = 32
 	TEST_ASSERT(!findtext(patient.treat_message("szansa"), "ś"), "A full mouth lisps")
 
-	// The dentist pulls a tooth and plants it back
-	var/datum/surgery_operation/limb/aq_pull_tooth/pull = new()
-	pull.on_success(head, attacker, null, list())
-	TEST_ASSERT(head.aq_teeth == 31, "Pulling did not take a tooth out")
-	qdel(pull)
+	// The dentist plants a prosthetic tooth in the gap
+	head.aq_teeth = 31
 	var/obj/item/stack/teeth/prosthetic/five/prosthetic = allocate(/obj/item/stack/teeth/prosthetic/five)
 	var/datum/surgery_operation/limb/aq_insert_tooth/insert = new()
 	TEST_ASSERT(insert.state_check(head), "A missing tooth cannot be planted")
@@ -831,39 +809,6 @@
 	TEST_ASSERT(!suit.aq_jammed && suit.loc != wearer, "The rescuer did not cut the suit off")
 	TEST_ASSERT(suit.aq_cut && !(suit.clothing_flags & STOPSPRESSUREDAMAGE), "The cut suit still holds pressure")
 
-/// Embalmed organs do not rot; a husk with rezadone in the blood is rebuilt by surgery
-/datum/unit_test/aquila_embalming
-
-/datum/unit_test/aquila_embalming/Run()
-	var/mob/living/carbon/human/corpse = allocate(/mob/living/carbon/human)
-	corpse.death()
-	var/obj/item/bodypart/chest = corpse.get_bodypart(BODY_ZONE_CHEST)
-	var/obj/item/reagent_containers/glass/beaker/beaker = allocate(/obj/item/reagent_containers/glass/beaker)
-	beaker.reagents.add_reagent(/datum/reagent/toxin/formaldehyde, 20)
-	var/datum/surgery_operation/limb/aq_embalm/embalm = new()
-	TEST_ASSERT(embalm.state_check(chest) && embalm.tool_check(beaker), "A corpse cannot be embalmed")
-	embalm.on_success(chest, corpse, beaker, list())
-	qdel(embalm)
-	TEST_ASSERT(HAS_TRAIT(corpse, TRAIT_AQ_EMBALMED), "The corpse was not embalmed")
-	corpse.reagents.clear_reagents()
-	var/obj/item/organ/liver/liver = corpse.getorganslot(ORGAN_SLOT_LIVER)
-	var/damage = liver.damage
-	for(var/i in 1 to 20)
-		liver.on_death()
-	TEST_ASSERT(liver.damage == damage, "The organs of an embalmed corpse rot")
-
-	corpse.become_husk("burn")
-	var/datum/surgery_operation/limb/aq_unhusk/unhusk = new()
-	TEST_ASSERT(!unhusk.state_check(chest), "A husk is rebuilt without rezadone")
-	corpse.reagents.add_reagent(/datum/reagent/medicine/rezadone, 5)
-	TEST_ASSERT(unhusk.state_check(chest), "A husk with rezadone cannot be rebuilt")
-	unhusk.on_success(chest, corpse, null, list())
-	TEST_ASSERT(!HAS_TRAIT(corpse, TRAIT_HUSK), "The husk was not rebuilt")
-	corpse.become_husk(CHANGELING_DRAIN)
-	corpse.reagents.add_reagent(/datum/reagent/medicine/rezadone, 5)
-	TEST_ASSERT(!unhusk.state_check(chest), "A changeling husk can be rebuilt")
-	qdel(unhusk)
-
 /// The cloning console reads the mind only from a cortical stack
 /datum/unit_test/aquila_cortical_stack
 
@@ -879,7 +824,16 @@
 	TEST_ASSERT(!console.can_scan(patient.dna, patient, null, FALSE), "A body without a stack can be cloned")
 	TEST_ASSERT(console.can_scan(patient.dna, patient, null, TRUE), "A body without a stack cannot be scanned body-only")
 
-/// Bay augments: armor, muscles, aim
+/// The robot first aid kit carries nanopaste and still has room for everything it starts with
+/datum/unit_test/aquila_robot_firstaid_nanopaste
+
+/datum/unit_test/aquila_robot_firstaid_nanopaste/Run()
+	var/obj/item/storage/firstaid/robot/kit = allocate(/obj/item/storage/firstaid/robot)
+	TEST_ASSERT(locate(/obj/item/stack/medical/nanopaste) in kit, "The robot first aid kit has no nanopaste")
+	var/datum/component/storage/storage = kit.GetComponent(/datum/component/storage)
+	TEST_ASSERT(length(kit.contents) <= storage.max_items, "The robot first aid kit starts with [length(kit.contents)] items but holds [storage.max_items]")
+
+/// Bay augments: armor
 /datum/unit_test/aquila_augments
 
 /datum/unit_test/aquila_augments/Run()
@@ -891,11 +845,6 @@
 	armor.Remove(patient)
 	TEST_ASSERT(patient.physiology.armor.melee == melee, "Subdermal armor stays after removal")
 	qdel(armor)
-	var/obj/item/organ/cyberimp/chest/aq_muscle/muscle = new()
-	muscle.Insert(patient)
-	TEST_ASSERT(patient.unarmed_damage_bonus > 0, "The muscle augment gives no punch bonus")
-	qdel(muscle)
-	TEST_ASSERT(patient.unarmed_damage_bonus == 0, "The muscle bonus stays after removal")
 
 /// A spider-bot takes an MMI, gives it a body and drops it when destroyed
 /datum/unit_test/aquila_spiderbot
@@ -994,11 +943,7 @@
 	TEST_ASSERT(!length(patient.aq_pulse_scan_lines()), "The pulse line shows through fake death")
 	REMOVE_TRAIT(patient, TRAIT_FAKEDEATH, "test")
 
-	// Albuterol is only made with heat: the survival medipen keeps its epinephrine and salbutamol
-	var/obj/item/reagent_containers/hypospray/medipen/survival/pen = allocate(/obj/item/reagent_containers/hypospray/medipen/survival)
-	TEST_ASSERT(pen.reagents.has_reagent(/datum/reagent/medicine/epinephrine) && !pen.reagents.has_reagent(/datum/reagent/medicine/albuterol), "The survival medipen turned into albuterol")
-
-	// A fist (bodypart passed as def_zone) can rupture the spleen; armor counts
+	// A fist (bodypart passed as def_zone) can injure the abdominal organs; armor counts
 	var/mob/living/carbon/human/boxed = allocate(/mob/living/carbon/human)
 	var/obj/item/organ/spleen/spleen = boxed.getorganslot(ORGAN_SLOT_SPLEEN)
 	var/obj/item/bodypart/chest = boxed.get_bodypart(BODY_ZONE_CHEST)
@@ -1051,13 +996,7 @@
 /datum/unit_test/aquila_med5_review_items/Run()
 	var/mob/living/carbon/human/patient = allocate(/mob/living/carbon/human)
 
-	// Claws survive being put away; the translator implant does not stun on EMP
-	var/obj/item/organ/cyberimp/arm/aq_claws/claws = new()
-	claws.Insert(patient)
-	var/obj/item/blades = locate(/obj/item/aq_implant_claws) in claws
-	claws.Extend(blades)
-	claws.Retract()
-	TEST_ASSERT(!QDELETED(blades) && (blades in claws), "The claws vanished when put away")
+	// The translator implant does not stun on EMP
 	var/obj/item/organ/cyberimp/aq_translator/translator = new()
 	translator.Insert(patient)
 	TEST_ASSERT(HAS_TRAIT(patient, TRAIT_AQ_TRANSLATOR), "The translator implant does not translate")

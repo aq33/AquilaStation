@@ -137,33 +137,4 @@
 	var/datum/wound/spinal/wound = patient.aq_injure_spine(WOUND_SEVERITY_CRITICAL)
 	TEST_ASSERT(istype(wound, /datum/wound/spinal/bruise), "A titanium spine broke")
 
-/// AQUILA - AquilaMed 6 paired lungs and kidneys: one side can be taken out and sewn back,
-/// one kidney filters less
-/datum/unit_test/aquila_paired_organs
-
-/datum/unit_test/aquila_paired_organs/Run()
-	var/mob/living/carbon/human/patient = allocate(/mob/living/carbon/human)
-	var/obj/item/organ/lungs/lungs = patient.getorganslot(ORGAN_SLOT_LUNGS)
-	var/obj/item/organ/kidneys/kidneys = patient.getorganslot(ORGAN_SLOT_KIDNEYS)
-	TEST_ASSERT(lungs.aq_paired && kidneys.aq_paired && lungs.aq_working_sides() == 2, "Human lungs and kidneys are not a full pair")
-
-	// Taking one kidney out: half stays, half is a new organ, joining it back makes a pair
-	var/full = kidneys.aq_efficiency()
-	var/datum/surgery_operation/organ/aq_split_pair/kidneys/split = new()
-	TEST_ASSERT(split.state_check(kidneys), "A full kidney pair cannot be split")
-	split.on_success(kidneys, patient, null, list())
-	var/obj/item/organ/kidneys/donated = locate() in get_turf(patient)
-	TEST_ASSERT(istype(donated) && donated.aq_sides == AQ_SIDE_LEFT && kidneys.aq_sides == AQ_SIDE_RIGHT, "Splitting did not leave one kidney in the body and give the other")
-	TEST_ASSERT(kidneys.aq_efficiency() < full, "One kidney filters as well as two")
-	var/datum/surgery_operation/organ/aq_join_pair/kidneys/join = new()
-	TEST_ASSERT(join.state_check(kidneys) && join.snowflake_check_availability(kidneys, patient, donated, BODY_ZONE_PRECISE_GROIN), "The missing kidney cannot be sewn back")
-	join.on_success(kidneys, patient, donated, list())
-	TEST_ASSERT(kidneys.aq_sides == AQ_SIDES_BOTH && QDELETED(donated), "Sewing the kidney back did not make a pair")
-	qdel(split)
-	qdel(join)
-
-	// Species lungs are not a pair
-	var/obj/item/organ/lungs/plasmaman/filter = allocate(/obj/item/organ/lungs/plasmaman)
-	TEST_ASSERT(!filter.aq_paired, "A plasma filter splits into halves")
-
 #undef TEST_ASSERT

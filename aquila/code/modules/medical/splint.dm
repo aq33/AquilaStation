@@ -2,7 +2,6 @@
 // Szyna: pomysł i sprite'y z Baystation12 (code/game/objects/items/stacks/medical.dm, icons/obj/medical.dmi, CC-BY-SA 3.0).
 // U nas bandaż już unieruchamia złamanie (wounds/blunt.dm). Szyna robi to lepiej: broń nie wypada z ręki, utykanie
 // spada o połowę względem bandaża, boli mniej, a kiedy kość się zrośnie, szyna spada i da się jej użyć jeszcze raz.
-// Prowizoryczna szyna (deski i taśma) unieruchamia tylko jak bandaż.
 // Złamana noga bez bandaża, szyny i kuli czasem ugina się przy chodzeniu (jak w Bay).
 // Kula: sprite'y z tgstation (icons/obj/weapons/staff.dmi, CC-BY-SA 3.0). Trzymana w ręce zmniejsza o połowę spowolnienie
 // od ran nóg (dwie kule do jednej czwartej), chroni przed upadkiem na złamanej nodze i przed podcięciem nogi
@@ -28,34 +27,15 @@
 	w_class = WEIGHT_CLASS_SMALL
 	full_w_class = WEIGHT_CLASS_SMALL
 	self_delay = 6 SECONDS
-	/// A real splint: no dropping, half the treated limp, less pain, falls off when the bone heals. FALSE works like a bandage.
-	var/proper = TRUE
 
 /obj/item/stack/medical/splint/one
 	amount = 1
-
-/obj/item/stack/medical/splint/improvised
-	name = "prowizoryczna szyna"
-	singular_name = "prowizoryczna szyna"
-	desc = "Deski przywiązane taśmą. Unieruchomi złamaną kończynę tak jak bandaż, ale nic poza tym."
-	icon_state = "tape-splint"
-	amount = 1
-	max_amount = 3
-	resistance_flags = FLAMMABLE
-	proper = FALSE
 
 /// Szyna nie leczy obrażeń: bez złamania do unieruchomienia nic nie robi
 /obj/item/stack/medical/splint/attack(mob/living/M, mob/user)
 	if(iscarbon(M) && try_treat_wound(M, user))
 		return
 	to_chat(user, "<span class='warning'>Tu nie ma złamania, które [src] mogłaby unieruchomić.</span>")
-
-/datum/crafting_recipe/improvised_splint
-	name = "prowizoryczna szyna"
-	result = /obj/item/stack/medical/splint/improvised
-	time = 4 SECONDS
-	reqs = list(/obj/item/stack/sheet/mineral/wood = 2, /obj/item/stack/sticky_tape = 2)
-	category = CAT_MISC
 
 // --- Szyna na złamaniu (wounds/blunt.dm) ---
 
@@ -64,10 +44,10 @@
 	user.visible_message("<span class='notice'>[user] zaczyna zakładać [splint.singular_name] na [limb.name] [victim].</span>", "<span class='notice'>Zaczynasz zakładać [splint.singular_name] na [limb.name] [self ? "" : "[victim]"].</span>")
 	if(!do_mob(user, victim, self ? splint.self_delay : 3 SECONDS))
 		return FALSE
-	if(QDELETED(src) || splinted || (treated && !splint.proper) || !splint.use(1))
+	if(QDELETED(src) || splinted || !splint.use(1))
 		return FALSE
 	treated = TRUE
-	splinted = splint.proper
+	splinted = TRUE
 	victim.update_wound_slowdown()
 	victim.aq_medical_overlays_changed()
 	user.visible_message("<span class='green'>[user] zakłada [splint.singular_name] na [limb.name] [victim].</span>", "<span class='green'>Zakładasz [splint.singular_name] na [limb.name] [self ? "" : "[victim]"].</span>")
