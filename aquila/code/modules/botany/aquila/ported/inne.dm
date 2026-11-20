@@ -12,8 +12,6 @@
 	mutations = list(
 		/datum/plant_feature/fruit/berry = list(/datum/plant_feature/fruit/berry/blueberry = 3),
 		/datum/plant_feature/fruit/watermelon = list(/datum/plant_feature/fruit/watermelon/honeydew = 3),
-		/datum/plant_feature/fruit/grape/green = list(/datum/plant_feature/fruit/grape/white = 2),
-		/datum/plant_feature/fruit/grape = list(/datum/plant_feature/fruit/grape/grapefruit = 3),
 		/datum/plant_feature/fruit/tea = list(/datum/plant_feature/fruit/tea/catnip = 3),
 		/datum/plant_feature/fruit/tomato/blue = list(/datum/plant_feature/fruit/tomato/quantum = 8),
 	)
@@ -23,10 +21,8 @@
 			/datum/plant_feature/fruit/orange/clockwork = list(/datum/reagent/iron = 10),
 		),
 		/datum/plant_feature/fruit/tomato = list(
-			/datum/plant_feature/fruit/tomato/tomacco = list(/datum/reagent/drug/nicotine = 10),
 			/datum/plant_feature/fruit/tomato/seething = list(/datum/reagent/phlogiston = 5),
 		),
-		/datum/plant_feature/fruit/tobacco = list(/datum/plant_feature/fruit/tobacco/twobacco = list(/datum/reagent/drug/nicotine = 20)),
 		/datum/plant_feature/fruit/soybean = list(/datum/plant_feature/fruit/soybean/jelly = list(/datum/reagent/consumable/corn_syrup = 10)),
 		/datum/plant_feature/fruit/pumpkin = list(/datum/plant_feature/fruit/pumpkin/spice = list(/datum/reagent/consumable/capsaicin = 10)),
 	)
@@ -37,19 +33,18 @@
 /obj/machinery/vending/hydroseeds/Initialize(mapload)
 	for(var/seed_type in list(
 		/obj/item/plant_seeds/preset/peach, /obj/item/plant_seeds/preset/pear, /obj/item/plant_seeds/preset/strawberry,
-		/obj/item/plant_seeds/preset/raspberry, /obj/item/plant_seeds/preset/avocado, /obj/item/plant_seeds/preset/mango,
-		/obj/item/plant_seeds/preset/kiwi, /obj/item/plant_seeds/preset/cinnamon, /obj/item/plant_seeds/preset/peppercorn,
+		/obj/item/plant_seeds/preset/avocado, /obj/item/plant_seeds/preset/mango,
+		/obj/item/plant_seeds/preset/kiwi, /obj/item/plant_seeds/preset/cinnamon,
 		/obj/item/plant_seeds/preset/ginger, /obj/item/plant_seeds/preset/turmeric, /obj/item/plant_seeds/preset/mustard,
 		/obj/item/plant_seeds/preset/lavender, /obj/item/plant_seeds/preset/mint, /obj/item/plant_seeds/preset/lettuce,
 		/obj/item/plant_seeds/preset/almond, /obj/item/plant_seeds/preset/flax, /obj/item/plant_seeds/preset/hydrangea,
-		/obj/item/plant_seeds/preset/gardenia, /obj/item/plant_seeds/preset/bird_of_paradise))
+		/obj/item/plant_seeds/preset/gardenia))
 		products[seed_type] = 3
 	for(var/seed_type in list(
 		/obj/item/plant_seeds/preset/asomna, /obj/item/plant_seeds/preset/commol, /obj/item/plant_seeds/preset/contusine,
 		/obj/item/plant_seeds/preset/nureous, /obj/item/plant_seeds/preset/venne, /obj/item/plant_seeds/preset/ipecacuanha))
 		products[seed_type] = 2
 	contraband[/obj/item/plant_seeds/preset/aconite] = 2
-	contraband[/obj/item/plant_seeds/preset/rafflesia] = 2
 	return ..()
 
 /*

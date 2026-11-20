@@ -197,7 +197,7 @@
 	name_override = "thaa'dra"
 	icon = 'aquila/icons/obj/hydroponics/ported_obce_seeds.dmi'
 	icon_state = "seed-thaadra"
-	plant_features = list(/datum/plant_feature/roots/clay, /datum/plant_feature/body/bush_vine/flower, /datum/plant_feature/fruit/thaadra)
+	plant_features = list(/datum/plant_feature/roots/clay, /datum/plant_feature/body/bush_vine, /datum/plant_feature/fruit/thaadra)
 
 /obj/item/food/grown/thaadra
 	seed = /obj/item/plant_seeds/preset/alien/thaadra
@@ -334,7 +334,7 @@
 	name_override = "Łza Messy"
 	icon = 'aquila/icons/obj/hydroponics/ported_obce_seeds.dmi'
 	icon_state = "seed-messa"
-	plant_features = list(/datum/plant_feature/roots/clay, /datum/plant_feature/body/bush_vine/flower, /datum/plant_feature/fruit/messa)
+	plant_features = list(/datum/plant_feature/roots/clay, /datum/plant_feature/body/bush_vine, /datum/plant_feature/fruit/messa)
 
 /obj/item/food/grown/messa
 	seed = /obj/item/plant_seeds/preset/alien/messa

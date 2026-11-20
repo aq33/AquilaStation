@@ -1,9 +1,9 @@
-// Botanika: rośliny przeniesione z innych kodów, mutacje od odczynnika, kompostownik, farma dżdżownic, akwakultura, kapsuła ksenoflory, nasiona z artefaktów
+// Botanika: rośliny przeniesione z innych kodów, mutacje od odczynnika, kompostownik, kapsuła ksenoflory, nasiona z artefaktów
 
 /datum/test_chamber_kit/pr_rosliny_uprawy
 	name = "Botanika: nowe rośliny i mutacje od odczynnika"
 	pr = "aq33/AquilaStation#649"
-	description = "Zestaw: tace z podłożem, łopatka, skaner roślin, nasiona z każdej grupy, zlewki z odczynnikami do mutacji. 1) Posadź nasiona (podłoże widać na paczce) i polej wodą: orzeszki, groch, róża, brzoskwinia, cynamon, zioło lecznicze asomna. Plony mają polskie nazwy i ikony; skaner pokazuje części rośliny. 2) Mutacje od odczynnika: posadź pomidor i wlej do tacy krew (krwisty pomidor) albo nikotynę (Tomacco); jabłoń ze złotem daje złote jabłko. Mutacja przychodzi losowo w ciągu około minuty i zużywa odczynnik. 3) Piec radiacyjny: groch → śmiejący się groch, malina → jeżyna. 4) Automat MegaSeed ma nowe paczki, po zhakowaniu też owoc latarniowy, kronkus, tojad, raflezję i kokę."
+	description = "Zestaw: tace z podłożem, łopatka, skaner roślin, nasiona z każdej grupy, zlewki z odczynnikami do mutacji. 1) Posadź nasiona (podłoże widać na paczce) i polej wodą: orzeszki, groch, róża, brzoskwinia, cynamon, zioło lecznicze asomna. Plony mają polskie nazwy i ikony; skaner pokazuje części rośliny. 2) Mutacje od odczynnika: posadź pomarańczę i wlej do tacy krew (krwista pomarańcza) albo żelazo (mechaniczna pomarańcza). Mutacja przychodzi losowo w ciągu około minuty i zużywa odczynnik. Stare odmiany (krwisty pomidor, złote jabłko) wychodzą już tylko z pieca. 3) Piec radiacyjny: groch → śmiejący się groch. 4) Automat MegaSeed ma nowe paczki, po zhakowaniu też owoc latarniowy, kronkus, tojad i kokę."
 	items = list(
 		/obj/item/plant_tray = 4,
 		/obj/item/substrate_bag/dirt = 2,
@@ -13,14 +13,13 @@
 		/obj/item/plant_seeds/preset/peanut = 1,
 		/obj/item/plant_seeds/preset/peas = 1,
 		/obj/item/plant_seeds/preset/rose = 1,
-		/obj/item/plant_seeds/preset/tomato = 2,
-		/obj/item/plant_seeds/preset/apple = 1,
+		/obj/item/plant_seeds/preset/orange = 2,
 		/obj/item/reagent_containers/glass/beaker/large = 3,
 	)
 
 /datum/test_chamber_kit/pr_rosliny_uprawy/setup(list/spawned, list/turfs, turf/center, mob/user)
 	. = ..()
-	var/list/fills = list(list(/datum/reagent/blood, "krew"), list(/datum/reagent/drug/nicotine, "nikotyna"), list(/datum/reagent/gold, "złoto"))
+	var/list/fills = list(list(/datum/reagent/blood, "krew"), list(/datum/reagent/iron, "żelazo"), list(/datum/reagent/consumable/milk, "mleko"))
 	var/index = 0
 	for(var/obj/item/reagent_containers/glass/beaker/large/beaker in spawned)
 		index++
@@ -33,21 +32,14 @@
 			spawned += new seed_type(center)
 
 /datum/test_chamber_kit/pr_rosliny_kompost
-	name = "Botanika: kompostownik, farma dżdżownic, akwakultura"
+	name = "Botanika: kompostownik"
 	pr = "aq33/AquilaStation#649"
-	description = "1) Kompostownik: wrzuć plony albo jedzenie (też z torby), co 20 s rozkłada do 5 rzeczy na nawóz E-Z-Nutrient; zlewką nalewasz kompost, pustą ręką wygrzebujesz worek ziemi (40 j. kompostu). Łom rozbiera skrzynię. 2) Farma dżdżownic: działa od 2 dżdżownic, nakarmiona jedzeniem co 30 s daje nawóz i nowe dżdżownice; ręką wygrzebujesz dżdżownicę. Obie konstrukcje są też w craftingu z desek. 3) Akwakultura: wysyp worek „podłoże wodne” do tacy i posadź larwy małży albo krewetek; w ziemi się nie da. Plon (zamkniętą skorupę) otwórz nożem."
+	description = "1) Kompostownik: wrzuć plony albo jedzenie (też z torby), co 20 s rozkłada do 5 rzeczy na nawóz E-Z-Nutrient; zlewką nalewasz kompost, pustą ręką wygrzebujesz worek ziemi (40 j. kompostu). Łom rozbiera skrzynię. Kompostownik jest też w craftingu z 10 desek."
 	items = list(
 		/obj/structure/compost_bin = 1,
-		/obj/structure/worm_farm = 1,
-		/obj/item/food/fishing_worm = 3,
 		/obj/item/food/grown/tomato = 6,
 		/obj/item/reagent_containers/glass/beaker/large = 1,
 		/obj/item/crowbar = 1,
-		/obj/item/plant_tray = 2,
-		/obj/item/substrate_bag/water = 2,
-		/obj/item/plant_seeds/preset/clam = 1,
-		/obj/item/plant_seeds/preset/shrimp = 1,
-		/obj/item/kitchen/knife = 1,
 	)
 
 /datum/test_chamber_kit/pr_rosliny_ksenoflora
@@ -80,7 +72,7 @@
 /datum/test_chamber_kit/pr_rosliny_planety
 	name = "Botanika: dzika flora planet"
 	pr = "aq33/AquilaStation#649"
-	description = "Dzikie rośliny z każdego biomu planet (lód, księżyc, woda, lawa, dżungla, piaski, pustkowia). 1) Kliknij roślinę pustą ręką: zbierasz plon, roślina po czasie odrasta. 2) Plon włóż do siewnika, nasiona posadź w tacy (glony i wodorosty na podłożu wodnym). 3) Na planecie te rośliny rosną w swoich biomach; ruiny planet mają czasem 1-2 paczki obcych nasion. Kaktus popielny w piecu radiacyjnym może dać gwiaździsty kaktus, opuncja San Pedro, a San Pedro pejotl."
+	description = "Dzikie rośliny z każdego biomu planet (lód, księżyc, woda, lawa, dżungla, piaski, pustkowia). 1) Kliknij roślinę pustą ręką: zbierasz plon, roślina po czasie odrasta. 2) Plon włóż do siewnika, nasiona posadź w tacy. 3) Na planecie te rośliny rosną w swoich biomach; ruiny planet mają czasem 1-2 paczki obcych nasion. Kaktus popielny w piecu radiacyjnym może dać gwiaździsty kaktus, opuncja San Pedro, a San Pedro pejotl."
 	items = list(
 		/obj/structure/flora/ash/fonarstolbe = 1,
 		/obj/structure/flora/ash/glowbell = 1,
@@ -93,6 +85,5 @@
 		/obj/machinery/seeder = 1,
 		/obj/item/plant_tray = 2,
 		/obj/item/substrate_bag/dirt = 1,
-		/obj/item/substrate_bag/water = 1,
 		/obj/item/shovel/spade = 1,
 	)

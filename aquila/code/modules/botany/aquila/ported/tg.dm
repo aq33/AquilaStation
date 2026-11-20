@@ -830,7 +830,6 @@
 	plant_traits = list(/datum/plant_trait/reagent/fruit/nutriment)
 	fast_reagents = list(/datum/reagent/consumable/ethanol/ale = PLANT_REAGENT_MEDIUM)
 	mutations = list(/datum/plant_feature/fruit/watermelon)
-	reagent_mutations = null
 
 /obj/item/food/grown/barrelmelon
 	name = "beczkowy melon"
@@ -864,7 +863,7 @@
 	icon_state = "drakebeet"
 	bite_consumption_mod = 2
 	foodtypes = VEGETABLES
-	tastes = list("słodki burak" = 1, "ostrość" = 1)
+	tastes = list("słodki burak" = 1, "pikantność" = 1)
 	wine_power = 66
 
 /*

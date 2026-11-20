@@ -74,67 +74,6 @@
 	tastes = list("kwiaty" = 1)
 
 /*
-	Strelicja (Goon: bird of paradise)
-*/
-/datum/plant_feature/fruit/flower/inne/bird_of_paradise
-	species_name = "strelitzia reginae"
-	name = "strelicja"
-	icon_state = "flower_3"
-	colour_overlay = "flower_3_colour"
-	colour_override = "#ff8c1a"
-	seed_icon_state = "seed-birdofparadise"
-	fruit_product = /obj/item/food/grown/inne_flower/bird_of_paradise
-	growth_time = PLANT_FRUIT_GROWTH_SLOW
-
-/obj/item/plant_seeds/preset/bird_of_paradise
-	name = "nasiona: strelicja (piasek)"
-	name_override = "strelicja"
-	icon = 'aquila/icons/obj/hydroponics/ported_inne_seeds.dmi'
-	icon_state = "seed-birdofparadise"
-	plant_features = list(/datum/plant_feature/roots/sand, /datum/plant_feature/body/corn_stalk/flower, /datum/plant_feature/fruit/flower/inne/bird_of_paradise)
-
-/obj/item/food/grown/inne_flower/bird_of_paradise
-	seed = /obj/item/plant_seeds/preset/bird_of_paradise
-	name = "strelicja"
-	desc = "Strelicja, zwana też rajskim ptakiem, wygląda jak prawdziwy ptak o tej nazwie. Na głowie oba prezentują się świetnie."
-	icon_state = "birdofparadise"
-	tastes = list("kwiaty" = 1)
-
-/*
-	Raflezja (Goon: rafflesia) - cuchnie rozkładem, także gdy jeszcze wisi na roślinie
-*/
-/datum/plant_feature/fruit/flower/inne/rafflesia
-	species_name = "rafflesia arnoldii"
-	name = "raflezja"
-	icon_state = "flower_2"
-	colour_overlay = "flower_2_colour"
-	colour_override = "#b02020"
-	seed_icon_state = "seed-rafflesia"
-	fruit_product = /obj/item/food/grown/inne_flower/rafflesia
-	fruit_size = PLANT_FRUIT_SIZE_LARGE
-	total_volume = PLANT_FRUIT_VOLUME_SMALL
-	growth_time = PLANT_FRUIT_GROWTH_MEDIUM
-
-/obj/item/plant_seeds/preset/rafflesia
-	name = "nasiona: raflezja (gruz)"
-	name_override = "raflezja"
-	icon = 'aquila/icons/obj/hydroponics/ported_inne_seeds.dmi'
-	icon_state = "seed-rafflesia"
-	plant_features = list(/datum/plant_feature/roots/debris, /datum/plant_feature/body/tuber, /datum/plant_feature/fruit/flower/inne/rafflesia)
-
-/obj/item/food/grown/inne_flower/rafflesia
-	seed = /obj/item/plant_seeds/preset/rafflesia
-	name = "raflezja"
-	desc = "Zwana kwiatem trupim przez okropny zapach. Idealna, żeby zamaskować smród własnej głowy."
-	icon_state = "rafflesia"
-	foodtypes = VEGETABLES | GROSS | TOXIC
-	tastes = list("zgnilizna" = 1)
-
-/obj/item/food/grown/inne_flower/rafflesia/Initialize(mapload, skip_genes)
-	. = ..()
-	AddElement(/datum/element/pollution_emitter, /datum/pollutant/decaying_waste, 10)
-
-/*
 	Tojad (Goon: aconite) - trujący kwiat, tylko w zhakowanym automacie
 */
 /datum/plant_feature/fruit/flower/inne/aconite

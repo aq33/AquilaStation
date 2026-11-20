@@ -36,39 +36,6 @@
 	tastes = list("cynamon" = 1)
 
 /*
-	Pieprz czarny (Goon, Bay: peppercorn)
-*/
-/datum/plant_feature/fruit/peppercorn
-	species_name = "piper nigrum"
-	name = "pieprz czarny"
-	icon_state = "grapes"
-	colour_override = "#4a3a34"
-	seed_icon = 'aquila/icons/obj/hydroponics/ported_inne_seeds.dmi'
-	seed_icon_state = "seed-peppercorn"
-	fruit_product = /obj/item/food/grown/black_pepper
-	fast_reagents = list(/datum/reagent/consumable/blackpepper = PLANT_REAGENT_LARGE)
-	total_volume = PLANT_FRUIT_VOLUME_MICRO
-	growth_time = PLANT_FRUIT_GROWTH_FAST
-
-/obj/item/plant_seeds/preset/peppercorn
-	name = "nasiona: pieprz czarny (ziemia)"
-	name_override = "pieprz czarny"
-	icon = 'aquila/icons/obj/hydroponics/ported_inne_seeds.dmi'
-	icon_state = "seed-peppercorn"
-	plant_features = list(/datum/plant_feature/roots/dirt, /datum/plant_feature/body/bush_vine, /datum/plant_feature/fruit/peppercorn)
-
-/obj/item/food/grown/black_pepper
-	seed = /obj/item/plant_seeds/preset/peppercorn
-	name = "ziarna pieprzu"
-	desc = "Grono ziaren czarnego pieprzu. Zmiel je, a dostaniesz przyprawę."
-	gender = PLURAL
-	icon = 'aquila/icons/obj/hydroponics/ported_inne_harvest.dmi'
-	icon_state = "peppercorn"
-	foodtypes = VEGETABLES
-	grind_results = list(/datum/reagent/consumable/blackpepper = 0)
-	tastes = list("pieprz" = 1)
-
-/*
 	Imbir (Goon: ginger)
 */
 /datum/plant_feature/fruit/ginger
