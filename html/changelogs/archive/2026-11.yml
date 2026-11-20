@@ -1419,3 +1419,29 @@
   - bugfix: Odległości w konsolach ognia i sensorów w wersji angielskiej są w „tiles”.
   - bugfix: Podpowiedź D-Notice w Newscasterze nie pokazuje już ukośnika i wcięcia.
   - code_imp: Nowy tekst bez angielskiego odpowiednika blokuje CI.
+'2026-11-20':
+  Joker66613:
+  - rscdel: 'Albuterol usunięty: atak astmy gasi teraz salbutamol, a inhalator salbutamolu
+      jest w automacie NanoMed i u astmatyków na start.'
+  - rscdel: Usunięte paroksetyna, metylofenidat, prowizoryczna szyna, młotek neurologiczny,
+      złote zęby i trzy medipeny (kwas salicylowy, oksandrolon, kwas pentetowy).
+  - rscdel: Usunięte implanty pazurów bojowych, kuszy w przedramieniu, wzmocnienia
+      mięśni i nanitów naprawczych. ERT dostaje ostrza modliszki, a apteczka robotów
+      nanopastę.
+  - rscdel: Płuca i nerki znowu są jednym narządem, bez osobnej lewej i prawej strony.
+  - tweak: Pęknięcia śledziony, pęcherza i jelit zastąpiło jedno uszkodzenie narządów
+      brzucha z jedną operacją zszycia, która naprawia też jelita i pęcherz.
+  - rscdel: Usunięte operacje odhuskowania, balsamowania i wyrywania zęba.
+  - tweak: Butelka tramadolu jest w szafce CMO, a autoklaw w medbayu każdego okrętu.
+  - tweak: Matryce sensorów mają stały zasięg i pobór, bez grzania i suwaka.
+  - tweak: Głowice na podczerwień gubią też okręty zamaskowane po staremu.
+  - tweak: Zlecenie „Pociski przeciwpancerne” przyjmuje pociski AP z kuźni i fabryczne.
+      Na mapach leżą fabryczne pociski AP.
+  - tweak: Silnik i naprowadzanie torpedy lub rakiety ustawia się multitoolem, z dostępem
+      do zbrojowni. Stół projektowy pocisków usunięty.
+  - rscdel: Rakietowa sonda czujnikowa usunięta, a torpedowa nazywa się teraz „boja
+      czujnikowa NTP-S”.
+  - tweak: Misje „Próbki geologiczne” i „Głęboki odwiert” połączone w jedną misję
+      „Odwiert”.
+  - rscdel: Czujnik rud z łupów fauny usunięty.
+  - code_imp: Usunięty martwy kod starych uzależnień i osierocone tłumaczenia.
