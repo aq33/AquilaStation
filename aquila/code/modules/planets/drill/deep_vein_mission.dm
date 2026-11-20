@@ -1,4 +1,4 @@
-// AQUILA - misja „Głęboki odwiert”: port z Shiptesta (AGPLv3) code/modules/missions/outpost/industrial_drill.dm
+// AQUILA - misja „Odwiert” na żyle klasy 4 (tryb planet_drill w drill_mission.dm losuje ten cel): port z Shiptesta (AGPLv3) code/modules/missions/outpost/industrial_drill.dm
 // (/datum/mission/acquire/industrial_drill, wiertło /obj/machinery/drill/sampler_mission, próbka /obj/item/drill_sample
 // i pojemnik /obj/item/drill_core_container) na nasze misje dowództwa na planecie (planet_mission.dm). Sprite'y próbki
 // i pojemnika to nasze icons/obj/nuke_tools.dmi (te same stany, których Shiptest używa jako zastępczych).
@@ -24,21 +24,8 @@
 /// Premia za wiertło dowiezione na okręt razem z próbką
 #define PLANET_DEEP_VEIN_DRILL_BONUS 5000
 
-/datum/overmap_gamemode/planet_deep_vein
-	name = "Głęboki odwiert"
-	config_tag = "planet_deep_vein"
-	desc = "Tryb głębokiego odwiertu – wywiercić próbkę z żyły klasy 4 na planecie i dowieźć ją w pojemniku na okręt"
-	brief = "Dowództwo szuka złóż dla przemysłu ciężkiego, a takie leżą głęboko pod powierzchnią. Na pokład dotrze wiertło do próbek głębinowych: postawcie je na żyle klasy 4, brońcie go, póki nie wydobędzie próbki, i dowieźcie próbkę w pojemniku na okręt."
-	starting_system = "Argo"
-	starting_faction = "nanotrasen"
-	objective_reminder_setting = REMINDER_COMBAT_DELAY
-	combat_delay = 10 MINUTES
-	selection_weight = 3
-	required_players = 5
-	fixed_objectives = list(/datum/overmap_objective/planet/deep_vein)
-
 /datum/overmap_objective/planet/deep_vein
-	name = "Głęboki odwiert"
+	name = "Odwiert: żyła klasy 4"
 	desc = "Wywiercić próbkę z żyły klasy 4 na planecie, zamknąć ją w pojemniku i dowieźć pojemnik na okręt."
 	payout = 50000
 	research_payout = 15000

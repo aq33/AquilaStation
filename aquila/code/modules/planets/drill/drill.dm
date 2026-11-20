@@ -385,7 +385,7 @@
 		return
 	if(!our_vein)
 		return
-	// Żyła klasy 4 to cel misji Głęboki odwiert: zwykłe wiertło wyciągnęłoby z niej setki kryształów bluespace
+	// Żyła klasy 4 to cel misji Odwiert klasy 4: zwykłe wiertło wyciągnęłoby z niej setki kryształów bluespace
 	if(our_vein.deep_vein && !deep_drill)
 		say("Błąd: żyła leży za głęboko. Potrzebne jest wiertło do próbek głębinowych.")
 		if(active)
