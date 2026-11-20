@@ -243,6 +243,8 @@
 		"clowns" = list("Koulrofobia", "klauni", "klaunów"),
 		"doctors" = list("Jatrofobia", "lekarze", "lekarzy"),
 		"falling" = list("Bazyfobia", "upadek", "upadku"),
+		"fire" = list("Pirofobia", "ogień", "ognia"),
+		"confined spaces" = list("Klaustrofobia", "ciasne miejsca", "ciasnych miejsc"),
 		"greytide" = list("Glaukofobia", "asystenci", "asystentów w szarych kombinezonach"),
 		"lizards" = list("Herpetofobia", "jaszczury", "jaszczurów"),
 		"robots" = list("Automatonofobia", "roboty", "robotów"),

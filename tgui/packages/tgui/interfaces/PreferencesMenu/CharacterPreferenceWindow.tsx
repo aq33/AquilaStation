@@ -5,6 +5,7 @@ import { useBackend, useLocalState } from '../../backend';
 import { Button, Divider, Flex, Stack } from '../../components';
 import { Window } from '../../layouts';
 import { AntagsPage } from './AntagsPage';
+import { BodyMarkingsPage } from './BodyMarkingsPage';
 import { PreferencesMenuData } from './data';
 import { JobsPage } from './JobsPage';
 import { LoadoutPage } from './LoadoutPage';
@@ -21,6 +22,7 @@ enum Page {
   Species,
   Quirks,
   Loadout,
+  Markings,
 }
 
 const CharacterProfiles = (props: {
@@ -91,6 +93,9 @@ export const CharacterPreferenceWindow = (props) => {
     case Page.Loadout:
       pageContents = <LoadoutPage />;
       break;
+    case Page.Markings:
+      pageContents = <BodyMarkingsPage />;
+      break;
     default:
       exhaustiveCheck(currentPage);
   }
@@ -144,6 +149,16 @@ export const CharacterPreferenceWindow = (props) => {
                   otherActivePages={[Page.Species]}
                 >
                   Postać
+                </PageButton>
+              </Stack.Item>
+
+              <Stack.Item grow>
+                <PageButton
+                  currentPage={currentPage}
+                  page={Page.Markings}
+                  setPage={setCurrentPage}
+                >
+                  Markingi
                 </PageButton>
               </Stack.Item>
 

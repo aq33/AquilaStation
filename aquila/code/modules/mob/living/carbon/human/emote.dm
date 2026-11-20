@@ -135,12 +135,25 @@
 	if(!ishuman(user) || user.mind?.miming)
 		return
 	var/mob/living/carbon/human/screamer = user
+	// Krzyki ras z Skyrata/Bubbera dołożone do naszych (bez wyboru w oknie postaci)
+	if(iscatperson(screamer))
+		return pick_emote_sound(user, list('nsv13/sound/voice/felinid/scream_cat.ogg', 'aquila/sound/voice/scream/skyrat_scream_cat.ogg'))
+	if(ismoth(screamer))
+		return pick_emote_sound(user, list('sound/voice/moth/scream_moth.ogg', 'aquila/sound/voice/scream/skyrat_scream_moth.ogg'))
+	if(islizard(screamer))
+		return pick_emote_sound(user, list('sound/voice/lizard/lizard_scream_1.ogg', 'sound/voice/lizard/lizard_scream_2.ogg', 'sound/voice/lizard/lizard_scream_3.ogg',
+			'sound/voice/lizard/lizard_scream_4.ogg', 'sound/voice/lizard/lizard_scream.ogg'))
+	if(isethereal(screamer))
+		return pick_emote_sound(user, list('aquila/sound/voice/ethereal/ethereal_scream_1.ogg', 'aquila/sound/voice/ethereal/ethereal_scream_2.ogg', 'aquila/sound/voice/ethereal/ethereal_scream_3.ogg',
+			'aquila/sound/voice/scream/ethereal_lustrous_1.ogg', 'aquila/sound/voice/scream/ethereal_lustrous_2.ogg', 'aquila/sound/voice/scream/ethereal_lustrous_3.ogg'))
+	if(isoozeling(screamer) || isjellyperson(screamer))
+		return 'aquila/sound/voice/scream/skyrat_jelly_scream.ogg'
 	if(isplasmaman(screamer))
 		return pick_emote_sound(user, list('aquila/sound/voice/plasmaman/plasmeme_scream_1.ogg', 'aquila/sound/voice/plasmaman/plasmeme_scream_2.ogg', 'aquila/sound/voice/plasmaman/plasmeme_scream_3.ogg'))
 	if(is_species(screamer, /datum/species/shadow))
 		return 'aquila/sound/voice/shadow/shadow_wail.ogg'
 	if(isipc(screamer) || isandroid(screamer))
-		return 'sound/machines/buzz-two.ogg'
+		return pick_emote_sound(user, list('sound/machines/buzz-two.ogg', 'aquila/sound/voice/scream/skyrat_scream_silicon.ogg'))
 	if(is_species(screamer, /datum/species/egg))
 		return 'aquila/sound/voice/egg_scream.ogg'
 	. = ..()
@@ -149,11 +162,17 @@
 	// Humans and every other humanoid without a species scream
 	if(screamer.gender == FEMALE)
 		return pick_emote_sound(user, list('sound/voice/human/femalescream_1.ogg', 'sound/voice/human/femalescream_2.ogg', 'sound/voice/human/femalescream_3.ogg',
-			'sound/voice/human/femalescream_4.ogg', 'aquila/sound/voice/human/femalescream_5.ogg'))
+			'sound/voice/human/femalescream_4.ogg', 'aquila/sound/voice/human/femalescream_5.ogg',
+			'aquila/sound/voice/scream/skyrat_scream_f2.ogg', 'aquila/sound/voice/scream/goon_female_scream.ogg', 'aquila/sound/voice/scream/goon_fescream1.ogg',
+			'aquila/sound/voice/scream/goon_fescream2.ogg', 'aquila/sound/voice/scream/goon_fescream3.ogg', 'aquila/sound/voice/scream/goon_fescream4.ogg',
+			'aquila/sound/voice/scream/goon_fescream5.ogg'))
 	if(prob(1))
 		return 'sound/voice/human/wilhelm_scream.ogg'
 	return pick_emote_sound(user, list('sound/voice/human/malescream_1.ogg', 'sound/voice/human/malescream_2.ogg', 'sound/voice/human/malescream_3.ogg',
-		'sound/voice/human/malescream_4.ogg', 'sound/voice/human/malescream_5.ogg', 'aquila/sound/voice/human/malescream_6.ogg'))
+		'sound/voice/human/malescream_4.ogg', 'sound/voice/human/malescream_5.ogg', 'aquila/sound/voice/human/malescream_6.ogg',
+		'aquila/sound/voice/scream/skyrat_scream_m1.ogg', 'aquila/sound/voice/scream/skyrat_scream_m2.ogg', 'aquila/sound/voice/scream/goon_male_scream.ogg',
+		'aquila/sound/voice/scream/goon_mascream4.ogg', 'aquila/sound/voice/scream/goon_mascream5.ogg', 'aquila/sound/voice/scream/goon_mascream6.ogg',
+		'aquila/sound/voice/scream/goon_mascream7.ogg'))
 
 /datum/emote/living/carbon/human/cry
 	voice_emote = TRUE
