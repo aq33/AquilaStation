@@ -363,9 +363,6 @@
 /obj/machinery/missile_builder
 	alt_click_loot = FALSE
 
-/obj/machinery/missile_design_table
-	alt_click_loot = FALSE
-
 /obj/machinery/modular_computer
 	alt_click_loot = FALSE
 

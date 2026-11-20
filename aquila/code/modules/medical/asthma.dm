@@ -1,9 +1,9 @@
-// AQUILA - astma, albuterol i inhalator (AquilaMed 5), port z tgstation:
+// AQUILA - astma i inhalator (AquilaMed 5), port z tgstation:
 // code/datums/quirks/negative_quirks/asthma.dm, code/datums/diseases/asthma_attack.dm,
 // code/modules/reagents/reagent_containers/inhaler.dm (sprite'y z icons/obj/medical/chemical.dmi, CC-BY-SA 3.0).
-// Stan zapalny dróg oddechowych rośnie od dymu (także papierosa w ustach) i histaminy, a spada sam i od albuterolu.
+// Stan zapalny dróg oddechowych rośnie od dymu (także papierosa w ustach) i histaminy, a spada sam i od salbutamolu.
 // Co 15-25 minut może przyjść atak (lekki, średni, ciężki, rzadko krytyczny), który podbija stan zapalny, aż zgasi go
-// albuterol z inhalatora albo atak sam przejdzie w remisję.
+// salbutamol z inhalatora albo atak sam przejdzie w remisję. (tg: albuterol, czyli ten sam lek pod nazwą z USA)
 // Różnica: w tg stan zapalny zmniejsza ciśnienie gazu w płucach (received_pressure_mult, którego nie mamy).
 // U nas zamiast tego daje duszność: wstrzymany oddech i obrażenia z niedotlenienia, tym większe, im większy stan zapalny.
 
@@ -13,7 +13,7 @@
 
 /datum/quirk/asthma
 	name = "Astma"
-	desc = "Masz astmę: dym i alergeny zaciskają ci drogi oddechowe, a co jakiś czas przychodzi atak duszności. Zaczynasz z inhalatorem albuterolu."
+	desc = "Masz astmę: dym i alergeny zaciskają ci drogi oddechowe, a co jakiś czas przychodzi atak duszności. Zaczynasz z inhalatorem salbutamolu."
 	value = -2
 	gain_text = "<span class='danger'>Oddycha ci się trochę ciężej.</span>"
 	lose_text = "<span class='notice'>Nagle oddycha ci się dużo swobodniej!</span>"
@@ -30,8 +30,8 @@
 	/// Inflammation per second from histamine, and from a histamine overdose
 	var/histamine_inflammation = 2
 	var/histamine_od_inflammation = 10
-	/// Inflammation per second taken off while albuterol is in the blood
-	var/albuterol_reduction = 3
+	/// Inflammation per second taken off while salbutamol is in the blood
+	var/salbutamol_reduction = 3
 	/// The attack going on now
 	var/datum/disease/asthma_attack/current_attack
 	/// No attack before this time
@@ -55,7 +55,7 @@
 
 /datum/quirk/asthma/on_spawn()
 	var/mob/living/carbon/human/H = quirk_holder
-	var/obj/item/inhaler/albuterol/inhaler = new(get_turf(H))
+	var/obj/item/inhaler/salbutamol/inhaler = new(get_turf(H))
 	var/list/slots = list("lewa kieszeń" = ITEM_SLOT_LPOCKET, "prawa kieszeń" = ITEM_SLOT_RPOCKET, "plecak" = ITEM_SLOT_BACKPACK)
 	H.equip_in_one_of_slots(inhaler, slots, qdel_on_fail = FALSE)
 	if(inhaler.loc == get_turf(H))
@@ -81,8 +81,8 @@
 	var/datum/reagent/toxin/histamine/histamine = H.reagents.has_reagent(/datum/reagent/toxin/histamine)
 	if(histamine)
 		adjust_inflammation((histamine.overdosed ? histamine_od_inflammation : histamine_inflammation) * delta)
-	if(H.reagents.has_reagent(/datum/reagent/medicine/albuterol))
-		adjust_inflammation(-albuterol_reduction * delta)
+	if(H.reagents.has_reagent(/datum/reagent/medicine/salbutamol))
+		adjust_inflammation(-salbutamol_reduction * delta)
 	else if(H.client && !current_attack && world.time >= next_attack && prob(attack_chance * delta))
 		start_attack()
 	apply_breathing_effects(delta)
@@ -147,8 +147,8 @@
 	form = "Zapalenie oskrzeli"
 	name = "Atak astmy"
 	desc = "Drogi oddechowe się zaciskają i grożą zatrzymaniem oddechu. Lekkie ataki mogą przejść same, ale każdy jest groźny."
-	cure_text = "Albuterol (inhalator)"
-	cures = list(/datum/reagent/medicine/albuterol)
+	cure_text = "Salbutamol (inhalator)"
+	cures = list(/datum/reagent/medicine/salbutamol)
 	agent = "Stan zapalny"
 	viable_mobtypes = list(/mob/living/carbon/human)
 	disease_flags = CURABLE
@@ -289,37 +289,12 @@
 	if(stage >= 4 && prob(15))
 		choke()
 
-// --- Albuterol ---
+// --- Salbutamol gasi astmę (w tg robi to albuterol) ---
 
-/datum/reagent/medicine/albuterol
-	name = "Albuterol"
-	description = "Lek rozszerzający oskrzela, podawany z inhalatora. Szybko gasi atak astmy i zmniejsza stan zapalny dróg oddechowych. Przedawkowanie przyspiesza serce."
-	reagent_state = LIQUID
-	color = "#8DF5F0"
-	taste_description = "metaliczny posmak"
-	metabolization_rate = 0.25 * REAGENTS_METABOLISM
-	overdose_threshold = 30
-
-/datum/reagent/medicine/albuterol/on_mob_metabolize(mob/living/L)
+/datum/reagent/medicine/salbutamol/on_mob_metabolize(mob/living/L)
 	. = ..()
 	var/datum/quirk/asthma/asthma = locate() in L.roundstart_quirks
 	asthma?.adjust_inflammation(-12) // tg: natychmiastowa ulga po wdechu
-
-/datum/reagent/medicine/albuterol/overdose_process(mob/living/M)
-	M.Jitter(4)
-	if(prob(10))
-		M.adjustOrganLoss(ORGAN_SLOT_HEART, 1)
-		to_chat(M, "<span class='warning'>Serce trzepocze ci w piersi.</span>")
-	..()
-
-/datum/chemical_reaction/albuterol
-	name = "Albuterol"
-	id = /datum/reagent/medicine/albuterol
-	results = list(/datum/reagent/medicine/albuterol = 2)
-	required_reagents = list(/datum/reagent/medicine/salbutamol = 1, /datum/reagent/medicine/epinephrine = 1)
-	// Only heated, never inside a body: the survival and first-aid medipens hold both reagents and must keep them
-	required_temp = 380
-	mob_react = FALSE
 
 // --- Inhalator ---
 
@@ -429,11 +404,6 @@
 /obj/item/inhaler/medical
 	icon_state = "inhaler_medical"
 
-/obj/item/inhaler/albuterol
-	name = "inhalator albuterolu"
-	icon_state = "inhaler_medical"
-	initial_canister_path = /obj/item/reagent_containers/inhaler_canister/albuterol
-
 /obj/item/inhaler/salbutamol
 	name = "inhalator salbutamolu"
 	icon_state = "inhaler_medical"
@@ -459,15 +429,9 @@
 /obj/item/reagent_containers/inhaler_canister/proc/get_puffs_left()
 	return CEILING(reagents.total_volume / amount_per_transfer_from_this, 1)
 
-/obj/item/reagent_containers/inhaler_canister/albuterol
-	name = "kanister albuterolu"
-	desc = "Kanister z albuterolem, lekiem rozszerzającym oskrzela. Gasi atak astmy."
-	icon_state = "canister_medical"
-	list_reagents = list(/datum/reagent/medicine/albuterol = 30)
-
 /obj/item/reagent_containers/inhaler_canister/salbutamol
 	name = "kanister salbutamolu"
-	desc = "Kanister z salbutamolem. Leczy niedotlenienie."
+	desc = "Kanister z salbutamolem, lekiem rozszerzającym oskrzela. Gasi atak astmy i leczy niedotlenienie."
 	icon_state = "canister_medical"
 	list_reagents = list(/datum/reagent/medicine/salbutamol = 30)
 

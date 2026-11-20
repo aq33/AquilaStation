@@ -3,11 +3,9 @@
 // - kryształowa krawędź (dekoracja barowa): code/modules/food_and_drinks/drinks/drinks/modglass.dm (/obj/item/garnish/crystal),
 // - Odczynnik kryształowy: code/modules/reagents/chemistry/reagents/other_reagents.dm (/datum/reagent/crystal_reagent),
 // - kryształowe serce: code/modules/mining/equipment/regenerative_core.dm (/obj/item/organ/regenerative_core/legion/crystal),
-// - siarkowy pył (plama i odczynnik), czujnik rud: code/modules/mob/living/simple_animal/hostile/mining_mobs/brimdemon.dm.
-// Przepis na czujnik rud jest z tgstation (code/datums/components/crafting/equipment.dm, AGPLv3): w Shiptest czujnika nie da
-// się zdobyć, u tg robi się go z siarkowego pyłu, kości i ścięgna.
+// - siarkowy pył (plama i odczynnik): code/modules/mob/living/simple_animal/hostile/mining_mobs/brimdemon.dm.
 // Ikony (CC BY-SA 3.0): Shiptest icons/obj/lavaland/ash_flora.dmi, icons/obj/mining.dmi, icons/obj/surgery.dmi skopiowane do
-// aquila/icons/planets/loot.dmi; czujnik rud na uchu z tgstation icons/mob/clothing/ears.dmi w aquila/icons/planets/loot_worn.dmi.
+// aquila/icons/planets/loot.dmi.
 // Kryształowa krawędź używa ikon dekoracji barowych z Monkestation, które już mamy (aquila/icons/obj/monke/bartending/).
 // Różnice względem Shiptest:
 // - Odczynnik kryształowy nie działa na rany (nasze rany z aquila/code/modules/wounds/ nie mają reakcji na odczynniki);
@@ -193,54 +191,3 @@
 	reagent_needs[/datum/reagent/brimdust] = 1
 	return ..()
 
-/// Noszony na uchu: co 4 s pokazuje rudy w promieniu 5 pól
-/obj/item/ore_sensor
-	name = "czujnik rud"
-	desc = "Noszone na uchu narzędzie, które na demonicznych częstotliwościach wykrywa rudy w okolicznych skałach."
-	icon = 'aquila/icons/planets/loot.dmi'
-	icon_state = "oresensor"
-	worn_icon = 'aquila/icons/planets/loot_worn.dmi'
-	w_class = WEIGHT_CLASS_SMALL
-	slot_flags = ITEM_SLOT_EARS
-	/// Zasięg skanu w polach
-	var/range = 5
-	/// Między zwykłym a zaawansowanym skanerem górniczym
-	var/cooldown = 4 SECONDS
-	COOLDOWN_DECLARE(ore_sensing_cooldown)
-
-/obj/item/ore_sensor/Destroy()
-	STOP_PROCESSING(SSobj, src)
-	return ..()
-
-/obj/item/ore_sensor/equipped(mob/user, slot, initial)
-	. = ..()
-	if(slot == ITEM_SLOT_EARS)
-		START_PROCESSING(SSobj, src)
-	else
-		STOP_PROCESSING(SSobj, src)
-
-/obj/item/ore_sensor/dropped(mob/user, silent)
-	. = ..()
-	STOP_PROCESSING(SSobj, src)
-
-/obj/item/ore_sensor/process(delta_time)
-	if(!COOLDOWN_FINISHED(src, ore_sensing_cooldown))
-		return
-	var/turf/our_turf = get_turf(src)
-	if(!our_turf)
-		return
-	COOLDOWN_START(src, ore_sensing_cooldown, cooldown)
-	// mineral_scan_pulse() śpi między pierścieniami skanu
-	INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(mineral_scan_pulse), our_turf, range)
-
-/// Przepis tg: siarkowy pył zgarnięty do zlewki, kość i ścięgno
-/datum/crafting_recipe/ore_sensor
-	name = "czujnik rud"
-	result = /obj/item/ore_sensor
-	time = 3 SECONDS
-	reqs = list(
-		/datum/reagent/brimdust = 15,
-		/obj/item/stack/sheet/bone = 1,
-		/obj/item/stack/sheet/sinew = 1,
-	)
-	category = CAT_PRIMAL

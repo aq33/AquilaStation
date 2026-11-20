@@ -2,8 +2,8 @@
 // code/modules/surgery/tooth.dm, knock_out_teeth w human_defense.dm), sprite'y zębów z /vg/ (CC BY-SA 3.0).
 // - Organiczna głowa ma 32 zęby. Tępy cios przedmiotem w usta (bez pancerza na głowie) może wybić 1-3 zęby jak na /vg/,
 //   u nas także pięść, rzadziej. Zęby lecą na podłogę jako stos.
-// - Różnice od /vg/: zamiast kroków nastawiania szczęki są dwie operacje (wyrwanie zęba i wstawienie zęba), jest
-//   seplenienie przy braku zębów, protezy i złote zęby z protolathe, a implant pigułki wymaga choć jednego zęba.
+// - Różnice od /vg/: zamiast kroków nastawiania szczęki jest jedna operacja (wstawienie zęba), jest seplenienie
+//   przy braku zębów, sztuczne zęby z protolathe, a implant pigułki wymaga choć jednego zęba.
 //   Bez naszyjnika z zębów i bez zębów zwierząt.
 
 #define AQ_TEETH_MAX 32
@@ -36,12 +36,6 @@
 	singular_name = "sztuczny ząb"
 	desc = "Porcelanowe protezy zębów. Dentysta wstawia je jak prawdziwe."
 	icon_state = "tooth-prosthetic"
-
-/obj/item/stack/teeth/gold
-	name = "złote zęby"
-	singular_name = "złoty ząb"
-	desc = "Złote protezy zębów. Błyszczą przy każdym uśmiechu."
-	icon_state = "tooth-gold"
 
 /// Knocks teeth out of the mouth onto the floor; returns how many fell out
 /mob/living/carbon/human/proc/aq_knock_out_teeth(mob/living/attacker, amount = rand(1, 3))
@@ -138,50 +132,10 @@
 
 // --- Operacje ---
 
-/datum/surgery_operation/limb/aq_pull_tooth
-	name = "wyrwanie zęba"
-	catalog_sections = list(SURGERY_SECTION_FACE)
-	desc = "Wyrywa pacjentowi jeden ząb."
-	operation_flags = OPERATION_SELF_OPERABLE
-	self_operable_zones = list(BODY_ZONE_PRECISE_MOUTH)
-	implements = list(TOOL_HEMOSTAT = 1, TOOL_WIRECUTTER = 2, /obj/item/assembly/mousetrap = 10)
-	time = 5 SECONDS
-	required_bodytype = BODYTYPE_ORGANIC
-	preop_sound = 'sound/surgery/hemostat1.ogg'
-
-/datum/surgery_operation/limb/aq_pull_tooth/all_required_strings()
-	return list("operacja na: [strefa_pl(BODY_ZONE_PRECISE_MOUTH)]", "pacjent musi mieć zęby") + ..()
-
-/datum/surgery_operation/limb/aq_pull_tooth/get_default_radial_image()
-	return image(icon = 'aquila/icons/obj/medical/teeth.dmi', icon_state = "tooth")
-
-/datum/surgery_operation/limb/aq_pull_tooth/snowflake_check_availability(obj/item/bodypart/limb, mob/living/surgeon, tool, operated_zone)
-	return operated_zone == BODY_ZONE_PRECISE_MOUTH
-
-/datum/surgery_operation/limb/aq_pull_tooth/state_check(obj/item/bodypart/limb)
-	var/obj/item/bodypart/head/head = limb
-	return istype(head) && head.aq_teeth > 0
-
-/datum/surgery_operation/limb/aq_pull_tooth/on_preop(obj/item/bodypart/limb, mob/living/surgeon, obj/item/tool, list/operation_args)
-	display_results(surgeon, limb.owner, span_notice("Zaczynasz wyrywać ząb [limb.owner]..."), span_notice("[surgeon] zaczyna wyrywać ząb [limb.owner]."), span_notice("[surgeon] grzebie w ustach [limb.owner]."))
-	display_pain(limb.owner, "Ząb trzeszczy i promieniuje bólem na całą szczękę!")
-
-/datum/surgery_operation/limb/aq_pull_tooth/on_success(obj/item/bodypart/limb, mob/living/surgeon, obj/item/tool, list/operation_args)
-	var/obj/item/bodypart/head/head = limb
-	if(!istype(head) || head.aq_teeth <= 0)
-		return
-	head.aq_teeth--
-	new /obj/item/stack/teeth(get_turf(limb.owner || limb), 1)
-	display_results(surgeon, limb.owner, span_notice("Wyrywasz ząb [limb.owner]."), span_notice("[surgeon] wyrywa ząb [limb.owner]."), span_notice("[surgeon] wyrywa coś z ust [limb.owner]."))
-
-/datum/surgery_operation/limb/aq_pull_tooth/on_failure(obj/item/bodypart/limb, mob/living/surgeon, obj/item/tool, list/operation_args)
-	limb.receive_damage(5)
-	display_results(surgeon, limb.owner, span_warning("Ręka ci się ześlizguje i rozdzierasz dziąsło [limb.owner]!"), span_warning("[surgeon] rozdziera dziąsło [limb.owner]!"), span_warning("[surgeon] partaczy!"))
-
 /datum/surgery_operation/limb/aq_insert_tooth
 	name = "wstawienie zęba"
 	catalog_sections = list(SURGERY_SECTION_FACE)
-	desc = "Wszczepia ząb (własny, sztuczny albo złoty) w puste miejsce w szczęce. Dziąsło trzeba najpierw naciąć."
+	desc = "Wszczepia ząb (własny albo sztuczny) w puste miejsce w szczęce. Dziąsło trzeba najpierw naciąć."
 	implements = list(/obj/item/stack/teeth = 1)
 	consumes_stack_tool = FALSE // on_success uses the planted tooth itself
 	time = 6 SECONDS
@@ -228,24 +182,11 @@
 	category = list("Medical Designs", "Medical")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
-/datum/design/aq_gold_teeth
-	name = "Złote zęby (5)"
-	desc = "Złote protezy zębów do wstawienia operacją."
-	id = "aq_gold_teeth"
-	build_type = PROTOLATHE
-	materials = list(/datum/material/gold = 500)
-	build_path = /obj/item/stack/teeth/gold/five
-	category = list("Medical Designs")
-	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
-
 /obj/item/stack/teeth/prosthetic/five
 	amount = 5
 
 /// The autolathe builds stacks with new(loc, multiplier), which would leave one tooth: a print is always at least 5
 /obj/item/stack/teeth/prosthetic/five/Initialize(mapload, new_amount, merge = TRUE)
 	return ..(mapload, max(new_amount, 5), merge)
-
-/obj/item/stack/teeth/gold/five
-	amount = 5
 
 #undef AQ_TEETH_LISP_FROM

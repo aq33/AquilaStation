@@ -8229,7 +8229,6 @@
 /obj/machinery/camera/autoname{
 	dir = 5
 	},
-/obj/machinery/missile_design_table,
 /turf/open/floor/carpet/ship/beige_carpet,
 /area/nsv/weapons/port)
 "gpZ" = (
@@ -19296,6 +19295,15 @@
 	},
 /turf/open/floor/monotile/steel/airless,
 /area/nsv/hanger/mining)
+"plR" = (
+/obj/machinery/power/apc/auto_name/north,
+/obj/structure/cable,
+/obj/effect/turf_decal/tile/blue/flat_side/nfz{
+	dir = 6
+	},
+/obj/machinery/autoclave,
+/turf/open/floor/monotile/light,
+/area/medical/medbay)
 "plW" = (
 /obj/vehicle/ridden/janicart,
 /turf/open/floor/carpet/ship,
@@ -45714,7 +45722,7 @@ jfJ
 uYG
 sSK
 jym
-pSy
+plR
 kCx
 gLr
 qBk
