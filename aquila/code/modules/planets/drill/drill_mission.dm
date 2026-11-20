@@ -1,4 +1,4 @@
-// AQUILA - misja „Próbki geologiczne”: port misji wiertniczej z Shiptesta (AGPLv3)
+// AQUILA - misja „Odwiert” (klasy żyły 1-3; klasa 4 to deep_vein_mission.dm): port misji wiertniczej z Shiptesta (AGPLv3)
 // code/modules/missions/outpost/drill_mission.dm (/datum/mission/drill i /obj/machinery/drill/mission) na nasze misje
 // dowództwa na planecie (planet_mission.dm). Dowództwo dodaje planetę z żyłami wymaganej klasy i wysyła na okręt wiertło do próbek
 // (z ogniwem) oraz skrzynię ze skanerem gruntu, GPS, instrukcją i zapasowymi częściami. Załoga przykręca wiertło na żyle
@@ -9,8 +9,8 @@
 // - na planecie misji zawsze stoi żyła wymaganej klasy z ładunkami na wszystkie próbki, z dala od lądowisk (generator
 //   może nie postawić żadnej);
 // - pojemnik na próbki mieści wymagane + 3 i wiertło nie ruszy, gdy jest pełny (w Shiptest dało się wiercić dalej);
-// - bez kart dziurkowanych do namierzania planety (u nas planeta jest od razu przeskanowana); misja klasy 4
-//   (industrial_drill.dm) jest osobno w deep_vein_mission.dm.
+// - bez kart dziurkowanych do namierzania planety (u nas planeta jest od razu przeskanowana); klasa 4
+//   (industrial_drill.dm) to cel z deep_vein_mission.dm, losowany w tym samym trybie.
 
 // Kopie definicji z overmap_mode.dm, które są tam #undef na końcu pliku
 #define STATUS_INPROGRESS 0
@@ -23,21 +23,27 @@
 /// Ile próbek ponad wymagane mieści wiertło
 #define PLANET_DRILL_EXTRA_SAMPLES 3
 
+/// Jeden tryb odwiertu dla żył klasy 1-4: klasy 1-3 to próbki z wiertła (drill_samples), klasa 4 to głęboki odwiert
+/// z pojemnikiem (deep_vein). Wagi 5:3 to dawne wagi obu trybów w wyborze kapitana, nagrody i trudność bez zmian.
 /datum/overmap_gamemode/planet_drill
-	name = "Próbki geologiczne"
+	name = "Odwiert"
 	config_tag = "planet_drill"
-	desc = "Tryb próbek geologicznych – wywiercić próbki z żyły rudy na planecie i dowieźć wiertło na okręt"
-	brief = "Dowództwo potrzebuje danych geologicznych z planety na skraju sektora. Na pokład dotrze wiertło do próbek: zamocujcie je na żyle rudy, brońcie go przed fauną, póki nie zbierze próbek, i przywieźcie je na okręt."
+	desc = "Tryb odwiertu – wywiercić próbki z żyły rudy klasy 1-4 na planecie i dowieźć je na okręt"
+	brief = "Dowództwo potrzebuje danych geologicznych z planety na skraju sektora. Na pokład dotrze wiertło do próbek: zamocujcie je na żyle rudy wymaganej klasy, brońcie go przed fauną, póki nie wydobędzie próbek, i dowieźcie je na okręt."
 	starting_system = "Argo"
 	starting_faction = "nanotrasen"
 	objective_reminder_setting = REMINDER_COMBAT_DELAY
 	combat_delay = 10 MINUTES
-	selection_weight = 5
+	selection_weight = 8
 	required_players = 5
 	fixed_objectives = list(/datum/overmap_objective/planet/drill_samples)
 
+/datum/overmap_gamemode/planet_drill/New()
+	. = ..()
+	fixed_objectives = list(pickweight(list(/datum/overmap_objective/planet/drill_samples = 5, /datum/overmap_objective/planet/deep_vein = 3)))
+
 /datum/overmap_objective/planet/drill_samples
-	name = "Próbki geologiczne"
+	name = "Odwiert"
 	desc = "Wywiercić próbki z żyły rudy wymaganej klasy na planecie i dowieźć wiertło do próbek na okręt."
 	equipment = list(
 		/obj/item/pinpointer/mineral,
@@ -69,6 +75,7 @@
 	num_wanted = rand(base_wanted - 2, base_wanted + 2)
 	payout = 10000 + 10000 * class_wanted
 	research_payout = 2500 + 2500 * class_wanted
+	name = "Odwiert: żyła klasy [class_wanted]"
 
 /datum/overmap_objective/planet/drill_samples/Destroy()
 	if(sampler)

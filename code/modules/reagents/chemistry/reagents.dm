@@ -34,8 +34,7 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 	var/metabolization_rate = REAGENTS_METABOLISM //how fast the reagent is metabolized by the mob
 	var/overrides_metab = 0
 	var/overdose_threshold = 0
-	var/addiction_threshold = 0
-	var/addiction_stage = 0
+	// AQ EDIT - usunięte addiction_threshold i addiction_stage z Bee (uzależnienia z tg: addiction_types, aquila/code/modules/reagents/addiction/addiction.dm)
 	var/process_flags = ORGANIC // What can process this? ORGANIC, SYNTHETIC, or ORGANIC | SYNTHETIC?. We'll assume by default that it affects organics.
 	var/overdosed = 0 // You fucked up and this is now triggering its overdose effects, purge that shit quick.
 	var/self_consuming = FALSE
@@ -167,29 +166,7 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 	holder?.remove_reagent(type, tray_consumed)
 	return TRUE
 
-/datum/reagent/proc/addiction_act_stage1(mob/living/M)
-	SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "[type]_overdose", /datum/mood_event/withdrawal_light, name)
-	if(prob(30))
-		to_chat(M, "<span class='notice'>Masz teraz ochotę na trochę [name].</span>")
-	return
-
-/datum/reagent/proc/addiction_act_stage2(mob/living/M)
-	SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "[type]_overdose", /datum/mood_event/withdrawal_medium, name)
-	if(prob(30))
-		to_chat(M, "<span class='notice'>Czujesz, że potrzebujesz [name]. Po prostu nie masz dość.</span>")
-	return
-
-/datum/reagent/proc/addiction_act_stage3(mob/living/M)
-	SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "[type]_overdose", /datum/mood_event/withdrawal_severe, name)
-	if(prob(30))
-		to_chat(M, "<span class='danger'>Masz silny głód [name].</span>")
-	return
-
-/datum/reagent/proc/addiction_act_stage4(mob/living/M)
-	SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "[type]_overdose", /datum/mood_event/withdrawal_critical, name)
-	if(prob(30))
-		to_chat(M, "<span class='boldannounce'>W ogóle nie czujesz się dobrze! Naprawdę potrzebujesz trochę [name].</span>")
-	return
+// AQ EDIT - usunięte addiction_act_stage1-4 z Bee (etapy odstawienia robi /datum/addiction, aquila/code/modules/reagents/addiction/addiction.dm)
 
 // AQ EDIT START - fermichem z tg
 /**

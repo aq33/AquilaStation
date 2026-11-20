@@ -3,7 +3,7 @@
 // Głowica zostaje fizyczną częścią jak dotąd: drukuje się ją w protolacie uzbrojenia i wkłada do obudowy.
 // - EMP dla rakiet (torpeda zakłócająca już jest): słabsza wersja torpedy zakłócającej, impuls po przekazaniu do wnętrza.
 // - Dyfuzor tarcz (torpeda i rakieta): przed pochłonięciem trafienia drenuje część tarczy celu, sam rani słabo.
-// - Sonda czujnikowa (torpeda i rakieta): nie rani; tam, gdzie spadnie albo skończy lot, zostaje boja, która przez
+// - Boja czujnikowa NTP-S (tylko torpeda): nie rani; tam, gdzie spadnie albo skończy lot, zostaje boja, która przez
 //   kilka minut pokazuje DRADIS-om okrętu kontakty w swoim zasięgu, z dokładnym położeniem.
 // Różnice względem Baya: u nas tarcza to jedna pula integralności okrętu, więc dyfuzor drenuje procent puli,
 // a nie przełącza segmentów; sonda nie potrzebuje ogniwa i nie ma ustawianego zasięgu.
@@ -150,10 +150,10 @@
 /obj/item/projectile/guided_munition/missile/diffuser/detonate(atom/target)
 	explosion(target, 0, 0, 1, 2)
 
-// ---------------------------------------------------------------- sonda czujnikowa
+// ---------------------------------------------------------------- boja czujnikowa (torpeda)
 
 /obj/item/ship_weapon/parts/missile/warhead/sensor_probe
-	name = "głowica sondy czujnikowej NTP-S"
+	name = "głowica boi czujnikowej NTP-S"
 	desc = "Zestaw czujników z nadajnikiem. Torpeda z nią nie rani, a tam, gdzie spadnie albo skończy lot, zostawia boję, która przez kilka minut przesyła okrętowi obraz okolicy."
 	icon_state = "warhead_probe"
 	color = "#9cffb0"
@@ -161,14 +161,14 @@
 	build_path = /obj/item/ship_weapon/ammunition/torpedo/sensor_probe
 
 /obj/item/ship_weapon/ammunition/torpedo/sensor_probe
-	name = "torpeda z sondą czujnikową NTP-S 530 mm"
+	name = "boja czujnikowa NTP-S"
 	desc = "Nieuzbrojona torpeda, która zostawia boję czujnikową. Boja pokazuje na DRADIS-ach okrętu kontakty w swoim zasięgu, z dokładnym położeniem."
 	icon_state = "probe"
 	color = "#9cffb0"
 	projectile_type = /obj/item/projectile/guided_munition/torpedo/sensor_probe
 
 /obj/item/projectile/guided_munition/torpedo/sensor_probe
-	name = "torpeda z sondą"
+	name = "boja czujnikowa NTP-S"
 	icon_state = "probe"
 	color = "#9cffb0"
 	damage = 0
@@ -180,33 +180,6 @@
 	return ..()
 
 /obj/item/projectile/guided_munition/torpedo/sensor_probe/detonate(atom/target)
-	return
-
-/obj/item/ship_weapon/parts/missile/warhead/sensor_probe_missile
-	name = "głowica rakiety z sondą czujnikową NTM-S"
-	desc = "Mniejsza sonda czujnikowa do rakiety. Rakieta dolatuje dalej i szybciej niż torpeda, a boja działa tak samo."
-	icon_state = "warhead_probe"
-	color = "#9cffb0"
-	build_path = /obj/item/ship_weapon/ammunition/missile/sensor_probe
-
-/obj/item/ship_weapon/ammunition/missile/sensor_probe
-	name = "rakieta z sondą czujnikową NTM-S 230 mm"
-	desc = "Nieuzbrojona rakieta, która zostawia boję czujnikową."
-	color = "#9cffb0"
-	projectile_type = /obj/item/projectile/guided_munition/missile/sensor_probe
-
-/obj/item/projectile/guided_munition/missile/sensor_probe
-	name = "rakieta z sondą"
-	color = "#9cffb0"
-	damage = 0
-	projectile_relaying_allowed = FALSE
-	aq_sensor_probe = TRUE
-
-/obj/item/projectile/guided_munition/missile/sensor_probe/on_range()
-	drop_sensor_probe(get_turf(src))
-	return ..()
-
-/obj/item/projectile/guided_munition/missile/sensor_probe/detonate(atom/target)
 	return
 
 /// Zostawia boję sondy dla okrętu, który wystrzelił pocisk
@@ -351,8 +324,8 @@ GLOBAL_LIST_EMPTY(overmap_sensor_probes)
 	departmental_flags = DEPARTMENTAL_FLAG_MUNITIONS
 
 /datum/design/sensor_probe_warhead
-	name = "Głowica torpedy z sondą czujnikową"
-	desc = "Sonda z nadajnikiem do torpedy."
+	name = "Głowica torpedy z boją czujnikową"
+	desc = "Boja czujnikowa z nadajnikiem do torpedy."
 	id = "sensor_probe_warhead"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 3000, /datum/material/glass = 2000, /datum/material/copper = 1000, /datum/material/silver = 500, /datum/material/gold = 500)
@@ -360,20 +333,10 @@ GLOBAL_LIST_EMPTY(overmap_sensor_probes)
 	category = list("Advanced Munitions")
 	departmental_flags = DEPARTMENTAL_FLAG_MUNITIONS
 
-/datum/design/sensor_probe_missile_warhead
-	name = "Głowica rakiety z sondą czujnikową"
-	desc = "Mniejsza sonda z nadajnikiem do rakiety."
-	id = "sensor_probe_missile_warhead"
-	build_type = PROTOLATHE
-	materials = list(/datum/material/iron = 2000, /datum/material/glass = 1500, /datum/material/copper = 500, /datum/material/silver = 250, /datum/material/gold = 250)
-	build_path = /obj/item/ship_weapon/parts/missile/warhead/sensor_probe_missile
-	category = list("Advanced Munitions")
-	departmental_flags = DEPARTMENTAL_FLAG_MUNITIONS
-
-// Sondy z amunicją kierowaną II, EMP i dyfuzory z prototypem głowicy zakłócającej
+// Boja czujnikowa z amunicją kierowaną II, EMP i dyfuzory z prototypem głowicy zakłócającej
 /datum/techweb_node/advanced_torpedo_components/New()
 	. = ..()
-	design_ids += list("sensor_probe_warhead", "sensor_probe_missile_warhead")
+	design_ids += list("sensor_probe_warhead")
 
 /datum/techweb_node/prototype_disruption_warheads/New()
 	. = ..()

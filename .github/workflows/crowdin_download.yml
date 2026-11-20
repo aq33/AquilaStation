@@ -51,6 +51,11 @@ jobs:
           rm -rf crowdin_out/pl
           crowdin download --language=pl --no-progress
 
+      # apply przenosi angielski odpowiednik na poprawiony tekst i przebudowuje słowniki (build_chat_dict.py),
+      # a słownik okien bierze teksty z drzewa składni tgui, które wymaga zależności tgui
+      - name: Zależności tgui
+        run: tools/build/build --ci yarn
+
       - name: Wprowadzenie poprawek do kodu
         id: apply
         run: python tools/i18n/crowdin.py apply crowdin_out/pl --report "$RUNNER_TEMP/raport.md"
