@@ -780,7 +780,8 @@ const tinted = (key: string, sprite: Sprite, color: string) => {
 
 /** Rozmiar sprite'a dopasowany do przegródki szyby (duże ikony są zmniejszane) */
 const fit = (sprite: Sprite) => {
-  const s = Math.min(1, 28 / sprite.width, 22 / sprite.height);
+  // najwyżej 19 px wysokości: górne 6 px komórki zajmuje pasek z nazwą, więc szyjki butelek nie giną pod nim
+  const s = Math.min(1, 28 / sprite.width, 19 / sprite.height);
   return {
     w: Math.max(1, Math.round(sprite.width * s)),
     h: Math.max(1, Math.round(sprite.height * s)),
