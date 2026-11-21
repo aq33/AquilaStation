@@ -485,6 +485,7 @@ GLOBAL_LIST_INIT(aquila_ship_console_buttons, list(
 	var/engines = engine_status_text()
 	if(engines && pilot == user)
 		to_chat(user, "<span class='notice'>[engines]</span>")
+		engine_working_seen = engine_working_count() // pilot zna bieżący stan, kolejne ostrzeżenie dopiero przy zmianie
 
 /obj/structure/overmap/proc/aquila_remove_consoles(mob/living/user)
 	for(var/atom/movable/screen/movable/aquila_ship_console/panel as anything in LAZYCOPY(user.aquila_consoles))
