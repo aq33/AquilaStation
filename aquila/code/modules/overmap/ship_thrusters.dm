@@ -87,9 +87,24 @@ GLOBAL_LIST_INIT(ship_thruster_oxidizers, list(
 	for(var/obj/machinery/ship_thruster/thruster as anything in ship_thrusters)
 		if(thruster.can_fire)
 			working++
-	if(!isnull(engine_working_seen) && working != engine_working_seen && pilot && world.time >= engine_status_next_alert)
-		engine_status_next_alert = world.time + 10 SECONDS // dysza na granicy paliwa potrafi gasnąć i wracać co tick
-		to_chat(pilot, "<span class='[working < engine_working_seen ? "warning" : "notice"]'>[engine_status_text()]</span>")
+	if(isnull(engine_working_seen))
+		engine_working_seen = working
+	else if(working != engine_working_seen && pilot)
+		if(world.time >= engine_status_next_alert)
+			engine_status_flush()
+		else // dysza na granicy paliwa potrafi gasnąć i wracać co tick: stan po przerwie, nie gubimy ostatniej zmiany
+			addtimer(CALLBACK(src, PROC_REF(engine_status_flush)), engine_status_next_alert - world.time, TIMER_UNIQUE)
+
+/// Wysyła pilotowi bieżący stan silników, jeśli zmienił się od ostatniego komunikatu (najwyżej co 10 s)
+/obj/structure/overmap/proc/engine_status_flush()
+	var/working = 0
+	for(var/obj/machinery/ship_thruster/thruster as anything in ship_thrusters)
+		if(thruster.can_fire)
+			working++
+	if(working == engine_working_seen || !pilot)
+		return
+	engine_status_next_alert = world.time + 10 SECONDS
+	to_chat(pilot, "<span class='[working < engine_working_seen ? "warning" : "notice"]'>[engine_status_text()]</span>")
 	engine_working_seen = working
 
 /// Stan silników dla pilota: ile dysz działa i jaki jest ciąg względem pełnego; null dla statku bez dysz okrętowych

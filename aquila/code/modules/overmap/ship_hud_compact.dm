@@ -32,11 +32,11 @@
 	var/aq_ship_hud_override
 
 /// Czy ta osoba za sterami dostaje kompaktowy HUD (preferencja, domyślnie tak). Kompaktowy HUD jest dla małych jednostek
-/// (myśliwce, promy): za sterem okrętu zawsze jest klasyczny panel konsoli
+/// (myśliwce, promy): pilot okrętu zawsze ma klasyczny panel konsoli, a strzelec okrętu zostaje przy preferencji (radar DRADIS)
 /mob/proc/aq_wants_compact_ship_hud(obj/structure/overmap/ship)
 	if(aq_ship_hud_override)
 		return aq_ship_hud_override == "compact"
-	if(ship && !istype(ship, /obj/structure/overmap/small_craft))
+	if(ship && !istype(ship, /obj/structure/overmap/small_craft) && ship.pilot == src)
 		return FALSE
 	return !client?.prefs?.ship_hud_classic
 

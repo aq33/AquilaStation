@@ -27791,5 +27791,7 @@
 "Układy: pod kontrolą frakcji. Zajęte / utracone: cudze układy, które frakcja okupuje, i własne, które straciła. Floty: widziane przez sensory. Bitwy: zwycięstwa i porażki znanych dowódców.": "Systems: controlled by the faction. Taken / lost: foreign systems the faction occupies and its own systems it lost. Fleets: seen by sensors. Battles: wins and losses of known commanders.",
 "· żółte „!”: cel misji · ☢ pocisk termojądrowy": "· yellow “!”: mission objective · ☢ thermonuclear missile",
 "Zgłoszenia 20.11: hardsuit, automat, autoklaw, mapa FTL": "Reports 20.11: hardsuit, vending machine, autoclave, FTL map",
-"1) Załóż hardsuit inżynieryjny, rozłóż hełm, włącz wbudowaną butlę (przycisk akcji) i postój minutę: brak obrażeń od duszenia, ciśnienie butli (examine) powoli spada. \\": "1) Put on the engineering hardsuit, deploy the helmet, turn on the integrated tank (action button) and stand for a minute: no suffocation damage, the tank pressure (examine) slowly drops. \\"
+"1) Załóż hardsuit inżynieryjny, rozłóż hełm, włącz wbudowaną butlę (przycisk akcji) i postój minutę: brak obrażeń od duszenia, ciśnienie butli (examine) powoli spada. \\": "1) Put on the engineering hardsuit, deploy the helmet, turn on the integrated tank (action button) and stand for a minute: no suffocation damage, the tank pressure (examine) slowly drops. \\",
+"Liczba układów": "Systems",
+"◉ sektor okrętu · zielone kafle: zasięg skoku · ⇄ brama do innego sektora · ★ stolica · $ stacja handlowa · ◎ hiperbrama · przerywany pierścień: układ okupowany · czerwona linia: front": "◉ ship sector · green tiles: jump range · ⇄ gate to another sector · ★ capital · $ trade station · ◎ hypergate · dashed ring: occupied system · red line: front"
 }

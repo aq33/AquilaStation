@@ -36706,6 +36706,7 @@
 "Liczba stadiów": "Number of stages",
 "Liczba strzałów:": "Shots to fire:",
 "Liczba telekryształów dla [key]": "Amount of telecrystals for [key]",
+"Liczba układów": "Systems",
 "Liczba w stosie: [get_amount()] ([singular_name]).": "There are [get_amount()] [singular_name]\\s in the stack.",
 "Liczba w stosie: [get_amount()].": "There are [get_amount()] in the stack.",
 "Liczba wywołań": "Call Count",
@@ -99213,5 +99214,6 @@
 "■ Przyszłe": "■ Future",
 "■ Zbadane": "■ Researched",
 "■ flota wojenna · ◆ konwój · liczba: okręty we flocie · obwódka: zielona sojusz, żółta neutralni, czerwona wróg · szary znak z „?”: ostatnia znana pozycja floty": "■ war fleet · ◆ convoy · number: ships in the fleet · outline: green allies, yellow neutral, red enemy · grey mark with “?”: last known fleet position",
+"◉ sektor okrętu · zielone kafle: zasięg skoku · ⇄ brama do innego sektora · ★ stolica · $ stacja handlowa · ◎ hiperbrama · przerywany pierścień: układ okupowany · czerwona linia: front": "◉ ship sector · green tiles: jump range · ⇄ gate to another sector · ★ capital · $ trade station · ◎ hypergate · dashed ring: occupied system · red line: front",
 "◉ sektor okrętu · zielone kafle: zasięg skoku · ⇄ brama do innego sektora · ★ stolica · $ stacja handlowa · ◎ hiperbrama · ◇ flota (zielona: sojusz, żółta: neutralna, czerwona: wróg) · przerywany pierścień: układ okupowany · czerwona linia: front": "◉ ship's sector · green tiles: jump range · ⇄ gate to another sector · ★ capital · $ trading station · ◎ hypergate · ◇ fleet (green: ally, yellow: neutral, red: enemy) · dashed ring: occupied system · red line: front"
 }

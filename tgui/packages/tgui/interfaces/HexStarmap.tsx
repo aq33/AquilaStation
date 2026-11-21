@@ -665,8 +665,7 @@ export const HexStarmap = () => {
       </Box>
       <Box fontSize="11px" color="label">
         ◉ sektor okrętu · zielone kafle: zasięg skoku · ⇄ brama do innego
-        sektora · ★ stolica · $ stacja handlowa · ◎ hiperbrama · ◇ flota
-        (zielona: sojusz, żółta: neutralna, czerwona: wróg) · przerywany
+        sektora · ★ stolica · $ stacja handlowa · ◎ hiperbrama · przerywany
         pierścień: układ okupowany · czerwona linia: front
       </Box>
       <Box mt={0.5} fontSize="10px" color="label">
@@ -1710,7 +1709,7 @@ const WarPanel = (props: {
       <Table>
         <Table.Row header>
           <Table.Cell>Frakcja</Table.Cell>
-          <Table.Cell>Układy</Table.Cell>
+          <Table.Cell>Liczba układów</Table.Cell>
           <Table.Cell>Zajęte / utracone</Table.Cell>
           <Table.Cell>Floty</Table.Cell>
           <Table.Cell>Bitwy</Table.Cell>
