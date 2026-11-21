@@ -114,8 +114,8 @@ GLOBAL_LIST_INIT(ship_thruster_oxidizers, list(
 
 /// Stan silników dla pilota: ile dysz działa i jaki jest ciąg względem pełnego; null dla statku bez dysz okrętowych
 /obj/structure/overmap/proc/engine_status_text()
-	if(!length(ship_thrusters))
-		return null
+	if(!length(ship_thrusters) && engine_thrust_design <= 0)
+		return null // statek bez dysz okrętowych; po utracie ostatniej dyszy pilot dostaje „0 z 0” i ciąg awaryjny
 	var/working = engine_working_count()
 	return "Silniki: działa [working] z [length(ship_thrusters)] dysz, ciąg [round(get_engine_thrust_mult() * 100)]%."
 

@@ -1106,12 +1106,21 @@ export const HexStarmap = () => {
                             ? '#32cd32'
                             : '#d8a032'
                           : '#ff3030';
-                        // po dwie floty w rzędzie, kolejne rząd wyżej: przy R = 22 cztery znaczniki mieszczą się w kaflu
-                        const x = cell.x + R * 0.42 - (k % 2) * 16;
-                        const y = cell.y + R * 0.12 - Math.floor(k / 2) * 16;
+                        // Jedna flota: duży znacznik z boku kafla. Kilka: mniejsze w siatce 2x2 wokół środka
+                        // (±6 px, połowa boku 5 px), która przy R = 22 mieści się w sześciokącie
+                        const many = list.length > 1;
+                        const half = many ? 5 : 7.5;
+                        const slot = k % 4;
+                        const x = many
+                          ? cell.x + (slot % 2 ? -6 : 6)
+                          : cell.x + R * 0.42;
+                        const y = many
+                          ? cell.y + (slot < 2 ? -6 : 6)
+                          : cell.y + R * 0.12;
+                        const tip = half * 1.2;
                         const shape = fleet.convoy
-                          ? `M${x} ${y - 9}l9 9-9 9-9-9z`
-                          : `M${x - 7.5} ${y - 7.5}h15v15h-15z`;
+                          ? `M${x} ${y - tip}l${tip} ${tip}-${tip} ${tip}-${tip}-${tip}z`
+                          : `M${x - half} ${y - half}h${half * 2}v${half * 2}h-${half * 2}z`;
                         const fill = fleet.ghost
                           ? '#000a'
                           : FACTION_COLOR[fleet.alignment] || '#888';
@@ -1133,14 +1142,14 @@ export const HexStarmap = () => {
                               d={shape}
                               fill={fill}
                               stroke={fleet.ghost ? '#9aa4b2' : ring}
-                              strokeWidth={2}
+                              strokeWidth={many ? 1.5 : 2}
                               strokeDasharray={fleet.ghost ? '2 2' : undefined}
                             />
                             <text
                               x={x}
-                              y={y + 4}
+                              y={y + (many ? 3 : 4)}
                               textAnchor="middle"
-                              fontSize={11}
+                              fontSize={many ? 8 : 11}
                               fontWeight="bold"
                               fill={fleet.ghost ? '#9aa4b2' : '#fff'}
                               stroke="#000"
