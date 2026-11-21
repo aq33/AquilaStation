@@ -40,7 +40,11 @@
 	var/obj/structure/overmap/main = SSstar_system.find_main_overmap()
 	TEST_ASSERT(main, "No main ship")
 	var/obj/structure/overmap/small_craft/combat/light/fighter = allocate(/obj/structure/overmap/small_craft/combat/light)
-	TEST_ASSERT(H.aq_wants_compact_ship_hud(main), "A ship's gunner lost the compact HUD with the DRADIS radar")
+	var/old_gunner = main.gunner
+	main.gunner = H
+	var/gunner_compact = H.aq_wants_compact_ship_hud(main)
+	main.gunner = old_gunner
+	TEST_ASSERT(gunner_compact, "A ship's gunner lost the compact HUD with the DRADIS radar")
 	var/old_pilot = main.pilot
 	main.pilot = H
 	var/pilot_compact = H.aq_wants_compact_ship_hud(main)

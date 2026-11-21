@@ -102,7 +102,7 @@ GLOBAL_LIST_INIT(ship_thruster_oxidizers, list(
 	if(working == engine_working_seen || !pilot)
 		return
 	if(world.time < engine_status_next_alert)
-		addtimer(CALLBACK(src, PROC_REF(engine_status_flush)), engine_status_next_alert - world.time, TIMER_UNIQUE)
+		addtimer(CALLBACK(src, PROC_REF(engine_status_flush)), engine_status_next_alert - world.time, TIMER_UNIQUE | TIMER_NO_HASH_WAIT)
 		return
 	engine_status_next_alert = world.time + 10 SECONDS
 	to_chat(pilot, "<span class='[working < engine_working_seen ? "warning" : "notice"]'>[engine_status_text()]</span>")
