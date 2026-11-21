@@ -389,6 +389,9 @@ GLOBAL_LIST_INIT(aquila_ship_console_buttons, list(
 
 /atom/movable/screen/movable/aquila_ship_console/proc/examine_text()
 	. = "<span class='notice'>Panel konsoli. Kliknij przycisk na panelu albo użyj skrótu: Alt (hamulec), C (sterowanie myszą/klawiszami), spacja (zmiana broni). Zakładka ZWIŃ nad panelem chowa go do małej zakładki KONSOLA. Panel można przeciągnąć myszą; całkiem ukrywa go czasownik „Pokaż/ukryj panel konsoli” w zakładce Ship.</span>"
+	var/engines = ship?.engine_status_text()
+	if(engines)
+		. += "\n<span class='notice'>[engines]</span>"
 	if(kind == AQUILA_CONSOLE_FIGHTER)
 		. += "\n<span class='warning'>Katapulta: przestaw oba przełączniki (L i P) w ciągu [DisplayTimeText(AQUILA_CONSOLE_ARM_TIME)], żeby wystrzelić kapsułę ratunkową.</span>"
 
@@ -458,8 +461,8 @@ GLOBAL_LIST_INIT(aquila_ship_console_buttons, list(
 	RegisterSignal(user, COMSIG_KB_OVERMAP_TOGGLEMOUSEMOVE_DOWN, PROC_REF(aquila_on_key_rotation), override = TRUE)
 	RegisterSignal(user, COMSIG_KB_OVERMAP_CYCLEFIREMODE_DOWN, PROC_REF(aquila_on_key_weapon), override = TRUE)
 	user.add_verb(/mob/living/proc/aquila_toggle_ship_console)
-	// Kompaktowy HUD (ship_hud_compact.dm) zamiast paneli, chyba że gracz wybrał klasyczny panel
-	if(user.aq_wants_compact_ship_hud())
+	// Kompaktowy HUD (ship_hud_compact.dm) zamiast paneli w małych jednostkach, chyba że gracz wybrał klasyczny panel
+	if(user.aq_wants_compact_ship_hud(src))
 		if(user.aq_ship_hud?.ship != src)
 			QDEL_NULL(user.aq_ship_hud)
 			user.aq_ship_hud = new(user, src)
@@ -479,6 +482,9 @@ GLOBAL_LIST_INIT(aquila_ship_console_buttons, list(
 		panel.refresh()
 	if(!user.aquila_console_hidden)
 		to_chat(user, "<span class='notice'>Na dole ekranu jest panel konsoli. Przyciski na nim działają jak skróty klawiszowe, zakładka ZWIŃ chowa panel; Shift+klik pokazuje opis.</span>")
+	var/engines = engine_status_text()
+	if(engines && pilot == user)
+		to_chat(user, "<span class='notice'>[engines]</span>")
 
 /obj/structure/overmap/proc/aquila_remove_consoles(mob/living/user)
 	for(var/atom/movable/screen/movable/aquila_ship_console/panel as anything in LAZYCOPY(user.aquila_consoles))

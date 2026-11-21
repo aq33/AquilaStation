@@ -12,8 +12,8 @@
 #define SENSOR_ARRAY_MAX_RANGE 10
 /// Stały zasięg działającej matrycy
 #define SENSOR_ARRAY_RANGE 6
-/// Pobór: SENSOR_ARRAY_POWER_PER_RANGE2 * zasięg² (54 kW na stałym zasięgu)
-#define SENSOR_ARRAY_POWER_PER_RANGE2 1500
+/// Pobór: SENSOR_ARRAY_POWER_PER_RANGE2 * zasięg² (5,4 kW na stałym zasięgu; przy 54 kW słabsze APC, np. na Atlasie, wyłączały urządzenia w minutę)
+#define SENSOR_ARRAY_POWER_PER_RANGE2 150
 /// Ile zasięgu kamery zostaje, gdy matryca nie działa
 #define SENSOR_ARRAY_BLIND_OPTICAL 0.25
 /// Do jakiego ciśnienia (kPa) matryca uznaje kafel za próżnię

@@ -27779,5 +27779,19 @@
 "Mundurownia InPost": "CargoDrobe",
 "orlen": "orlen",
 "\\improper Mundurownia InPost": "\\improper CargoDrobe",
-"brak IP": "no IP"
+"brak IP": "no IP",
+"Silniki: działa [working] z [length(ship_thrusters)] dysz, ciąg [round(get_engine_thrust_mult() * 100)]%.": "Engines: [working] of [length(ship_thrusters)] thrusters working, thrust [round(get_engine_thrust_mult() * 100)]%.",
+"Floty": "Fleets",
+"■ flota wojenna · ◆ konwój · liczba: okręty we flocie · obwódka: zielona sojusz, żółta neutralni, czerwona wróg · szary znak z „?”: ostatnia znana pozycja floty": "■ war fleet · ◆ convoy · number: ships in the fleet · outline: green allies, yellow neutral, red enemy · grey mark with “?”: last known fleet position",
+" · żółte „!”: cel misji · ☢ pocisk termojądrowy": " · yellow “!”: mission objective · ☢ thermonuclear missile",
+"Wojna": "War",
+"Brak danych o wojnie.": "No war data.",
+"Zajęte / utracone": "Taken / lost",
+"Bitwy": "Battles",
+"Układy: pod kontrolą frakcji. Zajęte / utracone: cudze układy, które frakcja okupuje, i własne, które straciła. Floty: widziane przez sensory. Bitwy: zwycięstwa i porażki znanych dowódców.": "Systems: controlled by the faction. Taken / lost: foreign systems the faction occupies and its own systems it lost. Fleets: seen by sensors. Battles: wins and losses of known commanders.",
+"· żółte „!”: cel misji · ☢ pocisk termojądrowy": "· yellow “!”: mission objective · ☢ thermonuclear missile",
+"Zgłoszenia 20.11: hardsuit, automat, autoklaw, mapa FTL": "Reports 20.11: hardsuit, vending machine, autoclave, FTL map",
+"1) Załóż hardsuit inżynieryjny, rozłóż hełm, włącz wbudowaną butlę (przycisk akcji) i postój minutę: brak obrażeń od duszenia, ciśnienie butli (examine) powoli spada. \\": "1) Put on the engineering hardsuit, deploy the helmet, turn on the integrated tank (action button) and stand for a minute: no suffocation damage, the tank pressure (examine) slowly drops. \\",
+"Liczba układów": "Systems",
+"◉ sektor okrętu · zielone kafle: zasięg skoku · ⇄ brama do innego sektora · ★ stolica · $ stacja handlowa · ◎ hiperbrama · przerywany pierścień: układ okupowany · czerwona linia: front": "◉ ship sector · green tiles: jump range · ⇄ gate to another sector · ★ capital · $ trade station · ◎ hypergate · dashed ring: occupied system · red line: front"
 }
