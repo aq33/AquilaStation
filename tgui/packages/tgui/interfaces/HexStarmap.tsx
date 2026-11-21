@@ -543,6 +543,8 @@ export const HexStarmap = () => {
       ?.getAttribute('data-hex');
     if (id) {
       act('hex_select', { hex: id });
+      // trasa i przycisk skoku są w zakładce Kafel
+      setPanelTab('hex');
     }
   };
 
@@ -1104,8 +1106,9 @@ export const HexStarmap = () => {
                             ? '#32cd32'
                             : '#d8a032'
                           : '#ff3030';
-                        const x = cell.x + R * 0.42 - k * 16;
-                        const y = cell.y + R * 0.12;
+                        // po dwie floty w rzędzie, kolejne rząd wyżej: przy R = 22 cztery znaczniki mieszczą się w kaflu
+                        const x = cell.x + R * 0.42 - (k % 2) * 16;
+                        const y = cell.y + R * 0.12 - Math.floor(k / 2) * 16;
                         const shape = fleet.convoy
                           ? `M${x} ${y - 9}l9 9-9 9-9-9z`
                           : `M${x - 7.5} ${y - 7.5}h15v15h-15z`;
