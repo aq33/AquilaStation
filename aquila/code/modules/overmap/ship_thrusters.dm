@@ -90,18 +90,19 @@ GLOBAL_LIST_INIT(ship_thruster_oxidizers, list(
 	if(isnull(engine_working_seen))
 		engine_working_seen = working
 	else if(working != engine_working_seen && pilot)
-		if(world.time >= engine_status_next_alert)
-			engine_status_flush()
-		else // dysza na granicy paliwa potrafi gasnąć i wracać co tick: stan po przerwie, nie gubimy ostatniej zmiany
-			addtimer(CALLBACK(src, PROC_REF(engine_status_flush)), engine_status_next_alert - world.time, TIMER_UNIQUE)
+		engine_status_flush()
 
-/// Wysyła pilotowi bieżący stan silników, jeśli zmienił się od ostatniego komunikatu (najwyżej co 10 s)
+/// Wysyła pilotowi bieżący stan silników, jeśli zmienił się od ostatniego komunikatu (najwyżej co 10 s). W trakcie przerwy
+/// odkłada sprawdzenie na jej koniec: dysza na granicy paliwa potrafi gasnąć i wracać co tick, a ostatnia zmiana nie przepada
 /obj/structure/overmap/proc/engine_status_flush()
 	var/working = 0
 	for(var/obj/machinery/ship_thruster/thruster as anything in ship_thrusters)
 		if(thruster.can_fire)
 			working++
 	if(working == engine_working_seen || !pilot)
+		return
+	if(world.time < engine_status_next_alert)
+		addtimer(CALLBACK(src, PROC_REF(engine_status_flush)), engine_status_next_alert - world.time, TIMER_UNIQUE)
 		return
 	engine_status_next_alert = world.time + 10 SECONDS
 	to_chat(pilot, "<span class='[working < engine_working_seen ? "warning" : "notice"]'>[engine_status_text()]</span>")
