@@ -25,7 +25,8 @@
 		//Recovered and alive
 		if(is_station_level(mob_to_recover.z) && mob_to_recover.stat == CONSCIOUS)
 			complete_objective()
-		// AQ EDIT - martwego VIP-a da się ożywić i dowieźć, misja przepada tylko z ciałem (usunięte albo zostawione)
+		if(aq_vip_lost()) // AQ EDIT - martwego VIP-a da się ożywić i dowieźć, misja przepada, gdy ciała nie da się już uratować
+			return TRUE
 	return FALSE
 
 /datum/orbital_objective/vip_recovery/generate_objective_stuff(turf/chosen_turf)
