@@ -106,6 +106,11 @@
 
 /datum/aq_lobby_hud/proc/add_element(path, lobby_icon, left, top, can_collapse, anchor_x = "CENTER", height = LOBBY_CANVAS_HEIGHT)
 	var/atom/movable/screen/aq_lobby/element = new path(null, src)
+	// Gracz, który wszedł w trakcie startu serwera, dostaje menu przed SSatoms: new() nie woła wtedy Initialize(),
+	// a późniejsza inicjalizacja świata nie obejmuje obiektów ekranu. Bez tego przyciski nie znały menu (runtime'y),
+	// a telewizorek nie miał grafiki
+	if(!(element.flags_1 & INITIALIZED_1))
+		SSatoms.InitAtom(element, FALSE, list(FALSE, src))
 	element.icon = lobby_icon
 	var/list/view_size = getviewsize(client_ref.view)
 	element.screen_loc = aq_lobby_screen_loc(left, top, height, anchor_x, view_size)

@@ -780,7 +780,8 @@ const tinted = (key: string, sprite: Sprite, color: string) => {
 
 /** Rozmiar sprite'a dopasowany do przegródki szyby (duże ikony są zmniejszane) */
 const fit = (sprite: Sprite) => {
-  const s = Math.min(1, 28 / sprite.width, 22 / sprite.height);
+  // najwyżej 19 px wysokości: górne 6 px komórki zajmuje pasek z nazwą, więc szyjki butelek nie giną pod nim
+  const s = Math.min(1, 28 / sprite.width, 19 / sprite.height);
   return {
     w: Math.max(1, Math.round(sprite.width * s)),
     h: Math.max(1, Math.round(sprite.height * s)),
@@ -1072,6 +1073,23 @@ const drawCell = (P: Painter, i: number) => {
     }
   }
   coil(p, cx + 3, y0, turning * 6, true);
+  // Nazwa nad przedmiotem: butelki i puszki wyglądają podobnie, a podpowiedź widać dopiero po najechaniu
+  if (slot) {
+    const label = cap(t(slot.product.name));
+    p.globalAlpha = 0.7;
+    rect(cx, cy, 32, 6, '#10200a');
+    p.globalAlpha = 1;
+    T(
+      cx + 16,
+      cy + 4.6,
+      label.length > 14 ? `${label.slice(0, 13)}…` : label,
+      4.6,
+      '#e8f7c8',
+      'center',
+      false,
+      31,
+    );
+  }
   rect(cx, cy + 28, 32, 4, '#77b531');
   rect(cx, cy + 28, 32, 1, '#5d9128');
   const code = ROW_LETTERS[Math.floor(i / COLS)] + ((i % COLS) + 1);
