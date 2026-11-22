@@ -4038,6 +4038,10 @@
 	pixel_y = 10;
 	pixel_x = -17
 	},
+/obj/item/fishing_rod{
+	pixel_x = -13;
+	pixel_y = 2
+	},
 /turf/open/floor/plating/beach/sand,
 /area/virtual_domain/fullbright)
 "ka" = (
@@ -4047,6 +4051,10 @@
 /obj/item/reagent_containers/food/drinks/soda_cans/space_up{
 	pixel_y = 13;
 	pixel_x = -9
+	},
+/obj/item/fishing_rod{
+	pixel_x = 8;
+	pixel_y = -6
 	},
 /turf/open/floor/plating/beach/sand,
 /area/virtual_domain/fullbright)
@@ -4209,6 +4217,27 @@
 /obj/item/clothing/suit/jacket/letterman_red,
 /turf/open/floor/wood,
 /area/virtual_domain)
+"kt" = (
+/obj/structure/chair/fancy/plastic,
+/obj/item/fishing_rod{
+	pixel_x = 11;
+	pixel_y = -8
+	},
+/turf/open/floor/plating/beach/sand,
+/area/virtual_domain/fullbright)
+"ku" = (
+/obj/item/storage/box/fishing_worms{
+	pixel_x = 10
+	},
+/turf/open/floor/plating/beach/sand,
+/area/virtual_domain/fullbright)
+"kv" = (
+/obj/item/storage/box/fishing_worms{
+	pixel_x = 2;
+	pixel_y = -13
+	},
+/turf/open/floor/plating/beach/sand,
+/area/virtual_domain/fullbright)
 
 (1,1,1) = {"
 aa
@@ -5721,7 +5750,7 @@ jK
 jL
 jR
 jS
-jL
+ku
 jL
 jN
 jE
@@ -9030,7 +9059,7 @@ jL
 bi
 jL
 jL
-jL
+kv
 jN
 jE
 ci
@@ -9112,7 +9141,7 @@ fY
 jL
 jL
 jL
-ed
+kt
 jL
 kb
 ci
