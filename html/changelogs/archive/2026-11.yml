@@ -1494,3 +1494,8 @@
   - bugfix: Pocisk, który odbił się od pancerza, nie rani wnętrza okrętu.
   - balance: Powłoka z miedzi i srebra daje impuls EMP tylko przy trafieniu w okręt,
       nie w amunicji ręcznej.
+  sh4dow321:
+  - bugfix: Duchy znów mogą zgłaszać się do ankiet ról bez kategorii ignorowania (np.
+      powrót z kriostazy).
+  - bugfix: Konsola myśliwców, generator termoelektryczny, oględziny, mroczny puls
+      i stos naleśników nie wywołują już błędów.
