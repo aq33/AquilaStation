@@ -36,6 +36,13 @@
 	. = ..()
 	if(!.)
 		return
+	// Moduł domyślny znika przy wyborze modułu razem z dodanymi narzędziami (core sprawdza tylko, czy moduł w ogóle jest)
+	if(require_module && !R.has_module())
+		to_chat(user, "<span class='warning'>Borg musi wybrać moduł, zanim będzie można go ulepszyć!</span>")
+		return FALSE
+	if(locate(type) in R.upgrades)
+		to_chat(user, "<span class='warning'>Ta jednostka ma już [src].</span>")
+		return FALSE
 	if(is_type_in_list(R.module, aq_excluded_modules))
 		to_chat(user, "<span class='warning'>[src] nie pasuje do modułu „[R.module.name]”.</span>")
 		return FALSE
@@ -144,6 +151,14 @@
 	if(!active || QDELETED(owner) || owner.stat == DEAD || !owner.aq_use_charge(charge_per_second * delta_time))
 		aq_set_active(FALSE)
 		return PROCESS_KILL
+
+// Nowy moduł ustawia od nowa magnesy i czyszczenie (update_module_innate), więc włączone przełączniki gasną,
+// zamiast zostać „włączone” bez efektu i dalej pobierać energię
+/mob/living/silicon/robot/update_module_innate()
+	. = ..()
+	for(var/obj/item/borg/upgrade/aquila/toggle/toggle in upgrades)
+		if(toggle.active)
+			toggle.aq_set_active(FALSE)
 
 /obj/item/borg/upgrade/aquila/toggle/proc/aq_enable(mob/living/silicon/robot/R)
 	return
