@@ -199,13 +199,55 @@
 	var/lethal_after = gun.aq_lethal_selected()
 	GLOB.security_level = old_level
 
-	TEST_ASSERT(!allowed_green || !isnull(cyborg.get_overmap()), "Tryb zabójczy dozwolony przy zielonym alarmie")
-	if(!allowed_green)
-		TEST_ASSERT(!lethal_at_green, "Przy zielonym alarmie broń przełączyła się na tryb zabójczy")
-		TEST_ASSERT(!allowed_blue, "Tryb zabójczy dozwolony przy niebieskim alarmie")
-		TEST_ASSERT(!fired && !lethal_after, "Po odwołaniu alarmu broń dalej strzela zabójczo")
+	// Pokój testowy nie jest wrogim okrętem: przy zielonym alarmie bez abordażu tryb zabójczy jest zablokowany
+	TEST_ASSERT(!allowed_green, "Tryb zabójczy dozwolony przy zielonym alarmie")
+	TEST_ASSERT(!lethal_at_green, "Przy zielonym alarmie broń przełączyła się na tryb zabójczy")
+	TEST_ASSERT(!allowed_blue, "Tryb zabójczy dozwolony przy niebieskim alarmie")
+	TEST_ASSERT(!fired && !lethal_after, "Po odwołaniu alarmu broń dalej strzela zabójczo")
 	TEST_ASSERT(allowed_red, "Tryb zabójczy zablokowany przy czerwonym alarmie")
 	TEST_ASSERT(lethal_at_red, "Przy czerwonym alarmie nie da się wybrać trybu zabójczego")
+
+/// Abordaż to tylko wrogi okręt i wrodzy, nieskuci abordażyści: nie własny prom, planeta ani skuty jeniec
+/datum/unit_test/aquila_cyborg_lethal_boarding
+
+/datum/unit_test/aquila_cyborg_lethal_boarding/Run()
+	var/old_level = GLOB.security_level
+	GLOB.security_level = SEC_LEVEL_GREEN
+	var/mob/living/silicon/robot/cyborg = aq_cyborg_with_module(/obj/item/robot_module/security)
+	var/obj/structure/overmap/main_ship = SSstar_system.find_main_overmap()
+
+	// Własny prom (myśliwiec frakcji załogi) w locie
+	var/obj/structure/overmap/small_craft/combat/light/craft = allocate(/obj/structure/overmap/small_craft/combat/light)
+	craft.faction = main_ship ? main_ship.faction : "nanotrasen"
+	cyborg.forceMove(craft)
+	var/on_own_craft = aquila_cyborg_lethal_allowed(cyborg)
+	// Ten sam kadłub, ale wrogiej frakcji
+	craft.faction = "syndicate"
+	var/on_enemy_craft = aquila_cyborg_lethal_allowed(cyborg)
+	cyborg.forceMove(run_loc_floor_bottom_left)
+
+	// Planeta ma własną frakcję „planet”, a i tak nie jest wrogim okrętem
+	var/obj/structure/overmap/planet/planet = new(run_loc_floor_top_right, /datum/planet_type/lava)
+	var/planet_hostile = aquila_is_hostile_ship(planet)
+	qdel(planet, TRUE)
+
+	// Abordażysta KNPC na tym samym pokładzie: wrogi liczy się, skuty już nie
+	var/mob/living/carbon/human/boarder = allocate(/mob/living/carbon/human, run_loc_floor_top_right)
+	boarder.faction = list("Syndicate")
+	boarder.AddComponent(/datum/component/knpc)
+	var/with_boarder = aquila_cyborg_lethal_allowed(cyborg)
+	boarder.handcuffed = new /obj/item/restraints/handcuffs(boarder)
+	boarder.update_handcuffed()
+	var/with_prisoner = aquila_cyborg_lethal_allowed(cyborg)
+	qdel(boarder.GetComponent(/datum/component/knpc))
+	GLOB.security_level = old_level
+
+	TEST_ASSERT(!on_own_craft, "Tryb zabójczy odblokował się na własnym promie przy zielonym alarmie")
+	TEST_ASSERT(!planet_hostile, "Planeta liczy się jako wrogi okręt")
+	if(main_ship)
+		TEST_ASSERT(on_enemy_craft, "Tryb zabójczy zablokowany na pokładzie wrogiego okrętu")
+	TEST_ASSERT(with_boarder, "Tryb zabójczy zablokowany przy wrogim abordażyście na pokładzie")
+	TEST_ASSERT(!with_prisoner, "Skuty jeniec KNPC odblokował tryb zabójczy")
 
 /// Magnetyczne przyczepy blokują wysysanie przy dekompresji
 /datum/unit_test/aquila_cyborg_magnetic_traction

@@ -798,17 +798,32 @@
 		return TRUE
 	if(!user)
 		return FALSE
-	var/obj/structure/overmap/ship = user.get_overmap()
-	if(ship && ship.role != MAIN_OVERMAP && ship.role != MAIN_MINING_SHIP)
+	if(aquila_is_hostile_ship(user.get_overmap()))
 		return TRUE // abordaż wrogiego okrętu
 	var/turf/here = get_turf(user)
 	if(!here)
 		return FALSE
 	for(var/datum/component/knpc/boarder as anything in GLOB.knpcs)
 		var/mob/living/boarder_mob = boarder.parent
-		if(istype(boarder_mob) && boarder_mob.stat != DEAD && boarder_mob.z == here.z)
-			return TRUE // abordażyści na naszym pokładzie
+		if(!istype(boarder_mob) || boarder_mob.stat == DEAD || boarder_mob.z != here.z)
+			continue
+		if(boarder_mob.restrained(TRUE) || boarder_mob.faction_check_mob(user))
+			continue // skuty jeniec albo sojusznik
+		return TRUE // abordażyści na naszym pokładzie
 	return FALSE
+
+/// Okręt innej, niesojuszniczej frakcji niż główny okręt załogi; własne promy, myśliwce, planety i asteroidy się nie liczą
+/proc/aquila_is_hostile_ship(obj/structure/overmap/ship)
+	if(!istype(ship) || ship.role == MAIN_OVERMAP || ship.role == MAIN_MINING_SHIP || !ship.faction)
+		return FALSE
+	if(istype(ship, /obj/structure/overmap/planet) || istype(ship, /obj/structure/overmap/asteroid))
+		return FALSE
+	var/obj/structure/overmap/main_ship = SSstar_system.find_main_overmap()
+	if(!main_ship || ship.faction == main_ship.faction)
+		return FALSE
+	var/datum/faction/ours = SSstar_system.faction_by_name(main_ship.faction)
+	var/datum/faction/theirs = SSstar_system.faction_by_name(ship.faction)
+	return !(ours && theirs && ours.relationships[theirs] >= RELATIONSHIP_ALLIES)
 
 /// Broń cyborga z odblokowanym trybem zabójczym (Tegustation „lethal mode unlock”)
 /obj/item/gun/energy/e_gun/aquila_cyborg_lethal
