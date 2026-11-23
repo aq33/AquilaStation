@@ -57,7 +57,8 @@ GLOBAL_LIST_EMPTY(food_transformations)
 
 	for(var/recipe_type in subtypesof(/datum/crafting_recipe/food))
 		var/datum/crafting_recipe/food/recipe = new recipe_type
-		if(recipe.name && recipe.result)
+		// Danie gotowane krok po kroku ma wpis w sekcji „Krok po kroku”, nie na stole
+		if(recipe.name && recipe.result && (recipe.non_craftable || !is_step_cooked(recipe.result)))
 			var/list/ingredients = list()
 			for(var/ingredient in recipe.reqs)
 				ingredients += list(cookbook_ingredient(ingredient, recipe.reqs[ingredient]))

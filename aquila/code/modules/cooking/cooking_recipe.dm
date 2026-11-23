@@ -142,6 +142,27 @@ GLOBAL_LIST_EMPTY(cooking_cookbook_lookup)
 		initialize_cooking_recipes()
 	return GLOB.cooking_recipes_by_container[container_type]
 
+/// Dania (typy), które robi się krok po kroku; bez tworzenia przepisów, więc można wołać przy starcie świata
+/proc/cooking_step_products()
+	var/static/list/products
+	if(!products)
+		products = list()
+		for(var/datum/cooking/recipe/recipe_type as anything in subtypesof(/datum/cooking/recipe))
+			var/product = initial(recipe_type.product_type)
+			if(product)
+				products[product] = TRUE
+	return products
+
+/// Czy danie (albo jego upieczona wersja, gdy to surowa pizza) robi się krok po kroku
+/proc/is_step_cooked(result_path)
+	var/list/products = cooking_step_products()
+	if(products[result_path])
+		return TRUE
+	var/text_path = "[result_path]"
+	if(findtext(text_path, "/raw", -4))
+		return !!products[text2path(copytext(text_path, 1, -4))]
+	return FALSE
+
 /// Przepisy krokowe dla Książki kucharskiej, w kategoriach
 /proc/get_cooking_cookbook()
 	if(!length(GLOB.cooking_recipes_by_container))
