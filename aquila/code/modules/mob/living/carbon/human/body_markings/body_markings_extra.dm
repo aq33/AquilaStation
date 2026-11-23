@@ -66,7 +66,7 @@
 
 /datum/aq_body_marking/tat_tiger // Polaris: /datum/sprite_accessory/marking/tat_tiger (Vox Tiger-stripe Tattoo)
 	id = "tat_tiger"
-	name = "Tatuaż w tygrysie pręgi Voxa"
+	name = "Tatuaż w tygrysie pręgi"
 	zones = list(BODY_ZONE_CHEST, BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_PRECISE_L_HAND, BODY_ZONE_PRECISE_R_HAND, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
 
 /datum/aq_body_marking/anime_inner // Nova Sector: /datum/body_marking/other/anime_inner (Anime Eyes (Inner))
@@ -449,21 +449,6 @@
 /datum/aq_body_marking/una_pawsocks // Polaris: /datum/sprite_accessory/marking/una_paw_socks (Unathi Points)
 	id = "una_pawsocks"
 	name = "Ciemne kończyny Unathi"
-	zones = list(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_PRECISE_L_HAND, BODY_ZONE_PRECISE_R_HAND, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
-
-/datum/aq_body_marking/voxheart // Skyrat-tg: /datum/body_marking/tertiary/vox/heart (Vox Heart Tattoo)
-	id = "voxheart"
-	name = "Tatuaż serce Voxa, prawe ramię"
-	zones = list(BODY_ZONE_R_ARM)
-
-/datum/aq_body_marking/voxnightling // Skyrat-tg: /datum/body_marking/tertiary/vox/nightling (Vox Nightling Tattoo)
-	id = "voxnightling"
-	name = "Tatuaż Nocny ptak Voxa"
-	zones = list(BODY_ZONE_CHEST, BODY_ZONE_L_ARM, BODY_ZONE_R_ARM)
-
-/datum/aq_body_marking/vox // Skyrat-tg: /datum/body_marking/secondary/vox/vox (Vox Talon)
-	id = "vox"
-	name = "Szpony Voxa"
 	zones = list(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_PRECISE_L_HAND, BODY_ZONE_PRECISE_R_HAND, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
 
 /datum/aq_body_marking/panels // Polaris: /datum/sprite_accessory/marking/vr/spirit_panels (Ward - Spirit FBP Panels)
