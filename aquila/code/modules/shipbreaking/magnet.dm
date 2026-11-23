@@ -53,6 +53,9 @@
 /obj/machinery/computer/ship/mineral_magnet/proc/load_wreck()
 	if(!current_wreck || !target_location)
 		return FALSE
+	// Wrak już stoi w klatce (timer z pull_in_wreck() po wcześniejszym ręcznym load_wreck()): drugi szablon na nim dubluje kable i rury
+	if(wreck_turfs)
+		return FALSE
 	// Klatka może mieć pola z różnych obszarów (kosmos i okolica statku), każde wraca do swojego
 	cage_areas = list()
 	for(var/turf/T as anything in get_cage_turfs())

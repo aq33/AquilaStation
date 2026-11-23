@@ -29,7 +29,7 @@
 
 	var/datum/antagonist/gang/G = target.mind.has_antag_datum(/datum/antagonist/gang)
 	if(G)
-		if(G.gang == G || istype(G, /datum/antagonist/gang/boss))
+		if(G.gang == gang || istype(G, /datum/antagonist/gang/boss)) // AQ EDIT - porównywano gang z datumem, implant przerabiał członka własnego gangu
 			return FALSE
 		target.mind.remove_antag_datum(/datum/antagonist/gang)
 	target.mind.add_antag_datum(/datum/antagonist/gang, gang)

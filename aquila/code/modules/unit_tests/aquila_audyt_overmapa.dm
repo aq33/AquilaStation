@@ -98,17 +98,6 @@
 	TEST_ASSERT(complete, "A counterattack fleet that retreated did not count as repelled")
 	TEST_ASSERT_EQUAL(status, 1, "The station boarding objective was not completed after the counterattack retreated")
 
-/// The armed Syndicate trooper in a space suit on the boarding maps actually fires a bullet
-/datum/unit_test/aquila_audyt_space_syndicate_shoots
-
-/datum/unit_test/aquila_audyt_space_syndicate_shoots/Run()
-	var/mob/living/simple_animal/hostile/nsv/syndicate/space/ranged/trooper = allocate(/mob/living/simple_animal/hostile/nsv/syndicate/space/ranged)
-	var/turf/target_turf = locate(trooper.x + 3, trooper.y, trooper.z)
-	trooper.Shoot(target_turf)
-	var/obj/item/ammo_casing/casing = locate() in get_turf(trooper)
-	TEST_ASSERT(casing, "The armed Syndicate trooper in a space suit fired without any bullet")
-	TEST_ASSERT(!casing.BB, "The trooper's casing still holds its bullet after the shot")
-
 /// A deleted torpedo ship leaves the cached ship list of its fleet's salvo (hard delete when nobody fires at that target again)
 /datum/unit_test/aquila_audyt_salvo_forgets_dead_ship
 

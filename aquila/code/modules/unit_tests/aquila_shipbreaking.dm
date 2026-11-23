@@ -37,6 +37,17 @@
 	for(var/datum/map_template/shipbreaker/template as anything in templates)
 		if(template.width > 30 || template.height > 30)
 			return "[template.mappath] is [template.width]x[template.height], too big for the 40x40 magnet cage with room for blasts"
+	// Ładowanie i cięcie każdego wraku trwało w CI ~6 min, więc robimy to na losowej próbce: kolejne przebiegi
+	// przechodzą przez całą pulę. -DAQUILA_FULL_MAP_TESTS sprawdza wszystkie wraki.
+	// Ponad próbkę doładowujemy wraki tylko do znalezienia zwykłej ściany, której potrzebuje test złomu niżej.
+	var/list/to_check = shuffle(templates.Copy())
+	var/checked = 0
+	for(var/datum/map_template/shipbreaker/template as anything in to_check)
+#ifndef AQUILA_FULL_MAP_TESTS
+		if(checked >= 3 && test_wall)
+			break
+#endif
+		checked++
 		// Bez Release(), patrz mining_asteroids
 		var/datum/turf_reservation/reservation = SSmapping.RequestBlockReservation(template.width + 1, template.height + 1)
 		if(!reservation)
@@ -109,6 +120,9 @@
 		return "Magnet refused to pull a wreck"
 	if(!magnet.load_wreck())
 		return "Magnet failed to load [magnet.current_wreck?.mappath]"
+	// Timer z pull_in_wreck() odpala load_wreck() po 10 s, gdy wrak już stoi: drugi szablon dublował kable (losowy runtime w CI)
+	if(magnet.load_wreck())
+		return "Magnet loaded a second wreck on top of the loaded one"
 	var/health = magnet.get_wreck_health()
 	if(!health)
 		return "Freshly loaded wreck reports [health]% health"
@@ -189,25 +203,36 @@
 		qdel(welder)
 		return
 
-	// Silnik postawiony na miejscu (nie z wraku) rozbiera się po staremu, bez rdzenia
+	// Silnik postawiony na miejscu (nie z wraku) rozbiera się po staremu, bez rdzenia.
+	// Liczymy przyrost złomu, nie samą obecność: na polu losowego wraku złom już bywa, a stosy się łączą
 	var/obj/structure/shuttle/engine/heater/built_engine = new(stand)
+	var/core_before = scrap_amount(stand, /obj/item/stack/scrap/core)
 	welder.cut_down(breaker, built_engine)
 	if(!QDELETED(built_engine))
 		return "Rayne welder did not cut a built shuttle engine apart"
-	if(locate(/obj/item/stack/scrap/core) in stand)
+	if(scrap_amount(stand, /obj/item/stack/scrap/core) > core_before)
 		return "A shuttle engine built in the shipbreaking area dropped a ship core"
 	// Dźwigar postawiony na miejscu daje żelazo, nie srebrny szkielet
 	var/obj/structure/girder/built_girder = new(stand)
+	var/framing_before = scrap_amount(stand, /obj/item/stack/scrap/framing)
 	built_girder.deconstruct(TRUE)
-	if(locate(/obj/item/stack/scrap/framing) in stand)
+	if(scrap_amount(stand, /obj/item/stack/scrap/framing) > framing_before)
 		return "A girder built in the shipbreaking area dropped framing scrap"
 
 	var/obj/structure/shuttle/engine/heater/engine = new(stand)
 	ADD_TRAIT(engine, TRAIT_SHIPBREAK_WRECK, SHIPBREAK_WRECK_TRAIT) // jak silnik, który przyleciał z wrakiem
+	core_before = scrap_amount(stand, /obj/item/stack/scrap/core)
 	welder.cut_down(breaker, engine)
 	if(!QDELETED(engine))
 		return "Rayne welder did not cut a shuttle engine apart"
-	if(!(locate(/obj/item/stack/scrap/core) in stand))
+	if(scrap_amount(stand, /obj/item/stack/scrap/core) <= core_before)
 		return "Cutting an engine did not drop a ship core"
+
+/// Łączna ilość złomu danego typu na polu (stosy się łączą, więc liczymy amount, nie obiekty)
+/datum/unit_test/shipbreaking/proc/scrap_amount(turf/T, scrap_type)
+	. = 0
+	for(var/obj/item/stack/scrap/pile in T)
+		if(istype(pile, scrap_type))
+			. += pile.amount
 
 #undef TEST_ASSERT

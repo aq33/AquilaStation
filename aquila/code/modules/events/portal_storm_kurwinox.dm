@@ -13,8 +13,8 @@
 	cannot_spawn_after_shuttlecall = TRUE
 
 /datum/round_event/portal_storm/kurwinox
-	boss_types = list(/mob/living/simple_animal/hostile/kurwinoxy/czerwony = 2)
-	hostile_types = list(/mob/living/simple_animal/hostile/kurwinoxy = 8)
+	boss_types = list(/mob/living/basic/kurwinoxy/czerwony = 2)
+	hostile_types = list(/mob/living/basic/kurwinoxy = 8)
 	/// No safe turf for a portal was found: nothing spawns and the event ends silently
 	var/aborted = FALSE
 
@@ -49,7 +49,7 @@
 		return
 	sound_to_playing_players('sound/magic/lightning_chargeup.ogg')
 	sleep(80)
-	priority_announce("Wykryto potężną anomalię bluespace zmierzającą w stronę [station_name()]. Skanery rejestrują sygnatury biologiczne z galaktyki Kurwix. Przygotować się na kontakt.", "Alarm: Anomalia", SSstation.announcer.get_rand_alert_sound())
+	priority_announce("Wykryto potężną anomalię bluespace zmierzającą w stronę [station_name()]. Skanery rejestrują sygnatury biologiczne z galaktyki Kurwix. Przygotować się na kontakt.", "Alarm: Anomalia", 'aquila/sound/ai/events/portal_storm_kurwinox.ogg')
 	sleep(20)
 	sound_to_playing_players('sound/magic/lightningbolt.ogg')
 

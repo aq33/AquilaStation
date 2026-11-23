@@ -1,24 +1,32 @@
 // Rozkazy drużyny: dowódca (z pagerem) albo XO z konsoli wysyła tekst, który drużyna widzi na ekranie
-// z portretem nadawcy i słyszy przez TTS (squad_tts.dm). Odstęp 30 s na nadawcę jak w TGMC.
+// z portretem nadawcy i słyszy przez TTS (squad_tts.dm). Odstęp 30 s na drużynę (wspólny dla dowódcy i XO),
+// żeby drużyny nie zasypywały dwa źródła naraz, a XO mógł od razu wydać rozkaz innej drużynie.
 
 /mob/living
-	/// Kiedy ten nadawca może wydać następny rozkaz na ekran
-	var/aq_next_squad_order = 0
 	/// Kiedy ten nadawca może postawić następny znacznik
 	var/aq_next_squad_marker = 0
 
-/// Czy nadawca może już wydać rozkaz; sprawdzane przed oknem z tekstem, żeby wpisany rozkaz nie przepadał
-/mob/living/proc/aq_can_issue_order()
-	if(world.time < aq_next_squad_order)
-		to_chat(src, "<span class='warning'>Następny rozkaz możesz wydać za [DisplayTimeText(aq_next_squad_order - world.time)].</span>")
+/datum/squad
+	/// Kiedy drużyna może dostać następny rozkaz na ekran
+	var/aq_next_order = 0
+
+/// Czy drużyna może już dostać rozkaz; sprawdzane przed oknem z tekstem, żeby wpisany rozkaz nie przepadał
+/datum/squad/proc/aq_can_issue_order(mob/living/sender)
+	if(world.time < aq_next_order)
+		if(sender)
+			to_chat(sender, "<span class='warning'>Następny rozkaz dla drużyny [name] można wydać za [DisplayTimeText(aq_next_order - world.time)].</span>")
 		return FALSE
 	return TRUE
+
+/// Ile sekund zostało do następnego rozkazu dla drużyny (do okien)
+/datum/squad/proc/aq_order_cooldown_left()
+	return round(max(0, aq_next_order - world.time) / 10)
 
 /// Wysyła rozkaz na ekran drużyny. from_console = XO z konsoli (bez wymogu pagera).
 /datum/squad/proc/aq_issue_order(mob/living/sender, message, from_console = FALSE)
 	if(!sender || !message)
 		return FALSE
-	if(!sender.aq_can_issue_order())
+	if(!aq_can_issue_order(sender))
 		return FALSE
 	message = trim(replacetext(copytext_char(message, 1, SQUAD_ORDER_MAX_LEN + 1), "\n", " "))
 	if(!length(message))
@@ -26,18 +34,24 @@
 	if(CHAT_FILTER_CHECK(message))
 		to_chat(sender, "<span class='warning'>Rozkaz zawiera zakazane słowo.</span>")
 		return FALSE
-	sender.aq_next_squad_order = world.time + SQUAD_ORDER_COOLDOWN
+	aq_next_order = world.time + SQUAD_ORDER_COOLDOWN
 	var/title = from_console ? "Wiadomość z CIC od: [sender.real_name]" : "Rozkaz dowódcy drużyny [name]"
 	log_say("[key_name(sender)] gave an order to squad [name]: [message]")
-	var/span_style = squad_channel?.text_span_style || "sciradio"
-	for(var/mob/living/carbon/human/member as anything in members)
-		if(member.client && member.aq_has_squad_pager())
-			to_chat(member, "<span class='[span_style]'><b>\[[name]\] ROZKAZ ([sender.real_name]):</b> [html_encode(message)]</span>")
+	aq_deliver_order(sender, message, title, members.Copy())
 	if(from_console)
+		var/span_style = squad_channel?.text_span_style || "sciradio"
 		to_chat(sender, "<span class='[span_style]'><b>\[[name]\] Wysłano rozkaz:</b> [html_encode(message)]</span>")
-	aq_squad_screen_alert(message, title, sender, play_tts = TRUE)
 	aq_log_message(sender.real_name, message, "order")
 	return TRUE
+
+/// Rozkaz w czacie, na ekranie i w TTS dla podanych członków drużyny.
+/// translated = treść już przetłumaczona (tłumacz DeepL w aquila/code/modules/i18n/squad_orders.dm nadpisuje tę prockę).
+/datum/squad/proc/aq_deliver_order(mob/living/sender, message, title, list/targets, translated = FALSE)
+	var/span_style = squad_channel?.text_span_style || "sciradio"
+	for(var/mob/living/carbon/human/member as anything in targets)
+		if(member.client && member.aq_has_squad_pager())
+			to_chat(member, "<span class='[span_style]'><b>\[[name]\] ROZKAZ ([sender.real_name]):</b> [html_encode(message)]</span>")
+	aq_squad_screen_alert(message, title, sender, play_tts = TRUE, only = targets)
 
 // Dowódca dostaje akcje rozkazu i znacznika razem ze stanowiskiem
 /datum/squad
@@ -80,7 +94,7 @@
 	if(!user.aq_has_squad_pager())
 		to_chat(user, "<span class='warning'>Potrzebujesz pagera drużyny, żeby wydawać rozkazy.</span>")
 		return FALSE
-	if(!user.aq_can_issue_order())
+	if(!squad.aq_can_issue_order(user))
 		return FALSE
 	var/message = tgui_input_text(user, "Rozkaz dla drużyny [squad] (do [SQUAD_ORDER_MAX_LEN] znaków):", "Rozkaz", max_length = SQUAD_ORDER_MAX_LEN, multiline = TRUE, encode = FALSE)
 	if(!message || QDELETED(src) || squad.leader != user)

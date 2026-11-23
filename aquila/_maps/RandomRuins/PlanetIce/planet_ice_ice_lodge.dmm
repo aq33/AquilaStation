@@ -1,0 +1,5048 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"ah" = (
+/obj/effect/turf_decal/siding/brown{
+	dir = 10
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/item/chair/wood,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/residential)
+"al" = (
+/obj/effect/turf_decal/siding/blue,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/rust,
+/area/ruin/powered/planet_ice/lodge/residential)
+"ao" = (
+/turf/template_noop,
+/area/template_noop)
+"ap" = (
+/obj/structure/rack,
+/obj/item/storage/box{
+	pixel_y = 5
+	},
+/obj/item/gun/ballistic/shotgun{
+	pixel_y = -5
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/mainhall)
+"aC" = (
+/obj/structure/fluff/paper/stack{
+	dir = 4;
+	pixel_y = 9;
+	layer = 2.79
+	},
+/obj/item/shovel,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/mainhall)
+"aE" = (
+/obj/structure/railing,
+/obj/structure/chair/wood/wings{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/vomit/old,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"aG" = (
+/obj/item/chair/wood{
+	dir = 8
+	},
+/turf/open/floor/carpet/black,
+/area/ruin/powered/planet_ice/lodge/mainhall)
+"aI" = (
+/turf/open/floor/carpet,
+/area/ruin/powered/planet_ice/lodge/montagne_office)
+"aP" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/gear_room)
+"aS" = (
+/obj/effect/decal/cleanable/crayon{
+	icon_state = "shotgun";
+	pixel_x = 4;
+	pixel_y = -9;
+	paint_colour = "#FF0000"
+	},
+/turf/closed/indestructible/riveted,
+/area/ruin/powered/planet_ice/lodge/gear_room)
+"aY" = (
+/obj/effect/turf_decal/siding/wood/end{
+	dir = 8
+	},
+/obj/machinery/door/airlock/wood{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/mainhall)
+"bp" = (
+/obj/structure/bonfire/prelit,
+/obj/effect/turf_decal/siding/wood{
+	dir = 5
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/mainhall)
+"bu" = (
+/obj/machinery/door/airlock/wood{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/wood/end{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/residential)
+"bw" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/residential)
+"by" = (
+/obj/structure/falsewall/wood,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/cellar)
+"bE" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 10
+	},
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/cellar)
+"bK" = (
+/obj/structure/bonfire/prelit,
+/obj/effect/decal/cleanable/ash/large,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/ruin/powered/planet_ice/lodge/residential)
+"bN" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"bT" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/mainhall)
+"bX" = (
+/obj/effect/turf_decal/siding/wood/end,
+/obj/machinery/door/airlock/wood,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/gear_room)
+"cb" = (
+/obj/structure/table/optable,
+/obj/item/restraints/handcuffs/cable/zipties/used,
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/floor/plasteel/white,
+/area/ruin/powered/planet_ice/lodge/residential)
+"ce" = (
+/obj/structure/fluff/fokoff_sign{
+	desc = "Prowizoryczna tabliczka z napisem „spadaj” wymalowanym czymś czerwonym."
+	},
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/ruin/unpowered/planet_lava/cave)
+"cf" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/wood,
+/obj/item/ammo_casing/spent,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/cellar)
+"cn" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/mob/living/basic/trooper/pirate/ranged,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/gear_room)
+"cs" = (
+/obj/structure/table/wood,
+/obj/item/paper/crumpled/bloody{
+	pixel_x = -4
+	},
+/obj/item/pen{
+	pixel_x = 8
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"cS" = (
+/obj/structure/bonfire/prelit,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/mainhall)
+"de" = (
+/obj/structure/flora/grass/jungle,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/ruin/powered/planet_ice/lodge/residential)
+"dk" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/food/flour,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/mainhall)
+"dx" = (
+/obj/machinery/shower{
+	dir = 8
+	},
+/obj/item/soap/homemade,
+/obj/item/bikehorn/rubberducky,
+/obj/structure/curtain/bounty,
+/obj/machinery/shower{
+	dir = 1
+	},
+/turf/open/floor/monotile/dark,
+/area/ruin/powered/planet_ice/lodge/residential)
+"dy" = (
+/obj/effect/turf_decal/siding/wood,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/gear_room)
+"dz" = (
+/obj/effect/turf_decal/siding/brown{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/mob/living/basic/trooper/pirate/ranged,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/residential)
+"dG" = (
+/obj/structure/railing{
+	dir = 10
+	},
+/obj/structure/bonfire/prelit,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"dH" = (
+/obj/effect/turf_decal/siding/brown{
+	dir = 1
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"dK" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 5
+	},
+/obj/structure/sign/poster/contraband/masked_men{
+	pixel_y = 27
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/mainhall)
+"dN" = (
+/obj/item/grown/log/tree{
+	pixel_x = -6;
+	pixel_y = 12
+	},
+/obj/item/grown/log/tree{
+	pixel_x = 6;
+	pixel_y = 12
+	},
+/obj/item/grown/log/tree{
+	pixel_y = 18
+	},
+/obj/structure/table/wood,
+/obj/item/storage/box/matches{
+	pixel_y = 2
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 9
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/residential)
+"es" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/montagne_office)
+"eT" = (
+/obj/structure/flora/ash/stem_shroom,
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/unpowered/planet_lava/cave)
+"fi" = (
+/mob/living/basic/trooper/pirate/ranged,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/ruin/powered/planet_ice/lodge/residential)
+"fk" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 6
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/mainhall)
+"fo" = (
+/obj/effect/turf_decal/siding/wood/corner,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/residential)
+"fr" = (
+/obj/structure/chair/fancy/bench/pew/left{
+	dir = 1
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"fw" = (
+/obj/structure/displaycase,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/mainhall)
+"fX" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/residential)
+"gh" = (
+/obj/structure/table/wood,
+/obj/item/food/donkpocket,
+/obj/item/food/donkpocket,
+/obj/item/food/donkpocket,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/mainhall)
+"gs" = (
+/obj/structure/table/wood,
+/obj/item/trash/syndi_cakes{
+	pixel_y = 4;
+	pixel_x = -2
+	},
+/turf/open/floor/carpet/black,
+/area/ruin/powered/planet_ice/lodge/mainhall)
+"gw" = (
+/obj/structure/flora/rock/pile/icy,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/ruin/unpowered/planet_lava/cave)
+"gE" = (
+/obj/effect/turf_decal/siding/wood/corner,
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/residential)
+"gF" = (
+/obj/structure/closet/cabinet{
+	name = "zepsuta szafka cienia";
+	desc = "Szafka ze sprzętem i strojem dla przyszłego cienia. Albo dla tego, kto rozwalił jej zamek."
+	},
+/obj/effect/turf_decal/siding/brown{
+	dir = 4
+	},
+/obj/item/clothing/head/soft,
+/obj/item/clothing/accessory/holster,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/gear_room)
+"gI" = (
+/obj/structure/table/greyscale,
+/obj/item/gun/ballistic/rifle,
+/obj/item/clothing/ears/earmuffs{
+	pixel_y = 9
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"gQ" = (
+/obj/structure/flora/grass/jungle/b,
+/obj/structure/closet/crate/trashcart,
+/obj/item/clothing/suit/armor,
+/obj/effect/decal/cleanable/ash/large{
+	pixel_y = 3;
+	pixel_x = -10
+	},
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/ruin/powered/planet_ice/lodge/residential)
+"gV" = (
+/obj/machinery/door/airlock/wood{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/cellar)
+"hg" = (
+/obj/effect/turf_decal/siding/brown,
+/obj/item/rack_parts,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/gear_room)
+"hC" = (
+/obj/structure/bonfire/prelit,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/montagne_office)
+"hI" = (
+/obj/structure/table/wood,
+/obj/item/trash/canned/beans{
+	pixel_x = 6;
+	pixel_y = 3
+	},
+/turf/open/floor/carpet/black,
+/area/ruin/powered/planet_ice/lodge/mainhall)
+"iy" = (
+/obj/effect/turf_decal/siding/brown{
+	dir = 6
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"iP" = (
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"iR" = (
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/mainhall)
+"jm" = (
+/obj/effect/decal/cleanable/oil,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/turf/open/floor/plasteel/stairs{
+	dir = 8
+	},
+/area/ruin/powered/planet_ice/lodge/cellar)
+"jq" = (
+/obj/structure/fence/door,
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"jt" = (
+/turf/closed/wall/mineral/wood,
+/area/ruin/powered/planet_ice/lodge/mainhall)
+"jv" = (
+/obj/effect/turf_decal/siding/wood,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/gear_room)
+"jw" = (
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/residential)
+"jE" = (
+/obj/item/restraints/legcuffs/beartrap{
+	armed = 1
+	},
+/turf/open/floor/plasteel/stairs,
+/area/ruin/powered/planet_ice/lodge/cellar)
+"jN" = (
+/obj/item/cultivator,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/ruin/powered/planet_ice/lodge/residential)
+"jO" = (
+/obj/structure/railing,
+/obj/structure/table/wood,
+/obj/item/binoculars,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"jT" = (
+/obj/effect/turf_decal/siding/brown{
+	dir = 5
+	},
+/obj/structure/bonfire/prelit,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"jV" = (
+/obj/structure/rack,
+/obj/effect/turf_decal/siding/brown,
+/obj/item/storage/toolbox/electrical{
+	pixel_y = 5;
+	pixel_x = -2
+	},
+/obj/item/storage/toolbox/mechanical,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/gear_room)
+"kq" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/item/ammo_casing/spent,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/cellar)
+"kF" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 5
+	},
+/obj/structure/table/wood,
+/obj/item/reagent_containers/glass/bottle/nutrient/ez{
+	pixel_x = 6;
+	pixel_y = 12
+	},
+/obj/item/reagent_containers/glass/bottle/nutrient/l4z{
+	pixel_x = 6;
+	pixel_y = 6
+	},
+/obj/item/reagent_containers/glass/bottle/nutrient/rh{
+	pixel_x = 6
+	},
+/obj/item/reagent_containers/glass/bottle/nutrient/ez{
+	pixel_x = -6;
+	pixel_y = 12
+	},
+/obj/item/reagent_containers/glass/bottle/nutrient/l4z{
+	pixel_x = -6;
+	pixel_y = 6
+	},
+/obj/item/reagent_containers/glass/bottle/nutrient/rh{
+	pixel_x = -6
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/residential)
+"kH" = (
+/obj/effect/turf_decal/siding/blue/corner{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/blue/corner,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/rust,
+/area/ruin/powered/planet_ice/lodge/residential)
+"kU" = (
+/obj/structure/safe,
+/obj/item/stack/spacecash/c1000,
+/obj/item/stack/spacecash/c1000,
+/obj/item/stack/spacecash/c1000,
+/obj/item/gun/ballistic/automatic,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/montagne_office)
+"kV" = (
+/obj/structure/flora/ash/leaf_shroom,
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/ruin/unpowered/planet_lava/cave)
+"lh" = (
+/obj/structure/closet/secure_closet/medical1,
+/obj/item/sensor_device,
+/obj/item/clothing/gloves/color/latex/nitrile,
+/obj/item/clothing/mask/surgical,
+/obj/item/clothing/neck/stethoscope,
+/turf/open/floor/plating/rust,
+/area/ruin/powered/planet_ice/lodge/residential)
+"lx" = (
+/obj/structure/railing{
+	layer = 3.1
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/ruin/unpowered/planet_lava/cave)
+"lQ" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/structure/punji_sticks,
+/obj/effect/mob_spawn/human/corpse/pirate,
+/obj/effect/decal/cleanable/blood/splatter,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/cellar)
+"lU" = (
+/obj/structure/table/wood,
+/obj/item/modular_computer/laptop/preset,
+/turf/open/floor/carpet,
+/area/ruin/powered/planet_ice/lodge/montagne_office)
+"ma" = (
+/obj/structure/bonfire/prelit,
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/floor/plating{
+	icon_state = "platingdmg3"
+	},
+/area/ruin/powered/planet_ice/lodge/residential)
+"mm" = (
+/obj/structure/flora/grass/brown,
+/obj/item/restraints/legcuffs/beartrap{
+	armed = 1
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/unpowered/planet_lava/cave)
+"mt" = (
+/obj/structure/statue/snow/snowman,
+/obj/effect/mine/explosive{
+	layer = 2.8
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/unpowered/planet_lava/cave)
+"my" = (
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/residential)
+"mC" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 6
+	},
+/obj/structure/table/wood,
+/obj/item/shovel/spade,
+/obj/item/reagent_containers/glass/bucket{
+	pixel_x = 6
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/residential)
+"mP" = (
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/montagne_office)
+"nc" = (
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/mainhall)
+"ne" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 10
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/gear_room)
+"nf" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/mainhall)
+"ng" = (
+/obj/structure/flora/grass/jungle,
+/obj/item/clothing/suit/armor,
+/obj/item/storage/wallet{
+	pixel_x = 7;
+	pixel_y = -7
+	},
+/obj/effect/decal/cleanable/ash/large{
+	pixel_y = 11;
+	pixel_x = -6
+	},
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/ruin/powered/planet_ice/lodge/residential)
+"nn" = (
+/obj/effect/decal/cleanable/crayon{
+	pixel_x = 4;
+	 pixel_y = -1
+	},
+/turf/closed/wall/mineral/wood,
+/area/ruin/powered/planet_ice/lodge/residential)
+"ns" = (
+/obj/structure/flora/grass/green,
+/obj/effect/mine/explosive,
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/unpowered/planet_lava/cave)
+"nz" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/wood/corner,
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/item/ammo_casing/spent,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/cellar)
+"nG" = (
+/obj/effect/turf_decal/siding/blue/end{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/door/airlock/medical{
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/ruin/powered/planet_ice/lodge/residential)
+"nJ" = (
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/cellar)
+"nK" = (
+/obj/item/broken_bottle{
+	pixel_x = 15;
+	pixel_y = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/mainhall)
+"nN" = (
+/obj/structure/fence{
+	dir = 4
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/unpowered/planet_lava/cave)
+"nU" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/wood/corner,
+/obj/item/ammo_casing/spent,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/cellar)
+"oh" = (
+/obj/structure/bookcase/random/religion,
+/obj/effect/turf_decal/siding/wood{
+	dir = 5
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/residential)
+"ok" = (
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/mainhall)
+"ol" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 6
+	},
+/obj/structure/closet/crate/freezer,
+/obj/item/food/meat/slab/bear,
+/obj/item/food/meat/slab/bear,
+/obj/item/food/meat/slab/bear,
+/obj/item/food/egg,
+/obj/item/food/egg,
+/obj/item/food/egg,
+/obj/item/reagent_containers/food/drinks/bottle/absinthe/premium,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/residential)
+"om" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/gear_room)
+"ox" = (
+/obj/item/hatchet{
+	pixel_x = -6
+	},
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/ruin/powered/planet_ice/lodge/residential)
+"oJ" = (
+/obj/structure/closet/secure_closet{
+	icon_state = "sec";
+	name = "szafka ze sprzętem";
+	req_access_txt = "1"
+	},
+/obj/item/clothing/suit/armor/vest/alt,
+/obj/item/clothing/head/helmet/alt,
+/obj/item/clothing/suit/armor/vest/alt,
+/obj/item/clothing/head/helmet/alt,
+/obj/item/clothing/gloves/combat,
+/obj/item/clothing/gloves/combat,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/gear_room)
+"oL" = (
+/obj/structure/railing{
+	layer = 3.1
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"oN" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 6
+	},
+/obj/machinery/door/airlock/wood,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/mainhall)
+"pl" = (
+/obj/structure/railing{
+	dir = 9
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"pp" = (
+/obj/effect/turf_decal/siding/brown,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/residential)
+"pz" = (
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/cellar)
+"pE" = (
+/mob/living/basic/trooper/pirate/ranged,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/montagne_office)
+"pG" = (
+/obj/effect/turf_decal/siding/brown{
+	dir = 10
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"pK" = (
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/unpowered/planet_lava/cave)
+"pT" = (
+/obj/structure/table/greyscale,
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"pV" = (
+/obj/structure/table/greyscale,
+/obj/item/ammo_box/magazine/m556{
+	pixel_x = 6;
+	start_empty = 1
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"qh" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/rust,
+/area/ruin/powered/planet_ice/lodge/residential)
+"qo" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/mirror{
+	pixel_y = 33;
+	pixel_x = 2
+	},
+/obj/structure/sink{
+	pixel_x = 2;
+	pixel_y = 20
+	},
+/turf/open/floor/monotile/dark,
+/area/ruin/powered/planet_ice/lodge/residential)
+"qq" = (
+/obj/structure/table/wood,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/cellar)
+"qs" = (
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/wood/corner,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/mainhall)
+"qG" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/carpet/black,
+/area/ruin/powered/planet_ice/lodge/mainhall)
+"qJ" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/drinks/bottle/whiskey{
+	pixel_x = -4;
+	pixel_y = 6
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass{
+	pixel_x = 6
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass{
+	pixel_x = 8;
+	pixel_y = 12
+	},
+/turf/open/floor/carpet,
+/area/ruin/powered/planet_ice/lodge/montagne_office)
+"qM" = (
+/obj/structure/chair/wood/wings{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 9
+	},
+/obj/effect/decal/cleanable/dirt,
+/mob/living/basic/trooper/pirate/melee,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/mainhall)
+"rf" = (
+/obj/item/target/syndicate,
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"rn" = (
+/obj/item/bedsheet/random,
+/obj/effect/turf_decal/siding/wood,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/bed{
+	icon_state = "dirty_mattress"
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/residential)
+"rv" = (
+/obj/structure/chair/wood/wings{
+	dir = 4
+	},
+/turf/open/floor/carpet/black,
+/area/ruin/powered/planet_ice/lodge/mainhall)
+"rB" = (
+/obj/effect/turf_decal/siding/brown{
+	dir = 8
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"rD" = (
+/obj/item/trash/semki,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/mainhall)
+"rH" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/mainhall)
+"rN" = (
+/turf/closed/wall/mineral/wood,
+/area/ruin/unpowered/planet_lava/cave)
+"rP" = (
+/turf/closed/wall/mineral/wood,
+/area/ruin/powered/planet_ice/lodge/montagne_office)
+"rS" = (
+/turf/closed/wall/mineral/wood,
+/area/ruin/powered/planet_ice/lodge/residential)
+"rX" = (
+/obj/structure/fluff/paper/stack{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/ash,
+/obj/structure/fluff/paper/stack{
+	pixel_x = 9
+	},
+/obj/structure/fluff/paper/stack{
+	dir = 5;
+	layer = 2.79;
+	pixel_y = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/mainhall)
+"sb" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 6
+	},
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 1
+	},
+/obj/item/ammo_casing/spent,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/cellar)
+"se" = (
+/turf/open/floor/plating/ice/planet_ice,
+/area/ruin/unpowered/planet_lava/cave)
+"sl" = (
+/obj/effect/turf_decal/siding/brown{
+	dir = 8
+	},
+/mob/living/basic/trooper/pirate/ranged,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/residential)
+"sp" = (
+/obj/item/rack_parts,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/rust,
+/area/ruin/powered/planet_ice/lodge/mainhall)
+"sE" = (
+/obj/effect/decal/cleanable/crayon{
+	icon_state = "+";
+	pixel_x = 12;
+	pixel_y = -1;
+	paint_colour = "#ADD8E6"
+	},
+/turf/closed/wall/mineral/wood,
+/area/ruin/powered/planet_ice/lodge/residential)
+"sS" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 5
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/mainhall)
+"sX" = (
+/obj/structure/fence/door,
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/unpowered/planet_lava/cave)
+"sY" = (
+/obj/structure/bonfire/prelit,
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/structure/railing{
+	dir = 6
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"tz" = (
+/obj/item/toy/plush/moth/punished{
+	name = "Puchatunato";
+	desc = "Na miłość boską, Mothtresor!";
+	pixel_y = 9
+	},
+/obj/structure/fermenting_barrel,
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/unpowered/planet_lava/cave)
+"tD" = (
+/obj/structure/table/wood,
+/obj/item/paper_bin,
+/obj/item/pen/fountain/captain,
+/turf/open/floor/carpet,
+/area/ruin/powered/planet_ice/lodge/montagne_office)
+"tE" = (
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/ruin/powered/planet_ice/lodge/residential)
+"tQ" = (
+/obj/structure/railing,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/ruin/unpowered/planet_lava/cave)
+"uu" = (
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/mainhall)
+"uw" = (
+/mob/living/basic/trooper/pirate/melee,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/ruin/powered/planet_ice/lodge/residential)
+"uz" = (
+/obj/structure/bonfire/prelit,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/ruin/unpowered/planet_lava/cave)
+"uD" = (
+/obj/structure/table/wood/fancy,
+/obj/item/candle/infinite{
+	pixel_y = 11;
+	pixel_x = -2
+	},
+/obj/item/candle/infinite{
+	pixel_y = 11;
+	pixel_x = -8
+	},
+/obj/item/candle/infinite{
+	pixel_y = 11;
+	pixel_x = 4
+	},
+/obj/item/candle/infinite{
+	pixel_x = 10
+	},
+/obj/item/candle/infinite{
+	pixel_y = 11;
+	pixel_x = 10
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/montagne_office)
+"uF" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 10
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/mainhall)
+"uH" = (
+/obj/structure/table/wood,
+/obj/item/storage/toolbox/mechanical{
+	pixel_y = 10
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/item/ammo_casing/shotgun/techshell,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/mainhall)
+"uV" = (
+/obj/structure/table/wood,
+/turf/open/floor/carpet,
+/area/ruin/powered/planet_ice/lodge/montagne_office)
+"vj" = (
+/obj/structure/table/wood,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/sign/poster/contraband/busty_backdoor_xeno_babes_6{
+	pixel_x = 30
+	},
+/obj/item/reagent_containers/food/drinks/bottle/absinthe{
+	pixel_x = -5;
+	pixel_y = 12
+	},
+/obj/item/reagent_containers/food/drinks/bottle{
+	pixel_y = 10;
+	pixel_x = 7
+	},
+/obj/item/reagent_containers/food/drinks/bottle/kahlua{
+	pixel_x = 10;
+	pixel_y = 1
+	},
+/obj/item/storage/pill_bottle/happy,
+/obj/item/reagent_containers/pill/aranesp{
+	pixel_y = -5;
+	pixel_x = -2
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/mainhall)
+"vk" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/mainhall)
+"vo" = (
+/obj/structure/chair/fancy/plastic{
+	dir = 4
+	},
+/turf/open/floor/carpet/black,
+/area/ruin/powered/planet_ice/lodge/mainhall)
+"vv" = (
+/obj/structure/rack,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/item/ammo_box/a762{
+	pixel_x = 5
+	},
+/obj/item/ammo_box/c9mm{
+	pixel_x = -11
+	},
+/obj/item/ammo_box/c9mm{
+	pixel_y = 9;
+	pixel_x = -12
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/gear_room)
+"vz" = (
+/obj/effect/turf_decal/siding/brown{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/residential)
+"vA" = (
+/obj/effect/turf_decal/siding/brown{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/mob/living/basic/trooper/pirate/ranged,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/gear_room)
+"vO" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 9
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/bonfire/prelit{
+	pixel_y = 18
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/residential)
+"vZ" = (
+/obj/effect/turf_decal/siding/blue{
+	dir = 1
+	},
+/obj/item/reagent_containers/syringe,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/insectguts,
+/turf/open/floor/plasteel/white,
+/area/ruin/powered/planet_ice/lodge/residential)
+"wj" = (
+/obj/item/toy/crayon/spraycan,
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"wq" = (
+/obj/effect/mine/explosive{
+	layer = 2.8
+	},
+/obj/structure/statue/snow/snowman,
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/unpowered/planet_lava/cave)
+"wx" = (
+/obj/structure/chair/wood/wings{
+	dir = 4
+	},
+/turf/open/floor/carpet,
+/area/ruin/powered/planet_ice/lodge/montagne_office)
+"wG" = (
+/obj/effect/turf_decal/siding/wood,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/mine/explosive,
+/obj/effect/mob_spawn/human/corpse,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/cellar)
+"wL" = (
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"wQ" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/drinks/sillycup{
+	pixel_x = 4;
+	pixel_y = 6;
+	name = "papierowe sitko";
+	desc = "Papierowe sitko do przesypywania prochu."
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/mainhall)
+"xb" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating{
+	icon_state = "panelscorched"
+	},
+/area/ruin/powered/planet_ice/lodge/residential)
+"xj" = (
+/obj/structure/bed/pod,
+/obj/item/bedsheet/blue,
+/obj/structure/curtain,
+/obj/item/toy/plush/lizardplushie,
+/turf/open/floor/carpet,
+/area/ruin/powered/planet_ice/lodge/montagne_office)
+"xk" = (
+/obj/effect/turf_decal/siding/brown{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/gear_room)
+"xl" = (
+/obj/structure/chair/fancy/plastic{
+	dir = 8
+	},
+/obj/item/trash/candy,
+/turf/open/floor/carpet/black,
+/area/ruin/powered/planet_ice/lodge/mainhall)
+"xx" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"xz" = (
+/obj/structure/flora/grass/jungle/b,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/ruin/powered/planet_ice/lodge/residential)
+"xF" = (
+/obj/effect/turf_decal/siding/brown{
+	dir = 9
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"xI" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/obj/item/ammo_casing/spent,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/cellar)
+"yq" = (
+/obj/machinery/door/airlock/wood{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/residential)
+"ys" = (
+/obj/effect/mob_spawn/human/corpse,
+/obj/effect/decal/cleanable/ash/large{
+	pixel_y = 8
+	},
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/ruin/powered/planet_ice/lodge/residential)
+"yz" = (
+/obj/effect/turf_decal/siding/brown{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/residential)
+"yI" = (
+/obj/structure/table/wood,
+/obj/effect/turf_decal/siding/wood{
+	dir = 9
+	},
+/obj/item/ammo_box/magazine/m10mm,
+/obj/item/ammo_box/c9mm{
+	pixel_y = 12;
+	pixel_x = -6
+	},
+/obj/item/ammo_box/c9mm{
+	pixel_y = 12;
+	pixel_x = 14
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/gear_room)
+"yU" = (
+/obj/effect/turf_decal/siding/wood,
+/obj/structure/closet/crate/hydroponics,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/residential)
+"yW" = (
+/obj/item/restraints/legcuffs/beartrap{
+	armed = 1
+	},
+/obj/item/kirbyplants,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/cellar)
+"za" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/bonfire/prelit,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/mainhall)
+"zd" = (
+/obj/item/bedsheet/random,
+/obj/effect/turf_decal/siding/wood,
+/obj/structure/bed{
+	icon_state = "dirty_mattress"
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/residential)
+"zM" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/drinks/bottle{
+	pixel_y = 17;
+	pixel_x = 9
+	},
+/obj/item/reagent_containers/food/drinks/bottle/patron{
+	pixel_y = 11;
+	pixel_x = 6
+	},
+/obj/item/storage/pill_bottle/zoom{
+	pixel_y = 9
+	},
+/obj/item/reagent_containers/food/drinks/bottle/rum{
+	pixel_x = 2
+	},
+/obj/item/reagent_containers/pill/lsd{
+	pixel_y = 6;
+	pixel_x = -6
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/mainhall)
+"zU" = (
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 1
+	},
+/obj/item/ammo_box/magazine/m10mm{
+	start_empty = 1
+	},
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/cellar)
+"zY" = (
+/obj/structure/chair/wood/wings,
+/obj/effect/turf_decal/siding/wood{
+	dir = 10
+	},
+/mob/living/basic/trooper/pirate/ranged,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/mainhall)
+"Aj" = (
+/turf/open/floor/plasteel/stairs,
+/area/ruin/powered/planet_ice/lodge/cellar)
+"An" = (
+/obj/structure/railing{
+	dir = 6
+	},
+/obj/structure/chair/wood/wings{
+	dir = 8
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"Ay" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"Az" = (
+/obj/effect/turf_decal/siding/brown{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/oil,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/residential)
+"AE" = (
+/obj/structure/flora/grass/brown,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/ruin/unpowered/planet_lava/cave)
+"AF" = (
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/mainhall)
+"AK" = (
+/obj/effect/turf_decal/siding/brown{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/residential)
+"AM" = (
+/obj/effect/turf_decal/siding/brown{
+	dir = 6
+	},
+/obj/structure/bonfire/prelit{
+	pixel_x = 10
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/gear_room)
+"AT" = (
+/obj/effect/turf_decal/siding/brown{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/residential)
+"AY" = (
+/obj/structure/bonfire/prelit,
+/obj/effect/turf_decal/siding/brown{
+	dir = 9
+	},
+/obj/effect/decal/cleanable/cobweb,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/residential)
+"Bk" = (
+/obj/structure/guncase,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/item/gun/ballistic/shotgun,
+/obj/item/gun/ballistic/revolver,
+/obj/item/gun/ballistic/automatic,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/gear_room)
+"Bq" = (
+/obj/item/trash/boritos,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/mainhall)
+"BB" = (
+/obj/structure/chair/wood/wings,
+/obj/effect/decal/cleanable/dirt,
+/mob/living/basic/trooper/pirate/ranged,
+/turf/open/floor/carpet/black,
+/area/ruin/powered/planet_ice/lodge/mainhall)
+"BK" = (
+/obj/effect/decal/cleanable/crayon{
+	icon_state = "shotgun";
+	pixel_x = 14;
+	pixel_y = -3
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"BM" = (
+/obj/structure/flora/ash/tall_shroom,
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/unpowered/planet_lava/cave)
+"BX" = (
+/mob/living/basic/trooper/pirate/melee,
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"Ca" = (
+/obj/effect/turf_decal/siding/wood/end{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/door/airlock/wood{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/mainhall)
+"Ce" = (
+/obj/structure/windoor_assembly{
+	dir = 4;
+	name = "zepsute drzwi okienne"
+	},
+/obj/item/shard,
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/gear_room)
+"Cp" = (
+/obj/effect/turf_decal/siding/blue{
+	dir = 6
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/white,
+/area/ruin/powered/planet_ice/lodge/residential)
+"Cu" = (
+/obj/structure/flora/grass/green,
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/unpowered/planet_lava/cave)
+"CC" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/wood,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/cellar)
+"CL" = (
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/wood/corner,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/gear_room)
+"CO" = (
+/obj/structure/table/wood,
+/obj/item/clothing/under/suit,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/mainhall)
+"CU" = (
+/obj/effect/turf_decal/siding/brown,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"CZ" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/item/ammo_casing/spent,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/cellar)
+"DB" = (
+/obj/machinery/door/airlock/wood{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/mainhall)
+"DS" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/trash/popcorn,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/mainhall)
+"DW" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/cellar)
+"Eg" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
+/obj/structure/curtain,
+/turf/open/floor/plating,
+/area/ruin/powered/planet_ice/lodge/montagne_office)
+"Ei" = (
+/obj/structure/railing,
+/obj/structure/table/wood,
+/obj/item/storage/pill_bottle/stimulant,
+/obj/item/reagent_containers/pill/happy{
+	pixel_y = 10;
+	pixel_x = -7
+	},
+/obj/item/reagent_containers/pill/happy{
+	pixel_y = 2;
+	pixel_x = 9
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"EJ" = (
+/obj/structure/bonfire/prelit,
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/item/extinguisher/mini{
+	pixel_x = -10;
+	pixel_y = 13
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/residential)
+"EK" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 10
+	},
+/obj/machinery/smartfridge/drying_rack,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/residential)
+"EN" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 9
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/mainhall)
+"EQ" = (
+/obj/item/target/alien,
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"EW" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/item/restraints/legcuffs/beartrap{
+	armed = 1
+	},
+/obj/effect/gibspawner/human/bodypartless,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/cellar)
+"Fl" = (
+/obj/effect/decal/cleanable/greenglow,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/residential)
+"Fv" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/mainhall)
+"FJ" = (
+/obj/effect/turf_decal/siding/wood/end{
+	dir = 1
+	},
+/obj/machinery/door/airlock/wood{
+	name = "Szklarnia"
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/residential)
+"FL" = (
+/obj/structure/bonfire/prelit,
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"FM" = (
+/obj/structure/bookcase,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/mainhall)
+"FZ" = (
+/obj/structure/noticeboard{
+	name = "tablica z trofeami";
+	desc = "Tablica do wieszania trofeów.";
+	pixel_y = 28
+	},
+/obj/item/clothing/mask/rat/bear{
+	pixel_y = -2;
+	name = "głowa niedźwiedzia";
+	desc = "Wypchana głowa niedźwiedzia do powieszenia nad łóżkiem. Mógłbyś przysiąc, że wciąż się na ciebie gapi."
+	},
+/turf/closed/wall/mineral/wood,
+/area/ruin/powered/planet_ice/lodge/montagne_office)
+"Ge" = (
+/obj/structure/railing{
+	dir = 1
+	},
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/ruin/unpowered/planet_lava/cave)
+"Gf" = (
+/obj/structure/table/wood,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/mainhall)
+"Gj" = (
+/obj/structure/table/wood,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/stock_parts/capacitor,
+/obj/item/stock_parts/capacitor{
+	pixel_x = 8;
+	pixel_y = 8
+	},
+/obj/item/stock_parts/micro_laser{
+	pixel_x = -5;
+	pixel_y = 9
+	},
+/obj/item/stock_parts/cell/empty{
+	pixel_x = 10;
+	pixel_y = -3
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/mainhall)
+"Gl" = (
+/obj/structure/closet/cabinet{
+	name = "zepsuta szafka myśliwego";
+	desc = "Wszystko, czego potrzebuje myśliwy, w jednej zamykanej szafce. Byłoby, gdyby zamek nie był rozwalony."
+	},
+/obj/effect/turf_decal/siding/brown{
+	dir = 8
+	},
+/obj/item/clothing/mask/gas,
+/obj/item/clothing/head/helmet/alt,
+/obj/item/clothing/suit/armor,
+/obj/item/flamethrower,
+/obj/item/lighter/greyscale,
+/obj/item/reagent_containers/food/drinks/bottle/vodka,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/gear_room)
+"Go" = (
+/obj/structure/table/wood,
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/item/storage/belt/security{
+	pixel_y = -2
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/item/kitchen/knife/combat/survival{
+	pixel_y = 10;
+	pixel_x = 3
+	},
+/obj/item/kitchen/knife/combat/survival{
+	pixel_y = 10;
+	pixel_x = -7
+	},
+/obj/item/kitchen/knife/combat/survival{
+	pixel_y = 10;
+	pixel_x = 13
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/gear_room)
+"Gq" = (
+/obj/effect/turf_decal/siding/blue{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/glass,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/white,
+/area/ruin/powered/planet_ice/lodge/residential)
+"Gs" = (
+/obj/effect/mine/explosive,
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/ruin/unpowered/planet_lava/cave)
+"GI" = (
+/obj/structure/bonfire/prelit,
+/obj/effect/turf_decal/siding/wood{
+	dir = 10
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/mainhall)
+"GL" = (
+/obj/structure/fence{
+	dir = 4
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"GQ" = (
+/obj/effect/turf_decal/siding/blue,
+/obj/structure/bonfire/prelit,
+/turf/open/floor/plasteel/white,
+/area/ruin/powered/planet_ice/lodge/residential)
+"Hd" = (
+/obj/structure/closet/crate/freezer,
+/obj/item/organ/ears,
+/obj/item/organ/eyes,
+/obj/item/organ/heart,
+/obj/item/organ/lungs,
+/obj/item/organ/liver,
+/obj/item/organ/stomach,
+/obj/item/clothing/suit/toggle/labcoat,
+/obj/item/reagent_containers/blood/random,
+/obj/item/reagent_containers/blood/random,
+/obj/effect/decal/cleanable/blood/gibs/old,
+/turf/open/floor/plasteel/white,
+/area/ruin/powered/planet_ice/lodge/residential)
+"Hm" = (
+/obj/structure/flora/junglebush,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/ruin/powered/planet_ice/lodge/residential)
+"Hn" = (
+/obj/structure/chair/wood/wings,
+/obj/effect/turf_decal/siding/wood{
+	dir = 6
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/mainhall)
+"Ht" = (
+/obj/effect/turf_decal/siding/brown{
+	dir = 10
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/gear_room)
+"HD" = (
+/obj/structure/table/wood,
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/item/clothing/suit/space/hardsuit/security,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/gear_room)
+"HE" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/carpet,
+/area/ruin/powered/planet_ice/lodge/montagne_office)
+"IH" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/vomit/old{
+	icon_state = "vomit_4";
+	pixel_x = -1;
+	pixel_y = -19
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/mainhall)
+"IJ" = (
+/turf/closed/indestructible/riveted,
+/area/ruin/powered/planet_ice/lodge/gear_room)
+"Jq" = (
+/obj/effect/decal/cleanable/oil,
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/gear_room)
+"Jv" = (
+/turf/closed/mineral/random/planet_ice/underground,
+/area/ruin/unpowered/planet_lava/cave)
+"JK" = (
+/obj/structure/flora/rock/pile/icy,
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/ruin/unpowered/planet_lava/cave)
+"JS" = (
+/obj/effect/decal/cleanable/crayon{
+	icon_state = "skull";
+	pixel_x = 4;
+	pixel_y = -1
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"JW" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/trash/can{
+	pixel_x = -4;
+	pixel_y = 5
+	},
+/obj/item/trash/can{
+	pixel_y = -4;
+	pixel_x = 6
+	},
+/obj/effect/decal/cleanable/oil,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/mainhall)
+"JX" = (
+/obj/effect/decal/cleanable/food/tomato_smudge,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/mainhall)
+"Ka" = (
+/obj/structure/table/wood,
+/obj/item/clothing/mask/cigarette/pipe,
+/obj/item/lighter{
+	pixel_x = 11;
+	pixel_y = 7
+	},
+/turf/open/floor/carpet,
+/area/ruin/powered/planet_ice/lodge/montagne_office)
+"Kc" = (
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/ruin/unpowered/planet_lava/cave)
+"Ki" = (
+/turf/open/floor/plasteel/stairs{
+	dir = 4;
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"Ks" = (
+/obj/structure/loom,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/mainhall)
+"Ku" = (
+/obj/item/trash/popcorn,
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"Kv" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 9
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/mainhall)
+"KS" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/mob/living/basic/trooper/pirate/melee,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/mainhall)
+"KT" = (
+/turf/open/floor/carpet/black,
+/area/ruin/powered/planet_ice/lodge/mainhall)
+"KX" = (
+/obj/structure/flora/stump{
+	icon_state = "anchored_rod";
+	pixel_y = -3;
+	name = "pręt";
+	desc = "Metalowy pręt wbity w ziemię."
+	},
+/obj/item/clothing/head/helmet{
+	pixel_y = 24;
+	name = "wgnieciony hełm X11 Minutemenów"
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"Ld" = (
+/obj/effect/turf_decal/siding/brown{
+	dir = 5
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/blood/old{
+	icon_state = "vomit_2-old"
+	},
+/obj/item/kirbyplants{
+	icon_state = "plant-25";
+	pixel_y = 12;
+	pixel_x = -2
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/residential)
+"Lj" = (
+/obj/structure/flora/ash/puce,
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/unpowered/planet_lava/cave)
+"LL" = (
+/obj/structure/railing{
+	dir = 10
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"ME" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 10
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/item/candle,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/gun/ballistic/automatic,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/cellar)
+"MJ" = (
+/obj/structure/bed,
+/obj/item/bedsheet/random,
+/obj/effect/turf_decal/siding/wood{
+	dir = 10
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/residential)
+"MV" = (
+/obj/effect/turf_decal/siding/brown{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/residential)
+"MY" = (
+/obj/structure/fermenting_barrel,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/cellar)
+"Ng" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/trash/energybar,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/mainhall)
+"Nn" = (
+/obj/effect/decal/cleanable/oil,
+/turf/open/floor/plasteel/stairs{
+	dir = 8
+	},
+/area/ruin/powered/planet_ice/lodge/cellar)
+"Nr" = (
+/obj/structure/table/wood/fancy,
+/obj/item/candle/infinite{
+	pixel_y = 2;
+	pixel_x = 4
+	},
+/obj/item/candle/infinite{
+	pixel_y = 2;
+	pixel_x = -8
+	},
+/obj/item/candle/infinite{
+	pixel_y = 2;
+	pixel_x = -2
+	},
+/obj/item/candle/infinite{
+	pixel_y = 12;
+	pixel_x = 10
+	},
+/obj/item/candle/infinite{
+	pixel_y = 2;
+	pixel_x = 10
+	},
+/obj/item/candle/infinite{
+	pixel_y = 22;
+	pixel_x = 10
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/montagne_office)
+"Nu" = (
+/obj/item/stack/sheet/durathread{
+	pixel_x = -10;
+	pixel_y = 10
+	},
+/obj/structure/rack,
+/obj/item/stack/sheet/durathread,
+/obj/item/stack/sheet/durathread{
+	pixel_y = 10
+	},
+/obj/item/stack/sheet/durathread{
+	pixel_x = -10
+	},
+/obj/item/stack/sheet/leather,
+/obj/item/stack/sheet/leather,
+/obj/item/stack/sheet/leather,
+/obj/item/stack/sheet/leather,
+/obj/item/stack/sheet/leather,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/mainhall)
+"Ny" = (
+/obj/structure/fireplace,
+/obj/item/throwing_star/magspear{
+	name = "pogrzebacz";
+	desc = "Mały metalowy pręt do rozgarniania żaru w kominku. Ten zdobi złoty filigran."
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/residential)
+"NB" = (
+/turf/open/floor/plasteel/stairs{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"ND" = (
+/obj/effect/turf_decal/siding/wood/corner,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/mainhall)
+"NE" = (
+/obj/effect/turf_decal/siding/brown{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/residential)
+"NL" = (
+/obj/structure/flora/rock/pile/icy,
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/unpowered/planet_lava/cave)
+"NO" = (
+/obj/effect/mine/explosive,
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/unpowered/planet_lava/cave)
+"NT" = (
+/obj/item/chair/wood,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/carpet/black,
+/area/ruin/powered/planet_ice/lodge/mainhall)
+"NU" = (
+/obj/effect/turf_decal/siding/blue{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/glass,
+/mob/living/basic/trooper/pirate/ranged,
+/turf/open/floor/plasteel/white,
+/area/ruin/powered/planet_ice/lodge/residential)
+"NY" = (
+/mob/living/basic/trooper/pirate/ranged,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/carpet,
+/area/ruin/powered/planet_ice/lodge/residential)
+"Oa" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/mainhall)
+"Oo" = (
+/obj/structure/flora/ash/chilly,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/ruin/unpowered/planet_lava/cave)
+"Ot" = (
+/obj/structure/railing{
+	dir = 1
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"Ou" = (
+/obj/structure/sign/poster/contraband/punch_shit{
+	pixel_x = 32
+	},
+/turf/open/floor/plating/rust,
+/area/ruin/powered/planet_ice/lodge/residential)
+"OP" = (
+/obj/structure/fermenting_barrel,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/cellar)
+"OT" = (
+/obj/item/kirbyplants{
+	icon_state = "plant-25";
+	pixel_y = 12;
+	pixel_x = -2
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/montagne_office)
+"Pb" = (
+/obj/item/trash/sosjerky,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/mainhall)
+"Pc" = (
+/obj/item/storage/pill_bottle/floorpill/full{
+	pixel_y = 7;
+	pixel_x = 14
+	},
+/obj/effect/decal/cleanable/vomit/old{
+	pixel_x = -14;
+	pixel_y = 18
+	},
+/obj/effect/decal/cleanable/vomit/old{
+	icon_state = "vomit_2";
+	pixel_x = -12;
+	pixel_y = 2
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/mainhall)
+"Pp" = (
+/obj/structure/table/wood,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/mainhall)
+"Ps" = (
+/obj/structure/table/wood,
+/obj/item/stack/sheet/hairlesshide,
+/obj/item/stack/sheet/hairlesshide,
+/obj/item/stack/sheet/hairlesshide,
+/obj/item/stack/sheet/hairlesshide,
+/obj/item/stack/sheet/cotton/durathread,
+/obj/item/stack/sheet/cotton/durathread,
+/obj/item/stack/sheet/cotton/durathread,
+/obj/item/stack/sheet/cotton/durathread,
+/obj/item/stack/sheet/cotton/durathread,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/mainhall)
+"Pu" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 9
+	},
+/obj/effect/turf_decal/siding/wood/corner,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/cellar)
+"PH" = (
+/obj/structure/rack,
+/obj/item/clothing/suit/armor{
+	pixel_x = 6;
+	pixel_y = 3
+	},
+/obj/item/clothing/suit/armor{
+	pixel_x = 6
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/mainhall)
+"PM" = (
+/obj/effect/decal/cleanable/crayon{
+	icon_state = "danger";
+	pixel_x = 4;
+	pixel_y = -1;
+	paint_colour = "#FF0000"
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"PR" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 10
+	},
+/obj/machinery/door/airlock/wood,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/mainhall)
+"PW" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 9
+	},
+/mob/living/basic/trooper/pirate/ranged,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/mainhall)
+"Qb" = (
+/obj/effect/turf_decal/siding/brown/corner{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/residential)
+"Qt" = (
+/obj/structure/chair/wood/wings{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 5
+	},
+/mob/living/basic/trooper/pirate/ranged,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/mainhall)
+"Qv" = (
+/obj/machinery/door/airlock/wood,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/montagne_office)
+"Qw" = (
+/obj/structure/flora/grass/both,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/ruin/unpowered/planet_lava/cave)
+"QB" = (
+/obj/effect/turf_decal/siding/brown{
+	dir = 10
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/generic,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/residential)
+"QJ" = (
+/obj/structure/closet/cabinet,
+/obj/item/clothing/shoes/jackboots,
+/obj/item/clothing/suit/armor,
+/obj/item/clothing/under/syndicate/camo,
+/obj/item/ammo_box/magazine/m10mm,
+/obj/item/ammo_box/magazine/m10mm,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/montagne_office)
+"QR" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/crayon{
+	icon_state = "skull";
+	pixel_x = 4;
+	pixel_y = -1
+	},
+/obj/item/paper/crumpled/bloody{
+	pixel_x = -12
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/mainhall)
+"QU" = (
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/gear_room)
+"Rb" = (
+/obj/structure/flora/stump{
+	name = "pniak Montagne"
+	},
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/ruin/powered/planet_ice/lodge/residential)
+"Rg" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/rust,
+/area/ruin/powered/planet_ice/lodge/residential)
+"RA" = (
+/obj/structure/table/wood,
+/turf/open/floor/plasteel/white,
+/area/ruin/powered/planet_ice/lodge/residential)
+"RB" = (
+/obj/structure/fence,
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/ruin/unpowered/planet_lava/cave)
+"RU" = (
+/obj/structure/flora/grass/green,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/ruin/unpowered/planet_lava/cave)
+"RX" = (
+/obj/effect/turf_decal/siding/wood,
+/obj/effect/decal/cleanable/dirt,
+/mob/living/basic/trooper/pirate/ranged,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/gear_room)
+"Sa" = (
+/obj/structure/flora/ash/garden/frigid,
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/ruin/unpowered/planet_lava/cave)
+"Sb" = (
+/obj/structure/closet/cabinet{
+	name = "zepsuta szafka cienia";
+	desc = "Szafka ze sprzętem i strojem dla przyszłego cienia. Albo dla tego, kto rozwalił jej zamek."
+	},
+/obj/item/clothing/suit/armor,
+/obj/item/clothing/under/suit,
+/obj/item/flashlight/lantern,
+/obj/effect/decal/cleanable/shreds{
+	pixel_y = -14
+	},
+/obj/item/kitchen/knife/hunting,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/gear_room)
+"Sf" = (
+/obj/structure/table/wood,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/cellar)
+"Si" = (
+/obj/structure/punji_sticks,
+/obj/effect/decal/cleanable/blood/splatter,
+/obj/effect/gibspawner/human/bodypartless,
+/obj/effect/mob_spawn/human/corpse/pirate,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/cellar)
+"SC" = (
+/obj/machinery/door/airlock/wood{
+	name = "Toaleta"
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/residential)
+"SD" = (
+/obj/structure/bonfire/prelit,
+/obj/effect/turf_decal/siding/brown{
+	dir = 6
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/residential)
+"Te" = (
+/obj/structure/fluff/fokoff_sign{
+	desc = "Prowizoryczna tabliczka z napisem „spadaj” wymalowanym czymś czerwonym."
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/unpowered/planet_lava/cave)
+"Ts" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/residential)
+"Tt" = (
+/obj/structure/chair/wood/wings{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/carpet/black,
+/area/ruin/powered/planet_ice/lodge/mainhall)
+"Tv" = (
+/turf/open/floor/carpet,
+/area/ruin/powered/planet_ice/lodge/residential)
+"TB" = (
+/obj/effect/turf_decal/siding/blue{
+	dir = 10
+	},
+/obj/machinery/iv_drip,
+/obj/effect/decal/cleanable/vomit/old,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/white,
+/area/ruin/powered/planet_ice/lodge/residential)
+"TG" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 10
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/mainhall)
+"TJ" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/residential)
+"TK" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 6
+	},
+/obj/item/ammo_box/magazine/m10mm{
+	start_empty = 1
+	},
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/cellar)
+"TZ" = (
+/obj/item/bedsheet/random,
+/obj/effect/turf_decal/siding/wood{
+	dir = 6
+	},
+/obj/structure/bed{
+	icon_state = "dirty_mattress"
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/residential)
+"Uc" = (
+/obj/structure/chair/fancy/bench/pew{
+	dir = 1
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"Uh" = (
+/turf/open/floor/plating/asteroid/snow/planet_ice,
+/area/ruin/unpowered/planet_lava/cave)
+"Ul" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/cellar)
+"Um" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/cellar)
+"Uo" = (
+/obj/structure/fireplace,
+/obj/structure/fluff/paper/stack{
+	dir = 5;
+	layer = 2.79;
+	pixel_y = 4
+	},
+/obj/structure/fluff/paper/stack{
+	dir = 4;
+	pixel_y = 9;
+	layer = 2.79
+	},
+/obj/structure/fluff/paper/stack{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/ash/large{
+	pixel_y = -10
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/mainhall)
+"Uv" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/drinks/mug,
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"UE" = (
+/obj/structure/table/wood,
+/obj/item/plate{
+	pixel_y = 12
+	},
+/turf/open/floor/carpet/black,
+/area/ruin/powered/planet_ice/lodge/mainhall)
+"UT" = (
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"Va" = (
+/obj/effect/mob_spawn/human/corpse/russian/ranged,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/ruin/powered/planet_ice/lodge/residential)
+"Vb" = (
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/ruin/powered/planet_ice/lodge/residential)
+"VD" = (
+/obj/structure/chair/wood/wings{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/mob/living/basic/trooper/pirate/ranged,
+/turf/open/floor/carpet/black,
+/area/ruin/powered/planet_ice/lodge/mainhall)
+"VU" = (
+/obj/structure/table/wood,
+/obj/item/stack/sheet/cotton/cloth/ten,
+/obj/item/scalpel{
+	name = "nóż do skóry";
+	desc = "Naostrzony nóż do obróbki skóry."
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/mainhall)
+"VW" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 6
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/mainhall)
+"Wa" = (
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/mainhall)
+"Wh" = (
+/obj/structure/chair/stool{
+	dir = 4
+	},
+/mob/living/basic/trooper/pirate/melee,
+/turf/open/floor/carpet/black,
+/area/ruin/powered/planet_ice/lodge/mainhall)
+"Wq" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/punji_sticks,
+/obj/effect/mob_spawn/human/corpse/pirate,
+/obj/effect/decal/cleanable/blood/splatter,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/cellar)
+"Ws" = (
+/obj/structure/flora/grass/both,
+/obj/item/restraints/legcuffs/beartrap{
+	armed = 1
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/ruin/unpowered/planet_lava/cave)
+"WN" = (
+/obj/effect/turf_decal/siding/brown{
+	dir = 4
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"WO" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/residential)
+"Xm" = (
+/obj/structure/toilet{
+	dir = 4;
+	pixel_x = -6
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/bonfire/prelit{
+	pixel_y = 20
+	},
+/turf/open/floor/monotile/dark,
+/area/ruin/powered/planet_ice/lodge/residential)
+"XA" = (
+/turf/closed/wall/mineral/wood,
+/area/ruin/powered/planet_ice/lodge/cellar)
+"XC" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/crayon,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/mainhall)
+"XF" = (
+/obj/structure/table/wood,
+/obj/item/trash/tray,
+/obj/item/reagent_containers/food/drinks/bottle/absinthe{
+	pixel_y = 8;
+	pixel_x = -6
+	},
+/obj/item/reagent_containers/glass/bottle/morphine,
+/turf/open/floor/plating/rust,
+/area/ruin/powered/planet_ice/lodge/residential)
+"XM" = (
+/mob/living/basic/trooper/pirate/ranged,
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"XX" = (
+/obj/structure/railing,
+/obj/structure/chair/wood/wings{
+	dir = 4
+	},
+/turf/open/floor/wood{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"Ye" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/bonfire/prelit,
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"Yi" = (
+/obj/structure/table/wood,
+/obj/item/toy/cards/deck{
+	pixel_x = -4
+	},
+/obj/item/storage/pill_bottle/dice{
+	pixel_x = 8;
+	pixel_y = -1
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/mainhall)
+"Yn" = (
+/obj/structure/table/wood,
+/obj/item/plate{
+	pixel_x = -6
+	},
+/turf/open/floor/carpet/black,
+/area/ruin/powered/planet_ice/lodge/mainhall)
+"Yq" = (
+/obj/effect/turf_decal/siding/blue{
+	dir = 5
+	},
+/obj/structure/closet/crate/bin,
+/obj/item/storage/firstaid,
+/obj/item/food/grown/ash_flora/puce,
+/obj/item/food/grown/ash_flora/mushroom_leaf,
+/obj/item/reagent_containers/glass/mortar,
+/obj/item/disk/holodisk,
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/white,
+/area/ruin/powered/planet_ice/lodge/residential)
+"YH" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 5
+	},
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/cellar)
+"YX" = (
+/obj/item/plate{
+	pixel_y = 8;
+	pixel_x = 10
+	},
+/obj/item/plate{
+	pixel_y = 10;
+	pixel_x = 10
+	},
+/obj/item/plate{
+	pixel_y = 12;
+	pixel_x = 10
+	},
+/obj/item/plate{
+	pixel_y = 14;
+	pixel_x = 10
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/insectguts,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/mainhall)
+"Zc" = (
+/obj/structure/fence/door{
+	dir = 4
+	},
+/turf/open/floor/plating/asteroid/icerock/cracked,
+/area/ruin/unpowered/planet_lava/cave)
+"Zj" = (
+/obj/structure/rack,
+/obj/item/flashlight/lantern{
+	pixel_x = 6
+	},
+/obj/item/flashlight/lantern{
+	pixel_x = -6
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/mainhall)
+"Zq" = (
+/obj/structure/rack,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/ammo_box/a762,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/mainhall)
+"ZE" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/mainhall)
+"ZG" = (
+/mob/living/basic/trooper/pirate/ranged,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/residential)
+"ZH" = (
+/obj/effect/decal/cleanable/crayon{
+	icon_state = "nay";
+	pixel_y = -8;
+	pixel_x = 8;
+	paint_colour = "#FF0000"
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"ZN" = (
+/obj/structure/chair/fancy/bench/pew/right{
+	dir = 1
+	},
+/turf/open/floor/concrete{
+	initial_gas_mix = "o2=26;n2=104;TEMP=255";
+	planetary_atmos = 1
+	},
+/area/ruin/unpowered/planet_lava/cave)
+"ZU" = (
+/obj/structure/fermenting_barrel,
+/turf/open/floor/wood,
+/area/ruin/powered/planet_ice/lodge/mainhall)
+
+(1,1,1) = {"
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+Jv
+Jv
+ao
+Jv
+Jv
+Jv
+Jv
+ao
+Jv
+Jv
+Jv
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+"}
+(2,1,1) = {"
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+ao
+Jv
+Jv
+ao
+Jv
+Jv
+Jv
+Jv
+Jv
+ao
+ao
+Jv
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+"}
+(3,1,1) = {"
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+ao
+Jv
+Jv
+Jv
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+"}
+(4,1,1) = {"
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+"}
+(5,1,1) = {"
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+"}
+(6,1,1) = {"
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+IJ
+IJ
+IJ
+IJ
+rS
+rS
+rS
+rS
+rS
+rS
+rS
+rS
+rS
+rS
+rS
+rS
+rS
+rS
+rS
+rS
+rS
+Jv
+Jv
+Jv
+Jv
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+"}
+(7,1,1) = {"
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+IJ
+IJ
+Bk
+Ce
+vv
+rS
+Xm
+rS
+dN
+Ts
+Ts
+MJ
+rS
+RA
+cb
+XF
+rS
+bK
+ys
+Va
+Hm
+rS
+rS
+Jv
+Jv
+Jv
+Jv
+Jv
+ao
+ao
+ao
+ao
+ao
+ao
+"}
+(8,1,1) = {"
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+IJ
+yI
+om
+Jq
+ne
+SC
+TJ
+rS
+Ny
+Tv
+Tv
+rn
+rS
+Rg
+NU
+TB
+rS
+gQ
+ng
+Rb
+ox
+de
+rS
+Jv
+Jv
+Jv
+Jv
+Jv
+ao
+ao
+ao
+ao
+ao
+ao
+"}
+(9,1,1) = {"
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+IJ
+Go
+cn
+QU
+jv
+rS
+qo
+rS
+EJ
+Tv
+NY
+zd
+rS
+vZ
+Rg
+GQ
+rS
+rS
+tE
+xz
+fi
+Vb
+rS
+Jv
+Jv
+Jv
+Jv
+Jv
+ao
+ao
+ao
+ao
+ao
+ao
+"}
+(10,1,1) = {"
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+IJ
+HD
+aP
+QU
+RX
+rS
+dx
+rS
+oh
+gE
+WO
+TZ
+rS
+Gq
+Rg
+al
+Hd
+rS
+Vb
+uw
+jN
+Vb
+rS
+Jv
+Jv
+Jv
+Jv
+Jv
+kV
+ao
+ao
+ao
+ao
+ao
+"}
+(11,1,1) = {"
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+IJ
+Gl
+xk
+Ht
+dy
+rS
+rS
+rS
+rS
+bu
+nn
+rS
+rS
+Yq
+kH
+Cp
+lh
+rS
+Hm
+Vb
+Vb
+de
+rS
+Jv
+Jv
+Jv
+Jv
+Kc
+Kc
+Kc
+Kc
+Kc
+ao
+ao
+"}
+(12,1,1) = {"
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+IJ
+oJ
+aP
+jV
+dy
+IJ
+AY
+yz
+sl
+MV
+MV
+ah
+rS
+rS
+nG
+sE
+rS
+rS
+rS
+vO
+fX
+EK
+rS
+Jv
+Jv
+Jv
+Jv
+JK
+ce
+Kc
+Kc
+Kc
+Jv
+ao
+"}
+(13,1,1) = {"
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+IJ
+Sb
+QU
+hg
+CL
+bX
+vz
+TJ
+my
+qh
+my
+Qb
+yz
+yz
+AT
+dz
+yz
+QB
+FJ
+jw
+TJ
+yU
+rS
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Zc
+RB
+Jv
+Jv
+Jv
+"}
+(14,1,1) = {"
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+IJ
+gF
+vA
+AM
+jv
+aS
+Ld
+AK
+AK
+AK
+Ou
+xb
+my
+my
+ZG
+Fl
+TJ
+pp
+rS
+bw
+fo
+ol
+rS
+Jv
+Jv
+Jv
+Jv
+Jv
+Kc
+Kc
+pK
+Jv
+Jv
+Jv
+"}
+(15,1,1) = {"
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+IJ
+IJ
+IJ
+IJ
+IJ
+IJ
+rS
+rS
+rS
+rS
+rS
+ma
+Rg
+AK
+NE
+NE
+Az
+SD
+rS
+kF
+mC
+rS
+rS
+Jv
+Jv
+Jv
+Jv
+Jv
+Gs
+Cu
+pK
+Jv
+Jv
+Jv
+"}
+(16,1,1) = {"
+ao
+ao
+ao
+ao
+ao
+ao
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+rS
+rS
+rS
+rS
+rS
+rS
+yq
+rS
+rS
+rS
+rS
+rS
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+se
+pK
+NO
+Jv
+Jv
+Jv
+"}
+(17,1,1) = {"
+ao
+ao
+ao
+ao
+ao
+ao
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Uh
+iP
+iP
+gw
+Uh
+Uh
+bN
+iP
+iP
+gw
+Uh
+Sa
+bN
+fr
+Jv
+Jv
+Jv
+Jv
+Jv
+BM
+pK
+pK
+Jv
+Jv
+Jv
+"}
+(18,1,1) = {"
+ao
+ao
+ao
+ao
+ao
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Uh
+Uh
+iP
+bN
+Uh
+RU
+iP
+bN
+bN
+iP
+iP
+Uh
+Uh
+iP
+Uc
+Jv
+Jv
+Jv
+Jv
+Jv
+pK
+NO
+se
+Jv
+Jv
+Jv
+"}
+(19,1,1) = {"
+ao
+ao
+ao
+ao
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Uh
+Uh
+bN
+bN
+uz
+bN
+bN
+iP
+bN
+iP
+iP
+iP
+uz
+iP
+ZN
+Jv
+Jv
+Jv
+Jv
+Jv
+Kc
+pK
+pK
+Jv
+Jv
+Jv
+"}
+(20,1,1) = {"
+ao
+ao
+ao
+Jv
+Jv
+Jv
+Jv
+jt
+jt
+jt
+jt
+jt
+jt
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Uh
+bN
+iP
+iP
+bN
+bN
+iP
+iP
+iP
+iP
+bN
+bN
+iP
+Uv
+Jv
+Jv
+Jv
+Jv
+Jv
+Gs
+Kc
+pK
+Jv
+Jv
+Jv
+"}
+(21,1,1) = {"
+ao
+ao
+Jv
+Jv
+Jv
+Jv
+jt
+jt
+Kv
+GI
+ZU
+wQ
+jt
+jt
+jt
+jt
+jt
+jt
+jt
+jt
+rN
+rN
+rN
+rN
+rN
+iP
+iP
+iP
+iP
+Uh
+iP
+bN
+bN
+Oo
+iP
+iP
+iP
+Jv
+Jv
+Jv
+Jv
+Jv
+Kc
+Kc
+pK
+wq
+Jv
+Jv
+Jv
+"}
+(22,1,1) = {"
+ao
+ao
+Jv
+Jv
+Jv
+jt
+jt
+ap
+vk
+iR
+zY
+Pp
+jt
+PW
+rH
+rH
+dk
+bT
+rH
+PR
+xF
+rB
+rB
+pG
+rN
+iP
+iP
+iP
+Uh
+Uh
+iP
+bN
+bN
+Uh
+Uh
+iP
+iP
+bN
+Jv
+Jv
+Jv
+Jv
+Gs
+Kc
+Jv
+Jv
+Jv
+Jv
+Jv
+"}
+(23,1,1) = {"
+ao
+Jv
+Jv
+Jv
+Jv
+jt
+uH
+qM
+uu
+ND
+fk
+Zq
+jt
+dK
+Fv
+KS
+Oa
+Oa
+Fv
+oN
+dH
+Ay
+UT
+CU
+rN
+iP
+bN
+Uh
+AE
+Uh
+iP
+bN
+bN
+Uh
+Uh
+Uh
+iP
+FL
+Jv
+Jv
+Jv
+pK
+pK
+pK
+Jv
+Jv
+Jv
+Jv
+Jv
+"}
+(24,1,1) = {"
+Jv
+Jv
+Jv
+Jv
+Jv
+jt
+Gj
+sS
+qs
+fk
+jt
+jt
+jt
+DB
+DB
+jt
+cS
+Zj
+sp
+jt
+jT
+WN
+WN
+iy
+rN
+iP
+iP
+Uh
+Uh
+Uh
+XM
+BX
+XM
+Uh
+Qw
+Uh
+iP
+iP
+iP
+iP
+GL
+pK
+se
+pK
+Jv
+Jv
+Jv
+Jv
+ao
+"}
+(25,1,1) = {"
+Jv
+Jv
+Jv
+Jv
+Jv
+jt
+jt
+jt
+Ca
+jt
+jt
+Yi
+gh
+Ng
+nc
+rP
+rP
+rP
+rP
+rP
+rP
+LL
+Ki
+pl
+dG
+bN
+iP
+Uh
+uz
+tQ
+pV
+gI
+pT
+Ge
+uz
+Sa
+iP
+iP
+bN
+iP
+jq
+pK
+pK
+Lj
+Jv
+Jv
+Jv
+Jv
+Jv
+"}
+(26,1,1) = {"
+Jv
+Jv
+Jv
+Jv
+Jv
+jt
+jt
+cS
+nc
+rD
+za
+nf
+nf
+nf
+rP
+FZ
+xj
+aI
+HE
+uV
+Eg
+UT
+UT
+UT
+XX
+iP
+iP
+Sa
+Uh
+tQ
+iP
+bN
+iP
+Ge
+Uh
+Uh
+iP
+bN
+iP
+iP
+GL
+pK
+pK
+Kc
+Gs
+Jv
+Jv
+Jv
+Jv
+"}
+(27,1,1) = {"
+Jv
+Jv
+Jv
+jt
+jt
+jt
+fw
+DS
+nf
+nf
+nc
+nf
+JW
+nf
+rP
+hC
+aI
+HE
+wx
+tD
+Eg
+Ay
+UT
+UT
+Ei
+iP
+iP
+Uh
+Oo
+tQ
+iP
+iP
+bN
+Ge
+Uh
+Uh
+iP
+Ye
+Jv
+Jv
+Jv
+pK
+se
+Kc
+Kc
+Jv
+Jv
+Jv
+ao
+"}
+(28,1,1) = {"
+Jv
+Jv
+Jv
+jt
+FM
+aC
+nf
+KT
+rv
+vo
+NT
+Wh
+qG
+JX
+rP
+OT
+aI
+Ka
+lU
+qJ
+Eg
+UT
+Ay
+Ay
+aE
+iP
+bN
+iP
+Uh
+lx
+bN
+iP
+iP
+Ge
+gw
+iP
+iP
+iP
+Jv
+Jv
+Jv
+Jv
+pK
+NO
+pK
+Jv
+Jv
+Jv
+ao
+"}
+(29,1,1) = {"
+Jv
+Jv
+Jv
+jt
+jt
+Uo
+nf
+BB
+UE
+Yn
+hI
+gs
+KT
+nf
+Qv
+es
+es
+mP
+pE
+es
+Eg
+UT
+Ay
+Ay
+XX
+iP
+bN
+iP
+iP
+lx
+iP
+iP
+iP
+Ge
+wj
+bN
+iP
+Jv
+Jv
+Jv
+Jv
+mt
+pK
+pK
+mm
+Jv
+Jv
+Jv
+Jv
+"}
+(30,1,1) = {"
+Jv
+Jv
+Jv
+jt
+FM
+rX
+YX
+KT
+aG
+VD
+Tt
+xl
+KT
+Pb
+rP
+es
+es
+es
+mP
+mP
+Eg
+UT
+Ay
+Ay
+jO
+iP
+iP
+iP
+iP
+PM
+iP
+wL
+bN
+ZH
+bN
+iP
+iP
+cs
+Jv
+Jv
+Jv
+pK
+pK
+se
+Jv
+Jv
+Jv
+Jv
+Jv
+"}
+(31,1,1) = {"
+Jv
+Jv
+Jv
+jt
+jt
+jt
+fw
+nc
+nf
+nf
+nf
+Bq
+nK
+nf
+rP
+hC
+mP
+es
+es
+mP
+Eg
+UT
+UT
+UT
+An
+iP
+bN
+uz
+iP
+JS
+wL
+bN
+iP
+BK
+iP
+uz
+iP
+fr
+Jv
+Jv
+Jv
+eT
+pK
+NO
+Jv
+Jv
+Jv
+Jv
+Jv
+"}
+(32,1,1) = {"
+Jv
+Jv
+Jv
+Jv
+Jv
+jt
+jt
+cS
+nf
+nf
+za
+IH
+Pc
+nf
+rP
+rP
+kU
+uD
+Nr
+QJ
+Eg
+UT
+Ay
+UT
+NB
+iP
+iP
+Uh
+Uh
+oL
+EQ
+iP
+iP
+Ot
+Uh
+Uh
+Ku
+Uc
+Jv
+Jv
+Jv
+NO
+pK
+pK
+Jv
+Jv
+Jv
+Jv
+Jv
+"}
+(33,1,1) = {"
+ao
+Jv
+Jv
+Jv
+Jv
+jt
+jt
+jt
+aY
+jt
+jt
+vj
+zM
+QR
+XC
+rP
+rP
+rP
+rP
+rP
+rP
+XA
+xx
+xx
+sY
+iP
+iP
+Uh
+Sa
+lx
+iP
+KX
+rf
+Ge
+gw
+Uh
+iP
+ZN
+Jv
+Jv
+Jv
+Jv
+pK
+Kc
+Jv
+Jv
+Jv
+Jv
+Jv
+"}
+(34,1,1) = {"
+ao
+Jv
+Jv
+Jv
+Jv
+jt
+CO
+EN
+Wa
+uF
+jt
+jt
+jt
+gV
+gV
+XA
+Pu
+Ul
+Wq
+kq
+bE
+XA
+XA
+Jv
+Jv
+Jv
+Uh
+Uh
+Uh
+Uh
+rN
+rN
+rN
+Jv
+Uh
+Uh
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Ws
+Kc
+mt
+Jv
+Jv
+Jv
+ao
+"}
+(35,1,1) = {"
+ao
+ao
+Jv
+Jv
+Jv
+jt
+VU
+Qt
+AF
+ok
+TG
+Nu
+jt
+jm
+Nn
+XA
+cf
+OP
+MY
+OP
+CZ
+ME
+XA
+Jv
+Jv
+Jv
+Jv
+Uh
+Jv
+Uh
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+se
+pK
+pK
+Jv
+Jv
+ao
+ao
+"}
+(36,1,1) = {"
+ao
+ao
+Jv
+Jv
+Jv
+jt
+jt
+PH
+ZE
+ND
+Hn
+Ps
+jt
+nJ
+Si
+Aj
+nz
+EW
+kq
+xI
+zU
+wG
+XA
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+pK
+pK
+ns
+pK
+Jv
+Jv
+ao
+ao
+"}
+(37,1,1) = {"
+ao
+ao
+Jv
+Jv
+Jv
+Jv
+jt
+jt
+bp
+VW
+Ks
+Gf
+jt
+yW
+pz
+jE
+CC
+Sf
+Sf
+qq
+nU
+TK
+XA
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Gs
+NL
+pK
+pK
+sX
+pK
+ao
+ao
+"}
+(38,1,1) = {"
+ao
+ao
+Jv
+Jv
+Jv
+Jv
+Jv
+jt
+jt
+jt
+jt
+jt
+jt
+XA
+XA
+XA
+YH
+Um
+DW
+lQ
+sb
+XA
+XA
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+NL
+pK
+nN
+pK
+ao
+ao
+"}
+(39,1,1) = {"
+ao
+ao
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+XA
+XA
+XA
+by
+XA
+XA
+XA
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Te
+ao
+ao
+"}
+(40,1,1) = {"
+ao
+ao
+ao
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+tz
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+pK
+ao
+ao
+ao
+"}
+(41,1,1) = {"
+ao
+ao
+ao
+ao
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+ao
+ao
+Jv
+Jv
+Jv
+Jv
+ao
+ao
+ao
+Jv
+Jv
+Jv
+Jv
+Jv
+ao
+ao
+ao
+ao
+ao
+"}
+(42,1,1) = {"
+ao
+ao
+ao
+ao
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+"}
+(43,1,1) = {"
+ao
+ao
+ao
+ao
+ao
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+ao
+ao
+ao
+Jv
+Jv
+Jv
+Jv
+Jv
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+"}
+(44,1,1) = {"
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+"}

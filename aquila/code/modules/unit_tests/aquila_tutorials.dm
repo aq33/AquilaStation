@@ -3,6 +3,12 @@
 
 /// AQUILA - samouczek: lekcje mają dane do menu, ich pokoje się wczytują i znikają po końcu, a postać w samouczku nie liczy się do dynamic
 /datum/unit_test/aquila_tutorials
+	/// Lekcje przechodzone w teście: gdy asercja przerwie przejście, Destroy() je kończy, inaczej ich timery odpalają się w kolejnych testach
+	var/list/walked_lessons = list()
+
+/datum/unit_test/aquila_tutorials/Destroy()
+	QDEL_LIST(walked_lessons)
+	return ..()
 
 /datum/unit_test/aquila_tutorials/Run()
 	var/datum/tutorial/base = /datum/tutorial
@@ -75,6 +81,7 @@
 /// Przechodzi skrypt lekcji Podstawy bez klienta: każdy krok musi przejść do następnego po akcji gracza
 /datum/unit_test/aquila_tutorials/proc/walk_basic_lesson()
 	var/datum/tutorial/aquila/basic/lesson = new
+	walked_lessons += lesson
 	TEST_ASSERT(lesson.setup_room(), "The basic lesson room did not load")
 	lesson.init_map()
 	var/mob/living/carbon/human/student = new(lesson.bottom_left_corner)
@@ -190,6 +197,7 @@
 /// Przechodzi skrypt lekcji Przetrwanie bez klienta
 /datum/unit_test/aquila_tutorials/proc/walk_survival_lesson()
 	var/datum/tutorial/aquila/survival/lesson = new
+	walked_lessons += lesson
 	TEST_ASSERT(lesson.setup_room(), "The survival lesson room did not load")
 	lesson.init_map()
 	var/mob/living/carbon/human/student = new(lesson.loc_from_corner(1, 2))
@@ -278,6 +286,7 @@
 /// Przechodzi skrypt lekcji Alarm bojowy bez klienta (stany działa ustawiane wprost, żeby nie czekać na animacje)
 /datum/unit_test/aquila_tutorials/proc/walk_gq_lesson()
 	var/datum/tutorial/aquila/general_quarters/lesson = new
+	walked_lessons += lesson
 	TEST_ASSERT(lesson.setup_room(), "The general quarters lesson room did not load")
 	lesson.init_map()
 	var/mob/living/carbon/human/student = new(lesson.bottom_left_corner)
@@ -304,13 +313,14 @@
 	lesson.require_vendor()
 	STEP_ASSERT("vendor")
 	var/obj/machinery/squad_vendor/tutorial/vendor = lesson.tracking_atoms[/obj/machinery/squad_vendor/tutorial]
-	var/list/kits = vendor.ui_data(student)["kits"]
-	TEST_ASSERT(length(kits), "The tutorial squad vendor offers no kits")
+	// Od reworku drużyn automat pokazuje jeden zestaw dla funkcji gracza i wydaje go w skrzyni
+	var/list/offered = vendor.ui_data(student)["kit"]
+	TEST_ASSERT(length(offered?["contents"]), "The tutorial squad vendor offers no kit")
 	usr = student
-	vendor.ui_act("vend", list("item_id" = kits[1]["id"]))
+	vendor.ui_act("vend", list())
 	usr = null
 	STEP_ASSERT("equip")
-	var/obj/item/storage/box/squad_kit/kit = locate() in vendor.loc
+	var/obj/item/storage/aq_squad_crate/kit = locate() in vendor.loc
 	TEST_ASSERT(kit, "The vendor did not drop a kit")
 	var/obj/item/clothing/suit/ship/squad/vest = locate() in kit
 	var/obj/item/clothing/head/helmet/ship/squad/helmet = locate() in kit

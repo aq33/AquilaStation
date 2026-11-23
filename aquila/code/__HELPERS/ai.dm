@@ -67,9 +67,20 @@
 			return TRUE
 	return user.CanReach(src)
 
-/// Returns whether it is safe for an atom to move across this turf (lava, chasms, open space for walkers)
+/// Returns whether it is safe for an atom to move across this turf (lava, chasms, open space for walkers).
+/// Flyers cross everything; space is also safe for mobs that move in it on their own (`spacewalk`: carp, dolphins,
+/// troopers in suits). Bee treats space as always safe; we keep it dangerous for the rest so pets do not wander out.
 /turf/proc/can_cross_safely(atom/movable/crossing)
-	return !is_type_in_typecache(src, GLOB.dangerous_turfs)
+	if(!is_type_in_typecache(src, GLOB.dangerous_turfs))
+		return TRUE
+	if(isnull(crossing))
+		return FALSE
+	if((crossing.movement_type & FLYING) || HAS_TRAIT(crossing, TRAIT_MOVE_FLYING))
+		return TRUE
+	if(!isspaceturf(src) || !ismob(crossing))
+		return FALSE
+	var/mob/swimmer = crossing
+	return swimmer.spacewalk
 
 ///Find number of held items, multihand compatible
 /mob/proc/get_num_held_items()

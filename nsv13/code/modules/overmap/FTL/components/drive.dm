@@ -155,7 +155,7 @@
 			if(prob(30))
 				discharge_pylon(P)
 	if(!active_charge && progress > 0)
-		progress = min(progress - 1, 0)
+		progress = max(progress - 1, 0) // AQ EDIT - min() zerował cały ładunek, gdy żaden pylon nie był aktywny
 		if(progress < req_charge && ftl_state == FTL_STATE_READY)
 			cancel_ftl()
 	if(ftl_state != FTL_STATE_READY && progress >= req_charge)

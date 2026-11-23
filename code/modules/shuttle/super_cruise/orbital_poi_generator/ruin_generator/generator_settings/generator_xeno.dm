@@ -17,9 +17,9 @@
 		/obj/effect/spawner/lootdrop/maintenance = 9,
 		/obj/item/ammo_casing/c9mm = 12,
 		/obj/item/gun/ballistic/automatic/pistol/no_mag = 1,
-		/mob/living/simple_animal/hostile/alien/drone = 1,
-		/mob/living/simple_animal/hostile/alien/sentinel = 1,
-		/mob/living/simple_animal/hostile/alien = 1,
+		/mob/living/basic/alien/drone = 1, // AQ EDIT - basic moby
+		/mob/living/basic/alien/sentinel = 1, // AQ EDIT - basic moby
+		/mob/living/basic/alien = 1, // AQ EDIT - basic moby
 		/obj/structure/alien/egg = 3,
 		/obj/structure/alien/weeds/node = 24,
 		/obj/structure/alien/gelpod = 12,

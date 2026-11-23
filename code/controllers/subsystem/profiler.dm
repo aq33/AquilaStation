@@ -52,10 +52,7 @@ SUBSYSTEM_DEF(profiler)
 #endif
 
 /datum/controller/subsystem/profiler/proc/DumpFile()
-#if DM_BUILD < 1506
-	stack_trace("Auto profiling unsupported on this byond version")
-	CONFIG_SET(flag/auto_profile, FALSE)
-#else
+	// AQ EDIT - gałąź dla BYOND < 1506 usunięta, master wymaga 516
 	var/timer = TICK_USAGE_REAL
 	var/current_profile_data = world.Profile(PROFILE_REFRESH, format = "json")
 #ifdef SENDMAPS_PROFILE
@@ -83,4 +80,3 @@ SUBSYSTEM_DEF(profiler)
 	WRITE_FILE(sendmaps_file, current_sendmaps_data)
 #endif
 	write_cost = MC_AVERAGE(write_cost, TICK_DELTA_TO_MS(TICK_USAGE_REAL - timer))
-#endif

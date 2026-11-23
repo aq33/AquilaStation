@@ -7,7 +7,12 @@
 	/// AQUILA - TRUE once the starmap file was reset for a new campaign; stops Shutdown() saving the old campaign over it
 	var/campaign_reset_pending = FALSE
 
-/datum/controller/subsystem/star_system/save(_destination_path = SSmapping.config.starmap_path)
+/datum/controller/subsystem/star_system/save(_destination_path = SSmapping.config?.starmap_path)
+	// A reboot before the map loaded has no map config, and before this subsystem initialized it has no systems:
+	// saving then would write an empty starmap over the campaign
+	if(!_destination_path || !initialized)
+		log_game("Starmap save skipped: the starmap isn't loaded yet.")
+		return 1
 	if(campaign_reset_pending)
 		log_game("Starmap save to [_destination_path] skipped: the campaign was reset for the next round.")
 		return 1
@@ -59,11 +64,16 @@
 	if(!check_rights(R_SERVER))
 		return
 	var/path = SSmapping.config.starmap_path
-	if(alert(usr, "To twardo zrestartuje serwer i ZRESETUJE trwałą kampanię mapy gwiezdnej ([path]) do mapy domyślnej. Nie zostanie zachowana żadna kopia zapasowa, tego nie da się cofnąć. Kontynuować?", "Nowa kampania", "Zresetuj kampanię", "Anuluj") != "Zresetuj kampanię")
+	if(alert(usr, "To twardo zrestartuje serwer i ZRESETUJE trwałą kampanię mapy gwiezdnej ([path]) do mapy domyślnej. Obecna kampania zostanie zachowana jako kopia (Server → Campaign Backups). Kontynuować?", "Nowa kampania", "Zresetuj kampanię", "Anuluj") != "Zresetuj kampanię")
 		return
 	if(alert(usr, "Czy na pewno? Każdy układ, właściciel i zmiana kampanii na mapie gwiezdnej wróci do początku.", "Nowa kampania – ostatnie ostrzeżenie", "Tak, zresetuj i zrestartuj", "Anuluj") != "Tak, zresetuj i zrestartuj")
 		return
 
+	// Kopia, żeby reset dało się cofnąć (Campaign Backups). Bez niej reset nie rusza kampanii, bo potwierdzenie obiecuje kopię.
+	if(!SSstar_system.campaign_backup("przed-resetem"))
+		log_admin("[key_name(usr)] tried Hard Restart + New Campaign; the campaign backup FAILED. Restart aborted, campaign kept.")
+		to_chat(usr, "<span class='warning'>Nie udało się zapisać kopii kampanii. Reset przerwany, kampania pozostała bez zmian.</span>")
+		return
 	var/list/result = reset_campaign_starmap(path)
 	if(!result["success"])
 		log_admin("[key_name(usr)] tried Hard Restart + New Campaign; the starmap reset FAILED ([result["error"]]). Starmap: [path]. Restart aborted, campaign kept.")

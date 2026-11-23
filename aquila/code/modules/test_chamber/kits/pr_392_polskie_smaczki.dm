@@ -45,7 +45,7 @@
 	description = "Wojtek jest spokojny - atakuje tylko tego, kto go uderzy. Uderz go, żeby zabrać mu trochę HP, potem podaj papierosa (zjada, +10 HP) \
 	i piwo (wypija duszkiem, +20 HP)."
 	items = list(
-		/mob/living/simple_animal/hostile/retaliate/wojtek = 1,
+		/mob/living/basic/bear/wojtek = 1,
 		/obj/item/clothing/mask/cigarette = 2,
 		/obj/item/reagent_containers/food/drinks/beer = 2,
 	)

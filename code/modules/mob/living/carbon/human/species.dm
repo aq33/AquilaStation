@@ -1354,6 +1354,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			// changing hunger_rate now will only affect defecation
 			hunger_rate *= H.physiology.defecation_mod
 			hunger_rate *= shitmod // species defecation modifier
+			hunger_rate *= H.stool_rate_mod() // AQ EDIT - skala bristolska (aquila/code/modules/bladder/bristol.dm)
 			if (H.nutrition > NUTRITION_LEVEL_FULL) // this one overate
 				hunger_rate *= 2
 			H.adjust_defecation(hunger_rate)
@@ -1366,7 +1367,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			H.overeatduration -= 2 //doubled the unfat rate
 
 	if(shitting_enabled && !HAS_TRAIT(H, TRAIT_NOSHITTING)) // AQ EDIT
-		if(H.defecation > DEFECATION_ACTUALLY_SHIT_YOURSELF)
+		if(H.defecation > H.accident_threshold()) // AQ EDIT - skala bristolska: przy biegunce wcześniej
 			H.accidental_release() // AQ EDIT - kał albo mocz, czego jest więcej (aquila/code/modules/bladder/urination.dm)
 		else if (H.defecation > DEFECATION_SHIT_YOURSELF)
 			if(prob(LERP(10, 20, ((H.defecation - DEFECATION_SHIT_YOURSELF)/DEFECATION_ACTUALLY_SHIT_YOURSELF))))

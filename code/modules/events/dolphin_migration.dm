@@ -13,9 +13,9 @@
 	startWhen = rand(40, 60)
 
 /datum/round_event/dolphin_migration/announce()
-	priority_announce("W pobliżu [station_name()] wykryto nieznane formy biologiczne, prosimy czekać na dalsze informacje.", "Alarm - formy życia", SSstation.announcer.get_rand_alert_sound())
+	priority_announce("W pobliżu [station_name()] wykryto nieznane formy biologiczne, prosimy czekać na dalsze informacje.", "Alarm - formy życia", 'aquila/sound/ai/events/dolphin_migration.ogg') // AQ EDIT - własne nagranie ogłoszenia
 
 
 /datum/round_event/dolphin_migration/start()
 	for(var/obj/effect/landmark/carpspawn/C in GLOB.landmarks_list)
-		new /mob/living/simple_animal/hostile/retaliate/dolphin(C.loc)
+		new /mob/living/basic/dolphin(C.loc) // AQ EDIT - basic moby

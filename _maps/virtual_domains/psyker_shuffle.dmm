@@ -294,7 +294,7 @@
 	},
 /area/virtual_domain)
 "L" = (
-/mob/living/simple_animal/hostile/mimic/crate,
+/mob/living/basic/mimic/crate,
 /turf/open/indestructible{
 	icon_state = "darkfull"
 	},

@@ -29,26 +29,26 @@
 	SSshuttle.shuttle_loan = src
 	switch(dispatch_type)
 		if(HIJACK_SYNDIE)
-			priority_announce("Zaopatrzenie: Syndykat próbuje zinflitrować wasz statek. Jeśli pozwolicie im porwać prom towarowy, zaoszczędzicie nam sporo problemu.", "Kontrwywiad Centrali", SSstation.announcer.get_rand_alert_sound())
+			priority_announce("Zaopatrzenie: Syndykat próbuje zinflitrować wasz statek. Jeśli pozwolicie im porwać prom towarowy, zaoszczędzicie nam sporo problemu.", "Kontrwywiad Centrali", 'aquila/sound/ai/events/shuttle_loan_syndicate.ogg') // AQ EDIT - własne nagranie ogłoszenia
 		if(RUSKY_PARTY)
-			priority_announce("Zaopatrzenie: Grupa wściekłych ruskich ma ochotę na imprezkę. Możecie podesłać po nich prom, byśmy się ich pozbyli?", "Rosyjski Program Informacyjny Centrali", SSstation.announcer.get_rand_alert_sound())
+			priority_announce("Zaopatrzenie: Grupa wściekłych ruskich ma ochotę na imprezkę. Możecie podesłać po nich prom, byśmy się ich pozbyli?", "Rosyjski Program Informacyjny Centrali", 'aquila/sound/ai/events/shuttle_loan_russian.ogg') // AQ EDIT - własne nagranie ogłoszenia
 		if(SPIDER_GIFT)
-			priority_announce("Zaopatrzenie: Pajęczy Klan wysłał nam tajemniczy prezent. Możemy wam go podesłać, by sprawdzić co w nim jest?", "Korpus dyplomatyczny Centrali", SSstation.announcer.get_rand_alert_sound())
+			priority_announce("Zaopatrzenie: Pajęczy Klan wysłał nam tajemniczy prezent. Możemy wam go podesłać, by sprawdzić co w nim jest?", "Korpus dyplomatyczny Centrali", 'aquila/sound/ai/events/shuttle_loan_spider.ogg') // AQ EDIT - własne nagranie ogłoszenia
 		if(DEPARTMENT_RESUPPLY)
-			priority_announce("Zaopatrzenie: Wygląda na to, że zamówiliśmy podwójnie nasze departamentalne uzupełniena. Możemy wam je wysłać?", "Departament Zaopatrzenia Centrali", SSstation.announcer.get_rand_alert_sound())
+			priority_announce("Zaopatrzenie: Wygląda na to, że zamówiliśmy podwójnie nasze departamentalne uzupełniena. Możemy wam je wysłać?", "Departament Zaopatrzenia Centrali", 'aquila/sound/ai/events/shuttle_loan_supply.ogg') // AQ EDIT - własne nagranie ogłoszenia
 			thanks_msg = "Prom zaopatrzeniowy powinien wrócić za 5 minut."
 			bonus_points = 0
 		if(ANTIDOTE_NEEDED)
-			priority_announce("Zaopatrzenie: Wasz statek został wybrany do epidemiologicznego programu badawczego. Wyślijce nam swój prom towarowy, a prześlemy wam próbki.", "Inicjatywa Badawcza Centrali", SSstation.announcer.get_rand_alert_sound())
+			priority_announce("Zaopatrzenie: Wasz statek został wybrany do epidemiologicznego programu badawczego. Wyślijce nam swój prom towarowy, a prześlemy wam próbki.", "Inicjatywa Badawcza Centrali", 'aquila/sound/ai/events/shuttle_loan_virus.ogg') // AQ EDIT - własne nagranie ogłoszenia
 		if(PIZZA_DELIVERY)
-			priority_announce("Zaopatrzenie: Wygląda na to, że przelatujący statek przypadkiem zamówił pizze do was.", "Oddział Kosmopizzy Centrali", SSstation.announcer.get_rand_alert_sound())
+			priority_announce("Zaopatrzenie: Wygląda na to, że przelatujący statek przypadkiem zamówił pizze do was.", "Oddział Kosmopizzy Centrali", 'aquila/sound/ai/events/shuttle_loan_pizza.ogg') // AQ EDIT - własne nagranie ogłoszenia
 			thanks_msg = "Prom zaopatrzeniowy powinien wrócić za 5 minut."
 			bonus_points = 0
 		if(ITS_HIP_TO)
-			priority_announce("Zaopatrzenie: Jeden z naszych frachtowców przewożących ładunek pszczół został zaatakowany przez ekoterrorystów. Możecie posprzątać za nas ten bajzel?", "Wydział Czyszczenia Centrali", SSstation.announcer.get_rand_alert_sound())
+			priority_announce("Zaopatrzenie: Jeden z naszych frachtowców przewożących ładunek pszczół został zaatakowany przez ekoterrorystów. Możecie posprzątać za nas ten bajzel?", "Wydział Czyszczenia Centrali", 'aquila/sound/ai/events/shuttle_loan_bees.ogg') // AQ EDIT - własne nagranie ogłoszenia
 			bonus_points = 20000 //Toxin bees can be unbeelievably lethal
 		if(MY_GOD_JC)
-			priority_announce("Zaopatrzenie: Odkryliśmy aktywną bombę Syndykatu w pobliżu przewodów paliwowych naszego wahadłowca VIP. Jeżeli czujecie się na siłach, aby sprostać zadaniu, zapłacimy wam za jego rozbrojenie.", "Wydział Ochrony Centrali" , SSstation.announcer.get_rand_alert_sound())
+			priority_announce("Zaopatrzenie: Odkryliśmy aktywną bombę Syndykatu w pobliżu przewodów paliwowych naszego wahadłowca VIP. Jeżeli czujecie się na siłach, aby sprostać zadaniu, zapłacimy wam za jego rozbrojenie.", "Wydział Ochrony Centrali" , 'aquila/sound/ai/events/shuttle_loan_bomb.ogg') // AQ EDIT - własne nagranie ogłoszenia
 			thanks_msg = " Aktywny ładunek wybuchowy nadciąga promem. Zaleca się ewakuację ładowni."
 			bonus_points = 45000 //If you mess up, people die and the shuttle gets turned into swiss cheese
 
@@ -112,22 +112,22 @@
 				var/datum/supply_pack/pack = SSshuttle.supply_packs[/datum/supply_pack/emergency/specialops]
 				pack.generate(pick_n_take(empty_shuttle_turfs))
 
-				shuttle_spawns.Add(/mob/living/simple_animal/hostile/syndicate/ranged/infiltrator)
-				shuttle_spawns.Add(/mob/living/simple_animal/hostile/syndicate/ranged/infiltrator)
+				shuttle_spawns.Add(/mob/living/basic/trooper/syndicate/ranged/infiltrator) // AQ EDIT - basic moby
+				shuttle_spawns.Add(/mob/living/basic/trooper/syndicate/ranged/infiltrator) // AQ EDIT - basic moby
 				if(prob(75))
-					shuttle_spawns.Add(/mob/living/simple_animal/hostile/syndicate/ranged/infiltrator)
+					shuttle_spawns.Add(/mob/living/basic/trooper/syndicate/ranged/infiltrator) // AQ EDIT - basic moby
 				if(prob(50))
-					shuttle_spawns.Add(/mob/living/simple_animal/hostile/syndicate/ranged/infiltrator)
+					shuttle_spawns.Add(/mob/living/basic/trooper/syndicate/ranged/infiltrator) // AQ EDIT - basic moby
 
 			if(RUSKY_PARTY)
 				var/datum/supply_pack/pack = SSshuttle.supply_packs[/datum/supply_pack/service/party]
 				pack.generate(pick_n_take(empty_shuttle_turfs))
 
-				shuttle_spawns.Add(/mob/living/simple_animal/hostile/russian)
-				shuttle_spawns.Add(/mob/living/simple_animal/hostile/russian/ranged)	//drops a mateba
+				shuttle_spawns.Add(/mob/living/basic/trooper/russian) // AQ EDIT - basic moby
+				shuttle_spawns.Add(/mob/living/basic/trooper/russian/ranged)	//drops a mateba // AQ EDIT - basic moby
 				shuttle_spawns.Add(/mob/living/basic/bear/russian) // AQ EDIT - basic moby
 				if(prob(75))
-					shuttle_spawns.Add(/mob/living/simple_animal/hostile/russian)
+					shuttle_spawns.Add(/mob/living/basic/trooper/russian) // AQ EDIT - basic moby
 				if(prob(50))
 					shuttle_spawns.Add(/mob/living/basic/bear/russian) // AQ EDIT - basic moby
 

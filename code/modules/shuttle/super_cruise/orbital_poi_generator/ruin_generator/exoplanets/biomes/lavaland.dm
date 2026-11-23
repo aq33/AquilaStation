@@ -11,7 +11,8 @@
 	beach_type = /turf/open/floor/plating/lavaland
 
 	plains_type = /turf/open/floor/plating/lavaland
-	plains_decoration = list(/mob/living/simple_animal/hostile/asteroid/goldgrub = 1, /mob/living/simple_animal/hostile/asteroid/goliath = 5, /mob/living/simple_animal/hostile/asteroid/basilisk = 4, /mob/living/simple_animal/hostile/asteroid/hivelord = 3, /obj/structure/flora/ash/leaf_shroom = 20, /obj/structure/flora/ash/cap_shroom = 20, /obj/structure/flora/ash/stem_shroom = 20 , /obj/structure/flora/ash/cacti = 10, /obj/structure/flora/ash/tall_shroom = 20)
+	// AQ EDIT - moby górnicze są basic mobami (aquila/code/modules/mob/living/basic/lavaland/)
+	plains_decoration = list(/mob/living/basic/mining/goldgrub = 1, /mob/living/basic/mining/goliath/ancient = 5, /mob/living/basic/mining/basilisk = 4, /mob/living/basic/mining/hivelord = 3, /obj/structure/flora/ash/leaf_shroom = 20, /obj/structure/flora/ash/cap_shroom = 20, /obj/structure/flora/ash/stem_shroom = 20 , /obj/structure/flora/ash/cacti = 10, /obj/structure/flora/ash/tall_shroom = 20)
 
 	jungle_type = /turf/open/floor/plating/ashplanet/rocky
 	jungle_decoration = list(/obj/structure/geyser/random = 30, null = 60, /mob/living/simple_animal/hostile/megafauna/dragon = 4, /mob/living/simple_animal/hostile/megafauna/colossus = 2, /mob/living/simple_animal/hostile/megafauna/bubblegum = 6)

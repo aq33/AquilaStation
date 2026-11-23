@@ -84,7 +84,10 @@
 		var/animal_damage = user.melee_damage
 		if(user.obj_damage)
 			animal_damage = user.obj_damage
-		animal_damage = min(animal_damage, 20*user.environment_smash)
+		var/smash_level = user.environment_smash
+		if(isbasicmob(user)) // AQ EDIT - basic moby mają domyślnie ENVIRONMENT_SMASH_NONE, a dawne simple animale biły mecha za 20
+			smash_level = max(smash_level, ENVIRONMENT_SMASH_STRUCTURES) // AQ EDIT
+		animal_damage = min(animal_damage, 20*smash_level)
 		log_combat(user, src, "attacked")
 		attack_generic(user, animal_damage, user.melee_damage_type, "melee", play_soundeffect)
 		return 1

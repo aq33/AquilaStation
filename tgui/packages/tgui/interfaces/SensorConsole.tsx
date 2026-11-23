@@ -92,13 +92,29 @@ type Data = {
   radar_beam_bearing: number;
   radar_reach: number;
   objects: ScopeObject[];
+  sensor_array?: SensorArray;
+};
+
+// Matryce sensorów okrętu (aquila/code/modules/overmap/ship_sensor_array.dm)
+type SensorArrayUnit = {
+  sector: string;
+  status: string;
+  working: boolean;
+  range: number;
+  power: string;
+};
+
+type SensorArray = {
+  arrays: SensorArrayUnit[];
+  on: boolean;
 };
 
 export type ScopeObject = {
   id: string;
-  kind: 'asteroid' | 'wreck' | 'anomaly';
+  kind: 'asteroid' | 'wreck' | 'anomaly' | 'planet';
   name: string;
   detail: string | null;
+  scannable?: boolean;
   dx: number;
   dy: number;
 };
@@ -107,6 +123,7 @@ export const OBJECT_KIND = {
   asteroid: 'asteroida',
   wreck: 'wrak',
   anomaly: 'anomalia',
+  planet: 'planeta',
 };
 
 // Fala impulsu dochodzi do granicy zasięgu w tyle sekund
@@ -117,6 +134,7 @@ export const OBJECT_COLOR = {
   asteroid: '#8a8f98',
   wreck: '#a9b0ba',
   anomaly: '#eb9534',
+  planet: '#6fb3d2',
 };
 
 export const COLOR = {
@@ -396,6 +414,52 @@ const TopBar = () => {
             }}
           />
         </span>
+      </span>
+    </Box>
+  );
+};
+
+const ArrayBar = () => {
+  const { act, data } = useBackend<Data>();
+  const array = data.sensor_array;
+  if (!array) {
+    return null;
+  }
+  return (
+    <Box
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        flexWrap: 'wrap',
+        gap: '10px',
+        padding: '6px 10px',
+        borderBottom: '1px solid ' + COLOR.line,
+        background: COLOR.panel,
+      }}
+    >
+      <Button
+        icon="power-off"
+        selected={array.on}
+        onClick={() => act('array_toggle', { on: !array.on })}
+      >
+        {array.on ? 'Matryce włączone' : 'Matryce wyłączone'}
+      </Button>
+      <span style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+        {array.arrays.map((unit) => (
+          <span
+            key={unit.sector}
+            title={`${unit.status}, ${unit.power}`}
+            style={{
+              padding: '2px 8px',
+              borderRadius: '999px',
+              border:
+                '1px solid ' + (unit.working ? '#2b6b45' : '#7a2d2d'),
+              color: unit.working ? COLOR.good : COLOR.bad,
+            }}
+          >
+            {unit.sector}: {unit.working ? unit.range : unit.status}
+          </span>
+        ))}
       </span>
     </Box>
   );
@@ -785,6 +849,16 @@ const Scope = (props: ScopeProps) => {
                 strokeWidth={2}
               />
             )}
+            {thing.kind === 'planet' && (
+              <circle
+                cx={x}
+                cy={y}
+                r={6}
+                fill={colour}
+                fillOpacity={0.6}
+                stroke={colour}
+              />
+            )}
             {thing.kind === 'anomaly' && (
               <path
                 d={`M${x},${y - 6} L${x + 2},${y - 2} L${x + 6},${y} L${x + 2},${y + 2} L${x},${y + 6} L${x - 2},${y + 2} L${x - 6},${y} L${x - 2},${y - 2} Z`}
@@ -976,6 +1050,10 @@ const Legend = () => (
         {'\u2726'}
       </span>
       anomalia
+    </span>
+    <span>
+      <span style={swatch(OBJECT_COLOR.planet)} />
+      planeta
     </span>
   </Box>
 );
@@ -1530,6 +1608,7 @@ const ContactCard = (props: { contact: Contact | undefined }) => {
 };
 
 const ObjectCard = (props: { thing: ScopeObject }) => {
+  const { act } = useBackend<Data>();
   const { thing } = props;
   const label: CSSProperties = { color: COLOR.muted };
   const fact: CSSProperties = { fontFamily: MONO, fontWeight: 500 };
@@ -1568,6 +1647,15 @@ const ObjectCard = (props: { thing: ScopeObject }) => {
           </>
         )}
       </div>
+      {!!thing.scannable && (
+        <Button
+          mt={1}
+          icon="satellite-dish"
+          onClick={() => act('scan_planet', { id: thing.id })}
+        >
+          Skanuj planetę
+        </Button>
+      )}
     </Box>
   );
 };
@@ -1706,6 +1794,7 @@ export const SensorConsole = (props) => {
           style={{ display: 'flex', flexDirection: 'column', height: '100%' }}
         >
           <TopBar />
+          <ArrayBar />
           <Box style={{ flex: 1, display: 'flex', minHeight: 0 }}>
             <Box
               style={{

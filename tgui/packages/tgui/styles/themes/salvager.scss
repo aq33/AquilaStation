@@ -1,0 +1,76 @@
+/**
+ * AQUILA: motyw okien złomiarzy - zardzewiała blacha, nity i bursztynowe światło terminalu.
+ */
+
+.theme-salvager:root {
+  --color-base: #1a1714;
+  --base-gradient-spread: 4;
+  --color-primary: #e0902c;
+  --color-good: #9ccc5a;
+  --color-bad: #e0533a;
+  --color-average: #e0b02c;
+  --button-background-default: #5a3d1c;
+  --button-background-disabled: #2c2824;
+  --button-background-selected: #9a5e18;
+  --button-background-caution: #8a6a12;
+  --button-background-danger: #8a2414;
+  --input-border-color: #6a4a24;
+  --notice-box-background: #3a2810;
+  --tooltip-background: #100d0a;
+  --titlebar-background: #241c14;
+
+  .Layout__content {
+    // blacha z nitami
+    background-color: #15120f;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='64' height='64'><rect width='64' height='64' fill='%23181410'/><rect x='1' y='1' width='62' height='62' fill='%231c1813' stroke='%23120f0c' stroke-width='2'/><circle cx='6' cy='6' r='2' fill='%232e261c'/><circle cx='58' cy='6' r='2' fill='%232e261c'/><circle cx='6' cy='58' r='2' fill='%232e261c'/><circle cx='58' cy='58' r='2' fill='%232e261c'/></svg>");
+    background-size: 64px 64px;
+  }
+
+  .Section {
+    background-color: rgba(12, 10, 8, 0.85);
+    border: 1px solid #3a2c1a;
+  }
+
+  .Section__titleText {
+    color: #e0902c;
+    font-family: Consolas, 'Lucida Console', monospace;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .Salvager__hazard {
+    height: 8px;
+    background: repeating-linear-gradient(
+      -45deg,
+      #e0a02c 0,
+      #e0a02c 10px,
+      #1a1612 10px,
+      #1a1612 20px
+    );
+  }
+
+  .Salvager__display {
+    font-family: Consolas, 'Lucida Console', monospace;
+    color: #ffb84a;
+    text-shadow: 0 0 6px rgba(255, 160, 40, 0.6);
+    background-color: #0b0805;
+    border: 1px solid #5a3d1c;
+    padding: 4px 8px;
+  }
+
+  .Salvager__card {
+    background-color: rgba(30, 24, 18, 0.9);
+    border: 1px solid #3a2c1a;
+    padding: 6px;
+    text-align: center;
+  }
+
+  .Salvager__card--afford {
+    border-color: #7a5420;
+  }
+
+  .Salvager__sprite {
+    image-rendering: pixelated;
+    -ms-interpolation-mode: nearest-neighbor;
+  }
+}

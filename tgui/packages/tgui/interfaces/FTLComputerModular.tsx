@@ -2,6 +2,7 @@ import { Button, ProgressBar, Section, Table } from 'tgui-core/components';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
+import { FtlCalibration } from './FtlCalibration'; // AQ EDIT - kalibracja pylonów
 
 type Data = {
   auto_spool_enabled: any;
@@ -145,6 +146,8 @@ export const FTLComputerModular = (props) => {
                 }}
               />
             </Section>
+            <FtlCalibration />
+            {/* AQ EDIT - kalibracja pylonów (FtlCalibration.tsx) */}
           </Section>
         )}
       </Window.Content>

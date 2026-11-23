@@ -1,12 +1,10 @@
 // AQUILA - terminal restauracji/baru z robotami-turystami (aquila/code/modules/restaurant/terminal.dm)
 import {
   Box,
-  Button,
   LabeledList,
   NoticeBox,
   ProgressBar,
   Section,
-  Stack,
   Table,
 } from 'tgui-core/components';
 
@@ -21,35 +19,40 @@ type Guest = {
   waiting: boolean;
 };
 
+type Contract = {
+  name: string;
+  served: number;
+  amount: number;
+  time_left: number | null;
+};
+
 type Data = {
   venue_name: string;
   open: boolean;
   has_portal: boolean;
-  has_access: boolean;
   served: number;
   lost: number;
   income: number;
   seats_total: number;
   seats_free: number;
   max_guests: number;
-  projector_out: boolean;
+  contract: Contract | null;
   guests: Guest[];
 };
 
 export const RestaurantTerminal = (props) => {
-  const { act, data } = useBackend<Data>();
+  const { data } = useBackend<Data>();
   const {
     venue_name,
     open,
     has_portal,
-    has_access,
     served,
     lost,
     income,
     seats_total,
     seats_free,
     max_guests,
-    projector_out,
+    contract,
     guests = [],
   } = data;
 
@@ -61,83 +64,37 @@ export const RestaurantTerminal = (props) => {
             Brak portalu dla gości. Bez niego lokalu nie da się otworzyć.
           </NoticeBox>
         )}
-        {!has_access && (
-          <NoticeBox>Potrzebna jest karta z dostępem do tego lokalu.</NoticeBox>
-        )}
-        <Section
-          title="Lokal"
-          buttons={
-            <Button
-              icon={open ? 'door-closed' : 'door-open'}
-              color={open ? 'bad' : 'good'}
-              disabled={!has_access || (!open && !has_portal)}
-              onClick={() => act('toggle')}
-            >
-              {open ? 'Zamknij lokal' : 'Otwórz lokal'}
-            </Button>
-          }
-        >
+        <Section title="Lokal">
           <LabeledList>
             <LabeledList.Item label="Stan">
               <Box color={open ? 'good' : 'average'} bold>
                 {open ? 'Otwarty, portal przyjmuje gości' : 'Zamknięty'}
               </Box>
             </LabeledList.Item>
+            <LabeledList.Item label="Zlecenie">
+              {contract ? (
+                <>
+                  {contract.name}: {contract.served}/{contract.amount} gości
+                  {contract.time_left !== null && (
+                    <Box inline ml={1} color="label">
+                      (zostało {contract.time_left} min)
+                    </Box>
+                  )}
+                </>
+              ) : (
+                'Brak. Gości przysyła stacja handlowa na zlecenie.'
+              )}
+            </LabeledList.Item>
             <LabeledList.Item label="Obsłużeni goście">
               {served}
             </LabeledList.Item>
             <LabeledList.Item label="Wyszli głodni">{lost}</LabeledList.Item>
             <LabeledList.Item label="Zarobek">{income} kr</LabeledList.Item>
-          </LabeledList>
-        </Section>
-        <Section title="Miejsca dla gości">
-          <LabeledList>
-            <LabeledList.Item label="Rozstawione">
-              {seats_total} (wolne: {seats_free})
-            </LabeledList.Item>
-            <LabeledList.Item label="Najwięcej gości naraz">
+            <LabeledList.Item label="Miejsca">
+              {seats_total} (wolne: {seats_free}), najwięcej gości naraz:{' '}
               {max_guests}
             </LabeledList.Item>
           </LabeledList>
-          <Stack mt={1}>
-            <Stack.Item grow>
-              <Button
-                fluid
-                icon="chair"
-                disabled={!has_access || !has_portal}
-                tooltip="Stawia miejsca w pomieszczeniu z portalem: na krzesłach przy stołach, a jeśli ich nie ma, obok stołów."
-                onClick={() => act('auto_seats')}
-              >
-                Rozstaw miejsca
-              </Button>
-            </Stack.Item>
-            <Stack.Item grow>
-              <Button
-                fluid
-                icon="eraser"
-                disabled={!has_access || !seats_total}
-                tooltip="Zdejmuje wszystkie miejsca, na których nikt nie siedzi."
-                onClick={() => act('clear_seats')}
-              >
-                Zdejmij wolne
-              </Button>
-            </Stack.Item>
-            <Stack.Item grow>
-              <Button
-                fluid
-                icon="magic"
-                disabled={!has_access || projector_out}
-                tooltip={
-                  projector_out
-                    ? 'Projektor jest już wydany.'
-                    : 'Ręczny projektor do stawiania i zdejmowania miejsc.'
-                }
-                onClick={() => act('projector')}
-              >
-                Wydaj projektor
-              </Button>
-            </Stack.Item>
-          </Stack>
         </Section>
         <Section title={`Goście (${guests.length})`}>
           {guests.length === 0 ? (

@@ -40,7 +40,7 @@
 		option = new()
 		option.name = "augmentacja: [initial(augment.name)]"
 		option.info = "Zastępuje kończynę pacjenta ([initial(limb.name)]) protezą: [initial(augment.name)]."
-		option.image = image(augment.type)
+		option.image = get_item_radial_image(augment.type)
 		LAZYSET(cached_augment_options, augment.type, option)
 
 	return option
@@ -104,6 +104,8 @@
 		)
 		augment.forceMove(patient.drop_location())
 		return
+	// krwawienie z nacięcia starej kończyny zostałoby na protezie, której nie da się już zamknąć (jak w przyszyciu kończyny)
+	patient.cauterise_wounds(zone = zone)
 
 	display_results(
 		surgeon,

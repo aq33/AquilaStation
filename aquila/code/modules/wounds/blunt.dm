@@ -12,13 +12,18 @@
 	var/gelled = FALSE
 	/// Taped over the gel, the bone knits by itself
 	var/taped = FALSE
+	/// Held by a real splint (medical/splint.dm): nothing drops, half the treated limp and less pain, the splint falls off when the bone heals
+	var/splinted = FALSE
+	/// The splint moves to the wound that replaces this one (medical/splint.dm)
+	var/aq_splint_moving = FALSE
+	var/turf/aq_splint_drop
 
 /datum/wound/blunt/on_apply()
 	if(severity >= WOUND_SEVERITY_SEVERE)
 		victim.play_bone_break()
 
 /datum/wound/blunt/wound_effects(delta_time)
-	var/drop = treated ? treated_drop_chance : drop_chance
+	var/drop = splinted ? 0 : (treated ? treated_drop_chance : drop_chance)
 	if(drop && (limb.body_zone == BODY_ZONE_L_ARM || limb.body_zone == BODY_ZONE_R_ARM) && DT_PROB(drop, delta_time))
 		var/obj/item/held = victim.get_item_for_held_index(limb.held_index)
 		if(held && victim.dropItemToGround(held))
@@ -41,6 +46,8 @@
 		return FALSE
 	if(istype(item, /obj/item/stack/medical/bone_gel) || istype(item, /obj/item/stack/sticky_tape/surgical))
 		return regen_time && !taped && !limb_in_surgery()
+	if(istype(item, /obj/item/stack/medical/splint)) // szyna (medical/splint.dm): na gołe złamanie albo w miejsce bandaża
+		return !splinted
 	return !treated && istype(item, /obj/item/stack/medical/bandage)
 
 /datum/wound/blunt/treat(obj/item/item, mob/user)
@@ -48,6 +55,8 @@
 		return apply_gel(item, user)
 	if(istype(item, /obj/item/stack/sticky_tape/surgical))
 		return apply_tape(item, user)
+	if(istype(item, /obj/item/stack/medical/splint))
+		return apply_splint(item, user)
 	var/obj/item/stack/medical/bandage/bandage = item
 	var/self = user == victim
 	user.visible_message("<span class='notice'>[user] zaczyna unieruchamiać [limb.name] [victim] opatrunkiem.</span>", "<span class='notice'>Zaczynasz unieruchamiać [limb.name] [self ? "" : "[victim] "]opatrunkiem.</span>")
@@ -133,7 +142,7 @@
 
 /datum/wound/blunt/process(delta_time)
 	. = ..()
-	if(QDELETED(src) || !taped || victim.stat == DEAD)
+	if(QDELETED(src) || !taped || victim.stat == DEAD || victim.IsInStasis())
 		return
 	regen_progress += delta_time SECONDS
 	if(!(victim.mobility_flags & MOBILITY_STAND))
@@ -187,7 +196,7 @@
 	name = "Pęknięcie kości"
 	desc = "Słyszysz chrupnięcie kości"
 	examine_desc = "spuchniętą, posiniaczoną kończynę"
-	treat_text = "Unieruchom bandażem, zrośnie się po kilku minutach. Albo żel kostny i taśma chirurgiczna (bolesne, ok. 4 minuty), albo operacja nastawienia kości."
+	treat_text = "Unieruchom szyną (albo bandażem), zrośnie się po kilku minutach. Albo żel kostny i taśma chirurgiczna (bolesne, ok. 4 minuty), albo operacja nastawienia kości."
 	severity = WOUND_SEVERITY_SEVERE
 	threshold = 60
 	heal_time = 3 MINUTES
@@ -200,7 +209,7 @@
 	name = "Złamanie otwarte"
 	desc = "Kość przebija ci skórę"
 	examine_desc = "kość sterczącą z rany"
-	treat_text = "Operacja nastawienia kości. W nagłym wypadku żel kostny, potem taśma chirurgiczna (bardzo bolesne, ok. 8 minut). Bandaż tylko unieruchamia."
+	treat_text = "Operacja nastawienia kości. W nagłym wypadku żel kostny, potem taśma chirurgiczna (bardzo bolesne, ok. 8 minut). Szyna albo bandaż tylko unieruchamia."
 	severity = WOUND_SEVERITY_CRITICAL
 	threshold = 115
 	regen_time = 8 MINUTES

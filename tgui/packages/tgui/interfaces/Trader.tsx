@@ -4,6 +4,8 @@ import { Button, Section } from 'tgui-core/components';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
+import { StationContracts } from './StationContracts'; // AQ EDIT - zlecenia działów
+import { TraderMissions } from './TraderMissions'; // AQ EDIT - misje od handlarzy
 
 type Data = {
   desc: any;
@@ -32,6 +34,10 @@ export const Trader = (props) => {
           <hr />
         </Section>
         <MissionTracker />
+        {/* AQ EDIT - misje od handlarzy i reputacja u stacji */}
+        <TraderMissions />
+        {/* AQ EDIT - zlecenia działów */}
+        <StationContracts />
         <Section
           title={data.next_restock}
           buttons={<Button content={data.points} />}

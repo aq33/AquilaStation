@@ -340,6 +340,8 @@ Oznaczenia w kolumnie uwag:
 | security X (ubranie, sprzęt żandarma) | X żandarmski / żandarmska | istniejące: „plecak żandarmski”, „mundur żandarmski”, „Mundurownia Żandarmska”, „Zbrojownia Żandarmska”; zostaje „taśma policyjna” (ogólny termin). Zawody ochrony to Żandarm, Komendant, Naczelnik, Aspirant. |
 | cargo X (ubranie zaopatrzenia) | X InPostu | istniejące: „kombinezon magazyniera InPostu”, „czapka InPostu”, „Mundurownia InPost”. Wylot z rury to „paczkomat”. Zawody i kanał radia zostają. |
 | engineering X (ubranie inżyniera) | X Orlenu | istniejące: „kombinezon inżyniera Orlenu”, „kask Orlenu”, „Mundurownia Orlenu”. Zawody i kanał radia zostają: Inżynier, Technik Atmosferyki, Główny Inżynier, Inżynieria. |
+| medical X (ubranie personelu medycznego) | X NFZ | istniejące: „kombinezon lekarza NFZ”, „czapka NFZ”, „Mundurownia NFZ (chemia)”. |
+| wersja angielska marek | oryginał bez marki | W `strings/i18n/en_translated.json` Żandarmeria, Orlen, InPost i NFZ wracają do oryginałów tg: „Mundurownia Orlenu” → EngiDrobe, „Mundurownia NFZ (chemia)” → ChemDrobe, „Mundurownia InPost” → CargoDrobe, „beret InPostu” → cargo beret, „paczkomat” → mail outlet. Tak jak „Mundurownia Żandarmska” → SecDrobe. |
 | Syndicate X | X Syndykatu | m; istniejące (245×), np. „zestaw słuchawkowy Syndykatu”, „uśpiacz Syndykatu”. |
 | Nanotrasen X | X Nanotrasen | nazwa firmy po rzeczowniku nieodmienna; istniejące: „kapsuła zaopatrzeniowa Nanotrasen”. W zdaniu odmiana „Nanotrasenu” dopuszczalna. |
 | CentCom X | X Centrali | istniejące (111×); odrzucone: „CentComu” (11×). |
@@ -866,6 +868,8 @@ Nazwy gazów są widoczne w skanerach, kanistrach i oknach TGUI. Jeśli nazwa ga
 | vault | skarbiec | m; istniejące |
 | barricade | barykada | ż; istniejące |
 | sandbags | worki z piaskiem | mn; nowe |
+| folding barricade | składana barykada | ż; nowe |
+| sandbag barricade | barykada z worków z piaskiem | ż; nowe |
 | fence | ogrodzenie | n; istniejące |
 | bonfire | ognisko | n; nowe |
 | fireplace | kominek | m; nowe |
@@ -1199,6 +1203,10 @@ Nazwy gazów są widoczne w skanerach, kanistrach i oknach TGUI. Jeśli nazwa ga
 | fighter | myśliwiec | m; istniejące (33×) |
 | hardpoint | punkt mocowania | m; nowe |
 | munitions forge | kuźnia amunicji | ż; istniejące |
+| shell type AP / HE / APHE | typ pocisku: przeciwpancerny / odłamkowo-burzący / przeciwpancerny odłamkowo-burzący | m; nowe (rework amunicji); skróty AP, HE, APHE zostają |
+| coating / core (forged body) | powłoka / rdzeń | ż / m; nowe (rework amunicji): „uran w powłoce: srebro” |
+| factory part (forge) | część fabryczna | ż; nowe (rework amunicji) |
+| factory shell | fabryczny pocisk | m; nowe (rework amunicji) |
 | DRADIS | DRADIS | m/ndm; istniejące |
 | radar | radar | m; istniejące (26×) |
 | squad (NSV13) | drużyna | ż; istniejące (28× przed tłumaczeniem całości, ponad 100× po nim): „pager drużyny”, „dowódca drużyny”, „Drużyna Alpha”, „Zarządzanie drużynami”, „Preferowana drużyna (GQ)”. Odrzucone: „oddział” (dla squad), „skład” (od reworku drużyn także automat to „automat drużyny”). „Oddział” zostaje dla ERT i jednostek wojskowych („oddział reagowania Centrali”, „oddział HONK”). „Roster” w tabeli to „Skład” |
@@ -1656,6 +1664,8 @@ Wszystkie nazwy roślin i plonów są już przetłumaczone w porcie botaniki (`a
 | weed killer / Plant-B-Gone | środek chwastobójczy | m; nowe |
 | pest killer | pestycyd | m; istniejące |
 | watering can | konewka | ż; nowe |
+| compost bin / compost | kompostownik / kompost | m; nowe (Bubberstation) |
+| worm farm / worm | farma dżdżownic / dżdżownica | ż; nowe (Skyrat, tg) |
 | apple / golden apple | jabłko / złote jabłko | n; istniejące |
 | banana / banana peel | banan / skórka od banana | m / ż; istniejące / nowe |
 | cherries / blue cherries | wiśnie / niebieskie wiśnie | mn; istniejące |
@@ -1719,6 +1729,177 @@ Wszystkie nazwy roślin i plonów są już przetłumaczone w porcie botaniki (`a
 | leaf / stem / root / branch | liść / łodyga / korzeń / gałązka | m / ż / m / ż; istniejące |
 | fruit / vegetable | owoc / warzywo | m / n; istniejące |
 | mimana | mimana | ż; istniejące |
+
+### 21.1 Rośliny przeniesione z innych kodów (2026-11)
+
+Nowe gatunki z tg, Goona, Baya i innych (`aquila/code/modules/botany/aquila/ported/`). Kolumna EN: nazwa w oryginale.
+
+| EN | PL | rodzaj/uwagi |
+|---|---|---|
+| peanut | orzeszki ziemne | mn; nowe (tg) |
+| Peanut Butter (`/consumable/peanut_butter`) | Masło orzechowe | n; nowe, reagent |
+| aquatic substrate / water (substrate) | podłoże wodne / woda | n / ż; nowe (akwakultura, Bay/Nebula) |
+| shellfish bed / mollusc bed (body) | ławica | ż; nowe (Nebula) |
+| larvae / eggs (shellfish seeds) | larwy | mn; nowe, zamiast „nasiona” w paczkach skorupiaków |
+| shellfish | skorupiak / skorupiaki | m / mn; nowe |
+| clam / clams | małż / małże | m / mn; nowe (Bay, Nebula) |
+| oyster / oysters | ostryga / ostrygi | ż / mn; nowe (Bay) |
+| mussel / mussels | omułek / omułki | m / mn; nowe (Bay) |
+| shrimp | krewetka / krewetki | ż / mn; nowe (Bay) |
+| crab / crabs | krab / kraby | m / mn; istniejące (plon: surowe mięso kraba) |
+| barnacle / barnacles | pąkla / pąkle | ż / mn; nowe (Nebula) |
+| raw clam / mussel / oyster / shrimp / barnacle | surowy małż / surowy omułek / surowa ostryga / surowa krewetka / surowa pąkla | nowe, mięso po otwarciu nożem |
+| Synthmeat | syntetyczne mięso | n; nowe (Goon), roślina |
+| Synthbutt / Synthbrain / Synthheart / Syntheye | syntetyczny tyłek / mózg, syntetyczne serce / oczy | nowe (Goon); też narządy `/synthgrown` |
+| Synthlimb / Synthliver / Synthlung / Synthstomach / Synthappendix | syntetyczna kończyna / wątroba, syntetyczne płuca, syntetyczny żołądek / wyrostek robaczkowy | nowe (Goon) |
+| Synthbuttbot | syntetyczny tyłkobot | m; nowe (Goon), plonem tyłkobot |
+| Paper Tree / Money Tree / Rubber Tree | drzewo papierowe / pieniężne / kauczukowe | n; nowe (Goon) |
+| rockfruit | owoc skalny | m; nowe (Bubberstation) |
+| sandfruit | owoc piaskowy | m; nowe (Bubberstation) |
+| ferrotuber / titanituber | żelazna bulwa / tytanowa bulwa | ż; nowe (Bubberstation) |
+| uraniberry | uranowa jagoda | ż; nowe (Bubberstation) |
+| plasmaplum | plazmowa śliwka | ż; nowe (Bubberstation) |
+| bluegem drupe | niebieski klejnot | m; nowe (Bubberstation) |
+| ag-bergine / au-bergine | agberżyna / oberżyna złota | ż; nowe (Bubberstation) |
+| dimantis | dimantis | m; nowe (Bubberstation) |
+| Adam's apple (adamapple) | jabłko adamowe | n; nowe (Bubberstation) |
+| runescooper | runiczna gałka | ż; nowe (Bubberstation) |
+| bananiumberry | bananiowa jagoda | ż; nowe (Bubberstation) |
+| coca leaf / coca leaves | liść koki / liście koki | nowe (Monkestation) |
+| aloe | aloes | m; nowe (tg) |
+| Aloe Juice (`/consumable/aloejuice`) | Sok z aloesu | m; nowe (tg), reagent |
+| peas / peapod | groch / strąk grochu | m; nowe (tg) |
+| laughin' peas | śmiejący się groch | m; nowe (tg) |
+| Laughin' Syrup (`/consumable/laughsyrup`) | Syrop śmiechu | m; nowe (tg), reagent |
+| world peas | groch pokoju | m; nowe (tg); gra słów „world peace” |
+| green beans | fasolka szparagowa | ż; nowe (tg) |
+| jumping bean | skacząca fasolka | ż; nowe (tg) |
+| butterbean | bób maślany | m; nowe (tg) |
+| rose / carbon rose | róża / węglowa róża | ż; nowe (tg) |
+| cucumber | ogórek | m; nowe (tg) |
+| Cucumber Juice (`/consumable/cucumberjuice`) | Sok z ogórka | m; nowe (tg), reagent |
+| olive / olive tree | oliwka / drzewo oliwne | ż / n; nowe (tg) |
+| plum / plum tree | śliwka / śliwa | ż; nowe (tg) |
+| Plum Juice (`/consumable/plumjuice`) | Sok śliwkowy | m; nowe (tg), reagent |
+| plumb | śliwka ołowiana | ż; nowe (tg); gra słów plumbum = ołów |
+| bell pepper | papryka | ż; nowe (tg) |
+| pepper-corn | pieprzokukurydza | ż; nowe (tg) |
+| herbs / bundle of herbs | zioła / pęczek ziół | mn / m; nowe (tg) |
+| fraxinella | dyptam | m; nowe (tg); polska nazwa gatunku (dyptam jesionolistny) |
+| korta nut / sweet korta nut | orzech korta / słodki orzech korta | m; nowe (tg) |
+| Korta Milk / Korta Nectar (`/consumable/korta_milk`, `/korta_nectar`) | Mleko korta / Nektar korta | n / m; nowe (tg), reagenty |
+| töchtaüse berries | jagody töchtaüse | mn; nowe (tg); nazwa ciem bez zmian |
+| Töchtaüse Juice (`/consumable/toechtauese_juice`) | Sok z töchtaüse | m; nowe (tg), reagent |
+| lanternfruit | owoc latarniowy | m; nowe (tg) |
+| kronkus / kronkus vine segment | kronkus / pęd kronkusa | m; nowe (tg) |
+| odious puffball | purchawka cuchnąca | ż; nowe (tg) |
+| saltcane | trzcina solna | ż; nowe (tg) |
+| barrelmelon | beczkowy melon | m; nowe (tg) |
+| drake beet | smoczy burak | m; nowe (tg) |
+| cahn'root | korzeń Cahna | m; nowe (tg); od nazwiska twórcy, Cahn'Manga |
+| anti weed / anti cannabis leaf | antykonopie / liść antykonopi | mn / m; nowe (tg) |
+| amauri | amauri (plon: bulwa amauri) | n, nieodm.; nowe (Bay/Skyrat, ksenoarcheologia) |
+| gelthi | gelthi (plon: strąki gelthi) | n, nieodm.; nowe (Bay/Skyrat) |
+| jurl'mah | jurl'mah (plon: owoc jurl'mah) | n, nieodm.; nowe (Bay/Skyrat) |
+| surik | surik (plon: kryształ surik) | m; nowe (Bay/Skyrat) |
+| telriis | telriis (plon: snopek telriis) | m; nowe (Bay/Skyrat) |
+| thaa'dra | thaa'dra (plon: płatki thaa'dra) | ż, nieodm.; nowe (Bay/Skyrat) |
+| vale | vale (plon: liście vale) | n, nieodm.; nowe (Bay/Skyrat) |
+| vaporsac | wapniak gazowy | m; nowe (/vg//Skyrat) |
+| S'randar's hand | Dłoń S'randara (plon: liście Dłoni S'randara, okład z Dłoni S'randara) | ż; nowe (Bay//vg/) |
+| Messa's tear | Łza Messy (plon: płatki Łzy Messy, okład z Łzy Messy) | ż; nowe (Bay//vg/) |
+| Peeker | podglądacz (plon: oko podglądacza) | m; nowe (Goon, roślina-artefakt) |
+| Puker | rzygacz (plon: wymiotna maź) | m; nowe (Goon) |
+| Dripper | ciekacz (plon: fioletowa maź) | m; nowe (Goon) |
+| Light Lotus | lotos świetlny (plon: świecący owoc) | m; nowe (Goon) |
+| Creeper | pełzacz (plon: pędy pełzacza) | m; nowe (Goon) |
+| Crystal | kryształ (plon: fioletowy odłamek) | m; nowe (Goon) |
+| Plasma | roślina plazmowa (plon: zarodnik plazmy) | ż; nowe (Goon) |
+| Goldfish | złota rybka (ciało: koralowiec złotej rybki) | ż; nowe (Goon) |
+| Synthetic Cat | syntetyczny kot (plon: kotostrąk) | m; nowe (Goon) |
+| Man-Eating Plant | ludożerca (plon: paszcza ludożercy) | m; nowe (Goon) |
+| xenoflora | ksenoflora | ż; nowe (tgstation/tgstation#82089), rośliny obce rosnące tylko w kapsule |
+| xenoflora pod | kapsuła ksenoflory | ż; nowe (tgstation/tgstation#82089), maszyna 2×2 z kopułą |
+| broombush / broombush leaf | miotlarz / liść miotlarza | m; nowe (tgstation/tgstation#82089) |
+| cubomelon / cubomelon slice | sześciomelon / plaster sześciomelona | m; nowe (tgstation/tgstation#82089) |
+| Chronolized-Crystal Hyperlattice | hiperkrata czasowa, plon: kryształ hiperkraty | ż / m; nowe (tgstation/tgstation#82089) |
+| bluespace limon | bluespace'owa limona | ż; nowe (tgstation/tgstation#82089), jak „bluespace'owy banan” |
+| pyrite peach | pirytowa brzoskwinia | ż; nowe (tgstation/tgstation#82089) |
+| breather | oddychacz | m; nowe (Bay), ksenoflora |
+| resin plant / resin | roślina żywiczna / gałązka żywicy | ż; nowe (Bay), ksenoflora, plon tnie się na plastik |
+| plasma cabbage | kapusta plazmowa | ż; nowe (/vg/), ksenoflora |
+| livewire orange | pomarańcza piorunowa | ż; nowe (CHOMP), ksenoflora |
+| nuclear orange | pomarańcza jądrowa | ż; nowe (CHOMP), ksenoflora |
+| Limon Juice (`/consumable/limonjuice`) | Sok z limony | m; nowe, reagent |
+| Cellulose Fibers (`/cellulose`) | Włókna celulozowe | mn; nowe, reagent |
+| gukhe bloom | guche; plon: zakwit guche | n, ndm / m; nowe (Bay), ksenoflora z Moghes (Unathi) |
+| hrukhza (flower) | hruchza; plon: liść hruchzy | ż; nowe (Bay), ksenoflora z Moghes |
+| aghrassh tree | drzewo aghrasz; plon: owoc aghrasza | m; nowe (Bay), ksenoflora z pustyń Moghes |
+| o'krri mushroom / cluster | okri; plon: grzyb okri | m, ndm; nowe (Bay), ksenoflora z Qerrbalak (Skrellowie) |
+| ximi'koa | ksimikoa; plon: kwiat ksimikoi | ż; nowe (Bay), ksenoflora z Qerrbalak |
+| qokk'loa moss | mech kokloa; plon: kępa mchu kokloa | m; nowe (Bay), ksenoflora z Qerrbalak |
+| iridast bush / berries | krzew irydastu (owoc: irydast); plon: jagody irydastu | m; nowe (Bay), ksenoflora |
+| affelerin flower | afelerin; plon: kwiat afelerinu | m; nowe (Bay), ksenoflora światów pustynnych |
+| gummen bean plant | fasola gummen; plon: strąk fasoli gummen | ż; nowe (Bay), ksenoflora |
+| merlin tears | łzy Merlina | mn; nowe (Bay), ksenoflora, roślina czarodzieja |
+| peach / pear | brzoskwinia / gruszka (drzewo: grusza) | ż; nowe (Goon) |
+| strawberry / raspberry / blackberry / blue raspberry | truskawka / malina / jeżyna / niebieska malina | ż; nowe (Goon) |
+| blueberry | borówka | ż; nowe (Goon, Bay) |
+| honeydew melon | melon miodowy | m; nowe (Monke) |
+| avocado / mango / kiwi | awokado / mango / kiwi | n, ndm; nowe (Goon, Paradise) |
+| almond (plant: almond tree) | migdały (roślina: migdałowiec) | mn / m; nowe (Bay) |
+| cinnamon stick (plant: cinnamon tree) | laska cynamonu (roślina: cynamonowiec) | ż / m; nowe (Goon) |
+| peppercorns / black pepper plant | ziarna pieprzu / pieprz czarny | mn / m; nowe (Goon, Bay) |
+| ginger root / turmeric root | korzeń imbiru / kłącze kurkumy | m / n; nowe (Goon) |
+| mustard seed pod (plant: mustard) | strąk gorczycy (roślina: gorczyca) | m / ż; nowe (Goon) |
+| lavender / mint leaves / lettuce | lawenda / liście mięty / sałata | ż / mn / ż; nowe (Goon) |
+| flax | len | m; nowe (Nebula), daje surową bawełnę |
+| catnip (nepeta cataria) | kocimiętka | ż; nowe (Goon, Skyrat) |
+| blood orange / clockwork orange / grapefruit | krwista pomarańcza / mechaniczna pomarańcza / grejpfrut | ż / ż / m; nowe (Goon) |
+| white grapes | białe winogrona | mn; nowe |
+| tomacco / seething tomato / quantumato | tomacco / wrzący pomidor / kwantomat | m; nowe (Goon) |
+| twobacco | dwutoń (liść dwutoniu) | m; nowe (Goon) |
+| jelly bean | żelkowa fasolka (plon: żelkowe fasolki) | ż / mn; nowe (Goon) |
+| spice pumpkin | dynia korzenna | ż; nowe (Goon) |
+| Asomna / Commol / Contusine / Nureous / Venne | asomna / komol / kontuzyna / nureus / wenna | ż / m / ż / m / ż; nowe (Goon), zioła lecznicze |
+| ipecacuanha / aconite | ipekakuana / tojad | ż / m; nowe (Goon) |
+| hydrangea / gardenia / bird of paradise / rafflesia | hortensja / gardenia / strelicja / raflezja | ż; nowe (Goon) |
+| Mustard / Cinnamon / Ground Ginger / Curry Powder (`/consumable/mustard`, `cinnamon`, `ginger`, `curry_powder`) | Musztarda / Cynamon / Imbir mielony / Proszek curry | ż / m / m / m; nowe, reagenty |
+| broc flower (brocflower) | brokoł; plon: kwiat brokołu | m; nowe (Mojave Sun), dzika roślina pustkowi |
+| xander (xander root) | xander; plon: korzeń xandera | m; nowe (Mojave Sun), dzika roślina pustkowi |
+| mutfruit | mutoowoc; roślina: krzew mutoowocu | m; nowe (Mojave Sun), dzika roślina pustkowi |
+| tato | tato; roślina: krzak tato | n, nieodm.; nowe (Mojave Sun), dzika roślina pustkowi |
+| yucca (yucca fruit) | juka; plon: owoc juki | ż; nowe (Mojave Sun), dzika roślina pustkowi |
+| agave | agawa; plon: liść agawy | ż; nowe (Mojave Sun), dzika roślina pustkowi i wydm |
+| datura (datura flower) | bieluń; plon: kwiat bielunia | m; nowe (Mojave Sun), dzika roślina pustkowi |
+| punga (pungafruit) | punga; plon: owoc pungi | ż; nowe (Mojave Sun), dzika roślina pustkowi |
+| geiger punga (geiger pungafruit) | gejgerpunga; plon: owoc gejgerpungi | ż; nowe (Mojave Sun), napromieniowana punga |
+| radberry | radjagoda; roślina: krzew radjagód | ż; nowe (Mojave Sun), napromieniowana |
+| fonarstolbe (fruit) | fonarsztolbe (plon: owoc fonarsztolbe) | n, nieodm.; nowe (tg), dzika flora planety lodowej |
+| vahrezjia (stalks) | wachrezja (plon: łodygi wachrezji) | ż; nowe (tg), dzika flora planety lodowej |
+| podsneyzka (bunch) | podśnieżka (plon: pęczek podśnieżek) | ż; nowe (tg), dzika flora planety lodowej |
+| inozhakust (mash) | inożakust (plon: papka z inożakustu) | m; nowe (tg), dzika flora planety lodowej |
+| plasma flower | kwiat plazmowy | m; nowe (tg), dzika flora planety lodowej |
+| glowgrowth (colony / sheet) | świecąca narośl (kolonia świecącej narośli / płat świecącej narośli) | ż; nowe (tg), dzika flora planety lodowej |
+| seraka (mushrooms / cap) | seraka (grzyby seraka / kapelusz seraki) | ż; nowe (tg), dzika flora planety lodowej |
+| glowbell / weeping moon / cavern candle | świecący dzwonek / płaczący księżyc / jaskiniowa świeca | m / m / ż; nowe (Nebula), grzyby jaskiń księżyca i asteroid |
+| algae | glony (dzika: kożuch glonów) | mn; nowe (Nebula), płycizna i zalane jaskinie |
+| seaweed | wodorosty (dzika: kępa wodorostów) | mn; nowe (Shiptest), płycizna, plaża i zalane jaskinie; suszone dają arkusz wodorostów |
+| star cacti / Star Cactus Cluster | gwiaździsty kaktus / skupisko gwiaździstych kaktusów | m / n; nowe (tg), dzika flora planet |
+| lightshroom (red / blue / green) | grzyb świetlny (czerwony / niebieski / zielony) | m; nowe (Monke), dzika flora planet |
+| cinchona / Cinchona Exotica / cinchona bark | chinowiec / chinowiec egzotyczny / kora chinowca | m / m / ż; nowe (Yogstation) |
+| Magnus Purpura / Magnus Purpura flower | magnus purpura / kwiat magnus purpury | ż / m; nowe (Yogstation) |
+| kuku / bonji / bianco (berry, bush) | kuku / bondżi / bianko (jagoda, krzak) | ndm; nowe (Yogstation) |
+| Liberal Hat | kapelusz liberała | m; nowe (Yogstation), grzyb |
+| prickly pear / san pedro cactus / peyote | opuncja (plon: owoc opuncji) / kaktus San Pedro / pejotl | ż / m / m; nowe (Paradise) |
+| earthen-root (Binajr-nab'at) | ziemny korzeń | m; nowe (Aurora), ksenoflora z Adhomai, dziko na planetach lodowych |
+| dirt berries (Zhu'hagha Nifs) | brudne jagody (roślina: krzew brudnych jagód) | mn; nowe (Aurora), ksenoflora z Adhomai |
+| sarezhi berry | sareżi (plon: jagody sareżi) | ndm; nowe (Aurora), ksenoflora |
+| ylpha berry | ylfa (plon: jagody ylfy, roślina: krzew ylfy) | ż; nowe (Aurora), ksenoflora |
+| sugar tree (Nm'shaan) | drzewo cukrowe (plon: owoc drzewa cukrowego) | n; nowe (Aurora), ksenoflora z Adhomai |
+| fjylozyn | fjylozyn (pnącze fjylozynu) | m; nowe (Aurora), ksenoflora, świeci na czerwono |
+| wulumunusha | wulumunusza (plon: owoc wulumunuszy) | ż; nowe (Aurora), ksenoflora |
+| Earthen-Root / Dirt Berry / Sarezhi Berry / Ylpha Berry Juice | Sok z ziemnego korzenia / z brudnych jagód / z jagód sareżi / z jagód ylfy | m; nowe, reagenty |
 
 ## 22. Częste przymiotniki i określenia w nazwach
 
@@ -1948,7 +2129,7 @@ Kolumna EN: obecne `name` i ścieżka typu bez prefiksu `/datum/reagent`. Typy b
 | Diphenhydramine (`/medicine/diphenhydramine`) | Difenhydramina | ż; nowe |
 | Earthsblood (`/medicine/earthsblood`) | Krew ziemi | ż; nowe |
 | Ephedrine (`/medicine/ephedrine`) | Efedryna | ż; istniejące |
-| Epinephrine (`/medicine/epinephrine`) | Epinefryna | ż; istniejące |
+| Epinephrine (`/medicine/epinephrine`) | Epinefryna | ż; istniejące; to też adrenalina z bólu i nadnerczy, osobnego reagentu „Adrenalina” nie ma |
 | Godblood (`/medicine/omnizine/godblood`) | Krew boga | ż; nowe |
 | Haloperidol (`/medicine/haloperidol`) | Haloperidol | m; istniejące; bez zmian |
 | Hepanephrodaxon (`/medicine/hepanephrodaxon`) | Hepanefrodakson | m; nowe |
@@ -2398,6 +2579,7 @@ Kolumna EN: obecne `name` i ścieżka typu bez prefiksu `/datum/reagent`. Typy b
 | Char (`/consumable/char`) | Przypalenizna | ż; nowe |
 | Cherry Jelly (`/consumable/cherryjelly`) | Galaretka wiśniowa | ż; istniejące |
 | Clown's Tears (`/consumable/clownstears`) | Łzy klauna | mnoga; nowe |
+| Clown's Tears, zupa (`/consumable/nutriment/soup/clown_tears`) | Zupa z łez klauna | ż; inna nazwa niż napój, bo dozownik szuka reagentów po nazwie (test `aquila_reagent_name_keys`) |
 | Cocoa Powder (`/consumable/cocoa`) | Kakao w proszku | n; nowe |
 | Condensed Capsaicin (`/consumable/condensedcapsaicin`) | Skondensowana kapsaicyna | ż; istniejące; cure_text |
 | Consumable (`/consumable`) | Produkt spożywczy | m; nowe; bazowy |
@@ -2935,6 +3117,38 @@ Odmianę stref daje helper `strefa_pl(zone, biernik)` z `aquila/code/__HELPERS/p
 | cyborg hypospray / epinephrine injector / laughter injector | hypospray cyborga / iniektor epinefryny / iniektor śmiechu | m; nowe (borghypo) |
 | chemical bag / blood pack | worek chemiczny / worek z krwią | m; istniejące („Worki”) |
 | IV drip / saline drip | kroplówka / kroplówka z solą fizjologiczną | ż; istniejące |
+| automated IV drip | automatyczna kroplówka | ż; nowe (AquilaMed 5) |
+| splint | szyna | ż; nowe (AquilaMed 5) |
+| crutch / wooden crutch | kula medyczna / drewniana kula | ż; nowe (AquilaMed 5) |
+| amputation shears | nożyce do amputacji | mn; nowe (AquilaMed 5) |
+| nanopaste | nanopasta | ż; nowe (AquilaMed 5) |
+| inhaler / inhaler canister | inhalator / kanister do inhalatora | m; nowe (AquilaMed 5) |
+| organ transport box | chłodzony pojemnik na narządy | m; nowe (AquilaMed 5) |
+| EMT belt | pas ratownika | m; nowe (AquilaMed 5) |
+| paramedic penlight | latarka UV ratownika | ż; nowe (AquilaMed 5) |
+| emergency first-aid autoinjector (ekit) | medipen pierwszej pomocy | m; nowe (AquilaMed 5) |
+| medical tape | taśma medyczna | ż; nowe (AquilaMed 5) |
+| asthma / asthma attack | astma / atak astmy | ż/m; nowe (AquilaMed 5) |
+| paracetamol / tramadol / oxycodone | Paracetamol / Tramadol / Oksykodon | reagenty; nowe (AquilaMed 5) |
+| citalopram | Citalopram | reagenty; nowe (AquilaMed 5) |
+| naloxone | Nalokson | reagent; nowe (AquilaMed 5) |
+| autoclave | autoklaw | m; nowe (AquilaMed 5) |
+| hypothermia / frostbite (first, second, third degree) | hipotermia / odmrożenie (pierwszego, drugiego, trzeciego stopnia) | nowe (AquilaMed 5) |
+| pulse / cardiac arrest / CPR | tętno / zatrzymanie krążenia / RKO | nowe (AquilaMed 5) |
+| germs / infection / sepsis | zarazki / zakażenie / sepsa | nowe (AquilaMed 5) |
+| opioid / stimulant / hallucinogen addiction, withdrawal | uzależnienie od opioidów / stymulantów / halucynogenów, odstawienie | nowe (AquilaMed 5, uzależnienia z tg) |
+| kidneys / spleen / intestines / catheter | nerki / śledziona / jelita / cewnik | nowe (AquilaMed 5) |
+| abdominal organ injury / abdominal organ suture | uszkodzenie narządów brzucha / zszycie narządów brzucha | nowe (AquilaMed 5) |
+| adrenal glands | nadnercza | nowe (AquilaMed 5) |
+| larynx / vocal cords / speech synthesizer | krtań / struny głosowe / syntezator mowy | nowe (AquilaMed 5) |
+| nerve / cut nerve / nerve suture | nerw / przerwany nerw / zszycie nerwu | nowe (AquilaMed 5) |
+| teeth / prosthetic teeth / lisp | zęby / sztuczne zęby / seplenienie | nowe (AquilaMed 5, port z /vg/) |
+| brain stem / transplant weakness | pień mózgu / osłabienie po przeszczepie | nowe (AquilaMed 5) |
+| jammed suit / cut open | zacięty skafander / rozcięty | nowe (AquilaMed 5) |
+| cortical stack | stos korowy | m; nowe (AquilaMed 5, z Bay) |
+| translator implant | implant tłumacza | m; nowe (AquilaMed 5) |
+| subdermal armor / aiming booster | podskórna siatka pancerna / wzmacniacz celowania | nowe (AquilaMed 5, z Bay/Torch) |
+| spider-bot | pająk-robot | m; nowe (AquilaMed 5, z Paradise) |
 | medical spray | spray medyczny | m; nowe |
 | spray bottle | spryskiwacz | m; istniejące |
 | chem sprayer | rozpylacz chemiczny | m; istniejące („rozpylacz”) |
@@ -3157,7 +3371,7 @@ Oznaczenia w kolumnie uwag:
 | Statek czy stacja | Aquila to okręt. W tekstach o „naszym” miejscu gry piszemy **statek** (ogólnie) albo **okręt** (wojskowo, NSV13). „Stacja” zostaje tylko tam, gdzie chodzi o prawdziwą stację (stacja handlowa, placówka Syndykatu, teksty tg o Space Station 13). |
 | Space ... | Przedrostek „Space” tłumaczymy przymiotnikiem **kosmiczny**: Space Wizard → Kosmiczny czarodziej, space carp → kosmiczny karp, Space Law → Prawo kosmiczne. |
 | Nazwy firm | Firmy i marki zostają w oryginale (Nanotrasen, Donk Co., Cybersun Industries). Tłumaczymy tylko człon opisowy (Gorlex Marauders → Maruderzy Gorlex, Wizard Federation → Federacja Czarodziejów). |
-| Przedrostki okrętów | NSV, SSV, SGV, DMC, DLV, SBC itd. zostają. Nazwa własna okrętu też zostaje: „NSV Zorn”, „SSV Hammurabi”. Odmiana: „na pokładzie NSV Zorn”, „Hammurabiego” (to drugie już jest w kodzie). |
+| Przedrostki okrętów | Okręty Aquili (gracza) mają przedrostek **AQ** (generator nazwy i `map_name` map: „AQ Aquilas”, „AQ Padalec”). Pozostałe NSV, SSV, SGV, DMC, DLV, SBC itd. zostają. Nazwa własna okrętu też zostaje: „NSV Zorn”, „SSV Hammurabi”. Odmiana: „na pokładzie NSV Zorn”, „Hammurabiego” (to drugie już jest w kodzie). |
 | Klasy okrętów | Szyk polski: typ + „klasy” + nazwa. „Mako class patrol frigate” → „fregata patrolowa klasy Mako”. Nazwa klasy zostaje w oryginale. |
 | Prawa i lewa burta | W zdaniach: **lewa burta** (port), **prawa burta** (starboard), **dziób** (fore), **rufa** (aft), istniejące. W nazwach obszarów istniejący schemat to Burta / Sterburta / Dziób / Rufa (patrz §9). |
 | Kody i skróty | Skróty zostają: FTL, DRADIS, PDC, MAC, NAC, VLS, IFF, APC, SMES, IPC, MMI, ERT, EVA, ATC, CAG. „AI” piszemy **SI** (istniejące, 377×). |
@@ -3463,6 +3677,11 @@ Oznaczenia w kolumnie uwag:
 | Hivemind Host | Nosiciel roju | m; istniejące |
 | Awakened Vessel | Przebudzone naczynie | n; istniejące |
 | Gang / Gangster | gang / gangster | m; istniejące |
+| Salvager | złomiarz | m; nowe (antag z Goonstation, wariant piratów) |
+| Salvage reclaimer | reklamator | m; nowe |
+| Dualconstruction device | urządzenie dwukonstrukcyjne | n; nowe |
+| M4GP13 / Magpie (salvager trader) | S.R.O.K.A. | ż; nowe (System Rozliczeń Odzysku i Kupna Asortymentu) |
+| Gang locker | szafka gangu | ż; nowe |
 | Survivalist | Survivalowiec | m; istniejące |
 | Separatists | Separatyści | mnoga; istniejące |
 | Paradox Clone | Klon paradoksu | m; istniejące |
@@ -3662,11 +3881,128 @@ Oznaczenia w kolumnie uwag:
 | ancient goliath | pradawny goliat | m; nowe |
 | legion | legion | m; istniejące |
 | legion skull | czaszka legionu | ż; nowe |
+| brimdemon | siarkodemon | m; nowe (planety, port tg) |
+| lavagrub | lawowy pędrak | m; nowe (planety, Shiptest) |
+| crystal goliath | kryształowy goliat | m; nowe (planety, Shiptest) |
+| forgotten watcher | zapomniany obserwator | m; nowe (planety, Shiptest) |
+| disfigured legion | zniekształcony legion | m; nowe (planety, Shiptest) |
+| burrow | nora | ż; nowe (spawner fauny na planetach) |
+| white wolf / alpha wolf | biały wilk / wilk alfa | m; nowe (planety, port tg i Shiptest) |
+| polar warbear | polarny niedźwiedź bojowy | m; nowe (planety, Shiptest) |
+| brown bear | niedźwiedź brunatny | m; nowe (planety, Shiptest) |
+| snow legion | śnieżny legion | m; nowe (planety, port tg) |
+| demonic watcher (ice demon) | demoniczny obserwator | m; nowe (planety, port tg) |
+| primordial demon | pradawny demon | m; nowe (planety, Shiptest) |
+| afterimage | powidok | m; nowe (powidok demonicznego obserwatora) |
+| ice whelp | młody smok lodowy | m; nowe (planety, port tg) |
+| lobstrosity (arctic / tropical) | homarzysko (arktyczne / tropikalne) | n; nowe (planety, port tg i Shiptest) |
+| snow monkey | śnieżna małpa | ż; nowe (planety, Shiptest) |
+| capybara | kapibara | ż; nowe (planety, Shiptest) |
+| antlion / antlion queen | mrówkolew / królowa mrówkolwów | m / ż; nowe (planety, Shiptest) |
+| cragenoy (royal crab) | cragenoy | m; nowe, nazwa własna bez zmian (planety, Shiptest) |
+| gruboid / baby gruboid | gruboid / młody gruboid | m; nowe (planety, Shiptest) |
+| whitesands goliath / basilisk | goliat / bazyliszek z białych piasków | m; nowe (planety, Shiptest) |
+| hivebot fabricator | fabrykator hivebotów | m; nowe (planety, Shiptest) |
+| carp spawn (puddle) | kałuża z karpiami | ż; nowe (planety, Shiptest) |
+| volcanic sand | wulkaniczny piasek | m; nowe (turf planety) |
+| crimson grass | szkarłatna trawa | ż; nowe (turf planety) |
+| moss carpet | mszysty dywan | m; nowe (turf planety) |
+| obsidian | obsydian | m; nowe (turf planety) |
+| cave fern | paproć jaskiniowa | ż; nowe (roślina Lavalandu) |
+| fireblossom | ogniokwiat | m; nowe (roślina Lavalandu) |
+| pucetal | pucestal | m; nowe, spolszczenie brzmieniowe |
+| drop pod | kapsuła desantowa | ż; nowe |
+| drop pod bay | wyrzutnia kapsuł desantowych | ż; nowe |
+| tactical binoculars | lornetka taktyczna | ż; nowe |
+| landing zone | lądowisko | n; nowe (Lądowisko Alfa/Bravo/Charlie) |
+| ore vein | żyła rudy | ż; nowe (planety, Shiptest) |
+| laser mining drill | laserowe wiertło górnicze | n; nowe |
+| sampling drill | wiertło do próbek geologicznych | n; nowe |
+| ground penetrating mining scanner | georadarowy skaner górniczy | m; nowe |
+| seismic disturbance | wyrwa sejsmiczna | ż; nowe (spawner fauny przy żyle) |
+| strange crystal | dziwny kryształ | m; nowe |
+| crystal heart | kryształowe serce | n; nowe (rdzeń legionu) |
+| brimdust | siarkowy pył | m; nowe |
+| ore sensor | czujnik rud | m; nowe |
+| plasma soul (anomaly) | dusza plazmy | ż; nowe |
+| shallows / shallow water | płycizna / płytka woda | ż; nowe (woda planet) |
+| deep water | głęboka woda | ż; nowe (pływanie) |
+| rough sea | wzburzone morze | n; nowe (planeta wodna) |
+| murky water | mętna woda | ż; nowe (dżungla) |
+| freshwater | słodka woda | ż; nowe (oaza) |
+| catwalk | pomost | m; nowe (kratownica na wodzie) |
+| fishing rod | wędka | ż; nowe |
+| advanced fishing rod | wędka zaawansowana | ż; nowe |
+| fishing spot | łowisko | n; nowe |
+| bait | przynęta | ż; nowe |
+| bait worm / can of worms | robak / puszka z robakami | m / ż; nowe |
+| float (fishing) | spławik | m; nowe |
+| hook | haczyk | m; nowe |
+| (fishing) line | żyłka | ż; nowe |
+| reel (verb, fishing) | holować | czas.; nowe |
+| bite (fishing) | branie | n; nowe |
+| perch | okoń | m; nowe (ryba) |
+| arctic char | golec arktyczny | m; nowe (ryba) |
+| sockeye salmon | nerka | ż; nowe (ryba) |
+| plaice | gładzica | ż; nowe (ryba) |
+| stingray | płaszczka | ż; nowe (ryba) |
+| squid | kałamarnica | ż; nowe (ryba) |
+| monkfish | żabnica | ż; nowe (ryba) |
+| lavaloop | pętlica lawowa | ż; nowe (ryba z lawy, tg) |
+| heartbeat (anomaly) | anomalia tętna | ż; nowe (Shiptest) |
+| sparkler (anomaly) | anomalia iskrząca | ż; nowe (Shiptest) |
+| static (anomaly) | anomalia szumu | ż; nowe (Shiptest); kłębek szumu (static blob) |
+| quantum blackbox | kwantowa czarna skrzynka | ż; nowe (Shiptest) |
+| fountain / veins (anomaly) | anomalia fontanny | ż; nowe (Shiptest) |
+| Fountain of Life | Fontanna Życia | ż; nowe (Shiptest, wariant fontanny w ruinach) |
+| phantom (anomaly) | anomalia widmowa | ż; nowe (Shiptest); widmowa dłoń (phantom hand) |
+| melter (anomaly) | anomalia topiąca | ż; nowe (Shiptest) |
+| transfusion (anomaly) | anomalia transfuzyjna | ż; nowe (Shiptest) |
+| chronograph (anomaly) | chronograf | m; nowe (Shiptest); efekt: przyspieszenie (accelerando) |
+| big / high (anomaly variants) | ogromna / silna anomalia … | nowe (Shiptest) |
+| waste planet | planeta-śmietnisko | ż; nowe (planety, Shiptest) |
+| battlefield (planet) | pole bitwy | n; nowe (planety, Shiptest) |
+| automaton (Shiptest drones) | automat | m; nowe |
+| quadrotor drone | dron czterowirnikowy | m; nowe |
+| walkmine | mina krocząca | ż; nowe |
+| Bipedal Assault Platform | dwunożna platforma szturmowa | ż; nowe |
+| hopper (drone) | „Skoczek” | m; nowe |
+| core hivebot | rdzeń roju hivebotów | m; nowe |
+| nuclear waste barrel | beczka z odpadami jądrowymi | ż; nowe |
+| background radiation | promieniowanie tła | n; nowe |
+| glowshroom colony | kolonia świecących grzybów | ż; nowe |
+| tar pit | dół ze smołą | m; nowe |
+| polluted rock / dry rock | skażona skała / suchy kamień | ż/m; nowe (śmietnisko) |
+| frontiersmen | pogranicznicy | m mn.; nowe (w ruinach -> żołnierze rosyjscy) |
+| ICW (Inter-Corporate War) | Wojna Międzykorporacyjna | ż; nowe |
+| frozen planetoid | planeta lodowa | ż; nowe (typ planety) |
+| jungle planetoid | planeta dżunglowa | ż; nowe (typ planety) |
+| snowball dwarf planetoid | śnieżna planeta karłowata | ż; nowe (typ planety) |
+| icy rock (floor) | lodowa skała | ż; nowe (turf) |
+| cracked ice floor (iceberg) | popękany lód | m; nowe (turf) |
+| schist | łupek | m; nowe (ściana minerału planety lodowej) |
+| bauxite | boksyt | m; nowe (ściana minerału planety dżunglowej) |
+| polluted rock | skażona skała | ż; nowe |
+| ice crystals (ore) | kryształki lodu | m mn.; nowe (ruda lodu) |
+| river sand | piasek rzeczny | m; nowe |
+| jungle moss | mech dżungli | m; nowe |
+| dense / weak / dead space vines | gęste / kruche / martwe pnącza | n mn.; nowe |
+| lush garden / chilly garden | bujny ogródek / zmrożony ogródek | m; nowe |
+| springy grassy fruit (chilly) | sprężysta owocująca trawa | ż; nowe |
+| Frontiersmen | piraci (w ruinach planet zamienieni na naszych piratów) | m mn.; zamiennik frakcji |
+| CLIP | CLIP | nazwa własna |
+| Serene Outdoors / Serene Hunts | Serene Outdoors / Łowisko Serene | nazwa własna |
+| Big Hole | Wielka Dziura | ż; nowe (ruina dżungli) |
+| Ramzi Clique | Klika Ramziego | ż; nowe (frakcja z ruin Shiptesta) |
+| Hardliners | Twardogłowi | m mn.; nowe (frakcja z ruin Shiptesta) |
+| Reisehund (Ramzi hound) | rajzehund | m; nowe |
 | dwarf legion | karłowaty legion | m; nowe |
 | legionnaire | legionista | m; istniejące |
 | watcher | obserwator | m; nowe |
 | magmawing / icewing watcher | ogniskrzydły / lodoskrzydły obserwator | m; nowe |
 | hivelord | władca roju | m; istniejące (mob, rdzeń regeneracyjny, holoparazyt); odrzucone: pan roju; legowisko: „legowisko władców roju” |
+| hivelord brood | pomiot władcy roju | m; istniejące; zdolność: „Wypuść pomiot” |
+| Launch Legion (ability) | Wystrzel legion | zdolność legionu; nowe |
 | basilisk | bazyliszek | m; nowe |
 | goldgrub | złoty pędrak | m; nowe |
 | gutlunch / gubbuck / guthen | żarłoczek / żarłoczek samiec / żarłoczka | m / m / ż; nowe |
@@ -3695,6 +4031,14 @@ Oznaczenia w kolumnie uwag:
 | walking mushroom | chodzący grzyb | m; istniejące |
 | venus human trap | ludzka muchołówka | ż; nowe |
 | pine tree | sosna | ż; nowe |
+| mimic / crate mimic | mimik / skrzynia (mimik udaje skrzynię) | m; istniejące |
+| creature (Netherworld) / blank body | istota / puste ciało | ż / n; istniejące |
+| Uncanny Movement (creature teleport) | Niesamowity ruch | m; nowe |
+| Tangle (venus human trap) | Oplątanie | n; nowe |
+| Inflate (fugu) | Nadmij się | istniejące |
+| Rustle (clownana) | Szelest | m; nowe |
+| banana glutton | coś, co kiedyś było klaunem | n; istniejące (nasz mutant/blob) |
+| Space Dragon / Fire Breath / Wing Buffet | Kosmiczny smok / Ogniste tchnienie / Atak podmuchem | m / n / m; istniejące / nowe / istniejące |
 
 ## 9. Obszary i pomieszczenia (nazwy `/area`)
 
@@ -4039,6 +4383,21 @@ Nazwy obszarów są w większości przetłumaczone. Nowe nazwy budujemy z tych k
 |---|---|---|
 | overmap | overmapa | ż; istniejące (overmapie, overmapy) |
 | starmap | mapa gwiezdna | ż; nowe |
+| rock planetoid | planeta skalista | ż; nowe (typ planety, Shiptest) |
+| salty sand planetoid / Whitesands | planeta białych piasków / białe piaski | ż; nowe (typ planety, Shiptest) |
+| desert planetoid | planeta pustynna | ż; nowe (typ planety) |
+| shrouded planetoid | planeta mglista | ż; nowe (typ planety; zagłusza radio) |
+| dustball / duneball dwarf planetoid | pyłowa / wydmowa planeta karłowata | ż; nowe |
+| iron sand | żelazny piasek | m; nowe (grunt planety skalistej) |
+| salted sand / dried sand | solony piasek / wyschnięty piasek | m; nowe |
+| packed sand | ubity piasek | m; nowe (planeta mglista) |
+| dry seafloor | wyschnięte dno morskie | n; nowe |
+| sulfuric acid pool | jeziorko kwasu siarkowego | n; nowe |
+| cottongrass | wełnianka | ż; nowe |
+| maguaro cactus | kaktus maguaro | m; nowe |
+| sea stack | ostaniec | m; nowe |
+| Frontiersmen | Frontiersmeni | m mn.; nowe (frakcja z ruin Shiptesta; u nas jako piraci) |
+| hermit (Whitesands) | pustelnik | m; nowe (u nas piraci-zbieracze) |
 | star system / system | układ gwiezdny / system | m; istniejące oba; w nazwach z kodu „system” |
 | sector | sektor | m; istniejące |
 | FTL | FTL | m (napęd); istniejące; „napęd FTL”, „skok FTL” |
@@ -4092,6 +4451,17 @@ Nazwy obszarów są w większości przetłumaczone. Nowe nazwy budujemy z tych k
 | supply drop / supply pod | zrzut zaopatrzenia / kapsuła zaopatrzeniowa | m / ż; istniejące „kapsuł zaopatrzeniowych” |
 | Galactic Conquest (mode) | Podbój Galaktyki | m; nowe |
 | combat (overmap) | starcie | n; nowe |
+| ship thruster | dysza okrętowa | ż; nowe (aq33/AquilaStation#644) |
+| thruster heater | podgrzewacz dyszy | m; nowe |
+| power allocation | podział mocy | m; nowe; zakładka monitora zasilania |
+| sensor array | matryca sensorów | ż; nowe; „matryca” w skrócie |
+| cloak / cloaking (ship) | maska / maskowanie | ż / n; nowe; tryb generatora tarczy (nie „peleryna”) |
+| shield bubble | bańka tarczy | ż; nowe |
+| FTL calibration / pylon tuning | kalibracja pylonów | ż; nowe |
+| design chip | chip projektu | m; nowe |
+| shield diffuser | dyfuzor tarcz | m; nowe; głowica |
+| sensor buoy (NTP-S torpedo) | boja czujnikowa | ż; nowe |
+| department contract | zlecenie dla działu | n; nowe; „zlecenia działów” |
 
 ## 14. Marki, firmy, producenci
 
@@ -4134,4 +4504,17 @@ Nazwy obszarów są w większości przetłumaczone. Nowe nazwy budujemy z tych k
 | Lusty Xenomorph | Lubieżny Ksenomorf | m; nowe (tytuł książki/obrazu) |
 | Boringheed | Boringheed | m; nazwa własna, parodia |
 
+
+| ocean planetoid (beach) | planeta oceaniczna | ż; nowe (planety, Shiptest) |
+| aqua planetoid (water planet) | planeta wodna | ż; nowe (planety, Shiptest) |
+| waterball dwarf planetoid | wodna planeta karłowata | ż; nowe (planety, Shiptest) |
+| dwarf planetoid | planeta karłowata | ż; nowe (planety, Shiptest) |
+| sea stack | ostaniec | m; nowe (flora plaży) |
+| driftwood / driftwood log | wyrzucone drewno / wyrzucony pień | n / m; nowe (flora plaży) |
+| pebbles | kamyki | m mn.; nowe |
+| seashell | muszla | ż; nowe |
+| coastal marl | nadbrzeżny margiel | m; nowe (skała jaskiń plaży) |
+| wet rocky ground | mokre skaliste podłoże | n; nowe (planeta wodna) |
+| Frontiersmen | Pogranicznicy | m mn.; nowe (frakcja z ruin Shiptesta, u nas piraci) |
+| Corporate Resort / Cybersun Pad / Frontiersman Moat / Cave Gunsmith / Frontiersmen Depot | Kurort Korporacyjny / Lądowisko Cybersun / Fosa Pograniczników / Jaskiniowy Rusznikarz / Składnica Pograniczników | nowe (ruiny plaży) |
 

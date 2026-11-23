@@ -89,6 +89,9 @@
 
 /// Te same zasady co przy abordażu stacji: sektor 2, bez Rubikonu, czarnej dziury i systemu startowego
 /datum/overmap_objective/derelict_ruin/proc/pick_derelict_system()
+	var/datum/star_system/hex_choice = hex_mission_system(null, "derelict") // mapa hex: nieznany sygnał albo kafel przy złomowisku, z dala od wroga (war_missions.dm)
+	if(hex_choice)
+		return hex_choice
 	var/list/candidates = list()
 	var/datum/star_system/start_system = SSovermap_mode.mode ? SSstar_system.system_by_id(SSovermap_mode.mode.starting_system) : null
 	for(var/datum/star_system/S in SSstar_system.neutral_zone_systems)
@@ -250,3 +253,13 @@
 #undef STATUS_COMPLETED
 #undef STATUS_FAILED
 #undef REMINDER_COMBAT_DELAY
+
+/// Martwy VIP przepada dla misji, gdy nikt go nim nie gra, a ciała nie da się już ożywić: bez mózgu, wysuszone
+/// albo martwe dłużej niż limit defibrylacji poza statkiem (zostawione na stacji)
+/datum/orbital_objective/vip_recovery/proc/aq_vip_lost()
+	var/mob/living/carbon/vip = mob_to_recover
+	if(!istype(vip) || vip.stat != DEAD || vip.ckey)
+		return FALSE
+	if(!vip.getorganslot(ORGAN_SLOT_BRAIN) || HAS_TRAIT(vip, TRAIT_HUSK))
+		return TRUE
+	return !is_station_level(vip.z) && world.time - vip.timeofdeath > DEFIB_TIME_LIMIT * 10

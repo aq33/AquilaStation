@@ -118,12 +118,13 @@
 				window.location = 'byond://winset?id='+tooltip.control+';is-visible=false';
 			},
 			updateCallback: function(map) {
-				if (typeof map === 'undefined' || !map) {return false;}
+				if (typeof map === 'undefined' || !map) {tooltip.hide(); return false;} // AQ EDIT - schowaj okno, zamiast zostawić je na ekranie
 
 				//alert(tooltip.params+' | '+tooltip.clientView+' | '+tooltip.text+' | '+tooltip.theme); //DEBUG
 
 				//Some reset stuff to avoid fringe issues with sizing
-				window.location = 'byond://winset?id='+tooltip.control+';anchor1=0,0;size=999x999';
+				//AQ EDIT - najpierw schowaj okno: widoczny tooltip powiększony do 999x999 zostawał białym prostokątem, gdy niżej wychodziło się przez return false
+				window.location = 'byond://winset?id='+tooltip.control+';is-visible=false;anchor1=0,0;size=999x999';
 
 				//Get the real icon size according to the client view
 				//FYI, this bit is even more borrowed from goon, our widescreen broke tooltips so I took a look at how they do it
@@ -144,7 +145,7 @@
 
 				//Parse out the tile and cursor locations from params (e.g. "icon-x=32;icon-y=29;screen-loc=3:10,15:29")
 				var paramsA = tooltip.params.cursor.split(';');
-				if (paramsA.length < 3) {return false;} //Sometimes screen-loc is never sent ahaha fuck you byond
+				if (paramsA.length < 3) {tooltip.hide(); return false;} // AQ EDIT //Sometimes screen-loc is never sent ahaha fuck you byond
 				//icon-x
 				var iconX = paramsA[0];
 				iconX = iconX.split('=');
@@ -157,10 +158,10 @@
 				var screenLoc = paramsA[2];
 				screenLoc = screenLoc.split('=');
 				screenLoc = screenLoc[1].split(',');
-				if (screenLoc.length < 2) {return false;}
+				if (screenLoc.length < 2) {tooltip.hide(); return false;} // AQ EDIT
 				var left = screenLoc[0];
 				var top = screenLoc[1];
-				if (!left || !top) {return false;}
+				if (!left || !top) {tooltip.hide(); return false;} // AQ EDIT
 				screenLoc = left.split(':');
 				left = parseInt(screenLoc[0]);
 				var enteredX = parseInt(screenLoc[1]);

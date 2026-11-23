@@ -1,0 +1,4 @@
+# Proste ksenomorfy jako basic moby (tg 926bf40c5a). Zastosowane w mapach skryptem zamiany ścieżek; edycje plants_off i pixel_x zostają,
+# angielskie name/desc cesarzowej (lavaland_surface_xeno_nest, xeno_nest) usunięte, bo typ ma polską nazwę i opis z kodu.
+/mob/living/simple_animal/hostile/alien/queen/large : /mob/living/basic/alien/queen/large{@OLD; name = @SKIP; desc = @SKIP}
+/mob/living/simple_animal/hostile/alien/@SUBTYPES : /mob/living/basic/alien/@SUBTYPES{@OLD}

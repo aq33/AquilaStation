@@ -17,7 +17,7 @@
 
 /datum/round_event/aquila_butt_loss/announce(fake)
 	priority_announce("Wykryto anomalię grawitacyjno-pośladkową. Załoga może odczuwać silny ból dupska. \
-		Prosimy zachować spokój i nie siadać na niczym ostrym.", "Alarm: Anomalia pośladkowa", ANNOUNCER_SPANOMALIES)
+		Prosimy zachować spokój i nie siadać na niczym ostrym.", "Alarm: Anomalia pośladkowa", ANNOUNCER_GRANOMALIES)
 
 /datum/round_event/aquila_butt_loss/start()
 	var/victims = 0

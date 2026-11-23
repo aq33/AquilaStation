@@ -18,6 +18,13 @@
 		//if they are holding or wearing a card that has access, that works
 		if(check_access(H.get_active_held_item()) || src.check_access(H.wear_id) || src.check_access(H.squad))//Nsv13: added "h.wear_neck" here to allow for lanyard access checks.
 			return TRUE
+	// AQ EDIT START - basic moby: sentient animals with an access card open doors as before (before the alien branch,
+	// which also matches basic xenomorphs and would skip the barmaid's card)
+	else if(isbasicmob(M))
+		var/mob/living/basic/basic_animal = M
+		if(check_access(basic_animal.get_active_held_item()) || check_access(basic_animal.access_card))
+			return TRUE
+	// AQ EDIT END
 	else if(ismonkey(M) || isalienadult(M))
 		var/mob/living/carbon/george = M
 		//they can only hold things :(
@@ -27,12 +34,6 @@
 		var/mob/living/simple_animal/A = M
 		if(check_access(A.get_active_held_item()) || check_access(A.access_card))
 			return TRUE
-	// AQ EDIT START - basic moby: sentient animals with an access card open doors as before
-	else if(isbasicmob(M))
-		var/mob/living/basic/basic_animal = M
-		if(check_access(basic_animal.get_active_held_item()) || check_access(basic_animal.access_card))
-			return TRUE
-	// AQ EDIT END
 	return FALSE
 
 /obj/item/proc/GetAccess()

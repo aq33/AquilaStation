@@ -7,7 +7,7 @@
 	k_elasticity = 0
 	// Pudełka sprzedają się przez swoje naboje: eksport idzie od środka i kasuje niesprzedane naboje,
 	// zanim dojdzie do pudełka, więc wycena samego pudełka na promie zawsze dawała 0 kr
-	export_types = list(/obj/item/ammo_casing, /obj/item/ship_weapon/ammunition, /obj/item/ship_weapon/parts/missile/warhead)
+	export_types = list(/obj/item/ammo_casing, /obj/item/ship_weapon/ammunition, /obj/item/ship_weapon/parts/missile/warhead, /obj/item/ship_weapon/parts/broadside_casing)
 
 /datum/export/forged_munition/get_cost(obj/O, allowed_categories = NONE, apply_elastic = TRUE)
 	if(istype(O, /obj/item/ammo_casing))
@@ -35,7 +35,7 @@
 			box_value += forged_casing_value(casing)
 		return round(box_value)
 	var/datum/component/forged_munition/forged = O.GetComponent(/datum/component/forged_munition)
-	if(!forged)
+	if(!forged || forged.factory) // fabryczne pociski z cargo sprzedają się jak zwykła amunicja
 		return 0
 	return round(forged_product_value(forged, body_type))
 
@@ -49,7 +49,7 @@
 	if(!body_type)
 		return 0
 	var/datum/component/forged_munition/round_forged = casing.GetComponent(/datum/component/forged_munition)
-	if(!round_forged)
+	if(!round_forged || round_forged.factory)
 		return 0
 	return forged_product_value(round_forged, body_type) / max(box.max_ammo, 1)
 
@@ -65,6 +65,11 @@
 	var/list/cost = forged.material.get_cost(amount)
 	for(var/mat in cost)
 		raw_value += munition_sheet_value(mat) * cost[mat] / MINERAL_MATERIAL_AMOUNT
+	// Stała część przepisu (tytan i miedź pocisku artylerii, tytan łusek); galwanizer jej nie zużywa
+	if(!forged.galvanized)
+		var/list/fixed = aq_munition_fixed_cost(body_type)
+		for(var/mat in fixed)
+			raw_value += munition_sheet_value(mat) * fixed[mat] * forged.quality.material_mult / batch / MINERAL_MATERIAL_AMOUNT
 	var/value = raw_value * (0.5 + 0.1 * forged.quality.level)
 	if(!forged.galvanized)
 		value += 10 * (forged.quality.level + 1) / batch

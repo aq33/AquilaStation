@@ -1,0 +1,230 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"b" = (
+/obj/structure/plasticflaps,
+/obj/structure/spacevine/weak,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/yellow,
+/area/template_noop)
+"d" = (
+/mob/living/basic/chicken,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
+"e" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/flora/tree/jungle/small,
+/obj/structure/spacevine/dense,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
+"f" = (
+/obj/structure/spacevine/dense,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
+"g" = (
+/obj/structure/flora/ash/garden,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/yellow,
+/area/template_noop)
+"i" = (
+/obj/structure/spacevine/weak,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/yellow,
+/area/template_noop)
+"l" = (
+/obj/structure/spacevine/weak,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
+"m" = (
+/mob/living/basic/chicken,
+/obj/structure/flora/ash/garden,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/yellow,
+/area/template_noop)
+"n" = (
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
+"p" = (
+/turf/closed/wall/mineral/wood/nonmetal,
+/area/template_noop)
+"s" = (
+/obj/structure/barricade/wooden,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/spacevine/dense,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
+"x" = (
+/turf/template_noop,
+/area/template_noop)
+"z" = (
+/obj/structure/spacevine/dense,
+/turf/closed/wall/mineral/wood/nonmetal,
+/area/template_noop)
+"A" = (
+/obj/structure/fence,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/yellow,
+/area/template_noop)
+"D" = (
+/obj/machinery/light/broken{
+	dir = 1
+	},
+/mob/living/basic/chicken,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
+"F" = (
+/obj/structure/fence/cut/large,
+/mob/living/basic/chicken,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/yellow,
+/area/template_noop)
+"I" = (
+/obj/machinery/space_heater{
+	pixel_y = 14
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
+"M" = (
+/obj/machinery/light/broken{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
+"O" = (
+/mob/living/basic/chicken,
+/obj/structure/spacevine/dense,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
+"P" = (
+/obj/structure/flora/tree/jungle/small,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/yellow,
+/area/template_noop)
+"Q" = (
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/yellow,
+/area/template_noop)
+"R" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
+"S" = (
+/obj/structure/closet/cardboard,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
+"T" = (
+/mob/living/basic/chicken,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/yellow,
+/area/template_noop)
+"U" = (
+/obj/structure/spacevine/weak,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"V" = (
+/obj/structure/barricade/wooden,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
+"W" = (
+/obj/structure/spacevine/weak,
+/turf/closed/wall/mineral/wood/nonmetal,
+/area/template_noop)
+"Z" = (
+/obj/structure/fence/end,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle/yellow,
+/area/template_noop)
+
+(1,1,1) = {"
+x
+x
+n
+n
+x
+x
+f
+f
+x
+"}
+(2,1,1) = {"
+U
+W
+V
+V
+p
+m
+i
+O
+f
+"}
+(3,1,1) = {"
+U
+W
+D
+R
+R
+Q
+b
+i
+f
+"}
+(4,1,1) = {"
+U
+z
+S
+d
+V
+Q
+T
+i
+f
+"}
+(5,1,1) = {"
+U
+z
+I
+R
+V
+Q
+P
+i
+f
+"}
+(6,1,1) = {"
+x
+s
+R
+d
+V
+T
+T
+g
+n
+"}
+(7,1,1) = {"
+x
+e
+M
+R
+V
+g
+Q
+T
+x
+"}
+(8,1,1) = {"
+x
+W
+W
+W
+W
+F
+A
+Z
+x
+"}
+(9,1,1) = {"
+x
+l
+f
+f
+l
+l
+n
+x
+x
+"}

@@ -10,6 +10,14 @@
 	info_button_ref = WEAKREF(info_button)
 	return info_button
 
+/// Rola usunięta bez on_removal() (np. razem z umysłem) zostawiała przycisk na ciele, a przycisk trzymał rolę w `target`
+/datum/antagonist/Destroy()
+	var/datum/action/antag_info/info_button = info_button_ref?.resolve()
+	if(info_button)
+		qdel(info_button)
+	info_button_ref = null
+	return ..()
+
 /datum/antagonist/ui_assets(mob/user)
 	return list(
 		get_asset_datum(/datum/asset/simple/bee_antags),

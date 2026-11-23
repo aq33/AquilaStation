@@ -8,4 +8,4 @@
 	wave_name = "meaty"
 
 /datum/round_event/meteor_wave/meaty/announce(fake)
-	priority_announce("Mięsoroidy wykryte na kursie kolizyjnym ze stacją. O cholera, łapać się za mopy!", ANNOUNCER_METEORS)
+	priority_announce("Mięsoroidy wykryte na kursie kolizyjnym ze stacją. O cholera, łapać się za mopy!", "Alarm meteorytowy", 'aquila/sound/ai/events/meateor_wave.ogg') // AQ EDIT - własne nagranie ogłoszenia

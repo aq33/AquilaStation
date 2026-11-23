@@ -1,0 +1,110 @@
+// Ogłoszenie SI przez TTS ElevenLabs (ten sam klucz i budżet znaków co rozkazy drużyn, squad_tts.dm).
+// Gdy TTS działa, przycisk ogłoszenia w HUD-zie SI pyta o dowolny tekst i czyta go głosem SI tym samym
+// słuchaczom co VOX. Bez klucza zostaje stary VOX ze słownikiem nagranych słów.
+
+/// Głos SI (identyfikator głosu ElevenLabs)
+/datum/config_entry/string/ai_tts_voice
+	config_entry_value = "r43lnMEVUzxMWMYz9JXK"
+
+/// ffmpeg do filtra ogłoszeń (brzmienie jak sound/ai/default); pusty = bez filtra. Ścieżka do programu, więc bez zmian z panelu admina.
+/datum/config_entry/string/ai_tts_ffmpeg
+	config_entry_value = "ffmpeg"
+	protection = CONFIG_ENTRY_LOCKED
+
+/// Odpowiedź impulsowa filtra: dolne cięcie 300 Hz, +7 dB przy 1,5 kHz, krótki pogłos (tools/tts/make_ai_announcement_ir.py)
+#define AQ_AI_TTS_IR "aquila/sound/ai/ai_tts_ir.wav"
+
+#define AQ_AI_TTS_MAX_CHARS 300
+#define AQ_AI_TTS_DELAY (60 SECONDS)
+
+/// Kiedy SI może znów ogłosić coś głosem (wspólne dla wszystkich SI, jak przy VOX)
+GLOBAL_VAR_INIT(aq_ai_tts_next_announcement, 0)
+
+/mob/living/silicon/ai/announcement_help()
+	if(!squad_tts_active())
+		return ..()
+	to_chat(src, "<span class='notice'>Syntezator mowy jest włączony: przycisk ogłoszenia przyjmuje dowolny tekst po polsku (najwyżej [AQ_AI_TTS_MAX_CHARS] znaków, jedno ogłoszenie na [DisplayTimeText(AQ_AI_TTS_DELAY)]).</span>")
+
+/mob/living/silicon/ai/announcement()
+	if(!squad_tts_active())
+		return ..()
+	if(GLOB.aq_ai_tts_next_announcement > world.time)
+		to_chat(src, "<span class='notice'>Zaczekaj [DisplayTimeText(GLOB.aq_ai_tts_next_announcement - world.time)].</span>")
+		return
+
+	var/message = capped_input(src, "Wpisz tekst ogłoszenia (najwyżej [AQ_AI_TTS_MAX_CHARS] znaków). Usłyszy je cała załoga statku. Nadużywanie ogłoszeń może skończyć się banem na rolę.", "Ogłoszenie", last_announcement, AQ_AI_TTS_MAX_CHARS + 1) // trim() ucina przed max_length
+	if(!message)
+		return
+	last_announcement = message
+
+	if(GLOB.aq_ai_tts_next_announcement > world.time || incapacitated())
+		return
+	if(control_disabled)
+		to_chat(src, "<span class='warning'>Interfejs bezprzewodowy wyłączony, nie można użyć systemu ogłoszeń.</span>")
+		return
+	if(CHAT_FILTER_CHECK(message))
+		to_chat(src, "<span class='warning'>Twoja wiadomość zawiera zakazane słowa.</span>")
+		return
+	// bez słuchaczy nie zużywamy wspólnego budżetu znaków ani odstępu
+	var/list/listeners = aq_announcement_listeners()
+	if(!length(listeners))
+		to_chat(src, "<span class='warning'>Nikt nie usłyszy ogłoszenia. Nie zostało wysłane.</span>")
+		return
+	if(!squad_tts_reserve_chars(message))
+		to_chat(src, "<span class='warning'>Syntezator mowy wyczerpał limit na tę zmianę. Ogłoszenie nie poszło.</span>")
+		return
+
+	var/next_announcement = world.time + AQ_AI_TTS_DELAY
+	GLOB.aq_ai_tts_next_announcement = next_announcement
+	log_game("[key_name(src)] made a TTS vocal announcement with the following message: [message].")
+	message_admins("[key_name(src)] wygłasza ogłoszenie głosowe o treści: [html_encode(message)].")
+	to_chat(src, "<span class='notice'>Ogłaszasz: \"[html_encode(message)]\"</span>")
+	INVOKE_ASYNC(src, PROC_REF(aq_tts_announce), message, listeners, next_announcement)
+
+/// Nieudane zapytanie oddaje znaki do limitu rundy i zdejmuje swój odstęp (chyba że ktoś zdążył ogłosić później)
+/mob/living/silicon/ai/proc/aq_tts_announce(message, list/listeners, next_announcement)
+	if(aq_squad_tts_request(CONFIG_GET(string/ai_tts_voice), message, listeners, CHANNEL_VOX, TRUE))
+		return
+	squad_tts_release_chars(message)
+	if(GLOB.aq_ai_tts_next_announcement == next_announcement)
+		GLOB.aq_ai_tts_next_announcement = world.time
+	if(!QDELETED(src))
+		to_chat(src, "<span class='warning'>Syntezator mowy nie odpowiedział. Ogłoszenie nie zostało odtworzone, możesz spróbować od razu.</span>")
+
+/// Przepuszcza MP3 z ElevenLabs przez filtr ogłoszeń. Zwraca ścieżkę gotowego OGG albo null (brak ffmpeg, błąd), wtedy gra się surowy plik.
+/// shell() wstrzymuje serwer na czas konwersji (ok. 0,3 s na kilkusekundowe ogłoszenie). shell() nie da się przerwać, więc ffmpeg sam
+/// pilnuje limitów: -timelimit (czas procesora) i -t (długość nagrania; 300 znaków to ok. 25 s mowy).
+/proc/aq_tts_announcement_filter(file_name)
+	var/ffmpeg = CONFIG_GET(string/ai_tts_ffmpeg)
+	if(!length(ffmpeg) || !fexists(file_name))
+		return null
+	if(!fexists(AQ_AI_TTS_IR))
+		log_runtime("ai_tts: brak pliku filtra [AQ_AI_TTS_IR], ogłoszenie gra bez filtra")
+		return null
+	var/out_file = "[copytext(file_name, 1, -4)]_filtr.ogg"
+	var/filter = "\[0:a\]apad=pad_dur=0.6\[s\];\[s\]\[1:a\]afir=irnorm=-1,alimiter=limit=0.9:level=disabled"
+	var/list/result = world.shelleo("\"[ffmpeg]\" -nostdin -hide_banner -loglevel error -timelimit 10 -y -i \"[file_name]\" -i \"[AQ_AI_TTS_IR]\" -filter_complex \"[filter]\" -t 60 -c:a libvorbis -q:a 5 \"[out_file]\"")
+	if(result[SHELLEO_ERRORLEVEL] || !fexists(out_file))
+		log_runtime("ai_tts: filtr ffmpeg nie zadziałał ([result[SHELLEO_ERRORLEVEL]]): [trim(result[SHELLEO_STDERR], 300)]")
+		if(fexists(out_file))
+			fdel(out_file)
+		return null
+	return out_file
+
+/// Ci sami słuchacze co w play_vox_word: cały statek SI albo jej poziom Z, z włączonymi ogłoszeniami dźwiękowymi
+/mob/living/silicon/ai/proc/aq_announcement_listeners()
+	. = list()
+	var/obj/structure/overmap/ship = get_overmap()
+	var/z_level = get_virtual_z_level()
+	for(var/mob/listener as anything in (ship ? ship.mobs_in_ship : GLOB.player_list))
+		if(!listener.client || !listener.can_hear() || !(listener.client.prefs.toggles & PREFTOGGLE_SOUND_ANNOUNCEMENTS))
+			continue
+		if(!ship)
+			var/turf/listener_turf = get_turf(listener)
+			if(listener_turf?.get_virtual_z_level() != z_level)
+				continue
+		. += listener
+
+#undef AQ_AI_TTS_MAX_CHARS
+#undef AQ_AI_TTS_DELAY
+#undef AQ_AI_TTS_IR

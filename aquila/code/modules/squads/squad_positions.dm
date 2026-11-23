@@ -99,7 +99,7 @@
 /datum/job/bridge
 	aq_squad_role = CIC_OPS
 
-// Pełne nadpisanie (LEGACY_OVERRIDES.md): drużyna według zawodu, potem preferowana, potem najmniejsza
+// Pełne nadpisanie (LEGACY_OVERRIDES.md): drużyna wybrana w preferencjach, potem według zawodu, potem najmniejsza
 /datum/job/register_squad(mob/living/H)
 	if(!ishuman(H))
 		return
@@ -113,7 +113,7 @@
 	human.squad_position = aq_squad_position
 	squad.add_member(human, give_items = TRUE)
 
-/// Drużyna dla nowego członka: rola zawodu, potem preferowana drużyna gracza, potem najmniej liczna
+/// Drużyna dla nowego członka: drużyna wybrana w preferencjach (SQUAD_PREF_AUTO = bez wyboru), potem rola zawodu, potem najmniej liczna
 /datum/squad_manager/proc/aq_pick_squad(datum/job/job, preferred_name)
 	var/list/candidates = list()
 	for(var/datum/squad/squad as anything in squads)
@@ -124,6 +124,9 @@
 		candidates += squad
 	if(!length(candidates))
 		return null
+	var/datum/squad/preferred = (preferred_name && preferred_name != SQUAD_PREF_AUTO) ? get_squad(preferred_name) : null
+	if(preferred && (preferred in candidates) && length(preferred.members) < preferred.max_members)
+		return preferred
 	if(job?.aq_squad_role)
 		var/list/matching = list()
 		for(var/datum/squad/squad as anything in candidates)
@@ -131,9 +134,6 @@
 				matching += squad
 		if(length(matching))
 			return aq_smallest_squad(matching)
-	var/datum/squad/preferred = preferred_name ? get_squad(preferred_name) : null
-	if(preferred && (preferred in candidates) && length(preferred.members) < preferred.max_members)
-		return preferred
 	return aq_smallest_squad(candidates)
 
 /datum/squad_manager/proc/aq_smallest_squad(list/squad_list)

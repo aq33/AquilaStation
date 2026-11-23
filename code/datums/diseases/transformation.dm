@@ -385,5 +385,5 @@
 	stage3	= list("<span class='danger'>Potrzebujesz ciemności.</span>", "<span class='danger'>Jest ci tak zimno...</span>", "<span class='danger'>Poddaj się.</span>")
 	stage4	= list("<span class='userdanger'>Wzywa cię jądro planety... Lavaland to twój dom.</span>", "<span class='danger'>Tysiąc głosów przyzywa cię, byś do nich dołączył.</span>")
 	stage5	= list("<span class='userdanger'>Stajesz się częścią Legionu. Jesteś teraz jednym z Nekropolią i nie masz innych lojalności. Służ dobrze.</span>")
-	new_form = /mob/living/simple_animal/hostile/asteroid/hivelord/legion/tendril
+	new_form = /mob/living/basic/mining/legion/spawner_made // AQ EDIT - legion jest basic mobem
 	infectable_biotypes = list(MOB_ORGANIC, MOB_INORGANIC, MOB_UNDEAD)

@@ -44,7 +44,7 @@
 	alt_label_name = "Przywołanie Równoległych Istot Δ"
 	label_desc = "Parallel Entity Retrieval Δ: dziwna usterka sprawia, że artefakt otwiera przejście do innego wymiaru, przyzywając losową istotę."
 	max_summons = 6
-	summon_type = /mob/living/simple_animal/hostile/carp
+	summon_type = /mob/living/basic/carp
 	conductivity = 7
 
 /datum/xenoartifact_trait/malfunction/animal/carp/get_dictionary_hint()

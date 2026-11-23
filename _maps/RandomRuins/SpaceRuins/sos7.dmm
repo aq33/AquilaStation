@@ -89,7 +89,7 @@
 	name = "gelatinous floor"
 	},
 /obj/structure/grille/broken,
-/mob/living/simple_animal/hostile/netherworld{
+/mob/living/basic/creature{
 	name = "human?";
 	desc = "Something that was once human..."
 	},

@@ -1,8 +1,8 @@
 // AQUILA: port of BeeStation/BeeStation-Hornet code/datums/components/udder.dm (bee/master 0adf0fe9ae), decision D9.
 // We have no item_interaction chain, so milking goes through COMSIG_PARENT_ATTACKBY; our milk containers are reagent_containers/glass.
-// Cows, goats and sheep are basic mobs with this component (their udder items are next to them). The gutlunch stays a simple animal
-// with this component too (as in Bee); its udder is below and gets fed from the gutlunch's AttackingTarget() (our simple animals
-// send no COMSIG_HOSTILE_PRE_ATTACKINGTARGET).
+// Cows, goats and sheep are basic mobs with this component (their udder items are next to them). The gutlunch (a basic mining
+// mob since basic mobs part 2) has this component too (as in Bee); its udder is below and gets fed when the gutlunch eats
+// (COMSIG_MOB_ATE of basic_eating).
 /**
  * Udder component; for farm animals to generate milk.
  *
@@ -149,13 +149,13 @@
 		START_PROCESSING(SSobj, src)
 
 /obj/item/udder/gutlunch/process(delta_time)
-	var/mob/living/simple_animal/hostile/asteroid/gutlunch/gutlunch = udder_mob
+	var/mob/living/basic/mining/gutlunch/gutlunch = udder_mob
 	if(reagents.total_volume != reagents.maximum_volume)
 		return
 	if(gutlunch.make_babies())
 		reagents.clear_reagents()
 		//usually this would be a callback but this is a specifically gutlunch feature so fuck it, gutlunch specific proccall
-		gutlunch.regenerate_icons(reagents.total_volume, reagents.maximum_volume)
+		gutlunch.udder_changed(reagents.total_volume, reagents.maximum_volume)
 
 /obj/item/udder/gutlunch/generate()
 	var/made_something = FALSE

@@ -38,11 +38,11 @@
 
 /obj/item/mob_lasso/proc/init_whitelists()
 	whitelist_mob_cache[type] = typecacheof(list(
-		/mob/living/simple_animal/hostile/carp,
-		/mob/living/simple_animal/hostile/carp/megacarp,
-		/mob/living/simple_animal/hostile/carp/lia,
+		/mob/living/basic/carp, // AQ EDIT - basic moby
+		/mob/living/basic/carp/mega, // AQ EDIT - basic moby
+		/mob/living/basic/carp/pet/lia, // AQ EDIT - basic moby
 		/mob/living/basic/cow, // AQ EDIT - basic moby
-		/mob/living/simple_animal/hostile/retaliate/dolphin,
+		/mob/living/basic/dolphin, // AQ EDIT - basic moby
 	), only_root_path = TRUE)
 
 /obj/item/mob_lasso/afterattack(atom/target, mob/living/user, proximity_flag, click_parameters)
@@ -83,10 +83,13 @@
 	//Riding and Tamed
 	C.tamed(user)
 	C.setup_tamed_riding() // our riding/tamed component with the old offsets
-	if(C.ai_controller)
-		QDEL_NULL(C.ai_controller)
-	C.ai_controller = new /datum/ai_controller/basic_controller/dog(C) //This should be fine, we want them to act like dogs anyway
-	C.AddComponent(/datum/component/obeys_commands, pet_commands)
+	// AQ EDIT START - basic moby: a basic carp keeps its own AI (fleeing, rifts) and takes the commands of its tamed() (decision D11)
+	if(!istype(C, /mob/living/basic/carp))
+		if(C.ai_controller)
+			QDEL_NULL(C.ai_controller)
+		C.ai_controller = new /datum/ai_controller/basic_controller/dog(C) //This should be fine, we want them to act like dogs anyway
+		C.AddComponent(/datum/component/obeys_commands, pet_commands)
+	// AQ EDIT END
 	// AQUILA: a mob tamed again is already a friend (faction), so befriend() stops early and the new controller had no friends
 	if(!C.befriend(user))
 		C.ai_controller.insert_blackboard_key_lazylist(BB_FRIENDS_LIST, user)
@@ -145,8 +148,8 @@
 
 /obj/item/mob_lasso/primal/init_whitelists()
 	whitelist_mob_cache[type] = typecacheof(list(
-		/mob/living/simple_animal/hostile/asteroid/goliath,
-		/mob/living/simple_animal/hostile/asteroid/goldgrub,
+		/mob/living/basic/mining/goliath, // AQ EDIT - goliat jest basic mobem
+		/mob/living/basic/mining/goldgrub, // AQ EDIT - złoty pędrak jest basic mobem
 	))
 
 /obj/item/mob_lasso/antag
@@ -156,8 +159,9 @@
 /obj/item/mob_lasso/antag/init_whitelists()
 	blacklist_mob_cache[type] = typecacheof(list(
 		/mob/living/simple_animal/hostile/megafauna,
-		/mob/living/simple_animal/hostile/alien,
+		/mob/living/basic/alien, // AQ EDIT - basic moby
 		/mob/living/simple_animal/hostile/syndicate,
+		/mob/living/basic/trooper/syndicate, // AQ EDIT - basic moby
 	))
 
 /obj/item/mob_lasso/antag/debug

@@ -13,7 +13,6 @@
 	initial_cell = /obj/item/stock_parts/cell/hyper
 	initial_modules = list(
 		/obj/item/mod/module/storage/large_capacity,
-		/obj/item/mod/module/hat_stabilizer,
 		/obj/item/mod/module/magnetic_harness,
 	)
 
@@ -93,7 +92,6 @@
 		/obj/item/mod/module/magnetic_harness,
 		/obj/item/mod/module/flashlight,
 		/obj/item/mod/module/dna_lock,
-		/obj/item/mod/module/hat_stabilizer/syndicate,
 	)
 
 /// Elitarny agent Syndykatu z uplinka (dawny elitarny MODsuit Syndykatu)
@@ -105,7 +103,6 @@
 		/obj/item/mod/module/magnetic_harness,
 		/obj/item/mod/module/flashlight,
 		/obj/item/mod/module/dna_lock,
-		/obj/item/mod/module/hat_stabilizer/syndicate,
 	)
 
 /// Agent nuklearny w szafie na skafandry (dawny nuklearny MODsuit)
@@ -116,7 +113,6 @@
 		/obj/item/mod/module/emp_shield,
 		/obj/item/mod/module/magnetic_harness,
 		/obj/item/mod/module/flashlight,
-		/obj/item/mod/module/hat_stabilizer/syndicate,
 	)
 
 /// Zestaw infiltratora z uplinka (dawny MODsuit infiltratora)
@@ -130,7 +126,6 @@
 		/obj/item/mod/module/magnetic_harness,
 		/obj/item/mod/module/quick_carry,
 		/obj/item/mod/module/visor/diaghud,
-		/obj/item/mod/module/hat_stabilizer/syndicate,
 	)
 
 ////////////////////////////////////////////////////////////////////
@@ -356,7 +351,6 @@
 /obj/item/clothing/suit/space/hardsuit/deathsquad/loaded/officer
 	initial_modules = list(
 		/obj/item/mod/module/storage/bluespace,
-		/obj/item/mod/module/hat_stabilizer,
 		/obj/item/mod/module/welding,
 		/obj/item/mod/module/emp_shield/advanced,
 		/obj/item/mod/module/magnetic_harness,
@@ -367,7 +361,6 @@
 	initial_core = /obj/item/mod/core/infinite
 	initial_modules = list(
 		/obj/item/mod/module/storage/bluespace,
-		/obj/item/mod/module/hat_stabilizer,
 		/obj/item/mod/module/magnetic_harness,
 		/obj/item/mod/module/emp_shield/advanced,
 	)

@@ -333,6 +333,7 @@ GLOBAL_LIST_EMPTY(squad_blip_cache)
 		"members" = members_data,
 		"blips" = blips,
 		"markers" = aq_markers_data(),
+		"order_cooldown" = aq_order_cooldown_left(),
 	)
 
 /// Poziomy, na których są członkowie i znaczniki drużyny (do wyboru na mapie)

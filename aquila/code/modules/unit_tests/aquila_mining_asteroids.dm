@@ -22,11 +22,24 @@
 /datum/unit_test/mining_asteroids/proc/load_all_maps()
 	var/total = 0
 	for(var/folder in list(ASTEROID_FOLDER, RUIN_FOLDER))
+		// Rozmiar sprawdzamy dla każdej mapy (odczyt jest tani). Ładowanie wszystkich trwało w CI ~7 min, więc ładujemy
+		// losową próbkę: kolejne przebiegi przechodzą przez całą pulę. -DAQUILA_FULL_MAP_TESTS ładuje wszystkie.
+		var/list/to_load = list()
 		for(var/file in flist(folder))
 			total++
 			var/datum/map_template/asteroid/template = new("[folder][file]", null, FALSE, list(/turf/closed/mineral/iron))
 			if(template.width != 40 || template.height != 40)
 				return "[folder][file] is [template.width]x[template.height], the magnet cage needs 40x40"
+			to_load[file] = template
+#ifndef AQUILA_FULL_MAP_TESTS
+		var/list/sample = list()
+		for(var/i in 1 to min(folder == ASTEROID_FOLDER ? 2 : 1, length(to_load)))
+			var/picked = pick(to_load - sample)
+			sample[picked] = to_load[picked]
+		to_load = sample
+#endif
+		for(var/file in to_load)
+			var/datum/map_template/asteroid/template = to_load[file]
 			// Każda mapa we własnej rezerwacji i bez sprzątania. Bez Release(): zwolnione pola od razu bierze komora testowa i dostaje w nich 0 kPa
 			var/datum/turf_reservation/reservation = SSmapping.RequestBlockReservation(41, 41)
 			if(!reservation)

@@ -24,6 +24,7 @@ type Rival = {
   name: string;
   color: string;
   territory: number;
+  score: number;
   dominating: BooleanLike;
 };
 
@@ -37,7 +38,9 @@ type Info = {
   cap: number;
   leaders: number;
   territory: number;
-  influence: number;
+  points: number;
+  score: number;
+  has_locker: BooleanLike;
   dom_attempts: number;
   dominating: BooleanLike;
   dom_remaining: number;
@@ -63,7 +66,9 @@ export const AntagInfoGang = () => {
     cap,
     leaders,
     territory,
-    influence,
+    points,
+    score,
+    has_locker,
     dom_attempts,
     dominating,
     dom_remaining,
@@ -73,7 +78,7 @@ export const AntagInfoGang = () => {
   } = data;
 
   return (
-    <Window width={480} height={leader ? 680 : 620} theme="gang">
+    <Window width={480} height={leader ? 780 : 720} theme="gang">
       <Window.Content>
         <Section scrollable fill>
           <Stack vertical>
@@ -100,13 +105,13 @@ export const AntagInfoGang = () => {
               {leader ? (
                 <Stack vertical>
                   <Stack.Item>
+                    - Postaw szafkę gangu akcją „Szafka gangu”. To wasza baza:
+                    sklep, skup kontrabandy i darmowe mundury.
+                  </Stack.Item>
+                  <Stack.Item>
                     - Werbuj załogę długopisem werbunkowym albo implantem z
                     gangtoola. Gang ma limit członków, który rośnie razem z
                     liczbą żywej załogi.
-                  </Stack.Item>
-                  <Stack.Item>
-                    - Zajmuj teren farbą gangu. Teren i szpan (stroje gangu)
-                    dają wpływy, za które kupujesz sprzęt w gangtoolu.
                   </Stack.Item>
                   <Stack.Item>
                     - Kup Dominatora, postaw go na swoim terenie i włącz.
@@ -120,6 +125,9 @@ export const AntagInfoGang = () => {
                     - Słuchaj szefów gangu i zajmuj teren farbą gangu.
                   </Stack.Item>
                   <Stack.Item>
+                    - Gdy szef zginie, możesz przejąć dowodzenie przy szafce.
+                  </Stack.Item>
+                  <Stack.Item>
                     - Kumpli rozpoznasz po ikonie w kolorze gangu.
                   </Stack.Item>
                   <Stack.Item>
@@ -128,6 +136,17 @@ export const AntagInfoGang = () => {
                   </Stack.Item>
                 </Stack>
               )}
+            </Stack.Item>
+            <Stack.Item>
+              - Każdy przychód gangu dostaje każdy z was, a ten, kto go
+              przyniósł, o 25% więcej. Punkty dają znaki (im więcej ludzi
+              przechodzi obok, tym więcej), pranie gotówki, sprzedaż broni i
+              narkotyków w szafce oraz zrzuty skrzyń i toreb.
+            </Stack.Item>
+            <Stack.Item>
+              - Pełny mundur (kombinezon i nakrycie głowy) na waszym terenie
+              daje więcej zdrowia i staminy. Bez munduru na terenie wroga
+              tracisz staminę.
             </Stack.Item>
             <Stack.Divider />
             <Stack.Item>
@@ -143,7 +162,13 @@ export const AntagInfoGang = () => {
                     {territory}% stacji
                   </ProgressBar>
                 </LabeledList.Item>
-                <LabeledList.Item label="Wpływy">{influence}</LabeledList.Item>
+                <LabeledList.Item label="Twoje punkty">
+                  {points}
+                </LabeledList.Item>
+                <LabeledList.Item label="Wynik gangu">{score}</LabeledList.Item>
+                <LabeledList.Item label="Szafka">
+                  {has_locker ? 'Stoi' : 'Brak, postawi ją szef'}
+                </LabeledList.Item>
                 <LabeledList.Item label="Dominator">
                   {dominating
                     ? `Przejęcie trwa, zostało ${formatTime(dom_remaining)}`
@@ -159,7 +184,7 @@ export const AntagInfoGang = () => {
                   >
                     {rival.dominating
                       ? 'Przejmuje stację! Zniszczcie ich Dominatora!'
-                      : `Teren: ${rival.territory}%`}
+                      : `Teren: ${rival.territory}%, wynik: ${rival.score}`}
                   </LabeledList.Item>
                 ))}
               </LabeledList>

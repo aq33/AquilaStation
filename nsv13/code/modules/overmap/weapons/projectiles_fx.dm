@@ -253,7 +253,7 @@ Misc projectile types, effects, think of this as the special FX file.
 	for(var/mob/living/L in viewers(7, detonation_turf))
 		L.flash_act(affect_silicon = TRUE)
 	for(var/i = 1; i <= 13; i++)
-		new /mob/living/simple_animal/hostile/viscerator(detonation_turf)	//MANHACKS!1!!
+		new /mob/living/basic/viscerator(detonation_turf)	//MANHACKS!1!! // AQ EDIT - basic moby
 
 /obj/item/projectile/bullet/delayed_prime/relayed_plushtorp
 	damage = 0

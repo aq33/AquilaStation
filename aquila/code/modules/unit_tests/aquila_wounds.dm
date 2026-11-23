@@ -50,8 +50,8 @@
 	var/obj/item/bodypart/chest = patient.get_bodypart(BODY_ZONE_CHEST)
 	var/datum/wound/burn/burn = new /datum/wound/burn/third_degree()
 	burn.apply_wound(chest, silent = TRUE)
-	burn.wound_effects(100)
-	TEST_ASSERT(patient.getToxLoss() > 0, "An infected burn does not poison")
+	burn.process(300)
+	TEST_ASSERT(chest.aq_germs >= 30, "An undressed third degree burn does not get infected ([chest.aq_germs] germs)")
 
 	patient.fully_heal()
 	TEST_ASSERT(!length(leg.wounds) && !length(arm.wounds) && !length(chest.wounds), "Full heal left wounds")
@@ -139,7 +139,7 @@
 		TEST_ASSERT(bed.id_tag == monitor.id_tag, "Monitor at [monitor.x],[monitor.y],[monitor.z] picked the wrong bed")
 	log_world("aquila_mapped_vitals_monitors: [checked] mapped monitors checked")
 	// One monitor per stasis bed on the maps in rotation (json map_name)
-	var/static/list/expected_per_map = list("NSV Aquilas" = 3, "DLV Trawnik" = 4, "NSV Padalec" = 2, "NSV Atlantis" = 7, "SGV Von Neumann" = 2)
+	var/static/list/expected_per_map = list("AQ Aquilas" = 3, "DLV Trawnik" = 4, "AQ Padalec" = 2, "AQ Atlantis" = 7, "SGV Von Neumann" = 2)
 	var/expected = expected_per_map[SSmapping.config?.map_name]
 	if(!isnull(expected))
 		TEST_ASSERT(checked == expected, "[SSmapping.config.map_name] has [checked] mapped vitals monitors, expected [expected]")

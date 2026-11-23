@@ -198,7 +198,7 @@ GLOBAL_LIST_INIT(special_slime_colours, list("dark green", "cobalt", "dark grey"
 	T.visible_message("<span class='danger'>Z ekstraktu w błysku światła wyrywają się czaszki i popielate kości!</span>")
 	for(var/mob/living/carbon/C in viewers(T))
 		C.flash_act()
-	new /mob/living/simple_animal/hostile/asteroid/hivelord/legion/tendril(T)
+	new /mob/living/basic/mining/legion/spawner_made(T)
 
 /datum/chemical_reaction/slime/lavasteroid
 	name = "Slime Lava Steroid"
@@ -251,15 +251,15 @@ GLOBAL_LIST_INIT(special_slime_colours, list("dark green", "cobalt", "dark grey"
 		return ..()
 	var/mob/living/evolving_mob = A
 	var/mob/living/new_monster
-	if(istype(evolving_mob, /mob/living/simple_animal/hostile/asteroid/goliath/beast) && !istype(evolving_mob, /mob/living/simple_animal/hostile/asteroid/goliath/beast/ancient))
-		new_monster = new /mob/living/simple_animal/hostile/asteroid/goliath/beast/ancient(evolving_mob.loc)
-	else if(evolving_mob.type == /mob/living/simple_animal/hostile/asteroid/basilisk/watcher)
+	if(istype(evolving_mob, /mob/living/basic/mining/goliath) && !istype(evolving_mob, /mob/living/basic/mining/goliath/ancient))
+		new_monster = new /mob/living/basic/mining/goliath/ancient/immortal(evolving_mob.loc)
+	else if(evolving_mob.type == /mob/living/basic/mining/watcher)
 		if(prob(50))
-			new_monster = new /mob/living/simple_animal/hostile/asteroid/basilisk/watcher/icewing(evolving_mob.loc)
+			new_monster = new /mob/living/basic/mining/watcher/icewing(evolving_mob.loc)
 		else
-			new_monster = new /mob/living/simple_animal/hostile/asteroid/basilisk/watcher/magmawing(evolving_mob.loc)
-	else if(evolving_mob.type == /mob/living/simple_animal/hostile/asteroid/hivelord/legion)
-		new_monster = new /mob/living/simple_animal/hostile/asteroid/hivelord/legion/dwarf(evolving_mob.loc)
+			new_monster = new /mob/living/basic/mining/watcher/magmawing(evolving_mob.loc)
+	else if(evolving_mob.type == /mob/living/basic/mining/legion)
+		new_monster = new /mob/living/basic/mining/legion/dwarf(evolving_mob.loc)
 
 	if(!new_monster)
 		to_chat(user, "<span class='warning'>To stworzenie nie reaguje na miksturę!</span>")

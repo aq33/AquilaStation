@@ -297,8 +297,9 @@
 /obj/item/crusher_trophy/legionnaire_spine/on_mark_detonation(mob/living/target, mob/living/user)
 	if(!rand(1, 100) <= bonus_value || target.stat == DEAD)
 		return
-	var/mob/living/simple_animal/hostile/asteroid/hivelordbrood/legion/A = new /mob/living/simple_animal/hostile/asteroid/hivelordbrood/legion(user.loc)
+	// AQ EDIT START - czaszka legionu jest basic mobem
+	var/mob/living/basic/mining/legion_brood/A = new(user.loc)
 	A.flags_1 |= (flags_1 & ADMIN_SPAWNED_1)
-	A.GiveTarget(target)
-	A.friends = user
-	A.faction = user.faction.Copy()
+	A.assign_creator(user)
+	A.ai_controller?.set_blackboard_key(BB_BASIC_MOB_CURRENT_TARGET, target)
+	// AQ EDIT END

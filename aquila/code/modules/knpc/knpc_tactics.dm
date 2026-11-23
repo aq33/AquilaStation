@@ -2,6 +2,8 @@
 // Hooki w core: nsv13/code/modules/overmap/knpc.dm (pick_target, tactical_move, try_throw_grenade,
 // backup_candidates, path_access_card) i KNPC_MAX_BACKUP_RESPONDERS w nsv13/code/__DEFINES/knpc.dm.
 
+/// Do ilu pól od punktu patrolowego KNPC wnętrza abordażu patroluje; dalej pilnuje swojego miejsca
+#define KNPC_PATROL_NODE_RANGE 3
 /// Strzelec trzyma się co najmniej tylu pól od celu
 #define KNPC_RANGE_MIN 3
 /// Dalej niż tyle pól strzelec podchodzi do celu
@@ -17,7 +19,6 @@
 /// Zakuwanie (do_mob 4 s) trwające dłużej oznacza przerwaną procedurę: process() zdejmuje flagę sam
 #define KNPC_CUFF_TIMEOUT (10 SECONDS)
 /// Szansa, że boarder Syndykatu albo pirat ma dodatkowo granat odłamkowy
-#define KNPC_FRAG_CHANCE 10
 /// Czas hakowania panelu drzwi
 #define KNPC_HACK_TIME (10 SECONDS)
 /// Przerwa między uderzeniami w drzwi
@@ -59,6 +60,12 @@
 	return ..()
 
 /datum/component/knpc/process()
+	// Wnętrze abordażu bez graczy na poziomie: KNPC czekają (wnętrze ładuje się na starcie misji, a lot trwa długo)
+	var/mob/living/carbon/human/ai_boarder/boarder = parent
+	if(boarder.z && is_boarding_interior_area(get_area(boarder)) && (boarder.z > length(SSmobs.clients_by_zlevel) || !length(SSmobs.clients_by_zlevel[boarder.z])))
+		pathfind_timeout = max(0, pathfind_timeout - SSfastprocess.wait)
+		expire_unreachable()
+		return
 	if(cuffing)
 		if(world.time < cuffing_since + KNPC_CUFF_TIMEOUT)
 			// do_mob przerywa każdy krok boardera: wybór celu, trasa i patrol czekają, aż skończy zakuwać.
@@ -434,6 +441,9 @@
 // Oba dostają granat hukowy, a z małą szansą też odłamkowy.
 /mob/living/carbon/human/ai_boarder/syndicate/Initialize(mapload)
 	. = ..()
+	// Bez mikrobomby ze stroju Syndykatu: po walce zostaje ciało z łupem (KNPC stoi teraz kilkadziesiąt we wnętrzach abordażu)
+	for(var/obj/item/implant/explosive/bomb in implants)
+		qdel(bomb)
 	knpc_traits |= KNPC_IS_DOOR_HACKER
 	// Słuchawki bowman chronią uszy, zaawansowane okulary (zwykłe nie chronią przed błyskiem) oczy: hukowy rzucony przez kolegę nie ogłusza Syndykatu
 	if(!glasses)
@@ -445,18 +455,15 @@
 	knpc_traits |= KNPC_IS_DOOR_BASHER
 	give_knpc_gear()
 
-/// Granat hukowy, z szansą KNPC_FRAG_CHANCE odłamkowy i dwie opaski zaciskowe do plecaka (bez plecaka do kieszeni, jeśli wolna)
+/// Granat hukowy, z szansą zależną od trudności (aq_knpc_frag_chance, knpc_archetypes.dm) odłamkowy i dwie opaski zaciskowe
+/// do plecaka (bez plecaka do kieszeni, jeśli wolna). Statek elitarny dokłada sprzęt, gdy wnętrze jest już przypięte do statku.
 /mob/living/carbon/human/ai_boarder/proc/give_knpc_gear()
-	var/list/grenades = list(/obj/item/grenade/flashbang, /obj/item/restraints/handcuffs/cable/zipties, /obj/item/restraints/handcuffs/cable/zipties)
-	if(prob(KNPC_FRAG_CHANCE))
-		grenades += /obj/item/grenade/frag
-	for(var/grenade_type in grenades)
-		if(back)
-			new grenade_type(back)
-		else
-			var/obj/item/grenade/nade = new grenade_type(src)
-			if(!equip_to_slot_if_possible(nade, ITEM_SLOT_LPOCKET, disable_warning = TRUE) && !equip_to_slot_if_possible(nade, ITEM_SLOT_RPOCKET, disable_warning = TRUE))
-				qdel(nade)
+	var/list/gear = list(/obj/item/grenade/flashbang, /obj/item/restraints/handcuffs/cable/zipties, /obj/item/restraints/handcuffs/cable/zipties)
+	if(prob(aq_knpc_frag_chance()))
+		gear += /obj/item/grenade/frag
+	for(var/gear_type in gear)
+		aq_knpc_stash(gear_type)
+	addtimer(CALLBACK(src, PROC_REF(aq_knpc_elite_bonus)), 1 SECONDS)
 
 // Przy krytycznym zdrowiu medipen idzie przed walką
 /datum/ai_goal/human/heal_self/check_score(datum/component/knpc/HA)
@@ -565,7 +572,6 @@
 #undef KNPC_GRENADE_FUSE
 #undef KNPC_GRENADE_DANGER_RANGE
 #undef KNPC_CUFF_TIMEOUT
-#undef KNPC_FRAG_CHANCE
 #undef KNPC_HACK_TIME
 #undef KNPC_BASH_DELAY
 #undef KNPC_BASH_DAMAGE
@@ -574,3 +580,53 @@
 #undef KNPC_HEAL_ALLY_RATIO
 #undef KNPC_ALLY_RANGE
 #undef KNPC_FALL_BACK_RANGE
+
+/// Czy to obszar wnętrza abordażu okrętu (mapy _maps/templates/boarding/)
+/proc/is_boarding_interior_area(area/checked)
+	return istype(checked, /area/ruin/powered/nsv13/boarding_interior) || istype(checked, /area/ruin/unpowered/boarding_interior)
+
+/datum/component/knpc
+	/// Pole, którego KNPC wnętrza abordażu pilnuje (null: zwykły patrol)
+	var/turf/guard_post
+	/// Czy KNPC wybrał już rolę (straż albo patrol)
+	var/guard_role_picked = FALSE
+
+/**
+ * KNPC we wnętrzu abordażu „u siebie”: przy pierwszej bezczynności wybiera rolę. Kto stoi do KNPC_PATROL_NODE_RANGE pól od punktu
+ * patrolowego (korytarze), patroluje; reszta (mostek, zbrojownia, maszynownia i inne pomieszczenia) pilnuje swojego miejsca:
+ * po walce czy wezwaniu wraca na posterunek i stoi, rozglądając się. TRUE, gdy KNPC jest strażnikiem i nie patroluje.
+ */
+/datum/component/knpc/proc/guard_the_post()
+	var/mob/living/carbon/human/ai_boarder/H = parent
+	if(!guard_role_picked)
+		guard_role_picked = TRUE
+		if(is_boarding_interior_area(get_area(H)) && !patrol_node_near(H))
+			guard_post = get_turf(H)
+	if(!guard_post)
+		return FALSE
+	if(get_turf(H) != guard_post)
+		if(!length(path))
+			pathfind_to(guard_post)
+	else if(prob(3)) // co kilka sekund się rozgląda
+		H.setDir(pick(GLOB.cardinals))
+	return TRUE
+
+/// Czy w zasięgu KNPC_PATROL_NODE_RANGE pól na tym samym poziomie stoi punkt patrolowy
+/datum/component/knpc/proc/patrol_node_near(atom/center)
+	for(var/obj/effect/landmark/patrol_node/node in GLOB.landmarks_list)
+		if(node.z == center.z && get_dist(node, center) <= KNPC_PATROL_NODE_RANGE)
+			return TRUE
+	return FALSE
+
+/datum/ai_goal/human/get_next_patrol_node(datum/component/knpc/HA)
+	if(HA.guard_the_post())
+		return
+	return ..()
+
+/// Punkty patrolowe wskazują na siebie nawzajem: bez czyszczenia list usunięte wnętrze zostawiało twarde referencje
+/obj/effect/landmark/patrol_node/Destroy()
+	next_nodes = null
+	previous = null
+	return ..()
+
+#undef KNPC_PATROL_NODE_RANGE

@@ -754,8 +754,8 @@
 	..()
 	if(small) // parent call already reversed this. Effectively !small
 		owner.cut_overlays() // remove the overlays. can't be done with signals, unfortunately
-	else if(istype(owner, /mob/living/simple_animal/hostile/space_dragon))
-		var/mob/living/simple_animal/hostile/space_dragon/D = owner
+	else if(istype(owner, /mob/living/basic/space_dragon)) // AQ EDIT - basic moby
+		var/mob/living/basic/space_dragon/D = owner // AQ EDIT - basic moby
 		D.update_dragon_overlay() // restore overlays
 
 /datum/action/small_sprite/Trigger()

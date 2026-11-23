@@ -1,0 +1,30 @@
+// AQUILA: port of tgstation code/datums/ai/basic_mobs/basic_ai_behaviors/targeted_mob_ability.dm (tg 926bf40c5a) without
+// `and_plan_execute` (BB_BASIC_MOB_EXECUTION_TARGET, no user here). Only mob abilities and spells (usable_by_ai(), decision D6).
+
+/**
+ * # Targeted Mob Ability
+ * Attempts to use a mob's cooldown ability on a target. Abilities given to an AI must not sleep in Activate()/cast().
+ */
+/datum/ai_behavior/targeted_mob_ability
+
+/datum/ai_behavior/targeted_mob_ability/perform(delta_time, datum/ai_controller/controller, ability_key, target_key)
+	var/datum/action/cooldown/ability = controller.blackboard[ability_key]
+	var/mob/living/target = controller.blackboard[target_key]
+	if(QDELETED(ability) || QDELETED(target) || !ability.usable_by_ai())
+		return AI_BEHAVIOR_INSTANT | AI_BEHAVIOR_FAILED
+	var/mob/pawn = controller.pawn
+	pawn.face_atom(target)
+	var/result = ability.ai_trigger_on(target)
+	if(result)
+		return AI_BEHAVIOR_INSTANT | AI_BEHAVIOR_SUCCEEDED
+	return AI_BEHAVIOR_INSTANT | AI_BEHAVIOR_FAILED
+
+/**
+ * # Try Mob Ability and clear target
+ * Attempts to use a mob's cooldown ability on a target and releases the target when the action completes
+ */
+/datum/ai_behavior/targeted_mob_ability/and_clear_target
+
+/datum/ai_behavior/targeted_mob_ability/and_clear_target/finish_action(datum/ai_controller/controller, succeeded, ability_key, target_key)
+	. = ..()
+	controller.clear_blackboard_key(target_key)

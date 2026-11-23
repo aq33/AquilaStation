@@ -7,6 +7,8 @@
 #Ignore byond config folder.
 /cfg/**/*
 config/starmap/starmap.json
+# AQ EDIT - położenie okrętu na mapie hex, zapisywane przez serwer na koniec rundy
+config/starmap/hexmap.json
 
 # NSV13 - leave the linux, actually
 # Ignore compiled linux libs in the root folder, e.g. librust_g.so
@@ -22,6 +24,10 @@ beestation_unit_test_focus_file.dm
 *.rsc
 *.m.dme
 *.test.dme
+# AQUILA - kopie .dme lokalnego CI (tools/local_ci)
+ci_local_*.dme
+# AQUILA - log launchera debuggera auxtools (tools/scenario)
+*.auxtools.log
 *.lk
 *.int
 *.backup
@@ -208,3 +214,12 @@ crowdin_existing/
 
 # Pary z kodu okien (tools/i18n/extract_pairs.py --ui), scalane do en_ui.json
 strings/i18n/en_pairs_ui.json
+
+# byond-tracy (tools/tracy)
+prof.dll
+prof.lib
+prof.pdb
+libprof.so
+
+# Podgląd okien TGUI (tools/tgui_preview)
+tgui/public/_podglad_*

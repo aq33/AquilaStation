@@ -58,7 +58,7 @@
 /turf/open/floor/plating/snowed/colder,
 /area/ruin/powered)
 "L" = (
-/mob/living/simple_animal/hostile/skeleton/eskimo,
+/mob/living/basic/skeleton/eskimo,
 /turf/open/floor/plating/snowed/colder,
 /area/ruin/powered)
 "T" = (

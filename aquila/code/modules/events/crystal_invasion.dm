@@ -175,11 +175,11 @@ This section is for the event controller
 	for(var/area/A as anything in center_areas)
 		area_names += A.name
 	priority_announce("OSTRZEŻENIE - Po namierzeniu skoków mocy na waszym statku ustaliliśmy, że ogromne portale otworzyły się w następujących miejscach: [area_names.Join(", ")]. \
-		Zamknijcie je, zanim spróbujecie ustabilizować kryształ.", "Alarm")
+		Zamknijcie je, zanim spróbujecie ustabilizować kryształ.", "Alarm", sound = 'aquila/sound/ai/events/crystal_portals.ogg')
 	sound_to_playing_players('sound/misc/notice1.ogg')
 
 /datum/round_event/crystal_invasion/announce(fake)
-	priority_announce("OSTRZEŻENIE - Wykryto destabilizację macierzy kryształu supermaterii. Czekajcie na dalsze instrukcje.", "Alarm")
+	priority_announce("OSTRZEŻENIE - Wykryto destabilizację macierzy kryształu supermaterii. Czekajcie na dalsze instrukcje.", "Alarm", sound = 'aquila/sound/ai/events/crystal_destabilized.ogg')
 	sound_to_playing_players('sound/misc/notice1.ogg')
 
 /// Picks the wave and announces what the crew has to do
@@ -205,7 +205,7 @@ This section is for the event controller
 
 	priority_announce("OSTRZEŻENIE - Wykryliśmy liczne fluktuacje energii pochodzące z kryształu. Szacujemy [GLOB.crystal_invasion_wave_names[wave_name]] krystalicznych istot \
 		przybywających z \[UTAJNIONO]; na statku otworzy się [portal_numbers] głównych portali, które musicie zamknąć. Pozyskajcie kryształ \[UTAJNIONO] \
-		z portalu za pomocą neutralizatora anomalii, umieśćcie go w stabilizatorze supermaterii i wstrzyknijcie go w kryształ, aby zapobiec Scenariuszowi Kosmicznej Fragmentacji klasy ZK-Lambda.", "Alarm")
+		z portalu za pomocą neutralizatora anomalii, umieśćcie go w stabilizatorze supermaterii i wstrzyknijcie go w kryształ, aby zapobiec Scenariuszowi Kosmicznej Fragmentacji klasy ZK-Lambda.", "Alarm", sound = 'aquila/sound/ai/events/crystal_wave.ogg')
 	sound_to_playing_players('sound/misc/notice1.ogg')
 
 /// Spawns one portal at a random event spawn
@@ -219,7 +219,7 @@ This section is for the event controller
 /// If the crystal is not stabilized in time, more portals open and the event escalates
 /datum/round_event/crystal_invasion/proc/more_portals()
 	priority_announce("OSTRZEŻENIE - Wykryto kolejny skok mocy zdestabilizowanego kryształu. Na całym statku otwierają się nowe portale. Następny skok może \
-		wywołać zdarzenie klasy \[UTAJNIONO]; zakładamy, że macie jeszcze pięć minut do całkowitej anihilacji kryształu.", "Alarm")
+		wywołać zdarzenie klasy \[UTAJNIONO]; zakładamy, że macie jeszcze pięć minut do całkowitej anihilacji kryształu.", "Alarm", sound = 'aquila/sound/ai/events/crystal_surge.ogg')
 	sound_to_playing_players('sound/misc/notice1.ogg')
 	var/list/spawners = crystal_invasion_spawners()
 	for(var/i in 1 to rand(10, 15))
@@ -250,7 +250,7 @@ This section is for the event controller
 /datum/round_event/crystal_invasion/proc/zk_event_announcement()
 	dest_crystal.active = FALSE
 	priority_announce("OSTRZEŻENIE - Kryształ osiągnął punkt krytycznej niestabilności. Nadchodzi zdarzenie klasy ZK. Prosimy nie panikować, każdy panikujący \
-		zostanie zlikwidowany na miejscu. Miłego dnia.", "Alarm")
+		zostanie zlikwidowany na miejscu. Miłego dnia.", "Alarm", sound = 'aquila/sound/ai/events/crystal_critical.ogg')
 	sound_to_playing_players('sound/machines/alarm.ogg')
 	addtimer(CALLBACK(src, PROC_REF(do_zk_event)), 10 SECONDS)
 
@@ -265,12 +265,12 @@ This section is for the event controller
 	UnregisterSignal(dest_crystal, COMSIG_PARENT_QDELETING)
 	QDEL_NULL(dest_crystal)
 	explosion(crystal_turf, 15, 26, 33, 35, 1, 1) //a bit smaller than max supermatter explosion
-	priority_announce("OSTRZEŻENIE - Portale otwierają się wszędzie, nie udało się wam opanować zdarzenia. Powinniście się wstydzić!", "Alarm")
+	priority_announce("OSTRZEŻENIE - Portale otwierają się wszędzie, nie udało się wam opanować zdarzenia. Powinniście się wstydzić!", "Alarm", sound = 'aquila/sound/ai/events/crystal_failed.ogg')
 
 /// Puts the crystal back the way it was
 /datum/round_event/crystal_invasion/proc/restore()
 	priority_announce("Kryształ został przywrócony i jest znowu stabilny. Wasz sektor jest bezpieczny od Scenariusza klasy ZK-Lambda. \
-		Zabijcie pozostałe krystaliczne potwory i wracajcie do pracy.")
+		Zabijcie pozostałe krystaliczne potwory i wracajcie do pracy.", sound = 'aquila/sound/ai/events/crystal_restored.ogg')
 	sound_to_playing_players('sound/misc/notice2.ogg')
 	var/turf/loc_turf = get_turf(dest_crystal)
 	if(supermatter_type)
@@ -452,7 +452,7 @@ This section is for the destabilized crystal
 		user.dust(force = TRUE)
 	for(var/obj/structure/crystal_portal/portal as anything in GLOB.crystal_portals)
 		portal.slow_down()
-	priority_announce("Poświęcenie członka załogi (miejmy nadzieję, że klauna) najwyraźniej osłabiło portale i spowolniło napływ potworów!")
+	priority_announce("Poświęcenie członka załogi (miejmy nadzieję, że klauna) najwyraźniej osłabiło portale i spowolniło napływ potworów!", sound = 'aquila/sound/ai/events/crystal_sacrifice.ogg')
 	sound_to_playing_players('sound/misc/notice2.ogg')
 
 /datum/looping_sound/destabilized_crystal
@@ -558,7 +558,7 @@ This section is for the crystal portals
 	/// Time between spawns
 	var/spawn_time = 0
 	/// Mobs the portal can spawn
-	var/mob_types = list(/mob/living/simple_animal/hostile/carp)
+	var/mob_types = list(/mob/living/basic/carp)
 	/// Fluff text for each spawned mob
 	var/spawn_text = "wyłania się z"
 	/// Faction of the spawned mobs

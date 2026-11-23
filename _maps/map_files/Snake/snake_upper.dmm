@@ -172,7 +172,7 @@
 /turf/open/floor/plating,
 /area/crew_quarters/fitness/recreation)
 "aA" = (
-/mob/living/simple_animal/hostile/retaliate/wojtek,
+/mob/living/basic/bear/wojtek,
 /turf/open/floor/carpet/orange,
 /area/nsv/crew_quarters/heads/maa)
 "aB" = (
@@ -776,6 +776,10 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/carpet/royalblack,
 /area/crew_quarters/heads/chief)
+"cH" = (
+/obj/machinery/drop_pod_bay,
+/turf/open/floor/plating/airless,
+/area/nsv/hanger/notkmcstupidhanger)
 "cO" = (
 /obj/effect/turf_decal/tile/ship/purple{
 	dir = 1
@@ -5741,6 +5745,13 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/engine)
+"xP" = (
+/obj/effect/turf_decal/tile/ship/orange{
+	dir = 1
+	},
+/obj/machinery/autoclave,
+/turf/open/floor/plasteel/white,
+/area/medical/apothecary)
 "xR" = (
 /obj/machinery/door/airlock/highsecurity/ship{
 	name = "Secure Tech Storage";
@@ -44870,7 +44881,7 @@ lE
 sk
 RJ
 cv
-tm
+xP
 tm
 kD
 tA
@@ -48976,7 +48987,7 @@ ak
 ak
 ak
 Sl
-ak
+cH
 gm
 Vm
 gp
@@ -50004,7 +50015,7 @@ DZ
 DZ
 DZ
 bi
-ak
+cH
 gm
 lE
 gp

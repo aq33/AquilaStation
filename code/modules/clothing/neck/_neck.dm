@@ -77,7 +77,7 @@
 				if(heart && istype(heart))
 					heart_strength = "<span class='danger'>niestabilny</span>"
 					if(heart.beating)
-						heart_strength = "zdrowy"
+						heart_strength = heart.aq_pulse_text() // AQ EDIT - AquilaMed 5: puls (aquila/code/modules/medical/circulation.dm)
 				if(lungs && istype(lungs))
 					lung_strength = "<span class='danger'>utrudniony</span>"
 					if(!(M.failed_last_breath || M.losebreath))

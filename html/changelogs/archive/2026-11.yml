@@ -872,6 +872,24 @@
       krasnal (z BeeStation-Hornet, CC-BY-SA 3.0).
   - refactor: Rdzeń SI zsynchronizowany z Bee; zwierzęta przeniesione na basic moby.
 '2026-11-12':
+  Jacquerel, Ben10Omintrix, mc-oofert, lizardqueenlexi, JohnFulpWillard, san7890, Comxy, jlsnow301, SMOSMOSMOSMOSMO, Rhials:
+  - rscadd: 'Moby mają zdolności: karpie otwierają szczeliny, magikarpie rzucają czary,
+      strażnik i królowa ksenomorfów plują neurotoksyną, goliat wypuszcza macki, obserwator
+      ładuje spojrzenie, smok zieje ogniem i bije skrzydłami.'
+  - rscadd: Zwierzę ze zdolnością wykona polecenie „Użyj zdolności” (z menu albo głosem).
+  - rscadd: Żołnierze Syndykatu, Nanotrasen, Rosjanie i piraci wzywają posiłki, piraci
+      rabują przy ataku.
+  - rscadd: 'Moby górnicze z tg: władca roju z pomiotami, legion przejmujący ciała,
+      goliat do ujeżdżenia, obserwator i bazyliszek, złoty pędrak zjadający rudę.'
+  - rscadd: Klauni oddają całą grupą, ludzka muchołówka oplata winoroślą, mimiki kopiują
+      przedmioty i maszyny, świetlik leczy dotykiem.
+  - balance: Na wrogich okrętach do abordażu jest mniej przeciwników, ale wszyscy
+      to KNPC.
+  - balance: Hiveboty i ksenomorfy strzelają w tempie z tg i nie trzymają już dystansu.
+  - bugfix: Sarna w bitrunningu przestaje uciekać po śmierci i gdy ktoś ją ciągnie.
+  - bugfix: Birdboat znowu je jedzenie.
+  - refactor: Karpie, hiveboty, gęsi, ksenomorfy, żołnierze, moby górnicze, klauni,
+      mimiki, smok i reszta prostych mobów przeniesione na basic moby.
   Joker66613:
   - rscadd: 'Pęknięta i wgnieciona czaszka: głowa wygina się jak przy rozłupanej czaszce,
       a rana co jakiś czas daje uraz mózgu, aż kość się zrośnie.'
@@ -888,6 +906,11 @@
       kręgosłup zamiast paraliżować na stałe.
   - imageadd: Na postaci widać bandaże, szyny, gorset i halo, kikuty i otwartą czaszkę
       przy operacji (sprite'y z tgstation i cmss13).
+  - tweak: Adrenalina i epinefryna to teraz jeden reagent, Epinefryna. Nadnercza i
+      autostrzykawka z adrenaliną podają epinefrynę, a każda epinefryna tłumi ból,
+      przy dużej dawce kończy się zmęczeniem, a kolejne dawki działają słabiej.
+  - rscdel: Usunięto osobny reagent Adrenalina i jego recepturę (epinefryna + cukier
+      + sól).
   sh4dow321:
   - rscadd: 'Stanowisko rozpoznania na mostku sześciu okrętów: operator steruje radarem,
       teleskopem, podczerwienią i nasłuchem i przekazuje cele mostkowi.'
@@ -923,3 +946,530 @@
       do końca rundy.
   - bugfix: Zasięg śledzenia radaru nie podwaja się na stałe przy dwóch impulsach
       tuż po sobie.
+'2026-11-13':
+  Joker66613:
+  - bugfix: Restart serwera przed załadowaniem mapy nie zapisuje już pustej mapy gwiazd
+      i nie sypie błędem.
+  - bugfix: Magnes złomowy nie ładuje drugiego wraku na już przyciągnięty.
+  - bugfix: Pożar podłogi nie wywołuje błędu przy przedmiotach wypadających z usuwanego
+      ciała.
+  - spellcheck: Zupa z łez klauna ma inną nazwę niż napój Łzy klauna.
+  - bugfix: 'Trwała struktura statku: po wczytaniu zapisu i na starcie rundy gra łata
+      pianką każdą dziurę w kadłubie, której nie było na mapie, także taką, której
+      nie objął sam zapis. Załatane pola trafiają do logu dla adminów.'
+  - rscadd: 'Gangi: osobiste punkty zamiast wpływów, przychód dla każdego członka
+      (+25% dla zarabiającego).'
+  - rscadd: 'Gangi: teren z kafelków wokół znaku, dochód co 15 s zależny od ruchu
+      ludzi w pobliżu.'
+  - rscadd: 'Gangi: szafka gangu (sklep, skup gotówki, broni i narkotyków, darmowe
+      mundury, przelewy, chowanie pod podłogę).'
+  - rscadd: 'Gangi: pełny mundur na własnym terenie daje więcej zdrowia i staminy,
+      bez munduru na terenie wroga traci się staminę.'
+  - rscadd: 'Gangi: zrzuty skrzyń z bronią ogłaszane gangom i torby z łupem.'
+  - rscadd: 'Gangi: szef wybiera nazwę i mundur gangu, po jego śmierci członek może
+      przejąć dowodzenie.'
+  - rscadd: 'Gangi: nowa broń biała w sklepie (nóż do rzucania, tasak, kij bejsbolowy,
+      tania katana).'
+  - rscdel: 'Gangi: ze sklepu znikają C4, Uzi, laser i granaty EMP.'
+  - balance: 'Gangi: Dominator kosztuje 20000 pkt, bez przejęcia wygrywa gang z najwyższym
+      wynikiem.'
+  - bugfix: 'Gangi: wpływy nie podwajają się już przy każdym raporcie.'
+  - bugfix: 'Gangi: implant nie przerabia członka własnego gangu, posiłki trafiają
+      do właściwego gangu i liczą się do limitu.'
+  - rscadd: 'Złomiarze: nowy event i antagonista średniej wagi wzorowany na Goonstation;
+      rozbierają okręt reklamatorem, pakują maszyny i sprzedają złom w terminalu S.R.O.K.A.'
+  - rscadd: 'Złomiarze: kapsuły desantowe na okręt, teleporter ręczny, gogle z cenami,
+      spawarka łukowa i sklep sprzętu za punkty złomu.'
+  - imageadd: Sprite'y sprzętu złomiarzy z Goonstation.
+  - rscadd: 'Złomiarze: okna terminalu S.R.O.K.A., konsoli kapsuł i roli złomiarza
+      oraz osobna preferencja roli „Złomiarz”.'
+  - rscadd: Wypróżnianie pokazuje typ stolca w skali bristolskiej. Typ zależy od diety
+      (warzywa i owoce kontra mięso, tłuszcz i słodycze), ruchu, nawodnienia, kawy
+      i ostrego jedzenia oraz nastroju, a po wypróżnieniu widać możliwe przyczyny.
+  - balance: Przy zaparciu potrzeba skorzystania z ubikacji rośnie wolniej, ale wypróżnienie
+      trwa dłużej. Przy biegunce potrzeba rośnie szybciej, a popuszczenie przychodzi
+      wcześniej. Wypróżnienie daje moodlet zależny od typu.
+  - rscadd: Typ stolca widać przy oględzinach kupy, a tooltip alertu potrzeby ostrzega
+      przed zaparciem albo biegunką.
+  - rscadd: 'Nawodnienie daje moodlety i zmienia regenerację staminy: premia przy
+      dobrym nawodnieniu, kara przy pragnieniu.'
+  - rscadd: 'Najedzenie ma więcej skutków: senność po przejedzeniu, burczenie w brzuchu,
+      drżenie rąk z głodu, szybsze gojenie siniaków po sytym posiłku.'
+  - rscadd: Cukier daje zastrzyk energii i spadek, kofeina przyspiesza regenerację
+      staminy, białko odbudowuje krew, tłuszcz dłużej syci, a mleko osłania żołądek.
+  - rscadd: 'Przyprawy mają zalety: sól zatrzymuje wodę, pieprz zbija obrzydzenie,
+      ostry sos tłumi ból. Danie doprawione ręcznie jest smaczniejsze.'
+  - rscadd: Urozmaicona dieta daje moodlet i trochę sytości.
+  - rscadd: Wrzody żołądka od śmieciowego jedzenia, smażonego, z automatów i słodkich
+      napojów gazowanych. Trzy stadia, widoczne w analizatorze zdrowia, leczone mlekiem,
+      nowym lekiem Omeprazol albo gastrektomią.
+  - balance: Kawa nawadnia słabiej niż woda i soki.
+  - rscadd: Skaner maszyn zapisuje schemat maszyny z tierem części, a czytnik schematów
+      wpisuje go do bazy sieci badań.
+  - rscadd: Flatpacker robi paczki z maszynami z płytki albo ze schematu z bazy; paczkę
+      rozkłada się multitoolem.
+  - rscadd: Pakownica maszyn składa działającą maszynę w paczkę razem z jej częściami.
+  - rscadd: Wózek na paczki mieści trzy paczki.
+  - rscadd: Nowy węzeł badań „Inżynieria wsteczna”.
+  - rscadd: W uplinku skaner i pakownica bez blokad, które biorą też uzbrojenie, konsole
+      okrętu i sprzęt ochrony.
+  - rscadd: Flatpacker, skaner, pakownica i czytnik schematów w paczce stoją w inżynierii
+      na mapach (poza Shrike).
+  - imageadd: Sprite'y flatpackera, paczki i wózka z tgstation oraz skanera, pakownicy
+      i czytnika z Goonstation.
+  - rscadd: Gdy serwer ma włączony syntezator mowy, przycisk ogłoszenia SI przyjmuje
+      dowolny tekst po polsku i czyta go głosem zamiast słów VOX.
+  - config: Nowe opcje AI_TTS_VOICE (głos ogłoszeń SI) i AI_TTS_FFMPEG (ffmpeg do
+      filtra brzmienia ogłoszeń) w squad_tts.txt; ogłoszenia SI zużywają wspólny z
+      drużynami limit znaków na rundę.
+  - bugfix: Przyciski HUD-u SI mieszczą się w widoku; po prawej stronie widoku SI
+      nie znikają już ściany i obiekty.
+  - rscadd: Na hełm hardsuitu można założyć czapkę (klik czapką w hełm lub kombinezon),
+      a Alt-klik ją zdejmuje.
+  - rscdel: Moduł stabilizatora czapki zniknął z gotowych hardsuitów i z czarnego
+      rynku, bo czapkę trzyma teraz sam hełm.
+  - rscadd: Seks na przycisk nagrany przez kamerę to zbrodnia „Publiczne obcowanie
+      płciowe” w aktach obojga uczestników.
+  - imageadd: Odchody wyglądają jak brązowe grudki, nie jak plama. Felinidzi zostawiają
+      fioletowy kopczyk, a biegunka rozbryzg.
+  - rscadd: 'Barykady kierunkowe: część strzałów od frontu przelatuje nad barykadą,
+      a strzelec tuż przy niej strzela nad nią.'
+  - rscadd: Kierunkowa barykada z worków z piaskiem i składana barykada metalowa (receptury
+      z worków i arkuszy metalu).
+  - balance: Drut kolczasty na barykadzie uniemożliwia przeskok. Barykadę poniżej
+      30% wytrzymałości wzmacniają 2 arkusze, potem naprawia spawarka. Metalowa barykada
+      ma 250 wytrzymałości, z plastali 550.
+'2026-11-14':
+  Joker66613:
+  - rscadd: 'XO może wysłać drużynę „Po sprzęt”: każdy członek dostaje znacznik przy
+      najbliższym automacie drużyny.'
+  - rscadd: Pager drużyny w szafce XO, do wydrukowania w autolathe i z konsoli drużyn
+      XO.
+  - rscadd: Mapę taktyczną w pagerze i konsoli XO można przesuwać przeciąganiem po
+      przybliżeniu.
+  - rscadd: Alt+klik na broni w ręce zabezpiecza ją albo odbezpiecza.
+  - rscadd: Prom Sabre na asteroidzie ląduje tam, gdzie wskaże pilot (kamera z obrysem),
+      a bez wyboru ląduje sam.
+  - rscadd: Tłumacz obcokrajowca tłumaczy języki antagonistów i kanały telepatyczne,
+      także bez słuchawki i po zmianie ciała.
+  - tweak: Odstęp między rozkazami liczy się osobno dla każdej drużyny.
+  - tweak: Sabre sam włącza tryb dokowania przy starcie, podpowiada, czemu nie dokuje,
+      i ostrzega przed skokiem okrętu.
+  - tweak: Drobne trafienie nie wywołuje już czerwonego pulsu bólu.
+  - bugfix: Prom Sabre zawsze wraca napędem FTL do swojego okrętu, także po skoku
+      okrętu.
+  - bugfix: Wybudzanie z kriostazy i inne ankiety duchów bez opcji „nigdy” znów przyjmują
+      zgłoszenia.
+  - bugfix: Z konsoli lasera obrony punktowej i wieżyczki przeciwlotniczej da się
+      wyjść.
+  - bugfix: Alarm promu nie gra już w kółko po lądowaniu.
+  - bugfix: Mniejsze lagi przy ruchu myszy z bronią w ręce.
+  - bugfix: Kałuża krwi nie jest już czerwonym kwadratem.
+  - bugfix: Na ekranie lobby nie zostaje biały prostokąt, a telewizor się nie zacina.
+  - bugfix: Augmentacja kończyny nie zostawia krwawienia na protezie, narzędzia mechaniczne
+      podpowiadają operacje.
+  - bugfix: Formatowanie mowy działa przy słuchawkach dowództwa.
+  - spellcheck: Opisy układów gwiezdnych, komunikaty utraty krwi i ogłoszenie starcia
+      flot po polsku; księga kultu po angielsku w wersji angielskiej.
+  - imageadd: Zbroja kultu z kapturem i szaty z runy mają sprite założonego kaptura;
+      nowy znacznik „Po sprzęt”.
+  - bugfix: 'Trawnik: drabina donikąd, śluzy i dostęp w cargo, szafy górników z nowymi
+      hardsuitami, dojście do Experimentora, pasy w robotyce.'
+  - bugfix: 'Von Neumann: recykler przyjmuje śmieci z taśmy, maszyna stertująca działa,
+      przycisk zsypu odpala mass driver; pasy w robotyce na Shrike i Padalcu.'
+  - soundadd: 'Ogłoszenia random eventów mają własne nagrania głosu SI zamiast ogólnego
+      „Uwaga!”: anomalie, migracje, burze, piraci, pożyczka promu, kryształowa inwazja,
+      zorza i inne.'
+  - soundadd: Ogłoszenia, które grały nagranie o czymś innym (bariera, anomalia magnetyczna,
+      fale rozstrajające, binglowie i inne), mają pasujące nagrania.
+  - bugfix: Ogłoszenie fali mięsoroidów i inwazji ksenomorfów ma znowu poprawny tytuł
+      zamiast nazwy dźwięku.
+'2026-11-15':
+  Joker66613:
+  - tweak: Tłumacz obcokrajowca pokazuje od razu bełkot z „…”, który przechodzi w
+      tłumaczenie w czacie i w dymku, gdy tylko przyjdzie. Tak samo kanały telepatyczne,
+      a OOC od razu pokazuje oryginał.
+  - tweak: 'Tłumacz działa u słuchacza: obcokrajowca rozumie tylko ten, kto nosi słuchawki
+      z czipem (mają go wszystkie słuchawki) albo ma tłumacza, a bez niego słyszy
+      bełkot. Obcokrajowiec mówi od razu po angielsku. Silikony mają tłumacza wbudowanego.'
+  - rscadd: Nowa preferencja „Preferowany silnik statku”. Na Atlasie, Trawniku i Padalcu
+      Główny Inżynier (a bez niego większość inżynierów) wybiera silnik na start rundy.
+  - code_imp: 'Narzędzia deweloperskie: profiler byond-tracy, podgląd okien TGUI,
+      obrazki zmian map i ikon, sterowanie klientem do testów i mock klient w testach
+      jednostkowych.'
+  - server: 'Nowa opcja CACHE_ASSETS w configu: ikony okien są zapisywane między rundami
+      tej samej wersji kodu, start świata krótszy o ponad 10 sekund.'
+  - code_imp: Szybsze liczenie hashy assetów przy starcie serwera.
+  - bugfix: Rury wymiany ciepła w świeżo wczytanych silnikach i ruinach nie sypią
+      już błędami, zanim złoży się ich sieć.
+  - bugfix: Wyimaginowany przyjaciel nie próbuje już wyglądać jak SI albo cyborg (błąd
+      przy powstawaniu).
+  - rscadd: 'Mapa gwiezdna z kafli hex: trzy sektory jak dotąd, połączone bramami;
+      każde przejście między kaflami to skok FTL.'
+  - rscadd: Skok kosztuje 1/3 naładowania napędu za kafel (2/3 przez bramę), po skoku
+      60 s chłodzenia; napęd zostaje włączony, dopóki starcza ładunku.
+  - rscadd: 'Nowe okno konsoli nawigacji: strefy frakcji, front, bramy, floty AI na
+      mapie, zasięg i koszt skoku.'
+  - rscadd: Floty AI przemieszczają się kafel po kaflu i widać je w drodze.
+  - rscadd: Okręt zaczyna rundę tam, gdzie skończył poprzednią; na koniec rundy wraca
+      do najbliższej przyjaznej stacji.
+  - rscadd: 'Kafle mapy mają teren: asteroidy, złomowiska, mgławice, burze, promieniowanie,
+      anomalie, karpie, tunele, czarne dziury, komety, pola minowe i nieznane sygnały.
+      Zagrożenie zatrzymuje skok na sobie.'
+  - rscadd: Wejście na kafel zawsze odpala event z jego puli, a postój na zagrożeniu
+      co 8–12 min kolejny. Losowe eventy spoza kafli to już tylko eventy statkowe.
+  - rscadd: '26 nowych eventów z innych kodów statkowych w pulach kafli: komety, drony,
+      wraki, kapsuły, burze, rozbłyski, anomalie bluespace, awarie grawitacji i tłumików,
+      atak na frachtowiec, wiadomości gospodarcze.'
+  - rscadd: 'Nowe eventy statkowe: wybuch rury zsypowej, zatkane i zalane ubikacje,
+      uszkodzenie APC, zakłócenie czujników kombinezonów, awaria grawitacji.'
+  - imageadd: Ikony terenu kafli w konsoli nawigacji (Shiptest, Baystation12, CEV-Eris).
+  - rscadd: 'Wojna frakcji na mapie: kopalnie, fabryki, stocznie i depoty, konwoje
+      po kaflach, sztaby NT, SolGov i Syndykatu wydające rozkazy flotom, piraci łupiący
+      konwoje i stacje handlowe.'
+  - rscadd: Dowódcy flot z rangami, cechami, bliznami i urazą do okrętu; zakładka
+      „Dowódcy” w konsoli nawigacji.
+  - rscadd: 'Mgła wojny w konsoli nawigacji: wrogie floty tylko w zasięgu sensorów,
+      sojuszników i placówek nasłuchowych.'
+  - imageadd: Ikony obiektów strategicznych na mapie (kopalnia, fabryka, stocznia,
+      depot, placówka, kwatera, stacja handlowa).
+  - rscadd: 'Wraca torpeda termojądrowa: jedna na rundę w skrzyni przy wyrzutni, strzał
+      w okręt albo strategicznie w kafel z konsoli nawigacji przy DEFCON 2.'
+  - rscadd: DEFCON sektora z napięcia wojny; frakcje AI odpalają atomówki na floty
+      i okręt gracza, a atomówkę w okręt da się zestrzelić.
+  - rscadd: Stacje handlowe sprzedają okręty eskorty AI, które skaczą za okrętem i
+      biją jego cele, a zbrojownia White Rapids torpedy termojądrowe.
+  - rscadd: Misje abordażu i Opuszczona stacja trafiają na losowe kafle sektora neutralnego,
+      część z nich płaci atomówką; skupiska anomalii do skanowania w polach anomalii.
+  - rscadd: Frakcje AI składają nowe atomówki w fabrykach, dopóki mają kwaterę główną.
+  - admin: 'Kopie kampanii mapy gwiezdnej (Server → Campaign Backups): automatyczna
+      po każdej rundzie, ręczna i przed resetem.'
+  - bugfix: Napęd Thirringa nie traci już całego ładunku, gdy żaden pylon nie działa,
+      a pylony wyłączają się po skoku.
+  - bugfix: Ukryte układy nie odsłaniają się już po zapisie kampanii.
+  - bugfix: System powrotu z pliku mapy nie nadpisuje już ścieżki mapy gwiezdnej.
+  - server: Położenie okrętu na mapie hex zapisuje się w config/starmap/hexmap.json
+      (obok starmap.json), a kopie kampanii w data/campaign_backups/.
+  - tweak: Floty AI zajmują układ dopiero po pokonaniu wrogiej floty, która w nim
+      stoi.
+  - balance: Atomówki AI powstają tylko z nadwyżki części w fabryce przy kwaterze,
+      najwyżej raz na 3 godziny; DEFCON rośnie wolniej.
+  - balance: Limit flot obejmuje wracających dowódców, SolGov zaczyna z flotą, Medea
+      ma stocznię, NT naciera też w sektorze Syndykatu, więcej konwojów i szybsze
+      fabryki.
+  - balance: Napad piratów zamyka stację handlową na 10 minut, tę samą stację najwyżej
+      raz na godzinę.
+  - rscadd: 'Wojna frakcji się kończy: Nanotrasen przegrywa po 2 rundach z rzędu bez
+      kwatery głównej, Syndykat po zdobyciu jego kwatery przez okręt gracza; następna
+      runda zaczyna nową kampanię.'
+  - balance: Wrogie floty przechwytują konwoje w sąsiednich kaflach, piraci mają więcej
+      flot, częściej napadają i zajmują słabe układy.
+  - balance: Każda kampania losuje frakcjom atuty, garnizony kwater są wyrównane,
+      a sztaby szturmują wrogie kwatery.
+  - rscadd: Kwaterę Syndykatu w Abassi zdobywa tylko okręt gracza; jej zdobycie kończy
+      wojnę zwycięstwem Nanotrasen.
+  - rscadd: Utrata kwatery Nanotrasen najpierw ewakuuje sztab do Argo, a załoga dostaje
+      misję odbicia kwatery z nagrodą; walka okrętu przy kwaterze wstrzymuje odliczanie
+      do przegranej.
+  - tweak: 'Misje trafiają w sensowne miejsca: abordaż okrętu na front, abordaż stacji
+      w głąb terenu Syndykatu, Opuszczona stacja w nieznany sygnał, ładunki do stacji
+      trzymanych przez NT, Armada w układ przy froncie; cele są w zasięgu i z dala
+      od siebie.'
+  - bugfix: Ikony kafli i obiektów na mapie FTL są czytelne (rysowane 1:1).
+  - code_imp: 'Wojna na mapie FTL mocno odciąża serwer: tura sztabów rozłożona na
+      tiki, pamiętane odległości, wspólne dane okna konsoli.'
+  - bugfix: Skok na kafel Outpost 45 nie kończy już rundy, misja abordażu stacji ma
+      kontratak, własna atomówka nie trafia okrętu gracza, a atomówki nie da się odpalić
+      w czarną dziurę.
+  - bugfix: Restart serwera w lobby i odtworzenie oblężenia po restarcie nie psują
+      już wojny frakcji; okręt nie zaczyna rundy przy wrogiej flocie.
+  - bugfix: Floty AI nie stoją w nieskończoność z rozkazem ataku, pościg znajduje
+      okręt na pustym kaflu, wyłącznik losowych eventów działa też na kafle.
+  - rscadd: 'Dysze okrętowe zamiast dekoracyjnych silników: ciąg zależy od działających
+      dysz, paliwo płynie rurą z atmosu, mieszanka plazmy z tlenem daje więcej ciągu,
+      zniszczone dysze naprawia się plastalą i palnikiem.'
+  - rscadd: 'Podział mocy okrętu w konsoli monitorowania zasilania: limity i priorytety
+      dla tarczy, silników, FTL, uzbrojenia, sensorów i pancerza.'
+  - rscadd: Cztery matryce sensorów na kadłubie każdego statku; zniszczona matryca
+      zostawia ślepą ćwiartkę radaru.
+  - rscadd: Maskowanie w generatorze tarczy (trwa, dopóki jest prąd) i widoczna bańka
+      tarczy na overmapie.
+  - rscadd: Kalibracja pylonów w konsoli FTL; zła kalibracja wydłuża ładowanie i zwiększa
+      ryzyko wypadku przy skoku.
+  - rscadd: 'Stół projektowy pocisków: własne projekty torped i rakiet z czterema
+      typami naprowadzania.'
+  - rscadd: 'Nowe głowice: rakieta zakłócająca, dyfuzor tarcz i sonda czujnikowa z
+      boją widoczną na DRADIS.'
+  - rscadd: Drużyna Echo dla pilotów i ochotników z dostępem do myśliwców i hangaru.
+  - rscadd: 'Zlecenia dla działów na stacjach handlowych: dostawy (w tym pełne pojemniki
+      amunicji), abordaż, ranni, zwłoki i goście w restauracji, z nagrodą dla działu
+      i premią dla załogi.'
+  - bugfix: Rury i mierniki wczytane w trakcie rundy (np. przy podmianie silnika)
+      nie sypią błędami, zanim zbuduje się sieć rur.
+  - tweak: Restauracja i bar przyjmują gości tylko na zlecenie stacji handlowej; terminal
+      pokazuje gości, zamówienia i zlecenie.
+  - imageadd: Sprite matrycy sensorów z Aurory.
+'2026-11-16':
+  Pockets-byte, Invictus282, Joker66613:
+  - rscadd: Rozkazy drużyny tłumaczą się przez DeepL dla członków, którzy czytają
+      w innym języku niż nadawca.
+  - rscadd: 'W kreatorze postaci jest opcja „Przydział do drużyny”: Automatycznie
+      albo wybrana drużyna, która ma pierwszeństwo przed zawodem.'
+  - tweak: Zapisane postacie wracają do przydziału „Automatycznie”.
+  - tweak: Patrzenie na kursor w trybie walki jest znowu domyślnie włączone.
+  - tweak: Okręty mają przedrostek AQ zamiast NSV.
+  - tweak: Kanał Inżynierii w radiu znowu jest pomarańczowy.
+  - bugfix: Amunicja na wózku znowu leży w równym stosie.
+  - rscadd: Kuźnia odlewa lekkie i ciężkie wkładki do pancerza z różnych materiałów.
+      Kamizelki, pancerze i hardsuity mają slot na wkładkę, która zużywa się od trafień.
+  - rscadd: Broń energetyczna nagrzewa się przy strzałach, zużywa soczewki i traci
+      strojenie. Chłodnice podprzestrzenne i magazyny ciepła z R&D pomagają ją utrzymać.
+  - balance: Nowe wartości fazerów, działa fazowego i laserowego systemu antyrakietowego
+      z oryginału.
+  - imageadd: Chłodnica i magazyn ciepła, stany przegrzania broni energetycznej.
+  - soundadd: Dźwięk przeciążenia broni energetycznej.
+  - rscadd: Za sterami statku jest radar w prawym górnym rogu i niski pasek z hamulcem,
+      sterowaniem, bronią, kadłubem i katapultą zamiast dużego panelu. Okno DRADIS
+      otwiera klik w radar.
+  - rscadd: Za sterami chowa się ekwipunek postaci, zostają dłonie, intencje i przyciski
+      akcji.
+  - tweak: Preferencja „Klasyczny panel sterowania” przywraca stary panel i samootwierające
+      się okno DRADIS.
+  - rscadd: Na statkach Syndykatu służą szturmowcy, medycy polowi, saperzy, wartownicy
+      i dowódca przy sterach z tajnymi dokumentami.
+  - balance: Załoga statku Syndykatu zależy od jego klasy, a szansa na granat odłamkowy
+      rośnie z trudnością i na statkach elitarnych.
+  - bugfix: Wdepnięcie w odchody zostawia brązowe ślady butów.
+  - rscdel: Formy odlewnicze, pudełko form i młot kowalski znikają z kuźni amunicji.
+  - rscadd: 'Piec łukowy ma okno: wyrób, materiał albo stop, klasa, koszt i właściwości
+      w jednym miejscu.'
+  - rscadd: Kowadło zastąpił młot mechaniczny, który sam wykuwa klasę I; wyższe klasy
+      wymagają kucia ręcznego.
+  - balance: Amunicja klasy I z kuźni szybciej zużywa broń, może ją zaciąć i psuje
+      działa okrętowe.
+  - imageadd: Młot mechaniczny (sprite z Paradise) i nowe sprite'y wkładek do pancerza.
+'2026-11-17':
+  Joker66613:
+  - bugfix: Śledzenie czasu serwera nie wyrzuca błędu, gdy przebiegnie dwa razy w
+      jednym ticku.
+  - bugfix: Usunięte myśliwce nie zostają już na liście statków w hangarze okrętu.
+  - bugfix: Przycisk „Informacje o roli” znika z ciała razem z rolą, także gdy postać
+      dostaje nową duszę.
+  - code_imp: Usunięta drużyna antagonistów usuwa swoje cele, a gang zabiera role
+      członkom; poprawione wycieki pamięci, przez które testy w CI trwały do 35 minut.
+  Smartkar, SELFHELL:
+  - rscadd: 'Botanika: 188 nowych roślin i odmian z tg, Goona, Baya, Paradise, Monke,
+      Nebuli, Yoga, Mojave Sun i Bubberstation, z automatu, z pieca radiacyjnego,
+      z mutacji od odczynnika, z artefaktów i z dzikiej flory planet.'
+  - rscadd: 'Planety: dzikie rośliny w każdym biomie (zbiór ręką, nasiona do tacki)
+      i obce nasiona w ruinach.'
+  - bugfix: Dzikie rośliny Lavalandu i planet zawsze owocują (losowa cecha nie przekracza
+      budżetu).
+  - rscadd: 'Mutacje od odczynnika: konkretny odczynnik w tacy zmienia roślinę w konkretną
+      odmianę (np. pomidor z krwią, pomidor z nikotyną).'
+  - rscadd: 'Kompostownik i farma dżdżownic do zrobienia z desek: nawóz bez chemii
+      i worki ziemi.'
+  - rscadd: 'Akwakultura: podłoże wodne i hodowla skorupiaków w tacy.'
+  - rscadd: Kapsuła ksenoflory 2×2 z własną atmosferą i 30 roślinami obcych światów
+      (gaz, odczynnik i temperatura według rośliny), płytka w R&D i skrzynia w zaopatrzeniu.
+  - rscadd: Artefakty ksenoarcheologii mogą mieć cechę wyrzucającą nasiona obcych
+      roślin.
+  - imageadd: Sprite'y plonów, nasion i kapsuły z innych kodów.
+  shiptest-ss13, TerraGov-Marine-Corps, tgstation:
+  - rscadd: 'Planety z lądowaniem: planeta wulkaniczna z burzami popiołu, rudami,
+      ruinami, roślinami i fauną z Shiptesta (siarkodemony, lawowe pędraki, nory i
+      rzadkie kryształowe bestie). Powierzchnia powstaje przy pierwszym lądowaniu
+      i znika po odlocie okrętu, jeśli nikt żywy na niej nie został.'
+  - rscadd: 'Prom z wnętrzem (Sabre) ląduje na planecie: pilot wybiera jedno z trzech
+      lądowisk i ustawia prom kamerą.'
+  - rscadd: Stanowisko rozpoznania skanuje planety (typ, atmosfera, zagrożenia).
+  - rscadd: 'Wyrzutnie kapsuł desantowych w hangarach i płytka w R&D: zrzut na lądowisko,
+      znacznik albo wybrane miejsce na planecie.'
+  - rscadd: Ostrzał planet z orbity ciężką bronią okrętu i lornetka taktyczna dowódcy
+      drużyny do wskazywania celu.
+  - rscadd: Misje „Badanie planety” (próbki i sonda), „Ewakuacja kolonii” (koloniści
+      z ról duchów albo NPC idący za załogą), „Próbki geologiczne” (wiertło na żyle
+      rudy) i „Głęboki odwiert” (próbka z żyły klasy 4).
+  - rscadd: 'Pięć ruin z Shiptesta na planetach wulkanicznych: Dynamitowa Dziura,
+      Zniszczona Fabryka, Rozbity Starwalker, Opuszczony Posterunek Nasłuchowy i Ostatni
+      Bastion Twardogłowych.'
+  - rscadd: Laserowe wiertło górnicze na żyłach rud z falami fauny i awariami oraz
+      georadarowy skaner górniczy.
+  - rscadd: Nieruchome anomalie na planetach, w tym nowa dusza plazmy.
+  - rscadd: 'Łupy z fauny planet: dziwny kryształ, Odczynnik kryształowy, kryształowe
+      serce, siarkowy pył i czujnik rud.'
+  - rscadd: Stałe planety w Tortudze, Ethorze, Bemike i Demon's Maw oraz jedna planeta
+      w każdym układzie generowanym.
+  - imageadd: Sprite'y terenu, roślin i fauny planet z Shiptesta oraz kapsuły desantowej
+      z TGMC.
+  - soundadd: Dźwięki startu i lądowania kapsuły desantowej z TGMC.
+  - bugfix: Neutralizowana anomalia zostawia rdzeń swojego typu, a nie zawsze ogólny.
+      Anomalie strumienia, grawitacyjna, bluespace i wirowa mają własne rdzenie.
+  - rscadd: 'Wszystkie typy planet z Shiptesta: lodowa, dżunglowa, skalista, białe
+      piaski, pustynna, mglista, oceaniczna, wodna, wysypisko, pole bitwy, księżyc,
+      pole asteroid, słaby sygnał, planety karłowate oraz gazowy i plazmowy olbrzym
+      z platformą i syfonem gazu. Typ planety zależy od rodzaju układu.'
+  - rscadd: Ruiny Shiptesta na każdym typie planety (ponad 50) i małe szablony terenu
+      (greeble).
+  - rscadd: 'Fauna planet z tg i Shiptesta: wilki, niedźwiedzie polarne i jaskiniowe,
+      demony lodowe, młode smoki lodowe, homarzyska, śnieżne małpy, kapibary, mrówkolwy,
+      cragenoy, warianty goliatów i bazyliszków oraz automaty wysypisk.'
+  - rscadd: 'Pogoda planet: deszcze i burze z piorunami, śnieżyce, grad, burze piaskowe
+      i elektryczne, toksyczny deszcz i opad radioaktywny, z dźwiękami.'
+  - rscadd: 'Pływanie w głębokiej wodzie i wędkarstwo z minigrą (port z tg): wędki,
+      przynęta, łowiska na planetach i ryby na filety.'
+  - rscadd: 'Nowe anomalie z Shiptesta z rdzeniami: tętna, iskrząca, szumu, fontanny,
+      widmowa, topiąca, transfuzyjna, chronograf oraz ogromne wersje.'
+  - soundadd: Dźwięki deszczu, wiatru i grzmotów z Shiptesta.
+  - bugfix: 'Usunięte drzwi i alarmy powietrza nie zostają w pamięci. Kliknięcie ręką
+      podłogi pod otwartymi drzwiami je zamyka, jak było zaplanowane (chyba że coś
+      ciągniesz: wtedy przeciągasz to na pole drzwi).'
+'2026-11-18':
+  Joker66613:
+  - bugfix: Zniszczone okręty, floty, usunięte postacie, cyborgi i SI nie zostają
+      już w pamięci serwera.
+  - code_imp: Testy w CI nie szukają referencji przy każdym wycieku (bez kilkuminutowych
+      zamrożeń), a na końcu każdej części wypisują do logu obiekty, które nie zwolniły
+      się po usunięciu.
+  - bugfix: Misja na małej planecie zawsze dostaje punkt badawczy albo schron kolonii.
+  - code_imp: Krótsze testy planet w CI.
+  - code_imp: 'CI: mapy kompilują się w trzech równoległych częściach, części testów
+      mają podobny czas, a nowy push do PR-a anuluje przebieg poprzedniego commita.'
+  - bugfix: Zniszczony Sabre nie wysadza już wnętrza innego Sabre ani hangaru, w którym
+      tamten stoi.
+  - code_imp: Testy ze strzałem nie padają już losowo przez niewypał fabrycznego naboju.
+  - code_imp: Zaktualizowano biblioteki interfejsu z lukami bezpieczeństwa (m.in.
+      DOMPurify czyszczący HTML w oknach i czacie).
+  - rscadd: Trzylufowe działo pokładowe Yamato, moduł kalibracji działa, pociski Magneton
+      i Sparrowhawk oraz nowe badanie „Uzbrojenie okrętowe” z płytkami dział Gaussa,
+      VLS i działa pokładowego.
+  - rscadd: Moduły podkręcania studni nanonaprawczej (badania, Minsky, wyjmowanie
+      łomem) i inżynieryjna holomapa z alarmami na mostku i w inżynierii.
+  - rscadd: Układy FTL wkłada się do konsoli nawigacji i wybiera jeden bonus skoku;
+      układ warp u Minsky'ego i w badaniach.
+  - rscadd: Misje od handlarzy i reputacja u stacji ze zniżkami.
+  - rscadd: Wydarzenia „Samotny łowca” i „Szczury z pasa” na mapie galaktyki.
+  - rscadd: Kucharz zna przepis na głodny worek prochu.
+  - bugfix: Flak na Atlantis i flak okrętów AI strzela; płytka i amunicja flaku w
+      badaniach, amunicja w zaopatrzeniu.
+  - bugfix: Holomapa poza planem pokładu nie wywala błędu.
+  - code_imp: Cotygodniowe automatyczne aktualizacje zależności TGUI i akcji GitHub
+      (Dependabot).
+  - code_imp: CI ostrzega o nowych wolnych testach i o zbyt długiej kompilacji map.
+  - rscadd: Wyszukiwarka w autolathe, protolathe i innych fabrykatorach znajduje projekty
+      także po angielskiej nazwie.
+  - tweak: Przedmiot rzucony z ręki leci od rzucającego, zamiast pojawiać się od razu
+      kilka pól dalej.
+  - rscadd: W klatce xenobio może się pojawić uśpiony pradawny horror, którego może
+      przejąć duch.
+  - rscadd: 'Opcja postaci „Chcę być celem antagonistów” w kreatorze postaci: antagoniści
+      wybierają takich graczy na cel w pierwszej kolejności.'
+  - rscadd: 'Czat głosowy po angielsku: gracz z angielską wersją gry dostaje stronę
+      po angielsku, a jego mowa jest rozpoznawana po angielsku.'
+  - balance: Pociski artylerii, łuski i ładunki burtowe oraz rdzeń działa plazmowego
+      robi kuźnia amunicji zamiast protolathe, po tym samym koszcie i badaniu.
+  - rscadd: Pociski artylerii i burtówki mają typy AP, HE i APHE; cargo sprzedaje
+      fabryczne pociski i łuski w trzech typach.
+  - rscadd: Korpus z kuźni ma rdzeń (obrażenia, przebicie, prędkość) i powłokę (efekt
+      specjalny); nowe efekty złota, diamentu, bluespace, miedzi i srebra.
+  - rscadd: Kuźnia railguna pokazuje obrażenia, przebicie i prędkość pocisku i kanistra
+      przed wykuciem.
+  - tweak: Stół projektowy pocisków przerabia silnik i naprowadzanie zamiast drukować
+      chip.
+  - balance: 'Sparrowhawk to ciężka rakieta: szybszy, zajmuje całą tubę VLS, droższa
+      głowica, paczka głowic w cargo.'
+  - balance: Magneton jest tylko do kupienia u handlarza.
+  - balance: 'Okręty AI mają grubość pancerza według klasy: HE odbija się od ciężkich
+      okrętów, AP przelatuje myśliwce i lekkie okręty na wylot, APHE jest na lekkie
+      i średnie.'
+  - rscdel: Kuźnia nie robi już obudów głowic, a wypełnienia zastąpiły typy pocisków.
+'2026-11-19':
+  Joker66613:
+  - rscadd: Szyny, kule, nożyce do amputacji, nanopasta, młotek neurologiczny, zestaw
+      ratownika, taśma medyczna, kroplówka z rur, astma z inhalatorem.
+  - rscadd: 'Nowe leki: paracetamol, tramadol, oksykodon, citalopram, paroksetyna,
+      metylofenidat, albuterol, nalokson.'
+  - rscadd: Uzależnienia z tg, zarazki i sterylność (autoklaw, zakażenie, sepsa),
+      puls i zatrzymanie krążenia, niedotlenienie mózgu, hipotermia i odmrożenia.
+  - rscadd: 'Nowe narządy: nerki, śledziona, jelita, nadnercza, krtań i syntezator
+      mowy; pęknięcia pęcherza i cewnik; przerwane nerwy.'
+  - rscadd: Zęby, pień mózgu po przeszczepie, zacinający się skafander, odbudowa tkanek
+      huska, balsamowanie, stos korowy jako warunek klonowania.
+  - rscadd: Implant tłumacza, augmenty z Bay (podskórny pancerz, mięśnie, wzmacniacz
+      celowania, nanity naprawcze, pazury i kusza w uplinku), pająk-robot z MMI.
+  - imageadd: Sprite'y narządów z Goonstation, augmentów i stosu korowego z Bay, zębów
+      z /vg/, pająka-robota z Paradise.
+  - rscadd: 'Trzustka: bez niej albo z niewydolną cukier spala się wolno i grozi hiperglikemia;
+      trzustka cybernetyczna.'
+  - rscadd: 'Przełyk: zadławienie kęsem i chwyt Heimlicha, bez przełyku nie da się
+      jeść ani pić, kwasy go parzą.'
+  - rscadd: 'Kręgosłup jako narząd: zniszczony paraliżuje nogi, przeszczepiony wymaga
+      połączenia pnia mózgu, kręgosłup tytanowy.'
+  - rscadd: 'Lewe i prawe płuco oraz nerka: wycięcie i przeszczep jednej strony.'
+  - imageadd: Sprite'y trzustki i połówek płuc i nerek z Goonstation.
+  - rscadd: 'SSV Fist of Sol strzeże bramy Romulus, a SGV Alicorn czai się w Veneto.
+      Obaj bossowie mają stałych dowódców (nemezis) w zakładce „Dowódcy”: pokonani
+      uciekają i wracają do swoich układów albo giną na całą kampanię.'
+  - bugfix: Flota SGV Alicorn nie ma już niszczyciela i krążownika Syndykatu, które
+      strzelały do Alicorna.
+  - rscadd: 'Komitet Powitalny Dolos jest trzecim nemezis: stoi w Dolos Remnants i
+      ściga okręt, który przeleci obok. Flota Pozostałość zniknęła z Oasis Fidei.'
+  - spellcheck: 'Wersja angielska: dopisano brakujące tłumaczenia około 600 tekstów
+      (konsola drużyn, okna, czat, ubrania NFZ, Orlenu i InPostu).'
+  - bugfix: Odległości w konsolach ognia i sensorów w wersji angielskiej są w „tiles”.
+  - bugfix: Podpowiedź D-Notice w Newscasterze nie pokazuje już ukośnika i wcięcia.
+  - code_imp: Nowy tekst bez angielskiego odpowiednika blokuje CI.
+'2026-11-20':
+  Joker66613:
+  - rscdel: 'Albuterol usunięty: atak astmy gasi teraz salbutamol, a inhalator salbutamolu
+      jest w automacie NanoMed i u astmatyków na start.'
+  - rscdel: Usunięte paroksetyna, metylofenidat, prowizoryczna szyna, młotek neurologiczny,
+      złote zęby i trzy medipeny (kwas salicylowy, oksandrolon, kwas pentetowy).
+  - rscdel: Usunięte implanty pazurów bojowych, kuszy w przedramieniu, wzmocnienia
+      mięśni i nanitów naprawczych. ERT dostaje ostrza modliszki, a apteczka robotów
+      nanopastę.
+  - rscdel: Płuca i nerki znowu są jednym narządem, bez osobnej lewej i prawej strony.
+  - tweak: Pęknięcia śledziony, pęcherza i jelit zastąpiło jedno uszkodzenie narządów
+      brzucha z jedną operacją zszycia, która naprawia też jelita i pęcherz.
+  - rscdel: Usunięte operacje odhuskowania, balsamowania i wyrywania zęba.
+  - tweak: Butelka tramadolu jest w szafce CMO, a autoklaw w medbayu każdego okrętu.
+  - tweak: Matryce sensorów mają stały zasięg i pobór, bez grzania i suwaka.
+  - tweak: Głowice na podczerwień gubią też okręty zamaskowane po staremu.
+  - tweak: Zlecenie „Pociski przeciwpancerne” przyjmuje pociski AP z kuźni i fabryczne.
+      Na mapach leżą fabryczne pociski AP.
+  - tweak: Silnik i naprowadzanie torpedy lub rakiety ustawia się multitoolem, z dostępem
+      do zbrojowni. Stół projektowy pocisków usunięty.
+  - rscdel: Rakietowa sonda czujnikowa usunięta, a torpedowa nazywa się teraz „boja
+      czujnikowa NTP-S”.
+  - tweak: Misje „Próbki geologiczne” i „Głęboki odwiert” połączone w jedną misję
+      „Odwiert”.
+  - rscdel: Czujnik rud z łupów fauny usunięty.
+  - code_imp: Usunięty martwy kod starych uzależnień i osierocone tłumaczenia.
+'2026-11-22':
+  Joker66613:
+  - bugfix: Wbudowana butla hardsuitu nie dusi już noszącego.
+  - bugfix: Matryce sensorów pobierają 5,4 kW zamiast 54 kW i nie rozładowują APC.
+  - bugfix: Na Atlantisie i Von Neumannie matryce sensorów w konserwacji mają wreszcie
+      APC i prąd.
+  - bugfix: Przy opuszczonej stacji pilot sam wybiera miejsce lądowania promu z obrysem,
+      więc wyjście nie trafia w ścianę.
+  - bugfix: Martwego VIP-a można ożywić i dowieźć, misja nie przepada od razu po jego
+      śmierci.
+  - bugfix: Menu lobby działa także po wejściu na serwer w trakcie jego startu.
+  - bugfix: Mapa FTL ma suwaki, a przycisk skoku nie chowa się w małym oknie.
+  - rscadd: Mapa FTL pokazuje floty w kolorach frakcji z liczbą okrętów i ma zakładki
+      Wojna oraz Legenda.
+  - rscadd: Pilot okrętu widzi, ile dysz działa i jaki jest ciąg.
+  - tweak: Za sterem okrętu jest klasyczny panel konsoli, widok myśliwca tylko w małych
+      jednostkach.
+  - tweak: Automaty pokazują nazwę przedmiotu nad półką.
+  - balance: Cykl autoklawu trwa 10 s zamiast 30 s.
+'2026-11-23':
+  Joker66613:
+  - bugfix: Okręty AI strzelające do innych okrętów AI znowu liczą pancerz po staremu,
+      więc bitwy flot AI nie ciągną się w nieskończoność.
+  - bugfix: Odłamki złota, zdzieranie płyt przez diament i przenikanie tarczy przez
+      bluespace nie omijają już grubości pancerza okrętów AI.
+  - bugfix: Pocisk, który odbił się od pancerza, nie rani wnętrza okrętu.
+  - balance: Powłoka z miedzi i srebra daje impuls EMP tylko przy trafieniu w okręt,
+      nie w amunicji ręcznej.

@@ -1,0 +1,8011 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"ab" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/pod/light,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"ac" = (
+/obj/machinery/firealarm/directional/north,
+/turf/open/floor/carpet/black,
+/area/ruin/unpowered/planet_waste/tradepost/barracks)
+"ah" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"al" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/wasteplanet,
+/area/lavaland/surface/outdoors)
+"an" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
+	dir = 4
+	},
+/obj/item/ammo_casing/spent,
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"ao" = (
+/turf/closed/wall/rust,
+/area/ruin/unpowered/planet_waste/cave)
+"aw" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4,
+/turf/open/floor/plating/asteroid/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"az" = (
+/obj/structure/grille,
+/turf/open/floor/plating/asteroid/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"aB" = (
+/obj/structure/extinguisher_cabinet/south,
+/obj/structure/chair{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/layer2{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/yellow{
+	color = "#BA9F6D";
+	alpha = 255
+	},
+/obj/effect/turf_decal/tile/brown{
+	dir = 8;
+	color = "#997C4F";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_waste/tradepost/barracks)
+"aC" = (
+/obj/machinery/shower{
+	dir = 1
+	},
+/obj/structure/curtain,
+/obj/structure/window/reinforced/tinted{
+	dir = 4
+	},
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"aD" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/ammo_casing/spent,
+/mob/living/basic/hivebot/rapid,
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"aH" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/clothing/head/cone,
+/obj/item/light/tube/broken,
+/turf/open/floor/plating/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"aX" = (
+/obj/effect/decal/cleanable/blood/old{
+	icon_state = "floor2-old"
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"aY" = (
+/obj/structure/lattice/catwalk,
+/turf/open/floor/plating/wasteplanet/rust,
+/area/ruin/unpowered/planet_waste/cave)
+"aZ" = (
+/obj/machinery/shower{
+	dir = 1
+	},
+/obj/structure/curtain,
+/obj/structure/window/reinforced/tinted{
+	dir = 8
+	},
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"bD" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/marker_beacon,
+/turf/open/floor/plating/wasteplanet/rust,
+/area/ruin/unpowered/planet_waste/cave)
+"bF" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
+	dir = 9
+	},
+/obj/structure/cable,
+/obj/structure/extinguisher_cabinet/east,
+/obj/machinery/light/small/broken,
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost)
+"bS" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"bU" = (
+/obj/machinery/meter,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4,
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost)
+"bW" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/layer2{
+	dir = 8
+	},
+/turf/open/floor/pod/light,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"bY" = (
+/obj/structure/barricade/wooden/crude,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"cf" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/stack/sheet/mineral/sandbags,
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/lavaland/surface/outdoors)
+"ch" = (
+/obj/effect/decal/cleanable/oil/streak{
+	icon_state = "streak5"
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"ci" = (
+/obj/item/radio,
+/turf/open/floor/plating/asteroid/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"cr" = (
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 4;
+	color = "#fb9700"
+	},
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"cu" = (
+/obj/structure/table,
+/obj/machinery/airalarm/directional/south,
+/obj/item/reagent_containers/food/drinks/mug/tea{
+	pixel_y = 6;
+	pixel_x = 2
+	},
+/turf/open/floor/pod/light,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"cw" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer4{
+	dir = 8
+	},
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"cB" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/layer2,
+/obj/structure/foamedmetal/iron,
+/turf/open/floor/carpet/black,
+/area/ruin/unpowered/planet_waste/tradepost/barracks)
+"cD" = (
+/obj/effect/decal/cleanable/blood/old{
+	icon_state = "drip2"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"cG" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/wood,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"cJ" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/machinery/door/airlock/engineering{
+	dir = 4;
+	name = "Inżynieria"
+	},
+/obj/structure/cable,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_waste/tradepost)
+"cM" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/oil/streak{
+	icon_state = "streak2"
+	},
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"cO" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 4;
+	color = "#444547"
+	},
+/obj/item/ammo_casing/spent,
+/obj/item/gun/ballistic/automatic/pistol{
+	pixel_y = 5;
+	pixel_x = -4
+	},
+/obj/effect/mob_spawn/human/corpse/nanotrasensoldier,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"cP" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4,
+/obj/structure/lattice/catwalk,
+/turf/open/floor/plating/wasteplanet/rust,
+/area/ruin/unpowered/planet_waste/cave)
+"cT" = (
+/obj/structure/rack,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 9
+	},
+/obj/effect/turf_decal/trimline/yellow/line{
+	dir = 8;
+	color = "#BA9F6D";
+	alpha = 255
+	},
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/item/storage/toolbox/ammo{
+	pixel_y = 2
+	},
+/obj/item/storage/toolbox/ammo{
+	pixel_x = 2;
+	pixel_y = 7
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_waste/tradepost/barracks)
+"cW" = (
+/obj/effect/decal/cleanable/blood/old{
+	icon_state = "floor7-old"
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/oil/streak,
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"da" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/holopad/secure,
+/mob/living/basic/hivebot/strong,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer2,
+/obj/effect/turf_decal/tile/yellow/fourcorners/contrasted{
+	color = "#BA9F6D";
+	alpha = 255
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer4,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_waste/tradepost/barracks)
+"db" = (
+/obj/effect/decal/cleanable/blood/old{
+	icon_state = "floor3-old"
+	},
+/obj/effect/decal/cleanable/blood/old{
+	icon_state = "floor2-old"
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"dg" = (
+/obj/item/airlock_painter/decal{
+	pixel_x = 7;
+	pixel_y = 3
+	},
+/turf/open/floor/plating/wasteplanet/rust,
+/area/ruin/unpowered/planet_waste/cave)
+"dn" = (
+/obj/machinery/button/door{
+	dir = 4;
+	pixel_x = -24;
+	pixel_y = 8;
+	id = "wtpw1"
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/layer2{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost/warehouse)
+"dz" = (
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/blood/old{
+	icon_state = "drip2"
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"dC" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_waste/tradepost/barracks)
+"dF" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
+	dir = 8
+	},
+/turf/open/floor/pod/light,
+/area/ruin/unpowered/planet_waste/tradepost)
+"dG" = (
+/obj/item/radio/intercom/directional/north,
+/obj/effect/turf_decal/siding/white/corner{
+	color = "#444547"
+	},
+/turf/open/floor/carpet/blue,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"dJ" = (
+/obj/machinery/atmospherics/components/binary/dp_vent_pump/layer4,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2,
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost/warehouse)
+"dL" = (
+/obj/structure/foamedmetal/iron,
+/turf/open/floor/plating/asteroid/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"dM" = (
+/turf/template_noop,
+/area/ruin/unpowered/planet_waste/cave)
+"dQ" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer4,
+/obj/machinery/light/small/broken,
+/turf/open/floor/pod/light,
+/area/ruin/unpowered/planet_waste/tradepost)
+"dW" = (
+/obj/structure/extinguisher_cabinet/south,
+/obj/structure/barricade/sandbags,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/layer2{
+	dir = 1
+	},
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"dZ" = (
+/obj/effect/decal/cleanable/blood/tracks,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent{
+	pixel_y = -8;
+	pixel_x = -7
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer2{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"eb" = (
+/obj/structure/barricade/sandbags,
+/obj/effect/decal/cleanable/blood/old{
+	icon_state = "drip2"
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer2{
+	dir = 1
+	},
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"eh" = (
+/obj/structure/girder/displaced,
+/turf/open/floor/plating/asteroid/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"el" = (
+/obj/effect/turf_decal/stripes/full,
+/obj/structure/ore_box,
+/obj/machinery/firealarm/directional/east,
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_waste/tradepost/warehouse)
+"en" = (
+/obj/machinery/firealarm/directional/south,
+/obj/structure/bookcase/random,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"eq" = (
+/obj/machinery/atmospherics/pipe/layer_manifold,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_waste/tradepost)
+"eA" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/wasteplanet/rust,
+/area/ruin/unpowered/planet_waste/cave)
+"eC" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/ship/techfloor{
+	dir = 1
+	},
+/obj/machinery/advanced_airlock_controller{
+	pixel_y = 26
+	},
+/obj/structure/sign/poster/official/safety_internals{
+	pixel_x = -28
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_waste/tradepost/barracks)
+"eG" = (
+/obj/structure/rack,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/thinplating/dark,
+/obj/effect/turf_decal/trimline/yellow/line{
+	dir = 6;
+	color = "#BA9F6D";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_waste/tradepost/barracks)
+"eI" = (
+/obj/structure/window/reinforced/fulltile,
+/obj/structure/grille,
+/obj/machinery/atmospherics/pipe/simple/green/visible,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_waste/tradepost)
+"eK" = (
+/obj/effect/decal/cleanable/blood/old{
+	icon_state = "drip2"
+	},
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/blood/old{
+	icon_state = "drip5"
+	},
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"eN" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/layer2{
+	dir = 8
+	},
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost/warehouse)
+"eO" = (
+/obj/structure/extinguisher_cabinet/south,
+/obj/item/bot_assembly/medbot,
+/turf/open/floor/pod/light,
+/area/ruin/unpowered/planet_waste/tradepost/barracks)
+"eR" = (
+/obj/machinery/door/airlock/mining{
+	name = "Magazyn"
+	},
+/obj/effect/turf_decal/stripes/line,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/layer_manifold,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_waste/tradepost/warehouse)
+"eW" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/gibspawner/robot,
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"eX" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"fb" = (
+/obj/item/ammo_casing/spent,
+/turf/open/floor/plating/wasteplanet/rust,
+/area/ruin/unpowered/planet_waste/cave)
+"fc" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer4,
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"fd" = (
+/obj/machinery/light/small/broken,
+/obj/machinery/holopad/secure,
+/turf/open/floor/carpet/orange,
+/area/ruin/unpowered/planet_waste/tradepost/barracks)
+"fg" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 5
+	},
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost)
+"fo" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
+	dir = 6
+	},
+/turf/open/floor/carpet/blue,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"fr" = (
+/obj/structure/extinguisher_cabinet/west,
+/obj/effect/decal/cleanable/robot_debris,
+/obj/effect/gibspawner/robot,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
+	dir = 6
+	},
+/obj/structure/table_frame,
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"fy" = (
+/obj/machinery/atmospherics/components/unary/passive_vent,
+/obj/effect/turf_decal/ship/techfloor,
+/turf/open/floor/plating/wasteplanet/rust,
+/area/ruin/unpowered/planet_waste/cave)
+"fF" = (
+/obj/structure/cable,
+/obj/machinery/door/poddoor/shutters{
+	dir = 8;
+	id = "wtpw2"
+	},
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_waste/tradepost/warehouse)
+"fH" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"fI" = (
+/obj/item/stack/sheet/mineral/sandbags{
+	amount = 3
+	},
+/obj/effect/turf_decal/caution{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/basic/hivebot/strong,
+/obj/structure/foamedmetal/iron,
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"fJ" = (
+/obj/item/stack/ore/titanium{
+	amount = 5
+	},
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"fO" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/flashlight/flare,
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/lavaland/surface/outdoors)
+"fQ" = (
+/obj/machinery/atmospherics/components/binary/pump/layer4{
+	dir = 1;
+	name = "dystrybucja do filtracji"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/machinery/light/small/broken{
+	dir = 8
+	},
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost)
+"fY" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4,
+/obj/effect/turf_decal/siding/white{
+	dir = 8;
+	color = "#444547"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"gg" = (
+/obj/structure/cable,
+/obj/structure/lattice/catwalk,
+/turf/open/floor/plating/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"gq" = (
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/item/ammo_casing/spent,
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"gs" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/machinery/door/airlock/engineering{
+	dir = 4;
+	name = "Inżynieria"
+	},
+/obj/structure/cable,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_waste/tradepost)
+"gz" = (
+/obj/structure/cable,
+/turf/open/floor/plating/asteroid/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"gD" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/lavaland/surface/outdoors)
+"gI" = (
+/obj/machinery/modular_computer/console/preset/civilian{
+	dir = 4
+	},
+/turf/open/floor/carpet/black,
+/area/ruin/unpowered/planet_waste/tradepost/barracks)
+"hf" = (
+/turf/closed/wall/rust,
+/area/ruin/unpowered/planet_waste/tradepost/barracks)
+"hh" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer2{
+	dir = 8
+	},
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost/warehouse)
+"hn" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 10;
+	color = "#BA9F6D";
+	alpha = 255
+	},
+/obj/effect/turf_decal/siding/thinplating/corner{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/thinplating/corner{
+	dir = 4
+	},
+/obj/item/stack/ore/iron,
+/obj/item/stack/ore/gold,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer4{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/yellow/warning{
+	dir = 1;
+	color = "#BA9F6D";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_waste/tradepost/barracks)
+"hr" = (
+/obj/structure/table_frame,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"hx" = (
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer2,
+/obj/structure/cable,
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost/warehouse)
+"hz" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/structure/closet{
+	pixel_x = 28
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/layer2,
+/obj/item/storage/backpack/duffelbag/med/surgery,
+/obj/item/storage/firstaid/radbgone,
+/obj/item/storage/firstaid/radbgone,
+/obj/item/reagent_containers/hypospray/medipen,
+/obj/item/reagent_containers/hypospray/medipen,
+/obj/item/reagent_containers/hypospray/medipen,
+/obj/item/reagent_containers/hypospray/medipen,
+/turf/open/floor/pod/light,
+/area/ruin/unpowered/planet_waste/tradepost/barracks)
+"hD" = (
+/obj/item/clothing/head/helmet{
+	pixel_y = 4;
+	pixel_x = 3
+	},
+/turf/open/floor/plating/asteroid/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"hJ" = (
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost/warehouse)
+"hL" = (
+/obj/structure/extinguisher_cabinet/east,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
+	dir = 9
+	},
+/turf/open/floor/carpet/blue,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"hM" = (
+/obj/structure/cable,
+/obj/structure/grille,
+/turf/open/floor/plating/asteroid/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"hZ" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4,
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"ic" = (
+/obj/effect/decal/cleanable/oil/streak{
+	icon_state = "streak4"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4,
+/obj/item/plate,
+/obj/effect/turf_decal/siding/white{
+	dir = 9;
+	color = "#444547"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"ih" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
+	dir = 10
+	},
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"ii" = (
+/obj/machinery/door/airlock{
+	dir = 4;
+	name = "Prysznice"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"ik" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/siding/wood,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"ip" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/yellow{
+	color = "#BA9F6D";
+	alpha = 255
+	},
+/obj/effect/turf_decal/tile/brown{
+	dir = 8;
+	color = "#997C4F";
+	alpha = 255
+	},
+/obj/structure/foamedmetal/iron,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_waste/tradepost/barracks)
+"iF" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/thinplating,
+/obj/effect/turf_decal/trimline/yellow/line{
+	color = "#BA9F6D";
+	alpha = 255
+	},
+/obj/structure/foamedmetal/iron,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_waste/tradepost/barracks)
+"iG" = (
+/obj/structure/bed/pod,
+/obj/machinery/light/small/broken{
+	dir = 1
+	},
+/obj/structure/curtain,
+/obj/item/bedsheet/brown,
+/turf/open/floor/carpet/black,
+/area/ruin/unpowered/planet_waste/tradepost/barracks)
+"iP" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2,
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"iS" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
+	dir = 1
+	},
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost/warehouse)
+"jc" = (
+/turf/template_noop,
+/area/template_noop)
+"jd" = (
+/obj/item/stack/sheet/mineral/sandbags{
+	pixel_y = 7
+	},
+/obj/effect/decal/cleanable/blood/old{
+	icon_state = "drip2"
+	},
+/obj/effect/decal/cleanable/blood/old{
+	icon_state = "drip3"
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"jh" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
+	dir = 5
+	},
+/obj/effect/turf_decal/tile/brown{
+	dir = 8;
+	color = "#997C4F";
+	alpha = 255
+	},
+/obj/effect/turf_decal/tile/yellow{
+	color = "#BA9F6D";
+	alpha = 255
+	},
+/obj/item/radio/intercom/directional/south,
+/obj/structure/foamedmetal/iron,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_waste/tradepost/barracks)
+"jl" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4,
+/obj/structure/lattice/catwalk,
+/turf/open/floor/plating/wasteplanet/rust,
+/area/ruin/unpowered/planet_waste/cave)
+"jv" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/asteroid/wasteplanet,
+/area/lavaland/surface/outdoors)
+"jJ" = (
+/obj/structure/table,
+/obj/effect/turf_decal/siding/white/corner{
+	dir = 1;
+	color = "#444547"
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"jM" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"jS" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/lattice/catwalk,
+/turf/open/floor/plating/wasteplanet/rust,
+/area/ruin/unpowered/planet_waste/cave)
+"jW" = (
+/obj/structure/table/wood,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"kb" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/foamedmetal/iron,
+/turf/open/floor/plating/wasteplanet/rust,
+/area/ruin/unpowered/planet_waste/cave)
+"kj" = (
+/obj/item/bedsheet/hos{
+	name = "prześcieradło przodownika"
+	},
+/obj/structure/bed/pod,
+/obj/structure/curtain,
+/obj/machinery/light/small/broken{
+	dir = 1
+	},
+/turf/open/floor/carpet/orange,
+/area/ruin/unpowered/planet_waste/tradepost/barracks)
+"ks" = (
+/obj/machinery/atmospherics/pipe/layer_manifold/visible,
+/obj/machinery/airalarm/directional/west,
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost)
+"kw" = (
+/obj/item/flashlight/flare{
+	pixel_x = 8;
+	pixel_y = -2
+	},
+/turf/open/floor/plating/asteroid/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"kz" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/barricade/wooden/crude,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_box/magazine/pistolm9mm{
+	start_empty = 1;
+	pixel_x = -9;
+	pixel_y = -3
+	},
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"kA" = (
+/obj/effect/decal/cleanable/oil/streak{
+	icon_state = "streak2"
+	},
+/turf/open/floor/plating/wasteplanet/rust,
+/area/ruin/unpowered/planet_waste/cave)
+"kB" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"kG" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/radio/intercom/directional/east,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
+	dir = 9
+	},
+/obj/structure/foamedmetal/iron,
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"kN" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/white{
+	dir = 1;
+	color = "#444547"
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"kP" = (
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/stack/sheet/cardboard,
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"kR" = (
+/turf/open/floor/plating/asteroid/wasteplanet,
+/area/lavaland/surface/outdoors)
+"kS" = (
+/obj/structure/cable,
+/turf/open/floor/plating/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"ld" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/airalarm/directional/east,
+/turf/open/floor/carpet/black,
+/area/ruin/unpowered/planet_waste/tradepost/barracks)
+"ll" = (
+/obj/effect/turf_decal/siding/white{
+	color = "#444547"
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost/warehouse)
+"lv" = (
+/obj/effect/turf_decal/caution{
+	dir = 1
+	},
+/obj/machinery/firealarm/directional/east,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2,
+/obj/item/clothing/head/soft/sec,
+/turf/open/floor/pod/light,
+/area/ruin/unpowered/planet_waste/tradepost/barracks)
+"lx" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/ammo_casing/spent,
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"lB" = (
+/obj/effect/turf_decal/siding/thinplating,
+/obj/effect/turf_decal/trimline/yellow/line{
+	color = "#BA9F6D";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_waste/tradepost/barracks)
+"lR" = (
+/obj/effect/turf_decal/ship/techfloor/corner,
+/obj/effect/turf_decal/ship/techfloor,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
+	dir = 6
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer4{
+	dir = 8
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_waste/tradepost/barracks)
+"lV" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2,
+/obj/structure/cable,
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost/barracks)
+"lW" = (
+/obj/effect/turf_decal/ship/techfloor/corner,
+/obj/effect/turf_decal/ship/techfloor,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
+	dir = 6
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
+	dir = 6
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_waste/tradepost/barracks)
+"lZ" = (
+/obj/structure/chair{
+	dir = 1
+	},
+/obj/structure/sign/poster/official/random{
+	pixel_x = -28
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"ma" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
+	dir = 9
+	},
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"mc" = (
+/obj/machinery/light/small/broken,
+/obj/machinery/shower{
+	dir = 8
+	},
+/obj/structure/toilet{
+	dir = 4;
+	pixel_x = -6
+	},
+/obj/machinery/button/door{
+	dir = 4;
+	pixel_y = 11;
+	pixel_x = -22;
+	normaldoorcontrol = 1;
+	specialfunctions = 3;
+	id = "but"
+	},
+/obj/structure/sink{
+	pixel_y = -2;
+	pixel_x = 14;
+	dir = 8
+	},
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost/barracks)
+"me" = (
+/obj/effect/decal/cleanable/blood/tracks,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent{
+	pixel_y = -11;
+	pixel_x = -3
+	},
+/obj/item/ammo_casing/spent{
+	pixel_y = -4
+	},
+/obj/item/paper/crumpled,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/layer2,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"mi" = (
+/obj/structure/sign/poster/official/safety_internals{
+	pixel_x = -28
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/advanced_airlock_controller{
+	pixel_y = 26
+	},
+/obj/structure/cable,
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost)
+"mq" = (
+/obj/machinery/atmospherics/pipe/simple/green/visible{
+	dir = 5
+	},
+/obj/structure/cable,
+/obj/effect/turf_decal/stripes/corner,
+/turf/open/floor/pod/light,
+/area/ruin/unpowered/planet_waste/tradepost)
+"ms" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 5;
+	color = "#BA9F6D";
+	alpha = 255
+	},
+/obj/effect/turf_decal/siding/thinplating,
+/obj/effect/turf_decal/trimline/yellow/line{
+	color = "#BA9F6D";
+	alpha = 255
+	},
+/obj/item/radio/intercom/directional/south,
+/obj/item/stack/ore/iron,
+/obj/structure/cable,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_waste/tradepost/barracks)
+"mu" = (
+/obj/structure/sign/poster/official/safety_internals{
+	pixel_x = -28
+	},
+/obj/machinery/atmospherics/components/binary/dp_vent_pump/layer4{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/advanced_airlock_controller{
+	pixel_y = 26
+	},
+/obj/structure/cable,
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost)
+"mA" = (
+/obj/effect/turf_decal/stripes/white/line{
+	color = "#fb9700"
+	},
+/obj/effect/turf_decal/caution{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"mC" = (
+/obj/machinery/stasis{
+	dir = 1
+	},
+/obj/machinery/airalarm/directional/north,
+/turf/open/floor/pod/light,
+/area/ruin/unpowered/planet_waste/tradepost/barracks)
+"mD" = (
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/plating/asteroid/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"mK" = (
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 8;
+	color = "#fb9700"
+	},
+/obj/structure/cable,
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"mO" = (
+/obj/machinery/power/apc/auto_name/east,
+/obj/machinery/door/window/westleft,
+/obj/structure/cable,
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"mW" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/ship/techfloor{
+	dir = 1
+	},
+/obj/machinery/advanced_airlock_controller{
+	pixel_y = 26
+	},
+/obj/machinery/atmospherics/components/binary/dp_vent_pump/layer4{
+	dir = 1
+	},
+/obj/structure/sign/poster/official/safety_internals{
+	pixel_x = -28
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_waste/tradepost/barracks)
+"mX" = (
+/obj/item/ammo_casing/spent,
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"mZ" = (
+/turf/closed/wall/rust,
+/area/ruin/unpowered/planet_waste/tradepost/warehouse)
+"ng" = (
+/obj/structure/table,
+/obj/machinery/light/small/broken{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/yellow{
+	color = "#BA9F6D";
+	alpha = 255
+	},
+/obj/effect/turf_decal/tile/brown{
+	dir = 4;
+	color = "#997C4F";
+	alpha = 255
+	},
+/obj/item/paper_bin{
+	pixel_y = 3;
+	pixel_x = 2
+	},
+/obj/item/pen{
+	pixel_y = 2;
+	pixel_x = 2
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_waste/tradepost/barracks)
+"nn" = (
+/obj/structure/window/reinforced/fulltile,
+/obj/structure/grille,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "tradepost_vanguard"
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_waste/tradepost/barracks)
+"nr" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/thinplating/corner{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/thinplating/corner,
+/obj/effect/turf_decal/trimline/yellow/warning{
+	color = "#BA9F6D";
+	alpha = 255
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2,
+/obj/structure/cable,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_waste/tradepost/barracks)
+"ns" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"nu" = (
+/obj/structure/sign/poster/official/safety_internals{
+	pixel_x = -28
+	},
+/obj/machinery/advanced_airlock_controller{
+	pixel_y = 26
+	},
+/obj/structure/cable,
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost)
+"nx" = (
+/obj/effect/turf_decal/siding/white{
+	color = "#444547"
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
+	dir = 9
+	},
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost/warehouse)
+"nD" = (
+/obj/machinery/door/airlock/medical{
+	name = "Ambulatorium";
+	welded = 1
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_waste/tradepost/barracks)
+"nG" = (
+/obj/item/stack/ore/iron{
+	amount = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2,
+/obj/structure/cable,
+/obj/machinery/door/airlock/security{
+	name = "Koszary"
+	},
+/obj/effect/turf_decal/stripes/line,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_waste/tradepost/barracks)
+"nN" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"nR" = (
+/obj/structure/rack,
+/obj/machinery/door/window/southright,
+/obj/structure/window/reinforced/tinted{
+	dir = 8
+	},
+/turf/open/floor/pod/light,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"og" = (
+/obj/effect/gibspawner/robot,
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"ot" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer2{
+	dir = 1
+	},
+/mob/living/basic/hivebot/range,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer4{
+	dir = 1
+	},
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"ov" = (
+/obj/machinery/atmospherics/pipe/manifold/green/visible{
+	dir = 8
+	},
+/obj/structure/sign/poster/contraband/random{
+	pixel_y = 28
+	},
+/obj/machinery/light/small/broken{
+	dir = 8
+	},
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost)
+"ow" = (
+/obj/machinery/airalarm/directional/west,
+/obj/effect/turf_decal/siding/thinplating{
+	dir = 10
+	},
+/obj/effect/turf_decal/trimline/yellow/line{
+	dir = 10;
+	color = "#BA9F6D";
+	alpha = 255
+	},
+/obj/structure/table,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_waste/tradepost/barracks)
+"oz" = (
+/obj/machinery/computer/mech_bay_power_console{
+	dir = 8
+	},
+/obj/item/radio/intercom/directional/south,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_waste/tradepost/warehouse)
+"oA" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
+	dir = 1
+	},
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"oD" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
+	dir = 4
+	},
+/obj/item/stack/ore/iron{
+	amount = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"oG" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/plating/asteroid/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"oM" = (
+/obj/effect/turf_decal/stripes/full,
+/obj/structure/extinguisher_cabinet/north,
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_waste/tradepost/warehouse)
+"oN" = (
+/obj/structure/cable,
+/obj/machinery/power/floodlight{
+	anchored = 1;
+	setting = 3
+	},
+/turf/open/floor/plating/wasteplanet/rust,
+/area/ruin/unpowered/planet_waste/cave)
+"oS" = (
+/obj/machinery/atmospherics/components/trinary/mixer/airmix,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_waste/tradepost)
+"oU" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"oZ" = (
+/obj/effect/turf_decal/stripes/full,
+/obj/structure/closet/crate,
+/obj/machinery/light/small/broken,
+/obj/item/food/donkpocket,
+/obj/item/food/donkpocket,
+/obj/item/food/donkpocket,
+/obj/item/food/donkpocket,
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_waste/tradepost/warehouse)
+"pb" = (
+/obj/item/stack/sheet/mineral/sandbags,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"pm" = (
+/obj/structure/sign/poster/official/safety_internals{
+	pixel_x = -28
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
+	dir = 6
+	},
+/obj/machinery/advanced_airlock_controller{
+	pixel_y = 26
+	},
+/obj/structure/cable,
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost)
+"pv" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/oil/streak{
+	icon_state = "streak2"
+	},
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"pP" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"pW" = (
+/obj/structure/door_assembly/door_assembly_sec,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer2{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/brown{
+	dir = 8;
+	color = "#997C4F";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_waste/tradepost/barracks)
+"qc" = (
+/obj/effect/turf_decal/tile/yellow{
+	dir = 5;
+	color = "#BA9F6D";
+	alpha = 255
+	},
+/obj/effect/turf_decal/siding/thinplating,
+/obj/effect/turf_decal/trimline/yellow/line{
+	color = "#BA9F6D";
+	alpha = 255
+	},
+/obj/machinery/light/small,
+/obj/structure/cable,
+/obj/item/chair,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_waste/tradepost/barracks)
+"qg" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 1
+	},
+/obj/structure/sign/poster/contraband/random{
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_waste/tradepost/barracks)
+"qA" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
+	dir = 6
+	},
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"qE" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/radio/intercom/directional/east,
+/obj/structure/foamedmetal/iron,
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"qP" = (
+/obj/effect/decal/cleanable/blood/old{
+	icon_state = "drip3"
+	},
+/turf/open/floor/plating/asteroid/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"re" = (
+/obj/effect/decal/cleanable/blood/old{
+	icon_state = "drip3"
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/ammo_casing/spent,
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"rf" = (
+/obj/machinery/door/airlock{
+	name = "Łazienka";
+	id_tag = "but"
+	},
+/obj/effect/turf_decal/stripes/line,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_waste/tradepost/barracks)
+"rg" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/ammo_casing/spent,
+/turf/open/floor/plating/asteroid/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"rk" = (
+/obj/effect/decal/cleanable/blood/old{
+	icon_state = "drip3"
+	},
+/obj/structure/foamedmetal/iron,
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"ru" = (
+/obj/item/kirbyplants/random,
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"rB" = (
+/obj/item/stack/sheet/mineral/sandbags,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/asteroid/wasteplanet,
+/area/lavaland/surface/outdoors)
+"rF" = (
+/obj/structure/cable,
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/pod/light,
+/area/ruin/unpowered/planet_waste/tradepost)
+"rG" = (
+/obj/item/stack/ore/gold,
+/turf/open/floor/plating/wasteplanet/rust,
+/area/ruin/unpowered/planet_waste/cave)
+"rI" = (
+/turf/closed/wall,
+/area/ruin/unpowered/planet_waste/tradepost)
+"rJ" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
+	dir = 5
+	},
+/obj/item/ammo_casing/spent,
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"rO" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/wasteplanet/rust,
+/area/ruin/unpowered/planet_waste/cave)
+"rQ" = (
+/obj/machinery/firealarm/directional/west,
+/obj/effect/turf_decal/siding/white/corner{
+	dir = 4;
+	color = "#444547"
+	},
+/turf/open/floor/carpet/blue,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"rR" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4,
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost/warehouse)
+"rV" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 9
+	},
+/obj/structure/table/wood,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"rX" = (
+/obj/structure/flora/ash/glowshroom,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/turf/open/floor/plating/asteroid/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"rZ" = (
+/obj/item/radio/intercom/directional/north,
+/obj/structure/closet/crate,
+/obj/effect/turf_decal/stripes/full,
+/obj/item/circuitboard/machine/space_heater,
+/obj/item/circuitboard/machine/space_heater,
+/obj/item/circuitboard/machine/space_heater,
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_waste/tradepost/warehouse)
+"sc" = (
+/turf/open/floor/pod/light,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"sh" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"sq" = (
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 8;
+	color = "#fb9700"
+	},
+/obj/effect/turf_decal/caution/stand_clear{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost/warehouse)
+"sr" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"sC" = (
+/obj/effect/decal/cleanable/oil,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"sH" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/pipe_dispenser,
+/turf/open/floor/plating/wasteplanet/rust,
+/area/ruin/unpowered/planet_waste/cave)
+"sI" = (
+/obj/machinery/door/poddoor/shutters{
+	dir = 8;
+	id = "wtpw1"
+	},
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_waste/tradepost/warehouse)
+"sJ" = (
+/obj/structure/cable,
+/turf/open/floor/plating/wasteplanet/rust,
+/area/ruin/unpowered/planet_waste/cave)
+"sS" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/basic/hivebot/range,
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"sW" = (
+/turf/closed/wall,
+/area/ruin/unpowered/planet_waste/cave)
+"tg" = (
+/obj/effect/decal/cleanable/molten_object/large,
+/obj/effect/decal/cleanable/blood/old,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/radio,
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"tq" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer4{
+	dir = 8
+	},
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost/warehouse)
+"tr" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"tt" = (
+/obj/mecha/working/ripley{
+	name = "APLU „Z Uprawnieniami na Wózek”"
+	},
+/obj/structure/sign/warning/nosmoking{
+	pixel_x = 28
+	},
+/obj/machinery/light/small/broken,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_waste/tradepost/warehouse)
+"tx" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"ty" = (
+/obj/item/clothing/head/cone,
+/turf/open/floor/plating/asteroid/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"tC" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/lattice/catwalk,
+/turf/open/floor/plating/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"tE" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/layer2{
+	dir = 8
+	},
+/obj/item/kirbyplants/random,
+/obj/item/paper/crumpled,
+/obj/item/plate,
+/obj/effect/turf_decal/siding/white{
+	dir = 1;
+	color = "#444547"
+	},
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"tG" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
+	dir = 9
+	},
+/obj/structure/cable,
+/obj/structure/extinguisher_cabinet/east,
+/obj/machinery/light/small/broken,
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost)
+"tQ" = (
+/obj/effect/turf_decal/stripes/full,
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_waste/tradepost/warehouse)
+"ua" = (
+/obj/item/radio/intercom/directional/north,
+/obj/effect/turf_decal/siding/white/corner{
+	dir = 8;
+	color = "#444547"
+	},
+/turf/open/floor/carpet/blue,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"ud" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost/warehouse)
+"ue" = (
+/obj/structure/foamedmetal/iron,
+/turf/open/floor/plating/wasteplanet/rust,
+/area/ruin/unpowered/planet_waste/cave)
+"uh" = (
+/obj/effect/turf_decal/stripes/full,
+/obj/structure/reagent_dispensers/fueltank,
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_waste/tradepost/warehouse)
+"uk" = (
+/obj/machinery/mech_bay_recharge_port,
+/obj/machinery/firealarm/directional/south,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_waste/tradepost/warehouse)
+"um" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/pen/fourcolor,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
+	dir = 4
+	},
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"un" = (
+/obj/structure/sign/poster/official/safety_internals{
+	pixel_x = -28
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer2{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/yellow{
+	dir = 1;
+	color = "#BA9F6D";
+	alpha = 255
+	},
+/obj/effect/turf_decal/tile/yellow{
+	color = "#BA9F6D";
+	alpha = 255
+	},
+/obj/effect/turf_decal/tile/brown{
+	dir = 8;
+	color = "#997C4F";
+	alpha = 255
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_waste/tradepost/barracks)
+"us" = (
+/obj/effect/decal/cleanable/blood/old{
+	icon_state = "drip3"
+	},
+/obj/effect/decal/cleanable/oil/streak{
+	icon_state = "streak2"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
+	dir = 5
+	},
+/turf/open/floor/plating/asteroid/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"ut" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/foamedmetal/iron,
+/turf/open/floor/plating/asteroid/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"ux" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
+	dir = 5
+	},
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost/warehouse)
+"uK" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/green/visible{
+	dir = 5
+	},
+/turf/open/floor/plating/asteroid/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"uL" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/wood{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"uU" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/wasteplanet/rust,
+/area/lavaland/surface/outdoors)
+"uV" = (
+/obj/effect/decal/cleanable/blood/old{
+	icon_state = "drip2"
+	},
+/obj/effect/decal/cleanable/blood/old{
+	icon_state = "drip1"
+	},
+/obj/structure/cable,
+/obj/machinery/advanced_airlock_controller{
+	pixel_x = -26;
+	pixel_y = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer2{
+	dir = 8
+	},
+/obj/structure/door_assembly/door_assembly_com,
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"va" = (
+/obj/effect/decal/cleanable/molten_object{
+	pixel_x = 4;
+	pixel_y = 5
+	},
+/obj/effect/decal/cleanable/molten_object{
+	pixel_x = 1;
+	pixel_y = -12
+	},
+/obj/effect/decal/cleanable/blood/old{
+	icon_state = "drip1"
+	},
+/obj/effect/mob_spawn/human/corpse/nanotrasensoldier{
+	head = null;
+	husk = 1
+	},
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"ve" = (
+/obj/machinery/atmospherics/pipe/manifold4w/green/visible,
+/obj/machinery/firealarm/directional/north,
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost)
+"vk" = (
+/obj/effect/decal/cleanable/blood/old{
+	icon_state = "drip2"
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/asteroid/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"vn" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/flora/ash/glowshroom,
+/obj/structure/cable,
+/turf/open/floor/plating/asteroid/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"vr" = (
+/obj/structure/cable,
+/obj/structure/reagent_dispensers/watertank,
+/turf/open/floor/plating/asteroid/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"vw" = (
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 8;
+	color = "#fb9700"
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"vy" = (
+/obj/effect/decal/cleanable/oil/streak{
+	icon_state = "streak2"
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
+	dir = 4
+	},
+/obj/item/stack/ore/iron{
+	amount = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"vE" = (
+/obj/structure/girder/displaced,
+/turf/open/floor/plating/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"vQ" = (
+/obj/structure/chair,
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/pod/light,
+/area/ruin/unpowered/planet_waste/tradepost)
+"vR" = (
+/obj/structure/foamedmetal/iron,
+/turf/open/floor/plating/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"vV" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 1;
+	color = "#444547"
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/layer2{
+	dir = 4
+	},
+/turf/open/floor/carpet/blue,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"vY" = (
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 6
+	},
+/obj/effect/decal/cleanable/blood/old{
+	icon_state = "drip3"
+	},
+/obj/effect/decal/cleanable/blood/old{
+	icon_state = "drip2"
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"wd" = (
+/obj/machinery/airalarm/directional/east,
+/obj/effect/turf_decal/siding/white{
+	dir = 1;
+	color = "#444547"
+	},
+/obj/structure/closet/crate/bin,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"wl" = (
+/obj/effect/turf_decal/stripes/full,
+/obj/machinery/portable_atmospherics/scrubber,
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_waste/tradepost/warehouse)
+"wq" = (
+/obj/machinery/airalarm/directional/west,
+/obj/item/ammo_casing/spent,
+/obj/effect/turf_decal/siding/white/corner{
+	dir = 4;
+	color = "#444547"
+	},
+/obj/effect/decal/cleanable/blood/splatter{
+	icon_state = "floor2"
+	},
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_box/magazine/pistolm9mm{
+	start_empty = 1;
+	pixel_x = -9;
+	pixel_y = -3
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"wE" = (
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/lavaland/surface/outdoors)
+"wM" = (
+/obj/structure/window/reinforced/fulltile,
+/obj/structure/grille,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"wP" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer4{
+	dir = 1
+	},
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"wU" = (
+/obj/effect/turf_decal/caution{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4,
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"wV" = (
+/obj/structure/cable,
+/obj/effect/turf_decal/stripes/full,
+/obj/machinery/power/rtg,
+/turf/open/floor/plating/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"wX" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/chair/office{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"xc" = (
+/obj/machinery/power/floodlight{
+	anchored = 1;
+	setting = 3
+	},
+/obj/structure/cable,
+/turf/open/floor/plating/wasteplanet/rust,
+/area/ruin/unpowered/planet_waste/cave)
+"xf" = (
+/obj/structure/table/wood,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/pen/fountain,
+/obj/machinery/newscaster/directional/west,
+/obj/item/paper/crumpled{
+	pixel_x = -5;
+	pixel_y = -9
+	},
+/obj/item/paper/crumpled{
+	pixel_x = 7;
+	pixel_y = -16
+	},
+/obj/item/stack/spacecash/c100{
+	pixel_y = 8;
+	pixel_x = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"xr" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/machinery/computer/operating,
+/obj/item/disk/surgery,
+/turf/open/floor/pod/light,
+/area/ruin/unpowered/planet_waste/tradepost/barracks)
+"xt" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line,
+/obj/item/stack/ore/iron{
+	amount = 5
+	},
+/obj/machinery/door/airlock/command/glass{
+	name = "Kopuła centralna"
+	},
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"xy" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/layer2{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/carpet/blue,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"xF" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
+	dir = 1
+	},
+/turf/open/floor/carpet/blue,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"xG" = (
+/obj/effect/decal/cleanable/blood/old{
+	icon_state = "floor4-old"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
+	dir = 4
+	},
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"xI" = (
+/turf/open/floor/plating/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"xJ" = (
+/obj/structure/marker_beacon,
+/turf/open/floor/plating/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"xT" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/yellow/filled/warning{
+	dir = 4;
+	color = "#BA9F6D";
+	alpha = 255
+	},
+/obj/machinery/door/window/brigdoor/eastright{
+	req_access_txt = "3"
+	},
+/obj/machinery/power/apc/auto_name/north,
+/obj/structure/cable,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_waste/tradepost/barracks)
+"yb" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/plating/asteroid/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"ye" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/ship/techfloor{
+	dir = 1
+	},
+/obj/machinery/advanced_airlock_controller{
+	pixel_y = 26
+	},
+/obj/structure/sign/poster/official/safety_internals{
+	pixel_x = -28
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_waste/tradepost/barracks)
+"ym" = (
+/obj/structure/table,
+/turf/open/floor/carpet/black,
+/area/ruin/unpowered/planet_waste/tradepost/barracks)
+"ys" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2,
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"yu" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/oil/streak{
+	icon_state = "streak2"
+	},
+/obj/effect/decal/cleanable/oil/streak{
+	icon_state = "streak5"
+	},
+/obj/effect/decal/cleanable/oil/streak{
+	icon_state = "streak4"
+	},
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"yC" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/ammo_casing/spent,
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"yE" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/ammo_casing/spent,
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"yJ" = (
+/obj/effect/turf_decal/siding/thinplating{
+	dir = 9
+	},
+/obj/effect/turf_decal/trimline/yellow/line{
+	dir = 9;
+	color = "#BA9F6D";
+	alpha = 255
+	},
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
+	dir = 4
+	},
+/obj/structure/table,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_waste/tradepost/barracks)
+"yW" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 1;
+	color = "#BA9F6D";
+	alpha = 255
+	},
+/obj/effect/turf_decal/tile/brown{
+	dir = 8;
+	color = "#997C4F";
+	alpha = 255
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
+	dir = 6
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_waste/tradepost/barracks)
+"zn" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/machinery/door/airlock/engineering{
+	dir = 4;
+	name = "Inżynieria"
+	},
+/obj/structure/cable,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_waste/tradepost)
+"zq" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/yellow{
+	dir = 6;
+	color = "#BA9F6D";
+	alpha = 255
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_waste/tradepost/barracks)
+"zv" = (
+/obj/item/light/tube/broken,
+/turf/open/floor/plating/asteroid/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"zx" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/oil/streak{
+	icon_state = "streak2"
+	},
+/obj/item/ammo_casing/spent,
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"zy" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/flashlight/flare,
+/turf/open/floor/plating/wasteplanet,
+/area/lavaland/surface/outdoors)
+"zA" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
+	dir = 4
+	},
+/obj/item/ammo_casing/spent,
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"zB" = (
+/obj/effect/turf_decal/stripes/full,
+/obj/machinery/portable_atmospherics/scrubber/huge/movable,
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_waste/tradepost/warehouse)
+"zH" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer4{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 8;
+	color = "#444547"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"zI" = (
+/obj/structure/grille,
+/turf/open/floor/plating/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"zL" = (
+/obj/effect/turf_decal/stripes/full,
+/obj/structure/closet/crate,
+/obj/item/stack/sheet/mineral/plasma/five,
+/obj/item/stack/sheet/mineral/plasma/five,
+/obj/item/stack/sheet/mineral/plasma/five,
+/obj/machinery/button/door{
+	dir = 4;
+	pixel_x = -24;
+	pixel_y = -8;
+	id = "wtpw1"
+	},
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_waste/tradepost/warehouse)
+"zM" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
+	dir = 4
+	},
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"zP" = (
+/obj/structure/foamedmetal/iron,
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"zR" = (
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 4;
+	color = "#fb9700"
+	},
+/obj/effect/turf_decal/caution/stand_clear{
+	dir = 8
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost/warehouse)
+"Ag" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/structure/spawner/hivebot,
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"Av" = (
+/obj/effect/decal/cleanable/blood/old{
+	icon_state = "drip4"
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4,
+/obj/effect/decal/cleanable/glass,
+/obj/structure/foamedmetal/iron,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"Ay" = (
+/obj/effect/turf_decal/siding/thinplating{
+	dir = 5
+	},
+/obj/effect/turf_decal/trimline/yellow/line{
+	dir = 5;
+	color = "#BA9F6D";
+	alpha = 255
+	},
+/obj/machinery/light/small/broken{
+	dir = 4
+	},
+/obj/structure/foamedmetal/iron,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_waste/tradepost/barracks)
+"AF" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2,
+/obj/machinery/light/small/broken{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4,
+/obj/machinery/advanced_airlock_controller{
+	pixel_x = -26
+	},
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost/warehouse)
+"AJ" = (
+/turf/closed/wall/rust,
+/area/ruin/unpowered/planet_waste/tradepost)
+"AP" = (
+/obj/structure/chair{
+	dir = 8
+	},
+/turf/open/floor/carpet/black,
+/area/ruin/unpowered/planet_waste/tradepost/barracks)
+"AU" = (
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 8;
+	color = "#fb9700"
+	},
+/obj/effect/turf_decal/caution{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/cable,
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost/warehouse)
+"AW" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 4;
+	color = "#BA9F6D";
+	alpha = 255
+	},
+/obj/effect/turf_decal/tile/brown{
+	color = "#997C4F";
+	alpha = 255
+	},
+/obj/machinery/newscaster/directional/north,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_waste/tradepost/barracks)
+"AZ" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/mob_spawn/human/corpse/assistant,
+/turf/open/floor/plating/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"Bc" = (
+/obj/effect/decal/cleanable/oil/streak{
+	icon_state = "streak2"
+	},
+/obj/effect/decal/cleanable/oil/streak{
+	icon_state = "streak4"
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer4{
+	dir = 1
+	},
+/obj/item/ammo_casing/spent,
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"Bh" = (
+/obj/item/clothing/head/cone,
+/turf/open/floor/plating/wasteplanet/rust,
+/area/ruin/unpowered/planet_waste/cave)
+"Bw" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
+	dir = 5
+	},
+/obj/effect/turf_decal/siding/thinplating/corner{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/thinplating/corner{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/yellow/warning{
+	dir = 1;
+	color = "#BA9F6D";
+	alpha = 255
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_waste/tradepost/barracks)
+"By" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 4;
+	color = "#444547"
+	},
+/obj/machinery/power/apc/auto_name/south,
+/obj/structure/cable,
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost/warehouse)
+"BA" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/holopad/secure,
+/mob/living/basic/hivebot/strong,
+/obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden/layer2,
+/obj/effect/turf_decal/tile/yellow/fourcorners/contrasted{
+	color = "#BA9F6D";
+	alpha = 255
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer4,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_waste/tradepost/barracks)
+"BC" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/ammo_casing/spent,
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"BD" = (
+/obj/effect/turf_decal/tile/yellow{
+	dir = 1;
+	color = "#BA9F6D";
+	alpha = 255
+	},
+/obj/effect/turf_decal/tile/brown{
+	dir = 8;
+	color = "#997C4F";
+	alpha = 255
+	},
+/obj/structure/closet/secure_closet/personal/cabinet,
+/obj/item/clothing/head/beret/sec,
+/obj/machinery/light/small/broken{
+	dir = 1
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
+/obj/item/clipboard,
+/obj/machinery/button/door{
+	pixel_y = -9;
+	pixel_x = -22;
+	dir = 4;
+	name = "blokada prywatności"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_waste/tradepost/barracks)
+"BE" = (
+/obj/structure/foamedmetal/iron,
+/turf/open/floor/carpet/black,
+/area/ruin/unpowered/planet_waste/tradepost/barracks)
+"BJ" = (
+/mob/living/basic/hivebot/range,
+/turf/open/floor/plating/asteroid/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"BO" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
+	dir = 9
+	},
+/obj/item/ammo_casing/spent,
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"BU" = (
+/obj/structure/cable,
+/obj/effect/turf_decal/stripes/full,
+/obj/machinery/power/rtg,
+/turf/open/floor/plating/wasteplanet/rust,
+/area/ruin/unpowered/planet_waste/cave)
+"BZ" = (
+/obj/effect/turf_decal/stripes/full,
+/obj/structure/reagent_dispensers/foamtank,
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_waste/tradepost/warehouse)
+"Cg" = (
+/obj/machinery/door/airlock/command{
+	dir = 4;
+	name = "Kwatera przodownika"
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "tradepost_vanguard";
+	dir = 8
+	},
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_waste/tradepost/barracks)
+"Cl" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost/warehouse)
+"Cn" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
+	dir = 1
+	},
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost/warehouse)
+"Cr" = (
+/mob/living/basic/hivebot/strong,
+/turf/open/floor/plating/wasteplanet/rust,
+/area/lavaland/surface/outdoors)
+"Ct" = (
+/turf/closed/wall,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"Cy" = (
+/obj/structure/barricade/sandbags,
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
+	},
+/obj/effect/turf_decal/stripes/corner{
+	dir = 4
+	},
+/turf/open/floor/plating/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"CA" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/siding/thinplating/corner{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/yellow/warning{
+	dir = 6;
+	color = "#BA9F6D";
+	alpha = 255
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2,
+/obj/structure/cable,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_waste/tradepost/barracks)
+"CG" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
+	dir = 5
+	},
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"CM" = (
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/blood/old{
+	icon_state = "drip5"
+	},
+/obj/structure/lattice/catwalk,
+/turf/open/floor/plating/wasteplanet/rust,
+/area/ruin/unpowered/planet_waste/cave)
+"CQ" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
+/obj/effect/turf_decal/siding/white{
+	dir = 4;
+	color = "#444547"
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"CR" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/asteroid/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"CU" = (
+/turf/closed/wall/rust,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"CY" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/oil/streak,
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"CZ" = (
+/obj/machinery/door/airlock/command/glass{
+	name = "Dostęp do holopadu"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"Da" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4,
+/obj/effect/turf_decal/siding/white{
+	dir = 4;
+	color = "#444547"
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"Db" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"Dd" = (
+/obj/effect/turf_decal/caution,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
+	dir = 1
+	},
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost/warehouse)
+"Di" = (
+/obj/structure/cable,
+/obj/structure/grille,
+/turf/open/floor/plating/wasteplanet/rust,
+/area/ruin/unpowered/planet_waste/cave)
+"Dr" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"Ds" = (
+/obj/effect/decal/cleanable/blood/old{
+	icon_state = "drip1"
+	},
+/obj/structure/foamedmetal/iron,
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"DC" = (
+/mob/living/basic/hivebot/strong,
+/turf/open/floor/plating/asteroid/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"DF" = (
+/obj/structure/bed,
+/obj/effect/turf_decal/siding/wood{
+	dir = 5
+	},
+/obj/item/bedsheet/red,
+/obj/structure/curtain,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"DP" = (
+/obj/machinery/light/small/broken{
+	dir = 1
+	},
+/obj/item/radio/intercom/directional/west,
+/obj/structure/closet/cabinet,
+/obj/item/clothing/head/soft/black,
+/obj/item/clothing/head/soft/black,
+/obj/item/clothing/head/soft/black,
+/obj/item/clothing/head/beret/sec,
+/obj/item/clothing/head/beret/sec,
+/obj/item/clothing/head/beret/sec,
+/obj/item/clothing/under/syndicate/skirt,
+/obj/item/clothing/under/syndicate,
+/obj/item/clothing/under/syndicate,
+/obj/item/clothing/shoes/combat,
+/obj/item/clothing/shoes/combat,
+/obj/item/clothing/shoes/combat,
+/turf/open/floor/carpet/black,
+/area/ruin/unpowered/planet_waste/tradepost/barracks)
+"Em" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/marker_beacon,
+/turf/open/floor/plating/wasteplanet/rust,
+/area/ruin/unpowered/planet_waste/cave)
+"Eq" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
+	dir = 8
+	},
+/obj/structure/table_frame,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"EC" = (
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"EG" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/stack/ore/gold,
+/turf/open/floor/plating/asteroid/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"EK" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/radio/intercom/directional/east,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
+	dir = 9
+	},
+/obj/structure/foamedmetal/iron,
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"Fb" = (
+/obj/machinery/atmospherics/pipe/simple/green/visible{
+	dir = 10
+	},
+/obj/machinery/meter,
+/obj/structure/cable,
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/turf/open/floor/pod/light,
+/area/ruin/unpowered/planet_waste/tradepost)
+"Fe" = (
+/obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/o2{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_waste/tradepost)
+"Fu" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/siding/wood,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"Fy" = (
+/obj/effect/turf_decal/stripes/full,
+/obj/structure/closet/crate,
+/obj/structure/sign/poster/official/safety_internals{
+	pixel_y = 30
+	},
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/item/circuitboard/machine/grounding_rod,
+/obj/item/circuitboard/machine/grounding_rod,
+/obj/item/circuitboard/machine/grounding_rod,
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_waste/tradepost/warehouse)
+"FA" = (
+/turf/open/floor/plating/wasteplanet/rust,
+/area/lavaland/surface/outdoors)
+"FH" = (
+/obj/machinery/door/airlock/security{
+	name = "Zbrojownia"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2,
+/obj/structure/cable,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_waste/tradepost/barracks)
+"FM" = (
+/obj/structure/sign/poster/contraband/random{
+	pixel_y = 28
+	},
+/obj/structure/foamedmetal/iron,
+/turf/open/floor/carpet/black,
+/area/ruin/unpowered/planet_waste/tradepost/barracks)
+"FQ" = (
+/obj/structure/rack,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/ammo_box/magazine/pistolm9mm{
+	pixel_x = 5
+	},
+/obj/effect/turf_decal/siding/thinplating/dark,
+/obj/effect/turf_decal/trimline/yellow/line{
+	color = "#BA9F6D";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_waste/tradepost/barracks)
+"FV" = (
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 9
+	},
+/obj/effect/decal/cleanable/blood/old{
+	icon_state = "drip3"
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/oil/streak{
+	icon_state = "streak2"
+	},
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"FZ" = (
+/obj/structure/table,
+/obj/effect/turf_decal/tile/yellow{
+	color = "#BA9F6D";
+	alpha = 255
+	},
+/obj/effect/turf_decal/tile/brown{
+	dir = 8;
+	color = "#997C4F";
+	alpha = 255
+	},
+/obj/effect/turf_decal/tile/brown{
+	dir = 4;
+	color = "#997C4F";
+	alpha = 255
+	},
+/obj/item/radio/off{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_waste/tradepost/barracks)
+"Gb" = (
+/obj/effect/turf_decal/siding/white{
+	color = "#444547"
+	},
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/carpet/blue,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"Gd" = (
+/turf/open/floor/pod/light,
+/area/ruin/unpowered/planet_waste/tradepost)
+"Gr" = (
+/obj/structure/barricade/sandbags,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"GD" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"GF" = (
+/obj/effect/decal/cleanable/blood/old{
+	icon_state = "floor3-old"
+	},
+/obj/effect/decal/cleanable/blood/old{
+	icon_state = "floor2-old"
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
+	dir = 1
+	},
+/obj/item/stack/ore/iron{
+	amount = 5
+	},
+/obj/machinery/atmospherics/components/binary/dp_vent_pump/layer4{
+	dir = 1
+	},
+/obj/machinery/light/small/broken{
+	dir = 8
+	},
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"GH" = (
+/obj/structure/sign/poster/contraband/c20r{
+	pixel_y = 28
+	},
+/obj/structure/foamedmetal/iron,
+/turf/open/floor/carpet/black,
+/area/ruin/unpowered/planet_waste/tradepost/barracks)
+"GP" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/barricade/wooden/crude,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"GQ" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/flora/ash/glowshroom,
+/turf/open/floor/plating/asteroid/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"GS" = (
+/obj/item/stack/ore/titanium{
+	amount = 5
+	},
+/turf/open/floor/plating/asteroid/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"GX" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/paper_bin,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4,
+/obj/item/plate,
+/obj/effect/turf_decal/siding/white/corner{
+	dir = 4;
+	color = "#444547"
+	},
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 1
+	},
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"GY" = (
+/obj/item/kirbyplants/random,
+/obj/effect/turf_decal/tile/yellow{
+	color = "#BA9F6D";
+	alpha = 255
+	},
+/obj/effect/turf_decal/tile/brown{
+	dir = 4;
+	color = "#997C4F";
+	alpha = 255
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_waste/tradepost/barracks)
+"Hb" = (
+/obj/machinery/button/door{
+	dir = 8;
+	pixel_y = -8;
+	pixel_x = 24;
+	id = "wtpw2"
+	},
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost/warehouse)
+"Hd" = (
+/obj/structure/cable,
+/obj/structure/lattice/catwalk,
+/turf/open/floor/plating/wasteplanet/rust,
+/area/ruin/unpowered/planet_waste/cave)
+"Hi" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/pod/light,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"Hj" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
+	dir = 9
+	},
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"Ht" = (
+/obj/structure/bookcase/random,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"Hy" = (
+/obj/machinery/atmospherics/pipe/simple/green/visible{
+	dir = 9
+	},
+/obj/effect/turf_decal/stripes/corner,
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost)
+"HI" = (
+/obj/machinery/atmospherics/components/binary/pump/layer2{
+	dir = 1;
+	name = "odpady do recyklingu"
+	},
+/obj/machinery/atmospherics/components/binary/pump/layer4{
+	dir = 1;
+	name = "dystrybucja do filtracji"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/machinery/light/small/broken{
+	dir = 8
+	},
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost)
+"HJ" = (
+/mob/living/basic/hivebot/range,
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"HO" = (
+/obj/effect/decal/cleanable/blood/old{
+	icon_state = "floor2-old"
+	},
+/obj/item/gun/ballistic/automatic/pistol/no_mag,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4,
+/obj/effect/turf_decal/siding/white{
+	dir = 8;
+	color = "#444547"
+	},
+/obj/item/ammo_box/magazine/pistolm9mm{
+	start_empty = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"HQ" = (
+/obj/effect/gibspawner/robot,
+/obj/machinery/atmospherics/components/binary/dp_vent_pump/layer4{
+	dir = 1
+	},
+/obj/machinery/light/small/broken{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2,
+/obj/structure/foamedmetal/iron,
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"Ib" = (
+/obj/machinery/button/door{
+	dir = 8;
+	pixel_y = 8;
+	pixel_x = 24;
+	id = "wtpw2"
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/layer2{
+	dir = 8
+	},
+/obj/item/circuitboard/machine/rad_collector,
+/obj/item/circuitboard/machine/rad_collector,
+/obj/structure/closet/crate,
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost/warehouse)
+"Io" = (
+/obj/structure/spawner/hivebot,
+/obj/structure/cable,
+/turf/open/floor/plating/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"IA" = (
+/obj/structure/flora/ash/glowshroom,
+/turf/open/floor/plating/asteroid/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"IB" = (
+/obj/item/flashlight/flare,
+/turf/open/floor/plating/asteroid/wasteplanet,
+/area/lavaland/surface/outdoors)
+"IE" = (
+/obj/item/radio/intercom/directional/north{
+	freerange = 1;
+	freqlock = 1;
+	frequency = 1347;
+	name = "krótkofalowy interkom IRMG"
+	},
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/tradepost/barracks)
+"IJ" = (
+/obj/structure/filingcabinet,
+/obj/item/radio/intercom/directional/east,
+/obj/machinery/newscaster/directional/north,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"IQ" = (
+/obj/effect/decal/cleanable/blood/old{
+	icon_state = "drip2"
+	},
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/blood/old{
+	icon_state = "drip5"
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"IS" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 5
+	},
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost)
+"IZ" = (
+/obj/machinery/shower{
+	dir = 1
+	},
+/obj/structure/curtain,
+/obj/structure/window/reinforced/tinted{
+	dir = 4
+	},
+/obj/structure/window/reinforced/tinted{
+	dir = 8
+	},
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"Jb" = (
+/obj/structure/barricade/sandbags,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
+	dir = 9
+	},
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"Jd" = (
+/obj/effect/decal/cleanable/blood/old{
+	icon_state = "floor6-old"
+	},
+/obj/effect/decal/cleanable/blood/old{
+	icon_state = "floor5-old"
+	},
+/obj/effect/decal/cleanable/blood/old{
+	icon_state = "floor2-old"
+	},
+/obj/effect/mob_spawn/human/corpse/nanotrasensoldier{
+	head = null;
+	husk = 1
+	},
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/gun/ballistic/automatic/pistol/no_mag{
+	pixel_y = 4
+	},
+/obj/item/ammo_box/magazine/pistolm9mm{
+	start_empty = 1
+	},
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"Jm" = (
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 8;
+	color = "#fb9700"
+	},
+/obj/effect/turf_decal/caution{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost/warehouse)
+"Ju" = (
+/obj/effect/gibspawner/robot,
+/turf/open/floor/plating/asteroid/wasteplanet,
+/area/lavaland/surface/outdoors)
+"Jv" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/wood{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
+	dir = 5
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"JF" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/door/poddoor/shutters{
+	dir = 8;
+	id = "wtpw2"
+	},
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_waste/tradepost/warehouse)
+"JM" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4,
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"JR" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"JV" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/layer2,
+/turf/open/floor/carpet/black,
+/area/ruin/unpowered/planet_waste/tradepost/barracks)
+"JY" = (
+/turf/closed/mineral/random/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"Ka" = (
+/obj/structure/table,
+/turf/open/floor/pod/light,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"Kb" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/ship/techfloor/corner{
+	dir = 1
+	},
+/obj/item/stack/ore/iron{
+	amount = 5
+	},
+/obj/machinery/atmospherics/components/binary/dp_vent_pump/layer4{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2,
+/obj/structure/cable,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_waste/tradepost/barracks)
+"Kj" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/clipboard,
+/obj/item/paper/crumpled,
+/obj/item/paper/crumpled,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4,
+/obj/structure/table_frame,
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"Kx" = (
+/mob/living/basic/hivebot/strong,
+/turf/open/floor/plating/asteroid/wasteplanet,
+/area/lavaland/surface/outdoors)
+"Ky" = (
+/obj/machinery/atmospherics/pipe/layer_manifold,
+/turf/closed/wall,
+/area/ruin/unpowered/planet_waste/tradepost)
+"Kz" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"KA" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/pen/fourcolor,
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_box/magazine/pistolm9mm{
+	start_empty = 1;
+	pixel_x = -9;
+	pixel_y = -3
+	},
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"KM" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/flashlight/flare,
+/turf/open/floor/plating/wasteplanet/rust,
+/area/ruin/unpowered/planet_waste/cave)
+"KP" = (
+/obj/effect/mob_spawn/human/corpse/nanotrasensoldier,
+/turf/open/floor/pod/light,
+/area/ruin/unpowered/planet_waste/tradepost/barracks)
+"KT" = (
+/obj/machinery/firealarm/directional/east,
+/turf/open/floor/pod/light,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"KY" = (
+/obj/effect/decal/cleanable/blood/old{
+	icon_state = "drip2"
+	},
+/obj/effect/decal/cleanable/blood/old{
+	icon_state = "drip1"
+	},
+/obj/structure/cable,
+/obj/machinery/advanced_airlock_controller{
+	pixel_x = -26;
+	pixel_y = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
+	dir = 1
+	},
+/obj/structure/door_assembly/door_assembly_com,
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"La" = (
+/turf/open/floor/plating/asteroid/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"Lf" = (
+/obj/item/stack/sheet/mineral/sandbags,
+/obj/structure/door_assembly/door_assembly_com,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"Li" = (
+/mob/living/basic/hivebot/strong,
+/obj/item/ammo_casing/spent,
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"Lm" = (
+/obj/effect/decal/cleanable/molten_object{
+	pixel_x = -10;
+	pixel_y = 9
+	},
+/obj/effect/decal/cleanable/molten_object{
+	pixel_x = 9;
+	pixel_y = -4
+	},
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"LA" = (
+/turf/closed/wall,
+/area/ruin/unpowered/planet_waste/tradepost/barracks)
+"LW" = (
+/turf/open/floor/plating/wasteplanet,
+/area/lavaland/surface/outdoors)
+"LZ" = (
+/obj/effect/decal/cleanable/oil/streak{
+	icon_state = "streak4"
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"Mb" = (
+/obj/machinery/door/poddoor/shutters{
+	dir = 8;
+	id = "wtpw1"
+	},
+/obj/structure/cable,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_waste/tradepost/warehouse)
+"Mc" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"Mg" = (
+/obj/item/stack/sheet/mineral/sandbags{
+	amount = 2
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/barricade/wooden/crude{
+	dir = 8
+	},
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"Mi" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
+	dir = 8
+	},
+/obj/structure/closet/crate,
+/obj/item/stack/cable_coil,
+/obj/item/stack/cable_coil,
+/obj/item/stack/cable_coil,
+/obj/item/stack/cable_coil,
+/obj/item/stack/cable_coil,
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost/warehouse)
+"Mm" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/thinplating{
+	dir = 9
+	},
+/obj/effect/turf_decal/trimline/yellow/line{
+	dir = 9;
+	color = "#BA9F6D";
+	alpha = 255
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/layer2,
+/obj/machinery/firealarm/directional/north,
+/obj/item/chair,
+/obj/structure/closet/crate/bin,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_waste/tradepost/barracks)
+"Mn" = (
+/obj/structure/barricade/sandbags,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"Mo" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/thinplating{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/yellow/line{
+	dir = 1;
+	color = "#BA9F6D";
+	alpha = 255
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_waste/tradepost/barracks)
+"MB" = (
+/obj/structure/filingcabinet,
+/obj/machinery/firealarm/directional/north,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"MN" = (
+/obj/structure/door_assembly/door_assembly_com,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line,
+/obj/machinery/atmospherics/pipe/layer_manifold,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"MW" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 9
+	},
+/obj/effect/turf_decal/stripes/corner,
+/turf/open/floor/plating/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"Nb" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2,
+/obj/structure/lattice/catwalk,
+/turf/open/floor/plating/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"Nc" = (
+/obj/effect/turf_decal/stripes/white/line{
+	color = "#fb9700"
+	},
+/obj/effect/turf_decal/caution{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"Ne" = (
+/obj/structure/cable,
+/obj/structure/floodlight_frame,
+/turf/open/floor/plating/asteroid/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"Nh" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/plating/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"Ni" = (
+/obj/structure/window/reinforced/fulltile,
+/obj/structure/grille,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"Nk" = (
+/obj/effect/decal/cleanable/blood/old{
+	icon_state = "drip2"
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer4{
+	dir = 8
+	},
+/obj/effect/gibspawner/robot,
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"Nl" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 1;
+	color = "#BA9F6D";
+	alpha = 255
+	},
+/obj/effect/turf_decal/tile/brown{
+	dir = 8;
+	color = "#997C4F";
+	alpha = 255
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_waste/tradepost/barracks)
+"Ns" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/machinery/door/airlock/engineering{
+	dir = 4;
+	name = "Inżynieria"
+	},
+/obj/structure/cable,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_waste/tradepost)
+"Nw" = (
+/obj/machinery/door/airlock{
+	dir = 4;
+	name = "Kwatera handlarza"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
+	dir = 4
+	},
+/obj/effect/mapping_helpers/airlock/locked,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"NA" = (
+/obj/structure/cable,
+/obj/structure/extinguisher_cabinet/east,
+/obj/machinery/light/small/broken,
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost)
+"NI" = (
+/obj/effect/turf_decal/siding/white{
+	color = "#444547"
+	},
+/obj/machinery/airalarm/directional/east,
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost/warehouse)
+"NK" = (
+/obj/machinery/atmospherics/pipe/simple/green/visible{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/table,
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/item/watertank{
+	pixel_x = 5;
+	pixel_y = 7
+	},
+/obj/item/clothing/mask/gas,
+/turf/open/floor/pod/light,
+/area/ruin/unpowered/planet_waste/tradepost)
+"NN" = (
+/obj/structure/cable,
+/obj/effect/turf_decal/stripes/full,
+/obj/structure/frame/machine,
+/turf/open/floor/plating/wasteplanet/rust,
+/area/ruin/unpowered/planet_waste/cave)
+"NS" = (
+/obj/structure/barricade/sandbags,
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/plating/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"NV" = (
+/obj/machinery/atmospherics/pipe/simple/green/visible{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/extinguisher_cabinet/south,
+/turf/open/floor/pod/light,
+/area/ruin/unpowered/planet_waste/tradepost)
+"NX" = (
+/obj/effect/decal/cleanable/oil/streak{
+	icon_state = "streak2"
+	},
+/obj/effect/decal/cleanable/oil/streak{
+	icon_state = "streak4"
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer4,
+/obj/item/ammo_casing/spent,
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"Ob" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"Oc" = (
+/obj/structure/table,
+/obj/item/storage/fancy/cigarettes/cigpack_robust{
+	pixel_y = 6;
+	pixel_x = -4
+	},
+/obj/item/storage/fancy/cigarettes/cigpack_robust{
+	pixel_x = 3;
+	pixel_y = -4
+	},
+/obj/item/storage/fancy/cigarettes/cigpack_mindbreaker{
+	pixel_y = 8;
+	pixel_x = 9
+	},
+/obj/item/storage/fancy/cigarettes/cigpack_cannabis{
+	pixel_x = -8;
+	pixel_y = -4
+	},
+/turf/open/floor/plating/wasteplanet/rust,
+/area/ruin/unpowered/planet_waste/cave)
+"Og" = (
+/obj/structure/chair{
+	dir = 1
+	},
+/obj/machinery/firealarm/directional/south,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"Oo" = (
+/obj/effect/decal/cleanable/molten_object/large,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"Ot" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/stack/ore/gold,
+/obj/machinery/atmospherics/pipe/layer_manifold,
+/obj/structure/cable,
+/obj/machinery/door/airlock/security{
+	name = "Koszary"
+	},
+/obj/effect/turf_decal/stripes/line,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/mapping_helpers/airlock/locked,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_waste/tradepost/barracks)
+"OB" = (
+/obj/machinery/light/small/broken{
+	dir = 4
+	},
+/turf/open/floor/pod/light,
+/area/ruin/unpowered/planet_waste/tradepost)
+"OE" = (
+/obj/structure/cable,
+/obj/structure/closet/secure_closet/engineering_welding,
+/obj/item/clothing/glasses/welding,
+/obj/item/weldingtool/largetank,
+/obj/item/weldingtool/largetank,
+/obj/item/storage/toolbox/mechanical,
+/turf/open/floor/pod/light,
+/area/ruin/unpowered/planet_waste/tradepost)
+"OF" = (
+/obj/structure/girder/displaced,
+/turf/open/floor/plating/wasteplanet/rust,
+/area/ruin/unpowered/planet_waste/cave)
+"OK" = (
+/obj/structure/cable,
+/obj/structure/closet/secure_closet/engineering_electrical,
+/obj/item/storage/toolbox/electrical,
+/obj/item/multitool,
+/obj/item/stack/sticky_tape,
+/turf/open/floor/pod/light,
+/area/ruin/unpowered/planet_waste/tradepost)
+"OL" = (
+/obj/item/stack/sheet/mineral/sandbags{
+	amount = 2
+	},
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"OT" = (
+/obj/structure/filingcabinet,
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"Pf" = (
+/obj/structure/barricade/wooden/crude,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"Pk" = (
+/obj/effect/decal/cleanable/blood/old{
+	icon_state = "drip2"
+	},
+/turf/open/floor/plating/asteroid/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"Pp" = (
+/obj/structure/lattice/catwalk,
+/turf/open/floor/plating/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"Pu" = (
+/obj/structure/marker_beacon,
+/turf/open/floor/plating/wasteplanet/rust,
+/area/ruin/unpowered/planet_waste/cave)
+"PA" = (
+/obj/effect/turf_decal/stripes/white/line{
+	color = "#fb9700"
+	},
+/obj/effect/turf_decal/caution/stand_clear{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"PB" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/plate,
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"PC" = (
+/obj/effect/turf_decal/caution{
+	dir = 8
+	},
+/obj/structure/cable,
+/obj/effect/mob_spawn/human/corpse/assistant,
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"PI" = (
+/obj/effect/turf_decal/ship/techfloor,
+/obj/effect/turf_decal/ship/techfloor,
+/obj/structure/closet{
+	pixel_x = 29
+	},
+/obj/item/clothing/mask/gas,
+/obj/item/clothing/mask/gas,
+/obj/item/clothing/mask/gas,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
+	dir = 9
+	},
+/obj/structure/cable,
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_waste/tradepost/barracks)
+"PT" = (
+/obj/item/paper/crumpled,
+/obj/structure/filingcabinet,
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"Qg" = (
+/obj/structure/rack,
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 10;
+	layer = 2.030
+	},
+/obj/effect/turf_decal/trimline/yellow/line{
+	dir = 10;
+	color = "#BA9F6D";
+	alpha = 255
+	},
+/obj/item/flashlight/flare{
+	pixel_y = 3;
+	pixel_x = -3
+	},
+/obj/item/flashlight/flare{
+	pixel_x = 8;
+	pixel_y = -2
+	},
+/obj/item/flashlight/flare{
+	pixel_x = 12;
+	pixel_y = 11
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_waste/tradepost/barracks)
+"Qi" = (
+/obj/structure/chair/fancy/plastic{
+	dir = 1
+	},
+/turf/open/floor/plating/asteroid/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"Qj" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/asteroid/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"Qo" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/cable,
+/obj/structure/floodlight_frame,
+/turf/open/floor/plating/wasteplanet/rust,
+/area/ruin/unpowered/planet_waste/cave)
+"Qq" = (
+/obj/effect/decal/cleanable/molten_object{
+	pixel_x = -10;
+	pixel_y = -1
+	},
+/obj/effect/decal/cleanable/molten_object{
+	pixel_x = 1;
+	pixel_y = 9
+	},
+/obj/effect/decal/cleanable/blood/old{
+	icon_state = "drip4"
+	},
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"Qs" = (
+/obj/structure/extinguisher_cabinet/east,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/layer2,
+/obj/structure/closet/crate/bin,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"Qt" = (
+/turf/closed/wall,
+/area/ruin/unpowered/planet_waste/tradepost/warehouse)
+"Qv" = (
+/obj/machinery/atmospherics/pipe/simple/green/visible{
+	dir = 10
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_waste/tradepost)
+"QG" = (
+/obj/effect/turf_decal/caution{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/effect/mob_spawn/human/corpse/assistant,
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"QW" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"Rj" = (
+/obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/n2{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_waste/tradepost)
+"Rm" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
+	dir = 4
+	},
+/obj/effect/gibspawner/robot,
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"Rr" = (
+/obj/item/cigbutt{
+	pixel_x = 8;
+	pixel_y = 5
+	},
+/obj/item/cigbutt{
+	pixel_y = 6;
+	pixel_x = -8
+	},
+/obj/item/cigbutt,
+/obj/structure/sign/warning/nosmoking{
+	pixel_y = 28
+	},
+/turf/open/floor/plating/asteroid/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"Ru" = (
+/turf/open/floor/plating/wasteplanet/rust,
+/area/ruin/unpowered/planet_waste/cave)
+"RA" = (
+/obj/effect/gibspawner/robot,
+/obj/machinery/light/small/broken{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2,
+/obj/structure/foamedmetal/iron,
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"RU" = (
+/obj/effect/decal/cleanable/blood/old{
+	icon_state = "drip2"
+	},
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"RX" = (
+/obj/machinery/light/small/broken{
+	dir = 8
+	},
+/obj/machinery/portable_atmospherics/scrubber/huge/movable,
+/obj/effect/turf_decal/stripes/full,
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_waste/tradepost/warehouse)
+"RY" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/oil/streak,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 9;
+	color = "#BA9F6D";
+	alpha = 255
+	},
+/obj/effect/turf_decal/siding/thinplating/corner{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/yellow/warning{
+	dir = 4;
+	color = "#BA9F6D";
+	alpha = 255
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer2{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_waste/tradepost/barracks)
+"Sh" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/table/wood,
+/obj/item/paper_bin{
+	pixel_y = 4;
+	pixel_x = -2
+	},
+/obj/item/reagent_containers/food/drinks/coffee{
+	pixel_x = -10;
+	pixel_y = -7
+	},
+/obj/item/paper/crumpled{
+	pixel_x = 5;
+	pixel_y = -1
+	},
+/obj/item/tape/random{
+	pixel_y = 7;
+	pixel_x = -6
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"Sj" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4,
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost/warehouse)
+"Sr" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"Sx" = (
+/obj/effect/turf_decal/tile/yellow{
+	dir = 4;
+	color = "#BA9F6D";
+	alpha = 255
+	},
+/obj/effect/turf_decal/tile/brown{
+	color = "#997C4F";
+	alpha = 255
+	},
+/obj/item/radio/intercom/directional/south,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/layer2{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_waste/tradepost/barracks)
+"Sz" = (
+/obj/item/clipboard,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
+	dir = 6
+	},
+/obj/item/radio/intercom/directional/west,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
+	dir = 4
+	},
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"SB" = (
+/obj/item/flashlight/flare,
+/turf/open/floor/plating/asteroid/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"SO" = (
+/obj/item/chair{
+	pixel_y = -4
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 1;
+	color = "#444547"
+	},
+/obj/item/gun/ballistic/automatic/pistol/no_mag{
+	pixel_y = 8;
+	pixel_x = 10
+	},
+/obj/effect/mob_spawn/human/corpse/assistant,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"SP" = (
+/obj/effect/decal/cleanable/oil/streak{
+	icon_state = "streak2"
+	},
+/obj/effect/decal/cleanable/oil/streak{
+	icon_state = "streak5"
+	},
+/obj/item/paper/crumpled,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
+	dir = 6
+	},
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"ST" = (
+/obj/effect/turf_decal/ship/techfloor/corner,
+/obj/effect/turf_decal/ship/techfloor,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer2{
+	dir = 8
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer4{
+	dir = 8
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_waste/tradepost/barracks)
+"Te" = (
+/obj/machinery/door/airlock/mining{
+	name = "Magazyn"
+	},
+/obj/effect/turf_decal/stripes/line,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_waste/tradepost/warehouse)
+"Tf" = (
+/obj/effect/decal/cleanable/molten_object{
+	pixel_x = 1;
+	pixel_y = -12
+	},
+/turf/open/floor/plating/asteroid/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"Ti" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/wood{
+	dir = 10
+	},
+/obj/structure/bed/dogbed{
+	name = "legowisko dla kota";
+	desc = "Wygodnie wyglądające legowisko dla kota. Można w nim nawet przypiąć zwierzaka, gdyby wysiadła grawitacja."
+	},
+/mob/living/basic/pet/cat/kitten{
+	name = "Biggles";
+	desc = "Dla ciebie pan Biggles."
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"Tl" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_waste/tradepost/barracks)
+"Tp" = (
+/obj/structure/extinguisher_cabinet/west,
+/obj/effect/turf_decal/caution{
+	dir = 1
+	},
+/obj/structure/sign/poster/official/safety_internals{
+	pixel_x = -28
+	},
+/obj/effect/decal/cleanable/blood/old{
+	icon_state = "drip1"
+	},
+/obj/effect/decal/cleanable/blood/old{
+	icon_state = "drip2"
+	},
+/obj/item/paper/crumpled,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2,
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"TC" = (
+/obj/effect/gibspawner/robot,
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/lavaland/surface/outdoors)
+"TM" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
+	dir = 6
+	},
+/obj/item/ammo_casing/spent,
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"TO" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/oil/streak{
+	icon_state = "streak2"
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer4{
+	dir = 4
+	},
+/obj/item/ammo_casing/spent,
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"TQ" = (
+/obj/machinery/atmospherics/pipe/simple/green/visible{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer4{
+	dir = 8
+	},
+/obj/structure/table,
+/obj/item/radio/off,
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost)
+"TW" = (
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"TX" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 9
+	},
+/turf/closed/wall,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"TZ" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
+	dir = 10
+	},
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"Uc" = (
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/blood/old{
+	icon_state = "drip2"
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/ammo_casing/spent,
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"Uh" = (
+/obj/structure/bed/pod,
+/obj/structure/curtain,
+/obj/item/radio/intercom/directional/east,
+/obj/item/bedsheet/brown,
+/turf/open/floor/carpet/black,
+/area/ruin/unpowered/planet_waste/tradepost/barracks)
+"Uj" = (
+/obj/effect/decal/cleanable/blood/tracks,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent{
+	pixel_y = -8;
+	pixel_x = -7
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
+	dir = 10
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"Us" = (
+/obj/structure/door_assembly/door_assembly_com,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"Ut" = (
+/obj/structure/barricade/sandbags,
+/obj/effect/turf_decal/stripes/end,
+/turf/open/floor/plating/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"Uu" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/flora/ash/glowshroom,
+/turf/open/floor/plating/asteroid/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"Ux" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/wood,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
+	dir = 5
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"UF" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 4;
+	color = "#444547"
+	},
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/carpet/blue,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"UJ" = (
+/obj/effect/decal/cleanable/blood/old{
+	icon_state = "drip2"
+	},
+/obj/effect/decal/cleanable/blood/old{
+	icon_state = "drip1"
+	},
+/obj/structure/cable,
+/obj/machinery/advanced_airlock_controller{
+	pixel_x = -26;
+	pixel_y = 10
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer2{
+	dir = 8
+	},
+/obj/structure/door_assembly/door_assembly_com,
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"UL" = (
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/blood/old{
+	icon_state = "drip3"
+	},
+/obj/effect/decal/cleanable/blood/old{
+	icon_state = "drip2"
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"UM" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/pod/light,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"UP" = (
+/obj/item/ammo_casing/spent{
+	pixel_y = -4;
+	pixel_x = -2
+	},
+/obj/item/ammo_casing/spent{
+	pixel_y = -7;
+	pixel_x = -9
+	},
+/obj/item/ammo_casing/spent{
+	pixel_y = -11;
+	pixel_x = -3
+	},
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent{
+	pixel_y = -8;
+	pixel_x = -7
+	},
+/obj/item/ammo_casing/spent{
+	pixel_y = -4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"US" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/gibspawner/robot,
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"Va" = (
+/obj/structure/barricade/sandbags,
+/obj/effect/turf_decal/stripes/line,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/plating/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"Vc" = (
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 4;
+	color = "#fb9700"
+	},
+/obj/effect/turf_decal/caution{
+	dir = 8
+	},
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost/warehouse)
+"Ve" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 8;
+	color = "#444547"
+	},
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/carpet/blue,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"Vm" = (
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"Vx" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/machinery/modular_computer/console/preset/civilian{
+	name = "mocny komputer do gier";
+	desc = "Wygląda na sprzęt z najwyższej półki. Choć pewnie zrobiło go Cybersun."
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"VK" = (
+/obj/effect/turf_decal/caution,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2,
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"VM" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"VX" = (
+/obj/item/flashlight/flare,
+/turf/open/floor/plating/wasteplanet/rust,
+/area/ruin/unpowered/planet_waste/cave)
+"VY" = (
+/obj/item/cigbutt{
+	pixel_y = 6
+	},
+/obj/item/cigbutt{
+	pixel_y = 4;
+	pixel_x = -11
+	},
+/obj/item/cigbutt{
+	pixel_y = -7;
+	pixel_x = -7
+	},
+/turf/open/floor/plating/asteroid/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"Wh" = (
+/obj/machinery/door/airlock{
+	dir = 4;
+	name = "Kwatera handlarza"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/effect/mapping_helpers/airlock/locked,
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"Wq" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/components/unary/vent_scrubber{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/pod/light,
+/area/ruin/unpowered/planet_waste/tradepost)
+"Wr" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/cable,
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"Wv" = (
+/obj/structure/closet/secure_closet/personal/cabinet,
+/obj/item/pet_carrier,
+/obj/item/clothing/suit/toggle/lawyer,
+/obj/item/clothing/under/misc/pj/red,
+/obj/item/clothing/under/rank/civilian/lawyer/black,
+/obj/item/clothing/mask/gas,
+/obj/item/clothing/under/shorts/blue{
+	name = "dżinsowe szorty";
+	desc = "być może najstraszniejsza rzecz, jaką kiedykolwiek widziano."
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"WB" = (
+/obj/structure/barricade/wooden/crude,
+/obj/item/clothing/shoes/laceup{
+	pixel_x = 1;
+	pixel_y = -5
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"WE" = (
+/obj/structure/extinguisher_cabinet/west,
+/obj/structure/rack,
+/obj/machinery/door/window/southleft,
+/obj/structure/window/reinforced/tinted{
+	dir = 4
+	},
+/obj/item/soap,
+/turf/open/floor/pod/light,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"WG" = (
+/obj/effect/decal/cleanable/oil/streak,
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"WJ" = (
+/obj/machinery/power/apc/auto_name/east,
+/obj/structure/cable,
+/turf/open/floor/pod/light,
+/area/ruin/unpowered/planet_waste/tradepost)
+"WT" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/trimline/yellow/corner{
+	dir = 1;
+	color = "#BA9F6D";
+	alpha = 255
+	},
+/obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_waste/tradepost/barracks)
+"Xa" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/stack/ore/gold,
+/obj/structure/cable,
+/turf/open/floor/plating/wasteplanet/rust,
+/area/ruin/unpowered/planet_waste/cave)
+"Xc" = (
+/obj/effect/decal/cleanable/blood/old{
+	icon_state = "drip2"
+	},
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"Xf" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/blood/tracks,
+/obj/item/paper_bin,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2,
+/obj/item/plate,
+/obj/item/ammo_casing/spent,
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"Xs" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
+	dir = 9
+	},
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"Xt" = (
+/obj/item/flashlight/flare,
+/turf/open/floor/plating/wasteplanet/rust,
+/area/lavaland/surface/outdoors)
+"XD" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/layer_manifold,
+/obj/effect/decal/cleanable/glass,
+/obj/machinery/door/airlock/command/glass{
+	name = "Kopuła centralna"
+	},
+/turf/open/floor/plasteel/tech,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"XL" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/plating/asteroid/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"XP" = (
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/turf/open/floor/plating/asteroid/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"XX" = (
+/obj/item/radio/intercom/directional/east,
+/obj/effect/turf_decal/ship/techfloor,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/layer2{
+	dir = 1
+	},
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost/barracks)
+"XY" = (
+/obj/structure/girder/displaced,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/wasteplanet/rust,
+/area/ruin/unpowered/planet_waste/cave)
+"Ya" = (
+/obj/machinery/holopad/secure,
+/obj/effect/turf_decal/box,
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"Yb" = (
+/obj/machinery/atmospherics/components/unary/passive_vent{
+	dir = 8
+	},
+/turf/open/floor/plating/wasteplanet/rust,
+/area/ruin/unpowered/planet_waste/cave)
+"Yg" = (
+/obj/structure/barricade/sandbags,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/paper/crumpled,
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"Yi" = (
+/turf/open/floor/carpet/black,
+/area/ruin/unpowered/planet_waste/tradepost/barracks)
+"Yr" = (
+/obj/machinery/door/airlock/command/glass{
+	dir = 4;
+	name = "Dostęp do holopadu"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"Yu" = (
+/obj/effect/gibspawner/robot,
+/obj/machinery/light/small/broken{
+	dir = 4
+	},
+/obj/structure/foamedmetal/iron,
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"Yw" = (
+/obj/effect/turf_decal/stripes/full,
+/obj/structure/reagent_dispensers/watertank,
+/turf/open/floor/pod/dark,
+/area/ruin/unpowered/planet_waste/tradepost/warehouse)
+"Yx" = (
+/obj/structure/cable,
+/obj/structure/grille,
+/turf/open/floor/plating/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"Yz" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/white/corner{
+	dir = 1;
+	color = "#444547"
+	},
+/turf/open/floor/carpet/blue,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"YD" = (
+/obj/structure/barricade/sandbags,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/plating/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"YE" = (
+/obj/structure/floodlight_frame,
+/turf/open/floor/plating/wasteplanet/rust,
+/area/ruin/unpowered/planet_waste/cave)
+"YG" = (
+/obj/machinery/light,
+/obj/structure/bookcase/random,
+/turf/open/floor/pod,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"YR" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"YX" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/marker_beacon,
+/turf/open/floor/plating/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"Zb" = (
+/obj/structure/cable,
+/turf/open/floor/concrete/pavement/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"Zn" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/kirbyplants/random,
+/obj/item/paper/crumpled,
+/obj/effect/mob_spawn/human/corpse/nanotrasensoldier{
+	head = null;
+	husk = 1
+	},
+/obj/machinery/light,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"Zq" = (
+/obj/structure/table/wood,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/obj/structure/sign/poster/contraband/random{
+	pixel_x = 29
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass{
+	pixel_x = 7;
+	pixel_y = -2
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/planet_waste/tradepost/center)
+"Zu" = (
+/obj/structure/barricade/sandbags,
+/obj/effect/turf_decal/stripes/end{
+	dir = 4
+	},
+/turf/open/floor/plating/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"Zy" = (
+/obj/machinery/atmospherics/pipe/simple/green/visible,
+/turf/open/floor/plating,
+/area/ruin/unpowered/planet_waste/tradepost)
+"ZE" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 10;
+	color = "#BA9F6D";
+	alpha = 255
+	},
+/obj/effect/turf_decal/siding/thinplating{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/yellow/line{
+	dir = 1;
+	color = "#BA9F6D";
+	alpha = 255
+	},
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
+	dir = 4
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/ruin/unpowered/planet_waste/tradepost/barracks)
+"ZH" = (
+/obj/machinery/atmospherics/pipe/layer_manifold,
+/turf/closed/wall,
+/area/ruin/unpowered/planet_waste/tradepost/barracks)
+"ZJ" = (
+/obj/item/stack/ore/titanium{
+	amount = 5
+	},
+/obj/item/clothing/head/cone,
+/turf/open/floor/plating/wasteplanet,
+/area/ruin/unpowered/planet_waste/cave)
+"ZO" = (
+/obj/machinery/atmospherics/pipe/simple/green/visible,
+/turf/closed/wall,
+/area/ruin/unpowered/planet_waste/tradepost)
+"ZW" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
+	dir = 9
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/planet_waste/tradepost/barracks)
+
+(1,1,1) = {"
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+wE
+wE
+wE
+kR
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+"}
+(2,1,1) = {"
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+JY
+JY
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+kR
+wE
+Xt
+wE
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+"}
+(3,1,1) = {"
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+JY
+JY
+JY
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+FA
+wE
+wE
+kR
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+"}
+(4,1,1) = {"
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+JY
+ao
+JY
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+kR
+wE
+FA
+wE
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+"}
+(5,1,1) = {"
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+JY
+ao
+JY
+JY
+jc
+jc
+JY
+JY
+JY
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+kR
+jv
+jv
+gD
+FA
+kR
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+"}
+(6,1,1) = {"
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+JY
+ao
+JY
+ao
+JY
+JY
+jc
+JY
+JY
+JY
+ao
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jv
+fO
+LW
+gD
+jv
+kR
+kR
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+"}
+(7,1,1) = {"
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+JY
+JY
+JY
+JY
+JY
+JY
+JY
+ao
+jc
+JY
+JY
+JY
+JY
+jc
+jc
+jc
+jc
+jc
+Ju
+kR
+kR
+Cr
+wE
+al
+kR
+al
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+"}
+(8,1,1) = {"
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+JY
+JY
+ao
+JY
+JY
+JY
+JY
+JY
+ao
+JY
+JY
+JY
+JY
+JY
+JY
+jc
+jc
+jc
+jc
+jv
+zy
+kR
+FA
+wE
+FA
+jv
+jv
+jv
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+"}
+(9,1,1) = {"
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+JY
+ao
+JY
+JY
+JY
+ao
+ao
+ao
+JY
+JY
+JY
+JY
+JY
+ao
+JY
+JY
+JY
+jc
+jc
+kR
+kR
+uU
+jv
+kR
+wE
+FA
+gD
+IB
+Ju
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+"}
+(10,1,1) = {"
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+JY
+JY
+JY
+JY
+ao
+sW
+sW
+ao
+La
+ao
+ao
+ao
+JY
+JY
+ao
+JY
+JY
+JY
+JY
+La
+La
+FA
+Kx
+Ju
+jv
+gD
+wE
+TC
+jv
+LW
+kR
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+"}
+(11,1,1) = {"
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+JY
+JY
+ao
+JY
+JY
+sW
+La
+La
+Ru
+La
+La
+La
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+NS
+NS
+Cy
+La
+FA
+kR
+gD
+fO
+wE
+rB
+kR
+JY
+JY
+JY
+JY
+JY
+JY
+JY
+jc
+jc
+jc
+jc
+jc
+jc
+"}
+(12,1,1) = {"
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+ao
+JY
+JY
+JY
+JY
+sW
+Ru
+La
+La
+La
+La
+IA
+La
+La
+Tf
+La
+dL
+dL
+dL
+ci
+TW
+Jd
+Va
+La
+La
+Vm
+pb
+Mc
+cf
+jv
+JY
+JY
+JY
+JY
+JY
+ao
+JY
+JY
+JY
+jc
+jc
+jc
+jc
+jc
+"}
+(13,1,1) = {"
+jc
+jc
+jc
+jc
+jc
+jc
+JY
+JY
+JY
+JY
+JY
+JY
+ao
+hf
+hf
+hf
+hf
+hf
+La
+Ru
+La
+La
+La
+dL
+dL
+dL
+kw
+Lm
+kP
+Zu
+La
+Vm
+Mc
+Mc
+MW
+Nh
+Ut
+sW
+sW
+ao
+JY
+JY
+JY
+JY
+JY
+JY
+JY
+jc
+jc
+jc
+jc
+"}
+(14,1,1) = {"
+jc
+jc
+jc
+jc
+jc
+jc
+ao
+JY
+JY
+ao
+JY
+LA
+LA
+LA
+hf
+xr
+KP
+hf
+hf
+LA
+hf
+LA
+LA
+LA
+dL
+dL
+hD
+La
+Uc
+JR
+BC
+Mc
+jM
+OL
+YD
+Ds
+rk
+dL
+dL
+ao
+ao
+ao
+JY
+JY
+ao
+JY
+JY
+JY
+jc
+jc
+jc
+"}
+(15,1,1) = {"
+jc
+jc
+jc
+jc
+jc
+jc
+JY
+JY
+JY
+JY
+hf
+LA
+ym
+gI
+hf
+mC
+eO
+hf
+yJ
+ow
+LA
+cT
+Qg
+LA
+La
+La
+La
+IA
+UL
+Mc
+Mc
+lx
+JR
+La
+Zu
+tg
+va
+rX
+dL
+dL
+dL
+sW
+JY
+JY
+JY
+JY
+JY
+JY
+jc
+jc
+jc
+"}
+(16,1,1) = {"
+jc
+jc
+jc
+jc
+jc
+JY
+ao
+JY
+JY
+JY
+hf
+DP
+Yi
+AP
+hf
+hz
+lv
+nD
+Bw
+lB
+LA
+qg
+FQ
+LA
+La
+Ne
+gz
+La
+gq
+eW
+sh
+zx
+CR
+La
+La
+RU
+Qq
+XP
+La
+Ru
+La
+sW
+JY
+JY
+JY
+JY
+JY
+ao
+JY
+jc
+jc
+"}
+(17,1,1) = {"
+jc
+jc
+jc
+jc
+jc
+JY
+JY
+JY
+JY
+JY
+hf
+ac
+JV
+jh
+LA
+LA
+LA
+hf
+Mo
+iF
+LA
+xT
+eG
+LA
+La
+La
+gz
+FV
+vY
+JR
+mX
+rg
+GQ
+CR
+Vm
+mX
+Li
+fb
+Ru
+La
+La
+ao
+ao
+ao
+ao
+JY
+JY
+JY
+JY
+JY
+jc
+"}
+(18,1,1) = {"
+jc
+jc
+jc
+jc
+JY
+JY
+JY
+ao
+ao
+ao
+LA
+iG
+BE
+ip
+rf
+mc
+LA
+Mm
+WT
+nr
+FH
+lV
+XX
+LA
+La
+La
+gz
+dz
+Oo
+mX
+Vm
+JR
+JR
+QW
+Vm
+cM
+Vm
+La
+La
+La
+La
+La
+La
+La
+ao
+JY
+JY
+JY
+JY
+JY
+jc
+"}
+(19,1,1) = {"
+jc
+jc
+jc
+jc
+ao
+JY
+JY
+JY
+ao
+La
+LA
+FM
+BE
+ip
+hf
+hf
+LA
+ZE
+zq
+ms
+hf
+LA
+hf
+hf
+Vm
+WG
+Zb
+aX
+aD
+jM
+jM
+yC
+lx
+Kz
+yE
+QW
+Vm
+La
+IA
+xI
+La
+La
+Ru
+La
+ao
+ao
+JY
+JY
+JY
+JY
+jc
+"}
+(20,1,1) = {"
+jc
+jc
+jc
+JY
+JY
+JY
+ao
+ao
+ao
+La
+LA
+iG
+BE
+pW
+yW
+un
+Tl
+hn
+da
+qc
+LA
+ye
+lW
+nG
+VK
+ys
+rJ
+CY
+Ob
+jM
+Qj
+Qj
+Qj
+La
+La
+La
+dL
+La
+La
+La
+xI
+La
+Ru
+La
+La
+ao
+ao
+JY
+JY
+ao
+JY
+"}
+(21,1,1) = {"
+jc
+jc
+jc
+JY
+JY
+JY
+JY
+ao
+Rr
+IA
+hf
+GH
+cB
+ZW
+dC
+aB
+hf
+Ay
+RY
+CA
+Ot
+Kb
+PI
+hf
+IE
+jM
+VM
+re
+jM
+Qj
+rO
+XY
+kb
+ue
+vR
+OF
+dL
+Ru
+La
+La
+IA
+La
+La
+La
+La
+La
+ao
+ao
+JY
+JY
+JY
+"}
+(22,1,1) = {"
+jc
+jc
+jc
+ao
+JY
+JY
+ao
+ao
+VY
+Qi
+hf
+Uh
+ld
+GY
+ng
+FZ
+hf
+LA
+Cg
+LA
+hf
+LA
+LA
+hf
+La
+mX
+VM
+yC
+EG
+GS
+aH
+rO
+La
+La
+ue
+dL
+dL
+La
+La
+La
+La
+La
+La
+La
+Ru
+La
+IA
+ao
+ao
+JY
+JY
+"}
+(23,1,1) = {"
+jc
+jc
+JY
+ao
+JY
+JY
+ao
+La
+La
+Oc
+hf
+hf
+LA
+LA
+LA
+hf
+hf
+BD
+Nl
+nn
+us
+vk
+mD
+La
+Vm
+Vm
+VM
+Wr
+vn
+Qo
+Xa
+gz
+oN
+La
+Ru
+dL
+La
+bD
+xI
+YX
+fH
+rO
+YX
+Ru
+bD
+La
+La
+La
+ao
+JY
+JY
+"}
+(24,1,1) = {"
+jc
+jc
+JY
+JY
+ao
+ao
+ao
+La
+Ru
+La
+La
+La
+La
+La
+La
+La
+LA
+AW
+Sx
+LA
+yb
+La
+mD
+Vm
+Vm
+qA
+Hj
+jM
+zv
+rG
+ZJ
+CR
+CR
+La
+Bh
+dL
+IA
+eA
+nN
+xI
+xI
+xI
+xI
+xI
+Ru
+La
+La
+ao
+ao
+JY
+JY
+"}
+(25,1,1) = {"
+jc
+jc
+JY
+JY
+JY
+sW
+La
+La
+IA
+La
+La
+La
+Uu
+rO
+Qj
+Qj
+LA
+kj
+fd
+LA
+yb
+qP
+La
+HJ
+qA
+Hj
+Vm
+fJ
+La
+dg
+eh
+AZ
+nN
+xI
+vE
+dL
+La
+Em
+Ru
+xI
+Ru
+xI
+xI
+Ru
+Pu
+La
+La
+ao
+JY
+JY
+ao
+"}
+(26,1,1) = {"
+jc
+JY
+JY
+JY
+JY
+sW
+La
+La
+xI
+La
+Ru
+La
+La
+La
+La
+La
+LA
+LA
+LA
+LA
+oG
+Pk
+Vm
+Vm
+VM
+aY
+EC
+La
+La
+La
+La
+La
+La
+dL
+dL
+dL
+dL
+nN
+xI
+xI
+Ru
+xI
+Ru
+xI
+xI
+xI
+Ru
+sW
+ao
+JY
+JY
+"}
+(27,1,1) = {"
+jc
+JY
+ao
+JY
+CU
+CU
+CU
+Ct
+Ct
+Ct
+Ct
+Ct
+CU
+CU
+La
+Ru
+La
+Qj
+Qj
+Qj
+XL
+og
+Vm
+yC
+an
+aY
+Vm
+Vm
+Vm
+mA
+jM
+Vm
+kA
+ue
+zP
+Vm
+JR
+JR
+xI
+xI
+Ru
+Ru
+Ru
+xI
+xJ
+Ru
+La
+sW
+JY
+JY
+JY
+"}
+(28,1,1) = {"
+jc
+JY
+JY
+CU
+CU
+Wv
+xf
+Sh
+jW
+CU
+dG
+UF
+rQ
+CU
+CU
+La
+La
+La
+La
+Vm
+cD
+yu
+TM
+ys
+Hj
+Vm
+Vm
+JR
+JR
+PA
+US
+Mc
+Mc
+ch
+LZ
+sC
+eA
+Vm
+xI
+Ru
+Ru
+xI
+Ru
+Ru
+xI
+La
+La
+sW
+JY
+JY
+JY
+"}
+(29,1,1) = {"
+jc
+JY
+JY
+Ct
+rV
+eX
+oU
+Ti
+Ht
+CU
+Gb
+Ya
+vV
+cu
+Ct
+La
+La
+xI
+Vm
+Xc
+wP
+ys
+BO
+Vm
+mX
+Vm
+Vm
+sS
+Vm
+Nc
+JR
+JR
+Mc
+jM
+jM
+Ru
+eA
+Vm
+xI
+Ru
+Ru
+xI
+xI
+Ru
+xI
+IA
+La
+ao
+JY
+JY
+JY
+"}
+(30,1,1) = {"
+JY
+ao
+JY
+Ct
+Vx
+wX
+bS
+cG
+YG
+Ct
+ua
+Ve
+Yz
+Ka
+Ct
+La
+La
+La
+Vm
+CM
+Db
+jM
+Vm
+La
+La
+Vm
+La
+fH
+La
+La
+cr
+cr
+cr
+Qj
+Uu
+La
+La
+xJ
+xI
+xI
+Ru
+xI
+Ru
+xI
+Pu
+Ru
+La
+ao
+JY
+ao
+JY
+"}
+(31,1,1) = {"
+JY
+JY
+JY
+Ct
+Dr
+bS
+bS
+Fu
+en
+Ct
+Ct
+Ct
+Yr
+Ni
+Ct
+Ct
+xI
+La
+og
+eK
+zA
+jM
+La
+La
+IA
+La
+La
+mZ
+mZ
+Qt
+Mb
+sI
+Mb
+mZ
+mZ
+mZ
+La
+Ru
+Ru
+Ru
+xI
+Ru
+Ru
+xI
+Ru
+La
+La
+ao
+JY
+JY
+JY
+"}
+(32,1,1) = {"
+JY
+JY
+JY
+CU
+DF
+Zq
+Qs
+Jv
+CU
+CU
+ru
+Ct
+fo
+xF
+lZ
+Ct
+La
+IA
+Vm
+IQ
+Sr
+Vm
+Vm
+Vm
+mZ
+mZ
+mZ
+mZ
+Fy
+zL
+Jm
+sq
+AU
+dn
+oZ
+mZ
+La
+Pu
+xI
+Ru
+xI
+Ru
+Ru
+Ru
+Pu
+La
+La
+ao
+JY
+JY
+JY
+"}
+(33,1,1) = {"
+ao
+JY
+JY
+Ct
+Ct
+TX
+Ct
+Wh
+CU
+Sz
+SP
+CZ
+hL
+xy
+Og
+Ct
+La
+La
+Vm
+db
+ot
+jl
+cP
+wU
+Te
+AF
+dJ
+eR
+Dd
+hh
+Cn
+Cn
+iS
+hx
+BZ
+Qt
+La
+Ru
+Ru
+xI
+xI
+Ru
+Ru
+xI
+Ru
+Ru
+Ru
+sW
+JY
+JY
+JY
+"}
+(34,1,1) = {"
+JY
+JY
+JY
+Ct
+cO
+wq
+me
+dZ
+Xf
+Bc
+Jb
+CU
+CU
+CU
+Ct
+Ct
+Ct
+Ct
+cW
+JR
+oD
+Vm
+Vm
+Vm
+Qt
+mZ
+Qt
+mZ
+oM
+eN
+Yw
+wl
+uh
+Cl
+By
+mZ
+La
+bD
+Ru
+bD
+GD
+fH
+bD
+Ru
+Pu
+La
+La
+sW
+JY
+JY
+JY
+"}
+(35,1,1) = {"
+JY
+JY
+JY
+CU
+MB
+kN
+bY
+KA
+hr
+xG
+Mn
+Lf
+fr
+Tp
+XD
+GF
+KY
+Av
+Nk
+JM
+fc
+La
+La
+La
+La
+mZ
+RX
+zB
+hJ
+hJ
+tQ
+tQ
+tQ
+ll
+oz
+mZ
+La
+La
+La
+La
+La
+IA
+La
+La
+La
+Ru
+La
+sW
+JY
+ao
+JY
+"}
+(36,1,1) = {"
+JY
+JY
+JY
+CU
+IJ
+SO
+Pf
+Ag
+GP
+zM
+Yg
+pv
+jd
+fI
+Us
+Yu
+qE
+xt
+ns
+tx
+ah
+La
+La
+IA
+La
+mZ
+rZ
+hJ
+ud
+rR
+tq
+Sj
+ux
+nx
+uk
+Qt
+IA
+La
+dL
+vR
+dL
+dL
+dL
+La
+La
+La
+ao
+ao
+JY
+JY
+JY
+"}
+(37,1,1) = {"
+JY
+JY
+JY
+CU
+CU
+jJ
+WB
+PB
+kz
+um
+Gr
+Mg
+eb
+dW
+Ct
+Ct
+Ct
+Ct
+ns
+Mc
+Rm
+Pp
+La
+La
+La
+mZ
+tQ
+el
+Hb
+Vc
+zR
+Ib
+Mi
+NI
+tt
+Qt
+La
+dL
+eh
+La
+La
+La
+Ru
+eh
+La
+La
+ao
+JY
+JY
+JY
+JY
+"}
+(38,1,1) = {"
+jc
+JY
+JY
+JY
+CU
+CQ
+Da
+GX
+Kj
+TO
+ic
+zH
+fY
+HO
+wM
+aw
+aw
+aw
+Xs
+Mc
+vy
+Vm
+La
+La
+La
+Qt
+mZ
+mZ
+Qt
+fF
+JF
+mZ
+mZ
+Qt
+mZ
+mZ
+La
+vR
+Ru
+NN
+La
+BU
+La
+dL
+La
+ao
+ao
+JY
+JY
+JY
+jc
+"}
+(39,1,1) = {"
+jc
+JY
+JY
+JY
+Ct
+OT
+PT
+tE
+pP
+tr
+wd
+Eq
+UP
+Zn
+Ct
+La
+Ru
+IA
+BJ
+Wr
+TZ
+CG
+HJ
+Pp
+aY
+aY
+Pp
+Pp
+Vm
+mK
+vw
+Zb
+gg
+Hd
+Hd
+gz
+kS
+gz
+gz
+gz
+sJ
+sJ
+La
+dL
+La
+sW
+JY
+JY
+JY
+JY
+jc
+"}
+(40,1,1) = {"
+jc
+JY
+JY
+JY
+Ct
+CU
+Ct
+Ct
+ii
+Ct
+Ct
+Ct
+mO
+Ct
+Ct
+La
+La
+ty
+La
+Zb
+Vm
+ih
+ys
+ys
+ys
+oA
+ys
+Nb
+iP
+hZ
+ma
+gg
+Pp
+aY
+Pp
+La
+xI
+La
+La
+wV
+Ru
+La
+La
+ao
+sW
+ao
+JY
+ao
+JY
+JY
+jc
+"}
+(41,1,1) = {"
+jc
+JY
+JY
+JY
+JY
+JY
+CU
+WE
+ab
+Hi
+aC
+Ct
+CU
+Ct
+hM
+hM
+Di
+hM
+hM
+gz
+La
+Vm
+Ru
+rO
+jM
+Zb
+Vm
+Vm
+tC
+jS
+Vm
+gg
+Pp
+Pp
+Pp
+La
+Ru
+La
+Ru
+Ru
+La
+IA
+ao
+ao
+JY
+JY
+JY
+JY
+JY
+JY
+jc
+"}
+(42,1,1) = {"
+jc
+jc
+JY
+JY
+JY
+JY
+CU
+nR
+bW
+sc
+IZ
+CU
+La
+dL
+La
+KM
+sH
+La
+Di
+xc
+Bh
+Ru
+La
+La
+La
+PC
+Vm
+Vm
+kB
+Vm
+La
+gz
+La
+xI
+xI
+OF
+La
+eh
+La
+La
+dL
+dL
+ao
+JY
+JY
+JY
+JY
+JY
+JY
+jc
+jc
+"}
+(43,1,1) = {"
+jc
+jc
+JY
+JY
+JY
+JY
+CU
+CU
+KT
+UM
+aZ
+CU
+La
+ue
+Ru
+ut
+dL
+dL
+Di
+Ru
+xI
+Ru
+xI
+AJ
+rI
+gs
+AJ
+DC
+yb
+La
+La
+vr
+Ru
+xI
+La
+Ru
+Ru
+La
+La
+dL
+dL
+ao
+ao
+JY
+ao
+JY
+JY
+JY
+JY
+jc
+jc
+"}
+(44,1,1) = {"
+jc
+jc
+jc
+JY
+JY
+JY
+JY
+CU
+CU
+CU
+CU
+CU
+La
+xI
+rO
+vR
+OF
+dL
+Di
+ue
+vR
+Ru
+La
+rI
+nu
+NA
+rI
+La
+yb
+Ru
+La
+kS
+YE
+La
+La
+La
+xI
+La
+La
+dL
+ao
+ao
+JY
+JY
+JY
+JY
+ao
+JY
+JY
+jc
+jc
+"}
+(45,1,1) = {"
+jc
+jc
+jc
+jc
+jc
+JY
+JY
+ao
+ao
+La
+La
+La
+SB
+vE
+Qj
+La
+xI
+IA
+Yx
+ao
+rI
+rI
+rI
+AJ
+gs
+rI
+rI
+rI
+yb
+dg
+eh
+sJ
+La
+az
+zI
+IA
+Ru
+xI
+La
+ao
+ao
+JY
+JY
+JY
+JY
+JY
+JY
+JY
+jc
+jc
+jc
+"}
+(46,1,1) = {"
+jc
+jc
+jc
+jc
+jc
+JY
+ao
+JY
+ao
+ao
+La
+IA
+La
+La
+Ru
+kS
+kS
+gz
+kS
+fy
+ZO
+ov
+ks
+fQ
+fg
+bU
+TQ
+eI
+uK
+La
+La
+sJ
+az
+az
+La
+La
+La
+OF
+ao
+ao
+JY
+JY
+JY
+JY
+JY
+JY
+JY
+JY
+jc
+jc
+jc
+"}
+(47,1,1) = {"
+jc
+jc
+jc
+jc
+jc
+jc
+JY
+JY
+JY
+ao
+La
+La
+SB
+Ru
+IA
+kS
+xI
+La
+VX
+fy
+ZO
+ve
+mq
+rF
+Wq
+vQ
+NK
+rI
+Yb
+La
+La
+hM
+az
+La
+La
+La
+dL
+ao
+ao
+JY
+JY
+JY
+JY
+JY
+JY
+JY
+JY
+jc
+jc
+jc
+jc
+"}
+(48,1,1) = {"
+jc
+jc
+jc
+jc
+jc
+jc
+JY
+JY
+JY
+ao
+ao
+La
+La
+La
+Ru
+La
+xI
+La
+Ru
+fy
+ZO
+Hy
+Fb
+Rj
+Fe
+Zy
+NV
+rI
+La
+xI
+La
+hM
+sJ
+gz
+Io
+La
+dL
+ao
+JY
+JY
+JY
+JY
+dM
+JY
+ao
+JY
+JY
+jc
+jc
+jc
+jc
+"}
+(49,1,1) = {"
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+JY
+JY
+JY
+sW
+sW
+La
+La
+OF
+IA
+xI
+La
+Ru
+sW
+rI
+AJ
+OE
+Qv
+oS
+eq
+dQ
+rI
+La
+La
+La
+La
+La
+Ru
+La
+dL
+dL
+ao
+JY
+ao
+JY
+JY
+jc
+JY
+JY
+JY
+jc
+jc
+jc
+jc
+jc
+"}
+(50,1,1) = {"
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+JY
+JY
+JY
+JY
+sW
+ao
+Ru
+La
+xI
+OF
+La
+La
+La
+La
+AJ
+OK
+WJ
+OB
+Gd
+dF
+rI
+eh
+La
+IA
+xI
+Ru
+dL
+dL
+dL
+ao
+ao
+JY
+JY
+JY
+jc
+jc
+jc
+JY
+JY
+jc
+jc
+jc
+jc
+jc
+"}
+(51,1,1) = {"
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+JY
+JY
+JY
+JY
+ao
+ao
+La
+La
+Ru
+SB
+La
+La
+La
+AJ
+AJ
+AJ
+AJ
+rI
+rI
+AJ
+La
+La
+La
+dL
+dL
+dL
+ao
+ao
+ao
+JY
+JY
+JY
+JY
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+"}
+(52,1,1) = {"
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+JY
+JY
+ao
+JY
+ao
+La
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+JY
+JY
+JY
+JY
+JY
+sW
+sW
+sW
+sW
+sW
+sW
+sW
+ao
+JY
+JY
+JY
+JY
+JY
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+"}
+(53,1,1) = {"
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+JY
+JY
+JY
+ao
+ao
+ao
+JY
+JY
+JY
+JY
+JY
+JY
+JY
+JY
+JY
+JY
+JY
+ao
+JY
+JY
+JY
+JY
+JY
+JY
+JY
+JY
+JY
+JY
+ao
+JY
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+"}
+(54,1,1) = {"
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+JY
+JY
+JY
+JY
+JY
+JY
+JY
+ao
+JY
+JY
+JY
+JY
+JY
+JY
+JY
+JY
+JY
+JY
+JY
+JY
+JY
+JY
+ao
+JY
+JY
+ao
+JY
+JY
+JY
+JY
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+"}
+(55,1,1) = {"
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+JY
+JY
+JY
+JY
+JY
+JY
+JY
+ao
+JY
+JY
+JY
+JY
+JY
+JY
+JY
+ao
+JY
+JY
+JY
+JY
+JY
+JY
+JY
+JY
+JY
+JY
+JY
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+"}
+(56,1,1) = {"
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+JY
+JY
+JY
+JY
+JY
+JY
+JY
+JY
+JY
+ao
+JY
+JY
+JY
+JY
+JY
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+"}
+(57,1,1) = {"
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+JY
+JY
+JY
+JY
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+jc
+"}

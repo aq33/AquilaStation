@@ -1,0 +1,74 @@
+plik	tekst
+radiation_storm_end	Zagrożenie promieniotwórcze minęło. Proszę powrócić na stanowiska pracy.
+bluespace_translocation	Wykryto masową translokację bluespace.
+anomaly_energy	Fala strumieni energetycznych zlokalizowana na skanerach dalekiego zasięgu.
+anomaly_bluespace	Niestabilna anomalia bluespace zlokalizowana na skanerach dalekiego zasięgu.
+anomaly_delimber	Wykryto anomalię dekapitacyjną. Należy odziać się w skafandry biologiczne, aby uchronić się przed utratą kończyn.
+anomaly_flux	Fala strumieni hiperenergetycznych zlokalizowana na skanerach dalekiego zasięgu.
+anomaly_grav	Anomalia grawitacyjna wykryta na skanerach dalekiego zasięgu.
+anomaly_hallucination	Masowa halucynacja nawiedza statek.
+anomaly_pyro	Anomalia piroklastyczna wykryta na skanerach dalekiego zasięgu.
+anomaly_vortex	Anomalia wirowa o dużej intensywności wykryta na skanerach dalekiego zasięgu.
+asteroid_impact	Wykryto asteroidę klasy A na kursie kolizyjnym ze statkiem. Zniszczenie statku jest nieuniknione.
+beer_clog	W sieci filtrów powietrza wystąpił niespodziewany przypływ sprężonego piwa. Możliwe wyrzuty zawartości.
+brand_intelligence	Na pokładzie wykryto agresywną sztuczną inteligencję. Zagrożenie cybernetyczne.
+bureaucratic_error	Niedawna pomyłka biurokratyczna w dziale Zarządzania Środkami Ludzkimi i Nieludzkimi może spowodować braki personelu w niektórych działach i nadwyżki w innych.
+carp_migration	Wykryto nieznane formy życia w okolicy statku. Zaleca się ostrożność.
+communications_blackout	Wykryto anomalie jonosferyczne. Nieuchronna chwilowa awaria telekomunikacji.
+dolphin_migration	W pobliżu statku wykryto nieznane formy biologiczne. Prosimy czekać na dalsze informacje.
+electrical_storm	W okolicy statku wykryto burzę elektryczną. Proszę naprawić skutki potencjalnych przeciążeń.
+unknown_vessel	W pobliżu statku wykryto niezidentyfikowaną jednostkę.
+high_priority_bounty	Dowództwo wydało priorytetowe zamówienie na poszukiwane towary. Szczegóły rozesłano do komputerów.
+immovable_rod	Co to, kurwa, było?!
+major_dust	Alarm kolizyjny. Możliwe drobne uszkodzenia zewnętrznych elementów statku.
+meateor_wave	Mięsoroidy wykryte na kursie kolizyjnym ze statkiem. O cholera, łapać się za mopy!
+pirates_armed_vessel	W pobliżu statku wykryto niezidentyfikowaną uzbrojoną jednostkę.
+pirates_data_theft	Wykryto sygnał kradzieży danych. Źródło zarejestrowano w lokalnych jednostkach GPS.
+plasma_decon	Uruchamiamy eksperymentalny system odkażania z plazmy. Prosimy odsunąć się od wywietrzników i nie wdychać wydobywającego się dymu.
+portal_storm	Wykryto potężną anomalię bluespace zmierzającą w stronę statku. Przygotować się na uderzenie.
+prison_break	Wykryto wirusa Grej Tajd. Zalecane jest wkroczenie sztucznej inteligencji statku.
+processor_overload	Nadciąga bańka egzosferyczna. Prawdopodobne przeciążenie procesorów telekomunikacji.
+sentience	Sądzimy, że część zwierząt i botów na statku osiągnęła inteligencję oraz zdolność komunikacji.
+shuttle_loan_syndicate	Zaopatrzenie. Syndykat próbuje zinfiltrować wasz statek. Jeśli pozwolicie im porwać prom towarowy, zaoszczędzicie nam sporo problemów.
+shuttle_loan_russian	Zaopatrzenie. Grupa wściekłych Rusków ma ochotę na imprezkę. Możecie podesłać po nich prom, żebyśmy się ich pozbyli?
+shuttle_loan_spider	Zaopatrzenie. Pajęczy Klan wysłał nam tajemniczy prezent. Możemy wam go podesłać, żeby sprawdzić, co w nim jest?
+shuttle_loan_supply	Zaopatrzenie. Wygląda na to, że zamówiliśmy podwójnie zaopatrzenie działów. Możemy wam je wysłać?
+shuttle_loan_virus	Zaopatrzenie. Wasz statek został wybrany do epidemiologicznego programu badawczego. Wyślijcie nam swój prom towarowy, a prześlemy wam próbki.
+shuttle_loan_pizza	Zaopatrzenie. Wygląda na to, że przelatujący statek przez przypadek zamówił do was pizzę.
+shuttle_loan_bees	Zaopatrzenie. Jeden z naszych frachtowców z ładunkiem pszczół został zaatakowany przez ekoterrorystów. Możecie posprzątać za nas ten bajzel?
+shuttle_loan_bomb	Zaopatrzenie. Odkryliśmy aktywną bombę Syndykatu przy przewodach paliwowych naszego wahadłowca VIP. Jeśli czujecie się na siłach, zapłacimy wam za jej rozbrojenie.
+space_dragon	Wygląda na to, że do statku zbliża się istota o magicznej sygnaturze. Zachować ostrożność.
+supermatter_surge	Wykryto skok mocy supermaterii. Może być wymagana interwencja.
+magicarp	W pobliżu statku wykryto nieznane magiczne istoty. Prosimy czekać na dalsze informacje.
+radioactive_sludge	Wykryto wyciek materiałów niebezpiecznych. Zaleca się opuszczenie zagrożonego obszaru.
+shitstorm_end	Zagrożenie rozstrajające minęło. Proszę powrócić na stanowiska pracy.
+crystal_portals	Ostrzeżenie. Na statku otworzyły się ogromne portale. Zamknijcie je, zanim spróbujecie ustabilizować kryształ.
+crystal_destabilized	Ostrzeżenie. Wykryto destabilizację macierzy kryształu supermaterii. Czekajcie na dalsze instrukcje.
+crystal_wave	Ostrzeżenie. Wykryliśmy liczne fluktuacje energii pochodzące z kryształu. Na statek przybywają krystaliczne istoty.
+crystal_surge	Ostrzeżenie. Wykryto kolejny skok mocy zdestabilizowanego kryształu. Na całym statku otwierają się nowe portale.
+crystal_critical	Ostrzeżenie. Kryształ osiągnął punkt krytycznej niestabilności. Prosimy nie panikować, każdy panikujący zostanie zlikwidowany na miejscu. Miłego dnia.
+crystal_failed	Ostrzeżenie. Portale otwierają się wszędzie. Nie udało się wam opanować zdarzenia. Powinniście się wstydzić!
+crystal_restored	Kryształ został przywrócony i jest znowu stabilny. Zabijcie pozostałe krystaliczne potwory i wracajcie do pracy.
+crystal_sacrifice	Poświęcenie członka załogi, miejmy nadzieję, że klauna, najwyraźniej osłabiło portale!
+department_strike	Związek zawodowy jednego z działów ogłosił strajk generalny. Dowództwo proszone jest o podjęcie negocjacji.
+market_crash	Dział Księgowości Nanotrasen informuje, że ceny w automatach na statku przez krótki czas wzrosną.
+market_stable	Ceny w automatach na statku ustabilizowały się.
+portal_storm_kurwinox	Wykryto potężną anomalię bluespace. Skanery rejestrują sygnatury biologiczne z galaktyki Kurwix. Przygotować się na kontakt.
+prisoner_transfer	Centrala przekazuje na pokład osadzonego. Ochrona proszona jest o przejęcie więźnia.
+stray_cargo	Skanery dalekiego zasięgu wykryły zabłąkaną kapsułę zaopatrzeniową na kursie kolizyjnym ze statkiem.
+wallrot	Czujniki wykryły szkodliwy grzyb na ścianach. Inżynieria proszona jest o jego usunięcie.
+liquid_backpressure	W sieci oczyszczaczy powietrza wystąpił skok ciśnienia zwrotnego. Możliwe wyrzuty zawartości.
+liquid_anomaly	Anomalia płynów wykryta na skanerach dalekiego zasięgu.
+gremlins	Bioskany wskazują, że przez wentylację na pokład dostały się gremliny. Zajmijcie się nimi!
+aurora_start	Nieszkodliwa chmura jonowa zbliża się do statku. Nanotrasen zezwala wszystkim pracownikom na krótką przerwę, by mogli podziwiać zorzę.
+aurora_end	Zorza kosmiczna właśnie się kończy. Prosimy powrócić do swoich miejsc pracy. Dziękujemy za wspólny seans.
+ship_partition	Usterka emiterów pola siłowego. Statek został tymczasowo przedzielony nieprzekraczalną barierą.
+wizard_teleports	Czujniki dalekiego zasięgu wykryły zaburzenia bluespace typowe dla teleportów Federacji Czarodziejów.
+ancient_god	W waszym sektorze wykryto przejawy pradawnego boga. Zachowajcie najwyższą ostrożność.
+carp_rift	Szczelina wywołuje nienaturalnie duży strumień energii. Powstrzymajcie ją za wszelką cenę.
+alien_artifact	Wykryto anomalię czasoprzestrzenną. Analiza danych zakończona, przyznano punkty badawcze.
+magnetic_field	Statek wleciał w anomalię magnetyczną, która spolaryzowała część załogi.
+shitstorm	Wokół statku wykryto fale rozstrajające. Prosimy udać się do tuneli serwisowych.
+bingle_wave	Na pokładzie wykryto niebieską falę. Cała załoga ma natychmiast powstrzymać jej rozprzestrzenianie.
+easter_bunnies	Wykryto niezidentyfikowane puchate obiekty wchodzące na pokład. Uwaga na urocze stworzenia.
+power_capacitors	Wszystkie kondensatory na statku zostały naładowane. Przepraszamy za wszelkie niedogodności.

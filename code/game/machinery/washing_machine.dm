@@ -232,9 +232,7 @@ GLOBAL_LIST_INIT(dye_registry, list(
 	..()
 	held_mob.machine_wash(WM)
 
-/mob/living/simple_animal/pet/machine_wash(obj/machinery/washing_machine/WM)
-	WM.bloody_mess = TRUE
-	gib()
+// AQ EDIT - basic moby: no simple animal pets left, basic pets are washed in aquila\code\modules\mob\living\basic\pets\pet.dm
 
 /obj/item/machine_wash(obj/machinery/washing_machine/WM)
 	if(WM.color_source)
@@ -328,7 +326,7 @@ GLOBAL_LIST_INIT(dye_registry, list(
 		if(L.buckled || L.has_buckled_mobs())
 			return
 		if(state_open)
-			if(istype(L, /mob/living/simple_animal/pet) || istype(L, /mob/living/basic/pet)) // AQ EDIT - basic moby
+			if(istype(L, /mob/living/basic/pet)) // AQ EDIT - basic moby
 				L.forceMove(src)
 				update_appearance()
 		return

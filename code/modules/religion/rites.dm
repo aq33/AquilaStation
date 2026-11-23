@@ -565,8 +565,8 @@
 		return NOT_ENOUGH_PLAYERS
 	var/mob/dead/observer/selected = pick_n_take(candidates)
 	var/datum/mind/M = new /datum/mind(selected.key)
-	var/carp_species = pick(/mob/living/simple_animal/hostile/carp/megacarp, /mob/living/simple_animal/hostile/carp)
-	var/mob/living/simple_animal/hostile/carp = new carp_species(altar_turf)
+	var/carp_species = pick(/mob/living/basic/carp/mega, /mob/living/basic/carp) // AQ EDIT - basic moby
+	var/mob/living/basic/carp = new carp_species(altar_turf) // AQ EDIT - basic moby
 	carp.name = "Święty kosmiczny karp ([rand(1,999)])"
 	carp.key = selected.key
 	carp.sentience_act()

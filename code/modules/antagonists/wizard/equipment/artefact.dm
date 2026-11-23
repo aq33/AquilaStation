@@ -83,7 +83,7 @@
 /obj/item/veilrender/honkrender
 	name = "rozdzieracz honków"
 	desc = "Złowrogie, zakrzywione ostrze obcego pochodzenia, wydobyte z ruin ogromnego cyrku."
-	spawn_type = /mob/living/simple_animal/hostile/retaliate/clown
+	spawn_type = /mob/living/basic/clown // AQ EDIT - basic moby
 	spawn_amt = 10
 	activate_descriptor = "samej depresji"
 	rend_desc = "Łagodnie niesie się z niego nieskończony śmiech."
@@ -92,7 +92,7 @@
 /obj/item/veilrender/honkrender/honkhulkrender
 	name = "wyższy rozdzieracz honków"
 	desc = "Złowrogie, zakrzywione ostrze obcego pochodzenia, wydobyte z ruin ogromnego cyrku. To lśni szczególnym światłem."
-	spawn_type = /mob/living/simple_animal/hostile/retaliate/clown/clownhulk
+	spawn_type = /mob/living/basic/clown/clownhulk // AQ EDIT - basic moby
 	spawn_amt = 5
 	activate_descriptor = "samej depresji"
 	rend_desc = "Łagodnie niesie się z niego radosne chrząkanie."

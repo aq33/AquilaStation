@@ -63,12 +63,7 @@
 #define FORCE_MAP "runtimestation"
 #endif
 
-//TODO Remove the SDMM check when it supports 1568
-#if !defined(SPACEMAN_DMM) && (DM_VERSION < MIN_COMPILER_VERSION || DM_BUILD < MIN_COMPILER_BUILD) && !defined(FASTDMM)
-//Don't forget to update this part
-#error Your version of BYOND is too out-of-date to compile this project. Go to https://secure.byond.com/download and update.
-#error You need version 515.1633 or higher.
-#endif
+// AQ EDIT - zdublowane sprawdzenie minimalnej wersji (z błędnym „515.1633”) usunięte, sprawdza je __byond_version_compat.dm
 //NSV - Donator Items
 // Enable personal donator items. Disabled by default. Might marginally improve compile performance.
 //#define DONATOR_ITEMS
@@ -80,10 +75,8 @@
 #if DM_VERSION > MAX_COMPILER_VERSION || DM_BUILD > MAX_COMPILER_BUILD
 #warn WARNING: Your BYOND version is over the recommended version (516.1700)! Stability is not guaranteed.
 #endif
-//Log the full sendmaps profile on 514.1556+, any earlier and we get bugs or it not existing
-#if DM_VERSION >= 514 && DM_BUILD >= 1556
-#define SENDMAPS_PROFILE
-#endif
+//Log the full sendmaps profile
+#define SENDMAPS_PROFILE // AQ EDIT - warunek na 514.1556 usunięty, master wymaga 516
 
 
 //Additional code for the above flags.
@@ -110,7 +103,8 @@
 #define REFERENCE_TRACKING
 #define REFERENCE_TRACKING_DEBUG
 #define FIND_REF_NO_CHECK_TICK
-#define GC_FAILURE_HARD_LOOKUP
+// #define GC_FAILURE_HARD_LOOKUP // AQ EDIT - bez szukania referencji przy każdym wycieku: zamrażało świat na ~3 min i wydłużało CI do 35 min, a wyciek i tak jest w logu
+
 // AQ EDIT START - tgstation/tgstation#76214: pełne nazwy timerów w testach
 #ifndef TIMER_DEBUG
 #define TIMER_DEBUG

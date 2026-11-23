@@ -59,6 +59,7 @@
 /datum/venue/bar
 	name = "bar"
 	display_name = "Bar"
+	seat_type = /obj/structure/holosign/robot_seat/bar
 	req_access = ACCESS_BAR
 	venue_type = VENUE_BAR
 	min_time_between_visitor = 40 SECONDS

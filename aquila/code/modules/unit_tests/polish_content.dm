@@ -77,8 +77,8 @@
 	TEST_ASSERT("aq_codersocks_pl" in found, "Polish socks overlay missing")
 
 	// Moby: martwe i ożywione mają poprawne sprite'y
-	for(var/mob_type in list(/mob/living/simple_animal/hostile/kurwinoxy, /mob/living/simple_animal/hostile/kurwinoxy/czerwony, /mob/living/simple_animal/hostile/clowiekmaupa))
-		var/mob/living/simple_animal/hostile/mob = allocate(mob_type)
+	for(var/mob_type in list(/mob/living/basic/kurwinoxy, /mob/living/basic/kurwinoxy/czerwony, /mob/living/basic/clowiekmaupa))
+		var/mob/living/basic/mob = allocate(mob_type)
 		mob.death()
 		TEST_ASSERT_EQUAL(mob.icon_state, mob.icon_dead, "[mob_type] dead sprite")
 		mob.revive(full_heal = TRUE, admin_revive = TRUE)
@@ -156,9 +156,9 @@
 		/obj/item/storage/commercial/reklamowka_lidl,
 		/obj/item/clothing/shoes/aquila/aq_sandals,
 		/obj/vehicle/sealed/car/maluch,
-		/mob/living/simple_animal/hostile/kurwinoxy,
-		/mob/living/simple_animal/hostile/kurwinoxy/czerwony,
-		/mob/living/simple_animal/hostile/clowiekmaupa,
+		/mob/living/basic/kurwinoxy,
+		/mob/living/basic/kurwinoxy/czerwony,
+		/mob/living/basic/clowiekmaupa,
 		/obj/structure/sign/directions/plaque/science,
 		/obj/structure/sign/directions/plaque/engineering,
 		/obj/structure/sign/directions/plaque/security,

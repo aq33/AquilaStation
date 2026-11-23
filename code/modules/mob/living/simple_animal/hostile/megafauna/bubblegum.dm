@@ -392,7 +392,7 @@ Difficulty: Hard
 	. = ..()
 	if(. && death_turf)
 		for(var/i in 1 to 3)
-			new /mob/living/simple_animal/hostile/asteroid/hivelordbrood/slaughter(death_turf)
+			new /mob/living/basic/hivelord_brood/slaughter(death_turf) // AQ EDIT - pomiot władcy roju jest basic mobem
 
 /mob/living/simple_animal/hostile/megafauna/bubblegum/adjustBruteLoss(amount, updating_health = TRUE, forced = FALSE)
 	. = ..()
@@ -572,23 +572,25 @@ Difficulty: Hard
 			break
 		max_amount--
 		var/obj/effect/decal/cleanable/blood/B = H
-		new /mob/living/simple_animal/hostile/asteroid/hivelordbrood/slaughter(B.loc)
+		new /mob/living/basic/hivelord_brood/slaughter(B.loc) // AQ EDIT - pomiot władcy roju jest basic mobem
 	return max_amount
 
-/mob/living/simple_animal/hostile/asteroid/hivelordbrood/slaughter
+// AQ EDIT START - pomiot władcy roju jest basic mobem (aquila/code/modules/mob/living/basic/lavaland/hivelord/)
+/mob/living/basic/hivelord_brood/slaughter
 	name = "rzeźniczek"
 	desc = "Choć nie jest jeszcze dość silny, by przybrać prawdziwą fizyczną postać, i tak jest zdeterminowany, by cię zamordować."
 	icon_state = "bloodbrood"
 	icon_living = "bloodbrood"
-	icon_aggro = "bloodbrood"
-	attacktext = "przebija"
+	icon_dead = "bloodbrood"
+	attack_verb_continuous = "przebija"
 	color = "#C80000"
 	density = FALSE
 	faction = list("mining", "boss")
 	weather_immunities = list("lava","ash")
 
-/mob/living/simple_animal/hostile/asteroid/hivelordbrood/slaughter/CanAllowThrough(atom/movable/mover, turf/target)
+/mob/living/basic/hivelord_brood/slaughter/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
 	if(istype(mover, /mob/living/simple_animal/hostile/megafauna/bubblegum))
 		return TRUE
 	return FALSE
+// AQ EDIT END

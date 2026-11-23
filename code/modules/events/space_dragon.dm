@@ -13,7 +13,7 @@
 	announceWhen = 10
 
 /datum/round_event/ghost_role/space_dragon/announce(fake)
-	priority_announce("Wygląda na to, że istota o magicznej sygnaturze zbliża się do [station_name()], Zachować ostrożność.", "Alarm biologiczny", SSstation.announcer.get_rand_alert_sound())
+	priority_announce("Wygląda na to, że istota o magicznej sygnaturze zbliża się do [station_name()], Zachować ostrożność.", "Alarm biologiczny", 'aquila/sound/ai/events/space_dragon.ogg') // AQ EDIT - własne nagranie ogłoszenia
 
 /datum/round_event/ghost_role/space_dragon/spawn_role()
 	var/list/spawn_locs = list()
@@ -33,7 +33,7 @@
 	var/mob/dead/selected = pick(candidates)
 	var/key = selected.key
 
-	var/mob/living/simple_animal/hostile/space_dragon/dragon = new (pick(spawn_locs))
+	var/mob/living/basic/space_dragon/dragon = new (pick(spawn_locs)) // AQ EDIT - basic moby
 	dragon.key = key
 	dragon.mind.assigned_role = "Space Dragon"
 	dragon.mind.special_role = "Space Dragon"

@@ -1,6 +1,5 @@
 GLOBAL_LIST_INIT(high_priority_sentience, typecacheof(list(
-	/mob/living/basic/pet, // AQ EDIT - basic moby
-	/mob/living/simple_animal/pet,
+	/mob/living/basic/pet, // AQ EDIT - basic moby (the empty simple_animal/pet base is gone)
 	/mob/living/simple_animal/parrot,
 	/mob/living/basic/lizard, // AQ EDIT - basic moby
 	/mob/living/basic/sloth, // AQ EDIT - basic moby
@@ -9,7 +8,7 @@ GLOBAL_LIST_INIT(high_priority_sentience, typecacheof(list(
 	/mob/living/basic/chicken, // AQ EDIT - basic moby
 	/mob/living/basic/cow, // AQ EDIT - basic moby
 	/mob/living/basic/bat, // AQ EDIT - basic moby
-	/mob/living/simple_animal/hostile/carp/cayenne,
+	/mob/living/basic/carp/pet/cayenne, // AQ EDIT - basic moby
 	/mob/living/basic/butterfly, // AQ EDIT - basic moby
 	/mob/living/basic/snake, // AQ EDIT - basic moby
 	/mob/living/simple_animal/bot/secbot/beepsky
@@ -37,7 +36,7 @@ GLOBAL_LIST_INIT(high_priority_sentience, typecacheof(list(
 
 	sentience_report += "W oparciu o [data] sądzimy, że [one] z [pets] na statku [one == "wszystkie" ? "osiągnęły" : "osiągnęło"] poziom inteligencji: [strength], oraz zdolność komunikacji."
 
-	priority_announce(sentience_report,"Komunikat średniego priorytetu: [command_name()]", SSstation.announcer.get_rand_alert_sound())
+	priority_announce(sentience_report,"Komunikat średniego priorytetu: [command_name()]", 'aquila/sound/ai/events/sentience.ogg') // AQ EDIT - własne nagranie ogłoszenia
 
 /datum/round_event/ghost_role/sentience/spawn_role()
 	var/list/mob/dead/observer/candidates

@@ -314,7 +314,7 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 	set category = "OOC"
 	set desc = "Pomoc do formatowania czatu"
 
-	var/message = "<span class='big'>Możesz wyróżniać tekst, otaczając słowa lub zdania określonymi znakami.</span>\n +pogrubienie+, _podkreślenie_ i |kursywa| są obsługiwane.\n\n <span class='big'>Możesz tworzyć własne czasowniki mowy, pisząc np. <i>say 'krzyczy* POMOCY, UMIERAM!'</i>. Działa to też przez radio i można tak robić emotki przez radio.</span>\n Przykład: say ';śmieje się szaleńczo!*' >> \[Common] Jan Kowalski śmieje się szaleńczo!"
+	var/message = "<span class='big'>Możesz wyróżniać tekst, otaczając słowa lub zdania określonymi znakami.</span>\n +pogrubienie+, _podkreślenie_ i |kursywa| są obsługiwane.\n\n <span class='big'>Możesz tworzyć własne czasowniki mowy: napisz czasownik, gwiazdkę i wypowiedź. W oknie mowy (T) wpisujesz po prostu <i>krzyczy* POMOCY, UMIERAM!</i>, a w pasku komend <i>say \"krzyczy* POMOCY, UMIERAM!\"</i>. Działa to też przez radio i można tak robić emotki przez radio.</span>\n Przykład: <i>;śmieje się szaleńczo!*</i> w oknie mowy (T) >> \[Common] Jan Kowalski śmieje się szaleńczo!"
 
 
 	to_chat(usr, "<span class='notice'>[message]</span>")

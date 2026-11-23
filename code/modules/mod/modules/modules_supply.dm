@@ -584,7 +584,7 @@
 	for(var/turf/closed/mineral/rock in circlerangeturfs(src, 2))
 		rock.gets_drilled()
 	for(var/mob/living/mob in range(1, src))
-		mob.apply_damage(12 * (ishostile(mob) ? fauna_boost : 1), BRUTE)
+		mob.apply_damage(12 * ((ishostile(mob) || is_hostile_basicmob(mob)) ? fauna_boost : 1), BRUTE) // AQ EDIT - moby górnicze są basic mobami
 	for(var/obj/object in range(1, src))
 		object.take_damage(damage, BRUTE, "bomb")
 	qdel(src)

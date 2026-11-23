@@ -2,7 +2,7 @@
 // as long as at least 75% of the crew is still alive. Every eligible antagonist has the same chance.
 // The heavy ones (slaughter demon, space dragon, blob, bingles, swarmers, wizard, nuclear assault, malfunctioning AI) are only offered in rounds from the high pool.
 // The malfunctioning AI is not a ghost role: the living AI player turns malf, if they enabled "Wadliwa SI" in their antagonist preferences.
-// Blood worms, spiders, sinful demons, sentient diseases, pirates, infiltrators and xenomorphs are offered in rounds from the medium and high pools.
+// Blood worms, spiders, sinful demons, sentient diseases, pirates, salvagers, infiltrators and xenomorphs are offered in rounds from the medium and high pools.
 // Regular random events keep running next to this.
 
 #define WEIGHTED_MIDROUND_MIN_DELAY (30 MINUTES)
@@ -58,6 +58,7 @@
 		/datum/round_event_control/blood_worm,
 		/datum/round_event_control/infiltrators,
 		/datum/round_event_control/pirates,
+		/datum/round_event_control/salvagers,
 		/datum/round_event_control/sentient_disease,
 		/datum/round_event_control/sinfuldemon,
 		/datum/round_event_control/spider_infestation,

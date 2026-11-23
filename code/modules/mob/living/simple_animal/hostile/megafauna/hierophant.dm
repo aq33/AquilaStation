@@ -424,7 +424,7 @@ Difficulty: Hard
 
 /mob/living/simple_animal/hostile/megafauna/hierophant/CanAttack(atom/the_target)
 	. = ..()
-	if(istype(the_target, /mob/living/simple_animal/hostile/asteroid/hivelordbrood)) //ignore temporary targets in favor of more permanent targets
+	if(istype(the_target, /mob/living/basic/hivelord_brood) || istype(the_target, /mob/living/basic/mining/legion_brood)) //ignore temporary targets in favor of more permanent targets // AQ EDIT - pomioty są basic mobami
 		return FALSE
 
 /mob/living/simple_animal/hostile/megafauna/hierophant/GiveTarget(new_target)
@@ -677,7 +677,7 @@ Difficulty: Hard
 						H.FindTarget(list(caster), 1)
 					else
 						H.Goto(get_turf(caster), H.move_to_delay, 3)
-		if(monster_damage_boost && (ismegafauna(L) || istype(L, /mob/living/simple_animal/hostile/asteroid)))
+		if(monster_damage_boost && (ismegafauna(L) || istype(L, /mob/living/simple_animal/hostile/asteroid) || istype(L, /mob/living/basic/mining))) // AQ EDIT - moby górnicze są basic mobami
 			L.adjustBruteLoss(damage)
 		if(caster)
 			log_combat(caster, L, "struck with a [name]")

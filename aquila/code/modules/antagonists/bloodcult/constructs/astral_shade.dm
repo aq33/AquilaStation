@@ -251,4 +251,7 @@ GLOBAL_LIST_INIT(astral_projections, list())
 
 //saycode
 /mob/living/simple_animal/astral_projection/say(message, bubble_type, list/spans = list(), sanitize = TRUE, datum/language/language, ignore_spam = FALSE, forced)
+	// Powtórka po tłumaczeniu obcokrajowca ma już ".." z oryginału (aquila/code/modules/i18n/foreigner.dm)
+	if(aq_translated_say)
+		return ..()
 	return ..(tangibility ? "[message]" : "..[message]", bubble_type, spans, sanitize, language, ignore_spam, forced)

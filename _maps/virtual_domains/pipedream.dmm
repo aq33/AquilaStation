@@ -1579,7 +1579,7 @@
 /area/virtual_domain)
 "dS" = (
 /obj/effect/decal/cleanable/dirt,
-/mob/living/simple_animal/hostile/hivebot/strong,
+/mob/living/basic/hivebot/strong,
 /turf/open/floor/plasteel,
 /area/virtual_domain)
 "dT" = (

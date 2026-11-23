@@ -835,4 +835,4 @@
 
 /obj/effect/trap/nexus/trickyspawner/clowns
 	mobs = 5
-	spawned = /mob/living/simple_animal/hostile/retaliate/clown
+	spawned = /mob/living/basic/clown // AQ EDIT - basic moby

@@ -2,6 +2,7 @@
 	"recommendations": [
 		"Goonstation.goonstation-extpack",
 		"arcanis.vscode-zipfs",
-		"github.vscode-pull-request-github"
+		"github.vscode-pull-request-github",
+		"sohpea.auxtools"
 	]
 }

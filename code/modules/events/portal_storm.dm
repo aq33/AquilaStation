@@ -6,9 +6,9 @@
 	earliest_start = 10 MINUTES
 
 /datum/round_event/portal_storm/syndicate_shocktroop
-	boss_types = list(/mob/living/simple_animal/hostile/syndicate/melee/space/stormtrooper = 2)
-	hostile_types = list(/mob/living/simple_animal/hostile/syndicate/melee/space = 8,\
-						/mob/living/simple_animal/hostile/syndicate/ranged/space = 2)
+	boss_types = list(/mob/living/basic/trooper/syndicate/melee/space/stormtrooper = 2) // AQ EDIT - basic moby (ta i dwie następne linie)
+	hostile_types = list(/mob/living/basic/trooper/syndicate/melee/space = 8,\
+						/mob/living/basic/trooper/syndicate/ranged/space = 2)
 
 /datum/round_event_control/portal_storm_narsie
 	name = "Portal Storm: Constructs"
@@ -59,7 +59,7 @@
 	set waitfor = 0
 	sound_to_playing_players('sound/magic/lightning_chargeup.ogg')
 	sleep(80)
-	priority_announce("Wykryto potężną anomalię bluespace zmierzającą w stronę [station_name()]. Przygotować się na uderzenie.", sound = SSstation.announcer.get_rand_alert_sound())
+	priority_announce("Wykryto potężną anomalię bluespace zmierzającą w stronę [station_name()]. Przygotować się na uderzenie.", sound = 'aquila/sound/ai/events/portal_storm.ogg') // AQ EDIT - własne nagranie ogłoszenia
 	sleep(20)
 	sound_to_playing_players('sound/magic/lightningbolt.ogg')
 

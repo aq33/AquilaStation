@@ -12,9 +12,7 @@
 /area/virtual_domain)
 "ad" = (
 /obj/structure/alien/weeds,
-/mob/living/simple_animal/hostile/alien/queen/large{
-	desc = "A gigantic alien who is in charge of the hive and all of its loyal servants.";
-	name = "alien queen";
+/mob/living/basic/alien/queen/large{
 	pixel_x = -16;
 	plants_off = 1
 	},
@@ -82,7 +80,7 @@
 /area/virtual_domain)
 "ao" = (
 /obj/structure/alien/weeds,
-/mob/living/simple_animal/hostile/alien,
+/mob/living/basic/alien,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/virtual_domain)
 "ap" = (
@@ -113,7 +111,7 @@
 /area/virtual_domain)
 "av" = (
 /obj/structure/alien/weeds/node,
-/mob/living/simple_animal/hostile/alien/drone{
+/mob/living/basic/alien/drone{
 	plants_off = 1
 	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
@@ -429,12 +427,12 @@
 /area/virtual_domain/fullbright)
 "bd" = (
 /obj/structure/alien/weeds/node,
-/mob/living/simple_animal/hostile/alien,
+/mob/living/basic/alien,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/virtual_domain)
 "be" = (
 /obj/structure/alien/weeds,
-/mob/living/simple_animal/hostile/alien/drone{
+/mob/living/basic/alien/drone{
 	plants_off = 1
 	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,

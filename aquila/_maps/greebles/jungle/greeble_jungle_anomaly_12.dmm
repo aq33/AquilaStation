@@ -1,0 +1,90 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"b" = (
+/obj/effect/anomaly/phantom/planetary,
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"d" = (
+/turf/template_noop,
+/area/template_noop)
+"k" = (
+/obj/structure/flora/rock/jungle,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
+"o" = (
+/obj/structure/flora/rock/pile,
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"s" = (
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
+"z" = (
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"X" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+
+(1,1,1) = {"
+d
+s
+z
+s
+k
+s
+d
+"}
+(2,1,1) = {"
+s
+z
+b
+X
+s
+s
+s
+"}
+(3,1,1) = {"
+s
+X
+o
+z
+z
+b
+k
+"}
+(4,1,1) = {"
+d
+k
+z
+b
+o
+X
+s
+"}
+(5,1,1) = {"
+d
+z
+z
+X
+z
+b
+z
+"}
+(6,1,1) = {"
+z
+b
+z
+z
+k
+z
+s
+"}
+(7,1,1) = {"
+o
+X
+d
+s
+d
+d
+s
+"}

@@ -31,6 +31,22 @@
 	var/datum/job/assistant_job = SSjob.GetJobType(/datum/job/assistant)
 	var/datum/squad/preferred = GLOB.squad_manager.aq_pick_squad(assistant_job, "Delta")
 	TEST_ASSERT(preferred == aq_squad("Delta"), "Asystent z preferowaną drużyną Delta trafił do [preferred]")
+	// Wybrana drużyna wygrywa z zawodem, a „Automatycznie” zostawia przydział według zawodu
+	var/datum/squad/chosen = GLOB.squad_manager.aq_pick_squad(medic_job, "Delta")
+	TEST_ASSERT(chosen == aq_squad("Delta"), "Lekarz z wybraną drużyną Delta trafił do [chosen]")
+	var/datum/squad/automatic = GLOB.squad_manager.aq_pick_squad(medic_job, SQUAD_PREF_AUTO)
+	TEST_ASSERT(automatic?.role == MEDICAL_SQUAD, "Lekarz z opcją Automatycznie trafił do drużyny o roli [automatic?.role]")
+	var/datum/preference/choiced/squad/squad_pref = GLOB.preference_entries[/datum/preference/choiced/squad]
+	TEST_ASSERT(squad_pref && (SQUAD_PREF_AUTO in squad_pref.get_choices()), "Brak opcji Automatycznie w preferencji drużyny")
+	TEST_ASSERT(!("Echo" in squad_pref.get_choices()), "Szablon drużyn XO (Echo) jest do wyboru w preferencjach")
+	// Migracja: stare zapisy z domyślnym Alpha wracają do Automatycznie, zapisy już przestawione nie idą do bazy drugi raz
+	var/datum/character_save/old_save = new
+	old_save.preferred_squad = "Alpha"
+	var/datum/character_save/new_save = new
+	TEST_ASSERT(new_save.preferred_squad == SQUAD_PREF_AUTO, "Nowa postać ma drużynę [new_save.preferred_squad] zamiast Automatycznie")
+	var/list/changed = aq_reset_squad_prefs(list(old_save, new_save))
+	TEST_ASSERT(old_save.preferred_squad == SQUAD_PREF_AUTO, "Migracja nie przestawiła Alpha na Automatycznie")
+	TEST_ASSERT(length(changed) == 1 && changed[1] == old_save, "Migracja zwróciła [length(changed)] zapisów do zapisania zamiast jednego")
 
 	var/mob/living/carbon/human/doctor = allocate(/mob/living/carbon/human)
 	doctor.equip_to_slot_or_del(new /obj/item/storage/backpack(doctor), ITEM_SLOT_BACK)
@@ -219,7 +235,7 @@
 
 /datum/unit_test/aquila_squad_custom/Run()
 	for(var/datum/squad/squad as anything in GLOB.squad_manager.squads)
-		TEST_ASSERT(squad.type != /datum/squad/aq_custom || squad.name != "Echo", "Wzorzec drużyny Echo z subtypesof() został na liście drużyn")
+		TEST_ASSERT(squad.type != /datum/squad/aq_custom || squad.name != "Nowa drużyna", "Wzorzec drużyny XO z subtypesof() został na liście drużyn")
 	var/mob/living/carbon/human/officer = allocate(/mob/living/carbon/human)
 	var/datum/squad/created = GLOB.squad_manager.aq_create_squad("Foxtrot", "#123456")
 	TEST_ASSERT(created && (created in GLOB.squad_manager.squads), "Nie powstała nowa drużyna")

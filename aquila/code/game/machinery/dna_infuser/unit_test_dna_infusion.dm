@@ -83,7 +83,7 @@
 
 /datum/unit_test/dna_infuser_machine/Run()
 	var/mob/living/carbon/human/subject = allocate(/mob/living/carbon/human)
-	var/mob/living/simple_animal/hostile/carp/carp = allocate(/mob/living/simple_animal/hostile/carp)
+	var/mob/living/basic/carp/carp = allocate(/mob/living/basic/carp)
 	TEST_ASSERT(istype(carp.get_infusion_entry(), /datum/infuser_entry/carp), "Karp nie daje wpisu karpia.")
 	var/obj/item/food/deadmouse/mouse = allocate(/obj/item/food/deadmouse)
 	TEST_ASSERT(istype(mouse.get_infusion_entry(), /datum/infuser_entry/rat), "Martwa mysz nie daje wpisu szczura.")

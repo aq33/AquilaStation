@@ -36,8 +36,9 @@
 	created_human.set_playable(ROLE_SURVIVALIST)
 	created_human.mind_initialize()
 	//Remove nearby dangers
-	for(var/mob/living/simple_animal/hostile/SA in range(10, created_human))
-		qdel(SA)
+	for(var/mob/living/SA in range(10, created_human)) // AQ EDIT - basic moby: ksenomorfy, mi-go i hiveboty z generatora też
+		if(ishostile(SA) || is_hostile_basicmob(SA)) // AQ EDIT
+			qdel(SA)
 	switch(pickweight(list("secretagentman" = 1, "dictator" = 1, "operative" = 1, "greytide" = 3, "funnyman" = 2)))
 		if("secretagentman")
 			created_human.flavor_text = "W imieniu swoich Dobroczyńców wiedziesz niebezpieczne życie – dla każdego, kogo spotkasz, pozostajesz obcym. Ale ruszałeś się za dużo, ryzykowałeś za często – skoro Nanotrasen cię namierzył, pewnie nie dożyjesz jutra."

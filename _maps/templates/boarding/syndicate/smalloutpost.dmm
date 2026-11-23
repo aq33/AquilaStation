@@ -1,8 +1,4 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"ab" = (
-/mob/living/simple_animal/hostile/nsv/syndicate/space/ranged,
-/turf/open/floor/plating,
-/area/ruin/powered/nsv13/boarding_interior)
 "aw" = (
 /obj/structure/lattice,
 /obj/structure/grille,
@@ -85,6 +81,10 @@
 /obj/item/folder,
 /turf/open/floor/wood,
 /area/ruin/powered/nsv13/boarding_interior)
+"ek" = (
+/mob/living/carbon/human/ai_boarder/syndicate/sentry,
+/turf/open/floor/mineral/titanium,
+/area/ruin/powered/nsv13/boarding_interior)
 "em" = (
 /obj/structure/chair/office{
 	dir = 1
@@ -160,11 +160,6 @@
 "fB" = (
 /turf/open/floor/engine,
 /area/ruin/powered/nsv13/boarding_interior)
-"fE" = (
-/obj/machinery/firealarm/directional/south,
-/mob/living/simple_animal/hostile/nsv/syndicate,
-/turf/open/floor/engine,
-/area/ruin/powered/nsv13/boarding_interior)
 "fT" = (
 /obj/structure/chair/office{
 	dir = 4
@@ -223,11 +218,6 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/powered/nsv13/boarding_interior)
-"gV" = (
-/obj/structure/cable,
-/mob/living/simple_animal/hostile/nsv/syndicate/ranged,
-/turf/open/floor/mineral/plastitanium,
-/area/ruin/powered/nsv13/boarding_interior)
 "hi" = (
 /obj/structure/hull_plate/end{
 	dir = 5
@@ -241,11 +231,6 @@
 "hn" = (
 /obj/item/plant_tray/pot/random,
 /turf/open/floor/mineral/plastitanium/red,
-/area/ruin/powered/nsv13/boarding_interior)
-"hp" = (
-/obj/machinery/door/firedoor,
-/mob/living/simple_animal/hostile/nsv/syndicate/space/ranged/smg,
-/turf/open/floor/mineral/plastitanium,
 /area/ruin/powered/nsv13/boarding_interior)
 "hz" = (
 /obj/structure/window/reinforced/spawner,
@@ -266,15 +251,6 @@
 	dir = 8
 	},
 /turf/open/floor/mineral/titanium,
-/area/ruin/powered/nsv13/boarding_interior)
-"iN" = (
-/mob/living/simple_animal/hostile/nsv/syndicate/space/ranged,
-/turf/open/floor/mineral/titanium,
-/area/ruin/powered/nsv13/boarding_interior)
-"iO" = (
-/obj/structure/chair/office,
-/mob/living/simple_animal/hostile/nsv/syndicate,
-/turf/open/floor/wood,
 /area/ruin/powered/nsv13/boarding_interior)
 "iQ" = (
 /obj/machinery/door/airlock/ship/security{
@@ -369,17 +345,6 @@
 	},
 /turf/open/floor/mineral/titanium,
 /area/ruin/powered/nsv13/boarding_interior)
-"nC" = (
-/mob/living/simple_animal/hostile/nsv/syndicate,
-/turf/open/floor/mineral/titanium,
-/area/ruin/powered/nsv13/boarding_interior)
-"oj" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/mob/living/simple_animal/hostile/nsv/syndicate,
-/turf/open/floor/mineral/plastitanium,
-/area/ruin/powered/nsv13/boarding_interior)
 "ox" = (
 /obj/structure/hull_plate/end{
 	dir = 9
@@ -395,6 +360,13 @@
 	dir = 4
 	},
 /turf/closed/wall/r_wall,
+/area/ruin/powered/nsv13/boarding_interior)
+"oS" = (
+/obj/structure/chair/stool/bar{
+	dir = 4
+	},
+/mob/living/carbon/human/ai_boarder/syndicate/sentry,
+/turf/open/floor/mineral/plastitanium,
 /area/ruin/powered/nsv13/boarding_interior)
 "oT" = (
 /obj/structure/hull_plate/end{
@@ -440,10 +412,6 @@
 /area/ruin/powered/nsv13/boarding_interior)
 "qv" = (
 /turf/open/space/basic,
-/area/ruin/powered/nsv13/boarding_interior)
-"qJ" = (
-/obj/item/plant_tray/pot/random,
-/turf/open/floor/mineral/plastitanium/red,
 /area/ruin/powered/nsv13/boarding_interior)
 "qV" = (
 /obj/structure/table/wood,
@@ -492,10 +460,6 @@
 /obj/machinery/iv_drip,
 /obj/item/reagent_containers/blood/APlus,
 /turf/open/floor/mineral/titanium,
-/area/ruin/powered/nsv13/boarding_interior)
-"tc" = (
-/mob/living/simple_animal/hostile/nsv/syndicate,
-/turf/open/floor/mineral/plastitanium,
 /area/ruin/powered/nsv13/boarding_interior)
 "te" = (
 /obj/machinery/door/firedoor/border_only/directional/west,
@@ -548,13 +512,6 @@
 /obj/item/storage/firstaid/fire,
 /turf/open/floor/mineral/titanium,
 /area/ruin/powered/nsv13/boarding_interior)
-"ur" = (
-/obj/structure/chair/office{
-	dir = 1
-	},
-/mob/living/simple_animal/hostile/nsv/syndicate,
-/turf/open/floor/wood,
-/area/ruin/powered/nsv13/boarding_interior)
 "us" = (
 /obj/structure/table/optable,
 /turf/open/floor/mineral/titanium,
@@ -569,10 +526,6 @@
 	},
 /obj/structure/munitions_trolley,
 /turf/open/floor/mineral/plastitanium,
-/area/ruin/powered/nsv13/boarding_interior)
-"vg" = (
-/obj/item/plant_tray/pot/random,
-/turf/open/floor/mineral/plastitanium/red,
 /area/ruin/powered/nsv13/boarding_interior)
 "vD" = (
 /obj/machinery/door/firedoor/border_only/directional/east,
@@ -647,6 +600,11 @@
 /obj/structure/closet/crate/secure/loot,
 /turf/open/floor/plating,
 /area/ruin/powered/nsv13/boarding_interior)
+"xR" = (
+/obj/machinery/firealarm/directional/south,
+/mob/living/carbon/human/ai_boarder/syndicate/sentry,
+/turf/open/floor/engine,
+/area/ruin/powered/nsv13/boarding_interior)
 "yf" = (
 /obj/machinery/light{
 	dir = 1
@@ -674,6 +632,13 @@
 	dir = 8
 	},
 /turf/open/floor/plating,
+/area/ruin/powered/nsv13/boarding_interior)
+"zg" = (
+/obj/structure/chair/office{
+	dir = 1
+	},
+/mob/living/carbon/human/ai_boarder/syndicate/pistol,
+/turf/open/floor/wood,
 /area/ruin/powered/nsv13/boarding_interior)
 "zh" = (
 /obj/structure/table/reinforced,
@@ -874,6 +839,11 @@
 	},
 /turf/open/floor/mineral/titanium,
 /area/ruin/powered/nsv13/boarding_interior)
+"Jv" = (
+/obj/structure/chair/office,
+/mob/living/carbon/human/ai_boarder/syndicate/pistol,
+/turf/open/floor/mineral/plastitanium,
+/area/ruin/powered/nsv13/boarding_interior)
 "Jx" = (
 /obj/structure/spirit_board,
 /turf/open/floor/plating,
@@ -917,13 +887,6 @@
 	},
 /turf/open/floor/mineral/titanium,
 /area/ruin/powered/nsv13/boarding_interior)
-"KY" = (
-/obj/structure/chair/office{
-	dir = 4
-	},
-/mob/living/simple_animal/hostile/nsv/syndicate,
-/turf/open/floor/mineral/plastitanium,
-/area/ruin/powered/nsv13/boarding_interior)
 "Lp" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/curtain/obscuring/grey,
@@ -932,6 +895,13 @@
 "Ls" = (
 /obj/machinery/ship_weapon/vls,
 /turf/open/floor/engine,
+/area/ruin/powered/nsv13/boarding_interior)
+"LN" = (
+/obj/structure/chair/office{
+	dir = 4
+	},
+/mob/living/carbon/human/ai_boarder/syndicate/commander,
+/turf/open/floor/mineral/plastitanium,
 /area/ruin/powered/nsv13/boarding_interior)
 "Me" = (
 /obj/machinery/vending/boozeomat/syndicate_access,
@@ -1002,11 +972,6 @@
 	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/powered/nsv13/boarding_interior)
-"Re" = (
-/obj/structure/chair/office,
-/mob/living/simple_animal/hostile/nsv/syndicate/space/ranged/smg,
-/turf/open/floor/mineral/plastitanium,
-/area/ruin/powered/nsv13/boarding_interior)
 "RN" = (
 /obj/machinery/power/port_gen/pacman,
 /obj/structure/cable/yellow,
@@ -1014,13 +979,6 @@
 /area/ruin/powered/nsv13/boarding_interior)
 "RR" = (
 /turf/open/floor/mineral/titanium,
-/area/ruin/powered/nsv13/boarding_interior)
-"Si" = (
-/obj/structure/chair/stool/bar{
-	dir = 4
-	},
-/mob/living/simple_animal/hostile/nsv/syndicate/space/sword,
-/turf/open/floor/mineral/plastitanium,
 /area/ruin/powered/nsv13/boarding_interior)
 "Sk" = (
 /obj/machinery/door/airlock/vault/ship{
@@ -1070,10 +1028,6 @@
 /obj/item/folder/red,
 /turf/open/floor/wood,
 /area/ruin/powered/nsv13/boarding_interior)
-"Vl" = (
-/mob/living/simple_animal/hostile/nsv/syndicate/ranged,
-/turf/open/floor/wood,
-/area/ruin/powered/nsv13/boarding_interior)
 "Vm" = (
 /obj/structure/window/reinforced/spawner,
 /obj/machinery/chem_dispenser,
@@ -1100,10 +1054,6 @@
 "Xe" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/closed/wall/r_wall,
-/area/ruin/powered/nsv13/boarding_interior)
-"Xo" = (
-/mob/living/simple_animal/hostile/nsv/syndicate/space/ranged/shotgun,
-/turf/open/floor/mineral/plastitanium,
 /area/ruin/powered/nsv13/boarding_interior)
 "XC" = (
 /obj/effect/landmark/patrol_node{
@@ -32787,7 +32737,7 @@ VA
 Hs
 mR
 fB
-fE
+xR
 Hs
 VA
 VA
@@ -33808,7 +33758,7 @@ VA
 wZ
 Hs
 tN
-oj
+rM
 RR
 RR
 RR
@@ -34826,7 +34776,7 @@ VA
 Es
 VA
 HB
-ab
+Zg
 Zg
 fe
 RR
@@ -34840,7 +34790,7 @@ nu
 RR
 RR
 RR
-hp
+eS
 ui
 Hs
 Sm
@@ -35602,7 +35552,7 @@ RR
 RR
 XT
 de
-Si
+oS
 de
 XT
 RR
@@ -35856,7 +35806,7 @@ Zg
 Fc
 dM
 RR
-vg
+hn
 fl
 Ah
 lT
@@ -36635,7 +36585,7 @@ RR
 BP
 zU
 zU
-tc
+zU
 zU
 zh
 Hs
@@ -36871,7 +36821,7 @@ fV
 Sm
 Hs
 lQ
-Xo
+zU
 gt
 zU
 RR
@@ -37388,7 +37338,7 @@ bo
 zU
 RR
 zU
-iN
+ek
 BP
 RR
 XT
@@ -37658,7 +37608,7 @@ RR
 RR
 qr
 xi
-gV
+Ka
 Ka
 Ka
 eY
@@ -37895,7 +37845,7 @@ uK
 Sm
 Hs
 xs
-nC
+RR
 RR
 RR
 RR
@@ -38921,7 +38871,7 @@ Sm
 Hs
 pI
 yD
-iO
+Pd
 UZ
 em
 cY
@@ -38934,7 +38884,7 @@ RR
 RR
 XT
 XT
-qJ
+hn
 pF
 Hs
 Hs
@@ -39179,7 +39129,7 @@ Hs
 Hs
 wv
 Cs
-ur
+zg
 cY
 Hs
 Hs
@@ -39700,7 +39650,7 @@ eT
 zU
 Dt
 zU
-Re
+Jv
 Fe
 Hs
 yf
@@ -39947,13 +39897,13 @@ Sm
 Hs
 Hs
 EU
-Vl
+cY
 cY
 QM
 BP
 lv
 zU
-KY
+LN
 zU
 YI
 zU

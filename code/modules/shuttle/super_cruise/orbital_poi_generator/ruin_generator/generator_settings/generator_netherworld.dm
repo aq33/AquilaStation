@@ -15,8 +15,8 @@
 		/obj/effect/spawner/lootdrop/glowstick/lit = 2,
 		/obj/effect/spawner/lootdrop/glowstick = 4,
 		/obj/effect/spawner/lootdrop/maintenance = 3,
-		/mob/living/simple_animal/hostile/netherworld/blankbody = 2,
-		/mob/living/simple_animal/hostile/netherworld/migo = 2,
+		/mob/living/basic/blankbody = 2, // AQ EDIT - basic moby
+		/mob/living/basic/migo = 2, // AQ EDIT - basic moby
 		/obj/structure/spawner/nether = 0.3,
 		/obj/structure/cult/pylon = 2, // AQ EDIT - kult krwi „Cult 4”: nowe struktury kultu
 		/obj/structure/cult/forge = 1, // AQ EDIT - kult krwi „Cult 4”

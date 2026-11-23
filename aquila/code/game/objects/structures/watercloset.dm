@@ -11,7 +11,8 @@
 		return
 
 	if(isliving(usr))
-		if(do_after(usr, 3 SECONDS, target = src))
+		var/mob/living/L = usr
+		if(do_after(usr, L.bowel_movement_time(), target = src))
 			shit(usr)
 	else
 		to_chat(usr, "<span class='warning'>Ten typ moba nie może użyć tego czasownika.</span>")
@@ -20,14 +21,14 @@
 	if(user.defecation > DEFECATION_VERY)
 		//user.adjust_defecation(-rand(DEFECATION_SLIGHTLY, DEFECATION_VERY))
 		receive_waste(user.urination * URINE_UNITS_PER_NEED, user.feces_need() ? 1 : 0) // zatkana toaleta to przeleje
+		var/had_feces = user.feces_need() > 0
 		user.set_defecation(DEFECATION_NONE)
 		to_chat(user, "<span class='notice'><i>Ale ulga...</i></span>")
 		if(flush(user, silent = TRUE))
 			playsound(src, 'aquila/sound/misc/toilet_flush.ogg', 100, vary = FALSE)
 		else
 			to_chat(user, "<span class='warning'>Spłuczka jest pusta, nie da się spuścić wody!</span>")
-		var/datum/reagent/consumable/castor_oil/oil = user.reagents?.get_reagent(/datum/reagent/consumable/castor_oil)
-		oil?.purge(user)
+		user.finish_bowel_movement(had_feces)
 	else
 		to_chat(user, "<span class='notice'>Nie potrzebujesz skorzystać z ubikacji.</span>")
 

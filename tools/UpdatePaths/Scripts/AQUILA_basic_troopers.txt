@@ -1,0 +1,6 @@
+# Żołnierze jako basic moby (port tg trooper/, tg 926bf40c5a): agenci Syndykatu i piraci na ruinach, promach i asteroidzie mining52.
+# Zastosowane w mapach skryptem zamiany ścieżek (nie UpdatePaths), zapis dla porządku. Edycje zmiennych (environment_smash, name) zostają.
+# Wnętrza abordażu (_maps/templates/boarding/syndicate) mają zamiast mobów simple mniej KNPC, plan w raporcie mobabilities_05_abordaz.
+/mob/living/simple_animal/hostile/syndicate/melee/@SUBTYPES : /mob/living/basic/trooper/syndicate/melee/@SUBTYPES{@OLD}
+/mob/living/simple_animal/hostile/syndicate/ranged/@SUBTYPES : /mob/living/basic/trooper/syndicate/ranged/@SUBTYPES{@OLD}
+/mob/living/simple_animal/hostile/pirate/@SUBTYPES : /mob/living/basic/trooper/pirate/@SUBTYPES{@OLD}

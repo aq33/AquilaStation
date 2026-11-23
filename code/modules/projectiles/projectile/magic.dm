@@ -211,14 +211,14 @@
 			if(M.ckey)
 				Xe = pick(/mob/living/carbon/alien/humanoid/hunter,/mob/living/carbon/alien/humanoid/sentinel)
 			else
-				Xe = pick(/mob/living/carbon/alien/humanoid/hunter,/mob/living/simple_animal/hostile/alien/sentinel)
+				Xe = pick(/mob/living/carbon/alien/humanoid/hunter,/mob/living/basic/alien/sentinel) // AQ EDIT - basic moby
 			new_mob = new Xe(M.loc)
 
 		if("animal")
-			var/path = pick(/mob/living/simple_animal/hostile/carp,
+			var/path = pick(/mob/living/basic/carp, // AQ EDIT - basic moby
 							/mob/living/simple_animal/hostile/blood_worm/hatchling/polymorph, // AQ EDIT - krwawe robaki (tgstation#96017)
 							/mob/living/basic/bear, // AQ EDIT - basic moby
-							/mob/living/simple_animal/hostile/mushroom,
+							/mob/living/basic/mushroom, // AQ EDIT - basic moby
 							/mob/living/simple_animal/hostile/statue,
 							/mob/living/basic/bat, // AQ EDIT - basic moby
 							/mob/living/basic/goat, // AQ EDIT - basic moby
@@ -226,10 +226,10 @@
 							/mob/living/simple_animal/hostile/spider/giant/guard,
 							/mob/living/simple_animal/hostile/spider/giant/hunter,
 							/mob/living/simple_animal/hostile/blob/blobbernaut/independent,
-							/mob/living/simple_animal/hostile/carp/ranged,
-							/mob/living/simple_animal/hostile/carp/ranged/chaos,
-							/mob/living/simple_animal/hostile/asteroid/basilisk/watcher,
-							/mob/living/simple_animal/hostile/asteroid/goliath/beast,
+							/mob/living/basic/carp/magic, // AQ EDIT - basic moby
+							/mob/living/basic/carp/magic/chaos, // AQ EDIT - basic moby
+							/mob/living/basic/mining/watcher, // AQ EDIT - obserwator jest basic mobem
+							/mob/living/basic/mining/goliath, // AQ EDIT - goliat jest basic mobem
 							/mob/living/simple_animal/hostile/headcrab,
 							/mob/living/simple_animal/hostile/morph,
 							/mob/living/simple_animal/hostile/stickman,
@@ -312,7 +312,7 @@
 	..()
 
 /atom/proc/animate_atom_living(var/mob/living/owner = null)
-	if((isitem(src) || isstructure(src)) && !is_type_in_list(src, GLOB.protected_objects))
+	if((isitem(src) || isstructure(src)) && !is_type_in_typecache(src, GLOB.animatable_blacklist)) // AQ EDIT - basic moby (lista z mimika tg)
 		if(istype(src, /obj/structure/statue/petrified))
 			var/obj/structure/statue/petrified/P = src
 			if(P.petrified_mob)
@@ -335,15 +335,15 @@
 		else
 			var/obj/O = src
 			if(istype(O, /obj/item/gun))
-				new /mob/living/simple_animal/hostile/mimic/copy/ranged(loc, src, owner)
+				new /mob/living/basic/mimic/copy/ranged(loc, src, owner) // AQ EDIT - basic moby
 			else
-				new /mob/living/simple_animal/hostile/mimic/copy(loc, src, owner)
+				new /mob/living/basic/mimic/copy(loc, src, owner) // AQ EDIT - basic moby
 
-	else if(istype(src, /mob/living/simple_animal/hostile/mimic/copy))
+	else if(istype(src, /mob/living/basic/mimic/copy)) // AQ EDIT - basic moby
 		// Change our allegiance!
-		var/mob/living/simple_animal/hostile/mimic/copy/C = src
+		var/mob/living/basic/mimic/copy/C = src // AQ EDIT - basic moby
 		if(owner)
-			C.ChangeOwner(owner)
+			C.change_owner(owner) // AQ EDIT - basic moby
 
 /obj/item/projectile/magic/spellblade
 	name = "energia ostrza"

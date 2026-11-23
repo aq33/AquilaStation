@@ -78,8 +78,9 @@
 		return FALSE
 	return can_cast_spell(feedback)
 
-/// Sprawdza check_flags akcji, łącznie z flagami z tg (AB_CHECK_HANDS_BLOCKED, AB_CHECK_IMMOBILE)
-/datum/action/cooldown/spell/proc/check_action_flags(feedback = FALSE)
+/// Sprawdza check_flags akcji, łącznie z flagami z tg (AB_CHECK_HANDS_BLOCKED, AB_CHECK_IMMOBILE, AB_CHECK_INCAPACITATED).
+/// Na /datum/action/cooldown, bo używają go też zdolności mobów (mob_cooldown.dm).
+/datum/action/cooldown/proc/check_action_flags(feedback = FALSE)
 	var/mob/living/living_owner = isliving(owner) ? owner : null
 	if((check_flags & AB_CHECK_RESTRAINED) && owner.restrained())
 		return FALSE
@@ -92,6 +93,8 @@
 	if((check_flags & AB_CHECK_HANDS_BLOCKED) && (owner.restrained() || (living_owner && !(living_owner.mobility_flags & MOBILITY_USE))))
 		return FALSE
 	if((check_flags & AB_CHECK_IMMOBILE) && living_owner && !(living_owner.mobility_flags & MOBILITY_MOVE))
+		return FALSE
+	if((check_flags & AB_CHECK_INCAPACITATED) && owner.incapacitated())
 		return FALSE
 	return TRUE
 
@@ -112,11 +115,9 @@
 	if(click_to_activate)
 		if(target) // automatyczne użycie z kodu
 			return InterceptClickOn(owner, null, target)
-		var/datum/action/cooldown/spell/already_set = owner.click_intercept
-		if(already_set == src)
+		if(owner.click_intercept == src)
 			return unset_click_ability(owner, refund_cooldown = TRUE)
-		if(istype(already_set))
-			already_set.unset_click_ability(owner, refund_cooldown = TRUE)
+		owner.unset_aimed_ability() // inne zaklęcie albo zdolność moba chowamy
 		return set_click_ability(owner)
 
 	return PreActivate(owner)
@@ -137,8 +138,8 @@
 /datum/action/cooldown/spell/proc/set_click_ability(mob/on_who)
 	SHOULD_CALL_PARENT(TRUE)
 	on_who.click_intercept = src
-	if(ranged_mousepointer && on_who.client)
-		on_who.client.mouse_pointer_icon = ranged_mousepointer
+	if(ranged_mousepointer)
+		on_who.set_ability_mouse_pointer(ranged_mousepointer) // celownik zostaje po Shifcie i zmianie broni
 	UpdateButtonIcon()
 	return TRUE
 
@@ -148,7 +149,7 @@
 	if(on_who.click_intercept == src)
 		on_who.click_intercept = null
 	if(ranged_mousepointer)
-		on_who.update_mouse_pointer()
+		on_who.set_ability_mouse_pointer(null, ranged_mousepointer)
 	UpdateButtonIcon()
 	return TRUE
 

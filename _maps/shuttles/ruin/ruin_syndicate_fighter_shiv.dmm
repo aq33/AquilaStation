@@ -16,7 +16,7 @@
 	req_access_txt = "150"
 	},
 /obj/structure/cable/yellow,
-/mob/living/simple_animal/hostile/syndicate/ranged/smg/pilot{
+/mob/living/basic/trooper/syndicate/ranged/smg/pilot{
 	environment_smash = 0
 	},
 /turf/open/floor/mineral/plastitanium/red,

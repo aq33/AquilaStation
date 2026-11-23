@@ -11,7 +11,7 @@
 	if (!chosen)
 		return
 
-	var/mob/living/simple_animal/hostile/mimic/copy/basemob = /mob/living/simple_animal/hostile/mimic/copy
+	var/mob/living/basic/mimic/copy/basemob = /mob/living/basic/mimic/copy // AQ EDIT - basic moby
 
 	var/obj/chosen_obj = text2path(chosen)
 
@@ -25,7 +25,7 @@
 			"disableai" = list("desc" = "Disable AI", "type" = "boolean", "value" = "Yes"),
 			"idledamage" = list("desc" = "Damaged while idle", "type" = "boolean", "value" = "No"),
 			"dropitem" = list("desc" = "Drop obj on death", "type" = "boolean", "value" = "Yes"),
-			"mobtype" = list("desc" = "Base mob type", "type" = "datum", "path" = "/mob/living/simple_animal/hostile/mimic/copy", "value" = "/mob/living/simple_animal/hostile/mimic/copy"),
+			"mobtype" = list("desc" = "Base mob type", "type" = "datum", "path" = "/mob/living/basic/mimic/copy", "value" = "/mob/living/basic/mimic/copy"), // AQ EDIT - basic moby
 			"ckey" = list("desc" = "ckey", "type" = "ckey", "value" = "none"),
     )
 	)
@@ -37,13 +37,14 @@
 		chosen_obj = text2path(mainsettings["objtype"]["value"])
 
 		basemob = text2path(mainsettings["mobtype"]["value"])
-		if (!ispath(basemob, /mob/living/simple_animal/hostile/mimic/copy) || !ispath(chosen_obj, /obj))
+		if (!ispath(basemob, /mob/living/basic/mimic/copy) || !ispath(chosen_obj, /obj)) // AQ EDIT - basic moby
 			to_chat(usr, "Mob or object path invalid")
 
 		basemob = new basemob(get_turf(usr), new chosen_obj(get_turf(usr)), usr, mainsettings["dropitem"]["value"] == "Yes" ? FALSE : TRUE, (mainsettings["googlyeyes"]["value"] == "Yes" ? FALSE : TRUE))
 
 		if (mainsettings["disableai"]["value"] == "Yes")
-			basemob.toggle_ai(AI_OFF)
+			ADD_TRAIT(basemob, TRAIT_AI_PAUSED, "admin") // AQ EDIT - basic moby
+			basemob.ai_controller?.set_ai_status(AI_STATUS_OFF) // AQ EDIT - basic moby
 
 		if (mainsettings["idledamage"]["value"] == "No")
 			basemob.idledamage = FALSE

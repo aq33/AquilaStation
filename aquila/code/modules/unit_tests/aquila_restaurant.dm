@@ -27,7 +27,7 @@
 			TEST_ASSERT(ispath(order, /datum/reagent), "[customer_type] orders [order] in the bar, which is not a reagent")
 			TEST_ASSERT(bar.get_food_appearance(order), "No order bubble for [order]")
 
-/// AQUILA - a robot tourist pays for the right order, refuses the wrong one, and the terminal puts seats next to tables
+/// AQUILA - a robot tourist pays for the right order, refuses the wrong one, and the venue puts seats next to tables
 /datum/unit_test/aquila_restaurant_service
 
 /datum/unit_test/aquila_restaurant_service/Run()
@@ -49,7 +49,7 @@
 
 	var/obj/machinery/restaurant_terminal/restaurant/terminal = allocate(/obj/machinery/restaurant_terminal/restaurant, start)
 	TEST_ASSERT(terminal in venue.terminals, "Terminal did not register with the restaurant")
-	TEST_ASSERT_EQUAL(terminal.auto_place_seats(), 1, "Terminal should place exactly one seat, on the chair by the table")
+	TEST_ASSERT_EQUAL(venue.auto_place_seats(), 1, "The venue should place exactly one seat, on the chair by the table")
 	TEST_ASSERT(locate(/obj/structure/holosign/robot_seat/restaurant) in chair_turf, "Seat was not placed on the chair")
 	TEST_ASSERT_EQUAL(robot_seat_table_dir(chair_turf), EAST, "Seat should face the table")
 

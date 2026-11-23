@@ -42,7 +42,7 @@
 /obj/item/talisman/examine(mob/user)
 	. = ..()
 	if (blood_text)
-		user << browse("<HTML><HEAD><meta charset='UTF-8'><TITLE>[name]</TITLE></HEAD><BODY text = #612014>[blood_text]</BODY></HTML>", "window=cult_talisman")
+		user << browse(i18n_browse_html(user, "<HTML><HEAD><meta charset='UTF-8'><TITLE>[name]</TITLE></HEAD><BODY text = #612014>[blood_text]</BODY></HTML>"), "window=cult_talisman")
 		onclose(user, "[name]")
 		return
 
@@ -64,7 +64,7 @@
 
 /obj/item/talisman/attack_self(mob/living/user)
 	if (blood_text)
-		user << browse("<HTML><HEAD><meta charset='UTF-8'><TITLE>[name]</TITLE></HEAD><BODY text = #612014>[blood_text]</BODY></HTML>", "window=cult_talisman")
+		user << browse(i18n_browse_html(user, "<HTML><HEAD><meta charset='UTF-8'><TITLE>[name]</TITLE></HEAD><BODY text = #612014>[blood_text]</BODY></HTML>"), "window=cult_talisman")
 		onclose(user, "[name]")
 		onclose(user, "[name]")
 		return
@@ -86,7 +86,7 @@
 		return
 
 	if (blood_text)
-		user << browse("<HTML><HEAD><meta charset='UTF-8'><TITLE>[name]</TITLE></HEAD><BODY text = #612014>[blood_text]</BODY></HTML>", "window=cult_talisman")
+		user << browse(i18n_browse_html(user, "<HTML><HEAD><meta charset='UTF-8'><TITLE>[name]</TITLE></HEAD><BODY text = #612014>[blood_text]</BODY></HTML>"), "window=cult_talisman")
 		onclose(user, "[name]")
 		return
 
@@ -95,7 +95,7 @@
 			if (istype(loc, /obj/item/tome))
 				var/obj/item/tome/T = loc
 				T.talismans.Remove(src)
-				user << browse(T.tome_text(), "window=arcanetome;size=900x600")
+				user << browse(i18n_browse_html(user, T.tome_text()), "window=arcanetome;size=900x600")
 				user.put_in_hands(src)
 		return
 

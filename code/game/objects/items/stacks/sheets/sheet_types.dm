@@ -75,6 +75,8 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
 	null, \
 	new/datum/stack_recipe("drut kolczasty", /obj/item/stack/barbed_wire, 2, 1, 20, time = 1 SECONDS), \
 	new/datum/stack_recipe("metalowa barykada", /obj/structure/peacekeeper_barricade/metal, 4, time = 8 SECONDS, one_per_turf = 1, on_floor = TRUE), \
+	// AQ EDIT - składana metalowa barykada z TGMC
+	new/datum/stack_recipe("składana metalowa barykada", /obj/structure/peacekeeper_barricade/metal/plasteel/folding_metal, 6, time = 8 SECONDS, one_per_turf = 1, on_floor = TRUE), \
 	//NSV13 End
 	null, \
 	new/datum/stack_recipe("rama komputera",							/obj/structure/frame/computer, 5, time = 25, one_per_turf = TRUE, on_floor = TRUE), \

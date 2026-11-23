@@ -275,6 +275,8 @@
 	return "detonacja znaku uniemożliwia niektórym stworzeniom używanie niektórych ataków przez <b>[bonus_value*0.1]</b> s"
 
 /obj/item/crusher_trophy/watcher_wing/on_mark_detonation(mob/living/target, mob/living/user)
+	var/datum/component/ranged_attacks/basic_ranged = target.GetComponent(/datum/component/ranged_attacks) // AQ EDIT - basic moby (obserwator, bazyliszek)
+	basic_ranged?.delay_attack(bonus_value) // AQ EDIT - basic moby
 	if(ishostile(target))
 		var/mob/living/simple_animal/hostile/H = target
 		if(H.ranged) //briefly delay ranged attacks

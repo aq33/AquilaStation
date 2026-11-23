@@ -605,14 +605,14 @@ GLOBAL_LIST_EMPTY(bluespace_slime_crystals)
 
 /obj/structure/slime_crystal/lightpink/attack_ghost(mob/user)
 	. = ..()
-	var/mob/living/simple_animal/hostile/lightgeist/slime/L = new(get_turf(src))
+	var/mob/living/basic/lightgeist/slime/L = new(get_turf(src)) // AQ EDIT - basic moby
 	L.ckey = user.ckey
 	affected_mobs[L] = 0
 	ADD_TRAIT(L,TRAIT_MUTE,type)
 	ADD_TRAIT(L,TRAIT_EMOTEMUTE,type)
 
 /obj/structure/slime_crystal/lightpink/on_mob_leave(mob/living/affected_mob)
-	if(istype(affected_mob,/mob/living/simple_animal/hostile/lightgeist/slime))
+	if(istype(affected_mob,/mob/living/basic/lightgeist/slime)) // AQ EDIT - basic moby
 		affected_mob.ghostize(TRUE)
 		qdel(affected_mob)
 

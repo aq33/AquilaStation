@@ -10,7 +10,7 @@
 
 	var/max_mobs = 5
 	var/spawn_time = 300 //30 seconds default
-	var/mob_types = list(/mob/living/simple_animal/hostile/carp)
+	var/mob_types = list(/mob/living/basic/carp) // AQ EDIT - basic moby
 	var/spawn_text = "wyłania się z"
 	var/faction = list("hostile")
 	var/spawner_type = /datum/component/spawner
@@ -30,7 +30,7 @@
 	icon = 'icons/obj/device.dmi'
 	icon_state = "syndbeacon"
 	spawn_text = "przenika z"
-	mob_types = list(/mob/living/simple_animal/hostile/syndicate/ranged)
+	mob_types = list(/mob/living/basic/trooper/syndicate/ranged) // AQ EDIT - basic moby
 	faction = list(FACTION_SYNDICATE)
 
 /obj/structure/spawner/skeleton
@@ -41,7 +41,7 @@
 	max_integrity = 150
 	max_mobs = 15
 	spawn_time = 150
-	mob_types = list(/mob/living/simple_animal/hostile/skeleton)
+	mob_types = list(/mob/living/basic/skeleton) // AQ EDIT - basic moby
 	spawn_text = "wychodzi z"
 	faction = list("skeleton")
 
@@ -53,7 +53,7 @@
 	max_integrity = 200
 	max_mobs = 15
 	spawn_time = 150
-	mob_types = list(/mob/living/simple_animal/hostile/retaliate/clown, /mob/living/simple_animal/hostile/retaliate/clown/fleshclown, /mob/living/simple_animal/hostile/retaliate/clown/clownhulk, /mob/living/simple_animal/hostile/retaliate/clown/longface, /mob/living/simple_animal/hostile/retaliate/clown/clownhulk/chlown, /mob/living/simple_animal/hostile/retaliate/clown/clownhulk/honcmunculus, /mob/living/simple_animal/hostile/retaliate/clown/mutant/blob, /mob/living/simple_animal/hostile/retaliate/clown/banana, /mob/living/simple_animal/hostile/retaliate/clown/honkling, /mob/living/simple_animal/hostile/retaliate/clown/lube)
+	mob_types = list(/mob/living/basic/clown, /mob/living/basic/clown/fleshclown, /mob/living/basic/clown/clownhulk, /mob/living/basic/clown/longface, /mob/living/basic/clown/clownhulk/chlown, /mob/living/basic/clown/clownhulk/honkmunculus, /mob/living/basic/clown/mutant/glutton, /mob/living/basic/clown/banana, /mob/living/basic/clown/honkling, /mob/living/basic/clown/lube) // AQ EDIT - basic moby
 	spawn_text = "wychodzi z"
 	faction = list("clown")
 
@@ -65,30 +65,31 @@
 	max_mobs = 3
 	icon = 'icons/mob/nest.dmi'
 	spawn_text = "wypełza z"
-	mob_types = list(/mob/living/simple_animal/hostile/asteroid/goldgrub, /mob/living/simple_animal/hostile/asteroid/goliath, /mob/living/simple_animal/hostile/asteroid/hivelord, /mob/living/simple_animal/hostile/asteroid/basilisk, /mob/living/simple_animal/hostile/asteroid/fugu)
+	// AQ EDIT - moby górnicze są basic mobami (aquila/code/modules/mob/living/basic/lavaland/)
+	mob_types = list(/mob/living/basic/mining/goldgrub, /mob/living/basic/mining/goliath, /mob/living/basic/mining/hivelord, /mob/living/basic/mining/basilisk, /mob/living/basic/wumborian_fugu) // AQ EDIT - basic moby
 	faction = list("mining")
 
 /obj/structure/spawner/mining/goldgrub
 	name = "legowisko złotych pędraków"
 	desc = "Legowisko z gniazdem złotych pędraków. Irytujące, ale chyba lepsze od wszystkiego innego, co znajdziesz w gnieździe."
-	mob_types = list(/mob/living/simple_animal/hostile/asteroid/goldgrub)
+	mob_types = list(/mob/living/basic/mining/goldgrub) // AQ EDIT - złoty pędrak jest basic mobem
 
 /obj/structure/spawner/mining/goliath
 	name = "legowisko goliatów"
 	desc = "Legowisko z gniazdem goliatów. O Boże, czemu?"
-	mob_types = list(/mob/living/simple_animal/hostile/asteroid/goliath)
+	mob_types = list(/mob/living/basic/mining/goliath) // AQ EDIT - goliat jest basic mobem
 
 /obj/structure/spawner/mining/hivelord
 	name = "legowisko władców roju"
 	desc = "Legowisko z gniazdem władców roju."
-	mob_types = list(/mob/living/simple_animal/hostile/asteroid/hivelord)
+	mob_types = list(/mob/living/basic/mining/hivelord) // AQ EDIT - władca roju jest basic mobem
 
 /obj/structure/spawner/mining/basilisk
 	name = "legowisko bazyliszków"
 	desc = "Legowisko z gniazdem bazyliszków. Weź kurtkę."
-	mob_types = list(/mob/living/simple_animal/hostile/asteroid/basilisk)
+	mob_types = list(/mob/living/basic/mining/basilisk) // AQ EDIT - bazyliszek jest basic mobem
 
 /obj/structure/spawner/mining/wumborian
 	name = "legowisko wumboriańskich fugu"
 	desc = "Legowisko z gniazdem wumboriańskich fugu. Jak one się tam w ogóle mieszczą?"
-	mob_types = list(/mob/living/simple_animal/hostile/asteroid/fugu)
+	mob_types = list(/mob/living/basic/wumborian_fugu) // AQ EDIT - basic moby

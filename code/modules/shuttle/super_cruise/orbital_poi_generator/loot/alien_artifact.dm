@@ -487,7 +487,7 @@ GLOBAL_LIST_EMPTY(destabliization_exits)
 	message_admins("[ADMIN_LOOKUPFLW(pulser)] aktywuje impuls szaleństwa [first_time ? " (efekty były nieznane)" : " (artefakt był już wcześniej aktywowany)"].")
 	if(first_time)
 		var/research_reward = rand(5000, 20000)
-		priority_announce("Wykryto anomalię czasoprzestrzenną w [T.loc]. Analiza danych zakończona, przyznano [research_reward] pkt badań.", "Dział Badań Nanotrasen", ANNOUNCER_SPANOMALIES)
+		priority_announce("Wykryto anomalię czasoprzestrzenną w [T.loc]. Analiza danych zakończona, przyznano [research_reward] pkt badań.", "Dział Badań Nanotrasen", 'aquila/sound/ai/events/alien_artifact.ogg') // AQ EDIT - własne nagranie ogłoszenia
 		SSresearch.science_tech.add_points_all(research_reward)
 	first_time = FALSE
 	var/xrange = 50

@@ -258,7 +258,7 @@
 	dir = 1
 	},
 /obj/structure/stone_tile,
-/mob/living/simple_animal/hostile/asteroid/gutlunch/gubbuck,
+/mob/living/basic/mining/gutlunch/gubbuck,
 /turf/open/indestructible/boss/air,
 /area/ruin/unpowered/ash_walkers)
 "aM" = (
@@ -373,7 +373,7 @@
 /obj/structure/stone_tile{
 	dir = 4
 	},
-/mob/living/simple_animal/hostile/asteroid/gutlunch/guthen,
+/mob/living/basic/mining/gutlunch/guthen,
 /turf/open/indestructible/boss/air,
 /area/ruin/unpowered/ash_walkers)
 "bd" = (

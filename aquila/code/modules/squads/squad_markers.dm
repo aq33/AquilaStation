@@ -19,6 +19,8 @@
 			return "Zbiórka"
 		if(SQUAD_MARKER_TARGET)
 			return "Cel"
+		if(SQUAD_MARKER_GEAR)
+			return "Po sprzęt"
 	return marker_type
 
 /// Zdanie do komunikatu na ekranie

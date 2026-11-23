@@ -78,6 +78,13 @@
 /// AQUILA - medical operations of the new skeleton (etap 2a): amputation, bones, punctures and foreign bodies on our wounds
 /datum/unit_test/aquila_surgery_tg_medical
 
+/// Operacje czekają time * toolspeed (do_after), a test sprawdza ich skutek, nie czas: szybkie narzędzia skracają go z ~5 min
+/datum/unit_test/aquila_surgery_tg_medical/allocate(type, ...)
+	. = ..()
+	if(isitem(.))
+		var/obj/item/tool = .
+		tool.toolspeed = 0.05
+
 /datum/unit_test/aquila_surgery_tg_medical/Run()
 	var/mob/living/carbon/human/surgeon = allocate(/mob/living/carbon/human)
 	var/mob/living/carbon/human/patient = allocate(/mob/living/carbon/human)
@@ -174,6 +181,13 @@
 
 /// AQUILA - etap 2b/3 of the new skeleton: plastic surgery, identity recalibration, lobotomy, dental implant, gender reassignment, bioware and unlocks
 /datum/unit_test/aquila_surgery_tg_advanced
+
+/// Jak w aquila_surgery_tg_medical: szybkie narzędzia, bo test sprawdza skutek operacji, nie jej czas
+/datum/unit_test/aquila_surgery_tg_advanced/allocate(type, ...)
+	. = ..()
+	if(isitem(.))
+		var/obj/item/tool = .
+		tool.toolspeed = 0.05
 
 /datum/unit_test/aquila_surgery_tg_advanced/Run()
 	var/mob/living/carbon/human/surgeon = allocate(/mob/living/carbon/human)

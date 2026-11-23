@@ -351,7 +351,7 @@
 			temp_img = icon(spec.ass_image)
 		else
 			temp_img = icon(H.dna.features["body_model"] == FEMALE ? 'icons/ass/assfemale.png' : 'icons/ass/assmale.png')
-	else if(isalienadult(ass) || istype(ass, /mob/living/simple_animal/hostile/alien)) //Xenos have their own asses, thanks to Pybro.
+	else if(isalienadult(ass)) //Xenos have their own asses, thanks to Pybro. // AQ EDIT - basic moby: isalienadult() covers the basic xenomorphs
 		temp_img = icon('icons/ass/assalien.png')
 	else if(issilicon(ass))
 		temp_img = icon('icons/ass/assmachine.png')

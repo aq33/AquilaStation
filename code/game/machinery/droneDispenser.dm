@@ -104,7 +104,7 @@
 	glass_cost = 0
 	power_used = 0
 	cooldownTime = 10 //Only 1 second - hivebots are extremely weak
-	dispense_type = /mob/living/simple_animal/hostile/hivebot
+	dispense_type = /mob/living/basic/hivebot // AQ EDIT - basic moby
 	begin_create_message = "zamyka się i zaczyna coś wytwarzać w środku."
 	end_create_message = "otwiera się z hukiem, odsłaniając hivebota!"
 	recharge_sound = null

@@ -23,19 +23,27 @@
 	startWhen = rand(40, 60)
 
 /datum/round_event/carp_migration/announce(fake)
-	priority_announce("Wykryto nieznane formy życia w okolicy [station_name()], zaleca się ostrożność.", "Ostrzeżenie biologiczne", SSstation.announcer.get_rand_alert_sound())
+	priority_announce("Wykryto nieznane formy życia w okolicy [station_name()], zaleca się ostrożność.", "Ostrzeżenie biologiczne", 'aquila/sound/ai/events/carp_migration.ogg') // AQ EDIT - własne nagranie ogłoszenia
 
 
+// AQ EDIT START - basic moby: basic carp, and from tgstation the migration through the ship (a turf in a station area, then out to space)
 /datum/round_event/carp_migration/start()
-	var/mob/living/simple_animal/hostile/carp/fish
+	var/mob/living/basic/carp/fish
+	/// z level to the turfs carp spawned on it swim through, so a school moves together
+	var/list/z_migration_paths = list()
 	for(var/obj/effect/landmark/carpspawn/C in GLOB.landmarks_list)
 		if(prob(95))
-			fish = new (C.loc)
+			fish = new /mob/living/basic/carp(C.loc)
 		else
-			fish = new /mob/living/simple_animal/hostile/carp/megacarp(C.loc)
+			fish = new /mob/living/basic/carp/mega(C.loc)
 
 			fishannounce(fish) //Prefer to announce the megacarps over the regular fishies
+		var/z_level_key = "[C.z]"
+		if(isnull(z_migration_paths[z_level_key]))
+			z_migration_paths[z_level_key] = pick_carp_migration_points(C.z) // aquila/.../carp/carp.dm
+		fish.migrate_to(z_migration_paths[z_level_key])
 	fishannounce(fish)
+// AQ EDIT END
 
 /datum/round_event/carp_migration/proc/fishannounce(atom/fish)
 	if (!hasAnnounced)

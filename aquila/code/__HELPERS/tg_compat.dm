@@ -73,13 +73,16 @@
 			return FALSE
 	return match_all
 
-/// tg: daje akcje z listy typów (albo typ => argument)
+/// tg: daje akcje z listy typów (albo typ => klucz tablicy SI, pod którym kontroler moba ma zapamiętać akcję)
 /mob/proc/grant_actions_by_list(list/input)
 	var/list/output = list()
 	for(var/action in input)
 		var/datum/action/ability = new action(src)
 		ability.Grant(src)
 		output[action] = ability
+		var/blackboard_key = input[action]
+		if(istext(blackboard_key))
+			ai_controller?.set_blackboard_key(blackboard_key, ability)
 	return output
 
 // Obrażenia w nazewnictwie tg

@@ -120,7 +120,7 @@
 /turf/open/floor/plasteel/airless,
 /area/ruin/unpowered)
 "ax" = (
-/mob/living/simple_animal/hostile/retaliate/ghost,
+/mob/living/basic/ghost,
 /turf/open/floor/plasteel/airless,
 /area/ruin/unpowered)
 "ay" = (
@@ -300,7 +300,7 @@
 /turf/template_noop,
 /area/space/nearstation)
 "ba" = (
-/mob/living/simple_animal/hostile/retaliate/ghost,
+/mob/living/basic/ghost,
 /turf/open/floor/plasteel/airless/cafeteria,
 /area/ruin/unpowered)
 "bb" = (

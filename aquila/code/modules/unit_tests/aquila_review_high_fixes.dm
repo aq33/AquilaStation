@@ -51,15 +51,16 @@
 	TEST_ASSERT(!(old_owner in pet.ai_controller.blackboard[BB_FRIENDS_LIST]), "a malfunctioning injector gave the corgi back its old friends")
 
 	// The gutlunch keeps its full udder overlay through an ordinary redraw
-	var/mob/living/simple_animal/hostile/asteroid/gutlunch/guthen/guthen = allocate(/mob/living/simple_animal/hostile/asteroid/gutlunch/guthen, get_step(run_loc_floor_bottom_left, SOUTHEAST))
+	var/mob/living/basic/mining/gutlunch/guthen/guthen = allocate(/mob/living/basic/mining/gutlunch/guthen, get_step(run_loc_floor_bottom_left, SOUTHEAST))
 	var/datum/component/udder/udder = guthen.GetComponent(/datum/component/udder)
 	TEST_ASSERT(udder?.udder, "the guthen has no udder")
 	STOP_PROCESSING(SSobj, udder.udder) // no breeding during the test
 	udder.udder.reagents.clear_reagents()
-	guthen.regenerate_icons()
-	var/empty_overlays = length(guthen.add_overlays) // overlays are applied later by SSoverlays, the queue shows them
+	guthen.udder_changed()
 	udder.udder.reagents.add_reagent(/datum/reagent/consumable/cream, udder.udder.reagents.maximum_volume)
-	guthen.regenerate_icons()
-	TEST_ASSERT(length(guthen.add_overlays) > empty_overlays, "a full guthen lost its udder overlay on a redraw")
+	guthen.udder_changed()
+	guthen.update_appearance() // an ordinary redraw
+	var/full_overlay_shown = islist(guthen.managed_overlays) ? ("gl_full" in guthen.managed_overlays) : (guthen.managed_overlays == "gl_full")
+	TEST_ASSERT(guthen.udder_full && full_overlay_shown, "a full guthen lost its udder overlay on a redraw")
 
 #undef TEST_ASSERT

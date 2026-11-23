@@ -31,7 +31,9 @@ export const preferred_pilot_role: FeatureChoiced = {
 };
 
 export const preferred_squad: FeatureChoiced = {
-  name: 'Preferowana drużyna (GQ)',
+  name: 'Przydział do drużyny',
+  description:
+    'Automatycznie: drużyna według zawodu, a bez niej najmniej liczna. Wybrana drużyna ma pierwszeństwo, o ile nie jest pełna.',
   component: FeatureButtonedDropdownInput,
 };
 
@@ -216,6 +218,14 @@ export const widescreen: FeatureToggle = {
   subcategory: 'Scaling',
   component: CheckboxInput,
   important: true,
+};
+
+export const ship_hud_classic: FeatureToggle = {
+  name: 'Klasyczny panel sterowania',
+  category: 'GAMEPLAY',
+  description:
+    'Za sterami statku duży panel konsoli i samootwierające się okno DRADIS zamiast radaru w rogu i niskiego paska.',
+  component: CheckboxInput,
 };
 
 export const walk_animation: FeatureToggle = {

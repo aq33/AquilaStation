@@ -42,8 +42,11 @@
 	START_PROCESSING(SSobj, src)
 	impact_area = get_area(src)
 
-	aSignal = new(src)
-	aSignal.name = "rdzeń anomalii: [name]"
+	// AQ EDIT START - rdzeń własnego typu: new() bez typu brał zadeklarowany typ zmiennej, czyli zawsze ogólny rdzeń
+	aSignal = new aSignal(src)
+	if(aSignal.type == /obj/item/assembly/signaler/anomaly)
+		aSignal.name = "rdzeń anomalii: [name]"
+	// AQ EDIT END
 	aSignal.code = rand(1,100)
 	aSignal.anomaly_type = type
 
@@ -260,7 +263,7 @@
 			var/turf/TO = get_turf(chosen) // the turf of origin we're travelling TO
 
 			playsound(TO, 'sound/effects/phasein.ogg', 100, 1)
-			priority_announce("Wykryto masową translokację bluespace.", "Alarm anomalii", SSstation.announcer.get_rand_alert_sound())
+			priority_announce("Wykryto masową translokację bluespace.", "Alarm anomalii", 'aquila/sound/ai/events/bluespace_translocation.ogg') // AQ EDIT - własne nagranie ogłoszenia
 
 			var/list/flashers = list()
 			for(var/mob/living/carbon/C in viewers(TO))

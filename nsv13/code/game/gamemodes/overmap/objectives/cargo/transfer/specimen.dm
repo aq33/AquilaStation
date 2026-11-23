@@ -7,9 +7,9 @@
 	var/picked = pick( list (
 		// Dangerous specimens
 		/mob/living/simple_animal/slime/random,
-		/mob/living/simple_animal/hostile/alien,
+		/mob/living/basic/alien, // AQ EDIT - basic moby
 		/mob/living/simple_animal/hostile/swarmer,
-		/mob/living/simple_animal/hostile/carp,
+		/mob/living/basic/carp, // AQ EDIT - basic moby
 
 		// Benign specimens
 		/mob/living/basic/lizard, // AQ EDIT - basic moby

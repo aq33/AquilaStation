@@ -124,6 +124,5 @@
 	mutadone.name = "strzykawka (mutadon)"
 	mutadone.reagents.add_reagent(/datum/reagent/medicine/mutadone, 15)
 	for(var/i in 1 to 2)
-		var/mob/living/simple_animal/hostile/carp/carp = new(center)
-		carp.del_on_death = FALSE
+		var/mob/living/basic/carp/carp = new(center)
 		carp.death()

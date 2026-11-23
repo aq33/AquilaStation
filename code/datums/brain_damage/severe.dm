@@ -168,7 +168,7 @@
 	if(HAS_TRAIT(owner, TRAIT_BLIND))
 		return TRUE
 	for(var/mob/living/M in oview(7, owner))
-		if(istype(M, /mob/living/simple_animal/pet) || istype(M, /mob/living/basic/pet) || M.ckey) // AQ EDIT - basic moby
+		if(istype(M, /mob/living/basic/pet) || M.ckey) // AQ EDIT - basic moby
 			return FALSE
 	return TRUE
 

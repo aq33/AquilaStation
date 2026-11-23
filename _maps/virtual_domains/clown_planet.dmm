@@ -950,7 +950,7 @@
 /area/lavaland/surface/outdoors/virtual_domain)
 "cm" = (
 /obj/effect/mapping_helpers/no_lava,
-/mob/living/simple_animal/hostile/retaliate/clown,
+/mob/living/basic/clown,
 /turf/open/floor/noslip,
 /area/lavaland/surface/outdoors/virtual_domain)
 "cn" = (
@@ -1031,7 +1031,7 @@
 	dir = 2
 	},
 /obj/effect/mapping_helpers/no_lava,
-/mob/living/simple_animal/hostile/retaliate/clown,
+/mob/living/basic/clown,
 /turf/open/floor/noslip,
 /area/lavaland/surface/outdoors/virtual_domain)
 "cz" = (
