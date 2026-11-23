@@ -165,6 +165,7 @@ GLOBAL_LIST_EMPTY(planet_descents)
 			ground_view.aerial_done = TRUE
 		// Niebo, chmura i mgiełka rysują się na płaszczyźnie widoku: maska od początku zejścia
 		ground_view.mask()
+		ground_view.show_to(craft.mobs_in_ship)
 	craft.relay(null, span_notice("[craft] schodzi z orbity nad [planet]. Trzymajcie się czegoś."))
 	crew_sound('aquila/sound/planets/landing/spool.ogg', 50)
 	shake_crew(2, 1)
@@ -731,16 +732,20 @@ GLOBAL_LIST_EMPTY(planet_descents)
 	var/launch_rotation = (360 - (rotation % 360)) % 360
 	var/datum/planet_launch_view/launch_view = new(sources, places, launch_rotation)
 	launch_view.lift_off()
-	var/list/crew = list()
+	// Załoga: każdy gracz, który jest na polach kadłuba, także w szafce, mechu czy innym pojemniku
+	var/list/source_set = list()
 	for(var/turf/T as anything in sources)
-		for(var/mob/M in T)
-			if(M.client)
-				crew += M
+		source_set[T] = TRUE
+	var/list/crew = list()
+	for(var/mob/M as anything in GLOB.player_list)
+		if(M.client && source_set[get_turf(M)])
+			crew += M
 	if(length(crew))
 		// Obrazy z daleka z poprzedniego zejścia na to miejsce, jeśli są; dziób na ekranie (parking nie jest obrócony)
 		var/datum/planet_ground_view/ground_view = new(sources, places, launch_rotation, planet.surface?.reservation)
 		ground_view.build_close(skip_berth = FALSE)
 		ground_view.bake_aerial(only_kept = TRUE)
+		ground_view.show_to(crew)
 		ground_view.play_climb(planet_landing_bow_dir(sources), PLANET_ASCENT_GROUND_CUT)
 		// Maska trzyma niebo i chmurę do końca startu
 		QDEL_IN(ground_view, PLANET_ASCENT_TOTAL)
@@ -763,26 +768,45 @@ GLOBAL_LIST_EMPTY(planet_descents)
 		hook.Invoke(old_turfs, new_turfs, rotation)
 
 /// Oświetlenie przeliczone od razu, a nie w kolejnych tickach: po przeniesieniu kadłub czeka w kolejkach SSlighting i
-/// przez ułamek sekundy rysuje się czarny (jak landing_settle_lighting() w voidcrew/Voidcrew#588)
+/// przez ułamek sekundy rysuje się czarny (jak landing_settle_lighting() w voidcrew/Voidcrew#588). W granicach ticka: przy
+/// długich kolejkach (wybuch na okręcie) reszta zostaje dla SSlighting
 /proc/planet_settle_lighting()
 	var/list/queue = SSlighting.sources_queue
 	SSlighting.sources_queue = list()
+	var/done = 0
 	for(var/datum/light_source/source as anything in queue)
+		if(TICK_CHECK)
+			break
+		done++
 		source.update_corners()
 		if(!QDELETED(source))
 			source.needs_update = LIGHTING_NO_UPDATE
+	if(done < length(queue))
+		SSlighting.sources_queue = queue.Copy(done + 1) + SSlighting.sources_queue
 	queue = SSlighting.corners_queue
 	SSlighting.corners_queue = list()
+	done = 0
 	for(var/datum/lighting_corner/corner as anything in queue)
+		if(TICK_CHECK)
+			break
+		done++
 		corner.needs_update = FALSE
 		corner.update_objects()
+	if(done < length(queue))
+		SSlighting.corners_queue = queue.Copy(done + 1) + SSlighting.corners_queue
 	queue = SSlighting.objects_queue
 	SSlighting.objects_queue = list()
+	done = 0
 	for(var/atom/movable/lighting_object/lit as anything in queue)
+		if(TICK_CHECK)
+			break
+		done++
 		if(QDELETED(lit))
 			continue
 		lit.update()
 		lit.needs_update = FALSE
+	if(done < length(queue))
+		SSlighting.objects_queue = queue.Copy(done + 1) + SSlighting.objects_queue
 
 #undef PLANET_DESCENT_TOTAL
 #undef PLANET_DESCENT_AT

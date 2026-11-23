@@ -54,16 +54,6 @@
 	clear_filters()
 	add_filter("aq_landing_view_mask", 1, alpha_mask_filter(render_source = AQ_LANDING_VIEW_MASK_RENDER_TARGET))
 
-/// Jeden obraz terenu (z daleka albo z bliska), skalowany wokół środka kadłuba
-/obj/effect/abstract/planet_ground_picture
-	name = ""
-	anchored = TRUE
-	density = FALSE
-	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-	plane = AQ_LANDING_VIEW_PLANE
-	appearance_flags = PIXEL_SCALE
-	alpha = 0
-
 /**
  * Teren wokół lądowiska dla ludzi w promie na parkingu. Budowany przy starcie zejścia (obrazy z daleka powstają w tle),
  * pokazywany w ostatniej fazie, usuwany przy dokowaniu albo blednący przy przerwanym zejściu.
@@ -81,9 +71,13 @@
 	var/ground_y
 	var/hull_x
 	var/hull_y
-	var/obj/effect/abstract/planet_ground_picture/far_picture
-	var/obj/effect/abstract/planet_ground_picture/near_picture
-	var/obj/effect/abstract/planet_ground_picture/close_picture
+	/// Obrazy terenu (z daleka i z bliska), skalowane wokół środka kadłuba. Obrazy (image) tylko dla załogi tego promu: jako
+	/// wspólne obiekty świata pokazałyby się też pod maską innego promu schodzącego w tym samym czasie
+	var/image/far_picture
+	var/image/near_picture
+	var/image/close_picture
+	/// Klienci, którzy dostali obrazy terenu
+	var/list/client/viewers = list()
 	/// Pola parkingu z nakładką maski
 	var/list/masked_turfs = list()
 	/// Obrazy z daleka są gotowe (albo nie da się ich zrobić)
@@ -106,7 +100,11 @@
 	var/turf/hull_first = hull_turfs[1]
 	var/turf/anchor = locate(round(hull_x), round(hull_y), hull_first.z)
 	for(var/rank in 1 to 3)
-		var/obj/effect/abstract/planet_ground_picture/picture = new(anchor)
+		var/image/picture = image(loc = anchor)
+		picture.plane = AQ_LANDING_VIEW_PLANE
+		picture.appearance_flags = PIXEL_SCALE
+		picture.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+		picture.alpha = 0
 		picture.pixel_x = (hull_x - round(hull_x)) * world.icon_size
 		picture.pixel_y = (hull_y - round(hull_y)) * world.icon_size
 		picture.layer = rank
@@ -120,13 +118,28 @@
 
 /datum/planet_ground_view/Destroy(force)
 	unmask()
-	QDEL_NULL(far_picture)
-	QDEL_NULL(near_picture)
-	QDEL_NULL(close_picture)
+	for(var/client/viewer as anything in viewers)
+		viewer?.images -= pictures()
+	viewers.Cut()
+	far_picture = null
+	near_picture = null
+	close_picture = null
 	hull_turfs = null
 	berth_turfs = null
 	surface = null
 	return ..()
+
+/datum/planet_ground_view/proc/pictures()
+	return list(far_picture, near_picture, close_picture)
+
+/// Daje obrazy terenu klientom tych mobów (załodze promu)
+/datum/planet_ground_view/proc/show_to(list/mobs)
+	for(var/mob/viewer as anything in mobs)
+		var/client/watching = viewer?.client
+		if(!watching || (watching in viewers))
+			continue
+		watching.images |= pictures()
+		viewers += watching
 
 /// Obrys pól: list(min x, min y, max x, max y)
 /proc/planet_ground_box(list/turfs)
@@ -153,8 +166,8 @@
 		var/icon/aerial = planet_ground_aerial(round(ground_x), round(ground_y), berth_first.z, grain[1], grain[2], skip, surface, only_kept, src)
 		if(QDELETED(src))
 			return
-		var/obj/effect/abstract/planet_ground_picture/picture = grain[3]
-		if(!aerial || QDELETED(picture))
+		var/image/picture = grain[3]
+		if(!aerial || !picture)
 			continue
 		var/size = aerial.Width()
 		var/mutable_appearance/country = mutable_appearance(aerial)
@@ -237,9 +250,13 @@
 	var/list/box = planet_ground_box(hull_turfs)
 	var/turf/first = hull_turfs[1]
 	var/list/area_turfs = block(locate(max(1, box[1] - PLANET_GROUND_MASK_RANGE), max(1, box[2] - PLANET_GROUND_MASK_RANGE), first.z), locate(min(world.maxx, box[3] + PLANET_GROUND_MASK_RANGE), min(world.maxy, box[4] + PLANET_GROUND_MASK_RANGE), first.z))
+	// Tylko w rezerwacji parkingu: pola sąsiedniej rezerwacji nie pokazują terenu ani chmur
+	var/datum/turf_reservation/parking = SSmapping.used_turfs[first]
 	// Także pola kadłuba: teren leży pod podłogą, więc widać go tylko przez przezroczyste brzegi wycinków kadłuba. Bez
 	// kratki silnika: tam przerwy to czarne wnętrze silnika
 	for(var/turf/T as anything in area_turfs)
+		if(parking && SSmapping.used_turfs[T] != parking)
+			continue
 		var/turf/closed/indestructible/dropship/hull = T
 		if(istype(hull) && !hull.see_through_edges())
 			continue
@@ -278,8 +295,8 @@
 	playing = null
 	var/bow_x = (bow_dir & EAST) ? 1 : ((bow_dir & WEST) ? -1 : 0)
 	var/bow_y = (bow_dir & NORTH) ? 1 : ((bow_dir & SOUTH) ? -1 : 0)
-	for(var/obj/effect/abstract/planet_ground_picture/picture as anything in list(far_picture, near_picture, close_picture))
-		if(QDELETED(picture))
+	for(var/image/picture as anything in pictures())
+		if(!picture)
 			continue
 		animate(picture)
 		picture.transform = ground_matrix(1)
@@ -325,8 +342,8 @@
 	var/now_scale = from_scale + (to_scale - from_scale) * (elapsed / max(1, time))
 	// animate() bez zmienianych zmiennych (nawet z czasem i ANIMATION_PARALLEL) zatrzymuje wszystkie animacje obiektu,
 	// więc każdy łańcuch krycia zaczyna się od kroku, który coś zmienia
-	for(var/obj/effect/abstract/planet_ground_picture/picture as anything in list(far_picture, near_picture, close_picture))
-		if(QDELETED(picture))
+	for(var/image/picture as anything in pictures())
+		if(!picture)
 			continue
 		animate(picture)
 		picture.transform = ground_matrix(now_scale)
@@ -375,8 +392,8 @@
 /// Przerwane zejście: teren blednie, potem znika
 /datum/planet_ground_view/proc/fade_away()
 	playing = null
-	for(var/obj/effect/abstract/planet_ground_picture/picture as anything in list(far_picture, near_picture, close_picture))
-		if(!QDELETED(picture))
+	for(var/image/picture as anything in pictures())
+		if(picture)
 			animate(picture, alpha = 0, time = 1 SECONDS)
 	QDEL_IN(src, 1 SECONDS)
 
@@ -394,7 +411,8 @@
  */
 /proc/planet_ground_aerial(mid_x, mid_y, z, reach, grain, list/skip_contents, datum/turf_reservation/surface, only_kept = FALSE, datum/owner)
 	var/static/list/kept = list()
-	var/key = "[mid_x],[mid_y],[z],[reach],[grain]"
+	// Z rezerwacją powierzchni: po skoku inna planeta może wczytać się w to samo miejsce
+	var/key = "[surface ? REF(surface) : "-"],[mid_x],[mid_y],[z],[reach],[grain]"
 	var/list/had = kept[key]
 	if(had && had[2] > world.time)
 		return had[1]

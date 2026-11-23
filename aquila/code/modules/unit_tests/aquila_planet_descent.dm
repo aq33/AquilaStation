@@ -185,9 +185,25 @@
 	// Start z planety i drugie zejście, przerwane: prom odleciał znad planety, zanim zszedł. Z ziemi obraz promu odlatuje
 	// z miejsca, w którym stał
 	var/turf/site_center = planet_landing_center(shuttle_hull_turfs(shuttle_port))
+	var/list/site_turfs = shuttle_hull_turfs(shuttle_port)
 	TEST_ASSERT(sabre.shuttle_launch(), "The Sabre didn't take off from the planet")
 	var/obj/effect/abstract/planet_landing_proxy/leaving = locate() in site_center
 	TEST_ASSERT(leaving && length(leaving.overlays), "No picture of the shuttle leaving the landing site")
+	// Hak w takeoff() odpala raz i znika (obraz odlatującego promu wyżej powstaje właśnie w nim)
+	TEST_ASSERT(!shuttle_port.aq_takeoff_hook, "The takeoff hook stayed set on the shuttle after the launch")
+	// Teren przy starcie (bez klienta w teście nikt go nie dostaje, więc wprost): maska tylko w rezerwacji parkingu,
+	// obraz z bliska z pól lądowiska, po usunięciu maska znika
+	var/list/parked = shuttle_hull_turfs(shuttle_port)
+	var/datum/planet_ground_view/climb = new(parked, site_turfs, 0, planet.surface.reservation)
+	climb.build_close(skip_berth = FALSE)
+	climb.play_climb(NORTH, 3.8 SECONDS)
+	TEST_ASSERT(length(climb.close_picture.overlays), "The landing site falling away under a launching shuttle has no close-up picture")
+	TEST_ASSERT(length(climb.masked_turfs), "The landing site falling away under a launching shuttle has no mask")
+	var/datum/turf_reservation/parking_reservation = SSmapping.used_turfs[parked[1]]
+	for(var/turf/masked as anything in climb.masked_turfs)
+		TEST_ASSERT(SSmapping.used_turfs[masked] == parking_reservation, "The ground picture's mask reaches outside the flight parking at [COORD(masked)]")
+	qdel(climb)
+	TEST_ASSERT(!length(climb.masked_turfs), "The ground picture's mask stayed after the view was deleted")
 	sabre.forceMove(planet.center_turf())
 	// Szukanie miejsca usypia (CHECK_TICK): prom z prędkością ze startu odleciałby w tym czasie znad planety
 	sabre.velocity._set(0, 0)
