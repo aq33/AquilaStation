@@ -249,6 +249,10 @@
 		to_chat(src, "<span class='notice'>Zyskałeś [B.point_return] zasobów za usunięcie tego grzyba.</span>")
 	qdel(B)
 
+// AQ EDIT - liczby w wersji OpenDream niżej (i jej angielskie odpowiedniki) muszą iść za stałymi
+#if BLOB_SPREAD_COST != 4 || BLOB_ATTACK_REFUND != 2
+#error Zmieniono BLOB_SPREAD_COST lub BLOB_ATTACK_REFUND: popraw liczby w werbie expand_blob_power pod OPENDREAM i w strings/i18n/en_translated.json
+#endif
 /mob/camera/blob/verb/expand_blob_power()
 	set category = "Blob"
 // AQ EDIT START - kompilator OpenDream nie przyjmuje wstawek w set name/desc; liczby = BLOB_SPREAD_COST i BLOB_ATTACK_REFUND

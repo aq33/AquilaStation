@@ -292,6 +292,14 @@ if [ -f aquila/aquila.dm ]; then
 fi
 # AQ EDIT END
 
+# AQ EDIT START - OpenDream nie dopisuje .dll w call_ext; generowane pliki tracą tę zmianę przy aktualizacji rust_g/auxmos
+if ! grep -q 'return __rust_g = "rust_g.dll"' code/__DEFINES/rust_g.dm || ! grep -q 'return __auxmos = "auxmos.dll"' code/__DEFINES/bindings.dm; then
+	echo
+	echo -e "${RED}ERROR: code/__DEFINES/rust_g.dm and bindings.dm must name rust_g.dll / auxmos.dll with the extension on Windows (OpenDream), re-apply the AQ EDIT after regenerating them${NC}"
+	st=1
+fi
+# AQ EDIT END
+
 if [ $st = 0 ]; then
     echo
     echo -e "${GREEN}No errors found using grep!${NC}"
