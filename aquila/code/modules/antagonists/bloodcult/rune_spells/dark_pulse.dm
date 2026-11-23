@@ -60,7 +60,7 @@
 			var/turf/M_turf = get_turf(M)
 			if(M_turf && (M_turf.z == epicenter.z))
 				var/dist = cheap_pythag(M_turf.x - x0, M_turf.y - y0)
-				if((dist <= round(heavy_range + world.view - 2, 1)) && (M_turf.z - epicenter.z <= max_range) && (epicenter.z - M_turf.z <= max_range))
+				if((dist <= round(heavy_range + max(getviewsize(world.view)[1], getviewsize(world.view)[2]) / 2 - 2, 1)) && (M_turf.z - epicenter.z <= max_range) && (epicenter.z - M_turf.z <= max_range))
 					M.playsound_local(epicenter, 'aquila/sound/bloodcult/bloodboil.ogg', 25, 0)
 
 	var/datum/antagonist/cult/cult_datum = IS_CULTIST(cultist)
