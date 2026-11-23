@@ -211,11 +211,20 @@
 	TEST_ASSERT_EQUAL(he_shell.damage, before, "Model grubości zadziałał na okręt gracza")
 	ship.ai_controlled = TRUE
 	ship.aq_armor_thickness = 60
+	// Strzelec AI zostaje na pancerzu procentowym (AI nie dobiera typu pocisku)
+	he_shell.overmap_firer = ship
+	TEST_ASSERT(!ship.aq_uses_thickness_model(he_shell), "Model grubości zadziałał na pocisk wystrzelony przez AI")
+	he_shell.overmap_firer = null
+	// Efekty powłoki liczą się z obrażeń po modelu, zanim pocisk zostanie zmieniony
+	TEST_ASSERT_EQUAL(ship.aq_hit_damage(he_shell), before * 0.1, "Efekty powłoki widzą obrażenia sprzed modelu")
+	TEST_ASSERT(isnull(ship.aq_hit_armor_flag(he_shell)), "Dodatkowe obrażenia w modelu dalej idą przez pancerz procentowy")
 	ship.aq_apply_thickness_model(he_shell)
 	ship.ai_controlled = old_ai
 	ship.aq_armor_thickness = old_thickness
 	TEST_ASSERT_EQUAL(he_shell.damage, round(before * 0.1, 0.1), "HE nie odbił się od ciężkiego okrętu AI")
-	TEST_ASSERT_EQUAL(he_shell.armour_penetration, 100, "Po modelu grubości pancerz procentowy dalej działa")
+	TEST_ASSERT(isnull(he_shell.flag), "Po modelu grubości pancerz procentowy dalej działa")
+	TEST_ASSERT(!he_shell.projectile_relaying_allowed, "Odbity pocisk przechodzi do wnętrza okrętu")
+	TEST_ASSERT_EQUAL(ship.aq_hit_damage(he_shell), he_shell.damage, "Model grubości liczy się dwa razy")
 
 /// Zlecenie cywilne „Pociski przeciwpancerne” przyjmuje pocisk z kuźni z wypełnieniem AP i fabryczny AP z cargo
 /datum/unit_test/ammo_rework_ap_bounty

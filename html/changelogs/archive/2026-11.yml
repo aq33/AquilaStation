@@ -1464,3 +1464,38 @@
       jednostkach.
   - tweak: Automaty pokazują nazwę przedmiotu nad półką.
   - balance: Cykl autoklawu trwa 10 s zamiast 30 s.
+'2026-11-23':
+  Jackriip, joker:
+  - rscadd: 'Planeta układu jest teraz widoczna za oknami okrętu: ma chmury, cień
+      i poświatę atmosfery. Każdy typ planety wygląda inaczej.'
+  - imageadd: Tekstury planet na niebie dla wszystkich typów planet.
+  - rscadd: 'Lądowanie promu na planecie trwa teraz kilkanaście sekund: planeta za
+      oknami rośnie, kadłub żarzy się w atmosferze, prom przebija chmurę, pod promem
+      zbliża się teren z cieniem kadłuba, a przy przyziemieniu są bryzgi albo kurz.
+      Start z planety pokazuje to samo w odwrotnej kolejności.'
+  - rscadd: Z kokpitu Sabre widać całe otoczenie promu, a w burtach doszły dwa okna.
+      Przy wejściu w atmosferę w kabinie pulsuje pomarańczowa poświata i sypią się
+      iskry.
+  - bugfix: Z promu w locie nie widać już skał i innych rzeczy z sąsiednich miejsc
+      na brzegu ekranu.
+  - imageadd: 'Grafiki zejścia: smugi pędu, żar przy kadłubie, cień promu.'
+  - rscadd: 'Lądowanie i start promu widać z ziemi: cień kadłuba na lądowisku, spadający
+      prom, kurz od dysz, a przy starcie odlot w stronę kokpitu.'
+  - rscadd: Przy zejściu pod promem rośnie prawdziwy teren lądowiska (od mapki okolicy
+      po dokładne pola), a przy starcie maleje.
+  - soundadd: Dźwięki zejścia, przyziemienia i startu promu (z Voidcrew).
+  - bugfix: Granat dymny zniszczony wybuchem nie zgłasza już błędu, gdy trafia go
+      kolejna fala tego samego wybuchu.
+  Joker66613:
+  - bugfix: Okręty AI strzelające do innych okrętów AI znowu liczą pancerz po staremu,
+      więc bitwy flot AI nie ciągną się w nieskończoność.
+  - bugfix: Odłamki złota, zdzieranie płyt przez diament i przenikanie tarczy przez
+      bluespace nie omijają już grubości pancerza okrętów AI.
+  - bugfix: Pocisk, który odbił się od pancerza, nie rani wnętrza okrętu.
+  - balance: Powłoka z miedzi i srebra daje impuls EMP tylko przy trafieniu w okręt,
+      nie w amunicji ręcznej.
+  sh4dow321:
+  - bugfix: Duchy znów mogą zgłaszać się do ankiet ról bez kategorii ignorowania (np.
+      powrót z kriostazy).
+  - bugfix: Konsola myśliwców, generator termoelektryczny, oględziny, mroczny puls
+      i stos naleśników nie wywołują już błędów.

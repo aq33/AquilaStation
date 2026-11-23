@@ -147,9 +147,15 @@
 		return FALSE
 	if(istype(T.loc, /area/shuttle) || T.loc != planet.surface.surface_area)
 		return FALSE
+	if(planet_descent_reserved(T, src)) // lądowisko innego promu, który właśnie schodzi
+		return FALSE
 	for(var/atom/movable/AM as anything in T)
-		// Żyła nie jest gęsta, ale przelot promu kasuje zakotwiczone obiekty pod kadłubem (żyła misji by przepadła)
-		if(AM.density || istype(AM, /obj/structure/vein))
+		// Blokada stawiana na czas dokowania tego promu (planet_descent.dm) nie zajmuje pola
+		if(istype(AM, /obj/effect/planet_landing_blocker))
+			continue
+		// Żyła nie jest gęsta, ale przelot promu kasuje zakotwiczone obiekty pod kadłubem (żyła misji by przepadła).
+		// Żywy mob blokuje zawsze, także leżący (density FALSE): dokowanie zabija moby na polach celu
+		if(AM.density || istype(AM, /obj/structure/vein) || isliving(AM))
 			return FALSE
 	return TRUE
 
