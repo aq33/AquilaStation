@@ -3,8 +3,10 @@
 // - przebicie mniejsze od grubości: pocisk nie przebija, zostają odpryski (AQ_ARMOR_NO_PEN_MULT obrażeń),
 // - przebicie większe od grubości o więcej niż AQ_ARMOR_OVERPEN_MARGIN: przelot na wylot (AQ_ARMOR_OVERPEN_MULT obrażeń),
 // - w pozostałych przypadkach pełne obrażenia.
-// Model zastępuje procentowy pancerz (armor overmap_light/medium/heavy) tylko przy trafieniu pociskiem kinetycznym w okręt AI.
+// Model zastępuje procentowy pancerz (armor overmap_light/medium/heavy) tylko przy trafieniu pociskiem kinetycznym w okręt AI,
+// wystrzelonym przez okręt, którym nie kieruje AI (AI strzela jednym stałym pociskiem i nie dobiera typu).
 // Okręt gracza, rakiety, torpedy i broń energetyczna zostają na pancerzu procentowym. Płyty ćwiartek działają jak dotąd.
+// Pocisk, który nie przebił pancerza, nie przechodzi do wnętrza okrętu (relay_damage).
 
 /// Ile obrażeń zostaje, gdy pocisk nie przebije pancerza
 #define AQ_ARMOR_NO_PEN_MULT 0.1
@@ -29,6 +31,8 @@ GLOBAL_LIST_INIT(aq_armor_classes, list(
 	var/aq_penetration
 	/// Dodatek do przebicia niezależny od typu pocisku (burtówka P i N)
 	var/aq_penetration_bonus = 0
+	/// Model grubości już przeliczył obrażenia tego pocisku (damage jest po modelu)
+	var/aq_thickness_applied = FALSE
 
 /// Przebicie tego pocisku w modelu grubości albo null, gdy pocisk jest poza modelem
 /obj/item/projectile/proc/aq_get_penetration()
@@ -120,17 +124,39 @@ GLOBAL_LIST_INIT(aq_armor_classes, list(
 		return AQ_ARMOR_OVERPEN_MULT
 	return 1
 
-/// Czy to trafienie liczy się modelem grubości: pocisk kinetyczny w okręt AI
+/// Czy to trafienie liczy się modelem grubości: pocisk kinetyczny gracza w okręt AI
 /obj/structure/overmap/proc/aq_uses_thickness_model(obj/item/projectile/P)
-	return ai_controlled && !isnull(P.aq_get_penetration())
+	if(!ai_controlled || isnull(P.aq_get_penetration()))
+		return FALSE
+	var/obj/structure/overmap/shooter = P.overmap_firer
+	return !(istype(shooter) && shooter.ai_controlled)
 
-/// Wołane z bullet_act (damage.dm) przed pancerzem: liczy obrażenia modelem grubości i wyłącza pancerz procentowy
-/// dla tego trafienia (przebicie 100). Pancerz procentowy przy dodatnich wartościach daje wtedy pełne obrażenia.
+/// Mnożnik modelu dla tego trafienia (1, gdy trafienie jest poza modelem)
+/obj/structure/overmap/proc/aq_thickness_mult(obj/item/projectile/P)
+	if(P.aq_thickness_applied || !aq_uses_thickness_model(P))
+		return 1
+	return aq_penetration_mult(P.aq_get_penetration(), aq_get_armor_thickness())
+
+/// Obrażenia pocisku po modelu grubości, bez zmiany pocisku: dla efektów liczonych przed trafieniem (powłoki z kuźni)
+/obj/structure/overmap/proc/aq_hit_damage(obj/item/projectile/P)
+	return P.damage * aq_thickness_mult(P)
+
+/// Flaga pancerza procentowego dla dodatkowych obrażeń od tego pocisku: null, gdy trafienie liczy model grubości
+/obj/structure/overmap/proc/aq_hit_armor_flag(obj/item/projectile/P)
+	return (P.aq_thickness_applied || aq_uses_thickness_model(P)) ? null : P.flag
+
+/// Wołane z bullet_act (damage.dm) przed przekazaniem do wnętrza i pancerzem. Liczy obrażenia modelem grubości i zdejmuje
+/// z pocisku flagę pancerza procentowego (run_obj_armor i take_damage bez flagi nie odejmują pancerza). Pocisk, który
+/// nie przebił pancerza, nie przechodzi do wnętrza okrętu.
 /obj/structure/overmap/proc/aq_apply_thickness_model(obj/item/projectile/P)
-	if(!aq_uses_thickness_model(P))
+	var/mult = aq_thickness_mult(P)
+	if(P.aq_thickness_applied || !aq_uses_thickness_model(P))
 		return
-	P.damage = round(P.damage * aq_penetration_mult(P.aq_get_penetration(), aq_get_armor_thickness()), 0.1)
-	P.armour_penetration = 100
+	P.damage = round(P.damage * mult, 0.1)
+	P.flag = null
+	P.aq_thickness_applied = TRUE
+	if(P.aq_get_penetration() < aq_get_armor_thickness())
+		P.projectile_relaying_allowed = FALSE
 
 /obj/structure/overmap/examine(mob/user)
 	. = ..()

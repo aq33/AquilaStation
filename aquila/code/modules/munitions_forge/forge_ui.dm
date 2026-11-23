@@ -120,7 +120,7 @@ GLOBAL_LIST_INIT(aq_forge_products, init_aq_forge_products())
 	.["empty"] = container && !total_sheets
 	var/list/cost = list()
 	var/can_pay = !!container
-	var/list/cost_amounts = current_cost() // tworzy tymczasowy przedmiot, więc liczymy raz
+	var/list/cost_amounts = current_cost()
 	for(var/mat in cost_amounts)
 		var/datum/munition_material/M = get_munition_material(mat)
 		var/have = container ? container.get_material_amount(mat) : 0

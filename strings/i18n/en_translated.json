@@ -27794,6 +27794,8 @@
 "1) Załóż hardsuit inżynieryjny, rozłóż hełm, włącz wbudowaną butlę (przycisk akcji) i postój minutę: brak obrażeń od duszenia, ciśnienie butli (examine) powoli spada. \\": "1) Put on the engineering hardsuit, deploy the helmet, turn on the integrated tank (action button) and stand for a minute: no suffocation damage, the tank pressure (examine) slowly drops. \\",
 "Liczba układów": "Systems",
 "◉ sektor okrętu · zielone kafle: zasięg skoku · ⇄ brama do innego sektora · ★ stolica · $ stacja handlowa · ◎ hiperbrama · przerywany pierścień: układ okupowany · czerwona linia: front": "◉ ship sector · green tiles: jump range · ⇄ gate to another sector · ★ capital · $ trade station · ◎ hypergate · dashed ring: occupied system · red line: front",
+"Mocny impuls EMP: zakłóca systemy trafionego okrętu.": "Strong EMP pulse: disrupts the systems of the ship it hits.",
+"Słaby impuls EMP: krócej zakłóca systemy trafionego okrętu.": "Weak EMP pulse: disrupts the systems of the ship it hits for a shorter time.",
 "Głos mowy": "Speech voice",
 "Dźwięki mowy postaci": "Character speech sounds",
 "Głos 1": "Voice 1",
