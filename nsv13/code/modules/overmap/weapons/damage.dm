@@ -47,6 +47,7 @@ Bullet reactions
 				return FALSE //Shields absorbed the hit, so don't relay the projectile
 	forged_munition_overmap_hit(P, src) // AQUILA EDIT - kuźnia amunicji
 	P.spec_overmap_hit(src)
+	aq_apply_thickness_model(P) // AQ EDIT - rework amunicji: grubość pancerza okrętów AI zamiast pancerza procentowego dla pocisków kinetycznych
 	if(P.projectile_relaying_allowed)
 		var/relayed_type = P.relay_projectile_type ? P.relay_projectile_type : P.type
 		relay_damage(relayed_type, P.Angle)

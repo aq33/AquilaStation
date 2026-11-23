@@ -50,6 +50,10 @@ GLOBAL_LIST_INIT(ship_thruster_oxidizers, list(
 	var/engine_thrust_design = 0
 	/// Łączny czas ciągu (s) liczony w fizyce; dysze spalają paliwo za czas od swojego ostatniego ticku
 	var/aq_thrust_seconds = 0
+	/// Ile dysz działało przy ostatnim przeliczeniu ciągu (null przed pierwszym), do ostrzeżeń dla pilota
+	var/engine_working_seen
+	/// Najwcześniejszy czas kolejnego ostrzeżenia o silnikach
+	var/engine_status_next_alert = 0
 
 /obj/structure/overmap/Destroy()
 	for(var/obj/machinery/ship_thruster/thruster as anything in ship_thrusters)
@@ -78,6 +82,42 @@ GLOBAL_LIST_INIT(ship_thruster_oxidizers, list(
 			active += thruster.thrust_power * thruster.fuel_quality * power_limit
 	engine_thrust_design = max(engine_thrust_design, total)
 	engine_thrust_active = active
+	// Pilot dowiaduje się od razu, gdy dysza gaśnie albo wraca do pracy
+	var/working = engine_working_count()
+	if(isnull(engine_working_seen) || !pilot)
+		engine_working_seen = working // bez pilota nie ma komu mówić, a stary stan dałby potem fałszywe ostrzeżenie
+	else if(working != engine_working_seen)
+		engine_status_flush()
+
+/// Wysyła pilotowi bieżący stan silników, jeśli zmienił się od ostatniego komunikatu (najwyżej co 10 s). W trakcie przerwy
+/// odkłada sprawdzenie na jej koniec: dysza na granicy paliwa potrafi gasnąć i wracać co tick, a ostatnia zmiana nie przepada
+/obj/structure/overmap/proc/engine_status_flush()
+	var/working = engine_working_count()
+	if(!pilot)
+		engine_working_seen = working
+		return
+	if(working == engine_working_seen)
+		return
+	if(world.time < engine_status_next_alert)
+		addtimer(CALLBACK(src, PROC_REF(engine_status_flush)), engine_status_next_alert - world.time, TIMER_UNIQUE | TIMER_NO_HASH_WAIT)
+		return
+	engine_status_next_alert = world.time + 10 SECONDS
+	to_chat(pilot, "<span class='[working < engine_working_seen ? "warning" : "notice"]'>[engine_status_text()]</span>")
+	engine_working_seen = working
+
+/// Ile dysz okrętowych może teraz odpalić
+/obj/structure/overmap/proc/engine_working_count()
+	. = 0
+	for(var/obj/machinery/ship_thruster/thruster as anything in ship_thrusters)
+		if(thruster.can_fire)
+			.++
+
+/// Stan silników dla pilota: ile dysz działa i jaki jest ciąg względem pełnego; null dla statku bez dysz okrętowych
+/obj/structure/overmap/proc/engine_status_text()
+	if(!length(ship_thrusters) && engine_thrust_design <= 0)
+		return null // statek bez dysz okrętowych; po utracie ostatniej dyszy pilot dostaje „0 z 0” i ciąg awaryjny
+	var/working = engine_working_count()
+	return "Silniki: działa [working] z [length(ship_thrusters)] dysz, ciąg [round(get_engine_thrust_mult() * 100)]%."
 
 /obj/machinery/ship_thruster
 	name = "dysza okrętowa"
