@@ -484,12 +484,12 @@
 		for(var/choice in pref.get_choices())
 			TEST_ASSERT(names[choice], "[pref.db_key] has no name for [choice]")
 
-	// organy gatunkowe zostają: plazmaludź bez swoich płuc się dusi, a zwykłe serce można wymienić
+	// organy gatunkowe zostają: plazmaludź bez swoich płuc się dusi, a zwykłe oczy można wymienić (serca nie ma: NOBLOOD)
 	var/mob/living/carbon/human/plasmaman = allocate(/mob/living/carbon/human/species/plasma)
-	plasmaman.aq_apply_lobby_augments(list("aq_aug_lungs" = "cybernetic", "aq_aug_stomach" = "cybernetic", "aq_aug_heart" = "cybernetic"))
+	plasmaman.aq_apply_lobby_augments(list("aq_aug_lungs" = "cybernetic", "aq_aug_stomach" = "cybernetic", "aq_aug_eyes" = "cybernetic"))
 	TEST_ASSERT(istype(plasmaman.getorganslot(ORGAN_SLOT_LUNGS), /obj/item/organ/lungs/plasmaman), "The lobby swapped the plasmaman lungs")
 	TEST_ASSERT(istype(plasmaman.getorganslot(ORGAN_SLOT_STOMACH), /obj/item/organ/stomach/plasmaman), "The lobby swapped the plasmaman stomach")
-	TEST_ASSERT(istype(plasmaman.getorganslot(ORGAN_SLOT_HEART), /obj/item/organ/heart/cybernetic), "The lobby did not swap a plain plasmaman heart")
+	TEST_ASSERT(istype(plasmaman.getorganslot(ORGAN_SLOT_EYES), /obj/item/organ/eyes/robotic), "The lobby did not swap plain plasmaman eyes")
 	var/mob/living/carbon/human/ethereal = allocate(/mob/living/carbon/human/species/ethereal)
 	ethereal.aq_apply_lobby_augments(list("aq_aug_stomach" = "cybernetic", "aq_aug_heart" = "cybernetic"))
 	TEST_ASSERT(!istype(ethereal.getorganslot(ORGAN_SLOT_STOMACH), /obj/item/organ/stomach/cybernetic), "The lobby swapped the ethereal battery stomach")
