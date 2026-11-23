@@ -5,10 +5,10 @@
 	pr = "aq33/AquilaStation#655"
 	description = "Zestaw stawia po jednym przedstawicielu każdej nowej rasy i rzeczy do testu Akwarianina. \
 	1) Okno postaci: zakładka Markingi (do 3 wzorów na część ciała, kolory, podgląd), nowe fryzury i zarost, Głos mowy (Głos 1-4 z podglądem dźwięku), \
-	cechy nowych ras (Akwarianin: ryba, woda, pancerz; Vox: pióra i kolory). Postać z markingami: utnij kończynę → marking znika razem z nią. \
+	cechy nowych ras (Akwarianin: ryba, woda, pancerz). Postać z markingami: utnij kończynę → marking znika razem z nią. \
 	2) Mowa: powiedz coś głosem z Goona, zadaj pytanie i krzyknij → trzy różne nagrania. W Ustawieniach gry wyłącz „Dźwięki mowy postaci” → cisza, także nasze „hmmm”. \
 	3) Krzyk i śmiech jako felinid, ćma, jaszczur, eteryk, oozeling, IPC i człowiek; pierdnięcie → nowe dźwięki. Mops szczeka, Żaba rechocze, Akwarianin bulgocze. \
-	4) Rasy: wejdź w ciało (admin: Aghost → posiądź) i sprawdź ubrania na Voxie, Mopsie i Żabie (kombinezon, hełm, maska, rękawice, buty), \
+	4) Rasy: wejdź w ciało (admin: Aghost → posiądź) i sprawdź ubrania na Mopsie i Żabie (kombinezon, hełm, maska, rękawice, buty), \
 	nakładki Psyfozy (widzenie psychiczne), rozpad Diony na nimfy po śmierci, kończynę Mięsoczłowieka po odcięciu. \
 	5) Akwarianin: uderzaj go w głowę → woda w kloszu ubywa, bez wody ryba się dusi; dolej wodę zlewką; nakarm karmą dla ryb. \
 	Zniszcz pancerz (gib) → zostaje klosz z rybą, włóż go do MMI; zestaw pancerza złóż w dłoni. \
@@ -20,7 +20,6 @@
 		/mob/living/carbon/human/species/psyphoza = 1,
 		/mob/living/carbon/human/species/pug = 1,
 		/mob/living/carbon/human/species/amphibian = 1,
-		/mob/living/carbon/human/species/vox = 1,
 		/mob/living/carbon/human/species/aquarian = 1,
 		/obj/item/aquarian_shell_kit = 1,
 		/obj/item/fish_feed = 1,

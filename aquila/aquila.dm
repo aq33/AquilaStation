@@ -2858,11 +2858,6 @@
 #include "code\modules\mob\living\carbon\human\species_types\goon_species.dm"
 #include "code\modules\mob\living\carbon\human\species_types\pug.dm"
 #include "code\modules\mob\living\carbon\human\species_types\amphibian.dm"
-// Vox z YogStation (ubrania: sprite'y Yoga i wygenerowane, aquila/icons/mob/species/vox/clothing)
-#include "code\__DEFINES\species_vox.dm"
-#include "code\modules\mob\living\carbon\human\species_types\vox.dm"
-#include "code\modules\mob\living\carbon\human\species_types\vox_clothing.dm"
-#include "code\modules\client\preferences_menu\entries_species_vox.dm"
 // Akwarianin: nasza rasa, ryba w kloszu z wodą na mechanicznym pancerzu
 #include "code\__DEFINES\species_ryba.dm"
 #include "code\modules\mob\living\carbon\human\species_types\aquarian.dm"
@@ -2870,7 +2865,6 @@
 #ifdef UNIT_TESTS
 #include "code\modules\unit_tests\aquila_rasy_ryba.dm"
 #include "code\modules\unit_tests\aquila_limb_clipping.dm"
-#include "code\modules\unit_tests\aquila_rasy_vox.dm"
 #include "code\modules\unit_tests\aquila_rasy_goon.dm"
 #include "code\modules\unit_tests\aquila_rasy_fulp.dm"
 #include "code\modules\unit_tests\aquila_rasy_bee.dm"
