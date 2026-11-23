@@ -97,6 +97,8 @@ GLOBAL_LIST_EMPTY(food_transformations)
 	for(var/category in step_cookbook)
 		for(var/list/step_entry as anything in step_cookbook[category])
 			var/list/entry = cookbook_entry(text2path(step_entry["path"]), null, "Krok po kroku", list(), list(step_entry["container"]), category)
+			// Kilka przepisów na to samo danie (warianty) ma osobne wiersze
+			entry["id"] = "Krok po kroku:[step_entry["recipe"]]"
 			entry["steps"] = step_entry["instructions"]
 			catalog += list(entry)
 	// Browar w drewnianej beczce (aquila/code/modules/bar/brewing)

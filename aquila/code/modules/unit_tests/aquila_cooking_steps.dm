@@ -161,6 +161,36 @@
 	TEST_ASSERT(soup_component.burner.timer_left <= 0, "The burner timer did not run out with a soup pot on it")
 	soup_component.turn_off()
 
+/// Woda wlana w dwóch porcjach po 5 j. nie gubi spaghetti; woda wyciągnięta z rondla po zaliczonym kroku blokuje danie do dolania
+/datum/unit_test/aquila_cooking_reagent_refill
+
+/datum/unit_test/aquila_cooking_reagent_refill/Run()
+	var/obj/machinery/cooking_stovetop/stovetop = allocate(/obj/machinery/cooking_stovetop, run_loc_floor_bottom_left)
+	var/obj/item/reagent_containers/cooking/pot/pot = allocate(/obj/item/reagent_containers/cooking/pot, run_loc_floor_bottom_left)
+	var/obj/item/reagent_containers/glass/beaker/water = allocate(/obj/item/reagent_containers/glass/beaker, run_loc_floor_bottom_left)
+	water.reagents.add_reagent(/datum/reagent/water, 10)
+	water.amount_per_transfer_from_this = 5
+
+	pot.process_item(null, water)
+	pot.process_item(null, water)
+	TEST_ASSERT(pot.reagents.get_reagent_amount(/datum/reagent/water) >= 10, "Two 5 u pours did not reach the pot")
+	TEST_ASSERT(pot.process_item(null, allocate(/obj/item/food/spaghetti/raw, run_loc_floor_bottom_left)) == COOK_SUCCESS, "Raw spaghetti was rejected after two 5 u pours of water")
+
+	var/datum/cooking_surface/burner/burner = stovetop.burners[1]
+	stovetop.place_container(pot, burner)
+	burner.turn_on()
+	burner.temperature = COOK_TEMP_HIGH
+	pot.reagents.remove_reagent(/datum/reagent/water, 10)
+	for(var/i in 1 to 16)
+		burner.process_cooking(1, 1)
+	TEST_ASSERT(!(locate(/obj/item/food/spaghetti/boiledspaghetti) in pot), "Spaghetti boiled although the water was taken out of the pot")
+	TEST_ASSERT(locate(/obj/item/food/spaghetti/raw) in pot, "The raw spaghetti vanished when the dish was blocked")
+
+	pot.reagents.add_reagent(/datum/reagent/water, 10)
+	for(var/i in 1 to 16)
+		burner.process_cooking(1, 1)
+	TEST_ASSERT(locate(/obj/item/food/spaghetti/boiledspaghetti) in pot, "No boiled spaghetti after refilling the water (pot holds: [english_list(pot.contents)])")
+
 /// Mikser lodów (przepis z Paradise): patyczek, tofu, cukier i sok bananowy w misie zamarzają w lód na patyku i się nie przypalają
 /datum/unit_test/aquila_cooking_ice_cream_mixer
 
@@ -188,5 +218,13 @@
 	for(var/i in 1 to 120)
 		mixer.chamber.process_cooking(1, 1)
 	TEST_ASSERT(!(locate(/obj/item/food/badrecipe) in bowl), "A dessert left in the mixer burned")
+
+	// Foremki z plastiku są w menu craftingu (lista plastiku uzupełniana przed budową menu)
+	var/found_mould = FALSE
+	for(var/datum/crafting_recipe/recipe as anything in GLOB.crafting_recipes)
+		if(recipe.result == /obj/item/reagent_containers/cooking/mould/bear)
+			found_mould = TRUE
+			break
+	TEST_ASSERT(found_mould, "The bear-shaped candy mould is not in the crafting menu")
 
 #undef TEST_ASSERT

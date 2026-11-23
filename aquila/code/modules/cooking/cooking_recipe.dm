@@ -25,6 +25,26 @@ GLOBAL_LIST_EMPTY(cooking_cookbook_lookup)
 	/// Lista [/datum/cooking/recipe_step]
 	var/list/steps
 
+/// Nazwa dania albo odczynnika, który powstaje
+/datum/cooking/recipe/proc/product_name()
+	if(product_type)
+		var/atom/product = product_type
+		return initial(product.name)
+	var/datum/reagent/reagent = reagent_type
+	return initial(reagent.name)
+
+/// Indeks pierwszego zaliczonego kroku z odczynnikiem, którego w naczyniu już nie ma w potrzebnej ilości (0 = wszystko jest)
+/datum/cooking/recipe/proc/first_missing_reagent_step(obj/item/reagent_containers/cooking/container, list/applied_steps)
+	var/list/needed = list()
+	for(var/index in 1 to length(steps))
+		var/datum/cooking/recipe_step/add_reagent/reagent_step = steps[index]
+		if(!istype(reagent_step) || reagent_step.optional || !(index in applied_steps))
+			continue
+		needed[reagent_step.reagent_type] += reagent_step.amount
+		if(!container.reagents.has_reagent(reagent_step.reagent_type, needed[reagent_step.reagent_type] - 0.01))
+			return index
+	return 0
+
 /// Tworzy danie. Zwraca utworzony przedmiot (albo null, gdy wynikiem jest odczynnik).
 /datum/cooking/recipe/proc/create_product(datum/cooking/recipe_tracker/tracker)
 	var/obj/item/reagent_containers/cooking/container = tracker.container
@@ -123,13 +143,13 @@ GLOBAL_LIST_EMPTY(cooking_cookbook_lookup)
 		if(!recipe.container_type || !length(recipe.steps))
 			continue
 		LAZYADD(GLOB.cooking_recipes_by_container[recipe.container_type], recipe)
-		if(!recipe.appear_in_default_catalog || !recipe.product_type)
+		if(!recipe.appear_in_default_catalog || !(recipe.product_type || recipe.reagent_type))
 			continue
-		var/atom/product = recipe.product_type
 		var/obj/item/reagent_containers/cooking/container_type = recipe.container_type
 		var/list/entry = list()
-		entry["name"] = initial(product.name)
-		entry["path"] = "[product]"
+		entry["name"] = recipe.product_name()
+		entry["path"] = "[recipe.product_type || recipe.reagent_type]"
+		entry["recipe"] = "[path]"
 		entry["container"] = "[initial(container_type.preposition)] [initial(container_type.where_name)]"
 		entry["instructions"] = list()
 		for(var/datum/cooking/recipe_step/recipe_step as anything in recipe.steps)

@@ -451,7 +451,7 @@
 		/datum/reagent/consumable/nutriment = 20,
 		/datum/reagent/consumable/nutriment/vitamin = 10,
 	)
-	tastes = list("ciasto" = 5, "słodycz" = 1, "plum" = 2)
+	tastes = list("ciasto" = 5, "słodycz" = 1, "śliwka" = 2)
 	foodtypes = DAIRY | FRUIT | GRAIN | SUGAR
 	bite_consumption = 3
 	crafting_complexity = FOOD_COMPLEXITY_3
@@ -480,7 +480,7 @@
 		/datum/reagent/consumable/nutriment = 4,
 		/datum/reagent/consumable/nutriment/vitamin = 2,
 	)
-	tastes = list("ciasto" = 5, "słodycz" = 1, "plum" = 2)
+	tastes = list("ciasto" = 5, "słodycz" = 1, "śliwka" = 2)
 	foodtypes = DAIRY | FRUIT | GRAIN | SUGAR
 	crafting_complexity = FOOD_COMPLEXITY_2
 
@@ -904,9 +904,8 @@
 	icon = 'aquila/icons/obj/food/paradise/food.dmi'
 	icon_state = "mashedtaters"
 	food_reagents = list(
-		/datum/reagent/consumable/nutriment = 5,
+		/datum/reagent/consumable/nutriment = 15,
 		/datum/reagent/consumable/gravy = 5,
-		/datum/reagent/consumable/nutriment = 10,
 		/datum/reagent/consumable/nutriment/vitamin = 2,
 	)
 	tastes = list("puree ziemniaczane" = 3, "sos pieczeniowy" = 1)
@@ -2689,8 +2688,7 @@
 	icon = 'aquila/icons/obj/food/paradise/cannibalism.dmi'
 	icon_state = "tree_salad"
 	food_reagents = list(
-		/datum/reagent/consumable/nutriment = 3,
-		/datum/reagent/consumable/nutriment = 5,
+		/datum/reagent/consumable/nutriment = 8,
 	)
 	tastes = list("kora" = 1, "liście" = 1)
 	trash_type = /obj/item/reagent_containers/glass/bowl

@@ -172,6 +172,7 @@ GLOBAL_LIST_EMPTY(cooking_recipes_atoms)
 		else
 			GLOB.crafting_recipes += recipe
 
+	add_candy_mould_recipes() // foremki na cukierki w liście plastiku, zanim menu przejdzie po stosach
 	var/list/global_stack_recipes = list(
 		/obj/item/stack/sheet/glass = GLOB.glass_recipes,
 		/obj/item/stack/sheet/plasmaglass = GLOB.pglass_recipes,

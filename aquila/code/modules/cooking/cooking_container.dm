@@ -64,11 +64,10 @@
 	var/shown = 0
 	for(var/datum/cooking/recipe/recipe as anything in tracker.recipes_last_completed_step)
 		var/index = tracker.recipes_last_completed_step[recipe]
-		if(index >= length(recipe.steps) || !recipe.product_type)
+		if(index >= length(recipe.steps))
 			continue
 		var/datum/cooking/recipe_step/next_step = recipe.steps[index + 1]
-		var/atom/product = recipe.product_type
-		. += span_notice("Może z tego wyjść: [initial(product.name)]. Następnie: [lowertext(next_step.get_pda_formatted_desc())]")
+		. += span_notice("Może z tego wyjść: [recipe.product_name()]. Następnie: [lowertext(next_step.get_pda_formatted_desc())]")
 		if(++shown >= 3)
 			break
 

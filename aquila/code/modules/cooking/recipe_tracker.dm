@@ -121,15 +121,28 @@
 
 	if(length(completed_recipes))
 		var/datum/cooking/recipe/recipe_to_complete = completed_recipes[1]
+		// Odczynnik wyciągnięty strzykawką po zaliczonym kroku: danie nie powstaje, ostatni krok trzeba powtórzyć
+		// po dolaniu (składniki zostają w naczyniu, więc nie cofamy wcześniejszych kroków)
+		var/missing_index = recipe_to_complete.first_missing_reagent_step(container, recipes_all_applied_steps[recipe_to_complete])
+		if(missing_index)
+			var/last_index = length(recipe_to_complete.steps)
+			recipes_last_completed_step[recipe_to_complete] = last_index - 1
+			LAZYREMOVE(recipes_all_applied_steps[recipe_to_complete], last_index)
+			var/datum/cooking/recipe_step/missing_step = recipe_to_complete.steps[missing_index]
+			container.visible_message(span_warning("W: [container] czegoś brakuje. [missing_step.get_pda_formatted_desc()]"))
+			return COOK_PARTIAL_SUCCESS
 		var/atom/result = recipe_to_complete.create_product(src)
 		if(user && result && user.Adjacent(container))
 			to_chat(user, span_notice("Gotowe: [result]!"))
 		return COOK_COMPLETE
 
-	// Przepisy, które mają mniej wykonanych kroków niż już zrobiliśmy, odpadają
-	var/completed_step_count = length(recipes_applied_step_data)
+	// Odpadają przepisy, do których ten składnik w ogóle nie pasował. Przepis, który przyjął część odczynnika
+	// (np. 5 z 10 j. wody), zostaje i czeka na dolanie.
+	var/list/attempted_recipes = list()
+	for(var/datum/cooking/step_attempt/step_attempt as anything in step_attempts)
+		attempted_recipes[step_attempt.recipe] = TRUE
 	for(var/recipe in recipes_last_completed_step.Copy())
-		if(!(recipe in recipes_all_applied_steps) || length(recipes_all_applied_steps[recipe]) < completed_step_count)
+		if(!attempted_recipes[recipe])
 			recipes_last_completed_step -= recipe
 
 	return COOK_SUCCESS

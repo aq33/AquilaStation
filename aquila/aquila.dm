@@ -766,6 +766,7 @@
 #include "code\modules\cooking\recipes\recipes_basic.dm"
 #include "code\modules\cooking\recipes\recipes_paradise.dm"
 #include "code\modules\cooking\recipes\recipes_aquila.dm"
+#include "code\modules\reagents\tg_drinks\glass_icon.dm"
 #include "code\modules\bar\brewing\brewing_recipes.dm"
 #include "code\modules\bar\brewing\brewing_barrel.dm"
 #include "code\modules\food_and_drinks\drinks\drinks.dm"

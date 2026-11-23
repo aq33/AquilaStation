@@ -3198,16 +3198,6 @@
 		COOK_ADD_ITEM(/obj/item/organ/appendix),
 	)
 
-/datum/cooking/recipe/appendixburger_bitten
-	container_type = /obj/item/reagent_containers/cooking/board
-	product_type = /obj/item/food/burger/appendix
-
-/datum/cooking/recipe/appendixburger_bitten/New()
-	steps = list(
-		COOK_ADD_ITEM(/obj/item/food/bun),
-		COOK_ADD_ITEM(/obj/item/organ/appendix),
-	)
-
 /datum/cooking/recipe/avocadosandwich
 	container_type = /obj/item/reagent_containers/cooking/board
 	product_type = /obj/item/food/avocadosandwich

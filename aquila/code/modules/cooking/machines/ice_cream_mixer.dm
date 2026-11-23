@@ -28,6 +28,8 @@
 	update_appearance()
 
 /obj/machinery/ice_cream_mixer/Destroy()
+	// Naczynie wypada przez Exited(), które przywraca mu normalny wygląd
+	chamber.container?.forceMove(drop_location())
 	QDEL_NULL(chamber)
 	QDEL_NULL(kitchen_heat)
 	return ..()
@@ -188,8 +190,8 @@
 
 GLOBAL_VAR_INIT(candy_mould_recipes_added, FALSE)
 
-/// Foremki na cukierki z plastiku (jak w Paradise)
-/obj/item/stack/sheet/plastic/Initialize(mapload, new_amount, merge = TRUE)
+/// Foremki na cukierki z plastiku (jak w Paradise). Wołane przy budowie menu craftingu i przy pierwszym arkuszu plastiku.
+/proc/add_candy_mould_recipes()
 	if(!GLOB.candy_mould_recipes_added)
 		GLOB.plastic_recipes += new /datum/stack_recipe_list("foremki na cukierki", list(
 			new /datum/stack_recipe("foremka w misie", /obj/item/reagent_containers/cooking/mould/bear, 1, on_floor = TRUE),
@@ -202,4 +204,7 @@ GLOBAL_VAR_INIT(candy_mould_recipes_added, FALSE)
 			new /datum/stack_recipe("foremka na lizaki", /obj/item/reagent_containers/cooking/mould/loli, 1, on_floor = TRUE),
 		))
 		GLOB.candy_mould_recipes_added = TRUE
+
+/obj/item/stack/sheet/plastic/Initialize(mapload, new_amount, merge = TRUE)
+	add_candy_mould_recipes()
 	return ..()
