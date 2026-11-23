@@ -91,6 +91,20 @@ GLOBAL_LIST_EMPTY(food_transformations)
 			catalog += list(cookbook_entry(result, reaction.name, "Mieszanki", ingredients, tools))
 		qdel(reaction)
 
+	// Browar w drewnianej beczce (aquila/code/modules/bar/brewing)
+	for(var/datum/brewing_recipe/recipe as anything in GLOB.brewing_recipes)
+		var/list/ingredients = list()
+		for(var/crop in recipe.needed_crops)
+			ingredients += list(cookbook_ingredient(crop, recipe.needed_crops[crop]))
+		for(var/item in recipe.needed_items)
+			ingredients += list(cookbook_ingredient(item, recipe.needed_items[item]))
+		for(var/reagent in recipe.needed_reagents)
+			ingredients += list(cookbook_ingredient(reagent, recipe.needed_reagents[reagent]))
+		var/list/tools = list("czas: [DisplayTimeText(recipe.brew_time)]", "wychodzi [recipe.brewed_amount] j.")
+		if(recipe.pre_reqs)
+			tools += "w beczce gotowy trunek: [cookbook_name(recipe.pre_reqs)]"
+		catalog += list(cookbook_entry(recipe.reagent_to_brew, recipe.display_name, "Browar", ingredients, tools))
+
 	probe_food_transformations()
 	var/static/list/method_names = list("bake" = "Piekarnik", "grill" = "Grill", "process" = "Krojenie")
 	var/static/list/tool_names = list(TOOL_KNIFE = "nóż", TOOL_ROLLINGPIN = "wałek", TOOL_SAW = "piła")
@@ -178,7 +192,7 @@ GLOBAL_LIST_EMPTY(food_transformations)
 	filedesc = "Książka kucharska"
 	category = PROGRAM_CATEGORY_CREW
 	program_icon_state = "generic"
-	extended_desc = "Przepisy na jedzenie: stół, procesor, mikrofalówka, grill, piekarnik i krojenie, z wyszukiwarką po daniu albo składniku."
+	extended_desc = "Przepisy na jedzenie: stół, procesor, mikrofalówka, grill, piekarnik, krojenie i browar, z wyszukiwarką po daniu albo składniku."
 	size = 2
 	tgui_id = "NtosCookbook"
 	program_icon = "utensils"

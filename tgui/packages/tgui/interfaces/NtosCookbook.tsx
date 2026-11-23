@@ -42,6 +42,7 @@ const METHOD_ORDER = [
   'Piekarnik',
   'Krojenie',
   'Mieszanki',
+  'Browar',
 ];
 
 const METHOD_HINTS: Record<string, string> = {
@@ -52,6 +53,8 @@ const METHOD_HINTS: Record<string, string> = {
   Piekarnik: 'Połóż na blasze w piekarniku i poczekaj.',
   Krojenie: 'Użyj narzędzia na składniku, najlepiej leżącym na stole.',
   Mieszanki: 'Wlej składniki do jednego zbiornika (miski, zlewki).',
+  Browar:
+    'Alt+klik na drewnianej beczce wybiera trunek. Plony liczą się w jednostkach (zwykły plon to 5 j.), płyny wlewasz do otwartej beczki.',
 };
 
 const byName = (a: CookRecipe, b: CookRecipe) => a.name.localeCompare(b.name);
