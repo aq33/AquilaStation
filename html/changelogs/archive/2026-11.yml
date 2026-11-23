@@ -1445,3 +1445,22 @@
       „Odwiert”.
   - rscdel: Czujnik rud z łupów fauny usunięty.
   - code_imp: Usunięty martwy kod starych uzależnień i osierocone tłumaczenia.
+'2026-11-22':
+  Joker66613:
+  - bugfix: Wbudowana butla hardsuitu nie dusi już noszącego.
+  - bugfix: Matryce sensorów pobierają 5,4 kW zamiast 54 kW i nie rozładowują APC.
+  - bugfix: Na Atlantisie i Von Neumannie matryce sensorów w konserwacji mają wreszcie
+      APC i prąd.
+  - bugfix: Przy opuszczonej stacji pilot sam wybiera miejsce lądowania promu z obrysem,
+      więc wyjście nie trafia w ścianę.
+  - bugfix: Martwego VIP-a można ożywić i dowieźć, misja nie przepada od razu po jego
+      śmierci.
+  - bugfix: Menu lobby działa także po wejściu na serwer w trakcie jego startu.
+  - bugfix: Mapa FTL ma suwaki, a przycisk skoku nie chowa się w małym oknie.
+  - rscadd: Mapa FTL pokazuje floty w kolorach frakcji z liczbą okrętów i ma zakładki
+      Wojna oraz Legenda.
+  - rscadd: Pilot okrętu widzi, ile dysz działa i jaki jest ciąg.
+  - tweak: Za sterem okrętu jest klasyczny panel konsoli, widok myśliwca tylko w małych
+      jednostkach.
+  - tweak: Automaty pokazują nazwę przedmiotu nad półką.
+  - balance: Cykl autoklawu trwa 10 s zamiast 30 s.

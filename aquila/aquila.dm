@@ -1351,6 +1351,7 @@
 // Komora testowa - zestawy PR-ów niżej (usuwać razem z plikiem zestawu po przetestowaniu)
 #include "code\modules\test_chamber\kits\pr_665_rework_amunicji.dm"
 #include "code\modules\test_chamber\kits\pr_675_kuchnia_krokowa.dm"
+#include "code\modules\test_chamber\kits\pr_677_zgloszenia_2011.dm"
 #include "code\modules\test_chamber\kits\pr_nsvprzyw_statek.dm"
 #include "code\modules\test_chamber\kits\pr_nsvprzyw_misje.dm"
 #include "code\modules\test_chamber\kits\pr_nsvprzyw_eventy.dm"
@@ -2586,6 +2587,7 @@
 #include "code\modules\unit_tests\aquila_he_pipe_no_network.dm"
 #include "code\modules\unit_tests\aquila_ship_power.dm"
 #include "code\modules\unit_tests\aquila_ship_sensor_array.dm"
+#include "code\modules\unit_tests\aquila_zgloszenia_2011.dm"
 #include "code\modules\unit_tests\aquila_shield_cloak.dm"
 #include "code\modules\unit_tests\aquila_ftl_calibration.dm"
 #include "code\modules\unit_tests\aquila_missile_design.dm"

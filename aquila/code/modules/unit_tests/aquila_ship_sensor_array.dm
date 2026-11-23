@@ -39,7 +39,7 @@
 	ship.get_ship_power().limits[SHIP_POWER_SENSORS] = 1
 	array.process(2)
 	TEST_ASSERT(array.range == 6, "A working sensor array doesn't have the fixed range of 6 ([array.range])")
-	TEST_ASSERT(array.active_power_usage == 54000, "A working sensor array doesn't draw the fixed 54 kW ([array.active_power_usage])")
+	TEST_ASSERT(array.active_power_usage == 5400, "A working sensor array doesn't draw the fixed 5.4 kW ([array.active_power_usage])")
 	TEST_ASSERT(abs(ship.get_sensor_array_mult(SENSOR_TELESCOPE) - 0.6) < 0.001, "Range 6 doesn't give 60% of the telescope range")
 
 	// Limit sensorów z podziału mocy obcina zasięg

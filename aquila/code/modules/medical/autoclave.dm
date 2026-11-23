@@ -15,7 +15,7 @@
 	active_power_usage = 2000
 	circuit = /obj/item/circuitboard/machine/autoclave
 	/// Time one cycle takes
-	var/sanitize_time = 30 SECONDS
+	var/sanitize_time = 10 SECONDS
 	/// Is the door open
 	var/is_open = FALSE
 	/// What is inside
@@ -46,7 +46,7 @@
 	var/rating = 0
 	for(var/obj/item/stock_parts/micro_laser/laser in component_parts)
 		rating += laser.rating
-	sanitize_time = 30 SECONDS / max(1, rating / 2)
+	sanitize_time = 10 SECONDS / max(1, rating / 2)
 
 /obj/machinery/autoclave/examine(mob/user)
 	. = ..()
