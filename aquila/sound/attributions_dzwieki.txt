@@ -94,3 +94,7 @@ Okno postaci (17.11.2026):
   species/beefman/*   fulpstation/fulpstation (fulp_modules), CC-BY-SA 3.0
   voice/psyphoza/*   BeeStation/BeeStation-Hornet, CC-BY-SA 3.0
   species/pug/*, species/amphibian/*   goonstation/goonstation (sound/voice/screams, sound/voice/pug_*, snore, urf, farts/frogfart, impact_sounds), CC BY-NC-SA 3.0
+
+Lądowanie na planetach (voidcrew/Voidcrew#588, autor Jackriip, 35462e2), licencja CC-BY-SA 3.0 (README Voidcrew: assety bez innej informacji):
+  ../icons/effects/planet_descent_view.dmi   Voidcrew voidcrew/icons/effects/landing_view.dmi (stany wisps i streaks: mgła w chmurze i smugi żaru)
+  planets/landing/*                 Voidcrew voidcrew/sound/effects/landing (approach, clouds, entry, launch, liftoff_outside, spool, thrusters, touchdown)
