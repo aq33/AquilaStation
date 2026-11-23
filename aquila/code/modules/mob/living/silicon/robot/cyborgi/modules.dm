@@ -99,12 +99,11 @@
 		/obj/item/extinguisher/mini,
 		/obj/item/borg/sight/hud/sec,
 		/obj/item/detective_scanner,
-		/obj/item/swabber,
 		/obj/item/evidencebag,
 		/obj/item/evidencebag,
 		/obj/item/reagent_containers/spray/cyborg/luminol,
 		/obj/item/barrier_tape_roll,
-		/obj/item/toy/crayon/white/chalk,
+		/obj/item/toy/crayon/white/chalk/cyborg,
 		/obj/item/holosign_creator/detective,
 		/obj/item/pen/cyborg,
 		/obj/item/crowbar/cyborg)

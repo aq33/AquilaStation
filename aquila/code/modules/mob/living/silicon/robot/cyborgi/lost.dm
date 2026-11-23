@@ -99,11 +99,10 @@
 	fakeable = FALSE
 
 /datum/round_event/aquila_lost_cyborg/start()
-	var/list/turfs = get_safe_random_station_turfs()
-	if(!length(turfs))
+	var/turf/spot = get_safe_random_station_turfs() // przy amount = 1 zwraca jeden turf, nie listę
+	if(!istype(spot))
 		message_admins("Event zagubionego cyborga nie znalazł bezpiecznego miejsca na statku.")
 		return
-	var/turf/spot = turfs[1]
 	var/obj/effect/mob_spawn/aquila_lost_cyborg/shell = new(spot)
 	announce_to_ghosts(shell)
 	message_admins("Event zagubionego cyborga zostawia [shell] w [ADMIN_VERBOSEJMP(spot)].")

@@ -147,7 +147,7 @@
 	category = list("Cyborg Upgrade Modules")
 
 /datum/design/aq_borg_upgrade_floodlight
-	name = "Ulepszenie cyborga (reflektor)"
+	name = "Ulepszenie cyborga (naświetlacz)"
 	id = "aq_borg_upgrade_floodlight"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/aquila/toggle/floodlight

@@ -514,6 +514,8 @@
 
 /// Jeden cykl pobierania; zwraca ilość pobranej energii
 /obj/item/borg/charger/aquila_connector/proc/aq_draw(mob/living/silicon/robot/user, atom/target)
+	if(QDELETED(user) || !user.cell) // ogniwo mogło zniknąć w trakcie do_after
+		return 0
 	var/wanted = min(draw_per_cycle, user.cell.maxcharge - user.cell.charge)
 	if(wanted <= 0)
 		return 0
@@ -523,7 +525,8 @@
 		if(!apc.cell || apc.cell.percent() <= apc_min_percent)
 			balloon_alert(user, "APC ma za mało energii!")
 			return 0
-		got = apc.cell.use(min(wanted, apc.cell.charge - apc.cell.maxcharge * apc_min_percent / 100)) ? min(wanted, apc.cell.charge) : 0
+		var/available = min(wanted, apc.cell.charge - apc.cell.maxcharge * apc_min_percent / 100)
+		got = (available > 0 && apc.cell.use(available)) ? available : 0 // faktycznie pobrane, nie ładunek po poborze
 		apc.update_icon()
 	else
 		var/obj/structure/cable/cable = target
@@ -569,7 +572,11 @@
 		return
 	var/totransfer = min(cell.charge - AQ_BORG_MIN_CHARGE, powertransfer * coefficient)
 	var/transferred = target.give(totransfer)
-	cell.use(transferred)
+	var/mob/living/silicon/robot/cyborg = cell.loc
+	if(iscyborg(cyborg))
+		cyborg.aq_transfer_charge(transferred) // bez mnożnika oszczędzacza
+	else
+		cell.use(transferred)
 	target.update_icon()
 
 /obj/item/inducer/cyborg/recharge(atom/movable/A, mob/user)
@@ -779,36 +786,75 @@
 		QDEL_NULL(loaded)
 	loaded = new /obj/structure/bed/roller/holo(src)
 
+/obj/item/roller/robo/holo/deploy_roller(mob/user, atom/location)
+	var/obj/structure/bed/roller/holo/bed = loaded
+	. = ..()
+	if(istype(bed) && !loaded)
+		bed.aq_dock = WEAKREF(src)
+
 /obj/structure/bed/roller/holo
 	name = "holograficzne nosze"
 	desc = "Nosze z twardego światła. Nie da się ich rozebrać, za to szybko się je przenosi."
 	color = "#80D0FF"
 	alpha = 200
 	buildstackamount = 0
-	foldabletype = /obj/item/roller/robo/holo
+	foldabletype = /obj/item/roller/holo_faded
+	/// Dok, z którego nosze rozłożono: zgaszone wracają do niego
+	var/datum/weakref/aq_dock
 
 /obj/structure/bed/roller/holo/deconstruct(disassembled)
 	qdel(src)
 
+// Złożone albo rozbite gasną i odtwarzają się w doku pochodzenia (jeśli jest pusty), zamiast dawać komuś nowy dok
+/obj/structure/bed/roller/holo/Destroy()
+	var/obj/item/roller/robo/holo/dock = aq_dock?.resolve()
+	aq_dock = null
+	if(istype(dock) && !QDELETED(dock) && !dock.loaded && loc != dock)
+		dock.loaded = new /obj/structure/bed/roller/holo(dock)
+	return ..()
+
+/// Złożone przez człowieka holonosze: nic nie zostaje w ręce (core składania robi new foldabletype i put_in_hands)
+/obj/item/roller/holo_faded
+	name = "zgaszone holonosze"
+
+/obj/item/roller/holo_faded/Initialize(mapload)
+	..()
+	return INITIALIZE_HINT_QDEL
+
 // ================================================================ Ochrona
 
-/// Czy zabójczy tryb broni cyborga jest dozwolony: czerwony alarm lub wyżej, pokład obcego okrętu albo żywi abordażyści na tym samym pokładzie
+/// Czy zabójczy tryb broni cyborga jest dozwolony: czerwony alarm lub wyżej, pokład wrogiego okrętu albo wrodzy, nieskuci abordażyści na tym samym pokładzie
 /proc/aquila_cyborg_lethal_allowed(mob/living/user)
 	if(GLOB.security_level >= SEC_LEVEL_RED)
 		return TRUE
 	if(!user)
 		return FALSE
-	var/obj/structure/overmap/ship = user.get_overmap()
-	if(ship && ship.role != MAIN_OVERMAP && ship.role != MAIN_MINING_SHIP)
+	if(aquila_is_hostile_ship(user.get_overmap()))
 		return TRUE // abordaż wrogiego okrętu
 	var/turf/here = get_turf(user)
 	if(!here)
 		return FALSE
 	for(var/datum/component/knpc/boarder as anything in GLOB.knpcs)
 		var/mob/living/boarder_mob = boarder.parent
-		if(istype(boarder_mob) && boarder_mob.stat != DEAD && boarder_mob.z == here.z)
-			return TRUE // abordażyści na naszym pokładzie
+		if(!istype(boarder_mob) || boarder_mob.stat == DEAD || boarder_mob.z != here.z)
+			continue
+		if(boarder_mob.restrained(TRUE) || boarder_mob.faction_check_mob(user))
+			continue // skuty jeniec albo sojusznik
+		return TRUE // abordażyści na naszym pokładzie
 	return FALSE
+
+/// Okręt innej, niesojuszniczej frakcji niż główny okręt załogi; własne promy, myśliwce, planety i asteroidy się nie liczą
+/proc/aquila_is_hostile_ship(obj/structure/overmap/ship)
+	if(!istype(ship) || ship.role == MAIN_OVERMAP || ship.role == MAIN_MINING_SHIP || !ship.faction)
+		return FALSE
+	if(istype(ship, /obj/structure/overmap/planet) || istype(ship, /obj/structure/overmap/asteroid))
+		return FALSE
+	var/obj/structure/overmap/main_ship = SSstar_system.find_main_overmap()
+	if(!main_ship || ship.faction == main_ship.faction)
+		return FALSE
+	var/datum/faction/ours = SSstar_system.faction_by_name(main_ship.faction)
+	var/datum/faction/theirs = SSstar_system.faction_by_name(ship.faction)
+	return !(ours && theirs && ours.relationships[theirs] >= RELATIONSHIP_ALLIES)
 
 /// Broń cyborga z odblokowanym trybem zabójczym (Tegustation „lethal mode unlock”)
 /obj/item/gun/energy/e_gun/aquila_cyborg_lethal
@@ -975,6 +1021,10 @@
 	desc = "Spray z luminolem do szukania zmytej krwi; uzupełnia się z ogniwa cyborga."
 	color = "#B0E0FF"
 	set_reagent = /datum/reagent/luminol
+
+/// Kreda detektywa w module cyborga: bez limitu użyć (zwykła po 40 ładunkach znika i zostawia pustą referencję w module)
+/obj/item/toy/crayon/white/chalk/cyborg
+	charges = -1
 
 // ================================================================ Logistyka i górnictwo
 

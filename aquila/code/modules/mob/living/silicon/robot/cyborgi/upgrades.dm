@@ -10,6 +10,8 @@
 /mob/living/silicon/robot
 	/// AQUILA: mnożnik zużycia energii z ogniwa (oszczędzacz energii)
 	var/aq_power_coefficient = 1
+	/// AQUILA: trwa przekazywanie energii z ogniwa (licznik), oszczędzacz wtedy nie działa
+	var/aq_power_transfers = 0
 	/// AQUILA: włączona osobista tarcza
 	var/obj/item/borg/upgrade/aquila/toggle/personal_shield/aq_personal_shield
 	/// AQUILA: od kiedy wolno użyć kolejnego pakietu doładowania
@@ -36,6 +38,13 @@
 	. = ..()
 	if(!.)
 		return
+	// Moduł domyślny znika przy wyborze modułu razem z dodanymi narzędziami (core sprawdza tylko, czy moduł w ogóle jest)
+	if(require_module && !R.has_module())
+		to_chat(user, "<span class='warning'>Borg musi wybrać moduł, zanim będzie można go ulepszyć!</span>")
+		return FALSE
+	if(locate(type) in R.upgrades)
+		to_chat(user, "<span class='warning'>Ta jednostka ma już [src].</span>")
+		return FALSE
 	if(is_type_in_list(R.module, aq_excluded_modules))
 		to_chat(user, "<span class='warning'>[src] nie pasuje do modułu „[R.module.name]”.</span>")
 		return FALSE
@@ -145,6 +154,14 @@
 		aq_set_active(FALSE)
 		return PROCESS_KILL
 
+// Nowy moduł ustawia od nowa magnesy i czyszczenie (update_module_innate), więc włączone przełączniki gasną,
+// zamiast zostać „włączone” bez efektu i dalej pobierać energię
+/mob/living/silicon/robot/update_module_innate()
+	. = ..()
+	for(var/obj/item/borg/upgrade/aquila/toggle/toggle in upgrades)
+		if(toggle.active)
+			toggle.aq_set_active(FALSE)
+
 /obj/item/borg/upgrade/aquila/toggle/proc/aq_enable(mob/living/silicon/robot/R)
 	return
 
@@ -193,9 +210,27 @@
 /obj/item/stock_parts/cell/use(amount, force)
 	if(amount > 0 && iscyborg(loc))
 		var/mob/living/silicon/robot/cyborg = loc
-		if(cyborg.cell == src)
+		// Przy przekazywaniu energii (induktor, złącze w trybie ładowania) oszczędzacz nie działa, inaczej dawałby energię z niczego
+		if(cyborg.cell == src && !cyborg.aq_power_transfers)
 			amount *= cyborg.aq_power_coefficient
 	return ..()
+
+/// Pobiera energię z ogniwa cyborga na przekazanie dalej, bez mnożnika oszczędzacza
+/mob/living/silicon/robot/proc/aq_transfer_charge(amount)
+	if(!cell)
+		return FALSE
+	aq_power_transfers++
+	. = cell.use(amount)
+	aq_power_transfers--
+
+// Złącze w trybie ładowania przelewa energię z ogniwa cyborga do innego ogniwa
+/obj/item/borg/charger/charging_loop(mob/living/silicon/robot/user, atom/target, obj/item/stock_parts/cell/cell)
+	if(!iscyborg(user))
+		return ..()
+	user.aq_power_transfers++
+	. = ..()
+	if(!QDELETED(user))
+		user.aq_power_transfers--
 
 /// Pakiet doładowania (Goonstation „recharge pack”): jednorazowo +15 000 ładunku, kolejny dopiero po 7 minutach
 /obj/item/borg/upgrade/aquila/recharge_pack
@@ -527,15 +562,15 @@
 	module_flags = BORG_MODULE_MINER
 	aq_items = list(/obj/item/borg/sight/aquila_nightvision)
 
-/// Reflektor (Baystation12 „floodlight”): mocniejsza lampa za większy pobór energii
+/// Naświetlacz (Baystation12 „floodlight”): mocniejsza lampa za większy pobór energii
 /obj/item/borg/upgrade/aquila/toggle/floodlight
-	name = "reflektor cyborga"
-	desc = "Mocny reflektor: lampa cyborga świeci dużo dalej, ale zużywa więcej energii."
+	name = "naświetlacz cyborga"
+	desc = "Mocny naświetlacz: lampa cyborga świeci dużo dalej, ale zużywa więcej energii."
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "floodlight"
 	module_type = AQ_BORG_MINING
 	module_flags = BORG_MODULE_MINER
-	/// Moc lampy przed włączeniem reflektora
+	/// Moc lampy przed włączeniem naświetlacza
 	var/previous_intensity = 3
 
 /obj/item/borg/upgrade/aquila/toggle/floodlight/aq_enable(mob/living/silicon/robot/R)
