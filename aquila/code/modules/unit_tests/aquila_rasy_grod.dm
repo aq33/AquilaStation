@@ -12,6 +12,11 @@
 			return TRUE
 	return FALSE
 
+/// Czy Grod może założyć tę rzecz w tym slocie (sprawdzenie bez zakładania)
+/proc/grod_can_wear_check(mob/living/carbon/human/H, obj/item/I, slot)
+	var/datum/species/grod/grod = H.dna.species
+	return grod.grod_can_wear(I, slot)
+
 /// Sprite'y Groda: ciało, wszystkie korony, wzory, ogony i pająk-korona
 /datum/unit_test/aquila_rasy_grod_sprites
 
@@ -32,6 +37,8 @@
 		TEST_ASSERT(icon_exists(tail.icon, "m_grod_tail_[tail.icon_state]_ADJ"), "Missing sprite of tail [name]")
 	for(var/state in list("crown_spider", "crown_spider_dead"))
 		TEST_ASSERT(icon_exists(GROD_ICON_CROWN_SPIDER, state), "Missing crown spider sprite [state]")
+	for(var/state in list("uniformblood", "helmetblood", "maskblood", "shoeblood", "bloodyhands", "handcuff1", "cocoon", "growth1", "growth2", "growth3"))
+		TEST_ASSERT(icon_exists(GROD_ICON_EXTRAS, state), "Missing grod extra sprite [state]")
 	TEST_ASSERT(GLOB.species_list[SPECIES_GROD], "The grod species is not registered")
 	TEST_ASSERT_EQUAL(length(GLOB.grod_first), 24, "The grod name letters did not load")
 
@@ -56,11 +63,33 @@
 	TEST_ASSERT(sprite && sprite[1] == 'aquila/icons/mob/species/grod/onmob_grod_under.dmi', "The jumpsuit is not drawn with the grod sprite")
 	var/obj/item/clothing/suit/space/eva/suit = allocate(/obj/item/clothing/suit/space/eva)
 	TEST_ASSERT(!H.equip_to_slot_if_possible(suit, ITEM_SLOT_OCLOTHING, disable_warning = TRUE), "A grod put on a space suit")
-	var/obj/item/clothing/head/hardhat/hardhat = allocate(/obj/item/clothing/head/hardhat)
+	var/obj/item/clothing/head/cone/hardhat = allocate(/obj/item/clothing/head/cone)
 	TEST_ASSERT(!H.equip_to_slot_if_possible(hardhat, ITEM_SLOT_HEAD, disable_warning = TRUE), "A grod put on a hat without a grod sprite")
 	var/obj/item/clothing/head/grodhat/tophat = allocate(/obj/item/clothing/head/grodhat)
 	TEST_ASSERT(H.equip_to_slot_if_possible(tophat, ITEM_SLOT_HEAD, disable_warning = TRUE), "A grod cannot wear a grod top hat")
 	TEST_ASSERT(!aquila_grod_has_overlay(H, BODY_FRONT_LAYER, "m_grod_crown_crown_FRONT"), "The crown shows through the top hat")
+	var/obj/item/clothing/head/hardhat/yellow_hat = allocate(/obj/item/clothing/head/hardhat)
+	TEST_ASSERT(grod_can_wear_check(H, yellow_hat, ITEM_SLOT_HEAD), "A grod cannot wear a hard hat drawn for grods")
+
+	// Kajdanki i krew rysowane dla ciała Groda
+	var/obj/item/restraints/handcuffs/cuffs = allocate(/obj/item/restraints/handcuffs)
+	cuffs.forceMove(H)
+	H.handcuffed = cuffs
+	H.update_handcuffed()
+	var/mutable_appearance/cuff_overlay = H.overlays_standing[HANDCUFF_LAYER]
+	TEST_ASSERT(istype(cuff_overlay) && cuff_overlay.icon == GROD_ICON_EXTRAS, "Handcuffs are not drawn with the grod sprite")
+	H.handcuffed = null
+	H.update_handcuffed()
+	qdel(cuffs)
+	jumpsuit.add_blood_DNA(list("Z" = "O+"))
+	H.update_inv_w_uniform()
+	var/mutable_appearance/uniform_overlay = H.overlays_standing[UNIFORM_LAYER]
+	var/grod_blood = FALSE
+	for(var/overlay in uniform_overlay.overlays)
+		var/mutable_appearance/blood = new(overlay)
+		if(blood.icon == GROD_ICON_EXTRAS && blood.icon_state == "uniformblood")
+			grod_blood = TRUE
+	TEST_ASSERT(grod_blood, "Blood on a grod jumpsuit is not drawn with the grod sprite")
 
 	// Postawa ruchu (domyślna): dwie ręce i szybszy chód
 	var/datum/species/grod/grod = H.dna.species

@@ -10,6 +10,8 @@
 #define GROD_ICON_TAILS 'aquila/icons/mob/species/grod/tails.dmi'
 #define GROD_ICON_CROWN_SPIDER 'aquila/icons/mob/species/grod/crown_spider.dmi'
 #define GROD_ICON_ACTIONS 'aquila/icons/mob/species/grod/actions_grod.dmi'
+/// Krew na ubraniach, kajdanki, kokon i strąk w tacy (sprite'y z Dysku twórczyni)
+#define GROD_ICON_EXTRAS 'aquila/icons/mob/species/grod/grod_extras.dmi'
 
 /// Pająk-korona: zdrowie pełne i bazowe
 #define GROD_CROWNSPIDER_HEALTH 30

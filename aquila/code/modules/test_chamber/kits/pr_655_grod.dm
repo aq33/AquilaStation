@@ -11,7 +11,8 @@
 	3) Akcja „Odłącz koronę”: wychodzisz jako pająk-korona, ciało umiera. Wyjmij mózg człowiekowi (piła) i kliknij go pająkiem: po 5 s wchodzisz w ciało, które choruje i po chwili zasypia w kokonie jako Grod. \
 	Kokon rozerwiesz ręką (co trzecia próba) albo przegryziesz od środka (opór). Wsyp ziemię do tacy workiem; drugi pająk-korona kliknięty na tacę zakopuje się w niej i po 2 minutach wyrasta z kokonu w nowym ciele. \
 	4) Drugiego Groda podnieś po odłączeniu korony i załóż pająka na głowę. 5) Okno postaci: rasa Grod, korona, wzory z kolorem, ogon; imię z przycisku losowania (Eta'Thra Boski). \
-	6) Mów w języku Poh'lan (,c) i krzyknij. 7) Butelka toksyny korony: wstrzyknij człowiekowi, sól kuchenna leczy przemianę."
+	6) Mów w języku Poh'lan (,c) i krzyknij. 7) Butelka toksyny korony: wstrzyknij człowiekowi, sól kuchenna leczy przemianę. \
+	8) Sprite'y z Dysku twórczyni: beret, kask budowlany, kajdanki na Grodzie, krew na kamizelce (pobrudź ją), strąk rosnący w tacy w trzech etapach."
 	items = list(
 		/mob/living/carbon/human/species/grod = 2,
 		/mob/living/carbon/human = 1,
@@ -29,4 +30,7 @@
 		/obj/item/plant_tray = 1,
 		/obj/item/substrate_bag/dirt = 1,
 		/obj/item/reagent_containers/glass/bottle/grod = 1,
+		/obj/item/clothing/head/beret/sci = 1,
+		/obj/item/clothing/head/hardhat = 1,
+		/obj/item/restraints/handcuffs = 1,
 	)

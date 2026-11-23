@@ -1,5 +1,7 @@
 // Grod: port BeeStation/BeeStation-Hornet#7202 (kontynuacja BeeStation/BeeStation-Hornet#5442, oba niescalone w Bee).
 // Koncepcja i sprite'y: Naevi, Pirill, Troontjelolo, ThomasTheDOOT, MrEloda, SynergyJohn (CC-BY-SA 3.0).
+// Czapki spoza cylindrów, krew na ubraniach, kajdanki, facehugger, plecak odkrywcy, kokon i strąk w tacy (grod_extras.dmi):
+// z folderu twórczyni na Dysku Google projektu Grod revival, ci sami autorzy i ta sama licencja.
 // Kod oryginału: Kapu1178, Rac-off, DrDuckedGoose (AGPL). U nas napisany od nowa w aquila/, bez zmian w core.
 //
 // Grod to korona (krucha, rozumna istota) w ciele dużej gąsienicy. Ciało bez korony nie żyje:
@@ -540,6 +542,18 @@ GLOBAL_LIST_INIT(grod_state_map, list(
 	// maski
 	"gas_alt" = "gasmask",
 	"sechailer" = "gasmask",
+	// czapki z Dysku twórczyni
+	"hardhat0_yellow" = "hardhat_yellow",
+	"hardhat1_yellow" = "hardhat_yellow",
+	"hardhat0_orange" = "hardhat_orange",
+	"hardhat1_orange" = "hardhat_orange",
+	"hardhat0_white" = "hardhat_white",
+	"hardhat1_white" = "hardhat_white",
+	"santahatnorm" = "santa",
+	"ushankadown" = "ushanka",
+	"ushankaup" = "ushanka",
+	"rus_ushanka" = "ushanka",
+	"beret_cmo" = "beretcmo",
 ))
 
 /// Uniformy, których stan nie mówi nic o wyglądzie (różne przedmioty z tym samym stanem): typ -> stan Groda
@@ -619,8 +633,45 @@ GLOBAL_LIST_INIT(grod_type_map, list(
 		if(istype(grod) && part)
 			var/list/sprite = grod_worn_sprite(src, part, grod)
 			if(sprite)
-				return ..(default_layer, sprite[1], FALSE, NO_FEMALE_UNIFORM, sprite[2], special_override_flags | DIGI_ICON_FILE_PASSED)
+				var/mutable_appearance/standing = ..(default_layer, sprite[1], FALSE, NO_FEMALE_UNIFORM, sprite[2], special_override_flags | DIGI_ICON_FILE_PASSED)
+				grod_blood_overlays(standing)
+				return standing
 	return ..()
+
+/// Krew na ubraniu Groda: ludzkie plamy z icons/effects/blood.dmi zamieniamy na rysunki dopasowane do jego ciała
+/proc/grod_blood_overlays(mutable_appearance/standing)
+	if(!length(standing?.overlays))
+		return
+	var/list/old_overlays = standing.overlays.Copy()
+	standing.overlays.Cut()
+	for(var/overlay in old_overlays)
+		var/mutable_appearance/copy = new(overlay)
+		if(copy.icon == 'icons/effects/blood.dmi' && icon_exists(GROD_ICON_EXTRAS, copy.icon_state))
+			copy.icon = GROD_ICON_EXTRAS
+		standing.overlays += copy
+
+/// Kajdanki na odnóżach Groda
+/mob/living/carbon/human/update_inv_handcuffed()
+	. = ..()
+	if(handcuffed && isgrod(src))
+		var/mutable_appearance/cuffs = overlays_standing[HANDCUFF_LAYER]
+		if(istype(cuffs))
+			remove_overlay(HANDCUFF_LAYER)
+			cuffs.icon = GROD_ICON_EXTRAS
+			overlays_standing[HANDCUFF_LAYER] = cuffs
+			apply_overlay(HANDCUFF_LAYER)
+
+/// Zakrwawione dłonie Groda bez rękawic
+/mob/living/carbon/human/update_inv_gloves()
+	. = ..()
+	if(!gloves && bloody_hands && isgrod(src))
+		var/mutable_appearance/bloody_overlay = overlays_standing[GLOVES_LAYER]
+		if(istype(bloody_overlay) && bloody_overlay.icon == 'icons/effects/blood.dmi')
+			remove_overlay(GLOVES_LAYER)
+			bloody_overlay.icon = GROD_ICON_EXTRAS
+			bloody_overlay.icon_state = "bloodyhands"
+			overlays_standing[GLOVES_LAYER] = bloody_overlay
+			apply_overlay(GLOVES_LAYER)
 
 // Cylindry Groda: kapelusz każdej profesji zakrywa koronę (zdjęcie go przy obcych to u Grodów tabu)
 

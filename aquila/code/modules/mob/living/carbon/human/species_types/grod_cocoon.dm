@@ -59,8 +59,8 @@
 /obj/structure/grod_cocoon
 	name = "kokon Groda"
 	desc = "Tajemnicze zjawisko, rzadko obserwowane. W środku coś się rusza."
-	icon = GROD_ICON_BODY
-	icon_state = "caccoon"
+	icon = GROD_ICON_EXTRAS
+	icon_state = "cocoon"
 	density = TRUE
 	anchored = TRUE
 	max_integrity = 50
@@ -109,7 +109,19 @@
 /obj/structure/grod_cocoon/proc/start_growth(atom/movable/new_seed)
 	seed = new_seed
 	seed.forceMove(src)
+	name = "strąk Groda"
+	desc = "Roślina wyrastająca z posadzonej korony. W środku rośnie nowe ciało Groda."
+	color = null
+	set_growth_stage(1)
+	addtimer(CALLBACK(src, PROC_REF(set_growth_stage), 2), GROD_COCOON_GROW_TIME / 3)
+	addtimer(CALLBACK(src, PROC_REF(set_growth_stage), 3), GROD_COCOON_GROW_TIME * 2 / 3)
 	grow_timer = addtimer(CALLBACK(src, PROC_REF(finish_growth)), GROD_COCOON_GROW_TIME, TIMER_STOPPABLE)
+
+/// Etapy wzrostu strąka w tacy (growth1-3 z Dysku twórczyni)
+/obj/structure/grod_cocoon/proc/set_growth_stage(stage)
+	if(QDELETED(src) || !seed)
+		return
+	icon_state = "growth[stage]"
 
 /obj/structure/grod_cocoon/proc/finish_growth()
 	grow_timer = null
@@ -169,9 +181,8 @@
 
 /obj/item/plant_tray/proc/grod_plant(atom/movable/new_seed, mob/user)
 	var/obj/structure/grod_cocoon/cocoon = new(get_turf(src))
-	cocoon.pixel_x = pixel_x
-	cocoon.pixel_y = pixel_y + 6
-	cocoon.color = new_seed.color
+	cocoon.pixel_x = pixel_x + plant_offset[1]
+	cocoon.pixel_y = pixel_y + plant_offset[2]
 	cocoon.start_growth(new_seed)
 	visible_message("<span class='notice'>Wokół korony w [src] zaczyna rosnąć kokon.</span>")
 	log_game("[key_name(user)] posadził koronę Groda w [src] w [AREACOORD(src)].")
