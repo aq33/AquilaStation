@@ -259,7 +259,7 @@
 	else if(user.is_holding_item_of_type(/obj/item/areaeditor/blueprints) && (!randomize || holder_type == /obj/machinery/door/airlock))
 		reveal_wires = TRUE
 
-	else if(HAS_TRAIT(user, TRAIT_AQ_WIRE_INTERFACE)) // AQ EDIT - implant interfejsu kabli (Paradise)
+	else if(HAS_TRAIT(user, TRAIT_AQ_WIRE_INTERFACE) && !randomize) // AQ EDIT - implant interfejsu kabli (Paradise), jak plany: bez kabli losowanych
 		reveal_wires = TRUE
 
 	for(var/color in colors)
