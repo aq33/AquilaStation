@@ -595,6 +595,18 @@
 		COOK_USE_OVEN(COOK_TEMP_MED, 15 SECONDS),
 	)
 
+/datum/cooking/recipe/aq_hotdog_parowka
+	container_type = /obj/item/reagent_containers/cooking/board
+	product_type = /obj/item/food/hotdog
+	catalog_category = COOK_CATEGORY_POLISH
+
+/datum/cooking/recipe/aq_hotdog_parowka/New()
+	steps = list(
+		COOK_ADD_REAGENT(/datum/reagent/consumable/ketchup, 5),
+		COOK_ADD_ITEM(/obj/item/food/bun),
+		COOK_ADD_ITEM(/obj/item/food/parowka),
+	)
+
 /datum/cooking/recipe/aq_jupitercupcake
 	container_type = /obj/item/reagent_containers/cooking/oven
 	product_type = /obj/item/food/jupitercupcake
