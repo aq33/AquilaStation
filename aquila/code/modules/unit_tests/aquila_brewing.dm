@@ -74,18 +74,34 @@
 	barrel.reagents.add_reagent(/datum/reagent/water, 100)
 	TEST_ASSERT(!barrel.start_brewing(), "Light beer started with 40 u of leftover water, so 300 u would not fit")
 	barrel.reagents.remove_reagent(/datum/reagent/water, 40)
+	var/mob/living/carbon/human/brewer = allocate(/mob/living/carbon/human, run_loc_floor_bottom_left)
+	barrel.attack_hand(brewer) // otwarta beczka, jak po wlaniu wody
+	TEST_ASSERT(barrel.open, "The barrel did not open before brewing")
 	TEST_ASSERT(barrel.start_brewing(), "Light beer did not start with exactly 60 u of water")
 	TEST_ASSERT(!barrel.open, "The barrel stayed open while brewing")
+	barrel.attack_hand(brewer)
+	TEST_ASSERT(!barrel.open, "The barrel opened while brewing")
+	// Zlewka sprawdza is_refillable() przed wlaniem, więc zamknięta beczka nie przyjmie płynu
+	TEST_ASSERT(!barrel.is_refillable(), "Liquid could still be poured into the barrel while brewing")
 	barrel.finish_brewing()
 	TEST_ASSERT(barrel.reagents.get_reagent_amount(/datum/reagent/consumable/ethanol/beer/light) == 300, "Light beer did not make the full 300 u")
 
 	// Owoc wrzucony bez przepisu, potem wysypany: zaplanowana fermentacja go nie zużywa
 	var/obj/structure/fermenting_barrel/wine_barrel = allocate(/obj/structure/fermenting_barrel, run_loc_floor_bottom_left)
 	var/obj/item/food/grown/apple/apple = allocate(/obj/item/food/grown/apple, wine_barrel)
-	wine_barrel.wine_fruits[apple] = TRUE
+	wine_barrel.wine_fruits[apple] = world.time - 200
 	wine_barrel.drop_brewing_ingredients()
 	wine_barrel.makeWine(apple)
 	TEST_ASSERT(!QDELETED(apple), "A fruit dropped out of the barrel was still turned into wine")
 	TEST_ASSERT(!wine_barrel.reagents.total_volume, "A dropped fruit added wine to the barrel")
+
+	// Ten sam owoc wrzucony ponownie bez przepisu: timer ze starego wrzucenia nie przyspiesza fermentacji
+	apple.forceMove(wine_barrel)
+	wine_barrel.wine_fruits[apple] = world.time
+	wine_barrel.makeWine(apple)
+	TEST_ASSERT(!QDELETED(apple), "A fruit put back in fermented from the timer of its earlier insertion")
+	wine_barrel.wine_fruits[apple] = world.time - 200
+	wine_barrel.makeWine(apple)
+	TEST_ASSERT(QDELETED(apple), "A fruit left in the barrel for the full time did not ferment")
 
 #undef TEST_ASSERT

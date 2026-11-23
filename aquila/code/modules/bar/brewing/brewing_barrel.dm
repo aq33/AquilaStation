@@ -9,7 +9,7 @@
 	var/brew_end = 0
 	/// Typ plonu => ile „jednostek plonu” już wrzucono
 	var/list/crop_units = list()
-	/// Owoce wrzucone bez przepisu, które czekają na makeWine(); wysypanie beczki je unieważnia
+	/// Owoc wrzucony bez przepisu => chwila wrzucenia; makeWine() z wcześniejszego wrzucenia albo po wysypaniu nic nie robi
 	var/list/wine_fruits = list()
 
 /obj/structure/fermenting_barrel/Initialize(mapload)
@@ -24,7 +24,10 @@
 
 /// Fermentuje tylko owoc, który nadal leży w beczce od wrzucenia bez przepisu (wysypany albo wrzucony ponownie pod przepis nie)
 /obj/structure/fermenting_barrel/makeWine(obj/item/food/grown/fruit)
-	if(!wine_fruits[fruit] || fruit.loc != src)
+	if(isnull(wine_fruits[fruit]) || fruit.loc != src)
+		return
+	// Timer z wcześniejszego wrzucenia tego samego owocu: fermentuje dopiero ten od ostatniego (najkrótszy czas jak w fermenting_barrel.dm)
+	if(world.time - wine_fruits[fruit] < 80 * speed_multiplier)
 		return
 	wine_fruits -= fruit
 	return ..()
@@ -91,7 +94,7 @@
 		. = ..()
 		// Owoc wrzucony bez przepisu: zaplanowany makeWine() może go zużyć tylko, dopóki leży w beczce
 		if(!brewing && istype(I, /obj/item/food/grown) && I.loc == src)
-			wine_fruits[I] = TRUE
+			wine_fruits[I] = world.time
 		return
 	var/obj/item/food/grown/crop = I
 	if(istype(crop))
