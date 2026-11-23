@@ -544,6 +544,8 @@
 	desc = "Mała butla z tlenem wbudowana w plecy hardsuitu. Hełm podaje z niej powietrze bez maski."
 	icon_state = "emergency_double"
 	volume = 10
+	// jak zwykłe butle z tlenem: czysty tlen pod pełną atmosferą przekracza próg płuc i dusi
+	distribute_pressure = TANK_DEFAULT_RELEASE_PRESSURE
 	slot_flags = NONE
 	w_class = WEIGHT_CLASS_SMALL
 	item_flags = ABSTRACT

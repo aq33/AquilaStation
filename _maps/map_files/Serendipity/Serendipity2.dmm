@@ -4475,7 +4475,6 @@
 /obj/structure/sign/warning/nosmoking/circle{
 	pixel_y = -26
 	},
-/obj/machinery/missile_design_table,
 /turf/open/floor/plasteel/dark,
 /area/nsv/weapons/gauss/battery/deck2)
 "vi" = (

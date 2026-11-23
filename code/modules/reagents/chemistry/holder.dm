@@ -60,8 +60,7 @@
 	var/atom/my_atom = null
 	var/chem_temp = 150
 	var/last_tick = 1
-	var/addiction_tick = 1
-	var/list/datum/reagent/addiction_list = new/list()
+	// AQ EDIT - usunięte addiction_tick i addiction_list z Bee (uzależnienia z tg w umyśle, aquila/code/modules/reagents/addiction/addiction.dm)
 	var/flags
 	// AQ EDIT START - fermichem z tg
 	///pH of the whole system

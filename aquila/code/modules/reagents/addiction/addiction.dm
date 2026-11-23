@@ -8,7 +8,7 @@
 // Różnice względem tg: bez nałogów maintenance_drugs i medicine (nie mamy tych leków), efekty przepisane na nasze
 // statusy (u nas nie ma high_blood_pressure, woozy, seizure, trance); opioidy w odstawieniu bolą (ból z medycyny 4);
 // alkohol uzależnia według mocy trunku; nalokson przyspiesza wyjście z nałogu opioidowego kosztem ostrego odstawienia.
-// Stary system Bee (addiction_threshold, addiction_act_stage1-4) jest wyłączony hakiem w code/modules/reagents/chemistry/holder.dm.
+// Stary system Bee (addiction_threshold, addiction_act_stage1-4, reagents.addiction_list) jest usunięty z core (AQ EDIT).
 
 #define AQ_ADDICTION_MAX_POINTS 1000
 /// Seconds of withdrawal at which each stage starts (tg cycles are seconds)
@@ -316,9 +316,6 @@ GLOBAL_LIST_INIT(aq_addictions, aq_init_addictions())
 /datum/reagent/medicine/ephedrine
 	addiction_types = list(/datum/addiction/stimulants = 75)
 
-/datum/reagent/medicine/methylphenidate
-	addiction_types = list(/datum/addiction/stimulants = 60)
-
 /datum/reagent/consumable/navy_coffee
 	addiction_types = list(/datum/addiction/stimulants = 150)
 
@@ -384,7 +381,7 @@ GLOBAL_LIST_INIT(aq_addictions, aq_init_addictions())
 	amount_per_transfer_from_this = 10
 	list_reagents = list(/datum/reagent/medicine/naloxone = 10)
 
-// --- Cecha „Ćpun” i palacz z Bee na nowym systemie (pełne nadpisanie on_process, LEGACY_OVERRIDES.md) ---
+// --- Cecha „Ćpun” i palacz z Bee na nowym systemie (on_process z Bee usunięty w core, LEGACY_OVERRIDES.md) ---
 
 /datum/quirk/junkie/on_spawn()
 	. = ..()

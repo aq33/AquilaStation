@@ -46,7 +46,7 @@
 	// Regresja: sonda trafiająca w okręt z podniesioną tarczą też zostawia boję (tarcza kończy bullet_act przed spec_overmap_hit)
 	gen.active = TRUE
 	gen.shield["integrity"] = 1000
-	var/obj/item/projectile/guided_munition/missile/sensor_probe/shielded_probe = new(get_turf(ship))
+	var/obj/item/projectile/guided_munition/torpedo/sensor_probe/shielded_probe = new(get_turf(ship))
 	shielded_probe.overmap_firer = ship
 	ship.bullet_act(shielded_probe)
 	var/obj/effect/overmap_sensor_probe/shield_buoy = locate() in get_turf(ship)
@@ -59,8 +59,7 @@
 		/obj/item/ship_weapon/parts/missile/warhead/emp = /obj/item/ship_weapon/ammunition/missile/emp,
 		/obj/item/ship_weapon/parts/missile/warhead/diffuser = /obj/item/ship_weapon/ammunition/torpedo/diffuser,
 		/obj/item/ship_weapon/parts/missile/warhead/diffuser_missile = /obj/item/ship_weapon/ammunition/missile/diffuser,
-		/obj/item/ship_weapon/parts/missile/warhead/sensor_probe = /obj/item/ship_weapon/ammunition/torpedo/sensor_probe,
-		/obj/item/ship_weapon/parts/missile/warhead/sensor_probe_missile = /obj/item/ship_weapon/ammunition/missile/sensor_probe
+		/obj/item/ship_weapon/parts/missile/warhead/sensor_probe = /obj/item/ship_weapon/ammunition/torpedo/sensor_probe
 	)
 	for(var/warhead_type in expected)
 		var/obj/item/ship_weapon/parts/missile/warhead/warhead = warhead_type

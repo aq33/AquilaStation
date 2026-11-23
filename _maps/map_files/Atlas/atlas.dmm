@@ -7573,7 +7573,6 @@
 /obj/effect/turf_decal/caution/red{
 	dir = 4
 	},
-/obj/machinery/missile_design_table,
 /turf/open/floor/monotile/dark,
 /area/nsv/weapons)
 "rW" = (
@@ -11249,12 +11248,12 @@
 	id = "atlas1";
 	name = "AP shells"
 	},
-/obj/item/ship_weapon/ammunition/naval_artillery/ap,
-/obj/item/ship_weapon/ammunition/naval_artillery/ap,
-/obj/item/ship_weapon/ammunition/naval_artillery/ap,
-/obj/item/ship_weapon/ammunition/naval_artillery/ap,
-/obj/item/ship_weapon/ammunition/naval_artillery/ap,
-/obj/item/ship_weapon/ammunition/naval_artillery/ap,
+/obj/item/ship_weapon/ammunition/naval_artillery/factory/ap,
+/obj/item/ship_weapon/ammunition/naval_artillery/factory/ap,
+/obj/item/ship_weapon/ammunition/naval_artillery/factory/ap,
+/obj/item/ship_weapon/ammunition/naval_artillery/factory/ap,
+/obj/item/ship_weapon/ammunition/naval_artillery/factory/ap,
+/obj/item/ship_weapon/ammunition/naval_artillery/factory/ap,
 /turf/open/floor/monotile/dark,
 /area/nsv/weapons)
 "Dk" = (

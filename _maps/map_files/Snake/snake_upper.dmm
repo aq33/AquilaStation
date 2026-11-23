@@ -5745,6 +5745,13 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/engine)
+"xP" = (
+/obj/effect/turf_decal/tile/ship/orange{
+	dir = 1
+	},
+/obj/machinery/autoclave,
+/turf/open/floor/plasteel/white,
+/area/medical/apothecary)
 "xR" = (
 /obj/machinery/door/airlock/highsecurity/ship{
 	name = "Secure Tech Storage";
@@ -44874,7 +44881,7 @@ lE
 sk
 RJ
 cv
-tm
+xP
 tm
 kD
 tA

@@ -102,17 +102,12 @@ type SensorArrayUnit = {
   status: string;
   working: boolean;
   range: number;
-  heat: number;
   power: string;
 };
 
 type SensorArray = {
   arrays: SensorArrayUnit[];
   on: boolean;
-  desired_range: number;
-  allowed_range: number;
-  max_range: number;
-  critical_heat: number;
 };
 
 export type ScopeObject = {
@@ -431,7 +426,6 @@ const ArrayBar = () => {
   if (!array) {
     return null;
   }
-  const ranges = Array.from({ length: array.max_range }, (_, i) => i + 1);
   return (
     <Box
       style={{
@@ -451,28 +445,11 @@ const ArrayBar = () => {
       >
         {array.on ? 'Matryce włączone' : 'Matryce wyłączone'}
       </Button>
-      <span style={{ color: COLOR.ink2 }}>Zasięg</span>
-      <span>
-        {ranges.map((value) => (
-          <Button
-            key={value}
-            compact
-            selected={array.desired_range === value}
-            color={value > array.allowed_range ? 'average' : undefined}
-            onClick={() => act('array_range', { value })}
-          >
-            {value}
-          </Button>
-        ))}
-      </span>
-      <span style={{ color: COLOR.muted, fontSize: '11.5px' }}>
-        limit mocy: {array.allowed_range}
-      </span>
       <span style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
         {array.arrays.map((unit) => (
           <span
             key={unit.sector}
-            title={`${unit.status}, ${unit.power}, ciepło ${unit.heat}/${array.critical_heat}`}
+            title={`${unit.status}, ${unit.power}`}
             style={{
               padding: '2px 8px',
               borderRadius: '999px',
