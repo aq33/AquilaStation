@@ -143,6 +143,20 @@
 	box.name = "[box.name] ([material.name][filler ? ", [filler.short_name]" : ""][(galvanized || factory) ? "" : ", klasa [quality.roman]"])"
 	apply_quality_look(box, quality)
 
+/// Stała część kosztu odlewu (jednostki materiału przed klasą i sprawnością pieca): dla korpusu extra_cost, dla innych
+/// części base_cost. Listy nie da się czytać przez initial(), więc liczymy ją raz na typ z tymczasowej instancji.
+/proc/aq_munition_fixed_cost(part_path)
+	var/static/list/cache = list()
+	if(!cache[part_path])
+		var/obj/item/munition_part/temp = new part_path(null)
+		var/obj/item/munition_part/body/body = temp
+		if(istype(body))
+			cache[part_path] = body.extra_cost ? body.extra_cost.Copy() : list()
+		else
+			cache[part_path] = temp.base_cost ? temp.base_cost.Copy() : list()
+		qdel(temp)
+	return cache[part_path]
+
 /// Wyrób -> typ korpusu, z którego powstaje (galwanizer i eksport)
 GLOBAL_LIST_INIT(munition_products, init_munition_products())
 

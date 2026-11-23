@@ -1464,3 +1464,12 @@
       jednostkach.
   - tweak: Automaty pokazują nazwę przedmiotu nad półką.
   - balance: Cykl autoklawu trwa 10 s zamiast 30 s.
+'2026-11-23':
+  Joker66613:
+  - bugfix: Okręty AI strzelające do innych okrętów AI znowu liczą pancerz po staremu,
+      więc bitwy flot AI nie ciągną się w nieskończoność.
+  - bugfix: Odłamki złota, zdzieranie płyt przez diament i przenikanie tarczy przez
+      bluespace nie omijają już grubości pancerza okrętów AI.
+  - bugfix: Pocisk, który odbił się od pancerza, nie rani wnętrza okrętu.
+  - balance: Powłoka z miedzi i srebra daje impuls EMP tylko przy trafieniu w okręt,
+      nie w amunicji ręcznej.

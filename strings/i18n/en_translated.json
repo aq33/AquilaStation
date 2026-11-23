@@ -27794,6 +27794,8 @@
 "1) Załóż hardsuit inżynieryjny, rozłóż hełm, włącz wbudowaną butlę (przycisk akcji) i postój minutę: brak obrażeń od duszenia, ciśnienie butli (examine) powoli spada. \\": "1) Put on the engineering hardsuit, deploy the helmet, turn on the integrated tank (action button) and stand for a minute: no suffocation damage, the tank pressure (examine) slowly drops. \\",
 "Liczba układów": "Systems",
 "◉ sektor okrętu · zielone kafle: zasięg skoku · ⇄ brama do innego sektora · ★ stolica · $ stacja handlowa · ◎ hiperbrama · przerywany pierścień: układ okupowany · czerwona linia: front": "◉ ship sector · green tiles: jump range · ⇄ gate to another sector · ★ capital · $ trade station · ◎ hypergate · dashed ring: occupied system · red line: front",
+"Mocny impuls EMP: zakłóca systemy trafionego okrętu.": "Strong EMP pulse: disrupts the systems of the ship it hits.",
+"Słaby impuls EMP: krócej zakłóca systemy trafionego okrętu.": "Weak EMP pulse: disrupts the systems of the ship it hits for a shorter time.",
 " (drugi etap)": " (second stage)",
 "<b>Alt+klik</b>: wybór trunku z przepisu (bez przepisu wrzucony owoc fermentuje na wino).": "<b>Alt+click</b>: pick a brew from a recipe (without a recipe, a fruit you put in ferments into wine).",
 "Alt+klik na drewnianej beczce wybiera trunek. Plony liczą się w jednostkach (zwykły plon to 5 j.), płyny wlewasz do otwartej beczki.": "Alt+click a wooden barrel to pick a brew. Crops count in units (a normal crop is 5 u); pour liquids into the open barrel.",
