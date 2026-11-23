@@ -140,6 +140,15 @@
 /turf/open/floor/carpet/blue,
 /area/virtual_domain/fullbright)
 "C" = (
+/obj/item/fishing_rod{
+	pixel_x = 5;
+	pixel_y = -5
+	},
+/obj/item/fishing_rod,
+/obj/item/fishing_rod{
+	pixel_x = -5;
+	pixel_y = 5
+	},
 /obj/structure/table/wood,
 /turf/open/floor/plating/beach/sand,
 /area/virtual_domain/fullbright)

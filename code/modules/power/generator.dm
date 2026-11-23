@@ -30,13 +30,13 @@
 
 	if(machine_stat & (NOPOWER|BROKEN))
 		cut_overlays()
-		soundloop.stop() // AQ EDIT
+		soundloop?.stop() // AQ EDIT
 	else
 		cut_overlays()
 
 		var/L = min(round(lastgenlev/100000),11)
 		if(L != 0)
-			soundloop.start() // AQ EDIT
+			soundloop?.start() // AQ EDIT - update_icon() przed Initialize() z aquila
 			add_overlay(image(icon, "teg-op[L]")) // AQ EDIT - sprite TEG Quartofela w aquila/icons
 
 		if(hot_circ && cold_circ)

@@ -1002,7 +1002,7 @@ Proc to spool up a new Z-level for a player ship and assign it a treadmill.
 		return
 	if(!direction)
 		return
-	for(var/mob/living/M as() in mobs_in_ship)
+	for(var/mob/living/M in mobs_in_ship) // AQ EDIT - bez as(): duchy z mobs_in_ship nie są rzucane ani przewracane
 		if(M.buckled) //Good for you, you strapped in!
 			continue
 		if(M.mob_negates_gravity()) //Wear magboots and you're good.
