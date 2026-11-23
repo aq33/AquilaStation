@@ -41,6 +41,8 @@ All ShuttleMove procs go here
 		else //non-living mobs shouldn't be affected by shuttles, which is why this is an else
 			if(istype(thing, /obj/anomaly))
 				continue
+			if(istype(thing, /obj/effect/planet_landing_blocker)) // AQ EDIT - blokada lądowiska na planecie zostaje do końca dokowania (aquila/code/modules/planets/planet_descent.dm)
+				continue
 			if(!thing.anchored)
 				step(thing, shuttle_dir)
 			else

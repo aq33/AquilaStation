@@ -3,6 +3,10 @@
 // w shiptest_fauna/automatons.dm, żyły w drill/veins_waste.dm, ruiny w ruins/planet_waste_ruins.dm.
 
 /datum/planet_type/waste
+	sky_state = "waste"
+	sky_clouds = "clouds_wisps"
+	sky_cloud_color = "#a89a70"
+	sky_atmosphere_color = "#b0a0d0"
 	name = "planeta-śmietnisko"
 	desc = "Skażony świat zasypany śmieciami całej cywilizacji: wrakami, beczkami z odpadami i złomem, po którym krążą hivebota i porzucone automaty bojowe."
 	overmap_icon_state = "planet_rocky"
