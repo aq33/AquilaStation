@@ -16809,6 +16809,12 @@
 	},
 /turf/closed/wall/r_wall,
 /area/quartermaster/miningdock)
+"qNV" = (
+/obj/machinery/power/apc/auto_name/south,
+/obj/structure/cable,
+/obj/machinery/autoclave,
+/turf/open/floor/monotile/light,
+/area/medical/medbay/central)
 "qOr" = (
 /obj/machinery/door/airlock/ship/public{
 	name = "Galley"
@@ -64259,7 +64265,7 @@ bMC
 aAI
 cwv
 ghu
-kLm
+qNV
 rND
 rND
 lsx

@@ -1,4 +1,4 @@
-// AQUILA - zestaw ratownika (AquilaMed 5), na wzór tgstation: medipeny na konkretne obrażenia
+// AQUILA - zestaw ratownika (AquilaMed 5), na wzór tgstation: medipeny salbutamolu i pierwszej pomocy
 // (code/modules/reagents/reagent_containers/hypospray.dm), pas ratownika (code/game/objects/items/storage/belt.dm),
 // latarka UV ratownika (code/game/objects/items/devices/flashlight.dm) i medyczny zestaw przetrwania.
 // Sprite'y z tgstation (CC-BY-SA 3.0) w aquila/icons/obj/medical/medycyna5.dmi.
@@ -7,33 +7,9 @@
 
 // --- Medipeny ---
 
-/obj/item/reagent_containers/hypospray/medipen/salacid
-	name = "medipen z kwasem salicylowym"
-	desc = "Autostrzykawka z kwasem salicylowym na ciężkie stłuczenia i rany."
-	icon = 'aquila/icons/obj/medical/medycyna5.dmi'
-	icon_state = "salacid"
-	item_state = "salacid"
-	lefthand_file = 'aquila/icons/mob/inhands/equipment/medycyna5_lefthand.dmi'
-	righthand_file = 'aquila/icons/mob/inhands/equipment/medycyna5_righthand.dmi'
-	volume = 10
-	amount_per_transfer_from_this = 10
-	list_reagents = list(/datum/reagent/medicine/sal_acid = 10)
-
-/obj/item/reagent_containers/hypospray/medipen/oxandrolone
-	name = "medipen z oksandrolonem"
-	desc = "Autostrzykawka z oksandrolonem na ciężkie oparzenia."
-	icon = 'aquila/icons/obj/medical/medycyna5.dmi'
-	icon_state = "oxapen"
-	item_state = "oxapen"
-	lefthand_file = 'aquila/icons/mob/inhands/equipment/medycyna5_lefthand.dmi'
-	righthand_file = 'aquila/icons/mob/inhands/equipment/medycyna5_righthand.dmi'
-	volume = 10
-	amount_per_transfer_from_this = 10
-	list_reagents = list(/datum/reagent/medicine/oxandrolone = 10)
-
 /obj/item/reagent_containers/hypospray/medipen/salbutamol
 	name = "medipen z salbutamolem"
-	desc = "Autostrzykawka z salbutamolem: szybko leczy niedotlenienie i duszność."
+	desc = "Autostrzykawka z salbutamolem: szybko leczy niedotlenienie i duszność, gasi atak astmy."
 	icon = 'aquila/icons/obj/medical/medycyna5.dmi'
 	icon_state = "salpen"
 	item_state = "salpen"
@@ -42,18 +18,6 @@
 	volume = 10
 	amount_per_transfer_from_this = 10
 	list_reagents = list(/datum/reagent/medicine/salbutamol = 10)
-
-/obj/item/reagent_containers/hypospray/medipen/penacid
-	name = "medipen z kwasem pentetowym"
-	desc = "Autostrzykawka z kwasem pentetowym na zatrucie i napromieniowanie."
-	icon = 'aquila/icons/obj/medical/medycyna5.dmi'
-	icon_state = "penacid"
-	item_state = "penacid"
-	lefthand_file = 'aquila/icons/mob/inhands/equipment/medycyna5_lefthand.dmi'
-	righthand_file = 'aquila/icons/mob/inhands/equipment/medycyna5_righthand.dmi'
-	volume = 10
-	amount_per_transfer_from_this = 10
-	list_reagents = list(/datum/reagent/medicine/pen_acid = 10)
 
 /obj/item/reagent_containers/hypospray/medipen/ekit
 	name = "medipen pierwszej pomocy"
@@ -76,10 +40,7 @@
 	worn_icon_state = "emt"
 
 /obj/item/storage/belt/medical/paramedic/PopulateContents()
-	new /obj/item/reagent_containers/hypospray/medipen/salacid(src)
-	new /obj/item/reagent_containers/hypospray/medipen/oxandrolone(src)
 	new /obj/item/reagent_containers/hypospray/medipen/salbutamol(src)
-	new /obj/item/reagent_containers/hypospray/medipen/penacid(src)
 	new /obj/item/reagent_containers/hypospray/medipen/ekit(src)
 	new /obj/item/stack/medical/splint(src, 2)
 	new /obj/item/flashlight/pen/paramedic(src)

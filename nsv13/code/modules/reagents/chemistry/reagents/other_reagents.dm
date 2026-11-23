@@ -17,7 +17,7 @@
 	description = "Krew życia marynarki i wojska wszędzie; ta kawa jest tak mocna, że nie da ci spać przez wiele dni, zniszczy kubki smakowe i obudzi pieprzonych umarłych."
 	color = "#241000"
 	nutriment_factor = 0
-	addiction_threshold = 40 //Downing two cups in one go will make you addicted to it.
+	// AQ EDIT - usunięte addiction_threshold z Bee (uzależnienia z tg: addiction_types, aquila/code/modules/reagents/addiction/addiction.dm)
 	taste_description = "skrajna gorycz z nutą paliwa"
 	glass_icon_state = "glass_brown"
 	glass_name = "szklanka kawy marynarki"

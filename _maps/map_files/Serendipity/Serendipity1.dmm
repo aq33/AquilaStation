@@ -8415,6 +8415,18 @@
 /obj/effect/landmark/start/clown,
 /turf/open/floor/carpet/police,
 /area/security/main)
+"Bm" = (
+/obj/structure/cable,
+/obj/effect/turf_decal/tile/ship/blue/nfz{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/ship/blue/nfz,
+/obj/effect/turf_decal/tile/ship/blue/nfz{
+	dir = 8
+	},
+/obj/machinery/autoclave,
+/turf/open/floor/plasteel/tiled/light,
+/area/medical/nsv/trauma)
 "Bn" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -42928,7 +42940,7 @@ Te
 Te
 mo
 Md
-Bv
+Bm
 Dg
 HA
 Aj

@@ -47,8 +47,7 @@
 	if(istype(item, /obj/item/stack/medical/bone_gel) || istype(item, /obj/item/stack/sticky_tape/surgical))
 		return regen_time && !taped && !limb_in_surgery()
 	if(istype(item, /obj/item/stack/medical/splint)) // szyna (medical/splint.dm): na gołe złamanie albo w miejsce bandaża
-		var/obj/item/stack/medical/splint/splint = item
-		return !splinted && (!treated || splint.proper)
+		return !splinted
 	return !treated && istype(item, /obj/item/stack/medical/bandage)
 
 /datum/wound/blunt/treat(obj/item/item, mob/user)

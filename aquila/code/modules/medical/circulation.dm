@@ -24,7 +24,6 @@
 GLOBAL_LIST_INIT(aq_pulse_reagents, list(
 	/datum/reagent/medicine/epinephrine = 1,
 	/datum/reagent/medicine/ephedrine = 1,
-	/datum/reagent/medicine/methylphenidate = 1,
 	/datum/reagent/drug/methamphetamine = 2,
 	/datum/reagent/drug/crank = 2,
 	/datum/reagent/drug/bath_salts = 2,

@@ -1,3 +1,4 @@
+// AQ EDIT - usunięte addiction_threshold i addiction_act_stage1-4 z Bee: martwe po uzależnieniach z tg (aquila/code/modules/reagents/addiction/addiction.dm)
 /obj/item/reagent_containers/hypospray/bloody_eye
 	name = "\improper spray Krwawe Oko"
 	desc = "Ta fiolka Krwawego Oka ma dyszę rozpylającą i poręczny pierścień miarowy, dzięki któremu stożek mgiełki ma idealny rozmiar."
@@ -17,7 +18,6 @@
 	reagent_state = LIQUID
 	color = "#D92323"
 	overdose_threshold = 5
-	addiction_threshold = 5
 	metabolization_rate = 0.75 * REAGENTS_METABOLISM
 
 /datum/reagent/drug/bloody_eye/on_mob_metabolize(mob/living/L)
@@ -63,41 +63,6 @@
 		M.drop_all_held_items()
 	M.adjustToxLoss(0.25, 0)
 	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, pick(0.1, 0.15, 0.2, 0.25))
-	return TRUE
-
-/datum/reagent/drug/bloody_eye/addiction_act_stage1(mob/living/M)
-	. = ..()
-	M.Jitter(20)
-	if(prob(20))
-		INVOKE_ASYNC(M, TYPE_PROC_REF(/mob, emote), pick("scream", "laugh"))
-
-/datum/reagent/drug/bloody_eye/addiction_act_stage2(mob/living/M)
-	. = ..()
-	M.Jitter(50)
-	M.Dizzy(5)
-	if(prob(30))
-		INVOKE_ASYNC(M, TYPE_PROC_REF(/mob, emote), pick("scream", "laugh"))
-
-/datum/reagent/drug/bloody_eye/addiction_act_stage3(mob/living/M)
-	. = ..()
-	if((M.mobility_flags & MOBILITY_MOVE) && !ismovableatom(M.loc))
-		for(var/i = 0, i < 4, i++)
-			moveRange(M, pick(GLOB.cardinals))
-	M.Jitter(100)
-	M.Dizzy(10)
-	if(prob(40))
-		INVOKE_ASYNC(M, TYPE_PROC_REF(/mob, emote), pick("scream", "gasp"))
-
-/datum/reagent/drug/bloody_eye/addiction_act_stage4(mob/living/carbon/human/M)
-	. = ..()
-	if((M.mobility_flags & MOBILITY_MOVE) && !ismovableatom(M.loc))
-		for(var/i = 0, i < 6, i++)
-			step(M, pick(GLOB.cardinals))
-	M.Jitter(150)
-	M.Dizzy(15)
-	M.adjustToxLoss(0.25, 0)
-	if(prob(50))
-		INVOKE_ASYNC(M, TYPE_PROC_REF(/mob, emote), pick("scream", "laugh"))
 	return TRUE
 
 /obj/item/reagent_containers/hypospray/bloody_eye/attack(mob/living/M, mob/user)
