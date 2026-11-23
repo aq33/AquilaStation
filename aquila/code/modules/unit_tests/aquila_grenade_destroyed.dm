@@ -2,15 +2,24 @@
 #define TEST_ASSERT(assertion, reason) if (!(assertion)) { return Fail("Assertion failed: [reason || "No reason"]") }
 
 /// AQUILA - granat dymny zniszczony wybuchem czeka w prime() na usunięcie; kolejne trafienie z wybuchu nie może wtedy
-/// zgłaszać obrażeń przy zerowej wytrzymałości (runtime ze stack_trace kończy test porażką)
+/// zgłaszać obrażeń przy zerowej wytrzymałości (runtime ze stack_trace kończy test porażką), ale wybuch dalej dociera do
+/// odbiorców sygnału COMSIG_ATOM_EX_ACT
 /datum/unit_test/grenade_destroyed_explosion
+	var/explosion_hits = 0
 
 /datum/unit_test/grenade_destroyed_explosion/Run()
 	var/obj/item/grenade/smokebomb/grenade = allocate(/obj/item/grenade/smokebomb, run_loc_floor_bottom_left)
+	RegisterSignal(grenade, COMSIG_ATOM_EX_ACT, PROC_REF(on_explosion))
 	// Stan granatu w trakcie prime() po zniszczeniu: zero wytrzymałości, jeszcze nie usunięty
 	grenade.obj_integrity = 0
 	grenade.ex_act(EXPLODE_LIGHT)
 	grenade.ex_act(EXPLODE_HEAVY)
 	TEST_ASSERT(!QDELETED(grenade), "A grenade waiting to go off was deleted by another explosion hit")
+	TEST_ASSERT(explosion_hits == 2, "Explosion hits on a grenade waiting to go off no longer reach its signal receivers")
+	UnregisterSignal(grenade, COMSIG_ATOM_EX_ACT)
+
+/datum/unit_test/grenade_destroyed_explosion/proc/on_explosion(datum/source, severity, target)
+	SIGNAL_HANDLER
+	explosion_hits++
 
 #undef TEST_ASSERT
