@@ -18,7 +18,7 @@
 	circuit = /obj/item/circuitboard/computer/order_console/cook
 	req_one_access = list(ACCESS_KITCHEN, ACCESS_BAR)
 	cargo_cost_multiplier = 0.65
-	purchase_tooltip = "Zakupy przylecą w zamrażarce najbliższym promem zaopatrzenia, po cenach z listy. Płaci budżet działu usług."
+	purchase_tooltip = "Zakupy przylecą w zamrażarce najbliższym promem zaopatrzenia, mniej więcej po cenach z listy (łączna kwota jest zaokrąglana, dokładną widać na przycisku). Płaci budżet działu usług."
 	express_tooltip = "Zakupy spadną od razu w kapsule pod twoje nogi, około trzy razy drożej niż ceny z listy. Płaci budżet działu usług."
 	order_categories = list(
 		CATEGORY_KITCHEN_PRODUCE,
