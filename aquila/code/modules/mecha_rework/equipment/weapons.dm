@@ -164,6 +164,7 @@
 	if(!curloc || get_turf(target) == curloc)
 		return FALSE
 	COOLDOWN_START(src, port_cooldown, equip_cooldown)
+	chassis.aq_break_cloak()
 	for(var/i in 1 to min(projectiles, projectiles_per_shot))
 		var/obj/item/projectile/P = new projectile(curloc)
 		P.firer = shooter
@@ -185,7 +186,11 @@
 		if(port)
 			INVOKE_ASYNC(port, TYPE_PROC_REF(/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/aq_fpw, port_fire), target, user, params)
 		return
-	return ..()
+	// cios pięścią mecha (rdzeń zeruje melee_can_hit) zdejmuje maskowanie
+	var/could_punch = melee_can_hit
+	. = ..()
+	if(could_punch && !melee_can_hit)
+		aq_break_cloak()
 
 // ---------------------------------------------------------------- rakiety
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/aq_smilgas
@@ -242,9 +247,16 @@
 	icon_state = "missile"
 	damage = 10
 
+/// Rakieta wyłomowa rozbiera tylko zwykłe ściany: wzmocnione (r_wall i podtypy) i odporne na wybuchy zostają
+/proc/aq_breachable_wall(atom/A)
+	if(!iswallturf(A) || istype(A, /turf/closed/wall/r_wall))
+		return FALSE
+	var/turf/closed/wall/W = A
+	return W.explosion_block < 2
+
 /obj/item/projectile/bullet/aq_breaching/on_hit(atom/target, blocked = FALSE)
 	. = ..()
-	if(iswallturf(target))
+	if(aq_breachable_wall(target))
 		var/turf/closed/wall/W = target
 		W.dismantle_wall(TRUE)
 	else if(istype(target, /obj/machinery/door) || istype(target, /obj/structure/window) || istype(target, /obj/structure/grille))
@@ -518,5 +530,4 @@
 	. = ..()
 	if(isliving(target) && blocked < 100)
 		var/mob/living/L = target
-		L.apply_status_effect(STATUS_EFFECT_STASIS, 6 SECONDS)
-		addtimer(CALLBACK(L, TYPE_PROC_REF(/mob/living, remove_status_effect), STATUS_EFFECT_STASIS), 6 SECONDS)
+		L.apply_status_effect(STATUS_EFFECT_STASIS, 6 SECONDS, TRUE)
