@@ -19,10 +19,26 @@
 	var/obj/item/food/pastrybase/base = allocate(/obj/item/food/pastrybase)
 	stack.update_snack_overlays(base)
 
-	// Konsola myśliwców z filtrem „Only Occupied Ship”
-	var/obj/machinery/computer/ship/fighter_controller/console = allocate(/obj/machinery/computer/ship/fighter_controller)
-	LAZYADD(console.current_filters, "Only Occupied Ship")
+	// Konsola myśliwców z filtrem „Only Occupied Ship”: konsola widzi myśliwce tylko z poziomów statku, a mapa testów
+	// leży w rezerwacji, więc oba obiekty stoją na poziomie stacji
+	var/turf/ship_turf = locate(1, 1, SSmapping.levels_by_trait(ZTRAIT_STATION)[1])
+	var/obj/machinery/computer/ship/fighter_controller/console = allocate(/obj/machinery/computer/ship/fighter_controller, ship_turf)
+	var/obj/structure/overmap/small_craft/fighter = allocate(/obj/structure/overmap/small_craft/combat/light, ship_turf)
+	fighter.faction = console.faction
+	fighter.name = "Test fighter 6581"
+	fighter.operators = null
 	var/list/data = console.ui_data(viewer)
-	TEST_ASSERT(islist(data?["fighters"]), "Fighter console returned no fighter list")
+	var/list/names = list()
+	for(var/list/entry in data?["fighters"])
+		names += entry["name"]
+	var/hidden_when_empty = !(fighter.name in names)
+	console.current_filters -= "Only Occupied Ship"
+	data = console.ui_data(viewer)
+	names = list()
+	for(var/list/entry in data?["fighters"])
+		names += entry["name"]
+	fighter.operators = list()
+	TEST_ASSERT(hidden_when_empty, "Fighter without operators passed the \"Only Occupied Ship\" filter")
+	TEST_ASSERT(fighter.name in names, "The test fighter is not listed by the console at all, so the filter was not exercised")
 
 #undef TEST_ASSERT
