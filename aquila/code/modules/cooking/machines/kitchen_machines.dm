@@ -46,13 +46,16 @@
 
 /obj/machinery/oven/begin_processing()
 	. = ..()
-	kitchen_heat?.set_heating(TRUE)
+	update_kitchen_heating()
 
 /obj/machinery/oven/end_processing()
 	. = ..()
-	kitchen_heat?.set_heating(FALSE)
 	if(chamber)
 		chamber.on = FALSE
+	update_kitchen_heating()
+
+/obj/machinery/oven/is_kitchen_active()
+	return !open && (length(used_tray?.contents) || chamber?.container)
 
 /obj/machinery/oven/examine(mob/user)
 	. = ..()
@@ -105,15 +108,16 @@
 /obj/machinery/oven/attack_hand(mob/user, list/modifiers)
 	var/was_open = open
 	. = ..()
-	if(open == was_open || !chamber.container)
+	if(open == was_open)
 		return
 	if(open)
-		chamber.container.vis_flags &= ~VIS_HIDE
+		chamber.container?.vis_flags &= ~VIS_HIDE
 		chamber.turn_off()
-	else
-		chamber.container.vis_flags |= VIS_HIDE
+	else if(chamber.container || used_tray)
+		chamber.container?.vis_flags |= VIS_HIDE
 		chamber.turn_on()
 		begin_processing()
+	update_kitchen_heating()
 	update_appearance()
 
 /obj/machinery/oven/process(delta_time)
@@ -125,6 +129,8 @@
 		working = TRUE
 		chamber.on = TRUE
 		chamber.process_cooking(delta_time, kitchen_heat_factor())
+	else if(working)
+		chamber.tick_timer(delta_time)
 	if(working)
 		use_power(active_power_usage)
 
@@ -197,6 +203,12 @@
 /obj/machinery/grill/get_cooking_surfaces()
 	return list(grate_surface)
 
+/obj/machinery/grill/AltClick(mob/user)
+	if(!user.canUseTopic(src, BE_CLOSE, NO_DEXTERITY, FALSE, TRUE))
+		return ..()
+	INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(cooking_settings_menu), src, user)
+	return TRUE
+
 /obj/machinery/grill/attackby(obj/item/used, mob/user, params)
 	if(istype(used, /obj/item/reagent_containers/cooking))
 		if(!grate_surface.accepts(used))
@@ -225,10 +237,12 @@
 /obj/machinery/grill/process(delta_time)
 	. = ..()
 	if(!grate_surface.container || grill_fuel <= 0)
-		grate_surface.on = FALSE
+		if(grate_surface.on)
+			grate_surface.turn_off()
 		return
 	grill_fuel -= 5 * delta_time
-	grate_surface.on = TRUE
+	if(!grate_surface.on)
+		grate_surface.turn_on()
 	grate_surface.process_cooking(delta_time, 1)
 
 /obj/machinery/grill/attack_hand(mob/user, list/modifiers)
@@ -285,6 +299,16 @@
 /obj/machinery/deepfryer/get_cooking_surfaces()
 	return list(basket_surface)
 
+/obj/machinery/deepfryer/RefreshParts()
+	. = ..()
+	refresh_kitchen_heat()
+
+/obj/machinery/deepfryer/AltClick(mob/user)
+	if(!user.canUseTopic(src, BE_CLOSE, NO_DEXTERITY, FALSE, TRUE))
+		return ..()
+	INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(cooking_settings_menu), src, user)
+	return TRUE
+
 /obj/machinery/deepfryer/examine(mob/user)
 	. = ..()
 	. += span_notice("Olej jest [kitchen_heat.describe()].")
@@ -304,7 +328,7 @@
 			return TRUE
 		if(user.transferItemToLoc(weapon, src))
 			basket_surface.set_container(weapon)
-			basket_surface.on = TRUE
+			basket_surface.turn_on()
 			kitchen_heat.set_heating(TRUE)
 			icon_state = "fryer_on"
 			fry_loop.start()

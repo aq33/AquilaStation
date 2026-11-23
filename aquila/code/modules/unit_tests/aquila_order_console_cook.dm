@@ -12,6 +12,14 @@
 /// AQUILA - konsola zamówień kuchni: bez dostępu nic nie kupuje, bon daje 10 darmowych sztuk,
 /// płaci budżet usług (nie konto z karty), a zakupy trafiają jako zamrażarka do zamówień promu
 /datum/unit_test/aquila_order_console_cook
+	var/datum/bank_account/budget_account
+	var/budget_before
+
+/datum/unit_test/aquila_order_console_cook/Destroy()
+	if(budget_account)
+		budget_account.account_balance = budget_before
+		budget_account = null
+	return ..()
 
 /datum/unit_test/aquila_order_console_cook/Run()
 	var/mob/living/carbon/human/cook = allocate(/mob/living/carbon/human, run_loc_floor_bottom_left)
@@ -23,7 +31,8 @@
 
 	var/datum/bank_account/budget = SSeconomy.get_dep_account(ACCOUNT_SRV)
 	TEST_ASSERT(budget, "No service budget account")
-	var/old_budget = budget.account_balance
+	budget_account = budget
+	budget_before = budget.account_balance
 	budget.account_balance = 5000
 
 	var/datum/orderable_item/potato = locate(/datum/orderable_item/kitchen_produce/potato) in GLOB.order_console_products
@@ -62,7 +71,6 @@
 		SSshuttle.shoppinglist -= new_order
 	var/budget_after = budget.account_balance
 	var/personal_after = personal.account_balance
-	budget.account_balance = old_budget
 	card.registered_account = null
 	qdel(personal)
 

@@ -339,6 +339,9 @@
 /obj/machinery/cooking_stovetop
 	alt_click_loot = FALSE
 
+/obj/machinery/deepfryer
+	alt_click_loot = FALSE
+
 /obj/machinery/defibrillator_mount
 	alt_click_loot = FALSE
 
@@ -352,6 +355,9 @@
 	alt_click_loot = FALSE
 
 /obj/machinery/fat_sucker
+	alt_click_loot = FALSE
+
+/obj/machinery/grill
 	alt_click_loot = FALSE
 
 /obj/machinery/harvester

@@ -65,6 +65,13 @@
 	for(var/datum/cooking_surface/surface as anything in get_cooking_surfaces())
 		surface.parts_rating = kitchen_heat.rating
 
+/// Czy coś w tej maszynie teraz grzeje (palnik, komora); z tego wynika nagrzewanie wspólne dla całej maszyny
+/obj/machinery/proc/is_kitchen_active()
+	return FALSE
+
+/obj/machinery/proc/update_kitchen_heating()
+	kitchen_heat?.set_heating(is_kitchen_active())
+
 /// Palniki i komory tej maszyny (do menu ustawień)
 /obj/machinery/proc/get_cooking_surfaces()
 	return list()
@@ -106,10 +113,7 @@
 
 /// Wywoływane przez maszynę co tick, gdy palnik jest włączony
 /datum/cooking_surface/proc/process_cooking(delta_time, speed_factor)
-	if(timer && timer_left > 0)
-		timer_left -= delta_time * 10
-		if(timer_left <= 0)
-			ring_alarm()
+	tick_timer(delta_time)
 	var/obj/item/reagent_containers/cooking/pan = container
 	if(!istype(pan))
 		return
@@ -131,6 +135,13 @@
 		var/datum/effect_system/smoke_spread/bad/smoke = new
 		smoke.set_up(0, get_turf(parent))
 		smoke.start()
+
+/// Odlicza minutnik; wołane co tick dla włączonego palnika albo pracującej komory, niezależnie od zawartości
+/datum/cooking_surface/proc/tick_timer(delta_time)
+	if(timer && timer_left > 0)
+		timer_left -= delta_time * 10
+		if(timer_left <= 0)
+			ring_alarm()
 
 /datum/cooking_surface/proc/ring_alarm()
 	timer_left = 0

@@ -96,6 +96,7 @@
 	if(istype(container, /obj/item/reagent_containers/cooking))
 		burner.process_cooking(delta_time, heat_factor)
 	else
+		burner.tick_timer(delta_time)
 		// Ogień zup: niski trzyma ciepło, średni gotuje, wysoki gotuje szybciej, ale przypala
 		container?.reagents?.expose_temperature(soup_target_temperature(), heat_coefficient * heat_factor)
 	real_parent.use_power(real_parent.active_power_usage)
@@ -112,7 +113,7 @@
 	START_PROCESSING(SSobj, src)
 	on = TRUE
 	burner.turn_on()
-	real_parent.kitchen_heat?.set_heating(TRUE)
+	real_parent.update_kitchen_heating()
 	real_parent.update_appearance(UPDATE_OVERLAYS)
 
 /datum/component/stove/proc/turn_off()
@@ -120,7 +121,7 @@
 	STOP_PROCESSING(SSobj, src)
 	on = FALSE
 	burner?.turn_off()
-	real_parent.kitchen_heat?.set_heating(FALSE)
+	real_parent.update_kitchen_heating()
 	real_parent.update_appearance(UPDATE_OVERLAYS)
 
 /// Włącza albo wyłącza palniki
@@ -240,7 +241,8 @@
 
 	var/obj/machinery/real_parent = parent
 	examine_list += span_notice("Palniki [on ? "wyłączysz" : "włączysz"] [user.secondary_click_text()]. <b>Alt+klik</b>: ustawienia (ogień, minutnik).")
-	examine_list += span_notice("[capitalize(burner.describe())]. Sprzęt jest [real_parent.kitchen_heat?.describe() || "zimny"].")
+	if(real_parent.kitchen_heat)
+		examine_list += span_notice("[capitalize(burner.describe())]. Sprzęt jest [real_parent.kitchen_heat.describe()].")
 	if(container)
 		examine_list += span_notice("Na palnikach stoi [container].")
 
@@ -336,6 +338,14 @@
 /obj/machinery/stove/Destroy()
 	QDEL_NULL(kitchen_heat)
 	return ..()
+
+/obj/machinery/stove/is_kitchen_active()
+	var/datum/component/stove/stove = GetComponent(/datum/component/stove)
+	return stove?.on
+
+/obj/machinery/oven/range/is_kitchen_active()
+	var/datum/component/stove/stove = GetComponent(/datum/component/stove)
+	return ..() || stove?.on
 
 /obj/machinery/stove/get_cooking_surfaces()
 	var/datum/component/stove/stove = GetComponent(/datum/component/stove)

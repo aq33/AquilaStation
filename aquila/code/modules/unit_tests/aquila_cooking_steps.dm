@@ -124,4 +124,40 @@
 	stove_component.burner.temperature = COOK_TEMP_HIGH
 	TEST_ASSERT(stove_component.soup_target_temperature() > SOUP_BURN_TEMP, "High heat would not burn soup")
 
+/// Minutnik działa też przy zwykłej blasze i przy garnku z zupą; kuchnia stygnie dopiero, gdy wyłączy się i palnik, i piekarnik
+/datum/unit_test/aquila_kitchen_timers
+
+/datum/unit_test/aquila_kitchen_timers/Run()
+	var/obj/machinery/oven/range/range = allocate(/obj/machinery/oven/range, run_loc_floor_bottom_left)
+	var/obj/item/plate/oven_tray/tray = allocate(/obj/item/plate/oven_tray, run_loc_floor_bottom_left)
+	allocate(/obj/item/food/dough, tray)
+	range.add_tray_to_oven(tray)
+	range.chamber.timer = 3 SECONDS
+	range.open = FALSE
+	range.chamber.turn_on()
+	range.begin_processing()
+	TEST_ASSERT(range.kitchen_heat.heating, "A closed oven with a tray is not heating")
+	for(var/i in 1 to 4)
+		range.process(1)
+	TEST_ASSERT(range.chamber.timer_left <= 0, "The oven timer did not run out while baking on a tray ([range.chamber.timer_left] ds left)")
+
+	var/datum/component/stove/stove = range.GetComponent(/datum/component/stove)
+	stove.turn_on()
+	stove.turn_off()
+	TEST_ASSERT(range.kitchen_heat.heating, "Turning off the burner cooled down the oven that is still baking")
+	range.open = TRUE
+	range.end_processing()
+	TEST_ASSERT(!range.kitchen_heat.heating, "The range kept heating with the oven open and the burner off")
+
+	var/obj/machinery/stove/soup_stove = allocate(/obj/machinery/stove, run_loc_floor_bottom_left)
+	var/datum/component/stove/soup_component = soup_stove.GetComponent(/datum/component/stove)
+	var/obj/item/reagent_containers/glass/soup_pot/pot = allocate(/obj/item/reagent_containers/glass/soup_pot, soup_stove)
+	soup_component.add_container(pot)
+	soup_component.burner.timer = 2 SECONDS
+	soup_component.turn_on()
+	for(var/i in 1 to 3)
+		soup_component.process(1)
+	TEST_ASSERT(soup_component.burner.timer_left <= 0, "The burner timer did not run out with a soup pot on it")
+	soup_component.turn_off()
+
 #undef TEST_ASSERT

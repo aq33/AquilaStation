@@ -90,7 +90,7 @@
 	for(var/path in (islist(item_type) ? item_type : list(item_type)))
 		var/atom/item_path = path
 		names += initial(item_path.name)
-	return "Dodaj: [jointext(names, " albo ")]."
+	return "Dodaj: [jointext(names, " / ")]."
 
 // ---------- Dodaj plon ----------
 

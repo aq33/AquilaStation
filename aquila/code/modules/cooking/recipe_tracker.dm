@@ -64,6 +64,8 @@
 	var/list/step_datas = list()
 	var/list/step_attempts = list()
 	var/completed_steps = 0
+	/// Dane kroków, które zakończyły się w tym wywołaniu
+	var/list/completed_datas = list()
 
 	for(var/datum/cooking/recipe/recipe as anything in recipes_last_completed_step)
 		var/current_index = recipes_last_completed_step[recipe]
@@ -92,6 +94,8 @@
 			recipes_last_completed_step[step_attempt.recipe] = step_attempt.current_step_index
 			LAZYOR(recipes_all_applied_steps[step_attempt.recipe], step_attempt.current_step_index)
 			completed_steps++
+			if(islist(step_datas[step_attempt.recipe_step.type]))
+				completed_datas |= list(step_datas[step_attempt.recipe_step.type])
 			if(step_attempt.current_step_index == length(step_attempt.recipe.steps))
 				completed_recipes |= step_attempt.recipe
 		else
@@ -101,7 +105,14 @@
 		return COOK_PARTIAL_SUCCESS
 
 	recipe_started = TRUE
-	var/list/first_applied_step_data = length(step_datas) ? step_datas[step_datas[1]] : list()
+	// Krok maszyny (z sygnałem i premią sprzętu) ma pierwszeństwo przed dodatkowym krokiem odczynnika z tego samego wywołania
+	var/list/first_applied_step_data = list()
+	for(var/list/step_data as anything in completed_datas)
+		if(step_data["signal"])
+			first_applied_step_data = step_data
+			break
+	if(!length(first_applied_step_data) && length(completed_datas))
+		first_applied_step_data = completed_datas[1]
 	recipes_applied_step_data += list(first_applied_step_data)
 	// Czas gotowania liczy się od nowa do następnego kroku, żeby nie gotować „na zapas”
 	container.clear_cooking_data()
