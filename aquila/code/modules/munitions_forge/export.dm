@@ -65,6 +65,11 @@
 	var/list/cost = forged.material.get_cost(amount)
 	for(var/mat in cost)
 		raw_value += munition_sheet_value(mat) * cost[mat] / MINERAL_MATERIAL_AMOUNT
+	// Stała część przepisu (tytan i miedź pocisku artylerii, tytan łusek); galwanizer jej nie zużywa
+	if(!forged.galvanized)
+		var/list/fixed = aq_munition_fixed_cost(body_type)
+		for(var/mat in fixed)
+			raw_value += munition_sheet_value(mat) * fixed[mat] * forged.quality.material_mult / batch / MINERAL_MATERIAL_AMOUNT
 	var/value = raw_value * (0.5 + 0.1 * forged.quality.level)
 	if(!forged.galvanized)
 		value += 10 * (forged.quality.level + 1) / batch

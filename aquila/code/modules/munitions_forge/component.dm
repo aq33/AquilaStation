@@ -151,7 +151,7 @@
 	var/datum/component/forged_munition/F = P.GetComponent(/datum/component/forged_munition)
 	var/datum/munition_trait/shield_bypass/bypass = F?.get_trait(/datum/munition_trait/shield_bypass)
 	if(bypass && aq_shields_up())
-		take_damage(round(P.damage * 0.25 * bypass.power), P.damage_type, P.flag, FALSE)
+		take_damage(round(aq_hit_damage(P) * 0.25 * bypass.power), P.damage_type, aq_hit_armor_flag(P), FALSE)
 	return ..()
 
 /// Czy tarcza okrętu jest podniesiona i ma czym pochłaniać (te same rodzaje tarcz co aq_diffuse_shields)
