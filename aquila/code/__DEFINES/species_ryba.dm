@@ -35,6 +35,13 @@
 /// Ile duszenia na cykl życia przy za małej ilości wody albo zamarzniętej wodzie
 #define AQUARIAN_SUFFOCATION_LOW 2
 
+/// Obrażenia fizyczne pancerza (bez głowy), od których przez wgniecenia wycieka woda z klosza
+#define AQUARIAN_BODY_LEAK_DAMAGE 20
+/// Ile wody na cykl życia wycieka przez pancerz: obrażenia pancerza / ten dzielnik (40 obrażeń = 1 j. co 2 s)
+#define AQUARIAN_BODY_LEAK_DIVISOR 40
+/// Na ile kawałków sushi kroi się rybkę
+#define AQUARIAN_SUSHI_PIECES 2
+
 /// Obrażenia głowy, od których klosz na pancerzu rozpryskuje się, a rybka wypada na podłogę
 #define AQUARIAN_SHATTER_DAMAGE 60
 /// Ile siły uderzeń wytrzyma leżący klosz, zanim się rozbije

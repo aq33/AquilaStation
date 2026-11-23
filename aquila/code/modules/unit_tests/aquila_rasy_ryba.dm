@@ -101,9 +101,16 @@
 	TEST_ASSERT(!H.alerts["aquarian_water"], "The low water alert stayed after refilling")
 
 	// Reagenty w wodzie przechodzą do organizmu
-	dome.reagents.add_reagent(/datum/reagent/consumable/nutriment, 10)
+	dome.reagents.add_reagent(/datum/reagent/medicine/epinephrine, 10)
 	dome.on_life()
-	TEST_ASSERT(H.reagents.has_reagent(/datum/reagent/consumable/nutriment), "Chemicals poured into the dome did not reach the fish")
+	TEST_ASSERT(H.reagents.has_reagent(/datum/reagent/medicine/epinephrine), "Chemicals poured into the dome did not reach the fish")
+
+	// Zmielone jedzenie w wodzie: rybka je zjada i się najada, do ciała nic nie trafia
+	H.set_nutrition(NUTRITION_LEVEL_HUNGRY)
+	dome.reagents.add_reagent(/datum/reagent/consumable/nutriment/protein, 4)
+	dome.on_life()
+	TEST_ASSERT(H.nutrition > NUTRITION_LEVEL_HUNGRY, "Ground food poured into the dome did not feed the fish")
+	TEST_ASSERT(!H.reagents.has_reagent(/datum/reagent/consumable/nutriment/protein), "Food from the dome went into the armour instead of the fish")
 
 	// Pęknięty klosz cieknie
 	var/obj/item/bodypart/head/head = H.get_bodypart(BODY_ZONE_HEAD)
@@ -115,6 +122,17 @@
 	head.heal_damage(brute = 45)
 	dome.on_life()
 	TEST_ASSERT(!dome.cracked, "Repairing the head did not seal the dome")
+
+	// Wgnieciony pancerz „krwawi” wodą, a po naprawie przestaje
+	var/obj/item/bodypart/chest/body = H.get_bodypart(BODY_ZONE_CHEST)
+	body.receive_damage(brute = 40)
+	water_before = dome.water_amount()
+	dome.on_life()
+	TEST_ASSERT(dome.body_leaking, "A dented armour did not start leaking")
+	TEST_ASSERT(dome.water_amount() < water_before, "A dented armour does not leak water from the dome")
+	body.heal_damage(brute = 40)
+	dome.on_life()
+	TEST_ASSERT(!dome.body_leaking, "Repairing the armour did not stop the leak")
 
 	// Gorąca woda paruje i parzy rybę
 	dome.reagents.chem_temp = AQUARIAN_WATER_BOIL + 10
@@ -221,6 +239,21 @@
 	TEST_ASSERT_EQUAL(dome2.icon_state, "fish_dead_goldfish", "A dead fish is still flopping")
 	helper.combat_mode = FALSE
 	qdel(dome2)
+
+	// Rybka na podłodze pokrojona nożem poza trybem walki to dwa kawałki sushi
+	var/mob/living/carbon/human/H3 = allocate(/mob/living/carbon/human, run_loc_floor_bottom_left)
+	H3.set_species(/datum/species/aquarian)
+	var/obj/item/organ/brain/aquarian/dome3 = aquarian_dome(H3)
+	dome3.shatter()
+	var/obj/item/kitchen/knife/knife = allocate(/obj/item/kitchen/knife)
+	knife.toolspeed = 0.01
+	dome3.attackby(knife, helper)
+	TEST_ASSERT(QDELETED(dome3), "Cutting the fish with a knife did not use it up")
+	var/sushi = 0
+	for(var/obj/item/food/nigiri_sushi/aquarian/piece in run_loc_floor_bottom_left)
+		sushi++
+		qdel(piece)
+	TEST_ASSERT_EQUAL(sushi, AQUARIAN_SUSHI_PIECES, "Cutting the fish did not make sushi")
 	for(var/obj/item/shard/shard in run_loc_floor_bottom_left)
 		qdel(shard)
 

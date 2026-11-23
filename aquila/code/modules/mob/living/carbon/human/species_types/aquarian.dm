@@ -223,6 +223,8 @@ GLOBAL_LIST_INIT(aquarian_fish, list(
 	var/synced_oxyloss = 0
 	/// Czy klosz jest teraz pęknięty
 	var/cracked = FALSE
+	/// Czy z rozbitego pancerza wycieka woda
+	var/body_leaking = FALSE
 	/// Poziom wody na rysunku: 0 pusto, 1 mało, 2 dość
 	var/drawn_water_state = 2
 	/// Klosz się rozbił: zostaje sama rybka (na podłodze albo w naczyniu)
@@ -426,15 +428,36 @@ GLOBAL_LIST_INIT(aquarian_fish, list(
 		cracked = FALSE
 		to_chat(C, "<span class='notice'>Pęknięcie klosza jest uszczelnione.</span>")
 
+	// Rozbity pancerz „krwawi” wodą: przez przewody z kołnierza ucieka woda z klosza, póki ktoś nie zaspawa wgnieceń
+	var/body_brute = 0
+	for(var/obj/item/bodypart/part as anything in C.bodyparts)
+		if(part.body_zone != BODY_ZONE_HEAD)
+			body_brute += part.brute_dam
+	if(body_brute >= AQUARIAN_BODY_LEAK_DAMAGE && reagents.total_volume)
+		if(!body_leaking)
+			body_leaking = TRUE
+			to_chat(C, "<span class='userdanger'>Z wgniecionego pancerza sączy się woda z twojego klosza!</span>")
+		spill(body_brute / AQUARIAN_BODY_LEAK_DIVISOR)
+	else if(body_leaking && body_brute < AQUARIAN_BODY_LEAK_DAMAGE)
+		body_leaking = FALSE
+		to_chat(C, "<span class='notice'>Pancerz przestaje przeciekać.</span>")
+
 	// Parowanie w gorącu
 	if(temperature >= AQUARIAN_WATER_BOIL)
 		reagents.remove_reagent(/datum/reagent/water, 3)
 	else if(temperature >= AQUARIAN_WATER_HOT)
 		reagents.remove_reagent(/datum/reagent/water, 0.5)
 
-	// Reagenty w wodzie działają na rybę
+	// Reagenty w wodzie działają na rybę. Zmielone jedzenie (pożywka, białko, witaminy) rybka zjada od razu: daje tyle sytości,
+	// ile przy zwykłym trawieniu, a nie trafia do ciała, bo pancerz go nie trawi
 	for(var/datum/reagent/reagent as anything in reagents.reagent_list.Copy())
 		if(reagent.type == /datum/reagent/water)
+			continue
+		if(istype(reagent, /datum/reagent/consumable/nutriment))
+			var/datum/reagent/consumable/nutriment/food = reagent
+			var/eaten = min(food.volume, AQUARIAN_CHEM_RATE)
+			C.adjust_nutrition(food.nutriment_factor * eaten / max(food.metabolization_rate, 0.01))
+			reagents.remove_reagent(food.type, eaten)
 			continue
 		reagents.trans_id_to(C, reagent.type, AQUARIAN_CHEM_RATE)
 
@@ -492,7 +515,9 @@ GLOBAL_LIST_INIT(aquarian_fish, list(
 		return ..()
 	var/mob/living/living_user = user
 	if(shattered && !vessel)
-		if(living_user.combat_mode)
+		if(O.is_sharp() && !living_user.combat_mode)
+			make_sushi(living_user, O)
+		else if(living_user.combat_mode)
 			squash(living_user, O)
 		else if(istype(O, /obj/item/reagent_containers))
 			enter_vessel(O, living_user)
@@ -669,6 +694,25 @@ GLOBAL_LIST_INIT(aquarian_fish, list(
 	refresh_fish_name()
 	update_appearance()
 
+/// Rybka leżąca na podłodze krojona ostrym narzędziem na sushi. Żywa rybka przy tym ginie.
+/obj/item/organ/brain/aquarian/proc/make_sushi(mob/living/user, obj/item/knife)
+	var/turf/T = get_turf(src)
+	if(!T)
+		return
+	user.changeNext_move(CLICK_CD_MELEE)
+	if(!do_after(user, 2 SECONDS * knife.toolspeed, target = src) || QDELETED(src) || !shattered || vessel)
+		return
+	if(fish_alive_out_of_water())
+		log_combat(user, brainmob || src, "made sushi out of the aquarian fish", knife)
+		to_chat(brainmob, "<span class='userdanger'>[user] kroi cię na sushi!</span>")
+		brainmob?.death()
+	playsound(T, 'sound/weapons/slice.ogg', 50, TRUE)
+	user.visible_message("<span class='warning'>[user] kroi rybkę za pomocą [knife] na sushi.</span>", \
+		"<span class='notice'>Kroisz rybkę za pomocą [knife] na sushi.</span>")
+	for(var/i in 1 to AQUARIAN_SUSHI_PIECES)
+		new /obj/item/food/nigiri_sushi/aquarian(T)
+	qdel(src)
+
 /// Nazwa zależna od tego, gdzie jest rybka, z imieniem postaci
 /obj/item/organ/brain/aquarian/proc/refresh_fish_name()
 	var/base = initial(name)
@@ -791,6 +835,12 @@ GLOBAL_LIST_INIT(aquarian_fish, list(
 	name = "Mało wody w kloszu"
 	desc = "Rybka dusi się bez wody. Dolej wody do klosza: kliknij pojemnikiem w swoją głowę albo pustą ręką w umywalkę (celując w głowę)."
 	icon_state = "not_enough_oxy"
+
+/// Sushi z rybki Akwarianina (jak zwykłe nigiri, ale z odrobiną wody z klosza)
+/obj/item/food/nigiri_sushi/aquarian
+	name = "sushi z akwarianina"
+	desc = "Nigiri z drobnej rybki, która jeszcze niedawno chodziła po okręcie w szklanym kloszu. Lepiej nie pytać, czy miała imię."
+	tastes = list("filet rybny" = 3, "woda z akwarium" = 1)
 
 // Mowa: bulgotanie przez głośnik pancerza
 
@@ -1116,15 +1166,15 @@ GLOBAL_LIST_INIT(aquarian_fish, list(
 			SPECIES_PERK_ICON = "fish",
 			SPECIES_PERK_NAME = "Chemia przez wodę",
 			SPECIES_PERK_DESC = "Nie jesz ani nie pijesz jak inni. Co wlejesz do klosza (kubkiem, butelką, wiadrem), działa na rybkę, \
-				a głód zaspokaja karma dla ryb z akwarium. Wodę dolejesz też pustą ręką przy umywalce, celując w głowę.",
+				a głód zaspokaja karma dla ryb z akwarium albo zmielone jedzenie wlane do wody. Wodę dolejesz też pustą ręką przy umywalce, celując w głowę.",
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 			SPECIES_PERK_ICON = "tint",
 			SPECIES_PERK_NAME = "Ryba bez wody",
 			SPECIES_PERK_DESC = "Rybka oddycha wodą z klosza. Gdy wody jest mało, dusi się, a w pustym kloszu umiera. \
-				Od uderzeń w głowę klosz pęka i woda wycieka, dopóki ktoś nie zaspawa głowy. Mocno rozbity klosz rozpryskuje się, \
-				a rybka wypada na podłogę: przeżyje tylko, jeśli ktoś szybko wpuści ją do wody albo do nowego klosza.",
+				Od uderzeń w głowę klosz pęka i woda wycieka, dopóki ktoś nie zaspawa głowy, a przez mocno wgnieciony pancerz woda sączy się jak krew. Mocno rozbity klosz rozpryskuje się, \
+				a rybka wypada na podłogę: przeżyje tylko, jeśli ktoś szybko wpuści ją do wody albo do nowego klosza. Nożem da się z niej zrobić sushi.",
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
