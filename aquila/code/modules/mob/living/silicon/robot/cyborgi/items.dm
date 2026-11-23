@@ -965,6 +965,10 @@
 	user.modularInterface.open_program(user, program)
 	user.modularInterface.interact(user)
 
+/// Somatopromiennik cyborga (Bay/Goon floragun) dla specjalizacji Botanika
+/obj/item/gun/energy/floragun/cyborg
+	requires_wielding = FALSE
+
 /// Spray z luminolem cyborga (nasz luminol z aquila/code/modules/detectivework/luminol.dm)
 /obj/item/reagent_containers/spray/cyborg/luminol
 	name = "spray z luminolem"

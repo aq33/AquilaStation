@@ -90,7 +90,7 @@
 	for(var/obj/item/upgrade_type as anything in upgrades)
 		TEST_ASSERT(built[upgrade_type], "Ulepszenia [upgrade_type] nie da się zbudować")
 		TEST_ASSERT(initial(upgrade_type.icon_state) in icon_states(initial(upgrade_type.icon)), "Ulepszenie [upgrade_type] nie ma ikony [initial(upgrade_type.icon_state)]")
-	TEST_ASSERT(length(upgrades) == 40, "Ulepszeń jest [length(upgrades)] zamiast 40")
+	TEST_ASSERT(length(upgrades) == 41, "Ulepszeń jest [length(upgrades)] zamiast 41")
 
 /// Każde ulepszenie instaluje się w pasującym module, odmawia w niepasującym, a po wyjęciu zdejmuje narzędzia
 /datum/unit_test/aquila_cyborg_upgrades
@@ -104,6 +104,7 @@
 		/obj/item/borg/upgrade/aquila/gps = list(/obj/item/robot_module/medical, null),
 		/obj/item/borg/upgrade/aquila/toggle/autocleaner = list(/obj/item/robot_module/butler, /obj/item/robot_module/janitor),
 		/obj/item/borg/upgrade/aquila/inducer = list(/obj/item/robot_module/engineering, /obj/item/robot_module/medical),
+		/obj/item/borg/upgrade/aquila/lightreplacer = list(/obj/item/robot_module/engineering, /obj/item/robot_module/medical),
 		/obj/item/borg/upgrade/aquila/bluespace_rped = list(/obj/item/robot_module/research, /obj/item/robot_module/miner),
 		/obj/item/borg/upgrade/aquila/engineering_omnitool = list(/obj/item/robot_module/engineering, /obj/item/robot_module/research),
 		/obj/item/borg/upgrade/aquila/nightvision_mesons = list(/obj/item/robot_module/miner, /obj/item/robot_module/medical),
@@ -252,6 +253,22 @@
 		TEST_ASSERT(pill.reagents.has_reagent(/datum/reagent/medicine/bicaridine, 10), "Tabletka nie ma 10 j. bikarydyny")
 		qdel(pill)
 	TEST_ASSERT(pills == 2, "Pod cyborgiem leży [pills] tabletek")
+
+	// Zestaw ratowniczy daje cały sprzęt dawnego modułu Ratowniczego
+	var/obj/item/borg/upgrade/aquila/rescue_kit/rescue_kit = allocate(/obj/item/borg/upgrade/aquila/rescue_kit)
+	TEST_ASSERT(rescue_kit.action(chemist, chemist), "Zestaw ratowniczy nie wszedł do modułu medycznego")
+	for(var/rescue_tool in rescue_kit.aq_items)
+		TEST_ASSERT(chemist.aq_find_module_item(rescue_tool), "Zestaw ratowniczy nie dał [rescue_tool]")
+
+	// Specjalizacja Botanika daje somatopromiennik i zabiera go po wyjęciu
+	var/mob/living/silicon/robot/gardener = aq_cyborg_with_module(/obj/item/robot_module/butler)
+	var/obj/item/borg/upgrade/speciality/botany/botany = allocate(/obj/item/borg/upgrade/speciality/botany)
+	TEST_ASSERT(botany.action(gardener, gardener), "Specjalizacja Botanika nie weszła do modułu usługowego")
+	botany.forceMove(gardener)
+	gardener.upgrades += botany
+	TEST_ASSERT(gardener.aq_find_module_item(/obj/item/gun/energy/floragun/cyborg), "Specjalizacja Botanika nie dała somatopromiennika")
+	TEST_ASSERT(botany.deactivate(gardener, gardener), "Specjalizacja Botanika nie dała się wyjąć")
+	TEST_ASSERT(!gardener.aq_find_module_item(/obj/item/gun/energy/floragun/cyborg), "Somatopromiennik został po wyjęciu specjalizacji")
 
 	// Oszczędzacz energii: 30% mniej z ogniwa cyborga
 	var/obj/item/borg/upgrade/aquila/power_saver/saver = allocate(/obj/item/borg/upgrade/aquila/power_saver)

@@ -173,6 +173,15 @@
 	construction_time = 100
 	category = list("Cyborg Upgrade Modules")
 
+/datum/design/aq_borg_upgrade_lightreplacer
+	name = "Ulepszenie cyborga (wymieniacz żarówek)"
+	id = "aq_borg_upgrade_lightreplacer"
+	build_type = MECHFAB
+	build_path = /obj/item/borg/upgrade/aquila/lightreplacer
+	materials = list(/datum/material/iron = 1500, /datum/material/glass = 3000)
+	construction_time = 60
+	category = list("Cyborg Upgrade Modules")
+
 /datum/design/aq_borg_upgrade_bluespace_rped
 	name = "Ulepszenie cyborga (RPED bluespace)"
 	id = "aq_borg_upgrade_bluespace_rped"
@@ -368,7 +377,7 @@
 
 /datum/techweb_node/cyborg_upg_util/New()
 	. = ..()
-	design_ids += list("aq_borg_upgrade_power_saver", "aq_borg_upgrade_inducer", "aq_borg_upgrade_bluespace_rped", "aq_borg_upgrade_engineering_omnitool", "aq_borg_upgrade_nightvision_mesons", "aq_borg_upgrade_nightvision", "aq_borg_upgrade_anomaly_vision", "aq_borg_upgrade_advanced_cutter", "aq_borg_upgrade_ore_processor", "aq_borg_upgrade_cargo_teleporter", "aq_borg_upgrade_autocleaner", "aq_borg_upgrade_forensic_scanner", "aq_borg_upgrade_noir")
+	design_ids += list("aq_borg_upgrade_power_saver", "aq_borg_upgrade_inducer", "aq_borg_upgrade_lightreplacer", "aq_borg_upgrade_bluespace_rped", "aq_borg_upgrade_engineering_omnitool", "aq_borg_upgrade_nightvision_mesons", "aq_borg_upgrade_nightvision", "aq_borg_upgrade_anomaly_vision", "aq_borg_upgrade_advanced_cutter", "aq_borg_upgrade_ore_processor", "aq_borg_upgrade_cargo_teleporter", "aq_borg_upgrade_autocleaner", "aq_borg_upgrade_forensic_scanner", "aq_borg_upgrade_noir")
 
 /datum/techweb_node/cyborg_upg_med/New()
 	. = ..()

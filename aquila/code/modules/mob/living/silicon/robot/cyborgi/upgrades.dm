@@ -271,6 +271,16 @@
 	module_flags = BORG_MODULE_ENGINEERING
 	aq_items = list(/obj/item/inducer/cyborg)
 
+/// Wymiennik żarówek (dawny moduł Budowlany): ten sam co w module porządkowym
+/obj/item/borg/upgrade/aquila/lightreplacer
+	name = "wymieniacz żarówek cyborga"
+	desc = "Wbudowany wymieniacz żarówek: wymienia przepalone i stłuczone świetlówki, uzupełnia się szkłem."
+	icon = 'icons/obj/janitor.dmi'
+	icon_state = "lightreplacer0"
+	module_type = AQ_BORG_ENGINEERING
+	module_flags = BORG_MODULE_ENGINEERING
+	aq_items = list(/obj/item/lightreplacer/cyborg)
+
 /// RPED bluespace (tg/Monkestation): zastępuje RPED cyborga i przejmuje jego części
 /obj/item/borg/upgrade/aquila/bluespace_rped
 	name = "RPED bluespace cyborga"
@@ -463,15 +473,16 @@
 	module_flags = BORG_MODULE_MEDICAL
 	aq_items = list(/obj/item/borg/chem_master, /obj/item/reagent_containers/borghypo/chem_dispenser)
 
-/// Zestaw ratowniczy (Aurora/CEV-Eris „Rescue”, dawny moduł Ratowniczy): dopalacze i hydrauliczny rozwieracz drzwi
+/// Zestaw ratowniczy (Aurora/CEV-Eris „Rescue”, dawny moduł Ratowniczy): dopalacze, rozwieracz drzwi, HUD medyczny,
+/// epinefryna, GPS i holoznak atmosferyczny
 /obj/item/borg/upgrade/aquila/rescue_kit
 	name = "zestaw ratowniczy cyborga"
-	desc = "Dopalacze w podwoziu na szybki dojazd do rannych i hydrauliczny rozwieracz, który podważa także zasilane śluzy."
+	desc = "Dopalacze w podwoziu na szybki dojazd do rannych, hydrauliczny rozwieracz, który podważa także zasilane śluzy, HUD medyczny, hypospray z epinefryną, GPS i holoznak atmosferyczny."
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "jaws_pry"
 	module_type = AQ_BORG_MEDICAL
 	module_flags = BORG_MODULE_MEDICAL
-	aq_items = list(/obj/item/borg/rescue_boosters, /obj/item/crowbar/cyborg/aquila_rescue)
+	aq_items = list(/obj/item/borg/rescue_boosters, /obj/item/crowbar/cyborg/aquila_rescue, /obj/item/borg/sight/hud/med, /obj/item/reagent_containers/borghypo/epi, /obj/item/gps/cyborg, /obj/item/holosign_creator/atmos)
 
 /// Skaner widmowy (Goonstation)
 /obj/item/borg/upgrade/aquila/spectro_scanner
@@ -673,6 +684,11 @@
 	module_type = list(/obj/item/robot_module/janitor)
 	module_flags = BORG_MODULE_JANITOR
 	aq_items = list(/obj/item/pushbroom/cyborg)
+
+/// Specjalizacja Botanika (core) dostaje somatopromiennik z usuniętego modułu Hydroponicznego
+/obj/item/borg/upgrade/speciality/botany/Initialize(mapload)
+	. = ..()
+	addmodules += /obj/item/gun/energy/floragun/cyborg
 
 /// Książka kucharska (tg „cookbook”): nasz katalog przepisów w tablecie cyborga
 /obj/item/borg/upgrade/aquila/cookbook
