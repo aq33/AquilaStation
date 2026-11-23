@@ -107,10 +107,22 @@ GLOBAL_LIST_INIT(aq_robolimb_brands, aq_init_robolimb_brands())
 	/// AQUILA - wygląd ciała, które udaje proteza z realistyczną skórą
 	var/aq_lifelike_icon
 	var/aq_lifelike_limb_id
+	/// AQUILA - czy udawane ciało ma osobne sprite'y dla płci (klatka i głowa tak), null = jak ludzka część w tej strefie
+	var/aq_lifelike_dimorphic
 
 /// Czy marka może być na tej kończynie: zwykłe protezy, bez IPC (podwozie), kołków i protez kinetycznych
 /obj/item/bodypart/proc/aq_can_have_brand()
-	return !IS_ORGANIC_LIMB(src) && (bodytype & BODYTYPE_ROBOTIC) && limb_id != "synth" && !animal_origin && !is_pseudopart && !aq_is_advanced()
+	return !IS_ORGANIC_LIMB(src) && (bodytype & BODYTYPE_ROBOTIC) && !aq_is_synth_chassis() && !animal_origin && !is_pseudopart && !aq_is_advanced()
+
+/// Część podwozia IPC: limb_id "synth" albo limb_id jednego z podwozi (jak w aq_set_ipc_chassis, synth_surgery.dm)
+/obj/item/bodypart/proc/aq_is_synth_chassis()
+	if(limb_id == "synth")
+		return TRUE
+	for(var/chassis_name in GLOB.ipc_chassis_list)
+		var/datum/sprite_accessory/ipc_chassis/chassis = GLOB.ipc_chassis_list[chassis_name]
+		if(chassis?.limbs_id == limb_id)
+			return TRUE
+	return FALSE
 
 /// Nadaje kończynie markę: sprite, nazwę i cechy
 /obj/item/bodypart/proc/aq_set_brand(datum/aq_robolimb_brand/brand, gender)
@@ -150,13 +162,17 @@ GLOBAL_LIST_INIT(aq_robolimb_brands, aq_init_robolimb_brands())
 	var/old_icon = icon
 	var/old_limb_id = limb_id
 	var/old_greyscale = should_draw_greyscale
+	var/old_dimorphic = is_dimorphic
 	icon = aq_lifelike_icon || 'icons/mob/human_parts_greyscale.dmi'
 	limb_id = aq_lifelike_limb_id || SPECIES_HUMAN
 	should_draw_greyscale = TRUE
+	// proteza ma is_dimorphic = FALSE, a ludzka klatka i głowa mają tylko stany z płcią (human_chest_m)
+	is_dimorphic = isnull(aq_lifelike_dimorphic) ? (body_zone == BODY_ZONE_CHEST || body_zone == BODY_ZONE_HEAD) : aq_lifelike_dimorphic
 	. = ..()
 	icon = old_icon
 	limb_id = old_limb_id
 	should_draw_greyscale = old_greyscale
+	is_dimorphic = old_dimorphic
 
 /// Pamięć ikon kończyn liczy klucz z limb_id, więc różne marki z limb_id "robotic" by się myliły
 /mob/living/carbon/generate_icon_key(obj/item/bodypart/BP)
@@ -165,7 +181,7 @@ GLOBAL_LIST_INIT(aq_robolimb_brands, aq_init_robolimb_brands())
 		return
 	. += "-[BP.static_icon]"
 	if(BP.aq_lifelike_disguised())
-		. += "-lifelike-[BP.aq_lifelike_limb_id]-[BP.species_color || BP.skin_tone]"
+		. += "-lifelike-[BP.aq_lifelike_limb_id]-[BP.species_color || BP.skin_tone]-[BP.limb_gender]"
 
 /// Zapamiętuje wygląd zastępowanej kończyny, żeby proteza z realistyczną skórą mogła go udawać
 /obj/item/bodypart/proc/aq_copy_lifelike_look(obj/item/bodypart/old_limb)
@@ -173,6 +189,8 @@ GLOBAL_LIST_INIT(aq_robolimb_brands, aq_init_robolimb_brands())
 		return
 	aq_lifelike_icon = old_limb.icon
 	aq_lifelike_limb_id = old_limb.limb_id
+	aq_lifelike_dimorphic = old_limb.is_dimorphic
+	limb_gender = old_limb.limb_gender
 	skin_tone = old_limb.skin_tone
 	species_color = old_limb.species_color
 
