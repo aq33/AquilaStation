@@ -184,14 +184,24 @@
 	uses = 8
 	/// Zapisane dostępy (kopiowane z karty przyłożonej do implantera albo etui)
 	var/list/access = list()
+	/// Drzwi, za które ostatnio zszedł ładunek, i kiedy (jedno przejście sprawdza dostęp kilka razy, np. śluza z cyklem)
+	var/datum/weakref/last_door
+	var/last_door_time = 0
 
 /obj/item/implant/aq_access/get_data()
-	return "<b>Specyfikacja implantu:</b><BR><b>Nazwa:</b> elektroniczny dostęp<BR><b>Działanie:</b> zamek, który wymaga dostępu, sprawdza implant, gdy nosiciel nie ma przy sobie karty z tym dostępem. Każde takie otwarcie zużywa jeden ładunek.<BR><b>Pozostałe ładunki:</b> [uses]<BR><b>Zapisanych dostępów:</b> [length(access)]"
+	return "<b>Specyfikacja implantu:</b><BR><b>Nazwa:</b> elektroniczny dostęp<BR><b>Działanie:</b> drzwi, które wymagają dostępu, sprawdzają implant, gdy nosiciel nie ma przy sobie karty ani drużyny z tym dostępem. Każde przejście zużywa jeden ładunek.<BR><b>Pozostałe ładunki:</b> [uses]<BR><b>Zapisanych dostępów:</b> [length(access)]"
 
 /obj/item/implant/aq_access/implant(mob/living/target, mob/user, silent = FALSE, force = FALSE)
+	// drugi implant wtapia się w pierwszy (core dodaje tylko ładunki), więc dostępy z nowej karty dopisujemy sami
+	var/obj/item/implant/aq_access/existing = locate() in target?.implants
+	var/list/new_access = access.Copy()
 	. = ..()
-	if(. && imp_in == target)
+	if(!.)
+		return
+	if(imp_in == target)
 		RegisterSignal(target, COMSIG_MOB_ALLOWED, PROC_REF(check_access_for), override = TRUE)
+	else if(existing && existing != src && existing.imp_in == target)
+		existing.access |= new_access
 
 /obj/item/implant/aq_access/removed(mob/living/source, silent = FALSE, special = 0)
 	UnregisterSignal(source, COMSIG_MOB_ALLOWED)
@@ -199,19 +209,37 @@
 
 /obj/item/implant/aq_access/proc/check_access_for(mob/living/source, obj/locked)
 	SIGNAL_HANDLER
-	if(!uses || !length(access) || !istype(locked))
+	// tylko drzwi: zamki sprawdzane co chwilę (wieżyczki, okna maszyn) wyczerpałyby ładunki bez otwierania czegokolwiek
+	if(!uses || !length(access) || !istype(locked, /obj/machinery/door))
 		return FALSE
-	// karta w ręce albo na szyi wystarczy, nie zużywamy ładunku
+	// karta w ręce albo na szyi i dostęp drużyny wystarczą, nie zużywamy ładunku
 	if(ishuman(source))
 		var/mob/living/carbon/human/human_source = source
-		if(locked.check_access(human_source.get_active_held_item()) || locked.check_access(human_source.wear_id))
+		if(locked.check_access(human_source.get_active_held_item()) || locked.check_access(human_source.wear_id) || locked.check_access(human_source.squad))
 			return FALSE
 	if(!locked.check_access_list(access))
 		return FALSE
+	var/obj/machinery/door/door = locked
+	if(!door_will_open(door))
+		return TRUE
+	// to samo przejście sprawdza dostęp kilka razy (śluza z cyklem, bumpopen i activate_door_base)
+	if(last_door?.resolve() == door && world.time < last_door_time + 2 SECONDS)
+		return TRUE
+	last_door = WEAKREF(door)
+	last_door_time = world.time
 	uses--
 	if(!uses)
 		to_chat(source, span_warning("Implant elektronicznego dostępu wyczerpał ładunki."))
 	return TRUE
+
+/// Czy drzwi po udzieleniu dostępu naprawdę się otworzą (zaryglowane, zaspawane albo bez prądu nie zużywają ładunku)
+/obj/item/implant/aq_access/proc/door_will_open(obj/machinery/door/door)
+	if(!door.density || door.operating || (door.obj_flags & EMAGGED))
+		return FALSE
+	if(istype(door, /obj/machinery/door/airlock))
+		var/obj/machinery/door/airlock/airlock = door
+		return !airlock.locked && !airlock.welded && airlock.hasPower()
+	return !(door.machine_stat & (NOPOWER|BROKEN))
 
 /// Kopiuje dostępy z karty do implantu
 /obj/item/implant/aq_access/proc/program_from(obj/item/card/id/card, mob/user)

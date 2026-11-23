@@ -51,9 +51,10 @@
 		return iff.iff_faction
 	return null
 
-// Swój-obcy: pocisk strzelca z implantem przelatuje przez nosiciela implantu tej samej frakcji
+// Swój-obcy: pocisk strzelca z implantem przelatuje przez nosiciela implantu tej samej frakcji,
+// chyba że strzelec celuje prosto w niego (jak IFF smyczy drużyny w gunplay/iff_smart.dm)
 /obj/item/projectile/can_hit_target(atom/target, direct_target = FALSE, ignore_loc = FALSE, cross_failed = FALSE)
-	if(isliving(target) && isliving(firer) && target != firer)
+	if(!direct_target && target != original && isliving(target) && isliving(firer) && target != firer)
 		var/mob/living/living_target = target
 		var/mob/living/shooter = firer
 		var/target_faction = living_target.aq_iff_faction()
@@ -61,14 +62,29 @@
 			return FALSE
 	return ..()
 
-// Implant przejęcia: maszyny w przejętym obszarze jak dla SI (/obj/machinery/can_interact)
+// Implant przejęcia: maszyny w przejętym obszarze jak dla SI (/obj/machinery/can_interact).
+// Tylko maszyny, które SI może obsłużyć: pozostałe nosiciel obsługuje rękami jak zwykle.
 /mob/living/carbon/human/has_remote_machine_access(atom/target)
 	. = ..()
-	if(. || stat || !istype(target))
+	if(. || stat || incapacitated() || !istype(target))
 		return
+	if(ismachinery(target))
+		var/obj/machinery/machine = target
+		if(!(machine.interaction_flags_machine & INTERACT_MACHINE_ALLOW_SILICON))
+			return FALSE
 	for(var/obj/item/implant/aq_hijack/hijack in implants)
 		if(hijack.toggled && hijack.hijacked_area && get_area(target) == hijack.hijacked_area)
 			return TRUE
+
+// Zdalne sterowanie śluzą (panel SI) dla tego, kto ma zdalny dostęp do maszyn w jej obszarze (implant przejęcia).
+// Bez tego user_allowed() wpuszcza tylko silikony, więc panel śluzy się otwierał, ale żaden przycisk nie działał.
+/obj/machinery/door/airlock/user_allowed(mob/user)
+	. = ..()
+	if(. || !user?.has_remote_machine_access(src))
+		return
+	if((obj_flags & EMAGGED) || detonated)
+		return FALSE
+	return canAIControl(user)
 
 /mob/living/carbon/human/default_can_use_topic(src_object)
 	if(isatom(src_object) && has_remote_machine_access(src_object))

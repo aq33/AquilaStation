@@ -195,7 +195,7 @@
 	var/hack_time = 10 SECONDS
 
 /obj/item/implant/aq_hijack/get_data()
-	return "<b>Specyfikacja implantu:</b><BR><b>Nazwa:</b> implant przejęcia<BR><b>Ważne uwagi:</b> <font color='red'>Nielegalny</font><BR><b>Działanie:</b> przycisk włącza tryb przejęcia. Kliknij w nim APC obok siebie, żeby się do niego włamać ([hack_time / 10] s). Potem kliknięcie maszyny w tym pomieszczeniu steruje nią jak SI. Naraz tylko jedno pomieszczenie; EMP zrywa połączenie."
+	return "<b>Specyfikacja implantu:</b><BR><b>Nazwa:</b> implant przejęcia<BR><b>Ważne uwagi:</b> <font color='red'>Nielegalny</font><BR><b>Działanie:</b> przycisk włącza tryb przejęcia. Kliknij w nim APC obok siebie, żeby się do niego włamać ([hack_time / 10] s). Potem kliknięcie maszyny w tym pomieszczeniu steruje nią jak SI. Kliknięcie śluzy otwiera ją albo zamyka, a akcja dodatkowa (prawy przycisk albo intencja rozbrajania) otwiera jej panel sterowania. Naraz tylko jedno pomieszczenie; EMP zrywa połączenie."
 
 /obj/item/implant/aq_hijack/Destroy()
 	release_area(silent = TRUE)
@@ -219,14 +219,35 @@
 
 /obj/item/implant/aq_hijack/proc/on_click(mob/living/source, atom/target, list/modifiers)
 	SIGNAL_HANDLER
-	if(source.stat || LAZYACCESS(modifiers, SHIFT_CLICK) || LAZYACCESS(modifiers, ALT_CLICK) || LAZYACCESS(modifiers, CTRL_CLICK))
+	if(source.stat || source.incapacitated() || LAZYACCESS(modifiers, SHIFT_CLICK) || LAZYACCESS(modifiers, ALT_CLICK) || LAZYACCESS(modifiers, CTRL_CLICK))
 		return
 	if(istype(target, /obj/machinery/power/apc) && target != hijacked_apc)
 		INVOKE_ASYNC(src, PROC_REF(hijack_apc), target)
 		return COMSIG_MOB_CANCEL_CLICKON
-	if(ismachinery(target) && hijacked_area && get_area(target) == hijacked_area)
-		INVOKE_ASYNC(target, TYPE_PROC_REF(/atom, attack_ai), source)
+	if(!ismachinery(target) || !hijacked_area || get_area(target) != hijacked_area)
+		return
+	// przedmiot w ręce przy maszynie obok: zwykłe użycie (np. włożenie czegoś do maszyny)
+	if(source.Adjacent(target) && source.get_active_held_item())
+		return
+	if(istype(target, /obj/machinery/door/airlock))
+		INVOKE_ASYNC(src, PROC_REF(control_airlock), source, target, source.is_secondary_click(modifiers))
 		return COMSIG_MOB_CANCEL_CLICKON
+	var/obj/machinery/machine = target
+	// rdzeń danych SI zakłada, że steruje nim SI; maszyn bez sterowania przez SI nosiciel używa rękami
+	if(istype(machine, /obj/machinery/ai/data_core) || !(machine.interaction_flags_machine & INTERACT_MACHINE_ALLOW_SILICON))
+		return
+	INVOKE_ASYNC(machine, TYPE_PROC_REF(/atom, _try_interact), source)
+	return COMSIG_MOB_CANCEL_CLICKON
+
+/// Śluza w przejętym obszarze: kliknięcie otwiera albo zamyka, akcja dodatkowa otwiera panel sterowania jak dla SI
+/obj/item/implant/aq_hijack/proc/control_airlock(mob/living/user, obj/machinery/door/airlock/airlock, open_panel = FALSE)
+	if(!airlock.user_allowed(user))
+		to_chat(user, span_warning("[capitalize(airlock.name)] nie odpowiada na sygnał implantu."))
+		return
+	if(open_panel)
+		airlock.ui_interact(user)
+		return
+	airlock.user_toggle_open(user)
 
 /// Włamanie do APC
 /obj/item/implant/aq_hijack/proc/hijack_apc(obj/machinery/power/apc/apc)
@@ -490,6 +511,18 @@
 		return
 	if(imp_in.health <= HEALTH_THRESHOLD_CRIT)
 		INVOKE_ASYNC(src, PROC_REF(activate), "deniability")
+
+// Jak core, ale bez 14 s paraliżu w trakcie odliczania (tg: no_paralyze w deniability): nosiciel ma walczyć do końca.
+// Pełne nadpisanie, bo paraliż siedzi w środku odliczania ze sleep().
+/obj/item/implant/explosive/aq_deniability/timed_explosion()
+	imp_in.visible_message(span_warning("[imp_in] zaczyna złowieszczo pikać!"))
+	for(var/i in 1 to 4)
+		playsound(loc, 'sound/items/timer.ogg', 30, 0)
+		sleep(delay * 0.25)
+	explosion(src, heavy, medium, weak, weak, flame_range = weak)
+	if(imp_in)
+		imp_in.gib(!gib_keeps_brain)
+	qdel(src)
 
 /obj/item/implanter/aq_deniability
 	name = "implanter (taktyczne wyparcie się)"

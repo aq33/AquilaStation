@@ -11,8 +11,10 @@
 	/// AQUILA - kiedy najwcześniej następny objaw cyberpsychozy
 	var/aq_cyberpsychosis_next = 0
 
-/// Koszt organu dla cyberpsychozy
+/// Koszt organu dla cyberpsychozy: własny koszt narządu (cyberoko z laserem, mózg z łączem SI), inaczej domyślny
 /obj/item/organ/proc/aq_get_cyberpsychosis_cost()
+	if(aq_cyberpsychosis_cost)
+		return aq_cyberpsychosis_cost
 	if(organ_flags & ORGAN_SYNTHETIC)
 		return 4
 	return 0
@@ -20,8 +22,9 @@
 /obj/item/organ/cyberimp/aq_get_cyberpsychosis_cost()
 	return aq_cyberpsychosis_cost
 
+// zwykły mózg (także pozytronowy) nie obciąża psychiki, mózg z łączem SI ma własny koszt
 /obj/item/organ/brain/aq_get_cyberpsychosis_cost()
-	return 0
+	return aq_cyberpsychosis_cost
 
 /obj/item/bodypart/proc/aq_get_cyberpsychosis_cost()
 	if(!isnull(aq_cyberpsychosis_cost))
@@ -37,8 +40,8 @@
 	var/obj/item/organ/brain/brain = getorganslot(ORGAN_SLOT_BRAIN)
 	return brain && !(brain.organ_flags & ORGAN_SYNTHETIC)
 
-/// Obciążenie psychiki cybernetyką
-/mob/living/carbon/human/proc/aq_cyberpsychosis_load()
+/// Obciążenie psychiki cybernetyką (liczy też port serwisowy EMSI)
+/mob/living/carbon/proc/aq_cyberpsychosis_load()
 	. = 0
 	for(var/obj/item/bodypart/limb as anything in bodyparts)
 		. += limb.aq_get_cyberpsychosis_cost()

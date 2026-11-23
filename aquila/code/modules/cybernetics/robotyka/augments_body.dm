@@ -168,7 +168,7 @@
 	var/emp_until = 0
 
 /obj/item/organ/cyberimp/chest/aq_optical_camo/ui_action_click()
-	if(!active && (!aq_augment_usable() || world.time < emp_until))
+	if(!active && (!aq_augment_usable() || world.time < emp_until || owner.stat == DEAD || owner.IsInStasis()))
 		if(world.time < emp_until)
 			to_chat(owner, span_warning("Kamuflaż jeszcze się restartuje."))
 		return
@@ -178,8 +178,23 @@
 	if(!owner || active == new_state)
 		return
 	active = new_state
+	// on_life nie działa na trupie ani w stazie, więc śmierć i stazę łapiemy sygnałami
+	if(active)
+		RegisterSignal(owner, COMSIG_MOB_DEATH, PROC_REF(on_owner_death), override = TRUE)
+		RegisterSignal(owner, COMSIG_LIVING_LIFE, PROC_REF(on_owner_life), override = TRUE)
+	else
+		UnregisterSignal(owner, list(COMSIG_MOB_DEATH, COMSIG_LIVING_LIFE))
 	animate(owner, alpha = active ? camo_alpha : 255, time = 0.5 SECONDS)
 	to_chat(owner, span_notice((active ? "Światło zagina się wokół ciebie." : "Kamuflaż optyczny gaśnie.")))
+
+/obj/item/organ/cyberimp/chest/aq_optical_camo/proc/on_owner_death(mob/living/source, gibbed)
+	SIGNAL_HANDLER
+	set_active(FALSE)
+
+/obj/item/organ/cyberimp/chest/aq_optical_camo/proc/on_owner_life(mob/living/source, seconds, times_fired)
+	SIGNAL_HANDLER
+	if(source.stat == DEAD || source.IsInStasis())
+		set_active(FALSE)
 
 /obj/item/organ/cyberimp/chest/aq_optical_camo/on_life()
 	. = ..()
@@ -228,6 +243,8 @@
 	var/field_range = 3
 	/// Kiedy się skończy
 	var/end_time = 0
+	/// O ile skrócono opóźnienie akcji nosiciela (odejmowane i oddawane, więc nie gryzie się z innymi zmianami, np. opaską uciskową)
+	var/move_bonus = 0
 	COOLDOWN_DECLARE(sandy_cooldown)
 
 /obj/item/organ/cyberimp/chest/spinal/aq_sandevistan/ui_action_click()
@@ -246,7 +263,8 @@
 	icon_state = "imp_spinal_on"
 	end_time = world.time + duration
 	owner.add_movespeed_modifier("aq_sandevistan", update = TRUE, priority = 100, multiplicative_slowdown = -1)
-	owner.next_move_modifier *= 0.7
+	move_bonus = owner.next_move_modifier * 0.3
+	owner.next_move_modifier -= move_bonus
 	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(after_image))
 	START_PROCESSING(SSfastprocess, src)
 	to_chat(owner, span_notice("Świat wokół zwalnia."))
@@ -263,7 +281,8 @@
 		return
 	UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
 	owner.remove_movespeed_modifier("aq_sandevistan")
-	owner.next_move_modifier /= 0.7
+	owner.next_move_modifier += move_bonus
+	move_bonus = 0
 	if(silent)
 		return
 	// koszt przeciążenia
@@ -315,6 +334,8 @@
 	var/overheat = 0
 	/// Zabawkowa wersja tylko świeci
 	var/toy = FALSE
+	/// O ile skrócono opóźnienie akcji nosiciela (jak w Sandevistanie)
+	var/move_bonus = 0
 
 /obj/item/organ/cyberimp/chest/spinal/aq_overclocker/ui_action_click()
 	if(!active && !aq_augment_usable())
@@ -330,13 +351,15 @@
 		RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(after_image))
 		if(!toy)
 			owner.add_movespeed_modifier("aq_overclocker", update = TRUE, priority = 100, multiplicative_slowdown = -1)
-			owner.next_move_modifier *= 0.7
+			move_bonus = owner.next_move_modifier * 0.3
+			owner.next_move_modifier -= move_bonus
 		to_chat(owner, span_notice("Twoje nerwy płoną. Wszystko dzieje się szybciej."))
 	else
 		UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
 		if(!toy)
 			owner.remove_movespeed_modifier("aq_overclocker")
-			owner.next_move_modifier /= 0.7
+			owner.next_move_modifier += move_bonus
+			move_bonus = 0
 		to_chat(owner, span_notice("Podkręcacz zwalnia."))
 
 /obj/item/organ/cyberimp/chest/spinal/aq_overclocker/proc/after_image(atom/movable/source, atom/old_loc)
@@ -449,6 +472,28 @@
 	desc = "Uniwersalny moduł w ręce: włóż do niego przedmiot nie większy niż zwykły, a będzie się błyskawicznie wysuwać z dłoni. Nożyce do drutu wyjmują przedmiot z modułu."
 	aq_cyberpsychosis_cost = 10
 
+// Core Extend() robi z narzędzia implantu niezniszczalną część ręki bez slotów i materiałów.
+// Włożony przedmiot zostaje sobą: po wysunięciu wracają mu sloty, odporności i materiały.
+/obj/item/organ/cyberimp/arm/aq_embedded/Extend(obj/item/item)
+	var/old_slot_flags = item?.slot_flags
+	var/old_resistance_flags = item?.resistance_flags
+	var/list/old_materials = item?.custom_materials
+	. = ..()
+	if(QDELETED(item))
+		return
+	item.slot_flags = old_slot_flags
+	item.resistance_flags = old_resistance_flags
+	if(item.custom_materials != old_materials)
+		item.set_custom_materials(old_materials)
+	// zużywalny przedmiot (np. apteczka) znika w ręce, a moduł nie może dalej na niego wskazywać
+	if(active_item == item)
+		RegisterSignal(item, COMSIG_PARENT_QDELETING, PROC_REF(on_item_deleted), override = TRUE)
+
+/obj/item/organ/cyberimp/arm/aq_embedded/proc/on_item_deleted(obj/item/source)
+	SIGNAL_HANDLER
+	if(active_item == source)
+		active_item = null
+
 /obj/item/organ/cyberimp/arm/aq_embedded/l
 	zone = BODY_ZONE_L_ARM
 
@@ -487,6 +532,7 @@
 		to_chat(user, span_warning("Moduł jest pusty."))
 		return TRUE
 	items_list.Cut()
+	UnregisterSignal(stored, COMSIG_PARENT_QDELETING)
 	REMOVE_TRAIT(stored, TRAIT_NODROP, HAND_REPLACEMENT_TRAIT)
 	stored.forceMove(drop_location())
 	user.put_in_hands(stored)
@@ -682,9 +728,10 @@
 	/// Akcja przełączania
 	var/datum/action/innate/aq_maglock/maglock
 
+// ..() najpierw wyjmuje implant (on_full_remove zdejmuje cechy magnesów), dopiero potem usuwamy akcję
 /obj/item/organ/cyberimp/leg/aq_magboot/Destroy()
+	. = ..()
 	QDEL_NULL(maglock)
-	return ..()
 
 /obj/item/organ/cyberimp/leg/aq_magboot/on_full_insert(mob/living/carbon/user)
 	if(aq_duplicate_in_other_leg(user))
@@ -694,8 +741,18 @@
 	maglock.Grant(user)
 
 /obj/item/organ/cyberimp/leg/aq_magboot/on_full_remove(mob/living/carbon/user)
+	var/had_toggle = maglock?.owner == user
 	maglock?.set_locked(FALSE)
 	maglock?.Remove(user)
+	if(!had_toggle)
+		return
+	// drugi taki sam implant w drugiej nodze przejmuje przełącznik
+	var/obj/item/organ/cyberimp/leg/aq_magboot/spare = user?.getorganslot(slot == ORGAN_SLOT_LEFT_LEG_AUG ? ORGAN_SLOT_RIGHT_LEG_AUG : ORGAN_SLOT_LEFT_LEG_AUG)
+	if(!istype(spare) || spare == src)
+		return
+	if(!spare.maglock)
+		spare.maglock = new(spare)
+	spare.maglock.Grant(user)
 
 /obj/item/organ/cyberimp/leg/aq_magboot/emp_act(severity)
 	. = ..()

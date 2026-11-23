@@ -385,5 +385,191 @@
 	TEST_ASSERT(shell_body.getorganslot(ORGAN_SLOT_BRAIN) == uplink_brain, "The AI uplink brain did not go in")
 	TEST_ASSERT(shell_body.stat != DEAD, "The body died with the AI uplink brain")
 
+/// AQUILA - regresje z przeglądu implantów i augmentów robotyki (aq33/AquilaStation#672)
+/datum/unit_test/aquila_robotyka_implant_regressions
+
+/datum/unit_test/aquila_robotyka_implant_regressions/Run()
+	var/mob/living/carbon/human/patient = allocate(/mob/living/carbon/human)
+
+	// I2: przejęcie naprawdę steruje śluzą, nie blokuje ręcznej obsługi maszyn bez sterowania SI
+	var/obj/item/implant/aq_hijack/hijack = aq_self_implant(patient, /obj/item/implanter/aq_hijack)
+	TEST_ASSERT(hijack, "The hijack implant did not go in")
+	var/obj/machinery/door/airlock/airlock = allocate(/obj/machinery/door/airlock)
+	hijack.activate()
+	hijack.hijacked_area = get_area(airlock)
+	TEST_ASSERT(airlock.user_allowed(patient), "The hijacked airlock does not accept the implant holder")
+	hijack.control_airlock(patient, airlock)
+	TEST_ASSERT(!airlock.density, "The hijack implant did not open the airlock")
+	var/obj/machinery/manual = allocate(/obj/machinery)
+	manual.interaction_flags_machine = NONE
+	TEST_ASSERT(!patient.has_remote_machine_access(manual), "Remote access to a machine the AI cannot use")
+	TEST_ASSERT(manual.can_interact(patient), "Hijack mode blocks a machine operated by hand")
+	TEST_ASSERT(!hijack.on_click(patient, manual, list()), "Hijack mode swallowed a click on a hand-operated machine")
+	patient.Paralyze(5 SECONDS)
+	TEST_ASSERT(!hijack.on_click(patient, airlock, list()), "Hijack mode works while incapacitated")
+	TEST_ASSERT(!airlock.user_allowed(patient), "An incapacitated holder controls the airlock")
+	patient.SetParalyzed(0)
+	qdel(hijack)
+	TEST_ASSERT(!airlock.user_allowed(patient), "The airlock stays controllable without the implant")
+
+	// I1: mapa okrętu bierze nosiciela i nie zostawia przycisku po wyjęciu
+	var/obj/item/organ/cyberimp/eyes/aq_map/map = allocate(/obj/item/organ/cyberimp/eyes/aq_map)
+	map.Insert(patient)
+	var/datum/component/holomap/holo = map.GetComponent(/datum/component/holomap)
+	var/datum/action/toggle_holomap/map_button = holo?.holobutton
+	TEST_ASSERT(map_button?.owner == patient && map_button.holder == patient, "The map implant button does not point at the host")
+	map.Remove(patient)
+	TEST_ASSERT(!(map_button in patient.actions), "The map implant left its button after removal")
+
+	// I3: kamuflaż schodzi po śmierci i w stazie
+	var/mob/living/carbon/human/sneaky = allocate(/mob/living/carbon/human)
+	var/obj/item/organ/cyberimp/chest/aq_optical_camo/camo = new()
+	camo.Insert(sneaky)
+	camo.ui_action_click()
+	TEST_ASSERT(camo.active, "The optical camo did not turn on")
+	sneaky.SetStasis(TRUE)
+	SEND_SIGNAL(sneaky, COMSIG_LIVING_LIFE, 2, 1)
+	TEST_ASSERT(!camo.active, "The optical camo stayed on in stasis")
+	sneaky.SetStasis(FALSE)
+	camo.ui_action_click()
+	TEST_ASSERT(camo.active, "The optical camo did not turn on again")
+	sneaky.death()
+	TEST_ASSERT(!camo.active, "The optical camo stayed on a corpse")
+
+	// I4: karta w module wbudowanego przedmiotu zostaje kartą
+	var/obj/item/organ/cyberimp/arm/aq_embedded/embedded = allocate(/obj/item/organ/cyberimp/arm/aq_embedded)
+	var/obj/item/card/id/card = allocate(/obj/item/card/id)
+	var/card_resistance = card.resistance_flags
+	patient.put_in_active_hand(card)
+	embedded.attackby(card, patient)
+	TEST_ASSERT(embedded.get_stored() == card, "The embedded module did not take the card")
+	embedded.Insert(patient)
+	embedded.ui_action_click()
+	TEST_ASSERT(card.loc == patient && embedded.active_item == card, "The embedded card did not extend")
+	TEST_ASSERT(card.slot_flags & ITEM_SLOT_ID, "The extended card lost its ID slot")
+	TEST_ASSERT_EQUAL(card.resistance_flags, card_resistance, "The extended card became indestructible")
+	embedded.Retract()
+	embedded.Remove(patient)
+	var/obj/item/wirecutters/cutters = allocate(/obj/item/wirecutters)
+	embedded.wirecutter_act(patient, cutters)
+	TEST_ASSERT(!embedded.get_stored(), "The wirecutters did not take the card out")
+	TEST_ASSERT(patient.equip_to_slot_if_possible(card, ITEM_SLOT_ID, disable_warning = TRUE), "The card from the module does not fit the ID slot")
+	var/obj/item/pen/pen = allocate(/obj/item/pen)
+	patient.put_in_active_hand(pen)
+	embedded.attackby(pen, patient)
+	embedded.Insert(patient)
+	embedded.ui_action_click()
+	TEST_ASSERT(embedded.active_item == pen, "The embedded pen did not extend")
+	qdel(pen)
+	TEST_ASSERT(!embedded.active_item, "The module still points at a used-up item")
+	embedded.Remove(patient)
+
+	// I5: koszt narządów-augmentów liczy się w mechanice i w porcie EMSI
+	var/obj/item/organ/eyes/robotic/aq_laser/laser = allocate(/obj/item/organ/eyes/robotic/aq_laser)
+	TEST_ASSERT_EQUAL(laser.aq_get_cyberpsychosis_cost(), 18, "Laser eyes have the wrong cyberpsychosis cost")
+	var/obj/item/organ/brain/aq_ai_uplink/uplink = allocate(/obj/item/organ/brain/aq_ai_uplink)
+	TEST_ASSERT_EQUAL(uplink.aq_get_cyberpsychosis_cost(), 18, "The AI uplink brain has the wrong cyberpsychosis cost")
+	var/load_before = patient.aq_cyberpsychosis_load()
+	laser.Insert(patient)
+	TEST_ASSERT_EQUAL(patient.aq_cyberpsychosis_load(), load_before + 18, "Laser eyes are not counted in the load")
+
+	// I6: zakłócone oczy nie strzelają, chłodzenie i klik w ekwipunek nie zjadają kliknięć, rozbrojenie zawsze działa
+	var/turf/aim = locate(patient.x + 2, patient.y, patient.z)
+	laser.ui_action_click()
+	TEST_ASSERT(laser.armed, "The laser eyes did not arm")
+	ADD_TRAIT(patient, TRAIT_AQ_AUGMENTS_DISRUPTED, "test")
+	TEST_ASSERT(!laser.on_click(patient, aim, list()), "Disrupted laser eyes took the click")
+	TEST_ASSERT(COOLDOWN_FINISHED(laser, shot_cooldown), "Disrupted laser eyes fired")
+	laser.ui_action_click()
+	TEST_ASSERT(!laser.armed, "Disrupted laser eyes cannot be disarmed")
+	REMOVE_TRAIT(patient, TRAIT_AQ_AUGMENTS_DISRUPTED, "test")
+	laser.ui_action_click()
+	var/obj/item/pen/held_pen = allocate(/obj/item/pen)
+	patient.put_in_active_hand(held_pen)
+	TEST_ASSERT(!laser.on_click(patient, held_pen, list()), "Laser eyes fire at an item in hand")
+	TEST_ASSERT(COOLDOWN_FINISHED(laser, shot_cooldown), "Laser eyes fired at an item in hand")
+	COOLDOWN_START(laser, shot_cooldown, 6 SECONDS)
+	TEST_ASSERT(!laser.on_click(patient, aim, list()), "Laser eyes swallow clicks while cooling down")
+	laser.Remove(patient)
+
+	// I7: jeden ładunek na przejście, nic za zaryglowane drzwi, ponowne wszczepienie dopisuje dostępy
+	var/obj/item/implanter/aq_access/access_implanter = allocate(/obj/item/implanter/aq_access)
+	var/obj/item/card/id/medical_card = allocate(/obj/item/card/id)
+	medical_card.access = list(ACCESS_MEDICAL)
+	access_implanter.attackby(medical_card, patient)
+	var/obj/item/implant/aq_access/access = access_implanter.imp
+	patient.dropItemToGround(card)
+	access_implanter.attack(patient, patient)
+	TEST_ASSERT(access?.imp_in == patient, "The access implant did not go in")
+	var/obj/machinery/door/airlock/med_door = allocate(/obj/machinery/door/airlock)
+	med_door.req_access = list(ACCESS_MEDICAL)
+	var/uses_before = access.uses
+	TEST_ASSERT(med_door.allowed(patient) && med_door.allowed(patient), "The access implant did not open the door")
+	TEST_ASSERT_EQUAL(access.uses, uses_before - 1, "One pass through a door used more than one charge")
+	var/obj/machinery/door/airlock/bolted = allocate(/obj/machinery/door/airlock)
+	bolted.req_access = list(ACCESS_MEDICAL)
+	bolted.locked = TRUE
+	TEST_ASSERT(bolted.allowed(patient), "The access implant does not recognise a bolted door")
+	TEST_ASSERT_EQUAL(access.uses, uses_before - 1, "A bolted door used a charge")
+	var/obj/item/implanter/aq_access/second_implanter = allocate(/obj/item/implanter/aq_access)
+	var/obj/item/card/id/engine_card = allocate(/obj/item/card/id)
+	engine_card.access = list(ACCESS_ENGINE)
+	second_implanter.attackby(engine_card, patient)
+	second_implanter.attack(patient, patient)
+	TEST_ASSERT((ACCESS_MEDICAL in access.access) && (ACCESS_ENGINE in access.access), "Implanting again lost the accesses of the new card")
+	qdel(access)
+
+	// I8: Sandevistan i opaska uciskowa razem wracają do 1
+	var/mob/living/carbon/human/runner = allocate(/mob/living/carbon/human)
+	var/obj/item/organ/cyberimp/chest/spinal/aq_sandevistan/sandy = new()
+	sandy.Insert(runner)
+	var/obj/item/tourniquet/tourniquet = allocate(/obj/item/tourniquet)
+	tourniquet.attach(runner, BODY_ZONE_R_ARM)
+	sandy.ui_action_click()
+	tourniquet.detach(silent = TRUE)
+	sandy.ui_action_click()
+	TEST_ASSERT(abs(runner.next_move_modifier - 1) < 0.001, "Sandevistan and a tourniquet left the action speed at [runner.next_move_modifier]")
+
+	// I9: interfejs kabli nie ujawnia kabli losowanych
+	ADD_TRAIT(patient, TRAIT_AQ_WIRE_INTERFACE, "test")
+	var/list/airlock_wires = airlock.wires.ui_data(patient)
+	var/revealed = FALSE
+	for(var/list/wire as anything in airlock_wires["wires"])
+		if(wire["wire"])
+			revealed = TRUE
+	TEST_ASSERT(revealed, "The wire interface shows no airlock wires")
+	var/obj/machinery/syndicatebomb/empty/bomb = allocate(/obj/machinery/syndicatebomb/empty)
+	var/list/bomb_wires = bomb.wires.ui_data(patient)
+	for(var/list/wire as anything in bomb_wires["wires"])
+		TEST_ASSERT(!wire["wire"], "The wire interface revealed a randomised wire")
+	REMOVE_TRAIT(patient, TRAIT_AQ_WIRE_INTERFACE, "test")
+
+	// Magnetyczne stopy: drugi implant przejmuje przycisk, usunięcie implantu zdejmuje magnesy
+	var/mob/living/carbon/human/walker = allocate(/mob/living/carbon/human)
+	var/obj/item/organ/cyberimp/leg/aq_magboot/magboot = new()
+	magboot.Insert(walker)
+	var/obj/item/organ/cyberimp/leg/aq_magboot/spare = new()
+	spare.zone = BODY_ZONE_L_LEG
+	spare.SetSlotFromZone()
+	spare.Insert(walker)
+	magboot.Remove(walker)
+	qdel(magboot)
+	TEST_ASSERT(spare.maglock?.owner == walker, "The second magboot implant did not take over the toggle")
+	spare.maglock.Trigger()
+	TEST_ASSERT(HAS_TRAIT(walker, TRAIT_NEGATES_GRAVITY), "The second magboot implant did not lock")
+	qdel(spare)
+	TEST_ASSERT(!HAS_TRAIT(walker, TRAIT_NEGATES_GRAVITY), "The magnets stayed on after the implant was destroyed")
+
+	// Swój-obcy: strzał wprost w sojusznika trafia
+	var/mob/living/carbon/human/ally = allocate(/mob/living/carbon/human)
+	var/mob/living/carbon/human/shooter = allocate(/mob/living/carbon/human)
+	TEST_ASSERT(aq_self_implant(ally, /obj/item/implanter/aq_iff), "The IFF implant did not go in")
+	TEST_ASSERT(aq_self_implant(shooter, /obj/item/implanter/aq_iff), "The IFF implant did not go in the shooter")
+	var/obj/item/projectile/bullet = allocate(/obj/item/projectile/bullet)
+	bullet.firer = shooter
+	TEST_ASSERT(!bullet.can_hit_target(ally, ignore_loc = TRUE), "A stray allied bullet hit the IFF wearer")
+	bullet.original = ally
+	TEST_ASSERT(bullet.can_hit_target(ally, ignore_loc = TRUE), "A shot aimed straight at the IFF wearer missed")
+
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL

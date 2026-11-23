@@ -11,7 +11,7 @@
 // Interfejs kabli (Paradise /obj/item/organ/internal/cyberimp/brain/wire_interface)
 /obj/item/organ/cyberimp/brain/aq_wire_interface
 	name = "implant interfejsu kabli"
-	desc = "Implant mózgu, który wyczuwa prądy w przewodach: przy hakowaniu maszyny widać funkcję każdego kabla."
+	desc = "Implant mózgu, który wyczuwa prądy w przewodach: przy hakowaniu maszyny widać funkcję kabli. Nie pomaga przy losowym okablowaniu (bomby, cyborgi)."
 	icon = AQ_ROBOTYKA_ICON
 	icon_state = "brain_implant_connector"
 	implant_overlay = null
@@ -330,6 +330,8 @@
 		return
 	var/datum/component/holomap/holo = AddComponent(/datum/component/holomap)
 	holo.holobutton.name = "Mapa okrętu"
+	// narząd w ciele leży w nullspace, więc przycisk bierze nosiciela zamiast holder.loc
+	holo.holobutton.holder = M
 	holo.holobutton.Grant(M)
 
 /obj/item/organ/cyberimp/eyes/aq_map/Remove(mob/living/carbon/M, special = FALSE)
@@ -337,6 +339,8 @@
 	if(holo)
 		if(holo.holomap_visible && M)
 			holo.deactivate_holomap(M)
+		// Destroy() komponentu szuka nosiciela przez narząd, którego już nie znajdzie
+		holo.holobutton?.Remove(M)
 		qdel(holo)
 	return ..()
 
@@ -358,9 +362,13 @@
 	COOLDOWN_DECLARE(shot_cooldown)
 
 /obj/item/organ/eyes/robotic/aq_laser/ui_action_click()
+	// rozbroić da się zawsze, także zakłócone albo zepsute oczy
+	if(armed)
+		set_armed(FALSE)
+		return
 	if(!aq_augment_usable())
 		return
-	set_armed(!armed)
+	set_armed(TRUE)
 
 /obj/item/organ/eyes/robotic/aq_laser/proc/set_armed(new_state)
 	if(!owner)
@@ -385,10 +393,14 @@
 		return
 	if(source.stat || source.incapacitated())
 		return
-	. = COMSIG_MOB_CANCEL_CLICKON
-	if(!COOLDOWN_FINISHED(src, shot_cooldown))
-		to_chat(source, span_warning("Cyberoczy jeszcze się chłodzą."))
+	// strzał tylko w coś na mapie w polu widzenia: klik w ekwipunek, HUD albo przedmiot w ręce działa jak zwykle
+	var/turf/target_turf = get_turf(target)
+	if(!target_turf || !(isturf(target) || isturf(target.loc)) || !can_see(source, target_turf, 9))
 		return
+	// chłodzenie, zakłócacz i zepsute oczy nie blokują zwykłych kliknięć
+	if(!COOLDOWN_FINISHED(src, shot_cooldown) || !aq_augment_usable(TRUE))
+		return
+	. = COMSIG_MOB_CANCEL_CLICKON
 	if(source.is_eyes_covered())
 		to_chat(source, span_warning("Coś zasłania ci oczy."))
 		return
@@ -487,18 +499,19 @@
 		to_chat(user, span_warning("Port serwisowy [owner] nie odpowiada."))
 		return
 	var/list/lines = list("<b>Diagnoza portu EMSI: [owner]</b>")
-	var/total_cost = 0
 	for(var/obj/item/organ/organ as anything in owner.internal_organs)
 		if(organ.status != ORGAN_ROBOTIC)
 			continue
-		total_cost += organ.aq_cyberpsychosis_cost
+		var/organ_cost = organ.aq_get_cyberpsychosis_cost()
 		var/health = organ.maxHealth ? round(100 - (organ.damage / organ.maxHealth) * 100) : 100
-		lines += "[capitalize(organ.name)]: sprawność [health]%[organ.organ_flags & ORGAN_FAILING ? ", NIEWYDOLNY" : ""][organ.aq_cyberpsychosis_cost ? ", obciążenie [organ.aq_cyberpsychosis_cost]" : ""]"
+		lines += "[capitalize(organ.name)]: sprawność [health]%[organ.organ_flags & ORGAN_FAILING ? ", NIEWYDOLNY" : ""][organ_cost ? ", obciążenie [organ_cost]" : ""]"
 	for(var/obj/item/bodypart/part as anything in owner.bodyparts)
 		if(IS_ORGANIC_LIMB(part))
 			continue
-		lines += "Proteza [part.name]: obrażenia [round(part.brute_dam)] / poparzenia [round(part.burn_dam)]"
-	lines += "Łączne obciążenie augmentami: [total_cost]"
+		var/part_cost = part.aq_get_cyberpsychosis_cost()
+		lines += "Proteza [part.name]: obrażenia [round(part.brute_dam)] / poparzenia [round(part.burn_dam)][part_cost ? ", obciążenie [part_cost]" : ""]"
+	// suma liczona tak samo jak przez mechanikę cyberpsychozy
+	lines += "Łączne obciążenie augmentami: [owner.aq_cyberpsychosis_load()]"
 	to_chat(user, span_notice(jointext(lines, "<br>")))
 	playsound(owner, 'sound/machines/ping.ogg', 30, TRUE)
 
