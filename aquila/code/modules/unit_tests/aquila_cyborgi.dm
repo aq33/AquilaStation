@@ -415,9 +415,183 @@
 
 	TEST_ASSERT(lethal_at_red, "Przy czerwonym alarmie Glock nie przełączył się na ostrą amunicję")
 	TEST_ASSERT(lethal_emagged, "Zhakowany cyborg nie może strzelać ostrą amunicją")
-	if(!allowed_green)
-		TEST_ASSERT(!lethal_at_green, "Przy zielonym alarmie Glock przełączył się na ostrą amunicję")
-		TEST_ASSERT(!fired, "Glock strzelił ostrą amunicją po odwołaniu alarmu")
-		TEST_ASSERT(!lethal_after, "Po odwołaniu alarmu Glock nie wrócił do gumowych kul")
+	TEST_ASSERT(!allowed_green, "Ostra amunicja dozwolona przy zielonym alarmie")
+	TEST_ASSERT(!lethal_at_green, "Przy zielonym alarmie Glock przełączył się na ostrą amunicję")
+	TEST_ASSERT(!fired, "Glock strzelił ostrą amunicją po odwołaniu alarmu")
+	TEST_ASSERT(!lethal_after, "Po odwołaniu alarmu Glock nie wrócił do gumowych kul")
+
+/// Skiny modułów Aquili wzięte z robots.dmi (Roomba, Noir, Securitron...) zostają w pliku core, a nie lądują w pliku modułu bez tego stanu
+/datum/unit_test/aquila_cyborg_skin_icons
+
+/datum/unit_test/aquila_cyborg_skin_icons/Run()
+	var/mob/living/silicon/robot/cyborg = allocate(/mob/living/silicon/robot)
+	var/obj/item/robot_module/old_module = cyborg.module
+	var/list/crew_modules = list()
+	aquila_add_cyborg_modules(crew_modules)
+	for(var/key in crew_modules)
+		var/module_type = crew_modules[key]
+		// Bez skina (moduł z wybieraka albo od admina): wygląd z pliku modułu Aquili
+		var/obj/item/robot_module/plain = new module_type(cyborg)
+		var/list/skins = plain.borg_skins.Copy()
+		cyborg.icon = 'icons/mob/robots.dmi'
+		plain.be_transformed_to(old_module, TRUE)
+		TEST_ASSERT(plain.cyborg_base_icon in icon_states(cyborg.icon), "[module_type] bez skina: brak stanu [plain.cyborg_base_icon] w [cyborg.icon]")
+		qdel(plain)
+		// Każdy skin tak, jak ustawia go core po wyborze z kółka (SKIN_ICON albo zostaje robots.dmi z transform_to)
+		for(var/skin in skins)
+			var/list/details = skins[skin]
+			var/obj/item/robot_module/skinned = new module_type(cyborg)
+			skinned.cyborg_base_icon = details[SKIN_ICON_STATE]
+			cyborg.icon = details[SKIN_ICON] || 'icons/mob/robots.dmi'
+			skinned.be_transformed_to(old_module, TRUE)
+			TEST_ASSERT(skinned.cyborg_base_icon in icon_states(cyborg.icon), "[module_type], skin [skin]: cyborg niewidzialny, brak stanu [skinned.cyborg_base_icon] w [cyborg.icon]")
+			qdel(skinned)
+
+/// Event „Zagubiony cyborg” stawia uśpioną skorupę na statku
+/datum/unit_test/aquila_lost_cyborg_event
+
+/datum/unit_test/aquila_lost_cyborg_event/Run()
+	var/list/before = list()
+	for(var/spawner_name in GLOB.mob_spawners)
+		for(var/obj/effect/mob_spawn/aquila_lost_cyborg/shell in GLOB.mob_spawners[spawner_name])
+			before += shell
+	var/datum/round_event/aquila_lost_cyborg/event = new(FALSE)
+	event.kill()
+	event.start()
+	var/obj/effect/mob_spawn/aquila_lost_cyborg/new_shell
+	for(var/spawner_name in GLOB.mob_spawners)
+		for(var/obj/effect/mob_spawn/aquila_lost_cyborg/shell in GLOB.mob_spawners[spawner_name])
+			if(!(shell in before))
+				new_shell = shell
+	TEST_ASSERT(new_shell, "Event zagubionego cyborga nie postawił skorupy")
+	TEST_ASSERT(is_station_level(new_shell.z), "Skorupa zagubionego cyborga stoi poza statkiem")
+	qdel(new_shell)
+
+/// Ulepszenia: odmowa przed wyborem modułu, odmowa drugiego przełącznika tego samego typu, przełączniki gasną po zmianie modułu
+/datum/unit_test/aquila_cyborg_upgrade_guards
+
+/datum/unit_test/aquila_cyborg_upgrade_guards/Run()
+	// Moduł domyślny znika przy wyborze modułu razem z narzędziami ulepszeń
+	var/mob/living/silicon/robot/fresh = allocate(/mob/living/silicon/robot)
+	var/obj/item/borg/upgrade/aquila/gps/early_gps = allocate(/obj/item/borg/upgrade/aquila/gps)
+	TEST_ASSERT(!early_gps.action(fresh, fresh), "GPS zamontował się przed wyborem modułu")
+	TEST_ASSERT(!fresh.aq_find_module_item(/obj/item/gps/cyborg), "GPS dodał narzędzie do modułu domyślnego")
+	var/obj/item/borg/upgrade/aquila/toggle/magnetic_traction/early_traction = allocate(/obj/item/borg/upgrade/aquila/toggle/magnetic_traction)
+	TEST_ASSERT(!early_traction.action(fresh, fresh), "Przyczepy zamontowały się przed wyborem modułu")
+	TEST_ASSERT(!early_traction.owner && !early_traction.toggle_action, "Odrzucone przyczepy dały przycisk akcji")
+
+	// Drugi naświetlacz odmawia, a lampa wraca do poprzedniej mocy po wyłączeniu
+	var/mob/living/silicon/robot/explorer = aq_cyborg_with_module(/obj/item/robot_module/exploration)
+	var/intensity_before = explorer.lamp_intensity
+	var/obj/item/borg/upgrade/aquila/toggle/floodlight/light = allocate(/obj/item/borg/upgrade/aquila/toggle/floodlight)
+	TEST_ASSERT(light.action(explorer, explorer), "Naświetlacz nie wszedł do modułu eksploracyjnego")
+	light.forceMove(explorer)
+	explorer.upgrades += light
+	var/obj/item/borg/upgrade/aquila/toggle/floodlight/second_light = allocate(/obj/item/borg/upgrade/aquila/toggle/floodlight)
+	TEST_ASSERT(!second_light.action(explorer, explorer), "Drugi naświetlacz dał się zamontować")
+	light.aq_set_active(TRUE)
+	light.aq_set_active(FALSE)
+	TEST_ASSERT(explorer.lamp_intensity == intensity_before, "Lampa została na [explorer.lamp_intensity] po wyłączeniu naświetlacza")
+
+	// Zmiana modułu kasuje magnesy, więc włączone przyczepy gasną i przestają pobierać energię
+	var/mob/living/silicon/robot/walker = aq_cyborg_with_module(/obj/item/robot_module/standard)
+	var/obj/item/borg/upgrade/aquila/toggle/magnetic_traction/traction = allocate(/obj/item/borg/upgrade/aquila/toggle/magnetic_traction)
+	TEST_ASSERT(traction.action(walker, walker), "Przyczepy nie weszły do modułu standardowego")
+	traction.forceMove(walker)
+	walker.upgrades += traction
+	traction.aq_set_active(TRUE)
+	var/obj/item/robot_module/old_module = walker.module
+	var/obj/item/robot_module/new_module = new /obj/item/robot_module/medical(walker)
+	new_module.robot = walker
+	new_module.be_transformed_to(old_module, TRUE)
+	walker.module = new_module
+	walker.update_module_innate()
+	new_module.rebuild_modules()
+	qdel(old_module)
+	TEST_ASSERT(!traction.active, "Przyczepy zostały włączone po zmianie modułu")
+	TEST_ASSERT(!walker.magpulse, "Po zmianie modułu zostały magnesy")
+
+/// Detektyw: kreda się nie zużywa, a w module nie ma wyciora do luf działa
+/datum/unit_test/aquila_cyborg_detective_tools
+
+/datum/unit_test/aquila_cyborg_detective_tools/Run()
+	var/mob/living/silicon/robot/detective = aq_cyborg_with_module(/obj/item/robot_module/detective)
+	TEST_ASSERT(!detective.aq_find_module_item(/obj/item/swabber), "Moduł Detektywa ma wycior do luf działa")
+	var/obj/item/toy/crayon/white/chalk/chalk = detective.aq_find_module_item(/obj/item/toy/crayon/white/chalk)
+	TEST_ASSERT(chalk, "Moduł Detektywa nie ma kredy")
+	for(var/i in 1 to 60)
+		TEST_ASSERT(chalk.use_charges(detective, 1), "Kreda cyborga skończyła się po [i - 1] użyciach")
+		chalk.check_empty(detective)
+	TEST_ASSERT(!QDELETED(chalk) && (chalk in detective.module.modules), "Kreda cyborga zniknęła z modułu")
+
+/// Holonosze złożone przez człowieka gasną i wracają do doku cyborga, zamiast dawać człowiekowi nowy pełny dok
+/datum/unit_test/aquila_cyborg_holo_stretcher
+
+/datum/unit_test/aquila_cyborg_holo_stretcher/Run()
+	var/mob/living/silicon/robot/medic = aq_cyborg_with_module(/obj/item/robot_module/medical)
+	var/obj/item/borg/upgrade/aquila/holo_stretcher/upgrade = allocate(/obj/item/borg/upgrade/aquila/holo_stretcher)
+	TEST_ASSERT(upgrade.action(medic, medic), "Holonosze nie weszły do modułu medycznego")
+	var/obj/item/roller/robo/holo/dock = medic.aq_find_module_item(/obj/item/roller/robo/holo)
+	var/turf/spot = run_loc_floor_top_right
+	var/obj/structure/bed/roller/holo/bed = dock.loaded
+	dock.deploy_roller(medic, spot)
+	TEST_ASSERT(bed.loc == spot && !dock.loaded, "Holonosze się nie rozłożyły")
+	var/mob/living/carbon/human/helper = allocate(/mob/living/carbon/human, spot)
+	usr = helper
+	bed.MouseDrop(helper)
+	usr = null
+	TEST_ASSERT(QDELETED(bed), "Człowiek nie złożył holonoszy")
+	for(var/obj/item/held in helper.held_items)
+		TEST_ASSERT(!istype(held, /obj/item/roller), "Złożone holonosze dały człowiekowi [held]")
+	TEST_ASSERT(!(locate(/obj/item/roller) in spot), "Złożone holonosze zostawiły złożone nosze na podłodze")
+	TEST_ASSERT(istype(dock.loaded, /obj/structure/bed/roller/holo), "Zgaszone holonosze nie wróciły do doku cyborga")
+
+/// Kabel zasilania daje tyle, ile zabrał z APC, a oszczędzacz nie działa przy przekazywaniu energii (bez energii z niczego)
+/datum/unit_test/aquila_cyborg_power_transfer
+
+/datum/unit_test/aquila_cyborg_power_transfer/Run()
+	var/mob/living/silicon/robot/cyborg = aq_cyborg_with_module(/obj/item/robot_module/engineering)
+	cyborg.aq_power_coefficient = 0.7 // oszczędzacz energii
+	var/obj/item/stock_parts/cell/own_cell = cyborg.cell
+	own_cell.charge = own_cell.maxcharge / 2
+
+	// APC z 30% ładunku i progiem 25%: do wzięcia jest tylko 5% jego pojemności
+	var/obj/machinery/power/apc/apc = allocate(/obj/machinery/power/apc, run_loc_floor_top_right)
+	apc.end_processing()
+	if(apc.terminal)
+		apc.terminal.master = null
+		QDEL_NULL(apc.terminal)
+	QDEL_NULL(apc.cell)
+	apc.cell = new /obj/item/stock_parts/cell/high(apc)
+	apc.cell.charge = apc.cell.maxcharge * 0.3
+	var/obj/item/borg/charger/aquila_connector/connector = allocate(/obj/item/borg/charger/aquila_connector)
+	var/apc_before = apc.cell.charge
+	var/cyborg_before = own_cell.charge
+	var/got = connector.aq_draw(cyborg, apc)
+	var/apc_lost = apc_before - apc.cell.charge
+	var/cyborg_gained = own_cell.charge - cyborg_before
+	TEST_ASSERT(got > 0 && got == apc_lost, "Kabel zgłosił [got] przy poborze [apc_lost] z APC")
+	TEST_ASSERT(cyborg_gained == apc_lost, "Cyborg dostał [cyborg_gained], a APC straciło [apc_lost]")
+
+	// Induktor: cyborg traci dokładnie tyle, ile dostało ogniwo, mimo oszczędzacza
+	var/obj/item/inducer/cyborg/inducer = allocate(/obj/item/inducer/cyborg)
+	inducer.cell = own_cell
+	var/obj/item/stock_parts/cell/target = allocate(/obj/item/stock_parts/cell/high)
+	target.charge = 0
+	cyborg_before = own_cell.charge
+	inducer.induce(target, 1)
+	inducer.cell = null
+	TEST_ASSERT(target.charge > 0, "Induktor nie naładował ogniwa")
+	TEST_ASSERT(cyborg_before - own_cell.charge == target.charge, "Induktor zabrał cyborgowi [cyborg_before - own_cell.charge] za [target.charge] energii")
+	TEST_ASSERT(!cyborg.aq_power_transfers, "Licznik przekazywania energii nie wrócił do zera")
+	// Zużycie własne dalej z oszczędzaczem
+	cyborg_before = own_cell.charge
+	own_cell.use(1000)
+	TEST_ASSERT(round(cyborg_before - own_cell.charge) == 700, "Oszczędzacz przestał działać przy zużyciu własnym")
+
+	// Ogniwo wyjęte w trakcie pobierania: cykl kończy się bez błędu
+	cyborg.cell = null
+	TEST_ASSERT(!connector.aq_draw(cyborg, apc), "Kabel pobrał energię do cyborga bez ogniwa")
+	cyborg.cell = own_cell
 
 #undef TEST_ASSERT
