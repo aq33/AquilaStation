@@ -583,7 +583,8 @@
 	aq_seat_mech_pilot(mech)
 	var/obj/item/mecha_parts/mecha_equipment/aq_autolathe/lathe = allocate(/obj/item/mecha_parts/mecha_equipment/aq_autolathe)
 	lathe.attach(mech)
-	var/datum/design/design = allocate(/datum/design)
+	var/datum/design/design = new /datum/design
+	allocated += design
 	design.name = "test"
 	design.build_path = /obj/item/stack/rods
 	design.materials = list(MAT_CATEGORY_RIGID = 500)
