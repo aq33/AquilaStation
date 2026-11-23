@@ -567,6 +567,32 @@
 		vine.spread()
 	TEST_ASSERT_EQUAL(length(controller.vines), PLANET_SPACEVINE_CLUSTER_CAP, "A capped kudzu cluster spread on the planet")
 
+	// Suma wspólna liczy pnącza wszystkich kęp na planetach, a kępa na okręcie do niej nie wchodzi
+	var/turf/second_spot
+	for(var/turf/open/T in surface.inner_turfs())
+		if(T != ground && !is_planet_hazard_turf(T) && !(locate(/obj/structure/spacevine) in T))
+			second_spot = T
+			break
+	TEST_ASSERT(second_spot, "No free planet turf for a second kudzu cluster")
+	var/datum/spacevine_controller/second = new(second_spot, list(), 50, 7)
+	STOP_PROCESSING(SSobj, second)
+	var/datum/spacevine_controller/ship_cluster = new(run_loc_floor_bottom_left, list(), 50, 7)
+	STOP_PROCESSING(SSobj, ship_cluster)
+	GLOB.spacevine_total_counted = -1
+	TEST_ASSERT_EQUAL(spacevine_total(), PLANET_SPACEVINE_CLUSTER_CAP + 1, "The planet kudzu total doesn't add up both planet clusters (or counts the ship)")
+	ship_cluster.spawn_spacevine_piece(get_step(run_loc_floor_bottom_left, EAST))
+	TEST_ASSERT_EQUAL(spacevine_total(), PLANET_SPACEVINE_CLUSTER_CAP + 1, "A vine grown aboard the ship raised the planet kudzu total")
+	for(var/obj/structure/spacevine/vine as anything in ship_cluster.vines.Copy())
+		var/turf/ship_turf = get_turf(vine)
+		qdel(vine)
+		for(var/obj/item/plant_seeds/preset/kudzu/leftover in ship_turf)
+			qdel(leftover)
+	for(var/obj/structure/spacevine/vine as anything in second.vines.Copy())
+		var/turf/second_turf = get_turf(vine)
+		qdel(vine)
+		for(var/obj/item/plant_seeds/preset/kudzu/leftover in second_turf)
+			qdel(leftover)
+
 	// Pełny limit wspólny (suma zapamiętana na ten tick): nasiona na planecie się nie przyjmują
 	var/old_total = GLOB.spacevine_total
 	GLOB.spacevine_total = PLANET_SPACEVINE_GLOBAL_CAP

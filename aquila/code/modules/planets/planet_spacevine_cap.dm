@@ -9,7 +9,7 @@
 
 /// Wszystkie żywe kontrolery kudzu (do limitu wspólnego)
 GLOBAL_LIST_EMPTY(spacevine_controllers)
-/// Zapamiętana suma pnączy wszystkich kontrolerów, patrz spacevine_total()
+/// Zapamiętana suma pnączy na powierzchniach planet, patrz spacevine_total()
 GLOBAL_VAR_INIT(spacevine_total, 0)
 /// world.time ostatniego przeliczenia sumy
 GLOBAL_VAR_INIT(spacevine_total_counted, -1)
@@ -18,13 +18,16 @@ GLOBAL_VAR_INIT(spacevine_total_counted, -1)
 /proc/is_planet_surface_turf(turf/T)
 	return T && istype(SSmapping.used_turfs[T], /datum/turf_reservation/planet)
 
-/// Suma pnączy wszystkich kontrolerów. Przeliczana raz na tick, więc pnącze usunięte z pominięciem VineDestroyed()
-/// nie zostaje w sumie. Rozrost w tym samym ticku podbija ją od razu, żeby wiele kęp naraz nie przeskoczyło limitu.
+/// Suma pnączy na powierzchniach planet (pnącza na okręcie nie wchodzą do limitu planetarnego). Przeliczana raz na tick,
+/// więc pnącze usunięte z pominięciem VineDestroyed() nie zostaje w sumie. Rozrost w tym samym ticku podbija ją od razu,
+/// żeby wiele kęp naraz nie przeskoczyło limitu.
 /proc/spacevine_total()
 	if(GLOB.spacevine_total_counted != world.time)
 		var/total = 0
 		for(var/datum/spacevine_controller/controller as anything in GLOB.spacevine_controllers)
-			total += length(controller.vines)
+			for(var/obj/structure/spacevine/vine as anything in controller.vines)
+				if(is_planet_surface_turf(vine.loc))
+					total++
 		GLOB.spacevine_total = total
 		GLOB.spacevine_total_counted = world.time
 	return GLOB.spacevine_total
@@ -40,7 +43,8 @@ GLOBAL_VAR_INIT(spacevine_total_counted, -1)
 /datum/spacevine_controller/spawn_spacevine_piece(turf/location, obj/structure/spacevine/parent, list/muts)
 	var/before = length(vines)
 	. = ..()
-	GLOB.spacevine_total += length(vines) - before
+	if(is_planet_surface_turf(location))
+		GLOB.spacevine_total += length(vines) - before
 
 /// Czy kępa może się rozrastać dalej na tym polu
 /datum/spacevine_controller/proc/can_spread_from(turf/T)
