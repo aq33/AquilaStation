@@ -28013,5 +28013,6 @@
 "Przepisy na jedzenie i trunki: stół, gotowanie krok po kroku, procesor, mikrofalówka, grill, piekarnik, krojenie i browar, z wyszukiwarką po daniu albo składniku.": "Food and drink recipes: table, step-by-step cooking, processor, microwave, grill, oven, cutting and brewing, searchable by dish or ingredient.",
 "PR 675: browar w beczce": "PR 675: barrel brewery",
 "Zakupy spadną od razu w kapsule pod twoje nogi, około trzy razy drożej niż ceny z listy. Płaci budżet działu usług.": "Your groceries drop at your feet in a pod right away, about three times the list prices. Paid by the service department budget.",
-"Zakupy przylecą w zamrażarce najbliższym promem zaopatrzenia, mniej więcej po cenach z listy (łączna kwota jest zaokrąglana, dokładną widać na przycisku). Płaci budżet działu usług.": "Your groceries arrive in a freezer on the next supply shuttle, at roughly the list prices (the total is rounded, the exact amount is on the button). Paid by the service department budget."
+"Zakupy przylecą w zamrażarce najbliższym promem zaopatrzenia, mniej więcej po cenach z listy (łączna kwota jest zaokrąglana, dokładną widać na przycisku). Płaci budżet działu usług.": "Your groceries arrive in a freezer on the next supply shuttle, at roughly the list prices (the total is rounded, the exact amount is on the button). Paid by the service department budget.",
+"Ekspres: ${express_total}": "Express: ${express_total}"
 }

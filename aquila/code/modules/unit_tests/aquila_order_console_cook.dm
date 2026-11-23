@@ -52,7 +52,10 @@
 	for(var/datum/orderable_item/item as anything in list(potato, tomato, carrot))
 		console.ui_act("cart_set", list("target" = REF(item), "amt" = 20), ui)
 	// 60 sztuk po 20 kr, 10 za darmo: 50 × 20 × 0,65 = 650 kr
-	TEST_ASSERT_EQUAL(round(console.get_total_cost() * console.cargo_cost_multiplier), 650, "Wrong cart cost with the voucher")
+	TEST_ASSERT_EQUAL(console.get_final_cost(FALSE), 650, "Wrong cart cost with the voucher")
+	var/list/window_data = console.ui_data(cook)
+	var/shown_cost = window_data["cargo_total"]
+
 
 	var/orders_before = length(SSshuttle.shoppinglist)
 	card.access = list()
@@ -81,6 +84,7 @@
 	TEST_ASSERT_EQUAL(length(new_order.pack.contains), 60, "The order does not contain every bought item")
 	TEST_ASSERT_EQUAL(new_order.pack.crate_type, /obj/structure/closet/crate/freezer, "Kitchen groceries should come in a freezer")
 	TEST_ASSERT_EQUAL(budget_after, 5000 - 650, "The service budget paid the wrong amount")
+	TEST_ASSERT_EQUAL(5000 - budget_after, shown_cost, "The order button showed a different amount than the console charged")
 	TEST_ASSERT_EQUAL(personal_after, 1000, "The cook's personal account was charged")
 	TEST_ASSERT_EQUAL(console.free_uses, 0, "The voucher's free items were not used up")
 	TEST_ASSERT(!length(console.grocery_list), "The cart was not emptied after the purchase")

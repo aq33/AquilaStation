@@ -66,6 +66,10 @@ GLOBAL_LIST_EMPTY(order_console_products)
 			cost += grocery_list[item] * item.cost_per_order
 	return cost
 
+/// Kwota do zapłaty za koszyk; okno pokazuje dokładnie tę liczbę, żeby nie liczyć jej drugi raz po stronie TGUI
+/obj/machinery/computer/order_console/proc/get_final_cost(express = FALSE)
+	return round(get_total_cost() * (express ? express_cost_multiplier : cargo_cost_multiplier))
+
 /obj/machinery/computer/order_console/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
@@ -83,6 +87,8 @@ GLOBAL_LIST_EMPTY(order_console_products)
 /obj/machinery/computer/order_console/ui_data(mob/user)
 	var/list/data = list()
 	data["total_cost"] = get_total_cost()
+	data["cargo_total"] = get_final_cost(FALSE)
+	data["express_total"] = get_final_cost(TRUE)
 	data["free_uses"] = free_uses
 	data["off_cooldown"] = COOLDOWN_FINISHED(src, order_cooldown)
 	data["item_amts"] = list()
@@ -208,7 +214,7 @@ GLOBAL_LIST_EMPTY(order_console_products)
  * and deducts the cost if they can.
  */
 /obj/machinery/computer/order_console/proc/purchase_items(obj/item/card/id/card, express = FALSE)
-	var/final_cost = round(get_total_cost() * (express ? express_cost_multiplier : cargo_cost_multiplier))
+	var/final_cost = get_final_cost(express)
 	if(final_cost > 0 && !subtract_points(final_cost, card))
 		say("Przykro mi, ale masz za mało [credit_type].")
 		return FALSE

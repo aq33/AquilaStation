@@ -29008,6 +29008,7 @@
 "Eksport": "Export",
 "Eksportuj na dysk": "Export to disk",
 "Ekspres do kawy Modello 3, który parzy kawę i utrzymuje ją w idealnej temperaturze 80°C. Produkcja Piccionaia Home Appliances.": "A Modello 3 Coffeemaker that brews coffee and holds it at the perfect temperature of 176 fahrenheit. Made by Piccionaia Home Appliances.",
+"Ekspres: ${express_total}": "Express: ${express_total}",
 "Ekspres: ${total_cost * express_cost_multiplier}": "Express: ${total_cost * express_cost_multiplier}",
 "Ekstra napiwek dla ciebie, przyjacielu.": "An extra tip for you my friend.",
 "Ekstrakcja": "Extract",

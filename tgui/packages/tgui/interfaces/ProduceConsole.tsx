@@ -51,6 +51,8 @@ type Data = {
   points_label?: string;
   purchase_tooltip: string;
   total_cost: number;
+  cargo_total: number;
+  express_total: number;
   free_uses: number | null;
 };
 
@@ -229,14 +231,13 @@ function CheckoutTab(props) {
     forced_express,
     cargo_value,
     order_datums,
-    total_cost,
-    cargo_cost_multiplier,
-    express_cost_multiplier,
+    cargo_total,
+    express_total,
     item_amts,
     free_uses,
   } = data;
 
-  const total_cargo_cost = Math.floor(total_cost * cargo_cost_multiplier);
+  const total_cargo_cost = cargo_total;
 
   const total_item_count = item_amts.reduce(
     (total, item) => total + item.amt,
@@ -384,7 +385,7 @@ function CheckoutTab(props) {
                 tooltipPosition="top-start"
                 onClick={() => act('express')}
               >
-                Ekspres: {total_cost * express_cost_multiplier}{' '}
+                Ekspres: {express_total}{' '}
                 <CreditIcon credit_type={credit_type} color="black" />
               </Button>
             </Stack.Item>

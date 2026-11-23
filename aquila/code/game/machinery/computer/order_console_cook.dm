@@ -72,7 +72,7 @@
 		say("Brak dostępu! Zamawiać może tylko kuchnia albo bar.")
 		return TRUE
 	// okno blokuje zwykłą dostawę poniżej minimum, tu pilnujemy tego samego po stronie serwera
-	if(action == "purchase" && round(get_total_cost() * cargo_cost_multiplier) < minimum_order_value)
+	if(action == "purchase" && get_final_cost(FALSE) < minimum_order_value)
 		return TRUE
 	return ..()
 
