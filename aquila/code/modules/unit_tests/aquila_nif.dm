@@ -64,6 +64,7 @@
 	TEST_ASSERT(!patient.GetComponent(/datum/component/nif_examine), "The NIF examine text stayed after removal")
 	TEST_ASSERT(patient.physiology.hunger_mod == hunger_before, "Removing the NIF did not restore hunger")
 	TEST_ASSERT(!patient.getorganslot(ORGAN_SLOT_BRAIN_NIF), "The NIF slot is still taken")
+	TEST_ASSERT(!nif.linked_mob, "The removed NIF still holds its former host")
 	qdel(nif)
 
 	// Zniszczenie wszczepionego NIF-u z włączonym programem też sprząta ciało nosiciela
@@ -95,6 +96,7 @@
 	foreign.stored_ckey = "aq_test_other_owner"
 	TEST_ASSERT(!foreign.Insert(patient), "A NIF bound to someone else went in")
 	TEST_ASSERT(patient.getorganslot(ORGAN_SLOT_BRAIN_NIF) == emp_nif, "A refused foreign NIF pushed out the host's own NIF")
+	TEST_ASSERT(isturf(foreign.loc), "A refused NIF was lost in nullspace instead of dropping to the floor")
 	foreign.linked_mob = null
 	qdel(foreign)
 	emp_nif.Remove(patient)
@@ -106,7 +108,21 @@
 	fresh.calibration_duration = world.time
 	fresh.perform_calibration()
 	TEST_ASSERT(fresh.is_calibrated && patient.find_nifsoft(/datum/nifsoft/soul_poem), "The preinstalled NIFSoft did not install after calibration")
+	// identyfikator nadawcy wersów trafia do okien innych graczy, więc jest anonimowy (nie ckey ani ref nosiciela)
+	var/datum/nifsoft/soul_poem/poem = patient.find_nifsoft(/datum/nifsoft/soul_poem)
+	TEST_ASSERT(poem.transmitted_identifier && poem.transmitted_identifier != patient.ckey && poem.transmitted_identifier != REF(patient), "The Soul Poem sender identifier points at the player")
 	fresh.Remove(patient)
 	qdel(fresh)
+
+	// niedokończona kalibracja zaczyna się od nowa po ponownym wszczepieniu
+	var/obj/item/organ/cyberimp/nif/standard/restart = new()
+	restart.Insert(patient)
+	restart.perform_calibration()
+	TEST_ASSERT(restart.calibration_duration, "The calibration did not start counting")
+	restart.Remove(patient)
+	restart.Insert(patient)
+	TEST_ASSERT(restart.calibrating && !restart.is_calibrated && !restart.calibration_duration, "An unfinished calibration did not start over after reimplanting")
+	restart.Remove(patient)
+	qdel(restart)
 
 #undef TEST_ASSERT
