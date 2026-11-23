@@ -103,8 +103,12 @@
 		if(istype(wall, /turf/closed/indestructible/dropship/sabre_window))
 			windows++
 	TEST_ASSERT_EQUAL(windows, 7, "The Sabre cockpit should have seven windows")
-	// Przezroczyste brzegi wycinków kadłuba (zaokrąglony przód) pokazują to, na czym stoi prom, a nie czarne pole
-	sleep(2)
+	// Przezroczyste brzegi wycinków kadłuba (zaokrąglony przód) pokazują to, na czym stoi prom, a nie czarne pole.
+	// Podkład wstawia timer z register(): tuż po starcie rundy SStimer potrafi się spóźnić o kilka ticków (dylatacja
+	// czasu w CI), więc czekamy na sam podkład, a nie stałą liczbę ticków
+	timeout = world.time + 5 SECONDS
+	while(!planet_test_hull_front_underlaid(shuttle_port) && world.time < timeout)
+		sleep(1)
 	TEST_ASSERT(planet_test_hull_front_underlaid(shuttle_port), "The see-through front of the Sabre hull shows nothing under it in the hangar")
 	sabre.set_fuel(500)
 	TEST_ASSERT(sabre.shuttle_launch(), "The Sabre didn't launch")
