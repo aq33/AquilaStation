@@ -447,6 +447,9 @@
 /obj/structure/extinguisher_cabinet
 	alt_click_loot = FALSE
 
+/obj/structure/fermenting_barrel
+	alt_click_loot = FALSE
+
 /obj/structure/frame/computer
 	alt_click_loot = FALSE
 
