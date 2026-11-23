@@ -20,50 +20,13 @@
 /obj/item/robot_module
 	/// AQUILA: plik z domyślnym wyglądem modułu (przy wyborze bez skina, np. moduł z ulepszenia albo admina)
 	var/aq_base_icon_file
-	/// AQUILA: kanał radia działu (alarm śmierci cyborga)
-	var/aq_department_channel = RADIO_CHANNEL_SCIENCE
-
-/obj/item/robot_module/medical
-	aq_department_channel = RADIO_CHANNEL_MEDICAL
-
-/obj/item/robot_module/engineering
-	aq_department_channel = RADIO_CHANNEL_ENGINEERING
-
-/obj/item/robot_module/security
-	aq_department_channel = RADIO_CHANNEL_SECURITY
-
-/obj/item/robot_module/peacekeeper
-	aq_department_channel = RADIO_CHANNEL_SECURITY
-
-/obj/item/robot_module/janitor
-	aq_department_channel = RADIO_CHANNEL_SERVICE
-
-/obj/item/robot_module/butler
-	aq_department_channel = RADIO_CHANNEL_SERVICE
-
-/obj/item/robot_module/clown
-	aq_department_channel = RADIO_CHANNEL_SERVICE
-
-/obj/item/robot_module/miner
-	aq_department_channel = RADIO_CHANNEL_SUPPLY
-
-/obj/item/robot_module/cargo
-	aq_department_channel = RADIO_CHANNEL_SUPPLY
 
 /// Moduły dodane przez Aquilę w kółku wyboru modułu (hook w /mob/living/silicon/robot/proc/pick_module)
 /proc/aquila_add_cyborg_modules(list/module_list)
 	module_list["Research"] = /obj/item/robot_module/research
-	module_list["Chemistry"] = /obj/item/robot_module/medical/chemistry
-	module_list["Surgeon"] = /obj/item/robot_module/medical/surgeon
-	module_list["Rescue"] = /obj/item/robot_module/medical/rescue
-	module_list["Construction"] = /obj/item/robot_module/engineering/construction
 	module_list["Exploration"] = /obj/item/robot_module/exploration
 	module_list["Detective"] = /obj/item/robot_module/detective
 	module_list["Brobocop"] = /obj/item/robot_module/brobocop
-	module_list["Hydroponics"] = /obj/item/robot_module/hydroponics
-	module_list["Clerical"] = /obj/item/robot_module/cargo/clerical
-	module_list["Logistics"] = /obj/item/robot_module/cargo/logistics
-	module_list["Multirole"] = /obj/item/robot_module/standard/multirole
 
 /// Ikona modułu w kółku wyboru: moduły Aquili mają wygląd we własnym pliku
 /proc/aquila_cyborg_module_radial_icon(module_type)
@@ -95,17 +58,6 @@
 /// Moduł schodzi z cyborga (zmiana albo reset modułu)
 /obj/item/robot_module/proc/aq_on_remove(mob/living/silicon/robot/cyborg)
 	return
-
-/// Większe magazyny materiałów (zaawansowane moduły): mnożnik pojemności i odnawiania.
-/// Woła się po każdym rebuild_modules(), ale powiększa tylko nowe magazyny (bez darmowego uzupełnienia przy montażu ulepszeń)
-/obj/item/robot_module/proc/aq_scale_storages(multiplier)
-	for(var/datum/robot_energy_storage/storage in storages)
-		var/target = round(initial(storage.max_energy) * multiplier)
-		if(storage.max_energy == target)
-			continue
-		storage.max_energy = target
-		storage.recharge_rate = round(initial(storage.recharge_rate) * multiplier)
-		storage.energy = target
 
 /// Szuka narzędzia danego typu w module cyborga
 /mob/living/silicon/robot/proc/aq_find_module_item(item_type)

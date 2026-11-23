@@ -243,67 +243,6 @@
 	for(var/obj/item/gps/cyborg/gps in aq_added)
 		gps.gpstag = "BORG[R.ident]"
 
-/// Alarm zniszczenia (Chaotic Onyx, mechanizm jak w alarmie śmierci Goonstation): komunikat na kanał działu
-/obj/item/borg/upgrade/aquila/death_alarm
-	name = "alarm zniszczenia cyborga"
-	desc = "Przy zniszczeniu cyborga nadaje na kanał działu i do robotyki, gdzie i od czego zginął."
-	icon = 'icons/obj/module.dmi'
-	icon_state = "radio"
-	var/mob/living/silicon/robot/owner
-	var/obj/item/radio/alert_radio
-
-/obj/item/borg/upgrade/aquila/death_alarm/action(mob/living/silicon/robot/R, user = usr)
-	. = ..()
-	if(!.)
-		return
-	if(locate(/obj/item/borg/upgrade/aquila/death_alarm) in R.upgrades)
-		to_chat(user, "<span class='warning'>Ta jednostka ma już alarm zniszczenia.</span>")
-		return FALSE
-	owner = R
-	RegisterSignal(R, COMSIG_MOB_DEATH, PROC_REF(aq_on_death))
-
-/obj/item/borg/upgrade/aquila/death_alarm/deactivate(mob/living/silicon/robot/R, user = usr)
-	. = ..()
-	if(!.)
-		return
-	UnregisterSignal(R, COMSIG_MOB_DEATH)
-	owner = null
-
-/obj/item/borg/upgrade/aquila/death_alarm/Destroy()
-	if(owner)
-		UnregisterSignal(owner, COMSIG_MOB_DEATH)
-	owner = null
-	QDEL_NULL(alert_radio)
-	return ..()
-
-/obj/item/borg/upgrade/aquila/death_alarm/proc/aq_on_death(mob/living/silicon/robot/source, gibbed)
-	SIGNAL_HANDLER
-	INVOKE_ASYNC(src, PROC_REF(aq_broadcast), source)
-
-/// Treść komunikatu (osobno, żeby test mógł ją sprawdzić bez radia)
-/obj/item/borg/upgrade/aquila/death_alarm/proc/aq_message(mob/living/silicon/robot/source)
-	var/cause = "przyczyna nieznana"
-	if(source.getBruteLoss() > source.getFireLoss())
-		cause = "uszkodzenia mechaniczne"
-	else if(source.getFireLoss() > 0)
-		cause = "przegrzanie i oparzenia"
-	if(source.lastattacker)
-		cause += ", ostatni atak: [source.lastattacker]"
-	return "Alarm zniszczenia: [source.real_name] padł w: [get_area_name(source, TRUE)] ([cause])."
-
-/obj/item/borg/upgrade/aquila/death_alarm/proc/aq_broadcast(mob/living/silicon/robot/source)
-	if(!alert_radio)
-		alert_radio = new(src)
-		alert_radio.keyslot = new /obj/item/encryptionkey/heads/captain(alert_radio)
-		alert_radio.recalculateChannels()
-		alert_radio.listening = FALSE
-		alert_radio.canhear_range = 0
-	var/message = aq_message(source)
-	var/channel = source.module?.aq_department_channel || RADIO_CHANNEL_SCIENCE
-	alert_radio.talk_into(src, message, channel)
-	if(channel != RADIO_CHANNEL_SCIENCE)
-		alert_radio.talk_into(src, message, RADIO_CHANNEL_SCIENCE)
-
 /// Autoczyściciel (Yogstation „janitor autocleaner”, floor buffer z Paradise): czyści kafelek przy każdym kroku
 /obj/item/borg/upgrade/aquila/toggle/autocleaner
 	name = "autoczyściciel cyborga"
@@ -332,15 +271,15 @@
 	module_flags = BORG_MODULE_ENGINEERING
 	aq_items = list(/obj/item/inducer/cyborg)
 
-/// RLD cyborga (Nova Sector)
-/obj/item/borg/upgrade/aquila/rld
-	name = "RLD cyborga"
-	desc = "Szybki oświetlacz zasilany z ogniwa: lampy, oprawy i świetliki po trafieniach w okręt."
-	icon = 'icons/obj/tools.dmi'
-	icon_state = "rld-5"
+/// Wymiennik żarówek (dawny moduł Budowlany): ten sam co w module porządkowym
+/obj/item/borg/upgrade/aquila/lightreplacer
+	name = "wymieniacz żarówek cyborga"
+	desc = "Wbudowany wymieniacz żarówek: wymienia przepalone i stłuczone świetlówki, uzupełnia się szkłem."
+	icon = 'icons/obj/janitor.dmi'
+	icon_state = "lightreplacer0"
 	module_type = AQ_BORG_ENGINEERING
 	module_flags = BORG_MODULE_ENGINEERING
-	aq_items = list(/obj/item/construction/rld/cyborg)
+	aq_items = list(/obj/item/lightreplacer/cyborg)
 
 /// RPED bluespace (tg/Monkestation): zastępuje RPED cyborga i przejmuje jego części
 /obj/item/borg/upgrade/aquila/bluespace_rped
@@ -375,16 +314,6 @@
 	module_flags = BORG_MODULE_ENGINEERING
 	aq_items = list(/obj/item/borg/aquila_omnitool/engineering)
 	aq_replaces = list(/obj/item/screwdriver/cyborg, /obj/item/wrench/cyborg, /obj/item/crowbar/cyborg, /obj/item/wirecutters/cyborg)
-
-/// Narzędzie do łatania podłóg (tg „plating repair tool”)
-/obj/item/borg/upgrade/aquila/plating_repair
-	name = "narzędzie do łatania podłóg"
-	desc = "Jednym kliknięciem kładzie poszycie na dziurę w podłodze, naprawia je i wykłada płytkami."
-	icon = 'icons/obj/tools.dmi'
-	icon_state = "rcd"
-	module_type = list(/obj/item/robot_module/engineering, /obj/item/robot_module/saboteur, /obj/item/robot_module/janitor)
-	module_flags = BORG_MODULE_ENGINEERING
-	aq_items = list(/obj/item/borg/plating_repair)
 
 /// Noktowizyjne mezony (Yogstation)
 /obj/item/borg/upgrade/aquila/nightvision_mesons
@@ -440,15 +369,15 @@
 	aq_items = list(/obj/item/healthanalyzer/advanced)
 	aq_replaces = list(/obj/item/healthanalyzer)
 
-/// Omni-tool chirurgiczny (tg)
+/// Omni-tool chirurgiczny (tg), z nastawiaczem kości (był w usuniętym zaawansowanym module medycznym)
 /obj/item/borg/upgrade/aquila/surgical_omnitool
 	name = "omni-tool chirurgiczny cyborga"
-	desc = "Zastępuje skalpel, hemostat, retraktor, kauter, piłę i wiertło jednym, szybszym narzędziem."
+	desc = "Zastępuje skalpel, hemostat, retraktor, kauter, piłę i wiertło jednym, szybszym narzędziem i dokłada nastawiacz kości."
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "scalpel"
 	module_type = AQ_BORG_MEDICAL
 	module_flags = BORG_MODULE_MEDICAL
-	aq_items = list(/obj/item/borg/aquila_omnitool/surgical)
+	aq_items = list(/obj/item/borg/aquila_omnitool/surgical, /obj/item/bonesetter)
 	aq_replaces = list(/obj/item/scalpel, /obj/item/hemostat, /obj/item/retractor, /obj/item/cautery, /obj/item/circular_saw, /obj/item/surgicaldrill)
 
 /// Zaawansowane narzędzia chirurgiczne (Skyrat/Nova, /vg/): laserowy skalpel, mechaniczne szczypce, narzędzie przyżegające
@@ -462,13 +391,13 @@
 	aq_items = list(/obj/item/scalpel/advanced, /obj/item/retractor/advanced, /obj/item/surgicaldrill/advanced)
 	aq_replaces = list(/obj/item/scalpel, /obj/item/circular_saw, /obj/item/retractor, /obj/item/hemostat, /obj/item/surgicaldrill, /obj/item/cautery)
 
-/// Syntezator organów (Chaotic Onyx) - tylko chirurg i zaawansowany medyczny
+/// Syntezator organów (Chaotic Onyx)
 /obj/item/borg/upgrade/aquila/organ_synthesizer
 	name = "syntezator organów cyborga"
 	desc = "Syntezuje proste narządy syntetyczne (serce, płuca, wątroba, żołądek) z energii ogniwa, powoli."
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "heart-c"
-	module_type = list(/obj/item/robot_module/medical/surgeon, /obj/item/robot_module/medical/advanced)
+	module_type = AQ_BORG_MEDICAL
 	module_flags = BORG_MODULE_MEDICAL
 	aq_items = list(/obj/item/borg/organ_synthesizer)
 
@@ -533,6 +462,27 @@
 	module_flags = BORG_MODULE_MEDICAL
 	aq_items = list(/obj/item/borg/apparatus/beaker/bluespace)
 	aq_replaces = list(/obj/item/borg/apparatus/beaker)
+
+/// Zestaw chemiczny (Goonstation „ChemBot”, dawny moduł Chemiczny): mini-CheMaster i dozownik odczynników
+/obj/item/borg/upgrade/aquila/chemistry_kit
+	name = "zestaw chemiczny cyborga"
+	desc = "Mini-CheMaster do tabletek, plastrów i butelek oraz mały dozownik podstawowych odczynników zasilany z ogniwa."
+	icon = 'icons/obj/chemical.dmi'
+	icon_state = "mixer0"
+	module_type = AQ_BORG_MEDICAL
+	module_flags = BORG_MODULE_MEDICAL
+	aq_items = list(/obj/item/borg/chem_master, /obj/item/reagent_containers/borghypo/chem_dispenser)
+
+/// Zestaw ratowniczy (Aurora/CEV-Eris „Rescue”, dawny moduł Ratowniczy): dopalacze, rozwieracz drzwi, HUD medyczny,
+/// epinefryna, GPS i holoznak atmosferyczny
+/obj/item/borg/upgrade/aquila/rescue_kit
+	name = "zestaw ratowniczy cyborga"
+	desc = "Dopalacze w podwoziu na szybki dojazd do rannych, hydrauliczny rozwieracz, który podważa także zasilane śluzy, HUD medyczny, hypospray z epinefryną, GPS i holoznak atmosferyczny."
+	icon = 'icons/obj/tools.dmi'
+	icon_state = "jaws_pry"
+	module_type = AQ_BORG_MEDICAL
+	module_flags = BORG_MODULE_MEDICAL
+	aq_items = list(/obj/item/borg/rescue_boosters, /obj/item/crowbar/cyborg/aquila_rescue, /obj/item/borg/sight/hud/med, /obj/item/reagent_containers/borghypo/epi, /obj/item/gps/cyborg, /obj/item/holosign_creator/atmos)
 
 /// Skaner widmowy (Goonstation)
 /obj/item/borg/upgrade/aquila/spectro_scanner
@@ -609,6 +559,16 @@
 	icon_state = "hand_tele"
 	module_type = list(/obj/item/robot_module/cargo, /obj/item/robot_module/exploration)
 	aq_items = list(/obj/item/borg/cargo_teleporter)
+
+/// Zestaw biurowy (Bay/Aurora „Clerical”, dawny moduł Biurowy): drukarka papieru i chwytak biurowy
+/obj/item/borg/upgrade/aquila/paperwork_kit
+	name = "zestaw biurowy cyborga"
+	desc = "Drukarka papieru z tonera cyborga i chwytak do papieru, teczek, zdjęć i podkładek."
+	icon = 'icons/obj/bureaucracy.dmi'
+	icon_state = "paper_bin1"
+	module_type = list(/obj/item/robot_module/cargo)
+	module_flags = BORG_MODULE_CARGO
+	aq_items = list(/obj/item/borg/paper_dispenser, /obj/item/borg/apparatus/aquila/paperwork)
 
 // ================================================================ Ochrona i śledztwo
 
@@ -715,15 +675,20 @@
 	module_flags = BORG_MODULE_JANITOR
 	aq_items = list(/obj/item/plunger)
 
-/// Eksperymentalna miotła (tg)
+/// Eksperymentalna miotła (tg): nasza zwykła miotła w wersji dla cyborga
 /obj/item/borg/upgrade/aquila/push_broom
 	name = "eksperymentalna miotła cyborga"
-	desc = "Miotła zgarniająca śmieci z kafelka przed cyborgiem, także w ruchu (prosto do kosza, jeśli tam stoi)."
+	desc = "Wbudowana miotła: zgarnia śmieci z kafelka przed cyborgiem, także w ruchu (prosto do kosza, jeśli tam stoi)."
 	icon = 'icons/obj/janitor.dmi'
 	icon_state = "broom0"
 	module_type = list(/obj/item/robot_module/janitor)
 	module_flags = BORG_MODULE_JANITOR
-	aq_items = list(/obj/item/borg/push_broom)
+	aq_items = list(/obj/item/pushbroom/cyborg)
+
+/// Specjalizacja Botanika (core) dostaje somatopromiennik z usuniętego modułu Hydroponicznego
+/obj/item/borg/upgrade/speciality/botany/Initialize(mapload)
+	. = ..()
+	addmodules += /obj/item/gun/energy/floragun/cyborg
 
 /// Książka kucharska (tg „cookbook”): nasz katalog przepisów w tablecie cyborga
 /obj/item/borg/upgrade/aquila/cookbook
@@ -755,40 +720,6 @@
 	if(installed_program && drive)
 		drive.remove_file(installed_program)
 	installed_program = null
-
-// ================================================================ Wybieraki zaawansowanych modułów (Chaotic Onyx)
-
-/obj/item/borg/upgrade/transform/aquila_advanced
-	name = "wybierak modułu cyborga (zaawansowany)"
-	icon_state = "cyborg_upgrade5"
-	require_module = TRUE
-
-/obj/item/borg/upgrade/transform/aquila_advanced/action(mob/living/silicon/robot/R, user = usr)
-	if(R.module?.type == new_module)
-		to_chat(user, "<span class='warning'>Ta jednostka ma już moduł „[initial(new_module.name)]”.</span>")
-		return FALSE
-	return ..()
-
-/obj/item/borg/upgrade/transform/aquila_advanced/engineering
-	name = "wybierak modułu cyborga (zaawansowany inżynieryjny)"
-	desc = "Zmienia cyborga inżynieryjnego w zaawansowanego: omni-tool, RPED bluespace i dwa razy większe zapasy materiałów."
-	module_type = list(/obj/item/robot_module/engineering)
-	module_flags = BORG_MODULE_ENGINEERING
-	new_module = /obj/item/robot_module/engineering/advanced
-
-/obj/item/borg/upgrade/transform/aquila_advanced/medical
-	name = "wybierak modułu cyborga (zaawansowany medyczny)"
-	desc = "Zmienia cyborga medycznego w zaawansowanego: zaawansowany analizator i omni-tool chirurgiczny."
-	module_type = list(/obj/item/robot_module/medical)
-	module_flags = BORG_MODULE_MEDICAL
-	new_module = /obj/item/robot_module/medical/advanced
-
-/obj/item/borg/upgrade/transform/aquila_advanced/miner
-	name = "wybierak modułu cyborga (zaawansowany górniczy)"
-	desc = "Zmienia cyborga górniczego w zaawansowanego: diamentowe wiertło, zaawansowany przecinak plazmowy i przenośna huta."
-	module_type = list(/obj/item/robot_module/miner)
-	module_flags = BORG_MODULE_MINER
-	new_module = /obj/item/robot_module/miner/advanced
 
 #undef AQ_BORG_ENGINEERING
 #undef AQ_BORG_MEDICAL

@@ -1,20 +1,17 @@
 /datum/test_chamber_kit/pr_672_cyborgi
 	name = "Cyborgi: nowe moduły i ulepszenia"
 	pr = "aq33/AquilaStation#672"
-	description = "1) Wejdź w cyborga (ghost → przejmij jednego z dwóch) i wybierz moduł z kółka: sprawdź nowe moduły (Naukowy, Chemiczny, Chirurgiczny, Ratowniczy, Budowlany, Eksploracyjny, Detektyw, Brobocop, Hydroponiczny, Biurowy, Magazynowy, Wielozadaniowy) - każdy ma kółko skinów i swoje narzędzia. \
-	2) Ulepszenia leżą obok: otwórz panel cyborga (łom, ID), włóż ulepszenie. Pasujące wchodzi, niepasujące odmawia („Nie ma punktu mocowania”). Wybieraki zaawansowanych modułów działają tylko na Inżynieryjnym, Medycznym i Górniczym. \
+	description = "1) Wejdź w cyborga (ghost → przejmij jednego z dwóch) i wybierz moduł z kółka: sprawdź nowe moduły (Naukowy, Eksploracyjny, Detektyw, Brobocop) - każdy ma kółko skinów i swoje narzędzia. Medyczny, Inżynieryjny, Zaopatrzeniowy i Usługowy mają dodatkowe skiny scalonych modułów. \
+	2) Ulepszenia leżą obok: otwórz panel cyborga (łom, ID), włóż ulepszenie. Pasujące wchodzi, niepasujące odmawia („Nie ma punktu mocowania”). \
 	3) Odblokowanie trybu zabójczego (moduł Ochrony z wybieraka): przy zielonym alarmie przełączenie na laser odmawia, przy czerwonym działa, a po odwołaniu alarmu broń sama wraca na obezwładnianie. \
 	4) Magnetyczne przyczepy: włącz przyciskiem akcji i otwórz śluzę na kosmos (albo rozbij okno) - cyborg nie daje się wyssać, rusza się wolniej. \
 	5) Osobista tarcza, reflektor i autoczyściciel: przyciski akcji, ładunek ogniwa spada. Kabel zasilania: kliknij APC i węzeł kabla w trybie pobierania. \
-	6) Narzędzia: mini-CheMaster na zlewce z lekami, dozownik odczynników, skaner widmowy na człowieku, syntezator krwi na pustym worku, worek oddechowy na niedotlenionym, syntezator organów, teleporter ładunku (ustaw cel w ręce, kliknij skrzynię), przenośna huta z rudą w torbie, omni-tool (wybór trybu w ręce), narzędzie do łatania podłóg na dziurze, wzrok anomalii przy anomalii, N.O.I.R. przy krwi i łuskach. Sprawdź w combat mode i w trybie intencji."
+	6) Narzędzia: zestaw chemiczny w module Medycznym (mini-CheMaster na zlewce z lekami, dozownik odczynników), zestaw ratowniczy (dopalacze, rozwieracz na zasilanej śluzie, HUD medyczny, epinefryna, GPS, holoznak), wymieniacz żarówek w Inżynieryjnym, specjalizacja Botanika w Usługowym (somatopromiennik na roślinie), zestaw biurowy w Zaopatrzeniowym (drukarka papieru), skaner widmowy na człowieku, syntezator krwi na pustym worku, worek oddechowy na niedotlenionym, syntezator organów, teleporter ładunku (ustaw cel w ręce, kliknij skrzynię), przenośna huta z rudą w torbie, omni-tool (wybór trybu w ręce), miotła w module porządkowym (użyj w ręce i przejdź po śmieciach), wzrok anomalii przy anomalii, N.O.I.R. przy krwi i łuskach. Sprawdź w combat mode i w trybie intencji."
 	items = list(
 		/mob/living/silicon/robot = 2,
 		/obj/item/crowbar = 1,
 		/obj/item/card/id/captains_spare = 1,
 		/obj/item/borg/upgrade/transform/security = 1,
-		/obj/item/borg/upgrade/transform/aquila_advanced/engineering = 1,
-		/obj/item/borg/upgrade/transform/aquila_advanced/medical = 1,
-		/obj/item/borg/upgrade/transform/aquila_advanced/miner = 1,
 		/obj/item/borg/upgrade/aquila/lethal_unlock = 1,
 		/obj/item/borg/upgrade/aquila/toggle/magnetic_traction = 1,
 		/obj/item/borg/upgrade/aquila/toggle/personal_shield = 1,
@@ -23,13 +20,11 @@
 		/obj/item/borg/upgrade/aquila/power_connector = 1,
 		/obj/item/borg/upgrade/aquila/power_saver = 1,
 		/obj/item/borg/upgrade/aquila/recharge_pack = 2,
-		/obj/item/borg/upgrade/aquila/death_alarm = 1,
 		/obj/item/borg/upgrade/aquila/gps = 1,
 		/obj/item/borg/upgrade/aquila/inducer = 1,
-		/obj/item/borg/upgrade/aquila/rld = 1,
+		/obj/item/borg/upgrade/aquila/lightreplacer = 1,
 		/obj/item/borg/upgrade/aquila/bluespace_rped = 1,
 		/obj/item/borg/upgrade/aquila/engineering_omnitool = 1,
-		/obj/item/borg/upgrade/aquila/plating_repair = 1,
 		/obj/item/borg/upgrade/aquila/nightvision_mesons = 1,
 		/obj/item/borg/upgrade/aquila/science_circuits = 1,
 		/obj/item/borg/upgrade/aquila/xenobiology = 1,
@@ -45,16 +40,20 @@
 		/obj/item/borg/upgrade/aquila/chemistry_gripper = 1,
 		/obj/item/borg/upgrade/aquila/bluespace_beaker = 1,
 		/obj/item/borg/upgrade/aquila/spectro_scanner = 1,
+		/obj/item/borg/upgrade/aquila/chemistry_kit = 1,
+		/obj/item/borg/upgrade/aquila/rescue_kit = 1,
 		/obj/item/borg/upgrade/aquila/advanced_cutter = 1,
 		/obj/item/borg/upgrade/aquila/ore_processor = 1,
 		/obj/item/borg/upgrade/aquila/nightvision = 1,
 		/obj/item/borg/upgrade/aquila/cargo_teleporter = 1,
+		/obj/item/borg/upgrade/aquila/paperwork_kit = 1,
 		/obj/item/borg/upgrade/aquila/bola_launcher = 1,
 		/obj/item/borg/upgrade/aquila/forensic_scanner = 1,
 		/obj/item/borg/upgrade/aquila/noir = 1,
 		/obj/item/borg/upgrade/aquila/plunger = 1,
 		/obj/item/borg/upgrade/aquila/push_broom = 1,
 		/obj/item/borg/upgrade/aquila/cookbook = 1,
+		/obj/item/borg/upgrade/speciality/botany = 1,
 		/obj/effect/mob_spawn/aquila_lost_cyborg = 1,
 		/obj/structure/closet/crate = 1,
 		/obj/item/reagent_containers/blood = 1,
