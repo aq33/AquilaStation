@@ -1,7 +1,8 @@
 // AQUILA - ręczne lądowanie promu z wnętrzem na asteroidzie, na wzór kamery dokowania promów (shuttle_docking.dm):
 // po wleceniu w asteroidę w trybie dokowania pilot dostaje kamerę nad jej wnętrzem z obrysem kadłuba (zielony = wolne,
 // czerwony = zajęte, niebieski = pola przed włazem), obraca go i zatwierdza miejsce. Anulowanie albo brak wyboru przez
-// minutę = miejsce wybrane przez komputer dokowania. Przy okrętach lądowanie zostaje automatyczne (port albo kadłub).
+// minutę = miejsce wybrane przez komputer dokowania. Przy opuszczonej stacji tak samo (automat potrafił postawić prom
+// włazem do ściany). Przy okrętach lądowanie zostaje automatyczne (port albo kadłub).
 
 /// Jak długo pilot może wybierać miejsce lądowania, zanim komputer dokowania wyląduje sam
 #define SHUTTLE_CRAFT_MANUAL_LANDING_TIME (60 SECONDS)
@@ -13,7 +14,7 @@
 
 /// Lądowanie przy celu: przy asteroidzie pilot najpierw wybiera miejsce kamerą, przy okręcie od razu automat
 /obj/structure/overmap/small_craft/transport/proc/shuttle_begin_landing(obj/structure/overmap/OM)
-	if(isasteroid(OM) && shuttle_manual_landing(OM))
+	if((isasteroid(OM) || istype(OM, /obj/structure/overmap/derelict_ruin)) && shuttle_manual_landing(OM))
 		return
 	shuttle_try_land(OM)
 
@@ -33,13 +34,13 @@
 /// Daje pilotowi kamerę nad wnętrzem celu; FALSE, gdy się nie da (wtedy ląduje automat)
 /obj/structure/overmap/small_craft/transport/proc/shuttle_manual_landing(obj/structure/overmap/OM)
 	var/mob/living/user = pilot
-	if(!user?.client || !OM.roomReservation || shuttle_landing_eye || shuttle_docked_at || !shuttle_port)
+	if(!user?.client || !(OM.roomReservation || length(OM.occupying_levels)) || shuttle_landing_eye || shuttle_docked_at || !shuttle_port)
 		return FALSE
 	var/turf/center = shuttle_landing_center(OM)
 	if(!center)
 		return FALSE
 	shuttle_cache_offsets()
-	// Prom zawisa nad asteroidą, a pilot puszcza ster i patrzy przez kamerę
+	// Prom zawisa nad celem, a pilot puszcza ster i patrzy przez kamerę
 	velocity._set(0, 0)
 	angular_velocity = 0
 	user_thrust_dir = 0
@@ -249,6 +250,9 @@
 		var/list/bl = reservation.bottom_left_coords
 		var/list/tr = reservation.top_right_coords
 		T = locate(clamp(T.x, bl[1], tr[1]), clamp(T.y, bl[2], tr[2]), bl[3])
+	else if(T && length(landing_target?.occupying_levels)) // opuszczona stacja: cały jej poziom Z bez pasa przejścia na brzegach
+		var/datum/space_level/level = landing_target.occupying_levels[1]
+		T = locate(clamp(T.x, TRANSITIONEDGE + 1, world.maxx - TRANSITIONEDGE), clamp(T.y, TRANSITIONEDGE + 1, world.maxy - TRANSITIONEDGE), level.z_value)
 	. = ..(T)
 	update_preview()
 

@@ -31,10 +31,13 @@
 	/// Wymusza układ HUD-u statku bez patrzenia na preferencje: "compact", "classic" albo null (preferencja; testy bez klienta)
 	var/aq_ship_hud_override
 
-/// Czy ta osoba za sterami dostaje kompaktowy HUD (preferencja, domyślnie tak)
-/mob/proc/aq_wants_compact_ship_hud()
+/// Czy ta osoba za sterami dostaje kompaktowy HUD (preferencja, domyślnie tak). Kompaktowy HUD jest dla małych jednostek
+/// (myśliwce, promy): pilot okrętu zawsze ma klasyczny panel konsoli, a strzelec okrętu zostaje przy preferencji (radar DRADIS)
+/mob/proc/aq_wants_compact_ship_hud(obj/structure/overmap/ship)
 	if(aq_ship_hud_override)
 		return aq_ship_hud_override == "compact"
+	if(ship && !istype(ship, /obj/structure/overmap/small_craft) && ship.pilot == src)
+		return FALSE
 	return !client?.prefs?.ship_hud_classic
 
 // DRADIS otwiera się sam tylko w klasycznym układzie; w kompaktowym klik w radar
@@ -42,7 +45,7 @@
 	if(..())
 		return TRUE
 	var/mob/living/user = (position & OVERMAP_USER_ROLE_PILOT) ? pilot : gunner
-	return user?.aq_wants_compact_ship_hud()
+	return user?.aq_wants_compact_ship_hud(src)
 
 /datum/aq_ship_hud
 	var/mob/living/user

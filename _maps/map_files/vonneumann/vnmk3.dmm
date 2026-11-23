@@ -49,6 +49,15 @@
 /obj/machinery/suit_storage_unit/medical/trauma,
 /turf/open/floor/monotile/light,
 /area/medical/medbay)
+"aaj" = (
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/obj/machinery/power/apc/auto_name/north,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/orange/visible{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/fore)
 "aak" = (
 /turf/closed/wall/r_wall/ship,
 /area/space)
@@ -96,6 +105,11 @@
 /obj/item/flatpack/schematic_reader,
 /turf/open/floor/carpet/ship/orange_carpet,
 /area/engine/engineering)
+"aaq" = (
+/obj/machinery/power/apc/auto_name/east,
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/maintenance/aft)
 "aat" = (
 /obj/structure/table,
 /obj/item/food/grown/tomato,
@@ -38469,7 +38483,7 @@ jiC
 aJm
 fKg
 pdc
-pVn
+aaq
 xSO
 kGZ
 aJm
@@ -51178,7 +51192,7 @@ vYj
 wEM
 rle
 nJc
-fhi
+aaj
 tDG
 nJc
 eJl
