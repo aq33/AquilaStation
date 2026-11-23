@@ -132,6 +132,9 @@
 	icon_state = "clipripley"
 	silicon_icon_state = null
 	step_in = 2
+	// Rodzina Ripleya bierze krok z ciśnienia (update_pressure w ripley.dm), nie ze step_in
+	fast_pressure_step_in = 1.5
+	slow_pressure_step_in = 2
 	max_integrity = 160
 	armor = list("melee" = 30, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = 40, "bio" = 0, "rad" = 50, "fire" = 100, "acid" = 100, "stamina" = 0)
 	wreckage = /obj/structure/mecha_wreckage/aq_clip_ripley
@@ -196,13 +199,18 @@
 	if(!COOLDOWN_FINISHED(src, charge_cd))
 		occupant_message("<span class='warning'>Siłowniki jeszcze się nie zregenerowały.</span>")
 		return
-	if(!has_charge(charge_power) || completely_disabled)
+	if(!has_charge(charge_power) || completely_disabled || construction_state)
+		return
+	if(internal_tank?.connected_port)
+		occupant_message("<span class='warning'>Nie można się ruszać, będąc podłączonym do portu systemu powietrza!</span>")
 		return
 	use_power(charge_power)
 	COOLDOWN_START(src, charge_cd, charge_cooldown)
 	visible_message("<span class='danger'>[src] rusza do szarży!</span>")
 	playsound(src, 'sound/mecha/mechstep.ogg', 70, TRUE)
 	for(var/i in 1 to charge_distance)
+		if(QDELETED(src) || completely_disabled)
+			return
 		var/turf/T = get_step(src, dir)
 		if(!T)
 			break
@@ -218,7 +226,7 @@
 				var/mob/living/L = AM
 				L.Knockdown(2 SECONDS)
 				L.adjustBruteLoss(10)
-				L.throw_at(get_edge_target_turf(L, turn(dir, pick(90, -90))), 3, 2, src)
+				L.throw_at(get_edge_target_turf(L, turn(dir, pick(90, -90))), 3, 2, occupant) // rzucający musi być mobem albo null (atoms_movable.dm czyta thrower.client)
 			else if(AM.density && isobj(AM))
 				var/obj/O = AM
 				O.take_damage(60, BRUTE, "melee", TRUE)
@@ -226,7 +234,9 @@
 					stop = TRUE
 		if(stop)
 			break
-		forceMove(T)
+		// zwykły ruch: w próżni bez oparcia szarża staje, a Move() rozłącza port gazu jak przy kroku
+		if(!Process_Spacemove(dir) || !Move(T, dir))
+			break
 		sleep(1)
 
 /datum/action/innate/mecha/aq_charge

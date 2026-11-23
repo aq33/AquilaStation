@@ -13,7 +13,7 @@
 	var/rating = 1
 	/// Ile ochrony dokłada
 	var/list/bonus = list("melee" = 5, "bullet" = 5, "laser" = 0)
-	/// Ile wolniej idzie mech (dodawane do step_in)
+	/// Ile wolniej idzie mech (dodawane do opóźnienia kroku, aq_step_in_bonus)
 	var/plate_slowdown = 0
 
 /obj/item/mecha_parts/aq_armor_plating/try_attach_part(mob/user, obj/mecha/M)
@@ -52,7 +52,7 @@
 		aq_remove_plating(user)
 	aq_plating = plate
 	armor = armor.modifyRating(melee = plate.bonus["melee"], bullet = plate.bonus["bullet"], laser = plate.bonus["laser"])
-	step_in += plate.plate_slowdown
+	aq_step_in_bonus += plate.plate_slowdown
 	if(user)
 		to_chat(user, "<span class='notice'>Przykręcasz [plate] do [src].</span>")
 		playsound(src, 'sound/items/ratchet.ogg', 50, TRUE)
@@ -65,7 +65,7 @@
 	var/obj/item/mecha_parts/aq_armor_plating/plate = aq_plating
 	aq_plating = null
 	armor = armor.modifyRating(melee = -plate.bonus["melee"], bullet = -plate.bonus["bullet"], laser = -plate.bonus["laser"])
-	step_in -= plate.plate_slowdown
+	aq_step_in_bonus -= plate.plate_slowdown
 	plate.forceMove(drop_location())
 	if(user)
 		user.put_in_hands(plate)
@@ -77,7 +77,7 @@
 		aq_plating = null
 		var/obj/item/mecha_parts/aq_armor_plating/plate = M
 		armor = armor.modifyRating(melee = -plate.bonus["melee"], bullet = -plate.bonus["bullet"], laser = -plate.bonus["laser"])
-		step_in -= plate.plate_slowdown
+		aq_step_in_bonus -= plate.plate_slowdown
 	return ..()
 
 /obj/mecha/Destroy()
