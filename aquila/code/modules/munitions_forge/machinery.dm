@@ -373,17 +373,13 @@
 /obj/machinery/munitions_forge/arc_forge/proc/current_cost()
 	var/datum/munition_quality/quality = get_munition_quality(selected_has_quality() ? selected_quality : /datum/munition_quality)
 	var/mult = quality.material_mult * efficiency
-	// base_cost i extra_cost to listy, a initial() na listach nie działa — jak w Paradise czytamy je z tymczasowej instancji
-	var/obj/item/munition_part/temp = new selected_product(null)
 	. = list()
-	var/list/fixed = temp.base_cost
-	if(istype(temp, /obj/item/munition_part/body))
-		var/obj/item/munition_part/body/body = temp
-		. = current_material().get_cost(body.material_amount * mult)
-		fixed = body.extra_cost
+	if(ispath(selected_product, /obj/item/munition_part/body))
+		var/obj/item/munition_part/body/body_path = selected_product
+		. = current_material().get_cost(initial(body_path.material_amount) * mult)
+	var/list/fixed = aq_munition_fixed_cost(selected_product)
 	for(var/mat in fixed)
 		.[mat] += round(fixed[mat] * mult)
-	qdel(temp)
 
 /// Pobiera materiał na wybrany w oknie odlew. TRUE = można lać.
 /obj/machinery/munitions_forge/arc_forge/proc/prepare_cast(mob/user)
