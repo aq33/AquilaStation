@@ -189,10 +189,11 @@
 	user.log_talk(message, LOG_SAY, tag = "darkspawn")
 	var/msg = "<span class='velvet'><b>\[Mindlink\] [user.real_name]:</b> \"[message]\"</span>"
 	for(var/mob/M as anything in GLOB.player_list)
+		// obcokrajowiec dostaje treść po angielsku, a Polak mowę obcokrajowca po polsku (aquila/code/modules/i18n/foreigner.dm)
 		if(M in GLOB.dead_mob_list)
-			to_chat(M, "[FOLLOW_LINK(M, user)] [msg]")
+			aq_to_chat_speech(M, "[FOLLOW_LINK(M, user)] [msg]", message, user)
 		else if(is_team_darkspawn(M))
-			to_chat(M, msg)
+			aq_to_chat_speech(M, msg, message, user)
 	return FALSE
 
 // Dźwięk Sakramentu słyszany przez wszystkich graczy

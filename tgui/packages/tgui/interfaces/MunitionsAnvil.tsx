@@ -150,7 +150,7 @@ export const MunitionsAnvil = (props) => {
   const usedKeys = Array.from(new Set(notes.map((note) => note.key)));
 
   return (
-    <Window width={500} height={320} title="Kowadło">
+    <Window width={500} height={320} title="Młot mechaniczny: kucie ręczne">
       <Window.Content>
         <Section title={`${part} (cel: klasa ${target_class})`}>
           <Box
@@ -243,8 +243,8 @@ export const MunitionsAnvil = (props) => {
           <Box mt={0.5} color="label">
             Klawisze działają, gdy to okno jest aktywne: kliknij tor nut
             (kliknięcie to też uderzenie Spacją). Od 90% celnych uderzeń
-            wychodzi klasa z formy, każde 15% mniej to klasa niżej. Zamknięcie
-            okna albo odłożenie młota przerywa kucie.
+            wychodzi klasa wybrana w piecu, każde 15% mniej to klasa niżej.
+            Zamknięcie okna przerywa kucie.
           </Box>
         </Section>
       </Window.Content>

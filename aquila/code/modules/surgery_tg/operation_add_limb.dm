@@ -60,7 +60,7 @@
 		option = new()
 		option.name = "przyszycie: [initial(attached.name)]"
 		option.info = "Zastępuje brakującą kończynę pacjenta: [initial(attached.name)]."
-		option.image = image(attached.type)
+		option.image = isbodypart(attached) ? get_item_radial_image(attached.type) : image(attached.type)
 		LAZYSET(cached_prosthetic_options, attached.type, option)
 
 	return option

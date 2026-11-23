@@ -220,6 +220,9 @@
 		apply_squad( user.squad )
 		return FALSE
 	if(alert(user, "Dołączyć do drużyny [squad]?",name,"Tak","Nie") == "Tak")
+		if(squad.aq_is_echo && length(squad.members) >= squad.aq_echo_limit()) // AQ EDIT - limit Echo po potwierdzeniu (aquila/code/modules/squads/squad_echo.dm)
+			to_chat(user, "<span class='warning'>Echo ma już tylu członków, ile myśliwców ma okręt.</span>")
+			return FALSE
 		if(user.squad)
 			user.squad.remove_member(user)
 		squad.add_member(user)

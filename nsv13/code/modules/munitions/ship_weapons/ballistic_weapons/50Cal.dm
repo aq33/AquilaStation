@@ -35,7 +35,13 @@
 	user.AddComponent(gunning_component_type, src, TRUE)
 
 /obj/machinery/ship_weapon/anti_air/proc/remove_gunner()
-	get_overmap().stop_piloting(gunner)
+	// AQ EDIT START - strzelec, który wyszedł przyciskiem kamery, zostawał w gunner i następny strzelec wyrzucał go z innego stanowiska
+	var/mob/old_gunner = gunner
+	gunner = null
+	var/datum/component/overmap_gunning/gunning = old_gunner?.GetComponent(/datum/component/overmap_gunning)
+	if(gunning?.fx_target == src)
+		get_overmap()?.stop_piloting(old_gunner)
+	// AQ EDIT END
 
 //Unifying component for gauss / 50 cal gunning
 /datum/component/overmap_gunning

@@ -21,7 +21,7 @@
 		endWhen = startWhen
 
 /datum/round_event/plasma_decon/announce()
-	priority_announce("Uruchamiamy eksperymentalny system odkażania z plazmy. Prosimy odsunąć się od wywietrzników i nie wdychać wydobywającego się dymu.", "Komunikat Centrali", SSstation.announcer.get_rand_alert_sound())
+	priority_announce("Uruchamiamy eksperymentalny system odkażania z plazmy. Prosimy odsunąć się od wywietrzników i nie wdychać wydobywającego się dymu.", "Komunikat Centrali", 'aquila/sound/ai/events/plasma_decon.ogg') // AQ EDIT - własne nagranie ogłoszenia
 
 /datum/round_event/plasma_decon/start()
 	for(var/obj/machinery/atmospherics/components/unary/vent in vents)

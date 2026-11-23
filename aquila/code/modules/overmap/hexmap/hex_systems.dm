@@ -1,0 +1,68 @@
+// AQUILA - powiązanie układów z hexami i puste układy kafli
+
+/datum/star_system
+	/// Hex mapy strategicznej, na którym leży układ
+	var/datum/hex/hex
+
+/**
+ * Układ pustego kafla: powstaje, gdy ktoś skacze na pusty hex, i znika, gdy nikogo w nim nie ma i nic w nim nie zostało.
+ * Podtyp /random, więc save() go pomija, a losowania układów (misje, spawny flot) go nie widzą, bo jest ukryty.
+ */
+/datum/star_system/random/hex_empty
+	name = "Pusty kafel"
+	desc = null // bez komunikatu „Wchodzimy do…” przy każdym pustym kaflu
+	alignment = "uncharted"
+	owner = "uncharted"
+	hidden = TRUE
+	visitable = FALSE
+	system_traits = STARSYSTEM_NO_ANOMALIES | STARSYSTEM_NO_ASTEROIDS | STARSYSTEM_NO_WORMHOLE
+
+/// Teren kafla widać taktycznie: tło, asteroidy w polu asteroid, miny w polu minowym
+/datum/star_system/random/hex_empty/proc/apply_hex_terrain()
+	var/datum/hex_terrain/T = hex?.terrain_datum()
+	parallax_property = T?.parallax
+	switch(T?.id)
+		if(HEX_TERRAIN_ASTEROIDS)
+			spawn_asteroids()
+		if(HEX_TERRAIN_MINES)
+			// jak spawn_mines(), ale bez jego drugiej pętli, która dla układu bez Z tworzy miny w nicości
+			for(var/i in 1 to rand(6, 10))
+				var/obj/structure/space_mine/M = new /obj/structure/space_mine(null, "syndicate", src)
+				contents_positions[M] = list("x" = rand(5, world.maxx - 5), "y" = rand(5, world.maxy - 5))
+		if(HEX_TERRAIN_WORMHOLE)
+			hex.hex_spawn_wormhole_anomaly() // skan sondą daje punkty tuneli (badania układów FTL, hex_ftl_chip.dm)
+
+/datum/star_system/random/hex_empty/remove_ship(obj/structure/overmap/OM, turf/new_location, is_ftl_jump = TRUE)
+	. = ..()
+	if(!occupying_z)
+		addtimer(CALLBACK(src, PROC_REF(try_release)), HEX_EMPTY_CLEANUP_DELAY, TIMER_UNIQUE | TIMER_OVERRIDE)
+
+/// Oddaje układ, jeśli w kaflu nikogo nie ma i nic nie zostało (wraki, kapsuły zostają razem z układem)
+/datum/star_system/random/hex_empty/proc/try_release()
+	if(occupying_z || length(system_contents) || length(fleets) || length(enemy_queue))
+		return FALSE
+	for(var/obj/structure/overmap/OM as anything in SSstar_system.ships)
+		var/list/info = SSstar_system.ships[OM]
+		if(info["current_system"] == src || info["target_system"] == src)
+			return FALSE
+	if(hex?.system == src)
+		hex.system = null
+	hex = null
+	SSstar_system.systems -= src
+	qdel(src)
+	return TRUE
+
+/datum/controller/subsystem/star_system/instantiate_systems(_source_path = SSmapping.config.starmap_path)
+	. = ..()
+	GLOB.hexmap = new
+	GLOB.hexmap.build(systems)
+	var/list/save = campaign_reset_pending ? null : hexmap_read_save(HEXMAP_SAVE_PATH)
+	if(save && save["map_name"] != SSmapping.config?.map_name)
+		save = null // zapis z innej mapy: teren i wojna od nowa, jak w kampanii bez zapisu
+	GLOB.hexmap.generate_terrain(save?["terrain"])
+	GLOB.hexmap.restore_contamination(save?["contamination"])
+	GLOB.hexmap.start_terrain_timers()
+	GLOB.hexmap.place_facilities()
+	GLOB.hex_war = new
+	GLOB.hex_war.setup(save?["war"])
+	SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(hex_spawn_nuke_crate)))

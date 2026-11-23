@@ -8,7 +8,8 @@
 		/obj/effect/spawner/infected_monkey_delivery = 1,
 //		/obj/effect/spawner/hivebot_delivery = 1, // na tą chwile chyba zepsute
 		/obj/effect/spawner/morph_delivery = 1,
-		/obj/effect/mob_spawn/teratomamonkey = 1,)
+		/obj/effect/mob_spawn/teratomamonkey = 1,
+		/obj/effect/mob_spawn/horror_xenobio = 1,)
 
 /obj/effect/spawner/lootdrop/xenobiology_fun_spawner/Initialize(mapload)
 	new /obj/effect/xenobio_specimen_monitor(get_turf(src))
@@ -33,6 +34,7 @@
 		/obj/structure/spider/eggcluster,
 		/obj/machinery/droneDispenser/swarmer,
 		/obj/effect/mob_spawn/teratomamonkey,
+		/obj/effect/mob_spawn/horror_xenobio,
 	))
 
 /obj/effect/xenobio_specimen_monitor/Initialize(mapload)

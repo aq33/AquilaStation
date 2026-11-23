@@ -164,7 +164,7 @@
 	var/turf/parked_helm = get_turf(helm)
 	var/parking_where = sabre.shuttle_parking ? "[sabre.shuttle_parking.x],[sabre.shuttle_parking.y],[sabre.shuttle_parking.z]" : "none"
 	TEST_ASSERT(sabre.shuttle_land(host, port), "The rotated Sabre didn't land back at its port")
-	// Losowo (raz na kilka przebiegów CI) ster bywał po locie poza mapą: szczegóły pozwolą znaleźć przyczynę
+	// Ster bywał po locie usunięty: usunięcie drugiego Sabre wyżej wysadzało losowe wnętrze Sabre (test overmap_explode_own_area)
 	var/where = "helm at [helm.x],[helm.y],[helm.z] (loc [helm.loc], deleted [QDELETED(helm)]), in flight at [parked_helm ? "[parked_helm.x],[parked_helm.y],[parked_helm.z]" : "nowhere"], parking [parking_where], port [port.x],[port.y],[port.z] docked [port.docked], interior at [shuttle_port.x],[shuttle_port.y],[shuttle_port.z]"
 	TEST_ASSERT_EQUAL(helm.x, port.x + 6, "The cockpit moved after flying out and back: [where]")
 	TEST_ASSERT_EQUAL(helm.y, port.y - 3, "The cockpit moved after flying out and back: [where]")
@@ -451,5 +451,3 @@
 
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL
-
-

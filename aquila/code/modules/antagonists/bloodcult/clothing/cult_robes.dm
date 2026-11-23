@@ -24,6 +24,9 @@
 /obj/item/clothing/suit/hooded/cultrobes/alt
 	name = "szaty kultysty"
 	desc = "Opancerzone szaty noszone przez wyznawców Nar'Sie."
+	// Core nie ma stanu "cultrobesalt_t", który ustawia ToggleHood: kopie stanów są w aquila/icons
+	icon = 'aquila/icons/bloodcult/cultrobes_alt.dmi'
+	worn_icon = 'aquila/icons/bloodcult/worn/cultrobes_alt.dmi'
 	icon_state = "cultrobesalt"
 	item_state = "cultrobesalt"
 	hoodtype = /obj/item/clothing/head/hooded/cult_hoodie/alt

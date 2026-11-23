@@ -11,7 +11,7 @@
 		/obj/item/assembly/igniter = 1)
 
 /obj/item/circuitboard/machine/munitions_anvil
-	name = "kowadło (płytka maszyny)"
+	name = "młot mechaniczny (płytka maszyny)"
 	icon_state = "engineering"
 	build_path = /obj/machinery/munitions_forge/anvil
 	req_components = list(
@@ -48,8 +48,8 @@
 	build_path = /obj/item/circuitboard/machine/munitions_arc_forge
 
 /datum/design/board/munitions_forge/anvil
-	name = "Projekt maszyny (kowadło)"
-	desc = "Kowadło do kucia odlewów amunicji."
+	name = "Projekt maszyny (młot mechaniczny)"
+	desc = "Pneumatyczny młot do kucia odlewów amunicji."
 	id = "munitions_anvil"
 	build_path = /obj/item/circuitboard/machine/munitions_anvil
 
@@ -75,57 +75,7 @@
 	category = list("Advanced Munitions")
 	departmental_flags = DEPARTMENTAL_FLAG_MUNITIONS
 
-/datum/design/forging_hammer
-	name = "Młot kowalski"
-	desc = "Młot do kucia odlewów amunicji na kowadle."
-	id = "forging_hammer"
-	build_type = PROTOLATHE
-	materials = list(/datum/material/iron = 4000)
-	build_path = /obj/item/forging_hammer
-	category = list("Advanced Munitions")
-	departmental_flags = DEPARTMENTAL_FLAG_MUNITIONS
-
-/datum/design/munition_cast
-	name = "Forma łusek"
-	desc = "Forma odlewnicza na łuski."
-	id = "munition_cast_casings"
-	build_type = PROTOLATHE
-	materials = list(/datum/material/iron = 4000)
-	build_path = /obj/item/munition_cast/casings
-	category = list("Advanced Munitions")
-	departmental_flags = DEPARTMENTAL_FLAG_MUNITIONS
-
-/datum/design/munition_cast/shell
-	name = "Forma pocisków działowych"
-	desc = "Forma odlewnicza na korpusy pocisków działowych."
-	id = "munition_cast_shell"
-	build_path = /obj/item/munition_cast/shell
-
-/datum/design/munition_cast/filler
-	name = "Forma wypełnień"
-	desc = "Forma odlewnicza na ładunki."
-	id = "munition_cast_filler"
-	build_path = /obj/item/munition_cast/filler
-
-/datum/design/munition_cast/fuze
-	name = "Forma zapalników"
-	desc = "Forma odlewnicza na spłonki i zapalniki."
-	id = "munition_cast_fuze"
-	build_path = /obj/item/munition_cast/fuze
-
-/datum/design/munition_cast/warhead
-	name = "Forma obudów głowic"
-	desc = "Forma odlewnicza na obudowy głowic torped i rakiet."
-	id = "munition_cast_warhead"
-	build_type = PROTOLATHE
-	materials = list(/datum/material/iron = 6000, /datum/material/titanium = 2000)
-	build_path = /obj/item/munition_cast/warhead
-
-// Maszyny i podstawowe formy razem z artylerią, forma głowic z głowicami torped.
+// Maszyny razem z artylerią. Wyroby po dawnych projektach protolathe wymagają tych samych badań (required_node części).
 /datum/techweb_node/advanced_ballistics/New()
 	. = ..()
-	design_ids += list("munitions_arc_forge", "munitions_anvil", "munitions_assembly_bench", "munitions_electroplater", "munitions_analyzer", "forging_hammer", "munition_cast_casings", "munition_cast_shell", "munition_cast_filler", "munition_cast_fuze")
-
-/datum/techweb_node/basic_torpedo_components/New()
-	. = ..()
-	design_ids += "munition_cast_warhead"
+	design_ids += list("munitions_arc_forge", "munitions_anvil", "munitions_assembly_bench", "munitions_electroplater", "munitions_analyzer")

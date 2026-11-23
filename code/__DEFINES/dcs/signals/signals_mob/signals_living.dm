@@ -59,6 +59,6 @@
 #define COMSIG_LIVING_AQ_PRE_SAY "living_aq_pre_say"
 	/// Wiadomość przejęta, oryginał nie wychodzi
 	#define COMPONENT_AQ_SAY_INTERCEPTED (1<<0)
-	/// Mowa wychodzi we Wspólnym (tłumaczenie wraca do say())
-	#define COMPONENT_AQ_SAY_AS_COMMON (1<<1)
+	/// Mowa wychodzi w języku z message_mods[LANGUAGE_EXTENSION] (tłumaczenie wraca do say(): Wspólny albo język antagonisty)
+	#define COMPONENT_AQ_SAY_LANGUAGE_FROM_MODS (1<<1)
 // AQ EDIT END

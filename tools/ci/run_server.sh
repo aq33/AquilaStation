@@ -17,7 +17,9 @@ ln -s $HOME/libmariadb/libmariadb.so libmariadb.so
 # AQUILA - DreamDaemon 516 na Linuksie potrafi wisiec kilka minut po "Shutdown complete",
 # chociaz swiat jest juz zamkniety, a wynik zapisany w clean_run.lk. Na 515 wychodzil od razu.
 # Odpalamy go w tle, a gdy po zamknieciu swiata nie wyjdzie sam w ciagu SHUTDOWN_GRACE sekund, zabijamy go.
-SHUTDOWN_GRACE=15
+# Wyniki (clean_run.lk, unit_tests.json) sa na dysku przed "Shutdown complete", a w logach CI DreamDaemon
+# wisial przez caly czas oczekiwania w kazdym przebiegu, wiec dluzsze czekanie tylko wydluza joba.
+SHUTDOWN_GRACE=3
 DreamDaemon nsv13.dmb -close -trusted -verbose -params "log-directory=ci" > dd_output.log 2>&1 &
 DD_PID=$!
 tail -n +1 -f dd_output.log --pid=$DD_PID &

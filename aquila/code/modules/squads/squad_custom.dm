@@ -25,7 +25,7 @@ GLOBAL_LIST_EMPTY(aq_squad_pagers)
 	return ..()
 
 /datum/squad/aq_custom
-	name = "Echo"
+	name = "Nowa drużyna"
 	desc = "Drużyna utworzona przez oficera wykonawczego."
 	role = DC_SQUAD
 	colour = "#3cb371"
@@ -115,6 +115,11 @@ GLOBAL_LIST_EMPTY(aq_squad_pagers)
 /// (dostroją się same, gdy właściciel dołączy do innej drużyny). Ostatniej drużyny nie da się usunąć.
 /datum/squad_manager/proc/aq_delete_squad(datum/squad/squad, mob/user)
 	if(!(squad in squads) || length(squads) <= 1)
+		return FALSE
+	// Echo (piloci) jest stała: konsola drużyn i tak odtwarza ją przy następnym odświeżeniu (squad_echo.dm)
+	if(squad.aq_is_echo)
+		if(user)
+			to_chat(user, "<span class='warning'>Drużyny pilotów Echo nie da się rozwiązać.</span>")
 		return FALSE
 	squad.broadcast(squad, "Drużyna [squad.name] zostaje rozwiązana.", list('nsv13/sound/effects/notice2.ogg'))
 	// bez przekazywania dowództwa i komunikatów przy każdym usuniętym członku

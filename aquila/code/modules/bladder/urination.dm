@@ -71,8 +71,9 @@
 				"<span class='notice'><i>Ale ulga...</i></span>")
 		bodily_disgust(DISGUST_LEVEL_GROSS, FALSE)
 
-	var/datum/reagents/urine = new(units + 1, NO_REACT)
+	var/datum/reagents/urine = new(units * 1.3 + 1, NO_REACT) // zapas na krew z chorych nerek
 	urine.add_reagent(reagent_type, units, reagtemp = URINE_TEMPERATURE, no_react = TRUE)
+	aq_urine_extras(urine, units) // krew w moczu przy chorych nerkach (surgery/organs/med5/kidneys.dm)
 	T.spill_reagents(urine)
 	qdel(urine)
 

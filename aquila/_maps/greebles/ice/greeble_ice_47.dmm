@@ -1,0 +1,93 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"n" = (
+/obj/item/fishing_rod{
+	pixel_x = 6;
+	 pixel_y = 22
+	},
+/turf/open/floor/plating/ice/planet_ice,
+/area/template_noop)
+"r" = (
+/turf/open/floor/plating/ice/planet_ice,
+/area/template_noop)
+"x" = (
+/turf/template_noop,
+/area/template_noop)
+"K" = (
+/obj/structure/chair/fancy/plastic{
+	dir = 4
+	},
+/obj/item/book/fish_catalog{
+	pixel_x = 8;
+	 pixel_y = 7
+	},
+/turf/open/floor/plating/ice/planet_ice,
+/area/template_noop)
+"L" = (
+/turf/open/water/planet/beach/deep/ice,
+/area/template_noop)
+"U" = (
+/obj/item/flashlight/flare{
+	pixel_x = 2;
+	 pixel_y = 2
+	},
+/obj/item/flashlight/flare{
+	pixel_y = 7;
+	 pixel_x = -3
+	},
+/turf/open/floor/plating/ice/planet_ice,
+/area/template_noop)
+
+(1,1,1) = {"
+x
+r
+r
+r
+r
+x
+x
+"}
+(2,1,1) = {"
+r
+r
+K
+n
+r
+r
+x
+"}
+(3,1,1) = {"
+r
+r
+L
+U
+L
+r
+r
+"}
+(4,1,1) = {"
+x
+r
+r
+L
+r
+r
+r
+"}
+(5,1,1) = {"
+x
+x
+r
+r
+r
+r
+x
+"}
+(6,1,1) = {"
+x
+x
+r
+r
+r
+r
+x
+"}

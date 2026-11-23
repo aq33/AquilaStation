@@ -89,6 +89,8 @@ SUBSYSTEM_DEF(atoms)
 			var/atom/A = atoms[I]
 			if(!(A.flags_1 & INITIALIZED_1))
 				CHECK_TICK
+				if(QDELETED(A) || (A.flags_1 & INITIALIZED_1)) // AQ EDIT - w czasie CHECK_TICK inne ładowanie mapy (spawner pokoju ruiny) mogło już zainicjować ten atom
+					continue
 				PROFILE_INIT_ATOM_BEGIN()
 				InitAtom(A, TRUE, mapload_arg)
 				PROFILE_INIT_ATOM_END(A)

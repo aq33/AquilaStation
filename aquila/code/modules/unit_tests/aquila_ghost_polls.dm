@@ -41,5 +41,23 @@
 	TEST_ASSERT(alert.timeout > world.time + 4 SECONDS && alert.timeout <= world.time + 5 SECONDS, "timeout_override was ignored: [alert.timeout - world.time]")
 	dummy.clear_alert("test_poll_alert")
 
+/// AQUILA - kliknięcie „Zgłoś się” w ankiecie bez listy „nigdy” (ignore_category = FALSE, np. wybudzenie z kriostazy)
+/// rzucało runtime na GLOB.poll_ignore[0] przed zapisem, więc nikt nie mógł się zgłosić
+/datum/unit_test/aquila_poll_signup_without_ignore_category
+
+/datum/unit_test/aquila_poll_signup_without_ignore_category/Run()
+	var/mob/living/carbon/human/dummy = allocate(/mob/living/carbon/human)
+	var/datum/candidate_poll/poll = new(new /datum/poll_config(question = "Test?", ignore_category = FALSE))
+	var/atom/movable/screen/alert/poll_alert/alert = dummy.throw_alert("test_poll_alert_noignore", /atom/movable/screen/alert/poll_alert, timeout_override = 5 SECONDS, no_anim = TRUE)
+	TEST_ASSERT(alert, "throw_alert() did not create the poll alert")
+	alert.poll = poll
+	var/failure
+	try
+		alert.handle_sign_up()
+	catch(var/exception/error)
+		failure = "[error.name]"
+	dummy.clear_alert("test_poll_alert_noignore")
+	TEST_ASSERT(!failure, "Signing up for a poll with ignore_category = FALSE threw: [failure]")
+
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL

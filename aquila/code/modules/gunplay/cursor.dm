@@ -10,6 +10,10 @@
 /// Co ile pikseli zmienia się rozmiar kursora. Każdy rozmiar to osobny plik kursora, który klient pobiera i podmienia,
 /// więc kursor co piksel przy szybkim ruchu myszy dawał przycięcia
 #define AQ_GUN_CURSOR_SIZE_STEP 4
+/// Przy ruchu myszy rozmiar kursora zmienia się dopiero o tyle kroków: kursor na granicy dwóch rozmiarów nie skacze w kółko
+#define AQ_GUN_CURSOR_HYSTERESIS_STEPS 2
+/// Kursor rozrzutu od ruchu myszy odświeżamy najwyżej co tyle ticków (każda zmiana to podmiana pliku kursora u klienta)
+#define AQ_GUN_CURSOR_MOUSE_TICKS 2
 /// Kształty celownika (pliki aquila/icons/effects/gun_cursor*.dmi, generator opisany w opisie PR-a)
 #define AQ_CURSOR_STANDARD "standard"
 #define AQ_CURSOR_SCOPE "scope"
@@ -50,6 +54,19 @@ GLOBAL_LIST_EMPTY(aq_gun_cursor_icons)
 	var/cached_file = fcopy_rsc(result)
 	GLOB.aq_gun_cursor_icons[key] = cached_file
 	return cached_file
+
+/// Rozmiar kursora przy ruchu myszy: nowy rozmiar dopiero, gdy różni się od pokazanego o AQ_GUN_CURSOR_HYSTERESIS_STEPS kroków
+/proc/aq_gun_cursor_hysteresis(shown_size, wanted_size)
+	if(isnull(shown_size) || abs(wanted_size - shown_size) >= AQ_GUN_CURSOR_HYSTERESIS_STEPS * AQ_GUN_CURSOR_SIZE_STEP)
+		return wanted_size
+	return shown_size
+
+/// Wszystkie rozmiary kursora danego kształtu, jakie może dać get_gun_cursor_size() (co AQ_GUN_CURSOR_SIZE_STEP)
+/proc/aq_gun_cursor_sizes()
+	var/list/sizes = list()
+	for(var/size in 0 to (AQ_GUN_CURSOR_STATES - 1) step AQ_GUN_CURSOR_SIZE_STEP)
+		sizes += size
+	return sizes
 
 /obj/item/gun
 	/// Kształt celownika tej broni (AQ_CURSOR_*)
@@ -136,6 +153,14 @@ GLOBAL_LIST_EMPTY(aq_gun_cursor_icons)
 /client
 	/// Pokazujemy kursor rozrzutu (żeby nie nadpisać kursora czaru albo mecha)
 	var/icon/aq_gun_cursor_shown
+	/// Rozmiar i kształt pokazanego kursora rozrzutu (histereza przy ruchu myszy)
+	var/aq_gun_cursor_size
+	var/aq_gun_cursor_shape
+	/// Kształty, których pliki kursora klient już dostał z góry
+	var/list/aq_gun_cursor_preloaded
+	/// getviewsize() dla aq_screen_loc_to_view_offset(), liczone od nowa przy zmianie view
+	var/aq_cached_view
+	var/list/aq_cached_view_size
 
 /mob/living
 	/// Śledzi położenie kursora (rozrzut, obracanie do kursora)
@@ -168,6 +193,10 @@ GLOBAL_LIST_EMPTY(aq_gun_cursor_icons)
 	var/last_update = -1
 	/// Czeka timer z odświeżeniem po ostatnim ruchu w tym ticku
 	var/update_pending = FALSE
+	/// Kiedy ostatnio przeliczono kursor rozrzutu od ruchu myszy
+	var/last_cursor_update = -INFINITY
+	/// Czeka timer z przeliczeniem kursora rozrzutu
+	var/cursor_update_pending = FALSE
 
 /datum/aq_mouse_tracker/New(mob/living/new_owner)
 	owner = new_owner
@@ -179,8 +208,9 @@ GLOBAL_LIST_EMPTY(aq_gun_cursor_icons)
 /datum/aq_mouse_tracker/onMouseMove(object, location, control, params)
 	if(!owner?.client)
 		return
-	// Bez broni w ręku i poza trybem walki położenia kursora nic nie czyta: bez parsowania przy każdym ruchu myszy
-	if(!owner.combat_mode && !istype(owner.get_active_held_item(), /obj/item/gun))
+	// Położenie kursora czyta tylko broń (rozrzut, laser) i obracanie do kursora w combat mode (gdy jest włączone):
+	// poza tym bez parsowania przy każdym ruchu myszy
+	if(!istype(owner.get_active_held_item(), /obj/item/gun) && !(owner.combat_mode && owner.client.prefs?.face_cursor_combat))
 		return
 	var/list/modifiers = params2list(params)
 	var/screen_loc = modifiers["screen-loc"]
@@ -208,8 +238,26 @@ GLOBAL_LIST_EMPTY(aq_gun_cursor_icons)
 	if(QDELETED(owner) || !owner.client)
 		return FALSE
 	owner.face_cursor_if_needed()
-	owner.update_gun_cursor()
+	queue_gun_cursor_update()
 	return TRUE
+
+/// Kursor rozrzutu od ruchu myszy najwyżej co AQ_GUN_CURSOR_MOUSE_TICKS ticków, ostatnia pozycja dochodzi timerem
+/datum/aq_mouse_tracker/proc/queue_gun_cursor_update()
+	if(cursor_update_pending)
+		return
+	var/wait = last_cursor_update + AQ_GUN_CURSOR_MOUSE_TICKS * world.tick_lag - world.time
+	if(wait <= 0)
+		apply_gun_cursor_update()
+		return
+	cursor_update_pending = TRUE
+	addtimer(CALLBACK(src, PROC_REF(apply_gun_cursor_update)), wait)
+
+/datum/aq_mouse_tracker/proc/apply_gun_cursor_update()
+	cursor_update_pending = FALSE
+	last_cursor_update = world.time
+	if(QDELETED(owner) || !owner.client)
+		return
+	owner.update_gun_cursor(TRUE)
 
 /// screen-loc kursora -> przesunięcie w pikselach od środka widoku (jak calculate_projectile_angle_and_pixel_offsets())
 /proc/aq_screen_loc_to_view_offset(client/C, screen_loc)
@@ -222,7 +270,11 @@ GLOBAL_LIST_EMPTY(aq_gun_cursor_icons)
 		return null
 	var/x = text2num(screen_loc_X[1]) * world.icon_size + text2num(screen_loc_X[2]) - world.icon_size
 	var/y = text2num(screen_loc_Y[1]) * world.icon_size + text2num(screen_loc_Y[2]) - world.icon_size
-	var/list/screenview = getviewsize(C.view)
+	// getviewsize() parsuje tekst view przy każdym ruchu myszy: wynik trzymamy do zmiany view
+	if(C.aq_cached_view != C.view || !C.aq_cached_view_size)
+		C.aq_cached_view = C.view
+		C.aq_cached_view_size = getviewsize(C.view)
+	var/list/screenview = C.aq_cached_view_size
 	var/origin_x = round(screenview[1] * world.icon_size / 2) - C.pixel_x
 	var/origin_y = round(screenview[2] * world.icon_size / 2) - C.pixel_y
 	return list(x - origin_x, y - origin_y)
@@ -284,14 +336,14 @@ GLOBAL_LIST_EMPTY(aq_gun_cursor_icons)
 		total += chambered.variance
 	return max(total * 0.55, 0)
 
-/// Ikona kursora dla trzymanej broni albo null
-/mob/living/proc/get_gun_cursor_icon()
+/// Broń, dla której pokazujemy kursor rozrzutu, albo null
+/mob/living/proc/get_cursor_gun()
 	if(!client?.prefs?.gun_cursor)
 		return null
 	var/obj/item/gun/held_gun = get_active_held_item()
 	if(!istype(held_gun) || held_gun.aq_firemode == AQ_FIREMODE_SAFE)
 		return null
-	return aq_get_gun_cursor_icon(get_gun_cursor_size(held_gun), held_gun.get_cursor_shape())
+	return held_gun
 
 /// Stan ikony kursora = promień stożka rozrzutu w pikselach przy kursorze. Stan 0 ma już 4 px odstępu od środka,
 /// więc promień się do niego dodaje (odejmowanie 4 px chowało pojedyncze strzały i bieg, rósł tylko śrut)
@@ -302,21 +354,39 @@ GLOBAL_LIST_EMPTY(aq_gun_cursor_icons)
 	return round(tan(half_angle) * max(distance, world.icon_size), AQ_GUN_CURSOR_SIZE_STEP)
 
 
-/mob/living/proc/update_gun_cursor()
+/// from_mouse: odświeżenie od ruchu myszy, z histerezą rozmiaru (odrzut, krok, dobycie broni pokazują rozmiar dokładnie)
+/mob/living/proc/update_gun_cursor(from_mouse = FALSE)
 	if(!client)
 		return
-	var/icon/wanted = get_gun_cursor_icon()
+	var/obj/item/gun/held_gun = get_cursor_gun()
 	var/current = client.mouse_pointer_icon
-	if(wanted)
+	if(held_gun)
+		var/shape = held_gun.get_cursor_shape()
+		client.aq_preload_gun_cursor(shape)
+		var/size = clamp(get_gun_cursor_size(held_gun), 0, AQ_GUN_CURSOR_STATES - 1)
+		if(from_mouse && client.aq_gun_cursor_shown && client.aq_gun_cursor_shape == shape)
+			size = aq_gun_cursor_hysteresis(client.aq_gun_cursor_size, size)
+		var/wanted = aq_get_gun_cursor_icon(size, shape)
 		// Zmieniamy tylko zwykły kursor albo nasz własny, nie kursor czaru, mecha czy podglądu
 		if(current == initial(client.mouse_pointer_icon) || (client.aq_gun_cursor_shown && current == client.aq_gun_cursor_shown))
 			if(current != wanted)
 				client.mouse_pointer_icon = wanted
 			client.aq_gun_cursor_shown = wanted
+			client.aq_gun_cursor_size = size
+			client.aq_gun_cursor_shape = shape
 	else if(client.aq_gun_cursor_shown)
 		if(current == client.aq_gun_cursor_shown)
 			client.mouse_pointer_icon = initial(client.mouse_pointer_icon)
 		client.aq_gun_cursor_shown = null
+
+/// Wysyła klientowi z góry wszystkie pliki kursora danego kształtu (raz na kształt), żeby przy ruchu myszy
+/// nie pobierał każdego rozmiaru dopiero w chwili podmiany kursora
+/client/proc/aq_preload_gun_cursor(shape)
+	if(LAZYFIND(aq_gun_cursor_preloaded, shape))
+		return
+	LAZYADD(aq_gun_cursor_preloaded, shape)
+	for(var/size in aq_gun_cursor_sizes())
+		src << browse_rsc(aq_get_gun_cursor_icon(size, shape), "aq_gun_cursor_[shape]_[size].dmi")
 
 /mob/living/update_mouse_pointer()
 	. = ..()
@@ -364,3 +434,5 @@ GLOBAL_LIST_EMPTY(aq_gun_cursor_icons)
 #undef AQ_CURSOR_TOY
 #undef AQ_GUN_CURSOR_DEFAULT_DISTANCE
 #undef AQ_GUN_CURSOR_SIZE_STEP
+#undef AQ_GUN_CURSOR_HYSTERESIS_STEPS
+#undef AQ_GUN_CURSOR_MOUSE_TICKS

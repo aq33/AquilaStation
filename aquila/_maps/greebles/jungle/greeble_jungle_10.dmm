@@ -1,0 +1,158 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"b" = (
+/obj/structure/flora/ausbushes/stalkybush{
+	pixel_y = 6
+	},
+/turf/open/water/planet/jungle,
+/area/template_noop)
+"g" = (
+/turf/template_noop,
+/area/template_noop)
+"h" = (
+/obj/structure/flora/ausbushes/reedbush,
+/turf/open/water/planet/jungle,
+/area/template_noop)
+"j" = (
+/obj/structure/flora/ausbushes/stalkybush{
+	pixel_x = 7;
+	 pixel_y = 10
+	},
+/turf/open/water/planet/jungle,
+/area/template_noop)
+"k" = (
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"x" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"y" = (
+/obj/structure/flora/ausbushes/stalkybush{
+	pixel_x = -15;
+	 pixel_y = 6
+	},
+/obj/structure/flora/ausbushes/stalkybush{
+	pixel_x = 3;
+	 pixel_y = 10
+	},
+/obj/structure/flora/ausbushes/stalkybush{
+	pixel_x = -3;
+	 pixel_y = 23
+	},
+/turf/open/water/planet/jungle,
+/area/template_noop)
+"z" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"E" = (
+/obj/structure/flora/ausbushes/stalkybush{
+	pixel_x = 3;
+	 pixel_y = 10
+	},
+/turf/open/water/planet/jungle,
+/area/template_noop)
+"F" = (
+/obj/structure/flora/junglebush/c,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"G" = (
+/obj/structure/flora/junglebush/b,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"H" = (
+/turf/open/water/planet/jungle,
+/area/template_noop)
+"N" = (
+/obj/structure/flora/junglebush/large,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"V" = (
+/obj/structure/flora/rock/jungle,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"Y" = (
+/obj/structure/flora/ausbushes/stalkybush,
+/turf/open/water/planet/jungle,
+/area/template_noop)
+
+(1,1,1) = {"
+g
+g
+g
+g
+x
+z
+g
+g
+"}
+(2,1,1) = {"
+g
+g
+g
+k
+z
+G
+k
+g
+"}
+(3,1,1) = {"
+g
+g
+N
+V
+j
+y
+V
+k
+"}
+(4,1,1) = {"
+g
+z
+V
+b
+H
+h
+k
+k
+"}
+(5,1,1) = {"
+k
+x
+Y
+H
+H
+E
+z
+g
+"}
+(6,1,1) = {"
+g
+k
+z
+h
+b
+x
+k
+g
+"}
+(7,1,1) = {"
+g
+g
+k
+V
+F
+z
+g
+g
+"}
+(8,1,1) = {"
+g
+g
+g
+k
+k
+g
+g
+g
+"}

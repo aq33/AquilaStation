@@ -132,7 +132,7 @@
 /obj/item/grenade/barrier
 	alt_click_loot = FALSE
 
-/obj/item/gun/ballistic
+/obj/item/gun
 	alt_click_loot = FALSE
 
 /obj/item/healthanalyzer
@@ -150,9 +150,6 @@
 /obj/item/modular_computer
 	alt_click_loot = FALSE
 
-/obj/item/munition_cast
-	alt_click_loot = FALSE
-
 /obj/item/nanite_remote
 	alt_click_loot = FALSE
 
@@ -166,6 +163,9 @@
 	alt_click_loot = FALSE
 
 /obj/item/pickaxe/drill/implant
+	alt_click_loot = FALSE
+
+/obj/item/pinpointer/mineral
 	alt_click_loot = FALSE
 
 /obj/item/plant_seeds/debug
@@ -267,6 +267,9 @@
 /obj/machinery/atmospherics
 	alt_click_loot = FALSE
 
+/obj/machinery/autoclave
+	alt_click_loot = FALSE
+
 /obj/machinery/aug_manipulator
 	alt_click_loot = FALSE
 
@@ -337,6 +340,9 @@
 	alt_click_loot = FALSE
 
 /obj/machinery/dna_infuser
+	alt_click_loot = FALSE
+
+/obj/machinery/drill
 	alt_click_loot = FALSE
 
 /obj/machinery/fat_sucker

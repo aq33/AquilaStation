@@ -1,0 +1,61 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"c" = (
+/turf/template_noop,
+/area/template_noop)
+"d" = (
+/turf/closed/mineral/random/whitesands,
+/area/template_noop)
+"A" = (
+/obj/effect/spawner/lootdrop/planet_chance/whitesands_fauna,
+/turf/open/floor/plating/asteroid/whitesands,
+/area/template_noop)
+"D" = (
+/obj/effect/spawner/lootdrop/planet_chance/puce,
+/turf/open/floor/plating/asteroid/whitesands/dried,
+/area/template_noop)
+"G" = (
+/obj/effect/spawner/lootdrop/planet_chance/fern,
+/turf/open/floor/plating/asteroid/whitesands,
+/area/template_noop)
+"L" = (
+/turf/open/water/planet/acid,
+/area/template_noop)
+"P" = (
+/turf/open/floor/plating/asteroid/whitesands,
+/area/template_noop)
+
+(1,1,1) = {"
+c
+c
+D
+d
+d
+"}
+(2,1,1) = {"
+c
+D
+L
+L
+D
+"}
+(3,1,1) = {"
+d
+P
+G
+L
+D
+"}
+(4,1,1) = {"
+P
+A
+P
+d
+c
+"}
+(5,1,1) = {"
+c
+G
+c
+c
+c
+"}

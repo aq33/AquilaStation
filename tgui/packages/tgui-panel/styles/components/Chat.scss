@@ -98,3 +98,9 @@ $color-bg-section: base.$color-bg-section !default;
     pointer-events: none;
   }
 }
+
+// AQUILA: tłumaczenie na żywo czeka na odpowiedź (chat/aqLiveTranslation.ts)
+.aq-tr-pending::after {
+  content: ' …';
+  opacity: 0.6;
+}

@@ -1,0 +1,334 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/structure/chair/fancy/shuttle,
+/turf/open/floor/plasteel/techmaint,
+/area/template_noop)
+"b" = (
+/obj/machinery/power/smes{
+	dir = 8
+	},
+/obj/structure/cable/green,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/spacevine/dense,
+/turf/open/floor/plating/airless,
+/area/template_noop)
+"e" = (
+/turf/template_noop,
+/area/template_noop)
+"f" = (
+/obj/structure/spacevine/weak,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"g" = (
+/turf/closed/mineral/random/planet_jungle,
+/area/template_noop)
+"h" = (
+/obj/structure/chair/fancy/shuttle,
+/obj/item/stack/ore/iron,
+/turf/open/floor/plasteel/techmaint,
+/area/template_noop)
+"j" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8
+	},
+/obj/structure/cable/yellow,
+/obj/structure/spacevine/dense,
+/turf/open/floor/plating/airless,
+/area/template_noop)
+"k" = (
+/obj/effect/turf_decal/siding/thinplating{
+	dir = 5
+	},
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/plating/airless,
+/area/template_noop)
+"l" = (
+/obj/effect/gibspawner/human,
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/plasteel/tech/grid,
+/area/template_noop)
+"m" = (
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/plasteel/techmaint,
+/area/template_noop)
+"n" = (
+/obj/structure/flora/grass/jungle,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"o" = (
+/obj/effect/gibspawner/human,
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/plating/airless,
+/area/template_noop)
+"q" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8
+	},
+/obj/structure/cable/green,
+/obj/structure/spacevine/dense,
+/turf/open/floor/plating/airless,
+/area/template_noop)
+"r" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	dir = 4;
+	id = "frontiepod1"
+	},
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/plasteel/tech/grid,
+/area/template_noop)
+"s" = (
+/obj/structure/flora/grass/jungle/b,
+/obj/structure/spacevine/dense,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"t" = (
+/obj/structure/spacevine/dense,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"u" = (
+/obj/structure/flora/grass/jungle/b,
+/obj/structure/spacevine/weak,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"v" = (
+/obj/machinery/power/terminal{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/plating/airless,
+/area/template_noop)
+"w" = (
+/obj/structure/flora/grass/jungle/b,
+/obj/structure/spacevine/weak,
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"x" = (
+/obj/machinery/power/smes{
+	dir = 8
+	},
+/obj/structure/cable/yellow,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/spacevine/dense,
+/turf/open/floor/plating/airless,
+/area/template_noop)
+"B" = (
+/obj/structure/cable,
+/turf/open/floor/plating/airless,
+/area/template_noop)
+"C" = (
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"D" = (
+/obj/structure/spacevine/weak,
+/obj/item/stack/ore/iron,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"E" = (
+/obj/effect/decal/cleanable/glass,
+/obj/structure/spacevine/weak,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"G" = (
+/turf/closed/wall,
+/area/template_noop)
+"J" = (
+/obj/structure/spacevine/weak,
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"L" = (
+/obj/structure/chair/fancy/shuttle,
+/obj/machinery/light/broken{
+	dir = 1
+	},
+/turf/open/floor/plasteel/techmaint,
+/area/template_noop)
+"O" = (
+/obj/effect/decal/cleanable/glass,
+/obj/item/stack/ore/iron,
+/turf/open/floor/plasteel/techmaint,
+/area/template_noop)
+"P" = (
+/obj/structure/flora/grass/jungle,
+/obj/structure/spacevine/dense,
+/obj/effect/decal/cleanable/glass,
+/obj/item/stack/ore/iron,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"R" = (
+/obj/structure/spacevine/dense,
+/turf/closed/wall,
+/area/template_noop)
+"S" = (
+/obj/structure/spacevine/weak,
+/turf/closed/mineral/random/planet_jungle,
+/area/template_noop)
+"T" = (
+/obj/structure/flora/grass/jungle/b,
+/obj/structure/spacevine/weak,
+/obj/item/stack/ore/iron,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+"U" = (
+/obj/effect/turf_decal/siding/thinplating{
+	dir = 6
+	},
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/plating/airless,
+/area/template_noop)
+"V" = (
+/obj/machinery/power/terminal{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/effect/gibspawner/human,
+/turf/open/floor/plating/airless,
+/area/template_noop)
+"Y" = (
+/obj/structure/spacevine/weak,
+/turf/closed/wall,
+/area/template_noop)
+"Z" = (
+/obj/structure/flora/grass/jungle/b,
+/obj/structure/spacevine/dense,
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
+/area/template_noop)
+
+(1,1,1) = {"
+e
+g
+g
+g
+g
+g
+g
+g
+e
+"}
+(2,1,1) = {"
+g
+g
+o
+g
+g
+g
+g
+g
+g
+"}
+(3,1,1) = {"
+g
+g
+r
+r
+l
+g
+g
+g
+g
+"}
+(4,1,1) = {"
+e
+G
+a
+k
+U
+g
+S
+S
+g
+"}
+(5,1,1) = {"
+e
+G
+L
+m
+O
+g
+S
+S
+S
+"}
+(6,1,1) = {"
+e
+G
+h
+B
+B
+S
+S
+S
+e
+"}
+(7,1,1) = {"
+e
+G
+G
+V
+v
+S
+S
+C
+e
+"}
+(8,1,1) = {"
+s
+f
+R
+x
+b
+R
+T
+f
+e
+"}
+(9,1,1) = {"
+P
+Z
+R
+j
+q
+R
+w
+u
+e
+"}
+(10,1,1) = {"
+J
+f
+R
+u
+f
+Y
+E
+f
+e
+"}
+(11,1,1) = {"
+e
+t
+s
+T
+f
+f
+f
+e
+e
+"}
+(12,1,1) = {"
+e
+e
+n
+E
+f
+D
+e
+e
+e
+"}

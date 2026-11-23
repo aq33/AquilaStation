@@ -102,7 +102,7 @@
 	add_highlight(vendor)
 	RegisterSignal(vendor, COMSIG_TUTORIAL_ITEM_USED, PROC_REF(on_kit_vended))
 
-/datum/tutorial/aquila/general_quarters/proc/on_kit_vended(datum/source, mob/user, obj/item/storage/box/kit)
+/datum/tutorial/aquila/general_quarters/proc/on_kit_vended(datum/source, mob/user, obj/item/storage/aq_squad_crate/kit)
 	SIGNAL_HANDLER
 
 	TUTORIAL_ATOM_FROM_TRACKING(/obj/machinery/squad_vendor/tutorial, vendor)

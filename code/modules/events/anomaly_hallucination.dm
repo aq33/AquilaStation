@@ -12,4 +12,4 @@
 	anomaly_path = /obj/effect/anomaly/hallucination
 
 /datum/round_event/anomaly/anomaly_hallucination/announce(fake)
-	priority_announce("Masowa halucynacja nawiedza stację. Spodziewana lokalizacja: [impact_area.name].", "Alarm: Anomalia")
+	priority_announce("Masowa halucynacja nawiedza stację. Spodziewana lokalizacja: [impact_area.name].", "Alarm: Anomalia", sound = 'aquila/sound/ai/events/anomaly_hallucination.ogg') // AQ EDIT - własne nagranie ogłoszenia

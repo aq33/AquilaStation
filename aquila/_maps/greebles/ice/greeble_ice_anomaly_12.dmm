@@ -1,0 +1,250 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"c" = (
+/turf/template_noop,
+/area/template_noop)
+"f" = (
+/obj/structure/flora/ausbushes/sparsegrass{
+	pixel_x = 3;
+	 pixel_y = -4
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"h" = (
+/obj/structure/flora/rock/pile,
+/turf/open/lava/plasma/planet_ice,
+/area/template_noop)
+"i" = (
+/obj/structure/flora/ausbushes/sparsegrass{
+	pixel_x = -2;
+	 pixel_y = -4
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"k" = (
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"l" = (
+/obj/structure/flora/tree/dead,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"E" = (
+/obj/effect/anomaly/plasmasoul/planetary,
+/turf/open/lava/plasma/planet_ice,
+/area/template_noop)
+"P" = (
+/obj/structure/flora/ausbushes/sparsegrass{
+	pixel_x = -7;
+	 pixel_y = 4
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"R" = (
+/obj/structure/flora/tree/dead{
+	pixel_x = -17;
+	 pixel_y = 10
+	},
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"T" = (
+/turf/open/lava/plasma/planet_ice,
+/area/template_noop)
+"W" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+
+(1,1,1) = {"
+c
+c
+c
+T
+T
+k
+k
+k
+k
+c
+c
+c
+c
+"}
+(2,1,1) = {"
+c
+c
+c
+T
+T
+T
+k
+k
+T
+T
+c
+c
+c
+"}
+(3,1,1) = {"
+c
+c
+T
+T
+h
+T
+k
+k
+T
+T
+T
+T
+c
+"}
+(4,1,1) = {"
+c
+T
+h
+T
+T
+T
+k
+W
+T
+T
+T
+h
+T
+"}
+(5,1,1) = {"
+k
+T
+T
+T
+T
+k
+k
+k
+k
+T
+T
+T
+T
+"}
+(6,1,1) = {"
+W
+k
+k
+k
+k
+k
+f
+k
+k
+k
+T
+T
+T
+"}
+(7,1,1) = {"
+k
+k
+k
+k
+l
+i
+k
+E
+T
+T
+T
+T
+T
+"}
+(8,1,1) = {"
+k
+T
+T
+k
+k
+k
+k
+k
+k
+k
+T
+T
+T
+"}
+(9,1,1) = {"
+c
+T
+T
+T
+k
+R
+P
+W
+k
+T
+T
+T
+T
+"}
+(10,1,1) = {"
+c
+T
+h
+T
+k
+k
+k
+T
+T
+T
+T
+h
+c
+"}
+(11,1,1) = {"
+c
+T
+T
+k
+k
+T
+T
+T
+T
+T
+T
+c
+c
+"}
+(12,1,1) = {"
+c
+T
+T
+k
+k
+T
+T
+T
+h
+T
+T
+c
+c
+"}
+(13,1,1) = {"
+c
+c
+k
+k
+k
+k
+c
+c
+c
+c
+c
+c
+c
+"}

@@ -26,6 +26,7 @@ REPO = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 CACHE = os.path.join(REPO, "tools", "bootstrap", ".cache")
 JQ_VERSION = "1.7.1"
 DME = "nsv13.dme"
+MAP_SHARDS = 3
 
 
 def dependency(key):
@@ -233,8 +234,12 @@ def step_i18n(r):
 	# brak bazy to błąd narzędzia, nie brakujące tłumaczenia: bez tego krok po cichu by nic nie sprawdzał
 	if subprocess.run(["git", "rev-parse", "--verify", "--quiet", base], cwd=REPO, capture_output=True).returncode:
 		raise RuntimeError(f"Nie ma gałęzi bazowej {base}; podaj --baza albo zrób git fetch")
-	code, out = r.run([r.python, "tools/i18n/list_missing.py", "--changed", base], env={"PYTHONUTF8": "1"})
-	return code, out
+	# testy samego skanera (bez Node), potem teksty bez angielskiego
+	code, out = r.run([r.python, "tools/i18n/test_list_missing.py"], env={"PYTHONUTF8": "1"})
+	if code:
+		return code, out
+	code, more = r.run([r.python, "tools/i18n/list_missing.py", "--changed", base, "--strict"], env={"PYTHONUTF8": "1"})
+	return code, out + more
 
 
 def step_tgui(r):
@@ -255,20 +260,25 @@ def step_dreamchecker(r):
 
 
 def step_maps(r):
-	code, out = r.run([os.path.join(REPO, "tools", "build", "build.bat"), "dm-maps-include"])
-	if code:
-		return code, out
+	"""Mapy w kilku kompilacjach po kolei (części jak w jobach compile_all_maps): dm wczytuje mapy w czasie
+	rosnącym z kwadratem ich liczby, więc MAP_SHARDS krótkich kompilacji trwa krócej niż jedna ze wszystkimi."""
+	templates = os.path.join(REPO, "_maps", "templates.dm")
+	code, outs = 0, []
 	try:
-		code, base, out = r.compile_copy("maps", ["CIBUILDING", "CITESTING", "ALL_MAPS"], timeout=3600)
+		for shard in range(1, MAP_SHARDS + 1):
+			part_code, out = r.run([os.path.join(REPO, "tools", "build", "build.bat"), "dm-maps-include", f"--map-shard={shard}/{MAP_SHARDS}"])
+			if not part_code:
+				part_code, base, out = r.compile_copy("maps", ["CIBUILDING", "CITESTING", "ALL_MAPS"], timeout=3600)
+				r.cleanup_copy(base)
+				m = re.search(r"(\d+) errors?, (\d+) warnings?", out)
+				if m and m.group(1) != "0":
+					part_code = part_code or 1
+			code = code or part_code
+			outs.append(f"Część {shard}/{MAP_SHARDS}:\n{out.strip()}")
 	finally:
-		templates = os.path.join(REPO, "_maps", "templates.dm")
 		if os.path.exists(templates):
 			os.remove(templates)
-	r.cleanup_copy(base)
-	m = re.search(r"(\d+) errors?, (\d+) warnings?", out)
-	if m and m.group(1) != "0":
-		code = code or 1
-	return code, out
+	return code, "\n".join(outs)
 
 
 def link_or_copy(source, destination):
@@ -293,7 +303,7 @@ def deploy_tests(base, target):
 		shutil.copyfile(os.path.join(REPO, base + ext), os.path.join(target, base + ext))
 	# Zasoby, których świat nie zapisuje, przez twarde dowiązania (ok. 250 MB na część bez kopiowania).
 	# config/ i html/ są zwykłymi kopiami: serwer je zapisuje, a zapis przez dowiązanie zmieniłby pliki w repo
-	read_only = ("_maps", "code/datums/greyscale/json_configs", "icons", "sound/runtime", "strings", "tgui/public", "tgui/packages/tgfont/dist")
+	read_only = ("_maps", "aquila/_maps", "code/datums/greyscale/json_configs", "icons", "sound/runtime", "strings", "tgui/public", "tgui/packages/tgfont/dist")
 	for folder in read_only + ("html/changelogs/archive", "config"):
 		source = os.path.join(REPO, folder)
 		if os.path.isdir(source):
@@ -362,13 +372,13 @@ def step_tests(r):
 			for shard, proc in running.items():
 				if proc.poll() is not None:
 					continue
-				# 516 potrafi wisieć po zamknięciu świata (zob. tools/ci/run_server.sh): po „Shutdown complete” czekamy 15 s i zabijamy
+				# 516 potrafi wisieć po zamknięciu świata (zob. tools/ci/run_server.sh): po „Shutdown complete” czekamy 3 s i zabijamy
 				runtime_log = os.path.join(test_deploy_dir(shard), "data", "logs", "ci", "runtime.log")
 				if shard not in shutdown_seen and os.path.exists(runtime_log):
 					with open(runtime_log, encoding="utf-8", errors="replace") as f:
 						if "Shutdown complete" in f.read():
 							shutdown_seen[shard] = time.time()
-				if shard in shutdown_seen and time.time() - shutdown_seen[shard] > 15:
+				if shard in shutdown_seen and time.time() - shutdown_seen[shard] > 3:
 					proc.kill()
 			time.sleep(2)
 	finally:
@@ -397,6 +407,12 @@ def step_tests(r):
 	return code, "\n".join(lines)
 
 
+def step_times(r):
+	"""Ostrzeżenia o wolnych testach (jak krok „Test times” w CI) z logów ostatniego przebiegu testów."""
+	logs = [os.path.join(test_deploy_dir(shard), "data", "logs", "ci", "tests.log") for shard in range(1, max(1, r.args.czesci) + 1)]
+	return r.run([sys.executable, os.path.join(REPO, "tools", "ci", "check_test_times.py"), *logs])
+
+
 STEPS = [
 	("filedirs", "Zaznaczone foldery w .dme", step_filedirs, "base"),
 	("changelog", "Changelog", step_changelog, "base"),
@@ -406,14 +422,15 @@ STEPS = [
 	("mapconn", "Rury i kable na mapach", step_mapconn, "base"),
 	("dmi", "Testy biblioteki dmi", step_dmi, "base"),
 	("mapmerge", "Testy mapmerge2", step_mapmerge, "base"),
-	("i18n", "Teksty bez angielskiego (ostrzeżenia)", step_i18n, "base"),
+	("i18n", "Teksty bez angielskiego", step_i18n, "base"),
 	("tgui", "TGUI: lint, testy, build", step_tgui, "tgui"),
 	("dm", "Kompilacja DM", step_dm, "base"),
 	("dreamchecker", "dreamchecker", step_dreamchecker, "base"),
 	("maps", "Wszystkie mapy (-DALL_MAPS)", step_maps, "full"),
 	("tests", "Testy jednostkowe", step_tests, "full"),
+	("czasy", "Czasy testów (ostrzeżenia)", step_times, "full"),
 ]
-WARN_ONLY = {"i18n"}
+WARN_ONLY = {"czasy"}
 
 
 def main():

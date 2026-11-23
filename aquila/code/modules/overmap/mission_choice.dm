@@ -45,6 +45,9 @@ GLOBAL_LIST_INIT(mission_choice_names, list(
 	"armada" = "Armada",
 	"hardmode" = "Szturm na Dolos",
 	"derelict" = "Opuszczona stacja",
+	"planet_survey" = "Badanie planety",
+	"planet_evacuation" = "Ewakuacja kolonii",
+	"planet_drill" = "Odwiert",
 ))
 
 /datum/controller/subsystem/overmap_mode/Initialize(start_timeofday)

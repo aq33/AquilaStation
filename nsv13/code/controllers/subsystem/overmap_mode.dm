@@ -187,12 +187,13 @@ SUBSYSTEM_DEF(overmap_mode)
 
 	var/obj/structure/overmap/MO = SSstar_system.find_main_overmap()
 	if(MO)
-		var/datum/star_system/target = SSstar_system.system_by_id(mode.starting_system)
+		var/datum/star_system/target = SSstar_system.campaign_start_system(mode.starting_system) // AQ EDIT - mapa hex: okręt zaczyna tam, gdzie skończył poprzednią rundę
 		var/datum/star_system/curr = MO.current_system
 		curr?.remove_ship(MO)
 		MO.jump_end(target) //Move the ship to the designated start
 		if(mode.starting_faction)
 			MO.faction = mode.starting_faction //If we have a faction override, set it
+		MO.hex_update_return_station() // AQ EDIT - mapa hex: koniec rundy na najbliższej przyjaznej stacji
 
 	var/obj/structure/overmap/MM = SSstar_system.find_main_miner() //ditto for the mining ship until delete
 	if(MM)

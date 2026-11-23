@@ -22,6 +22,9 @@
 /// Painkiller -> how much pain it takes off (cmss13/TGMC scale)
 GLOBAL_LIST_INIT(aq_painkillers, list(
 	/datum/reagent/medicine/morphine = 80,
+	/datum/reagent/medicine/oxycodone = 70, // AquilaMed 5 (reagents/chemistry/reagents/med5_reagents.dm)
+	/datum/reagent/medicine/tramadol = 50,
+	/datum/reagent/medicine/paracetamol = 25,
 	/datum/reagent/drug/ketamine = 60,
 	/datum/reagent/toxin/fentanyl = 60,
 	/datum/reagent/drug/krokodil = 50,
@@ -70,6 +73,7 @@ GLOBAL_LIST_INIT(aq_painkillers, list(
 		. += wound.get_pain()
 	if(LIMB_HAS_ANY_SURGERY_STATE(limb, ALL_SURGERY_SKIN_STATES))
 		. += 15
+	. += limb.aq_infection_pain() // zakażenie (medical/germs.dm)
 
 /// Pain computed from the body, before painkillers
 /mob/living/carbon/human/proc/aq_compute_pain()
@@ -91,6 +95,7 @@ GLOBAL_LIST_INIT(aq_painkillers, list(
 		if(organ.damage > 0 && organ.slot != ORGAN_SLOT_BRAIN && organ.status == ORGAN_ORGANIC)
 			. += organ.damage * 0.3
 	. += 5 * LAZYLEN(aq_tourniquets)
+	. += aq_withdrawal_pain // odstawienie opioidów (reagents/addiction/addiction.dm)
 
 /// How much the painkillers and adrenaline in the blood take off a pain this big
 /mob/living/carbon/human/proc/aq_pain_suppression(raw_pain)
@@ -138,7 +143,8 @@ GLOBAL_LIST_INIT(aq_painkillers, list(
 		aq_pain = 0 // anaesthesia numbs at once, it does not wear the pain off slowly
 	if(aq_pain < 1)
 		aq_pain = target < 1 ? 0 : aq_pain
-	var/sharp = aq_pain_raw - aq_pain_last_raw >= AQ_PAIN_SHARP_JUMP && target > 10
+	// błysk tylko przy bólu, który już daje winietę (> 20), nie przy draśnięciu tuż nad progiem odczuwania
+	var/sharp = aq_pain_raw - aq_pain_last_raw >= AQ_PAIN_SHARP_JUMP && target > 20
 	aq_pain_last_raw = aq_pain_raw
 	aq_update_pain_slowdown()
 	aq_update_pain_stamina()
@@ -189,7 +195,7 @@ GLOBAL_LIST_INIT(aq_painkillers, list(
 	. = ..()
 	if(!client)
 		return
-	var/hurt = aq_pain + aq_pain_flash + damageoverlaytemp
+	var/hurt = aq_pain_vignette_level()
 	if(stat != CONSCIOUS || hurt < 10)
 		clear_fullscreen("brute")
 		return
@@ -206,6 +212,11 @@ GLOBAL_LIST_INIT(aq_painkillers, list(
 		if(110 to INFINITY)
 			severity = 6
 	overlay_fullscreen("brute", /atom/movable/screen/fullscreen/brute, severity)
+
+/// Strength of the red vignette. The flash of a fresh hit (damageoverlaytemp, 20 on every brute/burn hit) counts only
+/// when the pain is already felt, otherwise a scratch for 1 point pulsed the screen red
+/mob/living/carbon/human/proc/aq_pain_vignette_level()
+	return aq_pain + aq_pain_flash + (aq_pain >= 10 ? damageoverlaytemp : 0)
 
 /// The limb that hurts most, null if none feels pain
 /mob/living/carbon/human/proc/aq_worst_pain_zone()

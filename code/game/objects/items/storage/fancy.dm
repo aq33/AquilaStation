@@ -22,6 +22,8 @@
 	var/fancy_open = FALSE
 
 /obj/item/storage/fancy/PopulateContents()
+	if(!spawn_type) // AQ EDIT - puste pudełko z mapy (spawn_type = null w ruinach z Shiptesta)
+		return
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	for(var/i = 1 to STR.max_items)
 		new spawn_type(src)

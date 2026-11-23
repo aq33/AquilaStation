@@ -34,6 +34,10 @@
 	StartCooldown()
 	return TRUE
 
+/datum/action/cooldown/mob_cooldown/aquila_test_zap/Destroy()
+	last_target = null // cel to zwykle właściciel albo inny testowy mob: bez tego obaj zostawali w pamięci
+	return ..()
+
 /// Shares the cooldown group of the zap
 /datum/action/cooldown/mob_cooldown/aquila_test_zap/same_group
 
@@ -52,6 +56,10 @@
 /datum/action/cooldown/spell/aquila_test_spell/cast(atom/cast_on)
 	. = ..()
 	last_target = cast_on
+
+/datum/action/cooldown/spell/aquila_test_spell/Destroy()
+	last_target = null
+	return ..()
 
 /// A hostile basic mob with a targeted ability, used by the AI or by a player
 /mob/living/basic/aquila_ability_tester

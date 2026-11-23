@@ -185,7 +185,7 @@
 
 /obj/item/plant_seeds/random/Initialize(mapload, list/_plant_features, _species_id)
 	. = ..()
-	var/obj/item/plant_seeds/random_seeds = pick(subtypesof(/obj/item/plant_seeds/preset))
+	var/obj/item/plant_seeds/random_seeds = pick(valid_subtypesof(/obj/item/plant_seeds/preset)) // AQUILA - bez abstrakcyjnych presetów
 	random_seeds = new random_seeds(src.loc)
 	return INITIALIZE_HINT_QDEL
 

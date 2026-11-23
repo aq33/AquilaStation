@@ -17,7 +17,9 @@
 
 /// Does this mob's player use the legacy intent controls?
 /mob/proc/uses_legacy_intents()
-	return !!(client?.prefs && (client.prefs.chat_toggles & CHAT_LEGACY_INTENTS))
+	// GET_CLIENT also takes the mock client, so unit tests can pick the control mode of any mob (set_test_controls())
+	var/datum/client_interface/player = GET_CLIENT(src)
+	return !!(player?.prefs && (player.prefs.chat_toggles & CHAT_LEGACY_INTENTS))
 
 /**
  * Turns a legacy intent click into the combat mode click it stands for.

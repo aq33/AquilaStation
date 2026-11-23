@@ -1,0 +1,103 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"g" = (
+/obj/structure/flora/rock/pile,
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"p" = (
+/obj/item/stack/ore/iron{
+	amount = 5
+	},
+/obj/item/stack/ore/uranium,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"r" = (
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"w" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"A" = (
+/turf/template_noop,
+/area/template_noop)
+"E" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
+"K" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+"S" = (
+/turf/open/floor/plating/asteroid/dirt/jungle,
+/area/template_noop)
+"U" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/plating/asteroid/dirt/jungle/wasteland,
+/area/template_noop)
+
+(1,1,1) = {"
+A
+A
+A
+E
+A
+A
+A
+"}
+(2,1,1) = {"
+A
+A
+S
+r
+S
+A
+A
+"}
+(3,1,1) = {"
+A
+S
+g
+w
+g
+E
+A
+"}
+(4,1,1) = {"
+r
+U
+K
+p
+K
+S
+S
+"}
+(5,1,1) = {"
+A
+r
+U
+K
+r
+r
+A
+"}
+(6,1,1) = {"
+A
+A
+S
+g
+E
+A
+A
+"}
+(7,1,1) = {"
+A
+A
+A
+S
+A
+A
+A
+"}

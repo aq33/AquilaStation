@@ -24,7 +24,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           repository: ${{ github.event.client_payload.pr_head_full_repo_name }}
           ref: ${{ github.event.client_payload.pr_head_ref }}
@@ -35,7 +35,7 @@ jobs:
           git config --local user.email "${{ env.COMMIT_EMAIL }}"
           git config --local user.name "${{ env.COMMIT_NAME }}"
       - name: Setup Node
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v4
         with:
           node-version: '>=12.13'
 
@@ -67,13 +67,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           fetch-depth: 25
           token: ${{ env.TOKEN }}
 
       - name: Setup Node
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v4
         with:
           node-version: '>=12.13'
 

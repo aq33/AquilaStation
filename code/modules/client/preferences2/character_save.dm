@@ -333,8 +333,11 @@
 	if(!pref_species)
 		var/datum/species/spath = GLOB.species_list[pick(GLOB.roundstart_races)]
 		pref_species = new spath
+	var/antag_target_opt_in = features?["antag_target_opt_in"] // AQ EDIT - opcja postaci, nie wygląd: losowy wygląd jej nie kasuje
 	features = random_features()
 	features["voice_pitch"] = random_voice_pitch() // AQ EDIT
+	if(antag_target_opt_in) // AQ EDIT
+		features["antag_target_opt_in"] = antag_target_opt_in // AQ EDIT
 	if(gender)
 		features["body_model"] = pick(MALE,FEMALE)
 	age = rand(AGE_MIN,AGE_MAX)

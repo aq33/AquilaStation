@@ -73,6 +73,11 @@
 				if ( length( S.expecting_cargo ) )
 					ntstations_expecting_cargo += S
 
+	// AQ EDIT START - mapa hex: stacje w zasięgu, w układach trzymanych przez NT (war_missions.dm)
+	ntstations = hex_mission_stations(ntstations)
+	ntstations_expecting_cargo &= ntstations
+	// AQ EDIT END
+
 	var/obj/structure/overmap/S
 	if ( pick_same_destination && length( ntstations_expecting_cargo ) )
 		S = pick( ntstations_expecting_cargo )
@@ -112,6 +117,7 @@
 			if ( !length( S.expecting_cargo ) ) // No transfer objectives to stations that are also expecting cargo, for now
 				ntstations += S
 
+	ntstations = hex_mission_stations(ntstations, destination) // AQ EDIT - mapa hex: odbiór w zasięgu, co najmniej 3 kafle od dostawy (war_missions.dm)
 	var/obj/structure/overmap/S = pick( ntstations )
 
 	// Assign this objective directly to the station, so the station can track it

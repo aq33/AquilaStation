@@ -1,0 +1,311 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"f" = (
+/mob/living/basic/mining/lobstrosity,
+/turf/open/water/planet/beach/ice,
+/area/template_noop)
+"k" = (
+/obj/structure/flora/ausbushes/ppflowers,
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"m" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"v" = (
+/turf/template_noop,
+/area/template_noop)
+"w" = (
+/obj/structure/geyser/random,
+/turf/open/water/planet/beach/ice,
+/area/template_noop)
+"y" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/obj/structure/flora/ausbushes/ppflowers,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"A" = (
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"C" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"J" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/obj/structure/flora/ausbushes/lavendergrass,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"M" = (
+/turf/open/water/planet/beach/ice,
+/area/template_noop)
+"S" = (
+/obj/structure/flora/ausbushes/lavendergrass,
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"V" = (
+/obj/structure/flora/ausbushes/lavendergrass,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"X" = (
+/obj/structure/flora/tree/pine,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+"Z" = (
+/obj/structure/flora/ausbushes/ppflowers,
+/turf/open/floor/plating/asteroid/icerock,
+/area/template_noop)
+
+(1,1,1) = {"
+v
+A
+A
+A
+v
+v
+v
+v
+v
+v
+v
+v
+"}
+(2,1,1) = {"
+A
+A
+C
+A
+m
+A
+C
+A
+v
+v
+v
+v
+"}
+(3,1,1) = {"
+A
+k
+M
+f
+M
+A
+A
+X
+v
+v
+v
+v
+"}
+(4,1,1) = {"
+A
+m
+M
+M
+M
+M
+A
+A
+A
+v
+v
+v
+"}
+(5,1,1) = {"
+v
+A
+A
+M
+w
+M
+M
+m
+A
+A
+v
+v
+"}
+(6,1,1) = {"
+v
+X
+A
+m
+M
+M
+f
+M
+S
+m
+C
+v
+"}
+(7,1,1) = {"
+v
+v
+A
+A
+Z
+M
+M
+M
+M
+V
+A
+v
+"}
+(8,1,1) = {"
+v
+v
+v
+A
+C
+M
+M
+M
+M
+J
+m
+A
+"}
+(9,1,1) = {"
+v
+v
+v
+A
+A
+y
+M
+M
+M
+M
+A
+A
+"}
+(10,1,1) = {"
+v
+v
+A
+A
+m
+M
+M
+M
+w
+M
+A
+m
+"}
+(11,1,1) = {"
+v
+A
+A
+y
+Z
+M
+M
+M
+f
+M
+m
+m
+"}
+(12,1,1) = {"
+A
+X
+A
+M
+M
+f
+M
+M
+M
+M
+A
+A
+"}
+(13,1,1) = {"
+A
+m
+M
+M
+M
+M
+M
+M
+M
+m
+A
+A
+"}
+(14,1,1) = {"
+m
+M
+M
+M
+M
+M
+M
+V
+V
+A
+A
+v
+"}
+(15,1,1) = {"
+M
+M
+w
+M
+M
+m
+A
+A
+X
+A
+v
+v
+"}
+(16,1,1) = {"
+M
+f
+M
+M
+m
+A
+C
+v
+v
+v
+v
+v
+"}
+(17,1,1) = {"
+v
+M
+M
+A
+C
+A
+v
+v
+v
+v
+v
+v
+"}
+(18,1,1) = {"
+v
+v
+v
+X
+A
+v
+v
+v
+v
+v
+v
+v
+"}

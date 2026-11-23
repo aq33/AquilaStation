@@ -26,4 +26,15 @@
 		sleep(1)
 	TEST_ASSERT(victim.getBruteLoss() > 0, "Bullet fired without params did not hit the target 3 tiles south")
 
+/// AQUILA - w buildzie testowym fabryczny nabój nie ma losowego niewypału (w grze 0,3%), a jawnie ustawiona szansa działa dalej.
+/// Przez losowy niewypał test wyżej padał na masterze: pocisk znikał przed strzałem i miał kąt 0
+/datum/unit_test/aquila_factory_ammo_no_misfire_in_tests
+
+/datum/unit_test/aquila_factory_ammo_no_misfire_in_tests/Run()
+	var/obj/item/gun/ballistic/automatic/pistol/gun = allocate(/obj/item/gun/ballistic/automatic/pistol)
+	TEST_ASSERT(gun.chambered, "Pistol has nothing chambered")
+	TEST_ASSERT(gun.chambered.get_misfire_chance() == 0, "A factory round has a [gun.chambered.get_misfire_chance()]% misfire chance in a test build")
+	gun.chambered.misfire_chance = 100
+	TEST_ASSERT(gun.chambered.get_misfire_chance() == 100, "A misfire chance set on the round is ignored")
+
 #undef TEST_ASSERT
