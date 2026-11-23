@@ -89,3 +89,7 @@ Woda i wędkarstwo na planetach (tgstation/tgstation dba6dea), licencja CC-BY-SA
 
 NIF (port z Monkestation2.0 b79e450, pierwotnie Skyrat/Nova modular_skyrat blueshift), licencja CC-BY-SA 3.0:
   monke/nif_good.ogg, nif_bad.ogg, nif_click.ogg   Monkestation monkestation/code/modules/blueshift/sounds (default_good, default_bad, default_click)
+
+Lądowanie na planetach (voidcrew/Voidcrew#588, autor Jackriip, 35462e2), licencja CC-BY-SA 3.0 (README Voidcrew: assety bez innej informacji):
+  ../icons/effects/planet_descent_view.dmi   Voidcrew voidcrew/icons/effects/landing_view.dmi (stany wisps i streaks: mgła w chmurze i smugi żaru)
+  planets/landing/*                 Voidcrew voidcrew/sound/effects/landing (approach, clouds, entry, launch, liftoff_outside, spool, thrusters, touchdown)

@@ -3,6 +3,9 @@
 // Pogoda jak kontroler snow_planet z Shiptesta (burza śnieżna 50, opady 20, śnieżyca 20, grad 20).
 
 /datum/planet_type/ice
+	sky_state = "ice"
+	sky_clouds = "clouds_wisps"
+	sky_atmosphere_color = "#cfe8ff"
 	name = "planeta lodowa"
 	desc = "Zamarznięta planeta pod grubą warstwą śniegu i jeszcze grubszą lodu, pełna groźnych drapieżników."
 	overmap_icon_state = "planet_rockocean"
