@@ -5,6 +5,7 @@
 // rodzajów (pyłowa, wydmowa, wodna) dopisują partie tych planet we własnych plikach.
 
 /datum/planet_type/dwarf
+	sky_scale = 1.5
 	name = null
 	abstract_type = /datum/planet_type/dwarf
 	surface_size = PLANET_SURFACE_SIZE_DWARF
@@ -17,6 +18,9 @@
 
 /// Śnieżna planeta karłowata (Shiptest: snowball)
 /datum/planet_type/dwarf/snow
+	sky_state = "ice"
+	sky_clouds = "clouds_wisps"
+	sky_atmosphere_color = "#cfe8ff"
 	name = "śnieżna planeta karłowata"
 	desc = "Mały świat w całości zasypany śniegiem przez gwałtowne burze. Pod śniegiem kryją się bogate złoża."
 	overmap_color = "#eef6ff"
