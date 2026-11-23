@@ -58,6 +58,8 @@ GLOBAL_LIST_EMPTY(aq_mech_drop_beacons)
 	var/cooldown_time = 5 MINUTES
 	COOLDOWN_DECLARE(drop_cooldown)
 	var/datum/action/innate/mecha/aq_orbital_drop/drop_action
+	/// Mech jest w locie (niewidzialny, wyłączony, bez gęstości): odłączenie albo zniszczenie modułu musi go przywrócić
+	var/in_flight = FALSE
 
 /obj/item/mecha_parts/mecha_equipment/aq_drop_system/attach(obj/mecha/M)
 	. = ..()
@@ -66,6 +68,7 @@ GLOBAL_LIST_EMPTY(aq_mech_drop_beacons)
 		drop_action.Grant(M.occupant, M)
 
 /obj/item/mecha_parts/mecha_equipment/aq_drop_system/detach(atom/moveto)
+	aq_abort_flight()
 	if(drop_action)
 		if(drop_action.owner)
 			drop_action.Remove(drop_action.owner)
@@ -73,8 +76,26 @@ GLOBAL_LIST_EMPTY(aq_mech_drop_beacons)
 	return ..()
 
 /obj/item/mecha_parts/mecha_equipment/aq_drop_system/Destroy()
+	aq_abort_flight()
 	QDEL_NULL(drop_action)
 	return ..()
+
+/// Przerwany lot (moduł odłączony albo zniszczony): mech wraca do normalnego stanu tam, gdzie jest
+/obj/item/mecha_parts/mecha_equipment/aq_drop_system/proc/aq_abort_flight()
+	if(!in_flight)
+		return
+	in_flight = FALSE
+	if(!chassis)
+		return
+	aq_restore_chassis(chassis)
+	chassis.log_message("Orbital drop aborted, drop system lost.", LOG_MECHA)
+
+/obj/item/mecha_parts/mecha_equipment/aq_drop_system/proc/aq_restore_chassis(obj/mecha/M)
+	animate(M)
+	M.pixel_z = initial(M.pixel_z)
+	M.alpha = initial(M.alpha)
+	M.density = TRUE
+	M.completely_disabled = FALSE
 
 /obj/mecha/GrantActions(mob/living/user, human_occupant = 0)
 	. = ..()
@@ -102,6 +123,9 @@ GLOBAL_LIST_EMPTY(aq_mech_drop_beacons)
 	var/choice = input(user, "Gdzie zrzucić mecha?", "Zrzut orbitalny") as null|anything in targets
 	if(!choice || !chassis || chassis.occupant != user)
 		return
+	// input() czeka na gracza: drugie kliknięcie mogło już wystartować zrzut
+	if(in_flight || chassis.completely_disabled || !COOLDOWN_FINISHED(src, drop_cooldown))
+		return
 	var/obj/item/aq_mech_drop_beacon/beacon = targets[choice]
 	if(QDELETED(beacon) || !beacon.active)
 		return
@@ -112,13 +136,14 @@ GLOBAL_LIST_EMPTY(aq_mech_drop_beacons)
 	COOLDOWN_START(src, drop_cooldown, cooldown_time)
 	chassis.visible_message("<span class='danger'>[chassis] odpala silniki startowe!</span>")
 	playsound(chassis, 'sound/effects/podwoosh.ogg', 70, TRUE)
+	in_flight = TRUE
 	chassis.completely_disabled = TRUE
 	chassis.density = FALSE
 	animate(chassis, pixel_z = 300, alpha = 0, time = 2 SECONDS, easing = QUAD_EASING | EASE_IN)
 	addtimer(CALLBACK(src, PROC_REF(land), get_turf(beacon)), 6 SECONDS)
 
 /obj/item/mecha_parts/mecha_equipment/aq_drop_system/proc/land(turf/target)
-	if(!chassis)
+	if(!chassis || !in_flight)
 		return
 	var/obj/mecha/M = chassis
 	if(!target)
@@ -130,9 +155,10 @@ GLOBAL_LIST_EMPTY(aq_mech_drop_beacons)
 	addtimer(CALLBACK(src, PROC_REF(impact), target), 1.5 SECONDS)
 
 /obj/item/mecha_parts/mecha_equipment/aq_drop_system/proc/impact(turf/target)
-	if(!chassis)
+	if(!chassis || !in_flight)
 		return
 	var/obj/mecha/M = chassis
+	in_flight = FALSE
 	M.density = TRUE
 	M.completely_disabled = FALSE
 	playsound(target, 'sound/effects/meteorimpact.ogg', 80, TRUE)
