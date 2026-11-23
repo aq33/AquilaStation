@@ -298,6 +298,10 @@ GLOBAL_LIST_EMPTY(basic_bots_list)
 /mob/living/basic/bot/proc/emag_effects(mob/user)
 	return
 
+/// Cofa efekty emag_effects() po resecie oprogramowania (SI, naprawa); każdy bot cofa swoje
+/mob/living/basic/bot/proc/undo_emag_effects()
+	return
+
 /mob/living/basic/bot/examine(mob/user)
 	. = ..()
 	if(health < maxHealth)
@@ -808,6 +812,10 @@ GLOBAL_LIST_EMPTY(basic_bots_list)
 
 /// Bot znalazł cel (komunikat, dźwięk)
 /mob/living/basic/bot/proc/on_work_target_found(atom/target)
+	return
+
+/// Drzewo porzuciło cel pracy (porażka ścieżki, czarna lista, koniec pracy, reset): bot sprząta swój stan (np. znacznik pacjenta)
+/mob/living/basic/bot/proc/on_work_target_lost(atom/target)
 	return
 
 /// Pogawędka bez celu (bot_idle_chatter)
