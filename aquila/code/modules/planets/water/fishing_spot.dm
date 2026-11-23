@@ -78,7 +78,7 @@ GLOBAL_LIST_INIT(preset_fish_sources, init_fishing_configurations())
 /datum/component/fishing_spot/proc/fishing_completed(datum/fishing_challenge/source, mob/user, success)
 	SIGNAL_HANDLER
 	if(success)
-		INVOKE_ASYNC(fish_source, TYPE_PROC_REF(/datum/fish_source, dispense_reward), source.reward_path, user)
+		INVOKE_ASYNC(fish_source, TYPE_PROC_REF(/datum/fish_source, dispense_reward), source.reward_path, user, source.used_rod)
 
 /// Skąd biorą się ryby: wspólne dla wszystkich pól jednego rodzaju wody
 /datum/fish_source
@@ -121,7 +121,7 @@ GLOBAL_LIST_INIT(preset_fish_sources, init_fishing_configurations())
 	return final_table
 
 /// Daje zdobycz łowiącemu (do ręki albo pod nogi)
-/datum/fish_source/proc/dispense_reward(reward_path, mob/fisherman)
+/datum/fish_source/proc/dispense_reward(reward_path, mob/fisherman, obj/item/fishing_rod/rod)
 	if(reward_path == FISHING_DUD || !reward_path)
 		fisherman.balloon_alert(fisherman, pick(duds))
 		return
@@ -135,6 +135,8 @@ GLOBAL_LIST_INIT(preset_fish_sources, init_fishing_configurations())
 	if(isitem(reward))
 		fisherman.put_in_hands(reward)
 	fisherman.balloon_alert(fisherman, "złowione: [reward.name]!")
+	if(rod)
+		SEND_SIGNAL(rod, COMSIG_FISHING_ROD_CAUGHT_FISH, reward, fisherman)
 	return reward
 
 /// Ciepła płycizna przy plaży: ryby morskie
@@ -214,3 +216,14 @@ GLOBAL_LIST_INIT(preset_fish_sources, init_fishing_configurations())
 /turf/open/lava/smooth/lava_land_surface/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/lazy_fishing_spot, FISHING_SPOT_PRESET_LAVA)
+
+/// Woda plażowa (m.in. domeny bitrunningu: Zatoka Bryzy, Bar na Plaży, Walka na Wyspie, Piraci)
+/turf/open/floor/plating/beach/water/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/lazy_fishing_spot, FISHING_SPOT_PRESET_BEACH)
+
+/// Zwykła woda rzeczna/dżunglowa (m.in. domeny bitrunningu: Polowanie na Łąkach, LV-624); woda planet ma własny preset
+/turf/open/water/Initialize(mapload)
+	. = ..()
+	if(!istype(src, /turf/open/water/planet))
+		AddElement(/datum/element/lazy_fishing_spot, FISHING_SPOT_PRESET_JUNGLE)
