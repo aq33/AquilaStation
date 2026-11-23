@@ -57,12 +57,12 @@
 	var/tank_type = /obj/item/tank/internals/oxygen/empty
 
 /mob/living/basic/bot/atmosbot/Initialize(mapload)
-	additional_access = list(ACCESS_ENGINE, ACCESS_ENGINE_EQUIP, ACCESS_ATMOSPHERICS, ACCESS_MAINT_TUNNELS)
+	additional_access = list(ACCESS_ENGINE, ACCESS_ENGINE_EQUIP, ACCESS_ATMOSPHERICS, ACCESS_MAINT_TUNNELS, ACCESS_EXTERNAL_AIRLOCKS)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_SPACEWALK, INNATE_TRAIT)
 
 /mob/living/basic/bot/atmosbot/req_bot_access()
-	return list(ACCESS_ENGINE, ACCESS_ATMOSPHERICS)
+	return ..() + list(ACCESS_ENGINE, ACCESS_ATMOSPHERICS)
 
 /mob/living/basic/bot/atmosbot/update_icon_state()
 	. = ..()
@@ -201,10 +201,13 @@
 			continue
 		for(var/direction in GLOB.cardinals)
 			var/turf/adjacent_turf = get_step(checking_turf, direction)
-			if(!adjacent_turf || (adjacent_turf in checked_turfs) || !adjacent_turf.CanAtmosPass(adjacent_turf) || istype(adjacent_turf.loc, /area/space))
+			if(!adjacent_turf || (adjacent_turf in checked_turfs) || !adjacent_turf.CanAtmosPass(adjacent_turf))
 				continue
+			// próżnia (także w /area/space) to wyłom; dalej po kafelkach w kosmosie nie szuka
 			if(isspaceturf(adjacent_turf))
 				return checking_turf
+			if(istype(adjacent_turf.loc, /area/space))
+				continue
 			to_check_turfs |= adjacent_turf
 	return null
 
