@@ -779,20 +779,44 @@
 		QDEL_NULL(loaded)
 	loaded = new /obj/structure/bed/roller/holo(src)
 
+/obj/item/roller/robo/holo/deploy_roller(mob/user, atom/location)
+	var/obj/structure/bed/roller/holo/bed = loaded
+	. = ..()
+	if(istype(bed) && !loaded)
+		bed.aq_dock = WEAKREF(src)
+
 /obj/structure/bed/roller/holo
 	name = "holograficzne nosze"
 	desc = "Nosze z twardego światła. Nie da się ich rozebrać, za to szybko się je przenosi."
 	color = "#80D0FF"
 	alpha = 200
 	buildstackamount = 0
-	foldabletype = /obj/item/roller/robo/holo
+	foldabletype = /obj/item/roller/holo_faded
+	/// Dok, z którego nosze rozłożono: zgaszone wracają do niego
+	var/datum/weakref/aq_dock
 
 /obj/structure/bed/roller/holo/deconstruct(disassembled)
 	qdel(src)
 
+// Złożone albo rozbite gasną i odtwarzają się w doku pochodzenia (jeśli jest pusty), zamiast dawać komuś nowy dok
+/obj/structure/bed/roller/holo/Destroy()
+	var/obj/item/roller/robo/holo/dock = aq_dock?.resolve()
+	aq_dock = null
+	if(istype(dock) && !QDELETED(dock) && !dock.loaded && loc != dock)
+		dock.loaded = new /obj/structure/bed/roller/holo(dock)
+	return ..()
+
+/// Złożone przez człowieka holonosze: nic nie zostaje w ręce (core składania robi new foldabletype i put_in_hands)
+/obj/item/roller/holo_faded
+	name = "zgaszone holonosze"
+
+/obj/item/roller/holo_faded/Initialize(mapload)
+	..()
+	return INITIALIZE_HINT_QDEL
+
 // ================================================================ Ochrona
 
-/// Czy zabójczy tryb broni cyborga jest dozwolony: czerwony alarm lub wyżej, pokład obcego okrętu albo żywi abordażyści na tym samym pokładzie
+/// Czy zabójczy tryb broni cyborga jest dozwolony: czerwony alarm lub wyżej, pokład wrogiego okrętu albo wrodzy, nieskuci abordażyści na tym samym pokładzie
 /proc/aquila_cyborg_lethal_allowed(mob/living/user)
 	if(GLOB.security_level >= SEC_LEVEL_RED)
 		return TRUE
