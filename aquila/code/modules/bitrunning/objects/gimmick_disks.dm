@@ -279,6 +279,7 @@
 		/datum/bitrunning_gimmick/boxer,
 		/datum/bitrunning_gimmick/skater,
 		/datum/bitrunning_gimmick/archer,
+		/datum/bitrunning_gimmick/fisher,
 		/datum/bitrunning_gimmick/gamer,
 	)
 
@@ -319,6 +320,21 @@
 		/obj/item/ammo_casing/caseless/arrow/wood,
 		/obj/item/ammo_casing/caseless/arrow/wood,
 		/obj/item/gun/ballistic/bow,
+	)
+
+/datum/bitrunning_gimmick/fisher
+	name = "Wędkarz"
+
+	granted_items = list(
+		/obj/item/clothing/under/misc/overalls,
+		/obj/item/clothing/suit/jacket/miljacket,
+		/obj/item/clothing/head/soft/black,
+		/obj/item/clothing/shoes/jackboots,
+		/obj/item/fishing_rod,
+		/obj/item/storage/box/fishing_worms,
+		/obj/item/grenade/iedcasing,
+		/obj/item/stock_parts/cell,
+		/obj/item/reagent_containers/food/drinks/beer/light,
 	)
 
 
