@@ -5,7 +5,8 @@
 // Grod to korona (krucha, rozumna istota) w ciele dużej gąsienicy. Ciało bez korony nie żyje:
 // - korona jest mózgiem (/obj/item/organ/brain/grod), rysujemy ją na głowie z wybranym kształtem;
 // - korona może opuścić ciało jako pająk-korona i przejąć ciało bez mózgu (grod_crown.dm);
-// - dwie górne dłonie to kieszenie na małe rzeczy w HUD-zie (aquila/code/_onclick/hud/grod.dm), jak w Bee#7202;
+// - postawa ruchu (dwie ręce, szybciej) i postawa pracy (cztery ręce, wolniej) z Bee#5442 (grod_stance.dm);
+// - korona w ciele innej rasy przemienia je w kokonie, a posadzona w tacy wyrasta w nowe ciało (grod_cocoon.dm);
 // - Grod nosi tylko to, co ma narysowane we własnych sprite'ach (kamizelki, cylindry, buty, rękawice...).
 //   Nasze ubrania mapujemy na jego sprite'y tabelą nazw, a reszta slotów przyjmuje rzeczy ze zwykłym wyglądem.
 
