@@ -406,7 +406,11 @@
 		. += mutable_appearance(icon, mode == BBOT_WORKING ? "digbot-dig" : "digbot-pick")
 
 /mob/living/basic/bot/digbot/is_valid_work_target(atom/target)
-	return ismineralturf(target)
+	return is_diggable(target)
+
+/// Skała do rozkopania; gibtonitu nie rusza (drugie uderzenie go wysadza)
+/mob/living/basic/bot/digbot/proc/is_diggable(atom/target)
+	return ismineralturf(target) && !istype(target, /turf/closed/mineral/gibtonite)
 
 /mob/living/basic/bot/digbot/get_work_candidates()
 	. = ..()
@@ -428,12 +432,12 @@
 		victim.apply_damage(12, BRUTE)
 		victim.visible_message(span_danger("[src] wali kilofem w [victim]!"), span_userdanger("[src] wali cię kilofem!"))
 		return BOT_WORK_CONTINUE
-	if(!ismineralturf(target))
+	if(!is_diggable(target))
 		return BOT_WORK_DONE
 	update_appearance()
 	playsound(src, 'sound/weapons/drill.ogg', 50, TRUE)
 	sleep(dig_time)
-	if(QDELETED(src) || !ismineralturf(target) || get_dist(src, target) > 1)
+	if(QDELETED(src) || !is_diggable(target) || get_dist(src, target) > 1)
 		return BOT_WORK_FAILED
 	var/turf/closed/mineral/rock = target
 	rock.gets_drilled()
