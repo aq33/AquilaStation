@@ -182,7 +182,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	boozepwr = 80
 	quality = DRINK_GOOD
 	overdose_threshold = 60
-	addiction_threshold = 30
+	// AQ EDIT - usunięte addiction_threshold z Bee (uzależnienia z tg: addiction_types, aquila/code/modules/reagents/addiction/addiction.dm)
 	taste_description = "drgawki i śmierć"
 	glass_icon_state = "thirteen_loko_glass"
 	glass_name = "szklanka Thirteen Loko"

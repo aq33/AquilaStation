@@ -1093,6 +1093,13 @@
 /obj/structure/window/spawner/west,
 /turf/open/floor/plating,
 /area/crew_quarters/bar/mess_hall)
+"dB" = (
+/obj/structure/extinguisher_cabinet/east,
+/obj/machinery/autoclave,
+/turf/open/floor/plasteel/white/side{
+	dir = 4
+	},
+/area/medical/nsv)
 "dC" = (
 /obj/machinery/atmospherics/pipe/simple/supply/visible/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -47759,7 +47766,7 @@ SW
 qw
 CU
 VT
-kH
+dB
 Ew
 qQ
 dV

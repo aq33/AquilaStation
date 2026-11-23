@@ -226,5 +226,20 @@
 	TEST_ASSERT(!he_shell.projectile_relaying_allowed, "Odbity pocisk przechodzi do wnętrza okrętu")
 	TEST_ASSERT_EQUAL(ship.aq_hit_damage(he_shell), he_shell.damage, "Model grubości liczy się dwa razy")
 
+/// Zlecenie cywilne „Pociski przeciwpancerne” przyjmuje pocisk z kuźni z wypełnieniem AP i fabryczny AP z cargo
+/datum/unit_test/ammo_rework_ap_bounty
+
+/datum/unit_test/ammo_rework_ap_bounty/Run()
+	var/datum/bounty/item/munitions/ap_shells/bounty = new
+	var/obj/item/ship_weapon/ammunition/naval_artillery/forged_ap = allocate(/obj/item/ship_weapon/ammunition/naval_artillery)
+	apply_forged_munition(forged_ap, get_munition_material(/datum/material/iron), get_munition_quality(/datum/munition_quality/improved), get_munition_filler(/datum/munition_filler/ap))
+	TEST_ASSERT(bounty.applies_to(forged_ap), "Zlecenie nie przyjmuje pocisku AP z kuźni")
+	TEST_ASSERT(bounty.applies_to(allocate(/obj/item/ship_weapon/ammunition/naval_artillery/factory/ap)), "Zlecenie nie przyjmuje fabrycznego AP z cargo")
+	var/obj/item/ship_weapon/ammunition/naval_artillery/forged_he = allocate(/obj/item/ship_weapon/ammunition/naval_artillery)
+	apply_forged_munition(forged_he, get_munition_material(/datum/material/iron), get_munition_quality(/datum/munition_quality/improved), get_munition_filler(/datum/munition_filler/he))
+	TEST_ASSERT(!bounty.applies_to(forged_he), "Zlecenie przyjmuje pocisk HE z kuźni")
+	TEST_ASSERT(!bounty.applies_to(allocate(/obj/item/ship_weapon/ammunition/naval_artillery/factory)), "Zlecenie przyjmuje fabryczny APHE")
+	qdel(bounty)
+
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL

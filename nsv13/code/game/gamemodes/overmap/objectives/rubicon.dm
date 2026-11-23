@@ -49,4 +49,5 @@
 
 /datum/overmap_objective/clear_system/dolos/instance()
 	. = ..()
-	target_system.spawn_fleet(/datum/fleet/remnant) //Make sure we have someone to fight
+	if(!hex_nemesis_objective_boss(target_system)) // AQ EDIT - mapa hex: celem jest boss nemezis Dolos (Pozostałość połączona z nim)
+		target_system.spawn_fleet(/datum/fleet/remnant) //Make sure we have someone to fight

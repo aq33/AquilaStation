@@ -135,11 +135,11 @@
 	var/datum/component/forged_munition/F = source.GetComponent(/datum/component/forged_munition)
 	if(F)
 		target.AddComponent(/datum/component/forged_munition, F.material, F.quality, F.filler, F.galvanized, F.factory)
-	// Projekt pocisku (missile_design.dm): przy składaniu wynika z przerobionych części w obudowie, w której leży głowica
+	// Projekt pocisku (missile_design.dm): przy składaniu przechodzi z obudowy (ustawionej multitoolem), w której leży głowica
 	if(source.GetComponent(/datum/component/missile_design))
 		transfer_missile_design(source, target)
 	else if(istype(source.loc, /obj/item/ship_weapon/ammunition))
-		apply_missile_parts_design(source.loc, target)
+		transfer_missile_design(source.loc, target)
 
 /// Woła się z /obj/structure/overmap/bullet_act, zanim pocisk zostanie przekazany do wnętrza statku.
 /proc/forged_munition_overmap_hit(obj/item/projectile/P, obj/structure/overmap/target)

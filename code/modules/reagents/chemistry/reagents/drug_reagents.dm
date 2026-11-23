@@ -1,3 +1,4 @@
+// AQ EDIT - usunięte addiction_threshold i addiction_act_stage1-4 z Bee: martwe po uzależnieniach z tg (aquila/code/modules/reagents/addiction/addiction.dm)
 /datum/reagent/drug
 	name = "Narkotyk"
 	chem_flags = CHEMICAL_NOT_DEFINED
@@ -41,7 +42,6 @@
 	reagent_state = LIQUID
 	color = "#60A584" // rgb: 96, 165, 132
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_FUN | CHEMICAL_RNG_BOTANY | CHEMICAL_GOAL_BOTANIST_HARVEST | CHEMICAL_GOAL_BARTENDER_SERVING
-	addiction_threshold = 10
 	taste_description = "dym"
 	trippy = FALSE
 	overdose_threshold=15
@@ -73,7 +73,6 @@
 	color = "#FA00C8"
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_FUN | CHEMICAL_RNG_BOTANY | CHEMICAL_GOAL_CHEMIST_DRUG | CHEMICAL_GOAL_CHEMIST_BLOODSTREAM | CHEMICAL_GOAL_BOTANIST_HARVEST
 	overdose_threshold = 20
-	addiction_threshold = 10
 
 /datum/reagent/drug/crank/on_mob_metabolize(mob/living/L)
 	ADD_TRAIT(L, TRAIT_NOBLOCK, type)
@@ -108,27 +107,6 @@
 	..()
 	. = 1
 
-/datum/reagent/drug/crank/addiction_act_stage1(mob/living/M)
-	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 5*REM)
-	..()
-
-/datum/reagent/drug/crank/addiction_act_stage2(mob/living/M)
-	M.adjustToxLoss(5*REM, 0)
-	..()
-	. = 1
-
-/datum/reagent/drug/crank/addiction_act_stage3(mob/living/M)
-	M.adjustBruteLoss(5*REM, 0)
-	..()
-	. = 1
-
-/datum/reagent/drug/crank/addiction_act_stage4(mob/living/M)
-	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 3*REM)
-	M.adjustToxLoss(5*REM, 0)
-	M.adjustBruteLoss(5*REM, 0)
-	..()
-	. = 1
-
 /datum/reagent/drug/krokodil
 	name = "Krokodil"
 	description = "Chłodzi i uspokaja. Przedawkowany zadaje znaczne obrażenia mózgu i od toksyn. Przy uzależnieniu zaczyna zadawać śmiertelne urazy, bo skóra zaczyna schodzić."
@@ -136,7 +114,6 @@
 	color = "#0064B4"
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_FUN | CHEMICAL_RNG_BOTANY | CHEMICAL_GOAL_CHEMIST_DRUG | CHEMICAL_GOAL_CHEMIST_BLOODSTREAM | CHEMICAL_GOAL_BOTANIST_HARVEST
 	overdose_threshold = 20
-	addiction_threshold = 15
 
 
 /datum/reagent/drug/krokodil/on_mob_life(mob/living/carbon/M)
@@ -151,40 +128,6 @@
 	..()
 	. = 1
 
-/datum/reagent/drug/krokodil/addiction_act_stage1(mob/living/M)
-	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 2*REM)
-	M.adjustToxLoss(2*REM, 0)
-	..()
-	. = 1
-
-/datum/reagent/drug/krokodil/addiction_act_stage2(mob/living/M)
-	if(prob(25))
-		to_chat(M, "<span class='danger'>Twoja skóra wydaje się luźna...</span>")
-	..()
-
-/datum/reagent/drug/krokodil/addiction_act_stage3(mob/living/M)
-	if(prob(25))
-		to_chat(M, "<span class='danger'>Twoja skóra zaczyna się łuszczyć...</span>")
-	M.adjustBruteLoss(3*REM, 0)
-	..()
-	. = 1
-
-/datum/reagent/drug/krokodil/addiction_act_stage4(mob/living/carbon/human/M)
-	CHECK_DNA_AND_SPECIES(M)
-	if(ishumanbasic(M))
-		if(!istype(M.dna.species, /datum/species/human/krokodil_addict))
-			to_chat(M, "<span class='userdanger'>Twoja skóra łatwo odpada!</span>")
-			M.adjustBruteLoss(50*REM, 0) // holy shit your skin just FELL THE FUCK OFF
-			M.set_species(/datum/species/human/krokodil_addict)
-		else
-			M.adjustBruteLoss(5*REM, 0)
-	else
-		to_chat(M, "<span class='danger'>Twoja skóra łuszczy się i pęka!</span>")
-		M.adjustBruteLoss(5*REM, 0) // repeats 5 times and then you get over it
-
-	..()
-	. = 1
-
 /datum/reagent/drug/methamphetamine
 	name = "Metamfetamina"
 	description = "Skraca ogłuszenia o około 300%, przyspiesza użytkownika i pozwala szybko odzyskiwać wytrzymałość, zadając przy tym lekkie obrażenia mózgu. Przy przedawkowaniu ofiara porusza się losowo, losowo się śmieje, upuszcza przedmioty i otrzymuje obrażenia od toksyn i mózgu. Przy uzależnieniu ofiara stale się trzęsie i ślini, potem dostaje zawrotów głowy, traci kontrolę ruchową, a w końcu otrzymuje ciężkie obrażenia od toksyn."
@@ -192,7 +135,6 @@
 	color = "#FAFAFA"
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_FUN | CHEMICAL_RNG_BOTANY | CHEMICAL_GOAL_CHEMIST_DRUG | CHEMICAL_GOAL_CHEMIST_BLOODSTREAM | CHEMICAL_GOAL_BOTANIST_HARVEST
 	overdose_threshold = 20
-	addiction_threshold = 10
 	metabolization_rate = 0.75 * REAGENTS_METABOLISM
 
 /datum/reagent/drug/methamphetamine/on_mob_metabolize(mob/living/L)
@@ -242,41 +184,6 @@
 	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, pick(0.5, 0.6, 0.7, 0.8, 0.9, 1))
 	. = 1
 
-/datum/reagent/drug/methamphetamine/addiction_act_stage1(mob/living/M)
-	M.Jitter(5)
-	if(prob(20))
-		M.emote(pick("twitch","drool","moan"))
-	..()
-
-/datum/reagent/drug/methamphetamine/addiction_act_stage2(mob/living/M)
-	M.Jitter(10)
-	M.Dizzy(10)
-	if(prob(30))
-		M.emote(pick("twitch","drool","moan"))
-	..()
-
-/datum/reagent/drug/methamphetamine/addiction_act_stage3(mob/living/M)
-	if((M.mobility_flags & MOBILITY_MOVE) && !ismovableatom(M.loc))
-		for(var/i = 0, i < 4, i++)
-			step(M, pick(GLOB.cardinals))
-	M.Jitter(15)
-	M.Dizzy(15)
-	if(prob(40))
-		M.emote(pick("twitch","drool","moan"))
-	..()
-
-/datum/reagent/drug/methamphetamine/addiction_act_stage4(mob/living/carbon/human/M)
-	if((M.mobility_flags & MOBILITY_MOVE) && !ismovableatom(M.loc))
-		for(var/i = 0, i < 8, i++)
-			step(M, pick(GLOB.cardinals))
-	M.Jitter(20)
-	M.Dizzy(20)
-	M.adjustToxLoss(5, 0)
-	if(prob(50))
-		M.emote(pick("twitch","drool","moan"))
-	..()
-	. = 1
-
 /datum/reagent/drug/bath_salts
 	name = "Sole do kąpieli"
 	description = "Czyni cię odpornym na ogłuszenia i przyspiesza regenerację wytrzymałości, ale stajesz się niemal niekontrolowanym, brodatym, bredzącym szaleńcem."
@@ -284,7 +191,6 @@
 	color = "#FAFAFA"
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_FUN | CHEMICAL_RNG_BOTANY | CHEMICAL_GOAL_CHEMIST_DRUG | CHEMICAL_GOAL_CHEMIST_BLOODSTREAM | CHEMICAL_GOAL_BOTANIST_HARVEST
 	overdose_threshold = 20
-	addiction_threshold = 10
 	taste_description = "sól" // because they're bathsalts?
 	var/datum/martial_art/psychotic_brawling/brawling
 
@@ -335,55 +241,6 @@
 		M.drop_all_held_items()
 	..()
 
-/datum/reagent/drug/bath_salts/addiction_act_stage1(mob/living/M)
-	M.adjust_hallucinations(20 SECONDS) // AQ EDIT - halucynacje jako efekt statusu (Bee#13095)
-	if((M.mobility_flags & MOBILITY_MOVE) && !ismovableatom(M.loc))
-		for(var/i = 0, i < 8, i++)
-			step(M, pick(GLOB.cardinals))
-	M.Jitter(5)
-	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 10)
-	if(prob(20))
-		M.emote(pick("twitch","drool","moan"))
-	..()
-
-/datum/reagent/drug/bath_salts/addiction_act_stage2(mob/living/M)
-	M.adjust_hallucinations(40 SECONDS) // AQ EDIT - halucynacje jako efekt statusu (Bee#13095)
-	if((M.mobility_flags & MOBILITY_MOVE) && !ismovableatom(M.loc))
-		for(var/i = 0, i < 8, i++)
-			step(M, pick(GLOB.cardinals))
-	M.Jitter(10)
-	M.Dizzy(10)
-	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 10)
-	if(prob(30))
-		M.emote(pick("twitch","drool","moan"))
-	..()
-
-/datum/reagent/drug/bath_salts/addiction_act_stage3(mob/living/M)
-	M.adjust_hallucinations(60 SECONDS) // AQ EDIT - halucynacje jako efekt statusu (Bee#13095)
-	if((M.mobility_flags & MOBILITY_MOVE) && !ismovableatom(M.loc))
-		for(var/i = 0, i < 12, i++)
-			step(M, pick(GLOB.cardinals))
-	M.Jitter(15)
-	M.Dizzy(15)
-	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 10)
-	if(prob(40))
-		M.emote(pick("twitch","drool","moan"))
-	..()
-
-/datum/reagent/drug/bath_salts/addiction_act_stage4(mob/living/carbon/human/M)
-	M.adjust_hallucinations(60 SECONDS) // AQ EDIT - halucynacje jako efekt statusu (Bee#13095)
-	if((M.mobility_flags & MOBILITY_MOVE) && !ismovableatom(M.loc))
-		for(var/i = 0, i < 16, i++)
-			step(M, pick(GLOB.cardinals))
-	M.Jitter(50)
-	M.Dizzy(50)
-	M.adjustToxLoss(5, 0)
-	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 10)
-	if(prob(50))
-		M.emote(pick("twitch","drool","moan"))
-	..()
-	. = 1
-
 /datum/reagent/drug/aranesp
 	name = "Aranesp"
 	description = "Nakręca cię, napędza i szybko przywraca wytrzymałość. Skutki uboczne to duszności i toksyczność."
@@ -417,7 +274,6 @@
 	reagent_state = LIQUID
 	color = "#FFF378"
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_FUN | CHEMICAL_RNG_BOTANY | CHEMICAL_GOAL_CHEMIST_DRUG | CHEMICAL_GOAL_CHEMIST_BLOODSTREAM
-	addiction_threshold = 10
 	overdose_threshold = 20
 
 /datum/reagent/drug/happiness/on_mob_metabolize(mob/living/L)
@@ -455,39 +311,6 @@
 	..()
 	. = 1
 
-/datum/reagent/drug/happiness/addiction_act_stage1(mob/living/M)// all work and no play makes jack a dull boy
-	var/datum/component/mood/mood = M.GetComponent(/datum/component/mood)
-	mood.setSanity(min(mood.sanity, SANITY_DISTURBED))
-	M.Jitter(5)
-	if(prob(20))
-		M.emote(pick("twitch","laugh","frown"))
-	..()
-
-/datum/reagent/drug/happiness/addiction_act_stage2(mob/living/M)
-	var/datum/component/mood/mood = M.GetComponent(/datum/component/mood)
-	mood.setSanity(min(mood.sanity, SANITY_UNSTABLE))
-	M.Jitter(10)
-	if(prob(30))
-		M.emote(pick("twitch","laugh","frown"))
-	..()
-
-/datum/reagent/drug/happiness/addiction_act_stage3(mob/living/M)
-	var/datum/component/mood/mood = M.GetComponent(/datum/component/mood)
-	mood.setSanity(min(mood.sanity, SANITY_CRAZY))
-	M.Jitter(15)
-	if(prob(40))
-		M.emote(pick("twitch","laugh","frown"))
-	..()
-
-/datum/reagent/drug/happiness/addiction_act_stage4(mob/living/carbon/human/M)
-	var/datum/component/mood/mood = M.GetComponent(/datum/component/mood)
-	mood.setSanity(SANITY_INSANE)
-	M.Jitter(20)
-	if(prob(50))
-		M.emote(pick("twitch","laugh","frown"))
-	..()
-	. = 1
-
 //I had to do too much research on this to make this a thing. Hopefully the FBI won't kick my door down.
 /datum/reagent/drug/ketamine
 	name = "Ketamina"
@@ -496,7 +319,6 @@
 	color = "#c9c9c9"
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_FUN | CHEMICAL_RNG_BOTANY | CHEMICAL_GOAL_CHEMIST_DRUG | CHEMICAL_GOAL_CHEMIST_BLOODSTREAM
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
-	addiction_threshold = 8
 	overdose_threshold = 16
 
 /datum/reagent/drug/ketamine/on_mob_metabolize(mob/living/L)
@@ -544,29 +366,4 @@
 			to_chat(M, "<span class='warning'>Masz wrażenie, że twoje kończyny się nie ruszą...</span>")
 		M.drop_all_held_items()
 		M.Dizzy(5)
-	..()
-
-//Addiction Gradient
-/datum/reagent/drug/ketamine/addiction_act_stage1(mob/living/M)
-	if(prob(20))
-		M.drop_all_held_items()
-		M.Jitter(2)
-	..()
-
-/datum/reagent/drug/ketamine/addiction_act_stage2(mob/living/M)
-	if(prob(30))
-		M.drop_all_held_items()
-		M.adjustToxLoss(2*REM, 0)
-		. = 1
-		M.Jitter(3)
-		M.Dizzy(3)
-	..()
-
-/datum/reagent/drug/ketamine/addiction_act_stage3(mob/living/M)
-	if(prob(40))
-		M.drop_all_held_items()
-		M.adjustToxLoss(3*REM, 0)
-		. = 1
-		M.Jitter(4)
-		M.Dizzy(4)
 	..()

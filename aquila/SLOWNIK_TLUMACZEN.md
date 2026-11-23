@@ -340,6 +340,8 @@ Oznaczenia w kolumnie uwag:
 | security X (ubranie, sprzęt żandarma) | X żandarmski / żandarmska | istniejące: „plecak żandarmski”, „mundur żandarmski”, „Mundurownia Żandarmska”, „Zbrojownia Żandarmska”; zostaje „taśma policyjna” (ogólny termin). Zawody ochrony to Żandarm, Komendant, Naczelnik, Aspirant. |
 | cargo X (ubranie zaopatrzenia) | X InPostu | istniejące: „kombinezon magazyniera InPostu”, „czapka InPostu”, „Mundurownia InPost”. Wylot z rury to „paczkomat”. Zawody i kanał radia zostają. |
 | engineering X (ubranie inżyniera) | X Orlenu | istniejące: „kombinezon inżyniera Orlenu”, „kask Orlenu”, „Mundurownia Orlenu”. Zawody i kanał radia zostają: Inżynier, Technik Atmosferyki, Główny Inżynier, Inżynieria. |
+| medical X (ubranie personelu medycznego) | X NFZ | istniejące: „kombinezon lekarza NFZ”, „czapka NFZ”, „Mundurownia NFZ (chemia)”. |
+| wersja angielska marek | oryginał bez marki | W `strings/i18n/en_translated.json` Żandarmeria, Orlen, InPost i NFZ wracają do oryginałów tg: „Mundurownia Orlenu” → EngiDrobe, „Mundurownia NFZ (chemia)” → ChemDrobe, „Mundurownia InPost” → CargoDrobe, „beret InPostu” → cargo beret, „paczkomat” → mail outlet. Tak jak „Mundurownia Żandarmska” → SecDrobe. |
 | Syndicate X | X Syndykatu | m; istniejące (245×), np. „zestaw słuchawkowy Syndykatu”, „uśpiacz Syndykatu”. |
 | Nanotrasen X | X Nanotrasen | nazwa firmy po rzeczowniku nieodmienna; istniejące: „kapsuła zaopatrzeniowa Nanotrasen”. W zdaniu odmiana „Nanotrasenu” dopuszczalna. |
 | CentCom X | X Centrali | istniejące (111×); odrzucone: „CentComu” (11×). |
@@ -3115,6 +3117,38 @@ Odmianę stref daje helper `strefa_pl(zone, biernik)` z `aquila/code/__HELPERS/p
 | cyborg hypospray / epinephrine injector / laughter injector | hypospray cyborga / iniektor epinefryny / iniektor śmiechu | m; nowe (borghypo) |
 | chemical bag / blood pack | worek chemiczny / worek z krwią | m; istniejące („Worki”) |
 | IV drip / saline drip | kroplówka / kroplówka z solą fizjologiczną | ż; istniejące |
+| automated IV drip | automatyczna kroplówka | ż; nowe (AquilaMed 5) |
+| splint | szyna | ż; nowe (AquilaMed 5) |
+| crutch / wooden crutch | kula medyczna / drewniana kula | ż; nowe (AquilaMed 5) |
+| amputation shears | nożyce do amputacji | mn; nowe (AquilaMed 5) |
+| nanopaste | nanopasta | ż; nowe (AquilaMed 5) |
+| inhaler / inhaler canister | inhalator / kanister do inhalatora | m; nowe (AquilaMed 5) |
+| organ transport box | chłodzony pojemnik na narządy | m; nowe (AquilaMed 5) |
+| EMT belt | pas ratownika | m; nowe (AquilaMed 5) |
+| paramedic penlight | latarka UV ratownika | ż; nowe (AquilaMed 5) |
+| emergency first-aid autoinjector (ekit) | medipen pierwszej pomocy | m; nowe (AquilaMed 5) |
+| medical tape | taśma medyczna | ż; nowe (AquilaMed 5) |
+| asthma / asthma attack | astma / atak astmy | ż/m; nowe (AquilaMed 5) |
+| paracetamol / tramadol / oxycodone | Paracetamol / Tramadol / Oksykodon | reagenty; nowe (AquilaMed 5) |
+| citalopram | Citalopram | reagenty; nowe (AquilaMed 5) |
+| naloxone | Nalokson | reagent; nowe (AquilaMed 5) |
+| autoclave | autoklaw | m; nowe (AquilaMed 5) |
+| hypothermia / frostbite (first, second, third degree) | hipotermia / odmrożenie (pierwszego, drugiego, trzeciego stopnia) | nowe (AquilaMed 5) |
+| pulse / cardiac arrest / CPR | tętno / zatrzymanie krążenia / RKO | nowe (AquilaMed 5) |
+| germs / infection / sepsis | zarazki / zakażenie / sepsa | nowe (AquilaMed 5) |
+| opioid / stimulant / hallucinogen addiction, withdrawal | uzależnienie od opioidów / stymulantów / halucynogenów, odstawienie | nowe (AquilaMed 5, uzależnienia z tg) |
+| kidneys / spleen / intestines / catheter | nerki / śledziona / jelita / cewnik | nowe (AquilaMed 5) |
+| abdominal organ injury / abdominal organ suture | uszkodzenie narządów brzucha / zszycie narządów brzucha | nowe (AquilaMed 5) |
+| adrenal glands | nadnercza | nowe (AquilaMed 5) |
+| larynx / vocal cords / speech synthesizer | krtań / struny głosowe / syntezator mowy | nowe (AquilaMed 5) |
+| nerve / cut nerve / nerve suture | nerw / przerwany nerw / zszycie nerwu | nowe (AquilaMed 5) |
+| teeth / prosthetic teeth / lisp | zęby / sztuczne zęby / seplenienie | nowe (AquilaMed 5, port z /vg/) |
+| brain stem / transplant weakness | pień mózgu / osłabienie po przeszczepie | nowe (AquilaMed 5) |
+| jammed suit / cut open | zacięty skafander / rozcięty | nowe (AquilaMed 5) |
+| cortical stack | stos korowy | m; nowe (AquilaMed 5, z Bay) |
+| translator implant | implant tłumacza | m; nowe (AquilaMed 5) |
+| subdermal armor / aiming booster | podskórna siatka pancerna / wzmacniacz celowania | nowe (AquilaMed 5, z Bay/Torch) |
+| spider-bot | pająk-robot | m; nowe (AquilaMed 5, z Paradise) |
 | medical spray | spray medyczny | m; nowe |
 | spray bottle | spryskiwacz | m; istniejące |
 | chem sprayer | rozpylacz chemiczny | m; istniejące („rozpylacz”) |
@@ -4424,10 +4458,9 @@ Nazwy obszarów są w większości przetłumaczone. Nowe nazwy budujemy z tych k
 | cloak / cloaking (ship) | maska / maskowanie | ż / n; nowe; tryb generatora tarczy (nie „peleryna”) |
 | shield bubble | bańka tarczy | ż; nowe |
 | FTL calibration / pylon tuning | kalibracja pylonów | ż; nowe |
-| missile design table | stół projektowy pocisków | m; nowe |
 | design chip | chip projektu | m; nowe |
 | shield diffuser | dyfuzor tarcz | m; nowe; głowica |
-| sensor probe / probe buoy | sonda czujnikowa / boja czujnikowa | ż; nowe |
+| sensor buoy (NTP-S torpedo) | boja czujnikowa | ż; nowe |
 | department contract | zlecenie dla działu | n; nowe; „zlecenia działów” |
 
 ## 14. Marki, firmy, producenci
@@ -4484,3 +4517,4 @@ Nazwy obszarów są w większości przetłumaczone. Nowe nazwy budujemy z tych k
 | wet rocky ground | mokre skaliste podłoże | n; nowe (planeta wodna) |
 | Frontiersmen | Pogranicznicy | m mn.; nowe (frakcja z ruin Shiptesta, u nas piraci) |
 | Corporate Resort / Cybersun Pad / Frontiersman Moat / Cave Gunsmith / Frontiersmen Depot | Kurort Korporacyjny / Lądowisko Cybersun / Fosa Pograniczników / Jaskiniowy Rusznikarz / Składnica Pograniczników | nowe (ruiny plaży) |
+

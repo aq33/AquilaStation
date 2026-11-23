@@ -108,4 +108,32 @@
 	QDEL_NULL(gen)
 	return ..()
 
+/// AQUILA - regresja: okręt AI zamaskowany po staremu (NSV handle_cloak) też jest is_cloaked(), więc głowica IR go gubi
+/datum/unit_test/shield_cloak_nsv
+
+/datum/unit_test/shield_cloak_nsv/Run()
+	var/obj/structure/overmap/syndicate/ai/gunboat/morale_test/ship = allocate(/obj/structure/overmap/syndicate/ai/gunboat/morale_test)
+	TEST_ASSERT(!ship.is_cloaked(), "An AI ship counts as cloaked before cloaking")
+	var/size_before = ship.get_signature_size()
+	ship.cloak_factor = 100
+	ship.handle_cloak(TRUE)
+	TEST_ASSERT(ship.is_cloaked(), "An AI ship cloaked the NSV way (handle_cloak) isn't is_cloaked()")
+	// Maskowanie NSV już ukrywa okręt przez alpha (radar.dm): kara maski tarczy nie może się na nie nakładać
+	TEST_ASSERT(ship.get_signature_size() == size_before, "The NSV cloak also cut the signature size (stealth applied twice)")
+	TEST_ASSERT(ship.get_cloak_lidar_mult() == 1, "The NSV cloak also cut the enemy radar range (stealth applied twice)")
+	// Efekt, który tylko ściemnia okręt i wyłącza klikanie, nie jest maskowaniem
+	ship.handle_cloak(FALSE)
+	ship.alpha = 100
+	ship.mouse_opacity = FALSE
+	TEST_ASSERT(!ship.is_cloaked(), "A faded, unclickable ship counts as cloaked without handle_cloak")
+	ship.alpha = 255
+	ship.mouse_opacity = TRUE
+	ship.handle_cloak(TRUE)
+	// Strzał okrętu bez generatora tarcz nie może się wywrócić na zdejmowaniu maski tarczy
+	ship.aq_on_weapon_fired()
+	ship.handle_cloak(CLOAK_TEMPORARY_LOSS)
+	TEST_ASSERT(!ship.is_cloaked(), "An AI ship stayed cloaked while its NSV cloak flickered off to fire")
+	ship.handle_cloak(FALSE)
+	TEST_ASSERT(!ship.is_cloaked(), "An AI ship stayed cloaked after its NSV cloak ended")
+
 #undef TEST_ASSERT

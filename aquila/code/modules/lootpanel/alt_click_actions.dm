@@ -267,6 +267,9 @@
 /obj/machinery/atmospherics
 	alt_click_loot = FALSE
 
+/obj/machinery/autoclave
+	alt_click_loot = FALSE
+
 /obj/machinery/aug_manipulator
 	alt_click_loot = FALSE
 
@@ -358,9 +361,6 @@
 	alt_click_loot = FALSE
 
 /obj/machinery/missile_builder
-	alt_click_loot = FALSE
-
-/obj/machinery/missile_design_table
 	alt_click_loot = FALSE
 
 /obj/machinery/modular_computer

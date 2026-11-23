@@ -156,6 +156,9 @@ GLOBAL_LIST_INIT(hex_commander_names, list(
 	for(var/datum/hex_commander/C as anything in commanders)
 		if(C.status != HEX_CMD_WOUNDED || C.return_at > world.time)
 			continue
+		if(C.nemesis)
+			nemesis_return(C)
+			continue
 		// Dowódca czeka na wolne miejsce: powroty też liczą się do limitu flot frakcji
 		if(length(faction_fleets(C.faction)) >= (C.faction == "pirate" ? HEX_WAR_MAX_PIRATE_FLEETS : HEX_WAR_MAX_FLEETS))
 			continue

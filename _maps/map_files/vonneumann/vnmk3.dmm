@@ -49,6 +49,15 @@
 /obj/machinery/suit_storage_unit/medical/trauma,
 /turf/open/floor/monotile/light,
 /area/medical/medbay)
+"aaj" = (
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/obj/machinery/power/apc/auto_name/north,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/orange/visible{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/fore)
 "aak" = (
 /turf/closed/wall/r_wall/ship,
 /area/space)
@@ -96,6 +105,11 @@
 /obj/item/flatpack/schematic_reader,
 /turf/open/floor/carpet/ship/orange_carpet,
 /area/engine/engineering)
+"aaq" = (
+/obj/machinery/power/apc/auto_name/east,
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/maintenance/aft)
 "aat" = (
 /obj/structure/table,
 /obj/item/food/grown/tomato,
@@ -8229,7 +8243,6 @@
 /obj/machinery/camera/autoname{
 	dir = 5
 	},
-/obj/machinery/missile_design_table,
 /turf/open/floor/carpet/ship/beige_carpet,
 /area/nsv/weapons/port)
 "gpZ" = (
@@ -19296,6 +19309,15 @@
 	},
 /turf/open/floor/monotile/steel/airless,
 /area/nsv/hanger/mining)
+"plR" = (
+/obj/machinery/power/apc/auto_name/north,
+/obj/structure/cable,
+/obj/effect/turf_decal/tile/blue/flat_side/nfz{
+	dir = 6
+	},
+/obj/machinery/autoclave,
+/turf/open/floor/monotile/light,
+/area/medical/medbay)
 "plW" = (
 /obj/vehicle/ridden/janicart,
 /turf/open/floor/carpet/ship,
@@ -38461,7 +38483,7 @@ jiC
 aJm
 fKg
 pdc
-pVn
+aaq
 xSO
 kGZ
 aJm
@@ -45714,7 +45736,7 @@ jfJ
 uYG
 sSK
 jym
-pSy
+plR
 kCx
 gLr
 qBk
@@ -51170,7 +51192,7 @@ vYj
 wEM
 rle
 nJc
-fhi
+aaj
 tDG
 nJc
 eJl

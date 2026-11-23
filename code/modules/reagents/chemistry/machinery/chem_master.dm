@@ -511,7 +511,7 @@
 					state = "Gas"
 				var/const/P = 3 //The number of seconds between life ticks
 				var/T = initial(R.metabolization_rate) * (60 / P)
-				analyze_vars = list("name" = initial(R.name), "state" = state, "color" = initial(R.color), "description" = initial(R.description), "metaRate" = T, "overD" = initial(R.overdose_threshold), "addicD" = initial(R.addiction_threshold))
+				analyze_vars = list("name" = initial(R.name), "state" = state, "color" = initial(R.color), "description" = initial(R.description), "metaRate" = T, "overD" = initial(R.overdose_threshold), "addicD" = aq_addiction_threshold_of(R)) // AQ EDIT - próg z uzależnień tg (aquila/code/modules/reagents/addiction/addiction.dm)
 				screen = "analyze"
 				. = TRUE
 		if("goScreen")
