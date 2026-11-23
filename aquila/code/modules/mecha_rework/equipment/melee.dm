@@ -22,7 +22,7 @@
 	var/extended_range = 0
 	/// Mnożnik czasu między ciosami
 	var/attack_speed_modifier = 1
-	var/attack_sound = 'aquila/sound/mecha/mechasword.ogg'
+	var/attack_sound = 'sound/weapons/blade1.ogg'
 	var/mob_strike_sound = 'sound/weapons/bladeslice.ogg'
 	/// Zamach w trzy pola przed mechem
 	var/cleave = FALSE
@@ -255,7 +255,7 @@
 	if(isliving(A))
 		var/mob/living/L = A
 		var/turf/throwtarget = get_edge_target_turf(chassis, get_dir(chassis, get_step_away(L, chassis)))
-		L.throw_at(throwtarget, 8, 2, chassis)
+		L.throw_at(throwtarget, 8, 2, chassis.occupant)
 
 /obj/item/mecha_parts/mecha_equipment/aq_melee/crusher
 	name = "zgniatacz górniczy egzoszkieletu"
