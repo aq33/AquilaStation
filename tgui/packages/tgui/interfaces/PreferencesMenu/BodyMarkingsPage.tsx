@@ -18,13 +18,14 @@ import { useBackend } from '../../backend';
 import { CharacterPreview } from '../common/CharacterPreview';
 import { PreferencesMenuData } from './data';
 
-/** [id markingu, kolor #RRGGBB] */
-type MarkingEntry = [string, string];
+/** [id markingu, kolor #RRGGBB, strona 'left' | 'right' przy markingach z wersją lewą i prawą] */
+type MarkingEntry = [string, string, string?];
 
 type MarkingInfo = {
   id: string;
   name: string;
   zones: string[];
+  sides?: BooleanLike;
 };
 
 type BodyMarkingsData = PreferencesMenuData & {
@@ -158,15 +159,31 @@ export const BodyMarkingsPage = () => {
               {current.length === 0 && (
                 <Box color="label">Brak markingów na tej części ciała.</Box>
               )}
-              {current.map(([id, color], i) => (
+              {current.map(([id, color, side], i) => (
                 <Stack key={i} align="center" mb={0.5}>
                   <Stack.Item>
-                    <MarkingIcon id={id} zone={zone} />
+                    <MarkingIcon
+                      id={side === 'right' ? `${id}_r` : id}
+                      zone={zone}
+                    />
                   </Stack.Item>
                   <Stack.Item>
                     <ColorBox color={color} />
                   </Stack.Item>
                   <Stack.Item grow>{names[id] || id}</Stack.Item>
+                  {!!side && (
+                    <Stack.Item>
+                      <Button
+                        icon="arrows-alt-h"
+                        tooltip="Zmień stronę: lewa albo prawa"
+                        onClick={() =>
+                          act('aq_marking_side', { zone: zone, index: i + 1 })
+                        }
+                      >
+                        {side === 'right' ? 'Prawa' : 'Lewa'}
+                      </Button>
+                    </Stack.Item>
+                  )}
                   <Stack.Item>
                     <Button
                       icon="palette"

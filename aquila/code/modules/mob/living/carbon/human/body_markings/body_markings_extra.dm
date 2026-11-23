@@ -89,15 +89,11 @@
 	name = "Brwi"
 	zones = list(BODY_ZONE_HEAD)
 
-/datum/aq_body_marking/cheekspot_l // Polaris: /datum/sprite_accessory/marking/cheekspot_left (Cheek Spot, Left)
-	id = "cheekspot_l"
-	name = "Plamka na policzku, lewa"
+/datum/aq_body_marking/cheekspot // Polaris: /datum/sprite_accessory/marking/cheekspot_left (Cheek Spot, Left); Polaris: /datum/sprite_accessory/marking/cheekspot_right (Cheek Spot, Right)
+	id = "cheekspot"
+	name = "Plamka na policzku"
 	zones = list(BODY_ZONE_HEAD)
-
-/datum/aq_body_marking/cheekspot_r // Polaris: /datum/sprite_accessory/marking/cheekspot_right (Cheek Spot, Right)
-	id = "cheekspot_r"
-	name = "Plamka na policzku, prawa"
-	zones = list(BODY_ZONE_HEAD)
+	sides = list("left" = "cheekspot_l", "right" = "cheekspot_r")
 
 /datum/aq_body_marking/deer // Skyrat-tg: /datum/body_marking/tertiary/deer (Deer Hoof)
 	id = "deer"
@@ -134,80 +130,52 @@
 	name = "Zwójka dębówka (ćma)"
 	zones = list(BODY_ZONE_HEAD, BODY_ZONE_CHEST)
 
-/datum/aq_body_marking/tat_natasha_l // Polaris: /datum/sprite_accessory/marking/tat_natasha_left (Scar, Left Eye)
-	id = "tat_natasha_l"
-	name = "Blizna, lewe oko"
+/datum/aq_body_marking/tat_natasha // Polaris: /datum/sprite_accessory/marking/tat_natasha_left (Scar, Left Eye); Polaris: /datum/sprite_accessory/marking/tat_natasha_right (Tattoo (Natasha, Right Eye))
+	id = "tat_natasha"
+	name = "Tatuaż Natasha przy oku"
 	zones = list(BODY_ZONE_HEAD)
+	sides = list("left" = "tat_natasha_l", "right" = "tat_natasha_r")
 
 /datum/aq_body_marking/sclera // Nova Sector: /datum/body_marking/other/sclera (Sclera)
 	id = "sclera"
 	name = "Białka oczu"
 	zones = list(BODY_ZONE_HEAD)
 
-/datum/aq_body_marking/tat_forrest_l // Polaris: /datum/sprite_accessory/marking/tat_forrest_left (Tattoo (Forrest, Left Eye))
-	id = "tat_forrest_l"
-	name = "Tatuaż Forrest, lewe oko"
+/datum/aq_body_marking/tat_forrest // Polaris: /datum/sprite_accessory/marking/tat_forrest_left (Tattoo (Forrest, Left Eye)); Polaris: /datum/sprite_accessory/marking/tat_forrest_right (Tattoo (Forrest, Right Eye))
+	id = "tat_forrest"
+	name = "Tatuaż Forrest przy oku"
 	zones = list(BODY_ZONE_HEAD)
+	sides = list("left" = "tat_forrest_l", "right" = "tat_forrest_r")
 
-/datum/aq_body_marking/tat_forrest_r // Polaris: /datum/sprite_accessory/marking/tat_forrest_right (Tattoo (Forrest, Right Eye))
-	id = "tat_forrest_r"
-	name = "Tatuaż Forrest, prawe oko"
+/datum/aq_body_marking/tat_hunter // Polaris: /datum/sprite_accessory/marking/tat_hunter_left (Tattoo (Hunter, Left Eye)); Polaris: /datum/sprite_accessory/marking/tat_hunter_right (Tattoo (Hunter, Right Eye))
+	id = "tat_hunter"
+	name = "Tatuaż Hunter przy oku"
 	zones = list(BODY_ZONE_HEAD)
+	sides = list("left" = "tat_hunter_l", "right" = "tat_hunter_r")
 
-/datum/aq_body_marking/tat_hunter_l // Polaris: /datum/sprite_accessory/marking/tat_hunter_left (Tattoo (Hunter, Left Eye))
-	id = "tat_hunter_l"
-	name = "Tatuaż Hunter, lewe oko"
+/datum/aq_body_marking/tat_jaeger // Polaris: /datum/sprite_accessory/marking/tat_jaeger_left (Tattoo (Jaeger, Left Eye)); Polaris: /datum/sprite_accessory/marking/tat_jaeger_right (Tattoo (Jaeger, Right Eye))
+	id = "tat_jaeger"
+	name = "Tatuaż Jaeger przy oku"
 	zones = list(BODY_ZONE_HEAD)
+	sides = list("left" = "tat_jaeger_l", "right" = "tat_jaeger_r")
 
-/datum/aq_body_marking/tat_hunter_r // Polaris: /datum/sprite_accessory/marking/tat_hunter_right (Tattoo (Hunter, Right Eye))
-	id = "tat_hunter_r"
-	name = "Tatuaż Hunter, prawe oko"
+/datum/aq_body_marking/tat_kater // Polaris: /datum/sprite_accessory/marking/tat_kater_left (Tattoo (Kater, Left Eye)); Polaris: /datum/sprite_accessory/marking/tat_kater_right (Tattoo (Kater, Right Eye))
+	id = "tat_kater"
+	name = "Tatuaż Kater przy oku"
 	zones = list(BODY_ZONE_HEAD)
+	sides = list("left" = "tat_kater_l", "right" = "tat_kater_r")
 
-/datum/aq_body_marking/tat_jaeger_l // Polaris: /datum/sprite_accessory/marking/tat_jaeger_left (Tattoo (Jaeger, Left Eye))
-	id = "tat_jaeger_l"
-	name = "Tatuaż Jaeger, lewe oko"
+/datum/aq_body_marking/tat_lujan // Polaris: /datum/sprite_accessory/marking/tat_lujan_left (Tattoo (Lujan, Left Eye)); Polaris: /datum/sprite_accessory/marking/tat_lujan_right (Tattoo (Lujan, Right Eye))
+	id = "tat_lujan"
+	name = "Tatuaż Lujan przy oku"
 	zones = list(BODY_ZONE_HEAD)
+	sides = list("left" = "tat_lujan_l", "right" = "tat_lujan_r")
 
-/datum/aq_body_marking/tat_jaeger_r // Polaris: /datum/sprite_accessory/marking/tat_jaeger_right (Tattoo (Jaeger, Right Eye))
-	id = "tat_jaeger_r"
-	name = "Tatuaż Jaeger, prawe oko"
+/datum/aq_body_marking/tat_toshi // Polaris: /datum/sprite_accessory/marking/tat_toshi_left (Tattoo (Toshi, Left Eye)); Polaris: /datum/sprite_accessory/marking/tat_toshi_right (Tattoo (Toshi, Right Eye))
+	id = "tat_toshi"
+	name = "Tatuaż Toshi przy oku"
 	zones = list(BODY_ZONE_HEAD)
-
-/datum/aq_body_marking/tat_kater_l // Polaris: /datum/sprite_accessory/marking/tat_kater_left (Tattoo (Kater, Left Eye))
-	id = "tat_kater_l"
-	name = "Tatuaż Kater, lewe oko"
-	zones = list(BODY_ZONE_HEAD)
-
-/datum/aq_body_marking/tat_kater_r // Polaris: /datum/sprite_accessory/marking/tat_kater_right (Tattoo (Kater, Right Eye))
-	id = "tat_kater_r"
-	name = "Tatuaż Kater, prawe oko"
-	zones = list(BODY_ZONE_HEAD)
-
-/datum/aq_body_marking/tat_lujan_l // Polaris: /datum/sprite_accessory/marking/tat_lujan_left (Tattoo (Lujan, Left Eye))
-	id = "tat_lujan_l"
-	name = "Tatuaż Lujan, lewe oko"
-	zones = list(BODY_ZONE_HEAD)
-
-/datum/aq_body_marking/tat_lujan_r // Polaris: /datum/sprite_accessory/marking/tat_lujan_right (Tattoo (Lujan, Right Eye))
-	id = "tat_lujan_r"
-	name = "Tatuaż Lujan, prawe oko"
-	zones = list(BODY_ZONE_HEAD)
-
-/datum/aq_body_marking/tat_natasha_r // Polaris: /datum/sprite_accessory/marking/tat_natasha_right (Tattoo (Natasha, Right Eye))
-	id = "tat_natasha_r"
-	name = "Tatuaż Natasha, prawe oko"
-	zones = list(BODY_ZONE_HEAD)
-
-/datum/aq_body_marking/tat_toshi_l // Polaris: /datum/sprite_accessory/marking/tat_toshi_left (Tattoo (Toshi, Left Eye))
-	id = "tat_toshi_l"
-	name = "Tatuaż Toshi, lewe oko"
-	zones = list(BODY_ZONE_HEAD)
-
-/datum/aq_body_marking/tat_toshi_r // Polaris: /datum/sprite_accessory/marking/tat_toshi_right (Tattoo (Toshi, Right Eye))
-	id = "tat_toshi_r"
-	name = "Tatuaż Toshi, prawe oko"
-	zones = list(BODY_ZONE_HEAD)
+	sides = list("left" = "tat_toshi_l", "right" = "tat_toshi_r")
 
 /datum/aq_body_marking/thirdeye // Bubberstation: /datum/body_marking/bubber/thirdeye (Third Eye)
 	id = "thirdeye"
@@ -259,15 +227,11 @@
 	name = "Bransoletka na kostce"
 	zones = list(BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
 
-/datum/aq_body_marking/aug_sidedeunan_l // Polaris: /datum/sprite_accessory/marking/aug/side_deunan_left (Augment (Deunan, Side Left))
-	id = "aug_sidedeunan_l"
-	name = "Wszczep Deunan, lewy bok głowy"
+/datum/aq_body_marking/aug_sidedeunan // Polaris: /datum/sprite_accessory/marking/aug/side_deunan_left (Augment (Deunan, Side Left)); Polaris: /datum/sprite_accessory/marking/aug/side_deunan_right (Augment (Deunan, Side Right))
+	id = "aug_sidedeunan"
+	name = "Wszczep Deunan na boku głowy"
 	zones = list(BODY_ZONE_HEAD)
-
-/datum/aq_body_marking/aug_sidedeunan_r // Polaris: /datum/sprite_accessory/marking/aug/side_deunan_right (Augment (Deunan, Side Right))
-	id = "aug_sidedeunan_r"
-	name = "Wszczep Deunan, prawy bok głowy"
-	zones = list(BODY_ZONE_HEAD)
+	sides = list("left" = "aug_sidedeunan_l", "right" = "aug_sidedeunan_r")
 
 /datum/aq_body_marking/aug_headcaselight // Polaris: /datum/sprite_accessory/marking/aug/headcase_light (Augment (Headcase Light, Head))
 	id = "aug_headcaselight"
@@ -289,15 +253,11 @@
 	name = "Krowie łaty, plamki"
 	zones = list(BODY_ZONE_HEAD, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
 
-/datum/aq_body_marking/cheshire_l // Polaris: /datum/sprite_accessory/marking/cheshire_left (Cheshire (Left Cheek))
-	id = "cheshire_l"
-	name = "Uśmiech kota z Cheshire, lewy policzek"
+/datum/aq_body_marking/cheshire // Polaris: /datum/sprite_accessory/marking/cheshire_left (Cheshire (Left Cheek)); Polaris: /datum/sprite_accessory/marking/cheshire_right (Cheshire (Right Cheek))
+	id = "cheshire"
+	name = "Uśmiech kota z Cheshire na policzku"
 	zones = list(BODY_ZONE_HEAD)
-
-/datum/aq_body_marking/cheshire_r // Polaris: /datum/sprite_accessory/marking/cheshire_right (Cheshire (Right Cheek))
-	id = "cheshire_r"
-	name = "Uśmiech kota z Cheshire, prawy policzek"
-	zones = list(BODY_ZONE_HEAD)
+	sides = list("left" = "cheshire_l", "right" = "cheshire_r")
 
 /datum/aq_body_marking/bandshumanface // Polaris: /datum/sprite_accessory/marking/bandsface_human (Color Bands (Face))
 	id = "bandshumanface"
@@ -419,15 +379,11 @@
 	name = "Blizna na brodzie"
 	zones = list(BODY_ZONE_HEAD)
 
-/datum/aq_body_marking/scar_cheek_l // Polaris: /datum/sprite_accessory/marking/scar_cheek_left (Scar, Left Cheek)
-	id = "scar_cheek_l"
-	name = "Blizna, lewy policzek"
+/datum/aq_body_marking/scar_cheek // Polaris: /datum/sprite_accessory/marking/scar_cheek_left (Scar, Left Cheek); Polaris: /datum/sprite_accessory/marking/scar_cheek_right (Scar, Right Cheek)
+	id = "scar_cheek"
+	name = "Blizna na policzku"
 	zones = list(BODY_ZONE_HEAD)
-
-/datum/aq_body_marking/scar_cheek_r // Polaris: /datum/sprite_accessory/marking/scar_cheek_right (Scar, Right Cheek)
-	id = "scar_cheek_r"
-	name = "Blizna, prawy policzek"
-	zones = list(BODY_ZONE_HEAD)
+	sides = list("left" = "scar_cheek_l", "right" = "scar_cheek_r")
 
 /datum/aq_body_marking/scolipede // Skyrat-tg: /datum/body_marking/tertiary/scolipede (Scolipede Spikes)
 	id = "scolipede"
@@ -449,15 +405,11 @@
 	name = "Tatuaż Campbell, prawe ramię"
 	zones = list(BODY_ZONE_R_ARM)
 
-/datum/aq_body_marking/tat_montana_l // Polaris: /datum/sprite_accessory/marking/tat_montana_left (Tattoo (Montana, Left Eye))
-	id = "tat_montana_l"
-	name = "Tatuaż Montana, lewe oko"
+/datum/aq_body_marking/tat_montana // Polaris: /datum/sprite_accessory/marking/tat_montana_left (Tattoo (Montana, Left Eye)); Polaris: /datum/sprite_accessory/marking/tat_montana_right (Tattoo (Montana, Right Eye))
+	id = "tat_montana"
+	name = "Tatuaż Montana przy oku"
 	zones = list(BODY_ZONE_HEAD)
-
-/datum/aq_body_marking/tat_montana_r // Polaris: /datum/sprite_accessory/marking/tat_montana_right (Tattoo (Montana, Right Eye))
-	id = "tat_montana_r"
-	name = "Tatuaż Montana, prawe oko"
-	zones = list(BODY_ZONE_HEAD)
+	sides = list("left" = "tat_montana_l", "right" = "tat_montana_r")
 
 /datum/aq_body_marking/tat_tamoko // Polaris: /datum/sprite_accessory/marking/tat_tamoko (Tattoo (Ta Moko, Face))
 	id = "tat_tamoko"
@@ -684,15 +636,11 @@
 	name = "Koński pysk"
 	zones = list(BODY_ZONE_HEAD)
 
-/datum/aq_body_marking/eyecorner_l // Polaris: /datum/sprite_accessory/marking/eyecorner_left (Eye Corner Left)
-	id = "eyecorner_l"
-	name = "Kącik oka, lewy"
+/datum/aq_body_marking/eyecorner // Polaris: /datum/sprite_accessory/marking/eyecorner_left (Eye Corner Left); Polaris: /datum/sprite_accessory/marking/eyecorner_right (Eye Corner Right)
+	id = "eyecorner"
+	name = "Kącik oka"
 	zones = list(BODY_ZONE_HEAD)
-
-/datum/aq_body_marking/eyecorner_r // Polaris: /datum/sprite_accessory/marking/eyecorner_right (Eye Corner Right)
-	id = "eyecorner_r"
-	name = "Kącik oka, prawy"
-	zones = list(BODY_ZONE_HEAD)
+	sides = list("left" = "eyecorner_l", "right" = "eyecorner_r")
 
 /datum/aq_body_marking/zmask // Polaris: /datum/sprite_accessory/marking/vr/zmask (Eye mask)
 	id = "zmask"
@@ -1019,55 +967,35 @@
 	name = "Szablolis"
 	zones = list(BODY_ZONE_HEAD, BODY_ZONE_CHEST, BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_PRECISE_L_HAND, BODY_ZONE_PRECISE_R_HAND, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
 
-/datum/aq_body_marking/scar_abdomen_l // Polaris: /datum/sprite_accessory/marking/scar_abdomen_left (Scar, Abdomen Left)
-	id = "scar_abdomen_l"
-	name = "Blizna na brzuchu, lewa"
+/datum/aq_body_marking/scar_abdomen // Polaris: /datum/sprite_accessory/marking/scar_abdomen_left (Scar, Abdomen Left); Polaris: /datum/sprite_accessory/marking/scar_abdomen_right (Scar, Abdomen Right)
+	id = "scar_abdomen"
+	name = "Blizna na brzuchu"
 	zones = list(BODY_ZONE_CHEST)
+	sides = list("left" = "scar_abdomen_l", "right" = "scar_abdomen_r")
 
-/datum/aq_body_marking/scar_abdomen_r // Polaris: /datum/sprite_accessory/marking/scar_abdomen_right (Scar, Abdomen Right)
-	id = "scar_abdomen_r"
-	name = "Blizna na brzuchu, prawa"
+/datum/aq_body_marking/scar_abdomensmall // Polaris: /datum/sprite_accessory/marking/scar_abdomen_small_left (Scar, Abdomen Small Left); Polaris: /datum/sprite_accessory/marking/scar_abdomen_small_right (Scar, Abdomen Small Right)
+	id = "scar_abdomensmall"
+	name = "Mała blizna na brzuchu"
 	zones = list(BODY_ZONE_CHEST)
+	sides = list("left" = "scar_abdomensmall_l", "right" = "scar_abdomensmall_r")
 
-/datum/aq_body_marking/scar_abdomensmall_l // Polaris: /datum/sprite_accessory/marking/scar_abdomen_small_left (Scar, Abdomen Small Left)
-	id = "scar_abdomensmall_l"
-	name = "Mała blizna na brzuchu, lewa"
+/datum/aq_body_marking/scar_chest_large // Polaris: /datum/sprite_accessory/marking/scar_chest_large_left (Scar, Chest Large (Left)); Polaris: /datum/sprite_accessory/marking/scar_chest_large_right (Scar, Chest Large (Right))
+	id = "scar_chest_large"
+	name = "Duża blizna na piersi"
 	zones = list(BODY_ZONE_CHEST)
+	sides = list("left" = "scar_chest_large_l", "right" = "scar_chest_large_r")
 
-/datum/aq_body_marking/scar_abdomensmall_r // Polaris: /datum/sprite_accessory/marking/scar_abdomen_small_right (Scar, Abdomen Small Right)
-	id = "scar_abdomensmall_r"
-	name = "Mała blizna na brzuchu, prawa"
+/datum/aq_body_marking/scar_chest_small // Polaris: /datum/sprite_accessory/marking/scar_chest_small_left (Scar, Chest Small (Left)); Polaris: /datum/sprite_accessory/marking/scar_chest_small_right (Scar, Chest Small (Right))
+	id = "scar_chest_small"
+	name = "Mała blizna na piersi"
 	zones = list(BODY_ZONE_CHEST)
+	sides = list("left" = "scar_chest_small_l", "right" = "scar_chest_small_r")
 
-/datum/aq_body_marking/scar_chest_large_l // Polaris: /datum/sprite_accessory/marking/scar_chest_large_left (Scar, Chest Large (Left))
-	id = "scar_chest_large_l"
-	name = "Duża blizna na piersi, lewa"
-	zones = list(BODY_ZONE_CHEST)
-
-/datum/aq_body_marking/scar_chest_large_r // Polaris: /datum/sprite_accessory/marking/scar_chest_large_right (Scar, Chest Large (Right))
-	id = "scar_chest_large_r"
-	name = "Duża blizna na piersi, prawa"
-	zones = list(BODY_ZONE_CHEST)
-
-/datum/aq_body_marking/scar_chest_small_l // Polaris: /datum/sprite_accessory/marking/scar_chest_small_left (Scar, Chest Small (Left))
-	id = "scar_chest_small_l"
-	name = "Mała blizna na piersi, lewa"
-	zones = list(BODY_ZONE_CHEST)
-
-/datum/aq_body_marking/scar_chest_small_r // Polaris: /datum/sprite_accessory/marking/scar_chest_small_right (Scar, Chest Small (Right))
-	id = "scar_chest_small_r"
-	name = "Mała blizna na piersi, prawa"
-	zones = list(BODY_ZONE_CHEST)
-
-/datum/aq_body_marking/scar_forehead_l // Polaris: /datum/sprite_accessory/marking/scar_forehead_left (Scar, Forehead (Left))
-	id = "scar_forehead_l"
-	name = "Blizna na czole, lewa"
+/datum/aq_body_marking/scar_forehead // Polaris: /datum/sprite_accessory/marking/scar_forehead_left (Scar, Forehead (Left)); Polaris: /datum/sprite_accessory/marking/scar_forehead_right (Scar, Forehead (Right))
+	id = "scar_forehead"
+	name = "Blizna na czole"
 	zones = list(BODY_ZONE_HEAD)
-
-/datum/aq_body_marking/scar_forehead_r // Polaris: /datum/sprite_accessory/marking/scar_forehead_right (Scar, Forehead (Right))
-	id = "scar_forehead_r"
-	name = "Blizna na czole, prawa"
-	zones = list(BODY_ZONE_HEAD)
+	sides = list("left" = "scar_forehead_l", "right" = "scar_forehead_r")
 
 /datum/aq_body_marking/scar_forearm // Polaris: /datum/sprite_accessory/marking/scar_left_arm_lower (Scar, Left Arm (Lower)); Polaris: /datum/sprite_accessory/marking/scar_right_arm_lower (Scar, Right Arm (Lower))
 	id = "scar_forearm"
@@ -1099,15 +1027,11 @@
 	name = "Blizna na udzie"
 	zones = list(BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
 
-/datum/aq_body_marking/scar_eye_l // Polaris: /datum/sprite_accessory/marking/scar_eye_left (Scar, Over Eye (Left))
-	id = "scar_eye_l"
-	name = "Blizna nad lewym okiem"
+/datum/aq_body_marking/scar_eye // Polaris: /datum/sprite_accessory/marking/scar_eye_left (Scar, Over Eye (Left)); Polaris: /datum/sprite_accessory/marking/scar_eye_right (Scar, Over Eye (Right))
+	id = "scar_eye"
+	name = "Blizna nad okiem"
 	zones = list(BODY_ZONE_HEAD)
-
-/datum/aq_body_marking/scar_eye_r // Polaris: /datum/sprite_accessory/marking/scar_eye_right (Scar, Over Eye (Right))
-	id = "scar_eye_r"
-	name = "Blizna nad prawym okiem"
-	zones = list(BODY_ZONE_HEAD)
+	sides = list("left" = "scar_eye_l", "right" = "scar_eye_r")
 
 /datum/aq_body_marking/shaggy // Polaris: /datum/sprite_accessory/marking/vr/shaggy_mane (Shaggy mane/feathers)
 	id = "shaggy"

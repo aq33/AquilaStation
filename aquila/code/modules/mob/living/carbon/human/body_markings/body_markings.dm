@@ -1,6 +1,7 @@
 // AQUILA - markingi przypisane do kończyn (wzór: Skyrat/Nova /datum/body_marking).
 // Gracz wybiera w oknie postaci do AQ_MARKINGS_PER_ZONE markingów na każdą część ciała, każdy z własnym kolorem.
 // Zapis: features["aq_markings"] jako JSON {strefa: [[id, kolor], ...]}, więc markingi idą razem z DNA (klonowanie, zmiana wyglądu).
+// Marking z wersją lewą i prawą w tej samej strefie (np. tatuaż przy oku) ma trzeci element: stronę "left" albo "right".
 // Rysuje je kończyna (get_limb_icon) na warstwie skóry, pod bielizną i ubraniem, więc odcięta kończyna zabiera swoje markingi.
 // Markingi gatunkowe (lizard_markings, moth_markings, paski apida) działają dalej osobno.
 
@@ -22,6 +23,42 @@ GLOBAL_LIST_INIT(aq_body_marking_zones, list(BODY_ZONE_HEAD, BODY_ZONE_CHEST, BO
 	var/name
 	/// Części ciała z GLOB.aq_body_marking_zones, dla których marking ma sprite
 	var/list/zones = list()
+	/// Marking z wersją lewą i prawą w tej samej strefie: list("left" = id sprite'u, "right" = id sprite'u)
+	var/list/sides
+
+/// Id ze starych zapisów -> list(nowe id, strona): pary lewa/prawa scalone w jeden marking
+GLOBAL_LIST_INIT(aq_body_marking_aliases, init_aq_body_marking_aliases())
+
+/proc/init_aq_body_marking_aliases()
+	. = list(
+		// S20: pary na kończynach, stronę wybiera kończyna
+		"catwomanleft" = list("catwoman_leg", null),
+		"catwomanright" = list("catwoman_leg", null),
+		"scar_arm_left_l" = list("scar_forearm", null),
+		"scar_arm_right_l" = list("scar_forearm", null),
+		"scar_arm_left_u" = list("scar_upper_arm", null),
+		"scar_arm_right_u" = list("scar_upper_arm", null),
+		"scar_left_foot" = list("scar_foot", null),
+		"scar_right_foot" = list("scar_foot", null),
+		"scar_hand_left" = list("scar_hand", null),
+		"scar_hand_right" = list("scar_hand", null),
+		"scar_leg_left_l" = list("scar_calf", null),
+		"scar_right_leg_l" = list("scar_calf", null),
+		"scar_leg_left_u" = list("scar_thigh", null),
+		"scar_right_leg_u" = list("scar_thigh", null),
+	)
+	for(var/marking_type in subtypesof(/datum/aq_body_marking))
+		var/datum/aq_body_marking/marking = new marking_type
+		for(var/side in marking.sides)
+			.[marking.sides[side]] = list(marking.id, side)
+
+/// Id stanu w AQ_BODY_MARKINGS_ICON dla wpisu list(id, kolor[, strona])
+/proc/aq_marking_sprite_id(list/entry)
+	var/datum/aq_body_marking/marking = GLOB.aq_body_markings[entry[1]]
+	if(!length(marking?.sides))
+		return entry[1]
+	var/side = length(entry) >= 3 ? entry[3] : "left"
+	return marking.sides[side] || marking.sides["left"]
 
 /proc/init_aq_body_markings()
 	var/list/output = list()
@@ -54,10 +91,20 @@ GLOBAL_LIST_INIT(aq_body_marking_zones, list(BODY_ZONE_HEAD, BODY_ZONE_CHEST, BO
 				break
 			if(length(entry) < 2 || !istext(entry[1]))
 				continue
-			var/datum/aq_body_marking/marking = GLOB.aq_body_markings[entry[1]]
+			var/id = entry[1]
+			var/side = length(entry) >= 3 ? entry[3] : null
+			var/list/alias = GLOB.aq_body_marking_aliases[id]
+			if(alias)
+				id = alias[1]
+				side = alias[2] || side
+			var/datum/aq_body_marking/marking = GLOB.aq_body_markings[id]
 			if(!marking || !(zone in marking.zones))
 				continue
-			valid += list(list(marking.id, sanitize_hexcolor(entry[2], 6, TRUE, "#FFFFFF")))
+			var/color = sanitize_hexcolor(entry[2], 6, TRUE, "#FFFFFF")
+			if(length(marking.sides))
+				valid += list(list(marking.id, color, (side in marking.sides) ? side : "left"))
+			else
+				valid += list(list(marking.id, color))
 		if(length(valid))
 			output[zone] = valid
 	return output
@@ -90,7 +137,7 @@ GLOBAL_LIST_INIT(aq_body_marking_zones, list(BODY_ZONE_HEAD, BODY_ZONE_CHEST, BO
 	aq_body_markings = TRUE
 
 /obj/item/bodypart
-	/// Markingi tej kończyny: list(list(id, kolor, strefa)). Strefa dłoni to aux_zone ręki.
+	/// Markingi tej kończyny: list(list(id sprite'u, kolor, strefa)). Strefa dłoni to aux_zone ręki.
 	var/list/aq_markings
 
 /obj/item/bodypart/update_limb(dropping_limb, mob/living/carbon/source, is_creating = FALSE)
@@ -108,7 +155,7 @@ GLOBAL_LIST_INIT(aq_body_marking_zones, list(BODY_ZONE_HEAD, BODY_ZONE_CHEST, BO
 		if(!zone)
 			continue
 		for(var/list/entry in markings[zone])
-			LAZYADD(aq_markings, list(list(entry[1], entry[2], zone)))
+			LAZYADD(aq_markings, list(list(aq_marking_sprite_id(entry), entry[2], zone)))
 
 /obj/item/bodypart/get_limb_icon(dropped)
 	. = ..()

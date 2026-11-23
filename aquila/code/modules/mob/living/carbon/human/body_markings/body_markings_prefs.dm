@@ -7,6 +7,7 @@
 		"aq_marking_remove" = PROC_REF(remove_marking),
 		"aq_marking_change" = PROC_REF(change_marking),
 		"aq_marking_color" = PROC_REF(color_marking),
+		"aq_marking_side" = PROC_REF(side_marking),
 	)
 
 /datum/preference_middleware/aq_body_markings/get_ui_data(mob/user)
@@ -25,7 +26,7 @@
 		catalog = list()
 		for(var/id in GLOB.aq_body_markings)
 			var/datum/aq_body_marking/marking = GLOB.aq_body_markings[id]
-			catalog += list(list("id" = marking.id, "name" = marking.name, "zones" = marking.zones))
+			catalog += list(list("id" = marking.id, "name" = marking.name, "zones" = marking.zones, "sides" = length(marking.sides) > 0))
 	return list(
 		"aq_markings_catalog" = catalog,
 		"aq_markings_limit" = AQ_MARKINGS_PER_ZONE,
@@ -42,9 +43,13 @@
 	for(var/id in GLOB.aq_body_markings)
 		var/datum/aq_body_marking/marking = GLOB.aq_body_markings[id]
 		for(var/zone in marking.zones)
-			var/icon/preview = aq_marking_preview_icon(marking, zone)
+			var/icon/preview = aq_marking_preview_icon(marking.sides ? marking.sides["left"] : marking.id, zone)
 			if(preview)
 				Insert(sanitize_css_class_name("[id]_[zone]"), preview)
+			if(marking.sides) // prawa wersja ma klasę "[id]_r_[strefa]"
+				var/icon/right_preview = aq_marking_preview_icon(marking.sides["right"], zone)
+				if(right_preview)
+					Insert(sanitize_css_class_name("[id]_r_[zone]"), right_preview)
 	return ..()
 
 /// Kolory podglądu: jasna skóra i wyraźny marking
@@ -54,8 +59,8 @@
 #define AQ_MARKING_PREVIEW_DIRS list(SOUTH, NORTH, EAST, WEST)
 
 /// Część ciała z markingiem w kierunku, w którym marking ma najwięcej pikseli, wycięta w kwadrat i powiększona do 48x48
-/proc/aq_marking_preview_icon(datum/aq_body_marking/marking, zone)
-	var/marking_state = zone == BODY_ZONE_CHEST ? "[marking.id]_chest_m" : "[marking.id]_[zone]"
+/proc/aq_marking_preview_icon(sprite_id, zone)
+	var/marking_state = zone == BODY_ZONE_CHEST ? "[sprite_id]_chest_m" : "[sprite_id]_[zone]"
 	var/part_state = zone == BODY_ZONE_CHEST || zone == BODY_ZONE_HEAD ? "human_[zone]_m" : "human_[zone]"
 	if(!icon_exists(AQ_BODY_MARKINGS_ICON, marking_state) || !icon_exists('icons/mob/human_parts_greyscale.dmi', part_state))
 		return null
@@ -131,7 +136,7 @@
 	if(length(entries) >= AQ_MARKINGS_PER_ZONE)
 		to_chat(user, "<span class='warning'>Na jednej części ciała zmieszczą się najwyżej [AQ_MARKINGS_PER_ZONE] markingi.</span>")
 		return TRUE
-	entries += list(list(marking.id, "#FFFFFF"))
+	entries += list(length(marking.sides) ? list(marking.id, "#FFFFFF", "left") : list(marking.id, "#FFFFFF"))
 	markings[zone] = entries
 	return store_markings(markings)
 
@@ -154,6 +159,20 @@
 	if(!entry)
 		return FALSE
 	entry[1] = marking.id
+	if(length(marking.sides) && length(entry) < 3)
+		entry += "left"
+	else if(!length(marking.sides) && length(entry) > 2)
+		entry.len = 2
+	return store_markings(markings)
+
+/// Marking z wersją lewą i prawą: przełącza stronę
+/datum/preference_middleware/aq_body_markings/proc/side_marking(list/params, mob/user)
+	var/list/markings = current_markings()
+	var/list/entry = entry_at(markings, params["zone"], params["index"])
+	var/datum/aq_body_marking/marking = entry && GLOB.aq_body_markings[entry[1]]
+	if(!length(marking?.sides) || length(entry) < 3)
+		return FALSE
+	entry[3] = entry[3] == "right" ? "left" : "right"
 	return store_markings(markings)
 
 /datum/preference_middleware/aq_body_markings/proc/color_marking(list/params, mob/user)

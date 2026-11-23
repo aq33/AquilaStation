@@ -11,12 +11,14 @@
 	for(var/id in GLOB.aq_body_markings)
 		var/datum/aq_body_marking/marking = GLOB.aq_body_markings[id]
 		TEST_ASSERT(length(marking.zones), "Marking [id] has no body zones")
+		var/list/sprite_ids = length(marking.sides) ? list(marking.sides["left"], marking.sides["right"]) : list(id)
 		for(var/zone in marking.zones)
 			TEST_ASSERT(zone in GLOB.aq_body_marking_zones, "Marking [id] uses unknown zone [zone]")
-			if(zone == BODY_ZONE_CHEST)
-				TEST_ASSERT(icon_exists(AQ_BODY_MARKINGS_ICON, "[id]_chest_m") && icon_exists(AQ_BODY_MARKINGS_ICON, "[id]_chest_f"), "Marking [id] has no chest sprites")
-			else
-				TEST_ASSERT(icon_exists(AQ_BODY_MARKINGS_ICON, "[id]_[zone]"), "Marking [id] has no sprite for [zone]")
+			for(var/sprite_id in sprite_ids)
+				if(zone == BODY_ZONE_CHEST)
+					TEST_ASSERT(icon_exists(AQ_BODY_MARKINGS_ICON, "[sprite_id]_chest_m") && icon_exists(AQ_BODY_MARKINGS_ICON, "[sprite_id]_chest_f"), "Marking [id] has no chest sprites ([sprite_id])")
+				else
+					TEST_ASSERT(icon_exists(AQ_BODY_MARKINGS_ICON, "[sprite_id]_[zone]"), "Marking [id] has no sprite for [zone] ([sprite_id])")
 		if(!arm_marking && (BODY_ZONE_R_ARM in marking.zones))
 			arm_marking = marking
 	TEST_ASSERT(arm_marking, "No marking can go on the right arm")
@@ -72,6 +74,28 @@
 	dummy.update_body_parts(TRUE)
 	TEST_ASSERT(!has_body_marking_overlay(dummy, state), "A species without body markings draws them")
 
+	// Marking z wersją lewą i prawą: jeden wpis, strona przełączana w oknie, stare id z zapisów przechodzą na nowy marking
+	var/datum/aq_body_marking/sided = GLOB.aq_body_markings["tat_forrest"]
+	TEST_ASSERT(length(sided?.sides) == 2, "The Forrest tattoo is not one marking with two sides")
+	TEST_ASSERT(!GLOB.aq_body_markings["tat_forrest_l"], "The old left Forrest tattoo is still a separate marking")
+	var/datum/preference_middleware/aq_body_markings/side_window = new(prefs)
+	side_window.add_marking(list("zone" = BODY_ZONE_HEAD, "id" = "tat_forrest"), null)
+	saved = aq_markings_decode(prefs.active_character.features[AQ_MARKINGS_FEATURE])
+	TEST_ASSERT_EQUAL(saved[BODY_ZONE_HEAD]?[1]?[3], "left", "A new sided marking does not start on the left")
+	side_window.side_marking(list("zone" = BODY_ZONE_HEAD, "index" = 1), null)
+	saved = aq_markings_decode(prefs.active_character.features[AQ_MARKINGS_FEATURE])
+	TEST_ASSERT_EQUAL(saved[BODY_ZONE_HEAD]?[1]?[3], "right", "Switching the side in the window did not save it")
+	qdel(side_window)
+	var/list/old_save = aq_markings_decode("{\"head\": \[\[\"tat_forrest_r\", \"#00ff00\"\]\], \"r_arm\": \[\[\"scar_arm_right_l\", \"#00ff00\"\]\]}")
+	TEST_ASSERT_EQUAL(old_save[BODY_ZONE_HEAD]?[1]?[1], "tat_forrest", "An old saved right tattoo did not turn into the merged marking")
+	TEST_ASSERT_EQUAL(old_save[BODY_ZONE_HEAD]?[1]?[3], "right", "An old saved right tattoo lost its side")
+	TEST_ASSERT_EQUAL(old_save[BODY_ZONE_R_ARM]?[1]?[1], "scar_forearm", "An old saved forearm scar was lost")
+	var/mob/living/carbon/human/sided_dummy = allocate(/mob/living/carbon/human, run_loc_floor_bottom_left)
+	save.pref_species = new /datum/species/human
+	save.features[AQ_MARKINGS_FEATURE] = aq_markings_encode(old_save)
+	save.copy_to(sided_dummy)
+	TEST_ASSERT(has_body_marking_overlay(sided_dummy, "tat_forrest_r_[BODY_ZONE_HEAD]", "#00ff00"), "The right side of a merged marking is not drawn with the right sprite")
+
 /// Czy na warstwie kończyn jest nakładka markingu o tym stanie (i kolorze)
 /datum/unit_test/aquila_body_markings/proc/has_body_marking_overlay(mob/living/carbon/human/target, state, color)
 	for(var/image/overlay in target.overlays_standing[BODYPARTS_LAYER])
@@ -90,7 +114,7 @@
 			if(checked >= 40) // pełny arkusz generuje się przy starcie, tu wystarczy próbka
 				break
 			checked++
-			TEST_ASSERT(isicon(aq_marking_preview_icon(marking, zone)), "Marking [id] has no preview for [zone]")
+			TEST_ASSERT(isicon(aq_marking_preview_icon(marking.sides ? marking.sides["left"] : id, zone)), "Marking [id] has no preview for [zone]")
 	TEST_ASSERT(checked, "No body markings to preview")
 
 	var/datum/preference/choiced/hair = GLOB.preference_entries_by_key["hair_style_name"]
