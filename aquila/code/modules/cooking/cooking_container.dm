@@ -46,6 +46,7 @@
 	QDEL_NULL(lip_effect)
 	if(lip)
 		lip_effect = new
+		lip_effect.icon = icon
 		lip_effect.icon_state = "[icon_state]_lip"
 
 /obj/item/reagent_containers/cooking/examine(mob/user)
@@ -287,4 +288,105 @@
 	custom_materials = list(/datum/material/iron = 400, /datum/material/glass = 100)
 
 /obj/item/reagent_containers/cooking/bowl/make_mini()
+	return
+
+// Naczynia do deserów i sushi. Sprite'y: Paradise (icons/obj/cooking/containers.dmi, icons/obj/kitchen.dmi), CC BY-SA 3.0.
+
+/obj/item/reagent_containers/cooking/icecream_bowl
+	name = "misa do lodów"
+	desc = "Stalowa misa, którą wstawia się do miksera lodów."
+	icon = 'aquila/icons/obj/food/cooking/desserts.dmi'
+	icon_state = "ice_cream_bowl"
+	where_name = "misie do lodów"
+	custom_materials = list(/datum/material/iron = 750)
+
+/obj/item/reagent_containers/cooking/icecream_bowl/make_mini()
+	mini = TRUE
+	transform = matrix() * 0.8
+	update_appearance()
+
+/obj/item/reagent_containers/cooking/icecream_bowl/unmake_mini()
+	mini = FALSE
+	transform = null
+	update_appearance()
+
+/// Plastikowa foremka na cukierki; wstawia się ją do miksera lodów
+/obj/item/reagent_containers/cooking/mould
+	name = "foremka na cukierki"
+	desc = "Plastikowa foremka. Wlewa się do niej masę i wstawia do miksera lodów."
+	icon = 'aquila/icons/obj/food/cooking/desserts.dmi'
+	icon_state = "mould"
+	where_name = "foremce"
+	lip = FALSE
+	custom_materials = list(/datum/material/plastic = 2000)
+
+/obj/item/reagent_containers/cooking/mould/make_mini()
+	mini = TRUE
+	transform = matrix() * 0.5
+	update_appearance()
+
+/obj/item/reagent_containers/cooking/mould/unmake_mini()
+	mini = FALSE
+	transform = null
+	update_appearance()
+
+/obj/item/reagent_containers/cooking/mould/bear
+	name = "foremka w misie"
+	desc = "Ma kształt małego misia."
+	icon_state = "mould_bear"
+	where_name = "foremce w misie"
+
+/obj/item/reagent_containers/cooking/mould/worm
+	name = "foremka w robaki"
+	desc = "Ma kształt robaka."
+	icon_state = "mould_worm"
+	where_name = "foremce w robaki"
+
+/obj/item/reagent_containers/cooking/mould/bean
+	name = "foremka w fasolki"
+	desc = "Ma kształt fasolki."
+	icon_state = "mould_bean"
+	where_name = "foremce w fasolki"
+
+/obj/item/reagent_containers/cooking/mould/ball
+	name = "foremka w kulki"
+	desc = "Ma kształt małej kulki."
+	icon_state = "mould_ball"
+	where_name = "foremce w kulki"
+
+/obj/item/reagent_containers/cooking/mould/cane
+	name = "foremka w laski"
+	desc = "Ma kształt laski cukrowej."
+	icon_state = "mould_cane"
+	where_name = "foremce w laski"
+
+/obj/item/reagent_containers/cooking/mould/cash
+	name = "foremka w banknoty"
+	desc = "Ma kształt i wzór banknotu."
+	icon_state = "mould_cash"
+	where_name = "foremce w banknoty"
+
+/obj/item/reagent_containers/cooking/mould/coin
+	name = "foremka w monety"
+	desc = "Ma kształt monety."
+	icon_state = "mould_coin"
+	where_name = "foremce w monety"
+
+/obj/item/reagent_containers/cooking/mould/loli
+	name = "foremka na lizaki"
+	desc = "Ma kształt lizaka."
+	icon_state = "mould_loli"
+	where_name = "foremce na lizaki"
+
+/obj/item/reagent_containers/cooking/sushimat
+	name = "mata do sushi"
+	desc = "Bambusowa mata. Zwija się na niej sushi."
+	icon = 'aquila/icons/obj/food/cooking/desserts.dmi'
+	icon_state = "sushi_mat"
+	preposition = "na"
+	where_name = "macie do sushi"
+	lip = FALSE
+	custom_materials = list(/datum/material/wood = 1000)
+
+/obj/item/reagent_containers/cooking/sushimat/make_mini()
 	return

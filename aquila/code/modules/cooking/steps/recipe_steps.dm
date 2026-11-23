@@ -244,3 +244,41 @@
 
 /datum/cooking/recipe_step/use_machine/fryer/get_pda_formatted_desc()
 	return "Smaż w głębokim oleju przez [DisplayTimeText(time)]."
+
+/datum/cooking/recipe_step/use_machine/ice_cream
+	cooker_id = COOKER_ICE_CREAM
+
+/datum/cooking/recipe_step/use_machine/ice_cream/get_pda_formatted_desc()
+	return "Zamroź w mikserze lodów przez [DisplayTimeText(time)]."
+
+// ---------- Kończyna rasy (dania z Paradise) ----------
+
+/datum/cooking/recipe_step/add_item/limb
+	/// limb_id kończyny, który pasuje (rasa)
+	var/list/limb_ids
+	/// Każda kończyna mechaniczna (IPC, proteza)
+	var/robotic = FALSE
+	/// Nazwa do Książki kucharskiej („kończyna ćmy”)
+	var/limb_name = "kończyna"
+
+/datum/cooking/recipe_step/add_item/limb/robotic
+	robotic = TRUE
+
+/datum/cooking/recipe_step/add_item/limb/New(list/limb_ids, list/options)
+	src.limb_ids = limb_ids
+	if(options && ("name" in options))
+		limb_name = options["name"]
+	..(/obj/item/bodypart, options)
+
+/datum/cooking/recipe_step/add_item/limb/matches(obj/used_item)
+	var/obj/item/bodypart/limb = used_item
+	if(!istype(limb) || istype(limb, /obj/item/bodypart/chest) || istype(limb, /obj/item/bodypart/head))
+		return FALSE
+	if(robotic)
+		return !!(limb.bodytype & BODYTYPE_ROBOTIC)
+	return IS_ORGANIC_LIMB(limb) && (limb.limb_id in limb_ids)
+
+/datum/cooking/recipe_step/add_item/limb/get_pda_formatted_desc()
+	if(robotic)
+		return "Dodaj: mechaniczna ręka albo noga."
+	return "Dodaj: [limb_name] (ręka albo noga)."

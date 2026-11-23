@@ -96,6 +96,8 @@
 	var/allow_temp_change = TRUE
 	var/allow_toggling = TRUE
 	var/parts_rating = 1
+	/// Czy zawartość przypala się, gdy nic się nie gotuje (mikser lodów nie przypala)
+	var/can_burn = TRUE
 	/// Typy naczyń, które się tu mieszczą
 	var/list/allowed_containers
 
@@ -125,7 +127,7 @@
 	if(!length(pan.contents) && !pan.reagents.total_volume)
 		burn_progress = 0
 		return
-	if(pan.tracker?.waiting_for_cooker(cooker_id))
+	if(!can_burn || pan.tracker?.waiting_for_cooker(cooker_id))
 		return
 	burn_progress += delta_time * 10 * speed_factor
 	if(burn_progress >= cook_burn_time(temperature))

@@ -86,20 +86,21 @@
 	TEST_ASSERT(omelette, "No omelette after 20 s on low heat (pan holds: [english_list(pan.contents)])")
 	TEST_ASSERT(omelette.cooking_quality >= 1, "Two optional steps did not make the omelette better (quality [omelette.cooking_quality])")
 
-/// Naczynie żaroodporne w piekarniku: ciasto staje się chlebem
+/// Naczynie żaroodporne w piekarniku: ciasto z jajkiem staje się chlebem (przepis z Paradise)
 /datum/unit_test/aquila_cooking_oven_dish
 
 /datum/unit_test/aquila_cooking_oven_dish/Run()
 	var/obj/machinery/oven/oven = allocate(/obj/machinery/oven, run_loc_floor_bottom_left)
 	var/obj/item/reagent_containers/cooking/oven/dish = allocate(/obj/item/reagent_containers/cooking/oven, run_loc_floor_bottom_left)
 	dish.process_item(null, allocate(/obj/item/food/dough, run_loc_floor_bottom_left))
+	dish.process_item(null, allocate(/obj/item/food/egg, run_loc_floor_bottom_left))
 	dish.forceMove(oven)
 	oven.add_dish(dish)
 	TEST_ASSERT(oven.chamber.container == dish, "The dish did not go into the oven")
 	oven.chamber.turn_on()
-	for(var/i in 1 to 41)
+	for(var/i in 1 to 11)
 		oven.chamber.process_cooking(1, 1)
-	TEST_ASSERT(locate(/obj/item/food/bread/plain) in dish, "Dough in the oven dish did not bake into bread (dish holds: [english_list(dish.contents)])")
+	TEST_ASSERT(locate(/obj/item/food/bread/plain) in dish, "Dough and an egg in the oven dish did not bake into bread (dish holds: [english_list(dish.contents)])")
 
 /// Nagrzewanie: zimna maszyna gotuje na 1/4 mocy, rozgrzana na pełnej; laser 4. poziomu: 5 s i ×1,5
 /datum/unit_test/aquila_kitchen_heat
@@ -159,5 +160,33 @@
 		soup_component.process(1)
 	TEST_ASSERT(soup_component.burner.timer_left <= 0, "The burner timer did not run out with a soup pot on it")
 	soup_component.turn_off()
+
+/// Mikser lodów (przepis z Paradise): patyczek, tofu, cukier i sok bananowy w misie zamarzają w lód na patyku i się nie przypalają
+/datum/unit_test/aquila_cooking_ice_cream_mixer
+
+/datum/unit_test/aquila_cooking_ice_cream_mixer/Run()
+	var/obj/machinery/ice_cream_mixer/mixer = allocate(/obj/machinery/ice_cream_mixer, run_loc_floor_bottom_left)
+	var/obj/item/reagent_containers/cooking/icecream_bowl/bowl = allocate(/obj/item/reagent_containers/cooking/icecream_bowl, run_loc_floor_bottom_left)
+	var/obj/item/reagent_containers/glass/beaker/sugar = allocate(/obj/item/reagent_containers/glass/beaker, run_loc_floor_bottom_left)
+	sugar.reagents.add_reagent(/datum/reagent/consumable/sugar, 5)
+	sugar.amount_per_transfer_from_this = 5
+	var/obj/item/reagent_containers/glass/beaker/banana = allocate(/obj/item/reagent_containers/glass/beaker, run_loc_floor_bottom_left)
+	banana.reagents.add_reagent(/datum/reagent/consumable/banana, 5)
+	banana.amount_per_transfer_from_this = 5
+
+	TEST_ASSERT(bowl.process_item(null, allocate(/obj/item/popsicle_stick, run_loc_floor_bottom_left)) == COOK_SUCCESS, "Putting a popsicle stick into the freezing bowl")
+	TEST_ASSERT(bowl.process_item(null, allocate(/obj/item/food/tofu, run_loc_floor_bottom_left)) == COOK_SUCCESS, "Adding tofu to the freezing bowl")
+	TEST_ASSERT(bowl.process_item(null, sugar) == COOK_SUCCESS, "Pouring sugar into the freezing bowl")
+	TEST_ASSERT(bowl.process_item(null, banana) == COOK_SUCCESS, "Pouring banana juice into the freezing bowl")
+	mixer.place_container(bowl)
+	TEST_ASSERT(mixer.chamber.container == bowl, "The bowl did not go into the mixer")
+	mixer.chamber.turn_on()
+	for(var/i in 1 to 11)
+		mixer.chamber.process_cooking(1, 1)
+	var/obj/item/food/popsicle/bananatop/popsicle = locate() in bowl
+	TEST_ASSERT(popsicle, "No banana topsicle after 10 s in the mixer (bowl holds: [english_list(bowl.contents)])")
+	for(var/i in 1 to 120)
+		mixer.chamber.process_cooking(1, 1)
+	TEST_ASSERT(!(locate(/obj/item/food/badrecipe) in bowl), "A dessert left in the mixer burned")
 
 #undef TEST_ASSERT

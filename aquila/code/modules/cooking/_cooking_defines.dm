@@ -32,6 +32,7 @@
 #define COOKER_OVEN "oven"
 #define COOKER_GRILL "grill"
 #define COOKER_FRYER "fryer"
+#define COOKER_ICE_CREAM "ice_cream"
 
 /// Po tylu sekundach na ogniu bez postępu danie się przypala
 #define COOK_BURN_TIME_LOW (60 SECONDS)
@@ -54,6 +55,9 @@
 #define COOK_USE_OVEN(temperature, time, options...) new /datum/cooking/recipe_step/use_machine/oven(temperature, time, list(##options))
 #define COOK_USE_GRILL(time, options...) new /datum/cooking/recipe_step/use_machine/grill(COOK_TEMP_MED, time, list(##options))
 #define COOK_USE_FRYER(time, options...) new /datum/cooking/recipe_step/use_machine/fryer(COOK_TEMP_MED, time, list(##options))
+#define COOK_USE_ICE_CREAM(time, options...) new /datum/cooking/recipe_step/use_machine/ice_cream(COOK_TEMP_MED, time, list(##options))
+#define COOK_ADD_LIMB(limb_ids, options...) new /datum/cooking/recipe_step/add_item/limb(limb_ids, list(##options))
+#define COOK_ADD_ROBOTIC_LIMB(options...) new /datum/cooking/recipe_step/add_item/limb/robotic(null, list(##options))
 
 /// Kategorie przepisów krokowych w Książce kucharskiej
 #define COOK_CATEGORY_MISC "Różne"
@@ -66,6 +70,12 @@
 #define COOK_CATEGORY_SIDES "Dodatki"
 #define COOK_CATEGORY_VEGE "Dania wegetariańskie"
 #define COOK_CATEGORY_POLISH "Kuchnia polska"
+#define COOK_CATEGORY_BURGERS "Burgery"
+#define COOK_CATEGORY_CANDY "Słodycze"
+#define COOK_CATEGORY_DONUTS "Pączki"
+#define COOK_CATEGORY_PIZZA "Pizze"
+#define COOK_CATEGORY_SALADS "Sałatki"
+#define COOK_CATEGORY_SUSHI "Sushi"
 
 /// Nazwa ognia w zdaniu „na X ogniu”
 /proc/cook_temp_adjective(temp)

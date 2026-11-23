@@ -363,6 +363,9 @@
 /obj/machinery/harvester
 	alt_click_loot = FALSE
 
+/obj/machinery/ice_cream_mixer
+	alt_click_loot = FALSE
+
 /obj/machinery/mineral/ore_redemption
 	alt_click_loot = FALSE
 

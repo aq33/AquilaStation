@@ -48,12 +48,21 @@
 	build_path = /obj/item/reagent_containers/cooking/bowl
 	category = list("initial", "Dinnerware")
 
+/datum/design/cooking_icecream_bowl
+	name = "Misa do lodów"
+	id = "cooking_icecream_bowl"
+	build_type = AUTOLATHE
+	materials = list(/datum/material/iron = 750)
+	build_path = /obj/item/reagent_containers/cooking/icecream_bowl
+	category = list("initial", "Dinnerware")
+
 /datum/techweb_node/bio_process/New()
 	. = ..()
-	design_ids += list("cooking_stovetop")
+	design_ids += list("cooking_stovetop", "ice_cream_mixer")
 
 /// Deski do krojenia (drewniane, więc nie z autolatu) i miski do mieszania w automacie z zastawą
 /obj/machinery/vending/dinnerware/Initialize(mapload)
 	products[/obj/item/reagent_containers/cooking/board] = 3
 	products[/obj/item/reagent_containers/cooking/bowl] = 2
+	products[/obj/item/reagent_containers/cooking/sushimat] = 2
 	return ..()

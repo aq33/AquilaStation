@@ -80,15 +80,3 @@
 		COOK_ADD_REAGENT(/datum/reagent/consumable/sodiumchloride, 1, "optional" = TRUE),
 		COOK_USE_FRYER(20 SECONDS),
 	)
-
-/datum/cooking/recipe/bread
-	container_type = /obj/item/reagent_containers/cooking/oven
-	product_type = /obj/item/food/bread/plain
-	catalog_category = COOK_CATEGORY_BREAD
-
-/datum/cooking/recipe/bread/New()
-	steps = list(
-		COOK_ADD_ITEM(/obj/item/food/dough),
-		COOK_USE_TOOL(TOOL_KNIFE, "optional" = TRUE),
-		COOK_USE_OVEN(COOK_TEMP_MED, 40 SECONDS),
-	)
