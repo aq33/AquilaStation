@@ -36,7 +36,7 @@
 	COOLDOWN_DECLARE(foam_cooldown)
 
 /mob/living/basic/bot/firebot/Initialize(mapload)
-	additional_access = list(ACCESS_ENGINE, ACCESS_ENGINE_EQUIP, ACCESS_CONSTRUCTION, ACCESS_ATMOSPHERICS, ACCESS_MAINT_TUNNELS)
+	additional_access = list(ACCESS_ENGINE, ACCESS_ENGINE_EQUIP, ACCESS_CONSTRUCTION, ACCESS_ATMOSPHERICS, ACCESS_MAINT_TUNNELS, ACCESS_EXTERNAL_AIRLOCKS)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_SPACEWALK, INNATE_TRAIT)
 	create_extinguisher()
@@ -46,7 +46,7 @@
 	return ..()
 
 /mob/living/basic/bot/firebot/req_bot_access()
-	return list(ACCESS_ENGINE)
+	return ..() + list(ACCESS_ENGINE)
 
 /mob/living/basic/bot/firebot/proc/create_extinguisher(reagent)
 	QDEL_NULL(internal_ext)
@@ -102,7 +102,7 @@
 /mob/living/basic/bot/firebot/work_on_target(atom/target)
 	if(QDELETED(target) || !is_burning(target))
 		return BOT_WORK_DONE
-	if(get_dist(src, target) > (is_emagged() ? 1 : 2))
+	if(get_dist(src, target) > work_reach)
 		return BOT_WORK_OUT_OF_REACH
 	speak(ishuman(target) ? "Stój, padnij i tarzaj się!" : "Gaszenie!")
 	flick(stationary_mode ? "firebots_use" : "firebot1_use", src)
@@ -134,7 +134,16 @@
 	playsound(src, "sparks", 75, TRUE)
 	extinguish_fires = FALSE
 	extinguish_people = TRUE
+	// ogień z CLF3 tylko z bliska: drzewo musi podjechać tak samo blisko, jak sprawdza work_on_target()
+	work_reach = 1
 	create_extinguisher(/datum/reagent/clf3)
+
+/mob/living/basic/bot/firebot/undo_emag_effects()
+	. = ..()
+	extinguish_fires = initial(extinguish_fires)
+	extinguish_people = initial(extinguish_people)
+	work_reach = initial(work_reach)
+	create_extinguisher()
 
 /mob/living/basic/bot/firebot/bot_reset(bypass_ai_reset)
 	. = ..()
@@ -201,6 +210,9 @@
 	. = ..()
 	var/datum/atom_hud/sechud = GLOB.huds[DATA_HUD_SECURITY_BASIC]
 	sechud?.add_hud_to(src)
+
+/mob/living/basic/bot/honkbot/req_bot_access()
+	return list(ACCESS_THEATRE, ACCESS_ROBOTICS)
 
 /mob/living/basic/bot/honkbot/proc/judgment_criteria()
 	return JUDGE_RECORDCHECK | (is_emagged() ? JUDGE_EMAGGED : NONE)
@@ -312,6 +324,7 @@
 	if(user)
 		to_chat(user, span_danger("Zwierasz system sterowania dźwiękiem [src]. Wydaje z siebie złowieszczy śmiech!!"))
 		oldtarget_name = user.name
+		last_found = world.time
 	audible_message(span_danger("[src] wydaje z siebie złowieszczy śmiech!"))
 	playsound(src, 'sound/machines/honkbot_evil_laugh.ogg', 75, TRUE, -1)
 	update_appearance()

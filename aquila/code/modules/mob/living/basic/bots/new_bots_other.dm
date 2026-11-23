@@ -50,7 +50,7 @@
 	return ..()
 
 /mob/living/basic/bot/bloodbot/req_bot_access()
-	return list(ACCESS_MEDICAL)
+	return ..() + list(ACCESS_MEDICAL)
 
 /mob/living/basic/bot/bloodbot/update_icon_state()
 	. = ..()
@@ -153,6 +153,11 @@
 	speed = 1
 	update_basic_mob_varspeed()
 
+/mob/living/basic/bot/bloodbot/undo_emag_effects()
+	. = ..()
+	speed = initial(speed)
+	update_basic_mob_varspeed()
+
 #undef ACULA_DRINK_RATE
 #undef ACULA_DANGER_RATE
 
@@ -196,7 +201,7 @@
 	. = ..()
 
 /mob/living/basic/bot/farmbot/req_bot_access()
-	return list(ACCESS_HYDROPONICS)
+	return ..() + list(ACCESS_HYDROPONICS)
 
 /mob/living/basic/bot/farmbot/update_icon_state()
 	. = ..()
@@ -427,6 +432,11 @@
 	probability = 100
 	if(user)
 		to_chat(user, span_warning("Świetnie. Screambot będzie teraz naprawdę, NAPRAWDĘ irytujący."))
+
+/mob/living/basic/bot/screambot/undo_emag_effects()
+	. = ..()
+	speedup = initial(speedup)
+	probability = initial(probability)
 
 /mob/living/basic/bot/screambot/explode()
 	if(prob(50))

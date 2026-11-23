@@ -2,7 +2,7 @@
 // same wybuchają, a z rzadka zbzikowany Secbuddy (Evilbot), który zostaje na dobre.
 
 /datum/round_event_control/aquila_eldritch_bots
-	name = "Eldritch Bots"
+	name = "Eldritchowe boty"
 	typepath = /datum/round_event/aquila_eldritch_bots
 	weight = 5
 	max_occurrences = 1

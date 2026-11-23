@@ -321,6 +321,199 @@
 	TEST_ASSERT(QDELETED(bot), "Bot bez DEL_ON_DEATH (event świadomości) nie rozpadł się po śmierci")
 	TEST_ASSERT(!(bot in GLOB.basic_bots_list), "Zniszczony bot został na liście basic botów")
 
+/// AQUILA - BOTY (przegląd): reset oprogramowania cofa efekty emagu (undo_emag_effects), emag nie celuje od razu w hakera
+/datum/unit_test/aquila_basic_bot_emag_undo
+
+/datum/unit_test/aquila_basic_bot_emag_undo/Run()
+	var/turf/start = run_loc_floor_bottom_left
+	var/mob/living/carbon/human/hacker = allocate(/mob/living/carbon/human, get_step(start, EAST))
+
+	// ED-209: laser bojowy po emagu, po resecie z powrotem paralizator; laser tag zostaje swój
+	var/mob/living/basic/bot/secbot/ed209/ed = allocate(/mob/living/basic/bot/secbot/ed209, start)
+	ed.bot_access_flags |= BOT_COVER_EMAGGED
+	ed.emag_effects(hacker)
+	TEST_ASSERT_EQUAL(ed.projectile, /obj/item/projectile/beam, "Zhakowany ED-209 nie strzela laserem")
+	TEST_ASSERT(!ed.declare_arrests, "Zhakowany ED-209 dalej ogłasza aresztowania")
+	TEST_ASSERT(!ed.is_valid_work_target(hacker), "Zhakowany ED-209 od razu celuje w hakera")
+	ed.bot_access_flags &= ~BOT_COVER_EMAGGED
+	ed.undo_emag_effects()
+	TEST_ASSERT_EQUAL(ed.projectile, /obj/item/projectile/beam/disabler, "Reset nie przywrócił ED-209 paralizatora")
+	TEST_ASSERT(ed.declare_arrests, "Reset nie przywrócił ogłaszania aresztowań")
+	qdel(ed)
+	var/mob/living/basic/bot/secbot/ed209/redtag/red = allocate(/mob/living/basic/bot/secbot/ed209/redtag, start)
+	red.bot_access_flags |= BOT_COVER_EMAGGED
+	red.emag_effects(null)
+	red.bot_access_flags &= ~BOT_COVER_EMAGGED
+	red.undo_emag_effects()
+	TEST_ASSERT_EQUAL(red.projectile, /obj/item/projectile/beam/lasertag/redtag, "Reset nie przywrócił czerwonego laser tagu")
+	qdel(red)
+
+	// Honkbot po emagu też nie celuje od razu w hakera
+	var/mob/living/basic/bot/honkbot/honkbot = allocate(/mob/living/basic/bot/honkbot, start)
+	honkbot.bot_access_flags |= BOT_COVER_EMAGGED
+	honkbot.emag_effects(hacker)
+	TEST_ASSERT(!honkbot.is_valid_work_target(hacker), "Zhakowany honkbot od razu celuje w hakera")
+	qdel(honkbot)
+
+	// Firebot: po emagu podjeżdża tak blisko, jak sprawdza work_on_target(); reset przywraca gaszenie wodą
+	var/mob/living/basic/bot/firebot/firebot = allocate(/mob/living/basic/bot/firebot, start)
+	firebot.bot_access_flags |= BOT_COVER_EMAGGED
+	firebot.emag_effects(null)
+	TEST_ASSERT_EQUAL(firebot.work_reach, 1, "Zhakowany firebot zatrzymuje się dalej, niż sięga")
+	firebot.bot_access_flags &= ~BOT_COVER_EMAGGED
+	firebot.undo_emag_effects()
+	TEST_ASSERT(firebot.extinguish_fires, "Reset nie przywrócił gaszenia pożarów")
+	TEST_ASSERT_EQUAL(firebot.work_reach, initial(firebot.work_reach), "Reset nie przywrócił zasięgu firebota")
+	TEST_ASSERT_EQUAL(firebot.internal_ext.chem, /datum/reagent/water, "Reset zostawił firebotowi gaśnicę z CLF3")
+	qdel(firebot)
+
+	// Żółwik, screambot, Doctor Acula, medibot, cleanbot
+	var/mob/living/basic/bot/turtle/turtle = allocate(/mob/living/basic/bot/turtle, start)
+	turtle.emag_effects(null)
+	turtle.undo_emag_effects()
+	TEST_ASSERT_EQUAL(turtle.dispensed_reagent, /datum/reagent/water, "Reset zostawił żółwikowi Plant-B-Gone")
+	qdel(turtle)
+	var/mob/living/basic/bot/screambot/screambot = allocate(/mob/living/basic/bot/screambot, start)
+	screambot.emag_effects(null)
+	screambot.undo_emag_effects()
+	TEST_ASSERT(screambot.speedup == initial(screambot.speedup) && screambot.probability == initial(screambot.probability), "Reset nie uspokoił screambota")
+	qdel(screambot)
+	var/mob/living/basic/bot/bloodbot/acula = allocate(/mob/living/basic/bot/bloodbot, start)
+	acula.emag_effects(null)
+	acula.undo_emag_effects()
+	TEST_ASSERT_EQUAL(acula.speed, initial(acula.speed), "Reset nie przywrócił prędkości Doctora Aculi")
+	qdel(acula)
+	var/mob/living/basic/bot/medbot/medbot = allocate(/mob/living/basic/bot/medbot, start)
+	medbot.emag_effects(null)
+	medbot.undo_emag_effects()
+	TEST_ASSERT(medbot.declare_crit, "Reset nie przywrócił medibotowi ogłaszania stanów krytycznych")
+	qdel(medbot)
+	var/mob/living/basic/bot/cleanbot/cleanbot = allocate(/mob/living/basic/bot/cleanbot, start)
+	cleanbot.bot_access_flags |= BOT_COVER_EMAGGED
+	cleanbot.emag_effects(null)
+	cleanbot.bot_access_flags &= ~BOT_COVER_EMAGGED
+	cleanbot.undo_emag_effects()
+	TEST_ASSERT(!is_type_in_typecache(hacker, cleanbot.work_target_types), "Cleanbot po resecie dalej celuje w ludzi")
+
+/// AQUILA - BOTY (przegląd): kogo boty biorą za cel (małpy, pacjent medibota, przytulobot, wyłom atmosbota, gibtonit)
+/datum/unit_test/aquila_basic_bot_targets
+
+/datum/unit_test/aquila_basic_bot_targets/Run()
+	var/turf/start = run_loc_floor_bottom_left
+	var/turf/next = get_step(start, EAST)
+
+	// Małpa: ED-209 i medibot ją pomijają (securitron sprawdzający identyfikatory nie)
+	var/mob/living/carbon/monkey/monkey = allocate(/mob/living/carbon/monkey, next)
+	monkey.adjustBruteLoss(40)
+	var/mob/living/basic/bot/secbot/secbot = allocate(/mob/living/basic/bot/secbot, start)
+	secbot.idcheck = TRUE
+	TEST_ASSERT(secbot.is_valid_work_target(monkey), "Securitron sprawdzający identyfikatory nie widzi małpy (test nic nie sprawdza)")
+	qdel(secbot)
+	var/mob/living/basic/bot/secbot/ed209/ed = allocate(/mob/living/basic/bot/secbot/ed209, start)
+	TEST_ASSERT(!ed.is_valid_work_target(monkey), "ED-209 ściga małpę")
+	qdel(ed)
+	var/mob/living/basic/bot/medbot/medbot = allocate(/mob/living/basic/bot/medbot, start)
+	medbot.heal_time = 1
+	TEST_ASSERT(!medbot.is_valid_work_target(monkey), "Medibot leczy małpę")
+	qdel(monkey)
+
+	// Medibot zdejmuje znacznik pacjenta, gdy porzuca cel albo ginie
+	var/mob/living/carbon/human/patient = allocate(/mob/living/carbon/human, next)
+	patient.adjustBruteLoss(40)
+	medbot.on_work_target_found(patient)
+	TEST_ASSERT(HAS_TRAIT(patient, TRAIT_MEDIBOTCOMINGTHROUGH), "Medibot nie oznaczył pacjenta")
+	medbot.on_work_target_lost(patient)
+	TEST_ASSERT(!HAS_TRAIT(patient, TRAIT_MEDIBOTCOMINGTHROUGH), "Znacznik pacjenta został po porzuceniu celu")
+	// przerwane opatrywanie (tu: bot wyłączony w trakcie) to nie porażka, więc pacjent nie trafia na czarną listę
+	medbot.bot_mode_flags &= ~BOT_MODE_ON
+	TEST_ASSERT_EQUAL(medbot.work_on_target(patient), BOT_WORK_DONE, "Przerwane opatrywanie wpisuje pacjenta na czarną listę")
+	medbot.bot_mode_flags |= BOT_MODE_ON
+	medbot.on_work_target_found(patient)
+	qdel(medbot)
+	TEST_ASSERT(!HAS_TRAIT(patient, TRAIT_MEDIBOTCOMINGTHROUGH), "Znacznik pacjenta został po zniszczeniu medibota")
+
+	// Przytulobot nie zajmuje pacjenta medibotom i nie przytula zadowolonych
+	var/mob/living/basic/bot/medbot/hugbot/hugbot = allocate(/mob/living/basic/bot/medbot/hugbot, start)
+	hugbot.on_work_target_found(patient)
+	TEST_ASSERT(!HAS_TRAIT(patient, TRAIT_MEDIBOTCOMINGTHROUGH), "Przytulobot oznaczył pacjenta znacznikiem medibota")
+	var/datum/component/mood/mood = patient.GetComponent(/datum/component/mood)
+	if(mood)
+		mood.sanity = SANITY_GREAT
+		TEST_ASSERT(!hugbot.assess_patient(patient), "Przytulobot przytula zadowolonego (poczytalność powyżej progu)")
+		mood.sanity = SANITY_UNSTABLE
+		TEST_ASSERT(hugbot.assess_patient(patient), "Przytulobot nie przytula smutnego (poczytalność poniżej progu)")
+	qdel(hugbot)
+	qdel(patient)
+
+	// Atmosbot: wyłom do próżni w /area/space jest wykryty
+	var/area/space/space_area = GLOB.areas_by_type[/area/space]
+	TEST_ASSERT(space_area, "Brak obszaru /area/space")
+	var/area/own_area = next.loc
+	var/old_type = next.type
+	var/list/old_baseturfs = next.baseturfs
+	var/turf/breach_turf = next.ChangeTurf(/turf/open/space)
+	space_area.contents += breach_turf
+	breach_turf.change_area(own_area, space_area)
+	var/mob/living/basic/bot/atmosbot/atmosbot = allocate(/mob/living/basic/bot/atmosbot, start)
+	var/turf/found_breach = atmosbot.return_nearest_breach()
+	own_area.contents += breach_turf
+	breach_turf.change_area(space_area, own_area)
+	next = breach_turf.ChangeTurf(old_type, old_baseturfs)
+	qdel(atmosbot)
+	TEST_ASSERT_EQUAL(found_breach, start, "Atmosbot nie wykrył wyłomu do próżni w /area/space")
+
+	// Digbot kopie skałę, ale nie gibtonit
+	var/mob/living/basic/bot/digbot/digbot = allocate(/mob/living/basic/bot/digbot, start)
+	var/turf/rock = next.ChangeTurf(/turf/closed/mineral)
+	var/rock_ok = digbot.is_valid_work_target(rock)
+	var/turf/gibtonite = rock.ChangeTurf(/turf/closed/mineral/gibtonite)
+	var/gibtonite_ok = digbot.is_valid_work_target(gibtonite)
+	next = gibtonite.ChangeTurf(old_type, old_baseturfs)
+	TEST_ASSERT(rock_ok, "Digbot nie kopie zwykłej skały")
+	TEST_ASSERT(!gibtonite_ok, "Digbot kopie gibtonit")
+
+/// AQUILA - BOTY (przegląd): repairbot kładzie płytki tylko z place_tiles i na poszyciu okrętu, ściany stawia tylko na zwykłych dźwigarach, przyjmuje podtypy stosów
+/datum/unit_test/aquila_repairbot_tasks
+
+/datum/unit_test/aquila_repairbot_tasks/Run()
+	var/turf/start = run_loc_floor_bottom_left
+	var/turf/next = get_step(start, EAST)
+	var/old_type = next.type
+	var/list/old_baseturfs = next.baseturfs
+	var/mob/living/basic/bot/repairbot/repairbot = allocate(/mob/living/basic/bot/repairbot, start)
+	var/mob/living/carbon/human/engineer = allocate(/mob/living/carbon/human, start)
+
+	// arkusze: najpierw zwykły stos, potem podtyp tego samego stosu (iron/fifty)
+	var/obj/item/stack/sheet/iron/iron = allocate(/obj/item/stack/sheet/iron, start, 5)
+	engineer.put_in_active_hand(iron)
+	repairbot.insert_stack(iron, engineer)
+	var/obj/item/stack/sheet/iron/fifty/more_iron = allocate(/obj/item/stack/sheet/iron/fifty, start)
+	engineer.put_in_active_hand(more_iron)
+	repairbot.insert_stack(more_iron, engineer)
+	TEST_ASSERT_EQUAL(repairbot.our_iron?.amount, 50, "Repairbot nie przyjął żelaza z podtypu stosu")
+
+	// płytki specjalne bez place_tiles nie lądują na gołym poszyciu, na asteroidzie wcale
+	repairbot.special_tiles = new /obj/item/stack/tile/carpet(repairbot, 10)
+	var/turf/plating = next.ChangeTurf(/turf/open/floor/plating)
+	var/task_without_setting = repairbot.task_for(plating)
+	repairbot.place_tiles = TRUE
+	var/task_with_setting = repairbot.task_for(plating)
+	var/turf/asteroid = plating.ChangeTurf(/turf/open/floor/plating/asteroid)
+	var/task_on_asteroid = repairbot.task_for(asteroid)
+	next = asteroid.ChangeTurf(old_type, old_baseturfs)
+	TEST_ASSERT(!task_without_setting, "Repairbot kładzie płytki z wyłączonym place_tiles")
+	TEST_ASSERT(task_with_setting, "Repairbot nie kładzie płytek z włączonym place_tiles")
+	TEST_ASSERT(!task_on_asteroid, "Repairbot kładzie płytki na asteroidzie")
+
+	// ściana tylko na zwykłym dźwigarze
+	var/obj/structure/girder/girder = allocate(/obj/structure/girder, next)
+	TEST_ASSERT(repairbot.task_for(girder), "Repairbot nie naprawia zwykłego dźwigara")
+	qdel(girder)
+	for(var/girder_type in list(/obj/structure/girder/reinforced, /obj/structure/girder/displaced, /obj/structure/girder/cult, /obj/structure/girder/bronze))
+		var/obj/structure/girder/other = allocate(girder_type, next)
+		TEST_ASSERT(!repairbot.task_for(other), "Repairbot robi zwykłą ścianę z [girder_type]")
+		qdel(other)
+
 #undef TICK_BOT_UNTIL
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL

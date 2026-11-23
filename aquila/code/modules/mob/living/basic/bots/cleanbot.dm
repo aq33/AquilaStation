@@ -34,7 +34,7 @@
 	var/clean_time = 5 SECONDS
 
 /mob/living/basic/bot/cleanbot/Initialize(mapload)
-	additional_access = list(ACCESS_JANITOR)
+	additional_access = list(ACCESS_JANITOR, ACCESS_MAINT_TUNNELS)
 	. = ..()
 	rebuild_targets()
 	GLOB.janitor_devices += src
@@ -44,7 +44,7 @@
 	return ..()
 
 /mob/living/basic/bot/cleanbot/req_bot_access()
-	return list(ACCESS_JANITOR)
+	return ..() + list(ACCESS_JANITOR)
 
 /// Lista typów celów zależnie od ustawień (jak get_targets() starego cleanbota)
 /mob/living/basic/bot/cleanbot/proc/rebuild_targets()
@@ -76,6 +76,10 @@
 /mob/living/basic/bot/cleanbot/emag_effects(mob/user)
 	if(user)
 		to_chat(user, span_danger("[src] brzęczy i pika."))
+	rebuild_targets()
+
+/mob/living/basic/bot/cleanbot/undo_emag_effects()
+	. = ..()
 	rebuild_targets()
 
 /mob/living/basic/bot/cleanbot/bot_reset(bypass_ai_reset)
@@ -184,7 +188,7 @@
 	bot_mode_flags = BOT_MODE_REMOTE_ENABLED | BOT_MODE_CAN_BE_SAPIENT
 
 /mob/living/basic/bot/cleanbot/medbay/req_bot_access()
-	return list(ACCESS_JANITOR, ACCESS_MEDICAL)
+	return ..() + list(ACCESS_MEDICAL)
 
 /// Larry: cleanbot z możliwością przyczepienia noża
 /mob/living/basic/bot/cleanbot/larry

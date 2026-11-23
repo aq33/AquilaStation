@@ -50,7 +50,7 @@
 	mask = icon('icons/obj/hydroponics/features/pots.dmi', "pot_mask")
 
 /mob/living/basic/bot/turtle/req_bot_access()
-	return list(ACCESS_HYDROPONICS)
+	return ..() + list(ACCESS_HYDROPONICS)
 
 /mob/living/basic/bot/turtle/update_icon_state()
 	. = ..()
@@ -101,6 +101,10 @@
 	dispensed_reagent = /datum/reagent/toxin/plantbgone
 	if(user)
 		to_chat(user, span_danger("[src] brzęczy i pika."))
+
+/mob/living/basic/bot/turtle/undo_emag_effects()
+	. = ..()
+	dispensed_reagent = paicard ? /datum/reagent/medicine/earthsblood : initial(dispensed_reagent)
 
 /mob/living/basic/bot/turtle/get_custom_controls(mob/user)
 	return list("water_trays" = water)

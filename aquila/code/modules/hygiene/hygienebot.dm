@@ -30,11 +30,11 @@
 	var/last_found = 0
 
 /mob/living/basic/bot/hygienebot/Initialize(mapload)
-	additional_access = list(ACCESS_JANITOR)
+	additional_access = list(ACCESS_JANITOR, ACCESS_MAINT_TUNNELS)
 	. = ..()
 
 /mob/living/basic/bot/hygienebot/req_bot_access()
-	return list(ACCESS_JANITOR)
+	return ..() + list(ACCESS_JANITOR)
 
 /mob/living/basic/bot/hygienebot/update_icon_state()
 	. = ..()
@@ -118,6 +118,8 @@
 		playsound(loc, 'aquila/sound/effects/hygienebot_angry.ogg', 60, TRUE)
 		speak(pick("Wracaj tu, ty śmierdzący gnoju!", "STÓJ ALBO PRZETNĘ CI TĘTNICE!", "Daj się, kurwa, umyć, dupku!", "STÓJ. NIE. UCIEKAJ.", "Albo się zatrzymasz, albo wywlekę cię przez śluzę.", "Chcę cię tylko, kurwa, umyć, troglodyto.", "Jak nie wrócisz, to otoczę cię zieloną chmurą."))
 	if(frustration > 50)
+		// poddaje się: ten sam cel jest pomijany przez chwilę (is_valid_work_target), zamiast od razu wracać do pościgu
+		last_found = world.time
 		bot_reset()
 
 /mob/living/basic/bot/hygienebot/proc/start_washing()

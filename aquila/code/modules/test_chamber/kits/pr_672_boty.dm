@@ -15,6 +15,7 @@
 		/mob/living/basic/bot/cleanbot = 1,
 		/mob/living/basic/bot/repairbot = 1,
 		/mob/living/basic/bot/secbot = 1,
+		/mob/living/basic/bot/secbot/ed209 = 1,
 		/mob/living/basic/bot/firebot = 1,
 		/mob/living/basic/bot/vibebot = 1,
 		/mob/living/basic/bot/bloodbot = 1,

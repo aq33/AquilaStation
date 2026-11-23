@@ -1,4 +1,4 @@
-// Nowe boty z tgstation (tgstation/tgstation@5ee81d6): Vibebot i Donk Exenteration Drone (D.E.D.bot).
+// Nowe boty z tgstation (tgstation/tgstation@5ee81d6): Vibebot i dron eksenteracyjny Donk (Donk Exenteration Drone, D.E.D.bot).
 // Sprite'y w aquila/icons/mob/bots/tg_bots.dmi (tgstation, CC BY-SA 3.0).
 
 /// Vibebot: gra muzykę, zmienia kolor światła i poprawia nastrój osób obok. Po zhakowaniu przygnębia.
@@ -108,11 +108,11 @@
 	category = CAT_ROBOT
 
 /**
- * Donk Exenteration Drone: wrogi dron obronny Donk Co. z ruin. Patroluje i tnie każdego bez implantu
+ * Dron eksenteracyjny Donk (Donk Exenteration Drone): wrogi dron obronny Donk Co. z ruin. Patroluje i tnie każdego bez implantu
  * Syndykatu (frakcja „Syndicate”). W tg budowy nie ma; u nas jest tylko gotowy dron w uplinku (cięcie R29).
  */
 /mob/living/basic/bot/dedbot
-	name = "\improper Donk Exenteration Drone"
+	name = "\improper dron eksenteracyjny Donk"
 	desc = "Uzbrojony w ostrza komercyjny dron obronny, zwany „Ex-Dronem” albo D.E.D.botem. Chodzi po prostej trasie i tnie każdego, kto nie ma implantu identyfikacyjnego."
 	icon = 'aquila/icons/mob/bots/tg_bots.dmi'
 	icon_state = "ded_drone0"
@@ -172,7 +172,7 @@
 /// Gotowy dron z uplinka (w tg budowy ani pozycji w uplinku nie ma). Zostaje w frakcji Syndykatu,
 /// a kupujący dostaje wspólną frakcję z dronem, więc ten go nie tnie.
 /datum/uplink_item/dangerous/aq_dedbot
-	name = "Donk Exenteration Drone"
+	name = "Dron eksenteracyjny Donk"
 	desc = "Dron obronny Donk Co. z obracającymi się ostrzami. Pojawia się pod tobą włączony, chodzi po prostej trasie i tnie każdego, kto nie ma implantu znacznika Syndykatu. Ciebie zna i oszczędza."
 	item = /mob/living/basic/bot/dedbot
 	cost = 8

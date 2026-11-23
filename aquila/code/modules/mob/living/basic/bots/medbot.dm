@@ -70,8 +70,12 @@ GLOBAL_VAR(medibot_unique_id_gen)
 	medhud?.add_hud_to(src)
 	update_appearance()
 
+/mob/living/basic/bot/medbot/Destroy()
+	set_patient(null)
+	return ..()
+
 /mob/living/basic/bot/medbot/req_bot_access()
-	return list(ACCESS_MEDICAL)
+	return ..() + list(ACCESS_MEDICAL)
 
 /mob/living/basic/bot/medbot/update_icon_state()
 	. = ..()
@@ -115,7 +119,7 @@ GLOBAL_VAR(medibot_unique_id_gen)
 	return ..()
 
 /mob/living/basic/bot/medbot/is_valid_work_target(atom/target)
-	return iscarbon(target) && assess_patient(target)
+	return ishuman(target) && assess_patient(target)
 
 /mob/living/basic/bot/medbot/on_work_target_found(atom/target)
 	set_patient(target)
@@ -147,6 +151,11 @@ GLOBAL_VAR(medibot_unique_id_gen)
 /mob/living/basic/bot/medbot/bot_reset(bypass_ai_reset)
 	set_patient(null)
 	return ..()
+
+/mob/living/basic/bot/medbot/on_work_target_lost(atom/target)
+	. = ..()
+	if(!target || current_patient?.resolve() == target)
+		set_patient(null)
 
 /mob/living/basic/bot/medbot/proc/assess_patient(mob/living/carbon/patient)
 	if(patient.stat == DEAD || HAS_TRAIT(patient, TRAIT_FAKEDEATH) || patient.suiciding)
@@ -215,10 +224,11 @@ GLOBAL_VAR(medibot_unique_id_gen)
 	update_bot_mode(BBOT_HEALING)
 	patient.visible_message(span_danger("[src] próbuje opatrzyć rany [patient]!"), span_userdanger("[src] próbuje opatrzyć twoje rany!"))
 	if(!do_mob(src, patient, heal_time) || get_dist(src, patient) > 1 || !(bot_mode_flags & BOT_MODE_ON))
+		// pacjent się ruszył albo bot wyłączony: to nie porażka, bez czarnej listy (bot weźmie pacjenta ponownie)
 		visible_message("[src] chowa swoje narzędzia.")
 		set_patient(null)
 		update_bot_mode(BBOT_IDLE)
-		return BOT_WORK_FAILED
+		return BOT_WORK_DONE
 	apply_treatment(patient, treatment_method)
 	return BOT_WORK_CONTINUE
 
@@ -255,6 +265,10 @@ GLOBAL_VAR(medibot_unique_id_gen)
 	audible_message(span_danger("[src] dziwnie brzęczy!"))
 	flick("medibot_spark", src)
 	playsound(src, "sparks", 75, TRUE)
+
+/mob/living/basic/bot/medbot/undo_emag_effects()
+	. = ..()
+	declare_crit = initial(declare_crit)
 
 /mob/living/basic/bot/medbot/attackby(obj/item/attacking_item, mob/living/user, params)
 	var/current_health = health

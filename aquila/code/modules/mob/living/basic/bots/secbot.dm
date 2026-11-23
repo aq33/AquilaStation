@@ -51,6 +51,7 @@
 	)
 	AddElement(/datum/element/connect_loc, loc_connections)
 
+/// Panel securitrona odblokowuje tylko ochrona (bez robotyki z bazowego req_bot_access())
 /mob/living/basic/bot/secbot/req_bot_access()
 	return list(ACCESS_SECURITY)
 
@@ -188,8 +189,14 @@
 	if(user)
 		to_chat(user, span_danger("Zwierasz obwody oceny celów [src]."))
 		oldtarget_name = user.name
+		last_found = world.time
 	audible_message(span_danger("[src] dziwnie brzęczy!"))
 	declare_arrests = FALSE
+	update_appearance()
+
+/mob/living/basic/bot/secbot/undo_emag_effects()
+	. = ..()
+	declare_arrests = initial(declare_arrests)
 	update_appearance()
 
 /// Wbiega na niego ktoś, kogo nie ściga: przewraca
@@ -430,6 +437,14 @@
 /mob/living/basic/bot/secbot/ed209/emag_effects(mob/user)
 	. = ..()
 	set_weapon()
+
+/mob/living/basic/bot/secbot/ed209/undo_emag_effects()
+	. = ..()
+	set_weapon()
+
+/// ED-209 nie ściga małp (jak stary ED-209)
+/mob/living/basic/bot/secbot/ed209/judgment_criteria()
+	return ..() | JUDGE_IGNOREMONKEYS
 
 /mob/living/basic/bot/secbot/ed209/threat_of(mob/living/carbon/suspect)
 	return suspect.assess_threat(judgment_criteria(), lasercolor, weaponcheck = CALLBACK(src, PROC_REF(check_for_weapons)))
