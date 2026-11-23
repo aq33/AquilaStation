@@ -54,9 +54,14 @@
 	for(var/path in list(/obj/item/crowbar/cyborg, /obj/item/screwdriver/cyborg, /obj/item/wrench/cyborg, /obj/item/wirecutters/cyborg, /obj/item/multitool))
 		tools += new path(src)
 	current = tools[1]
+	for(var/obj/item/T as anything in tools)
+		ADD_TRAIT(T, TRAIT_NODROP, REF(src))
 
 /obj/item/mecha_parts/mecha_equipment/aq_tool/toolset/Destroy()
-	QDEL_LIST(tools)
+	for(var/obj/item/T as anything in tools)
+		if(T.loc == src)
+			qdel(T)
+	tools.Cut()
 	current = null
 	return ..()
 
@@ -75,10 +80,20 @@
 	if(!action_checks(target) || !chassis.Adjacent(target) || !current)
 		return 0
 	var/mob/living/user = chassis.occupant
-	if(current.tool_behaviour && target.tool_act(user, current, current.tool_behaviour))
-		return 1
-	target.attackby(current, user, params)
+	if(!(current.tool_behaviour && target.tool_act(user, current, current.tool_behaviour)))
+		target.attackby(current, user, params)
+	reclaim_tools()
 	return 1
+
+/// Narzędzie zostaje w module, nawet jeśli cel próbował je zabrać (stół, szafka, schowek)
+/obj/item/mecha_parts/mecha_equipment/aq_tool/toolset/proc/reclaim_tools()
+	for(var/obj/item/T as anything in tools.Copy())
+		if(QDELETED(T))
+			tools -= T
+		else if(T.loc != src)
+			T.forceMove(src)
+	if(!(current in tools))
+		current = length(tools) ? tools[1] : null
 
 /obj/item/mecha_parts/mecha_equipment/aq_tool/toolset/torch
 	name = "palnik inżynieryjny Atlas"
@@ -91,6 +106,7 @@
 	QDEL_LIST(tools)
 	var/obj/item/weldingtool/experimental/W = new(src)
 	W.switched_on()
+	ADD_TRAIT(W, TRAIT_NODROP, REF(src))
 	tools += W
 	current = W
 
@@ -206,8 +222,11 @@
 		if(A.locked || A.welded)
 			occupant_message("<span class='warning'>[A] jest zaryglowany albo zaspawany.</span>")
 			return 0
+		if(A.hasPower())
+			occupant_message("<span class='warning'>Silniki zasilanej śluzy [A] nie dają się rozewrzeć szczękami.</span>")
+			return 0
 		playsound(chassis, 'sound/machines/airlock_alien_prying.ogg', 60, TRUE)
-		if(!do_after_mecha(A, 3 SECONDS))
+		if(!do_after_mecha(A, 3 SECONDS) || A.hasPower() || A.locked || A.welded)
 			return 0
 		if(A.density)
 			INVOKE_ASYNC(A, TYPE_PROC_REF(/obj/machinery/door/airlock, open), 2)
@@ -216,7 +235,10 @@
 		return 1
 	if(istype(target, /obj/machinery/door/firedoor))
 		var/obj/machinery/door/firedoor/F = target
-		if(!do_after_mecha(F, 2 SECONDS))
+		if(F.welded)
+			occupant_message("<span class='warning'>[F] jest zaspawany.</span>")
+			return 0
+		if(!do_after_mecha(F, 2 SECONDS) || F.welded || F.operating)
 			return 0
 		INVOKE_ASYNC(F, F.density ? TYPE_PROC_REF(/obj/machinery/door, open) : TYPE_PROC_REF(/obj/machinery/door, close))
 		return 1
@@ -244,7 +266,8 @@
 /obj/item/mecha_parts/mecha_equipment/aq_tool/entry_device/action(atom/target, params)
 	if(!action_checks(target) || !chassis.Adjacent(target) || charges <= 0)
 		return 0
-	if(!istype(target, /obj/machinery/door) && !istype(target, /obj/structure/window) && !istype(target, /obj/structure/grille) && !iswallturf(target))
+	// tylko drzwi i okna (opis modułu): ścian ładunek nie rozbiera
+	if(!istype(target, /obj/machinery/door) && !istype(target, /obj/structure/window) && !istype(target, /obj/structure/grille))
 		return 0
 	charges--
 	chassis.visible_message("<span class='danger'>[chassis] przykłada ładunek do [target]!</span>")
@@ -257,10 +280,7 @@
 	if(QDELETED(target))
 		return
 	var/turf/T = get_turf(target)
-	if(iswallturf(target))
-		var/turf/closed/wall/W = target
-		W.dismantle_wall(TRUE)
-	else if(isobj(target))
+	if(isobj(target))
 		var/obj/O = target
 		O.take_damage(1000, BRUTE, "bomb", FALSE)
 	explosion(T, -1, -1, 1, flash_range = 2)
@@ -276,7 +296,14 @@
 	var/stock = 10
 
 /obj/item/mecha_parts/mecha_equipment/aq_tool/inflatables/get_equip_info()
-	return "[..()] \[[stock]\]"
+	return "[..()] \[[stock]\][stock < initial(stock) ? " - <a href='byond://?src=[REF(src)];aq_recharge=1'>uzupełnij z ogniwa</a>" : ""]"
+
+/obj/item/mecha_parts/mecha_equipment/aq_tool/inflatables/Topic(href, href_list)
+	..()
+	if(href_list["aq_recharge"] && chassis)
+		if(stock < initial(stock) && !rearm())
+			occupant_message("<span class='warning'>Za mało energii w ogniwie, żeby uzupełnić przegrody.</span>")
+		SStgui.update_uis(chassis)
 
 /obj/item/mecha_parts/mecha_equipment/aq_tool/inflatables/action(atom/target, params)
 	if(!action_checks(target))
@@ -356,6 +383,8 @@
 	equip_cooldown = 15
 	energy_drain = 20
 	var/obj/load
+	/// Trwa podnoszenie (do_after): drugie kliknięcie nie zaczyna kolejnego
+	var/busy = FALSE
 
 /obj/item/mecha_parts/mecha_equipment/aq_tool/forklift/Destroy()
 	if(load)
@@ -391,7 +420,16 @@
 	var/obj/O = target
 	if(istype(O, /obj/machinery/computer) || istype(O, /obj/machinery/door) || O.resistance_flags & INDESTRUCTIBLE)
 		return 0
-	if(!do_after_mecha(O, 2 SECONDS))
+	// maszyny podpięte do instalacji (atmosfera, APC, terminale) zostają na miejscu
+	if(O.move_resist > MOVE_FORCE_STRONG || istype(O, /obj/machinery/power/apc) || istype(O, /obj/machinery/power/terminal))
+		occupant_message("<span class='warning'>[O] jest na stałe podpięty do instalacji, widły go nie ruszą.</span>")
+		return 0
+	if(busy)
+		return 0
+	busy = TRUE
+	var/lifted = do_after_mecha(O, 2 SECONDS)
+	busy = FALSE
+	if(!lifted || load || QDELETED(O) || !chassis.Adjacent(O))
 		return 0
 	load = O
 	O.forceMove(src)
@@ -526,6 +564,8 @@
 	energy_drain = 50
 	var/iron = 0
 	var/max_iron = 100
+	/// Trwa budowa (do_after): drugie kliknięcie nie zaczyna kolejnej
+	var/busy = FALSE
 
 /obj/item/mecha_parts/mecha_equipment/aq_tool/fobricator/get_equip_info()
 	return "[..()] \[żelazo: [iron]/[max_iron]\]"
@@ -551,8 +591,16 @@
 	if(iron < 5)
 		occupant_message("<span class='warning'>Za mało żelaza (potrzeba 5).</span>")
 		return 0
-	if(!do_after_mecha(T, 2 SECONDS))
+	if(busy)
 		return 0
+	busy = TRUE
+	var/built = do_after_mecha(T, 2 SECONDS)
+	busy = FALSE
+	if(!built || iron < 5)
+		return 0
+	for(var/atom/movable/AM in T)
+		if(AM.density)
+			return 0
 	iron -= 5
 	new /obj/structure/barricade/sandbags(T)
 	playsound(T, 'sound/items/deconstruct.ogg', 50, TRUE)
