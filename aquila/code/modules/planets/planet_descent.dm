@@ -1,29 +1,24 @@
 // AQUILA - zejście promu z wnętrzem na planetę i start z niej, widziane z pokładu. Zamiast natychmiastowego dokowania
-// prom przez kilka sekund schodzi: planeta za oknami rośnie, aż wypełni niebo (warstwa planety z planet_sky.dm),
-// kadłub żarzy się w atmosferze, przez niebo lecą smugi, pod promem rośnie teren lądowiska z cieniem kadłuba,
-// a na końcu prom dokuje na lądowisku z bryzgami albo kurzem. Start z planety pokazuje to samo w odwrotnej kolejności.
+// prom przez kilkanaście sekund schodzi z przejściami jak w voidcrew/Voidcrew#588: planeta za oknami rośnie (warstwa
+// planety z planet_sky.dm), żar i smugi wejścia w atmosferę, niebo w kolorze atmosfery, biała chmura z mgłą, spod niej
+// prawdziwy teren lądowiska, mały i zamglony, rośnie do pełnej wielkości, a na końcu prom dokuje z bryzgami albo
+// kurzem. Start z planety: teren odpada i odsuwa się za rufę, chmura, niebo blednie, planeta maleje.
 // Widok z ziemi i dźwięki (port z voidcrew/Voidcrew#588) są w planet_landing_view.dm, prawdziwy teren lądowiska pod
 // promem w planet_landing_ground.dm.
 
-/// Fazy zejścia (czas trwania każdej)
-#define PLANET_DESCENT_ZOOM (3.5 SECONDS)
-#define PLANET_DESCENT_REENTRY (2.5 SECONDS)
-#define PLANET_DESCENT_APPROACH (3.5 SECONDS)
-/// Start z planety: chmury i niebo, potem planeta maleje do zwykłej wielkości
-#define PLANET_ASCENT_SKY (2.5 SECONDS)
-#define PLANET_ASCENT_ZOOM (4 SECONDS)
-/// Powiększenie tarczy, przy którym planeta wypełnia niebo, i przy którym teren pod promem ma piksele wielkości pól
+/// Zejście trwa tyle (od startu do przyziemienia T). Chwile przejść liczone od przyziemienia, jak w voidcrew/Voidcrew#588
+#define PLANET_DESCENT_TOTAL (11 SECONDS)
+#define PLANET_DESCENT_AT(before_touchdown) (PLANET_DESCENT_TOTAL - (before_touchdown))
+/// Start z planety trwa tyle: teren odpada, chmura, niebo blednie, planeta maleje do zwykłej wielkości
+#define PLANET_ASCENT_TOTAL (9 SECONDS)
+/// Po tylu sekundach startu teren znika pod chmurą (bez atmosfery: pod samą planetą)
+#define PLANET_ASCENT_GROUND_CUT (3.8 SECONDS)
+/// Powiększenie tarczy, przy którym planeta wypełnia niebo
 #define PLANET_DESCENT_SKY_SCALE 18
-#define PLANET_DESCENT_GROUND_SCALE 48
-/// Ile razy większy od kadłuba jest cień na początku podejścia (prom wysoko nad ziemią)
-#define PLANET_DESCENT_SHADOW_SCALE 2
-/// Wielkość prawdziwego terenu pod promem (względem prawdziwej), gdy wyłania się spod chmur, i jak długo przed
-/// przyziemieniem osiąga pełną wielkość
+/// Wielkość terenu (względem prawdziwej), gdy wyłania się spod chmury
 #define PLANET_DESCENT_GROUND_START 0.3
-#define PLANET_DESCENT_GROUND_SETTLE (0.2 SECONDS)
-/// Start z planety: teren pod promem maleje do tej wielkości i blednie
-#define PLANET_ASCENT_GROUND_END 0.3
-#define PLANET_ASCENT_GROUND_TIME (2 SECONDS)
+/// Kolor żaru wejścia w atmosferę (błyski i smugi)
+#define PLANET_DESCENT_HEAT_COLOR "#ffa64d"
 /// Widok z ziemi: cień na lądowisku i spadający obraz promu pojawiają się tyle przed przyziemieniem
 #define PLANET_DESCENT_GROUND_SHADOW_LEAD (6 SECONDS)
 #define PLANET_DESCENT_GROUND_PROXY_LEAD (3 SECONDS)
@@ -168,17 +163,19 @@ GLOBAL_LIST_EMPTY(planet_descents)
 			ground_view.bake_aerial()
 		else
 			ground_view.aerial_done = TRUE
+		// Niebo, chmura i mgiełka rysują się na płaszczyźnie widoku: maska od początku zejścia
+		ground_view.mask()
 	craft.relay(null, span_notice("[craft] schodzi z orbity nad [planet]. Trzymajcie się czegoś."))
 	crew_sound('aquila/sound/planets/landing/spool.ogg', 50)
 	shake_crew(2, 1)
-	// Bez atmosfery (księżyc) nie ma żaru: od razu teren pod promem, jak w pokazie na warstwie planety
-	var/reentry_at = PLANET_DESCENT_ZOOM
-	var/approach_at = reentry_at
+	// Bez atmosfery (księżyc) nie ma żaru, nieba ani chmury: planeta rośnie, potem od razu teren
 	if(planet_type.sky_atmosphere_color)
-		approach_at += PLANET_DESCENT_REENTRY
-		timers += addtimer(CALLBACK(src, PROC_REF(reentry)), reentry_at, TIMER_STOPPABLE)
-	timers += addtimer(CALLBACK(src, PROC_REF(approach)), approach_at, TIMER_STOPPABLE)
-	var/total = approach_at + PLANET_DESCENT_APPROACH
+		timers += addtimer(CALLBACK(src, PROC_REF(reentry)), PLANET_DESCENT_AT(9.2 SECONDS), TIMER_STOPPABLE)
+		timers += addtimer(CALLBACK(src, PROC_REF(clouds)), PLANET_DESCENT_AT(6.6 SECONDS), TIMER_STOPPABLE)
+		timers += addtimer(CALLBACK(src, PROC_REF(clear_cabin_glow)), PLANET_DESCENT_AT(5.6 SECONDS), TIMER_STOPPABLE)
+	timers += addtimer(CALLBACK(src, PROC_REF(approach)), PLANET_DESCENT_AT(5.2 SECONDS), TIMER_STOPPABLE)
+	timers += addtimer(CALLBACK(src, PROC_REF(crew_sound), 'aquila/sound/planets/landing/thrusters.ogg', 50), PLANET_DESCENT_AT(4.6 SECONDS), TIMER_STOPPABLE)
+	var/total = PLANET_DESCENT_TOTAL
 	touchdown_time = world.time + total
 	timers += addtimer(CALLBACK(src, PROC_REF(finish)), total, TIMER_STOPPABLE)
 	// Z ziemi: cień na lądowisku, spadający prom i kurz od dysz w ostatnich chwilach
@@ -192,14 +189,20 @@ GLOBAL_LIST_EMPTY(planet_descents)
 		if(M.client)
 			shake_camera(M, duration, strength)
 
-/// Wejście w atmosferę: żar na kosmosie przy kadłubie, wiatr, trzęsienie
+/// Wejście w atmosferę (T-9,2 s): żar na kosmosie przy kadłubie do T-5,6 s, trzęsienie
 /datum/planet_descent/proc/reentry()
 	craft.relay(null, span_warning("Kadłub [craft] rozgrzewa się w atmosferze [planet], prom trzęsie się."))
 	crew_sound('aquila/sound/planets/landing/entry.ogg', 65)
-	shake_crew(PLANET_DESCENT_REENTRY / 2, 2)
+	shake_crew(4.5 SECONDS, 2)
 	for(var/list/edge as anything in hull_edges(craft.shuttle_port))
-		new /obj/effect/temp_visual/planet_reentry(edge[1], edge[2], PLANET_DESCENT_REENTRY)
+		new /obj/effect/temp_visual/planet_reentry(edge[1], edge[2], 3.6 SECONDS)
 	cabin_effects()
+
+/// Chmura (T-6,6 s): prom wchodzi w chmurę planety
+/datum/planet_descent/proc/clouds()
+	craft.relay(null, span_notice("[craft] przebija chmury i podchodzi do lądowiska."))
+	crew_sound('aquila/sound/planets/landing/clouds.ogg', 45)
+	shake_crew(1.4 SECONDS, 1)
 
 /// W kabinie bez okien też czuć wejście w atmosferę: pomarańczowa, pulsująca poświata i iskry z paneli. Bez migania
 /// lamp (flicker() usypia i wysypuje się na lampie, której prom zniknął w trakcie)
@@ -225,15 +228,11 @@ GLOBAL_LIST_EMPTY(planet_descents)
 			M.clear_fullscreen("planet_reentry", 10)
 	tinted.Cut()
 
-/// Ostatnia faza: pod promem teren, a cień kadłuba kurczy się z dużej, miękkiej plamy do obrysu promu (widać go z każdej
-/// strony kadłuba, także zza ścian, które zasłaniają część nieba)
+/// Spod chmury (T-5,2 s): prawdziwy teren lądowiska, mały, rośnie do pełnej wielkości w T-0,3 s; cień kadłuba leży na nim
+/// z boku (słońce nie stoi w zenicie), podchodzi pod kadłub i zwęża się do jego obrysu
 /datum/planet_descent/proc/approach()
 	clear_cabin_glow()
-	if(planet.planet_type.sky_atmosphere_color)
-		craft.relay(null, span_notice("[craft] schodzi nad lądowisko."))
-	crew_sound('aquila/sound/planets/landing/thrusters.ogg', 50)
-	// Z nieba wyłania się prawdziwy teren lądowiska, mały, i rośnie do pełnej wielkości w chwili przyziemienia
-	ground_view?.play(PLANET_DESCENT_GROUND_START, 1, PLANET_DESCENT_APPROACH - PLANET_DESCENT_GROUND_SETTLE, 0, 255, 0, 0.4 SECONDS)
+	ground_view?.play(PLANET_DESCENT_GROUND_START, 1, 4.9 SECONDS, 0, 255, 0, 0.2 SECONDS)
 	var/list/hull = shuttle_hull_turfs(craft.shuttle_port)
 	if(!length(hull))
 		return
@@ -244,8 +243,23 @@ GLOBAL_LIST_EMPTY(planet_descents)
 		sum_y += T.y
 	var/turf/center = locate(round(sum_x / length(hull)), round(sum_y / length(hull)), craft.shuttle_port.z)
 	shadow = new(center, hull)
-	shadow.transform = matrix(PLANET_DESCENT_SHADOW_SCALE, 0, 0, 0, PLANET_DESCENT_SHADOW_SCALE, 0)
-	animate(shadow, transform = matrix(), alpha = 170, time = PLANET_DESCENT_APPROACH, easing = SINE_EASING | EASE_OUT)
+	var/matrix/wide = matrix(1.35, 0, 0, 0, 1.35, 0)
+	shadow.transform = wide
+	shadow.pixel_x = -9 * world.icon_size
+	shadow.pixel_y = 9 * world.icon_size
+	// T-5,2 s -> T-0,4 s: z boku pod kadłub
+	animate(shadow, pixel_x = 0, pixel_y = 0, time = 4.8 SECONDS, easing = SINE_EASING | EASE_OUT)
+	// Szeroki do T-3 s, węższy w T-1 s, obrys kadłuba w chwili przyziemienia
+	animate(shadow, transform = wide, time = 2.2 SECONDS, flags = ANIMATION_PARALLEL)
+	animate(transform = matrix(1.15, 0, 0, 0, 1.15, 0), time = 2 SECONDS, easing = SINE_EASING)
+	animate(transform = matrix(), time = 1 SECONDS, easing = SINE_EASING | EASE_OUT)
+	// Widać go, gdy chmura już się rozeszła; pod kadłubem znika, zanim prom stanie
+	animate(shadow, alpha = 0, time = 1 SECONDS, flags = ANIMATION_PARALLEL)
+	animate(alpha = 100, time = 0.6 SECONDS)
+	animate(alpha = 110, time = 0.6 SECONDS)
+	animate(alpha = 140, time = 1.8 SECONDS, easing = SINE_EASING)
+	animate(alpha = 110, time = 0.7 SECONDS)
+	animate(alpha = 0, time = 0.4 SECONDS, easing = SINE_EASING | EASE_IN)
 
 /// Przyziemienie: właściwe dokowanie na porcie; nie wyszło (okręt skoczył, prom zszedł z planety) = lądowanie przerwane
 /datum/planet_descent/proc/finish()
@@ -283,6 +297,8 @@ GLOBAL_LIST_EMPTY(planet_descents)
 		if(!QDELETED(landing) && !QDELETED(target))
 			landing.planet_landing_cancelled(target)
 		return
+	// Kadłub na ziemi oświetlony od razu, bez klatki w ciemności
+	planet_settle_lighting()
 	planet_touchdown_effects(landing.shuttle_port, target)
 	// Po dokowaniu załoga też jest na planecie: przyziemienie słyszą i czują wszyscy przy lądowisku
 	planet_landing_jolt(site, 'aquila/sound/planets/landing/touchdown.ogg', 70, shake_strength = 1)
@@ -401,113 +417,203 @@ GLOBAL_LIST_EMPTY(planet_descents)
 	/// Odłożony koniec pokazu (po starcie albo po wygaszeniu przerwanego zejścia): nowy pokaz go anuluje, inaczej
 	/// spóźniony koniec zabrałby planetę z nowego zejścia
 	var/end_timer
-	/// Niebo w kolorze atmosfery i smugi pędu
-	var/obj/effect/overlay/planet_sky_part/sky_fill
+	/// Przejścia jak w voidcrew/Voidcrew#588, na płaszczyźnie widoku lądowania nad terenem (maska ogranicza je do tego, co
+	/// widać za kadłubem): niebo w kolorze atmosfery, mgiełka nad terenem, białe wnętrze chmury, mgła, żar i smugi
+	var/obj/effect/overlay/planet_sky_part/view/sky_fill
+	var/obj/effect/overlay/planet_sky_part/view/haze_fill
+	var/obj/effect/overlay/planet_sky_part/view/cloud_fill
+	var/obj/effect/overlay/planet_sky_part/view/mist
+	var/obj/effect/overlay/planet_sky_part/view/heat_fill
 	var/list/streak_parts
+
+/// Część przejść zejścia: na płaszczyźnie widoku lądowania, nie paralaksy, więc rysuje się nad terenem pod promem
+/obj/effect/overlay/planet_sky_part/view
+	plane = AQ_LANDING_VIEW_PLANE
+	vis_flags = NONE
+	appearance_flags = PIXEL_SCALE | RESET_TRANSFORM | RESET_COLOR | RESET_ALPHA
+	alpha = 0
 
 /atom/movable/screen/parallax_layer/planet_sky/Destroy()
 	QDEL_NULL(sky_fill)
+	QDEL_NULL(haze_fill)
+	QDEL_NULL(cloud_fill)
+	QDEL_NULL(mist)
+	QDEL_NULL(heat_fill)
 	QDEL_LIST(streak_parts)
 	cancel_end_timer()
 	return ..()
 
-/// Części pokazu zejścia (tworzone przy pierwszym zejściu)
-/atom/movable/screen/parallax_layer/planet_sky/proc/build_descent_parts()
-	var/center = 7.5 * world.icon_size
-	sky_fill = new
-	sky_fill.icon = 'aquila/icons/effects/planet_descent.dmi'
-	sky_fill.icon_state = "fill"
-	sky_fill.appearance_flags = PIXEL_SCALE | RESET_TRANSFORM
-	sky_fill.layer = layer + 0.05
-	sky_fill.pixel_x = center - world.icon_size / 2
-	sky_fill.pixel_y = center - world.icon_size / 2
-	streak_parts = list()
-	for(var/copy in 0 to 1)
-		var/obj/effect/overlay/planet_sky_part/streak = new
-		streak.icon = 'aquila/icons/effects/planet_sky_streaks.dmi'
-		streak.icon_state = "streaks"
-		streak.appearance_flags = PIXEL_SCALE | RESET_TRANSFORM
-		streak.layer = layer + 0.06
-		streak_parts += streak
+/// Wszystkie części przejść
+/atom/movable/screen/parallax_layer/planet_sky/proc/descent_parts()
+	. = list(sky_fill, haze_fill, cloud_fill, mist, heat_fill) + streak_parts
 
-/// Ustawia niebo i smugi na początek pokazu (niewidoczne)
+/// Nowa część przejść o środku na środku ekranu
+/atom/movable/screen/parallax_layer/planet_sky/proc/new_descent_part(part_layer, icon_file, state, size)
+	var/center = 7.5 * world.icon_size
+	var/obj/effect/overlay/planet_sky_part/view/part = new
+	part.icon = icon_file
+	part.icon_state = state
+	part.layer = part_layer
+	part.pixel_x = center - size / 2
+	part.pixel_y = center - size / 2
+	return part
+
+/// Części przejść (tworzone przy pierwszym zejściu). Warstwy jak u Voidcrew: teren (1-3) pod niebem, mgiełka, chmura, żar
+/atom/movable/screen/parallax_layer/planet_sky/proc/build_descent_parts()
+	sky_fill = new_descent_part(24, 'aquila/icons/effects/planet_descent.dmi', "fill", world.icon_size)
+	haze_fill = new_descent_part(30, 'aquila/icons/effects/planet_descent.dmi', "fill", world.icon_size)
+	cloud_fill = new_descent_part(33, 'aquila/icons/effects/planet_descent.dmi', "fill", world.icon_size)
+	mist = new_descent_part(33.5, 'aquila/icons/effects/planet_descent_view.dmi', "wisps", 480)
+	heat_fill = new_descent_part(40, 'aquila/icons/effects/planet_descent.dmi', "fill", world.icon_size)
+	streak_parts = list()
+	for(var/copy in 1 to 2)
+		streak_parts += new_descent_part(41, 'aquila/icons/effects/planet_descent_view.dmi', "streaks", 480)
+
+/// Ustawia przejścia na początek pokazu (niewidoczne)
 /atom/movable/screen/parallax_layer/planet_sky/proc/reset_descent_parts(datum/planet_type/planet_type)
 	if(!sky_fill)
 		build_descent_parts()
-	var/sky_size = 30 // wypełnienie 32 px powiększone tak, żeby przykryło szeroki widok
-	animate(sky_fill)
-	sky_fill.transform = matrix(sky_size, 0, 0, 0, sky_size, 0)
-	sky_fill.color = planet_type.sky_atmosphere_color || "#ffffff"
-	sky_fill.alpha = 0
-	var/center = 7.5 * world.icon_size
-	for(var/i in 1 to 2)
-		var/obj/effect/overlay/planet_sky_part/streak = streak_parts[i]
-		animate(streak)
+	var/sky_color = planet_type.sky_atmosphere_color || "#000000"
+	var/fill_size = 30 // wypełnienie 32 px powiększone tak, żeby przykryło szeroki widok
+	for(var/obj/effect/overlay/planet_sky_part/view/part as anything in descent_parts())
+		animate(part)
+		part.alpha = 0
+		part.transform = matrix(fill_size, 0, 0, 0, fill_size, 0)
+	sky_fill.color = sky_color
+	haze_fill.color = sky_color
+	cloud_fill.color = planet_type.sky_cloud_color || "#ffffff"
+	heat_fill.color = PLANET_DESCENT_HEAT_COLOR
+	mist.color = sky_color
+	mist.transform = descent_turned(2.2, 73)
+	for(var/obj/effect/overlay/planet_sky_part/view/streak as anything in streak_parts)
+		streak.color = PLANET_DESCENT_HEAT_COLOR
 		streak.transform = matrix(1.5, 0, 0, 0, 1.5, 0)
-		streak.pixel_x = center - 240
-		streak.pixel_y = center - 240 - (i - 1) * 720
-		streak.alpha = 0
-	vis_contents |= sky_fill
-	vis_contents |= streak_parts
+	vis_contents |= descent_parts()
 
-/// Pokaz zejścia (czasy jak w /datum/planet_descent): planeta rośnie, niebo, smugi, teren pod promem
+/// Macierz: powiększenie i obrót (stopnie)
+/proc/descent_turned(scale, angle)
+	var/matrix/M = matrix(scale, 0, 0, 0, scale, 0)
+	if(angle)
+		M.Turn(angle)
+	return M
+
+/**
+ * Pokaz zejścia, chwile jak w voidcrew/Voidcrew#588 (liczone od przyziemienia T, zob. /datum/planet_descent/proc/start):
+ * planeta rośnie do T-6,2 s; żar (smugi od środka na zewnątrz i błyski) od T-9,2 s do T-5,6 s; niebo w kolorze atmosfery
+ * gęstnieje od T-8,4 s do T-6,2 s i rzednie do T-4,4 s; chmura od T-6,2 s do T-3,8 s z mgłą; mgiełka nad terenem od
+ * T-5,2 s do T-1,2 s. Teren pod niebem rysuje /datum/planet_ground_view.
+ * Każdy łańcuch animate() zaczyna się od kroku, który ustawia zmienną: krok bez zmiennych zatrzymuje animacje obiektu.
+ */
 /atom/movable/screen/parallax_layer/planet_sky/proc/play_descent(datum/planet_type/planet_type)
 	cancel_end_timer()
 	descent_active = TRUE
 	show_planet(planet_type)
 	reset_descent_parts(planet_type)
-	var/sky = matrix(PLANET_DESCENT_SKY_SCALE, 0, 0, 0, PLANET_DESCENT_SKY_SCALE, 0)
-	var/ground = matrix(PLANET_DESCENT_GROUND_SCALE, 0, 0, 0, PLANET_DESCENT_GROUND_SCALE, 0)
 	var/has_air = !!planet_type.sky_atmosphere_color
-	var/air_time = has_air ? PLANET_DESCENT_REENTRY : 0
-	// Tarcza rośnie, aż wypełni niebo; w atmosferze stoi pod niebem, potem rośnie dalej jako teren pod promem.
-	// Środek tarczy jedzie na środek ekranu, żeby teren nie uciekał w bok
+	var/sky = matrix(PLANET_DESCENT_SKY_SCALE, 0, 0, 0, PLANET_DESCENT_SKY_SCALE, 0)
+	// Planeta rośnie, aż jej brzeg zniknie z ekranu, a środek jedzie na środek ekranu; w atmosferze chowa się pod niebem,
+	// bez atmosfery zostaje, aż przykryje ją teren
+	var/grow_time = PLANET_DESCENT_AT(has_air ? 6.2 SECONDS : 5.2 SECONDS)
 	for(var/obj/effect/overlay/planet_sky_part/part as anything in list(body, shade, atmosphere))
 		var/target_alpha = part == body ? 255 : 0
-		animate(part, transform = sky, pixel_y = 7.5 * world.icon_size - 96, alpha = target_alpha, time = PLANET_DESCENT_ZOOM, easing = CUBIC_EASING | EASE_IN)
-		if(air_time)
-			animate(time = air_time)
-		animate(transform = ground, time = PLANET_DESCENT_APPROACH, easing = SINE_EASING | EASE_OUT)
+		animate(part, transform = sky, pixel_y = 7.5 * world.icon_size - 96, alpha = target_alpha, time = grow_time, easing = CUBIC_EASING | EASE_IN)
+		if(has_air)
+			animate(alpha = 0, time = 1)
 	if(!has_air)
 		return
-	// Niebo w kolorze atmosfery: pojawia się przy wejściu w atmosferę, znika nad terenem
-	animate(sky_fill, alpha = 0, time = PLANET_DESCENT_ZOOM - 5)
-	animate(alpha = 230, time = 10)
-	animate(time = PLANET_DESCENT_REENTRY - 10)
-	animate(alpha = 0, time = 10)
-	// Smugi pędu: dwie kopie jadą w górę jedna za drugą, w czasie wejścia w atmosferę
-	for(var/obj/effect/overlay/planet_sky_part/streak as anything in streak_parts)
-		var/start_y = streak.pixel_y
-		animate(streak, alpha = 0, time = PLANET_DESCENT_ZOOM)
-		animate(alpha = 255, pixel_y = start_y + 360, time = PLANET_DESCENT_REENTRY / 3)
-		animate(pixel_y = start_y + 720, time = PLANET_DESCENT_REENTRY / 3)
-		animate(alpha = 0, pixel_y = start_y + 1080, time = PLANET_DESCENT_REENTRY / 3)
+	// Żar: dwie warstwy smug lecą od środka na zewnątrz, druga 0,9 s za pierwszą
+	var/angle = 0
+	for(var/obj/effect/overlay/planet_sky_part/view/streak as anything in streak_parts)
+		var/lead = angle ? 0.9 SECONDS : 0
+		var/matrix/small = descent_turned(1.5, angle)
+		streak.transform = small
+		animate(streak, transform = small, time = PLANET_DESCENT_AT(9.2 SECONDS) + lead)
+		animate(transform = descent_turned(3.4, angle), time = 3.6 SECONDS)
+		animate(streak, alpha = 0, time = PLANET_DESCENT_AT(9.2 SECONDS) + lead, flags = ANIMATION_PARALLEL)
+		animate(alpha = 255, time = 0.8 SECONDS)
+		animate(alpha = 255, time = max(1, 1.8 SECONDS - lead))
+		animate(alpha = 0, time = 1 SECONDS)
+		angle += 137
+	// Błyski żaru nad wszystkim za kadłubem
+	animate(heat_fill, alpha = 0, time = PLANET_DESCENT_AT(9.2 SECONDS))
+	animate(alpha = 115, time = 0.6 SECONDS, easing = SINE_EASING)
+	var/flare = FALSE
+	for(var/flash in 1 to 5)
+		animate(alpha = flare ? 115 : 65, time = 0.4 SECONDS, easing = SINE_EASING)
+		flare = !flare
+	animate(alpha = 0, time = 1 SECONDS)
+	// Niebo w kolorze atmosfery: planeta rozmywa się w nim, a ono rzednie nad terenem
+	animate(sky_fill, alpha = 0, time = PLANET_DESCENT_AT(8.4 SECONDS))
+	animate(alpha = 255, time = 2.2 SECONDS, easing = SINE_EASING)
+	animate(alpha = 255, time = 1 SECONDS)
+	animate(alpha = 0, time = 0.8 SECONDS)
+	// Wnętrze chmury: wszystko białe (w kolorze chmur planety)
+	animate(cloud_fill, alpha = 0, time = PLANET_DESCENT_AT(6.2 SECONDS))
+	animate(alpha = 250, time = 1.2 SECONDS, easing = SINE_EASING | EASE_IN)
+	animate(alpha = 250, time = 0.4 SECONDS)
+	animate(alpha = 0, time = 0.8 SECONDS, easing = SINE_EASING | EASE_OUT)
+	// Mgła przelatuje w chmurze, żeby biel nie stała w miejscu
+	var/matrix/mist_small = descent_turned(2.2, 73)
+	animate(mist, transform = mist_small, time = PLANET_DESCENT_AT(6 SECONDS))
+	animate(transform = descent_turned(6.5, 73), time = 2 SECONDS)
+	animate(mist, alpha = 0, time = PLANET_DESCENT_AT(6 SECONDS), flags = ANIMATION_PARALLEL)
+	animate(alpha = 120, time = 1 SECONDS)
+	animate(alpha = 120, time = 0.5 SECONDS)
+	animate(alpha = 0, time = 0.5 SECONDS)
+	// Mgiełka między promem a terenem, rzednie w miarę schodzenia
+	animate(haze_fill, alpha = 0, time = PLANET_DESCENT_AT(5.2 SECONDS))
+	animate(alpha = 170, time = 0.2 SECONDS)
+	animate(alpha = 0, time = 3.8 SECONDS)
 
-/// Pokaz startu z planety: niebo, potem planeta maleje do zwykłej wielkości za oknami
+/**
+ * Pokaz startu z planety, chwile jak w voidcrew/Voidcrew#588 (od chwili startu): teren pod promem odpada (rysuje go
+ * /datum/planet_ground_view/proc/play_climb) pod gęstniejącą mgiełką, od 3,3 s chmura, od 4,1 s wyjście nad nią w niebo,
+ * które blednie do 6,4 s, a od 4,6 s planeta maleje do zwykłej wielkości za oknami.
+ */
 /atom/movable/screen/parallax_layer/planet_sky/proc/play_ascent(datum/planet_type/planet_type)
 	cancel_end_timer()
 	descent_active = TRUE
 	show_planet(planet_type)
 	reset_descent_parts(planet_type)
-	var/normal = matrix(planet_type.sky_scale, 0, 0, 0, planet_type.sky_scale, 0)
-	var/sky = matrix(PLANET_DESCENT_SKY_SCALE, 0, 0, 0, PLANET_DESCENT_SKY_SCALE, 0)
 	var/has_air = !!planet_type.sky_atmosphere_color
+	var/normal = matrix(planet_type.sky_scale, 0, 0, 0, planet_type.sky_scale, 0)
+	var/high = matrix(PLANET_DESCENT_SKY_SCALE * 0.6, 0, 0, 0, PLANET_DESCENT_SKY_SCALE * 0.6, 0)
+	var/planet_at = has_air ? 4.6 SECONDS : PLANET_ASCENT_GROUND_CUT
 	for(var/obj/effect/overlay/planet_sky_part/part as anything in list(body, shade, atmosphere))
 		var/normal_y = part.pixel_y
-		part.transform = sky
+		part.transform = high
 		part.pixel_y = 7.5 * world.icon_size - 96
-		part.alpha = part == body ? 255 : 0
-		if(has_air)
-			animate(part, time = PLANET_ASCENT_SKY)
-			animate(transform = normal, pixel_y = normal_y, alpha = 255, time = PLANET_ASCENT_ZOOM, easing = CUBIC_EASING | EASE_OUT)
-		else
-			animate(part, transform = normal, pixel_y = normal_y, alpha = 255, time = PLANET_ASCENT_ZOOM, easing = CUBIC_EASING | EASE_OUT)
-	end_timer = addtimer(CALLBACK(src, PROC_REF(end_descent)), (has_air ? PLANET_ASCENT_SKY : 0) + PLANET_ASCENT_ZOOM + 1, TIMER_STOPPABLE)
+		part.alpha = 0
+		animate(part, alpha = 0, time = planet_at)
+		animate(alpha = 255, time = 1)
+		animate(transform = normal, pixel_y = normal_y, time = 4 SECONDS, easing = SINE_EASING)
+	end_timer = addtimer(CALLBACK(src, PROC_REF(end_descent)), PLANET_ASCENT_TOTAL, TIMER_STOPPABLE)
 	if(!has_air)
 		return
-	sky_fill.alpha = 230
-	animate(sky_fill, time = PLANET_ASCENT_SKY / 2)
-	animate(alpha = 0, time = PLANET_ASCENT_SKY / 2)
+	// Mgiełka gęstnieje nad odpadającym terenem
+	animate(haze_fill, alpha = 0, time = 0.8 SECONDS)
+	animate(alpha = 110, time = 1.6 SECONDS)
+	animate(alpha = 235, time = 1 SECONDS)
+	animate(alpha = 235, time = 0.4 SECONDS)
+	animate(alpha = 0, time = 1)
+	// Niebo nad chmurą, blednie w kosmos
+	animate(sky_fill, alpha = 0, time = 2.8 SECONDS)
+	animate(alpha = 255, time = 0.8 SECONDS, easing = SINE_EASING)
+	animate(alpha = 255, time = 1.1 SECONDS)
+	animate(alpha = 0, time = 1.7 SECONDS, easing = SINE_EASING)
+	// Przez chmurę
+	animate(cloud_fill, alpha = 0, time = 3.3 SECONDS)
+	animate(alpha = 250, time = 0.5 SECONDS, easing = SINE_EASING | EASE_IN)
+	animate(alpha = 250, time = 0.3 SECONDS)
+	animate(alpha = 0, time = 0.7 SECONDS, easing = SINE_EASING | EASE_OUT)
+	var/matrix/mist_big = descent_turned(6.5, 73)
+	mist.transform = mist_big
+	animate(mist, transform = mist_big, time = 3.2 SECONDS)
+	animate(transform = descent_turned(2.2, 73), time = 1.6 SECONDS)
+	animate(mist, alpha = 0, time = 3.2 SECONDS, flags = ANIMATION_PARALLEL)
+	animate(alpha = 120, time = 0.5 SECONDS)
+	animate(alpha = 120, time = 0.5 SECONDS)
+	animate(alpha = 0, time = 0.6 SECONDS)
 
 /atom/movable/screen/parallax_layer/planet_sky/proc/cancel_end_timer()
 	if(end_timer)
@@ -520,7 +626,7 @@ GLOBAL_LIST_EMPTY(planet_descents)
 	if(!descent_active)
 		return
 	if(fade)
-		var/list/parts = list(body, shade, atmosphere, sky_fill) + streak_parts
+		var/list/parts = list(body, shade, atmosphere) + (sky_fill ? descent_parts() : list())
 		for(var/obj/effect/overlay/planet_sky_part/part as anything in parts)
 			if(part)
 				animate(part, alpha = 0, time = 1.2 SECONDS, easing = SINE_EASING)
@@ -530,11 +636,9 @@ GLOBAL_LIST_EMPTY(planet_descents)
 	end_timer = null
 	descent_active = FALSE
 	if(sky_fill)
-		animate(sky_fill)
-		vis_contents -= sky_fill
-	for(var/obj/effect/overlay/planet_sky_part/part as anything in streak_parts)
-		animate(part)
-		vis_contents -= part
+		for(var/obj/effect/overlay/planet_sky_part/part as anything in descent_parts())
+			animate(part)
+			vis_contents -= part
 	var/datum/planet_type/planet_type = shown_type
 	show_planet(null)
 	for(var/obj/effect/overlay/planet_sky_part/part as anything in list(body, shade, atmosphere))
@@ -595,70 +699,98 @@ GLOBAL_LIST_EMPTY(planet_descents)
 
 /obj/structure/overmap/small_craft/transport/shuttle_launch(mob/user)
 	var/obj/structure/overmap/planet/planet = get_overmap()
-	// Port na planecie (po starcie go nie ma): z niego widok z ziemi wie, gdzie i jak obrócony stał kadłub
-	var/site_x
-	var/site_y
-	var/site_z
-	var/site_dir
-	if(istype(planet) && shuttle_port && shuttle_docked_at)
-		site_x = shuttle_docked_at.x
-		site_y = shuttle_docked_at.y
-		site_z = shuttle_docked_at.z
-		site_dir = shuttle_docked_at.dir
+	var/from_planet = istype(planet) && shuttle_port && shuttle_docked_at
+	// Widok startu rusza w środku przenoszenia kadłuba (takeoff), zanim dokowanie uśpi: inaczej przez chwilę widać kadłub
+	// bez światła i zwykłą planetę za oknami
+	if(from_planet)
+		shuttle_port.aq_takeoff_hook = CALLBACK(src, PROC_REF(planet_lift_off), planet)
 	. = ..()
-	if(!. || !istype(planet))
+	if(shuttle_port?.aq_takeoff_hook)
+		shuttle_port.aq_takeoff_hook = null
+	if(!. || !from_planet)
 		return
-	if(site_z)
-		// Kadłub już w locie: obraz z jego pól odlatuje z lądowiska (hull_offsets są po starcie liczone od nowa)
-		var/list/sources = list()
-		var/list/places = list()
-		var/list/turned = shuttle_rotate_offsets(hull_offsets, site_dir)
-		for(var/i in 1 to length(turned))
-			var/list/offset = hull_offsets[i]
-			var/list/turned_offset = turned[i]
-			var/turf/source = locate(shuttle_port.x + offset[1], shuttle_port.y + offset[2], shuttle_port.z)
-			var/turf/place = locate(site_x + turned_offset[1], site_y + turned_offset[2], site_z)
-			if(source && place)
-				sources += source
-				places += place
-		var/launch_rotation = (dir2angle(site_dir) - dir2angle(shuttle_port.dir) + 360) % 360
-		var/datum/planet_launch_view/launch_view = new(sources, places, launch_rotation)
-		launch_view.lift_off()
-		// Z pokładu: lądowisko pod promem maleje i blednie (obrazy z daleka z poprzedniego zejścia na to miejsce, jeśli są)
-		var/watching = FALSE
-		for(var/mob/M as anything in mobs_in_ship)
-			if(M.client)
-				watching = TRUE
-				break
-		if(length(sources) && watching)
-			var/datum/planet_ground_view/ground_view = new(sources, places, launch_rotation, planet.surface?.reservation)
-			ground_view.build_close(skip_berth = FALSE)
-			ground_view.bake_aerial(only_kept = TRUE)
-			ground_view.play(1, PLANET_ASCENT_GROUND_END, PLANET_ASCENT_GROUND_TIME, 255, 0, PLANET_ASCENT_GROUND_TIME * 0.6, PLANET_ASCENT_GROUND_TIME * 0.4, SINE_EASING | EASE_IN)
-			QDEL_IN(ground_view, PLANET_ASCENT_GROUND_TIME + 0.2 SECONDS)
 	relay(null, span_notice("[src] wznosi się przez atmosferę [planet] na orbitę."))
-	for(var/mob/M as anything in mobs_in_ship)
-		if(M.client && M.can_hear())
+
+/**
+ * Kadłub właśnie opuścił lądowisko (wołane z takeoff()). Z ziemi obraz promu odlatuje, a z pokładu lądowisko odpada
+ * i odsuwa się za rufę pod chmurą, potem niebo i planeta maleje (jak w voidcrew/Voidcrew#588).
+ * old_turfs, new_turfs - pola przed przeniesieniem i po nim, w tej samej kolejności; rotation - obrót przy przeniesieniu
+ */
+/obj/structure/overmap/small_craft/transport/proc/planet_lift_off(obj/structure/overmap/planet/planet, list/old_turfs, list/new_turfs, rotation)
+	var/list/sources = list()
+	var/list/places = list()
+	for(var/i in 1 to min(length(old_turfs), length(new_turfs)))
+		var/turf/place = old_turfs[i]
+		var/turf/source = new_turfs[i]
+		if(place && source && shuttle_port.shuttle_areas[source.loc])
+			sources += source
+			places += place
+	if(!length(sources))
+		return
+	// Obrót z lotu na lądowisko: odwrotny do obrotu przy starcie
+	var/launch_rotation = (360 - (rotation % 360)) % 360
+	var/datum/planet_launch_view/launch_view = new(sources, places, launch_rotation)
+	launch_view.lift_off()
+	var/list/crew = list()
+	for(var/turf/T as anything in sources)
+		for(var/mob/M in T)
+			if(M.client)
+				crew += M
+	if(length(crew))
+		// Obrazy z daleka z poprzedniego zejścia na to miejsce, jeśli są; dziób na ekranie (parking nie jest obrócony)
+		var/datum/planet_ground_view/ground_view = new(sources, places, launch_rotation, planet.surface?.reservation)
+		ground_view.build_close(skip_berth = FALSE)
+		ground_view.bake_aerial(only_kept = TRUE)
+		ground_view.play_climb(planet_landing_bow_dir(sources), PLANET_ASCENT_GROUND_CUT)
+		// Maska trzyma niebo i chmurę do końca startu
+		QDEL_IN(ground_view, PLANET_ASCENT_TOTAL)
+	for(var/mob/M as anything in crew)
+		if(M.can_hear())
 			SEND_SOUND(M, sound('aquila/sound/planets/landing/launch.ogg', volume = 60))
-	for(var/mob/M as anything in mobs_in_ship)
-		if(!M.client)
-			continue
 		shake_camera(M, 3, 2)
 		var/atom/movable/screen/parallax_layer/planet_sky/sky = locate() in M.client.parallax_layers_cached
 		sky?.play_ascent(planet.planet_type)
+	planet_settle_lighting()
 
-#undef PLANET_DESCENT_ZOOM
-#undef PLANET_DESCENT_REENTRY
-#undef PLANET_DESCENT_APPROACH
-#undef PLANET_ASCENT_SKY
-#undef PLANET_ASCENT_ZOOM
+/// Jednorazowe wywołanie w takeoff(), po przeniesieniu kadłuba, zanim dokowanie uśpi (start z planety)
+/obj/docking_port/mobile/var/datum/callback/aq_takeoff_hook
+
+/obj/docking_port/mobile/takeoff(obj/docking_port/stationary/new_dock, list/old_turfs, list/new_turfs, list/moved_atoms, rotation, movement_direction, list/underlying_old_area, list/all_towed_shuttles)
+	. = ..()
+	if(aq_takeoff_hook)
+		var/datum/callback/hook = aq_takeoff_hook
+		aq_takeoff_hook = null
+		hook.Invoke(old_turfs, new_turfs, rotation)
+
+/// Oświetlenie przeliczone od razu, a nie w kolejnych tickach: po przeniesieniu kadłub czeka w kolejkach SSlighting i
+/// przez ułamek sekundy rysuje się czarny (jak landing_settle_lighting() w voidcrew/Voidcrew#588)
+/proc/planet_settle_lighting()
+	var/list/queue = SSlighting.sources_queue
+	SSlighting.sources_queue = list()
+	for(var/datum/light_source/source as anything in queue)
+		source.update_corners()
+		if(!QDELETED(source))
+			source.needs_update = LIGHTING_NO_UPDATE
+	queue = SSlighting.corners_queue
+	SSlighting.corners_queue = list()
+	for(var/datum/lighting_corner/corner as anything in queue)
+		corner.needs_update = FALSE
+		corner.update_objects()
+	queue = SSlighting.objects_queue
+	SSlighting.objects_queue = list()
+	for(var/atom/movable/lighting_object/lit as anything in queue)
+		if(QDELETED(lit))
+			continue
+		lit.update()
+		lit.needs_update = FALSE
+
+#undef PLANET_DESCENT_TOTAL
+#undef PLANET_DESCENT_AT
+#undef PLANET_ASCENT_TOTAL
+#undef PLANET_ASCENT_GROUND_CUT
 #undef PLANET_DESCENT_SKY_SCALE
-#undef PLANET_DESCENT_GROUND_SCALE
-#undef PLANET_DESCENT_SHADOW_SCALE
 #undef PLANET_DESCENT_GROUND_START
-#undef PLANET_DESCENT_GROUND_SETTLE
-#undef PLANET_ASCENT_GROUND_END
-#undef PLANET_ASCENT_GROUND_TIME
+#undef PLANET_DESCENT_HEAT_COLOR
 #undef PLANET_DESCENT_GROUND_SHADOW_LEAD
 #undef PLANET_DESCENT_GROUND_PROXY_LEAD
 #undef PLANET_TOUCHDOWN_DUST_CHANCE

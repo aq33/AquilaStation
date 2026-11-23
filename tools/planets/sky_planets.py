@@ -7,7 +7,6 @@ atmosfery leżą na wierzchu. Pliki są małe: jedna tekstura na typ planety.
 Wynik:
   aquila/icons/effects/planet_sky_surface.dmi  (512 × 256) powierzchnie i chmury
   aquila/icons/effects/planet_sky_disk.dmi     (192 × 192) mapa przemieszczeń, maska, cień, poświata
-  aquila/icons/effects/planet_sky_streaks.dmi  (480 × 480) smugi pędu przy wejściu w atmosferę
   aquila/icons/effects/planet_descent.dmi      (32 × 32) wypełnienie nieba, cień promu, żar przy kadłubie
 
 Uruchomienie z katalogu repo: python tools/planets/sky_planets.py [--podglad katalog] (potrzebuje numpy, którego nie ma
@@ -288,25 +287,6 @@ def disk_states():
 # ---------------------------------------------------------------------------
 # Zejście promu przez atmosferę
 
-def streak_states():
-	"""Jasne pionowe smugi pędu, powtarzalne w pionie (dwie kopie jadą w górę jedna za drugą)."""
-	rng = np.random.default_rng(301)
-	size = 480
-	img = np.zeros((size, size, 4), np.uint8)
-	for _ in range(70):
-		x = int(rng.integers(0, size))
-		length = int(rng.integers(30, 160))
-		top = int(rng.integers(0, size))
-		alpha = int(rng.integers(40, 140))
-		width = 1 if rng.random() < 0.75 else 2
-		for i in range(length):
-			y = (top + i) % size
-			# Smuga jaśnieje ku środkowi i gaśnie na końcach
-			fade = math.sin(math.pi * i / length)
-			img[y, x:x + width] = (255, 255, 255, int(alpha * fade))
-	return {'streaks': Image.fromarray(img)}
-
-
 def descent_states():
 	"""32 × 32: wypełnienie nieba (białe, barwione w grze), cień kadłuba, żar przy kadłubie w 4 kierunkach."""
 	fill = Image.new('RGBA', (32, 32), (255, 255, 255, 255))
@@ -391,9 +371,8 @@ def main():
 	states += [(name, STATE, [img]) for name, img in sorted(clouds.items())]
 	dmilib.save(os.path.join(out_dir, 'planet_sky_surface.dmi'), TEX_W, TEX_H, states)
 	dmilib.save(os.path.join(out_dir, 'planet_sky_disk.dmi'), DISK, DISK, [(name, STATE, [img]) for name, img in disk.items()])
-	dmilib.save(os.path.join(out_dir, 'planet_sky_streaks.dmi'), 480, 480, [(name, STATE, [img]) for name, img in streak_states().items()])
 	dmilib.save(os.path.join(out_dir, 'planet_descent.dmi'), 32, 32, descent_states())
-	print('zapisano', len(states), 'tekstur i', len(disk), 'stanów tarczy, smugi i efekty zejścia')
+	print('zapisano', len(states), 'tekstur i', len(disk), 'stanów tarczy i efekty zejścia')
 
 	if args.podglad:
 		os.makedirs(args.podglad, exist_ok=True)

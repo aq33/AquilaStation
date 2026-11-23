@@ -22,8 +22,12 @@
 	TEST_ASSERT_EQUAL(sky.shown_type, jungle, "The descent doesn't show the planet it lands on")
 	TEST_ASSERT(sky.sky_fill in sky.vis_contents, "No atmosphere sky during the descent")
 	TEST_ASSERT_EQUAL(sky.sky_fill.color, jungle.sky_atmosphere_color, "The descent sky isn't the planet's atmosphere colour")
-	for(var/obj/effect/overlay/planet_sky_part/part as anything in sky.streak_parts)
-		TEST_ASSERT(part in sky.vis_contents, "A streak part is missing from the descent")
+	for(var/obj/effect/overlay/planet_sky_part/part as anything in sky.descent_parts())
+		TEST_ASSERT(part in sky.vis_contents, "A part of the descent transitions (sky, haze, cloud, mist, heat, streaks) is missing")
+		// Nad terenem pod promem, nie na paralaksie: inaczej teren zasłoniłby niebo i chmurę
+		TEST_ASSERT_EQUAL(part.plane, AQ_LANDING_VIEW_PLANE, "A part of the descent transitions isn't drawn over the ground under the shuttle")
+	// Biały BYOND zapisuje jako brak koloru (null)
+	TEST_ASSERT_EQUAL(sky.cloud_fill.color || "#ffffff", jungle.sky_cloud_color || "#ffffff", "The inside of the cloud isn't the planet's cloud colour")
 	// W trakcie pokazu zwykłe sprawdzanie planety (bez okrętu: null) nie może jej schować
 	sky.update_status(null)
 	TEST_ASSERT_EQUAL(sky.shown_type, jungle, "A parallax update hid the planet in the middle of the descent")
@@ -134,6 +138,7 @@
 	TEST_ASSERT(!QDELETED(port), "A second landing call deleted the landing spot of the descent")
 	// Fazy pokazu bez klientów: żar przy kadłubie, iskry i lampy w kabinie nie mogą się wysypać
 	sabre.planet_descent.reentry()
+	sabre.planet_descent.clouds()
 	sabre.planet_descent.approach()
 	var/datum/planet_descent/descent = sabre.planet_descent
 	TEST_ASSERT(descent.shadow, "No hull shadow over the ground during the approach")

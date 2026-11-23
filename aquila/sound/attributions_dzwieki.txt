@@ -88,4 +88,5 @@ Woda i wędkarstwo na planetach (tgstation/tgstation dba6dea), licencja CC-BY-SA
   effects/anomaly/*                 Shiptest sound/effects (radiohiss, stall, walkietalkie) i sound/effects/anomaly/static.ogg, anomalia szumu
 
 Lądowanie na planetach (voidcrew/Voidcrew#588, autor Jackriip, 35462e2), licencja CC-BY-SA 3.0 (README Voidcrew: assety bez innej informacji):
-  planets/landing/*                 Voidcrew voidcrew/sound/effects/landing (approach, entry, launch, liftoff_outside, spool, thrusters, touchdown)
+  ../icons/effects/planet_descent_view.dmi   Voidcrew voidcrew/icons/effects/landing_view.dmi (stany wisps i streaks: mgła w chmurze i smugi żaru)
+  planets/landing/*                 Voidcrew voidcrew/sound/effects/landing (approach, clouds, entry, launch, liftoff_outside, spool, thrusters, touchdown)

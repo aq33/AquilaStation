@@ -13,9 +13,6 @@
 // jest przezroczyste i jego środek zawsze jest w zasięgu wzroku), maska na nakładkach pól zamiast nakładek obszarów
 // (parking nie ma własnego obszaru), bez wypiekania światła i pogody, a niebo zostaje nasze (planet_sky.dm).
 
-#define AQ_LANDING_VIEW_PLANE -6
-#define AQ_LANDING_VIEW_MASK_PLANE -7
-#define AQ_LANDING_VIEW_MASK_RENDER_TARGET "*AQ_LANDING_VIEW_MASK"
 
 /// Obrazy z daleka: zasięg od środka lądowiska (pola) i piksele na pole
 #define PLANET_GROUND_FAR_REACH 64
@@ -263,12 +260,54 @@
 		mask_tile.appearance_flags = RESET_COLOR | RESET_ALPHA | RESET_TRANSFORM
 	return mask_tile
 
-/// Macierz obrazu terenu w danej skali: obrócona odwrotnie do obrotu kadłuba przy dokowaniu
-/datum/planet_ground_view/proc/ground_matrix(scale)
+/// Macierz obrazu terenu w danej skali: obrócona odwrotnie do obrotu kadłuba przy dokowaniu, przesunięta o dx, dy pikseli
+/datum/planet_ground_view/proc/ground_matrix(scale, dx = 0, dy = 0)
 	var/matrix/M = matrix(scale, 0, 0, 0, scale, 0)
 	if(rotation)
 		M.Turn(-rotation)
+	if(dx || dy)
+		M.Translate(dx, dy)
 	return M
+
+/**
+ * Start z planety: lądowisko odpada spod promu (wznoszenie ze stałym ciągiem) i odsuwa się za rufę coraz szybciej, jak
+ * w voidcrew/Voidcrew#588, a po cut_time znika pod chmurą. bow_dir: kierunek dziobu na ekranie
+ */
+/datum/planet_ground_view/proc/play_climb(bow_dir, cut_time)
+	mask()
+	playing = null
+	var/bow_x = (bow_dir & EAST) ? 1 : ((bow_dir & WEST) ? -1 : 0)
+	var/bow_y = (bow_dir & NORTH) ? 1 : ((bow_dir & SOUTH) ? -1 : 0)
+	for(var/obj/effect/abstract/planet_ground_picture/picture as anything in list(far_picture, near_picture, close_picture))
+		if(QDELETED(picture))
+			continue
+		animate(picture)
+		picture.transform = ground_matrix(1)
+		picture.alpha = 255
+		for(var/step in 1 to 21)
+			var/seconds = step * 0.2
+			var/scale = 1 / (1 + (seconds / 2.4) ** 2)
+			var/slid = 1.2 * seconds ** 2.2 * world.icon_size * scale
+			var/matrix/M = ground_matrix(scale, -bow_x * slid, -bow_y * slid)
+			if(step == 1)
+				animate(picture, transform = M, time = 0.2 SECONDS)
+			else
+				animate(transform = M, time = 0.2 SECONDS)
+		if(picture != close_picture)
+			animate(picture, alpha = 255, time = cut_time, flags = ANIMATION_PARALLEL)
+			animate(alpha = 0, time = 1)
+			continue
+		// Obraz z bliska blednie, gdy teren maleje
+		for(var/step in 1 to 21)
+			var/seconds = step * 0.2
+			if(seconds SECONDS > cut_time)
+				break
+			var/step_alpha = detail_alpha(1 / (1 + (seconds / 2.4) ** 2))
+			if(step == 1)
+				animate(picture, alpha = step_alpha, time = 0.2 SECONDS, flags = ANIMATION_PARALLEL)
+			else
+				animate(alpha = step_alpha, time = 0.2 SECONDS)
+		animate(alpha = 0, time = 1)
 
 /**
  * Ruch terenu: skala from_scale -> to_scale przez time, krycie obrazów z daleka from_alpha -> to_alpha (zaczyna się po
