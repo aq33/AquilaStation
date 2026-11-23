@@ -72,7 +72,7 @@
 	var/repair_time = 5 SECONDS
 
 /mob/living/basic/bot/repairbot/Initialize(mapload, new_toolbox_color)
-	additional_access = list(ACCESS_ENGINE, ACCESS_ENGINE_EQUIP, ACCESS_CONSTRUCTION, ACCESS_MAINT_TUNNELS, ACCESS_ATMOSPHERICS)
+	additional_access = list(ACCESS_ENGINE, ACCESS_ENGINE_EQUIP, ACCESS_CONSTRUCTION, ACCESS_MAINT_TUNNELS, ACCESS_ATMOSPHERICS, ACCESS_EXTERNAL_AIRLOCKS)
 	if(new_toolbox_color)
 		toolbox_color = new_toolbox_color
 	if(toolbox_color == "s")
@@ -89,7 +89,7 @@
 	return ..()
 
 /mob/living/basic/bot/repairbot/req_bot_access()
-	return list(ACCESS_ENGINE, ACCESS_CONSTRUCTION)
+	return ..() + list(ACCESS_ENGINE, ACCESS_CONSTRUCTION)
 
 /// Kolor zabarwienia skrzynki dla litery z floorbota
 /mob/living/basic/bot/repairbot/proc/get_toolbox_tint()
@@ -140,7 +140,7 @@
 		current = our_glass
 	else
 		current = special_tiles
-	if(current && current.type != new_stack.type)
+	if(current && !current.merge_check(new_stack))
 		to_chat(user, span_warning("W [src] są już inne [current.name]."))
 		return
 	if(!current)
@@ -193,13 +193,17 @@
 		var/turf/open/floor/floor = target
 		if(fix_floors && (floor.broken || floor.burnt))
 			return REPAIRBOT_TASK_FIX_FLOOR
-		if(isplatingturf(floor) && (place_tiles || special_tiles))
-			return REPAIRBOT_TASK_PLACE_TILE
+		// płytki tylko na poszyciu okrętu (asteroida, piasek itp. nie mają otworów montażowych)
+		if(isplatingturf(floor) && place_tiles)
+			var/turf/open/floor/plating/plating = floor
+			return plating.attachment_holes ? REPAIRBOT_TASK_PLACE_TILE : 0
 		if(replace_tiles && special_tiles && !isplatingturf(floor) && floor.type != special_tiles.turf_type)
 			return REPAIRBOT_TASK_REPLACE_TILE
 		return 0
 	if(istype(target, /obj/structure/girder) && fix_girders && our_iron?.amount >= 2)
-		return REPAIRBOT_TASK_GIRDER
+		// tylko zwykły, nieprzesunięty dźwigar: z żelaza jest z niego zwykła ściana (wzmocniony, kultu, brązu itd. pomija)
+		var/obj/structure/girder/girder = target
+		return (girder.type == /obj/structure/girder && girder.state == GIRDER_NORMAL) ? REPAIRBOT_TASK_GIRDER : 0
 	if(istype(target, /obj/structure/grille) && fix_windows && our_glass?.amount >= 2)
 		var/obj/structure/grille/grille = target
 		if(!grille.broken && !(locate(/obj/structure/window) in grille.loc))
@@ -278,7 +282,8 @@
 			var/turf/girder_turf = get_turf(girder)
 			our_iron.use(2)
 			qdel(girder)
-			girder_turf.PlaceOnTop(/turf/closed/wall)
+			// ta sama ściana, co z dwóch arkuszy żelaza na dźwigarze (/obj/structure/girder/attackby)
+			girder_turf.PlaceOnTop(/turf/closed/wall/steel)
 		if(REPAIRBOT_TASK_WINDOW)
 			var/obj/structure/grille/grille = target
 			our_glass.use(2)
