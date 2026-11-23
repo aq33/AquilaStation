@@ -75,9 +75,18 @@
 
 /// Restart po krytycznej awarii
 /obj/item/aq_synth_reset_key/proc/reboot(mob/living/carbon/human/target, mob/living/user)
-	if(target.suiciding || target.ishellbound() || !target.can_be_revived())
+	var/refusal = target.aq_synth_reboot_refusal()
+	if(refusal)
 		playsound(src, 'aquila/sound/robotics/reset_key_beep.ogg', 40, FALSE)
-		user.visible_message("<span class='warning'>[src] brzęczy: stan jednostki nie pozwala na restart. Najpierw napraw uszkodzenia.</span>")
+		switch(refusal)
+			if(AQ_SYNTH_REBOOT_LOST)
+				user.visible_message("<span class='warning'>[src] brzęczy: jednostka nie odpowiada, przywrócenie jest niemożliwe. Dalsze próby są bezcelowe.</span>")
+			if(AQ_SYNTH_REBOOT_DNR)
+				user.visible_message("<span class='warning'>[src] brzęczy: jednostka odmawia restartu (DNR). Dalsze próby są bezcelowe.</span>")
+			if(AQ_SYNTH_REBOOT_BRAIN)
+				user.visible_message("<span class='warning'>[src] brzęczy: pozytronowy mózg jest nieodwracalnie uszkodzony. Dalsze próby są bezcelowe.</span>")
+			else
+				user.visible_message("<span class='warning'>[src] brzęczy: stan jednostki nie pozwala na restart. Najpierw napraw uszkodzenia.</span>")
 		return FALSE
 	target.notify_ghost_cloning("Ktoś restartuje twoje ciało!", source = target)
 	target.grab_ghost()
@@ -89,6 +98,20 @@
 	playsound(src, 'aquila/sound/robotics/reset_key_boot.ogg', 50, FALSE)
 	user.visible_message("<span class='notice'>[src] piszczy: restart zakończony. [target] uruchamia się ponownie.</span>")
 	return TRUE
+
+/// Dlaczego wyłączonego syntetyka nie da się zrestartować: te same warunki co defibrylator (defib.dm, defib_reasons.dm),
+/// żeby IPC nie umierał od razu ponownie i nie wstawał bez gracza. Null = restart możliwy.
+/mob/living/carbon/human/proc/aq_synth_reboot_refusal()
+	if(suiciding || ishellbound())
+		return AQ_SYNTH_REBOOT_LOST
+	if(has_dnr())
+		return AQ_SYNTH_REBOOT_DNR
+	var/obj/item/organ/brain/brain = getorganslot(ORGAN_SLOT_BRAIN)
+	if(QDELETED(brain) || brain.brain_death || (brain.organ_flags & ORGAN_FAILING) || brain.suicided || brain.brainmob?.suiciding)
+		return AQ_SYNTH_REBOOT_BRAIN
+	if(!can_be_revived())
+		return AQ_SYNTH_REBOOT_DAMAGE
+	return null
 
 /// Naprawa błędów oprogramowania działającego syntetyka
 /obj/item/aq_synth_reset_key/proc/repair_software(mob/living/carbon/human/target, mob/living/user)
