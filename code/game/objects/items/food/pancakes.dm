@@ -87,13 +87,11 @@
 		contents += pancake
 		update_snack_overlays(pancake)
 		if (pancake.contents.len)
-			for(var/pancake_content in pancake.contents)
+			for(var/obj/item/food/pancakes/pancake_content in pancake.contents) // AQ EDIT - tylko naleśniki: składniki z craftingu (ciasto) zostają w swoim naleśniku
 				pancake = pancake_content
 				pancake.name = initial(pancake.name)
 				contents += pancake
 				update_snack_overlays(pancake)
-		pancake = item
-		pancake.contents.Cut()
 		return
 	else if(contents.len)
 		var/obj/O = contents[contents.len]

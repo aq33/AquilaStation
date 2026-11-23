@@ -10,6 +10,7 @@
 	var/obj/item/pen/pen = allocate(/obj/item/pen)
 	var/html = viewer.aq_examine_html(pen, "To jest długopis.")
 	TEST_ASSERT(findtext(html, "To jest długopis."), "Examine HTML from a string is [html]")
+	TEST_ASSERT(viewer.aq_examine_html(pen, null) == "", "Examine returning null still drew a box")
 
 	// Bez krwawienia has_status_effect() nie daje datumu
 	TEST_ASSERT(viewer.get_bleed_rate() == 0, "Bleed rate without bleeding is [viewer.get_bleed_rate()]")
@@ -18,6 +19,15 @@
 	var/obj/item/food/pancakes/stack = allocate(/obj/item/food/pancakes)
 	var/obj/item/food/pastrybase/base = allocate(/obj/item/food/pastrybase)
 	stack.update_snack_overlays(base)
+	// Naleśnik z ciastem z craftingu położony na stos: na stos idą tylko naleśniki, ciasto zostaje w swoim naleśniku
+	var/obj/item/food/pancakes/crafted = allocate(/obj/item/food/pancakes)
+	var/obj/item/food/pancakes/nested = allocate(/obj/item/food/pancakes)
+	base.forceMove(crafted)
+	nested.forceMove(crafted)
+	viewer.put_in_active_hand(crafted)
+	stack.attackby(crafted, viewer)
+	TEST_ASSERT(crafted.loc == stack && nested.loc == stack, "Stacking a pancake did not move it and its nested pancake onto the stack")
+	TEST_ASSERT(base.loc == crafted, "The pastry base of a crafted pancake was moved into the stack (it is at [base.loc])")
 
 	// Konsola myśliwców z filtrem „Only Occupied Ship”: konsola widzi myśliwce tylko z poziomów statku, a mapa testów
 	// leży w rezerwacji, więc oba obiekty stoją na poziomie stacji

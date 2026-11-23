@@ -1002,7 +1002,7 @@ Proc to spool up a new Z-level for a player ship and assign it a treadmill.
 		return
 	if(!direction)
 		return
-	for(var/mob/living/M as() in mobs_in_ship)
+	for(var/mob/living/M in mobs_in_ship) // AQ EDIT - bez as(): duchy z mobs_in_ship nie są rzucane ani przewracane
 		if(M.buckled) //Good for you, you strapped in!
 			continue
 		if(M.mob_negates_gravity()) //Wear magboots and you're good.
@@ -1028,9 +1028,7 @@ Proc to spool up a new Z-level for a player ship and assign it a treadmill.
 				else
 					L.adjust_disgust(10)
 		M.throw_at(throw_target, 4, 3)
-		if(isliving(M)) // AQ EDIT - duchy nie mają Knockdown()
-			var/mob/living/knocked = M
-			knocked.Knockdown(2 SECONDS)
+		M.Knockdown(2 SECONDS)
 
 /obj/structure/overmap/proc/can_change_safeties()
 	// Safeties can be toggled on the overmap or on small dockable maps like ruins and asteroids
