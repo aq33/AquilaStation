@@ -254,5 +254,178 @@
 	tool2.attach(locker)
 	TEST_ASSERT(!tool3.can_attach(locker), "locker mech took a third tool")
 
+/// Wsadza pilota do mecha (bez klienta), wspólne dla testów wyposażenia z przeglądu AQ#672
+/datum/unit_test/proc/aq_seat_mech_pilot(obj/mecha/mech)
+	var/mob/living/carbon/human/pilot = allocate(/mob/living/carbon/human)
+	mech.occupant = pilot
+	pilot.forceMove(mech)
+	return pilot
+
+/// Młot ASW-8 rani żywy cel: odrzut rzuca z pilotem jako rzucającym, a nie z mechem (runtime na thrower.client)
+/datum/unit_test/aquila_mecha_maul_hits
+
+/datum/unit_test/aquila_mecha_maul_hits/Run()
+	var/obj/mecha/combat/gygax/mech = allocate(/obj/mecha/combat/gygax)
+	aq_seat_mech_pilot(mech)
+	var/obj/item/mecha_parts/mecha_equipment/aq_melee/maul/maul = allocate(/obj/item/mecha_parts/mecha_equipment/aq_melee/maul)
+	maul.attach(mech)
+	var/mob/living/carbon/human/victim = allocate(/mob/living/carbon/human, get_step(mech, EAST))
+	maul.precise_attack(victim)
+	TEST_ASSERT(victim.getBruteLoss() > 0, "the maul did not hurt a living target")
+	TEST_ASSERT_EQUAL("[initial(maul.attack_sound)]", "sound/weapons/blade1.ogg", "melee weapons still use the removed Titanfall sound")
+
+/// Szczęki ratownicze nie rozwierają zasilanej śluzy ani zaspawanych drzwi przeciwpożarowych
+/datum/unit_test/aquila_mecha_rescue_jaw
+
+/datum/unit_test/aquila_mecha_rescue_jaw/Run()
+	var/obj/mecha/working/ripley/mech = allocate(/obj/mecha/working/ripley)
+	aq_seat_mech_pilot(mech)
+	var/obj/item/mecha_parts/mecha_equipment/aq_tool/rescue_jaw/jaw = allocate(/obj/item/mecha_parts/mecha_equipment/aq_tool/rescue_jaw)
+	jaw.attach(mech)
+	mech.selected = jaw
+	var/obj/machinery/door/airlock/door = allocate(/obj/machinery/door/airlock, get_step(mech, EAST))
+	door.set_machine_stat(door.machine_stat & ~NOPOWER)
+	TEST_ASSERT(door.hasPower(), "test airlock has no power")
+	TEST_ASSERT(!jaw.action(door), "rescue jaws worked on a powered airlock")
+	TEST_ASSERT(door.density, "rescue jaws opened a powered airlock")
+	var/obj/machinery/door/firedoor/firelock = allocate(/obj/machinery/door/firedoor, get_step(mech, NORTH))
+	firelock.welded = TRUE
+	var/was_dense = firelock.density
+	TEST_ASSERT(!jaw.action(firelock), "rescue jaws worked on a welded firelock")
+	TEST_ASSERT_EQUAL(firelock.density, was_dense, "rescue jaws moved a welded firelock")
+
+/// Ładunek wejścia siłowego bierze tylko drzwi i okna, rakieta PEP-6 rozbiera tylko zwykłe ściany
+/datum/unit_test/aquila_mecha_breaching_walls
+
+/datum/unit_test/aquila_mecha_breaching_walls/Run()
+	var/obj/mecha/combat/gygax/mech = allocate(/obj/mecha/combat/gygax)
+	aq_seat_mech_pilot(mech)
+	var/obj/item/mecha_parts/mecha_equipment/aq_tool/entry_device/charge = allocate(/obj/item/mecha_parts/mecha_equipment/aq_tool/entry_device)
+	charge.attach(mech)
+	mech.selected = charge
+	var/turf/wall_spot = get_step(mech, EAST)
+	var/old_type = wall_spot.type
+	var/turf/closed/wall/r_wall/rwall = wall_spot.ChangeTurf(/turf/closed/wall/r_wall)
+	TEST_ASSERT(!charge.action(rwall), "breaching charge was planted on a reinforced wall")
+	TEST_ASSERT_EQUAL(charge.charges, 3, "breaching charge used up on a wall")
+	var/obj/item/projectile/bullet/aq_breaching/rocket = allocate(/obj/item/projectile/bullet/aq_breaching)
+	rocket.on_hit(rwall)
+	var/turf/after_hit = get_step(mech, EAST)
+	TEST_ASSERT(istype(after_hit, /turf/closed/wall/r_wall), "breaching rocket dismantled a reinforced wall")
+	TEST_ASSERT(!aq_breachable_wall(after_hit), "reinforced wall counts as breachable")
+	var/turf/closed/wall/plain = after_hit.ChangeTurf(/turf/closed/wall)
+	TEST_ASSERT(aq_breachable_wall(plain), "plain wall does not count as breachable")
+	plain.ChangeTurf(old_type)
+
+/// Maskowanie: zniszczenie modułu przywraca widoczność; zdejmuje je nieśmiercionośna broń i pięść mecha
+/datum/unit_test/aquila_mecha_cloak
+
+/datum/unit_test/aquila_mecha_cloak/Run()
+	var/obj/mecha/combat/gygax/mech = allocate(/obj/mecha/combat/gygax)
+	var/mob/living/carbon/human/pilot = aq_seat_mech_pilot(mech)
+	var/base_infra = mech.infra_luminosity
+	var/obj/item/mecha_parts/mecha_equipment/aq_utility/cloak/cloak = allocate(/obj/item/mecha_parts/mecha_equipment/aq_utility/cloak)
+	cloak.attach(mech)
+	cloak.set_cloak(TRUE)
+	TEST_ASSERT(mech.alpha < 255, "cloak did not hide the mech")
+	qdel(cloak)
+	TEST_ASSERT_EQUAL(mech.alpha, 255, "mech stays invisible after the cloak module is destroyed")
+	TEST_ASSERT_EQUAL(mech.infra_luminosity, base_infra, "infrared signature not restored after the cloak module is destroyed")
+	var/obj/item/mecha_parts/mecha_equipment/aq_utility/cloak/cloak2 = allocate(/obj/item/mecha_parts/mecha_equipment/aq_utility/cloak)
+	cloak2.attach(mech)
+	cloak2.set_cloak(TRUE)
+	var/obj/item/mecha_parts/mecha_equipment/weapon/energy/aq_stasis/stasis = allocate(/obj/item/mecha_parts/mecha_equipment/weapon/energy/aq_stasis)
+	stasis.attach(mech)
+	stasis.start_cooldown()
+	TEST_ASSERT(!cloak2.active, "a non-lethal weapon did not break the cloak")
+	cloak2.set_cloak(TRUE)
+	mech.selected = null
+	mech.setDir(EAST)
+	var/obj/structure/closet/target = allocate(/obj/structure/closet, get_step(mech, EAST))
+	mech.click_action(target, pilot)
+	TEST_ASSERT(!mech.melee_can_hit, "the mech did not punch")
+	TEST_ASSERT(!cloak2.active, "a mech punch did not break the cloak")
+
+/// Ładunek stazy unieruchamia cel (staza z aktualizacją ruchu)
+/datum/unit_test/aquila_mecha_stasis_shot
+
+/datum/unit_test/aquila_mecha_stasis_shot/Run()
+	var/mob/living/carbon/human/target = allocate(/mob/living/carbon/human)
+	var/obj/item/projectile/energy/aq_stasis/shot = allocate(/obj/item/projectile/energy/aq_stasis)
+	shot.on_hit(target)
+	TEST_ASSERT(target.IsInStasis(), "stasis shot did not put the target in stasis")
+	TEST_ASSERT(!(target.mobility_flags & MOBILITY_MOVE), "target can still walk in stasis")
+
+/// Narzędzie z zestawu zostaje w module po kliknięciu stołu; zniszczenie modułu nie kasuje narzędzia spoza modułu
+/datum/unit_test/aquila_mecha_toolset_keeps_tools
+
+/datum/unit_test/aquila_mecha_toolset_keeps_tools/Run()
+	var/obj/mecha/working/ripley/mech = allocate(/obj/mecha/working/ripley)
+	aq_seat_mech_pilot(mech)
+	var/obj/item/mecha_parts/mecha_equipment/aq_tool/toolset/toolset = allocate(/obj/item/mecha_parts/mecha_equipment/aq_tool/toolset)
+	toolset.attach(mech)
+	mech.selected = toolset
+	var/obj/structure/table/table = allocate(/obj/structure/table, get_step(mech, EAST))
+	var/obj/item/tool = toolset.current
+	toolset.action(table)
+	TEST_ASSERT_EQUAL(tool.loc, toolset, "toolset tool ended up outside the module after clicking a table")
+	tool.forceMove(get_step(mech, NORTH))
+	allocated += tool
+	qdel(toolset)
+	TEST_ASSERT(!QDELETED(tool), "destroying the toolset deleted a tool that was no longer inside it")
+
+/// Widły nie podnoszą maszyn podpiętych do instalacji (wentylacja)
+/datum/unit_test/aquila_mecha_forklift_anchored
+
+/datum/unit_test/aquila_mecha_forklift_anchored/Run()
+	var/obj/mecha/working/ripley/mech = allocate(/obj/mecha/working/ripley)
+	aq_seat_mech_pilot(mech)
+	var/obj/item/mecha_parts/mecha_equipment/aq_tool/forklift/forklift = allocate(/obj/item/mecha_parts/mecha_equipment/aq_tool/forklift)
+	forklift.attach(mech)
+	mech.selected = forklift
+	var/turf/vent_spot = get_step(mech, EAST)
+	var/obj/machinery/atmospherics/components/unary/vent_pump/vent = allocate(/obj/machinery/atmospherics/components/unary/vent_pump, vent_spot)
+	TEST_ASSERT(!forklift.action(vent), "forklift lifted a vent pump")
+	TEST_ASSERT_EQUAL(vent.loc, vent_spot, "vent pump moved")
+	TEST_ASSERT(isnull(forklift.load), "forklift holds a vent pump")
+
+/// Autolat mecha: kategoria materiału zamienia się na prawdziwy materiał, a bez materiałów nic się nie drukuje
+/datum/unit_test/aquila_mecha_autolathe_category
+
+/datum/unit_test/aquila_mecha_autolathe_category/Run()
+	var/obj/mecha/working/ripley/mech = allocate(/obj/mecha/working/ripley)
+	aq_seat_mech_pilot(mech)
+	var/obj/item/mecha_parts/mecha_equipment/aq_autolathe/lathe = allocate(/obj/item/mecha_parts/mecha_equipment/aq_autolathe)
+	lathe.attach(mech)
+	var/datum/design/design = allocate(/datum/design)
+	design.name = "test"
+	design.build_path = /obj/item/stack/rods
+	design.materials = list(MAT_CATEGORY_RIGID = 500)
+	TEST_ASSERT(isnull(lathe.design_cost(design)), "category design has a cost with an empty storage")
+	TEST_ASSERT(!lathe.print(design), "mech autolathe printed with an empty storage")
+	var/datum/component/material_container/mats = lathe.container()
+	mats.insert_amount_mat(5000, /datum/material/iron)
+	var/list/cost = lathe.design_cost(design)
+	TEST_ASSERT(length(cost), "category design has no cost with iron in storage")
+	for(var/key in cost)
+		TEST_ASSERT(istype(key, /datum/material), "design cost keeps a non-material key [key]")
+
+/// Silniki skokowe: krata przed mechem zatrzymuje skok (bez lądowiska nie ma skoku ani zużycia prądu)
+/datum/unit_test/aquila_mecha_jumpjet_blocked
+
+/datum/unit_test/aquila_mecha_jumpjet_blocked/Run()
+	var/obj/mecha/combat/gygax/mech = allocate(/obj/mecha/combat/gygax)
+	var/mob/living/carbon/human/pilot = aq_seat_mech_pilot(mech)
+	var/obj/item/mecha_parts/mecha_equipment/aq_utility/jumpjet/jets = allocate(/obj/item/mecha_parts/mecha_equipment/aq_utility/jumpjet)
+	jets.attach(mech)
+	mech.setDir(EAST)
+	var/turf/start = get_turf(mech)
+	allocate(/obj/structure/grille, get_step(mech, EAST))
+	TEST_ASSERT(!length(jets.jump_path()), "jump path goes through a grille")
+	var/charge = mech.get_charge()
+	jets.use_action(pilot)
+	TEST_ASSERT_EQUAL(get_turf(mech), start, "mech jumped through a grille")
+	TEST_ASSERT_EQUAL(mech.get_charge(), charge, "a blocked jump used power")
+
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL
