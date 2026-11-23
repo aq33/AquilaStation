@@ -260,53 +260,68 @@
 	rounds = 90
 	ammo_type = "fpw"
 
-// Stare bronie balistyczne też ładują się tylko z zapasu: skrzynkami, nabojami albo tym, co wystrzeliwują
+// Stare bronie balistyczne też ładują się tylko z zapasu: skrzynkami, nabojami albo tym, co wystrzeliwują.
+// Jak nowe bronie Aquili mają na start pełny magazynek i drugi w zapasie, żeby gotowe mechy (Dark Gygax, Mauler z uplinka)
+// i piloci NPC (mecha_pilot.dm, mecha_reload) mieli czym strzelać i przeładować.
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/lmg
 	aq_ammo_type = "lmg"
+	aq_ammo_cache = 300
 	aq_ammo_cache_max = 600
 	aq_calibers = list("a762", "n762")
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/carbine
 	aq_ammo_type = "incendiary"
+	aq_ammo_cache = 24
 	aq_ammo_cache_max = 96
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/scattershot
 	aq_ammo_type = "scattershot"
+	aq_ammo_cache = 40
 	aq_ammo_cache_max = 80
 	aq_calibers = list("shotgun")
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack
 	aq_ammo_type = "missiles_he"
+	aq_ammo_cache = 8
 	aq_ammo_cache_max = 16
 	aq_calibers = list("84mm")
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/silenced
+	aq_ammo_cache = 6
 	aq_ammo_cache_max = 12
 	aq_calibers = list(".45")
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/BBchaingun
+	aq_ammo_cache = 100
 	aq_ammo_cache_max = 200
 	aq_calibers = list("foam_force")
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/flashbang
+	aq_ammo_cache = 6
 	aq_ammo_cache_max = 12
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/flashbang/clusterbang
+	aq_ammo_cache = 3
 	aq_ammo_cache_max = 6
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/smart_foam
+	aq_ammo_cache = 6
 	aq_ammo_cache_max = 12
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/banana_mortar
+	aq_ammo_cache = 15
 	aq_ammo_cache_max = 30
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/banana_mortar/bombanana
+	aq_ammo_cache = 8
 	aq_ammo_cache_max = 16
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/mousetrap_mortar
+	aq_ammo_cache = 15
 	aq_ammo_cache_max = 30
 	aq_item_ammo = /obj/item/assembly/mousetrap
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/punching_glove
+	aq_ammo_cache = 10
 	aq_ammo_cache_max = 10
 	aq_item_ammo = /obj/item/clothing/gloves/boxing

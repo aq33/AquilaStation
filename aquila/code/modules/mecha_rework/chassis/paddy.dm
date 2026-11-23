@@ -9,6 +9,9 @@
 	icon_state = "paddy"
 	silicon_icon_state = "paddy-empty"
 	step_in = 3
+	// Rodzina Ripleya bierze krok z ciśnienia (update_pressure w ripley.dm), nie ze step_in
+	fast_pressure_step_in = 2
+	slow_pressure_step_in = 3
 	max_integrity = 250
 	deflect_chance = 15
 	armor = list("melee" = 40, "bullet" = 20, "laser" = 10, "energy" = 20, "bomb" = 40, "bio" = 0, "rad" = 20, "fire" = 100, "acid" = 100, "stamina" = 0)

@@ -57,14 +57,14 @@
 	var/base_step = mech.step_in
 	mech.aq_set_overclock(TRUE)
 	TEST_ASSERT(mech.aq_overclock, "overclock did not turn on")
-	TEST_ASSERT(mech.step_in < base_step, "overclock did not speed up the step")
+	TEST_ASSERT(mech.aq_step_delay() < base_step, "overclock did not speed up the step")
 	mech.aq_process_overclock(2)
 	TEST_ASSERT(mech.aq_overclock, "overclock turned off before its time ran out")
 	// Czas działania minął: overclock gaśnie i zaczyna się odnowienie
 	mech.aq_overclock_end = world.time
 	mech.aq_process_overclock(2)
 	TEST_ASSERT(!mech.aq_overclock, "overclock did not turn off after its duration")
-	TEST_ASSERT_EQUAL(mech.step_in, base_step, "step not restored after overclock")
+	TEST_ASSERT_EQUAL(mech.aq_step_delay(), base_step, "step not restored after overclock")
 	mech.aq_set_overclock(TRUE)
 	TEST_ASSERT(!mech.aq_overclock, "overclock turned on during its cooldown")
 	// Po odnowieniu znowu działa
@@ -108,6 +108,7 @@
 	mech.aq_copilot = driver
 	driver.forceMove(mech)
 	mech.aq_grant_copilot_actions(driver)
+	set_test_controls(driver, FALSE) // kierowca z graczem: tylko taki odbiera strzelcowi ruch
 	TEST_ASSERT_EQUAL(mech.aq_copilot, driver, "driver not seated")
 	TEST_ASSERT_EQUAL(mech.occupant, gunner, "gunner lost the pilot seat")
 	// Strzelec nie prowadzi, gdy jest kierowca; kierowca ma akcję skoku
@@ -132,6 +133,7 @@
 	var/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/lmg/lmg = allocate(/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/lmg)
 	lmg.attach(mech)
 	lmg.projectiles = 0
+	lmg.aq_ammo_cache = 0 // bez zapasu startowego
 	var/charge = mech.get_charge()
 	TEST_ASSERT(!lmg.rearm(), "LMG rearmed without ammo in storage")
 	TEST_ASSERT_EQUAL(lmg.projectiles, 0, "LMG refilled from the power cell")
@@ -144,6 +146,7 @@
 	var/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/flashbang/launcher = allocate(/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/flashbang)
 	launcher.attach(mech)
 	launcher.projectiles = 0
+	launcher.aq_ammo_cache = 0 // bez zapasu startowego
 	var/obj/item/grenade/flashbang/bang = allocate(/obj/item/grenade/flashbang)
 	TEST_ASSERT(mech.aq_load_ammo(bang), "flashbang did not load into the grenade launcher")
 	TEST_ASSERT(QDELETED(bang), "loaded flashbang still exists")
@@ -253,6 +256,189 @@
 	TEST_ASSERT(tool2.can_attach(locker), "makeshift clamp does not fit the locker mech")
 	tool2.attach(locker)
 	TEST_ASSERT(!tool3.can_attach(locker), "locker mech took a third tool")
+
+/// Pilot zdalny siedzi w kokpicie: pocisk broni mecha startuje z mecha, a wybuch, pocisk w otwartą kabinę i ogień
+/// nie ranią pilota (regresja: rdzeń traktował occupanta jak siedzącego w kabinie)
+/datum/unit_test/aquila_mecha_remote_pilot
+
+/datum/unit_test/aquila_mecha_remote_pilot/Run()
+	var/obj/mecha/combat/gygax/mech = allocate(/obj/mecha/combat/gygax)
+	var/mob/living/carbon/human/pilot = allocate(/mob/living/carbon/human, run_loc_floor_top_right)
+	mech.aq_remote_pilot = pilot
+	mech.occupant = pilot
+	pilot.remote_control = mech
+	var/turf/mech_turf = get_turf(mech)
+	var/turf/target = locate(mech_turf.x, mech_turf.y + 1, mech_turf.z)
+	var/obj/item/projectile/shot = allocate(/obj/item/projectile, run_loc_floor_top_right)
+	shot.preparePixelProjectile(target, pilot)
+	TEST_ASSERT_EQUAL(get_turf(shot), mech_turf, "remote mech shot did not start from the mech")
+	TEST_ASSERT_EQUAL(shot.starting, mech_turf, "remote mech shot starting turf")
+	TEST_ASSERT_EQUAL(shot.Angle, 0, "remote mech shot does not aim from the mech at a target to the north")
+	// Otwarta kabina i wybuch: pilot w kokpicie zostaje cały
+	mech.enclosed = FALSE
+	mech.contents_explosion(EXPLODE_DEVASTATE, mech)
+	TEST_ASSERT_EQUAL(pilot.getBruteLoss(), 0, "explosion inside the mech hurt the remote pilot")
+	var/obj/item/projectile/bullet = allocate(/obj/item/projectile)
+	bullet.def_zone = BODY_ZONE_CHEST
+	bullet.damage = 10
+	mech.bullet_act(bullet)
+	TEST_ASSERT_EQUAL(pilot.getBruteLoss(), 0, "a bullet into the open cockpit hit the remote pilot")
+	mech.fire_act(1000, 100)
+	TEST_ASSERT_EQUAL(pilot.fire_stacks, 0, "fire on the mech set the remote pilot on fire")
+	mech.aq_end_remote()
+	TEST_ASSERT(isnull(mech.occupant), "remote pilot still the occupant after the session ended")
+
+/// Overclock i płyta pancerza liczą się względem bieżącego step_in: przeciążenie Gygaxa nie zostawia trwałego kroku 1,
+/// Ripley i Paddy po update_pressure dalej przyspieszają z overclockiem, cykle płyty nie zmieniają kroku
+/datum/unit_test/aquila_mecha_step_modifiers
+
+/datum/unit_test/aquila_mecha_step_modifiers/Run()
+	var/obj/mecha/combat/gygax/gygax = allocate(/obj/mecha/combat/gygax)
+	var/mob/living/carbon/human/pilot = allocate(/mob/living/carbon/human)
+	gygax.occupant = pilot
+	pilot.forceMove(gygax)
+	gygax.GrantActions(pilot, TRUE)
+	var/base_step = initial(gygax.step_in)
+	gygax.overload_action.Activate() // przeciążenie siłowników włączone
+	gygax.aq_set_overclock(TRUE)
+	gygax.overload_action.Activate() // wyłączone: rdzeń wraca do initial(step_in)
+	gygax.aq_set_overclock(FALSE)
+	TEST_ASSERT_EQUAL(gygax.step_in, base_step, "Gygax step after overload and overclock")
+	TEST_ASSERT_EQUAL(gygax.aq_step_delay(), base_step, "Gygax step delay after overload and overclock")
+
+	// Ripley: update_pressure ustawia step_in przy każdym kroku, overclock działa mimo to
+	var/obj/mecha/working/ripley/ripley = allocate(/obj/mecha/working/ripley)
+	ripley.update_pressure()
+	var/ripley_step = ripley.step_in
+	ripley.aq_set_overclock(TRUE)
+	ripley.update_pressure()
+	TEST_ASSERT(ripley.aq_step_delay() < ripley.step_in, "overclock does not speed up a Ripley")
+	ripley.can_move = 0
+	TEST_ASSERT(ripley.domove(NORTH), "Ripley did not move or turn")
+	TEST_ASSERT_EQUAL(ripley.can_move - world.time, ripley.aq_step_delay(), "Ripley step after domove ignores overclock")
+	ripley.aq_set_overclock(FALSE)
+	ripley.update_pressure()
+	TEST_ASSERT_EQUAL(ripley.aq_step_delay(), ripley_step, "Ripley step after overclock")
+	// Paddy ma własny, wolniejszy krok także po update_pressure
+	var/obj/mecha/working/ripley/aq_paddy/paddy = allocate(/obj/mecha/working/ripley/aq_paddy)
+	paddy.update_pressure()
+	TEST_ASSERT(paddy.step_in > ripley.step_in, "Paddy step ([paddy.step_in]) not slower than a Ripley MK-I ([ripley.step_in])")
+
+	// Płyta pancerza spowalnia tylko póki jest przykręcona, cykle nie zmieniają kroku
+	var/obj/mecha/combat/durand/durand = allocate(/obj/mecha/combat/durand)
+	durand.construction_state = MECHA_OPEN_HATCH
+	var/obj/item/mecha_parts/aq_armor_plating/reinforced/plate = allocate(/obj/item/mecha_parts/aq_armor_plating/reinforced)
+	for(var/i in 1 to 3)
+		TEST_ASSERT(durand.aq_install_plating(plate), "plating did not install")
+		TEST_ASSERT_EQUAL(durand.aq_step_delay(), durand.step_in + plate.plate_slowdown, "plating slowdown")
+		durand.aq_remove_plating()
+	TEST_ASSERT_EQUAL(durand.step_in, initial(durand.step_in), "Durand step after plating cycles")
+	TEST_ASSERT_EQUAL(durand.aq_step_delay(), initial(durand.step_in), "Durand step delay after plating cycles")
+
+/// Drugie miejsce sprawdza blokadę DNA; martwy kierowca nie blokuje strzelca i nie przejmuje fotela; po zdalnym
+/// pilocie fotel przejmuje żywy kierowca; strafe bez klienta pilota nie daje runtime'u
+/datum/unit_test/aquila_mecha_copilot_access
+
+/datum/unit_test/aquila_mecha_copilot_access/Run()
+	var/obj/mecha/combat/aq_savannah/mech = allocate(/obj/mecha/combat/aq_savannah)
+	var/mob/living/carbon/human/gunner = allocate(/mob/living/carbon/human)
+	var/mob/living/carbon/human/stranger = allocate(/mob/living/carbon/human)
+	mech.occupant = gunner
+	gunner.forceMove(mech)
+	mech.GrantActions(gunner, TRUE)
+	mech.dna_lock = gunner.dna.unique_enzymes
+	TEST_ASSERT(!mech.aq_try_enter_copilot(stranger), "a stranger got into the second seat of a DNA-locked mech")
+	TEST_ASSERT(isnull(mech.aq_copilot), "DNA-locked mech has a copilot")
+	mech.dna_lock = null
+
+	var/mob/living/carbon/human/driver = allocate(/mob/living/carbon/human)
+	mech.aq_copilot = driver
+	driver.forceMove(mech)
+	mech.aq_grant_copilot_actions(driver)
+	driver.death()
+	TEST_ASSERT(mech.relaymove(gunner, NORTH), "a dead driver blocks the gunner")
+	mech.strafe = TRUE
+	mech.can_move = 0
+	mech.domove(turn(mech.dir, 180)) // strafe czyta Alt kierowcy: nikt tu nie ma klienta
+	mech.strafe = FALSE
+	mech.go_out()
+	TEST_ASSERT(isnull(mech.occupant), "a dead driver took over the pilot seat")
+	TEST_ASSERT_EQUAL(mech.aq_copilot, driver, "dead driver left the driver seat")
+	mech.aq_copilot_out()
+
+	// Pilot zdalny kończy sesję: żywy kierowca z graczem przejmuje fotel
+	var/mob/living/carbon/human/remote = allocate(/mob/living/carbon/human, run_loc_floor_top_right)
+	var/mob/living/carbon/human/live_driver = allocate(/mob/living/carbon/human)
+	mech.aq_remote_pilot = remote
+	mech.occupant = remote
+	remote.remote_control = mech
+	mech.aq_copilot = live_driver
+	live_driver.forceMove(mech)
+	set_test_controls(live_driver, FALSE)
+	mech.go_out()
+	TEST_ASSERT(isnull(mech.aq_remote_pilot), "remote session did not end")
+	TEST_ASSERT_EQUAL(mech.occupant, live_driver, "driver did not take over after the remote pilot left")
+	TEST_ASSERT(isnull(mech.aq_copilot), "driver still in the copilot seat after taking over")
+
+/// Odłączenie albo zniszczenie systemu zrzutu w locie przywraca mecha (regresja: zostawał niewidzialny i wyłączony)
+/datum/unit_test/aquila_mecha_drop_abort
+
+/datum/unit_test/aquila_mecha_drop_abort/Run()
+	var/obj/mecha/combat/gygax/mech = allocate(/obj/mecha/combat/gygax)
+	for(var/destroy in list(FALSE, TRUE))
+		var/obj/item/mecha_parts/mecha_equipment/aq_drop_system/drop = allocate(/obj/item/mecha_parts/mecha_equipment/aq_drop_system)
+		drop.attach(mech)
+		// stan po starcie zrzutu (start_drop)
+		drop.in_flight = TRUE
+		mech.completely_disabled = TRUE
+		mech.density = FALSE
+		mech.alpha = 0
+		mech.pixel_z = 300
+		if(destroy)
+			qdel(drop)
+		else
+			drop.detach(run_loc_floor_top_right)
+		var/how = destroy ? "destroyed" : "detached"
+		TEST_ASSERT(!mech.completely_disabled, "mech still disabled after the drop system was [how] in flight")
+		TEST_ASSERT(mech.density, "mech not dense after the drop system was [how] in flight")
+		TEST_ASSERT_EQUAL(mech.alpha, 255, "mech alpha after the drop system was [how] in flight")
+		TEST_ASSERT_EQUAL(mech.pixel_z, 0, "mech pixel_z after the drop system was [how] in flight")
+		if(!destroy)
+			TEST_ASSERT(!drop.in_flight, "detached drop system still in flight")
+			drop.land(get_turf(mech)) // spóźniony timer lądowania nic nie robi
+			TEST_ASSERT_EQUAL(get_turf(mech), run_loc_floor_bottom_left, "late landing timer moved the mech")
+
+/// Stare bronie balistyczne mają zapas startowy: gotowe mechy z uplinka strzelają i przeładowują (też pilot NPC)
+/datum/unit_test/aquila_mecha_starting_ammo
+
+/datum/unit_test/aquila_mecha_starting_ammo/Run()
+	var/list/old_guns = list(
+		/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/lmg,
+		/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/carbine,
+		/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/scattershot,
+		/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack,
+		/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/silenced,
+		/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/flashbang,
+		/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/flashbang/clusterbang,
+		/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/banana_mortar,
+		/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/mousetrap_mortar,
+		/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/punching_glove,
+	)
+	for(var/path in old_guns)
+		var/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/gun = path
+		TEST_ASSERT(initial(gun.aq_ammo_cache) > 0, "[path] has no starting ammo reserve")
+		TEST_ASSERT(initial(gun.aq_ammo_cache) <= initial(gun.aq_ammo_cache_max), "[path] starting reserve above its capacity")
+	for(var/mech_type in list(/obj/mecha/combat/gygax/dark/loaded, /obj/mecha/combat/marauder/mauler/loaded))
+		var/obj/mecha/M = allocate(mech_type)
+		var/guns = 0
+		for(var/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/G in M.equipment)
+			guns++
+			G.projectiles = 0
+			// jak mecha_reload() pilota NPC
+			TEST_ASSERT(G.needs_rearm(), "[G] in [mech_type] does not ask for a reload")
+			G.rearm()
+			TEST_ASSERT(G.projectiles > 0, "[G] in [mech_type] could not reload from its reserve")
+		TEST_ASSERT(guns, "[mech_type] has no ballistic weapons")
 
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL

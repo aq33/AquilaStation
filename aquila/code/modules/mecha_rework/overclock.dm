@@ -8,8 +8,10 @@
 	var/aq_overclock = FALSE
 	/// O ile overclock przyspiesza krok (dzielnik step_in, jak overclock_coeff w tg)
 	var/aq_overclock_coeff = 1.5
-	/// step_in sprzed overclocku
-	var/aq_overclock_saved_step
+	/// Stały dodatek do opóźnienia kroku (płyta pancerza). Ani to, ani overclock nie zmieniają step_in: rdzeń
+	/// (przeciążenie siłowników) i Ripley (update_pressure przy każdym kroku) ustawiają go sami, więc modyfikatory
+	/// liczą się względem bieżącego step_in dopiero przy ruchu (aq_step_delay)
+	var/aq_step_in_bonus = 0
 	/// Kiedy włączony overclock sam się wyłączy
 	var/aq_overclock_end = 0
 	/// Odnowienie overclocku po wyłączeniu
@@ -47,6 +49,17 @@
 	if(world.time >= aq_overclock_end)
 		aq_set_overclock(FALSE)
 
+/// Opóźnienie kroku z płytą pancerza i overclockiem, liczone od bieżącego step_in
+/obj/mecha/proc/aq_step_delay()
+	. = step_in + aq_step_in_bonus
+	if(aq_overclock)
+		. = min(., max(1, round(. / aq_overclock_coeff, 0.5)))
+
+/obj/mecha/domove(direction)
+	. = ..()
+	if(.)
+		can_move = world.time + aq_step_delay()
+
 /obj/mecha/proc/aq_set_overclock(state)
 	if(state == aq_overclock)
 		return
@@ -55,14 +68,9 @@
 		return
 	aq_overclock = state
 	if(state)
-		aq_overclock_saved_step = step_in
-		step_in = max(1, round(step_in / aq_overclock_coeff, 0.5))
 		aq_overclock_end = world.time + AQ_MECHA_OVERCLOCK_DURATION
 		occupant_message("<span class='danger'>Overclock włączony na [DisplayTimeText(AQ_MECHA_OVERCLOCK_DURATION)]: szybszy krok i przeładowanie.</span>")
 	else
-		if(aq_overclock_saved_step)
-			step_in = aq_overclock_saved_step
-		aq_overclock_saved_step = null
 		COOLDOWN_START(src, aq_overclock_cooldown, AQ_MECHA_OVERCLOCK_COOLDOWN)
 		occupant_message("<span class='notice'>Overclock wyłączony, odnowienie: [DisplayTimeText(AQ_MECHA_OVERCLOCK_COOLDOWN)].</span>")
 	aq_overclock_action.button_icon_state = "mech_overload_[state ? "on" : "off"]"

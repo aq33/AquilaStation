@@ -77,14 +77,12 @@
 	balloon_alert(user, "ładowanie skoku...")
 	if(!do_after(user, 2 SECONDS, target = src))
 		return
+	if(leaping || completely_disabled || !COOLDOWN_FINISHED(src, skyfall_cd) || !has_charge(1000))
+		return
 	use_power(1000)
 	COOLDOWN_START(src, skyfall_cd, 30 SECONDS)
-	var/turf/landing = get_turf(src)
-	for(var/i in 1 to 6)
-		var/turf/T = get_step(landing, dir)
-		if(!T || T.density)
-			break
-		landing = T
+	var/list/path = aq_skyfall_path()
+	var/turf/landing = length(path) ? path[length(path)] : get_turf(src)
 	leaping = TRUE
 	density = FALSE
 	completely_disabled = TRUE
@@ -92,13 +90,44 @@
 	visible_message("<span class='danger'>[src] wystrzeliwuje w górę na dyszach!</span>")
 	playsound(src, 'sound/effects/podwoosh.ogg', 70, TRUE)
 	animate(src, pixel_z = 200, alpha = 60, time = 1 SECONDS, easing = QUAD_EASING | EASE_OUT)
-	addtimer(CALLBACK(src, PROC_REF(aq_skyfall_land), landing), 2 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(aq_skyfall_land), landing, path), 2 SECONDS)
 
-/obj/mecha/combat/aq_savannah/proc/aq_skyfall_land(turf/landing)
+/// Wolne pola przed mechem (do 6). Lot kończy się przed gęstym turfem, gęstym obiektem (okno, śluza, maszyna, krata)
+/// i oknem kierunkowym; ludzi przeskakuje, a przy lądowaniu przewraca.
+/obj/mecha/combat/aq_savannah/proc/aq_skyfall_path()
+	. = list()
+	var/turf/current = get_turf(src)
+	for(var/i in 1 to 6)
+		var/turf/T = get_step(current, dir)
+		if(!aq_skyfall_can_pass(current, T))
+			break
+		. += T
+		current = T
+
+/obj/mecha/combat/aq_savannah/proc/aq_skyfall_can_pass(turf/from, turf/T)
+	if(!T || is_blocked_turf(T, TRUE))
+		return FALSE
+	var/move_dir = get_dir(from, T)
+	for(var/obj/O in from)
+		if(O.density && (O.flags_1 & ON_BORDER_1) && (O.dir & move_dir))
+			return FALSE
+	return TRUE
+
+/obj/mecha/combat/aq_savannah/proc/aq_skyfall_land(turf/landing, list/path)
 	if(QDELETED(src))
 		return
+	// Lądowisko mogło się zapełnić w locie (zamknięte drzwi, nowa ściana): ląduje na ostatnim polu, które dalej jest wolne
+	var/turf/current = get_turf(src)
+	var/turf/safe = current
+	for(var/turf/T as anything in path)
+		if(!aq_skyfall_can_pass(current, T))
+			break
+		safe = T
+		current = T
+	landing = safe
 	new /obj/effect/temp_visual/aq_drop_target(landing)
-	forceMove(landing)
+	if(landing != loc)
+		forceMove(landing)
 	animate(src, pixel_z = 0, alpha = 255, time = 0.5 SECONDS, easing = QUAD_EASING | EASE_IN)
 	sleep(0.5 SECONDS)
 	leaping = FALSE
@@ -120,6 +149,14 @@
 
 /obj/mecha/combat/aq_savannah/click_action(atom/target, mob/user, params)
 	if(ivanov_targeting && user == occupant)
+		// Te same warunki co zwykły strzał (click_action w mecha.dm): cel na ziemi, nie własny mech ani ekwipunek
+		if(!target || target == src || !(locate(/turf) in list(target, target.loc)))
+			return
+		if(completely_disabled || is_currently_ejecting || equipment_disabled || user.incapacitated())
+			return
+		if(HAS_TRAIT(user, TRAIT_PACIFISM))
+			to_chat(user, "<span class='warning'>Nie chcesz krzywdzić innych żywych istot!</span>")
+			return
 		ivanov_targeting = FALSE
 		INVOKE_ASYNC(src, PROC_REF(aq_ivanov_strike), get_turf(target))
 		return

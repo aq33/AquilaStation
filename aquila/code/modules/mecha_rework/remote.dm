@@ -23,6 +23,8 @@
 		return FALSE
 	if(!(locate(/obj/item/mecha_parts/mecha_equipment/aq_remote_receiver) in equipment))
 		return FALSE
+	if(!aq_entry_allowed(pilot)) // blokada DNA i kody operacyjne jak przy wejściu do kabiny
+		return FALSE
 	aq_remote_pilot = pilot
 	aq_remote_pod = pod
 	occupant = pilot
@@ -60,6 +62,8 @@
 	update_icon()
 	log_message("[pilot] ended remote control.", LOG_MECHA)
 	to_chat(pilot, "<span class='notice'>Łącze zdalnego sterowania zamknięte.</span>")
+	// go_out() pilota zdalnego nie dochodzi do rdzenia ani do copilot.dm: kierowca przejmuje fotel tutaj
+	aq_promote_copilot()
 
 /obj/mecha/proc/aq_remote_click(mob/source, atom/A, list/modifiers)
 	SIGNAL_HANDLER
@@ -81,6 +85,23 @@
 		aq_end_remote()
 		return
 	return ..()
+
+/// Pocisk broni mecha sterowanego zdalnie startuje z mecha, nie z kokpitu: rdzeń (weapons.dm) podaje chassis.occupant
+/// jako źródło. Kąt z kursora liczy się dalej od pilota, bo jego widok jest wyśrodkowany na mechu.
+/obj/item/projectile/preparePixelProjectile(atom/target, atom/source, params, spread = 0)
+	var/mob/living/pilot = source
+	if(!istype(pilot))
+		return ..()
+	var/obj/mecha/remote_mech = pilot.remote_control
+	if(!istype(remote_mech) || remote_mech.aq_remote_pilot != pilot || pilot.loc == remote_mech)
+		return ..()
+	. = ..(target, remote_mech, params, spread)
+	if(QDELETED(src) || !params || !pilot.client)
+		return
+	var/list/calculated = calculate_projectile_angle_and_pixel_offsets(pilot, params)
+	p_x = calculated[2]
+	p_y = calculated[3]
+	setAngle(calculated[1] + spread)
 
 /obj/mecha/Destroy()
 	if(aq_remote_pilot)
