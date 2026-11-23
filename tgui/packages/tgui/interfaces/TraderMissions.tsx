@@ -72,7 +72,8 @@ const ReputationInfo = (props: { reputation: Reputation }) => {
   const { reputation } = props;
   return (
     <Box mb={1}>
-      Reputacja u frakcji stacji: <b>{reputation.level}</b> ({reputation.points} pkt
+      Reputacja u frakcji stacji: <b>{reputation.level}</b> ({reputation.points}{' '}
+      pkt
       {reputation.next !== null && <> z {reputation.next} do następnego</>}
       ). Zniżka na towar: {reputation.discount}%.
       {reputation.special && (
@@ -158,7 +159,9 @@ export const TraderMissions = (props) => {
                     color="bad"
                     confirmContent="Na pewno?"
                     tooltip="Anulowanie obniża reputację u stacji."
-                    onClick={() => act('aq_cancel_contract', { id: mission.id })}
+                    onClick={() =>
+                      act('aq_cancel_contract', { id: mission.id })
+                    }
                   >
                     Anuluj
                   </Button.Confirm>

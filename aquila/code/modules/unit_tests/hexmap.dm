@@ -367,8 +367,7 @@
 	TEST_ASSERT_EQUAL(config.return_system, "Testowy układ", "The map's return system was not loaded")
 	TEST_ASSERT_EQUAL(config.starmap_path, default_starmap, "The map's return system was written into the starmap path")
 
-/// Regression: the astrometrics console inherits the navigation console and builds on its ui_data(); it must keep the old format
-/// (its window went blank when the navigation console switched to the hex map)
+/// Astrometria i nawigacja dostają dane mapy hex; astrometria w trybie skanu (hex_astrometrics.dm), bez starej mapy gwiazd
 /datum/unit_test/hexmap_astrometrics_data
 
 /datum/unit_test/hexmap_astrometrics_data/Run()
@@ -380,8 +379,9 @@
 	if(!astro.has_overmap() || !nav.has_overmap())
 		return // The test turf is not inside the main ship
 	var/list/astro_data = astro.ui_data(null)
-	TEST_ASSERT(!("ship" in astro_data), "The astrometrics console got the hex map data")
-	TEST_ASSERT("travelling" in astro_data, "The astrometrics console lost its own star map data")
+	// Astrometria pokazuje mapę hex w trybie skanu (hex_astrometrics.dm), stara mapa gwiazd jest usunięta
+	TEST_ASSERT("ship" in astro_data, "The astrometrics console doesn't get the hex map data")
+	TEST_ASSERT(astro_data["mode"] == "astro" && islist(astro_data["astro"]), "The astrometrics console isn't in the scan mode")
 	var/list/nav_data = nav.ui_data(null)
 	TEST_ASSERT("ship" in nav_data, "The navigation console does not send the hex map data")
 

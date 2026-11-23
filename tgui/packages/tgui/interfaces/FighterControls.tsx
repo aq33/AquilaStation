@@ -220,7 +220,9 @@ export const FighterControls = (props) => {
               content="Przeszukaj wrak"
               width="150px"
               icon="box-open"
-              disabled={!data.scavenge_target || data.scavenge_progress !== null}
+              disabled={
+                !data.scavenge_target || data.scavenge_progress !== null
+              }
               onClick={() => act('scavenge_wreck')}
             />
             {data.scavenge_progress !== null && (

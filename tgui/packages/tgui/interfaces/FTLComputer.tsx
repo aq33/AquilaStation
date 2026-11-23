@@ -1,6 +1,6 @@
 // NSV13
-// AQUILA: dawne okno starego komputera FTL to teraz zakładka „Napęd FTL” okna „Nawigacja i skok” (Starmap.tsx).
-// Pokazuje napęd okrętu: stary komputer FTL z jego sterowaniem albo stan napędu modułowego (sterowanie w maszynowni).
+// AQUILA: okno starego komputera FTL w wyglądzie konsoli rozpoznania (aquila/code/modules/overmap/consoles/ftl_computer_window.dm):
+// stan napędu, rozkręcanie, skok awaryjny, śledzone okręty i położenie na mapie hex. Skacze się z konsoli nawigacji.
 import { Box, Button } from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
 
@@ -8,10 +8,14 @@ import { useBackend } from '../backend';
 import { t } from '../i18n';
 import {
   COLOR,
+  ConsoleBar,
+  ConsoleBody,
   ConsoleEmpty,
   ConsoleMeter,
   ConsolePanel,
   ConsoleRow,
+  ConsoleWindow,
+  MONO,
 } from './common/ShipConsole';
 
 type Tracked = {
@@ -20,8 +24,8 @@ type Tracked = {
   target_system: string;
 };
 
-export type FtlTabData = {
-  kind: 'none' | 'legacy' | 'modular';
+type FtlTabData = {
+  kind: 'legacy';
   can_control: BooleanLike;
   name?: string;
   powered?: BooleanLike;
@@ -32,9 +36,19 @@ export type FtlTabData = {
   allowed?: BooleanLike;
   await_emergency_ftl_confirm?: BooleanLike;
   tracking?: Tracked[];
-  cooldown?: BooleanLike;
-  pylons?: number;
-  active_pylons?: number;
+};
+
+type Position = {
+  system?: string;
+  hex?: string;
+  sector?: string;
+  target?: string;
+};
+
+type Data = {
+  ftl: FtlTabData;
+  safety_override: BooleanLike;
+  position: Position;
 };
 
 // FTL_STATE_* z nsv13/code/__DEFINES/ftl.dm
@@ -129,78 +143,41 @@ const LegacyDrive = (props: { ftl: FtlTabData }) => {
   );
 };
 
-const ModularDrive = (props: { ftl: FtlTabData }) => {
-  const { ftl } = props;
-  const value = spoolValue(ftl);
+export const FTLComputer = () => {
+  const { data } = useBackend<Data>();
+  const { ftl, position, safety_override } = data;
   return (
-    <>
-      <ConsolePanel title="Stan napędu">
-        <ConsoleRow label="Napęd:">{ftl.name}</ConsoleRow>
-        <ConsoleRow label="Stan:" colour={stateColour(ftl.state)}>
+    <ConsoleWindow width={360} height={520}>
+      <ConsoleBar>
+        <span style={{ color: COLOR.muted }}>Napęd FTL:</span>
+        <span style={{ fontFamily: MONO, color: stateColour(ftl.state) }}>
           {stateName(ftl.state)}
-        </ConsoleRow>
-        <ConsoleRow label="Aktywne pylony:">
-          {(ftl.active_pylons || 0) + ' / ' + (ftl.pylons || 0)}
-        </ConsoleRow>
-        <ConsoleRow
-          label="Chłodzenie rdzenia:"
-          colour={ftl.cooldown ? COLOR.warn : COLOR.ink}
-        >
-          {ftl.cooldown ? t('trwa') : '—'}
-        </ConsoleRow>
-        <Box style={{ marginTop: '6px' }}>
-          <ConsoleMeter
-            value={value}
-            colour={
-              value >= 0.95
-                ? COLOR.good
-                : value >= 0.15
-                  ? COLOR.warn
-                  : COLOR.bad
-            }
-          />
-        </Box>
-        {!!ftl.await_emergency_ftl_confirm && (
-          <Box style={{ color: COLOR.bad, marginTop: '6px', fontWeight: 600 }}>
-            Skok awaryjny czeka na potwierdzenie na konsoli napędu w maszynowni.
-          </Box>
+        </span>
+      </ConsoleBar>
+      <ConsoleBody>
+        {!!safety_override && (
+          <ConsolePanel>
+            <Box style={{ color: COLOR.bad, fontWeight: 600 }}>
+              Bezpieczniki FTL są nadpisane: skok z nawigacji będzie skokiem
+              awaryjnym i wymaga potwierdzenia tutaj.
+            </Box>
+          </ConsolePanel>
         )}
-      </ConsolePanel>
-      <ConsolePanel>
-        <Box style={{ color: COLOR.muted }}>
-          Ten okręt ma napęd modułowy (rdzeń i pylony). Rozkręcanie, pylony i
-          potwierdzenie skoku awaryjnego są na konsoli napędu w maszynowni.
-        </Box>
-      </ConsolePanel>
-    </>
-  );
-};
-
-/** Zawartość zakładki „Napęd FTL” */
-export const FTLDriveTab = (props: {
-  ftl: FtlTabData;
-  safetyOverride?: boolean;
-}) => {
-  const { ftl, safetyOverride } = props;
-  return (
-    <>
-      {!!safetyOverride && (
-        <ConsolePanel>
-          <Box style={{ color: COLOR.bad, fontWeight: 600 }}>
-            Bezpieczniki FTL są nadpisane: skok z mapy będzie skokiem awaryjnym
-            i wymaga potwierdzenia.
+        <ConsolePanel title="Położenie">
+          <ConsoleRow label="Układ:">{position.system || '—'}</ConsoleRow>
+          <ConsoleRow label="Kafel:">{position.hex || '—'}</ConsoleRow>
+          <ConsoleRow label="Sektor:">{position.sector || '—'}</ConsoleRow>
+          {!!position.target && (
+            <ConsoleRow label="Cel skoku:" colour={COLOR.warn}>
+              {position.target}
+            </ConsoleRow>
+          )}
+          <Box style={{ color: COLOR.muted, marginTop: '6px' }}>
+            Cel skoku wybiera się na mapie w konsoli nawigacji.
           </Box>
         </ConsolePanel>
-      )}
-      {ftl.kind === 'legacy' && <LegacyDrive ftl={ftl} />}
-      {ftl.kind === 'modular' && <ModularDrive ftl={ftl} />}
-      {ftl.kind === 'none' && (
-        <ConsolePanel>
-          <ConsoleEmpty>
-            Okręt nie ma napędu FTL połączonego z nawigacją.
-          </ConsoleEmpty>
-        </ConsolePanel>
-      )}
-    </>
+        <LegacyDrive ftl={ftl} />
+      </ConsoleBody>
+    </ConsoleWindow>
   );
 };
