@@ -99,6 +99,9 @@
 		if(istype(wall, /turf/closed/indestructible/dropship/sabre_window))
 			windows++
 	TEST_ASSERT_EQUAL(windows, 7, "The Sabre cockpit should have seven windows")
+	// Przezroczyste brzegi wycinków kadłuba (zaokrąglony przód) pokazują to, na czym stoi prom, a nie czarne pole
+	sleep(2)
+	TEST_ASSERT(planet_test_hull_front_underlaid(shuttle_port), "The see-through front of the Sabre hull shows nothing under it in the hangar")
 	sabre.set_fuel(500)
 	TEST_ASSERT(sabre.shuttle_launch(), "The Sabre didn't launch")
 	// W locie wokół kadłuba jest tylko własny kosmos parkingu: z promu nie widać skał sąsiedniej rezerwacji
@@ -144,9 +147,9 @@
 	if(!descent.rotation)
 		TEST_ASSERT(ground.ground_x - port.x == ground.hull_x - shuttle_port.x && ground.ground_y - port.y == ground.hull_y - shuttle_port.y, "The ground picture isn't centred where the hull will stand")
 	TEST_ASSERT(length(ground.masked_turfs), "The ground picture has no mask: nothing of it would be seen")
-	var/list/hull_now = shuttle_hull_turfs(shuttle_port)
-	for(var/turf/masked as anything in ground.masked_turfs)
-		TEST_ASSERT(!(masked in hull_now), "The ground picture's mask covers the hull at [COORD(masked)]")
+	// Maska obejmuje też kadłub: przez przezroczyste brzegi jego wycinków widać teren pod promem
+	var/turf/hull_first = shuttle_hull_turfs(shuttle_port)[1]
+	TEST_ASSERT(hull_first in ground.masked_turfs, "The ground picture's mask leaves out the hull: its see-through edges would show space")
 	// Obraz z daleka (rust-g; w zejściu piecze się w tle, tu mały wycinek, żeby test nie czekał): 2 piksele na pole
 	var/icon/aerial = planet_ground_aerial(port.x, port.y, port.z, 4, 2, null, planet.surface.reservation)
 	TEST_ASSERT(aerial && aerial.Width() == 16 && aerial.Height() == 16, "No picture of the ground from afar")
@@ -168,6 +171,9 @@
 		TEST_ASSERT(!wall.opacity, "A Sabre hull wall [wall.type] blocks the view after landing on the planet")
 	TEST_ASSERT_EQUAL(shuttle_port.docked, port, "The interior isn't on the landing spot after the descent.")
 	TEST_ASSERT_EQUAL(sabre.shuttle_docked_at, port, "The Sabre doesn't count as landed after the descent")
+	TEST_ASSERT(planet_test_hull_front_underlaid(shuttle_port), "The see-through front of the Sabre hull shows nothing under it on the planet")
+	// Kratka silnika nie prześwituje: po przelocie ma tło w kolorze blach kadłuba, a nie zrzut gruntu spod promu
+	TEST_ASSERT(planet_test_engine_filled(shuttle_port), "The Sabre engine grille shows the ground through it after landing instead of the hull colour")
 	for(var/turf/T as anything in shuttle_hull_turfs(shuttle_port))
 		TEST_ASSERT(!(locate(/obj/effect/planet_landing_blocker) in T), "A landing blocker stayed under the hull after touchdown")
 
@@ -272,6 +278,27 @@
 		qdel(sabre)
 	qdel(home, TRUE)
 	qdel(hangar)
+
+/// Czy każda kratka silnika Sabre ma jedno tło w kolorze blach kadłuba
+/proc/planet_test_engine_filled(obj/docking_port/mobile/shuttle_port)
+	var/found = 0
+	for(var/turf/closed/indestructible/dropship/hull in shuttle_port.return_turfs())
+		if(hull.see_through_edges())
+			continue
+		found++
+		if(length(hull.underlays) != 1)
+			return FALSE
+		var/mutable_appearance/inside = hull.underlays[1]
+		if(inside.color != "#2c3539")
+			return FALSE
+	return found > 0
+
+/// Czy wycinek przodu kadłuba Sabre (z przezroczystymi pikselami) ma pod sobą podkład z gruntem
+/proc/planet_test_hull_front_underlaid(obj/docking_port/mobile/shuttle_port)
+	for(var/turf/closed/indestructible/dropship/hull in shuttle_port.return_turfs())
+		if(hull.icon_state == "blue_front")
+			return length(hull.underlays) > 0
+	return FALSE
 
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL

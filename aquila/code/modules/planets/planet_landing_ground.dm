@@ -5,9 +5,9 @@
 // Trzy obrazy tego samego terenu wokół środka lądowiska, każdy dokładniejszy i bliższy:
 // - z daleka: dwa obrazki PNG z rust-g (2 i 8 pikseli na pole), barwy z ikon pól i tego, co na nich stoi,
 // - z bliska: kopie pól i wszystkiego, co na nich stoi, pojawiają się, gdy teren jest już blisko.
-// Rysują się na własnej płaszczyźnie (nad kosmosem i paralaksą, pod otwartą przestrzenią i podłogą), przyciętej maską: każde pole kosmosu
-// parkingu wokół kadłuba ma nakładkę na płaszczyźnie maski, więc teren widać tylko tam, gdzie gracz widzi kosmos za
-// kadłubem, a nie w ciemności poza zasięgiem wzroku.
+// Rysują się na własnej płaszczyźnie (nad kosmosem i paralaksą, pod otwartą przestrzenią i podłogą), przyciętej maską: pola
+// parkingu wokół kadłuba mają nakładkę na płaszczyźnie maski, więc teren widać tylko w zasięgu wzroku gracza, a kadłub
+// zasłania go wszędzie poza przezroczystymi brzegami.
 //
 // Różnice względem oryginału: jeden wspólny obiekt na parkingu zamiast obrazów dla każdego gracza osobno (wnętrze promu
 // jest przezroczyste i jego środek zawsze jest w zasięgu wzroku), maska na nakładkach pól zamiast nakładek obszarów
@@ -232,19 +232,19 @@
 			floated.plane = FLOAT_PLANE
 			. += floated
 
-/// Nakładki maski na polach kosmosu parkingu wokół kadłuba
+/// Nakładki maski na polach parkingu wokół kadłuba i na samym kadłubie
 /datum/planet_ground_view/proc/mask()
 	if(length(masked_turfs))
 		return
 	var/mutable_appearance/mask_tile = planet_ground_mask_tile()
-	var/list/hull_set = list()
-	for(var/turf/T as anything in hull_turfs)
-		hull_set[T] = TRUE
 	var/list/box = planet_ground_box(hull_turfs)
 	var/turf/first = hull_turfs[1]
 	var/list/area_turfs = block(locate(max(1, box[1] - PLANET_GROUND_MASK_RANGE), max(1, box[2] - PLANET_GROUND_MASK_RANGE), first.z), locate(min(world.maxx, box[3] + PLANET_GROUND_MASK_RANGE), min(world.maxy, box[4] + PLANET_GROUND_MASK_RANGE), first.z))
+	// Także pola kadłuba: teren leży pod podłogą, więc widać go tylko przez przezroczyste brzegi wycinków kadłuba. Bez
+	// kratki silnika: tam przerwy to czarne wnętrze silnika
 	for(var/turf/T as anything in area_turfs)
-		if(hull_set[T] || !isspaceturf(T))
+		var/turf/closed/indestructible/dropship/hull = T
+		if(istype(hull) && !hull.see_through_edges())
 			continue
 		T.add_overlay(mask_tile)
 		masked_turfs += T

@@ -59,6 +59,13 @@
 	if(!craft && docked)
 		var/obj/structure/overmap/small_craft/transport/sabre/shuttle/new_craft = new craft_type(get_turf(src))
 		new_craft.shuttle_link(src)
+	// Szablon dopisuje znacznik podłoża promu do pól dopiero po wczytaniu: podkład kadłuba w następnym ticku
+	addtimer(CALLBACK(src, PROC_REF(update_hull_underlays)), 1)
+
+/// Przezroczyste części kadłuba pokazują to, co leży pod promem (dalej robi to copyTurf() przy każdym przelocie)
+/obj/docking_port/mobile/sabre/proc/update_hull_underlays()
+	for(var/turf/closed/indestructible/dropship/hull in return_turfs())
+		hull.update_ground_underlay()
 
 /obj/docking_port/mobile/sabre/Destroy(force)
 	if(force && craft)
@@ -183,6 +190,56 @@
 /turf/open/indestructible/dropship/setDir(newdir)
 	dir = newdir
 	transform = dropship_turf_transform(dir)
+
+/// Kolor blach kadłuba Sabre (najczęstszy piksel wycinków kadłuba w dropship.dmi): tło kratki silnika
+#define SABRE_HULL_PLATING_COLOR "#2c3539"
+
+/turf/closed/indestructible/dropship
+	/// Podkład z gruntem spod promu (podłoga hangaru, kosmos, grunt planety)
+	var/mutable_appearance/ground_underlay
+
+/// Wycinki kadłuba Sabre mają przezroczyste piksele (zaokrąglony przód, końcówki skrzydeł, narożniki gondoli). Pod polem
+/// zamkniętym nic się nie rysuje, więc wychodziła tam czarna obwódka: teraz widać przez nie to, na czym stoi prom.
+/// Wystarczy raz, po wczytaniu szablonu: przy przelocie copyTurf() zastępuje podkład pola z podkładem zrzutem pola,
+/// które leżało pod promem (podłoga hangaru, kosmos parkingu, grunt planety)
+/turf/closed/indestructible/dropship/proc/update_ground_underlay()
+	if(ground_underlay)
+		underlays -= ground_underlay
+		ground_underlay = null
+	// Kratka silnika: przerwy między rozpórkami to wnętrze silnika w kolorze blach kadłuba, nie prześwit
+	if(!see_through_edges())
+		var/mutable_appearance/inside = mutable_appearance('aquila/icons/effects/planet_descent.dmi', "fill")
+		inside.color = SABRE_HULL_PLATING_COLOR
+		ground_underlay = inside
+		// Po przelocie copyTurf() wstawia tu zrzut pola spod promu: tło silnika zastępuje go w całości
+		underlays = list(inside)
+		return
+	var/turf/below = dropship_ground_type()
+	if(!below)
+		return
+	ground_underlay = mutable_appearance(initial(below.icon), initial(below.icon_state), initial(below.layer), initial(below.plane))
+	// Grunt pod promem nie obraca się razem z wycinkiem kadłuba
+	ground_underlay.appearance_flags = RESET_TRANSFORM
+	underlays += ground_underlay
+
+/// Przelot: copyTurf() dał kratce silnika zrzut pola spod promu, a ona ma mieć swoje tło
+/turf/closed/indestructible/dropship/afterShuttleMove(turf/oldT, rotation, list/all_towed_shuttles)
+	. = ..()
+	if(!see_through_edges())
+		update_ground_underlay()
+
+/// Czy przezroczyste piksele wycinka to brzeg kadłuba (widać przez nie to, na czym stoi prom), a nie wnętrze silnika
+/turf/closed/indestructible/dropship/proc/see_through_edges()
+	var/static/list/engine_states = list("blue_wing_lb", "blue_wing_rb")
+	return !(icon_state in engine_states)
+
+/// Typ pola, na którym stoi prom: pod znacznikiem podłoża promu w baseturfs
+/turf/closed/indestructible/dropship/proc/dropship_ground_type()
+	var/list/under = baseturfs
+	if(!islist(under))
+		return null
+	var/marker = under.Find(/turf/baseturf_skipover/shuttle)
+	return marker > 1 ? under[marker - 1] : null
 
 /// Kadłub Sabre nie zasłania widoku: z kokpitu zawsze widać, co jest wokół promu (niebo, planetę przy zejściu na
 /// powierzchnię, hangar), jak w widoku z góry na cały statek. Bez tego z wnętrza widać tylko stożki przez okna
@@ -430,3 +487,5 @@
 		if(QDELETED(S) || !S.shuttle_docked_at || !user.Adjacent(src) || !S.shuttle_launch(user))
 			return TRUE
 	return ..()
+
+#undef SABRE_HULL_PLATING_COLOR
