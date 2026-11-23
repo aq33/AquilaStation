@@ -457,6 +457,9 @@
 			before += shell
 	var/datum/round_event/aquila_lost_cyborg/event = new(FALSE)
 	event.kill()
+	// W grze event zawsze ma control z runEvent (announce_to_ghosts czyta control.alert_observers)
+	event.control = locate(/datum/round_event_control/aquila_lost_cyborg) in SSevents.control
+	TEST_ASSERT(event.control, "Brak sterowania eventu zagubionego cyborga w SSevents")
 	event.start()
 	var/obj/effect/mob_spawn/aquila_lost_cyborg/new_shell
 	for(var/spawner_name in GLOB.mob_spawners)
