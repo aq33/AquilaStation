@@ -133,6 +133,7 @@
 "!!NAN!!, WEZWIJ PROGRAMISTĘ": "!!NAN!!, CALL A CODER",
 "!data.canPrint ||": "!data.canPrint ||",
 "!hasBeakerInHand && 'Musisz trzymać pojemnik w ręce!'": "!hasBeakerInHand && 'You must hold a container in your hand!'",
+"[src] nie chce się przyjąć.": "[src] fails to take root.",
 "\", ' zamyka się sama.": "\", ' closes on its own.",
 "\"Bluespace'owa magistrala pamięci\",": "\"Bluespace Memory Bus\",",
 "\"Bluespace'owe gniazda CPU\",": "\"Bluespace CPU slots\",",

@@ -393,6 +393,7 @@
 	check_survey_mission(planet)
 	check_evacuation_mission(planet)
 	check_site_fallback(planet)
+	check_spacevine_cap(planet)
 	// Ostatnie: przenosi planetę do nullspace i może zwolnić powierzchnię
 	check_corpse_keeps_surface(planet)
 	planet.surface.unload()
@@ -542,6 +543,50 @@
 		T.flags_1 &= ~NO_RUINS_1
 	qdel(mission)
 	TEST_ASSERT_EQUAL(picked, only_spot, "The mission didn't find the only free turf for its site")
+
+/// Kudzu na planecie przestaje się rozrastać na limicie kępy, a przy pełnym limicie wspólnym nasiona się nie przyjmują.
+/// Na okręcie limitu nie ma (event kudzu działa po staremu).
+/datum/unit_test/planet_surface_mechanics/proc/check_spacevine_cap(obj/structure/overmap/planet/planet)
+	var/datum/planet_surface/surface = planet.surface
+	var/turf/ground = planet_ground_turf(surface)
+	TEST_ASSERT(is_planet_surface_turf(ground), "A landing zone turf isn't recognised as the planet surface")
+	TEST_ASSERT(!is_planet_surface_turf(run_loc_floor_bottom_left), "A ship turf is recognised as the planet surface")
+
+	var/datum/spacevine_controller/controller = new(ground, list(), 50, 7)
+	STOP_PROCESSING(SSobj, controller)
+	for(var/turf/open/T in surface.inner_turfs())
+		if(length(controller.vines) >= PLANET_SPACEVINE_CLUSTER_CAP)
+			break
+		if(T == ground || is_planet_hazard_turf(T) || (locate(/obj/structure/spacevine) in T))
+			continue
+		controller.spawn_spacevine_piece(T)
+	TEST_ASSERT_EQUAL(length(controller.vines), PLANET_SPACEVINE_CLUSTER_CAP, "The test couldn't plant a full kudzu cluster")
+	TEST_ASSERT(!controller.can_spread_from(ground), "A full kudzu cluster on the planet can still spread")
+	TEST_ASSERT(controller.can_spread_from(run_loc_floor_bottom_left), "The planet kudzu cap also applies aboard the ship")
+	for(var/obj/structure/spacevine/vine as anything in controller.vines.Copy())
+		vine.spread()
+	TEST_ASSERT_EQUAL(length(controller.vines), PLANET_SPACEVINE_CLUSTER_CAP, "A capped kudzu cluster spread on the planet")
+
+	// Pełny limit wspólny (suma zapamiętana na ten tick): nasiona na planecie się nie przyjmują
+	var/old_total = GLOB.spacevine_total
+	GLOB.spacevine_total = PLANET_SPACEVINE_GLOBAL_CAP
+	GLOB.spacevine_total_counted = world.time
+	var/controllers_before = length(GLOB.spacevine_controllers)
+	var/mob/living/carbon/human/planter = allocate(/mob/living/carbon/human, get_step(ground, NORTH))
+	var/obj/item/plant_seeds/preset/kudzu/seeds = allocate(/obj/item/plant_seeds/preset/kudzu, planter.loc)
+	seeds.start_kudzu(planter)
+	GLOB.spacevine_total = old_total
+	GLOB.spacevine_total_counted = -1
+	TEST_ASSERT(!QDELETED(seeds), "Kudzu seeds took root on the planet past the global cap")
+	TEST_ASSERT_EQUAL(length(GLOB.spacevine_controllers), controllers_before, "A kudzu cluster started on the planet past the global cap")
+	var/list/vine_turfs = list()
+	for(var/obj/structure/spacevine/vine as anything in controller.vines)
+		vine_turfs += get_turf(vine)
+	// Ostatnie usunięte pnącze zostawia paczkę nasion
+	controller.DeleteVines()
+	for(var/turf/T as anything in vine_turfs)
+		for(var/obj/item/plant_seeds/preset/kudzu/leftover in T)
+			qdel(leftover)
 
 /// Ciało gracza, do którego ten może wrócić, trzyma powierzchnię po odlocie okrętu; bez możliwości powrotu powierzchnia znika
 /datum/unit_test/planet_surface_mechanics/proc/check_corpse_keeps_surface(obj/structure/overmap/planet/planet)
