@@ -27795,5 +27795,7 @@
 "Liczba układów": "Systems",
 "◉ sektor okrętu · zielone kafle: zasięg skoku · ⇄ brama do innego sektora · ★ stolica · $ stacja handlowa · ◎ hiperbrama · przerywany pierścień: układ okupowany · czerwona linia: front": "◉ ship sector · green tiles: jump range · ⇄ gate to another sector · ★ capital · $ trade station · ◎ hypergate · dashed ring: occupied system · red line: front",
 "Mocny impuls EMP: zakłóca systemy trafionego okrętu.": "Strong EMP pulse: disrupts the systems of the ship it hits.",
-"Słaby impuls EMP: krócej zakłóca systemy trafionego okrętu.": "Weak EMP pulse: disrupts the systems of the ship it hits for a shorter time."
+"Słaby impuls EMP: krócej zakłóca systemy trafionego okrętu.": "Weak EMP pulse: disrupts the systems of the ship it hits for a shorter time.",
+"Rozrost/Atak (4)": "Expand/Attack (4)",
+"Grzyb spróbuje rozrosnąć się w tym kierunku. Jeżeli kafelek jest zablokowany, zostanie zaatakowany, zadając obrażenia obiektom oraz przeciwników, zwracając 2 zasobów.": "The blob will attempt to expand in that direction. If the tile is blocked, it will be attacked instead, damaging objects and enemies and refunding 2 resources."
 }
