@@ -116,6 +116,9 @@
 	TEST_ASSERT(QDELETED(revenge), "The revenge implant did not fire on death")
 
 	// Przejęcie: maszyny w przejętym obszarze jak dla SI
+	// wyładowanie zemsty ogłusza sąsiadów, a ogłuszony nosiciel (słusznie) nie steruje maszynami
+	patient.SetAllImmobility(0)
+	patient.SetUnconscious(0)
 	var/obj/item/implant/aq_hijack/hijack = aq_self_implant(patient, /obj/item/implanter/aq_hijack)
 	TEST_ASSERT(hijack, "The hijack implant did not go in")
 	var/obj/machinery/machine = allocate(/obj/machinery/door/airlock)
@@ -453,6 +456,8 @@
 	var/obj/item/wirecutters/cutters = allocate(/obj/item/wirecutters)
 	embedded.wirecutter_act(patient, cutters)
 	TEST_ASSERT(!embedded.get_stored(), "The wirecutters did not take the card out")
+	// karta wpina się do kombinezonu
+	patient.equip_to_slot_or_del(new /obj/item/clothing/under/color/grey(patient), ITEM_SLOT_ICLOTHING)
 	TEST_ASSERT(patient.equip_to_slot_if_possible(card, ITEM_SLOT_ID, disable_warning = TRUE), "The card from the module does not fit the ID slot")
 	var/obj/item/pen/pen = allocate(/obj/item/pen)
 	patient.put_in_active_hand(pen)
