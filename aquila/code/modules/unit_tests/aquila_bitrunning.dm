@@ -102,4 +102,57 @@
 	for(var/path in list(/obj/item/clothing/under/rank/cargo/bitrunner, /obj/item/clothing/under/plasmaman/bitrunner, /obj/item/clothing/head/helmet/space/plasmaman/bitrunner))
 		TEST_ASSERT(vendor.products[path], "CargoDrobe nie sprzedaje [path]")
 
+/// AQUILA - wędkarstwo w bitrunningu: woda z domen jako łowisko, sygnał na wędce, Zatoka Bryzy i zestaw Wędkarz
+/datum/unit_test/aquila_bitrunning_fishing
+	var/caught_fish_count = 0
+
+/datum/unit_test/aquila_bitrunning_fishing/proc/on_caught_fish(datum/source, atom/movable/reward)
+	SIGNAL_HANDLER
+	caught_fish_count++
+
+/datum/unit_test/aquila_bitrunning_fishing/Run()
+	var/turf/shore = run_loc_floor_bottom_left
+	var/turf/target_turf = get_step(shore, EAST)
+	var/old_type = target_turf.type
+	var/turf/beach_water = target_turf.ChangeTurf(/turf/open/floor/plating/beach/water)
+
+	var/mob/living/carbon/human/fisher = allocate(/mob/living/carbon/human, shore)
+	var/obj/item/fishing_rod/rod = allocate(/obj/item/fishing_rod)
+	fisher.put_in_active_hand(rod)
+
+	TEST_ASSERT(rod.cast_line(beach_water, fisher), "Casting into beach/water did not start fishing")
+	var/datum/component/fishing_spot/beach_spot = beach_water.GetComponent(/datum/component/fishing_spot)
+	TEST_ASSERT(beach_spot && beach_spot.fish_source == GLOB.preset_fish_sources[FISHING_SPOT_PRESET_BEACH], "beach/water did not get the beach fish source")
+	qdel(GLOB.fishing_challenges_by_user[fisher])
+
+	var/turf/river_water = beach_water.ChangeTurf(/turf/open/water)
+	TEST_ASSERT(rod.cast_line(river_water, fisher), "Casting into /turf/open/water did not start fishing")
+	var/datum/component/fishing_spot/river_spot = river_water.GetComponent(/datum/component/fishing_spot)
+	TEST_ASSERT(river_spot && river_spot.fish_source == GLOB.preset_fish_sources[FISHING_SPOT_PRESET_JUNGLE], "/turf/open/water did not get the jungle fish source")
+	qdel(GLOB.fishing_challenges_by_user[fisher])
+	river_water.ChangeTurf(old_type)
+
+	RegisterSignal(rod, COMSIG_FISHING_ROD_CAUGHT_FISH, PROC_REF(on_caught_fish))
+	var/datum/fish_source/beach_source = GLOB.preset_fish_sources[FISHING_SPOT_PRESET_BEACH]
+	beach_source.dispense_reward(FISHING_DUD, fisher, rod)
+	TEST_ASSERT(caught_fish_count == 0, "FISHING_DUD emitted COMSIG_FISHING_ROD_CAUGHT_FISH")
+
+	var/atom/movable/caught = beach_source.dispense_reward(/datum/aquarium_behaviour/fish/clownfish, fisher, rod)
+	TEST_ASSERT(caught, "dispense_reward returned no fish")
+	TEST_ASSERT(caught_fish_count == 1, "dispense_reward did not emit COMSIG_FISHING_ROD_CAUGHT_FISH")
+	qdel(caught)
+
+	var/datum/lazy_template/virtual_domain/breeze_bay/domain = new
+	domain.setup_domain(list(rod))
+	TEST_ASSERT(domain.main_crate_points == 0, "breeze_bay started with points")
+	SEND_SIGNAL(rod, COMSIG_FISHING_ROD_CAUGHT_FISH, null)
+	TEST_ASSERT(domain.main_crate_points == 0, "Null reward added breeze_bay points")
+	var/obj/item/reward_dummy = allocate(/obj/item/clothing/shoes/sandal)
+	SEND_SIGNAL(rod, COMSIG_FISHING_ROD_CAUGHT_FISH, reward_dummy)
+	TEST_ASSERT(domain.main_crate_points == 2, "Caught fish did not add 2 points to breeze_bay (got [domain.main_crate_points])")
+	qdel(domain)
+
+	var/obj/item/disk/bitrunning/gimmick/sports/disk = allocate(/obj/item/disk/bitrunning/gimmick/sports)
+	TEST_ASSERT(/datum/bitrunning_gimmick/fisher in disk.selectable_loadouts, "Sports gimmick disk is missing /datum/bitrunning_gimmick/fisher")
+
 #undef TEST_ASSERT

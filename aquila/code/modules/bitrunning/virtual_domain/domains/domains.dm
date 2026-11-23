@@ -68,21 +68,22 @@
 /datum/lazy_template/virtual_domain/breeze_bay
 	name = "Zatoka Bryzy"
 	desc = "Nadmorskie miasteczko z wielkim lasem na północy."
-	help_text = "To proste! Opalaj się i baw się dobrze! Tylko kraby ostatnio coś się panoszą: przetrzebienie ich odsłoni skrzynię."
+	help_text = "To proste! Opalaj się, nałów ryb i baw się dobrze! Tylko uważaj, żeby nie ugryzły cię kraby."
 	key = "breeze_bay"
 	map_name = "breeze_bay"
 	reward_points = BITRUNNER_REWARD_LOW
 	domain_flags = DOMAIN_NO_NOHIT_BONUS
 
-/// AQUILA: u nas nie ma wędkowania, więc skrzynię odsłania przetrzebienie krabów
 /datum/lazy_template/virtual_domain/breeze_bay/setup_domain(list/created_atoms)
 	. = ..()
-	for(var/mob/living/basic/crab/crab in created_atoms)
-		RegisterSignal(crab, COMSIG_MOB_DEATH, PROC_REF(on_crab_killed))
+	for(var/obj/item/fishing_rod/rod in created_atoms)
+		RegisterSignal(rod, COMSIG_FISHING_ROD_CAUGHT_FISH, PROC_REF(on_fish_caught))
 
 /// Eventually reveal the cache
-/datum/lazy_template/virtual_domain/breeze_bay/proc/on_crab_killed(datum/source)
+/datum/lazy_template/virtual_domain/breeze_bay/proc/on_fish_caught(datum/source, reward)
 	SIGNAL_HANDLER
+	if(isnull(reward))
+		return
 	add_points(2)
 
 /datum/lazy_template/virtual_domain/bubblegum
