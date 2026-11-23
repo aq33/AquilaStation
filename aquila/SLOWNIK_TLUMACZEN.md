@@ -4563,7 +4563,7 @@ Nazwy obszarów są w większości przetłumaczone. Nowe nazwy budujemy z tych k
 | death alarm (cyborg) | alarm zniszczenia | m; nowe (dla ludzi zostaje „alarm śmierci”) |
 | lethal mode unlock | odblokowanie trybu zabójczego | n; nowe |
 | personal shield | osobista tarcza | ż; nowe |
-| floodlight | reflektor | m; nowe |
+| floodlight | naświetlacz | m; istniejące (`code/modules/power/floodlight.dm`), także „naświetlacz cyborga” |
 | plating repair tool | narzędzie do łatania podłóg | n; nowe |
 | push broom | miotła | ż; istniejące |
 | plunger | przepychacz | m; nowe |
@@ -4669,7 +4669,7 @@ Nazwy obszarów są w większości przetłumaczone. Nowe nazwy budujemy z tych k
 | Vibebot / Cambot / Digbot / Farmbot / BarBuddy / Secbuddy | bez zmian | m; nowe, nazwy modeli |
 | Dramatic Chef (chefbot) | Dramatyczny kucharz | m; nowe |
 | Doctor Acula (bloodbot) | Doctor Acula | m; nowe, nazwa własna |
-| Donk Exenteration Drone (D.E.D.bot, Ex-Drone) | Donk Exenteration Drone, D.E.D.bot, Ex-Dron | m; nowe |
+| Donk Exenteration Drone (D.E.D.bot, Ex-Drone) | dron eksenteracyjny Donk, D.E.D.bot, Ex-Dron | m; nowe (marka w oryginale, człon opisowy po polsku) |
 | exenteration drone | dron eksenteracyjny | m; nowe |
 | frightbot / screambot / buttbot | frightbot / screambot / tyłkobot | m; tyłkobot istniejące |
 | eldritch bots | eldritchowe boty | m mn.; nowe (event) |
