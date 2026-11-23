@@ -198,6 +198,12 @@ GLOBAL_LIST_EMPTY(basic_bots_list)
 /mob/living/basic/bot/proc/is_emagged()
 	return !!(bot_access_flags & BOT_COVER_EMAGGED)
 
+/// Zhakowany od razu, bez emaga (czar przyzwania ED-209): blokada, bez zdalnego sterowania, efekty zhakowania
+/mob/living/basic/bot/proc/set_emagged(mob/user)
+	bot_access_flags |= BOT_COVER_EMAGGED | BOT_COVER_LOCKED
+	set_mode_flags(bot_mode_flags & ~BOT_MODE_REMOTE_ENABLED)
+	emag_effects(user)
+
 /mob/living/basic/bot/proc/turn_on()
 	if(stat == DEAD)
 		return FALSE
@@ -232,7 +238,10 @@ GLOBAL_LIST_EMPTY(basic_bots_list)
 	if(paicard)
 		ejectpai()
 	explode()
-	return ..()
+	. = ..()
+	// zniszczony bot zawsze się rozpada (jak stary bot w explode()), także bez DEL_ON_DEATH zdjętego przez event świadomości
+	if(!QDELETED(src))
+		qdel(src)
 
 /mob/living/basic/bot/proc/explode()
 	visible_message(span_boldnotice("[src] rozpada się na kawałki!"))
@@ -245,6 +254,10 @@ GLOBAL_LIST_EMPTY(basic_bots_list)
 	var/obj/item/dropped_item
 	if(ispath(drop_item))
 		dropped_item = new drop_item(dropzone)
+		// nowa apteczka albo skrzynka ma zawartość z PopulateContents(), a bot był zbudowany z pustej
+		if(istype(dropped_item, /obj/item/storage))
+			for(var/atom/movable/content as anything in dropped_item.contents.Copy())
+				qdel(content)
 	else
 		dropped_item = drop_item
 		dropped_item.forceMove(dropzone)
@@ -286,7 +299,7 @@ GLOBAL_LIST_EMPTY(basic_bots_list)
 	emag_effects(user)
 	return TRUE
 
-/// Zdalna awaria (burza jonowa, rewenant): otwiera panel i zhakowuje bota
+/// Zdalna awaria (rewenant): otwiera panel i zhakowuje bota
 /mob/living/basic/bot/proc/remote_malfunction()
 	if(is_emagged())
 		return
@@ -345,6 +358,7 @@ GLOBAL_LIST_EMPTY(basic_bots_list)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, bot_ui, name)
+		ui.set_autoupdate(TRUE)
 		ui.open()
 
 /mob/living/basic/bot/AltClick(mob/user)
@@ -369,12 +383,11 @@ GLOBAL_LIST_EMPTY(basic_bots_list)
 /mob/living/basic/bot/proc/check_access(obj/item/card/id/card)
 	if(!card)
 		return FALSE
-	var/list/card_access = card.GetAccess()
-	return (ACCESS_ROBOTICS in card_access) || length(req_bot_access() & card_access)
+	return length(req_bot_access() & card.GetAccess())
 
-/// Dostępy, które poza robotyką odblokowują panel (np. ochrona dla secbota)
+/// Dostępy, które odblokowują panel; domyślnie robotyka, bot może nadpisać listę bez niej (np. secbot tylko z ochroną)
 /mob/living/basic/bot/proc/req_bot_access()
-	return list()
+	return list(ACCESS_ROBOTICS)
 
 /mob/living/basic/bot/attackby(obj/item/attacking_item, mob/living/user, params)
 	if(attacking_item.tool_behaviour == TOOL_SCREWDRIVER)
@@ -481,7 +494,7 @@ GLOBAL_LIST_EMPTY(basic_bots_list)
 
 /// Polecenia z PDA i konsoli SI
 /mob/living/basic/bot/proc/bot_control(command, mob/user, list/user_access = list())
-	if(!(bot_mode_flags & BOT_MODE_ON) || is_emagged() || !(bot_mode_flags & BOT_MODE_REMOTE_ENABLED))
+	if(stat == DEAD || !(bot_mode_flags & BOT_MODE_ON) || is_emagged() || !(bot_mode_flags & BOT_MODE_REMOTE_ENABLED))
 		return TRUE
 	if(client && command != "ejectpai")
 		to_chat(src, span_notice("Otrzymano polecenie: [bot_control_message(command, user)]"))
@@ -603,6 +616,7 @@ GLOBAL_LIST_EMPTY(basic_bots_list)
 				to_chat(user, span_boldannounce("Nie udaje ci się naprawić: [hackables] [src]."))
 			else
 				bot_access_flags &= ~(BOT_COVER_EMAGGED | BOT_COVER_HACKED)
+				undo_emag_effects()
 				to_chat(user, span_notice("Resetujesz [hackables] [src]."))
 				log_game("Safety lock of [src] was re-enabled by [key_name(user)] in [AREACOORD(src)]")
 				bot_reset()
@@ -780,6 +794,20 @@ GLOBAL_LIST_EMPTY(basic_bots_list)
 /mob/living/basic/bot/proc/can_seek_work()
 	return (bot_mode_flags & BOT_MODE_ON) && !client
 
+/**
+ * Czy bot stoi w miejscu (tryb stacjonarny medibota, firebota): nie jedzie do celu pracy ani na patrol.
+ * Czyta zmienną stationary_mode botów, które ją mają; bot z innym warunkiem może nadpisać.
+ */
+/mob/living/basic/bot/proc/is_stationary()
+	return hasvar(src, "stationary_mode") && vars["stationary_mode"]
+
+/// Gracz w bocie (pAI, osobowość, event świadomości) pracuje kliknięciem tak jak drzewo: work_on_target() na celu
+/mob/living/basic/bot/UnarmedAttack(atom/attack_target, proximity_flag, list/modifiers)
+	if(client && (bot_mode_flags & BOT_MODE_ON) && is_valid_work_target(attack_target))
+		INVOKE_ASYNC(src, PROC_REF(work_on_target), attack_target)
+		return TRUE
+	return ..()
+
 /// Czy to cel do pracy (bez sprawdzania drogi, to robi drzewo)
 /mob/living/basic/bot/proc/is_valid_work_target(atom/target)
 	return FALSE
@@ -817,6 +845,19 @@ GLOBAL_LIST_EMPTY(basic_bots_list)
 /// Drzewo porzuciło cel pracy (porażka ścieżki, czarna lista, koniec pracy, reset): bot sprząta swój stan (np. znacznik pacjenta)
 /mob/living/basic/bot/proc/on_work_target_lost(atom/target)
 	return
+
+/// Moduł hakerski ninja: przegrzewa obwody i bot wybucha po chwili (jak stary bot w ninjaDrainAct.dm)
+/mob/living/basic/bot/ninjadrain_act(mob/living/carbon/human/ninja, obj/item/mod/module/hacker/hacking_module)
+	to_chat(src, span_boldwarning("Twoje obwody nagle zaczynają się nagrzewać!"))
+	if(!do_after(ninja, 1.5 SECONDS, target = src, progress = FALSE))
+		return COMPONENT_CANCEL_ATTACK_CHAIN
+	if(!hacking_module.mod.subtract_charge(DEFAULT_CHARGE_DRAIN * 7))
+		return COMPONENT_CANCEL_ATTACK_CHAIN
+	do_sparks(number = 3, cardinal_only = FALSE, source = src)
+	playsound(get_turf(src), 'sound/machines/warning-buzzer.ogg', 35, TRUE)
+	balloon_alert(ninja, "odsuń się!")
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(explosion), src, 0, 1, 2, 3), 2.5 SECONDS)
+	return COMPONENT_CANCEL_ATTACK_CHAIN
 
 /// Pogawędka bez celu (bot_idle_chatter)
 /mob/living/basic/bot/proc/idle_chatter()

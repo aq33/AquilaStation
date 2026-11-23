@@ -3,12 +3,18 @@
 
 /// Czy bot jest na tym samym okręcie albo pokładzie co punkt odniesienia
 /mob/living/basic/bot/proc/remote_visible_from(atom/reference)
-	if(!(bot_mode_flags & BOT_MODE_ON) || !(bot_mode_flags & BOT_MODE_REMOTE_ENABLED))
+	if(stat == DEAD || !(bot_mode_flags & BOT_MODE_ON) || !(bot_mode_flags & BOT_MODE_REMOTE_ENABLED))
 		return FALSE
 	var/datum/our_overmap = get_overmap()
 	if(our_overmap && our_overmap == reference.get_overmap())
 		return TRUE
 	return get_virtual_z_level() == reference.get_virtual_z_level()
+
+/// Czy PDA może sterować botem: karta w PDA albo karta użytkownika; odblokowana obudowa (allowed()) nie wystarcza
+/mob/living/basic/bot/proc/remote_access_allowed(mob/user, obj/item/card/id/id_card)
+	if(!id_card && (issilicon(user) || IsAdminGhost(user)))
+		return TRUE
+	return check_access(id_card || user?.get_idcard(TRUE))
 
 /// Wpis bota w oknach sterowania
 /mob/living/basic/bot/proc/remote_control_entry()
@@ -27,7 +33,7 @@
 	for(var/mob/living/basic/bot/basic_bot as anything in GLOB.basic_bots_list)
 		if(!basic_bot.remote_visible_from(computer))
 			continue
-		if(id_card ? !basic_bot.check_access(id_card) : !basic_bot.allowed(user))
+		if(!basic_bot.remote_access_allowed(user, id_card))
 			continue
 		botlist += list(basic_bot.remote_control_entry())
 	data["bots"] = botlist
@@ -42,7 +48,7 @@
 	var/obj/item/computer_hardware/card_slot/card_slot = computer.all_components[MC_CARD]
 	var/obj/item/card/id/id_card = card_slot?.stored_card
 	var/mob/user = usr
-	if(id_card ? !basic_bot.check_access(id_card) : !basic_bot.allowed(user))
+	if(!basic_bot.remote_access_allowed(user, id_card))
 		return TRUE
 	if(action in list("summon", "patroloff", "patrolon", "ejectpai"))
 		basic_bot.bot_control(action, user, id_card ? id_card.GetAccess() : list())

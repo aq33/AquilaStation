@@ -1,6 +1,11 @@
 // Kontroler i liście drzewa basic botów. Port z tgstation code/modules/mob/living/basic/bots/bot_ai.dm i
 // code/datums/ai/bots/bot_subtrees.dm (patrol, wezwanie), plus wspólny schemat pracy Aquili (bot_work.bt.json).
 
+/// Ile razy z rzędu cel może uciec poza zasięg pracy (BOT_WORK_OUT_OF_REACH), zanim bot go porzuci i wpisze na czarną listę
+#define BOT_OUT_OF_REACH_LIMIT 4
+/// Tablica: licznik ucieczek bieżącego celu pracy poza zasięg
+#define BB_BOT_OUT_OF_REACH_COUNT "bot_out_of_reach_count"
+
 /datum/ai_controller/basic_controller/bot
 	behavior_tree_json = "aquila/code/modules/mob/living/basic/bots/bot.bt.json"
 	blackboard = list(
@@ -15,6 +20,7 @@
 		BB_PREVIOUS_BEACON_TARGET,
 		BB_BOT_SUMMON_TARGET,
 		BB_BOT_WORK_TARGET,
+		BB_BOT_OUT_OF_REACH_COUNT,
 	)
 
 /// Dłuższe ścieżki dla botów (tg: AI_BOT_PATH_LENGTH), nadajniki patrolu bywają daleko od siebie
@@ -46,13 +52,29 @@
 /datum/ai_controller/basic_controller/bot/proc/add_to_blacklist(atom/target, duration)
 	if(QDELETED(target))
 		return
+	// już na liście: jej timer zdejmie cel, drugi skończyłby się błędem remove_thing_from_blackboard_key
+	if(LAZYACCESS(blackboard[BB_TEMPORARY_IGNORE_LIST], target))
+		return
 	set_blackboard_key_assoc_lazylist(BB_TEMPORARY_IGNORE_LIST, target, TRUE)
 	addtimer(CALLBACK(src, PROC_REF(remove_from_blacklist), target), duration || blackboard[BB_UNREACHABLE_LIST_COOLDOWN])
 
 /datum/ai_controller/basic_controller/bot/proc/remove_from_blacklist(atom/target)
-	if(QDELETED(target))
+	if(QDELETED(target) || !LAZYACCESS(blackboard[BB_TEMPORARY_IGNORE_LIST], target))
 		return
 	remove_thing_from_blackboard_key(BB_TEMPORARY_IGNORE_LIST, target)
+
+/// Porzuca cel pracy: czyści klucz (tylko gdy nadal wskazuje ten cel), opcjonalnie wpisuje go na czarną listę, bot sprząta swój stan
+/datum/ai_controller/basic_controller/bot/proc/drop_work_target(atom/target, blacklist = FALSE)
+	if(isnull(target))
+		return
+	if(blackboard[BB_BOT_WORK_TARGET] == target)
+		clear_blackboard_key(BB_BOT_WORK_TARGET)
+		clear_blackboard_key(BB_BOT_OUT_OF_REACH_COUNT)
+	if(blacklist)
+		add_to_blacklist(target)
+	var/mob/living/basic/bot/bot_pawn = pawn
+	if(istype(bot_pawn))
+		bot_pawn.on_work_target_lost(target)
 
 /datum/ai_controller/basic_controller/bot/setup_able_to_run()
 	. = ..()
@@ -75,8 +97,13 @@
 /datum/ai_controller/basic_controller/bot/proc/reset_bot()
 	SIGNAL_HANDLER
 	cancel_current_plan()
+	// cel, którego nie zwolnił przerwany liść pracy (np. bot był w drodze), też jest porzucony
+	var/atom/work_target = blackboard[BB_BOT_WORK_TARGET]
 	for(var/key in reset_keys)
 		clear_blackboard_key(key)
+	var/mob/living/basic/bot/bot_pawn = pawn
+	if(work_target && istype(bot_pawn))
+		bot_pawn.on_work_target_lost(work_target)
 
 /// Czy da się dojść do celu (sprawdza ścieżkę, może spać)
 /datum/ai_controller/basic_controller/bot/proc/can_reach_target(atom/target, distance = 10, minimum_distance = 0)
@@ -89,9 +116,17 @@
 	var/list/path = get_path_to(pawn, target_turf, distance, minimum_distance, get_access(), !HAS_TRAIT(pawn, TRAIT_SPACEWALK))
 	return length(path) > 0
 
-/// Ustawia cel, jeśli da się do niego dojść; w przeciwnym razie cel trafia na czarną listę
-/datum/ai_controller/basic_controller/bot/proc/set_if_can_reach(key, atom/target, duration, distance = 10, minimum_distance = 0)
-	if(can_reach_target(target, distance, minimum_distance))
+/**
+ * Ustawia cel, jeśli da się do niego dojść; w przeciwnym razie cel trafia na czarną listę.
+ * requester i generation: liść asynchroniczny, który pyta; po uśpionym get_path_to nic nie zapisuje, gdy liść zresetowano.
+ */
+/datum/ai_controller/basic_controller/bot/proc/set_if_can_reach(key, atom/target, duration, distance = 10, minimum_distance = 0, datum/bt_node/ai_behavior/requester, generation)
+	if(QDELETED(target))
+		return FALSE
+	var/reachable = can_reach_target(target, distance, minimum_distance)
+	if(QDELETED(src) || QDELETED(pawn) || QDELETED(target) || (requester && !requester.async_still_valid(generation)))
+		return FALSE
+	if(reachable)
 		set_blackboard_key(key, target)
 		return TRUE
 	add_to_blacklist(target, duration)
@@ -140,6 +175,13 @@
 	var/mob/living/basic/bot/bot_pawn = controller.pawn
 	return !!(bot_pawn.bot_mode_flags & flag)
 
+/// Przepuszcza, gdy bot stoi w miejscu (invert = TRUE: gdy może jeździć, np. na patrol)
+/datum/bt_node/decorator/bot_is_stationary
+
+/datum/bt_node/decorator/bot_is_stationary/check_condition(datum/ai_controller/controller)
+	var/mob/living/basic/bot/bot_pawn = controller.pawn
+	return istype(bot_pawn) && bot_pawn.is_stationary()
+
 /// Przepuszcza, gdy bot jest zhakowany (invert = TRUE: gdy nie jest)
 /datum/bt_node/decorator/bot_is_emagged
 
@@ -170,22 +212,23 @@
 	candidate_stash = candidates
 	return start_async()
 
-/datum/bt_node/ai_behavior/bot_find_work/perform_async(datum/ai_controller/basic_controller/bot/controller)
+/datum/bt_node/ai_behavior/bot_find_work/perform_async(datum/ai_controller/basic_controller/bot/controller, generation)
 	var/mob/living/basic/bot/bot_pawn = controller.pawn
 	var/atom/found
 	for(var/atom/potential_target as anything in candidate_stash)
-		if(!async_still_valid())
+		if(!async_still_valid(generation))
 			return
 		if(QDELETED(potential_target))
 			continue
-		if(controller.set_if_can_reach(target_key, potential_target, distance = pathing_distance, minimum_distance = bot_pawn.work_reach))
+		if(controller.set_if_can_reach(target_key, potential_target, distance = pathing_distance, minimum_distance = bot_pawn.work_reach, requester = src, generation = generation))
 			found = potential_target
 			break
-	if(!async_still_valid())
+	if(!async_still_valid(generation))
 		return
 	if(found)
+		controller.clear_blackboard_key(BB_BOT_OUT_OF_REACH_COUNT)
 		bot_pawn.on_work_target_found(found)
-	finish_async(found ? AI_BEHAVIOR_SUCCEEDED : AI_BEHAVIOR_FAILED)
+	finish_async(found ? AI_BEHAVIOR_SUCCEEDED : AI_BEHAVIOR_FAILED, generation)
 
 /datum/bt_node/ai_behavior/bot_find_work/finish_action(datum/ai_controller/controller, succeeded)
 	. = ..()
@@ -198,19 +241,37 @@
 /datum/bt_node/ai_behavior/move_to_target/bot_work/setup(datum/ai_controller/controller)
 	var/mob/living/basic/bot/bot_pawn = controller.pawn
 	required_dist = bot_pawn.work_reach
+	// stacjonarny bot nie rusza się z miejsca, perform() tylko sprawdza zasięg
+	if(bot_pawn.is_stationary())
+		var/atom/target = controller.blackboard[target_key]
+		return !QDELETED(target)
 	return ..()
 
+/datum/bt_node/ai_behavior/move_to_target/bot_work/perform(seconds_per_tick, datum/ai_controller/controller)
+	var/mob/living/basic/bot/bot_pawn = controller.pawn
+	if(!bot_pawn.is_stationary())
+		return ..()
+	var/atom/target = controller.blackboard[target_key]
+	if(!QDELETED(target) && get_dist(bot_pawn, target) <= required_dist)
+		return AI_BEHAVIOR_INSTANT | AI_BEHAVIOR_SUCCEEDED
+	return AI_BEHAVIOR_INSTANT | AI_BEHAVIOR_FAILED
+
 /datum/bt_node/ai_behavior/move_to_target/bot_work/finish_action(datum/ai_controller/basic_controller/bot/controller, succeeded)
-	if(!succeeded && movement_failed && istype(controller))
+	if(!succeeded && istype(controller))
+		var/mob/living/basic/bot/bot_pawn = controller.pawn
 		var/atom/target = controller.blackboard[target_key]
-		controller.clear_blackboard_key(target_key)
-		controller.add_to_blacklist(target)
+		if(movement_failed)
+			controller.drop_work_target(target, blacklist = TRUE)
+		else if(bot_pawn.is_stationary() && !QDELETED(target) && get_dist(bot_pawn, target) > required_dist)
+			controller.drop_work_target(target)
 	return ..()
 
 /// Praca nad celem: work_on_target() bota, wołane asynchronicznie (może zawierać do_after)
 /datum/bt_node/ai_behavior/bot_perform_work
 	var/target_key = BB_BOT_WORK_TARGET
 	VAR_PRIVATE/last_result
+	/// Cel, nad którym liść pracuje; klucz w tablicy może się w tym czasie zmienić (np. odwet secbota na napastniku)
+	VAR_PRIVATE/atom/work_target
 
 /datum/bt_node/ai_behavior/bot_perform_work/setup(datum/ai_controller/controller)
 	var/mob/living/basic/bot/bot_pawn = controller.pawn
@@ -223,6 +284,7 @@
 		return async_flags
 	var/atom/target = controller.blackboard[target_key]
 	var/mob/living/basic/bot/bot_pawn = controller.pawn
+	work_target = target
 	if(QDELETED(target) || !bot_pawn.can_seek_work())
 		last_result = BOT_WORK_DONE
 		return AI_BEHAVIOR_INSTANT | AI_BEHAVIOR_FAILED
@@ -232,10 +294,10 @@
 	bot_pawn.update_bot_mode(bot_pawn.work_mode)
 	return start_async()
 
-/datum/bt_node/ai_behavior/bot_perform_work/perform_async(datum/ai_controller/controller)
+/datum/bt_node/ai_behavior/bot_perform_work/perform_async(datum/ai_controller/controller, generation)
 	var/mob/living/basic/bot/bot_pawn = controller.pawn
-	var/result = bot_pawn.work_on_target(controller.blackboard[target_key])
-	if(!async_still_valid())
+	var/result = bot_pawn.work_on_target(work_target)
+	if(!async_still_valid(generation))
 		return
 	last_result = result
 	switch(result)
@@ -244,21 +306,30 @@
 			clear_async()
 			modify_cooldown(world.time + bot_pawn.work_interval)
 		if(BOT_WORK_DONE)
-			finish_async(AI_BEHAVIOR_SUCCEEDED)
+			finish_async(AI_BEHAVIOR_SUCCEEDED, generation)
 		else
-			finish_async(AI_BEHAVIOR_FAILED)
+			finish_async(AI_BEHAVIOR_FAILED, generation)
 
 /datum/bt_node/ai_behavior/bot_perform_work/finish_action(datum/ai_controller/basic_controller/bot/controller, succeeded)
 	. = ..()
 	var/mob/living/basic/bot/bot_pawn = controller.pawn
-	var/atom/target = controller.blackboard[target_key]
-	if(last_result != BOT_WORK_OUT_OF_REACH)
-		controller.clear_blackboard_key(target_key)
-		if(last_result == BOT_WORK_FAILED && istype(controller))
-			controller.add_to_blacklist(target)
-		if(istype(bot_pawn) && bot_pawn.mode == bot_pawn.work_mode)
-			bot_pawn.update_bot_mode(BBOT_IDLE)
+	var/atom/target = work_target
+	var/result = last_result
+	work_target = null
 	last_result = null
+	if(!istype(controller) || !istype(bot_pawn))
+		return
+	if(result == BOT_WORK_OUT_OF_REACH && !bot_pawn.is_stationary())
+		// cel odszedł: bot idzie za nim, ale po kilku próbach z rzędu porzuca go jak nieosiągalny
+		var/misses = (controller.blackboard[BB_BOT_OUT_OF_REACH_COUNT] || 0) + 1
+		if(misses < BOT_OUT_OF_REACH_LIMIT)
+			controller.set_blackboard_key(BB_BOT_OUT_OF_REACH_COUNT, misses)
+			return
+		result = BOT_WORK_FAILED
+	// stacjonarny bot nie idzie za celem, który odszedł: koniec pracy bez czarnej listy
+	controller.drop_work_target(target, blacklist = (result == BOT_WORK_FAILED))
+	if(bot_pawn.mode == bot_pawn.work_mode)
+		bot_pawn.update_bot_mode(BBOT_IDLE)
 
 /// Pogawędka bota bez celu, co jakiś czas
 /datum/bt_node/ai_behavior/bot_idle_chatter
@@ -355,17 +426,22 @@
 	if(get_dist(bot_pawn, target) > 0)
 		return AI_BEHAVIOR_INSTANT
 	bot_pawn.calling_ai_ref = null
+	// dostęp z wezwania (od SI wszystkie dostępy) tylko na drogę, jak w bot_reset()
+	bot_pawn.access_card.access = bot_pawn.initial_access.Copy()
 	bot_pawn.update_bot_mode(BBOT_IDLE)
 	controller.clear_blackboard_key(target_key)
 	return AI_BEHAVIOR_INSTANT | AI_BEHAVIOR_SUCCEEDED
 
 /datum/bt_node/ai_behavior/move_to_target/multiz/summon/finish_action(datum/ai_controller/controller, succeeded)
-	if(!succeeded && movement_failed)
-		var/mob/living/basic/bot/bot_pawn = controller.pawn
-		INVOKE_ASYNC(bot_pawn, TYPE_PROC_REF(/mob/living/basic/bot, speak), "Nie mogę dotrzeć na miejsce wezwania.", bot_pawn.radio_channel)
-		controller.clear_blackboard_key(target_key)
-		bot_pawn.bot_reset()
-	return ..()
+	var/failed_to_reach = !succeeded && movement_failed
+	// najpierw ..(): liść przestaje działać, więc reset drzewa z bot_reset() nie woła tu finish_action drugi raz (rekurencja)
+	. = ..()
+	if(!failed_to_reach)
+		return
+	var/mob/living/basic/bot/bot_pawn = controller.pawn
+	INVOKE_ASYNC(bot_pawn, TYPE_PROC_REF(/mob/living/basic/bot, speak), "Nie mogę dotrzeć na miejsce wezwania.", bot_pawn.radio_channel)
+	controller.clear_blackboard_key(target_key)
+	bot_pawn.bot_reset()
 
 /// Wezwanie z PDA albo od SI
 /datum/bt_node/subtree/bot_respond_to_summon
@@ -429,6 +505,8 @@
 	if(!elevator_target || elevator_target.z != bot_pawn.z)
 		elevator_target = bot_pawn.find_nearest_bot_elevator(direction)
 		if(!elevator_target)
+			// bez windy w dobrą stronę nie da się dojechać: porażka ruchu, więc wezwanie i patrol porzucają cel
+			movement_failed = TRUE
 			return AI_BEHAVIOR_INSTANT | AI_BEHAVIOR_FAILED
 		controller.ai_movement.start_moving_towards(controller, elevator_target, 0)
 	else if(!controller.ai_movement.moving_controllers[controller])
@@ -444,6 +522,12 @@
 /datum/bt_node/ai_behavior/move_to_target/multiz/proc/tracked_target_reset(datum/ai_controller/controller, atom/target)
 	controller.ai_movement.start_moving_towards(controller, target, required_dist)
 
+/datum/bt_node/ai_behavior/move_to_target/multiz/owns_movement(datum/ai_controller/controller, atom/movement_target)
+	return ..() || (elevator_target && movement_target == elevator_target)
+
 /datum/bt_node/ai_behavior/move_to_target/multiz/finish_action(datum/ai_controller/controller, succeeded)
+	. = ..()
 	elevator_target = null
-	return ..()
+
+#undef BOT_OUT_OF_REACH_LIMIT
+#undef BB_BOT_OUT_OF_REACH_COUNT

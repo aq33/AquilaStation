@@ -187,6 +187,140 @@
 	bot.emag_act(null)
 	TEST_ASSERT(bot.is_emagged(), "Emag przy otwartym panelu nie zhakował bota")
 
+/// Pierwszy węzeł danego typu w drzewie kontrolera (testy tikają liść bezpośrednio)
+/datum/unit_test/proc/find_bot_tree_node(datum/ai_controller/controller, node_type)
+	var/list/to_visit = controller.behavior_nodes.Copy()
+	var/index = 1
+	while(index <= length(to_visit))
+		var/datum/bt_node/node = to_visit[index++]
+		if(istype(node, node_type))
+			return node
+		node.collect_reset_children(to_visit)
+
+/// AQUILA - BOTY: wezwanie. Dostęp z wezwania wraca po dotarciu, nieudane wezwanie (brak windy, brak ścieżki) czyści się bez rekurencji resetu
+/datum/unit_test/aquila_basic_bot_summon
+
+/datum/unit_test/aquila_basic_bot_summon/Run()
+	var/runtimes_before = GLOB.total_runtimes
+	var/mob/living/basic/bot/cleanbot/bot = allocate(/mob/living/basic/bot/cleanbot, run_loc_floor_bottom_left)
+	var/mob/living/carbon/human/summoner = allocate(/mob/living/carbon/human, run_loc_floor_bottom_left)
+	var/datum/ai_controller/basic_controller/bot/controller = bot.ai_controller
+	var/list/initial_access = bot.initial_access.Copy()
+
+	bot.summon_bot(summoner, get_turf(bot), grant_all_access = TRUE)
+	TEST_ASSERT(length(bot.access_card.access) > length(initial_access), "Wezwanie nie dało dostępu na drogę")
+	TICK_BOT_UNTIL(bot, !controller.blackboard[BB_BOT_SUMMON_TARGET], 5)
+	TEST_ASSERT(!controller.blackboard[BB_BOT_SUMMON_TARGET], "Bot nie zakończył wezwania na swoim kafelku")
+	TEST_ASSERT(!length(bot.access_card.access ^ initial_access), "Po dotarciu na miejsce wezwania bot zachował dostęp z wezwania")
+
+	// inny pokład bez windy dla botów: porażka ruchu, a nie wiszące wezwanie
+	var/list/saved_elevators = GLOB.bot_elevator
+	GLOB.bot_elevator = list()
+	bot.summon_bot(summoner, locate(bot.x, bot.y, bot.z == 1 ? 2 : 1), grant_all_access = TRUE)
+	bot.calling_ai_ref = WEAKREF(summoner)
+	controller.SelectBehaviors(0.5)
+	GLOB.bot_elevator = saved_elevators
+	TEST_ASSERT(!controller.blackboard[BB_BOT_SUMMON_TARGET], "Wezwanie na pokład bez windy wisi w tablicy")
+	TEST_ASSERT(isnull(bot.calling_ai_ref), "Nieudane wezwanie nie zwolniło wzywającego")
+	TEST_ASSERT(!length(bot.access_card.access ^ initial_access), "Nieudane wezwanie zostawiło dostęp z wezwania")
+
+	// brak ścieżki na tym samym pokładzie: reset bota w finish_action nie woła go drugi raz
+	bot.summon_bot(summoner, run_loc_floor_top_right)
+	controller.SelectBehaviors(0.5)
+	SEND_SIGNAL(bot, COMSIG_MOB_AI_MOVEMENT_FAILED)
+	controller.SelectBehaviors(0.5)
+	TEST_ASSERT(!controller.blackboard[BB_BOT_SUMMON_TARGET], "Wezwanie bez ścieżki wisi w tablicy")
+	TEST_ASSERT_EQUAL(GLOB.total_runtimes, runtimes_before, "Nieudane wezwanie wywołało runtime'y (rekurencja resetu?)")
+
+/// AQUILA - BOTY: stacjonarny bot nie jedzie do celu ani na patrol, a ruchomy porzuca cel, który kilka razy z rzędu uciekł poza zasięg
+/datum/unit_test/aquila_basic_bot_reach
+
+/datum/unit_test/aquila_basic_bot_reach/Run()
+	var/turf/start = run_loc_floor_bottom_left
+	var/mob/living/basic/bot/medbot/medbot = allocate(/mob/living/basic/bot/medbot, start)
+	var/datum/ai_controller/basic_controller/bot/controller = medbot.ai_controller
+
+	medbot.stationary_mode = TRUE
+	TEST_ASSERT(medbot.is_stationary(), "is_stationary() nie widzi trybu stacjonarnego medibota")
+	medbot.set_mode_flags(medbot.bot_mode_flags | BOT_MODE_AUTOPATROL)
+	controller.set_blackboard_key(BB_BEACON_TARGET, run_loc_floor_top_right)
+	controller.SelectBehaviors(0.5)
+	TEST_ASSERT(!controller.ai_movement.moving_controllers[controller], "Stacjonarny medibot ruszył na patrol")
+	medbot.stationary_mode = FALSE
+	controller.SelectBehaviors(0.5)
+	TEST_ASSERT(controller.ai_movement.moving_controllers[controller], "Ruchomy medibot nie ruszył na patrol (test nic nie sprawdza)")
+	medbot.set_mode_flags(medbot.bot_mode_flags & ~BOT_MODE_AUTOPATROL)
+	medbot.bot_reset()
+	TEST_ASSERT(!controller.ai_movement.moving_controllers[controller], "Reset bota nie zatrzymał patrolu")
+
+	var/mob/living/carbon/human/patient = allocate(/mob/living/carbon/human, get_step(get_step(start, EAST), EAST))
+	patient.adjustBruteLoss(40)
+	medbot.stationary_mode = TRUE
+	controller.set_blackboard_key(BB_BOT_WORK_TARGET, patient)
+	controller.SelectBehaviors(0.5)
+	TEST_ASSERT(!controller.ai_movement.moving_controllers[controller], "Stacjonarny medibot ruszył do pacjenta")
+	TEST_ASSERT(!controller.blackboard[BB_BOT_WORK_TARGET], "Stacjonarny medibot trzyma pacjenta poza zasięgiem")
+	TEST_ASSERT(!LAZYACCESS(controller.blackboard[BB_TEMPORARY_IGNORE_LIST], patient), "Stacjonarny medibot wpisał pacjenta poza zasięgiem na czarną listę")
+
+	medbot.stationary_mode = FALSE
+	var/datum/bt_node/ai_behavior/bot_perform_work/work_leaf = find_bot_tree_node(controller, /datum/bt_node/ai_behavior/bot_perform_work)
+	TEST_ASSERT(work_leaf, "Drzewo medibota nie ma liścia pracy")
+	controller.set_blackboard_key(BB_BOT_WORK_TARGET, patient)
+	for(var/attempt in 1 to 3)
+		work_leaf.tick(controller, 0.5)
+	TEST_ASSERT_EQUAL(controller.blackboard[BB_BOT_WORK_TARGET], patient, "Medibot porzucił pacjenta po pierwszej ucieczce poza zasięg")
+	work_leaf.tick(controller, 0.5)
+	TEST_ASSERT(!controller.blackboard[BB_BOT_WORK_TARGET], "Medibot bez końca trzyma cel, który ucieka poza zasięg")
+	TEST_ASSERT(LAZYACCESS(controller.blackboard[BB_TEMPORARY_IGNORE_LIST], patient), "Porzucony cel poza zasięgiem nie trafił na czarną listę")
+
+/// AQUILA - BOTY: czarna lista, części z rozbitego bota, dostęp do panelu i PDA, śmierć bez DEL_ON_DEATH, czar przyzwania ED-209
+/datum/unit_test/aquila_basic_bot_base_fixes
+
+/datum/unit_test/aquila_basic_bot_base_fixes/Run()
+	var/runtimes_before = GLOB.total_runtimes
+	var/mob/living/basic/bot/honkbot/bot = allocate(/mob/living/basic/bot/honkbot, run_loc_floor_bottom_left)
+	var/datum/ai_controller/basic_controller/bot/controller = bot.ai_controller
+
+	var/obj/item/crowbar/thing = allocate(/obj/item/crowbar, run_loc_floor_top_right)
+	controller.remove_from_blacklist(thing)
+	controller.add_to_blacklist(thing, 1)
+	controller.add_to_blacklist(thing, 1)
+	TEST_ASSERT(LAZYACCESS(controller.blackboard[BB_TEMPORARY_IGNORE_LIST], thing), "Cel nie trafił na czarną listę")
+	sleep(5)
+	TEST_ASSERT(!LAZYACCESS(controller.blackboard[BB_TEMPORARY_IGNORE_LIST], thing), "Cel nie zszedł z czarnej listy po czasie")
+	TEST_ASSERT_EQUAL(GLOB.total_runtimes, runtimes_before, "Podwójne dopisanie albo zdjęcie spoza czarnej listy dało runtime")
+
+	var/obj/item/storage/firstaid/regular/kit = bot.drop_part(/obj/item/storage/firstaid/regular, run_loc_floor_top_right)
+	TEST_ASSERT(istype(kit), "drop_part nie dał apteczki")
+	TEST_ASSERT(!length(kit.contents), "Apteczka z rozbitego bota ma pełną zawartość")
+	qdel(kit)
+
+	var/obj/item/card/id/card = allocate(/obj/item/card/id)
+	card.access = list(ACCESS_ROBOTICS)
+	TEST_ASSERT(bot.check_access(card), "Robotyka nie odblokowuje panelu bota bez własnej listy dostępów")
+	card.access = list()
+	TEST_ASSERT(!bot.check_access(card), "Karta bez dostępów odblokowuje panel bota")
+	var/mob/living/carbon/human/stranger = allocate(/mob/living/carbon/human, run_loc_floor_top_right)
+	bot.bot_access_flags &= ~BOT_COVER_LOCKED
+	TEST_ASSERT(bot.allowed(stranger), "Odblokowany bot nie przepuszcza w panelu")
+	TEST_ASSERT(!bot.remote_access_allowed(stranger, null), "PDA bez karty steruje botem z odblokowaną obudową")
+	card.access = list(ACCESS_ROBOTICS)
+	TEST_ASSERT(bot.remote_access_allowed(stranger, card), "Karta robotyka w PDA nie steruje botem")
+
+	var/obj/effect/proc_holder/spell/aoe_turf/conjure/summonEdSwarm/spell = new
+	var/mob/living/basic/bot/secbot/ed209/ed209 = allocate(/mob/living/basic/bot/secbot/ed209, run_loc_floor_top_right)
+	for(var/var_name in spell.newVars)
+		TEST_ASSERT(var_name in ed209.vars, "Czar przyzwania ED-209 ustawia zmienną [var_name], której basic ED-209 nie ma")
+	spell.post_summon(ed209, null)
+	TEST_ASSERT(ed209.is_emagged(), "ED-209 z czaru nie jest zhakowany")
+	TEST_ASSERT(!(ed209.bot_mode_flags & BOT_MODE_REMOTE_ENABLED), "ED-209 z czaru słucha zdalnego sterowania")
+	qdel(spell)
+
+	bot.basic_mob_flags &= ~DEL_ON_DEATH
+	bot.death()
+	TEST_ASSERT(QDELETED(bot), "Bot bez DEL_ON_DEATH (event świadomości) nie rozpadł się po śmierci")
+	TEST_ASSERT(!(bot in GLOB.basic_bots_list), "Zniszczony bot został na liście basic botów")
+
 #undef TICK_BOT_UNTIL
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL
