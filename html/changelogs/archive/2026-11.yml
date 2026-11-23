@@ -1494,6 +1494,12 @@
   - bugfix: Pocisk, który odbił się od pancerza, nie rani wnętrza okrętu.
   - balance: Powłoka z miedzi i srebra daje impuls EMP tylko przy trafieniu w okręt,
       nie w amunicji ręcznej.
+  - rscadd: 'Przywrócono wędkarstwo w domenach bitrunningu: woda plażowa i rzeczna
+      w domenach działa teraz jako łowisko.'
+  - rscadd: Przywrócono zestaw „Wędkarz” na dysku sportowym bitrunningu oraz wędki
+      i puszki z robakami na mapach Zatoka Bryzy i Walka na Wyspie.
+  - tweak: W domenie Zatoka Bryzy odsłonięcie skrzyni wymaga teraz łowienia ryb zamiast
+      zabijania krabów (jak w oryginale z /tg/station).
   sh4dow321:
   - bugfix: Duchy znów mogą zgłaszać się do ankiet ról bez kategorii ignorowania (np.
       powrót z kriostazy).
