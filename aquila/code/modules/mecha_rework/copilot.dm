@@ -19,9 +19,37 @@
 		return
 	return ..()
 
-/obj/mecha/proc/aq_try_enter_copilot(mob/living/carbon/human/user)
+/// Blokada DNA i kody operacyjne jak przy zwykłym wejściu (mecha.dm, MouseDrop_T): drugie miejsce, awans kierowcy, zdalne sterowanie
+/obj/mecha/proc/aq_entry_allowed(mob/living/user)
+	if(dna_lock)
+		var/mob/living/carbon/C = user
+		if(!istype(C) || !C.has_dna() || C.dna.unique_enzymes != dna_lock)
+			to_chat(user, "<span class='warning'>Odmowa dostępu. [name] jest zabezpieczony blokadą DNA.</span>")
+			log_message("Permission denied (DNA LOCK).", LOG_MECHA)
+			return FALSE
 	if(!operation_allowed(user))
 		to_chat(user, "<span class='warning'>Odmowa dostępu. Niewystarczające kody operacyjne.</span>")
+		log_message("Permission denied (No keycode).", LOG_MECHA)
+		return FALSE
+	return TRUE
+
+/// Kierowca może prowadzić i przejąć fotel pilota tylko przytomny i z graczem
+/obj/mecha/proc/aq_copilot_capable()
+	return aq_copilot && aq_copilot.loc == src && aq_copilot.stat == CONSCIOUS && GET_CLIENT(aq_copilot)
+
+/// Kto prowadzi mecha: kierowca, jeśli może, inaczej pilot
+/obj/mecha/proc/aq_driver()
+	return aq_copilot_capable() ? aq_copilot : occupant
+
+/// Alt przy strafe (obrót w miejscu) czytany z klawiatury tego, kto prowadzi (hook AQ EDIT w domove)
+/obj/mecha/proc/aq_strafe_turn_held()
+	var/mob/driver = aq_driver()
+	if(!driver?.client)
+		return FALSE
+	return driver.client.keys_held["Alt"]
+
+/obj/mecha/proc/aq_try_enter_copilot(mob/living/carbon/human/user)
+	if(!aq_entry_allowed(user))
 		return FALSE
 	if(user.buckled || user.has_buckled_mobs())
 		to_chat(user, "<span class='warning'>Nie możesz wejść do egzoszkieletu, będąc przypiętym.</span>")
@@ -80,18 +108,26 @@
 
 /obj/mecha/go_out(forced, atom/newloc = loc)
 	. = ..()
-	// Strzelec wysiadł: kierowca przesiada się na fotel pilota (dostaje okno i wyposażenie)
-	if(!occupant && aq_copilot && !QDELETED(src))
-		var/mob/living/carbon/human/driver = aq_copilot
-		aq_copilot = null
-		aq_copilot_eject_action?.Remove(driver)
-		aq_remove_copilot_actions(driver)
-		if(ishuman(driver) && driver.loc == src)
-			occupant = driver
-			GrantActions(driver, human_occupant = 1)
-			icon_state = initial(icon_state)
-			update_icon()
-			occupant_message("<span class='notice'>Przejmujesz pełne sterowanie.</span>")
+	aq_promote_copilot()
+
+/// Strzelec wysiadł: kierowca przesiada się na fotel pilota (dostaje okno i wyposażenie). Nieprzytomny, martwy albo bez
+/// gracza zostaje na miejscu kierowcy i przesiada się, gdy sam spróbuje ruszyć mechem.
+/obj/mecha/proc/aq_promote_copilot()
+	if(occupant || !aq_copilot || QDELETED(src))
+		return FALSE
+	var/mob/living/carbon/human/driver = aq_copilot
+	if(!ishuman(driver) || !aq_copilot_capable() || !aq_entry_allowed(driver))
+		return FALSE
+	aq_copilot = null
+	aq_copilot_eject_action?.Remove(driver)
+	aq_remove_copilot_actions(driver)
+	occupant = driver
+	GrantActions(driver, human_occupant = 1)
+	icon_state = initial(icon_state)
+	update_icon()
+	occupant_message("<span class='notice'>Przejmujesz pełne sterowanie.</span>")
+	log_message("[driver] moved over from the copilot seat.", LOG_MECHA)
+	return TRUE
 
 /obj/mecha/Destroy()
 	if(aq_copilot)
@@ -102,10 +138,12 @@
 
 /obj/mecha/relaymove(mob/user, direction)
 	if(aq_copilot && user == aq_copilot)
-		if(completely_disabled || !direction || construction_state)
+		if(!occupant && aq_promote_copilot())
+			return ..()
+		if(completely_disabled || !direction || construction_state || internal_tank?.connected_port)
 			return FALSE
 		return domove(direction)
-	if(aq_copilot && user == occupant)
+	if(aq_copilot && user == occupant && aq_copilot_capable())
 		if(world.time - last_message > 20)
 			occupant_message("<span class='notice'>Mechem kieruje [aq_copilot]. Ty obsługujesz uzbrojenie.</span>")
 			last_message = world.time
