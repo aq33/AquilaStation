@@ -14,8 +14,6 @@
 		if(!informed)
 			to_chat(src, "<span class='userdanger'>Twoje protezy przeciążają się z ostrym bólem!</span>")
 			informed = TRUE
-		if(HAS_TRAIT(src, TRAIT_EASYDISMEMBER) && limb.body_zone != BODY_ZONE_CHEST && prob(20))
-			limb.dismember(BRUTE)
 	if(MOB_ROBOTIC in mob_biotypes)
 		Paralyze(severity == EMP_HEAVY ? 5 SECONDS : 2.5 SECONDS)
 	return TRUE
@@ -54,5 +52,16 @@
 
 /obj/item/bodypart/proc/aq_emp_recover()
 	REMOVE_TRAIT(src, TRAIT_PARALYSIS, AQ_LIMB_EMP_TRAIT)
+	aq_clear_paralysis()
+
+/// Po zdjęciu cechy paraliżu przelicza `disabled`. Bee trzyma stary stan uszkodzonej kończyny (bezwładność is_disabled()),
+/// a set_disabled() bez właściciela nie działa, więc paraliż czyszczony ręcznie (jak w med6/spine.dm i hypothermia.dm).
+/// Bez tego kończyna odczepiona w trakcie albo z obrażeniami 50-100% zostaje sparaliżowana na stałe.
+/obj/item/bodypart/proc/aq_clear_paralysis()
+	if(disabled == BODYPART_DISABLED_PARALYSIS && !HAS_TRAIT(src, TRAIT_PARALYSIS))
+		if(!owner)
+			disabled = BODYPART_NOT_DISABLED
+			return
+		set_disabled(BODYPART_NOT_DISABLED)
 	if(owner)
 		update_disabled()
