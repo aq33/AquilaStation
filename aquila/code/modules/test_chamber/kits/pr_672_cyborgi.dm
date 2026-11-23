@@ -5,7 +5,7 @@
 	2) Ulepszenia leżą obok: otwórz panel cyborga (łom, ID), włóż ulepszenie. Pasujące wchodzi, niepasujące odmawia („Nie ma punktu mocowania”). \
 	3) Odblokowanie trybu zabójczego (moduł Ochrony z wybieraka): przy zielonym alarmie przełączenie na laser odmawia, przy czerwonym działa, a po odwołaniu alarmu broń sama wraca na obezwładnianie. \
 	4) Magnetyczne przyczepy: włącz przyciskiem akcji i otwórz śluzę na kosmos (albo rozbij okno) - cyborg nie daje się wyssać, rusza się wolniej. \
-	5) Osobista tarcza, reflektor i autoczyściciel: przyciski akcji, ładunek ogniwa spada. Kabel zasilania: kliknij APC i węzeł kabla w trybie pobierania. \
+	5) Osobista tarcza, naświetlacz i autoczyściciel: przyciski akcji, ładunek ogniwa spada. Kabel zasilania: kliknij APC i węzeł kabla w trybie pobierania. \
 	6) Narzędzia: zestaw chemiczny w module Medycznym (mini-CheMaster na zlewce z lekami, dozownik odczynników), zestaw ratowniczy (dopalacze, rozwieracz na zasilanej śluzie, HUD medyczny, epinefryna, GPS, holoznak), wymieniacz żarówek w Inżynieryjnym, specjalizacja Botanika w Usługowym (somatopromiennik na roślinie), zestaw biurowy w Zaopatrzeniowym (drukarka papieru), skaner widmowy na człowieku, syntezator krwi na pustym worku, worek oddechowy na niedotlenionym, syntezator organów, teleporter ładunku (ustaw cel w ręce, kliknij skrzynię), przenośna huta z rudą w torbie, omni-tool (wybór trybu w ręce), miotła w module porządkowym (użyj w ręce i przejdź po śmieciach), wzrok anomalii przy anomalii, N.O.I.R. przy krwi i łuskach. Sprawdź w combat mode i w trybie intencji."
 	items = list(
 		/mob/living/silicon/robot = 2,

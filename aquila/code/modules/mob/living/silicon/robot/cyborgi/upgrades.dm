@@ -562,15 +562,15 @@
 	module_flags = BORG_MODULE_MINER
 	aq_items = list(/obj/item/borg/sight/aquila_nightvision)
 
-/// Reflektor (Baystation12 „floodlight”): mocniejsza lampa za większy pobór energii
+/// Naświetlacz (Baystation12 „floodlight”): mocniejsza lampa za większy pobór energii
 /obj/item/borg/upgrade/aquila/toggle/floodlight
-	name = "reflektor cyborga"
-	desc = "Mocny reflektor: lampa cyborga świeci dużo dalej, ale zużywa więcej energii."
+	name = "naświetlacz cyborga"
+	desc = "Mocny naświetlacz: lampa cyborga świeci dużo dalej, ale zużywa więcej energii."
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "floodlight"
 	module_type = AQ_BORG_MINING
 	module_flags = BORG_MODULE_MINER
-	/// Moc lampy przed włączeniem reflektora
+	/// Moc lampy przed włączeniem naświetlacza
 	var/previous_intensity = 3
 
 /obj/item/borg/upgrade/aquila/toggle/floodlight/aq_enable(mob/living/silicon/robot/R)
