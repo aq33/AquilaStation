@@ -991,6 +991,10 @@
 	color = "#B0E0FF"
 	set_reagent = /datum/reagent/luminol
 
+/// Kreda detektywa w module cyborga: bez limitu użyć (zwykła po 40 ładunkach znika i zostawia pustą referencję w module)
+/obj/item/toy/crayon/white/chalk/cyborg
+	charges = -1
+
 // ================================================================ Logistyka i górnictwo
 
 /// Teleporter ładunku (Skyrat „cargo teleporter”): wysyła skrzynię albo szafkę na postawiony wcześniej znacznik
