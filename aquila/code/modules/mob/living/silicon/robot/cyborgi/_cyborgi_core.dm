@@ -40,8 +40,9 @@
 	var/mob/living/silicon/robot/cyborg = loc
 	if(!istype(cyborg))
 		return
-	// Bez wybranego skina cyborg zostaje w domyślnym pliku core (transform_to), a moduł Aquili ma wygląd u siebie
-	if(aq_base_icon_file && cyborg.icon == 'icons/mob/robots.dmi')
+	// Bez wybranego skina cyborg zostaje w domyślnym pliku core (transform_to), a moduł Aquili ma wygląd u siebie.
+	// Skiny modułu Aquili wzięte z robots.dmi (Roomba, Noir, Securitron...) zostają w pliku core.
+	if(aq_base_icon_file && cyborg.icon == 'icons/mob/robots.dmi' && (cyborg_base_icon in icon_states(aq_base_icon_file)))
 		cyborg.icon = aq_base_icon_file
 	aq_on_install(cyborg)
 
