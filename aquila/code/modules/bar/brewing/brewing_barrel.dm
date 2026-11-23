@@ -9,6 +9,8 @@
 	var/brew_end = 0
 	/// Typ plonu => ile „jednostek plonu” już wrzucono
 	var/list/crop_units = list()
+	/// Owoce wrzucone bez przepisu, które czekają na makeWine(); wysypanie beczki je unieważnia
+	var/list/wine_fruits = list()
 
 /obj/structure/fermenting_barrel/Initialize(mapload)
 	. = ..()
@@ -17,6 +19,21 @@
 
 /obj/structure/fermenting_barrel/Destroy()
 	selected_recipe = null
+	wine_fruits.Cut()
+	return ..()
+
+/// Fermentuje tylko owoc, który nadal leży w beczce od wrzucenia bez przepisu (wysypany albo wrzucony ponownie pod przepis nie)
+/obj/structure/fermenting_barrel/makeWine(obj/item/food/grown/fruit)
+	if(!wine_fruits[fruit] || fruit.loc != src)
+		return
+	wine_fruits -= fruit
+	return ..()
+
+/// W trakcie warzenia beczka jest zamknięta, żeby dolany płyn nie zajął miejsca na trunek
+/obj/structure/fermenting_barrel/attack_hand(mob/user, list/modifiers)
+	if(brewing)
+		to_chat(user, span_warning("W [src] warzy się: [selected_recipe.display_name]. Otworzysz ją po skończeniu."))
+		return TRUE
 	return ..()
 
 /// Ile „jednostek plonu” daje jeden plon (zwykły 5, lepszy więcej, najwyżej 10)
@@ -64,13 +81,18 @@
 	for(var/atom/movable/thing as anything in contents)
 		thing.forceMove(drop_location())
 	crop_units.Cut()
+	wine_fruits.Cut()
 
 /obj/structure/fermenting_barrel/attackby(obj/item/I, mob/user, params)
 	if(brewing && (istype(I, /obj/item/food/grown) || (selected_recipe && is_type_in_list(I, selected_recipe.needed_items))))
 		to_chat(user, span_warning("W [src] już coś się warzy."))
 		return TRUE
 	if(!selected_recipe || brewing)
-		return ..()
+		. = ..()
+		// Owoc wrzucony bez przepisu: zaplanowany makeWine() może go zużyć tylko, dopóki leży w beczce
+		if(!brewing && istype(I, /obj/item/food/grown) && I.loc == src)
+			wine_fruits[I] = TRUE
+		return
 	var/obj/item/food/grown/crop = I
 	if(istype(crop))
 		var/crop_type = needed_crop_type(crop)
@@ -124,10 +146,26 @@
 		. += "gotowy trunek w beczce: [initial(previous.name)]"
 
 /obj/structure/fermenting_barrel/proc/start_brewing(mob/user)
+	// Ktoś mógł przełączyć beczkę na tryb bez przepisu, zanim wybrano „Rozpocznij warzenie”
+	if(!selected_recipe)
+		if(user)
+			to_chat(user, span_warning("[src] nie ma wybranego przepisu."))
+		return FALSE
 	var/list/missing = missing_for_recipe()
 	if(length(missing))
 		if(user)
 			to_chat(user, span_warning("Brakuje: [jointext(missing, ", ")]."))
+		return FALSE
+	// Gotowy trunek musi się zmieścić obok płynów, które zostaną po starcie
+	var/leftover = reagents.total_volume
+	for(var/reagent_type in selected_recipe.needed_reagents)
+		leftover -= min(reagents.get_reagent_amount(reagent_type), selected_recipe.needed_reagents[reagent_type])
+	if(selected_recipe.pre_reqs)
+		leftover -= reagents.get_reagent_amount(selected_recipe.pre_reqs)
+	var/overflow = leftover + selected_recipe.brewed_amount - reagents.maximum_volume
+	if(overflow > 0)
+		if(user)
+			to_chat(user, span_warning("Trunek się nie zmieści: wylej z [src] jeszcze [round(overflow, 0.1)] j. płynu."))
 		return FALSE
 	for(var/atom/movable/thing as anything in contents)
 		qdel(thing)
@@ -137,6 +175,11 @@
 	if(selected_recipe.pre_reqs)
 		reagents.del_reagent(selected_recipe.pre_reqs)
 	brewing = TRUE
+	if(open)
+		open = FALSE
+		ENABLE_BITFIELD(reagents.flags, DRAINABLE)
+		DISABLE_BITFIELD(reagents.flags, REFILLABLE)
+		update_icon()
 	brew_end = world.time + selected_recipe.brew_time
 	addtimer(CALLBACK(src, PROC_REF(finish_brewing)), selected_recipe.brew_time, TIMER_STOPPABLE)
 	playsound(src, 'sound/effects/bubbles.ogg', 50, TRUE)

@@ -60,4 +60,32 @@
 	TEST_ASSERT(!barrel_export.applies_to(empty_barrel, EXPORT_CARGO), "An empty barrel would be sold")
 	qdel(barrel_export)
 
+/// Poprawki z review: start bez przepisu, przepełnienie beczki, wysypany owoc nie fermentuje
+/datum/unit_test/aquila_brewing_barrel_guards
+
+/datum/unit_test/aquila_brewing_barrel_guards/Run()
+	var/obj/structure/fermenting_barrel/barrel = allocate(/obj/structure/fermenting_barrel, run_loc_floor_bottom_left)
+	TEST_ASSERT(!barrel.start_brewing(), "A barrel without a recipe started brewing")
+
+	// Jasne piwo: 60 j. wody, 300 j. trunku. 100 j. wody zostawia 40 j., więc trunek się nie mieści
+	barrel.selected_recipe = locate(/datum/brewing_recipe/light_beer) in GLOB.brewing_recipes
+	barrel.crop_units[/obj/item/food/grown/wheat] = 40
+	barrel.crop_units[/obj/item/food/grown/poppy] = 5
+	barrel.reagents.add_reagent(/datum/reagent/water, 100)
+	TEST_ASSERT(!barrel.start_brewing(), "Light beer started with 40 u of leftover water, so 300 u would not fit")
+	barrel.reagents.remove_reagent(/datum/reagent/water, 40)
+	TEST_ASSERT(barrel.start_brewing(), "Light beer did not start with exactly 60 u of water")
+	TEST_ASSERT(!barrel.open, "The barrel stayed open while brewing")
+	barrel.finish_brewing()
+	TEST_ASSERT(barrel.reagents.get_reagent_amount(/datum/reagent/consumable/ethanol/beer/light) == 300, "Light beer did not make the full 300 u")
+
+	// Owoc wrzucony bez przepisu, potem wysypany: zaplanowana fermentacja go nie zużywa
+	var/obj/structure/fermenting_barrel/wine_barrel = allocate(/obj/structure/fermenting_barrel, run_loc_floor_bottom_left)
+	var/obj/item/food/grown/apple/apple = allocate(/obj/item/food/grown/apple, wine_barrel)
+	wine_barrel.wine_fruits[apple] = TRUE
+	wine_barrel.drop_brewing_ingredients()
+	wine_barrel.makeWine(apple)
+	TEST_ASSERT(!QDELETED(apple), "A fruit dropped out of the barrel was still turned into wine")
+	TEST_ASSERT(!wine_barrel.reagents.total_volume, "A dropped fruit added wine to the barrel")
+
 #undef TEST_ASSERT

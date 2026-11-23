@@ -16,6 +16,7 @@ type Ingredient = {
   name: string;
   amount: number;
   reagent: boolean;
+  unit?: string;
 };
 
 type CookRecipe = {
@@ -66,7 +67,9 @@ const byName = (a: CookRecipe, b: CookRecipe) => a.name.localeCompare(b.name);
 const listIngredients = (ingredients: Ingredient[]) =>
   ingredients
     .map((i) =>
-      i.reagent ? `${i.amount} j. ${i.name}` : `${i.amount}× ${i.name}`,
+      i.reagent || i.unit
+        ? `${i.amount} ${i.unit || 'j.'} ${i.name}`
+        : `${i.amount}× ${i.name}`,
     )
     .join(', ');
 
