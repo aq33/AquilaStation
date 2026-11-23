@@ -19,6 +19,8 @@
 	VAR_PRIVATE/async_finished = FALSE
 	/// AI_BEHAVIOR_* flags that came out of async perform
 	VAR_PRIVATE/async_result_flags = NONE
+	/// AQUILA: numer bieżącego przebiegu asynchronicznego; stary perform_async po resecie liścia ma inny i nic nie zapisuje
+	VAR_PRIVATE/async_generation = 0
 
 /datum/bt_node/ai_behavior/has_active_descendants()
 	return running
@@ -109,20 +111,24 @@
 ///Marks that async behavior has started and runs perform_async
 /datum/bt_node/ai_behavior/proc/start_async()
 	async_running = TRUE
-	INVOKE_ASYNC(src, PROC_REF(perform_async), owning_controller)
+	async_generation++ // AQUILA: perform_async dostaje numer przebiegu i podaje go do async_still_valid()/finish_async()
+	INVOKE_ASYNC(src, PROC_REF(perform_async), owning_controller, async_generation)
 	return handle_async() || AI_BEHAVIOR_DELAY
 
 ///Override this if you have sleeping behavior, be sure to implement the other async procs in perform()
-/datum/bt_node/ai_behavior/proc/perform_async(datum/ai_controller/controller)
+/datum/bt_node/ai_behavior/proc/perform_async(datum/ai_controller/controller, generation)
 	return
 
 /// Call from an async behavior after its sleeping call, before committing side effects. FALSE means the behavior was aborted/reset mid-flight  bail out without side effects.
-/datum/bt_node/ai_behavior/proc/async_still_valid()
+/// AQUILA: generation z perform_async() odrzuca przebieg sprzed resetu, nawet gdy liść zdążył już zacząć nowy
+/datum/bt_node/ai_behavior/proc/async_still_valid(generation)
+	if(!isnull(generation) && generation != async_generation)
+		return FALSE
 	return async_running && !QDELETED(owning_controller?.pawn)
 
 /// Call from an async behavior to commit its result. No-op if the behavior was aborted mid-flight.
-/datum/bt_node/ai_behavior/proc/finish_async(result_flags)
-	if(!async_still_valid())
+/datum/bt_node/ai_behavior/proc/finish_async(result_flags, generation)
+	if(!async_still_valid(generation))
 		return
 	async_result_flags = result_flags
 	async_finished = TRUE

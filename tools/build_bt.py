@@ -367,11 +367,14 @@ def main() -> int:
                 path.rmdir()
 
     if check_mode:
+        if errors:
+            print(f'\n{errors} error(s) encountered.', file=sys.stderr)
         if dirty:
             print(
                 f'\n{dirty} file(s) are out of date. Run `python tools/build_bt.py` to regenerate.',
                 file=sys.stderr,
             )
+        if errors or dirty:
             return 1
         print('All generated BT files are up to date.')
         return 0

@@ -33,6 +33,10 @@
 	SIGNAL_HANDLER
 	movement_failed = TRUE
 
+/// AQUILA: czy bieżąca pętla ruchu kontrolera (do movement_target) należy do tego liścia
+/datum/bt_node/ai_behavior/move_to_target/proc/owns_movement(datum/ai_controller/controller, atom/movement_target)
+	return movement_target == tracked_target || movement_target == controller.blackboard[target_key]
+
 /datum/bt_node/ai_behavior/move_to_target/perform(seconds_per_tick, datum/ai_controller/controller)
 	if(movement_failed)
 		return AI_BEHAVIOR_INSTANT | AI_BEHAVIOR_FAILED
@@ -51,8 +55,11 @@
 /datum/bt_node/ai_behavior/move_to_target/finish_action(datum/ai_controller/controller, succeeded)
 	UnregisterSignal(controller.pawn, COMSIG_MOB_AI_MOVEMENT_FAILED)
 	movement_failed = FALSE
+	// AQUILA: przerwany liść (selektor reaktywny resetuje go po starcie nowego) nie zatrzymuje cudzego ruchu
+	var/atom/current_movement_target = controller.ai_movement.moving_controllers[controller]
+	if(isnull(current_movement_target) || owns_movement(controller, current_movement_target))
+		controller.ai_movement.stop_moving_towards(controller)
 	tracked_target = null
-	controller.ai_movement.stop_moving_towards(controller)
 	if(movement_type)
 		controller.change_ai_movement_type(initial(controller.ai_movement))
 	return ..()

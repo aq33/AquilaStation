@@ -64,7 +64,7 @@
 		// AQ EDIT START - basic boty
 		for(var/mob/living/basic/bot/basic_bot as anything in GLOB.basic_bots_list)
 			if(prob(botEmagChance))
-				basic_bot.remote_malfunction()
+				basic_bot.emag_act() // AQ EDIT - burza jonowa jak przy starych botach: pierwszy etap emaga tylko odblokowuje
 		// AQ EDIT END
 
 /proc/generate_ion_law()
