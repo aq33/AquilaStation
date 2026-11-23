@@ -393,6 +393,8 @@
 	check_survey_mission(planet)
 	check_evacuation_mission(planet)
 	check_site_fallback(planet)
+	// Ostatnie: przenosi planetę do nullspace i może zwolnić powierzchnię
+	check_corpse_keeps_surface(planet)
 	planet.surface.unload()
 	qdel(planet, TRUE)
 
@@ -540,6 +542,32 @@
 		T.flags_1 &= ~NO_RUINS_1
 	qdel(mission)
 	TEST_ASSERT_EQUAL(picked, only_spot, "The mission didn't find the only free turf for its site")
+
+/// Ciało gracza, do którego ten może wrócić, trzyma powierzchnię po odlocie okrętu; bez możliwości powrotu powierzchnia znika
+/datum/unit_test/planet_surface_mechanics/proc/check_corpse_keeps_surface(obj/structure/overmap/planet/planet)
+	var/datum/planet_surface/surface = planet.surface
+	var/turf/ground = planet_ground_turf(surface)
+	var/mob/living/carbon/human/body = allocate(/mob/living/carbon/human, ground)
+	body.mind_initialize()
+	body.death()
+	var/mob/dead/observer/ghost = allocate(/mob/dead/observer, body)
+	ghost.can_reenter_corpse = TRUE
+	TEST_ASSERT_EQUAL(body.get_ghost(), ghost, "The test ghost doesn't belong to the body")
+	TEST_ASSERT(!length(surface.living_players()), "The dead body counts as a living player")
+	TEST_ASSERT_EQUAL(length(surface.revivable_player_corpses()), 1, "The body the player can return to isn't counted")
+
+	// Okręt odleciał: planeta w nullspace sprawdza powierzchnię co PLANET_UNLOAD_CHECK_EVERY wywołań
+	planet.moveToNullspace()
+	for(var/i in 1 to 10)
+		planet.check_landing_craft()
+	TEST_ASSERT_EQUAL(surface.state, PLANET_SURFACE_READY, "The surface unloaded with a player's revivable body on it")
+	TEST_ASSERT(!QDELETED(body), "The player's body was deleted")
+
+	ghost.can_reenter_corpse = FALSE
+	TEST_ASSERT(!length(surface.revivable_player_corpses()), "A body the player can't return to keeps the surface")
+	for(var/i in 1 to 10)
+		planet.check_landing_craft()
+	TEST_ASSERT_EQUAL(surface.state, PLANET_SURFACE_NONE, "The surface didn't unload after the player gave up the body")
 
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL
