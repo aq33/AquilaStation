@@ -334,6 +334,8 @@
 	var/turf/closed/indestructible/dropship/entry/sabre/doors = get_step(wing, EAST)
 	TEST_ASSERT(istype(doors), "No cockpit doors next to the wing")
 	var/mob/living/carbon/human/pilot = allocate(/mob/living/carbon/human)
+	// Skrzydło jest w próżni: pod obciążeniem CI pilot tracił przytomność w czasie 2 s wchodzenia (do_after przerwane)
+	pilot.status_flags |= GODMODE
 	pilot.forceMove(wing)
 	TEST_ASSERT_EQUAL(pilot.loc, wing, "Nobody can stand on the Sabre wing")
 

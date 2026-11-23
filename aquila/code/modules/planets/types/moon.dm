@@ -12,6 +12,8 @@
 			.[name] = ruin
 
 /datum/planet_type/moon
+	sky_state = "moon"
+	sky_scale = 1.5
 	name = "księżyc"
 	desc = "Martwy glob bez powietrza, pokryty regolitem i kraterami po meteorytach. Pod skałą biegną żyły rud, a w kraterach stoją resztki dawnych baz."
 	overmap_icon_state = "planet_small"
