@@ -249,9 +249,10 @@ GLOBAL_LIST_INIT(grod_accessory_names, list(
 	heatmod = 1.3
 	coldmod = 0.7
 	toxmod = 0.8
-	staminamod = 1.2
+	staminamod = GROD_STAMINAMOD
+	speedmod = GROD_SPEEDMOD
 	species_language_holder = /datum/language_holder/grod
-	offset_features = list(OFFSET_UNIFORM = list(0,0), OFFSET_ID = list(0,0), OFFSET_GLOVES = list(0,0), OFFSET_GLASSES = list(0,0), OFFSET_EARS = list(0,0), OFFSET_SHOES = list(0,0), OFFSET_S_STORE = list(0,0), OFFSET_FACEMASK = list(0,0), OFFSET_HEAD = list(0,0), OFFSET_FACE = list(0,0), OFFSET_BELT = list(0,0), OFFSET_BACK = list(0,0), OFFSET_SUIT = list(0,0), OFFSET_NECK = list(0,0), OFFSET_RIGHT_HAND = list(2,-4), OFFSET_LEFT_HAND = list(-1,-4))
+	offset_features = list(OFFSET_UNIFORM = list(0,0), OFFSET_ID = list(0,0), OFFSET_GLOVES = list(0,0), OFFSET_GLASSES = list(0,0), OFFSET_EARS = list(0,0), OFFSET_SHOES = list(0,0), OFFSET_S_STORE = list(0,0), OFFSET_FACEMASK = list(0,0), OFFSET_HEAD = list(0,0), OFFSET_FACE = list(0,0), OFFSET_BELT = list(0,0), OFFSET_BACK = list(0,0), OFFSET_SUIT = list(0,0), OFFSET_NECK = list(0,0))
 	/// Grod nie ma nóg: z przodu i z tyłu w chodzie ruszają się tylko ręce (walk_animation.dm)
 	walk_animation_legs = FALSE
 	changesource_flags = MIRROR_BADMIN | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN
@@ -263,6 +264,12 @@ GLOBAL_LIST_INIT(grod_accessory_names, list(
 	species_r_leg = /obj/item/bodypart/r_leg/grod
 	/// Akcja odłączenia korony
 	var/datum/action/innate/grod_crownspider/crownspider
+	/// Akcja zmiany postawy (grod_stance.dm)
+	var/datum/action/innate/grod_stance/stance_action
+	/// Obecna postawa: GROD_STANCE_MOBILE albo GROD_STANCE_INTERACT
+	var/stance = GROD_STANCE_MOBILE
+	/// Kierunek, dla którego rysujemy rzeczy w dłoniach (sygnał obrotu przychodzi przed zmianą dir)
+	var/hands_render_dir
 
 /mob/living/carbon/human/species/grod
 	race = /datum/species/grod
@@ -286,10 +293,15 @@ GLOBAL_LIST_INIT(grod_last, world.file2list("strings/names/grod_last.txt"))
 		if(!C.dna.features[feature])
 			C.dna.features[feature] = default_features[feature]
 	C.update_body()
-	grod_set_hands(C, GROD_HANDS)
+	stance = GROD_STANCE_MOBILE
+	grod_set_hands(C, 2)
 	if(!crownspider)
 		crownspider = new
 	crownspider.Grant(C)
+	if(!stance_action)
+		stance_action = new
+	stance_action.Grant(C)
+	RegisterSignal(C, COMSIG_ATOM_DIR_CHANGE, PROC_REF(grod_dir_changed))
 	// Ubrania bez sprite'u Groda spadają (zmiana rasy w trakcie gry)
 	for(var/slot in list(ITEM_SLOT_OCLOTHING, ITEM_SLOT_SUITSTORE, ITEM_SLOT_ICLOTHING, ITEM_SLOT_HEAD, ITEM_SLOT_FEET, ITEM_SLOT_GLOVES, ITEM_SLOT_NECK))
 		var/obj/item/worn = C.get_item_by_slot(slot)
@@ -298,12 +310,17 @@ GLOBAL_LIST_INIT(grod_last, world.file2list("strings/names/grod_last.txt"))
 
 /datum/species/grod/on_species_loss(mob/living/carbon/human/C, datum/species/new_species, pref_load)
 	. = ..()
+	grod_set_stance(C, GROD_STANCE_MOBILE, TRUE)
 	grod_set_hands(C, 2)
+	UnregisterSignal(C, COMSIG_ATOM_DIR_CHANGE)
 	if(crownspider)
 		crownspider.Remove(C)
 		QDEL_NULL(crownspider)
+	if(stance_action)
+		stance_action.Remove(C)
+		QDEL_NULL(stance_action)
 
-/// Druga para rąk (jak Koa w BeeStation/BeeStation-Hornet#14185): dłonie 3 i 4 są na odnóżach (held_index nóg Groda).
+/// Druga para rąk w postawie pracy: dłonie 3 i 4 są na odnóżach (held_index nóg Groda).
 /// Ciało dokłada ich części przy podpięciu kończyn, a tu poszerzamy listę trzymanych rzeczy i sloty dłoni w HUD-zie.
 /datum/species/grod/proc/grod_set_hands(mob/living/carbon/human/C, amount)
 	if(length(C.held_items) > amount)
@@ -316,20 +333,9 @@ GLOBAL_LIST_INIT(grod_last, world.file2list("strings/names/grod_last.txt"))
 		C.hud_used.build_hand_slots()
 		C.hud_used.show_hud(C.hud_used.hud_version)
 
-/// Rzeczy w górnej parze rąk wiszą wyżej, przy górnych dłoniach na sprite'ach
-/datum/species/grod/get_item_offsets_for_index(obj/item/I)
-	var/mob/living/carbon/holder = I.loc
-	if(!istype(holder))
-		return null
-	switch(holder.get_held_index_of_item(I))
-		if(3)
-			return list("x" = -2, "y" = 1)
-		if(4)
-			return list("x" = 3, "y" = 1)
-	return null
-
 /datum/species/grod/Destroy()
 	QDEL_NULL(crownspider)
+	QDEL_NULL(stance_action)
 	return ..()
 
 /// Środki chwastobójcze trują Groda

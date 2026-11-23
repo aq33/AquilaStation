@@ -35,7 +35,7 @@
 	TEST_ASSERT(GLOB.species_list[SPECIES_GROD], "The grod species is not registered")
 	TEST_ASSERT_EQUAL(length(GLOB.grod_first), 24, "The grod name letters did not load")
 
-/// Grod: korona na głowie, cechy, imię, język, ubrania tylko z jego sprite'ami, cztery ręce, odłączenie korony i przejęcie ciała
+/// Grod: korona na głowie, cechy, imię, język, ubrania tylko z jego sprite'ami, postawy, odłączenie korony i przejęcie ciała
 /datum/unit_test/aquila_rasy_grod
 
 /datum/unit_test/aquila_rasy_grod/Run()
@@ -62,17 +62,49 @@
 	TEST_ASSERT(H.equip_to_slot_if_possible(tophat, ITEM_SLOT_HEAD, disable_warning = TRUE), "A grod cannot wear a grod top hat")
 	TEST_ASSERT(!aquila_grod_has_overlay(H, BODY_FRONT_LAYER, "m_grod_crown_crown_FRONT"), "The crown shows through the top hat")
 
-	// Cztery ręce (jak Koa w BeeStation/BeeStation-Hornet#14185): dłonie 3 i 4 na odnóżach trzymają rzeczy jak zwykłe ręce
-	TEST_ASSERT_EQUAL(length(H.held_items), GROD_HANDS, "A grod does not have four hands")
+	// Postawa ruchu (domyślna): dwie ręce i szybszy chód
+	var/datum/species/grod/grod = H.dna.species
+	TEST_ASSERT_EQUAL(grod.stance, GROD_STANCE_MOBILE, "A grod does not start in the mobile stance")
+	TEST_ASSERT_EQUAL(length(H.held_items), 2, "A grod in the mobile stance does not have two hands")
+	TEST_ASSERT(grod.speedmod < 0 && H.has_movespeed_modifier(MOVESPEED_ID_SPECIES), "A grod in the mobile stance is not faster than a human")
+	TEST_ASSERT(!H.dna.species.walk_animation_legs, "A grod without legs swings its legs when walking")
+
+	// Postawa pracy: cztery ręce (dłonie 3 i 4 na odnóżach), wolniej, bez blokowania, kosztuje trochę głodu
+	H.set_nutrition(NUTRITION_LEVEL_FED)
+	grod.stance_action.Activate()
+	TEST_ASSERT_EQUAL(grod.stance, GROD_STANCE_INTERACT, "The stance action did not switch to the interact stance")
+	TEST_ASSERT_EQUAL(length(H.held_items), GROD_HANDS, "A grod in the interact stance does not have four hands")
+	TEST_ASSERT(H.has_movespeed_modifier(MOVESPEED_ID_GROD_INTERACT), "The interact stance does not slow the grod down")
+	TEST_ASSERT(HAS_TRAIT(H, TRAIT_NOBLOCK), "A grod in the interact stance can still block")
+	TEST_ASSERT(H.nutrition < NUTRITION_LEVEL_FED, "Switching to the interact stance cost no nutrition")
 	TEST_ASSERT(istype(H.hand_bodyparts[3], /obj/item/bodypart/l_leg/grod), "The third hand is not on the grod's legs")
 	var/obj/item/pen/pen = allocate(/obj/item/pen)
 	TEST_ASSERT(H.put_in_hand(pen, 3), "A grod cannot hold a pen in the third hand")
 	TEST_ASSERT_EQUAL(H.get_item_for_held_index(3), pen, "The pen is not in the third hand")
 	var/obj/item/storage/toolbox/toolbox = allocate(/obj/item/storage/toolbox)
 	TEST_ASSERT(H.put_in_hand(toolbox, 4), "A grod cannot hold a toolbox in the fourth hand")
-	TEST_ASSERT(!H.dna.species.walk_animation_legs, "A grod without legs swings its legs when walking")
 
-	// Odłączenie korony: gracz w pająku, ciało bez mózgu, potem przejęcie ciała człowieka, które staje się Grodem
+	// Rzeczy w dłoniach przesunięte osobno dla każdego kierunku, a przy patrzeniu w górę schowane za ciałem
+	H.setDir(SOUTH)
+	var/list/offsets = pen.get_held_offsets()
+	TEST_ASSERT(offsets["x"] == -2 && offsets["y"] == 1, "The third hand item is drawn in the wrong place facing south")
+	H.setDir(NORTH)
+	offsets = pen.get_held_offsets()
+	TEST_ASSERT(offsets["x"] == 3 && offsets["y"] == 5, "The third hand item is drawn in the wrong place facing north")
+	var/behind = FALSE
+	for(var/mutable_appearance/hand_overlay in H.overlays_standing[HANDS_LAYER])
+		if(hand_overlay.layer == -BODY_BEHIND_LAYER)
+			behind = TRUE
+	TEST_ASSERT(behind, "Turning north did not redraw the held items behind the body")
+	H.setDir(SOUTH)
+
+	// Powrót do postawy ruchu: rzeczy z odnóży spadają
+	grod.stance_action.Activate()
+	TEST_ASSERT_EQUAL(length(H.held_items), 2, "Going back to the mobile stance left four hands")
+	TEST_ASSERT(pen.loc != H && toolbox.loc != H, "Items in the leg hands stayed held in the mobile stance")
+	TEST_ASSERT(!HAS_TRAIT(H, TRAIT_NOBLOCK), "The mobile stance did not bring back blocking")
+
+	// Odłączenie korony: gracz w pająku, ciało bez mózgu, potem przejęcie ciała człowieka, które choruje i w kokonie staje się Grodem
 	var/mob/living/simple_animal/hostile/grod_crown/spider = grod_leave_body(H)
 	TEST_ASSERT(spider?.crown, "The crown did not leave the body as a spider")
 	TEST_ASSERT(!H.getorganslot(ORGAN_SLOT_BRAIN), "The crown is still in the body")
@@ -83,11 +115,21 @@
 	old_brain.Remove(host, TRUE, TRUE)
 	qdel(old_brain)
 	spider.infest(host)
-	TEST_ASSERT(isgrod(host), "The infested human did not become a grod")
+	TEST_ASSERT(!isgrod(host), "The infested human became a grod at once instead of through the cocoon")
 	var/obj/item/organ/brain/grod/crown = host.getorganslot(ORGAN_SLOT_BRAIN)
 	TEST_ASSERT(istype(crown), "The crown is not in the new body")
 	TEST_ASSERT(crown.damage >= GROD_CROWN_INFEST_DAMAGE, "Taking a body did not hurt the crown")
 	TEST_ASSERT(QDELETED(spider), "The spider stayed after taking a body")
+	var/datum/disease/transformation/grod/mutation = locate() in host.diseases
+	TEST_ASSERT(mutation, "The infested human did not catch the grod transformation")
+	mutation.do_disease_transformation(host)
+	TEST_ASSERT(isgrod(host), "The transformation did not make a grod")
+	TEST_ASSERT_EQUAL(host.getorganslot(ORGAN_SLOT_BRAIN), crown, "The transformation replaced the crown with a new brain")
+	var/obj/structure/grod_cocoon/cocoon = host.loc
+	TEST_ASSERT(istype(cocoon), "The transformed grod is not in a cocoon")
+	TEST_ASSERT(!(locate(/datum/disease/transformation/grod) in host.diseases), "The transformation stayed after the cocoon")
+	qdel(cocoon)
+	TEST_ASSERT(isturf(host.loc), "Breaking the cocoon did not let the grod out")
 
 	// Śmierć pająka jest ostateczna: zostaje martwa korona
 	var/mob/living/simple_animal/hostile/grod_crown/second = grod_leave_body(host)
@@ -105,6 +147,8 @@
 /datum/unit_test/aquila_rasy_grod_hands_loss/Run()
 	var/mob/living/carbon/human/H = allocate(/mob/living/carbon/human, run_loc_floor_bottom_left)
 	H.set_species(/datum/species/grod)
+	var/datum/species/grod/grod = H.dna.species
+	grod.grod_set_stance(H, GROD_STANCE_INTERACT)
 	var/obj/item/pen/pen = allocate(/obj/item/pen)
 	H.put_in_hand(pen, 3)
 	H.set_species(/datum/species/human)
@@ -112,3 +156,40 @@
 		return Fail("A human kept [length(H.held_items)] hands after being a grod")
 	if(pen.loc == H)
 		return Fail("The item in the third hand stayed with a body that has no third hand")
+	if(HAS_TRAIT(H, TRAIT_NOBLOCK) || H.has_movespeed_modifier(MOVESPEED_ID_GROD_INTERACT))
+		return Fail("A human kept the grod interact stance penalties")
+
+/// Korona posadzona w tacy z podłożem wyrasta w kokonie w nowe ciało Groda z tym samym graczem
+/datum/unit_test/aquila_rasy_grod_replant
+
+/datum/unit_test/aquila_rasy_grod_replant/Run()
+	var/mob/living/carbon/human/H = allocate(/mob/living/carbon/human, run_loc_floor_bottom_left)
+	H.set_species(/datum/species/grod)
+	H.mind_initialize()
+	var/datum/mind/mind = H.mind
+	var/obj/item/organ/brain/grod/crown = H.getorganslot(ORGAN_SLOT_BRAIN)
+	crown.Remove(H)
+	crown.forceMove(run_loc_floor_bottom_left)
+	if(!crown.brainmob || crown.brainmob.mind != mind)
+		return Fail("A removed crown did not keep the player")
+	var/mob/living/carbon/human/gardener = allocate(/mob/living/carbon/human, run_loc_floor_bottom_left)
+	var/obj/item/plant_tray/tray = allocate(/obj/item/plant_tray, get_step(run_loc_floor_bottom_left, EAST))
+	gardener.put_in_active_hand(crown)
+	tray.attackby(crown, gardener)
+	if(locate(/obj/structure/grod_cocoon) in tray.loc)
+		return Fail("A crown was planted in a tray without substrate")
+	var/datum/component/planter/planter = tray.GetComponent(/datum/component/planter)
+	planter.set_substrate(/datum/plant_subtrate/dirt)
+	tray.attackby(crown, gardener)
+	var/obj/structure/grod_cocoon/cocoon = locate() in tray.loc
+	if(!cocoon || crown.loc != cocoon)
+		return Fail("Planting a crown in a tray with substrate did not grow a cocoon")
+	cocoon.finish_growth()
+	var/mob/living/carbon/human/body = mind.current
+	if(!istype(body) || !isgrod(body))
+		return Fail("The planted crown did not grow into a grod with the same player")
+	if(body.getorganslot(ORGAN_SLOT_BRAIN) != crown)
+		return Fail("The new body has a different crown")
+	if(!QDELETED(cocoon) || !isturf(body.loc))
+		return Fail("The grown grod did not leave the cocoon")
+	qdel(body)

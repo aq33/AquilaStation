@@ -985,6 +985,9 @@ Nazwy gazów są widoczne w skanerach, kanistrach i oknach TGUI. Jeśli nazwa ga
 | bandana | bandana | ż; nowe |
 | headband | opaska na głowę | ż; nowe |
 | crown | korona | ż; nowe |
+| cocoon (grod) | kokon Groda | m; nowe |
+| stance (grod) | postawa (ruchu / pracy) | ż; nowe; mobile stance → postawa ruchu, interact stance → postawa pracy |
+| crown mutation toxin | toksyna korony | ż; nowe |
 | wig | peruka | ż; nowe |
 | earmuffs | nauszniki | mn; istniejące |
 | glasses | okulary | mn; istniejące |
