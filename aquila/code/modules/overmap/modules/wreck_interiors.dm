@@ -115,6 +115,42 @@
 	if(!salvage_left && !findtext(name, "Wypatroszony"))
 		name = "Wypatroszony [lowertext(name)]"
 
+// ---- Wraki z bitew nie zostają w układzie ----
+
+/obj/structure/overmap/asteroid/shipbreak_wreck
+	/// Wrak po zestrzelonym okręcie (nie losowy wrak układu): znika, gdy okręt gracza opuści układ
+	var/battle_wreck = FALSE
+
+/obj/structure/overmap/asteroid/shipbreak_wreck/copy_ship(obj/structure/overmap/source)
+	. = ..()
+	battle_wreck = TRUE
+
+/obj/structure/overmap
+	/// AQUILA - układ, z którego okręt gracza właśnie skacze (wraki z bitew znikają z niego po skoku)
+	var/datum/star_system/wreck_left_system
+
+/obj/structure/overmap/begin_jump(datum/star_system/target_system, force = FALSE, misjump = FALSE)
+	if(role == MAIN_OVERMAP)
+		wreck_left_system = current_system
+	return ..()
+
+/obj/structure/overmap/jump_end(datum/star_system/target_system, misjump = FALSE)
+	. = ..()
+	if(role != MAIN_OVERMAP || !wreck_left_system)
+		return
+	var/datum/star_system/left = wreck_left_system
+	wreck_left_system = null
+	if(left != target_system)
+		left.clear_battle_wrecks()
+
+/// Usuwa wraki z bitew (bez wczytanego wnętrza, na którym ktoś mógłby zostać); nie zostają na mapie hex
+/datum/star_system/proc/clear_battle_wrecks()
+	for(var/obj/structure/overmap/asteroid/shipbreak_wreck/wreck in system_contents)
+		if(QDELETED(wreck) || !wreck.battle_wreck || length(wreck.occupying_levels))
+			continue
+		system_contents -= wreck
+		qdel(wreck)
+
 /// Rozbity działami: w jego miejscu zostaje pole szczątków
 /obj/structure/overmap/asteroid/shipbreak_wreck/obj_destruction(damage_flag)
 	if(z && current_system)

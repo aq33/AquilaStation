@@ -1,6 +1,6 @@
 /// AQUILA - myśliwce przeszukują wraki (aquila/code/modules/overmap/modules/wreck_scavenging.dm): wrak z okrętu ma kilka
 /// przeszukań, ocalałe moduły dokładają swoje fanty do puli, przeszukanie wkłada przedmioty do ładowni i zużywa jedno
-/// przeszukanie, a wypatroszony wrak nic już nie daje.
+/// przeszukanie, a wypatroszony wrak nic już nie daje. Wrak z bitwy znika z układu po odlocie okrętu gracza.
 /datum/unit_test/aquila_wreck_scavenging
 
 /datum/unit_test/aquila_wreck_scavenging/Run()
@@ -29,3 +29,15 @@
 		return Fail("Przeszukanie nie zużyło przeszukania wraku (zostało [wreck.scavenge_left])")
 	if(length(wreck.scavenge_into(hold, 2)))
 		return Fail("Wypatroszony wrak dalej daje fanty")
+	// Wrak z bitwy znika z układu po odlocie okrętu gracza, losowy wrak układu zostaje
+	if(!wreck.battle_wreck)
+		return Fail("Wrak zestrzelonego okrętu nie jest oznaczony jako wrak z bitwy")
+	var/obj/structure/overmap/asteroid/shipbreak_wreck/random_wreck = allocate(/obj/structure/overmap/asteroid/shipbreak_wreck)
+	var/datum/star_system/S = new /datum/star_system(name = "Unit Test Wreck Cleanup", x = 1, y = 1, alignment = "unaligned", owner = "unaligned", sector = 2, adjacency_list = list())
+	S.system_contents = list(wreck, random_wreck)
+	S.clear_battle_wrecks()
+	var/cleared = QDELETED(wreck) && !QDELETED(random_wreck) && !(wreck in S.system_contents)
+	S.system_contents = list()
+	qdel(S)
+	if(!cleared)
+		return Fail("Po odlocie wrak z bitwy został w układzie albo zniknął losowy wrak")
