@@ -88,6 +88,10 @@
 		return
 	if(!chassis.has_charge(energy_drain) || chassis.equipment_disabled)
 		return
+	var/list/path = jump_path()
+	if(!length(path))
+		chassis.balloon_alert(user, "brak miejsca do lądowania")
+		return
 	chassis.use_power(energy_drain)
 	COOLDOWN_START(src, jump_cd, 10 SECONDS)
 	playsound(chassis, 'sound/effects/podwoosh.ogg', 50, TRUE)
@@ -95,22 +99,55 @@
 	var/old_layer = chassis.layer
 	chassis.layer = ABOVE_MOB_LAYER
 	animate(chassis, pixel_z = 12, time = 2)
-	for(var/i in 1 to 3)
-		var/turf/T = get_step(chassis, chassis.dir)
-		if(!T || T.density)
-			break
-		var/blocked = FALSE
-		for(var/obj/O in T)
-			if(O.density && (istype(O, /obj/machinery/door) || istype(O, /obj/structure/window) || ismecha(O)))
-				blocked = TRUE
-				break
-		if(blocked)
-			break
+	for(var/turf/T as anything in path)
 		chassis.forceMove(T)
 		sleep(1)
 	animate(chassis, pixel_z = 0, time = 2)
 	chassis.layer = old_layer
 	playsound(chassis, 'sound/mecha/mechstep.ogg', 60, TRUE)
+
+/// Pola lotu do najdalszego miejsca lądowania (do trzech przed mechem). Mech przelatuje nad stołami, barierkami
+/// i ludźmi, ale nie przez ściany, drzwi, okna, kraty, pola i bariery; ląduje tylko na polu bez niczego gęstego.
+/obj/item/mecha_parts/mecha_equipment/aq_utility/jumpjet/proc/jump_path()
+	var/list/flight = list()
+	var/turf/prev = get_turf(chassis)
+	for(var/i in 1 to 3)
+		var/turf/T = get_step(prev, chassis.dir)
+		if(!can_fly_over(prev, T))
+			break
+		flight += T
+		prev = T
+	// lądowisko: ostatnie pole lotu, na którym nic gęstego nie stoi
+	while(length(flight))
+		var/turf/landing = flight[length(flight)]
+		var/free = TRUE
+		for(var/atom/movable/AM in landing)
+			if(AM != chassis && AM.density)
+				free = FALSE
+				break
+		if(free)
+			break
+		flight.len--
+	return flight
+
+/obj/item/mecha_parts/mecha_equipment/aq_utility/jumpjet/proc/can_fly_over(turf/from, turf/T)
+	if(!T || T.density)
+		return FALSE
+	var/move_dir = get_dir(from, T)
+	// obiekty na krawędzi pola startu (okna kierunkowe, wiatrołapy)
+	for(var/obj/O in from)
+		if(O != chassis && O.density && (O.flags_1 & ON_BORDER_1) && (O.dir & move_dir) && !istype(O, /obj/structure/railing))
+			return FALSE
+	for(var/atom/movable/AM in T)
+		if(AM == chassis || isliving(AM) || istype(AM, /obj/structure/table) || istype(AM, /obj/structure/railing))
+			continue
+		if(AM.flags_1 & ON_BORDER_1)
+			if(AM.density && (AM.dir & turn(move_dir, 180)))
+				return FALSE
+			continue
+		if(!AM.CanPass(chassis, T))
+			return FALSE
+	return TRUE
 
 /obj/item/mecha_parts/mecha_equipment/aq_utility/ejection
 	name = "awaryjny system wyrzutu"
@@ -316,6 +353,7 @@
 	if(istype(cell))
 		if(world.time - last_message > 30)
 			to_chat(user, "<span class='warning'>Szarpiesz się w celi, ale drzwi są zamknięte.</span>")
+			last_message = world.time
 		return FALSE
 	return ..()
 
@@ -381,14 +419,20 @@
 	return ..()
 
 /obj/item/mecha_parts/mecha_equipment/aq_utility/cloak/Destroy()
+	set_cloak(FALSE)
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 
+/// Zdejmuje maskowanie: strzał, cios wyposażenia, pięść mecha, port strzelecki
+/obj/mecha/proc/aq_break_cloak()
+	for(var/obj/item/mecha_parts/mecha_equipment/aq_utility/cloak/C in equipment)
+		C.set_cloak(FALSE)
+
 /obj/item/mecha_parts/mecha_equipment/aq_on_used()
 	. = ..()
-	if(chassis && harmful)
-		for(var/obj/item/mecha_parts/mecha_equipment/aq_utility/cloak/C in chassis.equipment)
-			C.set_cloak(FALSE)
+	// każda broń i broń wręcz, także nieśmiercionośna (pałka, błysk, stinger, bola, staza)
+	if(chassis && (harmful || istype(src, /obj/item/mecha_parts/mecha_equipment/weapon) || istype(src, /obj/item/mecha_parts/mecha_equipment/aq_melee)))
+		chassis.aq_break_cloak()
 
 // ---------------------------------------------------------------- sensory
 /obj/item/mecha_parts/mecha_equipment/aq_utility/light_amp

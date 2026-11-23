@@ -66,20 +66,39 @@
 		return
 	print(designs[choice], user)
 
-/obj/item/mecha_parts/mecha_equipment/aq_autolathe/proc/print(datum/design/D, mob/user)
+/// Koszt projektu w prawdziwych materiałach: kategoria (MAT_CATEGORY_*) zamieniona na materiał z magazynu, którego
+/// wystarczy (autolat pyta o wybór, tu bierzemy pierwszy). Null, gdy czegoś brakuje.
+/obj/item/mecha_parts/mecha_equipment/aq_autolathe/proc/design_cost(datum/design/D)
 	var/datum/component/material_container/mats = container()
 	var/list/cost = list()
 	for(var/mat in D.materials)
-		cost[mat] = D.materials[mat]
-	if(!mats.has_materials(cost))
+		var/datum/material/used = mat
+		if(istext(mat))
+			used = null
+			for(var/datum/material/M as anything in SSmaterials.materials_by_category[mat])
+				if(mats.materials[M] >= D.materials[mat])
+					used = M
+					break
+			if(!used)
+				return null
+		cost[used] += D.materials[mat]
+	if(!length(cost) || !mats.has_materials(cost))
+		return null
+	return cost
+
+/obj/item/mecha_parts/mecha_equipment/aq_autolathe/proc/print(datum/design/D, mob/user)
+	var/datum/component/material_container/mats = container()
+	var/list/cost = design_cost(D)
+	if(!cost)
 		if(user)
 			to_chat(user, "<span class='warning'>Za mało materiałów na: [D.name].</span>")
 		return FALSE
 	if(!chassis.has_charge(energy_drain))
 		return FALSE
+	if(!mats.use_materials(cost))
+		return FALSE
 	busy = TRUE
 	chassis.use_power(energy_drain)
-	mats.use_materials(cost)
 	playsound(chassis, 'sound/machines/click.ogg', 40, TRUE)
 	sleep(max(1 SECONDS, (D.construction_time || 32) / 2))
 	busy = FALSE
