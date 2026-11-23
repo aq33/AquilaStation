@@ -47,12 +47,16 @@
 		var/datum/mood_event/event = mood.mood_events[event_key]
 		if(istype(event, /datum/mood_event/hug) || istype(event, /datum/mood_event/headpat))
 			return FALSE
-	if(mood.sanity_level > max_sanity)
+	if(mood.sanity > max_sanity)
 		return FALSE
 	return !sad.IsKnockdown()
 
 /mob/living/basic/bot/medbot/hugbot/on_work_target_found(atom/target)
 	set_patient(target)
+
+/// Przytulobot nie leczy, więc nie zajmuje pacjenta medibotom (bez TRAIT_MEDIBOTCOMINGTHROUGH)
+/mob/living/basic/bot/medbot/hugbot/set_patient(mob/living/carbon/new_patient)
+	current_patient = new_patient ? WEAKREF(new_patient) : null
 
 /mob/living/basic/bot/medbot/hugbot/idle_chatter()
 	return
@@ -171,7 +175,7 @@
 			return
 		var/mob/living/basic/bot/medbot/hugbot/A = new(drop_location())
 		A.name = created_name
-		A.robot_arm = W.type
+		A.robot_arm = robot_arm
 		to_chat(user, "<span class='notice'>Dodajesz [W] do [src]. Bip bup!</span>")
 		qdel(W)
 		qdel(src)
@@ -183,9 +187,10 @@
 			return
 		if(!user.temporarilyRemoveItemFromInventory(I))
 			return
-		qdel(I)
 		to_chat(user, "<span class='notice'>Dodajesz [I] do [src]! Masz teraz zespół hugbota!</span>")
 		var/obj/item/bot_assembly/hugbot/A = new
+		A.robot_arm = I.type
+		qdel(I)
 		qdel(src)
 		user.put_in_hands(A)
 	else
