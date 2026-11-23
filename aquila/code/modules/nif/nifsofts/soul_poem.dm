@@ -38,7 +38,7 @@
 	if(!transmitted_message)
 		transmitted_message = "Cześć, jestem [transmitted_name], miło cię poznać!"
 
-	transmitted_identifier = linked_mob.ckey || REF(linked_mob)
+	transmitted_identifier = REF(src) // anonimowy: identyfikator trafia w danych okna do innych graczy, więc nie ckey
 
 	add_message("soul_poem_nifsoft", name, "Witaj, świecie")
 	proximity_datum = new(linked_mob, 1)
@@ -52,7 +52,7 @@
 /**
  * Dopisuje wiadomość do listy. Od jednego nadawcy trzymamy tylko najnowszą.
  *
- * * sender_identifier - kto wysłał (ckey), żeby ta sama osoba nie dodała wielu wiadomości
+ * * sender_identifier - kto wysłał (anonimowy identyfikator programu nadawcy), żeby ta sama osoba nie dodała wielu wiadomości
  * * received_name - podpis wiadomości
  * * received_message - treść
  */
