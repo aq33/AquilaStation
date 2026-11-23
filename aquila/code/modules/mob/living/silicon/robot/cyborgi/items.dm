@@ -514,6 +514,8 @@
 
 /// Jeden cykl pobierania; zwraca ilość pobranej energii
 /obj/item/borg/charger/aquila_connector/proc/aq_draw(mob/living/silicon/robot/user, atom/target)
+	if(QDELETED(user) || !user.cell) // ogniwo mogło zniknąć w trakcie do_after
+		return 0
 	var/wanted = min(draw_per_cycle, user.cell.maxcharge - user.cell.charge)
 	if(wanted <= 0)
 		return 0
@@ -523,7 +525,8 @@
 		if(!apc.cell || apc.cell.percent() <= apc_min_percent)
 			balloon_alert(user, "APC ma za mało energii!")
 			return 0
-		got = apc.cell.use(min(wanted, apc.cell.charge - apc.cell.maxcharge * apc_min_percent / 100)) ? min(wanted, apc.cell.charge) : 0
+		var/available = min(wanted, apc.cell.charge - apc.cell.maxcharge * apc_min_percent / 100)
+		got = (available > 0 && apc.cell.use(available)) ? available : 0 // faktycznie pobrane, nie ładunek po poborze
 		apc.update_icon()
 	else
 		var/obj/structure/cable/cable = target
@@ -569,7 +572,11 @@
 		return
 	var/totransfer = min(cell.charge - AQ_BORG_MIN_CHARGE, powertransfer * coefficient)
 	var/transferred = target.give(totransfer)
-	cell.use(transferred)
+	var/mob/living/silicon/robot/cyborg = cell.loc
+	if(iscyborg(cyborg))
+		cyborg.aq_transfer_charge(transferred) // bez mnożnika oszczędzacza
+	else
+		cell.use(transferred)
 	target.update_icon()
 
 /obj/item/inducer/cyborg/recharge(atom/movable/A, mob/user)

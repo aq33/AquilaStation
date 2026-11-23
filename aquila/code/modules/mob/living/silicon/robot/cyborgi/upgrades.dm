@@ -10,6 +10,8 @@
 /mob/living/silicon/robot
 	/// AQUILA: mnożnik zużycia energii z ogniwa (oszczędzacz energii)
 	var/aq_power_coefficient = 1
+	/// AQUILA: trwa przekazywanie energii z ogniwa (licznik), oszczędzacz wtedy nie działa
+	var/aq_power_transfers = 0
 	/// AQUILA: włączona osobista tarcza
 	var/obj/item/borg/upgrade/aquila/toggle/personal_shield/aq_personal_shield
 	/// AQUILA: od kiedy wolno użyć kolejnego pakietu doładowania
@@ -208,9 +210,27 @@
 /obj/item/stock_parts/cell/use(amount, force)
 	if(amount > 0 && iscyborg(loc))
 		var/mob/living/silicon/robot/cyborg = loc
-		if(cyborg.cell == src)
+		// Przy przekazywaniu energii (induktor, złącze w trybie ładowania) oszczędzacz nie działa, inaczej dawałby energię z niczego
+		if(cyborg.cell == src && !cyborg.aq_power_transfers)
 			amount *= cyborg.aq_power_coefficient
 	return ..()
+
+/// Pobiera energię z ogniwa cyborga na przekazanie dalej, bez mnożnika oszczędzacza
+/mob/living/silicon/robot/proc/aq_transfer_charge(amount)
+	if(!cell)
+		return FALSE
+	aq_power_transfers++
+	. = cell.use(amount)
+	aq_power_transfers--
+
+// Złącze w trybie ładowania przelewa energię z ogniwa cyborga do innego ogniwa
+/obj/item/borg/charger/charging_loop(mob/living/silicon/robot/user, atom/target, obj/item/stock_parts/cell/cell)
+	if(!iscyborg(user))
+		return ..()
+	user.aq_power_transfers++
+	. = ..()
+	if(!QDELETED(user))
+		user.aq_power_transfers--
 
 /// Pakiet doładowania (Goonstation „recharge pack”): jednorazowo +15 000 ładunku, kolejny dopiero po 7 minutach
 /obj/item/borg/upgrade/aquila/recharge_pack
