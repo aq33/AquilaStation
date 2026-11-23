@@ -28,7 +28,7 @@
 
 	/// Z kim NIF jest teraz połączony
 	var/mob/living/carbon/human/linked_mob = null
-	/// Ckey pierwszego nosiciela, chroni przed kradzieżą
+	/// Ckey pierwszego nosiciela, chroni przed kradzieżą (linked_mob po wyjęciu jest pusty)
 	var/stored_ckey
 
 	/// Czy NIF jest już skalibrowany
@@ -119,23 +119,28 @@
 
 /obj/item/organ/cyberimp/nif/Insert(mob/living/carbon/insertee, special = FALSE, drop_if_replaced = TRUE)
 	// Ochrona przed kradzieżą przed bazowym Insert(): ten wyjąłby najpierw działający NIF nosiciela
-	if(!ishuman(insertee) || (linked_mob && stored_ckey != insertee.ckey && theft_protection))
+	if(!ishuman(insertee) || (stored_ckey && stored_ckey != insertee.ckey && theft_protection))
 		insertee?.audible_message(span_warning("[src] brzęczy ostrzegawczo i nie chce się połączyć."))
 		if(insertee)
 			playsound(insertee, 'sound/machines/buzz-sigh.ogg', 30, TRUE)
+			// operacja i autochirurg zdejmują NIF z ręki przed Insert(): odrzucony ląduje na podłodze, nie w nullspace (jak w Monkestation)
+			if(!ismob(loc))
+				forceMove(insertee.drop_location())
 		return FALSE
 	. = ..()
 	if(owner != insertee)
 		return
 
 	linked_mob = insertee
-	stored_ckey = linked_mob.ckey
+	if(!stored_ckey)
+		stored_ckey = linked_mob.ckey
 
 	START_PROCESSING(SSobj, src)
 
 	if(!is_calibrated)
 		send_message("Rozpoczyna się kalibracja.")
 		calibrating = TRUE
+		calibration_duration = null // przerwana kalibracja zaczyna się od nowa
 
 	linked_mob.AddComponent(/datum/component/nif_examine)
 	RegisterSignal(linked_mob, COMSIG_MOB_DEATH, PROC_REF(damage_on_death))
@@ -170,6 +175,8 @@
 
 	QDEL_LIST(loaded_nifsofts)
 	SStgui.close_uis(src)
+	// wyjęty NIF nie trzyma byłego nosiciela: komunikaty i timery (fix_nif, send_message) już do niego nie idą
+	linked_mob = null
 
 /// Instaluje programy wgrane fabrycznie
 /obj/item/organ/cyberimp/nif/proc/install_preinstalled_nifsofts()
@@ -259,11 +266,11 @@
 
 	if(!blood_drain)
 		power_usage += (blood_drain_rate * blood_conversion_rate)
-		balloon_alert(linked_mob, "pobór krwi wyłączony")
+		linked_mob?.balloon_alert(linked_mob, "pobór krwi wyłączony")
 		return
 
 	power_usage -= (blood_drain_rate * blood_conversion_rate)
-	balloon_alert(linked_mob, "pobór krwi włączony")
+	linked_mob?.balloon_alert(linked_mob, "pobór krwi włączony")
 
 /// Czy NIF może pobierać krew jako źródło energii
 /obj/item/organ/cyberimp/nif/proc/blood_check()

@@ -15,6 +15,8 @@
 	var/aq_overloader_cycles = 0
 	/// AQUILA - działający program (słaba referencja, dysk może zniknąć w trakcie)
 	var/datum/weakref/aq_overloader_active
+	/// AQUILA - id oczekującego timera cyklu (klucz resetu go anuluje, żeby nie powstał drugi łańcuch cykli)
+	var/aq_overloader_timer
 
 /obj/item/aq_ipc_overloader
 	name = "overloader"
@@ -90,7 +92,7 @@
 	target.aq_overloader_active = WEAKREF(src)
 	target.aq_overloader_cycles = 6
 	if(!was_running)
-		addtimer(CALLBACK(target, TYPE_PROC_REF(/mob/living/carbon/human, aq_overloader_cycle)), 30 SECONDS)
+		target.aq_overloader_timer = addtimer(CALLBACK(target, TYPE_PROC_REF(/mob/living/carbon/human, aq_overloader_cycle)), 30 SECONDS, TIMER_STOPPABLE)
 
 /obj/item/aq_ipc_overloader/proc/start_effect(mob/living/carbon/human/target)
 	return
@@ -127,6 +129,7 @@
 
 /// Jeden cykl działania (co 30 s, 6 razy)
 /mob/living/carbon/human/proc/aq_overloader_cycle()
+	aq_overloader_timer = null
 	if(QDELETED(src) || aq_overloader_cycles <= 0)
 		return
 	aq_overloader_cycles--
@@ -137,7 +140,7 @@
 		else
 			program.end_effect(src)
 	if(aq_overloader_cycles > 0)
-		addtimer(CALLBACK(src, PROC_REF(aq_overloader_cycle)), 30 SECONDS)
+		aq_overloader_timer = addtimer(CALLBACK(src, PROC_REF(aq_overloader_cycle)), 30 SECONDS, TIMER_STOPPABLE)
 		return
 	aq_overloader_level = max(aq_overloader_level - 1, 0)
 	aq_overloader_active = null
@@ -146,6 +149,9 @@
 
 /// Klucz resetu czyści działanie programów
 /mob/living/carbon/human/proc/aq_clear_overloaders()
+	if(aq_overloader_timer)
+		deltimer(aq_overloader_timer)
+		aq_overloader_timer = null
 	aq_overloader_cycles = 0
 	aq_overloader_level = 0
 	aq_overloader_active = null

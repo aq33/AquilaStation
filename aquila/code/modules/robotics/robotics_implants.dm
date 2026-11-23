@@ -127,7 +127,7 @@
 	desc = "Wszczep z napędem odrzutowym w nodze. Pozwala przeskoczyć do czterech pól, także nad przepaścią. Wystarczy jeden implant w dowolnej nodze."
 	icon_state = "implant-toolkit"
 	implant_color = "#4a9ed6"
-	aq_cyberpsychosis_cost = 6
+	aq_cyberpsychosis_cost = 5
 	/// Akcja skoku
 	var/datum/action/innate/aq_implant_jump/jump_action
 
@@ -253,6 +253,9 @@
 		aq_alert_radio.recalculateChannels()
 		aq_alert_radio.listening = FALSE
 		aq_alert_radio.canhear_range = 0
+	// klucz kapitana ma kanały działów (w tym medyczny) wyłączone (0), a z wyłączonego kanału radio nic nie nadaje
+	if(aq_radio_channel in aq_alert_radio.channels)
+		aq_alert_radio.channels[aq_radio_channel] = 1
 	if(aq_radio_channel == RADIO_CHANNEL_COMMON)
 		aq_alert_radio.talk_into(src, aq_death_message(victim))
 	else
@@ -285,7 +288,7 @@
 	icon_state = "chest_implant"
 	implant_color = "#c0c0c0"
 	slot = ORGAN_SLOT_AQ_BRACING
-	aq_cyberpsychosis_cost = 3
+	aq_cyberpsychosis_cost = 5
 
 /// Wzmocnione stawy: rzut na rany od uderzeń na organicznych kończynach jest o 15 niższy
 /mob/living/carbon/check_wounding(obj/item/bodypart/limb, damage, wound_type, wound_bonus = 0, bare_wound_bonus = 0, atom/wound_source)

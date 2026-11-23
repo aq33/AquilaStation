@@ -20,6 +20,16 @@
 /// Od jakiej części maksymalnych obrażeń EMP paraliżuje kończynę (tg robotic_emp_paralyze_damage_percent_threshold)
 #define AQ_LIMB_EMP_PARALYZE_PERCENT 0.3
 
+// --- Powody odmowy restartu syntetyka (aq_synth_reboot_refusal, synth_reset_key.dm) ---
+/// Samobójstwo albo dusza w piekle
+#define AQ_SYNTH_REBOOT_LOST "lost"
+/// Gracz nie chce wracać (DNR)
+#define AQ_SYNTH_REBOOT_DNR "dnr"
+/// Mózg martwy albo zniszczony
+#define AQ_SYNTH_REBOOT_BRAIN "brain"
+/// Ciało zbyt uszkodzone
+#define AQ_SYNTH_REBOOT_DAMAGE "damage"
+
 // --- Rany robotyczne (osobne rodzaje, żeby nie mieszały się z ranami organicznymi) ---
 #define WOUND_AQ_ROBOTIC_BLUNT "robotic_blunt"
 #define WOUND_AQ_ROBOTIC_ELECTRIC "robotic_electric"

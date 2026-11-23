@@ -113,6 +113,22 @@
 /datum/preference/choiced/aq_augment/organ/aq_blocking_quirk_paths()
 	return list("/datum/quirk/tin_man")
 
+/// Zwykły (ludzki) organ z tego slotu. Cybernetyczny wchodzi tylko w jego miejsce, nigdy w miejsce organu gatunkowego
+/// (płuca plazmaludzia, żołądek i serce eteryka), bo bez niego gatunek się dusi albo traci baterię
+/datum/preference/choiced/aq_augment/organ/proc/aq_default_organ_type()
+	return null
+
+/// Organ, który ten gatunek dostaje w tym slocie (zmienne mutant* gatunku)
+/datum/preference/choiced/aq_augment/organ/proc/aq_species_organ_type(datum/species/species)
+	return aq_default_organ_type()
+
+/datum/preference/choiced/aq_augment/organ/is_accessible(datum/preferences/prefs)
+	. = ..()
+	if(!.)
+		return
+	var/datum/species/species = prefs.active_character?.pref_species
+	return !species || aq_species_organ_type(species) == aq_default_organ_type()
+
 /datum/preference/choiced/aq_augment/organ/init_possible_values()
 	return list(AQ_AUG_ORGANIC, AQ_AUG_CYBERNETIC)
 
@@ -128,11 +144,23 @@
 	organ_slot = ORGAN_SLOT_HEART
 	cybernetic_type = /obj/item/organ/heart/cybernetic
 
+/datum/preference/choiced/aq_augment/organ/heart/aq_default_organ_type()
+	return /obj/item/organ/heart
+
+/datum/preference/choiced/aq_augment/organ/heart/aq_species_organ_type(datum/species/species)
+	return species.mutant_heart || /obj/item/organ/heart
+
 /datum/preference/choiced/aq_augment/organ/lungs
 	db_key = "aq_aug_lungs"
 	feature_key = "aq_aug_lungs"
 	organ_slot = ORGAN_SLOT_LUNGS
 	cybernetic_type = /obj/item/organ/lungs/cybernetic
+
+/datum/preference/choiced/aq_augment/organ/lungs/aq_default_organ_type()
+	return /obj/item/organ/lungs
+
+/datum/preference/choiced/aq_augment/organ/lungs/aq_species_organ_type(datum/species/species)
+	return species.mutantlungs || /obj/item/organ/lungs
 
 /datum/preference/choiced/aq_augment/organ/liver
 	db_key = "aq_aug_liver"
@@ -140,11 +168,23 @@
 	organ_slot = ORGAN_SLOT_LIVER
 	cybernetic_type = /obj/item/organ/liver/cybernetic
 
+/datum/preference/choiced/aq_augment/organ/liver/aq_default_organ_type()
+	return /obj/item/organ/liver
+
+/datum/preference/choiced/aq_augment/organ/liver/aq_species_organ_type(datum/species/species)
+	return species.mutantliver || /obj/item/organ/liver
+
 /datum/preference/choiced/aq_augment/organ/stomach
 	db_key = "aq_aug_stomach"
 	feature_key = "aq_aug_stomach"
 	organ_slot = ORGAN_SLOT_STOMACH
 	cybernetic_type = /obj/item/organ/stomach/cybernetic
+
+/datum/preference/choiced/aq_augment/organ/stomach/aq_default_organ_type()
+	return /obj/item/organ/stomach
+
+/datum/preference/choiced/aq_augment/organ/stomach/aq_species_organ_type(datum/species/species)
+	return species.mutantstomach || /obj/item/organ/stomach
 
 /datum/preference/choiced/aq_augment/organ/eyes
 	db_key = "aq_aug_eyes"
@@ -152,11 +192,23 @@
 	organ_slot = ORGAN_SLOT_EYES
 	cybernetic_type = /obj/item/organ/eyes/robotic
 
+/datum/preference/choiced/aq_augment/organ/eyes/aq_default_organ_type()
+	return /obj/item/organ/eyes
+
+/datum/preference/choiced/aq_augment/organ/eyes/aq_species_organ_type(datum/species/species)
+	return species.mutanteyes || /obj/item/organ/eyes
+
 /datum/preference/choiced/aq_augment/organ/ears
 	db_key = "aq_aug_ears"
 	feature_key = "aq_aug_ears"
 	organ_slot = ORGAN_SLOT_EARS
 	cybernetic_type = /obj/item/organ/ears/robot
+
+/datum/preference/choiced/aq_augment/organ/ears/aq_default_organ_type()
+	return /obj/item/organ/ears
+
+/datum/preference/choiced/aq_augment/organ/ears/aq_species_organ_type(datum/species/species)
+	return species.mutantears || /obj/item/organ/ears
 
 // --- Wejście w życie ---
 
@@ -238,6 +290,8 @@
 	if(!old_organ) // gatunek bez tego organu (np. bez płuc)
 		return FALSE
 	if(old_organ.status == ORGAN_ROBOTIC) // organ zajęła cecha (Protetyczny organ, Blaszany drwal)
+		return FALSE
+	if(old_organ.type != pref.aq_default_organ_type() || pref.aq_species_organ_type(dna.species) != pref.aq_default_organ_type()) // organ gatunkowy zostaje
 		return FALSE
 	var/obj/item/organ/new_organ = new organ_type()
 	new_organ.Insert(src, TRUE, FALSE)

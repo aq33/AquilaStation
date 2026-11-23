@@ -196,8 +196,7 @@
 /datum/wound/aq_robotic/blunt/crushed/Destroy()
 	if(limb)
 		REMOVE_TRAIT(limb, TRAIT_PARALYSIS, REF(src))
-		if(limb.owner)
-			limb.update_disabled()
+		limb.aq_clear_paralysis()
 	return ..()
 
 // Przewody

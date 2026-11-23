@@ -81,16 +81,16 @@
 		return FALSE
 
 	if(installed_nif.broken)
-		installed_nif.balloon_alert(installed_nif.linked_mob, "NIF jest zepsuty")
+		installed_nif.linked_mob?.balloon_alert(installed_nif.linked_mob, "NIF jest zepsuty")
 		return FALSE
 
 	if(cooldown && on_cooldown)
-		installed_nif.balloon_alert(installed_nif.linked_mob, "[name] się odnawia")
+		installed_nif.linked_mob?.balloon_alert(installed_nif.linked_mob, "[name] się odnawia")
 		return FALSE
 
 	if(active)
 		active = FALSE
-		installed_nif.balloon_alert(installed_nif.linked_mob, "[name] wyłączony")
+		installed_nif.linked_mob?.balloon_alert(installed_nif.linked_mob, "[name] wyłączony")
 		installed_nif.power_usage -= active_cost
 		installed_nif.update_static_data_for_all_viewers()
 		return TRUE
@@ -99,7 +99,7 @@
 		return FALSE
 
 	if(active_mode)
-		installed_nif.balloon_alert(installed_nif.linked_mob, "[name] włączony")
+		installed_nif.linked_mob?.balloon_alert(installed_nif.linked_mob, "[name] włączony")
 		installed_nif.power_usage += active_cost
 		active = TRUE
 		installed_nif.update_static_data_for_all_viewers()

@@ -119,7 +119,8 @@
 
 /obj/item/organ/heart/cybernetic/aq_anomalock/proc/on_stat_change(mob/living/source, new_stat)
 	SIGNAL_HANDLER
-	if(new_stat == SOFT_CRIT || new_stat == UNCONSCIOUS)
+	// tylko stan krytyczny: u nas UNCONSCIOUS to też sen i narkoza, więc liczy się zdrowie, nie sam stan
+	if((new_stat == SOFT_CRIT || new_stat == UNCONSCIOUS) && source.health <= source.crit_threshold)
 		INVOKE_ASYNC(src, PROC_REF(activate_survival))
 
 /// Ratunek w krytycznym stanie. Zwraca TRUE, gdy się włączył.

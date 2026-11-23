@@ -127,7 +127,27 @@
 	patient.notify_ghost_cloning("Ktoś restartuje twoje ciało!", source = patient)
 
 /datum/surgery_operation/basic/aq_ipc_reactivation/on_success(mob/living/patient, mob/living/surgeon, tool, list/operation_args)
-	if(!patient.can_be_revived())
+	var/mob/living/carbon/human/synth = patient
+	var/refusal = istype(synth) ? synth.aq_synth_reboot_refusal() : null
+	if(refusal == AQ_SYNTH_REBOOT_LOST || refusal == AQ_SYNTH_REBOOT_DNR)
+		display_results(
+			surgeon,
+			patient,
+			span_warning("Mózg [patient] nie odpowiada na restart. Jednostki nie da się przywrócić."),
+			span_warning("[surgeon] kończy restart, ale [patient] się nie uruchamia."),
+			span_notice("[surgeon] kończy grzebać w elektronice [patient]."),
+		)
+		return
+	if(refusal == AQ_SYNTH_REBOOT_BRAIN)
+		display_results(
+			surgeon,
+			patient,
+			span_warning("Pozytronowy mózg [patient] jest nieodwracalnie uszkodzony i nie da się go uruchomić."),
+			span_warning("[surgeon] kończy restart, ale [patient] się nie uruchamia."),
+			span_notice("[surgeon] kończy grzebać w elektronice [patient]."),
+		)
+		return
+	if(refusal || !patient.can_be_revived())
 		display_results(
 			surgeon,
 			patient,

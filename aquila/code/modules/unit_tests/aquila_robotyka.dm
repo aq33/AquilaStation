@@ -42,6 +42,19 @@
 	var/obj/item/bodypart/l_arm/robot/aq_advanced/advanced = allocate(/obj/item/bodypart/l_arm/robot/aq_advanced)
 	TEST_ASSERT(!advanced.aq_set_brand("xion"), "An advanced prosthesis lost its own look to a brand")
 
+	// podwozie IPC ma limb_id podwozia, nie "synth": marka go nie zmienia
+	var/mob/living/carbon/human/ipc = allocate(/mob/living/carbon/human/species/ipc)
+	var/obj/item/bodypart/ipc_arm = ipc.get_bodypart(BODY_ZONE_L_ARM)
+	var/ipc_limb_id = ipc_arm.limb_id
+	TEST_ASSERT(!ipc_arm.aq_set_brand("bishop") && !ipc_arm.aq_brand && ipc_arm.limb_id == ipc_limb_id, "A brand went onto an IPC chassis limb ([ipc_limb_id])")
+
+	// Vey-Med na klatce udaje ludzką klatkę, która ma tylko stany z płcią
+	var/obj/item/bodypart/chest/robot/lifelike_chest = allocate(/obj/item/bodypart/chest/robot)
+	TEST_ASSERT(lifelike_chest.aq_set_brand("veymed", FEMALE) && lifelike_chest.aq_lifelike_disguised(), "A Vey-Med chest does not look like flesh")
+	var/list/chest_icons = lifelike_chest.get_limb_icon(FALSE)
+	var/image/chest_image = chest_icons[1]
+	TEST_ASSERT(icon_exists(chest_image.icon, chest_image.icon_state), "A Vey-Med chest has no sprite ([chest_image.icon] / [chest_image.icon_state])")
+
 /// AQUILA - zaawansowane protezy i ręka ze złomu
 /datum/unit_test/aquila_prosthetic_tiers
 
@@ -104,6 +117,31 @@
 	TEST_ASSERT(!patient.IsParalyzed(), "EMP still paralysed the whole body of a human with a prosthesis")
 	arm.aq_emp_recover()
 	TEST_ASSERT(!HAS_TRAIT_FROM(arm, TRAIT_PARALYSIS, AQ_LIMB_EMP_TRAIT), "The prosthesis did not recover from EMP")
+	TEST_ASSERT(arm.disabled == BODYPART_NOT_DISABLED, "The prosthesis stayed paralysed after recovering from EMP")
+
+	// przy obrażeniach 50-100% bezwładność is_disabled() nie może zostawić paraliżu po końcu awarii
+	arm.brute_dam = arm.max_damage * 0.6
+	arm.burn_dam = 0
+	patient.emp_act(EMP_LIGHT)
+	TEST_ASSERT(arm.disabled == BODYPART_DISABLED_PARALYSIS && arm.get_damage() < arm.max_damage, "EMP did not paralyse a half-wrecked prosthesis")
+	arm.aq_emp_recover()
+	TEST_ASSERT(arm.disabled == BODYPART_NOT_DISABLED, "A prosthesis with 50-100% damage stayed paralysed after EMP")
+
+	// proteza odczepiona w trakcie awarii działa po ponownym przypięciu
+	arm.brute_dam = arm.max_damage * 0.3
+	patient.emp_act(EMP_LIGHT)
+	TEST_ASSERT(arm.disabled == BODYPART_DISABLED_PARALYSIS, "EMP did not paralyse the prosthesis before detaching")
+	arm.drop_limb()
+	arm.aq_emp_recover()
+	arm.attach_limb(patient, TRUE)
+	TEST_ASSERT(arm.disabled == BODYPART_NOT_DISABLED, "A prosthesis detached during EMP stayed paralysed after reattaching")
+
+	// IPC ma TRAIT_EASYDISMEMBER: EMP nie może mu odrywać głowy ani kończyn
+	var/mob/living/carbon/human/ipc = allocate(/mob/living/carbon/human/species/ipc)
+	var/parts_before = length(ipc.bodyparts)
+	for(var/i in 1 to 5)
+		ipc.aq_robotic_limbs_emp(EMP_LIGHT)
+	TEST_ASSERT(length(ipc.bodyparts) == parts_before && ipc.get_bodypart(BODY_ZONE_HEAD), "EMP tore parts off an IPC ([length(ipc.bodyparts)] of [parts_before] left)")
 
 /// AQUILA - rany robotyczne: pojawiają się na protezie, naprawa narzędziami
 /datum/unit_test/aquila_robotic_wounds
@@ -176,8 +214,11 @@
 	second.apply_to(ipc)
 	second.apply_to(ipc)
 	TEST_ASSERT(ipc.aq_overloader_level == 3, "Stacking overloaders does not overload")
+	var/old_cycle_timer = ipc.aq_overloader_timer
+	TEST_ASSERT(timeleft(old_cycle_timer), "The overloader cycle timer did not start")
 	ipc.aq_clear_overloaders()
 	TEST_ASSERT(!ipc.aq_overloader_level && !ipc.aq_overloader_cycles, "The reset did not clear the overloaders")
+	TEST_ASSERT(!timeleft(old_cycle_timer), "The reset left the old cycle timer running (a second cycle chain would start)")
 
 	var/mob/living/carbon/human/human = allocate(/mob/living/carbon/human)
 	var/obj/item/aq_ipc_overloader/classic/third = allocate(/obj/item/aq_ipc_overloader/classic)
@@ -202,6 +243,25 @@
 	TEST_ASSERT(!key.is_synthetic(robotist), "The reset key sees a port on a human")
 	TEST_ASSERT(key.reboot(ipc, robotist), "The reset key did not reboot the IPC")
 	TEST_ASSERT(ipc.stat != DEAD, "The IPC is still dead after the reset")
+
+	// martwy mózg, samobójstwo i DNR: jak przy defibrylatorze, bez restartu
+	var/mob/living/carbon/human/braindead = allocate(/mob/living/carbon/human/species/ipc)
+	braindead.death()
+	var/obj/item/organ/brain/dead_brain = braindead.getorganslot(ORGAN_SLOT_BRAIN)
+	dead_brain.organ_flags |= ORGAN_FAILING
+	TEST_ASSERT(!key.reboot(braindead, robotist) && braindead.stat == DEAD, "The reset key rebooted an IPC with a failing brain")
+	dead_brain.organ_flags &= ~ORGAN_FAILING
+	braindead.suiciding = TRUE
+	TEST_ASSERT(!key.reboot(braindead, robotist) && braindead.stat == DEAD, "The reset key rebooted an IPC that killed itself")
+	braindead.suiciding = FALSE
+	braindead.mind_initialize()
+	var/mob/dead/observer/ghost = new(braindead)
+	ghost.mind = braindead.mind
+	ghost.can_reenter_corpse = FALSE
+	TEST_ASSERT(braindead.has_dnr(), "The test ghost does not count as DNR")
+	TEST_ASSERT(!key.reboot(braindead, robotist) && braindead.stat == DEAD, "The reset key rebooted a DNR IPC")
+	ghost.mind = null
+	qdel(ghost)
 
 	// zbyt uszkodzonego nie da się zrestartować
 	var/mob/living/carbon/human/wreck = allocate(/mob/living/carbon/human/species/ipc)
@@ -231,6 +291,11 @@
 	var/datum/surgery_operation/basic/aq_ipc_reactivation/reactivation = new
 	ipc.death()
 	TEST_ASSERT(reactivation.state_check(ipc), "Reactivation is not offered for a dead IPC")
+	var/obj/item/organ/brain/ipc_brain = ipc.getorganslot(ORGAN_SLOT_BRAIN)
+	ipc_brain.organ_flags |= ORGAN_FAILING
+	reactivation.on_success(ipc, robotist, null, list())
+	TEST_ASSERT(ipc.stat == DEAD, "Reactivation woke up an IPC with a failing brain")
+	ipc_brain.organ_flags &= ~ORGAN_FAILING
 	reactivation.on_success(ipc, robotist, null, list())
 	TEST_ASSERT(ipc.stat != DEAD, "Reactivation did not wake up the IPC")
 	qdel(reactivation)
@@ -325,6 +390,19 @@
 	bracing.Insert(brawler)
 	TEST_ASSERT(brawler.aq_bracing_wound_modifier() < 0, "Skeletal bracing does not protect the joints")
 
+	// koszty cyberpsychozy w skali 0/5/10/18
+	var/list/cost_scale = list(0, 5, 10, 18)
+	var/obj/item/organ/cyberimp/leg/aq_jumpboots/jump_type = /obj/item/organ/cyberimp/leg/aq_jumpboots
+	TEST_ASSERT((bracing.aq_cyberpsychosis_cost in cost_scale) && (initial(jump_type.aq_cyberpsychosis_cost) in cost_scale), "The bracing or jump implant cost is off the 0/5/10/18 scale")
+
+	// implant agonalny: klucz kapitana ma kanał medyczny wyłączony (0), a zgłoszenie ma na nim wyjść
+	var/obj/item/implant/deathrattle/aq_medical/rattle = new
+	TEST_ASSERT(rattle.implant(brawler, null, TRUE), "The deathrattle implant did not implant")
+	rattle.aq_broadcast_death(brawler)
+	TEST_ASSERT(rattle.aq_alert_radio?.channels[RADIO_CHANNEL_MEDICAL] && rattle.aq_alert_radio.secure_radio_connections[RADIO_CHANNEL_MEDICAL], "The deathrattle implant cannot broadcast on the medical channel")
+	rattle.removed(brawler, TRUE)
+	qdel(rattle)
+
 /// AQUILA - neuromody: skan psychoskopem, zapis w powłoce, wstrzyknięcie
 /datum/unit_test/aquila_neuromods
 
@@ -349,6 +427,9 @@
 	var/obj/item/organ/heart/cybernetic/aq_anomalock/prebuilt/heart = new
 	heart.Insert(soldier, TRUE, FALSE)
 	TEST_ASSERT(HAS_TRAIT(soldier, TRAIT_SHOCKIMMUNE), "The cored heart gives no shock immunity")
+	// sen i narkoza (UNCONSCIOUS przy pełnym zdrowiu) to nie stan krytyczny
+	heart.on_stat_change(soldier, UNCONSCIOUS)
+	TEST_ASSERT(!soldier.has_status_effect(/datum/status_effect/aq_voltaic_overdrive) && COOLDOWN_FINISHED(heart, survival_cooldown), "The voltaic heart fired on plain sleep")
 	TEST_ASSERT(heart.emp_act(EMP_HEAVY) & EMP_PROTECT_SELF, "The cored heart is not EMP-proof")
 	TEST_ASSERT(heart.activate_survival(), "The voltaic overdrive did not start")
 	TEST_ASSERT(soldier.has_status_effect(/datum/status_effect/aq_voltaic_overdrive), "No voltaic overdrive status")
@@ -402,6 +483,21 @@
 		var/list/names = pref.get_display_names()
 		for(var/choice in pref.get_choices())
 			TEST_ASSERT(names[choice], "[pref.db_key] has no name for [choice]")
+
+	// organy gatunkowe zostają: plazmaludź bez swoich płuc się dusi, a zwykłe serce można wymienić
+	var/mob/living/carbon/human/plasmaman = allocate(/mob/living/carbon/human/species/plasma)
+	plasmaman.aq_apply_lobby_augments(list("aq_aug_lungs" = "cybernetic", "aq_aug_stomach" = "cybernetic", "aq_aug_heart" = "cybernetic"))
+	TEST_ASSERT(istype(plasmaman.getorganslot(ORGAN_SLOT_LUNGS), /obj/item/organ/lungs/plasmaman), "The lobby swapped the plasmaman lungs")
+	TEST_ASSERT(istype(plasmaman.getorganslot(ORGAN_SLOT_STOMACH), /obj/item/organ/stomach/plasmaman), "The lobby swapped the plasmaman stomach")
+	TEST_ASSERT(istype(plasmaman.getorganslot(ORGAN_SLOT_HEART), /obj/item/organ/heart/cybernetic), "The lobby did not swap a plain plasmaman heart")
+	var/mob/living/carbon/human/ethereal = allocate(/mob/living/carbon/human/species/ethereal)
+	ethereal.aq_apply_lobby_augments(list("aq_aug_stomach" = "cybernetic", "aq_aug_heart" = "cybernetic"))
+	TEST_ASSERT(!istype(ethereal.getorganslot(ORGAN_SLOT_STOMACH), /obj/item/organ/stomach/cybernetic), "The lobby swapped the ethereal battery stomach")
+	TEST_ASSERT(!istype(ethereal.getorganslot(ORGAN_SLOT_HEART), /obj/item/organ/heart/cybernetic), "The lobby swapped the ethereal heart")
+	var/datum/preference/choiced/aq_augment/organ/lungs_pref = GLOB.preference_entries[/datum/preference/choiced/aq_augment/organ/lungs]
+	var/datum/species/plasmaman/plasma_species = new
+	TEST_ASSERT(lungs_pref.aq_species_organ_type(plasma_species) != lungs_pref.aq_default_organ_type(), "The creator offers cybernetic lungs to plasmamen")
+	qdel(plasma_species)
 
 	var/mob/living/carbon/human/ipc = allocate(/mob/living/carbon/human/species/ipc)
 	var/obj/item/bodypart/ipc_arm = ipc.get_bodypart(BODY_ZONE_L_ARM)
