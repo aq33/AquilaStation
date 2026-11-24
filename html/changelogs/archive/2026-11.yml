@@ -1551,3 +1551,28 @@
   - bugfix: 'Ciało gracza na planecie nie znika już po odlocie okrętu: powierzchnia
       czeka, dopóki gracz może do niego wrócić.'
   - balance: Kudzu na planetach rozrasta się najwyżej do 50 pnączy na kępę i 400 łącznie.
+  - rscadd: 'Ustawienia gry: „Dźwięki mowy postaci” – słyszysz nasze „hmm”, głosy
+      z Goona albo nic.'
+  - rscadd: 'Okno postaci: wybór głosu z Goona dla postaci (cztery głosy z osobnymi
+      nagraniami pytania i okrzyku).'
+  - tweak: 'Okno postaci: polskie nazwy fryzur, zarostu, bielizny i cech ras, markingi
+      z obrazkowym podglądem.'
+  - soundadd: 'Rasy krzyczą i śmieją się po swojemu: felinid, ćma, jaszczur, eteryk,
+      oozeling, IPC i małpy; człowiek ma więcej krzyków; nowe pierdnięcia.'
+  - imageadd: 210 nowych fryzur i 27 rodzajów zarostu.
+  - rscadd: 51 nowych cech postaci (quirków), m.in. gracz, przeklęty, hemofilia, poczwórna
+      amputacja, analfabeta, bez powiek, właściciel zwierzaka, kolorysta.
+  - rscadd: Fobia może dotyczyć ognia albo ciasnych miejsc.
+  - rscadd: 'Zakładka „Markingi”: do trzech wzorów na każdą część ciała, każdy we
+      własnym kolorze, 242 wzory do wyboru.'
+  - rscadd: 'Nowe rasy: Mięsoczłowiek (charczy jak zombie z Minecrafta), Borowik,
+      Fion i Żaba.'
+  - rscadd: 'Nowa rasa Akwarianin: ryba w szklanym kloszu z wodą na mechanicznym pancerzu.'
+  - imageadd: Sprite'y Akwarianina od twórcy projektu „Fish People”.
+  - rscadd: 'Rozbity klosz Akwarianina: rybka wypada na podłogę i trzeba ją wpuścić
+      do wody albo do nowego klosza z fabrykatora egzoszkieletów.'
+  - rscadd: Akwarianin najada się zmielonym jedzeniem wlanym do klosza, a wgnieciony
+      pancerz przecieka wodą. Z rybki da się zrobić sushi.
+  - rscadd: 'Nowa rasa Grod: korona w ciele dużej gąsienicy, pająk-korona przejmujący
+      ciała, postawa ruchu i postawa pracy z czterema rękami, kokon przemiany i sadzenie
+      korony w tacy hydroponicznej, własne kamizelki i cylindry, język Poh''lan.'
