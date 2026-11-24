@@ -180,7 +180,7 @@ export const BodyMarkingsPage = () => {
                           act('aq_marking_side', { zone: zone, index: i + 1 })
                         }
                       >
-                        {side === 'right' ? 'Prawa' : 'Lewa'}
+                        {side === 'right' ? 'Prawa strona' : 'Lewa strona'}
                       </Button>
                     </Stack.Item>
                   )}

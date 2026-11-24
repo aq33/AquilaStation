@@ -985,6 +985,7 @@ Nazwy gazów są widoczne w skanerach, kanistrach i oknach TGUI. Jeśli nazwa ga
 | bandana | bandana | ż; nowe |
 | headband | opaska na głowę | ż; nowe |
 | crown | korona | ż; nowe |
+| body marking | marking (mn. markingi) | m; nowe; wzór na kończynie w oknie postaci (zakładka „Markingi”), osobno od gatunkowych „znaczeń na ciele” jaszczura i ćmy |
 | cocoon (grod) | kokon Groda | m; nowe |
 | stance (grod) | postawa (ruchu / pracy) | ż; nowe; mobile stance → postawa ruchu, interact stance → postawa pracy |
 | crown mutation toxin | toksyna korony | ż; nowe |

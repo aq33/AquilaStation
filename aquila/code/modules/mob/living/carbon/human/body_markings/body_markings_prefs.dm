@@ -120,15 +120,23 @@
 
 /// Wpis o danym numerze (od 1) w danej strefie albo null
 /datum/preference_middleware/aq_body_markings/proc/entry_at(list/markings, zone, index)
+	if(!istext(zone)) // dane z okna: liczba byłaby indeksem listy asocjacyjnej
+		return null
 	var/list/entries = markings[zone]
 	index = text2num("[index]")
 	if(!isnum(index) || index < 1 || index > length(entries))
 		return null
 	return entries[index]
 
+/// Marking o danym id z danych okna albo null (id spoza tekstu byłoby indeksem listy)
+/datum/preference_middleware/aq_body_markings/proc/marking_from(id)
+	if(!istext(id))
+		return null
+	return GLOB.aq_body_markings[id]
+
 /datum/preference_middleware/aq_body_markings/proc/add_marking(list/params, mob/user)
 	var/zone = params["zone"]
-	var/datum/aq_body_marking/marking = GLOB.aq_body_markings[params["id"]]
+	var/datum/aq_body_marking/marking = marking_from(params["id"])
 	if(!(zone in GLOB.aq_body_marking_zones) || !marking || !(zone in marking.zones))
 		return FALSE
 	var/list/markings = current_markings()
@@ -151,7 +159,7 @@
 
 /datum/preference_middleware/aq_body_markings/proc/change_marking(list/params, mob/user)
 	var/zone = params["zone"]
-	var/datum/aq_body_marking/marking = GLOB.aq_body_markings[params["id"]]
+	var/datum/aq_body_marking/marking = marking_from(params["id"])
 	if(!marking || !(zone in marking.zones))
 		return FALSE
 	var/list/markings = current_markings()
@@ -180,13 +188,17 @@
 	var/list/entry = entry_at(markings, params["zone"], params["index"])
 	if(!entry)
 		return FALSE
+	var/datum/character_save/character = preferences.active_character
+	var/marking_id = entry[1]
 	var/new_color = input(user, "Wybierz kolor markingu", "Kolor", entry[2]) as color|null
 	if(!new_color || QDELETED(src) || !preferences?.active_character)
 		return FALSE
-	// Okno mogło się zmienić, kiedy gracz wybierał kolor
+	// Okno mogło się zmienić, kiedy gracz wybierał kolor: inna postać albo inny marking pod tym numerem
+	if(preferences.active_character != character)
+		return FALSE
 	markings = current_markings()
 	entry = entry_at(markings, params["zone"], params["index"])
-	if(!entry)
+	if(!entry || entry[1] != marking_id)
 		return FALSE
 	entry[2] = sanitize_hexcolor(new_color, 6, TRUE, "#FFFFFF")
 	return store_markings(markings)

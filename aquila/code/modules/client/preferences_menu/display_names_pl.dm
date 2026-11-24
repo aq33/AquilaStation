@@ -13,8 +13,8 @@ GLOBAL_LIST_INIT(preference_display_names_pl, list(
 	),
 	"body_size" = list(
 		"Normal" = "Przeciętny",
-		"Short" = "Niski",
-		"Tall" = "Wysoki",
+		"Short" = "Niski wzrost",
+		"Tall" = "Wysoki wzrost",
 	),
 	"facial_style_name" = list(
 		"Eyebrows" = "Same brwi",
@@ -671,7 +671,7 @@ GLOBAL_LIST_INIT(preference_display_names_pl, list(
 		"High" = "Wysoka",
 		"Medium" = "Średnia",
 		"Low" = "Niska",
-		"Disabled" = "Wyłączona",
+		"Disabled" = "Bez paralaksy",
 	),
 	"preferred_pilot_role" = list(
 		"Combat" = "Pilot bojowy",
@@ -827,4 +827,12 @@ GLOBAL_LIST_INIT(preference_display_names_pl, list(
 		var/name = polish?[value] || GLOB.accessory_names_pl[value]
 		if(name)
 			names[value] = name
+	if(!length(names))
+		return names
+	// Okno bierze istniejącą mapę jako pełną (bez nazwy przycisk jest pusty, a lista rozwijana się wywraca),
+	// więc wartości bez polskiej nazwy dostają swoją nazwę jak bez mapy
+	for(var/choice in get_choices())
+		var/value = serialize(choice)
+		if(istext(value) && !names[value])
+			names[value] = capitalize(value)
 	return names

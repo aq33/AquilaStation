@@ -45,6 +45,10 @@ GLOBAL_LIST_INIT(selectable_speech_voices, list(SPEECH_VOICE_SPECIES, "speak_1",
 /mob/living/carbon/human/get_goon_voice()
 	if(!dna)
 		return null
+	// Maszyny (IPC, android) brzmią po swojemu w obu trybach, a rasa bez dźwięku mowy milczy też w trybie Goona
+	var/species_sound = dna.species?.speech_sound
+	if(!species_sound || species_sound == "synthetic")
+		return null
 	var/voice = dna.features["speech_voice"]
 	if(voice && voice != SPEECH_VOICE_SPECIES && GLOB.goon_speech_voices[voice])
 		return voice

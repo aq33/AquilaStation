@@ -171,8 +171,11 @@ GLOBAL_LIST_INIT(aq_body_marking_aliases, init_aq_body_marking_aliases())
 		marking.color = entry[2]
 		. += marking
 
-/// Inne markingi = inna ikona kończyny w pamięci podręcznej
+/// Inne markingi = inna ikona kończyny w pamięci podręcznej. Strefa (ręka czy dłoń) i płeć torsu zmieniają stan
+/// sprite'u, a klucz bazowy ma płeć tylko dla części dymorficznych (tors jaszczura nie jest).
 /mob/living/carbon/generate_icon_key(obj/item/bodypart/BP)
 	. = ..()
 	for(var/list/entry in BP.aq_markings)
-		. += "-[entry[1]][entry[2]]"
+		. += "-[entry[1]][entry[2]][entry[3]]"
+		if(entry[3] == BODY_ZONE_CHEST)
+			. += BP.limb_gender
