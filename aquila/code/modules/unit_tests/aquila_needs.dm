@@ -104,6 +104,11 @@
 	salt.afterattack(apple, eater, TRUE)
 	TEST_ASSERT(HAS_TRAIT(apple, TRAIT_AQ_SEASONED), "Salting a dish does not mark it as seasoned")
 	TEST_ASSERT_EQUAL(edible.get_perceived_food_quality(eater), quality_before + 1, "A seasoned dish is not tastier")
+	// Polska przyprawa Maggi też doprawia (regresja: nie było jej na liście przypraw)
+	var/obj/item/food/grown/apple/maggi_apple = allocate(/obj/item/food/grown/apple)
+	var/obj/item/reagent_containers/food/condiment/maggi/maggi = allocate(/obj/item/reagent_containers/food/condiment/maggi)
+	maggi.afterattack(maggi_apple, eater, TRUE)
+	TEST_ASSERT(HAS_TRAIT(maggi_apple, TRAIT_AQ_SEASONED), "Maggi does not season a dish")
 
 /// AQUILA - wrzody żołądka: kwas od śmieciowego jedzenia, stadia, ból, analizator, leczenie
 /datum/unit_test/aquila_stomach_ulcer

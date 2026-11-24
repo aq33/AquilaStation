@@ -1550,11 +1550,11 @@
 	var/postfix = "[sobject][saddition][hp]"
 
 	var/message = "has [what_done] [starget][postfix]"
-	user.log_message(message, LOG_ATTACK, color="red")
+	user?.log_message(message, LOG_ATTACK, color="red") // AQ EDIT - np. chmura z opryskiwacza bez sprayującego
 
 	if(user != target)
 		var/reverse_message = "has been [what_done] by [ssource][postfix]"
-		target.log_message(reverse_message, LOG_ATTACK, color="orange", log_globally=FALSE)
+		target.log_message(reverse_message, LOG_ATTACK, color="orange", log_globally=!user) // AQ EDIT - bez sprawcy wpis idzie do logu z celu
 
 /atom/proc/add_filter(name,priority,list/params)
 	LAZYINITLIST(filter_data)

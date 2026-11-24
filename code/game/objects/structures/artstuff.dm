@@ -118,6 +118,8 @@
 				return FALSE
 			var/x = text2num(params["x"])
 			var/y = text2num(params["y"])
+			if(!ISINRANGE(x, 1, width) || !ISINRANGE(y, 1, height)) // AQ EDIT - klik poza siatką dawał bad index
+				return FALSE
 			grid[x][y] = color
 			used = TRUE
 			update_icon()

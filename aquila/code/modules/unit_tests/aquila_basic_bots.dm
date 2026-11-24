@@ -514,6 +514,34 @@
 		TEST_ASSERT(!repairbot.task_for(other), "Repairbot robi zwykłą ścianę z [girder_type]")
 		qdel(other)
 
+/// AQUILA - bot złożony ręcznie nazywa się tak jak bot z mapy (regresja: ED-209 po angielsku, repairbot jako „Floorbot”)
+/// Ostatni krok montażu robi prawdziwe attackby, a sprawdzana jest nazwa zbudowanego bota.
+/datum/unit_test/aquila_bot_assembly_names
+
+/datum/unit_test/aquila_bot_assembly_names/Run()
+	var/turf/build_turf = run_loc_floor_bottom_left
+	var/mob/living/carbon/human/builder = allocate(/mob/living/carbon/human, build_turf)
+	// typ zespołu = list(ostatni krok, ostatnia część, typ bota)
+	var/list/assemblies = list(
+		/obj/item/bot_assembly/ed209 = list(9, /obj/item/stock_parts/cell, /mob/living/basic/bot/secbot/ed209),
+		/obj/item/bot_assembly/floorbot = list(ASSEMBLY_SECOND_STEP, /obj/item/bodypart/r_arm/robot, /mob/living/basic/bot/repairbot),
+	)
+	for(var/assembly_type in assemblies)
+		var/list/recipe = assemblies[assembly_type]
+		var/obj/item/bot_assembly/assembly = new assembly_type(build_turf)
+		assembly.build_step = recipe[1]
+		var/part_type = recipe[2]
+		var/obj/item/part = new part_type(build_turf)
+		builder.put_in_active_hand(part)
+		assembly.attackby(part, builder)
+		var/bot_type = recipe[3]
+		var/mob/living/bot = locate(bot_type) in build_turf
+		TEST_ASSERT(bot, "Finishing [assembly_type] built no [bot_type]")
+		var/expected = replacetext(initial(bot.name), "\improper ", "")
+		var/built_name = bot.name
+		qdel(bot)
+		TEST_ASSERT(built_name == expected, "[assembly_type] built a bot named [built_name] instead of [expected]")
+
 #undef TICK_BOT_UNTIL
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL

@@ -18,6 +18,14 @@
 	. = ..()
 	STOP_PROCESSING(SSfastprocess, GetComponent(/datum/component/knpc))
 
+/// Pirat-abordażysta w skafandrze (jak ze zlecenia „Przyjęcie abordażu”), AI zatrzymane
+/mob/living/carbon/human/ai_boarder/space_pirate/pistol/aquila_test
+	difficulty_override = TRUE
+
+/mob/living/carbon/human/ai_boarder/space_pirate/pistol/aquila_test/Initialize(mapload)
+	. = ..()
+	STOP_PROCESSING(SSfastprocess, GetComponent(/datum/component/knpc))
+
 /// AQUILA - boarder woli strzelającego do niego wroga od bliższego, który nic nie robi
 /datum/unit_test/aquila_knpc_target_prefers_shooter
 
@@ -438,6 +446,46 @@
 	var/datum/component/knpc/ai = boarder.GetComponent(/datum/component/knpc)
 	TEST_ASSERT(!ai.find_cuffs(), "Test boarder already has cuffs")
 	TEST_ASSERT(!ai.find_loot(), "Boarder wants the handcuffs on a corpse's wrists")
+
+/// AQUILA - boarder w skafandrze nie szuka trasy przez próżnię (runda 6588: A* przeszukiwał przestrzeń wokół okrętu, wyszukiwania po 15+ s, TD ~70%),
+/// ale boarder, który już stoi w próżni, dalej znajduje drogę na pokład
+/datum/unit_test/aquila_knpc_path_avoids_space
+
+/datum/unit_test/aquila_knpc_path_avoids_space/Run()
+	var/turf/base = run_loc_floor_bottom_left
+	var/mob/living/carbon/human/ai_boarder/space_pirate/pistol/aquila_test/boarder = allocate(/mob/living/carbon/human/ai_boarder/space_pirate/pistol/aquila_test, locate(base.x, base.y + 2, base.z))
+	TEST_ASSERT((boarder.wear_suit?.clothing_flags & STOPSPRESSUREDAMAGE) && (boarder.head?.clothing_flags & STOPSPRESSUREDAMAGE), "Test boarder is not in a space suit")
+	var/datum/component/knpc/ai = boarder.GetComponent(/datum/component/knpc)
+	TEST_ASSERT(ai, "Boarder has no knpc component")
+	var/turf/target = locate(base.x + 4, base.y + 2, base.z)
+	// Kolumna przez cały pokój: cztery ściany i jedno pole próżni, które jest jedynym przejściem na drugą stronę
+	var/list/old_types = list()
+	var/list/old_baseturfs = list()
+	for(var/i in 0 to 4)
+		var/turf/T = locate(base.x + 2, base.y + i, base.z)
+		old_types += T.type
+		old_baseturfs[++old_baseturfs.len] = T.baseturfs
+		T.ChangeTurf(i == 2 ? /turf/open/space : /turf/closed/wall)
+	var/turf/gap = locate(base.x + 2, base.y + 2, base.z)
+
+	var/suited_result = ai.pathfind_to(target)
+	var/suited_through_space = FALSE
+	for(var/turf/step as anything in ai.path)
+		if(isspaceturf(step))
+			suited_through_space = TRUE
+	// Boarder w próżni: pole za nim to podłoga, więc wychodzi na pokład
+	boarder.forceMove(gap)
+	ai.pathfind_timeout = 0
+	var/in_space_result = ai.pathfind_to(target)
+
+	boarder.forceMove(locate(base.x, base.y + 2, base.z))
+	for(var/i in 0 to 4)
+		var/turf/T = locate(base.x + 2, base.y + i, base.z)
+		T.ChangeTurf(old_types[i + 1], old_baseturfs[i + 1])
+
+	TEST_ASSERT(!suited_through_space, "A boarder in a space suit planned a path through space")
+	TEST_ASSERT_EQUAL(suited_result, KNPC_PATHFIND_FAIL, "The only way across was through space, so there should be no path")
+	TEST_ASSERT_EQUAL(in_space_result, KNPC_PATHFIND_SUCCESS, "A boarder standing in space could not path back onto the deck")
 
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL

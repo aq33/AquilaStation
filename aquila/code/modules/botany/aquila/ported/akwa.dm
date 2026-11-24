@@ -205,7 +205,7 @@
 	plant_features = list(/datum/plant_feature/roots/water, /datum/plant_feature/body/shoal, /datum/plant_feature/fruit/shellfish/crab)
 
 /*
-	Pąkle (Nebula: barnacle) - tylko z planet, bez paczki w automacie
+	Pąkle (Nebula: barnacle) - tylko z planet (łowienie na plaży i w sztormowym morzu, planets/water/fishing_spot.dm), bez paczki w automacie
 */
 /datum/plant_feature/fruit/shellfish/barnacle
 	species_name = "semibalanus balanoides"

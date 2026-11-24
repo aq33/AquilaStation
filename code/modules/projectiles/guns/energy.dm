@@ -74,7 +74,7 @@
 	var/frequency_to_use = 0
 
 	if(shot.e_cost > 0)
-		shot_cost_percent = FLOOR(clamp(shot.e_cost / cell.maxcharge, 0, 1) * 100, 1)
+		shot_cost_percent = max(FLOOR(clamp(shot.e_cost / cell.maxcharge, 0, 1) * 100, 1), 1) // AQ EDIT - strzał tańszy niż 1% ogniwa dzielił przez zero
 		max_shots = round(100/shot_cost_percent)
 		shots_left = round(batt_percent/shot_cost_percent)
 		frequency_to_use = sin((90/max_shots) * shots_left)
