@@ -46,7 +46,7 @@
 	// Wykluczenia trafiły do listy okna preferencji
 	var/found_exclusion = FALSE
 	for(var/list/group as anything in SSquirks.quirk_blacklist)
-		if((initial(/datum/quirk/extrovert::name) in group) && (initial(/datum/quirk/introvert::name) in group))
+		if((/datum/quirk/extrovert::name in group) && (/datum/quirk/introvert::name in group))
 			found_exclusion = TRUE
 	TEST_ASSERT(found_exclusion, "Extrovert and introvert can be picked together")
 
