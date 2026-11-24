@@ -205,5 +205,23 @@
 			var/value = ai_display.serialize(choice)
 			TEST_ASSERT(!istext(value) || names[value], "The AI display option [value] has no display name")
 
+/// Głosy ras (Grod, Mięsoczłowiek, Borowik, Akwarianin) mają nagrania, a satchele Groda jego sprite'y
+/datum/unit_test/aquila_pr655_race_voices
+
+/datum/unit_test/aquila_pr655_race_voices/Run()
+	for(var/species_type in list(/datum/species/grod, /datum/species/beefman, /datum/species/psyphoza, /datum/species/aquarian, /datum/species/pug, /datum/species/amphibian))
+		var/datum/species/species = new species_type
+		var/list/recordings = GLOB.goon_speech_voices[species.goon_voice]
+		TEST_ASSERT(length(recordings), "[species_type] has no species voice")
+		for(var/kind in list("say", "ask", "exclaim"))
+			TEST_ASSERT(isfile(recordings[kind]), "[species_type] voice has no [kind] recording")
+		qdel(species)
+	var/datum/species/grod/grod = new
+	for(var/obj/item/storage/backpack/satchel/satchel_type as anything in typesof(/obj/item/storage/backpack/satchel))
+		var/obj/item/satchel = new satchel_type
+		TEST_ASSERT(grod_worn_sprite(satchel, "back", grod), "[satchel_type] has no grod sprite")
+		qdel(satchel)
+	qdel(grod)
+
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL

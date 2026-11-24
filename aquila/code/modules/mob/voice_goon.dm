@@ -22,6 +22,10 @@ GLOBAL_LIST_INIT(goon_speech_voices, list(
 	"pugg" = list("say" = 'aquila/sound/voice/goon/pugg.ogg', "ask" = 'aquila/sound/voice/goon/pugg_ask.ogg', "exclaim" = 'aquila/sound/voice/goon/pugg_exclaim.ogg'),
 	"amphibian" = list("say" = 'aquila/sound/voice/goon/amphibian.ogg', "ask" = 'aquila/sound/voice/goon/amphibian_ask.ogg', "exclaim" = 'aquila/sound/voice/goon/amphibian_exclaim.ogg'),
 	"blub" = list("say" = 'aquila/sound/voice/goon/blub.ogg', "ask" = 'aquila/sound/voice/goon/blub_ask.ogg', "exclaim" = 'aquila/sound/voice/goon/blub_exclaim.ogg'),
+	// Grod piszczy jak gumowa zabawka, Mięsoczłowiek charczy jak zombie z Minecrafta, Borowik cicho pyka
+	"grod" = list("say" = 'sound/items/toysqueak1.ogg', "ask" = 'sound/items/toysqueak2.ogg', "exclaim" = 'sound/items/toysqueak3.ogg'),
+	"beefman" = list("say" = 'aquila/sound/voice/goon/beefman.ogg', "ask" = 'aquila/sound/voice/goon/beefman_ask.ogg', "exclaim" = 'aquila/sound/voice/goon/beefman_exclaim.ogg'),
+	"borowik" = list("say" = 'aquila/sound/voice/goon/borowik.ogg', "ask" = 'aquila/sound/voice/goon/borowik_ask.ogg', "exclaim" = 'aquila/sound/voice/goon/borowik_exclaim.ogg'),
 ))
 
 /// Głosy do wyboru w oknie postaci. Głosy gatunkowe Goona (mops, żaba) daje rasa.

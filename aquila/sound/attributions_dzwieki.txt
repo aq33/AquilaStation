@@ -90,7 +90,10 @@ Woda i wędkarstwo na planetach (tgstation/tgstation dba6dea), licencja CC-BY-SA
 Okno postaci (17.11.2026):
   voice/scream/skyrat_*, voice/laugh/felinid_*   Skyrat-SS13/Skyrat-tg i Bubberstation (modular_skyrat/modules/emotes, modular_zubbers), CC-BY-SA 3.0
   voice/scream/ethereal_lustrous_*   tgstation sound/mobs/humanoids/ethereal, CC-BY-SA 3.0
-  voice/scream/goon_*, voice/goon/*, misc/fart/goon_*   goonstation/goonstation (sound/voice/screams, sound/misc/talk, sound/voice/farts), CC BY-NC-SA 3.0
+  voice/scream/goon_*, voice/goon/speak_*, pug*, amphibian*, misc/fart/goon_*   goonstation/goonstation (sound/voice/screams, sound/misc/talk, sound/voice/farts), CC BY-NC-SA 3.0
+  voice/goon/blub*   wycięte z sound/effects/bubbles.ogg (repo), CC-BY-SA 3.0
+  voice/goon/borowik*   przerobione z sound/effects/cartoon_pop.ogg (repo), CC-BY-SA 3.0
+  voice/goon/beefman*   Minecraft (Mojang), minecraft/sounds/mob/zombie/say1-3.ogg, przycięte; własność Mojang, użyte na wyraźne życzenie właściciela serwera, bez licencji na redystrybucję
   species/beefman/*   fulpstation/fulpstation (fulp_modules), CC-BY-SA 3.0
   voice/psyphoza/*   BeeStation/BeeStation-Hornet, CC-BY-SA 3.0
   species/pug/*, species/amphibian/*   goonstation/goonstation (sound/voice/screams, sound/voice/pug_*, snore, urf, farts/frogfart, impact_sounds), CC BY-NC-SA 3.0

@@ -114,6 +114,7 @@ GLOBAL_LIST_INIT(beefman_russian_names, list(
 	attack_sound = 'aquila/sound/species/beefman/beef_hit.ogg'
 	grab_sound = 'aquila/sound/species/beefman/beef_grab.ogg'
 	deathsound = 'aquila/sound/species/beefman/beef_die.ogg'
+	goon_voice = "beefman"
 	species_language_holder = /datum/language_holder/beefman
 	mutant_brain = /obj/item/organ/brain/beefman
 	mutanttongue = /obj/item/organ/tongue/beefman
