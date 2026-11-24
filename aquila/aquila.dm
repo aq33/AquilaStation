@@ -2821,6 +2821,7 @@
 #include "code\modules\unit_tests\window_singularity_pull.dm"
 #include "code\modules\vehicles\ridden.dm"
 #include "code\modules\unit_tests\aquila_rasy_grod.dm"
+#include "code\modules\unit_tests\aquila_pr655_review_fixes.dm"
 #endif
 
 // Heretyk z tg (osobny plik z includami)

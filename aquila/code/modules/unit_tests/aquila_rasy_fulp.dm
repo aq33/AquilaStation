@@ -110,9 +110,15 @@
 
 	// Rozerwane ciało: ręce i nogi rozlatują się jako mięso, nie jako kończyny
 	var/mob/living/carbon/human/gibbed = allocate(/mob/living/carbon/human/species/beefman, run_loc_floor_top_right)
+	var/meat_before = 0 // mięso z odciętej wcześniej nogi leży w tym samym pokoju
+	for(var/obj/item/food/meat/slab/slab in range(5, run_loc_floor_top_right))
+		meat_before++
 	gibbed.spread_bodyparts()
+	var/meat_after = 0
+	for(var/obj/item/food/meat/slab/slab in range(5, run_loc_floor_top_right))
+		meat_after++
 	TEST_ASSERT(!(locate(/obj/item/bodypart/l_arm/beef) in range(5, run_loc_floor_top_right)), "A gibbed beefman dropped an arm instead of meat")
-	TEST_ASSERT(locate(/obj/item/food/meat/slab) in range(5, run_loc_floor_top_right), "A gibbed beefman dropped no meat")
+	TEST_ASSERT(meat_after > meat_before, "A gibbed beefman dropped no meat")
 
 	// Szarfa zamiast kombinezonu, z pancerzem kombinezonu
 	var/obj/item/clothing/under/rank/security/officer/uniform = new(beef)
