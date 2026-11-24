@@ -45,7 +45,7 @@
 	if(istype(W, /obj/item/bodypart/l_arm/robot) || istype(W, /obj/item/bodypart/r_arm/robot))
 		if(!can_finish_build(W, user))
 			return
-		var/mob/living/simple_animal/bot/cleanbot/A = new(drop_location())
+		var/mob/living/basic/bot/cleanbot/A = new(drop_location()) // AQ EDIT - basic boty
 		A.name = created_name
 		A.robot_arm = W.type
 		to_chat(user, "<span class='notice'>Dodajesz [W] do [src]. Bip bup!</span>")
@@ -64,7 +64,7 @@
 	if(istype(W, /obj/item/bodypart/l_arm/robot) || istype(W, /obj/item/bodypart/r_arm/robot))
 		if(!can_finish_build(W, user))
 			return
-		var/mob/living/simple_animal/bot/cleanbot/larry/A = new(drop_location())
+		var/mob/living/basic/bot/cleanbot/larry/A = new(drop_location()) // AQ EDIT - basic boty
 		A.name = created_name
 		A.robot_arm = W.type
 		to_chat(user, "<span class='notice'>Dodajesz [W] do [src]. Bip bup!</span>")
@@ -206,7 +206,7 @@
 			if(istype(W, /obj/item/stock_parts/cell))
 				if(!can_finish_build(W, user))
 					return
-				var/mob/living/simple_animal/bot/ed209/B = new(drop_location(),created_name,lasercolor)
+				var/mob/living/basic/bot/secbot/ed209/B = new(drop_location(),created_name,lasercolor) // AQ EDIT - basic boty
 				to_chat(user, "<span class='notice'>Kończysz budowę ED-209.</span>")
 				B.cell_type = W.type
 				qdel(W)
@@ -257,7 +257,7 @@
 			if(istype(W, /obj/item/bodypart/l_arm/robot) || istype(W, /obj/item/bodypart/r_arm/robot))
 				if(!can_finish_build(W, user))
 					return
-				var/mob/living/simple_animal/bot/floorbot/A = new(drop_location(), toolbox_color)
+				var/mob/living/basic/bot/repairbot/A = new(drop_location(), toolbox_color) // AQ EDIT - basic boty
 				A.name = created_name
 				A.robot_arm = W.type
 				A.toolbox = toolbox
@@ -301,7 +301,7 @@
 				if(!can_finish_build(W, user))
 					return
 				qdel(W)
-				var/mob/living/simple_animal/bot/medbot/S = new(drop_location(), skin)
+				var/mob/living/basic/bot/medbot/S = new(drop_location(), skin) // AQ EDIT - basic boty
 				to_chat(user, "<span class='notice'>Kończysz budowę medbota. Bip bup!</span>")
 				S.name = created_name
 				S.firstaid = firstaid
@@ -335,10 +335,10 @@
 				if(!can_finish_build(I, user))
 					return
 				to_chat(user, "<span class='notice'>Dodajesz [I] do [src]! Honk!</span>")
-				var/mob/living/simple_animal/bot/honkbot/S = new(drop_location())
+				var/mob/living/basic/bot/honkbot/S = new(drop_location()) // AQ EDIT - basic boty
 				S.name = created_name
-				S.spam_flag = TRUE // only long enough to hear the first ping.
-				addtimer(CALLBACK (S, TYPE_PROC_REF(/mob/living/simple_animal/bot/honkbot, react_ping)), 5)
+				// AQ EDIT - basic boty: honkbot sam wycisza klakson na czas pierwszego pingu (react_ping)
+				addtimer(CALLBACK (S, TYPE_PROC_REF(/mob/living/basic/bot/honkbot, react_ping)), 5) // AQ EDIT - basic boty
 				S.bikehorn = I.type
 				qdel(I)
 				qdel(src)
@@ -409,7 +409,7 @@
 				if(!can_finish_build(I, user))
 					return
 				to_chat(user, "<span class='notice'>Kończysz budowę securitrona! Bip bup.</span>")
-				var/mob/living/simple_animal/bot/secbot/S = new(Tsec)
+				var/mob/living/basic/bot/secbot/S = new(Tsec) // AQ EDIT - basic boty
 				S.name = created_name
 				S.baton_type = I.type
 				S.robot_arm = robot_arm
@@ -433,7 +433,7 @@
 					if(!can_finish_build(I, user))
 						return
 					to_chat(user, "<span class='notice'>Kończysz budowę securitrona!... Coś chyba jest z nim nie tak..?</span>")
-					var/mob/living/simple_animal/bot/secbot/grievous/toy/S = new(Tsec)
+					var/mob/living/basic/bot/secbot/grievous/toy/S = new(Tsec) // AQ EDIT - basic boty
 					S.name = created_name
 					S.robot_arm = robot_arm
 					qdel(I)
@@ -466,7 +466,7 @@
 					if(!can_finish_build(I, user))
 						return
 					to_chat(user, "<span class='notice'>Kończysz budowę securitrona!... Coś chyba jest z nim nie tak..?</span>")
-					var/mob/living/simple_animal/bot/secbot/grievous/S = new(Tsec)
+					var/mob/living/basic/bot/secbot/grievous/S = new(Tsec) // AQ EDIT - basic boty
 					S.name = created_name
 					S.robot_arm = robot_arm
 					qdel(I)
@@ -504,7 +504,7 @@
 				if(!can_finish_build(I, user))
 					return
 				to_chat(user, "<span class='notice'>Dodajesz [I] do [src]! Bip bup!</span>")
-				var/mob/living/simple_animal/bot/firebot/F = new(drop_location())
+				var/mob/living/basic/bot/firebot/F = new(drop_location()) // AQ EDIT - basic boty
 				F.name = created_name
 				qdel(I)
 				qdel(src)
@@ -534,7 +534,7 @@
 				if(!can_finish_build(I, user))
 					return
 				to_chat(user, "<span class='notice'>Dodajesz [I] do [src]! Bip bup!</span>")
-				var/mob/living/simple_animal/bot/atmosbot/A = new(drop_location())
+				var/mob/living/basic/bot/atmosbot/A = new(drop_location()) // AQ EDIT - basic boty
 				A.name = created_name
 				qdel(I)
 				qdel(src)

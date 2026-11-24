@@ -2651,7 +2651,7 @@
 /turf/open/floor/plasteel/tech/grid,
 /area/crew_quarters/toilet/pvp)
 "cRt" = (
-/mob/living/simple_animal/bot/floorbot,
+/mob/living/basic/bot/repairbot,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 1
@@ -10301,7 +10301,7 @@
 /area/engine/engine_room/pvp)
 "kmV" = (
 /obj/machinery/holopad,
-/mob/living/simple_animal/bot/cleanbot,
+/mob/living/basic/bot/cleanbot,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
@@ -14557,7 +14557,7 @@
 /turf/open/floor/plasteel/tech/grid,
 /area/science/pvp)
 "oGW" = (
-/mob/living/simple_animal/bot/cleanbot,
+/mob/living/basic/bot/cleanbot,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /obj/structure/disposalpipe/segment{
@@ -19608,7 +19608,7 @@
 /turf/open/floor/plasteel/tech/grid,
 /area/quartermaster/pvp)
 "tKK" = (
-/mob/living/simple_animal/bot/honkbot,
+/mob/living/basic/bot/honkbot,
 /turf/open/floor/plasteel/dark,
 /area/security/brig/pvp)
 "tKO" = (
@@ -20748,7 +20748,7 @@
 /turf/open/floor/plasteel/dark,
 /area/hallway/pvp)
 "uUl" = (
-/mob/living/simple_animal/bot/medbot,
+/mob/living/basic/bot/medbot,
 /obj/structure/disposalpipe/segment{
 	dir = 8
 	},
@@ -22331,7 +22331,7 @@
 /turf/open/floor/plasteel/tech/grid,
 /area/hallway/pvp)
 "wyO" = (
-/mob/living/simple_animal/bot/secbot/beepsky,
+/mob/living/basic/bot/secbot/beepsky,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 5
 	},

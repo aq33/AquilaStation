@@ -32,7 +32,7 @@
 /// The loop ran a proc call for every item on every burning tile each tick. Add new temperature_expose() overrides on movables here.
 /// Core hook: fire_expose() in code/modules/atmospherics/gasmixtures/reactions.dm
 GLOBAL_LIST_INIT(temperature_expose_typecache, typecacheof(list(
-	/mob/living/simple_animal/bot/firebot,
+	/mob/living/basic/bot/firebot,
 	/obj/effect/particle_effect/foam,
 	/obj/item/clothing/accessory/medal/plasma,
 	/obj/item/clothing/mask/facehugger,

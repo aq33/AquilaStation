@@ -153,7 +153,7 @@
 
 /datum/crafting_recipe/ed209
 	name = "ED-209"
-	result = /mob/living/simple_animal/bot/ed209
+	result = /mob/living/basic/bot/secbot/ed209 // AQ EDIT - basic boty
 	reqs = list(/obj/item/robot_suit = 1,
 				/obj/item/clothing/head/helmet = 1,
 				/obj/item/clothing/suit/armor/vest = 1,
@@ -170,7 +170,7 @@
 
 /datum/crafting_recipe/secbot
 	name = "securitron"
-	result = /mob/living/simple_animal/bot/secbot
+	result = /mob/living/basic/bot/secbot // AQ EDIT - basic boty
 	reqs = list(/obj/item/assembly/signaler = 1,
 				/obj/item/clothing/head/helmet/sec = 1,
 				/obj/item/melee/baton = 1,
@@ -182,7 +182,7 @@
 
 /datum/crafting_recipe/cleanbot
 	name = "cleanbot"
-	result = /mob/living/simple_animal/bot/cleanbot
+	result = /mob/living/basic/bot/cleanbot // AQ EDIT - basic boty
 	reqs = list(/obj/item/reagent_containers/glass/bucket = 1,
 				/obj/item/assembly/prox_sensor = 1,
 				/obj/item/bodypart/r_arm/robot = 1)
@@ -191,15 +191,15 @@
 
 /datum/crafting_recipe/cleanbot/larry
 	name = "Larry"
-	result = /mob/living/simple_animal/bot/cleanbot/larry
+	result = /mob/living/basic/bot/cleanbot/larry // AQ EDIT - basic boty
 	reqs = list(/obj/item/larryframe = 1,
 				/obj/item/assembly/prox_sensor = 1,
 				/obj/item/bodypart/r_arm/robot = 1)
 
 
 /datum/crafting_recipe/floorbot
-	name = "floorbot"
-	result = /mob/living/simple_animal/bot/floorbot
+	name = "repairbot" // AQ EDIT - basic boty: repairbot zamiast floorbota
+	result = /mob/living/basic/bot/repairbot // AQ EDIT - basic boty
 	reqs = list(/obj/item/storage/toolbox = 1,
 				/obj/item/stack/tile/plasteel = 10,
 				/obj/item/assembly/prox_sensor = 1,
@@ -209,7 +209,7 @@
 
 /datum/crafting_recipe/medbot
 	name = "medibot"
-	result = /mob/living/simple_animal/bot/medbot
+	result = /mob/living/basic/bot/medbot // AQ EDIT - basic boty
 	reqs = list(/obj/item/healthanalyzer = 1,
 				/obj/item/storage/firstaid = 1,
 				/obj/item/assembly/prox_sensor = 1,
@@ -219,7 +219,7 @@
 
 /datum/crafting_recipe/honkbot
 	name = "honkbot"
-	result = /mob/living/simple_animal/bot/honkbot
+	result = /mob/living/basic/bot/honkbot // AQ EDIT - basic boty
 	reqs = list(/obj/item/storage/box/clown = 1,
 				/obj/item/bodypart/r_arm/robot = 1,
 				/obj/item/assembly/prox_sensor = 1,
@@ -229,7 +229,7 @@
 
 /datum/crafting_recipe/Firebot
 	name = "firebot"
-	result = /mob/living/simple_animal/bot/firebot
+	result = /mob/living/basic/bot/firebot // AQ EDIT - basic boty
 	reqs = list(/obj/item/extinguisher = 1,
 				/obj/item/bodypart/r_arm/robot = 1,
 				/obj/item/assembly/prox_sensor = 1,
@@ -239,7 +239,7 @@
 
 /datum/crafting_recipe/Atmosbot
 	name = "atmosbot"
-	result = /mob/living/simple_animal/bot/atmosbot
+	result = /mob/living/basic/bot/atmosbot // AQ EDIT - basic boty
 	reqs = list(/obj/item/analyzer = 1,
 				/obj/item/bodypart/r_arm/robot = 1,
 				/obj/item/assembly/prox_sensor = 1,
