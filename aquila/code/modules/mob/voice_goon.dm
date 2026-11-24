@@ -23,7 +23,11 @@ GLOBAL_LIST_INIT(goon_speech_voices, list(
 	"amphibian" = list("say" = 'aquila/sound/voice/goon/amphibian.ogg', "ask" = 'aquila/sound/voice/goon/amphibian_ask.ogg', "exclaim" = 'aquila/sound/voice/goon/amphibian_exclaim.ogg'),
 	"blub" = list("say" = 'aquila/sound/voice/goon/blub.ogg', "ask" = 'aquila/sound/voice/goon/blub_ask.ogg', "exclaim" = 'aquila/sound/voice/goon/blub_exclaim.ogg'),
 	// Grod piszczy jak gumowa zabawka, Mięsoczłowiek charczy jak zombie z Minecrafta, Borowik cicho pyka
-	"grod" = list("say" = 'sound/items/toysqueak1.ogg', "ask" = 'sound/items/toysqueak2.ogg', "exclaim" = 'sound/items/toysqueak3.ogg'),
+	"grod" = list(
+		"say" = list('aquila/sound/species/grod/squeak_double.ogg', 'aquila/sound/species/grod/squeak_double_low.ogg', 'aquila/sound/species/grod/squeak_trembling.ogg', 'aquila/sound/species/grod/squeak_triple.ogg', 'aquila/sound/species/grod/squeak_double_high.ogg'),
+		"ask" = list('aquila/sound/species/grod/squeak_double_high.ogg', 'aquila/sound/species/grod/squeak_trembling.ogg'),
+		"exclaim" = list('aquila/sound/species/grod/squeak_triple.ogg', 'aquila/sound/species/grod/squeak_double.ogg'),
+	),
 	"beefman" = list("say" = 'aquila/sound/voice/goon/beefman.ogg', "ask" = 'aquila/sound/voice/goon/beefman_ask.ogg', "exclaim" = 'aquila/sound/voice/goon/beefman_exclaim.ogg'),
 	"borowik" = list("say" = 'aquila/sound/voice/goon/borowik.ogg', "ask" = 'aquila/sound/voice/goon/borowik_ask.ogg', "exclaim" = 'aquila/sound/voice/goon/borowik_exclaim.ogg'),
 ))
@@ -66,16 +70,18 @@ GLOBAL_LIST_INIT(selectable_speech_voices, list(SPEECH_VOICE_SPECIES, "speak_1",
 	var/hash = text2num(copytext(md5(name), 1, 3), 16)
 	return human_voices[(hash % length(human_voices)) + 1]
 
-/// Nagranie głosu Goona dla wypowiedzi zakończonej znakiem last_char
+/// Nagranie głosu Goona dla wypowiedzi zakończonej znakiem last_char. Lista nagrań = losowy wariant (Grod).
 /proc/get_goon_voice_sound(voice, last_char)
 	var/list/recordings = GLOB.goon_speech_voices[voice]
 	if(!recordings)
 		return null
+	var/kind = "say"
 	if(last_char == "?")
-		return recordings["ask"]
-	if(last_char == "!")
-		return recordings["exclaim"]
-	return recordings["say"]
+		kind = "ask"
+	else if(last_char == "!")
+		kind = "exclaim"
+	var/recording = recordings[kind]
+	return islist(recording) ? pick(recording) : recording
 
 /// Co słuchacz chce słyszeć, gdy postacie mówią
 /datum/preferences/proc/get_speech_sounds_mode()

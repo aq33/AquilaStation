@@ -256,7 +256,7 @@ GLOBAL_LIST_INIT(grod_accessory_names, list(
 	speedmod = GROD_SPEEDMOD
 	species_language_holder = /datum/language_holder/grod
 	goon_voice = "grod"
-	deathsound = 'sound/items/toysqueak2.ogg' // pisk gumowej zabawki
+	deathsound = 'aquila/sound/species/grod/death_deflate.ogg' // pisk sflaczałej gumowej zabawki, losowany w grod_roll_deathsound()
 	offset_features = list(OFFSET_UNIFORM = list(0,0), OFFSET_ID = list(0,0), OFFSET_GLOVES = list(0,0), OFFSET_GLASSES = list(0,0), OFFSET_EARS = list(0,0), OFFSET_SHOES = list(0,0), OFFSET_S_STORE = list(0,0), OFFSET_FACEMASK = list(0,0), OFFSET_HEAD = list(0,0), OFFSET_FACE = list(0,0), OFFSET_BELT = list(0,0), OFFSET_BACK = list(0,0), OFFSET_SUIT = list(0,0), OFFSET_NECK = list(0,0))
 	/// Grod nie ma nóg: z przodu i z tyłu w chodzie ruszają się tylko ręce (walk_animation.dm)
 	walk_animation_legs = FALSE
@@ -298,6 +298,7 @@ GLOBAL_LIST_INIT(grod_last, world.file2list("strings/names/grod_last.txt"))
 		if(!C.dna.features[feature])
 			C.dna.features[feature] = default_features[feature]
 	C.update_body()
+	grod_roll_deathsound(C)
 	stance = GROD_STANCE_MOBILE
 	grod_set_hands(C, 2)
 	if(!crownspider)
@@ -337,6 +338,14 @@ GLOBAL_LIST_INIT(grod_last, world.file2list("strings/names/grod_last.txt"))
 	if(C.hud_used)
 		C.hud_used.build_hand_slots()
 		C.hud_used.show_hud(C.hud_used.hud_version)
+
+/// Dwa warianty pisku przy śmierci; po każdej śmierci losujemy dźwięk na następną
+/datum/species/grod/proc/grod_roll_deathsound(mob/living/carbon/human/H)
+	H.deathsound = pick('aquila/sound/species/grod/death_deflate.ogg', 'aquila/sound/species/grod/death_double_low.ogg')
+
+/datum/species/grod/spec_death(gibbed, mob/living/carbon/human/H)
+	. = ..()
+	grod_roll_deathsound(H)
 
 /datum/species/grod/Destroy()
 	QDEL_NULL(crownspider)

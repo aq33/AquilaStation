@@ -214,7 +214,11 @@
 		var/list/recordings = GLOB.goon_speech_voices[species.goon_voice]
 		TEST_ASSERT(length(recordings), "[species_type] has no species voice")
 		for(var/kind in list("say", "ask", "exclaim"))
-			TEST_ASSERT(isfile(recordings[kind]), "[species_type] voice has no [kind] recording")
+			var/list/variants = islist(recordings[kind]) ? recordings[kind] : list(recordings[kind])
+			TEST_ASSERT(length(variants), "[species_type] voice has no [kind] recording")
+			for(var/variant in variants)
+				TEST_ASSERT(isfile(variant), "[species_type] voice has a broken [kind] recording")
+		TEST_ASSERT(isfile(get_goon_voice_sound(species.goon_voice, "?")), "[species_type] voice gives no sound for a question")
 		qdel(species)
 	var/datum/species/grod/grod = new
 	for(var/obj/item/storage/backpack/satchel/satchel_type as anything in typesof(/obj/item/storage/backpack/satchel))
