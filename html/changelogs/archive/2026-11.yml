@@ -1579,3 +1579,5 @@
   sh4dow321:
   - tweak: 'Zwykła kupa nie jest już śliska: wdepnięcie brudzi buty i zostawia ślady.
       Ślizgać się można tylko na biegunce.'
+  - bugfix: Abordażyści AI w skafandrach nie szukają już trasy przez kosmos wokół
+      okrętu, co przy abordażu zamrażało serwer (time dilation do ~70%).
