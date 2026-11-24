@@ -30,6 +30,15 @@
 		"Eve" = list(SKIN_ICON_STATE = "eve"),
 		"Roomba" = list(SKIN_ICON_STATE = "zoomba_med"),
 		"Roomba ERT" = list(SKIN_ICON_STATE = "zoomba_crisis"),
+		// Skiny scalonych modułów Aquili: Chemiczny, Chirurgiczny, Ratowniczy (aquila/icons/mob/silicon/ATTRIBUTION_cyborgi.md)
+		"ChemBot" = list(SKIN_ICON_STATE = "aq_chem_chembot", SKIN_ICON = 'aquila/icons/mob/silicon/robots_aquila_modules.dmi', SKIN_HAT_OFFSET = 0),
+		"Chirurg" = list(SKIN_ICON_STATE = "aq_surg_standard", SKIN_ICON = 'aquila/icons/mob/silicon/robots_aquila_modules.dmi'),
+		"Podstawowy" = list(SKIN_ICON_STATE = "aq_surg_basic", SKIN_ICON = 'aquila/icons/mob/silicon/robots_aquila_modules.dmi'),
+		"Igły" = list(SKIN_ICON_STATE = "aq_surg_needles", SKIN_ICON = 'aquila/icons/mob/silicon/robots_aquila_modules.dmi'),
+		"Ratownik" = list(SKIN_ICON_STATE = "aq_resc_droid", SKIN_ICON = 'aquila/icons/mob/silicon/robots_aquila_modules.dmi'),
+		"Ratownik Sleek" = list(SKIN_ICON_STATE = "aq_resc_sleek", SKIN_ICON = 'aquila/icons/mob/silicon/robots_aquila_modules.dmi'),
+		"Ratownik ciężki" = list(SKIN_ICON_STATE = "aq_resc_heavy", SKIN_ICON = 'aquila/icons/mob/silicon/robots_aquila_modules.dmi'),
+		"Ratownik dron" = list(SKIN_ICON_STATE = "aq_resc_drone", SKIN_ICON = 'aquila/icons/mob/silicon/robots_aquila_modules.dmi'),
 	)
 
 /obj/item/robot_module/engineering
@@ -49,6 +58,25 @@
 		"Noble" = list(SKIN_ICON_STATE = "noble-eng"),
 		"Wall-e" = list(SKIN_ICON_STATE = "wall-e"),
 		"Roomba" = list(SKIN_ICON_STATE = "zoomba_engi"),
+		// Skiny scalonego modułu Budowlanego Aquili
+		"Gąsienice" = list(SKIN_ICON_STATE = "aq_cons_tread", SKIN_ICON = 'aquila/icons/mob/silicon/robots_aquila_modules.dmi'),
+		"Landmate" = list(SKIN_ICON_STATE = "aq_cons_landmate", SKIN_ICON = 'aquila/icons/mob/silicon/robots_aquila_modules.dmi'),
+		"Ciężki" = list(SKIN_ICON_STATE = "aq_cons_heavy", SKIN_ICON = 'aquila/icons/mob/silicon/robots_aquila_modules.dmi'),
+		"Pająk" = list(SKIN_ICON_STATE = "aq_cons_spider", SKIN_ICON = 'aquila/icons/mob/silicon/robots_aquila_modules.dmi'),
+		"ConBot" = list(SKIN_ICON_STATE = "aq_cons_conbot", SKIN_ICON = 'aquila/icons/mob/silicon/robots_aquila_modules.dmi'),
+	)
+
+/obj/item/robot_module/cargo
+	borg_skins = list(
+		"Technician" = list(SKIN_ICON_STATE = "cargoborg", SKIN_ICON = CYBORG_ICON_CARGO),
+		"Zoomba" = list(SKIN_ICON_STATE = "zoomba_cargo", SKIN_ICON = CYBORG_ICON_CARGO, SKIN_FEATURES = list(R_TRAIT_UNIQUEWRECK), SKIN_HAT_OFFSET = -13),
+		// Skiny scalonych modułów Aquili: Magazynowy i Biurowy
+		"Noble" = list(SKIN_ICON_STATE = "noble-sup"),
+		"Kodiak" = list(SKIN_ICON_STATE = "kodiak-miner"),
+		"Kelnerka" = list(SKIN_ICON_STATE = "aq_cler_service", SKIN_ICON = 'aquila/icons/mob/silicon/robots_aquila_modules.dmi'),
+		"Biurowy" = list(SKIN_ICON_STATE = "aq_cler_service2", SKIN_ICON = 'aquila/icons/mob/silicon/robots_aquila_modules.dmi'),
+		"Bogacz" = list(SKIN_ICON_STATE = "aq_cler_rich", SKIN_ICON = 'aquila/icons/mob/silicon/robots_aquila_modules.dmi'),
+		"Kent" = list(SKIN_ICON_STATE = "toiletbot"),
 	)
 
 /obj/item/robot_module/security

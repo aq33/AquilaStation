@@ -58,6 +58,7 @@
 	var/area/A = get_area(curturf)
 	var/area/B = get_area(destturf)
 	if(!forced && (HAS_TRAIT(teleatom, TRAIT_NO_TELEPORT)))
+		SEND_SIGNAL(teleatom, COMSIG_AQ_TELEPORT_DENIED) // AQ EDIT - implant uziemiający paraliżuje przy próbie teleportu
 		return FALSE
 
 	//Either area has teleport restriction and teleport mode isn't allowed in that area

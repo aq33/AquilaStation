@@ -1,7 +1,7 @@
 // AQUILA - amunicja klasy I z kuźni: wykuta automatycznie pod młotem mechanicznym, bez ręcznego wykańczania.
 // Broń ręczna: trzy razy szybsze zużycie (gunplay/condition.dm) i szansa na zacięcie, które usuwa użycie broni w ręce.
 // Broń okrętowa: każdy strzał zjada dodatkowe punkty do konserwacji, a czasem od razu wywołuje usterkę (smarowanie olejem).
-// Amunicja z cargo i pokryta w galwanizerze nie jest „surowa”, więc nic z tego jej nie dotyczy.
+// Amunicja z cargo (też fabryczne AP, HE, APHE) i pokryta w galwanizerze nie jest „surowa”, więc nic z tego jej nie dotyczy.
 
 /// Szansa na zacięcie broni ręcznej po strzale amunicją klasy I (procent)
 #define AQ_ROUGH_JAM_CHANCE 5
@@ -17,7 +17,7 @@
 	if(!thing)
 		return FALSE
 	var/datum/component/forged_munition/forged = thing.GetComponent(/datum/component/forged_munition)
-	return forged && !forged.galvanized && forged.quality?.level == 0
+	return forged && !forged.galvanized && !forged.factory && forged.quality?.level == 0
 
 /obj/item/gun
 	/// Zacięcie po amunicji klasy I: broń nie strzela, dopóki właściciel jej nie odblokuje (użycie w ręce)

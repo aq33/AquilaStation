@@ -75,7 +75,7 @@
 	category = list("Advanced Munitions")
 	departmental_flags = DEPARTMENTAL_FLAG_MUNITIONS
 
-// Maszyny razem z artylerią. Obudowy głowic odlewa piec dopiero po zbadaniu głowic torped (aq_forge_product_available).
+// Maszyny razem z artylerią. Wyroby po dawnych projektach protolathe wymagają tych samych badań (required_node części).
 /datum/techweb_node/advanced_ballistics/New()
 	. = ..()
 	design_ids += list("munitions_arc_forge", "munitions_anvil", "munitions_assembly_bench", "munitions_electroplater", "munitions_analyzer")

@@ -12,6 +12,9 @@
 //   (cel wypraw górniczych) i sztorm bez końca.
 
 /datum/planet_type/water
+	sky_state = "water"
+	sky_clouds = "clouds_thick"
+	sky_atmosphere_color = "#6fa8ff"
 	name = "planeta wodna"
 	desc = "Świat w całości przykryty lodowatym, wzburzonym oceanem. Pod wyspami ciągną się jaskinie z kieszeniami powietrza."
 	overmap_icon_state = "planet_ocean"
@@ -60,6 +63,9 @@
 
 /// Wodna planeta karłowata (Shiptest: waterball)
 /datum/planet_type/dwarf/water
+	sky_state = "water"
+	sky_clouds = "clouds"
+	sky_atmosphere_color = "#6fa8ff"
 	name = "wodna planeta karłowata"
 	desc = "Mały świat przykryty chłodną wodą i jeszcze chłodniejszymi sztormami. Z orbity widać tylko kilka wysepek."
 	overmap_icon_state = "planet_small"

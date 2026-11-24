@@ -1366,3 +1366,188 @@
       wybierają takich graczy na cel w pierwszej kolejności.'
   - rscadd: 'Czat głosowy po angielsku: gracz z angielską wersją gry dostaje stronę
       po angielsku, a jego mowa jest rozpoznawana po angielsku.'
+  - balance: Pociski artylerii, łuski i ładunki burtowe oraz rdzeń działa plazmowego
+      robi kuźnia amunicji zamiast protolathe, po tym samym koszcie i badaniu.
+  - rscadd: Pociski artylerii i burtówki mają typy AP, HE i APHE; cargo sprzedaje
+      fabryczne pociski i łuski w trzech typach.
+  - rscadd: Korpus z kuźni ma rdzeń (obrażenia, przebicie, prędkość) i powłokę (efekt
+      specjalny); nowe efekty złota, diamentu, bluespace, miedzi i srebra.
+  - rscadd: Kuźnia railguna pokazuje obrażenia, przebicie i prędkość pocisku i kanistra
+      przed wykuciem.
+  - tweak: Stół projektowy pocisków przerabia silnik i naprowadzanie zamiast drukować
+      chip.
+  - balance: 'Sparrowhawk to ciężka rakieta: szybszy, zajmuje całą tubę VLS, droższa
+      głowica, paczka głowic w cargo.'
+  - balance: Magneton jest tylko do kupienia u handlarza.
+  - balance: 'Okręty AI mają grubość pancerza według klasy: HE odbija się od ciężkich
+      okrętów, AP przelatuje myśliwce i lekkie okręty na wylot, APHE jest na lekkie
+      i średnie.'
+  - rscdel: Kuźnia nie robi już obudów głowic, a wypełnienia zastąpiły typy pocisków.
+'2026-11-19':
+  Joker66613:
+  - rscadd: Szyny, kule, nożyce do amputacji, nanopasta, młotek neurologiczny, zestaw
+      ratownika, taśma medyczna, kroplówka z rur, astma z inhalatorem.
+  - rscadd: 'Nowe leki: paracetamol, tramadol, oksykodon, citalopram, paroksetyna,
+      metylofenidat, albuterol, nalokson.'
+  - rscadd: Uzależnienia z tg, zarazki i sterylność (autoklaw, zakażenie, sepsa),
+      puls i zatrzymanie krążenia, niedotlenienie mózgu, hipotermia i odmrożenia.
+  - rscadd: 'Nowe narządy: nerki, śledziona, jelita, nadnercza, krtań i syntezator
+      mowy; pęknięcia pęcherza i cewnik; przerwane nerwy.'
+  - rscadd: Zęby, pień mózgu po przeszczepie, zacinający się skafander, odbudowa tkanek
+      huska, balsamowanie, stos korowy jako warunek klonowania.
+  - rscadd: Implant tłumacza, augmenty z Bay (podskórny pancerz, mięśnie, wzmacniacz
+      celowania, nanity naprawcze, pazury i kusza w uplinku), pająk-robot z MMI.
+  - imageadd: Sprite'y narządów z Goonstation, augmentów i stosu korowego z Bay, zębów
+      z /vg/, pająka-robota z Paradise.
+  - rscadd: 'Trzustka: bez niej albo z niewydolną cukier spala się wolno i grozi hiperglikemia;
+      trzustka cybernetyczna.'
+  - rscadd: 'Przełyk: zadławienie kęsem i chwyt Heimlicha, bez przełyku nie da się
+      jeść ani pić, kwasy go parzą.'
+  - rscadd: 'Kręgosłup jako narząd: zniszczony paraliżuje nogi, przeszczepiony wymaga
+      połączenia pnia mózgu, kręgosłup tytanowy.'
+  - rscadd: 'Lewe i prawe płuco oraz nerka: wycięcie i przeszczep jednej strony.'
+  - imageadd: Sprite'y trzustki i połówek płuc i nerek z Goonstation.
+  - rscadd: 'SSV Fist of Sol strzeże bramy Romulus, a SGV Alicorn czai się w Veneto.
+      Obaj bossowie mają stałych dowódców (nemezis) w zakładce „Dowódcy”: pokonani
+      uciekają i wracają do swoich układów albo giną na całą kampanię.'
+  - bugfix: Flota SGV Alicorn nie ma już niszczyciela i krążownika Syndykatu, które
+      strzelały do Alicorna.
+  - rscadd: 'Komitet Powitalny Dolos jest trzecim nemezis: stoi w Dolos Remnants i
+      ściga okręt, który przeleci obok. Flota Pozostałość zniknęła z Oasis Fidei.'
+  - spellcheck: 'Wersja angielska: dopisano brakujące tłumaczenia około 600 tekstów
+      (konsola drużyn, okna, czat, ubrania NFZ, Orlenu i InPostu).'
+  - bugfix: Odległości w konsolach ognia i sensorów w wersji angielskiej są w „tiles”.
+  - bugfix: Podpowiedź D-Notice w Newscasterze nie pokazuje już ukośnika i wcięcia.
+  - code_imp: Nowy tekst bez angielskiego odpowiednika blokuje CI.
+'2026-11-20':
+  Joker66613:
+  - rscdel: 'Albuterol usunięty: atak astmy gasi teraz salbutamol, a inhalator salbutamolu
+      jest w automacie NanoMed i u astmatyków na start.'
+  - rscdel: Usunięte paroksetyna, metylofenidat, prowizoryczna szyna, młotek neurologiczny,
+      złote zęby i trzy medipeny (kwas salicylowy, oksandrolon, kwas pentetowy).
+  - rscdel: Usunięte implanty pazurów bojowych, kuszy w przedramieniu, wzmocnienia
+      mięśni i nanitów naprawczych. ERT dostaje ostrza modliszki, a apteczka robotów
+      nanopastę.
+  - rscdel: Płuca i nerki znowu są jednym narządem, bez osobnej lewej i prawej strony.
+  - tweak: Pęknięcia śledziony, pęcherza i jelit zastąpiło jedno uszkodzenie narządów
+      brzucha z jedną operacją zszycia, która naprawia też jelita i pęcherz.
+  - rscdel: Usunięte operacje odhuskowania, balsamowania i wyrywania zęba.
+  - tweak: Butelka tramadolu jest w szafce CMO, a autoklaw w medbayu każdego okrętu.
+  - tweak: Matryce sensorów mają stały zasięg i pobór, bez grzania i suwaka.
+  - tweak: Głowice na podczerwień gubią też okręty zamaskowane po staremu.
+  - tweak: Zlecenie „Pociski przeciwpancerne” przyjmuje pociski AP z kuźni i fabryczne.
+      Na mapach leżą fabryczne pociski AP.
+  - tweak: Silnik i naprowadzanie torpedy lub rakiety ustawia się multitoolem, z dostępem
+      do zbrojowni. Stół projektowy pocisków usunięty.
+  - rscdel: Rakietowa sonda czujnikowa usunięta, a torpedowa nazywa się teraz „boja
+      czujnikowa NTP-S”.
+  - tweak: Misje „Próbki geologiczne” i „Głęboki odwiert” połączone w jedną misję
+      „Odwiert”.
+  - rscdel: Czujnik rud z łupów fauny usunięty.
+  - code_imp: Usunięty martwy kod starych uzależnień i osierocone tłumaczenia.
+'2026-11-22':
+  Joker66613:
+  - bugfix: Wbudowana butla hardsuitu nie dusi już noszącego.
+  - bugfix: Matryce sensorów pobierają 5,4 kW zamiast 54 kW i nie rozładowują APC.
+  - bugfix: Na Atlantisie i Von Neumannie matryce sensorów w konserwacji mają wreszcie
+      APC i prąd.
+  - bugfix: Przy opuszczonej stacji pilot sam wybiera miejsce lądowania promu z obrysem,
+      więc wyjście nie trafia w ścianę.
+  - bugfix: Martwego VIP-a można ożywić i dowieźć, misja nie przepada od razu po jego
+      śmierci.
+  - bugfix: Menu lobby działa także po wejściu na serwer w trakcie jego startu.
+  - bugfix: Mapa FTL ma suwaki, a przycisk skoku nie chowa się w małym oknie.
+  - rscadd: Mapa FTL pokazuje floty w kolorach frakcji z liczbą okrętów i ma zakładki
+      Wojna oraz Legenda.
+  - rscadd: Pilot okrętu widzi, ile dysz działa i jaki jest ciąg.
+  - tweak: Za sterem okrętu jest klasyczny panel konsoli, widok myśliwca tylko w małych
+      jednostkach.
+  - tweak: Automaty pokazują nazwę przedmiotu nad półką.
+  - balance: Cykl autoklawu trwa 10 s zamiast 30 s.
+'2026-11-23':
+  Jackriip, joker:
+  - rscadd: 'Planeta układu jest teraz widoczna za oknami okrętu: ma chmury, cień
+      i poświatę atmosfery. Każdy typ planety wygląda inaczej.'
+  - imageadd: Tekstury planet na niebie dla wszystkich typów planet.
+  - rscadd: 'Lądowanie promu na planecie trwa teraz kilkanaście sekund: planeta za
+      oknami rośnie, kadłub żarzy się w atmosferze, prom przebija chmurę, pod promem
+      zbliża się teren z cieniem kadłuba, a przy przyziemieniu są bryzgi albo kurz.
+      Start z planety pokazuje to samo w odwrotnej kolejności.'
+  - rscadd: Z kokpitu Sabre widać całe otoczenie promu, a w burtach doszły dwa okna.
+      Przy wejściu w atmosferę w kabinie pulsuje pomarańczowa poświata i sypią się
+      iskry.
+  - bugfix: Z promu w locie nie widać już skał i innych rzeczy z sąsiednich miejsc
+      na brzegu ekranu.
+  - imageadd: 'Grafiki zejścia: smugi pędu, żar przy kadłubie, cień promu.'
+  - rscadd: 'Lądowanie i start promu widać z ziemi: cień kadłuba na lądowisku, spadający
+      prom, kurz od dysz, a przy starcie odlot w stronę kokpitu.'
+  - rscadd: Przy zejściu pod promem rośnie prawdziwy teren lądowiska (od mapki okolicy
+      po dokładne pola), a przy starcie maleje.
+  - soundadd: Dźwięki zejścia, przyziemienia i startu promu (z Voidcrew).
+  - bugfix: Granat dymny zniszczony wybuchem nie zgłasza już błędu, gdy trafia go
+      kolejna fala tego samego wybuchu.
+  Joker66613:
+  - bugfix: Okręty AI strzelające do innych okrętów AI znowu liczą pancerz po staremu,
+      więc bitwy flot AI nie ciągną się w nieskończoność.
+  - bugfix: Odłamki złota, zdzieranie płyt przez diament i przenikanie tarczy przez
+      bluespace nie omijają już grubości pancerza okrętów AI.
+  - bugfix: Pocisk, który odbił się od pancerza, nie rani wnętrza okrętu.
+  - balance: Powłoka z miedzi i srebra daje impuls EMP tylko przy trafieniu w okręt,
+      nie w amunicji ręcznej.
+  - rscadd: 'Przywrócono wędkarstwo w domenach bitrunningu: woda plażowa i rzeczna
+      w domenach działa teraz jako łowisko.'
+  - rscadd: Przywrócono zestaw „Wędkarz” na dysku sportowym bitrunningu oraz wędki
+      i puszki z robakami na mapach Zatoka Bryzy i Walka na Wyspie.
+  - tweak: W domenie Zatoka Bryzy odsłonięcie skrzyni wymaga teraz łowienia ryb zamiast
+      zabijania krabów (jak w oryginale z /tg/station).
+  sh4dow321:
+  - bugfix: Duchy znów mogą zgłaszać się do ankiet ról bez kategorii ignorowania (np.
+      powrót z kriostazy).
+  - bugfix: Konsola myśliwców, generator termoelektryczny, oględziny, mroczny puls
+      i stos naleśników nie wywołują już błędów.
+'2026-11-24':
+  Joker66613:
+  - rscadd: 'Boty działają na drzewach zachowań z tg: duch może przejąć bota (przełącznik
+      Osobowość w panelu), boty jeżdżą windami przy wezwaniu i patrolu. Na starej
+      bazie został tylko MULEbot.'
+  - rscadd: 'Nowe boty: Repairbot (zamiast floorbota), Vibebot, BarBuddy, Cambot,
+      Chefbot, Digbot, Evilbot, eldritchowe boty, Doctor Acula, Farmbot, Frightbot
+      i Screambot; D.E.D.bot do kupienia w uplinku.'
+  - rscadd: Mechy mają sloty wyposażenia, wymienne części i płyty pancerza, overclock
+      z odnowieniem, kierunkowy pancerz, pięć broni wręcz, amunicję do każdej broni
+      balistycznej, zdalne sterowanie i zrzut z orbity.
+  - rscadd: 'Nowe mechy: Clarke, Paddy, Savannah-Ivanov, Red Sunday i Sentinel; 17
+      skinów do wyboru przy budowie i nowe wyposażenie.'
+  - rscadd: 'Nowe moduły cyborgów: Naukowy, Eksploracyjny, Detektyw, Brobocop i Zagubiony;
+      nowe ulepszenia, w tym zestawy chemiczny, ratowniczy i biurowy oraz wymiennik
+      żarówek.'
+  - rscadd: Nowe implanty i augmenty, NIF z programami NIFSoft; implant agonalny z
+      wyborem kanału, także w cyborgach.
+  - rscadd: Protezy w trzech klasach i dziesięciu markach (wygląd), rany robotyczne,
+      wybór protez w kreatorze postaci.
+  - rscadd: Klucz resetu IPC, chirurgia syntetyków, cyberpsychoza, neuromody i woltaiczne
+      serce.
+  - balance: Glock-13BR cyborga ochrony strzela ostrą amunicją tylko przy czerwonym
+      alarmie albo abordażu.
+  - balance: IPC nie wstaje sam po naprawie (klucz resetu albo operacja), a EMP nie
+      paraliżuje już całego ciała za każdą protezę.
+  - balance: Implant adrenaliny działa na IPC, a implant restartu OUN budzi z utraty
+      przytomności.
+  - balance: Szczęki ratownicze mecha otwierają tylko drzwi bez zasilania, a ładunek
+      wejścia siłowego i rakiety PEP-6 nie rozbierają ścian wzmocnionych.
+  - bugfix: EMP nie odrywa IPC głowy i kończyn, a paraliż protezy schodzi po odpięciu
+      kończyny.
+  - bugfix: 'Boty: wezwanie bez ścieżki nie zawiesza bota, dostęp z wezwania wraca
+      po dotarciu, zniszczony medibot i repairbot nie dublują apteczek i skrzynek,
+      gracz w bocie pracuje kliknięciem.'
+  - bugfix: Pilot zdalny mecha nie obrywa w kokpicie, broń zdalnego mecha strzela
+      z mecha, a drugie miejsce i zdalne sterowanie sprawdzają blokadę DNA i dostęp.
+  - bugfix: Kreator postaci nie podmienia organów gatunkowych (plazmaludzie, eterycy).
+  - bugfix: Skiny cyborgów z modułów Naukowy, Eksploracyjny, Detektyw i Brobocop są
+      widoczne, a event zagubionego cyborga działa.
+  - imageadd: Sprite'y botów, mechów, skinów cyborgów, implantów i protez z tg, Bee,
+      Goona, Baya, Aurory, Paradise, Erisa, Monke, Yoga, Shiptesta, TGMC i CM-SS13
+      (atrybucje w plikach attribution).
+  - bugfix: 'Ciało gracza na planecie nie znika już po odlocie okrętu: powierzchnia
+      czeka, dopóki gracz może do niego wrócić.'
+  - balance: Kudzu na planetach rozrasta się najwyżej do 50 pnączy na kępę i 400 łącznie.

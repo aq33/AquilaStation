@@ -63,9 +63,9 @@
 	gold_heavy.forceMove(run_loc_floor_bottom_left)
 	TEST_ASSERT(syndi_suit.slowdown == space_slowdown, "Po wyjęciu wkładki hardsuit ma [syndi_suit.slowdown] spowolnienia zamiast [space_slowdown]")
 
-	// Stop: średnia profili składników; wkładka nie idzie na stół montażowy, a okno pieca ją oferuje
-	var/datum/munition_material/alloy = get_munition_alloy(get_munition_material(/datum/material/iron), get_munition_material(/datum/material/diamond))
-	TEST_ASSERT(alloy.insert_profile()["bullet"] == 22.5, "Profil stopu żelazo-diament: [alloy.insert_profile()["bullet"]] zamiast 22.5")
+	// Rdzeń w powłoce: średnia profili ważona udziałem (powłoka ćwierć, rdzeń trzy czwarte); okno pieca oferuje wkładki
+	var/datum/munition_material/layered = get_munition_layered(get_munition_material(/datum/material/iron), get_munition_material(/datum/material/diamond))
+	TEST_ASSERT(layered.insert_profile()["bullet"] == 26.25, "Profil diamentu w powłoce z żelaza: [layered.insert_profile()["bullet"]] zamiast 26.25")
 	var/list/inserts = GLOB.aq_forge_products["Wkładki do pancerza"]
 	TEST_ASSERT((/obj/item/munition_part/body/armor_insert/heavy in inserts) && (/obj/item/munition_part/body/armor_insert/light in inserts), "Okno pieca nie oferuje obu wkładek")
 

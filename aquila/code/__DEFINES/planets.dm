@@ -17,6 +17,12 @@
 /// Ile procent ticku może zająć generowanie powierzchni planety. CHECK_TICK pozwala procedurze asynchronicznej zająć tick
 /// do limitu MC (ok. 80-98%), a wtedy MC nie mieścił się w ticku: przez całe generowanie (kilkadziesiąt sekund) co 2-4
 /// ticki jeden przepadał i serwer zwalniał (TD) u wszystkich graczy, nie tylko u lądujących.
+/// Widok lądowania z pokładu promu (aquila/code/modules/planets/planet_landing_ground.dm): teren i niebo nad nim na własnej
+/// płaszczyźnie (nad kosmosem i paralaksą, pod otwartą przestrzenią i podłogą), przyciętej płaszczyzną maski
+#define AQ_LANDING_VIEW_PLANE -6
+#define AQ_LANDING_VIEW_MASK_PLANE -7
+#define AQ_LANDING_VIEW_MASK_RENDER_TARGET "*AQ_LANDING_VIEW_MASK"
+
 #ifdef UNIT_TESTS
 /// W testach nie ma graczy, którym TD by przeszkadzał: generowanie bierze tyle ticku, ile da MC (z limitem 50 każda planeta
 /// w teście trwała dwa razy dłużej, a testy planet to kilka minut jednej części CI)
@@ -55,3 +61,8 @@
 #define PLANET_BIOME_MEDIUM_HUMIDITY "medium_humidity"
 #define PLANET_BIOME_HIGH_HUMIDITY "high_humidity"
 #define PLANET_BIOME_HIGHEST_HUMIDITY "highest_humidity"
+
+/// Ile pnączy kudzu może mieć jedna kępa na planecie, zanim przestanie się rozrastać (planet_spacevine_cap.dm)
+#define PLANET_SPACEVINE_CLUSTER_CAP 50
+/// Ile pnączy mogą mieć wszystkie kępy razem, zanim żadna na planecie nie rozrośnie się dalej
+#define PLANET_SPACEVINE_GLOBAL_CAP 400

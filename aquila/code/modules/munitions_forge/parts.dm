@@ -1,6 +1,6 @@
 // AQUILA - kuźnia amunicji: części wylewane w piecu łukowym, kute na kowadle i składane na stole montażowym.
 // Na wzór /obj/item/smithed_item/component z Paradise (ciepło, chłodzenie, parzenie), kucie jak na kowadle z Monkestation.
-// Korpus niesie materiał, wypełnienie i zapalnik niosą tylko jakość.
+// Korpus niesie materiał (rdzeń i powłokę) i typ pocisku, zapalnik niesie tylko jakość.
 
 /obj/item/munition_part
 	name = "część amunicji"
@@ -20,6 +20,8 @@
 	var/cool_time = 10 SECONDS
 	/// Gotowy wyrób zaraz po kuciu (wkładka pancerza), bez stołu montażowego
 	var/forge_standalone = FALSE
+	/// Węzeł techwebu, bez którego piec nie odleje tej części (null = zawsze)
+	var/required_node
 
 /obj/item/munition_part/Initialize(mapload)
 	. = ..()
@@ -131,15 +133,29 @@
 // ---------------------------------------------------------------- korpusy
 
 /// Nakłada właściwości kuźni na wyrób. Pudełko i magazynek nie niosą komponentu, tylko każdy nabój w środku.
-/proc/apply_forged_munition(atom/movable/product, datum/munition_material/material, datum/munition_quality/quality, datum/munition_filler/filler, galvanized = FALSE)
+/proc/apply_forged_munition(atom/movable/product, datum/munition_material/material, datum/munition_quality/quality, datum/munition_filler/filler, galvanized = FALSE, factory = FALSE)
 	if(!istype(product, /obj/item/ammo_box))
-		product.AddComponent(/datum/component/forged_munition, material, quality, filler, galvanized)
+		product.AddComponent(/datum/component/forged_munition, material, quality, filler, galvanized, factory)
 		return
 	var/obj/item/ammo_box/box = product
 	for(var/obj/item/ammo_casing/casing in box.stored_ammo)
-		casing.AddComponent(/datum/component/forged_munition, material, quality, filler, galvanized)
-	box.name = "[box.name] ([material.name][filler ? ", [filler.short_name]" : ""][galvanized ? "" : ", klasa [quality.roman]"])"
+		casing.AddComponent(/datum/component/forged_munition, material, quality, filler, galvanized, factory)
+	box.name = "[box.name] ([material.name][filler ? ", [filler.short_name]" : ""][(galvanized || factory) ? "" : ", klasa [quality.roman]"])"
 	apply_quality_look(box, quality)
+
+/// Stała część kosztu odlewu (jednostki materiału przed klasą i sprawnością pieca): dla korpusu extra_cost, dla innych
+/// części base_cost. Listy nie da się czytać przez initial(), więc liczymy ją raz na typ z tymczasowej instancji.
+/proc/aq_munition_fixed_cost(part_path)
+	var/static/list/cache = list()
+	if(!cache[part_path])
+		var/obj/item/munition_part/temp = new part_path(null)
+		var/obj/item/munition_part/body/body = temp
+		if(istype(body))
+			cache[part_path] = body.extra_cost ? body.extra_cost.Copy() : list()
+		else
+			cache[part_path] = temp.base_cost ? temp.base_cost.Copy() : list()
+		qdel(temp)
+	return cache[part_path]
 
 /// Wyrób -> typ korpusu, z którego powstaje (galwanizer i eksport)
 GLOBAL_LIST_INIT(munition_products, init_munition_products())
@@ -165,12 +181,18 @@ GLOBAL_LIST_INIT(munition_products, init_munition_products())
 	/// Ile jednostek wybranego materiału idzie na odlew (przed mnożnikami)
 	var/material_amount = MINERAL_MATERIAL_AMOUNT * 2
 	var/datum/munition_material/material
-	/// Jaki zapalnik pasuje
+	/// Jaki zapalnik pasuje (null = korpus składa się bez zapalnika)
 	var/fuze_type = /obj/item/munition_part/fuze/impact
 	/// Co powstaje na stole montażowym
 	var/product_path
 	/// Ile sztuk wyrobu daje jeden korpus; material_amount to koszt całej partii
 	var/product_count = 1
+	/// Stałe składniki odlewu poza wybranym materiałem (reszta dawnego przepisu z protolathe): typ materiału -> jednostki
+	var/list/extra_cost
+	/// Korpus pocisku artylerii albo łuski burtowej: typ (AP, HE, APHE) wybiera się w piecu
+	var/uses_shell_type = FALSE
+	/// Wybrany typ pocisku
+	var/datum/munition_filler/shell_type
 
 /obj/item/munition_part/body/proc/set_material(datum/munition_material/new_material)
 	material = new_material
@@ -180,18 +202,28 @@ GLOBAL_LIST_INIT(munition_products, init_munition_products())
 /obj/item/munition_part/body/update_part_name()
 	if(!material)
 		return ..()
-	name = "[initial(name)] ([material.name], klasa [quality.roman])"
+	name = "[initial(name)] ([material.name][shell_type ? ", [shell_type.short_name]" : ""], klasa [quality.roman])"
 
 /obj/item/munition_part/body/cast_finished(datum/munition_quality/new_quality)
 	..()
 	update_part_name()
 
+/obj/item/munition_part/body/examine(mob/user)
+	. = ..()
+	if(shell_type)
+		. += "<span class='notice'>Typ pocisku: [shell_type.name] ([shell_type.short_name]). [shell_type.desc]</span>"
+	if(fuze_type)
+		var/obj/item/munition_part/fuze = fuze_type
+		. += "<span class='notice'>Na stole montażowym potrzebuje: [initial(fuze.name)].</span>"
+	else
+		. += "<span class='notice'>Na stole montażowym składa się bez zapalnika.</span>"
+
 /// Tworzy wyrób. Zwraca listę rzeczy, które powstały.
-/obj/item/munition_part/body/proc/create_product(atom/location, datum/munition_quality/final_quality, datum/munition_filler/filler)
+/obj/item/munition_part/body/proc/create_product(atom/location, datum/munition_quality/final_quality)
 	. = list()
 	for(var/i in 1 to product_count)
 		var/atom/movable/product = new product_path(location)
-		apply_forged_munition(product, material, final_quality, filler)
+		apply_forged_munition(product, material, final_quality, shell_type)
 		. += product
 
 // Łuski — wyrobem jest całe pudełko lub magazynek, a komponent dostaje każdy nabój.
@@ -201,9 +233,9 @@ GLOBAL_LIST_INIT(munition_products, init_munition_products())
 	fuze_type = /obj/item/munition_part/fuze/primer
 	material_amount = MINERAL_MATERIAL_AMOUNT * 2
 
-/obj/item/munition_part/body/casings/create_product(atom/location, datum/munition_quality/final_quality, datum/munition_filler/filler)
+/obj/item/munition_part/body/casings/create_product(atom/location, datum/munition_quality/final_quality)
 	var/obj/item/ammo_box/box = new product_path(location)
-	apply_forged_munition(box, material, final_quality, filler)
+	apply_forged_munition(box, material, final_quality, shell_type)
 	return list(box)
 
 /obj/item/munition_part/body/casings/c9mm
@@ -245,14 +277,25 @@ GLOBAL_LIST_INIT(munition_products, init_munition_products())
 	w_class = WEIGHT_CLASS_BULKY
 	material_amount = MINERAL_MATERIAL_AMOUNT * 5
 
+// Koszt jak dawny przepis protolathe (5 Fe + 2,5 Ti + 0,25 Cu): żelazo zastępuje wybrany materiał, reszta jest stała
 /obj/item/munition_part/body/shell/naval
 	name = "korpus pocisku artylerii"
 	product_path = /obj/item/ship_weapon/ammunition/naval_artillery
+	fuze_type = null
+	uses_shell_type = TRUE
+	required_node = "adv_ballistics"
+	extra_cost = list(/datum/material/titanium = MINERAL_MATERIAL_AMOUNT * 2.5, /datum/material/copper = MINERAL_MATERIAL_AMOUNT * 0.25)
 
+// Pięć łusek na jedną pakę pakowarki; koszt jak 5 łusek z dawnego protolathe (0,25 Fe + 0,75 Ti za łuskę)
 /obj/item/munition_part/body/shell/broadside
-	name = "korpus pocisku burtowego"
-	product_path = /obj/item/ship_weapon/ammunition/broadside_shell
-	material_amount = MINERAL_MATERIAL_AMOUNT * 3
+	name = "korpusy łusek burtowych"
+	product_path = /obj/item/ship_weapon/parts/broadside_casing
+	product_count = 5
+	material_amount = MINERAL_MATERIAL_AMOUNT * 1.25
+	fuze_type = null
+	uses_shell_type = TRUE
+	required_node = "adv_ballistics"
+	extra_cost = list(/datum/material/titanium = MINERAL_MATERIAL_AMOUNT * 3.75)
 
 /obj/item/munition_part/body/shell/gauss
 	name = "korpus pocisku Gaussa"
@@ -262,50 +305,37 @@ GLOBAL_LIST_INIT(munition_products, init_munition_products())
 	material_amount = MINERAL_MATERIAL_AMOUNT * 6
 	hammer_time = 2
 
-// Obudowy głowic
-/obj/item/munition_part/body/warhead
-	name = "obudowa głowicy"
-	icon_state = "rod_housing"
-	w_class = WEIGHT_CLASS_BULKY
-	material_amount = MINERAL_MATERIAL_AMOUNT * 8
-	hammer_time = 4
+// ---------------------------------------------------------------- części fabryczne
+// Dawne projekty protolathe bez materiału i klasy: piec odlewa od razu gotowy przedmiot, bez kucia i montażu.
 
-/obj/item/munition_part/body/warhead/torpedo
-	name = "obudowa głowicy torpedy"
-	product_path = /obj/item/ship_weapon/parts/missile/warhead/torpedo
+/obj/item/munition_part/simple
+	name = "część fabryczna"
+	icon_state = "bit_mount"
+	hammer_time = 0
+	/// Co wychodzi z pieca
+	var/product_path
+	/// Ile sztuk
+	var/product_count = 1
 
-/obj/item/munition_part/body/warhead/missile
-	name = "obudowa głowicy rakiety"
-	product_path = /obj/item/ship_weapon/parts/missile/warhead
-	material_amount = MINERAL_MATERIAL_AMOUNT * 5
+/obj/item/munition_part/simple/broadside_load
+	name = "ładunki burtowe ×5"
+	product_path = /obj/item/ship_weapon/parts/broadside_load
+	product_count = 5
+	required_node = "adv_ballistics"
+	base_cost = list(/datum/material/iron = MINERAL_MATERIAL_AMOUNT * 3.75, /datum/material/titanium = MINERAL_MATERIAL_AMOUNT * 1.25)
 
-// ---------------------------------------------------------------- wypełnienia
+/obj/item/munition_part/simple/broadside_load_uranium
+	name = "uranowe ładunki burtowe ×5"
+	product_path = /obj/item/ship_weapon/parts/broadside_load/uranium
+	product_count = 5
+	required_node = "macro_ballistics"
+	base_cost = list(/datum/material/uranium = MINERAL_MATERIAL_AMOUNT * 3.75, /datum/material/titanium = MINERAL_MATERIAL_AMOUNT * 1.25)
 
-/obj/item/munition_part/filler
-	name = "wypełnienie"
-	icon_state = "insert_lining"
-	hammer_time = 2
-	var/filler_type
-
-/obj/item/munition_part/filler/he
-	name = "ładunek HE"
-	filler_type = /datum/munition_filler/he
-	base_cost = list(/datum/material/iron = MINERAL_MATERIAL_AMOUNT, /datum/material/plasma = MINERAL_MATERIAL_AMOUNT * 0.5)
-
-/obj/item/munition_part/filler/ap
-	name = "rdzeń AP"
-	filler_type = /datum/munition_filler/ap
-	base_cost = list(/datum/material/iron = MINERAL_MATERIAL_AMOUNT * 2, /datum/material/titanium = MINERAL_MATERIAL_AMOUNT * 0.5)
-
-/obj/item/munition_part/filler/incendiary
-	name = "ładunek zapalający"
-	filler_type = /datum/munition_filler/incendiary
-	base_cost = list(/datum/material/iron = MINERAL_MATERIAL_AMOUNT, /datum/material/plasma = MINERAL_MATERIAL_AMOUNT)
-
-/obj/item/munition_part/filler/emp
-	name = "ładunek EMP"
-	filler_type = /datum/munition_filler/emp
-	base_cost = list(/datum/material/iron = MINERAL_MATERIAL_AMOUNT, /datum/material/copper = MINERAL_MATERIAL_AMOUNT, /datum/material/uranium = MINERAL_MATERIAL_AMOUNT * 0.5)
+/obj/item/munition_part/simple/plasma_core
+	name = "skondensowany rdzeń foronu"
+	product_path = /obj/item/ship_weapon/ammunition/plasma_core
+	required_node = "adv_ballistics"
+	base_cost = list(/datum/material/plasma = MINERAL_MATERIAL_AMOUNT * 20, /datum/material/iron = MINERAL_MATERIAL_AMOUNT * 5)
 
 // ---------------------------------------------------------------- zapalniki
 

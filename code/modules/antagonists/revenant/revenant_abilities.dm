@@ -318,6 +318,9 @@
 			INVOKE_ASYNC(src, PROC_REF(malfunction), T, user)
 
 /obj/effect/proc_holder/spell/aoe_turf/revenant/malfunction/proc/malfunction(turf/T, mob/user)
+	for(var/mob/living/basic/bot/basic_bot in T) // AQ EDIT - basic boty
+		new /obj/effect/temp_visual/revenant(basic_bot.loc) // AQ EDIT - basic boty
+		basic_bot.remote_malfunction() // AQ EDIT - basic boty
 	for(var/mob/living/simple_animal/bot/bot in T)
 		if(!bot.emagged)
 			new /obj/effect/temp_visual/revenant(bot.loc)

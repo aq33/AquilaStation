@@ -170,7 +170,9 @@
 /datum/station_trait/bot_languages/on_round_start()
 	. = ..()
 	//All bots that exist round start have their set language randomized.
-	for(var/mob/living/simple_animal/bot/found_bot in GLOB.alive_mob_list)
+	for(var/mob/living/found_bot in GLOB.alive_mob_list) // AQ EDIT - basic boty: oba rodzaje botów
+		if(!isbot(found_bot)) // AQ EDIT - basic boty
+			continue
 		/// The bot's language holder - so we can randomize and change their language
 		var/datum/language_holder/bot_languages = found_bot.get_language_holder()
 		bot_languages.selected_language = bot_languages.get_random_spoken_language()

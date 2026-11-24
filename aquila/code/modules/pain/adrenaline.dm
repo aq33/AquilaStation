@@ -39,8 +39,10 @@
 	if(stat == DEAD || !reagents)
 		return
 	var/in_blood = reagents.get_reagent_amount(/datum/reagent/medicine/epinephrine)
+	var/capacity = aq_adrenal_capacity() // nadnercza (surgery/organs/med5/glands.dm)
+	aq_adrenal_reserve = min(aq_adrenal_reserve, capacity)
 	if(aq_pain_raw < 20 && !in_blood)
-		aq_adrenal_reserve = min(100, aq_adrenal_reserve + AQ_ADRENAL_REGEN)
+		aq_adrenal_reserve = min(capacity, aq_adrenal_reserve + AQ_ADRENAL_REGEN)
 		return
 	if(aq_pain_raw < AQ_ADRENAL_PAIN_THRESHOLD || world.time < aq_next_adrenal_release || in_blood >= 2)
 		return

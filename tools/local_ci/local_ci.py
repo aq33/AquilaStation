@@ -209,6 +209,10 @@ def step_mapconn(r):
 	return r.run([r.python, "tools/ci/check_map_connections.py"], env={"PYTHONUTF8": "1"})
 
 
+def step_bt(r):
+	return r.run([r.python, "tools/build_bt.py", "--check"], env={"PYTHONUTF8": "1"})
+
+
 def step_dmi(r):
 	return r.run([r.python, "-m", "dmi.test"], cwd=os.path.join(REPO, "tools"))
 
@@ -234,8 +238,12 @@ def step_i18n(r):
 	# brak bazy to błąd narzędzia, nie brakujące tłumaczenia: bez tego krok po cichu by nic nie sprawdzał
 	if subprocess.run(["git", "rev-parse", "--verify", "--quiet", base], cwd=REPO, capture_output=True).returncode:
 		raise RuntimeError(f"Nie ma gałęzi bazowej {base}; podaj --baza albo zrób git fetch")
-	code, out = r.run([r.python, "tools/i18n/list_missing.py", "--changed", base], env={"PYTHONUTF8": "1"})
-	return code, out
+	# testy samego skanera (bez Node), potem teksty bez angielskiego
+	code, out = r.run([r.python, "tools/i18n/test_list_missing.py"], env={"PYTHONUTF8": "1"})
+	if code:
+		return code, out
+	code, more = r.run([r.python, "tools/i18n/list_missing.py", "--changed", base, "--strict"], env={"PYTHONUTF8": "1"})
+	return code, out + more
 
 
 def step_tgui(r):
@@ -416,9 +424,10 @@ STEPS = [
 	("grep", "check_grep.sh", step_grep, "base"),
 	("altclick", "Alt+klik a RPG Loot", step_altclick, "base"),
 	("mapconn", "Rury i kable na mapach", step_mapconn, "base"),
+	("bt", "Drzewa zachowań skompilowane (build_bt.py)", step_bt, "base"),
 	("dmi", "Testy biblioteki dmi", step_dmi, "base"),
 	("mapmerge", "Testy mapmerge2", step_mapmerge, "base"),
-	("i18n", "Teksty bez angielskiego (ostrzeżenia)", step_i18n, "base"),
+	("i18n", "Teksty bez angielskiego", step_i18n, "base"),
 	("tgui", "TGUI: lint, testy, build", step_tgui, "tgui"),
 	("dm", "Kompilacja DM", step_dm, "base"),
 	("dreamchecker", "dreamchecker", step_dreamchecker, "base"),
@@ -426,7 +435,7 @@ STEPS = [
 	("tests", "Testy jednostkowe", step_tests, "full"),
 	("czasy", "Czasy testów (ostrzeżenia)", step_times, "full"),
 ]
-WARN_ONLY = {"i18n", "czasy"}
+WARN_ONLY = {"czasy"}
 
 
 def main():

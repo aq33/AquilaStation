@@ -49,6 +49,15 @@
 /obj/machinery/suit_storage_unit/medical/trauma,
 /turf/open/floor/monotile/light,
 /area/medical/medbay)
+"aaj" = (
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/obj/machinery/power/apc/auto_name/north,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/orange/visible{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/fore)
 "aak" = (
 /turf/closed/wall/r_wall/ship,
 /area/space)
@@ -96,6 +105,11 @@
 /obj/item/flatpack/schematic_reader,
 /turf/open/floor/carpet/ship/orange_carpet,
 /area/engine/engineering)
+"aaq" = (
+/obj/machinery/power/apc/auto_name/east,
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/maintenance/aft)
 "aat" = (
 /obj/structure/table,
 /obj/item/food/grown/tomato,
@@ -8229,7 +8243,6 @@
 /obj/machinery/camera/autoname{
 	dir = 5
 	},
-/obj/machinery/missile_design_table,
 /turf/open/floor/carpet/ship/beige_carpet,
 /area/nsv/weapons/port)
 "gpZ" = (
@@ -8813,7 +8826,7 @@
 /area/teleporter)
 "gQa" = (
 /obj/structure/cable/yellow,
-/mob/living/simple_animal/bot/cleanbot,
+/mob/living/basic/bot/cleanbot,
 /obj/structure/window/reinforced/spawner/east,
 /turf/open/floor/carpet/ship,
 /area/ai_monitored/turret_protected/ai)
@@ -11030,7 +11043,7 @@
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
 "izK" = (
-/mob/living/simple_animal/bot/medbot/catmedbot,
+/mob/living/basic/bot/medbot/catmedbot,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 8
 	},
@@ -15569,7 +15582,7 @@
 /turf/open/floor/carpet/ship,
 /area/hydroponics)
 "mcf" = (
-/mob/living/simple_animal/bot/secbot/pingsky,
+/mob/living/basic/bot/secbot/pingsky,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 6
@@ -18788,7 +18801,7 @@
 	dir = 4;
 	pixel_y = 10
 	},
-/mob/living/simple_animal/bot/secbot/armsky,
+/mob/living/basic/bot/secbot/armsky,
 /turf/open/floor/carpet/police,
 /area/ai_monitored/security/armory)
 "oQP" = (
@@ -18871,8 +18884,8 @@
 /turf/open/floor/carpet/ship,
 /area/tcommsat/computer)
 "oTg" = (
-/mob/living/simple_animal/bot/secbot/beepsky{
-	auto_patrol = 0
+/mob/living/basic/bot/secbot/beepsky{
+	start_patrolling = 0
 	},
 /turf/open/floor/carpet/police,
 /area/security/brig)
@@ -19296,6 +19309,15 @@
 	},
 /turf/open/floor/monotile/steel/airless,
 /area/nsv/hanger/mining)
+"plR" = (
+/obj/machinery/power/apc/auto_name/north,
+/obj/structure/cable,
+/obj/effect/turf_decal/tile/blue/flat_side/nfz{
+	dir = 6
+	},
+/obj/machinery/autoclave,
+/turf/open/floor/monotile/light,
+/area/medical/medbay)
 "plW" = (
 /obj/vehicle/ridden/janicart,
 /turf/open/floor/carpet/ship,
@@ -22246,7 +22268,7 @@
 /area/medical/medbay)
 "rHT" = (
 /obj/structure/cable/yellow,
-/mob/living/simple_animal/bot/floorbot,
+/mob/living/basic/bot/repairbot,
 /obj/machinery/door/window/northleft{
 	req_one_access_txt = "16";
 	dir = 4
@@ -38461,7 +38483,7 @@ jiC
 aJm
 fKg
 pdc
-pVn
+aaq
 xSO
 kGZ
 aJm
@@ -45714,7 +45736,7 @@ jfJ
 uYG
 sSK
 jym
-pSy
+plR
 kCx
 gLr
 qBk
@@ -51170,7 +51192,7 @@ vYj
 wEM
 rle
 nJc
-fhi
+aaj
 tDG
 nJc
 eJl

@@ -36,6 +36,8 @@ import list_missing as lm  # noqa: E402
 # lm.load_known: wygrywa pierwszy plik, więc kolejność jak w build_chat_dict.py od końca
 SOURCES = ["strings/i18n/en_all.json", "strings/i18n/en_manual.json", "strings/i18n/en_original.json",
            "strings/i18n/en_translated.json"]
+TRANSLATED = "strings/i18n/en_translated.json"
+BUILT = "strings/i18n/en_all.json"  # słownik zbudowany przez build_chat_dict.py
 # przy wprowadzaniu poprawki zmieniamy też mapy, żeby var-edity i porównania w kodzie się zgadzały
 APPLY_PATHSPECS = lm.PATHSPECS + ["*.dmm"]
 SKIP_DIRS = {"code", "modules", "game", "packages", "objects", "interfaces"}
@@ -218,10 +220,18 @@ def apply(args):
     translations = load_translations(args.folder)
 
     fixes, rejected, stale = {}, [], 0
+    in_code = {lit.strip() for lit in found}
+    with open(BUILT, encoding="utf-8") as f:
+        built = {pl.strip() for pl in json.load(f)}
+    # poprawki, które są już w kodzie, ale nie w zbudowanym słowniku: ponowienie po błędzie build_chat_dict.py.
+    # Tekst obecny w en_all.json słownik już ma, więc zwykłe stare tłumaczenia nie wymuszają przebudowy
+    applied_before = 0
     for key, message in translations.items():
         old = by_key.get(key)
         if old is None:
             stale += 1  # tekst zniknął z kodu albo już poprawiony
+            text = message.strip()
+            applied_before += text in in_code and text not in built
             continue
         new = keep_edges(old, message)
         if new == old:
@@ -235,7 +245,11 @@ def apply(args):
         fixes[old] = new
 
     changed_files = collections.Counter()
+    # przed zmianą czegokolwiek: bez drzewa składni build_chat_dict.py zbudowałby słownik okien bez ich zdań
+    if (fixes or applied_before) and lm.jsx_ast.dump() is None:
+        raise RuntimeError("Brak drzewa składni okien tgui (zależności tgui: tools/build/build yarn)")
     if fixes:
+        carry_english(fixes, known)
         for path in player_files(APPLY_PATHSPECS):
             lines = read_lines(path)
             if lines is None:
@@ -251,6 +265,11 @@ def apply(args):
             if changed_files[path]:
                 with open(path, "w", encoding="utf-8", newline="") as f:
                     f.write("\n".join(out))
+    if changed_files or applied_before:
+        # po zapisie kodu: build_chat_dict.py bierze do słowników teksty, które są w kodzie, więc nowy
+        # polski tekst wejdzie dopiero teraz. Także gdy nic nie trzeba było dopisać do en_translated.json,
+        # i przy ponowieniu, gdy kod jest już poprawiony, a przebudowa wcześniej się nie udała
+        subprocess.run([sys.executable, os.path.join(os.path.dirname(__file__), "build_chat_dict.py")], check=True)
 
     report = [f"Zatwierdzone poprawki z Crowdina: **{len(fixes)}** tekstów w **{len(changed_files)}** plikach."]
     if fixes:
@@ -272,6 +291,24 @@ def apply(args):
     if args.github_output:
         with open(args.github_output, "a", encoding="utf-8") as f:
             f.write(f"changed={'true' if changed_files else 'false'}\n")
+
+
+def carry_english(fixes, known):
+    """Poprawiony polski tekst to nowy klucz słownika EN: przenosi na niego angielski odpowiednik
+    starego (inaczej wersja angielska traci tekst, a CI odrzuca PR jako tekst bez angielskiego).
+    Słowniki czatu i okien przebudowuje apply po zapisaniu kodu."""
+    with open(TRANSLATED, encoding="utf-8") as f:
+        translated = json.load(f)
+    added = 0
+    for old, new in fixes.items():
+        if old in known and new not in translated:
+            # tekst celowo bez tłumaczenia (para tekst -> ten sam tekst) zostaje taki jak nowy polski
+            translated[new] = new if known[old] == old else known[old]
+            added += 1
+    if added:
+        with open(TRANSLATED, "w", encoding="utf-8", newline="\n") as f:
+            json.dump(translated, f, ensure_ascii=False, indent=0)
+            f.write("\n")
 
 
 def md(text):

@@ -12,6 +12,9 @@
 /mob/living/simple_animal/bot
 	alt_click_loot = FALSE
 
+/mob/living/basic/bot
+	alt_click_loot = FALSE
+
 /mob/living/simple_animal/hostile/heretic_summon/star_gazer
 	alt_click_loot = FALSE
 
@@ -265,6 +268,9 @@
 	alt_click_loot = FALSE
 
 /obj/machinery/atmospherics
+	alt_click_loot = FALSE
+
+/obj/machinery/autoclave
 	alt_click_loot = FALSE
 
 /obj/machinery/aug_manipulator

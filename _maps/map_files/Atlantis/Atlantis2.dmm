@@ -16809,6 +16809,12 @@
 	},
 /turf/closed/wall/r_wall,
 /area/quartermaster/miningdock)
+"qNV" = (
+/obj/machinery/power/apc/auto_name/south,
+/obj/structure/cable,
+/obj/machinery/autoclave,
+/turf/open/floor/monotile/light,
+/area/medical/medbay/central)
 "qOr" = (
 /obj/machinery/door/airlock/ship/public{
 	name = "Galley"
@@ -22669,7 +22675,7 @@
 /area/quartermaster/miningdock)
 "wuO" = (
 /obj/machinery/ai_slipper,
-/mob/living/simple_animal/bot/secbot/pingsky,
+/mob/living/basic/bot/secbot/pingsky,
 /obj/structure/cable/green,
 /obj/machinery/camera/xray{
 	dir = 4
@@ -64259,7 +64265,7 @@ bMC
 aAI
 cwv
 ghu
-kLm
+qNV
 rND
 rND
 lsx

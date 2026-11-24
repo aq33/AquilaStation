@@ -21,6 +21,7 @@
 			"history" = C.history,
 			"seen" = C.seen,
 			"return_in" = max(0, C.return_at - world.time),
+			"nemesis" = C.nemesis,
 		))
 	var/list/fleet_data = list()
 	for(var/datum/fleet/F as anything in hex_all_fleets())
@@ -121,6 +122,7 @@
 		C.history = islist(entry["history"]) ? entry["history"] : list()
 		C.seen = entry["seen"]
 		C.return_at = world.time + entry["return_in"]
+		C.nemesis = entry["nemesis"]
 		commanders += C
 		by_id["[C.id]"] = C
 		next_commander_id = max(next_commander_id, C.id + 1)
@@ -139,9 +141,10 @@
 			if(S && islist(values) && length(values) >= 2)
 				S.war_ore = values[1]
 				S.war_parts = values[2]
-	// Dowódca, którego flota nie wróciła (np. kafel zniknął z mapy), wraca jako ranny
+	// Dowódca, którego flota nie wróciła (np. kafel zniknął z mapy), wraca jako ranny. Nemezis dostaje flotę dopiero
+	// w setup_nemeses(), bo jego boss nie jest flotą sztabu.
 	for(var/datum/hex_commander/C as anything in commanders)
-		if(C.status == HEX_CMD_ACTIVE && !C.fleet)
+		if(C.status == HEX_CMD_ACTIVE && !C.fleet && !C.nemesis)
 			C.status = HEX_CMD_WOUNDED
 			C.return_at = world.time + rand(HEX_WAR_RETURN_MIN, HEX_WAR_RETURN_MAX)
 	log_game("HEXWAR: restored [length(fleet_data)] fleets and [length(commanders)] commanders from the campaign save")

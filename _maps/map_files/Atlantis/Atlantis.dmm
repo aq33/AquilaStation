@@ -125,6 +125,20 @@
 /obj/machinery/atmospherics/pipe/multiz,
 /turf/open/floor/durasteel/techfloor_grid,
 /area/maintenance/nsv/deck2/starboard/fore)
+"aak" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/machinery/power/apc/auto_name/north,
+/obj/structure/cable,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/plasteel/techmaint,
+/area/maintenance/nsv/deck2/starboard/fore)
 "abF" = (
 /obj/effect/turf_decal/ship/techfloor{
 	dir = 1
@@ -5208,7 +5222,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 8
 	},
-/mob/living/simple_animal/bot/secbot/armsky,
+/mob/living/basic/bot/secbot/armsky,
 /turf/open/floor/durasteel/techfloor_grid,
 /area/ai_monitored/security/armory)
 "eol" = (
@@ -8007,7 +8021,6 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/machinery/missile_design_table,
 /turf/open/floor/durasteel/techfloor_grid,
 /area/nsv/weapons/artillery)
 "gIo" = (
@@ -12215,7 +12228,7 @@
 /turf/open/floor/durasteel/techfloor_grid,
 /area/security/brig)
 "kgf" = (
-/mob/living/simple_animal/bot/secbot/armsky,
+/mob/living/basic/bot/secbot/armsky,
 /turf/open/floor/engine,
 /area/ai_monitored/security/armory/lockup)
 "kgh" = (
@@ -14569,12 +14582,12 @@
 	id = "atlas1";
 	name = "AP shells"
 	},
-/obj/item/ship_weapon/ammunition/naval_artillery/ap,
-/obj/item/ship_weapon/ammunition/naval_artillery/ap,
-/obj/item/ship_weapon/ammunition/naval_artillery/ap,
-/obj/item/ship_weapon/ammunition/naval_artillery/ap,
-/obj/item/ship_weapon/ammunition/naval_artillery/ap,
-/obj/item/ship_weapon/ammunition/naval_artillery/ap,
+/obj/item/ship_weapon/ammunition/naval_artillery/factory/ap,
+/obj/item/ship_weapon/ammunition/naval_artillery/factory/ap,
+/obj/item/ship_weapon/ammunition/naval_artillery/factory/ap,
+/obj/item/ship_weapon/ammunition/naval_artillery/factory/ap,
+/obj/item/ship_weapon/ammunition/naval_artillery/factory/ap,
+/obj/item/ship_weapon/ammunition/naval_artillery/factory/ap,
 /turf/open/floor/monotile/dark,
 /area/nsv/weapons)
 "mcB" = (
@@ -26343,7 +26356,7 @@
 	},
 /area/maintenance/nsv/deck2/port)
 "vON" = (
-/mob/living/simple_animal/bot/cleanbot,
+/mob/living/basic/bot/cleanbot,
 /turf/open/floor/monotile/steel,
 /area/engine/engineering)
 "vPC" = (
@@ -75898,7 +75911,7 @@ mVB
 uFS
 ora
 uUo
-irg
+aak
 dOh
 xnY
 bYU

@@ -10,6 +10,7 @@ import {
   ProgressBar,
   Section,
   Stack,
+  Table,
   Tabs,
 } from 'tgui-core/components';
 
@@ -77,6 +78,7 @@ type Commander = {
   scars: string[];
   history: string[];
   fleet_hex: string | null;
+  nemesis: boolean;
 };
 
 type Ship = {
@@ -264,6 +266,7 @@ const FACTION_NAME: Record<string, string> = {
   pirate: 'Piraci',
   unaligned: 'Niezależni',
   uncharted: 'Niezbadany',
+  hostile: 'Nieznana frakcja',
 };
 
 const FACTION_COLOR: Record<string, string> = {
@@ -274,6 +277,7 @@ const FACTION_COLOR: Record<string, string> = {
   pirate: '#8e3cc2',
   unaligned: '#b07a1c',
   uncharted: '#555',
+  hostile: '#5a1f4a',
 };
 
 const BLOC: Record<string, string | undefined> = {
@@ -486,7 +490,9 @@ export const HexStarmap = () => {
     missiles = [],
     objective_hexes = [],
   } = data;
-  const [panelTab, setPanelTab] = useState<'hex' | 'commanders'>('hex');
+  const [panelTab, setPanelTab] = useState<
+    'hex' | 'commanders' | 'war' | 'legend'
+  >('hex');
 
   const [view, setView] = useState<View>(ship.sector || 2);
   const [zoom, setZoom] = useState(1);
@@ -537,6 +543,8 @@ export const HexStarmap = () => {
       ?.getAttribute('data-hex');
     if (id) {
       act('hex_select', { hex: id });
+      // trasa i przycisk skoku są w zakładce Kafel
+      setPanelTab('hex');
     }
   };
 
@@ -623,6 +631,93 @@ export const HexStarmap = () => {
     terrainById[t.id] = t;
   }
 
+  const legend = (
+    <>
+      <Box fontSize="11px" bold mb={0.5}>
+        Floty
+      </Box>
+      <Box fontSize="11px" color="label">
+        ■ flota wojenna · ◆ konwój · liczba: okręty we flocie · obwódka: zielona
+        sojusz, żółta neutralni, czerwona wróg · szary znak z „?”: ostatnia
+        znana pozycja floty
+      </Box>
+      <Box mt={0.5} mb={1} fontSize="11px">
+        {Object.keys(BLOC).map((faction) => (
+          <span
+            key={faction}
+            style={{ whiteSpace: 'nowrap', marginRight: '10px' }}
+          >
+            <span
+              style={{
+                display: 'inline-block',
+                width: '10px',
+                height: '10px',
+                marginRight: '4px',
+                verticalAlign: 'middle',
+                backgroundColor: FACTION_COLOR[faction] || '#888',
+                border: '1px solid #000',
+              }}
+            />
+            {FACTION_NAME[faction] || faction}
+          </span>
+        ))}
+      </Box>
+      <Box fontSize="11px" bold mb={0.5}>
+        Mapa
+      </Box>
+      <Box fontSize="11px" color="label">
+        ◉ sektor okrętu · zielone kafle: zasięg skoku · ⇄ brama do innego
+        sektora · ★ stolica · $ stacja handlowa · ◎ hiperbrama · przerywany
+        pierścień: układ okupowany · czerwona linia: front
+      </Box>
+      <Box mt={0.5} fontSize="10px" color="label">
+        {Object.keys(HEX_FACILITY_ICONS).map((fac) => (
+          <span
+            key={fac}
+            title={FACILITY_DESC[fac]}
+            style={{ whiteSpace: 'nowrap', marginRight: '8px' }}
+          >
+            <img
+              alt=""
+              src={HEX_FACILITY_ICONS[fac]}
+              width={ICON_PX}
+              height={ICON_PX}
+              style={{
+                verticalAlign: 'middle',
+                imageRendering: iconRendering(ICON_PX),
+              }}
+            />{' '}
+            {FACILITY_NAME[fac]}
+          </span>
+        ))}
+        {' · żółte „!”: cel misji · ☢ pocisk termojądrowy'}
+      </Box>
+      <Box mt={0.5} fontSize="10px" color="label">
+        {terrains
+          .filter((t) => !!HEX_TERRAIN_ICONS[t.id])
+          .map((t) => (
+            <span
+              key={t.id}
+              title={t.desc}
+              style={{ whiteSpace: 'nowrap', marginRight: '8px' }}
+            >
+              <img
+                alt=""
+                src={HEX_TERRAIN_ICONS[t.id]}
+                width={ICON_PX}
+                height={ICON_PX}
+                style={{
+                  verticalAlign: 'middle',
+                  imageRendering: iconRendering(ICON_PX),
+                }}
+              />{' '}
+              {t.name}
+            </span>
+          ))}
+      </Box>
+    </>
+  );
+
   return (
     <Window
       width={1220}
@@ -671,7 +766,7 @@ export const HexStarmap = () => {
                   onClick={() => setZoom(Math.min(1.6, zoom + 0.2))}
                 />
               </Stack.Item>
-              <Stack.Item grow basis={0} style={{ minWidth: 0 }}>
+              <Stack.Item grow basis={0} style={{ minWidth: 0, minHeight: 0 }}>
                 <div
                   ref={mapRef}
                   style={{
@@ -1011,11 +1106,24 @@ export const HexStarmap = () => {
                             ? '#32cd32'
                             : '#d8a032'
                           : '#ff3030';
-                        const x = cell.x + R * 0.42 - k * 12;
-                        const y = cell.y + R * 0.12;
+                        // Jedna flota: duży znacznik z boku kafla. Kilka: mniejsze w siatce 2x2 wokół środka
+                        // (±6 px, połowa boku 5 px), która przy R = 22 mieści się w sześciokącie
+                        const many = list.length > 1;
+                        const half = many ? 5 : 7.5;
+                        const slot = k % 4;
+                        const x = many
+                          ? cell.x + (slot % 2 ? -6 : 6)
+                          : cell.x + R * 0.42;
+                        const y = many
+                          ? cell.y + (slot < 2 ? -6 : 6)
+                          : cell.y + R * 0.12;
+                        const tip = half * 1.2;
                         const shape = fleet.convoy
-                          ? `M${x - 5.5} ${y - 5.5}h11v11h-11z`
-                          : `M${x} ${y - 7}l7 7-7 7-7-7z`;
+                          ? `M${x} ${y - tip}l${tip} ${tip}-${tip} ${tip}-${tip}-${tip}z`
+                          : `M${x - half} ${y - half}h${half * 2}v${half * 2}h-${half * 2}z`;
+                        const fill = fleet.ghost
+                          ? '#000a'
+                          : FACTION_COLOR[fleet.alignment] || '#888';
                         return (
                           <g
                             key={`fleet-${id}-${k}`}
@@ -1032,17 +1140,21 @@ export const HexStarmap = () => {
                             </title>
                             <path
                               d={shape}
-                              fill="#000a"
+                              fill={fill}
                               stroke={fleet.ghost ? '#9aa4b2' : ring}
-                              strokeWidth={1.4}
+                              strokeWidth={many ? 1.5 : 2}
                               strokeDasharray={fleet.ghost ? '2 2' : undefined}
                             />
                             <text
                               x={x}
-                              y={y + 3.5}
+                              y={y + (many ? 3 : 4)}
                               textAnchor="middle"
-                              fontSize={8.5}
-                              fill={fleet.ghost ? '#9aa4b2' : ring}
+                              fontSize={many ? 8 : 11}
+                              fontWeight="bold"
+                              fill={fleet.ghost ? '#9aa4b2' : '#fff'}
+                              stroke="#000"
+                              strokeWidth={2.5}
+                              paintOrder="stroke"
                             >
                               {fleet.ghost ? '?' : fleet.ships}
                             </text>
@@ -1250,11 +1362,31 @@ export const HexStarmap = () => {
                       >
                         {`Dowódcy (${commanders.length})`}
                       </Tabs.Tab>
+                      <Tabs.Tab
+                        selected={panelTab === 'war'}
+                        onClick={() => setPanelTab('war')}
+                      >
+                        Wojna
+                      </Tabs.Tab>
+                      <Tabs.Tab
+                        selected={panelTab === 'legend'}
+                        onClick={() => setPanelTab('legend')}
+                      >
+                        Legenda
+                      </Tabs.Tab>
                     </Tabs>
                   }
                 >
                   {panelTab === 'commanders' ? (
                     <CommandersPanel commanders={commanders} />
+                  ) : panelTab === 'war' ? (
+                    <WarPanel
+                      systems={systems}
+                      fleets={fleets}
+                      commanders={commanders}
+                    />
+                  ) : panelTab === 'legend' ? (
+                    legend
                   ) : !selected ? (
                     <Box color="label">
                       Kliknij kafel na mapie, żeby zobaczyć trasę i koszt skoku.
@@ -1273,64 +1405,6 @@ export const HexStarmap = () => {
                       onShowGate={(gate) => showSector(gate.sector, gate.hex)}
                     />
                   )}
-                </Section>
-              </Stack.Item>
-              <Stack.Item>
-                <Section title="Legenda">
-                  <Box fontSize="11px" color="label">
-                    ◉ sektor okrętu · zielone kafle: zasięg skoku · ⇄ brama do
-                    innego sektora · ★ stolica · $ stacja handlowa · ◎
-                    hiperbrama · ◇ flota (zielona: sojusz, żółta: neutralna,
-                    czerwona: wróg) · przerywany pierścień: układ okupowany ·
-                    czerwona linia: front
-                  </Box>
-                  <Box mt={0.5} fontSize="10px" color="label">
-                    {Object.keys(HEX_FACILITY_ICONS).map((fac) => (
-                      <span
-                        key={fac}
-                        title={FACILITY_DESC[fac]}
-                        style={{ whiteSpace: 'nowrap', marginRight: '8px' }}
-                      >
-                        <img
-                          alt=""
-                          src={HEX_FACILITY_ICONS[fac]}
-                          width={ICON_PX}
-                          height={ICON_PX}
-                          style={{
-                            verticalAlign: 'middle',
-                            imageRendering: iconRendering(ICON_PX),
-                          }}
-                        />{' '}
-                        {FACILITY_NAME[fac]}
-                      </span>
-                    ))}
-                    {
-                      ' · □ konwój · szary romb: ostatnia znana pozycja floty · żółte „!”: cel misji · ☢ pocisk termojądrowy'
-                    }
-                  </Box>
-                  <Box mt={0.5} fontSize="10px" color="label">
-                    {terrains
-                      .filter((t) => !!HEX_TERRAIN_ICONS[t.id])
-                      .map((t) => (
-                        <span
-                          key={t.id}
-                          title={t.desc}
-                          style={{ whiteSpace: 'nowrap', marginRight: '8px' }}
-                        >
-                          <img
-                            alt=""
-                            src={HEX_TERRAIN_ICONS[t.id]}
-                            width={ICON_PX}
-                            height={ICON_PX}
-                            style={{
-                              verticalAlign: 'middle',
-                              imageRendering: iconRendering(ICON_PX),
-                            }}
-                          />{' '}
-                          {t.name}
-                        </span>
-                      ))}
-                  </Box>
                 </Section>
               </Stack.Item>
             </Stack>
@@ -1582,6 +1656,103 @@ const SelectedPanel = (props: SelectedPanelProps) => {
   );
 };
 
+/** Podsumowanie wojny: kto ile trzyma układów, ile zajął, ile flot widać i jak idzie dowódcom */
+const WarPanel = (props: {
+  systems: StarSystem[];
+  fleets: Fleet[];
+  commanders: Commander[];
+}) => {
+  const { systems, fleets, commanders } = props;
+  const rows: Record<
+    string,
+    {
+      held: number;
+      taken: number;
+      lost: number;
+      fleets: number;
+      ships: number;
+      wins: number;
+      losses: number;
+    }
+  > = {};
+  const row = (faction: string) =>
+    (rows[faction] ||= {
+      held: 0,
+      taken: 0,
+      lost: 0,
+      fleets: 0,
+      ships: 0,
+      wins: 0,
+      losses: 0,
+    });
+  for (const system of systems) {
+    if (!BLOC[system.alignment]) {
+      continue;
+    }
+    row(system.alignment).held++;
+    if (system.owner && system.owner !== system.alignment) {
+      row(system.alignment).taken++;
+      if (BLOC[system.owner]) {
+        row(system.owner).lost++;
+      }
+    }
+  }
+  for (const fleet of fleets) {
+    if (fleet.ghost || !BLOC[fleet.alignment]) {
+      continue;
+    }
+    row(fleet.alignment).fleets++;
+    row(fleet.alignment).ships += fleet.ships;
+  }
+  for (const c of commanders) {
+    if (BLOC[c.faction]) {
+      row(c.faction).wins += c.wins;
+      row(c.faction).losses += c.losses;
+    }
+  }
+  const factions = Object.keys(rows).sort(
+    (a, b) => rows[b].held - rows[a].held,
+  );
+  if (!factions.length) {
+    return <Box color="label">Brak danych o wojnie.</Box>;
+  }
+  return (
+    <>
+      <Table>
+        <Table.Row header>
+          <Table.Cell>Frakcja</Table.Cell>
+          <Table.Cell>Liczba układów</Table.Cell>
+          <Table.Cell>Zajęte / utracone</Table.Cell>
+          <Table.Cell>Floty</Table.Cell>
+          <Table.Cell>Bitwy</Table.Cell>
+        </Table.Row>
+        {factions.map((faction) => (
+          <Table.Row key={faction}>
+            <Table.Cell bold color={FACTION_COLOR[faction] || 'label'}>
+              {FACTION_NAME[faction] || faction}
+            </Table.Cell>
+            <Table.Cell>{rows[faction].held}</Table.Cell>
+            <Table.Cell>
+              {`${rows[faction].taken} / ${rows[faction].lost}`}
+            </Table.Cell>
+            <Table.Cell>
+              {`${rows[faction].fleets} (${rows[faction].ships} okr.)`}
+            </Table.Cell>
+            <Table.Cell>
+              {`${rows[faction].wins}–${rows[faction].losses}`}
+            </Table.Cell>
+          </Table.Row>
+        ))}
+      </Table>
+      <Box mt={1} fontSize="11px" color="label">
+        Układy: pod kontrolą frakcji. Zajęte / utracone: cudze układy, które
+        frakcja okupuje, i własne, które straciła. Floty: widziane przez
+        sensory. Bitwy: zwycięstwa i porażki znanych dowódców.
+      </Box>
+    </>
+  );
+};
+
 const CommandersPanel = (props: { commanders: Commander[] }) => {
   const { commanders } = props;
   if (!commanders.length) {
@@ -1605,6 +1776,9 @@ const CommandersPanel = (props: { commanders: Commander[] }) => {
           }}
         >
           <Box bold>{`${'★'.repeat(c.stars) || '·'} ${c.rank} ${c.name}`}</Box>
+          {!!c.nemesis && (
+            <Box color="average">Nemezis: dowodzi bossem swojego układu.</Box>
+          )}
           <Box color="label">
             {`${FACTION_NAME[c.faction] || c.faction}, ${STATUS_NAME[c.status] || c.status}, zwycięstwa ${c.wins}, porażki ${c.losses}`}
           </Box>

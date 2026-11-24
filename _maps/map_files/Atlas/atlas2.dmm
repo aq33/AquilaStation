@@ -2256,7 +2256,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 8
 	},
-/mob/living/simple_animal/bot/medbot/catmedbot,
+/mob/living/basic/bot/medbot/catmedbot,
 /turf/open/floor/monotile/light,
 /area/medical/medbay)
 "eE" = (
@@ -2804,7 +2804,7 @@
 "fW" = (
 /obj/structure/cable,
 /obj/machinery/ai_slipper,
-/mob/living/simple_animal/bot/secbot/pingsky,
+/mob/living/basic/bot/secbot/pingsky,
 /obj/structure/ethernet_cable{
 	icon_state = "1-8"
 	},
@@ -13178,6 +13178,21 @@
 /obj/structure/extinguisher_cabinet/south,
 /turf/open/floor/durasteel/techfloor,
 /area/ai_monitored/turret_protected/aisat)
+"QH" = (
+/obj/effect/turf_decal/tile/ship/blue/nfz{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/ship/blue/nfz{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/ship/blue/nfz,
+/obj/machinery/airalarm/directional/east,
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/autoclave,
+/turf/open/floor/plasteel/white,
+/area/medical/medbay)
 "QI" = (
 /obj/structure/sign/directions/engineering,
 /obj/structure/sign/directions/security{
@@ -52662,7 +52677,7 @@ yP
 sG
 Wa
 CN
-Ox
+QH
 Hf
 pV
 cH

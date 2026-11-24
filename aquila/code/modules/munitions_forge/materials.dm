@@ -1,12 +1,13 @@
 // AQUILA - kuźnia amunicji: wspólna tabela materiałów.
 // Z tej tabeli korzysta też kuźnia railguna (gęstość, twardość, przewodnictwo).
 // Żelazo to poziom zwykłej amunicji z cargo, każdy droższy materiał to wymiana jednej cechy na drugą.
+// Liczby (obrażenia, przebicie, prędkość) bierze rdzeń korpusu, efekt specjalny (cechy) i odporność bierze powłoka.
 
 GLOBAL_LIST_INIT(munition_materials, init_munition_materials())
 
 /proc/init_munition_materials()
 	. = list()
-	for(var/path in subtypesof(/datum/munition_material) - typesof(/datum/munition_material/alloy))
+	for(var/path in subtypesof(/datum/munition_material) - typesof(/datum/munition_material/layered))
 		var/datum/munition_material/M = new path
 		.[M.material_type] = M
 
@@ -88,7 +89,7 @@ GLOBAL_LIST_INIT(munition_materials, init_munition_materials())
 	damage_mult = 1.05
 	armour_pen_add = 5
 	color_tint = "#d9864a"
-	trait_types = list(/datum/munition_trait/conductive)
+	trait_types = list(/datum/munition_trait/emp/weak)
 
 /datum/munition_material/titanium
 	name = "tytan"
@@ -103,7 +104,7 @@ GLOBAL_LIST_INIT(munition_materials, init_munition_materials())
 	integrity_mult = 1.3
 	sheets_mult = 1.5
 	color_tint = "#b9c6d6"
-	special_desc = "Pocisk trudno zestrzelić obroną punktową."
+	trait_types = list(/datum/munition_trait/hardened)
 
 /datum/munition_material/silver
 	name = "srebro"
@@ -117,7 +118,7 @@ GLOBAL_LIST_INIT(munition_materials, init_munition_materials())
 	speed_mult = 0.95
 	sheets_mult = 1.5
 	color_tint = "#e6e6f0"
-	trait_types = list(/datum/munition_trait/holy, /datum/munition_trait/conductive)
+	trait_types = list(/datum/munition_trait/holy, /datum/munition_trait/emp)
 
 /datum/munition_material/gold
 	name = "złoto"
@@ -131,6 +132,7 @@ GLOBAL_LIST_INIT(munition_materials, init_munition_materials())
 	speed_mult = 0.85
 	sheets_mult = 2
 	color_tint = "#f2c94c"
+	trait_types = list(/datum/munition_trait/shrapnel)
 
 /datum/munition_material/uranium
 	name = "uran"
@@ -175,6 +177,7 @@ GLOBAL_LIST_INIT(munition_materials, init_munition_materials())
 	sheets_mult = 3
 	color_tint = "#9fe8f2"
 	special_desc = "Najlepsze przebicie pancerza."
+	trait_types = list(/datum/munition_trait/armor_strip)
 
 /datum/munition_material/bluespace
 	name = "bluespace"
@@ -188,6 +191,7 @@ GLOBAL_LIST_INIT(munition_materials, init_munition_materials())
 	sheets_mult = 3
 	color_tint = "#4f7cff"
 	special_desc = "Najszybszy pocisk."
+	trait_types = list(/datum/munition_trait/shield_bypass)
 
 /datum/munition_material/bananium
 	name = "bananium"
@@ -202,73 +206,63 @@ GLOBAL_LIST_INIT(munition_materials, init_munition_materials())
 	color_tint = "#ffe94a"
 	trait_types = list(/datum/munition_trait/honk)
 
-// ---------------------------------------------------------------- stopy
+// ---------------------------------------------------------------- powłoka i rdzeń
 
-/// Stopy powstają w piecu łukowym z dwóch materiałów po połowie. Jeden datum na parę, trzymany w GLOB.
-GLOBAL_LIST_EMPTY(munition_alloys)
+/// Korpus z dwóch materiałów, jak pocisk z kuźni railguna: powłoka (ćwierć odlewu) daje efekt specjalny i odporność
+/// na obronę punktową, rdzeń (trzy czwarte) daje obrażenia, przebicie i prędkość. Jeden datum na parę, trzymany w GLOB.
+GLOBAL_LIST_EMPTY(munition_layered)
 
-/// Udział cech składnika w stopie
-#define MUNITION_ALLOY_TRAIT_POWER 0.6
+/// Udział powłoki w odlewie
+#define MUNITION_COATING_SHARE 0.25
 
-/proc/get_munition_alloy(datum/munition_material/first, datum/munition_material/second)
-	if(!first || !second || first == second || istype(first, /datum/munition_material/alloy) || istype(second, /datum/munition_material/alloy))
+/// Korpus z rdzeniem i powłoką; ta sama para albo brak powłoki to czysty materiał rdzenia
+/proc/get_munition_layered(datum/munition_material/coating, datum/munition_material/core)
+	if(!core || istype(core, /datum/munition_material/layered))
 		return null
-	// kolejność jak w tabeli, żeby uran+tytan i tytan+uran to był ten sam stop
-	var/list/order = list()
-	for(var/key in GLOB.munition_materials)
-		order += GLOB.munition_materials[key]
-	if(order.Find(first) > order.Find(second))
-		var/datum/munition_material/swap = first
-		first = second
-		second = swap
-	var/key = "[first.material_type]+[second.material_type]"
-	if(!GLOB.munition_alloys[key])
-		GLOB.munition_alloys[key] = new /datum/munition_material/alloy(first, second)
-	return GLOB.munition_alloys[key]
+	if(!coating || coating == core)
+		return core
+	if(istype(coating, /datum/munition_material/layered))
+		return null
+	var/key = "[coating.material_type]+[core.material_type]"
+	if(!GLOB.munition_layered[key])
+		GLOB.munition_layered[key] = new /datum/munition_material/layered(coating, core)
+	return GLOB.munition_layered[key]
 
-/datum/munition_material/alloy
-	name = "stop"
-	var/datum/munition_material/first
-	var/datum/munition_material/second
+/datum/munition_material/layered
+	name = "rdzeń w powłoce"
+	var/datum/munition_material/coating
+	var/datum/munition_material/core
 
-/datum/munition_material/alloy/New(datum/munition_material/first, datum/munition_material/second)
+/datum/munition_material/layered/New(datum/munition_material/coating, datum/munition_material/core)
 	. = ..()
-	src.first = first
-	src.second = second
-	name = "[first.name]-[second.name]"
-	material_type = first.material_type
-	density = (first.density + second.density) / 2
-	hardness = (first.hardness + second.hardness) / 2
-	conductivity = (first.conductivity + second.conductivity) / 2
-	damage_mult = round((first.damage_mult + second.damage_mult) / 2, 0.01)
-	armour_pen_add = round((first.armour_pen_add + second.armour_pen_add) / 2)
-	speed_mult = round((first.speed_mult + second.speed_mult) / 2, 0.01)
-	integrity_mult = round((first.integrity_mult + second.integrity_mult) / 2, 0.01)
-	sheets_mult = (first.sheets_mult + second.sheets_mult) / 2
-	if(first.color_tint || second.color_tint)
-		color_tint = BlendRGB(first.color_tint || "#9a9a9a", second.color_tint || "#9a9a9a", 0.5)
-	var/list/descs = list()
-	for(var/datum/munition_material/M as anything in list(first, second))
-		if(M.special_desc)
-			descs += M.special_desc
-	if(length(descs))
-		special_desc = "Po połowie: [jointext(descs, " ")]"
+	src.coating = coating
+	src.core = core
+	name = "[core.name] w powłoce: [coating.name]"
+	material_type = core.material_type
+	railgun_name = null
+	density = coating.density * MUNITION_COATING_SHARE + core.density * (1 - MUNITION_COATING_SHARE)
+	hardness = coating.hardness * MUNITION_COATING_SHARE + core.hardness * (1 - MUNITION_COATING_SHARE)
+	conductivity = coating.conductivity * MUNITION_COATING_SHARE + core.conductivity * (1 - MUNITION_COATING_SHARE)
+	damage_mult = core.damage_mult
+	armour_pen_add = core.armour_pen_add
+	speed_mult = core.speed_mult
+	integrity_mult = coating.integrity_mult
+	sheets_mult = coating.sheets_mult * MUNITION_COATING_SHARE + core.sheets_mult * (1 - MUNITION_COATING_SHARE)
+	color_tint = coating.color_tint
+	special_desc = core.special_desc
 	traits = list()
-	merge_munition_traits(traits, first.traits, MUNITION_ALLOY_TRAIT_POWER)
-	merge_munition_traits(traits, second.traits, MUNITION_ALLOY_TRAIT_POWER)
+	merge_munition_traits(traits, coating.traits)
 
-/datum/munition_material/alloy/get_components()
+/datum/munition_material/layered/get_components()
 	. = list()
-	.[first.material_type] = 0.5
-	.[second.material_type] = 0.5
+	.[coating.material_type] = MUNITION_COATING_SHARE
+	.[core.material_type] = 1 - MUNITION_COATING_SHARE
 
 /// Każdy składnik liczy się ze swoim mnożnikiem kosztu
-/datum/munition_material/alloy/get_cost(amount)
+/datum/munition_material/layered/get_cost(amount)
 	. = list()
-	for(var/datum/munition_material/M as anything in list(first, second))
-		.[M.material_type] = round(amount * M.sheets_mult * 0.5)
-
-#undef MUNITION_ALLOY_TRAIT_POWER
+	.[coating.material_type] = round(amount * coating.sheets_mult * MUNITION_COATING_SHARE)
+	.[core.material_type] = round(amount * core.sheets_mult * (1 - MUNITION_COATING_SHARE))
 
 /// Linie do analizatora: liczby i cechy materiału
 /datum/munition_material/proc/stat_lines()

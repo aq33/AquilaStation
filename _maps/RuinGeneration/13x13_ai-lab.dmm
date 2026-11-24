@@ -253,7 +253,7 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/bot_red,
-/mob/living/simple_animal/bot/floorbot,
+/mob/living/basic/bot/repairbot,
 /turf/open/floor/plasteel/tech/grid,
 /area/ruin/unpowered)
 "JS" = (
@@ -388,8 +388,7 @@
 /area/ruin/unpowered)
 "ZS" = (
 /obj/effect/turf_decal/bot_red,
-/mob/living/simple_animal/bot/secbot{
-	emagged = 1;
+/mob/living/basic/bot/secbot{
 	faction = list("silicon","turret");
 	name = "Officer Buzzsky"
 	},

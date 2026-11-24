@@ -93,4 +93,5 @@
 			"scars" = C.scars,
 			"history" = C.history,
 			"fleet_hex" = C.fleet?.war_last_seen_hex,
+			"nemesis" = !!C.nemesis,
 		))

@@ -1,5 +1,5 @@
-// AQUILA - kuźnia amunicji: cechy materiałów i wypełnień (na wzór /datum/material_trait z Monkestation).
-// Każdy materiał i każde wypełnienie ma listę cech. Stop dostaje cechy obu składników ze słabszą siłą.
+// AQUILA - kuźnia amunicji: cechy materiałów (na wzór /datum/material_trait z Monkestation).
+// Każdy materiał ma listę cech, czyli efekt specjalny. Korpus z rdzeniem i powłoką bierze cechy powłoki.
 
 /datum/munition_trait
 	var/name = "cecha"
@@ -95,12 +95,6 @@
 		target.hullburn += round(hullburn * power)
 		target.hullburn_power = max(target.hullburn_power, round(hullburn_power * power))
 
-/// Mocniejsza wersja z wypełnienia
-/datum/munition_trait/incendiary/filler
-	fire_stacks = 2
-	hullburn = 10
-	hullburn_power = 6
-
 /datum/munition_trait/honk
 	name = "klaunowska"
 	desc = "HONK. Czasem przewraca trafionego."
@@ -114,26 +108,20 @@
 /datum/munition_trait/honk/on_overmap_hit(obj/item/projectile/P, obj/structure/overmap/target, datum/component/forged_munition/forged)
 	playsound(target, 'sound/items/bikehorn.ogg', 100, TRUE)
 
-/// Przewodzący materiał wzmacnia ładunek EMP. Sama nic nie robi.
-/datum/munition_trait/conductive
-	name = "przewodząca"
-	desc = "Wzmacnia ładunek EMP."
-
+/// Srebro: impuls EMP przy trafieniu w okręt (tylko overmapa: amunicja ręczna z powłoką nie EMP-uje celu)
 /datum/munition_trait/emp
 	name = "EMP"
-	desc = "Zakłóca elektronikę celu. Z przewodzącym materiałem działa mocniej."
+	desc = "Mocny impuls EMP: zakłóca systemy trafionego okrętu."
 
-/datum/munition_trait/emp/proc/strength(datum/component/forged_munition/forged)
-	. = power
-	var/datum/munition_trait/conductive/C = forged?.get_trait(/datum/munition_trait/conductive)
-	if(C)
-		. *= 1 + 0.5 * C.power
+/// Miedź: ta sama cecha z połową siły
+/datum/munition_trait/emp/weak
+	desc = "Słaby impuls EMP: krócej zakłóca systemy trafionego okrętu."
 
-/datum/munition_trait/emp/on_hit(obj/item/projectile/P, atom/target, datum/component/forged_munition/forged)
-	target.emp_act(strength(forged) > 1 ? EMP_HEAVY : EMP_LIGHT)
+/datum/munition_trait/emp/weak/New(power = 0.5)
+	return ..(power)
 
 /datum/munition_trait/emp/on_overmap_hit(obj/item/projectile/P, obj/structure/overmap/target, datum/component/forged_munition/forged)
-	var/strength = strength(forged)
+	var/strength = power
 	var/amount = round(10 * strength)
 	if(target.ai_controlled)
 		if(target.disruption <= (amount * 2))
@@ -143,3 +131,40 @@
 		target.disruption += round(25 * strength)
 		return
 	target.add_sensor_profile_penalty(150, 10 SECONDS)
+
+/// Tytan: odporność na obronę punktową bierze się z integrity_mult materiału, cecha tylko to opisuje
+/datum/munition_trait/hardened
+	name = "utwardzona"
+	desc = "Pocisk trudno zestrzelić obroną punktową."
+
+/// Złoto: odłamki ranią kadłub mocniej, gdy ćwiartka nie ma już płyt pancerza
+/datum/munition_trait/shrapnel
+	name = "odłamkowa"
+	desc = "Gdy trafiona ćwiartka okrętu nie ma już płyt pancerza, odłamki ranią kadłub o czwartą część mocniej."
+
+/datum/munition_trait/shrapnel/on_overmap_hit(obj/item/projectile/P, obj/structure/overmap/target, datum/component/forged_munition/forged)
+	if(target.use_armour_quadrants)
+		var/list/quad = target.armour_quadrants[target.projectile_quadrant_impact(P)]
+		if(quad && quad["current_armour"] > 0)
+			return
+	// Od obrażeń po modelu grubości pancerza: pocisk, który się odbił, nie sypie odłamkami w kadłub
+	target.take_damage(round(target.aq_hit_damage(P) * 0.25 * power), P.damage_type, target.aq_hit_armor_flag(P), FALSE)
+
+/// Diament: zdziera płyty pancerza ćwiartki ponad zwykłe trafienie
+/datum/munition_trait/armor_strip
+	name = "zdzierająca"
+	desc = "Zdziera z trafionej ćwiartki okrętu dodatkowe płyty pancerza (czwartą część obrażeń)."
+
+/datum/munition_trait/armor_strip/on_overmap_hit(obj/item/projectile/P, obj/structure/overmap/target, datum/component/forged_munition/forged)
+	if(!target.use_armour_quadrants)
+		return
+	var/list/quad = target.armour_quadrants[target.projectile_quadrant_impact(P)]
+	if(!quad)
+		return
+	quad["current_armour"] = max(quad["current_armour"] - round(target.aq_hit_damage(P) * 0.25 * power), 0)
+	target.update_quadrants()
+
+/// Bluespace: część obrażeń przechodzi przez podniesioną tarczę (aq_bluespace_shield_bypass w bullet_act okrętu)
+/datum/munition_trait/shield_bypass
+	name = "przenikająca"
+	desc = "Czwarta część obrażeń przechodzi przez tarczę okrętu prosto w kadłub."

@@ -60,8 +60,7 @@
 	var/atom/my_atom = null
 	var/chem_temp = 150
 	var/last_tick = 1
-	var/addiction_tick = 1
-	var/list/datum/reagent/addiction_list = new/list()
+	// AQ EDIT - usunięte addiction_tick i addiction_list z Bee (uzależnienia z tg w umyśle, aquila/code/modules/reagents/addiction/addiction.dm)
 	var/flags
 	// AQ EDIT START - fermichem z tg
 	///pH of the whole system
@@ -354,7 +353,7 @@
 	if(C?.dna?.species && (NOREAGENTS in C.dna.species.species_traits))
 		return 0
 	var/list/cached_reagents = reagent_list
-	var/list/cached_addictions = addiction_list
+	// AQ EDIT - usunięte cached_addictions = addiction_list: uzależnienia z tg w umyśle (aquila/code/modules/reagents/addiction/addiction.dm)
 	if(C)
 		expose_temperature(C.bodytemperature, 0.25)
 	var/need_mob_update = 0
@@ -380,42 +379,15 @@
 						if(R.volume >= R.overdose_threshold && !R.overdosed)
 							R.overdosed = 1
 							need_mob_update += R.overdose_start(C)
-					if(R.addiction_threshold)
-						if(R.volume >= R.addiction_threshold && !is_type_in_list(R, cached_addictions))
-							var/datum/reagent/new_reagent = new R.type()
-							cached_addictions.Add(new_reagent)
+					// AQ EDIT START - uzależnienia z tg w umyśle (aquila/code/modules/reagents/addiction/addiction.dm) zamiast addiction_threshold z Bee
+					R.aq_add_addiction_points(C)
+					// AQ EDIT END
 					if(R.overdosed)
 						need_mob_update += R.overdose_process(C)
-					if(is_type_in_list(R,cached_addictions))
-						for(var/addiction in cached_addictions)
-							var/datum/reagent/A = addiction
-							if(istype(R, A))
-								A.addiction_stage = -15 // you're satisfied for a good while.
+					// AQ EDIT - usunięte zaspokajanie addiction_stage z Bee (zaspokojenie liczy is_satisfied w addiction.dm)
 				need_mob_update += R.on_mob_life(C)
 
-	if(can_overdose)
-		if(addiction_tick == 6)
-			addiction_tick = 1
-			for(var/addiction in cached_addictions)
-				var/datum/reagent/R = addiction
-				if(C && R)
-					R.addiction_stage++
-					switch(R.addiction_stage)
-						if(1 to 10)
-							need_mob_update += R.addiction_act_stage1(C)
-						if(10 to 20)
-							need_mob_update += R.addiction_act_stage2(C)
-						if(20 to 30)
-							need_mob_update += R.addiction_act_stage3(C)
-						if(30 to 40)
-							need_mob_update += R.addiction_act_stage4(C)
-						if(40 to INFINITY)
-							to_chat(C, "<span class='notice'>Czujesz, że twój głód [R.name] minął.</span>")
-							SEND_SIGNAL(C, COMSIG_CLEAR_MOOD_EVENT, "[R.type]_overdose")
-							cached_addictions.Remove(R)
-						else
-							SEND_SIGNAL(C, COMSIG_CLEAR_MOOD_EVENT, "[R.type]_overdose")
-		addiction_tick++
+	// AQ EDIT - usunięty blok addiction_tick / addiction_act_stage1-4 z Bee: etapy odstawienia robi process_addiction (addiction.dm)
 	if(C && need_mob_update) //some of the metabolized reagents had effects on the mob that requires some updates.
 		C.updatehealth()
 		C.update_mobility()
