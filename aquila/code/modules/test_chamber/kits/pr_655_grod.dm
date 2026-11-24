@@ -5,7 +5,7 @@
 	pr = "aq33/AquilaStation#655"
 	description = "Dwa Grody, człowiek do przejęcia, taca z ziemią i ubrania do sprawdzenia. \
 	1) Wejdź w Groda (admin: Aghost → posiądź): korona na głowie, ogon, wzory; załóż szary kombinezon (szara kamizelka Groda), buty, rękawice i cylinder (zasłania koronę). \
-	Skafander EVA i kask nie wchodzą. Plecak, pas, słuchawki i maska wchodzą. \
+	Skafander EVA i pachołek nie wchodzą. Plecak, pas, słuchawki i maska wchodzą. \
 	2) Postawy: Grod zaczyna w postawie ruchu (dwie ręce, szybszy od człowieka). Akcja „Zmień postawę” daje cztery ręce (w HUD-zie dwie górne), ale Grod zwalnia i nie blokuje ciosów. \
 	Weź do górnych dłoni długopis i skrzynkę, obracaj się: w każdą stronę rzeczy wiszą w innym miejscu, a tyłem chowają się za ciałem. Powrót do postawy ruchu zrzuca rzeczy z górnych dłoni. \
 	3) Akcja „Odłącz koronę”: wychodzisz jako pająk-korona, ciało umiera. Wyjmij mózg człowiekowi (piła) i kliknij go pająkiem: po 5 s wchodzisz w ciało, które choruje i po chwili zasypia w kokonie jako Grod. \
@@ -21,7 +21,7 @@
 		/obj/item/clothing/gloves/color/black = 1,
 		/obj/item/clothing/head/grodhat = 1,
 		/obj/item/clothing/suit/space/eva = 1,
-		/obj/item/clothing/head/hardhat = 1,
+		/obj/item/clothing/head/cone = 1,
 		/obj/item/storage/backpack = 1,
 		/obj/item/clothing/mask/gas = 1,
 		/obj/item/pen = 2,

@@ -160,7 +160,7 @@
 	body.update_body()
 	to_chat(body, "<span class='notice'><b>Jasny błysk!</b><br><i>Czujesz się jak nowa istota.</i></span>")
 	body.flash_act()
-	log_game("[key_name(body)] wyrósł jako nowy Grod z kokonu w [AREACOORD(src)].")
+	log_game("[key_name(body)] grew as a new grod from a cocoon at [AREACOORD(src)].")
 	qdel(src)
 
 // Sadzenie korony w tacy hydroponicznej
@@ -185,7 +185,7 @@
 	cocoon.pixel_y = pixel_y + plant_offset[2]
 	cocoon.start_growth(new_seed)
 	visible_message("<span class='notice'>Wokół korony w [src] zaczyna rosnąć kokon.</span>")
-	log_game("[key_name(user)] posadził koronę Groda w [src] w [AREACOORD(src)].")
+	log_game("[key_name(user)] planted a grod crown in [src] at [AREACOORD(src)].")
 	return cocoon
 
 /obj/item/plant_tray/attackby(obj/item/attacking_item, mob/living/user, params)
@@ -206,7 +206,9 @@
 		var/obj/item/clothing/head/mob_holder/holder = attacking_item
 		var/mob/living/simple_animal/hostile/grod_crown/spider = holder.held_mob
 		if(istype(spider))
-			if(grod_can_plant(user))
+			if(!spider.crown || (spider.crown.organ_flags & ORGAN_FAILING))
+				to_chat(user, "<span class='warning'>Ta korona jest martwa, nic z niej nie wyrośnie.</span>")
+			else if(grod_can_plant(user))
 				holder.grod_unwrap()
 				grod_plant(spider, user)
 			return TRUE
@@ -215,6 +217,9 @@
 /// Pająk-korona sam wchodzi do tacy z podłożem
 /mob/living/simple_animal/hostile/grod_crown/proc/try_plant(obj/item/plant_tray/tray)
 	if(!crown || stat != CONSCIOUS || !tray.grod_can_plant(src))
+		return
+	if(crown.organ_flags & ORGAN_FAILING)
+		to_chat(src, "<span class='warning'>Ta korona jest martwa, nic z niej nie wyrośnie.</span>")
 		return
 	visible_message("<span class='notice'>[src] zaczyna zakopywać się w [tray].</span>", "<span class='notice'>Zaczynasz zakopywać się w [tray].</span>")
 	if(!do_after(src, 5 SECONDS, target = tray) || !crown || !tray.grod_can_plant(src))
@@ -236,14 +241,16 @@
 	if(!istype(spider) || !ishuman(M) || user.combat_mode)
 		return ..()
 	var/mob/living/carbon/human/target = M
-	if(target.getorganslot(ORGAN_SLOT_BRAIN))
+	if(!spider.crown || spider.stat != CONSCIOUS)
+		return ..()
+	if(target.getorganslot(ORGAN_SLOT_BRAIN) || target.mind || target.key)
 		to_chat(user, "<span class='warning'>W [target] już jest mózg!</span>")
 		return
 	if(!target.get_bodypart(BODY_ZONE_HEAD))
 		to_chat(user, "<span class='warning'>To ciało nie ma głowy.</span>")
 		return
 	to_chat(user, "<span class='notice'>Zaczynasz wkładać [spider] do głowy [target]...</span>")
-	if(!do_after(user, 5 SECONDS, target = target) || held_mob != spider || target.getorganslot(ORGAN_SLOT_BRAIN))
+	if(!do_after(user, 5 SECONDS, target = target) || held_mob != spider || QDELETED(spider) || !spider.crown || target.getorganslot(ORGAN_SLOT_BRAIN) || target.mind || target.key || !target.get_bodypart(BODY_ZONE_HEAD))
 		return
 	grod_unwrap()
 	spider.infest(target)

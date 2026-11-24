@@ -9,6 +9,7 @@
 
 /obj/item/organ/brain/grod/Insert(mob/living/carbon/C, special = 0, no_id_transfer = FALSE)
 	. = ..()
+	name = initial(name) // bazowy Insert mózgu zmienia nazwę na „mózg”
 	if(isgrod(C)) // w ciele innej rasy korona zachowuje kolor do przemiany
 		var/mob/living/carbon/human/H = C
 		color = "#[H.dna?.features["mcolor"] || "3fae3f"]"
@@ -59,6 +60,7 @@
 	spider.real_name = H.real_name
 	spider.color = "#[H.dna?.features["mcolor"] || "3fae3f"]"
 	crown.forceMove(spider)
+	STOP_PROCESSING(SSobj, crown) // w żywym pająku korona nie gnije jak wyjęty organ
 	spider.crown = crown
 	spider.health = max(1, round(spider.maxHealth * (1 - crown.damage / crown.maxHealth)))
 	H.visible_message("<span class='warning'>Z głowy [H] wypełza korona na cienkich nóżkach!</span>")
@@ -112,21 +114,22 @@
 
 /mob/living/simple_animal/hostile/grod_crown/MouseDrop(atom/over)
 	. = ..()
-	if(ishuman(over) && Adjacent(over))
+	if(usr == src && ishuman(over) && Adjacent(over)) // przeciągać może tylko sam pająk, nie inny gracz
 		try_infest(over)
 
 /// Wejście w ciało bez mózgu. Ciało innej rasy łapie chorobę przemiany i po jakimś czasie zasypia w kokonie jako Grod.
 /mob/living/simple_animal/hostile/grod_crown/proc/try_infest(mob/living/carbon/human/target)
 	if(!crown || stat != CONSCIOUS)
 		return FALSE
-	if(target.getorganslot(ORGAN_SLOT_BRAIN))
+	// Ciało z mózgiem albo z czyjąś świadomością (np. zmiennokształtny bez mózgu) jest zajęte
+	if(target.getorganslot(ORGAN_SLOT_BRAIN) || target.mind || target.key)
 		to_chat(src, "<span class='userdanger'>Obca obecność odpycha nas od tego ciała. Poszukajmy innego.</span>")
 		return TRUE
 	if(!target.get_bodypart(BODY_ZONE_HEAD))
 		to_chat(src, "<span class='warning'>To ciało nie ma głowy.</span>")
 		return TRUE
 	visible_message("<span class='danger'>[src] zaczyna wgryzać się w głowę [target]!</span>", "<span class='notice'>Zaczynasz wgryzać się w głowę [target].</span>")
-	if(!do_after(src, 5 SECONDS, target = target) || QDELETED(crown) || target.getorganslot(ORGAN_SLOT_BRAIN))
+	if(!do_after(src, 5 SECONDS, target = target) || QDELETED(crown) || target.getorganslot(ORGAN_SLOT_BRAIN) || target.mind || target.key || !target.get_bodypart(BODY_ZONE_HEAD))
 		return TRUE
 	infest(target)
 	return TRUE

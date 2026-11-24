@@ -458,7 +458,8 @@ GLOBAL_LIST_INIT(grod_last, world.file2list("strings/names/grod_last.txt"))
 
 /obj/item/organ/tongue/grod/Initialize(mapload)
 	. = ..()
-	languages_possible = languages_possible.Copy() | /datum/language/pohlan
+	languages_possible = languages_possible.Copy()
+	languages_possible[/datum/language/pohlan] = TRUE // typecache: is_type_in_typecache czyta L[typ]
 
 // Ubrania: Grod nosi tylko to, co ma narysowane. Sloty potrzebne do życia (plecak, pas, słuchawki, maska, okulary, identyfikator)
 // przyjmują wszystko, a bez sprite'u Groda rzecz wygląda jak na człowieku.
@@ -661,15 +662,27 @@ GLOBAL_LIST_INIT(grod_type_map, list(
 			overlays_standing[HANDCUFF_LAYER] = cuffs
 			apply_overlay(HANDCUFF_LAYER)
 
+/// Kajdanki na nogi: plik „generic” Groda nie ma stanu legcuff1, więc bez tego byłyby niewidoczne
+/mob/living/carbon/human/update_inv_legcuffed()
+	. = ..()
+	if(!legcuffed || !isgrod(src))
+		return
+	var/mutable_appearance/cuffs = overlays_standing[LEGCUFF_LAYER]
+	if(istype(cuffs) && !icon_exists(cuffs.icon, cuffs.icon_state))
+		remove_overlay(LEGCUFF_LAYER)
+		cuffs.icon = 'icons/mob/mob.dmi'
+		overlays_standing[LEGCUFF_LAYER] = cuffs
+		apply_overlay(LEGCUFF_LAYER)
+
 /// Zakrwawione dłonie Groda bez rękawic
 /mob/living/carbon/human/update_inv_gloves()
 	. = ..()
 	if(!gloves && bloody_hands && isgrod(src))
 		var/mutable_appearance/bloody_overlay = overlays_standing[GLOVES_LAYER]
-		if(istype(bloody_overlay) && bloody_overlay.icon == 'icons/effects/blood.dmi')
+		// Grod ma rysunek tylko obu zakrwawionych dłoni; wersje jednej dłoni zostają ludzkie
+		if(istype(bloody_overlay) && bloody_overlay.icon == 'icons/effects/blood.dmi' && bloody_overlay.icon_state == "bloodyhands")
 			remove_overlay(GLOVES_LAYER)
 			bloody_overlay.icon = GROD_ICON_EXTRAS
-			bloody_overlay.icon_state = "bloodyhands"
 			overlays_standing[GLOVES_LAYER] = bloody_overlay
 			apply_overlay(GLOVES_LAYER)
 
