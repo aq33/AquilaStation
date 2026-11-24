@@ -120,7 +120,7 @@
 			all_shuttle_areas |= M.shuttle_areas
 		var/move_mode = old_area.beforeShuttleMove(all_shuttle_areas)											//areas
 
-		var/list/old_contents = oldT.contents
+		var/list/old_contents = oldT.contents.Copy() // AQ EDIT - kopia: atom usunięty w beforeShuttleMove skracał listę i promy rozpadały się na części
 		for(var/k in 1 to old_contents.len)
 			CHECK_TICK
 			var/atom/movable/moving_atom = old_contents[k]
