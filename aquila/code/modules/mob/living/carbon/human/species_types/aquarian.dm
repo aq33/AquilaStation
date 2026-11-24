@@ -63,8 +63,9 @@ GLOBAL_LIST_INIT(aquarian_fish, list(
 	siemens_coeff = 2 // woda w kloszu przewodzi
 	damage_overlay_type = "synth"
 	species_gibs = GIB_TYPE_ROBOTIC
-	meat = /obj/item/stack/sheet/iron{amount = 5}
-	skinned_type = /obj/item/stack/sheet/iron{amount = 5}
+	// Mniej żelaza niż kosztuje pancerz z fabrykatora (15 arkuszy), żeby gibber nie robił z niego kopalni
+	meat = /obj/item/stack/sheet/iron{amount = 2}
+	skinned_type = /obj/item/stack/sheet/iron{amount = 1}
 	attack_sound = 'sound/items/trayhit1.ogg'
 	deathsound = 'sound/effects/bubbles.ogg'
 	special_step_sounds = list('sound/effects/servostep.ogg')
@@ -242,6 +243,7 @@ GLOBAL_LIST_INIT(aquarian_fish, list(
 	update_icon()
 
 /obj/item/organ/brain/aquarian/Insert(mob/living/carbon/C, special = 0, no_id_transfer = FALSE)
+	var/carried_name = brainmob?.real_name // brainmob znika w ..(), a pusty pancerz nie ma imienia postaci
 	if(ishuman(C) && C.dna)
 		// Klosz niesie rybę ze sobą. Świeży klosz bierze rybę i kolor wody z wyglądu postaci.
 		if(fish_type)
@@ -255,6 +257,8 @@ GLOBAL_LIST_INIT(aquarian_fish, list(
 	..() // woła też C.update_hair(), które rysuje klosz
 	name = initial(name)
 	synced_oxyloss = 0
+	if(carried_name && C.real_name == AQUARIAN_SHELL_NAME)
+		C.fully_replace_character_name(C.real_name, carried_name)
 
 /obj/item/organ/brain/aquarian/Remove(mob/living/carbon/C, special = 0, no_id_transfer = FALSE)
 	..()
@@ -528,6 +532,8 @@ GLOBAL_LIST_INIT(aquarian_fish, list(
 	if(!shattered && !owner && living_user.combat_mode && O.force && O.damtype == BRUTE)
 		hit_dome(O, living_user)
 		return TRUE
+	if(O.force && !(O.item_flags & NOBLUDGEON))
+		return TRUE // attackby mózgu od razu go zabija, a szkło klosza (i naczynie) ma chronić rybkę
 	return ..()
 
 /// Rybka (albo naczynie z rybką) kliknięta w naczynie z wodą albo w pusty klosz
@@ -556,6 +562,7 @@ GLOBAL_LIST_INIT(aquarian_fish, list(
 	spill(reagents.total_volume)
 	reagents.maximum_volume = AQUARIAN_DOME_VOLUME
 	old_vessel.forceMove(T)
+	leave_holder()
 	forceMove(T)
 	user.put_in_hands(old_vessel)
 	user.visible_message("<span class='warning'>[user] wylewa rybkę z [old_vessel] na podłogę!</span>", \
@@ -595,6 +602,7 @@ GLOBAL_LIST_INIT(aquarian_fish, list(
 	cracked = FALSE
 	if(wearer)
 		Remove(wearer)
+	leave_holder()
 	forceMove(T)
 	T.add_liquid_from_reagents(reagents, amount = reagents.total_volume)
 	reagents.clear_reagents()
@@ -609,6 +617,12 @@ GLOBAL_LIST_INIT(aquarian_fish, list(
 	to_chat(brainmob, "<span class='userdanger'>Twój klosz pęka! Wypadasz na podłogę i rzucasz się bez wody!</span>")
 	refresh_fish_name()
 	update_appearance()
+
+/// Wyjmuje rybkę z rąk, zanim przeniesiemy ją gdzie indziej: samo forceMove zostawia ją w held_items
+/obj/item/organ/brain/aquarian/proc/leave_holder()
+	var/mob/holder = loc
+	if(istype(holder) && holder.is_holding(src))
+		holder.temporarilyRemoveItemFromInventory(src, TRUE)
 
 /// Rybka do naczynia z wodą (zlewka, wiadro, szklanka) albo do nowego klosza
 /obj/item/organ/brain/aquarian/proc/enter_vessel(obj/item/reagent_containers/new_vessel, mob/living/user)
@@ -666,6 +680,7 @@ GLOBAL_LIST_INIT(aquarian_fish, list(
 	if(dome_in_hand)
 		user.temporarilyRemoveItemFromInventory(new_dome)
 	qdel(new_dome)
+	leave_holder()
 	forceMove(T)
 	if(dome_in_hand || fish_in_hand)
 		user.put_in_hands(src)
@@ -758,20 +773,27 @@ GLOBAL_LIST_INIT(aquarian_fish, list(
 /// Wlewa zawartość pojemnika do klosza albo sypie karmę. Do cudzego klosza wlewa się chwilę.
 /obj/item/organ/brain/aquarian/proc/fill_from(obj/item/source, mob/living/user)
 	var/mob/living/carbon/wearer = owner
-	if(istype(source, /obj/item/fish_feed))
-		feed_from(source, user)
-		return
-	if(!source.reagents?.total_volume)
-		to_chat(user, "<span class='warning'>[source] jest pusty.</span>")
-		return
-	if(reagents.holder_full())
-		to_chat(user, "<span class='warning'>Klosz jest pełny.</span>")
-		return
-	if(wearer && user != wearer)
-		user.visible_message("<span class='warning'>[user] próbuje wlać zawartość [source] do klosza [wearer].</span>", \
-			"<span class='notice'>Próbujesz wlać zawartość [source] do klosza [wearer].</span>")
-		if(!do_after(user, 3 SECONDS, target = wearer) || owner != wearer || !source.reagents?.total_volume)
+	var/is_feed = istype(source, /obj/item/fish_feed)
+	if(!is_feed)
+		if(!source.reagents?.total_volume)
+			to_chat(user, "<span class='warning'>Pojemnik jest pusty: [source].</span>")
 			return
+		if(reagents.holder_full())
+			to_chat(user, "<span class='warning'>Klosz jest pełny.</span>")
+			return
+	if(wearer && user != wearer)
+		if(is_feed)
+			user.visible_message("<span class='warning'>[user] próbuje nasypać karmy do klosza [wearer].</span>", \
+				"<span class='notice'>Próbujesz nasypać karmy do klosza [wearer].</span>")
+		else
+			user.visible_message("<span class='warning'>[user] próbuje wlać zawartość [source] do klosza [wearer].</span>", \
+				"<span class='notice'>Próbujesz wlać zawartość [source] do klosza [wearer].</span>")
+		if(!do_after(user, 3 SECONDS, target = wearer) || owner != wearer || (!is_feed && !source.reagents?.total_volume))
+			return
+	if(is_feed)
+		if(feed_from(source, user) && wearer && user != wearer)
+			log_combat(user, wearer, "fed the fish in the dome of", source)
+		return
 	var/amount = 10
 	var/obj/item/reagent_containers/container = source
 	if(istype(container))
@@ -792,12 +814,13 @@ GLOBAL_LIST_INIT(aquarian_fish, list(
 		to_chat(user, "<span class='notice'>Wlewasz [transferred] j. z [source] do [src].</span>")
 	update_water_visual()
 
-/// Karma dla ryb z akwarium: zaspokaja głód i trafia do wody razem z tym, co w niej było
+/// Karma dla ryb z akwarium: zaspokaja głód. Puszka sama wytwarza karmę, więc chemia z puszki nie trafia do wody
+/// (inaczej puszka powielałaby każdą wlaną do niej truciznę). Zwraca TRUE, gdy rybka zjadła.
 /obj/item/organ/brain/aquarian/proc/feed_from(obj/item/fish_feed/feed, mob/living/user)
 	if(owner && owner.nutrition >= NUTRITION_LEVEL_FULL)
 		to_chat(user, "<span class='warning'>Rybka nie chce już jeść.</span>")
-		return
-	feed.reagents?.copy_to(src, feed.reagents.total_volume)
+		return FALSE
+	. = TRUE
 	if(owner)
 		owner.adjust_nutrition(AQUARIAN_FEED_NUTRITION)
 	playsound(owner || src, 'sound/effects/bubbles.ogg', 25, TRUE)
@@ -816,7 +839,7 @@ GLOBAL_LIST_INIT(aquarian_fish, list(
 		to_chat(user, "<span class='notice'>Ktoś już korzysta z [sink].</span>")
 		return
 	if(sink.reagents.total_volume < 1)
-		to_chat(user, "<span class='warning'>[sink] jest sucha!</span>")
+		to_chat(user, "<span class='warning'>Z kranu nie leci woda: [sink].</span>")
 		return
 	user.visible_message("<span class='notice'>[user] nachyla się nad [sink] i nalewa wody do klosza.</span>", \
 		"<span class='notice'>Nachylasz się nad [sink] i nalewasz wody do klosza.</span>")
@@ -1015,7 +1038,7 @@ GLOBAL_LIST_INIT(aquarian_fish, list(
 	if(dome)
 		dome.Remove(shell, TRUE, TRUE)
 		qdel(dome)
-	shell.real_name = "pusty pancerz akwarianina"
+	shell.real_name = AQUARIAN_SHELL_NAME
 	shell.name = shell.real_name
 	shell.death()
 	return shell

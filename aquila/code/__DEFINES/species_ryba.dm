@@ -50,3 +50,5 @@
 #define AQUARIAN_VESSEL_MIN_VOLUME 50
 /// Ile wody musi być w naczyniu, żeby wpuścić do niego rybkę
 #define AQUARIAN_VESSEL_MIN_WATER 10
+/// Imię pustego pancerza z fabrykatora; klosz z graczem przywraca imię postaci
+#define AQUARIAN_SHELL_NAME "pusty pancerz akwarianina"
