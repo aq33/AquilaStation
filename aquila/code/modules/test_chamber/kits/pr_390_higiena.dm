@@ -10,7 +10,7 @@
 	Quirk Czyścioszek sprawdź w preferencjach (nie może iść razem z Socjalsem)."
 	items = list(
 		/mob/living/carbon/human = 2,
-		/mob/living/simple_animal/bot/hygienebot = 1,
+		/mob/living/basic/bot/hygienebot = 1,
 		/obj/machinery/scanner_gate = 1,
 		/obj/item/soap = 1,
 		/obj/item/card/emag = 1,

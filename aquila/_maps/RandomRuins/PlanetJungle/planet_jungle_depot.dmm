@@ -193,7 +193,7 @@
 /area/ruin/unpowered/planet_jungle/depot/offices)
 "cE" = (
 /obj/effect/decal/cleanable/dirt,
-/mob/living/simple_animal/bot/cleanbot{
+/mob/living/basic/bot/cleanbot{
 	faction = list("Deathsquad")
 	},
 /turf/open/floor/concrete{

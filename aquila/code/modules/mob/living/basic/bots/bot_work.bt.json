@@ -1,0 +1,38 @@
+{
+	"dm_type": "/datum/bt_node/subtree/bot_work",
+	"type": "decorator",
+	"decorator": "/datum/bt_node/decorator/bot_can_work",
+	"child": {
+		"type": "sequence",
+		"children": [
+			{
+				"type": "selector",
+				"children": [
+					{
+						"type": "decorator",
+						"decorator": "/datum/bt_node/decorator/bb_key_set",
+						"vars": {
+							"key": "BB_BOT_WORK_TARGET"
+						},
+						"child": {
+							"type": "leaf",
+							"behavior": "/datum/bt_node/ai_behavior/succeed"
+						}
+					},
+					{
+						"type": "leaf",
+						"behavior": "/datum/bt_node/ai_behavior/bot_find_work"
+					}
+				]
+			},
+			{
+				"type": "leaf",
+				"behavior": "/datum/bt_node/ai_behavior/move_to_target/bot_work"
+			},
+			{
+				"type": "leaf",
+				"behavior": "/datum/bt_node/ai_behavior/bot_perform_work"
+			}
+		]
+	}
+}
