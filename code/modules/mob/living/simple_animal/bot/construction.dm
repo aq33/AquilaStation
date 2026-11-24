@@ -77,7 +77,7 @@
 	desc = "Jakiś dziwaczny zespół."
 	icon_state = "ed209_frame"
 	item_state = "ed209_frame"
-	created_name = "ED-209 Security Robot" //To preserve the name if it's a unique securitron I guess
+	created_name = "Robot ochrony ED-209" //To preserve the name if it's a unique securitron I guess
 	var/lasercolor = ""
 	var/vest_type = /obj/item/clothing/suit/armor/vest
 
@@ -220,7 +220,7 @@
 	name = "płytki i skrzynka narzędziowa"
 	icon_state = "toolbox_tiles"
 	throwforce = 10
-	created_name = "Floorbot"
+	created_name = "Repairbot"
 	var/toolbox = /obj/item/storage/toolbox/mechanical
 	var/toolbox_color = "" //Blank for blue, r for red, y for yellow, etc.
 

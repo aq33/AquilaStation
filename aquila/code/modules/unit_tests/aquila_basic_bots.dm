@@ -514,6 +514,20 @@
 		TEST_ASSERT(!repairbot.task_for(other), "Repairbot robi zwykłą ścianę z [girder_type]")
 		qdel(other)
 
+/// AQUILA - bot złożony ręcznie nazywa się tak jak bot z mapy (regresja: ED-209 po angielsku, repairbot jako „Floorbot”)
+/datum/unit_test/aquila_bot_assembly_names
+
+/datum/unit_test/aquila_bot_assembly_names/Run()
+	var/list/assemblies = list(
+		/obj/item/bot_assembly/ed209 = /mob/living/basic/bot/secbot/ed209,
+		/obj/item/bot_assembly/floorbot = /mob/living/basic/bot/repairbot,
+	)
+	for(var/assembly_type in assemblies)
+		var/obj/item/bot_assembly/assembly = allocate(assembly_type)
+		var/mob/living/bot_type = assemblies[assembly_type]
+		var/expected = replacetext(initial(bot_type.name), "\improper ", "")
+		TEST_ASSERT(assembly.created_name == expected, "[assembly_type] builds a bot named [assembly.created_name] instead of [expected]")
+
 #undef TICK_BOT_UNTIL
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL
