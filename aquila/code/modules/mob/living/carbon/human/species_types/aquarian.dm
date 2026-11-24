@@ -98,6 +98,7 @@ GLOBAL_LIST_INIT(aquarian_fish, list(
 	UnregisterSignal(C, list(COMSIG_PARENT_ATTACKBY, COMSIG_HUMAN_EARLY_UNARMED_ATTACK, COMSIG_PARENT_EXAMINE, COMSIG_LIVING_POST_FULLY_HEAL))
 	C.remove_movespeed_modifier(AQUARIAN_COLD_SLOWDOWN)
 	C.clear_alert("aquarian_water")
+	C.clear_alert("aquarian_leak")
 
 /// Klosz na kołnierzu albo null
 /proc/aquarian_dome(mob/living/carbon/C)
@@ -264,6 +265,7 @@ GLOBAL_LIST_INIT(aquarian_fish, list(
 	..()
 	C.remove_movespeed_modifier(AQUARIAN_COLD_SLOWDOWN)
 	C.clear_alert("aquarian_water")
+	C.clear_alert("aquarian_leak")
 	update_icon()
 
 /obj/item/organ/brain/aquarian/transfer_identity(mob/living/L)
@@ -445,6 +447,12 @@ GLOBAL_LIST_INIT(aquarian_fish, list(
 	else if(body_leaking && body_brute < AQUARIAN_BODY_LEAK_DAMAGE)
 		body_leaking = FALSE
 		to_chat(C, "<span class='notice'>Pancerz przestaje przeciekać.</span>")
+	// Stały alert jak krwawienie u ludzi: rasa nie ma krwi, więc alert krwawienia jej nie dotyczy, a jedna linijka w czacie ginie w walce
+	if((cracked || body_leaking) && reagents.total_volume)
+		var/atom/movable/screen/alert/aquarian_leak/leak_alert = C.throw_alert("aquarian_leak", /atom/movable/screen/alert/aquarian_leak)
+		leak_alert?.update_leak(cracked, body_leaking, water_amount())
+	else
+		C.clear_alert("aquarian_leak")
 
 	// Parowanie w gorącu
 	if(temperature >= AQUARIAN_WATER_BOIL)
@@ -853,6 +861,24 @@ GLOBAL_LIST_INIT(aquarian_fish, list(
 	playsound(sink, 'sound/effects/slosh.ogg', 25, TRUE)
 	to_chat(user, "<span class='notice'>Klosz jest znów pełen wody.</span>")
 	update_water_visual()
+
+/atom/movable/screen/alert/aquarian_leak
+	icon = 'aquila/icons/hud/screen_alert_bleeding.dmi'
+	name = "Wyciek wody"
+	desc = "Z pancerza wycieka woda z klosza. Zaspawaj wgniecenia spawarką, zanim rybka zostanie bez wody."
+	icon_state = "bleed"
+
+/// Opis i ikona zależą od tego, co cieknie; liczba na ikonie to woda, która została w kloszu
+/atom/movable/screen/alert/aquarian_leak/proc/update_leak(cracked, body_leaking, water)
+	if(cracked)
+		name = "Wyciek wody (pęknięty klosz)"
+		desc = "Klosz jest pęknięty i woda ucieka z niego szybko. Zaspawaj głowę spawarką, zanim rybka zostanie bez wody."
+		icon_state = "bleed_heavy"
+	else
+		name = "Wyciek wody"
+		desc = "Z wgniecionego pancerza sączy się woda z klosza. Zaspawaj wgniecenia spawarką, zanim rybka zostanie bez wody."
+		icon_state = "bleed"
+	maptext = MAPTEXT("[round(water)]j")
 
 /atom/movable/screen/alert/aquarian_water
 	name = "Mało wody w kloszu"
