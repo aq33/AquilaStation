@@ -58,5 +58,12 @@
 	for(var/preset in list(FISHING_SPOT_PRESET_BEACH, FISHING_SPOT_PRESET_STORMY))
 		var/datum/fish_source/source = GLOB.preset_fish_sources[preset]
 		TEST_ASSERT(source?.fish_table[/obj/item/plant_seeds/preset/barnacle], "Łowisko [preset] nie daje larw pąkli")
+	// Złowione larwy trafiają do ręki łowiącego jako paczka nasion pąkli
+	var/mob/living/carbon/human/fisher = allocate(/mob/living/carbon/human, run_loc_floor_bottom_left)
+	var/datum/fish_source/beach = GLOB.preset_fish_sources[FISHING_SPOT_PRESET_BEACH]
+	var/obj/item/plant_seeds/preset/barnacle/larvae = beach.dispense_reward(/obj/item/plant_seeds/preset/barnacle, fisher)
+	TEST_ASSERT(istype(larvae), "Łowisko nie wydało larw pąkli")
+	TEST_ASSERT(fisher.is_holding(larvae), "Złowione larwy pąkli nie trafiły do ręki")
+	qdel(larvae)
 
 #undef TEST_ASSERT
