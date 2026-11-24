@@ -1,4 +1,4 @@
-"""Bot Discorda: komenda /wojna pokazuje stan wojny frakcji z zapisu kampanii Aquili.
+"""Bot Discorda: komendy /wojna (stan wojny) i /mapa (obrazek mapy) z zapisu kampanii Aquili.
 
 Zmienne środowiskowe:
   DISCORD_TOKEN       token bota (wymagany)
@@ -6,6 +6,7 @@ Zmienne środowiskowe:
   DISCORD_GUILD_ID    opcjonalnie: serwer Discorda, na którym komenda pojawi się od razu
 """
 
+import io
 import os
 import sys
 from pathlib import Path
@@ -13,6 +14,7 @@ from pathlib import Path
 import discord
 from discord import app_commands
 
+import war_map
 import war_status
 
 FACTION_COLOUR = 0x2B6CB0
@@ -48,6 +50,15 @@ async def wojna(interaction: discord.Interaction):
         embed.add_field(name=title, value=body[:1024], inline=False)  # limit pola embeda
     embed.set_footer(text=war_status.footer(state))
     await interaction.response.send_message(embed=embed)
+
+
+@bot.tree.command(name="mapa", description="Mapa wojny frakcji w kampanii Aquili")
+async def mapa(interaction: discord.Interaction):
+    png = war_map.render(STARMAP_DIR)
+    if not png:
+        await interaction.response.send_message("Brak zapisu kampanii albo wojna jeszcze nie ruszyła.", ephemeral=True)
+        return
+    await interaction.response.send_message(file=discord.File(io.BytesIO(png), filename="mapa_wojny.png"))
 
 
 def main():

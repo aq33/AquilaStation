@@ -3,6 +3,9 @@
 Komenda `/wojna` pokazuje stan wojny frakcji w kampanii: ile układów i flot ma każda frakcja, kto trzyma kwatery
 główne, zajęte układy, DEFCON, głowice atomowe, dowódców i nemezis, ostatnie położenie okrętu załogi.
 
+Komenda `/mapa` wysyła obrazek mapy: trzy sektory hex z terenem, układy w kolorach frakcji, które je trzymają,
+kwatery główne (biała ramka: zajęta przez wroga) i okręt załogi. Nieodkryte układy i floty nie są rysowane.
+
 Bot działa poza grą. Czyta tylko pliki `config/starmap/hexmap.json` i `starmap.json`, które serwer zapisuje na koniec
 rundy (i przy restarcie). Nie łączy się z serwerem i nie pokazuje stanu na żywo, tylko stan z ostatniego zapisu
 (data w stopce). Pozycji flot nie podaje, żeby nie odkrywać graczom mgły wojny.
@@ -31,9 +34,10 @@ Tokenu nie wpisuj do repozytorium.
 
 ```
 python tools/discord_bot/war_status.py [folder z hexmap.json]
+python tools/discord_bot/war_map.py [folder z hexmap.json] [plik.png]
 ```
 
-Wypisuje w terminalu to samo, co bot pokazuje na Discordzie.
+Pierwsze wypisuje w terminalu to samo, co `/wojna`, drugie zapisuje obrazek z `/mapa`.
 
-Stałe (kwatery, progi DEFCON, stopnie dowódców) są skopiowane z `aquila/code/modules/overmap/hexmap/`. Po ich
-zmianie w grze popraw je w `war_status.py`.
+Stałe (kwatery, progi DEFCON, stopnie dowódców, wymiary siatki hex) są skopiowane z `aquila/code/modules/overmap/hexmap/`. Po ich
+zmianie w grze popraw je w `war_status.py` i `war_map.py`.
