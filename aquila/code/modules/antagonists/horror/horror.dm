@@ -275,7 +275,7 @@
 					var/link = FOLLOW_LINK(M, src)
 					to_chat(M, "[link] [rendered]")
 		to_chat(src, "<span class='changeling'><i>[real_name] bełkocze:</i> [input]</span>")
-		add_verb(victim, /mob/living/proc/horror_comm)
+		victim.add_verb(/mob/living/proc/horror_comm)
 		talk_to_horror_action.Grant(victim)
 
 /mob/living/proc/horror_comm()
@@ -588,7 +588,7 @@
 	victim.unset_machine()
 
 	var/mob/living/V = victim
-	remove_verb(V, /mob/living/proc/horror_comm)
+	V.remove_verb(/mob/living/proc/horror_comm)
 	talk_to_horror_action.Remove(victim)
 
 	for(var/obj/item/horrortentacle/T in victim)
@@ -796,7 +796,7 @@
 		bonding = FALSE
 		controlling = TRUE
 
-		remove_verb(victim, /mob/living/proc/horror_comm)
+		victim.remove_verb(/mob/living/proc/horror_comm)
 		talk_to_horror_action.Remove(victim)
 		GrantControlActions()
 
@@ -831,7 +831,7 @@
 
 	controlling = FALSE
 	UnregisterSignal(victim, COMSIG_MOB_APPLY_DAMGE)
-	add_verb(victim, /mob/living/proc/horror_comm)
+	victim.add_verb(/mob/living/proc/horror_comm)
 	RemoveControlActions()
 	RefreshAbilities()
 	talk_to_horror_action.Grant(victim)
