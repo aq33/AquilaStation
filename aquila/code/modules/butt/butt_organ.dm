@@ -25,6 +25,9 @@
 	var/max_w_class = WEIGHT_CLASS_SMALL
 	var/storage_slots = 2
 	var/fart_sound = 'aquila/sound/misc/fart.ogg'
+	/// Dodatkowe nagrania losowane razem z fart_sound (pierdnięcia z Goonstation)
+	var/list/extra_fart_sounds = list('aquila/sound/misc/fart/goon_fart1.ogg', 'aquila/sound/misc/fart/goon_fart2.ogg', 'aquila/sound/misc/fart/goon_fart3.ogg',
+		'aquila/sound/misc/fart/goon_fart4.ogg', 'aquila/sound/misc/fart/goon_fart5.ogg', 'aquila/sound/misc/fart/goon_fart6.ogg', 'aquila/sound/misc/fart/goon_fart7.ogg')
 	var/blood_type = /obj/effect/decal/cleanable/blood
 	var/obj/item/storage/butt_pocket/inv
 
@@ -36,6 +39,7 @@
 	storage_slots = 3
 	max_combined_w_class = 5
 	fart_sound = 'aquila/sound/misc/alienfart.ogg'
+	extra_fart_sounds = null
 	blood_type = /obj/effect/decal/cleanable/xenoblood
 
 /obj/item/organ/butt/bluebutt // bluespace butts, science
@@ -151,9 +155,15 @@
 		return
 	return ..()
 
+/// Dźwięk pierdnięcia: podstawowy albo jedno z dodatkowych nagrań
+/obj/item/organ/butt/proc/get_fart_sound()
+	if(!length(extra_fart_sounds))
+		return fart_sound
+	return pick(list(fart_sound) + extra_fart_sounds)
+
 /obj/item/organ/butt/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	. = ..()
-	playsound(src, fart_sound, 50, TRUE, 5)
+	playsound(src, get_fart_sound(), 50, TRUE, 5)
 	if(ishuman(hit_atom))
 		var/mob/living/carbon/human/M = hit_atom
 		M.apply_damage(5, STAMINA)

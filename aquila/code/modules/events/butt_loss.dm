@@ -36,7 +36,7 @@
 	if(!butt)
 		return
 	butt.blow_off(victim)
-	playsound(victim, butt.fart_sound, 50, TRUE, 5)
+	playsound(victim, butt.get_fart_sound(), 50, TRUE, 5)
 	victim.visible_message("<span class='danger'>Pupa [victim] odpada z głośnym plaśnięciem!</span>", "<span class='userdanger'>Czujesz przeszywający ból dupska... i twoja pupa odpada!</span>")
 	victim.emote("scream")
 	var/turf/landing = get_ranged_target_turf(victim, pick(GLOB.alldirs), rand(1, 3))
