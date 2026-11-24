@@ -2688,6 +2688,7 @@
 #include "code\modules\unit_tests\aquila_gq_lights.dm"
 #include "code\modules\unit_tests\aquila_gun_fire_without_params.dm"
 #include "code\modules\unit_tests\aquila_relay_loop_stop.dm"
+#include "code\modules\unit_tests\aquila_card_painter_styles.dm"
 #include "code\modules\unit_tests\aquila_speech_voices.dm"
 #include "code\modules\unit_tests\aquila_extra_hair.dm"
 #include "code\modules\unit_tests\aquila_grenade_destroyed.dm"
