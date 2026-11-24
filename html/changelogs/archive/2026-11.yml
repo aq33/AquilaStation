@@ -1548,3 +1548,6 @@
   - imageadd: Sprite'y botów, mechów, skinów cyborgów, implantów i protez z tg, Bee,
       Goona, Baya, Aurory, Paradise, Erisa, Monke, Yoga, Shiptesta, TGMC i CM-SS13
       (atrybucje w plikach attribution).
+  - bugfix: 'Ciało gracza na planecie nie znika już po odlocie okrętu: powierzchnia
+      czeka, dopóki gracz może do niego wrócić.'
+  - balance: Kudzu na planetach rozrasta się najwyżej do 50 pnączy na kępę i 400 łącznie.
