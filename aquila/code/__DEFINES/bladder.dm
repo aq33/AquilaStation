@@ -2,6 +2,9 @@
 
 #define ORGAN_SLOT_BLADDER "bladder"
 
+/// Wykroczenie wpisywane przez kamerę za sikanie i wypróżnianie się: pozycja w config/space_law.json (Wykroczenia)
+#define PUBLIC_BODILY_FUNCTION_CRIME "Załatwianie potrzeby w miejscu publicznym"
+
 /// Ile potrzeby (z defecation) dokłada jedna jednostka nawodnienia z picia. Szklanka wody (50 j.) to ok. 750 nawodnienia.
 #define URINATION_PER_HYDRATION 0.15
 /// Ile jednostek moczu daje jedna jednostka potrzeby oddanej jako mocz
