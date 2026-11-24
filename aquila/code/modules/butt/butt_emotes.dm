@@ -39,12 +39,12 @@
 			var/obj/item/lighter/G = O
 			if(G.lit && T)
 				new /obj/effect/hotspot(T)
-			playsound(user, fart_sound, 50, TRUE, 5)
+			playsound(user, get_fart_sound(), 50, TRUE, 5)
 		else if(istype(O, /obj/item/weldingtool))
 			var/obj/item/weldingtool/J = O
 			if(J.isOn() && T)
 				new /obj/effect/hotspot(T)
-			playsound(user, fart_sound, 50, TRUE, 5)
+			playsound(user, get_fart_sound(), 50, TRUE, 5)
 		else if(istype(O, /obj/item/bikehorn))
 			for(var/obj/item/bikehorn/Q in inv.contents)
 				playsound(user, 'sound/items/bikehorn.ogg', 50, TRUE, 5)
@@ -53,11 +53,11 @@
 			message = "<span class='reallybig'>pierdzi.</span>"
 			playsound(user, 'aquila/sound/misc/fartmassive.ogg', 75, TRUE, 5)
 		else
-			playsound(user, fart_sound, 50, TRUE, 5)
+			playsound(user, get_fart_sound(), 50, TRUE, 5)
 		if(prob(33))
 			eject_item(O, T)
 	else
-		playsound(user, fart_sound, 50, TRUE, 5)
+		playsound(user, get_fart_sound(), 50, TRUE, 5)
 
 	user.audible_message("<span class='emote'><b>[user]</b> [message]</span>")
 	sleep(1)
@@ -120,7 +120,7 @@
 
 	sleep(4)
 	for(var/i in 1 to 10)
-		playsound(user, fart_sound, 50, TRUE, 5)
+		playsound(user, get_fart_sound(), 50, TRUE, 5)
 		sleep(1)
 	if(QDELETED(user) || owner != user)
 		loose = FALSE

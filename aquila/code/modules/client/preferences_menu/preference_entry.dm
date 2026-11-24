@@ -186,7 +186,7 @@ GLOBAL_LIST_INIT(preference_entries_by_key, init_preference_entries_by_key())
 		choices += serialize(choice)
 	data["choices"] = choices
 
-	var/list/display_names = get_display_names()
+	var/list/display_names = get_display_names_with_polish()
 	if(length(display_names))
 		data["display_names"] = display_names
 

@@ -249,6 +249,9 @@
 	TEST_ASSERT(istype(hit_by, /obj/item/projectile/temp/basilisk), "The watcher shot something else than its frost blast")
 	controller.CancelActions()
 	qdel(recorder)
+	// The frost blast leaves the victim in severe hypothermia (AquilaMed 5), which knocks it out now and then: an unconscious
+	// victim does not look at the watcher, so the gaze below would miss it at random
+	victim.bodytemperature = BODYTEMP_NORMAL
 
 	// The gaze, once the watcher has kept its target for a while
 	controller.set_blackboard_key(BB_BASIC_MOB_CURRENT_TARGET, victim)

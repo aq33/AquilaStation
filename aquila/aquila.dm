@@ -60,6 +60,7 @@
 #include "code\__DEFINES\traits.dm"
 #include "code\__DEFINES\tutorial.dm"
 #include "code\__DEFINES\uplink.dm"
+#include "code\__DEFINES\species_grod.dm"
 #include "code\__DEFINES\vampires.dm"
 #include "code\__DEFINES\wiremod_compat.dm"
 #include "code\__DEFINES\wires.dm"
@@ -689,6 +690,7 @@
 #include "code\modules\client\preferences.dm"
 #include "code\modules\client\preferences_toggles.dm"
 #include "code\modules\client\preferences_menu\preference_entry.dm"
+#include "code\modules\client\preferences_menu\display_names_pl.dm"
 #include "code\modules\client\preferences_menu\entries_character.dm"
 #include "code\modules\client\preferences_menu\entries_player.dm"
 #include "code\modules\client\preferences_menu\middleware.dm"
@@ -896,6 +898,7 @@
 #include "code\modules\mob\dead\new_player\lobby_menu.dm"
 #include "code\modules\mob\dead\new_player\lobby_hud.dm"
 #include "code\modules\mob\dead\new_player\sprite_accessories.dm"
+#include "code\modules\mob\dead\new_player\sprite_accessories_extra.dm"
 #include "code\modules\mob\dead\observer\haunt.dm"
 #include "code\modules\mob\dead\observer\observer.dm"
 #include "code\modules\mob\dead\observer\orbit.dm"
@@ -944,6 +947,10 @@
 #include "code\modules\mob\living\carbon\human\species_types\skeletons.dm"
 #include "code\modules\mob\living\carbon\human\species_types\snail.dm"
 #include "code\modules\mob\living\carbon\human\species_types\squidpeople.dm"
+#include "code\modules\mob\living\carbon\human\species_types\grod.dm"
+#include "code\modules\mob\living\carbon\human\species_types\grod_crown.dm"
+#include "code\modules\mob\living\carbon\human\species_types\grod_stance.dm"
+#include "code\modules\mob\living\carbon\human\species_types\grod_cocoon.dm"
 #include "code\modules\mob\living\carbon\human\species_types\zombies.dm"
 #include "code\modules\mob\living\carbon\monkey\monkey.dm"
 #include "code\modules\mob\living\death.dm"
@@ -1683,6 +1690,7 @@
 #include "code\modules\cargo\orderconsole.dm"
 #include "code\modules\mob\living\silicon\robot\robot_movement.dm"
 #include "code\modules\mob\voice.dm"
+#include "code\modules\mob\voice_goon.dm"
 #include "code\modules\mob\voice_muffled_sounds.dm"
 #include "code\modules\modular_computers\hardware\printer.dm"
 #include "code\modules\detectivework\access_log.dm"
@@ -2675,6 +2683,8 @@
 #include "code\modules\unit_tests\aquila_ghost_polls.dm"
 #include "code\modules\unit_tests\aquila_gq_lights.dm"
 #include "code\modules\unit_tests\aquila_gun_fire_without_params.dm"
+#include "code\modules\unit_tests\aquila_speech_voices.dm"
+#include "code\modules\unit_tests\aquila_extra_hair.dm"
 #include "code\modules\unit_tests\aquila_grenade_destroyed.dm"
 #include "code\modules\unit_tests\aquila_drobiazgi_1711.dm"
 #include "code\modules\unit_tests\aquila_he_pipe_no_pipeline.dm"
@@ -2823,6 +2833,8 @@
 #include "code\modules\unit_tests\weighted_rotation.dm"
 #include "code\modules\unit_tests\window_singularity_pull.dm"
 #include "code\modules\vehicles\ridden.dm"
+#include "code\modules\unit_tests\aquila_rasy_grod.dm"
+#include "code\modules\unit_tests\aquila_pr655_review_fixes.dm"
 // BOTY: testy
 #include "code\modules\unit_tests\aquila_basic_bots.dm"
 #endif
@@ -2856,6 +2868,64 @@
 #include "code\modules\test_chamber\kits\pr_610_zbiorczy_1011.dm"
 #include "code\modules\test_chamber\kits\pr_637_tlumacz_na_zywo.dm"
 #include "code\modules\test_chamber\kits\pr_654_drobiazgi_1711.dm"
+#include "code\modules\test_chamber\kits\pr_655_grod.dm"
+
+// Rasy z innych kodów (okno postaci, 17.11.2026): Mięsoczłowiek z Fulpa
+#include "code\__DEFINES\species_fulp.dm"
+#include "code\modules\mob\living\carbon\human\species_types\beefman.dm"
+#include "code\modules\mob\living\carbon\human\species_types\beefman_clothing.dm"
+#include "code\modules\mob\living\carbon\human\species_types\beefman_phobetor.dm"
+#include "code\modules\mob\living\carbon\human\species_types\beefman_preferences.dm"
+// Psyfoza z BeeStation-Hornet
+#include "code\__DEFINES\species_bee.dm"
+#include "code\modules\mob\living\carbon\human\species_types\bee_features.dm"
+#include "code\modules\mob\living\carbon\human\species_types\psyphoza.dm"
+#include "code\modules\client\preferences_menu\entries_species_bee.dm"
+// Mops i Żaba z Goonstation (ciało przełożone na nasz szablon)
+#include "code\__DEFINES\species_goon.dm"
+#include "code\modules\mob\living\carbon\human\species_types\goon_species.dm"
+#include "code\modules\mob\living\carbon\human\species_types\pug.dm"
+#include "code\modules\mob\living\carbon\human\species_types\amphibian.dm"
+// Akwarianin: nasza rasa, ryba w kloszu z wodą na mechanicznym pancerzu
+#include "code\__DEFINES\species_ryba.dm"
+#include "code\modules\mob\living\carbon\human\species_types\aquarian.dm"
+#include "code\modules\mob\living\carbon\human\limb_clipping.dm"
+#ifdef UNIT_TESTS
+#include "code\modules\unit_tests\aquila_rasy_ryba.dm"
+#include "code\modules\unit_tests\aquila_limb_clipping.dm"
+#include "code\modules\unit_tests\aquila_rasy_goon.dm"
+#include "code\modules\unit_tests\aquila_rasy_fulp.dm"
+#include "code\modules\unit_tests\aquila_rasy_bee.dm"
+#endif
+
+// Markingi na kończynach (okno postaci, 17.11.2026): po prosthetic_item i voidwalker_traumas, żeby voidwalker nie przebarwiał markingów
+#include "code\modules\mob\living\carbon\human\body_markings\body_markings.dm"
+#include "code\modules\mob\living\carbon\human\body_markings\body_markings_extra.dm"
+#include "code\modules\mob\living\carbon\human\body_markings\body_markings_prefs.dm"
+#ifdef UNIT_TESTS
+#include "code\modules\unit_tests\aquila_body_markings.dm"
+#endif
+
+// Quirki z innych kodów (okno postaci, 17.11.2026): na końcu, bo nadpisują procki modułów dołączonych wyżej (pollution, higiena, medycyna)
+#include "code\datums\traits\extra\nastroj_wspolne.dm"
+#include "code\datums\traits\extra\nastroj_fobie.dm"
+#include "code\datums\traits\extra\nastroj_gracz.dm"
+#include "code\datums\traits\extra\nastroj_fani.dm"
+#include "code\datums\traits\extra\nastroj_plakaty.dm"
+#include "code\datums\traits\extra\nastroj_przeklety.dm"
+#include "code\datums\traits\extra\nastroj_cialo.dm"
+#include "code\datums\traits\extra\nastroj_ogien.dm"
+#include "code\datums\traits\extra\nastroj_charakter.dm"
+#include "code\datums\traits\extra\cialo.dm"
+#include "code\datums\traits\extra\zmysly.dm"
+#ifdef UNIT_TESTS
+#include "code\modules\unit_tests\aquila_quirks_extra_nastroj.dm"
+#include "code\modules\unit_tests\aquila_quirks_extra_cialo.dm"
+#include "code\modules\unit_tests\aquila_quirks_extra_zmysly.dm"
+#endif
+
+// Komora testowa okna postaci (zestaw używa ras i przedmiotów z modułów wyżej)
+#include "code\modules\test_chamber\kits\pr_655_okno_postaci.dm"
 
 // MECHY: system mechów na /obj/mecha (sloty, wymienne części, overclock z czasem odnowienia, kierunkowy pancerz, broń wręcz,
 // amunicja, konwersje, zakup w cargo, warsztat, zdalne sterowanie, zrzut z orbity, dwa miejsca), nowe podwozia, skiny i wyposażenie
