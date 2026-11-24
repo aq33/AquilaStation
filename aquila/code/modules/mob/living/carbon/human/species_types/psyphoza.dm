@@ -8,7 +8,8 @@
 #define PSYPHOZA_SENSE_SCALE 2.28
 
 /datum/species/psyphoza
-	name = "\improper Psyfoza"
+	name = "\improper Borowik"
+	goon_voice = "borowik"
 	id = SPECIES_PSYPHOZA
 	sexes = FALSE
 	default_color = "FFFFFF" // kapelusz ma własne kolory, kolor mutanta je mnoży
@@ -68,23 +69,23 @@ GLOBAL_LIST_INIT(psyphoza_last_names, splittext(trim(file2text('aquila/strings/n
 	bee_add_feature_overlays(H, list(FEATURE_PSYPHOZA_CAP), forced_colour)
 
 /datum/species/psyphoza/get_species_description()
-	return "Psyfozy to pozazmysłowy, a zarazem niedozmysłowy gatunek grzybowych humanoidów, \
+	return "Borowiki to pozazmysłowy, a zarazem niedozmysłowy gatunek grzybowych humanoidów, \
 		znany z odporności na sztuczki magiczne oparte na zasłanianiu i na zręczność rąk."
 
 /datum/species/psyphoza/get_species_lore()
 	return list(
-		"Psyfozy, żywy dowód poczucia humoru matki natury, wykształciły potężne i mistyczne zdolności psychiczne, \
+		"Borowiki, żywy dowód poczucia humoru matki natury, wykształciły potężne i mistyczne zdolności psychiczne, \
 			które niemal całkowicie niweczy fakt, że są zupełnie ślepe i w poruszaniu się po otoczeniu \
 			polegają wyłącznie na swoich zdolnościach psychicznych.",
-		"Kultura psyfoz jest głęboko zakorzeniona w przesądach, mistycyzmie i okultyzmie. Wierzą, \
+		"Kultura borowików jest głęboko zakorzeniona w przesądach, mistycyzmie i okultyzmie. Wierzą, \
 			że kształt kapelusza głęboko wpływa na bieg życia, a jego rozmiar, barwa i kształt decydują o tym, \
 			ile szczęścia lub pecha ich spotka.",
-		"Niefortunny przesąd, że „mięso” i „krew” psyfoz zawierają potężne psychodeliki, sprawił, że wiele z nich \
+		"Niefortunny przesąd, że „mięso” i „krew” borowików zawierają potężne psychodeliki, sprawił, że wiele z nich \
 			stało się celem polowań bogatych ekscentryków, którzy chcą skosztować ich ciała i sami poznać prawdę. \
-			Na nieszczęście dla psyfoz ten przesąd jest całkowicie prawdziwy...",
-		"Choć większość psyfoz porzuciła najbardziej zabobonne idee przodków, niektórzy członkowie niższych kast \
+			Na nieszczęście dla borowików ten przesąd jest całkowicie prawdziwy...",
+		"Choć większość borowików porzuciła najbardziej zabobonne idee przodków, niektórzy członkowie niższych kast \
 			wciąż kurczowo się ich trzymają. Te wierzenia mocno wpływają na ich kulturę, przez co zachowanie \
-			typowych psyfoz i niższych kast bardzo się różni.",
+			typowych borowików i niższych kast bardzo się różni.",
 	)
 
 /datum/species/psyphoza/create_pref_unique_perks()
@@ -93,19 +94,19 @@ GLOBAL_LIST_INIT(psyphoza_last_names, splittext(trim(file2text('aquila/strings/n
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = "lightbulb",
 			SPECIES_PERK_NAME = "Psychika",
-			SPECIES_PERK_DESC = "Psyfozy mają zdolności psychiczne i wyczuwają to, czego inni nie dostrzegą.",
+			SPECIES_PERK_DESC = "Borowiki mają zdolności psychiczne i wyczuwają to, czego inni nie dostrzegą.",
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = "biohazard",
 			SPECIES_PERK_NAME = "Współzależność od narkotyków",
-			SPECIES_PERK_DESC = "Każdy przyjęty narkotyk uzupełnia krew psyfozy.",
+			SPECIES_PERK_DESC = "Każdy przyjęty narkotyk uzupełnia krew borowika.",
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 			SPECIES_PERK_ICON = "eye",
 			SPECIES_PERK_NAME = "Ślepota",
-			SPECIES_PERK_DESC = "Psyfozy są ślepe i poza najbliższym otoczeniem widzą tylko to, co wyczują zmysłem psychicznym.",
+			SPECIES_PERK_DESC = "Borowiki są ślepe i poza najbliższym otoczeniem widzą tylko to, co wyczują zmysłem psychicznym.",
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
@@ -163,7 +164,7 @@ GLOBAL_LIST_INIT(psyphoza_last_names, splittext(trim(file2text('aquila/strings/n
 // Organy
 
 /obj/item/organ/brain/psyphoza
-	name = "mózg psyfozy"
+	name = "mózg borowika"
 	desc = "Bulgocze energią psychiczną... nie, czekaj... to krew."
 	color = "#ff00ee"
 
@@ -209,7 +210,7 @@ GLOBAL_LIST_INIT(psyphoza_last_names, splittext(trim(file2text('aquila/strings/n
 
 /// Oczy psyfozy: właściciel jest ślepy, ale dostaje zmysł psychiczny
 /obj/item/organ/eyes/psyphoza
-	name = "oczy psyfozy"
+	name = "oczy borowika"
 	desc = "Przewodniki energii psychicznej, ledwie przypominające oczy."
 	icon = 'aquila/icons/mob/species/psyphoza/organs.dmi'
 	icon_state = "psyphoza_eyeballs"

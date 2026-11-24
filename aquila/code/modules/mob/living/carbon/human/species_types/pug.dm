@@ -21,12 +21,12 @@ GLOBAL_LIST_INIT(pug_coats, list(
 ))
 
 /datum/species/pug
-	name = "\improper Mops"
+	name = "\improper Fion"
 	id = SPECIES_PUG
 	species_traits = list(EYECOLOR)
 	inherent_traits = list(TRAIT_FAILED_SPRINT_FLOP)
 	inherent_biotypes = list(MOB_ORGANIC, MOB_HUMANOID)
-	default_features = list(FEATURE_PUG_COAT = "fawn", "body_size" = "Normal")
+	default_features = list(FEATURE_PUG_COAT = "chocolate", "body_size" = "Normal")
 	use_skintones = FALSE
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN | SLIME_EXTRACT
 	mutanttongue = /obj/item/organ/tongue/pug
@@ -131,7 +131,7 @@ GLOBAL_LIST_INIT(pug_coats, list(
 // Mowa
 
 /obj/item/organ/tongue/pug
-	name = "język mopsa"
+	name = "język Fiona"
 	desc = "Różowy, wiecznie wywieszony psi jęzor."
 	say_mod = "szczeka"
 	modifies_speech = TRUE
@@ -373,7 +373,7 @@ GLOBAL_LIST_INIT(pug_scents, list(
 			SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
 			SPECIES_PERK_ICON = "cut",
 			SPECIES_PERK_NAME = "Bez fryzury",
-			SPECIES_PERK_DESC = "Mopsy nie mają włosów ani zarostu, tylko krótką sierść w jednym z czterech umaszczeń.",
+			SPECIES_PERK_DESC = "Fiony nie mają włosów ani zarostu, tylko krótką sierść w jednym z czterech umaszczeń.",
 		),
 	)
 

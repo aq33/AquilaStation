@@ -9,7 +9,7 @@
 	2) Mowa: powiedz coś głosem z Goona, zadaj pytanie i krzyknij → trzy różne nagrania. W Ustawieniach gry wyłącz „Dźwięki mowy postaci” → cisza, także nasze „hmmm”. \
 	3) Krzyk i śmiech jako felinid, ćma, jaszczur, eteryk, oozeling, IPC i człowiek; pierdnięcie → nowe dźwięki. Mops szczeka, Żaba rechocze, Akwarianin bulgocze. \
 	4) Rasy: wejdź w ciało (admin: Aghost → posiądź) i sprawdź ubrania na Mopsie i Żabie (kombinezon, hełm, maska, rękawice, buty), \
-	nakładki Psyfozy (widzenie psychiczne), kończynę Mięsoczłowieka po odcięciu. \
+	nakładki Borowika (widzenie psychiczne), kończynę Mięsoczłowieka po odcięciu. \
 	5) Akwarianin: uderzaj go w głowę → woda w kloszu ubywa, bez wody ryba się dusi; dolej wodę zlewką; nakarm karmą dla ryb albo wlej zmielone jedzenie (blender w kuchni). \
 	Bij w tułów → wgnieciony pancerz przecieka wodą, a spawarka zatrzymuje wyciek. \
 	Zniszcz pancerz (gib) → zostaje klosz z rybą, włóż go do MMI; zestaw pancerza złóż w dłoni. \

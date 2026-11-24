@@ -4539,9 +4539,9 @@ Nazwy obszarów są w większości przetłumaczone. Nowe nazwy budujemy z tych k
 | Sleepless Dreamer | Bezsenny śniący | m; Mięsoczłowiek |
 | Space Russian | kosmiczny rosyjski | m; język |
 | sash | szarfa | ż; ubiór Mięsoczłowieka |
-| Psyphoza | Psyfoza | ż; rasa (BeeStation) |
+| Psyphoza | Borowik | m; rasa (BeeStation), grzybowa; dawniej Psyfoza |
 | Diona / nymph / gestalt | Diona / nimfa / gestalt | ż / ż / m; rasa (BeeStation), l.mn. diony |
-| Sonus | Sonus | m; język Psyfoz |
+| Sonus | Sonus | m; język borowików |
 | Pug (rasa) | Mops | m; rasa (Goonstation) |
 | Amphibian (rasa) | Żaba | ż; rasa (Goonstation) |
 | Sticky Tongue | Lepki język | m; akcja Żaby |
