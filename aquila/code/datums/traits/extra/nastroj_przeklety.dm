@@ -27,7 +27,13 @@
 	if(istype(cursed.buckled, /obj/machinery/stasis))
 		return
 	omen.death_explode(cursed)
-	cursed.spread_bodyparts()
+	// Jak w tg (skip_head): głowa z mózgiem zostaje, żeby dało się wskrzesić
+	var/mob/living/carbon/cursed_carbon = cursed
+	for(var/obj/item/bodypart/limb as anything in cursed_carbon.bodyparts)
+		if(limb.body_zone == BODY_ZONE_HEAD || limb.body_zone == BODY_ZONE_CHEST)
+			continue
+		limb.drop_limb()
+		limb.throw_at(get_edge_target_turf(cursed, pick(GLOB.alldirs)), rand(1, 3), 5)
 	cursed.spawn_gibs()
 
 /**

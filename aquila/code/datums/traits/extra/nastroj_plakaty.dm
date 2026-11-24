@@ -71,5 +71,6 @@
 /datum/mood_event/poster_mood
 	description = "<span class='nicegreen'>Ten plakat naprawdę mnie motywuje!</span>\n"
 	mood_change = 2
+	timeout = 5 MINUTES
 
 #undef AQ_POSTER_MOOD_CAT

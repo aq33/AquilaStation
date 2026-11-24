@@ -194,7 +194,9 @@
 /// Unik przed przytuleniem, głaskaniem i uściskiem dłoni (dawniej osobna cecha Przestrzeń Osobista z VOREStation).
 /// Nie da się uniknąć, gdy leżysz, jesteś skrępowany albo płoniesz: wtedy dotyk dochodzi do skutku i psuje humor.
 /mob/living/carbon/human/help_shake_act(mob/living/carbon/M)
-	if(M != src && HAS_TRAIT(src, TRAIT_BADTOUCH) && stat == CONSCIOUS && (mobility_flags & MOBILITY_STAND) && !restrained() && !on_fire)
+	var/obj/item/bodypart/touched = get_bodypart(check_zone(M.zone_selected))
+	// Rany (np. nastawianie zwichnięcia) nie są przytulaniem: lekarz musi móc pomóc
+	if(M != src && HAS_TRAIT(src, TRAIT_BADTOUCH) && stat == CONSCIOUS && (mobility_flags & MOBILITY_STAND) && !restrained() && !on_fire && !length(touched?.wounds))
 		visible_message("<span class='notice'>[src] zręcznie unika dotyku [M].</span>", \
 			"<span class='notice'>Zręcznie unikasz dotyku [M].</span>")
 		return
@@ -361,6 +363,8 @@
 	var/list/stealables = list()
 	for(var/obj/item/potential_stealable in oview(1, owner))
 		if(!isturf(potential_stealable.loc) || potential_stealable.w_class >= WEIGHT_CLASS_BULKY)
+			continue
+		if(!owner.CanReach(potential_stealable)) // oview widzi przez szybę i okienko z drzwiczkami
 			continue
 		if(potential_stealable.anchored || !(potential_stealable.interaction_flags_item & INTERACT_ITEM_ATTACK_HAND_PICKUP))
 			continue

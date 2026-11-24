@@ -23,6 +23,7 @@
 		list("Anosmia", "Czuły Nos"),
 		list("Brudas", "Czyścioszek"),
 		list("Okaleczone Oko", "Ślepota"),
+		list("Okaleczone Oko", "Krótkowzroczny"), // ta sama krótkowzroczność, okulary leczą obie
 	)
 
 // ---------------------------------------------------------------------------
@@ -56,6 +57,18 @@
 		wig.hair_style = old_hair
 		wig.update_icon()
 	H.equip_in_one_of_slots(wig, list("head" = ITEM_SLOT_HEAD, "backpack" = ITEM_SLOT_BACKPACK, "hands" = ITEM_SLOT_HANDS), qdel_on_fail = FALSE)
+
+/// Klonowanie przywraca fryzurę z karty (set_cloned_appearance) już po nadaniu cechy, więc golimy klona na nowo
+/datum/quirk/bald/on_clone(data)
+	addtimer(CALLBACK(src, PROC_REF(shave_clone)), 0)
+
+/datum/quirk/bald/proc/shave_clone()
+	var/mob/living/carbon/human/H = quirk_holder
+	if(QDELETED(H) || H.hair_style == "Bald")
+		return
+	old_hair = H.hair_style
+	H.hair_style = "Bald"
+	H.update_hair()
 
 /datum/quirk/bald/remove()
 	var/mob/living/carbon/human/H = quirk_holder
@@ -389,17 +402,25 @@
 /datum/quirk/fluoride_stare/on_process(delta_time)
 	var/mob/living/carbon/C = quirk_holder
 	var/obj/item/organ/eyes/E = C.getorganslot(ORGAN_SLOT_EYES)
-	if(!E || E.status == ORGAN_ROBOTIC)
+	if(!E)
 		last_wet = world.time
 		return
+	// Robotyczne oczy (IPC, proteza) bez osłon nie wysychają, ale zarastają kurzem i też trzeba je przemywać
+	var/robotic = E.status == ORGAN_ROBOTIC
 	if(world.time > last_wet + FLUORIDE_STARE_INTERVAL + FLUORIDE_STARE_GRACE)
 		if(!warned_dying)
-			to_chat(C, "<span class='userdanger'>Twoje oczy wysychają! Nawilż je solą fizjologiczną!</span>")
+			if(robotic)
+				to_chat(C, "<span class='userdanger'>Kurz zatyka twoje sensory optyczne! Przemyj je solą fizjologiczną!</span>")
+			else
+				to_chat(C, "<span class='userdanger'>Twoje oczy wysychają! Nawilż je solą fizjologiczną!</span>")
 			warned_dying = TRUE
 		E.applyOrganDamage(0.5 * delta_time)
 	else if(world.time > last_wet + FLUORIDE_STARE_INTERVAL)
 		if(!warned_grace)
-			to_chat(C, "<span class='danger'>Oczy zaczynają cię piec, musisz je nawilżyć!</span>")
+			if(robotic)
+				to_chat(C, "<span class='danger'>Sensory optyczne zaczynają się brudzić, musisz je przemyć!</span>")
+			else
+				to_chat(C, "<span class='danger'>Oczy zaczynają cię piec, musisz je nawilżyć!</span>")
 			warned_grace = TRUE
 
 /datum/quirk/fluoride_stare/proc/on_revive()
@@ -703,7 +724,9 @@ GLOBAL_LIST_INIT(aq_quirk_pet_types, list(
 	if(!ishuman(target))
 		return
 	var/mob/living/carbon/human/human_target = target
-	var/new_grad_style = tgui_input_list(user, "Wybierz wzór koloru", "Farba do włosów", GLOB.hair_gradients_list)
+	// Gracz widzi polskie nazwy wzorów, kod porównuje klucze z listy (np. "None")
+	var/picked_style = tgui_input_list(user, "Wybierz wzór koloru", "Farba do włosów", accessory_choices_pl(GLOB.hair_gradients_list))
+	var/new_grad_style = accessory_key_pl(picked_style, GLOB.hair_gradients_list)
 	if(isnull(new_grad_style) || QDELETED(src) || !user.canUseTopic(src, BE_CLOSE))
 		return
 	var/new_grad_color = tgui_color_picker(user, "Wybierz drugi kolor włosów:", "Farba do włosów", "#[human_target.gradient_color]")

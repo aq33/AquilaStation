@@ -49,7 +49,10 @@
 
 /datum/quirk/transhumanist/on_spawn()
 	var/mob/living/carbon/human/human_holder = quirk_holder
-	var/limb_slot = pick(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
+	var/list/limb_slots = list(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM)
+	if(!isgrod(human_holder)) // odnóża Groda to jego druga para rąk, ludzka proteza nogi by ją zabrała
+		limb_slots += list(BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
+	var/limb_slot = pick(limb_slots)
 	var/obj/item/bodypart/old_part = human_holder.get_bodypart(limb_slot)
 	if(!old_part || (old_part.bodytype & BODYTYPE_ROBOTIC))
 		return

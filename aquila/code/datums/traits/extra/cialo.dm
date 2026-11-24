@@ -1,4 +1,6 @@
 // AQUILA - cechy postaci z innych kodów, grupa „ciało”.
+/// Mob napił się z napoju (food/drinks): (obj/item/drink, foodtype)
+#define COMSIG_AQ_LIVING_DRINK "aq_living_drink"
 // Źródła: tgstation code/datums/quirks/ (większość), Skyrat modular_skyrat/modules/quirks/ (Fragility, Hardened Soles),
 // Monkestation (Hardened Soles), Nova (Hungry), Yogstation code/datums/traits/negative.dm (Hemophiliac).
 // Wartości są przeliczone na naszą skalę (tg / 4, zaokrąglone; najsilniejsza zaleta Bee ma 2).
@@ -83,6 +85,21 @@
 		allergies += path
 		var/datum/reagent/chem = GLOB.chemical_reagents_list[path]
 		chem_names += chem.name
+	allergy_string = chem_names.Join(", ")
+	medical_record_text = "Układ odpornościowy pacjenta gwałtownie reaguje na: [allergy_string]."
+
+/datum/quirk/allergic/clone_data()
+	return allergies.Copy()
+
+/datum/quirk/allergic/on_clone(data)
+	if(!length(data))
+		return
+	allergies = data
+	var/list/chem_names = list()
+	for(var/path in allergies)
+		var/datum/reagent/chem = GLOB.chemical_reagents_list[path]
+		if(chem?.name)
+			chem_names += chem.name
 	allergy_string = chem_names.Join(", ")
 	medical_record_text = "Układ odpornościowy pacjenta gwałtownie reaguje na: [allergy_string]."
 
@@ -236,9 +253,15 @@
 	gain_text = null // trauma
 	lose_text = null
 	medical_record_text = "Pacjent ma nieuleczalne upośledzenie funkcji ruchowych połowy ciała."
+	/// Porażona strona: "left" albo "right"
+	var/side
 
 /datum/quirk/hemiplegic/add()
-	var/side = pick("left", "right")
+	side = pick("left", "right")
+	apply_side()
+
+/// Nakłada traumę porażenia na wybraną stronę
+/datum/quirk/hemiplegic/proc/apply_side()
 	medical_record_text = "Pacjent ma nieuleczalne upośledzenie funkcji ruchowych [side == "left" ? "lewej" : "prawej"] połowy ciała."
 	var/mob/living/carbon/C = quirk_holder
 	C.gain_trauma(new /datum/brain_trauma/severe/paralysis/aq_hemiplegic(side), TRAUMA_RESILIENCE_ABSOLUTE)
@@ -247,6 +270,17 @@
 	var/mob/living/carbon/C = quirk_holder
 	if(!QDELETED(C))
 		C.cure_trauma_type(/datum/brain_trauma/severe/paralysis/aq_hemiplegic, TRAUMA_RESILIENCE_ABSOLUTE)
+
+/datum/quirk/hemiplegic/clone_data()
+	return side
+
+/// Klon ma porażoną tę samą stronę co oryginał
+/datum/quirk/hemiplegic/on_clone(data)
+	if(!(data in list("left", "right")) || data == side)
+		return
+	remove()
+	side = data
+	apply_side()
 
 // ---------------------------------------------------------------------------
 // Alergia pokarmowa (tg: Food Allergy). Bez wyboru alergenu w oknie postaci i bez nieśmiertelnika. tg zaraża
@@ -280,13 +314,29 @@
 		allergy_name = pick(possible_allergies)
 		target_foodtypes = possible_allergies[allergy_name]
 	medical_record_text = "Układ odpornościowy pacjenta gwałtownie reaguje na: [allergy_name]."
-	RegisterSignal(quirk_holder, COMSIG_LIVING_EAT_FOOD, PROC_REF(on_eat))
+	RegisterSignal(quirk_holder, list(COMSIG_LIVING_EAT_FOOD, COMSIG_AQ_LIVING_DRINK), PROC_REF(on_eat))
 
 /datum/quirk/food_allergic/remove()
-	UnregisterSignal(quirk_holder, COMSIG_LIVING_EAT_FOOD)
+	UnregisterSignal(quirk_holder, list(COMSIG_LIVING_EAT_FOOD, COMSIG_AQ_LIVING_DRINK))
+
+/datum/quirk/food_allergic/clone_data()
+	return allergy_name
+
+/datum/quirk/food_allergic/on_clone(data)
+	if(!(data in possible_allergies))
+		return
+	allergy_name = data
+	target_foodtypes = possible_allergies[allergy_name]
+	medical_record_text = "Układ odpornościowy pacjenta gwałtownie reaguje na: [allergy_name]."
 
 /datum/quirk/food_allergic/post_add()
 	to_chat(quirk_holder, "<span class='info'>Masz alergię na: [allergy_name]. Uważaj, co jesz!</span>")
+
+/// Picie z napoju też uczula (sygnał jedzenia wysyła tylko gryzienie jedzenia)
+/obj/item/reagent_containers/food/drinks/checkLiked(fraction, mob/M)
+	. = ..()
+	if(isliving(M))
+		SEND_SIGNAL(M, COMSIG_AQ_LIVING_DRINK, src, foodtype)
 
 /datum/quirk/food_allergic/proc/on_eat(datum/source, atom/food, foodtypes)
 	SIGNAL_HANDLER
@@ -305,7 +355,8 @@
 
 // ---------------------------------------------------------------------------
 // Nieczuły na ból (tg: Numb). TRAIT_ANALGESIA wyłącza ból z medycyny (aquila/code/modules/pain/), a z nim
-// czerwoną winietę obrażeń. Bez fałszywie zdrowego HUD-u z tg (nasz hal_screwyhud zerują inne efekty).
+// czerwoną winietę obrażeń. Jak w tg wskaźnik i ludzik zdrowia zawsze pokazują zdrowie (bez hal_screwyhud,
+// który zerują inne efekty), więc o ranach dowiadujesz się dopiero od lekarza albo z wyglądu.
 
 /datum/quirk/numb
 	name = "Nieczuły na ból"
@@ -316,6 +367,17 @@
 	gain_text = "<span class='notice'>Czujesz, jak twoje ciało drętwieje.</span>"
 	lose_text = "<span class='notice'>Drętwienie ustępuje.</span>"
 	medical_record_text = "Pacjent ma wrodzoną niedoczulicę i nie odczuwa bólu."
+
+/mob/living/carbon/human/update_health_hud()
+	. = ..()
+	if(!client || !hud_used || stat == DEAD || !has_quirk(/datum/quirk/numb))
+		return
+	if(hud_used.healths)
+		hud_used.healths.icon_state = "health0"
+	if(hud_used.healthdoll)
+		hud_used.healthdoll.cut_overlays()
+		for(var/missing_zone in get_missing_limbs()) // brak kończyny widać i tak
+			hud_used.healthdoll.add_overlay(mutable_appearance('icons/mob/screen_gen.dmi', "[missing_zone]6"))
 
 // ---------------------------------------------------------------------------
 // Tanie organy (tg: surplus organs) dla Protetycznego organu i Blaszanego drwala. Słabsze i bez wybuchu przy
@@ -348,6 +410,14 @@
 	maxHealth = STANDARD_ORGAN_THRESHOLD * 0.35
 	metabolism_efficiency = 0.025
 
+/// Organ slot -> zwykły organ człowieka; organ rasy innego typu (płuca plazmaluda, bateria eteryka) zostaje
+GLOBAL_LIST_INIT(aq_surplus_plain_organs, list(
+	ORGAN_SLOT_HEART = /obj/item/organ/heart,
+	ORGAN_SLOT_LUNGS = /obj/item/organ/lungs,
+	ORGAN_SLOT_LIVER = /obj/item/organ/liver,
+	ORGAN_SLOT_STOMACH = /obj/item/organ/stomach,
+))
+
 /// Organ slot -> surplus organ type, in the tg order
 GLOBAL_LIST_INIT(aq_surplus_organs, list(
 	ORGAN_SLOT_HEART = /obj/item/organ/heart/cybernetic/aq_surplus,
@@ -362,6 +432,8 @@ GLOBAL_LIST_INIT(aq_surplus_organs, list(
 	for(var/slot in GLOB.aq_surplus_organs)
 		var/obj/item/organ/old_organ = H.getorganslot(slot)
 		if(!old_organ || old_organ.status != ORGAN_ORGANIC)
+			continue
+		if(old_organ.type != GLOB.aq_surplus_plain_organs[slot]) // organ właściwy rasie robi coś, czego tani organ nie umie
 			continue
 		if(slot == ORGAN_SLOT_HEART && ((NOBLOOD in H.dna?.species?.species_traits) || HAS_TRAIT(H, TRAIT_NO_BLOOD)))
 			continue
@@ -452,6 +524,8 @@ GLOBAL_LIST_INIT(aq_surplus_organs, list(
 		var/obj/item/bodypart/old_part = H.get_bodypart(zone)
 		if(!old_part)
 			continue
+		if(old_part.held_index && (zone == BODY_ZONE_L_LEG || zone == BODY_ZONE_R_LEG))
+			continue // odnóża Groda to jego druga para rąk, ludzka proteza nogi by ją zabrała
 		var/limb_type = surplus_limbs[zone]
 		var/obj/item/bodypart/prosthetic = new limb_type(H)
 		// Jak w naszej Protezie (NSV13): proteza nogi palcochodnej też jest palcochodna
@@ -477,7 +551,7 @@ GLOBAL_LIST_INIT(aq_surplus_organs, list(
 	spread_text = "Brak"
 	spread_flags = DISEASE_SPREAD_NON_CONTAGIOUS
 	disease_flags = NONE
-	infectable_biotypes = list(MOB_ORGANIC, MOB_MINERAL, MOB_ROBOTIC)
+	infectable_biotypes = list(MOB_ORGANIC, MOB_INORGANIC, MOB_ROBOTIC, MOB_UNDEAD) // tg: MOB_MINERAL, u nas pusty stub
 	process_dead = TRUE
 	stage_prob = 0.5 // tg: 0,25 na sekundę, nasz Life co 2 s
 	cure_text = "Łagodzi ją sansufentanyl."
@@ -786,7 +860,7 @@ GLOBAL_LIST_INIT(aq_surplus_organs, list(
 
 /datum/emote/living/deathgasp/run_emote(mob/user, params, type_override, intentional)
 	. = ..()
-	if(!. || !isliving(user))
+	if(!. || !intentional || !isliving(user)) // prawdziwa śmierć i Głos Boga wołają emotkę same
 		return
 	var/mob/living/living_user = user
 	if(living_user.stat == DEAD || !living_user.has_quirk(/datum/quirk/death_mimicry))

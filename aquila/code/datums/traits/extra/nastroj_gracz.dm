@@ -4,7 +4,7 @@
 #define AQ_GAMING_WITHDRAWAL_TIME (15 MINUTES)
 
 /datum/quirk/gamer
-	name = "Gracz"
+	name = "Zapalony gracz"
 	desc = "Jesteś zapalonym graczem i musisz grać. Kochasz wygrywać i nienawidzisz przegrywać. Smakuje ci tylko jedzenie dla graczy."
 	icon = "gamepad"
 	value = 0

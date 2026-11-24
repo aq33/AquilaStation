@@ -127,3 +127,32 @@
 			if(burning_obj.resistance_flags & ON_FIRE)
 				fires += thing
 	return fires
+
+// Zamiana ciała (slime person) przenosi cechę bez remove()/add(). Te cechy trzymają sygnały albo mnożniki fizjologii
+// na ciele, więc przy przeniesieniu zdejmujemy je ze starego ciała i zakładamy na nowe.
+GLOBAL_LIST_INIT(aq_quirks_readd_on_transfer, typecacheof(list(
+	/datum/quirk/gamer,
+	/datum/quirk/pyromania,
+	/datum/quirk/bald,
+	/datum/quirk/photophobia,
+	/datum/quirk/throwingarm,
+	/datum/quirk/touchy,
+	/datum/quirk/dirty,
+	/datum/quirk/evil,
+	/datum/quirk/extrovert,
+	/datum/quirk/introvert,
+	/datum/quirk/transhumanist,
+	/datum/quirk/body_purist,
+	/datum/quirk/food_allergic,
+	/datum/quirk/hungry,
+	/datum/quirk/hemophilia,
+	/datum/quirk/fluoride_stare,
+)))
+
+/datum/quirk/transfer_mob(mob/living/to_mob)
+	var/readd = is_type_in_typecache(src, GLOB.aq_quirks_readd_on_transfer)
+	if(readd)
+		remove()
+	. = ..()
+	if(readd)
+		add()

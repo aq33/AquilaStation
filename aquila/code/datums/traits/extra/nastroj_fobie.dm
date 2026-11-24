@@ -41,7 +41,7 @@
 		// istota (+4), więc dokładamy różnicę przed wywołaniem.
 		var/atom/scare
 		if(phobia_type == AQ_PHOBIA_CONFINED)
-			if(!isturf(owner.loc))
+			if(istype(owner.loc, /obj/structure)) // szafka, skrzynia, worek na zwłoki; nie kriokomora ani mech
 				scare = owner.loc
 		else if(owner.on_fire)
 			scare = owner
