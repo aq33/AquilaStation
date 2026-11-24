@@ -98,6 +98,12 @@
 	if(!message || announcing_vox > world.time)
 		return
 
+	// AQ EDIT START - filtr słów IC dla ogłoszeń VOX
+	if(CHAT_FILTER_CHECK(message))
+		to_chat(src, "<span class='warning'>Twoje ogłoszenie zawiera zakazane słowa.</span>")
+		return
+	// AQ EDIT END
+
 	if(incapacitated())
 		return
 
