@@ -255,6 +255,8 @@ GLOBAL_LIST_INIT(grod_accessory_names, list(
 	staminamod = GROD_STAMINAMOD
 	speedmod = GROD_SPEEDMOD
 	species_language_holder = /datum/language_holder/grod
+	goon_voice = "grod"
+	deathsound = 'sound/items/toysqueak2.ogg' // pisk gumowej zabawki
 	offset_features = list(OFFSET_UNIFORM = list(0,0), OFFSET_ID = list(0,0), OFFSET_GLOVES = list(0,0), OFFSET_GLASSES = list(0,0), OFFSET_EARS = list(0,0), OFFSET_SHOES = list(0,0), OFFSET_S_STORE = list(0,0), OFFSET_FACEMASK = list(0,0), OFFSET_HEAD = list(0,0), OFFSET_FACE = list(0,0), OFFSET_BELT = list(0,0), OFFSET_BACK = list(0,0), OFFSET_SUIT = list(0,0), OFFSET_NECK = list(0,0))
 	/// Grod nie ma nóg: z przodu i z tyłu w chodzie ruszają się tylko ręce (walk_animation.dm)
 	walk_animation_legs = FALSE
@@ -523,8 +525,6 @@ GLOBAL_LIST_INIT(grod_state_map, list(
 	"brown_laceups" = "laceups",
 	"clown_shoes" = "clown",
 	// plecaki
-	"satchel-norm" = "backpack",
-	"satchel" = "backpack",
 	"duffel-norm" = "duffel",
 	"duffel" = "duffel",
 	// słuchawki
@@ -583,6 +583,8 @@ GLOBAL_LIST_INIT(grod_type_map, list(
 		return list(file, mapped)
 	if(part == "uniform" && icon_exists(file, "grey")) // każdy kombinezon bez odpowiednika to szara kamizelka
 		return list(file, "grey")
+	if(part == "back" && findtext(state, "satchel") == 1 && icon_exists(file, "satchel-norm")) // torba bez rysunku: zwykła szara
+		return list(file, "satchel-norm")
 	return null
 
 /datum/species/grod/proc/grod_can_wear(obj/item/I, slot)
