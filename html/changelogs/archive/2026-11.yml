@@ -1576,6 +1576,14 @@
   - rscadd: 'Nowa rasa Grod: korona w ciele dużej gąsienicy, pająk-korona przejmujący
       ciała, postawa ruchu i postawa pracy z czterema rękami, kokon przemiany i sadzenie
       korony w tacy hydroponicznej, własne kamizelki i cylindry, język Poh''lan.'
+  - bugfix: Kolejne dawki epinefryny (adrenaliny) w krótkim czasie tłumią ból coraz
+      słabiej, jak obiecuje opis.
+  - bugfix: Kamera wpisuje za sikanie i wypróżnianie się wykroczenie „Załatwianie
+      potrzeby w miejscu publicznym” z prawa kosmicznego.
+  - spellcheck: Okno Dominatora nie wspomina już o wpływach gangu.
+  - bugfix: Przyprawa Maggi doprawia danie jak inne przyprawy.
+  - bugfix: Larwy pąkli można złowić na plaży i w sztormowym morzu planet.
+  - spellcheck: Ręcznie złożony ED-209 i repairbot mają te same nazwy co boty z mapy.
   sh4dow321:
   - tweak: 'Zwykła kupa nie jest już śliska: wdepnięcie brudzi buty i zostawia ślady.
       Ślizgać się można tylko na biegunce.'
