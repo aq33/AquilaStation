@@ -1046,6 +1046,7 @@
 #include "code\modules\planets\planet_landing_view.dm"
 #include "code\modules\planets\planet_landing_ground.dm"
 #include "code\modules\planets\planet_cleanup_fixes.dm"
+#include "code\modules\planets\planet_spacevine_cap.dm"
 #include "code\modules\planets\shiptest_flora\beach.dm"
 #include "code\modules\planets\biomes\beach.dm"
 #include "code\modules\planets\biomes\water.dm"

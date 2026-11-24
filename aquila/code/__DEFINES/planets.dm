@@ -61,3 +61,8 @@
 #define PLANET_BIOME_MEDIUM_HUMIDITY "medium_humidity"
 #define PLANET_BIOME_HIGH_HUMIDITY "high_humidity"
 #define PLANET_BIOME_HIGHEST_HUMIDITY "highest_humidity"
+
+/// Ile pnączy kudzu może mieć jedna kępa na planecie, zanim przestanie się rozrastać (planet_spacevine_cap.dm)
+#define PLANET_SPACEVINE_CLUSTER_CAP 50
+/// Ile pnączy mogą mieć wszystkie kępy razem, zanim żadna na planecie nie rozrośnie się dalej
+#define PLANET_SPACEVINE_GLOBAL_CAP 400
