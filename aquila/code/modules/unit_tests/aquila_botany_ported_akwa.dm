@@ -51,4 +51,12 @@
 		if(leftover != knife && leftover != user && !(leftover in user))
 			qdel(leftover)
 
+/// AQUILA - larwy pąkli mają źródło w grze: łowiska plaży i sztormowego morza (regresja: nic ich nie tworzyło)
+/datum/unit_test/aquila_botany_barnacle_source
+
+/datum/unit_test/aquila_botany_barnacle_source/Run()
+	for(var/preset in list(FISHING_SPOT_PRESET_BEACH, FISHING_SPOT_PRESET_STORMY))
+		var/datum/fish_source/source = GLOB.preset_fish_sources[preset]
+		TEST_ASSERT(source?.fish_table[/obj/item/plant_seeds/preset/barnacle], "Łowisko [preset] nie daje larw pąkli")
+
 #undef TEST_ASSERT
