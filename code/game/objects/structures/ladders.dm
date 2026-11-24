@@ -76,6 +76,8 @@
 		qdel(src)
 
 /obj/structure/ladder/proc/travel(going_up, mob/user, is_ghost, obj/structure/ladder/ladder, needs_do_after=TRUE)
+	if(!ladder) // AQ EDIT - brak drabiny docelowej: forceMove(null) przenosił moba w losowe bezpieczne miejsce (runda 6588)
+		return FALSE
 	var/turf/T = get_turf(ladder)
 	var/atom/movable/AM
 	if(user.pulling)
@@ -97,7 +99,8 @@
 		user.forceMove(T)
 	if(!is_ghost)
 		show_fluff_message(going_up, user)
-		ladder.add_fingerprint(user)
+		if(!QDELETED(ladder)) // AQ EDIT - drabina zniszczona w trakcie wspinaczki
+			ladder.add_fingerprint(user)
 
 
 /obj/structure/ladder/proc/use(mob/user, is_ghost=FALSE)

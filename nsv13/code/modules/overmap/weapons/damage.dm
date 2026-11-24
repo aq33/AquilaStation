@@ -162,8 +162,9 @@ Bullet reactions
 	else if(length(linked_areas))
 		target = pick(linked_areas)
 
-	if(target)
-		var/turf/T = pick(get_area_turfs(target))
+	var/list/target_turfs = target ? get_area_turfs(target) : null // AQ EDIT - obszar bez kafli na tej mapie (runda 6589)
+	if(length(target_turfs))
+		var/turf/T = pick(target_turfs)
 		new /obj/effect/temp_visual/explosion_telegraph(T, damage_amount)
 
 ///Handles the announcements for structure critical.

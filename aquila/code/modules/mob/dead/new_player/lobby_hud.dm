@@ -300,6 +300,8 @@
 
 /atom/movable/screen/aq_lobby/button/MouseEntered(location, control, params)
 	. = ..()
+	if(!lobby) // przycisk zdjęty z ekranu razem z lobby, a klient jeszcze zgłasza ruch myszy
+		return
 	hovered = TRUE
 	update_state()
 	if(shown && enabled)
@@ -307,6 +309,8 @@
 
 /atom/movable/screen/aq_lobby/button/MouseExited(location, control, params)
 	. = ..()
+	if(!lobby)
+		return
 	hovered = FALSE
 	update_state()
 

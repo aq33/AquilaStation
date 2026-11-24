@@ -81,13 +81,7 @@
 			to_chat(M,"<span class='warning'>Czujniki [src] gwałtownie się zmieniają!</span>")
 		update_sensors(new_sensor_mode)
 
-/obj/item/clothing/under/emp_act()
-	. = ..()
-	if(has_sensor > NO_SENSORS)
-		sensor_mode = pick(SENSOR_OFF, SENSOR_OFF, SENSOR_OFF, SENSOR_LIVING, SENSOR_LIVING, SENSOR_VITALS, SENSOR_VITALS, SENSOR_COORDS)
-		if(ismob(loc))
-			var/mob/M = loc
-			to_chat(M,"<span class='warning'>Czujniki [src] gwałtownie się zmieniają!</span>")
+// AQ EDIT - usunięta druga emp_act(): losowała sensor_mode bez update_sensors(), więc noszący zostawał na suit_sensors_list (runda 6589)
 
 /obj/item/clothing/under/equipped(mob/user, slot)
 	..()

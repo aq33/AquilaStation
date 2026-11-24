@@ -19,6 +19,8 @@
 
 // Full override (LEGACY_OVERRIDES.md): restores max_tracking_range from a stored base instead of the value at call time
 /obj/structure/overmap/send_radar_pulse()
+	if(QDELETED(src)) // konsola rozpoznania dalej połączona z usuniętym okrętem (runda 6585)
+		return FALSE
 	if(world.time < last_radar_pulse + RADAR_VISIBILITY_PENALTY)
 		return FALSE
 	if(GLOB.sensor_signature_enabled && ai_controlled && world.time < last_radar_pulse + AI_RADAR_MIN_INTERVAL)
