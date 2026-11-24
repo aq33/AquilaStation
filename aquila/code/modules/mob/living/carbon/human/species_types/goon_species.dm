@@ -63,3 +63,9 @@
 	for(var/part in list("chest", "l_arm", "r_arm", "l_hand", "r_hand", "head"))
 		final_icon.Blend(icon(icon_file, "[state_prefix]_[value]_[part]", SOUTH, 1), ICON_OVERLAY)
 	return aq_pref_head_crop(final_icon)
+
+/// Mops i żaba podmieniają plik mrugania (monke_replace_eye_icon); po zmianie rasy wraca zwykły
+/datum/species/on_species_loss(mob/living/carbon/human/C, datum/species/new_species, pref_load)
+	. = ..()
+	if(istype(C) && C.eyelid)
+		C.eyelid.icon = initial(C.eyelid.icon)

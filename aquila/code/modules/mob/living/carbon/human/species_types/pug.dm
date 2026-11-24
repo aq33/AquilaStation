@@ -124,7 +124,7 @@ GLOBAL_LIST_INIT(pug_coats, list(
 			continue
 		if(!prob(PUG_FETCH_CHANCE) && !istype(thrown, /obj/item/bodypart) && !istype(thrown, /obj/item/stack/sheet/bone))
 			continue
-		dog.throw_at(get_turf(thrown), 1, 1)
+		step_towards(dog, get_turf(thrown)) // krok, nie rzut: rzut mopsem w człowieka obu raniłby i ogłuszał
 		dog.visible_message("<span class='warning'>[dog] zatacza się.</span>")
 		INVOKE_ASYNC(dog, TYPE_PROC_REF(/mob, emote), "woof")
 
@@ -217,6 +217,8 @@ GLOBAL_LIST_INIT(pug_coats, list(
 
 /// Goon: szczekanie męczy. Bez sił mops zamiast szczeknąć dusi się, przewraca i świszcze.
 /datum/emote/living/carbon/human/pug/woof/run_emote(mob/user, params, type_override, intentional)
+	if(!ishuman(user)) // emotkę może wpisać duch albo zwierzę, a dna ma tylko carbon
+		return FALSE
 	var/mob/living/carbon/human/dog = user
 	var/datum/species/pug/pug = dog.dna?.species
 	if(!istype(pug) || !can_run_emote(user, TRUE, intentional))
@@ -247,6 +249,8 @@ GLOBAL_LIST_INIT(pug_coats, list(
 		return "węszy [pick("przenikliwie", "wnikliwie", "uważnie", "od niechcenia", "wytrwale", "intrygująco")]"
 
 /datum/emote/living/carbon/human/pug/sleuth/run_emote(mob/user, params, type_override, intentional)
+	if(!ishuman(user))
+		return FALSE
 	var/mob/living/carbon/human/dog = user
 	var/datum/species/pug/pug = dog.dna?.species
 	if(istype(pug) && pug.is_poisoned())
@@ -275,7 +279,7 @@ GLOBAL_LIST_INIT(pug_coats, list(
 GLOBAL_LIST_INIT(pug_scents, list(
 	list("szkarłat", "szkarłatem"), list("błękit", "błękitem"), list("zieleń", "zielenią"), list("fiolet", "fioletem"),
 	list("złoto", "złotem"), list("srebro", "srebrem"), list("bursztyn", "bursztynem"), list("turkus", "turkusem"),
-	list("róż", "różem"), list("granat", "granatem"), list("oliwka", "oliwką"), list("pomarańcz", "pomarańczą"),
+	list("róż", "różem"), list("kobalt", "kobaltem"), list("oliwka", "oliwką"), list("pomarańcz", "pomarańczą"),
 	list("cytryna", "cytryną"), list("mięta", "miętą"), list("lawenda", "lawendą"), list("brąz", "brązem"),
 	list("purpura", "purpurą"), list("krem", "kremem"), list("węgiel", "węglem"), list("rdza", "rdzą"),
 ))

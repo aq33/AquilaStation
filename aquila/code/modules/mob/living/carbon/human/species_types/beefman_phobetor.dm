@@ -174,6 +174,9 @@
 		return
 	if(!in_range(user, src))
 		return
+	if(user.incapacitated() || user.buckled || user.pulledby?.grab_state >= GRAB_AGGRESSIVE)
+		user.balloon_alert(user, "nie teraz!")
+		return
 	if(locate(/obj/item/implant/tracking) in user.implants)
 		user.balloon_alert(user, "coś cię obserwuje od środka!")
 		return

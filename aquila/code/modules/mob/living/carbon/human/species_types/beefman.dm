@@ -2,7 +2,8 @@
 // Ciało z wołowiny: odrywa i przyczepia sobie kończyny, krwawi sokiem w cieple, nie śpi i widzi rozdarcia Fobetora (beefman_phobetor.dm).
 // Różnice względem oryginału (u nas inny system części ciała i krwawienia):
 // - oczy i usta to nakładki BODY_LAYER zamiast body_markings tg;
-// - sok cieknie przez nasze krwawienie per kończyna (blood_limbs.dm), opatrunek i opaska uciskowa go zatrzymują;
+// - sok cieknie przez nasze krwawienie per kończyna (blood_limbs.dm): opatrunek zatrzymuje go na chwilę
+//   (jak każde krwawienie, opatrunek z czasem się zużywa), opaska uciskowa na stałe;
 // - kończyna zmienia się w płat mięsa tylko przy oderwaniu przez właściciela, odcięciu i rozerwaniu ciała,
 //   bo inne drop_limb() (klonowanie, maszyny, amputacja) dalej używają kończyny;
 // - utrzymuje 20°C przez natural_bodytemperature_stabilization() (NSV13 robi termoregulację na gatunku).
@@ -640,3 +641,15 @@ GLOBAL_LIST_INIT(beefman_russian_names, list(
 	icon = 'aquila/icons/mob/species/beefman/russian_language.dmi'
 	icon_state = "commie"
 	default_priority = 90
+
+/// Zmiana tożsamości (zmiennokształtny, podział szlamu) kopiuje cechy już po set_species, więc kolor mięsa liczymy od nowa
+/datum/dna/transfer_identity(mob/living/carbon/human/destination, transfer_SE = FALSE)
+	. = ..()
+	var/datum/species/beefman/beef = destination?.dna?.species
+	if(!istype(beef))
+		return
+	beef.beefman_validate_features(destination)
+	beef.fixed_mut_color = GLOB.beefman_colors[destination.dna.features[FEATURE_BEEF_COLOR]]
+	destination.dna.features["mcolor"] = beef.fixed_mut_color
+	destination.update_body_parts(TRUE)
+	destination.update_body()

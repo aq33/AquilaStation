@@ -244,6 +244,12 @@ GLOBAL_LIST_INIT(psyphoza_last_names, splittext(trim(file2text('aquila/strings/n
 /// Pełne leczenie zdejmuje każdą ślepotę, więc oczy zakładają ją z powrotem
 /obj/item/organ/eyes/psyphoza/on_life()
 	. = ..()
+	if(owner?.stat >= UNCONSCIOUS) // nieprzytomna psyfoza nie widzi nic, jak każda inna rasa
+		if(!istype(owner.screens["blind"], /atom/movable/screen/fullscreen/blind) || istype(owner.screens["blind"], /atom/movable/screen/fullscreen/blind/psychic))
+			owner.clear_fullscreen("psychic_mask", FALSE)
+			owner.clear_fullscreen("psychic_highlight", FALSE)
+			owner.overlay_fullscreen("blind", /atom/movable/screen/fullscreen/blind)
+		return
 	if(owner && (!HAS_TRAIT_FROM(owner, TRAIT_BLIND, PSYPHOZA_BLINDNESS_SOURCE) || !istype(owner.screens["blind"], /atom/movable/screen/fullscreen/blind/psychic)))
 		psyphoza_blind(owner)
 
@@ -256,7 +262,7 @@ GLOBAL_LIST_INIT(psyphoza_last_names, splittext(trim(file2text('aquila/strings/n
 
 /// Impuls psychiczny: większy zasięg podświetlenia na 10 sekund i sylwetki żywych istot w pobliżu, także za ścianami
 /obj/item/organ/eyes/psyphoza/proc/psychic_pulse()
-	if(!owner)
+	if(!owner || owner.stat != CONSCIOUS)
 		return FALSE
 	if(istype(owner.get_item_by_slot(ITEM_SLOT_HEAD), /obj/item/clothing/head/helmet))
 		to_chat(owner, "<span class='warning'>W hełmie nie możesz użyć swoich zmysłów!</span>")
@@ -305,7 +311,7 @@ GLOBAL_LIST_INIT(psyphoza_last_names, splittext(trim(file2text('aquila/strings/n
 /obj/item/organ/eyes/psyphoza/proc/on_hear(datum/source, list/hearing_args)
 	SIGNAL_HANDLER
 	var/atom/movable/speaker = hearing_args[HEARING_SPEAKER]
-	if(!isliving(speaker) || speaker == owner || !owner)
+	if(!isliving(speaker) || speaker == owner || !owner || owner.stat != CONSCIOUS)
 		return
 	var/obj/item/organ/ears/ears = owner.getorganslot(ORGAN_SLOT_EARS)
 	if(ears?.deaf)
@@ -427,7 +433,7 @@ GLOBAL_LIST_INIT(psyphoza_last_names, splittext(trim(file2text('aquila/strings/n
 		return
 	if(!owner.stat)
 		Trigger()
-	addtimer(CALLBACK(src, PROC_REF(auto_sense_loop)), cooldown_time + 1)
+	addtimer(CALLBACK(src, PROC_REF(auto_sense_loop)), cooldown_time + 1, TIMER_UNIQUE) // szybkie wł./wył. nie mnoży pętli
 
 /datum/action/innate/psyphoza_visual
 	name = "Zmień zmysł psychiczny"

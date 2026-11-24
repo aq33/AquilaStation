@@ -147,7 +147,7 @@
 			SPECIES_PERK_ICON = "tint",
 			SPECIES_PERK_NAME = "Krwawienie sokiem",
 			SPECIES_PERK_DESC = "Mięsoludzie zaczynają puszczać sok ze wszystkich kończyn, gdy ich ciało ma ponad [BEEFMAN_BLEEDOUT_LEVEL - T0C]°C. \
-				Oparzenia przypiekają mięso i zmniejszają krwawienie, a sól je nasila. Opatrunek albo opaska uciskowa zatrzymują sok z kończyny.",
+				Oparzenia przypiekają mięso i zmniejszają krwawienie, a sól je nasila. Opatrunek zatrzymuje sok z kończyny na chwilę, a opaska uciskowa na stałe.",
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,

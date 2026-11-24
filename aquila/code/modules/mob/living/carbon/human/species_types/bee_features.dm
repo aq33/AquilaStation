@@ -44,8 +44,8 @@ GLOBAL_LIST_INIT(psyphoza_cap_list, init_sprite_accessory_subtypes(/datum/sprite
 		standing += overlay
 	if(!length(standing))
 		return
+	var/list/existing = H.overlays_standing[BODY_ADJ_LAYER] // przed remove_overlay, które zeruje warstwę
 	H.remove_overlay(BODY_ADJ_LAYER)
-	var/list/existing = H.overlays_standing[BODY_ADJ_LAYER]
 	if(islist(existing))
 		standing = existing + standing
 	else if(existing)

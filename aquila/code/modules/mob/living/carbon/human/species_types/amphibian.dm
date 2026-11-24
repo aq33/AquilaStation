@@ -84,6 +84,8 @@ GLOBAL_LIST_INIT(amphibian_edible_insects, typecacheof(list(
 
 /datum/species/amphibian/spec_life(mob/living/carbon/human/H)
 	. = ..()
+	if(H.stat == DEAD) // martwa skóra nie wchłania
+		return
 	dermal_absorption(H)
 
 /// Goon dermal_absorbtion(): skóra wchłania ciecz, w której stoi żaba, chyba że chroni ją szczelny strój
@@ -213,7 +215,7 @@ GLOBAL_LIST_INIT(amphibian_edible_insects, typecacheof(list(
 	desc = "Wystrzel język i przyciągnij nim przedmiot z odległości do 4 kratek. Owady połykasz w całości, a jedzenie od razu zjadasz."
 	icon_icon = AMPHIBIAN_TONGUE_ICON
 	button_icon_state = "sticky_tongue"
-	check_flags = AB_CHECK_CONSCIOUS
+	check_flags = AB_CHECK_CONSCIOUS | AB_CHECK_INCAPACITATED // nie z ogłuszenia ani w kajdankach
 	cooldown_time = 10 SECONDS
 	shared_cooldown = NONE
 
@@ -257,9 +259,12 @@ GLOBAL_LIST_INIT(amphibian_edible_insects, typecacheof(list(
 		swallow_insect(frog, prize)
 		return TRUE
 	prize.visible_message("<span class='notice'>Język przykleja się do [prize] i ściąga go z powrotem!</span>")
-	RegisterSignal(prize, COMSIG_MOVABLE_IMPACT, PROC_REF(on_prize_impact))
-	RegisterSignal(prize, COMSIG_MOVABLE_THROW_LANDED, PROC_REF(on_prize_landed))
-	prize.throw_at(frog, 10, 1, frog)
+	// Bez rzutu w żabę: rzucony przedmiot raniłby ją siłą rzutu, a zlewka chlapałaby zawartością
+	prize.forceMove(get_turf(frog))
+	if(IS_EDIBLE(prize))
+		INVOKE_ASYNC(prize, TYPE_PROC_REF(/obj/item, attack), frog, frog)
+	else
+		frog.put_in_hands(prize)
 	return TRUE
 
 /// Maska albo hełm zasłaniające usta
@@ -284,7 +289,8 @@ GLOBAL_LIST_INIT(amphibian_edible_insects, typecacheof(list(
 		return FALSE
 	if(isliving(candidate))
 		var/mob/living/bug = candidate
-		return is_type_in_typecache(bug, GLOB.amphibian_edible_insects) && bug.stat != DEAD
+		// Owad z graczem (eliksir rozumu, admin) nie jest przekąską
+		return is_type_in_typecache(bug, GLOB.amphibian_edible_insects) && bug.stat != DEAD && !bug.mind && !bug.key
 	return isitem(candidate) && !candidate.anchored
 
 /// Goon throw_eat/insects: owad znika w żabie od razu
@@ -293,21 +299,9 @@ GLOBAL_LIST_INIT(amphibian_edible_insects, typecacheof(list(
 	playsound(frog, 'sound/items/eatfood.ogg', 80, TRUE)
 	bug.reagents?.trans_to(frog, bug.reagents.total_volume)
 	frog.adjust_nutrition(20)
+	log_combat(frog, bug, "swallowed (sticky tongue)")
 	qdel(bug)
 	addtimer(CALLBACK(frog, TYPE_PROC_REF(/mob, emote), "burp"), 2 SECONDS)
-
-/// Goon throw_eat: jedzenie przyciągnięte językiem żaba od razu zjada
-/datum/action/cooldown/mob_cooldown/sticky_tongue/proc/on_prize_impact(obj/item/prize, atom/hit_atom, datum/thrownthing/throwingdatum)
-	SIGNAL_HANDLER
-	if(hit_atom != owner || !IS_EDIBLE(prize))
-		return
-	UnregisterSignal(prize, list(COMSIG_MOVABLE_IMPACT, COMSIG_MOVABLE_THROW_LANDED))
-	INVOKE_ASYNC(prize, TYPE_PROC_REF(/obj/item, attack), owner, owner)
-	return COMPONENT_MOVABLE_IMPACT_NEVERMIND
-
-/datum/action/cooldown/mob_cooldown/sticky_tongue/proc/on_prize_landed(atom/movable/prize)
-	SIGNAL_HANDLER
-	UnregisterSignal(prize, list(COMSIG_MOVABLE_IMPACT, COMSIG_MOVABLE_THROW_LANDED))
 
 // Okno wyboru gatunku
 
