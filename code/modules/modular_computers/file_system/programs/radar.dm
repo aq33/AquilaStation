@@ -297,9 +297,9 @@
 			var/obj/structure/janitorialcart/janicart = custodial_tools
 			tool_name = "[janicart.name] – poziom wody: [janicart.reagents.total_volume] / [janicart.reagents.maximum_volume]"
 
-		if(istype(custodial_tools, /mob/living/simple_animal/bot/cleanbot))
-			var/mob/living/simple_animal/bot/cleanbot/cleanbots = custodial_tools
-			tool_name = "[cleanbots.name] - [cleanbots.on ? "włączony" : "wyłączony"]"
+		if(istype(custodial_tools, /mob/living/basic/bot/cleanbot)) // AQ EDIT START - basic boty
+			var/mob/living/basic/bot/cleanbot/basic_cleanbot = custodial_tools
+			tool_name = "[basic_cleanbot.name] - [basic_cleanbot.is_bot_on() ? "włączony" : "wyłączony"]" // AQ EDIT END
 
 		var/list/tool_information = list(
 			ref = REF(custodial_tools),

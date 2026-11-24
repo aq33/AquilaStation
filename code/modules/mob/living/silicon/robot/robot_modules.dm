@@ -614,6 +614,7 @@
 		"Tophat" = list(SKIN_ICON_STATE = "tophat", SKIN_LIGHT_KEY = NONE, SKIN_HAT_OFFSET = INFINITY),
 		// AQ EDIT START
 		"Hydrobot" = list(SKIN_ICON_STATE = "hydrobot"),
+		"Dron ogrodnik" = list(SKIN_ICON_STATE = "aq_hydro_drone", SKIN_ICON = 'aquila/icons/mob/silicon/robots_aquila_modules.dmi', SKIN_HAT_OFFSET = -4), // skin usuniętego modułu Hydroponicznego
 		"Booty" = list(SKIN_ICON_STATE = "booty-blue"),
 		"Marina" = list(SKIN_ICON_STATE = "marinaSV"),
 		"Sleek" = list(SKIN_ICON_STATE = "sleekservice"),

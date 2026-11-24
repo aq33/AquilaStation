@@ -42,6 +42,16 @@ export type MainData = {
   has_cargo: BooleanLike;
   cargo?: CargoItem[];
 
+  /** AQUILA: systemy mecha (aquila/code/modules/mecha_rework/ui.dm) */
+  aq_slots?: AqSlot[];
+  aq_overclock?: BooleanLike;
+  aq_overclock_left?: number;
+  aq_overclock_cooldown?: number;
+  aq_facing?: number[];
+  aq_plating?: string | null;
+  aq_copilot?: string | null;
+  aq_remote?: BooleanLike;
+
   /** AQUILA: dźwięki HONK (tylko H.O.N.K) */
   honk_sounds?: HonkSound[];
 };
@@ -72,4 +82,12 @@ export type CargoItem = {
 export type HonkSound = {
   key: string;
   name: string;
+};
+
+export type AqSlot = {
+  key: string;
+  name: string;
+  used: number;
+  max: number;
+  modules: string[];
 };

@@ -1,0 +1,302 @@
+// AQUILA - augmentacje wybierane w lobby (Nova Sector modular_nova/modules/customization/modules/client/augment/limbs.dm, organs.dm;
+// Daedalus Dock code/modules/client/preferences/augments/augments.dm; /vg/station preferences subsections limbs.dm, organs.dm).
+// W kreatorze postaci (kategoria bez kontekstu, jak „Preferowany posterunek ochrony”) każda ręka i noga ma wybór: ciało,
+// tania proteza albo zwykła proteza w wyglądzie jednej z marek (limb_brands.dm, marka to sam wygląd), a serce, płuca,
+// wątroba, żołądek, oczy i uszy: organiczne albo cybernetyczne. Zaawansowane protezy i ulepszone organy daje tylko robotyk
+// w grze. Wybór siedzi w features postaci (bez nowej kolumny w bazie, jak antag_target_opt_in) i wchodzi w życie przy
+// pojawieniu się w rundzie, po cechach (SSquirks.AssignQuirks).
+// Części ciała zajęte przez cechę zostają z cechy: z „Poczwórną amputacją” wybór kończyn znika z kreatora, z „Blaszanym
+// drwalem” wybór organów (cechy z aq33/AquilaStation#655, sprawdzane przez text2path, więc kod buduje się i bez nich).
+// „Proteza” (core) i „Protetyczny organ” losują część przy pojawieniu, więc kreator jej nie zna: przy pojawieniu wybór
+// z lobby pomija kończynę, która już jest protezą, i organ, który już jest robotyczny.
+// Pominięte z Novy: punkty i limity augmentacji, implanty startowe (część IMPLANTY), proteza całego ciała, głowy i klatki
+// (protezy głowy i klatki u nas zdejmują włosy i organy, to osobna robota), podgląd protez na manekinie w kreatorze.
+// Wszystkie wpisy są w tym pliku i w jednym pliku TSX (character_preferences/aq_augments.tsx), bez zmian
+// w CharacterPreferenceWindow.tsx i bez nowej zakładki. Syntetyki (IPC) nie widzą tych wpisów: całe ciało i tak mają robotyczne.
+
+#define AQ_AUG_ORGANIC "organic"
+#define AQ_AUG_SURPLUS "surplus"
+#define AQ_AUG_CYBERNETIC "cybernetic"
+
+/datum/preference/choiced/aq_augment
+	abstract_type = /datum/preference/choiced/aq_augment
+	preference_type = PREFERENCE_CHARACTER
+	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
+
+/datum/preference/choiced/aq_augment/read_value(datum/preferences/prefs)
+	. = ..()
+	if(isnull(.))
+		. = AQ_AUG_ORGANIC
+
+/datum/preference/choiced/aq_augment/create_random_value(datum/preferences/prefs)
+	return AQ_AUG_ORGANIC
+
+/datum/preference/choiced/aq_augment/is_accessible(datum/preferences/prefs)
+	. = ..()
+	if(!.)
+		return
+	var/datum/species/species = prefs.active_character?.pref_species
+	if(MOB_ROBOTIC in species?.inherent_biotypes)
+		return FALSE
+	return !aq_quirks_block_augment(prefs.active_character?.all_quirks, aq_blocking_quirk_paths())
+
+/// Ścieżki cech (tekstem), które same zakładają wszystkie części z tej grupy, więc wybór w kreatorze znika
+/datum/preference/choiced/aq_augment/proc/aq_blocking_quirk_paths()
+	return list()
+
+/// Czy któraś z wybranych cech (nazwy z preferencji) jest jednym z typów podanych tekstem. Typy, których nie ma w buildzie, pomija.
+/proc/aq_quirks_block_augment(list/quirk_names, list/path_texts)
+	if(!length(quirk_names) || !length(path_texts))
+		return FALSE
+	for(var/path_text in path_texts)
+		var/blocking_type = text2path(path_text)
+		if(!blocking_type)
+			continue
+		for(var/quirk_name in quirk_names)
+			if(ispath(SSquirks.quirks[quirk_name], blocking_type))
+				return TRUE
+	return FALSE
+
+// Kończyny
+
+/datum/preference/choiced/aq_augment/limb
+	abstract_type = /datum/preference/choiced/aq_augment/limb
+	/// Strefa ciała
+	var/zone
+
+/datum/preference/choiced/aq_augment/limb/aq_blocking_quirk_paths()
+	return list("/datum/quirk/quadruple_amputee")
+
+/datum/preference/choiced/aq_augment/limb/init_possible_values()
+	. = list(AQ_AUG_ORGANIC, AQ_AUG_SURPLUS)
+	for(var/id in GLOB.aq_robolimb_brands)
+		. += id
+
+/datum/preference/choiced/aq_augment/limb/get_display_names()
+	. = list(
+		AQ_AUG_ORGANIC = "Ciało",
+		AQ_AUG_SURPLUS = "Tania proteza",
+	)
+	for(var/id in GLOB.aq_robolimb_brands)
+		var/datum/aq_robolimb_brand/brand = GLOB.aq_robolimb_brands[id]
+		.[id] = "Proteza [brand.name]"
+
+/datum/preference/choiced/aq_augment/limb/l_arm
+	db_key = "aq_aug_l_arm"
+	feature_key = "aq_aug_l_arm"
+	zone = BODY_ZONE_L_ARM
+
+/datum/preference/choiced/aq_augment/limb/r_arm
+	db_key = "aq_aug_r_arm"
+	feature_key = "aq_aug_r_arm"
+	zone = BODY_ZONE_R_ARM
+
+/datum/preference/choiced/aq_augment/limb/l_leg
+	db_key = "aq_aug_l_leg"
+	feature_key = "aq_aug_l_leg"
+	zone = BODY_ZONE_L_LEG
+
+/datum/preference/choiced/aq_augment/limb/r_leg
+	db_key = "aq_aug_r_leg"
+	feature_key = "aq_aug_r_leg"
+	zone = BODY_ZONE_R_LEG
+
+// Organy
+
+/datum/preference/choiced/aq_augment/organ
+	abstract_type = /datum/preference/choiced/aq_augment/organ
+	/// Slot organu
+	var/organ_slot
+	/// Cybernetyczny organ (ulepszony daje tylko robotyk w grze)
+	var/cybernetic_type
+
+/datum/preference/choiced/aq_augment/organ/aq_blocking_quirk_paths()
+	return list("/datum/quirk/tin_man")
+
+/// Zwykły (ludzki) organ z tego slotu. Cybernetyczny wchodzi tylko w jego miejsce, nigdy w miejsce organu gatunkowego
+/// (płuca plazmaludzia, żołądek i serce eteryka), bo bez niego gatunek się dusi albo traci baterię
+/datum/preference/choiced/aq_augment/organ/proc/aq_default_organ_type()
+	return null
+
+/// Organ, który ten gatunek dostaje w tym slocie (zmienne mutant* gatunku)
+/datum/preference/choiced/aq_augment/organ/proc/aq_species_organ_type(datum/species/species)
+	return aq_default_organ_type()
+
+/datum/preference/choiced/aq_augment/organ/is_accessible(datum/preferences/prefs)
+	. = ..()
+	if(!.)
+		return
+	var/datum/species/species = prefs.active_character?.pref_species
+	return !species || aq_species_organ_type(species) == aq_default_organ_type()
+
+/datum/preference/choiced/aq_augment/organ/init_possible_values()
+	return list(AQ_AUG_ORGANIC, AQ_AUG_CYBERNETIC)
+
+/datum/preference/choiced/aq_augment/organ/get_display_names()
+	return list(
+		AQ_AUG_ORGANIC = "Organiczne",
+		AQ_AUG_CYBERNETIC = "Cybernetyczne",
+	)
+
+/datum/preference/choiced/aq_augment/organ/heart
+	db_key = "aq_aug_heart"
+	feature_key = "aq_aug_heart"
+	organ_slot = ORGAN_SLOT_HEART
+	cybernetic_type = /obj/item/organ/heart/cybernetic
+
+/datum/preference/choiced/aq_augment/organ/heart/aq_default_organ_type()
+	return /obj/item/organ/heart
+
+/datum/preference/choiced/aq_augment/organ/heart/aq_species_organ_type(datum/species/species)
+	return species.mutant_heart || /obj/item/organ/heart
+
+/datum/preference/choiced/aq_augment/organ/lungs
+	db_key = "aq_aug_lungs"
+	feature_key = "aq_aug_lungs"
+	organ_slot = ORGAN_SLOT_LUNGS
+	cybernetic_type = /obj/item/organ/lungs/cybernetic
+
+/datum/preference/choiced/aq_augment/organ/lungs/aq_default_organ_type()
+	return /obj/item/organ/lungs
+
+/datum/preference/choiced/aq_augment/organ/lungs/aq_species_organ_type(datum/species/species)
+	return species.mutantlungs || /obj/item/organ/lungs
+
+/datum/preference/choiced/aq_augment/organ/liver
+	db_key = "aq_aug_liver"
+	feature_key = "aq_aug_liver"
+	organ_slot = ORGAN_SLOT_LIVER
+	cybernetic_type = /obj/item/organ/liver/cybernetic
+
+/datum/preference/choiced/aq_augment/organ/liver/aq_default_organ_type()
+	return /obj/item/organ/liver
+
+/datum/preference/choiced/aq_augment/organ/liver/aq_species_organ_type(datum/species/species)
+	return species.mutantliver || /obj/item/organ/liver
+
+/datum/preference/choiced/aq_augment/organ/stomach
+	db_key = "aq_aug_stomach"
+	feature_key = "aq_aug_stomach"
+	organ_slot = ORGAN_SLOT_STOMACH
+	cybernetic_type = /obj/item/organ/stomach/cybernetic
+
+/datum/preference/choiced/aq_augment/organ/stomach/aq_default_organ_type()
+	return /obj/item/organ/stomach
+
+/datum/preference/choiced/aq_augment/organ/stomach/aq_species_organ_type(datum/species/species)
+	return species.mutantstomach || /obj/item/organ/stomach
+
+/datum/preference/choiced/aq_augment/organ/eyes
+	db_key = "aq_aug_eyes"
+	feature_key = "aq_aug_eyes"
+	organ_slot = ORGAN_SLOT_EYES
+	cybernetic_type = /obj/item/organ/eyes/robotic
+
+/datum/preference/choiced/aq_augment/organ/eyes/aq_default_organ_type()
+	return /obj/item/organ/eyes
+
+/datum/preference/choiced/aq_augment/organ/eyes/aq_species_organ_type(datum/species/species)
+	return species.mutanteyes || /obj/item/organ/eyes
+
+/datum/preference/choiced/aq_augment/organ/ears
+	db_key = "aq_aug_ears"
+	feature_key = "aq_aug_ears"
+	organ_slot = ORGAN_SLOT_EARS
+	cybernetic_type = /obj/item/organ/ears/robot
+
+/datum/preference/choiced/aq_augment/organ/ears/aq_default_organ_type()
+	return /obj/item/organ/ears
+
+/datum/preference/choiced/aq_augment/organ/ears/aq_species_organ_type(datum/species/species)
+	return species.mutantears || /obj/item/organ/ears
+
+// --- Wejście w życie ---
+
+/datum/controller/subsystem/processing/quirks/AssignQuirks(mob/living/user, client/cli, spawn_effects)
+	. = ..()
+	if(ishuman(user) && cli?.prefs?.active_character)
+		var/mob/living/carbon/human/H = user
+		H.aq_apply_lobby_augments(cli.prefs.active_character.features)
+
+/// Zakłada protezy i organy wybrane w kreatorze (features postaci)
+/mob/living/carbon/human/proc/aq_apply_lobby_augments(list/features)
+	if(!features || !dna?.species || (MOB_ROBOTIC in dna.species.inherent_biotypes))
+		return
+	var/changed = FALSE
+	for(var/pref_type in subtypesof(/datum/preference/choiced/aq_augment/limb))
+		var/datum/preference/choiced/aq_augment/limb/pref = GLOB.preference_entries[pref_type]
+		var/choice = features[pref?.feature_key]
+		if(choice && (choice in pref.get_choices()) && choice != AQ_AUG_ORGANIC && aq_install_lobby_limb(pref.zone, choice))
+			changed = TRUE
+	for(var/pref_type in subtypesof(/datum/preference/choiced/aq_augment/organ))
+		var/datum/preference/choiced/aq_augment/organ/pref = GLOB.preference_entries[pref_type]
+		var/choice = features[pref?.feature_key]
+		if(choice == AQ_AUG_CYBERNETIC && aq_install_lobby_organ(pref, choice))
+			changed = TRUE
+	if(changed)
+		regenerate_icons()
+
+/// Typ protezy dla strefy i rodzaju
+/proc/aq_lobby_limb_type(zone, choice)
+	switch(choice)
+		if(AQ_AUG_SURPLUS)
+			switch(zone)
+				if(BODY_ZONE_L_ARM)
+					return /obj/item/bodypart/l_arm/robot/surplus
+				if(BODY_ZONE_R_ARM)
+					return /obj/item/bodypart/r_arm/robot/surplus
+				if(BODY_ZONE_L_LEG)
+					return /obj/item/bodypart/l_leg/robot/surplus
+				if(BODY_ZONE_R_LEG)
+					return /obj/item/bodypart/r_leg/robot/surplus
+		else
+			switch(zone)
+				if(BODY_ZONE_L_ARM)
+					return /obj/item/bodypart/l_arm/robot
+				if(BODY_ZONE_R_ARM)
+					return /obj/item/bodypart/r_arm/robot
+				if(BODY_ZONE_L_LEG)
+					return /obj/item/bodypart/l_leg/robot
+				if(BODY_ZONE_R_LEG)
+					return /obj/item/bodypart/r_leg/robot
+
+/mob/living/carbon/human/proc/aq_install_lobby_limb(zone, choice)
+	var/limb_type = aq_lobby_limb_type(zone, choice)
+	if(!limb_type)
+		return FALSE
+	var/datum/aq_robolimb_brand/brand = GLOB.aq_robolimb_brands[choice]
+	var/obj/item/bodypart/old_limb = get_bodypart(zone)
+	if(old_limb && !IS_ORGANIC_LIMB(old_limb)) // kończynę zajęła cecha (Proteza, Poczwórna amputacja)
+		return FALSE
+	var/obj/item/bodypart/new_limb = new limb_type()
+	if(brand)
+		new_limb.aq_set_brand(brand, gender)
+		new_limb.aq_copy_lifelike_look(old_limb)
+	// NSV13: nogi digitigrade dostają protezę digitigrade (jak w cesze „Proteza”)
+	if(old_limb && (old_limb.bodytype & BODYTYPE_DIGITIGRADE) && (new_limb.bodytype & BODYTYPE_ROBOTIC))
+		new_limb.bodytype |= BODYTYPE_DIGITIGRADE
+		new_limb.static_icon = 'nsv13/icons/mob/augmentation/digitigrade_legs.dmi'
+		new_limb.limb_id = "digitigrade"
+	new_limb.replace_limb(src, TRUE)
+	if(old_limb && old_limb.owner != src)
+		qdel(old_limb)
+	return new_limb.owner == src
+
+/mob/living/carbon/human/proc/aq_install_lobby_organ(datum/preference/choiced/aq_augment/organ/pref, choice)
+	var/organ_type = pref.cybernetic_type
+	if(!organ_type)
+		return FALSE
+	var/obj/item/organ/old_organ = getorganslot(pref.organ_slot)
+	if(!old_organ) // gatunek bez tego organu (np. bez płuc)
+		return FALSE
+	if(old_organ.status == ORGAN_ROBOTIC) // organ zajęła cecha (Protetyczny organ, Blaszany drwal)
+		return FALSE
+	if(old_organ.type != pref.aq_default_organ_type() || pref.aq_species_organ_type(dna.species) != pref.aq_default_organ_type()) // organ gatunkowy zostaje
+		return FALSE
+	var/obj/item/organ/new_organ = new organ_type()
+	new_organ.Insert(src, TRUE, FALSE)
+	return TRUE
+
+#undef AQ_AUG_ORGANIC
+#undef AQ_AUG_SURPLUS
+#undef AQ_AUG_CYBERNETIC

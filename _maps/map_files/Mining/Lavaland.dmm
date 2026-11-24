@@ -2145,7 +2145,7 @@
 /obj/structure/extinguisher_cabinet{
 	pixel_x = 26
 	},
-/mob/living/simple_animal/bot/atmosbot{
+/mob/living/basic/bot/atmosbot{
 	name = "Officer Fastmosky"
 	},
 /obj/effect/turf_decal/stripes/line{
@@ -6187,7 +6187,7 @@
 /turf/open/floor/carpet/blue,
 /area/mine/living_quarters)
 "UW" = (
-/mob/living/simple_animal/bot/secbot/beepsky{
+/mob/living/basic/bot/secbot/beepsky{
 	desc = "Powered by the tears and sweat of laborers.";
 	name = "Prison Ofitser"
 	},

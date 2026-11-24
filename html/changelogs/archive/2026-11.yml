@@ -1505,3 +1505,49 @@
       powrót z kriostazy).
   - bugfix: Konsola myśliwców, generator termoelektryczny, oględziny, mroczny puls
       i stos naleśników nie wywołują już błędów.
+'2026-11-24':
+  Joker66613:
+  - rscadd: 'Boty działają na drzewach zachowań z tg: duch może przejąć bota (przełącznik
+      Osobowość w panelu), boty jeżdżą windami przy wezwaniu i patrolu. Na starej
+      bazie został tylko MULEbot.'
+  - rscadd: 'Nowe boty: Repairbot (zamiast floorbota), Vibebot, BarBuddy, Cambot,
+      Chefbot, Digbot, Evilbot, eldritchowe boty, Doctor Acula, Farmbot, Frightbot
+      i Screambot; D.E.D.bot do kupienia w uplinku.'
+  - rscadd: Mechy mają sloty wyposażenia, wymienne części i płyty pancerza, overclock
+      z odnowieniem, kierunkowy pancerz, pięć broni wręcz, amunicję do każdej broni
+      balistycznej, zdalne sterowanie i zrzut z orbity.
+  - rscadd: 'Nowe mechy: Clarke, Paddy, Savannah-Ivanov, Red Sunday i Sentinel; 17
+      skinów do wyboru przy budowie i nowe wyposażenie.'
+  - rscadd: 'Nowe moduły cyborgów: Naukowy, Eksploracyjny, Detektyw, Brobocop i Zagubiony;
+      nowe ulepszenia, w tym zestawy chemiczny, ratowniczy i biurowy oraz wymiennik
+      żarówek.'
+  - rscadd: Nowe implanty i augmenty, NIF z programami NIFSoft; implant agonalny z
+      wyborem kanału, także w cyborgach.
+  - rscadd: Protezy w trzech klasach i dziesięciu markach (wygląd), rany robotyczne,
+      wybór protez w kreatorze postaci.
+  - rscadd: Klucz resetu IPC, chirurgia syntetyków, cyberpsychoza, neuromody i woltaiczne
+      serce.
+  - balance: Glock-13BR cyborga ochrony strzela ostrą amunicją tylko przy czerwonym
+      alarmie albo abordażu.
+  - balance: IPC nie wstaje sam po naprawie (klucz resetu albo operacja), a EMP nie
+      paraliżuje już całego ciała za każdą protezę.
+  - balance: Implant adrenaliny działa na IPC, a implant restartu OUN budzi z utraty
+      przytomności.
+  - balance: Szczęki ratownicze mecha otwierają tylko drzwi bez zasilania, a ładunek
+      wejścia siłowego i rakiety PEP-6 nie rozbierają ścian wzmocnionych.
+  - bugfix: EMP nie odrywa IPC głowy i kończyn, a paraliż protezy schodzi po odpięciu
+      kończyny.
+  - bugfix: 'Boty: wezwanie bez ścieżki nie zawiesza bota, dostęp z wezwania wraca
+      po dotarciu, zniszczony medibot i repairbot nie dublują apteczek i skrzynek,
+      gracz w bocie pracuje kliknięciem.'
+  - bugfix: Pilot zdalny mecha nie obrywa w kokpicie, broń zdalnego mecha strzela
+      z mecha, a drugie miejsce i zdalne sterowanie sprawdzają blokadę DNA i dostęp.
+  - bugfix: Kreator postaci nie podmienia organów gatunkowych (plazmaludzie, eterycy).
+  - bugfix: Skiny cyborgów z modułów Naukowy, Eksploracyjny, Detektyw i Brobocop są
+      widoczne, a event zagubionego cyborga działa.
+  - imageadd: Sprite'y botów, mechów, skinów cyborgów, implantów i protez z tg, Bee,
+      Goona, Baya, Aurory, Paradise, Erisa, Monke, Yoga, Shiptesta, TGMC i CM-SS13
+      (atrybucje w plikach attribution).
+  - bugfix: 'Ciało gracza na planecie nie znika już po odlocie okrętu: powierzchnia
+      czeka, dopóki gracz może do niego wrócić.'
+  - balance: Kudzu na planetach rozrasta się najwyżej do 50 pnączy na kępę i 400 łącznie.

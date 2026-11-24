@@ -4548,3 +4548,161 @@ Nazwy obszarów są w większości przetłumaczone. Nowe nazwy budujemy z tych k
 | sleuth | węszenie | n; emotka Mopsa |
 | coat | umaszczenie | n; wybór w oknie postaci |
 | Aquarian / dome | Akwarianin (l.mn. akwarianie) / klosz | m; nasza rasa (ryba w kloszu) |
+## 25. Mechy: sloty, overclock, nowe podwozia i wyposażenie (2026-11)
+
+| Angielski | Polski | Uwagi |
+|---|---|---|
+| left arm / right arm (slot) | lewe ramię / prawe ramię | n; nowe |
+| utility / power / armor (slot) | użytkowe / zasilanie / pancerz | nowe (nazwy slotów w oknie mecha) |
+| overclock | overclock | m; nowe (termin graczy, bez tłumaczenia) |
+| directional armor | pancerz kierunkowy | m; nowe |
+| armor plating (mech part) | płyta pancerza egzoszkieletu | ż; nowe |
+| conversion kit | zestaw konwersji | m; istniejące |
+| drop system / drop beacon | system zrzutu orbitalnego / latarnia zrzutu | nowe |
+| remote control pod | kokpit zdalnego sterowania | m; nowe |
+| jail cell / stretcher | cela / nosze | nowe |
+| firing port weapon | broń portów strzeleckich | ż; nowe |
+| weapons loader | ładowarka uzbrojenia | ż; nowe |
+| ore storage module | moduł ładowni rud | m; nowe |
+| Clarke, Paddy, Savannah-Ivanov, Red Sunday, Sentinel | bez zmian | nazwy własne podwozi |
+| Skyfall / Ivanov strike | Skyfall / uderzenie Ivanov | nowe |
+## Cyborgi: moduły i ulepszenia (Aquila)
+
+| EN | PL | Uwagi |
+|---|---|---|
+| Research / Science module | moduł Naukowy | m; nowe |
+| Chemistry module | moduł Chemiczny | m; nowe |
+| Surgeon module | moduł Chirurgiczny | m; nowe |
+| Rescue module | moduł Ratowniczy | m; nowe |
+| Construction module | moduł Budowlany | m; nowe |
+| Exploration module | moduł Eksploracyjny | m; nowe |
+| Detective module | moduł Detektyw | m; nowe |
+| Brobocop | Brobocop | m; nazwa własna (Goonstation) |
+| Hydroponics module | moduł Hydroponiczny | m; nowe |
+| Clerical module | moduł Biurowy | m; nowe |
+| Logistics module | moduł Magazynowy | m; nowe |
+| Multirole module | moduł Wielozadaniowy | m; nowe |
+| Lost (cyborg) | Zagubiony (zagubiony cyborg) | m; nowe |
+| Advanced Engineering / Medical / Miner | Zaawansowany inżynieryjny / medyczny / górniczy | m; nowe |
+| module picker (borg transform board) | wybierak modułu cyborga | m; istniejące |
+| gripper | chwytak | m; nowe |
+| magnetic traction | magnetyczne przyczepy | ż mn.; nowe |
+| power saver | oszczędzacz energii | m; nowe |
+| recharge pack | pakiet doładowania | m; nowe |
+| power connector | kabel zasilania | m; nowe (nasze „złącze zasilania” to `/obj/item/borg/charger`) |
+| death alarm (cyborg) | alarm zniszczenia | m; nowe (dla ludzi zostaje „alarm śmierci”) |
+| lethal mode unlock | odblokowanie trybu zabójczego | n; nowe |
+| personal shield | osobista tarcza | ż; nowe |
+| floodlight | naświetlacz | m; istniejące (`code/modules/power/floodlight.dm`), także „naświetlacz cyborga” |
+| plating repair tool | narzędzie do łatania podłóg | n; nowe |
+| push broom | miotła | ż; istniejące |
+| plunger | przepychacz | m; nowe |
+| autocleaner | autoczyściciel | m; nowe |
+| omni-tool | omni-tool | m; nowe |
+| portable ore processor | przenośna huta | ż; nowe |
+| cargo teleporter | teleporter ładunku | m; nowe |
+| holo stretcher | holograficzne nosze | ż mn.; nowe |
+| breathing bag (Ambu bag) | worek oddechowy | m; nowe |
+| spectroscopic scanner | skaner widmowy | m; nowe |
+| anomalous vision | wzrok anomalii | m; nowe |
+| N.O.I.R. vision | wzrok N.O.I.R. | m; nowe |
+| records scanner | skaner akt | m; nowe |
+| energy bola launcher | wyrzutnia bol energetycznych | ż; nowe |
+### NIF (Nanite Implant Framework, port z Monkestation)
+
+| EN | PL | rodzaj/uwagi |
+|---|---|---|
+| Nanite Implant Framework (NIF) | Nanitowa Platforma Implantów (NIF) | ż; nowe; skrót „NIF” m, odmiana „NIF-u, NIF-em” |
+| Standard / Econo-Deck / Trial-Lite Type NIF | NIF typu Standard / Econo-Deck / Trial-Lite | m; nowe; nazwy modeli bez tłumaczenia |
+| NIFSoft | NIFSoft | m; nowe; odmiana „NIFSoftu, NIFSofty” |
+| NIFSoft datadisk | dysk z danymi NIFSoft | m; nowe |
+| NIFSoft Catalog | Katalog NIFSoftów | m; nowe (program PDA) |
+| Scrying Lens | soczewka jasnowidza | ż; nowe (NIFSofty z HUD-ami) |
+| Scrying Lens Adapter | adapter soczewki jasnowidza | m; nowe |
+| Automatic Appraisal | Automatyczna wycena | ż; nowe |
+| Hivemind (NIFSoft) | Rój umysłów | m; nowe; nie mylić z antagonistą „Nosiciel roju” |
+| Hivemind Interface Device | interfejs roju umysłów | m; nowe |
+| Poem of Communal Souls / Verses | Poemat Wspólnych Dusz / wersy | m / m mn.; nowe |
+| NIF-Cutter ('Wrangler', 'Scalpel') | przecinak NIF („Wrangler”, „Skalpel”) | m; nowe |
+| Cerulean NIF Regenerator | regenerator NIF Cerulean | m; nowe |
+| Altspace Coven | Altspace Coven | m; nazwa własna, bez tłumaczenia |
+
+### Implanty i augmenty (wdrożenie robotyki)
+
+| EN | PL | rodzaj/uwagi |
+|---|---|---|
+| augment | augment | m; nowe; ogólna nazwa wszczepów cybernetycznych (cyberimp, cyberorgan, bioaugment) |
+| cyberpsychosis | cyberpsychoza | ż; nowe; koszt augmentu w punktach (0-3) |
+| Rotbusttec implant | implant Rotbusttec | m; nowe; nazwa własna bez tłumaczenia |
+| tactical map implant | implant mapy taktycznej | m; nowe |
+| mindslave implant | implant zniewolenia umysłu | m; nowe |
+| razorwing implant | implant ostrych skrzydeł | m; nowe |
+| sponsorship implant | implant sponsorski | m; nowe |
+| Syndicate IFF implant | implant znacznika Syndykatu | m; nowe |
+| IFF implant | implant swój-obcy | m; nowe |
+| EMP shield implant | implant tarczy EMP | m; nowe |
+| power bio-chip | implant mocy | m; nowe |
+| revenge implant | implant zemsty | m; nowe |
+| electronic access implant | implant elektronicznego dostępu | m; nowe |
+| hijack implant | implant przejęcia | m; nowe |
+| spying implant | implant szpiegowski | m; nowe |
+| warp implant | implant cofnięcia | m; nowe |
+| tactical deniability implant | implant taktycznego wyparcia się | m; nowe |
+| fake mindshield | fałszywa ochrona umysłu | ż; nowe |
+| augmentation disrupter | zakłócacz augmentów | m; nowe |
+| bluespace grounding implant | implant uziemienia bluespace | m; nowe |
+| wire interface implant | implant interfejsu kabli | m; nowe |
+| AI-uplink brain | mózg z łączem SI | m; nowe |
+| platelet factories | fabryki płytek krwi | ż mn.; nowe |
+| embedded object module | moduł wbudowanego przedmiotu | m; nowe |
+| cyborg analyzer | analizator cyborgów | m; nowe |
+| monitor cybereye | cyberoko z monitorem | n; nowe |
+| magboot implant | implant magnetycznych stóp | m; nowe |
+| Sandevistan | Sandevistan | m; nazwa własna |
+| internal air system / air sac | wewnętrzny system powietrza / worek powietrza | m; nowe |
+| optical camo implant | implant kamuflażu optycznego | m; nowe |
+| gustatorial centre | ośrodek smaku | m; nowe |
+| climbing hook | hak wspinaczkowy | m; nowe |
+| neural overclocker | neuronowy podkręcacz | m; nowe |
+| EMSI datajack | port serwisowy EMSI | m; nowe |
+| shell launch system | wyrzutnia nabojów | ż; nowe |
+| emotional manipulator | manipulator emocji | m; nowe |
+| citizen map implant | implant mapy okrętu | m; nowe |
+| laser cybereye | laserowe cyberoczy | n mn.; nowe |
+| vortex feedback arm | ramię ze sprzężeniem wirowym | n; nowe |
+| prosthesis brand / robolimb manufacturer | marka protezy | ż; nowe (robotyka) |
+| advanced robotic limb | zaawansowana proteza | ż; nowe (robotyka) |
+| Cybernetic Limb Mounts (quirk) | Mocowania protez | n mn.; nowe (cecha) |
+| robotic wounds: loose screws / dented casing / crushed servos | luźne śruby / wgniecenie obudowy / zgniecione serwa | nowe (rany robotyczne) |
+| frayed wiring / severed wiring | postrzępione przewody / przecięte przewody | nowe (rany robotyczne) |
+| overheated circuits / warped plating | przegrzane obwody / wypaczona blacha | nowe (rany robotyczne) |
+| IPC overloader | overloader | m; nowe (cyfrowa używka IPC, nazwa własna Aurory) |
+| synthetic reset key | klucz resetu syntetyka | m; nowe (CM-SS13) |
+| system purge (surgery) | czyszczenie układu | n; nowe (operacja) |
+| synthetic reactivation (surgery) | reaktywacja syntetyka | ż; nowe (operacja) |
+| cyberpsychosis | cyberpsychoza | ż; nowe |
+| neuratrextate | neuratreksat | m; nowe (reagent, Citadel RP) |
+| augmentation disrupter implant | implant zakłócający augmenty | m; nowe |
+| jumpboots implant | implant skoku | m; nowe |
+| skeletal bracing | wzmocnienie stawów | n; nowe |
+| voltaic combat cyberheart / voltaic overdrive | woltaiczne serce bojowe / woltaiczne przeciążenie | n / n; nowe (tg) |
+| psychoscope / neuromod / neuromod shell | psychoskop / neuromod / powłoka neuromodu | m / m / ż; nowe (Chaotic Onyx) |
+## Boty (część BOTY: basic boty na drzewach zachowań)
+
+| EN | PL | rodzaj/uwagi |
+|---|---|---|
+| behavior tree | drzewo zachowań | n; nowe (AI, verb admina „Pokaż drzewo zachowań”) |
+| blackboard (AI) | tablica | ż; nowe (podgląd drzewa) |
+| personality (bot) / personality matrix | osobowość / matryca osobowości | ż; nowe (przełącznik w panelu: duchy mogą przejąć bota) |
+| maintenance panel / control panel (bot) | panel serwisowy / panel sterowania | m; istniejące |
+| Repairbot | Repairbot | m; nowe (następca floorbota, nazwa bez zmian) |
+| Vibebot / Cambot / Digbot / Farmbot / BarBuddy / Secbuddy | bez zmian | m; nowe, nazwy modeli |
+| Dramatic Chef (chefbot) | Dramatyczny kucharz | m; nowe |
+| Doctor Acula (bloodbot) | Doctor Acula | m; nowe, nazwa własna |
+| Donk Exenteration Drone (D.E.D.bot, Ex-Drone) | dron eksenteracyjny Donk, D.E.D.bot, Ex-Dron | m; nowe (marka w oryginale, człon opisowy po polsku) |
+| exenteration drone | dron eksenteracyjny | m; nowe |
+| frightbot / screambot / buttbot | frightbot / screambot / tyłkobot | m; tyłkobot istniejące |
+| eldritch bots | eldritchowe boty | m mn.; nowe (event) |
+| vibing scanners | skanery wajbu | m mn.; nowe |
+| task module (Secbuddy) | moduł zadań | m; nowe |
+| bot elevator | winda dla botów | ż; istniejące |

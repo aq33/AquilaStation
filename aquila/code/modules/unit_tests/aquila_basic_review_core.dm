@@ -249,7 +249,7 @@
 	corgi.forceMove(get_step(start, NORTH))
 
 	// Petsplosion copies pets, not bears or bots
-	var/mob/living/simple_animal/bot/cleanbot/cleanbot = allocate(/mob/living/simple_animal/bot/cleanbot, locate(start.x + 2, start.y, start.z))
+	var/mob/living/basic/bot/cleanbot/cleanbot = allocate(/mob/living/basic/bot/cleanbot, locate(start.x + 2, start.y, start.z))
 	TEST_ASSERT(!is_hostile_basicmob(corgi) && is_hostile_basicmob(bear), "a corgi counts as hostile or a bear as peaceful")
 	if(is_station_level(corgi.z))
 		TEST_ASSERT(petsplosion_can_dupe(corgi), "petsplosion skips the corgi")
@@ -259,11 +259,11 @@
 	// The cleanbot kills a basic mouse it hunts
 	var/mob/living/basic/mouse/mouse = allocate(/mob/living/basic/mouse, get_step(start, NORTHEAST))
 	mouse.ai_controller?.set_ai_status(AI_STATUS_OFF)
-	cleanbot.pests = TRUE
-	cleanbot.get_targets()
-	TEST_ASSERT(is_type_in_typecache(mouse, cleanbot.target_types), "the cleanbot does not hunt mice")
-	cleanbot.target = mouse
-	cleanbot.UnarmedAttack(mouse)
+	cleanbot.pest_control = TRUE
+	cleanbot.rebuild_targets()
+	TEST_ASSERT(is_type_in_typecache(mouse, cleanbot.work_target_types), "the cleanbot does not hunt mice")
+	TEST_ASSERT(cleanbot.is_valid_work_target(mouse), "the cleanbot does not hunt a living mouse")
+	cleanbot.work_on_target(mouse)
 	TEST_ASSERT(QDELETED(mouse) || mouse.stat == DEAD, "the cleanbot did not kill the mouse")
 
 	// The cryo cell takes a basic mob

@@ -702,7 +702,7 @@ GLOBAL_LIST(spy_bounty_item_typecache)
 /datum/spy_bounty/some_bot/get_dupe_protection_key(atom/movable/stealing)
 	return bot_type
 
-/datum/spy_bounty/some_bot/finish_cleanup(mob/living/simple_animal/bot/stealing)
+/datum/spy_bounty/some_bot/finish_cleanup(mob/living/stealing)
 	if(stealing.client)
 		to_chat(stealing, "<span class='deadsay'>Zostałeś skradziony! Trafiasz na czarny rynek i rozbierają cię na części...</span>")
 		stealing.investigate_log("was stolen by a spy (and deleted)", INVESTIGATE_DEATHS)
@@ -718,7 +718,7 @@ GLOBAL_LIST(spy_bounty_item_typecache)
 			return FALSE
 
 	var/list/mob/living/possible_bots = list()
-	for(var/mob/living/bot as anything in GLOB.bots_list)
+	for(var/mob/living/bot as anything in GLOB.bots_list + GLOB.basic_bots_list)
 		if(!is_station_level(bot.z) && !is_mining_level(bot.z))
 			continue
 		if(!istype(bot, bot_type))
@@ -739,18 +739,18 @@ GLOBAL_LIST(spy_bounty_item_typecache)
 
 /datum/spy_bounty/some_bot/beepsky
 	difficulty = SPY_DIFFICULTY_MEDIUM // gotta get him to stand still
-	bot_type = /mob/living/simple_animal/bot/secbot/beepsky
+	bot_type = /mob/living/basic/bot/secbot/beepsky
 	help = "Porwij oficera Beepsky'ego. Zwykle patroluje statek. \
 		Uważaj, skanowanie może mu się nie spodobać."
 
 /datum/spy_bounty/some_bot/pingsky
 	difficulty = SPY_DIFFICULTY_HARD
-	bot_type = /mob/living/simple_animal/bot/secbot/pingsky
+	bot_type = /mob/living/basic/bot/secbot/pingsky
 	help = "Porwij oficera Pingsky'ego. Zwykle chroni SI statku."
 
 /datum/spy_bounty/some_bot/scrubs
 	difficulty = SPY_DIFFICULTY_EASY
-	bot_type = /mob/living/simple_animal/bot/cleanbot/medbay
+	bot_type = /mob/living/basic/bot/cleanbot/medbay
 	help = "Porwij doktora Scrubsa. Zwykle zmywa krew w ambulatorium."
 
 /datum/spy_bounty/some_bot/scrubs/can_claim(mob/user)
