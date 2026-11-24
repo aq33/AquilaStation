@@ -1197,6 +1197,7 @@
 #include "code\modules\overmap\overmap_sprite_bounds.dm"
 #include "code\modules\overmap\overmap_visual_scale.dm"
 #include "code\modules\overmap\ship_turrets.dm"
+#include "code\modules\overmap\ship_sprites.dm"
 #include "code\modules\overmap\modules\ship_module_layouts.dm"
 #include "code\modules\overmap\modules\ship_modules.dm"
 #include "code\modules\overmap\modules\ship_module_sim.dm"

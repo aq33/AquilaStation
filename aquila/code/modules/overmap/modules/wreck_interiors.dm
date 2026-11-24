@@ -17,9 +17,11 @@
 
 /obj/structure/overmap/asteroid/shipbreak_wreck/copy_ship(obj/structure/overmap/source)
 	. = ..()
-	wreck_display_state = initial(source.icon_state)
+	// nowy sprite (ship_sprites.dm) nie ma stanów uszkodzeń, a frachtowce i małe jednostki zmieniają stan w grze
+	overmap_native_sprite = source.uses_native_sprite()
+	wreck_display_state = overmap_native_sprite ? source.icon_state : initial(source.icon_state)
 	overmap_hitbox_icon = source.overmap_hitbox_icon || source.icon
-	overmap_hitbox_state = source.overmap_hitbox_state || initial(source.icon_state)
+	overmap_hitbox_state = source.overmap_hitbox_state || wreck_display_state
 	apply_overmap_hitbox()
 	start_vfx() // obrys sprite'a jest dopiero po skopiowaniu okrętu (ship_vfx.dm)
 	if(!length(source.possible_interior_maps))

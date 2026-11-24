@@ -2,8 +2,9 @@
 /// Okręty na poziomach overmapy rysują się mniejsze: OVERMAP_VISUAL_SCALE × proporcja typu (proporcje ze zrzutów: stare duże
 /// sprite'y i Padalec 1, Atlas i Von Neumann 1,5, myśliwce 0,5). Odległości, prędkości, zasięgi, AI i hitboksy zostają jak
 /// dawniej: zmienia się tylko macierz rysowania (hook w /obj/structure/overmap/process(), physics.dm).
-/// Okręty AI, które miały kiedyś duże sprite'y, dostają je z powrotem; hitbox liczy się wtedy z dzisiejszego sprite'a
-/// (overmap_hitbox_icon), a środek rysunku stoi tam, gdzie był środek dzisiejszego sprite'a.
+/// Okręty z nowymi sprite'ami (ship_sprites.dm) rysują się 1:1 ze swoich pikseli i proporcji nie mają.
+/// Aspala dostaje z powrotem dawny duży sprite; hitbox liczy się wtedy z dzisiejszego sprite'a (overmap_hitbox_icon),
+/// a środek rysunku stoi tam, gdzie był środek dzisiejszego sprite'a.
 /// Efekt trafienia pocisku rysuje się na obrysie kadłuba, a nie przy rogu hitboksu.
 /// Obrysy sprite'ów: tools/overmap_scale/sprite_bounds.py -> overmap_sprite_bounds.dm
 /// Myśliwce na pokładzie (hangar, doki) rysują się dwa razy większe, żeby w kabinie zmieścił się człowiek; hitbox na
@@ -33,6 +34,8 @@
 /obj/structure/overmap/proc/overmap_display_scale()
 	if(!z || !SSmapping.level_trait(z, ZTRAIT_OVERMAP))
 		return deck_display_proportion
+	if(uses_native_sprite())
+		return 1
 	var/proportion = overmap_display_proportion
 	if(isnull(proportion))
 		proportion = (mass <= MASS_TINY) ? OVERMAP_TINY_PROPORTION : 1
@@ -40,7 +43,8 @@
 
 /// Obrys sprite'a, którym okręt się rysuje
 /obj/structure/overmap/proc/overmap_display_bounds()
-	return overmap_sprite_bounds_of(icon, initial(icon_state))
+	// nowe sprite'y nie mają stanów uszkodzeń, a frachtowce i małe jednostki zmieniają stan w grze
+	return overmap_sprite_bounds_of(icon, uses_native_sprite() ? icon_state : initial(icon_state))
 
 /// Obrys sprite'a, z którego liczony jest hitbox (dzisiejszy wygląd)
 /obj/structure/overmap/proc/overmap_hitbox_bounds()
@@ -130,37 +134,11 @@
 	new P.impact_effect_type(get_turf(src), point[1] - 16, point[2] - 16)
 	P.impact_effect_type = null // projectile/on_hit narysowałby drugi efekt przy rogu hitboksu
 
-// Proporcje ze zrzutów: fregaty NT (Atlas, Caracal, Shrike) i Von Neumann są na nich półtora raza większe od dzisiejszych sprite'ów
-/obj/structure/overmap/nanotrasen/frigate
-	overmap_display_proportion = 1.5
-
+// Proporcje ze zrzutów: Von Neumann jest na nich półtora raza większy od dzisiejszego sprite'a
 /obj/structure/overmap/nanotrasen/solgov/vnc
 	overmap_display_proportion = 1.5
 
-// Stare duże sprite'y dla okrętów AI. Okręty graczy (starter) zostają przy obecnych, dopóki nie dostaną nowych.
-
-/obj/structure/overmap/syndicate/ai/carrier
-	icon = 'nsv13/icons/overmap/syndicate/syn_carrier.dmi'
-	icon_state = "carrier"
-	damage_states = TRUE
-	overmap_hitbox_icon = 'nsv13/icons/overmap/new/syndicate/carrier.dmi'
-	overmap_hitbox_state = "redtip"
-
-/obj/structure/overmap/syndicate/ai/carrier/elite
-	icon_state = "carrier"
-	overmap_hitbox_state = "redtip_elite"
-
-/obj/structure/overmap/syndicate/ai/assault_cruiser
-	icon = 'nsv13/icons/overmap/syndicate/assault_cruiser.dmi'
-	icon_state = "assault_cruiser"
-	damage_states = TRUE
-	overmap_hitbox_icon = 'nsv13/icons/overmap/new/syndicate/frigate.dmi'
-	overmap_hitbox_state = "assault"
-
-/obj/structure/overmap/syndicate/ai/assault_cruiser/boarding_frigate
-	icon = 'nsv13/icons/overmap/syndicate/marine_frigate.dmi'
-	icon_state = "marine_frigate"
-	overmap_hitbox_state = "boarding"
+// Stary duży sprite dla Aspali (okręt bez nowego sprite'a)
 
 /obj/structure/overmap/syndicate/ai/submarine
 	icon = 'nsv13/icons/overmap/syndicate/submarine.dmi'
@@ -172,36 +150,3 @@
 /obj/structure/overmap/syndicate/ai/submarine/elite
 	icon_state = "submarine"
 	overmap_hitbox_state = "aspala_elite"
-
-// Stare sprite'y NT bez stanów uszkodzeń (battlecruiser, Battleship, enterprise) zostają z damage_states = FALSE
-/obj/structure/overmap/nanotrasen/battlecruiser/ai
-	icon = 'nsv13/icons/overmap/nanotrasen/battlecruiser.dmi'
-	icon_state = "battlecruiser"
-	overmap_hitbox_icon = 'nsv13/icons/overmap/new/nanotrasen/cruiser.dmi'
-	overmap_hitbox_state = "cruiser"
-
-/obj/structure/overmap/nanotrasen/battleship/ai
-	icon = 'nsv13/icons/overmap/nanotrasen/Battleship.dmi'
-	icon_state = "battleship"
-	overmap_hitbox_icon = 'nsv13/icons/overmap/new/nanotrasen/titan.dmi'
-	overmap_hitbox_state = "titan"
-
-/obj/structure/overmap/nanotrasen/carrier/ai
-	icon = 'nsv13/icons/overmap/nanotrasen/enterprise.dmi'
-	icon_state = "enterprise"
-	overmap_hitbox_icon = 'nsv13/icons/overmap/new/nanotrasen/cruiser.dmi'
-	overmap_hitbox_state = "cruiser"
-
-/obj/structure/overmap/nanotrasen/patrol_cruiser/ai
-	icon = 'nsv13/icons/overmap/nanotrasen/patrol_cruiser.dmi'
-	icon_state = "patrol_cruiser"
-	damage_states = TRUE
-	overmap_hitbox_icon = 'nsv13/icons/overmap/new/nanotrasen/cruiser.dmi'
-	overmap_hitbox_state = "heavy_cruiser"
-
-/obj/structure/overmap/nanotrasen/heavy_cruiser/ai
-	icon = 'nsv13/icons/overmap/nanotrasen/heavy_cruiser.dmi'
-	icon_state = "heavy_cruiser"
-	damage_states = TRUE
-	overmap_hitbox_icon = 'nsv13/icons/overmap/new/nanotrasen/cruiser.dmi'
-	overmap_hitbox_state = "cruiser"

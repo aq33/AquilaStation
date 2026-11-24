@@ -1,5 +1,7 @@
 /// AQUILA - skala wizualna overmapy (aquila/code/modules/overmap/overmap_visual_scale.dm): poza overmapą myśliwiec rysuje się
-/// dwa razy większy (prom bez zmian), na overmapie okręt rysuje się mniejszy, stary sprite zostawia dzisiejszy hitbox i środek, a efekt trafienia trafia na obrys kadłuba.
+/// dwa razy większy (prom bez zmian), na overmapie dostaje nowy sprite 1:1 z hitboksem z jego klatki, a po powrocie na pokład
+/// dawny; okręty z nowymi sprite'ami mają swoje stany i obrysy; stary sprite zostawia dzisiejszy hitbox i środek, a efekt
+/// trafienia trafia na obrys kadłuba.
 /datum/unit_test/aquila_overmap_visual_scale
 	var/obj/structure/overmap/small_craft/ship
 	var/obj/structure/overmap/small_craft/old_sprite
@@ -11,6 +13,7 @@
 	overmap_display_proportion = 1
 	overmap_hitbox_icon = 'nsv13/icons/overmap/new/syndicate/carrier.dmi'
 	overmap_hitbox_state = "redtip"
+	overmap_sprite_icon = null
 
 /datum/unit_test/aquila_overmap_visual_scale/Run()
 	ship = allocate(/obj/structure/overmap/small_craft/combat/light)
@@ -47,12 +50,7 @@
 /datum/unit_test/aquila_overmap_visual_scale/proc/check_damage_states()
 	// Okręty AI ze starymi sprite'ami: każdy, który ma stany uszkodzeń, musi je mieć w nowej ikonie
 	for(var/obj/structure/overmap/type as anything in list(
-		/obj/structure/overmap/syndicate/ai/carrier, /obj/structure/overmap/syndicate/ai/carrier/elite,
-		/obj/structure/overmap/syndicate/ai/assault_cruiser, /obj/structure/overmap/syndicate/ai/assault_cruiser/boarding_frigate,
-		/obj/structure/overmap/syndicate/ai/submarine, /obj/structure/overmap/syndicate/ai/submarine/elite,
-		/obj/structure/overmap/nanotrasen/battlecruiser/ai, /obj/structure/overmap/nanotrasen/battleship/ai,
-		/obj/structure/overmap/nanotrasen/carrier/ai, /obj/structure/overmap/nanotrasen/patrol_cruiser/ai,
-		/obj/structure/overmap/nanotrasen/heavy_cruiser/ai))
+		/obj/structure/overmap/syndicate/ai/submarine, /obj/structure/overmap/syndicate/ai/submarine/elite))
 		var/list/states = icon_states(initial(type.icon))
 		if(!(initial(type.icon_state) in states))
 			return "[type]: ikona [initial(type.icon)] nie ma stanu [initial(type.icon_state)]"
@@ -64,23 +62,48 @@
 			return "[type]: brak obrysu starego sprite'a w tabeli overmap_sprite_bounds"
 		if(!overmap_sprite_bounds_of(initial(type.overmap_hitbox_icon), initial(type.overmap_hitbox_state)))
 			return "[type]: brak obrysu dzisiejszego sprite'a w tabeli overmap_sprite_bounds"
+	// Nowe sprite'y (ship_sprites.dm): każdy typ ma swój stan w ikonie i obrys, a nowy sprite nie udaje stanów uszkodzeń
+	for(var/obj/structure/overmap/type as anything in subtypesof(/obj/structure/overmap))
+		var/sprite_icon = initial(type.overmap_sprite_icon)
+		var/sprite_state = initial(type.overmap_sprite_state)
+		if(!sprite_icon && initial(type.overmap_native_sprite))
+			sprite_icon = initial(type.icon)
+			sprite_state = initial(type.icon_state)
+			if(initial(type.damage_states))
+				return "[type]: nowy sprite ze stanami uszkodzeń, których ikona nie ma"
+		if(!sprite_icon)
+			continue
+		if(!(sprite_state in icon_states(sprite_icon)))
+			return "[type]: ikona [sprite_icon] nie ma stanu [sprite_state]"
+		if(!overmap_sprite_bounds_of(sprite_icon, sprite_state))
+			return "[type]: brak obrysu [sprite_icon]|[sprite_state] w tabeli overmap_sprite_bounds"
 
 /datum/unit_test/aquila_overmap_visual_scale/proc/check_on_overmap()
 	var/list/overmap_levels = SSmapping.levels_by_trait(ZTRAIT_OVERMAP)
 	if(!length(overmap_levels))
 		return // Ten przebieg testów nie ma overmapy
 	var/overmap_z = overmap_levels[1]
+	// Myśliwiec na overmapie: nowy sprite 1:1, hitbox z jego klatki; po powrocie na pokład dawny sprite ×2
 	ship.forceMove(locate(100, 100, overmap_z))
-	var/expected = OVERMAP_VISUAL_SCALE * OVERMAP_TINY_PROPORTION
-	if(abs(ship.overmap_display_scale() - expected) > 0.001)
-		return "Myśliwiec na overmapie ma skalę [ship.overmap_display_scale()] zamiast [expected]"
-	ship.overmap_display_proportion = 1.5
-	if(abs(ship.overmap_display_scale() - OVERMAP_VISUAL_SCALE * 1.5) > 0.001)
-		return "Proporcja 1,5 dała skalę [ship.overmap_display_scale()]"
-	ship.overmap_display_proportion = null
+	if(ship.icon != ship.overmap_sprite_icon || ship.icon_state != ship.overmap_sprite_state)
+		return "Myśliwiec na overmapie rysuje się [ship.icon]|[ship.icon_state] zamiast nowego sprite'a"
+	if(ship.overmap_display_scale() != 1)
+		return "Myśliwiec na overmapie ma skalę [ship.overmap_display_scale()] zamiast 1"
+	var/icon/frame = icon(ship.overmap_sprite_icon, ship.overmap_sprite_state)
+	if(ship.pixel_collision_size_x != frame.Width() || ship.pixel_collision_size_y != frame.Height())
+		return "Hitbox myśliwca na overmapie to [ship.pixel_collision_size_x]x[ship.pixel_collision_size_y] zamiast klatki nowego sprite'a"
+	ship.forceMove(locate(10, 10, run_loc_floor_bottom_left.z))
+	if(ship.icon != initial(ship.icon) || ship.icon_state != initial(ship.icon_state) || ship.overmap_display_scale() != 2)
+		return "Po powrocie na pokład myśliwiec rysuje się [ship.icon]|[ship.icon_state] w skali [ship.overmap_display_scale()]"
+
+	// Okręt bez nowego sprite'a zostaje przy proporcjach
+	old_sprite.forceMove(locate(120, 100, overmap_z))
+	old_sprite.overmap_display_proportion = 1.5
+	if(abs(old_sprite.overmap_display_scale() - OVERMAP_VISUAL_SCALE * 1.5) > 0.001)
+		return "Proporcja 1,5 dała skalę [old_sprite.overmap_display_scale()]"
+	old_sprite.overmap_display_proportion = 1
 
 	// Stary sprite: macierz skaluje i przesuwa środek kadłuba na środek dzisiejszego sprite'a
-	old_sprite.forceMove(locate(120, 100, overmap_z))
 	old_sprite.angle = 0
 	old_sprite.pixel_x = 0
 	old_sprite.pixel_y = 0
