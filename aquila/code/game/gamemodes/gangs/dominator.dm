@@ -175,7 +175,7 @@
 		return
 
 	var/time = round(tempgang.determine_domination_time()/60,0.1)
-	if(alert(user,"Przejęcie zajmie [time] min.\nW tym czasie gang nie będzie zdobywał wpływów.\nPo starcie cała stacja pewnie się o tym dowie.\nPozostałe próby: [tempgang.dom_attempts]. Gotowi?","Potwierdź","Gotowi","Później") == "Gotowi")
+	if(alert(user,"Przejęcie zajmie [time] min.\nZnaki gangu zarabiają w tym czasie punkty jak zwykle.\nPo starcie cała stacja pewnie się o tym dowie.\nPozostałe próby: [tempgang.dom_attempts]. Gotowi?","Potwierdź","Gotowi","Później") == "Gotowi")
 		// okno alert() czeka na gracza: w tym czasie dominator mógł zostać zepsuty, zniszczony albo uruchomiony przez kogoś innego
 		if(QDELETED(src) || operating || (machine_stat & BROKEN) || (tempgang.domination_time != NOT_DOMINATING) || !tempgang.dom_attempts || !in_range(src, user) || !isturf(loc))
 			return 0
