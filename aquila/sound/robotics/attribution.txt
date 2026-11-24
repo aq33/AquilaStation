@@ -1,0 +1,2 @@
+reset_key_boot.ogg - CM-SS13 (cmss13-devs/cmss13), sound/items/synth_reset_key/boot_on.ogg, CC BY-SA 3.0
+reset_key_beep.ogg - CM-SS13 (cmss13-devs/cmss13), sound/items/synth_reset_key/shortbeep.ogg, CC BY-SA 3.0

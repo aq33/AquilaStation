@@ -175,6 +175,9 @@
 			return 'aquila/sound/voice/lizard/lizard_laugh1.ogg'
 		if(ismoth(user))
 			return pick_emote_sound(user, list('aquila/sound/voice/moth/moth_laugh1.ogg', 'aquila/sound/emotes/moth/mothlaugh.ogg'))
+		if(iscatperson(user))
+			return pick_emote_sound(user, list('aquila/sound/voice/laugh/felinid_nyahaha1.ogg', 'aquila/sound/voice/laugh/felinid_nyahaha2.ogg',
+				'aquila/sound/voice/laugh/felinid_nyaha.ogg', 'aquila/sound/voice/laugh/felinid_nyahehe.ogg'))
 	return ..()
 
 /datum/emote/living/giggle
@@ -248,7 +251,7 @@
 	if(ismonkey(user))
 		return pick('sound/creatures/monkey/monkey_screech_1.ogg', 'sound/creatures/monkey/monkey_screech_2.ogg', 'sound/creatures/monkey/monkey_screech_3.ogg',
 			'sound/creatures/monkey/monkey_screech_4.ogg', 'sound/creatures/monkey/monkey_screech_5.ogg', 'sound/creatures/monkey/monkey_screech_6.ogg',
-			'sound/creatures/monkey/monkey_screech_7.ogg')
+			'sound/creatures/monkey/monkey_screech_7.ogg', 'aquila/sound/voice/scream/skyrat_scream_monkey.ogg')
 	if(isalien(user))
 		return "hiss"
 	if(istype(user, /mob/living/basic/pet/dog))

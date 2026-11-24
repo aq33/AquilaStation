@@ -49,6 +49,8 @@
 
 /mob/living/carbon/human/update_inv_hands()
 	. = ..()
+	if(isgrod(src))
+		grod_layer_held_items()
 	var/datum/component/walk_animation/walk_animation = GetComponent(/datum/component/walk_animation)
 	walk_animation?.detach_held_items()
 

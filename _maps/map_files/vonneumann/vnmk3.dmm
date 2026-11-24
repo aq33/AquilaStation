@@ -8824,7 +8824,7 @@
 /area/teleporter)
 "gQa" = (
 /obj/structure/cable/yellow,
-/mob/living/simple_animal/bot/cleanbot,
+/mob/living/basic/bot/cleanbot,
 /obj/structure/window/reinforced/spawner/east,
 /turf/open/floor/carpet/ship,
 /area/ai_monitored/turret_protected/ai)
@@ -11046,7 +11046,7 @@
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
 "izK" = (
-/mob/living/simple_animal/bot/medbot/catmedbot,
+/mob/living/basic/bot/medbot/catmedbot,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 8
 	},
@@ -15585,7 +15585,7 @@
 /turf/open/floor/carpet/ship,
 /area/hydroponics)
 "mcf" = (
-/mob/living/simple_animal/bot/secbot/pingsky,
+/mob/living/basic/bot/secbot/pingsky,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 6
@@ -18810,7 +18810,7 @@
 	dir = 4;
 	pixel_y = 10
 	},
-/mob/living/simple_animal/bot/secbot/armsky,
+/mob/living/basic/bot/secbot/armsky,
 /turf/open/floor/carpet/police,
 /area/ai_monitored/security/armory)
 "oQP" = (
@@ -18893,8 +18893,8 @@
 /turf/open/floor/carpet/ship,
 /area/tcommsat/computer)
 "oTg" = (
-/mob/living/simple_animal/bot/secbot/beepsky{
-	auto_patrol = 0
+/mob/living/basic/bot/secbot/beepsky{
+	start_patrolling = 0
 	},
 /turf/open/floor/carpet/police,
 /area/security/brig)
@@ -22274,7 +22274,7 @@
 /area/medical/medbay)
 "rHT" = (
 /obj/structure/cable/yellow,
-/mob/living/simple_animal/bot/floorbot,
+/mob/living/basic/bot/repairbot,
 /obj/machinery/door/window/northleft{
 	req_one_access_txt = "16";
 	dir = 4

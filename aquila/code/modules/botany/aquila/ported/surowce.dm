@@ -85,7 +85,7 @@
 	species_name = "podex roboticus"
 	name = "syntetyczny tyłkobot"
 	icon_state = "synth_buttbot"
-	fruit_product = /mob/living/simple_animal/bot/buttbot
+	fruit_product = /mob/living/basic/bot/buttbot
 	harvest_cap = 1
 
 /datum/plant_feature/fruit/surowce/synth_organ/buttbot/catch_attackby(datum/source, obj/item/storage/bag/plants/item, mob/living/user, params)

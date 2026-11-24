@@ -302,8 +302,9 @@
 			swing_arm("arm_a", forward, 0, half_step)
 			swing(held_item_of("arm_b", source.dir), -forward, 0, half_step)
 	else
-		// Z przodu i z tyłu: unosi się jedna noga i ręka po przeciwnej stronie
-		swing(phase ? "leg_a" : "leg_b", 0, 1, half_step)
+		// Z przodu i z tyłu: unosi się jedna noga i ręka po przeciwnej stronie (rasa bez nóg rusza tylko rękami)
+		if(source.dna?.species?.walk_animation_legs)
+			swing(phase ? "leg_a" : "leg_b", 0, 1, half_step)
 		swing_arm(phase ? "arm_b" : "arm_a", 0, 1, half_step)
 
 /datum/component/walk_animation/proc/on_dir_change(mob/living/carbon/human/source, old_dir, new_dir)
@@ -395,6 +396,10 @@
 	layer = FLOAT_LAYER
 	appearance_flags = KEEP_APART | PIXEL_SCALE | TILE_BOUND
 	vis_flags = VIS_INHERIT_ID
+
+/datum/species
+	/// Czy z przodu i z tyłu w chodzie unoszą się nogi. FALSE dla ras bez nóg (Grod), które idą samymi rękami.
+	var/walk_animation_legs = TRUE
 
 /datum/species/handle_mutant_bodyparts(mob/living/carbon/human/H, forced_colour)
 	. = ..()

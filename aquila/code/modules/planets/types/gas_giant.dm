@@ -10,6 +10,9 @@
 #define PLASMA_GIANT_ATMOS_MIX "plasma=2600;co2=400;TEMP=80"
 
 /datum/planet_type/gas_giant
+	sky_state = "gas_giant"
+	sky_atmosphere_color = "#f0b070"
+	sky_scale = 3.5
 	name = "gazowy olbrzym"
 	desc = "Ogromna kula gęstego gazu bez stałej powierzchni. Na orbicie wiszą platformy wydobywcze, z których da się czerpać gaz."
 	overmap_icon_state = "planet_gas"
@@ -31,6 +34,8 @@
 	var/platform_canisters = 2
 
 /datum/planet_type/gas_giant/plasma
+	sky_state = "gas_plasma"
+	sky_atmosphere_color = "#c070f0"
 	name = "plazmowy olbrzym"
 	desc = "Olbrzym z gazu przesyconego plazmą. Platformy wydobywcze na jego orbicie to cenne źródło paliwa."
 	overmap_color = "#b060d0"

@@ -5,6 +5,8 @@
 // interference_power = 100): nadpisanie /atom/is_jammed sprawdza planet_radio_jamming obszaru.
 
 /datum/planet_type/rock
+	sky_state = "rock"
+	sky_atmosphere_color = "#e0907a"
 	name = "planeta skalista"
 	desc = "Rdzawy, czerwony świat w trakcie terraformowania. Część roślin się przyjęła, ale planeta wciąż jest wroga życiu."
 	overmap_icon_state = "planet_rocky"
@@ -34,6 +36,10 @@
 	return get_planet_ruin_templates(/datum/map_template/ruin/planet_rock)
 
 /datum/planet_type/sand
+	sky_state = "sand"
+	sky_clouds = "clouds_wisps"
+	sky_cloud_color = "#f4f0fa"
+	sky_atmosphere_color = "#e8e0ff"
 	name = "planeta białych piasków"
 	desc = "Niegdyś tętniący życiem świat, który wojna zamieniła w solony piasek. Ocaleni dawno postradali zmysły."
 	overmap_icon_state = "planet_cloud"
@@ -62,6 +68,10 @@
 	return get_planet_ruin_templates(/datum/map_template/ruin/planet_sand)
 
 /datum/planet_type/desert
+	sky_state = "desert"
+	sky_clouds = "clouds_wisps"
+	sky_cloud_color = "#f0dcc0"
+	sky_atmosphere_color = "#f3c282"
 	name = "planeta pustynna"
 	desc = "Bardzo gorąca i surowa planeta, z której dochodzi słaby sygnał energetyczny."
 	overmap_icon_state = "planet_rockocean"
@@ -90,6 +100,10 @@
 	return get_planet_ruin_templates(/datum/map_template/ruin/planet_desert)
 
 /datum/planet_type/shrouded
+	sky_state = "shrouded"
+	sky_clouds = "clouds_thick"
+	sky_cloud_color = "#9a70c0"
+	sky_atmosphere_color = "#b070e0"
 	name = "planeta mglista"
 	desc = "Planeta spowita wieczną burzą dziwnych cząstek, które pochłaniają prawie całe widmo elektromagnetyczne. Sygnał z niej ledwo się przebija."
 	overmap_icon_state = "planet_swirly"
@@ -121,6 +135,8 @@
 
 /// Pyłowa planeta karłowata: białe piaski na małej mapie, bez ruin, z bogatszymi żyłami
 /datum/planet_type/dwarf/dust
+	sky_state = "rock"
+	sky_atmosphere_color = "#e0907a"
 	name = "pyłowa planeta karłowata"
 	desc = "Świat w całości pokryty pyłem. Na pewno nie ma tu nic ciekawego poza rudą pod spodem, a awaryjne lądowanie byłoby tu koszmarem."
 	overmap_icon_state = "planet_small"
@@ -145,6 +161,10 @@
 
 /// Wydmowa planeta karłowata: pustynia na małej mapie, bez ruin, z bogatszymi żyłami
 /datum/planet_type/dwarf/dune
+	sky_state = "desert"
+	sky_clouds = "clouds_wisps"
+	sky_cloud_color = "#f0dcc0"
+	sky_atmosphere_color = "#f3c282"
 	name = "wydmowa planeta karłowata"
 	desc = "Świat w całości pokryty gorącym, suchym piaskiem. Na pewno nie ma tu nic ciekawego poza rudą pod spodem."
 	overmap_icon_state = "planet_small"

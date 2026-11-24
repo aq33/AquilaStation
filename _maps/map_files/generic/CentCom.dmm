@@ -9029,7 +9029,7 @@
 /turf/open/floor/carpet,
 /area/wizard_station)
 "xB" = (
-/mob/living/simple_animal/bot/medbot{
+/mob/living/basic/bot/medbot{
 	desc = "When engaged in combat, the vanquishing of thine enemy can be the warrior's only concern.";
 	name = "Hattori";
 	radio_key = null;
@@ -10490,7 +10490,7 @@
 /turf/open/floor/engine/cult,
 /area/wizard_station)
 "Bg" = (
-/mob/living/simple_animal/bot/medbot/mysterious{
+/mob/living/basic/bot/medbot/mysterious{
 	desc = "If you don't accidentally blow yourself up from time to time you're not really a wizard anyway.";
 	faction = list("neutral","silicon","creature");
 	name = "Nobody's Perfect"
@@ -18788,7 +18788,7 @@
 /turf/open/floor/plating,
 /area/centcom/evac)
 "Zx" = (
-/mob/living/simple_animal/bot/medbot{
+/mob/living/basic/bot/medbot{
 	desc = "A little medical robot. You can make out the word \"sincerity\" on its chassis.";
 	name = "Hijikata";
 	radio_key = null;

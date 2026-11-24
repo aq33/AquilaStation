@@ -3,6 +3,9 @@
 // i łaty trawy w ruins/planet_jungle_ruins.dm. Pogoda jak kontroler lush z Shiptesta (deszcz, ulewa, burza po 30).
 
 /datum/planet_type/jungle
+	sky_state = "jungle"
+	sky_clouds = "clouds"
+	sky_atmosphere_color = "#7fb8ff"
 	name = "planeta dżunglowa"
 	desc = "Świat porośnięty gęstym lasem, pnączami i poszyciem, pełen zwierząt. Z maczetą da się tu nawet żyć."
 	overmap_icon_state = "planet_green"

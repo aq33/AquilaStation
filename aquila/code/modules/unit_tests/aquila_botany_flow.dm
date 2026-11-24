@@ -180,7 +180,7 @@
 
 /datum/unit_test/aquila_botany_turtle/Run()
 	var/obj/item/plant_tray/tray = allocate(/obj/item/plant_tray, get_step(run_loc_floor_bottom_left, EAST))
-	var/mob/living/simple_animal/bot/turtle/turtle = allocate(/mob/living/simple_animal/bot/turtle, run_loc_floor_bottom_left)
+	var/mob/living/basic/bot/turtle/turtle = allocate(/mob/living/basic/bot/turtle, run_loc_floor_bottom_left)
 	turtle.turn_on()
 	var/before = tray.reagents.get_reagent_amount(/datum/reagent/water)
 	turtle.UnarmedAttack(tray, TRUE)

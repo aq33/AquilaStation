@@ -22673,7 +22673,7 @@
 /area/quartermaster/miningdock)
 "wuO" = (
 /obj/machinery/ai_slipper,
-/mob/living/simple_animal/bot/secbot/pingsky,
+/mob/living/basic/bot/secbot/pingsky,
 /obj/structure/cable/green,
 /obj/machinery/camera/xray{
 	dir = 4

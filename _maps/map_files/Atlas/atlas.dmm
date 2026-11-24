@@ -4855,7 +4855,7 @@
 "kb" = (
 /obj/effect/turf_decal/tile/ship/half/police,
 /obj/machinery/computer/ship/viewscreen,
-/mob/living/simple_animal/bot/secbot/armsky,
+/mob/living/basic/bot/secbot/armsky,
 /turf/open/floor/monotile/dark,
 /area/ai_monitored/security/armory)
 "kd" = (
@@ -9568,7 +9568,7 @@
 /turf/open/floor/engine,
 /area/nsv/weapons)
 "yd" = (
-/mob/living/simple_animal/bot/floorbot,
+/mob/living/basic/bot/repairbot,
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/monotile/steel,
 /area/engine/engine_room)
@@ -11576,7 +11576,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 8
 	},
-/mob/living/simple_animal/bot/secbot/beepsky,
+/mob/living/basic/bot/secbot/beepsky,
 /turf/open/floor/monotile/dark,
 /area/security/brig)
 "En" = (
@@ -13247,7 +13247,7 @@
 /mob/living/simple_animal/kalo{
 	name = "Comrade"
 	},
-/mob/living/simple_animal/bot/cleanbot,
+/mob/living/basic/bot/cleanbot,
 /obj/machinery/firealarm{
 	dir = 4;
 	pixel_x = -26

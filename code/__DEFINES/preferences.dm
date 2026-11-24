@@ -79,6 +79,8 @@
 #define CHAT_DISABLE_COMBATMODE_SOUND (1<<15) // AQ EDIT - port BeeStation #11899; flaga wyłączająca dźwięk przełączania combat mode
 #define CHAT_INVERTED_ROTATION (1<<16) // AQ EDIT - port BeeStation #14313; odwraca kierunek obracania Alt+klikiem
 #define CHAT_RDS_UNLIMITED (1<<17) // AQ EDIT - tgstation/tgstation#89865; Zaburzenia Dysocjacyjne bez limitu halucynacji
+#define CHAT_DISABLE_SPEECH_SOUNDS (1<<18) // AQ EDIT - flaga wyłączająca dźwięki mowy postaci (aquila/code/modules/mob/voice_goon.dm)
+#define CHAT_GOON_SPEECH_SOUNDS (1<<19) // AQ EDIT - słuchacz woli głosy z Goona zamiast naszego „hmm” (aquila/code/modules/mob/voice_goon.dm)
 
 //nsv13 for below: add chat_looc
 #define TOGGLES_DEFAULT_CHAT (CHAT_OOC|CHAT_LOOC|CHAT_DEAD|CHAT_GHOSTEARS|CHAT_GHOSTSIGHT|CHAT_PRAYER|CHAT_RADIO|CHAT_PULLR|CHAT_GHOSTWHISPER|CHAT_GHOSTPDA|CHAT_GHOSTRADIO|CHAT_BANKCARD|CHAT_GHOSTLAWS)

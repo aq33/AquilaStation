@@ -163,12 +163,12 @@
 					dat += "<a href='byond://?src=[REF(src)];screen=1'>Wstecz</a>"
 					dat += "<br><b>Roboty medyczne:</b>"
 					var/bdat = null
-					for(var/mob/living/simple_animal/bot/medbot/M in GLOB.alive_mob_list)
+					for(var/mob/living/basic/bot/medbot/M in GLOB.alive_mob_list) // AQ EDIT - basic boty
 						if(M.get_virtual_z_level() != src.get_virtual_z_level())
 							continue	//only find medibots on the same z-level as the computer
 						var/turf/bl = get_turf(M)
 						if(bl)	//if it can't find a turf for the medibot, then it probably shouldn't be showing up
-							bdat += "[M.name] - <b>\[[bl.x],[bl.y]\]</b> - [M.on ? "włączony" : "wyłączony"]<br>"
+							bdat += "[M.name] - <b>\[[bl.x],[bl.y]\]</b> - [M.is_bot_on() ? "włączony" : "wyłączony"]<br>" // AQ EDIT - basic boty
 					if(!bdat)
 						dat += "<br><center>Nie wykryto</center>"
 					else

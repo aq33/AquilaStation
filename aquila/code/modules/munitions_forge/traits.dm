@@ -119,21 +119,17 @@
 /datum/munition_trait/honk/on_overmap_hit(obj/item/projectile/P, obj/structure/overmap/target, datum/component/forged_munition/forged)
 	playsound(target, 'sound/items/bikehorn.ogg', 100, TRUE)
 
-/// Srebro: impuls EMP przy trafieniu
+/// Srebro: impuls EMP przy trafieniu w okręt (tylko overmapa: amunicja ręczna z powłoką nie EMP-uje celu)
 /datum/munition_trait/emp
 	name = "EMP"
-	desc = "Mocny impuls EMP: zakłóca elektronikę i systemy trafionego okrętu."
+	desc = "Mocny impuls EMP: zakłóca systemy trafionego okrętu."
 
 /// Miedź: ta sama cecha z połową siły
 /datum/munition_trait/emp/weak
-	desc = "Słaby impuls EMP: czasem zakłóca elektronikę i systemy trafionego okrętu."
+	desc = "Słaby impuls EMP: krócej zakłóca systemy trafionego okrętu."
 
 /datum/munition_trait/emp/weak/New(power = 0.5)
 	return ..(power)
-
-/datum/munition_trait/emp/on_hit(obj/item/projectile/P, atom/target, datum/component/forged_munition/forged)
-	if(prob(50 * power))
-		target.emp_act(EMP_LIGHT)
 
 /datum/munition_trait/emp/on_overmap_hit(obj/item/projectile/P, obj/structure/overmap/target, datum/component/forged_munition/forged)
 	var/strength = power
@@ -162,7 +158,8 @@
 		var/list/quad = target.armour_quadrants[target.projectile_quadrant_impact(P)]
 		if(quad && quad["current_armour"] > 0)
 			return
-	target.take_damage(round(P.damage * 0.25 * power), P.damage_type, P.flag, FALSE)
+	// Od obrażeń po modelu grubości pancerza: pocisk, który się odbił, nie sypie odłamkami w kadłub
+	target.take_damage(round(target.aq_hit_damage(P) * 0.25 * power), P.damage_type, target.aq_hit_armor_flag(P), FALSE)
 
 /// Diament: zdziera płyty pancerza ćwiartki ponad zwykłe trafienie
 /datum/munition_trait/armor_strip
@@ -175,7 +172,7 @@
 	var/list/quad = target.armour_quadrants[target.projectile_quadrant_impact(P)]
 	if(!quad)
 		return
-	quad["current_armour"] = max(quad["current_armour"] - round(P.damage * 0.25 * power), 0)
+	quad["current_armour"] = max(quad["current_armour"] - round(target.aq_hit_damage(P) * 0.25 * power), 0)
 	target.update_quadrants()
 
 /// Bluespace: część obrażeń przechodzi przez podniesioną tarczę (aq_bluespace_shield_bypass w bullet_act okrętu)

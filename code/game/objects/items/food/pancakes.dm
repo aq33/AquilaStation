@@ -87,13 +87,11 @@
 		contents += pancake
 		update_snack_overlays(pancake)
 		if (pancake.contents.len)
-			for(var/pancake_content in pancake.contents)
+			for(var/obj/item/food/pancakes/pancake_content in pancake.contents) // AQ EDIT - tylko naleśniki: składniki z craftingu (ciasto) zostają w swoim naleśniku
 				pancake = pancake_content
 				pancake.name = initial(pancake.name)
 				contents += pancake
 				update_snack_overlays(pancake)
-		pancake = item
-		pancake.contents.Cut()
 		return
 	else if(contents.len)
 		var/obj/O = contents[contents.len]
@@ -101,6 +99,8 @@
 	..()
 
 /obj/item/food/pancakes/proc/update_snack_overlays(obj/item/food/pancakes/pancake)
+	if(!istype(pancake)) // AQ EDIT - w stosie bywa ciasto (pastrybase) bez stack_name
+		return
 	var/mutable_appearance/pancake_visual = mutable_appearance(icon, "[pancake.stack_name]_[rand(1, 3)]")
 	pancake_visual.pixel_x = rand(-1, 1)
 	pancake_visual.pixel_y = 3 * contents.len - 1

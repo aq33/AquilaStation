@@ -114,6 +114,7 @@
 #define COMSIG_ATOM_PROCESSED "atom_processed"
 ///! called when teleporting into a protected turf: (channel, turf/origin)
 #define COMSIG_ATOM_INTERCEPT_TELEPORT "intercept_teleport"
+#define COMSIG_AQ_TELEPORT_DENIED "aq_teleport_denied" // AQ EDIT - from do_teleport() when TRAIT_NO_TELEPORT stops it: () (implant uziemiający, aquila/code/modules/cybernetics/robotyka/)
 	#define COMPONENT_BLOCK_TELEPORT 1
 ///called when an atom starts orbiting another atom: (atom)
 #define COMSIG_ATOM_ORBIT_BEGIN "atom_orbit_begin"
