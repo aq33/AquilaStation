@@ -82,7 +82,7 @@
 	if(clothed)
 		if(feces_need)
 			actually_shit_myself()
-			report_public_bodily_function("Publiczne wypróżnianie się", "załatwiała się")
+			report_public_bodily_function(PUBLIC_BODILY_FUNCTION_CRIME, "załatwiała się")
 		return
 	if(!feces_need)
 		return
@@ -93,7 +93,7 @@
 	bodily_playsound(src, 'aquila/sound/creatures/fart.ogg', 100)
 	var/feces_path = feces_type()
 	finish_bowel_movement(TRUE, new feces_path(get_turf(src)))
-	report_public_bodily_function("Publiczne wypróżnianie się", "załatwiała się")
+	report_public_bodily_function(PUBLIC_BODILY_FUNCTION_CRIME, "załatwiała się")
 
 /// Czy coś zakrywa krocze (wtedy wypróżnienie idzie w spodnie)
 /mob/living/proc/is_wearing_pants()

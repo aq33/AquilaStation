@@ -18,7 +18,8 @@
 #define AQ_ADRENALINE_PAIN_STRENGTH 45
 /// Epinephrine in the blood above which the rush ends with a crash (a natural release is 3u, an autoinjector 10u)
 #define AQ_ADRENALINE_CRASH_PEAK 8
-/// Tolerance gained per unit metabolised, and lost per Life
+/// Tolerance gained per unit metabolised, and lost per Life once no epinephrine is left in the blood
+/// (decaying during a dose cancelled the gain exactly, 0.04 * 0.1u = 0.004, so tolerance never built up)
 #define AQ_ADRENALINE_TOLERANCE_GAIN 0.04
 #define AQ_ADRENALINE_TOLERANCE_DECAY 0.004
 
@@ -35,10 +36,12 @@
 
 /// The glands release adrenaline under strong pain and refill while it is small
 /mob/living/carbon/human/proc/aq_handle_adrenal_glands()
-	aq_adrenaline_tolerance = max(0, aq_adrenaline_tolerance - AQ_ADRENALINE_TOLERANCE_DECAY)
 	if(stat == DEAD || !reagents)
+		aq_adrenaline_tolerance = max(0, aq_adrenaline_tolerance - AQ_ADRENALINE_TOLERANCE_DECAY)
 		return
 	var/in_blood = reagents.get_reagent_amount(/datum/reagent/medicine/epinephrine)
+	if(!in_blood)
+		aq_adrenaline_tolerance = max(0, aq_adrenaline_tolerance - AQ_ADRENALINE_TOLERANCE_DECAY)
 	var/capacity = aq_adrenal_capacity() // nadnercza (surgery/organs/med5/glands.dm)
 	aq_adrenal_reserve = min(aq_adrenal_reserve, capacity)
 	if(aq_pain_raw < 20 && !in_blood)

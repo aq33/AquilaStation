@@ -215,6 +215,19 @@
 	TEST_ASSERT(patient.aq_adrenaline_strength() < fresh, "Tolerance does not weaken adrenaline")
 	patient.aq_adrenaline_tolerance = 0
 
+	// A dose builds tolerance while it metabolises (regression: the per-Life decay used to cancel the gain exactly)
+	patient.reagents.add_reagent(/datum/reagent/medicine/epinephrine, 10)
+	var/datum/reagent/medicine/epinephrine/dose = patient.reagents.has_reagent(/datum/reagent/medicine/epinephrine)
+	for(var/i in 1 to 20)
+		dose.on_mob_life(patient)
+		patient.aq_handle_adrenal_glands()
+	TEST_ASSERT(patient.aq_adrenaline_tolerance > 0.05, "A dose of epinephrine built no tolerance ([patient.aq_adrenaline_tolerance])")
+	patient.reagents.del_reagent(/datum/reagent/medicine/epinephrine)
+	var/built = patient.aq_adrenaline_tolerance
+	patient.aq_handle_adrenal_glands()
+	TEST_ASSERT(patient.aq_adrenaline_tolerance < built, "Tolerance does not wear off once the epinephrine is gone")
+	patient.aq_adrenaline_tolerance = 0
+
 	// The glands' own 3u do not crash, an autoinjector's 10u do
 	patient.reagents.add_reagent(/datum/reagent/medicine/epinephrine, 3)
 	var/datum/reagent/medicine/epinephrine/small = patient.reagents.has_reagent(/datum/reagent/medicine/epinephrine)
