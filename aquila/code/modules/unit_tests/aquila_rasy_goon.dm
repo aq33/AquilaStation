@@ -156,8 +156,10 @@
 	var/turf/far = locate(T.x + 3, T.y, T.z)
 	var/obj/item/toy/crayon/red/crayon = allocate(/obj/item/toy/crayon/red, far)
 	TEST_ASSERT(sticky.Activate(crayon), "The sticky tongue could not be used")
-	TEST_ASSERT(crayon.throwing, "The sticky tongue did not pull the crayon")
-	crayon.throwing?.finalize(FALSE)
+	// Język podaje rzecz od razu: do ręki albo (jedzenie) prosto do ust
+	TEST_ASSERT(QDELETED(crayon) || frog.is_holding(crayon) || get_turf(crayon) == get_turf(frog), "The sticky tongue did not pull the crayon")
+	if(!QDELETED(crayon))
+		qdel(crayon)
 	var/mob/living/basic/cockroach/bug = allocate(/mob/living/basic/cockroach, far)
 	var/nutrition_before = frog.nutrition
 	sticky.next_use_time = 0
