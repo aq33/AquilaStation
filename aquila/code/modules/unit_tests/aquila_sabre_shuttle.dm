@@ -56,6 +56,28 @@
 	TEST_ASSERT_EQUAL(length(sabre.exit_offsets), 2, "The landing search doesn't know where the hatch opens")
 	TEST_ASSERT(length(sabre.hull_offsets) > 60, "The landing search doesn't know the hull shape")
 
+	// Przechwycenie kapsuły ratunkowej (sabre_pod_rescue.dm): pusta zostaje, z rozbitkiem znika, a rozbitek jest w promie
+	var/obj/structure/overmap/small_craft/escapepod/empty_pod = new(get_turf(sabre))
+	TEST_ASSERT(!empty_pod.docking_act(sabre), "The Sabre took in an empty escape pod")
+	qdel(empty_pod)
+	var/obj/structure/overmap/small_craft/escapepod/pod = new(get_turf(sabre))
+	var/mob/living/carbon/human/survivor = allocate(/mob/living/carbon/human, run_loc_floor_bottom_left)
+	survivor.doMove(pod) // jak create_escape_pod(): forceMove() z NSV nie wpuszcza moba do jednostki na overmapie
+	pod.mobs_in_ship |= survivor
+	var/obj/item/toy/crayon/keepsake = new(pod)
+	// Wroga kapsuła nie wchodzi na prom
+	pod.faction = "syndicate"
+	TEST_ASSERT(!pod.docking_act(sabre), "The Sabre took in a hostile escape pod")
+	pod.faction = sabre.faction
+	TEST_ASSERT(pod.docking_act(sabre), "The Sabre didn't take in an escape pod with a survivor")
+	TEST_ASSERT(QDELETED(pod), "The rescued escape pod was left on the overmap")
+	TEST_ASSERT(istype(get_area(survivor), /area/shuttle/sabre), "The survivor ended up in [get_area(survivor)] instead of inside the Sabre")
+	TEST_ASSERT(survivor in sabre.mobs_in_ship, "The survivor isn't counted aboard the Sabre")
+	TEST_ASSERT(!QDELETED(keepsake) && istype(get_area(keepsake), /area/shuttle/sabre), "An item from the escape pod was lost with it")
+	qdel(keepsake)
+	sabre.mobs_in_ship -= survivor
+	qdel(survivor)
+
 	TEST_ASSERT_EQUAL(sabre.shuttle_find_landing(host), port, "The Sabre doesn't pick its free home port")
 	TEST_ASSERT(sabre.shuttle_land(host, port), "The Sabre didn't land at its home port")
 	TEST_ASSERT_EQUAL(shuttle_port.docked, port, "The interior isn't back at the hangar port")

@@ -36,6 +36,52 @@
 /mob/living/carbon/human/species/egg
 	race = /datum/species/egg
 
+/datum/species/egg/get_species_description()
+	return "Jajoludzie to chodzące jajka w kruchej skorupce. Surowe pękają od byle szturchnięcia, \
+		ale im mocniej się je przysmaży, tym twardsza staje się skorupka."
+
+/datum/species/egg/get_species_lore()
+	return list(
+		"Nikt nie wie, kto wysiedział pierwszego jajoczłowieka. Załogi kuchni przysięgają, że to nie one, \
+			a jajoludzie na pytanie o pochodzenie odpowiadają tylko obrażonym bulgotem we własnym języku.",
+		"Pracują wszędzie, gdzie nie trzeba się przepychać. Unikają gorących pomieszczeń i kucharzy z patelnią, \
+			chyba że akurat chcą sobie utwardzić skorupkę przed zmianą w ochronie.",
+	)
+
+/datum/species/egg/create_pref_unique_perks()
+	return list(
+		list(
+			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
+			SPECIES_PERK_ICON = "fire",
+			SPECIES_PERK_NAME = "Smażona skorupka",
+			SPECIES_PERK_DESC = "Oparzenia utwardzają skorupkę: mocno przysmażony jajoczłowiek dostaje o połowę mniejsze obrażenia od uderzeń niż człowiek.",
+		),
+		list(
+			SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
+			SPECIES_PERK_ICON = "language",
+			SPECIES_PERK_NAME = "Język jajowy",
+			SPECIES_PERK_DESC = "Jajoludzie mówią między sobą trzaskami i bulgotami, których nikt inny nie rozumie. Zamiast krwi mają żółtko.",
+		),
+		list(
+			SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
+			SPECIES_PERK_ICON = "drumstick-bite",
+			SPECIES_PERK_NAME = "Mięsożercy",
+			SPECIES_PERK_DESC = "Jajoludzie lubią mięso, a nie znoszą nabiału i śniadań.",
+		),
+		list(
+			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
+			SPECIES_PERK_ICON = "egg",
+			SPECIES_PERK_NAME = "Krucha skorupka",
+			SPECIES_PERK_DESC = "Surowy jajoczłowiek dostaje o połowę większe obrażenia od uderzeń. Przy bardzo ciężkich obrażeniach skorupka pęka i jajoczłowiek się rozpada.",
+		),
+		list(
+			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
+			SPECIES_PERK_ICON = "temperature-high",
+			SPECIES_PERK_NAME = "Łatwe do ugotowania",
+			SPECIES_PERK_DESC = "Gorąco szkodzi jajoludziom bardziej niż ludziom.",
+		),
+	)
+
 /datum/species/egg/apply_damage(damage, damagetype = BRUTE, def_zone = null, blocked, mob/living/carbon/human/H, forced = FALSE)
 	if(damagetype != BRUTE)
 		return ..()

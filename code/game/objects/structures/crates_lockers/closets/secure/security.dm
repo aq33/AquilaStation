@@ -9,7 +9,7 @@
 	new /obj/item/storage/backpack/captain(src)
 	new /obj/item/storage/backpack/satchel/cap(src)
 	new /obj/item/storage/backpack/duffelbag/captain(src)
-	new	/obj/item/clothing/suit/armor/vest/capcarapace/jacket(src)
+	//new	/obj/item/clothing/suit/armor/vest/capcarapace/jacket(src) // AQ EDIT - resprite dowództwa: kurtkę zastępują fikuśna i galowa
 	new /obj/item/clothing/suit/armor/vest/capcarapace(src)
 	new /obj/item/clothing/suit/armor/vest/capcarapace/alt(src)
 	new /obj/item/clothing/suit/hooded/wintercoat/captain(src)

@@ -127,6 +127,11 @@ module.exports = (env = {}, argv) => {
             },
           ],
         },
+        // AQUILA: pikselowe fonty okien urządzeń (PixelUi), też wkompilowane w bundle
+        {
+          test: /\.(woff2?|ttf)$/,
+          type: 'asset/inline',
+        },
         {
           // SVGs are small and the server only sends the bundles, so inline
           // them everywhere (e.g. the SpriteEditor checkerboard imported from JS)

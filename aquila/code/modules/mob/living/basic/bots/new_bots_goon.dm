@@ -323,7 +323,7 @@
 	if(get_dist(src, dish) > 1)
 		return BOT_WORK_OUT_OF_REACH
 	judged[WEAKREF(dish)] = TRUE
-	playsound(src, 'aquila/sound/voice/chefbot/dramatic.ogg', 60, FALSE)
+	playsound(src, 'aquila/sound/voice/chefbot/dramatic.ogg', 60, FALSE, volume_pref = VOLUME_PREF_BOTS)
 	flick(pick("chefbot-anim1", "chefbot-anim2"), src)
 	var/mob/living/carbon/human/chef = find_chef()
 	var/verdict = 0 // 0 klapa, 1 przeciętne, 2 dobre
@@ -358,7 +358,7 @@
 /mob/living/basic/bot/chefbot/emag_effects(mob/user)
 	if(user)
 		to_chat(user, span_danger("Psujesz moduł krytyki kulinarnej [src]. Teraz wszystko mu śmierdzi."))
-	playsound(src, 'aquila/sound/voice/chefbot/dramatic.ogg', 100, FALSE)
+	playsound(src, 'aquila/sound/voice/chefbot/dramatic.ogg', 100, FALSE, volume_pref = VOLUME_PREF_BOTS)
 
 /mob/living/basic/bot/chefbot/explode()
 	new /obj/item/clothing/head/chefhat(drop_location())

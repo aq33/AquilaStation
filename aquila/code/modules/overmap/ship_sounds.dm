@@ -10,7 +10,7 @@
 	doorClose = 'nsv13/sound/effects/lift/doorsclosing.ogg'
 
 /// Kanał pętli skrzypienia kadłuba (1016 był wolny między CHANNEL_BUZZ a CHANNEL_SHIP_ALERT).
-#define AQUILA_CHANNEL_HULL_CREAK 1016
+#define AQUILA_CHANNEL_HULL_CREAK 1016 // bez #undef: mikser dźwięku (sound_mixer.dm) ścisza tę pętlę na żywo
 /// Co ile sprawdzamy, czy stan krytyczny już minął, i uzgadniamy słuchaczy.
 #define AQUILA_HULL_CREAK_CHECK (10 SECONDS)
 
@@ -47,7 +47,7 @@
 			SEND_SOUND(C, sound(null, channel = AQUILA_CHANNEL_HULL_CREAK))
 	for(var/client/C as anything in hearers)
 		if(!(C in aquila_hull_creak_listeners))
-			SEND_SOUND(C, sound('nsv13/sound/ambience/creaking_ambience.ogg', repeat = TRUE, wait = 0, volume = 35, channel = AQUILA_CHANNEL_HULL_CREAK))
+			C.play_mixed_sound(sound('nsv13/sound/ambience/creaking_ambience.ogg', repeat = TRUE, wait = 0, volume = 35, channel = AQUILA_CHANNEL_HULL_CREAK), VOLUME_PREF_SHIP_FX)
 	aquila_hull_creak_listeners = length(hearers) ? hearers : null
 
 /obj/structure/overmap/Destroy()
@@ -67,5 +67,4 @@
 	aquila_hull_creaking = FALSE
 	aquila_hull_creak_play(FALSE)
 
-#undef AQUILA_CHANNEL_HULL_CREAK
 #undef AQUILA_HULL_CREAK_CHECK

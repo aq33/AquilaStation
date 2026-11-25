@@ -167,7 +167,7 @@
 	if(!target.getorganslot(ORGAN_SLOT_BRAIN))
 		body += list(aq_injury("Brak mózgu", "Przeszczep mózgu"))
 	if(advanced && target.has_horror_inside())
-		body += list(aq_injury("Pasożyt w okolicy czaszki", "Operacja manipulacji organami głowy"))
+		body += list(aq_injury("Pasożyt w okolicy czaszki", "Manipulacja organami głowy: wyciągnięcie pasożyta"))
 	if(advanced && target.hallucinating())
 		body += list(aq_injury("Halucynacje", "Haloperidol, odpoczynek"))
 	var/obj/item/organ/liver/liver = target.getorganslot(ORGAN_SLOT_LIVER)
