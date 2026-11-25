@@ -68,6 +68,10 @@
 //Removing weeeds
 	if(istype(I, /obj/item/cultivator))
 		if(weed_level <= 1)
+			// AQUILA - bez chwastów kultywator wyrywa wybraną roślinę
+			if(length(plants))
+				INVOKE_ASYNC(src, PROC_REF(async_spade_options), attacker, I)
+				return
 			attacker.visible_message("[attacker] grzebie w: [parent].", span_warning("Tu nie ma żadnych chwastów ([parent])!"))
 			return
 		attacker.visible_message("[attacker] wyrywa chwasty.", span_notice("Usuwasz chwasty z: [parent]."))
@@ -150,6 +154,9 @@
 	if(!result)
 		return
 	var/datum/component/plant/plant = pick_links[result]
+	if(istype(I, /obj/item/cultivator)) // AQUILA - kultywator wyrywa, łopatka przenosi
+		plant.rip_out(user, PLANT_RIP_TOOL_TIME)
+		return
 	I.afterattack(plant.plant_item, user)
 
 /datum/component/planter/proc/catch_examine(datum/source, mob/looker, list/examine_text)

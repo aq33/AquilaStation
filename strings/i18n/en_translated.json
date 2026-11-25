@@ -31536,5 +31536,12 @@
 "język Fiona": "pug tongue",
 "Fion": "Pug",
 "\\improper Borowik": "\\improper Psyphoza",
-"\\improper Fion": "\\improper Pug"
+"\\improper Fion": "\\improper Pug",
+"Wyrwij": "Uproot",
+"[user] strząsa [plant_item] z łopatki do: [target].": "[user] shakes [plant_item] off the spade into [target].",
+"Strząsasz [plant_item] z łopatki do: [target].": "You shake [plant_item] off the spade into [target].",
+"[user] zaczyna wyrywać [plant_item].": "[user] starts uprooting [plant_item].",
+"Zaczynasz wyrywać [plant_item]...": "You start uprooting [plant_item]...",
+"[user] wyrywa [plant_item] z korzeniami.": "[user] pulls [plant_item] out by the roots.",
+"Wyrywasz [plant_item] z korzeniami.": "You pull [plant_item] out by the roots."
 }

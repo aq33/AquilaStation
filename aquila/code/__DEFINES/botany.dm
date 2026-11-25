@@ -117,3 +117,8 @@
 #define TOOL_SEED "seed"
 #define FACTION_PLANTS "plants"
 #define COLOR_VIBRANT_LIME "#00FF00"
+
+/// Jak długo wyrywa się roślinę pustą ręką
+#define PLANT_RIP_HAND_TIME (3 SECONDS)
+/// Jak długo wyrywa się roślinę kultywatorem
+#define PLANT_RIP_TOOL_TIME (1.5 SECONDS)
