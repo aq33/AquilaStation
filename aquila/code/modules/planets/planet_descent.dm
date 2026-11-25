@@ -654,6 +654,11 @@ GLOBAL_LIST_EMPTY(planet_descents)
 	next_check = 0
 	if(planet_type && current_mob)
 		update_status(current_mob)
+	// Widok zmniejszył się w trakcie pokazu: zaległa podmiana warstwy (planet_sky.dm, /client/change_view)
+	if(view_refresh_pending)
+		view_refresh_pending = FALSE
+		var/client/viewer = current_mob?.client
+		viewer?.aq_hide_planet_sky()
 
 /atom/movable/screen/parallax_layer/planet_sky/update_status(mob/M)
 	if(descent_active)

@@ -228,24 +228,82 @@
 // Po zmniejszeniu widoku (np. 17x15 -> 15x15 przy dopasowaniu do okna) stary obraz wystaje poza nowy widok, więc mapa
 // rysuje się szersza: dodatkowa kolumna za HUD-em, bez światła, a postać nie stoi na środku. Ponowne dodanie tej samej
 // warstwy ani nowe części planety nie pomagają (sprawdzone przez winget "view-size"), dopiero nowy obiekt warstwy.
-// Nowa warstwa wysłana w tym samym ticku co zmiana widoku dostaje granice jeszcze ze starego widoku (mniej więcej co
-// druga próba), więc podmiana idzie chwilę później.
+// Nowa warstwa dodana w tym samym ticku co zmiana widoku albo w tym samym, w którym znika stara, potrafi dostać granice
+// ze starego widoku (podmiana po 0,2 s psuła się w 1 próbie na kilka). Dlatego stara warstwa znika z ekranu od razu
+// razem ze zmianą widoku, a nowa wraca chwilę później (12 na 12 prób dobrze). Większy widok obrazu nie wypycha,
+// więc wszystko to dzieje się tylko przy mniejszym.
+#define AQ_PLANET_SKY_REFRESH_DELAY (0.5 SECONDS)
+
 /client/change_view(new_size)
 	var/old_view = view
 	. = ..()
-	if(view != old_view)
-		addtimer(CALLBACK(src, PROC_REF(aq_refresh_planet_sky)), 0.2 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
+	if(aq_view_shrunk(old_view, view))
+		aq_hide_planet_sky()
+
+/// Zdejmuje warstwę z widoczną planetą z ekranu teraz i planuje podmianę na nową
+/client/proc/aq_hide_planet_sky()
+	if(!length(parallax_layers_cached))
+		return
+	var/atom/movable/screen/parallax_layer/planet_sky/sky = locate() in parallax_layers_cached
+	// W trakcie zejścia albo startu warstwa zostaje (needs_view_refresh zapamięta podmianę na koniec pokazu)
+	if(sky?.shown_type && !sky.descent_active)
+		screen -= sky
+	addtimer(CALLBACK(src, PROC_REF(aq_refresh_planet_sky)), AQ_PLANET_SKY_REFRESH_DELAY, TIMER_UNIQUE | TIMER_OVERRIDE)
+
+#undef AQ_PLANET_SKY_REFRESH_DELAY
+
+/// Czy nowy widok jest węższy albo niższy od starego
+/proc/aq_view_shrunk(old_view, new_view)
+	if(isnull(old_view) || isnull(new_view) || old_view == new_view)
+		return FALSE
+	var/list/old_size = getviewsize(old_view)
+	var/list/new_size = getviewsize(new_view)
+	return new_size[1] < old_size[1] || new_size[2] < old_size[2]
+
+/atom/movable/screen/parallax_layer/planet_sky
+	/// Widok zmniejszył się w trakcie zejścia albo startu: podmiana warstwy czeka na koniec pokazu (end_descent)
+	var/view_refresh_pending = FALSE
+
+/// Czy po zmianie widoku podmienić warstwę od razu. Bez planety nie ma obrazu, który by wystawał.
+/// W trakcie zejścia albo startu pokaz trzyma tę warstwę (planet_descent.dm), więc podmiana czeka na jego koniec.
+/atom/movable/screen/parallax_layer/planet_sky/proc/needs_view_refresh()
+	if(descent_active)
+		view_refresh_pending = TRUE
+		return FALSE
+	return !!shown_type
 
 /// Podmienia warstwę z widoczną planetą na świeżą po zmianie widoku
 /client/proc/aq_refresh_planet_sky()
 	if(!length(parallax_layers_cached))
 		return
 	var/atom/movable/screen/parallax_layer/planet_sky/sky = locate() in parallax_layers_cached
-	// Bez planety warstwa nie ma obrazu; w trakcie zejścia albo startu pokaz trzyma tę warstwę (planet_descent.dm)
-	if(!sky?.shown_type || sky.descent_active)
+	if(!sky)
+		return
+	if(!sky.needs_view_refresh())
+		// Nie ma czego podmieniać (planeta zniknęła albo zaczął się pokaz): warstwa wraca na ekran, jeśli paralaksa działa
+		if(sky in parallax_layers)
+			screen |= sky
 		return
 	var/atom/movable/screen/parallax_layer/planet_sky/fresh = sky.replace_in(parallax_layers_cached, parallax_layers, screen, view)
-	fresh.force_recheck(mob)
+	// Warstwa ma już planetę starej; sprawdzenie od nowa wznawia pętlę odświeżania (bez moba nie ma czego sprawdzać)
+	if(mob)
+		fresh.force_recheck(mob)
+	// Prom w ruchu: pętla przesuwania jak w /datum/hud/proc/update_parallax_motionblur, inaczej planeta stałaby w miejscu
+	if(parallax_movedir && (fresh in parallax_layers))
+		var/matrix/moved
+		switch(parallax_movedir)
+			if(NORTH)
+				moved = matrix(1, 0, 0, 0, 1, 480)
+			if(SOUTH)
+				moved = matrix(1, 0, 0, 0, 1, -480)
+			if(EAST)
+				moved = matrix(1, 0, 480, 0, 1, 0)
+			if(WEST)
+				moved = matrix(1, 0, -480, 0, 1, 0)
+		if(moved)
+			fresh.transform = moved
+			animate(fresh, transform = matrix(), time = PARALLAX_LOOP_TIME / fresh.speed, loop = -1)
+			animate(transform = moved, time = 0, loop = -1)
 	qdel(sky)
 
 /// Nowa warstwa z tą samą planetą i położeniem wstawiona w miejsce tej w listach klienta; zwraca nową warstwę
@@ -262,9 +320,10 @@
 		var/index = layers?.Find(src)
 		if(index)
 			layers[index] = fresh
-	if(client_screen && (src in client_screen))
+	// Na ekran trafia, gdy była na nim stara albo gdy paralaksa działa (stara zniknęła z ekranu przy zmianie widoku)
+	if(client_screen && ((src in client_screen) || (fresh in active)))
 		client_screen -= src
-		client_screen += fresh
+		client_screen |= fresh
 	return fresh
 
 #undef PLANET_SKY_TEXTURE_WIDTH

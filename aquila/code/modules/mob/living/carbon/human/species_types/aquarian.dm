@@ -256,6 +256,8 @@ GLOBAL_LIST_INIT(aquarian_patterns, list(
 	var/water_tint
 	/// Kolor ryby rrggbb (tylko szare ryby z GLOB.aquarian_tinted_fish), wędruje z kloszem jak rodzaj ryby
 	var/fish_tint
+	/// Czy kolor przedmiotu ustawiła martwa szara ryba (żeby zdjąć go po zmianie stanu, a cudzego koloru nie ruszać)
+	var/fish_body_colored = FALSE
 	/// Duszenie się ryby (0-200), przepisywane na oxyloss pancerza
 	var/fish_oxyloss = 0
 	/// Wartość oxyloss ustawiona w ostatnim cyklu (do wykrycia leczenia)
@@ -321,9 +323,9 @@ GLOBAL_LIST_INIT(aquarian_patterns, list(
 	. = ..()
 	var/fish_state = aquarian_valid_fish(fish_type)
 	if(shattered && !vessel)
-		// Sama rybka: rysuje ją icon_state (fish_flop_X albo fish_dead_X). Szara ryba ma w icon_state same krople,
-		// a ciało w nakładce, żeby kolor ryby nie barwił wody.
-		if(fish_tinted())
+		// Sama rybka: rysuje ją icon_state (fish_flop_X albo fish_dead_X). Rzucająca się szara ryba ma w icon_state same krople,
+		// a ciało w nakładce, żeby kolor ryby nie barwił wody. Martwą barwi kolor przedmiotu (update_icon_state).
+		if(fish_tinted() && fish_alive_out_of_water())
 			var/mutable_appearance/lying = mutable_appearance(AQUARIAN_ICON, "fish_dead_[fish_state]")
 			lying.color = fish_color()
 			. += lying
@@ -350,15 +352,20 @@ GLOBAL_LIST_INIT(aquarian_patterns, list(
 	. = ..()
 	// W naczyniu przedmiot wygląda jak to naczynie (z rybką w nakładce)
 	icon = vessel ? vessel.icon : AQUARIAN_ICON
+	// Kolor przedmiotu ma tylko martwa szara ryba leżąca sama (cały obraz to wtedy jej ciało)
+	var/body_color = null
 	if(!shattered)
 		icon_state = "dome_item"
 	else if(vessel)
 		icon_state = vessel.icon_state
-	else if(fish_tinted())
-		// Ciało szarej ryby jest w nakładce (update_overlays), tu tylko krople wody, gdy się rzuca
-		icon_state = fish_alive_out_of_water() ? "fish_flop_[aquarian_valid_fish(fish_type)]" : ""
 	else
+		// Rzucająca się szara ryba: w icon_state same krople, ciało w nakładce (update_overlays)
 		icon_state = "[fish_alive_out_of_water() ? "fish_flop" : "fish_dead"]_[aquarian_valid_fish(fish_type)]"
+		if(fish_tinted() && !fish_alive_out_of_water())
+			body_color = fish_color()
+	if(body_color || fish_body_colored)
+		color = body_color
+		fish_body_colored = !!body_color
 
 /obj/item/organ/brain/aquarian/examine(mob/user)
 	. = ..()

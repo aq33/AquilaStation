@@ -23,9 +23,18 @@
 		list(AQUARIAN_BODY_METAL, "sleeves", "3366ff", "bleak", "ffcc00", "ff66cc"),
 		list(AQUARIAN_BODY_RED, "stripes", "e0c040", "goldfish", AQUARIAN_DEFAULT_FISH_COLOR, AQUARIAN_DEFAULT_WATER),
 	)
+	var/turf/first_turf
 	for(var/mob/living/carbon/human/H in spawned)
 		if(!isaquarian(H) || !length(looks))
 			continue
+		// Obie sztuki lądują na jednym polu: drugi staje obok, żeby porównać warianty
+		if(!first_turf)
+			first_turf = get_turf(H)
+		else if(get_turf(H) == first_turf)
+			for(var/turf/free in turfs)
+				if(free != first_turf && !(locate(/mob/living) in free))
+					H.forceMove(free)
+					break
 		var/list/look = looks[1]
 		looks.Cut(1, 2)
 		H.dna.features[FEATURE_AQUARIAN_BODY] = look[1]

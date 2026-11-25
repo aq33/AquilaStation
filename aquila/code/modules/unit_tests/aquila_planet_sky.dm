@@ -150,7 +150,26 @@
 	// Bez parallax_layers (paralaksa wyłączona) podmiana zostaje w cache'u
 	var/atom/movable/screen/parallax_layer/planet_sky/second = fresh.replace_in(cached, null, null, "17x15")
 	TEST_ASSERT_EQUAL(cached[2], second, "The cached sky layer wasn't replaced with parallax off")
+	// Stara warstwa zniknęła z ekranu przy zmianie widoku, a paralaksa działa: nowa wraca na ekran
+	var/list/hidden_screen = list()
+	var/atom/movable/screen/parallax_layer/planet_sky/third = second.replace_in(list(second), list(second), hidden_screen, "15x15")
+	TEST_ASSERT(third in hidden_screen, "The new sky layer did not come back to the screen after the old one was hidden")
+	qdel(third)
 	qdel(second)
+
+	// Kiedy podmieniać: tylko przy mniejszym widoku, tylko z planetą, w trakcie zejścia dopiero po pokazie
+	TEST_ASSERT(aq_view_shrunk("17x15", "15x15"), "A narrower view doesn't count as shrunk")
+	TEST_ASSERT(aq_view_shrunk("15x17", "15x15"), "A lower view doesn't count as shrunk")
+	TEST_ASSERT(!aq_view_shrunk("15x15", "17x15"), "A wider view counts as shrunk")
+	TEST_ASSERT(!aq_view_shrunk("15x15", "15x15"), "The same view counts as shrunk")
+	TEST_ASSERT(fresh.needs_view_refresh(), "A sky layer with a planet is not refreshed after the view shrinks")
+	fresh.descent_active = TRUE
+	TEST_ASSERT(!fresh.needs_view_refresh(), "The sky layer was replaced in the middle of a descent")
+	TEST_ASSERT(fresh.view_refresh_pending, "The refresh skipped during a descent is not remembered for its end")
+	fresh.descent_active = FALSE
+	fresh.view_refresh_pending = FALSE
+	fresh.show_planet(null)
+	TEST_ASSERT(!fresh.needs_view_refresh(), "A sky layer without a planet is refreshed")
 
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL

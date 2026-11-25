@@ -353,6 +353,14 @@
 		if(overlay.icon_state == "fish_dead_bleak" && overlay.color == "#ffcc00")
 			lying_found = TRUE
 	TEST_ASSERT(lying_found, "The lying bleak is not drawn in its colour")
+	// Martwa ukleja: własny stan ikony (nie pusty) w kolorze ryby, a po ożywieniu kolor przedmiotu znika
+	dome.brain_death = TRUE
+	dome.update_appearance()
+	TEST_ASSERT_EQUAL(dome.icon_state, "fish_dead_bleak", "The dead bleak has no sprite of its own")
+	TEST_ASSERT_EQUAL(dome.color, "#ffcc00", "The dead bleak is not drawn in its colour")
+	dome.brain_death = FALSE
+	dome.update_appearance()
+	TEST_ASSERT(isnull(dome.color), "The flopping bleak kept the colour of the dead one on the water drops")
 	qdel(dome)
 
 #undef TEST_ASSERT
