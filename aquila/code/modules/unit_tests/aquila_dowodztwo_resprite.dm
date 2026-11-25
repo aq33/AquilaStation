@@ -61,6 +61,7 @@
 	var/list/boxes = list(
 		/obj/item/storage/box/suitbox/cap = list(/obj/item/clothing/under/rank/captain, /obj/item/clothing/under/rank/captain/suit, /obj/item/clothing/head/caphat, /obj/item/clothing/head/caphat/parade, /obj/item/clothing/head/caphat/officer, /obj/item/clothing/head/beret/captain),
 		/obj/item/storage/box/suitbox/hop = list(/obj/item/clothing/under/rank/civilian/head_of_personnel, /obj/item/clothing/head/hopcap, /obj/item/clothing/head/beret/ship/xo),
+		/obj/item/storage/box/suitbox/hos = list(/obj/item/clothing/under/rank/security/head_of_security, /obj/item/clothing/under/rank/security/head_of_security/alt, /obj/item/clothing/head/HoS, /obj/item/clothing/head/HoS/beret, /obj/item/clothing/head/beret/sec/navyhos),
 	)
 	for(var/box_type in boxes)
 		var/obj/item/storage/box/box = allocate(box_type, run_loc_floor_bottom_left)

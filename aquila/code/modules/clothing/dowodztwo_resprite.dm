@@ -187,6 +187,14 @@
 	new /obj/item/clothing/head/hopcap(src)
 	new /obj/item/clothing/head/beret/ship/xo(src)
 
+// Mundur galowy Komendanta (head_of_security/parade) nie ma własnej definicji, był drugim zwykłym mundurem
+/obj/item/storage/box/suitbox/hos/PopulateContents()
+	new /obj/item/clothing/under/rank/security/head_of_security(src)
+	new /obj/item/clothing/under/rank/security/head_of_security/alt(src)
+	new /obj/item/clothing/head/HoS(src)
+	new /obj/item/clothing/head/HoS/beret(src)
+	new /obj/item/clothing/head/beret/sec/navyhos(src)
+
 /obj/structure/closet/secure_closet/captains/PopulateContents()
 	..()
 	new /obj/item/clothing/shoes/jackboots(src)
