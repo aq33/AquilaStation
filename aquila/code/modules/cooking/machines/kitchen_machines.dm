@@ -147,7 +147,7 @@
 
 // ---------- Płyta grillowa: grill i kuchenka w jednym ----------
 // Na płycie dalej smaży się położone jedzenie (włącznik kliknięciem). Do tego cztery palniki jak w kuchence
-// elektrycznej: patelnia, rondel albo garnek na zupę, każdy z ogniem i minutnikiem (Alt+klik).
+// elektrycznej: patelnia, rondel albo garnek na zupę, każde pole z minutnikiem, a ogień jeden dla całej płyty (Alt+klik).
 
 /obj/machinery/griddle
 	active_power_usage = 40
@@ -172,6 +172,14 @@
 /obj/machinery/griddle/RefreshParts()
 	. = ..()
 	refresh_kitchen_heat()
+
+/// Ogień jest jeden dla całej płyty: zmiana na jednym polu ustawia wszystkie
+/obj/machinery/griddle/kitchen_temperature_set(datum/cooking_surface/surface)
+	for(var/datum/cooking_surface/burner/burner as anything in rack.burners)
+		if(burner == surface)
+			continue
+		burner.temperature = surface.temperature
+		burner.burn_progress = 0
 
 /obj/machinery/griddle/is_kitchen_active()
 	return on || rack?.any_on()
@@ -243,7 +251,7 @@
 	. = ..()
 	. += span_notice("Płyta jest [kitchen_heat.describe()].")
 	. += rack.examine_lines()
-	. += span_notice("Jedzenie kładzie się na płycie, a włącza ją kliknięciem. Patelnię, rondel albo garnek na zupę stawiasz kliknięciem w jedno z czterech pól. <b>Alt+klik</b>: ogień i minutnik pola.")
+	. += span_notice("Jedzenie kładzie się na płycie, a włącza ją kliknięciem. Patelnię, rondel albo garnek na zupę stawiasz kliknięciem w jedno z czterech pól. <b>Alt+klik</b>: włączanie i minutnik pola oraz ogień całej płyty.")
 
 // ---------- Grill na węgiel: ruszt ----------
 

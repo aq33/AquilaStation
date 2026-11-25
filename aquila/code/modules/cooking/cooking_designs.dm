@@ -1,4 +1,4 @@
-// Naczynia z autolatu i kuchenka elektryczna w drzewie badań (tam, gdzie kuchenka i kuchnia z zupami)
+// Naczynia z autolatu i mikser lodów w drzewie badań (tam, gdzie kuchenka i kuchnia z zupami)
 
 /datum/design/cooking_pan
 	name = "Patelnia"
@@ -58,7 +58,7 @@
 
 /datum/techweb_node/bio_process/New()
 	. = ..()
-	design_ids += list("cooking_stovetop", "ice_cream_mixer", "cooking_grill")
+	design_ids += list("ice_cream_mixer")
 
 /// Deski do krojenia (drewniane, więc nie z autolatu) i miski do mieszania w automacie z zastawą
 /obj/machinery/vending/dinnerware/Initialize(mapload)

@@ -1,8 +1,13 @@
 /**
  * Zestaw palników maszyny: miejsca na patelnię, rondel albo garnek na zupę, każde z ogniem i minutnikiem.
- * Używa go kuchenka elektryczna i płyta grillowa. Maszyna woła procki zestawu ze swoich attackby, attack_hand,
+ * Używa go płyta grillowa. Maszyna woła procki zestawu ze swoich attackby, attack_hand,
  * Exited, process i examine.
  */
+/// Palnik: patelnia, rondel albo garnek na zupę
+/datum/cooking_surface/burner
+	cooker_id = COOKER_STOVE
+	allowed_containers = list(/obj/item/reagent_containers/cooking/pan, /obj/item/reagent_containers/cooking/pot, /obj/item/reagent_containers/glass/soup_pot)
+
 /datum/burner_rack
 	var/obj/machinery/parent
 	var/list/datum/cooking_surface/burner/burners = list()

@@ -72,6 +72,10 @@
 /obj/machinery/proc/update_kitchen_heating()
 	kitchen_heat?.set_heating(is_kitchen_active())
 
+/// Wołane po zmianie ognia jednego palnika (płyta grillowa ma jeden ogień dla wszystkich pól)
+/obj/machinery/proc/kitchen_temperature_set(datum/cooking_surface/surface)
+	return
+
 /// Palniki i komory tej maszyny (do menu ustawień)
 /obj/machinery/proc/get_cooking_surfaces()
 	return list()
@@ -212,6 +216,7 @@
 			if(picked && temps[picked] && !QDELETED(parent))
 				temperature = temps[picked]
 				burn_progress = 0
+				parent.kitchen_temperature_set(src)
 				parent.balloon_alert(user, "ogień [picked]")
 		if("Minutnik")
 			var/seconds = tgui_input_number(user, "Po ilu sekundach zadzwonić? 0 wyłącza minutnik.", "Minutnik", timer / 10, 600, 0)

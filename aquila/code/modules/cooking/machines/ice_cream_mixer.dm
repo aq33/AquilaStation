@@ -1,5 +1,5 @@
 // Mikser lodów: zamraża desery w misie do lodów i cukierki w foremkach. Na wzór Paradise
-// (code/modules/cooking/machines/ice_cream_mixer.dm). Sprite: Paradise (icons/obj/cooking/machines.dmi), CC BY-SA 3.0.
+// (code/modules/cooking/machines/ice_cream_mixer.dm). Sprite: Paradise (icons/obj/cooking/machines.dmi, u nas w desserts.dmi), CC BY-SA 3.0.
 
 /datum/cooking_surface/ice_cream_mixer
 	name = "komora miksera"

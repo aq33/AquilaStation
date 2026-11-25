@@ -336,12 +336,6 @@
 /obj/machinery/conveyor_switch
 	alt_click_loot = FALSE
 
-/obj/machinery/cooking_grill
-	alt_click_loot = FALSE
-
-/obj/machinery/cooking_stovetop
-	alt_click_loot = FALSE
-
 /obj/machinery/deepfryer
 	alt_click_loot = FALSE
 

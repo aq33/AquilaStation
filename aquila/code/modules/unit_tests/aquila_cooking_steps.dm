@@ -22,11 +22,11 @@
 	TEST_ASSERT(count, "No step recipes were loaded")
 	TEST_ASSERT(length(get_cooking_cookbook()), "Step recipes did not reach the cookbook")
 
-/// Jajko na patelni na palniku: po 10 s na średnim ogniu jest jajko sadzone, potem bez ruszania się przypala
+/// Jajko na patelni na polu płyty grillowej: po 10 s na średnim ogniu jest jajko sadzone, potem bez ruszania się przypala
 /datum/unit_test/aquila_cooking_stovetop_flow
 
 /datum/unit_test/aquila_cooking_stovetop_flow/Run()
-	var/obj/machinery/cooking_stovetop/stovetop = allocate(/obj/machinery/cooking_stovetop, run_loc_floor_bottom_left)
+	var/obj/machinery/griddle/stovetop = allocate(/obj/machinery/griddle, run_loc_floor_bottom_left)
 	var/obj/item/reagent_containers/cooking/pan/pan = allocate(/obj/item/reagent_containers/cooking/pan, run_loc_floor_bottom_left)
 	var/obj/item/food/egg/egg = allocate(/obj/item/food/egg, run_loc_floor_bottom_left)
 
@@ -34,7 +34,7 @@
 	TEST_ASSERT(egg.loc == pan, "The egg did not land in the pan")
 
 	var/datum/cooking_surface/burner/burner = stovetop.rack.burners[1]
-	stovetop.place_container(pan, burner)
+	stovetop.rack.place_container(pan, burner)
 	TEST_ASSERT(burner.container == pan && pan.surface == burner, "The pan is not on the burner")
 	burner.turn_on()
 	burner.temperature = COOK_TEMP_LOW
@@ -62,7 +62,7 @@
 /datum/unit_test/aquila_cooking_quality
 
 /datum/unit_test/aquila_cooking_quality/Run()
-	var/obj/machinery/cooking_stovetop/stovetop = allocate(/obj/machinery/cooking_stovetop, run_loc_floor_bottom_left)
+	var/obj/machinery/griddle/stovetop = allocate(/obj/machinery/griddle, run_loc_floor_bottom_left)
 	var/obj/item/reagent_containers/cooking/pan/pan = allocate(/obj/item/reagent_containers/cooking/pan, run_loc_floor_bottom_left)
 	var/obj/item/reagent_containers/glass/beaker/oil = allocate(/obj/item/reagent_containers/glass/beaker, run_loc_floor_bottom_left)
 	oil.reagents.add_reagent(/datum/reagent/consumable/nutriment/fat/oil, 10)
@@ -77,7 +77,7 @@
 	TEST_ASSERT(pan.process_item(null, pepper) == COOK_SUCCESS, "Adding pepper to the omelette")
 
 	var/datum/cooking_surface/burner/burner = stovetop.rack.burners[2]
-	stovetop.place_container(pan, burner)
+	stovetop.rack.place_container(pan, burner)
 	burner.turn_on()
 	burner.temperature = COOK_TEMP_LOW
 	for(var/i in 1 to 21)
@@ -165,7 +165,7 @@
 /datum/unit_test/aquila_cooking_reagent_refill
 
 /datum/unit_test/aquila_cooking_reagent_refill/Run()
-	var/obj/machinery/cooking_stovetop/stovetop = allocate(/obj/machinery/cooking_stovetop, run_loc_floor_bottom_left)
+	var/obj/machinery/griddle/stovetop = allocate(/obj/machinery/griddle, run_loc_floor_bottom_left)
 	var/obj/item/reagent_containers/cooking/pot/pot = allocate(/obj/item/reagent_containers/cooking/pot, run_loc_floor_bottom_left)
 	var/obj/item/reagent_containers/glass/beaker/water = allocate(/obj/item/reagent_containers/glass/beaker, run_loc_floor_bottom_left)
 	water.reagents.add_reagent(/datum/reagent/water, 10)
@@ -177,7 +177,7 @@
 	TEST_ASSERT(pot.process_item(null, allocate(/obj/item/food/spaghetti/raw, run_loc_floor_bottom_left)) == COOK_SUCCESS, "Raw spaghetti was rejected after two 5 u pours of water")
 
 	var/datum/cooking_surface/burner/burner = stovetop.rack.burners[1]
-	stovetop.place_container(pot, burner)
+	stovetop.rack.place_container(pot, burner)
 	burner.turn_on()
 	burner.temperature = COOK_TEMP_HIGH
 	pot.reagents.remove_reagent(/datum/reagent/water, 10)
@@ -191,51 +191,7 @@
 		burner.process_cooking(1, 1)
 	TEST_ASSERT(locate(/obj/item/food/spaghetti/boiledspaghetti) in pot, "No boiled spaghetti after refilling the water (pot holds: [english_list(pot.contents)])")
 
-/// Garnek z zupą na palniku kuchenki elektrycznej grzeje się według ognia, jak na kuchence na zupy
-/datum/unit_test/aquila_stovetop_soup
-
-/datum/unit_test/aquila_stovetop_soup/Run()
-	var/obj/machinery/cooking_stovetop/stovetop = allocate(/obj/machinery/cooking_stovetop, run_loc_floor_bottom_left)
-	var/obj/item/reagent_containers/glass/soup_pot/pot = allocate(/obj/item/reagent_containers/glass/soup_pot, run_loc_floor_bottom_left)
-	pot.reagents.add_reagent(/datum/reagent/water, 50, reagtemp = T20C)
-	var/datum/cooking_surface/burner/burner = stovetop.rack.burners[4]
-	TEST_ASSERT(burner.accepts(pot), "The electric stovetop does not take a soup pot")
-	stovetop.place_container(pot, burner)
-	TEST_ASSERT(burner.container == pot && pot.loc == stovetop, "The soup pot is not on the burner")
-	burner.turn_on()
-	burner.temperature = COOK_TEMP_HIGH
-	// Zimna kuchenka grzeje na 1/4 mocy, więc wystarczy, że garnek wyraźnie się ogrzał
-	for(var/i in 1 to 10)
-		stovetop.process(1)
-	TEST_ASSERT(pot.reagents.chem_temp > T20C + 5, "The soup pot did not heat up on the burner ([pot.reagents.chem_temp] K)")
-	pot.forceMove(run_loc_floor_bottom_left)
-	TEST_ASSERT(!burner.container && pot.transform.a == 1, "Taking the pot off did not free the burner or restore its size")
-
-/// Grill na blat: bez węgla się nie włącza, z deskami grilluje kotlet na prawym ruszcie i zużywa węgiel
-/datum/unit_test/aquila_cooking_grill
-
-/datum/unit_test/aquila_cooking_grill/Run()
-	var/obj/machinery/cooking_grill/grill = allocate(/obj/machinery/cooking_grill, run_loc_floor_bottom_left)
-	var/obj/item/reagent_containers/cooking/grill_grate/grate_item = allocate(/obj/item/reagent_containers/cooking/grill_grate, run_loc_floor_bottom_left)
-	TEST_ASSERT(grate_item.process_item(null, allocate(/obj/item/food/raw_patty, run_loc_floor_bottom_left)) == COOK_SUCCESS, "Putting a raw patty on the grill grate")
-	var/datum/cooking_surface/grill_surface/grate = grill.grates[2]
-	grill.place_container(grate_item, grate)
-	TEST_ASSERT(grate.container == grate_item, "The grate is not on the right side of the grill")
-	grate.turn_on()
-	TEST_ASSERT(!grate.on, "The grill lit without any charcoal")
-
-	grill.stored_wood = 5
-	grate.turn_on()
-	TEST_ASSERT(grate.on, "The grill did not light with charcoal")
-	// Zimny grill rozgrzewa się 20 s, więc 10 s grillowania trwa dłużej
-	for(var/i in 1 to 40)
-		grill.process(1)
-		if(locate(/obj/item/food/patty/plain) in grate_item)
-			break
-	TEST_ASSERT(locate(/obj/item/food/patty/plain) in grate_item, "No grilled patty after 40 s on a warming grill (grate holds: [english_list(grate_item.contents)])")
-	TEST_ASSERT(grill.stored_wood < 5, "The grill did not use any charcoal")
-
-/// Płyta grillowa to grill i kuchenka w jednym: jajko na patelni na polu płyty, garnek z zupą na drugim polu,
+/// Płyta grillowa to grill i kuchenka w jednym: jeden ogień dla czterech pól, jajko na patelni na polu płyty, garnek z zupą na drugim polu,
 /// a położony obok kotlet dalej się smaży, gdy płyta jest włączona
 /datum/unit_test/aquila_griddle_burners
 
@@ -254,9 +210,15 @@
 	TEST_ASSERT(pan.loc == griddle && pot.loc == griddle, "The pan and the pot are not on the griddle")
 
 	pan_field.turn_on()
-	pan_field.temperature = COOK_TEMP_MED
 	pot_field.turn_on()
-	pot_field.temperature = COOK_TEMP_HIGH
+	// Ogień jest jeden dla całej płyty: ustawiony na jednym polu zmienia wszystkie
+	pot_field.temperature = COOK_TEMP_LOW
+	griddle.kitchen_temperature_set(pot_field)
+	var/datum/cooking_surface/burner/other_field = griddle.rack.burners[2]
+	TEST_ASSERT(pan_field.temperature == COOK_TEMP_LOW && other_field.temperature == COOK_TEMP_LOW, "Setting the heat on one griddle field did not set the whole griddle")
+	pan_field.temperature = COOK_TEMP_MED
+	griddle.kitchen_temperature_set(pan_field)
+	TEST_ASSERT(pot_field.temperature == COOK_TEMP_MED, "The soup pot field did not follow the griddle heat")
 	griddle.update_griddle_processing()
 	TEST_ASSERT(griddle.is_kitchen_active(), "The griddle is not working with two fields on")
 	for(var/i in 1 to 40)
