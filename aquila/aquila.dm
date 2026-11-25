@@ -698,6 +698,7 @@
 #include "code\modules\client\preferences_menu\assets.dm"
 #include "code\modules\clothing\clothing.dm"
 #include "code\modules\clothing\id_worn.dm"
+#include "code\modules\clothing\dowodztwo_resprite.dm"
 #include "code\modules\clothing\spacesuits\hardsuit_modules.dm"
 #include "code\modules\clothing\spacesuits\hardsuit_variants.dm"
 #include "code\modules\clothing\outfits\ert.dm"
@@ -2461,6 +2462,7 @@
 #include "code\modules\unit_tests\_unit_test_weights.dm"
 
 #ifdef UNIT_TESTS
+#include "code\modules\unit_tests\aquila_dowodztwo_resprite.dm"
 #include "code\modules\unit_tests\aquila_cyborgi.dm"
 #include "code\modules\unit_tests\aquila_robotyka.dm"
 #include "code\modules\unit_tests\aquila_nano_well_oc.dm"
