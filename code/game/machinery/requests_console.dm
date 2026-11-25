@@ -277,7 +277,7 @@ GLOBAL_LIST_EMPTY(req_console_ckey_departments)
 			priority = CLAMP(text2num(href_list["priority"]), REQ_NORMAL_MESSAGE_PRIORITY, REQ_EXTREME_MESSAGE_PRIORITY)
 
 	if(href_list["writeAnnouncement"])
-		var/new_message = reject_bad_text(stripped_input(usr, "Napisz swoją wiadomość:", "Oczekiwanie na dane", "", MAX_MESSAGE_LEN))
+		var/new_message = stripped_input(usr, "Napisz swoją wiadomość:", "Oczekiwanie na dane", "", MAX_MESSAGE_LEN) // AQ EDIT - reject_bad_text() odrzucał polskie znaki, "/" i tekst ponad 512 znaków, a stripped_input() już koduje HTML
 		if(new_message)
 			message = new_message
 			priority = CLAMP(text2num(href_list["priority"]) || REQ_NORMAL_MESSAGE_PRIORITY, REQ_NORMAL_MESSAGE_PRIORITY, REQ_EXTREME_MESSAGE_PRIORITY)
