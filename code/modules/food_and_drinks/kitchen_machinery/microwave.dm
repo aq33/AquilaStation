@@ -360,18 +360,18 @@
 
 /obj/machinery/microwave/proc/start(mob/user)
 	wzhzhzh()
-	loop(MICROWAVE_NORMAL, 10, user)
+	loop(MICROWAVE_NORMAL, 10, user = user) // AQ EDIT - trzeci argument to wait, mob trafiał do addtimer() jako czas (runtime, mikrofalówka stawała)
 
 /obj/machinery/microwave/proc/start_can_fail(mob/user)
 	wzhzhzh()
-	loop(MICROWAVE_PRE, 4, user)
+	loop(MICROWAVE_PRE, 4, user = user) // AQ EDIT - trzeci argument to wait, mob trafiał do addtimer() jako czas (runtime, mikrofalówka stawała)
 
 /obj/machinery/microwave/proc/muck(mob/user)
 	wzhzhzh()
 	playsound(src.loc, 'sound/effects/splat.ogg', 50, 1)
 	dirty_anim_playing = TRUE
 	update_icon()
-	loop(MICROWAVE_MUCK, 4, user)
+	loop(MICROWAVE_MUCK, 4, user = user) // AQ EDIT - trzeci argument to wait, mob trafiał do addtimer() jako czas (runtime, mikrofalówka stawała)
 
 /obj/machinery/microwave/proc/loop(type, time, wait = max(12 - 2 * efficiency, 2), mob/user) // standard wait is 10
 	if(machine_stat & (NOPOWER|BROKEN))

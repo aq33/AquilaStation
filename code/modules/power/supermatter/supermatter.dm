@@ -353,6 +353,10 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 
 		//calculating gas related values
 		combined_gas = max(removed.total_moles(), 0)
+		// AQ EDIT START - przy kilku molach w komorze kryształ dodawał pełny przyrost temperatury, pełną porcję plazmy i tlenu
+		// i pełny zysk mocy z temperatury, więc w prawie pustej komorze sam się nakręcał. Teraz te efekty rosną z ilością gazu.
+		var/gas_scale = clamp(combined_gas / SUPERMATTER_FULL_REACTION_MOLES, 0, 1)
+		// AQ EDIT END
 
 		plasmacomp = max(removed.get_moles(GAS_PLASMA)/combined_gas, 0)
 		o2comp = max(removed.get_moles(GAS_O2)/combined_gas, 0)
@@ -396,7 +400,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			icon_state = base_icon_state
 
 		if(power_changes)
-			power = clamp((removed.return_temperature() * temp_factor / T0C) * gasmix_power_ratio + power, 0, SUPERMATTER_MAXIMUM_ENERGY) //Total laser power plus an overload
+			power = clamp((removed.return_temperature() * temp_factor / T0C) * gasmix_power_ratio * gas_scale + power, 0, SUPERMATTER_MAXIMUM_ENERGY) //Total laser power plus an overload // AQ EDIT - gas_scale
 
 		if(prob(50))
 			last_rads = power * max(0, power_transmission_bonus * (1 + (tritiumcomp * TRITIUM_RADIOACTIVITY_MODIFIER) + (pluoxiumcomp * PLUOXIUM_RADIOACTIVITY_MODIFIER) + (bzcomp * BZ_RADIOACTIVITY_MODIFIER))) // Rad Modifiers BZ(500%), Tritium(300%), and Pluoxium(-200%)
@@ -414,14 +418,14 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 
 		//Also keep in mind we are only adding this temperature to (efficiency)% of the one tile the rock
 		//is on. An increase of 4*C @ 25% efficiency here results in an increase of 1*C / (#tilesincore) overall.
-		removed.set_temperature(removed.return_temperature() + ((device_energy * dynamic_heat_modifier) / THERMAL_RELEASE_MODIFIER))
+		removed.set_temperature(removed.return_temperature() + ((device_energy * dynamic_heat_modifier) / THERMAL_RELEASE_MODIFIER) * gas_scale) // AQ EDIT - gas_scale
 
 		removed.set_temperature(max(0, min(removed.return_temperature(), 2500 * dynamic_heat_modifier)))
 
 		//Calculate how much gas to release
-		removed.adjust_moles(GAS_PLASMA, max((device_energy * dynamic_heat_modifier) / PLASMA_RELEASE_MODIFIER, 0))
+		removed.adjust_moles(GAS_PLASMA, max((device_energy * dynamic_heat_modifier) / PLASMA_RELEASE_MODIFIER, 0) * gas_scale) // AQ EDIT - gas_scale
 
-		removed.adjust_moles(GAS_O2, max(((device_energy + removed.return_temperature() * dynamic_heat_modifier) - T0C) / OXYGEN_RELEASE_MODIFIER, 0))
+		removed.adjust_moles(GAS_O2, max(((device_energy + removed.return_temperature() * dynamic_heat_modifier) - T0C) / OXYGEN_RELEASE_MODIFIER, 0) * gas_scale) // AQ EDIT - gas_scale
 
 		if(produces_gas)
 			env.merge(removed)

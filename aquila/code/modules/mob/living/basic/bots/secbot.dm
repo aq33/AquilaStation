@@ -92,7 +92,7 @@
 	var/mob/living/carbon/suspect = target
 	oldtarget_name = suspect.name
 	speak("Alarm: wykroczenie poziomu [threat_of(suspect)]!")
-	playsound(src, pick('aquila/sound/voice/beepsky/criminal.ogg', 'aquila/sound/voice/beepsky/justice.ogg', 'aquila/sound/voice/beepsky/freeze.ogg'), 50, FALSE)
+	playsound(src, pick('aquila/sound/voice/beepsky/criminal.ogg', 'aquila/sound/voice/beepsky/justice.ogg', 'aquila/sound/voice/beepsky/freeze.ogg'), 50, FALSE, volume_pref = VOLUME_PREF_BOTS)
 	visible_message("<b>[src]</b> wskazuje na [suspect.name]!")
 	update_bot_mode(BBOT_HUNT)
 

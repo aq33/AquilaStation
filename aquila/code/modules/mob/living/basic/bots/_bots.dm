@@ -460,7 +460,7 @@ GLOBAL_LIST_EMPTY(basic_bots_list)
 		say(message)
 	var/sound_to_play = sound || LAZYACCESS(phrase_sounds, message)
 	if(sound_to_play)
-		playsound(src, sound_to_play, 50, FALSE)
+		playsound(src, sound_to_play, 50, FALSE, volume_pref = VOLUME_PREF_BOTS)
 
 /mob/living/basic/bot/radio(message, list/message_mods = list(), list/spans, language)
 	. = ..()
