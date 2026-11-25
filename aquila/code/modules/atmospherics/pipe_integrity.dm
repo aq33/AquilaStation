@@ -207,6 +207,8 @@
 /datum/pipeline/proc/aq_check_integrity(guaranteed = FALSE)
 	if(aq_cached_members != length(members))
 		aq_refresh_integrity_cache()
+	if(aq_min_pressure_limit == INFINITY) // sieć bez rur (same urządzenia połączone bezpośrednio)
+		return
 	var/stress = max(air.return_pressure() / aq_min_pressure_limit, air.return_temperature() / aq_min_temperature_limit)
 	if(stress < AQ_PIPE_WARN_STRESS)
 		return
