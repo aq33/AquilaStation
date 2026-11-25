@@ -98,7 +98,7 @@ const DM_CATEGORY_TITLES: Record<string, string> = {
   Weapons: 'Broń',
 };
 
-const categoryTitle = (title: string) =>
+export const categoryTitle = (title: string) =>
   CATEGORY_TITLES[title] ??
   (isTranslating() ? undefined : DM_CATEGORY_TITLES[title]) ??
   title;
@@ -107,7 +107,7 @@ const categoryTitle = (title: string) =>
  * Categories present in this object are not rendered to the final fabricator
  * UI.
  */
-const BLACKLISTED_CATEGORIES: Record<string, boolean> = {
+export const BLACKLISTED_CATEGORIES: Record<string, boolean> = {
   initial: true,
   core: true,
   hacked: true,
