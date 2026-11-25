@@ -1,0 +1,20 @@
+diff --git a/src/error.rs b/src/error.rs
+index 31eb329..7d05982 100644
+--- a/src/error.rs
++++ b/src/error.rs
+@@ -36,11 +36,10 @@ pub enum Error {
+ 
+ impl Error {
+     pub fn get_last_byond_error() -> Self {
+-        if let Some(err) = ByondError::get_last() {
+-            Self::ByondError(err)
+-        } else {
+-            Self::UnknownByondError
+-        }
++        // AQUILA PATCH: Byond_LastError() crashes libbyond on BYOND 516 Linux ("illegal operation"),
++        // so any failed read (e.g. `air` on a turf that just became a wall) killed DreamDaemon
++        // instead of returning an error. Report the failure without asking BYOND for its message.
++        Self::UnknownByondError
+     }
+ }
+ 

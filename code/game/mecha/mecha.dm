@@ -408,7 +408,7 @@
 		var/atom/checking = occupant.loc
 		// recursive check to handle all cases regarding very nested occupants,
 		// such as brainmob inside brainitem inside MMI inside mecha
-		while (!isnull(checking))
+		while (!isnull(checking) && occupant != aq_remote_pilot) // AQ EDIT - pilot zdalny (aquila/code/modules/mecha_rework/remote.dm) siedzi w konsoli, nie w mechu
 			if (isturf(checking))
 				// hit a turf before hitting the mecha, seems like they have
 				// been moved out
@@ -436,7 +436,7 @@
 
 /obj/mecha/fire_act() //Check if we should ignite the pilot of an open-canopy mech
 	. = ..()
-	if (occupant && !enclosed && !silicon_pilot)
+	if (occupant && !enclosed && !silicon_pilot && occupant != aq_remote_pilot) // AQ EDIT - pilot zdalny siedzi w kokpicie, nie w kabinie (aquila/code/modules/mecha_rework/remote.dm)
 		if (occupant.fire_stacks < 5)
 			occupant.fire_stacks += 1
 		occupant.IgniteMob()
@@ -619,7 +619,7 @@
 	var/oldloc = loc
 	if(internal_damage & MECHA_INT_CONTROL_LOST)
 		move_result = mechsteprand()
-	else if(dir != direction && (!strafe || occupant.client.keys_held["Alt"]))
+	else if(dir != direction && (!strafe || aq_strafe_turn_held())) // AQ EDIT - Alt z klawiatury kierowcy, bez runtime'u przy pilocie bez klienta (aquila/code/modules/mecha_rework/copilot.dm)
 		move_result = mechturn(direction)
 	else
 		move_result = mechstep(direction)

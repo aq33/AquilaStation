@@ -871,19 +871,22 @@
 	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
 	character_var = "preferred_squad"
 
+// AQUILA - preferowana funkcja na okręcie zamiast konkretnej drużyny: gracz wybiera, co chce robić (rola drużyny),
+// a przydział bierze drużynę z tą rolą (aq_pick_squad). Wartość leży w tej samej kolumnie preferred_squad.
 /datum/preference/choiced/squad/init_possible_values()
-	var/list/squads = list(SQUAD_PREF_AUTO)
-	// aq_custom to szablon drużyn tworzonych przez XO w trakcie rundy, nie stała drużyna
+	var/list/roles = list(SQUAD_PREF_AUTO)
+	// Tylko funkcje, które mają drużynę na starcie rundy. aq_custom to szablon drużyn tworzonych przez XO, nie stała drużyna
 	for(var/datum/squad/squad_type as anything in subtypesof(/datum/squad) - typesof(/datum/squad/aq_custom))
-		if(initial(squad_type.name))
-			squads += initial(squad_type.name)
-	return squads
+		var/role = initial(squad_type.role)
+		if(initial(squad_type.name) && role && !(role in roles))
+			roles += role
+	return roles
 
 /datum/preference/choiced/squad/get_display_names()
-	// niepuste display_names wyłącza w oknie nazwy zastępcze, więc etykietę musi mieć każda drużyna
+	// niepuste display_names wyłącza w oknie nazwy zastępcze, więc etykietę musi mieć każda funkcja
 	. = list()
 	for(var/choice in get_choices())
-		.[choice] = choice
+		.[choice] = squad_role_pl(choice)
 	.[SQUAD_PREF_AUTO] = "Automatycznie"
 
 /datum/preference/choiced/lizard_hiss_style

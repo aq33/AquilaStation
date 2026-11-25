@@ -154,6 +154,7 @@ GLOBAL_LIST_INIT(preset_fish_sources, init_fishing_configurations())
 		/datum/aquarium_behaviour/fish/planet/stingray = 5,
 		/datum/aquarium_behaviour/fish/planet/squid = 5,
 		/obj/item/clothing/shoes/sandal = 3,
+		/obj/item/plant_seeds/preset/barnacle = 3, // larwy pąkli: jedyne źródło (botany/aquila/ported/akwa.dm)
 	)
 	fishing_difficulty = FISHING_DEFAULT_DIFFICULTY + 5
 
@@ -168,6 +169,7 @@ GLOBAL_LIST_INIT(preset_fish_sources, init_fishing_configurations())
 		/datum/aquarium_behaviour/fish/gunner_jellyfish = 10,
 		/datum/aquarium_behaviour/fish/dwarf_moonfish = 10,
 		/datum/aquarium_behaviour/fish/planet/arctic_char = 10,
+		/obj/item/plant_seeds/preset/barnacle = 5,
 	)
 	fishing_difficulty = FISHING_DEFAULT_DIFFICULTY + 15
 	background = "background_ice"

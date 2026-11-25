@@ -51,7 +51,7 @@
 	filedesc = "Prawo kosmiczne"
 	category = PROGRAM_CATEGORY_CREW
 	program_icon_state = "generic"
-	extended_desc = "Kodeks karny okrętu z wyszukiwarką i kalkulatorem wyroku."
+	extended_desc = "Kodeks karny okrętu z wyszukiwarką, kalkulatorem wyroku i podpowiedzią kary."
 	size = 2
 	tgui_id = "NtosSpaceLaw"
 	program_icon = "gavel"
@@ -60,6 +60,8 @@
 /datum/computer_file/program/space_law/ui_static_data(mob/user)
 	. = ..()
 	.["categories"] = get_space_law_catalog()
+	.["facilities"] = get_space_law_facilities()
+	.["max_fine"] = CONFIG_GET(number/maxfine)
 
 // Dyski zawodowe: medyczne dostają „Operacje”, chemiczne „Receptury”, naukowe „Ekstrakty”, ochrony „Prawo kosmiczne”
 /obj/item/computer_hardware/hard_drive/role/Initialize(mapload)

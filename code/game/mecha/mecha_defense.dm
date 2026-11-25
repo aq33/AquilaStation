@@ -115,7 +115,7 @@
 
 
 /obj/mecha/bullet_act(obj/item/projectile/Proj) //wrapper
-	if (!enclosed && occupant && !silicon_pilot && !Proj.force_hit && (Proj.def_zone == BODY_ZONE_HEAD || Proj.def_zone == BODY_ZONE_CHEST)) //allows bullets to hit the pilot of open-canopy mechs
+	if (!enclosed && occupant && !silicon_pilot && occupant != aq_remote_pilot && !Proj.force_hit && (Proj.def_zone == BODY_ZONE_HEAD || Proj.def_zone == BODY_ZONE_CHEST)) //allows bullets to hit the pilot of open-canopy mechs // AQ EDIT - bez pilota zdalnego, siedzi w kokpicie (aquila/code/modules/mecha_rework/remote.dm)
 		occupant.bullet_act(Proj) //If the sides are open, the occupant can be hit
 		return BULLET_ACT_HIT
 	log_message("Hit by projectile. Type: [Proj.name]([Proj.flag]).", LOG_MECHA, color="red")
@@ -148,7 +148,7 @@
 				SSexplosions.med_mov_atom += MT
 			if(EXPLODE_LIGHT)
 				SSexplosions.low_mov_atom += MT
-	if(occupant)
+	if(occupant && occupant != aq_remote_pilot) // AQ EDIT - pilot zdalny siedzi w kokpicie, nie w kabinie (aquila/code/modules/mecha_rework/remote.dm)
 		occupant.ex_act(severity,target)
 
 /obj/mecha/handle_atom_del(atom/A)

@@ -82,7 +82,7 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 	for(var/mob/L in affecting)
 		if(L.client && L.client.prefs.toggles & PREFTOGGLE_SOUND_SHIP_AMBIENCE && L.client?.last_ambience != ambient_buzz)
 			L.client.buzz_playing = ambient_buzz
-			SEND_SOUND(L, sound(ambient_buzz, repeat = 1, wait = 0, volume = 100, channel = CHANNEL_BUZZ))
+			L.play_mixed_sound(sound(ambient_buzz, repeat = 1, wait = 0, volume = 100, channel = CHANNEL_BUZZ), VOLUME_PREF_AMBIENCE) // AQ EDIT - mikser dźwięku
 			L.client.last_ambience = ambient_buzz
 	return TRUE
 

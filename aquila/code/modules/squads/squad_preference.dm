@@ -1,4 +1,5 @@
-// Preferencja drużyny w kreatorze postaci: „Automatycznie” (domyślnie) albo wybrana drużyna (aq_pick_squad w squad_positions.dm).
+// Preferencja funkcji w kreatorze postaci: „Automatycznie” (domyślnie) albo rola drużyny (aq_pick_squad w squad_positions.dm).
+// Do 25.11.2026 była to nazwa drużyny; stara nazwa w zapisie działa jak „Automatycznie”.
 // Do 14.11.2026 domyślną wartością było „Alpha”, więc prawie każda zapisana postać ma Alpha, choć nikt jej nie wybierał.
 // Jednorazowa migracja przestawia wszystkie zapisane postacie gracza na „Automatycznie”.
 

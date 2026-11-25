@@ -31,14 +31,22 @@ export const preferred_pilot_role: FeatureChoiced = {
 };
 
 export const preferred_squad: FeatureChoiced = {
-  name: 'Przydział do drużyny',
+  name: 'Preferowana funkcja na okręcie',
   description:
-    'Automatycznie: drużyna według zawodu, a bez niej najmniej liczna. Wybrana drużyna ma pierwszeństwo, o ile nie jest pełna.',
+    'Co chcesz robić w drużynie. Trafisz do drużyny z tą funkcją, o ile nie jest pełna. Automatycznie: funkcja według zawodu, a bez niej najmniej liczna drużyna.',
   component: FeatureButtonedDropdownInput,
 };
 
 export const lizard_hiss_style: FeatureChoiced = {
   name: 'Syk jaszczura',
+  component: FeatureButtonedDropdownInput,
+};
+
+/** Głos z Goonstation tej postaci; zmiana od razu gra próbkę */
+export const speech_voice: FeatureChoiced = {
+  name: 'Głos mowy',
+  description:
+    'Głos z Goona, którym mówi postać dla graczy, którzy w ustawieniach gry wybrali głosy z Goona. Automatyczny dobiera stały głos z imienia. Głosy 1–4 mają osobne nagrania pytania i okrzyku.',
   component: FeatureButtonedDropdownInput,
 };
 
@@ -199,9 +207,10 @@ export const sound_ship_ambience: FeatureToggle = {
 };
 
 export const tesla_volume: FeatureNumeric = {
-  name: 'Głośność tesli',
+  name: 'Tesla',
   category: 'SOUND',
-  subcategory: 'IC',
+  subcategory: 'Mixer',
+  description: 'Wyładowania tesli i cewek.',
   component: FeatureSliderInput,
 };
 

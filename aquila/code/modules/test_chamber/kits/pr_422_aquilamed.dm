@@ -26,7 +26,7 @@
 		/obj/item/clothing/suit/armor/vest = 1,
 		/obj/item/healthanalyzer = 1,
 		/obj/item/clothing/neck/stethoscope = 1,
-		/mob/living/simple_animal/bot/medbot = 1,
+		/mob/living/basic/bot/medbot = 1,
 		/obj/structure/table/optable = 1,
 		/obj/item/surgical_drapes = 1,
 		/obj/item/storage/backpack/duffelbag/med/surgery = 1,

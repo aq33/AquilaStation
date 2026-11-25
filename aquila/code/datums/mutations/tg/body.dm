@@ -282,7 +282,7 @@
 	..()
 	if(length(danger_reagents))
 		return
-	danger_reagents = typecacheof(list(/datum/reagent/medicine, /datum/reagent/drug)) - typecacheof(list(/datum/reagent/medicine/mannitol, /datum/reagent/medicine/mutadone))
+	danger_reagents = aq_chemical_allergy_reagents()
 
 /datum/mutation/chemical_allergy/on_losing(mob/living/carbon/owner)
 	if(was_experiencing_allergy)
@@ -304,17 +304,28 @@
 		instability = allergy_instability
 		owner.dna.update_instability()
 
-	if(TGMUT_SPT_PROB(66))
+	aq_chemical_allergy_reaction(owner, TGMUT_LIFE_SECONDS)
+
+/// Leki i używki, na które uczula mutacja „Alergia na chemikalia”. Z tej samej listy losuje alergeny cecha „Alergia na leki”.
+/proc/aq_chemical_allergy_reagents()
+	var/static/list/reagents
+	if(!reagents)
+		reagents = typecacheof(list(/datum/reagent/medicine, /datum/reagent/drug)) - typecacheof(list(/datum/reagent/medicine/mannitol, /datum/reagent/medicine/mutadone))
+	return reagents
+
+/// Objawy reakcji alergicznej (tg chemical allergy) za `seconds` sekund: wspólne dla mutacji i cechy „Alergia na leki”
+/proc/aq_chemical_allergy_reaction(mob/living/carbon/owner, seconds)
+	if(prob(100 * (1 - (1 - 0.66) ** seconds)))
 		owner.set_stutter_if_lower(4 SECONDS)
-	if(TGMUT_SPT_PROB(33))
+	if(prob(100 * (1 - (1 - 0.33) ** seconds)))
 		owner.adjust_disgust(24)
 		owner.adjustToxLoss(pick(2, 3, 4), forced = TRUE)
-	if(TGMUT_SPT_PROB(12))
+	if(prob(100 * (1 - (1 - 0.12) ** seconds)))
 		owner.set_jitter_if_lower(min(owner.jitteriness * 20 + 6 SECONDS, 36 SECONDS))
 		owner.set_dizzy_if_lower(min(owner.dizziness * 20 + 6 SECONDS, 36 SECONDS))
 		if(owner.blood_volume > BLOOD_VOLUME_OKAY)
 			owner.adjust_blood_volume(-pick(12, 16, 20, 24), minimum = BLOOD_VOLUME_OKAY)
-	if(TGMUT_SPT_PROB(6))
+	if(prob(100 * (1 - (1 - 0.06) ** seconds)))
 		owner.set_confusion_if_lower(min(owner.confused * 20 + 4 SECONDS, 12 SECONDS))
 		owner.losebreath = max(owner.losebreath, 4)
 

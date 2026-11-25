@@ -1505,3 +1505,164 @@
       powrót z kriostazy).
   - bugfix: Konsola myśliwców, generator termoelektryczny, oględziny, mroczny puls
       i stos naleśników nie wywołują już błędów.
+'2026-11-24':
+  Joker66613:
+  - rscadd: 'Boty działają na drzewach zachowań z tg: duch może przejąć bota (przełącznik
+      Osobowość w panelu), boty jeżdżą windami przy wezwaniu i patrolu. Na starej
+      bazie został tylko MULEbot.'
+  - rscadd: 'Nowe boty: Repairbot (zamiast floorbota), Vibebot, BarBuddy, Cambot,
+      Chefbot, Digbot, Evilbot, eldritchowe boty, Doctor Acula, Farmbot, Frightbot
+      i Screambot; D.E.D.bot do kupienia w uplinku.'
+  - rscadd: Mechy mają sloty wyposażenia, wymienne części i płyty pancerza, overclock
+      z odnowieniem, kierunkowy pancerz, pięć broni wręcz, amunicję do każdej broni
+      balistycznej, zdalne sterowanie i zrzut z orbity.
+  - rscadd: 'Nowe mechy: Clarke, Paddy, Savannah-Ivanov, Red Sunday i Sentinel; 17
+      skinów do wyboru przy budowie i nowe wyposażenie.'
+  - rscadd: 'Nowe moduły cyborgów: Naukowy, Eksploracyjny, Detektyw, Brobocop i Zagubiony;
+      nowe ulepszenia, w tym zestawy chemiczny, ratowniczy i biurowy oraz wymiennik
+      żarówek.'
+  - rscadd: Nowe implanty i augmenty, NIF z programami NIFSoft; implant agonalny z
+      wyborem kanału, także w cyborgach.
+  - rscadd: Protezy w trzech klasach i dziesięciu markach (wygląd), rany robotyczne,
+      wybór protez w kreatorze postaci.
+  - rscadd: Klucz resetu IPC, chirurgia syntetyków, cyberpsychoza, neuromody i woltaiczne
+      serce.
+  - balance: Glock-13BR cyborga ochrony strzela ostrą amunicją tylko przy czerwonym
+      alarmie albo abordażu.
+  - balance: IPC nie wstaje sam po naprawie (klucz resetu albo operacja), a EMP nie
+      paraliżuje już całego ciała za każdą protezę.
+  - balance: Implant adrenaliny działa na IPC, a implant restartu OUN budzi z utraty
+      przytomności.
+  - balance: Szczęki ratownicze mecha otwierają tylko drzwi bez zasilania, a ładunek
+      wejścia siłowego i rakiety PEP-6 nie rozbierają ścian wzmocnionych.
+  - bugfix: EMP nie odrywa IPC głowy i kończyn, a paraliż protezy schodzi po odpięciu
+      kończyny.
+  - bugfix: 'Boty: wezwanie bez ścieżki nie zawiesza bota, dostęp z wezwania wraca
+      po dotarciu, zniszczony medibot i repairbot nie dublują apteczek i skrzynek,
+      gracz w bocie pracuje kliknięciem.'
+  - bugfix: Pilot zdalny mecha nie obrywa w kokpicie, broń zdalnego mecha strzela
+      z mecha, a drugie miejsce i zdalne sterowanie sprawdzają blokadę DNA i dostęp.
+  - bugfix: Kreator postaci nie podmienia organów gatunkowych (plazmaludzie, eterycy).
+  - bugfix: Skiny cyborgów z modułów Naukowy, Eksploracyjny, Detektyw i Brobocop są
+      widoczne, a event zagubionego cyborga działa.
+  - imageadd: Sprite'y botów, mechów, skinów cyborgów, implantów i protez z tg, Bee,
+      Goona, Baya, Aurory, Paradise, Erisa, Monke, Yoga, Shiptesta, TGMC i CM-SS13
+      (atrybucje w plikach attribution).
+  - bugfix: 'Ciało gracza na planecie nie znika już po odlocie okrętu: powierzchnia
+      czeka, dopóki gracz może do niego wrócić.'
+  - balance: Kudzu na planetach rozrasta się najwyżej do 50 pnączy na kępę i 400 łącznie.
+  - rscadd: 'Ustawienia gry: „Dźwięki mowy postaci” – słyszysz nasze „hmm”, głosy
+      z Goona albo nic.'
+  - rscadd: 'Okno postaci: wybór głosu z Goona dla postaci (cztery głosy z osobnymi
+      nagraniami pytania i okrzyku).'
+  - tweak: 'Okno postaci: polskie nazwy fryzur, zarostu, bielizny i cech ras, markingi
+      z obrazkowym podglądem.'
+  - soundadd: 'Rasy krzyczą i śmieją się po swojemu: felinid, ćma, jaszczur, eteryk,
+      oozeling, IPC i małpy; człowiek ma więcej krzyków; nowe pierdnięcia.'
+  - imageadd: 210 nowych fryzur i 27 rodzajów zarostu.
+  - rscadd: 51 nowych cech postaci (quirków), m.in. gracz, przeklęty, hemofilia, poczwórna
+      amputacja, analfabeta, bez powiek, właściciel zwierzaka, kolorysta.
+  - rscadd: Fobia może dotyczyć ognia albo ciasnych miejsc.
+  - rscadd: 'Zakładka „Markingi”: do trzech wzorów na każdą część ciała, każdy we
+      własnym kolorze, 242 wzory do wyboru.'
+  - rscadd: 'Nowe rasy: Mięsoczłowiek (charczy jak zombie z Minecrafta), Borowik,
+      Fion i Żaba.'
+  - rscadd: 'Nowa rasa Akwarianin: ryba w szklanym kloszu z wodą na mechanicznym pancerzu.'
+  - imageadd: Sprite'y Akwarianina od twórcy projektu „Fish People”.
+  - rscadd: 'Rozbity klosz Akwarianina: rybka wypada na podłogę i trzeba ją wpuścić
+      do wody albo do nowego klosza z fabrykatora egzoszkieletów.'
+  - rscadd: Akwarianin najada się zmielonym jedzeniem wlanym do klosza, a wgnieciony
+      pancerz przecieka wodą. Z rybki da się zrobić sushi.
+  - rscadd: 'Nowa rasa Grod: korona w ciele dużej gąsienicy, pająk-korona przejmujący
+      ciała, postawa ruchu i postawa pracy z czterema rękami, kokon przemiany i sadzenie
+      korony w tacy hydroponicznej, własne kamizelki i cylindry, język Poh''lan.'
+  - bugfix: Kolejne dawki epinefryny (adrenaliny) w krótkim czasie tłumią ból coraz
+      słabiej, jak obiecuje opis.
+  - bugfix: Kamera wpisuje za sikanie i wypróżnianie się wykroczenie „Załatwianie
+      potrzeby w miejscu publicznym” z prawa kosmicznego.
+  - spellcheck: Okno Dominatora nie wspomina już o wpływach gangu.
+  - bugfix: Przyprawa Maggi doprawia danie jak inne przyprawy.
+  - bugfix: Larwy pąkli można złowić na plaży i w sztormowym morzu planet.
+  - spellcheck: Ręcznie złożony ED-209 i repairbot mają te same nazwy co boty z mapy.
+  sh4dow321:
+  - tweak: 'Zwykła kupa nie jest już śliska: wdepnięcie brudzi buty i zostawia ślady.
+      Ślizgać się można tylko na biegunce.'
+  - bugfix: Abordażyści AI w skafandrach nie szukają już trasy przez kosmos wokół
+      okrętu, co przy abordażu zamrażało serwer (time dilation do ~70%).
+  - bugfix: Prom ewakuacyjny nie rozpada się już na części przy starcie.
+'2026-11-25':
+  Joker66613:
+  - server: Bot Discorda z komendami /wojna (stan wojny frakcji) i /mapa (obrazek
+      mapy wojny) z zapisu kampanii (tools/discord_bot).
+  - balance: Czerwona ikonka ubikacji pojawia się ok. 7 minut po zwykłej, wcześniej
+      niż dotąd.
+  - tweak: Horror może mutować, siedząc w nosicielu.
+  - spellcheck: Opis Ukrywania horrora nie obiecuje już niewidzialności (tę daje Kameleonowa
+      skóra).
+  - rscadd: Horror kontrolujący ciało może za 50 chemikaliów stłumić opór nosiciela
+      i odsunąć odzyskanie przez niego kontroli o 20 sekund.
+  - balance: Okręty AI strzelają rakietami w myśliwce dopiero z zasięgu dział, a każda
+      rakieta 8 sekund po namierzeniu myśliwca gubi namiar.
+  - rscadd: 'Sabre przechwytuje kapsuły ratunkowe swojej frakcji: wystarczy podlecieć
+      promem do kapsuły, a rozbitkowie wchodzą na pokład przez właz.'
+  - bugfix: Telewizorek w menu lobby znowu odlicza czas do startu rundy.
+  - imageadd: Pęknięta czaszka ma nowy sprite wgniecenia na głowie zamiast wykrzywienia.
+  - rscadd: 'Mikrofalówka, młynek, dozownik alkoholi, dozownik napojów, blok utylizacyjny,
+      autolat, protolaty, techfaby i drukarka płytek mają nowe okna, które wyglądają
+      jak te urządzenia (wzór: Polonium Station).'
+  - rscadd: W mikrofalówce i młynku zamiast menu radialnego widać zawartość, a pojedynczą
+      rzecz można wyjąć kliknięciem.
+  - rscadd: 'Pulpit fabrykatora: katalog z wyszukiwarką, ploter rysujący wydruk, zlecenia
+      na kartkach, STOP przytrzymany czyści kolejkę. Stare okno jest pod klawiszem
+      na pulpicie.'
+  - bugfix: Brudna mikrofalówka włączona przez gracza nie zostaje już włączona na
+      zawsze po nieudanym pieczeniu.
+  - imageadd: Grafiki okien urządzeń i pikselowe fonty z Polonium Station.
+  - rscadd: 'Mikser dźwięku w ustawieniach gry (Dźwięk → Mikser): osobne suwaki głośności
+      alarmów okrętu, broni i efektów okrętu, broni ręcznej, emotek, mowy postaci,
+      głosów botów, syntezy mowy, ogłoszeń, otoczenia i muzyki otoczenia.'
+  - tweak: Suwak głośności tesli przeniesiony do miksera.
+  - bugfix: Muzyka otoczenia znowu gra, szum statku nie blokuje już jej kanału.
+  - bugfix: Prom nad planetą zatrzymuje się sam na czas mapowania powierzchni i wyboru
+      lądowiska, więc nie trzeba wlatywać nad planetę kilka razy.
+  - bugfix: Wyciągnięcie pasożyta operacją na głowie naprawdę uwalnia nosiciela od
+      horrora.
+  - bugfix: 'Medibot nie zagłusza już ambulatorium: kwestie z dźwiękiem najwyżej co
+      20 s, leczenie ogłaszane raz na pacjenta.'
+  - bugfix: Dowódca drużyny jest wybierany według stopnia, a w opisie postaci wyższy
+      stopień naprawdę jest wyższy.
+  - rscadd: Roślinę na łopatce można wyrzucić do kosza, worka na śmieci albo kompostownika,
+      a roślinę w tacy wyrwać ręką (prawy przycisk) albo kultywatorem.
+  - tweak: Pager drużyny startuje w kieszeni.
+  - imageadd: Pojedyncza kałuża ma nowy kształt (z Space Station 14).
+  - config: Polskie stopnie marynarki (config/ranks/marynarka.txt), także w wersji
+      angielskiej.
+  - tweak: Historia Mięsacza jest krótsza, a Jajoczłowiek i Kałamarnicoczłowiek mają
+      opis, historię i cechy w oknie postaci.
+  - rscadd: 'Program PDA „Prawo kosmiczne” podpowiada formę kary: mandat, areszt,
+      GenPop, gułag z punktami albo dożywocie z wygnaniem cyfrowym.'
+  - tweak: W preferencjach postaci wybiera się funkcję na okręcie zamiast konkretnej
+      drużyny.
+  - rscadd: Lądowanie promu na planecie można oglądać na żywo w Spess.tv i na telewizorach.
+  - rscadd: 'Stos korowy wyjęty z ciała zapisuje umysł: można z niego sklonować osobę
+      albo zapisać kopię rekordu na pustym stosie w konsoli klonowania.'
+  - tweak: W oknie wyboru języka żaden przycisk nie jest już podświetlony jako domyślny.
+  - bugfix: 'Supermateria w prawie pustej komorze nie nakręca się już sama: przy małej
+      ilości gazu grzeje go, wydziela plazmę i tlen oraz zyskuje moc proporcjonalnie
+      mniej, więc delaminujący kryształ da się opanować chłodziwem.'
+  - imageadd: 'Nowe sprite''y dowództwa: mundury, kurtki, czapki, berety, peleryny,
+      hardsuit Kapitana, torba, karty ID, PDA i szafki Kapitana, Starszego Oficera
+      i Oficerów Pokładowych. Nowa peleryna CMO.'
+  - tweak: Kapitan zaczyna rundę we własnym mundurze, czapce i napierśniku, Starszy
+      Oficer we własnym mundurze i kurtce galowej, a Oficerowie Pokładowi w berecie
+      Oficera Pokładowego.
+  - rscadd: Oficerska czapka kapitana.
+  - tweak: 'Pudełka kompresyjne Kapitana i Starszego Oficera bez spódniczki, korony,
+      morskiego kombinezonu i brązowych butów; buty wojskowe i zapasowa kurtka XO
+      w szafkach. Kurtki kapitana: fikuśna i galowa, stara kurtka usunięta z szafki.'
+  - tweak: Pudełko kompresyjne Komendanta ma oba berety Komendanta zamiast duplikatu
+      munduru.
+  - spellcheck: Peleryna Komendanta zamiast płaszcza Komendanta.
+  - imageadd: Kurtki zimowe Kapitana, Starszego Oficera i Oficera Pokładowego (zapinane
+      Alt+klikiem), poprawione cieniowanie hardsuita i peleryny kapitana.
+  - tweak: Peleryny przykrywają plecak i torbę.

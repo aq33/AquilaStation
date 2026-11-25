@@ -54,10 +54,17 @@
 	name = "Wymierzenie czarodziejskiej sprawiedliwości"
 	desc = "To zaklęcie wymierza czarodziejską sprawiedliwość."
 
-	summon_type = list(/mob/living/simple_animal/bot/ed209)
+	summon_type = list(/mob/living/basic/bot/secbot/ed209) // AQ EDIT - basic boty
 	summon_amt = 10
 	range = 3
-	newVars = list("emagged" = 2, "remote_disabled" = 1,"shoot_sound" = 'sound/weapons/laser.ogg',"projectile" = /obj/item/projectile/beam/laser, "declare_arrests" = 0,"name" = "bot sprawiedliwości czarodzieja")
+	newVars = list("shoot_sound" = 'sound/weapons/laser.ogg',"projectile" = /obj/item/projectile/beam/laser, "declare_arrests" = 0,"name" = "bot sprawiedliwości czarodzieja") // AQ EDIT - basic boty: bez emagged i remote_disabled, których basic ED-209 nie ma
+
+// AQ EDIT START - basic boty: zhakowanie i odcięcie od zdalnego sterowania po przyzwaniu (dawniej newVars emagged/remote_disabled)
+/obj/effect/proc_holder/spell/aoe_turf/conjure/summonEdSwarm/post_summon(atom/summoned_object, mob/user)
+	var/mob/living/basic/bot/summoned_bot = summoned_object
+	if(istype(summoned_bot))
+		summoned_bot.set_emagged(user)
+// AQ EDIT END
 
 /obj/effect/proc_holder/spell/aoe_turf/conjure/linkWorlds
 	name = "Połączenie światów"
