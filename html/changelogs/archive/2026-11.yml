@@ -1594,3 +1594,16 @@
   Joker66613:
   - server: Bot Discorda z komendami /wojna (stan wojny frakcji) i /mapa (obrazek
       mapy wojny) z zapisu kampanii (tools/discord_bot).
+  - balance: Czerwona ikonka ubikacji pojawia się ok. 7 minut po zwykłej, wcześniej
+      niż dotąd.
+  - tweak: Horror może mutować, siedząc w nosicielu.
+  - spellcheck: Opis Ukrywania horrora nie obiecuje już niewidzialności (tę daje Kameleonowa
+      skóra).
+  - rscadd: Horror kontrolujący ciało może za 50 chemikaliów stłumić opór nosiciela
+      i odsunąć odzyskanie przez niego kontroli o 20 sekund.
+  - balance: Okręty AI strzelają rakietami w myśliwce dopiero z zasięgu dział, a każda
+      rakieta 8 sekund po namierzeniu myśliwca gubi namiar.
+  - rscadd: 'Sabre przechwytuje kapsuły ratunkowe swojej frakcji: wystarczy podlecieć
+      promem do kapsuły, a rozbitkowie wchodzą na pokład przez właz.'
+  - bugfix: Telewizorek w menu lobby znowu odlicza czas do startu rundy.
+  - imageadd: Pęknięta czaszka ma nowy sprite wgniecenia na głowie zamiast wykrzywienia.

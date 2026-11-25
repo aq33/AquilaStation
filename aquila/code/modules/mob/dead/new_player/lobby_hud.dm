@@ -88,10 +88,14 @@
 	tv = add_element(/atom/movable/screen/aq_lobby/tv, 'aquila/icons/hud/lobby_tv.dmi', -132, 32, FALSE, "RIGHT", 96)
 	tv_text = add_element(/atom/movable/screen/aq_lobby/tv_text, null, -132, 32, FALSE, "RIGHT", 96)
 	client_ref.screen += elements
-	START_PROCESSING(SSprocessing, src)
+	start_refreshing()
+
+/// Telewizorek i przyciski odświeżają się co sekundę. SSprocessing nie działa w lobby, więc własny podsystem.
+/datum/aq_lobby_hud/proc/start_refreshing()
+	START_PROCESSING(SSlobby_hud, src)
 
 /datum/aq_lobby_hud/Destroy()
-	STOP_PROCESSING(SSprocessing, src)
+	STOP_PROCESSING(SSlobby_hud, src)
 	if(client_ref)
 		client_ref.screen -= elements
 	QDEL_LIST(elements)
