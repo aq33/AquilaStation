@@ -48,6 +48,7 @@ type Data = {
   beakerIcon?: string;
   beakerColor?: string;
   beakerColors: Record<string, string>;
+  recordingRecipe?: Record<string, number> | null;
 };
 
 type Skin = { body: string; light: string; bright: string; dark: string };
@@ -141,8 +142,17 @@ export const BarDispenserDevice = () => {
   const canvasW = NOTE_LEFT + NOTE_W + 4;
   const canvasH = Math.max(bottom + 4, NOTE_H + 8);
 
+  // Nagrywanie receptury (ze starego okna): dawka trafia do receptury, nie do naczynia
+  const recording = !!data.recordingRecipe;
+  const full =
+    !!beakerMaxVolume && (beakerCurrentVolume ?? 0) >= beakerMaxVolume;
   const dispense = (chemical: Chemical) => {
-    if (!isBeakerLoaded) {
+    if (!isBeakerLoaded && !recording) {
+      return;
+    }
+    // Strumień tylko wtedy, gdy coś naprawdę poleci do naczynia
+    if (recording || full || energy <= 0) {
+      act('dispense', { reagent: chemical.id });
       return;
     }
     setPour({
@@ -153,6 +163,7 @@ export const BarDispenserDevice = () => {
     act('dispense', { reagent: chemical.id });
   };
 
+  const vesselTitle = beakerName || 'Naczynie';
   const amounts = beakerTransferAmounts?.length
     ? beakerTransferAmounts.slice(0, 9)
     : [5, 10, 15, 20, 25, 30];
@@ -172,7 +183,7 @@ export const BarDispenserDevice = () => {
           chemicals={chemicals}
           skin={skin}
           pointed={pointed}
-          enabled={!!isBeakerLoaded && !!powered}
+          enabled={(!!isBeakerLoaded || recording) && !!powered}
           onPoint={setPointed}
           onPour={dispense}
         />
@@ -254,7 +265,7 @@ export const BarDispenserDevice = () => {
               y={panelTop + 4 + row * PITCH_Y}
               chemical={chemical}
               highlighted={pointed === chemical.id}
-              disabled={!isBeakerLoaded || !powered}
+              disabled={(!isBeakerLoaded && !recording) || !powered}
               onPoint={setPointed}
               onPour={() => dispense(chemical)}
             />
@@ -324,7 +335,13 @@ export const BarDispenserDevice = () => {
         align="center"
         color="#f2f2f2"
       >
-        {powered ? 'GOTOWY' : 'BRAK PRĄDU'}
+        {!powered
+          ? 'BRAK PRĄDU'
+          : recording
+            ? 'NAGRYWANIE'
+            : full
+              ? 'PEŁNE'
+              : 'GOTOWY'}
       </PixelText>
       <BarRoundKey
         x={ROUND_AXIS - 18}
@@ -374,7 +391,7 @@ export const BarDispenserDevice = () => {
           {
             top: 15,
             heading: isBeakerLoaded
-              ? `${beakerName || 'Naczynie'} ${beakerCurrentVolume ?? 0}/${beakerMaxVolume ?? 0} j.`
+              ? `${vesselTitle} ${beakerCurrentVolume ?? 0}/${beakerMaxVolume ?? 0} j.`
               : 'BRAK NACZYNIA',
             empty: isBeakerLoaded ? 'puste' : undefined,
             rows: beakerContents.map((reagent) => ({

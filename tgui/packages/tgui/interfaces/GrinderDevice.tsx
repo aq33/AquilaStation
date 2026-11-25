@@ -137,7 +137,16 @@ export const GrinderDevice = () => {
           ...shake,
         }}
         title={holding && idle && canReach ? `Wrzuć: ${holding}` : 'Dzbanek'}
-        onClick={holding && idle && canReach ? () => act('insert') : undefined}
+        onClick={
+          holding && idle && canReach
+            ? (event) => {
+                // Klik w produkt go wyjmuje, wrzuca tylko klik w samo tło dzbanka
+                if (event.target === event.currentTarget) {
+                  act('insert');
+                }
+              }
+            : undefined
+        }
       >
         {items.map((item, index) => {
           const spot = REST_SPOTS[index];

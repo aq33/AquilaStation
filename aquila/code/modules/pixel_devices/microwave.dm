@@ -47,10 +47,7 @@
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(ui)
 		return
-	// Jak w Polonium: zepsutej mikrofalówki nie da się otworzyć
-	if(broken)
-		to_chat(user, "<span class='warning'>Jest zepsuta!</span>")
-		return
+	// Zepsuta też się otwiera (pęknięta szyba w oknie): jak w starym menu da się z niej wyjąć zawartość, START jest zablokowany
 	ui = new(user, src, "MicrowaveDevice")
 	ui.set_autoupdate(TRUE) // odliczanie
 	ui.open()

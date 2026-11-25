@@ -84,7 +84,8 @@ export const MicrowaveDevice = () => {
   const [doneUntil, setDoneUntil] = useState(0);
   const wasOperating = usePrevious(!!operating);
   useEffect(() => {
-    if (wasOperating && !operating && !broken) {
+    // GOTOWE tylko po udanym pieczeniu: rzeczy wypadły, bez brudu i awarii (utrata prądu zostawia je w środku)
+    if (wasOperating && !operating && !broken && dirty < 100 && !items.length) {
       setDoneUntil(Date.now() + DONE_TIME);
     }
   }, [operating]);
@@ -100,7 +101,7 @@ export const MicrowaveDevice = () => {
 
   // Jak w Polonium: w spoczynku drzwiczki są otwarte i rzeczy da się wyjąć
   const doorOpen = !broken && !operating;
-  const canTouch = !operating && !broken;
+  const canTouch = !operating;
   const hoveredItem = items.find((item) => item.ref === hovered);
 
   let status = 'PUSTA';
@@ -213,7 +214,9 @@ export const MicrowaveDevice = () => {
         skin="green"
         text="START"
         textColor="#ffffff"
-        disabled={!powered || !!broken || !!operating || !items.length}
+        disabled={
+          !powered || !!broken || !!operating || dirty >= 100 || !items.length
+        }
         tooltip="Włącza mikrofalówkę (też prawy przycisk na maszynie)"
         onClick={() => act('start')}
       />
@@ -225,7 +228,7 @@ export const MicrowaveDevice = () => {
         skin="light"
         text="OPRÓŻNIJ"
         textColor="#a3261c"
-        disabled={!!operating || !!broken || !items.length}
+        disabled={!!operating || !items.length}
         tooltip="Wyrzuca całą zawartość na podłogę"
         onClick={() => act('eject')}
       />

@@ -31537,7 +31537,6 @@
 "Fion": "Pug",
 "\\improper Borowik": "\\improper Psyphoza",
 "\\improper Fion": "\\improper Pug",
-"${beakerName || 'Naczynie'} ${beakerCurrentVolume ?? 0}/${beakerMaxVolume ?? 0} j.": "${beakerName || 'Container'} ${beakerCurrentVolume ?? 0}/${beakerMaxVolume ?? 0} u.",
 "${chemical.title}: najpierw wstaw naczynie": "${chemical.title}: insert a container first",
 "${chemical.title}: nalej": "${chemical.title}: pour",
 "${item.name}: kliknij, aby wyjąć": "${item.name}: click to take out",
@@ -31632,5 +31631,9 @@
 "Ładowanie ciśnienia": "Pressurizing",
 "Wstaw: ${holding}": "Insert: ${holding}",
 "Okna urządzeń: mikrofalówka, młynek, dozowniki, utylizator, pulpit fabrykatora": "Device windows: microwave, grinder, dispensers, disposal unit, fabricator console",
-"1) Mikrofalówka: włóż jedzenie, kliknij maszynę - okno z komorą, rzeczy na talerzu, kliknięcie rzeczy wyjmuje ją do ręki, START zamyka drzwiczki, talerz się kręci, wyświetlacz odlicza, po końcu GOTOWE i jedzenie na podłodze. Prawy przycisk dalej włącza od razu. \\": "1) Microwave: put food in, click the machine - window with the chamber and items on the plate, clicking an item takes it to your hand, START closes the door, the plate spins, the display counts down, at the end READY and the food lands on the floor. Right click still starts it right away. \\"
+"1) Mikrofalówka: włóż jedzenie, kliknij maszynę - okno z komorą, rzeczy na talerzu, kliknięcie rzeczy wyjmuje ją do ręki, START zamyka drzwiczki, talerz się kręci, wyświetlacz odlicza, po końcu GOTOWE i jedzenie na podłodze. Prawy przycisk dalej włącza od razu. \\": "1) Microwave: put food in, click the machine - window with the chamber and items on the plate, clicking an item takes it to your hand, START closes the door, the plate spins, the display counts down, at the end READY and the food lands on the floor. Right click still starts it right away. \\",
+"${vesselTitle} ${beakerCurrentVolume ?? 0}/${beakerMaxVolume ?? 0} j.": "${vesselTitle} ${beakerCurrentVolume ?? 0}/${beakerMaxVolume ?? 0} u.",
+"Naczynie": "Container",
+"NAGRYWANIE": "RECORDING",
+"PEŁNE": "FULL"
 }

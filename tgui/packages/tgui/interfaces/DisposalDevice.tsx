@@ -329,7 +329,8 @@ const Lever = (props: {
   const travel = drag ?? (down ? travelMax : 0);
 
   const onMouseDown = (event: MouseEvent<HTMLDivElement>) => {
-    if (locked) {
+    // Tylko lewy przycisk: prawy nie może uzbroić spłukiwania
+    if (locked || event.button !== 0) {
       return;
     }
     event.stopPropagation();
@@ -341,6 +342,9 @@ const Lever = (props: {
       setDrag(Math.max(0, Math.min(travelMax, base + delta)));
     };
     const up = (upEvent: globalThis.MouseEvent) => {
+      if (upEvent.button !== 0) {
+        return;
+      }
       window.removeEventListener('mousemove', move);
       window.removeEventListener('mouseup', up);
       const delta = (upEvent.clientY - start.current) / SCALE;

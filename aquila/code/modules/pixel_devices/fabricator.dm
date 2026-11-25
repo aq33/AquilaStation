@@ -27,7 +27,8 @@
 	data["powered"] = !(machine_stat & NOPOWER)
 	data["silo"] = FALSE
 	data["hacked"] = !!(obj_flags & EMAGGED)
-	if(being_built && total_build_time && process_completion_world_tick)
+	// busy trwa od startu wydruku do końca make_item(); bez niego czekanie na materiały wyglądało jak druk
+	if(busy && being_built && total_build_time && process_completion_world_tick)
 		data["printing"] = list(
 			"id" = being_built.id,
 			"name" = being_built.name,

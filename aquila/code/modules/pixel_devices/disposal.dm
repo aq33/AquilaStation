@@ -58,6 +58,7 @@
 		// Jak użycie przedmiotu na bloku, ale niezależnie od trybu walki
 		if((held.item_flags & ABSTRACT) || !user.temporarilyRemoveItemFromInventory(held))
 			return FALSE
+		add_fingerprint(user)
 		place_item_in_disposal(held, user)
 		update_icon()
 		return TRUE
