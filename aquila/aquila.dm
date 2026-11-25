@@ -3036,6 +3036,7 @@
 #endif
 // Komora testowa
 #include "code\modules\test_chamber\kits\pr_672_mechy.dm"
+#include "code\modules\test_chamber\kits\pr_711_gazy.dm"
 // MECHY: koniec
 // CYBORGI: nowe moduły (Naukowy, Chemiczny, Chirurgiczny, Ratowniczy, Budowlany, Eksploracyjny, Detektyw, Brobocop,
 // Hydroponiczny, Biurowy, Magazynowy, Wielozadaniowy, zaawansowane, Zagubiony) i ulepszenia cyborgów
