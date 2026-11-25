@@ -58,8 +58,10 @@
 	return ..()
 
 /datum/action/cooldown/mob_cooldown/Grant(mob/granted_to)
+	var/mob/old_owner = owner
 	. = ..()
-	if(!owner)
+	// Ponowne Grant() temu samemu mobowi (transfer_to() umysłu na start rundy) nie rejestruje sygnału drugi raz
+	if(!owner || owner == old_owner)
 		return
 	RegisterSignal(owner, COMSIG_HOSTILE_PRE_ATTACKINGTARGET, PROC_REF(handle_melee_attack))
 

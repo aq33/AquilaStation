@@ -78,7 +78,7 @@ GLOBAL_LIST_INIT(hex_war_nt_fallbacks, list("Argo", "Orion's Arm", "Alpha Carina
 	var/lost = hex_factions_hostile("nanotrasen", hq.alignment)
 	if(retake_mission && (QDELETED(retake_mission) || retake_mission.status != STATUS_INPROGRESS))
 		retake_mission = null
-	if(lost && !retake_mission && SSovermap_mode.mode)
+	if(lost && !retake_mission && SSovermap_mode.mode && SSovermap_mode.mode_initialised) // przed setup_overmap_mode cele są jeszcze typami
 		retake_mission = new
 		retake_mission.target_system = hq
 		SSovermap_mode.mode.objectives += retake_mission

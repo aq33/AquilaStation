@@ -100,6 +100,28 @@
 				<li class="imageadd">Kurtki zimowe Kapitana, Starszego Oficera i Oficera Pokładowego (zapinane Alt+klikiem), poprawione cieniowanie hardsuita i peleryny kapitana.</li>
 				<li class="tweak">Peleryny przykrywają plecak i torbę.</li>
 				<li class="code_imp">Planety: ruina główna zostaje zapisana po wczytaniu (losowo padający test lądowisk).</li>
+				<li class="rscadd">Gotowanie krok po kroku: przepisy z kolejnymi krokami w naczyniach (patelnia, rondel, naczynie żaroodporne, koszyk do frytkownicy, ruszt, miska, deska do krojenia).</li>
+				<li class="rscadd">Piekarnik, grill, frytkownica i pola płyty grillowej mają ogień i minutnik (Alt+klik).</li>
+				<li class="rscadd">Jakość dań: kroki dodatkowe i dobry sprzęt dają lepsze danie, droższe w restauracji robotów i z mocniejszymi bonusami. Przypalone albo źle zrobione danie może zatruć.</li>
+				<li class="rscadd">Konsola zamówień kuchni i baru: składniki i trunki promem albo ekspresem, płaci budżet usług, kucharz ma bon na 10 darmowych produktów.</li>
+				<li class="balance">Sprzęt kuchenny rozgrzewa się po włączeniu (20 s, z najlepszym laserem 5 s), a lepszy laser przyspiesza gotowanie.</li>
+				<li class="balance">Ogień kuchenki ustala temperaturę zupy. Domyślnie średni, przy którym zupa się nie przypala.</li>
+				<li class="imageadd">Naczynia i ikony menu z ParadiseSS13/Paradise (CC BY-SA 3.0).</li>
+				<li class="rscadd">439 przepisów krokowych i prawie 200 nowych dań z Paradise: słodycze, lody na patyku, sushi, arepy, pizze, sałatki, kebaby i inne.</li>
+				<li class="rscadd">Mikser lodów, misa do lodów, foremki na cukierki z plastiku, mata do sushi i patyczki do lodów z procesora.</li>
+				<li class="rscadd">Ocet, wasabi, serek śmietankowy i sos pieczeniowy w spiżarni konsoli zamówień kuchni.</li>
+				<li class="balance">Nasze dania robi się teraz krok po kroku w naczyniach. Dania gotowane krokowo zniknęły z craftingu na stole.</li>
+				<li class="imageadd">Sprite'y dań, miksera lodów, foremek i maty do sushi z ParadiseSS13/Paradise (CC BY-SA 3.0).</li>
+				<li class="rscadd">Płyta grillowa to grill i kuchenka w jednym: cztery pola na patelnię, rondel albo garnek z zupą, każde z minutnikiem, ogień jeden dla całej płyty (Alt+klik).</li>
+				<li class="bugfix">Książka kucharska: bez zera przy nazwach, zakładki się zawijają, przepisy nie mieszają się przy zmianie zakładki.</li>
+				<li class="rscadd">Browar w drewnianej beczce: Alt+klik wybiera trunek z przepisu (piwa, wina, mocne trunki, miód pitny), plony wrzucasz do beczki, płyny wlewasz. Bez przepisu beczka robi wino z owoców jak dotąd.</li>
+				<li class="rscadd">Polskie trunki z browaru: kwas chlebowy, kompot, wiśniówka, śliwowica, żubrówka, krupnik.</li>
+				<li class="rscadd">Beczkę z trunkiem z browaru można sprzedać przez zaopatrzenie.</li>
+				<li class="rscadd">Przepisy browaru w Książce kucharskiej w PDA.</li>
+				<li class="rscadd">81 drinków z tg (m.in. Negroni, Spritz, Old Fashioned, Sazerac, French 75, Daiquiri, Moscow Mule, Sangria, koktajle mleczne i smoothie) z efektami i własnymi szklankami.</li>
+				<li class="rscadd">Nowe bazy w dyspenserach baru: amaretto, bitter, curaçao, aperitivo, maraschino, likier ziołowy, shochu, rumy, piwo ryżowe, mocne piwo, yūyake, ekstrakt miętowy, oranżada melonowa, Sol Dry.</li>
+				<li class="imageadd">Sprite'y szklanek drinków z tgstation/tgstation (CC BY-SA 3.0).</li>
+				<li class="bugfix">Beczka browaru nie zużywa wysypanych owoców, nie startuje bez przepisu i nie przelewa trunku ponad pojemność.</li>
 			</ul>
 			<h3 class="author">sh4dow321 updated:</h3>
 			<ul class="changes bgimages16">
@@ -108,6 +130,17 @@
 				<li class="tweak">Ogłoszenia głosowe SI mają głośność wyrównaną do ogłoszeń statku.</li>
 				<li class="bugfix">Malowanie karty ID na wzór działu uzbrojenia nie robi już niewidzialnej karty.</li>
 				<li class="bugfix">Gracz zabrany martwy z innego okrętu nie słyszy już jego walki ani nie czuje jego wstrząsów.</li>
+				<li class="bugfix">Ogłoszenia na cały statek z konsoli zgłoszeń działają z polskimi znakami, linkami i dłuższym tekstem (wcześniej konsola po cichu je kasowała).</li>
+				<li class="bugfix">Link „strona wiki” w powitaniu stanowiska prowadzi na stronę stanowiska na wiki Aquili, a nie do wyszukiwarki BeeStation.</li>
+				<li class="bugfix">Ogłoszenia głosowe AI (VOX) są sprawdzane filtrem zakazanych słów.</li>
+				<li class="bugfix">Pilot albo pasażer wyrzucony poza myśliwiec przestaje nim sterować.</li>
+				<li class="bugfix">Ofiara horroru dostaje komunikację z horrorem.</li>
+				<li class="bugfix">Po EMP konsola medyczna nie pokazuje graczy z wyłączonymi czujnikami kombinezonu.</li>
+				<li class="bugfix">Misja „Odbij kwaterę” nie psuje już startu trybu overmapy.</li>
+				<li class="bugfix">Abordażyści nie przeskakują w losowe miejsce, gdy wchodzą na drabinę bez drugiego końca.</li>
+				<li class="bugfix">Oględziny martwych zwierząt pokazują poprawny opis.</li>
+				<li class="bugfix">APC telekomunikacji na Atlantis ma polską nazwę.</li>
+				<li class="code_imp">Poprawione runtime'y z rund 6585–6593 (nanity, flak, sygnały, cień światła na promie, sieć kamer, lobby, radar, drabiny, mysz w dłoni, lampy).</li>
 			</ul>
 			<h3 class="author">tralezab, MrMelbert updated:</h3>
 			<ul class="changes bgimages16">

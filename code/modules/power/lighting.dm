@@ -620,13 +620,13 @@
 // if a light is turned off, it won't activate emergency power
 /obj/machinery/light/proc/turned_off()
 	var/area/A = get_area(src)
-	return !A.lightswitch && A.power_light || flickering
+	return !A?.lightswitch && A?.power_light || flickering // AQ EDIT - lampa w nullspace w trakcie migania
 
 // returns whether this light has power
 // true if area has power and lightswitch is on
 /obj/machinery/light/proc/has_power()
 	var/area/A = get_area(src)
-	return A.lightswitch && A.power_light
+	return A?.lightswitch && A.power_light // AQ EDIT - lampa w nullspace (runda 6589)
 
 // returns whether this light has emergency power
 // can also return if it has access to a certain amount of that power
