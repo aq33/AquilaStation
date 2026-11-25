@@ -29,16 +29,24 @@
 	var/datum/job/captain_job = SSjob.GetJobType(/datum/job/captain)
 	TEST_ASSERT(!captain_job.aq_squad_auto, "Kapitan trafia do drużyny automatycznie")
 	var/datum/job/assistant_job = SSjob.GetJobType(/datum/job/assistant)
-	var/datum/squad/preferred = GLOB.squad_manager.aq_pick_squad(assistant_job, "Delta")
-	TEST_ASSERT(preferred == aq_squad("Delta"), "Asystent z preferowaną drużyną Delta trafił do [preferred]")
-	// Wybrana drużyna wygrywa z zawodem, a „Automatycznie” zostawia przydział według zawodu
-	var/datum/squad/chosen = GLOB.squad_manager.aq_pick_squad(medic_job, "Delta")
-	TEST_ASSERT(chosen == aq_squad("Delta"), "Lekarz z wybraną drużyną Delta trafił do [chosen]")
+	// Preferencja to funkcja na okręcie (rola drużyny), nie konkretna drużyna
+	var/datum/squad/preferred = GLOB.squad_manager.aq_pick_squad(assistant_job, MUNITIONS_SUPPORT)
+	TEST_ASSERT(preferred?.role == MUNITIONS_SUPPORT, "Asystent z preferowanym wsparciem uzbrojenia trafił do drużyny o roli [preferred?.role]")
+	// Wybrana funkcja wygrywa z zawodem, a „Automatycznie” i stara nazwa drużyny zostawiają przydział według zawodu
+	var/datum/squad/chosen = GLOB.squad_manager.aq_pick_squad(medic_job, DC_SQUAD)
+	TEST_ASSERT(chosen?.role == DC_SQUAD, "Lekarz z wybraną kontrolą uszkodzeń trafił do drużyny o roli [chosen?.role]")
 	var/datum/squad/automatic = GLOB.squad_manager.aq_pick_squad(medic_job, SQUAD_PREF_AUTO)
 	TEST_ASSERT(automatic?.role == MEDICAL_SQUAD, "Lekarz z opcją Automatycznie trafił do drużyny o roli [automatic?.role]")
+	var/datum/squad/old_name = GLOB.squad_manager.aq_pick_squad(medic_job, "Delta")
+	TEST_ASSERT(old_name?.role == MEDICAL_SQUAD, "Stara nazwa drużyny w zapisie postaci zmieniła przydział lekarza na rolę [old_name?.role]")
 	var/datum/preference/choiced/squad/squad_pref = GLOB.preference_entries[/datum/preference/choiced/squad]
-	TEST_ASSERT(squad_pref && (SQUAD_PREF_AUTO in squad_pref.get_choices()), "Brak opcji Automatycznie w preferencji drużyny")
-	TEST_ASSERT(!("Echo" in squad_pref.get_choices()), "Szablon drużyn XO (Echo) jest do wyboru w preferencjach")
+	var/list/choices = squad_pref?.get_choices()
+	TEST_ASSERT(SQUAD_PREF_AUTO in choices, "Brak opcji Automatycznie w preferencji funkcji")
+	for(var/role in list(DC_SQUAD, MEDICAL_SQUAD, MUNITIONS_SUPPORT))
+		TEST_ASSERT(role in choices, "Funkcji [role] nie da się wybrać w preferencjach")
+	TEST_ASSERT(!("Delta" in choices) && !("Echo" in choices), "W preferencji funkcji zostały nazwy drużyn")
+	var/list/names = squad_pref.get_display_names()
+	TEST_ASSERT(names[MEDICAL_SQUAD] == squad_role_pl(MEDICAL_SQUAD), "Funkcja w oknie postaci nie ma polskiej nazwy")
 	// Migracja: stare zapisy z domyślnym Alpha wracają do Automatycznie, zapisy już przestawione nie idą do bazy drugi raz
 	var/datum/character_save/old_save = new
 	old_save.preferred_squad = "Alpha"

@@ -31,9 +31,9 @@ export const preferred_pilot_role: FeatureChoiced = {
 };
 
 export const preferred_squad: FeatureChoiced = {
-  name: 'Przydział do drużyny',
+  name: 'Preferowana funkcja na okręcie',
   description:
-    'Automatycznie: drużyna według zawodu, a bez niej najmniej liczna. Wybrana drużyna ma pierwszeństwo, o ile nie jest pełna.',
+    'Co chcesz robić w drużynie. Trafisz do drużyny z tą funkcją, o ile nie jest pełna. Automatycznie: funkcja według zawodu, a bez niej najmniej liczna drużyna.',
   component: FeatureButtonedDropdownInput,
 };
 
