@@ -118,6 +118,8 @@ def load(folder):
     nukes = war.get("nuke_stocks") or {}
     tension = war.get("tension") or 0
     return {
+        "hexmap": hexmap,
+        "starmap": starmap,
         "saved_at": hexmap.get("saved_at"),
         "map_name": hexmap.get("map_name"),
         "ship_system": hexmap.get("ship_system"),
@@ -131,6 +133,7 @@ def load(folder):
         "commanders": status,
         "nemeses": nemeses,
         "nt_rounds_without_hq": hq_lost.get("nanotrasen", 0) if isinstance(hq_lost, dict) else 0,
+        "nt_evacuated": "nanotrasen" in {hq["faction"] for hq in hqs if hq["moved"]},
         "nukes": nukes if isinstance(nukes, dict) else {},
         "tension": tension,
         "defcon": defcon(tension),
@@ -145,8 +148,11 @@ def sections(state):
     if state["syndicate_defeated"]:
         verdict = "Kwatera Syndykatu w Abassi zdobyta. Wojna kończy się zwycięstwem Nanotrasen."
     elif state["nt_rounds_without_hq"]:
+        # war_end.dm: po HEX_WAR_END_ROUNDS rundach pierwsza utrata kwatery kończy się ewakuacją sztabu (war_retake.dm),
+        # o ile jest dokąd; dopiero utrata kwatery po ewakuacji to przegrana
+        outcome = "przegrana" if state["nt_evacuated"] else "ewakuacja sztabu albo przegrana"
         verdict = (f"Nanotrasen bez kwatery głównej od {plural(state['nt_rounds_without_hq'], 'rundy', 'rund', 'rund')} z rzędu "
-                   f"(przegrana po {HEX_WAR_END_ROUNDS}).")
+                   f"({outcome} po {HEX_WAR_END_ROUNDS}).")
     else:
         verdict = "Wojna trwa."
     out.append(("Sytuacja", verdict))

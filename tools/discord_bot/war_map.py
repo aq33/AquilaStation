@@ -8,7 +8,6 @@ Bez Discorda: python tools/discord_bot/war_map.py [folder z hexmap.json] [plik.p
 """
 
 import io
-import json
 import math
 import sys
 from pathlib import Path
@@ -93,18 +92,42 @@ def build_grid(starmap):
         rows = math.ceil((max_y - min_y) / (HEX_UNITS_PER_HEX * 0.866)) + HEX_MARGIN * 2 + 1
         sectors[sector] = (cols, rows)
         taken = set()
-        for s in sorted(systems, key=lambda s: s["name"]):
-            col = round((s["x"] - min_x) / HEX_UNITS_PER_HEX + HEX_MARGIN)
-            row = round((max_y - s["y"]) / (HEX_UNITS_PER_HEX * 0.866) + HEX_MARGIN)
+        # Kolejność i wybór pola jak w grze: sortTim po nazwie bez wielkości liter, round() DM (połówki w górę),
+        # zajęty hex: BFS po sąsiadach w kolejności hex_axial_dirs (place_system w czasie build())
+        for s in sorted(systems, key=lambda s: s["name"].lower()):
+            if s.get("name") == "Staging":
+                continue  # liczy się do granic sektora, ale nie ma hexa na rysunku
+            col = math.floor((s["x"] - min_x) / HEX_UNITS_PER_HEX + HEX_MARGIN + 0.5)
+            row = math.floor((max_y - s["y"]) / (HEX_UNITS_PER_HEX * 0.866) + HEX_MARGIN + 0.5)
             col = max(0, min(col, cols - 1))
             row = max(0, min(row, rows - 1))
-            if (col, row) in taken:  # zajęty hex: najbliższy wolny (w grze: place_system)
-                free = [(c, r) for c in range(cols) for r in range(rows) if (c, r) not in taken]
-                col, row = min(free, key=lambda cr: (centre(*cr)[0] - centre(col, row)[0]) ** 2
-                               + (centre(*cr)[1] - centre(col, row)[1]) ** 2)
-            taken.add((col, row))
-            placed[s["name"]] = (sector, col, row)
+            spot = first_free((col, row), taken, cols, rows)
+            if not spot:
+                continue
+            taken.add(spot)
+            placed[s["name"]] = (sector, *spot)
     return sectors, placed
+
+
+AXIAL_DIRS = [(1, 0), (1, -1), (0, -1), (-1, 0), (-1, 1), (0, 1)]
+
+
+def first_free(start, taken, cols, rows):
+    """Najbliższe wolne pole od start, w tej samej kolejności co BFS w place_system."""
+    queue = [start]
+    seen = {start}
+    while queue:
+        col, row = queue.pop(0)
+        if (col, row) not in taken:
+            return col, row
+        q = col - (row - (row & 1)) // 2
+        for dq, dr in AXIAL_DIRS:
+            nr = row + dr
+            nc = q + dq + (nr - (nr & 1)) // 2
+            if 0 <= nc < cols and 0 <= nr < rows and (nc, nr) not in seen:
+                seen.add((nc, nr))
+                queue.append((nc, nr))
+    return None
 
 
 def centre(col, row):
@@ -118,12 +141,11 @@ def hexagon(cx, cy, radius):
 
 def render(folder):
     """PNG mapy jako bajty albo None, gdy zapisu nie ma."""
-    folder = Path(folder)
     state = war_status.load(folder)
     if not state:
         return None
-    hexmap = json.loads((folder / "hexmap.json").read_text(encoding="utf-8"))
-    starmap = [s for s in json.loads((folder / "starmap.json").read_text(encoding="utf-8")) if s.get("name") != "Staging"]
+    hexmap = state["hexmap"]  # te same dane co w raporcie: jeden odczyt plików
+    starmap = state["starmap"]
     sectors, placed = build_grid(starmap)
     terrain = (hexmap.get("terrain") or {}).get("tiles") or {}
     if not isinstance(terrain, dict):
@@ -167,8 +189,8 @@ def render(folder):
                 draw.polygon(hexagon(*pos(sector, col, row), R - 0.5), fill=colour, outline=GRID)
 
     for name, (sector, col, row) in placed.items():
-        if name in hidden and name not in hqs:
-            continue  # nieodkryte układy zostają nieodkryte
+        if name in hidden:
+            continue  # nieodkryte układy (także kwatery) zostają nieodkryte
         cx, cy = pos(sector, col, row)
         colour = FACTION_COLOURS.get(holders.get(name), FACTION_COLOURS["unaligned"])
         draw.polygon(hexagon(cx, cy, R - 2), fill=colour)

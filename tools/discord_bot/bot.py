@@ -6,6 +6,7 @@ Zmienne środowiskowe:
   DISCORD_GUILD_ID    opcjonalnie: serwer Discorda, na którym komenda pojawi się od razu
 """
 
+import asyncio
 import io
 import os
 import sys
@@ -39,6 +40,17 @@ class WarBot(discord.Client):
 bot = WarBot()
 
 
+def field_chunks(body, limit=1024):
+    """Dzieli treść po wierszach na kawałki mieszczące się w polu embeda (1024 znaki)."""
+    chunks = [""]
+    for line in body.split("\n"):
+        line = line[:limit]
+        if chunks[-1] and len(chunks[-1]) + 1 + len(line) > limit:
+            chunks.append("")
+        chunks[-1] = f"{chunks[-1]}\n{line}" if chunks[-1] else line
+    return chunks
+
+
 @bot.tree.command(name="wojna", description="Stan wojny frakcji w kampanii Aquili")
 async def wojna(interaction: discord.Interaction):
     state = war_status.load(STARMAP_DIR)
@@ -47,18 +59,20 @@ async def wojna(interaction: discord.Interaction):
         return
     embed = discord.Embed(title="Stan wojny", colour=FACTION_COLOUR)
     for title, body in war_status.sections(state):
-        embed.add_field(name=title, value=body[:1024], inline=False)  # limit pola embeda
+        for i, chunk in enumerate(field_chunks(body)):
+            embed.add_field(name=title if i == 0 else f"{title} (cd.)", value=chunk, inline=False)
     embed.set_footer(text=war_status.footer(state))
     await interaction.response.send_message(embed=embed)
 
 
 @bot.tree.command(name="mapa", description="Mapa wojny frakcji w kampanii Aquili")
 async def mapa(interaction: discord.Interaction):
-    png = war_map.render(STARMAP_DIR)
+    await interaction.response.defer()  # rysowanie może przekroczyć 3 s, w których Discord czeka na odpowiedź
+    png = await asyncio.to_thread(war_map.render, STARMAP_DIR)
     if not png:
-        await interaction.response.send_message("Brak zapisu kampanii albo wojna jeszcze nie ruszyła.", ephemeral=True)
+        await interaction.followup.send("Brak zapisu kampanii albo wojna jeszcze nie ruszyła.")
         return
-    await interaction.response.send_message(file=discord.File(io.BytesIO(png), filename="mapa_wojny.png"))
+    await interaction.followup.send(file=discord.File(io.BytesIO(png), filename="mapa_wojny.png"))
 
 
 def main():
