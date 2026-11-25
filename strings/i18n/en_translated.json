@@ -32160,5 +32160,11 @@
 "manekin do tatuażu": "tattoo dummy",
 "wytatuowany manekin": "tattooed dummy",
 "Tatuaż przedstawia scenę: kucharz staje w płomieniach. Na tatuażu płonie wielka czaszka.": "The tattoo depicts a scene: the cook bursts into flames. The tattoo has a giant flaming skull.",
-"Twoja postać dostaje trzy wspomnienia (operacja, podpalenie, zabicie megafauny), a obok stawia się ściana. \\": "Your character gets three memories (surgery, being set on fire, killing megafauna), and a wall appears next to you. \\"
+"Twoja postać dostaje trzy wspomnienia (operacja, podpalenie, zabicie megafauny), a obok stawia się ściana. \\": "Your character gets three memories (surgery, being set on fire, killing megafauna), and a wall appears next to you. \\",
+"Serce wali ci jak oszalałe. Za dużo stymulantów.": "Your heart is pounding like crazy. Too many stimulants.",
+"piętro niżej": "one deck below",
+"[levels] piętra niżej": "[levels] decks below",
+"piętro wyżej": "one deck above",
+"[levels] piętra wyżej": "[levels] decks above",
+"To jest [other_level].": "This is [other_level]."
 }

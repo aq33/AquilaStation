@@ -72,7 +72,8 @@
 	// =====================================================
 	// Initialise data
 	// =====================================================
-	var/screentip_message = "<span style='line-height: 0' class='maptext extremelybig'>[CENTER(capitalize(format_text(name)))]</span>"
+	var/other_level = aq_other_level_text(user)
+	var/screentip_message = "<span style='line-height: 0' class='maptext extremelybig'>[CENTER("[capitalize(format_text(name))][other_level ? " ([other_level])" : ""]")]</span>"
 	var/datum/screentip_cache/cache = GLOB.screentips_cache["[type]"]
 	var/obj/item/held_item = user.get_active_held_item()
 	// Mobs without hands (e.g. horror) return 0 here
