@@ -139,7 +139,7 @@
 	..()
 	for(var/i in griddled_objects)
 		var/obj/item/griddled_item = i
-		if(SEND_SIGNAL(griddled_item, COMSIG_ITEM_GRILLED, src, delta_time) & COMPONENT_HANDLED_GRILLING)
+		if(SEND_SIGNAL(griddled_item, COMSIG_ITEM_GRILLED, src, delta_time * kitchen_heat_factor()) & COMPONENT_HANDLED_GRILLING) // AQ EDIT - nagrzewanie i laser płyty
 			continue
 		griddled_item.fire_act(1000) //Hot hot hot!
 		if(prob(10))
