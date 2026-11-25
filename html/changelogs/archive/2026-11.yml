@@ -1607,3 +1607,14 @@
       promem do kapsuły, a rozbitkowie wchodzą na pokład przez właz.'
   - bugfix: Telewizorek w menu lobby znowu odlicza czas do startu rundy.
   - imageadd: Pęknięta czaszka ma nowy sprite wgniecenia na głowie zamiast wykrzywienia.
+  - rscadd: 'Mikrofalówka, młynek, dozownik alkoholi, dozownik napojów, blok utylizacyjny,
+      autolat, protolaty, techfaby i drukarka płytek mają nowe okna, które wyglądają
+      jak te urządzenia (wzór: Polonium Station).'
+  - rscadd: W mikrofalówce i młynku zamiast menu radialnego widać zawartość, a pojedynczą
+      rzecz można wyjąć kliknięciem.
+  - rscadd: 'Pulpit fabrykatora: katalog z wyszukiwarką, ploter rysujący wydruk, zlecenia
+      na kartkach, STOP przytrzymany czyści kolejkę. Stare okno jest pod klawiszem
+      na pulpicie.'
+  - bugfix: Brudna mikrofalówka włączona przez gracza nie zostaje już włączona na
+      zawsze po nieudanym pieczeniu.
+  - imageadd: Grafiki okien urządzeń i pikselowe fonty z Polonium Station.
