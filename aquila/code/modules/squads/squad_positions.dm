@@ -152,6 +152,18 @@
 	aq_refresh_all()
 	aq_add_marker_images(H)
 
+/// Pager nowego członka trafia do kieszeni (nie trzeba go szukać w plecaku); bez wolnej kieszeni zostaje w plecaku
+/datum/squad/equip(mob/living/carbon/human/H, give_items)
+	. = ..()
+	if(!give_items || !ishuman(H))
+		return
+	var/obj/item/storage/backpack/bag = H.get_item_by_slot(ITEM_SLOT_BACK)
+	var/obj/item/squad_pager/pager = bag ? (locate(/obj/item/squad_pager) in bag) : null
+	if(!pager)
+		return
+	if(!H.equip_to_slot_if_possible(pager, ITEM_SLOT_LPOCKET, disable_warning = TRUE))
+		H.equip_to_slot_if_possible(pager, ITEM_SLOT_RPOCKET, disable_warning = TRUE)
+
 /datum/squad/remove_member(mob/living/carbon/human/H)
 	. = ..()
 	if(!istype(H))
