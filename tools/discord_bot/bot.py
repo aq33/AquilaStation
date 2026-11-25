@@ -44,11 +44,38 @@ def field_chunks(body, limit=1024):
     """Dzieli treść po wierszach na kawałki mieszczące się w polu embeda (1024 znaki)."""
     chunks = [""]
     for line in body.split("\n"):
-        line = line[:limit]
-        if chunks[-1] and len(chunks[-1]) + 1 + len(line) > limit:
-            chunks.append("")
-        chunks[-1] = f"{chunks[-1]}\n{line}" if chunks[-1] else line
+        # Wiersz dłuższy niż pole idzie w kilku kawałkach, nic nie jest ucinane
+        pieces = [line[i:i + limit] for i in range(0, len(line), limit)] or [""]
+        for piece in pieces:
+            if chunks[-1] and len(chunks[-1]) + 1 + len(piece) > limit:
+                chunks.append("")
+            chunks[-1] = f"{chunks[-1]}\n{piece}" if chunks[-1] else piece
     return chunks
+
+
+# Limity Discorda: 25 pól w embedzie, 6000 znaków we wszystkich embedach jednej wiadomości (zapas na tytuł i stopkę)
+EMBED_FIELDS = 25
+EMBED_CHARS = 5500
+
+
+def build_embeds(state):
+    """Raport jako lista embedów; każdy mieści się w limitach i idzie w osobnej wiadomości."""
+    fields = []
+    for title, body in war_status.sections(state):
+        for i, chunk in enumerate(field_chunks(body)):
+            fields.append((title if i == 0 else f"{title} (cd.)", chunk))
+    embeds = []
+    embed = None
+    size = 0
+    for name, value in fields:
+        if embed is None or len(embed.fields) >= EMBED_FIELDS or size + len(name) + len(value) > EMBED_CHARS:
+            embed = discord.Embed(title="Stan wojny" if not embeds else "Stan wojny (cd.)", colour=FACTION_COLOUR)
+            embeds.append(embed)
+            size = 0
+        embed.add_field(name=name, value=value, inline=False)
+        size += len(name) + len(value)
+    embeds[-1].set_footer(text=war_status.footer(state))
+    return embeds
 
 
 @bot.tree.command(name="wojna", description="Stan wojny frakcji w kampanii Aquili")
@@ -57,12 +84,10 @@ async def wojna(interaction: discord.Interaction):
     if not state:
         await interaction.response.send_message("Brak zapisu kampanii albo wojna jeszcze nie ruszyła.", ephemeral=True)
         return
-    embed = discord.Embed(title="Stan wojny", colour=FACTION_COLOUR)
-    for title, body in war_status.sections(state):
-        for i, chunk in enumerate(field_chunks(body)):
-            embed.add_field(name=title if i == 0 else f"{title} (cd.)", value=chunk, inline=False)
-    embed.set_footer(text=war_status.footer(state))
-    await interaction.response.send_message(embed=embed)
+    embeds = build_embeds(state)
+    await interaction.response.send_message(embed=embeds[0])
+    for embed in embeds[1:]:
+        await interaction.followup.send(embed=embed)
 
 
 @bot.tree.command(name="mapa", description="Mapa wojny frakcji w kampanii Aquili")

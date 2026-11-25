@@ -102,8 +102,6 @@ def build_grid(starmap):
         # Kolejność i wybór pola jak w grze: sortTim po nazwie bez wielkości liter, round() DM (połówki w górę),
         # zajęty hex: BFS po sąsiadach w kolejności hex_axial_dirs (place_system w czasie build())
         for s in sorted(systems, key=lambda s: s["name"].lower()):
-            if s.get("name") == "Staging":
-                continue  # liczy się do granic sektora, ale nie ma hexa na rysunku
             col = math.floor((s["x"] - min_x) / HEX_UNITS_PER_HEX + HEX_MARGIN + 0.5)
             row = math.floor((max_y - s["y"]) / (HEX_UNITS_PER_HEX * 0.866) + HEX_MARGIN + 0.5)
             col = max(0, min(col, cols - 1))
