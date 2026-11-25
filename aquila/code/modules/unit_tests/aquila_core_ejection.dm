@@ -26,6 +26,10 @@
 	stormdrive.control_rods += new /obj/item/control_rod(stormdrive)
 	var/datum/component/core_ejection/ejection = stormdrive.GetComponent(/datum/component/core_ejection)
 	TEST_ASSERT(ejection, "Stormdrive has no core ejection component")
+	TEST_ASSERT(!ejection.start_ejection(ce), "Core ejection started on a cold, idle stormdrive with no fault")
+	TEST_ASSERT(!ejection.eject_timer, "A core ejection refused for no fault still started the countdown")
+	stormdrive.state = 3 // REACTOR_STATE_RUNNING
+	stormdrive.heat = 500 // ponad reactor_temperature_hot (400)
 	var/start_state = stormdrive.state
 
 	TEST_ASSERT(!ejection.start_ejection(engineer), "An engineer without CE or captain access started a core ejection")
@@ -42,7 +46,6 @@
 	TEST_ASSERT(length(stormdrive.control_rods) == 1, "Cancelled core ejection removed the control rods")
 
 	TEST_ASSERT(ejection.start_ejection(captain), "The captain could not start a core ejection")
-	stormdrive.heat = 500
 	cleanup_ejected(run_ejection(ejection))
 	TEST_ASSERT(stormdrive.state == 7, "Ejected stormdrive is in state [stormdrive.state] instead of REACTOR_STATE_REFIT (7)")
 	TEST_ASSERT(!length(stormdrive.control_rods), "Ejected stormdrive still has its control rods")
@@ -53,9 +56,10 @@
 	var/obj/machinery/atmospherics/components/trinary/nuclear_reactor/rbmk = allocate(/obj/machinery/atmospherics/components/trinary/nuclear_reactor, T)
 	rbmk.fuel_rods += new /obj/item/fuel_rod(rbmk)
 	rbmk.fuel_rods += new /obj/item/fuel_rod(rbmk)
-	rbmk.temperature = 300
 	ejection = rbmk.GetComponent(/datum/component/core_ejection)
 	TEST_ASSERT(ejection, "RBMK has no core ejection component")
+	TEST_ASSERT(!ejection.start_ejection(ce), "Core ejection started on a cold RBMK with no fault")
+	rbmk.temperature = RBMK_TEMPERATURE_CRITICAL
 	TEST_ASSERT(!ejection.start_ejection(engineer), "An engineer without access started an RBMK core ejection")
 	TEST_ASSERT(ejection.start_ejection(ce), "The chief engineer could not start an RBMK core ejection")
 	cleanup_ejected(run_ejection(ejection))
@@ -68,12 +72,29 @@
 	var/obj/machinery/power/supermatter_crystal/shard/crystal = allocate(/obj/machinery/power/supermatter_crystal/shard, sm_turf)
 	ejection = crystal.GetComponent(/datum/component/core_ejection)
 	TEST_ASSERT(ejection, "Supermatter has no core ejection component")
+	TEST_ASSERT(!ejection.start_ejection(ce), "Core ejection started on an undamaged supermatter")
+	crystal.damage = crystal.warning_point
 	crystal.final_countdown = TRUE
 	TEST_ASSERT(!ejection.start_ejection(ce), "Core ejection started on a supermatter that is already delaminating")
 	crystal.final_countdown = FALSE
 	TEST_ASSERT(ejection.start_ejection(ce), "The chief engineer could not start a supermatter core ejection")
 	cleanup_ejected(run_ejection(ejection))
 	TEST_ASSERT(QDELETED(crystal), "Ejected supermatter crystal is still in the chamber")
+
+	// Rdzeń na overmapie: za rufą okrętu, z siłą z reaktora, uzbraja się dopiero po chwili i ma zapalnik
+	var/obj/structure/overmap/ship = SSstar_system.find_main_overmap()
+	if(!ship?.current_system || !get_turf(ship))
+		return
+	ejection = stormdrive.GetComponent(/datum/component/core_ejection)
+	var/obj/structure/space_mine/ejected_core/core = ejection.spawn_ejected_core(ship, 150, "rdzenia napędu burzowego")
+	TEST_ASSERT(istype(core), "No ejected core appeared on the overmap next to the ship")
+	TEST_ASSERT(core.z == ship.z && get_dist(core, ship) <= 2, "Ejected core spawned [get_dist(core, ship)] tiles away from the ship")
+	TEST_ASSERT(core.damage == 150, "Ejected core blast damage is [core.damage] instead of 150")
+	TEST_ASSERT(core.fuse_timer, "Ejected core has no fuse timer")
+	TEST_ASSERT(core in ship.current_system.system_contents, "Ejected core is not registered in the star system")
+	core.on_entered(null, ship)
+	TEST_ASSERT(!core.blew_up, "Ejected core exploded on contact before arming, next to the ship that ejected it")
+	qdel(core)
 
 /// Kończy odliczanie od razu, bez czekania 30 s
 /datum/unit_test/aquila_core_ejection/proc/run_ejection(datum/component/core_ejection/ejection)

@@ -135,7 +135,7 @@
 /datum/supply_pack/engine/rbmk_fuel_rods
 	name = "Skrzynia z prętami paliwowymi RBMK"
 	desc = "Pięć prętów paliwowych z uranem-238, pełny załadunek reaktora RBMK, np. po awaryjnym wyrzucie rdzenia. Do otwarcia wymaga dostępu Głównego Inżyniera."
-	cost = 15000
+	cost = 50000 // więcej niż 5 prętów plutonowych na eksport (5 x 9000), żeby zamawianie nie dawało zysku
 	access = ACCESS_CE
 	contains = list(
 		/obj/item/fuel_rod,

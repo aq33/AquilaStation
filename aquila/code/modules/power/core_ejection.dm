@@ -8,11 +8,12 @@
 #define CORE_EJECTION_MAX_DAMAGE 400
 
 // Stany napędu burzowego z nsv13/code/modules/power/stormdrive.dm (tamte define'y są #undef na końcu pliku)
+#define CORE_EJECTION_SD_RUNNING 3
 #define CORE_EJECTION_SD_MELTDOWN 4
 #define CORE_EJECTION_SD_REFIT 7
 
 /datum/component/core_ejection
-	/// Nazwa tego, co wylatuje, w komunikatach (biernik po „wyrzut”)
+	/// Nazwa tego, co wylatuje, w komunikatach (dopełniacz: wyrzut czego?)
 	var/core_name = "rdzenia reaktora"
 	/// Timer odliczania, null gdy wyrzut nie trwa
 	var/eject_timer
@@ -31,6 +32,12 @@
 
 /// Czy reaktor ma teraz co wyrzucić. Zwraca powód blokady (tekst dla gracza) albo null, gdy wyrzut jest możliwy
 /datum/component/core_ejection/proc/eject_block_reason()
+	return null
+
+/// Czy reaktor ma awarię, przy której wolno zacząć wyrzut. Zwraca powód blokady albo null.
+/// Sprawny, zimny reaktor nie daje się wyrzucić jednym kliknięciem (sabotaż). Sprawdzane tylko przy starcie odliczania,
+/// żeby wahania temperatury w trakcie 30 s nie przerywały wyrzutu
+/datum/component/core_ejection/proc/eject_fault_reason()
 	return null
 
 /// Siła wybuchu rdzenia na overmapie, zależna od stanu reaktora w chwili wyrzutu
@@ -70,7 +77,7 @@
 	if(!has_eject_access(user))
 		to_chat(user, "<span class='warning'>Odmowa dostępu: wyrzut rdzenia wymaga dostępu głównego inżyniera albo kapitana.</span>")
 		return FALSE
-	var/reason = eject_block_reason()
+	var/reason = eject_block_reason() || eject_fault_reason()
 	if(reason)
 		to_chat(user, "<span class='warning'>[reason]</span>")
 		return FALSE
@@ -123,6 +130,8 @@
 	var/obj/structure/space_mine/ejected_core/core = spawn_ejected_core(OM, damage, name_for_core)
 	if(OM)
 		OM.relay('nsv13/sound/effects/ship/reactor/explode.ogg', "<span class='big boldannounce'>Wyrzucono [name_for_core]. Rdzeń dryfuje za rufą i wybuchnie w ciągu minuty, odleć od niego.</span>")
+	else if(reactor_turf)
+		reactor_turf.visible_message("<span class='boldannounce'>Wyrzucono [name_for_core].</span>")
 	return core || TRUE
 
 /// Stawia dryfujący rdzeń dwa pola za rufą okrętu. Nie czyta zmiennych komponentu, bo ten może już być usunięty razem z reaktorem
@@ -139,7 +148,7 @@
 	return core
 
 /datum/component/core_ejection/proc/ejection_ui_data()
-	var/reason = eject_block_reason()
+	var/reason = eject_block_reason() || eject_fault_reason()
 	return list(
 		"ejecting" = !!eject_timer,
 		"time_left" = eject_timer ? max(0, round((eject_at - world.time) / 10)) : 0,
@@ -170,6 +179,12 @@
 	if(R.state > CORE_EJECTION_SD_MELTDOWN)
 		return "W komorze reaktora nie ma rdzenia."
 	return null
+
+/datum/component/core_ejection/stormdrive/eject_fault_reason()
+	var/obj/machinery/atmospherics/components/binary/stormdrive_reactor/R = parent
+	if(R.state == CORE_EJECTION_SD_RUNNING && (R.warning_state || R.heat >= R.reactor_temperature_hot))
+		return null
+	return "Reaktor pracuje normalnie. Wyrzut jest dostępny dopiero przy przegrzaniu."
 
 /datum/component/core_ejection/stormdrive/blast_damage()
 	var/obj/machinery/atmospherics/components/binary/stormdrive_reactor/R = parent
@@ -208,6 +223,12 @@
 		return "W reaktorze nie ma prętów paliwowych."
 	return null
 
+/datum/component/core_ejection/rbmk/eject_fault_reason()
+	var/obj/machinery/atmospherics/components/trinary/nuclear_reactor/R = parent
+	if(R.warning || R.temperature >= RBMK_TEMPERATURE_CRITICAL || R.pressure >= RBMK_PRESSURE_CRITICAL)
+		return null
+	return "Reaktor pracuje normalnie. Wyrzut jest dostępny dopiero przy przegrzaniu albo nadciśnieniu."
+
 /datum/component/core_ejection/rbmk/blast_damage()
 	var/obj/machinery/atmospherics/components/trinary/nuclear_reactor/R = parent
 	return CORE_EJECTION_MIN_DAMAGE + max(R.temperature, 0) / 5
@@ -234,6 +255,12 @@
 	if(!isturf(S.loc))
 		return "Kryształ nie stoi w komorze."
 	return null
+
+/datum/component/core_ejection/supermatter/eject_fault_reason()
+	var/obj/machinery/power/supermatter_crystal/S = parent
+	if(S.damage >= S.warning_point)
+		return null
+	return "Kryształ jest stabilny. Wyrzut jest dostępny dopiero przy uszkodzeniu kryształu."
 
 /datum/component/core_ejection/supermatter/blast_damage()
 	var/obj/machinery/power/supermatter_crystal/S = parent
@@ -350,5 +377,6 @@
 #undef CORE_EJECTION_COUNTDOWN
 #undef CORE_EJECTION_MIN_DAMAGE
 #undef CORE_EJECTION_MAX_DAMAGE
+#undef CORE_EJECTION_SD_RUNNING
 #undef CORE_EJECTION_SD_MELTDOWN
 #undef CORE_EJECTION_SD_REFIT
