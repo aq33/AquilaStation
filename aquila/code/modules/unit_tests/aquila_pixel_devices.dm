@@ -91,6 +91,17 @@
 	TEST_ASSERT_EQUAL(data["kinds"][ckey(ice.name)], "ice", "Ice in the drinks dispenser window does not fall as cubes")
 	TEST_ASSERT(!data["bottles"], "The soda dispenser shows a bottle shelf")
 
+	// Strumień w oknie tylko po potwierdzonym dolaniu do tego samego naczynia
+	var/serial = dispenser.aq_pour_serial
+	var/volume_before = glass.reagents.total_volume
+	TEST_ASSERT(!dispenser.aq_note_pour(glass, volume_before, "cola"), "A rejected dose (nothing added) counts as a pour")
+	glass.reagents.add_reagent(/datum/reagent/consumable/space_cola, 5)
+	TEST_ASSERT(dispenser.aq_note_pour(glass, volume_before, "cola"), "A successful dose does not count as a pour")
+	TEST_ASSERT_EQUAL(dispenser.aq_pour_serial, serial + 1, "The pour counter did not grow after a successful dose")
+	TEST_ASSERT_EQUAL(dispenser.ui_data(bartender)["pourReagent"], "cola", "The window gets a wrong drink for the stream")
+	var/obj/item/reagent_containers/food/drinks/drinkingglass/other = allocate(/obj/item/reagent_containers/food/drinks/drinkingglass)
+	TEST_ASSERT(!dispenser.aq_note_pour(other, 0, "cola"), "A swapped, fuller glass counts as a pour")
+	TEST_ASSERT_EQUAL(dispenser.aq_pour_serial, serial + 1, "The pour counter grew for a swapped glass")
 	TEST_ASSERT(dispenser.aq_drain(), "Draining the glass from the dispenser window failed")
 	TEST_ASSERT_EQUAL(glass.reagents.total_volume, 0, "The glass is not empty after WYLEJ")
 

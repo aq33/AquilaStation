@@ -81,9 +81,8 @@
 	var/volume_before = beaker?.reagents.total_volume
 	. = ..()
 	// Potwierdzenie dla okna: strumień tylko wtedy, gdy do tego samego naczynia naprawdę coś doszło
-	if(action == "dispense" && beaker && beaker == poured_into && beaker.reagents.total_volume > volume_before)
-		aq_pour_serial++
-		aq_pour_reagent = params["reagent"]
+	if(action == "dispense")
+		aq_note_pour(poured_into, volume_before, params["reagent"])
 	if(.)
 		return
 	switch(action)
@@ -94,6 +93,14 @@
 		// Klawisz WYLEJ: opróżnia całe naczynie
 		if("drain")
 			return aq_drain()
+
+/// Liczy udane dolanie: tylko gdy w naczyniu sprzed akcji (to samo, nie podmienione) przybyło płynu
+/obj/machinery/chem_dispenser/drinks/proc/aq_note_pour(obj/item/reagent_containers/poured_into, volume_before, reagent_id)
+	if(!beaker || beaker != poured_into || beaker.reagents.total_volume <= volume_before)
+		return FALSE
+	aq_pour_serial++
+	aq_pour_reagent = reagent_id
+	return TRUE
 
 /obj/machinery/chem_dispenser/drinks/proc/aq_drain()
 	if(!beaker?.reagents.total_volume || !is_operational)
