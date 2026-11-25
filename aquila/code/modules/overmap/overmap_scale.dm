@@ -198,6 +198,21 @@ GLOBAL_VAR_INIT(overmap_scale_enabled, TRUE)
 	if(is_fighter && homing && homing_target == fighter && fighter_lock_ref?.resolve() != fighter)
 		fighter_lock_ref = WEAKREF(fighter)
 		fighter_lock_since = world.time
+		// Dokładnie 8 s od namierzenia; pętla co sekundę zostaje tylko dla celu ustawionego z pominięciem tej procki
+		addtimer(CALLBACK(src, PROC_REF(expire_fighter_lock), fighter_lock_since), OVERMAP_MISSILE_FIGHTER_LOCK_TIME)
+
+/// Koniec namiaru na myśliwiec namierzony o lock_time, o ile rakieta dalej goni ten sam namiar
+/obj/item/projectile/guided_munition/missile/proc/expire_fighter_lock(lock_time)
+	var/obj/structure/overmap/target = homing_target
+	if(!homing || !istype(target) || fighter_lock_ref?.resolve() != target || fighter_lock_since != lock_time)
+		return
+	drop_fighter_lock(target)
+
+/obj/item/projectile/guided_munition/missile/proc/drop_fighter_lock(obj/structure/overmap/target)
+	fighter_lock_expired_ref = WEAKREF(target)
+	homing = FALSE
+	homing_target = null
+	fighter_lock_ref = null
 
 /// Rakieta nie goni myśliwca przez pół mapy: OVERMAP_MISSILE_FIGHTER_LOCK_TIME od namierzenia go gubi namiar
 /// i leci dalej prosto. Liczone od namierzenia, więc dotyczy też rakiety, która przełączy się na myśliwiec w locie.
@@ -213,8 +228,5 @@ GLOBAL_VAR_INIT(overmap_scale_enabled, TRUE)
 		return
 	if(world.time - fighter_lock_since < OVERMAP_MISSILE_FIGHTER_LOCK_TIME)
 		return
-	fighter_lock_expired_ref = WEAKREF(target)
-	homing = FALSE
-	homing_target = null
-	fighter_lock_ref = null
+	drop_fighter_lock(target)
 #undef OVERMAP_MISSILE_FIGHTER_LOCK_TIME

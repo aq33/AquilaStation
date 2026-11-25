@@ -106,6 +106,11 @@
 	fresh.set_homing_target(fighter)
 	var/fresh_since = fresh.fighter_lock_since
 	var/fresh_time = world.time
+	// Timer z namierzenia: stary namiar (inny czas) niczego nie gasi, bieżący gasi dokładnie ten namiar
+	fresh.expire_fighter_lock(fresh_since - 1)
+	var/stale_kept = fresh.homing
+	fresh.expire_fighter_lock(fresh_since)
+	var/expired_on_time = !fresh.homing
 	qdel(fresh)
 	qdel(missile)
 	GLOB.overmap_scale_enabled = was_enabled
@@ -117,6 +122,8 @@
 	TEST_ASSERT(!fighter_lock, "A missile kept chasing a fighter after the lock time")
 	TEST_ASSERT(!relocked, "The AI datalink locked the missile back onto a fighter after the lock ran out")
 	TEST_ASSERT(fresh_since == fresh_time, "Locking onto a fighter did not start the countdown at once")
+	TEST_ASSERT(stale_kept, "The timer of an earlier lock ended the current one")
+	TEST_ASSERT(expired_on_time, "The lock timer did not end the lock on the fighter")
 	TEST_ASSERT(ship_lock, "A missile lost its lock on a ship")
 
 /// Telewizorek w menu lobby odlicza do rundy: menu odświeża się w podsystemie, który działa w fazie lobby

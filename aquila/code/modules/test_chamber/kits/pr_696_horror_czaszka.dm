@@ -4,7 +4,7 @@
 	name = "PR 696: horror w nosicielu, czaszka, ubikacja"
 	pr = "aq33/AquilaStation#696"
 	description = "Przenosi cię do horroru (trzeba być człowiekiem w komorze; stare ciało zostaje na arenie, wrócisz przez aghost i Assume direct control). Horror ma 250 chemikaliów i 4 punkty dusz. \
-	1) Alt+klik na człowieku, który nie ma pękniętej czaszki (jest celem horroru) → wchodzisz do głowy; przycisk Mutacja ma być widoczny także w nosicielu i otwierać okno mutacji. \
+	1) Alt+klik na człowieku „cel horroru” (tylko w niego horror wejdzie, pozostali to manekiny bez gracza) → wchodzisz do głowy; przycisk Mutacja ma być widoczny także w nosicielu i otwierać okno mutacji. \
 	2) Opis Ukrywania (poza nosicielem): ma mówić o chowaniu się pod stołami, nie o niewidzialności. \
 	3) Przejmij kontrolę nad nosicielem; drugi gracz (albo admin w ciele uwięzionego umysłu) klika Opieraj się kontroli → horror dostaje komunikat. Stłum opór → -50 chemikaliów, odzyskanie ciała przesuwa się o 20 s (bez oporu: komunikat, że umysł się nie opiera, chemikalia bez zmian). \
 	4) Człowiek z pękniętą czaszką: z przodu i z tyłu wgniecenie na czubku głowy (nad włosami), z boku nic; po zrośnięciu kości wgniecenie znika. \
@@ -31,6 +31,8 @@
 			crack.apply_wound(dummy.get_bodypart(BODY_ZONE_HEAD), silent = TRUE)
 		else if(!host_mind)
 			host_mind = dummy.mind
+			dummy.name = "cel horroru"
+			dummy.real_name = dummy.name
 	var/mob/living/simple_animal/horror/horror = locate() in spawned
 	if(horror)
 		horror.chemicals = 250
