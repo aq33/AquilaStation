@@ -12,6 +12,8 @@
 	var/aq_cook_end = 0
 	/// Długość całego bieżącego pieczenia w decysekundach
 	var/aq_cook_length = 0
+	/// world.time ostatniego udanego pieczenia (okno pokazuje wtedy GOTOWE)
+	var/aq_cook_done_at = 0
 
 /obj/machinery/microwave/loop(type, time, wait = max(12 - 2 * efficiency, 2), mob/user)
 	if(time && isnum(wait) && !(machine_stat & (NOPOWER|BROKEN)))
@@ -23,6 +25,11 @@
 		if(!aq_cook_length || aq_cook_length < remaining)
 			aq_cook_length = remaining
 	return ..()
+
+/obj/machinery/microwave/loop_finish(mob/user)
+	. = ..()
+	if(!broken)
+		aq_cook_done_at = world.time
 
 /obj/machinery/microwave/after_finish_loop()
 	aq_cook_end = 0
@@ -84,6 +91,7 @@
 	data["efficiency"] = efficiency
 	data["time_left"] = operating && aq_cook_end ? max(0, aq_cook_end - world.time) : 0
 	data["time_total"] = aq_cook_length
+	data["done_ago"] = aq_cook_done_at && world.time - aq_cook_done_at < 5 SECONDS ? world.time - aq_cook_done_at : null
 	data["silicon"] = issilicon(user)
 	return data
 

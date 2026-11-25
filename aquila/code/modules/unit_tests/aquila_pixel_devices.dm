@@ -31,6 +31,10 @@
 	TEST_ASSERT(LAZYLEN(microwave.active_timers), "A mucked start with a cook scheduled no cooking cycle (mob passed as the wait argument)")
 	TEST_ASSERT(microwave.aq_cook_end > world.time, "Microwave window gets no end time of the cooking")
 	TEST_ASSERT(microwave.ui_data(cook)["time_left"] > 0, "Microwave window shows no time left while cooking")
+	TEST_ASSERT(isnull(microwave.ui_data(cook)["done_ago"]), "Microwave window shows READY while still cooking")
+	// Udane zakończenie: okno dostaje sygnał GOTOWE
+	microwave.loop_finish(cook)
+	TEST_ASSERT(!isnull(microwave.ui_data(cook)["done_ago"]), "Microwave window gets no READY signal after a successful cooking")
 	microwave.soundloop.stop()
 
 /// Młynek: wrzucenie przedmiotu z ręki przez dzbanek, wyjęcie go z powrotem i naczynie w danych okna

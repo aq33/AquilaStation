@@ -24,7 +24,6 @@ import {
   Segments,
   Sprite,
   useClock,
-  usePrevious,
 } from './PixelUi';
 
 type Item = {
@@ -47,6 +46,8 @@ type Data = {
   efficiency: number;
   time_left: number;
   time_total: number;
+  /** Decysekundy od ostatniego udanego pieczenia, null gdy dawno albo nigdy */
+  done_ago?: number | null;
   silicon: BooleanLike;
 };
 
@@ -81,17 +82,16 @@ export const MicrowaveDevice = () => {
   } = data;
 
   const [hovered, setHovered] = useState<string>();
+  // GOTOWE tylko po udanym pieczeniu: DM podaje, ile decysekund temu skończyło się ostatnie
   const [doneUntil, setDoneUntil] = useState(0);
-  const wasOperating = usePrevious(!!operating);
   useEffect(() => {
-    // GOTOWE tylko po udanym pieczeniu: rzeczy wypadły, bez brudu i awarii (utrata prądu zostawia je w środku)
-    if (wasOperating && !operating && !broken && dirty < 100 && !items.length) {
-      setDoneUntil(Date.now() + DONE_TIME);
+    if (data.done_ago !== null && data.done_ago !== undefined) {
+      setDoneUntil(Date.now() + Math.max(0, DONE_TIME - data.done_ago * 100));
     }
-  }, [operating]);
+  }, [data.done_ago]);
 
   const time = useClock(!!operating || !!broken || Date.now() < doneUntil);
-  const done = Date.now() < doneUntil;
+  const done = !operating && Date.now() < doneUntil;
   // Odliczanie płynnie między aktualizacjami serwera
   const [syncedAt, setSyncedAt] = useState(Date.now());
   useEffect(() => setSyncedAt(Date.now()), [time_left]);

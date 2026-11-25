@@ -6,7 +6,7 @@
  * w dozowniku alkoholi), a receptury zostają w starym oknie (KLASYCZNE).
  */
 
-import { CSSProperties, useMemo, useState } from 'react';
+import { CSSProperties, useEffect, useMemo, useState } from 'react';
 import type { BooleanLike } from 'tgui-core/react';
 
 import { useBackend } from '../backend';
@@ -150,18 +150,29 @@ export const BarDispenserDevice = () => {
     if (!isBeakerLoaded && !recording) {
       return;
     }
-    // Strumień tylko wtedy, gdy coś naprawdę poleci do naczynia
-    if (recording || full || energy <= 0) {
-      act('dispense', { reagent: chemical.id });
-      return;
+    // Strumień dopiero, gdy serwer naprawdę doleje (energia, pełne naczynie, nagrywanie receptury)
+    if (!recording && !full && energy > 0) {
+      setPending({
+        color: chemical.color || '#c8a060',
+        kind: kinds[chemical.id] || 'liquid',
+        before: beakerCurrentVolume ?? 0,
+        at: Date.now(),
+      });
     }
-    setPour({
-      color: chemical.color || '#c8a060',
-      kind: kinds[chemical.id] || 'liquid',
-      at: Date.now(),
-    });
     act('dispense', { reagent: chemical.id });
   };
+  const [pending, setPending] = useState<Pour & { before: number }>();
+  useEffect(() => {
+    if (!pending) {
+      return;
+    }
+    if ((beakerCurrentVolume ?? 0) > pending.before) {
+      setPour({ color: pending.color, kind: pending.kind, at: Date.now() });
+      setPending(undefined);
+    } else if (Date.now() - pending.at > 3000) {
+      setPending(undefined);
+    }
+  }, [beakerCurrentVolume, pending]);
 
   const vesselTitle = beakerName || 'Naczynie';
   const amounts = beakerTransferAmounts?.length
@@ -391,7 +402,7 @@ export const BarDispenserDevice = () => {
           {
             top: 15,
             heading: isBeakerLoaded
-              ? `${vesselTitle} ${beakerCurrentVolume ?? 0}/${beakerMaxVolume ?? 0} j.`
+              ? `${vesselTitle} ${beakerCurrentVolume ?? 0}/${beakerMaxVolume ?? 0}`
               : 'BRAK NACZYNIA',
             empty: isBeakerLoaded ? 'puste' : undefined,
             rows: beakerContents.map((reagent) => ({
