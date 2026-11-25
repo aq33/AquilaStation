@@ -38,6 +38,9 @@
 	TEST_ASSERT(!patient.undergoing_cardiac_arrest(), "The heart of a wounded patient on epinephrine stopped")
 
 	patient.reagents.add_reagent(/datum/reagent/drug/methamphetamine, 30)
+	patient.aq_update_pulse(heart)
+	TEST_ASSERT(!patient.undergoing_cardiac_arrest(), "The heart stopped from stimulants before the overdose warning")
+	TEST_ASSERT(heart.aq_overdose_warned, "The overdose gave no warning")
 	for(var/i in 1 to 300)
 		patient.aq_update_pulse(heart)
 		if(patient.undergoing_cardiac_arrest())

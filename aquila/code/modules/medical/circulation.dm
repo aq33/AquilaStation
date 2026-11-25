@@ -44,6 +44,8 @@ GLOBAL_LIST_INIT(aq_pulse_reagents, list(
 /obj/item/organ/heart
 	/// Pulse from the last Life, AQ_PULSE_*
 	var/aq_pulse = AQ_PULSE_NORM
+	/// The owner was told their heart races from stimulants; until then an overdose cannot stop it
+	var/aq_overdose_warned = FALSE
 
 /obj/item/organ/heart/Stop()
 	. = ..()
@@ -114,6 +116,13 @@ GLOBAL_LIST_INIT(aq_pulse_reagents, list(
 	// Pain and blood loss speed the pulse up, but only stimulants (or deep cold) wear the heart out and stop it:
 	// otherwise a wounded patient's heart stopped after the medic's epinephrine, with no warning
 	var/overdosed = aq_pulse_drug_mod() >= AQ_PULSE_DRUG_ARREST
+	// The first update of an overdose only warns, so the heart never stops from stimulants without a warning
+	var/stimulant_arrest = overdosed && heart.aq_overdose_warned
+	if(overdosed && !heart.aq_overdose_warned)
+		heart.aq_overdose_warned = TRUE
+		to_chat(src, span_warning("Serce wali ci jak oszalałe. Za dużo stymulantów."))
+	else if(!overdosed)
+		heart.aq_overdose_warned = FALSE
 	// Bay: a racing heart wears itself out
 	if(overdosed && mod > 2 && prob((mod - 2) ** 2 * 2))
 		heart.applyOrganDamage(1)
@@ -122,11 +131,11 @@ GLOBAL_LIST_INIT(aq_pulse_reagents, list(
 		stop_reason = "Za mało krwi, serce nie ma czego pompować"
 	else if(getOrganLoss(ORGAN_SLOT_BRAIN) > 150 && prob(getOrganLoss(ORGAN_SLOT_BRAIN) - 150))
 		stop_reason = "Mózg przestaje sterować sercem"
-	else if(heart.aq_pulse == AQ_PULSE_THREADY && (overdosed || aq_hypothermia_stage() >= 3) && prob(5))
+	else if(heart.aq_pulse == AQ_PULSE_THREADY && (stimulant_arrest || aq_hypothermia_stage() >= 3) && prob(5))
 		stop_reason = "Migotanie przechodzi w zatrzymanie"
-	else if(overdosed && mod >= 5 && prob(3))
+	else if(stimulant_arrest && mod >= 5 && prob(3))
 		stop_reason = "Serce nie wytrzymuje takiego tempa"
-	else if(overdosed && mod >= 4 && prob(15))
+	else if(stimulant_arrest && mod >= 4 && prob(15))
 		to_chat(src, span_warning("Serce wali ci jak oszalałe. Za dużo stymulantów."))
 	if(stop_reason)
 		set_heartattack(TRUE)
