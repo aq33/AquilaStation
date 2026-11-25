@@ -33402,6 +33402,12 @@
 "[plate.describe()]. Płyta jest [kitchen_heat.describe(TRUE)].": "[plate.describe()]. The griddle is [kitchen_heat.describe(TRUE)].",
 "Jedzenie kładzie się na płycie. Patelnię, rondel albo garnek na zupę stawiasz kliknięciem w jedno z czterech pól. Kliknięcie w pokrętło na przodzie włącza całą płytę. <b>Alt+klik</b>: włącznik, ogień i minutnik płyty.": "Food goes straight on the griddle. Put a pan, pot or soup pot down by clicking one of the four fields. Clicking the knob on the front turns the whole griddle on. <b>Alt-click</b>: switch, heat and timer of the griddle.",
 "[capitalize(burner.name)]: stoi tu [burner.container].": "[capitalize(burner.name)]: [burner.container] is on it.",
+"Serce wali ci jak oszalałe. Za dużo stymulantów.": "Your heart is pounding like crazy. Too many stimulants.",
+"piętro niżej": "one deck below",
+"[levels] piętra niżej": "[levels] decks below",
+"piętro wyżej": "one deck above",
+"[levels] piętra wyżej": "[levels] decks above",
+"To jest [other_level].": "This is [other_level].",
 "Czerwony pancerz": "Red armour",
 "Goły metal": "Bare metal",
 "Bez wzoru": "No pattern",
@@ -33414,5 +33420,6 @@
 "name: 'Wzór na ramionach',": "name: 'Arm pattern',",
 "name: 'Kolor ryby',": "name: 'Fish colour',",
 "PR 706: Akwarianin z gołego metalu": "PR 706: bare metal Aquarian",
-"Stawia dwóch Akwarian: pierwszy w gołym metalu z niebieskimi rękawami, żółtą ukleją i różową wodą, \\": "Spawns two Aquarians: the first in bare metal with blue sleeves, a yellow bleak and pink water, \\"
+"Stawia dwóch Akwarian: pierwszy w gołym metalu z niebieskimi rękawami, żółtą ukleją i różową wodą, \\": "Spawns two Aquarians: the first in bare metal with blue sleeves, a yellow bleak and pink water, \\",
+"Stawia dwóch Akwarian: pierwszy w gołym metalu z niebieskimi rękawami, żółtą ukleją i różową wodą, drugi w czerwonym pancerzu przemalowanym na żółto, z paskami na ramionach w tym samym kolorze, i ze złotą rybką. 1) Obejrzyj obu ze wszystkich stron: kończyny, dłonie i stopy gołego metalu, rękawy i paski na obu ramionach, woda w kolorze z okna postaci. 2) Okno postaci (rasa Akwarianin): Pancerz (Czerwony pancerz / Goły metal), Wzór na ramionach, Kolor pancerza barwi wzór. Wybierz rybę Ukleja → pojawia się Kolor ryby, przy innych rybach go nie ma. 3) Utnij pierwszemu rękę (piła) → rękaw odpada razem z ręką, ręka na podłodze zostaje z gołego metalu. 4) Rozbij pierwszemu klosz (skrzynką w głowę do skutku) → ukleja rzuca się na podłodze w swoim kolorze, krople wody są niebieskie; po śmierci leży żółta, bez kropli.": "Spawns two Aquarians: the first in bare metal with blue sleeves, a yellow bleak and pink water, the second in red armour repainted yellow, with arm stripes in the same colour, and a goldfish. 1) Look at both from every side: the bare metal limbs, hands and feet, the sleeves and stripes on both arms, water in the colour from the character window. 2) Character window (Aquarian species): Armour (Red armour / Bare metal), Arm pattern, Armour colour tints the pattern. Pick the Bleak fish → Fish colour appears, other fish don't have it. 3) Cut off the first one's arm (saw) → the sleeve falls off with the arm, the arm on the floor stays bare metal. 4) Smash the first one's dome (hit the head with a toolbox until it breaks) → the bleak flops on the floor in its colour, the water drops are blue; once dead it lies yellow, without drops."
 }
