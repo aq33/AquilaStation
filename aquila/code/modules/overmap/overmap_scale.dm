@@ -13,6 +13,8 @@ GLOBAL_VAR_INIT(overmap_scale_enabled, TRUE)
 #define OVERMAP_GUN_RANGE_SPECIAL 255
 /// The AI does not fire unguided weapons beyond this (default projectile range 50 * OVERMAP_GUN_RANGE_MULT)
 #define OVERMAP_AI_GUN_RANGE 25
+/// Po tym czasie lotu rakieta gubi namiar na myśliwiec i leci dalej prosto (zasięg 250 pól to ok. 25 s pościgu)
+#define OVERMAP_MISSILE_FIGHTER_LOCK_TIME (8 SECONDS)
 /// AI carriers keep about this far from their target and let the fighters do the work
 #define AI_CARRIER_STANDOFF 40
 /// Torpedo ships stand off at most this far, but close enough to keep the target on their sensors
@@ -55,7 +57,12 @@ GLOBAL_VAR_INIT(overmap_scale_enabled, TRUE)
 
 /datum/overmap_ship_weapon/is_valid_ai_target(obj/structure/overmap/target)
 	. = ..()
-	if(!. || !GLOB.overmap_scale_enabled || is_guided_weapon())
+	if(!. || !GLOB.overmap_scale_enabled)
+		return
+	if(is_guided_weapon())
+		// Myśliwiec dostaje rakietę dopiero z tej odległości co z dział, a nie spoza ekranu (zgłoszenie graczy)
+		if(target.mass <= MASS_TINY && overmap_dist(linked_overmap, target) > OVERMAP_AI_GUN_RANGE)
+			return FALSE
 		return
 	// Guns would not reach anyway, so the AI saves them and picks missiles at long range
 	if(overmap_dist(linked_overmap, target) > OVERMAP_AI_GUN_RANGE)
@@ -169,3 +176,16 @@ GLOBAL_VAR_INIT(overmap_scale_enabled, TRUE)
 #undef AI_CARRIER_STANDOFF
 #undef AI_TORPEDO_STANDOFF
 #undef AI_STANDOFF_BAND
+
+/obj/item/projectile/guided_munition/missile/Initialize(mapload)
+	. = ..()
+	addtimer(CALLBACK(src, PROC_REF(check_fighter_lock)), OVERMAP_MISSILE_FIGHTER_LOCK_TIME)
+
+/// Rakieta na myśliwiec nie goni go przez pół mapy: po OVERMAP_MISSILE_FIGHTER_LOCK_TIME gubi namiar. Okręty goni dalej.
+/obj/item/projectile/guided_munition/missile/proc/check_fighter_lock()
+	var/obj/structure/overmap/target = homing_target
+	if(!GLOB.overmap_scale_enabled || !istype(target) || target.mass > MASS_TINY)
+		return
+	homing = FALSE
+	homing_target = null
+#undef OVERMAP_MISSILE_FIGHTER_LOCK_TIME
