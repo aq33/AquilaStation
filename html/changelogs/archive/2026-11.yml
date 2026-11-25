@@ -1682,6 +1682,7 @@
       linkami i dłuższym tekstem (wcześniej konsola po cichu je kasowała).
   - bugfix: Link „strona wiki” w powitaniu stanowiska prowadzi na stronę stanowiska
       na wiki Aquili, a nie do wyszukiwarki BeeStation.
+  - bugfix: Ogłoszenia głosowe AI (VOX) są sprawdzane filtrem zakazanych słów.
   tralezab, MrMelbert:
   - rscadd: Postacie zapamiętują niezwykłe zdarzenia (operacje, bomby, śmierć na ich
       oczach, poślizgi, podpalenia, wielkie wygrane, medale i wiele innych). Wspomnienia
