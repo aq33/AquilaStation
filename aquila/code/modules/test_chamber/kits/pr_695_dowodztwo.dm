@@ -7,7 +7,7 @@
 	2) Załóż fikuśną i galową kurtkę kapitana, kurtkę XO, napierśnik, hardsuit kapitana z hełmem, czapki (też oficerską), berety, peleryny i torbę: nowe sprite'y w ekwipunku i na postaci, berety Oficera Pokładowego i Starszego Oficera nie zgniatają głowy. \
 	3) Karty ID na smyczy i PDA kapitana i XO: sprite w ręce i na postaci, PDA się włącza. \
 	4) Szafki Kapitana, Starszego Oficera i mostka: zamknięta, otwarta, animacja drzwi, lampka zamka, zespawanie; pudełka kompresyjne bez spódniczki, korony i brązowych butów, buty wojskowe i kurtka XO obok pudełek; pudełko Komendanta ma oba berety Komendanta i jeden zwykły mundur, peleryna Komendanta nazywa się peleryną. \
-	5) Kurtki zimowe Kapitana, Starszego Oficera i Oficera Pokładowego: z opuszczonym kapturem rozpięte, po założeniu kaptura zapięte, kaptur na głowie. Peleryny przykrywają plecak i torbę (widok z tyłu i z boku), długie włosy leżą na pelerynie. \
+	5) Kurtki zimowe Kapitana, Starszego Oficera i Oficera Pokładowego: Alt+klik zapina i rozpina (też z założonym kapturem), kaptur zakładany przyciskiem, opuszczony kaptur widać na kurtce. Peleryny przykrywają plecak i torbę (widok z tyłu i z boku), długie włosy leżą na pelerynie. \
 	6) Poza komorą: Kapitan, Starszy Oficer i Oficer Pokładowy po wejściu do rundy mają nowe stroje (Kapitan w czapce i napierśniku)."
 	items = list(
 		/obj/item/clothing/under/rank/captain = 1,

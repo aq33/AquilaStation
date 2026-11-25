@@ -6,6 +6,8 @@
 /obj/item/clothing/suit/hooded/wintercoat
 	/// Stan opuszczonego kaptura w icons/mob/clothing/head.dmi. Ustawiony = zapięcie przełącza Alt+klik, a kaptur nie zmienia kurtki.
 	var/hood_down_state
+	/// Plik ze stanem opuszczonego kaptura
+	var/hood_down_icon = 'icons/mob/clothing/head.dmi'
 	/// Kurtka rozpięta (stan "[icon_state]_t")
 	var/zip_open = FALSE
 
@@ -45,7 +47,7 @@
 /obj/item/clothing/suit/hooded/wintercoat/worn_overlays(mutable_appearance/standing, isinhands = FALSE)
 	. = ..()
 	if(!isinhands && hood_down_state && !suittoggled)
-		. += mutable_appearance('icons/mob/clothing/head.dmi', hood_down_state)
+		. += mutable_appearance(hood_down_icon, hood_down_state)
 
 /obj/item/clothing/suit/hooded/wintercoat/examine(mob/user)
 	. = ..()

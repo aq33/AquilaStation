@@ -47,7 +47,12 @@
 				if(!worn_file || !(worn_state in icon_states(worn_file)))
 					missing += "[thing]: na postaci '[worn_state]' w [worn_file]"
 				if(ispath(thing, /obj/item/clothing/suit/hooded) && !(("[state]_t" in icon_states(icon_file)) && ("[state]_t" in icon_states(worn_file))))
-					missing += "[thing]: zapięta '[state]_t' w [icon_file] lub [worn_file]"
+					missing += "[thing]: rozpięta '[state]_t' w [icon_file] lub [worn_file]"
+				if(ispath(thing, /obj/item/clothing/suit/hooded/wintercoat))
+					var/obj/item/clothing/suit/hooded/wintercoat/coat = thing
+					var/hood_down = initial(coat.hood_down_state)
+					if(!hood_down || !(hood_down in icon_states(initial(coat.hood_down_icon))))
+						missing += "[thing]: opuszczony kaptur '[hood_down]' w [initial(coat.hood_down_icon)]"
 				if(ispath(thing, /obj/item/clothing/under))
 					var/obj/item/clothing/under/uniform = thing
 					if(initial(uniform.can_adjust) && !("[state]_d" in icon_states(worn_file)))
@@ -82,6 +87,17 @@
 	var/mutable_appearance/back_overlay = captain.overlays_standing[BACK_LAYER]
 	var/mutable_appearance/neck_overlay = captain.overlays_standing[NECK_LAYER]
 	TEST_ASSERT(back_overlay && neck_overlay && neck_overlay.layer > back_overlay.layer, "Peleryna rysuje się pod plecakiem (warstwy [neck_overlay?.layer] i [back_overlay?.layer])")
+
+	// Kurtka zimowa: zapięcie zmienia stan, opuszczony kaptur rysuje się z naszego pliku
+	var/obj/item/clothing/suit/hooded/wintercoat/xo/coat = allocate(/obj/item/clothing/suit/hooded/wintercoat/xo, run_loc_floor_bottom_left)
+	coat.zip_open = TRUE
+	coat.update_zip_icon()
+	TEST_ASSERT(coat.icon_state == "coatxo_t", "Rozpięta kurtka XO ma stan [coat.icon_state]")
+	var/hood_drawn = FALSE
+	for(var/mutable_appearance/overlay as anything in coat.worn_overlays(null, FALSE))
+		if(overlay.icon == coat.hood_down_icon && overlay.icon_state == coat.hood_down_state)
+			hood_drawn = TRUE
+	TEST_ASSERT(hood_drawn, "Na kurtce XO nie ma opuszczonego kaptura")
 
 	var/obj/structure/closet/secure_closet/hop/xo_locker = allocate(/obj/structure/closet/secure_closet/hop, run_loc_floor_bottom_left)
 	TEST_ASSERT(locate(/obj/item/clothing/suit/ship/officer/xo) in xo_locker, "W szafce Starszego Oficera brak zapasowej kurtki")

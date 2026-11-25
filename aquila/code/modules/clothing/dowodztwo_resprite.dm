@@ -77,10 +77,12 @@
 	worn_icon = 'aquila/icons/dowodztwo/suit_mob.dmi'
 	icon_state = "xo_jacket"
 
-// Kurtki zimowe: z opuszczonym kapturem rozpięte, z założonym (stan "_t") zapięte
+// Kurtki zimowe z zapięciem na Alt+klik (wintercoat_zip.dm): "[icon_state]" zapięta, "_t" rozpięta, opuszczony kaptur jako nakładka
 /obj/item/clothing/suit/hooded/wintercoat/captain
 	icon = 'aquila/icons/dowodztwo/suit_obj.dmi'
 	worn_icon = 'aquila/icons/dowodztwo/suit_mob.dmi'
+	hood_down_state = "winterhood_captain_down"
+	hood_down_icon = 'aquila/icons/dowodztwo/head_mob.dmi'
 
 /obj/item/clothing/head/hooded/winterhood/captain
 	icon = 'aquila/icons/dowodztwo/head_obj.dmi'
@@ -91,6 +93,8 @@
 	icon = 'aquila/icons/dowodztwo/suit_obj.dmi'
 	worn_icon = 'aquila/icons/dowodztwo/suit_mob.dmi'
 	icon_state = "coatxo"
+	hood_down_state = "winterhood_captain_down"
+	hood_down_icon = 'aquila/icons/dowodztwo/head_mob.dmi'
 	hoodtype = /obj/item/clothing/head/hooded/winterhood/captain
 
 /obj/item/clothing/suit/hooded/wintercoat/bridge
@@ -98,6 +102,8 @@
 	icon = 'aquila/icons/dowodztwo/suit_obj.dmi'
 	worn_icon = 'aquila/icons/dowodztwo/suit_mob.dmi'
 	icon_state = "coatbridge"
+	hood_down_state = "winterhood_bridge_down"
+	hood_down_icon = 'aquila/icons/dowodztwo/head_mob.dmi'
 	hoodtype = /obj/item/clothing/head/hooded/winterhood/bridge
 
 /obj/item/clothing/head/hooded/winterhood/bridge
