@@ -15,6 +15,12 @@
 	var/obj/effect/ship_vfx_emitter/emitter = ship.vfx_emitter("breach_1", /particles/ship_breach_gas, centre)
 	if(!emitter || !(emitter in ship.vis_contents) || !emitter.particles)
 		return Fail("Emiter wyłomu nie trafił do vis_contents okrętu albo nie ma cząsteczek")
+	// BYOND nie obraca przesunięcia emitera razem z okrętem: emiter stoi w środku klatki, a rufa jest w cząsteczkach
+	var/list/disp = ship.overmap_display_bounds()
+	var/obj/effect/ship_vfx_emitter/trail = ship.vfx_emitter("test_stern", /particles/ship_engine_trail, stern)
+	if(trail.pixel_x != disp[1] / 2 - world.icon_size / 2 || trail.pixel_y != disp[2] / 2 - world.icon_size / 2)
+		return Fail("Emiter smugi stoi w ([trail.pixel_x], [trail.pixel_y]) zamiast w środku klatki okrętu")
+	ship.remove_vfx("test_stern")
 	ship.remove_vfx("breach_1")
 	if(!QDELETED(emitter) || LAZYACCESS(ship.vfx_emitters, "breach_1"))
 		return Fail("Usunięty emiter wyłomu został przy okręcie")

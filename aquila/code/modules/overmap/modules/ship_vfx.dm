@@ -2,6 +2,9 @@
 /// prędkości, syczący gaz z wyłomów w modułach, płomienie pożarów modułów i dym nad wrakiem. Emitery cząsteczek siedzą
 /// w vis_contents okrętu, więc obracają się i skalują razem z nim (skala wizualna). Pozycje w pikselach sprite'a
 /// (dziób w górę), liczone z obrysu sprite'a (overmap_sprite_bounds).
+/// BYOND obraca vis_contents wokół środka klatki okrętu, ale przesunięcia pixel_x/y samego emitera nie obraca (obraca
+/// tylko jego cząsteczki), a cząsteczki obiektu bez ikony startują ze środka jego pola 32×32. Dlatego emiter stoi
+/// w środku klatki, a miejsce na kadłubie (rufa, burta) jest przesunięciem w pozycji cząsteczek.
 
 #define SHIP_VFX_TICK (1 SECONDS)
 #define SHIP_VFX_MAX_SPOTS 4
@@ -78,11 +81,29 @@
 	vis_flags = VIS_INHERIT_PLANE | VIS_INHERIT_LAYER
 	invisibility = 0
 
-/obj/effect/ship_vfx_emitter/Initialize(mapload, particle_type, px, py)
+/// px, py: środek klatki okrętu; ox, oy: miejsce na kadłubie względem środka; box: rozrzut cząsteczek wokół tego miejsca
+/obj/effect/ship_vfx_emitter/Initialize(mapload, particle_type, px, py, ox, oy, list/box)
 	. = ..()
 	particles = new particle_type
-	pixel_x = px
-	pixel_y = py
+	pixel_x = px - world.icon_size / 2
+	pixel_y = py - world.icon_size / 2
+	particles.position = generator("box", list(ox + box[1], oy + box[2]), list(ox + box[3], oy + box[4]))
+	// cząsteczki dalej niż połowa width/height od emitera są ucinane, a emiter stoi teraz w środku okrętu
+	var/reach = 2 * max(abs(ox), abs(oy))
+	particles.width += reach
+	particles.height += reach
+
+/// Rozrzut startu cząsteczek emitera (x0, y0, x1, y1) wokół jego miejsca na kadłubie
+/proc/ship_vfx_particle_box(particle_type)
+	if(ispath(particle_type, /particles/ship_engine_trail))
+		return list(-6, 0, 6, 2)
+	if(ispath(particle_type, /particles/ship_module_fire))
+		return list(-4, -4, 4, 4)
+	if(ispath(particle_type, /particles/wreck_smoke))
+		return list(-10, -10, 10, 10)
+	if(ispath(particle_type, /particles/ship_breach_gas))
+		return list(-2, -2, 2, 2)
+	return list(-1, -1, 1, 1)
 
 /obj/structure/overmap
 	/// AQUILA - emitery efektów: "engine", "wreck" i miejsca wyłomów/pożarów modułów
@@ -103,7 +124,10 @@
 		return emitter
 	if(!point)
 		return null
-	emitter = new /obj/effect/ship_vfx_emitter(src, particle_type, point[1], point[2])
+	var/list/disp = overmap_display_bounds()
+	var/center_x = disp[1] / 2
+	var/center_y = disp[2] / 2
+	emitter = new /obj/effect/ship_vfx_emitter(src, particle_type, center_x, center_y, point[1] - center_x, point[2] - center_y, ship_vfx_particle_box(particle_type))
 	vfx_emitters[key] = emitter
 	vis_contents += emitter
 	return emitter
