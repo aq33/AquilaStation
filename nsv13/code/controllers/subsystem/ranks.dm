@@ -40,6 +40,10 @@ GLOBAL_LIST_INIT(pecking_order, world.file2list("config/ranks/pecking_order.txt"
 	var/theirRank = them.compose_rank(them)
 	if(!theirRank || theirRank == "")
 		theirClout = -100
+	// AQ EDIT START - polskie stopnie mają spacje ("kmdr por."): pokazujemy je w pełnej postaci, a porównujemy bez spacji
+	var/their_rank_shown = trim(theirRank)
+	var/my_rank_shown = trim(myRank)
+	// AQ EDIT END
 	theirRank = replacetext(theirRank, " ", "")
 	myRank = replacetext(myRank, " ", "")
 	//Unsupported ranks.
@@ -54,16 +58,22 @@ GLOBAL_LIST_INIT(pecking_order, world.file2list("config/ranks/pecking_order.txt"
 	//We live in a clout based society :(
 	if(myClout == theirClout)
 		return "<span class='notice'>Masz tę samą rangę.</span>"
-	if(myClout > theirClout)
-		return "<span class='boldnotice'>Przewyższasz jego rangę [theirRank].</span>"
+	// AQ EDIT START - pecking_order.txt idzie od najwyższego stopnia, więc niższy numer znaczy wyższy stopień (było odwrotnie)
 	if(myClout < theirClout)
-		return "<span class='boldwarning'>Przewyższa cię rangą jako [myRank].</span>"
+		return "<span class='boldnotice'>Masz wyższy stopień ([my_rank_shown]) niż [them] ([their_rank_shown]).</span>"
+	if(myClout > theirClout)
+		return "<span class='boldwarning'>[them] ma wyższy stopień ([their_rank_shown]) niż ty ([my_rank_shown]).</span>"
+	// AQ EDIT END
 	return "<span class='warning'>Zapomniałeś, jak działają stopnie.</span>"
 
 /**
 Checks two text ranks, see which one outranks the other. Used for squad rank assignment (to avoid accidental demotions)
 */
 /proc/check_rank_pecking_order(myRank, theirRank)
+	// AQ EDIT START - compose_rank() zwraca stopień ze spacją na końcu ("CPT "), więc nie było go na liście i dowódca drużyny nie szedł za stopniem
+	myRank = replacetext(myRank, " ", "")
+	theirRank = replacetext(theirRank, " ", "")
+	// AQ EDIT END
 	if(!LAZYFIND(GLOB.pecking_order, myRank) || !LAZYFIND(GLOB.pecking_order, theirRank))
 		return FALSE
 	var/myClout = 0
@@ -75,7 +85,7 @@ Checks two text ranks, see which one outranks the other. Used for squad rank ass
 			continue
 		if(theRank == theirRank)
 			theirClout = I
-	return myClout > theirClout
+	return myClout < theirClout // AQ EDIT - niższy numer w pecking_order.txt to wyższy stopień
 
 /mob/living/carbon/human/examine(mob/user)
 	. = ..()

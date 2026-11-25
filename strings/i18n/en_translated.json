@@ -31544,5 +31544,18 @@
 "Zaczynasz wyrywać [plant_item]...": "You start uprooting [plant_item]...",
 "[user] wyrywa [plant_item] z korzeniami.": "[user] pulls [plant_item] out by the roots.",
 "Wyrywasz [plant_item] z korzeniami.": "You pull [plant_item] out by the roots.",
-"Komputer dokowania zatrzymuje [src] nad [planet] i włącza hamulce. Odleć, jeśli nie chcesz lądować.": "The docking computer stops [src] over [planet] and puts the brakes on. Fly away if you don't want to land."
+"Komputer dokowania zatrzymuje [src] nad [planet] i włącza hamulce. Odleć, jeśli nie chcesz lądować.": "The docking computer stops [src] over [planet] and puts the brakes on. Fly away if you don't want to land.",
+"<span class='boldnotice'>Masz wyższy stopień ([my_rank_shown]) niż [them] ([their_rank_shown]).</span>": "<span class='boldnotice'>You outrank [them] ([my_rank_shown] over [their_rank_shown]).</span>",
+"<span class='boldwarning'>[them] ma wyższy stopień ([their_rank_shown]) niż ty ([my_rank_shown]).</span>": "<span class='boldwarning'>[them] outranks you ([their_rank_shown] over [my_rank_shown]).</span>",
+"kmdr": "Capt.",
+"kmdr por.": "Cdr.",
+"kmdr ppor.": "Lt Cdr.",
+"kpt. mar.": "Lt.",
+"por. mar.": "SLt.",
+"ppor. mar.": "Ens.",
+"st. bosm.": "CPO",
+"bosm.": "PO",
+"mat": "LS",
+"mar.": "AB",
+"cyw.": "Civ."
 }
