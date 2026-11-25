@@ -77,6 +77,34 @@
 	worn_icon = 'aquila/icons/dowodztwo/suit_mob.dmi'
 	icon_state = "xo_jacket"
 
+// Kurtki zimowe: z opuszczonym kapturem rozpięte, z założonym (stan "_t") zapięte
+/obj/item/clothing/suit/hooded/wintercoat/captain
+	icon = 'aquila/icons/dowodztwo/suit_obj.dmi'
+	worn_icon = 'aquila/icons/dowodztwo/suit_mob.dmi'
+
+/obj/item/clothing/head/hooded/winterhood/captain
+	icon = 'aquila/icons/dowodztwo/head_obj.dmi'
+	worn_icon = 'aquila/icons/dowodztwo/head_mob.dmi'
+
+/obj/item/clothing/suit/hooded/wintercoat/xo
+	name = "kurtka zimowa Starszego Oficera"
+	icon = 'aquila/icons/dowodztwo/suit_obj.dmi'
+	worn_icon = 'aquila/icons/dowodztwo/suit_mob.dmi'
+	icon_state = "coatxo"
+	hoodtype = /obj/item/clothing/head/hooded/winterhood/captain
+
+/obj/item/clothing/suit/hooded/wintercoat/bridge
+	name = "kurtka zimowa Oficera Pokładowego"
+	icon = 'aquila/icons/dowodztwo/suit_obj.dmi'
+	worn_icon = 'aquila/icons/dowodztwo/suit_mob.dmi'
+	icon_state = "coatbridge"
+	hoodtype = /obj/item/clothing/head/hooded/winterhood/bridge
+
+/obj/item/clothing/head/hooded/winterhood/bridge
+	icon = 'aquila/icons/dowodztwo/head_obj.dmi'
+	worn_icon = 'aquila/icons/dowodztwo/head_mob.dmi'
+	icon_state = "winterhood_bridge"
+
 // ---- Nakrycia głowy ----
 /obj/item/clothing/head/caphat
 	icon = 'aquila/icons/dowodztwo/head_obj.dmi'
@@ -117,6 +145,10 @@
 /obj/item/clothing/gloves/color/captain
 	icon = 'aquila/icons/dowodztwo/hands_obj.dmi'
 	worn_icon = 'aquila/icons/dowodztwo/hands_mob.dmi'
+
+// Peleryna nad plecakiem i torbą (BACK_LAYER), ale pod włosami (HAIR_LAYER), żeby plecak nie wystawał spod peleryny
+/obj/item/clothing/neck/cloak
+	alternate_worn_layer = BACK_LAYER - 0.5
 
 /obj/item/clothing/neck/cloak/cap
 	icon = 'aquila/icons/dowodztwo/neck_obj.dmi'
@@ -170,6 +202,7 @@
 		if(beret.type == /obj/item/clothing/head/beret/durathread)
 			qdel(beret)
 	new /obj/item/clothing/head/beret/durathread/bridge(src)
+	new /obj/item/clothing/suit/hooded/wintercoat/bridge(src)
 
 // ---- Pudełka kompresyjne (pełne nadpisania, wpis w LEGACY_OVERRIDES.md) ----
 // Buty wojskowe i kurtki mają kieszenie (storage), a takich rzeczy nie wkładamy do pudełka kompresyjnego
@@ -203,6 +236,7 @@
 	..()
 	new /obj/item/clothing/shoes/jackboots(src)
 	new /obj/item/clothing/suit/ship/officer/xo(src)
+	new /obj/item/clothing/suit/hooded/wintercoat/xo(src)
 
 // ---- Stroje startowe ----
 /datum/outfit/job/captain

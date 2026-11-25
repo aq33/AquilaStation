@@ -13,6 +13,8 @@
 		/obj/item/clothing/suit/armor/vest/capcarapace,
 		/obj/item/clothing/suit/space/hardsuit/swat/captain,
 		/obj/item/clothing/suit/ship/officer,
+		/obj/item/clothing/suit/hooded/wintercoat,
+		/obj/item/clothing/head/hooded/winterhood,
 		/obj/item/clothing/head/caphat,
 		/obj/item/clothing/head/beret/captain,
 		/obj/item/clothing/head/beret/ship/captain,
@@ -44,6 +46,8 @@
 				var/worn_state = ispath(thing, /obj/item/clothing/under) ? state : (initial(cloth.worn_icon_state) || state)
 				if(!worn_file || !(worn_state in icon_states(worn_file)))
 					missing += "[thing]: na postaci '[worn_state]' w [worn_file]"
+				if(ispath(thing, /obj/item/clothing/suit/hooded) && !(("[state]_t" in icon_states(icon_file)) && ("[state]_t" in icon_states(worn_file))))
+					missing += "[thing]: zapięta '[state]_t' w [icon_file] lub [worn_file]"
 				if(ispath(thing, /obj/item/clothing/under))
 					var/obj/item/clothing/under/uniform = thing
 					if(initial(uniform.can_adjust) && !("[state]_d" in icon_states(worn_file)))
@@ -72,12 +76,21 @@
 		var/list/wanted = boxes[box_type]
 		TEST_ASSERT(length(found) == length(wanted) && !length(found - wanted), "[box_type] zawiera [jointext(found, ", ")]")
 
+	// Peleryna na postaci przykrywa plecak
+	captain.equip_to_slot_or_del(allocate(/obj/item/clothing/neck/cloak/cap, run_loc_floor_bottom_left), ITEM_SLOT_NECK)
+	TEST_ASSERT(captain.back && captain.wear_neck, "Kapitan bez plecaka albo peleryny")
+	var/mutable_appearance/back_overlay = captain.overlays_standing[BACK_LAYER]
+	var/mutable_appearance/neck_overlay = captain.overlays_standing[NECK_LAYER]
+	TEST_ASSERT(back_overlay && neck_overlay && neck_overlay.layer > back_overlay.layer, "Peleryna rysuje się pod plecakiem (warstwy [neck_overlay?.layer] i [back_overlay?.layer])")
+
 	var/obj/structure/closet/secure_closet/hop/xo_locker = allocate(/obj/structure/closet/secure_closet/hop, run_loc_floor_bottom_left)
 	TEST_ASSERT(locate(/obj/item/clothing/suit/ship/officer/xo) in xo_locker, "W szafce Starszego Oficera brak zapasowej kurtki")
 	TEST_ASSERT(locate(/obj/item/clothing/shoes/jackboots) in xo_locker, "W szafce Starszego Oficera brak butów wojskowych")
+	TEST_ASSERT(locate(/obj/item/clothing/suit/hooded/wintercoat/xo) in xo_locker, "W szafce Starszego Oficera brak kurtki zimowej")
 
 	var/obj/structure/closet/secure_closet/bridge/locker = allocate(/obj/structure/closet/secure_closet/bridge, run_loc_floor_bottom_left)
 	TEST_ASSERT(locate(/obj/item/clothing/head/beret/durathread/bridge) in locker, "W szafce mostka brak beretu Oficera Pokładowego")
+	TEST_ASSERT(locate(/obj/item/clothing/suit/hooded/wintercoat/bridge) in locker, "W szafce mostka brak kurtki zimowej")
 	for(var/obj/item/clothing/head/beret/durathread/beret in locker)
 		TEST_ASSERT(beret.type == /obj/item/clothing/head/beret/durathread/bridge, "W szafce mostka został zwykły beret z duranici")
 
