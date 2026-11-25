@@ -98,8 +98,8 @@
 	if(!message || announcing_vox > world.time)
 		return
 
-	// AQ EDIT START - filtr słów IC dla ogłoszeń VOX
-	if(CHAT_FILTER_CHECK(message))
+	// AQ EDIT START - filtr słów IC dla ogłoszeń VOX (odstępy zwinięte: VOX pomija puste słowa, więc „alpha  test” grałby frazę „alpha test”)
+	if(CHAT_FILTER_CHECK(replacetext(message, regex(@"\s+", "g"), " ")))
 		to_chat(src, "<span class='warning'>Twoje ogłoszenie zawiera zakazane słowa.</span>")
 		return
 	// AQ EDIT END
