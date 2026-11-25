@@ -2723,6 +2723,7 @@
 #include "code\modules\unit_tests\aquila_zgloszenia_2511.dm"
 #include "code\modules\unit_tests\aquila_he_pipe_no_pipeline.dm"
 #include "code\modules\unit_tests\aquila_pipe_integrity.dm"
+#include "code\modules\unit_tests\aquila_canister_overpressure.dm"
 #include "code\modules\unit_tests\aquila_imaginary_friend_job.dm"
 #include "code\modules\unit_tests\aquila_gunplay.dm"
 #include "code\modules\unit_tests\aquila_gun_cursor_prefs.dm"
