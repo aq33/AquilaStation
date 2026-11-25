@@ -191,6 +191,50 @@
 		burner.process_cooking(1, 1)
 	TEST_ASSERT(locate(/obj/item/food/spaghetti/boiledspaghetti) in pot, "No boiled spaghetti after refilling the water (pot holds: [english_list(pot.contents)])")
 
+/// Garnek z zupą na palniku kuchenki elektrycznej grzeje się według ognia, jak na kuchence na zupy
+/datum/unit_test/aquila_stovetop_soup
+
+/datum/unit_test/aquila_stovetop_soup/Run()
+	var/obj/machinery/cooking_stovetop/stovetop = allocate(/obj/machinery/cooking_stovetop, run_loc_floor_bottom_left)
+	var/obj/item/reagent_containers/glass/soup_pot/pot = allocate(/obj/item/reagent_containers/glass/soup_pot, run_loc_floor_bottom_left)
+	pot.reagents.add_reagent(/datum/reagent/water, 50, reagtemp = T20C)
+	var/datum/cooking_surface/burner/burner = stovetop.burners[4]
+	TEST_ASSERT(burner.accepts(pot), "The electric stovetop does not take a soup pot")
+	stovetop.place_container(pot, burner)
+	TEST_ASSERT(burner.container == pot && pot.loc == stovetop, "The soup pot is not on the burner")
+	burner.turn_on()
+	burner.temperature = COOK_TEMP_HIGH
+	// Zimna kuchenka grzeje na 1/4 mocy, więc wystarczy, że garnek wyraźnie się ogrzał
+	for(var/i in 1 to 10)
+		stovetop.process(1)
+	TEST_ASSERT(pot.reagents.chem_temp > T20C + 5, "The soup pot did not heat up on the burner ([pot.reagents.chem_temp] K)")
+	pot.forceMove(run_loc_floor_bottom_left)
+	TEST_ASSERT(!burner.container && pot.transform.a == 1, "Taking the pot off did not free the burner or restore its size")
+
+/// Grill na blat: bez węgla się nie włącza, z deskami grilluje kotlet na prawym ruszcie i zużywa węgiel
+/datum/unit_test/aquila_cooking_grill
+
+/datum/unit_test/aquila_cooking_grill/Run()
+	var/obj/machinery/cooking_grill/grill = allocate(/obj/machinery/cooking_grill, run_loc_floor_bottom_left)
+	var/obj/item/reagent_containers/cooking/grill_grate/grate_item = allocate(/obj/item/reagent_containers/cooking/grill_grate, run_loc_floor_bottom_left)
+	TEST_ASSERT(grate_item.process_item(null, allocate(/obj/item/food/raw_patty, run_loc_floor_bottom_left)) == COOK_SUCCESS, "Putting a raw patty on the grill grate")
+	var/datum/cooking_surface/grill_surface/grate = grill.grates[2]
+	grill.place_container(grate_item, grate)
+	TEST_ASSERT(grate.container == grate_item, "The grate is not on the right side of the grill")
+	grate.turn_on()
+	TEST_ASSERT(!grate.on, "The grill lit without any charcoal")
+
+	grill.stored_wood = 5
+	grate.turn_on()
+	TEST_ASSERT(grate.on, "The grill did not light with charcoal")
+	// Zimny grill rozgrzewa się 20 s, więc 10 s grillowania trwa dłużej
+	for(var/i in 1 to 40)
+		grill.process(1)
+		if(locate(/obj/item/food/patty/plain) in grate_item)
+			break
+	TEST_ASSERT(locate(/obj/item/food/patty/plain) in grate_item, "No grilled patty after 40 s on a warming grill (grate holds: [english_list(grate_item.contents)])")
+	TEST_ASSERT(grill.stored_wood < 5, "The grill did not use any charcoal")
+
 /// Mikser lodów (przepis z Paradise): patyczek, tofu, cukier i sok bananowy w misie zamarzają w lód na patyku i się nie przypalają
 /datum/unit_test/aquila_cooking_ice_cream_mixer
 

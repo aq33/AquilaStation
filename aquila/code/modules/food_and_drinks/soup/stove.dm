@@ -165,7 +165,11 @@
 
 /// Docelowa temperatura garnka z zupą przy ustawionym ogniu
 /datum/component/stove/proc/soup_target_temperature()
-	switch(burner.temperature)
+	return burner.soup_target_temperature()
+
+/// Temperatura, do której ogień grzeje garnek z zupą: niski trzyma ciepło, średni gotuje, wysoki gotuje szybciej, ale przypala
+/datum/cooking_surface/proc/soup_target_temperature()
+	switch(temperature)
 		if(COOK_TEMP_LOW)
 			return T0C + 75
 		if(COOK_TEMP_HIGH)

@@ -761,6 +761,7 @@
 #include "code\modules\cooking\machines\cooking_stovetop.dm"
 #include "code\modules\cooking\machines\kitchen_machines.dm"
 #include "code\modules\cooking\machines\ice_cream_mixer.dm"
+#include "code\modules\cooking\machines\cooking_grill.dm"
 #include "code\modules\cooking\food\paradise_reagents.dm"
 #include "code\modules\cooking\food\paradise_food.dm"
 #include "code\modules\cooking\recipes\recipes_basic.dm"

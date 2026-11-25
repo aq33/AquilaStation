@@ -58,7 +58,7 @@
 
 /datum/techweb_node/bio_process/New()
 	. = ..()
-	design_ids += list("cooking_stovetop", "ice_cream_mixer")
+	design_ids += list("cooking_stovetop", "ice_cream_mixer", "cooking_grill")
 
 /// Deski do krojenia (drewniane, więc nie z autolatu) i miski do mieszania w automacie z zastawą
 /obj/machinery/vending/dinnerware/Initialize(mapload)

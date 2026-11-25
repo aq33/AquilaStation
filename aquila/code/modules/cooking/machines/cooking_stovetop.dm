@@ -2,11 +2,11 @@
 
 /datum/cooking_surface/burner
 	cooker_id = COOKER_STOVE
-	allowed_containers = list(/obj/item/reagent_containers/cooking/pan, /obj/item/reagent_containers/cooking/pot)
+	allowed_containers = list(/obj/item/reagent_containers/cooking/pan, /obj/item/reagent_containers/cooking/pot, /obj/item/reagent_containers/glass/soup_pot)
 
 /obj/machinery/cooking_stovetop
 	name = "kuchenka elektryczna"
-	desc = "Płyta z czterema palnikami do patelni i rondli. Każdy palnik ma własny ogień i minutnik."
+	desc = "Płyta z czterema palnikami do patelni, rondli i garnków na zupę. Stawia się ją na blacie. Każdy palnik ma własny ogień i minutnik."
 	icon = 'aquila/icons/obj/food/cooking/machines.dmi'
 	icon_state = "stove"
 	density = FALSE
@@ -49,7 +49,7 @@
 	. += span_notice("Kuchenka jest [kitchen_heat.describe()].")
 	for(var/datum/cooking_surface/burner as anything in burners)
 		. += span_notice("[capitalize(burner.describe())].")
-	. += span_notice("Patelnię albo rondel stawiasz kliknięciem w wybrany palnik. <b>Alt+klik</b>: ustawienia palnika (włącz, ogień, minutnik).")
+	. += span_notice("Patelnię, rondel albo garnek na zupę stawiasz kliknięciem w wybrany palnik. <b>Alt+klik</b>: ustawienia palnika (włącz, ogień, minutnik).")
 
 /// Który palnik kliknięto (po pozycji kursora), albo pierwszy wolny
 /obj/machinery/cooking_stovetop/proc/burner_at(list/modifiers, free_only = FALSE)
@@ -79,14 +79,14 @@
 		place_container(used, free, user)
 		return TRUE
 	if(istype(used, /obj/item/reagent_containers/cooking))
-		to_chat(user, span_warning("[used] nie pasuje na kuchenkę. Na palniki stawia się patelnię albo rondel."))
+		to_chat(user, span_warning("[used] nie pasuje na kuchenkę. Na palniki stawia się patelnię, rondel albo garnek na zupę."))
 		return TRUE
 	// Składnik użyty na kuchence trafia do naczynia na klikniętym palniku
 	if(target?.container && !user.combat_mode && !(used.tool_behaviour in list(TOOL_SCREWDRIVER, TOOL_CROWBAR, TOOL_WRENCH)) && !istype(used, /obj/item/storage/part_replacer))
 		return target.container.attackby(used, user, params)
 	return ..()
 
-/obj/machinery/cooking_stovetop/proc/place_container(obj/item/reagent_containers/cooking/pan, datum/cooking_surface/burner/burner, mob/user)
+/obj/machinery/cooking_stovetop/proc/place_container(obj/item/pan, datum/cooking_surface/burner/burner, mob/user)
 	if(user && !user.transferItemToLoc(pan, src))
 		return
 	if(!user)
@@ -97,9 +97,14 @@
 	pan.pixel_y = burner_offsets[index][2]
 	pan.flags_1 |= IS_ONTOP_1
 	pan.vis_flags |= VIS_INHERIT_PLANE
-	pan.make_mini()
-	if(index == 2 || index == 4)
-		pan.transform = matrix(-1, 0, 0, 0, 1, 0)
+	var/obj/item/reagent_containers/cooking/cooking_pan = pan
+	if(istype(cooking_pan))
+		cooking_pan.make_mini()
+		if(index == 2 || index == 4)
+			pan.transform = matrix(-1, 0, 0, 0, 1, 0)
+	else
+		// Garnek na zupę jest duży, na palniku rysujemy go mniejszego
+		pan.transform = matrix() * 0.6
 	vis_contents += pan
 	if(user)
 		to_chat(user, span_notice("Stawiasz [pan] na: [burner.name]."))
@@ -111,14 +116,16 @@
 		if(burner.container != gone)
 			continue
 		burner.clear_container()
-		var/obj/item/reagent_containers/cooking/pan = gone
+		var/obj/item/pan = gone
 		vis_contents -= pan
 		pan.flags_1 &= ~IS_ONTOP_1
 		pan.vis_flags &= ~VIS_INHERIT_PLANE
 		pan.pixel_x = pan.base_pixel_x
 		pan.pixel_y = pan.base_pixel_y
 		pan.transform = null
-		pan.unmake_mini()
+		var/obj/item/reagent_containers/cooking/cooking_pan = pan
+		if(istype(cooking_pan))
+			cooking_pan.unmake_mini()
 		update_appearance()
 
 /obj/machinery/cooking_stovetop/attack_hand(mob/user, list/modifiers)
@@ -164,7 +171,12 @@
 		if(!burner.on)
 			continue
 		active++
-		burner.process_cooking(delta_time, factor)
+		if(istype(burner.container, /obj/item/reagent_containers/glass/soup_pot))
+			// Garnek z zupą: ogień ustala temperaturę zupy, jak na kuchence na zupy
+			burner.tick_timer(delta_time)
+			burner.container.reagents?.expose_temperature(burner.soup_target_temperature(), 0.033 * factor)
+		else
+			burner.process_cooking(delta_time, factor)
 	if(!active)
 		update_burner_processing()
 		return
