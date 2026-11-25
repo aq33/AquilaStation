@@ -12,6 +12,7 @@ type Data = {
   buttons: string[];
   large_buttons: BooleanLike;
   message: string;
+  no_default?: BooleanLike; // AQ EDIT - okno bez podświetlonego domyślnego przycisku (wybór języka)
   swapped_buttons: BooleanLike;
   timeout: number;
   title: string;
@@ -39,7 +40,7 @@ export function AlertModal(props) {
     return ctx.measureText(text).width;
   }
 
-  const [selected, setSelected] = useState(0);
+  const [selected, setSelected] = useState(data.no_default ? -1 : 0); // AQ EDIT - -1: nic nie jest zaznaczone
 
   const windowWidth = 345 + (buttons.length > 2 ? 55 : 0);
 
@@ -66,6 +67,7 @@ export function AlertModal(props) {
     switch (event.key) {
       case KEY.Space:
       case KEY.Enter:
+        if (selected < 0) return; // AQ EDIT - bez zaznaczenia Enter nic nie wybiera
         act('choose', { choice: buttons[selected] });
         return;
       case KEY.Left:
@@ -88,7 +90,12 @@ export function AlertModal(props) {
 
   /** Manages iterating through the buttons */
   function onKey(direction: DIRECTION) {
-    const newIndex = (selected + direction + buttons.length) % buttons.length;
+    const newIndex =
+      selected < 0 // AQ EDIT - pierwsza strzałka z braku zaznaczenia
+        ? direction === DIRECTION.Increment
+          ? 0
+          : buttons.length - 1
+        : (selected + direction + buttons.length) % buttons.length;
     setSelected(newIndex);
   }
 
