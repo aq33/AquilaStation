@@ -19,7 +19,7 @@
 		add_memory_in_range(src, 7, /datum/memory/pet_died, deuteragonist = src)
 	return ..()
 
-/mob/living/simple_animal/hostile/megafauna/death(gibbed)
+/mob/living/simple_animal/hostile/megafauna/death(gibbed, list/force_grant)
 	var/was_dead = stat == DEAD
 	. = ..()
 	if(was_dead || stat != DEAD || (flags_1 & ADMIN_SPAWNED_1))
