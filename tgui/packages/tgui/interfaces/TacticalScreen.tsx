@@ -62,24 +62,13 @@ const PulseButton = () => {
   );
 };
 
-// Kto steruje czym, gdy ta konsola tylko patrzy
-const lockNote = (data: Data, mode: Mode) => {
-  if (mode === 'sensors' && !data.can_sensors) {
-    return data.has_station
-      ? 'Sensorami steruje tylko stanowisko rozpoznania.'
-      : 'Sensorami steruje tylko DRADIS mostka.';
-  }
-  if (mode === 'fire' && !data.can_fire) {
-    return 'Strzela tylko strzelec przy konsoli taktycznej.';
-  }
-  return null;
-};
-
 export const TacticalScreen = (props) => {
   const { data } = useBackend<Data>();
+  // Rozpoznanie widzi tylko operator stanowiska rozpoznania, Ogień tylko strzelec przy konsoli taktycznej, reszta ma Podgląd
   const available = MODES.filter(
     ([mode]) =>
-      (mode !== 'sensors' || !!data.sensor) && (mode !== 'fire' || !!data.fire),
+      (mode !== 'sensors' || (!!data.sensor && data.can_sensors)) &&
+      (mode !== 'fire' || (!!data.fire && data.can_fire)),
   );
   const [chosen, setChosen] = useState<Mode | null>(null);
   const start = available.some(([mode]) => mode === data.mode)
@@ -97,7 +86,6 @@ export const TacticalScreen = (props) => {
     readonly: !data.can_fire,
     can_hail: data.can_pulse && data.can_fire,
   };
-  const note = lockNote(data, mode);
   let body;
   if (mode === 'sensors' && sensor) {
     body = (
@@ -187,11 +175,11 @@ export const TacticalScreen = (props) => {
             <span
               style={{
                 marginLeft: 'auto',
-                color: note ? COLOR.warn : COLOR.muted,
+                color: COLOR.muted,
                 fontSize: '12px',
               }}
             >
-              {note || data.console}
+              {data.console}
             </span>
           </Box>
           <Box style={{ flex: 1, minHeight: 0 }}>{body}</Box>
