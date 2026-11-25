@@ -2775,6 +2775,7 @@
 #include "code\modules\unit_tests\aquila_ship_turrets.dm"
 #include "code\modules\unit_tests\aquila_ship_modules.dm"
 #include "code\modules\unit_tests\aquila_ship_module_sim.dm"
+#include "code\modules\unit_tests\aquila_ship_module_ammo_kill.dm"
 #include "code\modules\unit_tests\aquila_swiss_cheese.dm"
 #include "code\modules\unit_tests\aquila_hull_spall.dm"
 #include "code\modules\unit_tests\aquila_wreck_interiors.dm"

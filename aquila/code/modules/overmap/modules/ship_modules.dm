@@ -242,6 +242,8 @@ GLOBAL_LIST_INIT(ship_module_names, list(
 	if(module.kind != "ammo")
 		return
 	ship.take_damage(ship.max_integrity * 0.05, BRUTE, "overmap_heavy", nsv_damagesound = TRUE)
+	if(QDELETED(src)) // wybuch dobił okręt, a jego Destroy usunął moduły
+		return
 	var/mid_x = (module.x0 + module.x1) / 2
 	var/mid_y = (module.y0 + module.y1) / 2
 	for(var/datum/ship_module/other as anything in modules)
@@ -252,6 +254,8 @@ GLOBAL_LIST_INIT(ship_module_names, list(
 
 /// Przelicza zdolności okrętu z sprawności modułów
 /datum/ship_modules/proc/apply_effects()
+	if(QDELETED(ship)) // okręt zniszczony w trakcie trafienia (wybuch magazynu amunicji)
+		return
 	power = 0.4 + 0.6 * kind_efficiency("reactor")
 	var/engines = kind_efficiency("engine") * power
 	ship.forward_maxthrust = base_values["forward"] * max(0.15, engines)
