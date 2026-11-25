@@ -1365,6 +1365,7 @@
 #include "code\modules\test_chamber\kits\pr_668_zejscie_na_planete.dm"
 #include "code\modules\test_chamber\kits\pr_665_rework_amunicji.dm"
 #include "code\modules\test_chamber\kits\pr_677_zgloszenia_2011.dm"
+#include "code\modules\test_chamber\kits\pr_698_okna_urzadzen.dm"
 #include "code\modules\test_chamber\kits\pr_nsvprzyw_statek.dm"
 #include "code\modules\test_chamber\kits\pr_nsvprzyw_misje.dm"
 #include "code\modules\test_chamber\kits\pr_nsvprzyw_eventy.dm"
@@ -2521,6 +2522,7 @@
 #include "code\modules\unit_tests\aquila_zgloszenia_1211_grafika.dm"
 #include "code\modules\unit_tests\aquila_audyt_interfejs.dm"
 #include "code\modules\unit_tests\aquila_poprawki_0711.dm"
+#include "code\modules\unit_tests\aquila_pixel_devices.dm"
 #include "code\modules\unit_tests\aquila_przyspieszenia.dm"
 #include "code\modules\unit_tests\aquila_knpc_tactics.dm"
 #include "code\modules\unit_tests\aquila_knpc_archetypes.dm"
@@ -3039,6 +3041,14 @@
 #include "code\modules\mob\living\basic\bots\new_bots_other.dm"
 #include "code\modules\mob\living\basic\bots\eldritch_event.dm"
 // BOTY: koniec
+
+// Okna w formie urządzeń (PixelUi): mikrofalówka, młynek, dozowniki baru, blok utylizacyjny, pulpit fabrykatora
+#include "code\modules\pixel_devices\_pixel_device.dm"
+#include "code\modules\pixel_devices\bar_dispenser.dm"
+#include "code\modules\pixel_devices\disposal.dm"
+#include "code\modules\pixel_devices\fabricator.dm"
+#include "code\modules\pixel_devices\grinder.dm"
+#include "code\modules\pixel_devices\microwave.dm"
 
 // Profiler byond-tracy: MUSI być ostatnim include'em całego builda (BYOND inicjuje zmienne statyczne od końca,
 // więc ta rusza pierwsza, przed Master i mapą). Opis: tools/tracy/README.md

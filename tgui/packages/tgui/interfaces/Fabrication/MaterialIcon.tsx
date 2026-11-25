@@ -3,7 +3,7 @@ import { classes } from 'tgui-core/react';
 
 import { SHEET_MATERIAL_AMOUNT } from './Types';
 
-const MATERIAL_ICONS: Record<string, [number, string][]> = {
+export const MATERIAL_ICONS: Record<string, [number, string][]> = {
   iron: [
     [0, 'sheet-metal'],
     [17, 'sheet-metal_2'],
