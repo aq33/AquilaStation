@@ -44,6 +44,7 @@
 					SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "quality_drink", /datum/mood_event/quality_verygood)
 				if (DRINK_FANTASTIC)
 					SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "quality_drink", /datum/mood_event/quality_fantastic)
+					M.add_mob_memory(/datum/memory/good_drink, drink = src) // AQ EDIT - wspomnienia z tg
 	return ..()
 
 /datum/reagent/consumable/nutriment

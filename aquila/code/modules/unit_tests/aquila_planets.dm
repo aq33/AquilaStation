@@ -277,6 +277,19 @@
 	TEST_ASSERT(QDELETED(patch), "The grass patch spawner stays after spreading")
 	TEST_ASSERT(istype(patch_start, /turf/open/floor/plating/asteroid/dirt) || !isopenturf(patch_start), "The grass patch didn't spread its turf")
 	TEST_ASSERT(center, "The surface has no center")
+
+	// Wczytana ruina główna zostaje w main_ruin: place_main_ruin go zerował, więc planet_surface_generation zawsze żądał
+	// kompletu lądowisk, a ruina przy górnej krawędzi potrafi zabrać miejsce na jedno
+	var/datum/map_template/ruin/smallest
+	var/list/templates = planet.planet_type.get_main_ruin_templates()
+	for(var/key in templates)
+		var/datum/map_template/ruin/ruin = templates[key]
+		if(istype(ruin) && planet_ruin_fits_surface(ruin, surface.size) && (!smallest || ruin.width * ruin.height < smallest.width * smallest.height))
+			smallest = ruin
+	TEST_ASSERT(smallest, "No lava main ruin fits the small surface")
+	surface.main_ruin = smallest
+	surface.place_main_ruin()
+	TEST_ASSERT_EQUAL(surface.main_ruin, smallest, "The loaded main ruin wasn't kept in main_ruin")
 	surface.unload()
 	qdel(planet, TRUE)
 

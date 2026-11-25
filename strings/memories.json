@@ -1,0 +1,93 @@
+{
+	"styles": ["Styl dzieła (%STORY_TYPE) jest dość przeciętny."],
+	"engraving_styles": [
+		"Rycina jest utrzymana w stylu kubistycznym.",
+		"Rycina jest utrzymana w stylu minimalistycznym.",
+		"Rycina jest utrzymana w stylu surrealistycznym."
+	],
+	"engraving_forewords": [
+		"W ścianie wyryto historię:",
+		"Rycina opowiada taką historię:",
+		"Na ścianie widać scenę:",
+		"Rycina przedstawia scenę:",
+		"To dzieło przedstawia scenę:"
+	],
+	"engraving_somethings": [
+		"Obok stoi %CREWMEMBER i beszta za to postać, którą jest %PROTAGONIST.",
+		"W tym czasie %CREWMEMBER robi obłędne salto w tył!",
+		"%CREWMEMBER stoi obok, wstrząśnięty całą sytuacją.",
+		"%CREWMEMBER przygląda się temu ze łzami w oczach.",
+		"%CREWMEMBER przygląda się temu i zaśmiewa do rozpuku.",
+		"%MEMORIZER unosi się na rycinie lekko nad ziemią.",
+		"%MEMORIZER leży pokonany na podłodze, a nad nim stoi %SOMETHING.",
+		"%PROTAGONIST siedzi przy okazji zamknięty w kapsule ratunkowej.",
+		"%PROTAGONIST krzywi się na widok, jaki przedstawia %SOMETHING.",
+		"Ukradkiem %PROTAGONIST podziwia obiekt w tle: %SOMETHING.",
+		"Nad głową, którą ma %PROTAGONIST, unosi się komiksowy dymek z myślami.",
+		"W tle stoi %SOMETHING.",
+		"W rogu ukryto klasyczną niespodziankę: %SOMETHING.",
+		"W tle wiwatuje tłum.",
+		"Siedzi tam złowieszczo mocno spikselowana postać: %SOMETHING.",
+		"W rogu płacze Statua Wolności.",
+		"Obok stoi %CREWMEMBER na skrzynce i wygłasza przemowę.",
+		"Obok widać, jak %MEMORIZER prowadzi uczoną rozmowę, a rozmówcą jest %SOMETHING.",
+		"Z jakiegoś powodu jest tam też %CREWMEMBER.",
+		"W tym czasie ochrona aresztuje kogoś, kim jest %CREWMEMBER, a w rękach trzyma %SOMETHING.",
+		"Pośrodku %MEMORIZER oddaje cześć bóstwu, którym jest %SOMETHING.",
+		"Rycina ma formę satyrycznego komiksu, a w lewym dolnym rogu %SOMETHING rzuca złośliwą uwagę.",
+		"W lewym dolnym rogu widnieje podpis autora: %MEMORIZER.",
+		"Za pierwszym planem powtarza się w kółko ten sam napis.",
+		"Górę ryciny zajmuje %SOMETHING.",
+		"Dookoła tańczy w kółeczku cały korowód, a każdy w nim to %SOMETHING.",
+		"W rogu siedzi maleńka figurka: %SOMETHING.",
+		"W rogu wydrapano też %SOMETHING, tak koślawo, jakby zrobił to trzylatek."
+	],
+	"changeling_absorb_forewords": [
+		"Odsłania się opowieść z przeszłości:",
+		"Głęboko w ich umyśle splata się wspomnienie:",
+		"Rozplątujesz opowieść:",
+		"Twoje mentalne kolce zaczynają rozplątywać opowieść:"
+	],
+	"changeling_absorb_somethings": [
+		"Zdzierasz z opowieści kolejne warstwy.",
+		"Twoje mentalne kolce zanurzają się głębiej we wspomnienie."
+	],
+	"tattoo_forewords": [
+		"Na skórze wytatuowano historię:",
+		"Tatuaż opowiada taką historię:",
+		"Tatuaż przedstawia scenę:",
+		"Historia z tego tatuażu:"
+	],
+	"tattoo_somethings": [
+		"Nad tatuażem góruje %CREWMEMBER.",
+		"Całość otacza ramka, na której powtarza się %SOMETHING.",
+		"Przez tatuaż przejeżdża samochód.",
+		"Wokół tatuażu wije się chiński smok.",
+		"Z tatuażu wpatruje się kobra.",
+		"W tatuażu budzi się do życia potwór Frankensteina.",
+		"W tle tatuażu widnieje wielki napis „POMOCY”.",
+		"W tle ktoś wciąga sobie kombinezon przez głowę.",
+		"Nad tatuażem rozciąga się tęcza.",
+		"Kosmiczny kraken trzyma cały tatuaż w mackach.",
+		"Na tatuażu tarantula walczy z postacią, którą jest %CREWMEMBER.",
+		"Przez tatuaż szybuje dwugłowy kosmiczny orzeł.",
+		"Tatuaż przygniata wydziarana kotwica.",
+		"Matko jedyna, czy to %SOMETHING?",
+		"Z boku tatuażu tańczy jakiś kosmiczny polityk.",
+		"Na tatuażu %SOMETHING trzyma tabliczkę „PRZEGRAŁEM ZAKŁAD”.",
+		"Na tatuażu płonie wielka czaszka.",
+		"Na tatuażu stoi talerzyk, a na nim %SOMETHING.",
+		"Tatuaż zdobią dziwne cytaty filozoficzne.",
+		"Tatuaż obramowuje wijący się kosmiczny smok.",
+		"Na tatuażu jest jakiś napis w języku kotołaków."
+	],
+	"tattoo_styles": [
+		"Tatuaż jest w stylu Mad Maxa.",
+		"Tatuaż jest stylizowany na cyberpunk.",
+		"Tatuaż wygląda kreskówkowo.",
+		"Tatuaż wygląda na dzieło amatora.",
+		"Tatuaż wygląda profesjonalnie.",
+		"Ten tatuaż ma aprobatę Nanotrasen.",
+		"Ten tatuaż ma aprobatę Syndykatu."
+	]
+}
