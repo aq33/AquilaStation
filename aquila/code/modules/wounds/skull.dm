@@ -1,8 +1,10 @@
-// AQUILA - skull wounds. A fracture or a compound fracture on the head is a cracked or a caved-in skull: the head wears
-// the cranial fissure displacement (aquila/icons/effects/cranial_fissure.dmi, the same map tgstation uses, size 3), like
-// the split skull. Like tgstation bones.dm on the head, the wound keeps giving brain traumas until the bone is fixed.
+// AQUILA - skull wounds. A fracture or a compound fracture on the head is a cracked or a caved-in skull: the head shows
+// the dent overlay (aquila/icons/mob/effects/denthead.dmi, front and back), like the split skull. Like tgstation bones.dm
+// on the head, the wound keeps giving brain traumas until the bone is fixed.
 
-#define AQ_SKULL_FILTER "cranial_fissure_displacement"
+/mob/living/carbon
+	/// The dent overlay on the head while a skull wound is on it
+	var/mutable_appearance/aq_skull_dent
 
 /// Is any skull wound on the head: a cracked or caved-in skull, or a split one
 /mob/living/carbon/proc/aq_has_skull_wound()
@@ -14,28 +16,37 @@
 			return TRUE
 	return FALSE
 
-/// The head looks split open while a skull wound is on it. The map is drawn for the front of the head, so it is shown
-/// only facing south: from the side or the back it would shear the profile, hair and headgear instead.
+/// The head shows the dent while a skull wound is on it. The sprite has only the front and the back of the head,
+/// so from the side nothing is drawn.
 /mob/living/carbon/proc/aq_update_skull_filter()
 	if(!aq_has_skull_wound())
 		UnregisterSignal(src, COMSIG_ATOM_DIR_CHANGE)
-		aq_show_skull_filter(FALSE)
+		aq_show_skull_dent(null)
 		return
 	RegisterSignal(src, COMSIG_ATOM_DIR_CHANGE, PROC_REF(aq_skull_dir_changed), override = TRUE)
-	aq_show_skull_filter(dir == SOUTH)
+	aq_show_skull_dent(dir)
 
 /mob/living/carbon/proc/aq_skull_dir_changed(datum/source, old_dir, new_dir)
 	SIGNAL_HANDLER
-	aq_show_skull_filter(new_dir == SOUTH)
+	aq_show_skull_dent(new_dir)
 
-/mob/living/carbon/proc/aq_show_skull_filter(show)
-	if(!show)
-		if(get_filter(AQ_SKULL_FILTER))
-			remove_filter(AQ_SKULL_FILTER)
+/// Draws the dent for the facing, just above the hair and under masks and headgear; null or a side removes it
+/mob/living/carbon/proc/aq_show_skull_dent(facing)
+	var/state
+	switch(facing)
+		if(SOUTH)
+			state = "denthead-mob-front"
+		if(NORTH)
+			state = "denthead-mob-back"
+	if(aq_skull_dent?.icon_state == state)
 		return
-	if(get_filter(AQ_SKULL_FILTER))
+	if(aq_skull_dent)
+		cut_overlay(aq_skull_dent)
+		aq_skull_dent = null
+	if(!state)
 		return
-	add_filter(AQ_SKULL_FILTER, 2, displacement_map_filter(icon('aquila/icons/effects/cranial_fissure.dmi', "displacement"), size = 3))
+	aq_skull_dent = mutable_appearance('aquila/icons/mob/effects/denthead.dmi', state, -(HAIR_LAYER - 0.5))
+	add_overlay(aq_skull_dent)
 
 /datum/wound/blunt
 	/// Head texts, used instead of the limb ones when the bone breaks on the head
