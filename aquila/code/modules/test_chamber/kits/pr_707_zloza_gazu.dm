@@ -1,6 +1,6 @@
-/datum/test_chamber_kit/pr_NNN
+/datum/test_chamber_kit/pr_707
 	name = "Maszynownia: złoża gazu i ekstraktor"
-	pr = "aq33/AquilaStation#NNN"
+	pr = "aq33/AquilaStation#707"
 	description = "Zestaw: dwa złoża gazu (wulkaniczne z plazmą i księżycowe z podtlenkiem azotu), na pierwszym gotowy ekstraktor gazu podłączony rurą do portu z pustym kanistrem, drugie wolne do budowy. Do tego płytka ekstraktora z częściami, kablem, plastalą i żelazem na ramę, pojemne ogniwo, RPD, georadarowy skaner górniczy, analizator i skrzynka z narzędziami. \
 	1) Skaner przyłożony do złoża → klasa, łączna liczba moli i skład w procentach. Skaner w trybie podziemia wskazuje złoża jak żyły rudy. \
 	2) Gotowy ekstraktor: włączenie ręką → syfon się zapala, kanister na porcie się napełnia (ok. 50 mol/s, analizator na kanistrze pokazuje plazmę, CO2 i czasem ślad trytu), a co 45 s wokół złoża otwierają się wyrwy z fauną planety wulkanicznej (trzy fale, potem przerwa). Oględziny ekstraktora pokazują stan, wydajność, gaz w złożu i ogniwo. \
@@ -24,7 +24,7 @@
 		/obj/item/storage/toolbox/mechanical = 1,
 	)
 
-/datum/test_chamber_kit/pr_NNN/setup(list/spawned, list/turfs, turf/center, mob/user)
+/datum/test_chamber_kit/pr_707/setup(list/spawned, list/turfs, turf/center, mob/user)
 	. = ..()
 	// Złoże z ekstraktorem, a pole na południe od niego na port z kanistrem
 	var/turf/extractor_turf
