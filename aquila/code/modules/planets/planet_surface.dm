@@ -417,7 +417,9 @@
 	var/high_x = bl.x + size - PLANET_EDGE_WIDTH - 6 - ruin.width
 	var/top_y = bl.y + size - PLANET_EDGE_WIDTH - 6 - ruin.height
 	var/turf/corner = locate(rand(low_x, max(low_x, high_x)), top_y, bl.z)
-	load_ruin(ruin, corner, FALSE)
+	// Zostaje zapisana tylko wczytana ruina (test lądowisk dopuszcza wtedy o jedno mniej, bo ruina zabiera im miejsce)
+	if(load_ruin(ruin, corner, FALSE))
+		main_ruin = ruin
 
 /// Wczytuje ruinę i oznacza jej pola (bez nowych roślin, zwierząt i lądowisk). Zwraca, czy szablon się wczytał.
 /datum/planet_surface/proc/load_ruin(datum/map_template/ruin/ruin, turf/where, centered)

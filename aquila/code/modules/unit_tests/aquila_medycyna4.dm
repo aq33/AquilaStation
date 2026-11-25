@@ -70,7 +70,7 @@
 	TEST_ASSERT(!patient.is_bleeding(BODY_ZONE_R_ARM), "A bandage on the stump did not stop it")
 	qdel(arm)
 
-/// AQUILA - a cracked or caved-in skull: head names, the head displacement from cranial_fissure.dmi and brain traumas
+/// AQUILA - a cracked or caved-in skull: head names, the dent overlay from denthead.dmi and brain traumas
 /datum/unit_test/aquila_skull_wounds
 
 /datum/unit_test/aquila_skull_wounds/Run()
@@ -81,11 +81,13 @@
 	var/datum/wound/blunt/fracture/crack = new()
 	crack.apply_wound(head, silent = TRUE)
 	TEST_ASSERT(crack.name == "Pęknięta czaszka", "A fracture on the head is called [crack.name]")
-	TEST_ASSERT(patient.get_filter("cranial_fissure_displacement"), "A cracked skull does not bend the head")
+	TEST_ASSERT(patient.aq_skull_dent?.icon_state == "denthead-mob-front", "A cracked skull shows no dent from the front")
+	patient.setDir(NORTH)
+	TEST_ASSERT(patient.aq_skull_dent?.icon_state == "denthead-mob-back", "The dent did not turn to the back sprite")
 	patient.setDir(EAST)
-	TEST_ASSERT(!patient.get_filter("cranial_fissure_displacement"), "The front-only crack shows from the side")
+	TEST_ASSERT(!patient.aq_skull_dent, "The dent shows from the side, which the sprite does not have")
 	patient.setDir(SOUTH)
-	TEST_ASSERT(patient.get_filter("cranial_fissure_displacement"), "The crack did not come back facing south")
+	TEST_ASSERT(patient.aq_skull_dent, "The dent did not come back facing south")
 	TEST_ASSERT(crack.skull_trauma, "A cracked skull gave no brain trauma")
 	TEST_ASSERT(istype(crack.skull_trauma, /datum/brain_trauma/mild), "A cracked skull gave [crack.skull_trauma?.type] instead of a mild trauma")
 	TEST_ASSERT(crack.skull_trauma in brain.traumas, "The skull trauma is not in the brain")
@@ -98,11 +100,11 @@
 	crack.wound_effects(1)
 	TEST_ASSERT(crack.skull_trauma, "The skull trauma did not come back")
 
-	// Healed: no trauma, no displacement
+	// Healed: no trauma, no dent
 	var/datum/brain_trauma/trauma = crack.skull_trauma
 	qdel(crack)
 	TEST_ASSERT(QDELETED(trauma), "The skull trauma stayed after the bone healed")
-	TEST_ASSERT(!patient.get_filter("cranial_fissure_displacement"), "The head is still bent after the skull healed")
+	TEST_ASSERT(!patient.aq_skull_dent, "The dent stayed after the skull healed")
 
 	// A caved-in skull gives severe traumas, a fracture elsewhere keeps the limb name
 	var/datum/wound/blunt/compound/dent = new()
@@ -114,7 +116,7 @@
 	arm_fracture.apply_wound(patient.get_bodypart(BODY_ZONE_L_ARM), silent = TRUE)
 	TEST_ASSERT(arm_fracture.name == "Pęknięcie kości", "A fracture on the arm is called [arm_fracture.name]")
 	TEST_ASSERT(!arm_fracture.skull_trauma, "A fracture on the arm gave a brain trauma")
-	TEST_ASSERT(!patient.get_filter("cranial_fissure_displacement"), "A fracture on the arm bends the head")
+	TEST_ASSERT(!patient.aq_skull_dent, "A fracture on the arm dents the head")
 	qdel(arm_fracture)
 	patient.cure_all_traumas(TRAUMA_RESILIENCE_ABSOLUTE)
 

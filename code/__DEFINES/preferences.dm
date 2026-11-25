@@ -217,6 +217,7 @@
 #define PREFERENCE_TAG_RECOIL_CAMERA	"42" // AQ EDIT - siła kopnięcia kamery od odrzutu
 #define PREFERENCE_TAG_HIDE_BODILY_FUNCTIONS	"37" // AQ EDIT - cenzura wypróżniania i moczu
 #define PREFERENCE_TAG_SQUAD_TTS	"38" // AQ EDIT - głos rozkazów drużyny
+#define PREFERENCE_TAG_SOUND_VOLUMES	"43" // AQ EDIT - mikser dźwięku: głośność kategorii (JSON)
 
 // True value of max save slots (3 is default, 8 is byond member, +1 to either if you have the extra slot loadout entry). Potential max is 9
 #define TRUE_MAX_SAVE_SLOTS 9

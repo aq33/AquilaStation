@@ -24,7 +24,7 @@
 		frequency = user.get_voice_frequency(get_sound_semitones(user))
 	if(!frequency && vary)
 		frequency = get_rand_frequency()
-	playsound(user, sound_file, sound_volume, !!frequency, frequency = frequency)
+	playsound(user, sound_file, sound_volume, !!frequency, frequency = frequency, volume_pref = VOLUME_PREF_EMOTES)
 
 /// Extra pitch of this emote's sound for this user, in semitones. Lets one recording serve both voices.
 /datum/emote/proc/get_sound_semitones(mob/user)

@@ -35,6 +35,58 @@
 /mob/living/carbon/human/species/squid
 	race = /datum/species/squid
 
+/datum/species/squid/get_species_description()
+	return "Kałamarnicoludzie to wodne humanoidy z mackami zamiast stóp. Pewnie trzymają się podłogi, \
+		zmieniają barwę skóry, kiedy chcą, a każde zdanie przeplatają przeciągłym „hrmm”."
+
+/datum/species/squid/get_species_lore()
+	return list(
+		"Kałamarnicoludzie przybyli z oceanicznych światów, gdzie handel był ważniejszy od wojny. \
+			Do dziś targują się o wszystko, od racji w stołówce po miejsce w kolejce do medyka.",
+		"Na sucho czują się niepewnie: ruszają się wolniej niż ludzie, a każdy pożar jest dla nich śmiertelnym zagrożeniem. \
+			Za to na mokrej podłodze i w basenie nikt ich nie dogoni.",
+	)
+
+/datum/species/squid/create_pref_unique_perks()
+	return list(
+		list(
+			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
+			SPECIES_PERK_ICON = "shoe-prints",
+			SPECIES_PERK_NAME = "Przyssawki",
+			SPECIES_PERK_DESC = "Kałamarnicoludzie nigdy się nie poślizgną, nawet na mydle i mokrej podłodze.",
+		),
+		list(
+			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
+			SPECIES_PERK_ICON = "swimmer",
+			SPECIES_PERK_NAME = "Pływacy",
+			SPECIES_PERK_DESC = "W wodzie kałamarnicoludzie są szybsi od innych.",
+		),
+		list(
+			SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
+			SPECIES_PERK_ICON = "palette",
+			SPECIES_PERK_NAME = "Zmiana koloru",
+			SPECIES_PERK_DESC = "Przyciskiem akcji zmieniasz barwę skóry (byle nie za ciemną).",
+		),
+		list(
+			SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
+			SPECIES_PERK_ICON = "language",
+			SPECIES_PERK_NAME = "Hrmm",
+			SPECIES_PERK_DESC = "Kałamarnicoludzie mówią własnym, gardłowym językiem R'lyehiańskim, a we wspólnym wtrącają „hrmm” i „hurr”. Nie jedzą smażonych potraw.",
+		),
+		list(
+			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
+			SPECIES_PERK_ICON = "walking",
+			SPECIES_PERK_NAME = "Powolni",
+			SPECIES_PERK_DESC = "Na lądzie kałamarnicoludzie są wolniejsi od ludzi, a macki nie mieszczą się w żadnych butach.",
+		),
+		list(
+			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
+			SPECIES_PERK_ICON = "fire",
+			SPECIES_PERK_NAME = "Wrażliwa skóra",
+			SPECIES_PERK_DESC = "Oparzenia zadają im o połowę większe obrażenia, źle znoszą też gorąco i zimno. Kończyny łatwo im odpadają.",
+		),
+	)
+
 /datum/species/squid/random_name(gender, unique, lastname, attempts)
 	if(unique)
 		return random_unique_squid_name(gender, lastname, attempts || 10)

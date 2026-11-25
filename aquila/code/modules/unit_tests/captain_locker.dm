@@ -22,7 +22,6 @@
 		/obj/item/storage/backpack/captain = 1,
 		/obj/item/storage/backpack/satchel/cap = 1,
 		/obj/item/storage/backpack/duffelbag/captain = 1,
-		/obj/item/clothing/suit/armor/vest/capcarapace/jacket = 1,
 		/obj/item/clothing/suit/armor/vest/capcarapace = 1,
 		/obj/item/clothing/suit/armor/vest/capcarapace/alt = 1,
 		/obj/item/clothing/suit/hooded/wintercoat/captain = 1,
@@ -46,6 +45,8 @@
 		/obj/item/door_remote/captain = 1,
 		/obj/item/storage/belt/sabre = 1,
 		/obj/item/gun/ballistic/automatic/pistol/glock/command = 1,
+		// Resprite dowództwa: buty wojskowe obok pudełka kompresyjnego
+		/obj/item/clothing/shoes/jackboots = 1,
 		// Kapitan Bomba, exactly once each
 		/obj/item/clothing/head/helmet/space/kapitanbomba = 1,
 		/obj/item/clothing/suit/kapitanbomba = 1,

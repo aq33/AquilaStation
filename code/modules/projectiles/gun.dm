@@ -193,9 +193,9 @@
 
 /obj/item/gun/proc/fire_sounds()
 	if(suppressed)
-		playsound(src, suppressed_sound, suppressed_volume, vary_fire_sound)
+		playsound(src, suppressed_sound, suppressed_volume, vary_fire_sound, volume_pref = VOLUME_PREF_GUNS) // AQ EDIT - mikser dźwięku
 	else
-		playsound(src, fire_sound, fire_sound_volume, vary_fire_sound)
+		playsound(src, fire_sound, fire_sound_volume, vary_fire_sound, volume_pref = VOLUME_PREF_GUNS) // AQ EDIT - mikser dźwięku
 
 /obj/item/gun/proc/shoot_live_shot(mob/living/user, pointblank = 0, atom/pbtarget = null, message = 1)
 	// AQ EDIT START - losowe trzęsienie od `recoil` zastępuje kierunkowe kopnięcie kamery (aquila/code/modules/gunplay/recoil.dm)

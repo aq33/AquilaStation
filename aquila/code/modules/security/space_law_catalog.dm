@@ -30,3 +30,18 @@ GLOBAL_LIST(space_law_catalog)
 		catalog += list(list("name" = category, "crimes" = crime_list[category]))
 	GLOB.space_law_catalog = catalog
 	return catalog
+
+/// Kary dostępne na okręcie dla podpowiedzi w programie PDA: terminal GenPop, konsola gułagu i netpod (cyfrowe wygnanie).
+/// z_levels: poziomy, na których szukać (domyślnie poziomy okrętu; test podaje poziom swojego pokoju)
+/proc/get_space_law_facilities(list/z_levels = SSmapping.levels_by_trait(ZTRAIT_STATION))
+	var/list/facilities = list("genpop" = FALSE, "gulag" = FALSE, "exile" = FALSE)
+	for(var/obj/machinery/machine as anything in GLOB.machines)
+		if(!(machine.z in z_levels))
+			continue
+		if(istype(machine, /obj/machinery/genpop_interface))
+			facilities["genpop"] = TRUE
+		else if(istype(machine, /obj/machinery/computer/prisoner/gulag_teleporter_computer))
+			facilities["gulag"] = TRUE
+		else if(istype(machine, /obj/machinery/netpod))
+			facilities["exile"] = TRUE
+	return facilities

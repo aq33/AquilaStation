@@ -1,4 +1,4 @@
-// AQUILA - program PDA „Prawo kosmiczne”: kodeks z wyszukiwarką i kalkulatorem wyroku
+// AQUILA - program PDA „Prawo kosmiczne”: kodeks z wyszukiwarką, kalkulatorem wyroku i podpowiedzią kary
 import { useState } from 'react';
 import {
   Box,
@@ -12,7 +12,13 @@ import {
 
 import { useBackend } from '../backend';
 import { NtosWindow } from '../layouts';
-import { calculateSentence, formatSentence } from './common/Sentence';
+import {
+  calculateSentence,
+  type Facilities,
+  formatSentence,
+  type Punishment,
+  suggestPunishment,
+} from './common/Sentence';
 
 type Crime = {
   name: string;
@@ -29,6 +35,8 @@ type Category = {
 
 type Data = {
   categories: Category[];
+  facilities: Facilities;
+  max_fine: number;
 };
 
 export const NtosSpaceLaw = (props) => {
@@ -45,6 +53,18 @@ export const NtosSpaceLaw = (props) => {
     allCrimes.find((crime) => crime.name === name)?.sentence || 0;
   const baseTime = charges.reduce((sum, name) => sum + sentenceOf(name), 0);
   const total = calculateSentence(baseTime, { attempted, elevated, resisted });
+  const punishments = suggestPunishment({
+    charges: charges.map(sentenceOf),
+    total,
+    elevated,
+    resisted,
+    facilities: data.facilities || {
+      genpop: false,
+      gulag: false,
+      exile: false,
+    },
+    maxFine: data.max_fine || 0,
+  });
 
   const toggleCharge = (name: string) =>
     setCharges(
@@ -118,6 +138,12 @@ export const NtosSpaceLaw = (props) => {
               <Box mt={1} fontSize={1.2}>
                 Wyrok: <b>{formatSentence(total)}</b>
               </Box>
+              <Box mt={1} bold>
+                Sugerowana kara
+              </Box>
+              {punishments.map((punishment) => (
+                <PunishmentRow key={punishment.kind} punishment={punishment} />
+              ))}
             </>
           )}
         </Section>
@@ -186,4 +212,69 @@ const CrimeRow = (props: CrimeRowProps) => {
       </Stack.Item>
     </Stack>
   );
+};
+
+type PunishmentRowProps = {
+  punishment: Punishment;
+};
+
+/** Jedna forma kary z podpowiedzi (suggestPunishment w common/Sentence.ts) */
+const PunishmentRow = (props: PunishmentRowProps) => {
+  const { punishment } = props;
+  switch (punishment.kind) {
+    case 'fine':
+      return (
+        <Box>
+          <Icon name="receipt" mr={1} />
+          Mandat: <b>{punishment.amount} kr</b> (albo areszt na{' '}
+          {formatSentence(punishment.time)})
+        </Box>
+      );
+    case 'brig':
+      return (
+        <Box>
+          <Icon name="clock" mr={1} />
+          Areszt w celi z zegarem: <b>{formatSentence(punishment.time)}</b>
+        </Box>
+      );
+    case 'genpop':
+      return (
+        <Box>
+          <Icon name="id-card" mr={1} />
+          GenPop: identyfikator więźnia na{' '}
+          <b>{formatSentence(punishment.time)}</b>
+        </Box>
+      );
+    case 'gulag':
+      return (
+        <Box>
+          <Icon name="hammer" mr={1} />
+          Gułag: <b>{punishment.points} pkt</b> do wykopania
+        </Box>
+      );
+    case 'permanent_cell':
+      return (
+        <Box>
+          <Icon name="lock" mr={1} />
+          Stała cela. Dożywocie zatwierdza Komendant albo Kapitan.
+        </Box>
+      );
+    case 'gulag_permanent':
+      return (
+        <Box>
+          <Icon name="hammer" mr={1} />
+          Gułag bez zwolnienia (w konsoli gułagu „Dożywocie”)
+        </Box>
+      );
+    case 'exile':
+      return (
+        <Box>
+          <Icon name="vr-cardboard" mr={1} />
+          Cyfrowe wygnanie: implant wygnania i netpod, więzień na zawsze zostaje
+          w Pętli
+        </Box>
+      );
+    default:
+      return null;
+  }
 };
