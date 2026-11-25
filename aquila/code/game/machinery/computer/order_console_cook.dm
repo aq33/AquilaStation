@@ -56,8 +56,20 @@
 	var/datum/bank_account/budget = get_budget()
 	return budget?.adjust_money(-final_cost)
 
+/// Czy zwykła dostawa osiąga minimum. Liczy się wartość koszyka przed odliczeniem bonu, a zamówienie w całości z bonu przechodzi zawsze.
+/obj/machinery/computer/order_console/cook/proc/order_minimum_met()
+	if(!length(grocery_list))
+		return FALSE
+	if(get_final_cost(FALSE) <= 0)
+		return TRUE
+	var/cost = 0
+	for(var/datum/orderable_item/item as anything in grocery_list)
+		cost += grocery_list[item] * item.cost_per_order
+	return round(cost * cargo_cost_multiplier) >= minimum_order_value
+
 /obj/machinery/computer/order_console/cook/ui_data(mob/user)
 	var/list/data = ..()
+	data["cargo_minimum_met"] = order_minimum_met()
 	data["points"] = retrieve_points()
 	data["points_label"] = "Budżet usług:"
 	return data
@@ -72,7 +84,7 @@
 		say("Brak dostępu! Zamawiać może tylko kuchnia albo bar.")
 		return TRUE
 	// okno blokuje zwykłą dostawę poniżej minimum, tu pilnujemy tego samego po stronie serwera
-	if(action == "purchase" && get_final_cost(FALSE) < minimum_order_value)
+	if(action == "purchase" && !order_minimum_met())
 		return TRUE
 	return ..()
 

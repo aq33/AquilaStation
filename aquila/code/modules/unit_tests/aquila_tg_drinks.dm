@@ -31,4 +31,13 @@
 	glass.reagents.clear_reagents()
 	TEST_ASSERT(glass.icon == initial(glass.icon), "The empty glass kept the tg drink icon")
 
+	// Ekstrakt miętowy z dyspensera baru nie rozrywa otyłej postaci (w tg gib)
+	var/mob/living/carbon/human/drinker = allocate(/mob/living/carbon/human, run_loc_floor_bottom_left)
+	ADD_TRAIT(drinker, TRAIT_FAT, "test")
+	drinker.reagents.add_reagent(/datum/reagent/consumable/mintextract, 30)
+	var/datum/reagent/mint = drinker.reagents.has_reagent(/datum/reagent/consumable/mintextract)
+	for(var/i in 1 to 30)
+		mint.on_mob_life(drinker)
+	TEST_ASSERT(!QDELETED(drinker) && drinker.stat != DEAD, "A fat character was gibbed by mint extract")
+
 #undef TEST_ASSERT

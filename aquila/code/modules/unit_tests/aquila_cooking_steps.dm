@@ -237,6 +237,43 @@
 	pan.forceMove(run_loc_floor_bottom_left)
 	TEST_ASSERT(!pan_field.container && pan.transform.a == 1, "Taking the pan off the griddle did not free the field")
 
+/// Płyta z czterema naczyniami: włącznik w menu, brak prądu ją wyłącza, a rozebrana włączona płyta schodzi z przetwarzania i oddaje naczynia w zwykłym wyglądzie
+/datum/unit_test/aquila_griddle_teardown
+
+/datum/unit_test/aquila_griddle_teardown/Run()
+	var/mob/living/carbon/human/cook = allocate(/mob/living/carbon/human, run_loc_floor_bottom_left)
+	var/obj/machinery/griddle/griddle = allocate(/obj/machinery/griddle, run_loc_floor_bottom_left)
+	var/list/pans = list()
+	for(var/datum/cooking_surface/burner/field as anything in griddle.rack.burners)
+		var/obj/item/reagent_containers/cooking/pan/pan = allocate(/obj/item/reagent_containers/cooking/pan, run_loc_floor_bottom_left)
+		griddle.rack.place_container(pan, field)
+		pans += pan
+	TEST_ASSERT(griddle.kitchen_menu_extras()["Płyta: włącz/wyłącz"], "The griddle settings menu has no switch for the griddle itself")
+	griddle.kitchen_menu_extra_chosen("Płyta: włącz/wyłącz", cook)
+	TEST_ASSERT(griddle.on, "The griddle with four pans could not be turned on from the menu")
+
+	// Bez prądu płyta i pola się wyłączają, a płyta schodzi z przetwarzania
+	var/datum/cooking_surface/burner/first_field = griddle.rack.burners[1]
+	first_field.turn_on()
+	griddle.machine_stat |= NOPOWER
+	griddle.process(1)
+	griddle.machine_stat &= ~NOPOWER
+	TEST_ASSERT(!griddle.on && !first_field.on, "The griddle stayed on without power")
+	TEST_ASSERT(!(griddle in SSmachines.processing), "The griddle kept processing without power")
+
+	griddle.kitchen_menu_extra_chosen("Płyta: włącz/wyłącz", cook)
+	first_field.turn_on()
+	griddle.update_griddle_processing()
+	TEST_ASSERT(griddle in SSmachines.processing, "The griddle that was turned on is not processing")
+	var/obj/item/reagent_containers/cooking/pan/first_pan = pans[1]
+	qdel(griddle)
+	TEST_ASSERT(!(griddle in SSmachines.processing), "A griddle destroyed while on stayed in SSmachines processing")
+	for(var/obj/item/reagent_containers/cooking/pan/pan as anything in pans)
+		TEST_ASSERT(pan.loc == run_loc_floor_bottom_left, "A pan did not drop out of the destroyed griddle")
+		TEST_ASSERT(!pan.mini && pan.transform.a == 1 && !pan.pixel_x && !pan.pixel_y, "A pan from the destroyed griddle kept its small on-griddle look (mini [pan.mini], transform a [pan.transform.a], pixel [pan.pixel_x], [pan.pixel_y])")
+		TEST_ASSERT(!(pan.flags_1 & IS_ONTOP_1), "A pan from the destroyed griddle kept IS_ONTOP_1")
+	TEST_ASSERT(first_pan.loc == run_loc_floor_bottom_left, "The first pan is gone")
+
 /// Mikser lodów (przepis z Paradise): patyczek, tofu, cukier i sok bananowy w misie zamarzają w lód na patyku i się nie przypalają
 /datum/unit_test/aquila_cooking_ice_cream_mixer
 

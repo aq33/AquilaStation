@@ -49,6 +49,17 @@
 
 	var/datum/tgui/ui = new(cook, console, "ProduceConsole")
 	usr = cook
+	// Bon nie blokuje małych zamówień: minimum liczy się od wartości bez bonu, a zamówienie w całości z bonu przechodzi
+	console.ui_act("cart_set", list("target" = REF(potato), "amt" = 10), ui)
+	TEST_ASSERT(console.order_minimum_met(), "An order fully covered by the voucher was blocked by the minimum")
+	console.ui_act("cart_set", list("target" = REF(potato), "amt" = 20), ui)
+	console.ui_act("cart_set", list("target" = REF(tomato), "amt" = 15), ui)
+	// 25 płatnych × 20 × 0,65 = 325 kr, ale wartość bez bonu 35 × 20 × 0,65 = 455 kr
+	TEST_ASSERT(console.get_final_cost(FALSE) < console.minimum_order_value, "Test setup: the paid part should be below the minimum")
+	TEST_ASSERT(console.order_minimum_met(), "The voucher discount pushed an order worth [console.minimum_order_value] kr below the minimum")
+	console.ui_act("cart_set", list("target" = REF(tomato), "amt" = 0), ui)
+	console.ui_act("cart_set", list("target" = REF(potato), "amt" = 15), ui)
+	TEST_ASSERT(!console.order_minimum_met(), "An order below the minimum passed")
 	for(var/datum/orderable_item/item as anything in list(potato, tomato, carrot))
 		console.ui_act("cart_set", list("target" = REF(item), "amt" = 20), ui)
 	// 60 sztuk po 20 kr, 10 za darmo: 50 × 20 × 0,65 = 650 kr

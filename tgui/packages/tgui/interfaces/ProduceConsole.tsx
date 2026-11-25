@@ -52,6 +52,8 @@ type Data = {
   purchase_tooltip: string;
   total_cost: number;
   cargo_total: number;
+  /** Czy zwykła dostawa osiąga minimum (konsola kuchni liczy je bez bonu) */
+  cargo_minimum_met?: boolean;
   express_total: number;
   free_uses: number | null;
 };
@@ -232,12 +234,17 @@ function CheckoutTab(props) {
     cargo_value,
     order_datums,
     cargo_total,
+    cargo_minimum_met,
     express_total,
     item_amts,
     free_uses,
   } = data;
 
   const total_cargo_cost = cargo_total;
+  const below_minimum =
+    cargo_minimum_met === undefined
+      ? total_cargo_cost < cargo_value
+      : !cargo_minimum_met;
 
   const total_item_count = item_amts.reduce(
     (total, item) => total + item.amt,
@@ -357,9 +364,9 @@ function CheckoutTab(props) {
                 <Button
                   fluid
                   icon="plane-departure"
-                  disabled={total_cargo_cost < cargo_value}
+                  disabled={below_minimum}
                   tooltip={
-                    total_cargo_cost < cargo_value
+                    below_minimum
                       ? `Suma musi wynosić co najmniej ${cargo_value}`
                       : purchase_tooltip
                   }

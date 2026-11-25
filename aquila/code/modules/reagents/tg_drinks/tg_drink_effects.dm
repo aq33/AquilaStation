@@ -99,10 +99,12 @@
 
 /datum/reagent/consumable/mintextract/on_mob_life(mob/living/carbon/M)
 	. = ..()
-	if(HAS_TRAIT(M, TRAIT_FAT))
-		M.investigate_log("has been gibbed by consuming [src] while fat.", INVESTIGATE_DEATHS)
-		M.gib()
-		return FALSE
+	// AQ: w tg otyła postać od razu wybucha; u nas tylko mdłości i wymioty, bo ekstrakt jest w dyspenserze baru
+	if(HAS_TRAIT(M, TRAIT_FAT) && prob(10))
+		to_chat(M, span_warning("Ten miętowy listek to było o jeden kęs za dużo..."))
+		M.adjust_disgust(10)
+		if(prob(50))
+			M.vomit(20)
 
 /datum/reagent/consumable/sol_dry/on_mob_life(mob/living/carbon/M)
 	M.adjust_disgust(-2.5 * AQ_TG_DRINK_RATIO_SPT)

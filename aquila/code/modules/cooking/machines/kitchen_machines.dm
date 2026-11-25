@@ -163,6 +163,14 @@
 	refresh_kitchen_heat()
 
 /obj/machinery/griddle/Destroy()
+	// Wyłączona płyta pozwala machinery/Destroy zdjąć ją z przetwarzania (end_processing), a naczynia schodzą przez on_exited
+	on = FALSE
+	if(rack)
+		rack.turn_all_off()
+		var/atom/drop = drop_location()
+		if(drop)
+			for(var/datum/cooking_surface/burner/burner as anything in rack.burners)
+				burner.container?.forceMove(drop)
 	QDEL_NULL(rack)
 	QDEL_NULL(kitchen_heat)
 	return ..()
@@ -191,7 +199,7 @@
 
 /// Płyta przestaje pracować dopiero, gdy wyłączona jest i płyta, i wszystkie palniki
 /obj/machinery/griddle/end_processing()
-	if(is_kitchen_active())
+	if(is_kitchen_active() && !QDELING(src))
 		update_kitchen_heating()
 		return
 	. = ..()
@@ -230,8 +238,25 @@
 	update_griddle_processing()
 	return TRUE
 
+/// W menu Alt+klik jest też włącznik samej płyty: przy czterech naczyniach kliknięcie zawsze trafia w któreś z nich
+/obj/machinery/griddle/kitchen_menu_extras()
+	return list("Płyta: włącz/wyłącz" = image(icon = 'aquila/icons/obj/food/cooking/radial.dmi', icon_state = "radial_onoff"))
+
+/obj/machinery/griddle/kitchen_menu_extra_chosen(choice, mob/user)
+	if(choice != "Płyta: włącz/wyłącz")
+		return
+	if(!on && (machine_stat & (NOPOWER|BROKEN)))
+		balloon_alert(user, "brak zasilania")
+		return
+	on = !on
+	update_grill_audio()
+	update_griddle_processing()
+	balloon_alert(user, on ? "płyta włączona" : "płyta wyłączona")
+
 /obj/machinery/griddle/process(delta_time)
 	if(machine_stat & (NOPOWER|BROKEN))
+		on = FALSE
+		update_grill_audio()
 		rack.turn_all_off()
 		update_griddle_processing()
 		return
@@ -252,7 +277,7 @@
 	. = ..()
 	. += span_notice("Płyta jest [kitchen_heat.describe(TRUE)].")
 	. += rack.examine_lines()
-	. += span_notice("Jedzenie kładzie się na płycie, a włącza ją kliknięciem. Patelnię, rondel albo garnek na zupę stawiasz kliknięciem w jedno z czterech pól. <b>Alt+klik</b>: włączanie i minutnik pola oraz ogień całej płyty.")
+	. += span_notice("Jedzenie kładzie się na płycie, a włącza ją kliknięciem. Patelnię, rondel albo garnek na zupę stawiasz kliknięciem w jedno z czterech pól. <b>Alt+klik</b>: włączanie i minutnik pola, ogień i włącznik całej płyty.")
 
 // ---------- Grill na węgiel: ruszt ----------
 
