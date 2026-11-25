@@ -157,6 +157,8 @@
 	return data
 
 /// Samotny kafel kałuży (bez sąsiednich kałuż) dostaje nieregularny kształt zamiast zaokrąglonego kwadratu
+/// Kształt puddle-1..4 to splat0 z Space Station 14 (Fluids/puddle.rsi, Alekshhh i potato1234x, CC-BY-SA 3.0), jak na Polonium,
+/// rozjaśniony pod nasze barwienie płynu i obrócony/odbity w czterech wariantach
 /obj/effect/abstract/liquid_turf/bitmask_smoothed()
 	. = ..()
 	if(!my_turf)

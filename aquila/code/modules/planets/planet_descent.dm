@@ -79,6 +79,8 @@ GLOBAL_LIST_EMPTY(planet_descents)
 	var/datum/planet_ground_view/ground_view
 	/// Prom zadokował: przy usuwaniu pokaz kończy się od razu, a nie blednie jak przy przerwanym zejściu
 	var/landed = FALSE
+	/// Transmisja lądowania do Spess.tv (kamera na lądowisku, planet_landing_broadcast.dm)
+	var/datum/planet_landing_broadcast/broadcast
 
 /datum/planet_descent/New(obj/structure/overmap/small_craft/transport/new_craft, obj/structure/overmap/planet/new_planet, obj/docking_port/stationary/new_port)
 	craft = new_craft
@@ -114,6 +116,9 @@ GLOBAL_LIST_EMPTY(planet_descents)
 	clear_ground(fade = !landed)
 	clear_cabin_glow()
 	QDEL_NULL(shadow)
+	// Po przyziemieniu widzowie jeszcze chwilę patrzą na wysiadającą załogę, przerwane zejście kończy transmisję od razu
+	broadcast?.finish(landed ? PLANET_LANDING_BROADCAST_AFTER : 0)
+	broadcast = null
 	hull_order = null
 	berth = null
 	// Zejście przerwane, zanim prom zadokował (prom zniszczony): port na powierzchni nikomu się już nie przyda
@@ -167,6 +172,7 @@ GLOBAL_LIST_EMPTY(planet_descents)
 		ground_view.mask()
 		ground_view.show_to(craft.mobs_in_ship)
 	craft.relay(null, span_notice("[craft] schodzi z orbity nad [planet]. Trzymajcie się czegoś."))
+	broadcast = new(berth, craft.name, planet.name)
 	crew_sound('aquila/sound/planets/landing/spool.ogg', 50)
 	shake_crew(2, 1)
 	// Bez atmosfery (księżyc) nie ma żaru, nieba ani chmury: planeta rośnie, potem od razu teren
