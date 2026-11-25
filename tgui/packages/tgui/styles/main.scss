@@ -60,6 +60,7 @@
 @include meta.load-css('./interfaces/NuclearBomb.scss');
 @include meta.load-css('./interfaces/OrbitalMap.scss');
 @include meta.load-css('./interfaces/Paper.scss');
+@include meta.load-css('./interfaces/PixelUi.scss'); // AQUILA - okna w formie urządzeń
 @include meta.load-css('./interfaces/PreferencesMenu.scss');
 @include meta.load-css('./interfaces/RequestManager.scss');
 @include meta.load-css('./interfaces/Roulette.scss');

@@ -320,7 +320,7 @@
 	tell_story()
 
 /mob/living/basic/bot/frightbot/proc/tell_story()
-	playsound(src, 'aquila/sound/voice/frightbot/fright.ogg', 50, TRUE)
+	playsound(src, 'aquila/sound/voice/frightbot/fright.ogg', 50, TRUE, volume_pref = VOLUME_PREF_BOTS)
 	if(!is_emagged() || !prob(70))
 		flick("frightbot_speak", src)
 		visible_message(span_danger("<b>[src]</b> [pick(frights)]!"))

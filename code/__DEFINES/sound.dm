@@ -6,7 +6,7 @@
 #define CHANNEL_JUSTICAR_ARK 1020
 #define CHANNEL_HEARTBEAT 1019 //sound channel for heartbeats
 #define CHANNEL_AMBIENT_EFFECTS 1018
-#define CHANNEL_AMBIENT_MUSIC 1017
+#define CHANNEL_AMBIENT_MUSIC 1008 // AQ EDIT - mikser dźwięku: był 1017 jak CHANNEL_BUZZ, więc szum statku blokował muzykę otoczenia
 #define CHANNEL_BUZZ 1017
 #define CHANNEL_SHIP_ALERT 1015 //nsv13 - sound channel for looping ship alerts, EG general quarters
 #define CHANNEL_REACTOR_ALERT 1014 //nsv13 - sound channel for the nuclear storm drive meltdown sfx.
@@ -29,7 +29,7 @@
 //THIS SHOULD ALWAYS BE THE LOWEST ONE!
 //KEEP IT UPDATED
 
-#define CHANNEL_HIGHEST_AVAILABLE 1010 //Nsv13 - ADDED LOADS OF SOUND CHANNELS. KEEP THIS UP TO DATE
+#define CHANNEL_HIGHEST_AVAILABLE 1007 //Nsv13 - ADDED LOADS OF SOUND CHANNELS. KEEP THIS UP TO DATE // AQ EDIT - 1010 -> 1007: CHANNEL_AMBIENT_MUSIC (1008) i CHANNEL_CHARGED_SPELL (1009) poza losowymi
 
 #define MAX_INSTRUMENT_CHANNELS (128 * 6)
 
@@ -120,3 +120,27 @@
 
 ///Client volume preferences, passed to playsound() as volume_pref
 #define VOLUME_PREF_TESLA "tesla"
+// AQ EDIT START - mikser dźwięku
+// Mikser dźwięku (aquila/code/modules/client/sound_mixer.dm): kategorie VOLUME_PREF_* z suwakiem 0-100 w ustawieniach gry.
+// Dźwięk dostaje kategorię przez volume_pref w playsound()/playsound_local() albo mnożnik mob.sound_volume_mult().
+/// Alarmy i sygnały okrętu: relay() na kanale (stan bojowy, rozruch FTL, alarm reaktora, kadłub krytyczny)
+#define VOLUME_PREF_SHIP_ALERTS "ship_alerts"
+/// Broń i efekty okrętu: relay() bez kanału i relay_to_nearby() (salwy, trafienia, dopalacz), skrzypienie kadłuba
+#define VOLUME_PREF_SHIP_FX "ship_fx"
+/// Broń ręczna: strzały, tłumik, odległe strzały
+#define VOLUME_PREF_GUNS "guns"
+/// Dźwięki emotek
+#define VOLUME_PREF_EMOTES "emotes"
+/// Mowa postaci: mnoży się z trybem „hmm” / Goon / cisza (VOLUME_PREF_SPEECH*)
+#define VOLUME_PREF_VOICES "voices"
+/// Nagrane kwestie botów (medibot, secbot itd.)
+#define VOLUME_PREF_BOTS "bots"
+/// TTS: rozkazy drużyny i głos SI
+#define VOLUME_PREF_TTS "tts"
+/// Dźwięki ogłoszeń dowództwa i komunikatów
+#define VOLUME_PREF_ANNOUNCEMENTS "announcements"
+/// Efekty otoczenia i szum statku w tle
+#define VOLUME_PREF_AMBIENCE "ambience"
+/// Muzyka otoczenia
+#define VOLUME_PREF_AMBIENT_MUSIC "ambient_music"
+// AQ EDIT END

@@ -39,25 +39,25 @@
 			var/obj/item/lighter/G = O
 			if(G.lit && T)
 				new /obj/effect/hotspot(T)
-			playsound(user, get_fart_sound(), 50, TRUE, 5)
+			playsound(user, get_fart_sound(), 50, TRUE, 5, volume_pref = VOLUME_PREF_EMOTES)
 		else if(istype(O, /obj/item/weldingtool))
 			var/obj/item/weldingtool/J = O
 			if(J.isOn() && T)
 				new /obj/effect/hotspot(T)
-			playsound(user, get_fart_sound(), 50, TRUE, 5)
+			playsound(user, get_fart_sound(), 50, TRUE, 5, volume_pref = VOLUME_PREF_EMOTES)
 		else if(istype(O, /obj/item/bikehorn))
 			for(var/obj/item/bikehorn/Q in inv.contents)
-				playsound(user, 'sound/items/bikehorn.ogg', 50, TRUE, 5)
+				playsound(user, 'sound/items/bikehorn.ogg', 50, TRUE, 5, volume_pref = VOLUME_PREF_EMOTES)
 			message = "<span class='clown'>pierdzi.</span>"
 		else if(istype(O, /obj/item/megaphone))
 			message = "<span class='reallybig'>pierdzi.</span>"
-			playsound(user, 'aquila/sound/misc/fartmassive.ogg', 75, TRUE, 5)
+			playsound(user, 'aquila/sound/misc/fartmassive.ogg', 75, TRUE, 5, volume_pref = VOLUME_PREF_EMOTES)
 		else
-			playsound(user, get_fart_sound(), 50, TRUE, 5)
+			playsound(user, get_fart_sound(), 50, TRUE, 5, volume_pref = VOLUME_PREF_EMOTES)
 		if(prob(33))
 			eject_item(O, T)
 	else
-		playsound(user, get_fart_sound(), 50, TRUE, 5)
+		playsound(user, get_fart_sound(), 50, TRUE, 5, volume_pref = VOLUME_PREF_EMOTES)
 
 	user.audible_message("<span class='emote'><b>[user]</b> [message]</span>")
 	sleep(1)
@@ -120,12 +120,12 @@
 
 	sleep(4)
 	for(var/i in 1 to 10)
-		playsound(user, get_fart_sound(), 50, TRUE, 5)
+		playsound(user, get_fart_sound(), 50, TRUE, 5, volume_pref = VOLUME_PREF_EMOTES)
 		sleep(1)
 	if(QDELETED(user) || owner != user)
 		loose = FALSE
 		return
-	playsound(user, 'aquila/sound/misc/fartmassive.ogg', 75, TRUE, 5)
+	playsound(user, 'aquila/sound/misc/fartmassive.ogg', 75, TRUE, 5, volume_pref = VOLUME_PREF_EMOTES)
 
 	var/turf/T = get_turf(user)
 	var/shoot_dir = turn(user.dir, 180)

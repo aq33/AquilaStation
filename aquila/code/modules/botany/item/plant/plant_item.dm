@@ -33,11 +33,23 @@
 			to_chat(user, span_notice("Nic tu jeszcze nie dojrzało. Stan roślin pokaże skaner roślin, a łopatką przeniesiesz roślinę."))
 	return FALSE //This item can't be picked up, only with a spade
 
+// AQUILA - prawy przycisk (albo intencja rozbrajania) pustą ręką wyrywa roślinę
+/obj/item/plant/attack_hand_secondary(mob/user, list/modifiers)
+	. = ..()
+	if(. == SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN || !isliving(user))
+		return
+	var/datum/component/plant/plant = GetComponent(/datum/component/plant)
+	if(plant)
+		INVOKE_ASYNC(plant, TYPE_PROC_REF(/datum/component/plant, rip_out), user, PLANT_RIP_HAND_TIME)
+	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
+
 /obj/item/plant/add_context_self(datum/screentip_context/context, mob/user)
 	. = ..()
 	if(!isliving(user))
 		return
 	context.add_left_click_item_action("Przenieś", /obj/item/shovel)
+	context.add_left_click_item_action("Wyrwij", /obj/item/cultivator)
+	context.add_right_click_action("Wyrwij")
 
 /obj/item/plant/apply_outline(colour)
 	return
