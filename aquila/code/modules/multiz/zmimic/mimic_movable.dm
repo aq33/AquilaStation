@@ -256,3 +256,7 @@
 /atom/movable/openspace/turf_mimic/examine(mob/user)
 	SHOULD_CALL_PARENT(FALSE)
 	. = delegate.examine(user)
+
+/// Kopia leży na piętrze gracza, więc dopisek „(piętro niżej)” w podpowiedzi liczy piętro oryginału
+/atom/movable/openspace/mimic/aq_other_level_text(mob/user)
+	return associated_atom ? associated_atom.aq_other_level_text(user) : ""

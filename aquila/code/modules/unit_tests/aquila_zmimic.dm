@@ -29,6 +29,7 @@
 	TEST_ASSERT(copy.loc == hole, "The copy is not on the open space above the thing: [copy.loc]")
 	TEST_ASSERT(copy.plane <= ZMIMIC_MAX_PLANE && copy.plane >= ZMIMIC_MAX_PLANE - ZMIMIC_MAX_DEPTH, "The copy is on plane [copy.plane], not on a mimic plane")
 	TEST_ASSERT(copy.icon_state == thing.icon_state, "The copy does not look like the thing")
+	TEST_ASSERT(copy.aq_other_level_text(hole) == "piętro niżej", "The screentip of the copy does not say it is one deck below: [copy.aq_other_level_text(hole)]")
 
 	// The copy follows its thing; off the open space it is dropped
 	thing.forceMove(run_loc_floor_bottom_left)

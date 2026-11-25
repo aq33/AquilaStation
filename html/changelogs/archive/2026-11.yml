@@ -1714,6 +1714,15 @@
   - imageadd: Sprite'y szklanek drinków z tgstation/tgstation (CC BY-SA 3.0).
   - bugfix: Beczka browaru nie zużywa wysypanych owoców, nie startuje bez przepisu
       i nie przelewa trunku ponad pojemność.
+  - bugfix: Martwe ciało nie słyszy już strzałów i wybuchów okrętu ani nim nie trzęsie
+      (do zghostowania tak było).
+  - balance: Ból, rany i utrata krwi nie zatrzymują już serca przez szybkie tętno.
+      Zatrzymanie krążenia z tempa powoduje tylko przedawkowanie stymulantów albo
+      wychłodzenie, a gracz dostaje wcześniej ostrzeżenie.
+  - rscadd: Podpowiedź ekranowa i opis przy badaniu mówią, czy obiekt jest piętro
+      niżej albo wyżej.
+  - bugfix: 'Atlas: barierki na dachu nad wlotem hangaru desantowca, z którego łatwo
+      było spaść piętro niżej.'
   sh4dow321:
   - bugfix: Zapętlony alarm przegrzania reaktora (i inne pętle alarmów statku) cichnie
       też u graczy, którzy w międzyczasie zginęli albo opuścili statek.
