@@ -695,7 +695,7 @@ Been a mess since 2018, we'll fix it someday (probably)
 	M.forceMove(get_turf(src))
 	return TRUE
 
-/obj/structure/overmap/small_craft/proc/pilot_overmap_change(mob/living/M, obj/structure/overmap/newOM) // in case we get forceMoved outside of the ship somehow
+/obj/structure/overmap/small_craft/proc/pilot_overmap_change(mob/living/M, mob/living/sender, obj/structure/overmap/newOM) // AQ EDIT - update_overmap() wysyła (src, src, OM), więc drugi argument to mob // in case we get forceMoved outside of the ship somehow
 	SIGNAL_HANDLER
 	if(newOM != src && M.loc != src) // AQ EDIT - w środku myśliwca stojącego w hangarze update_overmap() daje okręt-matkę
 		INVOKE_ASYNC(src, PROC_REF(stop_piloting), M, FALSE, TRUE)

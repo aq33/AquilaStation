@@ -103,6 +103,17 @@
 		var/on_list = (wearer in GLOB.suit_sensors_list)
 		TEST_ASSERT_EQUAL(on_list, uniform.sensor_mode > SENSOR_OFF, "After an EMP the sensor list does not match sensor mode [uniform.sensor_mode]")
 
+	// A spare uniform held in hand does not change the worn uniform's sensors
+	uniform.update_sensors(SENSOR_COORDS)
+	TEST_ASSERT(wearer in GLOB.suit_sensors_list, "The worn uniform with sensors on is not on the sensor list")
+	var/obj/item/clothing/under/spare = allocate(/obj/item/clothing/under/rank/medical/virologist)
+	wearer.put_in_hands(spare)
+	TEST_ASSERT(spare.loc == wearer, "The spare uniform is not held")
+	spare.update_sensors(SENSOR_COORDS)
+	spare.update_sensors(SENSOR_OFF)
+	TEST_ASSERT(wearer in GLOB.suit_sensors_list, "Turning off a held spare uniform removed the wearer from the sensor list")
+	TEST_ASSERT(HAS_TRAIT(wearer, TRAIT_SUIT_SENSORS), "Turning off a held spare uniform removed the wearer's sensor trait")
+
 /// AQUILA - rundy 6585 i 6587: flak ranił pocisk zniszczony już przez inny flak na tym samym kaflu („taking damage after deletion”)
 /datum/unit_test/aquila_flak_deleted_projectile
 

@@ -193,6 +193,9 @@
 		return
 	if(!ishuman(loc) || istype(loc, /mob/living/carbon/human/dummy))
 		return
+	var/mob/living/carbon/human/wearer = loc // AQ EDIT START - mundur trzymany w ręce albo w kieszeni nie rusza czujników noszonego
+	if(wearer.w_uniform != src)
+		return // AQ EDIT END
 
 	if(has_sensor >= HAS_SENSORS && sensor_mode > SENSOR_OFF)
 		if(HAS_TRAIT(loc, TRAIT_SUIT_SENSORS))

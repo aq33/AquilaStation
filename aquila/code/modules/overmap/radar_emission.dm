@@ -48,7 +48,7 @@
 // Full override (LEGACY_OVERRIDES.md): no sensor profile penalty, the pulse is broadcast as an emission instead
 /obj/machinery/computer/ship/dradis/send_radar_pulse()
 	var/obj/structure/overmap/OM = get_overmap()
-	if(!OM || !can_radar_pulse())
+	if(!OM || QDELETED(OM) || !can_radar_pulse())
 		return FALSE
 	OM.send_radar_pulse()
 	addtimer(VARSET_CALLBACK(src, sensor_range, base_sensor_range), RADAR_VISIBILITY_PENALTY)
