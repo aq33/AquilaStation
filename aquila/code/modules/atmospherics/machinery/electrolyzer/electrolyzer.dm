@@ -16,7 +16,8 @@
 	interaction_flags_machine = INTERACT_MACHINE_ALLOW_SILICON | INTERACT_MACHINE_OPEN | INTERACT_MACHINE_OFFLINE
 	max_integrity = 250
 	circuit = /obj/item/circuitboard/machine/electrolyzer
-	use_power = NO_POWER_USE
+	use_power = IDLE_POWER_USE // przy NO_POWER_USE powered() zawsze zwraca TRUE i NOPOWER się nie ustawia
+	idle_power_usage = 0
 	/// Ogniwo zasilające, gdy maszyna nie jest przykręcona do sieci
 	var/obj/item/stock_parts/cell/cell = /obj/item/stock_parts/cell
 	/// Czy maszyna jest włączona

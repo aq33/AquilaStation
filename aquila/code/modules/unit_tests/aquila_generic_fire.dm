@@ -99,6 +99,10 @@
 	ignition.set_moles(GAS_TRITIUM, 2)
 	TEST_ASSERT(ignition.aq_fire_fuel_moles(FIRE_MINIMUM_TEMPERATURE_TO_EXIST) == 2, "Tritium does not count as fuel for ignition")
 	TEST_ASSERT(ignition.aq_fire_fuel_moles(100) == 0, "Fuel counts below its fire temperature")
+	var/datum/gas_mixture/hot_air = new
+	hot_air.set_moles(GAS_N2, 80)
+	hot_air.set_moles(GAS_O2, 20)
+	TEST_ASSERT(hot_air.aq_fire_fuel_moles(3000) == 0, "Plain air counts as fuel for ignition above 2300 K")
 
 	// Air alarms know every gas, with the thresholds from its data
 	var/obj/machinery/airalarm/alarm = allocate(/obj/machinery/airalarm)

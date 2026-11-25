@@ -35,7 +35,7 @@
 	if(!COOLDOWN_FINISHED(src, next_release))
 		return
 	COOLDOWN_START(src, next_release, SWAMP_GAS_INTERVAL)
-	if(!length(SSmobs.clients_by_zlevel[z]))
+	if(!isturf(loc) || !length(SSmobs.clients_by_zlevel[z]))
 		return
 	release_gas()
 

@@ -100,5 +100,7 @@
 	. = 0
 	var/list/fuel_temps = GLOB.gas_data.fire_temperatures
 	for(var/gas in fuel_temps)
+		if(gas == GAS_N2)
+			continue // azot w core ma fire_temperature 2300 K, ale bez produktów i entalpii: nie może sam podtrzymać ognia w powietrzu
 		if(fuel_temps[gas] < temperature)
 			. += get_moles(gas)

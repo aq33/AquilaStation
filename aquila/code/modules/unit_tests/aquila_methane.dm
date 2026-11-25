@@ -21,6 +21,11 @@
 	TEST_ASSERT(!bubble.release_gas(), "The swamp gas bubble went past its local cap")
 	location.air.copy_from(original_air)
 
+	// A bubble in nullspace (planet unloading) skips its release without a runtime
+	bubble.moveToNullspace()
+	COOLDOWN_RESET(bubble, next_release)
+	bubble.process(1)
+
 	// Jungle mudlands spawn the bubbles, the methane giant is a scenery gas giant full of methane
 	var/datum/planet_biome/mudlands = new /datum/planet_biome/jungle/mudlands
 	TEST_ASSERT(mudlands.feature_spawn_list[/obj/structure/swamp_gas], "Jungle mudlands do not spawn swamp gas bubbles")

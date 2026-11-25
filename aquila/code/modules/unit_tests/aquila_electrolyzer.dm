@@ -30,6 +30,16 @@
 	electrolyzer.process_atmos()
 	TEST_ASSERT(location.air.get_moles(GAS_H2) > 0, "A working electrolyzer made no hydrogen on its tile")
 	TEST_ASSERT(electrolyzer.cell.charge < charge, "The electrolyzer worked without using its cell")
+
+	// Wrenched down without grid power it still runs on its cell (NO_POWER_USE would make powered() always TRUE)
+	TEST_ASSERT(electrolyzer.use_power != NO_POWER_USE, "The electrolyzer never loses grid power, it would run anywhere for free")
+	electrolyzer.anchored = TRUE
+	electrolyzer.machine_stat |= NOPOWER
+	TEST_ASSERT(!electrolyzer.has_grid_power(), "A wrenched electrolyzer without power counts as powered from the grid")
+	charge = electrolyzer.cell.charge
+	electrolyzer.process_atmos()
+	TEST_ASSERT(electrolyzer.cell.charge < charge, "A wrenched electrolyzer without grid power did not use its cell")
+	electrolyzer.machine_stat &= ~NOPOWER
 	electrolyzer.on = FALSE
 	location.air.copy_from(original_air)
 

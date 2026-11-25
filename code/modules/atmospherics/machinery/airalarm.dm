@@ -542,7 +542,7 @@
 			for(var/device_id in A.air_scrub_names)
 				send_signal(device_id, list(
 					"power" = 1,
-					"set_filters" = list(GAS_CO2, GAS_BZ, GAS_MIASMA), // AQ EDIT - Miasma
+					"set_filters" = list(GAS_CO2, GAS_BZ, GAS_MIASMA, GAS_H2, GAS_FREZON, GAS_METHANE), // AQ EDIT - Miasma, gazy planu maszynowni
 					"scrubbing" = 1,
 					"widenet" = 0
 				), signal_source)
@@ -600,7 +600,7 @@
 			for(var/device_id in A.air_scrub_names)
 				send_signal(device_id, list(
 					"power" = 1,
-					"set_filters" = list(GAS_CO2, GAS_BZ, GAS_MIASMA), // AQ EDIT - Miasma
+					"set_filters" = list(GAS_CO2, GAS_BZ, GAS_MIASMA, GAS_H2, GAS_FREZON, GAS_METHANE), // AQ EDIT - Miasma, gazy planu maszynowni
 					"scrubbing" = 1,
 					"widenet" = 0
 				), signal_source)
