@@ -57,6 +57,7 @@
 		"nukleium" = /obj/machinery/portable_atmospherics/canister/nucleium,	//NSV13
 		"skondensowana plazma" = /obj/machinery/portable_atmospherics/canister/constricted_plasma, //NSV13
 		"miazma" = /obj/machinery/portable_atmospherics/canister/miasma, // AQ EDIT - Miasma
+		"wodór" = /obj/machinery/portable_atmospherics/canister/hydrogen, // AQ EDIT - plan maszynowni
 	)
 
 /obj/machinery/portable_atmospherics/canister/interact(mob/user)

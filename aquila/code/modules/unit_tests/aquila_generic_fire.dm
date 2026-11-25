@@ -67,6 +67,16 @@
 	failure = compare_fire(nitrogen_mix, expected_fire(GAS_N2, 20, 20, 3000), "Reaction pass nitrogen fire")
 	TEST_ASSERT(!failure, failure)
 
+	// Hydrogen burns only in the generic fire, so the reaction pass is the Rust or the DM fire, whichever this build has
+	var/datum/gas_mixture/hydrogen_mix = new
+	hydrogen_mix.set_moles(GAS_H2, 20)
+	hydrogen_mix.set_moles(GAS_O2, 20)
+	hydrogen_mix.set_temperature(800)
+	hydrogen_mix.react()
+	failure = compare_fire(hydrogen_mix, expected_fire(GAS_H2, 20, 20, 800), "Reaction pass hydrogen fire")
+	TEST_ASSERT(!failure, failure)
+	TEST_ASSERT(hydrogen_mix.return_temperature() > 800, "Burning hydrogen did not heat the mix")
+
 	// Ignition counts every fuel from the gas data, not only plasma and tritium
 	var/datum/gas_mixture/ignition = new
 	ignition.set_moles(GAS_TRITIUM, 2)

@@ -33407,5 +33407,22 @@
 "[levels] piętra niżej": "[levels] decks below",
 "piętro wyżej": "one deck above",
 "[levels] piętra wyżej": "[levels] decks above",
-"To jest [other_level].": "This is [other_level]."
+"To jest [other_level].": "This is [other_level].",
+"kanister z wodorem": "hydrogen canister",
+"Wodór. Lekki, palny i w dużych ilościach bardzo głośny.": "Hydrogen. Light, flammable and very loud in large amounts.",
+"Rozkłada parę wodną z otoczenia na wodór i tlen. Gwarancja nie obejmuje klaunów.": "Splits water vapor from the surroundings into hydrogen and oxygen. Warranty void if used by clowns.",
+"Jest [on ? \"włączony\" : \"wyłączony\"], a właz jest [panel_open ? \"otwarty\" : \"zamknięty\"].": "It is [on ? \"on\" : \"off\"], and the hatch is [panel_open ? \"open\" : \"closed\"].",
+"Miernik ładunku pokazuje [round(cell.percent(), 1)]%.": "The charge meter reads [round(cell.percent(), 1)]%.",
+"Nie ma w nim ogniwa zasilającego.": "There is no power cell installed.",
+"Najpierw otwórz właz, żeby włożyć ogniwo.": "The hatch must be open to insert a power cell!",
+"W środku jest już ogniwo.": "There is already a power cell inside!",
+"[user] [panel_open ? \"otwiera\" : \"zamyka\"] właz [src].": "[user] [panel_open ? \"opens\" : \"closes\"] the hatch on [src].",
+"[panel_open ? \"Otwierasz\" : \"Zamykasz\"] właz [src].": "You [panel_open ? \"open\" : \"close\"] the hatch on [src].",
+"elektrolizer (płytka maszyny)": "electrolyzer (machine board)",
+"Projekt maszyny (elektrolizer)": "Machine Design (Electrolyzer Board)",
+"Płytka drukowana: elektrolizer.": "The circuit board for an electrolyzer.",
+"wodór": "hydrogen",
+"Przykręcony do sieci": "Wrenched to the grid",
+"Na ogniwie": "On the cell",
+"elektrolizer": "electrolyzer"
 }

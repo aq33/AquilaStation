@@ -300,6 +300,7 @@ GLOBAL_LIST_INIT(atmos_adjacent_savings, list(0,0))
 #define GAS_CONSTRICTED_PLASMA  "constricted_plasma" //NSV13
 #define GAS_NUCLEIUM			"nucleium" //NSV13
 #define GAS_MIASMA				"miasma" // AQ EDIT - Miasma, see aquila/code/modules/miasma/
+#define GAS_H2				"hydrogen" // AQ EDIT - plan maszynowni, aquila/code/modules/atmospherics/gases/
 
 #define GAS_FLAG_DANGEROUS		(1<<0)
 #define GAS_FLAG_BREATH_PROC	(1<<1)

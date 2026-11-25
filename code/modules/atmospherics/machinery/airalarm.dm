@@ -569,6 +569,7 @@
 						GAS_CONSTRICTED_PLASMA, //NSV13
 						GAS_NUCLEIUM, //NSV13
 						GAS_MIASMA, // AQ EDIT - Miasma
+						GAS_H2, // AQ EDIT - plan maszynowni
 						GAS_PLUOXIUM
 					),
 					"scrubbing" = 1,

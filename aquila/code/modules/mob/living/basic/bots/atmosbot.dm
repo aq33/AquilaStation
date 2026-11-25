@@ -53,6 +53,7 @@
 		GAS_CONSTRICTED_PLASMA = 1,
 		GAS_NUCLEIUM = 1,
 		GAS_MIASMA = 1,
+		GAS_H2 = 1,
 	)
 	var/tank_type = /obj/item/tank/internals/oxygen/empty
 
