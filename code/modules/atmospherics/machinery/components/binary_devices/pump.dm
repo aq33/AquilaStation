@@ -19,6 +19,7 @@
 	shift_underlay_only = FALSE
 
 	var/target_pressure = ONE_ATMOSPHERE
+	var/aq_max_pressure = MAX_OUTPUT_PRESSURE // AQ EDIT - limit z instancji (pompy wysokiego przepływu)
 
 	var/frequency = 0
 	var/id = null
@@ -39,7 +40,7 @@
 
 /obj/machinery/atmospherics/components/binary/pump/AltClick(mob/user)
 	if(can_interact(user))
-		target_pressure = MAX_OUTPUT_PRESSURE
+		target_pressure = aq_max_pressure // AQ EDIT - limit z instancji (pompy wysokiego przepływu)
 		balloon_alert(user, "Ustawiasz docelowe ciśnienie na [target_pressure] kPa.")
 		update_icon()
 		ui_update()
@@ -106,7 +107,7 @@
 	var/data = list()
 	data["on"] = on
 	data["pressure"] = round(target_pressure)
-	data["max_pressure"] = round(MAX_OUTPUT_PRESSURE)
+	data["max_pressure"] = round(aq_max_pressure) // AQ EDIT - limit z instancji (pompy wysokiego przepływu)
 	return data
 
 /obj/machinery/atmospherics/components/binary/pump/ui_act(action, params)
@@ -120,13 +121,13 @@
 		if("pressure")
 			var/pressure = params["pressure"]
 			if(pressure == "max")
-				pressure = MAX_OUTPUT_PRESSURE
+				pressure = aq_max_pressure // AQ EDIT - limit z instancji (pompy wysokiego przepływu)
 				. = TRUE
 			else if(text2num(pressure) != null)
 				pressure = text2num(pressure)
 				. = TRUE
 			if(.)
-				target_pressure = clamp(pressure, 0, MAX_OUTPUT_PRESSURE)
+				target_pressure = clamp(pressure, 0, aq_max_pressure) // AQ EDIT - limit z instancji (pompy wysokiego przepływu)
 				investigate_log("was set to [target_pressure] kPa by [key_name(usr)]", INVESTIGATE_ATMOS)
 	if(.)
 		update_icon()

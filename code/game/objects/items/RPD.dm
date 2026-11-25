@@ -40,6 +40,9 @@ GLOBAL_LIST_INIT(atmos_pipe_recipes, list(
 		new /datum/pipe_info/pipe("Regulator temperatury",	/obj/machinery/atmospherics/components/binary/temperature_gate, TRUE),
 		new /datum/pipe_info/pipe("Pompa temperaturowa",	/obj/machinery/atmospherics/components/binary/temperature_pump, TRUE),
 		new /datum/pipe_info/pipe("Iskrownik rurowy",	/obj/machinery/atmospherics/components/unary/aq_sparker, TRUE), // AQ EDIT - plan maszynowni E3
+		new /datum/pipe_info/pipe("Pompa wysokiego ciśnienia",	/obj/machinery/atmospherics/components/binary/pump/aq_high_flow, TRUE), // AQ EDIT - plan maszynowni E4
+		new /datum/pipe_info/pipe("Pompa objętościowa wysokiego przepływu",	/obj/machinery/atmospherics/components/binary/volume_pump/aq_high_flow, TRUE), // AQ EDIT - plan maszynowni E4
+		new /datum/pipe_info/pipe("Filtr gazów wysokiego przepływu",	/obj/machinery/atmospherics/components/trinary/filter/aq_high_flow, TRUE), // AQ EDIT - plan maszynowni E4
 		new /datum/pipe_info/meter("Miernik"),
 	),
 	"Heat Exchange" = list(
