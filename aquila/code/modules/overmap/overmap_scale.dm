@@ -199,7 +199,9 @@ GLOBAL_VAR_INIT(overmap_scale_enabled, TRUE)
 	var/atom/previous_target = homing_target
 	. = ..()
 	if(!is_fighter || homing_target != fighter || !homing)
-		fighter_lock_ref = null // inny cel kasuje namiar: powrót na myśliwiec liczy się od nowa
+		// Inny, przyjęty cel kasuje namiar (powrót na myśliwiec liczy się od nowa); odrzucony cel niczego nie zmienia
+		if(homing_target != previous_target || !homing)
+			fighter_lock_ref = null
 		return
 	if(previous_target == fighter && fighter_lock_ref?.resolve() == fighter)
 		return // ten sam namiar trwa

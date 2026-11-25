@@ -5,8 +5,8 @@
 
 /obj/structure/overmap/small_craft/escapepod/docking_act(obj/structure/overmap/OM)
 	var/obj/structure/overmap/small_craft/transport/sabre/shuttle/sabre = OM
-	if(istype(sabre) && sabre.rescue_escape_pod(src))
-		return TRUE
+	if(istype(sabre))
+		return sabre.rescue_escape_pod(src) // do Sabre kapsuła wchodzi tylko przez przechwycenie, nigdy zwykłym dokowaniem
 	return ..()
 
 /obj/structure/overmap/small_craft/transport/sabre/shuttle/docking_act(obj/structure/overmap/OM)
