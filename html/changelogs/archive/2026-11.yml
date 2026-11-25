@@ -1666,3 +1666,5 @@
   - imageadd: Kurtki zimowe Kapitana, Starszego Oficera i Oficera Pokładowego (zapinane
       Alt+klikiem), poprawione cieniowanie hardsuita i peleryny kapitana.
   - tweak: Peleryny przykrywają plecak i torbę.
+  - code_imp: 'Planety: ruina główna zostaje zapisana po wczytaniu (losowo padający
+      test lądowisk).'

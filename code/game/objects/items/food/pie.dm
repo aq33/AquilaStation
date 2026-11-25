@@ -84,6 +84,7 @@
 			H.add_overlay(creamoverlay)
 			H.creamed = TRUE
 			SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "creampie", /datum/mood_event/creampie)
+			add_memory_in_range(H, 7, /datum/memory/witnessed_creampie, protagonist = H) // AQ EDIT - wspomnienia z tg
 	qdel(src)
 
 /obj/item/food/pie/cream/nostun
