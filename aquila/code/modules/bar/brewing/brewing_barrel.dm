@@ -9,8 +9,10 @@
 	var/brew_end = 0
 	/// Typ plonu => ile „jednostek plonu” już wrzucono
 	var/list/crop_units = list()
-	/// Owoc wrzucony bez przepisu => chwila wrzucenia; makeWine() z wcześniejszego wrzucenia albo po wysypaniu nic nie robi
+	/// Owoc wrzucony bez przepisu => numer wrzucenia; timer z wcześniejszego wrzucenia albo po wysypaniu nic nie robi
 	var/list/wine_fruits = list()
+	/// Licznik wrzuceń owoców bez przepisu
+	var/wine_insertions = 0
 
 /obj/structure/fermenting_barrel/Initialize(mapload)
 	. = ..()
@@ -22,15 +24,18 @@
 	wine_fruits.Cut()
 	return ..()
 
-/// Fermentuje tylko owoc, który nadal leży w beczce od wrzucenia bez przepisu (wysypany albo wrzucony ponownie pod przepis nie)
-/obj/structure/fermenting_barrel/makeWine(obj/item/food/grown/fruit)
-	if(isnull(wine_fruits[fruit]) || fruit.loc != src)
-		return
-	// Timer z wcześniejszego wrzucenia tego samego owocu: fermentuje dopiero ten od ostatniego (najkrótszy czas jak w fermenting_barrel.dm)
-	if(world.time - wine_fruits[fruit] < 80 * speed_multiplier)
+/// Owoc wrzucony bez przepisu: własny timer fermentacji z numerem wrzucenia (czas jak w fermenting_barrel.dm). Zwraca ten numer.
+/obj/structure/fermenting_barrel/proc/add_wine_fruit(obj/item/food/grown/fruit)
+	wine_fruits[fruit] = ++wine_insertions
+	addtimer(CALLBACK(src, PROC_REF(ferment_inserted), fruit, wine_insertions), rand(80, 120) * speed_multiplier)
+	return wine_insertions
+
+/// Fermentuje owoc tylko z timera jego ostatniego wrzucenia i tylko, gdy nadal leży w beczce
+/obj/structure/fermenting_barrel/proc/ferment_inserted(obj/item/food/grown/fruit, insertion)
+	if(QDELETED(fruit) || wine_fruits[fruit] != insertion || fruit.loc != src)
 		return
 	wine_fruits -= fruit
-	return ..()
+	makeWine(fruit)
 
 /// W trakcie warzenia beczka jest zamknięta, żeby dolany płyn nie zajął miejsca na trunek
 /obj/structure/fermenting_barrel/attack_hand(mob/user, list/modifiers)
@@ -91,11 +96,19 @@
 		to_chat(user, span_warning("W [src] już coś się warzy."))
 		return TRUE
 	if(!selected_recipe || brewing)
-		. = ..()
-		// Owoc wrzucony bez przepisu: zaplanowany makeWine() może go zużyć tylko, dopóki leży w beczce
-		if(!brewing && istype(I, /obj/item/food/grown) && I.loc == src)
-			wine_fruits[I] = world.time
-		return
+		// Owoc bez przepisu jak w fermenting_barrel.dm, ale timer pamięta, z którego wrzucenia jest
+		var/obj/item/food/grown/fruit = I
+		if(!brewing && istype(fruit))
+			if(!fruit.can_distill)
+				to_chat(user, "<span class='warning'>Nie da się z tego niczego wydestylować...</span>")
+				return TRUE
+			if(!user.transferItemToLoc(fruit, src))
+				to_chat(user, "<span class='warning'>[I] przykleił ci się do ręki!</span>")
+				return TRUE
+			to_chat(user, "<span class='notice'>Umieszczasz [I] w [src], rozpoczynając fermentację.</span>")
+			add_wine_fruit(fruit)
+			return TRUE
+		return ..()
 	var/obj/item/food/grown/crop = I
 	if(istype(crop))
 		var/crop_type = needed_crop_type(crop)

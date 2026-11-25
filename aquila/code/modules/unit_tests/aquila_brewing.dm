@@ -89,19 +89,20 @@
 	// Owoc wrzucony bez przepisu, potem wysypany: zaplanowana fermentacja go nie zużywa
 	var/obj/structure/fermenting_barrel/wine_barrel = allocate(/obj/structure/fermenting_barrel, run_loc_floor_bottom_left)
 	var/obj/item/food/grown/apple/apple = allocate(/obj/item/food/grown/apple, wine_barrel)
-	wine_barrel.wine_fruits[apple] = world.time - 200
+	var/first_insertion = wine_barrel.add_wine_fruit(apple)
 	wine_barrel.drop_brewing_ingredients()
-	wine_barrel.makeWine(apple)
+	wine_barrel.ferment_inserted(apple, first_insertion)
 	TEST_ASSERT(!QDELETED(apple), "A fruit dropped out of the barrel was still turned into wine")
 	TEST_ASSERT(!wine_barrel.reagents.total_volume, "A dropped fruit added wine to the barrel")
 
-	// Ten sam owoc wrzucony ponownie bez przepisu: timer ze starego wrzucenia nie przyspiesza fermentacji
+	// Ten sam owoc wrzucony ponownie bez przepisu: timer ze starego wrzucenia nie fermentuje go,
+	// nawet gdy od nowego wrzucenia minął już najkrótszy czas fermentacji (stary timer odpala później niż 80, a wcześniej niż nowy)
 	apple.forceMove(wine_barrel)
-	wine_barrel.wine_fruits[apple] = world.time
-	wine_barrel.makeWine(apple)
+	var/second_insertion = wine_barrel.add_wine_fruit(apple)
+	wine_barrel.ferment_inserted(apple, first_insertion)
 	TEST_ASSERT(!QDELETED(apple), "A fruit put back in fermented from the timer of its earlier insertion")
-	wine_barrel.wine_fruits[apple] = world.time - 200
-	wine_barrel.makeWine(apple)
-	TEST_ASSERT(QDELETED(apple), "A fruit left in the barrel for the full time did not ferment")
+	wine_barrel.ferment_inserted(apple, second_insertion)
+	TEST_ASSERT(QDELETED(apple), "A fruit did not ferment from the timer of its last insertion")
+	TEST_ASSERT(wine_barrel.reagents.total_volume, "The fermented fruit added no wine")
 
 #undef TEST_ASSERT
