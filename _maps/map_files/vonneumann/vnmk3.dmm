@@ -15444,9 +15444,8 @@
 	},
 /area/nsv/weapons/fore)
 "lXG" = (
-/obj/machinery/computer/ship/dradis{
-	dir = 8
-	},
+/obj/structure/table/reinforced,
+/obj/item/folder/red,
 /turf/open/floor/circuit/green/anim,
 /area/nsv/weapons)
 "lYb" = (

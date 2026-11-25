@@ -236,3 +236,9 @@ GLOBAL_LIST_EMPTY(aviation_fighter_launchers)
 		next_message = world.time + 5 SECONDS
 
 #undef AVIATION_MESSAGE_SENT
+
+/// Kontrola lotów w stylu konsol goon (rzędy konsol na mostkach, np. Shrike, gdzie zastąpiła zbędny DRADIS)
+/obj/machinery/computer/ship/fighter_controller/console
+	icon = 'nsv13/goonstation/icons/obj/computer.dmi'
+	icon_keyboard = null
+	icon_screen = "shuttle"

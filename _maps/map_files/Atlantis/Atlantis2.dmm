@@ -11253,9 +11253,7 @@
 /turf/open/floor/monotile/dark,
 /area/medical/chemistry)
 "kTx" = (
-/obj/machinery/computer/ship/dradis{
-	dir = 8
-	},
+/obj/structure/table/reinforced,
 /obj/structure/window/reinforced{
 	dir = 4
 	},
