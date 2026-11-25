@@ -49,6 +49,9 @@ type Data = {
   beakerColor?: string;
   beakerColors: Record<string, string>;
   recordingRecipe?: Record<string, number> | null;
+  /** Licznik udanych dolań i napój ostatniego (potwierdzenie z serwera) */
+  pourSerial?: number;
+  pourReagent?: string;
 };
 
 type Skin = { body: string; light: string; bright: string; dark: string };
@@ -150,43 +153,24 @@ export const BarDispenserDevice = () => {
     if (!isBeakerLoaded && !recording) {
       return;
     }
-    // Strumień dopiero, gdy serwer naprawdę doleje (energia, pełne naczynie, nagrywanie receptury)
-    if (!recording && !full && energy > 0) {
-      setPending({
-        color: chemical.color || '#c8a060',
-        kind: kinds[chemical.id] || 'liquid',
-        before: beakerCurrentVolume ?? 0,
-        vessel: beakerName,
-        at: Date.now(),
-      });
-    }
     act('dispense', { reagent: chemical.id });
   };
-  const [pending, setPending] = useState<
-    Pour & { before: number; vessel?: string }
-  >();
+  // Strumień tylko na potwierdzenie z serwera: licznik rośnie, gdy dozownik naprawdę dolał do tego naczynia
+  const pourSerial = data.pourSerial ?? 0;
+  const [seenSerial, setSeenSerial] = useState(pourSerial);
   useEffect(() => {
-    if (!pending) {
-      return;
+    if (pourSerial > seenSerial) {
+      const chemical = chemicals.find((entry) => entry.id === data.pourReagent);
+      if (chemical) {
+        setPour({
+          color: chemical.color || '#c8a060',
+          kind: kinds[chemical.id] || 'liquid',
+          at: Date.now(),
+        });
+      }
     }
-    // Najpierw wygaśnięcie i zmiana naczynia: późniejszy wzrost objętości nie należy do tego kliknięcia
-    if (Date.now() - pending.at > 1500 || pending.vessel !== beakerName) {
-      setPending(undefined);
-      return;
-    }
-    if ((beakerCurrentVolume ?? 0) > pending.before) {
-      setPour({ color: pending.color, kind: pending.kind, at: Date.now() });
-      setPending(undefined);
-    }
-  }, [beakerCurrentVolume, beakerName, pending]);
-  // Oczekiwanie wygasa też bez nowych danych z serwera
-  useEffect(() => {
-    if (!pending) {
-      return;
-    }
-    const timer = setTimeout(() => setPending(undefined), 1500);
-    return () => clearTimeout(timer);
-  }, [pending]);
+    setSeenSerial(pourSerial);
+  }, [pourSerial]);
 
   const vesselTitle = beakerName || 'Naczynie';
   const amounts = beakerTransferAmounts?.length

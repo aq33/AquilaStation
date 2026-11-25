@@ -21,6 +21,12 @@
 	/datum/reagent/consumable/ethanol/whiskey_cola,\
 )
 
+/obj/machinery/chem_dispenser/drinks
+	/// Licznik udanych dolań (okno animuje strumień tylko na jego wzrost)
+	var/aq_pour_serial = 0
+	/// Identyfikator napoju z ostatniego udanego dolania
+	var/aq_pour_reagent
+
 /obj/machinery/chem_dispenser/drinks/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(ui)
@@ -66,10 +72,18 @@
 		for(var/datum/reagent/reagent as anything in beaker.reagents.reagent_list)
 			colors[reagent.name] = reagent.color
 	data["beakerColors"] = colors
+	data["pourSerial"] = aq_pour_serial
+	data["pourReagent"] = aq_pour_reagent
 	return data
 
 /obj/machinery/chem_dispenser/drinks/ui_act(action, params)
+	var/obj/item/reagent_containers/poured_into = beaker
+	var/volume_before = beaker?.reagents.total_volume
 	. = ..()
+	// Potwierdzenie dla okna: strumień tylko wtedy, gdy do tego samego naczynia naprawdę coś doszło
+	if(action == "dispense" && beaker && beaker == poured_into && beaker.reagents.total_volume > volume_before)
+		aq_pour_serial++
+		aq_pour_reagent = params["reagent"]
 	if(.)
 		return
 	switch(action)
