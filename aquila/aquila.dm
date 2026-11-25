@@ -2731,6 +2731,7 @@
 #include "code\modules\unit_tests\aquila_logi_rund_6552.dm"
 #include "code\modules\unit_tests\aquila_logi_rund_6581.dm"
 #include "code\modules\unit_tests\aquila_shuttle_preflight_qdel.dm"
+#include "code\modules\unit_tests\aquila_runtime_6591.dm"
 #include "code\modules\unit_tests\aquila_gang_economy.dm"
 #include "code\modules\unit_tests\aquila_salvagers.dm"
 #include "code\modules\unit_tests\aquila_logi_rund_6563.dm"

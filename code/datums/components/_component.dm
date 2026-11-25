@@ -178,6 +178,8 @@
 	var/target = comp_lookup[sigtype]
 	if(!length(target))
 		var/datum/listening_datum = target
+		if(!listening_datum) // AQ EDIT - słuchacz usunięty twardym del (referencja zamieniona na null)
+			return NONE
 		return NONE | call(listening_datum, listening_datum.signal_procs[src][sigtype])(arglist(arguments))
 	. = NONE
 	// This exists so that even if one of the signal receivers unregisters the signal,
@@ -185,6 +187,8 @@
 	// AKA: No you can't cancel the signal reception of another object by doing an unregister in the same signal.
 	var/list/queued_calls = list()
 	for(var/datum/listening_datum as anything in target)
+		if(!listening_datum) // AQ EDIT - słuchacz usunięty twardym del (rundy 6585, 6587, 6591)
+			continue
 		queued_calls[listening_datum] = listening_datum.signal_procs[src][sigtype]
 	for(var/datum/listening_datum as anything in queued_calls)
 		. |= call(listening_datum, queued_calls[listening_datum])(arglist(arguments))
