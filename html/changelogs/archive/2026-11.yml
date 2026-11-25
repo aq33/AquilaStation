@@ -1647,3 +1647,6 @@
   - rscadd: 'Stos korowy wyjęty z ciała zapisuje umysł: można z niego sklonować osobę
       albo zapisać kopię rekordu na pustym stosie w konsoli klonowania.'
   - tweak: W oknie wyboru języka żaden przycisk nie jest już podświetlony jako domyślny.
+  - bugfix: 'Supermateria w prawie pustej komorze nie nakręca się już sama: przy małej
+      ilości gazu grzeje go, wydziela plazmę i tlen oraz zyskuje moc proporcjonalnie
+      mniej, więc delaminujący kryształ da się opanować chłodziwem.'
