@@ -119,9 +119,11 @@
 	dome.on_life()
 	TEST_ASSERT(dome.cracked, "A badly dented head did not crack the dome")
 	TEST_ASSERT(dome.water_amount() < water_before, "A cracked dome does not leak")
+	TEST_ASSERT(H.alerts["aquarian_leak"], "A leaking dome shows no leak alert (no blood, so the bleeding alert never shows)")
 	head.heal_damage(brute = 45)
 	dome.on_life()
 	TEST_ASSERT(!dome.cracked, "Repairing the head did not seal the dome")
+	TEST_ASSERT(!H.alerts["aquarian_leak"], "The leak alert stayed after the dome was sealed")
 
 	// Wgnieciony pancerz „krwawi” wodą, a po naprawie przestaje
 	var/obj/item/bodypart/chest/body = H.get_bodypart(BODY_ZONE_CHEST)
@@ -130,9 +132,11 @@
 	dome.on_life()
 	TEST_ASSERT(dome.body_leaking, "A dented armour did not start leaking")
 	TEST_ASSERT(dome.water_amount() < water_before, "A dented armour does not leak water from the dome")
+	TEST_ASSERT(H.alerts["aquarian_leak"], "Leaking armour shows no leak alert")
 	body.heal_damage(brute = 40)
 	dome.on_life()
 	TEST_ASSERT(!dome.body_leaking, "Repairing the armour did not stop the leak")
+	TEST_ASSERT(!H.alerts["aquarian_leak"], "The leak alert stayed after the armour was repaired")
 
 	// Gorąca woda paruje i parzy rybę
 	dome.reagents.chem_temp = AQUARIAN_WATER_BOIL + 10
