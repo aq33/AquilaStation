@@ -20,47 +20,54 @@ HEX_UNITS_PER_HEX = 4.6
 HEX_MARGIN = 2
 SECTORS = [(1, "Sektor Sol"), (2, "Sektor neutralny"), (3, "Sektor Syndykatu")]
 
-R = 19  # promień hexa w pikselach
+R = 20  # promień hexa w pikselach
 HEX_W = math.sqrt(3) * R
 ROW_H = 1.5 * R
+K = 2  # rysowanie w podwójnej rozdzielczości i zmniejszenie: gładkie krawędzie i napisy
 PAD = 24
-TITLE_H = 40
-LEGEND_H = 70
 
-BACKGROUND = (14, 17, 26)
-GRID = (34, 40, 56)
-TEXT = (215, 220, 230)
-DIM_TEXT = (140, 148, 165)
+BACKGROUND = (11, 13, 20)
+PANEL = (17, 20, 30)
+PANEL_EDGE = (40, 46, 62)
+GRID = (30, 35, 48)
+TEXT = (232, 236, 244)
+DIM_TEXT = (150, 158, 175)
+TUNNEL = (120, 220, 255)
 FACTION_COLOURS = {
-    "nanotrasen": (60, 130, 230),
-    "solgov": (90, 200, 200),
-    "whiterapids": (150, 170, 230),
-    "syndicate": (215, 55, 55),
-    "pirate": (235, 160, 40),
-    "hostile": (170, 80, 210),
-    "unaligned": (120, 125, 135),
-    "uncharted": (80, 84, 92),
+    "nanotrasen": (66, 135, 245),
+    "solgov": (80, 205, 200),
+    "whiterapids": (160, 180, 240),
+    "syndicate": (225, 60, 60),
+    "pirate": (240, 165, 40),
+    "hostile": (180, 90, 225),
+    "unaligned": (125, 130, 142),
+    "uncharted": (85, 90, 100),
 }
-TERRAIN_COLOURS = {
-    "meteor": (70, 60, 50),
-    "junk": (60, 58, 52),
-    "nebula": (60, 45, 85),
-    "estorm": (45, 65, 95),
-    "storm": (45, 75, 95),
-    "rad": (70, 85, 35),
-    "flare": (95, 65, 30),
-    "anom": (75, 45, 75),
-    "grav": (35, 35, 45),
-    "bh": (5, 5, 8),
-    "carp": (40, 75, 80),
-    "comet": (60, 80, 95),
-    "mines": (95, 40, 40),
-    "signal": (40, 85, 60),
+# Teren: nazwa jak w grze (hex_terrain.dm) i przygaszony kolor, żeby nie zagłuszał układów
+TERRAIN = {
+    "meteor": ("Pole asteroid", (74, 62, 48)),
+    "junk": ("Złomowisko", (60, 60, 56)),
+    "nebula": ("Mgławica", (62, 44, 92)),
+    "estorm": ("Burza elektryczna", (38, 60, 98)),
+    "storm": ("Burza jonowa", (34, 74, 92)),
+    "rad": ("Promieniowanie", (64, 82, 30)),
+    "flare": ("Aktywność gwiazdy", (100, 64, 26)),
+    "anom": ("Pole anomalii", (84, 44, 84)),
+    "grav": ("Anomalia grawitacyjna", (40, 40, 56)),
+    "bh": ("Czarna dziura", (0, 0, 0)),
+    "carp": ("Ławica karpi", (34, 80, 84)),
+    "comet": ("Kometa", (60, 84, 104)),
+    "mines": ("Pole minowe", (104, 36, 36)),
+    "signal": ("Nieznany sygnał", (34, 90, 60)),
 }
 
 
-def font(size):
-    for name in ("arial.ttf", "DejaVuSans.ttf", "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"):
+def font(size, bold=False):
+    if bold:
+        names = ("arialbd.ttf", "DejaVuSans-Bold.ttf", "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf")
+    else:
+        names = ("arial.ttf", "DejaVuSans.ttf", "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf")
+    for name in names:
         try:
             return ImageFont.truetype(name, size)
         except OSError:
@@ -130,10 +137,6 @@ def first_free(start, taken, cols, rows):
     return None
 
 
-def centre(col, row):
-    return HEX_W * (col + (0.5 if row & 1 else 0)) + HEX_W / 2, ROW_H * row + R
-
-
 def hexagon(cx, cy, radius):
     return [(cx + radius * math.cos(math.radians(60 * i - 30)), cy + radius * math.sin(math.radians(60 * i - 30)))
             for i in range(6)]
@@ -147,83 +150,183 @@ def render(folder):
     hexmap = state["hexmap"]  # te same dane co w raporcie: jeden odczyt plików
     starmap = state["starmap"]
     sectors, placed = build_grid(starmap)
-    terrain = (hexmap.get("terrain") or {}).get("tiles") or {}
-    if not isinstance(terrain, dict):
-        terrain = {}
+    tiles = (hexmap.get("terrain") or {}).get("tiles") or {}
+    if not isinstance(tiles, dict):
+        tiles = {}
+    wormholes = (hexmap.get("terrain") or {}).get("wormholes") or []
     hidden = {s["name"] for s in starmap if s.get("hidden")}
     holders = {s["name"]: state["occupied"].get(s["name"], s.get("alignment")) for s in starmap}
     hqs = {hq["system"]: hq for hq in state["hqs"]}
+    visible = {name: spot for name, spot in placed.items() if name not in hidden}
+    ship = parse_hex(hexmap.get("ship_hex"))
 
-    offsets = {}
-    x = PAD
-    height = 0
-    for sector, _ in SECTORS:
+    terrain = {}
+    for hex_id, kind in tiles.items():
+        spot = parse_hex(hex_id)
+        if spot and kind in TERRAIN:
+            terrain[spot] = kind
+    tunnels = {}
+    for number, pair in enumerate(wormholes, 1):
+        for hex_id in pair if isinstance(pair, list) else []:
+            spot = parse_hex(hex_id)
+            if spot:
+                tunnels[spot] = number
+
+    # Każdy sektor przycięty do tego, co w nim jest (układy, teren, okręt), z ramką jednego pola
+    panels = []
+    for sector, title in SECTORS:
         if sector not in sectors:
             continue
+        content = list(visible.values()) + list(terrain) + list(tunnels) + ([ship] if ship else [])
+        spots = [(c, r) for s, c, r in content if s == sector]
+        if not spots:
+            continue
         cols, rows = sectors[sector]
-        offsets[sector] = x
-        x += HEX_W * (cols + 0.5) + PAD
-        height = max(height, ROW_H * (rows - 1) + 2 * R)
-    width = int(x)
-    image = Image.new("RGB", (width, int(TITLE_H + height + LEGEND_H + PAD)), BACKGROUND)
+        c0 = max(0, min(c for c, _ in spots) - 1)
+        c1 = min(cols - 1, max(c for c, _ in spots) + 1)
+        r0 = max(0, min(r for _, r in spots) - 1)
+        r1 = min(rows - 1, max(r for _, r in spots) + 1)
+        panels.append({"sector": sector, "title": title, "c0": c0, "c1": c1, "r0": r0, "r1": r1,
+                       "w": (c1 - c0 + 1.5) * HEX_W * K, "h": ((r1 - r0) * ROW_H + 2 * R) * K})
+    if not panels:
+        return None
+
+    pad = PAD * K
+    top = 92 * K
+    panel_title = 30 * K
+    total_w = int(pad + sum(p["w"] + pad for p in panels))
+    body_h = max(p["h"] for p in panels)
+    present = sorted(set(terrain.values()), key=list(TERRAIN).index)
+    legend_rows = 2 + (1 if present or tunnels else 0)
+    total_h = int(top + panel_title + body_h + pad + legend_rows * 26 * K + pad)
+    image = Image.new("RGB", (total_w, total_h), BACKGROUND)
     draw = ImageDraw.Draw(image)
-    small = font(11)
-    label = font(15)
-    title = font(20)
 
-    draw.text((PAD, 10), "Mapa wojny", font=title, fill=TEXT)
-    draw.text((width - PAD, 14), war_status.footer(state), font=font(12), fill=DIM_TEXT, anchor="ra")
+    # Nagłówek: tytuł, data zapisu i liczba układów każdej frakcji
+    draw.text((pad, 16 * K), "Mapa wojny", font=font(26 * K, bold=True), fill=TEXT)
+    draw.text((total_w - pad, 24 * K), war_status.footer(state), font=font(13 * K), fill=DIM_TEXT, anchor="ra")
+    head_font = font(15 * K, bold=True)
+    x = pad
+    for faction in war_status.MAIN_FACTIONS:
+        count = state["systems"].get(faction, 0)
+        draw.rounded_rectangle((x, 57 * K, x + 13 * K, 70 * K), radius=3 * K, fill=FACTION_COLOURS[faction])
+        text = f"{war_status.faction_name(faction)}: {war_status.plural(count, 'układ', 'układy', 'układów')}"
+        draw.text((x + 19 * K, 55 * K), text, font=head_font, fill=TEXT)
+        x += 19 * K + draw.textlength(text, font=head_font) + 28 * K
 
-    def pos(sector, col, row):
-        cx, cy = centre(col, row)
-        return offsets[sector] + cx, TITLE_H + 18 + cy
+    label_font = font(12 * K, bold=True)
+    x = pad
+    for panel in panels:
+        sector = panel["sector"]
+        px, py = x, top + panel_title
 
-    for sector, name in SECTORS:
-        if sector not in sectors:
-            continue
-        cols, rows = sectors[sector]
-        draw.text((offsets[sector], TITLE_H - 4), name, font=label, fill=DIM_TEXT)
-        for row in range(rows):
-            for col in range(cols):
-                colour = TERRAIN_COLOURS.get(terrain.get(f"{sector}:{col}:{row}"))
-                draw.polygon(hexagon(*pos(sector, col, row), R - 0.5), fill=colour, outline=GRID)
+        def pos(col, row, panel=panel, px=px, py=py):
+            cx = (col - panel["c0"] + (0.5 if row & 1 else 0)) * HEX_W + HEX_W / 2
+            cy = (row - panel["r0"]) * ROW_H + R
+            return px + cx * K, py + cy * K
 
-    for name, (sector, col, row) in placed.items():
-        if name in hidden:
-            continue  # nieodkryte układy (także kwatery) zostają nieodkryte
-        cx, cy = pos(sector, col, row)
-        colour = FACTION_COLOURS.get(holders.get(name), FACTION_COLOURS["unaligned"])
-        draw.polygon(hexagon(cx, cy, R - 2), fill=colour)
-        if name in hqs:
-            hq = hqs[name]
-            ring = FACTION_COLOURS[hq["faction"]] if hq["held"] else (255, 255, 255)
-            draw.polygon(hexagon(cx, cy, R + 2), outline=ring, width=3)
-        draw.text((cx, cy + R), name, font=small, fill=TEXT, anchor="mt")
+        draw.rounded_rectangle((px - 8 * K, py - 8 * K, px + panel["w"] + 8 * K, py + panel["h"] + 8 * K),
+                               radius=10 * K, fill=PANEL, outline=PANEL_EDGE, width=K)
+        draw.text((px, top + 2 * K), panel["title"], font=font(16 * K, bold=True), fill=DIM_TEXT)
+        for row in range(panel["r0"], panel["r1"] + 1):
+            for col in range(panel["c0"], panel["c1"] + 1):
+                cx, cy = pos(col, row)
+                kind = terrain.get((sector, col, row))
+                if kind:
+                    draw.polygon(hexagon(cx, cy, (R - 1) * K), fill=TERRAIN[kind][1])
+                else:
+                    draw.polygon(hexagon(cx, cy, (R - 1) * K), outline=GRID, width=K)
+        for (s, col, row), number in tunnels.items():
+            if s == sector:
+                cx, cy = pos(col, row)
+                draw.ellipse((cx - 9 * K, cy - 9 * K, cx + 9 * K, cy + 9 * K), outline=TUNNEL, width=2 * K)
+                draw.text((cx, cy), str(number), font=font(10 * K, bold=True), fill=TUNNEL, anchor="mm")
 
-    ship = hexmap.get("ship_hex")
-    if isinstance(ship, str) and ship.count(":") == 2:
-        sector, col, row = (int(v) for v in ship.split(":"))
-        if sector in offsets:
-            cx, cy = pos(sector, col, row)
-            draw.polygon([(cx, cy - 7), (cx + 6, cy + 5), (cx - 6, cy + 5)], fill=(255, 255, 255), outline=(0, 0, 0))
+        names = [(name, spot) for name, spot in visible.items() if spot[0] == sector]
+        boxes = []  # zajęte prostokąty układów i napisów, żeby napisy na siebie nie wchodziły
+        for name, (_, col, row) in names:
+            cx, cy = pos(col, row)
+            boxes.append((cx - (R - 4) * K, cy - (R - 4) * K, cx + (R - 4) * K, cy + (R - 4) * K))
+            colour = FACTION_COLOURS.get(holders.get(name), FACTION_COLOURS["unaligned"])
+            draw.polygon(hexagon(cx, cy, (R - 2) * K), fill=colour, outline=(8, 10, 16), width=K)
+            draw.ellipse((cx - 3 * K, cy - 3 * K, cx + 3 * K, cy + 3 * K), fill=(250, 250, 250))
+            if name in hqs:
+                hq = hqs[name]
+                ring = FACTION_COLOURS[hq["faction"]] if hq["held"] else (255, 255, 255)
+                draw.polygon(hexagon(cx, cy, (R + 3) * K), outline=ring, width=3 * K)
+        if ship and ship[0] == sector:
+            cx, cy = pos(ship[1], ship[2])
+            draw.polygon([(cx, cy - 12 * K), (cx + 10 * K, cy + 8 * K), (cx - 10 * K, cy + 8 * K)],
+                         fill=(255, 255, 255), outline=(0, 0, 0), width=2 * K)
+        for name, (_, col, row) in sorted(names, key=lambda n: (n[1][2], n[1][1])):
+            cx, cy = pos(col, row)
+            text = name
+            w = draw.textlength(text, font=label_font)
+            h = 14 * K
+            gap = (R + 1) * K
+            options = [(cx + gap, cy - h / 2), (cx - gap - w, cy - h / 2), (cx - w / 2, cy + gap - 4 * K),
+                       (cx - w / 2, cy - gap - h + 2 * K)]
+            inside = (px - 6 * K, py - 6 * K, px + panel["w"] + 6 * K, py + panel["h"] + 6 * K)
+            # Pierwsze miejsce w panelu bez kolizji; gdy takiego nie ma, pierwsze w panelu
+            candidates = []
+            for ax, ay in options:
+                box = (ax - 2 * K, ay - 2 * K, ax + w + 2 * K, ay + h + 2 * K)
+                if box[0] >= inside[0] and box[1] >= inside[1] and box[2] <= inside[2] and box[3] <= inside[3]:
+                    candidates.append((any(overlap(box, other) for other in boxes), ax, ay, box))
+            if candidates:
+                _, ax, ay, box = min(candidates, key=lambda c: c[0])
+            else:
+                ax, ay = options[0]
+                box = (ax, ay, ax + w, ay + h)
+            boxes.append(box)
+            draw.text((ax, ay), text, font=label_font, fill=TEXT, stroke_width=3 * K, stroke_fill=(5, 6, 10))
+        x += panel["w"] + pad
 
-    legend_y = TITLE_H + height + 34
-    lx = PAD
+    # Legenda
+    y = top + panel_title + body_h + pad
+    small = font(13 * K)
+    x = pad
     for faction in war_status.MAIN_FACTIONS + ["hostile", "unaligned"]:
-        draw.polygon(hexagon(lx + 7, legend_y + 7, 7), fill=FACTION_COLOURS[faction])
+        draw.polygon(hexagon(x + 8 * K, y + 8 * K, 8 * K), fill=FACTION_COLOURS[faction])
         text = war_status.faction_name(faction)
-        draw.text((lx + 20, legend_y), text, font=font(13), fill=TEXT)
-        lx += 34 + draw.textlength(text, font=font(13))
-    legend_y += 24
-    draw.polygon(hexagon(PAD + 7, legend_y + 7, 8), outline=(255, 255, 255), width=2)
-    draw.text((PAD + 20, legend_y), "kwatera główna (biała ramka: zajęta przez wroga)", font=font(13), fill=TEXT)
-    sx = PAD + 420
-    draw.polygon([(sx + 7, legend_y), (sx + 13, legend_y + 12), (sx + 1, legend_y + 12)], fill=(255, 255, 255))
-    draw.text((sx + 20, legend_y), "okręt załogi", font=font(13), fill=TEXT)
+        draw.text((x + 22 * K, y), text, font=small, fill=TEXT)
+        x += 40 * K + draw.textlength(text, font=small)
+    y += 26 * K
+    x = pad
+    draw.polygon(hexagon(x + 8 * K, y + 8 * K, 9 * K), outline=(255, 255, 255), width=2 * K)
+    text = "kwatera główna (biała ramka: zajęta przez wroga)"
+    draw.text((x + 22 * K, y), text, font=small, fill=TEXT)
+    x += 50 * K + draw.textlength(text, font=small)
+    draw.polygon([(x + 8 * K, y), (x + 16 * K, y + 15 * K), (x, y + 15 * K)], fill=(255, 255, 255))
+    draw.text((x + 22 * K, y), "okręt załogi (koniec ostatniej rundy)", font=small, fill=TEXT)
+    if present or tunnels:
+        y += 26 * K
+        x = pad
+        for kind in present:
+            draw.polygon(hexagon(x + 8 * K, y + 8 * K, 8 * K), fill=TERRAIN[kind][1], outline=GRID)
+            draw.text((x + 22 * K, y), TERRAIN[kind][0], font=small, fill=DIM_TEXT)
+            x += 40 * K + draw.textlength(TERRAIN[kind][0], font=small)
+        if tunnels:
+            draw.ellipse((x, y, x + 16 * K, y + 16 * K), outline=TUNNEL, width=2 * K)
+            draw.text((x + 22 * K, y), "tunel (ten sam numer łączy oba końce)", font=small, fill=DIM_TEXT)
 
+    image = image.resize((total_w // K, total_h // K), Image.LANCZOS)
     out = io.BytesIO()
     image.save(out, "PNG")
     return out.getvalue()
+
+
+def parse_hex(hex_id):
+    """'sektor:kolumna:wiersz' → (sektor, kolumna, wiersz) albo None."""
+    try:
+        sector, col, row = (int(v) for v in str(hex_id).split(":"))
+    except ValueError:
+        return None
+    return sector, col, row
+
+
+def overlap(a, b):
+    return a[0] < b[2] and b[0] < a[2] and a[1] < b[3] and b[1] < a[3]
 
 
 def main():

@@ -3,8 +3,9 @@
 Komenda `/wojna` pokazuje stan wojny frakcji w kampanii: ile układów i flot ma każda frakcja, kto trzyma kwatery
 główne, zajęte układy, DEFCON, głowice atomowe, dowódców i nemezis, ostatnie położenie okrętu załogi.
 
-Komenda `/mapa` wysyła obrazek mapy: trzy sektory hex z terenem, układy w kolorach frakcji, które je trzymają,
-kwatery główne (biała ramka: zajęta przez wroga) i okręt załogi. Nieodkryte układy i floty nie są rysowane.
+Komenda `/mapa` wysyła obrazek mapy: trzy sektory hex (przycięte do zawartości) z terenem i tunelami, układy w
+kolorach frakcji, które je trzymają, kwatery główne (biała ramka: zajęta przez wroga), okręt załogi, a w nagłówku
+liczbę układów każdej frakcji. Nieodkryte układy i floty nie są rysowane.
 
 Bot działa poza grą. Czyta tylko pliki `config/starmap/hexmap.json` i `starmap.json`, które serwer zapisuje na koniec
 rundy (i przy restarcie). Nie łączy się z serwerem i nie pokazuje stanu na żywo, tylko stan z ostatniego zapisu
