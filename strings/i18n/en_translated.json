@@ -31595,5 +31595,16 @@
 "Powolni": "Slow",
 "Na lądzie kałamarnicoludzie są wolniejsi od ludzi, a macki nie mieszczą się w żadnych butach.": "On land squidpeople are slower than humans, and their tentacles don't fit into any shoes.",
 "Wrażliwa skóra": "Sensitive skin",
-"Oparzenia zadają im o połowę większe obrażenia, źle znoszą też gorąco i zimno. Kończyny łatwo im odpadają.": "Burns deal them 50% more damage, and they handle heat and cold badly. Their limbs come off easily."
+"Oparzenia zadają im o połowę większe obrażenia, źle znoszą też gorąco i zimno. Kończyny łatwo im odpadają.": "Burns deal them 50% more damage, and they handle heat and cold badly. Their limbs come off easily.",
+"Kodeks karny okrętu z wyszukiwarką, kalkulatorem wyroku i podpowiedzią kary.": "The ship's criminal code with search, a sentence calculator and a suggested punishment.",
+"Sugerowana kara": "Suggested punishment",
+"Mandat:": "Fine:",
+"(albo areszt na ${formatSentence(punishment.time)})": "(or a brig sentence of ${formatSentence(punishment.time)})",
+"Areszt w celi z zegarem:": "Brig cell with a timer:",
+"GenPop: identyfikator więźnia na": "GenPop: prisoner ID for",
+"Gułag:": "Gulag:",
+"${punishment.points} pkt": "${punishment.points} pts",
+"Stała cela. Dożywocie zatwierdza Komendant albo Kapitan.": "Permanent cell. A life sentence needs the Head of Security or the Captain to approve it.",
+"Gułag bez zwolnienia (w konsoli gułagu „Dożywocie”)": "Gulag with no release (\"Life\" in the gulag console)",
+"Cyfrowe wygnanie: implant wygnania i netpod, więzień na zawsze zostaje w Pętli": "Digital exile: an exile implant and a netpod, the prisoner stays in the Loop forever"
 }
