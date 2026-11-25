@@ -35,6 +35,8 @@ export type Contact = {
   painted: boolean;
   locked: boolean;
   designation: Designation;
+  // Mała jednostka: "fighter" rozpoznany myśliwiec, "small" inna albo nierozpoznana
+  craft?: 'fighter' | 'small' | null;
   vx: number;
   vy: number;
   sensor?: string | null;
@@ -311,6 +313,16 @@ const ContactTags = (props: { contact: Contact }) => {
   const { contact } = props;
   return (
     <>
+      {contact.craft === 'fighter' && (
+        <Tag colour="#bcd7ff" background="#1a2a40">
+          myśliwiec
+        </Tag>
+      )}
+      {contact.craft === 'small' && (
+        <Tag colour="#bcd7ff" background="#1a2a40">
+          mała jednostka
+        </Tag>
+      )}
       {!!contact.locking_us && (
         <Tag colour="#ff9a9a" background="#3a1515">
           namierza nas
@@ -325,6 +337,76 @@ const ContactTags = (props: { contact: Contact }) => {
         <Tag colour={COLOR.desig2} background="#2f2a10">
           drugorzędny
         </Tag>
+      )}
+    </>
+  );
+};
+
+// Symbol kontaktu na radarze: kształt według strony, a mała jednostka mniejszym kształtem ze strzałką kursu
+// i przy dużym oddaleniu obrysem, żeby nie zginęła przy okręcie
+export const ContactShape = (props: {
+  contact: Contact;
+  x: number;
+  y: number;
+  far: boolean;
+}) => {
+  const { contact, x, y, far } = props;
+  const side = sideOf(contact);
+  const colour = COLOR[side];
+  const small = !!contact.craft;
+  const s = small ? 3.5 : 6;
+  const speed = Math.hypot(contact.vx, contact.vy);
+  const angle = Math.atan2(-contact.vy, contact.vx);
+  const point = (distance: number, turn: number) =>
+    `${x + Math.cos(angle + turn) * distance},${y + Math.sin(angle + turn) * distance}`;
+  return (
+    <>
+      {small && far && (
+        <circle
+          cx={x}
+          cy={y}
+          r={9}
+          fill="none"
+          stroke={colour}
+          strokeWidth={1}
+          strokeDasharray="2 2"
+          opacity={0.8}
+        />
+      )}
+      {small && speed > 0.05 && (
+        <path
+          d={`M${point(9, 0)} L${point(5.5, 0.6)} L${point(5.5, -0.6)} Z`}
+          fill={colour}
+        />
+      )}
+      {side === 'hostile' && (
+        <path
+          d={`M${x},${y - s} L${x + s},${y} L${x},${y + s} L${x - s},${y} Z`}
+          fill={small ? colour : 'none'}
+          stroke={colour}
+          strokeWidth={2}
+        />
+      )}
+      {side === 'friend' && (
+        <circle
+          cx={x}
+          cy={y}
+          r={s * 0.85}
+          fill={small ? colour : 'none'}
+          stroke={colour}
+          strokeWidth={2}
+        />
+      )}
+      {side === 'unknown' && (
+        <rect
+          x={x - s * 0.8}
+          y={y - s * 0.8}
+          width={s * 1.6}
+          height={s * 1.6}
+          fill={small ? colour : 'none'}
+          stroke={colour}
+          strokeWidth={2}
+        />
       )}
     </>
   );
@@ -893,9 +975,7 @@ const Scope = (props: ScopeProps) => {
       {contacts.map((contact) => {
         const [x, y, outside] = toPoint(contact.dx, contact.dy);
         const side = sideOf(contact);
-        const colour = COLOR[side];
         const uncertainty = Math.max(0, contact.uncertainty * scale);
-        const s = 6;
         const label = shortOf(contact);
         return (
           <g
@@ -918,35 +998,7 @@ const Scope = (props: ScopeProps) => {
                 strokeDasharray="3 3"
               />
             )}
-            {side === 'hostile' && (
-              <path
-                d={`M${x},${y - s} L${x + s},${y} L${x},${y + s} L${x - s},${y} Z`}
-                fill="none"
-                stroke={colour}
-                strokeWidth={2}
-              />
-            )}
-            {side === 'friend' && (
-              <circle
-                cx={x}
-                cy={y}
-                r={s * 0.85}
-                fill="none"
-                stroke={colour}
-                strokeWidth={2}
-              />
-            )}
-            {side === 'unknown' && (
-              <rect
-                x={x - s * 0.8}
-                y={y - s * 0.8}
-                width={s * 1.6}
-                height={s * 1.6}
-                fill="none"
-                stroke={colour}
-                strokeWidth={2}
-              />
-            )}
+            <ContactShape contact={contact} x={x} y={y} far={range >= 150} />
             {!!contact.designation &&
               [
                 [-1, -1],
@@ -1033,6 +1085,17 @@ const Legend = () => (
     <span>
       <Symbol side="unknown" />
       nierozpoznany
+    </span>
+    <span>
+      <span
+        style={{
+          ...swatch(COLOR.ink2),
+          width: '7px',
+          height: '7px',
+          borderRadius: '50%',
+        }}
+      />
+      myśliwiec lub mała jednostka
     </span>
     <span>
       <span

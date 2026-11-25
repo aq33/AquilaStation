@@ -18,6 +18,7 @@ import {
   card,
   COLOR,
   type Contact,
+  ContactShape,
   distanceOf,
   LABEL_CHAR_PX,
   LockBox,
@@ -560,10 +561,7 @@ const FireScope = (props: ScopeProps) => {
         })()}
       {contacts.map((contact) => {
         const [x, y, outside] = toPoint(contact.dx, contact.dy);
-        const side = sideOf(contact);
-        const colour = COLOR[side];
         const uncertainty = Math.max(0, contact.uncertainty * scale);
-        const s = 6;
         return (
           <g
             key={contact.id}
@@ -581,35 +579,7 @@ const FireScope = (props: ScopeProps) => {
                 strokeDasharray="3 3"
               />
             )}
-            {side === 'hostile' && (
-              <path
-                d={`M${x},${y - s} L${x + s},${y} L${x},${y + s} L${x - s},${y} Z`}
-                fill="none"
-                stroke={colour}
-                strokeWidth={2}
-              />
-            )}
-            {side === 'friend' && (
-              <circle
-                cx={x}
-                cy={y}
-                r={s * 0.85}
-                fill="none"
-                stroke={colour}
-                strokeWidth={2}
-              />
-            )}
-            {side === 'unknown' && (
-              <rect
-                x={x - s * 0.8}
-                y={y - s * 0.8}
-                width={s * 1.6}
-                height={s * 1.6}
-                fill="none"
-                stroke={colour}
-                strokeWidth={2}
-              />
-            )}
+            <ContactShape contact={contact} x={x} y={y} far={range >= 150} />
             {!!contact.painted && (
               <rect
                 x={x - 11}
@@ -1392,6 +1362,17 @@ export const FireBody = (props) => {
             <span>
               <Symbol side="unknown" />
               nierozpoznany
+            </span>
+            <span>
+              <span
+                style={{
+                  ...swatch(COLOR.ink2),
+                  width: '7px',
+                  height: '7px',
+                  borderRadius: '50%',
+                }}
+              />
+              myśliwiec lub mała jednostka
             </span>
             <span>
               <span

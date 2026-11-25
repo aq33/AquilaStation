@@ -82,6 +82,7 @@
 			"painted" = painted,
 			"locked" = target_lock == OM,
 			"designation" = LAZYACCESS(designated_targets, OM),
+			"craft" = OM.scope_craft_class(identified),
 			"targetable" = painted || OM.is_sensor_visible(src) >= SENSOR_VISIBILITY_TARGETABLE,
 		)
 		if(painted)

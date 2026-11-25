@@ -2759,6 +2759,7 @@
 #include "code\modules\unit_tests\aquila_ship_vfx.dm"
 #include "code\modules\unit_tests\aquila_console_merge.dm"
 #include "code\modules\unit_tests\aquila_tactical_screen.dm"
+#include "code\modules\unit_tests\aquila_scope_craft_marker.dm"
 #include "code\modules\unit_tests\aquila_navigation_console.dm"
 #include "code\modules\unit_tests\aquila_aviation_console.dm"
 #include "code\modules\unit_tests\aquila_salvage_console.dm"

@@ -32298,5 +32298,8 @@
 "Impuls radaru ze stanowiska rozpoznania: widać dalej, ale wrogowie słyszą okręt.": "Radar pulse from the sensor station: you see further, but enemies hear the ship.",
 "Impuls za ${Math.ceil(cooldown)} s": "Pulse in ${Math.ceil(cooldown)} s",
 "Okręt nie ma konsoli taktycznej z kontrolą ognia.": "The ship has no tactical console with fire control.",
-"Brak połączenia z sensorami i uzbrojeniem okrętu.": "No link to the ship's sensors and weapons."
+"Brak połączenia z sensorami i uzbrojeniem okrętu.": "No link to the ship's sensors and weapons.",
+"myśliwiec": "fighter",
+"mała jednostka": "small craft",
+"myśliwiec lub mała jednostka": "fighter or small craft"
 }

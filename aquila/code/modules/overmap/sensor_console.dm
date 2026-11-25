@@ -247,6 +247,7 @@
 			"locked" = linked.target_lock == OM,
 			"designation" = blip["designation"],
 			"number" = linked.get_contact_number(OM),
+			"craft" = OM.scope_craft_class(linked.is_contact_identified(OM, sensor_range)),
 		))
 	data["contacts"] = contacts
 	// Heard pulses and fire from undetected ships, drawn on the scope but not designatable
@@ -265,6 +266,13 @@
 	data["pulse_at"] = linked.last_radar_pulse
 	data["objects"] = linked.get_scope_objects(sensor_range)
 	data["near_range"] = SENSOR_THREAT_NEAR
+
+/// Znacznik małej jednostki na radarze: "fighter" dla rozpoznanego myśliwca, "small" dla innej małej jednostki
+/// albo nierozpoznanego echa małej jednostki, null dla okrętu
+/obj/structure/overmap/proc/scope_craft_class(identified)
+	if(!istype(src, /obj/structure/overmap/small_craft))
+		return null
+	return (identified && istype(src, /obj/structure/overmap/small_craft/combat)) ? "fighter" : "small"
 
 /// Asteroids, wrecks and anomalies for the operator's scope: not contacts (nothing to designate), only obstacles and things to look at.
 /// Asteroids and wrecks follow the same visibility as ships; anomalies show anywhere in the system, as on DRADIS.
