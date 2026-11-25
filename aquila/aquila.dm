@@ -2668,6 +2668,7 @@
 #include "code\modules\unit_tests\aquila_zgloszenia_2411.dm"
 #include "code\modules\unit_tests\aquila_zgloszenia_2511.dm"
 #include "code\modules\unit_tests\aquila_navy_ranks.dm"
+#include "code\modules\unit_tests\aquila_species_descriptions.dm"
 #include "code\modules\unit_tests\jukebox_pa_system.dm"
 #include "code\modules\unit_tests\aquila_jukebox_requests.dm"
 #include "code\modules\unit_tests\aquila_crying.dm"
