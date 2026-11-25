@@ -1650,3 +1650,19 @@
   - bugfix: 'Supermateria w prawie pustej komorze nie nakręca się już sama: przy małej
       ilości gazu grzeje go, wydziela plazmę i tlen oraz zyskuje moc proporcjonalnie
       mniej, więc delaminujący kryształ da się opanować chłodziwem.'
+  - imageadd: 'Nowe sprite''y dowództwa: mundury, kurtki, czapki, berety, peleryny,
+      hardsuit Kapitana, torba, karty ID, PDA i szafki Kapitana, Starszego Oficera
+      i Oficerów Pokładowych. Nowa peleryna CMO.'
+  - tweak: Kapitan zaczyna rundę we własnym mundurze, czapce i napierśniku, Starszy
+      Oficer we własnym mundurze i kurtce galowej, a Oficerowie Pokładowi w berecie
+      Oficera Pokładowego.
+  - rscadd: Oficerska czapka kapitana.
+  - tweak: 'Pudełka kompresyjne Kapitana i Starszego Oficera bez spódniczki, korony,
+      morskiego kombinezonu i brązowych butów; buty wojskowe i zapasowa kurtka XO
+      w szafkach. Kurtki kapitana: fikuśna i galowa, stara kurtka usunięta z szafki.'
+  - tweak: Pudełko kompresyjne Komendanta ma oba berety Komendanta zamiast duplikatu
+      munduru.
+  - spellcheck: Peleryna Komendanta zamiast płaszcza Komendanta.
+  - imageadd: Kurtki zimowe Kapitana, Starszego Oficera i Oficera Pokładowego (zapinane
+      Alt+klikiem), poprawione cieniowanie hardsuita i peleryny kapitana.
+  - tweak: Peleryny przykrywają plecak i torbę.
