@@ -21,7 +21,8 @@
 		GAS_CONSTRICTED_PLASMA,
 		GAS_NUCLEIUM, //NSV13 - constricted plasma and nucleium
 		GAS_H2, // AQ EDIT - plan maszynowni
-		GAS_FREZON) // AQ EDIT - plan maszynowni
+		GAS_FREZON, // AQ EDIT - plan maszynowni
+		GAS_METHANE) // AQ EDIT - plan maszynowni
 
 /obj/machinery/portable_atmospherics/scrubber/Destroy()
 	var/turf/T = get_turf(src)

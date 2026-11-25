@@ -77,6 +77,16 @@
 	TEST_ASSERT(!failure, failure)
 	TEST_ASSERT(hydrogen_mix.return_temperature() > 800, "Burning hydrogen did not heat the mix")
 
+	// Methane: the enthalpy of formation is negative, so only Hess's law with the products makes it heat (about 802 kJ per mole)
+	var/datum/gas_mixture/methane_mix = new
+	methane_mix.set_moles(GAS_METHANE, 10)
+	methane_mix.set_moles(GAS_O2, 40)
+	methane_mix.set_temperature(800)
+	methane_mix.react()
+	failure = compare_fire(methane_mix, expected_fire(GAS_METHANE, 10, 40, 800), "Reaction pass methane fire")
+	TEST_ASSERT(!failure, failure)
+	TEST_ASSERT(methane_mix.return_temperature() > 800, "Burning methane did not heat the mix")
+
 	// Ignition counts every fuel from the gas data, not only plasma and tritium
 	var/datum/gas_mixture/ignition = new
 	ignition.set_moles(GAS_TRITIUM, 2)

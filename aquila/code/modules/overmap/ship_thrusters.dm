@@ -35,6 +35,7 @@ GLOBAL_LIST_INIT(ship_thruster_fuels, list(
 	GAS_TRITIUM = 1.15,
 	GAS_CONSTRICTED_PLASMA = 1.15,
 	GAS_H2 = 1.1, // najlepszy impuls właściwy, ale trzeba go zrobić w elektrolizerze
+	GAS_METHANE = 0.9, // tańszy od plazmy, z bagien i metanowego olbrzyma
 ))
 /// Utleniacze: gaz = ile moli tlenu zastępuje jeden mol
 GLOBAL_LIST_INIT(ship_thruster_oxidizers, list(

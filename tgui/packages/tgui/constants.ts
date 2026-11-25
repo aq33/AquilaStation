@@ -335,6 +335,13 @@ const GASES = [
     label: 'Frezon',
     color: 'cadetblue',
   },
+  {
+    id: 'methane',
+    path: '/datum/gas/methane',
+    name: 'Metan',
+    label: 'CH₄',
+    color: 'darkkhaki',
+  },
 ] as const;
 
 // Returns gas label based on gasId

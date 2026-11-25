@@ -33432,5 +33432,15 @@
 "Czujesz zimno w płucach.": "Your lungs feel cold.",
 "Ogarnia cię dziwna euforia.": "A strange euphoria washes over you.",
 "kanister z frezonem": "frezon canister",
-"Frezon. Chłodzi wszystko, czego dotknie, z azotem nawet za mocno.": "Frezon. It cools everything it touches, with nitrogen a bit too much."
+"Frezon. Chłodzi wszystko, czego dotknie, z azotem nawet za mocno.": "Frezon. It cools everything it touches, with nitrogen a bit too much.",
+"kanister z metanem": "methane canister",
+"Metan. Pali się czysto i nie zostawia sadzy. Trzymać z dala od iskier.": "Methane. It burns clean and leaves no soot. Keep away from sparks.",
+"bańka gazu bagiennego": "swamp gas bubble",
+"Z błota co chwilę wydobywają się bąble gazu. Pachnie zgnilizną, a gaz bagienny to głównie metan.": "Bubbles of gas keep rising from the mud. It smells of rot, and swamp gas is mostly methane.",
+"metanowy olbrzym": "methane giant",
+"Olbrzym z zimnego metanu z domieszką azotu. Platformy wydobywcze na jego orbicie dają paliwo do dysz i generatorów.": "A giant of cold methane with some nitrogen. The mining platforms in its orbit supply fuel for thrusters and generators.",
+"gęsty metan z domieszką azotu pod wysokim ciśnieniem": "dense methane with some nitrogen under high pressure",
+"brak stałego gruntu poza platformami, ciśnienie miażdżące bez skafandra, palny metan": "no solid ground outside the platforms, crushing pressure without a suit, flammable methane",
+"Atmosfera Metanowego Olbrzyma": "Methane Giant Atmosphere",
+"metan": "methane"
 }

@@ -570,6 +570,7 @@
 						GAS_NUCLEIUM, //NSV13
 						GAS_MIASMA, // AQ EDIT - Miasma
 						GAS_FREZON, // AQ EDIT - plan maszynowni
+						GAS_METHANE, // AQ EDIT - plan maszynowni
 						GAS_H2, // AQ EDIT - plan maszynowni
 						GAS_PLUOXIUM
 					),
