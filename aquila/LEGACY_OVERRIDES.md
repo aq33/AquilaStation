@@ -1478,3 +1478,23 @@ Prebuilt mechs that attach more than their limits get the extra modules in the `
 | Hook | Location | Feature |
 |---|---|---|
 | `aquila_add_cyborg_modules(GLOB.cyborg_module_list)` after the module list is built, and `aquila_cyborg_module_radial_icon(module)` as the icon file of the radial entries, in `/mob/living/silicon/robot/proc/pick_module()` (AQ EDIT lines) | `code/modules/mob/living/silicon/robot/robot.dm` | New crew modules (Naukowy, Eksploracyjny, Detektyw, Brobocop; Chemiczny, Chirurgiczny i Ratowniczy weszły do Medycznego, Budowlany do Inżynieryjnego, Magazynowy i Biurowy do Zaopatrzeniowego, Hydroponiczny i Wielozadaniowy usunięte) in the module radial; their default look lives in `aquila/icons/mob/silicon/robots_aquila_modules.dmi`. Code: `aquila/code/modules/mob/living/silicon/robot/cyborgi/`. Test: `aquila_cyborg_modules` |
+
+## Wspomnienia z tg (tgstation/tgstation#60302, #72110, #72457)
+
+Kod: `aquila/code/datums/memory/`, makra w `aquila/code/__DEFINES/memory.dm` (dołączony w `nsv13.dme` przed core, bo makra `add_memory` / `add_mob_memory` / `add_memory_in_range` wołają hooki w core). Test: `aquila_memories`.
+
+| Hook | Location | Feature |
+|---|---|---|
+| `#include "aquila\code\__DEFINES\memory.dm"` among the early Aquila defines (AQ EDIT line) | `nsv13.dme` | Memory defines and macros visible to core files |
+| `/mob/verb/add_memory` renamed to `/mob/verb/add_note` (the verb is still called "Add Note"), same for the observer override (AQ EDIT lines) | `code/modules/mob/mob.dm`, `code/modules/mob/dead/observer/observer.dm` | The tg macro `add_memory(...)` would rewrite the old proc name |
+| Bank account number as a key memory instead of a note (AQ EDIT line) | `code/controllers/subsystem/job.dm` | `/datum/memory/key/account` |
+| Witness memory when a cream pie hits someone (AQ EDIT line) | `code/game/objects/items/food/pie.dm` | `/datum/memory/witnessed_creampie` |
+| Memory of the best food (`FOOD_QUALITY_TOP`) (AQ EDIT block) | `code/datums/components/food/edible.dm` | `/datum/memory/good_food` |
+| Memory of a `DRINK_FANTASTIC` drink (AQ EDIT line) | `code/modules/reagents/chemistry/reagents/food_reagents.dm` | `/datum/memory/good_drink` |
+| Witness memory of a slot machine jackpot (AQ EDIT block) | `code/game/machinery/slotmachine.dm` | `/datum/memory/won_jackpot` |
+| Witness memory of a medal with a commendation (AQ EDIT line) | `code/modules/clothing/under/accessories.dm` | `/datum/memory/received_medal` |
+| Memory of being turned into a cyborg, before the mind moves to the borg (AQ EDIT line) | `code/game/objects/items/robot/robot_parts.dm` | `/datum/memory/was_cyborged` |
+| Absorbed victim's memories as stories in the changeling's notes (AQ EDIT line) | `code/modules/antagonists/changeling/powers/absorb.dm` | `changeling_absorb_memory_stories()` |
+| Chisel in the games vendor and the artistic toolbox, tattoo kit in the art supply crate and maintenance loot (AQ EDIT lines) | `code/modules/vending/games.dm`, `code/game/objects/items/storage/toolbox.dm`, `code/modules/cargo/packs.dm`, `code/_globalvars/lists/maintenance_loot.dm` | Sources of `/obj/item/chisel` and `/obj/item/tattoo_kit` |
+
+Other memories come from overrides with `..()` in `aquila/code/datums/memory/memory_hooks.dm` (death, gib, pet death, megafauna kill, slip, fire, dismemberment, spaghetti, grenade/syndicate bomb/nuke arming, bomb defusal, supermatter, vending machine crush, russian roulette, revolution, captain spare code, quirks) and direct calls in Aquila files (tg surgery, heretic ritual, fishing, DNA infuser, prisoner transfer event). Human `examine()` does not send `COMSIG_PARENT_EXAMINE`, so tattoos on the owner are shown by an `examine()` override in `tattoo.dm` instead of the tg signal.

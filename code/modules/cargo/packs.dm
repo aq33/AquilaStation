@@ -3072,7 +3072,8 @@
 					/obj/item/canvas/twentythree_twentythree,
 					/obj/item/toy/crayon/rainbow,
 					/obj/item/toy/crayon/rainbow,
-					/obj/item/vending_refill/sticker)
+					/obj/item/vending_refill/sticker,
+					/obj/item/tattoo_kit) // AQ EDIT - zestaw do tatuażu (wspomnienia z tg)
 	crate_name = "skrzynia z przyborami plastycznymi"
 	crate_type = /obj/structure/closet/crate/wooden
 
