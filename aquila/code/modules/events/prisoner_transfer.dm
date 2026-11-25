@@ -71,7 +71,7 @@ GLOBAL_LIST_INIT(aquila_prisoner_crimes, list(
 	to_chat(prisoner, "<span class='notice'>Skazano cię za <b>[crime]</b> na <b>[sentence_minutes] minut</b> odsiadki. \
 		Kapsuła zaraz wyląduje w celi. Twoja karta więźnia odlicza wyrok, a po jego odbyciu jesteś wolny. \
 		Nie jesteś antagonistą: możesz próbować ucieczki, ale nie zabijaj ani nie sabotuj bez powodu.</span>")
-	player_mind.store_memory("Skazano cię za [crime] na [sentence_minutes] minut odsiadki.")
+	player_mind.add_memory(/datum/memory/key/permabrig_crimes, crimes = "[crime] ([sentence_minutes] min odsiadki)")
 
 	priority_announce("Centrala przekazuje na pokład osadzonego [prisoner.real_name], skazanego za [crime]. \
 		Wyrok: [sentence_minutes] minut. Kapsuła z więźniem wyląduje w obszarze [get_area_name(landing, TRUE)]. \

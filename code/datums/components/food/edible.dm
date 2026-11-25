@@ -489,6 +489,8 @@ Behavior that's still missing from this component that original food items had t
 		var/quality_label = GLOB.food_quality_description[food_quality]
 		to_chat(human_eater, "<span class='notice'>To posiłek: [quality_label].</span>")
 		SEND_SIGNAL(human_eater, COMSIG_ADD_MOOD_EVENT, "quality_food", event)
+		if(food_quality >= FOOD_QUALITY_TOP && isitem(parent)) // AQ EDIT - wspomnienia z tg: najlepsze jedzenie zapada w pamięć
+			human_eater.add_mob_memory(/datum/memory/good_food, food = parent)
 	last_check_time = world.time
 
 /// Get the complexity of the crafted food

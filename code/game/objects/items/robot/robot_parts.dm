@@ -311,6 +311,7 @@
 
 			O.updatename(BM.client)
 
+			BM.add_mob_memory(/datum/memory/was_cyborged, protagonist = BM.mind, deuteragonist = user) // AQ EDIT - wspomnienia z tg
 			BM.mind.transfer_to(O)
 
 			if(O.mind?.special_role)

@@ -800,7 +800,7 @@ GLOBAL_DATUM(memory_panel, /datum/memory_panel)
 /**
   * Add a note to the mind datum
   */
-/mob/verb/add_memory(msg as message)
+/mob/verb/add_note(msg as message) // AQ EDIT - nazwa procki zajęta przez makro add_memory (wspomnienia z tg)
 	set name = "Add Note"
 	set category = "IC"
 	if(mind)

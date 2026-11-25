@@ -172,6 +172,15 @@ PROCESSING_SUBSYSTEM_DEF(fishing)
 		UnregisterSignal(used_rod, COMSIG_ITEM_DROPPED)
 	if(win && reward_path != FISHING_DUD)
 		playsound(location, 'aquila/sound/effects/fishing/bigsplash.ogg', 100)
+		if(user)
+			var/reward_name = "ryba"
+			if(ispath(reward_path, /datum/aquarium_behaviour))
+				var/datum/aquarium_behaviour/fish = reward_path
+				reward_name = initial(fish.name)
+			else if(ispath(reward_path, /atom))
+				var/atom/reward_atom = reward_path
+				reward_name = initial(reward_atom.name)
+			user.add_mob_memory(/datum/memory/caught_fish, protagonist = user, deuteragonist = reward_name)
 	else if(!win && user)
 		user.balloon_alert(user, "uciekła!")
 	SEND_SIGNAL(src, COMSIG_FISHING_CHALLENGE_COMPLETED, user, win)

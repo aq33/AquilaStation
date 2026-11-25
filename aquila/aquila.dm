@@ -3050,6 +3050,14 @@
 #include "code\modules\pixel_devices\grinder.dm"
 #include "code\modules\pixel_devices\microwave.dm"
 
+// WSPOMNIENIA: system wspomnień z tg (tgstation/tgstation#60302, #72110, #72457), ryciny i tatuaże
+#include "code\datums\memory\_memory.dm"
+#include "code\datums\memory\memory_helpers.dm"
+#include "code\datums\memory\general_memories.dm"
+#include "code\datums\memory\key_memories.dm"
+#include "code\datums\memory\memory_hooks.dm"
+// WSPOMNIENIA: koniec
+
 // Profiler byond-tracy: MUSI być ostatnim include'em całego builda (BYOND inicjuje zmienne statyczne od końca,
 // więc ta rusza pierwsza, przed Master i mapą). Opis: tools/tracy/README.md
 #include "code\modules\tracy\tracy.dm"
