@@ -25,6 +25,14 @@
 	/// Changelog czeka na wybór języka (aggressive_changelog otwierał go przed oknem wyboru)
 	var/changelog_pending = FALSE
 
+/datum/tgui_modal
+	/// Żaden przycisk nie jest zaznaczony na starcie (Enter nic nie wybiera, dopóki gracz nie przejdzie strzałką)
+	var/no_default_choice = FALSE
+
+/datum/tgui_modal/ui_data(mob/user)
+	. = ..()
+	.["no_default"] = no_default_choice
+
 /// Gracz jeszcze nie wybrał języka
 /client/proc/needs_game_language()
 	return prefs && !prefs.game_language_chosen
@@ -49,6 +57,7 @@
 	// Własny modal zamiast tgui_alert(): wybór w menu pod Esc musi móc go zamknąć (close_game_language_window)
 	if(mob && (prefs?.toggles2 & PREFTOGGLE_2_TGUI_INPUT))
 		game_language_modal = new(mob, message, title, list("Polski", "English"), 0, TRUE)
+		game_language_modal.no_default_choice = TRUE // żaden język nie jest podświetlony jako domyślny
 		game_language_modal.ui_interact(mob)
 		if(SStgui.get_open_ui(mob, game_language_modal))
 			opened = TRUE
