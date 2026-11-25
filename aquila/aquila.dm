@@ -2907,6 +2907,7 @@
 #include "code\modules\unit_tests\aquila_pr655_review_fixes.dm"
 // BOTY: testy
 #include "code\modules\unit_tests\aquila_basic_bots.dm"
+#include "code\modules\unit_tests\aquila_path_after_wait.dm"
 #endif
 
 // Heretyk z tg (osobny plik z includami)
