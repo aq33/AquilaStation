@@ -2690,6 +2690,7 @@
 #include "code\modules\unit_tests\aquila_extra_hair.dm"
 #include "code\modules\unit_tests\aquila_grenade_destroyed.dm"
 #include "code\modules\unit_tests\aquila_drobiazgi_1711.dm"
+#include "code\modules\unit_tests\aquila_zgloszenia_2511.dm"
 #include "code\modules\unit_tests\aquila_he_pipe_no_pipeline.dm"
 #include "code\modules\unit_tests\aquila_imaginary_friend_job.dm"
 #include "code\modules\unit_tests\aquila_gunplay.dm"
