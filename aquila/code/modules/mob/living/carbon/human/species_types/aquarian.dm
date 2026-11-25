@@ -30,6 +30,23 @@ GLOBAL_LIST_INIT(aquarian_fish, list(
 	"lanternfish" = "Świetlik",
 	"dwarf_moonfish" = "Karłowaty księżycowiec",
 	"greenchromis" = "Chromis zielony",
+	"bleak" = "Ukleja",
+))
+
+/// Szare ryby (z paczki Fish People), które barwi kolor ryby z okna postaci
+GLOBAL_LIST_INIT(aquarian_tinted_fish, list("bleak"))
+
+/// Pancerz -> nazwa w oknie postaci. Pierwszy jest domyślny.
+GLOBAL_LIST_INIT(aquarian_bodies, list(
+	AQUARIAN_BODY_RED = "Czerwony pancerz",
+	AQUARIAN_BODY_METAL = "Goły metal",
+))
+
+/// Wzór na ramionach (stany aquarian_pattern_X_l_arm i _r_arm, barwione kolorem pancerza) -> nazwa w oknie postaci
+GLOBAL_LIST_INIT(aquarian_patterns, list(
+	AQUARIAN_PATTERN_NONE = "Bez wzoru",
+	"sleeves" = "Rękawy",
+	"stripes" = "Paski na ramionach",
 ))
 
 /// Rodzaj ryby z zapisu albo domyślny
@@ -37,6 +54,18 @@ GLOBAL_LIST_INIT(aquarian_fish, list(
 	if(fish in GLOB.aquarian_fish)
 		return fish
 	return GLOB.aquarian_fish[1]
+
+/// Pancerz z zapisu albo domyślny
+/proc/aquarian_valid_body(body)
+	if(body in GLOB.aquarian_bodies)
+		return body
+	return GLOB.aquarian_bodies[1]
+
+/// Wzór z zapisu albo brak
+/proc/aquarian_valid_pattern(pattern)
+	if(pattern in GLOB.aquarian_patterns)
+		return pattern
+	return AQUARIAN_PATTERN_NONE
 
 /// Kolor rrggbb (bez #) albo domyślny
 /proc/aquarian_valid_color(color, default)
@@ -53,6 +82,9 @@ GLOBAL_LIST_INIT(aquarian_fish, list(
 		FEATURE_AQUARIAN_FISH = "goldfish",
 		FEATURE_AQUARIAN_ARMOR = AQUARIAN_DEFAULT_ARMOR,
 		FEATURE_AQUARIAN_WATER = AQUARIAN_DEFAULT_WATER,
+		FEATURE_AQUARIAN_BODY = AQUARIAN_BODY_RED,
+		FEATURE_AQUARIAN_PATTERN = AQUARIAN_PATTERN_NONE,
+		FEATURE_AQUARIAN_FISH_COLOR = AQUARIAN_DEFAULT_FISH_COLOR,
 		"body_size" = "Normal",
 	)
 	use_skintones = FALSE
@@ -87,6 +119,9 @@ GLOBAL_LIST_INIT(aquarian_fish, list(
 		C.dna.features[FEATURE_AQUARIAN_FISH] = aquarian_valid_fish(C.dna.features[FEATURE_AQUARIAN_FISH])
 		C.dna.features[FEATURE_AQUARIAN_ARMOR] = aquarian_valid_color(C.dna.features[FEATURE_AQUARIAN_ARMOR], AQUARIAN_DEFAULT_ARMOR)
 		C.dna.features[FEATURE_AQUARIAN_WATER] = aquarian_valid_color(C.dna.features[FEATURE_AQUARIAN_WATER], AQUARIAN_DEFAULT_WATER)
+		C.dna.features[FEATURE_AQUARIAN_BODY] = aquarian_valid_body(C.dna.features[FEATURE_AQUARIAN_BODY])
+		C.dna.features[FEATURE_AQUARIAN_PATTERN] = aquarian_valid_pattern(C.dna.features[FEATURE_AQUARIAN_PATTERN])
+		C.dna.features[FEATURE_AQUARIAN_FISH_COLOR] = aquarian_valid_color(C.dna.features[FEATURE_AQUARIAN_FISH_COLOR], AQUARIAN_DEFAULT_FISH_COLOR)
 	. = ..()
 	RegisterSignal(C, COMSIG_PARENT_ATTACKBY, PROC_REF(on_attackby))
 	RegisterSignal(C, COMSIG_HUMAN_EARLY_UNARMED_ATTACK, PROC_REF(on_unarmed_attack))
@@ -219,6 +254,8 @@ GLOBAL_LIST_INIT(aquarian_fish, list(
 	var/fish_type
 	/// Zabarwienie wody rrggbb
 	var/water_tint
+	/// Kolor ryby rrggbb (tylko szare ryby z GLOB.aquarian_tinted_fish), wędruje z kloszem jak rodzaj ryby
+	var/fish_tint
 	/// Duszenie się ryby (0-200), przepisywane na oxyloss pancerza
 	var/fish_oxyloss = 0
 	/// Wartość oxyloss ustawiona w ostatnim cyklu (do wykrycia leczenia)
@@ -255,6 +292,10 @@ GLOBAL_LIST_INIT(aquarian_fish, list(
 			C.dna.features[FEATURE_AQUARIAN_WATER] = water_tint
 		else
 			water_tint = aquarian_valid_color(C.dna.features[FEATURE_AQUARIAN_WATER], AQUARIAN_DEFAULT_WATER)
+		if(fish_tint)
+			C.dna.features[FEATURE_AQUARIAN_FISH_COLOR] = fish_tint
+		else
+			fish_tint = aquarian_valid_color(C.dna.features[FEATURE_AQUARIAN_FISH_COLOR], AQUARIAN_DEFAULT_FISH_COLOR)
 	..() // woła też C.update_hair(), które rysuje klosz
 	name = initial(name)
 	synced_oxyloss = 0
@@ -280,7 +321,13 @@ GLOBAL_LIST_INIT(aquarian_fish, list(
 	. = ..()
 	var/fish_state = aquarian_valid_fish(fish_type)
 	if(shattered && !vessel)
-		return // sama rybka: rysuje ją icon_state (fish_flop_X albo fish_dead_X)
+		// Sama rybka: rysuje ją icon_state (fish_flop_X albo fish_dead_X). Szara ryba ma w icon_state same krople,
+		// a ciało w nakładce, żeby kolor ryby nie barwił wody.
+		if(fish_tinted())
+			var/mutable_appearance/lying = mutable_appearance(AQUARIAN_ICON, "fish_dead_[fish_state]")
+			lying.color = fish_color()
+			. += lying
+		return
 	if(vessel?.fill_icon_thresholds && reagents.total_volume)
 		// Poziom wody jak w samym naczyniu (woda jest w reagentach organu, nie naczynia)
 		var/fill_name = vessel.fill_icon_state || vessel.icon_state
@@ -294,6 +341,7 @@ GLOBAL_LIST_INIT(aquarian_fish, list(
 		. += filling
 	var/mutable_appearance/fish = mutable_appearance(AQUARIAN_ICON, "fish_[fish_state]")
 	fish.pixel_y = -AQUARIAN_ITEM_SHIFT
+	fish.color = fish_color()
 	. += fish
 	if(!vessel)
 		. += mutable_appearance(AQUARIAN_ICON, "dome_item_front")
@@ -306,6 +354,9 @@ GLOBAL_LIST_INIT(aquarian_fish, list(
 		icon_state = "dome_item"
 	else if(vessel)
 		icon_state = vessel.icon_state
+	else if(fish_tinted())
+		// Ciało szarej ryby jest w nakładce (update_overlays), tu tylko krople wody, gdy się rzuca
+		icon_state = fish_alive_out_of_water() ? "fish_flop_[aquarian_valid_fish(fish_type)]" : ""
 	else
 		icon_state = "[fish_alive_out_of_water() ? "fish_flop" : "fish_dead"]_[aquarian_valid_fish(fish_type)]"
 
@@ -343,15 +394,29 @@ GLOBAL_LIST_INIT(aquarian_fish, list(
 	var/list/output = list()
 	var/state = water_state()
 	if(state)
-		var/image/water = image(icon = AQUARIAN_ICON, icon_state = "dome_back", layer = layer, dir = dir)
-		if(water_tint && water_tint != AQUARIAN_DEFAULT_WATER)
+		// Zabarwiona woda jest szara (dome_back_grey), żeby kolor z okna postaci wyszedł taki, jaki wybrano
+		var/tinted = water_tint && water_tint != AQUARIAN_DEFAULT_WATER
+		var/image/water = image(icon = AQUARIAN_ICON, icon_state = tinted ? "dome_back_grey" : "dome_back", layer = layer, dir = dir)
+		if(tinted)
 			water.color = "#[water_tint]"
 		if(state == 1)
 			water.alpha = 110
 		output += water
-	output += image(icon = AQUARIAN_ICON, icon_state = "fish_[aquarian_valid_fish(fish_type)]", layer = layer, dir = dir)
+	var/image/fish = image(icon = AQUARIAN_ICON, icon_state = "fish_[aquarian_valid_fish(fish_type)]", layer = layer, dir = dir)
+	fish.color = fish_color()
+	output += fish
 	output += image(icon = AQUARIAN_ICON, icon_state = "dome_front", layer = layer, dir = dir)
 	return output
+
+/// Czy ryba jest szara i barwi ją kolor ryby
+/obj/item/organ/brain/aquarian/proc/fish_tinted()
+	return (aquarian_valid_fish(fish_type) in GLOB.aquarian_tinted_fish)
+
+/// Kolor szarej ryby ("#rrggbb") albo null dla ryb we własnych kolorach
+/obj/item/organ/brain/aquarian/proc/fish_color()
+	if(!fish_tinted() || !fish_tint || fish_tint == AQUARIAN_DEFAULT_FISH_COLOR)
+		return null
+	return "#[fish_tint]"
 
 /obj/item/organ/brain/aquarian/proc/water_examine_text()
 	var/list/lines = list()
@@ -906,10 +971,18 @@ GLOBAL_LIST_INIT(aquarian_fish, list(
 	taste_sensitivity = 25
 
 // Pancerz: robotyczne części ciała. Czerwone płyty można przemalować w oknie postaci (nakładka *_paint).
+// Drugi pancerz do wyboru to goły metal (stany aquarian_metal_*, sprite'y z paczki Fish People): bez płyt do malowania,
+// kolor pancerza barwi wtedy tylko wzór na ramionach (rękawy, paski), który można nałożyć na oba pancerze.
 
 /obj/item/bodypart
-	/// Kolor pancerza akwarianina (rrggbb), null = fabryczna czerwień
+	/// Kolor pancerza akwarianina (rrggbb), null = fabryczna czerwień albo goły metal
 	var/aquarian_paint
+	/// Pancerz z gołego metalu (stany aquarian_metal_*)
+	var/aquarian_metal = FALSE
+	/// Wzór na ramieniu (aquarian_pattern_X_strefa) albo null
+	var/aquarian_pattern
+	/// Kolor wzoru na ramieniu ("#rrggbb"): kolor pancerza
+	var/aquarian_pattern_color
 
 /obj/item/bodypart/update_limb(dropping_limb, mob/living/carbon/source, is_creating = FALSE)
 	. = ..()
@@ -919,24 +992,48 @@ GLOBAL_LIST_INIT(aquarian_fish, list(
 	if(!ishuman(H) || !H.dna)
 		return
 	var/paint = aquarian_valid_color(H.dna.features[FEATURE_AQUARIAN_ARMOR], AQUARIAN_DEFAULT_ARMOR)
-	aquarian_paint = paint == AQUARIAN_DEFAULT_ARMOR ? null : paint
+	aquarian_metal = aquarian_valid_body(H.dna.features[FEATURE_AQUARIAN_BODY]) == AQUARIAN_BODY_METAL
+	aquarian_paint = (aquarian_metal || paint == AQUARIAN_DEFAULT_ARMOR) ? null : paint
+	var/pattern = aquarian_valid_pattern(H.dna.features[FEATURE_AQUARIAN_PATTERN])
+	aquarian_pattern = pattern == AQUARIAN_PATTERN_NONE ? null : pattern
+	aquarian_pattern_color = aquarian_pattern ? "#[paint]" : null
 
 /obj/item/bodypart/get_limb_icon(dropped)
 	. = ..()
-	if(!aquarian_paint || is_husked || !length(.))
+	if(is_husked || !length(.) || limb_id != SPECIES_AQUARIAN)
 		return
-	var/state = "[limb_id]_[body_zone][is_dimorphic ? "_[limb_gender]" : ""]_paint"
-	if(!(state in aq_pref_icon_states(AQUARIAN_ICON)))
-		return
-	var/image/paint = image(icon = AQUARIAN_ICON, icon_state = state, layer = -BODYPARTS_LAYER, dir = dropped ? SOUTH : 0)
-	paint.color = "#[aquarian_paint]"
-	. += paint
+	var/list/states = aq_pref_icon_states(AQUARIAN_ICON)
+	if(aquarian_metal)
+		// Kończyna i dłoń w gołym metalu; kołnierz jest ten sam w obu pancerzach (brak stanu aquarian_metal_head_*)
+		for(var/image/part in .)
+			if(part.icon != AQUARIAN_ICON || !findtext(part.icon_state, "[SPECIES_AQUARIAN]_", 1, length(SPECIES_AQUARIAN) + 2))
+				continue
+			var/metal_state = "[SPECIES_AQUARIAN]_metal_[copytext(part.icon_state, length(SPECIES_AQUARIAN) + 2)]"
+			if(metal_state in states)
+				part.icon_state = metal_state
+	var/image_dir = dropped ? SOUTH : 0
+	if(aquarian_paint)
+		var/state = "[limb_id]_[body_zone][is_dimorphic ? "_[limb_gender]" : ""]_paint"
+		if(state in states)
+			var/image/paint = image(icon = AQUARIAN_ICON, icon_state = state, layer = -BODYPARTS_LAYER, dir = image_dir)
+			paint.color = "#[aquarian_paint]"
+			. += paint
+	if(aquarian_pattern)
+		var/pattern_state = "aquarian_pattern_[aquarian_pattern]_[body_zone]"
+		if(pattern_state in states)
+			var/image/pattern = image(icon = AQUARIAN_ICON, icon_state = pattern_state, layer = -BODYPARTS_LAYER, dir = image_dir)
+			pattern.color = aquarian_pattern_color
+			. += pattern
 
-/// Inny kolor pancerza = inna ikona kończyny w pamięci podręcznej
+/// Inny kolor, pancerz albo wzór = inna ikona kończyny w pamięci podręcznej
 /mob/living/carbon/generate_icon_key(obj/item/bodypart/BP)
 	. = ..()
 	if(BP.aquarian_paint)
 		. += "-aqpaint[BP.aquarian_paint]"
+	if(BP.aquarian_metal)
+		. += "-aqmetal"
+	if(BP.aquarian_pattern)
+		. += "-aqpattern[BP.aquarian_pattern][BP.aquarian_pattern_color]"
 
 /obj/item/bodypart/head/aquarian
 	name = "kołnierz pancerza"
@@ -1182,6 +1279,64 @@ GLOBAL_LIST_INIT(aquarian_fish, list(
 
 /datum/preference/color/aquarian_armor/read_value(datum/preferences/prefs)
 	return ..() || AQUARIAN_DEFAULT_ARMOR
+
+/// Pancerz: czerwony (z płytami do przemalowania) albo goły metal
+/datum/preference/choiced/aquarian_body
+	db_key = "feature_aquarian_body"
+	preference_type = PREFERENCE_CHARACTER
+	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
+	feature_key = FEATURE_AQUARIAN_BODY
+	relevant_mutant_bodypart = FEATURE_AQUARIAN_FISH
+	can_randomize = TRUE
+
+/datum/preference/choiced/aquarian_body/init_possible_values()
+	var/list/values = list()
+	for(var/body in GLOB.aquarian_bodies)
+		values += body
+	return values
+
+/datum/preference/choiced/aquarian_body/get_display_names()
+	return GLOB.aquarian_bodies.Copy()
+
+/datum/preference/choiced/aquarian_body/read_value(datum/preferences/prefs)
+	return aquarian_valid_body(..())
+
+/// Wzór na ramionach w kolorze pancerza
+/datum/preference/choiced/aquarian_pattern
+	db_key = "feature_aquarian_pattern"
+	preference_type = PREFERENCE_CHARACTER
+	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
+	feature_key = FEATURE_AQUARIAN_PATTERN
+	relevant_mutant_bodypart = FEATURE_AQUARIAN_FISH
+	can_randomize = TRUE
+
+/datum/preference/choiced/aquarian_pattern/init_possible_values()
+	var/list/values = list()
+	for(var/pattern in GLOB.aquarian_patterns)
+		values += pattern
+	return values
+
+/datum/preference/choiced/aquarian_pattern/get_display_names()
+	return GLOB.aquarian_patterns.Copy()
+
+/datum/preference/choiced/aquarian_pattern/read_value(datum/preferences/prefs)
+	return aquarian_valid_pattern(..())
+
+/// Kolor szarej ryby (ukleja); przy rybach we własnych kolorach ustawienie jest ukryte
+/datum/preference/color/aquarian_fish_color
+	db_key = "feature_aquarian_fish_color"
+	preference_type = PREFERENCE_CHARACTER
+	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
+	feature_key = FEATURE_AQUARIAN_FISH_COLOR
+	relevant_mutant_bodypart = FEATURE_AQUARIAN_FISH
+
+/datum/preference/color/aquarian_fish_color/is_accessible(datum/preferences/prefs)
+	if(!..())
+		return FALSE
+	return (aquarian_valid_fish(prefs.active_character?.features[FEATURE_AQUARIAN_FISH]) in GLOB.aquarian_tinted_fish)
+
+/datum/preference/color/aquarian_fish_color/read_value(datum/preferences/prefs)
+	return ..() || AQUARIAN_DEFAULT_FISH_COLOR
 
 // Opis w oknie wyboru gatunku
 

@@ -32166,5 +32166,16 @@
 "manekin do tatuażu": "tattoo dummy",
 "wytatuowany manekin": "tattooed dummy",
 "Tatuaż przedstawia scenę: kucharz staje w płomieniach. Na tatuażu płonie wielka czaszka.": "The tattoo depicts a scene: the cook bursts into flames. The tattoo has a giant flaming skull.",
-"Twoja postać dostaje trzy wspomnienia (operacja, podpalenie, zabicie megafauny), a obok stawia się ściana. \\": "Your character gets three memories (surgery, being set on fire, killing megafauna), and a wall appears next to you. \\"
+"Twoja postać dostaje trzy wspomnienia (operacja, podpalenie, zabicie megafauny), a obok stawia się ściana. \\": "Your character gets three memories (surgery, being set on fire, killing megafauna), and a wall appears next to you. \\",
+"Czerwony pancerz": "Red armour",
+"Goły metal": "Bare metal",
+"Bez wzoru": "No pattern",
+"Rękawy": "Sleeves",
+"Paski na ramionach": "Arm stripes",
+"Barwi płyty czerwonego pancerza i wzór na ramionach. Goły metal zostaje szary.": "Colours the plates of the red armour and the arm pattern. Bare metal stays grey.",
+"Wzór na ramionach": "Arm pattern",
+"Kolor ryby": "Fish colour",
+"Ukleja": "Bleak",
+"name: 'Wzór na ramionach',": "name: 'Arm pattern',",
+"name: 'Kolor ryby',": "name: 'Fish colour',"
 }
