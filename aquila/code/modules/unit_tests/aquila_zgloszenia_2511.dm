@@ -80,29 +80,92 @@
 	qdel(guided)
 
 	var/obj/item/projectile/guided_munition/missile/missile = new(run_loc_floor_bottom_left)
-	missile.homing = TRUE
-	missile.homing_target = fighter
-	missile.check_fighter_lock()
-	var/fighter_lock = missile.homing
 	var/obj/structure/overmap/small_craft/combat/light/big = allocate(/obj/structure/overmap/small_craft/combat/light)
 	big.mass = MASS_SMALL
+	// Rakieta leci w okręt dłużej niż czas namiaru: dalej go goni
 	missile.homing = TRUE
 	missile.homing_target = big
 	missile.check_fighter_lock()
+	missile.fighter_lock_since = world.time - 20 SECONDS
+	missile.check_fighter_lock()
 	var/ship_lock = missile.homing
+	// Przełącza się na myśliwiec w locie: czas liczy się od przełączenia, nie od wystrzału
+	missile.homing_target = fighter
+	missile.check_fighter_lock()
+	var/fresh_fighter_lock = missile.homing
+	missile.check_fighter_lock()
+	var/still_locked = missile.homing
+	missile.fighter_lock_since = world.time - 9 SECONDS
+	missile.check_fighter_lock()
+	var/fighter_lock = missile.homing
 	qdel(missile)
 	GLOB.overmap_scale_enabled = was_enabled
 
-	if(size_ok)
-		TEST_ASSERT(near_ok, "A guided weapon refused a fighter 20 tiles away")
-		TEST_ASSERT(!far_ok, "A guided weapon fired at a fighter 40 tiles away, beyond gun range")
+	TEST_ASSERT(size_ok, "A missile launcher does not accept a fighter as a target")
+	TEST_ASSERT(near_ok, "A guided weapon refused a fighter 20 tiles away")
+	TEST_ASSERT(!far_ok, "A guided weapon fired at a fighter 40 tiles away, beyond gun range")
+	TEST_ASSERT(fresh_fighter_lock && still_locked, "A missile that switched to a fighter lost the lock at once")
 	TEST_ASSERT(!fighter_lock, "A missile kept chasing a fighter after the lock time")
 	TEST_ASSERT(ship_lock, "A missile lost its lock on a ship")
 
-/// Telewizorek w menu lobby odlicza do rundy: jego podsystem musi działać w fazie lobby (SSprocessing w niej nie działa)
+/// Telewizorek w menu lobby odlicza do rundy: menu odświeża się w podsystemie, który działa w fazie lobby
+/// (SSprocessing w niej nie działa), a odświeżenie zmienia odliczanie
 /datum/unit_test/aquila_lobby_tv_processing
 
+/// Menu bez prawdziwego klienta: tylko telewizorek z tekstem i start odświeżania jak w zwykłym menu
+/datum/aq_lobby_hud/test_tv/New(mob/player)
+	owner = player
+	tv_text = new(null, src)
+	elements += tv_text
+	start_refreshing()
+
 /datum/unit_test/aquila_lobby_tv_processing/Run()
+	var/mob/living/carbon/human/viewer = allocate(/mob/living/carbon/human, run_loc_floor_bottom_left)
+	var/datum/aq_lobby_hud/test_tv/hud = new(viewer)
+	var/in_lobby_ss = (hud in SSlobby_hud.processing)
+	var/old_state = SSticker.current_state
+	var/old_time = SSticker.timeLeft
+	SSticker.current_state = GAME_STATE_PREGAME
+	SSticker.timeLeft = 120 SECONDS
+	hud.process(1)
+	var/first = hud.tv_text?.shown_text
+	SSticker.timeLeft = 119 SECONDS
+	hud.process(1)
+	var/second = hud.tv_text?.shown_text
+	SSticker.current_state = old_state
+	SSticker.timeLeft = old_time
+	STOP_PROCESSING(SSlobby_hud, hud)
+	if(!QDELETED(hud))
+		QDEL_NULL(hud.tv_text)
+		hud.elements.Cut()
+		hud.owner = null
+	TEST_ASSERT(in_lobby_ss, "The lobby menu is not refreshed by SSlobby_hud")
 	TEST_ASSERT(SSlobby_hud.runlevels & RUNLEVEL_LOBBY, "The lobby menu subsystem does not run in the lobby, the countdown would stand still")
+	TEST_ASSERT(findtext(first, "120 s") && findtext(second, "119 s"), "The lobby TV did not follow the countdown ([first] -> [second])")
+
+/// Wgniecenie czaszki: znika z głową odciętą od ciała i nie wraca przy obrocie; u małpy siedzi na jej głowie
+/datum/unit_test/aquila_skull_dent_decap
+
+/datum/unit_test/aquila_skull_dent_decap/Run()
+	var/mob/living/carbon/human/patient = allocate(/mob/living/carbon/human, run_loc_floor_bottom_left)
+	var/obj/item/bodypart/head = patient.get_bodypart(BODY_ZONE_HEAD)
+	var/datum/wound/blunt/fracture/crack = new()
+	crack.apply_wound(head, silent = TRUE)
+	TEST_ASSERT(patient.aq_skull_dent, "A cracked skull shows no dent")
+	head.drop_limb()
+	TEST_ASSERT(!patient.aq_skull_dent, "The dent stayed on the body after the head was cut off")
+	patient.setDir(NORTH)
+	patient.setDir(SOUTH)
+	TEST_ASSERT(!patient.aq_skull_dent, "Turning the headless body brought the dent back")
+	qdel(head)
+
+	var/mob/living/carbon/monkey/monkey = allocate(/mob/living/carbon/monkey, run_loc_floor_bottom_left)
+	var/list/head_offset = monkey.dna?.species?.offset_features?[OFFSET_HEAD]
+	var/datum/wound/blunt/fracture/monkey_crack = new()
+	monkey_crack.apply_wound(monkey.get_bodypart(BODY_ZONE_HEAD), silent = TRUE)
+	monkey.setDir(SOUTH)
+	TEST_ASSERT(monkey.aq_skull_dent, "A monkey with a cracked skull shows no dent")
+	if(length(head_offset))
+		TEST_ASSERT(monkey.aq_skull_dent.pixel_y == head_offset[2], "The monkey dent ignores the head offset ([monkey.aq_skull_dent.pixel_y] instead of [head_offset[2]])")
 
 #undef TEST_ASSERT

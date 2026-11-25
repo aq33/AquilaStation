@@ -24,11 +24,24 @@
 		aq_show_skull_dent(null)
 		return
 	RegisterSignal(src, COMSIG_ATOM_DIR_CHANGE, PROC_REF(aq_skull_dir_changed), override = TRUE)
+	// Odcięta głowa zabiera ranę ze sobą: bez tego wgniecenie zostawało nad szyją
+	RegisterSignal(get_bodypart(BODY_ZONE_HEAD), COMSIG_BODYPART_DROPPED, PROC_REF(aq_skull_head_dropped), override = TRUE)
 	aq_show_skull_dent(dir)
 
 /mob/living/carbon/proc/aq_skull_dir_changed(datum/source, old_dir, new_dir)
 	SIGNAL_HANDLER
+	if(!aq_has_skull_wound())
+		UnregisterSignal(src, COMSIG_ATOM_DIR_CHANGE)
+		aq_show_skull_dent(null)
+		return
 	aq_show_skull_dent(new_dir)
+
+/// Głowa odpada (sygnał przed odłączeniem): ciało bez głowy nie ma wgniecenia
+/mob/living/carbon/proc/aq_skull_head_dropped(obj/item/bodypart/head, mob/living/carbon/old_owner, special)
+	SIGNAL_HANDLER
+	UnregisterSignal(head, COMSIG_BODYPART_DROPPED)
+	UnregisterSignal(src, COMSIG_ATOM_DIR_CHANGE)
+	aq_show_skull_dent(null)
 
 /// Draws the dent for the facing, just above the hair and under masks and headgear; null or a side removes it
 /mob/living/carbon/proc/aq_show_skull_dent(facing)
@@ -46,6 +59,11 @@
 	if(!state)
 		return
 	aq_skull_dent = mutable_appearance('aquila/icons/mob/effects/denthead.dmi', state, -(HAIR_LAYER - 0.5))
+	// Głowa gatunku bywa przesunięta (małpy): wgniecenie idzie tam, gdzie nakrycie głowy. Rozmiar ciała skaluje cały mob.
+	var/list/head_offset = dna?.species?.offset_features?[OFFSET_HEAD]
+	if(length(head_offset))
+		aq_skull_dent.pixel_x += head_offset[1]
+		aq_skull_dent.pixel_y += head_offset[2]
 	add_overlay(aq_skull_dent)
 
 /datum/wound/blunt

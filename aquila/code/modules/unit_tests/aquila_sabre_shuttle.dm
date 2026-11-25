@@ -64,10 +64,17 @@
 	var/mob/living/carbon/human/survivor = allocate(/mob/living/carbon/human, run_loc_floor_bottom_left)
 	survivor.doMove(pod) // jak create_escape_pod(): forceMove() z NSV nie wpuszcza moba do jednostki na overmapie
 	pod.mobs_in_ship |= survivor
+	var/obj/item/toy/crayon/keepsake = new(pod)
+	// Wroga kapsuła nie wchodzi na prom
+	pod.faction = "syndicate"
+	TEST_ASSERT(!pod.docking_act(sabre), "The Sabre took in a hostile escape pod")
+	pod.faction = sabre.faction
 	TEST_ASSERT(pod.docking_act(sabre), "The Sabre didn't take in an escape pod with a survivor")
 	TEST_ASSERT(QDELETED(pod), "The rescued escape pod was left on the overmap")
 	TEST_ASSERT(istype(get_area(survivor), /area/shuttle/sabre), "The survivor ended up in [get_area(survivor)] instead of inside the Sabre")
 	TEST_ASSERT(survivor in sabre.mobs_in_ship, "The survivor isn't counted aboard the Sabre")
+	TEST_ASSERT(!QDELETED(keepsake) && istype(get_area(keepsake), /area/shuttle/sabre), "An item from the escape pod was lost with it")
+	qdel(keepsake)
 	sabre.mobs_in_ship -= survivor
 	qdel(survivor)
 

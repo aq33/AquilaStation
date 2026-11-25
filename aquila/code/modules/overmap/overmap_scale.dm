@@ -177,15 +177,30 @@ GLOBAL_VAR_INIT(overmap_scale_enabled, TRUE)
 #undef AI_TORPEDO_STANDOFF
 #undef AI_STANDOFF_BAND
 
+/obj/item/projectile/guided_munition/missile
+	/// Myśliwiec, który rakieta goni, i od kiedy (namiar na niego wygasa po OVERMAP_MISSILE_FIGHTER_LOCK_TIME)
+	var/datum/weakref/fighter_lock_ref
+	var/fighter_lock_since = 0
+
 /obj/item/projectile/guided_munition/missile/Initialize(mapload)
 	. = ..()
-	addtimer(CALLBACK(src, PROC_REF(check_fighter_lock)), OVERMAP_MISSILE_FIGHTER_LOCK_TIME)
+	addtimer(CALLBACK(src, PROC_REF(check_fighter_lock)), 1 SECONDS, TIMER_LOOP)
 
-/// Rakieta na myśliwiec nie goni go przez pół mapy: po OVERMAP_MISSILE_FIGHTER_LOCK_TIME gubi namiar. Okręty goni dalej.
+/// Rakieta nie goni myśliwca przez pół mapy: OVERMAP_MISSILE_FIGHTER_LOCK_TIME od namierzenia go gubi namiar
+/// i leci dalej prosto. Liczone od namierzenia, więc dotyczy też rakiety, która przełączy się na myśliwiec w locie.
+/// Okręty goni dalej. Dotyczy rakiet AI i graczy.
 /obj/item/projectile/guided_munition/missile/proc/check_fighter_lock()
 	var/obj/structure/overmap/target = homing_target
-	if(!GLOB.overmap_scale_enabled || !istype(target) || target.mass > MASS_TINY)
+	if(!GLOB.overmap_scale_enabled || !homing || !istype(target) || target.mass > MASS_TINY)
+		fighter_lock_ref = null
+		return
+	if(fighter_lock_ref?.resolve() != target)
+		fighter_lock_ref = WEAKREF(target)
+		fighter_lock_since = world.time
+		return
+	if(world.time - fighter_lock_since < OVERMAP_MISSILE_FIGHTER_LOCK_TIME)
 		return
 	homing = FALSE
 	homing_target = null
+	fighter_lock_ref = null
 #undef OVERMAP_MISSILE_FIGHTER_LOCK_TIME
