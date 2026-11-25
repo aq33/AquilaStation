@@ -95,6 +95,12 @@
 		var/datum/memory/prime_memory = memories[memory_path]
 		new_memorizer.memories[memory_path] = prime_memory.quick_copy_memory(new_memorizer)
 
+/// Wspomnienia przybywają w trakcie gry, więc otwarte okno notatek odświeża się samo (u nas autoupdate jest domyślnie wyłączony)
+/datum/memory_panel/ui_interact(mob/user, datum/tgui/ui)
+	. = ..()
+	var/datum/tgui/open_ui = SStgui.get_open_ui(user, src)
+	open_ui?.set_autoupdate(TRUE)
+
 /// Okno notatek (MemoryPanel) dostaje listę wspomnień z oceną wartości historii, jak w tg
 /datum/memory_panel/ui_data(mob/user)
 	var/list/data = ..()

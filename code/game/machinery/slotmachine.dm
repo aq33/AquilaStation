@@ -265,8 +265,10 @@
 		visible_message("<b>[src]</b> mówi: 'JACKPOT! Wygrywasz [money] kredytów!'")
 		priority_announce("Gratulacje dla [user ? user.real_name : usrname] za wygranie jackpota na automacie w [get_area(src)]!", sound = SSstation.announcer.get_rand_alert_sound())
 		jackpots += 1
-		if(user) // AQ EDIT - wspomnienia z tg
+		// AQ EDIT START - wspomnienia z tg
+		if(user)
 			add_memory_in_range(user, 7, /datum/memory/won_jackpot, protagonist = user, deuteragonist = src)
+		// AQ EDIT END
 		winning = 4
 		balance += money - give_payout(JACKPOT)
 		money = 0

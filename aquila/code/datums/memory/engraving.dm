@@ -85,7 +85,8 @@
 /datum/component/engraved/proc/on_update_overlays(atom/parent_atom, list/overlays)
 	SIGNAL_HANDLER
 
-	overlays += mutable_appearance('aquila/icons/turf/wall_engravings.dmi', "engraving[icon_state_append]")
+	// AQUILA: nad narożnikami starego wygładzania ścian (icon_smoothing.dm dokłada je osobno przy każdym przewygładzeniu)
+	overlays += mutable_appearance('aquila/icons/turf/wall_engravings.dmi', "engraving[icon_state_append]", ABOVE_NORMAL_TURF_LAYER)
 
 ///signal called on parent being examined
 /datum/component/engraved/proc/on_examine(datum/source, mob/user, list/examine_list)
@@ -154,7 +155,7 @@
 	user.balloon_alert(user, "ryjesz w ścianie...")
 	if(!do_after(user, 5 SECONDS, target = wall))
 		return
-	if(QDELETED(memory_to_engrave) || HAS_TRAIT(wall, TRAIT_NOT_ENGRAVABLE))
+	if(QDELETED(memory_to_engrave) || !isclosedturf(wall) || HAS_TRAIT(wall, TRAIT_NOT_ENGRAVABLE))
 		return
 	user.balloon_alert(user, "wyryto rycinę")
 	user.do_attack_animation(wall)
@@ -165,7 +166,8 @@
 	if(!engraved_story)
 		CRASH("Tried to submit a memory with an invalid story [memory_to_engrave]")
 
-	wall.AddComponent(/datum/component/engraved, engraved_story, do_persistent_save, memory_to_engrave.story_value)
+	if(!wall.AddComponent(/datum/component/engraved, engraved_story, do_persistent_save, memory_to_engrave.story_value))
+		return
 	memory_to_engrave.memory_flags |= MEMORY_FLAG_ALREADY_USED
 	//while someone just engraved a story "worth engraving" we should add this to SSpersistence for a possible prison tattoo
 

@@ -181,8 +181,8 @@ export const MemoryPanel = (props) => {
                 }
               >
                 <Stack vertical>
-                  {memories.map((memory) => (
-                    <Stack.Item key={memory.name}>
+                  {memories.map((memory, index) => (
+                    <Stack.Item key={index}>
                       <MemoryQuality quality={memory.quality} /> {memory.name}
                     </Stack.Item>
                   ))}

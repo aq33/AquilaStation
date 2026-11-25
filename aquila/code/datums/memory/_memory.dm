@@ -365,10 +365,14 @@
 
 	if(istype(character, /datum/mind))
 		var/datum/mind/character_mind = character
-		// AQUILA: assigned_role to u nas polska nazwa zawodu (tekst), w tg /datum/job
-		if(character_mind.assigned_role)
-			return lowertext(character_mind.assigned_role)
-		return character_mind.name
+		// AQUILA: assigned_role to u nas polska nazwa zawodu (tekst), w tg /datum/job. Role antagonistów i specjalne
+		// (ROLE_WIZARD itp.) mają angielskie stałe, więc w opowieści ich nie pokazujemy.
+		var/role = character_mind.assigned_role
+		if(role == JOB_NAME_PRISONER)
+			return "więzień"
+		if(role && (role in get_all_jobs()))
+			return lowertext(role)
+		return "nieznajomy"
 
 	// Generic result - mobs and things are shown by their name
 	if(isatom(character))

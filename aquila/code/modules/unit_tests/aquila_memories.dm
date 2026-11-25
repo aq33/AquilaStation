@@ -35,6 +35,11 @@
 	TEST_ASSERT(cook.add_mob_memory(/datum/memory/was_cyborged, protagonist = mind), "MEMORY_SKIP_UNCONSCIOUS memory was not added")
 	cook.stat = CONSCIOUS
 
+	// Role spoza listy zawodów (angielskie stałe antagonistów) nie trafiają do polskiej opowieści
+	cook.mind.assigned_role = ROLE_WIZARD
+	TEST_ASSERT_EQUAL(second.build_story_character(cook), "nieznajomy", "Antagonist role leaked into the story")
+	cook.mind.assigned_role = JOB_NAME_COOK
+
 	// Opowieść do ryciny: polska, z datą
 	var/story = second.generate_story(STORY_ENGRAVING, STORY_FLAG_DATED)
 	TEST_ASSERT(length(story) && findtext(story, "roku"), "Engraving story has no date: [story]")

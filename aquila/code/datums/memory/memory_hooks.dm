@@ -75,7 +75,8 @@
 /// tg: rozbrojenie i nieudane rozbrojenie bomby Syndykatu (nie bomby treningowej)
 /datum/wires/syndicatebomb/proc/remember_defuse(was_active, was_exploding, time_left)
 	var/obj/machinery/syndicatebomb/bomb = holder
-	if(!was_active || !ismob(usr) || istype(bomb.payload, /obj/item/bombcore/training))
+	// Przewód może przeciąć sygnalizator albo EMP, a wtedy usr to ktoś przypadkowy: saper musi stać przy bombie
+	if(!was_active || !ismob(usr) || !usr.Adjacent(bomb) || istype(bomb.payload, /obj/item/bombcore/training))
 		return
 	if(!was_exploding && bomb.explode_now)
 		add_memory_in_range(bomb, 7, /datum/memory/bomb_defuse_failure, protagonist = usr, antagonist = bomb)
@@ -102,8 +103,9 @@
 // ---------------------------------------------------------------- świadkowie
 
 /obj/machinery/power/supermatter_crystal/Consume(atom/movable/AM)
-	if(isliving(AM))
-		add_memory_in_range(src, 7, /datum/memory/witness_supermatter_dusting, protagonist = AM, antagonist = src)
+	var/mob/living/victim = AM
+	if(isliving(victim) && !(victim.status_flags & GODMODE))
+		add_memory_in_range(src, 7, /datum/memory/witness_supermatter_dusting, protagonist = victim, antagonist = src)
 	return ..()
 
 /obj/machinery/vending/tilt(mob/fatty, crit = FALSE)

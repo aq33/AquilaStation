@@ -1479,9 +1479,9 @@ Kod: `aquila/code/datums/memory/`, makra w `aquila/code/__DEFINES/memory.dm` (do
 | `/mob/verb/add_memory` renamed to `/mob/verb/add_note` (the verb is still called "Add Note"), same for the observer override (AQ EDIT lines) | `code/modules/mob/mob.dm`, `code/modules/mob/dead/observer/observer.dm` | The tg macro `add_memory(...)` would rewrite the old proc name |
 | Bank account number as a key memory instead of a note (AQ EDIT line) | `code/controllers/subsystem/job.dm` | `/datum/memory/key/account` |
 | Witness memory when a cream pie hits someone (AQ EDIT line) | `code/game/objects/items/food/pie.dm` | `/datum/memory/witnessed_creampie` |
-| Memory of the best food (`FOOD_QUALITY_TOP`) (AQ EDIT lines) | `code/datums/components/food/edible.dm` | `/datum/memory/good_food` |
+| Memory of the best food (`FOOD_QUALITY_TOP`) (AQ EDIT block) | `code/datums/components/food/edible.dm` | `/datum/memory/good_food` |
 | Memory of a `DRINK_FANTASTIC` drink (AQ EDIT line) | `code/modules/reagents/chemistry/reagents/food_reagents.dm` | `/datum/memory/good_drink` |
-| Witness memory of a slot machine jackpot (AQ EDIT lines) | `code/game/machinery/slotmachine.dm` | `/datum/memory/won_jackpot` |
+| Witness memory of a slot machine jackpot (AQ EDIT block) | `code/game/machinery/slotmachine.dm` | `/datum/memory/won_jackpot` |
 | Witness memory of a medal with a commendation (AQ EDIT line) | `code/modules/clothing/under/accessories.dm` | `/datum/memory/received_medal` |
 | Memory of being turned into a cyborg, before the mind moves to the borg (AQ EDIT line) | `code/game/objects/items/robot/robot_parts.dm` | `/datum/memory/was_cyborged` |
 | Absorbed victim's memories as stories in the changeling's notes (AQ EDIT line) | `code/modules/antagonists/changeling/powers/absorb.dm` | `changeling_absorb_memory_stories()` |
