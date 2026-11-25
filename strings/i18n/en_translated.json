@@ -31611,5 +31611,16 @@
 "[craft_name] ląduje na [planet_name]. Transmisja NA ŻYWO w Spess.tv!": "[craft_name] is landing on [planet_name]. LIVE on Spess.tv!",
 "kamera lądowiska": "landing site camera",
 "Preferowana funkcja na okręcie": "Preferred duty on the ship",
-"Co chcesz robić w drużynie. Trafisz do drużyny z tą funkcją, o ile nie jest pełna. Automatycznie: funkcja według zawodu, a bez niej najmniej liczna drużyna.": "What you want to do in a squad. You join a squad with this duty unless it is full. Automatic: the duty of your job, otherwise the smallest squad."
+"Co chcesz robić w drużynie. Trafisz do drużyny z tą funkcją, o ile nie jest pełna. Automatycznie: funkcja według zawodu, a bez niej najmniej liczna drużyna.": "What you want to do in a squad. You join a squad with this duty unless it is full. Automatic: the duty of your job, otherwise the smallest squad.",
+"Manipulacja organami głowy: wyciągnięcie pasożyta": "Head organ manipulation: parasite extraction",
+"Zapis z [recorded_at]. Włóż stos do konsoli klonowania, żeby dodać z niego rekord.": "Recorded at [recorded_at]. Put the stack into a cloning console to add a record from it.",
+"Stos jest pusty. W konsoli klonowania można na nim zapisać kopię wybranego rekordu.": "The stack is blank. A cloning console can write a copy of a chosen record onto it.",
+"Odczyt stosu nieudany: zapis jest uszkodzony.": "Stack read failed: the record is corrupted.",
+"Odczytano stos korowy: [fields[\"name\"]] (zapis z [stack.recorded_at]).": "Cortical stack read: [fields[\"name\"]] (recorded at [stack.recorded_at]).",
+"[src] odczytuje stos korowy i dodaje rekord: [fields[\"name\"]].": "[src] reads the cortical stack and adds a record: [fields[\"name\"]].",
+"W [src] nie ma rekordu z umysłem, który dałoby się zapisać na stosie.": "[src] has no record with a mind that could be written onto the stack.",
+"Który rekord zapisać na pustym stosie?": "Which record should be written onto the blank stack?",
+"Kopia stosu korowego": "Cortical stack copy",
+"Zapisujesz na stosie kopię rekordu: [record.fields[\"name\"]].": "You write a copy of the record onto the stack: [record.fields[\"name\"]].",
+"\\t<span class='alert'>Zalecane postępowanie: <b>manipulacja organami głowy, opcja „wyciągnięcie pasożyta”</b>.</span>": "\\t<span class='alert'>Recommended treatment: <b>head organ manipulation, the \"parasite extraction\" option</b>.</span>"
 }
