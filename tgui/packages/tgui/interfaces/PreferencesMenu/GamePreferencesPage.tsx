@@ -54,6 +54,7 @@ const SUBCATEGORY_NAMES: Record<string, string> = {
   Chat: 'Czat',
   Deadmin: 'Zrzucanie uprawnień',
   Misc: 'Różne',
+  Mixer: 'Mikser',
   Music: 'Muzyka',
   Quality: 'Jakość',
   Scaling: 'Skalowanie',

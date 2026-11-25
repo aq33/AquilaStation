@@ -152,7 +152,7 @@ GLOBAL_VAR(medibot_unique_id_gen)
 	if(shut_up)
 		return
 	if(is_emagged() && prob(30))
-		playsound(src, pick('sound/voice/medbot/fuck_you.ogg', 'sound/voice/medbot/im_different.ogg', 'sound/voice/medbot/shindemashou.ogg'), 70)
+		playsound(src, pick('sound/voice/medbot/fuck_you.ogg', 'sound/voice/medbot/im_different.ogg', 'sound/voice/medbot/shindemashou.ogg'), 70, volume_pref = VOLUME_PREF_BOTS)
 		return
 	var/list/messagevoice = list("Pavulon już jest." = 'aquila/sound/voice/medbot/pawulon_jest.ogg', "Tu jeszcze troszeczke pavuloniku." = 'aquila/sound/voice/medbot/jeszcze_pawulon.ogg')
 	var/message = pick(messagevoice)
@@ -414,7 +414,7 @@ GLOBAL_VAR(medibot_unique_id_gen)
 	new /obj/item/assembly/prox_sensor(drop_spot)
 	drop_part(healthanalyzer, drop_spot)
 	if(is_emagged() && prob(25))
-		playsound(src, 'aquila/sound/voice/medbot/malpiszon.ogg', 50)
+		playsound(src, 'aquila/sound/voice/medbot/malpiszon.ogg', 50, volume_pref = VOLUME_PREF_BOTS)
 	return ..()
 
 /mob/living/basic/bot/medbot/get_custom_controls(mob/user)

@@ -106,10 +106,10 @@
 	var/mob/living/carbon/carbon_user = user
 	// For masks that give unique death sounds
 	if(istype(carbon_user) && isclothing(carbon_user.wear_mask) && carbon_user.wear_mask.unique_death)
-		playsound(carbon_user, carbon_user.wear_mask.unique_death, 200, TRUE, TRUE)
+		playsound(carbon_user, carbon_user.wear_mask.unique_death, 200, TRUE, TRUE, volume_pref = VOLUME_PREF_EMOTES) // AQ EDIT - mikser dźwięku
 		return
 	if(user.deathsound)
-		playsound(user, user.deathsound, 200, TRUE, TRUE)
+		playsound(user, user.deathsound, 200, TRUE, TRUE, volume_pref = VOLUME_PREF_EMOTES) // AQ EDIT - mikser dźwięku
 
 /datum/emote/living/drool
 	key = "drool"
@@ -161,7 +161,7 @@
 			addtimer(CALLBACK(H,TYPE_PROC_REF(/mob/living/carbon/human, Togglewings)), wing_time)
 		// play moth flutter noise if moth wing
 		if(istype(wings, /obj/item/organ/wings/moth))
-			playsound(H, 'aquila/sound/emotes/moth_flutter.ogg', 50, TRUE)
+			playsound(H, 'aquila/sound/emotes/moth_flutter.ogg', 50, TRUE, volume_pref = VOLUME_PREF_EMOTES) // AQ EDIT - mikser dźwięku
 
 /datum/emote/living/flap/select_message_type(mob/user, intentional)
 	. = ..()

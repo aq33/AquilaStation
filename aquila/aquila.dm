@@ -1358,6 +1358,7 @@
 // #include "code\modules\test_chamber\kits\pr_420_traitor_cele.dm"
 #include "code\modules\test_chamber\kits\test_subjects.dm"
 // Komora testowa - zestawy PR-ów niżej (usuwać razem z plikiem zestawu po przetestowaniu)
+#include "code\modules\test_chamber\kits\pr_700_mikser_dzwieku.dm"
 #include "code\modules\test_chamber\kits\pr_696_horror_czaszka.dm"
 #include "code\modules\test_chamber\kits\pr_672_cyborgi.dm"
 #include "code\modules\test_chamber\kits\pr_672_implanty.dm"
@@ -1698,6 +1699,7 @@
 #include "code\modules\mob\living\silicon\robot\robot_movement.dm"
 #include "code\modules\mob\voice.dm"
 #include "code\modules\mob\voice_goon.dm"
+#include "code\modules\client\sound_mixer.dm"
 #include "code\modules\mob\voice_muffled_sounds.dm"
 #include "code\modules\modular_computers\hardware\printer.dm"
 #include "code\modules\detectivework\access_log.dm"
@@ -2701,6 +2703,7 @@
 #include "code\modules\unit_tests\aquila_gq_lights.dm"
 #include "code\modules\unit_tests\aquila_gun_fire_without_params.dm"
 #include "code\modules\unit_tests\aquila_speech_voices.dm"
+#include "code\modules\unit_tests\aquila_sound_mixer.dm"
 #include "code\modules\unit_tests\aquila_extra_hair.dm"
 #include "code\modules\unit_tests\aquila_grenade_destroyed.dm"
 #include "code\modules\unit_tests\aquila_drobiazgi_1711.dm"
