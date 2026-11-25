@@ -699,6 +699,7 @@
 #include "code\modules\client\preferences_menu\assets.dm"
 #include "code\modules\clothing\clothing.dm"
 #include "code\modules\clothing\id_worn.dm"
+#include "code\modules\clothing\dowodztwo_resprite.dm"
 #include "code\modules\clothing\spacesuits\hardsuit_modules.dm"
 #include "code\modules\clothing\spacesuits\hardsuit_variants.dm"
 #include "code\modules\clothing\outfits\ert.dm"
@@ -1358,6 +1359,7 @@
 // #include "code\modules\test_chamber\kits\pr_420_traitor_cele.dm"
 #include "code\modules\test_chamber\kits\test_subjects.dm"
 // Komora testowa - zestawy PR-ów niżej (usuwać razem z plikiem zestawu po przetestowaniu)
+#include "code\modules\test_chamber\kits\pr_695_dowodztwo.dm"
 #include "code\modules\test_chamber\kits\pr_700_mikser_dzwieku.dm"
 #include "code\modules\test_chamber\kits\pr_696_horror_czaszka.dm"
 #include "code\modules\test_chamber\kits\pr_672_cyborgi.dm"
@@ -2471,6 +2473,7 @@
 #include "code\modules\unit_tests\_unit_test_weights.dm"
 
 #ifdef UNIT_TESTS
+#include "code\modules\unit_tests\aquila_dowodztwo_resprite.dm"
 #include "code\modules\unit_tests\aquila_cyborgi.dm"
 #include "code\modules\unit_tests\aquila_robotyka.dm"
 #include "code\modules\unit_tests\aquila_nano_well_oc.dm"

@@ -253,9 +253,6 @@ GLOBAL_LIST_INIT(renamed_job_titles, list("Policjant" = JOB_NAME_SECURITYOFFICER
 /obj/item/clothing/suit/toggle/labcoat/brig_physician
 	name = "fartuch Lekarza Więziennego"
 
-/obj/item/clothing/neck/cloak/hos
-	name = "płaszcz Komendanta"
-
 /obj/item/clothing/head/HoS
 	name = "czapka Komendanta"
 
