@@ -12,3 +12,5 @@
 #define CAMERANET_NETWORK_THUNDERDOME "thunder"
 /// Sieć kamer reporterskich kuratora
 #define CAMERANET_NETWORK_CURATOR "curator"
+/// Sieć kamery lądowiska: transmisja lądowania promu na planecie (planet_landing_broadcast.dm)
+#define CAMERANET_NETWORK_LANDING "landing"

@@ -68,11 +68,13 @@
 //Removing weeeds
 	if(istype(I, /obj/item/cultivator))
 		if(weed_level <= 1)
+			// AQUILA - bez chwastów kultywator wyrywa wybraną roślinę
+			if(length(plants))
+				INVOKE_ASYNC(src, PROC_REF(async_spade_options), attacker, I)
+				return
 			attacker.visible_message("[attacker] grzebie w: [parent].", span_warning("Tu nie ma żadnych chwastów ([parent])!"))
 			return
-		attacker.visible_message("[attacker] wyrywa chwasty.", span_notice("Usuwasz chwasty z: [parent]."))
-		weed_level = 0
-		playsound(parent, 'sound/effects/shovel_dig.ogg', 60)
+		remove_weeds(attacker)
 		return
 //Plumbing - because the punger is coded stupid
 	if(istype(I, /obj/item/plunger))
@@ -107,6 +109,12 @@
 		obj_parent.visible_message(span_notice("[attacker] spryskuje [obj_parent], używając: [reagent_source]."))
 		playsound(obj_parent)
 		reagent_source.reagents?.trans_to(obj_parent, spray.amount_per_transfer_from_this, transfered_by = attacker)
+
+/// Pielenie kultywatorem (klik w tacę albo w roślinę, gdy w tacy są chwasty)
+/datum/component/planter/proc/remove_weeds(mob/user)
+	user.visible_message("[user] wyrywa chwasty.", span_notice("Usuwasz chwasty z: [parent]."))
+	weed_level = 0
+	playsound(parent, 'sound/effects/shovel_dig.ogg', 60)
 
 /datum/component/planter/proc/async_spade_action(mob/user)
 	playsound(parent, 'sound/effects/shovel_dig.ogg', 60)
@@ -150,6 +158,9 @@
 	if(!result)
 		return
 	var/datum/component/plant/plant = pick_links[result]
+	if(istype(I, /obj/item/cultivator)) // AQUILA - kultywator wyrywa, łopatka przenosi
+		plant.rip_out(user, PLANT_RIP_TOOL_TIME)
+		return
 	I.afterattack(plant.plant_item, user)
 
 /datum/component/planter/proc/catch_examine(datum/source, mob/looker, list/examine_text)
