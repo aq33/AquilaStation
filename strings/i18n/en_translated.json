@@ -133,7 +133,7 @@
 "!!NAN!!, WEZWIJ PROGRAMISTĘ": "!!NAN!!, CALL A CODER",
 "!data.canPrint ||": "!data.canPrint ||",
 "!hasBeakerInHand && 'Musisz trzymać pojemnik w ręce!'": "!hasBeakerInHand && 'You must hold a container in your hand!'",
-"Twoje ogłoszenie zawiera zakazane słowa.": "Your announcement contains forbidden words.",
+"<span class='warning'>Twoje ogłoszenie zawiera zakazane słowa.</span>": "<span class='warning'>Your announcement contains forbidden words.</span>",
 "[src] nie chce się przyjąć.": "[src] fails to take root.",
 "\", ' zamyka się sama.": "\", ' closes on its own.",
 "\"Bluespace'owa magistrala pamięci\",": "\"Bluespace Memory Bus\",",
