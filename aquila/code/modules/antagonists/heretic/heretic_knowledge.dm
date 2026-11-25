@@ -761,7 +761,7 @@
 	to_chat(user, span_hypnophrase(span_big("[pick_list(HERETIC_INFLUENCE_FILE, "drain_message")]")))
 	desc += " (Ukończono!)"
 	log_heretic_knowledge("[key_name(user)] completed a [name] at [round_timestamp()].")
-	// AQUILA - u nas nie ma systemu wspomnień (add_mob_memory)
+	user.add_mob_memory(/datum/memory/heretic_knowledge_ritual)
 	SEND_SIGNAL(our_heretic, COMSIG_HERETIC_PASSIVE_UPGRADE_FINAL)
 	return TRUE
 

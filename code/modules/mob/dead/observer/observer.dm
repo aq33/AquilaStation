@@ -577,7 +577,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set hidden = 1
 	to_chat(src, "<span class='danger'>Nie żyjesz! Nie masz umysłu, w którym można przechować wspomnienia!</span>")
 
-/mob/dead/observer/add_memory()
+/mob/dead/observer/add_note() // AQ EDIT - nazwa procki zajęta przez makro add_memory (wspomnienia z tg)
 	set hidden = 1
 	to_chat(src, "<span class='danger'>Nie żyjesz! Nie masz umysłu, w którym można przechować wspomnienia!</span>")
 

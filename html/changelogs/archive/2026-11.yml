@@ -1668,3 +1668,15 @@
   - tweak: Peleryny przykrywają plecak i torbę.
   - code_imp: 'Planety: ruina główna zostaje zapisana po wczytaniu (losowo padający
       test lądowisk).'
+  tralezab, MrMelbert:
+  - rscadd: Postacie zapamiętują niezwykłe zdarzenia (operacje, bomby, śmierć na ich
+      oczach, poślizgi, podpalenia, wielkie wygrane, medale i wiele innych). Wspomnienia
+      z oceną wartości historii są w oknie „Notatki”.
+  - rscadd: 'Ważne wspomnienia: numer konta, kod sejfu z zapasową kartą kapitana,
+      uczulenia, pamiątka rodzinna, ulubione papierosy i trunek, wyrok więźnia.'
+  - rscadd: Dłutem można wyryć wspomnienie w ścianie (prawy przycisk albo intencja
+      rozbrajania). Ryciny z technicznych i więzienia wracają w kolejnych rundach.
+  - rscadd: 'Zestaw do tatuażu: wytatuuj komuś swoje wspomnienie. Więźniowie z przewozu
+      mają tatuaże z poprzednich rund.'
+  - rscadd: Zmiennokształtny po wchłonięciu ofiary czyta jej wspomnienia.
+  - imageadd: Ikony dłuta, zestawu do tatuażu i rycin w ścianach z tgstation.

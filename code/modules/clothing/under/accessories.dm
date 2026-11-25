@@ -159,6 +159,7 @@
 							SSblackbox.record_feedback("associative", "commendation", 1, list("commender" = "[user.real_name]", "commendee" = "[M.real_name]", "medal" = "[src]", "reason" = input))
 							GLOB.commendations += "[user.real_name] przyznaje <b>[M.real_name]</b> odznaczenie <span class='medaltext'>[name]</span>! \n- [input]"
 							commended = TRUE
+							add_memory_in_range(M, 7, /datum/memory/received_medal, protagonist = M, deuteragonist = user, medal_type = src, medal_text = input) // AQ EDIT - wspomnienia z tg
 							desc += "<br>Napis głosi: [input] - [user.real_name]"
 							log_game("<b>[key_name(M)]</b> was given the following commendation by <b>[key_name(user)]</b>: [input]")
 							message_admins("<b>[key_name_admin(M)]</b> otrzymuje od <b>[key_name_admin(user)]</b> następujące odznaczenie: [input]")
