@@ -137,7 +137,8 @@ GLOBAL_LIST_EMPTY(knpcs)
 		if(!dest || !get_turf(H))
 			dest = null
 			return KNPC_PATHFIND_SKIP
-		path = get_path_to(H, dest, 120, 0, access_card, !(H.wear_suit?.clothing_flags & STOPSPRESSUREDAMAGE && H.head?.clothing_flags & STOPSPRESSUREDAMAGE), avoid)
+		// AQ EDIT - trasa przez próżnię tylko dla boardera, który już w niej stoi: w skafandrze A* przeszukiwał całą przestrzeń wokół okrętu (wyszukiwania po 15+ s, TD ~70%)
+		path = get_path_to(H, dest, 120, 0, access_card, !(isspaceturf(get_turf(H)) && H.wear_suit?.clothing_flags & STOPSPRESSUREDAMAGE && H.head?.clothing_flags & STOPSPRESSUREDAMAGE), avoid)
 	//There's no valid path, try run against the wall.
 	if(!length(path) && !H.incapacitated())
 		pathfind_timeout += KNPC_TIMEOUT_BASE * (1 + timeout_stacks)

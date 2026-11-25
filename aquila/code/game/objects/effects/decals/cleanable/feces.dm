@@ -11,14 +11,13 @@
 	/// 60: wdepnięcie daje butom BLOOD_GAIN_PER_STEP (40), czyli kilka brązowych śladów.
 	bloodiness = 60
 
-/obj/effect/decal/cleanable/feces/Initialize(mapload, list/datum/disease/diseases)
-	. = ..()
-	AddComponent(/datum/component/slippery, BLOOD_SLIPPERY_KNOCKDOWN, NO_SLIP_WHEN_WALKING)
+// Zwykła kupa nie jest śliska: wdepnięcie (także w biegu) brudzi buty i zostawia ślady. Ślizga się tylko biegunka.
 
-/// Biegunka (typ 6-7 w skali bristolskiej, stoperan): rozbryzg zamiast grudek
+/// Biegunka (typ 6-7 w skali bristolskiej, stoperan): rozbryzg zamiast grudek, śliski przy bieganiu
 /obj/effect/decal/cleanable/feces/proc/make_diarrhea()
 	random_icon_states = list("diarrhea1", "diarrhea2")
 	icon_state = pick(random_icon_states)
+	AddComponent(/datum/component/slippery, BLOOD_SLIPPERY_KNOCKDOWN, NO_SLIP_WHEN_WALKING)
 
 /// Kupa, która faktycznie leży na T: nowa zlewa się w Initialize z leżącą już kupą tego samego typu i znika
 /obj/effect/decal/cleanable/feces/proc/surviving_decal(turf/T)

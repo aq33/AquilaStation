@@ -212,13 +212,23 @@
 	var/list/crimes = record.fields["crim"]
 	TEST_ASSERT(length(crimes) == 1, "Defecating with urine in view of a camera made [length(crimes)] reports instead of one")
 	var/datum/data/crime/crime = crimes[1]
-	TEST_ASSERT(crime.crimeName == "Publiczne wypróżnianie się", "Camera reported [crime.crimeName] instead of public defecation")
+	TEST_ASSERT(crime.crimeName == PUBLIC_BODILY_FUNCTION_CRIME, "Camera reported [crime.crimeName] instead of public defecation")
+	// Wpis z kamery musi być pozycją prawa kosmicznego (dawniej „Publiczne wypróżnianie się”, którego tam nie ma)
+	var/list/law = json_decode(file2text(file("config/space_law.json")))
+	var/in_law = FALSE
+	for(var/category in law)
+		for(var/list/entry in law[category])
+			if(entry["name"] == crime.crimeName)
+				in_law = TRUE
+	TEST_ASSERT(in_law, "Camera reported [crime.crimeName], which is not in config/space_law.json")
 	TEST_ASSERT(record.fields["criminal"] == "Arrest", "Public defecation did not set the Arrest status")
 
 	pooper.set_defecation(40)
 	pooper.urination = 40
 	pooper.urinate_voluntarily()
 	TEST_ASSERT(length(crimes) == 2, "Urinating in view of a camera was not reported")
+	var/datum/data/crime/urine_crime = crimes[2]
+	TEST_ASSERT(urine_crime.crimeName == PUBLIC_BODILY_FUNCTION_CRIME, "Camera reported urination as [urine_crime.crimeName]")
 
 	// Mimowolne popuszczenie nie jest zgłaszane
 	pooper.set_defecation(DEFECATION_ACTUALLY_SHIT_YOURSELF + 10)

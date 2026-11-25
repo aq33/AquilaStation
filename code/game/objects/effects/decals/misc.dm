@@ -57,7 +57,7 @@
 		if(turf_atom == src || turf_atom.invisibility) //we ignore the puff itself and stuff below the floor
 			continue
 
-		if(lifetime < 0)
+		if(lifetime < 0 || QDELETED(src) || !reagents) // AQ EDIT - reakcja mogła usunąć chmurę w trakcie pętli
 			break
 
 		if(!stream)
@@ -84,6 +84,8 @@
 			log_combat(user, turf_atom, "sprayed", sprayer, addition="which had [puff_reagents_string]")
 			lifetime -= 1
 
+	if(QDELETED(src) || !reagents) // AQ EDIT - jw.
+		return
 	if(lifetime >= 0 && (!stream || travelled_max_distance))
 		reagents.reaction(our_turf, VAPOR)
 		log_combat(user, our_turf, "sprayed", sprayer, addition="which had [puff_reagents_string]")
