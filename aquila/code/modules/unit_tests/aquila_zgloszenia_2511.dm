@@ -53,6 +53,7 @@
 	horror.controlling = FALSE
 	horror.victim = null
 	horror.host_brain = null
+	brain.H = null
 	qdel(brain)
 	TEST_ASSERT(suppressed, "Suppressing a resisting host failed")
 	TEST_ASSERT(left >= 39 SECONDS, "Suppressing did not push the host's return back by 20 s (left [left])")
@@ -97,5 +98,11 @@
 		TEST_ASSERT(!far_ok, "A guided weapon fired at a fighter 40 tiles away, beyond gun range")
 	TEST_ASSERT(!fighter_lock, "A missile kept chasing a fighter after the lock time")
 	TEST_ASSERT(ship_lock, "A missile lost its lock on a ship")
+
+/// Telewizorek w menu lobby odlicza do rundy: jego podsystem musi działać w fazie lobby (SSprocessing w niej nie działa)
+/datum/unit_test/aquila_lobby_tv_processing
+
+/datum/unit_test/aquila_lobby_tv_processing/Run()
+	TEST_ASSERT(SSlobby_hud.runlevels & RUNLEVEL_LOBBY, "The lobby menu subsystem does not run in the lobby, the countdown would stand still")
 
 #undef TEST_ASSERT

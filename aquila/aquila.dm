@@ -114,6 +114,7 @@
 #include "code\controllers\subsystem\radiation.dm"
 #include "code\controllers\subsystem\processing\reagents.dm"
 #include "code\controllers\subsystem\processing\turf_fire.dm"
+#include "code\controllers\subsystem\processing\lobby_hud.dm"
 #include "code\controllers\subsystem\screentips.dm"
 #include "code\controllers\subsystem\stock_market.dm"
 #include "code\controllers\subsystem\sunlight.dm"
