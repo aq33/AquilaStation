@@ -1668,6 +1668,16 @@
   - tweak: Peleryny przykrywają plecak i torbę.
   - code_imp: 'Planety: ruina główna zostaje zapisana po wczytaniu (losowo padający
       test lądowisk).'
+  sh4dow321:
+  - bugfix: Zapętlony alarm przegrzania reaktora (i inne pętle alarmów statku) cichnie
+      też u graczy, którzy w międzyczasie zginęli albo opuścili statek.
+  - bugfix: Akwarianie mają stały alert wycieku wody, gdy klosz jest pęknięty albo
+      pancerz wgnieciony.
+  - tweak: Ogłoszenia głosowe SI mają głośność wyrównaną do ogłoszeń statku.
+  - bugfix: Malowanie karty ID na wzór działu uzbrojenia nie robi już niewidzialnej
+      karty.
+  - bugfix: Gracz zabrany martwy z innego okrętu nie słyszy już jego walki ani nie
+      czuje jego wstrząsów.
   tralezab, MrMelbert:
   - rscadd: Postacie zapamiętują niezwykłe zdarzenia (operacje, bomby, śmierć na ich
       oczach, poślizgi, podpalenia, wielkie wygrane, medale i wiele innych). Wspomnienia
