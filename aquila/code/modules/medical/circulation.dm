@@ -15,6 +15,8 @@
 #define AQ_PULSE_FAST 3
 #define AQ_PULSE_2FAST 4
 #define AQ_PULSE_THREADY 5
+/// Stimulants (aq_pulse_drug_mod) from which a racing heart can stop: more than a medic's dose of epinephrine
+#define AQ_PULSE_DRUG_ARREST 3
 /// Brain damage per Life (2 s) without any circulation: ~16 minutes to brain death (200)
 #define AQ_HYPOXIA_BRAIN_DAMAGE 0.42
 /// How long one round of chest compressions keeps the blood moving
@@ -86,11 +88,7 @@ GLOBAL_LIST_INIT(aq_pulse_reagents, list(
 
 /// How much the pulse is pushed up (stimulants, pain, too little blood) or down (opioids)
 /mob/living/carbon/human/proc/aq_pulse_mod()
-	. = 0
-	for(var/datum/reagent/reagent as anything in reagents?.reagent_list)
-		var/strength = GLOB.aq_pulse_reagents[reagent.type]
-		if(strength)
-			. += strength * min(reagent.volume / 10, 2)
+	. = aq_pulse_drug_mod()
 	if(aq_pain > 30)
 		.++
 	if(aq_pain > 80)
@@ -100,23 +98,36 @@ GLOBAL_LIST_INIT(aq_pulse_reagents, list(
 	if(blood_volume < BLOOD_VOLUME_BAD)
 		.++
 
+/// The part of aq_pulse_mod() from stimulants and opioids
+/mob/living/carbon/human/proc/aq_pulse_drug_mod()
+	. = 0
+	for(var/datum/reagent/reagent as anything in reagents?.reagent_list)
+		var/strength = GLOB.aq_pulse_reagents[reagent.type]
+		if(strength)
+			. += strength * min(reagent.volume / 10, 2)
+
 /mob/living/carbon/human/proc/aq_update_pulse(obj/item/organ/heart/heart)
 	if(!heart.beating)
 		heart.aq_pulse = AQ_PULSE_NONE
 		return
 	var/mod = aq_pulse_mod()
+	// Pain and blood loss speed the pulse up, but only stimulants (or deep cold) wear the heart out and stop it:
+	// otherwise a wounded patient's heart stopped after the medic's epinephrine, with no warning
+	var/overdosed = aq_pulse_drug_mod() >= AQ_PULSE_DRUG_ARREST
 	// Bay: a racing heart wears itself out
-	if(mod > 2 && prob((mod - 2) ** 2 * 2))
+	if(overdosed && mod > 2 && prob((mod - 2) ** 2 * 2))
 		heart.applyOrganDamage(1)
 	var/stop_reason
 	if(blood_volume < BLOOD_VOLUME_SURVIVE && prob(80))
 		stop_reason = "Za mało krwi, serce nie ma czego pompować"
 	else if(getOrganLoss(ORGAN_SLOT_BRAIN) > 150 && prob(getOrganLoss(ORGAN_SLOT_BRAIN) - 150))
 		stop_reason = "Mózg przestaje sterować sercem"
-	else if(heart.aq_pulse == AQ_PULSE_THREADY && prob(5))
+	else if(heart.aq_pulse == AQ_PULSE_THREADY && (overdosed || aq_hypothermia_stage() >= 3) && prob(5))
 		stop_reason = "Migotanie przechodzi w zatrzymanie"
-	else if(mod >= 5 && prob(3))
+	else if(overdosed && mod >= 5 && prob(3))
 		stop_reason = "Serce nie wytrzymuje takiego tempa"
+	else if(overdosed && mod >= 4 && prob(15))
+		to_chat(src, span_warning("Serce wali ci jak oszalałe. Za dużo stymulantów."))
 	if(stop_reason)
 		set_heartattack(TRUE)
 		heart.aq_pulse = AQ_PULSE_NONE
@@ -314,5 +325,6 @@ GLOBAL_LIST_INIT(aq_pulse_reagents, list(
 #undef AQ_PULSE_FAST
 #undef AQ_PULSE_2FAST
 #undef AQ_PULSE_THREADY
+#undef AQ_PULSE_DRUG_ARREST
 #undef AQ_HYPOXIA_BRAIN_DAMAGE
 #undef AQ_CPR_DURATION
