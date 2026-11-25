@@ -133,8 +133,19 @@ GLOBAL_LIST_EMPTY(food_transformations)
 				entry["amount"] = transformation["amount"]
 			catalog += list(entry)
 
-	GLOB.cookbook_catalog = catalog
-	return catalog
+	// Takie same wpisy (np. jajka różnych kolorów dające to samo jajko na twardo) raz; każdy wpis ma własne id,
+	// bo powtórzone id myliło wiersze w oknie przy zmianie zakładki
+	var/list/seen = list()
+	var/list/unique = list()
+	for(var/list/entry as anything in catalog)
+		var/key = json_encode(list(entry["method"], entry["name"], entry["ingredients"], entry["tools"], entry["steps"], entry["category"], entry["amount"]))
+		if(seen[key])
+			continue
+		seen[key] = TRUE
+		entry["id"] = "[length(unique) + 1]:[entry["id"]]"
+		unique += list(entry)
+	GLOB.cookbook_catalog = unique
+	return unique
 
 /// Tworzy raz każde jedzenie, którego jeszcze nie było w tej rundzie, żeby jego komponenty zapisały przemiany
 /proc/probe_food_transformations()

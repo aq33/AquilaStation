@@ -103,9 +103,10 @@ export const NtosCookbook = (props) => {
           <SearchResults recipes={recipes.filter(matches)} methods={methods} />
         ) : (
           <>
-            <Tabs fluid>
+            <Tabs style={{ flexWrap: 'wrap' }}>
               {methods.map((m) => (
                 <Tabs.Tab
+                  style={{ whiteSpace: 'nowrap' }}
                   key={m}
                   selected={tab === m}
                   onClick={() => setTab(m)}
@@ -199,7 +200,7 @@ const RecipeRow = (props: { recipe: CookRecipe }) => {
       <Box bold>
         {recipe.amount ? `${recipe.amount}× ` : ''}
         {recipe.name}
-        {recipe.learned && (
+        {!!recipe.learned && (
           <Box inline color="average" ml={1} style={{ fontWeight: 'normal' }}>
             (trzeba się nauczyć)
           </Box>
