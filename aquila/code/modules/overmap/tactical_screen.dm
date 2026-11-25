@@ -4,7 +4,8 @@
 /// różnią się trybem startowym i uprawnieniami: sensorami steruje tylko ten, kto stoi przy stanowisku rozpoznania
 /// (na okręcie bez niego przy DRADIS mostka), strzela tylko strzelec przy konsoli taktycznej, a impuls radaru
 /// i wywołanie ma też pilot przy sterze. Pozostali tylko patrzą.
-/// Myśliwce i małe jednostki, DRADIS-y ładowni i górników oraz zintegrowane DRADIS-y zostają przy starych oknach.
+/// Pomocnicze DRADIS-y (kontrola lotów, ekrany) otwierają Podgląd. Myśliwce i małe jednostki, DRADIS-y ładowni
+/// i górników oraz zintegrowane DRADIS-y mają własne okno (Dradis.tsx) w tym samym wyglądzie.
 
 #define TACTICAL_SCREEN_SENSORS "sensors"
 #define TACTICAL_SCREEN_FIRE "fire"
@@ -31,7 +32,9 @@ GLOBAL_LIST_INIT(tactical_screen_fire_actions, list(
 	return null
 
 /obj/machinery/computer/ship/dradis/tactical_screen_ship()
-	if(istype(src, /obj/machinery/computer/ship/dradis/minor) || istype(src, /obj/machinery/computer/ship/dradis/mining) || istype(src, /obj/machinery/computer/ship/dradis/internal))
+	// DRADIS-y ze specjalną funkcją (dostawy ładunków, skaner asteroid, radar myśliwca) zostają przy swoim oknie;
+	// pomocniczy DRADIS (konsola kontroli lotów, ekrany na korytarzach) pokazuje Podgląd ekranu taktycznego
+	if(istype(src, /obj/machinery/computer/ship/dradis/minor/cargo) || istype(src, /obj/machinery/computer/ship/dradis/mining) || istype(src, /obj/machinery/computer/ship/dradis/internal))
 		return null
 	if(!linked || istype(linked, /obj/structure/overmap/small_craft))
 		return null
