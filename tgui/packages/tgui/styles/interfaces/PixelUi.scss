@@ -1,0 +1,612 @@
+// AQUILA: okna w formie urządzeń (PixelUi). Grafiki i fonty: assets/pixelui/ATTRIBUTION.md.
+// Jeden piksel grafiki = $scale pikseli ekranu, tak samo jak SCALE w interfaces/PixelUi.
+
+$scale: 2;
+
+@function px($value) {
+  @return $value * $scale * 1px;
+}
+
+@font-face {
+  font-family: 'PixelUi Tiny5';
+  src: url('../assets/pixelui/fonts/Tiny5-Regular.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'PixelUi Jersey10';
+  src: url('../assets/pixelui/fonts/Jersey10-Regular.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'PixelUi Jersey15';
+  src: url('../assets/pixelui/fonts/Jersey15-Regular.woff') format('woff');
+}
+
+.PixelUi {
+  position: relative;
+  overflow: hidden;
+  user-select: none;
+  image-rendering: pixelated;
+  cursor: default;
+}
+
+.PixelUi__box {
+  position: absolute;
+}
+
+.PixelUi__img {
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  image-rendering: pixelated;
+}
+
+.PixelUi__item {
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-position: center;
+  image-rendering: pixelated;
+}
+
+// Grafiki: klasa PixelUi__img--<folder>-<plik>
+$images: (
+  'microwave-body': 'microwave/body.png',
+  'microwave-chamber': 'microwave/chamber.png',
+  'microwave-chamber_lit': 'microwave/chamber_lit.png',
+  'microwave-cracks': 'microwave/cracks.png',
+  'microwave-door': 'microwave/door.png',
+  'microwave-door_open': 'microwave/door_open.png',
+  'microwave-note': 'microwave/note.png',
+  'microwave-shadow': 'microwave/shadow.png',
+  'microwave-warning': 'microwave/warning.png',
+  'grinder-blades': 'grinder/blades.png',
+  'grinder-body': 'grinder/body.png',
+  'grinder-controls': 'grinder/controls.png',
+  'grinder-glass': 'grinder/glass.png',
+  'grinder-hub': 'grinder/hub.png',
+  'grinder-jug': 'grinder/jug.png',
+  'grinder-lid': 'grinder/lid.png',
+  'grinder-note': 'grinder/note.png',
+  'lathe-body': 'lathe/body.png',
+  'lathe-gauge': 'lathe/gauge.png',
+  'lathe-icons': 'lathe/icons.png',
+  'lathe-leds': 'lathe/leds.png',
+  'lathe-plate': 'lathe/plate.png',
+  'lathe-stop': 'lathe/stop.png',
+  'lathe-tank_back': 'lathe/tank_back.png',
+  'lathe-tank_front': 'lathe/tank_front.png',
+  'lathe-ticket': 'lathe/ticket.png',
+  'bardispenser-controls': 'bardispenser/controls.png',
+  'bardispenser-note': 'bardispenser/note.png',
+  'disposal-disposal': 'disposal/disposal.png',
+);
+
+@each $name, $file in $images {
+  .PixelUi__img--#{$name} {
+    background-image: url('../assets/pixelui/#{$file}');
+  }
+}
+
+// Tekst
+
+.PixelUi__text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: clip;
+  pointer-events: none;
+}
+
+.PixelUi__text--tiny {
+  font-family: 'PixelUi Tiny5', monospace;
+  font-size: px(8);
+  line-height: px(8);
+  margin-top: px(-2);
+  -webkit-font-smoothing: none;
+}
+
+.PixelUi__text--screen {
+  font-family: 'PixelUi Jersey10', monospace;
+  font-size: px(10);
+  line-height: px(10);
+  margin-top: px(-3);
+  -webkit-font-smoothing: none;
+}
+
+.PixelUi__text--screenBig {
+  font-family: 'PixelUi Jersey15', monospace;
+  font-size: px(15);
+  line-height: px(15);
+  margin-top: px(-4);
+  -webkit-font-smoothing: none;
+}
+
+.PixelUi__text--plain {
+  font-size: px(6);
+  line-height: px(9);
+  margin-top: px(-2);
+  text-overflow: ellipsis;
+}
+
+// Klawisz: skórka 7x8 przecięta na dziewięć pól (2, 3, 2, 4)
+
+.PixelUi__key {
+  position: absolute;
+  box-sizing: border-box;
+  cursor: pointer;
+  border-style: solid;
+  border-width: 0;
+  border-image-slice: 3 2 4 2 fill;
+  border-image-width: px(3) px(2) px(4) px(2);
+  border-image-repeat: stretch;
+  image-rendering: pixelated;
+}
+
+$key-skins: (
+  'pixelui-light': 'pixelui/key_light',
+  'pixelui-green': 'pixelui/key_green',
+  'pixelui-dark': 'pixelui/key_dark',
+  'lathe-light': 'lathe/key_light',
+  'lathe-dark': 'lathe/key_dark',
+  'lathe-red': 'lathe/key_red',
+);
+
+@each $name, $file in $key-skins {
+  .PixelUi__key--#{$name} {
+    border-image-source: url('../assets/pixelui/#{$file}_up.png');
+  }
+
+  .PixelUi__key--#{$name}:active,
+  .PixelUi__key--#{$name}.PixelUi__key--latched {
+    border-image-source: url('../assets/pixelui/#{$file}_down.png');
+  }
+}
+
+.PixelUi__keyFace {
+  position: absolute;
+  left: px(2);
+  right: px(2);
+  top: px(1);
+  bottom: px(3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-family: 'PixelUi Tiny5', monospace;
+  font-size: px(8);
+  line-height: px(9);
+  -webkit-font-smoothing: none;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.PixelUi__key:active .PixelUi__keyFace,
+.PixelUi__key--latched .PixelUi__keyFace {
+  top: px(2);
+  bottom: px(2);
+}
+
+.PixelUi__key--disabled {
+  cursor: default;
+  filter: grayscale(0.6) brightness(0.85);
+
+  .PixelUi__keyFace {
+    opacity: 0.4;
+  }
+}
+
+.PixelUi__key--disabled:active {
+  border-image-source: inherit;
+}
+
+.PixelUi__keyLamp {
+  position: absolute;
+  right: px(3);
+  top: px(3);
+  width: px(2);
+  height: px(2);
+  pointer-events: none;
+}
+
+// Wyświetlacz siedmiosegmentowy: komórki 8x14 (0-9, duch, dwukropek)
+
+.PixelUi__segment {
+  -webkit-mask-image: url('../assets/pixelui/pixelui/segments.png');
+  mask-image: url('../assets/pixelui/pixelui/segments.png');
+  -webkit-mask-size: px(96) px(14);
+  mask-size: px(96) px(14);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  pointer-events: none;
+}
+
+// Kartka z listą
+
+.PixelUi__noteRow {
+  position: absolute;
+  font-size: px(6);
+  line-height: px(9);
+  color: #2f3f6b;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.PixelUi__noteRow--clickable {
+  cursor: pointer;
+}
+
+.PixelUi__noteRow--hovered,
+.PixelUi__noteRow--clickable:hover {
+  color: #b3252a;
+}
+
+.PixelUi__noteRow--struck {
+  text-decoration: line-through;
+  color: #8c93a8;
+}
+
+.PixelUi__swatch {
+  display: inline-block;
+  width: px(5);
+  height: px(5);
+  margin-right: px(2);
+  border: px(1) solid #171717;
+  vertical-align: middle;
+}
+
+// Cząsteczki
+
+.PixelUi__particle {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0;
+  animation-name: PixelUi__particle;
+  animation-timing-function: linear;
+  animation-fill-mode: both;
+  animation-iteration-count: 1;
+}
+
+.PixelUi__particle--loop {
+  animation-iteration-count: infinite;
+}
+
+@keyframes PixelUi__particle {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+
+  70% {
+    opacity: 0.9;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(var(--dx), var(--dy));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .PixelUi__particle {
+    animation: none;
+    opacity: 0;
+  }
+}
+
+// Mikrofalówka: drzwiczki składają się do zawiasu
+.MicrowaveDevice__door {
+  transition:
+    left 0.22s ease-in,
+    width 0.22s ease-in,
+    opacity 0.05s linear 0.2s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .MicrowaveDevice__door {
+    transition: none;
+  }
+}
+
+// Wycinki atlasów i okrągłe klawisze (młynek)
+.PixelUi__atlas {
+  background-repeat: no-repeat;
+  image-rendering: pixelated;
+}
+
+.PixelUi__roundKey {
+  cursor: pointer;
+}
+
+.PixelUi__roundKey--disabled {
+  cursor: default;
+  filter: brightness(0.7);
+}
+
+.PixelUi__roundKeyHit {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: 50%;
+}
+
+.PixelUi__roundKeyFace {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+// Młynek: rozmyte ostrza i drgający strumień
+.GrinderDevice__blades--spin {
+  animation: GrinderDevice__spin 0.08s steps(2) infinite;
+}
+
+@keyframes GrinderDevice__spin {
+  0% {
+    transform: scaleX(1);
+  }
+
+  100% {
+    transform: scaleX(-0.6);
+  }
+}
+
+.GrinderDevice__stream {
+  animation: GrinderDevice__stream 0.15s steps(2) infinite;
+}
+
+@keyframes GrinderDevice__stream {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0.75;
+  }
+}
+
+// Dozowniki baru
+.BarDispenserDevice__swatch {
+  position: absolute;
+  left: px(1);
+  top: px(1);
+  width: px(4);
+  height: px(6);
+  outline: px(1) solid #0c0c0c;
+}
+
+.BarDispenserDevice__drink {
+  position: absolute;
+  left: px(7);
+  right: px(1);
+  top: 0;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.BarDispenserDevice__stream {
+  animation: GrinderDevice__stream 0.12s steps(2) infinite;
+}
+
+.BarDispenserDevice__drain {
+  transform-origin: 70% 90%;
+  animation: BarDispenserDevice__tilt 0.9s ease-in-out;
+}
+
+@keyframes BarDispenserDevice__tilt {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  40%,
+  70% {
+    transform: rotate(-55deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+// Blok utylizacyjny
+.DisposalDevice__hatch {
+  position: absolute;
+  inset: 0;
+  transition: transform 0.4s ease-in;
+  pointer-events: none;
+}
+
+.DisposalDevice__jolt {
+  animation: DisposalDevice__jolt 0.3s steps(3) 2;
+}
+
+@keyframes DisposalDevice__jolt {
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-4px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.DisposalDevice__creature {
+  animation: DisposalDevice__wriggle 0.5s steps(2) infinite;
+}
+
+@keyframes DisposalDevice__wriggle {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(4px);
+  }
+}
+
+.DisposalDevice__rocker {
+  cursor: pointer;
+}
+
+.DisposalDevice__rocker:active {
+  background: rgba(0, 0, 0, 0.25);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .DisposalDevice__hatch {
+    transition: none;
+  }
+
+  .DisposalDevice__jolt,
+  .DisposalDevice__creature,
+  .MicrowaveDevice__door,
+  .GrinderDevice__blades--spin,
+  .BarDispenserDevice__drain {
+    animation: none;
+  }
+}
+
+// Pulpit fabrykatora
+.LathePulpit__screen {
+  overflow: hidden;
+}
+
+.LathePulpit__screen::after {
+  // linie skanowania ekranu
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0,
+    rgba(0, 0, 0, 0) px(2),
+    rgba(0, 0, 0, 0.18) px(2),
+    rgba(0, 0, 0, 0.18) px(3)
+  );
+}
+
+.LathePulpit__search {
+  position: absolute;
+  left: px(7);
+  top: 0;
+  width: calc(100% - #{px(8)});
+  height: px(11);
+  padding: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: #a8ffa8;
+  font-family: 'PixelUi Jersey10', monospace;
+  font-size: px(10);
+  line-height: px(11);
+  -webkit-font-smoothing: none;
+  text-transform: uppercase;
+}
+
+.LathePulpit__search::placeholder {
+  color: #1a551a;
+}
+
+.LathePulpit__wheel {
+  position: absolute;
+  inset: 0;
+}
+
+.LathePulpit__row {
+  cursor: pointer;
+}
+
+.LathePulpit__iconBox {
+  overflow: hidden;
+}
+
+.LathePulpit__icon {
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform-origin: 0 0;
+  image-rendering: pixelated;
+}
+
+.LathePulpit__plotIcon {
+  overflow: hidden;
+  filter: grayscale(1) sepia(1) hue-rotate(70deg) saturate(6) brightness(1.1);
+}
+
+.LathePulpit__plotIcon--preview {
+  opacity: 0.45;
+}
+
+.LathePulpit__ticket {
+  animation: LathePulpit__ticketIn 0.3s ease-out;
+}
+
+@keyframes LathePulpit__ticketIn {
+  0% {
+    transform: translateX(px(124));
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.LathePulpit__trayItem {
+  animation: LathePulpit__trayIn 0.4s ease-out;
+}
+
+@keyframes LathePulpit__trayIn {
+  0% {
+    transform: translateY(px(-20));
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.LathePulpit__stopHit {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: 50%;
+}
+
+.LathePulpit--hacked .LathePulpit__screen {
+  animation: LathePulpit__glitch 2.3s steps(1) infinite;
+}
+
+@keyframes LathePulpit__glitch {
+  0%,
+  92% {
+    transform: none;
+    filter: none;
+  }
+
+  93% {
+    transform: translateX(px(2));
+    filter: hue-rotate(90deg);
+  }
+
+  96% {
+    transform: translateX(px(-1));
+    filter: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .LathePulpit__ticket,
+  .LathePulpit__trayItem,
+  .LathePulpit--hacked .LathePulpit__screen {
+    animation: none;
+  }
+}
