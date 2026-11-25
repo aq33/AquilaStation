@@ -33401,5 +33401,11 @@
 "Płyta jest [on ? on_word : off_word], ogień [cook_temp_name(temperature)]": "The griddle is [on ? on_word : off_word], [cook_temp_name(temperature)] heat",
 "[plate.describe()]. Płyta jest [kitchen_heat.describe(TRUE)].": "[plate.describe()]. The griddle is [kitchen_heat.describe(TRUE)].",
 "Jedzenie kładzie się na płycie. Patelnię, rondel albo garnek na zupę stawiasz kliknięciem w jedno z czterech pól. Kliknięcie w pokrętło na przodzie włącza całą płytę. <b>Alt+klik</b>: włącznik, ogień i minutnik płyty.": "Food goes straight on the griddle. Put a pan, pot or soup pot down by clicking one of the four fields. Clicking the knob on the front turns the whole griddle on. <b>Alt-click</b>: switch, heat and timer of the griddle.",
-"[capitalize(burner.name)]: stoi tu [burner.container].": "[capitalize(burner.name)]: [burner.container] is on it."
+"[capitalize(burner.name)]: stoi tu [burner.container].": "[capitalize(burner.name)]: [burner.container] is on it.",
+"Serce wali ci jak oszalałe. Za dużo stymulantów.": "Your heart is pounding like crazy. Too many stimulants.",
+"piętro niżej": "one deck below",
+"[levels] piętra niżej": "[levels] decks below",
+"piętro wyżej": "one deck above",
+"[levels] piętra wyżej": "[levels] decks above",
+"To jest [other_level].": "This is [other_level]."
 }

@@ -14,7 +14,7 @@ Bullet reactions
  */
 /obj/structure/overmap/proc/shake_everyone(severity)
 	for(var/mob/M in mobs_in_ship)
-		if(M.client)
+		if(M.client && !(isliving(M) && M.stat == DEAD)) // AQ EDIT - martwym ciałem nie trzęsie
 			shake_with_inertia(M, severity, 1)
 
 /obj/structure/overmap/bullet_act(obj/item/projectile/P)
