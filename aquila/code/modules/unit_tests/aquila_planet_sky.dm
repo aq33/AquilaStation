@@ -117,5 +117,40 @@
 	sky.force_recheck(passenger)
 	TEST_ASSERT(sky.recheck_timer, "The sky recheck loop didn't resume when the layer came back")
 
+/// AQUILA - planeta na niebie: po zmianie widoku warstwa z planetą zostaje podmieniona na nową. Stara warstwa trzymała
+/// granice obrazu planety ze starego widoku i mapa rysowała się o kolumnę szersza (pas za HUD-em bez światła).
+/datum/unit_test/planet_sky_view_change
+	var/atom/movable/screen/parallax_layer/planet_sky/sky
+	var/atom/movable/screen/parallax_layer/planet_sky/fresh
+
+/datum/unit_test/planet_sky_view_change/Destroy()
+	QDEL_NULL(sky)
+	QDEL_NULL(fresh)
+	return ..()
+
+/datum/unit_test/planet_sky_view_change/Run()
+	var/datum/planet_type/shown = GLOB.planet_type_prototypes[/datum/planet_type/lava]
+	var/atom/movable/screen/parallax_layer/layer_1/other = allocate(/atom/movable/screen/parallax_layer/layer_1, null, "17x15")
+	sky = new(null, "17x15")
+	sky.show_planet(shown)
+	sky.screen_loc = "CENTER-7:-6,CENTER-7:3"
+	var/list/cached = list(other, sky)
+	var/list/active = list(other, sky)
+	var/list/client_screen = list(sky)
+	fresh = sky.replace_in(cached, active, client_screen, "15x15")
+	TEST_ASSERT(fresh && fresh != sky, "No new sky layer was made")
+	TEST_ASSERT_EQUAL(cached[2], fresh, "The cached parallax layers still hold the old sky layer")
+	TEST_ASSERT_EQUAL(active[2], fresh, "The active parallax layers still hold the old sky layer")
+	TEST_ASSERT_EQUAL(cached[1], other, "Another parallax layer was replaced")
+	TEST_ASSERT((fresh in client_screen) && !(sky in client_screen), "The client screen still shows the old sky layer")
+	TEST_ASSERT_EQUAL(fresh.shown_type, shown, "The new sky layer doesn't show the same planet")
+	TEST_ASSERT(fresh.body in fresh.vis_contents, "The new sky layer has no planet disk")
+	TEST_ASSERT_EQUAL(fresh.screen_loc, sky.screen_loc, "The new sky layer jumped to another parallax offset")
+	TEST_ASSERT_EQUAL(fresh.view_sized, "15x15", "The new sky layer wasn't made for the new view")
+	// Bez parallax_layers (paralaksa wyłączona) podmiana zostaje w cache'u
+	var/atom/movable/screen/parallax_layer/planet_sky/second = fresh.replace_in(cached, null, null, "17x15")
+	TEST_ASSERT_EQUAL(cached[2], second, "The cached sky layer wasn't replaced with parallax off")
+	qdel(second)
+
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL

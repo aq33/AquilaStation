@@ -224,6 +224,49 @@
 	// update_status(); świeże sprawdzenie od razu pokazuje planetę i wznawia pętlę
 	sky.force_recheck(screenmob)
 
+// BYOND 516 zapamiętuje, gdzie na ekranie leżał obraz planety (vis_contents warstwy z "CENTER-7") przy starym widoku.
+// Po zmniejszeniu widoku (np. 17x15 -> 15x15 przy dopasowaniu do okna) stary obraz wystaje poza nowy widok, więc mapa
+// rysuje się szersza: dodatkowa kolumna za HUD-em, bez światła, a postać nie stoi na środku. Ponowne dodanie tej samej
+// warstwy ani nowe części planety nie pomagają (sprawdzone przez winget "view-size"), dopiero nowy obiekt warstwy.
+// Nowa warstwa wysłana w tym samym ticku co zmiana widoku dostaje granice jeszcze ze starego widoku (mniej więcej co
+// druga próba), więc podmiana idzie chwilę później.
+/client/change_view(new_size)
+	var/old_view = view
+	. = ..()
+	if(view != old_view)
+		addtimer(CALLBACK(src, PROC_REF(aq_refresh_planet_sky)), 0.2 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
+
+/// Podmienia warstwę z widoczną planetą na świeżą po zmianie widoku
+/client/proc/aq_refresh_planet_sky()
+	if(!length(parallax_layers_cached))
+		return
+	var/atom/movable/screen/parallax_layer/planet_sky/sky = locate() in parallax_layers_cached
+	// Bez planety warstwa nie ma obrazu; w trakcie zejścia albo startu pokaz trzyma tę warstwę (planet_descent.dm)
+	if(!sky?.shown_type || sky.descent_active)
+		return
+	var/atom/movable/screen/parallax_layer/planet_sky/fresh = sky.replace_in(parallax_layers_cached, parallax_layers, screen, view)
+	fresh.force_recheck(mob)
+	qdel(sky)
+
+/// Nowa warstwa z tą samą planetą i położeniem wstawiona w miejsce tej w listach klienta; zwraca nową warstwę
+/atom/movable/screen/parallax_layer/planet_sky/proc/replace_in(list/cached, list/active, list/client_screen, view)
+	var/atom/movable/screen/parallax_layer/planet_sky/fresh = new(null, view)
+	fresh.screen_loc = screen_loc
+	fresh.offset_x = offset_x
+	fresh.offset_y = offset_y
+	fresh.checked_system = checked_system
+	fresh.checked_type = checked_type
+	fresh.next_check = next_check
+	fresh.show_planet(shown_type)
+	for(var/list/layers in list(cached, active))
+		var/index = layers?.Find(src)
+		if(index)
+			layers[index] = fresh
+	if(client_screen && (src in client_screen))
+		client_screen -= src
+		client_screen += fresh
+	return fresh
+
 #undef PLANET_SKY_TEXTURE_WIDTH
 #undef PLANET_SKY_DISK_SIZE
 #undef PLANET_SKY_DISPLACE_SIZE
