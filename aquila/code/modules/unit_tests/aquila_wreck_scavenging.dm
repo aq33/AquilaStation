@@ -20,10 +20,11 @@
 	var/obj/item/fighter_component/secondary/utility/hold/hold = allocate(/obj/item/fighter_component/secondary/utility/hold)
 	wreck.scavenge_left = 1
 	var/list/found = wreck.scavenge_into(hold, 2)
-	if(length(found) != 2)
-		return Fail("Przeszukanie dało [length(found)] przedmiotów zamiast 2")
+	// Dwa takie same stosy łączą się w jeden, więc przedmiotów może być mniej niż losowań
+	if(!length(found) || length(found) > 2)
+		return Fail("Przeszukanie dało [length(found)] przedmiotów zamiast 1–2")
 	for(var/obj/item/I as anything in found)
-		if(I.loc != hold)
+		if(QDELETED(I) || I.loc != hold)
 			return Fail("[I] nie trafił do ładowni")
 	if(wreck.scavenge_left != 0)
 		return Fail("Przeszukanie nie zużyło przeszukania wraku (zostało [wreck.scavenge_left])")
@@ -41,3 +42,22 @@
 	qdel(S)
 	if(!cleared)
 		return Fail("Po odlocie wrak z bitwy został w układzie albo zniknął losowy wrak")
+
+/// Dwa wylosowane takie same stosy łączą się w ładowni w jeden: przeszukanie zwraca tylko istniejące przedmioty
+/datum/unit_test/aquila_wreck_scavenging_stacks
+
+/obj/structure/overmap/asteroid/shipbreak_wreck/unit_test_rods
+
+/obj/structure/overmap/asteroid/shipbreak_wreck/unit_test_rods/scavenge_pool()
+	return list(list(/obj/item/stack/rods, 10))
+
+/datum/unit_test/aquila_wreck_scavenging_stacks/Run()
+	var/obj/structure/overmap/asteroid/shipbreak_wreck/unit_test_rods/wreck = allocate(/obj/structure/overmap/asteroid/shipbreak_wreck/unit_test_rods)
+	var/obj/item/fighter_component/secondary/utility/hold/hold = allocate(/obj/item/fighter_component/secondary/utility/hold)
+	wreck.scavenge_left = 1
+	var/list/found = wreck.scavenge_into(hold, 2)
+	if(length(found) != 1)
+		return Fail("Dwa stosy prętów dały [length(found)] pozycji zamiast jednej")
+	var/obj/item/stack/rods/rods = found[1]
+	if(QDELETED(rods) || rods.loc != hold || rods.amount != 20)
+		return Fail("Połączony stos prętów nie leży w ładowni albo ma [rods?.amount] zamiast 20")

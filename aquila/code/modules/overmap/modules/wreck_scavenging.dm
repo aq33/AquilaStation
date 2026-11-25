@@ -56,7 +56,10 @@
 		var/list/entry = pick(pool)
 		var/item_type = entry[1]
 		if(ispath(item_type, /obj/item/stack))
-			. += new item_type(container, entry[2])
+			// Drugi taki sam stos łączy się z pierwszym w ładowni i znika, więc na liście zostaje tylko pierwszy
+			var/obj/item/stack/stack = new item_type(container, entry[2])
+			if(!QDELETED(stack))
+				. += stack
 		else
 			. += new item_type(container)
 
