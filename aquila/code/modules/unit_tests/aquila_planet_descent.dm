@@ -230,6 +230,14 @@
 	sabre.pilot = null
 	TEST_ASSERT(sabre.planet_descent, "The second descent didn't start after the docking computer stopped the shuttle")
 	var/obj/docking_port/stationary/second_port = sabre.planet_descent.port
+	// Zejście nadaje do Spess.tv z kamery na lądowisku (zgłoszenie 25.11), a przerwane kończy transmisję od razu
+	var/datum/planet_landing_broadcast/stream = sabre.planet_descent.broadcast
+	TEST_ASSERT(stream?.camera, "The descent has no landing camera for Spess.tv")
+	TEST_ASSERT(CAMERANET_NETWORK_LANDING in stream.camera.network, "The landing camera isn't on the landing network")
+	TEST_ASSERT(planet.surface.contains(get_turf(stream.camera)), "The landing camera isn't on the planet surface")
+	TEST_ASSERT(!sabre.planet_descent.footprint[get_turf(stream.camera)], "The landing camera stands where the hull will land")
+	var/stream_key = REF(stream)
+	TEST_ASSERT(stream_key in LAZYACCESS(GLOB.broadcast_network_sources, CAMERANET_NETWORK_LANDING), "The landing isn't broadcast to the TVs and Spess.tv")
 	DC.docking_cooldown = TRUE
 	DC.docking_mode = FALSE
 	sabre.planet_descent.finish()
@@ -237,6 +245,9 @@
 	TEST_ASSERT_EQUAL(shuttle_port.docked, sabre.shuttle_parking, "The interior didn't stay parked after the aborted descent")
 	TEST_ASSERT(QDELETED(second_port), "The unused landing spot stayed on the planet")
 	TEST_ASSERT(!DC.docking_cooldown, "The docking computer stayed locked after the aborted descent")
+	TEST_ASSERT(QDELETED(stream), "The landing broadcast went on after the aborted descent")
+	// Pierwsze zejście wylądowało, więc jego transmisja może jeszcze nadawać; tej z przerwanego zejścia ma już nie być
+	TEST_ASSERT(!(stream_key in LAZYACCESS(GLOB.broadcast_network_sources, CAMERANET_NETWORK_LANDING)), "The aborted descent stayed on air")
 
 	// Trzecie zejście: obrys lądowiska jest zajęty dla innych promów, a coś postawione na nim w trakcie zejścia przerywa
 	// lądowanie (dokowanie zabiłoby ludzi i usunęło przedmioty pod kadłubem)

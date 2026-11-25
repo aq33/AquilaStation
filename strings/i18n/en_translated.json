@@ -31606,5 +31606,10 @@
 "${punishment.points} pkt": "${punishment.points} pts",
 "Stała cela. Dożywocie zatwierdza Komendant albo Kapitan.": "Permanent cell. A life sentence needs the Head of Security or the Captain to approve it.",
 "Gułag bez zwolnienia (w konsoli gułagu „Dożywocie”)": "Gulag with no release (\"Life\" in the gulag console)",
-"Cyfrowe wygnanie: implant wygnania i netpod, więzień na zawsze zostaje w Pętli": "Digital exile: an exile implant and a netpod, the prisoner stays in the Loop forever"
+"Cyfrowe wygnanie: implant wygnania i netpod, więzień na zawsze zostaje w Pętli": "Digital exile: an exile implant and a netpod, the prisoner stays in the Loop forever",
+"NA ŻYWO: [craft_name] ląduje na [planet_name]": "LIVE: [craft_name] landing on [planet_name]",
+"[craft_name] ląduje na [planet_name]. Transmisja NA ŻYWO w Spess.tv!": "[craft_name] is landing on [planet_name]. LIVE on Spess.tv!",
+"kamera lądowiska": "landing site camera",
+"Preferowana funkcja na okręcie": "Preferred duty on the ship",
+"Co chcesz robić w drużynie. Trafisz do drużyny z tą funkcją, o ile nie jest pełna. Automatycznie: funkcja według zawodu, a bez niej najmniej liczna drużyna.": "What you want to do in a squad. You join a squad with this duty unless it is full. Automatic: the duty of your job, otherwise the smallest squad."
 }
