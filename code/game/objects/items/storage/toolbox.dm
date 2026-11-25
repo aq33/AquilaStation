@@ -232,6 +232,7 @@
 
 /obj/item/storage/toolbox/artistic/PopulateContents()
 	new /obj/item/storage/crayons(src)
+	new /obj/item/chisel(src) // AQ EDIT - dłuto do rycin (wspomnienia z tg)
 	new /obj/item/crowbar(src)
 	new /obj/item/stack/cable_coil(src)
 	new /obj/item/stack/cable_coil(src)
