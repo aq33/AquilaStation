@@ -6,7 +6,10 @@
 
 /datum/unit_test/aquila_crafting/Run()
 	TEST_ASSERT(length(GLOB.crafting_recipes) > 50, "Only [length(GLOB.crafting_recipes)] crafting recipes")
-	TEST_ASSERT(length(GLOB.cooking_recipes) > 50, "Only [length(GLOB.cooking_recipes)] cooking recipes")
+	TEST_ASSERT(length(GLOB.cooking_recipes) > 20, "Only [length(GLOB.cooking_recipes)] cooking recipes")
+	// Danie gotowane krok po kroku nie ma przepisu na stole
+	for(var/datum/crafting_recipe/recipe as anything in GLOB.cooking_recipes)
+		TEST_ASSERT(recipe.non_craftable || !is_step_cooked(recipe.result), "[recipe.type] makes [recipe.result] on the table, but it is also a step recipe")
 
 	var/list/old_categories = list(CAT_WEAPONRY, CAT_WEAPON, CAT_AMMO, CAT_EYEWEAR, CAT_FOOD, CAT_NONE)
 	var/found_stack_chair = FALSE

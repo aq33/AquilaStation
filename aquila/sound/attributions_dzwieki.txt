@@ -87,6 +87,21 @@ Woda i wędkarstwo na planetach (tgstation/tgstation dba6dea), licencja CC-BY-SA
   effects/fishing/fish_splash.ogg, bigsplash.ogg   tgstation sound/effects (chlupnięcia przy łowieniu)
   effects/anomaly/*                 Shiptest sound/effects (radiohiss, stall, walkietalkie) i sound/effects/anomaly/static.ogg, anomalia szumu
 
+Okno postaci (17.11.2026):
+  voice/scream/skyrat_*, voice/laugh/felinid_*   Skyrat-SS13/Skyrat-tg i Bubberstation (modular_skyrat/modules/emotes, modular_zubbers), CC-BY-SA 3.0
+  voice/scream/ethereal_lustrous_*   tgstation sound/mobs/humanoids/ethereal, CC-BY-SA 3.0
+  voice/scream/goon_*, voice/goon/speak_*, pug*, amphibian*, misc/fart/goon_*   goonstation/goonstation (sound/voice/screams, sound/misc/talk, sound/voice/farts), CC BY-NC-SA 3.0
+  voice/goon/blub*   wycięte z sound/effects/bubbles.ogg (repo), CC-BY-SA 3.0
+  voice/goon/borowik*   przerobione z sound/effects/cartoon_pop.ogg (repo), CC-BY-SA 3.0
+  species/grod/*   przerobione z sound/items/toysqueak1-3.ogg (repo): podwójne, potrójne, drżące i opadające piski, CC-BY-SA 3.0
+  voice/goon/beefman*   Minecraft (Mojang), minecraft/sounds/mob/zombie/say1-3.ogg, przycięte; własność Mojang, użyte na wyraźne życzenie właściciela serwera, bez licencji na redystrybucję
+  species/beefman/*   fulpstation/fulpstation (fulp_modules), CC-BY-SA 3.0
+  voice/psyphoza/*   BeeStation/BeeStation-Hornet, CC-BY-SA 3.0
+  species/pug/*, species/amphibian/*   goonstation/goonstation (sound/voice/screams, sound/voice/pug_*, snore, urf, farts/frogfart, impact_sounds), CC BY-NC-SA 3.0
+
+NIF (port z Monkestation2.0 b79e450, pierwotnie Skyrat/Nova modular_skyrat blueshift), licencja CC-BY-SA 3.0:
+  monke/nif_good.ogg, nif_bad.ogg, nif_click.ogg   Monkestation monkestation/code/modules/blueshift/sounds (default_good, default_bad, default_click)
+
 Lądowanie na planetach (voidcrew/Voidcrew#588, autor Jackriip, 35462e2), licencja CC-BY-SA 3.0 (README Voidcrew: assety bez innej informacji):
   ../icons/effects/planet_descent_view.dmi   Voidcrew voidcrew/icons/effects/landing_view.dmi (stany wisps i streaks: mgła w chmurze i smugi żaru)
   planets/landing/*                 Voidcrew voidcrew/sound/effects/landing (approach, clouds, entry, launch, liftoff_outside, spool, thrusters, touchdown)

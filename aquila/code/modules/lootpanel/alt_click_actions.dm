@@ -12,6 +12,9 @@
 /mob/living/simple_animal/bot
 	alt_click_loot = FALSE
 
+/mob/living/basic/bot
+	alt_click_loot = FALSE
+
 /mob/living/simple_animal/hostile/heretic_summon/star_gazer
 	alt_click_loot = FALSE
 
@@ -180,6 +183,9 @@
 /obj/item/reagent_containers/borghypo
 	alt_click_loot = FALSE
 
+/obj/item/reagent_containers/cooking
+	alt_click_loot = FALSE
+
 /obj/item/reagent_containers/food/drinks/coffee/empty
 	alt_click_loot = FALSE
 
@@ -333,6 +339,9 @@
 /obj/machinery/conveyor_switch
 	alt_click_loot = FALSE
 
+/obj/machinery/deepfryer
+	alt_click_loot = FALSE
+
 /obj/machinery/defibrillator_mount
 	alt_click_loot = FALSE
 
@@ -348,7 +357,16 @@
 /obj/machinery/fat_sucker
 	alt_click_loot = FALSE
 
+/obj/machinery/griddle
+	alt_click_loot = FALSE
+
+/obj/machinery/grill
+	alt_click_loot = FALSE
+
 /obj/machinery/harvester
+	alt_click_loot = FALSE
+
+/obj/machinery/ice_cream_mixer
 	alt_click_loot = FALSE
 
 /obj/machinery/mineral/ore_redemption
@@ -376,6 +394,9 @@
 	alt_click_loot = FALSE
 
 /obj/machinery/netpod
+	alt_click_loot = FALSE
+
+/obj/machinery/oven
 	alt_click_loot = FALSE
 
 /obj/machinery/pdapainter
@@ -430,6 +451,9 @@
 	alt_click_loot = FALSE
 
 /obj/structure/extinguisher_cabinet
+	alt_click_loot = FALSE
+
+/obj/structure/fermenting_barrel
 	alt_click_loot = FALSE
 
 /obj/structure/frame/computer

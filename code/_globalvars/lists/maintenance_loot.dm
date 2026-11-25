@@ -25,6 +25,7 @@
 //port:					5  items,  5 spots 0 extra (08/08/2014)
 
 GLOBAL_LIST_INIT(maintenance_loot, list(
+	/obj/item/tattoo_kit = 1, // AQ EDIT - zestaw do tatuażu (wspomnienia z tg)
 	/obj/item/bodybag = 1,
 	/obj/item/clothing/glasses/meson = 2,
 	/obj/item/clothing/glasses/sunglasses/advanced = 1,

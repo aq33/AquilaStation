@@ -241,6 +241,11 @@ export const feature_ipc_screen_color: Feature<string> = {
   component: FeatureColorInput,
 };
 
+export const feature_grod_marks_color: Feature<string> = {
+  name: 'Kolor wzorów',
+  component: FeatureColorInput,
+};
+
 export const feature_human_tail: FeatureChoiced = {
   name: 'Ogon',
   component: FeatureButtonedDropdownInput,

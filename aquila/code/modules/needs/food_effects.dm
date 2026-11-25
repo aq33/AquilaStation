@@ -175,6 +175,7 @@ GLOBAL_LIST_INIT(aq_spice_reagents, typecacheof(list(
 	/datum/reagent/consumable/ketchup,
 	/datum/reagent/consumable/mayonnaise,
 	/datum/reagent/consumable/bbqsauce,
+	/datum/reagent/consumable/maggi,
 )))
 
 /// Czy w tym pojemniku jest jakaś przyprawa

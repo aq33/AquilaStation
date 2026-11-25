@@ -114,7 +114,7 @@
 	/// Przejęty cyborg
 	var/mob/living/silicon/robot/current_robot
 	/// Przejęty bot
-	var/mob/living/simple_animal/bot/current_bot
+	var/mob/living/current_bot
 
 	/// Opóźnienie ruchu bota
 	var/bot_movedelay = 0

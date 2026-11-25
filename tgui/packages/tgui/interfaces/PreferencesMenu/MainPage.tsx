@@ -120,8 +120,11 @@ const ChoicedSelection = (props: {
     return <Box color="red">Przekazany katalog nie ma ikon!</Box>;
   }
 
+  // Polska nazwa z display_names, gdy serwer ją przysłał; szukamy po niej i po kluczu
+  const displayName = (name: string) => catalog.display_names?.[name] || name;
+
   let search = createSearch(searchText, (name: string) => {
-    return name;
+    return `${displayName(name)} ${name}`;
   });
 
   const use_small_supplemental =
@@ -250,7 +253,7 @@ const ChoicedSelection = (props: {
                           maxWidth={CLOTHING_SELECTION_CELL_SIZE}
                           maxFontSize={12}
                         >
-                          {name}
+                          {displayName(name)}
                         </FitText>
                       </Box>
                     </Flex.Item>

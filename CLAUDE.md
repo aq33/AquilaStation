@@ -29,7 +29,7 @@ Domyślnie gra używa combat mode z Bee, a gracz może włączyć w preferencjac
 - Każdy żywy mob gracza (także simple animale i antagi-zwierzęta) ma w HUD wskaźnik trybu (`combat_mode_indicator`, domyślnie TRUE) i w starym trybie cztery intencje. FALSE tylko dla mobów, które nie dotykają świata (silikony, revenant itp.).
 - Port z serwera, który ma tylko intencje albo tylko combat mode: dopisz brakujący wariant i sprawdź oba tryby w teście w grze.
 ## Kod Aquili (modularność)
-- Nowy kod, ikony i dźwięki idą tylko do `aquila/` (`aquila/code/`, `aquila/icons/`, `aquila/sound/`, `aquila/_maps/`).
+- Nowy kod, ikony i dźwięki idą tylko do `aquila/` (`aquila/code/`, `aquila/icons/`, `aquila/sound/`, `aquila/_maps/`). Wyjątek: grafiki i fonty samych okien TGUI, które bundle wkleja przez SCSS (np. `tgui/packages/tgui/assets/pixelui/`, z plikiem atrybucji), leżą przy TGUI.
 - Nowy plik `.dm` dopisz do `aquila/aquila.dm` (ścieżka względna od `aquila/`, backslashe), nie do `nsv13.dme`. Ostatnim include'em zostaje `code\modules\tracy\tracy.dm` (pilnuje tego `check_grep.sh`), więc nowe wpisy idą nad nim.
 - `aquila/aquila.dm` jest dołączany na końcu `nsv13.dme`. Define potrzebny wcześniej w core musi być w core, z markerem.
 - Zmiana zachowania upstreamowego typu: nadpisanie w `aquila/` z wywołaniem `..()`.

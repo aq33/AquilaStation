@@ -1,0 +1,518 @@
+// AQUILA - augmenty głowy: mózg, oczy, usta, kark. Wdrożenie robotyki, część IMPLANTY.
+// Źródła: Paradise (wire_interface), /tg/station (brain/cybernetic/ai), Aurora (emotional_manipulator, gustatorial,
+// service_jack), Skyrat (anti_sleep, wcielony w implant restartu OUN), Goonstation (eye/cyber/monitor, eye/cyber/laser),
+// SS220 (eyes/map).
+
+#define AQ_ROBOTYKA_ICON 'aquila/icons/obj/cybernetics/robotyka_implanty.dmi'
+
+// ===========================================================================
+// MÓZG
+
+// Interfejs kabli (Paradise /obj/item/organ/internal/cyberimp/brain/wire_interface)
+/obj/item/organ/cyberimp/brain/aq_wire_interface
+	name = "implant interfejsu kabli"
+	desc = "Implant mózgu, który wyczuwa prądy w przewodach: przy hakowaniu maszyny widać funkcję kabli. Nie pomaga przy losowym okablowaniu (bomby, cyborgi)."
+	icon = AQ_ROBOTYKA_ICON
+	icon_state = "brain_implant_connector"
+	implant_overlay = null
+	implant_color = "#FFF782"
+	slot = ORGAN_SLOT_BRAIN_WIRE_INTERFACE
+	aq_cyberpsychosis_cost = 5
+	/// Do kiedy EMP zaślepia interfejs
+	var/blind_until = 0
+
+/obj/item/organ/cyberimp/brain/aq_wire_interface/Insert(mob/living/carbon/M, special = FALSE, drop_if_replaced = TRUE)
+	. = ..()
+	if(owner == M)
+		ADD_TRAIT(M, TRAIT_AQ_WIRE_INTERFACE, REF(src))
+
+/obj/item/organ/cyberimp/brain/aq_wire_interface/Remove(mob/living/carbon/M, special = FALSE)
+	REMOVE_TRAIT(M, TRAIT_AQ_WIRE_INTERFACE, REF(src))
+	return ..()
+
+/obj/item/organ/cyberimp/brain/aq_wire_interface/emp_act(severity)
+	. = ..()
+	if(!owner || . & EMP_PROTECT_SELF)
+		return
+	REMOVE_TRAIT(owner, TRAIT_AQ_WIRE_INTERFACE, REF(src))
+	blind_until = max(blind_until, world.time + 2 MINUTES / severity)
+	addtimer(CALLBACK(src, PROC_REF(restore_interface)), 2 MINUTES / severity)
+
+/obj/item/organ/cyberimp/brain/aq_wire_interface/proc/restore_interface()
+	if(owner && world.time >= blind_until)
+		ADD_TRAIT(owner, TRAIT_AQ_WIRE_INTERFACE, REF(src))
+
+// ---------------------------------------------------------------------------
+// Mózg z łączem SI (/tg/station /obj/item/organ/brain/cybernetic/ai): SI wchodzi w w pełni zrobotyzowane ciało
+
+/obj/item/organ/brain/aq_ai_uplink
+	name = "mózg z łączem SI"
+	desc = "Cybernetyczny mózg bez własnej świadomości. W ciele, w którym wszystkie narządy są robotyczne, SI może przez niego przejąć sterowanie."
+	icon = AQ_ROBOTYKA_ICON
+	icon_state = "brain-c"
+	status = ORGAN_ROBOTIC
+	organ_flags = ORGAN_SYNTHETIC | ORGAN_VITAL
+	decoy_override = TRUE // nie tworzy brainmoba: świadomość należy do SI
+	aq_cyberpsychosis_cost = 18
+	/// SI, która teraz steruje ciałem
+	var/mob/living/silicon/ai/controlling_ai
+	/// Przycisk powrotu do rdzenia
+	var/datum/action/innate/aq_ai_uplink_return/return_action
+
+/obj/item/organ/brain/aq_ai_uplink/Destroy()
+	return_to_core()
+	QDEL_NULL(return_action)
+	return ..()
+
+/obj/item/organ/brain/aq_ai_uplink/Insert(mob/living/carbon/C, special = 0, no_id_transfer = FALSE)
+	. = ..()
+	if(owner != C)
+		return
+	RegisterSignal(C, COMSIG_CLICK, PROC_REF(on_body_click), override = TRUE)
+
+/obj/item/organ/brain/aq_ai_uplink/Remove(mob/living/carbon/C, special = 0, no_id_transfer = FALSE)
+	return_to_core()
+	UnregisterSignal(C, COMSIG_CLICK)
+	return ..()
+
+/obj/item/organ/brain/aq_ai_uplink/examine(mob/user)
+	. = ..()
+	if(isAI(user) || isobserver(user))
+		. += span_notice("SI przejmuje ciało z tym mózgiem kliknięciem na nie. Wszystkie narządy (poza językiem) muszą być robotyczne, a ciało widoczne dla kamer.")
+
+/obj/item/organ/brain/aq_ai_uplink/proc/on_body_click(atom/source, location, control, params, mob/user)
+	SIGNAL_HANDLER
+	if(isAI(user))
+		INVOKE_ASYNC(src, PROC_REF(try_ai_enter), user)
+
+/// Dlaczego SI nie może teraz wejść w ciało (null = może)
+/obj/item/organ/brain/aq_ai_uplink/proc/entry_problem(mob/living/silicon/ai/ai)
+	if(!owner)
+		return "Mózg nie jest w ciele."
+	if(controlling_ai)
+		return "Ciałem steruje już SI."
+	if(ai.stat || ai.control_disabled || !ai.mind)
+		return "Nie możesz teraz nawiązać połączenia."
+	if(ai.deployed_shell || !isturf(ai.loc))
+		return "Najpierw wróć do rdzenia."
+	if(owner.stat == DEAD)
+		return "To ciało jest martwe."
+	if(owner.key || owner.mind)
+		return "To ciało ma już świadomość."
+	for(var/obj/item/organ/organ as anything in owner.internal_organs)
+		if(organ == src || organ.slot == ORGAN_SLOT_TONGUE)
+			continue
+		if(organ.status != ORGAN_ROBOTIC)
+			return "Narząd [organ.name] nie jest robotyczny."
+	if(!GLOB.cameranet.checkCameraVis(owner))
+		return "Ciało nie jest widoczne dla kamer."
+	return null
+
+/obj/item/organ/brain/aq_ai_uplink/proc/try_ai_enter(mob/living/silicon/ai/ai)
+	var/problem = entry_problem(ai)
+	if(problem)
+		to_chat(ai, span_warning(problem))
+		return
+	if(alert(ai, "Przejąć sterowanie ciałem [owner]?", "Mózg z łączem SI", "Tak", "Nie") != "Tak")
+		return
+	problem = entry_problem(ai)
+	if(problem)
+		to_chat(ai, span_warning(problem))
+		return
+	controlling_ai = ai
+	RegisterSignal(ai, COMSIG_PARENT_QDELETING, PROC_REF(on_core_deleted))
+	RegisterSignal(owner, COMSIG_MOB_DEATH, PROC_REF(on_body_death))
+	ADD_TRAIT(owner, TRAIT_AQ_BINARY_SPEAKER, REF(src))
+	ai.mind.transfer_to(owner)
+	if(!return_action)
+		return_action = new(src)
+	return_action.Grant(owner)
+	to_chat(owner, span_notice("Przejmujesz sterowanie ciałem. Twoje prawa nadal obowiązują:"))
+	ai.laws?.show_laws(owner)
+	log_game("[key_name(owner)] (SI) przejęła ciało przez mózg z łączem SI w [AREACOORD(owner)].")
+
+/// Wraca do rdzenia SI (albo zostawia ciało, gdy rdzenia już nie ma)
+/obj/item/organ/brain/aq_ai_uplink/proc/return_to_core()
+	if(!controlling_ai)
+		return
+	var/mob/living/silicon/ai/ai = controlling_ai
+	controlling_ai = null
+	UnregisterSignal(ai, COMSIG_PARENT_QDELETING)
+	if(owner)
+		UnregisterSignal(owner, COMSIG_MOB_DEATH)
+		REMOVE_TRAIT(owner, TRAIT_AQ_BINARY_SPEAKER, REF(src))
+		return_action?.Remove(owner)
+		if(owner.mind)
+			if(QDELETED(ai))
+				owner.ghostize(FALSE)
+			else
+				owner.mind.transfer_to(ai)
+				to_chat(ai, span_notice("Wracasz do rdzenia."))
+				ai.laws?.show_laws(ai)
+
+/obj/item/organ/brain/aq_ai_uplink/proc/on_core_deleted(datum/source)
+	SIGNAL_HANDLER
+	return_to_core()
+
+/obj/item/organ/brain/aq_ai_uplink/proc/on_body_death(mob/living/source, gibbed)
+	SIGNAL_HANDLER
+	INVOKE_ASYNC(src, PROC_REF(return_to_core))
+
+/datum/action/innate/aq_ai_uplink_return
+	name = "Rozłącz z powłoką"
+	desc = "Wraca do rdzenia SI."
+	icon_icon = 'icons/mob/actions/actions_AI.dmi'
+	button_icon_state = "ai_core"
+
+/datum/action/innate/aq_ai_uplink_return/Trigger()
+	var/obj/item/organ/brain/aq_ai_uplink/brain = target
+	if(istype(brain))
+		brain.return_to_core()
+
+// ---------------------------------------------------------------------------
+// Implant restartu OUN (core cyberimp/brain/anti_stun) przejmuje rozrusznik OUN (Skyrat /obj/item/organ/internal/cyberimp/brain/anti_sleep):
+// poza skracaniem ogłuszeń budzi nosiciela, gdy ten straci przytomność poza zwykłym snem, potem ładuje się przez minutę.
+
+/obj/item/organ/cyberimp/brain/anti_stun
+	desc = "Ten implant automatycznie przywraca ci kontrolę nad ośrodkowym układem nerwowym: skraca czas ogłuszenia i budzi z utraty przytomności."
+	/// Odnowienie wybudzenia
+	var/aq_wake_cooldown_time = 1 MINUTES
+	COOLDOWN_DECLARE(aq_wake_cooldown)
+
+/obj/item/organ/cyberimp/brain/anti_stun/on_life()
+	. = ..()
+	if(!owner || owner.stat == DEAD || !COOLDOWN_FINISHED(src, aq_wake_cooldown))
+		return
+	if(!owner.IsUnconscious() || owner.IsSleeping() || !aq_augment_usable(TRUE))
+		return
+	COOLDOWN_START(src, aq_wake_cooldown, aq_wake_cooldown_time)
+	owner.SetUnconscious(0)
+	owner.Jitter(5)
+	to_chat(owner, span_userdanger("Implant restartu OUN wstrząsa twoim mózgiem i zrywa cię na nogi!"))
+	playsound(owner, 'sound/machines/defib_zap.ogg', 30, TRUE)
+
+// ---------------------------------------------------------------------------
+// Manipulator emocji (Aurora /obj/item/organ/internal/augment/emotional_manipulator)
+
+/obj/item/organ/cyberimp/brain/aq_emotional_manipulator
+	name = "manipulator emocji"
+	desc = "Steruje chemią mózgu i na żądanie wywołuje uczucie szczęścia albo spokoju."
+	icon = AQ_ROBOTYKA_ICON
+	icon_state = "emotional_manipulator"
+	implant_overlay = null
+	slot = ORGAN_SLOT_BRAIN_EMOTION
+	actions_types = list(/datum/action/item_action/organ_action/use)
+	aq_cyberpsychosis_cost = 10
+	/// Tryb: null, "happy" albo "calm"
+	var/mode
+	/// Kiedy następny komunikat
+	var/next_message = 0
+
+/obj/item/organ/cyberimp/brain/aq_emotional_manipulator/ui_action_click()
+	if(!aq_augment_usable())
+		return
+	var/choice = tgui_alert(owner, "Jaki stan wywołać?", "Manipulator emocji", list("Szczęście", "Spokój", "Wyłącz"))
+	if(!owner || QDELETED(src))
+		return
+	switch(choice)
+		if("Szczęście")
+			mode = "happy"
+		if("Spokój")
+			mode = "calm"
+		if("Wyłącz")
+			mode = null
+			SEND_SIGNAL(owner, COMSIG_CLEAR_MOOD_EVENT, "aq_emotion")
+	if(choice)
+		to_chat(owner, span_notice((mode ? "Manipulator emocji przestawia chemię twojego mózgu." : "Manipulator emocji się wyłącza.")))
+
+/obj/item/organ/cyberimp/brain/aq_emotional_manipulator/on_life()
+	. = ..()
+	if(!owner)
+		return
+	if(organ_flags & ORGAN_FAILING)
+		owner.adjust_hallucinations_up_to(4 SECONDS, 20 SECONDS)
+		return
+	if(!mode || !aq_augment_usable(TRUE))
+		return
+	if(mode == "happy")
+		SEND_SIGNAL(owner, COMSIG_ADD_MOOD_EVENT, "aq_emotion", /datum/mood_event/aq_emotion_happy)
+	else
+		SEND_SIGNAL(owner, COMSIG_ADD_MOOD_EVENT, "aq_emotion", /datum/mood_event/aq_emotion_calm)
+		owner.jitteriness = max(owner.jitteriness - 5, 0)
+	if(world.time >= next_message)
+		next_message = world.time + 5 MINUTES
+		to_chat(owner, span_notice((mode == "happy" ? "Ogarnia cię ciepła, bezprzyczynowa radość." : "Myśli płyną spokojnie i powoli.")))
+
+/obj/item/organ/cyberimp/brain/aq_emotional_manipulator/Remove(mob/living/carbon/M, special = FALSE)
+	if(M)
+		SEND_SIGNAL(M, COMSIG_CLEAR_MOOD_EVENT, "aq_emotion")
+	return ..()
+
+/datum/mood_event/aq_emotion_happy
+	description = "<span class='nicegreen'>Czuję się szczęśliwy. Chyba?</span>\n"
+	mood_change = 4
+	timeout = 10 SECONDS
+
+/datum/mood_event/aq_emotion_calm
+	description = "<span class='nicegreen'>Jestem zupełnie spokojny.</span>\n"
+	mood_change = 2
+	timeout = 10 SECONDS
+
+// ===========================================================================
+// OCZY
+
+// ---------------------------------------------------------------------------
+// Cyberoko z monitorem (Goonstation /obj/item/organ/eye/cyber/monitor): podgląd sieci kamer
+
+/obj/item/organ/eyes/robotic/aq_monitor
+	name = "cyberoko z monitorem"
+	desc = "Mały ekran zamiast oka: pozwala oglądać sieć kamer okrętu z wbudowanego monitora."
+	icon = AQ_ROBOTYKA_ICON
+	icon_state = "eye-monitor"
+	eye_color = "39F"
+	actions_types = list(/datum/action/item_action/organ_action/use)
+	aq_cyberpsychosis_cost = 5
+	/// Wbudowana konsola kamer
+	var/obj/machinery/computer/security/aq_eye_monitor/monitor
+
+/obj/item/organ/eyes/robotic/aq_monitor/Destroy()
+	QDEL_NULL(monitor)
+	return ..()
+
+/obj/item/organ/eyes/robotic/aq_monitor/ui_action_click()
+	if(!aq_augment_usable())
+		return
+	if(!monitor)
+		monitor = new(src)
+		monitor.eye = src
+	if(owner.client) // konsola rejestruje obraz kamer w kliencie
+		monitor.ui_interact(owner)
+
+/obj/item/organ/eyes/robotic/aq_monitor/Remove(mob/living/carbon/M, special = FALSE)
+	if(monitor && M)
+		SStgui.close_uis(monitor)
+	return ..()
+
+/obj/machinery/computer/security/aq_eye_monitor
+	name = "monitor w oku"
+	use_power = NO_POWER_USE
+	interaction_flags_machine = INTERACT_MACHINE_OFFLINE | INTERACT_MACHINE_ALLOW_SILICON
+	network = list("ss13")
+	/// Oko, w którym siedzi monitor
+	var/obj/item/organ/eyes/robotic/aq_monitor/eye
+
+/obj/machinery/computer/security/aq_eye_monitor/Destroy()
+	eye = null
+	return ..()
+
+/obj/machinery/computer/security/aq_eye_monitor/ui_state(mob/user)
+	if(eye?.owner == user && eye.aq_augment_usable(TRUE))
+		return GLOB.conscious_state
+	return GLOB.never_state
+
+// ---------------------------------------------------------------------------
+// Mapa okrętu w oku (SS220 /obj/item/organ/internal/cyberimp/eyes/map): holomapa na żądanie
+
+/obj/item/organ/cyberimp/eyes/aq_map
+	name = "implant mapy okrętu"
+	desc = "Wyświetla w polu widzenia hologram okrętu z twoją pozycją."
+	icon_state = "eye_implant"
+	implant_overlay = "eye_implant_overlay"
+	implant_color = "#3AD17F"
+	slot = ORGAN_SLOT_EYE_MAP
+	zone = BODY_ZONE_PRECISE_EYES
+	w_class = WEIGHT_CLASS_TINY
+	aq_cyberpsychosis_cost = 5
+
+/obj/item/organ/cyberimp/eyes/aq_map/Insert(mob/living/carbon/M, special = FALSE, drop_if_replaced = TRUE)
+	. = ..()
+	if(owner != M)
+		return
+	var/datum/component/holomap/holo = AddComponent(/datum/component/holomap)
+	holo.holobutton.name = "Mapa okrętu"
+	// narząd w ciele leży w nullspace, więc przycisk bierze nosiciela zamiast holder.loc
+	holo.holobutton.holder = M
+	holo.holobutton.Grant(M)
+
+/obj/item/organ/cyberimp/eyes/aq_map/Remove(mob/living/carbon/M, special = FALSE)
+	var/datum/component/holomap/holo = GetComponent(/datum/component/holomap)
+	if(holo)
+		if(holo.holomap_visible && M)
+			holo.deactivate_holomap(M)
+		// Destroy() komponentu szuka nosiciela przez narząd, którego już nie znajdzie
+		holo.holobutton?.Remove(M)
+		qdel(holo)
+	return ..()
+
+// ---------------------------------------------------------------------------
+// Laserowe cyberoko (Goonstation /obj/item/organ/eye/cyber/laser): strzał z oczu
+
+/obj/item/organ/eyes/robotic/aq_laser
+	name = "laserowe cyberoczy"
+	desc = "Cyberoczy strzelające laserem. Zasłonięte oczy nie strzelają."
+	icon = AQ_ROBOTYKA_ICON
+	icon_state = "eye-laser"
+	eye_color = "F00"
+	actions_types = list(/datum/action/item_action/organ_action/toggle)
+	aq_cyberpsychosis_cost = 18
+	/// Czy czeka na cel
+	var/armed = FALSE
+	/// Odnowienie strzału
+	var/cooldown_time = 6 SECONDS
+	COOLDOWN_DECLARE(shot_cooldown)
+
+/obj/item/organ/eyes/robotic/aq_laser/ui_action_click()
+	// rozbroić da się zawsze, także zakłócone albo zepsute oczy
+	if(armed)
+		set_armed(FALSE)
+		return
+	if(!aq_augment_usable())
+		return
+	set_armed(TRUE)
+
+/obj/item/organ/eyes/robotic/aq_laser/proc/set_armed(new_state)
+	if(!owner)
+		return
+	armed = new_state
+	if(armed)
+		RegisterSignal(owner, COMSIG_MOB_CLICKON, PROC_REF(on_click), override = TRUE)
+		to_chat(owner, span_notice("Cyberoczy celują. Kliknij cel."))
+	else
+		UnregisterSignal(owner, COMSIG_MOB_CLICKON)
+		to_chat(owner, span_notice("Cyberoczy przestają celować."))
+
+/obj/item/organ/eyes/robotic/aq_laser/Remove(mob/living/carbon/M, special = FALSE)
+	if(M)
+		UnregisterSignal(M, COMSIG_MOB_CLICKON)
+	armed = FALSE
+	return ..()
+
+/obj/item/organ/eyes/robotic/aq_laser/proc/on_click(mob/living/carbon/source, atom/target, list/modifiers)
+	SIGNAL_HANDLER
+	if(LAZYACCESS(modifiers, SHIFT_CLICK) || LAZYACCESS(modifiers, ALT_CLICK) || LAZYACCESS(modifiers, CTRL_CLICK) || target == source)
+		return
+	if(source.stat || source.incapacitated())
+		return
+	// strzał tylko w coś na mapie w polu widzenia: klik w ekwipunek, HUD albo przedmiot w ręce działa jak zwykle
+	var/turf/target_turf = get_turf(target)
+	if(!target_turf || !(isturf(target) || isturf(target.loc)) || !can_see(source, target_turf, 9))
+		return
+	// chłodzenie, zakłócacz i zepsute oczy nie blokują zwykłych kliknięć
+	if(!COOLDOWN_FINISHED(src, shot_cooldown) || !aq_augment_usable(TRUE))
+		return
+	. = COMSIG_MOB_CANCEL_CLICKON
+	if(source.is_eyes_covered())
+		to_chat(source, span_warning("Coś zasłania ci oczy."))
+		return
+	COOLDOWN_START(src, shot_cooldown, cooldown_time)
+	var/obj/item/projectile/beam/laser/aq_eyebeam/beam = new(get_turf(source))
+	beam.firer = source
+	beam.fired_from = src
+	beam.preparePixelProjectile(target, source, list2params(modifiers))
+	playsound(source, 'sound/weapons/laser.ogg', 50, TRUE)
+	source.visible_message(span_danger("Z oczu [source] wystrzeliwuje laser!"))
+	log_combat(source, target, "strzelił laserowymi cyberoczami w")
+	beam.fire()
+
+/obj/item/projectile/beam/laser/aq_eyebeam
+	name = "promień z oczu"
+	icon = AQ_ROBOTYKA_ICON
+	icon_state = "eyebeam"
+	damage = 20
+
+// ===========================================================================
+// USTA I KARK
+
+// Ośrodek smaku (Aurora /obj/item/organ/internal/augment/gustatorial): skład skosztowanych substancji
+/obj/item/organ/cyberimp/aq_gustatorial
+	name = "ośrodek smaku"
+	desc = "Mały analizator chemii w języku. Po skosztowaniu podaje skład substancji, a na żądanie bada to, co trzymasz w ręce."
+	icon = AQ_ROBOTYKA_ICON
+	icon_state = "augment"
+	zone = BODY_ZONE_PRECISE_MOUTH
+	slot = ORGAN_SLOT_AQ_GUSTATORIAL
+	w_class = WEIGHT_CLASS_TINY
+	actions_types = list(/datum/action/item_action/organ_action/use)
+	aq_cyberpsychosis_cost = 5
+
+/obj/item/organ/cyberimp/aq_gustatorial/ui_action_click()
+	if(!aq_augment_usable())
+		return
+	var/obj/item/held = owner.get_active_held_item()
+	if(!held?.reagents)
+		to_chat(owner, span_warning("Musisz trzymać w ręce coś z substancjami."))
+		return
+	to_chat(owner, span_notice("Ośrodek smaku bada [held]:"))
+	report_reagents(held.reagents)
+
+/// Wypisuje skład substancji nosicielowi
+/obj/item/organ/cyberimp/aq_gustatorial/proc/report_reagents(datum/reagents/holder)
+	if(!owner || !holder)
+		return
+	if(!length(holder.reagent_list))
+		to_chat(owner, span_notice("Ośrodek smaku: brak substancji."))
+		return
+	var/list/lines = list()
+	for(var/datum/reagent/reagent as anything in holder.reagent_list)
+		lines += "[reagent.name] ([round(reagent.volume, 0.1)] j.)"
+	to_chat(owner, span_notice("Ośrodek smaku: [jointext(lines, ", ")]."))
+
+// Port serwisowy EMSI (Aurora /obj/item/organ/internal/augment/service_jack): diagnoza augmentów multitoolem
+/obj/item/organ/cyberimp/aq_service_jack
+	name = "port serwisowy EMSI"
+	desc = "Port serwisowy na karku. Technik podłącza do niego multitool, żeby zdiagnozować augmenty i protezy nosiciela."
+	icon = AQ_ROBOTYKA_ICON
+	icon_state = "augment"
+	zone = BODY_ZONE_HEAD
+	slot = ORGAN_SLOT_AQ_SERVICE_JACK
+	w_class = WEIGHT_CLASS_TINY
+	aq_cyberpsychosis_cost = 0
+
+/obj/item/organ/cyberimp/aq_service_jack/Insert(mob/living/carbon/M, special = FALSE, drop_if_replaced = TRUE)
+	. = ..()
+	if(owner != M)
+		return
+	RegisterSignal(M, COMSIG_PARENT_ATTACKBY, PROC_REF(on_attackby), override = TRUE)
+	RegisterSignal(M, COMSIG_PARENT_EXAMINE, PROC_REF(on_examine), override = TRUE)
+
+/obj/item/organ/cyberimp/aq_service_jack/Remove(mob/living/carbon/M, special = FALSE)
+	if(M)
+		UnregisterSignal(M, list(COMSIG_PARENT_ATTACKBY, COMSIG_PARENT_EXAMINE))
+	return ..()
+
+/obj/item/organ/cyberimp/aq_service_jack/proc/on_examine(datum/source, mob/user, list/examine_list)
+	SIGNAL_HANDLER
+	examine_list += span_notice("Na karku widać port serwisowy EMSI.")
+
+/obj/item/organ/cyberimp/aq_service_jack/proc/on_attackby(datum/source, obj/item/tool, mob/living/user, params)
+	SIGNAL_HANDLER
+	if(tool.tool_behaviour != TOOL_MULTITOOL || user.combat_mode)
+		return
+	INVOKE_ASYNC(src, PROC_REF(diagnose), user)
+	return COMPONENT_NO_AFTERATTACK
+
+/// Raport z portu: augmenty, protezy i koszt cyberpsychozy
+/obj/item/organ/cyberimp/aq_service_jack/proc/diagnose(mob/living/user)
+	if(!owner)
+		return
+	if(organ_flags & ORGAN_FAILING)
+		to_chat(user, span_warning("Port serwisowy [owner] nie odpowiada."))
+		return
+	var/list/lines = list("<b>Diagnoza portu EMSI: [owner]</b>")
+	for(var/obj/item/organ/organ as anything in owner.internal_organs)
+		if(organ.status != ORGAN_ROBOTIC)
+			continue
+		var/organ_cost = organ.aq_get_cyberpsychosis_cost()
+		var/health = organ.maxHealth ? round(100 - (organ.damage / organ.maxHealth) * 100) : 100
+		lines += "[capitalize(organ.name)]: sprawność [health]%[organ.organ_flags & ORGAN_FAILING ? ", NIEWYDOLNY" : ""][organ_cost ? ", obciążenie [organ_cost]" : ""]"
+	for(var/obj/item/bodypart/part as anything in owner.bodyparts)
+		if(IS_ORGANIC_LIMB(part))
+			continue
+		var/part_cost = part.aq_get_cyberpsychosis_cost()
+		lines += "Proteza [part.name]: obrażenia [round(part.brute_dam)] / poparzenia [round(part.burn_dam)][part_cost ? ", obciążenie [part_cost]" : ""]"
+	// suma liczona tak samo jak przez mechanikę cyberpsychozy
+	lines += "Łączne obciążenie augmentami: [owner.aq_cyberpsychosis_load()]"
+	to_chat(user, span_notice(jointext(lines, "<br>")))
+	playsound(owner, 'sound/machines/ping.ogg', 30, TRUE)
+
+#undef AQ_ROBOTYKA_ICON

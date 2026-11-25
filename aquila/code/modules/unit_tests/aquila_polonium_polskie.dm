@@ -40,12 +40,14 @@
 	var/obj/machinery/vending/snack/snack = allocate(/obj/machinery/vending/snack)
 	TEST_ASSERT(snack.products[/obj/item/food/kabanosy], "Kabanosów nie ma w automacie z przekąskami")
 
-	for(var/recipe_type in list(/datum/crafting_recipe/food/peto_parowek, /datum/crafting_recipe/food/hotdog_parowka))
-		var/found = FALSE
-		for(var/datum/crafting_recipe/recipe as anything in GLOB.cooking_recipes)
-			if(recipe.type == recipe_type)
-				found = TRUE
-				break
-		TEST_ASSERT(found, "Przepisu [recipe_type] nie ma w GLOB.cooking_recipes")
+	// Pęto parówek i hot dog z parówką robi się krok po kroku (deska), więc nie mają przepisów na stole
+	TEST_ASSERT(is_step_cooked(/obj/item/food/peto_parowek), "Pęta parówek nie da się zrobić krok po kroku")
+	var/datum/cooking/recipe/hotdog_recipe = new /datum/cooking/recipe/aq_hotdog_parowka
+	var/uses_parowka = FALSE
+	for(var/datum/cooking/recipe_step/add_item/item_step in hotdog_recipe.steps)
+		if(item_step.item_type == /obj/item/food/parowka)
+			uses_parowka = TRUE
+	TEST_ASSERT(uses_parowka && hotdog_recipe.product_type == /obj/item/food/hotdog, "Hot doga nie da się zrobić z parówki")
+	qdel(hotdog_recipe)
 
 #undef TEST_ASSERT

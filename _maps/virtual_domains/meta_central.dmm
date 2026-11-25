@@ -232,8 +232,8 @@
 /area/virtual_domain)
 "az" = (
 /obj/effect/turf_decal/tile/neutral,
-/mob/living/simple_animal/bot/cleanbot{
-	auto_patrol = 1
+/mob/living/basic/bot/cleanbot{
+	start_patrolling = 1
 	},
 /turf/open/floor/plasteel,
 /area/virtual_domain)

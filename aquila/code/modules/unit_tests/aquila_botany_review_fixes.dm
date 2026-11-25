@@ -108,5 +108,16 @@
 	allocate(/obj/structure/closet, locate(origin.x + 1, origin.y, origin.z))
 	TEST_ASSERT(!xenoflora_pod_fits(origin), "Kapsuła mieści się na polach, na których stoi coś gęstego")
 
+/// AQUILA - po usunięciu akwakultury surowe krewetki do przepisów kuchni kupuje się w konsoli zamówień
+/datum/unit_test/aquila_kitchen_shrimp_source
+
+/datum/unit_test/aquila_kitchen_shrimp_source/Run()
+	var/found = FALSE
+	for(var/datum/orderable_item/item as anything in subtypesof(/datum/orderable_item/kitchen_meat_dairy))
+		if(initial(item.purchase_path) == /obj/item/food/shellfish_meat/shrimp)
+			found = TRUE
+			break
+	TEST_ASSERT(found, "Konsola zamówień kuchni nie sprzedaje surowych krewetek, a przepisy z krewetkami nie mają innego źródła")
+
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL

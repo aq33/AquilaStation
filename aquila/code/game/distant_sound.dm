@@ -29,7 +29,7 @@
 			continue
 		var/falloff = 1 - (distance - SOUND_RANGE) / (max_range - SOUND_RANGE)
 		var/dampening = listener_turf.z == source_turf.z ? min(distant_sound_dampening(source_turf, listener_turf), 0.8) : 0.5
-		var/listener_volume = volume * falloff * (1 - dampening)
+		var/listener_volume = volume * falloff * (1 - dampening) * listener.sound_volume_mult(VOLUME_PREF_GUNS)
 		if(listener_volume < 3)
 			continue
 

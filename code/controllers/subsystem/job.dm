@@ -537,10 +537,14 @@ SUBSYSTEM_DEF(job)
 			to_chat(M, "<b>Grasz na stanowisku ważnym dla przebiegu gry. Jeśli musisz się rozłączyć, powiadom adminów przez adminhelp.</b>")
 		if(CONFIG_GET(number/minimal_access_threshold))
 			to_chat(M, "<span class='notice'><B>Ponieważ ta stacja była początkowo obsadzona [CONFIG_GET(flag/jobs_have_minimal_access) ? "pełną załogą, na twoją kartę ID mogły zostać dodane tylko niezbędne dostępy" : "szczątkową załogą, na twoją kartę ID mogły zostać dodane dodatkowe dostępy"].</B></span>")
-		to_chat(M, "<b>Jesteś nowy na tym stanowisku? Odwiedź <a href='https://nsv.beestation13.com/mediawiki2/index.php?search=[rank]'>stronę wiki: [rank]</a>, by dowiedzieć się więcej!")
+		// AQ EDIT START - link do strony stanowiska na naszej wiki (aquila/code/modules/jobs/job_wiki_link.dm), nie do wyszukiwarki BeeStation
+		var/wiki_url = job_wiki_url(rank)
+		if(wiki_url)
+			to_chat(M, "<b>Jesteś nowy na tym stanowisku? Odwiedź <a href='[wiki_url]'>stronę wiki: [rank]</a>, by dowiedzieć się więcej!")
+		// AQ EDIT END
 	if(ishuman(living_mob))
 		var/mob/living/carbon/human/wageslave = living_mob
-		living_mob.add_memory("Twój numer konta to [wageslave.account_id].")
+		living_mob.add_mob_memory(/datum/memory/key/account, remembered_id = wageslave.account_id) // AQ EDIT - numer konta jako ważne wspomnienie (tg)
 	if(job && living_mob)
 		job.after_spawn(living_mob, M, joined_late) // note: this happens before the mob has a key! M will always have a client, living_mob might not.
 

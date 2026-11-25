@@ -81,7 +81,7 @@
 		var/mob/living/carbon/human/H = src
 		H.set_hygiene(min(H.hygiene, HYGIENE_LEVEL_DIRTY))
 	if(report)
-		report_public_bodily_function("Publiczne oddawanie moczu", "oddawała mocz")
+		report_public_bodily_function(PUBLIC_BODILY_FUNCTION_CRIME, "oddawała mocz")
 
 /**
  * Kamera w zasięgu: wpis do kartoteki i status do aresztowania (Monke: Automated Criminal Detection Service, u nas też kał).

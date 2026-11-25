@@ -103,8 +103,12 @@
 		if(istype(wall, /turf/closed/indestructible/dropship/sabre_window))
 			windows++
 	TEST_ASSERT_EQUAL(windows, 7, "The Sabre cockpit should have seven windows")
-	// Przezroczyste brzegi wycinków kadłuba (zaokrąglony przód) pokazują to, na czym stoi prom, a nie czarne pole
-	sleep(2)
+	// Przezroczyste brzegi wycinków kadłuba (zaokrąglony przód) pokazują to, na czym stoi prom, a nie czarne pole.
+	// Podkład wstawia timer z register(): tuż po starcie rundy SStimer potrafi się spóźnić o kilka ticków (dylatacja
+	// czasu w CI), więc czekamy na sam podkład, a nie stałą liczbę ticków
+	timeout = world.time + 5 SECONDS
+	while(!planet_test_hull_front_underlaid(shuttle_port) && world.time < timeout)
+		sleep(1)
 	TEST_ASSERT(planet_test_hull_front_underlaid(shuttle_port), "The see-through front of the Sabre hull shows nothing under it in the hangar")
 	sabre.set_fuel(500)
 	TEST_ASSERT(sabre.shuttle_launch(), "The Sabre didn't launch")
@@ -204,15 +208,36 @@
 		TEST_ASSERT(SSmapping.used_turfs[masked] == parking_reservation, "The ground picture's mask reaches outside the flight parking at [COORD(masked)]")
 	qdel(climb)
 	TEST_ASSERT(!length(climb.masked_turfs), "The ground picture's mask stayed after the view was deleted")
+	// Drugie zejście jak w grze: prom wlatuje nad planetę w trybie dokowania z prędkością przelotu, a komputer dokowania
+	// sam go zatrzymuje (zgłoszenie 25.11: prom odlatywał znad planety w trakcie budowania powierzchni i wyboru lądowiska,
+	// więc lądowanie się przerywało i trzeba było wlatywać nad planetę kilka razy)
 	sabre.forceMove(planet.center_turf())
-	// Szukanie miejsca usypia (CHECK_TICK): prom z prędkością ze startu odleciałby w tym czasie znad planety
-	sabre.velocity._set(0, 0)
-	sabre.brakes = TRUE
+	sabre.velocity._set(4, 0)
+	sabre.brakes = FALSE
+	sabre.shuttle_launched_at = 0
 	var/obj/item/fighter_component/docking_computer/DC = sabre.loadout.get_slot(HARDPOINT_SLOT_DOCKING)
 	DC.docking_mode = TRUE
-	var/obj/docking_port/stationary/second_port = sabre.shuttle_find_landing(planet)
-	TEST_ASSERT(second_port, "No landing spot for the second descent")
-	TEST_ASSERT(sabre.shuttle_land(planet, second_port), "The second descent didn't start")
+	DC.docking_cooldown = FALSE
+	var/mob/living/carbon/human/test_pilot = allocate(/mob/living/carbon/human)
+	sabre.pilot = test_pilot
+	TEST_ASSERT(sabre.docking_act(planet), "A shuttle flying over the planet in docking mode didn't start landing")
+	var/matrix/vector/held_velocity = sabre.velocity
+	TEST_ASSERT(held_velocity.ln() == 0, "The docking computer didn't stop the shuttle over the planet (speed [held_velocity.ln()])")
+	TEST_ASSERT(sabre.brakes, "The docking computer didn't put the brakes on over the planet")
+	timeout = world.time + 10 SECONDS
+	while(!sabre.planet_descent && world.time < timeout)
+		sleep(1)
+	sabre.pilot = null
+	TEST_ASSERT(sabre.planet_descent, "The second descent didn't start after the docking computer stopped the shuttle")
+	var/obj/docking_port/stationary/second_port = sabre.planet_descent.port
+	// Zejście nadaje do Spess.tv z kamery na lądowisku (zgłoszenie 25.11), a przerwane kończy transmisję od razu
+	var/datum/planet_landing_broadcast/stream = sabre.planet_descent.broadcast
+	TEST_ASSERT(stream?.camera, "The descent has no landing camera for Spess.tv")
+	TEST_ASSERT(CAMERANET_NETWORK_LANDING in stream.camera.network, "The landing camera isn't on the landing network")
+	TEST_ASSERT(planet.surface.contains(get_turf(stream.camera)), "The landing camera isn't on the planet surface")
+	TEST_ASSERT(!sabre.planet_descent.footprint[get_turf(stream.camera)], "The landing camera stands where the hull will land")
+	var/stream_key = REF(stream)
+	TEST_ASSERT(stream_key in LAZYACCESS(GLOB.broadcast_network_sources, CAMERANET_NETWORK_LANDING), "The landing isn't broadcast to the TVs and Spess.tv")
 	DC.docking_cooldown = TRUE
 	DC.docking_mode = FALSE
 	sabre.planet_descent.finish()
@@ -220,6 +245,14 @@
 	TEST_ASSERT_EQUAL(shuttle_port.docked, sabre.shuttle_parking, "The interior didn't stay parked after the aborted descent")
 	TEST_ASSERT(QDELETED(second_port), "The unused landing spot stayed on the planet")
 	TEST_ASSERT(!DC.docking_cooldown, "The docking computer stayed locked after the aborted descent")
+	TEST_ASSERT(QDELETED(stream), "The landing broadcast went on after the aborted descent")
+	// Pierwsze zejście wylądowało, więc jego transmisja może jeszcze nadawać; tej z przerwanego zejścia ma już nie być
+	TEST_ASSERT(!(stream_key in LAZYACCESS(GLOB.broadcast_network_sources, CAMERANET_NETWORK_LANDING)), "The aborted descent stayed on air")
+	// Anulowane lądowanie: prom nie jest zatrzymywany nad tą planetą, dopóki nad nią wisi; po odlocie (tu: tryb dokowania
+	// wyłączony, więc prom „nie jest nad planetą”) zapamiętane anulowanie znika
+	sabre.planet_landing_declined = WEAKREF(planet)
+	planet.check_landing_craft()
+	TEST_ASSERT(!sabre.planet_landing_declined, "The declined landing stayed remembered after the shuttle left the planet")
 
 	// Trzecie zejście: obrys lądowiska jest zajęty dla innych promów, a coś postawione na nim w trakcie zejścia przerywa
 	// lądowanie (dokowanie zabiłoby ludzi i usunęło przedmioty pod kadłubem)

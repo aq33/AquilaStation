@@ -78,7 +78,13 @@
 
 /// Plays the speech sound for a message: one phrase per SPEECH_PHRASE_CHARS characters, with the pitch following the punctuation
 /atom/movable/proc/play_speech_sound(message, range, list/message_mods)
-	if(!speech_sound || speech_sound_cd > world.time)
+	if(speech_sound_cd > world.time)
+		return
+	// Własny głos rasy słyszą wszyscy. Inaczej gra nasze „hmm” i, jeśli postać ma wersję z Goona, równolegle głos z Goona:
+	// słuchacz słyszy tylko tę, którą wybrał w ustawieniach (VOLUME_PREF_SPEECH / VOLUME_PREF_SPEECH_GOON).
+	var/species_voice = get_species_goon_voice()
+	var/goon_voice = species_voice ? null : get_goon_voice()
+	if(!speech_sound && !species_voice && !goon_voice)
 		return
 	var/text = trim(message)
 	var/length = length_char(text)
@@ -95,16 +101,33 @@
 	speech_sound_cd = world.time + max(speech_sound_delay, phrases * SPEECH_PHRASE_DELAY)
 
 	var/muffling = get_voice_muffling()
-	var/sound_key = muffling == VOICE_GAGGED ? "muffspeech" : get_speech_sound_key()
+	var/gagged = muffling == VOICE_GAGGED
+	var/sound_key = gagged ? "muffspeech" : get_speech_sound_key()
+	// Zakneblowany mamrocze tak samo dla wszystkich
+	var/sound_pref = (goon_voice && !gagged) ? VOLUME_PREF_SPEECH : VOLUME_PREF_SPEECH_ANY
+	// Głosy Goona mają osobne nagrania pytania i okrzyku, więc ton nie jest dodatkowo podnoszony
+	if(species_voice && !gagged)
+		sound_key = get_goon_voice_sound(species_voice, last_char)
+	var/goon_sound = (gagged || !goon_voice) ? null : get_goon_voice_sound(goon_voice, last_char)
+	if(!sound_key && !goon_sound)
+		return
 	for(var/i in 1 to phrases)
 		// A question goes up at the end
-		var/extra_semitones = (i == phrases && last_char == "?") ? 2 : 0
-		if(i == 1)
-			play_voice_phrase(sound_key, volume, range, extra_semitones, muffling)
-		else
-			addtimer(CALLBACK(src, PROC_REF(play_voice_phrase), sound_key, volume, range, extra_semitones, muffling), (i - 1) * SPEECH_PHRASE_DELAY)
+		var/extra_semitones = (!species_voice && i == phrases && last_char == "?") ? 2 : 0
+		var/delay = (i - 1) * SPEECH_PHRASE_DELAY
+		if(sound_key)
+			play_voice_phrase_after(delay, sound_key, volume, range, extra_semitones, muffling, sound_pref)
+		if(goon_sound)
+			play_voice_phrase_after(delay, goon_sound, volume, range, 0, muffling, VOLUME_PREF_SPEECH_GOON)
 
-/atom/movable/proc/play_voice_phrase(sound_key, volume, range, extra_semitones, muffling)
+/// Fraza od razu albo po czasie (kolejne frazy długiej wypowiedzi)
+/atom/movable/proc/play_voice_phrase_after(delay, sound_key, volume, range, extra_semitones, muffling, sound_pref)
+	if(delay <= 0)
+		play_voice_phrase(sound_key, volume, range, extra_semitones, muffling, sound_pref)
+		return
+	addtimer(CALLBACK(src, PROC_REF(play_voice_phrase), sound_key, volume, range, extra_semitones, muffling, sound_pref), delay)
+
+/atom/movable/proc/play_voice_phrase(sound_key, volume, range, extra_semitones, muffling, sound_pref = VOLUME_PREF_SPEECH_ANY)
 	if(QDELETED(src))
 		return
 	var/frequency = get_voice_frequency(extra_semitones)
@@ -114,7 +137,7 @@
 		if(muffled_file)
 			sound_file = muffled_file
 		volume *= 0.8
-	playsound(src, sound_file, volume, TRUE, (-7 + range), frequency = frequency, ignore_walls = FALSE)
+	playsound(src, sound_file, volume, TRUE, (-7 + range), frequency = frequency, ignore_walls = FALSE, volume_pref = sound_pref)
 
 #undef VOICE_CLEAR
 #undef VOICE_MUFFLED

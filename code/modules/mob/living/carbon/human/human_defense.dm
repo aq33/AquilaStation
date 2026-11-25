@@ -496,6 +496,8 @@
 	. = ..()
 	if(. & EMP_PROTECT_CONTENTS)
 		return
+	if(aq_robotic_limbs_emp(severity)) // AQ EDIT - EMP rani i paraliżuje pojedyncze protezy zamiast całego ciała (aquila/code/modules/robotics/limb_emp.dm)
+		return
 	var/informed = FALSE
 	for(var/obj/item/bodypart/L in src.bodyparts)
 		if(!IS_ORGANIC_LIMB(L))

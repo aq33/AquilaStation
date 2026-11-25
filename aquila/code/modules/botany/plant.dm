@@ -82,6 +82,15 @@
 //Spade interaction, allows us to dig up plants
 	if((proximity_flag || get_dist(user, plant_item) <= 1) && !spading && istype(item, /obj/item/shovel))
 		INVOKE_ASYNC(src, PROC_REF(async_catch_attackby), item, user)
+	// AQUILA - kultywator: przy chwastach w tacy pieli (roślina zasłania tacę, więc klik trafia w nią), bez chwastów wyrywa
+	// roślinę (bez przenoszenia, roślina przepada)
+	else if((proximity_flag || get_dist(user, plant_item) <= 1) && !spading && istype(item, /obj/item/cultivator) && plant_item.loc != item)
+		var/atom/home = plant_item.loc
+		var/datum/component/planter/planter = home?.GetComponent(/datum/component/planter)
+		if(planter?.weed_level > 1)
+			planter.remove_weeds(user)
+			return
+		INVOKE_ASYNC(src, PROC_REF(rip_out), user, PLANT_RIP_TOOL_TIME)
 
 /datum/component/plant/proc/async_catch_attackby(obj/item, mob/living/user)
 	playsound(plant_item, 'sound/effects/shovel_dig.ogg', 60)
@@ -112,6 +121,13 @@
 
 	if(target == plant_item)
 		return
+	// AQUILA - roślina na łopacie wyrzucona do kosza, worka na śmieci albo kompostownika: przepada sama roślina, łopata zostaje w ręce
+	if(istype(target, /obj/machinery/disposal) || istype(target, /obj/item/storage/bag/trash) || istype(target, /obj/structure/compost_bin))
+		user.visible_message(span_notice("[user] strząsa [plant_item] z łopatki do: [target]."), span_notice("Strząsasz [plant_item] z łopatki do: [target]."))
+		playsound(target, 'sound/effects/shovel_dig.ogg', 40)
+		UnregisterSignal(source, COMSIG_ITEM_PRE_ATTACK)
+		qdel(plant_item)
+		return COMPONENT_CANCEL_ATTACK_CHAIN
 	//Is this even a planter?
 	var/datum/component/planter/tray_component = target.GetComponent(/datum/component/planter)
 	if(!tray_component)
@@ -139,6 +155,24 @@
 	plant_item.vis_flags = plant_item::vis_flags
 	target.vis_contents |= plant_item
 	spade.vis_contents -= plant_item
+
+/// AQUILA - wyrwanie rośliny ręką albo kultywatorem: po chwili roślina przepada (bez łopatki, którą wsadza się ją gdzie indziej)
+/datum/component/plant/proc/rip_out(mob/living/user, time)
+	if(spading || !isliving(user) || QDELETED(plant_item))
+		return FALSE
+	var/atom/home = plant_item.loc
+	if(!home || istype(home, /obj/item/shovel))
+		return FALSE
+	spading = TRUE
+	user.visible_message(span_notice("[user] zaczyna wyrywać [plant_item]."), span_notice("Zaczynasz wyrywać [plant_item]..."))
+	var/success = do_after(user, time, target = isturf(home) ? plant_item : home)
+	spading = FALSE
+	if(!success || QDELETED(plant_item) || plant_item.loc != home)
+		return FALSE
+	user.visible_message(span_notice("[user] wyrywa [plant_item] z korzeniami."), span_notice("Wyrywasz [plant_item] z korzeniami."))
+	playsound(home, 'sound/effects/shovel_dig.ogg', 50)
+	qdel(plant_item)
+	return TRUE
 
 /datum/component/plant/proc/catch_moved(datum/source, atom/movable/old_loc, dir)
 	SIGNAL_HANDLER
