@@ -1590,3 +1590,7 @@
   - bugfix: Abordażyści AI w skafandrach nie szukają już trasy przez kosmos wokół
       okrętu, co przy abordażu zamrażało serwer (time dilation do ~70%).
   - bugfix: Prom ewakuacyjny nie rozpada się już na części przy starcie.
+'2026-11-25':
+  Joker66613:
+  - server: Bot Discorda z komendami /wojna (stan wojny frakcji) i /mapa (obrazek
+      mapy wojny) z zapisu kampanii (tools/discord_bot).
