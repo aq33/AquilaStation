@@ -268,7 +268,7 @@
 #define DEFECATION_SLIGHTLY 40
 #define DEFECATION_SOMEWHAT 80
 #define DEFECATION_VERY 100
-#define DEFECATION_SHIT_YOURSELF 160
+#define DEFECATION_SHIT_YOURSELF 140 // ok. 7 min po DEFECATION_VERY (ok. 5,5 pkt/min z jedzenia i picia)
 #define DEFECATION_ACTUALLY_SHIT_YOURSELF 200
 
 // Hydration levels for humans
