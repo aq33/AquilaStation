@@ -5143,6 +5143,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/cargo/lobby)
+"dSx" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 4
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
 "dSA" = (
 /obj/machinery/plant_machine/plant_analyser,
 /obj/machinery/light{
@@ -11445,6 +11451,11 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/carpet/ship,
 /area/hallway/primary/starboard)
+"iOq" = (
+/obj/structure/table/reinforced,
+/obj/machinery/cooking_stovetop/loaded,
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
 "iOr" = (
 /obj/item/radio/intercom{
 	pixel_y = 7;
@@ -22015,6 +22026,15 @@
 	},
 /turf/open/floor/carpet/ship/purple_carpet,
 /area/science/lab)
+"rtZ" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 10
+	},
+/obj/machinery/duct,
+/mob/living/basic/goat,
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
 "rue" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -22528,6 +22548,14 @@
 /obj/machinery/door/firedoor/border_only/directional/west,
 /turf/open/floor/carpet/ship/orange_carpet,
 /area/engine/engineering/reactor_control)
+"rVp" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 4
+	},
+/obj/structure/table/reinforced,
+/obj/machinery/cooking_grill/loaded,
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
 "rVy" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -54837,9 +54865,9 @@ erP
 nin
 noU
 ues
-elY
+rVp
 kcr
-vZd
+iOq
 nHl
 ciZ
 rIZ
@@ -55039,7 +55067,7 @@ hBR
 orm
 vUB
 ctm
-tFT
+rtZ
 hCm
 dnb
 jMf

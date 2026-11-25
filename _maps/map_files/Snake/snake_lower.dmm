@@ -1518,6 +1518,10 @@
 /obj/structure/curtain,
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/dorms)
+"dF" = (
+/obj/structure/table,
+/turf/open/floor/plasteel,
+/area/crew_quarters/kitchen)
 "dG" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
@@ -5684,6 +5688,11 @@
 /obj/machinery/air_sensor/atmos/nitrogen_tank,
 /turf/open/floor/engine/n2,
 /area/engine/atmos)
+"qk" = (
+/obj/machinery/duct,
+/obj/machinery/ice_cream_mixer/loaded,
+/turf/open/floor/plasteel,
+/area/crew_quarters/kitchen)
 "qm" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/effect/turf_decal/caution,
@@ -7813,6 +7822,11 @@
 /obj/machinery/door/airlock/ship/external/glass,
 /turf/open/floor/plasteel/dark,
 /area/hallway/secondary/entry)
+"xY" = (
+/obj/structure/table,
+/obj/machinery/cooking_grill/loaded,
+/turf/open/floor/plasteel,
+/area/crew_quarters/kitchen)
 "ya" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/visible,
 /obj/structure/table,
@@ -8690,6 +8704,13 @@
 	},
 /turf/open/floor/engine/n2,
 /area/engine/atmos)
+"Bh" = (
+/obj/structure/table,
+/obj/item/storage/box/donkpockets,
+/obj/item/book/manual/wiki/cooking_to_serve_man,
+/obj/item/food/mint,
+/turf/open/floor/plasteel,
+/area/crew_quarters/kitchen)
 "Bi" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 1
@@ -9557,6 +9578,20 @@
 /obj/structure/cable/yellow,
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering/reactor_control)
+"EW" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 8
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/table,
+/obj/machinery/cooking_stovetop/loaded,
+/turf/open/floor/plasteel,
+/area/crew_quarters/kitchen)
 "EZ" = (
 /obj/item/storage/photo_album,
 /obj/structure/table/wood,
@@ -47621,7 +47656,7 @@ fB
 GS
 eh
 bz
-la
+qk
 ze
 Fl
 gt
@@ -47880,7 +47915,7 @@ qB
 GV
 KL
 aF
-ab
+EW
 qO
 fL
 fH
@@ -48394,7 +48429,7 @@ Bv
 GV
 SA
 ze
-hH
+xY
 gt
 pP
 GF
@@ -48652,7 +48687,7 @@ GV
 Rn
 cP
 ti
-Sd
+Bh
 GV
 GV
 fP

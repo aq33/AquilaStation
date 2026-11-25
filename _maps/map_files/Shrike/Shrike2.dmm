@@ -8012,6 +8012,12 @@
 	},
 /turf/open/floor/plating/rusty_techgrid,
 /area/quartermaster/storage)
+"Af" = (
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal/tile/ship/full/neutral,
+/obj/machinery/cooking_grill/loaded,
+/turf/open/floor/monotile/steel,
+/area/crew_quarters/kitchen)
 "Ag" = (
 /obj/structure/railing{
 	dir = 1;
@@ -10627,6 +10633,11 @@
 	dir = 8
 	},
 /area/shuttle/turbolift/tertiary)
+"IX" = (
+/obj/structure/table/reinforced,
+/obj/machinery/cooking_stovetop/loaded,
+/turf/open/floor/plasteel/checker,
+/area/crew_quarters/kitchen)
 "IZ" = (
 /obj/machinery/door/firedoor/border_only/directional/east,
 /obj/machinery/door/firedoor/border_only/directional/west,
@@ -15301,6 +15312,10 @@
 	lighting_colour_night = "#c1e1ff";
 	lighting_colour_tube = "#c1e1ff"
 	})
+"WK" = (
+/obj/machinery/ice_cream_mixer/loaded,
+/turf/open/floor/plasteel/checker,
+/area/crew_quarters/kitchen)
 "WM" = (
 /obj/effect/landmark/start/medical_doctor,
 /turf/open/floor/plasteel,
@@ -51304,9 +51319,9 @@ fO
 Zi
 cj
 WZ
+WK
 gr
-gr
-Xb
+IX
 Dt
 on
 dC
@@ -51819,7 +51834,7 @@ Zx
 CY
 Dj
 RJ
-lC
+Af
 lC
 pm
 NQ

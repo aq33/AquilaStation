@@ -6879,6 +6879,10 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel/sepia,
 /area/ai_monitored/turret_protected/ai_upload)
+"gFX" = (
+/obj/machinery/ice_cream_mixer/loaded,
+/turf/open/floor/monotile/light,
+/area/crew_quarters/kitchen)
 "gGb" = (
 /obj/structure/cable/green,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
@@ -11853,6 +11857,11 @@
 /obj/machinery/rack_creator,
 /turf/open/floor/circuit/telecomms/server,
 /area/comms)
+"lyT" = (
+/obj/structure/table,
+/obj/machinery/cooking_stovetop/loaded,
+/turf/open/floor/monotile/light,
+/area/crew_quarters/kitchen)
 "lyX" = (
 /obj/structure/table/wood/bar,
 /obj/machinery/door/firedoor/border_only{
@@ -14730,6 +14739,14 @@
 /obj/machinery/light,
 /turf/open/floor/monotile/steel,
 /area/medical/storage)
+"oNI" = (
+/obj/structure/table,
+/obj/item/book/manual/wiki/cooking_to_serve_man,
+/obj/item/storage/box/donkpockets/donkpocketpizza,
+/obj/item/kitchen/rollingpin,
+/obj/item/reagent_containers/food/drinks/bottle/wine,
+/turf/open/floor/monotile/light,
+/area/crew_quarters/kitchen)
 "oNV" = (
 /turf/closed/wall/steel,
 /area/quartermaster/storage)
@@ -19478,6 +19495,11 @@
 /obj/structure/cable,
 /turf/open/floor/monotile/dark,
 /area/crew_quarters/heads/cmo)
+"tiv" = (
+/obj/structure/table,
+/obj/machinery/cooking_grill/loaded,
+/turf/open/floor/monotile/light,
+/area/crew_quarters/kitchen)
 "tiA" = (
 /obj/structure/cable,
 /obj/effect/turf_decal/tile/neutral{
@@ -23003,6 +23025,10 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/techmaint,
 /area/maintenance/department/medical)
+"wMX" = (
+/obj/structure/table,
+/turf/open/floor/monotile/light,
+/area/crew_quarters/kitchen)
 "wNv" = (
 /obj/machinery/ai_slipper,
 /obj/structure/cable/green,
@@ -50619,8 +50645,8 @@ tfb
 eTw
 fku
 rsL
-rJb
-xcL
+tiv
+oNI
 fwp
 uSf
 yci
@@ -51133,10 +51159,10 @@ htG
 lhz
 pYG
 xWW
-uSf
+gFX
 uEL
 vBJ
-euJ
+lyT
 boU
 rQM
 rQM
