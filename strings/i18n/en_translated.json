@@ -31536,5 +31536,12 @@
 "język Fiona": "pug tongue",
 "Fion": "Pug",
 "\\improper Borowik": "\\improper Psyphoza",
-"\\improper Fion": "\\improper Pug"
+"\\improper Fion": "\\improper Pug",
+"<span class='warning'>Umysł nosiciela teraz się nie opiera.</span>": "<span class='warning'>The host's mind is not resisting right now.</span>",
+"<span class='warning'>Potrzebujesz [HORROR_SUPPRESS_COST] chemikaliów.</span>": "<span class='warning'>You need [HORROR_SUPPRESS_COST] chemicals.</span>",
+"<span class='velvet'>Zalewasz korę nosiciela chemikaliami i tłumisz jego opór.</span>": "<span class='velvet'>You flood the host's cortex with chemicals and suppress its resistance.</span>",
+"<span class='danger'>Coś zalewa twój umysł i opór słabnie. Wolność się oddala.</span>": "<span class='danger'>Something floods your mind and your resistance weakens. Freedom slips further away.</span>",
+"Przypadnij do ziemi i chowaj się pod stołami i przedmiotami. Nie daje niewidzialności (tę daje mutacja Kameleonowa skóra). Włączane i wyłączane.": "Press yourself to the ground and hide under tables and items. It does not make you invisible (the Chameleon Skin mutation does). Toggled on and off.",
+"Stłum opór": "Suppress Resistance",
+"Gdy uwięziony umysł nosiciela opiera się kontroli, odsuwa odzyskanie przez niego ciała o 20 sekund. Kosztuje 50 chemikaliów.": "While the host's trapped mind resists your control, pushes back its return to the body by 20 seconds. Costs 50 chemicals."
 }
