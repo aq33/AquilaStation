@@ -11,6 +11,11 @@ GLOBAL_VAR(medibot_unique_id_gen)
 #define BMEDBOT_PANIC_ENDING 90
 #define BMEDBOT_PANIC_END 100
 
+/// Przerwa między kwestiami medibota z dźwiękiem
+#define MEDBOT_VOICE_COOLDOWN (20 SECONDS)
+/// Przerwa między powitaniami nowych pacjentów
+#define MEDBOT_FOUND_SPEECH_COOLDOWN (60 SECONDS)
+
 /mob/living/basic/bot/medbot
 	name = "\improper Medibot"
 	desc = "Mały robot medyczny. Wygląda na nieco rozczarowanego."
@@ -42,6 +47,10 @@ GLOBAL_VAR(medibot_unique_id_gen)
 	var/declare_crit = TRUE
 	COOLDOWN_DECLARE(declare_cooldown)
 	COOLDOWN_DECLARE(found_speech_cooldown)
+	/// Wspólna przerwa między kwestiami z dźwiękiem (powitanie, koniec leczenia, pogawędka): kilka medibotów w ambulatorium zagłuszało rozmowy
+	COOLDOWN_DECLARE(voice_cooldown)
+	/// Pacjent, przy którym bot już ogłosił, że go opatruje (komunikat nie powtarza się co cykl leczenia)
+	var/datum/weakref/announced_patient
 	/// Nie rusza się, leczy tylko obok
 	var/stationary_mode = FALSE
 	/// Milczy
@@ -123,12 +132,21 @@ GLOBAL_VAR(medibot_unique_id_gen)
 
 /mob/living/basic/bot/medbot/on_work_target_found(atom/target)
 	set_patient(target)
+	announced_patient = null
 	if(shut_up || !COOLDOWN_FINISHED(src, found_speech_cooldown))
 		return
-	COOLDOWN_START(src, found_speech_cooldown, 30 SECONDS)
+	COOLDOWN_START(src, found_speech_cooldown, MEDBOT_FOUND_SPEECH_COOLDOWN)
 	var/list/messagevoice = list("[target.name], jak się pan czuje?" = 'aquila/sound/voice/medbot/jak_sie_pan_czuje.ogg', "[target.name], piłeś?" = 'aquila/sound/voice/medbot/piles.ogg', "[target.name], odstaw te wina!" = 'aquila/sound/voice/medbot/wina.ogg')
 	var/message = pick(messagevoice)
-	speak(message, sound = messagevoice[message])
+	medbot_voice(message, messagevoice[message])
+
+/// Kwestia z dźwiękiem, najwyżej raz na MEDBOT_VOICE_COOLDOWN (alarmy przez radio i reakcje na przewrócenie mają własne przerwy)
+/mob/living/basic/bot/medbot/proc/medbot_voice(message, sound)
+	if(shut_up || !COOLDOWN_FINISHED(src, voice_cooldown))
+		return FALSE
+	COOLDOWN_START(src, voice_cooldown, MEDBOT_VOICE_COOLDOWN)
+	speak(message, sound = sound)
+	return TRUE
 
 /mob/living/basic/bot/medbot/idle_chatter()
 	if(shut_up)
@@ -138,7 +156,7 @@ GLOBAL_VAR(medibot_unique_id_gen)
 		return
 	var/list/messagevoice = list("Pavulon już jest." = 'aquila/sound/voice/medbot/pawulon_jest.ogg', "Tu jeszcze troszeczke pavuloniku." = 'aquila/sound/voice/medbot/jeszcze_pawulon.ogg')
 	var/message = pick(messagevoice)
-	speak(message, sound = messagevoice[message])
+	medbot_voice(message, messagevoice[message])
 
 /mob/living/basic/bot/medbot/proc/set_patient(mob/living/carbon/new_patient)
 	var/mob/living/carbon/old_patient = current_patient?.resolve()
@@ -208,7 +226,7 @@ GLOBAL_VAR(medibot_unique_id_gen)
 		if(istype(patient) && !shut_up)
 			var/list/messagevoice = list("Pavulonik już leci." = 'aquila/sound/voice/medbot/pawulon_leci.ogg', "Słuchaj, mam tysiąc za skóre." = 'aquila/sound/voice/medbot/nie_mam_czasu.ogg')
 			var/message = pick(messagevoice)
-			speak(message, sound = messagevoice[message])
+			medbot_voice(message, messagevoice[message])
 		set_patient(null)
 		return BOT_WORK_DONE
 	if(get_dist(src, patient) > 1)
@@ -216,13 +234,19 @@ GLOBAL_VAR(medibot_unique_id_gen)
 	set_patient(patient)
 	var/treatment_method = get_treatment(patient)
 	if(!treatment_method)
-		if(!shut_up)
-			speak("Pani doktor, pavulon się skończył.", sound = 'aquila/sound/voice/medbot/pani_doktor.ogg')
+		// Tylko po prawdziwym leczeniu: zdrowy pacjent, którego bot ledwie sprawdził, nie dostaje kwestii
+		if(announced_patient?.resolve() == patient)
+			medbot_voice("Pani doktor, pavulon się skończył.", 'aquila/sound/voice/medbot/pani_doktor.ogg')
+		announced_patient = null
 		set_patient(null)
 		update_appearance()
 		return BOT_WORK_DONE
 	update_bot_mode(BBOT_HEALING)
-	patient.visible_message(span_danger("[src] próbuje opatrzyć rany [patient]!"), span_userdanger("[src] próbuje opatrzyć twoje rany!"))
+	// Ogłasza leczenie raz na pacjenta, nie co cykl (cykl trwa heal_time, więc czat zapełniał się dwoma linijkami co 2 s)
+	var/first_cycle = announced_patient?.resolve() != patient
+	if(first_cycle)
+		announced_patient = WEAKREF(patient)
+		patient.visible_message(span_danger("[src] próbuje opatrzyć rany [patient]!"), span_userdanger("[src] próbuje opatrzyć twoje rany!"))
 	if(!do_mob(src, patient, heal_time) || get_dist(src, patient) > 1 || !(bot_mode_flags & BOT_MODE_ON))
 		// pacjent się ruszył albo bot wyłączony: to nie porażka, bez czarnej listy (bot weźmie pacjenta ponownie)
 		visible_message("[src] chowa swoje narzędzia.")
@@ -250,7 +274,6 @@ GLOBAL_VAR(medibot_unique_id_gen)
 	else
 		patient.apply_damage_type(-healies, treatment_method)
 		log_combat(src, patient, "tended the wounds of", "internal tools", "([uppertext(treatment_method)])")
-	patient.visible_message(span_danger("[src] opatruje rany [patient]!"), span_userdanger("[src] opatruje twoje rany!"))
 
 /mob/living/basic/bot/medbot/proc/declare(crit_patient)
 	if(!COOLDOWN_FINISHED(src, declare_cooldown))
@@ -465,3 +488,5 @@ GLOBAL_VAR(medibot_unique_id_gen)
 #undef BMEDBOT_PANIC_AAAA
 #undef BMEDBOT_PANIC_ENDING
 #undef BMEDBOT_PANIC_END
+#undef MEDBOT_VOICE_COOLDOWN
+#undef MEDBOT_FOUND_SPEECH_COOLDOWN
