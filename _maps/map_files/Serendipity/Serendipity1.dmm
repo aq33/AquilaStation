@@ -2030,14 +2030,6 @@
 /obj/structure/cable,
 /turf/open/floor/plasteel/tiled/light,
 /area/bridge/meeting_room/council)
-"ez" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
-/obj/machinery/food_cart{
-	anchored = 1;
-	can_be_unanchored = 1
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/kitchen)
 "eB" = (
 /turf/closed/wall/r_wall/ship,
 /area/medical/apothecary)
@@ -2390,13 +2382,6 @@
 /obj/machinery/newscaster/directional/west,
 /turf/open/floor/carpet/ship,
 /area/medical/morgue)
-"fW" = (
-/obj/structure/table/wood,
-/obj/machinery/reagentgrinder,
-/obj/item/kitchen/knife,
-/obj/item/kitchen/rollingpin,
-/turf/open/floor/wood,
-/area/crew_quarters/kitchen)
 "fY" = (
 /obj/machinery/portable_atmospherics/scrubber,
 /obj/structure/sign/poster/contraband/random{
@@ -3207,19 +3192,6 @@
 	},
 /turf/open/floor/engine/light,
 /area/science/robotics)
-"iK" = (
-/obj/structure/table/wood,
-/obj/item/reagent_containers/food/condiment/enzyme{
-	pixel_x = -3;
-	pixel_y = 4
-	},
-/obj/item/reagent_containers/glass/beaker{
-	list_reagents = list(/datum/reagent/blood=50);
-	pixel_x = 6;
-	pixel_y = 9
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/kitchen)
 "iL" = (
 /obj/machinery/dna_scannernew,
 /obj/machinery/firealarm/directional/north,
@@ -3639,11 +3611,6 @@
 /obj/effect/landmark/start/lawyer,
 /turf/open/floor/grass,
 /area/crew_quarters/dorms/nsv/nature_deck)
-"kt" = (
-/obj/structure/table/wood,
-/obj/machinery/cooking_stovetop/loaded,
-/turf/open/floor/wood,
-/area/crew_quarters/kitchen)
 "ku" = (
 /obj/structure/cable,
 /obj/machinery/light/floor,
@@ -6064,10 +6031,6 @@
 	},
 /turf/open/floor/engine,
 /area/science/robotics)
-"sL" = (
-/obj/machinery/ice_cream_mixer/loaded,
-/turf/open/floor/wood,
-/area/crew_quarters/kitchen)
 "sN" = (
 /obj/structure/flora/ausbushes/ppflowers,
 /obj/machinery/camera/autoname{
@@ -8702,10 +8665,6 @@
 "Ca" = (
 /turf/closed/wall/r_wall/ship,
 /area/medical/virology)
-"Cb" = (
-/obj/structure/table/wood,
-/turf/open/floor/wood,
-/area/crew_quarters/kitchen)
 "Cc" = (
 /obj/machinery/airalarm/directional/west,
 /obj/effect/turf_decal/tile/yellow{
@@ -9494,29 +9453,6 @@
 /obj/effect/landmark/zebra_interlock_point,
 /turf/open/floor/carpet/ship/purple_carpet,
 /area/science/xenobiology)
-"EI" = (
-/obj/structure/table/wood,
-/obj/item/reagent_containers/food/condiment/saltshaker,
-/obj/item/reagent_containers/food/condiment/peppermill{
-	pixel_x = 3;
-	pixel_y = 4
-	},
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/sugar{
-	pixel_x = 4;
-	pixel_y = 2
-	},
-/obj/item/reagent_containers/food/condiment/enzyme{
-	pixel_x = -3;
-	pixel_y = 4
-	},
-/obj/item/reagent_containers/glass/beaker{
-	list_reagents = list(/datum/reagent/blood=50);
-	pixel_x = 6;
-	pixel_y = 9
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/kitchen)
 "EJ" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
@@ -10809,11 +10745,6 @@
 	},
 /turf/open/floor/plasteel/tiled/light,
 /area/hallway/secondary/exit)
-"Jq" = (
-/obj/structure/table/wood,
-/obj/machinery/cooking_grill/loaded,
-/turf/open/floor/wood,
-/area/crew_quarters/kitchen)
 "Js" = (
 /obj/structure/fireaxecabinet{
 	pixel_x = 32
@@ -44310,7 +44241,7 @@ OO
 OV
 bT
 Jk
-ez
+Kg
 SH
 Pn
 nL
@@ -44567,7 +44498,7 @@ Vg
 tx
 yq
 iW
-sL
+bY
 yi
 UF
 Kb
@@ -44824,7 +44755,7 @@ Vg
 tx
 dB
 RA
-fW
+Oj
 jz
 NT
 xJ
@@ -45081,7 +45012,7 @@ Vg
 tx
 uX
 Jk
-kt
+aj
 zb
 GV
 Eu
@@ -45595,7 +45526,7 @@ gJ
 tx
 Uz
 Jk
-Jq
+ao
 ib
 UF
 Kb
@@ -45852,7 +45783,7 @@ gJ
 tx
 Ms
 iW
-EI
+ap
 yi
 fc
 ym

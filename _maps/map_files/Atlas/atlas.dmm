@@ -9272,13 +9272,6 @@
 	icon_state = "platingdmg3"
 	},
 /area/maintenance/nsv/deck2/starboard)
-"xb" = (
-/obj/effect/turf_decal/tile/bar/tile_marquee,
-/obj/machinery/duct,
-/obj/structure/table,
-/obj/machinery/cooking_stovetop/loaded,
-/turf/open/floor/durasteel,
-/area/crew_quarters/kitchen)
 "xc" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 10
@@ -10121,18 +10114,6 @@
 	},
 /turf/open/floor/plasteel/techmaint,
 /area/quartermaster/miningoffice)
-"zK" = (
-/obj/effect/turf_decal/tile/bar/tile_marquee,
-/obj/structure/cable,
-/obj/structure/disposalpipe/sorting/mail{
-	dir = 8;
-	sortType = 20
-	},
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
-/obj/machinery/ice_cream_mixer/loaded,
-/turf/open/floor/durasteel,
-/area/crew_quarters/kitchen)
 "zL" = (
 /obj/effect/turf_decal/ship/outline,
 /obj/machinery/missile_builder/assembler{
@@ -17224,23 +17205,6 @@
 	},
 /turf/open/floor/durasteel/techfloor_grid,
 /area/engine/atmos)
-"UO" = (
-/obj/effect/turf_decal/tile/bar/tile_marquee,
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/structure/disposalpipe/segment,
-/obj/machinery/power/apc/auto_name/east,
-/obj/structure/extinguisher_cabinet/east{
-	pixel_x = 40
-	},
-/obj/structure/cable,
-/obj/structure/table,
-/obj/machinery/cooking_grill/loaded,
-/turf/open/floor/durasteel,
-/area/crew_quarters/kitchen)
 "UP" = (
 /obj/item/radio/intercom/directional/south,
 /turf/open/floor/monotile/dark,
@@ -50348,7 +50312,7 @@ ny
 QO
 nZ
 rw
-xb
+Cj
 LT
 JU
 eQ
@@ -51119,8 +51083,8 @@ BP
 QO
 SB
 ju
-UO
-zK
+WO
+ky
 VG
 Mt
 xq
