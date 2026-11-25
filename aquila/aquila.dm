@@ -3056,6 +3056,9 @@
 #include "code\datums\memory\general_memories.dm"
 #include "code\datums\memory\key_memories.dm"
 #include "code\datums\memory\memory_hooks.dm"
+#include "code\datums\memory\art.dm"
+#include "code\datums\memory\engraving.dm"
+#include "code\datums\memory\tattoo.dm"
 // WSPOMNIENIA: koniec
 
 // Profiler byond-tracy: MUSI być ostatnim include'em całego builda (BYOND inicjuje zmienne statyczne od końca,

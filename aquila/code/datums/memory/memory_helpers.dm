@@ -105,3 +105,20 @@
 		memory_list += list(list("name" = memory.name, "quality" = memory.story_value))
 	data["memories"] = memory_list
 	return data
+
+/**
+ * Zmiennokształtny po wchłonięciu ofiary czyta jej wspomnienia jako opowieści (tg: stolen_memories w panelu zmiennokształtnego).
+ * U nas trafiają do notatek zmiennokształtnego razem z resztą przejętej pamięci. Ofiara traci wspomnienia, jak w tg.
+ */
+/proc/changeling_absorb_memory_stories(datum/mind/victim)
+	if(!length(victim?.memories))
+		return ""
+	var/list/stories = list()
+	for(var/memory_type in victim.memories)
+		var/datum/memory/stolen_memory = victim.memories[memory_type]
+		if(stolen_memory.memory_flags & MEMORY_NO_STORY)
+			stories += "<i>[stolen_memory.name]</i>"
+			continue
+		stories += "<i>[stolen_memory.name]</i><BR>[stolen_memory.generate_story(STORY_CHANGELING_ABSORB, STORY_FLAG_NO_STYLE)]"
+	QDEL_LIST_ASSOC_VAL(victim.memories)
+	return "<b>Skradzione wspomnienia:</b><BR>[jointext(stories, "<BR>")]<BR>"

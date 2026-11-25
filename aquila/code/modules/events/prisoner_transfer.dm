@@ -64,6 +64,8 @@ GLOBAL_LIST_INIT(aquila_prisoner_crimes, list(
 	// The prisoner card counts the sentence down by itself and gives prisoner access once it is served
 	var/obj/item/card/id/prisoner/card = new(prisoner, sentence_minutes * 60, crime, prisoner.real_name)
 	prisoner.equip_to_slot_or_del(card, ITEM_SLOT_ID)
+	// Tatuaże z opowieści wyrytych w poprzednich rundach (wspomnienia z tg)
+	apply_prisoner_tattoos(prisoner, rand(1, 2))
 
 	new /obj/effect/pod_landingzone(landing, pod)
 
