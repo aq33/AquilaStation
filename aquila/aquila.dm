@@ -1097,6 +1097,7 @@
 #include "code\modules\planets\planet_sensors.dm"
 #include "code\modules\planets\drill\_index.dm"
 #include "code\modules\overmap\sabre_shuttle.dm"
+#include "code\modules\overmap\sabre_pod_rescue.dm"
 #include "code\modules\overmap\custom_shuttle_overmap.dm"
 #include "code\modules\overmap\ai_tuning.dm"
 #include "code\modules\overmap\ship_power.dm"
