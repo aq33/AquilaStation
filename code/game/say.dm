@@ -98,8 +98,8 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	messagepart = " <span class='message'>[say_emphasis(messagepart)]</span></span>"
 	//NSV13 - RADIO EMOTES - END
 
-	//NSV13 - added [compose_rank(speaker)]
-	return "[spanpart1][spanpart2][freqpart][languageicon][compose_track_href(speaker, namepart)][compose_rank(speaker)][namepart][compose_job(speaker, message_language, raw_message, radio_freq)][endspanpart][messagepart]"
+	//NSV13 - added [compose_rank(speaker)] // AQ EDIT - stopień we własnym <span>, żeby wersja EN tłumaczyła go jako osobny tekst (aq_rank_span)
+	return "[spanpart1][spanpart2][freqpart][languageicon][compose_track_href(speaker, namepart)][aq_rank_span(compose_rank(speaker))][namepart][compose_job(speaker, message_language, raw_message, radio_freq)][endspanpart][messagepart]"
 
 /atom/movable/proc/compose_track_href(atom/movable/speaker, message_langs, raw_message, radio_freq)
 	return ""

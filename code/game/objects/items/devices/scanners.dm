@@ -200,7 +200,7 @@ GENE SCANNER
 		message += "\t<span class='info'>Aktywność mózgu: [(200 - M.getOrganLoss(ORGAN_SLOT_BRAIN))/2]%.</span>"
 		if(M.has_horror_inside()) // AQ EDIT - Yogstation#13033
 			message += "\t<span class='alert'>Wykryto pasożytniczy organizm w okolicy czaszki.</span>"
-			message += "\t<span class='alert'>Zalecane postępowanie: <b>operacja manipulacji organami głowy</b>.</span>"
+			message += "\t<span class='alert'>Zalecane postępowanie: <b>manipulacja organami głowy, opcja „wyciągnięcie pasożyta”</b>.</span>"
 
 	// AQ EDIT START - promieniowanie z Bee#13442
 	var/datum/component/irradiated/irradiated_component = M.GetComponent(/datum/component/irradiated)
