@@ -407,6 +407,8 @@ export const ItemIcon = (props: {
 export type NoteRow = {
   key: string;
   text: string;
+  /** Liczba sztuk przed nazwą („2×”), osobno, żeby nazwa z DM dała się przetłumaczyć */
+  count?: number;
   /** Kolor kwadracika przed tekstem (np. kolor reagentu). */
   swatch?: string;
   /** Tekst skreślony (np. zużyty, wyjęty). */
@@ -418,7 +420,7 @@ export type NoteRow = {
 export type NoteSection = {
   /** Linia nagłówka (od górnej krawędzi kartki). */
   top: number;
-  heading: string;
+  heading: ReactNode;
   rows: NoteRow[];
   empty?: string;
   maxRows?: number;
@@ -502,7 +504,8 @@ const NoteSectionView = (props: {
               style={{ background: row.swatch }}
             />
           )}
-          {row.text}
+          {!!row.count && row.count > 1 && `${row.count}× `}
+          <span>{row.text}</span>
         </Px>
       ))}
       {hidden > 0 && (

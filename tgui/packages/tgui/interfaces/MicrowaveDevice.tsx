@@ -89,6 +89,12 @@ export const MicrowaveDevice = () => {
       setDoneUntil(Date.now() + Math.max(0, DONE_TIME - data.done_ago * 100));
     }
   }, [data.done_ago]);
+  // Nowy cykl kasuje GOTOWE z poprzedniego
+  useEffect(() => {
+    if (operating) {
+      setDoneUntil(0);
+    }
+  }, [operating]);
 
   const time = useClock(!!operating || !!broken || Date.now() < doneUntil);
   const done = !operating && Date.now() < doneUntil;
@@ -249,8 +255,8 @@ export const MicrowaveDevice = () => {
             empty: 'pusto',
             rows: items.map((item) => ({
               key: item.ref,
-              text:
-                item.amount > 1 ? `${item.amount}× ${item.name}` : item.name,
+              text: item.name,
+              count: item.amount,
               title: canTouch ? `${item.name}: kliknij, aby wyjąć` : item.name,
               onClick: canTouch
                 ? () => act('eject_item', { ref: item.ref })

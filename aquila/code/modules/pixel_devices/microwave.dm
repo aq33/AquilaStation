@@ -38,6 +38,7 @@
 	SStgui.update_uis(src)
 
 /obj/machinery/microwave/wzhzhzh()
+	aq_cook_done_at = 0 // nowy cykl: GOTOWE z poprzedniego nie może wrócić po przerwaniu
 	. = ..()
 	SStgui.update_uis(src)
 
