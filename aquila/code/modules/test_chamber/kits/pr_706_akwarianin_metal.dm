@@ -4,7 +4,7 @@
 	name = "PR 706: Akwarianin z gołego metalu"
 	pr = "aq33/AquilaStation#706"
 	description = "Stawia dwóch Akwarian: pierwszy w gołym metalu z niebieskimi rękawami, żółtą ukleją i różową wodą, \
-	drugi w czerwonym pancerzu z białymi paskami na ramionach i złotą rybką. \
+	drugi w czerwonym pancerzu przemalowanym na żółto, z paskami na ramionach w tym samym kolorze, i ze złotą rybką. \
 	1) Obejrzyj obu ze wszystkich stron: kończyny, dłonie i stopy gołego metalu, rękawy i paski na obu ramionach, woda w kolorze z okna postaci. \
 	2) Okno postaci (rasa Akwarianin): Pancerz (Czerwony pancerz / Goły metal), Wzór na ramionach, Kolor pancerza barwi wzór. \
 	Wybierz rybę Ukleja → pojawia się Kolor ryby, przy innych rybach go nie ma. \
@@ -21,7 +21,7 @@
 /datum/test_chamber_kit/pr_706/setup(list/spawned, list/turfs, turf/center, mob/user)
 	var/list/looks = list(
 		list(AQUARIAN_BODY_METAL, "sleeves", "3366ff", "bleak", "ffcc00", "ff66cc"),
-		list(AQUARIAN_BODY_RED, "stripes", "ffffff", "goldfish", AQUARIAN_DEFAULT_FISH_COLOR, AQUARIAN_DEFAULT_WATER),
+		list(AQUARIAN_BODY_RED, "stripes", "e0c040", "goldfish", AQUARIAN_DEFAULT_FISH_COLOR, AQUARIAN_DEFAULT_WATER),
 	)
 	for(var/mob/living/carbon/human/H in spawned)
 		if(!isaquarian(H) || !length(looks))
