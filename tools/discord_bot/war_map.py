@@ -72,7 +72,7 @@ def font(size, bold=False):
             return ImageFont.truetype(name, size)
         except OSError:
             continue
-    return ImageFont.load_default()
+    return ImageFont.load_default(size)  # wbudowana czcionka Pillow w żądanym rozmiarze
 
 
 def build_grid(starmap):

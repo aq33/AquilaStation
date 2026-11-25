@@ -8,6 +8,7 @@ Zmienne środowiskowe:
 
 import asyncio
 import io
+import logging
 import os
 import sys
 from pathlib import Path
@@ -21,6 +22,8 @@ import war_status
 FACTION_COLOUR = 0x2B6CB0
 STARMAP_DIR = Path(os.environ.get("AQUILA_STARMAP_DIR") or Path(__file__).resolve().parents[2] / "config" / "starmap")
 GUILD_ID = os.environ.get("DISCORD_GUILD_ID")
+NO_SAVE_TEXT = "Brak zapisu kampanii albo wojna jeszcze nie ruszyła."
+ERROR_TEXT = "Nie udało się odczytać zapisu kampanii. Szczegóły są w konsoli bota."
 
 
 class WarBot(discord.Client):
@@ -80,22 +83,33 @@ def build_embeds(state):
 
 @bot.tree.command(name="wojna", description="Stan wojny frakcji w kampanii Aquili")
 async def wojna(interaction: discord.Interaction):
-    state = war_status.load(STARMAP_DIR)
-    if not state:
-        await interaction.response.send_message("Brak zapisu kampanii albo wojna jeszcze nie ruszyła.", ephemeral=True)
+    # Odczyt może czekać na zapis kampanii (ponowienia w load), a Discord czeka na odpowiedź tylko 3 s
+    await interaction.response.defer()
+    try:
+        state = await asyncio.to_thread(war_status.load, STARMAP_DIR)
+        embeds = build_embeds(state) if state else None
+    except Exception:
+        logging.exception("/wojna: błąd przy czytaniu zapisu kampanii")
+        await interaction.followup.send(ERROR_TEXT)
         return
-    embeds = build_embeds(state)
-    await interaction.response.send_message(embed=embeds[0])
-    for embed in embeds[1:]:
+    if not embeds:
+        await interaction.followup.send(NO_SAVE_TEXT)
+        return
+    for embed in embeds:
         await interaction.followup.send(embed=embed)
 
 
 @bot.tree.command(name="mapa", description="Mapa wojny frakcji w kampanii Aquili")
 async def mapa(interaction: discord.Interaction):
     await interaction.response.defer()  # rysowanie może przekroczyć 3 s, w których Discord czeka na odpowiedź
-    png = await asyncio.to_thread(war_map.render, STARMAP_DIR)
+    try:
+        png = await asyncio.to_thread(war_map.render, STARMAP_DIR)
+    except Exception:
+        logging.exception("/mapa: błąd przy rysowaniu mapy")
+        await interaction.followup.send(ERROR_TEXT)
+        return
     if not png:
-        await interaction.followup.send("Brak zapisu kampanii albo wojna jeszcze nie ruszyła.")
+        await interaction.followup.send(NO_SAVE_TEXT)
         return
     await interaction.followup.send(file=discord.File(io.BytesIO(png), filename="mapa_wojny.png"))
 

@@ -8,6 +8,7 @@ Bez Discorda: python tools/discord_bot/war_status.py [folder z hexmap.json]
 
 import json
 import sys
+import time
 from collections import Counter
 from pathlib import Path
 
@@ -26,6 +27,8 @@ MAIN_FACTIONS = ["nanotrasen", "solgov", "syndicate", "pirate"]
 NT_BLOC = {"nanotrasen", "solgov", "whiterapids"}
 HQ_SYSTEMS = {"nanotrasen": "Medea", "solgov": "Sol", "syndicate": "Abassi", "pirate": "Tortuga"}
 HEX_WAR_END_ROUNDS = 2
+READ_ATTEMPTS = 3
+READ_RETRY_DELAY = 0.5
 RANKS = ["Kapitan", "Komandor", "Kontradmirał", "Admirał"]
 
 
@@ -33,8 +36,16 @@ def faction_name(faction):
     return FACTION_NAMES.get(faction, faction or "?")
 
 
-def allied(a, b):
-    return a == b or (a in NT_BLOC and b in NT_BLOC)
+def hostile(a, b):
+    """Jak hex_factions_hostile() w hex_grid.dm: strony neutralne nie są wrogie, piraci i Wrogie siły wszystkim."""
+    blocs = {"nanotrasen": "nt", "solgov": "nt", "whiterapids": "nt", "syndicate": "syn", "pirate": "pir",
+             "hostile": "hos", "unaligned": "neu"}
+    a, b = blocs.get(a), blocs.get(b)
+    if not a or not b or a == b:
+        return False
+    if "pir" in (a, b) or "hos" in (a, b):
+        return True
+    return "neu" not in (a, b)
 
 
 def defcon(tension):
@@ -66,10 +77,17 @@ def commander_name(c):
 def load(folder):
     """Zwraca słownik ze stanem wojny albo None, gdy zapisu nie ma lub kampania jeszcze nie ruszyła."""
     folder = Path(folder)
-    try:
-        hexmap = json.loads((folder / "hexmap.json").read_text(encoding="utf-8"))
-        starmap = json.loads((folder / "starmap.json").read_text(encoding="utf-8"))
-    except (OSError, ValueError):
+    # Gra zapisuje hexmap.json przez usunięcie i ponowny zapis (hexmap_write): odczyt w tej chwili ponawiamy
+    for attempt in range(READ_ATTEMPTS):
+        try:
+            hexmap = json.loads((folder / "hexmap.json").read_text(encoding="utf-8"))
+            starmap = json.loads((folder / "starmap.json").read_text(encoding="utf-8"))
+            break
+        except (OSError, ValueError):
+            if attempt == READ_ATTEMPTS - 1:
+                return None
+            time.sleep(READ_RETRY_DELAY)
+    if not isinstance(hexmap, dict) or not isinstance(starmap, list):
         return None
     war = hexmap.get("war")
     if not isinstance(war, dict):
@@ -80,12 +98,18 @@ def load(folder):
 
     holders = {}
     owners = {}
+    hidden = set()
     for system in starmap:
+        if not isinstance(system, dict):
+            continue
         name = system.get("name")
         if not name or name == "Staging":
             continue
-        holders[name] = occupied.get(name, system.get("alignment"))
         owners[name] = system.get("owner")
+        if system.get("hidden"):
+            hidden.add(name)  # nieodkryty układ: bez nazwy i właściciela w raporcie (mgła wojny)
+            continue
+        holders[name] = occupied.get(name, system.get("alignment"))
 
     systems = Counter(holders.values())
 
@@ -96,8 +120,8 @@ def load(folder):
     for faction in MAIN_FACTIONS:
         hq = relocations.get(HQ_SYSTEMS[faction], HQ_SYSTEMS[faction])
         holder = holders.get(hq)
-        hqs.append({"faction": faction, "system": hq, "holder": holder, "held": holder is None or allied(faction, holder),
-                    "moved": hq != HQ_SYSTEMS[faction]})
+        hqs.append({"faction": faction, "system": hq, "holder": holder, "hidden": hq in hidden,
+                    "held": holder is None or not hostile(faction, holder), "moved": hq != HQ_SYSTEMS[faction]})
 
     fleets = Counter()
     convoys = Counter()
@@ -125,7 +149,7 @@ def load(folder):
         "ship_system": hexmap.get("ship_system"),
         "systems": systems,
         "hqs": hqs,
-        "occupied": {name: side for name, side in occupied.items() if owners.get(name) != side},
+        "occupied": {name: side for name, side in occupied.items() if owners.get(name) != side and name not in hidden},
         "owners": owners,
         "fleets": fleets,
         "convoys": convoys,
@@ -162,13 +186,17 @@ def sections(state):
         lines.append(f"**{faction_name(faction)}**: {plural(state['systems'].get(faction, 0), 'układ', 'układy', 'układów')}, "
                      f"{plural(state['fleets'].get(faction, 0), 'flota', 'floty', 'flot')} "
                      f"({plural(state['ships'].get(faction, 0), 'okręt', 'okręty', 'okrętów')})")
-    others = sum(count for side, count in state["systems"].items() if side not in MAIN_FACTIONS)
+    others = [f"{faction_name(side)} {count}" for side, count in sorted(state["systems"].items(), key=lambda i: str(i[0]))
+              if side not in MAIN_FACTIONS]
     if others:
-        lines.append(f"Pozostałe układy (niezależne, niezbadane): {others}")
+        lines.append("Pozostałe układy: " + ", ".join(others))
     out.append(("Siły frakcji", "\n".join(lines)))
 
     lines = []
     for hq in state["hqs"]:
+        if hq["hidden"]:
+            lines.append(f"{faction_name(hq['faction'])}: położenie nieznane")
+            continue
         where = hq["system"] + (" (po ewakuacji)" if hq["moved"] else "")
         if hq["held"]:
             lines.append(f"{faction_name(hq['faction'])}: {where}, w swoich rękach")
