@@ -181,10 +181,23 @@ GLOBAL_VAR_INIT(overmap_scale_enabled, TRUE)
 	/// Myśliwiec, który rakieta goni, i od kiedy (namiar na niego wygasa po OVERMAP_MISSILE_FIGHTER_LOCK_TIME)
 	var/datum/weakref/fighter_lock_ref
 	var/fighter_lock_since = 0
+	/// Myśliwiec, na którego namiar już wygasł: łącze danych AI nie włącza go ponownie
+	var/datum/weakref/fighter_lock_expired_ref
 
 /obj/item/projectile/guided_munition/missile/Initialize(mapload)
 	. = ..()
 	addtimer(CALLBACK(src, PROC_REF(check_fighter_lock)), 1 SECONDS, TIMER_LOOP)
+
+/// Namierzenie myśliwca zaczyna odliczanie od razu; na myśliwiec z wygasłym namiarem rakieta już się nie naprowadza
+/obj/item/projectile/guided_munition/missile/set_homing_target(atom/A)
+	var/obj/structure/overmap/fighter = A
+	var/is_fighter = GLOB.overmap_scale_enabled && istype(fighter) && fighter.mass <= MASS_TINY
+	if(is_fighter && fighter_lock_expired_ref?.resolve() == fighter)
+		return FALSE
+	. = ..()
+	if(is_fighter && homing && homing_target == fighter && fighter_lock_ref?.resolve() != fighter)
+		fighter_lock_ref = WEAKREF(fighter)
+		fighter_lock_since = world.time
 
 /// Rakieta nie goni myśliwca przez pół mapy: OVERMAP_MISSILE_FIGHTER_LOCK_TIME od namierzenia go gubi namiar
 /// i leci dalej prosto. Liczone od namierzenia, więc dotyczy też rakiety, która przełączy się na myśliwiec w locie.
@@ -200,6 +213,7 @@ GLOBAL_VAR_INIT(overmap_scale_enabled, TRUE)
 		return
 	if(world.time - fighter_lock_since < OVERMAP_MISSILE_FIGHTER_LOCK_TIME)
 		return
+	fighter_lock_expired_ref = WEAKREF(target)
 	homing = FALSE
 	homing_target = null
 	fighter_lock_ref = null

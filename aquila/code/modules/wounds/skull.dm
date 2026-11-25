@@ -36,6 +36,12 @@
 		return
 	aq_show_skull_dent(new_dir)
 
+/// Przyłączona z powrotem głowa z raną czaszki znowu pokazuje wgniecenie
+/obj/item/bodypart/head/attach_limb(mob/living/carbon/C, special, is_creating = FALSE)
+	. = ..()
+	if(length(wounds) && owner == C && !QDELETED(C))
+		C.aq_update_skull_filter()
+
 /// Głowa odpada (sygnał przed odłączeniem): ciało bez głowy nie ma wgniecenia
 /mob/living/carbon/proc/aq_skull_head_dropped(obj/item/bodypart/head, mob/living/carbon/old_owner, special)
 	SIGNAL_HANDLER

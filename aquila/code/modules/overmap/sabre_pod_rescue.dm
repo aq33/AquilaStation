@@ -25,7 +25,7 @@
 	if(!length(survivors))
 		return FALSE
 	for(var/mob/living/M as anything in survivors)
-		pod.stop_piloting(M, eject_mob = FALSE)
+		pod.stop_piloting(M, eject_mob = FALSE, force = TRUE) // poza poziomem z ZTRAIT_BOARDABLE kapsuła bez force nie zwalnia sterów
 		pod.mobs_in_ship -= M
 		M.stop_sound_channel(CHANNEL_SHIP_ALERT)
 		enter(M)

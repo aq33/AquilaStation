@@ -98,6 +98,15 @@
 	missile.fighter_lock_since = world.time - 9 SECONDS
 	missile.check_fighter_lock()
 	var/fighter_lock = missile.homing
+	// Łącze danych AI próbuje znów naprowadzić rakietę na ten sam myśliwiec: namiar już wygasł
+	missile.set_homing_target(fighter)
+	var/relocked = missile.homing
+	// Nowa rakieta namierzona na myśliwiec przy wystrzale liczy czas od razu, nie od pierwszego sprawdzenia
+	var/obj/item/projectile/guided_munition/missile/fresh = new(run_loc_floor_bottom_left)
+	fresh.set_homing_target(fighter)
+	var/fresh_since = fresh.fighter_lock_since
+	var/fresh_time = world.time
+	qdel(fresh)
 	qdel(missile)
 	GLOB.overmap_scale_enabled = was_enabled
 
@@ -106,6 +115,8 @@
 	TEST_ASSERT(!far_ok, "A guided weapon fired at a fighter 40 tiles away, beyond gun range")
 	TEST_ASSERT(fresh_fighter_lock && still_locked, "A missile that switched to a fighter lost the lock at once")
 	TEST_ASSERT(!fighter_lock, "A missile kept chasing a fighter after the lock time")
+	TEST_ASSERT(!relocked, "The AI datalink locked the missile back onto a fighter after the lock ran out")
+	TEST_ASSERT(fresh_since == fresh_time, "Locking onto a fighter did not start the countdown at once")
 	TEST_ASSERT(ship_lock, "A missile lost its lock on a ship")
 
 /// Telewizorek w menu lobby odlicza do rundy: menu odświeża się w podsystemie, który działa w fazie lobby
@@ -157,7 +168,8 @@
 	patient.setDir(NORTH)
 	patient.setDir(SOUTH)
 	TEST_ASSERT(!patient.aq_skull_dent, "Turning the headless body brought the dent back")
-	qdel(head)
+	head.attach_limb(patient)
+	TEST_ASSERT(patient.aq_skull_dent, "The dent did not come back with the reattached cracked head")
 
 	var/mob/living/carbon/monkey/monkey = allocate(/mob/living/carbon/monkey, run_loc_floor_bottom_left)
 	var/list/head_offset = monkey.dna?.species?.offset_features?[OFFSET_HEAD]
