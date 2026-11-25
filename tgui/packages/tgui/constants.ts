@@ -327,6 +327,14 @@ const GASES = [
     label: 'Miazma',
     color: 'olivedrab',
   },
+  // AQUILA: frezon z SS14 (plan maszynowni)
+  {
+    id: 'frezon',
+    path: '/datum/gas/frezon',
+    name: 'Frezon',
+    label: 'Frezon',
+    color: 'cadetblue',
+  },
 ] as const;
 
 // Returns gas label based on gasId

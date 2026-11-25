@@ -33424,5 +33424,13 @@
 "wodór": "hydrogen",
 "Przykręcony do sieci": "Wrenched to the grid",
 "Na ogniwie": "On the cell",
-"elektrolizer": "electrolyzer"
+"elektrolizer": "electrolyzer",
+"Powstawanie frezonu": "Frezon production",
+"Chłodzenie frezonem": "Frezon cooling",
+"Bardzo zimny gaz chłodniczy. Wdychany uszkadza komórki, ale daje euforię.": "A very cold coolant gas. Inhaled, it damages cells but makes you euphoric.",
+"gorycz i mróz": "bitterness and frost",
+"Czujesz zimno w płucach.": "Your lungs feel cold.",
+"Ogarnia cię dziwna euforia.": "A strange euphoria washes over you.",
+"kanister z frezonem": "frezon canister",
+"Frezon. Chłodzi wszystko, czego dotknie, z azotem nawet za mocno.": "Frezon. It cools everything it touches, with nitrogen a bit too much."
 }
