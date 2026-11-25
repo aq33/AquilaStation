@@ -25,6 +25,7 @@ import {
   closeWindow,
   PixelDevice,
   PixelKey,
+  PixelScrollbar,
   PixelText,
   Px,
   Rect,
@@ -581,19 +582,6 @@ const Catalog = (props: {
     onOrder,
   } = props;
   const shown = designs.slice(scroll, scroll + VISIBLE_ROWS);
-  const thumb = designs.length
-    ? Math.max(
-        6,
-        Math.round((VISIBLE_ROWS / designs.length) * (VISIBLE_ROWS * ROW_H)),
-      )
-    : 0;
-  const thumbTop =
-    designs.length > VISIBLE_ROWS
-      ? Math.round(
-          (scroll / (designs.length - VISIBLE_ROWS)) *
-            (VISIBLE_ROWS * ROW_H - thumb),
-        )
-      : 0;
   return (
     <Px
       x={0}
@@ -644,24 +632,18 @@ const Catalog = (props: {
           );
         })}
       </div>
-      {designs.length > VISIBLE_ROWS && (
-        <>
-          <Rect
-            x={PANE_W - 6}
-            y={0}
-            w={4}
-            h={VISIBLE_ROWS * ROW_H}
-            color={SCREEN_GRID}
-          />
-          <Rect
-            x={PANE_W - 6}
-            y={thumbTop}
-            w={4}
-            h={thumb}
-            color={SCREEN_LOW}
-          />
-        </>
-      )}
+      <PixelScrollbar
+        x={PANE_W - 6}
+        y={0}
+        w={4}
+        h={VISIBLE_ROWS * ROW_H}
+        total={designs.length}
+        visible={VISIBLE_ROWS}
+        offset={scroll}
+        track={SCREEN_GRID}
+        thumb={SCREEN_LOW}
+        onChange={(offset) => onScroll(offset - scroll)}
+      />
     </Px>
   );
 };

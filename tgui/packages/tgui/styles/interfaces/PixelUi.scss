@@ -610,3 +610,17 @@ $key-skins: (
     animation: none;
   }
 }
+
+// Blok utylizacyjny: maszyna z nakładkami w jednym elemencie (razem podskakuje)
+.DisposalDevice__unit {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: px(100);
+  height: px(162);
+}
+
+.DisposalDevice__rocker--disabled {
+  cursor: default;
+  filter: brightness(0.7);
+}

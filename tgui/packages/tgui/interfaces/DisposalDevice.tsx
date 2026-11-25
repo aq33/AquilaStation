@@ -6,7 +6,7 @@
  * Kliknięcie otworu wkłada przedmiot z ręki, pustą ręką wyjmuje ostatni.
  */
 
-import { MouseEvent, ReactNode, useRef, useState } from 'react';
+import { MouseEvent, useRef, useState } from 'react';
 import type { BooleanLike } from 'tgui-core/react';
 
 import { useBackend } from '../backend';
@@ -92,107 +92,88 @@ export const DisposalDevice = () => {
 
   return (
     <PixelDevice width={NOTE_X + 96 + 4} height={162} title="Blok utylizacyjny">
-      <Sprite
-        img="disposal-disposal"
-        x={0}
-        y={TOP}
-        w={100}
-        h={136}
-        drag
-        className={flushing ? 'DisposalDevice__jolt' : undefined}
-      />
-      <Mouth
-        items={items}
-        creatures={creatures}
-        big={!!big_creature}
-        flushing={!!flushing}
-        holding={holding}
-        canReach={!isai}
-        onClick={() => act('mouth')}
-      />
-      <Lever down={!!flush} locked={leverLocked} onToggle={toggleLever} />
-
-      <Lamp
-        y={LAMP_YS[0]}
-        lit={!!powered && !ready && !!pressure_charging}
-        colors={RED}
-        title={powered ? 'Ładowanie ciśnienia' : 'Brak zasilania'}
-      />
-      <Lamp
-        y={LAMP_YS[1]}
-        lit={!!powered && ready}
-        colors={GREEN}
-        title={powered ? 'Gotowy' : 'Brak zasilania'}
-      />
-      <Lamp
-        y={LAMP_YS[2]}
-        lit={!!powered && waiting && (blink || !flush)}
-        colors={BLUE}
-        title={waiting ? 'Coś czeka na wysyłkę' : 'Pusto'}
-      />
-
-      <Px x={GAUGE.x} y={GAUGE.y} w={GAUGE.marks * 3} h={2} title={status}>
-        {Array.from({ length: GAUGE.marks }, (_, index) => {
-          const lit = powered
-            ? ready
-              ? GAUGE.marks
-              : Math.floor(per * GAUGE.marks + 0.001)
-            : 0;
-          const on = index < lit;
-          return (
-            <Rect
-              key={index}
-              x={index * 3}
-              y={0}
-              w={2}
-              h={2}
-              color={on ? (ready ? GREEN[0] : RED[0]) : '#3a3c45'}
-            />
-          );
-        })}
-      </Px>
-
-      <Rocker
-        y={ROCKERS[0]}
-        disabled={!!panel_open}
-        title={pressure_charging ? 'Wyłącz pompę' : 'Włącz pompę'}
-        onClick={() => act(pressure_charging ? 'pump-0' : 'pump-1')}
+      {/* Cała maszyna razem z nakładkami podskakuje przy spłukaniu */}
+      <div
+        className={
+          flushing
+            ? 'DisposalDevice__unit DisposalDevice__jolt'
+            : 'DisposalDevice__unit'
+        }
       >
-        <Rect
-          x={7}
-          y={12}
-          w={6}
-          h={1}
-          color={pressure_charging ? GREEN[1] : '#3a3c45'}
+        <Sprite img="disposal-disposal" x={0} y={TOP} w={100} h={136} drag />
+        <Mouth
+          items={items}
+          creatures={creatures}
+          big={!!big_creature}
+          flushing={!!flushing}
+          holding={holding}
+          canReach={!isai}
+          onClick={() => act('mouth')}
         />
-        <Rect
-          x={9}
-          y={10}
-          w={2}
-          h={2}
-          color={pressure_charging ? GREEN[1] : '#3a3c45'}
-        />
-      </Rocker>
-      <Rocker
-        y={ROCKERS[1]}
-        disabled={!!isai}
-        title="Wyrzuć zawartość"
-        onClick={() => act('eject')}
-      >
-        <Rect x={9} y={10} w={1} h={1} color="#17181c" />
-        <Rect x={8} y={11} w={3} h={1} color="#17181c" />
-        <Rect x={7} y={12} w={5} h={1} color="#17181c" />
-        <Rect x={7} y={13} w={5} h={1} color="#17181c" />
-      </Rocker>
-      <Rocker y={ROCKERS[2]} title="Zamknij" onClick={closeWindow}>
-        {[0, 1, 2, 3].map((step) => (
-          <div key={step}>
-            <Rect x={7 + step} y={10 + step} w={1} h={1} color="#17181c" />
-            <Rect x={10 - step} y={10 + step} w={1} h={1} color="#17181c" />
-          </div>
-        ))}
-      </Rocker>
+        <Lever down={!!flush} locked={leverLocked} onToggle={toggleLever} />
 
+        <Lamp
+          y={LAMP_YS[0]}
+          lit={!!powered && !ready && !!pressure_charging}
+          colors={RED}
+          title={powered ? 'Ładowanie ciśnienia' : 'Brak zasilania'}
+        />
+        <Lamp
+          y={LAMP_YS[1]}
+          lit={!!powered && ready}
+          colors={GREEN}
+          title={powered ? 'Gotowy' : 'Brak zasilania'}
+        />
+        <Lamp
+          y={LAMP_YS[2]}
+          lit={!!powered && waiting && (blink || !flush)}
+          colors={BLUE}
+          title={waiting ? 'Coś czeka na wysyłkę' : 'Pusto'}
+        />
+
+        <Px x={GAUGE.x} y={GAUGE.y} w={GAUGE.marks * 3} h={2} title={status}>
+          {Array.from({ length: GAUGE.marks }, (_, index) => {
+            const lit = powered
+              ? ready
+                ? GAUGE.marks
+                : Math.floor(per * GAUGE.marks + 0.001)
+              : 0;
+            const on = index < lit;
+            return (
+              <Rect
+                key={index}
+                x={index * 3}
+                y={0}
+                w={2}
+                h={2}
+                color={on ? (ready ? GREEN[0] : RED[0]) : '#3a3c45'}
+              />
+            );
+          })}
+        </Px>
+
+        <Rocker
+          y={ROCKERS[0]}
+          icon="power"
+          on={!!pressure_charging}
+          disabled={!!panel_open}
+          title={pressure_charging ? 'Wyłącz pompę' : 'Włącz pompę'}
+          onClick={() => act(pressure_charging ? 'pump-0' : 'pump-1')}
+        />
+        <Rocker
+          y={ROCKERS[1]}
+          icon="eject"
+          disabled={!!isai}
+          title="Wyrzuć zawartość"
+          onClick={() => act('eject')}
+        />
+        <Rocker
+          y={ROCKERS[2]}
+          icon="close"
+          title="Zamknij"
+          onClick={closeWindow}
+        />
+      </div>
       <PixelNote
         x={NOTE_X}
         y={20}
@@ -437,15 +418,43 @@ const Lamp = (props: {
   );
 };
 
-/** Przełącznik kołyskowy na lewym panelu (30x15), ikona na jasnej części. */
+// Ikony przełączników 5x5
+const ICONS: Record<string, string[]> = {
+  power: ['..#..', '#.#.#', '#.#.#', '#...#', '.###.'],
+  eject: ['..#..', '.###.', '#####', '.....', '#####'],
+  close: ['#...#', '.#.#.', '..#..', '.#.#.', '#...#'],
+};
+
+/**
+ * Przełącznik kołyskowy 30x15 na lewym panelu. Z `on` to przełącznik dwustanowy
+ * (wciśnięta dolna połowa = włączony, zapalona lampka), bez `on` chwilowy.
+ */
 const Rocker = (props: {
   y: number;
+  icon: 'power' | 'eject' | 'close';
+  on?: boolean;
   disabled?: boolean;
   title: string;
   onClick: () => void;
-  children?: ReactNode;
 }) => {
-  const { y, disabled, title, onClick, children } = props;
+  const { y, icon, on, disabled, title, onClick } = props;
+  const [pressed, setPressed] = useState(false);
+  const toggle = on !== undefined;
+  // Która połowa jest wciśnięta: dwustanowy według stanu, chwilowy tylko przy wciśnięciu
+  const lowerDown = toggle ? !!on : pressed;
+  const half = (top: number, down: boolean) => (
+    <>
+      <Rect x={2} y={top} w={26} h={5} color={down ? '#8b919c' : '#c9ced6'} />
+      <Rect
+        x={2}
+        y={down ? top : top}
+        w={26}
+        h={1}
+        color={down ? '#5a5d69' : '#eef1f5'}
+      />
+      {!down && <Rect x={2} y={top + 4} w={26} h={1} color="#8b919c" />}
+    </>
+  );
   return (
     <Px
       x={14}
@@ -453,10 +462,46 @@ const Rocker = (props: {
       w={30}
       h={15}
       title={title}
-      className={disabled ? undefined : 'DisposalDevice__rocker'}
+      className={
+        disabled ? 'DisposalDevice__rocker--disabled' : 'DisposalDevice__rocker'
+      }
       onClick={disabled ? undefined : onClick}
+      onMouseDown={() => setPressed(true)}
+      onMouseUp={() => setPressed(false)}
+      onMouseLeave={() => setPressed(false)}
     >
-      {children}
+      <Rect x={0} y={0} w={30} h={15} color="#17181c" />
+      <Rect x={1} y={1} w={28} h={13} color="#3a3c45" />
+      {half(2, !lowerDown)}
+      {half(8, lowerDown)}
+      <Rect x={2} y={7} w={26} h={1} color="#222329" />
+      {/* Ikona na wypukłej połowie */}
+      {ICONS[icon].map((row, rowIndex) =>
+        row
+          .split('')
+          .map((cell, column) =>
+            cell === '#' ? (
+              <Rect
+                key={`${rowIndex}-${column}`}
+                x={(toggle ? 10 : 13) + column}
+                y={(lowerDown ? 2 : 8) + rowIndex}
+                w={1}
+                h={1}
+                color="#17181c"
+              />
+            ) : null,
+          ),
+      )}
+      {toggle && (
+        <Rect
+          x={24}
+          y={lowerDown ? 4 : 10}
+          w={3}
+          h={2}
+          color={on ? '#aeff37' : '#5a5d69'}
+          style={on ? { boxShadow: `0 0 ${3 * SCALE}px #aeff37` } : undefined}
+        />
+      )}
     </Px>
   );
 };

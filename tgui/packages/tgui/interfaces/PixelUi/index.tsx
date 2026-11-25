@@ -40,6 +40,8 @@ type BoxProps = PropsWithChildren<{
   onClick?: (event: MouseEvent<HTMLDivElement>) => void;
   onMouseEnter?: () => void;
   onMouseLeave?: () => void;
+  onMouseDown?: (event: MouseEvent<HTMLDivElement>) => void;
+  onMouseUp?: () => void;
 }>;
 
 /** Element ustawiony w pikselach grafiki. */
@@ -56,6 +58,8 @@ export const Px = (props: BoxProps) => {
     onClick,
     onMouseEnter,
     onMouseLeave,
+    onMouseDown,
+    onMouseUp,
     children,
   } = props;
   return (
@@ -66,6 +70,8 @@ export const Px = (props: BoxProps) => {
       onClick={onClick}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
+      onMouseDown={onMouseDown}
+      onMouseUp={onMouseUp}
       style={{
         left: px(x),
         top: px(y),
@@ -190,6 +196,80 @@ export const RoundKey = (props: RoundKeyProps) => {
       >
         {children}
       </div>
+    </Px>
+  );
+};
+
+/**
+ * Pionowy suwak: kciuk da się chwycić i przeciągnąć, klik w tor przeskakuje
+ * o stronę. `offset` i `total`/`visible` w wierszach listy.
+ */
+export const PixelScrollbar = (props: {
+  x: number;
+  y: number;
+  w: number;
+  h: number;
+  total: number;
+  visible: number;
+  offset: number;
+  track: string;
+  thumb: string;
+  onChange: (offset: number) => void;
+}) => {
+  const { x, y, w, h, total, visible, offset, track, thumb, onChange } = props;
+  const max = Math.max(0, total - visible);
+  if (max <= 0) {
+    return null;
+  }
+  const thumbH = Math.max(6, Math.round((visible / total) * h));
+  const thumbTop = Math.round((offset / max) * (h - thumbH));
+  const toOffset = (artY: number) =>
+    Math.max(
+      0,
+      Math.min(max, Math.round((artY / Math.max(1, h - thumbH)) * max)),
+    );
+  const startDrag = (event: MouseEvent<HTMLDivElement>) => {
+    event.stopPropagation();
+    event.preventDefault();
+    const startY = event.clientY;
+    const startTop = thumbTop;
+    const move = (moveEvent: globalThis.MouseEvent) => {
+      onChange(toOffset(startTop + (moveEvent.clientY - startY) / SCALE));
+    };
+    const up = () => {
+      window.removeEventListener('mousemove', move);
+      window.removeEventListener('mouseup', up);
+    };
+    window.addEventListener('mousemove', move);
+    window.addEventListener('mouseup', up);
+  };
+  return (
+    <Px
+      x={x}
+      y={y}
+      w={w}
+      h={h}
+      style={{ background: track, cursor: 'pointer' }}
+      onMouseDown={(event) => {
+        event.stopPropagation();
+        const rect = event.currentTarget.getBoundingClientRect();
+        const artY = (event.clientY - rect.top) / SCALE;
+        onChange(
+          Math.max(
+            0,
+            Math.min(max, offset + (artY < thumbTop ? -visible : visible)),
+          ),
+        );
+      }}
+    >
+      <Px
+        x={0}
+        y={thumbTop}
+        w={w}
+        h={thumbH}
+        style={{ background: thumb, cursor: 'grab' }}
+        onMouseDown={startDrag}
+      />
     </Px>
   );
 };

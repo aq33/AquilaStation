@@ -19,6 +19,7 @@ import {
   PixelDevice,
   PixelKey,
   PixelNote,
+  PixelScrollbar,
   PixelText,
   Px,
   Rect,
@@ -281,15 +282,18 @@ export const BarDispenserDevice = () => {
           );
         })}
       </div>
-      {maxScroll > 0 && (
-        <Rect
-          x={LEFT + WIDTH - 5}
-          y={panelTop + 3 + Math.round((shown / rowsTotal) * (panelH - 6))}
-          w={2}
-          h={Math.max(4, Math.round((rowsShown / rowsTotal) * (panelH - 6)))}
-          color={skin.bright}
-        />
-      )}
+      <PixelScrollbar
+        x={LEFT + WIDTH - 6}
+        y={panelTop + 3}
+        w={3}
+        h={panelH - 6}
+        total={rowsTotal}
+        visible={rowsShown}
+        offset={shown}
+        track={skin.dark}
+        thumb={skin.bright}
+        onChange={setScroll}
+      />
 
       {/* Pas z naczyniem, dawkami i klawiszami okrągłymi */}
       <Rect x={LEFT + 1} y={band} w={WIDTH - 2} h={1} color={skin.light} />
