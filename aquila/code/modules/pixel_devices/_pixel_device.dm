@@ -20,21 +20,6 @@ GLOBAL_LIST_EMPTY(pixel_device_icon_cache)
 	. = icon2base64(flat)
 	GLOB.pixel_device_icon_cache[key] = .
 
-/// Ikona typu przedmiotu (bez instancji), np. projektu w fabrykatorze
-/proc/pixel_device_type_icon(atom/thing_type)
-	if(!ispath(thing_type, /atom))
-		return null
-	var/icon_file = initial(thing_type.icon)
-	var/icon_state = initial(thing_type.icon_state)
-	if(!icon_file)
-		return null
-	var/key = "[icon_file]|[icon_state]|"
-	. = GLOB.pixel_device_icon_cache[key]
-	if(.)
-		return
-	. = icon2base64(icon(icon_file, icon_state, SOUTH, 1))
-	GLOB.pixel_device_icon_cache[key] = .
-
 // Klawisz KLASYCZNE: stare okno maszyny (receptury, dyski, opcje kolejki), do jego zamknięcia.
 // Po zamknięciu starego okna maszyna znów otwiera okno urządzenia.
 

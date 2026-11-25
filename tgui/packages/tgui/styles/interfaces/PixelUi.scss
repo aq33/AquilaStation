@@ -154,7 +154,7 @@ $key-skins: (
     border-image-source: url('../assets/pixelui/#{$file}_up.png');
   }
 
-  .PixelUi__key--#{$name}:active,
+  .PixelUi__key--#{$name}:active:not(.PixelUi__key--disabled),
   .PixelUi__key--#{$name}.PixelUi__key--latched {
     border-image-source: url('../assets/pixelui/#{$file}_down.png');
   }
@@ -191,10 +191,6 @@ $key-skins: (
   .PixelUi__keyFace {
     opacity: 0.4;
   }
-}
-
-.PixelUi__key--disabled:active {
-  border-image-source: inherit;
 }
 
 .PixelUi__keyLamp {

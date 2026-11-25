@@ -139,8 +139,13 @@
 /obj/machinery/reagentgrinder/proc/aq_insert_held(mob/living/user)
 	if(operating || !isliving(user) || issilicon(user) || !user.Adjacent(src))
 		return FALSE
-	var/obj/item/held = user.get_active_held_item()
-	if(!held)
+	var/obj/item/weapon = user.get_active_held_item()
+	if(!weapon)
 		return FALSE
-	attackby(held, user)
+	// attackby() z czymś innym w trybie walki atakowałby młynek, a okno ma tylko wkładać
+	var/is_vessel = istype(weapon, /obj/item/reagent_containers) && !(weapon.item_flags & ABSTRACT) && weapon.is_open_container()
+	if(!is_vessel && !istype(weapon, /obj/item/storage/bag) && !weapon.grind_results && !weapon.juice_typepath && !weapon.is_grindable())
+		to_chat(user, "<span class='warning'>Nie możesz zmielić [weapon] na odczynniki!</span>")
+		return FALSE
+	attackby(weapon, user)
 	return TRUE

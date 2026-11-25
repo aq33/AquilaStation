@@ -54,6 +54,10 @@
 	if(!isliving(user) || issilicon(user) || !user.Adjacent(src) || flushing)
 		return FALSE
 	var/obj/item/held = user.get_active_held_item()
+	if(istype(held, /obj/item/storage/bag/trash))
+		// Worek opróżnia się do środka, jak przy kliknięciu maszyny
+		attackby(held, user)
+		return TRUE
 	if(held)
 		// Jak użycie przedmiotu na bloku, ale niezależnie od trybu walki
 		if((held.item_flags & ABSTRACT) || !user.temporarilyRemoveItemFromInventory(held))

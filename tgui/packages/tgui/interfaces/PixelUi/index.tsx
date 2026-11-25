@@ -373,7 +373,7 @@ export const PixelKey = (props: KeyProps) => {
       ])}
       title={tooltip}
       style={{ left: px(x), top: px(y), width: px(w), height: px(h) }}
-      onClick={off ? undefined : onClick}
+      onClick={disabled ? undefined : onClick}
     >
       <div className="PixelUi__keyFace" style={{ color: textColor }}>
         {text}

@@ -58,6 +58,16 @@
 	TEST_ASSERT(cook.is_holding(tomato), "The tomato taken out of the grinder is not in the hand")
 	TEST_ASSERT(!grinder.holdingitems[tomato], "The tomato stays in the grinder")
 
+	// Łom w trybie walki: okno nic nie wkłada i nie atakuje młynka (attackby z combat mode)
+	var/obj/item/crowbar/crowbar = allocate(/obj/item/crowbar, spot)
+	qdel(tomato)
+	cook.put_in_active_hand(crowbar)
+	cook.set_combat_mode(TRUE)
+	var/integrity = grinder.obj_integrity
+	TEST_ASSERT(!grinder.aq_insert_held(cook), "The grinder window took a crowbar")
+	TEST_ASSERT_EQUAL(grinder.obj_integrity, integrity, "Clicking the grinder window with a crowbar in combat mode damaged the grinder")
+	TEST_ASSERT(cook.is_holding(crowbar), "The crowbar left the hand")
+
 /// Blok utylizacyjny: kliknięcie otworu wkłada przedmiot z ręki, pustą ręką wyjmuje ostatni
 /datum/unit_test/aquila_pixel_disposal
 
@@ -74,6 +84,14 @@
 
 	TEST_ASSERT(bin.aq_mouth(janitor), "Taking the last item out with an empty hand failed")
 	TEST_ASSERT(janitor.is_holding(can), "The can taken out of the disposal unit is not in the hand")
+
+	// Worek na śmieci przez otwór: opróżnia się do środka i zostaje w ręce, jak przy kliknięciu maszyny
+	var/obj/item/storage/bag/trash/bag = allocate(/obj/item/storage/bag/trash, spot)
+	can.forceMove(bag)
+	janitor.put_in_active_hand(bag)
+	TEST_ASSERT(bin.aq_mouth(janitor), "Emptying the trash bag through the disposal window failed")
+	TEST_ASSERT(janitor.is_holding(bag), "The trash bag went into the disposal unit instead of being emptied")
+	TEST_ASSERT_EQUAL(can.loc, bin, "The trash from the bag is not in the disposal unit")
 
 /// Dozownik napojów: WYLEJ opróżnia naczynie, lód ma strumień kostek, STARE OKNO przełącza na stare okno do jego zamknięcia
 /datum/unit_test/aquila_pixel_bar_dispenser
