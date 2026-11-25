@@ -205,7 +205,7 @@
 
 /datum/emote/living/carbon/human/robot_tongue/beep/run_emote(mob/user, params)
 	if(..())
-		playsound(user.loc, 'sound/machines/twobeep.ogg', 50)
+		playsound(user.loc, 'sound/machines/twobeep.ogg', 50, volume_pref = VOLUME_PREF_EMOTES) // AQ EDIT - mikser dźwięku
 
 /datum/emote/living/carbon/human/robot_tongue/buzz
 	key = "buzz"
@@ -216,7 +216,7 @@
 
 /datum/emote/living/carbon/human/robot_tongue/buzz/run_emote(mob/user, params)
 	if(..())
-		playsound(user.loc, 'sound/machines/buzz-sigh.ogg', 50)
+		playsound(user.loc, 'sound/machines/buzz-sigh.ogg', 50, volume_pref = VOLUME_PREF_EMOTES) // AQ EDIT - mikser dźwięku
 
 /datum/emote/living/carbon/human/robot_tongue/buzz2
 	key = "buzz2"
@@ -225,7 +225,7 @@
 
 /datum/emote/living/carbon/human/robot_tongue/buzz2/run_emote(mob/user, params)
 	if(..())
-		playsound(user.loc, 'sound/machines/buzz-two.ogg', 50)
+		playsound(user.loc, 'sound/machines/buzz-two.ogg', 50, volume_pref = VOLUME_PREF_EMOTES) // AQ EDIT - mikser dźwięku
 
 /datum/emote/living/carbon/human/robot_tongue/chime
 	key = "chime"
@@ -235,7 +235,7 @@
 
 /datum/emote/living/carbon/human/robot_tongue/chime/run_emote(mob/user, params)
 	if(..())
-		playsound(user.loc, 'sound/machines/chime.ogg', 50)
+		playsound(user.loc, 'sound/machines/chime.ogg', 50, volume_pref = VOLUME_PREF_EMOTES) // AQ EDIT - mikser dźwięku
 
 /datum/emote/living/carbon/human/robot_tongue/ping
 	key = "ping"
@@ -246,7 +246,7 @@
 
 /datum/emote/living/carbon/human/robot_tongue/ping/run_emote(mob/user, params)
 	if(..())
-		playsound(user.loc, 'sound/machines/ping.ogg', 50)
+		playsound(user.loc, 'sound/machines/ping.ogg', 50, volume_pref = VOLUME_PREF_EMOTES) // AQ EDIT - mikser dźwięku
 
  // Clown Robotic Tongue ONLY. Henk.
 
@@ -264,7 +264,7 @@
 
 /datum/emote/living/carbon/human/robot_tongue/clown/honk/run_emote(mob/user, params)
 	if(..())
-		playsound(user.loc, 'sound/items/bikehorn.ogg', 50)
+		playsound(user.loc, 'sound/items/bikehorn.ogg', 50, volume_pref = VOLUME_PREF_EMOTES) // AQ EDIT - mikser dźwięku
 
 /datum/emote/living/carbon/human/robot_tongue/clown/sad
 	key = "sad"
@@ -274,4 +274,4 @@
 
 /datum/emote/living/carbon/human/robot_tongue/clown/sad/run_emote(mob/user, params)
 	if(..())
-		playsound(user.loc, 'sound/misc/sadtrombone.ogg', 50)
+		playsound(user.loc, 'sound/misc/sadtrombone.ogg', 50, volume_pref = VOLUME_PREF_EMOTES) // AQ EDIT - mikser dźwięku

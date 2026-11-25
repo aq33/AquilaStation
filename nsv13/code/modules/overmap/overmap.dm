@@ -891,9 +891,9 @@ Proc to spool up a new Z-level for a player ship and assign it a treadmill.
 	for(var/mob/M as() in mobs_in_ship)
 		if(S && M.can_hear())
 			if(channel) //Doing this forbids overlapping of sounds
-				SEND_SOUND(M, sound(S, repeat = loop, wait = 0, volume = 100, channel = channel))
+				M.play_mixed_sound(sound(S, repeat = loop, wait = 0, volume = 100, channel = channel), aq_relay_volume_pref(channel)) // AQ EDIT - mikser dźwięku
 			else
-				SEND_SOUND(M, sound(S, repeat = loop, wait = 0, volume = 100))
+				M.play_mixed_sound(sound(S, repeat = loop, wait = 0, volume = 100), aq_relay_volume_pref(channel)) // AQ EDIT - mikser dźwięku
 		if(message)
 			to_chat(M, message)
 	for(var/obj/structure/overmap/O as() in overmaps_in_ship) //Of course they get relayed the same message if they're in the same ship too

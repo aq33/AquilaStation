@@ -207,9 +207,10 @@ export const sound_ship_ambience: FeatureToggle = {
 };
 
 export const tesla_volume: FeatureNumeric = {
-  name: 'Głośność tesli',
+  name: 'Tesla',
   category: 'SOUND',
-  subcategory: 'IC',
+  subcategory: 'Mixer',
+  description: 'Wyładowania tesli i cewek.',
   component: FeatureSliderInput,
 };
 
