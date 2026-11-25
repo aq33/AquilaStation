@@ -39,6 +39,7 @@
 		shuttle_dock_hint(planet, "Na [planet] nie da się wylądować.")
 		return FALSE
 	DC.docking_cooldown = TRUE
+	planet_hold_position(planet)
 	if(planet.ensure_surface())
 		INVOKE_ASYNC(src, PROC_REF(shuttle_begin_landing), planet)
 		return TRUE
@@ -47,6 +48,17 @@
 	if(pilot)
 		to_chat(pilot, span_notice("Komputer dokowania mapuje powierzchnię [planet] i szuka lądowisk. To potrwa chwilę, zostań nad planetą."))
 	return TRUE
+
+/// Komputer dokowania zatrzymuje prom nad planetą na czas budowania powierzchni i wyboru lądowiska. Bez tego prom leciał
+/// dalej z prędkością przelotu, a po kilkunastu sekundach budowania był już za planetą i lądowanie się przerywało:
+/// gracze musieli wlatywać nad planetę kilka razy. Pilot może odlecieć, dając ciąg.
+/obj/structure/overmap/small_craft/transport/proc/planet_hold_position(obj/structure/overmap/planet/planet)
+	velocity._set(0, 0)
+	angular_velocity = 0
+	user_thrust_dir = 0
+	brakes = TRUE
+	if(pilot)
+		to_chat(pilot, span_notice("Komputer dokowania zatrzymuje [src] nad [planet] i włącza hamulce. Odleć, jeśli nie chcesz lądować."))
 
 /obj/structure/overmap/small_craft/transport/proc/planet_surface_ready(obj/structure/overmap/planet/planet, success)
 	SIGNAL_HANDLER

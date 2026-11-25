@@ -31543,5 +31543,6 @@
 "[user] zaczyna wyrywać [plant_item].": "[user] starts uprooting [plant_item].",
 "Zaczynasz wyrywać [plant_item]...": "You start uprooting [plant_item]...",
 "[user] wyrywa [plant_item] z korzeniami.": "[user] pulls [plant_item] out by the roots.",
-"Wyrywasz [plant_item] z korzeniami.": "You pull [plant_item] out by the roots."
+"Wyrywasz [plant_item] z korzeniami.": "You pull [plant_item] out by the roots.",
+"Komputer dokowania zatrzymuje [src] nad [planet] i włącza hamulce. Odleć, jeśli nie chcesz lądować.": "The docking computer stops [src] over [planet] and puts the brakes on. Fly away if you don't want to land."
 }

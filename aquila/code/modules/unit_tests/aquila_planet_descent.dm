@@ -208,15 +208,28 @@
 		TEST_ASSERT(SSmapping.used_turfs[masked] == parking_reservation, "The ground picture's mask reaches outside the flight parking at [COORD(masked)]")
 	qdel(climb)
 	TEST_ASSERT(!length(climb.masked_turfs), "The ground picture's mask stayed after the view was deleted")
+	// Drugie zejście jak w grze: prom wlatuje nad planetę w trybie dokowania z prędkością przelotu, a komputer dokowania
+	// sam go zatrzymuje (zgłoszenie 25.11: prom odlatywał znad planety w trakcie budowania powierzchni i wyboru lądowiska,
+	// więc lądowanie się przerywało i trzeba było wlatywać nad planetę kilka razy)
 	sabre.forceMove(planet.center_turf())
-	// Szukanie miejsca usypia (CHECK_TICK): prom z prędkością ze startu odleciałby w tym czasie znad planety
-	sabre.velocity._set(0, 0)
-	sabre.brakes = TRUE
+	sabre.velocity._set(4, 0)
+	sabre.brakes = FALSE
+	sabre.shuttle_launched_at = 0
 	var/obj/item/fighter_component/docking_computer/DC = sabre.loadout.get_slot(HARDPOINT_SLOT_DOCKING)
 	DC.docking_mode = TRUE
-	var/obj/docking_port/stationary/second_port = sabre.shuttle_find_landing(planet)
-	TEST_ASSERT(second_port, "No landing spot for the second descent")
-	TEST_ASSERT(sabre.shuttle_land(planet, second_port), "The second descent didn't start")
+	DC.docking_cooldown = FALSE
+	var/mob/living/carbon/human/test_pilot = allocate(/mob/living/carbon/human)
+	sabre.pilot = test_pilot
+	TEST_ASSERT(sabre.docking_act(planet), "A shuttle flying over the planet in docking mode didn't start landing")
+	var/matrix/vector/held_velocity = sabre.velocity
+	TEST_ASSERT(held_velocity.ln() == 0, "The docking computer didn't stop the shuttle over the planet (speed [held_velocity.ln()])")
+	TEST_ASSERT(sabre.brakes, "The docking computer didn't put the brakes on over the planet")
+	timeout = world.time + 10 SECONDS
+	while(!sabre.planet_descent && world.time < timeout)
+		sleep(1)
+	sabre.pilot = null
+	TEST_ASSERT(sabre.planet_descent, "The second descent didn't start after the docking computer stopped the shuttle")
+	var/obj/docking_port/stationary/second_port = sabre.planet_descent.port
 	DC.docking_cooldown = TRUE
 	DC.docking_mode = FALSE
 	sabre.planet_descent.finish()
