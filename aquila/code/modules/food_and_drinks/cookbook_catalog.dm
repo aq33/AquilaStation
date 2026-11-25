@@ -57,7 +57,8 @@ GLOBAL_LIST_EMPTY(food_transformations)
 
 	for(var/recipe_type in subtypesof(/datum/crafting_recipe/food))
 		var/datum/crafting_recipe/food/recipe = new recipe_type
-		if(recipe.name && recipe.result)
+		// Danie gotowane krok po kroku ma wpis w sekcji „Krok po kroku”, nie na stole
+		if(recipe.name && recipe.result && (recipe.non_craftable || !is_step_cooked(recipe.result)))
 			var/list/ingredients = list()
 			for(var/ingredient in recipe.reqs)
 				ingredients += list(cookbook_ingredient(ingredient, recipe.reqs[ingredient]))
@@ -91,6 +92,29 @@ GLOBAL_LIST_EMPTY(food_transformations)
 			catalog += list(cookbook_entry(result, reaction.name, "Mieszanki", ingredients, tools))
 		qdel(reaction)
 
+	// Przepisy krokowe (aquila/code/modules/cooking)
+	var/list/step_cookbook = get_cooking_cookbook()
+	for(var/category in step_cookbook)
+		for(var/list/step_entry as anything in step_cookbook[category])
+			var/list/entry = cookbook_entry(text2path(step_entry["path"]), null, "Krok po kroku", list(), list(step_entry["container"]), category)
+			// Kilka przepisów na to samo danie (warianty) ma osobne wiersze
+			entry["id"] = "Krok po kroku:[step_entry["recipe"]]"
+			entry["steps"] = step_entry["instructions"]
+			catalog += list(entry)
+	// Browar w drewnianej beczce (aquila/code/modules/bar/brewing)
+	for(var/datum/brewing_recipe/recipe as anything in GLOB.brewing_recipes)
+		var/list/ingredients = list()
+		for(var/crop in recipe.needed_crops)
+			ingredients += list(cookbook_ingredient(crop, recipe.needed_crops[crop], "j."))
+		for(var/item in recipe.needed_items)
+			ingredients += list(cookbook_ingredient(item, recipe.needed_items[item]))
+		for(var/reagent in recipe.needed_reagents)
+			ingredients += list(cookbook_ingredient(reagent, recipe.needed_reagents[reagent]))
+		var/list/tools = list("czas: [DisplayTimeText(recipe.brew_time)]", "wychodzi [recipe.brewed_amount] j.")
+		if(recipe.pre_reqs)
+			tools += "w beczce gotowy trunek: [cookbook_name(recipe.pre_reqs)]"
+		catalog += list(cookbook_entry(recipe.reagent_to_brew, recipe.display_name, "Browar", ingredients, tools))
+
 	probe_food_transformations()
 	var/static/list/method_names = list("bake" = "Piekarnik", "grill" = "Grill", "process" = "Krojenie")
 	var/static/list/tool_names = list(TOOL_KNIFE = "nóż", TOOL_ROLLINGPIN = "wałek", TOOL_SAW = "piła")
@@ -109,8 +133,19 @@ GLOBAL_LIST_EMPTY(food_transformations)
 				entry["amount"] = transformation["amount"]
 			catalog += list(entry)
 
-	GLOB.cookbook_catalog = catalog
-	return catalog
+	// Takie same wpisy (np. jajka różnych kolorów dające to samo jajko na twardo) raz; każdy wpis ma własne id,
+	// bo powtórzone id myliło wiersze w oknie przy zmianie zakładki
+	var/list/seen = list()
+	var/list/unique = list()
+	for(var/list/entry as anything in catalog)
+		var/key = json_encode(list(entry["method"], entry["name"], entry["ingredients"], entry["tools"], entry["steps"], entry["category"], entry["amount"]))
+		if(seen[key])
+			continue
+		seen[key] = TRUE
+		entry["id"] = "[length(unique) + 1]:[entry["id"]]"
+		unique += list(entry)
+	GLOB.cookbook_catalog = unique
+	return unique
 
 /// Tworzy raz każde jedzenie, którego jeszcze nie było w tej rundzie, żeby jego komponenty zapisały przemiany
 /proc/probe_food_transformations()
@@ -161,8 +196,8 @@ GLOBAL_LIST_EMPTY(food_transformations)
 		"learned" = learned,
 	)
 
-/proc/cookbook_ingredient(path, amount)
-	return list("name" = cookbook_name(path), "amount" = amount, "reagent" = ispath(path, /datum/reagent))
+/proc/cookbook_ingredient(path, amount, unit)
+	return list("name" = cookbook_name(path), "amount" = amount, "reagent" = ispath(path, /datum/reagent), "unit" = unit)
 
 /proc/cookbook_name(path)
 	if(ispath(path, /datum/reagent))
@@ -178,7 +213,7 @@ GLOBAL_LIST_EMPTY(food_transformations)
 	filedesc = "Książka kucharska"
 	category = PROGRAM_CATEGORY_CREW
 	program_icon_state = "generic"
-	extended_desc = "Przepisy na jedzenie: stół, procesor, mikrofalówka, grill, piekarnik i krojenie, z wyszukiwarką po daniu albo składniku."
+	extended_desc = "Przepisy na jedzenie i trunki: stół, gotowanie krok po kroku, procesor, mikrofalówka, grill, piekarnik, krojenie i browar, z wyszukiwarką po daniu albo składniku."
 	size = 2
 	tgui_id = "NtosCookbook"
 	program_icon = "utensils"

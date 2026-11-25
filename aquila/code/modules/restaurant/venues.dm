@@ -84,7 +84,7 @@
 	var/datum/reagent/reagent_to_order = order
 	var/glass_state = initial(reagent_to_order.glass_icon_state)
 	if(glass_state)
-		food_image.add_overlay(mutable_appearance('icons/obj/drinks.dmi', glass_state))
+		food_image.add_overlay(mutable_appearance(initial(reagent_to_order.glass_icon) || 'icons/obj/drinks.dmi', glass_state))
 	else
 		food_image.add_overlay(mutable_appearance('icons/obj/drinks.dmi', "glass_empty"))
 		var/mutable_appearance/drink_color = mutable_appearance('icons/obj/drinks.dmi', "glassoverlay")

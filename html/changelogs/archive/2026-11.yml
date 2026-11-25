@@ -1668,6 +1668,61 @@
   - tweak: Peleryny przykrywają plecak i torbę.
   - code_imp: 'Planety: ruina główna zostaje zapisana po wczytaniu (losowo padający
       test lądowisk).'
+  - rscadd: 'Gotowanie krok po kroku: przepisy z kolejnymi krokami w naczyniach (patelnia,
+      rondel, naczynie żaroodporne, koszyk do frytkownicy, ruszt, miska, deska do
+      krojenia).'
+  - rscadd: Piekarnik, grill, frytkownica i pola płyty grillowej mają ogień i minutnik
+      (Alt+klik).
+  - rscadd: 'Jakość dań: kroki dodatkowe i dobry sprzęt dają lepsze danie, droższe
+      w restauracji robotów i z mocniejszymi bonusami. Przypalone albo źle zrobione
+      danie może zatruć.'
+  - rscadd: 'Konsola zamówień kuchni i baru: składniki i trunki promem albo ekspresem,
+      płaci budżet usług, kucharz ma bon na 10 darmowych produktów.'
+  - balance: Sprzęt kuchenny rozgrzewa się po włączeniu (20 s, z najlepszym laserem
+      5 s), a lepszy laser przyspiesza gotowanie.
+  - balance: Ogień kuchenki ustala temperaturę zupy. Domyślnie średni, przy którym
+      zupa się nie przypala.
+  - imageadd: Naczynia i ikony menu z ParadiseSS13/Paradise (CC BY-SA 3.0).
+  - rscadd: '439 przepisów krokowych i prawie 200 nowych dań z Paradise: słodycze,
+      lody na patyku, sushi, arepy, pizze, sałatki, kebaby i inne.'
+  - rscadd: Mikser lodów, misa do lodów, foremki na cukierki z plastiku, mata do sushi
+      i patyczki do lodów z procesora.
+  - rscadd: Ocet, wasabi, serek śmietankowy i sos pieczeniowy w spiżarni konsoli zamówień
+      kuchni.
+  - balance: Nasze dania robi się teraz krok po kroku w naczyniach. Dania gotowane
+      krokowo zniknęły z craftingu na stole.
+  - imageadd: Sprite'y dań, miksera lodów, foremek i maty do sushi z ParadiseSS13/Paradise
+      (CC BY-SA 3.0).
+  - rscadd: 'Płyta grillowa to grill i kuchenka w jednym: cztery pola na patelnię,
+      rondel albo garnek z zupą, każde z minutnikiem, ogień jeden dla całej płyty
+      (Alt+klik).'
+  - bugfix: 'Książka kucharska: bez zera przy nazwach, zakładki się zawijają, przepisy
+      nie mieszają się przy zmianie zakładki.'
+  - rscadd: 'Browar w drewnianej beczce: Alt+klik wybiera trunek z przepisu (piwa,
+      wina, mocne trunki, miód pitny), plony wrzucasz do beczki, płyny wlewasz. Bez
+      przepisu beczka robi wino z owoców jak dotąd.'
+  - rscadd: 'Polskie trunki z browaru: kwas chlebowy, kompot, wiśniówka, śliwowica,
+      żubrówka, krupnik.'
+  - rscadd: Beczkę z trunkiem z browaru można sprzedać przez zaopatrzenie.
+  - rscadd: Przepisy browaru w Książce kucharskiej w PDA.
+  - rscadd: 81 drinków z tg (m.in. Negroni, Spritz, Old Fashioned, Sazerac, French
+      75, Daiquiri, Moscow Mule, Sangria, koktajle mleczne i smoothie) z efektami
+      i własnymi szklankami.
+  - rscadd: 'Nowe bazy w dyspenserach baru: amaretto, bitter, curaçao, aperitivo,
+      maraschino, likier ziołowy, shochu, rumy, piwo ryżowe, mocne piwo, yūyake, ekstrakt
+      miętowy, oranżada melonowa, Sol Dry.'
+  - imageadd: Sprite'y szklanek drinków z tgstation/tgstation (CC BY-SA 3.0).
+  - bugfix: Beczka browaru nie zużywa wysypanych owoców, nie startuje bez przepisu
+      i nie przelewa trunku ponad pojemność.
+  - bugfix: Martwe ciało nie słyszy już strzałów i wybuchów okrętu ani nim nie trzęsie
+      (do zghostowania tak było).
+  - balance: Ból, rany i utrata krwi nie zatrzymują już serca przez szybkie tętno.
+      Zatrzymanie krążenia z tempa powoduje tylko przedawkowanie stymulantów albo
+      wychłodzenie, a gracz dostaje wcześniej ostrzeżenie.
+  - rscadd: Podpowiedź ekranowa i opis przy badaniu mówią, czy obiekt jest piętro
+      niżej albo wyżej.
+  - bugfix: 'Atlas: barierki na dachu nad wlotem hangaru desantowca, z którego łatwo
+      było spaść piętro niżej.'
   sh4dow321:
   - bugfix: Zapętlony alarm przegrzania reaktora (i inne pętle alarmów statku) cichnie
       też u graczy, którzy w międzyczasie zginęli albo opuścili statek.
@@ -1683,6 +1738,16 @@
   - bugfix: Link „strona wiki” w powitaniu stanowiska prowadzi na stronę stanowiska
       na wiki Aquili, a nie do wyszukiwarki BeeStation.
   - bugfix: Ogłoszenia głosowe AI (VOX) są sprawdzane filtrem zakazanych słów.
+  - bugfix: Pilot albo pasażer wyrzucony poza myśliwiec przestaje nim sterować.
+  - bugfix: Ofiara horroru dostaje komunikację z horrorem.
+  - bugfix: Po EMP konsola medyczna nie pokazuje graczy z wyłączonymi czujnikami kombinezonu.
+  - bugfix: Misja „Odbij kwaterę” nie psuje już startu trybu overmapy.
+  - bugfix: Abordażyści nie przeskakują w losowe miejsce, gdy wchodzą na drabinę bez
+      drugiego końca.
+  - bugfix: Oględziny martwych zwierząt pokazują poprawny opis.
+  - bugfix: APC telekomunikacji na Atlantis ma polską nazwę.
+  - code_imp: Poprawione runtime'y z rund 6585–6593 (nanity, flak, sygnały, cień światła
+      na promie, sieć kamer, lobby, radar, drabiny, mysz w dłoni, lampy).
   tralezab, MrMelbert:
   - rscadd: Postacie zapamiętują niezwykłe zdarzenia (operacje, bomby, śmierć na ich
       oczach, poślizgi, podpalenia, wielkie wygrane, medale i wiele innych). Wspomnienia
