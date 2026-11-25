@@ -1355,6 +1355,7 @@
 // #include "code\modules\test_chamber\kits\pr_420_traitor_cele.dm"
 #include "code\modules\test_chamber\kits\test_subjects.dm"
 // Komora testowa - zestawy PR-ów niżej (usuwać razem z plikiem zestawu po przetestowaniu)
+#include "code\modules\test_chamber\kits\pr_695_dowodztwo.dm"
 #include "code\modules\test_chamber\kits\pr_672_cyborgi.dm"
 #include "code\modules\test_chamber\kits\pr_672_implanty.dm"
 #include "code\modules\test_chamber\kits\pr_672_nif.dm"

@@ -31539,5 +31539,7 @@
 "\\improper Fion": "\\improper Pug",
 "kurtka galowa kapitana": "Captain's dress jacket",
 "kurtka galowa Starszego Oficera": "Executive Officer's dress jacket",
-"beret Oficera Pokładowego": "Bridge Officer's beret"
+"beret Oficera Pokładowego": "Bridge Officer's beret",
+"Resprite dowództwa": "Command resprite",
+"1) Załóż kolejno mundury Kapitana, Starszego Oficera i Oficera Pokładowego, obróć się we wszystkie strony i podwiń je Alt+klikiem. \\": "1) Put on the Captain's, Executive Officer's and Bridge Officer's uniforms one by one, turn in every direction and roll them down with Alt+click. 2) Put on the dress jackets, tunic, carapace, captain's hardsuit with helmet, caps, berets, cloaks and satchel: new sprites in the inventory and on the character. 3) ID cards on a lanyard and the Captain's and XO's PDAs: sprite in hand and on the character, the PDA turns on. 4) Captain's, Executive Officer's and bridge lockers: closed, open, door animation, lock light, welding. 5) Outside the chamber: the Captain, Executive Officer and Bridge Officer have the new outfits after joining the round."
 }
