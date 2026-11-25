@@ -120,3 +120,27 @@
 
 ///Client volume preferences, passed to playsound() as volume_pref
 #define VOLUME_PREF_TESLA "tesla"
+// AQ EDIT START - mikser dźwięku
+// Mikser dźwięku (aquila/code/modules/client/sound_mixer.dm): kategorie VOLUME_PREF_* z suwakiem 0-100 w ustawieniach gry.
+// Dźwięk dostaje kategorię przez volume_pref w playsound()/playsound_local() albo mnożnik mob.sound_volume_mult().
+/// Alarmy i sygnały okrętu: relay() na kanale (stan bojowy, rozruch FTL, alarm reaktora, kadłub krytyczny)
+#define VOLUME_PREF_SHIP_ALERTS "ship_alerts"
+/// Broń i efekty okrętu: relay() bez kanału i relay_to_nearby() (salwy, trafienia, dopalacz), skrzypienie kadłuba
+#define VOLUME_PREF_SHIP_FX "ship_fx"
+/// Broń ręczna: strzały, tłumik, odległe strzały
+#define VOLUME_PREF_GUNS "guns"
+/// Dźwięki emotek
+#define VOLUME_PREF_EMOTES "emotes"
+/// Mowa postaci: mnoży się z trybem „hmm” / Goon / cisza (VOLUME_PREF_SPEECH*)
+#define VOLUME_PREF_VOICES "voices"
+/// Nagrane kwestie botów (medibot, secbot itd.)
+#define VOLUME_PREF_BOTS "bots"
+/// TTS: rozkazy drużyny i głos SI
+#define VOLUME_PREF_TTS "tts"
+/// Dźwięki ogłoszeń dowództwa i komunikatów
+#define VOLUME_PREF_ANNOUNCEMENTS "announcements"
+/// Efekty otoczenia i szum statku w tle
+#define VOLUME_PREF_AMBIENCE "ambience"
+/// Muzyka otoczenia
+#define VOLUME_PREF_AMBIENT_MUSIC "ambient_music"
+// AQ EDIT END

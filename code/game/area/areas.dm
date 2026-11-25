@@ -643,7 +643,7 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 		if((progress <= 50) && (mymob.client?.prefs.toggles & PREFTOGGLE_SOUND_AMBIENCE) && mymob.can_hear_ambience())
 			var/list/creaks = list('nsv13/sound/ambience/ship_damage/creak1.ogg','nsv13/sound/ambience/ship_damage/creak2.ogg','nsv13/sound/ambience/ship_damage/creak3.ogg','nsv13/sound/ambience/ship_damage/creak4.ogg','nsv13/sound/ambience/ship_damage/creak5.ogg','nsv13/sound/ambience/ship_damage/creak6.ogg','nsv13/sound/ambience/ship_damage/creak7.ogg')
 			var/creak = pick(creaks)
-			SEND_SOUND(mymob, sound(creak, repeat = 0, wait = 0, volume = 100, channel = CHANNEL_AMBIENT_EFFECTS))
+			SEND_SOUND(mymob, sound(creak, repeat = 0, wait = 0, volume = 100 * mymob.sound_volume_mult(VOLUME_PREF_SHIP_FX), channel = CHANNEL_AMBIENT_EFFECTS)) // AQ EDIT - mikser dźwięku: skrzypienie uszkodzonego kadłuba
 			return
 
 /**
