@@ -16413,9 +16413,6 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/ship/blue/orlen,
-/obj/machinery/computer/ship/damage_control{
-	dir = 4
-	},
 /turf/open/floor/durasteel/techfloor_grid,
 /area/engine/break_room)
 "Ss" = (

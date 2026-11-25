@@ -19,7 +19,6 @@
 		Ekran taktyczny: stanowisko rozpoznania, konsola taktyczna, DRADIS mostka, monitorowanie uzbrojenia i konsola AMS otwierają jedno okno z trybami Rozpoznanie, Ogień i Podgląd. Stanowisko startuje w Rozpoznaniu i tylko z niego da się sterować sensorami; konsola taktyczna (gdy siedzisz przy niej jako strzelec) startuje w Ogniu, z AMS pod uzbrojeniem; pozostałe konsole otwierają Podgląd, a przyciski innych trybów są wyszarzone. Usiądź przy sterze: okno otwiera się w Podglądzie z przyciskiem „Impuls radaru”, a w karcie kontaktu jest „Wywołaj”. Myśliwce na radarze mają mały wypełniony znacznik ze strzałką kursu, a na zasięgu 200 pól przerywany obrys. \
 		Nawigacja: zakładka „Napęd FTL” rozkręca stary napęd tylko z dostępem inżynierii; komputer FTL w maszynowni otwiera to samo okno na tej zakładce. \
 		Lotnictwo (kontrola lotów i konsola katapult) i Odzysk i abordaż (zakłócacz i magnes) mają po dwie zakładki, każda konsola otwiera swoją. \
-		Kontrola uszkodzeń: przedziały na schemacie mają prawdziwy kształt, korytarze nie zasłaniają pomieszczeń. \
 		Wszystkie okna konsol okrętu mają wygląd stanowiska rozpoznania. \
 		Szafka kontroli uszkodzeń (szara z żółtymi drzwiami) stoi w korytarzach przy drzwiach pożarowych; w środku gaśnice, nadmuchiwane ściany, uszczelniacz i taśma."
 	items = list(

@@ -13755,7 +13755,6 @@
 	dir = 4
 	},
 /obj/structure/railing,
-/obj/machinery/computer/ship/damage_control,
 /turf/open/floor/carpet/royalblack,
 /area/bridge/cic)
 "Te" = (

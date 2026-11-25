@@ -5137,7 +5137,6 @@
 /turf/open/floor/plasteel/dark,
 /area/nsv/weapons/access_corridor)
 "zb" = (
-/obj/machinery/computer/ship/damage_control,
 /turf/closed/wall/r_wall/ship,
 /area/engine/armour_pump)
 "zg" = (

@@ -6538,7 +6538,6 @@
 	name = "Reactor Control RC";
 	pixel_y = 26
 	},
-/obj/machinery/computer/ship/damage_control,
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering/reactor_control)
 "tt" = (
@@ -14803,9 +14802,6 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/ship/blue,
-/obj/machinery/computer/ship/damage_control{
-	dir = 4
-	},
 /turf/open/floor/plasteel/dark/side{
 	dir = 4
 	},

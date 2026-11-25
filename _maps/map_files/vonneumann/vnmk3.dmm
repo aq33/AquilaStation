@@ -953,7 +953,6 @@
 /obj/item/storage/secure/safe/caps_spare{
 	pixel_y = 28
 	},
-/obj/machinery/computer/ship/damage_control,
 /turf/open/floor/circuit,
 /area/bridge/cic)
 "aFz" = (
@@ -21674,9 +21673,6 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/orange/visible,
-/obj/machinery/computer/ship/damage_control{
-	dir = 4
-	},
 /turf/open/floor/carpet/ship/orange_carpet,
 /area/engine/engineering/reactor_control)
 "riG" = (
