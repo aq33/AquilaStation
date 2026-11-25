@@ -120,11 +120,15 @@
 
 	// Ploter: dane bieżącego wydruku
 	lathe.being_built = design
+	lathe.busy = TRUE
 	lathe.total_build_time = 50
 	lathe.process_completion_world_tick = world.time + 25
 	var/list/printing = lathe.ui_data(engineer)["printing"]
 	TEST_ASSERT(printing, "Autolathe console gets no data of the item being printed")
 	TEST_ASSERT_EQUAL(printing["id"], design.id, "Autolathe console plots a wrong design")
+	// Czekanie na materiały (being_built bez busy) to nie wydruk
+	lathe.busy = FALSE
+	TEST_ASSERT(!lathe.ui_data(engineer)["printing"], "Autolathe console shows a print while it only waits for materials")
 	lathe.being_built = null
 
 	var/obj/machinery/rnd/production/protolathe/protolathe = allocate(/obj/machinery/rnd/production/protolathe, spot)
