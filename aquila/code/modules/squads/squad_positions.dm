@@ -144,11 +144,17 @@
 	return smallest
 
 /datum/squad/add_member(mob/living/carbon/human/H, give_items = FALSE)
+	var/mob/living/carbon/human/old_leader = leader
 	. = ..()
 	if(!ishuman(H) || !(H in members))
 		return
 	RegisterSignal(H, COMSIG_MOB_DEATH, PROC_REF(aq_on_member_death), override = TRUE)
 	RegisterSignal(H, COMSIG_MOB_LOGIN, PROC_REF(aq_on_member_login), override = TRUE)
+	// nsv13 wpisuje wyższego stopniem nowego członka jako dowódcę po cichu (leader = H): zmianę robi assign_leader(),
+	// z ogłoszeniem i z pierwszeństwem graczy przy komputerze
+	if(old_leader && leader != old_leader)
+		leader = old_leader
+		assign_leader()
 	aq_refresh_all()
 	aq_add_marker_images(H)
 

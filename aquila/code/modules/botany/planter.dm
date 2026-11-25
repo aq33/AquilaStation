@@ -74,9 +74,7 @@
 				return
 			attacker.visible_message("[attacker] grzebie w: [parent].", span_warning("Tu nie ma żadnych chwastów ([parent])!"))
 			return
-		attacker.visible_message("[attacker] wyrywa chwasty.", span_notice("Usuwasz chwasty z: [parent]."))
-		weed_level = 0
-		playsound(parent, 'sound/effects/shovel_dig.ogg', 60)
+		remove_weeds(attacker)
 		return
 //Plumbing - because the punger is coded stupid
 	if(istype(I, /obj/item/plunger))
@@ -111,6 +109,12 @@
 		obj_parent.visible_message(span_notice("[attacker] spryskuje [obj_parent], używając: [reagent_source]."))
 		playsound(obj_parent)
 		reagent_source.reagents?.trans_to(obj_parent, spray.amount_per_transfer_from_this, transfered_by = attacker)
+
+/// Pielenie kultywatorem (klik w tacę albo w roślinę, gdy w tacy są chwasty)
+/datum/component/planter/proc/remove_weeds(mob/user)
+	user.visible_message("[user] wyrywa chwasty.", span_notice("Usuwasz chwasty z: [parent]."))
+	weed_level = 0
+	playsound(parent, 'sound/effects/shovel_dig.ogg', 60)
 
 /datum/component/planter/proc/async_spade_action(mob/user)
 	playsound(parent, 'sound/effects/shovel_dig.ogg', 60)

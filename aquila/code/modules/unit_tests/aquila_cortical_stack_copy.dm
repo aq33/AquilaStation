@@ -36,6 +36,30 @@
 	blank.Insert(patient)
 	TEST_ASSERT(!blank.clone_fields, "An implanted stack kept the old copy")
 
+	// Starszy zapis ze stosu nie wypiera nowszego rekordu (kapsuła odrzuciłaby go jako nieaktualny)
+	record = find_record("id", stack.clone_fields["id"], console.records) // drugie wczytanie podmieniło rekord
+	record.fields["last_death"] = 1000
+	var/obj/item/organ/cortical_stack/old_stack = allocate(/obj/item/organ/cortical_stack)
+	old_stack.write_record(record)
+	old_stack.clone_fields["last_death"] = 500
+	TEST_ASSERT(!console.load_cortical_stack(old_stack, doctor), "An older stack record replaced a newer one")
+	TEST_ASSERT(find_record("id", record.fields["id"], console.records)?.fields["last_death"] == 1000, "The newer record was lost")
+
+	// Mózg wyjęty przed stosem: umysł zapamiętany za życia i tak trafia do zapisu
+	var/mob/living/carbon/human/donor = allocate(/mob/living/carbon/human, get_step(run_loc_floor_bottom_left, NORTHEAST))
+	donor.mind_initialize()
+	var/datum/mind/donor_mind = donor.mind
+	var/obj/item/organ/cortical_stack/donor_stack = donor.getorganslot(ORGAN_SLOT_CORTICAL_STACK)
+	if(!donor_stack)
+		donor_stack = allocate(/obj/item/organ/cortical_stack)
+		donor_stack.Insert(donor)
+	donor_stack.on_life()
+	var/obj/item/organ/brain/brain = donor.getorganslot(ORGAN_SLOT_BRAIN)
+	brain.Remove(donor)
+	TEST_ASSERT(!donor.mind, "The body kept the mind after the brain was taken out")
+	donor_stack.Remove(donor)
+	TEST_ASSERT(donor_stack.clone_fields?["mindref"] == "[REF(donor_mind)]", "The stack taken out after the brain didn't record the mind")
+
 /// AQUILA - horror wycina się operacją manipulacji organami głowy, opcją „wyciągnięcie pasożyta” (zgłoszenie 25.11)
 /datum/unit_test/aquila_horror_surgery_removal
 

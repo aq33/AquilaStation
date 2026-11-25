@@ -60,6 +60,13 @@
 	user.put_in_active_hand(cultivator)
 	cultivator.melee_attack_chain(user, tray)
 	TEST_ASSERT(planter.weed_level == 0, "The cultivator didn't remove the weeds (level [planter.weed_level])")
+	// Roślina zasłania tacę: kultywator kliknięty w roślinę przy chwastach pieli, zamiast ją wyrywać
+	var/datum/component/plant/weeded = plant_tomato(tray)
+	TEST_ASSERT_NOTNULL(weeded, "Couldn't plant a tomato for weeding")
+	planter.weed_level = 20
+	cultivator.melee_attack_chain(user, weeded.plant_item)
+	TEST_ASSERT(planter.weed_level == 0, "The cultivator clicked on the plant didn't remove the weeds (level [planter.weed_level])")
+	TEST_ASSERT(!QDELETED(weeded.plant_item) && weeded.plant_item.loc == tray, "The cultivator ripped out the plant instead of weeding")
 
 /// AQUILA - pager nowego członka drużyny trafia do kieszeni, a nie na dno plecaka
 /datum/unit_test/aquila_squad_pager_pocket

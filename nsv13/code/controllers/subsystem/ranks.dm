@@ -58,11 +58,12 @@ GLOBAL_LIST_INIT(pecking_order, world.file2list("config/ranks/pecking_order.txt"
 	//We live in a clout based society :(
 	if(myClout == theirClout)
 		return "<span class='notice'>Masz tę samą rangę.</span>"
-	// AQ EDIT START - pecking_order.txt idzie od najwyższego stopnia, więc niższy numer znaczy wyższy stopień (było odwrotnie)
+	// AQ EDIT START - pecking_order.txt idzie od najwyższego stopnia, więc niższy numer znaczy wyższy stopień (było odwrotnie).
+	// Komunikat czyta oglądający (them), a us to oglądana postać (examine woła check_outranks(src, user))
 	if(myClout < theirClout)
-		return "<span class='boldnotice'>Masz wyższy stopień ([my_rank_shown]) niż [them] ([their_rank_shown]).</span>"
+		return "<span class='boldwarning'>[us] ma wyższy stopień ([my_rank_shown]) niż ty ([their_rank_shown]).</span>"
 	if(myClout > theirClout)
-		return "<span class='boldwarning'>[them] ma wyższy stopień ([their_rank_shown]) niż ty ([my_rank_shown]).</span>"
+		return "<span class='boldnotice'>Masz wyższy stopień ([their_rank_shown]) niż [us] ([my_rank_shown]).</span>"
 	// AQ EDIT END
 	return "<span class='warning'>Zapomniałeś, jak działają stopnie.</span>"
 

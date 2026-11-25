@@ -248,6 +248,11 @@
 	TEST_ASSERT(QDELETED(stream), "The landing broadcast went on after the aborted descent")
 	// Pierwsze zejście wylądowało, więc jego transmisja może jeszcze nadawać; tej z przerwanego zejścia ma już nie być
 	TEST_ASSERT(!(stream_key in LAZYACCESS(GLOB.broadcast_network_sources, CAMERANET_NETWORK_LANDING)), "The aborted descent stayed on air")
+	// Anulowane lądowanie: prom nie jest zatrzymywany nad tą planetą, dopóki nad nią wisi; po odlocie (tu: tryb dokowania
+	// wyłączony, więc prom „nie jest nad planetą”) zapamiętane anulowanie znika
+	sabre.planet_landing_declined = WEAKREF(planet)
+	planet.check_landing_craft()
+	TEST_ASSERT(!sabre.planet_landing_declined, "The declined landing stayed remembered after the shuttle left the planet")
 
 	// Trzecie zejście: obrys lądowiska jest zajęty dla innych promów, a coś postawione na nim w trakcie zejścia przerywa
 	// lądowanie (dokowanie zabiłoby ludzi i usunęło przedmioty pod kadłubem)

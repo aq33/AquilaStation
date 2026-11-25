@@ -127,6 +127,9 @@ GLOBAL_LIST_EMPTY(overmap_planets)
 		if(!craft.shuttle_port || craft.shuttle_docked_at)
 			continue
 		if(!craft_over_planet(craft))
+			// Prom odleciał znad planety, nad którą anulował lądowanie: przy następnym przylocie znów zostanie zatrzymany
+			if(craft.planet_landing_declined?.resolve() == src)
+				craft.planet_landing_declined = null
 			continue
 		craft.docking_act(src)
 

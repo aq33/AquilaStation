@@ -15,6 +15,9 @@
 	var/turf/planet_landing_zone
 	/// Timer czekania na zbudowanie powierzchni (kasowany, gdy powierzchnia jest gotowa)
 	var/planet_wait_timer
+	/// Planeta, nad którą pilot anulował lądowanie: komputer dokowania pyta dalej, ale nie zatrzymuje nad nią promu,
+	/// dopóki prom nie odleci znad niej (inaczej co PLANET_LANDING_ABORT_COOLDOWN stawał w miejscu)
+	var/datum/weakref/planet_landing_declined
 
 /obj/structure/overmap/small_craft/transport/Destroy()
 	planet_landing_zone = null
@@ -39,7 +42,8 @@
 		shuttle_dock_hint(planet, "Na [planet] nie da się wylądować.")
 		return FALSE
 	DC.docking_cooldown = TRUE
-	planet_hold_position(planet)
+	if(planet_landing_declined?.resolve() != planet)
+		planet_hold_position(planet)
 	if(planet.ensure_surface())
 		INVOKE_ASYNC(src, PROC_REF(shuttle_begin_landing), planet)
 		return TRUE
@@ -121,6 +125,7 @@
 /// Pilot przerwał lądowanie (zamknął okno wyboru albo nie odpowiedział): przez chwilę planeta nie pyta od nowa
 /obj/structure/overmap/small_craft/transport/proc/planet_landing_aborted(obj/structure/overmap/planet/planet)
 	planet_landing_zone = null
+	planet_landing_declined = WEAKREF(planet)
 	var/obj/item/fighter_component/docking_computer/DC = loadout.get_slot(HARDPOINT_SLOT_DOCKING)
 	if(DC)
 		DC.docking_cooldown = TRUE

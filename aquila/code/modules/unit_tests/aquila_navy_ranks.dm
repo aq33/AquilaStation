@@ -31,7 +31,25 @@
 	TEST_ASSERT(aq_rank_span("kmdr por. ") == "<span class='rank'>kmdr por. </span>", "The rank in a speech line isn't in its own span")
 	TEST_ASSERT(aq_rank_span(null) == "", "A missing rank left an empty span")
 
+	// Opis postaci: examine woła check_outranks(oglądany, oglądający), a komunikat czyta oglądający
+	if(CONFIG_GET(flag/show_ranks))
+		var/mob/living/carbon/human/captain = allocate(/mob/living/carbon/human, run_loc_floor_bottom_left)
+		var/mob/living/carbon/human/seaman = allocate(/mob/living/carbon/human, get_step(run_loc_floor_bottom_left, EAST))
+		give_test_rank(captain, JOB_NAME_CAPTAIN)
+		give_test_rank(seaman, JOB_NAME_ASSISTANT)
+		var/seen_by_seaman = check_outranks(captain, seaman)
+		TEST_ASSERT(findtext(seen_by_seaman, "[captain] ma wyższy stopień"), "A seaman examining the captain reads: [seen_by_seaman]")
+		var/seen_by_captain = check_outranks(seaman, captain)
+		TEST_ASSERT(findtext(seen_by_captain, "Masz wyższy stopień"), "The captain examining a seaman reads: [seen_by_captain]")
+
 	if(configured != "marynarka.txt")
 		SSjob.LoadRanks("[global.config.directory]/ranks/[configured]")
+
+/// Karta z zawodem: z niej compose_rank() bierze stopień
+/datum/unit_test/aquila_navy_ranks/proc/give_test_rank(mob/living/carbon/human/H, title)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/color/grey(H), ITEM_SLOT_ICLOTHING) // bez kombinezonu nie ma miejsca na kartę
+	var/obj/item/card/id/card = new(H)
+	card.assignment = title
+	H.equip_to_slot_or_del(card, ITEM_SLOT_ID)
 
 #undef TEST_ASSERT

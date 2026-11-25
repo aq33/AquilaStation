@@ -82,8 +82,14 @@
 //Spade interaction, allows us to dig up plants
 	if((proximity_flag || get_dist(user, plant_item) <= 1) && !spading && istype(item, /obj/item/shovel))
 		INVOKE_ASYNC(src, PROC_REF(async_catch_attackby), item, user)
-	// AQUILA - kultywator wyrywa roślinę (bez przenoszenia, roślina przepada)
+	// AQUILA - kultywator: przy chwastach w tacy pieli (roślina zasłania tacę, więc klik trafia w nią), bez chwastów wyrywa
+	// roślinę (bez przenoszenia, roślina przepada)
 	else if((proximity_flag || get_dist(user, plant_item) <= 1) && !spading && istype(item, /obj/item/cultivator) && plant_item.loc != item)
+		var/atom/home = plant_item.loc
+		var/datum/component/planter/planter = home?.GetComponent(/datum/component/planter)
+		if(planter?.weed_level > 1)
+			planter.remove_weeds(user)
+			return
 		INVOKE_ASYNC(src, PROC_REF(rip_out), user, PLANT_RIP_TOOL_TIME)
 
 /datum/component/plant/proc/async_catch_attackby(obj/item, mob/living/user)
