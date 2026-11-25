@@ -85,6 +85,7 @@
 							var/datum/mind/M = mind
 							user.mind.memory += "<li>Conspirator: [M.name]</li>"
 						user.mind.memory += "</ul>"
+		user.mind.memory += changeling_absorb_memory_stories(suckedbrain) // AQ EDIT - wspomnienia ofiary jako opowieści (tg)
 		user.mind.memory += "<b>To wszystko, co miał [target].</b><BR>"
 		user.memory() //I can read your mind, kekeke. Output all their notes.
 

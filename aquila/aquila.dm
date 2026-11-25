@@ -1362,6 +1362,7 @@
 #include "code\modules\test_chamber\kits\pr_695_dowodztwo.dm"
 #include "code\modules\test_chamber\kits\pr_700_mikser_dzwieku.dm"
 #include "code\modules\test_chamber\kits\pr_696_horror_czaszka.dm"
+#include "code\modules\test_chamber\kits\pr_701_wspomnienia.dm"
 #include "code\modules\test_chamber\kits\pr_672_cyborgi.dm"
 #include "code\modules\test_chamber\kits\pr_672_implanty.dm"
 #include "code\modules\test_chamber\kits\pr_672_nif.dm"
@@ -2862,6 +2863,7 @@
 #include "code\modules\unit_tests\aquila_pr655_review_fixes.dm"
 // BOTY: testy
 #include "code\modules\unit_tests\aquila_basic_bots.dm"
+#include "code\modules\unit_tests\aquila_memories.dm"
 #endif
 
 // Heretyk z tg (osobny plik z includami)
@@ -3065,6 +3067,17 @@
 #include "code\modules\pixel_devices\fabricator.dm"
 #include "code\modules\pixel_devices\grinder.dm"
 #include "code\modules\pixel_devices\microwave.dm"
+
+// WSPOMNIENIA: system wspomnień z tg (tgstation/tgstation#60302, #72110, #72457), ryciny i tatuaże
+#include "code\datums\memory\_memory.dm"
+#include "code\datums\memory\memory_helpers.dm"
+#include "code\datums\memory\general_memories.dm"
+#include "code\datums\memory\key_memories.dm"
+#include "code\datums\memory\memory_hooks.dm"
+#include "code\datums\memory\art.dm"
+#include "code\datums\memory\engraving.dm"
+#include "code\datums\memory\tattoo.dm"
+// WSPOMNIENIA: koniec
 
 // Profiler byond-tracy: MUSI być ostatnim include'em całego builda (BYOND inicjuje zmienne statyczne od końca,
 // więc ta rusza pierwsza, przed Master i mapą). Opis: tools/tracy/README.md

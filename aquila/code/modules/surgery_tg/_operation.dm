@@ -1119,6 +1119,7 @@ GLOBAL_DATUM_INIT(operations, /datum/operation_holder, new)
 	if(operation_flags & OPERATION_NOTABLE)
 		SSblackbox.record_feedback("tally", "surgeries_completed", 1, type)
 		record_character_stat(surgeon, "surgeries") // statystyki postaci (character_stats.dm)
+		surgeon.add_mob_memory(/datum/memory/surgery, deuteragonist = get_patient(operating_on) || operating_on, surgery_type = name)
 
 	SEND_SIGNAL(surgeon, COMSIG_ATOM_SURGERY_SUCCESS, src, operating_on, tool)
 	play_operation_sound(operating_on, surgeon, tool, success_sound)
