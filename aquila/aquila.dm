@@ -1208,6 +1208,7 @@
 #include "code\modules\overmap\modules\harpoon.dm"
 #include "code\modules\overmap\modules\antag_shuttles.dm"
 #include "code\modules\overmap\modules\ship_vfx.dm"
+#include "code\modules\overmap\modules\ship_vfx_combat.dm"
 #include "code\modules\overmap\consoles\ftl_computer_window.dm"
 #include "code\modules\overmap\consoles\aviation_console.dm"
 #include "code\modules\overmap\consoles\salvage_console.dm"

@@ -4,6 +4,7 @@ GLOBAL_LIST_INIT(overmap_sprite_bounds, list(
 	"aquila/icons/overmap/antag/hunter_ship.dmi|hunter_ship" = list(96, 160, 96, 142, 0.0, 0.0),
 	"aquila/icons/overmap/antag/pirate_raider.dmi|pirate_raider" = list(64, 64, 42, 59, 0.0, 0.5),
 	"aquila/icons/overmap/antag/salvager_ship.dmi|salvager_ship" = list(64, 64, 36, 38, 0.0, 0.0),
+	"aquila/icons/overmap/antag/saucer.dmi|saucer" = list(48, 48, 26, 28, 0.0, -5.0),
 	"aquila/icons/overmap/aquilas.dmi|aquilas-no-weapons" = list(64, 96, 39, 80, -0.5, 0.0),
 	"aquila/icons/overmap/aquilas.dmi|aquilas-weapon" = list(64, 96, 39, 80, -0.5, 0.0),
 	"aquila/icons/overmap/aquilas.dmi|artillery-east" = list(64, 96, 5, 10, 3.5, 29.0),

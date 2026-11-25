@@ -1,5 +1,5 @@
 /// AQUILA - wabiki i zagłuszanie (aquila/code/modules/overmap/modules/decoys.dm): flara odciąga torpedę i pocisk na podczerwień, ale nie rakietę radarową,
-/// chaff odwrotnie (według głowicy z projektu pocisku), wabików ubywa i mają czas odnowienia, a zagłuszacz podnosi sygnaturę okrętu.
+/// chaff odwrotnie (według głowicy z projektu pocisku), flara wypuszcza dwie flary na obraz i sypie iskrami, wabików ubywa i mają czas odnowienia, a zagłuszacz podnosi sygnaturę okrętu.
 /datum/unit_test/aquila_decoys
 	var/obj/structure/overmap/small_craft/ship
 
@@ -17,6 +17,14 @@
 		return Fail("Flara nie zwiodła dokładnie jednego pocisku (torpedy)")
 	if(!istype(torpedo.homing_target, /obj/effect/overmap_decoy/flare))
 		return Fail("Torpeda nie poleciała za flarą")
+	var/obj/effect/overmap_decoy/flare/main_flare = torpedo.homing_target
+	if(!main_flare.particles)
+		return Fail("Flara nie sypie iskrami (brak cząsteczek)")
+	var/visual_flares = 0
+	for(var/obj/effect/overmap_decoy/flare/visual/extra in get_turf(main_flare))
+		visual_flares++
+	if(visual_flares != 2)
+		return Fail("Za rufą jest [visual_flares] dodatkowych flar zamiast 2")
 	if(missile.homing_target != ship)
 		return Fail("Flara zwiodła rakietę radarową")
 	if(ship.flares != flares_before - 1)

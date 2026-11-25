@@ -25,23 +25,91 @@
 	. = ..()
 	QDEL_IN(src, lifetime)
 
+/particles/overmap_flare_sparks
+	icon = 'aquila/icons/effects/particles/misc.dmi'
+	icon_state = list("sparkle_1" = 2, "sparkle_2" = 1, "circle_2" = 1)
+	width = 256
+	height = 256
+	count = 60
+	spawning = 4
+	lifespan = generator("num", 6, 12)
+	fade = 6
+	velocity = generator("circle", 0.4, 1.4)
+	friction = 0.06
+	scale = generator("num", 0.3, 0.7)
+	grow = list(-0.02, -0.02)
+	gradient = list(0, "#ffffff", 0.35, "#fff0a0", 0.7, "#ff9030", 1, "#ff302000")
+	color_change = 0.1
+	color = 0
+
+/particles/overmap_chaff
+	icon = 'aquila/icons/effects/particles/misc.dmi'
+	icon_state = list("sparkle_1" = 2, "sparkle_2" = 2, "shard" = 1)
+	width = 400
+	height = 400
+	count = 160
+	spawning = 40
+	lifespan = generator("num", 60, 140)
+	fade = 50
+	fadein = 3
+	velocity = generator("circle", 0.3, 1.6)
+	friction = 0.04
+	drift = generator("vector", list(-0.05, -0.05), list(0.05, 0.05))
+	spin = generator("num", -15, 15)
+	scale = generator("num", 0.3, 0.8)
+	gradient = list(0, "#ffffff", 0.2, "#9aa8b8", 0.4, "#e8f0ff", 0.6, "#7d8896", 0.8, "#f4f8ff", 1, "#8a96a4")
+	color_change = generator("num", 0.05, 0.2)
+	color = generator("num", 0, 1)
+
+/// Flara: rozżarzona kula (biały rdzeń w pomarańczowej poświacie), która sypie iskrami, pulsuje i odpływa za rufę
 /obj/effect/overmap_decoy/flare
 	name = "flara"
-	icon = 'icons/obj/lighting.dmi'
-	icon_state = "flare-on"
+	icon = 'aquila/icons/effects/particles/misc.dmi'
+	icon_state = "circle_1"
+	color = "#fff6d8"
+	blend_mode = BLEND_ADD
+	appearance_flags = PIXEL_SCALE
 	light_range = 3
 	light_power = 2
 	light_color = "#ffb060"
 
+/obj/effect/overmap_decoy/flare/Initialize(mapload)
+	. = ..()
+	particles = new /particles/overmap_flare_sparks
+	add_filter("flare_glow", 1, list("type" = "drop_shadow", "x" = 0, "y" = 0, "size" = 6, "color" = "#ff9a3080"))
+	transform = matrix() * 0.6
+	animate(src, transform = matrix() * 1.1, time = 3, easing = SINE_EASING, loop = -1)
+	animate(transform = matrix() * 0.8, time = 3, easing = SINE_EASING)
+	addtimer(CALLBACK(src, PROC_REF(burn_out)), lifetime - 2 SECONDS)
+
+/obj/effect/overmap_decoy/flare/proc/burn_out()
+	if(particles)
+		particles.spawning = 0
+	animate(src, alpha = 0, transform = matrix() * 0.3, time = 2 SECONDS)
+
+/// Odpływa od okrętu przeciwnie do kursu, z odchyleniem spread; przesuwa się tylko obraz, cel pocisków zostaje na polu
+/obj/effect/overmap_decoy/flare/proc/drift_from(obj/structure/overmap/ship, spread)
+	var/heading = ship.angle + 180 + spread
+	animate(src, pixel_x = sin(heading) * 40, pixel_y = cos(heading) * 40, time = lifetime, easing = QUAD_EASING | EASE_OUT, flags = ANIMATION_PARALLEL)
+
+/// Dodatkowa flara tylko na obraz (wachlarz za rufą); pociski jej nie biorą za cel
+/obj/effect/overmap_decoy/flare/visual
+
+/// Chaff: chmura pasków folii, która mieni się srebrem i powoli gaśnie
 /obj/effect/overmap_decoy/chaff
 	name = "chmura chaffu"
-	icon = 'icons/effects/96x96.dmi'
-	icon_state = "smoke"
-	color = "#c8d0d8"
-	alpha = 170
-	pixel_x = -32
-	pixel_y = -32
+	icon = null
+	icon_state = null
 	lifetime = 15 SECONDS
+
+/obj/effect/overmap_decoy/chaff/Initialize(mapload)
+	. = ..()
+	particles = new /particles/overmap_chaff
+	addtimer(CALLBACK(src, PROC_REF(stop_spawning)), 1 SECONDS)
+
+/obj/effect/overmap_decoy/chaff/proc/stop_spawning()
+	if(particles)
+		particles.spawning = 0
 
 /obj/structure/overmap
 	/// AQUILA - wabiki na pokładzie i ich maksimum (odnawiają się co DECOY_REGEN_TIME)
@@ -68,6 +136,12 @@
 		chaff--
 	var/turf/T = get_center() || get_turf(src)
 	var/obj/effect/overmap_decoy/decoy = (kind == "flare") ? new /obj/effect/overmap_decoy/flare(T) : new /obj/effect/overmap_decoy/chaff(T)
+	if(kind == "flare")
+		var/obj/effect/overmap_decoy/flare/main_flare = decoy
+		main_flare.drift_from(src, 0)
+		for(var/spread in list(-35, 35))
+			var/obj/effect/overmap_decoy/flare/visual/extra = new(T)
+			extra.drift_from(src, spread)
 	. = 0
 	for(var/obj/item/projectile/guided_munition/proj as anything in torpedoes_to_target)
 		if(QDELETED(proj) || proj.homing_target != src)

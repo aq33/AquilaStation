@@ -32284,5 +32284,9 @@
 "Przerwij skan": "Stop scan",
 "Położenie": "Position",
 "Napęd FTL:": "FTL drive:",
-"aquila/icons/overmap/ships/nanotrasen-cruiser.dmi|goliat": "aquila/icons/overmap/ships/nanotrasen-cruiser.dmi|goliat"
+"aquila/icons/overmap/ships/nanotrasen-cruiser.dmi|goliat": "aquila/icons/overmap/ships/nanotrasen-cruiser.dmi|goliat",
+"Szybki statek desantowy Syndykatu. Ostrzał trafia w ich prom.": "A fast Syndicate dropship. Fire on it hits their shuttle.",
+"Brak informacji: zaktualizuj NTOS.": "Information not found: update your NTOS.",
+"prom szybkiego reagowania Nanotrasen": "Nanotrasen emergency response shuttle",
+"Uniwersalny statek desantowy, którym Centrala przysyła drużynę szybkiego reagowania.": "A utility dropship that Central Command uses to send an emergency response team."
 }
