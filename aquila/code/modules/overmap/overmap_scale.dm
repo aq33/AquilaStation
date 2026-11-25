@@ -181,6 +181,8 @@ GLOBAL_VAR_INIT(overmap_scale_enabled, TRUE)
 	/// Myśliwiec, który rakieta goni, i od kiedy (namiar na niego wygasa po OVERMAP_MISSILE_FIGHTER_LOCK_TIME)
 	var/datum/weakref/fighter_lock_ref
 	var/fighter_lock_since = 0
+	/// Numer bieżącego namiaru na myśliwiec: timer starszego namiaru (także na ten sam myśliwiec) go nie gasi
+	var/fighter_lock_id = 0
 	/// Myśliwiec, na którego namiar już wygasł: łącze danych AI nie włącza go ponownie
 	var/datum/weakref/fighter_lock_expired_ref
 
@@ -194,17 +196,26 @@ GLOBAL_VAR_INIT(overmap_scale_enabled, TRUE)
 	var/is_fighter = GLOB.overmap_scale_enabled && istype(fighter) && fighter.mass <= MASS_TINY
 	if(is_fighter && fighter_lock_expired_ref?.resolve() == fighter)
 		return FALSE
+	var/atom/previous_target = homing_target
 	. = ..()
-	if(is_fighter && homing && homing_target == fighter && fighter_lock_ref?.resolve() != fighter)
-		fighter_lock_ref = WEAKREF(fighter)
-		fighter_lock_since = world.time
-		// Dokładnie 8 s od namierzenia; pętla co sekundę zostaje tylko dla celu ustawionego z pominięciem tej procki
-		addtimer(CALLBACK(src, PROC_REF(expire_fighter_lock), fighter_lock_since), OVERMAP_MISSILE_FIGHTER_LOCK_TIME)
+	if(!is_fighter || homing_target != fighter || !homing)
+		fighter_lock_ref = null // inny cel kasuje namiar: powrót na myśliwiec liczy się od nowa
+		return
+	if(previous_target == fighter && fighter_lock_ref?.resolve() == fighter)
+		return // ten sam namiar trwa
+	start_fighter_lock(fighter)
 
-/// Koniec namiaru na myśliwiec namierzony o lock_time, o ile rakieta dalej goni ten sam namiar
-/obj/item/projectile/guided_munition/missile/proc/expire_fighter_lock(lock_time)
+/// Nowy namiar na myśliwiec: dokładnie OVERMAP_MISSILE_FIGHTER_LOCK_TIME, potem gaśnie
+/obj/item/projectile/guided_munition/missile/proc/start_fighter_lock(obj/structure/overmap/fighter)
+	fighter_lock_ref = WEAKREF(fighter)
+	fighter_lock_since = world.time
+	fighter_lock_id++
+	addtimer(CALLBACK(src, PROC_REF(expire_fighter_lock), fighter_lock_id), OVERMAP_MISSILE_FIGHTER_LOCK_TIME)
+
+/// Koniec namiaru numer lock_id, o ile rakieta dalej goni właśnie ten namiar
+/obj/item/projectile/guided_munition/missile/proc/expire_fighter_lock(lock_id)
 	var/obj/structure/overmap/target = homing_target
-	if(!homing || !istype(target) || fighter_lock_ref?.resolve() != target || fighter_lock_since != lock_time)
+	if(!homing || !istype(target) || fighter_lock_ref?.resolve() != target || fighter_lock_id != lock_id)
 		return
 	drop_fighter_lock(target)
 
@@ -223,8 +234,7 @@ GLOBAL_VAR_INIT(overmap_scale_enabled, TRUE)
 		fighter_lock_ref = null
 		return
 	if(fighter_lock_ref?.resolve() != target)
-		fighter_lock_ref = WEAKREF(target)
-		fighter_lock_since = world.time
+		start_fighter_lock(target) // cel ustawiony z pominięciem set_homing_target()
 		return
 	if(world.time - fighter_lock_since < OVERMAP_MISSILE_FIGHTER_LOCK_TIME)
 		return

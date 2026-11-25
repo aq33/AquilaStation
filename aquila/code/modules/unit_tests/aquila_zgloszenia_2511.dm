@@ -106,10 +106,15 @@
 	fresh.set_homing_target(fighter)
 	var/fresh_since = fresh.fighter_lock_since
 	var/fresh_time = world.time
-	// Timer z namierzenia: stary namiar (inny czas) niczego nie gasi, bieżący gasi dokładnie ten namiar
-	fresh.expire_fighter_lock(fresh_since - 1)
+	// Myśliwiec A -> większy cel -> znowu A w tej samej chwili: timer pierwszego namiaru nie gasi drugiego
+	var/first_lock = fresh.fighter_lock_id
+	fresh.set_homing_target(big)
+	var/ship_cleared = isnull(fresh.fighter_lock_ref)
+	fresh.set_homing_target(fighter)
+	var/second_lock = fresh.fighter_lock_id
+	fresh.expire_fighter_lock(first_lock)
 	var/stale_kept = fresh.homing
-	fresh.expire_fighter_lock(fresh_since)
+	fresh.expire_fighter_lock(second_lock)
 	var/expired_on_time = !fresh.homing
 	qdel(fresh)
 	qdel(missile)
@@ -122,6 +127,8 @@
 	TEST_ASSERT(!fighter_lock, "A missile kept chasing a fighter after the lock time")
 	TEST_ASSERT(!relocked, "The AI datalink locked the missile back onto a fighter after the lock ran out")
 	TEST_ASSERT(fresh_since == fresh_time, "Locking onto a fighter did not start the countdown at once")
+	TEST_ASSERT(ship_cleared, "Switching to a ship kept the fighter lock")
+	TEST_ASSERT(second_lock != first_lock, "Coming back to the same fighter did not start a new lock")
 	TEST_ASSERT(stale_kept, "The timer of an earlier lock ended the current one")
 	TEST_ASSERT(expired_on_time, "The lock timer did not end the lock on the fighter")
 	TEST_ASSERT(ship_lock, "A missile lost its lock on a ship")
