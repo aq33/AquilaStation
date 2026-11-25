@@ -21,7 +21,7 @@
 	desc = "Wykorzystaj pożarte dusze, by zmutować swoje zdolności."
 	button_icon_state = "mutate"
 	blacklisted = TRUE
-	category = list("horror")
+	category = list("horror", "infest") // AQUILA - także w nosicielu (zgłoszenie graczy)
 
 /datum/action/innate/horror/mutate/Activate()
 	to_chat(usr, "<span class='velvet bold'>Skupiasz się na mutowaniu swojego ciała...</span>")
@@ -60,7 +60,7 @@
 
 /datum/action/innate/horror/toggle_hide
 	name = "Ukrywanie"
-	desc = "Stań się niewidoczny dla zwykłego oka. Włączane i wyłączane."
+	desc = "Przypadnij do ziemi i chowaj się pod stołami i przedmiotami. Nie daje niewidzialności (tę daje mutacja Kameleonowa skóra). Włączane i wyłączane."
 	button_icon_state = "horror_hiding_false"
 	blacklisted = TRUE
 	category = list("horror")
@@ -115,6 +115,18 @@
 
 /datum/action/innate/horror/give_back_control/Activate()
 	B.victim.release_control()
+
+/// AQUILA - kontrola dłużej kosztem chemikaliów (zgłoszenie graczy): odsuwa odzyskanie ciała przez opierającego się nosiciela
+/datum/action/innate/horror/suppress_resistance
+	name = "Stłum opór"
+	desc = "Gdy uwięziony umysł nosiciela opiera się kontroli, odsuwa odzyskanie przez niego ciała o 20 sekund. Kosztuje 50 chemikaliów."
+	button_icon_state = "horror_brain"
+	chemical_cost = HORROR_SUPPRESS_COST
+	blacklisted = TRUE
+	category = list("control")
+
+/datum/action/innate/horror/suppress_resistance/Activate()
+	B.suppress_resistance()
 
 /datum/action/innate/horror/leave_body
 	name = "Opuść nosiciela"
