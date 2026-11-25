@@ -50,6 +50,7 @@
 #include "code\__DEFINES\say.dm"
 #include "code\__DEFINES\screentips.dm"
 #include "code\__DEFINES\soft_lighting.dm"
+#include "code\__DEFINES\zmimic.dm"
 #include "code\__DEFINES\sound.dm"
 #include "code\__DEFINES\spells.dm"
 #include "code\__DEFINES\spiders.dm"
@@ -857,6 +858,13 @@
 #include "code\modules\hallucination\tiers.dm"
 #include "code\modules\lighting\emissive_extra.dm"
 #include "code\modules\lighting\soft_lighting.dm"
+// Z-Mimic: piętro niżej przez otwartą przestrzeń (port BeeStation/BeeStation-Hornet#8813)
+#include "code\controllers\subsystem\zcopy.dm"
+#include "code\modules\multiz\zmimic\mimic_common.dm"
+#include "code\modules\multiz\zmimic\mimic_turf.dm"
+#include "code\modules\multiz\zmimic\mimic_movable.dm"
+#include "code\modules\multiz\zmimic\zmimic_turfs.dm"
+#include "code\modules\multiz\zmimic\zmimic_planes.dm"
 #include "code\modules\lighting\light_shadow_geometry.dm"
 #include "code\modules\lighting\light_shadows.dm"
 #include "code\modules\lost_crew\lost_crew_delivery.dm"
@@ -2871,6 +2879,7 @@
 // BOTY: testy
 #include "code\modules\unit_tests\aquila_basic_bots.dm"
 #include "code\modules\unit_tests\aquila_memories.dm"
+#include "code\modules\unit_tests\aquila_zmimic.dm"
 #endif
 
 // Heretyk z tg (osobny plik z includami)

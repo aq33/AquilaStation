@@ -32167,5 +32167,9 @@
 "manekin do tatuażu": "tattoo dummy",
 "wytatuowany manekin": "tattooed dummy",
 "Tatuaż przedstawia scenę: kucharz staje w płomieniach. Na tatuażu płonie wielka czaszka.": "The tattoo depicts a scene: the cook bursts into flames. The tattoo has a giant flaming skull.",
-"Twoja postać dostaje trzy wspomnienia (operacja, podpalenie, zabicie megafauny), a obok stawia się ściana. \\": "Your character gets three memories (surgery, being set on fire, killing megafauna), and a wall appears next to you. \\"
+"Twoja postać dostaje trzy wspomnienia (operacja, podpalenie, zabicie megafauny), a obok stawia się ściana. \\": "Your character gets three memories (surgery, being set on fire, killing megafauna), and a wall appears next to you. \\",
+"Rozmycie niższych pięter": "Blur lower decks",
+"Piętro niżej, widziane przez otwartą przestrzeń, jest lekko rozmyte, żeby odróżniało się od twojego piętra. Liczy to tylko karta graficzna.": "The deck below, seen through open space, is slightly blurred so it stands apart from your own deck. Only your graphics card does the work.",
+"[capitalize(\"[src]\")] jest za daleko.": "[capitalize(\"[src]\")] is too far away.",
+"Nie sięgasz stąd do: [src].": "You cannot reach [src] from here."
 }
