@@ -4,9 +4,11 @@ import { ProgressBar, Section, Slider } from 'tgui-core/components';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
+import { CoreEjectionData, CoreEjectionSection } from './common/CoreEjection';
 
 type Data = {
   control_rods: any;
+  core_ejection?: CoreEjectionData | null;
   desiredK: any;
   k: any;
 };
@@ -17,7 +19,7 @@ export const RbmkControlRods = (props) => {
   const k = data.k;
   const desiredK = data.desiredK;
   return (
-    <Window theme="ntos" width={300} height={300}>
+    <Window theme="ntos" width={300} height={data.core_ejection ? 440 : 300}>
       <Window.Content>
         <Section title="Zarządzanie prętami kontrolnymi:">
           Wsunięcie prętów kontrolnych:
@@ -60,6 +62,7 @@ export const RbmkControlRods = (props) => {
             }
           />
         </Section>
+        <CoreEjectionSection ejection={data.core_ejection} />
       </Window.Content>
     </Window>
   );

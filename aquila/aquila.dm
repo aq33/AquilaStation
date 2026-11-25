@@ -3086,6 +3086,15 @@
 #include "code\datums\memory\tattoo.dm"
 // WSPOMNIENIA: koniec
 
+// WYRZUT RDZENIA REAKTORA (plan maszynowni, E9)
+#include "code\modules\power\core_ejection.dm"
+#ifdef UNIT_TESTS
+#include "code\modules\unit_tests\aquila_core_ejection.dm"
+#endif
+// Komora testowa
+#include "code\modules\test_chamber\kits\pr_wyrzut_rdzenia.dm"
+// WYRZUT RDZENIA: koniec
+
 // Profiler byond-tracy: MUSI być ostatnim include'em całego builda (BYOND inicjuje zmienne statyczne od końca,
 // więc ta rusza pierwsza, przed Master i mapą). Opis: tools/tracy/README.md
 #include "code\modules\tracy\tracy.dm"
