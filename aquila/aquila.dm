@@ -1367,6 +1367,7 @@
 // Komora testowa - zestawy PR-ów niżej (usuwać razem z plikiem zestawu po przetestowaniu)
 #include "code\modules\test_chamber\kits\pr_695_dowodztwo.dm"
 #include "code\modules\test_chamber\kits\pr_700_mikser_dzwieku.dm"
+#include "code\modules\test_chamber\kits\pr_709_maszynownia_rury.dm"
 #include "code\modules\test_chamber\kits\pr_696_horror_czaszka.dm"
 #include "code\modules\test_chamber\kits\pr_701_wspomnienia.dm"
 #include "code\modules\test_chamber\kits\pr_672_cyborgi.dm"
