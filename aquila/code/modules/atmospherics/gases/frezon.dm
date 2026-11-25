@@ -38,7 +38,7 @@
 	price = 1
 
 /datum/gas_reaction/frezon_production
-	priority = 2
+	priority = 10 // SS14: 2. auxmos trzyma reakcje w BTreeMap po priorytecie, więc każdy priorytet musi być inny (2 to fuzja)
 	name = "Powstawanie frezonu"
 	id = "frezon_production"
 
@@ -72,7 +72,7 @@
 	return REACTING
 
 /datum/gas_reaction/frezon_coolant
-	priority = 1
+	priority = 9 // SS14: 1, zajęte przez parę wodną; po produkcji jak w SS14
 	name = "Chłodzenie frezonem"
 	id = "frezon_coolant"
 

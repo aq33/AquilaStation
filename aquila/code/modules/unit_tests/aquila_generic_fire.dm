@@ -87,6 +87,13 @@
 	TEST_ASSERT(!failure, failure)
 	TEST_ASSERT(methane_mix.return_temperature() > 800, "Burning methane did not heat the mix")
 
+	// auxmos keeps reactions in a map keyed by priority: two reactions with the same priority silently drop one of them
+	var/list/priorities = list()
+	for(var/datum/gas_reaction/reaction as anything in SSair.gas_reactions)
+		var/key = "[reaction.priority]"
+		TEST_ASSERT(!priorities[key], "[reaction.type] has the same priority ([key]) as [priorities[key]], auxmos would run only one of them")
+		priorities[key] = reaction.type
+
 	// Ignition counts every fuel from the gas data, not only plasma and tritium
 	var/datum/gas_mixture/ignition = new
 	ignition.set_moles(GAS_TRITIUM, 2)
