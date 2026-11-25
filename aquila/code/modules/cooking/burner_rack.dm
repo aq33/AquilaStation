@@ -16,7 +16,7 @@
 	/// Granica kliknięcia między przednimi a tylnymi palnikami (icon_y)
 	var/row_split = 21
 
-/datum/burner_rack/New(obj/machinery/parent, list/offsets, list/names, row_split = 21)
+/datum/burner_rack/New(obj/machinery/parent, list/offsets, list/names, row_split = 21, neuter = FALSE)
 	. = ..()
 	src.parent = parent
 	src.offsets = offsets
@@ -24,6 +24,9 @@
 	for(var/i in 1 to length(offsets))
 		var/datum/cooking_surface/burner/burner = new(parent)
 		burner.name = names[i]
+		if(neuter)
+			burner.on_word = "włączone"
+			burner.off_word = "wyłączone"
 		burners += burner
 
 /datum/burner_rack/Destroy(force)

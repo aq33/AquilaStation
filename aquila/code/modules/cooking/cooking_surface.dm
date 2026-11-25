@@ -39,12 +39,13 @@
 /datum/kitchen_heat/proc/factor()
 	return speed * (KITCHEN_COLD_SPEED + (1 - KITCHEN_COLD_SPEED) * current())
 
-/datum/kitchen_heat/proc/describe()
+/// Stan do zdania „X jest ...”: forma męska (piekarnik, olej, sprzęt) albo żeńska (płyta)
+/datum/kitchen_heat/proc/describe(feminine = FALSE)
 	var/value = current()
 	if(value >= 1)
-		return "rozgrzane do pełnej mocy"
+		return feminine ? "rozgrzana do pełnej mocy" : "rozgrzany do pełnej mocy"
 	if(value <= 0)
-		return "zimne"
+		return feminine ? "zimna" : "zimny"
 	return "[heating ? "rozgrzewa się" : "stygnie"] ([round(value * 100)]%)"
 
 /obj/machinery/var/datum/kitchen_heat/kitchen_heat
@@ -100,6 +101,9 @@
 	var/allow_temp_change = TRUE
 	var/allow_toggling = TRUE
 	var/parts_rating = 1
+	/// Słowa stanu w opisie i dymku (pole płyty grillowej jest rodzaju nijakiego)
+	var/on_word = "włączony"
+	var/off_word = "wyłączony"
 	/// Czy zawartość przypala się, gdy nic się nie gotuje (mikser lodów nie przypala)
 	var/can_burn = TRUE
 	/// Typy naczyń, które się tu mieszczą
@@ -184,7 +188,7 @@
 	burn_progress = 0
 
 /datum/cooking_surface/proc/describe()
-	. = "[name]: [on ? "włączony" : "wyłączony"], ogień [cook_temp_name(temperature)]"
+	. = "[name]: [on ? on_word : off_word], ogień [cook_temp_name(temperature)]"
 	if(timer)
 		. += ", minutnik [DisplayTimeText(timer)]"
 		if(on && timer_left > 0)
@@ -209,7 +213,7 @@
 				turn_off(user)
 			else
 				turn_on(user)
-			parent.balloon_alert(user, "[name] [on ? "włączony" : "wyłączony"]")
+			parent.balloon_alert(user, "[name] [on ? on_word : off_word]")
 		if("Ogień")
 			var/list/temps = list("niski" = COOK_TEMP_LOW, "średni" = COOK_TEMP_MED, "wysoki" = COOK_TEMP_HIGH)
 			var/picked = tgui_input_list(user, "Ogień: [cook_temp_name(temperature)]", "Ogień", temps, cook_temp_name(temperature))

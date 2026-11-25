@@ -150,13 +150,14 @@
 // elektrycznej: patelnia, rondel albo garnek na zupę, każde pole z minutnikiem, a ogień jeden dla całej płyty (Alt+klik).
 
 /obj/machinery/griddle
+	desc = "Płyta do smażenia: kładzie się na niej jedzenie, a na czterech polach stawia patelnie, rondle i garnki z zupą."
 	active_power_usage = 40
 	var/datum/burner_rack/rack
-	var/static/list/burner_offsets = list(list(-7, 5), list(7, 5), list(-7, 14), list(7, 14))
+	var/static/list/burner_offsets = list(list(-7, -5), list(7, -5), list(-7, 4), list(7, 4))
 	var/static/list/burner_names = list("lewe przednie pole", "prawe przednie pole", "lewe tylne pole", "prawe tylne pole")
 
 /obj/machinery/griddle/Initialize(mapload)
-	rack = new(src, burner_offsets, burner_names, 18)
+	rack = new(src, burner_offsets, burner_names, 15, TRUE)
 	kitchen_heat = new
 	. = ..()
 	refresh_kitchen_heat()
@@ -249,7 +250,7 @@
 
 /obj/machinery/griddle/examine(mob/user)
 	. = ..()
-	. += span_notice("Płyta jest [kitchen_heat.describe()].")
+	. += span_notice("Płyta jest [kitchen_heat.describe(TRUE)].")
 	. += rack.examine_lines()
 	. += span_notice("Jedzenie kładzie się na płycie, a włącza ją kliknięciem. Patelnię, rondel albo garnek na zupę stawiasz kliknięciem w jedno z czterech pól. <b>Alt+klik</b>: włączanie i minutnik pola oraz ogień całej płyty.")
 
