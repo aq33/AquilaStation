@@ -99,7 +99,7 @@
 /datum/job/bridge
 	aq_squad_role = CIC_OPS
 
-// Pełne nadpisanie (LEGACY_OVERRIDES.md): drużyna wybrana w preferencjach, potem według zawodu, potem najmniejsza
+// Pełne nadpisanie (LEGACY_OVERRIDES.md): funkcja wybrana w preferencjach, potem według zawodu, potem najmniejsza drużyna
 /datum/job/register_squad(mob/living/H)
 	if(!ishuman(H))
 		return
@@ -113,8 +113,9 @@
 	human.squad_position = aq_squad_position
 	squad.add_member(human, give_items = TRUE)
 
-/// Drużyna dla nowego członka: drużyna wybrana w preferencjach (SQUAD_PREF_AUTO = bez wyboru), potem rola zawodu, potem najmniej liczna
-/datum/squad_manager/proc/aq_pick_squad(datum/job/job, preferred_name)
+/// Drużyna dla nowego członka: najmniejsza drużyna z funkcją wybraną w preferencjach (SQUAD_PREF_AUTO albo stara nazwa
+/// drużyny = bez wyboru), potem z rolą zawodu, potem najmniej liczna
+/datum/squad_manager/proc/aq_pick_squad(datum/job/job, preferred_role)
 	var/list/candidates = list()
 	for(var/datum/squad/squad as anything in squads)
 		if(squad.hidden)
@@ -124,13 +125,12 @@
 		candidates += squad
 	if(!length(candidates))
 		return null
-	var/datum/squad/preferred = (preferred_name && preferred_name != SQUAD_PREF_AUTO) ? get_squad(preferred_name) : null
-	if(preferred && (preferred in candidates) && length(preferred.members) < preferred.max_members)
-		return preferred
-	if(job?.aq_squad_role)
+	for(var/role in list(preferred_role, job?.aq_squad_role))
+		if(!role || role == SQUAD_PREF_AUTO)
+			continue
 		var/list/matching = list()
 		for(var/datum/squad/squad as anything in candidates)
-			if(squad.role == job.aq_squad_role && length(squad.members) < squad.max_members)
+			if(squad.role == role && length(squad.members) < squad.max_members)
 				matching += squad
 		if(length(matching))
 			return aq_smallest_squad(matching)
@@ -144,13 +144,31 @@
 	return smallest
 
 /datum/squad/add_member(mob/living/carbon/human/H, give_items = FALSE)
+	var/mob/living/carbon/human/old_leader = leader
 	. = ..()
 	if(!ishuman(H) || !(H in members))
 		return
 	RegisterSignal(H, COMSIG_MOB_DEATH, PROC_REF(aq_on_member_death), override = TRUE)
 	RegisterSignal(H, COMSIG_MOB_LOGIN, PROC_REF(aq_on_member_login), override = TRUE)
+	// nsv13 wpisuje wyższego stopniem nowego członka jako dowódcę po cichu (leader = H): zmianę robi assign_leader(),
+	// z ogłoszeniem i z pierwszeństwem graczy przy komputerze
+	if(old_leader && leader != old_leader)
+		leader = old_leader
+		assign_leader()
 	aq_refresh_all()
 	aq_add_marker_images(H)
+
+/// Pager nowego członka trafia do kieszeni (nie trzeba go szukać w plecaku); bez wolnej kieszeni zostaje w plecaku
+/datum/squad/equip(mob/living/carbon/human/H, give_items)
+	. = ..()
+	if(!give_items || !ishuman(H))
+		return
+	var/obj/item/storage/backpack/bag = H.get_item_by_slot(ITEM_SLOT_BACK)
+	var/obj/item/squad_pager/pager = bag ? (locate(/obj/item/squad_pager) in bag) : null
+	if(!pager)
+		return
+	if(!H.equip_to_slot_if_possible(pager, ITEM_SLOT_LPOCKET, disable_warning = TRUE))
+		H.equip_to_slot_if_possible(pager, ITEM_SLOT_RPOCKET, disable_warning = TRUE)
 
 /datum/squad/remove_member(mob/living/carbon/human/H)
 	. = ..()
