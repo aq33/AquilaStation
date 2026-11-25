@@ -58,6 +58,8 @@
 
 /// Obciążenie rury przez gaz jej sieci: 1 = próg
 /obj/machinery/atmospherics/pipe/proc/aq_get_stress()
+	if(!parent && !air_temporary) // sieć w trakcie przebudowy (return_air() czytałby null.air)
+		return 0
 	var/datum/gas_mixture/air = return_air()
 	if(!air)
 		return 0
@@ -189,6 +191,14 @@
 			LAZYREMOVE(aq_leaks, leak)
 			continue
 		var/turf/leak_turf = get_turf(leak)
+		if(leak_turf && !isopenturf(leak_turf)) // rura w ścianie: gaz uchodzi na sąsiedni otwarty kafelek
+			var/turf/wall_turf = leak_turf
+			leak_turf = null
+			for(var/direction in GLOB.cardinals)
+				var/turf/neighbour = get_step(wall_turf, direction)
+				if(isopenturf(neighbour))
+					leak_turf = neighbour
+					break
 		if(!leak_turf || air.total_moles() < MINIMUM_MOLE_COUNT)
 			continue
 		var/datum/gas_mixture/leaked = air.remove_ratio(AQ_PIPE_LEAK_RATIO)

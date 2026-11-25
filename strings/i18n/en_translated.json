@@ -33445,11 +33445,16 @@
 "<span class='notice'>Zdejmujesz zacisk.</span>": "<span class='notice'>You remove the clamp.</span>",
 "Zacisk rury": "Pipe clamp",
 "Zacisk zamykający prosty odcinek rury jak zawór.": "A clamp that closes a straight pipe like a valve.",
-"Zaślepka rury z iskrownikiem. Zapala mieszankę paliwa i tlenu w rurach bez wchodzenia do komory. Działa z ręki albo przycisku zapłonu.": "A pipe cap with a sparker. It ignites a fuel and oxygen mix in the pipes without entering the chamber. Works by hand or from an ignition button.",
 "<span class='warning'>[src] nie iskrzy: brak zasilania albo jeszcze się ładuje.</span>": "<span class='warning'>[src] does not spark: no power or still recharging.</span>",
 "Zawór odcinający": "Shutoff valve",
 "Pompa wysokiego ciśnienia": "High-pressure pump",
 "Pompa objętościowa wysokiego przepływu": "High-flow volumetric pump",
 "Filtr gazów wysokiego przepływu": "High-flow gas filter",
-"Nowy przepływ (0-[aq_max_rate] L/s):": "New flow rate (0-[aq_max_rate] L/s):"
+"Nowy przepływ (0-[aq_max_rate] L/s):": "New flow rate (0-[aq_max_rate] L/s):",
+"Maszynownia: rury, zawory, wysoki przepływ": "Engine room: pipes, valves, high flow",
+"1) RPD: w „Pipes” jest zawór odcinający, w „Devices” iskrownik rurowy, pompa wysokiego ciśnienia (13 500 kPa), pompa objętościowa i filtr wysokiego przepływu (600 L/s, złota obwódka). \\": "1) RPD: \"Pipes\" has the shutoff valve, \"Devices\" has the pipe sparker, the high-pressure pump (13,500 kPa), the high-flow volumetric pump and filter (600 L/s, gold outline). \\",
+"Zaślepka rury z iskrownikiem. Zapala mieszankę paliwa i tlenu w rurach bez wchodzenia do komory. Działa z ręki albo z przycisku zapłonu połączonego multitoolem.": "A pipe cap with a sparker. It ignites a fuel and oxygen mix in the pipes without entering the chamber. Works by hand or from an ignition button linked with a multitool.",
+"<span class='warning'>Najpierw zapisz w multitoolu przycisk zapłonu (multitool na przycisk).</span>": "<span class='warning'>First store an ignition button in the multitool (use the multitool on the button).</span>",
+"<span class='notice'>[src] reaguje teraz na [button].</span>": "<span class='notice'>[src] now responds to [button].</span>",
+"<span class='notice'>Zapisujesz [src] w buforze multitoola. Teraz użyj go na iskrowniku rurowym.</span>": "<span class='notice'>You store [src] in the multitool buffer. Now use it on a pipe sparker.</span>"
 }

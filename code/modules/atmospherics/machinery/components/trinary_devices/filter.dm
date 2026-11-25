@@ -146,7 +146,7 @@
 				rate = aq_max_rate // AQ EDIT - limit z instancji (pompy wysokiego przepływu)
 				. = TRUE
 			else if(rate == "input")
-				rate = input("Nowy przepływ (0-[aq_max_rate] L/s):", name, transfer_rate) as num|null
+				rate = input("Nowy przepływ (0-[aq_max_rate] L/s):", name, transfer_rate) as num|null // AQ EDIT - limit z instancji (pompy wysokiego przepływu)
 				if(!isnull(rate) && !..())
 					. = TRUE
 			else if(text2num(rate) != null)

@@ -150,7 +150,7 @@
 		on = !on
 
 	if("set_output_pressure" in signal.data)
-		target_pressure = clamp(text2num(signal.data["set_output_pressure"]),0,ONE_ATMOSPHERE*50)
+		target_pressure = clamp(text2num(signal.data["set_output_pressure"]),0,max(ONE_ATMOSPHERE*50, aq_max_pressure)) // AQ EDIT - limit z instancji (pompy wysokiego przepływu)
 
 	if(on != old_on)
 		investigate_log("was turned [on ? "on" : "off"] by a remote signal", INVESTIGATE_ATMOS)

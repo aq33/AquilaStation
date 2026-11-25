@@ -9,7 +9,8 @@
 		4) Zespawaj pękniętą rurę (3 s): zawór otwiera się sam. \
 		5) Wzmocnij rurę 5 arkuszami plastali: opis pokazuje 500 000 kPa i 100 000 K. Rozkręcona oddaje plastal. \
 		6) Załóż zacisk na prosty odcinek: rura staje się zamkniętym zaworem w tym samym kolorze. Kliknij, żeby otworzyć, i zdejmij kluczem: wraca rura. \
-		7) Kanister: opis ma naklejkę z limitami. Zapal w nim mieszankę plazmy z tlenem: niszczeje i pęka."
+		7) Kanister: opis ma naklejkę z limitami. Zapal w nim mieszankę plazmy z tlenem: niszczeje i pęka. \
+		8) Iskrownik z przyciskiem: multitool na przycisk zapłonu (zapisuje go w buforze), potem na iskrownik. Przycisk zapala wtedy rury."
 	items = list(
 		/obj/item/pipe_dispenser = 1,
 		/obj/item/weldingtool/largetank = 1,

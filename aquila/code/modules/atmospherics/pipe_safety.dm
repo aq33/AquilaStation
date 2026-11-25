@@ -38,7 +38,7 @@
 		set_open(FALSE)
 		playsound(src, 'sound/machines/click.ogg', 50, TRUE)
 		visible_message("<span class='warning'>[src] zatrzaskuje się z kliknięciem: czujnik wykrył przeciek!</span>")
-	else if(!leaking && aq_auto_closed)
+	else if(!leaking && aq_auto_closed && parents[1])
 		aq_auto_closed = FALSE
 		if(!on)
 			set_open(TRUE)
@@ -96,31 +96,64 @@
 	user.visible_message("<span class='notice'>[user] zakłada [clamp] na rurę.</span>", "<span class='notice'>Zakładasz zacisk. Rura jest zamknięta.</span>")
 	return TRUE
 
+/**
+ * Stawia urządzenie z rur w miejscu innego, usuniętego w tym samym ticku (jak on_construction()).
+ * Do sieci sąsiada dołącza tylko wtedy, gdy ta sieć żyje: po usunięciu rury sieci sąsiadów są zniszczone
+ * (parent = null), a add_member() zrobiłby im pustą sieć bez gazu. Wtedy sieć zbuduje kolejka przebudowy SSair,
+ * do której sąsiedzi już trafili. Gaz z air_temporary nowej rury trafia do sieci, do której dołączyła.
+ */
+/proc/aq_place_atmos_device(obj/machinery/atmospherics/device, obj_color, layer_number)
+	if(obj_color)
+		device.pipe_color = obj_color
+		device.add_atom_colour(obj_color, FIXED_COLOUR_PRIORITY)
+	device.set_piping_layer(layer_number)
+	device.atmos_init()
+	for(var/obj/machinery/atmospherics/node in device.pipeline_expansion())
+		node.atmos_init()
+		var/datum/pipeline/node_net
+		if(istype(node, /obj/machinery/atmospherics/components))
+			var/obj/machinery/atmospherics/components/node_component = node
+			if(device in node_component.nodes)
+				node_net = node_component.return_pipenet(device)
+		else
+			node_net = node.return_pipenet()
+		if(node_net && !QDELETED(node_net) && node_net.air && !node_net.building)
+			node.add_member(device)
+		node.update_icon()
+	if(istype(device, /obj/machinery/atmospherics/pipe))
+		var/obj/machinery/atmospherics/pipe/new_pipe = device
+		if(new_pipe.air_temporary && new_pipe.parent?.air)
+			new_pipe.parent.air.merge(new_pipe.air_temporary)
+			new_pipe.air_temporary = null
+	SSair.add_to_rebuild_queue(device)
+	device.update_icon()
+
 /// Zamienia tę rurę w zamknięty zacisk (zawór) z tym samym kierunkiem, warstwą i kolorem
 /obj/machinery/atmospherics/pipe/simple/proc/aq_apply_clamp(obj/item/pipe_clamp/clamp_item)
 	var/turf/pipe_turf = loc
 	var/pipe_dir = dir
 	var/layer_number = piping_layer
 	var/old_color = pipe_color
-	// gaz z tego odcinka zostaje w zacisku, a nie leci na kafelek
-	var/datum/gas_mixture/kept
-	if(parent?.air && parent.air.return_volume() > 0)
-		kept = parent.air.remove_ratio(volume / parent.air.return_volume())
+	// gaz z tego odcinka zostaje w zacisku: rura wychodzi z sieci przed usunięciem, więc nic nie leci na kafelek
+	var/datum/gas_mixture/kept = air_temporary
+	air_temporary = null
+	if(parent?.air && (src in parent.members))
+		var/total_volume = parent.air.return_volume()
+		if(total_volume > 0)
+			kept = parent.air.remove_ratio(volume / total_volume)
+			parent.air.set_volume(max(total_volume - volume, 0))
+		parent.members -= src
 	investigate_log("was clamped by [key_name(usr)].", INVESTIGATE_ATMOS)
-	qdel(src)
 	var/obj/machinery/atmospherics/components/binary/valve/aq_clamp/clamp = new(pipe_turf, TRUE, pipe_dir)
-	clamp.pipe_color = old_color
-	clamp.add_atom_colour(old_color, FIXED_COLOUR_PRIORITY)
-	clamp.on_construction(old_color, layer_number)
+	clamp.restored_type = type
+	clamp.restored_name = name
 	clamp.stored_clamp = clamp_item
 	clamp_item.forceMove(clamp)
 	if(kept)
 		var/datum/gas_mixture/clamp_air = clamp.airs[1]
 		clamp_air.merge(kept)
-		var/datum/pipeline/clamp_net = clamp.parents[1]
-		if(clamp_net)
-			clamp_net.update = TRUE
-	clamp.update_icon()
+	qdel(src)
+	aq_place_atmos_device(clamp, old_color, layer_number)
 	return clamp
 
 /obj/machinery/atmospherics/components/binary/valve/aq_clamp
@@ -132,6 +165,9 @@
 	on = FALSE
 	/// Przedmiot zacisku oddawany przy zdjęciu
 	var/obj/item/pipe_clamp/stored_clamp
+	/// Typ i nazwa rury, która wraca po zdjęciu zacisku
+	var/restored_type = /obj/machinery/atmospherics/pipe/simple
+	var/restored_name
 
 /obj/machinery/atmospherics/components/binary/valve/aq_clamp/Destroy()
 	QDEL_NULL(stored_clamp)
@@ -161,7 +197,7 @@
 	user.visible_message("<span class='notice'>[user] zdejmuje zacisk z rury.</span>", "<span class='notice'>Zdejmujesz zacisk.</span>")
 	return TRUE
 
-/// Przywraca prostą rurę w miejscu zacisku, zwraca przedmiot zacisku
+/// Przywraca rurę (ten sam typ, nazwa, kolor i warstwa) w miejscu zacisku, zwraca przedmiot zacisku
 /obj/machinery/atmospherics/components/binary/valve/aq_clamp/proc/aq_remove_clamp()
 	var/turf/clamp_turf = loc
 	var/clamp_dir = dir
@@ -170,10 +206,19 @@
 	var/obj/item/pipe_clamp/clamp_item = stored_clamp
 	stored_clamp = null
 	clamp_item?.forceMove(clamp_turf)
+	// gaz z komór zacisku wraca do rury (komponenty nie oddają go przy usunięciu)
+	var/datum/gas_mixture/kept = new
+	for(var/datum/gas_mixture/clamp_air as anything in airs)
+		if(clamp_air)
+			kept.merge(clamp_air.remove_ratio(1))
 	investigate_log("was unclamped by [key_name(usr)].", INVESTIGATE_ATMOS)
 	qdel(src)
-	var/obj/machinery/atmospherics/pipe/simple/pipe = new(clamp_turf, TRUE, clamp_dir)
-	pipe.on_construction(old_color, layer_number)
+	var/obj/machinery/atmospherics/pipe/simple/pipe = new restored_type(clamp_turf, TRUE, clamp_dir)
+	if(restored_name)
+		pipe.name = restored_name
+	kept.set_volume(pipe.volume)
+	pipe.air_temporary = kept
+	aq_place_atmos_device(pipe, old_color, layer_number)
 	return clamp_item
 
 /obj/machinery/atmospherics/components/binary/valve/aq_clamp/deconstruct(disassembled = TRUE)
@@ -200,7 +245,7 @@
 
 /obj/machinery/atmospherics/components/unary/aq_sparker
 	name = "iskrownik rurowy"
-	desc = "Zaślepka rury z iskrownikiem. Zapala mieszankę paliwa i tlenu w rurach bez wchodzenia do komory. Działa z ręki albo przycisku zapłonu."
+	desc = "Zaślepka rury z iskrownikiem. Zapala mieszankę paliwa i tlenu w rurach bez wchodzenia do komory. Działa z ręki albo z przycisku zapłonu połączonego multitoolem."
 	icon = 'aquila/icons/obj/atmospherics/pipe_sparker.dmi'
 	icon_state = "pipe-igniter"
 	shift_underlay_only = FALSE
@@ -223,8 +268,10 @@
 		to_chat(user, "<span class='warning'>[src] nie iskrzy: brak zasilania albo jeszcze się ładuje.</span>")
 
 /**
- * Iskra w rurze: mieszanka z paliwem (plazma albo tryt) i tlenem dostaje temperaturę zapłonu, potem reaguje
- * w zwykłym cyklu sieci. Mieszanka bez paliwa się nie grzeje. Zwraca TRUE, gdy iskra była.
+ * Iskra w rurze: gdy sieć ma paliwo (plazmę albo tryt) i tlen, wszystkie mieszaniny sieci dostają temperaturę
+ * zapłonu (jak „wymuszona reakcja” Baya), potem reagują w zwykłym cyklu sieci. Podgrzanie samej komory iskrownika
+ * nie wystarcza, bo sieć najpierw wyrównuje temperaturę, a dopiero potem reaguje. Mieszanki bez paliwa nie rusza.
+ * Zwraca TRUE, gdy iskra była.
  */
 /obj/machinery/atmospherics/components/unary/aq_sparker/proc/aq_spark()
 	if(!is_operational || world.time < next_spark)
@@ -233,18 +280,49 @@
 	use_power(active_power_usage)
 	flick("pipe-sparker-spark", src)
 	playsound(src, "sparks", 50, TRUE)
-	var/datum/gas_mixture/air = airs[1]
-	if(!air)
-		return TRUE
-	var/fuel = air.get_moles(GAS_PLASMA) + air.get_moles(GAS_TRITIUM)
-	if(fuel < AQ_SPARKER_MIN_MOLES || air.get_moles(GAS_O2) < AQ_SPARKER_MIN_MOLES)
-		return TRUE
-	if(air.return_temperature() < AQ_SPARKER_IGNITION_TEMPERATURE)
-		air.set_temperature(AQ_SPARKER_IGNITION_TEMPERATURE)
-	investigate_log("ignited a pipe mix ([round(fuel, 0.1)] mol of fuel) used by [usr ? key_name(usr) : "a remote signal"].", INVESTIGATE_ATMOS)
 	var/datum/pipeline/net = parents[1]
+	var/list/datum/gas_mixture/mixtures = list(airs[1])
+	if(net)
+		mixtures |= net.get_all_connected_airs()
+	var/fuel = 0
+	var/oxygen = 0
+	for(var/datum/gas_mixture/mixture as anything in mixtures)
+		if(!mixture)
+			continue
+		fuel += mixture.get_moles(GAS_PLASMA) + mixture.get_moles(GAS_TRITIUM)
+		oxygen += mixture.get_moles(GAS_O2)
+	if(fuel < AQ_SPARKER_MIN_MOLES || oxygen < AQ_SPARKER_MIN_MOLES)
+		return TRUE
+	for(var/datum/gas_mixture/mixture as anything in mixtures)
+		if(mixture && mixture.return_temperature() < AQ_SPARKER_IGNITION_TEMPERATURE)
+			mixture.set_temperature(AQ_SPARKER_IGNITION_TEMPERATURE)
+	investigate_log("ignited a pipe mix ([round(fuel, 0.1)] mol of fuel) used by [usr ? key_name(usr) : "a remote signal"].", INVESTIGATE_ATMOS)
 	if(net)
 		net.update = TRUE
+	return TRUE
+
+/// Multitool z zapamiętanym przyciskiem zapłonu łączy iskrownik z tym przyciskiem
+/obj/machinery/atmospherics/components/unary/aq_sparker/multitool_act(mob/living/user, obj/item/I)
+	var/obj/item/multitool/tool = I
+	var/obj/machinery/button/ignition/button = istype(tool) ? tool.buffer : null
+	if(!istype(button) || QDELETED(button))
+		to_chat(user, "<span class='warning'>Najpierw zapisz w multitoolu przycisk zapłonu (multitool na przycisk).</span>")
+		return TRUE
+	if(!button.id)
+		button.id = "aq_iskrownik_[REF(button)]"
+		var/obj/item/assembly/control/button_device = button.device
+		if(istype(button_device))
+			button_device.id = button.id
+	id = button.id
+	to_chat(user, "<span class='notice'>[src] reaguje teraz na [button].</span>")
+	return TRUE
+
+/obj/machinery/button/ignition/multitool_act(mob/living/user, obj/item/I)
+	var/obj/item/multitool/tool = I
+	if(!istype(tool))
+		return ..()
+	tool.buffer = src
+	to_chat(user, "<span class='notice'>Zapisujesz [src] w buforze multitoola. Teraz użyj go na iskrowniku rurowym.</span>")
 	return TRUE
 
 /obj/machinery/atmospherics/components/unary/aq_sparker/layer2

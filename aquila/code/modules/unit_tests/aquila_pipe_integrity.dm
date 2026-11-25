@@ -69,4 +69,10 @@
 	pipe.aq_repair()
 	net.air.clear()
 
+	// Sieć w trakcie przebudowy: opis rury nie czyta null.air
+	pipe.parent = null
+	TEST_ASSERT(pipe.aq_get_stress() == 0, "Rura bez sieci ma obciążenie")
+	pipe.examine(allocate(/mob/living/carbon/human))
+	pipe.parent = net
+
 #undef TEST_ASSERT
