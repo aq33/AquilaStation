@@ -1646,3 +1646,4 @@
   - rscadd: Lądowanie promu na planecie można oglądać na żywo w Spess.tv i na telewizorach.
   - rscadd: 'Stos korowy wyjęty z ciała zapisuje umysł: można z niego sklonować osobę
       albo zapisać kopię rekordu na pustym stosie w konsoli klonowania.'
+  - tweak: W oknie wyboru języka żaden przycisk nie jest już podświetlony jako domyślny.
