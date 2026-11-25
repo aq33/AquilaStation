@@ -31630,5 +31630,7 @@
 "brak zleceń": "no orders",
 "pusto": "empty",
 "Ładowanie ciśnienia": "Pressurizing",
-"Wstaw: ${holding}": "Insert: ${holding}"
+"Wstaw: ${holding}": "Insert: ${holding}",
+"Okna urządzeń: mikrofalówka, młynek, dozowniki, utylizator, pulpit fabrykatora": "Device windows: microwave, grinder, dispensers, disposal unit, fabricator console",
+"1) Mikrofalówka: włóż jedzenie, kliknij maszynę - okno z komorą, rzeczy na talerzu, kliknięcie rzeczy wyjmuje ją do ręki, START zamyka drzwiczki, talerz się kręci, wyświetlacz odlicza, po końcu GOTOWE i jedzenie na podłodze. Prawy przycisk dalej włącza od razu. \\": "1) Microwave: put food in, click the machine - window with the chamber and items on the plate, clicking an item takes it to your hand, START closes the door, the plate spins, the display counts down, at the end READY and the food lands on the floor. Right click still starts it right away. \\"
 }
