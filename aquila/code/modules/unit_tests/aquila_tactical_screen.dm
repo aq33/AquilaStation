@@ -93,3 +93,24 @@
 	qdel(ui)
 	if(station.sensor_mode != SENSOR_MODE_RADAR)
 		return "Operator przy stanowisku nie przełączył radaru z ekranu taktycznego"
+
+/// DRADIS górniczy (hangar Aquilas) nie zajmuje miejsca DRADIS-u okrętu: pilot dostaje stanowisko rozpoznania
+/// niezależnie od kolejności, w jakiej konsole łączą się z okrętem
+/datum/unit_test/aquila_ship_dradis_choice
+
+/datum/unit_test/aquila_ship_dradis_choice/Run()
+	var/obj/structure/overmap/ship = allocate(/obj/structure/overmap/syndicate/ai/gunboat/morale_test)
+	var/obj/machinery/computer/ship/dradis/sensors/station = allocate(/obj/machinery/computer/ship/dradis/sensors)
+	var/obj/machinery/computer/ship/dradis/mining/mining = allocate(/obj/machinery/computer/ship/dradis/mining)
+	ship.dradis = null
+	station.set_position(ship)
+	mining.set_position(ship)
+	var/first = ship.dradis
+	ship.dradis = null
+	mining.set_position(ship)
+	station.set_position(ship)
+	var/second = ship.dradis
+	ship.sensor_console = null
+	ship.dradis = null
+	if(first != station || second != station)
+		return Fail("DRADIS okrętu to [first] (stanowisko przed górniczym) i [second] (górniczy przed stanowiskiem) zamiast stanowiska rozpoznania")

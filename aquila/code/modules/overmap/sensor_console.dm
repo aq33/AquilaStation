@@ -103,10 +103,19 @@
 
 /obj/machinery/computer/ship/dradis/sensors/set_position(obj/structure/overmap/OM)
 	OM.sensor_console = src
-	// Mostki bez osobnego DRADIS: stanowisko rozpoznania jest DRADIS-em okrętu (okno pilota, komunikaty, zasięg śledzenia)
-	if(!OM.dradis)
+	// Mostki bez osobnego DRADIS: stanowisko rozpoznania jest DRADIS-em okrętu (okno pilota, komunikaty, zasięg śledzenia).
+	// DRADIS górniczy (zwykle w hangarze) ustępuje stanowisku, bo pilot okrętu dostawał przy sterze okno skanera asteroid.
+	if(!OM.dradis || istype(OM.dradis, /obj/machinery/computer/ship/dradis/mining))
 		OM.dradis = src
 	RegisterSignal(OM, COMSIG_FTL_STATE_CHANGE, PROC_REF(on_ftl_state_change), override = TRUE)
+
+/// DRADIS górniczy nie zajmuje miejsca DRADIS-u okrętu, który już go ma: inaczej pilot okrętu z górniczym DRADIS-em
+/// w hangarze (Aquilas) dostawał przy sterze skaner asteroid zamiast ekranu taktycznego, zależnie od kolejności konsol
+/obj/machinery/computer/ship/dradis/mining/set_position(obj/structure/overmap/OM)
+	var/obj/machinery/computer/ship/dradis/current = OM.dradis
+	. = ..()
+	if(current && current != src && !QDELETED(current))
+		OM.dradis = current
 
 /obj/machinery/computer/ship/dradis/sensors/proc/on_ftl_state_change()
 	SIGNAL_HANDLER
