@@ -1,8 +1,8 @@
-// aq33/AquilaStation#696 - okna maszyn w formie urządzeń (PixelUi, port pomysłu z Polonium Station)
+// aq33/AquilaStation#698 - okna maszyn w formie urządzeń (PixelUi, port pomysłu z Polonium Station)
 
-/datum/test_chamber_kit/pr_696
+/datum/test_chamber_kit/pr_698
 	name = "Okna urządzeń: mikrofalówka, młynek, dozowniki, utylizator, pulpit fabrykatora"
-	pr = "aq33/AquilaStation#696"
+	pr = "aq33/AquilaStation#698"
 	description = "1) Mikrofalówka: włóż jedzenie, kliknij maszynę - okno z komorą, rzeczy na talerzu, kliknięcie rzeczy wyjmuje ją do ręki, START zamyka drzwiczki, talerz się kręci, wyświetlacz odlicza, po końcu GOTOWE i jedzenie na podłodze. Prawy przycisk dalej włącza od razu. \
 	2) Młynek: kliknij dzbanek z pomidorem w ręce (wrzuca), MIEL i WYCIŚNIJ trzęsą zawartością i lecą do zlewki, kartka pokazuje odczynniki, kliknięcie zlewki ją oddaje, z pustą niszą i zlewką w ręce - wstawia. \
 	3) Dozownik alkoholi: butelki na półce i klawisze nalewają do szklanki pod dyszą (strumień w kolorze napoju, lód kostkami), DAWKA, WYLEJ, WYJMIJ, STARE otwiera stare okno z recepturami; dozownik napojów bez półki. \

@@ -1362,7 +1362,7 @@
 #include "code\modules\test_chamber\kits\pr_668_zejscie_na_planete.dm"
 #include "code\modules\test_chamber\kits\pr_665_rework_amunicji.dm"
 #include "code\modules\test_chamber\kits\pr_677_zgloszenia_2011.dm"
-#include "code\modules\test_chamber\kits\pr_696_okna_urzadzen.dm"
+#include "code\modules\test_chamber\kits\pr_698_okna_urzadzen.dm"
 #include "code\modules\test_chamber\kits\pr_nsvprzyw_statek.dm"
 #include "code\modules\test_chamber\kits\pr_nsvprzyw_misje.dm"
 #include "code\modules\test_chamber\kits\pr_nsvprzyw_eventy.dm"
