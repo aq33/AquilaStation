@@ -59,6 +59,9 @@ type Marker = {
 type Data = {
   readonly?: boolean;
   can_hail?: boolean;
+  // Specjalne DRADIS-y (Dradis.tsx): co robi „hail” w karcie kontaktu (dostawa ładunku, namierzanie)
+  hail_label?: string;
+  hail_tooltip?: string;
   radar_mode: boolean;
   radar_delay: number;
   radar_delay_min: number;
@@ -1662,11 +1665,14 @@ const ContactCard = (props: { contact: Contact | undefined }) => {
       >
         {data.can_hail !== false && (
           <Button
-            icon="phone"
-            tooltip="Połączenie z okrętem w zasięgu 50 pól (jak z DRADIS)."
+            icon={data.hail_label ? 'crosshairs' : 'phone'}
+            tooltip={
+              data.hail_tooltip ||
+              'Połączenie z okrętem w zasięgu 50 pól (jak z DRADIS).'
+            }
             onClick={() => act('hail', { target: contact.id })}
           >
-            Wywołaj
+            {data.hail_label || 'Wywołaj'}
           </Button>
         )}
       </div>
@@ -1841,7 +1847,8 @@ const PassedToBridge = (props: { contacts: Contact[] }) => {
 };
 
 // Okno stanowiska rozpoznania bez ramki; extra trafia na górę prawej kolumny (tryb Podgląd)
-export const SensorBody = (props: { extra?: ReactNode }) => {
+// bare: bez pasków stanowiska (sygnatura, matryce, przekazane mostkowi), dla specjalnych DRADIS-ów (Dradis.tsx)
+export const SensorBody = (props: { extra?: ReactNode; bare?: boolean }) => {
   const { data } = useSensor();
   const [selected, setSelected] = useState<string | null>(null);
   const [rangeIndex, setRangeIndex] = useState(1);
@@ -1886,8 +1893,8 @@ export const SensorBody = (props: { extra?: ReactNode }) => {
   const pulseAge = (data.pulse_age || 0) + elapsed;
   return (
     <Box style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
-      <TopBar />
-      <ArrayBar />
+      {!props.bare && <TopBar />}
+      {!props.bare && <ArrayBar />}
       <Box style={{ flex: 1, display: 'flex', minHeight: 0 }}>
         <Box
           style={{
@@ -1955,7 +1962,7 @@ export const SensorBody = (props: { extra?: ReactNode }) => {
           )}
         </Box>
       </Box>
-      <PassedToBridge contacts={contacts} />
+      {!props.bare && <PassedToBridge contacts={contacts} />}
     </Box>
   );
 };

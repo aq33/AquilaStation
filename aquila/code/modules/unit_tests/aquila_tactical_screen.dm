@@ -114,3 +114,26 @@
 	ship.dradis = null
 	if(first != station || second != station)
 		return Fail("DRADIS okrętu to [first] (stanowisko przed górniczym) i [second] (górniczy przed stanowiskiem) zamiast stanowiska rozpoznania")
+
+/// Pomocniczy DRADIS (kontrola lotów, ekrany) otwiera Podgląd ekranu taktycznego, a DRADIS-y ze specjalną funkcją mają
+/// własne okno w tym samym wyglądzie (dradis_window.dm): kontakty radaru zamiast dawnych blipów mapy, a w ładowni
+/// akcja kontaktu to dostawa ładunku
+/datum/unit_test/aquila_special_dradis_window
+
+/datum/unit_test/aquila_special_dradis_window/Run()
+	var/obj/structure/overmap/ship = allocate(/obj/structure/overmap/syndicate/ai/gunboat/morale_test)
+	var/obj/machinery/computer/ship/dradis/minor/helper = allocate(/obj/machinery/computer/ship/dradis/minor)
+	var/obj/machinery/computer/ship/dradis/mining/mining = allocate(/obj/machinery/computer/ship/dradis/mining)
+	var/obj/machinery/computer/ship/dradis/minor/cargo/cargo = allocate(/obj/machinery/computer/ship/dradis/minor/cargo)
+	var/mob/living/carbon/human/user = allocate(/mob/living/carbon/human)
+	for(var/obj/machinery/computer/ship/dradis/console as anything in list(helper, mining, cargo))
+		console.forceMove(ship) // get_overmap() szuka okrętu przez loc, poziom testu nie ma okrętu
+		console.linked = ship
+	if(!helper.tactical_screen_ship() || mining.tactical_screen_ship() || cargo.tactical_screen_ship())
+		return Fail("Pomocniczy DRADIS nie otwiera Podglądu albo skaner lub ładownia straciły swoje okno")
+	var/list/data = mining.ui_data(user)
+	if(data["kind"] != "mining" || !islist(data["contacts"]) || !islist(data["objects"]) || ("ships" in data))
+		return Fail("Okno skanera asteroid nie dostało kontaktów i obiektów radaru ([json_encode(data)])")
+	data = cargo.ui_data(user)
+	if(data["kind"] != "cargo" || data["hail_label"] != "Dostarcz ładunek")
+		return Fail("Okno ładowni nie ma dostawy ładunku w karcie kontaktu ([data["kind"]], [data["hail_label"]])")

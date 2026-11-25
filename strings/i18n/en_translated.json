@@ -32323,5 +32323,21 @@
 "mała jednostka": "small craft",
 "myśliwiec lub mała jednostka": "fighter or small craft",
 "Zagłuszacz w stożku wokół namiaru utrudnia namierzanie nas z daleka, ale zdradza naszą pozycję.": "The jammer makes it harder to lock onto us from afar within a cone around its bearing, but it gives away our position.",
-"Ustaw zagłuszacz na namiar celu ognia.": "Point the jammer at the bearing of the fire target."
+"Ustaw zagłuszacz na namiar celu ognia.": "Point the jammer at the bearing of the fire target.",
+"Dostarcz ładunek": "Deliver cargo",
+"Wysyła ładunek z wyrzutni ładowni połączonej z tą konsolą do wybranego okrętu (do [hail_range] pól).": "Sends cargo from the cargo bay launcher linked to this console to the selected ship (up to [hail_range] tiles).",
+"Wrogi okręt: namierzanie. Sojusznik: wysyłasz mu swoje namiary (datalink).": "Hostile ship: lock on. Ally: you send it your targeting data (datalink).",
+"Dostawy ładunków": "Cargo deliveries",
+"Skaner asteroid": "Asteroid scanner",
+"Radar jednostki": "Craft radar",
+" pól": " tiles",
+"Aktywny radar": "Active radar",
+"Zasięg sensorów": "Sensor range",
+"Poziom skanera": "Scanner level",
+"Skaner pokazuje asteroidy do swojego poziomu. Wyższe pokaże po włożeniu ulepszenia skanera górniczego do konsoli.": "The scanner shows asteroids up to its level. Higher ones appear after you insert a mining scanner upgrade into the console.",
+"Aktywny radar widzi dalej, ale wrogowie słyszą okręt.": "Active radar sees further, but enemies can hear the ship.",
+"Namierzanie z radaru": "Radar targeting",
+"Gdy włączone, wybrany kontakt namierzasz zamiast go wywoływać.": "When on, you lock onto the selected contact instead of hailing it.",
+"Brak połączenia z okrętem.": "No link to the ship.",
+"Wybierz okręt na radarze albo na liście i użyj „Dostarcz ładunek”. Ładunek leci z wyrzutni ładowni połączonej z tą konsolą (multitool), do okrętów najwyżej ${data.hail_range} pól stąd.": "Pick a ship on the radar or in the list and use “Deliver cargo”. Cargo flies from the cargo bay launcher linked to this console (multitool), to ships at most ${data.hail_range} tiles away."
 }
