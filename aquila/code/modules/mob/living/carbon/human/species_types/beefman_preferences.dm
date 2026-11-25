@@ -77,27 +77,13 @@
 
 /datum/species/beefman/get_species_lore()
 	return list(
-		"W 2437 roku postneosowiecka restauracja „Skrzypek” serwowała jedzenie na pokładzie wycieczkowca Mustai Karim. Krótko po rozpoczęciu obiadu \
-			w kuchni skończyło się mięso na burgery. Losowano zapałki i młody kucharz, nieświadomy tego, co zaraz nastąpi, poszedł po mięso do kostnicy. \
-			„Przecież robimy to cały czas, prawda? Zmarłym ciała już niepotrzebne, to tylko zaradność…” – pomyślał. \
-			Chwycił pierwsze ciało, jakie wpadło mu w ręce, i pospieszył się, żeby to niewdzięczne zadanie nie zapadło mu w pamięć. \
-			Nie zauważył, że wskaźnik możliwości ożywienia na tej tacy świecił na zielono. Ciało miało duszę, i to zdecydowaną nie dać się zmielić.",
+		"W 2437 roku w kuchni wycieczkowca Mustai Karim zabrakło mięsa na burgery. Młody kucharz poszedł po zapas do kostnicy \
+			i wepchnął do maszynki pierwsze ciało, jakie wpadło mu w ręce. Nie zauważył, że wskaźnik na tacy świecił na zielono: \
+			zmarłego dało się jeszcze ożywić. Ostrza stanęły, a z płata mięsa spojrzały na kucharza żywe oczy.",
 
-		"Młody kucharz wrócił do chłodni i wepchnął zwłoki do maszynki do mięsa. Maszyna z trudem mieliła na nieulepszonych częściach. \
-			Gdy całe ciało było już w środku, ostrza nagle stanęły i z okropnym zgrzytem zaczęły kręcić się w drugą stronę. \
-			Kucharz odruchowo spojrzał, a ku jego przerażeniu z płata mięsa patrzyły na niego żywe, a zarazem lunatyczne oczy.",
-
-		"Mniej więcej wtedy Mustai Karim zniknął z systemu śledzenia statków. Zorganizowano poszukiwania, ale przerwano je, gdy zaginiony statek \
-			dotarł do celu z trzydniowym opóźnieniem. Większość załogi poza niezbędną zniknęła, a Trzecia Sowiecka Straż Przybrzeżna po krótkim śledztwie \
-			ogłosiła zawiłe wyjaśnienie o piractwie, nieporozumieniach i bezprecedensowym pechu.",
-
-		"Trzy lata później w postneosowieckiej przestrzeni pojawiły się doniesienia o włóczęgach bez skóry. W centrum zagadki leżał mało znany \
-			wojskowy ośrodek badawczy, który przypadkiem wybuchł tuż przed początkiem „Аномальные появления”. Trzeci Rząd Sowiecki zamilkł zupełnie, \
-			więc ludzie musieli sami szukać wyjaśnień. Większość uznała to za makabryczną modę, niektórzy wymyślali naukowe teorie o wpływie \
-			kosmicznego promieniowania na ludzkie geny, a jeszcze inni rozpuszczali plotki o tajnych, rządowych „eksperymentach ze snem”. \
-			Niezależnie od pochodzenia „mięsoludzie” szybko wtopili się w galaktyczne społeczeństwo. Żaden z nich nie wiódł całkiem normalnego życia: \
-			w ogóle nie potrafili zasnąć i najwyraźniej umieli przemierzać niewytłumaczalną podprzestrzenną sieć tego, co nazywali „rozdarciami Fobetora”. \
-			Dzięki odkryciu sieci Fobetora spotyka się ich dziś na niemal każdej stacji badawczej.",
+		"Statek zniknął na trzy dni i wrócił bez większości załogi. Kilka lat później w całej galaktyce pojawili się włóczędzy bez skóry. \
+			Mięsoludzie nigdy nie zasypiają i przechodzą przez „rozdarcia Fobetora”, szczeliny łączące odległe miejsca, \
+			więc spotyka się ich dziś na niemal każdej stacji badawczej.",
 	)
 
 /datum/species/beefman/create_pref_unique_perks()

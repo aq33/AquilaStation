@@ -567,7 +567,7 @@ MAX_SHUTTLE_COUNT 6
 MAX_SHUTTLE_SIZE 300
 ## NSV13 - ranks. Comment out SHOW_RANKS to disable. RANK_FILE gives default rank list.
 SHOW_RANKS
-RANK_FILE royal_navy.txt
+RANK_FILE marynarka.txt
 
 ### Fail2Topic settings
 ### fail2topic is a system for automating IP bans for abusers of the world/Topic API.

@@ -1623,3 +1623,26 @@
       głosów botów, syntezy mowy, ogłoszeń, otoczenia i muzyki otoczenia.'
   - tweak: Suwak głośności tesli przeniesiony do miksera.
   - bugfix: Muzyka otoczenia znowu gra, szum statku nie blokuje już jej kanału.
+  - bugfix: Prom nad planetą zatrzymuje się sam na czas mapowania powierzchni i wyboru
+      lądowiska, więc nie trzeba wlatywać nad planetę kilka razy.
+  - bugfix: Wyciągnięcie pasożyta operacją na głowie naprawdę uwalnia nosiciela od
+      horrora.
+  - bugfix: 'Medibot nie zagłusza już ambulatorium: kwestie z dźwiękiem najwyżej co
+      20 s, leczenie ogłaszane raz na pacjenta.'
+  - bugfix: Dowódca drużyny jest wybierany według stopnia, a w opisie postaci wyższy
+      stopień naprawdę jest wyższy.
+  - rscadd: Roślinę na łopatce można wyrzucić do kosza, worka na śmieci albo kompostownika,
+      a roślinę w tacy wyrwać ręką (prawy przycisk) albo kultywatorem.
+  - tweak: Pager drużyny startuje w kieszeni.
+  - imageadd: Pojedyncza kałuża ma nowy kształt (z Space Station 14).
+  - config: Polskie stopnie marynarki (config/ranks/marynarka.txt), także w wersji
+      angielskiej.
+  - tweak: Historia Mięsacza jest krótsza, a Jajoczłowiek i Kałamarnicoczłowiek mają
+      opis, historię i cechy w oknie postaci.
+  - rscadd: 'Program PDA „Prawo kosmiczne” podpowiada formę kary: mandat, areszt,
+      GenPop, gułag z punktami albo dożywocie z wygnaniem cyfrowym.'
+  - tweak: W preferencjach postaci wybiera się funkcję na okręcie zamiast konkretnej
+      drużyny.
+  - rscadd: Lądowanie promu na planecie można oglądać na żywo w Spess.tv i na telewizorach.
+  - rscadd: 'Stos korowy wyjęty z ciała zapisuje umysł: można z niego sklonować osobę
+      albo zapisać kopię rekordu na pustym stosie w konsoli klonowania.'

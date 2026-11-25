@@ -1,0 +1,61 @@
+Kapitan=kmdr
+Starszy Oficer=kmdr por.
+Komendant=kmdr ppor.
+Główny Inżynier=kmdr ppor.
+Dyrektor Naukowy=kmdr ppor.
+Ordynator=kmdr ppor.
+Mistrz Broni=kmdr ppor.
+Naczelnik=kpt. mar.
+
+Oficer Pokładowy=por. mar.
+
+Majtek=mar.
+
+Kwatermistrz=kpt. mar.
+Magazynier=mat
+Górnik=mat
+
+Barman=cyw.
+Kucharz=cyw.
+Botanik=cyw.
+Woźny=cyw.
+
+Klaun=cyw.
+Mim=cyw.
+Bibliotekarz=cyw.
+Prawnik=cyw.
+
+Kapłan=por. mar.
+
+Inżynier=st. bosm.
+Technik Atmosferyki=mat
+
+Lekarz=ppor. mar.
+Ratownik Medyczny=bosm.
+Chemik=st. bosm.
+Genetyk=st. bosm.
+Wirolog=st. bosm.
+
+Naukowiec=cyw.
+Robotyk=cyw.
+
+Detektyw=ppor. mar.
+Żandarm=bosm.
+Lekarz Więzienny=mar.
+Aspirant=mar.
+
+Flight Leader=kpt. mar.
+Kontroler Lotów=por. mar.
+Technik Amunicyjny=mat
+Technik Pokładowy=mat
+Pilot=ppor. mar.
+
+Debtor=cyw.
+Psychiatra=cyw.
+Magik=cyw.
+Fryzjer=cyw.
+Gimmick=cyw.
+VIP=VIP
+
+SI Statku=CPU
+Cyborg=CPU
