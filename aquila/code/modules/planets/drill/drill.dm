@@ -190,6 +190,9 @@
 		if(!vein)
 			to_chat(user, span_warning("Wiertło musi stać na żyle rudy."))
 			return
+		if(istype(vein, /obj/structure/vein/gas))
+			to_chat(user, span_warning("To złoże gazu: wydobędzie je ekstraktor gazu, nie wiertło."))
+			return
 		if(vein.our_drill)
 			to_chat(user, span_warning("Na tej żyle już stoi wiertło."))
 			return
