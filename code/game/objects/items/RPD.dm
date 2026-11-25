@@ -20,6 +20,7 @@ GLOBAL_LIST_INIT(atmos_pipe_recipes, list(
 		new /datum/pipe_info/pipe("Rozgałęźnik",			/obj/machinery/atmospherics/pipe/manifold, TRUE),
 		new /datum/pipe_info/pipe("Zawór",		/obj/machinery/atmospherics/components/binary/valve, TRUE),
 		new /datum/pipe_info/pipe("Zawór cyfrowy",		/obj/machinery/atmospherics/components/binary/valve/digital, TRUE),
+		new /datum/pipe_info/pipe("Zawór odcinający",	/obj/machinery/atmospherics/components/binary/valve/digital/aq_shutoff, TRUE), // AQ EDIT - plan maszynowni E3
 		new /datum/pipe_info/pipe("Rozgałęźnik czterodrożny",		/obj/machinery/atmospherics/pipe/manifold4w, TRUE),
 		new /datum/pipe_info/pipe("Adapter warstw",		/obj/machinery/atmospherics/pipe/layer_manifold, TRUE),
 		new /datum/pipe_info/pipe("Adapter międzypokładowy", /obj/machinery/atmospherics/pipe/multiz, TRUE),
@@ -38,6 +39,7 @@ GLOBAL_LIST_INIT(atmos_pipe_recipes, list(
 		new /datum/pipe_info/pipe("Zawór ciśnieniowy",		/obj/machinery/atmospherics/components/binary/pressure_valve, TRUE),
 		new /datum/pipe_info/pipe("Regulator temperatury",	/obj/machinery/atmospherics/components/binary/temperature_gate, TRUE),
 		new /datum/pipe_info/pipe("Pompa temperaturowa",	/obj/machinery/atmospherics/components/binary/temperature_pump, TRUE),
+		new /datum/pipe_info/pipe("Iskrownik rurowy",	/obj/machinery/atmospherics/components/unary/aq_sparker, TRUE), // AQ EDIT - plan maszynowni E3
 		new /datum/pipe_info/meter("Miernik"),
 	),
 	"Heat Exchange" = list(
