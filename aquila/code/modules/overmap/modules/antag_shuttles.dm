@@ -165,6 +165,9 @@ GLOBAL_LIST_INIT(antag_shuttle_overmaps, list(
 		if(current_system)
 			current_system.remove_ship(src, null, TRUE)
 			current_system = null
+		// prom stoi w bazie: znika z overmapy, inaczej DRADIS pokazywał go dalej przy okręcie gracza
+		if(z)
+			moveToNullspace()
 		return
 	var/obj/structure/overmap/main = SSstar_system.find_main_overmap()
 	if(!main?.current_system || !main.z)

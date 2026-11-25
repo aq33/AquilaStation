@@ -46,7 +46,8 @@
 /// radar), bez limitu dwóch zasięgów DRADIS. Pozycje niepewnych kontaktów jak na DRADIS i stanowisku.
 /obj/structure/overmap/proc/get_fire_control_contacts(display_range)
 	. = list()
-	for(var/obj/structure/overmap/OM as anything in current_system?.system_contents)
+	// te same obiekty co DRADIS (radar.dm): wszystko na poziomie okrętu, także to, czego nie ma w zawartości układu
+	for(var/obj/structure/overmap/OM as anything in GLOB.overmap_objects)
 		if(!istype(OM) || QDELETED(OM) || OM == src || OM.z != z || istype(OM, /obj/structure/overmap/asteroid))
 			continue
 		var/painted = !!LAZYFIND(target_painted, OM)
@@ -114,6 +115,8 @@
 	data["chaff"] = linked.chaff
 	data["max_chaff"] = linked.max_chaff
 	data["jammer"] = linked.jammer_active
+	data["jammer_bearing"] = round(linked.jammer_bearing)
+	data["jammer_arc"] = linked.jammer_arc
 	// harpun (overmap/modules/harpoon.dm)
 	data["harpoon"] = linked.has_harpoon
 	var/datum/overmap_tether/tether = linked.harpoon_tether
@@ -126,7 +129,7 @@
 
 /obj/machinery/computer/ship/tactical/ui_act(action, params, datum/tgui/ui)
 	. = ..()
-	if(!. && linked && (action in list("fc_flares", "fc_chaff", "fc_jammer", "fc_reel", "fc_cut", "fc_ams_source", "fc_ams_mode", "fc_ams_limit")))
+	if(!. && linked && (action in list("fc_flares", "fc_chaff", "fc_jammer", "fc_jammer_bearing", "fc_jammer_aim", "fc_reel", "fc_cut", "fc_ams_source", "fc_ams_mode", "fc_ams_limit")))
 		switch(action)
 			if("fc_ams_source")
 				linked.ams_data_source = linked.ams_data_source == AMS_LOCKED_TARGETS ? AMS_PAINTED_TARGETS : AMS_LOCKED_TARGETS
@@ -143,6 +146,13 @@
 				linked.deploy_decoy("chaff")
 			if("fc_jammer")
 				linked.toggle_jammer()
+			if("fc_jammer_bearing")
+				var/bearing = text2num(params["bearing"])
+				if(isnum_safe(bearing))
+					linked.jammer_bearing = ((round(bearing) % 360) + 360) % 360
+			if("fc_jammer_aim")
+				if(linked.target_lock && !QDELETED(linked.target_lock))
+					linked.jammer_bearing = round(linked.bearing_to(linked.target_lock))
 			if("fc_reel")
 				if(linked.harpoon_tether)
 					linked.harpoon_tether.reeling = !linked.harpoon_tether.reeling

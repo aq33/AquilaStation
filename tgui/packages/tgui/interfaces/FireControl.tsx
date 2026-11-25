@@ -32,6 +32,7 @@ import {
   swatch,
   Symbol,
   Tag,
+  wedgePath,
 } from './SensorConsole';
 
 // Moduł okrętu = pomieszczenie jego wnętrza (aquila/code/modules/overmap/modules/module_targeting.dm)
@@ -113,6 +114,8 @@ type Data = {
   chaff: number;
   max_chaff: number;
   jammer: boolean;
+  jammer_bearing: number;
+  jammer_arc: number;
   ams: Ams | null;
 };
 
@@ -331,10 +334,28 @@ const TopBar = () => {
       <Button
         icon="broadcast-tower"
         selected={!!data.jammer}
-        tooltip="Zagłuszacz utrudnia namierzanie nas z daleka, ale zdradza naszą pozycję."
+        tooltip="Zagłuszacz w stożku wokół namiaru utrudnia namierzanie nas z daleka, ale zdradza naszą pozycję."
         onClick={() => act('fc_jammer')}
       >
         Zagłuszacz
+      </Button>
+      <span style={{ color: COLOR.ink2 }}>namiar</span>
+      <NumberInput
+        value={data.jammer_bearing}
+        width="52px"
+        minValue={0}
+        maxValue={359}
+        step={5}
+        format={(value) => pad(value) + '°'}
+        onChange={(value) => act('fc_jammer_bearing', { bearing: value })}
+      />
+      <Button
+        icon="crosshairs"
+        disabled={!locked}
+        tooltip="Ustaw zagłuszacz na namiar celu ognia."
+        onClick={() => act('fc_jammer_aim')}
+      >
+        Na cel
       </Button>
       <span style={{ marginLeft: 'auto', color: COLOR.ink2 }}>
         Obraz z:{' '}
@@ -504,6 +525,14 @@ const FireScope = (props: ScopeProps) => {
         stroke="rgba(120,180,255,0.35)"
         strokeDasharray="2 5"
       />
+      {!!data.jammer && (
+        <path
+          d={wedgePath(data.jammer_bearing, data.jammer_arc / 2, RADIUS)}
+          fill="rgba(190,120,255,0.12)"
+          stroke="rgba(190,120,255,0.6)"
+          strokeDasharray="3 3"
+        />
+      )}
       {objects.map((thing) => {
         const [x, y, outside] = toPoint(thing.dx, thing.dy);
         if (outside) {

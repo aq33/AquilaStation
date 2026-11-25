@@ -32321,5 +32321,7 @@
 "Brak połączenia z sensorami i uzbrojeniem okrętu.": "No link to the ship's sensors and weapons.",
 "myśliwiec": "fighter",
 "mała jednostka": "small craft",
-"myśliwiec lub mała jednostka": "fighter or small craft"
+"myśliwiec lub mała jednostka": "fighter or small craft",
+"Zagłuszacz w stożku wokół namiaru utrudnia namierzanie nas z daleka, ale zdradza naszą pozycję.": "The jammer makes it harder to lock onto us from afar within a cone around its bearing, but it gives away our position.",
+"Ustaw zagłuszacz na namiar celu ognia.": "Point the jammer at the bearing of the fire target."
 }

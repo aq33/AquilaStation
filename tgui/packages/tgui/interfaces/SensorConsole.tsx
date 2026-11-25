@@ -413,7 +413,7 @@ export const ContactShape = (props: {
 };
 
 // Wycinek od środka ekranu w kierunku bearing (stopnie od północy, zgodnie z zegarem)
-const wedgePath = (bearing: number, half: number, length: number) => {
+export const wedgePath = (bearing: number, half: number, length: number) => {
   const r = Math.min(length, RADIUS);
   const a0 = ((bearing - half - 90) * Math.PI) / 180;
   const a1 = ((bearing + half - 90) * Math.PI) / 180;

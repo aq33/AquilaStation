@@ -1,8 +1,8 @@
 /// AQUILA - wabiki i zagłuszanie (plan walki na overmapie, etap „chaff, flary, jammer”).
 /// Flary odciągają pociski z głowicą na podczerwień, chaff zrywa pociski z głowicą radarową, według naprowadzania z projektu
 /// pocisku (missile_design.dm, decoy_kind()); pocisk bez projektu: torpeda na ciepło, rakieta na radar. Torpeda-wabik NSV
-/// (DCY) zwodzi głowice radarowe osobno. Wabik działa na pociski kierowane, które już lecą w okręt (torpedoes_to_target). Zagłuszacz wydłuża namierzanie okrętu i co jakiś czas zrywa
-/// dalekie namiary, ale podnosi jego sygnaturę. Gracz używa ich w konsoli taktycznej, AI odpowiada wabikiem na pocisk.
+/// (DCY) zwodzi głowice radarowe osobno. Wabik działa na pociski kierowane, które już lecą w okręt (torpedoes_to_target). Zagłuszacz jest kierunkowy: w stożku
+/// jammer_arc stopni wokół ustawionego namiaru wydłuża namierzanie okrętu i co jakiś czas zrywa dalekie namiary, ale podnosi jego sygnaturę. Gracz używa ich w konsoli taktycznej, AI odpowiada wabikiem na pocisk.
 
 #define DECOY_RANGE 14
 #define DECOY_SEDUCE_CHANCE 55
@@ -90,7 +90,16 @@
 /// Odpływa od okrętu przeciwnie do kursu, z odchyleniem spread; przesuwa się tylko obraz, cel pocisków zostaje na polu
 /obj/effect/overmap_decoy/flare/proc/drift_from(obj/structure/overmap/ship, spread)
 	var/heading = ship.angle + 180 + spread
-	animate(src, pixel_x = sin(heading) * 40, pixel_y = cos(heading) * 40, time = lifetime, easing = QUAD_EASING | EASE_OUT, flags = ANIMATION_PARALLEL)
+	animate(src, pixel_x = pixel_x + sin(heading) * 40, pixel_y = pixel_y + cos(heading) * 40, time = lifetime, easing = QUAD_EASING | EASE_OUT, flags = ANIMATION_PARALLEL)
+
+/// Stawia wabik na rufie kadłuba (pole i przesunięcie w pikselach), a nie na polu środka hitboksu
+/obj/effect/overmap_decoy/proc/place_at_stern(obj/structure/overmap/ship)
+	var/list/stern = ship.overmap_stern_point()
+	if(!stern)
+		return
+	forceMove(stern[1])
+	pixel_x = stern[2]
+	pixel_y = stern[3]
 
 /// Dodatkowa flara tylko na obraz (wachlarz za rufą); pociski jej nie biorą za cel
 /obj/effect/overmap_decoy/flare/visual
@@ -122,6 +131,25 @@
 	/// AQUILA - zagłuszacz włączony
 	var/jammer_active = FALSE
 	var/jammer_timer
+	/// AQUILA - namiar zagłuszacza (stopnie od północy, zgodnie z zegarem, jak namiary na radarze)
+	var/jammer_bearing = 0
+	/// AQUILA - szerokość stożka zagłuszacza w stopniach
+	var/jammer_arc = 60
+
+/// Rufa kadłuba: list(pole, pixel_x, pixel_y) dla obiektu 32×32, którego środek ma stanąć na rufie; null bez obrysu sprite'a
+/obj/structure/overmap/proc/overmap_stern_point()
+	var/list/hull = overmap_hull_local(0, 0)
+	if(!hull || !z)
+		return null
+	// hull: półosie i środek kadłuba w pikselach od lewego dolnego rogu pola okrętu
+	var/world_x = hull[5] - sin(angle) * hull[4]
+	var/world_y = hull[6] - cos(angle) * hull[4]
+	var/tile_x = FLOOR(world_x / world.icon_size, 1)
+	var/tile_y = FLOOR(world_y / world.icon_size, 1)
+	var/turf/T = locate(clamp(x + tile_x, 1, world.maxx), clamp(y + tile_y, 1, world.maxy), z)
+	if(!T)
+		return null
+	return list(T, world_x - tile_x * world.icon_size - world.icon_size / 2, world_y - tile_y * world.icon_size - world.icon_size / 2)
 
 /// Wypuszcza wabik; flara działa na głowice na podczerwień, chaff na radarowe. Zwraca liczbę zwiedzionych pocisków albo FALSE.
 /obj/structure/overmap/proc/deploy_decoy(kind, seduce_chance = DECOY_SEDUCE_CHANCE)
@@ -136,11 +164,13 @@
 		chaff--
 	var/turf/T = get_center() || get_turf(src)
 	var/obj/effect/overmap_decoy/decoy = (kind == "flare") ? new /obj/effect/overmap_decoy/flare(T) : new /obj/effect/overmap_decoy/chaff(T)
+	decoy.place_at_stern(src)
 	if(kind == "flare")
 		var/obj/effect/overmap_decoy/flare/main_flare = decoy
 		main_flare.drift_from(src, 0)
 		for(var/spread in list(-35, 35))
 			var/obj/effect/overmap_decoy/flare/visual/extra = new(T)
+			extra.place_at_stern(src)
 			extra.drift_from(src, spread)
 	. = 0
 	for(var/obj/item/projectile/guided_munition/proj as anything in torpedoes_to_target)
@@ -176,19 +206,36 @@
 		jammer_timer = null
 	return jammer_active
 
+/// Namiar od tego okrętu do other (stopnie od północy, zgodnie z zegarem), z przesunięciami w polu jak na radarze
+/obj/structure/overmap/proc/bearing_to(obj/structure/overmap/other)
+	var/dx = overmap_wrap_delta((other.x + other.offset.a) - (x + offset.a), world.maxx)
+	var/dy = overmap_wrap_delta((other.y + other.offset.e) - (y + offset.e), world.maxy)
+	if(!dx && !dy)
+		return 0
+	. = 90 - arctan(dx, dy)
+	if(. < 0)
+		. += 360
+
+/// Czy włączony zagłuszacz tego okrętu celuje w other (other w stożku jammer_arc wokół namiaru)
+/obj/structure/overmap/proc/jammer_covers(obj/structure/overmap/other)
+	if(!jammer_active || !istype(other))
+		return FALSE
+	var/diff = abs(bearing_to(other) - jammer_bearing)
+	return min(diff, 360 - diff) <= jammer_arc / 2
+
 /// Zagłuszacz zrywa namiary okrętów, które trzymają nas z daleka
 /obj/structure/overmap/proc/jammer_tick()
 	if(!jammer_active || QDELETED(src))
 		return
 	for(var/obj/structure/overmap/enemy as anything in current_system?.system_contents)
-		if(!istype(enemy) || enemy == src || enemy.faction == faction || !LAZYFIND(enemy.target_painted, src))
+		if(!istype(enemy) || enemy == src || enemy.faction == faction || !LAZYFIND(enemy.target_painted, src) || !jammer_covers(enemy))
 			continue
 		if(overmap_dist(src, enemy) > JAMMER_MIN_DIST && prob(30))
 			enemy.dump_lock(src)
 
 // Namierzanie zagłuszanego okrętu z daleka trwa dwa razy dłużej
 /obj/structure/overmap/start_lockon(obj/structure/overmap/target)
-	if(!istype(target) || !target.jammer_active || overmap_dist(src, target) <= JAMMER_MIN_DIST)
+	if(!istype(target) || !target.jammer_covers(src) || overmap_dist(src, target) <= JAMMER_MIN_DIST)
 		return ..()
 	var/old_time = lockon_time
 	lockon_time *= 2

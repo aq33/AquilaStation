@@ -62,3 +62,34 @@
 	ship.toggle_jammer()
 	if(ship.sensor_profile != profile)
 		return Fail("Wyłączony zagłuszacz zostawił sygnaturę [ship.sensor_profile] zamiast [profile]")
+
+/// Wabiki wylatują z rufy kadłuba (także po obrocie okrętu), a zagłuszacz działa tylko w stożku wokół namiaru
+/datum/unit_test/aquila_decoys_direction
+
+/datum/unit_test/aquila_decoys_direction/Run()
+	var/obj/structure/overmap/ship = allocate(/obj/structure/overmap/syndicate/ai/gunboat/morale_test)
+	var/obj/structure/overmap/enemy = allocate(/obj/structure/overmap/syndicate/ai/gunboat/morale_test)
+	enemy.abstract_move(locate(ship.x + 6, ship.y, ship.z)) // forceMove okrętu działa tylko na overmapie
+	for(var/heading in list(0, 90))
+		ship.angle = heading
+		var/list/stern = ship.overmap_stern_point()
+		var/list/hull = ship.overmap_hull_local(0, 0)
+		if(!stern || !hull)
+			return Fail("Brak rufy albo obrysu kadłuba kanonierki")
+		var/turf/T = stern[1]
+		var/stern_x = (T.x - ship.x) * world.icon_size + stern[2] + world.icon_size / 2
+		var/stern_y = (T.y - ship.y) * world.icon_size + stern[3] + world.icon_size / 2
+		var/along = heading ? hull[5] - stern_x : hull[6] - stern_y
+		var/across = heading ? abs(stern_y - hull[6]) : abs(stern_x - hull[5])
+		if(abs(along - hull[4]) > 1 || across > 1)
+			return Fail("Przy kursie [heading]° wabik startuje [along] px za środkiem i [across] px w bok zamiast na rufie ([hull[4]] px za środkiem)")
+	ship.toggle_jammer()
+	ship.jammer_bearing = 90
+	var/covered_east = ship.jammer_covers(enemy)
+	ship.jammer_bearing = 270
+	var/covered_west = ship.jammer_covers(enemy)
+	ship.jammer_bearing = 130
+	var/covered_off = ship.jammer_covers(enemy)
+	ship.toggle_jammer()
+	if(!covered_east || covered_west || covered_off)
+		return Fail("Zagłuszacz na wschód: [covered_east], na zachód: [covered_west], 40° obok: [covered_off] (okręt w namiarze [ship.bearing_to(enemy)]°)")
