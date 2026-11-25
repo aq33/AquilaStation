@@ -165,10 +165,14 @@ GLOBAL_LIST_EMPTY(cooking_recipes_atoms)
 			recipe.name = initial(result_atom.name)
 		recipe.aquila_setup()
 		if(recipe.category in GLOB.crafting_category_food)
+			// Danie gotowane krok po kroku nie ma już przepisu na stole (jedna droga do dania)
+			if(!recipe.non_craftable && is_step_cooked(recipe.result))
+				continue
 			GLOB.cooking_recipes += recipe
 		else
 			GLOB.crafting_recipes += recipe
 
+	add_candy_mould_recipes() // foremki na cukierki w liście plastiku, zanim menu przejdzie po stosach
 	var/list/global_stack_recipes = list(
 		/obj/item/stack/sheet/glass = GLOB.glass_recipes,
 		/obj/item/stack/sheet/plasmaglass = GLOB.pglass_recipes,
