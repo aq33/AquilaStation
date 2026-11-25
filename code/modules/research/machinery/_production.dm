@@ -106,7 +106,7 @@
 /obj/machinery/rnd/production/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "Fabricator") // AQ EDIT - port BeeStation #14723
+		ui = new(user, src, aq_fabricator_interface(user, "Fabricator")) // AQ EDIT - port BeeStation #14723, pulpit fabrykatora (aquila/code/modules/pixel_devices/fabricator.dm)
 		ui.open()
 		viewing_mobs += user
 
