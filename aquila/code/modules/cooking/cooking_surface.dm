@@ -81,14 +81,6 @@
 /obj/machinery/proc/get_cooking_surfaces()
 	return list()
 
-/// Dodatkowe pozycje menu ustawień maszyny (nazwa -> obrazek), obok wyboru palnika
-/obj/machinery/proc/kitchen_menu_extras()
-	return list()
-
-/// Wybrano dodatkową pozycję menu ustawień
-/obj/machinery/proc/kitchen_menu_extra_chosen(choice, mob/user)
-	return
-
 /**
  * Miejsce na naczynie: palnik kuchenki, komora piekarnika, ruszt grilla, kosz frytkownicy.
  * Ma ogień (niski, średni, wysoki), minutnik i liczy czas gotowania naczynia.
@@ -244,9 +236,8 @@
 	if(!length(surfaces))
 		return FALSE
 	var/datum/cooking_surface/picked = surfaces[1]
-	var/list/extras = machine.kitchen_menu_extras()
-	if(length(surfaces) > 1 || length(extras))
-		var/list/options = extras.Copy()
+	if(length(surfaces) > 1)
+		var/list/options = list()
 		var/list/by_name = list()
 		for(var/datum/cooking_surface/surface as anything in surfaces)
 			var/image/surface_image = surface.container ? image(surface.container) : image(icon = 'aquila/icons/obj/food/cooking/radial.dmi', icon_state = "radial_onoff")
@@ -256,10 +247,6 @@
 			options[surface.name] = choice
 			by_name[surface.name] = surface
 		var/name_picked = show_radial_menu(user, machine, options, require_near = TRUE, tooltips = TRUE)
-		if(name_picked && extras[name_picked])
-			if(!QDELETED(machine) && user.canUseTopic(machine, BE_CLOSE))
-				machine.kitchen_menu_extra_chosen(name_picked, user)
-			return TRUE
 		if(!name_picked || !by_name[name_picked])
 			return TRUE
 		picked = by_name[name_picked]

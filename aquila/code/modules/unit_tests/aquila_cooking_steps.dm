@@ -191,8 +191,8 @@
 		burner.process_cooking(1, 1)
 	TEST_ASSERT(locate(/obj/item/food/spaghetti/boiledspaghetti) in pot, "No boiled spaghetti after refilling the water (pot holds: [english_list(pot.contents)])")
 
-/// Płyta grillowa to grill i kuchenka w jednym: jeden ogień dla czterech pól, jajko na patelni na polu płyty, garnek z zupą na drugim polu,
-/// a położony obok kotlet dalej się smaży, gdy płyta jest włączona
+/// Płyta grillowa to grill i kuchenka w jednym: jeden włącznik i jeden ogień dla czterech pól, jajko na patelni na polu płyty,
+/// garnek z zupą na drugim polu
 /datum/unit_test/aquila_griddle_burners
 
 /datum/unit_test/aquila_griddle_burners/Run()
@@ -209,18 +209,20 @@
 	griddle.rack.place_container(pot, pot_field)
 	TEST_ASSERT(pan.loc == griddle && pot.loc == griddle, "The pan and the pot are not on the griddle")
 
-	pan_field.turn_on()
-	pot_field.turn_on()
-	// Ogień jest jeden dla całej płyty: ustawiony na jednym polu zmienia wszystkie
-	pot_field.temperature = COOK_TEMP_LOW
-	griddle.kitchen_temperature_set(pot_field)
+	// Menu płyty to jedna pozycja: włącznik, ogień i minutnik całej płyty, bez wyboru pola
+	TEST_ASSERT(length(griddle.get_cooking_surfaces()) == 1, "The griddle settings menu still asks which field to set")
+	// Ogień jest jeden dla całej płyty
+	griddle.plate.temperature = COOK_TEMP_LOW
+	griddle.kitchen_temperature_set(griddle.plate)
 	var/datum/cooking_surface/burner/other_field = griddle.rack.burners[2]
-	TEST_ASSERT(pan_field.temperature == COOK_TEMP_LOW && other_field.temperature == COOK_TEMP_LOW, "Setting the heat on one griddle field did not set the whole griddle")
-	pan_field.temperature = COOK_TEMP_MED
-	griddle.kitchen_temperature_set(pan_field)
+	TEST_ASSERT(pan_field.temperature == COOK_TEMP_LOW && other_field.temperature == COOK_TEMP_LOW, "Setting the griddle heat did not set every field")
+	griddle.plate.temperature = COOK_TEMP_MED
+	griddle.kitchen_temperature_set(griddle.plate)
 	TEST_ASSERT(pot_field.temperature == COOK_TEMP_MED, "The soup pot field did not follow the griddle heat")
-	griddle.update_griddle_processing()
-	TEST_ASSERT(griddle.is_kitchen_active(), "The griddle is not working with two fields on")
+	// Jeden włącznik włącza płytę i wszystkie pola
+	griddle.plate.turn_on()
+	TEST_ASSERT(griddle.on && pan_field.on && pot_field.on && other_field.on, "The griddle switch did not turn on the griddle and all its fields")
+	TEST_ASSERT(griddle.is_kitchen_active(), "The griddle is not working after turning it on")
 	for(var/i in 1 to 40)
 		griddle.process(1)
 		if(locate(/obj/item/food/friedegg) in pan)
@@ -228,16 +230,12 @@
 	TEST_ASSERT(locate(/obj/item/food/friedegg) in pan, "No fried egg in the pan on the griddle (pan holds: [english_list(pan.contents)])")
 	TEST_ASSERT(pot.reagents.chem_temp > T20C + 5, "The soup pot did not heat up on the griddle ([pot.reagents.chem_temp] K)")
 
-	// Zwykłe grillowanie zostaje: wyłączona płyta nie smaży, pola z naczyniami dalej działają
-	TEST_ASSERT(!griddle.on, "The griddle surface turned on by itself")
-	pan_field.turn_off()
-	pot_field.turn_off()
-	griddle.update_griddle_processing()
-	TEST_ASSERT(!griddle.is_kitchen_active(), "The griddle kept working with everything off")
+	griddle.plate.turn_off()
+	TEST_ASSERT(!pan_field.on && !pot_field.on && !griddle.is_kitchen_active(), "The griddle kept working after turning it off")
 	pan.forceMove(run_loc_floor_bottom_left)
 	TEST_ASSERT(!pan_field.container && pan.transform.a == 1, "Taking the pan off the griddle did not free the field")
 
-/// Płyta z czterema naczyniami: włącznik w menu, brak prądu ją wyłącza, a rozebrana włączona płyta schodzi z przetwarzania i oddaje naczynia w zwykłym wyglądzie
+/// Płyta z czterema naczyniami: kliknięcie w pokrętło ją włącza i nie zdejmuje naczynia, brak prądu ją wyłącza, a rozebrana włączona płyta schodzi z przetwarzania i oddaje naczynia w zwykłym wyglądzie
 /datum/unit_test/aquila_griddle_teardown
 
 /datum/unit_test/aquila_griddle_teardown/Run()
@@ -248,22 +246,26 @@
 		var/obj/item/reagent_containers/cooking/pan/pan = allocate(/obj/item/reagent_containers/cooking/pan, run_loc_floor_bottom_left)
 		griddle.rack.place_container(pan, field)
 		pans += pan
-	TEST_ASSERT(griddle.kitchen_menu_extras()["Płyta: włącz/wyłącz"], "The griddle settings menu has no switch for the griddle itself")
-	griddle.kitchen_menu_extra_chosen("Płyta: włącz/wyłącz", cook)
-	TEST_ASSERT(griddle.on, "The griddle with four pans could not be turned on from the menu")
+	var/datum/cooking_surface/burner/first_field = griddle.rack.burners[1]
+	// Pokrętło na przodzie, pod przednią patelnią
+	griddle.attack_hand(cook, list(ICON_X = "9", ICON_Y = "5"))
+	TEST_ASSERT(griddle.on && first_field.on, "Clicking the knob did not turn on the griddle with four pans")
+	TEST_ASSERT(first_field.container == pans[1] && !cook.get_active_held_item(), "Clicking the knob took a pan off the griddle")
+	var/knob_state
+	var/list/griddle_overlays = islist(griddle.managed_overlays) ? griddle.managed_overlays : list(griddle.managed_overlays)
+	for(var/mutable_appearance/overlay as anything in griddle_overlays)
+		if(overlay && findtext(overlay.icon_state, "knob_"))
+			knob_state = overlay.icon_state
+	TEST_ASSERT(knob_state == "knob_med", "The griddle knob shows [knob_state] instead of the medium heat after turning it on")
 
 	// Bez prądu płyta i pola się wyłączają, a płyta schodzi z przetwarzania
-	var/datum/cooking_surface/burner/first_field = griddle.rack.burners[1]
-	first_field.turn_on()
 	griddle.machine_stat |= NOPOWER
 	griddle.process(1)
 	griddle.machine_stat &= ~NOPOWER
 	TEST_ASSERT(!griddle.on && !first_field.on, "The griddle stayed on without power")
 	TEST_ASSERT(!(griddle in SSmachines.processing), "The griddle kept processing without power")
 
-	griddle.kitchen_menu_extra_chosen("Płyta: włącz/wyłącz", cook)
-	first_field.turn_on()
-	griddle.update_griddle_processing()
+	griddle.plate.turn_on()
 	TEST_ASSERT(griddle in SSmachines.processing, "The griddle that was turned on is not processing")
 	var/obj/item/reagent_containers/cooking/pan/first_pan = pans[1]
 	qdel(griddle)

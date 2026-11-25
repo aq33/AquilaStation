@@ -146,18 +146,54 @@
 	return TRUE
 
 // ---------- Płyta grillowa: grill i kuchenka w jednym ----------
-// Na płycie dalej smaży się położone jedzenie (włącznik kliknięciem). Do tego cztery palniki jak w kuchence
-// elektrycznej: patelnia, rondel albo garnek na zupę, każde pole z minutnikiem, a ogień jeden dla całej płyty (Alt+klik).
+// Na płycie dalej smaży się położone jedzenie. Do tego cztery pola na patelnie, rondle i garnki z zupą.
+// Płyta ma jeden włącznik (pokrętło na przodzie albo Alt+klik), jeden ogień i jeden minutnik dla wszystkich pól.
+
+/// Wysokość przedniego panelu z pokrętłem (icon_y): kliknięcie w panel włącza płytę, a nie zdejmuje naczynia
+#define GRIDDLE_PANEL_HEIGHT 12
+
+/// Ustawienia całej płyty grillowej (menu Alt+klik): włącznik, ogień i minutnik wspólne dla czterech pól
+/datum/cooking_surface/griddle_plate
+	name = "płyta"
+	on_word = "włączona"
+	off_word = "wyłączona"
+	can_burn = FALSE
+
+/datum/cooking_surface/griddle_plate/turn_on(mob/user)
+	var/obj/machinery/griddle/griddle = parent
+	if(griddle.machine_stat & (NOPOWER|BROKEN))
+		griddle.balloon_alert(user, "brak zasilania")
+		return
+	griddle.set_plate(TRUE)
+
+/datum/cooking_surface/griddle_plate/turn_off(mob/user)
+	var/obj/machinery/griddle/griddle = parent
+	griddle.set_plate(FALSE)
+
+/datum/cooking_surface/griddle_plate/ring_alarm()
+	timer_left = 0
+	parent.audible_message(span_notice("[parent] dzwoni: minął czas."))
+	playsound(parent, 'sound/machines/ding.ogg', 50, FALSE)
+
+/datum/cooking_surface/griddle_plate/describe()
+	. = "Płyta jest [on ? on_word : off_word], ogień [cook_temp_name(temperature)]"
+	if(timer)
+		. += ", minutnik [DisplayTimeText(timer)]"
+		if(on && timer_left > 0)
+			. += " (zostało [DisplayTimeText(timer_left, 1)])"
 
 /obj/machinery/griddle
 	desc = "Płyta do smażenia: kładzie się na niej jedzenie, a na czterech polach stawia patelnie, rondle i garnki z zupą."
 	active_power_usage = 40
 	var/datum/burner_rack/rack
+	/// Wspólne ustawienia płyty: włącznik, ogień, minutnik
+	var/datum/cooking_surface/griddle_plate/plate
 	var/static/list/burner_offsets = list(list(-7, -5), list(7, -5), list(-7, 4), list(7, 4))
 	var/static/list/burner_names = list("lewe przednie pole", "prawe przednie pole", "lewe tylne pole", "prawe tylne pole")
 
 /obj/machinery/griddle/Initialize(mapload)
 	rack = new(src, burner_offsets, burner_names, 15, TRUE)
+	plate = new(src)
 	kitchen_heat = new
 	. = ..()
 	refresh_kitchen_heat()
@@ -172,23 +208,40 @@
 			for(var/datum/cooking_surface/burner/burner as anything in rack.burners)
 				burner.container?.forceMove(drop)
 	QDEL_NULL(rack)
+	QDEL_NULL(plate)
 	QDEL_NULL(kitchen_heat)
 	return ..()
 
 /obj/machinery/griddle/get_cooking_surfaces()
-	return rack.burners
+	return list(plate)
 
 /obj/machinery/griddle/RefreshParts()
 	. = ..()
 	refresh_kitchen_heat()
+	// Jakość dań z naczyń liczy się z pola, na którym stoją
+	for(var/datum/cooking_surface/burner/burner as anything in rack.burners)
+		burner.parts_rating = kitchen_heat.rating
 
-/// Ogień jest jeden dla całej płyty: zmiana na jednym polu ustawia wszystkie
+/// Ogień jest jeden dla całej płyty: ustawiony w menu płyty przechodzi na wszystkie pola
 /obj/machinery/griddle/kitchen_temperature_set(datum/cooking_surface/surface)
 	for(var/datum/cooking_surface/burner/burner as anything in rack.burners)
-		if(burner == surface)
-			continue
 		burner.temperature = surface.temperature
 		burner.burn_progress = 0
+	update_appearance()
+
+/// Włącza albo wyłącza całą płytę: smażenie na płycie i wszystkie cztery pola naraz
+/obj/machinery/griddle/proc/set_plate(state)
+	on = state
+	plate.on = state
+	plate.timer_left = state ? plate.timer : 0
+	for(var/datum/cooking_surface/burner/burner as anything in rack.burners)
+		burner.on = state
+		burner.timer_left = 0
+		burner.burn_progress = 0
+		burner.temperature = plate.temperature
+	playsound(src, 'sound/items/lighter_on.ogg', 40, TRUE)
+	update_grill_audio()
+	update_griddle_processing()
 
 /obj/machinery/griddle/is_kitchen_active()
 	return on || rack?.any_on()
@@ -197,7 +250,7 @@
 	. = ..()
 	update_kitchen_heating()
 
-/// Płyta przestaje pracować dopiero, gdy wyłączona jest i płyta, i wszystkie palniki
+/// Płyta przestaje pracować dopiero, gdy wyłączona jest i płyta, i wszystkie pola
 /obj/machinery/griddle/end_processing()
 	if(is_kitchen_active() && !QDELING(src))
 		update_kitchen_heating()
@@ -221,11 +274,17 @@
 	return ..()
 
 /obj/machinery/griddle/attack_hand(mob/user, list/modifiers)
-	// Kliknięcie w pole z naczyniem zdejmuje naczynie, w pozostałe miejsca włącza i wyłącza płytę
-	if(rack.take(user, modifiers))
+	// Kliknięcie w pokrętło na przodzie włącza i wyłącza płytę, w pole z naczyniem zdejmuje naczynie
+	var/icon_y = text2num(LAZYACCESS(modifiers, ICON_Y))
+	var/on_panel = !isnull(icon_y) && icon_y <= GRIDDLE_PANEL_HEIGHT
+	if(!on_panel && rack.take(user, modifiers))
+		return TRUE
+	if(!on && (machine_stat & (NOPOWER|BROKEN)))
+		balloon_alert(user, "brak zasilania")
 		return TRUE
 	. = ..()
-	update_kitchen_heating()
+	if(!.)
+		set_plate(on)
 
 /obj/machinery/griddle/Exited(atom/movable/gone, direction)
 	. = ..()
@@ -234,50 +293,53 @@
 /obj/machinery/griddle/AltClick(mob/user)
 	if(!user.canUseTopic(src, BE_CLOSE, NO_DEXTERITY, FALSE, TRUE))
 		return ..()
-	cooking_settings_menu(src, user)
-	update_griddle_processing()
+	INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(cooking_settings_menu), src, user)
 	return TRUE
-
-/// W menu Alt+klik jest też włącznik samej płyty: przy czterech naczyniach kliknięcie zawsze trafia w któreś z nich
-/obj/machinery/griddle/kitchen_menu_extras()
-	return list("Płyta: włącz/wyłącz" = image(icon = 'aquila/icons/obj/food/cooking/radial.dmi', icon_state = "radial_onoff"))
-
-/obj/machinery/griddle/kitchen_menu_extra_chosen(choice, mob/user)
-	if(choice != "Płyta: włącz/wyłącz")
-		return
-	if(!on && (machine_stat & (NOPOWER|BROKEN)))
-		balloon_alert(user, "brak zasilania")
-		return
-	on = !on
-	update_grill_audio()
-	update_griddle_processing()
-	balloon_alert(user, on ? "płyta włączona" : "płyta wyłączona")
 
 /obj/machinery/griddle/process(delta_time)
 	if(machine_stat & (NOPOWER|BROKEN))
-		on = FALSE
-		update_grill_audio()
-		rack.turn_all_off()
-		update_griddle_processing()
+		set_plate(FALSE)
 		return
 	if(on)
 		. = ..()
+		plate.tick_timer(delta_time)
 	var/active = rack.process_burners(delta_time, kitchen_heat_factor())
 	if(!on && !active)
 		update_griddle_processing()
 		return
-	use_power(active_power_usage * ((on ? 1 : 0) + active))
+	var/in_use = 0
+	for(var/datum/cooking_surface/burner/burner as anything in rack.burners)
+		if(burner.on && burner.container)
+			in_use++
+	use_power(active_power_usage * ((on ? 1 : 0) + in_use))
 
-/obj/machinery/griddle/update_icon_state()
+/obj/machinery/griddle/update_overlays()
 	. = ..()
-	if(!on && rack?.any_on())
-		icon_state = "griddle[variant]_on"
+	// Pokrętło pokazuje ogień: wyłączona płyta, niski, średni, wysoki
+	var/knob = "off"
+	if(on)
+		switch(plate.temperature)
+			if(COOK_TEMP_LOW)
+				knob = "low"
+			if(COOK_TEMP_HIGH)
+				knob = "high"
+			else
+				knob = "med"
+	var/mutable_appearance/knob_overlay = mutable_appearance('aquila/icons/obj/machines/griddle_knob.dmi', "knob_[knob]", ABOVE_OBJ_LAYER)
+	// Trzecia odmiana płyty ma pokrętło przesunięte w prawo
+	if(variant == 3)
+		knob_overlay.pixel_x = 5
+	. += knob_overlay
 
 /obj/machinery/griddle/examine(mob/user)
 	. = ..()
-	. += span_notice("Płyta jest [kitchen_heat.describe(TRUE)].")
-	. += rack.examine_lines()
-	. += span_notice("Jedzenie kładzie się na płycie, a włącza ją kliknięciem. Patelnię, rondel albo garnek na zupę stawiasz kliknięciem w jedno z czterech pól. <b>Alt+klik</b>: włączanie i minutnik pola, ogień i włącznik całej płyty.")
+	. += span_notice("[plate.describe()]. Płyta jest [kitchen_heat.describe(TRUE)].")
+	for(var/datum/cooking_surface/burner/burner as anything in rack.burners)
+		if(burner.container)
+			. += span_notice("[capitalize(burner.name)]: stoi tu [burner.container].")
+	. += span_notice("Jedzenie kładzie się na płycie. Patelnię, rondel albo garnek na zupę stawiasz kliknięciem w jedno z czterech pól. Kliknięcie w pokrętło na przodzie włącza całą płytę. <b>Alt+klik</b>: włącznik, ogień i minutnik płyty.")
+
+#undef GRIDDLE_PANEL_HEIGHT
 
 // ---------- Grill na węgiel: ruszt ----------
 
