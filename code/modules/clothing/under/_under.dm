@@ -81,13 +81,7 @@
 			to_chat(M,"<span class='warning'>Czujniki [src] gwałtownie się zmieniają!</span>")
 		update_sensors(new_sensor_mode)
 
-/obj/item/clothing/under/emp_act()
-	. = ..()
-	if(has_sensor > NO_SENSORS)
-		sensor_mode = pick(SENSOR_OFF, SENSOR_OFF, SENSOR_OFF, SENSOR_LIVING, SENSOR_LIVING, SENSOR_VITALS, SENSOR_VITALS, SENSOR_COORDS)
-		if(ismob(loc))
-			var/mob/M = loc
-			to_chat(M,"<span class='warning'>Czujniki [src] gwałtownie się zmieniają!</span>")
+// AQ EDIT - usunięta druga emp_act(): losowała sensor_mode bez update_sensors(), więc noszący zostawał na suit_sensors_list (runda 6589)
 
 /obj/item/clothing/under/equipped(mob/user, slot)
 	..()
@@ -199,6 +193,9 @@
 		return
 	if(!ishuman(loc) || istype(loc, /mob/living/carbon/human/dummy))
 		return
+	var/mob/living/carbon/human/wearer = loc // AQ EDIT START - mundur trzymany w ręce albo w kieszeni nie rusza czujników noszonego
+	if(wearer.w_uniform != src)
+		return // AQ EDIT END
 
 	if(has_sensor >= HAS_SENSORS && sensor_mode > SENSOR_OFF)
 		if(HAS_TRAIT(loc, TRAIT_SUIT_SENSORS))

@@ -3343,6 +3343,15 @@
 /obj/machinery/firealarm/directional/north,
 /turf/open/floor/monotile/steel,
 /area/hallway/nsv/deck1/hallway)
+"hB" = (
+/obj/structure/hull_plate/end{
+	dir = 1
+	},
+/obj/structure/railing{
+	dir = 1
+	},
+/turf/open/floor/engine/airless,
+/area/space/nearstation)
 "hE" = (
 /obj/effect/turf_decal/stripes/box,
 /obj/machinery/porta_turret/ai{
@@ -5103,6 +5112,15 @@
 "nY" = (
 /obj/structure/hull_plate/end{
 	dir = 8
+	},
+/turf/open/floor/engine/airless,
+/area/space/nearstation)
+"nZ" = (
+/obj/structure/hull_plate/end{
+	dir = 4
+	},
+/obj/structure/railing{
+	dir = 4
 	},
 /turf/open/floor/engine/airless,
 /area/space/nearstation)
@@ -7348,6 +7366,15 @@
 	},
 /turf/open/floor/monotile/steel,
 /area/hallway/nsv/deck1/hallway)
+"wy" = (
+/obj/structure/hull_plate/end{
+	dir = 5
+	},
+/obj/structure/railing{
+	dir = 5
+	},
+/turf/open/floor/engine/airless,
+/area/space/nearstation)
 "wz" = (
 /turf/closed/wall/steel,
 /area/bridge/cic)
@@ -14294,6 +14321,15 @@
 /obj/machinery/door/airlock/ship/maintenance,
 /turf/open/floor/plating,
 /area/maintenance/nsv/deck1/port)
+"Vy" = (
+/obj/structure/hull_plate/end{
+	dir = 9
+	},
+/obj/structure/railing{
+	dir = 1
+	},
+/turf/open/floor/engine/airless,
+/area/space/nearstation)
 "Vz" = (
 /obj/structure/cable,
 /obj/machinery/duct,
@@ -14794,6 +14830,15 @@
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/toilet)
+"XF" = (
+/obj/structure/hull_plate/end{
+	dir = 5
+	},
+/obj/structure/railing{
+	dir = 1
+	},
+/turf/open/floor/engine/airless,
+/area/space/nearstation)
 "XG" = (
 /obj/structure/cable/multiz,
 /obj/structure/closet/radiation,
@@ -58040,7 +58085,7 @@ cL
 cL
 cL
 cL
-Lv
+Vy
 nY
 nY
 nY
@@ -58297,7 +58342,7 @@ cL
 cL
 cL
 cL
-jv
+hB
 mK
 mK
 mK
@@ -58554,7 +58599,7 @@ cL
 cL
 cL
 cL
-jv
+hB
 mK
 mK
 mK
@@ -58811,7 +58856,7 @@ cL
 cL
 cL
 cL
-jv
+hB
 mK
 Lq
 Lq
@@ -59068,7 +59113,7 @@ cL
 cL
 cL
 cL
-jv
+hB
 mK
 Lq
 Lq
@@ -59325,7 +59370,7 @@ cL
 cL
 cL
 cL
-jv
+hB
 mK
 Lq
 Lq
@@ -59582,7 +59627,7 @@ cL
 cL
 cL
 cL
-jv
+hB
 mK
 Lq
 Lq
@@ -59839,7 +59884,7 @@ cL
 cL
 cL
 cL
-jv
+hB
 mK
 mK
 mK
@@ -60096,15 +60141,15 @@ cL
 cL
 cL
 cL
-xg
-uf
-uf
-uf
-uf
-uf
-uf
-uf
-uf
+wy
+nZ
+nZ
+nZ
+nZ
+nZ
+nZ
+nZ
+nZ
 mK
 mK
 mK
@@ -60362,7 +60407,7 @@ cL
 cL
 cL
 zC
-jv
+hB
 mK
 mK
 mK
@@ -60619,7 +60664,7 @@ cL
 cL
 cL
 zC
-xg
+XF
 uf
 uf
 uf

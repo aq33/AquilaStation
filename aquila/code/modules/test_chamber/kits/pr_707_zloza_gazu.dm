@@ -3,7 +3,7 @@
 	pr = "aq33/AquilaStation#707"
 	description = "Zestaw: dwa złoża gazu (wulkaniczne z plazmą i księżycowe z podtlenkiem azotu), na pierwszym gotowy ekstraktor gazu podłączony rurą do portu z pustym kanistrem, drugie wolne do budowy. Do tego płytka ekstraktora z częściami, kablem, plastalą i żelazem na ramę, pojemne ogniwo, RPD, georadarowy skaner górniczy, analizator i skrzynka z narzędziami. \
 	1) Skaner przyłożony do złoża → klasa, łączna liczba moli i skład w procentach. Skaner w trybie podziemia wskazuje złoża jak żyły rudy. \
-	2) Gotowy ekstraktor: włączenie ręką → syfon się zapala, kanister na porcie się napełnia (ok. 50 mol/s, analizator na kanistrze pokazuje plazmę, CO2 i czasem ślad trytu), a co 45 s wokół złoża otwierają się wyrwy z fauną planety wulkanicznej (trzy fale, potem przerwa). Oględziny ekstraktora pokazują stan, wydajność, gaz w złożu i ogniwo. \
+	2) Kanister stoi na porcie: przykręć go kluczem. Gotowy ekstraktor: włączenie ręką → syfon się zapala, kanister na porcie się napełnia (ok. 50 mol/s, analizator na kanistrze pokazuje plazmę, CO2 i czasem ślad trytu), a co 45 s wokół złoża otwierają się wyrwy z fauną planety wulkanicznej (trzy fale, potem przerwa). Oględziny ekstraktora pokazują stan, wydajność, gaz w złożu i ogniwo. \
 	3) Komora ma zasilanie, więc ekstraktor bierze prąd z sieci. Wyjęcie ogniwa (śrubokręt, łom) nic nie zmienia; w obszarze bez zasilania (planeta) bez ogniwa staje ze stanem „brak zasilania” (negatyw). \
 	4) Przy 4500 kPa w rurze staje ze stanem „rura pełna” i wyrwy przestają się otwierać; po zmianie kanistra rusza dalej. \
 	5) Budowa: rama z żelaza na drugim złożu, kable, płytka, części, plastal, śrubokręt → ekstraktor na złożu. Przy otwartym panelu klucz obraca wylot, multitool na płytce zmienia warstwę rury. Rama poza złożem → ekstraktor ze stanem „brak złoża gazu pod spodem” (negatyw). \
@@ -45,13 +45,16 @@
 		return
 	spawned += new /obj/structure/vein/gas/lava(extractor_turf)
 	var/obj/machinery/atmospherics/components/unary/gas_extractor/extractor = new(extractor_turf, TRUE, SOUTH)
-	extractor.on_construction()
 	spawned += extractor
 	var/obj/machinery/atmospherics/components/unary/portables_connector/visible/port = new(port_turf, TRUE, NORTH)
-	port.on_construction(null, PIPING_LAYER_DEFAULT)
 	spawned += port
-	var/obj/machinery/portable_atmospherics/canister/canister = new(port_turf)
-	canister.connect(port)
-	spawned += canister
+	// Bez on_construction: drugie urządzenie woła add_member na pierwszym, które nie ma jeszcze sieci (runtime).
+	// Same połączenia i kolejka przebudowy SSair, jak przy wczytaniu szablonu.
+	for(var/obj/machinery/atmospherics/device as anything in list(extractor, port))
+		device.atmos_init()
+	for(var/obj/machinery/atmospherics/device as anything in list(extractor, port))
+		SSair.add_to_rebuild_queue(device)
+	// Kanister tylko stoi na porcie: connect() potrzebuje gotowej sieci, a ta powstaje dopiero w kolejce SSair
+	spawned += new /obj/machinery/portable_atmospherics/canister(port_turf)
 	if(free_vein_turf)
 		spawned += new /obj/structure/vein/gas/moon(free_vein_turf)
