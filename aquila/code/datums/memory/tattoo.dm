@@ -97,15 +97,9 @@
 	src.tattoo_description = tattoo_description
 	tatted_limb.AddElement(/datum/element/art/commoner, 15)
 
-	if(tatted_limb.owner)
-		setup_tatted_owner(tatted_limb.owner)
-
 /datum/component/tattoo/Destroy(force, silent)
 	if(!parent)
 		return ..()
-	var/obj/item/bodypart/tatted_limb = parent
-	if(tatted_limb.owner)
-		clear_tatted_owner(tatted_limb.owner)
 	parent.RemoveElement(/datum/element/art/commoner, 15)
 	return ..()
 
@@ -121,18 +115,9 @@
 	SIGNAL_HANDLER
 	examine_list += "<span class='boldnotice'>[tattoo_description]</span>"
 
-/datum/component/tattoo/proc/setup_tatted_owner(mob/living/carbon/new_owner)
-	RegisterSignal(new_owner, COMSIG_PARENT_EXAMINE, PROC_REF(on_bodypart_owner_examine), override = TRUE)
-
-/datum/component/tattoo/proc/clear_tatted_owner(mob/living/carbon/old_owner)
-	UnregisterSignal(old_owner, COMSIG_PARENT_EXAMINE)
-
-/datum/component/tattoo/proc/on_bodypart_owner_examine(mob/living/carbon/bodypart_owner, mob/user, list/examine_list)
-	SIGNAL_HANDLER
-
+/// Tekst tatuażu przy oglądaniu właściciela kończyny, o ile ubranie go nie zasłania
+/datum/component/tattoo/proc/owner_examine_text(mob/living/carbon/bodypart_owner, list/examine_list)
 	var/obj/item/bodypart/tatted_limb = parent
-	if(tatted_limb.owner != bodypart_owner)
-		return
 	for(var/obj/item/clothing/possibly_blocking in bodypart_owner.get_equipped_items())
 		if(possibly_blocking.body_parts_covered & tatted_limb.body_part) //check to see if something is obscuring their tattoo.
 			return
@@ -140,19 +125,13 @@
 	examine_list += "<span class='notice'>Na tej części ciała ([tatted_limb.name]) widać tatuaż!</span>"
 	examine_list += "<span class='boldnotice'>[tattoo_description]</span>"
 
-// AQUILA: w tg tatuaż nie śledzi przeszczepienia kończyny; u nas właściciel jest odpinany i przypinany razem z kończyną
-/obj/item/bodypart/drop_limb(special)
-	var/mob/living/carbon/old_owner = owner
-	var/datum/component/tattoo/tattoo = GetComponent(/datum/component/tattoo)
-	if(tattoo && old_owner)
-		tattoo.clear_tatted_owner(old_owner)
-	return ..()
-
-/obj/item/bodypart/attach_limb(mob/living/carbon/C, special, is_creating = FALSE)
+// AQUILA: w tg tatuaż rejestruje COMSIG_ATOM_EXAMINE na właścicielu. U nas oglądanie człowieka tego sygnału nie wysyła,
+// więc tatuaże dopisuje nadpisanie examine (przy okazji działa to po przeszczepieniu kończyny).
+/mob/living/carbon/human/examine(mob/user)
 	. = ..()
-	var/datum/component/tattoo/tattoo = GetComponent(/datum/component/tattoo)
-	if(tattoo && owner)
-		tattoo.setup_tatted_owner(owner)
+	for(var/obj/item/bodypart/part as anything in bodyparts)
+		var/datum/component/tattoo/tattoo = part.GetComponent(/datum/component/tattoo)
+		tattoo?.owner_examine_text(src, .)
 
 // ---------------------------------------------------------------- tatuaże więźniów
 
