@@ -32288,5 +32288,15 @@
 "Szybki statek desantowy Syndykatu. Ostrzał trafia w ich prom.": "A fast Syndicate dropship. Fire on it hits their shuttle.",
 "Brak informacji: zaktualizuj NTOS.": "Information not found: update your NTOS.",
 "prom szybkiego reagowania Nanotrasen": "Nanotrasen emergency response shuttle",
-"Uniwersalny statek desantowy, którym Centrala przysyła drużynę szybkiego reagowania.": "A utility dropship that Central Command uses to send an emergency response team."
+"Uniwersalny statek desantowy, którym Centrala przysyła drużynę szybkiego reagowania.": "A utility dropship that Central Command uses to send an emergency response team.",
+"Ekran taktyczny": "Tactical screen",
+"Rozpoznanie": "Recon",
+"Sensorami steruje tylko stanowisko rozpoznania.": "Only the sensor station controls the sensors.",
+"Sensorami steruje tylko DRADIS mostka.": "Only the bridge DRADIS controls the sensors.",
+"Strzela tylko strzelec przy konsoli taktycznej.": "Only the gunner at the tactical console can fire.",
+"Podgląd: strzela tylko strzelec przy konsoli taktycznej.": "View only: only the gunner at the tactical console can fire.",
+"Impuls radaru ze stanowiska rozpoznania: widać dalej, ale wrogowie słyszą okręt.": "Radar pulse from the sensor station: you see further, but enemies hear the ship.",
+"Impuls za ${Math.ceil(cooldown)} s": "Pulse in ${Math.ceil(cooldown)} s",
+"Okręt nie ma konsoli taktycznej z kontrolą ognia.": "The ship has no tactical console with fire control.",
+"Brak połączenia z sensorami i uzbrojeniem okrętu.": "No link to the ship's sensors and weapons."
 }

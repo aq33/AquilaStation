@@ -1,6 +1,7 @@
 /// AQUILA - sensor console: the radar operator's station.
 /// It runs the ship's sensors (listening or active radar, radar pulse) and designates targets, which every DRADIS
-/// on the ship and the tactical console then show. DRADIS stays a map for everyone, without the sensor controls.
+/// on the ship and the tactical console then show. On big ships it is the Recon mode of the tactical screen
+/// (tactical_screen.dm), which every bridge console opens; only this console runs the sensors.
 /// A ship without a sensor console (older maps, AI ships, fighters) keeps the sensor controls on its DRADIS.
 
 #define SENSOR_DESIGNATION_PRIMARY "primary"
@@ -167,7 +168,7 @@
 
 /// Passes target to the bridge as a primary or secondary target; any other designation clears it.
 /// There is one primary target: a new one turns the old one into a secondary.
-/obj/machinery/computer/ship/dradis/sensors/proc/designate(obj/structure/overmap/target, designation, mob/user)
+/obj/machinery/computer/ship/dradis/proc/designate(obj/structure/overmap/target, designation, mob/user)
 	if(!istype(target) || !linked || target == linked || target.z != linked.z || istype(target, /obj/structure/overmap/asteroid))
 		return FALSE
 	if(designation != SENSOR_DESIGNATION_PRIMARY && designation != SENSOR_DESIGNATION_SECONDARY)
@@ -205,8 +206,14 @@
 	. = ..()
 	var/list/data = .
 	data["readonly"] = is_sensor_readonly(user)
+	add_scope_data(data)
+
+/// Dane okrągłego radaru (kontakty, znaczniki, obiekty, impuls) dla stanowiska rozpoznania i ekranu taktycznego
+/// (tactical_screen.dm); data to wynik ui_data() tej konsoli, z blipami DRADIS w data["ships"]
+/obj/machinery/computer/ship/dradis/proc/add_scope_data(list/data)
 	if(!linked)
 		return
+	data["heading"] = round(linked.angle)
 	data["radar_mode"] = sensor_mode == SENSOR_MODE_RADAR
 	data["radar_delay"] = radar_delay / 10
 	data["radar_delay_min"] = MIN_RADAR_DELAY / 10

@@ -1,9 +1,11 @@
-// AQUILA - konsola taktyczna (strzelca) z ekranem kontroli ognia (aquila/code/modules/overmap/fire_control.dm).
-// Wygląd jak stanowisko rozpoznania (SensorConsole.tsx), w kolorach ognia.
+// AQUILA - tryb Ogień ekranu taktycznego (TacticalScreen.tsx): kontrola ognia konsoli taktycznej
+// (aquila/code/modules/overmap/fire_control.dm). Wygląd jak stanowisko rozpoznania (SensorConsole.tsx), w kolorach ognia.
 import {
+  createContext,
   type CSSProperties,
   Fragment,
   type ReactNode,
+  useContext,
   useEffect,
   useRef,
   useState,
@@ -11,7 +13,6 @@ import {
 import { Box, Button, Icon, NumberInput } from 'tgui-core/components';
 
 import { useBackend } from '../backend';
-import { Window } from '../layouts';
 import {
   bearingOf,
   card,
@@ -19,6 +20,7 @@ import {
   type Contact,
   distanceOf,
   LABEL_CHAR_PX,
+  LockBox,
   MONO,
   OBJECT_COLOR,
   pad,
@@ -87,6 +89,8 @@ type Tether = {
 };
 
 type Data = {
+  readonly?: boolean;
+  can_hail?: boolean;
   harpoon: boolean;
   tether: Tether | null;
   own_armour: number[];
@@ -109,6 +113,17 @@ type Data = {
   max_chaff: number;
   jammer: boolean;
   ams: Ams | null;
+};
+
+// Dane konsoli taktycznej w ekranie taktycznym (data.fire z aquila/code/modules/overmap/tactical_screen.dm)
+export type FireControlData = Data;
+
+export const FireData = createContext<Data | null>(null);
+
+const useFire = () => {
+  const { act, data } = useBackend<Data>();
+  const section = useContext(FireData);
+  return { act, data: section || data };
 };
 
 // Obrona punktowa: ustawienia z dawnej osobnej konsoli AMS (autonomy.dm)
@@ -242,7 +257,7 @@ const ArmourDiagram = (props: { armour: number[]; title?: ReactNode }) => {
 };
 
 const TopBar = () => {
-  const { act, data } = useBackend<Data>();
+  const { act, data } = useFire();
   const hull = data.own_armour?.[4] ?? 0;
   const locked = (data.contacts || []).find((contact) => contact.locked);
   return (
@@ -344,7 +359,7 @@ type ScopeProps = {
 };
 
 const FireScope = (props: ScopeProps) => {
-  const { data } = useBackend<Data>();
+  const { data } = useFire();
   const { range, contacts, heading, selected, onSelect } = props;
   const objects = data.objects || [];
   const scale = RADIUS / range;
@@ -687,8 +702,8 @@ const FireScope = (props: ScopeProps) => {
   );
 };
 
-const AmsPanel = () => {
-  const { act, data } = useBackend<Data>();
+export const AmsPanel = () => {
+  const { act, data } = useFire();
   const ams = data.ams;
   if (!ams) {
     return null;
@@ -750,8 +765,8 @@ const AmsPanel = () => {
   );
 };
 
-const Weapons = () => {
-  const { act, data } = useBackend<Data>();
+export const Weapons = () => {
+  const { act, data } = useFire();
   const weapons = Object.values(data.weapons || {}).filter(
     (weapon) => !!weapon.maxammo,
   );
@@ -1011,7 +1026,7 @@ const ContactList = (props: {
 // Siatka modułów celu (pomieszczenia jego wnętrza): rufa z lewej, dziób z prawej, lewa burta u góry.
 // Kliknięcie modułu ustawia punkt celowania pocisków niekierowanych, drugie kliknięcie wraca do środka kadłuba.
 const ModuleGrid = (props: { contact: FireContact }) => {
-  const { act } = useBackend<Data>();
+  const { act } = useFire();
   const { contact } = props;
   const report = contact.modules;
   if (!report || !report.modules.length) {
@@ -1089,7 +1104,7 @@ const ModuleGrid = (props: { contact: FireContact }) => {
 };
 
 const ContactCard = (props: { contact: FireContact | undefined }) => {
-  const { act, data } = useBackend<Data>();
+  const { act, data } = useFire();
   const { contact } = props;
   if (!contact) {
     return null;
@@ -1191,25 +1206,27 @@ const ContactCard = (props: { contact: FireContact | undefined }) => {
             )}
           </>
         )}
-        <Button
-          icon="phone"
-          disabled={distance > data.hail_range}
-          tooltip={
-            distance > data.hail_range
-              ? 'Za daleko na wywołanie: podejdź na zasięg niebieskiego okręgu.'
-              : undefined
-          }
-          onClick={() => doIt('fc_hail')}
-        >
-          Wywołaj
-        </Button>
+        {!!data.can_hail && (
+          <Button
+            icon="phone"
+            disabled={distance > data.hail_range}
+            tooltip={
+              distance > data.hail_range
+                ? 'Za daleko na wywołanie: podejdź na zasięg niebieskiego okręgu.'
+                : undefined
+            }
+            onClick={() => doIt('fc_hail')}
+          >
+            Wywołaj
+          </Button>
+        )}
       </div>
     </Box>
   );
 };
 
-const OwnShip = () => {
-  const { data } = useBackend<Data>();
+export const OwnShip = () => {
+  const { data } = useFire();
   return (
     <Box style={card}>
       <div style={sectionTitle}>Stan okrętu</div>
@@ -1219,7 +1236,7 @@ const OwnShip = () => {
 };
 
 const DesignatedBar = () => {
-  const { act, data } = useBackend<Data>();
+  const { act, data } = useFire();
   const designated = [...(data.designated_targets || [])].sort((a) =>
     a.designation === 'primary' ? -1 : 1,
   );
@@ -1290,8 +1307,8 @@ const DesignatedBar = () => {
   );
 };
 
-export const FireControl = (props) => {
-  const { data } = useBackend<Data>();
+export const FireBody = (props) => {
+  const { data } = useFire();
   const [selected, setSelected] = useState<string | null>(null);
   const [rangeIndex, setRangeIndex] = useState(1);
   // Jak na stanowisku rozpoznania: pewne kontakty i obrót okrętu płyną między aktualizacjami
@@ -1322,135 +1339,133 @@ export const FireControl = (props) => {
   const heading = ((turned % 360) + 360) % 360;
   const current = contacts.find((contact) => contact.id === selected);
   return (
-    <Window width={900} height={620}>
-      <Window.Content
-        style={{
-          background: COLOR.bg,
-          color: COLOR.ink,
-          padding: 0,
-          fontSize: '13px',
-        }}
-      >
+    <Box style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+      <TopBar />
+      <Box style={{ flex: 1, display: 'flex', minHeight: 0 }}>
         <Box
-          style={{ display: 'flex', flexDirection: 'column', height: '100%' }}
+          style={{
+            width: '460px',
+            padding: '10px',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '6px',
+            borderRight: '1px solid ' + COLOR.line,
+          }}
         >
-          <TopBar />
-          <Box style={{ flex: 1, display: 'flex', minHeight: 0 }}>
-            <Box
-              style={{
-                width: '460px',
-                padding: '10px',
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '6px',
-                borderRight: '1px solid ' + COLOR.line,
-              }}
-            >
-              <Box style={{ position: 'relative', width: SCOPE + 'px' }}>
-                <FireScope
-                  range={RANGES[rangeIndex][0]}
-                  contacts={contacts}
-                  heading={heading}
-                  selected={selected}
-                  onSelect={setSelected}
-                />
-                <Box style={{ position: 'absolute', top: '4px', right: '4px' }}>
-                  {RANGES.map(([value, label], index) => (
-                    <Button
-                      key={value}
-                      selected={index === rangeIndex}
-                      onClick={() => setRangeIndex(index)}
-                    >
-                      {label}
-                    </Button>
-                  ))}
-                </Box>
-              </Box>
-              <Box
-                style={{
-                  display: 'flex',
-                  flexWrap: 'wrap',
-                  gap: '4px 12px',
-                  color: COLOR.ink2,
-                  fontSize: '11.5px',
-                }}
-              >
-                <span>
-                  <Symbol side="hostile" />
-                  wróg
-                </span>
-                <span>
-                  <Symbol side="friend" />
-                  sojusznik
-                </span>
-                <span>
-                  <Symbol side="unknown" />
-                  nierozpoznany
-                </span>
-                <span>
-                  <span
-                    style={{
-                      ...swatch('transparent'),
-                      border: '2px solid ' + FIRE.paint,
-                    }}
-                  />
-                  śledzony
-                </span>
-                <span>
-                  <span
-                    style={{
-                      ...swatch('transparent'),
-                      border: '2px solid ' + FIRE.lock,
-                      borderRadius: '50%',
-                    }}
-                  />
-                  cel ognia
-                </span>
-                <span>
-                  <span
-                    style={{
-                      ...swatch('rgba(255,93,93,0.15)'),
-                      border: '1px dashed #ff5d5d',
-                      borderRadius: '50%',
-                    }}
-                  />
-                  zasięg dział
-                </span>
-                <span>
-                  <span
-                    style={{
-                      ...swatch('transparent'),
-                      border: '1px dashed rgba(120,180,255,0.6)',
-                      borderRadius: '50%',
-                    }}
-                  />
-                  zasięg wywołania
-                </span>
-              </Box>
-            </Box>
-            <Box
-              style={{
-                flex: 1,
-                display: 'flex',
-                flexDirection: 'column',
-                minWidth: 0,
-                overflowY: 'auto',
-              }}
-            >
-              <OwnShip />
-              <Weapons />
-              <AmsPanel />
-              <ContactList
-                contacts={contacts}
-                selected={selected}
-                onSelect={setSelected}
-              />
-              <ContactCard contact={current} />
+          <Box style={{ position: 'relative', width: SCOPE + 'px' }}>
+            <FireScope
+              range={RANGES[rangeIndex][0]}
+              contacts={contacts}
+              heading={heading}
+              selected={selected}
+              onSelect={setSelected}
+            />
+            <Box style={{ position: 'absolute', top: '4px', right: '4px' }}>
+              {RANGES.map(([value, label], index) => (
+                <Button
+                  key={value}
+                  selected={index === rangeIndex}
+                  onClick={() => setRangeIndex(index)}
+                >
+                  {label}
+                </Button>
+              ))}
             </Box>
           </Box>
-          <DesignatedBar />
+          <Box
+            style={{
+              display: 'flex',
+              flexWrap: 'wrap',
+              gap: '4px 12px',
+              color: COLOR.ink2,
+              fontSize: '11.5px',
+            }}
+          >
+            <span>
+              <Symbol side="hostile" />
+              wróg
+            </span>
+            <span>
+              <Symbol side="friend" />
+              sojusznik
+            </span>
+            <span>
+              <Symbol side="unknown" />
+              nierozpoznany
+            </span>
+            <span>
+              <span
+                style={{
+                  ...swatch('transparent'),
+                  border: '2px solid ' + FIRE.paint,
+                }}
+              />
+              śledzony
+            </span>
+            <span>
+              <span
+                style={{
+                  ...swatch('transparent'),
+                  border: '2px solid ' + FIRE.lock,
+                  borderRadius: '50%',
+                }}
+              />
+              cel ognia
+            </span>
+            <span>
+              <span
+                style={{
+                  ...swatch('rgba(255,93,93,0.15)'),
+                  border: '1px dashed #ff5d5d',
+                  borderRadius: '50%',
+                }}
+              />
+              zasięg dział
+            </span>
+            <span>
+              <span
+                style={{
+                  ...swatch('transparent'),
+                  border: '1px dashed rgba(120,180,255,0.6)',
+                  borderRadius: '50%',
+                }}
+              />
+              zasięg wywołania
+            </span>
+          </Box>
         </Box>
-      </Window.Content>
-    </Window>
+        <Box
+          style={{
+            flex: 1,
+            display: 'flex',
+            flexDirection: 'column',
+            minWidth: 0,
+            overflowY: 'auto',
+          }}
+        >
+          {!!data.readonly && (
+            <Box style={{ ...card, color: COLOR.warn }}>
+              Podgląd: strzela tylko strzelec przy konsoli taktycznej.
+            </Box>
+          )}
+          <OwnShip />
+          <LockBox locked={!!data.readonly}>
+            <Weapons />
+            <AmsPanel />
+          </LockBox>
+          <ContactList
+            contacts={contacts}
+            selected={selected}
+            onSelect={setSelected}
+          />
+          <LockBox locked={!!data.readonly}>
+            <ContactCard contact={current} />
+          </LockBox>
+        </Box>
+      </Box>
+      <LockBox locked={!!data.readonly}>
+        <DesignatedBar />
+      </LockBox>
+    </Box>
   );
 };

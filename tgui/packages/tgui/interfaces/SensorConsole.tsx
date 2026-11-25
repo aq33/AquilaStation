@@ -1,9 +1,11 @@
-// AQUILA - konsola sensorów, stanowisko operatora radaru (aquila/code/modules/overmap/sensor_console.dm,
-// sensory okrętu gracza: aquila/code/modules/overmap/player_sensors.dm)
+// AQUILA - tryb Rozpoznanie ekranu taktycznego (TacticalScreen.tsx): stanowisko operatora radaru
+// (aquila/code/modules/overmap/sensor_console.dm, sensory okrętu gracza: aquila/code/modules/overmap/player_sensors.dm)
 import {
+  createContext,
   type CSSProperties,
   type MouseEvent,
   type ReactNode,
+  useContext,
   useEffect,
   useRef,
   useState,
@@ -11,7 +13,6 @@ import {
 import { Box, Button } from 'tgui-core/components';
 
 import { useBackend } from '../backend';
-import { Window } from '../layouts';
 
 export type Designation = 'primary' | 'secondary' | null;
 
@@ -55,6 +56,7 @@ type Marker = {
 
 type Data = {
   readonly?: boolean;
+  can_hail?: boolean;
   radar_mode: boolean;
   radar_delay: number;
   radar_delay_min: number;
@@ -126,6 +128,25 @@ export const OBJECT_KIND = {
   anomaly: 'anomalia',
   planet: 'planeta',
 };
+
+// Dane konsoli rozpoznania w ekranie taktycznym (data.sensor z aquila/code/modules/overmap/tactical_screen.dm)
+export type SensorConsoleData = Data;
+
+export const SensorData = createContext<Data | null>(null);
+
+const useSensor = () => {
+  const { act, data } = useBackend<Data>();
+  const section = useContext(SensorData);
+  return { act, data: section || data };
+};
+
+// Zablokowane sterowanie: widać, ale nie da się kliknąć
+export const LockBox = (props: { locked: boolean; children: ReactNode }) =>
+  props.locked ? (
+    <Box style={{ pointerEvents: 'none', opacity: 0.55 }}>{props.children}</Box>
+  ) : (
+    <Box>{props.children}</Box>
+  );
 
 // Fala impulsu dochodzi do granicy zasięgu w tyle sekund
 const PULSE_WAVE_SECONDS = 1.8;
@@ -323,7 +344,7 @@ const wedgePath = (bearing: number, half: number, length: number) => {
 };
 
 const TopBar = () => {
-  const { data } = useBackend<Data>();
+  const { data } = useSensor();
   const exposed = data.radar_mode || data.pulse_active;
   const heatPct = Math.round((data.heat || 0) * 100);
   return (
@@ -421,7 +442,7 @@ const TopBar = () => {
 };
 
 const ArrayBar = () => {
-  const { act, data } = useBackend<Data>();
+  const { act, data } = useSensor();
   const array = data.sensor_array;
   if (!array) {
     return null;
@@ -453,8 +474,7 @@ const ArrayBar = () => {
             style={{
               padding: '2px 8px',
               borderRadius: '999px',
-              border:
-                '1px solid ' + (unit.working ? '#2b6b45' : '#7a2d2d'),
+              border: '1px solid ' + (unit.working ? '#2b6b45' : '#7a2d2d'),
               color: unit.working ? COLOR.good : COLOR.bad,
             }}
           >
@@ -529,7 +549,7 @@ const PulseWave = (props: {
 };
 
 const Scope = (props: ScopeProps) => {
-  const { act, data } = useBackend<Data>();
+  const { act, data } = useSensor();
   const { range, contacts, heading, pulseAge, aimTarget, selected, onSelect } =
     props;
   const markers = data.markers || [];
@@ -1086,7 +1106,7 @@ const Sensors = (props: {
   contacts: Contact[];
   onAimTarget: (target: AimTarget) => void;
 }) => {
-  const { act, data } = useBackend<Data>();
+  const { act, data } = useSensor();
   const cooldown = data.pulse_cooldown || 0;
   const delay = Math.max(1, data.radar_delay);
   const loaded = data.pulse_active ? 1 : 1 - Math.min(cooldown / delay, 1);
@@ -1326,7 +1346,7 @@ const ContactList = (props: {
   selected: string | null;
   onSelect: (id: string) => void;
 }) => {
-  const { data } = useBackend<Data>();
+  const { data } = useSensor();
   const { contacts, selected, onSelect } = props;
   const order = { hostile: 0, unknown: 1, friend: 2 };
   const sorted = [...contacts].sort(
@@ -1439,7 +1459,7 @@ const ContactList = (props: {
 };
 
 const ContactCard = (props: { contact: Contact | undefined }) => {
-  const { act, data } = useBackend<Data>();
+  const { act, data } = useSensor();
   const { contact } = props;
   if (!contact) {
     return null;
@@ -1577,13 +1597,15 @@ const ContactCard = (props: { contact: Contact | undefined }) => {
           flexWrap: 'wrap',
         }}
       >
-        <Button
-          icon="phone"
-          tooltip="Połączenie z okrętem w zasięgu 50 pól (jak z DRADIS)."
-          onClick={() => act('hail', { target: contact.id })}
-        >
-          Wywołaj
-        </Button>
+        {data.can_hail !== false && (
+          <Button
+            icon="phone"
+            tooltip="Połączenie z okrętem w zasięgu 50 pól (jak z DRADIS)."
+            onClick={() => act('hail', { target: contact.id })}
+          >
+            Wywołaj
+          </Button>
+        )}
       </div>
       {!!contact.hostile && !data.readonly && (
         <div
@@ -1626,7 +1648,7 @@ const ContactCard = (props: { contact: Contact | undefined }) => {
 };
 
 const ObjectCard = (props: { thing: ScopeObject }) => {
-  const { act } = useBackend<Data>();
+  const { act } = useSensor();
   const { thing } = props;
   const label: CSSProperties = { color: COLOR.muted };
   const fact: CSSProperties = { fontFamily: MONO, fontWeight: 500 };
@@ -1679,7 +1701,7 @@ const ObjectCard = (props: { thing: ScopeObject }) => {
 };
 
 const PassedToBridge = (props: { contacts: Contact[] }) => {
-  const { data } = useBackend<Data>();
+  const { data } = useSensor();
   const designated = props.contacts
     .filter((contact) => !!contact.designation)
     .sort((a, b) => (a.designation === 'primary' ? -1 : 1));
@@ -1755,8 +1777,9 @@ const PassedToBridge = (props: { contacts: Contact[] }) => {
   );
 };
 
-export const SensorConsole = (props) => {
-  const { data } = useBackend<Data>();
+// Okno stanowiska rozpoznania bez ramki; extra trafia na górę prawej kolumny (tryb Podgląd)
+export const SensorBody = (props: { extra?: ReactNode }) => {
+  const { data } = useSensor();
   const [selected, setSelected] = useState<string | null>(null);
   const [rangeIndex, setRangeIndex] = useState(1);
   const [aimTarget, setAimTarget] = useState<AimTarget>('telescope');
@@ -1799,86 +1822,77 @@ export const SensorConsole = (props) => {
   );
   const pulseAge = (data.pulse_age || 0) + elapsed;
   return (
-    <Window width={1140} height={740}>
-      <Window.Content
-        style={{
-          background: COLOR.bg,
-          color: COLOR.ink,
-          padding: 0,
-          fontSize: '13px',
-        }}
-      >
+    <Box style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+      <TopBar />
+      <ArrayBar />
+      <Box style={{ flex: 1, display: 'flex', minHeight: 0 }}>
         <Box
-          style={{ display: 'flex', flexDirection: 'column', height: '100%' }}
+          style={{
+            width: '462px',
+            padding: '10px',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '6px',
+            borderRight: '1px solid ' + COLOR.line,
+          }}
         >
-          <TopBar />
-          <ArrayBar />
-          <Box style={{ flex: 1, display: 'flex', minHeight: 0 }}>
-            <Box
-              style={{
-                width: '462px',
-                padding: '10px',
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '6px',
-                borderRight: '1px solid ' + COLOR.line,
-              }}
-            >
-              <Box style={{ position: 'relative', width: SCOPE + 'px' }}>
-                <Scope
-                  range={SCOPE_RANGES[rangeIndex]}
-                  contacts={contacts}
-                  heading={heading}
-                  pulseAge={pulseAge}
-                  aimTarget={effectiveAim}
-                  selected={selected}
-                  onSelect={setSelected}
-                />
-                <Box style={{ position: 'absolute', top: '4px', right: '4px' }}>
-                  {SCOPE_RANGES.map((range, index) => (
-                    <Button
-                      key={range}
-                      selected={index === rangeIndex}
-                      onClick={() => setRangeIndex(index)}
-                    >
-                      <>{range} pól</>
-                    </Button>
-                  ))}
-                </Box>
-              </Box>
-              <Legend />
-            </Box>
-            <Box
-              style={{
-                flex: 1,
-                display: 'flex',
-                flexDirection: 'column',
-                minWidth: 0,
-                overflowY: 'auto',
-              }}
-            >
-              {data.readonly ? (
-                <Box style={{ ...card, color: COLOR.warn }}>
-                  Podgląd: sensorami steruje operator na stanowisku rozpoznania.
-                </Box>
-              ) : (
-                <Sensors contacts={contacts} onAimTarget={setAimTarget} />
-              )}
-              <ContactList
-                contacts={contacts}
-                selected={selected}
-                onSelect={setSelected}
-              />
-              {currentObject ? (
-                <ObjectCard thing={currentObject} />
-              ) : (
-                <ContactCard contact={current} />
-              )}
+          <Box style={{ position: 'relative', width: SCOPE + 'px' }}>
+            <Scope
+              range={SCOPE_RANGES[rangeIndex]}
+              contacts={contacts}
+              heading={heading}
+              pulseAge={pulseAge}
+              aimTarget={effectiveAim}
+              selected={selected}
+              onSelect={setSelected}
+            />
+            <Box style={{ position: 'absolute', top: '4px', right: '4px' }}>
+              {SCOPE_RANGES.map((range, index) => (
+                <Button
+                  key={range}
+                  selected={index === rangeIndex}
+                  onClick={() => setRangeIndex(index)}
+                >
+                  <>{range} pól</>
+                </Button>
+              ))}
             </Box>
           </Box>
-          <PassedToBridge contacts={contacts} />
+          <Legend />
         </Box>
-      </Window.Content>
-    </Window>
+        <Box
+          style={{
+            flex: 1,
+            display: 'flex',
+            flexDirection: 'column',
+            minWidth: 0,
+            overflowY: 'auto',
+          }}
+        >
+          {props.extra}
+          {!props.extra && !!data.readonly && (
+            <Box style={{ ...card, color: COLOR.warn }}>
+              Podgląd: sensorami steruje operator na stanowisku rozpoznania.
+            </Box>
+          )}
+          {!props.extra && (
+            <LockBox locked={!!data.readonly}>
+              <Sensors contacts={contacts} onAimTarget={setAimTarget} />
+            </LockBox>
+          )}
+          <ContactList
+            contacts={contacts}
+            selected={selected}
+            onSelect={setSelected}
+          />
+          {currentObject ? (
+            <ObjectCard thing={currentObject} />
+          ) : (
+            <ContactCard contact={current} />
+          )}
+        </Box>
+      </Box>
+      <PassedToBridge contacts={contacts} />
+    </Box>
   );
 };
