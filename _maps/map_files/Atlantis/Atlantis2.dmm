@@ -20621,9 +20621,8 @@
 /obj/machinery/telecomms/broadcaster/preset_left,
 /obj/structure/cable/yellow,
 /obj/machinery/power/apc/highcap/five_k{
-	areastring = "/area/tcommsat/server";
+	auto_name = 1;
 	dir = 4;
-	name = "Telecomms Control Room APC";
 	pixel_x = 24
 	},
 /turf/open/floor/circuit/telecomms/server,

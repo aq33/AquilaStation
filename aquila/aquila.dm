@@ -1582,6 +1582,7 @@
 #include "code\modules\weighted\weighted_rotation.dm"
 #include "code\modules\ruins\objects_and_mobs\sin_ruins.dm"
 #include "code\modules\screentips\atom_extensions.dm"
+#include "code\modules\screentips\other_level.dm"
 #include "code\modules\screentips\client_extensions.dm"
 #include "code\modules\screentips\contexts.dm"
 #include "code\modules\screentips\hooks.dm"
@@ -2735,6 +2736,7 @@
 #include "code\modules\unit_tests\aquila_logi_rund_6552.dm"
 #include "code\modules\unit_tests\aquila_logi_rund_6581.dm"
 #include "code\modules\unit_tests\aquila_shuttle_preflight_qdel.dm"
+#include "code\modules\unit_tests\aquila_runtime_6591.dm"
 #include "code\modules\unit_tests\aquila_gang_economy.dm"
 #include "code\modules\unit_tests\aquila_salvagers.dm"
 #include "code\modules\unit_tests\aquila_logi_rund_6563.dm"
@@ -2906,6 +2908,7 @@
 // BOTY: testy
 #include "code\modules\unit_tests\aquila_basic_bots.dm"
 #include "code\modules\unit_tests\aquila_memories.dm"
+#include "code\modules\unit_tests\aquila_zgloszenia_gracza_2511.dm"
 #endif
 
 // Heretyk z tg (osobny plik z includami)

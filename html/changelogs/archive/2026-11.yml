@@ -1714,6 +1714,15 @@
   - imageadd: Sprite'y szklanek drinków z tgstation/tgstation (CC BY-SA 3.0).
   - bugfix: Beczka browaru nie zużywa wysypanych owoców, nie startuje bez przepisu
       i nie przelewa trunku ponad pojemność.
+  - bugfix: Martwe ciało nie słyszy już strzałów i wybuchów okrętu ani nim nie trzęsie
+      (do zghostowania tak było).
+  - balance: Ból, rany i utrata krwi nie zatrzymują już serca przez szybkie tętno.
+      Zatrzymanie krążenia z tempa powoduje tylko przedawkowanie stymulantów albo
+      wychłodzenie, a gracz dostaje wcześniej ostrzeżenie.
+  - rscadd: Podpowiedź ekranowa i opis przy badaniu mówią, czy obiekt jest piętro
+      niżej albo wyżej.
+  - bugfix: 'Atlas: barierki na dachu nad wlotem hangaru desantowca, z którego łatwo
+      było spaść piętro niżej.'
   sh4dow321:
   - bugfix: Zapętlony alarm przegrzania reaktora (i inne pętle alarmów statku) cichnie
       też u graczy, którzy w międzyczasie zginęli albo opuścili statek.
@@ -1729,6 +1738,16 @@
   - bugfix: Link „strona wiki” w powitaniu stanowiska prowadzi na stronę stanowiska
       na wiki Aquili, a nie do wyszukiwarki BeeStation.
   - bugfix: Ogłoszenia głosowe AI (VOX) są sprawdzane filtrem zakazanych słów.
+  - bugfix: Pilot albo pasażer wyrzucony poza myśliwiec przestaje nim sterować.
+  - bugfix: Ofiara horroru dostaje komunikację z horrorem.
+  - bugfix: Po EMP konsola medyczna nie pokazuje graczy z wyłączonymi czujnikami kombinezonu.
+  - bugfix: Misja „Odbij kwaterę” nie psuje już startu trybu overmapy.
+  - bugfix: Abordażyści nie przeskakują w losowe miejsce, gdy wchodzą na drabinę bez
+      drugiego końca.
+  - bugfix: Oględziny martwych zwierząt pokazują poprawny opis.
+  - bugfix: APC telekomunikacji na Atlantis ma polską nazwę.
+  - code_imp: Poprawione runtime'y z rund 6585–6593 (nanity, flak, sygnały, cień światła
+      na promie, sieć kamer, lobby, radar, drabiny, mysz w dłoni, lampy).
   tralezab, MrMelbert:
   - rscadd: Postacie zapamiętują niezwykłe zdarzenia (operacje, bomby, śmierć na ich
       oczach, poślizgi, podpalenia, wielkie wygrane, medale i wiele innych). Wspomnienia

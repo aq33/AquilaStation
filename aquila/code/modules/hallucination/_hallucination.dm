@@ -63,6 +63,8 @@
 		for(var/turf/out_of_view in valid_range) // But better than nothing
 			valid_turfs += out_of_view
 
+	if(!length(valid_turfs)) // nosiciel poza mapą (runda 6589)
+		return get_turf(hallucinator)
 	return pick(valid_turfs)
 
 /// Gets a random non-security member of the crew that is at least 8 tiles away.
