@@ -6,7 +6,7 @@
 #define CHANNEL_JUSTICAR_ARK 1020
 #define CHANNEL_HEARTBEAT 1019 //sound channel for heartbeats
 #define CHANNEL_AMBIENT_EFFECTS 1018
-#define CHANNEL_AMBIENT_MUSIC 1017
+#define CHANNEL_AMBIENT_MUSIC 1008 // AQ EDIT - mikser dźwięku: był 1017 jak CHANNEL_BUZZ, więc szum statku blokował muzykę otoczenia
 #define CHANNEL_BUZZ 1017
 #define CHANNEL_SHIP_ALERT 1015 //nsv13 - sound channel for looping ship alerts, EG general quarters
 #define CHANNEL_REACTOR_ALERT 1014 //nsv13 - sound channel for the nuclear storm drive meltdown sfx.
@@ -29,7 +29,7 @@
 //THIS SHOULD ALWAYS BE THE LOWEST ONE!
 //KEEP IT UPDATED
 
-#define CHANNEL_HIGHEST_AVAILABLE 1010 //Nsv13 - ADDED LOADS OF SOUND CHANNELS. KEEP THIS UP TO DATE
+#define CHANNEL_HIGHEST_AVAILABLE 1007 //Nsv13 - ADDED LOADS OF SOUND CHANNELS. KEEP THIS UP TO DATE // AQ EDIT - 1010 -> 1007: CHANNEL_AMBIENT_MUSIC (1008) i CHANNEL_CHARGED_SPELL (1009) poza losowymi
 
 #define MAX_INSTRUMENT_CHANNELS (128 * 6)
 

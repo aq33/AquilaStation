@@ -391,7 +391,7 @@ GLOBAL_VAR(medibot_unique_id_gen)
 	new /obj/item/assembly/prox_sensor(drop_spot)
 	drop_part(healthanalyzer, drop_spot)
 	if(is_emagged() && prob(25))
-		playsound(src, 'aquila/sound/voice/medbot/malpiszon.ogg', 50)
+		playsound(src, 'aquila/sound/voice/medbot/malpiszon.ogg', 50, volume_pref = VOLUME_PREF_BOTS)
 	return ..()
 
 /mob/living/basic/bot/medbot/get_custom_controls(mob/user)

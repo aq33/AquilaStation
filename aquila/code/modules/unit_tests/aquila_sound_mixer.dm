@@ -64,5 +64,14 @@
 	TEST_ASSERT_EQUAL(listener.sound_volume_mult(null), 1, "A sound without a category was lowered")
 	listener.mock_client = null
 
+	// relay() okrętu: dźwięk na kanale to alarm (stan bojowy, FTL, reaktor), bez kanału to salwa albo trafienie
+	TEST_ASSERT_EQUAL(aq_relay_volume_pref(CHANNEL_SHIP_ALERT), VOLUME_PREF_SHIP_ALERTS, "General quarters is not a ship alarm in the mixer")
+	TEST_ASSERT_EQUAL(aq_relay_volume_pref(CHANNEL_REACTOR_ALERT), VOLUME_PREF_SHIP_ALERTS, "The reactor alarm is not a ship alarm in the mixer")
+	TEST_ASSERT_EQUAL(aq_relay_volume_pref(null), VOLUME_PREF_SHIP_FX, "A broadside without a channel is not a ship effect in the mixer")
+
+	// Szum statku i muzyka otoczenia mają osobne kanały, inaczej szum blokuje muzykę, a suwak jednego ścisza drugie
+	TEST_ASSERT(CHANNEL_BUZZ != CHANNEL_AMBIENT_MUSIC, "The ship hum and ambient music share a sound channel")
+	TEST_ASSERT(CHANNEL_AMBIENT_MUSIC > CHANNEL_HIGHEST_AVAILABLE, "Ambient music can get a random sound channel")
+
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL

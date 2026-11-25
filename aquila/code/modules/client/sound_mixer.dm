@@ -67,6 +67,23 @@ GLOBAL_LIST_INIT(sound_mixer_categories, list(
 		return 1
 	return prefs.get_volume_pref(volume_pref) / 100
 
+/client
+	/// Głośność przy 100% suwaka pętli grającej na danym kanale ("[kanał]" -> głośność), żeby suwak ściszał ją na żywo
+	var/list/mixer_channel_bases
+
+/// Puszcza dźwięk ściszony przez kategorię miksera. Dźwięk na kanale zapamiętuje swoją głośność bazową,
+/// więc ruszenie suwaka przelicza ją od tego, co naprawdę gra (alarm 100, kokpit 50, szum 40).
+/client/proc/play_mixed_sound(sound/S, volume_pref)
+	var/base_volume = S.volume
+	if(S.channel)
+		LAZYSET(mixer_channel_bases, "[S.channel]", base_volume)
+	S.volume = base_volume * (prefs ? prefs.get_volume_pref(volume_pref) / 100 : 1)
+	SEND_SOUND(src, S)
+
+/mob/proc/play_mixed_sound(sound/S, volume_pref)
+	if(client)
+		client.play_mixed_sound(S, volume_pref)
+
 // Suwaki w oknie preferencji
 
 /datum/preference/numeric/sound_mixer
@@ -75,7 +92,7 @@ GLOBAL_LIST_INIT(sound_mixer_categories, list(
 	step = 5
 	/// VOLUME_PREF_* tego suwaka
 	var/volume_category
-	/// Pętle, które mogą już grać: po zmianie suwaka dostają nową głośność. Pary list(kanał, głośność przy 100%).
+	/// Kanały pętli puszczanych przez play_mixed_sound(): po zmianie suwaka grająca pętla od razu dostaje nową głośność
 	var/list/live_channels
 
 /datum/preference/numeric/sound_mixer/read_value(datum/preferences/prefs)
@@ -88,24 +105,20 @@ GLOBAL_LIST_INIT(sound_mixer_categories, list(
 	if(!C?.mob || !length(live_channels))
 		return
 	var/mult = C.mob.sound_volume_mult(volume_category)
-	for(var/list/channel_volume as anything in live_channels)
-		C.mob.set_sound_channel_volume(channel_volume[1], channel_volume[2] * mult)
+	for(var/channel in live_channels)
+		var/base_volume = LAZYACCESS(C.mixer_channel_bases, "[channel]")
+		if(!isnull(base_volume))
+			C.mob.set_sound_channel_volume(channel, base_volume * mult)
 
 /datum/preference/numeric/sound_mixer/ship_alerts
 	db_key = "sound_mixer_ship_alerts"
 	volume_category = VOLUME_PREF_SHIP_ALERTS
-	// relay() gra alarmy na 100
-	live_channels = list(
-		list(CHANNEL_SHIP_ALERT, 100),
-		list(CHANNEL_REACTOR_ALERT, 100),
-		list(CHANNEL_SHIP_FX, 100),
-		list(CHANNEL_IMPORTANT_SHIP_ALERT, 100),
-	)
+	live_channels = list(CHANNEL_SHIP_ALERT, CHANNEL_REACTOR_ALERT, CHANNEL_SHIP_FX, CHANNEL_IMPORTANT_SHIP_ALERT)
 
 /datum/preference/numeric/sound_mixer/ship_fx
 	db_key = "sound_mixer_ship_fx"
 	volume_category = VOLUME_PREF_SHIP_FX
-	live_channels = list(list(AQUILA_CHANNEL_HULL_CREAK, 35)) // skrzypienie kadłuba
+	live_channels = list(AQUILA_CHANNEL_HULL_CREAK) // skrzypienie kadłuba
 
 /datum/preference/numeric/sound_mixer/guns
 	db_key = "sound_mixer_guns"
@@ -134,14 +147,14 @@ GLOBAL_LIST_INIT(sound_mixer_categories, list(
 /datum/preference/numeric/sound_mixer/ambience
 	db_key = "sound_mixer_ambience"
 	volume_category = VOLUME_PREF_AMBIENCE
-	// SSambience: szum 40, efekty 45
-	live_channels = list(
-		list(CHANNEL_BUZZ, 40),
-		list(CHANNEL_AMBIENT_EFFECTS, 45),
-	)
+	// efekty otoczenia (CHANNEL_AMBIENT_EFFECTS) to krótkie jednorazowe dźwięki: zmiana obejmie następny
+	live_channels = list(CHANNEL_BUZZ)
 
 /datum/preference/numeric/sound_mixer/ambient_music
 	db_key = "sound_mixer_ambient_music"
 	volume_category = VOLUME_PREF_AMBIENT_MUSIC
-	// CHANNEL_BUZZ i CHANNEL_AMBIENT_MUSIC mają w core ten sam numer 1017, więc muzyki na żywo nie ściszamy:
-	// zmiana obejmie następny utwór
+	live_channels = list(CHANNEL_AMBIENT_MUSIC)
+
+/// Kategoria miksera dźwięku relay(): na kanale grają alarmy i sygnały, bez kanału salwy, trafienia i manewry
+/proc/aq_relay_volume_pref(channel)
+	return channel ? VOLUME_PREF_SHIP_ALERTS : VOLUME_PREF_SHIP_FX

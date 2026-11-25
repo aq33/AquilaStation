@@ -47,7 +47,7 @@
 			SEND_SOUND(C, sound(null, channel = AQUILA_CHANNEL_HULL_CREAK))
 	for(var/client/C as anything in hearers)
 		if(!(C in aquila_hull_creak_listeners))
-			SEND_SOUND(C, sound('nsv13/sound/ambience/creaking_ambience.ogg', repeat = TRUE, wait = 0, volume = 35 * (C.prefs ? C.prefs.get_volume_pref(VOLUME_PREF_SHIP_FX) / 100 : 1), channel = AQUILA_CHANNEL_HULL_CREAK))
+			C.play_mixed_sound(sound('nsv13/sound/ambience/creaking_ambience.ogg', repeat = TRUE, wait = 0, volume = 35, channel = AQUILA_CHANNEL_HULL_CREAK), VOLUME_PREF_SHIP_FX)
 	aquila_hull_creak_listeners = length(hearers) ? hearers : null
 
 /obj/structure/overmap/Destroy()
