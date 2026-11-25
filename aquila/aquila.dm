@@ -3092,7 +3092,7 @@
 #include "code\modules\unit_tests\aquila_core_ejection.dm"
 #endif
 // Komora testowa
-#include "code\modules\test_chamber\kits\pr_wyrzut_rdzenia.dm"
+#include "code\modules\test_chamber\kits\pr_708_wyrzut_rdzenia.dm"
 // WYRZUT RDZENIA: koniec
 
 // Profiler byond-tracy: MUSI być ostatnim include'em całego builda (BYOND inicjuje zmienne statyczne od końca,

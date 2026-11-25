@@ -1,8 +1,8 @@
-// Wyrzut rdzenia reaktora (plan maszynowni, etap E9)
+// aq33/AquilaStation#708 - wyrzut rdzenia reaktora (plan maszynowni, etap E9)
 
-/datum/test_chamber_kit/pr_wyrzut_rdzenia
-	name = "PR: wyrzut rdzenia reaktora"
-	pr = "aq33/AquilaStation#0"
+/datum/test_chamber_kit/pr_708
+	name = "PR 708: wyrzut rdzenia reaktora"
+	pr = "aq33/AquilaStation#708"
 	description = "Napęd burzowy z konsolą, RBMK z konsolą prętów sterujących i odłamek supermaterii z konsolą inżynieryjną (program Monitorowanie supermaterii) są połączone. \
 	1) Bez karty (albo z kartą inżyniera) przycisk Wyrzut rdzenia w konsoli ma odmówić. Załóż kartę głównego inżyniera z zestawu. \
 	2) Konsola napędu burzowego: Wyrzut rdzenia → potwierdź → ogłoszenie i 30 s odliczania w oknie. Przerwij odliczanie: ogłoszenie o przerwaniu, reaktor bez zmian. \
@@ -24,7 +24,7 @@
 		/obj/item/card/id/job/chief_engineer = 1,
 	)
 
-/datum/test_chamber_kit/pr_wyrzut_rdzenia/setup(list/spawned, list/turfs, turf/center, mob/user)
+/datum/test_chamber_kit/pr_708/setup(list/spawned, list/turfs, turf/center, mob/user)
 	. = ..()
 	var/obj/machinery/atmospherics/components/binary/stormdrive_reactor/stormdrive = locate() in spawned
 	var/obj/machinery/computer/ship/reactor_control_computer/stormdrive_console = locate() in spawned
