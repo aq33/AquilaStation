@@ -59,12 +59,14 @@
 		JOB_NAME_BRIGPHYSICIAN = "brigphys",
 		JOB_NAME_DEPUTY = "deputy",
 		// NSV13 - Munitions
-		"Munitions (Custom)" = "rawmunitions",
-		JOB_NAME_MASTERATARMS = "masteratarms",
-		JOB_NAME_BRIDGESTAFF = "bridgestaff",
-		JOB_NAME_MUNITIONSTECHNICIAN = "munitionstechnician",
-		JOB_NAME_DECKTECHNICIAN = "decktechnician",
-		JOB_NAME_AIRTRAFFICCONTROLLER = "airtrafficcontroller",
+		// AQ EDIT START - stany jak w card.dmi i na kartach stanowisk (cards_ids.dm); nazwy z hud.dmi dawały niewidzialną kartę
+		"Munitions (Custom)" = "rawmunition",
+		JOB_NAME_MASTERATARMS = "maa",
+		JOB_NAME_BRIDGESTAFF = "silver",
+		JOB_NAME_MUNITIONSTECHNICIAN = "munitech",
+		JOB_NAME_DECKTECHNICIAN = "munitech",
+		JOB_NAME_AIRTRAFFICCONTROLLER = "atc",
+		// AQ EDIT END
 		JOB_NAME_PILOT = "pilot",
 		// ETC
 		"Unassigned" = "id",
