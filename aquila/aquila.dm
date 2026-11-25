@@ -2614,6 +2614,7 @@
 #include "code\modules\unit_tests\aquila_zgloszenia_2011.dm"
 #include "code\modules\unit_tests\aquila_shield_cloak.dm"
 #include "code\modules\unit_tests\aquila_ftl_calibration.dm"
+#include "code\modules\unit_tests\aquila_supermatter_low_gas.dm"
 #include "code\modules\unit_tests\aquila_missile_design.dm"
 #include "code\modules\unit_tests\aquila_squad_echo.dm"
 #include "code\modules\unit_tests\aquila_station_contracts.dm"
