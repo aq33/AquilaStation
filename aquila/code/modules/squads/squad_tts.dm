@@ -130,9 +130,9 @@ GLOBAL_LIST_INIT(squad_tts_default_female, list("21m00Tcm4TlvDq8ikWAM", "EXAVITQ
 		if(channel)
 			// ogłoszenie: słuchacz mógł ogłuchnąć albo wyłączyć ogłoszenia w trakcie syntezy
 			if(listener.can_hear() && (listener.client.prefs.toggles & PREFTOGGLE_SOUND_ANNOUNCEMENTS))
-				SEND_SOUND(listener, sound(voice_file, channel = channel))
+				SEND_SOUND(listener, sound(voice_file, channel = channel, volume = 100 * listener.sound_volume_mult(VOLUME_PREF_TTS)))
 			continue
-		listener.playsound_local(get_turf(listener), null, 80, FALSE, S = sound(voice_file))
+		listener.playsound_local(get_turf(listener), null, 80, FALSE, S = sound(voice_file), volume_pref = VOLUME_PREF_TTS)
 	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(aq_squad_tts_cleanup), file_name), 2 MINUTES)
 	return TRUE
 

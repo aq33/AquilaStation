@@ -46,12 +46,11 @@
 	announcement = CHAT_ALERT_SPAN(color_override, announcement)
 	// AQ EDIT END
 
-	var/s = sound(sound)
 	for(var/mob/M in GLOB.player_list)
 		if(!isnewplayer(M) && M.can_hear())
 			to_chat(M, announcement)
 			if(M.client.prefs.toggles & PREFTOGGLE_SOUND_ANNOUNCEMENTS)
-				SEND_SOUND(M, s)
+				SEND_SOUND(M, sound(sound, volume = 100 * M.sound_volume_mult(VOLUME_PREF_ANNOUNCEMENTS))) // AQ EDIT - mikser dźwięku: głośność u każdego słuchacza
 
 /proc/exploration_announce(text, z_value)
 	var/announcement = CHAT_ALERT_SPAN(null, ANNOUNCEMENT_HEADER(MAJOR_ANNOUNCEMENT_TITLE("Komunikat: [command_name()]")) + MAJOR_ANNOUNCEMENT_TEXT(html_encode(text))) // AQ EDIT - układ tg
@@ -98,8 +97,8 @@
 			to_chat(M, complete_msg)
 			if(!silent && (M.client.prefs.toggles & PREFTOGGLE_SOUND_ANNOUNCEMENTS)) //nsv13 - silent arg integration
 				if(alert)
-					SEND_SOUND(M, sound('sound/misc/notice1.ogg'))
+					SEND_SOUND(M, sound('sound/misc/notice1.ogg', volume = 100 * M.sound_volume_mult(VOLUME_PREF_ANNOUNCEMENTS))) // AQ EDIT - mikser dźwięku
 				else
-					SEND_SOUND(M, sound('sound/misc/notice2.ogg'))
+					SEND_SOUND(M, sound('sound/misc/notice2.ogg', volume = 100 * M.sound_volume_mult(VOLUME_PREF_ANNOUNCEMENTS))) // AQ EDIT - mikser dźwięku
 
 #undef DEFAULT_ALERT
