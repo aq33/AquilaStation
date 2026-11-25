@@ -133,37 +133,6 @@
 	tastes = list("pomidor" = 1, "niepewność" = 1)
 
 /*
-	Żelkowa fasolka (Goon: jelly bean) - soja i syrop kukurydziany w tacy
-*/
-/datum/plant_feature/fruit/soybean/jelly
-	species_name = "faba gelatina"
-	name = "żelkowa fasolka"
-	colour_override = list("#ff5a5a", "#7fe05a", "#ffd84a", "#5ab4ff", "#ff8ad8")
-	seed_icon = 'aquila/icons/obj/hydroponics/ported_inne_seeds.dmi'
-	seed_icon_state = "seed-jellybeans"
-	fruit_product = /obj/item/food/grown/jellybeans
-	plant_traits = list(/datum/plant_trait/reagent/fruit/nutriment)
-	fast_reagents = list(/datum/reagent/consumable/sugar = PLANT_REAGENT_LARGE)
-	mutations = list(/datum/plant_feature/fruit/soybean)
-
-/obj/item/plant_seeds/preset/jelly_bean
-	name = "nasiona: żelkowa fasolka (glina)"
-	name_override = "żelkowa fasolka"
-	icon = 'aquila/icons/obj/hydroponics/ported_inne_seeds.dmi'
-	icon_state = "seed-jellybeans"
-	plant_features = list(/datum/plant_feature/roots/clay, /datum/plant_feature/body/bush_vine/soybean, /datum/plant_feature/fruit/soybean/jelly)
-
-/obj/item/food/grown/jellybeans
-	seed = /obj/item/plant_seeds/preset/jelly_bean
-	name = "żelkowe fasolki"
-	desc = "Kolorowe, cukrowe fasolki prosto z krzaka. Każda smakuje trochę inaczej."
-	gender = PLURAL
-	icon = 'aquila/icons/obj/hydroponics/ported_inne_harvest.dmi'
-	icon_state = "jellybeans"
-	foodtypes = SUGAR | JUNKFOOD
-	tastes = list("żelki" = 1, "cukier" = 1)
-
-/*
 	Dynia korzenna (Goon: spice pumpkin) - dynia i kapsaicyna w tacy
 */
 /datum/plant_feature/fruit/pumpkin/spice

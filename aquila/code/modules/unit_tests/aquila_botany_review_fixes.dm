@@ -23,7 +23,7 @@
 	for(var/seed_type in GLOB.random_plant_seeds)
 		TEST_ASSERT(!ispath(seed_type, /obj/item/plant_seeds/preset/alien), "Obce nasiona [seed_type] trafiają do losowych źródeł")
 		TEST_ASSERT(!findtext("[seed_type]", "_wild"), "Dziki preset [seed_type] trafia do losowych źródeł")
-	TEST_ASSERT(!(/obj/item/plant_seeds/preset/sugartree_wild in GLOB.random_plant_seeds), "Dzikie drzewo cukrowe trafia do losowych źródeł")
+	TEST_ASSERT(!(/obj/item/plant_seeds/preset/fjylozyn_wild in GLOB.random_plant_seeds), "Dziki fjylozyn trafia do losowych źródeł")
 	var/datum/station_goal/dna_vault/vault = new
 	TEST_ASSERT_EQUAL(vault.non_standard_plants_count(), length(GLOB.random_plant_seeds), "Skarbiec DNA liczy inne nasiona niż pula do zdobycia na stacji")
 	qdel(vault)

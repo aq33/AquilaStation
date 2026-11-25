@@ -37,38 +37,6 @@
 	tastes = list("brzoskwinia" = 1)
 
 /*
-	Gruszka (Goon: pear)
-*/
-/datum/plant_feature/fruit/pear
-	species_name = "pyrus communis"
-	name = "gruszka"
-	icon_state = "apple-2"
-	colour_override = "#c9d64e"
-	seed_icon = 'aquila/icons/obj/hydroponics/ported_inne_seeds.dmi'
-	seed_icon_state = "seed-pear"
-	fruit_product = /obj/item/food/grown/pear
-	plant_traits = list(/datum/plant_trait/reagent/fruit/nutriment, /datum/plant_trait/reagent/fruit/vitamin)
-	total_volume = PLANT_FRUIT_VOLUME_SMALL
-	growth_time = PLANT_FRUIT_GROWTH_MEDIUM
-	fruit_size = PLANT_FRUIT_SIZE_MEDIUM
-
-/obj/item/plant_seeds/preset/pear
-	name = "nasiona: grusza (glina)"
-	name_override = "grusza"
-	icon = 'aquila/icons/obj/hydroponics/ported_inne_seeds.dmi'
-	icon_state = "seed-pear"
-	plant_features = list(/datum/plant_feature/roots/clay, /datum/plant_feature/body/tree/apple, /datum/plant_feature/fruit/pear)
-
-/obj/item/food/grown/pear
-	seed = /obj/item/plant_seeds/preset/pear
-	name = "gruszka"
-	desc = "Smak smakiem, ale świeżości nie można jej odmówić."
-	icon = 'aquila/icons/obj/hydroponics/ported_inne_harvest.dmi'
-	icon_state = "pear"
-	foodtypes = FRUIT
-	tastes = list("gruszka" = 1)
-
-/*
 	Truskawka (Goon: strawberry)
 */
 /datum/plant_feature/fruit/strawberry
@@ -232,69 +200,3 @@
 	icon_state = "mango"
 	foodtypes = FRUIT
 	tastes = list("słodycz" = 1, "soczystość" = 1)
-
-/*
-	Kiwi (Paradise: kiwi)
-*/
-/datum/plant_feature/fruit/kiwi
-	species_name = "actinidia deliciosa"
-	name = "kiwi"
-	icon_state = "potato-2"
-	colour_override = "#8a6b3d"
-	seed_icon = 'aquila/icons/obj/hydroponics/ported_inne_seeds.dmi'
-	seed_icon_state = "seed-kiwi"
-	fruit_product = /obj/item/food/grown/kiwi
-	plant_traits = list(/datum/plant_trait/reagent/fruit/nutriment, /datum/plant_trait/reagent/fruit/vitamin)
-	fast_reagents = list(/datum/reagent/consumable/sugar = PLANT_REAGENT_SMALL)
-	total_volume = PLANT_FRUIT_VOLUME_SMALL
-	growth_time = PLANT_FRUIT_GROWTH_FAST
-
-/obj/item/plant_seeds/preset/kiwi
-	name = "nasiona: kiwi (ziemia)"
-	name_override = "kiwi"
-	icon = 'aquila/icons/obj/hydroponics/ported_inne_seeds.dmi'
-	icon_state = "seed-kiwi"
-	plant_features = list(/datum/plant_feature/roots/dirt, /datum/plant_feature/body/bush_vine/grape, /datum/plant_feature/fruit/kiwi)
-
-/obj/item/food/grown/kiwi
-	seed = /obj/item/plant_seeds/preset/kiwi
-	name = "kiwi"
-	desc = "Jajowaty owoc różnej wielkości, pokryty cienką, brązową, puszystą skórką."
-	icon = 'aquila/icons/obj/hydroponics/ported_inne_harvest.dmi'
-	icon_state = "kiwi"
-	foodtypes = FRUIT
-	tastes = list("kwaśność" = 1, "słodycz" = 1)
-
-/*
-	Migdał (Bay: almond)
-*/
-/datum/plant_feature/fruit/almond
-	species_name = "prunus dulcis"
-	name = "migdał"
-	icon_state = "pod"
-	icon_uneven = TRUE
-	colour_override = "#c9a27a"
-	seed_icon = 'aquila/icons/obj/hydroponics/ported_inne_seeds.dmi'
-	seed_icon_state = "seed-almond"
-	fruit_product = /obj/item/food/grown/almond
-	plant_traits = list(/datum/plant_trait/reagent/fruit/nutriment, /datum/plant_trait/reagent/fruit/vitamin)
-	fast_reagents = list(/datum/reagent/consumable/nutriment/fat/oil = PLANT_REAGENT_SMALL)
-	total_volume = PLANT_FRUIT_VOLUME_SMALL
-	growth_time = PLANT_FRUIT_GROWTH_MEDIUM
-
-/obj/item/plant_seeds/preset/almond
-	name = "nasiona: migdałowiec (glina)"
-	name_override = "migdałowiec"
-	icon = 'aquila/icons/obj/hydroponics/ported_inne_seeds.dmi'
-	icon_state = "seed-almond"
-	plant_features = list(/datum/plant_feature/roots/clay, /datum/plant_feature/body/tree/mini, /datum/plant_feature/fruit/almond)
-
-/obj/item/food/grown/almond
-	seed = /obj/item/plant_seeds/preset/almond
-	name = "migdały"
-	desc = "Garść migdałów w twardej łupinie."
-	gender = PLURAL
-	icon = 'aquila/icons/obj/hydroponics/ported_inne_harvest.dmi'
-	icon_state = "almond"
-	foodtypes = VEGETABLES
-	tastes = list("migdały" = 1)

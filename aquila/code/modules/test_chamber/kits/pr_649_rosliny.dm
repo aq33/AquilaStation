@@ -3,7 +3,7 @@
 /datum/test_chamber_kit/pr_rosliny_uprawy
 	name = "Botanika: nowe rośliny i mutacje od odczynnika"
 	pr = "aq33/AquilaStation#649"
-	description = "Zestaw: tace z podłożem, łopatka, skaner roślin, nasiona z każdej grupy, zlewki z odczynnikami do mutacji. 1) Posadź nasiona (podłoże widać na paczce) i polej wodą: orzeszki, groch, róża, brzoskwinia, cynamon, zioło lecznicze asomna. Plony mają polskie nazwy i ikony; skaner pokazuje części rośliny. 2) Mutacje od odczynnika: posadź pomarańczę i wlej do tacy krew (krwista pomarańcza) albo żelazo (mechaniczna pomarańcza). Mutacja przychodzi losowo w ciągu około minuty i zużywa odczynnik. Stare odmiany (krwisty pomidor, złote jabłko) wychodzą już tylko z pieca. 3) Piec radiacyjny: groch → śmiejący się groch. 4) Automat MegaSeed ma nowe paczki, po zhakowaniu też owoc latarniowy, kronkus, tojad i kokę."
+	description = "Zestaw: tace z podłożem, łopatka, skaner roślin, nasiona z każdej grupy, zlewki z odczynnikami do mutacji. 1) Posadź nasiona (podłoże widać na paczce) i polej wodą: orzeszki, groch, róża, brzoskwinia, mięta, zioło lecznicze asomna. Plony mają polskie nazwy i ikony; skaner pokazuje części rośliny. 2) Mutacje od odczynnika: posadź pomarańczę i wlej do tacy krew (krwista pomarańcza) albo żelazo (mechaniczna pomarańcza). Mutacja przychodzi losowo w ciągu około minuty i zużywa odczynnik. Stare odmiany (krwisty pomidor, złote jabłko) wychodzą już tylko z pieca. 3) Piec radiacyjny: groch → śmiejący się groch. 4) Automat MegaSeed ma nowe paczki, po zhakowaniu też owoc latarniowy, tojad i kokę."
 	items = list(
 		/obj/item/plant_tray = 4,
 		/obj/item/substrate_bag/dirt = 2,
@@ -27,7 +27,7 @@
 			break
 		beaker.reagents.add_reagent(fills[index][1], 50)
 		beaker.name = "zlewka: [fills[index][2]]"
-	for(var/seed_type in list(/obj/item/plant_seeds/preset/peach, /obj/item/plant_seeds/preset/cinnamon, /obj/item/plant_seeds/preset/asomna))
+	for(var/seed_type in list(/obj/item/plant_seeds/preset/peach, /obj/item/plant_seeds/preset/mint, /obj/item/plant_seeds/preset/asomna))
 		if(ispath(seed_type))
 			spawned += new seed_type(center)
 
@@ -53,8 +53,8 @@
 		/obj/item/plant_seeds/preset/alien/xenoflora/cubomelon = 1,
 		/obj/item/plant_seeds/preset/alien/xenoflora/plasma_cabbage = 1,
 		/obj/item/plant_seeds/preset/alien/xenoflora/breather = 1,
-		/obj/item/plant_seeds/preset/alien/xenoflora/adhomai/earthenroot = 1,
-		/obj/item/plant_seeds/preset/alien/xenoflora/rasy/hrukhza = 1,
+		/obj/item/plant_seeds/preset/alien/xenoflora/adhomai/fjylozyn = 1,
+		/obj/item/plant_seeds/preset/alien/xenoflora/rasy/merlin_tears = 1,
 		/obj/machinery/portable_atmospherics/canister/carbon_dioxide = 1,
 		/obj/machinery/portable_atmospherics/canister/toxins = 1,
 		/obj/item/wrench = 1,

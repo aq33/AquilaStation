@@ -298,35 +298,6 @@ GLOBAL_LIST_INIT(hydrangea_colours, list("white" = "#f4f0ff", "pink" = "#ff9ad8"
 	icon_state = "nureous"
 	tastes = list("liście" = 1)
 
-/// Wenna (Goon: venne, węgiel aktywny)
-/datum/plant_feature/fruit/venne
-	species_name = "venna antitoxica"
-	name = "wenna"
-	icon_state = "tea"
-	icon_uneven = TRUE
-	colour_override = "#d8f060"
-	seed_icon = 'aquila/icons/obj/hydroponics/ported_inne_seeds.dmi'
-	seed_icon_state = "seed-venne"
-	fruit_product = /obj/item/food/grown/inne_herb/venne
-	fast_reagents = list(/datum/reagent/medicine/charcoal = PLANT_REAGENT_MEDIUM)
-	total_volume = PLANT_FRUIT_VOLUME_SMALL
-	growth_time = PLANT_FRUIT_GROWTH_FAST
-
-/obj/item/plant_seeds/preset/venne
-	name = "nasiona: wenna (gruz)"
-	name_override = "wenna"
-	icon = 'aquila/icons/obj/hydroponics/ported_inne_seeds.dmi'
-	icon_state = "seed-venne"
-	plant_features = list(/datum/plant_feature/roots/debris, /datum/plant_feature/body/bush_vine, /datum/plant_feature/fruit/venne)
-
-/obj/item/food/grown/inne_herb/venne
-	seed = /obj/item/plant_seeds/preset/venne
-	name = "włókna wenny"
-	desc = "Włókna z łodygi pnącza wenny. Smakują paskudnie, ale świetnie usuwają toksyny."
-	gender = PLURAL
-	icon_state = "venne"
-	tastes = list("paskudztwo" = 1)
-
 /// Ipekakuana (Goon: ipecacuanha, wymiotny ipecac; u nas rzygium)
 /datum/plant_feature/fruit/ipecacuanha
 	species_name = "carapichea ipecacuanha"

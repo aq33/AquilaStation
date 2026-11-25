@@ -26,7 +26,6 @@
 		list(/obj/item/plant_seeds/preset/tomato, /datum/reagent/phlogiston, 10, /datum/plant_feature/fruit/tomato/seething),
 		list(/obj/item/plant_seeds/preset/orange, /datum/reagent/blood, 15, /datum/plant_feature/fruit/orange/blood),
 		list(/obj/item/plant_seeds/preset/orange, /datum/reagent/iron, 15, /datum/plant_feature/fruit/orange/clockwork),
-		list(/obj/item/plant_seeds/preset/soybean, /datum/reagent/consumable/corn_syrup, 15, /datum/plant_feature/fruit/soybean/jelly),
 		list(/obj/item/plant_seeds/preset/pumpkin, /datum/reagent/consumable/capsaicin, 15, /datum/plant_feature/fruit/pumpkin/spice),
 	)
 	for(var/list/test_case in reagent_cases)

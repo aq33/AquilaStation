@@ -726,39 +726,6 @@
 	tastes = list("szum telewizora" = 1, "kwaśna gruszka" = 1, "grejpfrut" = 1)
 
 /*
-	Kronkus (tg: kronkus), w automacie po zhakowaniu
-*/
-/datum/plant_feature/fruit/kronkus
-	species_name = "vitis kronkus"
-	name = "kronkus"
-	icon_state = "ambrosia_2"
-	colour_override = "#37946e"
-	seed_icon = 'aquila/icons/obj/hydroponics/ported_tg_seeds.dmi'
-	seed_icon_state = "seed-kronkus"
-	fruit_product = /obj/item/food/grown/kronkus
-	plant_traits = list(/datum/plant_trait/reagent/fruit/nutriment)
-	total_volume = PLANT_FRUIT_VOLUME_SMALL
-	growth_time = PLANT_FRUIT_GROWTH_MEDIUM
-
-/obj/item/plant_seeds/preset/kronkus
-	name = "nasiona: kronkus (gruz)"
-	name_override = "kronkus"
-	desc = "Paczka wysoce nielegalnych nasion kronkusa. Za ich posiadanie w 7 sektorach grozi kara śmierci."
-	icon = 'aquila/icons/obj/hydroponics/ported_tg_seeds.dmi'
-	icon_state = "seed-kronkus"
-	plant_features = list(/datum/plant_feature/roots/debris, /datum/plant_feature/body/bush_vine/grape, /datum/plant_feature/fruit/kronkus)
-
-/obj/item/food/grown/kronkus
-	seed = /obj/item/plant_seeds/preset/kronkus
-	name = "pęd kronkusa"
-	desc = "Kawałek dojrzałego pędu kronkusa. Wydziela ostry, szkodliwy zapach."
-	icon = 'aquila/icons/obj/hydroponics/ported_tg_harvest.dmi'
-	icon_state = "kronkus"
-	filling_color = "#37946e"
-	foodtypes = VEGETABLES | TOXIC
-	tastes = list("gorzka łodyga" = 1)
-
-/*
 	Purchawka cuchnąca (tg: odious puffball), w automacie po zhakowaniu
 */
 /datum/plant_feature/fruit/mushroom/puffball
@@ -843,52 +810,6 @@
 	distill_reagent = /datum/reagent/medicine/antihol
 
 /*
-	Smoczy burak (tg: drake beet), mutacja czerwonego buraka
-*/
-/datum/plant_feature/fruit/whitebeet/drake
-	species_name = "beta draconis"
-	name = "smoczy burak"
-	colour_override = "#5a3f8a"
-	seed_icon = 'aquila/icons/obj/hydroponics/ported_tg_seeds.dmi'
-	seed_icon_state = "seed-drakebeet"
-	fruit_product = /obj/item/food/grown/drake_beet
-	fast_reagents = list(/datum/reagent/consumable/sugar = PLANT_REAGENT_LARGE, /datum/reagent/consumable/capsaicin = PLANT_REAGENT_SMALL)
-	growth_time = PLANT_FRUIT_GROWTH_MEDIUM
-	mutations = list(/datum/plant_feature/fruit/whitebeet/red)
-
-/obj/item/food/grown/drake_beet
-	name = "smoczy burak"
-	desc = "Mimo groźnego wyglądu smocze buraki są bogate w cukry wyciągnięte z gleby. I odrobinę pikantne."
-	icon = 'aquila/icons/obj/hydroponics/ported_tg_harvest.dmi'
-	icon_state = "drakebeet"
-	bite_consumption_mod = 2
-	foodtypes = VEGETABLES
-	tastes = list("słodki burak" = 1, "pikantność" = 1)
-	wine_power = 66
-
-/*
-	Korzeń Cahna (tg: cahn'root), mutacja marchwi
-*/
-/datum/plant_feature/fruit/carrot/cahnroot
-	species_name = "carota cahnmang"
-	name = "korzeń Cahna"
-	icon_state = "parsnip"
-	colour_override = "#8a5a30"
-	seed_icon = 'aquila/icons/obj/hydroponics/ported_tg_seeds.dmi'
-	seed_icon_state = "seed-cahnroot"
-	fruit_product = /obj/item/food/grown/cahnroot
-	fast_reagents = list(/datum/reagent/consumable/sugar = PLANT_REAGENT_MICRO)
-	mutations = list(/datum/plant_feature/fruit/carrot)
-
-/obj/item/food/grown/cahnroot
-	name = "korzeń Cahna"
-	desc = "Mocno zmieniona ziemska marchew, wyhodowana z myślą o przetrwaniu w najuboższych warunkach przez przedsiębiorczego naukowca z Floty Ćm, Cahn'Manga."
-	icon = 'aquila/icons/obj/hydroponics/ported_tg_harvest.dmi'
-	icon_state = "cahnroot"
-	foodtypes = VEGETABLES
-	tastes = list("słodka ziemia" = 1)
-
-/*
 	Antykonopie (tg: anti weed), mutacja konopi
 */
 /datum/plant_feature/fruit/cannabis/anti
@@ -926,8 +847,6 @@
 		/datum/plant_feature/fruit/flower/geranium = list(/datum/plant_feature/fruit/flower/fraxinella = 3),
 		/datum/plant_feature/fruit/sugarcane = list(/datum/plant_feature/fruit/sugarcane/salt = 3),
 		/datum/plant_feature/fruit/watermelon = list(/datum/plant_feature/fruit/watermelon/barrel = 3),
-		/datum/plant_feature/fruit/whitebeet/red = list(/datum/plant_feature/fruit/whitebeet/drake = 5),
-		/datum/plant_feature/fruit/carrot = list(/datum/plant_feature/fruit/carrot/cahnroot = 3),
 		/datum/plant_feature/fruit/cannabis = list(/datum/plant_feature/fruit/cannabis/anti = 10),
 	)
 
@@ -945,6 +864,5 @@
 	products[/obj/item/plant_seeds/preset/korta_nut] = 3
 	products[/obj/item/plant_seeds/preset/toechtauese] = 3
 	contraband[/obj/item/plant_seeds/preset/lanternfruit] = 2
-	contraband[/obj/item/plant_seeds/preset/kronkus] = 2
 	contraband[/obj/item/plant_seeds/preset/puffball] = 2
 	return ..()
