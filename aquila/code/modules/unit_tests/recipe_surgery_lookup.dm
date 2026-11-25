@@ -48,9 +48,17 @@
 	var/list/cookbook = get_cookbook_catalog()
 	TEST_ASSERT(length(cookbook) > 200, "Książka kucharska ma tylko [length(cookbook)] przepisów")
 	var/list/methods = list()
+	var/list/ids = list()
+	var/kula_ciasta = FALSE
 	for(var/list/recipe as anything in cookbook)
 		TEST_ASSERT(recipe["name"], "Przepis [recipe["id"]] nie ma nazwy")
+		// Powtórzone id myliło wiersze w oknie (jajko na twardo w każdej zakładce)
+		TEST_ASSERT(!ids[recipe["id"]], "Dwa przepisy w książce kucharskiej mają to samo id [recipe["id"]]")
+		ids[recipe["id"]] = TRUE
 		methods[recipe["method"]] = TRUE
+		if(recipe["method"] == "Mieszanki" && findtext(recipe["name"], "ciasta"))
+			kula_ciasta = TRUE
+	TEST_ASSERT(kula_ciasta, "W zakładce „Mieszanki” nie ma kuli ciasta")
 	for(var/method in list("Stół", "Procesor", "Mikrofalówka", "Grill", "Piekarnik", "Krojenie", "Mieszanki"))
 		TEST_ASSERT(methods[method], "W książce kucharskiej nie ma przepisów typu „[method]”")
 

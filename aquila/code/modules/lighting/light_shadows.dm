@@ -216,3 +216,8 @@ GLOBAL_LIST_EMPTY(aq_light_shadow_cache)
 	current_holder.underlays += visible_mask
 
 #undef AQ_OVERLAY_LIGHTING_ON
+
+// Cień nie jedzie z promem jak zwykły obiekt: światło przestawia go samo, gdy jego nosiciel się przesunie.
+// Bez tego światło chowało cień (loc = null) w trakcie ruchu promu, a afterShuttleMove() cienia czytało null.z (runda 6591)
+/obj/effect/abstract/aq_light_shadow/onShuttleMove(turf/newT, turf/oldT, list/movement_force, move_dir, obj/docking_port/stationary/old_dock, obj/docking_port/mobile/moving_dock, list/obj/docking_port/mobile/towed_shuttles)
+	return FALSE
