@@ -57,12 +57,25 @@
 	TEST_ASSERT(air.total_moles() > cell_moles, "Ekstraktor nie pracuje z sieci")
 	TEST_ASSERT(extractor.cell.charge == charge_grid, "Ekstraktor brał z ogniwa mimo zasilania z sieci")
 
+	// Postój nie kasuje odliczania fali (inaczej każdy postój dawał od razu nową falę i omijał przerwę)
+	COOLDOWN_START(vein, wave_timer, 1 MINUTES)
+	extractor.set_extracting(FALSE, "test")
+	TEST_ASSERT(!vein.currently_spawning, "Postój ekstraktora nie wstrzymał wyrw")
+	TEST_ASSERT(!COOLDOWN_FINISHED(vein, wave_timer), "Postój ekstraktora skasował odliczanie fali")
+
 	// Pełna rura: staje przy 4500 kPa i nie budzi fauny
 	for(var/i in 1 to 20)
 		extractor.process(2)
 	TEST_ASSERT(air.return_pressure() <= extractor.target_pressure + 1, "Ciśnienie przekroczyło limit: [air.return_pressure()] kPa")
 	TEST_ASSERT(air.return_pressure() >= extractor.target_pressure - 1, "Ekstraktor nie dobił do limitu: [air.return_pressure()] kPa")
 	TEST_ASSERT(!extractor.extracting && !vein.currently_spawning, "Ekstraktor przy pełnej rurze dalej wydobywa")
+
+	// Po wyrównaniu z siecią ciśnienie spada tuż pod limit: w zapasie ekstraktor dalej stoi, zamiast dopychać ułamki
+	var/near_full_moles = (extractor.target_pressure - extractor.pressure_margin / 2) * air.return_volume() / (R_IDEAL_GAS_EQUATION * air.return_temperature())
+	air.remove(air.total_moles() - near_full_moles)
+	var/reserve_near_full = vein.remaining_moles()
+	extractor.process(2)
+	TEST_ASSERT(!extractor.extracting && vein.remaining_moles() == reserve_near_full, "Ekstraktor tuż pod limitem dalej wydobywa ([air.return_pressure()] kPa)")
 
 	// Wiertło rudy nie staje na złożu gazu
 	var/obj/machinery/drill/drill = allocate(/obj/machinery/drill)

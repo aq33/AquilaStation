@@ -107,9 +107,13 @@ GLOBAL_LIST_EMPTY(ore_veins)
 
 /obj/structure/vein/examine(mob/user)
 	. = ..()
-	. += span_notice("Klasa żyły: <b>[vein_class]</b>. Zawartość pokaże skaner gruntu przyłożony do żyły.")
+	. += examine_summary()
 	if(!detectable)
 		. += span_notice("Żyła jest oznaczona jako bez znaczenia i nie pojawia się w skanach gruntu.")
+
+/// Linia oględzin z klasą i podpowiedzią o skanerze (złoże gazu ma własną)
+/obj/structure/vein/proc/examine_summary()
+	return span_notice("Klasa żyły: <b>[vein_class]</b>. Zawartość pokaże skaner gruntu przyłożony do żyły.")
 
 /obj/structure/vein/Destroy()
 	stop_spawning()
@@ -127,12 +131,14 @@ GLOBAL_LIST_EMPTY(ore_veins)
 	currently_spawning = TRUE
 	START_PROCESSING(SSprocessing, src)
 
-/obj/structure/vein/proc/stop_spawning()
+/// keep_wave_timer: tylko wstrzymanie (postój ekstraktora gazu), bez kasowania odliczania fali i przerwy po serii
+/obj/structure/vein/proc/stop_spawning(keep_wave_timer = FALSE)
 	if(!currently_spawning)
 		return TRUE
 	currently_spawning = FALSE
 	STOP_PROCESSING(SSprocessing, src)
-	COOLDOWN_RESET(src, wave_timer)
+	if(!keep_wave_timer)
+		COOLDOWN_RESET(src, wave_timer)
 	return FALSE
 
 /obj/structure/vein/process(delta_time)

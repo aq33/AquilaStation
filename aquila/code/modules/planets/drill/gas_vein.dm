@@ -45,9 +45,8 @@
 	QDEL_NULL(reserve)
 	return ..()
 
-/obj/structure/vein/gas/examine(mob/user)
-	. = ..()
-	. += span_notice("Skład pokaże skaner gruntu przyłożony do złoża. Wydobycie, jak wiercenie, rozwściecza okoliczną faunę.")
+/obj/structure/vein/gas/examine_summary()
+	return span_notice("Złoże gazu klasy <b>[vein_class]</b>. Skład pokaże skaner gruntu przyłożony do złoża. Wydobycie, jak wiercenie, rozwściecza okoliczną faunę.")
 
 /obj/structure/vein/gas/get_working_machine()
 	if(our_extractor?.extracting)

@@ -34,6 +34,9 @@
 	var/obj/item/stock_parts/cell/cell
 	/// Ostatni powód postoju (do oględzin)
 	var/status_text = "wyłączony"
+	/// Zapas ciśnienia (kPa): bliżej limitu ekstraktor stoi jak przy pełnej rurze. Bez niego, po wyrównaniu z siecią,
+	/// ciśnienie dochodziło do limitu bez końca, a ekstraktor dopychał ułamki mola i budził faunę.
+	var/pressure_margin = 50
 
 /obj/machinery/atmospherics/components/unary/gas_extractor/Initialize(mapload)
 	. = ..()
@@ -71,6 +74,8 @@
 	. += span_notice("Stan: [status_text]. Wydobycie [round(extraction_rate, 0.1)] mol/s, do [target_pressure] kPa.")
 	if(our_vein)
 		. += span_notice("W złożu zostało [round(our_vein.remaining_moles())] moli gazu.")
+	else if(locate(/obj/structure/vein/gas) in loc)
+		. += span_warning("Na tym złożu pracuje już inny ekstraktor.")
 	else
 		. += span_warning("Nie stoi na złożu gazu: rama musi stanąć na złożu.")
 	. += cell ? span_notice("Ogniwo: [round(cell.percent())]%.") : span_notice("Bez ogniwa: pracuje tylko z sieci obszaru.")
@@ -82,7 +87,10 @@
 		icon_state = "siphon-open"
 	else
 		icon_state = "siphon:[extracting ? 1 : 0]"
-	add_overlay(get_pipe_image('icons/obj/atmospherics/components/thermomachine.dmi', "pipe", dir, , piping_layer))
+	// Złącze rury bez zabarwienia obudowy (obraz rury jest wspólny, więc kopia)
+	var/mutable_appearance/pipe_overlay = new(get_pipe_image('icons/obj/atmospherics/components/thermomachine.dmi', "pipe", dir, , piping_layer))
+	pipe_overlay.appearance_flags |= RESET_COLOR
+	add_overlay(pipe_overlay)
 
 /obj/machinery/atmospherics/components/unary/gas_extractor/interact(mob/user)
 	. = ..()
@@ -140,14 +148,14 @@
 		set_extracting(FALSE, "otwarty panel albo uszkodzenie")
 		return
 	if(!our_vein && !link_vein())
-		set_extracting(FALSE, "brak złoża gazu pod spodem")
+		set_extracting(FALSE, (locate(/obj/structure/vein/gas) in loc) ? "na złożu pracuje inny ekstraktor" : "brak złoża gazu pod spodem")
 		return
 	var/datum/gas_mixture/air = airs[1]
 	var/pressure = air.return_pressure()
-	if(pressure >= target_pressure)
+	if(pressure >= target_pressure - pressure_margin)
 		set_extracting(FALSE, "rura pełna ([round(pressure)] kPa)")
 		return
-	if(!draw_power())
+	if(!draw_power(delta_time))
 		set_extracting(FALSE, "brak zasilania")
 		return
 	// Nie więcej, niż zmieści się do docelowego ciśnienia w samym urządzeniu
@@ -165,13 +173,15 @@
 		set_extracting(FALSE, "złoże wyczerpane")
 		empty_vein.collapse()
 
-/// Bierze 1 kW na cykl: z sieci obszaru, a bez niej z ogniwa. FALSE, gdy prądu nie ma.
-/obj/machinery/atmospherics/components/unary/gas_extractor/proc/draw_power()
+/// Bierze 1 kW przez delta_time: z sieci obszaru, a bez niej z ogniwa. FALSE, gdy prądu nie ma. Pobór jak w
+/// auto_use_power (moc na cykl SSmachines), przeliczony na długość cyklu, tak jak ilość gazu.
+/obj/machinery/atmospherics/components/unary/gas_extractor/proc/draw_power(delta_time = SSMACHINES_DT)
+	var/power = active_power_usage * delta_time / SSMACHINES_DT
 	var/area/our_area = get_area(src)
 	if(our_area?.powered(power_channel))
-		use_power(active_power_usage)
+		use_power(power)
 		return TRUE
-	return cell?.use(active_power_usage * GLOB.CELLRATE)
+	return cell?.use(power * GLOB.CELLRATE)
 
 /// Przełącza wydobycie; z nim złoże otwiera albo zamyka wyrwy z fauną
 /obj/machinery/atmospherics/components/unary/gas_extractor/proc/set_extracting(new_state, reason)
@@ -183,7 +193,8 @@
 	if(extracting)
 		our_vein?.begin_spawning()
 	else
-		our_vein?.stop_spawning()
+		// Postój nie kasuje odliczania fal: inaczej każdy postój dawał od razu nową falę i omijał przerwę po serii
+		our_vein?.stop_spawning(TRUE)
 	update_icon()
 
 /// Przypina się do złoża pod sobą. TRUE, jeśli stoi na wolnym złożu.
@@ -245,7 +256,7 @@
 
 /datum/supply_pack/engineering/gas_extractor
 	name = "Ekstraktor gazu"
-	desc = "Płytka ekstraktora gazu z kompletem części, kablem, plastalą i pojemnym ogniwem. Ramę maszyny trzeba postawić na złożu gazu (znajdzie je georadarowy skaner), a gaz odebrać rurą."
+	desc = "Płytka ekstraktora gazu z kompletem części, kablem, plastalą, żelazem na ramę i pojemnym ogniwem. Ramę maszyny trzeba postawić na złożu gazu (znajdzie je georadarowy skaner), a gaz odebrać rurą."
 	cost = 2000
 	contains = list(
 		/obj/item/circuitboard/machine/gas_extractor,
@@ -253,6 +264,7 @@
 		/obj/item/stock_parts/matter_bin,
 		/obj/item/stack/cable_coil,
 		/obj/item/stack/sheet/plasteel/five,
+		/obj/item/stack/sheet/iron/five,
 		/obj/item/stock_parts/cell/high,
 	)
 	crate_name = "skrzynia ekstraktora gazu"

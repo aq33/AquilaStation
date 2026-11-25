@@ -2,8 +2,6 @@
 #include "vein.dm"
 #include "drill.dm"
 #include "vein_scanner.dm"
-#include "gas_vein.dm"
-#include "gas_extractor.dm"
 #include "drill_mission.dm"
 #include "deep_vein_mission.dm"
 #include "veins_piaski.dm"

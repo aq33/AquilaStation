@@ -33426,16 +33426,18 @@
 "Projekt maszyny (ekstraktor gazu)": "Machine Design (Gas Extractor)",
 "Płytka do budowy ekstraktora, który wydobywa gaz ze złóż na planetach i asteroidach do rury.": "A board for building an extractor that pumps gas from deposits on planets and asteroids into a pipe.",
 "Ekstraktor gazu": "Gas extractor",
-"Płytka ekstraktora gazu z kompletem części, kablem, plastalą i pojemnym ogniwem. Ramę maszyny trzeba postawić na złożu gazu (znajdzie je georadarowy skaner), a gaz odebrać rurą.": "A gas extractor board with a full set of parts, cable, plasteel and a high-capacity power cell. The machine frame has to be built on a gas deposit (the ground penetrating scanner finds them), and the gas is collected through a pipe.",
 "skrzynia ekstraktora gazu": "gas extractor crate",
 "złoże gazu": "gas deposit",
 "Szczelina, z której sączy się gaz uwięziony pod powierzchnią. Wydobędzie go ekstraktor gazu podłączony do rur.": "A fissure seeping gas trapped beneath the surface. A gas extractor connected to pipes can extract it.",
-"Skład pokaże skaner gruntu przyłożony do złoża. Wydobycie, jak wiercenie, rozwściecza okoliczną faunę.": "A ground scanner held against the deposit shows its composition. Like drilling, extraction enrages the local fauna.",
 "Złoże jest puste.": "The deposit is empty.",
 "Złoże gazu klasy <b>[vein_class]</b>, łącznie <b>[round(total)]</b> moli.": "Class <b>[vein_class]</b> gas deposit, <b>[round(total)]</b> moles in total.",
 "Spodziewane wzburzenie fauny: <b>[threat_text()]</b>.": "Expected fauna disturbance: <b>[threat_text()]</b>.",
 "Skład: [english_list(parts)].": "Composition: [english_list(parts)].",
 "Złoże gazu się wyczerpuje, a szczelina zapada!": "The gas deposit runs dry and the fissure collapses!",
 "Maszynownia: złoża gazu i ekstraktor": "Engineering: gas deposits and extractor",
-"Zestaw: dwa złoża gazu (wulkaniczne z plazmą i księżycowe z podtlenkiem azotu), na pierwszym gotowy ekstraktor gazu podłączony rurą do portu z pustym kanistrem, drugie wolne do budowy. Do tego płytka ekstraktora z częściami, kablem, plastalą i żelazem na ramę, pojemne ogniwo, RPD, georadarowy skaner górniczy, analizator i skrzynka z narzędziami. \\": "Kit: two gas deposits (a volcanic one with plasma and a lunar one with nitrous oxide); on the first a ready gas extractor piped to a port with an empty canister, the second free to build on. Also an extractor board with parts, cable, plasteel and iron for the frame, a high-capacity power cell, an RPD, a ground penetrating mining scanner, an analyzer and a toolbox. \\"
+"Zestaw: dwa złoża gazu (wulkaniczne z plazmą i księżycowe z podtlenkiem azotu), na pierwszym gotowy ekstraktor gazu podłączony rurą do portu z pustym kanistrem, drugie wolne do budowy. Do tego płytka ekstraktora z częściami, kablem, plastalą i żelazem na ramę, pojemne ogniwo, RPD, georadarowy skaner górniczy, analizator i skrzynka z narzędziami. \\": "Kit: two gas deposits (a volcanic one with plasma and a lunar one with nitrous oxide); on the first a ready gas extractor piped to a port with an empty canister, the second free to build on. Also an extractor board with parts, cable, plasteel and iron for the frame, a high-capacity power cell, an RPD, a ground penetrating mining scanner, an analyzer and a toolbox. \\",
+"Na tym złożu pracuje już inny ekstraktor.": "Another extractor is already working on this deposit.",
+"na złożu pracuje inny ekstraktor": "another extractor is working on the deposit",
+"Płytka ekstraktora gazu z kompletem części, kablem, plastalą, żelazem na ramę i pojemnym ogniwem. Ramę maszyny trzeba postawić na złożu gazu (znajdzie je georadarowy skaner), a gaz odebrać rurą.": "A gas extractor board with a full set of parts, cable, plasteel, iron for the frame and a high-capacity power cell. The machine frame has to be built on a gas deposit (the ground penetrating scanner finds them), and the gas is collected through a pipe.",
+"Złoże gazu klasy <b>[vein_class]</b>. Skład pokaże skaner gruntu przyłożony do złoża. Wydobycie, jak wiercenie, rozwściecza okoliczną faunę.": "Class <b>[vein_class]</b> gas deposit. A ground scanner held against the deposit shows its composition. Like drilling, extraction enrages the local fauna."
 }
