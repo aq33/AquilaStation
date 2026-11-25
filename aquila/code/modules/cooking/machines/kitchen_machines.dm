@@ -145,40 +145,105 @@
 	INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(cooking_settings_menu), src, user)
 	return TRUE
 
-// ---------- Płyta grillowa: tylko nagrzewanie ----------
+// ---------- Płyta grillowa: grill i kuchenka w jednym ----------
+// Na płycie dalej smaży się położone jedzenie (włącznik kliknięciem). Do tego cztery palniki jak w kuchence
+// elektrycznej: patelnia, rondel albo garnek na zupę, każdy z ogniem i minutnikiem (Alt+klik).
 
 /obj/machinery/griddle
 	active_power_usage = 40
+	var/datum/burner_rack/rack
+	var/static/list/burner_offsets = list(list(-7, 5), list(7, 5), list(-7, 14), list(7, 14))
+	var/static/list/burner_names = list("lewe przednie pole", "prawe przednie pole", "lewe tylne pole", "prawe tylne pole")
 
 /obj/machinery/griddle/Initialize(mapload)
+	rack = new(src, burner_offsets, burner_names, 18)
 	kitchen_heat = new
 	. = ..()
 	refresh_kitchen_heat()
 
 /obj/machinery/griddle/Destroy()
+	QDEL_NULL(rack)
 	QDEL_NULL(kitchen_heat)
 	return ..()
+
+/obj/machinery/griddle/get_cooking_surfaces()
+	return rack.burners
 
 /obj/machinery/griddle/RefreshParts()
 	. = ..()
 	refresh_kitchen_heat()
 
+/obj/machinery/griddle/is_kitchen_active()
+	return on || rack?.any_on()
+
 /obj/machinery/griddle/begin_processing()
 	. = ..()
-	kitchen_heat?.set_heating(TRUE)
+	update_kitchen_heating()
 
+/// Płyta przestaje pracować dopiero, gdy wyłączona jest i płyta, i wszystkie palniki
 /obj/machinery/griddle/end_processing()
+	if(is_kitchen_active())
+		update_kitchen_heating()
+		return
 	. = ..()
-	kitchen_heat?.set_heating(FALSE)
+	update_kitchen_heating()
+
+/obj/machinery/griddle/proc/update_griddle_processing()
+	if(is_kitchen_active())
+		begin_processing()
+	else
+		end_processing()
+	update_appearance()
+
+/obj/machinery/griddle/attackby(obj/item/used, mob/user, params)
+	if(rack.attackby(used, user, params))
+		return TRUE
+	if(istype(used, /obj/item/reagent_containers/cooking))
+		to_chat(user, span_warning("[used] nie pasuje na płytę. Stawia się na niej patelnię, rondel albo garnek na zupę."))
+		return TRUE
+	return ..()
+
+/obj/machinery/griddle/attack_hand(mob/user, list/modifiers)
+	// Kliknięcie w pole z naczyniem zdejmuje naczynie, w pozostałe miejsca włącza i wyłącza płytę
+	if(rack.take(user, modifiers))
+		return TRUE
+	. = ..()
+	update_kitchen_heating()
+
+/obj/machinery/griddle/Exited(atom/movable/gone, direction)
+	. = ..()
+	rack?.on_exited(gone)
+
+/obj/machinery/griddle/AltClick(mob/user)
+	if(!user.canUseTopic(src, BE_CLOSE, NO_DEXTERITY, FALSE, TRUE))
+		return ..()
+	cooking_settings_menu(src, user)
+	update_griddle_processing()
+	return TRUE
 
 /obj/machinery/griddle/process(delta_time)
-	. = ..()
+	if(machine_stat & (NOPOWER|BROKEN))
+		rack.turn_all_off()
+		update_griddle_processing()
+		return
 	if(on)
-		use_power(active_power_usage)
+		. = ..()
+	var/active = rack.process_burners(delta_time, kitchen_heat_factor())
+	if(!on && !active)
+		update_griddle_processing()
+		return
+	use_power(active_power_usage * ((on ? 1 : 0) + active))
+
+/obj/machinery/griddle/update_icon_state()
+	. = ..()
+	if(!on && rack?.any_on())
+		icon_state = "griddle[variant]_on"
 
 /obj/machinery/griddle/examine(mob/user)
 	. = ..()
 	. += span_notice("Płyta jest [kitchen_heat.describe()].")
+	. += rack.examine_lines()
+	. += span_notice("Jedzenie kładzie się na płycie, a włącza ją kliknięciem. Patelnię, rondel albo garnek na zupę stawiasz kliknięciem w jedno z czterech pól. <b>Alt+klik</b>: ogień i minutnik pola.")
 
 // ---------- Grill na węgiel: ruszt ----------
 

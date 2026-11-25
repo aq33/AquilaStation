@@ -757,6 +757,7 @@
 #include "code\modules\cooking\steps\recipe_steps.dm"
 #include "code\modules\cooking\cooking_container.dm"
 #include "code\modules\cooking\cooking_surface.dm"
+#include "code\modules\cooking\burner_rack.dm"
 #include "code\modules\cooking\cooking_designs.dm"
 #include "code\modules\cooking\machines\cooking_stovetop.dm"
 #include "code\modules\cooking\machines\kitchen_machines.dm"

@@ -360,6 +360,9 @@
 /obj/machinery/fat_sucker
 	alt_click_loot = FALSE
 
+/obj/machinery/griddle
+	alt_click_loot = FALSE
+
 /obj/machinery/grill
 	alt_click_loot = FALSE
 

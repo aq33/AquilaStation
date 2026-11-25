@@ -33,7 +33,7 @@
 	TEST_ASSERT(pan.process_item(null, egg) == COOK_SUCCESS, "Putting an egg into a pan")
 	TEST_ASSERT(egg.loc == pan, "The egg did not land in the pan")
 
-	var/datum/cooking_surface/burner/burner = stovetop.burners[1]
+	var/datum/cooking_surface/burner/burner = stovetop.rack.burners[1]
 	stovetop.place_container(pan, burner)
 	TEST_ASSERT(burner.container == pan && pan.surface == burner, "The pan is not on the burner")
 	burner.turn_on()
@@ -76,7 +76,7 @@
 	pan.process_item(null, allocate(/obj/item/food/cheese/wedge, run_loc_floor_bottom_left))
 	TEST_ASSERT(pan.process_item(null, pepper) == COOK_SUCCESS, "Adding pepper to the omelette")
 
-	var/datum/cooking_surface/burner/burner = stovetop.burners[2]
+	var/datum/cooking_surface/burner/burner = stovetop.rack.burners[2]
 	stovetop.place_container(pan, burner)
 	burner.turn_on()
 	burner.temperature = COOK_TEMP_LOW
@@ -176,7 +176,7 @@
 	TEST_ASSERT(pot.reagents.get_reagent_amount(/datum/reagent/water) >= 10, "Two 5 u pours did not reach the pot")
 	TEST_ASSERT(pot.process_item(null, allocate(/obj/item/food/spaghetti/raw, run_loc_floor_bottom_left)) == COOK_SUCCESS, "Raw spaghetti was rejected after two 5 u pours of water")
 
-	var/datum/cooking_surface/burner/burner = stovetop.burners[1]
+	var/datum/cooking_surface/burner/burner = stovetop.rack.burners[1]
 	stovetop.place_container(pot, burner)
 	burner.turn_on()
 	burner.temperature = COOK_TEMP_HIGH
@@ -198,7 +198,7 @@
 	var/obj/machinery/cooking_stovetop/stovetop = allocate(/obj/machinery/cooking_stovetop, run_loc_floor_bottom_left)
 	var/obj/item/reagent_containers/glass/soup_pot/pot = allocate(/obj/item/reagent_containers/glass/soup_pot, run_loc_floor_bottom_left)
 	pot.reagents.add_reagent(/datum/reagent/water, 50, reagtemp = T20C)
-	var/datum/cooking_surface/burner/burner = stovetop.burners[4]
+	var/datum/cooking_surface/burner/burner = stovetop.rack.burners[4]
 	TEST_ASSERT(burner.accepts(pot), "The electric stovetop does not take a soup pot")
 	stovetop.place_container(pot, burner)
 	TEST_ASSERT(burner.container == pot && pot.loc == stovetop, "The soup pot is not on the burner")
@@ -234,6 +234,46 @@
 			break
 	TEST_ASSERT(locate(/obj/item/food/patty/plain) in grate_item, "No grilled patty after 40 s on a warming grill (grate holds: [english_list(grate_item.contents)])")
 	TEST_ASSERT(grill.stored_wood < 5, "The grill did not use any charcoal")
+
+/// Płyta grillowa to grill i kuchenka w jednym: jajko na patelni na polu płyty, garnek z zupą na drugim polu,
+/// a położony obok kotlet dalej się smaży, gdy płyta jest włączona
+/datum/unit_test/aquila_griddle_burners
+
+/datum/unit_test/aquila_griddle_burners/Run()
+	var/obj/machinery/griddle/griddle = allocate(/obj/machinery/griddle, run_loc_floor_bottom_left)
+	var/obj/item/reagent_containers/cooking/pan/pan = allocate(/obj/item/reagent_containers/cooking/pan, run_loc_floor_bottom_left)
+	pan.process_item(null, allocate(/obj/item/food/egg, run_loc_floor_bottom_left))
+	var/obj/item/reagent_containers/glass/soup_pot/pot = allocate(/obj/item/reagent_containers/glass/soup_pot, run_loc_floor_bottom_left)
+	pot.reagents.add_reagent(/datum/reagent/water, 50, reagtemp = T20C)
+
+	var/datum/cooking_surface/burner/pan_field = griddle.rack.burners[1]
+	var/datum/cooking_surface/burner/pot_field = griddle.rack.burners[4]
+	TEST_ASSERT(pan_field.accepts(pan) && pot_field.accepts(pot), "The griddle does not take a pan or a soup pot")
+	griddle.rack.place_container(pan, pan_field)
+	griddle.rack.place_container(pot, pot_field)
+	TEST_ASSERT(pan.loc == griddle && pot.loc == griddle, "The pan and the pot are not on the griddle")
+
+	pan_field.turn_on()
+	pan_field.temperature = COOK_TEMP_MED
+	pot_field.turn_on()
+	pot_field.temperature = COOK_TEMP_HIGH
+	griddle.update_griddle_processing()
+	TEST_ASSERT(griddle.is_kitchen_active(), "The griddle is not working with two fields on")
+	for(var/i in 1 to 40)
+		griddle.process(1)
+		if(locate(/obj/item/food/friedegg) in pan)
+			break
+	TEST_ASSERT(locate(/obj/item/food/friedegg) in pan, "No fried egg in the pan on the griddle (pan holds: [english_list(pan.contents)])")
+	TEST_ASSERT(pot.reagents.chem_temp > T20C + 5, "The soup pot did not heat up on the griddle ([pot.reagents.chem_temp] K)")
+
+	// Zwykłe grillowanie zostaje: wyłączona płyta nie smaży, pola z naczyniami dalej działają
+	TEST_ASSERT(!griddle.on, "The griddle surface turned on by itself")
+	pan_field.turn_off()
+	pot_field.turn_off()
+	griddle.update_griddle_processing()
+	TEST_ASSERT(!griddle.is_kitchen_active(), "The griddle kept working with everything off")
+	pan.forceMove(run_loc_floor_bottom_left)
+	TEST_ASSERT(!pan_field.container && pan.transform.a == 1, "Taking the pan off the griddle did not free the field")
 
 /// Mikser lodów (przepis z Paradise): patyczek, tofu, cukier i sok bananowy w misie zamarzają w lód na patyku i się nie przypalają
 /datum/unit_test/aquila_cooking_ice_cream_mixer

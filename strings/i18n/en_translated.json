@@ -29037,5 +29037,11 @@
 "Płytka drukowana: grill na węgiel drzewny z dwoma rusztami, na blat.": "A circuit board: a countertop charcoal grill with two grates.",
 "Płyta z czterema palnikami do patelni, rondli i garnków na zupę. Stawia się ją na blacie. Każdy palnik ma własny ogień i minutnik.": "A cooktop with four burners for pans, pots and soup pots. It goes on a countertop. Each burner has its own heat and timer.",
 "Patelnię, rondel albo garnek na zupę stawiasz kliknięciem w wybrany palnik. <b>Alt+klik</b>: ustawienia palnika (włącz, ogień, minutnik).": "Put a pan, pot or soup pot down by clicking the burner you want. <b>Alt-click</b>: burner settings (on, heat, timer).",
-"[used] nie pasuje na kuchenkę. Na palniki stawia się patelnię, rondel albo garnek na zupę.": "[used] does not fit the cooktop. The burners take a pan, a pot or a soup pot."
+"[used] nie pasuje na kuchenkę. Na palniki stawia się patelnię, rondel albo garnek na zupę.": "[used] does not fit the cooktop. The burners take a pan, a pot or a soup pot.",
+"lewe przednie pole": "left front field",
+"prawe przednie pole": "right front field",
+"lewe tylne pole": "left back field",
+"prawe tylne pole": "right back field",
+"[used] nie pasuje na płytę. Stawia się na niej patelnię, rondel albo garnek na zupę.": "[used] does not fit the griddle. It takes a pan, a pot or a soup pot.",
+"Jedzenie kładzie się na płycie, a włącza ją kliknięciem. Patelnię, rondel albo garnek na zupę stawiasz kliknięciem w jedno z czterech pól. <b>Alt+klik</b>: ogień i minutnik pola.": "Food goes straight on the griddle, click it to turn it on. Put a pan, pot or soup pot down by clicking one of the four fields. <b>Alt-click</b>: heat and timer of a field."
 }

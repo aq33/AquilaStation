@@ -18,27 +18,27 @@
 	processing_flags = START_PROCESSING_MANUALLY
 	resistance_flags = FIRE_PROOF
 	circuit = /obj/item/circuitboard/machine/cooking_stovetop
-	var/list/datum/cooking_surface/burner/burners = list()
-	/// Położenie naczyń na palnikach (x, y)
+	var/datum/burner_rack/rack
 	var/static/list/burner_offsets = list(list(-7, 1), list(7, 1), list(-7, 12), list(7, 12))
 	var/static/list/burner_names = list("lewy przedni palnik", "prawy przedni palnik", "lewy tylny palnik", "prawy tylny palnik")
 
 /obj/machinery/cooking_stovetop/Initialize(mapload)
-	for(var/i in 1 to 4)
-		var/datum/cooking_surface/burner/burner = new(src)
-		burner.name = burner_names[i]
-		burners += burner
+	rack = new(src, burner_offsets, burner_names)
 	kitchen_heat = new
 	. = ..()
 	refresh_kitchen_heat()
 
 /obj/machinery/cooking_stovetop/Destroy()
-	QDEL_LIST(burners)
+	QDEL_NULL(rack)
 	QDEL_NULL(kitchen_heat)
 	return ..()
 
+/// Palniki (dla testów i map)
+/obj/machinery/cooking_stovetop/proc/burners()
+	return rack.burners
+
 /obj/machinery/cooking_stovetop/get_cooking_surfaces()
-	return burners
+	return rack.burners
 
 /obj/machinery/cooking_stovetop/RefreshParts()
 	. = ..()
@@ -47,96 +47,29 @@
 /obj/machinery/cooking_stovetop/examine(mob/user)
 	. = ..()
 	. += span_notice("Kuchenka jest [kitchen_heat.describe()].")
-	for(var/datum/cooking_surface/burner as anything in burners)
-		. += span_notice("[capitalize(burner.describe())].")
+	. += rack.examine_lines()
 	. += span_notice("Patelnię, rondel albo garnek na zupę stawiasz kliknięciem w wybrany palnik. <b>Alt+klik</b>: ustawienia palnika (włącz, ogień, minutnik).")
 
-/// Który palnik kliknięto (po pozycji kursora), albo pierwszy wolny
-/obj/machinery/cooking_stovetop/proc/burner_at(list/modifiers, free_only = FALSE)
-	var/icon_x = text2num(LAZYACCESS(modifiers, ICON_X))
-	var/icon_y = text2num(LAZYACCESS(modifiers, ICON_Y))
-	if(!isnull(icon_x) && !isnull(icon_y))
-		var/index = (icon_x > 16 ? 2 : 1) + (icon_y > 21 ? 2 : 0)
-		var/datum/cooking_surface/burner/clicked = burners[index]
-		if(!free_only || !clicked.container)
-			return clicked
-	if(free_only)
-		for(var/datum/cooking_surface/burner/burner as anything in burners)
-			if(!burner.container)
-				return burner
-
 /obj/machinery/cooking_stovetop/attackby(obj/item/used, mob/user, params)
-	var/list/modifiers = params2list(params)
-	var/datum/cooking_surface/burner/target = burner_at(modifiers)
-	if(target?.accepts(used) && !target.container)
-		place_container(used, target, user)
-		return TRUE
-	if(burners[1].accepts(used))
-		var/datum/cooking_surface/burner/free = burner_at(null, TRUE)
-		if(!free)
-			to_chat(user, span_warning("Wszystkie palniki są zajęte."))
-			return TRUE
-		place_container(used, free, user)
+	if(rack.attackby(used, user, params))
 		return TRUE
 	if(istype(used, /obj/item/reagent_containers/cooking))
 		to_chat(user, span_warning("[used] nie pasuje na kuchenkę. Na palniki stawia się patelnię, rondel albo garnek na zupę."))
 		return TRUE
-	// Składnik użyty na kuchence trafia do naczynia na klikniętym palniku
-	if(target?.container && !user.combat_mode && !(used.tool_behaviour in list(TOOL_SCREWDRIVER, TOOL_CROWBAR, TOOL_WRENCH)) && !istype(used, /obj/item/storage/part_replacer))
-		return target.container.attackby(used, user, params)
 	return ..()
 
 /obj/machinery/cooking_stovetop/proc/place_container(obj/item/pan, datum/cooking_surface/burner/burner, mob/user)
-	if(user && !user.transferItemToLoc(pan, src))
-		return
-	if(!user)
-		pan.forceMove(src)
-	burner.set_container(pan)
-	var/index = burners.Find(burner)
-	pan.pixel_x = burner_offsets[index][1]
-	pan.pixel_y = burner_offsets[index][2]
-	pan.flags_1 |= IS_ONTOP_1
-	pan.vis_flags |= VIS_INHERIT_PLANE
-	var/obj/item/reagent_containers/cooking/cooking_pan = pan
-	if(istype(cooking_pan))
-		cooking_pan.make_mini()
-		if(index == 2 || index == 4)
-			pan.transform = matrix(-1, 0, 0, 0, 1, 0)
-	else
-		// Garnek na zupę jest duży, na palniku rysujemy go mniejszego
-		pan.transform = matrix() * 0.6
-	vis_contents += pan
-	if(user)
-		to_chat(user, span_notice("Stawiasz [pan] na: [burner.name]."))
-	update_appearance()
+	rack.place_container(pan, burner, user)
 
 /obj/machinery/cooking_stovetop/Exited(atom/movable/gone, direction)
 	. = ..()
-	for(var/datum/cooking_surface/burner/burner as anything in burners)
-		if(burner.container != gone)
-			continue
-		burner.clear_container()
-		var/obj/item/pan = gone
-		vis_contents -= pan
-		pan.flags_1 &= ~IS_ONTOP_1
-		pan.vis_flags &= ~VIS_INHERIT_PLANE
-		pan.pixel_x = pan.base_pixel_x
-		pan.pixel_y = pan.base_pixel_y
-		pan.transform = null
-		var/obj/item/reagent_containers/cooking/cooking_pan = pan
-		if(istype(cooking_pan))
-			cooking_pan.unmake_mini()
-		update_appearance()
+	rack?.on_exited(gone)
 
 /obj/machinery/cooking_stovetop/attack_hand(mob/user, list/modifiers)
 	. = ..()
 	if(.)
 		return
-	var/datum/cooking_surface/burner/burner = burner_at(modifiers)
-	if(burner?.container)
-		var/obj/item/pan = burner.container
-		if(!user.put_in_hands(pan))
-			pan.forceMove(drop_location())
+	if(rack.take(user, modifiers))
 		return TRUE
 
 /obj/machinery/cooking_stovetop/AltClick(mob/user)
@@ -146,14 +79,12 @@
 	update_burner_processing()
 	return TRUE
 
+/obj/machinery/cooking_stovetop/is_kitchen_active()
+	return rack.any_on()
+
 /obj/machinery/cooking_stovetop/proc/update_burner_processing()
-	var/any_on = FALSE
-	for(var/datum/cooking_surface/burner/burner as anything in burners)
-		if(burner.on)
-			any_on = TRUE
-			break
-	kitchen_heat.set_heating(any_on)
-	if(any_on)
+	update_kitchen_heating()
+	if(rack.any_on())
 		begin_processing()
 	else
 		end_processing()
@@ -161,22 +92,10 @@
 
 /obj/machinery/cooking_stovetop/process(delta_time)
 	if(machine_stat & (NOPOWER|BROKEN))
-		for(var/datum/cooking_surface/burner/burner as anything in burners)
-			burner.turn_off()
+		rack.turn_all_off()
 		update_burner_processing()
 		return
-	var/active = 0
-	var/factor = kitchen_heat_factor()
-	for(var/datum/cooking_surface/burner/burner as anything in burners)
-		if(!burner.on)
-			continue
-		active++
-		if(istype(burner.container, /obj/item/reagent_containers/glass/soup_pot))
-			// Garnek z zupą: ogień ustala temperaturę zupy, jak na kuchence na zupy
-			burner.tick_timer(delta_time)
-			burner.container.reagents?.expose_temperature(burner.soup_target_temperature(), 0.033 * factor)
-		else
-			burner.process_cooking(delta_time, factor)
+	var/active = rack.process_burners(delta_time, kitchen_heat_factor())
 	if(!active)
 		update_burner_processing()
 		return
@@ -184,9 +103,11 @@
 
 /obj/machinery/cooking_stovetop/update_overlays()
 	. = ..()
+	if(!rack)
+		return
 	var/any_on = FALSE
-	for(var/i in 1 to length(burners))
-		var/datum/cooking_surface/burner/burner = burners[i]
+	for(var/i in 1 to length(rack.burners))
+		var/datum/cooking_surface/burner/burner = rack.burners[i]
 		if(!burner.on)
 			continue
 		any_on = TRUE
@@ -215,8 +136,8 @@
 /// Z patelnią i rondlem na palnikach (do map)
 /obj/machinery/cooking_stovetop/loaded/Initialize(mapload)
 	. = ..()
-	place_container(new /obj/item/reagent_containers/cooking/pan(src), burners[1])
-	place_container(new /obj/item/reagent_containers/cooking/pot(src), burners[3])
+	place_container(new /obj/item/reagent_containers/cooking/pan(src), rack.burners[1])
+	place_container(new /obj/item/reagent_containers/cooking/pot(src), rack.burners[3])
 
 /obj/item/circuitboard/machine/cooking_stovetop
 	name = "kuchenka elektryczna (płytka maszyny)"
