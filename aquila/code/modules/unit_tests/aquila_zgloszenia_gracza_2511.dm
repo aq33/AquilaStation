@@ -13,14 +13,22 @@
 /datum/unit_test/aquila_relay_skips_dead
 
 /datum/unit_test/aquila_relay_skips_dead/Run()
-	var/obj/structure/overmap/ship = SSstar_system.find_main_overmap()
-	TEST_ASSERT(ship, "No main ship to relay sounds from")
-	var/mob/living/carbon/human/aq_relay_listener/alive = allocate(/mob/living/carbon/human/aq_relay_listener, run_loc_floor_bottom_left)
-	var/mob/living/carbon/human/aq_relay_listener/dead = allocate(/mob/living/carbon/human/aq_relay_listener, run_loc_floor_bottom_left)
+	// relay() drops crew that is not aboard (aq_check_crew), so the crew sits inside a craft like pilots
+	var/obj/structure/overmap/small_craft/combat/light/ship = allocate(/obj/structure/overmap/small_craft/combat/light)
+	var/mob/living/carbon/human/aq_relay_listener/alive = allocate(/mob/living/carbon/human/aq_relay_listener)
+	var/mob/living/carbon/human/aq_relay_listener/dead = allocate(/mob/living/carbon/human/aq_relay_listener)
+	// Dying inside the craft would launch its escape pod, so the crewman is dead before boarding
 	dead.death()
-	ship.mobs_in_ship |= list(alive, dead)
+	ship.enter(alive)
+	ship.enter(dead)
+	TEST_ASSERT((alive in ship.mobs_in_ship) && (dead in ship.mobs_in_ship), "The crew did not board the craft: [json_encode(ship.mobs_in_ship)]")
+	alive.relayed_sounds = 0
+	dead.relayed_sounds = 0
 	ship.relay('nsv13/sound/effects/ship/damage/shield_hit.ogg')
-	ship.mobs_in_ship -= list(alive, dead)
+	// Out of the craft before cleanup: a deleted craft ejects its crew into an escape pod
+	alive.forceMove(run_loc_floor_bottom_left)
+	dead.forceMove(run_loc_floor_bottom_left)
+	ship.mobs_in_ship.Cut()
 	TEST_ASSERT_EQUAL(alive.relayed_sounds, 1, "A living crewman did not hear the ship")
 	TEST_ASSERT_EQUAL(dead.relayed_sounds, 0, "A dead crewman still heard the ship's battle")
 
