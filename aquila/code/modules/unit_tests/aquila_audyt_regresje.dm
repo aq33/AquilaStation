@@ -155,10 +155,13 @@
 /datum/unit_test/aquila_kremowka_recipe
 
 /datum/unit_test/aquila_kremowka_recipe/Run()
+	// Kremówkę robi się krok po kroku (piekarnik); przepis stołowy też by wystarczył
+	if(is_step_cooked(/obj/item/food/pie/kremowka))
+		return
 	for(var/datum/crafting_recipe/recipe as anything in GLOB.cooking_recipes + GLOB.crafting_recipes)
 		if(recipe.result == /obj/item/food/pie/kremowka)
 			return
-	TEST_ASSERT(FALSE, "No crafting recipe makes /obj/item/food/pie/kremowka")
+	TEST_ASSERT(FALSE, "No crafting or step recipe makes /obj/item/food/pie/kremowka")
 
 /// End of round survey: an answer of exactly the maximum length is not cut
 /datum/unit_test/aquila_round_survey_length
