@@ -53,7 +53,7 @@
 
 	var/mob/living/carbon/human/captain = allocate(/mob/living/carbon/human, run_loc_floor_bottom_left)
 	captain.equipOutfit(/datum/outfit/job/captain, TRUE)
-	TEST_ASSERT(istype(captain.w_uniform, /obj/item/clothing/under/rank/captain), "Kapitan startuje w [captain.w_uniform?.type]")
+	TEST_ASSERT(captain.w_uniform?.type == /obj/item/clothing/under/rank/captain, "Kapitan startuje w [captain.w_uniform?.type]")
 	TEST_ASSERT(captain.wear_suit?.type == /obj/item/clothing/suit/armor/vest/capcarapace, "Kapitan startuje w [captain.wear_suit?.type] zamiast napierśnika")
 	TEST_ASSERT(captain.head?.type == /obj/item/clothing/head/caphat, "Kapitan startuje w [captain.head?.type] zamiast czapki kapitana")
 
