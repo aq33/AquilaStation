@@ -54,7 +54,26 @@
 	var/mob/living/carbon/human/captain = allocate(/mob/living/carbon/human, run_loc_floor_bottom_left)
 	captain.equipOutfit(/datum/outfit/job/captain, TRUE)
 	TEST_ASSERT(istype(captain.w_uniform, /obj/item/clothing/under/rank/captain), "Kapitan startuje w [captain.w_uniform?.type]")
-	TEST_ASSERT(istype(captain.wear_suit, /obj/item/clothing/suit/ship/officer/captain), "Kapitan startuje w kurtce [captain.wear_suit?.type]")
+	TEST_ASSERT(captain.wear_suit?.type == /obj/item/clothing/suit/armor/vest/capcarapace, "Kapitan startuje w [captain.wear_suit?.type] zamiast napierśnika")
+	TEST_ASSERT(captain.head?.type == /obj/item/clothing/head/caphat, "Kapitan startuje w [captain.head?.type] zamiast czapki kapitana")
+
+	// Pudełka kompresyjne: dokładnie nowy zestaw, bez rzeczy z kieszeniami (storage w pudełku kompresyjnym)
+	var/list/boxes = list(
+		/obj/item/storage/box/suitbox/cap = list(/obj/item/clothing/under/rank/captain, /obj/item/clothing/under/rank/captain/suit, /obj/item/clothing/head/caphat, /obj/item/clothing/head/caphat/parade, /obj/item/clothing/head/caphat/officer, /obj/item/clothing/head/beret/captain),
+		/obj/item/storage/box/suitbox/hop = list(/obj/item/clothing/under/rank/civilian/head_of_personnel, /obj/item/clothing/head/hopcap, /obj/item/clothing/head/beret/ship/xo),
+	)
+	for(var/box_type in boxes)
+		var/obj/item/storage/box/box = allocate(box_type, run_loc_floor_bottom_left)
+		var/list/found = list()
+		for(var/obj/item/thing as anything in box)
+			found += thing.type
+			TEST_ASSERT(!thing.GetComponent(/datum/component/storage), "[thing.type] w [box_type] ma własny schowek")
+		var/list/wanted = boxes[box_type]
+		TEST_ASSERT(length(found) == length(wanted) && !length(found - wanted), "[box_type] zawiera [jointext(found, ", ")]")
+
+	var/obj/structure/closet/secure_closet/hop/xo_locker = allocate(/obj/structure/closet/secure_closet/hop, run_loc_floor_bottom_left)
+	TEST_ASSERT(locate(/obj/item/clothing/suit/ship/officer/xo) in xo_locker, "W szafce Starszego Oficera brak zapasowej kurtki")
+	TEST_ASSERT(locate(/obj/item/clothing/shoes/jackboots) in xo_locker, "W szafce Starszego Oficera brak butów wojskowych")
 
 	var/obj/structure/closet/secure_closet/bridge/locker = allocate(/obj/structure/closet/secure_closet/bridge, run_loc_floor_bottom_left)
 	TEST_ASSERT(locate(/obj/item/clothing/head/beret/durathread/bridge) in locker, "W szafce mostka brak beretu Oficera Pokładowego")

@@ -48,12 +48,16 @@
 
 // ---- Odzież wierzchnia ----
 /obj/item/clothing/suit/captunic
+	name = "galowa kurtka kapitana"
 	icon = 'aquila/icons/dowodztwo/suit_obj.dmi'
 	worn_icon = 'aquila/icons/dowodztwo/suit_mob.dmi'
 
 /obj/item/clothing/suit/armor/vest/capcarapace
 	icon = 'aquila/icons/dowodztwo/suit_obj.dmi'
 	worn_icon = 'aquila/icons/dowodztwo/suit_mob.dmi'
+
+/obj/item/clothing/suit/armor/vest/capcarapace/alt
+	name = "fikuśna kurtka kapitana"
 
 /obj/item/clothing/suit/armor/vest/capcarapace/jacket
 	icon = 'icons/obj/clothing/suits.dmi'
@@ -66,12 +70,6 @@
 /obj/item/clothing/suit/space/hardsuit/swat/captain
 	icon = 'aquila/icons/dowodztwo/suit_obj.dmi'
 	worn_icon = 'aquila/icons/dowodztwo/suit_mob.dmi'
-
-/obj/item/clothing/suit/ship/officer/captain
-	name = "kurtka galowa kapitana"
-	icon = 'aquila/icons/dowodztwo/suit_obj.dmi'
-	worn_icon = 'aquila/icons/dowodztwo/suit_mob.dmi'
-	icon_state = "captain_jacket"
 
 /obj/item/clothing/suit/ship/officer/xo
 	name = "kurtka galowa Starszego Oficera"
@@ -110,6 +108,10 @@
 	icon = 'aquila/icons/dowodztwo/head_obj.dmi'
 	worn_icon = 'aquila/icons/dowodztwo/head_mob.dmi'
 	icon_state = "bridge_beret"
+
+/obj/item/clothing/head/caphat/officer
+	name = "oficerska czapka kapitana"
+	icon_state = "captain_officer"
 
 // ---- Rękawice, peleryny, torba ----
 /obj/item/clothing/gloves/color/captain
@@ -169,10 +171,36 @@
 			qdel(beret)
 	new /obj/item/clothing/head/beret/durathread/bridge(src)
 
+// ---- Pudełka kompresyjne (pełne nadpisania, wpis w LEGACY_OVERRIDES.md) ----
+// Buty wojskowe i kurtki mają kieszenie (storage), a takich rzeczy nie wkładamy do pudełka kompresyjnego
+// (komentarz przy /obj/item/storage/box/suitbox), więc leżą w szafce obok pudełka.
+/obj/item/storage/box/suitbox/cap/PopulateContents()
+	new /obj/item/clothing/under/rank/captain(src)
+	new /obj/item/clothing/under/rank/captain/suit(src)
+	new /obj/item/clothing/head/caphat(src)
+	new /obj/item/clothing/head/caphat/parade(src)
+	new /obj/item/clothing/head/caphat/officer(src)
+	new /obj/item/clothing/head/beret/captain(src)
+
+/obj/item/storage/box/suitbox/hop/PopulateContents()
+	new /obj/item/clothing/under/rank/civilian/head_of_personnel(src)
+	new /obj/item/clothing/head/hopcap(src)
+	new /obj/item/clothing/head/beret/ship/xo(src)
+
+/obj/structure/closet/secure_closet/captains/PopulateContents()
+	..()
+	new /obj/item/clothing/shoes/jackboots(src)
+
+/obj/structure/closet/secure_closet/hop/PopulateContents()
+	..()
+	new /obj/item/clothing/shoes/jackboots(src)
+	new /obj/item/clothing/suit/ship/officer/xo(src)
+
 // ---- Stroje startowe ----
 /datum/outfit/job/captain
 	uniform = /obj/item/clothing/under/rank/captain
-	suit = /obj/item/clothing/suit/ship/officer/captain
+	suit = /obj/item/clothing/suit/armor/vest/capcarapace
+	head = /obj/item/clothing/head/caphat
 
 /datum/outfit/job/head_of_personnel
 	uniform = /obj/item/clothing/under/rank/civilian/head_of_personnel

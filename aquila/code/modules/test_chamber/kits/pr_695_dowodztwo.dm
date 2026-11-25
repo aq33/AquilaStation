@@ -4,16 +4,15 @@
 	name = "Resprite dowództwa"
 	pr = "aq33/AquilaStation#695"
 	description = "1) Załóż kolejno mundury Kapitana, Starszego Oficera i Oficera Pokładowego, obróć się we wszystkie strony i podwiń je Alt+klikiem. \
-	2) Załóż kurtki galowe, tunikę, karapaks, hardsuit kapitana z hełmem, czapki, berety, peleryny i torbę: nowe sprite'y w ekwipunku i na postaci. \
+	2) Załóż fikuśną i galową kurtkę kapitana, kurtkę XO, napierśnik, hardsuit kapitana z hełmem, czapki (też oficerską), berety, peleryny i torbę: nowe sprite'y w ekwipunku i na postaci, beret Oficera Pokładowego nie zgniata głowy. \
 	3) Karty ID na smyczy i PDA kapitana i XO: sprite w ręce i na postaci, PDA się włącza. \
-	4) Szafki Kapitana, Starszego Oficera i mostka: zamknięta, otwarta, animacja drzwi, lampka zamka, zespawanie. \
-	5) Poza komorą: Kapitan, Starszy Oficer i Oficer Pokładowy po wejściu do rundy mają nowe stroje."
+	4) Szafki Kapitana, Starszego Oficera i mostka: zamknięta, otwarta, animacja drzwi, lampka zamka, zespawanie; pudełka kompresyjne bez spódniczki, korony i brązowych butów, buty wojskowe i kurtka XO obok pudełek. \
+	5) Poza komorą: Kapitan, Starszy Oficer i Oficer Pokładowy po wejściu do rundy mają nowe stroje (Kapitan w czapce i napierśniku)."
 	items = list(
 		/obj/item/clothing/under/rank/captain = 1,
 		/obj/item/clothing/under/rank/captain/suit = 1,
 		/obj/item/clothing/under/rank/civilian/head_of_personnel = 1,
 		/obj/item/clothing/under/ship/officer = 1,
-		/obj/item/clothing/suit/ship/officer/captain = 1,
 		/obj/item/clothing/suit/ship/officer/xo = 1,
 		/obj/item/clothing/suit/captunic = 1,
 		/obj/item/clothing/suit/armor/vest/capcarapace = 1,
@@ -21,6 +20,7 @@
 		/obj/item/clothing/suit/space/hardsuit/swat/captain = 1,
 		/obj/item/clothing/head/caphat = 1,
 		/obj/item/clothing/head/caphat/parade = 1,
+		/obj/item/clothing/head/caphat/officer = 1,
 		/obj/item/clothing/head/beret/ship/captain = 1,
 		/obj/item/clothing/head/beret/ship/xo = 1,
 		/obj/item/clothing/head/hopcap = 1,
