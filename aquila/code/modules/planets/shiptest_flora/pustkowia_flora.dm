@@ -297,6 +297,7 @@
 // Nasiona (nie do automatu: tylko z dzikich roślin)
 
 /obj/item/plant_seeds/preset/broc
+	random_pool = FALSE
 	name = "nasiona: brokoł (dowolne podłoże)"
 	name_override = "brokoł"
 	icon = 'aquila/icons/planets/flora/pustkowia_flora.dmi'
@@ -304,6 +305,7 @@
 	plant_features = list(/datum/plant_feature/roots, /datum/plant_feature/body/tuber/lavaland, /datum/plant_feature/fruit/broc)
 
 /obj/item/plant_seeds/preset/xander
+	random_pool = FALSE
 	name = "nasiona: xander (dowolne podłoże)"
 	name_override = "xander"
 	icon = 'aquila/icons/planets/flora/pustkowia_flora.dmi'
@@ -311,6 +313,7 @@
 	plant_features = list(/datum/plant_feature/roots, /datum/plant_feature/body/tuber/lavaland, /datum/plant_feature/fruit/xander)
 
 /obj/item/plant_seeds/preset/mutfruit
+	random_pool = FALSE
 	name = "nasiona: mutoowoc (dowolne podłoże)"
 	name_override = "mutoowoc"
 	icon = 'aquila/icons/planets/flora/pustkowia_flora.dmi'
@@ -318,6 +321,7 @@
 	plant_features = list(/datum/plant_feature/roots, /datum/plant_feature/body/tuber/lavaland, /datum/plant_feature/fruit/mutfruit)
 
 /obj/item/plant_seeds/preset/tato
+	random_pool = FALSE
 	name = "nasiona: tato (dowolne podłoże)"
 	name_override = "tato"
 	icon = 'aquila/icons/planets/flora/pustkowia_flora.dmi'
@@ -325,6 +329,7 @@
 	plant_features = list(/datum/plant_feature/roots, /datum/plant_feature/body/tuber/lavaland, /datum/plant_feature/fruit/tato)
 
 /obj/item/plant_seeds/preset/yucca
+	random_pool = FALSE
 	name = "nasiona: juka (dowolne podłoże)"
 	name_override = "juka"
 	icon = 'aquila/icons/planets/flora/pustkowia_flora.dmi'
@@ -332,6 +337,7 @@
 	plant_features = list(/datum/plant_feature/roots, /datum/plant_feature/body/tuber/lavaland, /datum/plant_feature/fruit/yucca)
 
 /obj/item/plant_seeds/preset/agave
+	random_pool = FALSE
 	name = "nasiona: agawa (dowolne podłoże)"
 	name_override = "agawa"
 	icon = 'aquila/icons/planets/flora/pustkowia_flora.dmi'
@@ -339,6 +345,7 @@
 	plant_features = list(/datum/plant_feature/roots, /datum/plant_feature/body/tuber/lavaland, /datum/plant_feature/fruit/agave)
 
 /obj/item/plant_seeds/preset/datura
+	random_pool = FALSE
 	name = "nasiona: bieluń (dowolne podłoże)"
 	name_override = "bieluń"
 	icon = 'aquila/icons/planets/flora/pustkowia_flora.dmi'
@@ -346,6 +353,7 @@
 	plant_features = list(/datum/plant_feature/roots, /datum/plant_feature/body/tuber/lavaland, /datum/plant_feature/fruit/datura)
 
 /obj/item/plant_seeds/preset/punga
+	random_pool = FALSE
 	name = "nasiona: punga (dowolne podłoże)"
 	name_override = "punga"
 	icon = 'aquila/icons/planets/flora/pustkowia_flora.dmi'
@@ -353,6 +361,7 @@
 	plant_features = list(/datum/plant_feature/roots, /datum/plant_feature/body/tuber/lavaland, /datum/plant_feature/fruit/punga)
 
 /obj/item/plant_seeds/preset/geigerpunga
+	random_pool = FALSE
 	name = "nasiona: gejgerpunga (dowolne podłoże)"
 	name_override = "gejgerpunga"
 	icon = 'aquila/icons/planets/flora/pustkowia_flora.dmi'
@@ -360,6 +369,7 @@
 	plant_features = list(/datum/plant_feature/roots, /datum/plant_feature/body/tuber/lavaland, /datum/plant_feature/fruit/geigerpunga)
 
 /obj/item/plant_seeds/preset/radberry
+	random_pool = FALSE
 	name = "nasiona: radjagoda (dowolne podłoże)"
 	name_override = "radjagoda"
 	icon = 'aquila/icons/planets/flora/pustkowia_flora.dmi'

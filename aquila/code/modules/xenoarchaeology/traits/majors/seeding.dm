@@ -25,11 +25,10 @@
 	if(!COOLDOWN_FINISHED(src, seed_cooldown))
 		return
 	var/turf/artifact_turf = get_turf(component_parent?.parent)
-	var/list/options = valid_subtypesof(/obj/item/plant_seeds/preset/alien)
-	if(!artifact_turf || !length(options))
+	if(!artifact_turf || !length(GLOB.alien_plant_seeds))
 		return
 	COOLDOWN_START(src, seed_cooldown, seed_cooldown_time)
-	var/seed_type = pick(options)
+	var/seed_type = pickweight(GLOB.alien_plant_seeds)
 	var/obj/item/plant_seeds/seeds = new seed_type(artifact_turf)
 	seeds.visible_message(span_notice("Z [component_parent.parent] wysypuje się nasiono: [seeds]."))
 	playsound(artifact_turf, 'sound/effects/rustle.ogg', 40, TRUE)
