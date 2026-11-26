@@ -1761,6 +1761,11 @@
   - rscadd: Zmiennokształtny po wchłonięciu ofiary czyta jej wspomnienia.
   - imageadd: Ikony dłuta, zestawu do tatuażu i rycin w ścianach z tgstation.
 '2026-11-26':
+  Amylizzle, Sovexe (goonstation):
+  - rscadd: 'Turbina gazowa z wymiennymi łopatkami i statorem: gorący gaz z rury daje
+      prąd, a łopatki zużywają się na nadobrotach. Płytka jest w protolacie inżynierii
+      obok TEG, części w autolathe z dowolnego twardego materiału.'
+  - imageadd: Sprite'y turbiny, łopatek i statora z Goona.
   BeeStation (Z-Mimic), DaedalusDock:
   - rscadd: Piętro niżej widziane przez otwartą przestrzeń jest rozmyte i przyciemnione,
       więc odróżnia się od twojego piętra. Rozmycie można wyłączyć w preferencjach

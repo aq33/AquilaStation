@@ -720,6 +720,10 @@ Nazwy gazów są widoczne w skanerach, kanistrach i oknach TGUI. Jeśli nazwa ga
 | pipe sparker | iskrownik rurowy | m; nowe |
 | high-flow (pump, filter) | wysokiego przepływu | nowe; pompa ciśnieniowa w tej wersji: „pompa wysokiego ciśnienia” |
 | reinforced pipe / burst pipe | rura wzmocniona / pęknięta | ż; nowe |
+| gas turbine (blade turbine, Goon) | turbina gazowa | ż; nowe (plan maszynowni E16); stara turbina spalinowa z tg zostaje „turbiną” |
+| turbine blade / stator | łopatki turbiny / stator turbiny | lm / m; nowe |
+| stator load | obciążenie statora | n; nowe (J na obrót) |
+| overspeed / stall | nadobroty / zdławienie | nowe |
 | gas filter | filtr gazów | m; istniejące (TGUI) |
 | gas mixer | mieszacz gazów | m; nowe |
 | connector port | port przyłączeniowy | m; istniejące („Port” w TGUI) |
