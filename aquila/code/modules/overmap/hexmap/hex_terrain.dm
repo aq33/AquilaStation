@@ -49,6 +49,10 @@ GLOBAL_LIST_EMPTY(hex_terrains)
 		/datum/round_event_control/aquila_hex_cargo_gifts,
 		/datum/round_event_control/aquila_hex_centcom_questionnaire,
 		/datum/round_event_control/aquila_hex_money_bonus,
+		/datum/round_event_control/aquila_hex_atmos_leak,
+		/datum/round_event_control/aquila_hex_canister_leak,
+		/datum/round_event_control/aquila_hex_disposals_clog,
+		/datum/round_event_control/aquila_hex_station_incident_hay_fever,
 	)
 
 /datum/hex_terrain/asteroids
@@ -128,6 +132,8 @@ GLOBAL_LIST_EMPTY(hex_terrains)
 		/datum/round_event_control/aquila_hex_storm_discharge,
 		/datum/round_event_control/aquila_hex_apc_damage,
 		/datum/round_event_control/aquila_hex_sensor_jamming,
+		/datum/round_event_control/aquila_hex_apc_scramble,
+		/datum/round_event_control/aquila_hex_electrical_fire,
 	)
 	antags = list(
 		/datum/round_event_control/pulse_demon,
@@ -148,6 +154,7 @@ GLOBAL_LIST_EMPTY(hex_terrains)
 		/datum/round_event_control/aquila_hex_computer_damage,
 		/datum/round_event_control/aquila_hex_computer_update,
 		/datum/round_event_control/aquila_hex_new_space_law,
+		/datum/round_event_control/aquila_hex_door_runtime,
 	)
 	antags = list(
 		HEX_POOL_MALF,
@@ -163,6 +170,8 @@ GLOBAL_LIST_EMPTY(hex_terrains)
 		/datum/round_event_control/radiation_storm,
 		/datum/round_event_control/radiation_storm/deadly,
 		/datum/round_event_control/radioactive_sludge,
+		/datum/round_event_control/aquila_hex_radiation_leak,
+		/datum/round_event_control/aquila_hex_disease_outbreak_floor,
 	)
 	antags = list(
 		/datum/round_event_control/aquila_teratoma,
@@ -228,6 +237,7 @@ GLOBAL_LIST_EMPTY(hex_terrains)
 		/datum/round_event_control/aquila_hex_dark_matter_influx,
 		/datum/round_event_control/aquila_hex_harmonic_surge,
 		/datum/round_event_control/aquila_hex_damper_recalibration,
+		/datum/round_event_control/aquila_hex_locker_entanglement,
 	)
 	antags = list(
 		/datum/round_event_control/bingle,
