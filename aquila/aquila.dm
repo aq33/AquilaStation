@@ -50,6 +50,7 @@
 #include "code\__DEFINES\say.dm"
 #include "code\__DEFINES\screentips.dm"
 #include "code\__DEFINES\soft_lighting.dm"
+#include "code\__DEFINES\zmimic.dm"
 #include "code\__DEFINES\sound.dm"
 #include "code\__DEFINES\spells.dm"
 #include "code\__DEFINES\spiders.dm"
@@ -586,6 +587,9 @@
 #include "code\modules\atmospherics\machinery\pipes\he_pipe_no_pipeline.dm"
 #include "code\datums\brain_damage\imaginary_friend_job.dm"
 #include "code\modules\atmospherics\machinery\portable\canister.dm"
+#include "code\modules\atmospherics\pipe_integrity.dm"
+#include "code\modules\atmospherics\pipe_safety.dm"
+#include "code\modules\atmospherics\high_flow.dm"
 #include "code\modules\bladder\bladder.dm"
 #include "code\modules\bladder\censor.dm"
 #include "code\modules\bladder\urination.dm"
@@ -878,6 +882,13 @@
 #include "code\modules\hallucination\tiers.dm"
 #include "code\modules\lighting\emissive_extra.dm"
 #include "code\modules\lighting\soft_lighting.dm"
+// Z-Mimic: piętro niżej przez otwartą przestrzeń (port BeeStation/BeeStation-Hornet#8813)
+#include "code\controllers\subsystem\zcopy.dm"
+#include "code\modules\multiz\zmimic\mimic_common.dm"
+#include "code\modules\multiz\zmimic\mimic_turf.dm"
+#include "code\modules\multiz\zmimic\mimic_movable.dm"
+#include "code\modules\multiz\zmimic\zmimic_turfs.dm"
+#include "code\modules\multiz\zmimic\zmimic_planes.dm"
 #include "code\modules\lighting\light_shadow_geometry.dm"
 #include "code\modules\lighting\light_shadows.dm"
 #include "code\modules\lost_crew\lost_crew_delivery.dm"
@@ -1388,6 +1399,7 @@
 // Komora testowa - zestawy PR-ów niżej (usuwać razem z plikiem zestawu po przetestowaniu)
 #include "code\modules\test_chamber\kits\pr_695_dowodztwo.dm"
 #include "code\modules\test_chamber\kits\pr_700_mikser_dzwieku.dm"
+#include "code\modules\test_chamber\kits\pr_709_maszynownia_rury.dm"
 #include "code\modules\test_chamber\kits\pr_696_horror_czaszka.dm"
 #include "code\modules\test_chamber\kits\pr_701_wspomnienia.dm"
 #include "code\modules\test_chamber\kits\pr_672_cyborgi.dm"
@@ -2755,6 +2767,10 @@
 #include "code\modules\unit_tests\aquila_drobiazgi_1711.dm"
 #include "code\modules\unit_tests\aquila_zgloszenia_2511.dm"
 #include "code\modules\unit_tests\aquila_he_pipe_no_pipeline.dm"
+#include "code\modules\unit_tests\aquila_pipe_integrity.dm"
+#include "code\modules\unit_tests\aquila_canister_overpressure.dm"
+#include "code\modules\unit_tests\aquila_pipe_safety.dm"
+#include "code\modules\unit_tests\aquila_high_flow.dm"
 #include "code\modules\unit_tests\aquila_imaginary_friend_job.dm"
 #include "code\modules\unit_tests\aquila_gunplay.dm"
 #include "code\modules\unit_tests\aquila_gun_cursor_prefs.dm"
@@ -2905,6 +2921,7 @@
 // BOTY: testy
 #include "code\modules\unit_tests\aquila_basic_bots.dm"
 #include "code\modules\unit_tests\aquila_memories.dm"
+#include "code\modules\unit_tests\aquila_zmimic.dm"
 #include "code\modules\unit_tests\aquila_zgloszenia_gracza_2511.dm"
 #endif
 

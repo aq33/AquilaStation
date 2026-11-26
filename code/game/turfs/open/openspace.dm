@@ -73,8 +73,7 @@ GLOBAL_DATUM_INIT(openspace_backdrop_one_for_all, /atom/movable/openspace_backdr
 		if(prune_on_fail)
 			ChangeTurf(/turf/open/space) //nsv13 - Multiz explosions
 		return FALSE
-	if(init)
-		vis_contents += T
+	// AQ EDIT - piętro niżej rysuje Z-Mimic (aquila/code/modules/multiz/zmimic/), nie vis_contents
 	return TRUE
 
 /turf/open/openspace/multiz_turf_del(turf/T, dir)
