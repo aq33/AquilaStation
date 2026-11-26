@@ -3,7 +3,8 @@
 // with the Clown job for Voice of God and a small "Ghost of Honks Past" antagonist datum. Ours puts the ghost into our
 // basic living lube (/mob/living/basic/clown/lube, which leaves lube where it crawls) on a safe xeno spawn or a free
 // maintenance turf, with a small antagonist datum of ours (one objective: make the crew slip, without killing); no
-// Clown job (our Voice of God does not check it). The poll checks the antagonist ban and the ghost role switch.
+// Clown job (our Voice of God does not check it). We have no role preference of its own, so the poll takes ghosts with
+// the preference of our other comic ghost role (the bingle) and checks the antagonist and ghost role bans and the switch.
 
 /datum/round_event_control/aquila_hex_living_lube
 	name = "Duch dawnych honków"
@@ -19,14 +20,14 @@
 	fakeable = FALSE
 
 /datum/round_event/ghost_role/aquila_hex_living_lube/spawn_role()
-	var/list/candidates = get_candidates(BAN_ROLE_ALL_ANTAGONISTS, null)
-	if(!length(candidates))
+	var/list/candidates = aquila_hex_poll_ghost_role(src, list(BAN_ROLE_ALL_ANTAGONISTS, BAN_ROLE_ALL_GHOST), /datum/role_preference/midround_ghost/bingle)
+	var/player_key = aquila_hex_take_candidate_key(candidates)
+	if(!player_key) // nikt się nie zgłosił albo zgłoszeni wyszli w trakcie ankiety
 		return NOT_ENOUGH_PLAYERS
 	var/turf/spot = find_spawn()
 	if(!spot)
 		return MAP_ERROR
-	var/mob/dead/selected = pick_n_take(candidates)
-	var/mob/living/basic/clown/lube/lube = make_lube(spot, selected.key)
+	var/mob/living/basic/clown/lube/lube = make_lube(spot, player_key)
 	if(!lube)
 		return NOT_ENOUGH_PLAYERS
 	message_admins("[ADMIN_LOOKUPFLW(lube)] zostaje Duchem dawnych honków w [ADMIN_VERBOSEJMP(spot)].")

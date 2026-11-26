@@ -4,6 +4,8 @@
 // hivebots (melee, ranged and rapid) and a teleporter of our own (the core /obj/structure/hivebot_beacon sleeps in a
 // timer, so it is not reused): it appears with a smoke puff 20-30 s before it spits the bots out, then disappears.
 // No medals and stories (we have none). Inside the ship, unlike our rogue drone swarm, which shoots the hull from space.
+// The teleporter lands near a living crew member (not a silicon), outside dangerous and locked areas, on a free turf
+// with no mob or door, 3-7 tiles from them with nothing (a window either) in between. Its hivebots are NPC only.
 
 /datum/round_event_control/aquila_hex_hivebots
 	name = "Inwazja hivebotów"
@@ -47,23 +49,34 @@
 	impact_area = null
 	return ..()
 
-/// Wolne pole w obszarze, w którym jest ktoś z załogi; bez załogi na statku losowe wolne pole statku
+/// Wolne pole w obszarze, w którym jest ktoś z załogi (3-7 pól od niego, nic ich nie dzieli); bez załogi na statku losowe wolne pole statku
 /datum/round_event/aquila_hex_hivebots/proc/find_impact_turf()
 	var/list/crew = shuffle(aquila_hex_ship_crew())
 	for(var/mob/living/someone as anything in crew)
-		var/area/crew_area = get_area(someone)
-		if(!(crew_area?.type in GLOB.the_station_areas))
-			continue
-		var/list/turfs = list()
-		for(var/turf/T in crew_area)
-			if(aquila_hex_free_safe_turf(T) && get_dist(T, someone) >= 3)
-				turfs += T
-		if(length(turfs))
-			return pick(turfs)
+		var/turf/T = aquila_hex_impact_turf_near(someone)
+		if(T)
+			return T
 	for(var/attempt in 1 to 10)
-		var/turf/T = aquila_hex_random_ship_turf()
+		var/turf/T = aquila_hex_random_ship_turf(aquila_hex_unsafe_area_typecache())
 		if(aquila_hex_free_safe_turf(T))
 			return T
+
+/// Wolne pole w obszarze someone (nie silikonu, poza niebezpiecznymi obszarami), 3-7 pól od niego, bez niczego pomiędzy; null, gdy brak
+/proc/aquila_hex_impact_turf_near(mob/living/someone)
+	if(!isliving(someone) || issilicon(someone))
+		return null
+	var/turf/crew_turf = get_turf(someone)
+	var/area/crew_area = get_area(someone)
+	if(!crew_turf || !(crew_area?.type in GLOB.the_station_areas) || aquila_hex_unsafe_area_type(crew_area.type))
+		return null
+	var/list/turfs = list()
+	for(var/turf/T in RANGE_TURFS(7, crew_turf))
+		if(get_area(T) != crew_area || get_dist(T, crew_turf) < 3)
+			continue
+		if(aquila_hex_free_safe_turf(T) && aquila_hex_clear_line(crew_turf, T, 7))
+			turfs += T
+	if(length(turfs))
+		return pick(turfs)
 
 /// Teleporter hivebotów: po czasie wypluwa hiveboty i znika
 /obj/structure/aquila_hex_hivebot_teleporter
@@ -103,7 +116,20 @@
 	var/turf/spot = get_turf(src)
 	var/list/turfs = aquila_hex_free_turfs_near(spot, bot_amount, 2)
 	for(var/i in 1 to bot_amount)
-		var/bot_type = pick(/mob/living/basic/hivebot, /mob/living/basic/hivebot/range, /mob/living/basic/hivebot/rapid)
+		var/bot_type = pick(/mob/living/basic/hivebot/aquila_hex_npc, /mob/living/basic/hivebot/range/aquila_hex_npc, /mob/living/basic/hivebot/rapid/aquila_hex_npc)
 		. += new bot_type(length(turfs) ? pick(turfs) : spot)
 	log_game("Hivebot Invasion: [length(.)] hivebots warped in at [AREACOORD(spot)].")
 	QDEL_IN(src, 5 SECONDS)
+
+// Hiveboty z teleportera są tylko NPC: duchy nie przejmują ich jak zwykłych hivebotów
+/mob/living/basic/hivebot/aquila_hex_npc
+	playable = FALSE
+	gold_core_spawnable = NO_SPAWN
+
+/mob/living/basic/hivebot/range/aquila_hex_npc
+	playable = FALSE
+	gold_core_spawnable = NO_SPAWN
+
+/mob/living/basic/hivebot/rapid/aquila_hex_npc
+	playable = FALSE
+	gold_core_spawnable = NO_SPAWN

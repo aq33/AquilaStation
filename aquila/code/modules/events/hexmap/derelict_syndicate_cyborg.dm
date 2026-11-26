@@ -3,7 +3,9 @@
 // Ours uses our Syndicate assault cyborg (/mob/living/silicon/robot/modules/syndicate: Syndicate laws, ion thrusters for
 // space) as a damaged derelict variant with a half-charged cell and its own greeting, put next to the hull of the ship
 // (the hull spot of our ship hazard events) with a small antagonist datum of ours (one objective: harm the Nanotrasen
-// ship). The poll checks the antagonist ban and the ghost role switch.
+// ship). Its module is the assault module without the emag and the grenade launcher (it keeps the energy sword, the
+// cyborg LMG, the flash and the basic tools), so one ghost cannot open every door and blow up the crew. The poll takes
+// ghosts with the midround nuclear operative preference and checks the operative and cyborg bans and the ghost role switch.
 
 /datum/round_event_control/aquila_hex_derelict_syndicate_cyborg
 	name = "Porzucony szturmowy cyborg Syndykatu"
@@ -19,14 +21,14 @@
 	fakeable = FALSE
 
 /datum/round_event/ghost_role/aquila_hex_derelict_syndicate_cyborg/spawn_role()
-	var/list/candidates = get_candidates(BAN_ROLE_ALL_ANTAGONISTS, null)
-	if(!length(candidates))
+	var/list/candidates = aquila_hex_poll_ghost_role(src, list(ROLE_OPERATIVE, JOB_NAME_CYBORG), /datum/role_preference/midround_ghost/nuclear_operative)
+	var/player_key = aquila_hex_take_candidate_key(candidates)
+	if(!player_key) // nikt się nie zgłosił albo zgłoszeni wyszli w trakcie ankiety
 		return NOT_ENOUGH_PLAYERS
 	var/turf/spot = aquila_hex_ship_hull_turf(pick(GLOB.cardinals))
 	if(!spot)
 		return MAP_ERROR
-	var/mob/dead/selected = pick_n_take(candidates)
-	var/mob/living/silicon/robot/modules/syndicate/aquila_hex_derelict/borg = make_cyborg(spot, selected.key)
+	var/mob/living/silicon/robot/modules/syndicate/aquila_hex_derelict/borg = make_cyborg(spot, player_key)
 	if(!borg)
 		return NOT_ENOUGH_PLAYERS
 	message_admins("[ADMIN_LOOKUPFLW(borg)] zostaje porzuconym cyborgiem Syndykatu w [ADMIN_VERBOSEJMP(spot)].")
@@ -50,6 +52,7 @@
 
 /// Szturmowy cyborg Syndykatu, który długo dryfował w kosmosie
 /mob/living/silicon/robot/modules/syndicate/aquila_hex_derelict
+	set_module = /obj/item/robot_module/syndicate/aquila_hex_derelict
 	playstyle_string = "<span class='big bold'>Jesteś porzuconym szturmowym cyborgiem Syndykatu!</span><br><b>Twój oddział dawno zginął na polu minowym, a ty dryfowałeś między minami, aż czujniki złapały okręt Nanotrasen. Masz uszkodzony pancerz i pół baterii, ale twoja broń nadal działa. Silniki jonowe pozwolą ci dolecieć do kadłuba. Przestrzegaj praw Syndykatu.</b>"
 
 /mob/living/silicon/robot/modules/syndicate/aquila_hex_derelict/Initialize(mapload)
@@ -58,6 +61,17 @@
 	adjustBruteLoss(rand(20, 40))
 	name = "porzucony cyborg Syndykatu"
 	real_name = name
+
+/// Moduł szturmowy Syndykatu bez emagu i granatnika: miecz energetyczny, LKM cyborga, flesz i podstawowe narzędzia
+/obj/item/robot_module/syndicate/aquila_hex_derelict
+	basic_modules = list(
+		/obj/item/assembly/flash/cyborg,
+		/obj/item/melee/transforming/energy/sword/cyborg,
+		/obj/item/gun/energy/printer,
+		/obj/item/borg/charger,
+		/obj/item/crowbar/cyborg,
+		/obj/item/extinguisher/mini,
+	)
 
 /datum/antagonist/aquila_hex_derelict_cyborg
 	name = "Porzucony cyborg Syndykatu"

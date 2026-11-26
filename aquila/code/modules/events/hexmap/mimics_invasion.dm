@@ -3,7 +3,9 @@
 // level 7 biohazard announcement 30 s later (it disabled the event as an annoying griefer). Ours wakes 4-8 items lying
 // on the floor of different areas as our copy mimics (/mob/living/basic/mimic/copy), NPC only: no ghost mimics, so the
 // event stays a short scare and not a ghost role. A mimic with nobody to attack slowly wears out and drops its item
-// again (idledamage of the copy mimic). IDs, the nuclear disk and other important or indestructible items stay items.
+// again (idledamage of the copy mimic). IDs, the nuclear disk and other important or indestructible items stay items,
+// also when they are inside the item (a wallet with an ID, a box with a PDA), and nothing wakes up in the AI upload,
+// the armoury, the bridge, the magazines and the other dangerous or locked areas of our creature events.
 
 /datum/round_event_control/aquila_hex_mimics_invasion
 	name = "Inwazja mimików"
@@ -48,21 +50,31 @@
 		/obj/item/organ,
 		/obj/item/bodypart,
 		/obj/item/clothing/head/mob_holder,
+		/obj/item/aicard,
+		/obj/item/paicard,
+		/obj/item/blackbox,
 	))
 	if(QDELETED(item) || !isturf(item.loc) || item.anchored)
 		return FALSE
 	if((item.item_flags & ABSTRACT) || HAS_TRAIT(item, TRAIT_NODROP) || (item.resistance_flags & INDESTRUCTIBLE))
 		return FALSE
-	if(is_type_in_typecache(item, protected_items) || is_type_in_typecache(item, GLOB.animatable_blacklist))
-		return FALSE
-	return !(locate(/mob/living) in item) // nic żywego w środku (np. mysz w pudełku)
+	// sam przedmiot i wszystko, co w nim jest (portfel z kartą, pudełko z PDA, mysz w pudełku)
+	for(var/atom/movable/thing as anything in item.GetAllContents())
+		if(isliving(thing) || is_type_in_typecache(thing, protected_items))
+			return FALSE
+		if(thing == item || !isobj(thing))
+			continue
+		var/obj/inner = thing
+		if(inner.resistance_flags & INDESTRUCTIBLE)
+			return FALSE
+	return !is_type_in_typecache(item, GLOB.animatable_blacklist)
 
 /// Do count luźnych przedmiotów z podłóg różnych obszarów statku
 /datum/round_event/aquila_hex_mimics_invasion/proc/find_items(count)
 	. = list()
 	var/list/areas = list()
 	for(var/area/A as anything in GLOB.sortedAreas)
-		if(A.type in GLOB.the_station_areas)
+		if((A.type in GLOB.the_station_areas) && !aquila_hex_unsafe_area_type(A.type))
 			areas += A
 	while(length(areas) && length(.) < count)
 		var/area/A = pick_n_take(areas)

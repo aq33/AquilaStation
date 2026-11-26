@@ -3,8 +3,9 @@
 // flesh space suit) and throws it at the station in a changeling meteor, which drops it on impact and throws it at the
 // station if it misses. We have no space changeling datum, void adaption or flesh suit, so ours is our ordinary
 // changeling (/datum/antagonist/changeling, own objectives) in a fragile space suit with an oxygen tank, in a meaty
-// meteor variant that does not wreck the turfs it flies through, lets the changeling out when it hits something or
-// stops, and throws it towards its target turf on the ship. The poll checks the changeling ban and the ghost role switch.
+// meteor variant that wrecks nothing (no ex_act on the turfs it flies through or the walls, windows and people it hits),
+// stops at the first thing it hits, lets the changeling out and throws it towards its target turf on the ship. The poll
+// takes ghosts with the changeling preference and checks the changeling ban and the ghost role switch.
 
 /datum/round_event_control/aquila_hex_changeling_meteor
 	name = "Meteor zmiennokształtnego"
@@ -20,15 +21,15 @@
 	fakeable = FALSE
 
 /datum/round_event/ghost_role/aquila_hex_changeling_meteor/spawn_role()
-	var/list/candidates = get_candidates(ROLE_CHANGELING, null)
-	if(!length(candidates))
+	var/list/candidates = aquila_hex_poll_ghost_role(src, ROLE_CHANGELING, /datum/role_preference/antagonist/changeling)
+	var/player_key = aquila_hex_take_candidate_key(candidates)
+	if(!player_key) // nikt się nie zgłosił albo zgłoszeni wyszli w trakcie ankiety
 		return NOT_ENOUGH_PLAYERS
-	var/turf/target = aquila_hex_random_ship_turf()
+	var/turf/target = aquila_hex_random_ship_turf(aquila_hex_unsafe_area_typecache())
 	var/turf/start = meteor_start(target)
 	if(!target || !start)
 		return MAP_ERROR
-	var/mob/dead/selected = pick_n_take(candidates)
-	var/mob/living/carbon/human/changeling = make_changeling(start, selected.key)
+	var/mob/living/carbon/human/changeling = make_changeling(start, player_key)
 	if(!changeling)
 		return NOT_ENOUGH_PLAYERS
 	launch(changeling, start, target)
@@ -105,6 +106,13 @@
 
 /obj/effect/meteor/meaty/aquila_hex_changeling/ram_turf(turf/T)
 	return // bez ex_act na polach po drodze, żeby nie trafić własnego pasażera
+
+/// Uderzenie w ścianę, okno albo człowieka niczego nie niszczy: meteor rozpada się na miejscu i wypuszcza pasażera (Destroy())
+/obj/effect/meteor/meaty/aquila_hex_changeling/Bump(atom/A)
+	if(QDELETED(src))
+		return
+	playsound(src, meteorsound, 40, TRUE)
+	qdel(src)
 
 /obj/effect/meteor/meaty/aquila_hex_changeling/Destroy()
 	release_passengers()

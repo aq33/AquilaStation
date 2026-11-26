@@ -1,6 +1,6 @@
 // AQUILA - testy eventów z kafli mapy hex, etap E4 (stwory, które już mamy): pule terenów i to, co każdy event
 // wypuszcza na pokład (mimiki, skrzynia-mimik, szlamy, facehugger, gniazdo obcych, hiveboty, drony, kocichirurg,
-// żywy smar, cyborg Syndykatu, meteor zmiennokształtnego, napromieniowana mysz)
+// żywy smar, cyborg Syndykatu, meteor zmiennokształtnego, napromieniowana mysz) oraz wspólny wybór miejsc i duchów
 // The upstream assert macros are #undef'd at the end of code/modules/unit_tests/_unit_tests.dm, so this modular test carries its own copies
 #define TEST_ASSERT(assertion, reason) if (!(assertion)) { return Fail("Assertion failed: [reason || "No reason"]") }
 
@@ -68,17 +68,25 @@
 	var/obj/item/card/id/card = allocate(/obj/item/card/id, floor)
 	TEST_ASSERT(isnull(invasion.animate_item(card)), "An ID card came to life")
 	TEST_ASSERT(card.loc == floor, "The ID card moved")
+	var/obj/item/storage/box/box = allocate(/obj/item/storage/box, floor)
+	var/obj/item/card/id/boxed_card = new(box)
+	allocated += boxed_card
+	TEST_ASSERT(isnull(invasion.animate_item(box)), "A box with an ID card inside came to life")
+	TEST_ASSERT(boxed_card.loc == box && box.loc == floor, "The box with the ID card moved")
 	qdel(invasion)
 
 	var/datum/round_event/aquila_hex_station_incident_mimic/incident = new(FALSE)
 	incident.kill()
 	var/obj/structure/closet/supplypod/pod = incident.make_shipment()
-	allocated += pod
 	var/mob/living/basic/mimic/crate/crate = locate() in pod
+	var/obj/item/paper/manifest = locate() in pod
+	allocated += crate // skrzynia i list przed kapsułą: kapsuła w Destroy() wysypuje zawartość
+	allocated += manifest
+	allocated += pod
 	TEST_ASSERT(crate, "The salvage pod carries no crate mimic")
 	TEST_ASSERT(crate.ai_controller?.ai_status == AI_STATUS_OFF, "The crate mimic is awake before anyone opens it")
 	TEST_ASSERT(locate(/obj/item/stack/sheet/iron) in crate, "The crate mimic holds no metal")
-	TEST_ASSERT(locate(/obj/item/paper) in pod, "The salvage pod has no manifest")
+	TEST_ASSERT(manifest, "The salvage pod has no manifest")
 	TEST_ASSERT(crate.trigger(), "The crate mimic did not wake up")
 	qdel(incident)
 
@@ -91,9 +99,23 @@
 	var/list/slimes = horde.spawn_slimes(list(run_loc_floor_bottom_left), 5)
 	allocated += slimes
 	TEST_ASSERT_EQUAL(length(slimes), 2, "One vent let out a wrong number of slimes")
-	for(var/mob/living/simple_animal/slime/slime as anything in slimes)
-		TEST_ASSERT(slime.rabid && slime.is_adult, "[slime] is not a rabid adult slime")
+	for(var/mob/living/simple_animal/slime/aquila_hex_horde/slime as anything in slimes)
+		TEST_ASSERT(istype(slime) && slime.rabid && slime.is_adult, "[slime] is not a rabid adult horde slime")
 		TEST_ASSERT(slime.colour in list("blue", "green", "yellow"), "[slime] is [slime.colour]")
+	// zabity szlam z hordy ginie, a nie rozpada się na młodego szlama, i się nie dzieli
+	var/mob/living/simple_animal/slime/aquila_hex_horde/victim = slimes[1]
+	var/slimes_before = 0
+	for(var/mob/living/simple_animal/slime/other in run_loc_floor_bottom_left)
+		slimes_before++
+	victim.amount_grown = SLIME_EVOLUTION_THRESHOLD
+	victim.Reproduce()
+	victim.death()
+	var/slimes_after = 0
+	for(var/mob/living/simple_animal/slime/other in run_loc_floor_bottom_left)
+		slimes_after++
+	TEST_ASSERT_EQUAL(victim.stat, DEAD, "The killed horde slime got up as a baby slime")
+	TEST_ASSERT(victim.is_adult, "The killed horde slime turned into a baby slime")
+	TEST_ASSERT_EQUAL(slimes_after, slimes_before, "The horde slime split when it divided or died")
 	var/list/more = horde.spawn_slimes(list(run_loc_floor_bottom_left, run_loc_floor_top_right), 3)
 	allocated += more
 	TEST_ASSERT_EQUAL(length(more), 3, "Two vents let out a wrong number of slimes")
@@ -111,12 +133,20 @@
 	TEST_ASSERT(istype(hugger) && hugger.loc == floor, "No stray facehugger")
 	allocated += hugger
 	hugger.sterile = TRUE // bez zarodka, gdyby zdążył doskoczyć
-	var/mob/living/carbon/human/victim = allocate(/mob/living/carbon/human, locate(floor.x + 2, floor.y, floor.z))
-	COOLDOWN_RESET(hugger, leap_cooldown) // monitor zbliżenia mógł już skoczyć, gdy ofiara się pojawiła
-	TEST_ASSERT(hugger.leap_at(victim), "The facehugger did not leap at a victim 2 tiles away")
+	// ofiara pojawia się poza zasięgiem (4 pola) i wchodzi w niego: skok wyzwala monitor zbliżenia, nie wywołanie leap_at()
+	var/mob/living/carbon/human/victim = allocate(/mob/living/carbon/human, run_loc_floor_top_right)
+	TEST_ASSERT(COOLDOWN_FINISHED(hugger, leap_cooldown), "The facehugger leapt at a victim out of its range")
+	victim.forceMove(locate(floor.x + 2, floor.y, floor.z))
+	TEST_ASSERT(!COOLDOWN_FINISHED(hugger, leap_cooldown), "The facehugger did not leap at a victim who walked 2 tiles near it")
 	TEST_ASSERT(!hugger.leap_at(victim), "The facehugger leapt twice in a row")
 	TEST_ASSERT(isnull(stray.spawn_facehugger(null)), "A facehugger spawned nowhere")
 	qdel(stray)
+	// ostrzeżenie po 1-3 minutach tylko wtedy, gdy facehugger nadal żyje
+	var/obj/item/clothing/mask/facehugger/aquila_stray/dead_hugger = allocate(/obj/item/clothing/mask/facehugger/aquila_stray, run_loc_floor_top_right)
+	dead_hugger.Die()
+	TEST_ASSERT(!aquila_hex_stray_facehugger_warning(WEAKREF(dead_hugger)), "The crew was warned about a dead facehugger")
+	TEST_ASSERT(!aquila_hex_stray_facehugger_warning(null), "The crew was warned about a facehugger that is gone")
+	TEST_ASSERT(aquila_hex_stray_facehugger_warning(WEAKREF(hugger)), "The crew was not warned about a living facehugger")
 
 	var/turf/center = locate(floor.x + 1, floor.y + 1, floor.z)
 	var/datum/round_event/aquila_hex_xenohive/hive_event = new(FALSE)
@@ -145,6 +175,7 @@
 	TEST_ASSERT(length(bots) >= 4 && length(bots) <= 6, "The teleporter let out [length(bots)] hivebots")
 	for(var/mob/living/basic/hivebot/bot as anything in bots)
 		TEST_ASSERT(istype(bot), "The teleporter let out [bot]")
+		TEST_ASSERT(!bot.playable, "Ghosts can take over [bot] from the teleporter")
 	TEST_ASSERT(!length(tele.warp_bots()), "The teleporter let out hivebots twice")
 
 	var/datum/round_event/aquila_hex_rogue_maint_drones/drones_event = new(FALSE)
@@ -156,6 +187,34 @@
 		TEST_ASSERT(istype(drone) && ("rogue_drone" in drone.faction), "[drone] is not a rogue maintenance drone")
 	TEST_ASSERT(!length(drones_event.spawn_group(null, 3)), "Drones spawned nowhere")
 	qdel(drones_event)
+
+/// Spots of the creature events: no mobs, doors, dangerous areas, silicons or windows in the way
+/datum/unit_test/aquila_hex_creatures_spots
+
+/datum/unit_test/aquila_hex_creatures_spots/Run()
+	var/turf/floor = run_loc_floor_bottom_left
+	var/turf/free = locate(floor.x + 1, floor.y + 1, floor.z)
+	TEST_ASSERT(aquila_hex_free_safe_turf(free), "A free floor of the test room is not free")
+	var/obj/machinery/door/firedoor/door = allocate(/obj/machinery/door/firedoor, free)
+	TEST_ASSERT(!aquila_hex_free_safe_turf(free), "A turf with a door counts as free")
+	qdel(door)
+	var/mob/living/basic/mouse/mouse = allocate(/mob/living/basic/mouse, free)
+	TEST_ASSERT(!aquila_hex_free_safe_turf(free), "A turf with a mob counts as free")
+	qdel(mouse)
+	for(var/area_type in list(/area/ai_monitored/turret_protected/ai_upload, /area/ai_monitored/security/armory, /area/bridge, /area/nsv/magazine, /area/maintenance/nsv/ftlroom, /area/maintenance/nsv/port_substation))
+		TEST_ASSERT(aquila_hex_unsafe_area_type(area_type), "[area_type] is not a dangerous area for creature events")
+	TEST_ASSERT(!aquila_hex_unsafe_area_type(/area/engine/break_room), "The engineering break room is a dangerous area")
+
+	// linia przez okno jest zasłonięta, wolna linia nie
+	var/turf/line_start = locate(floor.x, floor.y + 2, floor.z)
+	var/turf/line_end = locate(floor.x + 4, floor.y + 2, floor.z)
+	TEST_ASSERT(aquila_hex_clear_line(line_start, line_end), "A free line is blocked")
+	var/obj/structure/window/reinforced/fulltile/window = allocate(/obj/structure/window/reinforced/fulltile, locate(floor.x + 2, floor.y + 2, floor.z))
+	TEST_ASSERT(!aquila_hex_clear_line(line_start, line_end), "A line through a window is free")
+	qdel(window)
+
+	var/mob/living/silicon/robot/borg = allocate(/mob/living/silicon/robot, floor)
+	TEST_ASSERT(isnull(aquila_hex_impact_turf_near(borg)), "The hivebot teleporter aimed at a silicon")
 
 /// The cat surgeon comes with a warning fax
 /datum/unit_test/aquila_hex_creatures_cat_surgeon
@@ -196,7 +255,10 @@
 	var/mob/living/silicon/robot/modules/syndicate/aquila_hex_derelict/borg = borg_event.make_cyborg(run_loc_floor_top_right, null)
 	TEST_ASSERT(istype(borg), "No derelict Syndicate cyborg")
 	allocated += borg
-	TEST_ASSERT(istype(borg.module, /obj/item/robot_module/syndicate), "The derelict cyborg is not an assault cyborg")
+	TEST_ASSERT(istype(borg.module, /obj/item/robot_module/syndicate/aquila_hex_derelict), "The derelict cyborg has no derelict assault module")
+	TEST_ASSERT(!(locate(/obj/item/card/emag) in borg.module.modules), "The derelict cyborg has an emag")
+	TEST_ASSERT(!(locate(/obj/item/gun/ballistic/revolver/grenadelauncher) in borg.module.modules), "The derelict cyborg has a grenade launcher")
+	TEST_ASSERT(locate(/obj/item/melee/transforming/energy/sword/cyborg) in borg.module.modules, "The derelict cyborg has no energy sword")
 	TEST_ASSERT(borg.cell && borg.cell.charge < borg.cell.maxcharge, "The derelict cyborg has a full cell")
 	TEST_ASSERT(borg.getBruteLoss() > 0, "The derelict cyborg is not damaged")
 	TEST_ASSERT(borg.ionpulse, "The derelict cyborg cannot fly in space")
@@ -211,10 +273,33 @@
 	TEST_ASSERT(istype(changeling.s_store, /obj/item/tank/internals), "The changeling has no air tank")
 	var/obj/effect/meteor/meaty/aquila_hex_changeling/meteor = ling_event.launch(changeling, floor, run_loc_floor_top_right)
 	TEST_ASSERT(istype(meteor) && changeling.loc == meteor, "The changeling is not in the meteor")
-	var/turf/meteor_turf = get_turf(meteor)
-	qdel(meteor)
-	TEST_ASSERT_EQUAL(changeling.loc, meteor_turf, "The meteor did not let the changeling out")
+	// meteor wpada w ścianę pokoju testowego: ściana zostaje, meteor się rozpada, a pasażer wychodzi przed ścianą
+	var/turf/wall = locate(floor.x - 1, floor.y, floor.z)
+	TEST_ASSERT(iswallturf(wall), "No wall west of the test room")
+	var/wall_type = wall.type
+	meteor.forceMove(floor)
+	meteor.Move(wall, WEST)
+	TEST_ASSERT(QDELETED(meteor), "The meteor did not stop at the wall")
+	TEST_ASSERT_EQUAL(wall.type, wall_type, "The meteor broke the wall")
+	TEST_ASSERT_EQUAL(changeling.loc, floor, "The meteor did not let the changeling out in front of the wall")
 	qdel(ling_event)
+
+	// wybrany duch bez klucza (wyszedł w trakcie ankiety): żadnego pustego ciała, tylko NOT_ENOUGH_PLAYERS
+	var/list/events = list(
+		new /datum/round_event/ghost_role/aquila_hex_living_lube(FALSE),
+		new /datum/round_event/ghost_role/aquila_hex_derelict_syndicate_cyborg(FALSE),
+		new /datum/round_event/ghost_role/aquila_hex_changeling_meteor(FALSE),
+	)
+	var/mob/dead/observer/keyless = allocate(/mob/dead/observer, run_loc_floor_top_right)
+	for(var/datum/round_event/ghost_role/event as anything in events)
+		event.kill()
+		event.priority_candidates = list(keyless)
+		var/mobs_before = length(GLOB.mob_living_list)
+		TEST_ASSERT_EQUAL(event.spawn_role(), NOT_ENOUGH_PLAYERS, "[event.type] spawned a role for a ghost with no key")
+		TEST_ASSERT_EQUAL(length(GLOB.mob_living_list), mobs_before, "[event.type] made a body for a ghost with no key")
+		TEST_ASSERT(!length(event.spawned_mobs), "[event.type] counts a mob for a ghost with no key")
+		event.priority_candidates = list()
+		qdel(event)
 
 /// The irradiated mouse glows, is immune to its own radiation, can be picked up and sends out a pulse
 /datum/unit_test/aquila_hex_creatures_mouse
@@ -228,8 +313,21 @@
 	TEST_ASSERT(mouse.light_range > 0, "The irradiated mouse does not glow")
 	TEST_ASSERT(HAS_TRAIT(mouse, TRAIT_RADIMMUNE), "The irradiated mouse is not immune to radiation")
 	TEST_ASSERT(mouse.can_be_held, "The irradiated mouse cannot be caught")
+	var/mob/living/carbon/human/neighbour = allocate(/mob/living/carbon/human, locate(run_loc_floor_bottom_left.x + 1, run_loc_floor_bottom_left.y, run_loc_floor_bottom_left.z))
+	TEST_ASSERT(!HAS_TRAIT(neighbour, TRAIT_IRRADIATED), "The neighbour of the mouse is irradiated before the pulse")
 	TEST_ASSERT(mouse.irradiate(), "The irradiated mouse sent out no pulse")
 	TEST_ASSERT(!COOLDOWN_FINISHED(mouse, pulse_cooldown), "The pulse did not start its cooldown")
+	// poza MC SSradiation nie przetwarza impulsów, więc przeliczamy je tu od razu
+	var/safety = 100
+	while(length(SSradiation.processing) && safety-- > 0)
+		var/datum/radiation_pulse_information/pulse_information = SSradiation.processing[1]
+		var/atom/source = pulse_information.source_ref?.resolve() || pulse_information.source_turf
+		if(isnull(source) || !length(pulse_information.turfs_to_process))
+			SSradiation.processing -= pulse_information
+			continue
+		SSradiation.pulse(source, pulse_information)
+	TEST_ASSERT(HAS_TRAIT(neighbour, TRAIT_IRRADIATED), "The neighbour of the mouse got no radiation")
+	TEST_ASSERT(!HAS_TRAIT(mouse, TRAIT_IRRADIATED), "The mouse irradiated itself")
 	TEST_ASSERT(isnull(event.spawn_mouse(null)), "A mouse spawned nowhere")
 	qdel(event)
 

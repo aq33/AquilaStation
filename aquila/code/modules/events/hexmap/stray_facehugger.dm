@@ -1,8 +1,9 @@
-// AQUILA - Zbłąkany facehugger: w tunelach technicznych pojawia się jeden żywy facehugger, bez ogłoszenia (port z ChaoticOnyx/OnyxBay code/datums/events/stray_facehugger.dm)
+// AQUILA - Zbłąkany facehugger: w tunelach technicznych pojawia się jeden żywy facehugger, a po 1-3 minutach, jeśli nadal żyje, czujniki biologiczne ostrzegają załogę (port z ChaoticOnyx/OnyxBay code/datums/events/stray_facehugger.dm)
 // OnyxBay spawns its simple animal facehugger on a free maintenance turf and only tells the admins. Our facehugger is
 // the mask item, which jumps only at someone who steps on it or picks it up, so the stray one is a small variant that
 // also leaps at a huggable victim up to 3 tiles away in view (a proximity monitor, 3 s between leaps). The rest is our
-// facehugger: a covered mouth kills it, a successful hug plants the alien embryo.
+// facehugger: a covered mouth kills it, a successful hug plants the alien embryo. Unlike OnyxBay the crew gets a warning
+// 1-3 minutes later if the facehugger is still alive, so one hug does not quietly start a xenomorph round.
 
 /datum/round_event_control/aquila_hex_stray_facehugger
 	name = "Zbłąkany facehugger"
@@ -22,6 +23,15 @@
 		log_game("Stray Facehugger: no free maintenance turf found, cancelling the event.")
 		return kill()
 	announce_to_ghosts(hugger)
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(aquila_hex_stray_facehugger_warning), WEAKREF(hugger)), rand(1, 3) MINUTES)
+
+/// Ostrzeżenie załogi, jeśli facehugger nadal żyje; zwraca TRUE, gdy ogłosiło
+/proc/aquila_hex_stray_facehugger_warning(datum/weakref/hugger_ref)
+	var/obj/item/clothing/mask/facehugger/hugger = hugger_ref?.resolve()
+	if(QDELETED(hugger) || hugger.stat == DEAD)
+		return FALSE
+	priority_announce("Czujniki biologiczne wykryły obcy organizm w tunelach technicznych. Załoga proszona jest o unikanie tuneli i zgłaszanie ochronie wszelkich małych, szybkich stworzeń.", "Alarm biologiczny", ANNOUNCER_ALIENS)
+	return TRUE
 
 /datum/round_event/aquila_hex_stray_facehugger/proc/spawn_facehugger(turf/spot)
 	if(!isturf(spot))
