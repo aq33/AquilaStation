@@ -108,9 +108,6 @@
 		/obj/structure/flora/ash/garden/frigid = 2,
 		/obj/structure/flora/ash/fonarstolbe = 2,
 		/obj/structure/flora/ash/vahrezjia = 2,
-		/obj/structure/flora/ash/earthenroot = 1,
-		/obj/structure/flora/ash/dirtberries = 1,
-		/obj/structure/flora/ash/sugartree = 1,
 	)
 	mob_spawn_chance = 1
 	mob_spawn_list = list(
@@ -154,10 +151,6 @@
 		/obj/structure/flora/ash/garden/frigid = 2,
 		/obj/structure/flora/ash/podsneyzka = 2,
 		/obj/structure/flora/ash/vahrezjia = 1,
-		/obj/structure/flora/ash/earthenroot = 1,
-		/obj/structure/flora/ash/dirtberries = 1,
-		/obj/structure/flora/ash/sarezhi = 1,
-		/obj/structure/flora/ash/ylpha = 1,
 	)
 
 /// Las iglasty
@@ -168,7 +161,6 @@
 		/obj/structure/flora/tree/dead = 6,
 		/obj/structure/flora/grass/both = 8,
 		/obj/structure/flora/ash/inozhakust = 2,
-		/obj/structure/flora/ash/sugartree = 2,
 		/obj/structure/flora/ash/fjylozyn = 1,
 		/obj/structure/flora/ash/wulumunusha = 1,
 	)

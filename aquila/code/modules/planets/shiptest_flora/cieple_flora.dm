@@ -48,6 +48,7 @@
 	plant_needs = list()
 
 /obj/item/plant_seeds/preset/star_cactus
+	random_pool = FALSE
 	name = "nasiona: gwiaździsty kaktus (dowolne podłoże)"
 	name_override = "gwiaździsty kaktus"
 	plant_features = list(/datum/plant_feature/roots, /datum/plant_feature/body/tuber/lavaland, /datum/plant_feature/fruit/star_cactus)
@@ -63,10 +64,10 @@
 	distill_reagent = /datum/reagent/consumable/ethanol/tequila
 
 /*
-	Grzyby świetlne (Monke: lightshroom), czerwone, niebieskie i zielone, w jaskiniach planet wulkanicznych
+	Grzyby świetlne (Monke: lightshroom), w jaskiniach planet wulkanicznych. U Monke w trzech kolorach, u nas jedna roślina (czerwona)
 */
 /obj/structure/flora/ash/lightshroom
-	name = "czerwone grzyby świetlne"
+	name = "grzyby świetlne"
 	desc = "Dziwne, świecące grzyby, które rosną tam, gdzie pod ziemią biją źródła ciekłej plazmy."
 	icon = 'aquila/icons/planets/flora/cieple_flora.dmi'
 	icon_state = "lightshroom_red"
@@ -80,24 +81,10 @@
 	. = ..()
 	icon_state = initial(icon_state)
 
-/obj/structure/flora/ash/lightshroom/blue
-	name = "niebieskie grzyby świetlne"
-	icon_state = "lightshroom_blue"
-	base_icon_state = "lightshroom_blue"
-	seed_type = /obj/item/plant_seeds/preset/lightshroom_blue
-	light_color = "#6699FF"
-
-/obj/structure/flora/ash/lightshroom/green
-	name = "zielone grzyby świetlne"
-	icon_state = "lightshroom_green"
-	base_icon_state = "lightshroom_green"
-	seed_type = /obj/item/plant_seeds/preset/lightshroom_green
-	light_color = "#99FF99"
-
 // Podtyp świecącego grzyba: bierze od niego świecącą poświatę owocu w tacy, resztę ustawia od nowa
 /datum/plant_feature/fruit/mushroom/glowshroom/lightshroom
 	species_name = "lux fungus ruber"
-	name = "czerwony grzyb świetlny"
+	name = "grzyb świetlny"
 	icon_state = "fly"
 	colour_overlay = "fly_colour"
 	colour_override = "#ff5050"
@@ -111,59 +98,18 @@
 	mutations = list()
 	genetic_budget = 3
 
-/datum/plant_feature/fruit/mushroom/glowshroom/lightshroom/blue
-	species_name = "lux fungus caeruleus"
-	name = "niebieski grzyb świetlny"
-	colour_override = "#5080ff"
-	seed_icon_state = "mycelium-lightshroom_blue"
-	fruit_product = /obj/item/food/grown/ash_flora/lightshroom_blue
-	plant_traits = list(/datum/plant_trait/fruit/biolight/blue, /datum/plant_trait/reagent/fruit/nutriment)
-
-/datum/plant_feature/fruit/mushroom/glowshroom/lightshroom/green
-	species_name = "lux fungus viridis"
-	name = "zielony grzyb świetlny"
-	colour_override = "#60e060"
-	seed_icon_state = "mycelium-lightshroom_green"
-	fruit_product = /obj/item/food/grown/ash_flora/lightshroom_green
-	plant_traits = list(/datum/plant_trait/fruit/biolight/green, /datum/plant_trait/reagent/fruit/nutriment)
-
 /obj/item/plant_seeds/preset/lightshroom_red
-	name = "zarodniki: czerwony grzyb świetlny (dowolne podłoże)"
-	name_override = "czerwony grzyb świetlny"
+	random_pool = FALSE
+	name = "zarodniki: grzyb świetlny (dowolne podłoże)"
+	name_override = "grzyb świetlny"
 	plant_features = list(/datum/plant_feature/roots/hyphae, /datum/plant_feature/body/mushroom, /datum/plant_feature/fruit/mushroom/glowshroom/lightshroom)
 
-/obj/item/plant_seeds/preset/lightshroom_blue
-	name = "zarodniki: niebieski grzyb świetlny (dowolne podłoże)"
-	name_override = "niebieski grzyb świetlny"
-	plant_features = list(/datum/plant_feature/roots/hyphae, /datum/plant_feature/body/mushroom, /datum/plant_feature/fruit/mushroom/glowshroom/lightshroom/blue)
-
-/obj/item/plant_seeds/preset/lightshroom_green
-	name = "zarodniki: zielony grzyb świetlny (dowolne podłoże)"
-	name_override = "zielony grzyb świetlny"
-	plant_features = list(/datum/plant_feature/roots/hyphae, /datum/plant_feature/body/mushroom, /datum/plant_feature/fruit/mushroom/glowshroom/lightshroom/green)
-
 /obj/item/food/grown/ash_flora/lightshroom_red
-	name = "czerwony grzyb świetlny"
+	name = "grzyb świetlny"
 	desc = "Świecący grzyb."
 	icon = 'aquila/icons/planets/flora/cieple_flora_harvest.dmi'
 	icon_state = "lightshroom_red"
 	seed = /obj/item/plant_seeds/preset/lightshroom_red
-	wine_power = 40
-
-/obj/item/food/grown/ash_flora/lightshroom_blue
-	name = "niebieski grzyb świetlny"
-	desc = "Świecący grzyb."
-	icon = 'aquila/icons/planets/flora/cieple_flora_harvest.dmi'
-	icon_state = "lightshroom_blue"
-	seed = /obj/item/plant_seeds/preset/lightshroom_blue
-	wine_power = 40
-
-/obj/item/food/grown/ash_flora/lightshroom_green
-	name = "zielony grzyb świetlny"
-	desc = "Świecący grzyb."
-	icon = 'aquila/icons/planets/flora/cieple_flora_harvest.dmi'
-	icon_state = "lightshroom_green"
-	seed = /obj/item/plant_seeds/preset/lightshroom_green
 	wine_power = 40
 
 /*
@@ -197,6 +143,7 @@
 	plant_needs = list()
 
 /obj/item/plant_seeds/preset/cinchona
+	random_pool = FALSE
 	name = "nasiona: chinowiec (dowolne podłoże)"
 	name_override = "chinowiec"
 	plant_features = list(/datum/plant_feature/roots, /datum/plant_feature/body/tuber/lavaland, /datum/plant_feature/fruit/cinchona)
@@ -242,6 +189,7 @@
 	plant_needs = list()
 
 /obj/item/plant_seeds/preset/magnus_purpura
+	random_pool = FALSE
 	name = "nasiona: magnus purpura (dowolne podłoże)"
 	name_override = "magnus purpura"
 	plant_features = list(/datum/plant_feature/roots, /datum/plant_feature/body/tuber/lavaland, /datum/plant_feature/fruit/magnus_purpura)
@@ -328,16 +276,19 @@
 	plant_needs = list()
 
 /obj/item/plant_seeds/preset/kuku
+	random_pool = FALSE
 	name = "nasiona: kuku (dowolne podłoże)"
 	name_override = "kuku"
 	plant_features = list(/datum/plant_feature/roots, /datum/plant_feature/body/tuber/lavaland, /datum/plant_feature/fruit/kuku)
 
 /obj/item/plant_seeds/preset/bonji
+	random_pool = FALSE
 	name = "nasiona: bondżi (dowolne podłoże)"
 	name_override = "bondżi"
 	plant_features = list(/datum/plant_feature/roots, /datum/plant_feature/body/tuber/lavaland, /datum/plant_feature/fruit/bonji)
 
 /obj/item/plant_seeds/preset/bianco
+	random_pool = FALSE
 	name = "nasiona: bianko (dowolne podłoże)"
 	name_override = "bianko"
 	plant_features = list(/datum/plant_feature/roots, /datum/plant_feature/body/tuber/lavaland, /datum/plant_feature/fruit/bianco)
@@ -399,6 +350,7 @@
 	genetic_budget = 2
 
 /obj/item/plant_seeds/preset/liberal_hat
+	random_pool = FALSE
 	name = "zarodniki: kapelusz liberała (dowolne podłoże)"
 	name_override = "kapelusz liberała"
 	plant_features = list(/datum/plant_feature/roots/hyphae, /datum/plant_feature/body/mushroom, /datum/plant_feature/fruit/mushroom/liberal_hat)
@@ -499,16 +451,19 @@
 	plant_needs = list()
 
 /obj/item/plant_seeds/preset/prickly_pear
+	random_pool = FALSE
 	name = "nasiona: opuncja (dowolne podłoże)"
 	name_override = "opuncja"
 	plant_features = list(/datum/plant_feature/roots, /datum/plant_feature/body/tuber/lavaland, /datum/plant_feature/fruit/prickly_pear)
 
 /obj/item/plant_seeds/preset/san_pedro
+	random_pool = FALSE
 	name = "nasiona: kaktus San Pedro (dowolne podłoże)"
 	name_override = "kaktus San Pedro"
 	plant_features = list(/datum/plant_feature/roots, /datum/plant_feature/body/tuber/lavaland, /datum/plant_feature/fruit/san_pedro)
 
 /obj/item/plant_seeds/preset/peyote
+	random_pool = FALSE
 	name = "nasiona: pejotl (dowolne podłoże)"
 	name_override = "pejotl"
 	plant_features = list(/datum/plant_feature/roots, /datum/plant_feature/body/tuber/lavaland, /datum/plant_feature/fruit/peyote)

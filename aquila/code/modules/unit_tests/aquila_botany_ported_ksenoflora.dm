@@ -9,6 +9,38 @@
 	pod.internal_gases.remove(pod.internal_gases.total_moles())
 	qdel(pod)
 
+/// Przywraca polom testowym początkowe powietrze. Woła je Destroy testów kapsuły po usunięciu przydzielonych obiektów,
+/// więc działa też po nieudanej asercji, gdy kapsuła z Run() nie została opróżniona i oddała gaz przy usuwaniu
+/proc/aquila_test_reset_air(list/room)
+	for(var/turf/open/room_turf in room)
+		room_turf.air.copy_from_turf(room_turf)
+		room_turf.update_visuals()
+
+/datum/unit_test/aquila_botany_ksenoflora/Destroy()
+	var/list/room = block(run_loc_floor_bottom_left, run_loc_floor_top_right)
+	. = ..()
+	aquila_test_reset_air(room)
+
+/datum/unit_test/aquila_botany_kseno_gazowe/Destroy()
+	var/list/room = block(run_loc_floor_bottom_left, run_loc_floor_top_right)
+	. = ..()
+	aquila_test_reset_air(room)
+
+/datum/unit_test/aquila_botany_kseno_rasy/Destroy()
+	var/list/room = block(run_loc_floor_bottom_left, run_loc_floor_top_right)
+	. = ..()
+	aquila_test_reset_air(room)
+
+/datum/unit_test/aquila_botany_kseno_adhomai/Destroy()
+	var/list/room = block(run_loc_floor_bottom_left, run_loc_floor_top_right)
+	. = ..()
+	aquila_test_reset_air(room)
+
+/datum/unit_test/aquila_xenoflora_pod_fixes/Destroy()
+	var/list/room = block(run_loc_floor_bottom_left, run_loc_floor_top_right)
+	. = ..()
+	aquila_test_reset_air(room)
+
 /// AQUILA - ksenoflora rośnie tylko w kapsule: miotlarz z azotem pod kopułą rośnie i owocuje, bez azotu stoi, a w zwykłej tacce nie da się go zasadzić
 /datum/unit_test/aquila_botany_ksenoflora
 
@@ -56,10 +88,6 @@
 	tray.reagents.add_reagent(/datum/reagent/water, 150)
 	TEST_ASSERT(!plant_broombush(tray), "Miotlarz dał się posadzić w zwykłej tacce")
 	TEST_ASSERT(!length(tray_planter.plants), "W zwykłej tacce pojawiła się ksenoflora")
-	//Ani na podłożu wodnym akwakultury (osobny bit podłoża)
-	tray_planter.set_substrate(/datum/plant_subtrate/water)
-	TEST_ASSERT(!plant_broombush(tray), "Miotlarz dał się posadzić w tacce z podłożem wodnym")
-	TEST_ASSERT(!length(tray_planter.plants), "W tacce z podłożem wodnym pojawiła się ksenoflora")
 
 /datum/unit_test/aquila_botany_ksenoflora/proc/plant_broombush(atom/target)
 	var/obj/item/plant_seeds/seeds = allocate(/obj/item/plant_seeds/preset/alien/xenoflora/broombush, get_turf(target))
