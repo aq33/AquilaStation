@@ -2,7 +2,7 @@
 // Urządzenie na rurze: z rury wejściowej (z tyłu) bierze sam dwutlenek węgla, rozkłada go i oddaje tlen rurą wyjściową (z przodu).
 // Węgiel odkłada się w środku i co OXYREGEN_CARBON_PER_SHEET wypada jako bryłka węgla.
 // Różnice względem Baya: bez faz napełniania i wypuszczania zbiornika (ciągły przepływ), bez ustawiania mocy,
-// węgiel zamiast grafitu (nie mamy go jako materiału). Sprite to przebarwiona termomaszyna z naszego repo.
+// węgiel zamiast grafitu (nie mamy go jako materiału). Sprite z Baya (icons/atmos/oxyregenerator.dmi, stany off/on, CC-BY-SA 3.0).
 
 /// Ile moli CO2 na cykl atmosfery rozkłada regenerator na każdy stopień manipulatorów
 #define OXYREGEN_MOLES_PER_RATING 0.5
