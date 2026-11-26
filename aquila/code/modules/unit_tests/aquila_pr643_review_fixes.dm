@@ -4,7 +4,7 @@
 /datum/unit_test/aquila_pr643_review_fixes
 
 /datum/unit_test/aquila_pr643_review_fixes/Run()
-	var/fail = check_decoy() || check_aim_modules() || check_scavenge() || check_deck_bounds() || check_tether_wrap()
+	var/fail = check_decoy() || check_aim_modules() || check_scavenge() || check_deck_bounds() || check_tether_wrap() || check_civilian_fire()
 	if(fail)
 		return Fail(fail)
 
@@ -79,3 +79,17 @@
 	qdel(tether)
 	if(target_pull <= 0 || source_pull >= 0)
 		return "Lina ciągnie przez całą mapę zamiast przez krawędź (cel [target_pull], źródło [source_pull])"
+
+/// Niezależny frachtowiec strzelał z działek do okrętu gracza (inna frakcja), co w testach rozsadzało rury na stacji
+/datum/unit_test/aquila_pr643_review_fixes/proc/check_civilian_fire()
+	var/obj/structure/overmap/civ = allocate(/obj/structure/overmap/nanotrasen/mining_cruiser/aquila_hex_freighter/civilian/independent)
+	var/obj/structure/overmap/friendly = allocate(/obj/structure/overmap/nanotrasen/mining_cruiser/aquila_hex_freighter/civilian)
+	var/datum/overmap_ship_weapon/gun
+	for(var/datum/overmap_ship_weapon/weapon as anything in civ.autonomous_weapon_datums)
+		gun = weapon
+		break
+	if(!gun)
+		return "Niezależny frachtowiec nie ma broni autonomicznej"
+	gun.next_firetime = 0
+	if(gun.can_fire(friendly))
+		return "Niezależny frachtowiec może strzelać do okrętu Nanotrasen"

@@ -145,6 +145,16 @@ GLOBAL_LIST_INIT(civilian_fake_iff_names, list("frachtowiec niezależny", "trans
 /proc/civilian_hunter(obj/structure/overmap/observer)
 	return observer.faction == "syndicate" || observer.faction == "pirate"
 
+// Broń cywila (autonomiczny flak i PDC) broni go tylko przed Syndykatem i piratami: inaczej niezależny frachtowiec
+// (frakcja „unaligned”) strzelał do okrętu gracza i każdego innego okrętu spoza swojej frakcji
+/datum/overmap_ship_weapon/can_fire(atom/target, list/inplace_report)
+	. = ..()
+	if(!. || !linked_overmap?.civilian || !isovermap(target))
+		return
+	var/obj/structure/overmap/OM = target
+	if(!civilian_hunter(OM))
+		return FALSE
+
 // ---- Kary za ostrzał cywilów ----
 
 /// Okręt gracza, za którego strzały odpowiada załoga (okręt główny, inne okręty z wnętrzem, pilotowane myśliwce)
