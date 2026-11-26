@@ -867,7 +867,7 @@
 		/datum/reagent/consumable/vinegar = 1,
 		/datum/reagent/consumable/capsaicin = 1,
 	)
-	tastes = list("ryba" = 4, "kwas" = 1, "cebula" = 1, "ostrość" = 1)
+	tastes = list("ryba" = 4, "kwas" = 1, "cebula" = 1, "pikantność" = 1)
 	foodtypes = FRUIT | MEAT
 	crafting_complexity = FOOD_COMPLEXITY_3
 
@@ -1584,7 +1584,7 @@
 		/datum/reagent/consumable/blackpepper = 1,
 		/datum/reagent/consumable/capsaicin = 1,
 	)
-	tastes = list("ostrość" = 1, "łosoś" = 1, "mleko" = 1)
+	tastes = list("pikantność" = 1, "łosoś" = 1, "mleko" = 1)
 	foodtypes = BREAKFAST | DAIRY | GRAIN | MEAT
 	bite_consumption = 4
 	trash_type = /obj/item/reagent_containers/glass/bowl

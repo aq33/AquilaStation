@@ -136,6 +136,8 @@ GLOBAL_DATUM_INIT(cameranet, /datum/cameranet, new)
 
 
 /datum/cameranet/proc/checkTurfVis(turf/position)
+	if(!position) // AQ EDIT - cel w nullspace (runda 6591)
+		return FALSE
 	var/datum/camerachunk/chunk = getCameraChunk(position.x, position.y, position.z, get_area(position))
 	if(chunk)
 		if(chunk.changed)

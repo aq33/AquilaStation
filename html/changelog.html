@@ -56,6 +56,36 @@
 		-->
 		<div class="commit sansserif">
 
+			<h2 class="date">26 November 2026</h2>
+			<h3 class="author">BeeStation (Z-Mimic), DaedalusDock updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">Piętro niżej widziane przez otwartą przestrzeń jest rozmyte i przyciemnione, więc odróżnia się od twojego piętra. Rozmycie można wyłączyć w preferencjach („Rozmycie niższych pięter”).</li>
+				<li class="bugfix">Światło i cienie piętra niżej są widoczne poprawnie także przez otwartą przestrzeń i szklane podłogi.</li>
+				<li class="code_imp">Otwarta przestrzeń rysuje piętro niżej przez Z-Mimic z BeeStation zamiast vis_contents.</li>
+			</ul>
+			<h3 class="author">Joker66613 updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">Na planetach (wulkanicznej, lodowej, księżycu, skalistej, wysypisku) i w polach asteroid pojawiają się złoża gazu z mieszanką zależną od planety. Georadarowy skaner pokazuje ich skład.</li>
+				<li class="rscadd">Ekstraktor gazu: postawiony z płytki na złożu tłoczy gaz do rury (50 mol/s, do 4500 kPa, 1 kW z sieci albo ogniwa). Wydobycie rozwściecza faunę jak wiertło. Płytka w protolacie inżynierii i cargo, skrzynia w zamówieniach inżynierii.</li>
+				<li class="rscadd">Rury pękają przy rażącym przekroczeniu ciśnienia (50 000 kPa) albo temperatury (10 000 K) i przeciekają, dopóki ktoś ich nie zespawa. Przed pęknięciem jęczą i ostrzegają w opisie.</li>
+				<li class="rscadd">Rurę można wzmocnić 5 arkuszami plastali: wytrzymuje 10 razy więcej.</li>
+				<li class="rscadd">Kanister niszczeje i pęka od ciśnienia powyżej 50 000 kPa albo temperatury powyżej 10 000 K w środku.</li>
+				<li class="rscadd">Zawór odcinający w RPD: sam zamyka się przy pękniętej rurze w sieci i otwiera po naprawie.</li>
+				<li class="rscadd">Zacisk rury z protolathe: zamyka prosty odcinek jak zawór, a zdjęty przywraca rurę.</li>
+				<li class="rscadd">Iskrownik rurowy w RPD: zapala mieszankę paliwa w rurach ręką albo przyciskiem zapłonu.</li>
+				<li class="rscadd">Pompa wysokiego ciśnienia (13 500 kPa), pompa objętościowa i filtr wysokiego przepływu (600 L/s) w RPD.</li>
+				<li class="imageadd">Grafiki zacisku rury i iskrownika z Baystation12.</li>
+				<li class="rscadd">Awaryjny wyrzut rdzenia reaktora dla napędu burzowego, RBMK i supermaterii: przycisk w konsoli reaktora, dostęp głównego inżyniera albo kapitana, 30 s odliczania z możliwością przerwania i ogłoszeniem na okręcie.</li>
+				<li class="rscadd">Wyrzucony rdzeń dryfuje za rufą na overmapie i wybucha po 30–60 s, raniąc okręty w pobliżu.</li>
+				<li class="rscadd">W cargo jest skrzynia z prętami paliwowymi RBMK (5 prętów, 50 000), do ponownego uruchomienia reaktora po wyrzucie.</li>
+				<li class="bugfix">Włożenie nowego rdzenia do napędu burzowego nie usuwa już licznika stabilności reaktora.</li>
+			</ul>
+			<h3 class="author">sh4dow321 updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="config">Tryb Infiltracji jest ciągły: runda nie kończy się w chwili śmierci wszystkich infiltratorów.</li>
+				<li class="config">Link do zasad prowadzi do zasad na wiki Aquili, a odwołania od banów na Discorda serwera.</li>
+			</ul>
+
 			<h2 class="date">25 November 2026</h2>
 			<h3 class="author">Joker66613 updated:</h3>
 			<ul class="changes bgimages16">
@@ -122,6 +152,10 @@
 				<li class="rscadd">Nowe bazy w dyspenserach baru: amaretto, bitter, curaçao, aperitivo, maraschino, likier ziołowy, shochu, rumy, piwo ryżowe, mocne piwo, yūyake, ekstrakt miętowy, oranżada melonowa, Sol Dry.</li>
 				<li class="imageadd">Sprite'y szklanek drinków z tgstation/tgstation (CC BY-SA 3.0).</li>
 				<li class="bugfix">Beczka browaru nie zużywa wysypanych owoców, nie startuje bez przepisu i nie przelewa trunku ponad pojemność.</li>
+				<li class="bugfix">Martwe ciało nie słyszy już strzałów i wybuchów okrętu ani nim nie trzęsie (do zghostowania tak było).</li>
+				<li class="balance">Ból, rany i utrata krwi nie zatrzymują już serca przez szybkie tętno. Zatrzymanie krążenia z tempa powoduje tylko przedawkowanie stymulantów albo wychłodzenie, a gracz dostaje wcześniej ostrzeżenie.</li>
+				<li class="rscadd">Podpowiedź ekranowa i opis przy badaniu mówią, czy obiekt jest piętro niżej albo wyżej.</li>
+				<li class="bugfix">Atlas: barierki na dachu nad wlotem hangaru desantowca, z którego łatwo było spaść piętro niżej.</li>
 			</ul>
 			<h3 class="author">sh4dow321 updated:</h3>
 			<ul class="changes bgimages16">
@@ -133,6 +167,14 @@
 				<li class="bugfix">Ogłoszenia na cały statek z konsoli zgłoszeń działają z polskimi znakami, linkami i dłuższym tekstem (wcześniej konsola po cichu je kasowała).</li>
 				<li class="bugfix">Link „strona wiki” w powitaniu stanowiska prowadzi na stronę stanowiska na wiki Aquili, a nie do wyszukiwarki BeeStation.</li>
 				<li class="bugfix">Ogłoszenia głosowe AI (VOX) są sprawdzane filtrem zakazanych słów.</li>
+				<li class="bugfix">Pilot albo pasażer wyrzucony poza myśliwiec przestaje nim sterować.</li>
+				<li class="bugfix">Ofiara horroru dostaje komunikację z horrorem.</li>
+				<li class="bugfix">Po EMP konsola medyczna nie pokazuje graczy z wyłączonymi czujnikami kombinezonu.</li>
+				<li class="bugfix">Misja „Odbij kwaterę” nie psuje już startu trybu overmapy.</li>
+				<li class="bugfix">Abordażyści nie przeskakują w losowe miejsce, gdy wchodzą na drabinę bez drugiego końca.</li>
+				<li class="bugfix">Oględziny martwych zwierząt pokazują poprawny opis.</li>
+				<li class="bugfix">APC telekomunikacji na Atlantis ma polską nazwę.</li>
+				<li class="code_imp">Poprawione runtime'y z rund 6585–6593 (nanity, flak, sygnały, cień światła na promie, sieć kamer, lobby, radar, drabiny, mysz w dłoni, lampy).</li>
 			</ul>
 			<h3 class="author">tralezab, MrMelbert updated:</h3>
 			<ul class="changes bgimages16">

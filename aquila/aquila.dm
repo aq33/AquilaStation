@@ -50,6 +50,7 @@
 #include "code\__DEFINES\say.dm"
 #include "code\__DEFINES\screentips.dm"
 #include "code\__DEFINES\soft_lighting.dm"
+#include "code\__DEFINES\zmimic.dm"
 #include "code\__DEFINES\sound.dm"
 #include "code\__DEFINES\spells.dm"
 #include "code\__DEFINES\spiders.dm"
@@ -586,6 +587,9 @@
 #include "code\modules\atmospherics\machinery\pipes\he_pipe_no_pipeline.dm"
 #include "code\datums\brain_damage\imaginary_friend_job.dm"
 #include "code\modules\atmospherics\machinery\portable\canister.dm"
+#include "code\modules\atmospherics\pipe_integrity.dm"
+#include "code\modules\atmospherics\pipe_safety.dm"
+#include "code\modules\atmospherics\high_flow.dm"
 #include "code\modules\bladder\bladder.dm"
 #include "code\modules\bladder\censor.dm"
 #include "code\modules\bladder\urination.dm"
@@ -878,6 +882,13 @@
 #include "code\modules\hallucination\tiers.dm"
 #include "code\modules\lighting\emissive_extra.dm"
 #include "code\modules\lighting\soft_lighting.dm"
+// Z-Mimic: piętro niżej przez otwartą przestrzeń (port BeeStation/BeeStation-Hornet#8813)
+#include "code\controllers\subsystem\zcopy.dm"
+#include "code\modules\multiz\zmimic\mimic_common.dm"
+#include "code\modules\multiz\zmimic\mimic_turf.dm"
+#include "code\modules\multiz\zmimic\mimic_movable.dm"
+#include "code\modules\multiz\zmimic\zmimic_turfs.dm"
+#include "code\modules\multiz\zmimic\zmimic_planes.dm"
 #include "code\modules\lighting\light_shadow_geometry.dm"
 #include "code\modules\lighting\light_shadows.dm"
 #include "code\modules\lost_crew\lost_crew_delivery.dm"
@@ -1122,6 +1133,9 @@
 #include "code\modules\planets\planet_mission.dm"
 #include "code\modules\planets\planet_sensors.dm"
 #include "code\modules\planets\drill\_index.dm"
+// Złoża gazu i ekstraktor gazu (maszynownia, etap E12)
+#include "code\modules\planets\drill\gas_vein.dm"
+#include "code\modules\planets\drill\gas_extractor.dm"
 #include "code\modules\overmap\sabre_shuttle.dm"
 #include "code\modules\overmap\sabre_pod_rescue.dm"
 #include "code\modules\overmap\custom_shuttle_overmap.dm"
@@ -1385,6 +1399,7 @@
 // Komora testowa - zestawy PR-ów niżej (usuwać razem z plikiem zestawu po przetestowaniu)
 #include "code\modules\test_chamber\kits\pr_695_dowodztwo.dm"
 #include "code\modules\test_chamber\kits\pr_700_mikser_dzwieku.dm"
+#include "code\modules\test_chamber\kits\pr_709_maszynownia_rury.dm"
 #include "code\modules\test_chamber\kits\pr_696_horror_czaszka.dm"
 #include "code\modules\test_chamber\kits\pr_701_wspomnienia.dm"
 #include "code\modules\test_chamber\kits\pr_672_cyborgi.dm"
@@ -1413,6 +1428,7 @@
 #include "code\modules\test_chamber\kits\pr_646_wybor_silnika.dm"
 #include "code\modules\test_chamber\kits\pr_640_glos_si_eventy.dm"
 #include "code\modules\test_chamber\kits\pr_639_planety.dm"
+#include "code\modules\test_chamber\kits\pr_707_zloza_gazu.dm"
 #include "code\modules\test_chamber\kits\pr_638_mapa_hex.dm"
 #include "code\modules\test_chamber\kits\pr_633_zgloszenia_1211.dm"
 #include "code\modules\test_chamber\kits\pr_627_ekwipunek.dm"
@@ -1579,6 +1595,7 @@
 #include "code\modules\weighted\weighted_rotation.dm"
 #include "code\modules\ruins\objects_and_mobs\sin_ruins.dm"
 #include "code\modules\screentips\atom_extensions.dm"
+#include "code\modules\screentips\other_level.dm"
 #include "code\modules\screentips\client_extensions.dm"
 #include "code\modules\screentips\contexts.dm"
 #include "code\modules\screentips\hooks.dm"
@@ -2633,6 +2650,7 @@
 #include "code\modules\unit_tests\aquila_planet_waste.dm"
 #include "code\modules\unit_tests\aquila_planet_moon.dm"
 #include "code\modules\unit_tests\aquila_vein_drill.dm"
+#include "code\modules\unit_tests\aquila_gas_extractor.dm"
 #include "code\modules\unit_tests\aquila_anomaly_cores.dm"
 #include "code\modules\unit_tests\aquila_crystal_reagent.dm"
 #include "code\modules\unit_tests\aquila_planet_anomalies.dm"
@@ -2732,6 +2750,7 @@
 #include "code\modules\unit_tests\aquila_logi_rund_6552.dm"
 #include "code\modules\unit_tests\aquila_logi_rund_6581.dm"
 #include "code\modules\unit_tests\aquila_shuttle_preflight_qdel.dm"
+#include "code\modules\unit_tests\aquila_runtime_6591.dm"
 #include "code\modules\unit_tests\aquila_gang_economy.dm"
 #include "code\modules\unit_tests\aquila_salvagers.dm"
 #include "code\modules\unit_tests\aquila_logi_rund_6563.dm"
@@ -2749,6 +2768,10 @@
 #include "code\modules\unit_tests\aquila_drobiazgi_1711.dm"
 #include "code\modules\unit_tests\aquila_zgloszenia_2511.dm"
 #include "code\modules\unit_tests\aquila_he_pipe_no_pipeline.dm"
+#include "code\modules\unit_tests\aquila_pipe_integrity.dm"
+#include "code\modules\unit_tests\aquila_canister_overpressure.dm"
+#include "code\modules\unit_tests\aquila_pipe_safety.dm"
+#include "code\modules\unit_tests\aquila_high_flow.dm"
 #include "code\modules\unit_tests\aquila_imaginary_friend_job.dm"
 #include "code\modules\unit_tests\aquila_gunplay.dm"
 #include "code\modules\unit_tests\aquila_gun_cursor_prefs.dm"
@@ -2899,6 +2922,8 @@
 // BOTY: testy
 #include "code\modules\unit_tests\aquila_basic_bots.dm"
 #include "code\modules\unit_tests\aquila_memories.dm"
+#include "code\modules\unit_tests\aquila_zmimic.dm"
+#include "code\modules\unit_tests\aquila_zgloszenia_gracza_2511.dm"
 #endif
 
 // Heretyk z tg (osobny plik z includami)
@@ -3113,6 +3138,15 @@
 #include "code\datums\memory\engraving.dm"
 #include "code\datums\memory\tattoo.dm"
 // WSPOMNIENIA: koniec
+
+// WYRZUT RDZENIA REAKTORA (plan maszynowni, E9)
+#include "code\modules\power\core_ejection.dm"
+#ifdef UNIT_TESTS
+#include "code\modules\unit_tests\aquila_core_ejection.dm"
+#endif
+// Komora testowa
+#include "code\modules\test_chamber\kits\pr_708_wyrzut_rdzenia.dm"
+// WYRZUT RDZENIA: koniec
 
 // Profiler byond-tracy: MUSI być ostatnim include'em całego builda (BYOND inicjuje zmienne statyczne od końca,
 // więc ta rusza pierwsza, przed Master i mapą). Opis: tools/tracy/README.md
