@@ -4,6 +4,8 @@
 	pochodzenia rośliny, i ma dwa razy większy owoc, więc daje dwa razy więcej swoich odczynników.
 	Nasiona trafiają do tych samych źródeł co reszta obcych nasion (artefakt „Seeding”, ruiny planet), bo są w /preset/alien.
 	Ten sam plon co zwykła wersja: siewnik bierze części rośliny z owocu, więc nasiona z niego znów są kapsułowe.
+	Owoc ma własną nazwę i gatunek („odmiana kapsułowa”), żeby w siewniku i skanerze nie mylić go ze zwykłym.
+	W puli artefaktu i ruin odmiany są rzadsze (alien_seed_weight w losowe_nasiona.dm).
 */
 
 /*
@@ -48,30 +50,44 @@
 	Owoce: rodzic z potrzebą kapsuły i podwójną objętością
 */
 /datum/plant_feature/fruit/vale/xenoflora
+	species_name = "vale ardens capsularis"
+	name = "vale (odmiana kapsułowa)"
 	plant_needs = list(/datum/plant_need/reagent/water, /datum/plant_need/reagent/buff/pests, /datum/plant_need/xenoflora/vale)
 	total_volume = PLANT_FRUIT_VOLUME_SMALL * 2
 
 /datum/plant_feature/fruit/jurlmah/xenoflora
+	species_name = "jurlmah glacialis capsularis"
+	name = "jurl'mah (odmiana kapsułowa)"
 	plant_needs = list(/datum/plant_need/reagent/water, /datum/plant_need/reagent/buff/pests, /datum/plant_need/xenoflora/jurlmah)
 	total_volume = PLANT_FRUIT_VOLUME_SMALL * 2
 
 /datum/plant_feature/fruit/thaadra/xenoflora
+	species_name = "thaadra argentea capsularis"
+	name = "thaa'dra (odmiana kapsułowa)"
 	plant_needs = list(/datum/plant_need/reagent/water, /datum/plant_need/reagent/buff/pests, /datum/plant_need/xenoflora/thaadra)
 	total_volume = PLANT_FRUIT_VOLUME_SMALL * 2
 
 /datum/plant_feature/fruit/surik/xenoflora
+	species_name = "surik vulcanica capsularis"
+	name = "surik (odmiana kapsułowa)"
 	plant_needs = list(/datum/plant_need/reagent/water, /datum/plant_need/reagent/buff/pests, /datum/plant_need/xenoflora/surik)
 	total_volume = PLANT_FRUIT_VOLUME_SMALL * 2
 
 /datum/plant_feature/fruit/dripper/xenoflora
+	species_name = "stillator viridis capsularis"
+	name = "fioletowa maź (odmiana kapsułowa)"
 	plant_needs = list(/datum/plant_need/reagent/water, /datum/plant_need/reagent/buff/pests, /datum/plant_need/xenoflora/dripper)
 	total_volume = PLANT_FRUIT_VOLUME_SMALL * 2
 
 /datum/plant_feature/fruit/plasma_flower/xenoflora
+	species_name = "flos plasmatis capsularis"
+	name = "kwiat plazmowy (odmiana kapsułowa)"
 	plant_needs = list(/datum/plant_need/reagent/water, /datum/plant_need/reagent/buff/pests, /datum/plant_need/xenoflora/plasma_flower)
 	total_volume = PLANT_FRUIT_VOLUME_SMALL * 2
 
 /datum/plant_feature/fruit/star_cactus/xenoflora
+	species_name = "astrophytum asterias capsularis"
+	name = "gwiaździsty kaktus (odmiana kapsułowa)"
 	plant_needs = list(/datum/plant_need/reagent/water, /datum/plant_need/reagent/buff/pests, /datum/plant_need/xenoflora/star_cactus)
 	total_volume = PLANT_FRUIT_VOLUME_MEDIUM * 2
 
@@ -80,6 +96,7 @@
 */
 /obj/item/plant_seeds/preset/alien/xenoflora/capsule
 	abstract_type = /obj/item/plant_seeds/preset/alien/xenoflora/capsule
+	alien_seed_weight = 1
 
 /obj/item/plant_seeds/preset/alien/xenoflora/capsule/vale
 	name = "nasiona: vale (kapsuła ksenoflory)"

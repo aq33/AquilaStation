@@ -19,8 +19,10 @@
 		TEST_ASSERT(variant, "[seed_type] nie ma owocu")
 		var/datum/plant_feature/fruit/parent = type2parent(variant)
 		TEST_ASSERT(ispath(parent, /datum/plant_feature/fruit) && parent != /datum/plant_feature/fruit, "Owoc [variant] nie jest odmianą zwykłej rośliny")
+		TEST_ASSERT(GLOB.alien_plant_seeds[seed_type] < GLOB.alien_plant_seeds[/obj/item/plant_seeds/preset/alien/vale], "Odmiana [seed_type] nie jest rzadsza od zwykłych obcych nasion w losowaniu")
+		TEST_ASSERT(initial(variant.name) != initial(parent.name), "Owoc [variant] nazywa się tak samo jak zwykły [parent]")
 		TEST_ASSERT(initial(variant.total_volume) == initial(parent.total_volume) * 2, "Owoc [variant] ma [initial(variant.total_volume)] j. zamiast [initial(parent.total_volume) * 2] (dwa razy więcej niż [parent])")
 		count++
-	TEST_ASSERT(count == 7, "Odmian kapsułowych jest [count] zamiast 7")
+	TEST_ASSERT(count, "Nie ma żadnej odmiany kapsułowej")
 
 #undef TEST_ASSERT

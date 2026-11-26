@@ -48,6 +48,7 @@
 	plant_needs = list()
 
 /obj/item/plant_seeds/preset/star_cactus
+	random_pool = FALSE
 	name = "nasiona: gwiaździsty kaktus (dowolne podłoże)"
 	name_override = "gwiaździsty kaktus"
 	plant_features = list(/datum/plant_feature/roots, /datum/plant_feature/body/tuber/lavaland, /datum/plant_feature/fruit/star_cactus)
@@ -98,6 +99,7 @@
 	genetic_budget = 3
 
 /obj/item/plant_seeds/preset/lightshroom_red
+	random_pool = FALSE
 	name = "zarodniki: grzyb świetlny (dowolne podłoże)"
 	name_override = "grzyb świetlny"
 	plant_features = list(/datum/plant_feature/roots/hyphae, /datum/plant_feature/body/mushroom, /datum/plant_feature/fruit/mushroom/glowshroom/lightshroom)
@@ -141,6 +143,7 @@
 	plant_needs = list()
 
 /obj/item/plant_seeds/preset/cinchona
+	random_pool = FALSE
 	name = "nasiona: chinowiec (dowolne podłoże)"
 	name_override = "chinowiec"
 	plant_features = list(/datum/plant_feature/roots, /datum/plant_feature/body/tuber/lavaland, /datum/plant_feature/fruit/cinchona)
@@ -186,6 +189,7 @@
 	plant_needs = list()
 
 /obj/item/plant_seeds/preset/magnus_purpura
+	random_pool = FALSE
 	name = "nasiona: magnus purpura (dowolne podłoże)"
 	name_override = "magnus purpura"
 	plant_features = list(/datum/plant_feature/roots, /datum/plant_feature/body/tuber/lavaland, /datum/plant_feature/fruit/magnus_purpura)
@@ -272,16 +276,19 @@
 	plant_needs = list()
 
 /obj/item/plant_seeds/preset/kuku
+	random_pool = FALSE
 	name = "nasiona: kuku (dowolne podłoże)"
 	name_override = "kuku"
 	plant_features = list(/datum/plant_feature/roots, /datum/plant_feature/body/tuber/lavaland, /datum/plant_feature/fruit/kuku)
 
 /obj/item/plant_seeds/preset/bonji
+	random_pool = FALSE
 	name = "nasiona: bondżi (dowolne podłoże)"
 	name_override = "bondżi"
 	plant_features = list(/datum/plant_feature/roots, /datum/plant_feature/body/tuber/lavaland, /datum/plant_feature/fruit/bonji)
 
 /obj/item/plant_seeds/preset/bianco
+	random_pool = FALSE
 	name = "nasiona: bianko (dowolne podłoże)"
 	name_override = "bianko"
 	plant_features = list(/datum/plant_feature/roots, /datum/plant_feature/body/tuber/lavaland, /datum/plant_feature/fruit/bianco)
@@ -343,6 +350,7 @@
 	genetic_budget = 2
 
 /obj/item/plant_seeds/preset/liberal_hat
+	random_pool = FALSE
 	name = "zarodniki: kapelusz liberała (dowolne podłoże)"
 	name_override = "kapelusz liberała"
 	plant_features = list(/datum/plant_feature/roots/hyphae, /datum/plant_feature/body/mushroom, /datum/plant_feature/fruit/mushroom/liberal_hat)
@@ -443,16 +451,19 @@
 	plant_needs = list()
 
 /obj/item/plant_seeds/preset/prickly_pear
+	random_pool = FALSE
 	name = "nasiona: opuncja (dowolne podłoże)"
 	name_override = "opuncja"
 	plant_features = list(/datum/plant_feature/roots, /datum/plant_feature/body/tuber/lavaland, /datum/plant_feature/fruit/prickly_pear)
 
 /obj/item/plant_seeds/preset/san_pedro
+	random_pool = FALSE
 	name = "nasiona: kaktus San Pedro (dowolne podłoże)"
 	name_override = "kaktus San Pedro"
 	plant_features = list(/datum/plant_feature/roots, /datum/plant_feature/body/tuber/lavaland, /datum/plant_feature/fruit/san_pedro)
 
 /obj/item/plant_seeds/preset/peyote
+	random_pool = FALSE
 	name = "nasiona: pejotl (dowolne podłoże)"
 	name_override = "pejotl"
 	plant_features = list(/datum/plant_feature/roots, /datum/plant_feature/body/tuber/lavaland, /datum/plant_feature/fruit/peyote)
