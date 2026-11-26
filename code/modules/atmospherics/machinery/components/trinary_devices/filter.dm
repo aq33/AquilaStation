@@ -7,6 +7,9 @@
 
 	can_unwrench = TRUE
 	var/transfer_rate = MAX_TRANSFER_RATE
+	var/aq_max_rate = MAX_TRANSFER_RATE // AQ EDIT - limit z instancji (pompy wysokiego przepływu)
+	var/aq_max_output_pressure = MAX_OUTPUT_PRESSURE // AQ EDIT - limit z instancji (pompy wysokiego przepływu)
+	var/aq_stall_pressure = 9000 // AQ EDIT - limit z instancji (pompy wysokiego przepływu)
 	var/filter_type = null
 	var/frequency = 0
 	var/datum/radio_frequency/radio_connection
@@ -26,7 +29,7 @@
 
 /obj/machinery/atmospherics/components/trinary/filter/AltClick(mob/user)
 	if(can_interact(user))
-		transfer_rate = MAX_TRANSFER_RATE
+		transfer_rate = aq_max_rate // AQ EDIT - limit z instancji (pompy wysokiego przepływu)
 		balloon_alert(user, "Ustawiasz przepływ na [transfer_rate] L/s.")
 		update_icon()
 		ui_update()
@@ -84,7 +87,7 @@
 
 	var/output_starting_pressure = air3.return_pressure()
 
-	if(output_starting_pressure >= MAX_OUTPUT_PRESSURE)
+	if(output_starting_pressure >= aq_max_output_pressure) // AQ EDIT - limit z instancji (pompy wysokiego przepływu)
 		//No need to transfer if target is already full!
 		return
 
@@ -95,9 +98,9 @@
 	if(transfer_ratio <= 0)
 		return
 
-	if(filter_type && air2.return_pressure() <= 9000)
+	if(filter_type && air2.return_pressure() <= aq_stall_pressure) // AQ EDIT - limit z instancji (pompy wysokiego przepływu)
 		air1.scrub_into(air2, transfer_ratio, list(filter_type))
-	if(air3.return_pressure() <= 9000)
+	if(air3.return_pressure() <= aq_stall_pressure) // AQ EDIT - limit z instancji (pompy wysokiego przepływu)
 		air1.transfer_ratio_to(air3, transfer_ratio)
 
 	update_parents()
@@ -120,7 +123,7 @@
 	var/data = list()
 	data["on"] = on
 	data["rate"] = round(transfer_rate)
-	data["max_rate"] = round(MAX_TRANSFER_RATE)
+	data["max_rate"] = round(aq_max_rate) // AQ EDIT - limit z instancji (pompy wysokiego przepływu)
 
 	data["filter_types"] = list()
 	data["filter_types"] += list(list("name" = "Nic", "id" = "", "selected" = !filter_type))
@@ -140,17 +143,17 @@
 		if("rate")
 			var/rate = params["rate"]
 			if(rate == "max")
-				rate = MAX_TRANSFER_RATE
+				rate = aq_max_rate // AQ EDIT - limit z instancji (pompy wysokiego przepływu)
 				. = TRUE
 			else if(rate == "input")
-				rate = input("Nowy przepływ (0-[MAX_TRANSFER_RATE] L/s):", name, transfer_rate) as num|null
+				rate = input("Nowy przepływ (0-[aq_max_rate] L/s):", name, transfer_rate) as num|null // AQ EDIT - limit z instancji (pompy wysokiego przepływu)
 				if(!isnull(rate) && !..())
 					. = TRUE
 			else if(text2num(rate) != null)
 				rate = text2num(rate)
 				. = TRUE
 			if(.)
-				transfer_rate = clamp(rate, 0, MAX_TRANSFER_RATE)
+				transfer_rate = clamp(rate, 0, aq_max_rate) // AQ EDIT - limit z instancji (pompy wysokiego przepływu)
 				investigate_log("was set to [transfer_rate] L/s by [key_name(usr)]", INVESTIGATE_ATMOS)
 		if("filter")
 			filter_type = null
