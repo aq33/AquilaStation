@@ -341,7 +341,7 @@
 	name = "Sole trzeźwiące"
 	id = /datum/reagent/medicine/ammonium_bicarbonate
 	results = list(/datum/reagent/medicine/ammonium_bicarbonate = 3)
-	required_reagents = list(/datum/reagent/ammonia = 1, /datum/reagent/carbondioxide = 1, /datum/reagent/water = 1)
+	required_reagents = list(/datum/reagent/ammonia = 1, /datum/reagent/carbondioxide = 1, /datum/reagent/sodium = 1)
 
 /datum/reagent/medicine/ignisol
 	name = "Ignizol"
