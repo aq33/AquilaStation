@@ -125,6 +125,10 @@
 		else
 			to_chat(user, span_notice("Usuwasz żyłę z telemetrii skanera: nie będzie już jej wskazywał jako miejsca wartego uwagi."))
 		return
+	if(istype(our_vein, /obj/structure/vein/gas))
+		var/obj/structure/vein/gas/gas_vein = our_vein
+		gas_vein.scan_report(user)
+		return
 	if(!length(our_vein.vein_contents))
 		to_chat(user, span_notice("W tej żyle nie ma wartych uwagi złóż."))
 		return
