@@ -33502,5 +33502,9 @@
 "Zaślepka rury z iskrownikiem. Zapala mieszankę paliwa i tlenu w rurach bez wchodzenia do komory. Działa z ręki albo z przycisku zapłonu połączonego multitoolem.": "A pipe cap with a sparker. It ignites a fuel and oxygen mix in the pipes without entering the chamber. Works by hand or from an ignition button linked with a multitool.",
 "<span class='warning'>Najpierw zapisz w multitoolu przycisk zapłonu (multitool na przycisk).</span>": "<span class='warning'>First store an ignition button in the multitool (use the multitool on the button).</span>",
 "<span class='notice'>[src] reaguje teraz na [button].</span>": "<span class='notice'>[src] now responds to [button].</span>",
-"<span class='notice'>Zapisujesz [src] w buforze multitoola. Teraz użyj go na iskrowniku rurowym.</span>": "<span class='notice'>You store [src] in the multitool buffer. Now use it on a pipe sparker.</span>"
+"<span class='notice'>Zapisujesz [src] w buforze multitoola. Teraz użyj go na iskrowniku rurowym.</span>": "<span class='notice'>You store [src] in the multitool buffer. Now use it on a pipe sparker.</span>",
+"Rozmycie niższych pięter": "Blur lower decks",
+"Piętro niżej, widziane przez otwartą przestrzeń, jest lekko rozmyte, żeby odróżniało się od twojego piętra. Liczy to tylko karta graficzna.": "The deck below, seen through open space, is slightly blurred so it stands apart from your own deck. Only your graphics card does the work.",
+"[capitalize(\"[src]\")] jest za daleko.": "[capitalize(\"[src]\")] is too far away.",
+"Nie sięgasz stąd do: [src].": "You cannot reach [src] from here."
 }

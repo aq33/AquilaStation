@@ -36,3 +36,12 @@ export const light_glare: FeatureToggle = {
     'Smugi światła od lamp, ekranów i laserów, rozchodzące się od środka ekranu. Działa tylko z włączoną poświatą.',
   component: CheckboxInput,
 };
+
+export const zmimic_blur: FeatureToggle = {
+  name: 'Rozmycie niższych pięter',
+  category: 'GRAPHICS',
+  subcategory: 'Quality',
+  description:
+    'Piętro niżej, widziane przez otwartą przestrzeń, jest lekko rozmyte, żeby odróżniało się od twojego piętra. Liczy to tylko karta graficzna.',
+  component: CheckboxInput,
+};
