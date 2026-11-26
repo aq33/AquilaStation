@@ -122,6 +122,16 @@
 	TEST_ASSERT(doomed_turf.air.get_moles(GAS_PLASMA) >= plasma_before + 19.99, "A destroyed crystallizer deleted the gas inside it")
 	doomed_turf.air.copy_from(original_air)
 	crystallizer.set_on(FALSE)
+	// gaz z wnętrza wyleciałby do pokoju testowego przy usuwaniu maszyny i zabrudził atmosferę kolejnym testom
+	crystallizer.internal.remove(crystallizer.internal.total_moles())
+
+	// Losing power stops the crystallizer: power_change() keeps is_operational in step with NOPOWER
+	crystallizer.machine_stat |= EMPED // powered() is FALSE while EMPED, whatever the test area has
+	crystallizer.power_change()
+	TEST_ASSERT(!crystallizer.is_operational, "An unpowered crystallizer is still operational")
+	crystallizer.machine_stat &= ~EMPED
+	crystallizer.power_change()
+	TEST_ASSERT(crystallizer.is_operational, "A crystallizer with power back is not operational")
 
 /datum/unit_test/aquila_crystallizer/proc/count_type(turf/location, path)
 	. = 0

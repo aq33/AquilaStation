@@ -120,7 +120,7 @@ const RecipeText = (props: { recipe?: Recipe }) => {
   const maxTemp = recipe.max_temp === null ? '∞' : recipe.max_temp;
   return (
     <Box>
-      <Box>Na jedną sztukę potrzeba:</Box>
+      <Box>Na jeden cykl potrzeba:</Box>
       {recipe.requirements.map((requirement) => (
         <Box key={requirement.id} color={getGasColor(requirement.id)}>
           {`- ${requirement.amount} mol: ${requirement.name}`}

@@ -34687,7 +34687,7 @@
 "Receptura": "Recipe",
 "Wlot gazu": "Gas input",
 "Wybierz recepturę, żeby zobaczyć wymagania.": "Select a recipe to see its requirements.",
-"Na jedną sztukę potrzeba:": "One piece needs:",
+"Na jeden cykl potrzeba:": "One cycle needs:",
 "Temperatura wnętrza od ${recipe.min_temp} K do ${maxTemp} K": "Interior temperature from ${recipe.min_temp} K to ${maxTemp} K",
 "Reakcja grzeje wnętrze (egzotermiczna).": "The reaction heats the interior (exothermic).",
 "Reakcja chłodzi wnętrze (endotermiczna).": "The reaction cools the interior (endothermic).",

@@ -89,6 +89,8 @@
 
 /obj/machinery/atmospherics/components/binary/crystallizer/power_change()
 	. = ..()
+	// bazowe power_change() ustawia NOPOWER z pominięciem set_machine_stat(), więc is_operational trzeba zsynchronizować tutaj
+	set_is_operational(!(machine_stat & (NOPOWER|BROKEN|MAINT)))
 	update_icon()
 
 /obj/machinery/atmospherics/components/binary/crystallizer/AltClick(mob/user)

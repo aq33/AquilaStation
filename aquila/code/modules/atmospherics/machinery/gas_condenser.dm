@@ -103,6 +103,8 @@ GLOBAL_LIST_INIT(gas_condenser_reagents, list(
 
 /obj/machinery/atmospherics/components/unary/gas_condenser/power_change()
 	. = ..()
+	// bazowe power_change() ustawia NOPOWER z pominięciem set_machine_stat(), więc is_operational trzeba zsynchronizować tutaj
+	set_is_operational(!(machine_stat & (NOPOWER|BROKEN|MAINT)))
 	update_icon()
 
 /obj/machinery/atmospherics/components/unary/gas_condenser/on_reagent_change(changetype)
@@ -148,7 +150,9 @@ GLOBAL_LIST_INIT(gas_condenser_reagents, list(
 		var/amount = min(removed.get_moles(gas_id) * moles_to_reagent, free_volume)
 		if(amount <= 0)
 			continue
-		reagents.add_reagent(reagent_type, amount, reagtemp = temperature)
+		amount = reagents.add_reagent(reagent_type, amount, reagtemp = temperature)
+		if(amount <= 0)
+			continue // za mało na reagent: gaz wraca do rury
 		removed.adjust_moles(gas_id, -amount / moles_to_reagent)
 		free_volume -= amount
 		. += amount

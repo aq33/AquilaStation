@@ -30,6 +30,9 @@
 		inlet.set_moles(GAS_H2, 1000)
 		inlet.set_moles(GAS_N2, 1000)
 		inlet.set_temperature(T20C)
+		var/datum/gas_mixture/coolant = crystallizer.airs[1]
+		coolant.set_moles(GAS_N2, 1000) // chłodziwo w czerwonej rurze, które zamrażarka schłodzi
+		coolant.set_temperature(T20C)
 	for(var/obj/machinery/atmospherics/components/unary/gas_condenser/condenser in spawned)
 		var/datum/gas_mixture/air = condenser.airs[1]
 		air.set_moles(GAS_FREZON, 500)

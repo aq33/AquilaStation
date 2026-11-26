@@ -46,7 +46,25 @@
 	condenser.set_on(TRUE)
 	condenser.process_atmos(1)
 	TEST_ASSERT(condenser.reagents.get_reagent_amount(/datum/reagent/water) > 0, "A switched on condenser made no water from water vapor")
+
+	// Losing power stops it: power_change() keeps is_operational in step with NOPOWER
+	condenser.reagents.clear_reagents()
+	condenser.machine_stat |= EMPED // powered() is FALSE while EMPED, whatever the test area has
+	condenser.power_change()
+	TEST_ASSERT(!condenser.is_operational, "An unpowered condenser is still operational")
+	condenser.process_atmos(1)
+	TEST_ASSERT(!condenser.reagents.total_volume, "An unpowered condenser made liquid")
+	condenser.machine_stat &= ~EMPED
+	condenser.power_change()
+	TEST_ASSERT(condenser.is_operational, "A condenser with power back is not operational")
 	condenser.set_on(FALSE)
+
+	// A trace of gas too small for a reagent stays in the pipe instead of vanishing
+	var/datum/gas_mixture/trace = new
+	trace.set_moles(GAS_O2, 0.02)
+	trace.set_temperature(T20C)
+	TEST_ASSERT(condenser.condense(trace, 1) == 0, "A trace of oxygen reported liquid it could not make")
+	TEST_ASSERT(abs(trace.get_moles(GAS_O2) - 0.02) < 0.0001, "A trace of oxygen vanished without becoming liquid ([trace.get_moles(GAS_O2)] mol left)")
 
 	// Clicking toggles it only when the machine can be used: an unpowered condenser stays off
 	var/mob/living/carbon/human/engineer = allocate(/mob/living/carbon/human, get_turf(condenser))
