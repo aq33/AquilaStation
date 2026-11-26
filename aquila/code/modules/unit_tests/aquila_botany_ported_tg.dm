@@ -15,8 +15,7 @@
 		/obj/item/plant_seeds/preset/korta_nut = list(/datum/plant_feature/fruit/korta_nut/sweet),
 		/obj/item/plant_seeds/preset/sugarcane = list(/datum/plant_feature/fruit/sugarcane/salt),
 		/obj/item/plant_seeds/preset/watermelon = list(/datum/plant_feature/fruit/watermelon/barrel),
-		/obj/item/plant_seeds/preset/whitebeet = list(/datum/plant_feature/fruit/whitebeet/red, /datum/plant_feature/fruit/whitebeet/drake),
-		/obj/item/plant_seeds/preset/carrot = list(/datum/plant_feature/fruit/carrot/cahnroot),
+		/obj/item/plant_seeds/preset/whitebeet = list(/datum/plant_feature/fruit/whitebeet/red),
 		/obj/item/plant_seeds/preset/cannabis = list(/datum/plant_feature/fruit/cannabis/anti),
 	)
 

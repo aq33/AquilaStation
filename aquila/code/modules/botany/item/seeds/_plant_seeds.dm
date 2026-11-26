@@ -155,6 +155,10 @@
 		return
 	//Clamp it so that the icon never moves more than 16 pixels in either direction (thus leaving the planting turf)
 	plant.pixel_x = clamp(text2num(LAZYACCESS(modifiers, ICON_X)) - 16, PLANT_X_CLAMP, PLANT_Y_CLAMP)
+	// AQUILA - przesunięcie z kliknięcia nie kasuje przesunięcia tacy (kapsuła ksenoflory 2×2 przesuwa rośliny o 16 px), które planter odejmie przy wyjęciu
+	var/datum/component/planter/target_planter = target.GetComponent(/datum/component/planter)
+	if(target_planter)
+		plant.pixel_x += target_planter.visual_upset[1]
 
 /obj/item/plant_seeds/proc/update_plant_name()
 	var/mushroom = locate(/datum/plant_feature/body/mushroom) in plant_features
@@ -185,7 +189,7 @@
 
 /obj/item/plant_seeds/random/Initialize(mapload, list/_plant_features, _species_id)
 	. = ..()
-	var/obj/item/plant_seeds/random_seeds = pick(valid_subtypesof(/obj/item/plant_seeds/preset)) // AQUILA - bez abstrakcyjnych presetów
+	var/obj/item/plant_seeds/random_seeds = pick(GLOB.random_plant_seeds) // AQUILA - bez abstrakcyjnych, obcych i dzikich presetów (botany/aquila/losowe_nasiona.dm)
 	random_seeds = new random_seeds(src.loc)
 	return INITIALIZE_HINT_QDEL
 
