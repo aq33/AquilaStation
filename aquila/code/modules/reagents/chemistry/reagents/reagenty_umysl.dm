@@ -22,6 +22,11 @@
 /// Ckey (albo umysł, gdy ciało nie ma gracza) -> imię kopii: SDGF daje jedną kopię na gracza na rundę
 GLOBAL_LIST_EMPTY(aq_sdgf_cloned)
 
+/// Wołane przez add_reagent() zaraz po utworzeniu reagentu w holderze (holder, dane i objętość już ustawione),
+/// także dla produktu syntezy, który powstaje bez danych i nie dostaje on_new()
+/datum/reagent/proc/aq_on_created()
+	return
+
 /// Wybuch reagentu w miejscu (siła jak w reagent_explosion: 1 = mały wybuch). Siła poniżej 1 daje tylko huk i przewrócenie
 /proc/aq_reagent_blast(atom/where, power, reagent_name)
 	var/turf/T = get_turf(where)
@@ -102,7 +107,7 @@ GLOBAL_LIST_EMPTY(aq_sdgf_cloned)
 	/// Pojemnik, w którym nasłuchujemy
 	var/atom/movable/aq_ear
 
-/datum/reagent/aq_locutogen/on_new(data)
+/datum/reagent/aq_locutogen/aq_on_created()
 	. = ..()
 	aq_listen()
 
@@ -154,22 +159,6 @@ GLOBAL_LIST_EMPTY(aq_sdgf_cloned)
 	results = list(/datum/reagent/aq_locutogen = 3)
 	required_reagents = list(/datum/reagent/medicine/inacusiate = 1, /datum/reagent/consumable/sugar = 1, /datum/reagent/silicon = 1)
 
-/// Nasłuch w pojemniku, w którym lokutogen powstał. Reakcja natychmiastowa ma produkt już w on_reaction(),
-/// a reakcja rozłożona w czasie (fermichem) dodaje go dopiero w krokach, więc sprawdzamy też krok i koniec reakcji
-/datum/chemical_reaction/aq_locutogen/proc/aq_start_listening(datum/reagents/holder)
-	var/datum/reagent/aq_locutogen/locutogen = holder.get_reagent(/datum/reagent/aq_locutogen)
-	locutogen?.aq_listen()
-
-/datum/chemical_reaction/aq_locutogen/on_reaction(datum/reagents/holder, created_volume)
-	aq_start_listening(holder)
-
-/datum/chemical_reaction/aq_locutogen/reaction_step(datum/reagents/holder, datum/equilibrium/reaction, delta_t, delta_ph, step_reaction_vol)
-	. = ..()
-	aq_start_listening(holder)
-
-/datum/chemical_reaction/aq_locutogen/reaction_finish(datum/reagents/holder, datum/equilibrium/reaction, react_vol)
-	. = ..()
-	aq_start_listening(holder)
 
 // --- E3: Solipsizyna ---
 

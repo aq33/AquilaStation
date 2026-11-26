@@ -34,15 +34,16 @@
 	drunk.on_mob_life(listener)
 	TEST_ASSERT(!listener.reagents.has_reagent(/datum/reagent/aq_locutogen), "Locutogen stayed in the blood after replaying the phrase")
 
-	// Lokutogen z syntezy rozłożonej w czasie: produkt dodany bez danych, nasłuch startuje w kroku i na końcu reakcji
+	// Lokutogen z prawdziwej syntezy rozłożonej w czasie: produkt pierwszego kroku nasłuchuje, zanim przyjdzie następny krok
 	var/obj/item/reagent_containers/glass/beaker/flask = allocate(/obj/item/reagent_containers/glass/beaker)
-	flask.reagents.add_reagent(/datum/reagent/aq_locutogen, 5)
+	flask.reagents.add_reagent(/datum/reagent/medicine/inacusiate, 10)
+	flask.reagents.add_reagent(/datum/reagent/consumable/sugar, 10)
+	flask.reagents.add_reagent(/datum/reagent/silicon, 10)
 	var/datum/reagent/aq_locutogen/brewed = flask.reagents.get_reagent(/datum/reagent/aq_locutogen)
-	TEST_ASSERT(!brewed.aq_ear, "Locutogen added without data already listens, the synthesis check proves nothing")
-	var/datum/chemical_reaction/aq_locutogen/synthesis = new()
-	synthesis.reaction_step(flask.reagents, null, 1, 1, 5)
-	TEST_ASSERT(brewed.aq_ear == flask, "Locutogen made by a timed reaction does not listen in its flask")
-	qdel(synthesis)
+	TEST_ASSERT(brewed, "The first synthesis step made no locutogen")
+	TEST_ASSERT(LAZYLEN(flask.reagents.reaction_list), "Locutogen synthesis finished in one step, the timed path is not checked")
+	TEST_ASSERT(brewed.aq_ear == flask, "Locutogen from the first synthesis step does not listen in its flask")
+	flask.reagents.clear_reagents()
 
 	// Solipsizyna: inni ludzie zasłonięci, głuchota, po wypłukaniu wszystko wraca
 	var/mob/living/carbon/human/loner = allocate(/mob/living/carbon/human)
