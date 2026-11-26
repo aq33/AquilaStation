@@ -66,6 +66,15 @@ GLOBAL_VAR_INIT(hex_last_ship_event, 0)
 		/datum/round_event_control/aquila_hex_apc_damage,
 		/datum/round_event_control/aquila_hex_sensor_jamming,
 		/datum/round_event_control/aquila_hex_gravity_failure,
+		// Pusta przestrzeń (E1): wiadomości, spam i prezenty losują się też jako zwykłe zdarzenia okrętu
+		/datum/round_event_control/aquila_hex_trivial_news,
+		/datum/round_event_control/aquila_hex_mundane_news,
+		/datum/round_event_control/aquila_hex_news_report,
+		/datum/round_event_control/aquila_hex_pda_spam,
+		/datum/round_event_control/aquila_hex_fax_spam,
+		/datum/round_event_control/aquila_hex_cargo_gifts,
+		/datum/round_event_control/aquila_hex_centcom_questionnaire,
+		/datum/round_event_control/aquila_hex_money_bonus,
 	))
 		env_types -= path
 	return env_types

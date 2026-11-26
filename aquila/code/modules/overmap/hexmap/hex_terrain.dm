@@ -41,6 +41,14 @@ GLOBAL_LIST_EMPTY(hex_terrains)
 		/datum/round_event_control/dolphin_migration,
 		/datum/round_event_control/aquila_hex_rescue_pod,
 		/datum/round_event_control/aquila_hex_economic_news,
+		/datum/round_event_control/aquila_hex_trivial_news,
+		/datum/round_event_control/aquila_hex_mundane_news,
+		/datum/round_event_control/aquila_hex_news_report,
+		/datum/round_event_control/aquila_hex_pda_spam,
+		/datum/round_event_control/aquila_hex_fax_spam,
+		/datum/round_event_control/aquila_hex_cargo_gifts,
+		/datum/round_event_control/aquila_hex_centcom_questionnaire,
+		/datum/round_event_control/aquila_hex_money_bonus,
 	)
 
 /datum/hex_terrain/asteroids
@@ -138,6 +146,8 @@ GLOBAL_LIST_EMPTY(hex_terrains)
 		/datum/round_event_control/anomaly,
 		/datum/round_event_control/aquila_hex_emp_storm,
 		/datum/round_event_control/aquila_hex_computer_damage,
+		/datum/round_event_control/aquila_hex_computer_update,
+		/datum/round_event_control/aquila_hex_new_space_law,
 	)
 	antags = list(
 		HEX_POOL_MALF,
@@ -245,6 +255,7 @@ GLOBAL_LIST_EMPTY(hex_terrains)
 		/datum/round_event_control/wormholes,
 		/datum/round_event_control/anomaly/anomaly_bluespace,
 		/datum/round_event_control/aquila_hex_bluespace_interphase,
+		/datum/round_event_control/aquila_hex_ian_storm,
 	)
 	antags = list(
 		/datum/round_event_control/aquila_chrono_legionnaire,
