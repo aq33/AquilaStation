@@ -1791,6 +1791,15 @@
   - rscadd: Pompa wysokiego ciśnienia (13 500 kPa), pompa objętościowa i filtr wysokiego
       przepływu (600 L/s) w RPD.
   - imageadd: Grafiki zacisku rury i iskrownika z Baystation12.
+  - rscadd: 'Awaryjny wyrzut rdzenia reaktora dla napędu burzowego, RBMK i supermaterii:
+      przycisk w konsoli reaktora, dostęp głównego inżyniera albo kapitana, 30 s odliczania
+      z możliwością przerwania i ogłoszeniem na okręcie.'
+  - rscadd: Wyrzucony rdzeń dryfuje za rufą na overmapie i wybucha po 30–60 s, raniąc
+      okręty w pobliżu.
+  - rscadd: W cargo jest skrzynia z prętami paliwowymi RBMK (5 prętów, 50 000), do
+      ponownego uruchomienia reaktora po wyrzucie.
+  - bugfix: Włożenie nowego rdzenia do napędu burzowego nie usuwa już licznika stabilności
+      reaktora.
   sh4dow321:
   - config: 'Tryb Infiltracji jest ciągły: runda nie kończy się w chwili śmierci wszystkich
       infiltratorów.'
