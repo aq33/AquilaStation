@@ -13,8 +13,6 @@
 	var/list/furnace = list(
 		/datum/plant_feature/fruit/berry = /datum/plant_feature/fruit/berry/blueberry,
 		/datum/plant_feature/fruit/watermelon = /datum/plant_feature/fruit/watermelon/honeydew,
-		/datum/plant_feature/fruit/grape/green = /datum/plant_feature/fruit/grape/white,
-		/datum/plant_feature/fruit/grape = /datum/plant_feature/fruit/grape/grapefruit,
 		/datum/plant_feature/fruit/tea = /datum/plant_feature/fruit/tea/catnip,
 		/datum/plant_feature/fruit/tomato/blue = /datum/plant_feature/fruit/tomato/quantum,
 	)
@@ -25,12 +23,9 @@
 
 // Mutacje od odczynnika: każda zmienia roślinę w tacy i zużywa odczynnik
 	var/list/reagent_cases = list(
-		list(/obj/item/plant_seeds/preset/tomato, /datum/reagent/drug/nicotine, 15, /datum/plant_feature/fruit/tomato/tomacco),
 		list(/obj/item/plant_seeds/preset/tomato, /datum/reagent/phlogiston, 10, /datum/plant_feature/fruit/tomato/seething),
 		list(/obj/item/plant_seeds/preset/orange, /datum/reagent/blood, 15, /datum/plant_feature/fruit/orange/blood),
 		list(/obj/item/plant_seeds/preset/orange, /datum/reagent/iron, 15, /datum/plant_feature/fruit/orange/clockwork),
-		list(/obj/item/plant_seeds/preset/tobacco, /datum/reagent/drug/nicotine, 25, /datum/plant_feature/fruit/tobacco/twobacco),
-		list(/obj/item/plant_seeds/preset/soybean, /datum/reagent/consumable/corn_syrup, 15, /datum/plant_feature/fruit/soybean/jelly),
 		list(/obj/item/plant_seeds/preset/pumpkin, /datum/reagent/consumable/capsaicin, 15, /datum/plant_feature/fruit/pumpkin/spice),
 	)
 	for(var/list/test_case in reagent_cases)

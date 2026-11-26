@@ -336,64 +336,76 @@
 // Nasiona (nie do automatu: tylko z dzikich roślin przez siewnik)
 
 /obj/item/plant_seeds/preset/fonarstolbe
+	random_pool = FALSE
 	name = "nasiona: fonarsztolbe (dowolne podłoże)"
 	name_override = "fonarsztolbe"
 	plant_features = list(/datum/plant_feature/roots, /datum/plant_feature/body/tuber/lavaland, /datum/plant_feature/fruit/fonarstolbe)
 
 /obj/item/plant_seeds/preset/vahrezjia
+	random_pool = FALSE
 	name = "nasiona: wachrezja (dowolne podłoże)"
 	name_override = "wachrezja"
 	plant_features = list(/datum/plant_feature/roots, /datum/plant_feature/body/tuber/lavaland, /datum/plant_feature/fruit/vahrezjia)
 
 /obj/item/plant_seeds/preset/podsneyzka
+	random_pool = FALSE
 	name = "nasiona: podśnieżka (dowolne podłoże)"
 	name_override = "podśnieżka"
 	plant_features = list(/datum/plant_feature/roots, /datum/plant_feature/body/tuber/lavaland, /datum/plant_feature/fruit/podsneyzka)
 
 /obj/item/plant_seeds/preset/inozhakust
+	random_pool = FALSE
 	name = "nasiona: inożakust (dowolne podłoże)"
 	name_override = "inożakust"
 	plant_features = list(/datum/plant_feature/roots, /datum/plant_feature/body/tuber/lavaland, /datum/plant_feature/fruit/inozhakust)
 
 /obj/item/plant_seeds/preset/plasma_flower
+	random_pool = FALSE
 	name = "nasiona: kwiat plazmowy (dowolne podłoże)"
 	name_override = "kwiat plazmowy"
 	plant_features = list(/datum/plant_feature/roots, /datum/plant_feature/body/tuber/lavaland, /datum/plant_feature/fruit/plasma_flower)
 
 /obj/item/plant_seeds/preset/glowgrowth
+	random_pool = FALSE
 	name = "zarodniki: świecąca narośl (dowolne podłoże)"
 	name_override = "świecąca narośl"
 	plant_features = list(/datum/plant_feature/roots/hyphae, /datum/plant_feature/body/mushroom, /datum/plant_feature/fruit/mushroom/glowgrowth)
 
 /obj/item/plant_seeds/preset/seraka
+	random_pool = FALSE
 	name = "zarodniki: seraka (dowolne podłoże)"
 	name_override = "seraka"
 	plant_features = list(/datum/plant_feature/roots/hyphae, /datum/plant_feature/body/mushroom, /datum/plant_feature/fruit/mushroom/seraka)
 
 /obj/item/plant_seeds/preset/glowbell
+	random_pool = FALSE
 	name = "zarodniki: świecący dzwonek (dowolne podłoże)"
 	name_override = "świecący dzwonek"
 	plant_features = list(/datum/plant_feature/roots/hyphae, /datum/plant_feature/body/mushroom, /datum/plant_feature/fruit/mushroom/glowbell)
 
 /obj/item/plant_seeds/preset/weeping_moon
+	random_pool = FALSE
 	name = "zarodniki: płaczący księżyc (dowolne podłoże)"
 	name_override = "płaczący księżyc"
 	plant_features = list(/datum/plant_feature/roots/hyphae, /datum/plant_feature/body/mushroom, /datum/plant_feature/fruit/mushroom/glowbell/weeping_moon)
 
 /obj/item/plant_seeds/preset/cavern_candle
+	random_pool = FALSE
 	name = "zarodniki: jaskiniowa świeca (dowolne podłoże)"
 	name_override = "jaskiniowa świeca"
 	plant_features = list(/datum/plant_feature/roots/hyphae, /datum/plant_feature/body/mushroom, /datum/plant_feature/fruit/mushroom/glowbell/cavern_candle)
 
 /obj/item/plant_seeds/preset/algae
-	name = "nasiona: glony (woda)"
+	random_pool = FALSE
+	name = "nasiona: glony (dowolne podłoże)"
 	name_override = "glony"
-	plant_features = list(/datum/plant_feature/roots/water, /datum/plant_feature/body/tuber/lavaland, /datum/plant_feature/fruit/algae)
+	plant_features = list(/datum/plant_feature/roots, /datum/plant_feature/body/tuber/lavaland, /datum/plant_feature/fruit/algae)
 
 /obj/item/plant_seeds/preset/seaweed
-	name = "nasiona: wodorosty (woda)"
+	random_pool = FALSE
+	name = "nasiona: wodorosty (dowolne podłoże)"
 	name_override = "wodorosty"
-	plant_features = list(/datum/plant_feature/roots/water, /datum/plant_feature/body/tuber/lavaland, /datum/plant_feature/fruit/seaweed)
+	plant_features = list(/datum/plant_feature/roots, /datum/plant_feature/body/tuber/lavaland, /datum/plant_feature/fruit/seaweed)
 
 // Plony
 

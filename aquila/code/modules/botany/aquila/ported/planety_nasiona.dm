@@ -23,8 +23,7 @@
 	. = list()
 	if(!length(turfs) || !prob(chance))
 		return
-	var/list/options = valid_subtypesof(/obj/item/plant_seeds/preset/alien)
-	if(!length(options))
+	if(!length(GLOB.alien_plant_seeds))
 		return
 	var/list/free = list()
 	for(var/turf/open/T in turfs)
@@ -33,7 +32,7 @@
 	for(var/i in 1 to rand(1, 2))
 		if(!length(free))
 			break
-		var/seed_type = pick(options)
+		var/seed_type = pickweight(GLOB.alien_plant_seeds)
 		. += new seed_type(pick_n_take(free))
 
 #undef PLANET_RUIN_SEED_CHANCE
