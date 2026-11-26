@@ -192,7 +192,7 @@ GLOBAL_LIST_EMPTY(engine_choice_slots)
 	var/preferred_engine_saved = ENGINE_CHOICE_RANDOM
 
 /proc/engine_choice_values()
-	return list(ENGINE_CHOICE_RANDOM, ENGINE_CHOICE_TESLA, ENGINE_CHOICE_STORMDRIVE, ENGINE_CHOICE_SUPERMATTER)
+	return list(ENGINE_CHOICE_RANDOM, ENGINE_CHOICE_TESLA, ENGINE_CHOICE_STORMDRIVE, ENGINE_CHOICE_SUPERMATTER, ENGINE_CHOICE_HFR)
 
 /datum/preference/choiced/preferred_engine
 	db_key = "preferred_engine"
@@ -208,6 +208,7 @@ GLOBAL_LIST_EMPTY(engine_choice_slots)
 		ENGINE_CHOICE_TESLA = "Silnik Tesli",
 		ENGINE_CHOICE_STORMDRIVE = "Napęd Stormdrive",
 		ENGINE_CHOICE_SUPERMATTER = "Silnik supermaterii",
+		ENGINE_CHOICE_HFR = "Reaktor fuzyjny HFR",
 	)
 
 // Zapis w tabeli preferencji osobnym zapytaniem, bez zmian w preferences2.dm (jak język gry)

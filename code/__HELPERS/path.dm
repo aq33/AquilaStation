@@ -26,6 +26,11 @@
 	while(!l)
 		stoplag(3)
 		l = SSpathfinder.mobs.getfree(pathfinding_atom)
+	// AQ EDIT START - przy czekaniu na wolne miejsce szukający albo cel mogły zniknąć (qdel, nullspace): bez A* i stack_trace
+	if(!get_turf(pathfinding_atom) || !get_turf(end))
+		SSpathfinder.mobs.found(l)
+		return list()
+	// AQ EDIT END
 
 	var/list/path
 	var/datum/pathfind/pathfind_datum = new(pathfinding_atom, end, id, max_distance, mintargetdist, simulated_only, exclude)

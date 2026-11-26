@@ -1,6 +1,8 @@
 // AQUILA - konsola nawigacji FTL na mapie hex (aquila/code/modules/overmap/hexmap/hex_console.dm).
 // Trzy sektory jak w grze, każdy osobną mapą kafli; skok kosztuje część naładowania napędu,
 // a zagrożenie na trasie zatrzymuje okręt. Wygląd z makiety „Rework mapy FTL” (wersja 4).
+// Ta sama mapa w trybie „astro” to okno astrometrii (hex_astrometrics.dm), a w trybie „admin” menedżer
+// układów admina (hex_starsystem_manager.dm): zamiast napędu i skoku pokazują skan albo floty i obiekty układu.
 import { type MouseEvent, useEffect, useMemo, useRef, useState } from 'react';
 import {
   Box,
@@ -163,7 +165,53 @@ type Terrain = {
   blocks: boolean;
 };
 
+type Anomaly = {
+  name: string;
+  anomaly_id: string;
+  scannable: boolean;
+  points: number;
+  visible: boolean;
+};
+
+type Astro = {
+  range: number;
+  scan_target: string | null;
+  scan_progress: number;
+  scan_goal: number;
+  can_cancel: boolean;
+  broadcast: boolean;
+  system?: {
+    name: string;
+    alignment: string;
+    scanned: boolean;
+    type: string | null;
+    distance: number;
+    can_scan: boolean;
+    anomalies: Record<string, Anomaly>;
+  };
+};
+
+type AdminEntry = {
+  name: string;
+  id: string;
+  alignment?: string;
+  faction?: string;
+};
+
+type AdminSystem = {
+  name: string;
+  sys_id: string;
+  hidden: boolean;
+  alignment: string;
+  empty_hex: boolean;
+  fleets: AdminEntry[];
+  objects: AdminEntry[];
+};
+
 type Data = {
+  mode?: 'nav' | 'astro' | 'admin';
+  astro?: Astro;
+  admin?: AdminSystem | null;
   can_control: boolean;
   ship: Ship;
   systems: StarSystem[];
@@ -489,6 +537,9 @@ export const HexStarmap = () => {
     nukes_loaded = 0,
     missiles = [],
     objective_hexes = [],
+    mode = 'nav',
+    astro,
+    admin,
   } = data;
   const [panelTab, setPanelTab] = useState<
     'hex' | 'commanders' | 'war' | 'legend'
@@ -718,13 +769,15 @@ export const HexStarmap = () => {
     </>
   );
 
+  const positionText = shipCell
+    ? (systems.find((sys) => sys.hex === ship.hex)?.name ??
+      (terrainById[terrain[shipCell.id]]
+        ? `${terrainById[terrain[shipCell.id]].name} ${shipCell.col},${shipCell.row}`
+        : `Pusty kafel ${shipCell.col},${shipCell.row}`))
+    : 'nieznane';
+
   return (
-    <Window
-      width={1220}
-      height={780}
-      theme="ntos"
-      title="Konsola nawigacji FTL"
-    >
+    <Window width={1220} height={780} theme="ntos" title={MODE_TITLE[mode]}>
       <Window.Content>
         <Stack fill>
           <Stack.Item grow basis={0} style={{ minWidth: 0 }}>
@@ -1275,7 +1328,12 @@ export const HexStarmap = () => {
           </Stack.Item>
           <Stack.Item width="330px">
             <Stack vertical fill>
-              {!!ship.lockout && (
+              {mode === 'astro' && astro && (
+                <Stack.Item>
+                  <AstroScanSection astro={astro} />
+                </Stack.Item>
+              )}
+              {mode === 'nav' && !!ship.lockout && (
                 <Stack.Item>
                   <NoticeBox danger>
                     Napęd zablokowany kodem nadpisania. Okręt wraca na koniec
@@ -1283,67 +1341,18 @@ export const HexStarmap = () => {
                   </NoticeBox>
                 </Stack.Item>
               )}
-              <Stack.Item>
-                <Section title="Napęd FTL">
-                  <ProgressBar
-                    value={ship.charge}
-                    minValue={0}
-                    maxValue={ship.capacity}
-                    ranges={{
-                      good: [100 - 0.001, Infinity],
-                      average: [ship.cost_hex, 100 - 0.001],
-                      bad: [-Infinity, ship.cost_hex],
-                    }}
-                  >
-                    {chargeText(ship.charge, ship, route?.cost)}
-                  </ProgressBar>
-                  <LabeledList>
-                    <LabeledList.Item label="Stan">
-                      {ship.state}
-                      {ship.cooldown > 0 && ` (${ship.cooldown} s)`}
-                    </LabeledList.Item>
-                    <LabeledList.Item label="Atomówki w wyrzutniach">
-                      {nukes_loaded}
-                    </LabeledList.Item>
-                    <LabeledList.Item label="Koszt skoku">
-                      {`kafel ${percent(ship.cost_hex)}, brama ${percent(ship.cost_gate)}`}
-                    </LabeledList.Item>
-                    <LabeledList.Item label="Rozruch i stygnięcie">
-                      {`${ship.startup} s rozruchu, po skoku ${ship.cooldown_total} s bez ładowania`}
-                    </LabeledList.Item>
-                    {ship.in_transit ? (
-                      <LabeledList.Item label="Lot">
-                        {`${ship.from} → ${ship.to}, ${ship.time_left} s`}
-                      </LabeledList.Item>
-                    ) : (
-                      <LabeledList.Item label="Położenie">
-                        {shipCell
-                          ? (systems.find((s) => s.hex === ship.hex)?.name ??
-                            (terrainById[terrain[shipCell.id]]
-                              ? `${terrainById[terrain[shipCell.id]].name} ${shipCell.col},${shipCell.row}`
-                              : `Pusty kafel ${shipCell.col},${shipCell.row}`))
-                          : 'nieznane'}
-                      </LabeledList.Item>
-                    )}
-                  </LabeledList>
-                  {!!can_control && !!ship.jumping && (
-                    <Button
-                      fluid
-                      mt={1}
-                      icon="ban"
-                      color="bad"
-                      onClick={() => act('hex_cancel')}
-                    >
-                      Anuluj skok (ładunek zostaje)
-                    </Button>
-                  )}
-                  <ChipPanel
+              {mode === 'nav' && (
+                <Stack.Item>
+                  <DriveSection
+                    ship={ship}
                     chip={chip}
-                    canControl={!!can_control && !ship.jumping}
-                    onBonus={(bonus) => act('hex_chip_bonus', { bonus })}
+                    canControl={!!can_control}
+                    nukesLoaded={nukes_loaded}
+                    routeCost={route?.cost}
+                    position={positionText}
                   />
-                </Section>
-              </Stack.Item>
+                </Stack.Item>
+              )}
               <Stack.Item grow basis={0}>
                 <Section
                   fill
@@ -1387,6 +1396,8 @@ export const HexStarmap = () => {
                     />
                   ) : panelTab === 'legend' ? (
                     legend
+                  ) : mode !== 'nav' ? (
+                    <ModePanel mode={mode} astro={astro} admin={admin} />
                   ) : !selected ? (
                     <Box color="label">
                       Kliknij kafel na mapie, żeby zobaczyć trasę i koszt skoku.
@@ -1412,6 +1423,300 @@ export const HexStarmap = () => {
         </Stack>
       </Window.Content>
     </Window>
+  );
+};
+
+// Napęd FTL okrętu w konsoli nawigacji: ładunek, koszty, położenie, anulowanie skoku i układ FTL
+const DriveSection = (props: {
+  ship: Ship;
+  chip: Chip | null;
+  canControl: boolean;
+  nukesLoaded: number;
+  routeCost?: number;
+  position: string;
+}) => {
+  const { act } = useBackend();
+  const { ship, chip, canControl, nukesLoaded, routeCost, position } = props;
+  return (
+    <Section title="Napęd FTL">
+      <ProgressBar
+        value={ship.charge}
+        minValue={0}
+        maxValue={ship.capacity}
+        ranges={{
+          good: [100 - 0.001, Infinity],
+          average: [ship.cost_hex, 100 - 0.001],
+          bad: [-Infinity, ship.cost_hex],
+        }}
+      >
+        {chargeText(ship.charge, ship, routeCost)}
+      </ProgressBar>
+      <LabeledList>
+        <LabeledList.Item label="Stan">
+          {ship.state}
+          {ship.cooldown > 0 && ` (${ship.cooldown} s)`}
+        </LabeledList.Item>
+        <LabeledList.Item label="Atomówki w wyrzutniach">
+          {nukesLoaded}
+        </LabeledList.Item>
+        <LabeledList.Item label="Koszt skoku">
+          {`kafel ${percent(ship.cost_hex)}, brama ${percent(ship.cost_gate)}`}
+        </LabeledList.Item>
+        <LabeledList.Item label="Rozruch i stygnięcie">
+          {`${ship.startup} s rozruchu, po skoku ${ship.cooldown_total} s bez ładowania`}
+        </LabeledList.Item>
+        {ship.in_transit ? (
+          <LabeledList.Item label="Lot">
+            {`${ship.from} → ${ship.to}, ${ship.time_left} s`}
+          </LabeledList.Item>
+        ) : (
+          <LabeledList.Item label="Położenie">{position}</LabeledList.Item>
+        )}
+      </LabeledList>
+      {canControl && !!ship.jumping && (
+        <Button
+          fluid
+          mt={1}
+          icon="ban"
+          color="bad"
+          onClick={() => act('hex_cancel')}
+        >
+          Anuluj skok (ładunek zostaje)
+        </Button>
+      )}
+      <ChipPanel
+        chip={chip}
+        canControl={canControl && !ship.jumping}
+        onBonus={(bonus) => act('hex_chip_bonus', { bonus })}
+      />
+    </Section>
+  );
+};
+
+const MODE_TITLE: Record<string, string> = {
+  nav: 'Konsola nawigacji FTL',
+  astro: 'Astrometria',
+  admin: 'Menedżer układów gwiezdnych',
+};
+
+// Zakładka „Kafel” poza nawigacją: astrometria albo menedżer układów admina
+const ModePanel = (props: {
+  mode: string;
+  astro?: Astro;
+  admin?: AdminSystem | null;
+}) =>
+  props.mode === 'astro' ? (
+    <AstroSystemPanel astro={props.astro} />
+  ) : (
+    <AdminSystemPanel system={props.admin} />
+  );
+
+// Astrometria: stan skanu i transmisja na kanale nauki
+const AstroScanSection = (props: { astro: Astro }) => {
+  const { act } = useBackend();
+  const { astro } = props;
+  return (
+    <Section
+      title="Astrometria"
+      buttons={
+        <Button
+          icon={astro.broadcast ? 'volume-up' : 'volume-mute'}
+          selected={astro.broadcast}
+          onClick={() => act('broadcast')}
+        >
+          Transmisja
+        </Button>
+      }
+    >
+      {astro.scan_target ? (
+        <>
+          <Box mb={1}>{`Skanowanie: ${astro.scan_target}`}</Box>
+          <ProgressBar
+            value={astro.scan_goal ? astro.scan_progress / astro.scan_goal : 0}
+            ranges={{
+              good: [0.95, Infinity],
+              average: [0.15, 0.95],
+              bad: [-Infinity, 0.15],
+            }}
+          />
+          <Button
+            fluid
+            mt={1}
+            icon="ban"
+            disabled={!astro.can_cancel}
+            onClick={() => act('cancel_scan')}
+          >
+            Przerwij skan
+          </Button>
+        </>
+      ) : (
+        <Box color="label">
+          {`Brak skanu. Układy skanuje się do ${astro.range} kafli od okrętu, w tym samym sektorze.`}
+        </Box>
+      )}
+    </Section>
+  );
+};
+
+// Astrometria: układ zaznaczonego kafla i jego anomalie
+const AstroSystemPanel = (props: { astro?: Astro }) => {
+  const { act } = useBackend();
+  const system = props.astro?.system;
+  const scanTarget = props.astro?.scan_target;
+  if (!system) {
+    return (
+      <Box color="label">
+        Kliknij kafel z układem, żeby zobaczyć jego dane i go zeskanować.
+      </Box>
+    );
+  }
+  const anomalies = Object.values(system.anomalies || {});
+  return (
+    <>
+      <LabeledList>
+        <LabeledList.Item label="Układ">{system.name}</LabeledList.Item>
+        <LabeledList.Item label="Odległość">
+          {system.distance < 0 ? 'inny sektor' : `${system.distance} kafli`}
+        </LabeledList.Item>
+        <LabeledList.Item label="Przynależność">
+          {system.alignment || 'Nieznana'}
+        </LabeledList.Item>
+        <LabeledList.Item label="Typ układu">
+          {system.scanned ? system.type || 'Nieznany' : 'Nieznany (bez skanu)'}
+        </LabeledList.Item>
+      </LabeledList>
+      <Button
+        fluid
+        mt={1}
+        icon="satellite-dish"
+        disabled={system.scanned || !system.can_scan || !!scanTarget}
+        onClick={() => act('scan')}
+      >
+        {system.scanned
+          ? 'Układ zeskanowany'
+          : system.can_scan
+            ? 'Skanuj układ'
+            : 'Poza zasięgiem skanu'}
+      </Button>
+      {!!system.scanned && (
+        <Section title="Dane telemetryczne" mt={1}>
+          {anomalies.length === 0 && (
+            <Box color="label">Brak anomalii w układzie.</Box>
+          )}
+          {anomalies.map((anomaly) => (
+            <Box key={anomaly.anomaly_id} mb={1}>
+              <Box bold color={anomaly.visible ? 'good' : undefined}>
+                {anomaly.name}
+              </Box>
+              {anomaly.scannable ? (
+                <>
+                  <Box>{`Dostępne badania: ${anomaly.points}`}</Box>
+                  {scanTarget === anomaly.name ? (
+                    <Button
+                      icon="ban"
+                      onClick={() =>
+                        act('cancel_scan', { anomaly_id: anomaly.anomaly_id })
+                      }
+                    >
+                      Przerwij skan
+                    </Button>
+                  ) : (
+                    <Button
+                      icon="bullseye"
+                      disabled={!!scanTarget}
+                      onClick={() =>
+                        act('scan_anomaly', { anomaly_id: anomaly.anomaly_id })
+                      }
+                    >
+                      Skanuj
+                    </Button>
+                  )}
+                </>
+              ) : (
+                <Button
+                  icon="search"
+                  onClick={() =>
+                    act('info', { anomaly_id: anomaly.anomaly_id })
+                  }
+                >
+                  Informacje
+                </Button>
+              )}
+            </Box>
+          ))}
+        </Section>
+      )}
+    </>
+  );
+};
+
+// Menedżer układów admina: floty i obiekty układu na zaznaczonym kaflu
+const AdminSystemPanel = (props: { system?: AdminSystem | null }) => {
+  const { act } = useBackend();
+  const { system } = props;
+  if (!system) {
+    return <Box color="label">Na tym kaflu nie ma układu.</Box>;
+  }
+  return (
+    <>
+      <LabeledList>
+        <LabeledList.Item label="Układ">
+          {system.name}
+          {system.hidden ? ' (ukryty)' : ''}
+        </LabeledList.Item>
+        <LabeledList.Item label="Przynależność">
+          {system.alignment}
+        </LabeledList.Item>
+      </LabeledList>
+      <Box mt={1}>
+        <Button
+          icon="plus"
+          onClick={() => act('createFleet', { sys_id: system.sys_id })}
+        >
+          Flota
+        </Button>
+        <Button
+          icon="plus"
+          onClick={() => act('createObject', { sys_id: system.sys_id })}
+        >
+          Obiekt
+        </Button>
+        <Button
+          icon={system.hidden ? 'eye' : 'eye-slash'}
+          onClick={() => act('hideSystem', { sys_id: system.sys_id })}
+        >
+          {system.hidden ? 'Odkryj' : 'Ukryj'}
+        </Button>
+        <Button
+          icon="wrench"
+          onClick={() => act('systemVV', { sys_id: system.sys_id })}
+        >
+          VV
+        </Button>
+      </Box>
+      <Section title={`Floty (${system.fleets.length})`} mt={1}>
+        {system.fleets.map((fleet) => (
+          <Button
+            key={fleet.id}
+            fluid
+            onClick={() => act('fleetAct', { id: fleet.id })}
+          >
+            {fleet.name}
+          </Button>
+        ))}
+      </Section>
+      <Section title={`Obiekty (${system.objects.length})`}>
+        {system.objects.map((thing) => (
+          <Button
+            key={thing.id}
+            fluid
+            onClick={() => act('objectAct', { id: thing.id })}
+          >
+            {thing.name}
+          </Button>
+        ))}
+      </Section>
+    </>
   );
 };
 

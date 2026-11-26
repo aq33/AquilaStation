@@ -41,13 +41,16 @@
 		var/sound = pick('nsv13/sound/effects/computer/error.ogg','nsv13/sound/effects/computer/error2.ogg','nsv13/sound/effects/computer/error3.ogg')
 		playsound(src, sound, 100, 1)
 		return FALSE
+	if(wreck.salvage_left <= 0)
+		say("BŁĄD: z tego wraku nie da się już nic wyciągnąć.")
+		return FALSE
 	linked.relay('nsv13/sound/effects/ship/tractor.ogg', "<span class='warning'>UWAGA: magnes namierzył wrak. Natychmiast opuścić klatkę na asteroidy.</span>")
 	cooldown = TRUE
 	addtimer(VARSET_CALLBACK(src, cooldown, FALSE), 1 MINUTES)
 	current_wreck = pick_shipbreaker_template(wreck.wreck_faction)
 	log_game("[key_name(user)] przyciągnął magnesem [current_wreck.name] ([wreck.name])")
 	addtimer(CALLBACK(src, PROC_REF(load_wreck)), 10 SECONDS)
-	qdel(wreck)
+	wreck.take_salvage() // wrak zostaje na overmapie, magnes wyciąga z niego jeden prom (wreck_interiors.dm)
 	return TRUE
 
 /obj/machinery/computer/ship/mineral_magnet/proc/load_wreck()

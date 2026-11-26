@@ -1,0 +1,57 @@
+/// AQUILA - odłamki i wybuch kierunkowy po przebiciu poszycia (aquila/code/modules/overmap/modules/hull_spall.dm): pocisk
+/// przekazany na pokład, który ginie, wypuszcza odłamki w głąb, a wybuch kierunkowy idzie wzdłuż lotu i rośnie z głębokością.
+/datum/unit_test/aquila_hull_spall
+
+/datum/unit_test/aquila_hull_spall/Run()
+	var/turf/origin = run_loc_floor_bottom_left
+	var/list/before = list()
+	for(var/obj/item/projectile/bullet/shrapnel/hull_spall/old in world)
+		before += old
+	// płytkie przebicie (bez wybuchów, żeby nie ruszać pokoju testowego): sam pocisk zginął na podłodze
+	var/obj/item/projectile/bullet/shell = new(origin)
+	shell.hull_spall = list(1, 0, 1)
+	qdel(shell)
+	var/shards = 0
+	for(var/obj/item/projectile/bullet/shrapnel/hull_spall/shard in world)
+		if(!(shard in before))
+			shards++
+	if(shards < 4)
+		return Fail("Pocisk przekazany na pokład wypuścił [shards] odłamków zamiast co najmniej 4")
+	if(hull_spall(origin, 1, 0, 6) <= hull_spall(origin, 1, 0, 1))
+		return Fail("Głębszy wyłom nie daje więcej odłamków")
+	var/list/shallow = directional_explosion_plan(origin, 1, 0, 2)
+	var/list/deep = directional_explosion_plan(locate(origin.x, origin.y, origin.z), 1, 0, 8)
+	if(!length(shallow) || length(deep) < length(shallow))
+		return Fail("Wybuch kierunkowy nie rośnie z głębokością ([length(shallow)] i [length(deep)] wybuchów)")
+	var/list/first = deep[1]
+	if(first[1] != origin || first[2] != 0)
+		return Fail("Wybuch kierunkowy nie zaczyna się słabym epicentrum w miejscu trafienia")
+	for(var/i in 2 to length(deep))
+		var/list/blast = deep[i]
+		var/turf/T = blast[1]
+		if(T.y != origin.y || T.x <= origin.x)
+			return Fail("Wybuch kierunkowy poszedł poza kierunek lotu ([T.x],[T.y])")
+	// przebijanie w głąb: przy wyłomie 4 pocisk przelatuje przez przeszkody do 2 pól od pierwszego poszycia, dalej trafia
+	var/turf/far = locate(origin.x + 3, origin.y, origin.z)
+	var/obj/structure/grille/hull = allocate(/obj/structure/grille, origin)
+	var/obj/structure/grille/inner = allocate(/obj/structure/grille, far)
+	var/obj/item/projectile/bullet/pierce_shot = allocate(/obj/item/projectile/bullet, origin)
+	pierce_shot.hull_spall = list(1, 0, 4)
+	if(!pierce_shot.hull_pierce_should_phase(hull))
+		return Fail("Pocisk z wyłomem 4 nie przeleciał przez poszycie")
+	if(pierce_shot.hull_pierce_should_phase(inner))
+		return Fail("Pocisk przeleciał dalej niż głębokość wyłomu")
+	var/obj/item/projectile/bullet/shallow_shot = allocate(/obj/item/projectile/bullet, origin)
+	shallow_shot.hull_spall = list(1, 0, 1)
+	if(shallow_shot.hull_pierce_should_phase(hull))
+		return Fail("Pocisk z płytkim wyłomem przeleciał przez poszycie zamiast na nim wybuchnąć")
+	// liczenie od kadłuba: pierwsza przeszkoda 3 pola za poszyciem (za starą dziurą) już jest poza głębokością 4
+	var/obj/item/projectile/bullet/hole_shot = allocate(/obj/item/projectile/bullet, origin)
+	hole_shot.hull_spall = list(1, 0, 4)
+	hole_shot.hull_pierce_from = origin
+	if(hole_shot.hull_pierce_should_phase(inner))
+		return Fail("Za starą dziurą pocisk liczył przebijanie od pierwszej ściany, a nie od poszycia")
+	pierce_shot.hull_spall = null
+	shallow_shot.hull_spall = null
+	hole_shot.hull_spall = null
+	hole_shot.hull_pierce_from = null
