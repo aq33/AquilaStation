@@ -1761,6 +1761,14 @@
   - rscadd: Zmiennokształtny po wchłonięciu ofiary czyta jej wspomnienia.
   - imageadd: Ikony dłuta, zestawu do tatuażu i rycin w ścianach z tgstation.
 '2026-11-26':
+  BeeStation (Z-Mimic), DaedalusDock:
+  - rscadd: Piętro niżej widziane przez otwartą przestrzeń jest rozmyte i przyciemnione,
+      więc odróżnia się od twojego piętra. Rozmycie można wyłączyć w preferencjach
+      („Rozmycie niższych pięter”).
+  - bugfix: Światło i cienie piętra niżej są widoczne poprawnie także przez otwartą
+      przestrzeń i szklane podłogi.
+  - code_imp: Otwarta przestrzeń rysuje piętro niżej przez Z-Mimic z BeeStation zamiast
+      vis_contents.
   Joker66613:
   - rscadd: Na planetach (wulkanicznej, lodowej, księżycu, skalistej, wysypisku) i
       w polach asteroid pojawiają się złoża gazu z mieszanką zależną od planety. Georadarowy
