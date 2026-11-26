@@ -1816,6 +1816,11 @@
   - bugfix: Alarm powietrza reaguje na każdy gaz, a nie tylko na te z listy wpisanej
       na sztywno.
   - code_imp: Ceny eksportu gazów są brane z danych gazu.
+  - bugfix: Działa Gaussa i inne bronie na mapie kosmosu strzelają w miejsce kursora,
+      także gdy kliknięcie trafi w gwiazdę, anomalię albo efekt wybuchu (wcześniej
+      pocisk leciał w róg ich sprite'a).
+  - bugfix: Sonda astrologiczna skanuje gwiazdę lub anomalię po wlocie w dowolne miejsce
+      jej obrazka, nie tylko w lewy dolny róg.
   sh4dow321:
   - config: 'Tryb Infiltracji jest ciągły: runda nie kończy się w chwili śmierci wszystkich
       infiltratorów.'
