@@ -103,7 +103,7 @@
 	metabolize_cycles(uneven, 1)
 	TEST_ASSERT(uneven.getBruteLoss() < 40 && uneven.getFireLoss() > 0, "Equalizon did not move brute damage to other kinds")
 	var/total_after = uneven.getBruteLoss() + uneven.getFireLoss() + uneven.getToxLoss() + uneven.getOxyLoss()
-	TEST_ASSERT(abs(total_after - total_before) < 1, "Equalizon changed the total damage ([total_before] -> [total_after])")
+	TEST_ASSERT(abs(total_after - total_before) < 0.05, "Equalizon changed the total damage ([total_before] -> [total_after])")
 
 	// Toksyna hamująca metabolizm flushes medicine faster than it would go by itself
 	var/mob/living/carbon/human/poisoned = allocate(/mob/living/carbon/human)
@@ -141,18 +141,31 @@
 	immune.reagents.add_reagent(/datum/reagent/medicine/equalizone, 10)
 	metabolize_cycles(immune, 1)
 	var/immune_after = immune.getBruteLoss() + immune.getFireLoss() + immune.getToxLoss() + immune.getOxyLoss()
-	TEST_ASSERT(abs(immune_after - immune_before) < 1, "Equalizon changed the total damage of a toxin-immune body ([immune_before] -> [immune_after])")
+	TEST_ASSERT(abs(immune_after - immune_before) < 0.05, "Equalizon changed the total damage of a toxin-immune body ([immune_before] -> [immune_after])")
+	TEST_ASSERT(immune.getBruteLoss() < 40, "Equalizon moved no damage on a toxin-immune body")
 
-	// Szybkie krzepnięcie: a dragged patient leaves no blood trail and loses no blood
-	var/mob/living/carbon/human/dragged = allocate(/mob/living/carbon/human)
+	// Szybkie krzepnięcie: a dragged patient loses no blood while it works, and does lose it without it
+	var/mob/living/carbon/human/dragged = allocate(/mob/living/carbon/human, run_loc_floor_bottom_left)
 	dragged.add_bleeding(BLEED_DEEP_WOUND)
 	dragged.adjustBruteLoss(100)
-	dragged.blood_volume = BLOOD_VOLUME_NORMAL * 0.5
+	dragged.blood_volume = BLOOD_VOLUME_NORMAL // a trail needs enough blood, and dragging costs blood only lying down
+	dragged.mobility_flags &= ~MOBILITY_STAND
+	var/turf/drag_start = run_loc_floor_bottom_left
+	var/turf/drag_next = get_step(drag_start, EAST)
+	var/area/drag_area = get_area(drag_start)
+	var/old_gravity = drag_area.has_gravity
+	drag_area.has_gravity = STANDARD_GRAVITY // no trails in zero gravity, and the test room has no generator
 	ADD_TRAIT(dragged, TRAIT_AQ_QUICKCLOT, "aquila_reagenty_test")
 	var/dragged_blood = dragged.blood_volume
-	var/turf/drag_start = get_turf(dragged)
-	dragged.make_blood_trail(get_step(drag_start, EAST), drag_start, EAST, EAST)
-	TEST_ASSERT(dragged.blood_volume == dragged_blood, "A dragged patient lost blood under Szybkie krzepnięcie")
+	dragged.make_blood_trail(drag_next, drag_start, EAST, EAST)
+	var/clotted_loss = dragged_blood - dragged.blood_volume
+	REMOVE_TRAIT(dragged, TRAIT_AQ_QUICKCLOT, "aquila_reagenty_test")
+	dragged_blood = dragged.blood_volume
+	dragged.make_blood_trail(drag_next, drag_start, EAST, EAST)
+	var/bare_loss = dragged_blood - dragged.blood_volume
+	drag_area.has_gravity = old_gravity
+	TEST_ASSERT(clotted_loss == 0, "A dragged patient lost [clotted_loss] blood under Szybkie krzepnięcie")
+	TEST_ASSERT(bare_loss > 0, "A dragged bleeding patient lost no blood even without Szybkie krzepnięcie, so the test proves nothing")
 
 
 #undef TEST_ASSERT
