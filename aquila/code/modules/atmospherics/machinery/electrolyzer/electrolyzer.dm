@@ -104,23 +104,33 @@
 		mode = ELECTROLYZER_MODE_WORKING
 		update_appearance()
 
-	var/split = electrolyze(location.return_air())
-	if(split <= 0)
-		return
+	// Energia przed zmianą gazu: z pustego ogniwa nic się nie rozłoży
+	var/datum/gas_mixture/env = location.return_air()
+	var/split = electrolysis_amount(env)
 	var/energy = (5 * split) / (efficiency + working_power)
 	if(grid)
-		use_power(energy)
-		cell?.give(charge_rate)
-	else if(!cell.use(energy))
+		// Sieć ładuje ogniwo także bez pary i płaci za ten ładunek
+		var/charged = cell ? cell.give(charge_rate) : 0
+		if(energy + charged > 0)
+			use_power(energy + charged)
+	else if(split > 0 && !cell.use(energy))
 		on = FALSE
 		update_appearance()
 		return PROCESS_KILL
+	electrolyze(env, split)
 
-/// Rozkłada parę wodną z mieszanki na wodór i tlen, zwraca liczbę rozłożonych moli wody
-/obj/machinery/electrolyzer/proc/electrolyze(datum/gas_mixture/env)
+/// Ile moli pary wodnej elektrolizer rozłoży z tej mieszanki w jednym tiku
+/obj/machinery/electrolyzer/proc/electrolysis_amount(datum/gas_mixture/env)
 	if(!env)
 		return 0
-	var/split = min(env.get_moles(GAS_H2O) * 0.1, 3 * working_power)
+	return max(0, min(env.get_moles(GAS_H2O) * 0.1, 3 * working_power))
+
+/// Rozkłada parę wodną z mieszanki na wodór i tlen (split moli, domyślnie electrolysis_amount()), zwraca liczbę rozłożonych moli wody
+/obj/machinery/electrolyzer/proc/electrolyze(datum/gas_mixture/env, split)
+	if(!env)
+		return 0
+	if(isnull(split))
+		split = electrolysis_amount(env)
 	if(split <= 0)
 		return 0
 	env.adjust_moles(GAS_H2O, -split)

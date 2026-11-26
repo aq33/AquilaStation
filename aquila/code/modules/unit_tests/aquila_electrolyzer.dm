@@ -39,6 +39,14 @@
 	charge = electrolyzer.cell.charge
 	electrolyzer.process_atmos()
 	TEST_ASSERT(electrolyzer.cell.charge < charge, "A wrenched electrolyzer without grid power did not use its cell")
+
+	// An almost empty cell splits nothing: the energy is taken before the gas changes
+	electrolyzer.cell.charge = 0.1
+	var/hydrogen_before = location.air.get_moles(GAS_H2)
+	electrolyzer.on = TRUE
+	electrolyzer.process_atmos()
+	TEST_ASSERT(location.air.get_moles(GAS_H2) == hydrogen_before, "The electrolyzer split water on a cell too empty to pay for it")
+	electrolyzer.cell.charge = electrolyzer.cell.maxcharge
 	electrolyzer.machine_stat &= ~NOPOWER
 	electrolyzer.on = FALSE
 	location.air.copy_from(original_air)
