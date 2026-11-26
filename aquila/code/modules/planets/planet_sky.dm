@@ -58,6 +58,10 @@
 	absolute = TRUE
 	tesselate = FALSE
 	speed = 0.2
+	// Powiększona tarcza z filtrem displace wystaje poza widok, a BYOND poszerza mapę tak, żeby zmieścić obiekty ekranu:
+	// za HUD-em pojawiała się kolumna bez światła i postać zjeżdżała ze środka (po zmianie rozmiaru okna, wejściu w postać,
+	// dołożeniu czegokolwiek na ekran). TILE_BOUND liczy warstwę tylko w jej kafelku, a planeta rysuje się w całości.
+	appearance_flags = APPEARANCE_UI | TILE_BOUND
 	// Nad warstwą FTL (mgławice itp. mają HUD_LAYER), a gwiazdy z pozostałych warstw zostają za planetą
 	layer = HUD_LAYER + 1
 	/// Typ planety, który teraz widać (null: niebo bez planety)
@@ -223,152 +227,6 @@
 	// Warstwa z cache'u po ponownym włączeniu paralaksy: timer mógł się zatrzymać, a nieruchome oko nie wywoła
 	// update_status(); świeże sprawdzenie od razu pokazuje planetę i wznawia pętlę
 	sky.force_recheck(screenmob)
-	// Po przebudowie ekranu (wejście w postać, przełączenie paralaksy) ta sama warstwa wraca na ekran i BYOND bierze dla niej
-	// stare granice obrazu planety: mapa poszerza się o kolumnę, choć widok się nie zmienił (sprawdzone na spawnie postaci).
-	// Ukrycie i podmiana działają dopiero chwilę po przebudowie (0,1 s za wcześnie, 1 s dobrze), stąd opóźnienie.
-	addtimer(CALLBACK(C, TYPE_PROC_REF(/client, aq_hide_planet_sky)), 1 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
-
-// BYOND 516 zapamiętuje, gdzie na ekranie leżał obraz planety (vis_contents warstwy z "CENTER-7") przy starym widoku.
-// Po zmniejszeniu widoku (np. 17x15 -> 15x15 przy dopasowaniu do okna) stary obraz wystaje poza nowy widok, więc mapa
-// rysuje się szersza: dodatkowa kolumna za HUD-em, bez światła, a postać nie stoi na środku. Ponowne dodanie tej samej
-// warstwy ani nowe części planety nie pomagają (sprawdzone przez winget "view-size"), dopiero nowy obiekt warstwy.
-// Nowa warstwa dodana w tym samym ticku co zmiana widoku albo w tym samym, w którym znika stara, potrafi dostać granice
-// ze starego widoku (podmiana po 0,2 s psuła się w 1 próbie na kilka). Dlatego stara warstwa znika z ekranu od razu
-// razem ze zmianą widoku, a nowa wraca chwilę później (12 na 12 prób dobrze). Większy widok obrazu nie wypycha,
-// więc wszystko to dzieje się tylko przy mniejszym.
-#define AQ_PLANET_SKY_REFRESH_DELAY (0.5 SECONDS)
-
-/client/change_view(new_size)
-	var/old_view = view
-	. = ..()
-	if(aq_view_shrunk(old_view, view))
-		aq_hide_planet_sky()
-
-/client
-	/// Która to z kolei podmiana warstwy planety po jednej zmianie widoku (aq_check_planet_sky ponawia źle wyrysowaną)
-	var/aq_planet_sky_attempt = 0
-
-/// Zdejmuje warstwę z widoczną planetą z ekranu teraz i planuje podmianę na nową
-/client/proc/aq_hide_planet_sky(attempt = 0)
-	aq_planet_sky_attempt = attempt
-	if(!length(parallax_layers_cached))
-		return
-	var/atom/movable/screen/parallax_layer/planet_sky/sky = locate() in parallax_layers_cached
-	// W trakcie zejścia albo startu warstwa zostaje, a podmiana czeka na koniec pokazu (end_descent). Flaga od razu,
-	// bo pokaz może się skończyć przed podmianą zaplanowaną niżej.
-	if(sky?.descent_active)
-		sky.view_refresh_pending = TRUE
-	else if(sky?.shown_type)
-		screen -= sky
-	addtimer(CALLBACK(src, PROC_REF(aq_refresh_planet_sky)), AQ_PLANET_SKY_REFRESH_DELAY, TIMER_UNIQUE | TIMER_OVERRIDE)
-
-#undef AQ_PLANET_SKY_REFRESH_DELAY
-
-/// Pokaz zejścia albo startu zaczyna się na warstwie, która mogła właśnie zniknąć z ekranu przed podmianą: wraca od razu
-/// (podmiana poczeka na koniec pokazu przez view_refresh_pending)
-/client/proc/aq_restore_planet_sky(atom/movable/screen/parallax_layer/planet_sky/sky)
-	if(sky in parallax_layers)
-		screen |= sky
-
-/// Czy nowy widok jest węższy albo niższy od starego
-/proc/aq_view_shrunk(old_view, new_view)
-	if(isnull(old_view) || isnull(new_view) || old_view == new_view)
-		return FALSE
-	var/list/old_size = getviewsize(old_view)
-	var/list/new_size = getviewsize(new_view)
-	return new_size[1] < old_size[1] || new_size[2] < old_size[2]
-
-/atom/movable/screen/parallax_layer/planet_sky
-	/// Widok zmniejszył się w trakcie zejścia albo startu: podmiana warstwy czeka na koniec pokazu (end_descent)
-	var/view_refresh_pending = FALSE
-
-/// Czy po zmianie widoku podmienić warstwę od razu. Bez planety nie ma obrazu, który by wystawał.
-/// W trakcie zejścia albo startu pokaz trzyma tę warstwę (planet_descent.dm), więc podmiana czeka na jego koniec.
-/atom/movable/screen/parallax_layer/planet_sky/proc/needs_view_refresh()
-	if(descent_active)
-		view_refresh_pending = TRUE
-		return FALSE
-	return !!shown_type
-
-/// Podmienia warstwę z widoczną planetą na świeżą po zmianie widoku
-/client/proc/aq_refresh_planet_sky()
-	if(!length(parallax_layers_cached))
-		return
-	var/atom/movable/screen/parallax_layer/planet_sky/sky = locate() in parallax_layers_cached
-	if(!sky)
-		return
-	if(!sky.needs_view_refresh())
-		// Nie ma czego podmieniać (planeta zniknęła albo zaczął się pokaz): warstwa wraca na ekran, jeśli paralaksa działa
-		if(sky in parallax_layers)
-			screen |= sky
-		return
-	var/atom/movable/screen/parallax_layer/planet_sky/fresh = sky.replace_in(parallax_layers_cached, parallax_layers, screen, view)
-	// Warstwa ma już planetę starej; sprawdzenie od nowa wznawia pętlę odświeżania (bez moba nie ma czego sprawdzać)
-	if(mob)
-		fresh.force_recheck(mob)
-	// Prom w ruchu: pętla przesuwania jak w /datum/hud/proc/update_parallax_motionblur, inaczej planeta stałaby w miejscu
-	if(parallax_movedir && (fresh in parallax_layers))
-		var/matrix/moved
-		switch(parallax_movedir)
-			if(NORTH)
-				moved = matrix(1, 0, 0, 0, 1, 480)
-			if(SOUTH)
-				moved = matrix(1, 0, 0, 0, 1, -480)
-			if(EAST)
-				moved = matrix(1, 0, 480, 0, 1, 0)
-			if(WEST)
-				moved = matrix(1, 0, -480, 0, 1, 0)
-		if(moved)
-			fresh.transform = moved
-			animate(fresh, transform = matrix(), time = PARALLAX_LOOP_TIME / fresh.speed, loop = -1)
-			animate(transform = moved, time = 0, loop = -1)
-	// Mniej więcej raz na kilkanaście prób nowa warstwa i tak dostaje stare granice: sprawdzamy, co narysował klient
-	addtimer(CALLBACK(src, PROC_REF(aq_check_planet_sky)), 1 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
-	qdel(sky)
-
-/// Ile razy najwyżej ponawiać podmianę warstwy planety po jednej zmianie widoku
-#define AQ_PLANET_SKY_MAX_ATTEMPTS 3
-
-/// Czy mapa w kliencie ma proporcje widoku. Inne proporcje = obraz planety wystaje poza widok, podmiana jeszcze raz.
-/client/proc/aq_check_planet_sky()
-	set waitfor = FALSE
-	if(aq_planet_sky_attempt + 1 >= AQ_PLANET_SKY_MAX_ATTEMPTS)
-		return
-	var/list/drawn = splittext(winget(src, "mapwindow.map", "view-size"), "x")
-	if(!src || length(drawn) != 2)
-		return
-	if(!aq_map_matches_view(text2num(drawn[1]), text2num(drawn[2]), view))
-		aq_hide_planet_sky(aq_planet_sky_attempt + 1)
-
-#undef AQ_PLANET_SKY_MAX_ATTEMPTS
-
-/// Czy narysowana mapa (piksele z winget "view-size") ma proporcje widoku w kafelkach. Brak danych = zgodna.
-/proc/aq_map_matches_view(width, height, view)
-	if(!width || !height || !view)
-		return TRUE
-	var/list/tiles = getviewsize(view)
-	// Jedna kolumna więcej przy widoku 15 to ok. 6,7% szerokości, błąd zaokrągleń pikseli to ułamek procenta
-	return abs(width * tiles[2] - height * tiles[1]) <= height * tiles[1] * 0.02
-
-/// Nowa warstwa z tą samą planetą i położeniem wstawiona w miejsce tej w listach klienta; zwraca nową warstwę
-/atom/movable/screen/parallax_layer/planet_sky/proc/replace_in(list/cached, list/active, list/client_screen, view)
-	var/atom/movable/screen/parallax_layer/planet_sky/fresh = new(null, view)
-	fresh.screen_loc = screen_loc
-	fresh.offset_x = offset_x
-	fresh.offset_y = offset_y
-	fresh.checked_system = checked_system
-	fresh.checked_type = checked_type
-	fresh.next_check = next_check
-	fresh.show_planet(shown_type)
-	for(var/list/layers in list(cached, active))
-		var/index = layers?.Find(src)
-		if(index)
-			layers[index] = fresh
-	// Na ekran trafia, gdy była na nim stara albo gdy paralaksa działa (stara zniknęła z ekranu przy zmianie widoku)
-	if(client_screen && ((src in client_screen) || (fresh in active)))
-		client_screen -= src
-		client_screen |= fresh
-	return fresh
 
 #undef PLANET_SKY_TEXTURE_WIDTH
 #undef PLANET_SKY_DISK_SIZE

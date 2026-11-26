@@ -55,6 +55,8 @@
 	TEST_ASSERT_EQUAL(pick_sky_planet(list(hidden), viewer), null, "An asteroid field showed up in the sky")
 
 	sky = new(null, world.view)
+	// Tarcza wystaje poza widok: bez TILE_BOUND klient poszerza mapę o kolumnę za HUD-em
+	TEST_ASSERT(sky.appearance_flags & TILE_BOUND, "The sky layer is not TILE_BOUND, the oversized planet widens the map past the view")
 	sky.show_planet(far.planet_type)
 	TEST_ASSERT(sky.body in sky.vis_contents, "The planet disk isn't shown")
 	TEST_ASSERT(sky.shade in sky.vis_contents, "The planet shadow isn't shown")
@@ -116,67 +118,6 @@
 	// Paralaksa włączona z powrotem (create_parallax woła force_recheck): pętla odświeżania rusza bez ruchu gracza
 	sky.force_recheck(passenger)
 	TEST_ASSERT(sky.recheck_timer, "The sky recheck loop didn't resume when the layer came back")
-
-/// AQUILA - planeta na niebie: po zmianie widoku warstwa z planetą zostaje podmieniona na nową. Stara warstwa trzymała
-/// granice obrazu planety ze starego widoku i mapa rysowała się o kolumnę szersza (pas za HUD-em bez światła).
-/datum/unit_test/planet_sky_view_change
-	var/atom/movable/screen/parallax_layer/planet_sky/sky
-	var/atom/movable/screen/parallax_layer/planet_sky/fresh
-
-/datum/unit_test/planet_sky_view_change/Destroy()
-	QDEL_NULL(sky)
-	QDEL_NULL(fresh)
-	return ..()
-
-/datum/unit_test/planet_sky_view_change/Run()
-	var/datum/planet_type/shown = GLOB.planet_type_prototypes[/datum/planet_type/lava]
-	var/atom/movable/screen/parallax_layer/layer_1/other = allocate(/atom/movable/screen/parallax_layer/layer_1, null, "17x15")
-	sky = new(null, "17x15")
-	sky.show_planet(shown)
-	sky.screen_loc = "CENTER-7:-6,CENTER-7:3"
-	var/list/cached = list(other, sky)
-	var/list/active = list(other, sky)
-	var/list/client_screen = list(sky)
-	fresh = sky.replace_in(cached, active, client_screen, "15x15")
-	TEST_ASSERT(fresh && fresh != sky, "No new sky layer was made")
-	TEST_ASSERT_EQUAL(cached[2], fresh, "The cached parallax layers still hold the old sky layer")
-	TEST_ASSERT_EQUAL(active[2], fresh, "The active parallax layers still hold the old sky layer")
-	TEST_ASSERT_EQUAL(cached[1], other, "Another parallax layer was replaced")
-	TEST_ASSERT((fresh in client_screen) && !(sky in client_screen), "The client screen still shows the old sky layer")
-	TEST_ASSERT_EQUAL(fresh.shown_type, shown, "The new sky layer doesn't show the same planet")
-	TEST_ASSERT(fresh.body in fresh.vis_contents, "The new sky layer has no planet disk")
-	TEST_ASSERT_EQUAL(fresh.screen_loc, sky.screen_loc, "The new sky layer jumped to another parallax offset")
-	TEST_ASSERT_EQUAL(fresh.view_sized, "15x15", "The new sky layer wasn't made for the new view")
-	// Bez parallax_layers (paralaksa wyłączona) podmiana zostaje w cache'u
-	var/atom/movable/screen/parallax_layer/planet_sky/second = fresh.replace_in(cached, null, null, "17x15")
-	TEST_ASSERT_EQUAL(cached[2], second, "The cached sky layer wasn't replaced with parallax off")
-	// Stara warstwa zniknęła z ekranu przy zmianie widoku, a paralaksa działa: nowa wraca na ekran
-	var/list/hidden_screen = list()
-	var/atom/movable/screen/parallax_layer/planet_sky/third = second.replace_in(list(second), list(second), hidden_screen, "15x15")
-	TEST_ASSERT(third in hidden_screen, "The new sky layer did not come back to the screen after the old one was hidden")
-	qdel(third)
-	qdel(second)
-
-	// Kiedy podmieniać: tylko przy mniejszym widoku, tylko z planetą, w trakcie zejścia dopiero po pokazie
-	TEST_ASSERT(aq_view_shrunk("17x15", "15x15"), "A narrower view doesn't count as shrunk")
-	TEST_ASSERT(aq_view_shrunk("15x17", "15x15"), "A lower view doesn't count as shrunk")
-	TEST_ASSERT(!aq_view_shrunk("15x15", "17x15"), "A wider view counts as shrunk")
-	TEST_ASSERT(!aq_view_shrunk("15x15", "15x15"), "The same view counts as shrunk")
-	TEST_ASSERT(fresh.needs_view_refresh(), "A sky layer with a planet is not refreshed after the view shrinks")
-	fresh.descent_active = TRUE
-	TEST_ASSERT(!fresh.needs_view_refresh(), "The sky layer was replaced in the middle of a descent")
-	TEST_ASSERT(fresh.view_refresh_pending, "The refresh skipped during a descent is not remembered for its end")
-	fresh.descent_active = FALSE
-	fresh.view_refresh_pending = FALSE
-	fresh.show_planet(null)
-	TEST_ASSERT(!fresh.needs_view_refresh(), "A sky layer without a planet is refreshed")
-
-	// Sprawdzenie po podmianie: rozmiary mapy z pomiarów w kliencie (winget "view-size")
-	TEST_ASSERT(aq_map_matches_view(900, 900, "15x15"), "A square map for a 15x15 view was taken as too wide")
-	TEST_ASSERT(aq_map_matches_view(1632, 1440, "17x15"), "A 17x15 map was taken as too wide")
-	TEST_ASSERT(!aq_map_matches_view(900, 844, "15x15"), "A map one column wider than the 15x15 view was not noticed")
-	TEST_ASSERT(!aq_map_matches_view(1536, 1440, "15x15"), "A 16x15 map for a 15x15 view was not noticed")
-	TEST_ASSERT(aq_map_matches_view(0, 0, "15x15"), "No map size from the client should not trigger another refresh")
 
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL

@@ -137,7 +137,6 @@ GLOBAL_LIST_EMPTY(planet_descents)
 	for(var/mob/M as anything in craft?.mobs_in_ship)
 		var/atom/movable/screen/parallax_layer/planet_sky/sky = M.client ? locate() in M.client.parallax_layers_cached : null
 		if(sky)
-			M.client.aq_restore_planet_sky(sky)
 			. += sky
 
 /datum/planet_descent/proc/stop_viewers(fade = FALSE)
@@ -655,11 +654,6 @@ GLOBAL_LIST_EMPTY(planet_descents)
 	next_check = 0
 	if(planet_type && current_mob)
 		update_status(current_mob)
-	// Widok zmniejszył się w trakcie pokazu: zaległa podmiana warstwy (planet_sky.dm, /client/change_view)
-	if(view_refresh_pending)
-		view_refresh_pending = FALSE
-		var/client/viewer = current_mob?.client
-		viewer?.aq_hide_planet_sky()
 
 /atom/movable/screen/parallax_layer/planet_sky/update_status(mob/M)
 	if(descent_active)
@@ -766,9 +760,7 @@ GLOBAL_LIST_EMPTY(planet_descents)
 			SEND_SOUND(M, sound('aquila/sound/planets/landing/launch.ogg', volume = 60))
 		shake_camera(M, 3, 2)
 		var/atom/movable/screen/parallax_layer/planet_sky/sky = locate() in M.client.parallax_layers_cached
-		if(sky)
-			M.client.aq_restore_planet_sky(sky)
-			sky.play_ascent(planet.planet_type)
+		sky?.play_ascent(planet.planet_type)
 	planet_settle_lighting()
 
 /// Jednorazowe wywołanie w takeoff(), po przeniesieniu kadłuba, zanim dokowanie uśpi (start z planety)
