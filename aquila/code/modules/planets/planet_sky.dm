@@ -58,6 +58,10 @@
 	absolute = TRUE
 	tesselate = FALSE
 	speed = 0.2
+	// Powiększona tarcza z filtrem displace wystaje poza widok, a BYOND poszerza mapę tak, żeby zmieścić obiekty ekranu:
+	// za HUD-em pojawiała się kolumna bez światła i postać zjeżdżała ze środka (po zmianie rozmiaru okna, wejściu w postać,
+	// dołożeniu czegokolwiek na ekran). TILE_BOUND liczy warstwę tylko w jej kafelku, a planeta rysuje się w całości.
+	appearance_flags = APPEARANCE_UI | TILE_BOUND
 	// Nad warstwą FTL (mgławice itp. mają HUD_LAYER), a gwiazdy z pozostałych warstw zostają za planetą
 	layer = HUD_LAYER + 1
 	/// Typ planety, który teraz widać (null: niebo bez planety)
