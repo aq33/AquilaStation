@@ -209,6 +209,15 @@
 /obj/structure/barricade/wooden,
 /turf/open/floor/plating,
 /area/maintenance/starboard/central)
+"aA" = (
+/obj/structure/hull_plate,
+/obj/machinery/drop_pod_bay,
+/turf/open/floor/plating,
+/area/space)
+"aB" = (
+/obj/structure/hull_plate,
+/turf/open/floor/plasteel/dark/airless,
+/area/space)
 "aC" = (
 /obj/structure/closet/secure_closet/munitions_technician,
 /obj/structure/window/reinforced/spawner/east,
@@ -423,6 +432,10 @@
 /obj/machinery/vending/sticker,
 /turf/open/floor/plasteel/white,
 /area/quartermaster/meeting_room)
+"bc" = (
+/obj/structure/hull_plate,
+/turf/open/floor/plating,
+/area/space)
 "bd" = (
 /obj/machinery/rack_creator,
 /turf/open/floor/engine,
@@ -709,10 +722,6 @@
 	dir = 8
 	},
 /area/engine/engine_room)
-"bP" = (
-/obj/structure/lattice,
-/turf/open/space/basic,
-/area/space)
 "bQ" = (
 /obj/machinery/atmospherics/components/unary/thermomachine/freezer/on{
 	dir = 4
@@ -34672,11 +34681,11 @@ Ks
 Ks
 Ks
 bz
-Ks
-bP
-Ks
-bP
-Ks
+aA
+bc
+aB
+aB
+aA
 bz
 bz
 xe
@@ -34929,11 +34938,11 @@ Ks
 Ks
 Ks
 bz
-Ks
-bP
-Ks
-bP
-Ks
+bc
+bc
+bc
+bc
+bc
 bz
 TB
 hO
@@ -35186,11 +35195,11 @@ dD
 dD
 dD
 bz
-Ks
-bP
-Ks
-bP
-Ks
+aA
+bc
+bc
+bc
+aA
 bz
 TB
 mN
