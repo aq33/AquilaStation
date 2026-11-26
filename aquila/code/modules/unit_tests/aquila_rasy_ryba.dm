@@ -26,7 +26,7 @@
 		TEST_ASSERT(icon_exists(AQUARIAN_ICON, "fish_dead_[fish]"), "Missing dead fish sprite fish_dead_[fish]")
 	var/datum/preference/choiced/fish_entry = GLOB.preference_entries_by_key["feature_aquarian_fish"]
 	TEST_ASSERT(istype(fish_entry), "No preference entry for the fish")
-	TEST_ASSERT_EQUAL(length(fish_entry.get_choices()), 10, "There should be ten fish to choose from")
+	TEST_ASSERT_EQUAL(length(fish_entry.get_choices()), length(GLOB.aquarian_fish), "Not every fish can be chosen")
 	for(var/value in fish_entry.get_choices())
 		TEST_ASSERT(isicon(fish_entry.icon_for(value)), "No preview icon for fish [value]")
 	for(var/db_key in list("feature_aquarian_water", "feature_aquarian_armor"))
@@ -260,6 +260,108 @@
 	TEST_ASSERT_EQUAL(sushi, AQUARIAN_SUSHI_PIECES, "Cutting the fish did not make sushi")
 	for(var/obj/item/shard/shard in run_loc_floor_bottom_left)
 		qdel(shard)
+
+/// Stany ikony obrazów kończyny (kończyna, dłoń, farba, wzór) -> kolor
+/proc/aquila_rasy_ryba_limb_states(obj/item/bodypart/part)
+	. = list()
+	for(var/image/overlay in part.get_limb_icon())
+		.[overlay.icon_state] = overlay.color
+
+/// Akwarianin z paczki Fish People: goły metal, wzór na ramionach w kolorze pancerza, szara woda do barwienia, ukleja w kolorze z okna postaci
+/datum/unit_test/aquila_rasy_ryba_metal
+
+/datum/unit_test/aquila_rasy_ryba_metal/Run()
+	for(var/state in list("aquarian_metal_chest_m", "aquarian_metal_chest_f", "aquarian_metal_l_arm", "aquarian_metal_r_arm", "aquarian_metal_l_hand", \
+		"aquarian_metal_r_hand", "aquarian_metal_l_leg", "aquarian_metal_r_leg", "dome_back_grey"))
+		TEST_ASSERT(icon_exists(AQUARIAN_ICON, state), "Missing aquarian sprite [state]")
+	for(var/pattern in GLOB.aquarian_patterns)
+		if(pattern == AQUARIAN_PATTERN_NONE)
+			continue
+		for(var/zone in list(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM))
+			TEST_ASSERT(icon_exists(AQUARIAN_ICON, "aquarian_pattern_[pattern]_[zone]"), "Missing arm pattern sprite [pattern] for [zone]")
+	for(var/db_key in list("feature_aquarian_body", "feature_aquarian_pattern", "feature_aquarian_fish_color"))
+		TEST_ASSERT(GLOB.preference_entries_by_key[db_key], "No preference entry [db_key]")
+
+	var/mob/living/carbon/human/H = allocate(/mob/living/carbon/human, run_loc_floor_bottom_left)
+	H.set_species(/datum/species/aquarian)
+	var/obj/item/bodypart/l_arm/arm = H.get_bodypart(BODY_ZONE_L_ARM)
+	var/list/states = aquila_rasy_ryba_limb_states(arm)
+	TEST_ASSERT(("aquarian_l_arm" in states) && ("aquarian_l_hand" in states), "The default armour is not the red one")
+
+	// Goły metal ze wzorem: kończyna i dłoń w metalu, rękaw w kolorze pancerza, bez farby czerwonych płyt
+	H.dna.features[FEATURE_AQUARIAN_BODY] = AQUARIAN_BODY_METAL
+	H.dna.features[FEATURE_AQUARIAN_PATTERN] = "sleeves"
+	H.dna.features[FEATURE_AQUARIAN_ARMOR] = "3366ff"
+	H.update_body_parts(TRUE)
+	states = aquila_rasy_ryba_limb_states(arm)
+	TEST_ASSERT(("aquarian_metal_l_arm" in states) && ("aquarian_metal_l_hand" in states), "The bare metal arm and hand are not drawn")
+	TEST_ASSERT(!("aquarian_l_arm" in states), "The red arm is still drawn under the bare metal one")
+	TEST_ASSERT_EQUAL(states["aquarian_pattern_sleeves_l_arm"], "#3366ff", "The sleeve is not drawn in the armour colour")
+	TEST_ASSERT(!("aquarian_l_arm_paint" in states), "Bare metal got the red plates' paint")
+	var/obj/item/bodypart/head/head = H.get_bodypart(BODY_ZONE_HEAD)
+	TEST_ASSERT("aquarian_head_[head.limb_gender]" in aquila_rasy_ryba_limb_states(head), "The collar should stay the same on bare metal")
+	var/obj/item/bodypart/l_leg/leg = H.get_bodypart(BODY_ZONE_L_LEG)
+	TEST_ASSERT("aquarian_metal_l_leg" in aquila_rasy_ryba_limb_states(leg), "The bare metal leg is not drawn")
+
+	// Czerwony pancerz z paskami: farba płyt i pasek w kolorze pancerza
+	H.dna.features[FEATURE_AQUARIAN_BODY] = AQUARIAN_BODY_RED
+	H.dna.features[FEATURE_AQUARIAN_PATTERN] = "stripes"
+	H.update_body_parts(TRUE)
+	states = aquila_rasy_ryba_limb_states(arm)
+	TEST_ASSERT(("aquarian_l_arm" in states) && ("aquarian_l_arm_paint" in states), "The painted red arm is not drawn")
+	TEST_ASSERT_EQUAL(states["aquarian_pattern_stripes_l_arm"], "#3366ff", "The stripes are not drawn on the red armour")
+
+	// Zabarwiona woda jest szara pod kolorem, niezabarwiona zostaje zwykłą wodą
+	var/obj/item/organ/brain/aquarian/dome = aquarian_dome(H)
+	dome.water_tint = "ff00ff"
+	var/list/dome_states = list()
+	for(var/image/overlay in dome.dome_overlays(0))
+		dome_states[overlay.icon_state] = overlay.color
+	TEST_ASSERT_EQUAL(dome_states["dome_back_grey"], "#ff00ff", "Tinted water is not the grey water in the chosen colour")
+	TEST_ASSERT(!("dome_back" in dome_states), "Tinted water still uses the teal water")
+	dome.water_tint = AQUARIAN_DEFAULT_WATER
+	dome_states.Cut()
+	for(var/image/overlay in dome.dome_overlays(0))
+		dome_states[overlay.icon_state] = overlay.color
+	TEST_ASSERT(("dome_back" in dome_states) && !("dome_back_grey" in dome_states), "Untinted water should stay teal")
+
+	// Ukleja: barwi ją kolor ryby z wyglądu postaci, który wędruje z kloszem; złota rybka zostaje we własnych kolorach
+	H.dna.features[FEATURE_AQUARIAN_FISH] = "bleak"
+	H.dna.features[FEATURE_AQUARIAN_FISH_COLOR] = "ffcc00"
+	H.set_species(/datum/species/human)
+	H.set_species(/datum/species/aquarian)
+	dome = aquarian_dome(H)
+	TEST_ASSERT_EQUAL(dome.fish_type, "bleak", "The bleak was not put into the dome")
+	TEST_ASSERT_EQUAL(dome.fish_color(), "#ffcc00", "The bleak did not take the fish colour")
+	dome_states.Cut()
+	for(var/image/overlay in dome.dome_overlays(0))
+		dome_states[overlay.icon_state] = overlay.color
+	TEST_ASSERT_EQUAL(dome_states["fish_bleak"], "#ffcc00", "The bleak is not drawn in its colour")
+	dome.fish_type = "goldfish"
+	TEST_ASSERT(isnull(dome.fish_color()), "A goldfish got tinted with the fish colour")
+	dome.fish_type = "bleak"
+
+	// Rozbity klosz: ukleja leży na podłodze w swoim kolorze, krople wody zostają niebieskie
+	dome.Remove(H, TRUE)
+	dome.forceMove(run_loc_floor_bottom_left)
+	dome.shattered = TRUE
+	dome.update_appearance()
+	TEST_ASSERT_EQUAL(dome.icon_state, "fish_flop_bleak", "The flopping bleak has no water drops")
+	TEST_ASSERT(isnull(dome.color), "The whole flopping bleak got tinted, water drops included")
+	var/lying_found = FALSE
+	for(var/mutable_appearance/overlay in dome.update_overlays())
+		if(overlay.icon_state == "fish_dead_bleak" && overlay.color == "#ffcc00")
+			lying_found = TRUE
+	TEST_ASSERT(lying_found, "The lying bleak is not drawn in its colour")
+	// Martwa ukleja: własny stan ikony (nie pusty) w kolorze ryby, a po ożywieniu kolor przedmiotu znika
+	dome.brain_death = TRUE
+	dome.update_appearance()
+	TEST_ASSERT_EQUAL(dome.icon_state, "fish_dead_bleak", "The dead bleak has no sprite of its own")
+	TEST_ASSERT_EQUAL(dome.color, "#ffcc00", "The dead bleak is not drawn in its colour")
+	dome.brain_death = FALSE
+	dome.update_appearance()
+	TEST_ASSERT(isnull(dome.color), "The flopping bleak kept the colour of the dead one on the water drops")
+	qdel(dome)
 
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL

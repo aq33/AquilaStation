@@ -3027,6 +3027,7 @@
 
 // Komora testowa okna postaci (zestaw używa ras i przedmiotów z modułów wyżej)
 #include "code\modules\test_chamber\kits\pr_655_okno_postaci.dm"
+#include "code\modules\test_chamber\kits\pr_706_akwarianin_metal.dm"
 
 // MECHY: system mechów na /obj/mecha (sloty, wymienne części, overclock z czasem odnowienia, kierunkowy pancerz, broń wręcz,
 // amunicja, konwersje, zakup w cargo, warsztat, zdalne sterowanie, zrzut z orbity, dwa miejsca), nowe podwozia, skiny i wyposażenie

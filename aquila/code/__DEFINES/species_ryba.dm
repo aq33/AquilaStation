@@ -11,11 +11,21 @@
 #define FEATURE_AQUARIAN_FISH "aquarian_fish"
 #define FEATURE_AQUARIAN_ARMOR "aquarian_armor"
 #define FEATURE_AQUARIAN_WATER "aquarian_water"
+#define FEATURE_AQUARIAN_BODY "aquarian_body"
+#define FEATURE_AQUARIAN_PATTERN "aquarian_pattern"
+#define FEATURE_AQUARIAN_FISH_COLOR "aquarian_fish_color"
 
 /// Fabryczna czerwień pancerza (z tym kolorem nie rysujemy nakładki farby)
 #define AQUARIAN_DEFAULT_ARMOR "a32a26"
 /// Woda bez zabarwienia
 #define AQUARIAN_DEFAULT_WATER "ffffff"
+/// Ryba bez zabarwienia (szare ryby z GLOB.aquarian_tinted_fish barwi kolor z okna postaci)
+#define AQUARIAN_DEFAULT_FISH_COLOR "ffffff"
+/// Pancerze do wyboru: czerwony (stany "aquarian_...") i goły metal (stany "aquarian_metal_...")
+#define AQUARIAN_BODY_RED "red"
+#define AQUARIAN_BODY_METAL "metal"
+/// Ramiona bez wzoru
+#define AQUARIAN_PATTERN_NONE "none"
 
 /// Pojemność klosza
 #define AQUARIAN_DOME_VOLUME 100
