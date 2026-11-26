@@ -1,8 +1,8 @@
 // Plan maszynowni E14–E15: krystalizator i kondensator gazu
 
-/datum/test_chamber_kit/pr_krystalizator
-	name = "PR: krystalizator i kondensator gazu"
-	pr = "aq33/AquilaStation#0"
+/datum/test_chamber_kit/pr_718
+	name = "PR 718: krystalizator i kondensator gazu"
+	pr = "aq33/AquilaStation#718"
 	description = "Krystalizator ma już gaz na wlocie (zielona rura): tlen, plazmę, wodór i azot. Kondensator ma w rurze frezon i tryt. \
 	1) Krystalizator: kliknij, wybierz Standardowy pellet paliwowy, ustaw wlot gazu na 50 mol/s i włącz. Ten przepis nie ma okna temperatury, więc po kilkunastu sekundach pod maszyną od południa leży pellet z przymiotnikiem jakości w nazwie. Okno pokazuje postęp, temperaturę i gazy we wnętrzu. \
 	2) Kryształ amoniaku (wodór + azot, 200–240 K): podłącz zamrażarkę RPD do czerwonej rury, ustaw ją na około 220 K i wybierz recepturę. Poza oknem pasek postępu się cofa. Kryształy zmiel w młynku: dają amoniak. \
@@ -21,7 +21,7 @@
 		/obj/item/screwdriver = 1,
 	)
 
-/datum/test_chamber_kit/pr_krystalizator/setup(list/spawned, list/turfs, turf/center, mob/user)
+/datum/test_chamber_kit/pr_718/setup(list/spawned, list/turfs, turf/center, mob/user)
 	. = ..()
 	for(var/obj/machinery/atmospherics/components/binary/crystallizer/crystallizer in spawned)
 		var/datum/gas_mixture/inlet = crystallizer.airs[2]

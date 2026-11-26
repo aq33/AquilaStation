@@ -3064,7 +3064,7 @@
 // Komora testowa
 #include "code\modules\test_chamber\kits\pr_672_mechy.dm"
 #include "code\modules\test_chamber\kits\pr_711_gazy.dm"
-#include "code\modules\test_chamber\kits\pr_krystalizator.dm"
+#include "code\modules\test_chamber\kits\pr_718_krystalizator.dm"
 // MECHY: koniec
 // CYBORGI: nowe moduły (Naukowy, Chemiczny, Chirurgiczny, Ratowniczy, Budowlany, Eksploracyjny, Detektyw, Brobocop,
 // Hydroponiczny, Biurowy, Magazynowy, Wielozadaniowy, zaawansowane, Zagubiony) i ulepszenia cyborgów
