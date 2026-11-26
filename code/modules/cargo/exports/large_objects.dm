@@ -141,11 +141,9 @@
 	var/obj/machinery/portable_atmospherics/canister/C = O
 	var/worth = 10
 
-	worth += C.air_contents.get_moles(GAS_BZ)*4
-	worth += C.air_contents.get_moles(GAS_STIMULUM)*100
-	worth += C.air_contents.get_moles(GAS_HYPERNOB)*1000
-	worth += C.air_contents.get_moles(GAS_TRITIUM)*5
-	worth += C.air_contents.get_moles(GAS_PLUOXIUM)*5
-	worth += C.air_contents.get_moles(GAS_CONSTRICTED_PLASMA)*2 //NSV13 - Constricted plasma export.
-	worth += C.air_contents.get_moles(GAS_NUCLEIUM)*50 //NSV13
+	// AQ EDIT START - cena za mol z danych gazu (/datum/gas/var/price), stare stawki w aquila/code/modules/atmospherics/gas_prices.dm
+	var/list/gas_prices = GLOB.gas_data.prices
+	for(var/gas in gas_prices)
+		worth += C.air_contents.get_moles(gas) * gas_prices[gas]
+	// AQ EDIT END
 	return worth

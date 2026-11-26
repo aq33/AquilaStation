@@ -1761,6 +1761,14 @@
   - rscadd: Zmiennokształtny po wchłonięciu ofiary czyta jej wspomnienia.
   - imageadd: Ikony dłuta, zestawu do tatuażu i rycin w ścianach z tgstation.
 '2026-11-26':
+  BeeStation (Z-Mimic), DaedalusDock:
+  - rscadd: Piętro niżej widziane przez otwartą przestrzeń jest rozmyte i przyciemnione,
+      więc odróżnia się od twojego piętra. Rozmycie można wyłączyć w preferencjach
+      („Rozmycie niższych pięter”).
+  - bugfix: Światło i cienie piętra niżej są widoczne poprawnie także przez otwartą
+      przestrzeń i szklane podłogi.
+  - code_imp: Otwarta przestrzeń rysuje piętro niżej przez Z-Mimic z BeeStation zamiast
+      vis_contents.
   Joker66613:
   - rscadd: Na planetach (wulkanicznej, lodowej, księżycu, skalistej, wysypisku) i
       w polach asteroid pojawiają się złoża gazu z mieszanką zależną od planety. Georadarowy
@@ -1783,6 +1791,65 @@
   - rscadd: Pompa wysokiego ciśnienia (13 500 kPa), pompa objętościowa i filtr wysokiego
       przepływu (600 L/s) w RPD.
   - imageadd: Grafiki zacisku rury i iskrownika z Baystation12.
+  - rscadd: 'Awaryjny wyrzut rdzenia reaktora dla napędu burzowego, RBMK i supermaterii:
+      przycisk w konsoli reaktora, dostęp głównego inżyniera albo kapitana, 30 s odliczania
+      z możliwością przerwania i ogłoszeniem na okręcie.'
+  - rscadd: Wyrzucony rdzeń dryfuje za rufą na overmapie i wybucha po 30–60 s, raniąc
+      okręty w pobliżu.
+  - rscadd: W cargo jest skrzynia z prętami paliwowymi RBMK (5 prętów, 50 000), do
+      ponownego uruchomienia reaktora po wyrzucie.
+  - bugfix: Włożenie nowego rdzenia do napędu burzowego nie usuwa już licznika stabilności
+      reaktora.
+  - rscadd: 'Wodór: nowy gaz palny, spala się do pary wodnej. Jest paliwem dysz okrętu.'
+  - rscadd: 'Elektrolizer (płytka w węźle Inżynieria przemysłowa): rozkłada parę wodną
+      na wodór i tlen, działa na ogniwie albo przykręcony do sieci.'
+  - rscadd: 'Frezon, jedyne chłodziwo w grze: powstaje z tlenu i trytu poniżej 73
+      K przy azocie, a z azotem silnie chłodzi i zamienia się w podtlenek azotu.'
+  - rscadd: 'Metan: paliwo dysz okrętu i komory spalania, wydobywa się z baniek gazu
+      bagiennego na błotach planet dżungli.'
+  - rscadd: Metanowy olbrzym, nowy gazowy olbrzym z platformami wydobywczymi.
+  - bugfix: 'Gaz pali się tak samo na serwerze jak na Windows: wersja spalania w DM
+      liczy teraz ciepło z produktów tak jak auxmos.'
+  - bugfix: Plazma i tryt nie spalają się już podwójnie w lokalnych grach na Windows;
+      na serwerze pożary plazmy zostają bez zmian.
+  - bugfix: Każdy gaz palny zapala się od iskry, nie tylko plazma i tryt.
+  - bugfix: Alarm powietrza reaguje na każdy gaz, a nie tylko na te z listy wpisanej
+      na sztywno.
+  - code_imp: Ceny eksportu gazów są brane z danych gazu.
+  - bugfix: Działa Gaussa i inne bronie na mapie kosmosu strzelają w miejsce kursora,
+      także gdy kliknięcie trafi w gwiazdę, anomalię albo efekt wybuchu (wcześniej
+      pocisk leciał w róg ich sprite'a).
+  - bugfix: Sonda astrologiczna skanuje gwiazdę lub anomalię po wlocie w dowolne miejsce
+      jej obrazka, nie tylko w lewy dolny róg.
+  - bugfix: Sok z bluespace'owej limony przerzuca tylko przy oblaniu, nie po wypiciu,
+      zjedzeniu ani wstrzyknięciu.
+  - bugfix: Kapsuła ksenoflory z otwartą kopułą nie wypuszcza gazu z rury do pomieszczenia,
+      nie działa bez prądu i nie da się jej postawić na zablokowanych polach.
+  - bugfix: Rośliny w kapsule ksenoflory nie chowają się pod jej ziemią i nie stoją
+      poza nią po posadzeniu kliknięciem.
+  - bugfix: Jagoda śmierci, pomidor zabójca i melon miodowy nie cofają się do innej
+      odmiany od zwykłych odczynników, a uschnięta roślina nie mutuje.
+  - bugfix: Pirytowa brzoskwinia i wulumunusza potrzebują odczynników, które ich nie
+      trują i nie reagują z wodą (siarka, jod).
+  - bugfix: Thaa'dra i Łza Messy dają się przerabiać w sekwencerze i w piecu.
+  - bugfix: Dziwne nasiona nie dają nasion obcych ani dzikich roślin planet, a Skarbiec
+      DNA liczy tylko rośliny do zdobycia na stacji.
+  - bugfix: 'Wersja angielska: przywrócone tłumaczenia cofnięte przy scalaniu botaniki
+      (m.in. Hull, Link, Slots, Clown''s Tears Soup).'
+  - rscdel: 'Botanika: bez maliny, jeżyny, grejpfruta, białych winogron, pieprzu czarnego
+      z Goona, strelicji, raflezji, tomacco i dwutoniu.'
+  - rscdel: 'Botanika: bez akwakultury (skorupiaki i podłoże wodne) i farmy dżdżownic.'
+  - tweak: Krwisty pomidor, złote jabłko, święty arbuz i trująca jagoda wychodzą już
+      tylko z pieca radiacyjnego, nie z odczynnika w tacy.
+  - tweak: Grzyby świetlne na planetach w jednym kolorze zamiast trzech.
+  - rscdel: 'Botanika: bez gruszki, kiwi, migdałów, żelkowej fasolki, cynamonu, imbiru,
+      kurkumy, gorczycy, korzenia Cahna, kronkusa, smoczego buraka i wenny.'
+  - rscdel: 'Botanika: z roślin Adhomai i ras zostają wulumunusza, fjylozyn i łzy
+      Merlina.'
+  - rscadd: Konsola zamówień kuchni sprzedaje surowe krewetki.
+  - rscadd: 'Botanika: odmiany kapsułowe vale, jurl''mah, thaa''dra, suriku, ciekacza,
+      kwiatu plazmowego i gwiaździstego kaktusa rosną tylko w kapsule ksenoflory,
+      ale dają dwa razy większy owoc.'
   sh4dow321:
   - config: 'Tryb Infiltracji jest ciągły: runda nie kończy się w chwili śmierci wszystkich
       infiltratorów.'

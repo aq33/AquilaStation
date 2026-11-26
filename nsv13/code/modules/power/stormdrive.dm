@@ -209,7 +209,7 @@ Control Rods
 						control_rod_installation = FALSE
 						return
 					control_rod_installation = FALSE
-					if ( state == REACTOR_STATE_IDLE ) // Need to recheck the maintenance mode in case someone switched it while pushing in rods
+					if(state != REACTOR_STATE_MAINTENANCE) // Need to recheck the maintenance mode in case someone switched it while pushing in rods // AQ EDIT - też wyrzut rdzenia w trakcie montażu
 						to_chat(user, "<span class='warning'>[src] nie jest w trybie serwisowym! Włącz protokoły bezpieczeństwa serwisowego przed otwarciem pokrywy!</span>")
 						return FALSE
 					to_chat(user, "<span class='notice'>Montujesz [I.name] do sprzęgu sterującego reaktora. </span>")
@@ -234,6 +234,11 @@ Control Rods
 						if(!do_after(user, 50, target = src))
 							control_rod_installation = FALSE
 							return
+						// AQ EDIT START - wyrzut rdzenia w trakcie montażu: pusta komora nie przyjmuje pręta
+						if(state != REACTOR_STATE_RUNNING)
+							control_rod_installation = FALSE
+							return
+						// AQ EDIT END
 						to_chat(user, "<span class='notice'>Montujesz [I.name] do sprzęgu sterującego reaktora. </span>")
 						control_rod_installation = FALSE
 						control_rods += I
@@ -296,9 +301,9 @@ Control Rods
 			to_chat(user, "<span class='notice'>Rdzeń reaktora został zainstalowany.")
 			repairing = FALSE
 			qdel(I)
+			for(var/obj/item/old_rod as anything in control_rods) // AQ EDIT - tylko pręty: pętla po contents usuwała też radio i licznik stabilności (wyrzut rdzenia)
+				qdel(old_rod)
 			control_rods = list()
-			for(var/atom/A in contents)
-				qdel(A)
 			deactivate() //Factory Reset Approved
 
 /obj/machinery/atmospherics/components/binary/stormdrive_reactor/welder_act(mob/user, obj/item/tool)

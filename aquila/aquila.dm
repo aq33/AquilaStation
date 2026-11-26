@@ -51,6 +51,7 @@
 #include "code\__DEFINES\say.dm"
 #include "code\__DEFINES\screentips.dm"
 #include "code\__DEFINES\soft_lighting.dm"
+#include "code\__DEFINES\zmimic.dm"
 #include "code\__DEFINES\sound.dm"
 #include "code\__DEFINES\spells.dm"
 #include "code\__DEFINES\spiders.dm"
@@ -580,6 +581,13 @@
 #include "code\modules\atmospherics\environmental\fire_sounds.dm"
 #include "code\modules\atmospherics\environmental\hotspot_throttle.dm"
 #include "code\modules\atmospherics\gasmixtures\pluoxium_formation.dm"
+#include "code\modules\atmospherics\gasmixtures\generic_fire.dm"
+#include "code\modules\atmospherics\gas_prices.dm"
+#include "code\modules\atmospherics\machinery\airalarm_gas_tlv.dm"
+#include "code\modules\atmospherics\gases\hydrogen.dm"
+#include "code\modules\atmospherics\gases\frezon.dm"
+#include "code\modules\atmospherics\gases\methane.dm"
+#include "code\modules\atmospherics\machinery\electrolyzer\electrolyzer.dm"
 #include "code\modules\atmospherics\machinery\components\unary_devices\cryo.dm"
 #include "code\modules\atmospherics\machinery\pipes\bluespace.dm"
 #include "code\modules\atmospherics\machinery\pipes\he_pipes.dm"
@@ -882,6 +890,13 @@
 #include "code\modules\hallucination\tiers.dm"
 #include "code\modules\lighting\emissive_extra.dm"
 #include "code\modules\lighting\soft_lighting.dm"
+// Z-Mimic: piętro niżej przez otwartą przestrzeń (port BeeStation/BeeStation-Hornet#8813)
+#include "code\controllers\subsystem\zcopy.dm"
+#include "code\modules\multiz\zmimic\mimic_common.dm"
+#include "code\modules\multiz\zmimic\mimic_turf.dm"
+#include "code\modules\multiz\zmimic\mimic_movable.dm"
+#include "code\modules\multiz\zmimic\zmimic_turfs.dm"
+#include "code\modules\multiz\zmimic\zmimic_planes.dm"
 #include "code\modules\lighting\light_shadow_geometry.dm"
 #include "code\modules\lighting\light_shadows.dm"
 #include "code\modules\lost_crew\lost_crew_delivery.dm"
@@ -1117,6 +1132,7 @@
 #include "code\modules\planets\types\gas_giant.dm"
 #include "code\modules\planets\biomes\ice.dm"
 #include "code\modules\planets\biomes\jungle.dm"
+#include "code\modules\planets\swamp_gas.dm"
 #include "code\modules\planets\types\ice.dm"
 #include "code\modules\planets\types\jungle.dm"
 #include "code\modules\planets\types\dwarf.dm"
@@ -1152,6 +1168,7 @@
 #include "code\modules\munitions\armor_penetration.dm"
 #include "code\modules\munitions\flak_mount.dm"
 #include "code\modules\overmap\overmap_scale.dm"
+#include "code\modules\overmap\overmap_click_aim.dm"
 #include "code\modules\overmap\ai_morale.dm"
 #include "code\modules\overmap\ai_targeting.dm"
 #include "code\modules\overmap\ai_flanking.dm"
@@ -1450,6 +1467,7 @@
 #include "code\modules\test_chamber\kits\pr_641_sterowanie_knpc.dm"
 #include "code\modules\test_chamber\kits\pr_naped_okretu.dm"
 #include "code\modules\test_chamber\kits\pr_649_rosliny.dm"
+#include "code\modules\test_chamber\kits\pr_660_rosliny_poprawki.dm"
 #include "code\modules\test_chamber\kits\pr_646_wybor_silnika.dm"
 #include "code\modules\test_chamber\kits\pr_640_glos_si_eventy.dm"
 #include "code\modules\test_chamber\kits\pr_639_planety.dm"
@@ -2062,9 +2080,6 @@
 #include "code\modules\botany\aquila\reagent_mutations.dm"
 #include "code\modules\botany\aquila\ported\tg.dm"
 #include "code\modules\botany\aquila\compost.dm"
-#include "code\modules\botany\aquila\worm_farm.dm"
-#include "code\modules\botany\aquila\ported\akwa.dm"
-#include "code\modules\botany\aquila\ported\akwa_substrate.dm"
 #include "code\modules\botany\aquila\ported\surowce.dm"
 #include "code\modules\botany\aquila\ported\surowce_med5.dm"
 #include "code\modules\botany\aquila\ported\obce.dm"
@@ -2074,12 +2089,14 @@
 #include "code\modules\botany\aquila\ported\ksenoflora_gazowe.dm"
 #include "code\modules\botany\aquila\ported\ksenoflora_rasy.dm"
 #include "code\modules\botany\aquila\ported\ksenoflora_adhomai.dm"
+#include "code\modules\botany\aquila\ported\ksenoflora_warianty.dm"
 #include "code\modules\botany\aquila\ported\inne.dm"
 #include "code\modules\botany\aquila\ported\inne_kwiaty.dm"
 #include "code\modules\botany\aquila\ported\inne_odmiany.dm"
 #include "code\modules\botany\aquila\ported\inne_owoce.dm"
 #include "code\modules\botany\aquila\ported\inne_przyprawy.dm"
 #include "code\modules\botany\aquila\ported\planety_nasiona.dm"
+#include "code\modules\botany\aquila\losowe_nasiona.dm"
 #include "code\modules\botany\aquila\ported\dzika_flora.dm"
 #include "code\game\objects\items\sticker\series_2.dm"
 #include "code\modules\mob\living\simple_animal\friendly_fruit.dm"
@@ -2713,12 +2730,13 @@
 #include "code\modules\unit_tests\aquila_planet_ruin_seeds.dm"
 #include "code\modules\unit_tests\aquila_botany_ported_cieple.dm"
 #include "code\modules\unit_tests\aquila_botany_compost.dm"
-#include "code\modules\unit_tests\aquila_botany_ported_akwa.dm"
 #include "code\modules\unit_tests\aquila_botany_ported_ksenoflora.dm"
 #include "code\modules\unit_tests\aquila_botany_ported_kseno_gazowe.dm"
 #include "code\modules\unit_tests\aquila_botany_ported_kseno_rasy.dm"
+#include "code\modules\unit_tests\aquila_botany_kseno_warianty.dm"
 #include "code\modules\unit_tests\aquila_botany_ported_kseno_adhomai.dm"
 #include "code\modules\unit_tests\aquila_botany_reagent_mutations.dm"
+#include "code\modules\unit_tests\aquila_botany_review_fixes.dm"
 #include "code\modules\unit_tests\aquila_botany_ported_obce.dm"
 #include "code\modules\unit_tests\aquila_botany_rework.dm"
 #include "code\modules\unit_tests\aquila_bee_surgeries.dm"
@@ -2841,6 +2859,7 @@
 #include "code\modules\unit_tests\aquila_ammo_cookoff.dm"
 #include "code\modules\unit_tests\aquila_overmap_hazards.dm"
 #include "code\modules\unit_tests\aquila_damage_control.dm"
+#include "code\modules\unit_tests\aquila_overmap_click_aim.dm"
 #include "code\modules\unit_tests\aquila_ai_morale.dm"
 #include "code\modules\unit_tests\aquila_ai_torpedo_tactics.dm"
 #include "code\modules\unit_tests\aquila_fighter_component_destroy.dm"
@@ -2939,6 +2958,10 @@
 #include "code\modules\unit_tests\aquila_unit_test_shards.dm"
 #include "code\modules\unit_tests\hev_spaceproof.dm"
 #include "code\modules\unit_tests\miasma.dm"
+#include "code\modules\unit_tests\aquila_generic_fire.dm"
+#include "code\modules\unit_tests\aquila_electrolyzer.dm"
+#include "code\modules\unit_tests\aquila_frezon.dm"
+#include "code\modules\unit_tests\aquila_methane.dm"
 #include "code\modules\unit_tests\mod_energy_shield_icons.dm"
 #include "code\modules\unit_tests\monitor_refresh_fps.dm"
 #include "code\modules\unit_tests\ntsl.dm"
@@ -2979,6 +3002,7 @@
 #include "code\modules\unit_tests\aquila_basic_bots.dm"
 #include "code\modules\unit_tests\aquila_path_after_wait.dm"
 #include "code\modules\unit_tests\aquila_memories.dm"
+#include "code\modules\unit_tests\aquila_zmimic.dm"
 #include "code\modules\unit_tests\aquila_zgloszenia_gracza_2511.dm"
 #endif
 
@@ -3103,6 +3127,7 @@
 #endif
 // Komora testowa
 #include "code\modules\test_chamber\kits\pr_672_mechy.dm"
+#include "code\modules\test_chamber\kits\pr_711_gazy.dm"
 // MECHY: koniec
 // CYBORGI: nowe moduły (Naukowy, Chemiczny, Chirurgiczny, Ratowniczy, Budowlany, Eksploracyjny, Detektyw, Brobocop,
 // Hydroponiczny, Biurowy, Magazynowy, Wielozadaniowy, zaawansowane, Zagubiony) i ulepszenia cyborgów
@@ -3194,6 +3219,15 @@
 #include "code\datums\memory\engraving.dm"
 #include "code\datums\memory\tattoo.dm"
 // WSPOMNIENIA: koniec
+
+// WYRZUT RDZENIA REAKTORA (plan maszynowni, E9)
+#include "code\modules\power\core_ejection.dm"
+#ifdef UNIT_TESTS
+#include "code\modules\unit_tests\aquila_core_ejection.dm"
+#endif
+// Komora testowa
+#include "code\modules\test_chamber\kits\pr_708_wyrzut_rdzenia.dm"
+// WYRZUT RDZENIA: koniec
 
 // Profiler byond-tracy: MUSI być ostatnim include'em całego builda (BYOND inicjuje zmienne statyczne od końca,
 // więc ta rusza pierwsza, przed Master i mapą). Opis: tools/tracy/README.md

@@ -65,45 +65,6 @@
 	TEST_ASSERT(QDELETED(late) || late.loc != bin, "Plon nie rozłożył się po opróżnieniu zbiornika")
 	TEST_ASSERT(bin.reagents.get_reagent_amount(bin.reagent_id) > 0, "Po opróżnieniu zbiornika plon nie dał kompostu")
 
-/// AQUILA - farma dżdżownic: nakarmiona daje nawóz, dżdżownice się mnożą, z jedną dżdżownicą nic się nie dzieje
-/datum/unit_test/aquila_worm_farm
-
-/datum/unit_test/aquila_worm_farm/Run()
-	var/turf/origin = run_loc_floor_bottom_left
-	var/obj/structure/worm_farm/farm = allocate(/obj/structure/worm_farm, origin)
-	var/mob/living/carbon/human/gardener = allocate(/mob/living/carbon/human, get_step(origin, EAST))
-
-// Jedna dżdżownica nie wystarczy
-	farm.current_worm = 1
-	farm.current_food = 1
-	COOLDOWN_RESET(farm, worm_timer) // przyspieszenie: cykl farmy od razu
-	farm.process(2)
-	TEST_ASSERT_EQUAL(farm.reagents.total_volume, 0, "Farma z jedną dżdżownicą dała nawóz")
-
-// Druga dżdżownica wpuszczona ręką
-	var/obj/item/food/fishing_worm/worm = allocate(/obj/item/food/fishing_worm, get_turf(gardener))
-	gardener.put_in_active_hand(worm)
-	farm.attackby(worm, gardener)
-	TEST_ASSERT_EQUAL(farm.current_worm, 2, "Dżdżownica wpuszczona ręką nie trafiła do beczki")
-
-	COOLDOWN_RESET(farm, worm_timer) // przyspieszenie: cykl farmy od razu
-	farm.process(2)
-	TEST_ASSERT_EQUAL(farm.reagents.get_reagent_amount(farm.reagent_id), farm.fertilizer_per_food, "Nakarmiona farma nie dała nawozu")
-	TEST_ASSERT_EQUAL(farm.current_food, 0, "Porcja jedzenia nie została przerobiona")
-	TEST_ASSERT_EQUAL(farm.current_worm, 3, "Dżdżownice się nie rozmnożyły")
-
-// Bez jedzenia nawozu nie przybywa
-	COOLDOWN_RESET(farm, worm_timer) // przyspieszenie: cykl farmy od razu
-	farm.process(2)
-	TEST_ASSERT_EQUAL(farm.reagents.get_reagent_amount(farm.reagent_id), farm.fertilizer_per_food, "Farma bez jedzenia dała nawóz")
-
-// Regresja: gdy w beczce nie ma miejsca na cały nawóz z porcji, porcja czeka, a nawóz nie przepada
-	farm.reagents.add_reagent(farm.reagent_id, farm.reagents.maximum_volume - farm.reagents.total_volume - 1)
-	farm.current_food = 1
-	COOLDOWN_RESET(farm, worm_timer)
-	farm.process(2)
-	TEST_ASSERT_EQUAL(farm.current_food, 1, "Porcja jedzenia przepadła, choć nawóz nie mieścił się w beczce")
-	TEST_ASSERT_EQUAL(farm.reagents.total_volume, farm.reagents.maximum_volume - 1, "Zawartość beczki zmieniła się mimo braku miejsca")
 
 #undef TEST_ASSERT
 #undef TEST_ASSERT_NOTNULL

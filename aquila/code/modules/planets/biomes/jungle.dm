@@ -176,8 +176,11 @@
 	)
 	mob_spawn_chance = 0.05
 	mob_spawn_list = list(/mob/living/simple_animal/hostile/spider/giant/tarantula = 1)
-	feature_spawn_chance = 0.1
-	feature_spawn_list = list(/obj/effect/greeble_spawner/jungle = 1)
+	feature_spawn_chance = 0.3
+	feature_spawn_list = list(
+		/obj/effect/greeble_spawner/jungle = 1,
+		/obj/structure/swamp_gas = 2,
+	)
 
 /// Spękane pustkowia
 /datum/planet_biome/jungle/wasteland

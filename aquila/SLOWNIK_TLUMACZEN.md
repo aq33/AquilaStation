@@ -682,6 +682,10 @@ Nazwy gazów są widoczne w skanerach, kanistrach i oknach TGUI. Jeśli nazwa ga
 | Miasma | miazma | ż; istniejące (9×) |
 | Hydrogen | wodór | m; istniejące |
 | Freon | freon | m; nowe |
+| Frezon (SS14) | frezon | m; nowe (plan maszynowni E7), jedyne chłodziwo; freonu w grze nie ma |
+| Methane | metan | m; nowe (plan maszynowni E8) |
+| swamp gas | gaz bagienny | m; nowe (bańka gazu bagiennego na planetach dżungli) |
+| electrolyzer | elektrolizer | m; nowe (plan maszynowni E6) |
 | air | powietrze | n; istniejące |
 | pressure | ciśnienie | n; istniejące (75×) |
 | output pressure | ciśnienie wyjściowe | n; istniejące (TGUI) |

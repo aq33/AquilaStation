@@ -345,6 +345,18 @@
 	bite_consumption = 4
 	crafting_complexity = FOOD_COMPLEXITY_3
 
+/// Surowa krewetka: składnik gotowanych i smażonych krewetek oraz szaszłyka, kupowana w konsoli zamówień kuchni
+/obj/item/food/shellfish_meat/shrimp
+	name = "surowa krewetka"
+	desc = "Smaczna krewetka, gotowa do użycia. Zjedzona w nadmiarze szkodzi."
+	icon = 'aquila/icons/obj/food/paradise/seafood.dmi'
+	icon_state = "shrimp_raw"
+	w_class = WEIGHT_CLASS_TINY
+	bite_consumption = 4
+	food_reagents = list(/datum/reagent/consumable/nutriment/protein = 3)
+	tastes = list("krewetka" = 1)
+	foodtypes = MEAT | RAW
+
 /obj/item/food/boiled_shrimp
 	name = "gotowane krewetki"
 	desc = "Tylko jedna z wielu rzeczy, które można zrobić z krewetek!"
@@ -855,7 +867,7 @@
 		/datum/reagent/consumable/vinegar = 1,
 		/datum/reagent/consumable/capsaicin = 1,
 	)
-	tastes = list("ryba" = 4, "kwas" = 1, "cebula" = 1, "ostrość" = 1)
+	tastes = list("ryba" = 4, "kwas" = 1, "cebula" = 1, "pikantność" = 1)
 	foodtypes = FRUIT | MEAT
 	crafting_complexity = FOOD_COMPLEXITY_3
 
@@ -1572,7 +1584,7 @@
 		/datum/reagent/consumable/blackpepper = 1,
 		/datum/reagent/consumable/capsaicin = 1,
 	)
-	tastes = list("ostrość" = 1, "łosoś" = 1, "mleko" = 1)
+	tastes = list("pikantność" = 1, "łosoś" = 1, "mleko" = 1)
 	foodtypes = BREAKFAST | DAIRY | GRAIN | MEAT
 	bite_consumption = 4
 	trash_type = /obj/item/reagent_containers/glass/bowl

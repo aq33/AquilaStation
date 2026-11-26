@@ -85,7 +85,7 @@
 		/datum/reagent/consumable/capsaicin = 4,
 		/datum/reagent/consumable/nutriment/vitamin = 4,
 		)
-	tastes = list("gotowany ryż" = 4, "ryba" = 2, "ostrość" = 2)
+	tastes = list("gotowany ryż" = 4, "ryba" = 2, "pikantność" = 2)
 	foodtypes = MEAT
 	slice_type = /obj/item/food/sushi_slice/spicyfilet
 
@@ -99,7 +99,7 @@
 		/datum/reagent/consumable/capsaicin = 1,
 		/datum/reagent/consumable/nutriment/vitamin = 1,
 		)
-	tastes = list("gotowany ryż" = 4, "ryba" = 2, "ostrość" = 2)
+	tastes = list("gotowany ryż" = 4, "ryba" = 2, "pikantność" = 2)
 	foodtypes = MEAT
 
 /obj/item/food/sushi_roll/futomaki

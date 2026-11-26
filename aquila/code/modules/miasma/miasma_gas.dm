@@ -7,6 +7,7 @@
 	name = "Miazma"
 	gas_overlay = "miasma"
 	moles_visible = MOLES_GAS_VISIBLE * 60
+	price = MIASMA_EXPORT_PRICE
 
 /// Dry heat sterilization: hot, dry air burns miasma off into oxygen
 /datum/gas_reaction/miaster
@@ -40,8 +41,3 @@
 	filled = 1
 	greyscale_config = /datum/greyscale_config/canister/double_stripe
 	greyscale_colors = "#009823#f7d5d3"
-
-/datum/export/large/gas_canister/get_cost(obj/O)
-	. = ..()
-	var/obj/machinery/portable_atmospherics/canister/C = O
-	. += C.air_contents.get_moles(GAS_MIASMA) * MIASMA_EXPORT_PRICE

@@ -136,7 +136,7 @@ GLOBAL_LIST_INIT(special_slime_colours, list("dark green", "cobalt", "dark grey"
 		/obj/item/plant_seeds/preset/bombanana,
 		/obj/item/plant_seeds/preset/cherry_bomb,
 	)
-	var/chosen = pick(valid_subtypesof(/obj/item/plant_seeds/preset) - blocked_seeds)
+	var/chosen = pick(GLOB.random_plant_seeds - blocked_seeds)
 	new chosen(T)
 	..()
 
