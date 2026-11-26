@@ -47,6 +47,11 @@ type Data = {
   primary_ammo: any;
   rpm: any;
   rwr: any;
+  // AQ EDIT START - przeszukiwanie wraków (aquila/code/modules/overmap/modules/wreck_scavenging.dm)
+  scavenge_hold: boolean;
+  scavenge_progress: number | null;
+  scavenge_target: string | null;
+  // AQ EDIT END
   secondary_ammo: any;
   target_lock: any;
   weapon_safety: any;
@@ -206,6 +211,26 @@ export const FighterControls = (props) => {
             />
           </Section>
         )}
+        {/* AQ EDIT START - przeszukiwanie wraków */}
+        {!!data.scavenge_hold && (
+          <Section title="Wrak:">
+            Cel: {data.scavenge_target || 'brak wraku w pobliżu'}
+            <br />
+            <Button
+              content="Przeszukaj wrak"
+              width="150px"
+              icon="box-open"
+              disabled={
+                !data.scavenge_target || data.scavenge_progress !== null
+              }
+              onClick={() => act('scavenge_wreck')}
+            />
+            {data.scavenge_progress !== null && (
+              <ProgressBar value={data.scavenge_progress} />
+            )}
+          </Section>
+        )}
+        {/* AQ EDIT END */}
         <Section
           title="Sterowanie:"
           buttons={

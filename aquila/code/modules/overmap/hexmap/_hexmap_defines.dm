@@ -109,6 +109,8 @@
 
 /// Najwięcej okrętów eskorty kupionej na stacjach (część F)
 #define HEX_ESCORT_MAX 4
+/// Myśliwce eskorty liczone osobno od okrętów
+#define HEX_ESCORT_FIGHTERS_MAX 6
 
 /// Części na nową atomówkę w fabryce przy kwaterze głównej (tylko nadwyżka, której nie wysłano do stoczni)
 #define HEX_WAR_NUKE_PARTS 24

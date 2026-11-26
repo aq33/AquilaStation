@@ -18,7 +18,7 @@
 	get_launchers()
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "FighterLauncher")
+		ui = new(user, src, "AviationConsole") // AQ EDIT - wspólne okno z konsolą kontroli myśliwców
 		ui.open()
 		ui.set_autoupdate(TRUE)
 
@@ -43,6 +43,8 @@
 /obj/machinery/computer/ship/fighter_launcher/ui_act(action, params, datum/tgui/ui)
 	if(..())
 		return
+	if(aviation_ui_act(action, params, ui.user)) // AQ EDIT - okno „Lotnictwo” obsługuje akcje obu zakładek (aquila/code/modules/overmap/consoles/aviation_console.dm)
+		return TRUE
 	var/obj/structure/fighter_launcher/FL = locate(params["id"])
 	var/mob/living/pilot = locate(params["pilot_id"])
 	switch(action)

@@ -62,3 +62,19 @@
 		return "DRADIS w wersji podstawowej widział cel w stożku teleskopu tak daleko jak stanowisko rozpoznania ([basic] wobec [full] pól)"
 	if(ship.get_contact_suite(enemy) != SENSOR_TELESCOPE)
 		return "Obraz DRADIS nadpisał, czym stanowisko rozpoznania trzyma kontakt ([ship.get_contact_suite(enemy)])"
+
+/// Strzelec widzi to samo co DRADIS: okręt na poziomie okrętu, którego nie ma w zawartości układu (np. prom antagów),
+/// też jest na liście kontaktów kontroli ognia
+/datum/unit_test/aquila_fire_control_contacts_off_system
+
+/datum/unit_test/aquila_fire_control_contacts_off_system/Run()
+	var/obj/structure/overmap/ship = allocate(/obj/structure/overmap/syndicate/ai/gunboat/morale_test)
+	var/obj/structure/overmap/other = allocate(/obj/structure/overmap/syndicate/ai/gunboat/morale_test)
+	other.abstract_move(locate(ship.x + 4, ship.y, ship.z)) // forceMove okrętu działa tylko na overmapie
+	other.faction = ship.faction
+	if(ship.current_system)
+		return Fail("Okręt testowy należy do układu [ship.current_system]")
+	for(var/list/contact as anything in ship.get_fire_control_contacts(50))
+		if(contact["id"] == "\ref[other]")
+			return
+	return Fail("Okręt spoza zawartości układu nie trafił na listę kontaktów strzelca")

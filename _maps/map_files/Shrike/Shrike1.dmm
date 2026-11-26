@@ -11722,7 +11722,7 @@
 /turf/open/floor/plating,
 /area/maintenance/nsv/deck1/starboard)
 "XE" = (
-/obj/machinery/computer/ship/dradis/console{
+/obj/machinery/computer/ship/fighter_controller/console{
 	dir = 1
 	},
 /obj/item/radio/intercom/directional/south,

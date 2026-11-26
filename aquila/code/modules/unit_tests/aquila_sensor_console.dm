@@ -64,7 +64,8 @@
 		return "The tactical console locked a target the operator did not designate"
 	var/list/dradis_data = display.ui_data()
 	var/found = FALSE
-	for(var/list/blip as anything in dradis_data["ships"])
+	// DRADIS myśliwca ma okno radaru jak stanowisko (dradis_window.dm): kontakty zamiast dawnych blipów mapy
+	for(var/list/blip as anything in dradis_data["contacts"] || dradis_data["ships"])
 		if(blip["id"] == "\ref[enemy]")
 			found = blip["designation"] == "secondary"
 	if(!found)
