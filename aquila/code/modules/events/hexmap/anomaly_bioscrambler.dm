@@ -1,9 +1,10 @@
 // AQUILA - Anomalia bioprzetasowania: co 15 s zamienia losową rękę albo nogę istot w pobliżu na kończynę innej rasy (port z BeeStation code/modules/events/anomaly_bioscrambler.dm + code/game/objects/effects/anomalies/anomaly_bioscrambler.dm)
 // Bee's bioscrambler is the tg rename of the delimber anomaly, which we already have (code/game/objects/effects/anomalies.dm,
-// "anomalia odczłonkowująca"), so this one is kept apart: only arms and legs are swapped (never heads or chests),
-// always for an organic limb of another species (no robotic, monkey, alien or devil parts, never the same species),
-// and bio armour protects gradually like in Bee (none at 30, always at 90) instead of only at 100.
-// Bee's own sprite is not in our icons, so the anomaly uses a recoloured shield state; the core is the generic one.
+// "anomalia odczłonkowująca"), so this one is kept apart: only humans are hit and only arms and legs are swapped (never
+// heads or chests), always for an organic limb of another roundstart species (GLOB.roundstart_races, so no golem,
+// shadow, skeleton, zombie or darkspawn parts; no robotic, monkey or alien ones, never the same species). Whatever was
+// stuck in the old limb falls on the floor before it is deleted. Bio armour protects gradually like in Bee (none at 30,
+// always at 90) instead of only at 100. Bee's own sprite is not in our icons, so it is a recoloured shield state.
 
 /datum/round_event_control/aquila_hex_anomaly_bioscrambler
 	name = "Anomalia bioprzetasowania"
@@ -40,8 +41,8 @@
 
 /// Zamienia jedną kończynę każdej istoty w zasięgu na kończynę innej rasy. Zwraca listę trafionych.
 /proc/aquila_hex_bioscrambler_pulse(atom/owner, range = 5)
-	var/list/mob/living/carbon/affected = list()
-	for(var/mob/living/carbon/target in range(range, owner))
+	var/list/mob/living/carbon/human/affected = list()
+	for(var/mob/living/carbon/human/target in range(range, owner))
 		if(target.stat == DEAD)
 			continue
 		// Ochrona rośnie liniowo: brak przy 30 bio, pewna przy 90 (jak w Bee)
@@ -55,31 +56,53 @@
 		log_game("[owner] caused a bioscrambler pulse at [AREACOORD(owner)] affecting [english_list(affected)].")
 	return affected
 
+/// Kończyny ras grywalnych od startu rundy dla strefy ciała (bez robotycznych, zwierzęcych i pseudokończyn)
+/proc/aquila_hex_bioscrambler_limbs(zone)
+	var/static/list/limbs_by_zone
+	if(!limbs_by_zone)
+		limbs_by_zone = list()
+		for(var/species_id in GLOB.roundstart_races)
+			var/datum/species/species_type = GLOB.species_list[species_id]
+			if(!species_type)
+				continue
+			var/list/species_limbs = list(
+				BODY_ZONE_L_ARM = initial(species_type.species_l_arm),
+				BODY_ZONE_R_ARM = initial(species_type.species_r_arm),
+				BODY_ZONE_L_LEG = initial(species_type.species_l_leg),
+				BODY_ZONE_R_LEG = initial(species_type.species_r_leg),
+			)
+			for(var/limb_zone in species_limbs)
+				var/obj/item/bodypart/limb = species_limbs[limb_zone]
+				if(!ispath(limb, /obj/item/bodypart) || initial(limb.animal_origin) || initial(limb.is_pseudopart) || !(initial(limb.bodytype) & BODYTYPE_ORGANIC))
+					continue
+				if(!limbs_by_zone[limb_zone])
+					limbs_by_zone[limb_zone] = list()
+				limbs_by_zone[limb_zone] |= limb
+	return limbs_by_zone[zone]
+
 /// Zamienia losową rękę albo nogę celu na organiczną kończynę innej rasy. Zwraca nową kończynę.
-/proc/aquila_hex_bioscramble_limb(mob/living/carbon/target)
-	var/static/list/zone_bases = list(
-		BODY_ZONE_L_ARM = /obj/item/bodypart/l_arm,
-		BODY_ZONE_R_ARM = /obj/item/bodypart/r_arm,
-		BODY_ZONE_L_LEG = /obj/item/bodypart/l_leg,
-		BODY_ZONE_R_LEG = /obj/item/bodypart/r_leg,
-	)
-	for(var/zone in shuffle(zone_bases.Copy()))
+/proc/aquila_hex_bioscramble_limb(mob/living/carbon/human/target)
+	var/static/list/zones = list(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
+	if(!ishuman(target))
+		return null
+	for(var/zone in shuffle(zones.Copy()))
 		var/obj/item/bodypart/old_part = target.get_bodypart(zone)
 		if(!old_part)
 			continue
 		var/list/options = list()
-		for(var/obj/item/bodypart/candidate as anything in typesof(zone_bases[zone]))
-			if(initial(candidate.animal_origin) || !(initial(candidate.bodytype) & BODYTYPE_ORGANIC) || initial(candidate.is_pseudopart))
-				continue
-			if(initial(candidate.limb_id) == old_part.limb_id)
-				continue
-			options += candidate
+		for(var/obj/item/bodypart/candidate as anything in aquila_hex_bioscrambler_limbs(zone))
+			if(initial(candidate.limb_id) != old_part.limb_id)
+				options += candidate
 		if(!length(options))
 			continue
 		var/new_type = pick(options)
 		var/obj/item/bodypart/new_part = new new_type()
 		var/old_name = old_part.name
 		new_part.replace_limb(target, TRUE, is_creating = TRUE)
+		// Wbite przedmioty i wszystko inne ze starej kończyny spada na podłogę, zanim ją usuniemy
+		var/atom/drop_spot = target.drop_location()
+		for(var/atom/movable/stuck as anything in old_part)
+			stuck.forceMove(drop_spot)
 		qdel(old_part)
 		target.update_body(TRUE)
 		to_chat(target, "<span class='warning'>Coś jest inaczej... [new_part.name] nie wygląda na twoją.</span>")

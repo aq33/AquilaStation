@@ -2,7 +2,8 @@
 // Bee's wave grows one ring of turfs per 0.1 s through a sleeping proc and the turf enumerator, and its detonation reaches
 // 150 tiles with a sound for the whole world. Here a pulse hits every living mob in range at once (no sleep, no per turf
 // effects), range 8 and 15 when it collapses; Bee's fake pierced realities on detonation are left out (no such system).
-// Anti-artifact protection still only blurs the eyes, like in Bee. Jitter is 30 s instead of 100 s.
+// Anti-artifact protection still only blurs the eyes, like in Bee. Jitter is 30 s instead of 100 s and hallucinations
+// stack up to 90 s at most, so standing next to it for the whole lifespan does not leave hours of them.
 
 /datum/round_event_control/aquila_hex_anomaly_insanity_pulse
 	name = "Anomalia: zakłócacz psychiki"
@@ -61,5 +62,5 @@
 		victim.Knockdown(1 SECONDS)
 		victim.emote("scream")
 		victim.set_jitter_if_lower(30 SECONDS)
-		victim.adjust_hallucinations(40 SECONDS)
+		victim.adjust_hallucinations_up_to(40 SECONDS, 90 SECONDS)
 		. += victim

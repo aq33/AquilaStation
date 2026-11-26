@@ -1,12 +1,15 @@
 // AQUILA - Anomalia wymiarowa: kafel po kaflu przerabia podłogi, ściany, krzesła i stoły w promieniu 3 na jeden materiał i barwi okna na jego kolor, potem raz może przeskoczyć gdzie indziej (port z tgstation code/modules/events/anomaly/anomaly_dimensional.dm + code/game/objects/effects/anomalies/anomalies_dimensional*.dm)
-// Simplified on the user's decision: themes are only materials we have (gold, silver, plasma, uranium, bananium, glass,
-// wood, titanium) instead of tg's themed turf sets (meat, pizza, natural, winter, lavaland...), no airlocks, toilets or
-// random spawns. Only plain chairs and tables are replaced (with the material ones), windows are only recoloured.
-// Walls: reinforced walls (the hull), shuttle walls and walls with anything inside the wall turf (signs, posters) are
-// skipped. Wall mounted machines (APCs, lights, intercoms, alarms) sit on the floor next to the wall in our code and
-// ChangeTurf on the wall does not touch them, so they stay where they are. Plating, engine, glass, circuit and holodeck
-// floors are left alone. tg's theme icon overlay is replaced with the material colour on a rift sprite. The material
-// walls and floors are saved by the ship structure persistence like any material turf built by the crew.
+// Simplified on the user's decision: themes are only harmless materials we have (gold, silver, glass, wood, titanium)
+// instead of tg's themed turf sets (meat, pizza, natural, winter, lavaland...), no airlocks, toilets or random spawns.
+// Only plain chairs and tables are replaced (with the material ones), windows are only recoloured.
+// Walls: reinforced walls and NSV hull walls, shuttle walls, walls next to space and walls with anything inside the wall
+// turf (signs, posters) are skipped; shuttle floors too. Wall mounted machines (APCs, lights, intercoms, alarms) sit on
+// the floor next to the wall in our code and ChangeTurf on the wall does not touch them, so they stay where they are.
+// Plating, engine, glass, circuit and holodeck floors are left alone. tg's theme icon overlay is replaced with the
+// material colour on a rift sprite. The material is only a look, like metalgen (TRAIT_MATERIALS_TRANSMUTED): a
+// dismantled wall, a pried tile or a broken chair gives back no gold or silver. The material walls and floors are saved
+// by the ship structure persistence like any material turf built by the crew, together with that trait.
+// When it jumps elsewhere, it avoids the anomaly blacklist areas (AI core, engine, solars, holodeck, shuttles).
 
 #define AQUILA_HEX_DIMENSIONAL_TILE_MATERIAL 500
 #define AQUILA_HEX_DIMENSIONAL_WALL_MATERIAL (MINERAL_MATERIAL_AMOUNT * 2)
@@ -77,7 +80,10 @@
 
 /// Przeskakuje do innego obszaru okrętu i zapowiada to. Zwraca TRUE po przeskoku.
 /obj/effect/anomaly/aquila_hex_dimensional/proc/relocate()
-	var/turf/new_turf = aquila_hex_random_ship_turf()
+	var/static/list/excluded_areas
+	if(!excluded_areas)
+		excluded_areas = typecacheof(ANOMALY_AREA_BLACKLIST) - typecacheof(ANOMALY_AREA_SUBTYPE_WHITELIST)
+	var/turf/new_turf = aquila_hex_random_ship_turf(excluded_areas)
 	if(!new_turf)
 		return FALSE
 	teleports_left--
@@ -98,9 +104,6 @@
 	var/static/list/materials = list(
 		/datum/material/gold,
 		/datum/material/silver,
-		/datum/material/plasma,
-		/datum/material/uranium,
-		/datum/material/bananium,
 		/datum/material/glass,
 		/datum/material/wood,
 		/datum/material/titanium,
@@ -116,16 +119,19 @@
 		/turf/open/floor/circuit,
 		/turf/open/floor/holofloor,
 	))
-	if(!isfloorturf(T) || is_type_in_typecache(T, skipped_floors) || T.holodeck_compatible)
+	if(!isfloorturf(T) || is_type_in_typecache(T, skipped_floors) || T.holodeck_compatible || istype(get_area(T), /area/shuttle))
 		return FALSE
 	return !(istype(T, /turf/open/floor/material) && aquila_hex_dimensional_has_material(T, material_type))
 
-/// Ściana, którą anomalia przerobi na ścianę z materiału (bez kadłuba, promów i ścian z czymś w środku)
+/// Ściana, którą anomalia przerobi na ścianę z materiału (bez kadłuba, ścian przy kosmosie, promów i ścian z czymś w środku)
 /proc/aquila_hex_dimensional_wall_ok(turf/T, material_type)
-	if(!iswallturf(T) || istype(T, /turf/closed/wall/r_wall) || istype(get_area(T), /area/shuttle))
+	if(!iswallturf(T) || istype(T, /turf/closed/wall/r_wall) || istype(T, /turf/closed/wall/ship) || istype(get_area(T), /area/shuttle))
 		return FALSE
 	if(locate(/obj) in T) // znaki, plakaty i inne rzeczy w samej ścianie
 		return FALSE
+	for(var/direction in GLOB.alldirs) // ściana przy kosmosie to burta okrętu
+		if(isspaceturf(get_step(T, direction)))
+			return FALSE
 	return !(istype(T, /turf/closed/wall/material) && aquila_hex_dimensional_has_material(T, material_type))
 
 /// Czy rzecz jest już z tego materiału
@@ -136,6 +142,11 @@
 /proc/aquila_hex_dimensional_material_list(material_type, amount)
 	. = list()
 	.[material_type] = amount
+
+/// Nadaje rzeczy materiał tylko z wyglądu: jak po metalgenie, rozebrana nic z niego nie oddaje
+/proc/aquila_hex_dimensional_apply_material(atom/target, material_type, amount)
+	ADD_TRAIT(target, TRAIT_MATERIALS_TRANSMUTED, METALGEN_TRAIT)
+	target.set_custom_materials(aquila_hex_dimensional_material_list(material_type, amount))
 
 /// Okno, które anomalia zabarwi na kolor materiału
 /proc/aquila_hex_dimensional_window_ok(obj/structure/window/window, datum/material/material)
@@ -172,10 +183,10 @@
 		return FALSE
 	if(aquila_hex_dimensional_floor_ok(T, material_type))
 		T = T.ChangeTurf(/turf/open/floor/material, flags = CHANGETURF_INHERIT_AIR)
-		T.set_custom_materials(aquila_hex_dimensional_material_list(material_type, AQUILA_HEX_DIMENSIONAL_TILE_MATERIAL))
+		aquila_hex_dimensional_apply_material(T, material_type, AQUILA_HEX_DIMENSIONAL_TILE_MATERIAL)
 	else if(aquila_hex_dimensional_wall_ok(T, material_type))
 		T = T.ChangeTurf(/turf/closed/wall/material)
-		T.set_custom_materials(aquila_hex_dimensional_material_list(material_type, AQUILA_HEX_DIMENSIONAL_WALL_MATERIAL))
+		aquila_hex_dimensional_apply_material(T, material_type, AQUILA_HEX_DIMENSIONAL_WALL_MATERIAL)
 	for(var/obj/thing in T)
 		if(istype(thing, /obj/structure/window))
 			if(aquila_hex_dimensional_window_ok(thing, material))
@@ -186,7 +197,7 @@
 			continue
 		var/obj/new_furniture = new furniture_type(T)
 		new_furniture.setDir(thing.dir)
-		new_furniture.set_custom_materials(aquila_hex_dimensional_material_list(material_type, AQUILA_HEX_DIMENSIONAL_FURNITURE_MATERIAL))
+		aquila_hex_dimensional_apply_material(new_furniture, material_type, AQUILA_HEX_DIMENSIONAL_FURNITURE_MATERIAL)
 		qdel(thing)
 	return TRUE
 

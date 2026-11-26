@@ -1,8 +1,11 @@
 // AQUILA - wspólna baza nowych anomalii z pola anomalii mapy hex (etap E3): bezpieczne wybieranie miejsca i ogłoszenia
 // Base for the E3 anomaly events. It reuses /datum/round_event/anomaly (area choice, neutralising with a signaller and
-// the analyser, cores) through parent_type, but never runtimes: with no station area or no free floor the event is killed
-// and logged instead of the CRASH() in the core setup. Announcements live in one proc, so the cult portal can borrow
-// the announcement of another anomaly (TauCeti does the same with its announcement datums).
+// the analyser) through parent_type, but never runtimes: with no station area or no free floor the event is not announced
+// and is killed and logged instead of the CRASH() in the core setup. The floor is picked already in setup(), so the
+// announcement only goes out when the anomaly has somewhere to appear. Announcements live in one proc, so the cult portal
+// can borrow the announcement of another anomaly (TauCeti does the same with its announcement datums).
+// The E3 anomalies leave no core: the signaller inside them is still needed to neutralise them, but it is deleted on
+// neutralisation instead of dropping (anomaly cores are research loot of the ordinary anomalies only).
 
 /datum/round_event/aquila_hex_anomaly
 	parent_type = /datum/round_event/anomaly
@@ -13,11 +16,15 @@
 	var/announce_kind
 	/// Obiekt stworzony przez event (zwykle anomalia)
 	var/datum/weakref/anomaly_ref
+	/// Kafel wybrany w setup(), na którym pojawi się anomalia
+	var/turf/spawn_turf
 
 /datum/round_event/aquila_hex_anomaly/setup()
 	impact_area = findEventArea()
-	if(!impact_area)
-		log_game("[type]: no valid area for the anomaly, the event will do nothing.")
+	spawn_turf = aquila_hex_anomaly_turf(impact_area)
+	if(!spawn_turf)
+		log_game("[type]: no free floor in [impact_area || "no valid area"] for the anomaly, the event will do nothing.")
+		impact_area = null // bez ogłoszenia
 
 /datum/round_event/aquila_hex_anomaly/announce(fake)
 	if(!impact_area || !announce_kind)
@@ -25,7 +32,9 @@
 	priority_announce(aquila_hex_anomaly_announcement(announce_kind, impact_area.name), "Alarm: Anomalia", ANNOUNCER_SPANOMALIES)
 
 /datum/round_event/aquila_hex_anomaly/start()
-	var/turf/spawn_turf = aquila_hex_anomaly_turf(impact_area)
+	// Kafel z setup() mógł się w międzyczasie zmienić (albo obszar podmieniono), wtedy szukamy nowego
+	if(!aquila_hex_anomaly_turf_ok(spawn_turf) || get_area(spawn_turf) != impact_area)
+		spawn_turf = aquila_hex_anomaly_turf(impact_area)
 	if(!spawn_turf)
 		log_game("[type]: no free floor in [impact_area || "no area"], cancelling the event.")
 		return kill()
@@ -43,17 +52,64 @@
 		return null
 	return new anomaly_path(spawn_turf)
 
-/// Wolna podłoga (bez kosmosu i bez gęstych obiektów) w obszarze, null gdy brak
+/// Wolna podłoga (bez kosmosu, otwartej przestrzeni i gęstych obiektów) w obszarze, null gdy brak
 /proc/aquila_hex_anomaly_turf(area/target_area)
 	if(!target_area)
 		return null
 	var/list/turfs = list()
-	for(var/turf/open/T in get_area_turfs(target_area))
-		if(isspaceturf(T) || is_blocked_turf(T, TRUE))
-			continue
-		turfs += T
+	for(var/turf/T as anything in get_area_turfs(target_area))
+		if(aquila_hex_anomaly_turf_ok(T))
+			turfs += T
 	if(length(turfs))
 		return pick(turfs)
+
+/// Czy na kaflu może pojawić się anomalia: tylko podłoga, nic gęstego
+/proc/aquila_hex_anomaly_turf_ok(turf/T)
+	return isfloorturf(T) && !QDELETED(T) && !is_blocked_turf(T, TRUE)
+
+/// Usuwa rdzeń anomalii E3 przed neutralizacją, żeby nic po niej nie zostało
+/proc/aquila_hex_anomaly_remove_core(obj/effect/anomaly/anomaly)
+	QDEL_NULL(anomaly.aSignal)
+
+/obj/effect/anomaly/aquila_hex_bioscrambler/anomalyNeutralize()
+	aquila_hex_anomaly_remove_core(src)
+	return ..()
+
+/obj/effect/anomaly/aquila_hex_radioactive/anomalyNeutralize()
+	aquila_hex_anomaly_remove_core(src)
+	return ..()
+
+/obj/effect/anomaly/aquila_hex_storm/anomalyNeutralize()
+	aquila_hex_anomaly_remove_core(src)
+	return ..()
+
+/obj/effect/anomaly/aquila_hex_frost/anomalyNeutralize()
+	aquila_hex_anomaly_remove_core(src)
+	return ..()
+
+/obj/effect/anomaly/aquila_hex_gas/anomalyNeutralize()
+	aquila_hex_anomaly_remove_core(src)
+	return ..()
+
+/obj/effect/anomaly/aquila_hex_lifebringer/anomalyNeutralize()
+	aquila_hex_anomaly_remove_core(src)
+	return ..()
+
+/obj/effect/anomaly/aquila_hex_insanity_pulse/anomalyNeutralize()
+	aquila_hex_anomaly_remove_core(src)
+	return ..()
+
+/obj/effect/anomaly/aquila_hex_blood/anomalyNeutralize()
+	aquila_hex_anomaly_remove_core(src)
+	return ..()
+
+/obj/effect/anomaly/aquila_hex_dimensional/anomalyNeutralize()
+	aquila_hex_anomaly_remove_core(src)
+	return ..()
+
+/obj/effect/anomaly/aquila_hex_cult_portal/anomalyNeutralize()
+	aquila_hex_anomaly_remove_core(src)
+	return ..()
 
 /// Rodzaje ogłoszeń nowych anomalii (portal kultu udaje jedną z nich)
 /proc/aquila_hex_anomaly_kinds()

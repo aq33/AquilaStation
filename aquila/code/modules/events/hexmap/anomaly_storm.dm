@@ -43,8 +43,8 @@
 		return
 	var/mob/living/carbon/target = arrived
 	active = FALSE
-	target.electrocute_act(23, src, 1)
-	target.adjustFireLoss(10)
+	if(target.electrocute_act(23, src, 1) > 0) // izolowane rękawice i odporność chronią także przed oparzeniem
+		target.adjustFireLoss(10)
 
 /obj/effect/anomaly/aquila_hex_storm/anomalyEffect(delta_time)
 	..()
