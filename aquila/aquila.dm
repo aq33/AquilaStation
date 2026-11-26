@@ -2059,8 +2059,9 @@
 #include "code\modules\botany\aquila\ported\inne_przyprawy.dm"
 #include "code\modules\botany\aquila\ported\planety_nasiona.dm"
 #include "code\modules\botany\aquila\ported\dzika_flora.dm"
-// MASZYNOWNIA: regenerator tlenu i premia CO2 dla roślin
+// MASZYNOWNIA: regenerator tlenu, biogazownia i premia CO2 dla roślin (biogazownia po cieczach, bo nadpisuje spłukiwanie i odpływy)
 #include "code\modules\atmospherics\machinery\oxygen_regenerator.dm"
+#include "code\modules\atmospherics\machinery\biogas_plant.dm"
 #include "code\modules\botany\aquila\co2_growth.dm"
 #include "code\game\objects\items\sticker\series_2.dm"
 #include "code\modules\mob\living\simple_animal\friendly_fruit.dm"
@@ -2898,6 +2899,7 @@
 #include "code\modules\unit_tests\aquila_frezon.dm"
 #include "code\modules\unit_tests\aquila_methane.dm"
 #include "code\modules\unit_tests\aquila_oxygen_regenerator.dm"
+#include "code\modules\unit_tests\aquila_biogas_plant.dm"
 #include "code\modules\unit_tests\mod_energy_shield_icons.dm"
 #include "code\modules\unit_tests\monitor_refresh_fps.dm"
 #include "code\modules\unit_tests\ntsl.dm"
