@@ -3174,7 +3174,7 @@
 #include "code\modules\unit_tests\aquila_hfr_engine.dm"
 #endif
 // Komora testowa
-#include "code\modules\test_chamber\kits\pr_hfr_reaktor_fuzyjny.dm"
+#include "code\modules\test_chamber\kits\pr_719_reaktor_fuzyjny.dm"
 // HFR: koniec
 
 // Profiler byond-tracy: MUSI być ostatnim include'em całego builda (BYOND inicjuje zmienne statyczne od końca,

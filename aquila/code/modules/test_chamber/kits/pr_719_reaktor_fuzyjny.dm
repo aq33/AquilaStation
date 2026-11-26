@@ -1,8 +1,8 @@
-// aq33/AquilaStation#HFR_PR - reaktor fuzyjny HFR i wybór silnika HFR (plan maszynowni, etapy E17–E18)
+// aq33/AquilaStation#719 - reaktor fuzyjny HFR i wybór silnika HFR (plan maszynowni, etapy E17–E18)
 
-/datum/test_chamber_kit/pr_hfr
-	name = "PR HFR_PR: reaktor fuzyjny HFR"
-	pr = "aq33/AquilaStation#HFR_PR"
+/datum/test_chamber_kit/pr_719
+	name = "PR 719: reaktor fuzyjny HFR"
+	pr = "aq33/AquilaStation#719"
 	description = "Dziewięć skrzynek HFR, kanistry z paliwem i chłodziwem, multitool i karta głównego inżyniera. \
 	1) Ułóż skrzynki w kwadrat 3×3 (rdzeń w środku, narożniki w rogach, wloty, wylot i panel po bokach) i użyj multitoola na skrzynce rdzenia: powstaje reaktor. \
 	2) Multitool na panelu sterowania: części się łączą, wypada poradnik, okno otwiera się po kliknięciu panelu. Teksty po polsku, na liście paliw tylko trzy: plazma + tlen, tryt + tlen, wodór + tryt. \
