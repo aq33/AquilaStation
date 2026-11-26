@@ -686,6 +686,10 @@ Nazwy gazów są widoczne w skanerach, kanistrach i oknach TGUI. Jeśli nazwa ga
 | Methane | metan | m; nowe (plan maszynowni E8) |
 | swamp gas | gaz bagienny | m; nowe (bańka gazu bagiennego na planetach dżungli) |
 | electrolyzer | elektrolizer | m; nowe (plan maszynowni E6) |
+| oxygen regenerator | regenerator tlenu | m; nowe (plan maszynowni E11) |
+| biogas plant | biogazownia | ż; nowe (plan maszynowni E20) |
+| biogas | biogaz | m; nowe |
+| sewage | ścieki | mn; nowe (kanalizacja statku, z sedesów i odpływów) |
 | air | powietrze | n; istniejące |
 | pressure | ciśnienie | n; istniejące (75×) |
 | output pressure | ciśnienie wyjściowe | n; istniejące (TGUI) |
