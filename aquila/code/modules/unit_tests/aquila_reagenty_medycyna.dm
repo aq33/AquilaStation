@@ -144,6 +144,28 @@
 	TEST_ASSERT(abs(immune_after - immune_before) < 0.05, "Equalizon changed the total damage of a toxin-immune body ([immune_before] -> [immune_after])")
 	TEST_ASSERT(immune.getBruteLoss() < 40, "Equalizon moved no damage on a toxin-immune body")
 
+	// Equalizon keeps the total on a toxin lover (toxins heal it) and does not count damage it cannot take off a prosthesis
+	var/mob/living/carbon/human/slime = allocate(/mob/living/carbon/human)
+	ADD_TRAIT(slime, TRAIT_TOXINLOVER, "aquila_reagenty_test")
+	slime.adjustBruteLoss(8)
+	slime.adjustOxyLoss(8)
+	var/slime_before = slime.getBruteLoss() + slime.getFireLoss() + slime.getToxLoss() + slime.getOxyLoss()
+	slime.reagents.add_reagent(/datum/reagent/medicine/equalizone, 10)
+	metabolize_cycles(slime, 1)
+	var/slime_after = slime.getBruteLoss() + slime.getFireLoss() + slime.getToxLoss() + slime.getOxyLoss()
+	TEST_ASSERT(abs(slime_after - slime_before) < 0.05, "Equalizon changed the total damage of a toxin lover ([slime_before] -> [slime_after])")
+	var/mob/living/carbon/human/cyborg_arm = allocate(/mob/living/carbon/human)
+	var/obj/item/bodypart/old_arm = cyborg_arm.get_bodypart(BODY_ZONE_R_ARM)
+	var/obj/item/bodypart/r_arm/robot/prosthesis = new()
+	prosthesis.replace_limb(cyborg_arm, TRUE)
+	qdel(old_arm)
+	prosthesis.receive_damage(6)
+	var/cyborg_before = cyborg_arm.getBruteLoss() + cyborg_arm.getFireLoss() + cyborg_arm.getToxLoss() + cyborg_arm.getOxyLoss()
+	cyborg_arm.reagents.add_reagent(/datum/reagent/medicine/equalizone, 10)
+	metabolize_cycles(cyborg_arm, 1)
+	var/cyborg_after = cyborg_arm.getBruteLoss() + cyborg_arm.getFireLoss() + cyborg_arm.getToxLoss() + cyborg_arm.getOxyLoss()
+	TEST_ASSERT(abs(cyborg_after - cyborg_before) < 0.05, "Equalizon added damage because of a damaged prosthesis ([cyborg_before] -> [cyborg_after])")
+
 	// Szybkie krzepnięcie: a dragged patient loses no blood while it works, and does lose it without it
 	var/mob/living/carbon/human/dragged = allocate(/mob/living/carbon/human, run_loc_floor_bottom_left)
 	dragged.add_bleeding(BLEED_DEEP_WOUND)
@@ -172,6 +194,7 @@
 			qdel(trace)
 	TEST_ASSERT(clotted_loss == 0, "A dragged patient lost [clotted_loss] blood under Szybkie krzepnięcie")
 	TEST_ASSERT(bare_loss > 0, "A dragged bleeding patient lost no blood even without Szybkie krzepnięcie, so the test proves nothing")
+
 
 
 

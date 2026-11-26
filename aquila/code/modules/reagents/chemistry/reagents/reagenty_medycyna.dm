@@ -412,9 +412,18 @@
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
 
 /datum/reagent/medicine/equalizone/on_mob_life(mob/living/carbon/M)
-	// Odporny na toksyny nie może dostać zatrucia, więc jego toksyny nie biorą udziału w wyrównaniu (suma zostaje ta sama)
-	var/use_tox = !HAS_TRAIT(M, TRAIT_TOXIMMUNE)
-	var/list/losses = list(M.getBruteLoss(), M.getFireLoss(), use_tox ? M.getToxLoss() : 0, M.getOxyLoss())
+	// Odporny na toksyny nie może dostać zatrucia, a lubiący toksyny leczy się nimi (adjustToxLoss odwraca znak),
+	// więc u obu toksyny nie biorą udziału w wyrównaniu (suma zostaje ta sama)
+	var/use_tox = !HAS_TRAIT(M, TRAIT_TOXIMMUNE) && !HAS_TRAIT(M, TRAIT_TOXINLOVER)
+	// Leczenie adjustBruteLoss/adjustFireLoss obejmuje tylko części organiczne, więc tylko ich obrażenia się liczy:
+	// obrażenia protezy nie dałyby się zabrać, a reszta i tak by przybyła
+	var/organic_brute = 0
+	var/organic_burn = 0
+	for(var/obj/item/bodypart/limb as anything in M.bodyparts)
+		if(limb.bodytype & BODYTYPE_ORGANIC)
+			organic_brute += limb.brute_dam
+			organic_burn += limb.burn_dam
+	var/list/losses = list(organic_brute, organic_burn, use_tox ? M.getToxLoss() : 0, M.getOxyLoss())
 	var/kinds = use_tox ? 4 : 3
 	var/average = (losses[1] + losses[2] + losses[3] + losses[4]) / kinds
 	// Po trochu (najwyżej 2 z każdego typu ponad średnią), a zabrane rozdziela na typy poniżej średniej
