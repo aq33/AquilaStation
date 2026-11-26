@@ -22,6 +22,7 @@
 	TEST_ASSERT(output.get_moles(GAS_O2) == 1, "The regenerator made [output.get_moles(GAS_O2)] moles of oxygen instead of 1")
 	TEST_ASSERT(output.get_moles(GAS_CO2) == 0, "CO2 leaked into the output")
 	TEST_ASSERT(regenerator.stored_carbon == 0.5, "The regenerator stored [regenerator.stored_carbon] moles of carbon instead of 0.5")
+	TEST_ASSERT(regenerator.use_power == ACTIVE_POWER_USE && regenerator.active_power_usage > regenerator.idle_power_usage, "A working regenerator draws no extra power")
 
 	// Enough carbon drops a piece of coal
 	regenerator.stored_carbon = 19.9
@@ -36,6 +37,18 @@
 	var/co2_before = input.get_moles(GAS_CO2)
 	TEST_ASSERT(!regenerator.regenerate(input, output), "The regenerator kept pushing into an overpressurized pipe")
 	TEST_ASSERT(input.get_moles(GAS_CO2) == co2_before, "CO2 was used up while the output pipe was full")
+	TEST_ASSERT(regenerator.use_power == IDLE_POWER_USE, "A waiting regenerator still draws working power")
+
+	// With the panel open a wrench turns it, and its pipe connections follow
+	var/obj/item/wrench/wrench = allocate(/obj/item/wrench)
+	regenerator.panel_open = TRUE
+	regenerator.change_pipe_connection(TRUE)
+	var/old_dir = regenerator.dir
+	TEST_ASSERT(regenerator.default_change_direction_wrench(null, wrench), "A wrench did not turn the open regenerator")
+	TEST_ASSERT(regenerator.dir != old_dir, "The regenerator kept facing the same way")
+	TEST_ASSERT(regenerator.initialize_directions == (regenerator.dir | turn(regenerator.dir, 180)), "The pipe connections did not turn with the regenerator")
+	regenerator.panel_open = FALSE
+	regenerator.change_pipe_connection(FALSE)
 
 	// Switched off it does nothing in its own pipes
 	var/datum/gas_mixture/own_input = regenerator.airs[1]
@@ -60,6 +73,7 @@
 	if(!plant)
 		return Fail("Could not plant a tomato")
 	var/datum/plant_feature/fruit/fruit = locate() in plant.plant_features
+	var/datum/reagents/water_source = tray.reagents
 
 	var/datum/gas_mixture/original_air = location.air.copy()
 	location.air.set_moles(GAS_CO2, 0)
@@ -69,7 +83,20 @@
 	var/greenhouse = fruit.get_co2_growth_multiplier()
 	location.air.set_moles(GAS_CO2, 40) // about 40 kPa, too much
 	var/too_much = fruit.get_co2_growth_multiplier()
+	// The bonus reaches the real growth cycle: the fruit drinks one and a half times as much water in the same time
+	location.air.set_moles(GAS_CO2, 0)
+	var/water_before = water_source.get_reagent_amount(/datum/reagent/water)
+	fruit.process(2)
+	var/normal_drink = water_before - water_source.get_reagent_amount(/datum/reagent/water)
+	location.air.set_moles(GAS_CO2, 5)
+	water_before = water_source.get_reagent_amount(/datum/reagent/water)
+	fruit.process(2)
+	var/greenhouse_drink = water_before - water_source.get_reagent_amount(/datum/reagent/water)
 	location.air.copy_from(original_air)
+	if(normal_drink <= 0)
+		return Fail("The tomato drank no water in its growth cycle, the test cannot see the bonus")
+	if(abs(greenhouse_drink - normal_drink * 1.5) > 0.01)
+		return Fail("In 5 kPa of CO2 the growth cycle used [greenhouse_drink] units of water instead of 1.5 times [normal_drink]")
 	if(greenhouse != 1.5)
 		return Fail("A tomato in 5 kPa of CO2 grows [greenhouse] times faster instead of 1.5")
 	if(too_much != 1)

@@ -1,7 +1,8 @@
 // AQUILA - Premia wzrostu od dwutlenku węgla (plan maszynowni E11).
 // Owoce rosną półtora raza szybciej, gdy w powietrzu rośliny jest 1–10 kPa CO2 (szklarnia albo kapsuła ksenoflory).
-// Przy szybszym wzroście roślina tak samo szybciej zużywa wodę i odżywki. Na statku CO2 w powietrzu prawie nie ma,
-// więc zwykłe uprawy się nie zmieniają; za dużo CO2 (powyżej 10 kPa) premii nie daje.
+// Przy szybszym wzroście roślina tak samo szybciej zużywa wodę i odżywki, a mutacje od odczynników w tacy
+// (reagent_mutations.dm) losują się tak samo częściej: na jeden owoc wypada ich tyle samo co bez premii.
+// Na statku CO2 w powietrzu prawie nie ma, więc zwykłe uprawy się nie zmieniają; za dużo CO2 (powyżej 10 kPa) premii nie daje.
 
 /// Od tylu kPa CO2 rośliny rosną szybciej
 #define PLANT_CO2_MIN_KPA 1

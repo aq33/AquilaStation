@@ -16,6 +16,8 @@
 #define BIOGAS_CO2_PER_UNIT 0.2
 /// Temperatura biogazu (fermentacja mezofilna)
 #define BIOGAS_TEMPERATURE (T0C + 35)
+/// Ile watów kosztuje przerabianie jednostki wsadu na cykl
+#define BIOGAS_POWER_PER_UNIT 200
 /// Powyżej tego ciśnienia w rurze biogazownia czeka
 #define BIOGAS_MAX_OUTPUT_PRESSURE (ONE_ATMOSPHERE * 45)
 /// Najwięcej jednostek ścieków, które zbiera kanalizacja statku
@@ -62,13 +64,13 @@ GLOBAL_LIST_INIT(biogas_organic_reagents, typecacheof(list(
 	max_integrity = 300
 	circuit = /obj/item/circuitboard/machine/biogas_plant
 	idle_power_usage = 100
-	active_power_usage = 500
+	active_power_usage = 100
 	/// Ile jednostek wsadu przerabia na cykl (z pojemników materii)
 	var/units_per_tick = BIOGAS_UNITS_PER_RATING * 2
 
 /obj/machinery/atmospherics/components/unary/biogas_plant/Initialize(mapload)
 	. = ..()
-	create_reagents(BIOGAS_TANK_VOLUME, TRANSPARENT | REFILLABLE)
+	create_reagents(BIOGAS_TANK_VOLUME, TRANSPARENT | REFILLABLE | DRAINABLE)
 	AddComponent(/datum/component/plumbing/simple_demand)
 	update_icon()
 
@@ -85,6 +87,7 @@ GLOBAL_LIST_INIT(biogas_organic_reagents, typecacheof(list(
 	. = ..()
 	. += span_notice("Jest [on ? "włączona" : "wyłączona"]. Kliknij, żeby ją [on ? "wyłączyć" : "włączyć"].")
 	. += span_notice("Wlej do niej organiczne odczynniki albo wrzuć jedzenie. Przerabia [units_per_tick] j. wsadu na cykl, biogaz wychodzi rurą.")
+	. += span_notice("Co nie fermentuje, spływa w czasie pracy do kanalizacji. Zbiornik można też zlać pustą zlewką. Przy otwartym panelu biogazownię można obrócić <b>kluczem</b>.")
 	. += span_notice("W kanalizacji statku czeka [round(GLOB.ship_sewage)] j. ścieków.")
 
 /obj/machinery/atmospherics/components/unary/biogas_plant/update_icon_nopipes()
@@ -104,14 +107,18 @@ GLOBAL_LIST_INIT(biogas_organic_reagents, typecacheof(list(
 		to_chat(user, span_warning("Najpierw zamknij panel."))
 		return
 	on = !on
-	use_power = on ? ACTIVE_POWER_USE : IDLE_POWER_USE
+	if(!on)
+		use_power = IDLE_POWER_USE
 	investigate_log("was turned [on ? "on" : "off"] by [key_name(user)]", INVESTIGATE_ATMOS)
 	balloon_alert(user, on ? "włączona" : "wyłączona")
 	update_icon()
 
 /obj/machinery/atmospherics/components/unary/biogas_plant/attackby(obj/item/I, mob/user, params)
 	if(!on && default_deconstruction_screwdriver(user, "biogas-o", "biogas", I))
+		change_pipe_connection(panel_open)
 		update_icon()
+		return
+	if(default_change_direction_wrench(user, I))
 		return
 	if(default_deconstruction_crowbar(I))
 		return
@@ -120,10 +127,18 @@ GLOBAL_LIST_INIT(biogas_organic_reagents, typecacheof(list(
 		return
 	return ..()
 
+/obj/machinery/atmospherics/components/unary/biogas_plant/default_change_direction_wrench(mob/user, obj/item/I)
+	if(!..())
+		return FALSE
+	set_init_directions()
+	update_icon()
+	return TRUE
+
 /// Wrzuca jedzenie do zbiornika: jego odczynniki trafiają do wsadu
 /obj/machinery/atmospherics/components/unary/biogas_plant/proc/add_food(obj/item/food/food, mob/user)
-	if(reagents.holder_full())
-		to_chat(user, span_warning("Zbiornik [src] jest pełny."))
+	if(reagents.maximum_volume - reagents.total_volume < (food.reagents?.total_volume || 0) || reagents.holder_full())
+		if(user)
+			to_chat(user, span_warning("[food] nie zmieści się w zbiorniku [src]."))
 		return FALSE
 	if(user && !user.transferItemToLoc(food, src))
 		return FALSE
@@ -140,23 +155,32 @@ GLOBAL_LIST_INIT(biogas_organic_reagents, typecacheof(list(
 
 /// Przerabia wsad ze zbiornika i ze ścieków statku na biogaz w podanej mieszaninie. Zwraca liczbę przerobionych jednostek
 /obj/machinery/atmospherics/components/unary/biogas_plant/proc/ferment(datum/gas_mixture/output)
+	use_power = IDLE_POWER_USE
 	if(output.return_pressure() >= BIOGAS_MAX_OUTPUT_PRESSURE)
 		return 0
 	var/digested = 0
+	var/flushed = 0
 	for(var/datum/reagent/reagent as anything in reagents.reagent_list.Copy())
-		if(digested >= units_per_tick)
-			break
-		if(!is_type_in_typecache(reagent, GLOB.biogas_organic_reagents))
+		var/organic = is_type_in_typecache(reagent, GLOB.biogas_organic_reagents)
+		// Co nie fermentuje (woda, chemia), spływa do kanalizacji w tym samym tempie, żeby nie zapchać zbiornika
+		var/limit = units_per_tick - (organic ? digested : flushed)
+		if(limit <= 0)
 			continue
-		var/amount = min(reagent.volume, units_per_tick - digested)
+		var/amount = min(reagent.volume, limit)
 		reagents.remove_reagent(reagent.type, amount)
-		digested += amount
+		if(organic)
+			digested += amount
+		else
+			flushed += amount
 	var/from_sewage = min(GLOB.ship_sewage, units_per_tick - digested)
 	if(from_sewage > 0)
 		GLOB.ship_sewage -= from_sewage
 		digested += from_sewage
 	if(digested <= 0)
 		return 0
+	// Prąd płaci się tylko za pracę: stawka w watach, pobierana raz na cykl zasilania przez auto_use_power
+	use_power = ACTIVE_POWER_USE
+	active_power_usage = idle_power_usage + digested * BIOGAS_POWER_PER_UNIT
 	var/datum/gas_mixture/biogas = new
 	biogas.set_temperature(BIOGAS_TEMPERATURE)
 	biogas.set_moles(GAS_METHANE, digested * BIOGAS_METHANE_PER_UNIT)
@@ -188,7 +212,9 @@ GLOBAL_LIST_INIT(biogas_organic_reagents, typecacheof(list(
 
 // Kanalizacja: spłukana zawartość muszli idzie do ścieków statku (zatkana toaleta zostawia ją w muszli)
 /obj/structure/toilet/flush(mob/user, silent = FALSE)
-	var/waste = clogged ? 0 : bowl_urine + bowl_feces * SEWAGE_UNITS_PER_FECES
+	// Liczy się tylko organiczna zawartość: lubrykant z pęcherza klauna nie fermentuje
+	var/urine = is_type_in_typecache(bowl_urine_type, GLOB.biogas_organic_reagents) ? bowl_urine : 0
+	var/waste = clogged ? 0 : urine + bowl_feces * SEWAGE_UNITS_PER_FECES
 	. = ..()
 	if(. && waste > 0 && !clogged && !bowl_urine && !bowl_feces)
 		add_ship_sewage(waste)
@@ -211,5 +237,6 @@ GLOBAL_LIST_INIT(biogas_organic_reagents, typecacheof(list(
 #undef BIOGAS_CO2_PER_UNIT
 #undef BIOGAS_TEMPERATURE
 #undef BIOGAS_MAX_OUTPUT_PRESSURE
+#undef BIOGAS_POWER_PER_UNIT
 #undef SHIP_SEWAGE_MAX
 #undef SEWAGE_UNITS_PER_FECES

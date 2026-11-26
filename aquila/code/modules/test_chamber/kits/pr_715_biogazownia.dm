@@ -4,10 +4,10 @@
 	name = "PR 715: regenerator tlenu, biogazownia, CO2 dla roślin"
 	pr = "aq33/AquilaStation#715"
 	description = "Regenerator tlenu, biogazownia, kanister CO2, sedes, odpływ, taca z nasionami i narzędzia. \
-	1) Regenerator: postaw go na rurach (rura z tyłu od kanistra CO2 przez port, rura z przodu do pustego kanistra albo zbiornika), kliknij, żeby włączyć. Analizator na rurach: CO2 ubywa, w wyjściu przybywa tyle samo tlenu. Badanie maszyny pokazuje, ile węgla się zebrało; co 20 moli wypada bryłka węgla. \
+	1) Regenerator: postaw go na rurach (rura z tyłu od kanistra CO2 przez port, rura z przodu do pustego kanistra albo zbiornika), kliknij, żeby włączyć. Jeśli stoi bokiem do rur: wyłącz, otwórz panel śrubokrętem, obróć kluczem, zamknij panel. Analizator na rurach: CO2 ubywa, w wyjściu przybywa tyle samo tlenu. Badanie maszyny pokazuje, ile węgla się zebrało; co 20 moli wypada bryłka węgla. \
 	2) Premia roślin: posadź nasiona w tacy i wypuść obok trochę CO2 z kanistra, tak żeby analizator pokazał 1–10 kPa CO2. Owoce rosną półtora raza szybciej niż w drugiej tacy w zwykłym powietrzu; przy dużo większym stężeniu premii nie ma. \
-	3) Biogazownia: podłącz ją rurą do pustego kanistra, włącz kliknięciem. Wlej mocz z dużej zlewki (jest pełna) lub wrzuć jedzenie (mięso): w rurze pojawia się metan i mniej CO2. Woda zostaje w zbiorniku. \
-	4) Kanalizacja: zrób kupę albo siku do sedesu (otwórz klapę) i spłucz go prawym przyciskiem; badanie biogazowni pokazuje, ile ścieków czeka w kanalizacji statku, a włączona biogazownia przerabia je sama. Wylej mocz na odpływ w podłodze: też trafia do ścieków. Zatkany sedes, który się przelewa, nic nie oddaje."
+	3) Biogazownia: podłącz ją rurą do pustego kanistra, włącz kliknięciem. Wlej mocz z dużej zlewki (jest pełna) lub wrzuć jedzenie (mięso): w rurze pojawia się metan i mniej CO2. Woda z wsadu powoli spływa, a zbiornik można zlać pustą zlewką. \
+	4) Kanalizacja: zrób kupę albo siku do sedesu (otwórz klapę) i spłucz go prawym przyciskiem (w trybie intencji: na intencji rozbrajania); badanie biogazowni pokazuje, ile ścieków czeka w kanalizacji statku, a włączona biogazownia przerabia je sama. Połóż zestaw odpływu na podłodze i przykręć go kluczem, potem wylej na niego mocz: też trafia do ścieków. Zatkany sedes, który się przelewa, nic nie oddaje."
 	items = list(
 		/obj/machinery/atmospherics/components/binary/oxygen_regenerator = 1,
 		/obj/machinery/atmospherics/components/unary/biogas_plant = 1,

@@ -10,7 +10,7 @@
 #define OXYREGEN_MAX_OUTPUT_PRESSURE (ONE_ATMOSPHERE * 45)
 /// Ile moli węgla daje jedną bryłkę
 #define OXYREGEN_CARBON_PER_SHEET 20
-/// Ile watów kosztuje rozłożenie mola CO2
+/// Ile watów kosztuje rozkładanie mola CO2 na cykl
 #define OXYREGEN_POWER_PER_MOLE 2000
 
 /obj/machinery/atmospherics/components/binary/oxygen_regenerator
@@ -24,7 +24,7 @@
 	circuit = /obj/item/circuitboard/machine/oxygen_regenerator
 	pipe_flags = PIPING_ONE_PER_TURF
 	idle_power_usage = 200
-	active_power_usage = 2000
+	active_power_usage = 200
 	/// Ile moli CO2 rozkłada na cykl (z manipulatorów)
 	var/moles_per_tick = OXYREGEN_MOLES_PER_RATING * 2
 	/// Ile moli węgla zostaje z mola CO2 (z pojemników materii)
@@ -46,6 +46,7 @@
 	. = ..()
 	. += span_notice("Jest [on ? "włączony" : "wyłączony"]. Kliknij, żeby go [on ? "wyłączyć" : "włączyć"].")
 	. += span_notice("Dwutlenek węgla wchodzi rurą z tyłu, tlen wychodzi rurą z przodu. Rozkłada do [moles_per_tick] mol CO2 na cykl.")
+	. += span_notice("Przy otwartym panelu można go obrócić <b>kluczem</b>.")
 	if(stored_carbon >= 1)
 		. += span_notice("W środku zebrało się [round(stored_carbon, 1)] z [OXYREGEN_CARBON_PER_SHEET] moli węgla na kolejną bryłkę.")
 
@@ -64,19 +65,49 @@
 /obj/machinery/atmospherics/components/binary/oxygen_regenerator/on_construction()
 	return ..(null, PIPING_LAYER_DEFAULT)
 
+/// Odłącza maszynę od rur (otwarty panel) albo podłącza ją z powrotem, np. po obróceniu kluczem
+/obj/machinery/atmospherics/components/binary/oxygen_regenerator/proc/change_pipe_connection(disconnect)
+	for(var/i in 1 to device_type)
+		var/obj/machinery/atmospherics/node = nodes[i]
+		if(node && (src in node.nodes))
+			node.disconnect(src)
+		nodes[i] = null
+		if(parents[i])
+			nullify_pipenet(parents[i])
+	if(disconnect)
+		return
+	atmos_init()
+	for(var/obj/machinery/atmospherics/node as anything in nodes)
+		if(!node)
+			continue
+		node.atmos_init()
+		node.add_member(src)
+	SSair.add_to_rebuild_queue(src)
+
+/obj/machinery/atmospherics/components/binary/oxygen_regenerator/default_change_direction_wrench(mob/user, obj/item/I)
+	if(!..())
+		return FALSE
+	set_init_directions()
+	update_icon()
+	return TRUE
+
 /obj/machinery/atmospherics/components/binary/oxygen_regenerator/interact(mob/user)
 	if(panel_open)
 		to_chat(user, span_warning("Najpierw zamknij panel."))
 		return
 	on = !on
-	use_power = on ? ACTIVE_POWER_USE : IDLE_POWER_USE
+	if(!on)
+		use_power = IDLE_POWER_USE
 	investigate_log("was turned [on ? "on" : "off"] by [key_name(user)]", INVESTIGATE_ATMOS)
 	balloon_alert(user, on ? "włączony" : "wyłączony")
 	update_icon()
 
 /obj/machinery/atmospherics/components/binary/oxygen_regenerator/attackby(obj/item/I, mob/user, params)
 	if(!on && default_deconstruction_screwdriver(user, "regenerator-o", "regenerator", I))
+		change_pipe_connection(panel_open)
 		update_icon()
+		return
+	if(default_change_direction_wrench(user, I))
 		return
 	if(default_deconstruction_crowbar(I))
 		return
@@ -89,17 +120,20 @@
 
 /// Rozkłada CO2 z wejścia na tlen w wyjściu. Zwraca liczbę rozłożonych moli
 /obj/machinery/atmospherics/components/binary/oxygen_regenerator/proc/regenerate(datum/gas_mixture/input, datum/gas_mixture/output)
+	use_power = IDLE_POWER_USE
 	if(output.return_pressure() >= OXYREGEN_MAX_OUTPUT_PRESSURE)
 		return 0
 	var/converted = min(input.get_moles(GAS_CO2), moles_per_tick)
 	if(converted < MINIMUM_MOLE_COUNT)
 		return 0
+	// Prąd płaci się tylko za pracę: stawka w watach, pobierana raz na cykl zasilania przez auto_use_power
+	use_power = ACTIVE_POWER_USE
+	active_power_usage = idle_power_usage + converted * OXYREGEN_POWER_PER_MOLE
 	var/datum/gas_mixture/oxygen = new
 	oxygen.set_temperature(input.return_temperature())
 	oxygen.set_moles(GAS_O2, converted)
 	input.adjust_moles(GAS_CO2, -converted)
 	output.merge(oxygen)
-	use_power(converted * OXYREGEN_POWER_PER_MOLE)
 	stored_carbon += converted * carbon_efficiency
 	while(stored_carbon >= OXYREGEN_CARBON_PER_SHEET)
 		stored_carbon -= OXYREGEN_CARBON_PER_SHEET

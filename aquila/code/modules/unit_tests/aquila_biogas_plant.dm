@@ -18,7 +18,8 @@
 	var/digested = plant.ferment(output)
 	TEST_ASSERT(digested == 2, "The biogas plant digested [digested] units instead of 2")
 	TEST_ASSERT(plant.reagents.get_reagent_amount(/datum/reagent/ammonia/urine) == 8, "Urine was not used up")
-	TEST_ASSERT(plant.reagents.get_reagent_amount(/datum/reagent/water) == 10, "Water is not organic but was digested")
+	TEST_ASSERT(plant.reagents.get_reagent_amount(/datum/reagent/water) == 8, "Water should drain away at the same rate instead of clogging the tank ([plant.reagents.get_reagent_amount(/datum/reagent/water)] units left)")
+	TEST_ASSERT(plant.active_power_usage > plant.idle_power_usage && plant.use_power == ACTIVE_POWER_USE, "A working biogas plant draws no extra power")
 	TEST_ASSERT(output.get_moles(GAS_METHANE) > 0, "The biogas plant made no methane from urine")
 	TEST_ASSERT(output.get_moles(GAS_CO2) > 0 && output.get_moles(GAS_CO2) < output.get_moles(GAS_METHANE), "Biogas should be mostly methane with some CO2")
 
@@ -28,11 +29,18 @@
 	var/methane_before = output.get_moles(GAS_METHANE)
 	TEST_ASSERT(!plant.ferment(output), "The biogas plant fermented water")
 	TEST_ASSERT(output.get_moles(GAS_METHANE) == methane_before, "Methane appeared from water")
+	TEST_ASSERT(plant.reagents.get_reagent_amount(/datum/reagent/water) == 8, "Water alone did not drain away")
+	TEST_ASSERT(plant.use_power == IDLE_POWER_USE, "An idle biogas plant still draws working power")
+	TEST_ASSERT(plant.reagents.flags & DRAINABLE, "The biogas plant tank cannot be drained by hand")
 
 	// Food thrown in adds its reagents
 	var/obj/item/food/meat/slab/slab = allocate(/obj/item/food/meat/slab)
 	var/food_volume = get_organic_reagent_volume(slab.reagents)
 	TEST_ASSERT(food_volume > 0, "A meat slab has no organic reagents")
+	plant.reagents.add_reagent(/datum/reagent/water, plant.reagents.maximum_volume - plant.reagents.total_volume - 1)
+	TEST_ASSERT(!plant.add_food(slab), "Food went into a tank too full to hold its reagents")
+	TEST_ASSERT(!QDELETED(slab), "Food that did not fit was destroyed")
+	plant.reagents.clear_reagents()
 	plant.add_food(slab)
 	TEST_ASSERT(QDELETED(slab), "The meat slab was not used up")
 	TEST_ASSERT(get_organic_reagent_volume(plant.reagents) >= food_volume, "The meat slab reagents did not reach the tank")
@@ -54,6 +62,15 @@
 	TEST_ASSERT(plant.ferment(output) == 2, "The biogas plant did not take sewage from the ship")
 	TEST_ASSERT(GLOB.ship_sewage == 13, "Sewage was not used up ([GLOB.ship_sewage] units left)")
 	TEST_ASSERT(output.get_moles(GAS_METHANE) > methane_before, "Sewage made no methane")
+
+	// Clown lube from the bladder does not ferment
+	GLOB.ship_sewage = 0
+	toilet.receive_waste(5, 0, /datum/reagent/lube)
+	toilet.clogged = FALSE
+	toilet.flushing = FALSE
+	toilet.reagents.add_reagent(toilet.reagent_id, toilet.reagents.maximum_volume)
+	toilet.flush(null, TRUE)
+	TEST_ASSERT(GLOB.ship_sewage == 0, "Flushed lube became [GLOB.ship_sewage] units of sewage")
 
 	// A clogged toilet overflows onto the floor instead of the sewage
 	GLOB.ship_sewage = 0
