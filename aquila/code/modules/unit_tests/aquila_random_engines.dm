@@ -19,11 +19,15 @@
 		var/width = initial(spawner.room_width)
 		var/height = initial(spawner.room_height)
 		var/list/matching = list()
+		var/list/rolled = list()
 		for(var/template_type in subtypesof(/datum/map_template/random_room))
 			var/datum/map_template/random_room/template = template_type
 			if(initial(template.template_width) == width && initial(template.template_height) == height)
 				matching += template_type
-		TEST_ASSERT(length(matching) == expected, "[spawner_type] ([width]x[height]) ma [length(matching)] pasujących szablonów zamiast [expected]: [english_list(matching)]")
+				// Szablony tylko z wyboru inżynierów (HFR) nie biorą udziału w losowaniu
+				if(!initial(template.spawned))
+					rolled += template_type
+		TEST_ASSERT(length(rolled) == expected, "[spawner_type] ([width]x[height]) losuje spośród [length(rolled)] szablonów zamiast [expected]: [english_list(rolled)]")
 		for(var/template_type in matching)
 			var/datum/map_template/random_room/template = new template_type()
 			TEST_ASSERT(template.width == width && template.height == height, "[template_type]: plik [template.mappath] ma [template.width]x[template.height], a spawner [width]x[height]")
