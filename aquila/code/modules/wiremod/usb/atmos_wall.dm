@@ -738,7 +738,7 @@
 	return ..()
 
 /obj/item/circuit_component/atmos_pump/pre_input_received(datum/port/input/port)
-	pressure_value.set_value(clamp(pressure_value.value, 0, MAX_OUTPUT_PRESSURE))
+	pressure_value.set_value(clamp(pressure_value.value, 0, connected_pump ? connected_pump.aq_max_pressure : MAX_OUTPUT_PRESSURE))
 
 /obj/item/circuit_component/atmos_pump/proc/handle_pump_activation(datum/source, active)
 	SIGNAL_HANDLER
@@ -833,7 +833,7 @@
 	return ..()
 
 /obj/item/circuit_component/atmos_volume_pump/pre_input_received(datum/port/input/port)
-	transfer_rate.set_value(clamp(transfer_rate.value, 0, MAX_TRANSFER_RATE))
+	transfer_rate.set_value(clamp(transfer_rate.value, 0, connected_pump ? connected_pump.aq_max_rate : MAX_TRANSFER_RATE))
 
 /obj/item/circuit_component/atmos_volume_pump/proc/handle_pump_activation(datum/source, active)
 	SIGNAL_HANDLER
