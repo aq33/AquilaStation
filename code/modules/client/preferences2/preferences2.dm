@@ -70,6 +70,7 @@
 	READPREF_INT(soft_lighting, PREFERENCE_TAG_SOFT_LIGHTING) // AQ EDIT - miękkie światło
 	READPREF_INT(glow_level, PREFERENCE_TAG_GLOW_LEVEL) // AQ EDIT - poświata emisyjnych
 	READPREF_INT(light_glare, PREFERENCE_TAG_LIGHT_GLARE) // AQ EDIT - promienie świateł
+	READPREF_INT(zmimic_blur, PREFERENCE_TAG_ZMIMIC_BLUR) // AQ EDIT - rozmycie niższych pięter
 	READPREF_INT(gun_cursor, PREFERENCE_TAG_GUN_CURSOR) // AQ EDIT - kursor rozrzutu
 	READPREF_INT(face_cursor_combat, PREFERENCE_TAG_FACE_CURSOR) // AQ EDIT - obracanie do kursora
 	READPREF_INT(recoil_camera_strength, PREFERENCE_TAG_RECOIL_CAMERA) // AQ EDIT - kopnięcie kamery
@@ -123,6 +124,7 @@
 	soft_lighting	= sanitize_integer(soft_lighting, FALSE, TRUE, initial(soft_lighting)) // AQ EDIT - miękkie światło
 	glow_level	= sanitize_integer(glow_level, 0, 3, initial(glow_level)) // AQ EDIT - poświata emisyjnych, 0-3 = AQ_GLOW_OFF..AQ_GLOW_HIGH
 	light_glare	= sanitize_integer(light_glare, FALSE, TRUE, initial(light_glare)) // AQ EDIT - promienie świateł
+	zmimic_blur	= sanitize_integer(zmimic_blur, FALSE, TRUE, initial(zmimic_blur)) // AQ EDIT - rozmycie niższych pięter
 	gun_cursor	= sanitize_integer(gun_cursor, FALSE, TRUE, initial(gun_cursor)) // AQ EDIT - kursor rozrzutu
 	face_cursor_combat	= sanitize_integer(face_cursor_combat, FALSE, TRUE, initial(face_cursor_combat)) // AQ EDIT - obracanie do kursora
 	recoil_camera_strength	= sanitize_integer(recoil_camera_strength, 0, 100, initial(recoil_camera_strength)) // AQ EDIT - kopnięcie kamery
@@ -192,6 +194,7 @@
 	PREP_WRITEPREF_RAW(soft_lighting, PREFERENCE_TAG_SOFT_LIGHTING) // AQ EDIT - miękkie światło
 	PREP_WRITEPREF_RAW(glow_level, PREFERENCE_TAG_GLOW_LEVEL) // AQ EDIT - poświata emisyjnych
 	PREP_WRITEPREF_RAW(light_glare, PREFERENCE_TAG_LIGHT_GLARE) // AQ EDIT - promienie świateł
+	PREP_WRITEPREF_RAW(zmimic_blur, PREFERENCE_TAG_ZMIMIC_BLUR) // AQ EDIT - rozmycie niższych pięter
 	PREP_WRITEPREF_RAW(gun_cursor, PREFERENCE_TAG_GUN_CURSOR) // AQ EDIT - kursor rozrzutu
 	PREP_WRITEPREF_RAW(face_cursor_combat, PREFERENCE_TAG_FACE_CURSOR) // AQ EDIT - obracanie do kursora
 	PREP_WRITEPREF_RAW(recoil_camera_strength, PREFERENCE_TAG_RECOIL_CAMERA) // AQ EDIT - kopnięcie kamery
