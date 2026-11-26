@@ -3935,6 +3935,8 @@ Oznaczenia w kolumnie uwag:
 | killer tomato | pomidor zabójca | m; nowe |
 | eyeball | gałka oczna | ż; nowe |
 | goldfish / fish | złota rybka / ryba | ż; nowe |
+| bleak (fish) | ukleja | ż; nowe (ryba Akwarianina) |
+| bare metal (Aquarian armour) | goły metal | m; nowe |
 
 ### 8b. Wrogie moby, megafauna, Lavaland
 
