@@ -1,8 +1,8 @@
-// aq33/AquilaStation#000 - turbina gazowa z wymiennymi łopatkami i statorem (plan maszynowni E16, port Goona)
+// aq33/AquilaStation#714 - turbina gazowa z wymiennymi łopatkami i statorem (plan maszynowni E16, port Goona)
 
-/datum/test_chamber_kit/pr_000
+/datum/test_chamber_kit/pr_714
 	name = "Maszynownia: turbina gazowa"
-	pr = "aq33/AquilaStation#000"
+	pr = "aq33/AquilaStation#714"
 	description = "1) Na środku stoi turbina (3×5 pól). Z zachodu podpięty jest kanister gorącego azotu (ok. 1200 K), na wschodzie pusty kanister odbiera schłodzony gaz. \
 		2) Otwórz okno turbiny (klik w obudowę z dowolnego pola obok): wirnik rusza, rośnie moc. Ustaw obciążenie statora tak, żeby obroty trzymały się koło 600 obr./min (najwięcej mocy). \
 		3) Zmniejsz obciążenie prawie do zera: wirnik wchodzi na nadobroty, łopatki tracą wytrzymałość (iskry, dym), a przy zerze turbina rozpada się i sypie odłamkami. Za duże obciążenie dławi wirnik do zera. \
@@ -20,7 +20,7 @@
 		/obj/item/stack/cable_coil = 1,
 	)
 
-/datum/test_chamber_kit/pr_000/setup(list/spawned, list/turfs, turf/center, mob/user)
+/datum/test_chamber_kit/pr_714/setup(list/spawned, list/turfs, turf/center, mob/user)
 	. = ..()
 	if(!center || aq_turbine_blocked_turf(center))
 		to_chat(user, "<span class='warning'>Brak wolnego miejsca 3×5 na turbinę wokół środka komory.</span>")
