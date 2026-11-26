@@ -1,16 +1,14 @@
-// AQUILA - konsola nawigacji FTL na mapie hex (okno HexStarmap.tsx). Stare okno Starmap zostaje dla astrometrii i menedżera układów.
+// AQUILA - konsola nawigacji FTL na mapie hex (okno HexStarmap.tsx). Ta sama mapa służy astrometrii (hex_astrometrics.dm)
+// i admińskiemu menedżerowi układów (hex_starsystem_manager.dm); stara mapa gwiazd z liniami jest usunięta.
 
 /obj/machinery/computer/ship/navigation
 	/// Zaznaczony kafel (wspólny dla wszystkich patrzących na tę konsolę)
 	var/datum/hex/hex_selected
-	/// Konsola pokazuje mapę hex. Astrometria dziedziczy po konsoli nawigacji i woła jej ui_data(), a jej okno zna tylko stary format
+	/// Konsola pokazuje mapę hex
 	var/hex_map_console = TRUE
 	/// Dane okna z ostatniego odświeżenia: nie zależą od widza, więc kilku widzów w tej samej chwili dostaje jedne
 	var/list/hex_ui_cache
 	var/hex_ui_cache_time = -INFINITY
-
-/obj/machinery/computer/ship/navigation/astrometrics
-	hex_map_console = FALSE
 
 /// Czy ta konsola działa jako konsola mapy hex
 /obj/machinery/computer/ship/navigation/proc/uses_hex_map()

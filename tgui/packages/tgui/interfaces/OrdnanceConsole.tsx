@@ -1,68 +1,79 @@
-// NSV13
+// NSV13 - podgląd uzbrojenia (AQUILA: wygląd konsol okrętu z common/ShipConsole.tsx; na mostkach graczy
+// lista broni jest w konsoli taktycznej, to okno zostaje dla konsol na innych mapach)
 
-import { Fragment } from 'react';
-import { Box, Button, ProgressBar, Section } from 'tgui-core/components';
+import { Box, Button } from 'tgui-core/components';
 
 import { useBackend } from '../backend';
-import { Window } from '../layouts';
+import {
+  COLOR,
+  ConsoleBody,
+  ConsoleEmpty,
+  ConsoleMeter,
+  ConsolePanel,
+  ConsoleWindow,
+} from './common/ShipConsole';
+
+type Weapon = {
+  name: string;
+  ammo: number;
+  maxammo: number;
+  controllers?: string;
+  ammo_filter?: string;
+};
 
 type Data = {
-  additional_weapon_info: any;
-  weapons: any;
+  additional_weapon_info: boolean;
+  weapons: Record<string, Weapon>;
 };
 
 export const OrdnanceConsole = (props) => {
   const { act, data } = useBackend<Data>();
-  const tabIndex = 1;
+  const weapons = Object.values(data.weapons || {}).filter(
+    (weapon) => !!weapon.maxammo,
+  );
   return (
-    <Window theme="retro" width={560} height={600}>
-      <Window.Content scrollable>
-        <Section>
-          <Section
-            title="Uzbrojenie:"
-            buttons={
-              <Button
-                icon="cog"
-                color={data.additional_weapon_info ? 'good' : 'bad'}
-                content="Więcej informacji"
-                onClick={() => act('toggle_additional_weapon_info')}
-              />
-            }
-          >
-            {Object.keys(data.weapons).map((key) => {
-              let value = data.weapons[key];
-              return (
-                <Fragment key={key}>
-                  {!!value.maxammo && (
-                    <Section title={`${value.name}`}>
-                      <ProgressBar
-                        value={(value.ammo / value.maxammo) * 100 * 0.01}
-                        ranges={{
-                          good: [0.95, Infinity],
-                          average: [0.15, 0.9],
-                          bad: [-Infinity, 0.15],
-                        }}
-                      />
-                      {!!value.controllers && (
-                        <Box>
-                          <br />
-                          {'Kontrolery broni: ' + value.controllers}
-                        </Box>
-                      )}
-                      {!!value.ammo_filter && (
-                        <Box>
-                          <br />
-                          {'Filtr amunicji: ' + value.ammo_filter}
-                        </Box>
-                      )}
-                    </Section>
+    <ConsoleWindow width={560} height={600}>
+      <ConsoleBody>
+        <ConsolePanel
+          title="Uzbrojenie"
+          right={
+            <Button
+              icon="cog"
+              selected={!!data.additional_weapon_info}
+              onClick={() => act('toggle_additional_weapon_info')}
+            >
+              Więcej informacji
+            </Button>
+          }
+        >
+          {weapons.length === 0 && (
+            <ConsoleEmpty>Okręt nie ma broni z amunicją.</ConsoleEmpty>
+          )}
+          {weapons.map((weapon) => (
+            <Box key={weapon.name} style={{ marginBottom: '8px' }}>
+              <Box style={{ display: 'flex', gap: '10px' }}>
+                <span style={{ flex: 1 }}>{weapon.name}</span>
+                <ConsoleMeter
+                  width="200px"
+                  value={weapon.ammo / weapon.maxammo}
+                  label={weapon.ammo + '/' + weapon.maxammo}
+                />
+              </Box>
+              {!!data.additional_weapon_info && (
+                <Box style={{ color: COLOR.muted, fontSize: '11.5px' }}>
+                  {!!weapon.controllers && (
+                    <>Kontrolery broni: {weapon.controllers}</>
                   )}
-                </Fragment>
-              );
-            })}
-          </Section>
-        </Section>
-      </Window.Content>
-    </Window>
+                  {!!weapon.controllers && !!weapon.ammo_filter && ' · '}
+                  {!!weapon.ammo_filter && (
+                    <>Filtr amunicji: {weapon.ammo_filter}</>
+                  )}
+                </Box>
+              )}
+            </Box>
+          ))}
+        </ConsolePanel>
+      </ConsoleBody>
+    </ConsoleWindow>
   );
 };

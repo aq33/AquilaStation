@@ -940,23 +940,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
-"ce" = (
-/obj/machinery/ammo_sorter{
-	dir = 8;
-	id = "snake";
-	name = "AP shells"
-	},
-/obj/item/ship_weapon/ammunition/naval_artillery/factory/ap,
-/obj/item/ship_weapon/ammunition/naval_artillery/factory/ap,
-/obj/item/ship_weapon/ammunition/naval_artillery/factory/ap,
-/obj/item/ship_weapon/ammunition/naval_artillery/factory/ap,
-/obj/item/ship_weapon/ammunition/naval_artillery/factory/ap,
-/obj/item/ship_weapon/ammunition/naval_artillery/factory/ap,
-/obj/machinery/camera/autoname{
-	dir = 8
-	},
-/turf/open/floor/engine,
-/area/nsv/weapons/fore)
 "cf" = (
 /obj/machinery/atmospherics/pipe/simple/purple/visible/layer4{
 	dir = 4
@@ -2301,6 +2284,22 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel,
 /area/crew_quarters/kitchen)
+"fM" = (
+/obj/structure/table/reinforced,
+/obj/machinery/camera/autoname,
+/obj/item/geiger_counter{
+	desc = "It's capped at 3.6 Roentgen. Not great, not terrible.";
+	name = "\improper Dossimiter"
+	},
+/obj/item/binoculars{
+	pixel_x = 11
+	},
+/obj/item/pipe_dispenser{
+	pixel_x = -6;
+	pixel_y = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/engine/engineering/reactor_control)
 "fN" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -5148,15 +5147,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/gravity_generator)
-"nR" = (
-/obj/structure/table/reinforced,
-/obj/item/modular_computer/tablet/preset/advanced,
-/obj/machinery/firealarm/directional/west,
-/obj/structure/sign/poster/official/random{
-	pixel_y = 32
-	},
-/turf/open/floor/plasteel/dark,
-/area/engine/engineering/reactor_control)
 "nS" = (
 /obj/structure/chair/office{
 	dir = 1
@@ -6541,6 +6531,15 @@
 /obj/structure/extinguisher_cabinet/east,
 /turf/open/floor/plasteel,
 /area/security/courtroom)
+"ts" = (
+/obj/machinery/requests_console{
+	department = "Reactor Control";
+	departmentType = 3;
+	name = "Reactor Control RC";
+	pixel_y = 26
+	},
+/turf/open/floor/plasteel/dark,
+/area/engine/engineering/reactor_control)
 "tt" = (
 /turf/open/floor/wood,
 /area/library)
@@ -6903,15 +6902,6 @@
 /obj/effect/landmark/start/security_officer,
 /turf/open/floor/plasteel,
 /area/security/brig)
-"uE" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/structure/disposalpipe/segment,
-/turf/open/floor/plasteel/dark/side{
-	dir = 1
-	},
-/area/hallway/primary/fore)
 "uF" = (
 /obj/machinery/vending/coffee,
 /obj/machinery/airalarm/directional/south,
@@ -9139,17 +9129,6 @@
 /obj/structure/cable,
 /turf/open/floor/plasteel/dark/side,
 /area/hydroponics)
-"Dc" = (
-/obj/structure/sign/departments/minsky/medical/medical2{
-	pixel_y = -32
-	},
-/obj/effect/turf_decal/tile/ship/blue{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark/side{
-	dir = 1
-	},
-/area/hallway/primary/central)
 "Dd" = (
 /obj/machinery/door/airlock/ship/glass{
 	name = "Robotics Lab";
@@ -9158,23 +9137,6 @@
 /obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/science/robotics)
-"Df" = (
-/obj/structure/table/reinforced,
-/obj/machinery/requests_console{
-	department = "Reactor Control";
-	departmentType = 3;
-	name = "Reactor Control RC";
-	pixel_y = 26
-	},
-/obj/item/pipe_dispenser,
-/obj/item/pipe_dispenser{
-	pixel_y = 5
-	},
-/obj/item/pipe_dispenser{
-	pixel_y = -5
-	},
-/turf/open/floor/plasteel/dark,
-/area/engine/engineering/reactor_control)
 "Dg" = (
 /obj/structure/chair/office{
 	dir = 8
@@ -9243,6 +9205,16 @@
 "Dp" = (
 /turf/open/floor/engine/n2o,
 /area/engine/atmos)
+"Dr" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment,
+/obj/structure/closet/damage_control,
+/turf/open/floor/plasteel/dark/side{
+	dir = 1
+	},
+/area/hallway/primary/fore)
 "Ds" = (
 /obj/machinery/light/small,
 /obj/structure/closet/secure_closet/personal/cabinet,
@@ -10087,6 +10059,16 @@
 	},
 /turf/closed/wall/r_wall,
 /area/engine/storage)
+"Hd" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/closet/damage_control,
+/turf/open/floor/plasteel/dark/side,
+/area/hallway/primary/central)
 "He" = (
 /obj/effect/turf_decal/tile/ship/blue,
 /obj/machinery/firealarm/directional/south,
@@ -10314,18 +10296,6 @@
 	},
 /turf/open/floor/engine,
 /area/nsv/weapons/fore)
-"HW" = (
-/obj/structure/table/reinforced,
-/obj/machinery/camera/autoname,
-/obj/item/geiger_counter{
-	desc = "It's capped at 3.6 Roentgen. Not great, not terrible.";
-	name = "\improper Dossimiter"
-	},
-/obj/item/binoculars{
-	pixel_x = 11
-	},
-/turf/open/floor/plasteel/dark,
-/area/engine/engineering/reactor_control)
 "HX" = (
 /obj/machinery/requests_console{
 	department = "Security";
@@ -10597,6 +10567,23 @@
 /obj/machinery/door/firedoor/border_only/directional/east,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
+"IY" = (
+/obj/structure/table/reinforced,
+/obj/item/modular_computer/tablet/preset/advanced,
+/obj/machinery/firealarm/directional/west,
+/obj/structure/sign/poster/official/random{
+	pixel_y = 32
+	},
+/obj/item/pipe_dispenser{
+	pixel_x = 6;
+	pixel_y = 6
+	},
+/obj/item/pipe_dispenser{
+	pixel_x = 6;
+	pixel_y = -4
+	},
+/turf/open/floor/plasteel/dark,
+/area/engine/engineering/reactor_control)
 "IZ" = (
 /obj/machinery/door/poddoor/ship/preopen{
 	dir = 4;
@@ -10959,22 +10946,6 @@
 /obj/machinery/duct,
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
-"KC" = (
-/obj/machinery/computer/ship/dradis{
-	dir = 4
-	},
-/obj/machinery/computer/ship/viewscreen{
-	pixel_x = -32;
-	pixel_y = 1
-	},
-/obj/effect/turf_decal/tile/ship/red{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/ship/blue,
-/turf/open/floor/plasteel/dark/side{
-	dir = 4
-	},
-/area/bridge/cic)
 "KE" = (
 /obj/structure/table/wood,
 /obj/machinery/chem_dispenser/drinks{
@@ -12737,6 +12708,23 @@
 	dir = 4
 	},
 /area/chapel/main)
+"Ra" = (
+/obj/machinery/ammo_sorter{
+	dir = 8;
+	id = "snake";
+	name = "AP shells"
+	},
+/obj/item/ship_weapon/ammunition/naval_artillery/factory/ap,
+/obj/item/ship_weapon/ammunition/naval_artillery/factory/ap,
+/obj/item/ship_weapon/ammunition/naval_artillery/factory/ap,
+/obj/item/ship_weapon/ammunition/naval_artillery/factory/ap,
+/obj/item/ship_weapon/ammunition/naval_artillery/factory/ap,
+/obj/item/ship_weapon/ammunition/naval_artillery/factory/ap,
+/obj/machinery/camera/autoname{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/nsv/weapons/fore)
 "Rd" = (
 /obj/structure/chair/office{
 	dir = 1
@@ -12758,24 +12746,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
-"Rh" = (
-/obj/machinery/computer/ship/dradis{
-	dir = 8
-	},
-/obj/machinery/computer/ship/viewscreen{
-	pixel_x = 32;
-	pixel_y = 1
-	},
-/obj/effect/turf_decal/tile/ship/blue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/ship/blue{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark/side{
-	dir = 8
-	},
-/area/bridge/cic)
 "Ri" = (
 /obj/machinery/telecomms/server/presets/security,
 /turf/open/floor/circuit/green,
@@ -12933,6 +12903,18 @@
 	dir = 8
 	},
 /area/chapel/main)
+"RM" = (
+/obj/structure/sign/departments/minsky/medical/medical2{
+	pixel_y = -32
+	},
+/obj/effect/turf_decal/tile/ship/blue{
+	dir = 8
+	},
+/obj/structure/closet/damage_control,
+/turf/open/floor/plasteel/dark/side{
+	dir = 1
+	},
+/area/hallway/primary/central)
 "RN" = (
 /obj/machinery/computer/communications{
 	dir = 4
@@ -14285,6 +14267,21 @@
 /obj/machinery/atmospherics/pipe/simple/purple/visible,
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
+"Wh" = (
+/obj/machinery/computer/ship/viewscreen{
+	pixel_x = 32;
+	pixel_y = 1
+	},
+/obj/effect/turf_decal/tile/ship/blue{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/ship/blue{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark/side{
+	dir = 8
+	},
+/area/bridge/cic)
 "Wi" = (
 /obj/effect/landmark/start/bartender,
 /turf/open/floor/plating,
@@ -14796,6 +14793,19 @@
 /obj/machinery/suit_storage_unit/captain,
 /turf/open/floor/carpet/royalblue,
 /area/crew_quarters/heads/captain)
+"Yy" = (
+/obj/machinery/computer/ship/viewscreen{
+	pixel_x = -32;
+	pixel_y = 1
+	},
+/obj/effect/turf_decal/tile/ship/red{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/ship/blue,
+/turf/open/floor/plasteel/dark/side{
+	dir = 4
+	},
+/area/bridge/cic)
 "YA" = (
 /obj/structure/chair/wood{
 	dir = 8
@@ -34254,7 +34264,7 @@ cj
 aJ
 aJ
 Bw
-nR
+IY
 EV
 EV
 pw
@@ -34511,7 +34521,7 @@ cj
 aJ
 aJ
 Bw
-HW
+fM
 dm
 Fb
 Fd
@@ -34768,7 +34778,7 @@ cj
 aJ
 aJ
 Bw
-Df
+ts
 dm
 lC
 pI
@@ -50199,7 +50209,7 @@ ju
 YH
 gu
 RB
-Dc
+RM
 Ky
 nc
 On
@@ -56365,7 +56375,7 @@ LV
 Kr
 OO
 pY
-hZ
+Hd
 fa
 bl
 Pe
@@ -59714,7 +59724,7 @@ tV
 dv
 Vb
 bk
-KC
+Yy
 bD
 Hp
 pN
@@ -61770,7 +61780,7 @@ JB
 zA
 mU
 QM
-Rh
+Wh
 Yt
 Iv
 Gj
@@ -62535,7 +62545,7 @@ hM
 ih
 PN
 vp
-uE
+Dr
 rH
 eS
 ml
@@ -68446,7 +68456,7 @@ jb
 TP
 MW
 ui
-ce
+Ra
 cg
 jb
 oe

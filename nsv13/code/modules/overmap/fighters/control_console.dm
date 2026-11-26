@@ -55,6 +55,8 @@
 /obj/machinery/computer/ship/fighter_controller/ui_act(action, params, datum/tgui/ui)
 	if(..())
 		return
+	if(aviation_ui_act(action, params, ui.user)) // AQ EDIT - okno „Lotnictwo” obsługuje akcje obu zakładek (aquila/code/modules/overmap/consoles/aviation_console.dm)
+		return TRUE
 	if(action)
 		var/target_name = params["target"]
 		if(action == "filter")
@@ -108,6 +110,6 @@
 /obj/machinery/computer/ship/fighter_controller/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "FighterController")
+		ui = new(user, src, "AviationConsole") // AQ EDIT - wspólne okno z konsolą katapult
 		ui.open()
 		ui.set_autoupdate(TRUE)

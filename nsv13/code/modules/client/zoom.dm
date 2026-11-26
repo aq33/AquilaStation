@@ -12,8 +12,8 @@
 			overmap_zoomout += 5
 
 
-		overmap_zoomout = CLAMP(overmap_zoomout, 0, 15)
-		rescale_view(overmap_zoomout, 0, ((40*2)+1)-15)
+		overmap_zoomout = CLAMP(overmap_zoomout, -2, 15) // AQ EDIT - przybliżenie mocniejsze od domyślnego, bo okręty rysują się mniejsze (aquila/code/modules/overmap/overmap_visual_scale.dm)
+		rescale_view(overmap_zoomout, -2, ((40*2)+1)-15) // AQ EDIT
 
 /* //Oh my god KMC all of this is A W F U L - I know, right? ~K
 	if(usr.client && control =="mapwindow.map")

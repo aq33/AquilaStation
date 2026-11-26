@@ -474,10 +474,13 @@
 /obj/machinery/computer/ship/helm/console/dropship/sabre
 	name = "stanowisko pilota Sabre"
 
-/// Ster zawsze steruje swoim Sabre, także w doku, gdzie pola wnętrza należą do okrętu gospodarza
-/obj/machinery/computer/ship/helm/console/dropship/sabre/get_overmap(failsafe = FALSE)
+/// Konsole we wnętrzu (ster, DRADIS, konsola taktyczna, ekrany) zawsze należą do swojego Sabre, także w doku, gdzie pola
+/// wnętrza są na poziomie okrętu gospodarza: inaczej DRADIS Sabre otwierał ekran taktyczny gospodarza i podmieniał jego konsole
+/obj/machinery/computer/ship/get_overmap(failsafe = FALSE)
 	var/area/shuttle/sabre/A = get_area(src)
-	return istype(A) ? A.sabre : null
+	if(istype(A))
+		return A.sabre
+	return ..()
 
 /obj/machinery/computer/ship/helm/console/dropship/sabre/attack_hand(mob/living/user)
 	var/obj/structure/overmap/small_craft/transport/sabre/shuttle/S = has_overmap()

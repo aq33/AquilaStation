@@ -2847,13 +2847,6 @@
 "fI" = (
 /turf/closed/wall/r_wall,
 /area/maintenance/department/science)
-"fJ" = (
-/obj/structure/disposalpipe/segment,
-/obj/structure/overmap/small_craft/combat/light,
-/turf/open/floor/plasteel/techmaint{
-	initial_gas_mix = "TEMP=2.7"
-	},
-/area/nsv/hanger/notkmcstupidhanger)
 "fK" = (
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/techmaint{
@@ -7943,6 +7936,14 @@
 /obj/machinery/duct,
 /turf/open/floor/durasteel,
 /area/hallway/secondary/service)
+"tb" = (
+/obj/structure/overmap/small_craft/combat/light{
+	angle = 90
+	},
+/turf/open/floor/plasteel/techmaint{
+	initial_gas_mix = "TEMP=2.7"
+	},
+/area/nsv/hanger/notkmcstupidhanger)
 "tc" = (
 /obj/machinery/atmospherics/pipe/simple/green/visible{
 	dir = 4
@@ -11455,13 +11456,6 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
 /turf/open/floor/monotile/steel,
 /area/nsv/weapons)
-"DX" = (
-/obj/structure/overmap/small_craft/combat/light,
-/obj/machinery/light,
-/turf/open/floor/plasteel/techmaint{
-	initial_gas_mix = "TEMP=2.7"
-	},
-/area/nsv/hanger/notkmcstupidhanger)
 "DY" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -15034,6 +15028,16 @@
 	icon_state = "platingdmg3"
 	},
 /area/maintenance/nsv/deck2/port/fore)
+"Os" = (
+/obj/effect/turf_decal/tile/ship/half/green{
+	dir = 1
+	},
+/obj/structure/sign/poster/official/random{
+	pixel_y = 32
+	},
+/obj/structure/closet/damage_control,
+/turf/open/floor/monotile/steel,
+/area/hallway/nsv/deck2/primary)
 "Ot" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating{
@@ -16400,6 +16404,17 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/nsv/deck2/port/fore)
+"Sr" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/effect/turf_decal/tile/ship/yellow/orlen{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/ship/blue/orlen,
+/turf/open/floor/durasteel/techfloor_grid,
+/area/engine/break_room)
 "Ss" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -17614,6 +17629,16 @@
 /obj/machinery/missile_builder/welder,
 /turf/open/floor/engine,
 /area/nsv/weapons)
+"Wf" = (
+/obj/effect/turf_decal/tile/ship/green{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/ship/green{
+	dir = 8
+	},
+/obj/structure/closet/damage_control,
+/turf/open/floor/durasteel/alt,
+/area/hallway/nsv/deck2/primary)
 "Wg" = (
 /obj/effect/turf_decal/tile/ship/half/orange{
 	dir = 4
@@ -45423,7 +45448,7 @@ ej
 ML
 DN
 KC
-Il
+Sr
 aq
 GU
 DN
@@ -47490,7 +47515,7 @@ vm
 vm
 FU
 jt
-jt
+Wf
 jt
 uk
 rS
@@ -51591,7 +51616,7 @@ hL
 mO
 Pu
 wd
-tC
+Os
 un
 ny
 rh
@@ -60852,12 +60877,12 @@ UB
 BN
 Jc
 sF
-Jc
+UK
 BN
 US
 fL
 fK
-fJ
+fK
 fF
 fA
 fv
@@ -61628,7 +61653,7 @@ hy
 US
 BN
 Jc
-UK
+Jc
 jx
 QD
 yP
@@ -61884,7 +61909,7 @@ Jc
 BN
 US
 BN
-Jc
+tb
 Jc
 jx
 QD
@@ -62399,7 +62424,7 @@ BN
 US
 BN
 Jc
-DX
+yB
 jx
 QD
 Ko
