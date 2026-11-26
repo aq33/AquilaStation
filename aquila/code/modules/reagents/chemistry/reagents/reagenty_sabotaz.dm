@@ -129,6 +129,14 @@
 
 // --- D. Sterowanie lekami ---
 
+/// Ile reagentu ubywa na tick z samego metabolizmu: zwykle rate * metabolism_efficiency (reagents.dm),
+/// leki odwrotnie, rate / metabolism_efficiency, bo najedzony organizm dłużej je trzyma (medicine_reagents.dm)
+/datum/reagent/proc/aq_metabolized_per_tick(mob/living/carbon/M)
+	return metabolization_rate * M.metabolism_efficiency
+
+/datum/reagent/medicine/aq_metabolized_per_tick(mob/living/carbon/M)
+	return metabolization_rate / M.metabolism_efficiency
+
 /datum/reagent/malaxitol
 	name = "Malaksytol"
 	description = "Przyspiesza przemianę materii: wszystkie inne związki we krwi rozkładają się dwa razy szybciej. Przedawkowanie wywołuje drżenie i głód."
@@ -143,7 +151,7 @@
 	for(var/datum/reagent/other as anything in M.reagents.reagent_list.Copy())
 		if(other == src || other.holder != M.reagents || other.metabolization_rate <= 0)
 			continue
-		M.reagents.remove_reagent(other.type, other.metabolization_rate * M.metabolism_efficiency)
+		M.reagents.remove_reagent(other.type, other.aq_metabolized_per_tick(M))
 	return ..()
 
 /datum/reagent/malaxitol/overdose_process(mob/living/M)
@@ -179,7 +187,7 @@
 	for(var/datum/reagent/medicine/drug in M.reagents.reagent_list.Copy())
 		if(drug.holder != M.reagents || !can_boost(drug) || drug.volume >= BOOSTER_ENZYME_MAX_VOLUME)
 			continue
-		var/amount = min(drug.metabolization_rate * M.metabolism_efficiency, BOOSTER_ENZYME_MAX_VOLUME - drug.volume)
+		var/amount = min(drug.aq_metabolized_per_tick(M), BOOSTER_ENZYME_MAX_VOLUME - drug.volume)
 		if(drug.overdose_threshold && drug.volume + amount >= drug.overdose_threshold)
 			continue
 		M.reagents.add_reagent(drug.type, amount, reagtemp = M.reagents.chem_temp, no_react = TRUE, added_purity = drug.purity)
@@ -263,9 +271,37 @@
 	if(!stash?.total_volume || !iscarbon(owner))
 		qdel(src)
 		return
-	stash.trans_to_ingested(owner, max(per_tick, 0.1))
+	var/amount = min(max(per_tick, 0.1), stash.total_volume)
+	// Jak pill/attack(): reakcja połknięcia (mutagen, święcona woda itp.) przed przelaniem, ale bez smaku co tick
+	var/part = amount / stash.total_volume
+	SEND_SIGNAL(owner, COMSIG_ATOM_EXPOSE_REAGENTS, stash.reagent_list, stash, INGEST, part, FALSE)
+	for(var/datum/reagent/bit as anything in stash.reagent_list.Copy())
+		if(stash.reaction_check(owner, bit))
+			bit.reaction_mob(owner, INGEST, bit.volume * part, FALSE)
+	if(QDELETED(src) || !stash?.total_volume)
+		return
+	stash.trans_to_ingested(owner, amount)
 	if(stash.total_volume < 0.01)
 		qdel(src)
+
+/// Wymioty i płukanie żołądka zabierają też nieuwolnioną część tabletki, tak jak resztę zawartości żołądka
+/datum/status_effect/aq_extended_release/proc/purge(ratio, purge_amount = 0)
+	if(!stash?.total_volume)
+		return
+	for(var/datum/reagent/bit as anything in stash.reagent_list.Copy())
+		stash.remove_reagent(bit.type, max(bit.volume * ratio, min(bit.volume, purge_amount)))
+	if(stash.total_volume < 0.01)
+		qdel(src)
+
+/obj/item/organ/stomach/purge_contents(ratio = 1)
+	. = ..()
+	for(var/datum/status_effect/aq_extended_release/release in owner?.status_effects)
+		release.purge(ratio)
+
+/obj/item/organ/stomach/purge_to_vomit(obj/effect/decal/cleanable/vomit/pool, ratio = 0.1, purge = 10) // domyślne jak STOMACH_VOMIT_RATIO i STOMACH_VOMIT_PURGE (stomach_contents.dm)
+	. = ..()
+	for(var/datum/status_effect/aq_extended_release/release in owner?.status_effects)
+		release.purge(0, purge)
 
 /datum/status_effect/aq_extended_release/Destroy()
 	. = ..()
