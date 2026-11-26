@@ -43,6 +43,11 @@
 		TEST_ASSERT(core.linked_output.nodes[1], "[hfr.name]: the HFR waste output is not connected to a pipe")
 		TEST_ASSERT(core.parents[1] != core.linked_input.parents[1], "[hfr.name]: fuel flows straight into the cooling loop")
 		TEST_ASSERT(core.linked_input.parents[1] != core.linked_moderator.parents[1], "[hfr.name]: fuel and moderator share one pipe network")
+		TEST_ASSERT(core.parents[1] != core.linked_output.parents[1], "[hfr.name]: hot waste flows into the cooling loop")
+		// Gorące chłodziwo przy rdzeniu: rury tej sieci są wzmocnione (zwykłe pękają od 10 000 K)
+		var/datum/pipeline/coolant = core.parents[1]
+		for(var/obj/machinery/atmospherics/pipe/pipe in coolant.members)
+			TEST_ASSERT(pipe.aq_reinforced, "[hfr.name]: the HFR cooling loop pipe at [pipe.x - origin.x + 1],[pipe.y - origin.y + 1] is not reinforced")
 
 /datum/unit_test/aquila_hfr_engine_templates/Destroy()
 	for(var/turf/T as anything in area_turfs)

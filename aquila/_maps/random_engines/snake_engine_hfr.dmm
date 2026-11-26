@@ -1,4 +1,14 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"ab" = (
+/obj/effect/mapping_helpers/pipe_reinforce,
+/obj/structure/window/plasma/reinforced{
+	dir = 1
+	},
+/obj/machinery/power/rad_collector/anchored,
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/simple/general/visible,
+/turf/open/floor/engine,
+/area/engine/engineering/reactor_core)
 "cC" = (
 /obj/machinery/atmospherics/components/unary/hypertorus/moderator_input{
 	dir = 8
@@ -49,6 +59,28 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 1;
 	scrubbing = 0
+	},
+/turf/open/floor/engine,
+/area/engine/engineering/reactor_core)
+"fP" = (
+/obj/effect/turf_decal/bot,
+/obj/machinery/atmospherics/components/unary/portables_connector/visible{
+	dir = 1;
+	name = "port odpadów HFR"
+	},
+/obj/structure/window/plasma/reinforced{
+	dir = 1
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/engine,
+/area/engine/engineering/reactor_core)
+"gS" = (
+/obj/effect/mapping_helpers/pipe_reinforce,
+/obj/machinery/hypertorus/interface{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/general/visible{
+	dir = 4
 	},
 /turf/open/floor/engine,
 /area/engine/engineering/reactor_core)
@@ -366,6 +398,14 @@
 	},
 /turf/open/space/basic,
 /area/engine/engineering/reactor_core)
+"uC" = (
+/obj/effect/mapping_helpers/pipe_reinforce,
+/obj/machinery/hypertorus/corner{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/general/visible,
+/turf/open/floor/engine,
+/area/engine/engineering/reactor_core)
 "uG" = (
 /turf/template_noop,
 /area/template_noop)
@@ -393,6 +433,16 @@
 	dir = 6
 	},
 /obj/structure/cable/yellow,
+/turf/open/floor/engine,
+/area/engine/engineering/reactor_core)
+"zM" = (
+/obj/effect/mapping_helpers/pipe_reinforce,
+/obj/machinery/atmospherics/components/unary/portables_connector/visible/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/cyan/visible{
+	dir = 5
+	},
 /turf/open/floor/engine,
 /area/engine/engineering/reactor_core)
 "zV" = (
@@ -563,6 +613,15 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering/reactor_core)
+"MH" = (
+/obj/structure/window/plasma/reinforced{
+	dir = 1
+	},
+/obj/machinery/power/rad_collector/anchored,
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/simple/general/visible,
+/turf/open/floor/engine,
+/area/engine/engineering/reactor_core)
 "NI" = (
 /obj/machinery/atmospherics/pipe/manifold/general/visible{
 	dir = 1
@@ -645,6 +704,22 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on,
 /turf/open/floor/engine,
 /area/engine/supermatter)
+"TA" = (
+/obj/effect/mapping_helpers/pipe_reinforce,
+/obj/machinery/power/rad_collector/anchored,
+/obj/structure/window/plasma/reinforced,
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/simple/general/visible,
+/turf/open/floor/engine,
+/area/engine/engineering/reactor_core)
+"TO" = (
+/obj/effect/mapping_helpers/pipe_reinforce,
+/obj/machinery/hypertorus/corner{
+	dir = 2
+	},
+/obj/machinery/atmospherics/pipe/simple/general/visible,
+/turf/open/floor/engine,
+/area/engine/engineering/reactor_core)
 "TQ" = (
 /obj/effect/turf_decal/tile/yellow/tile_side/orlen{
 	dir = 4
@@ -697,6 +772,18 @@
 	},
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
+/area/engine/engineering/reactor_core)
+"VE" = (
+/obj/effect/mapping_helpers/pipe_reinforce,
+/obj/machinery/firealarm/directional/north,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/manifold/orange/visible{
+	dir = 1
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/engine,
 /area/engine/engineering/reactor_core)
 "Wv" = (
 /obj/structure/window/plasma/reinforced{
@@ -771,6 +858,17 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/plasteel/dark,
+/area/engine/engineering/reactor_core)
+"ZL" = (
+/obj/effect/mapping_helpers/pipe_reinforce,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/orange/visible{
+	dir = 5
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/engine,
 /area/engine/engineering/reactor_core)
 
 (1,1,1) = {"
@@ -896,25 +994,25 @@ uG
 (11,1,1) = {"
 uG
 Mb
-ol
+ZL
 UL
 Xz
 ry
 kH
-mX
+fP
 uG
 uG
 "}
 (12,1,1) = {"
 uG
 uG
-jF
-Bw
-DL
-Ax
-qN
-Jg
-Li
+VE
+TA
+uC
+gS
+TO
+ab
+zM
 uG
 "}
 (13,1,1) = {"

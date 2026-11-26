@@ -46,6 +46,16 @@
 /obj/structure/cable,
 /turf/closed/wall/r_wall/ship,
 /area/engine/supermatter)
+"eE" = (
+/obj/effect/mapping_helpers/pipe_reinforce,
+/obj/machinery/power/rad_collector/anchored,
+/obj/structure/window/plasma/reinforced,
+/obj/machinery/atmospherics/pipe/simple/general/visible{
+	dir = 6
+	},
+/obj/structure/cable,
+/turf/open/floor/engine,
+/area/nsv/engine/engine_room/core)
 "eJ" = (
 /obj/structure/lattice,
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
@@ -105,6 +115,18 @@
 "hb" = (
 /obj/effect/spawner/structure/window/plasma/reinforced,
 /turf/open/floor/plating,
+/area/nsv/engine/engine_room/core)
+"hf" = (
+/obj/effect/mapping_helpers/pipe_reinforce,
+/obj/structure/window/plasma/reinforced{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/general/visible{
+	dir = 5
+	},
+/obj/machinery/power/rad_collector/anchored,
+/obj/structure/cable,
+/turf/open/floor/engine,
 /area/nsv/engine/engine_room/core)
 "hS" = (
 /obj/structure/window/plasma/reinforced{
@@ -194,6 +216,14 @@
 /obj/structure/cable,
 /turf/open/floor/engine,
 /area/engine/supermatter)
+"jx" = (
+/obj/effect/mapping_helpers/pipe_reinforce,
+/obj/machinery/meter,
+/obj/machinery/atmospherics/pipe/simple/general/visible{
+	dir = 4
+	},
+/turf/closed/wall/r_wall/ship,
+/area/nsv/engine/engine_room/core)
 "ko" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/visible{
 	dir = 10
@@ -216,6 +246,14 @@
 	name = "port moderatora HFR"
 	},
 /turf/open/floor/engine,
+/area/nsv/engine/engine_room/core)
+"lB" = (
+/obj/effect/mapping_helpers/pipe_reinforce,
+/obj/machinery/atmospherics/pipe/simple/general/visible{
+	dir = 4
+	},
+/obj/machinery/meter,
+/turf/closed/wall/r_wall/ship,
 /area/nsv/engine/engine_room/core)
 "lL" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -373,6 +411,14 @@
 /obj/structure/cable,
 /turf/open/floor/engine,
 /area/engine/supermatter)
+"xf" = (
+/obj/effect/mapping_helpers/pipe_reinforce,
+/obj/machinery/hypertorus/corner{
+	dir = 2
+	},
+/obj/machinery/atmospherics/pipe/simple/general/visible,
+/turf/open/floor/engine,
+/area/nsv/engine/engine_room/core)
 "xl" = (
 /obj/structure/cable,
 /obj/machinery/power/emitter/anchored{
@@ -461,6 +507,14 @@
 /obj/machinery/meter,
 /turf/open/floor/plasteel,
 /area/engine/engine_room)
+"Ex" = (
+/obj/effect/mapping_helpers/pipe_reinforce,
+/obj/machinery/hypertorus/corner{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/general/visible,
+/turf/open/floor/engine,
+/area/nsv/engine/engine_room/core)
 "Gu" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /obj/machinery/atmospherics/components/trinary/filter/critical{
@@ -581,6 +635,16 @@
 /obj/structure/cable,
 /turf/closed/wall/r_wall/ship,
 /area/nsv/engine/engine_room/core)
+"Nv" = (
+/obj/effect/mapping_helpers/pipe_reinforce,
+/obj/machinery/hypertorus/interface{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/general/visible{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/nsv/engine/engine_room/core)
 "Nz" = (
 /obj/machinery/power/supermatter_crystal/engine,
 /turf/open/floor/engine,
@@ -639,6 +703,18 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/general/visible,
+/turf/open/floor/engine,
+/area/nsv/engine/engine_room/core)
+"Qg" = (
+/obj/effect/turf_decal/bot,
+/obj/machinery/atmospherics/components/unary/portables_connector/visible{
+	dir = 1;
+	name = "port odpadów HFR"
+	},
+/obj/structure/window/plasma/reinforced{
+	dir = 1
+	},
+/obj/structure/cable,
 /turf/open/floor/engine,
 /area/nsv/engine/engine_room/core)
 "RA" = (
@@ -951,7 +1027,7 @@ ko
 fZ
 UB
 Jl
-hS
+Qg
 Oo
 rR
 zH
@@ -968,11 +1044,11 @@ zH
 zH
 zH
 Vt
-JU
-PL
-RA
-it
-IM
+eE
+Ex
+Nv
+xf
+hf
 Oo
 zH
 zH
@@ -989,11 +1065,11 @@ qr
 Xp
 OU
 MV
-Jv
+jx
 Xp
 Hp
 Xp
-qP
+lB
 MV
 zH
 zH

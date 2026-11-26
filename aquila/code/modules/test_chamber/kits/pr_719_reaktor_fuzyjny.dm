@@ -10,7 +10,7 @@
 	4) Po rozgrzaniu (VV: internal_fusion.set_temperature(5000) przyspiesza) poziom fuzji rośnie, w komorze fuzji pojawia się hel, a kolektory promieniowania obok dają prąd. \
 	5) VV: critical_threshold_proximity 100. Przycisk Wyrzut rdzenia na dole okna z kartą głównego inżyniera: 30 s odliczania, potem komora fuzji i moderator są puste, a uszkodzenia zerowe. \
 	6) Przełącz język gry na angielski: okno, opisy i komunikaty radia mają być po angielsku. \
-	7) Wybór silnika (poza komorą): w preferencjach jest Reaktor fuzyjny HFR. Główny inżynier z tą preferencją na Atlasie, Trawniku albo Padalcu dostaje w maszynowni HFR w dawnej komorze supermaterii, z portami paliwa i moderatora od strony korytarza i panelem sterowania przy wschodnich drzwiach. Bez takiego wyboru HFR nigdy nie wypada w losowaniu."
+	7) Wybór silnika (poza komorą): w preferencjach jest Reaktor fuzyjny HFR. Główny inżynier z tą preferencją na Atlasie, Trawniku albo Padalcu dostaje w maszynowni HFR w dawnej komorze supermaterii, z portami paliwa i moderatora od strony korytarza, portem odpadów pod komorą, wzmocnioną pętlą chłodziwa i panelem sterowania przy wschodnich drzwiach. Bez takiego wyboru HFR nigdy nie wypada w losowaniu."
 	items = list(
 		/obj/item/hfr_box/corner = 4,
 		/obj/item/hfr_box/body/fuel_input = 1,
