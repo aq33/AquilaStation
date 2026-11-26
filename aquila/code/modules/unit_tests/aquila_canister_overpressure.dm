@@ -7,6 +7,10 @@
 
 /datum/unit_test/aquila_canister_overpressure/Run()
 	var/obj/machinery/portable_atmospherics/canister/canister = allocate(/obj/machinery/portable_atmospherics/canister, run_loc_floor_bottom_left)
+	// pęknięty kanister wypuszcza gaz na kafelek, a pokój testowy nie jest czyszczony między testami
+	var/turf/open/floor = run_loc_floor_bottom_left
+	var/datum/gas_mixture/floor_backup = new
+	floor_backup.copy_from(floor.air)
 	var/datum/gas_mixture/air = canister.air_contents
 	var/volume = air.return_volume()
 
@@ -26,6 +30,10 @@
 			break
 		canister.aq_take_atmos_damage()
 	TEST_ASSERT(canister.machine_stat & BROKEN, "Kanister z 80 000 kPa nie pękł po 40 cyklach")
+	var/released_moles = floor.air.total_moles() - floor_backup.total_moles()
+	floor.air.copy_from(floor_backup)
+	floor.air_update_turf()
 	TEST_ASSERT(canister.air_contents.total_moles() < 1, "Pęknięty kanister nie wypuścił gazu")
+	TEST_ASSERT(released_moles > 1, "Gaz z pękniętego kanistra nie trafił na kafelek")
 
 #undef TEST_ASSERT

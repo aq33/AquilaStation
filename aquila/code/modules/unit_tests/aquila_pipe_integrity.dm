@@ -39,10 +39,16 @@
 	// Przeciek: gaz z sieci trafia na kafelek
 	var/turf/open/floor = get_turf(pipe)
 	var/floor_moles = floor.air.total_moles()
+	// przeciek trafia na kafelek, a pokój testowy nie jest czyszczony między testami
+	var/datum/gas_mixture/floor_backup = new
+	floor_backup.copy_from(floor.air)
 	var/pipe_moles = net.air.total_moles()
 	net.aq_leak_gas()
 	TEST_ASSERT(net.air.total_moles() < pipe_moles, "Pęknięta rura nie traci gazu")
-	TEST_ASSERT(floor.air.total_moles() > floor_moles, "Gaz z pękniętej rury nie trafił na kafelek")
+	var/leaked_to_floor = floor.air.total_moles() > floor_moles
+	floor.air.copy_from(floor_backup)
+	floor.air_update_turf()
+	TEST_ASSERT(leaked_to_floor, "Gaz z pękniętej rury nie trafił na kafelek")
 
 	// Sieć przebudowana od nowa pamięta pęknięcie (lista liczona z członków)
 	net.aq_leaks = null
