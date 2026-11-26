@@ -12,8 +12,8 @@
 	earliest_start = 20 MINUTES
 
 /datum/round_event/aquila_hex_fauna_flyby/sharks
-	announceWhen = 1
-	startWhen = 10
+	startWhen = 1
+	announceWhen = 2
 	endWhen = 100
 	fauna_types = list(/mob/living/basic/aquila_void_fauna/shark = 1)
 	groups_min = 1

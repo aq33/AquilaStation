@@ -8,7 +8,9 @@
 // - basic mobs on our AI instead of simple animals/simple mobs, one shared base type and two controllers (retaliating and hunting);
 // - they fly past the ship on a route given by the event (aquila_flyby subtree) and vanish at its end, instead of swimming
 //   at the map centre and staying; hunters only pick targets in space (people on EVA), never through the hull;
-// - none of them break walls or windows (obj_damage 0), so they never let themselves into the ship;
+// - none of them break walls or windows (obj_damage 0), and on their own they never leave space for a non-space turf
+//   (Move() refuses it), so they neither open doors nor land on the hull; none come from gold slime cores;
+// - VORE gnats: weaker bites (1 brute every 4 s, no PASSMOB), so a swarm wears a suited spacewalker down over minutes;
 // - VORE jellyfish: no vore, nutrition drain or breeding, the touch is a burning sting that also tires; VORE ray: the buffet
 //   tires the victim instead of entangling it; VORE shark: the knockdown is a 2 s Knockdown at 10%;
 // - Bay whales: no multi-tile bounds (one tile with a big sprite and pixel offsets), no skins; the calf follows its mother
@@ -48,6 +50,7 @@
 	response_harm_continuous = "uderza"
 	faction = list("void_fauna")
 	should_talk = FALSE
+	gold_core_spawnable = NO_SPAWN
 	ai_controller = /datum/ai_controller/basic_controller/aquila_void_fauna
 
 /mob/living/basic/aquila_void_fauna/Initialize(mapload)
@@ -55,22 +58,38 @@
 	AddElement(/datum/element/simple_flying)
 	AddElement(/datum/element/ai_retaliate)
 
-/// Daje stworowi trasę przelotu: kolejne pola, do których leci; po ostatnim znika
+/// Stwór sam (bez gracza, żywy, nieciągnięty, nierzucony) nie schodzi z kosmosu na inne pole: nie wpada na kadłub ani do śluz
+/mob/living/basic/aquila_void_fauna/Move(atom/newloc, direct, glide_size_override)
+	if(isturf(newloc) && !isspaceturf(newloc) && stays_in_space())
+		return FALSE
+	return ..()
+
+/// TRUE, gdy stwór porusza się sam i jest w kosmosie
+/mob/living/basic/aquila_void_fauna/proc/stays_in_space()
+	return !client && stat != DEAD && !pulledby && !throwing && isspaceturf(loc)
+
+/// Daje stworowi trasę przelotu: kolejne pola, do których leci; po ostatnim znika. Nowa trasa zastępuje poprzednią.
 /mob/living/basic/aquila_void_fauna/proc/fly_by(list/route)
 	if(!ai_controller || !length(route))
 		return FALSE
 	ai_controller.can_idle = FALSE
 	ai_controller.set_ai_status(AI_STATUS_ON)
-	ai_controller.set_blackboard_key(BB_AQUILA_FLYBY_PATH, route.Copy())
+	ai_controller.clear_blackboard_key(BB_AQUILA_FLYBY_TARGET)
+	ai_controller.clear_blackboard_key(BB_AQUILA_FLYBY_BEST_DIST)
+	ai_controller.clear_blackboard_key(BB_AQUILA_FLYBY_STALL)
+	ai_controller.override_blackboard_key(BB_AQUILA_FLYBY_PATH, route.Copy())
 	return TRUE
 
-/// Stwór odlatuje: blednie i znika. Martwe i opętane zostają.
-/mob/living/basic/aquila_void_fauna/proc/leave_flyby()
+/// Stwór odlatuje: blednie przez fade_time i znika. Martwe i opętane zostają.
+/mob/living/basic/aquila_void_fauna/proc/leave_flyby(fade_time = 1 SECONDS)
 	if(QDELETED(src) || stat == DEAD || client || key)
 		return FALSE
 	ai_controller?.clear_blackboard_key(BB_AQUILA_FLYBY_PATH)
-	animate(src, alpha = 0, time = 1 SECONDS)
-	addtimer(CALLBACK(src, PROC_REF(finish_leaving)), 1 SECONDS, TIMER_UNIQUE)
+	if(fade_time <= 0)
+		qdel(src)
+		return TRUE
+	animate(src, alpha = 0, time = fade_time)
+	addtimer(CALLBACK(src, PROC_REF(finish_leaving)), fade_time, TIMER_UNIQUE)
 	return TRUE
 
 /mob/living/basic/aquila_void_fauna/proc/finish_leaving()
@@ -182,7 +201,6 @@
 	attack_verb_continuous = "skubie"
 	speak_emote = list("bulgocze")
 	butcher_results = list(/obj/item/food/fishmeat = 1)
-	gold_core_spawnable = FRIENDLY_SPAWN
 	/// Losowy z czterech wzorów łusek
 	var/random_pattern = TRUE
 
@@ -215,13 +233,12 @@
 	maxHealth = 5
 	health = 5
 	speed = 0
-	melee_damage = 3
-	melee_attack_cooldown = 1 SECONDS
+	melee_damage = 1
+	melee_attack_cooldown = 4 SECONDS
 	sharpness = IS_SHARP
 	attack_verb_continuous = "kąsa"
 	mob_size = MOB_SIZE_TINY
-	pass_flags = PASSTABLE | PASSMOB
-	gold_core_spawnable = HOSTILE_SPAWN
+	pass_flags = PASSTABLE
 	ai_controller = /datum/ai_controller/basic_controller/aquila_void_fauna/hunter
 
 /**
@@ -246,7 +263,6 @@
 	light_range = 2
 	light_power = 0.6
 	light_color = "#9a6cff"
-	gold_core_spawnable = HOSTILE_SPAWN
 	ai_controller = /datum/ai_controller/basic_controller/aquila_void_fauna/hunter
 	/// Zmęczenie (obrażenia wytrzymałości) od każdego oparzenia
 	var/sting_stamina_damage = 12
@@ -258,6 +274,11 @@
 	var/mob/living/carbon/stung = target
 	stung.adjustStaminaLoss(sting_stamina_damage)
 	stung.Jitter(5)
+
+/// Martwa meduza gaśnie
+/mob/living/basic/aquila_void_fauna/jellyfish/death(gibbed)
+	. = ..()
+	set_light(0)
 
 /**
  * Kosmiczna płaszczka: wygląda groźnie, ale szybuje spokojnie na wiatrach słonecznych i oddaje tylko zaczepiona.
@@ -276,7 +297,6 @@
 	sharpness = IS_SHARP
 	attack_verb_continuous = "smaga"
 	butcher_results = list(/obj/item/food/fishmeat = 3)
-	gold_core_spawnable = FRIENDLY_SPAWN
 	/// Szansa (%), że uderzenie skrzydłem zmęczy ofiarę, a płaszczka straci nią zainteresowanie
 	var/buffet_chance = 66
 
@@ -309,7 +329,6 @@
 	melee_attack_cooldown = 2.2 SECONDS
 	sharpness = IS_SHARP
 	butcher_results = list(/obj/item/food/fishmeat = 5)
-	gold_core_spawnable = HOSTILE_SPAWN
 	ai_controller = /datum/ai_controller/basic_controller/aquila_void_fauna/hunter
 	/// Szansa (%), że ugryzienie przewróci ofiarę
 	var/knockdown_chance = 10
