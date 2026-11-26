@@ -31,6 +31,7 @@
 	return ..()
 
 /datum/pipeline/process()
+	aq_process_integrity() // AQ EDIT - wytrzymałość rur (aquila/code/modules/atmospherics/pipe_integrity.dm)
 	if(!update || building)
 		return
 	update = FALSE
