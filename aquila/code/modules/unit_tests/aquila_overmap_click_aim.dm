@@ -41,3 +41,19 @@
 	var/obj/item/thing = allocate(/obj/item, run_loc_floor_bottom_left)
 	if(ship.get_click_aim_target(thing, "icon-x=150;icon-y=140") != thing)
 		return Fail("A click off the overmap changed the target")
+	// Pocisk zostaje celem, żeby rakieta mogła go gonić
+	var/obj/item/projectile/incoming = allocate(/obj/item/projectile/bullet/gauss_slug, locate(95, 95, overmap_z))
+	if(ship.get_click_aim_target(incoming, "icon-x=20;icon-y=20") != incoming)
+		return Fail("Clicking a projectile no longer targets the projectile")
+
+	// Sonda w środku gwiazdy (nie w kaflu loc) zalicza skan, poza sprite'em nie
+	sun.research_points = 0 // bez punktów dla naukowców w innych testach
+	var/obj/item/projectile/bullet/torpedo/probe/probe = allocate(/obj/item/projectile/bullet/torpedo/probe, locate(116, 112, overmap_z))
+	probe.forceMove(locate(115, 112, overmap_z))
+	if(sun.scanned)
+		return Fail("A probe outside the sun's sprite scanned it")
+	probe.forceMove(locate(112, 112, overmap_z))
+	if(!sun.scanned)
+		return Fail("A probe in the middle of the sun's sprite did not scan it")
+	if(!QDELETED(probe))
+		return Fail("The probe was not used up by the scan")
