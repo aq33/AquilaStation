@@ -45,7 +45,7 @@
 /datum/test_chamber_kit/pr_rosliny_ksenoflora
 	name = "Botanika: kapsuła ksenoflory i nasiona z artefaktów"
 	pr = "aq33/AquilaStation#649"
-	description = "1) Kapsuła ksenoflory 2×2: rury gazowe na lewym dolnym kaflu (z południa wejście wymaganych gazów, na zachód wyjście reszty). Podłącz kanister azotu, zamknij kopułę, ustaw temperaturę w oknie i posadź miotlarza: rośnie tylko w kapsule z azotem i w swojej temperaturze. Sześciomelon potrzebuje bromu w zbiorniku kapsuły i mrozu. W zwykłej tacce ksenoflory nie da się posadzić. 2) Artefakt z cechą „Seeding”: aktywuj (ściśnij w ręce), wyrzuca nasiono obcej rośliny (amauri, gelthi, podglądacz, lotos świetlny, ludożerca…), potem 90 s przerwy. Sprawdź podglądacza (obraca się do ciebie), ludożercę (gryzie przy dotknięciu) i pełzacza (zasiewa się w pustej tacy obok)."
+	description = "1) Kapsuła ksenoflory 2×2: rury gazowe na lewym dolnym kaflu (z południa wejście wymaganych gazów, na zachód wyjście reszty). Podłącz kanister azotu, zamknij kopułę, ustaw temperaturę w oknie i posadź miotlarza: rośnie tylko w kapsule z azotem i w swojej temperaturze. Sześciomelon potrzebuje bromu w zbiorniku kapsuły i mrozu. W zwykłej tacce ksenoflory nie da się posadzić. 2) Artefakt z cechą „Seeding”: aktywuj (ściśnij w ręce), wyrzuca nasiono obcej rośliny (amauri, gelthi, podglądacz, lotos świetlny, ludożerca…), potem 90 s przerwy. Sprawdź podglądacza (obraca się do ciebie), ludożercę (gryzie przy dotknięciu) i pełzacza (zasiewa się w pustej tacy obok). 3) Odmiany kapsułowe (vale, jurl'mah, thaa'dra, surik, ciekacz, kwiat plazmowy, gwiaździsty kaktus): ta sama roślina co w tacce, ale tylko w kapsule, w swoich warunkach (jurl'mah: azot i mróz od −30 do −10 °C, vale: plazma i 30–60 °C) i z dwa razy większym owocem."
 	items = list(
 		/obj/machinery/atmospherics/components/binary/xenoflora_pod = 1,
 		/obj/machinery/portable_atmospherics/canister/nitrogen = 1,
@@ -55,6 +55,9 @@
 		/obj/item/plant_seeds/preset/alien/xenoflora/breather = 1,
 		/obj/item/plant_seeds/preset/alien/xenoflora/adhomai/fjylozyn = 1,
 		/obj/item/plant_seeds/preset/alien/xenoflora/rasy/merlin_tears = 1,
+		/obj/item/plant_seeds/preset/alien/xenoflora/capsule/jurlmah = 1,
+		/obj/item/plant_seeds/preset/alien/xenoflora/capsule/vale = 1,
+		/obj/machinery/portable_atmospherics/canister/nitrogen = 1,
 		/obj/machinery/portable_atmospherics/canister/carbon_dioxide = 1,
 		/obj/machinery/portable_atmospherics/canister/toxins = 1,
 		/obj/item/wrench = 1,
