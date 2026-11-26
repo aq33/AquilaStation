@@ -169,3 +169,71 @@
 	if(islist(signed_up))
 		candidates += shuffle(signed_up)
 	return candidates
+
+/// Czy na wolnym polu można postawić coś gęstego (automat, postać) bez zatarasowania przejścia: obok nie ma drzwi, a z czterech sąsiednich pól co najmniej trzy są wolne
+/proc/aquila_hex_dense_spot_ok(turf/T)
+	if(!aquila_hex_free_safe_turf(T))
+		return FALSE
+	for(var/turf/near in orange(1, T))
+		if(locate(/obj/machinery/door) in near)
+			return FALSE
+	var/open_sides = 0
+	for(var/side in GLOB.cardinals)
+		var/turf/neighbour = get_step(T, side)
+		if(isopenturf(neighbour) && !neighbour.density && !is_blocked_turf(neighbour, TRUE))
+			open_sides++
+	return open_sides >= 3
+
+/**
+ * Do amount wolnych i bezpiecznych pól w jednym losowym pomieszczeniu statku (bez tuneli technicznych i obszarów
+ * z aquila_hex_unsafe_area_typecache()), na które może spaść kapsuła albo pojawić się gość. Zwraca listę pól
+ * z jednego pomieszczenia, które ma ich co najmniej amount; pustą listę, gdy takiego nie ma.
+ * dense - pola dla czegoś gęstego (aquila_hex_dense_spot_ok()).
+ */
+/proc/aquila_hex_room_turfs(amount = 1, dense = FALSE)
+	. = list()
+	var/list/area_types = GLOB.the_station_areas.Copy()
+	while(length(area_types))
+		var/area_type = pick_n_take(area_types)
+		if(aquila_hex_unsafe_area_type(area_type) || ispath(area_type, /area/maintenance) || ispath(area_type, /area/space))
+			continue
+		var/list/turfs = list()
+		for(var/turf/T as anything in get_area_turfs(area_type))
+			if(!is_station_level(T.z) || isspaceturf(T))
+				continue
+			if(dense ? aquila_hex_dense_spot_ok(T) : aquila_hex_free_safe_turf(T))
+				turfs += T
+		if(length(turfs) >= amount)
+			for(var/i in 1 to amount)
+				. += pick_n_take(turfs)
+			return
+
+/// Losowe wolne i bezpieczne pole statku (nie kosmos, nie niebezpieczny obszar) do teleportu; null, gdy nie znalazł
+/proc/aquila_hex_safe_teleport_turf()
+	for(var/attempt in 1 to 15)
+		var/turf/T = aquila_hex_random_ship_turf(aquila_hex_unsafe_area_typecache())
+		if(aquila_hex_free_safe_turf(T))
+			return T
+
+/// Pole kosmosu kilka pól od burty statku (od min_dist do max_dist), na którym można coś postawić; null, gdy żadna burta nie ma wolnego kosmosu
+/proc/aquila_hex_space_spot_near_hull(min_dist = 2, max_dist = 4, list/side_order)
+	for(var/side in (side_order || shuffle(GLOB.cardinals.Copy())))
+		var/turf/hull = aquila_hex_ship_hull_turf(side)
+		if(!isspaceturf(hull))
+			continue
+		var/turf/center = aquila_hex_inside_map(get_ranged_target_turf(hull, side, rand(min_dist, max_dist)))
+		var/list/spots = aquila_hex_free_space_near(center, 1, 1)
+		if(length(spots))
+			return spots[1]
+
+/// Nazwa pomieszczenia statku najbliższego polu w kosmosie (do range pól); null, gdy w pobliżu nie ma statku
+/proc/aquila_hex_nearest_ship_area_name(turf/spot, range = 12)
+	if(!isturf(spot))
+		return null
+	for(var/dist in 1 to range)
+		for(var/turf/T as anything in (RANGE_TURFS(dist, spot) - RANGE_TURFS(dist - 1, spot)))
+			if(isspaceturf(T))
+				continue
+			var/area/A = get_area(T)
+			if(A && (A.type in GLOB.the_station_areas))
+				return A.name

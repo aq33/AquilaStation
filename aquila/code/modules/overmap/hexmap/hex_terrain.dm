@@ -73,6 +73,8 @@ GLOBAL_LIST_EMPTY(hex_terrains)
 		/datum/round_event_control/aquila_hex_belt_rats,
 		/datum/round_event_control/aquila_hex_xenohive,
 		/datum/round_event_control/aquila_hex_fun_swarm,
+		/datum/round_event_control/aquila_hex_resource_drift,
+		/datum/round_event_control/aquila_hex_bluespace_crystal_infestation,
 	)
 	antags = list(
 		/datum/round_event_control/spider_infestation,
@@ -94,6 +96,7 @@ GLOBAL_LIST_EMPTY(hex_terrains)
 		/datum/round_event_control/aquila_hex_loot_pod,
 		/datum/round_event_control/aquila_hex_station_incident_mimic,
 		/datum/round_event_control/aquila_hex_rogue_maint_drones,
+		/datum/round_event_control/aquila_hex_old_vendotron,
 	)
 	antags = list(
 		/datum/round_event_control/spawn_swarmer,
@@ -289,6 +292,8 @@ GLOBAL_LIST_EMPTY(hex_terrains)
 		/datum/round_event_control/aquila_hex_bluespace_interphase,
 		/datum/round_event_control/aquila_hex_ian_storm,
 		/datum/round_event_control/aquila_hex_hivebots,
+		/datum/round_event_control/aquila_hex_mystery_gift,
+		/datum/round_event_control/aquila_hex_travelling_trader,
 	)
 	antags = list(
 		/datum/round_event_control/aquila_chrono_legionnaire,
@@ -329,6 +334,9 @@ GLOBAL_LIST_EMPTY(hex_terrains)
 	id = HEX_TERRAIN_MINES
 	name = "Pole minowe"
 	desc = "Miny Syndykatu przy bazach i bramie."
+	events = list(
+		/datum/round_event_control/aquila_hex_intercepted_contraband,
+	)
 	antags = list(
 		/datum/round_event_control/operative,
 		/datum/round_event_control/infiltrators,
@@ -351,6 +359,8 @@ GLOBAL_LIST_EMPTY(hex_terrains)
 		/datum/round_event_control/aquila_hex_loot_pod,
 		/datum/round_event_control/aquila_hex_mimics_invasion,
 		/datum/round_event_control/aquila_hex_cat_surgeon,
+		/datum/round_event_control/aquila_hex_resource_pods,
+		/datum/round_event_control/aquila_hex_derelict_satellite,
 	)
 	antags = list(
 		/datum/round_event_control/fugitives,
