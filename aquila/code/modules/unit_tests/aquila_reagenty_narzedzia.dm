@@ -110,6 +110,13 @@
 	TEST_ASSERT(girder.aq_concrete_cure(), "Concrete on a girder did not cure")
 	wall_turf = locate(wall_turf.x, wall_turf.y, wall_turf.z)
 	TEST_ASSERT(istype(wall_turf, /turf/closed/wall/aq_concrete), "A cured girder is not a concrete wall ([wall_turf.type])")
+	// Rozbiórka betonowej ściany nie oddaje dźwigara ani żelaza: inaczej dźwigar + beton = darmowe żelazo w kółko
+	var/turf/closed/wall/aq_concrete/concrete_wall = wall_turf
+	TEST_ASSERT(isnull(concrete_wall.break_wall()), "A dismantled concrete wall gave a girder back")
+	concrete_wall.devastate_wall()
+	var/obj/item/stack/sheet/iron/free_iron = locate() in wall_turf
+	TEST_ASSERT(!free_iron, "A dismantled concrete wall gave iron")
+	TEST_ASSERT(!(locate(/obj/structure/girder) in wall_turf), "A dismantled concrete wall left a girder")
 
 	aq_splash(floor_turf, /datum/reagent/grassgro, 5)
 	floor_turf = locate(floor_turf.x, floor_turf.y, floor_turf.z)

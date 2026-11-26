@@ -27,6 +27,13 @@
 	beaker.Hear("Drugie zdanie", speaker, null, "Drugie zdanie", null, list(), list())
 	TEST_ASSERT(locutogen.data["phrase"] == "Ala ma kota", "Locutogen stored [locutogen.data["phrase"]] instead of the first phrase")
 	TEST_ASSERT(!locutogen.aq_ear, "Locutogen keeps listening after storing a phrase")
+	// Wypity lokutogen nie nagrywa w żołądku rozmowy po wypiciu
+	var/mob/living/carbon/human/drinker = allocate(/mob/living/carbon/human)
+	var/obj/item/organ/stomach/drinker_stomach = drinker.getorganslot(ORGAN_SLOT_STOMACH)
+	TEST_ASSERT(drinker_stomach?.reagents, "The test human has no stomach")
+	drinker_stomach.reagents.add_reagent(/datum/reagent/aq_locutogen, 5)
+	var/datum/reagent/aq_locutogen/swallowed_locutogen = drinker_stomach.reagents.get_reagent(/datum/reagent/aq_locutogen)
+	TEST_ASSERT(swallowed_locutogen && !swallowed_locutogen.aq_ear, "Swallowed locutogen listens in the stomach")
 	var/mob/living/carbon/human/listener = allocate(/mob/living/carbon/human)
 	beaker.reagents.trans_to(listener, 10)
 	var/datum/reagent/aq_locutogen/drunk = listener.reagents.get_reagent(/datum/reagent/aq_locutogen)
@@ -162,6 +169,8 @@
 	TEST_ASSERT(!length(copy.get_equipped_items(TRUE)) && !copy.wear_id, "The copy came with clothes or an ID")
 	TEST_ASSERT(!copy.mind, "A copy without a ghost got a mind")
 	TEST_ASSERT(!aq_sdgf_grow_clone(original, null), "SDGF grew a second copy of the same player")
+	// Kopia ma to samo DNA, więc nie wyhoduje następnej kopii tego ciała (łańcuch kopii z nowymi duchami)
+	TEST_ASSERT(!aq_sdgf_can_clone(copy), "The SDGF copy can grow another copy of the same body")
 
 	// Klucz limitu jest stały dla gracza: z umysłu, także gdy ciało nie ma ckey (duch wyszedł)
 	var/mob/living/carbon/human/ghosted = allocate(/mob/living/carbon/human)
@@ -170,16 +179,37 @@
 	ghosted.mind.key = "Gracz Testowy"
 	TEST_ASSERT(!ghosted.ckey && aq_sdgf_key(ghosted) == ckey("Gracz Testowy"), "The SDGF limit key of a body without a client is [aq_sdgf_key(ghosted)], not the player's ckey")
 
-	// Za mała dawka: komórki wtapiają się w ciało i leczą
+	// Za mała dawka: komórki wtapiają się w ciało i leczą, ale tylko tyle, ile się wchłonęło
 	var/mob/living/carbon/human/small = allocate(/mob/living/carbon/human)
 	small.adjustBruteLoss(30)
 	small.reagents.add_reagent(/datum/reagent/aq_sdgf, 10)
 	var/datum/reagent/aq_sdgf/sdgf = small.reagents.get_reagent(/datum/reagent/aq_sdgf)
 	sdgf.on_mob_life(small)
 	TEST_ASSERT(sdgf.aq_merge_only, "A small SDGF dose still tries to grow a copy")
+	sdgf.aq_absorbed = 10
 	small.reagents.del_reagent(/datum/reagent/aq_sdgf)
-	TEST_ASSERT(small.getBruteLoss() < 30, "Merging SDGF cells healed nothing")
+	TEST_ASSERT(small.getBruteLoss() <= 15.1, "10 u of merged SDGF cells did not heal fully ([small.getBruteLoss()] brute left of 30)")
+	// Mikrodawka (0,1 j. wchłonięte) leczy proporcjonalnie, nie jak pełna dawka
+	var/mob/living/carbon/human/micro = allocate(/mob/living/carbon/human)
+	micro.adjustBruteLoss(30)
+	micro.reagents.add_reagent(/datum/reagent/aq_sdgf, 1)
+	var/datum/reagent/aq_sdgf/micro_sdgf = micro.reagents.get_reagent(/datum/reagent/aq_sdgf)
+	micro_sdgf.on_mob_life(micro)
+	micro_sdgf.aq_absorbed = 0.1
+	micro.reagents.del_reagent(/datum/reagent/aq_sdgf)
+	TEST_ASSERT(micro.getBruteLoss() > 29, "A 0.1 u SDGF dose healed like a full one ([micro.getBruteLoss()] brute left of 30)")
 	GLOB.aq_sdgf_cloned -= aq_sdgf_key(original)
+	GLOB.aq_sdgf_cloned -= aq_sdgf_dna_key(original)
+
+	// Lek hiperpsychotyczny: śladowa ilość nie rozszczepia osobowości
+	var/mob/living/carbon/human/traced = allocate(/mob/living/carbon/human)
+	traced.mind_initialize()
+	allocated += traced.mind
+	traced.reagents.add_reagent(/datum/reagent/toxin/aq_hyperpsy, 0.5)
+	var/datum/reagent/toxin/aq_hyperpsy/hyperpsy = traced.reagents.get_reagent(/datum/reagent/toxin/aq_hyperpsy)
+	hyperpsy.current_cycle = 10
+	hyperpsy.on_mob_life(traced)
+	TEST_ASSERT(!traced.has_trauma_type(/datum/brain_trauma/severe/split_personality), "A trace of the hyperpsychotic drug split the personality")
 
 /// Nitrogen triiodide pops when dry and touched or heated, photophosphide on a lit floor, argine below zero, punctualite on the hour
 /datum/unit_test/aquila_reagenty_umysl_pyro

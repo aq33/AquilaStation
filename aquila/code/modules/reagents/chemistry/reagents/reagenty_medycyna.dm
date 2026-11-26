@@ -59,6 +59,8 @@
 	taste_description = "żelazo"
 	metabolization_rate = 0.2 * REAGENTS_METABOLISM
 	overdose_threshold = 40
+	// Działa też przy niewydolnej wątrobie (liver_toxins.dm zdejmuje wtedy traity reagentom bez self_consuming), u ciężko rannych najważniejsze
+	self_consuming = TRUE
 
 /datum/reagent/medicine/sanguirite/on_mob_metabolize(mob/living/L)
 	. = ..()
@@ -99,6 +101,8 @@
 	taste_description = "krew i guma"
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
 	overdose_threshold = 20
+	// Jak Sangwiryt: działa także przy niewydolnej wątrobie
+	self_consuming = TRUE
 
 /datum/reagent/medicine/quickclot/on_mob_metabolize(mob/living/L)
 	. = ..()
@@ -459,7 +463,7 @@
 
 /datum/reagent/toxin/microplastics
 	name = "Mikroplastik"
-	description = "Drobiny plastiku, których organizm prawie nie wydala. Latami siedzą w narządach i po trochu je niszczą. Wypłukują je tylko węgiel aktywny i kalomel."
+	description = "Drobiny plastiku, których organizm prawie nie wydala. Latami siedzą w narządach i po trochu je niszczą. Wypłukują je środki oczyszczające krew, takie jak węgiel aktywny, kalomel czy kwas pentetowy."
 	reagent_state = SOLID
 	color = "#E8E8E8"
 	taste_description = "nic"

@@ -40,6 +40,15 @@
 	metabolize_cycles(bleeder, 1)
 	TEST_ASSERT(!HAS_TRAIT(bleeder, TRAIT_AQ_QUICKCLOT), "The clotting trait stayed after the drug ran out")
 
+	// Szybkie krzepnięcie works with a failing liver too (the liver then runs only self-consuming reagents)
+	var/mob/living/carbon/human/liver_failure = allocate(/mob/living/carbon/human)
+	var/obj/item/organ/liver/bad_liver = liver_failure.getorganslot(ORGAN_SLOT_LIVER)
+	bad_liver.setOrganDamage(bad_liver.maxHealth)
+	liver_failure.reagents.add_reagent(/datum/reagent/medicine/quickclot, 10)
+	for(var/i in 1 to 2)
+		bad_liver.process_reagents(liver_failure)
+	TEST_ASSERT(HAS_TRAIT(liver_failure, TRAIT_AQ_QUICKCLOT), "Szybkie krzepnięcie does not work with a failing liver")
+
 	// Sangwiryt and heparin cancel each other
 	var/mob/living/carbon/human/clotter = allocate(/mob/living/carbon/human)
 	clotter.reagents.add_reagent(/datum/reagent/medicine/sanguirite, 10)

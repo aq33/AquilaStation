@@ -209,6 +209,14 @@
 	slicing_duration = 150
 	sheet_amount = 1
 
+/// Beton nie ma w sobie żelaza ani dźwigara (zjadł go przy zastyganiu): rozebrany zostawia tylko gruz.
+/// Inaczej dźwigar zalany betonem wracałby z rozbiórki razem z arkuszem żelaza, i tak w kółko.
+/turf/closed/wall/aq_concrete/break_wall()
+	return null
+
+/turf/closed/wall/aq_concrete/devastate_wall()
+	return
+
 /datum/reagent/concrete
 	name = "Beton"
 	description = "Mieszanka cementu i kruszywa. Wylany na podłogę z płyt robi z niej betonową wylewkę, a na dźwigar albo kratę zastyga w betonową ścianę."

@@ -16,8 +16,13 @@
 /// SDGF: najmniejsza dawka, z której wyrośnie kopia, i liczba cykli (po 2 s) do jej powstania
 #define AQ_SDGF_MIN_DOSE 50
 #define AQ_SDGF_GROW_CYCLES 90
+/// SDGF bez kopii: pełne leczenie (15/15/5) dopiero od tylu wchłoniętych jednostek, mniej proporcjonalnie
+#define AQ_SDGF_FULL_HEAL_UNITS 10
 /// Fotofosfid na podłodze wybucha przy takim oświetleniu kafelka
 #define AQ_PHOTOPHOSPHIDE_LUM 0.35
+/// Lek hiperpsychotyczny: od tylu jednostek we krwi i tylu cykli daje rozdwojenie jaźni
+#define AQ_HYPERPSY_MIN_UNITS 5
+#define AQ_HYPERPSY_MIN_CYCLES 5
 
 /// Ckey (albo umysł, gdy ciało nie ma gracza) -> imię kopii: SDGF daje jedną kopię na gracza na rundę
 GLOBAL_LIST_EMPTY(aq_sdgf_cloned)
@@ -122,7 +127,7 @@ GLOBAL_LIST_EMPTY(aq_sdgf_cloned)
 	if(aq_ear || LAZYACCESS(data, "phrase"))
 		return
 	var/atom/movable/container = holder?.my_atom
-	if(!istype(container) || ismob(container))
+	if(!istype(container) || ismob(container) || istype(container, /obj/item/organ)) // w żołądku nagrałby rozmowę po wypiciu
 		return
 	if(!islist(data))
 		data = list("phrase" = null)
@@ -329,14 +334,11 @@ GLOBAL_LIST_EMPTY(aq_sdgf_cloned)
 	taste_description = "dwa smaki naraz"
 	toxpwr = 0.5
 
-/datum/reagent/toxin/aq_hyperpsy/on_mob_add(mob/living/L)
-	. = ..()
-	if(!iscarbon(L) || !L.mind)
-		return
-	var/mob/living/carbon/C = L
-	if(C.has_trauma_type(/datum/brain_trauma/severe/split_personality))
-		return
-	C.gain_trauma(/datum/brain_trauma/severe/split_personality, TRAUMA_RESILIENCE_SURGERY)
+/// Śladowa ilość nic nie robi: rozdwojenie dopiero od AQ_HYPERPSY_MIN_UNITS we krwi przez kilka cykli
+/datum/reagent/toxin/aq_hyperpsy/on_mob_life(mob/living/carbon/M)
+	if(current_cycle >= AQ_HYPERPSY_MIN_CYCLES && volume >= AQ_HYPERPSY_MIN_UNITS && M.mind && !M.has_trauma_type(/datum/brain_trauma/severe/split_personality))
+		M.gain_trauma(/datum/brain_trauma/severe/split_personality, TRAUMA_RESILIENCE_SURGERY)
+	return ..()
 
 /datum/chemical_reaction/aq_hyperpsy
 	name = "Lek hiperpsychotyczny"
@@ -470,6 +472,8 @@ GLOBAL_LIST_EMPTY(aq_sdgf_cloned)
 	var/list/aq_candidates
 	/// Kopii nie będzie (za mała dawka albo limit), komórki tylko leczą
 	var/aq_merge_only = FALSE
+	/// Ile zdążyło się wchłonąć: od tego zależy leczenie przy wtopieniu, żeby mikrodawki nie leczyły jak pełna
+	var/aq_absorbed = 0
 
 /// Klucz gracza do limitu kopii, stały także wtedy, gdy ciało chwilowo nie ma klienta (duch wyszedł z ciała):
 /// klucz gracza zapisany w umyśle, bez umysłu ckey, a bez gracza samo ciało
@@ -480,8 +484,18 @@ GLOBAL_LIST_EMPTY(aq_sdgf_cloned)
 		return M.ckey
 	return REF(M)
 
+/// Klucz limitu po DNA ciała: kopia ma to samo DNA co oryginał, więc nie wyhoduje następnej kopii tego ciała
+/proc/aq_sdgf_dna_key(mob/living/M)
+	var/mob/living/carbon/C = M
+	if(!istype(C) || !C.dna?.unique_enzymes)
+		return null
+	return "dna:[C.dna.unique_enzymes]"
+
 /proc/aq_sdgf_can_clone(mob/living/M)
-	return !GLOB.aq_sdgf_cloned[aq_sdgf_key(M)]
+	if(GLOB.aq_sdgf_cloned[aq_sdgf_key(M)])
+		return FALSE
+	var/dna_key = aq_sdgf_dna_key(M)
+	return !(dna_key && GLOB.aq_sdgf_cloned[dna_key])
 
 /// Wyhodowanie kopii ciała obok oryginału. Zapisuje limit. Bez ducha (candidate) ciało zostaje bez umysłu
 /proc/aq_sdgf_grow_clone(mob/living/carbon/human/original, mob/dead/observer/candidate)
@@ -494,11 +508,15 @@ GLOBAL_LIST_EMPTY(aq_sdgf_cloned)
 	clone.name = original.real_name
 	clone.updateappearance(mutcolor_update = TRUE)
 	GLOB.aq_sdgf_cloned[aq_sdgf_key(original)] = clone.real_name
+	var/dna_key = aq_sdgf_dna_key(original)
+	if(dna_key)
+		GLOB.aq_sdgf_cloned[dna_key] = clone.real_name
 	original.visible_message("<span class='warning'>Spod skóry [original] wylewa się masa komórek, która w oczach układa się w drugie, nagie ciało!</span>", \
 		"<span class='userdanger'>Komórki pękają ci pod skórą i wylewają się na zewnątrz, układając się w twoje drugie ciało!</span>")
 	playsound(T, 'sound/effects/splat.ogg', 50, TRUE)
 	if(candidate?.client)
 		clone.key = candidate.key
+		GLOB.aq_sdgf_cloned[aq_sdgf_key(clone)] = clone.real_name // gracz kopii też już ma swoją kopię za sobą
 		to_chat(clone, "<span class='userdanger'>Jesteś kopią ciała [original.real_name], wyhodowaną z syntetycznego czynnika wzrostu.</span>")
 		to_chat(clone, "<span class='warning'>Nie masz żadnych wspomnień oryginału: nie znasz jego przyjaciół, haseł ani tego, co robił. Nie masz też ubrania, dokumentów ani dostępu.</span>")
 		log_game("[key_name(clone)] became the SDGF copy of [key_name(original)].")
@@ -508,6 +526,7 @@ GLOBAL_LIST_EMPTY(aq_sdgf_cloned)
 	return clone
 
 /datum/reagent/aq_sdgf/on_mob_life(mob/living/carbon/M)
+	aq_absorbed += metabolization_rate * M.metabolism_efficiency
 	if(!aq_poll_started)
 		aq_poll_started = TRUE
 		if(!ishuman(M) || !M.mind || volume < AQ_SDGF_MIN_DOSE || !aq_sdgf_can_clone(M))
@@ -543,19 +562,22 @@ GLOBAL_LIST_EMPTY(aq_sdgf_cloned)
 	if(chosen && ishuman(M) && aq_sdgf_grow_clone(M, chosen))
 		aq_merge_only = FALSE
 	else
-		aq_merge_heal(M)
+		aq_merge_heal(M, 1)
 	holder.del_reagent(type)
 
-/// Komórki bez kopii wtapiają się w ciało i trochę je leczą
-/datum/reagent/aq_sdgf/proc/aq_merge_heal(mob/living/carbon/M)
+/// Komórki bez kopii wtapiają się w ciało i trochę je leczą (scale 1 = pełne leczenie)
+/datum/reagent/aq_sdgf/proc/aq_merge_heal(mob/living/carbon/M, scale)
+	scale = clamp(scale, 0, 1)
+	if(scale <= 0)
+		return
 	to_chat(M, "<span class='notice'>Komórki nie dają rady się oddzielić i wtapiają się w twoje ciało, zasklepiając rany.</span>")
-	M.adjustBruteLoss(-15, 0)
-	M.adjustFireLoss(-15, 0)
-	M.adjustCloneLoss(-5, 0)
+	M.adjustBruteLoss(-15 * scale, 0)
+	M.adjustFireLoss(-15 * scale, 0)
+	M.adjustCloneLoss(-5 * scale, 0)
 
 /datum/reagent/aq_sdgf/on_mob_delete(mob/living/L)
 	if(aq_merge_only && !QDELETED(L) && L.stat != DEAD && current_cycle < AQ_SDGF_GROW_CYCLES)
-		aq_merge_heal(L)
+		aq_merge_heal(L, aq_absorbed / AQ_SDGF_FULL_HEAL_UNITS)
 	return ..()
 
 /datum/chemical_reaction/aq_sdgf
@@ -761,4 +783,7 @@ GLOBAL_LIST_EMPTY(aq_sdgf_cloned)
 #undef AQ_PAIN_ENZYME_STRONG_PAINKILLER
 #undef AQ_SDGF_MIN_DOSE
 #undef AQ_SDGF_GROW_CYCLES
+#undef AQ_SDGF_FULL_HEAL_UNITS
 #undef AQ_PHOTOPHOSPHIDE_LUM
+#undef AQ_HYPERPSY_MIN_UNITS
+#undef AQ_HYPERPSY_MIN_CYCLES
