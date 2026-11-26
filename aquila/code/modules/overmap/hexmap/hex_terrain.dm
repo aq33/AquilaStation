@@ -75,6 +75,7 @@ GLOBAL_LIST_EMPTY(hex_terrains)
 		/datum/round_event_control/aquila_hex_fun_swarm,
 		/datum/round_event_control/aquila_hex_resource_drift,
 		/datum/round_event_control/aquila_hex_bluespace_crystal_infestation,
+		/datum/round_event_control/aquila_hex_hog,
 	)
 	antags = list(
 		/datum/round_event_control/spider_infestation,
@@ -97,6 +98,7 @@ GLOBAL_LIST_EMPTY(hex_terrains)
 		/datum/round_event_control/aquila_hex_station_incident_mimic,
 		/datum/round_event_control/aquila_hex_rogue_maint_drones,
 		/datum/round_event_control/aquila_hex_old_vendotron,
+		/datum/round_event_control/aquila_hex_mimite_infestation,
 	)
 	antags = list(
 		/datum/round_event_control/spawn_swarmer,
@@ -119,6 +121,7 @@ GLOBAL_LIST_EMPTY(hex_terrains)
 		/datum/round_event_control/aurora_caelus,
 		/datum/round_event_control/aquila_hex_nebula_flicker,
 		/datum/round_event_control/aquila_hex_lone_hunter,
+		/datum/round_event_control/aquila_hex_eye_horror,
 	)
 	antags = list(
 		/datum/round_event_control/pirates,
@@ -141,6 +144,8 @@ GLOBAL_LIST_EMPTY(hex_terrains)
 		/datum/round_event_control/aquila_hex_sensor_jamming,
 		/datum/round_event_control/aquila_hex_apc_scramble,
 		/datum/round_event_control/aquila_hex_electrical_fire,
+		/datum/round_event_control/aquila_hex_grub_infestation,
+		/datum/round_event_control/aquila_hex_powercreeper,
 	)
 	antags = list(
 		/datum/round_event_control/pulse_demon,
@@ -180,6 +185,8 @@ GLOBAL_LIST_EMPTY(hex_terrains)
 		/datum/round_event_control/aquila_hex_radiation_leak,
 		/datum/round_event_control/aquila_hex_disease_outbreak_floor,
 		/datum/round_event_control/aquila_hex_irradiated_mouse,
+		/datum/round_event_control/aquila_hex_mold,
+		/datum/round_event_control/aquila_hex_spontaneous_malignant_organ,
 	)
 	antags = list(
 		/datum/round_event_control/aquila_teratoma,
@@ -323,6 +330,8 @@ GLOBAL_LIST_EMPTY(hex_terrains)
 		/datum/round_event_control/aquila_hex_slimes_spawn_horde,
 		/datum/round_event_control/aquila_hex_stray_facehugger,
 		/datum/round_event_control/aquila_hex_comet_belt,
+		/datum/round_event_control/aquila_hex_metroid_infestation,
+		/datum/round_event_control/aquila_hex_abominable_infestation,
 	)
 	antags = list(
 		/datum/round_event_control/blob,
