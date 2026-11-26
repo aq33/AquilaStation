@@ -275,15 +275,23 @@
 	var/turf/T = get_turf(I)
 	if(!T)
 		return FALSE
-	SEND_SIGNAL(I, COMSIG_TRY_STORAGE_QUICK_EMPTY, T)
+	// Najpierw uzysk: przedmiot, z którego nie powstałby ani jeden arkusz (np. pojedynczy pręt), zostaje cały
+	var/list/yield = list()
 	var/total = 0
 	for(var/key in I.custom_materials)
 		var/datum/material/mat = istype(key, /datum/material) ? key : SSmaterials.GetMaterialRef(key)
 		if(!mat?.sheet_type)
 			continue
 		var/sheets = round(I.custom_materials[key] * AQ_DECONSTRUCTOR_RETURN / MINERAL_MATERIAL_AMOUNT)
+		if(sheets < 1)
+			continue
+		yield[mat.sheet_type] += sheets
 		total += sheets
-		var/obj/item/stack/stack_type = mat.sheet_type
+	if(!total)
+		return FALSE
+	SEND_SIGNAL(I, COMSIG_TRY_STORAGE_QUICK_EMPTY, T)
+	for(var/obj/item/stack/stack_type as anything in yield)
+		var/sheets = yield[stack_type]
 		var/max_stack = initial(stack_type.max_amount)
 		while(sheets > 0)
 			var/amount = min(sheets, max_stack)
@@ -442,11 +450,17 @@
 	if(!istype(H) || !H.aq_fake_fingerprint || !H.dna)
 		return ..()
 	var/real_print = rustg_hash_string(RUSTG_HASH_MD5, H.dna.uni_identity)
+	// Stary prawdziwy odcisk z dotyku sprzed nanobotów zostaje, ale bazowy zapis tego dotyku idzie pod nowy odcisk,
+	// także gdy stary już tu jest (rękawice sprawdza ..(): bez zapisu prawdziwego nie ma też podmienionego)
 	var/had_print = LAZYACCESS(fingerprints, real_print)
+	if(had_print)
+		LAZYREMOVE(fingerprints, real_print)
 	. = ..()
-	if(!had_print && LAZYACCESS(fingerprints, real_print))
+	if(LAZYACCESS(fingerprints, real_print))
 		LAZYREMOVE(fingerprints, real_print)
 		LAZYSET(fingerprints, H.aq_fake_fingerprint, H.aq_fake_fingerprint)
+	if(had_print)
+		LAZYSET(fingerprints, real_print, real_print)
 
 /datum/reagent/fingerprint_nanites
 	name = "Odciskowe nanoboty"
@@ -456,57 +470,90 @@
 	taste_description = "mrowienie"
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
 	chem_flags = CHEMICAL_RNG_GENERAL
+	/// Odcisk dawcy krwi z mieszanki w "donor_print": ustalany w pojemniku, gdy krew i nanoboty się spotkają,
+	/// i przenoszony z porcją (copy_data), zanim krew zmiesza się z inną w żołądku albo wsiąknie w ciało
+	data = list("donor_print" = null)
 	/// Czy już przebudowały odciski tego ciała
 	var/applied = FALSE
-	/// Odcisk dawcy krwi z mieszanki, zapamiętany zanim ciało wchłonie krew
-	var/donor_print
 
-/datum/reagent/fingerprint_nanites/on_transfer(atom/A, method = TOUCH, trans_volume)
+/datum/reagent/fingerprint_nanites/on_new(list/new_data)
 	. = ..()
-	if(!ishuman(A))
-		return
-	var/mob/living/carbon/human/drinker = A
-	var/datum/reagent/fingerprint_nanites/arrived = drinker.reagents?.has_reagent(type)
-	var/obj/item/organ/stomach/stomach = drinker.getorganslot(ORGAN_SLOT_STOMACH)
-	if(!arrived && stomach?.reagents)
-		arrived = stomach.reagents.has_reagent(type)
-	if(arrived && !arrived.donor_print)
-		arrived.donor_print = aq_blood_donor_print(drinker, list(holder))
+	if(!aq_donor_print())
+		aq_learn_donor()
+
+/// Najnowsza porcja wygrywa: dolane nanoboty z innym dawcą przepisują odcisk
+/datum/reagent/fingerprint_nanites/on_merge(list/mix_data, amount)
+	. = ..()
+	if(islist(mix_data) && mix_data["donor_print"])
+		aq_set_donor_print(mix_data["donor_print"])
+	else if(!aq_donor_print())
+		aq_learn_donor()
 
 /datum/reagent/fingerprint_nanites/on_mob_add(mob/living/L)
 	. = ..()
-	if(!donor_print && ishuman(L))
-		donor_print = aq_blood_donor_print(L)
+	if(!aq_donor_print())
+		aq_learn_donor()
 
 /datum/reagent/fingerprint_nanites/on_mob_life(mob/living/carbon/M)
 	if(!applied && ishuman(M))
-		if(!donor_print)
-			donor_print = aq_blood_donor_print(M)
+		if(!aq_donor_print())
+			aq_learn_donor()
 		if(current_cycle >= 3)
 			applied = TRUE
 			var/mob/living/carbon/human/H = M
-			H.aq_rewrite_fingerprints(donor_print)
+			H.aq_rewrite_fingerprints(aq_donor_print())
 	..()
 
-/// Odcisk dawcy krwi z mieszanki: krew w tej samej krwi, w żołądku albo w podanych pojemnikach (szukana po DNA krwi).
-/// Null, gdy krwi nie ma albo to krew pijącego.
-/datum/reagent/fingerprint_nanites/proc/aq_blood_donor_print(mob/living/carbon/human/drinker, list/extra_holders)
-	var/list/holders = list(holder, drinker.reagents)
-	var/obj/item/organ/stomach/stomach = drinker.getorganslot(ORGAN_SLOT_STOMACH)
-	if(stomach?.reagents)
-		holders += stomach.reagents
-	if(extra_holders)
-		holders += extra_holders
-	for(var/datum/reagents/mix as anything in holders)
-		var/datum/reagent/blood/B = mix?.has_reagent(/datum/reagent/blood)
-		if(!B || !islist(B.data))
-			continue
-		var/donor_dna = B.data["blood_DNA"]
-		if(!donor_dna || donor_dna == drinker.dna?.unique_enzymes)
-			continue
-		for(var/mob/living/carbon/human/donor in GLOB.carbon_list)
-			if(donor.dna?.unique_enzymes == donor_dna)
-				return rustg_hash_string(RUSTG_HASH_MD5, donor.dna.uni_identity)
+/datum/reagent/fingerprint_nanites/proc/aq_donor_print()
+	return islist(data) ? data["donor_print"] : null
+
+/datum/reagent/fingerprint_nanites/proc/aq_set_donor_print(print)
+	if(!islist(data))
+		data = list()
+	data["donor_print"] = print
+
+/// Dawca z krwi w tym samym pojemniku
+/datum/reagent/fingerprint_nanites/proc/aq_learn_donor()
+	var/datum/reagent/blood/B = holder?.has_reagent(/datum/reagent/blood)
+	var/print = aq_blood_donor_print(B?.data, holder)
+	if(print)
+		aq_set_donor_print(print)
+
+/// Krew dolana do nanobotów: jej dawca jest teraz dawcą odcisku
+/datum/reagent/blood/on_new(list/new_data)
+	. = ..()
+	aq_teach_fingerprint_nanites(new_data)
+
+/datum/reagent/blood/on_merge(list/mix_data, amount)
+	. = ..()
+	aq_teach_fingerprint_nanites(mix_data)
+
+/datum/reagent/blood/proc/aq_teach_fingerprint_nanites(list/blood_data)
+	var/datum/reagent/fingerprint_nanites/nanites = holder?.has_reagent(/datum/reagent/fingerprint_nanites)
+	if(!nanites)
+		return
+	var/print = aq_blood_donor_print(blood_data, holder)
+	if(print)
+		nanites.aq_set_donor_print(print)
+
+/// Odcisk dawcy krwi (szukanego po DNA krwi). Null, gdy danych nie ma albo to krew ciała, w którym jest pojemnik.
+/proc/aq_blood_donor_print(list/blood_data, datum/reagents/mix)
+	if(!islist(blood_data))
+		return null
+	var/donor_dna = blood_data["blood_DNA"]
+	if(!donor_dna)
+		return null
+	var/atom/container = mix?.my_atom
+	if(istype(container, /obj/item/organ))
+		var/obj/item/organ/organ = container
+		container = organ.owner
+	if(iscarbon(container))
+		var/mob/living/carbon/body = container
+		if(donor_dna == body.dna?.unique_enzymes)
+			return null
+	for(var/mob/living/carbon/human/donor in GLOB.carbon_list)
+		if(donor.dna?.unique_enzymes == donor_dna)
+			return rustg_hash_string(RUSTG_HASH_MD5, donor.dna.uni_identity)
 
 /// Nowe odciski palców: podane albo losowe
 /mob/living/carbon/human/proc/aq_rewrite_fingerprints(new_print)
@@ -571,14 +618,23 @@
 	. = ..()
 	if(!. || !target_turf)
 		return
+	if(aq_salt_on_path())
+		owner.balloon_alert(owner, "sól święcona zagradza drogę.")
+		return FALSE
+
+/// Czy na drodze mgły do target_turf (najwyżej dwa pola, z celem) leży sól święcona. Sprawdzane przy wyborze celu
+/// i jeszcze raz tuż przed przeniesieniem (FireTargetedPower w trespass.dm), bo ktoś może ją rozsypać w trakcie.
+/datum/action/vampire/targeted/trespass/proc/aq_salt_on_path()
 	var/turf/step_turf = get_turf(owner)
+	if(!step_turf || !target_turf)
+		return FALSE
 	for(var/i in 1 to 2)
 		if(step_turf == target_turf)
 			break
 		step_turf = get_step(step_turf, get_dir(step_turf, target_turf))
 		if(aq_holy_salt_on(step_turf))
-			owner.balloon_alert(owner, "sól święcona zagradza drogę.")
-			return FALSE
+			return TRUE
+	return FALSE
 
 /datum/chemical_reaction/holy_salt
 	name = "Sól święcona"

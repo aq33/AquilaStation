@@ -86,7 +86,9 @@
 	// Wait...
 	sleep(mist_delay / 2)
 	// Move & Freeze
-	if(isturf(target_turf))
+	if(isturf(target_turf) && aq_salt_on_path()) // sól święcona rozsypana w trakcie (reagents/chemistry/reagents/reagenty_narzedzia.dm)
+		owner.balloon_alert(owner, "sól święcona zagradza drogę.")
+	else if(isturf(target_turf))
 		do_teleport(owner, target_turf, no_effects=TRUE, channel = TELEPORT_CHANNEL_QUANTUM) // in teleport.dm?
 	user.Stun(mist_delay / 2, ignore_canstun = TRUE)
 
@@ -102,5 +104,5 @@
 	// Effect Destination
 	playsound(get_turf(owner), 'sound/magic/summon_karp.ogg', 60, 1)
 	puff = new /datum/effect_system/steam_spread()
-	puff.set_up(3, 0, target_turf)
+	puff.set_up(3, 0, get_turf(owner)) // tam, gdzie mgła naprawdę się zebrała (sól mogła ją zatrzymać)
 	puff.start()

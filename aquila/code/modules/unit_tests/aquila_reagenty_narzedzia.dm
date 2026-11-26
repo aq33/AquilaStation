@@ -77,12 +77,22 @@
 
 /// AQUILA - concrete makes a tiled floor concrete and a girder a concrete wall after curing; grass-gro and genesis serum grow plants
 /datum/unit_test/aquila_reagenty_narzedzia_terraform
+	/// Changed turfs -> their original type, put back in Destroy() even when an assertion stops Run() early
+	var/list/original_turfs = list()
+
+/datum/unit_test/aquila_reagenty_narzedzia_terraform/Destroy()
+	for(var/turf/changed as anything in original_turfs)
+		var/original_type = original_turfs[changed]
+		if(changed.type != original_type)
+			changed.ChangeTurf(original_type)
+	original_turfs = null
+	return ..()
 
 /datum/unit_test/aquila_reagenty_narzedzia_terraform/Run()
 	var/turf/floor_turf = locate(run_loc_floor_bottom_left.x + 1, run_loc_floor_bottom_left.y, run_loc_floor_bottom_left.z)
 	var/turf/wall_turf = locate(run_loc_floor_bottom_left.x + 2, run_loc_floor_bottom_left.y, run_loc_floor_bottom_left.z)
-	var/original_floor = floor_turf.type
-	var/original_wall_spot = wall_turf.type
+	original_turfs[floor_turf] = floor_turf.type
+	original_turfs[wall_turf] = wall_turf.type
 
 	floor_turf = floor_turf.ChangeTurf(/turf/open/floor/plasteel)
 	aq_splash(floor_turf, /datum/reagent/concrete, 5)
@@ -94,7 +104,6 @@
 	TEST_ASSERT(girder.aq_concrete_cure(), "Concrete on a girder did not cure")
 	wall_turf = locate(wall_turf.x, wall_turf.y, wall_turf.z)
 	TEST_ASSERT(istype(wall_turf, /turf/closed/wall/aq_concrete), "A cured girder is not a concrete wall ([wall_turf.type])")
-	wall_turf.ChangeTurf(original_wall_spot)
 
 	aq_splash(floor_turf, /datum/reagent/grassgro, 5)
 	floor_turf = locate(floor_turf.x, floor_turf.y, floor_turf.z)
@@ -104,7 +113,6 @@
 	var/obj/structure/flora/plant = locate() in floor_turf
 	TEST_ASSERT(plant, "Genesis serum grew nothing on grass")
 	qdel(plant)
-	floor_turf.ChangeTurf(original_floor)
 
 /// AQUILA - matter deconstructor turns an item into 75% of its sheets
 /datum/unit_test/aquila_reagenty_narzedzia_deconstructor
@@ -120,6 +128,13 @@
 		sheets += stack.amount
 		qdel(stack)
 	TEST_ASSERT(sheets == 3, "4 sheets of iron gave back [sheets], not 3")
+
+	// Too little material for one sheet: the item stays whole
+	var/obj/item/wrench/small = new(spot)
+	small.set_custom_materials(list(/datum/material/iron = MINERAL_MATERIAL_AMOUNT / 2))
+	aq_splash(small, /datum/reagent/matter_deconstructor, 5)
+	TEST_ASSERT(!QDELETED(small), "An item worth less than a sheet was destroyed for nothing")
+	qdel(small)
 
 /// AQUILA - silver nitrate shows the prints on examine; fingerprint nanites change the prints left behind
 /datum/unit_test/aquila_reagenty_narzedzia_fingerprints
@@ -148,6 +163,17 @@
 	TEST_ASSERT(!prints[rustg_hash_string(RUSTG_HASH_MD5, drinker.dna.uni_identity)], "The old print is still left on items")
 	TEST_ASSERT(drinker.aq_fingerprint() == drinker.aq_fake_fingerprint, "The scanner would read the old print")
 
+	// An item touched before the nanites keeps the old trace and gets the new print on the next touch
+	var/mob/living/carbon/human/regular = allocate(/mob/living/carbon/human)
+	var/obj/item/crowbar/old_tool = allocate(/obj/item/crowbar)
+	old_tool.add_fingerprint(regular)
+	var/regular_real = rustg_hash_string(RUSTG_HASH_MD5, regular.dna.uni_identity)
+	regular.aq_rewrite_fingerprints()
+	old_tool.add_fingerprint(regular)
+	var/list/old_tool_prints = old_tool.return_fingerprints()
+	TEST_ASSERT(old_tool_prints[regular.aq_fake_fingerprint], "A second touch after the nanites left no new print")
+	TEST_ASSERT(old_tool_prints[regular_real], "The trace from before the nanites was wiped")
+
 	// Prints of the person whose blood is in the mix
 	var/mob/living/carbon/human/donor = allocate(/mob/living/carbon/human)
 	donor.dna.unique_enzymes = "aq_test_donor_enzymes"
@@ -168,7 +194,23 @@
 	var/obj/item/organ/stomach/stomach = sipper.getorganslot(ORGAN_SLOT_STOMACH)
 	var/datum/reagent/fingerprint_nanites/swallowed = sipper.reagents.has_reagent(/datum/reagent/fingerprint_nanites) || stomach?.reagents?.has_reagent(/datum/reagent/fingerprint_nanites)
 	TEST_ASSERT(swallowed, "The drunk nanites are neither in the blood nor in the stomach")
-	TEST_ASSERT(swallowed.donor_print == rustg_hash_string(RUSTG_HASH_MD5, "aq_test_donor_identity"), "Drunk nanites did not remember the donor of the blood in the cup")
+	TEST_ASSERT(swallowed.aq_donor_print() == rustg_hash_string(RUSTG_HASH_MD5, "aq_test_donor_identity"), "Drunk nanites did not remember the donor of the blood in the cup")
+
+	// Blood of someone else already in the stomach does not take over the donor of the drunk mix
+	var/mob/living/carbon/human/other_donor = allocate(/mob/living/carbon/human)
+	other_donor.dna.unique_enzymes = "aq_test_other_enzymes"
+	other_donor.dna.uni_identity = "aq_test_other_identity"
+	var/mob/living/carbon/human/second_sipper = allocate(/mob/living/carbon/human)
+	var/obj/item/organ/stomach/second_stomach = second_sipper.getorganslot(ORGAN_SLOT_STOMACH)
+	TEST_ASSERT(second_stomach?.reagents, "The test human has no stomach")
+	second_stomach.reagents.add_reagent(/datum/reagent/blood, 10, other_donor.get_blood_data(other_donor.get_blood_id()))
+	var/obj/item/reagent_containers/glass/beaker/second_cup = allocate(/obj/item/reagent_containers/glass/beaker)
+	second_cup.reagents.add_reagent(/datum/reagent/fingerprint_nanites, 10)
+	second_cup.reagents.add_reagent(/datum/reagent/blood, 10, donor.get_blood_data(donor.get_blood_id()))
+	second_cup.reagents.trans_to_ingested(second_sipper, 20)
+	var/datum/reagent/fingerprint_nanites/second_swallowed = second_stomach.reagents.has_reagent(/datum/reagent/fingerprint_nanites)
+	TEST_ASSERT(second_swallowed, "The drunk nanites are not in the stomach")
+	TEST_ASSERT(second_swallowed.aq_donor_print() == rustg_hash_string(RUSTG_HASH_MD5, "aq_test_donor_identity"), "Old blood in the stomach took over the donor of the drunk mix")
 
 /// AQUILA - a holy salt line stops a shadow demon in the dark and a vampire turned to mist
 /datum/unit_test/aquila_reagenty_narzedzia_holy_salt
@@ -180,9 +222,11 @@
 	aq_splash(salted, /datum/reagent/holy_salt, 2)
 	var/obj/effect/decal/cleanable/food/salt/holy/salt = aq_holy_salt_on(salted)
 	TEST_ASSERT(salt, "Holy salt left no line on the floor")
+	allocated += salt // effects are not swept by the base Destroy(), so a failed assertion would leave it
 
 	var/mob/living/carbon/human/crawler = allocate(/mob/living/carbon/human)
 	var/obj/effect/dummy/phased_mob/shadow_crawl/shadow = new(start)
+	allocated += shadow
 	crawler.forceMove(shadow)
 	shadow.relaymove(crawler, EAST)
 	TEST_ASSERT(shadow.loc == start, "A shadow demon crawled over holy salt")
@@ -192,11 +236,15 @@
 	qdel(shadow)
 
 	var/datum/action/vampire/targeted/trespass/mist = new
+	allocated += mist
 	mist.owner = crawler
 	TEST_ASSERT(!mist.check_valid_target(beyond), "A vampire in mist passed over holy salt")
 	qdel(salt)
 	TEST_ASSERT(mist.check_valid_target(beyond), "A vampire in mist cannot pass a clean floor")
+	// Salt scattered after the target was picked still stops the mist before it moves (FireTargetedPower)
+	var/obj/effect/decal/cleanable/food/salt/holy/late_salt = new(salted)
+	allocated += late_salt
+	TEST_ASSERT(mist.aq_salt_on_path(), "Salt scattered during the mist is not seen before the move")
 	mist.owner = null
-	qdel(mist)
 
 #undef TEST_ASSERT
