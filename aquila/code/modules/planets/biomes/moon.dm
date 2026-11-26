@@ -91,6 +91,7 @@
 		/obj/structure/vein/moon = 2,
 		/obj/structure/vein/moon/classtwo = 4,
 		/obj/structure/vein/moon/classthree = 1,
+		/obj/structure/vein/gas/moon = 2,
 	)
 
 /// Skaliste równiny: twardy regolit, rzadziej kratery
@@ -116,6 +117,7 @@
 		/obj/structure/vein/moon = 6,
 		/obj/structure/vein/moon/classtwo = 4,
 		/obj/structure/vein/moon/classthree = 1,
+		/obj/structure/vein/gas/moon = 3,
 	)
 
 /// Kratery księżyca (greeble Shiptesta moon_crater1-6, przekonwertowane tools/planets/convert_maps.py)

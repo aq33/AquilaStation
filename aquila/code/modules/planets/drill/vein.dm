@@ -83,7 +83,7 @@ GLOBAL_LIST_EMPTY(ore_veins)
 /obj/structure/vein/Initialize(mapload)
 	. = ..()
 	mining_charges = rand(round(mining_charges - 2), mining_charges + 2)
-	if(!length(vein_contents))
+	if(!length(vein_contents) && length(ore_list))
 		var/ore_type_amount
 		switch(vein_class)
 			if(1)
@@ -107,9 +107,13 @@ GLOBAL_LIST_EMPTY(ore_veins)
 
 /obj/structure/vein/examine(mob/user)
 	. = ..()
-	. += span_notice("Klasa żyły: <b>[vein_class]</b>. Zawartość pokaże skaner gruntu przyłożony do żyły.")
+	. += examine_summary()
 	if(!detectable)
 		. += span_notice("Żyła jest oznaczona jako bez znaczenia i nie pojawia się w skanach gruntu.")
+
+/// Linia oględzin z klasą i podpowiedzią o skanerze (złoże gazu ma własną)
+/obj/structure/vein/proc/examine_summary()
+	return span_notice("Klasa żyły: <b>[vein_class]</b>. Zawartość pokaże skaner gruntu przyłożony do żyły.")
 
 /obj/structure/vein/Destroy()
 	stop_spawning()
@@ -127,12 +131,14 @@ GLOBAL_LIST_EMPTY(ore_veins)
 	currently_spawning = TRUE
 	START_PROCESSING(SSprocessing, src)
 
-/obj/structure/vein/proc/stop_spawning()
+/// keep_wave_timer: tylko wstrzymanie (postój ekstraktora gazu), bez kasowania odliczania fali i przerwy po serii
+/obj/structure/vein/proc/stop_spawning(keep_wave_timer = FALSE)
 	if(!currently_spawning)
 		return TRUE
 	currently_spawning = FALSE
 	STOP_PROCESSING(SSprocessing, src)
-	COOLDOWN_RESET(src, wave_timer)
+	if(!keep_wave_timer)
+		COOLDOWN_RESET(src, wave_timer)
 	return FALSE
 
 /obj/structure/vein/process(delta_time)
@@ -179,16 +185,22 @@ GLOBAL_LIST_EMPTY(ore_veins)
 	if(length(fallback))
 		return pick(fallback)
 
+/// Maszyna, która właśnie wydobywa z żyły (null, gdy nic nie pracuje). Złoże gazu zwraca ekstraktor.
+/obj/structure/vein/proc/get_working_machine()
+	if(our_drill?.active)
+		return our_drill
+
 /// Liczy fale z rzędu; FALSE oznacza przerwę
 /obj/structure/vein/proc/increment_wave_tally()
-	if(!our_drill?.active)
+	var/obj/machinery/worker = get_working_machine()
+	if(!worker)
 		wave_tally = 0
 		return TRUE
 	wave_tally += 1
 	if(wave_tally > waves_per_break)
 		wave_tally = 0
 		COOLDOWN_START(src, wave_timer, wave_downtime)
-		our_drill.say("Wstrząsy sejsmiczne słabną. Kolejne za około [drill_time_text(wave_downtime)].")
+		worker.say("Wstrząsy sejsmiczne słabną. Kolejne za około [drill_time_text(wave_downtime)].")
 		return FALSE
 	return TRUE
 
