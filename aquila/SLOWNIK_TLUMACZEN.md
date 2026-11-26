@@ -4438,6 +4438,7 @@ Nazwy obszarów są w większości przetłumaczone. Nowe nazwy budujemy z tych k
 | helm / helm console | ster / konsola steru | m / ż; istniejące „ster” |
 | helmsman | sternik | m; nowe |
 | tactical console | konsola taktyczna | ż; istniejące (STEROWANIE TAKTYCZNE) |
+| tactical screen | ekran taktyczny | m; okno z trybami Rozpoznanie (Recon), Ogień (Fire), Podgląd (View) |
 | navigation | nawigacja | ż; istniejące (dane nawigacyjne) |
 | DRADIS | DRADIS | m; istniejące (DRADIS-u) |
 | cargo DRADIS | DRADIS ładunkowy | m; istniejące |

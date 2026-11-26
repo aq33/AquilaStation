@@ -1,66 +1,76 @@
-// NSV13
+// NSV13 - konsola AMS (AQUILA: wygląd konsol okrętu z common/ShipConsole.tsx; na mostkach graczy te ustawienia
+// są w konsoli taktycznej, to okno zostaje dla konsol na innych mapach)
 
-import { Button, NumberInput, Section } from 'tgui-core/components';
+import { Box, Button, NumberInput } from 'tgui-core/components';
 
 import { useBackend } from '../backend';
-import { Window } from '../layouts';
+import {
+  COLOR,
+  ConsoleBody,
+  ConsolePanel,
+  ConsoleWindow,
+} from './common/ShipConsole';
+
+type Mode = { id: string; name: string; desc: string; enabled: boolean };
 
 type Data = {
-  categories: any;
-  data_source: any;
-  shot_limit: any;
+  categories: Mode[];
+  data_source: string;
+  shot_limit: number;
 };
 
 export const AMS = (props) => {
   const { act, data } = useBackend<Data>();
+  // Klucz porównywany z AMS_LOCKED_TARGETS w nsv13/code/__DEFINES/overmap.dm
+  const lockedOnly = data.data_source === 'Locked Targets';
   return (
-    <Window theme="hackerman" width={500} height={500}>
-      <Window.Content scrollable>
-        <Section title="Źródło celów:">
+    <ConsoleWindow width={500} height={500}>
+      <ConsoleBody>
+        <ConsolePanel title="Źródło celów">
           <Button
-            content={data.data_source}
-            icon="bullseye"
-            onClick={() => act('data_source')}
-          />
-        </Section>
-        <Section title="Tryby AMS:">
-          {Object.keys(data.categories).map((key) => {
-            let value = data.categories[key];
-            return (
-              <Section
-                key={key}
-                title={value.name}
-                buttons={
-                  <Button
-                    content={value.enabled ? 'Włączony' : 'Wyłączony'}
-                    icon={value.enabled ? 'check-circle' : 'times'}
-                    selected={value.enabled}
-                    onClick={() => act('select', { target: value.id })}
-                  />
-                }
-              >
-                <p>{value.desc}</p>
-              </Section>
-            );
-          })}
-        </Section>
-        <Section title="Liczba strzałów:">
+            selected={lockedOnly}
+            onClick={() => !lockedOnly && act('data_source')}
+          >
+            Cel ognia
+          </Button>
+          <Button
+            selected={!lockedOnly}
+            onClick={() => lockedOnly && act('data_source')}
+          >
+            Wszystkie śledzone
+          </Button>
+        </ConsolePanel>
+        <ConsolePanel title="Tryby AMS">
+          {Object.values(data.categories || {}).map((mode) => (
+            <Box key={mode.id} style={{ marginBottom: '8px' }}>
+              <Box style={{ display: 'flex', alignItems: 'center' }}>
+                <b style={{ flex: 1 }}>{mode.name}</b>
+                <Button
+                  icon={mode.enabled ? 'check-circle' : 'times'}
+                  selected={mode.enabled}
+                  onClick={() => act('select', { target: mode.id })}
+                >
+                  {mode.enabled ? 'Włączony' : 'Wyłączony'}
+                </Button>
+              </Box>
+              <Box style={{ color: COLOR.muted, fontSize: '11.5px' }}>
+                {mode.desc}
+              </Box>
+            </Box>
+          ))}
+        </ConsolePanel>
+        <ConsolePanel title="Strzałów na cel">
           <NumberInput
-            animated
-            value={parseInt(data.shot_limit, 10)}
+            value={Number(data.shot_limit) || 1}
             unit="strz."
-            width="125px"
+            width="90px"
             minValue={1}
             maxValue={100}
             step={1}
-            onChange={(value) =>
-              act('set_shot_limit', {
-                shot_limit: value,
-              })
-            }
+            onChange={(value) => act('set_shot_limit', { shot_limit: value })}
           />
-        </Section>
-      </Window.Content>
-    </Window>
+        </ConsolePanel>
+      </ConsoleBody>
+    </ConsoleWindow>
   );
 };

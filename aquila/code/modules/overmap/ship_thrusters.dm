@@ -29,6 +29,9 @@
 /// Premia do ciągu przy idealnej ilości utleniacza
 #define SHIP_THRUSTER_OXIDIZER_BONUS 0.3
 
+/// Ile razy szybciej obracają się okręty główne graczy niż okręty AI tej samej masy (fregata: 90° w ok. 4 s zamiast 5,5 s)
+#define SHIP_PLAYER_TURN_MULT 2
+
 /// Paliwa dysz okrętowych: gaz = jakość (plazma = 1)
 GLOBAL_LIST_INIT(ship_thruster_fuels, list(
 	GAS_PLASMA = 1,
@@ -56,6 +59,12 @@ GLOBAL_LIST_INIT(ship_thruster_oxidizers, list(
 	var/engine_working_seen
 	/// Najwcześniejszy czas kolejnego ostrzeżenia o silnikach
 	var/engine_status_next_alert = 0
+
+// Okręt gracza obraca się szybciej niż okręt AI tej samej masy (wartości z masy ustawia LateInitialize w overmap.dm)
+/obj/structure/overmap/LateInitialize()
+	. = ..()
+	if(role == MAIN_OVERMAP)
+		max_angular_acceleration *= SHIP_PLAYER_TURN_MULT
 
 /obj/structure/overmap/Destroy()
 	for(var/obj/machinery/ship_thruster/thruster as anything in ship_thrusters)
