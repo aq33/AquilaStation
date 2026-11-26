@@ -69,7 +69,7 @@ const Controls = (props) => {
   return (
     <Section title="Sterowanie">
       <LabeledList>
-        <LabeledList.Item label="Zasilanie">
+        <LabeledList.Item label="Moc">
           <Button
             icon={on ? 'power-off' : 'times'}
             selected={on}
@@ -98,7 +98,6 @@ const Controls = (props) => {
         <LabeledList.Item label="Wlot gazu">
           <NumberInput
             animated
-            tickWhileDragging
             step={0.1}
             value={gas_input}
             width="63px"

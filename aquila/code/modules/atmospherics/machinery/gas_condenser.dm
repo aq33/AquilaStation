@@ -58,9 +58,21 @@ GLOBAL_LIST_INIT(gas_condenser_reagents, list(
 	. = ..()
 	if(.)
 		return
+	return toggle(user)
+
+/obj/machinery/atmospherics/components/unary/gas_condenser/attack_ai(mob/user)
+	return toggle(user)
+
+/obj/machinery/atmospherics/components/unary/gas_condenser/attack_robot(mob/user)
+	return toggle(user)
+
+/// Włącza albo wyłącza kondensator, jeśli użytkownik może go teraz obsłużyć
+/obj/machinery/atmospherics/components/unary/gas_condenser/proc/toggle(mob/user)
 	if(panel_open)
 		to_chat(user, "<span class='warning'>Najpierw zamknij panel [src].</span>")
-		return
+		return TRUE
+	if(!can_interact(user))
+		return FALSE
 	set_on(!on)
 	to_chat(user, "<span class='notice'>[on ? "Włączasz" : "Wyłączasz"] [src].</span>")
 	investigate_log("was turned [on ? "on" : "off"] by [key_name(user)]", INVESTIGATE_ATMOS)

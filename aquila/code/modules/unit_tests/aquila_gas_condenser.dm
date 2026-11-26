@@ -48,4 +48,14 @@
 	TEST_ASSERT(condenser.reagents.get_reagent_amount(/datum/reagent/water) > 0, "A switched on condenser made no water from water vapor")
 	condenser.set_on(FALSE)
 
+	// Clicking toggles it only when the machine can be used: an unpowered condenser stays off
+	var/mob/living/carbon/human/engineer = allocate(/mob/living/carbon/human, get_turf(condenser))
+	condenser.machine_stat |= NOPOWER
+	condenser.attack_hand(engineer)
+	TEST_ASSERT(!condenser.on, "Clicking an unpowered condenser turned it on")
+	condenser.machine_stat &= ~NOPOWER
+	condenser.attack_hand(engineer)
+	TEST_ASSERT(condenser.on, "Clicking a powered condenser did not turn it on")
+	condenser.set_on(FALSE)
+
 #undef TEST_ASSERT

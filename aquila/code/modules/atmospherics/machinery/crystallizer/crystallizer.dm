@@ -50,6 +50,10 @@
 
 /obj/machinery/atmospherics/components/binary/crystallizer/Destroy()
 	selected_recipe = null
+	var/turf/location = get_turf(src)
+	if(location && internal.total_moles())
+		location.assume_air(internal) // gaz z wnętrza wylatuje, a nie znika razem z maszyną
+		location.air_update_turf()
 	QDEL_NULL(internal)
 	return ..()
 
@@ -97,24 +101,16 @@
 	. = ..()
 	use_power = on ? ACTIVE_POWER_USE : IDLE_POWER_USE
 
-/// Czy na wlocie albo we wnętrzu jest każdy gaz receptury
-/obj/machinery/atmospherics/components/binary/crystallizer/proc/check_gas_requirements()
-	var/datum/gas_mixture/contents = airs[2]
-	for(var/gas_type in selected_recipe.requirements)
-		if(!contents.get_moles(gas_type) && !internal.get_moles(gas_type))
-			return FALSE
-	return TRUE
-
 /// Czy wnętrze mieści się w oknie temperatury receptury (z małym zapasem)
 /obj/machinery/atmospherics/components/binary/crystallizer/proc/check_temp_requirements()
 	var/temperature = internal.return_temperature()
 	return temperature >= selected_recipe.min_temp * CRYSTALLIZER_MIN_DEVIATION_RATE && temperature <= selected_recipe.max_temp * CRYSTALLIZER_MAX_DEVIATION_RATE
 
-/// Wpuszcza z wlotu do wnętrza po gas_input moli każdego gazu receptury
-/obj/machinery/atmospherics/components/binary/crystallizer/proc/inject_gases()
+/// Wpuszcza z wlotu do wnętrza po gas_input moli na sekundę każdego gazu receptury
+/obj/machinery/atmospherics/components/binary/crystallizer/proc/inject_gases(delta_time = 1)
 	var/datum/gas_mixture/contents = airs[2]
 	for(var/gas_type in selected_recipe.requirements)
-		var/filtered_amount = min(gas_input, contents.get_moles(gas_type))
+		var/filtered_amount = min(gas_input * delta_time, contents.get_moles(gas_type))
 		if(filtered_amount <= 0)
 			continue
 		var/datum/gas_mixture/filtered = new
@@ -143,7 +139,14 @@
 	if(temperature >= (median_temperature * CRYSTALLIZER_MIN_DEVIATION_RATE) && temperature <= (median_temperature * CRYSTALLIZER_MAX_DEVIATION_RATE))
 		quality_loss = max(quality_loss - progress_amount_to_quality, -85)
 
-	internal.set_temperature(max(temperature + (selected_recipe.energy_release / internal.heat_capacity()), TCMB))
+	var/new_temperature = temperature + (selected_recipe.energy_release / internal.heat_capacity())
+	if(selected_recipe.energy_release < 0)
+		// Reakcja endotermiczna nie schładza wnętrza poniżej obiegu chłodzącego: inaczej krystalizator
+		// zasysałby ciepło z czerwonej rury co tik i działał jak darmowa zamrażarka (energia ginęła na TCMB)
+		var/datum/gas_mixture/cooling_port = airs[1]
+		if(cooling_port.total_moles() > MINIMUM_MOLE_COUNT)
+			new_temperature = max(new_temperature, min(temperature, cooling_port.return_temperature()))
+	internal.set_temperature(max(new_temperature, TCMB))
 
 /// Wymiana ciepła między wnętrzem a obiegiem chłodzącym (czerwona rura)
 /obj/machinery/atmospherics/components/binary/crystallizer/proc/heat_conduction()
@@ -169,11 +172,11 @@
 	var/datum/gas_mixture/contents = airs[2]
 	contents.merge(remove)
 
-/obj/machinery/atmospherics/components/binary/crystallizer/process_atmos()
+/obj/machinery/atmospherics/components/binary/crystallizer/process_atmos(delta_time = 1)
 	if(!on || !is_operational || !selected_recipe)
 		return
 
-	inject_gases()
+	inject_gases(delta_time)
 
 	if(!internal.total_moles())
 		update_parents()
@@ -199,13 +202,14 @@
 	progress_bar = 0
 	for(var/gas_type in selected_recipe.requirements)
 		var/required_gas_moles = selected_recipe.requirements[gas_type]
-		var/amount_consumed = required_gas_moles + (required_gas_moles * (quality_loss * 0.01))
+		// Dobra jakość nie obniża kosztu poniżej receptury (w Yogu i tg schodziło do 15%), zła dokłada naddatek
+		var/amount_consumed = required_gas_moles * (1 + max(quality_loss, 0) * 0.01)
 		if(internal.get_moles(gas_type) < amount_consumed)
 			quality_loss = min(quality_loss + 10, 100)
 		internal.adjust_moles(gas_type, -min(amount_consumed, internal.get_moles(gas_type)))
 
 	var/quality_prefix = crystallizer_quality_name(clamp(50 - quality_loss, 0, 100))
-	var/turf/output_turf = get_step(src, SOUTH) || get_turf(src)
+	var/turf/output_turf = get_output_turf()
 	. = list()
 	for(var/path in selected_recipe.products)
 		for(var/i in 1 to selected_recipe.products[path])
@@ -221,27 +225,34 @@
 				message_admins("Krystalizator wytworzył: [selected_recipe.name] [ADMIN_JMP(src)].")
 	quality_loss = 0
 
+/// Pole na produkty: od południa, a gdy tam ściana albo coś gęstego, pole samego krystalizatora
+/obj/machinery/atmospherics/components/binary/crystallizer/proc/get_output_turf()
+	var/turf/output_turf = get_step(src, SOUTH)
+	if(!isopenturf(output_turf) || is_blocked_turf(output_turf, TRUE))
+		return drop_location()
+	return output_turf
+
 /// Przymiotnik jakości (rodzaj męski: wszystkie produkty to diament, arkusz, pellet, kryształ, odłamek)
 /proc/crystallizer_quality_name(total_quality)
-	switch(total_quality)
-		if(100)
-			return "mistrzowski"
-		if(95 to 99)
-			return "znakomity"
-		if(75 to 94)
-			return "dobry"
-		if(65 to 74)
-			return "przyzwoity"
-		if(55 to 64)
-			return "przeciętny"
-		if(35 to 54)
-			return "znośny"
-		if(15 to 34)
-			return "słaby"
-		if(5 to 14)
-			return "brzydki"
-		if(1 to 4)
-			return "pęknięty"
+	// progi zamiast przedziałów: jakość bywa ułamkowa (np. 94,3) i wpadałaby w dziury między nimi
+	if(total_quality >= 100)
+		return "mistrzowski"
+	if(total_quality >= 95)
+		return "znakomity"
+	if(total_quality >= 75)
+		return "dobry"
+	if(total_quality >= 65)
+		return "przyzwoity"
+	if(total_quality >= 55)
+		return "przeciętny"
+	if(total_quality >= 35)
+		return "znośny"
+	if(total_quality >= 15)
+		return "słaby"
+	if(total_quality >= 5)
+		return "brzydki"
+	if(total_quality >= 1)
+		return "pęknięty"
 	return "fatalny"
 
 /obj/machinery/atmospherics/components/binary/crystallizer/ui_interact(mob/user, datum/tgui/ui)

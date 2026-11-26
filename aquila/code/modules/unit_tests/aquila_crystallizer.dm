@@ -19,7 +19,7 @@
 			TEST_ASSERT(ispath(path, /atom/movable), "Recipe [recipe_id] makes [path], which is not an object")
 
 	var/obj/machinery/atmospherics/components/binary/crystallizer/crystallizer = allocate(/obj/machinery/atmospherics/components/binary/crystallizer)
-	var/turf/output_turf = get_step(crystallizer, SOUTH) || get_turf(crystallizer)
+	var/turf/output_turf = crystallizer.get_output_turf()
 
 	// Plasma sheet: plasma on the inlet, the interior kept at 15 K (the middle of its 10-20 K window)
 	var/datum/gas_mixture/inlet = crystallizer.airs[2]
@@ -35,15 +35,16 @@
 		if(count_type(output_turf, /obj/item/stack/sheet/mineral/plasma) > sheets_before)
 			break
 	TEST_ASSERT(count_type(output_turf, /obj/item/stack/sheet/mineral/plasma) > sheets_before, "The crystallizer held in the window made no plasma sheet (progress [crystallizer.progress_bar])")
-	// Good quality (kept in the middle of the window) uses less gas, down to 15% of the recipe, as in Yogstation and tg
-	TEST_ASSERT(crystallizer.internal.get_moles(GAS_PLASMA) + inlet.get_moles(GAS_PLASMA) <= 500 - 450 * 0.15, "Making a plasma sheet used almost no plasma")
+	// Good quality never makes a product cheaper than its recipe (Yogstation and tg went down to 15%)
+	TEST_ASSERT(crystallizer.internal.get_moles(GAS_PLASMA) + inlet.get_moles(GAS_PLASMA) <= 500 - 450 + 0.01, "Making a plasma sheet used less plasma than the recipe")
 	TEST_ASSERT(crystallizer.progress_bar == 0, "Progress did not reset after a product")
 
 	for(var/obj/item/stack/sheet/mineral/plasma/sheet in output_turf)
 		qdel(sheet)
 
 	// Outside the window the work goes backwards and nothing is made
-	inlet.set_moles(GAS_PLASMA, 500)
+	inlet.set_moles(GAS_PLASMA, 0)
+	crystallizer.internal.set_moles(GAS_PLASMA, 500)
 	crystallizer.progress_bar = 50
 	crystallizer.internal.set_temperature(T20C)
 	crystallizer.process_atmos()
@@ -86,6 +87,40 @@
 	qdel(export)
 	for(var/atom/movable/product as anything in made)
 		qdel(product)
+
+	// Fractional quality still gets the right adjective (ranges with gaps fell through to the worst one)
+	TEST_ASSERT(crystallizer_quality_name(94.3) == "dobry", "Quality 94.3 is named [crystallizer_quality_name(94.3)]")
+	TEST_ASSERT(crystallizer_quality_name(99.5) == "znakomity", "Quality 99.5 is named [crystallizer_quality_name(99.5)]")
+	TEST_ASSERT(crystallizer_quality_name(0.5) == "fatalny", "Quality 0.5 is named [crystallizer_quality_name(0.5)]")
+
+	// The gas input is per second: half a second of work takes half of it
+	crystallizer.select_recipe(GLOB.gas_recipe_meta["ammonia_crystal"])
+	inlet.set_moles(GAS_H2, 100)
+	inlet.set_moles(GAS_N2, 100)
+	crystallizer.gas_input = 10
+	crystallizer.process_atmos(0.5)
+	TEST_ASSERT(abs(crystallizer.internal.get_moles(GAS_H2) - 5) < 0.01, "Half a second at 10 mol/s injected [crystallizer.internal.get_moles(GAS_H2)] moles of hydrogen instead of 5")
+
+	// An endothermic recipe does not cool the interior below the coolant, so it cannot chill the red loop for free
+	crystallizer.select_recipe(GLOB.gas_recipe_meta["fuel_basic"])
+	crystallizer.internal.set_moles(GAS_O2, 50)
+	crystallizer.internal.set_moles(GAS_PLASMA, 100)
+	crystallizer.internal.set_temperature(T20C)
+	coolant.set_moles(GAS_N2, 1000)
+	coolant.set_temperature(T20C)
+	crystallizer.heat_calculations()
+	TEST_ASSERT(crystallizer.internal.return_temperature() >= T20C - 0.01, "An endothermic recipe cooled the interior to [crystallizer.internal.return_temperature()] K, below the [T20C] K coolant")
+
+	// A destroyed crystallizer lets its gas out instead of deleting it
+	var/obj/machinery/atmospherics/components/binary/crystallizer/doomed = allocate(/obj/machinery/atmospherics/components/binary/crystallizer)
+	var/turf/open/doomed_turf = get_turf(doomed)
+	var/datum/gas_mixture/original_air = doomed_turf.air.copy()
+	var/plasma_before = doomed_turf.air.get_moles(GAS_PLASMA)
+	doomed.internal.set_moles(GAS_PLASMA, 20)
+	doomed.internal.set_temperature(T20C)
+	qdel(doomed)
+	TEST_ASSERT(doomed_turf.air.get_moles(GAS_PLASMA) >= plasma_before + 19.99, "A destroyed crystallizer deleted the gas inside it")
+	doomed_turf.air.copy_from(original_air)
 	crystallizer.set_on(FALSE)
 
 /datum/unit_test/aquila_crystallizer/proc/count_type(turf/location, path)
