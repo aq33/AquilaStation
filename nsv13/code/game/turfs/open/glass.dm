@@ -19,7 +19,7 @@
 
 /turf/open/floor/glass/LateInitialize()
 	. = ..()
-	AddElement(/datum/element/turf_z_transparency, TRUE)
+	// AQ EDIT - piętro pod szkłem rysuje Z-Mimic (z_flags w aquila/code/modules/multiz/zmimic/zmimic_turfs.dm)
 
 /turf/open/floor/glass/reinforced
 	name = "podłoga ze szkła zbrojonego"
