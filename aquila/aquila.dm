@@ -1278,6 +1278,15 @@
 #include "code\modules\events\hexmap\derelict_syndicate_cyborg.dm"
 #include "code\modules\events\hexmap\changeling_meteor.dm"
 #include "code\modules\events\hexmap\irradiated_mouse.dm"
+#include "code\modules\events\hexmap\fauna_flyby.dm"
+#include "code\modules\events\hexmap\carp_migration_koi.dm"
+#include "code\modules\events\hexmap\gnat_migration.dm"
+#include "code\modules\events\hexmap\jellyfish_migration.dm"
+#include "code\modules\events\hexmap\ray_migration.dm"
+#include "code\modules\events\hexmap\shark_migration.dm"
+#include "code\modules\events\hexmap\whale_migration.dm"
+#include "code\modules\events\hexmap\comet_belt.dm"
+#include "code\modules\events\hexmap\fun_swarm.dm"
 #include "code\modules\overmap\ship_console_hud.dm"
 #include "code\modules\overmap\ship_hud_compact.dm"
 #include "code\modules\overmap\fighter_manual_eject.dm"
@@ -2566,6 +2575,7 @@
 #include "code\datums\ai\hunting_behavior\hunting_lights.dm"
 #include "code\modules\mob\living\basic\space_fauna\faithless.dm"
 #include "code\modules\mob\living\basic\space_fauna\dolphin.dm"
+#include "code\modules\mob\living\basic\space_fauna\void_fauna.dm"
 // Koniec bloku tanich basic mobów
 
 // Podział testów między joby CI: poza blokiem UNIT_TESTS, bo RunUnitTests() kompiluje się też pod dreamcheckerem
@@ -2856,6 +2866,7 @@
 #include "code\modules\unit_tests\hexmap_events_ship_failures.dm"
 #include "code\modules\unit_tests\hexmap_events_anomalies.dm"
 #include "code\modules\unit_tests\hexmap_events_creatures.dm"
+#include "code\modules\unit_tests\hexmap_events_fauna.dm"
 #include "code\modules\unit_tests\hexmap_war.dm"
 #include "code\modules\unit_tests\hexmap_review.dm"
 #include "code\modules\unit_tests\hexmap_ftl_chip.dm"

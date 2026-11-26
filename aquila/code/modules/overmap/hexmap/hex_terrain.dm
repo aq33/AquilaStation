@@ -72,6 +72,7 @@ GLOBAL_LIST_EMPTY(hex_terrains)
 		/datum/round_event_control/aquila_hex_lone_hunter,
 		/datum/round_event_control/aquila_hex_belt_rats,
 		/datum/round_event_control/aquila_hex_xenohive,
+		/datum/round_event_control/aquila_hex_fun_swarm,
 	)
 	antags = list(
 		/datum/round_event_control/spider_infestation,
@@ -266,6 +267,12 @@ GLOBAL_LIST_EMPTY(hex_terrains)
 	moving = TRUE
 	events = list(
 		/datum/round_event_control/carp_migration,
+		/datum/round_event_control/aquila_hex_carp_migration_koi,
+		/datum/round_event_control/aquila_hex_gnat_migration,
+		/datum/round_event_control/aquila_hex_jellyfish_migration,
+		/datum/round_event_control/aquila_hex_ray_migration,
+		/datum/round_event_control/aquila_hex_shark_migration,
+		/datum/round_event_control/aquila_hex_whale_migration,
 	)
 	antags = list(
 		/datum/round_event_control/space_dragon,
@@ -310,6 +317,7 @@ GLOBAL_LIST_EMPTY(hex_terrains)
 		/datum/round_event_control/aquila_hex_rich_comet,
 		/datum/round_event_control/aquila_hex_slimes_spawn_horde,
 		/datum/round_event_control/aquila_hex_stray_facehugger,
+		/datum/round_event_control/aquila_hex_comet_belt,
 	)
 	antags = list(
 		/datum/round_event_control/blob,
