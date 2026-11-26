@@ -105,3 +105,7 @@ NIF (port z Monkestation2.0 b79e450, pierwotnie Skyrat/Nova modular_skyrat blues
 Lądowanie na planetach (voidcrew/Voidcrew#588, autor Jackriip, 35462e2), licencja CC-BY-SA 3.0 (README Voidcrew: assety bez innej informacji):
   ../icons/effects/planet_descent_view.dmi   Voidcrew voidcrew/icons/effects/landing_view.dmi (stany wisps i streaks: mgła w chmurze i smugi żaru)
   planets/landing/*                 Voidcrew voidcrew/sound/effects/landing (approach, clouds, entry, launch, liftoff_outside, spool, thrusters, touchdown)
+
+Reaktor fuzyjny HFR (tgstation/tgstation 5ee81d69, plan maszynowni E17), licencja CC-BY-SA 3.0:
+  machines/hypertorus/hypertorus_nominal.ogg, HFR_critical_explosion.ogg   tgstation sound/machines/hypertorus (loops/hypertorus_nominal.ogg, HFR_critical_explosion.ogg)
+  ../icons/obj/atmospherics/hypertorus.dmi   tgstation icons/obj/machines/atmospherics/hypertorus.dmi

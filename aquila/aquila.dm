@@ -586,7 +586,15 @@
 #include "code\modules\atmospherics\gases\hydrogen.dm"
 #include "code\modules\atmospherics\gases\frezon.dm"
 #include "code\modules\atmospherics\gases\methane.dm"
+#include "code\modules\atmospherics\gases\helium.dm"
 #include "code\modules\atmospherics\machinery\electrolyzer\electrolyzer.dm"
+#include "code\modules\atmospherics\machinery\components\fusion\hfr_defines.dm"
+#include "code\modules\atmospherics\machinery\components\fusion\hfr_fuel_datums.dm"
+#include "code\modules\atmospherics\machinery\components\fusion\hfr_core.dm"
+#include "code\modules\atmospherics\machinery\components\fusion\hfr_parts.dm"
+#include "code\modules\atmospherics\machinery\components\fusion\hfr_procs.dm"
+#include "code\modules\atmospherics\machinery\components\fusion\hfr_main_processes.dm"
+#include "code\modules\atmospherics\machinery\components\fusion\hfr_aquila.dm"
 #include "code\modules\atmospherics\machinery\components\unary_devices\cryo.dm"
 #include "code\modules\atmospherics\machinery\pipes\bluespace.dm"
 #include "code\modules\atmospherics\machinery\pipes\he_pipes.dm"
@@ -3159,6 +3167,14 @@
 // Komora testowa
 #include "code\modules\test_chamber\kits\pr_708_wyrzut_rdzenia.dm"
 // WYRZUT RDZENIA: koniec
+
+// REAKTOR FUZYJNY HFR (plan maszynowni, E17–E18)
+#ifdef UNIT_TESTS
+#include "code\modules\unit_tests\aquila_hfr.dm"
+#endif
+// Komora testowa
+#include "code\modules\test_chamber\kits\pr_hfr_reaktor_fuzyjny.dm"
+// HFR: koniec
 
 // Profiler byond-tracy: MUSI być ostatnim include'em całego builda (BYOND inicjuje zmienne statyczne od końca,
 // więc ta rusza pierwsza, przed Master i mapą). Opis: tools/tracy/README.md

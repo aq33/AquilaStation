@@ -686,6 +686,17 @@ Nazwy gazów są widoczne w skanerach, kanistrach i oknach TGUI. Jeśli nazwa ga
 | Methane | metan | m; nowe (plan maszynowni E8) |
 | swamp gas | gaz bagienny | m; nowe (bańka gazu bagiennego na planetach dżungli) |
 | electrolyzer | elektrolizer | m; nowe (plan maszynowni E6) |
+| Helium | hel | m; nowe (plan maszynowni E17, produkt fuzji HFR) |
+| Hypertorus Fusion Reactor (HFR) | hipertoroidalny reaktor fuzyjny (HFR), hipertorus | m; nowe (plan maszynowni E17) |
+| fusion level | poziom fuzji | m; nowe (HFR) |
+| fusion mix | mieszanka fuzji / komora fuzji | ż; nowe (HFR) |
+| moderator (HFR) | moderator | m; nowe (HFR) |
+| heating conductor | przewodnik ciepła | m; nowe (HFR) |
+| magnetic constrictor | zwężacz magnetyczny | m; nowe (HFR) |
+| current damper | tłumik prądu | m; nowe (HFR) |
+| fuel input / moderator input / waste output (HFR) | wlot paliwa / wlot moderatora / wylot odpadów | m; nowe (HFR) |
+| interface (HFR) | panel sterowania | m; nowe (HFR) |
+| iron content | zawartość żelaza | ż; nowe (HFR) |
 | air | powietrze | n; istniejące |
 | pressure | ciśnienie | n; istniejące (75×) |
 | output pressure | ciśnienie wyjściowe | n; istniejące (TGUI) |
