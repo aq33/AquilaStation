@@ -19,7 +19,7 @@
 	// część testów z planetami nie mieściła się w limicie czasu. Pełny przebieg: -DAQUILA_FULL_MAP_TESTS.
 	return
 #endif
-	for(var/planet_type in planet_test_sample(list(/datum/planet_type/moon, /datum/planet_type/asteroid, /datum/planet_type/asteroid/space_signal, /datum/planet_type/gas_giant, /datum/planet_type/gas_giant/plasma)))
+	for(var/planet_type in planet_test_sample(list(/datum/planet_type/moon, /datum/planet_type/asteroid, /datum/planet_type/asteroid/space_signal, /datum/planet_type/gas_giant, /datum/planet_type/gas_giant/plasma, /datum/planet_type/gas_giant/methane)))
 		var/obj/structure/overmap/planet/planet = new(run_loc_floor_top_right, planet_type)
 		var/datum/planet_surface/surface = planet.surface
 		TEST_ASSERT(surface.generate(), "[planet_type] surface didn't generate")
