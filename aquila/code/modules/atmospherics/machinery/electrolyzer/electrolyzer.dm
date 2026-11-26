@@ -109,10 +109,10 @@
 	var/split = electrolysis_amount(env)
 	var/energy = (5 * split) / (efficiency + working_power)
 	if(grid)
-		// Sieć ładuje ogniwo także bez pary i płaci za ten ładunek
+		// Sieć ładuje ogniwo także bez pary i płaci za ten ładunek. Energia jest w jednostkach ogniwa, a sieć liczy waty: jak w APC, przez CELLRATE
 		var/charged = cell ? cell.give(charge_rate) : 0
 		if(energy + charged > 0)
-			use_power(energy + charged)
+			use_power((energy + charged) / GLOB.CELLRATE)
 	else if(split > 0 && !cell.use(energy))
 		on = FALSE
 		update_appearance()

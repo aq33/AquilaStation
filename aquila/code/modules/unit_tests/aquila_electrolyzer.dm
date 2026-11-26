@@ -46,8 +46,26 @@
 	electrolyzer.on = TRUE
 	electrolyzer.process_atmos()
 	TEST_ASSERT(location.air.get_moles(GAS_H2) == hydrogen_before, "The electrolyzer split water on a cell too empty to pay for it")
-	electrolyzer.cell.charge = electrolyzer.cell.maxcharge
 	electrolyzer.machine_stat &= ~NOPOWER
+
+	// On the grid with no water vapor it still charges its cell, and the area pays for the charge in watts
+	location.air.set_moles(GAS_H2O, 0)
+	electrolyzer.cell.charge = 0
+	electrolyzer.on = TRUE
+	var/area/machine_area = get_area(electrolyzer)
+	var/channel = electrolyzer.power_channel
+	var/usage_before = machine_area.power_usage[channel]
+	TEST_ASSERT(electrolyzer.has_grid_power(), "A wrenched electrolyzer in a powered area has no grid power")
+	electrolyzer.process_atmos()
+	var/charged = electrolyzer.cell.charge
+	TEST_ASSERT(charged > 0, "A wrenched electrolyzer without water vapor did not charge its cell")
+	TEST_ASSERT(abs((machine_area.power_usage[channel] - usage_before) - charged / GLOB.CELLRATE) < 0.01, "The grid paid [machine_area.power_usage[channel] - usage_before] W for [charged] units of cell charge instead of [charged / GLOB.CELLRATE] W")
+	// A full cell takes nothing, so the grid pays nothing
+	electrolyzer.cell.charge = electrolyzer.cell.maxcharge
+	usage_before = machine_area.power_usage[channel]
+	electrolyzer.process_atmos()
+	TEST_ASSERT(machine_area.power_usage[channel] == usage_before, "The grid paid for charging a full cell")
+	electrolyzer.cell.charge = electrolyzer.cell.maxcharge
 	electrolyzer.on = FALSE
 	location.air.copy_from(original_air)
 
