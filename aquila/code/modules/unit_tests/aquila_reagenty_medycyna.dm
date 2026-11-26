@@ -123,4 +123,36 @@
 	dermagen.reaction_mob(scarred, TOUCH, 10, FALSE)
 	TEST_ASSERT(!LAZYLEN(chest.scars), "Dermagen did not remove the scar")
 
+	// Perydaksyna through the real liver path: a failing liver metabolizes only self-consuming reagents
+	var/mob/living/carbon/human/liverless = allocate(/mob/living/carbon/human)
+	var/obj/item/organ/liver/dead_liver = liverless.getorganslot(ORGAN_SLOT_LIVER)
+	dead_liver.setOrganDamage(dead_liver.maxHealth)
+	TEST_ASSERT(dead_liver.organ_flags & ORGAN_FAILING, "A liver at full damage is not failing")
+	liverless.reagents.add_reagent(/datum/reagent/medicine/peridaxon, 15)
+	for(var/i in 1 to 5)
+		dead_liver.process_reagents(liverless)
+	TEST_ASSERT(dead_liver.damage < dead_liver.maxHealth, "Perydaksyna did not work with a failing liver")
+
+	// Equalizon keeps the total on a toxin-immune body
+	var/mob/living/carbon/human/immune = allocate(/mob/living/carbon/human)
+	ADD_TRAIT(immune, TRAIT_TOXIMMUNE, "aquila_reagenty_test")
+	immune.adjustBruteLoss(40)
+	var/immune_before = immune.getBruteLoss() + immune.getFireLoss() + immune.getToxLoss() + immune.getOxyLoss()
+	immune.reagents.add_reagent(/datum/reagent/medicine/equalizone, 10)
+	metabolize_cycles(immune, 1)
+	var/immune_after = immune.getBruteLoss() + immune.getFireLoss() + immune.getToxLoss() + immune.getOxyLoss()
+	TEST_ASSERT(abs(immune_after - immune_before) < 1, "Equalizon changed the total damage of a toxin-immune body ([immune_before] -> [immune_after])")
+
+	// Szybkie krzepnięcie: a dragged patient leaves no blood trail and loses no blood
+	var/mob/living/carbon/human/dragged = allocate(/mob/living/carbon/human)
+	dragged.add_bleeding(BLEED_DEEP_WOUND)
+	dragged.adjustBruteLoss(100)
+	dragged.blood_volume = BLOOD_VOLUME_NORMAL * 0.5
+	ADD_TRAIT(dragged, TRAIT_AQ_QUICKCLOT, "aquila_reagenty_test")
+	var/dragged_blood = dragged.blood_volume
+	var/turf/drag_start = get_turf(dragged)
+	dragged.make_blood_trail(get_step(drag_start, EAST), drag_start, EAST, EAST)
+	TEST_ASSERT(dragged.blood_volume == dragged_blood, "A dragged patient lost blood under Szybkie krzepnięcie")
+
+
 #undef TEST_ASSERT

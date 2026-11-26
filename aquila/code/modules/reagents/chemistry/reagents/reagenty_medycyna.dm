@@ -154,6 +154,8 @@
 	taste_description = "gorzka mięta"
 	metabolization_rate = 0.25 * REAGENTS_METABOLISM
 	overdose_threshold = 20
+	// Działa też przy niewydolnej wątrobie (liver_toxins.dm metabolizuje wtedy tylko self_consuming), bo ją też ma leczyć
+	self_consuming = TRUE
 
 /datum/reagent/medicine/peridaxon/on_mob_life(mob/living/carbon/M)
 	for(var/obj/item/organ/organ as anything in M.internal_organs)
@@ -410,28 +412,32 @@
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
 
 /datum/reagent/medicine/equalizone/on_mob_life(mob/living/carbon/M)
-	var/brute = M.getBruteLoss()
-	var/burn = M.getFireLoss()
-	var/tox = M.getToxLoss()
-	var/oxy = M.getOxyLoss()
-	var/list/losses = list(brute, burn, tox, oxy)
-	var/average = (brute + burn + tox + oxy) / 4
-	// Po trochu (najwyżej 2 z każdego typu ponad średnią), a zabrane rozdziela na typy poniżej średniej, więc suma zostaje
+	// Odporny na toksyny nie może dostać zatrucia, więc jego toksyny nie biorą udziału w wyrównaniu (suma zostaje ta sama)
+	var/use_tox = !HAS_TRAIT(M, TRAIT_TOXIMMUNE)
+	var/list/losses = list(M.getBruteLoss(), M.getFireLoss(), use_tox ? M.getToxLoss() : 0, M.getOxyLoss())
+	var/kinds = use_tox ? 4 : 3
+	var/average = (losses[1] + losses[2] + losses[3] + losses[4]) / kinds
+	// Po trochu (najwyżej 2 z każdego typu ponad średnią), a zabrane rozdziela na typy poniżej średniej
 	var/taken = 0
 	var/deficit = 0
 	for(var/i in 1 to 4)
+		if(i == 3 && !use_tox)
+			continue
 		if(losses[i] > average)
 			taken += min(2, losses[i] - average)
 		else
 			deficit += average - losses[i]
 	if(taken <= 0 || deficit <= 0)
 		return ..()
-	var/list/deltas = list()
+	var/list/deltas = list(0, 0, 0, 0)
 	for(var/i in 1 to 4)
-		deltas += losses[i] > average ? -min(2, losses[i] - average) : taken * (average - losses[i]) / deficit
+		if(i == 3 && !use_tox)
+			continue
+		deltas[i] = losses[i] > average ? -min(2, losses[i] - average) : taken * (average - losses[i]) / deficit
 	M.adjustBruteLoss(deltas[1], 0)
 	M.adjustFireLoss(deltas[2], 0)
-	M.adjustToxLoss(deltas[3], 0)
+	if(use_tox)
+		M.adjustToxLoss(deltas[3], 0)
 	M.adjustOxyLoss(deltas[4], 0)
 	..()
 	return TRUE
