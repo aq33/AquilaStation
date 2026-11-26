@@ -135,6 +135,64 @@
 	TEST_ASSERT(QDELETED(release), "Pumping the stomach left the rest of a polymer pill releasing ([release?.stash?.total_volume] u)")
 	patient.reagents.clear_reagents()
 
+	// Mała dawka (1 j. leku, 10 j. polimeru) też schodzi przez całe 120 s, a nie w kilka ticków
+	pill = allocate(/obj/item/reagent_containers/pill)
+	pill.reagents.add_reagent(/datum/reagent/consumable/glucose_polymer, 10)
+	pill.reagents.add_reagent(/datum/reagent/medicine/salbutamol, 1)
+	TEST_ASSERT(pill.attack(patient, patient), "Swallowing a small polymer pill failed")
+	release = patient.has_status_effect(/datum/status_effect/aq_extended_release)
+	for(var/i in 1 to 30)
+		release.tick()
+	TEST_ASSERT(!QDELETED(release), "A 1 u polymer pill ran out after 60 s of its 120 s")
+	var/half = belly.reagents.get_reagent_amount(/datum/reagent/medicine/salbutamol)
+	TEST_ASSERT(abs(half - 0.5) < 0.02, "A 1 u polymer pill released [half] u in 60 s, expected 0.5")
+	for(var/i in 1 to 35)
+		if(QDELETED(release))
+			break
+		release.tick()
+	TEST_ASSERT(QDELETED(release), "A 1 u polymer pill did not end after its time")
+	TEST_ASSERT(abs(belly.reagents.get_reagent_amount(/datum/reagent/medicine/salbutamol) - 1) < 0.01, "A 1 u polymer pill delivered [belly.reagents.get_reagent_amount(/datum/reagent/medicine/salbutamol)] u of 1")
+	belly.purge_contents()
+	patient.reagents.clear_reagents()
+
+	// Uwalniana porcja dostaje reakcję połknięcia: kwas siarkowy połknięty (INGEST) zadaje obrażenia fizyczne
+	var/brute_before = patient.getBruteLoss()
+	pill = allocate(/obj/item/reagent_containers/pill)
+	pill.reagents.add_reagent(/datum/reagent/consumable/glucose_polymer, 10)
+	pill.reagents.add_reagent(/datum/reagent/toxin/acid, 30)
+	TEST_ASSERT(pill.attack(patient, patient), "Swallowing an acid polymer pill failed")
+	TEST_ASSERT(patient.getBruteLoss() == brute_before, "The acid hit at once instead of with the released portions")
+	release = patient.has_status_effect(/datum/status_effect/aq_extended_release)
+	release.tick()
+	TEST_ASSERT(patient.getBruteLoss() > brute_before, "A released portion of acid did not burn the swallower (no INGEST reaction)")
+	qdel(release)
+	belly.purge_contents()
+	patient.reagents.clear_reagents()
+
+	// Prawdziwe płukanie żołądka: wymioty (do 10 j. każdego reagentu), potem 67% reszty. Reszta schowka dalej się uwalnia
+	var/mob/living/carbon/human/surgeon = allocate(/mob/living/carbon/human)
+	var/datum/surgery_operation/organ/stomach_pump/pump = GLOB.operations.operations_by_typepath[/datum/surgery_operation/organ/stomach_pump]
+	TEST_ASSERT(pump, "No stomach pump operation")
+	patient.set_nutrition(NUTRITION_LEVEL_FED)
+	pill = allocate(/obj/item/reagent_containers/pill)
+	pill.reagents.add_reagent(/datum/reagent/consumable/glucose_polymer, 10)
+	pill.reagents.add_reagent(/datum/reagent/medicine/salbutamol, 20)
+	TEST_ASSERT(pill.attack(patient, patient), "Swallowing the pumped polymer pill failed")
+	release = patient.has_status_effect(/datum/status_effect/aq_extended_release)
+	release.tick()
+	var/before_pump = release.stash.total_volume
+	pump.on_success(belly, surgeon, IMPLEMENT_HAND, list())
+	TEST_ASSERT(!QDELETED(release), "The stomach pump removed the whole pill, expected a third of what the vomit left")
+	var/expected_left = (before_pump - 10) * 0.33
+	TEST_ASSERT(abs(release.stash.total_volume - expected_left) < 0.05, "After the stomach pump [release.stash.total_volume] u of the pill is left, expected [expected_left]")
+	var/stash_left = release.stash.total_volume
+	var/in_belly = belly.reagents.get_reagent_amount(/datum/reagent/medicine/salbutamol)
+	release.tick()
+	TEST_ASSERT(release.stash.total_volume < stash_left && belly.reagents.get_reagent_amount(/datum/reagent/medicine/salbutamol) > in_belly, "The rest of the pill stopped releasing after the stomach pump")
+	qdel(release)
+	belly.purge_contents()
+	patient.reagents.clear_reagents()
+
 	// Kordiolis hepatyczny: toksyny nie niszczą wątroby, a serce dalej obrywa od innych źródeł
 	var/obj/item/organ/liver/liver = patient.getorganslot(ORGAN_SLOT_LIVER)
 	TEST_ASSERT(liver, "The test human has no liver")
