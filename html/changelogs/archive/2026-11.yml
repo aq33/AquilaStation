@@ -1768,6 +1768,21 @@
   - rscadd: 'Ekstraktor gazu: postawiony z płytki na złożu tłoczy gaz do rury (50
       mol/s, do 4500 kPa, 1 kW z sieci albo ogniwa). Wydobycie rozwściecza faunę jak
       wiertło. Płytka w protolacie inżynierii i cargo, skrzynia w zamówieniach inżynierii.'
+  - rscadd: Rury pękają przy rażącym przekroczeniu ciśnienia (50 000 kPa) albo temperatury
+      (10 000 K) i przeciekają, dopóki ktoś ich nie zespawa. Przed pęknięciem jęczą
+      i ostrzegają w opisie.
+  - rscadd: 'Rurę można wzmocnić 5 arkuszami plastali: wytrzymuje 10 razy więcej.'
+  - rscadd: Kanister niszczeje i pęka od ciśnienia powyżej 50 000 kPa albo temperatury
+      powyżej 10 000 K w środku.
+  - rscadd: 'Zawór odcinający w RPD: sam zamyka się przy pękniętej rurze w sieci i
+      otwiera po naprawie.'
+  - rscadd: 'Zacisk rury z protolathe: zamyka prosty odcinek jak zawór, a zdjęty przywraca
+      rurę.'
+  - rscadd: 'Iskrownik rurowy w RPD: zapala mieszankę paliwa w rurach ręką albo przyciskiem
+      zapłonu.'
+  - rscadd: Pompa wysokiego ciśnienia (13 500 kPa), pompa objętościowa i filtr wysokiego
+      przepływu (600 L/s) w RPD.
+  - imageadd: Grafiki zacisku rury i iskrownika z Baystation12.
   sh4dow321:
   - config: 'Tryb Infiltracji jest ciągły: runda nie kończy się w chwili śmierci wszystkich
       infiltratorów.'

@@ -704,6 +704,11 @@ Nazwy gazów są widoczne w skanerach, kanistrach i oknach TGUI. Jeśli nazwa ga
 | passive gate | regulator ciśnienia | m; nowe |
 | valve / manual valve | zawór | m; istniejące (21×) |
 | digital valve | zawór cyfrowy | m; nowe |
+| shutoff valve | zawór odcinający | m; nowe (plan maszynowni E3) |
+| pipe clamp | zacisk rury | m; nowe |
+| pipe sparker | iskrownik rurowy | m; nowe |
+| high-flow (pump, filter) | wysokiego przepływu | nowe; pompa ciśnieniowa w tej wersji: „pompa wysokiego ciśnienia” |
+| reinforced pipe / burst pipe | rura wzmocniona / pęknięta | ż; nowe |
 | gas filter | filtr gazów | m; istniejące (TGUI) |
 | gas mixer | mieszacz gazów | m; nowe |
 | connector port | port przyłączeniowy | m; istniejące („Port” w TGUI) |
