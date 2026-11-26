@@ -1768,6 +1768,10 @@
 
 // AquilaMed 5 (raport/medycyna5_01_plan.md): potrzebuje ran, bólu, taśmy policyjnej i instalacji chemicznej z bloków wyżej
 #include "code\modules\reagents\chemistry\reagents\med5_reagents.dm"
+#include "code\modules\reagents\chemistry\reagents\reagenty_medycyna.dm"
+#include "code\modules\reagents\chemistry\reagents\reagenty_narzedzia.dm"
+#include "code\modules\reagents\chemistry\reagents\reagenty_sabotaz.dm"
+#include "code\modules\reagents\chemistry\reagents\reagenty_umysl.dm"
 #include "code\modules\reagents\addiction\addiction.dm"
 #include "code\modules\medical\asthma.dm"
 #include "code\modules\medical\autoclave.dm"
@@ -2701,6 +2705,10 @@
 #include "code\modules\unit_tests\aquila_bleeding.dm"
 #include "code\modules\unit_tests\aquila_medycyna4.dm"
 #include "code\modules\unit_tests\aquila_medycyna5.dm"
+#include "code\modules\unit_tests\aquila_reagenty_medycyna.dm"
+#include "code\modules\unit_tests\aquila_reagenty_narzedzia.dm"
+#include "code\modules\unit_tests\aquila_reagenty_sabotaz.dm"
+#include "code\modules\unit_tests\aquila_reagenty_umysl.dm"
 #include "code\modules\unit_tests\aquila_medycyna6.dm"
 #include "code\modules\unit_tests\aquila_blood_trails.dm"
 #include "code\modules\unit_tests\aquila_blood_types.dm"
