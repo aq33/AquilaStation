@@ -1869,6 +1869,89 @@
   - balance: Rośliny rosną 1,5 raza szybciej, gdy w ich powietrzu jest 1–10 kPa dwutlenku
       węgla (szklarnia albo kapsuła ksenoflory).
   - imageadd: Sprite regeneratora tlenu z Baystation12 i sprite biogazowni.
+  - rscadd: Wnętrza abordażu Barracudy, fregaty przeciwlotniczej, Kadesha, Inquisitora,
+      Aspali i czterech okrętów pirackich.
+  - rscadd: Fist of Sol ma własne wnętrze, a Sol's Revenge da się abordażować.
+  - rscadd: 'Okręty mają moduły na siatce wnętrza: trafiony moduł traci zdolność (silniki,
+      broń, mostek, sensory, FTL, hangar), a magazyn amunicji wybucha. Wnętrze wroga
+      płonie i traci załogę, co widać przy abordażu.'
+  - rscadd: Trafienie w okręt gracza zależy od miejsca trafienia, a kolejne trafienia
+      z tej samej strony wchodzą głębiej.
+  - rscadd: 'Okno modułów celu w konsoli taktycznej: wybierasz, w który moduł wroga
+      celować. Działa też dla artylerii MAC, a rakiety i torpedy wybuchają prosto
+      w wybranym module.'
+  - balance: 'Rakiety i torpedy ignorują pancerz burty: w okręcie gracza robią wyłom
+      w losowym miejscu.'
+  - rscadd: Myśliwiec z ładownią przeszukuje wraki i zabiera z nich fanty.
+  - tweak: Myśliwce na pokładzie są dwa razy większe, a w hangarach Atlasa, Padalca,
+      Von Neumanna i Atlantis stoją na nowo (Atlas 2, Padalec 1).
+  - rscadd: Stocznie i handlarz bronią sprzedają klucz dwóch myśliwców eskorty.
+  - rscadd: Zniszczony okręt zostaje jako wrak do abordażu; magnes wyciąga z niego
+      promy do złomowania, a działa rozbijają go na pole szczątków.
+  - rscadd: Flary (na głowice na podczerwień), chaff (na radarowe) i kierunkowy zagłuszacz
+      w konsoli taktycznej; AI też używa wabików.
+  - rscadd: 'Szafki kontroli uszkodzeń w korytarzach przy grodziach: gaśnice, łatki
+      na wyłomy, uszczelniacz i taśma.'
+  - rscadd: 'Harpun abordażowy z bliska, także przez tarcze: lina przyciąga cel, blokuje
+      mu skok FTL i otwiera rękaw abordażowy.'
+  - rscadd: Promy piratów, złomiarzy i łowców nagród widać na overmapie.
+  - rscadd: Smugi silników, gaz z wyłomów, pożary modułów i dym nad wrakami.
+  - rscadd: Przebicie poszycia sypie odłamkami w głąb statku, a głęboki wyłom robi
+      lej wybuchów wzdłuż lotu pocisku.
+  - rscadd: 'Głowice specjalne torped: chemiczna i ogłuszająca; gracz może zbudować
+      torpedę opancerzoną z visceratorami.'
+  - rscadd: Amunicja okrętowa wybucha od pożaru, wybuchu i postrzału, z kilkusekundowym
+      ostrzeżeniem.
+  - rscadd: 'Strefy zagrożeń na overmapie: pola szczątków i pole przyciągania.'
+  - rscadd: 'Tło overmapy według terenu kafla: pył, mgła, zorza, błyski, poświata,
+      karpie i miny w oddali.'
+  - rscadd: 'Kapsuła desantowa może lecieć na wrogi okręt bez tarcz: ląduje na jego
+      pokładzie i wybija wyrwę, a zestrzelona wyrzuca rannego pasażera w kosmos.'
+  - rscadd: Cywilne frachtowce w układach, rozpoznanie kontaktu krokami (klasa, IFF,
+      wzrokowo) i fałszywe transpondery wrogów.
+  - rscadd: Ostrzał własnych i neutralnych cywilów ogłasza Centrala i psuje reputację
+      u ich frakcji (ceny, odmowa handlu).
+  - tweak: 'Jedna reputacja u frakcji handlarzy: misje stacji ją podnoszą, ostrzał
+      cywilów i porażki obniżają, a zniżki i oferty specjalne liczą się z niej.'
+  - bugfix: Kapsuła desantowa ma w kabinie normalne ciśnienie, pasażer nie obrywa
+      już w trakcie lotu.
+  - tweak: Okręty na overmapie mają proporcje według rozmiaru, myśliwce są mniejsze,
+      a zoom oddala o poziom dalej.
+  - tweak: Okręty graczy obracają się dwa razy szybciej niż okręty AI tej samej masy.
+  - rscadd: Przy zbitym pancerzu pocisk przebija się przez ściany w głąb statku, najdalej
+      na głębokość wyłomu od burty.
+  - tweak: Okręt AI bez żywej załogi przestaje strzelać i dryfuje.
+  - tweak: Moduły okrętów AI biorą obrażenia po pancerzu na klasę pocisku i po przebiciu,
+      jak kadłub.
+  - rscadd: Pociski z kuźni z cechą radioaktywną zabijają załogę trafionego modułu
+      okrętu wroga.
+  - tweak: Stanowisko rozpoznania zastępuje DRADIS na mostku, a konsola taktyczna
+      ma ustawienia AMS.
+  - tweak: 'Stara mapa gwiazd znika: astrometria i menedżer układów admina działają
+      na mapie hex, a komputer FTL ma własne okno napędu.'
+  - tweak: Wraki z bitew znikają z układu po odlocie okrętu gracza.
+  - rscadd: Działa na sprite'cie okrętu mogą się obracać tam, gdzie celuje strzelec.
+      Lotnictwo oraz odzysk z magnesem mają po jednym oknie z zakładkami.
+  - tweak: Wszystkie okna konsol okrętu mają jeden wygląd.
+  - rscdel: SSV Elco wycofany z gry.
+  - rscadd: 'Ekran taktyczny: stanowisko rozpoznania, konsola taktyczna, DRADIS, uzbrojenie
+      i AMS mają jedno okno z trybami Rozpoznanie, Ogień i Podgląd; każda konsola
+      steruje tylko swoją częścią.'
+  - tweak: Konsola dostaw ładunków, skaner asteroid i radar myśliwców mają okrągły
+      radar i kartę kontaktu jak stanowisko rozpoznania.
+  - rscadd: Myśliwce i małe jednostki mają na radarze własny znacznik ze strzałką
+      kursu i obrysem przy dużym oddaleniu.
+  - rscadd: Flary i chaff wyglądają jak prawdziwe wabiki, skok FTL rozciąga okręt
+      w błysku, dysze manewrowe dmuchają przy obrocie, a torpedy zostawiają dym przy
+      odpaleniu.
+  - rscadd: Strzelec słyszy, czy trafił w tarczę, w pancerz czy w moduł.
+  - rscadd: Porywacze mają zamaskowany spodek na overmapie, infiltrator Syndykatu
+      widać po wylocie z bazy, a ERT przylatuje dużym promem.
+  - imageadd: Spodek porywaczy z BeeStation/NSV13#2770 (autor Pockets-byte).
+  - imageadd: Nowe sprite'y 29 okrętów NT, Syndykatu i piratów w jednej skali; myśliwce
+      i promy mają je na overmapie, a na pokładzie dawne.
+  - imageadd: Sprite'y promów piratów, złomiarzy i łowców nagród z Aurora Station
+      (CC-BY-SA 3.0).
   sh4dow321:
   - config: 'Tryb Infiltracji jest ciągły: runda nie kończy się w chwili śmierci wszystkich
       infiltratorów.'
