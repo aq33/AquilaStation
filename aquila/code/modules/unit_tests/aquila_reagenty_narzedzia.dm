@@ -225,10 +225,13 @@
 	var/datum/reagent/fingerprint_nanites/plain_swallowed = third_stomach.reagents.has_reagent(/datum/reagent/fingerprint_nanites)
 	TEST_ASSERT(plain_swallowed, "The plain nanites are not in the stomach")
 	TEST_ASSERT(!plain_swallowed.aq_donor_print(), "Nanites without blood took the donor of older blood in the stomach")
-	// Straight into the blood too: random prints, not the stomach's blood
-	third_sipper.reagents.add_reagent(/datum/reagent/fingerprint_nanites, 10)
-	for(var/i in 1 to 4)
+	// The swallowed portion is digested into the blood and works there: random prints, not the stomach's blood
+	for(var/i in 1 to 10)
+		third_stomach.digest()
 		third_sipper.reagents.metabolize(third_sipper, can_overdose = TRUE)
+		if(third_sipper.aq_fake_fingerprint)
+			break
+	TEST_ASSERT(third_sipper.aq_fake_fingerprint, "The digested nanites changed no prints")
 	TEST_ASSERT(third_sipper.aq_fake_fingerprint && third_sipper.aq_fake_fingerprint != rustg_hash_string(RUSTG_HASH_MD5, "aq_test_other_identity"), "Nanites without blood copied the prints of blood they never met")
 
 /// AQUILA - a holy salt line stops a shadow demon in the dark and a vampire turned to mist
