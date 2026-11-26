@@ -3,11 +3,12 @@
 // W Shiptest olbrzym to sama przepaść gazu, na której statek dokuje i zbiera gaz własnymi pompami. U nas (decyzja:
 // platforma do lądowania) lądowiska to platformy wydobywcze zawieszone w atmosferze: barierki, znaczniki, syfon gazu
 // i puste kanistry. Zejście z platformy to upadek w głąb olbrzyma (przepaść bez dna). Wysokie ciśnienie i mróz,
-// gazowy olbrzym z podtlenkiem azotu, plazmowy z plazmą (Shiptest ma też wodór, którego nie mamy).
+// gazowy olbrzym z podtlenkiem azotu, plazmowy z plazmą, metanowy z metanem (plan maszynowni E8).
 
 /// Atmosfera olbrzymów: ok. 800 kPa przy 80 K (Shiptest: 500-1550 kPa, 30-120 K)
 #define GAS_GIANT_ATMOS_MIX "n2=1800;n2o=1200;TEMP=80"
 #define PLASMA_GIANT_ATMOS_MIX "plasma=2600;co2=400;TEMP=80"
+#define METHANE_GIANT_ATMOS_MIX "methane=2200;n2=800;TEMP=90"
 
 /datum/planet_type/gas_giant
 	sky_state = "gas_giant"
@@ -47,6 +48,21 @@
 	ground_turf_type = /turf/open/floor/plating/planet_platform/plasma
 	system_tags = list("gas" = 2, "nebula" = 1, "nebula-thick" = 1, "demonstar" = 1)
 	fixed_systems = list("Zurs")
+
+/datum/planet_type/gas_giant/methane
+	sky_state = "gas_giant"
+	sky_atmosphere_color = "#80c0d0"
+	name = "metanowy olbrzym"
+	desc = "Olbrzym z zimnego metanu z domieszką azotu. Platformy wydobywcze na jego orbicie dają paliwo do dysz i generatorów."
+	overmap_color = "#70a8c0"
+	generator_type = /datum/planet_generator/single/gas_giant/methane
+	surface_area_type = /area/planet/surface/gas_giant/methane
+	edge_turf_type = /turf/open/chasm/gas_giant/methane
+	atmosphere_desc = "gęsty metan z domieszką azotu pod wysokim ciśnieniem"
+	hazard_desc = "brak stałego gruntu poza platformami, ciśnienie miażdżące bez skafandra, palny metan"
+	ground_turf_type = /turf/open/floor/plating/planet_platform/methane
+	system_tags = list("gas" = 3, "nebula" = 2, "nebula-thick" = 2, "safe" = 1)
+	fixed_systems = null
 
 /// Platforma: barierki dookoła, znaczniki w rogach i na bokach, syfon gazu i puste kanistry w lewym dolnym rogu
 /datum/planet_type/gas_giant/decorate_landing_zone(datum/planet_surface/surface, turf/zone_center, radius)
@@ -106,6 +122,9 @@
 /datum/planet_generator/single/gas_giant/plasma
 	single_biome_type = /datum/planet_biome/gas_giant/plasma
 
+/datum/planet_generator/single/gas_giant/methane
+	single_biome_type = /datum/planet_biome/gas_giant/methane
+
 /// Sam gaz: bez roślin, obiektów i zwierząt (Shiptest stawiał obserwatory, które tu od razu spadałyby w głąb)
 /datum/planet_biome/gas_giant
 	open_turf_types = list(/turf/open/chasm/gas_giant = 1)
@@ -115,6 +134,9 @@
 
 /datum/planet_biome/gas_giant/plasma
 	open_turf_types = list(/turf/open/chasm/gas_giant/plasma = 1)
+
+/datum/planet_biome/gas_giant/methane
+	open_turf_types = list(/turf/open/chasm/gas_giant/methane = 1)
 
 /// Gaz olbrzyma: przepaść bez dna
 /turf/open/chasm/gas_giant
@@ -134,6 +156,11 @@
 	baseturfs = /turf/open/chasm/gas_giant/plasma
 	initial_gas_mix = PLASMA_GIANT_ATMOS_MIX
 
+/turf/open/chasm/gas_giant/methane
+	color = "#5f9ea0"
+	baseturfs = /turf/open/chasm/gas_giant/methane
+	initial_gas_mix = METHANE_GIANT_ATMOS_MIX
+
 /// Podłoga platformy wydobywczej (pod nią otchłań)
 /turf/open/floor/plating/planet_platform
 	name = "platforma wydobywcza"
@@ -146,6 +173,10 @@
 	baseturfs = /turf/open/chasm/gas_giant/plasma
 	initial_gas_mix = PLASMA_GIANT_ATMOS_MIX
 
+/turf/open/floor/plating/planet_platform/methane
+	baseturfs = /turf/open/chasm/gas_giant/methane
+	initial_gas_mix = METHANE_GIANT_ATMOS_MIX
+
 /area/planet/surface/gas_giant
 	name = "Atmosfera Gazowego Olbrzyma"
 	lighting_overlay_colour = "#e8a868"
@@ -155,6 +186,10 @@
 /area/planet/surface/gas_giant/plasma
 	name = "Atmosfera Plazmowego Olbrzyma"
 	lighting_overlay_colour = "#c890e8"
+
+/area/planet/surface/gas_giant/methane
+	name = "Atmosfera Metanowego Olbrzyma"
+	lighting_overlay_colour = "#98c8d8"
 
 /area/planet/surface/cave/gas_giant
 	name = "Wnętrze Olbrzyma"
@@ -232,3 +267,4 @@
 
 #undef GAS_GIANT_ATMOS_MIX
 #undef PLASMA_GIANT_ATMOS_MIX
+#undef METHANE_GIANT_ATMOS_MIX
