@@ -154,9 +154,22 @@ GLOBAL_LIST_EMPTY(aq_sdgf_cloned)
 	results = list(/datum/reagent/aq_locutogen = 3)
 	required_reagents = list(/datum/reagent/medicine/inacusiate = 1, /datum/reagent/consumable/sugar = 1, /datum/reagent/silicon = 1)
 
-/datum/chemical_reaction/aq_locutogen/on_reaction(datum/reagents/holder, created_volume)
+/// Nasłuch w pojemniku, w którym lokutogen powstał. Reakcja natychmiastowa ma produkt już w on_reaction(),
+/// a reakcja rozłożona w czasie (fermichem) dodaje go dopiero w krokach, więc sprawdzamy też krok i koniec reakcji
+/datum/chemical_reaction/aq_locutogen/proc/aq_start_listening(datum/reagents/holder)
 	var/datum/reagent/aq_locutogen/locutogen = holder.get_reagent(/datum/reagent/aq_locutogen)
 	locutogen?.aq_listen()
+
+/datum/chemical_reaction/aq_locutogen/on_reaction(datum/reagents/holder, created_volume)
+	aq_start_listening(holder)
+
+/datum/chemical_reaction/aq_locutogen/reaction_step(datum/reagents/holder, datum/equilibrium/reaction, delta_t, delta_ph, step_reaction_vol)
+	. = ..()
+	aq_start_listening(holder)
+
+/datum/chemical_reaction/aq_locutogen/reaction_finish(datum/reagents/holder, datum/equilibrium/reaction, react_vol)
+	. = ..()
+	aq_start_listening(holder)
 
 // --- E3: Solipsizyna ---
 
@@ -184,7 +197,10 @@ GLOBAL_LIST_EMPTY(aq_sdgf_cloned)
 
 /// Zasłania pijącemu ludzi w zasięgu wzroku (obraz z override na każdym z nich, widoczny tylko dla niego)
 /datum/reagent/aq_solipsizine/proc/aq_hide_others(mob/living/M)
-	aq_viewer = M
+	if(aq_viewer != M)
+		aq_viewer = M
+		// Login() czyści client.images: po ponownym zalogowaniu obrazy trzeba dodać od nowa
+		RegisterSignal(M, COMSIG_MOB_CLIENT_LOGIN, PROC_REF(aq_on_login))
 	LAZYINITLIST(aq_hidden)
 	for(var/mob/living/carbon/human/other in view(M))
 		if(other == M || aq_hidden[other])
@@ -194,6 +210,11 @@ GLOBAL_LIST_EMPTY(aq_sdgf_cloned)
 		aq_hidden[other] = blank
 		M.client?.images += blank
 		RegisterSignal(other, COMSIG_PARENT_QDELETING, PROC_REF(aq_unhide))
+
+/datum/reagent/aq_solipsizine/proc/aq_on_login(mob/source, client/new_client)
+	SIGNAL_HANDLER
+	for(var/mob/living/other as anything in aq_hidden)
+		new_client.images |= aq_hidden[other]
 
 /datum/reagent/aq_solipsizine/proc/aq_unhide(mob/living/other)
 	SIGNAL_HANDLER
@@ -207,6 +228,7 @@ GLOBAL_LIST_EMPTY(aq_sdgf_cloned)
 		aq_unhide(other)
 	aq_hidden = null
 	if(aq_viewer)
+		UnregisterSignal(aq_viewer, COMSIG_MOB_CLIENT_LOGIN)
 		REMOVE_TRAIT(aq_viewer, TRAIT_DEAF, type)
 	aq_viewer = null
 
@@ -458,12 +480,13 @@ GLOBAL_LIST_EMPTY(aq_sdgf_cloned)
 	/// Kopii nie będzie (za mała dawka albo limit), komórki tylko leczą
 	var/aq_merge_only = FALSE
 
-/// Klucz gracza do limitu kopii: ckey, a bez gracza umysł
+/// Klucz gracza do limitu kopii, stały także wtedy, gdy ciało chwilowo nie ma klienta (duch wyszedł z ciała):
+/// klucz gracza zapisany w umyśle, bez umysłu ckey, a bez gracza samo ciało
 /proc/aq_sdgf_key(mob/living/M)
+	if(M.mind?.key)
+		return ckey(M.mind.key)
 	if(M.ckey)
 		return M.ckey
-	if(M.mind)
-		return REF(M.mind)
 	return REF(M)
 
 /proc/aq_sdgf_can_clone(mob/living/M)
