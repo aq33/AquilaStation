@@ -71,6 +71,7 @@ GLOBAL_LIST_EMPTY(hex_terrains)
 		/datum/round_event_control/aquila_hex_comet_expulsion,
 		/datum/round_event_control/aquila_hex_lone_hunter,
 		/datum/round_event_control/aquila_hex_belt_rats,
+		/datum/round_event_control/aquila_hex_xenohive,
 	)
 	antags = list(
 		/datum/round_event_control/spider_infestation,
@@ -90,6 +91,8 @@ GLOBAL_LIST_EMPTY(hex_terrains)
 		/datum/round_event_control/aquila_hex_rogue_drone_swarm,
 		/datum/round_event_control/aquila_hex_wreck_graveyard,
 		/datum/round_event_control/aquila_hex_loot_pod,
+		/datum/round_event_control/aquila_hex_station_incident_mimic,
+		/datum/round_event_control/aquila_hex_rogue_maint_drones,
 	)
 	antags = list(
 		/datum/round_event_control/spawn_swarmer,
@@ -172,6 +175,7 @@ GLOBAL_LIST_EMPTY(hex_terrains)
 		/datum/round_event_control/radioactive_sludge,
 		/datum/round_event_control/aquila_hex_radiation_leak,
 		/datum/round_event_control/aquila_hex_disease_outbreak_floor,
+		/datum/round_event_control/aquila_hex_irradiated_mouse,
 	)
 	antags = list(
 		/datum/round_event_control/aquila_teratoma,
@@ -277,11 +281,13 @@ GLOBAL_LIST_EMPTY(hex_terrains)
 		/datum/round_event_control/anomaly/anomaly_bluespace,
 		/datum/round_event_control/aquila_hex_bluespace_interphase,
 		/datum/round_event_control/aquila_hex_ian_storm,
+		/datum/round_event_control/aquila_hex_hivebots,
 	)
 	antags = list(
 		/datum/round_event_control/aquila_chrono_legionnaire,
 		/datum/round_event_control/paradox_clone,
 		/datum/round_event_control/abductor,
+		/datum/round_event_control/aquila_hex_living_lube,
 	)
 
 /datum/hex_terrain/black_hole
@@ -302,10 +308,13 @@ GLOBAL_LIST_EMPTY(hex_terrains)
 		/datum/round_event_control/aquila_hex_comet_expulsion,
 		/datum/round_event_control/aquila_hex_comet_tail,
 		/datum/round_event_control/aquila_hex_rich_comet,
+		/datum/round_event_control/aquila_hex_slimes_spawn_horde,
+		/datum/round_event_control/aquila_hex_stray_facehugger,
 	)
 	antags = list(
 		/datum/round_event_control/blob,
 		/datum/round_event_control/alien_infestation,
+		/datum/round_event_control/aquila_hex_changeling_meteor,
 	)
 
 /datum/hex_terrain/mines
@@ -316,6 +325,7 @@ GLOBAL_LIST_EMPTY(hex_terrains)
 		/datum/round_event_control/operative,
 		/datum/round_event_control/infiltrators,
 		/datum/round_event_control/portal_storm_syndicate,
+		/datum/round_event_control/aquila_hex_derelict_syndicate_cyborg,
 	)
 
 /datum/hex_terrain/signal
@@ -331,6 +341,8 @@ GLOBAL_LIST_EMPTY(hex_terrains)
 		/datum/round_event_control/aquila_hex_freighter_attack,
 		/datum/round_event_control/aquila_hex_wreck_graveyard,
 		/datum/round_event_control/aquila_hex_loot_pod,
+		/datum/round_event_control/aquila_hex_mimics_invasion,
+		/datum/round_event_control/aquila_hex_cat_surgeon,
 	)
 	antags = list(
 		/datum/round_event_control/fugitives,
