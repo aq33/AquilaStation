@@ -199,8 +199,8 @@
 /turf/open/floor/plating,
 /area/engine/atmos)
 "ay" = (
-/obj/structure/cable,
-/obj/structure/disposalpipe/segment,
+/obj/machinery/recharge_station,
+/obj/machinery/airalarm/directional/west,
 /obj/effect/landmark/start/cyborg,
 /turf/open/floor/plasteel,
 /area/science/robotics)
@@ -5180,30 +5180,6 @@
 /area/crew_quarters/heads/hop{
 	name = "Executive officer's Office"
 	})
-"li" = (
-/obj/structure/rack,
-/obj/item/storage/toolbox/mechanical{
-	pixel_x = 2;
-	pixel_y = -1
-	},
-/obj/item/clothing/head/welding{
-	pixel_x = -3;
-	pixel_y = 5
-	},
-/obj/item/clothing/glasses/welding,
-/obj/item/multitool{
-	pixel_x = 3
-	},
-/obj/item/storage/belt/utility,
-/obj/item/storage/belt/utility,
-/obj/structure/cable,
-/obj/machinery/power/apc/auto_name/west,
-/obj/item/storage/toolbox/electrical{
-	pixel_x = -1;
-	pixel_y = 4
-	},
-/turf/open/floor/plasteel,
-/area/science/robotics)
 "lj" = (
 /obj/machinery/rnd/production/protolathe/department/engineering,
 /obj/machinery/computer/ship/viewscreen{
@@ -5222,15 +5198,6 @@
 /obj/machinery/duct,
 /turf/open/floor/plasteel/white,
 /area/medical/genetics/cloning)
-"ll" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/turf/open/floor/plasteel,
-/area/science/robotics)
-"lm" = (
-/obj/machinery/airalarm/directional/west,
-/obj/machinery/droneDispenser/preloaded,
-/turf/open/floor/plasteel,
-/area/science/robotics)
 "ln" = (
 /turf/closed/wall/steel,
 /area/chapel/main)
@@ -10181,6 +10148,30 @@
 	dir = 4
 	},
 /area/security/warden)
+"EU" = (
+/obj/structure/rack,
+/obj/item/storage/toolbox/electrical{
+	pixel_x = -1;
+	pixel_y = 4
+	},
+/obj/item/storage/toolbox/mechanical{
+	pixel_x = 2;
+	pixel_y = -1
+	},
+/obj/item/clothing/head/welding{
+	pixel_x = -3;
+	pixel_y = 5
+	},
+/obj/item/clothing/glasses/welding,
+/obj/item/multitool{
+	pixel_x = 3
+	},
+/obj/item/storage/belt/utility,
+/obj/item/storage/belt/utility,
+/obj/structure/cable,
+/obj/machinery/power/apc/auto_name/west,
+/turf/open/floor/plasteel,
+/area/science/robotics)
 "EV" = (
 /obj/machinery/power/terminal{
 	dir = 8
@@ -10764,6 +10755,11 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/gravity_generator)
+"Hv" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/droneDispenser/preloaded,
+/turf/open/floor/plasteel,
+/area/science/robotics)
 "Hw" = (
 /obj/machinery/door/airlock/ship/command/glass{
 	name = "Combat Information Center";
@@ -44422,11 +44418,11 @@ ew
 hd
 Nq
 ja
-lm
+ay
 BJ
 ja
 Te
-li
+EU
 dA
 iR
 gm
@@ -44680,7 +44676,7 @@ qZ
 BR
 FX
 ca
-ay
+ca
 cR
 se
 fe
@@ -44940,7 +44936,7 @@ ig
 ig
 cS
 bT
-ll
+Hv
 fc
 lu
 Ai
