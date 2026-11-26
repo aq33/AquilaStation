@@ -196,6 +196,7 @@ GLOBAL_LIST_EMPTY(hex_terrains)
 		/datum/round_event_control/slaughter,
 		/datum/round_event_control/sinfuldemon,
 		/datum/round_event_control/devil,
+		/datum/round_event_control/aquila_hex_cult_portal,
 	)
 
 /datum/hex_terrain/anomalies
@@ -218,6 +219,16 @@ GLOBAL_LIST_EMPTY(hex_terrains)
 		/datum/round_event_control/aquila_hex_drive_instability,
 		/datum/round_event_control/aquila_hex_bluespace_interphase,
 		/datum/round_event_control/aquila_hex_bluespace_rifts,
+		/datum/round_event_control/aquila_hex_anomaly_bioscrambler,
+		/datum/round_event_control/aquila_hex_anomaly_radiation,
+		/datum/round_event_control/aquila_hex_anomaly_storm,
+		/datum/round_event_control/aquila_hex_anomaly_frost,
+		/datum/round_event_control/aquila_hex_anomaly_gas,
+		/datum/round_event_control/aquila_hex_anomaly_lifebringer,
+		/datum/round_event_control/aquila_hex_anomaly_insanity_pulse,
+		/datum/round_event_control/aquila_hex_anomaly_blood,
+		/datum/round_event_control/aquila_hex_anomaly_dimensional,
+		/datum/round_event_control/aquila_hex_artifact,
 	)
 	antags = list(
 		/datum/round_event_control/aquila_chrono_legionnaire,

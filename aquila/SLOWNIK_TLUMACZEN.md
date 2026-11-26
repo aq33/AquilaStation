@@ -3973,6 +3973,16 @@ Oznaczenia w kolumnie uwag:
 | transfusion (anomaly) | anomalia transfuzyjna | ż; nowe (Shiptest) |
 | chronograph (anomaly) | chronograf | m; nowe (Shiptest); efekt: przyspieszenie (accelerando) |
 | big / high (anomaly variants) | ogromna / silna anomalia … | nowe (Shiptest) |
+| bioscrambler (anomaly) | anomalia bioprzetasowania | ż; nowe (Bee, eventy mapy FTL) |
+| radioactive (anomaly) | anomalia radioaktywna | ż; nowe (Monke) |
+| storm (anomaly) | anomalia burzowa | ż; nowe (Monke) |
+| frost / glacial (anomaly) | anomalia mrozu | ż; nowe (Monke) |
+| phasing gas (anomaly) | fazująca anomalia gazowa | ż; nowe (TauCeti) |
+| Lifebringer (anomaly) | Dawczyni życia (anomalia Dawczyni życia) | ż; nowe (Monke) |
+| sanity disruptor (anomaly) | anomalia zakłócająca psychikę, zakłócacz psychiki | ż/m; nowe (Bee) |
+| blood (anomaly) | anomalia krwi | ż; nowe (Bee) |
+| dimensional (anomaly) | anomalia wymiarowa, niestabilność wymiarowa | ż; nowe (tg) |
+| cult portal | portal kultu | m; nowe (TauCeti) |
 | waste planet | planeta-śmietnisko | ż; nowe (planety, Shiptest) |
 | battlefield (planet) | pole bitwy | n; nowe (planety, Shiptest) |
 | automaton (Shiptest drones) | automat | m; nowe |
