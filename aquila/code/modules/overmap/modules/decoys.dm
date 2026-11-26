@@ -1,0 +1,276 @@
+/// AQUILA - wabiki i zagłuszanie (plan walki na overmapie, etap „chaff, flary, jammer”).
+/// Flary odciągają pociski z głowicą na podczerwień, chaff zrywa pociski z głowicą radarową, według naprowadzania z projektu
+/// pocisku (missile_design.dm, decoy_kind()); pocisk bez projektu: torpeda na ciepło, rakieta na radar. Torpeda-wabik NSV
+/// (DCY) zwodzi głowice radarowe osobno. Wabik działa na pociski kierowane, które już lecą w okręt (torpedoes_to_target). Zagłuszacz jest kierunkowy: w stożku
+/// jammer_arc stopni wokół ustawionego namiaru wydłuża namierzanie okrętu i co jakiś czas zrywa dalekie namiary, ale podnosi jego sygnaturę. Gracz używa ich w konsoli taktycznej, AI odpowiada wabikiem na pocisk.
+
+#define DECOY_RANGE 14
+#define DECOY_SEDUCE_CHANCE 55
+#define DECOY_COOLDOWN (4 SECONDS)
+#define DECOY_REGEN_TIME (60 SECONDS)
+#define JAMMER_TICK (10 SECONDS)
+#define JAMMER_SIGNATURE 50
+#define JAMMER_MIN_DIST 10
+
+/obj/effect/overmap_decoy
+	name = "wabik"
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "sparks"
+	anchored = TRUE
+	layer = ABOVE_MOB_LAYER
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	var/lifetime = 8 SECONDS
+
+/obj/effect/overmap_decoy/Initialize(mapload)
+	. = ..()
+	QDEL_IN(src, lifetime)
+
+/particles/overmap_flare_sparks
+	icon = 'aquila/icons/effects/particles/misc.dmi'
+	icon_state = list("sparkle_1" = 2, "sparkle_2" = 1, "circle_2" = 1)
+	width = 256
+	height = 256
+	count = 60
+	spawning = 4
+	lifespan = generator("num", 6, 12)
+	fade = 6
+	velocity = generator("circle", 0.4, 1.4)
+	friction = 0.06
+	scale = generator("num", 0.3, 0.7)
+	grow = list(-0.02, -0.02)
+	gradient = list(0, "#ffffff", 0.35, "#fff0a0", 0.7, "#ff9030", 1, "#ff302000")
+	color_change = 0.1
+	color = 0
+
+/particles/overmap_chaff
+	icon = 'aquila/icons/effects/particles/misc.dmi'
+	icon_state = list("sparkle_1" = 2, "sparkle_2" = 2, "shard" = 1)
+	width = 400
+	height = 400
+	count = 160
+	spawning = 40
+	lifespan = generator("num", 60, 140)
+	fade = 50
+	fadein = 3
+	velocity = generator("circle", 0.3, 1.6)
+	friction = 0.04
+	drift = generator("vector", list(-0.05, -0.05), list(0.05, 0.05))
+	spin = generator("num", -15, 15)
+	scale = generator("num", 0.3, 0.8)
+	gradient = list(0, "#ffffff", 0.2, "#9aa8b8", 0.4, "#e8f0ff", 0.6, "#7d8896", 0.8, "#f4f8ff", 1, "#8a96a4")
+	color_change = generator("num", 0.05, 0.2)
+	color = generator("num", 0, 1)
+
+/// Flara: rozżarzona kula (biały rdzeń w pomarańczowej poświacie), która sypie iskrami, pulsuje i odpływa za rufę
+/obj/effect/overmap_decoy/flare
+	name = "flara"
+	icon = 'aquila/icons/effects/particles/misc.dmi'
+	icon_state = "circle_1"
+	color = "#fff6d8"
+	blend_mode = BLEND_ADD
+	appearance_flags = PIXEL_SCALE
+	light_range = 3
+	light_power = 2
+	light_color = "#ffb060"
+
+/obj/effect/overmap_decoy/flare/Initialize(mapload)
+	. = ..()
+	particles = new /particles/overmap_flare_sparks
+	add_filter("flare_glow", 1, list("type" = "drop_shadow", "x" = 0, "y" = 0, "size" = 6, "color" = "#ff9a3080"))
+	transform = matrix() * 0.6
+	animate(src, transform = matrix() * 1.1, time = 3, easing = SINE_EASING, loop = -1)
+	animate(transform = matrix() * 0.8, time = 3, easing = SINE_EASING)
+	addtimer(CALLBACK(src, PROC_REF(burn_out)), lifetime - 2 SECONDS)
+
+/obj/effect/overmap_decoy/flare/proc/burn_out()
+	if(particles)
+		particles.spawning = 0
+	animate(src, alpha = 0, transform = matrix() * 0.3, time = 2 SECONDS)
+
+/// Odpływa od okrętu przeciwnie do kursu, z odchyleniem spread; przesuwa się tylko obraz, cel pocisków zostaje na polu
+/obj/effect/overmap_decoy/flare/proc/drift_from(obj/structure/overmap/ship, spread)
+	var/heading = ship.angle + 180 + spread
+	animate(src, pixel_x = pixel_x + sin(heading) * 40, pixel_y = pixel_y + cos(heading) * 40, time = lifetime, easing = QUAD_EASING | EASE_OUT, flags = ANIMATION_PARALLEL)
+
+/// Stawia wabik na rufie kadłuba (pole i przesunięcie w pikselach), a nie na polu środka hitboksu
+/obj/effect/overmap_decoy/proc/place_at_stern(obj/structure/overmap/ship)
+	var/list/stern = ship.overmap_stern_point()
+	if(!stern)
+		return
+	forceMove(stern[1])
+	pixel_x = stern[2]
+	pixel_y = stern[3]
+
+/// Dodatkowa flara tylko na obraz (wachlarz za rufą); pociski jej nie biorą za cel
+/obj/effect/overmap_decoy/flare/visual
+
+/// Chaff: chmura pasków folii, która mieni się srebrem i powoli gaśnie
+/obj/effect/overmap_decoy/chaff
+	name = "chmura chaffu"
+	icon = null
+	icon_state = null
+	lifetime = 15 SECONDS
+
+/obj/effect/overmap_decoy/chaff/Initialize(mapload)
+	. = ..()
+	particles = new /particles/overmap_chaff
+	addtimer(CALLBACK(src, PROC_REF(stop_spawning)), 1 SECONDS)
+
+/obj/effect/overmap_decoy/chaff/proc/stop_spawning()
+	if(particles)
+		particles.spawning = 0
+
+/obj/structure/overmap
+	/// AQUILA - wabiki na pokładzie i ich maksimum (odnawiają się co DECOY_REGEN_TIME)
+	var/flares = 6
+	var/max_flares = 6
+	var/chaff = 4
+	var/max_chaff = 4
+	var/next_decoy = 0
+	var/decoy_regen_timer
+	/// AQUILA - zagłuszacz włączony
+	var/jammer_active = FALSE
+	var/jammer_timer
+	/// AQUILA - namiar zagłuszacza (stopnie od północy, zgodnie z zegarem, jak namiary na radarze)
+	var/jammer_bearing = 0
+	/// AQUILA - szerokość stożka zagłuszacza w stopniach
+	var/jammer_arc = 60
+
+/// Rufa kadłuba: list(pole, pixel_x, pixel_y) dla obiektu 32×32, którego środek ma stanąć na rufie; null bez obrysu sprite'a
+/obj/structure/overmap/proc/overmap_stern_point()
+	var/list/hull = overmap_hull_local(0, 0)
+	if(!hull || !z)
+		return null
+	// hull: półosie i środek kadłuba w pikselach od lewego dolnego rogu pola okrętu
+	var/world_x = hull[5] - sin(angle) * hull[4]
+	var/world_y = hull[6] - cos(angle) * hull[4]
+	var/tile_x = FLOOR(world_x / world.icon_size, 1)
+	var/tile_y = FLOOR(world_y / world.icon_size, 1)
+	var/turf/T = locate(clamp(x + tile_x, 1, world.maxx), clamp(y + tile_y, 1, world.maxy), z)
+	if(!T)
+		return null
+	return list(T, world_x - tile_x * world.icon_size - world.icon_size / 2, world_y - tile_y * world.icon_size - world.icon_size / 2)
+
+/// Wypuszcza wabik; flara działa na głowice na podczerwień, chaff na radarowe. Zwraca liczbę zwiedzionych pocisków albo FALSE.
+/obj/structure/overmap/proc/deploy_decoy(kind, seduce_chance = DECOY_SEDUCE_CHANCE)
+	if(world.time < next_decoy || QDELETED(src))
+		return FALSE
+	if(kind == "flare" ? flares <= 0 : chaff <= 0)
+		return FALSE
+	next_decoy = world.time + DECOY_COOLDOWN
+	if(kind == "flare")
+		flares--
+	else
+		chaff--
+	var/turf/T = get_center() || get_turf(src)
+	var/obj/effect/overmap_decoy/decoy = (kind == "flare") ? new /obj/effect/overmap_decoy/flare(T) : new /obj/effect/overmap_decoy/chaff(T)
+	decoy.place_at_stern(src)
+	if(kind == "flare")
+		var/obj/effect/overmap_decoy/flare/main_flare = decoy
+		main_flare.drift_from(src, 0)
+		for(var/spread in list(-35, 35))
+			var/obj/effect/overmap_decoy/flare/visual/extra = new(T)
+			extra.place_at_stern(src)
+			extra.drift_from(src, spread)
+	. = 0
+	for(var/obj/item/projectile/guided_munition/proj as anything in torpedoes_to_target)
+		if(QDELETED(proj) || proj.homing_target != src)
+			continue
+		if(proj.decoy_kind() != kind)
+			continue
+		if(overmap_dist(src, proj) > DECOY_RANGE || !prob(seduce_chance))
+			continue
+		proj.set_homing_target(decoy)
+		proj.RegisterSignal(decoy, COMSIG_PARENT_QDELETING, TYPE_PROC_REF(/obj/item/projectile/guided_munition, on_decoy_deleted))
+		.++
+	relay('sound/weapons/flash.ogg', "<span class='notice'>[kind == "flare" ? "Wystrzelono flary." : "Wystrzelono chaff."]</span>")
+	start_decoy_regen()
+
+/// Wabik się wypalił: zwiedziony pocisk leci dalej prosto, zamiast trzymać usunięty wabik jako cel
+/obj/item/projectile/guided_munition/proc/on_decoy_deleted(datum/source)
+	SIGNAL_HANDLER
+	if(homing_target != source)
+		return
+	homing_target = null
+	homing = FALSE
+
+/obj/structure/overmap/proc/start_decoy_regen()
+	if(decoy_regen_timer || (flares >= max_flares && chaff >= max_chaff))
+		return
+	decoy_regen_timer = addtimer(CALLBACK(src, PROC_REF(regen_decoys)), DECOY_REGEN_TIME, TIMER_STOPPABLE)
+
+/obj/structure/overmap/proc/regen_decoys()
+	decoy_regen_timer = null
+	flares = min(max_flares, flares + 1)
+	chaff = min(max_chaff, chaff + 1)
+	start_decoy_regen()
+
+/obj/structure/overmap/proc/toggle_jammer()
+	jammer_active = !jammer_active
+	sensor_profile += jammer_active ? JAMMER_SIGNATURE : -JAMMER_SIGNATURE
+	if(jammer_active)
+		jammer_timer = addtimer(CALLBACK(src, PROC_REF(jammer_tick)), JAMMER_TICK, TIMER_STOPPABLE | TIMER_LOOP)
+	else
+		deltimer(jammer_timer)
+		jammer_timer = null
+	return jammer_active
+
+/// Namiar od tego okrętu do other (stopnie od północy, zgodnie z zegarem), z przesunięciami w polu jak na radarze
+/obj/structure/overmap/proc/bearing_to(obj/structure/overmap/other)
+	var/dx = overmap_wrap_delta((other.x + other.offset.a) - (x + offset.a), world.maxx)
+	var/dy = overmap_wrap_delta((other.y + other.offset.e) - (y + offset.e), world.maxy)
+	if(!dx && !dy)
+		return 0
+	. = 90 - arctan(dx, dy)
+	if(. < 0)
+		. += 360
+
+/// Czy włączony zagłuszacz tego okrętu celuje w other (other w stożku jammer_arc wokół namiaru)
+/obj/structure/overmap/proc/jammer_covers(obj/structure/overmap/other)
+	if(!jammer_active || !istype(other))
+		return FALSE
+	var/diff = abs(bearing_to(other) - jammer_bearing)
+	return min(diff, 360 - diff) <= jammer_arc / 2
+
+/// Zagłuszacz zrywa namiary okrętów, które trzymają nas z daleka
+/obj/structure/overmap/proc/jammer_tick()
+	if(!jammer_active || QDELETED(src))
+		return
+	for(var/obj/structure/overmap/enemy as anything in current_system?.system_contents)
+		if(!istype(enemy) || enemy == src || enemy.faction == faction || !LAZYFIND(enemy.target_painted, src) || !jammer_covers(enemy))
+			continue
+		if(overmap_dist(src, enemy) > JAMMER_MIN_DIST && prob(30))
+			enemy.dump_lock(src)
+
+// Namierzanie zagłuszanego okrętu z daleka trwa dwa razy dłużej
+/obj/structure/overmap/start_lockon(obj/structure/overmap/target)
+	if(!istype(target) || !target.jammer_covers(src) || overmap_dist(src, target) <= JAMMER_MIN_DIST)
+		return ..()
+	var/old_time = lockon_time
+	lockon_time *= 2
+	. = ..()
+	lockon_time = old_time
+
+// AI odpowiada wabikiem na pocisk kierowany
+/obj/structure/overmap/on_missile_lock(obj/structure/overmap/firer, obj/item/projectile/proj)
+	. = ..()
+	if(!ai_controlled || !prob(60))
+		return
+	var/obj/item/projectile/guided_munition/guided = proj
+	var/kind = istype(guided) ? guided.decoy_kind() : null
+	if(!kind)
+		return
+	addtimer(CALLBACK(src, PROC_REF(deploy_decoy), kind), rand(2, 5) SECONDS)
+
+/obj/structure/overmap/Destroy()
+	deltimer(decoy_regen_timer)
+	deltimer(jammer_timer)
+	return ..()
+
+#undef DECOY_RANGE
+#undef DECOY_SEDUCE_CHANCE
+#undef DECOY_COOLDOWN
+#undef DECOY_REGEN_TIME
+#undef JAMMER_TICK
+#undef JAMMER_SIGNATURE
+#undef JAMMER_MIN_DIST

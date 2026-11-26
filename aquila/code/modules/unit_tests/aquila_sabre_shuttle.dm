@@ -44,6 +44,17 @@
 			break
 	TEST_ASSERT(helm, "The Sabre interior has no helm")
 	TEST_ASSERT_EQUAL(helm.has_overmap(), sabre, "The docked helm doesn't control its own Sabre")
+	// DRADIS i konsola taktyczna w doku też należą do Sabre: wcześniej otwierały ekran taktyczny gospodarza i podmieniały jego konsole
+	var/obj/machinery/computer/ship/dradis/sabre_dradis
+	var/obj/machinery/computer/ship/tactical/sabre_tactical
+	for(var/turf/T as anything in shuttle_port.return_turfs())
+		sabre_dradis = sabre_dradis || (locate(/obj/machinery/computer/ship/dradis) in T)
+		sabre_tactical = sabre_tactical || (locate(/obj/machinery/computer/ship/tactical) in T)
+	TEST_ASSERT(sabre_dradis && sabre_tactical, "The Sabre interior has no DRADIS or tactical console")
+	TEST_ASSERT_EQUAL(sabre_dradis.has_overmap(), sabre, "The docked Sabre's DRADIS belongs to [sabre_dradis.linked] instead of the Sabre")
+	TEST_ASSERT_EQUAL(sabre_tactical.has_overmap(), sabre, "The docked Sabre's tactical console belongs to [sabre_tactical.linked] instead of the Sabre")
+	TEST_ASSERT(host.dradis != sabre_dradis && host.tactical != sabre_tactical, "The docked Sabre's consoles replaced the host ship's DRADIS or tactical console")
+	TEST_ASSERT(!sabre_dradis.tactical_screen_ship(), "The Sabre's DRADIS opens a tactical screen instead of its own radar window")
 
 	sabre.set_fuel(500)
 	TEST_ASSERT(sabre.shuttle_launch(), "The Sabre didn't launch")

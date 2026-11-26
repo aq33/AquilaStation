@@ -682,7 +682,8 @@
 			clusters++
 	TEST_ASSERT(clusters, "No anomaly cluster to scan in any anomaly field")
 
-/// Eskorta ze stacji: okręt dołącza do eskorty, skacze za okrętem gracza, a stacja nie sprzedaje ponad limit
+/// Eskorta ze stacji: okręt dołącza do eskorty, skacze za okrętem gracza, a stacja nie sprzedaje ponad limit; myśliwce
+/// eskorty liczą się osobno od okrętów
 /datum/unit_test/hexmap_war_escort
 
 /datum/unit_test/hexmap_war_escort/Run()
@@ -714,6 +715,17 @@
 		ship.hex_add_escort(/obj/structure/overmap/nanotrasen/frigate/ai)
 	var/full = ship.hex_escort_count() >= HEX_ESCORT_MAX
 	qdel(item)
+	// klucz myśliwców: dwa myśliwce w grupie myśliwców eskorty, liczone osobno od okrętów
+	var/ships_before = ship.hex_escort_count()
+	var/datum/trader_item/aquila_escort/fighters/wing = new
+	wing.on_purchase(ship)
+	qdel(wing)
+	if(!fail && ship.hex_escort_count(TRUE) != 2)
+		fail = "A fighter wing purchase gave [ship.hex_escort_count(TRUE)] escort fighters instead of 2"
+	if(!fail && ship.hex_escort_count() != ships_before)
+		fail = "Escort fighters count against the escort ship limit"
+	if(!fail && length(F.taskforces["fighters"]) != 2)
+		fail = "Escort fighters are not in the fleet's fighter group"
 	F.hex_war_dispose()
 	if(fail)
 		return Fail(fail)

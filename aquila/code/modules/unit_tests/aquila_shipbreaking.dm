@@ -116,8 +116,13 @@
 		areas_before[T] = T.loc
 	var/obj/structure/overmap/asteroid/shipbreak_wreck/wreck = new(get_turf(magnet.linked))
 	magnet.cooldown = FALSE
+	var/salvage_before = wreck.salvage_left
 	if(!magnet.pull_in_wreck(null, wreck))
 		return "Magnet refused to pull a wreck"
+	// Wrak zostaje na overmapie, magnes zabiera z niego jeden prom
+	if(QDELETED(wreck) || wreck.salvage_left != salvage_before - 1)
+		return "Magnet consumed the wreck instead of pulling one shuttle out of it (left [wreck.salvage_left] of [salvage_before])"
+	qdel(wreck)
 	if(!magnet.load_wreck())
 		return "Magnet failed to load [magnet.current_wreck?.mappath]"
 	// Timer z pull_in_wreck() odpala load_wreck() po 10 s, gdy wrak już stoi: drugi szablon dublował kable (losowy runtime w CI)
