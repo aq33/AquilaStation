@@ -15,6 +15,11 @@
 /datum/unit_test/aquila_blade_turbine/Run()
 	var/obj/machinery/atmospherics/components/binary/blade_turbine/turbine = allocate(/obj/machinery/atmospherics/components/binary/blade_turbine, run_loc_floor_bottom_left)
 	TEST_ASSERT(turbine.current_blade && turbine.current_stator, "Nowa turbina nie ma łopatek albo statora")
+	// Odłamki z rozpadu leciałyby dalej w kolejne testy
+	turbine.tear_shrapnel = FALSE
+	// Części fabryczne nie mają materiałów (budowa i rozbiórka nie daje żelaza), ale działają jak żelazne
+	TEST_ASSERT(!length(turbine.current_blade.custom_materials) && !length(turbine.current_stator.custom_materials), "Fabryczne części turbiny mają materiały do przetopienia")
+	TEST_ASSERT(turbine.turbine_mass == 800 && turbine.max_blade_health == 15, "Fabryczne łopatki nie liczą się jak żelazne")
 	TEST_ASSERT(turbine.rpm == 0 && turbine.lastgen == 0 && !turbine.ruined, "Nowa turbina nie stoi albo jest rozbita")
 
 	// Gorący gaz: wirnik rusza, jest moc, gaz wychodzi chłodniejszy
@@ -82,5 +87,14 @@
 		aq_test_feed_turbine(turbine, 4000, 1000)
 		turbine.process()
 	TEST_ASSERT(turbine.lastgen > 0, "Naprawiona turbina z nowymi łopatkami nie daje mocy")
+
+	// Łopatki zbite do zera na stojącym wirniku pękają bez rozpadu turbiny
+	turbine.stator_load = 1e9
+	aq_test_feed_turbine(turbine, 4000, 1000)
+	turbine.process()
+	TEST_ASSERT(turbine.rpm == 0, "Wirnik nie stanął przed sprawdzeniem pęknięcia")
+	turbine.blade_health = 0
+	turbine.process()
+	TEST_ASSERT(turbine.ruined && !turbine.current_blade, "Łopatki z zerową wytrzymałością nie pękły na stojącym wirniku")
 
 #undef TEST_ASSERT

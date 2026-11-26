@@ -25,17 +25,26 @@
 	if(!center || aq_turbine_blocked_turf(center))
 		to_chat(user, "<span class='warning'>Brak wolnego miejsca 3×5 na turbinę wokół środka komory.</span>")
 		return
+	// Przedmioty zestawu leżą od środka na zewnątrz, więc część trafiła w obrys turbiny: przenosimy je poza nią
+	var/list/footprint = aq_turbine_footprint(center)
+	var/list/outside = turfs - footprint
+	var/next_outside = 1
+	for(var/obj/item/I in spawned)
+		if((get_turf(I) in footprint) && length(outside))
+			I.forceMove(outside[min(next_outside++, length(outside))])
 	var/obj/machinery/atmospherics/components/binary/blade_turbine/turbine = new(center)
 	spawned += turbine
+	// Części zapasowe pod turbiną, poza obudową
+	var/turf/parts_turf = locate(center.x, center.y - 2, center.z)
 	for(var/obj/item/turbine_part/part as anything in list(/obj/item/turbine_part/blade, /obj/item/turbine_part/blade, /obj/item/turbine_part/stator))
-		spawned += new part(get_step(center, SOUTH))
+		spawned += new part(parts_turf)
 	var/list/materials = list(
 		/datum/material/gold = MINERAL_MATERIAL_AMOUNT * 5,
 		/datum/material/diamond = MINERAL_MATERIAL_AMOUNT * 5,
 		/datum/material/silver = MINERAL_MATERIAL_AMOUNT * 3,
 	)
 	var/i = 0
-	for(var/obj/item/turbine_part/part in get_step(center, SOUTH))
+	for(var/obj/item/turbine_part/part in parts_turf)
 		i++
 		var/list/part_material = list()
 		part_material[materials[i]] = materials[materials[i]]

@@ -17,13 +17,13 @@
 #define AQ_TURBINE_OVERSPEED_MULTIPLIER 1.2
 /// Ile próbek historii trzyma okno
 #define AQ_TURBINE_HISTORY_MAX 50
-/// Skala mocy względem Goona. Goon oddaje 2× ciepło odebrane z gazu (ok. 5× TEG z tej samej porcji gazu),
+/// Skala mocy względem Goona (zatwierdzona 26.11). Goon oddaje 2× ciepło odebrane z gazu (ok. 5× TEG z tej samej porcji gazu),
 /// ×0,5 daje moc równą odebranemu ciepłu (ok. 2,5× TEG, który potrzebuje jeszcze zimnej pętli).
 #define AQ_TURBINE_POWER_SCALE 0.5
 
 /obj/machinery/atmospherics/components/binary/blade_turbine
 	name = "turbina gazowa"
-	desc = "Duża turbina, która zamienia ciepło gorącego gazu z rury w prąd. Gaz wchodzi od zachodu i wychodzi na wschód, prąd idzie do kabla pod środkiem maszyny."
+	desc = "Duża turbina, która zamienia ciepło gorącego gazu z rury w prąd. Gaz wchodzi od zachodu i wychodzi na wschód, prąd idzie do kabla pod obudową (kabel i rury kładzie się przed budową)."
 	icon = 'aquila/icons/obj/machines/turbine/blade_turbine.dmi'
 	icon_state = "turbine_main"
 	dir = EAST
@@ -76,16 +76,23 @@
 	var/last_output_pressure = 0
 	/// Próbki do wykresów okna
 	var/list/history
+	/// Rozpad sypie odłamkami (test jednostkowy to wyłącza, żeby pociski nie leciały w kolejne testy)
+	var/tear_shrapnel = TRUE
 	COOLDOWN_DECLARE(overheat_alarm_cooldown)
 	COOLDOWN_DECLARE(stall_sound_cooldown)
 
 /obj/machinery/atmospherics/components/binary/blade_turbine/Initialize(mapload)
 	. = ..()
 	history = list()
+	// Części fabryczne bez materiałów (liczą się jak żelazo), żeby budowa i rozbiórka nie dawały darmowego żelaza z przetopienia
 	if(!current_blade)
-		set_blade(new /obj/item/turbine_part/blade(src))
+		var/obj/item/turbine_part/blade/factory_blade = new(src)
+		factory_blade.set_custom_materials(null)
+		set_blade(factory_blade)
 	if(!current_stator)
-		set_stator(new /obj/item/turbine_part/stator(src))
+		var/obj/item/turbine_part/stator/factory_stator = new(src)
+		factory_stator.set_custom_materials(null)
+		set_stator(factory_stator)
 	update_icon()
 
 /obj/machinery/atmospherics/components/binary/blade_turbine/Destroy()
@@ -154,10 +161,9 @@
 		last_output_temperature = working.return_temperature()
 		last_output_pressure = working.return_pressure()
 		output.merge(working)
-		var/turf/T = get_turf(src)
-		var/obj/structure/cable/C = T?.get_cable_node()
-		if(C?.powernet)
-			C.powernet.newavail += lastgen
+		var/datum/powernet/net = get_powernet()
+		if(net)
+			net.newavail += lastgen
 
 	input.set_volume(flow_rate)
 	// Nie update_parents(): niepodłączona turbina co cykl zgłaszałaby brak sieci
@@ -166,8 +172,23 @@
 	record_history()
 	update_icon()
 	if(!ruined && blade_health <= 0)
-		investigate_log("rozpadła się od zbyt długich nadobrotów.", INVESTIGATE_ENGINES)
-		tear_apart()
+		if(rpm > best_rpm)
+			investigate_log("rozpadła się od zbyt długich nadobrotów.", INVESTIGATE_ENGINES)
+			tear_apart()
+		else
+			// Stojący wirnik nie ma czym rozrzucić odłamków: łopatki po prostu pękają
+			visible_message("<span class='warning'>Łopatki [src] pękają!</span>")
+			ruined = TRUE
+			rpm = 0
+			QDEL_NULL(current_blade)
+			update_icon()
+
+/// Sieć z kabla pod dowolnym polem obudowy (pola zakrytego turbiną nie da się okablować po budowie)
+/obj/machinery/atmospherics/components/binary/blade_turbine/proc/get_powernet()
+	for(var/turf/T in locs)
+		var/obj/structure/cable/C = T.get_cable_node()
+		if(C?.powernet)
+			return C.powernet
 
 /// Fizyka wirnika z Goona: ciepło gazu rozpędza wirnik, stator go hamuje i daje prąd.
 /obj/machinery/atmospherics/components/binary/blade_turbine/proc/run_rotor(datum/gas_mixture/working)
@@ -256,7 +277,7 @@
 	playsound(src, 'sound/effects/explosion2.ogg', 60, TRUE)
 	visible_message("<span class='userdanger'>[src] rozrywa się od środka!</span>")
 	var/turf/T = get_turf(src)
-	for(var/i in 1 to rand(5, 20))
+	for(var/i in 1 to (tear_shrapnel ? rand(5, 20) : 0))
 		var/obj/item/projectile/bullet/shrapnel/shard = new(T)
 		shard.firer = src
 		shard.fired_from = src
@@ -266,9 +287,12 @@
 	QDEL_NULL(current_blade)
 	update_icon()
 
+// Jak u Goona wybuch niszczy części, a nie obudowę; sygnał i zawartość jak w /atom/ex_act
 /obj/machinery/atmospherics/components/binary/blade_turbine/ex_act(severity, target)
 	if(resistance_flags & INDESTRUCTIBLE)
 		return
+	contents_explosion(severity, target)
+	SEND_SIGNAL(src, COMSIG_ATOM_EX_ACT, severity, target)
 	switch(severity)
 		if(EXPLODE_LIGHT)
 			adjust_blade_health(-rand(1, 3))
@@ -350,6 +374,8 @@
 /obj/machinery/atmospherics/components/binary/blade_turbine/proc/replace_part(mob/living/user, obj/item/turbine_part/part)
 	if(rpm >= 1 || QDELETED(part))
 		return FALSE
+	if(!istype(part, /obj/item/turbine_part/blade) && !istype(part, /obj/item/turbine_part/stator))
+		return FALSE
 	if(user && !user.temporarilyRemoveItemFromInventory(part))
 		return FALSE
 	var/obj/item/turbine_part/old_part
@@ -409,7 +435,7 @@
 	if(. >= UI_INTERACTIVE || state != GLOB.default_state || !isliving(user))
 		return
 	var/mob/living/L = user
-	if(L.stat == CONSCIOUS && !L.incapacitated() && Adjacent(L))
+	if(L.stat == CONSCIOUS && !L.incapacitated() && L.Adjacent(src))
 		return UI_INTERACTIVE
 
 /obj/machinery/atmospherics/components/binary/blade_turbine/ui_interact(mob/user, datum/tgui/ui)
@@ -482,19 +508,24 @@
 			return
 	return ..()
 
-/// Pierwsze zajęte pole pod obudową turbiny z kotwicą na anchor (null = wolne). Pomija ramę, która się w nią zmienia.
+/// Pierwsze zajęte pole pod obudową turbiny z kotwicą na anchor (null = wolne). Pomija ramę, która się w nią zmienia,
+/// i istoty: budujący zawsze stoi w obrysie (każde pole przy ramie do niego należy), a z gotowej turbiny po prostu zejdzie.
 /proc/aq_turbine_blocked_turf(turf/anchor, atom/ignore)
 	if(!anchor)
 		return null
-	for(var/turf/T in block(locate(anchor.x - 1, anchor.y - 1, anchor.z), locate(anchor.x + 1, anchor.y + 3, anchor.z)))
-		if(T.density || isspaceturf(T))
-			return T
-		for(var/atom/movable/AM in T)
-			if(AM != ignore && AM.density)
-				return AM
 	if(anchor.x <= 1 || anchor.y <= 1 || anchor.x >= world.maxx || anchor.y + 3 > world.maxy)
 		return anchor
+	for(var/turf/T as anything in aq_turbine_footprint(anchor))
+		if(T.density || isgroundlessturf(T))
+			return T
+		for(var/atom/movable/AM in T)
+			if(AM != ignore && AM.density && !ismob(AM))
+				return AM
 	return null
+
+/// Pola obudowy turbiny z kotwicą na anchor: 3 szerokości, od jednego pola pod kotwicą do trzech nad nią
+/proc/aq_turbine_footprint(turf/anchor)
+	return block(locate(anchor.x - 1, anchor.y - 1, anchor.z), locate(anchor.x + 1, anchor.y + 3, anchor.z))
 
 /obj/item/circuitboard/machine/blade_turbine
 	name = "turbina gazowa (płytka maszyny)"

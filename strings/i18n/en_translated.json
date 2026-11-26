@@ -33619,7 +33619,6 @@
 "Część zamienna turbiny gazowej.": "A replacement part for the gas turbine.",
 "Diagnostyka części": "Component Diagnostics",
 "Dobry": "Good",
-"Duża turbina, która zamienia ciepło gorącego gazu z rury w prąd. Gaz wchodzi od zachodu i wychodzi na wschód, prąd idzie do kabla pod środkiem maszyny.": "A large turbine that turns the heat of hot piped gas into power. Gas enters from the west and leaves to the east, power goes to the cable under the middle of the machine.",
 "Ma stator z materiału: [current_stator.material_name()].": "It has a stator made of: [current_stator.material_name()].",
 "Ma łopatki z materiału: [current_blade.material_name()].": "It has a turbine blade made of: [current_blade.material_name()].",
 "Maszynownia: turbina gazowa": "Engineering: gas turbine",
@@ -33663,5 +33662,7 @@
 "Łopatki się kręcą.": "The blades are spinning.",
 "Łopatki stoją.": "The blades are not spinning.",
 "Łopatki turbiny": "Turbine Blade",
-"łopatki turbiny": "turbine blade"
+"łopatki turbiny": "turbine blade",
+"Duża turbina, która zamienia ciepło gorącego gazu z rury w prąd. Gaz wchodzi od zachodu i wychodzi na wschód, prąd idzie do kabla pod obudową (kabel i rury kładzie się przed budową).": "A large turbine that turns the heat of hot piped gas into power. Gas enters from the west and leaves to the east, power goes to a cable under the housing (lay the cable and pipes before building).",
+"<span class='warning'>Łopatki [src] pękają!</span>": "<span class='warning'>The blades of [src] crack!</span>"
 }
