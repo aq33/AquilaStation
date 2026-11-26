@@ -126,6 +126,7 @@
 		/obj/structure/vein/lavaland/classtwo/rare = 2,
 		/obj/structure/vein/lavaland/classthree = 2,
 		/obj/structure/vein/lavaland/classthree/rare = 1,
+		/obj/structure/vein/gas/lava = 3,
 	)
 	mob_spawn_chance = 1.5
 	mob_spawn_list = PLANET_LAVA_SURFACE_FAUNA
