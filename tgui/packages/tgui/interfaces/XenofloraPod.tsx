@@ -168,7 +168,7 @@ export const XenofloraPod = (props) => {
                     </LabeledList.Item>
                   )}
                   {plant.missing.length > 0 && (
-                    <LabeledList.Item label="Brakuje" color="bad">
+                    <LabeledList.Item label="Niespełnione" color="bad">
                       {plant.missing.join(', ')}
                     </LabeledList.Item>
                   )}

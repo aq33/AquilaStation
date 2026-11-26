@@ -328,6 +328,10 @@
 	purchase_path = /obj/item/food/meat/slab
 	cost_per_order = 30
 
+/datum/orderable_item/kitchen_meat_dairy/shrimp
+	purchase_path = /obj/item/food/shellfish_meat/shrimp
+	cost_per_order = 10
+
 /datum/orderable_item/kitchen_meat_dairy/chicken
 	purchase_path = /obj/item/food/meat/slab/chicken
 	cost_per_order = 30
