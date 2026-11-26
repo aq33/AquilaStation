@@ -95,7 +95,7 @@
 /atom/movable/screen/blob/ReadaptStrain
 	icon_state = "ui_chemswap"
 	name = "Zmień szczep"
-	desc = "Za 40 zasobów pozwala wybrać nowy szczep spośród 4 losowych."
+	desc = "Za 40 zasobów pozwala wybrać nowy szczep spośród 6 losowych."
 
 /atom/movable/screen/blob/ReadaptStrain/MouseEntered(location,control,params)
 	if(hud && hud.mymob && isovermind(hud.mymob))

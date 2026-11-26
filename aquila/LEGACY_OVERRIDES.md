@@ -100,6 +100,7 @@ The other ~60 same-type redefinitions in `aquila/` call `..()`, so they are alre
 
 | Hook | Location | Feature |
 |---|---|---|
+| `production_coefficient` without `var` in `/obj/machinery/limbgrower/RefreshParts()` (AQ EDIT line) | `nsv13/code/game/machinery/organgrower.dm` | A local var shadowed the machine var, so better manipulators did not lower reagent use. Test: `aquila_limbgrower_manipulator` |
 | Second `/obj/item/clothing/under/emp_act()` removed (AQ EDIT comment); `w_uniform != src` return in `update_sensors()` (AQ EDIT block), so a spare uniform held in hand does not touch the wearer's sensor trait and list | `code/modules/clothing/under/_under.dm` | It set `sensor_mode` without `update_sensors()`, so an EMP left the wearer on `GLOB.suit_sensors_list` with sensors off (crew monitor stack traces, round 6589). Test: `aquila_uniform_emp_sensor_list` |
 | `if(QDELETED(AM)) return` in `/obj/effect/temp_visual/flak/proc/on_entered()` (AQ EDIT line) | `nsv13/code/modules/munitions/ship_weapons/ballistic_weapons/flak.dm` | Several flak clouds on one tile: the first destroyed the munition and the rest damaged a deleted object (rounds 6585, 6587). Test: `aquila_flak_deleted_projectile` |
 | `null` listener skipped in `/datum/proc/_SendSignal()` (AQ EDIT lines) | `code/datums/components/_component.dm` | A hard-deleted listener leaves `null` in `comp_lookup`, and reading its `signal_procs` broke the signal for every other listener (rounds 6585, 6587, 6591). No test: needs a hard delete |

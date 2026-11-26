@@ -246,7 +246,7 @@
 	for(var/obj/item/reagent_containers/glass/our_beaker in component_parts)
 		reagents.maximum_volume += our_beaker.volume
 		our_beaker.reagents.trans_to(src, our_beaker.reagents.total_volume)
-	var/production_coefficient = 1.25
+	production_coefficient = 1.25 // AQ EDIT - bez "var": lokalna zmienna przesłaniała zmienną maszyny i manipulatory nic nie dawały
 	for(var/obj/item/stock_parts/manipulator/our_manipulator in component_parts)
 		production_coefficient -= our_manipulator.rating * 0.25
 	production_coefficient = clamp(production_coefficient, 0, 1) // coefficient goes from 1 -> 0.75 -> 0.5 -> 0.25

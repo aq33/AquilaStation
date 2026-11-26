@@ -3034,6 +3034,7 @@
 #include "code\modules\mecha_rework\catalog.dm"
 #ifdef UNIT_TESTS
 #include "code\modules\unit_tests\aquila_mecha_rework.dm"
+#include "code\modules\unit_tests\aquila_wiki_code_fixes.dm"
 #endif
 // Komora testowa
 #include "code\modules\test_chamber\kits\pr_672_mechy.dm"
