@@ -164,8 +164,15 @@
 	dragged.make_blood_trail(drag_next, drag_start, EAST, EAST)
 	var/bare_loss = dragged_blood - dragged.blood_volume
 	drag_area.has_gravity = old_gravity
+	// The unit test cleanup skips effects: the trails would stay for the next tests
+	for(var/turf/used in list(drag_start, drag_next))
+		for(var/obj/effect/decal/cleanable/blood/stain in used)
+			qdel(stain)
+		for(var/obj/effect/blood_trace/trace in used)
+			qdel(trace)
 	TEST_ASSERT(clotted_loss == 0, "A dragged patient lost [clotted_loss] blood under Szybkie krzepnięcie")
 	TEST_ASSERT(bare_loss > 0, "A dragged bleeding patient lost no blood even without Szybkie krzepnięcie, so the test proves nothing")
+
 
 
 #undef TEST_ASSERT
