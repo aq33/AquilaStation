@@ -388,6 +388,8 @@
 				connected_core.fuel_filtering_rate = clamp(fl_filtering_rate, 5, 200)
 				. = TRUE
 		if("fuel")
+			if(connected_core.power_level > 0) // AQUILA: okno blokuje zmianę przy pracy, a samo DM nie
+				return
 			connected_core.selected_fuel = null
 			var/fuel_mix = "nothing"
 			var/datum/hfr_fuel/fuel = null

@@ -384,6 +384,13 @@
 	if(warning_damage_flags & HYPERTORUS_FLAG_IRON_CONTENT_INCREASE)
 		radio.talk_into(src, "Uwaga! W rdzeniu przybywa żelaza!", engineering_channel)
 
+/// AQUILA: flagi stopienia z wybranego paliwa. Bez paliwa (odznaczone przy uszkodzonym reaktorze) najsłabszy wybuch,
+/// zamiast runtime'u, który zostawiał final_countdown na stałe i reaktor bez stopienia
+/obj/machinery/atmospherics/components/unary/hypertorus/core/proc/get_meltdown_flags()
+	if(selected_fuel)
+		return selected_fuel.meltdown_flags
+	return HYPERTORUS_FLAG_BASE_EXPLOSION | HYPERTORUS_FLAG_MINIMUM_SPREAD
+
 /**
  * Called by check_alert() in this file
  * Called when the damage has reached critical levels, start the countdown before the destruction, calls meltdown()
@@ -396,7 +403,7 @@
 
 	final_countdown = TRUE
 
-	var/critical = selected_fuel.meltdown_flags & HYPERTORUS_FLAG_CRITICAL_MELTDOWN
+	var/critical = get_meltdown_flags() & HYPERTORUS_FLAG_CRITICAL_MELTDOWN
 	if(critical)
 		priority_announce("UWAGA: wybuch obejmie prawdopodobnie dużą część okrętu, a impuls EMP zniszczy większość elektroniki. Oddalcie się jak najbardziej od reaktora albo znajdźcie sposób, żeby go wyłączyć.", "Alarm")
 
@@ -430,30 +437,30 @@
 	var/light_impact_explosion = 0
 	var/heavy_impact_explosion = 0
 	var/devastating_explosion = 0
-	var/em_pulse = selected_fuel.meltdown_flags & HYPERTORUS_FLAG_EMP
-	var/rad_pulse = selected_fuel.meltdown_flags & HYPERTORUS_FLAG_RADIATION_PULSE
+	var/em_pulse = get_meltdown_flags() & HYPERTORUS_FLAG_EMP
+	var/rad_pulse = get_meltdown_flags() & HYPERTORUS_FLAG_RADIATION_PULSE
 	var/emp_severity = 0
 	var/rad_pulse_size = 0
 	var/gas_spread = 0
 	var/gas_pockets = 0
-	var/critical = selected_fuel.meltdown_flags & HYPERTORUS_FLAG_CRITICAL_MELTDOWN
+	var/critical = get_meltdown_flags() & HYPERTORUS_FLAG_CRITICAL_MELTDOWN
 
-	if(selected_fuel.meltdown_flags & HYPERTORUS_FLAG_BASE_EXPLOSION)
+	if(get_meltdown_flags() & HYPERTORUS_FLAG_BASE_EXPLOSION)
 		flash_explosion = power_level * 3
 		light_impact_explosion = power_level * 2
 
-	if(selected_fuel.meltdown_flags & HYPERTORUS_FLAG_MEDIUM_EXPLOSION)
+	if(get_meltdown_flags() & HYPERTORUS_FLAG_MEDIUM_EXPLOSION)
 		flash_explosion = power_level * 6
 		light_impact_explosion = power_level * 5
 		heavy_impact_explosion = power_level * 0.5
 
-	if(selected_fuel.meltdown_flags & HYPERTORUS_FLAG_DEVASTATING_EXPLOSION)
+	if(get_meltdown_flags() & HYPERTORUS_FLAG_DEVASTATING_EXPLOSION)
 		flash_explosion = power_level * 8
 		light_impact_explosion = power_level * 7
 		heavy_impact_explosion = power_level * 2
 		devastating_explosion = power_level
 
-	if(selected_fuel.meltdown_flags & HYPERTORUS_FLAG_MINIMUM_SPREAD)
+	if(get_meltdown_flags() & HYPERTORUS_FLAG_MINIMUM_SPREAD)
 		if(em_pulse)
 			emp_severity = power_level * 3
 		if(rad_pulse)
@@ -461,7 +468,7 @@
 		gas_pockets = 5
 		gas_spread = power_level * 2
 
-	if(selected_fuel.meltdown_flags & HYPERTORUS_FLAG_MEDIUM_SPREAD)
+	if(get_meltdown_flags() & HYPERTORUS_FLAG_MEDIUM_SPREAD)
 		if(em_pulse)
 			emp_severity = power_level * 5
 		if(rad_pulse)
@@ -469,7 +476,7 @@
 		gas_pockets = 7
 		gas_spread = power_level * 4
 
-	if(selected_fuel.meltdown_flags & HYPERTORUS_FLAG_BIG_SPREAD)
+	if(get_meltdown_flags() & HYPERTORUS_FLAG_BIG_SPREAD)
 		if(em_pulse)
 			emp_severity = power_level * 7
 		if(rad_pulse)
@@ -477,7 +484,7 @@
 		gas_pockets = 10
 		gas_spread = power_level * 6
 
-	if(selected_fuel.meltdown_flags & HYPERTORUS_FLAG_MASSIVE_SPREAD)
+	if(get_meltdown_flags() & HYPERTORUS_FLAG_MASSIVE_SPREAD)
 		if(em_pulse)
 			emp_severity = power_level * 9
 		if(rad_pulse)

@@ -151,15 +151,15 @@ export const HypertorusRecipes = (props: RecipeProps) => {
         </MemoRow>
         <MemoRow header>
           <Table.Cell />
-          <Table.Cell>Primary</Table.Cell>
-          <Table.Cell>Secondary</Table.Cell>
+          <Table.Cell>Pierwsze</Table.Cell>
+          <Table.Cell>Drugie</Table.Cell>
           <Table.Cell colSpan={2} />
-          <Table.Cell>Tier 1</Table.Cell>
-          <Table.Cell>Tier 2</Table.Cell>
-          <Table.Cell>Tier 3</Table.Cell>
-          <Table.Cell>Tier 4</Table.Cell>
-          <Table.Cell>Tier 5</Table.Cell>
-          <Table.Cell>Tier 6</Table.Cell>
+          <Table.Cell>Poziom 1</Table.Cell>
+          <Table.Cell>Poziom 2</Table.Cell>
+          <Table.Cell>Poziom 3</Table.Cell>
+          <Table.Cell>Poziom 4</Table.Cell>
+          <Table.Cell>Poziom 5</Table.Cell>
+          <Table.Cell>Poziom 6</Table.Cell>
           {
             // Lay out our pictographic headers for effects.
             recipe_effect_structure.map(({ param, label, icon }) => (

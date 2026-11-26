@@ -83,6 +83,10 @@
 	TEST_ASSERT(core.critical_threshold_proximity == 0, "Ejected HFR is still damaged ([core.critical_threshold_proximity])")
 	TEST_ASSERT(ejection.eject_block_reason(), "An empty HFR allows another core ejection")
 
+	// Stopienie z odznaczonym paliwem: dawniej runtime na selected_fuel.meltdown_flags i reaktor zawieszony w odliczaniu
+	core.selected_fuel = null
+	TEST_ASSERT(core.get_meltdown_flags(), "An HFR melting down with no fuel selected has no meltdown behaviour")
+
 	core.deactivate()
 
 /// Stawia rdzeń z ośmioma częściami wokół, jak skrzynka rdzenia po użyciu multitoola
