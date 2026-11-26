@@ -14,7 +14,7 @@
 
 /datum/reagent/medicine/osteodaxon
 	name = "Osteodaksyn"
-	description = "Przyspiesza zrastanie złamań opatrzonych żelem kostnym i taśmą chirurgiczną. Sam kości nie zrasta, a zrost pod jego wpływem mocno boli."
+	description = "Przyspiesza zrastanie złamań opatrzonych żelem kostnym i taśmą chirurgiczną. Sam kości nie zrasta, tylko lekko łagodzi ból, a przyspieszony zrost i tak mocno boli."
 	reagent_state = LIQUID
 	color = "#C9BDA8"
 	taste_description = "kreda"
@@ -357,6 +357,8 @@
 	taste_description = "palący pieprz"
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
 	overdose_threshold = 30
+	/// Pali się jak paliwo spawalnicze (koktajle Mołotowa i pożary z rozlanej cieczy, chemistry/accelerants.dm)
+	accelerant_quality = 10
 
 /datum/reagent/medicine/ignisol/on_mob_life(mob/living/carbon/M)
 	if(M.bodytemperature < BODYTEMP_NORMAL)

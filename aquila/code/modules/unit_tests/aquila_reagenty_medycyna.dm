@@ -24,6 +24,14 @@
 	TEST_ASSERT(taped.regen_progress >= 6 SECONDS, "Osteodaksyn did not speed up a taped fracture ([taped.regen_progress])")
 	TEST_ASSERT(bare.regen_progress == 0, "Osteodaksyn knitted a fracture without gel and tape")
 
+	// Osteodaksyn is a weak painkiller, Ignizol burns like fuel, the quick clot medipen goes into the squad medic kit
+	TEST_ASSERT(GLOB.aq_painkillers[/datum/reagent/medicine/osteodaxon] > 0, "Osteodaksyn takes no pain off")
+	var/datum/reagent/medicine/ignisol/ignisol = GLOB.chemical_reagents_list[/datum/reagent/medicine/ignisol]
+	TEST_ASSERT(ignisol.accelerant_quality > 0, "Ignizol does not burn like fuel")
+	var/datum/squad_loadout/aquila/nt/medic/medic_kit = new()
+	TEST_ASSERT(/obj/item/reagent_containers/hypospray/medipen/quickclot in medic_kit.items, "The squad medic kit has no quick clot medipen")
+	qdel(medic_kit)
+
 	// Szybkie krzepnięcie: no blood lost from bleeding while it works, the bleeding is still there
 	var/mob/living/carbon/human/bleeder = allocate(/mob/living/carbon/human)
 	bleeder.add_bleeding(BLEED_DEEP_WOUND)

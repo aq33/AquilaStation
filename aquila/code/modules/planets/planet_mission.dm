@@ -443,7 +443,7 @@ GLOBAL_LIST_EMPTY(planet_survey_probes)
 /datum/overmap_objective/planet/evacuation
 	name = "Ewakuacja kolonii"
 	desc = "Dowieźć żywych kolonistów z planety na okręt."
-	equipment = list(/obj/item/gps/mining, /obj/item/storage/firstaid/regular, /obj/item/tank/internals/emergency_oxygen/engi, /obj/item/tank/internals/emergency_oxygen/engi, /obj/item/clothing/mask/breath, /obj/item/clothing/mask/breath)
+	equipment = list(/obj/item/gps/mining, /obj/item/storage/firstaid/regular, /obj/item/reagent_containers/hypospray/medipen/quickclot, /obj/item/tank/internals/emergency_oxygen/engi, /obj/item/tank/internals/emergency_oxygen/engi, /obj/item/clothing/mask/breath, /obj/item/clothing/mask/breath)
 	var/list/mob/living/carbon/human/colonists = list()
 	/// Schron już stoi
 	var/colony_ready = FALSE

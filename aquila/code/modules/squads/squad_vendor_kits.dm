@@ -37,7 +37,7 @@
 
 /datum/squad_loadout/aquila/nt/medic
 	name = "Medyk drużyny"
-	desc = "Zestaw żołnierza z mundurem medyka, apteczką zwykłą i tlenową oraz sprayami ze sterylizyną i styptykiem."
+	desc = "Zestaw żołnierza z mundurem medyka, apteczką zwykłą i tlenową, sprayami ze sterylizyną i styptykiem oraz dwoma medipenami szybkiego krzepnięcia."
 	position = SQUAD_POSITION_MEDIC
 	items = list(
 		/obj/item/clothing/under/ship/marine/medic,
@@ -45,6 +45,8 @@
 		/obj/item/storage/firstaid/o2,
 		/obj/item/reagent_containers/medspray/sterilizine,
 		/obj/item/reagent_containers/medspray/styptic,
+		/obj/item/reagent_containers/hypospray/medipen/quickclot, // reagents/chemistry/reagents/reagenty_medycyna.dm
+		/obj/item/reagent_containers/hypospray/medipen/quickclot,
 		/obj/item/clothing/suit/ship/squad,
 		/obj/item/clothing/head/helmet/ship/squad,
 		/obj/item/clothing/suit/ship/squad/space,
