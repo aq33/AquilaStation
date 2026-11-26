@@ -50,6 +50,14 @@
 	var/wy = local[6] - lx * s + ly * c
 	return locate(target.x + round(wx / 32), target.y + round(wy / 32), target.z)
 
+// Zniszczony cel znika z wyborów modułu u wszystkich strzelców (lista czyści się też przy otwartym oknie strzelca)
+/obj/structure/overmap/Destroy()
+	for(var/obj/structure/overmap/shooter as anything in GLOB.overmap_objects)
+		if(shooter.aim_modules)
+			LAZYREMOVE(shooter.aim_modules, src)
+	aim_modules = null
+	return ..()
+
 /obj/structure/overmap/proc/set_aim_module(obj/structure/overmap/target, index)
 	if(!index || LAZYACCESS(aim_modules, target) == index)
 		LAZYREMOVE(aim_modules, target)

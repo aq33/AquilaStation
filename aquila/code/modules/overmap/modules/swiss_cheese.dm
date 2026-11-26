@@ -38,6 +38,12 @@ GLOBAL_LIST_EMPTY(ship_deck_bounds)
 	GLOB.ship_deck_bounds[key] = list(x0, y0, x1, y1)
 	return GLOB.ship_deck_bounds[key]
 
+// Wnętrza abordażowanych okrętów wczytują się na ten sam poziom rezerwacji okrętu gracza: nowe wnętrze ma swój obrys
+/obj/structure/overmap/post_load_interior()
+	. = ..()
+	for(var/datum/space_level/SL as anything in occupying_levels)
+		GLOB.ship_deck_bounds -= "[SL.z_value]"
+
 /// Część pancerza w ćwiartce trafienia (u, v w układzie okrętu); bez ćwiartek: stan kadłuba
 /obj/structure/overmap/proc/hull_armour_fraction(u, v)
 	if(!use_armour_quadrants)

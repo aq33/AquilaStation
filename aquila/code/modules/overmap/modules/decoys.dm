@@ -181,9 +181,18 @@
 		if(overmap_dist(src, proj) > DECOY_RANGE || !prob(seduce_chance))
 			continue
 		proj.set_homing_target(decoy)
+		proj.RegisterSignal(decoy, COMSIG_PARENT_QDELETING, TYPE_PROC_REF(/obj/item/projectile/guided_munition, on_decoy_deleted))
 		.++
 	relay('sound/weapons/flash.ogg', "<span class='notice'>[kind == "flare" ? "Wystrzelono flary." : "Wystrzelono chaff."]</span>")
 	start_decoy_regen()
+
+/// Wabik się wypalił: zwiedziony pocisk leci dalej prosto, zamiast trzymać usunięty wabik jako cel
+/obj/item/projectile/guided_munition/proc/on_decoy_deleted(datum/source)
+	SIGNAL_HANDLER
+	if(homing_target != source)
+		return
+	homing_target = null
+	homing = FALSE
 
 /obj/structure/overmap/proc/start_decoy_regen()
 	if(decoy_regen_timer || (flares >= max_flares && chaff >= max_chaff))

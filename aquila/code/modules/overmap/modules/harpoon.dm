@@ -143,8 +143,9 @@
 
 /// Sprężyna: ciągnie oba okręty ku sobie, lżejszy dostaje więcej
 /datum/overmap_tether/proc/pull(dist)
-	var/dx = source.x - target.x
-	var/dy = source.y - target.y
+	// najkrótsza droga, także przez zawinięcie krawędzi overmapy (jak namiary w decoys.dm)
+	var/dx = overmap_wrap_delta(source.x - target.x, world.maxx)
+	var/dy = overmap_wrap_delta(source.y - target.y, world.maxy)
 	var/norm = sqrt(dx * dx + dy * dy)
 	if(!norm)
 		return
@@ -221,7 +222,7 @@
 	if(. || !other_end)
 		return
 	to_chat(user, "<span class='notice'>Przeciskasz się przez rękaw abordażowy...</span>")
-	if(!do_after(user, 3 SECONDS, src) || QDELETED(other_end))
+	if(!do_after(user, 3 SECONDS, target = src) || QDELETED(other_end))
 		return
 	user.forceMove(get_turf(other_end))
 

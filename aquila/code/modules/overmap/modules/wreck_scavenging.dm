@@ -48,7 +48,7 @@
 /// Zabiera fanty do pojemnika (ładowni myśliwca); zwraca listę wyjętych przedmiotów
 /obj/structure/overmap/asteroid/shipbreak_wreck/proc/scavenge_into(atom/container, count)
 	. = list()
-	if(scavenge_left <= 0)
+	if(scavenge_left <= 0 || count <= 0)
 		return
 	scavenge_left--
 	var/list/pool = scavenge_pool()
@@ -127,6 +127,10 @@
 			to_chat(user, span_warning("Za daleko od wraku, przeszukiwanie przerwane."))
 		return FALSE
 	var/space = hold.max_freight - length(hold.contents)
+	if(space <= 0)
+		if(user)
+			to_chat(user, span_warning("Ładownia jest pełna, przeszukiwanie przerwane."))
+		return FALSE
 	var/list/found = wreck.scavenge_into(hold, min(WRECK_SCAVENGE_ITEMS, space))
 	if(!length(found))
 		if(user)

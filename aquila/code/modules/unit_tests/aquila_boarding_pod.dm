@@ -39,7 +39,10 @@
 	flight.pod = pod
 	flight.pod_target = target
 	qdel(flight)
-	sleep(1 SECONDS) // zestrzał obsługuje kapsuła po zniknięciu pocisku (timer)
+	// zestrzał obsługuje kapsuła w timerze bez opóźnienia, tuż po zniknięciu pocisku: czekamy najwyżej kilka ticków
+	var/shot_down_timeout = world.time + 5
+	while(!QDELETED(pod) && world.time < shot_down_timeout)
+		sleep(world.tick_lag)
 	if(trooper.loc != run_loc_floor_bottom_left)
 		return Fail("Pasażer zestrzelonej kapsuły nie wypadł na pole startu ([trooper.loc?.type])")
 	if(trooper.getBruteLoss() < 50)
