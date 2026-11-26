@@ -246,9 +246,7 @@
 		/obj/structure/flora/ash/tall_shroom = 2,
 		/obj/structure/flora/ash/fern = 2,
 		/obj/structure/flora/ash/puce = 2,
-		/obj/structure/flora/ash/lightshroom = 1,
-		/obj/structure/flora/ash/lightshroom/blue = 1,
-		/obj/structure/flora/ash/lightshroom/green = 1,
+		/obj/structure/flora/ash/lightshroom = 3,
 	)
 	mob_spawn_chance = 1.5
 	mob_spawn_list = PLANET_LAVA_CAVE_FAUNA
@@ -272,9 +270,7 @@
 		/obj/structure/flora/ash/stem_shroom = 2,
 		/obj/structure/flora/ash/cacti = 1,
 		/obj/structure/flora/ash/tall_shroom = 2,
-		/obj/structure/flora/ash/lightshroom = 1,
-		/obj/structure/flora/ash/lightshroom/blue = 1,
-		/obj/structure/flora/ash/lightshroom/green = 1,
+		/obj/structure/flora/ash/lightshroom = 3,
 	)
 
 /datum/planet_biome/cave/lava/lava

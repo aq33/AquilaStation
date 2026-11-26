@@ -46,9 +46,8 @@
 	var/datum/component/planter/planter = tray.GetComponent(/datum/component/planter)
 	tray.reagents.add_reagent(/datum/reagent/water, 150)
 	var/obj/item/plant_seeds/seeds = allocate(seed_type, get_turf(tray))
-	//Baśniowe podłoże pasuje do wszystkich korzeni lądowych, korzenie wodne rosną tylko w podłożu wodnym
-	var/datum/plant_feature/roots/roots = locate() in seeds.plant_features
-	planter.set_substrate((roots?.compatible_substrate & PLANT_SUBSTRATE_WATER) ? /datum/plant_subtrate/water : /datum/plant_subtrate/fairy)
+	//Baśniowe podłoże pasuje do wszystkich korzeni
+	planter.set_substrate(/datum/plant_subtrate/fairy)
 	if(!icon_exists(seeds.icon, seeds.icon_state))
 		return "brak ikony nasion [seeds.icon_state] w [seeds.icon]"
 	var/datum/component/plant/plant = seeds.plant(tray, null, TRUE, null, TRUE)

@@ -3,6 +3,8 @@
 
 /// AQUILA - rośliny obcych ras z Baya (ksenoflora_rasy.dm): każda rośnie i owocuje w kapsule ze swoimi warunkami, bez dowolnego z wymaganych gazów lub odczynników stoi, a w zwykłej tacce nie da się jej zasadzić
 /datum/unit_test/aquila_botany_kseno_rasy
+	/// Sprawdzane są wszystkie presety pod tym typem
+	var/seed_root = /obj/item/plant_seeds/preset/alien/xenoflora/rasy
 
 /datum/unit_test/aquila_botany_kseno_rasy/Run()
 	var/turf/origin = run_loc_floor_bottom_left
@@ -13,7 +15,7 @@
 	tray_planter.set_substrate(/datum/plant_subtrate/fairy)
 	tray.reagents.add_reagent(/datum/reagent/water, 150)
 
-	for(var/seed_type in valid_subtypesof(/obj/item/plant_seeds/preset/alien/xenoflora/rasy))
+	for(var/seed_type in valid_subtypesof(seed_root))
 		//Zwykła tacka: nasiona nie wschodzą
 		TEST_ASSERT(!plant_seeds(seed_type, tray), "[seed_type] dał się posadzić w zwykłej tacce")
 		TEST_ASSERT(!length(tray_planter.plants), "[seed_type]: w zwykłej tacce pojawiła się ksenoflora")

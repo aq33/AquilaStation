@@ -55,6 +55,8 @@
 	TEST_ASSERT_EQUAL(pick_sky_planet(list(hidden), viewer), null, "An asteroid field showed up in the sky")
 
 	sky = new(null, world.view)
+	// Tarcza wystaje poza widok: bez TILE_BOUND klient poszerza mapę o kolumnę za HUD-em
+	TEST_ASSERT(sky.appearance_flags & TILE_BOUND, "The sky layer is not TILE_BOUND, the oversized planet widens the map past the view")
 	sky.show_planet(far.planet_type)
 	TEST_ASSERT(sky.body in sky.vis_contents, "The planet disk isn't shown")
 	TEST_ASSERT(sky.shade in sky.vis_contents, "The planet shadow isn't shown")

@@ -91,7 +91,6 @@
 #define PLANT_SUBSTRATE_SAND (1<<1)
 #define PLANT_SUBSTRATE_CLAY (1<<2)
 #define PLANT_SUBSTRATE_DEBRIS (1<<3)
-#define PLANT_SUBSTRATE_WATER (1<<4) // AQUILA - akwakultura (skorupiaki), nie wchodzi w „dowolne podłoże” ani w baśniowe
 
 ///Fruit sizes
 #define PLANT_FRUIT_SIZE_SMALL 1
