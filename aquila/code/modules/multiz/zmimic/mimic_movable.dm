@@ -42,12 +42,14 @@
 /atom/movable/Moved(atom/OldLoc, Dir, Forced = FALSE)
 	. = ..()
 	if (bound_overlay)
-		// The overlay will handle cleaning itself up on non-openspace turfs.
-		if (isturf(loc))
-			bound_overlay.forceMove(get_step(src, UP))
+		// Kafel wyżej tylko przez połączenie pięter (GET_TURF_ABOVE). get_step(UP) z Bee brał z+1 także na niepowiązanym
+		// poziomie, więc po starcie promu z hangaru kopia jego zawartości stała 10 s na obcym statku albo na overmapie.
+		var/turf/up = isturf(loc) ? GET_TURF_ABOVE(loc) : null
+		if (up && (TURF_IS_MIMICKING(up) || MOVABLE_IS_BELOW_ZTURF(src)))
+			bound_overlay.forceMove(up)
 			if (bound_overlay && dir != bound_overlay.dir)
 				bound_overlay.setDir(dir)
-		else	// Not a turf, so we need to destroy immediately instead of waiting for the destruction timer to proc.
+		else	// Nic wyżej go nie pokazuje: kopia znika od razu, zamiast stać 10 s na zwykłym kaflu
 			qdel(bound_overlay)
 
 /atom/movable/Destroy(force)

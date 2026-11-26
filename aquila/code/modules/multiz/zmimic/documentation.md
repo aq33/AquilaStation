@@ -1,5 +1,17 @@
 # Z-Mimic
 
+## Różnice w Aquili (czytaj najpierw)
+
+Port BeeStation/BeeStation-Hornet#8813 z poprawkami z BeeStation/BeeStation-Hornet#14823. Dalsza część to oryginalna dokumentacja Bee; poniższe punkty mają pierwszeństwo.
+
+- Flag `ZMM_MANGLE_PLANES` i `ZMM_AUTOMANGLE` nie ma. Poprawka planów nakładek (`fixup_appearance_planes()`) działa dla każdego mimika, a wynik trzyma cache wyglądów. Nakładki z `GAME_PLANE` i `FLOOR_PLANE` też trafiają na `FLOAT_PLANE`, żeby były rozmyte i przyciemnione razem z kopią.
+- Nakładki emisyjne i światła są ukrywane: ekrany i lampy piętro niżej nie świecą przez otwartą przestrzeń (maska emisyjna na planie kopii rysowałaby się jako białe plamy).
+- Nie ma hooków w SSoverlays: zmiany nakładek łapią nadpisania `add_overlay()`, `cut_overlay()` i `cut_overlays()` na `/atom/movable` (`mimic_movable.dm`).
+- Nie ma przenikania światła między piętrami (`ZMIMIC_LIGHT_BLEED`), przebudowy ruchu między piętrami z Bee, `SS_HIBERNATE` ani kopii HUD-ów danych.
+- Cień (kopia światła piętra niżej) leży na wspólnym planie `ZMIMIC_SHADOW_PLANE`, a cienie głębszych pięter na `ZMIMIC_DEEP_SHADOW_PLANE`. Oba plane mastery mnożą się na plany kopii i dostają alfę planu światła (`lighting_alpha`: noktowizja, duchy).
+- Plany kopii (`ZMIMIC_MAX_PLANE` - głębokość) mają plane mastery z rozmyciem i przyciemnieniem (`zmimic_planes.dm`), wyłączanym preferencją „Rozmycie niższych pięter”.
+- Kopia obiektu idzie za nim tylko przez połączenie pięter (`GET_TURF_ABOVE`); gdy nic wyżej go nie pokazuje, znika od razu.
+
 ## How it works
 
 Rather than adding the turf below to the turf above's vis_contents, as previously done, Z-mimic takes a slightly more involved approach in the name of reducing potential maptick and vis_contents use.

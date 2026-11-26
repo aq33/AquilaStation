@@ -78,6 +78,17 @@ SUBSYSTEM_DEF(zcopy)
 	msg = "Q: { T: [queued_turfs.len - (qt_idex - 1)] O: [queued_overlays.len - (qo_idex - 1)] } T: { T: [openspace_turfs] O: [openspace_overlays] } Sk: { T: [multiqueue_skips_turf] O: [multiqueue_skips_object] } F: { H: [fixup_hit] M: [fixup_miss] N: [fixup_noop] }"
 	return ..()
 
+/// Po restarcie Mastera przejmujemy kolejki: kafle mają z_queued liczone pod stare wpisy, bez nich nigdy by się nie odświeżyły
+/datum/controller/subsystem/zcopy/Recover()
+	queued_turfs = SSzcopy.queued_turfs
+	qt_idex = SSzcopy.qt_idex
+	queued_overlays = SSzcopy.queued_overlays
+	qo_idex = SSzcopy.qo_idex
+	openspace_turfs = SSzcopy.openspace_turfs
+	openspace_overlays = SSzcopy.openspace_overlays
+	fixup_cache = SSzcopy.fixup_cache
+	fixup_known_good = SSzcopy.fixup_known_good
+
 /datum/controller/subsystem/zcopy/Initialize(timeofday)
 	// Flush the queue.
 	fire(FALSE, TRUE)
@@ -362,7 +373,9 @@ SUBSYSTEM_DEF(zcopy)
 
 		OO.plane = ZMIMIC_MAX_PLANE - OO.depth
 		if (OO.mimiced_type == /atom/movable/openspace/multiplier)
-			OO.plane = ZMIMIC_SHADOW_PLANE
+			// Cień głębszego piętra ma własny plan pod cieniem kafla nad nim, więc oba plane mastery mnożą się kolejno:
+			// szyb przez kilka pięter ciemnieje z każdym poziomem, zamiast pokazywać jeden z cieni w losowej kolejności
+			OO.plane = ZMIMIC_DEEP_SHADOW_PLANE
 		OO.mouse_opacity = OO.associated_atom.mouse_opacity
 
 		if (OO.bound_overlay)	// If we have a bound overlay, queue it too.
@@ -429,13 +442,19 @@ SUBSYSTEM_DEF(zcopy)
 		return null
 
 	var/plane_needs_fix = FALSE
+	var/float_needs_fix = FALSE
 	var/obliterate = FALSE
 
 	// Don't fixup the root object's plane.
 	if (depth > 0)
 		switch (appearance:plane)
-			if (GAME_PLANE, FLOOR_PLANE, FLOAT_PLANE)
+			if (FLOAT_PLANE)
 				// fine
+			// U Bee „fine”, ale wtedy nakładka (np. kałuża z cieczy) rysuje się na prawdziwym planie bieżącego piętra:
+			// ostra, nieprzyciemniona i nad cieniem. Przeniesiona na FLOAT_PLANE zostaje z kopią, warstwa bez zmian.
+			if (GAME_PLANE, FLOOR_PLANE)
+				float_needs_fix = TRUE
+			// Emisyjne nie świecą przez otwartą przestrzeń: ich maska na planie kopii rysowałaby się jako białe plamy
 			if (EMISSIVE_PLANE, EMISSIVE_BLOCKER_PLANE, EMISSIVE_UNBLOCKABLE_PLANE, LIGHTING_PLANE, O_LIGHTING_VISUAL_PLANE)
 				obliterate = TRUE
 			else
@@ -476,7 +495,7 @@ SUBSYSTEM_DEF(zcopy)
 					fixed_underlays[i] = appearance:underlays[i]
 
 	// If we did nothing (no violations), don't bother creating a new appearance
-	if (!plane_needs_fix && !obliterate && !fixed_overlays && !fixed_underlays)
+	if (!plane_needs_fix && !float_needs_fix && !obliterate && !fixed_overlays && !fixed_underlays)
 		fixup_noop += 1
 		if (depth >= cache_minimum_depth)
 			fixup_known_good[appearance] = TRUE
@@ -490,6 +509,8 @@ SUBSYSTEM_DEF(zcopy)
 	if (plane_needs_fix)
 		MA.plane = depth == 0 ? GAME_PLANE : FLOAT_PLANE
 		MA.layer = FLY_LAYER	// probably fine
+	if (float_needs_fix)
+		MA.plane = FLOAT_PLANE
 	if (obliterate)
 		// Emissive or lighting, hide it.
 		MA.invisibility = INVISIBILITY_ABSTRACT

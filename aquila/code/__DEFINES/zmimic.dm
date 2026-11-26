@@ -9,7 +9,9 @@
 #define ZMIMIC_MAX_DEPTH 10
 /// Plan cienia i światła piętra niżej. Jego plane master mnoży się na wszystkie plany kopii pod nim.
 /// U Bee każda głębokość ma swój plan cienia z przekaźnikiem; u nas plane mastery nie mają przekaźników, więc jeden wspólny.
-#define ZMIMIC_SHADOW_PLANE -69
+#define ZMIMIC_SHADOW_PLANE -68
+/// Plan cieni pięter głębszych niż jedno (kopie shadowerów z niższych otwartych przestrzeni), mnożony przed ZMIMIC_SHADOW_PLANE
+#define ZMIMIC_DEEP_SHADOW_PLANE -69
 /// Warstwa kopii światła na planie cienia
 #define MIMICKED_LIGHTING_LAYER 5.06
 

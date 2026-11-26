@@ -139,6 +139,11 @@
 		above = up
 		up.below = src
 		up.z_depth = null
+		// Kopia tego kafla dla Z-turfa bez OVERWRITE (szklana podłoga) była zapisana w zmiennej starej instancji kafla
+		// (mimic_proxy), która po ChangeTurf wróciła do null. Stara kopia zostałaby wyżej na zawsze obok nowej.
+		for (var/atom/movable/openspace/turf_proxy/stale in up)
+			if (stale != up.mimic_underlay)
+				qdel(stale)
 		up.update_mimic()
 
 /turf/Entered(atom/movable/arrived, direction)
