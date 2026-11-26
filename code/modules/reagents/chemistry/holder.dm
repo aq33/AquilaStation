@@ -957,6 +957,7 @@
 	if(data)
 		R.data = data
 		R.on_new(data)
+	R.aq_on_created() // AQ EDIT - hak po powstaniu reagentu w holderze, także z syntezy bez danych (reagenty_umysl.dm)
 
 	if(isliving(my_atom))
 		// AQ EDIT - fermichem z tg: próg przedawkowania skaluje się z czystością
