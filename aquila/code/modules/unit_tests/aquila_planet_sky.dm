@@ -171,5 +171,12 @@
 	fresh.show_planet(null)
 	TEST_ASSERT(!fresh.needs_view_refresh(), "A sky layer without a planet is refreshed")
 
+	// Sprawdzenie po podmianie: rozmiary mapy z pomiarów w kliencie (winget "view-size")
+	TEST_ASSERT(aq_map_matches_view(900, 900, "15x15"), "A square map for a 15x15 view was taken as too wide")
+	TEST_ASSERT(aq_map_matches_view(1632, 1440, "17x15"), "A 17x15 map was taken as too wide")
+	TEST_ASSERT(!aq_map_matches_view(900, 844, "15x15"), "A map one column wider than the 15x15 view was not noticed")
+	TEST_ASSERT(!aq_map_matches_view(1536, 1440, "15x15"), "A 16x15 map for a 15x15 view was not noticed")
+	TEST_ASSERT(aq_map_matches_view(0, 0, "15x15"), "No map size from the client should not trigger another refresh")
+
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL

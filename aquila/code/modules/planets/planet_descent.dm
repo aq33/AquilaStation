@@ -137,6 +137,7 @@ GLOBAL_LIST_EMPTY(planet_descents)
 	for(var/mob/M as anything in craft?.mobs_in_ship)
 		var/atom/movable/screen/parallax_layer/planet_sky/sky = M.client ? locate() in M.client.parallax_layers_cached : null
 		if(sky)
+			M.client.aq_restore_planet_sky(sky)
 			. += sky
 
 /datum/planet_descent/proc/stop_viewers(fade = FALSE)
@@ -765,7 +766,9 @@ GLOBAL_LIST_EMPTY(planet_descents)
 			SEND_SOUND(M, sound('aquila/sound/planets/landing/launch.ogg', volume = 60))
 		shake_camera(M, 3, 2)
 		var/atom/movable/screen/parallax_layer/planet_sky/sky = locate() in M.client.parallax_layers_cached
-		sky?.play_ascent(planet.planet_type)
+		if(sky)
+			M.client.aq_restore_planet_sky(sky)
+			sky.play_ascent(planet.planet_type)
 	planet_settle_lighting()
 
 /// Jednorazowe wywołanie w takeoff(), po przeniesieniu kadłuba, zanim dokowanie uśpi (start z planety)

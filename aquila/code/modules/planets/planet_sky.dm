@@ -223,6 +223,10 @@
 	// Warstwa z cache'u po ponownym włączeniu paralaksy: timer mógł się zatrzymać, a nieruchome oko nie wywoła
 	// update_status(); świeże sprawdzenie od razu pokazuje planetę i wznawia pętlę
 	sky.force_recheck(screenmob)
+	// Po przebudowie ekranu (wejście w postać, przełączenie paralaksy) ta sama warstwa wraca na ekran i BYOND bierze dla niej
+	// stare granice obrazu planety: mapa poszerza się o kolumnę, choć widok się nie zmienił (sprawdzone na spawnie postaci).
+	// Ukrycie i podmiana działają dopiero chwilę po przebudowie (0,1 s za wcześnie, 1 s dobrze), stąd opóźnienie.
+	addtimer(CALLBACK(C, TYPE_PROC_REF(/client, aq_hide_planet_sky)), 1 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
 
 // BYOND 516 zapamiętuje, gdzie na ekranie leżał obraz planety (vis_contents warstwy z "CENTER-7") przy starym widoku.
 // Po zmniejszeniu widoku (np. 17x15 -> 15x15 przy dopasowaniu do okna) stary obraz wystaje poza nowy widok, więc mapa
@@ -240,17 +244,31 @@
 	if(aq_view_shrunk(old_view, view))
 		aq_hide_planet_sky()
 
+/client
+	/// Która to z kolei podmiana warstwy planety po jednej zmianie widoku (aq_check_planet_sky ponawia źle wyrysowaną)
+	var/aq_planet_sky_attempt = 0
+
 /// Zdejmuje warstwę z widoczną planetą z ekranu teraz i planuje podmianę na nową
-/client/proc/aq_hide_planet_sky()
+/client/proc/aq_hide_planet_sky(attempt = 0)
+	aq_planet_sky_attempt = attempt
 	if(!length(parallax_layers_cached))
 		return
 	var/atom/movable/screen/parallax_layer/planet_sky/sky = locate() in parallax_layers_cached
-	// W trakcie zejścia albo startu warstwa zostaje (needs_view_refresh zapamięta podmianę na koniec pokazu)
-	if(sky?.shown_type && !sky.descent_active)
+	// W trakcie zejścia albo startu warstwa zostaje, a podmiana czeka na koniec pokazu (end_descent). Flaga od razu,
+	// bo pokaz może się skończyć przed podmianą zaplanowaną niżej.
+	if(sky?.descent_active)
+		sky.view_refresh_pending = TRUE
+	else if(sky?.shown_type)
 		screen -= sky
 	addtimer(CALLBACK(src, PROC_REF(aq_refresh_planet_sky)), AQ_PLANET_SKY_REFRESH_DELAY, TIMER_UNIQUE | TIMER_OVERRIDE)
 
 #undef AQ_PLANET_SKY_REFRESH_DELAY
+
+/// Pokaz zejścia albo startu zaczyna się na warstwie, która mogła właśnie zniknąć z ekranu przed podmianą: wraca od razu
+/// (podmiana poczeka na koniec pokazu przez view_refresh_pending)
+/client/proc/aq_restore_planet_sky(atom/movable/screen/parallax_layer/planet_sky/sky)
+	if(sky in parallax_layers)
+		screen |= sky
 
 /// Czy nowy widok jest węższy albo niższy od starego
 /proc/aq_view_shrunk(old_view, new_view)
@@ -304,7 +322,33 @@
 			fresh.transform = moved
 			animate(fresh, transform = matrix(), time = PARALLAX_LOOP_TIME / fresh.speed, loop = -1)
 			animate(transform = moved, time = 0, loop = -1)
+	// Mniej więcej raz na kilkanaście prób nowa warstwa i tak dostaje stare granice: sprawdzamy, co narysował klient
+	addtimer(CALLBACK(src, PROC_REF(aq_check_planet_sky)), 1 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
 	qdel(sky)
+
+/// Ile razy najwyżej ponawiać podmianę warstwy planety po jednej zmianie widoku
+#define AQ_PLANET_SKY_MAX_ATTEMPTS 3
+
+/// Czy mapa w kliencie ma proporcje widoku. Inne proporcje = obraz planety wystaje poza widok, podmiana jeszcze raz.
+/client/proc/aq_check_planet_sky()
+	set waitfor = FALSE
+	if(aq_planet_sky_attempt + 1 >= AQ_PLANET_SKY_MAX_ATTEMPTS)
+		return
+	var/list/drawn = splittext(winget(src, "mapwindow.map", "view-size"), "x")
+	if(!src || length(drawn) != 2)
+		return
+	if(!aq_map_matches_view(text2num(drawn[1]), text2num(drawn[2]), view))
+		aq_hide_planet_sky(aq_planet_sky_attempt + 1)
+
+#undef AQ_PLANET_SKY_MAX_ATTEMPTS
+
+/// Czy narysowana mapa (piksele z winget "view-size") ma proporcje widoku w kafelkach. Brak danych = zgodna.
+/proc/aq_map_matches_view(width, height, view)
+	if(!width || !height || !view)
+		return TRUE
+	var/list/tiles = getviewsize(view)
+	// Jedna kolumna więcej przy widoku 15 to ok. 6,7% szerokości, błąd zaokrągleń pikseli to ułamek procenta
+	return abs(width * tiles[2] - height * tiles[1]) <= height * tiles[1] * 0.02
 
 /// Nowa warstwa z tą samą planetą i położeniem wstawiona w miejsce tej w listach klienta; zwraca nową warstwę
 /atom/movable/screen/parallax_layer/planet_sky/proc/replace_in(list/cached, list/active, list/client_screen, view)
