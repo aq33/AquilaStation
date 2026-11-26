@@ -470,8 +470,9 @@
 	taste_description = "mrowienie"
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
 	chem_flags = CHEMICAL_RNG_GENERAL
-	/// Odcisk dawcy krwi z mieszanki w "donor_print": ustalany w pojemniku, gdy krew i nanoboty się spotkają,
-	/// i przenoszony z porcją (copy_data), zanim krew zmiesza się z inną w żołądku albo wsiąknie w ciało
+	/// Odcisk dawcy krwi z mieszanki w "donor_print": ustalany tylko w pojemniku poza ciałem, gdy krew i nanoboty
+	/// się spotkają, i przenoszony z porcją (copy_data). W żołądku i krwi już się nie zmienia: porcja bez krwi
+	/// nie bierze dawcy z krwi, która była w żołądku wcześniej, a porcja z krwią nie oddaje swojego starszej krwi.
 	data = list("donor_print" = null)
 	/// Czy już przebudowały odciski tego ciała
 	var/applied = FALSE
@@ -489,15 +490,8 @@
 	else if(!aq_donor_print())
 		aq_learn_donor()
 
-/datum/reagent/fingerprint_nanites/on_mob_add(mob/living/L)
-	. = ..()
-	if(!aq_donor_print())
-		aq_learn_donor()
-
 /datum/reagent/fingerprint_nanites/on_mob_life(mob/living/carbon/M)
 	if(!applied && ishuman(M))
-		if(!aq_donor_print())
-			aq_learn_donor()
 		if(current_cycle >= 3)
 			applied = TRUE
 			var/mob/living/carbon/human/H = M
@@ -512,8 +506,10 @@
 		data = list()
 	data["donor_print"] = print
 
-/// Dawca z krwi w tym samym pojemniku
+/// Dawca z krwi w tym samym pojemniku poza ciałem
 /datum/reagent/fingerprint_nanites/proc/aq_learn_donor()
+	if(aq_reagents_in_body(holder))
+		return
 	var/datum/reagent/blood/B = holder?.has_reagent(/datum/reagent/blood)
 	var/print = aq_blood_donor_print(B?.data, holder)
 	if(print)
@@ -528,13 +524,24 @@
 	. = ..()
 	aq_teach_fingerprint_nanites(mix_data)
 
+/// Nanoboty dolane do krwi trafiają na koniec listy, więc przy przelewaniu krew idzie pierwsza: uczy je, zanim porcja nanobotów zostanie skopiowana
+/datum/reagent/blood/intercept_reagents_transfer(datum/reagents/target, amount, copy_only)
+	. = ..()
+	aq_teach_fingerprint_nanites(data)
+
 /datum/reagent/blood/proc/aq_teach_fingerprint_nanites(list/blood_data)
+	if(aq_reagents_in_body(holder))
+		return
 	var/datum/reagent/fingerprint_nanites/nanites = holder?.has_reagent(/datum/reagent/fingerprint_nanites)
 	if(!nanites)
 		return
 	var/print = aq_blood_donor_print(blood_data, holder)
 	if(print)
 		nanites.aq_set_donor_print(print)
+
+/// Czy pojemnik reagentów to ciało albo jego narząd (żołądek)
+/proc/aq_reagents_in_body(datum/reagents/mix)
+	return ismob(mix?.my_atom) || istype(mix?.my_atom, /obj/item/organ)
 
 /// Odcisk dawcy krwi (szukanego po DNA krwi). Null, gdy danych nie ma albo to krew ciała, w którym jest pojemnik.
 /proc/aq_blood_donor_print(list/blood_data, datum/reagents/mix)

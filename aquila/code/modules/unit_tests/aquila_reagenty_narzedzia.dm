@@ -179,8 +179,10 @@
 	donor.dna.unique_enzymes = "aq_test_donor_enzymes"
 	donor.dna.uni_identity = "aq_test_donor_identity"
 	var/mob/living/carbon/human/copycat = allocate(/mob/living/carbon/human)
-	copycat.reagents.add_reagent(/datum/reagent/blood, 20, donor.get_blood_data(donor.get_blood_id()))
-	copycat.reagents.add_reagent(/datum/reagent/fingerprint_nanites, 10)
+	var/obj/item/reagent_containers/glass/beaker/syringe_mix = allocate(/obj/item/reagent_containers/glass/beaker)
+	syringe_mix.reagents.add_reagent(/datum/reagent/blood, 20, donor.get_blood_data(donor.get_blood_id()))
+	syringe_mix.reagents.add_reagent(/datum/reagent/fingerprint_nanites, 10)
+	syringe_mix.reagents.trans_to(copycat, 30)
 	for(var/i in 1 to 4)
 		copycat.reagents.metabolize(copycat, can_overdose = TRUE)
 	TEST_ASSERT(copycat.aq_fake_fingerprint == rustg_hash_string(RUSTG_HASH_MD5, "aq_test_donor_identity"), "Nanites with blood did not copy the donor's prints")
@@ -212,6 +214,23 @@
 	TEST_ASSERT(second_swallowed, "The drunk nanites are not in the stomach")
 	TEST_ASSERT(second_swallowed.aq_donor_print() == rustg_hash_string(RUSTG_HASH_MD5, "aq_test_donor_identity"), "Old blood in the stomach took over the donor of the drunk mix")
 
+	// Nanites drunk without blood stay random even with someone else's blood already in the stomach
+	var/mob/living/carbon/human/third_sipper = allocate(/mob/living/carbon/human)
+	var/obj/item/organ/stomach/third_stomach = third_sipper.getorganslot(ORGAN_SLOT_STOMACH)
+	TEST_ASSERT(third_stomach?.reagents, "The third test human has no stomach")
+	third_stomach.reagents.add_reagent(/datum/reagent/blood, 10, other_donor.get_blood_data(other_donor.get_blood_id()))
+	var/obj/item/reagent_containers/glass/beaker/plain_cup = allocate(/obj/item/reagent_containers/glass/beaker)
+	plain_cup.reagents.add_reagent(/datum/reagent/fingerprint_nanites, 10)
+	plain_cup.reagents.trans_to_ingested(third_sipper, 10)
+	var/datum/reagent/fingerprint_nanites/plain_swallowed = third_stomach.reagents.has_reagent(/datum/reagent/fingerprint_nanites)
+	TEST_ASSERT(plain_swallowed, "The plain nanites are not in the stomach")
+	TEST_ASSERT(!plain_swallowed.aq_donor_print(), "Nanites without blood took the donor of older blood in the stomach")
+	// Straight into the blood too: random prints, not the stomach's blood
+	third_sipper.reagents.add_reagent(/datum/reagent/fingerprint_nanites, 10)
+	for(var/i in 1 to 4)
+		third_sipper.reagents.metabolize(third_sipper, can_overdose = TRUE)
+	TEST_ASSERT(third_sipper.aq_fake_fingerprint && third_sipper.aq_fake_fingerprint != rustg_hash_string(RUSTG_HASH_MD5, "aq_test_other_identity"), "Nanites without blood copied the prints of blood they never met")
+
 /// AQUILA - a holy salt line stops a shadow demon in the dark and a vampire turned to mist
 /datum/unit_test/aquila_reagenty_narzedzia_holy_salt
 
@@ -241,10 +260,17 @@
 	TEST_ASSERT(!mist.check_valid_target(beyond), "A vampire in mist passed over holy salt")
 	qdel(salt)
 	TEST_ASSERT(mist.check_valid_target(beyond), "A vampire in mist cannot pass a clean floor")
-	// Salt scattered after the target was picked still stops the mist before it moves (FireTargetedPower)
+	// Salt scattered after the target was picked, while the vampire is mist, still stops the move (FireTargetedPower).
+	// No delay, so the power does not wait for game time.
 	var/obj/effect/decal/cleanable/food/salt/holy/late_salt = new(salted)
 	allocated += late_salt
-	TEST_ASSERT(mist.aq_salt_on_path(), "Salt scattered during the mist is not seen before the move")
+	mist.aq_mist_delay = 0
+	mist.FireTargetedPower(beyond)
+	TEST_ASSERT(crawler.loc == start, "Salt scattered during the mist did not stop the vampire ([crawler.loc])")
+	qdel(late_salt)
+	TEST_ASSERT(mist.check_valid_target(beyond), "A vampire in mist cannot pass a clean floor the second time")
+	mist.FireTargetedPower(beyond)
+	TEST_ASSERT(crawler.loc == beyond, "A vampire in mist did not move over a clean floor ([crawler.loc])")
 	mist.owner = null
 
 #undef TEST_ASSERT
