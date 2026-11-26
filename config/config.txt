@@ -273,7 +273,7 @@ FORUMURL https://forums-nsv.beestation13.com/
 WIKIURL https://aqnsv13.miraheze.org/wiki
 
 ## Rules address
-RULESURL https://nsv.beestation13.com/wiki/Rules
+RULESURL https://aqnsv13.miraheze.org/wiki/Rules
 
 ## Github address
 GITHUBURL https://github.com/aq33/AquilaStation
@@ -304,7 +304,7 @@ DISCORDURL https://discord.gg/y3ZxvFNekV
 GITHUBREPOID 199051995
 
 ## Ban appeals URL - usually for a forum or wherever people should go to contact your admins.
-BANAPPEALS https://forums-nsv.beestation13.com/c/administration/ban-appeals/6
+BANAPPEALS https://discord.gg/y3ZxvFNekV
 
 ## System command that invokes youtube-dl, used by Play Internet Sound.
 ## You can install youtube-dl with

@@ -135,6 +135,7 @@
 		/obj/effect/spawner/lootdrop/planetary_anomaly/rock = 10,
 		/obj/structure/vein/rockplanet/classthree = 10,
 		/obj/structure/vein/rockplanet/classthree/rare = 5,
+		/obj/structure/vein/gas/rock = 30,
 		/obj/effect/spawner/lootdrop/planetary_anomaly/big = 1,
 	)
 	flora_spawn_chance = 5
@@ -192,6 +193,7 @@
 		/obj/structure/geyser/random = 2,
 		/obj/structure/vein/rockplanet/classtwo = 2,
 		/obj/structure/vein/rockplanet/classthree = 1,
+		/obj/structure/vein/gas/rock = 2,
 		/obj/structure/spawner/burrow/rock_plant = 4,
 		/obj/effect/spawner/lootdrop/planetary_anomaly/rock/cave = 1,
 	)
