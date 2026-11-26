@@ -3171,6 +3171,7 @@
 // REAKTOR FUZYJNY HFR (plan maszynowni, E17–E18)
 #ifdef UNIT_TESTS
 #include "code\modules\unit_tests\aquila_hfr.dm"
+#include "code\modules\unit_tests\aquila_hfr_engine.dm"
 #endif
 // Komora testowa
 #include "code\modules\test_chamber\kits\pr_hfr_reaktor_fuzyjny.dm"
