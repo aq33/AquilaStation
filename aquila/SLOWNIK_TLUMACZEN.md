@@ -687,6 +687,7 @@ Nazwy gazów są widoczne w skanerach, kanistrach i oknach TGUI. Jeśli nazwa ga
 | swamp gas | gaz bagienny | m; nowe (bańka gazu bagiennego na planetach dżungli) |
 | electrolyzer | elektrolizer | m; nowe (plan maszynowni E6) |
 | crystallizer | krystalizator | m; nowe (plan maszynowni E14) |
+| gas condenser | kondensator gazu | m; nowe (plan maszynowni E15), skrapla gaz w płyn |
 | ammonia crystals | kryształy amoniaku | mn; nowe (krystalizator), lp. „kryształ amoniaku” |
 | fuel pellet (standard / advanced / exotic) | pellet paliwowy (standardowy / zaawansowany / egzotyczny) | m; istniejące (exodrony) |
 | masterwork / supreme / good / decent / average / okay / poor / ugly / cracked / terrible (jakość z krystalizatora) | mistrzowski / znakomity / dobry / przyzwoity / przeciętny / znośny / słaby / brzydki / pęknięty / fatalny | przymiotniki w rodzaju męskim (wszystkie produkty są rodzaju męskiego) |

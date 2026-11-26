@@ -589,6 +589,7 @@
 #include "code\modules\atmospherics\machinery\electrolyzer\electrolyzer.dm"
 #include "code\modules\atmospherics\machinery\crystallizer\crystallizer.dm"
 #include "code\modules\atmospherics\machinery\crystallizer\crystallizer_recipes.dm"
+#include "code\modules\atmospherics\machinery\gas_condenser.dm"
 #include "code\modules\atmospherics\machinery\components\unary_devices\cryo.dm"
 #include "code\modules\atmospherics\machinery\pipes\bluespace.dm"
 #include "code\modules\atmospherics\machinery\pipes\he_pipes.dm"
@@ -2894,6 +2895,7 @@
 #include "code\modules\unit_tests\miasma.dm"
 #include "code\modules\unit_tests\aquila_generic_fire.dm"
 #include "code\modules\unit_tests\aquila_crystallizer.dm"
+#include "code\modules\unit_tests\aquila_gas_condenser.dm"
 #include "code\modules\unit_tests\aquila_electrolyzer.dm"
 #include "code\modules\unit_tests\aquila_frezon.dm"
 #include "code\modules\unit_tests\aquila_methane.dm"
@@ -3062,6 +3064,7 @@
 // Komora testowa
 #include "code\modules\test_chamber\kits\pr_672_mechy.dm"
 #include "code\modules\test_chamber\kits\pr_711_gazy.dm"
+#include "code\modules\test_chamber\kits\pr_krystalizator.dm"
 // MECHY: koniec
 // CYBORGI: nowe moduły (Naukowy, Chemiczny, Chirurgiczny, Ratowniczy, Budowlany, Eksploracyjny, Detektyw, Brobocop,
 // Hydroponiczny, Biurowy, Magazynowy, Wielozadaniowy, zaawansowane, Zagubiony) i ulepszenia cyborgów
