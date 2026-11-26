@@ -271,7 +271,10 @@
 	if(!stash?.total_volume || !iscarbon(owner))
 		qdel(src)
 		return
-	var/amount = min(max(per_tick, 0.1), stash.total_volume)
+	// Bez minimalnej porcji: 1 j. leku też ma schodzić przez cały czas uwalniania. Resztka po błędach zaokrągleń idzie z ostatnią porcją.
+	var/amount = per_tick
+	if(stash.total_volume - amount < 0.001)
+		amount = stash.total_volume
 	// Jak pill/attack(): reakcja połknięcia (mutagen, święcona woda itp.) przed przelaniem, ale bez smaku co tick
 	var/part = amount / stash.total_volume
 	SEND_SIGNAL(owner, COMSIG_ATOM_EXPOSE_REAGENTS, stash.reagent_list, stash, INGEST, part, FALSE)
@@ -281,7 +284,7 @@
 	if(QDELETED(src) || !stash?.total_volume)
 		return
 	stash.trans_to_ingested(owner, amount)
-	if(stash.total_volume < 0.01)
+	if(stash.total_volume < 0.001)
 		qdel(src)
 
 /// Wymioty i płukanie żołądka zabierają też nieuwolnioną część tabletki, tak jak resztę zawartości żołądka
