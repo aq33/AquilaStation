@@ -2,7 +2,8 @@
 // As in CHOMP, the candidates are light switches of rooms with the lights on and powered washing machines, microwaves and
 // cyborg rechargers outside maintenance and shuttles. CHOMP sets a short lingering fire on the turf; we have no
 // lingering turf fire, so the machine leaks a small puddle of burning insulation oil (welding fuel in our liquids) that
-// burns out on its own or can be put out with an extinguisher. No announcement, as in CHOMP: the fire alarm reports it.
+// burns out on its own or can be put out with an extinguisher. Nothing is spilled on a turf without enough oxygen to
+// burn, and the fuel is taken back if the puddle does not light. No announcement, as in CHOMP: the fire alarm reports it.
 
 /// Welding fuel spilled under the burning machine
 #define ELECTRICAL_FIRE_FUEL 50
@@ -52,6 +53,9 @@
 	var/turf/open/fire_turf = get_turf(machine)
 	if(QDELETED(machine) || !istype(fire_turf))
 		return null
+	var/datum/gas_mixture/air = fire_turf.return_air()
+	if(!air || air.get_moles(GAS_O2) < 0.5 || air.get_moles(GAS_HYPERNOB) > REACTION_OPPRESSION_THRESHOLD) // as in try_ignite()
+		return null
 	machine.visible_message("<span class='warning'>Z [machine] sypią się iskry, a spod obudowy bucha ogień!</span>")
 	do_sparks(4, TRUE, machine)
 	fire_turf.add_liquid(/datum/reagent/fuel, ELECTRICAL_FIRE_FUEL, no_react = TRUE)
@@ -59,6 +63,11 @@
 		return null
 	if(!fire_turf.liquids.fire_state) // the sparks may have lit it already
 		fire_turf.liquids.try_ignite(1000)
-	return fire_turf.liquids.fire_state ? fire_turf : null
+	if(!QDELETED(fire_turf.liquids) && fire_turf.liquids.fire_state)
+		return fire_turf
+	// it did not light: take the fuel back, so no puddle of fuel is left for nothing
+	if(!QDELETED(fire_turf.liquids?.liquid_group))
+		fire_turf.liquids.liquid_group.remove_specific(fire_turf.liquids, ELECTRICAL_FIRE_FUEL, /datum/reagent/fuel)
+	return null
 
 #undef ELECTRICAL_FIRE_FUEL

@@ -37,9 +37,11 @@
 				leaking_machine = machine
 				return
 
-/// tg's filter: powered, dense (or a vent/scrubber), visible, not under the floor
+/// tg's filter: powered and working, dense (or a vent/scrubber), visible, not under the floor; never a door
 /datum/round_event/aquila_hex_radiation_leak/proc/can_leak(obj/machinery/machine)
-	if(QDELETED(machine) || machine.use_power == NO_POWER_USE || !isturf(machine.loc))
+	if(QDELETED(machine) || machine.use_power == NO_POWER_USE || !isturf(machine.loc) || istype(machine, /obj/machinery/door))
+		return FALSE
+	if(machine.machine_stat & (NOPOWER|BROKEN))
 		return FALSE
 	if(!machine.density && !istype(machine, /obj/machinery/atmospherics/components/unary))
 		return FALSE

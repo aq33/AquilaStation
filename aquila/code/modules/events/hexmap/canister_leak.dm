@@ -1,7 +1,8 @@
 // AQUILA - Pęknięty kanister: losowy pełny kanister na okręcie pęka i wypuszcza całą zawartość (port z VOREStation code/modules/events/canister_leak.dm)
 // As in VORE: up to 10 tries to pick an intact canister on the ship holding at least one standard tile of gas, then it
 // breaks like a destroyed canister. VORE checks that the area is empty only at mundane severity; we have no severities,
-// so an empty area is always preferred and an occupied one is taken only if no other canister qualifies. VORE says
+// so an empty area is always preferred and an occupied one is taken only if no other canister qualifies and the canister
+// holds only harmless gas (nitrogen, oxygen or a mix of both, like air); a dangerous gas only breaks in an empty area. VORE says
 // nothing; atmospheric sensors here announce the area, so engineering knows where to go.
 
 /datum/round_event_control/aquila_hex_canister_leak
@@ -31,11 +32,31 @@
 			other_canisters += canister
 		else
 			empty_area_canisters += canister
-	var/obj/machinery/portable_atmospherics/canister/target = length(empty_area_canisters) ? pick(empty_area_canisters) : (length(other_canisters) ? pick(other_canisters) : null)
+	var/obj/machinery/portable_atmospherics/canister/target = pick_canister(empty_area_canisters, other_canisters)
 	if(!target)
 		log_game("Canister Leak: no full canister on the ship, cancelling the event.")
 		return kill()
 	break_canister(target)
+
+/// A canister from an empty area if there is one; otherwise one with harmless gas from an occupied area, or null
+/datum/round_event/aquila_hex_canister_leak/proc/pick_canister(list/empty_area_canisters, list/occupied_area_canisters)
+	if(length(empty_area_canisters))
+		return pick(empty_area_canisters)
+	var/list/harmless = list()
+	for(var/obj/machinery/portable_atmospherics/canister/canister as anything in occupied_area_canisters)
+		if(holds_harmless_gas(canister))
+			harmless += canister
+	return length(harmless) ? pick(harmless) : null
+
+/// The canister holds only nitrogen and oxygen (air, N2 or O2)
+/datum/round_event/aquila_hex_canister_leak/proc/holds_harmless_gas(obj/machinery/portable_atmospherics/canister/canister)
+	var/datum/gas_mixture/air = canister.air_contents
+	if(!air)
+		return FALSE
+	for(var/gas_id in air.get_gases())
+		if(gas_id != GAS_N2 && gas_id != GAS_O2 && air.get_moles(gas_id) > 0)
+			return FALSE
+	return TRUE
 
 /// An intact canister on the ship with at least one standard tile of gas
 /datum/round_event/aquila_hex_canister_leak/proc/can_break(obj/machinery/portable_atmospherics/canister/canister)
