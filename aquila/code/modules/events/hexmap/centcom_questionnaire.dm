@@ -75,20 +75,14 @@
 /datum/round_event/aquila_hex_centcom_questionnaire/proc/make_form()
 	var/obj/item/paper/aquila_hex_questionnaire/form = new
 	form.survey_ref = WEAKREF(src)
-	form.add_raw_text("<center><b>CENTRALA NANOTRASEN</b><br>Dział Badania Zadowolenia Załogi<br>Ankieta AZ-7 „Jak mija zmiana?”</center><br>\
-1. Oceń zmianę od 1 do 10, gdzie 1 to „ewakuacja przed czasem”, a 10 to „ewakuacja zgodnie z planem”: \[____\]<br><br>\
-2. Najdziwniejsze zdarzenie zmiany w jednym zdaniu. Wybuchów prosimy nie zgłaszać, o nich wiemy: \[____\]<br><br>\
-3. Podpis osoby wypełniającej (wpisz %sign): \[____\]<br><br>\
-<i>Wypełnij wszystkie pola długopisem i odeślij ankietę faksem do Centrali (lista faksów specjalnych) w ciągu 20 minut. Za terminową odpowiedź budżet zaopatrzenia okrętu otrzyma [reward] kr.</i>")
+	form.add_raw_text("<center><b>CENTRALA NANOTRASEN</b><br>Dział Badania Zadowolenia Załogi<br>Ankieta AZ-7 „Jak mija zmiana?”</center><br>1. Oceń zmianę od 1 do 10, gdzie 1 to „ewakuacja przed czasem”, a 10 to „ewakuacja zgodnie z planem”: \[____\]<br><br>2. Najdziwniejsze zdarzenie zmiany w jednym zdaniu. Wybuchów prosimy nie zgłaszać, o nich wiemy: \[____\]<br><br>3. Podpis osoby wypełniającej (wpisz %sign): \[____\]<br><br><i>Wypełnij wszystkie pola długopisem i odeślij ankietę faksem do Centrali (lista faksów specjalnych) w ciągu 20 minut. Za terminową odpowiedź budżet zaopatrzenia okrętu otrzyma [reward] kr.</i>")
 	form.update_appearance()
 	return form
 
 /// Called when a questionnaire is faxed to Central Command
 /datum/round_event/aquila_hex_centcom_questionnaire/proc/receive_answer(obj/item/paper/aquila_hex_questionnaire/form)
-	if(answered)
-		return FALSE
-	if(world.time > deadline)
-		send_reply("<center><b>CENTRALA NANOTRASEN</b><br>Dział Badania Zadowolenia Załogi</center><br>Dziękujemy za ankietę, ale dotarła po terminie. Trafi do archiwum, gdzie ktoś ją kiedyś przeczyta.")
+	// Po terminie event już się skończył i wysłał faks o minionym terminie, więc spóźnionej ankiety tu nie liczymy
+	if(answered || world.time > deadline)
 		return FALSE
 	if(!form.questionnaire_complete())
 		send_reply("<center><b>CENTRALA NANOTRASEN</b><br>Dział Badania Zadowolenia Załogi</center><br>Otrzymana ankieta jest niekompletna: wypełnij wszystkie pola i podpisz ją, a potem odeślij ponownie. Wydział Formularzy jest bardzo zawiedziony.")

@@ -26,7 +26,8 @@
 /proc/aquila_hex_news_place()
 	var/list/names = list()
 	for(var/datum/star_system/system as anything in SSstar_system.systems)
-		if(system?.name)
+		// Bez ukrytych układów (bazy, cele misji) i pustych kafli mapy, żeby wiadomość nie zdradzała mapy
+		if(system?.name && !system.hidden && !istype(system, /datum/star_system/random/hex_empty))
 			names += system.name
 	if(length(names))
 		return pick(names)

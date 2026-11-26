@@ -27,6 +27,17 @@
 		/obj/machinery/computer/ship,
 		/obj/machinery/computer/communications,
 		/obj/machinery/computer/arcade,
+		// NSV: reaktor i stanowiska walki leżą poza /computer/ship, a ich blokada w walce może zniszczyć okręt
+		/obj/machinery/computer/reactor,
+		/obj/machinery/computer/ams,
+		/obj/machinery/computer/anti_air,
+		/obj/machinery/computer/deckgun,
+		/obj/machinery/computer/laser_pd,
+		/obj/machinery/computer/boarding_guns,
+		/obj/machinery/computer/ammo_sorter,
+		/obj/machinery/computer/iff_console,
+		/obj/machinery/computer/shuttle_flight,
+		/obj/machinery/computer/emergency_shuttle,
 	))
 	for(var/obj/machinery/computer/console in GLOB.machines)
 		if(is_type_in_typecache(console, skipped_consoles) || (console.machine_stat & (NOPOWER|BROKEN)))
@@ -92,7 +103,8 @@
 	return TRUE
 
 /obj/machinery/computer/interact(mob/user, special_state)
-	if(!isobserver(user) && aquila_update_blocks(user))
+	// SI i cyborgi łączą się z konsolą zdalnie, z pominięciem ekranu: aktualizacja ich nie zatrzymuje
+	if(!isobserver(user) && !issilicon(user) && aquila_update_blocks(user))
 		return
 	return ..()
 
