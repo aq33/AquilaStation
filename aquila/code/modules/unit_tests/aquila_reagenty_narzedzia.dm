@@ -79,20 +79,26 @@
 /datum/unit_test/aquila_reagenty_narzedzia_terraform
 	/// Changed turfs -> their original type, put back in Destroy() even when an assertion stops Run() early
 	var/list/original_turfs = list()
+	/// Changed turfs -> their original baseturfs (PlaceOnTop() stacks the floor under the wall)
+	var/list/original_baseturfs = list()
 
 /datum/unit_test/aquila_reagenty_narzedzia_terraform/Destroy()
 	for(var/turf/changed as anything in original_turfs)
-		var/original_type = original_turfs[changed]
-		if(changed.type != original_type)
-			changed.ChangeTurf(original_type)
+		var/list/original_base = original_baseturfs[changed]
+		changed.ChangeTurf(original_turfs[changed], islist(original_base) ? original_base.Copy() : original_base, CHANGETURF_FORCEOP) // FORCEOP: the same type would be a no-op that keeps the stacked baseturfs
 	original_turfs = null
+	original_baseturfs = null
 	return ..()
+
+/datum/unit_test/aquila_reagenty_narzedzia_terraform/proc/remember_turf(turf/T)
+	original_turfs[T] = T.type
+	original_baseturfs[T] = islist(T.baseturfs) ? T.baseturfs.Copy() : T.baseturfs
 
 /datum/unit_test/aquila_reagenty_narzedzia_terraform/Run()
 	var/turf/floor_turf = locate(run_loc_floor_bottom_left.x + 1, run_loc_floor_bottom_left.y, run_loc_floor_bottom_left.z)
 	var/turf/wall_turf = locate(run_loc_floor_bottom_left.x + 2, run_loc_floor_bottom_left.y, run_loc_floor_bottom_left.z)
-	original_turfs[floor_turf] = floor_turf.type
-	original_turfs[wall_turf] = wall_turf.type
+	remember_turf(floor_turf)
+	remember_turf(wall_turf)
 
 	floor_turf = floor_turf.ChangeTurf(/turf/open/floor/plasteel)
 	aq_splash(floor_turf, /datum/reagent/concrete, 5)
@@ -214,6 +220,34 @@
 	TEST_ASSERT(second_swallowed, "The drunk nanites are not in the stomach")
 	TEST_ASSERT(second_swallowed.aq_donor_print() == rustg_hash_string(RUSTG_HASH_MD5, "aq_test_donor_identity"), "Old blood in the stomach took over the donor of the drunk mix")
 
+	// A second dose with another donor changes the prints again, once
+	var/datum/reagent/fingerprint_nanites/in_copycat = copycat.reagents.has_reagent(/datum/reagent/fingerprint_nanites)
+	TEST_ASSERT(in_copycat, "The first dose is gone before the second one")
+	copycat.reagents.add_reagent(/datum/reagent/fingerprint_nanites, 5, list("donor_print" = "aq_test_second_donor_print"))
+	for(var/i in 1 to 2)
+		copycat.reagents.metabolize(copycat, can_overdose = TRUE)
+	TEST_ASSERT(copycat.aq_fake_fingerprint == "aq_test_second_donor_print", "A second dose with another donor did not change the prints ([copycat.aq_fake_fingerprint])")
+
+	// Nanites split between two cups do not share their donor
+	var/obj/item/reagent_containers/glass/beaker/first_half = allocate(/obj/item/reagent_containers/glass/beaker)
+	var/obj/item/reagent_containers/glass/beaker/second_half = allocate(/obj/item/reagent_containers/glass/beaker)
+	first_half.reagents.add_reagent(/datum/reagent/fingerprint_nanites, 10, list("donor_print" = "aq_test_first_half"))
+	first_half.reagents.trans_id_to(second_half, /datum/reagent/fingerprint_nanites, 5)
+	var/datum/reagent/fingerprint_nanites/half_one = first_half.reagents.has_reagent(/datum/reagent/fingerprint_nanites)
+	var/datum/reagent/fingerprint_nanites/half_two = second_half.reagents.has_reagent(/datum/reagent/fingerprint_nanites)
+	half_two.aq_set_donor_print("aq_test_second_half")
+	TEST_ASSERT(half_one.aq_donor_print() == "aq_test_first_half", "A new donor in one cup changed the nanites in the other ([half_one.aq_donor_print()])")
+
+	// Blood A, then nanites, then blood B: the poured mix carries B, not the A kept by the merged blood
+	var/obj/item/reagent_containers/glass/beaker/layered = allocate(/obj/item/reagent_containers/glass/beaker)
+	var/obj/item/reagent_containers/glass/beaker/poured = allocate(/obj/item/reagent_containers/glass/beaker)
+	layered.reagents.add_reagent(/datum/reagent/blood, 5, other_donor.get_blood_data(other_donor.get_blood_id()))
+	layered.reagents.add_reagent(/datum/reagent/fingerprint_nanites, 10)
+	layered.reagents.add_reagent(/datum/reagent/blood, 5, donor.get_blood_data(donor.get_blood_id()))
+	layered.reagents.trans_to(poured, 20)
+	var/datum/reagent/fingerprint_nanites/poured_nanites = poured.reagents.has_reagent(/datum/reagent/fingerprint_nanites)
+	TEST_ASSERT(poured_nanites?.aq_donor_print() == rustg_hash_string(RUSTG_HASH_MD5, "aq_test_donor_identity"), "Pouring took the donor of the first blood, not the last one")
+
 	// Nanites drunk without blood stay random even with someone else's blood already in the stomach
 	var/mob/living/carbon/human/third_sipper = allocate(/mob/living/carbon/human)
 	var/obj/item/organ/stomach/third_stomach = third_sipper.getorganslot(ORGAN_SLOT_STOMACH)
@@ -271,7 +305,17 @@
 	mist.FireTargetedPower(beyond)
 	TEST_ASSERT(crawler.loc == start, "Salt scattered during the mist did not stop the vampire ([crawler.loc])")
 	qdel(late_salt)
+	// Pushed away while in mist: salt on the saved target still stops it, though the target is now three tiles away
 	TEST_ASSERT(mist.check_valid_target(beyond), "A vampire in mist cannot pass a clean floor the second time")
+	var/turf/pushed_to = get_step(start, WEST)
+	crawler.forceMove(pushed_to)
+	var/obj/effect/decal/cleanable/food/salt/holy/target_salt = new(beyond)
+	allocated += target_salt
+	mist.FireTargetedPower(beyond)
+	TEST_ASSERT(crawler.loc == pushed_to, "Salt on the saved target did not stop a pushed vampire ([crawler.loc])")
+	qdel(target_salt)
+	crawler.forceMove(start)
+	TEST_ASSERT(mist.check_valid_target(beyond), "A vampire in mist cannot pass a clean floor the third time")
 	mist.FireTargetedPower(beyond)
 	TEST_ASSERT(crawler.loc == beyond, "A vampire in mist did not move over a clean floor ([crawler.loc])")
 	mist.owner = null
