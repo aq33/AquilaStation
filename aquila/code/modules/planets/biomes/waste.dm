@@ -44,6 +44,7 @@
 	/obj/structure/vein/waste = 4,\
 	/obj/structure/vein/waste/classtwo = 2,\
 	/obj/structure/vein/waste/classthree = 1,\
+	/obj/structure/vein/gas/waste = 2,\
 )
 
 /datum/planet_generator/waste
