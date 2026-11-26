@@ -26,8 +26,6 @@
 		substrate_dialogue += "glina "
 	if(compatible_substrate & PLANT_SUBSTRATE_DEBRIS)
 		substrate_dialogue += "gruz "
-	if(compatible_substrate & PLANT_SUBSTRATE_WATER) // AQUILA - akwakultura
-		substrate_dialogue += "woda "
 
 /// AQUILA - podłoże do nazwy paczki i komunikatów: „ziemia”, „glina lub piasek” albo „dowolne podłoże”
 /datum/plant_feature/roots/proc/get_substrate_text()

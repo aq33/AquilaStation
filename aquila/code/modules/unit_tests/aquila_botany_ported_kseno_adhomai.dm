@@ -118,31 +118,31 @@
 	var/turf/origin = run_loc_floor_bottom_left
 	var/mob/living/carbon/human/user = allocate(/mob/living/carbon/human, origin)
 	var/turf/spot = get_step(origin, EAST)
-	var/obj/structure/flora/ash/sarezhi/flora = allocate(/obj/structure/flora/ash/sarezhi, spot)
+	var/obj/structure/flora/ash/wulumunusha/flora = allocate(/obj/structure/flora/ash/wulumunusha, spot)
 	var/datum/component/plant/plant = flora.GetComponent(/datum/component/plant)
-	TEST_ASSERT(plant, "Dziki krzew sareżi nie jest rośliną")
+	TEST_ASSERT(plant, "Dzikie pnącze wulumunuszy nie jest rośliną")
 	plant.skip_growth = TRUE
 	var/datum/plant_feature/body/body = locate() in plant.plant_features
 	var/datum/plant_feature/fruit/fruit = locate() in plant.plant_features
 	for(var/datum/plant_feature/feature as anything in plant.plant_features)
-		TEST_ASSERT(!length(feature.plant_needs), "[feature.name] dzikiego krzewu sareżi ma potrzeby, więc na planecie nie zaowocuje")
+		TEST_ASSERT(!length(feature.plant_needs), "[feature.name] dzikiego pnącza wulumunuszy ma potrzeby, więc na planecie nie zaowocuje")
 	for(var/i in 1 to 3)
 		body?.process(2)
 		fruit.process(2)
-	TEST_ASSERT(length(fruit.fruits), "Dziki krzew sareżi nie zawiązał owoców")
+	TEST_ASSERT(length(fruit.fruits), "Dzikie pnącze wulumunuszy nie zawiązał owoców")
 	flora.attack_hand(user)
-	var/obj/item/food/grown/xenoflora/adhomai/sarezhi/product = locate() in range(1, spot)
-	TEST_ASSERT(product, "Zbiór dzikiego krzewu sareżi nie dał jagód sareżi")
+	var/obj/item/food/grown/xenoflora/adhomai/wulumunusha/product = locate() in range(1, spot)
+	TEST_ASSERT(product, "Zbiór dzikiego pnącza wulumunuszy nie dał owocu wulumunuszy")
 	var/obj/machinery/seeder/seeder = allocate(/obj/machinery/seeder, get_step(origin, NORTH))
 	seeder.attackby(product, user)
 	var/obj/item/plant_seeds/seeds = locate() in get_turf(seeder)
-	TEST_ASSERT(seeds, "Siewnik nie zrobił nasion z jagód sareżi")
-	TEST_ASSERT(locate(/datum/plant_feature/roots/xenoflora) in seeds.plant_features, "Nasiona z dzikich jagód sareżi nie mają korzeni ksenoflory")
+	TEST_ASSERT(seeds, "Siewnik nie zrobił nasion z owocu wulumunuszy")
+	TEST_ASSERT(locate(/datum/plant_feature/roots/xenoflora) in seeds.plant_features, "Nasiona z dzikiego owocu wulumunuszy nie mają korzeni ksenoflory")
 	var/datum/plant_feature/fruit/seed_fruit = locate() in seeds.plant_features
-	TEST_ASSERT(locate(/datum/plant_need/xenoflora/sarezhi) in seed_fruit?.plant_needs, "Nasiona z dzikich jagód sareżi nie potrzebują kapsuły")
+	TEST_ASSERT(locate(/datum/plant_need/xenoflora/wulumunusha) in seed_fruit?.plant_needs, "Nasiona z dzikiego owocu wulumunuszy nie potrzebują kapsuły")
 	var/obj/item/plant_tray/tray = allocate(/obj/item/plant_tray, get_step(origin, NORTHEAST))
 	var/datum/component/planter/planter = tray.GetComponent(/datum/component/planter)
 	planter.set_substrate(/datum/plant_subtrate/fairy)
-	TEST_ASSERT(!seeds.plant(tray, null, TRUE, null, TRUE), "Nasiona z dzikich jagód sareżi wzeszły w zwykłej tacce")
+	TEST_ASSERT(!seeds.plant(tray, null, TRUE, null, TRUE), "Nasiona z dzikiego owocu wulumunuszy wzeszły w zwykłej tacce")
 
 #undef TEST_ASSERT

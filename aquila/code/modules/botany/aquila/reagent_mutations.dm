@@ -63,6 +63,10 @@ GLOBAL_LIST_INIT(plant_extra_reagent_mutations, build_plant_mutation_sets(TRUE))
 	var/atom/tray = parent.plant_item.loc
 	if(!istype(tray) || SEND_SIGNAL(tray, COMSIG_PLANTER_PAUSE_PLANT))
 		return null
+	//Uschnięta roślina już nie urośnie, więc nie zużywa odczynnika na mutację
+	for(var/datum/plant_feature/body/body_feature in parent.plant_features)
+		if(body_feature.health <= 0)
+			return null
 	var/list/reagent_holders = list()
 	SEND_SIGNAL(parent, COMSIG_PLANT_REQUEST_REAGENTS, reagent_holders, src)
 	if(!length(reagent_holders))
@@ -129,23 +133,10 @@ GLOBAL_LIST_INIT(plant_extra_reagent_mutations, build_plant_mutation_sets(TRUE))
 
 #undef REAGENT_MUTATION_CHANCE
 
-// Mutacje od odczynnika dla roślin, które już mamy
-/datum/plant_feature/fruit/tomato
-	reagent_mutations = list(/datum/plant_feature/fruit/tomato/blood = list(/datum/reagent/blood = 10))
-
-/datum/plant_feature/fruit/watermelon
-	reagent_mutations = list(/datum/plant_feature/fruit/watermelon/holy = list(/datum/reagent/water/holywater = 10))
-
-/datum/plant_feature/fruit/apple
-	reagent_mutations = list(/datum/plant_feature/fruit/apple/gold = list(/datum/reagent/gold = 5))
-
-/datum/plant_feature/fruit/berry
-	reagent_mutations = list(/datum/plant_feature/fruit/berry/poison = list(/datum/reagent/toxin = 10))
-
 /datum/dictionary_entry/reagent_mutations
 	title = "Chemiczna perswazja"
 	body = "(Niektóre rośliny mutują od konkretnego odczynnika w tacy, bez pieca radiacyjnego. Wlej odczynnik do tacy i poczekaj: gdy roślina zareaguje, zużyje go i zmieni odmianę.)\n\
 	\n\
 	Tu pojawi się historia.\n\
 	\n\
-	(Sprawdzone połączenia: pomidor i krew, arbuz i woda święcona, jabłko i złoto, jagody i toksyna. Reszty trzeba szukać samemu.)"
+	(Sprawdzone połączenia: pomarańcza i krew, pomarańcza i żelazo, pomidor i flogiston. Reszty trzeba szukać samemu.)"

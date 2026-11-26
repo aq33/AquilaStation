@@ -93,16 +93,19 @@
 // Nasiona
 
 /obj/item/plant_seeds/preset/cave_fern
+	random_pool = FALSE
 	name = "nasiona: paproć jaskiniowa (dowolne podłoże)"
 	name_override = "paproć jaskiniowa"
 	plant_features = list(/datum/plant_feature/roots, /datum/plant_feature/body/tuber/lavaland, /datum/plant_feature/fruit/cave_fern)
 
 /obj/item/plant_seeds/preset/fireblossom
+	random_pool = FALSE
 	name = "nasiona: ogniokwiat (dowolne podłoże)"
 	name_override = "ogniokwiat"
 	plant_features = list(/datum/plant_feature/roots, /datum/plant_feature/body/tuber/lavaland, /datum/plant_feature/fruit/fireblossom)
 
 /obj/item/plant_seeds/preset/puce
+	random_pool = FALSE
 	name = "nasiona: pucestal (dowolne podłoże)"
 	name_override = "pucestal"
 	plant_features = list(/datum/plant_feature/roots, /datum/plant_feature/body/tuber/lavaland, /datum/plant_feature/fruit/puce)
