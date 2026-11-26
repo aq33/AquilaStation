@@ -255,53 +255,96 @@
 	tick_interval = 2 SECONDS
 	/// Zawartość tabletki, która jeszcze się nie uwolniła
 	var/datum/reagents/stash
-	/// Ile jednostek uwalnia się na tick
-	var/per_tick = 0
-	/// Uwolnione, ale jeszcze nieprzelane: holder odrzuca porcje reagentu poniżej CHEMICAL_VOLUME_ROUNDING (0,01 j.), więc drobne porcje czekają, aż urosną
-	var/pending = 0
+	/// Ile ticków uwalniania zostało: każdy reagent oddaje co tick volume / remaining_ticks, więc po wymiotach czy płukaniu reszta dalej schodzi do końca czasu
+	var/remaining_ticks = 1
+	/// Typ reagentu -> uwolnione, ale jeszcze nieprzelane. Holder odrzuca porcje reagentu poniżej CHEMICAL_VOLUME_ROUNDING (0,01 j.),
+	/// więc drobne porcje czekają, aż urosną. Każdy reagent osobno, żeby śladowy składnik nie wstrzymywał leku.
+	var/list/pending = list()
 
 /datum/status_effect/aq_extended_release/on_creation(mob/living/new_owner, datum/reagents/pill_contents, release_time = 2 MINUTES)
 	stash = pill_contents
-	if(stash?.total_volume)
-		per_tick = stash.total_volume / max(release_time / initial(tick_interval), 1)
+	remaining_ticks = max(round(release_time / initial(tick_interval)), 1)
 	return ..()
 
 /datum/status_effect/aq_extended_release/on_apply()
 	return stash?.total_volume > 0
 
+/// Pojemnik, do którego idzie uwalniana porcja (jak get_ingest_holder(), ale bez zwracania): null, gdy żołądka już nie ma
+/datum/status_effect/aq_extended_release/proc/get_target()
+	var/mob/living/carbon/eater = owner
+	var/obj/item/organ/stomach/belly = eater.getorganslot(ORGAN_SLOT_STOMACH)
+	if(belly?.reagents)
+		return belly.reagents
+	if(eater.needs_stomach())
+		return null
+	return eater.reagents
+
 /datum/status_effect/aq_extended_release/tick()
 	if(!stash?.total_volume || !iscarbon(owner))
 		qdel(src)
 		return
-	// Bez minimalnej porcji: 1 j. leku też ma schodzić przez cały czas uwalniania. Resztka po błędach zaokrągleń idzie z ostatnią porcją.
-	pending += per_tick
-	var/amount = pending
-	if(stash.total_volume - amount < 0.001)
-		amount = stash.total_volume
-	else
-		// Każdy reagent porcji musi mieć co najmniej 0,01 j., inaczej holder by go zgubił: czekamy, aż porcja urośnie
-		var/smallest = stash.total_volume
-		for(var/datum/reagent/bit as anything in stash.reagent_list)
-			smallest = min(smallest, bit.volume)
-		if(amount * smallest / stash.total_volume < CHEMICAL_VOLUME_ROUNDING)
-			return
-	pending = 0
-	// Jak pill/attack(): reakcja połknięcia (mutagen, święcona woda itp.) przed przelaniem, ale bez smaku co tick
-	var/part = amount / stash.total_volume
-	SEND_SIGNAL(owner, COMSIG_ATOM_EXPOSE_REAGENTS, stash.reagent_list, stash, INGEST, part, FALSE)
-	for(var/datum/reagent/bit as anything in stash.reagent_list.Copy())
-		if(stash.reaction_check(owner, bit))
-			bit.reaction_mob(owner, INGEST, bit.volume * part, FALSE)
-	if(QDELETED(src) || !stash?.total_volume)
+	var/datum/reagents/target = get_target()
+	if(!target) // żołądek wycięty razem z tabletką
+		qdel(src)
 		return
-	stash.trans_to_ingested(owner, amount)
+	var/last = remaining_ticks <= 1
+	remaining_ticks = max(remaining_ticks - 1, 1)
+	// Porcja każdego reagentu: jego część na ten tick plus to, co czekało. Ostatni tick oddaje wszystko.
+	var/list/portion = list()
+	var/portion_total = 0
+	for(var/datum/reagent/bit as anything in stash.reagent_list)
+		var/owed = last ? bit.volume : min(bit.volume, LAZYACCESS(pending, bit.type) + bit.volume / (remaining_ticks + 1))
+		if(owed <= 0)
+			continue
+		pending[bit.type] = owed
+		if(owed < CHEMICAL_VOLUME_ROUNDING && owed < bit.volume)
+			continue
+		portion[bit] = owed
+		portion_total += owed
+	if(!portion_total)
+		return
+	// Pełny żołądek: tylko tyle, ile się zmieści. Reszta czeka, a reakcja połknięcia dotyczy tylko tego, co naprawdę przechodzi.
+	var/free = target.maximum_volume - target.total_volume
+	if(free < CHEMICAL_VOLUME_ROUNDING)
+		return
+	var/scale = min(free / portion_total, 1)
+	var/datum/reagents/released = new(portion_total)
+	released.flags |= NO_REACT
+	for(var/datum/reagent/bit as anything in portion)
+		var/amount = portion[bit] * scale
+		if(amount < CHEMICAL_VOLUME_ROUNDING && amount < bit.volume)
+			continue
+		var/moved = released.add_reagent(bit.type, amount, stash.copy_data(bit), stash.chem_temp, no_react = TRUE, added_purity = bit.purity, added_ph = bit.ph)
+		if(moved <= 0)
+			if(last) // resztka poniżej 0,01 j. i tak by przepadła w holderze
+				stash.remove_reagent(bit.type, bit.volume)
+			continue
+		stash.remove_reagent(bit.type, moved)
+		pending[bit.type] = max(portion[bit] - moved, 0)
+	if(released.total_volume)
+		// Jak pill/attack(): reakcja połknięcia (mutagen, kwas, święcona woda) przed przelaniem, ale bez smaku co tick
+		SEND_SIGNAL(owner, COMSIG_ATOM_EXPOSE_REAGENTS, released.reagent_list, released, INGEST, 1, FALSE)
+		for(var/datum/reagent/bit as anything in released.reagent_list.Copy())
+			if(released.reaction_check(owner, bit))
+				bit.reaction_mob(owner, INGEST, bit.volume, FALSE)
+		if(!QDELETED(owner))
+			released.trans_to(target, released.total_volume, no_react = TRUE)
+	qdel(released)
+	if(QDELETED(src))
+		return
+	for(var/type in pending.Copy())
+		if(!stash.has_reagent(type))
+			pending -= type
 	if(stash.total_volume < 0.001)
 		qdel(src)
 
-/// Wymioty i płukanie żołądka zabierają też nieuwolnioną część tabletki, tak jak resztę zawartości żołądka
-/datum/status_effect/aq_extended_release/proc/purge(ratio, purge_amount = 0)
+/// Wymioty i płukanie żołądka zabierają też nieuwolnioną część tabletki, tak jak resztę zawartości żołądka (purge_to_vomit, purge_contents):
+/// najpierw ratio_to_pool do kałuży, potem ratio reszty i do purge_amount j. każdego reagentu
+/datum/status_effect/aq_extended_release/proc/purge(ratio, purge_amount = 0, obj/effect/decal/cleanable/vomit/pool, ratio_to_pool = 0)
 	if(!stash?.total_volume)
 		return
+	if(pool?.reagents && ratio_to_pool > 0)
+		stash.trans_to(pool, stash.total_volume * ratio_to_pool, no_react = TRUE)
 	for(var/datum/reagent/bit as anything in stash.reagent_list.Copy())
 		stash.remove_reagent(bit.type, max(bit.volume * ratio, min(bit.volume, purge_amount)))
 	if(stash.total_volume < 0.01)
@@ -315,7 +358,7 @@
 /obj/item/organ/stomach/purge_to_vomit(obj/effect/decal/cleanable/vomit/pool, ratio = 0.1, purge = 10) // domyślne jak STOMACH_VOMIT_RATIO i STOMACH_VOMIT_PURGE (stomach_contents.dm)
 	. = ..()
 	for(var/datum/status_effect/aq_extended_release/release in owner?.status_effects)
-		release.purge(0, purge)
+		release.purge(0, purge, pool, ratio)
 
 /datum/status_effect/aq_extended_release/Destroy()
 	. = ..()

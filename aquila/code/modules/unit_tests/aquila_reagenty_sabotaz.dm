@@ -188,7 +188,64 @@
 	belly.purge_contents()
 	patient.reagents.clear_reagents()
 
-	// Prawdziwe płukanie żołądka: wymioty (do 10 j. każdego reagentu), potem 67% reszty. Reszta schowka dalej się uwalnia
+	// Mieszanina: śladowy składnik (0,02 j. cukru) nie wstrzymuje leku, każdy reagent schodzi osobno
+	pill = allocate(/obj/item/reagent_containers/pill)
+	pill.reagents.add_reagent(/datum/reagent/consumable/glucose_polymer, 10)
+	pill.reagents.add_reagent(/datum/reagent/medicine/salbutamol, 10)
+	pill.reagents.add_reagent(/datum/reagent/consumable/sugar, 0.02)
+	TEST_ASSERT(pill.attack(patient, patient), "Swallowing a mixed polymer pill failed")
+	release = patient.has_status_effect(/datum/status_effect/aq_extended_release)
+	release.tick()
+	var/mixed_first = belly.reagents.get_reagent_amount(/datum/reagent/medicine/salbutamol)
+	TEST_ASSERT(abs(mixed_first - 10 / 60) < 0.01, "A trace reagent held back the drug: the first tick gave [mixed_first] u of salbutamol, expected [10 / 60]")
+	for(var/i in 1 to 70)
+		if(QDELETED(release))
+			break
+		release.tick()
+	TEST_ASSERT(QDELETED(release), "A mixed polymer pill did not end after its time")
+	TEST_ASSERT(abs(belly.reagents.get_reagent_amount(/datum/reagent/medicine/salbutamol) - 10) < 0.02, "A mixed polymer pill delivered [belly.reagents.get_reagent_amount(/datum/reagent/medicine/salbutamol)] u of 10 u salbutamol")
+	TEST_ASSERT(abs(belly.reagents.get_reagent_amount(/datum/reagent/consumable/sugar) - 0.02) < 0.011, "A mixed polymer pill delivered [belly.reagents.get_reagent_amount(/datum/reagent/consumable/sugar)] u of 0.02 u sugar")
+	belly.purge_contents()
+	patient.reagents.clear_reagents()
+
+	// Pełny żołądek: nic nie przechodzi, więc ta sama porcja kwasu nie reaguje co tick. Po zwolnieniu miejsca uwalnianie rusza dalej.
+	belly.reagents.add_reagent(/datum/reagent/water, belly.reagents.maximum_volume - belly.reagents.total_volume)
+	brute_before = patient.getBruteLoss()
+	pill = allocate(/obj/item/reagent_containers/pill)
+	pill.reagents.add_reagent(/datum/reagent/consumable/glucose_polymer, 10)
+	pill.reagents.add_reagent(/datum/reagent/toxin/acid, 30)
+	TEST_ASSERT(pill.attack(patient, patient), "Swallowing an acid polymer pill into a full stomach failed")
+	release = patient.has_status_effect(/datum/status_effect/aq_extended_release)
+	for(var/i in 1 to 3)
+		release.tick()
+	TEST_ASSERT(patient.getBruteLoss() == brute_before, "Acid that never left the pill burned a swallower with a full stomach ([patient.getBruteLoss() - brute_before])")
+	TEST_ASSERT(abs(release.stash.total_volume - 30) < 0.001, "A full stomach still took [30 - release.stash.total_volume] u from the pill")
+	belly.reagents.remove_reagent(/datum/reagent/water, 100)
+	release.tick()
+	TEST_ASSERT(patient.getBruteLoss() > brute_before && release.stash.total_volume < 30, "The pill did not resume after the stomach had room again")
+	qdel(release)
+	belly.purge_contents()
+	patient.reagents.clear_reagents()
+
+	// Wymioty: jak żołądek, najpierw 10% schowka do kałuży, potem do 10 j. każdego reagentu
+	pill = allocate(/obj/item/reagent_containers/pill)
+	pill.reagents.add_reagent(/datum/reagent/consumable/glucose_polymer, 10)
+	pill.reagents.add_reagent(/datum/reagent/medicine/salbutamol, 20)
+	TEST_ASSERT(pill.attack(patient, patient), "Swallowing the vomited polymer pill failed")
+	release = patient.has_status_effect(/datum/status_effect/aq_extended_release)
+	var/stash_before_vomit = release.stash.total_volume
+	var/obj/effect/decal/cleanable/vomit/pool = allocate(/obj/effect/decal/cleanable/vomit)
+	if(QDELETED(pool))
+		pool = locate() in get_turf(patient)
+	pool.reagents.clear_reagents()
+	belly.purge_to_vomit(pool)
+	TEST_ASSERT(abs(pool.reagents.get_reagent_amount(/datum/reagent/medicine/salbutamol) - stash_before_vomit * 0.1) < 0.01, "The vomit got [pool.reagents.get_reagent_amount(/datum/reagent/medicine/salbutamol)] u of the pill's salbutamol, expected [stash_before_vomit * 0.1]")
+	TEST_ASSERT(abs(release.stash.total_volume - (stash_before_vomit * 0.9 - 10)) < 0.01, "After vomiting [release.stash.total_volume] u of the pill is left, expected [stash_before_vomit * 0.9 - 10]")
+	qdel(release)
+	belly.purge_contents()
+	patient.reagents.clear_reagents()
+
+	// Prawdziwe płukanie żołądka: wymioty (10% do kałuży, do 10 j. każdego reagentu), potem 67% reszty. Reszta schowka dalej się uwalnia
 	var/mob/living/carbon/human/surgeon = allocate(/mob/living/carbon/human)
 	var/datum/surgery_operation/organ/stomach_pump/pump = GLOB.operations.operations_by_typepath[/datum/surgery_operation/organ/stomach_pump]
 	TEST_ASSERT(pump, "No stomach pump operation")
@@ -202,7 +259,7 @@
 	var/before_pump = release.stash.total_volume
 	pump.on_success(belly, surgeon, IMPLEMENT_HAND, list())
 	TEST_ASSERT(!QDELETED(release), "The stomach pump removed the whole pill, expected a third of what the vomit left")
-	var/expected_left = (before_pump - 10) * 0.33
+	var/expected_left = (before_pump * 0.9 - 10) * 0.33
 	TEST_ASSERT(abs(release.stash.total_volume - expected_left) < 0.05, "After the stomach pump [release.stash.total_volume] u of the pill is left, expected [expected_left]")
 	var/stash_left = release.stash.total_volume
 	var/in_belly = belly.reagents.get_reagent_amount(/datum/reagent/medicine/salbutamol)
