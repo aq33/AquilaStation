@@ -1952,6 +1952,15 @@
       i promy mają je na overmapie, a na pokładzie dawne.
   - imageadd: Sprite'y promów piratów, złomiarzy i łowców nagród z Aurora Station
       (CC-BY-SA 3.0).
+  - rscadd: 'Hipertoroidalny reaktor fuzyjny (HFR): maszyna 3×3 ze skrzyni w cargo,
+      okno sterowania, trzy paliwa (plazma + tlen, tryt + tlen, wodór + tryt) i moderatory
+      z gazów dostępnych na statku.'
+  - rscadd: 'Nowy gaz: hel, produkt fuzji z paliw z trytem.'
+  - rscadd: HFR można wybrać jako silnik statku w preferencjach. Na Atlasie, Trawniku
+      i Padalcu stoi wtedy w dawnej komorze supermaterii, z kolektorami promieniowania.
+  - rscadd: Awaryjny wyrzut rdzenia działa też dla reaktora fuzyjnego.
+  - imageadd: Sprite'y reaktora fuzyjnego z tgstation.
+  - soundadd: Dźwięki pracy i stopienia reaktora fuzyjnego z tgstation.
   sh4dow321:
   - config: 'Tryb Infiltracji jest ciągły: runda nie kończy się w chwili śmierci wszystkich
       infiltratorów.'
