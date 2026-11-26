@@ -94,6 +94,15 @@
 #undef AQ_FIRE_MAXIMUM_BURN_RATE
 #undef AQ_FIRE_SUPER_SATURATION_THRESHOLD
 
+// Plazma i tryt palą się tylko w swoich reakcjach (plasmafire, tritfire). Z fire_temperature spalał je też genericfire,
+// na Windows (Rust) od zawsze, a na serwerze dopiero po tej poprawce: pożary plazmy byłyby gorętsze niż dotąd.
+// Bez fire_temperature ani Rust, ani DM nie biorą ich do genericfire. Zapłon od iskry sprawdza je w LINDA_fire.dm wprost.
+/datum/gas/plasma
+	fire_temperature = null
+
+/datum/gas/tritium
+	fire_temperature = null
+
 /// AQUILA - Ile moli paliwa (każdego gazu z fire_temperature) może zapłonąć w tej temperaturze.
 /// Zastępuje w LINDA_fire.dm sztywne sprawdzanie samej plazmy i trytu, więc wodór czy metan zapalą się od iskry.
 /datum/gas_mixture/proc/aq_fire_fuel_moles(temperature)

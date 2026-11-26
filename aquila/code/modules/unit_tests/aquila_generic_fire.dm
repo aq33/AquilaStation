@@ -47,16 +47,26 @@
 	return null
 
 /datum/unit_test/aquila_generic_fire/Run()
-	// The DM proc on its own, with products: tritium burns into water vapor, whose enthalpy of formation adds heat
-	var/datum/gas_mixture/tritium_mix = new
-	tritium_mix.set_moles(GAS_TRITIUM, 10)
-	tritium_mix.set_moles(GAS_O2, 50)
-	tritium_mix.set_temperature(1000)
+	// The DM proc on its own, with products: hydrogen burns into water vapor, whose enthalpy of formation is all the heat
+	var/datum/gas_mixture/direct_mix = new
+	direct_mix.set_moles(GAS_H2, 10)
+	direct_mix.set_moles(GAS_O2, 50)
+	direct_mix.set_temperature(1000)
 	var/datum/gas_reaction/genericfire/fire = new
-	TEST_ASSERT(fire.react(tritium_mix, null) == REACTING, "The DM generic fire did not burn tritium in oxygen")
-	var/failure = compare_fire(tritium_mix, expected_fire(GAS_TRITIUM, 10, 50, 1000), "DM tritium fire")
+	TEST_ASSERT(fire.react(direct_mix, null) == REACTING, "The DM generic fire did not burn hydrogen in oxygen")
+	var/failure = compare_fire(direct_mix, expected_fire(GAS_H2, 10, 50, 1000), "DM hydrogen fire")
 	TEST_ASSERT(!failure, failure)
-	TEST_ASSERT(tritium_mix.return_temperature() > 1000, "Burning tritium did not heat the mix")
+	TEST_ASSERT(direct_mix.return_temperature() > 1000, "Burning hydrogen did not heat the mix")
+
+	// Plasma and tritium burn only in their own reactions, never a second time in the generic fire
+	TEST_ASSERT(isnull(GLOB.gas_data.fire_temperatures[GAS_PLASMA]), "Plasma is a generic fire fuel and would burn twice")
+	TEST_ASSERT(isnull(GLOB.gas_data.fire_temperatures[GAS_TRITIUM]), "Tritium is a generic fire fuel and would burn twice")
+	var/datum/gas_mixture/plasma_mix = new
+	plasma_mix.set_moles(GAS_PLASMA, 10)
+	plasma_mix.set_moles(GAS_TRITIUM, 10)
+	plasma_mix.set_moles(GAS_O2, 50)
+	plasma_mix.set_temperature(1000)
+	TEST_ASSERT(fire.react(plasma_mix, null) == NO_REACTION, "The generic fire burned plasma or tritium")
 
 	// The whole reaction pass (Rust on Windows, DM on Linux): only the generic fire matches hot nitrogen in oxygen
 	var/datum/gas_mixture/nitrogen_mix = new
@@ -96,8 +106,8 @@
 
 	// Ignition counts every fuel from the gas data, not only plasma and tritium
 	var/datum/gas_mixture/ignition = new
-	ignition.set_moles(GAS_TRITIUM, 2)
-	TEST_ASSERT(ignition.aq_fire_fuel_moles(FIRE_MINIMUM_TEMPERATURE_TO_EXIST) == 2, "Tritium does not count as fuel for ignition")
+	ignition.set_moles(GAS_METHANE, 2)
+	TEST_ASSERT(ignition.aq_fire_fuel_moles(FIRE_MINIMUM_TEMPERATURE_TO_EXIST) == 2, "Methane does not count as fuel for ignition")
 	TEST_ASSERT(ignition.aq_fire_fuel_moles(100) == 0, "Fuel counts below its fire temperature")
 	var/datum/gas_mixture/hot_air = new
 	hot_air.set_moles(GAS_N2, 80)
