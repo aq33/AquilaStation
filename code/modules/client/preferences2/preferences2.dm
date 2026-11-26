@@ -99,6 +99,7 @@
 	READPREF_JSONDEC(completed_tutorials, PREFERENCE_TAG_COMPLETED_TUTORIALS) // AQ EDIT - samouczek
 	READPREF_JSONDEC(quick_emotes, PREFERENCE_TAG_QUICK_EMOTES) // AQ EDIT - koło emotek
 	READPREF_JSONDEC(keybind_migrations, PREFERENCE_TAG_KEYBIND_MIGRATIONS) // AQ EDIT - jednorazowe migracje keybindów
+	READPREF_JSONDEC(sound_volumes, PREFERENCE_TAG_SOUND_VOLUMES) // AQ EDIT - mikser dźwięku
 
 	//Sanitize
 	asaycolor		= sanitize_ooccolor(sanitize_hexcolor(asaycolor, 6, TRUE, initial(asaycolor)))
@@ -127,6 +128,7 @@
 	recoil_camera_strength	= sanitize_integer(recoil_camera_strength, 0, 100, initial(recoil_camera_strength)) // AQ EDIT - kopnięcie kamery
 	hide_bodily_functions	= sanitize_integer(hide_bodily_functions, FALSE, TRUE, initial(hide_bodily_functions)) // AQ EDIT - cenzura wypróżniania
 	squad_tts	= sanitize_integer(squad_tts, FALSE, TRUE, initial(squad_tts)) // AQ EDIT - głos rozkazów drużyny
+	sanitize_sound_volumes() // AQ EDIT - mikser dźwięku
 	mod_select		= sanitize_inlist(mod_select, list(MIDDLE_CLICK, ALT_CLICK), initial(mod_select))
 
 	pixel_size		= sanitize_float(pixel_size, PIXEL_SCALING_AUTO, PIXEL_SCALING_3X, 0.5, initial(pixel_size))
@@ -219,6 +221,7 @@
 	PREP_WRITEPREF_JSONENC(get_completed_tutorials(), PREFERENCE_TAG_COMPLETED_TUTORIALS) // AQ EDIT - samouczek
 	PREP_WRITEPREF_JSONENC(get_quick_emotes(), PREFERENCE_TAG_QUICK_EMOTES) // AQ EDIT - koło emotek
 	PREP_WRITEPREF_JSONENC(keybind_migrations, PREFERENCE_TAG_KEYBIND_MIGRATIONS) // AQ EDIT - jednorazowe migracje keybindów
+	PREP_WRITEPREF_JSONENC(get_sound_volumes(), PREFERENCE_TAG_SOUND_VOLUMES) // AQ EDIT - mikser dźwięku
 
 	// QuerySelect can execute many queries at once. That name is dumb but w/e
 	SSdbcore.QuerySelect(write_queries, TRUE, TRUE)

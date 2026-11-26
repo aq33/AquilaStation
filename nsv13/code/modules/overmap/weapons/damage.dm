@@ -14,7 +14,7 @@ Bullet reactions
  */
 /obj/structure/overmap/proc/shake_everyone(severity)
 	for(var/mob/M in mobs_in_ship)
-		if(M.client)
+		if(M.client && !(isliving(M) && M.stat == DEAD)) // AQ EDIT - martwym ciałem nie trzęsie
 			shake_with_inertia(M, severity, 1)
 
 /obj/structure/overmap/bullet_act(obj/item/projectile/P)
@@ -162,8 +162,9 @@ Bullet reactions
 	else if(length(linked_areas))
 		target = pick(linked_areas)
 
-	if(target)
-		var/turf/T = pick(get_area_turfs(target))
+	var/list/target_turfs = target ? get_area_turfs(target) : null // AQ EDIT - obszar bez kafli na tej mapie (runda 6589)
+	if(length(target_turfs))
+		var/turf/T = pick(target_turfs)
 		new /obj/effect/temp_visual/explosion_telegraph(T, damage_amount)
 
 ///Handles the announcements for structure critical.

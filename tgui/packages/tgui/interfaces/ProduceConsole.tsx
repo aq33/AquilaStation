@@ -48,8 +48,13 @@ type Data = {
   order_categories: string[];
   order_datums: OrderDatum[];
   points: number;
+  points_label?: string;
   purchase_tooltip: string;
   total_cost: number;
+  cargo_total: number;
+  /** Czy zwykła dostawa osiąga minimum (konsola kuchni liczy je bez bonu) */
+  cargo_minimum_met?: boolean;
+  express_total: number;
   free_uses: number | null;
 };
 
@@ -228,14 +233,18 @@ function CheckoutTab(props) {
     forced_express,
     cargo_value,
     order_datums,
-    total_cost,
-    cargo_cost_multiplier,
-    express_cost_multiplier,
+    cargo_total,
+    cargo_minimum_met,
+    express_total,
     item_amts,
     free_uses,
   } = data;
 
-  const total_cargo_cost = Math.floor(total_cost * cargo_cost_multiplier);
+  const total_cargo_cost = cargo_total;
+  const below_minimum =
+    cargo_minimum_met === undefined
+      ? total_cargo_cost < cargo_value
+      : !cargo_minimum_met;
 
   const total_item_count = item_amts.reduce(
     (total, item) => total + item.amt,
@@ -355,9 +364,9 @@ function CheckoutTab(props) {
                 <Button
                   fluid
                   icon="plane-departure"
-                  disabled={total_cargo_cost < cargo_value}
+                  disabled={below_minimum}
                   tooltip={
-                    total_cargo_cost < cargo_value
+                    below_minimum
                       ? `Suma musi wynosić co najmniej ${cargo_value}`
                       : purchase_tooltip
                   }
@@ -383,7 +392,7 @@ function CheckoutTab(props) {
                 tooltipPosition="top-start"
                 onClick={() => act('express')}
               >
-                Ekspres: {total_cost * express_cost_multiplier}{' '}
+                Ekspres: {express_total}{' '}
                 <CreditIcon credit_type={credit_type} color="black" />
               </Button>
             </Stack.Item>
@@ -419,6 +428,7 @@ export function ProduceConsole(props) {
   const {
     credit_type,
     points = 0,
+    points_label,
     off_cooldown,
     order_categories,
     item_amts,
@@ -477,6 +487,9 @@ export function ProduceConsole(props) {
                         {condensed ? 'Rozwiń' : 'Zwiń'}
                       </Button>
                     </Stack.Item>
+                    {!!points_label && (
+                      <Stack.Item color="label">{points_label}</Stack.Item>
+                    )}
                     <Stack.Item>
                       {points} <CreditIcon credit_type={credit_type} />
                     </Stack.Item>

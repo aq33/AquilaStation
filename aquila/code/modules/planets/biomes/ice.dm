@@ -134,6 +134,7 @@
 		/obj/structure/vein/ice/classtwo/rare = 10,
 		/obj/structure/vein/ice/classthree = 10,
 		/obj/structure/vein/ice/classthree/rare = 5,
+		/obj/structure/vein/gas/ice = 20,
 	)
 
 /datum/planet_biome/ice/lush
@@ -274,6 +275,7 @@
 		/obj/structure/vein/ice = 30,
 		/obj/structure/vein/ice/classtwo = 50,
 		/obj/structure/vein/ice/classthree = 6,
+		/obj/structure/vein/gas/ice = 15,
 	)
 
 /datum/planet_biome/cave/ice/thawed

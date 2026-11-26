@@ -63,6 +63,8 @@
 		var/mob/living/L = loc
 		to_chat(L, "<span class='warning'>[held_mob] wyrywa się!</span>")
 		L.dropItemToGround(src)
+		if(!held_mob) // AQ EDIT - dropped() samo wypuściło moba (rzut, runda 6589)
+			return TRUE
 	held_mob.forceMove(get_turf(held_mob))
 	held_mob.reset_perspective()
 	held_mob.setDir(SOUTH)

@@ -1590,3 +1590,186 @@
   - bugfix: Abordażyści AI w skafandrach nie szukają już trasy przez kosmos wokół
       okrętu, co przy abordażu zamrażało serwer (time dilation do ~70%).
   - bugfix: Prom ewakuacyjny nie rozpada się już na części przy starcie.
+'2026-11-25':
+  Joker66613:
+  - server: Bot Discorda z komendami /wojna (stan wojny frakcji) i /mapa (obrazek
+      mapy wojny) z zapisu kampanii (tools/discord_bot).
+  - balance: Czerwona ikonka ubikacji pojawia się ok. 7 minut po zwykłej, wcześniej
+      niż dotąd.
+  - tweak: Horror może mutować, siedząc w nosicielu.
+  - spellcheck: Opis Ukrywania horrora nie obiecuje już niewidzialności (tę daje Kameleonowa
+      skóra).
+  - rscadd: Horror kontrolujący ciało może za 50 chemikaliów stłumić opór nosiciela
+      i odsunąć odzyskanie przez niego kontroli o 20 sekund.
+  - balance: Okręty AI strzelają rakietami w myśliwce dopiero z zasięgu dział, a każda
+      rakieta 8 sekund po namierzeniu myśliwca gubi namiar.
+  - rscadd: 'Sabre przechwytuje kapsuły ratunkowe swojej frakcji: wystarczy podlecieć
+      promem do kapsuły, a rozbitkowie wchodzą na pokład przez właz.'
+  - bugfix: Telewizorek w menu lobby znowu odlicza czas do startu rundy.
+  - imageadd: Pęknięta czaszka ma nowy sprite wgniecenia na głowie zamiast wykrzywienia.
+  - rscadd: 'Mikrofalówka, młynek, dozownik alkoholi, dozownik napojów, blok utylizacyjny,
+      autolat, protolaty, techfaby i drukarka płytek mają nowe okna, które wyglądają
+      jak te urządzenia (wzór: Polonium Station).'
+  - rscadd: W mikrofalówce i młynku zamiast menu radialnego widać zawartość, a pojedynczą
+      rzecz można wyjąć kliknięciem.
+  - rscadd: 'Pulpit fabrykatora: katalog z wyszukiwarką, ploter rysujący wydruk, zlecenia
+      na kartkach, STOP przytrzymany czyści kolejkę. Stare okno jest pod klawiszem
+      na pulpicie.'
+  - bugfix: Brudna mikrofalówka włączona przez gracza nie zostaje już włączona na
+      zawsze po nieudanym pieczeniu.
+  - imageadd: Grafiki okien urządzeń i pikselowe fonty z Polonium Station.
+  - rscadd: 'Mikser dźwięku w ustawieniach gry (Dźwięk → Mikser): osobne suwaki głośności
+      alarmów okrętu, broni i efektów okrętu, broni ręcznej, emotek, mowy postaci,
+      głosów botów, syntezy mowy, ogłoszeń, otoczenia i muzyki otoczenia.'
+  - tweak: Suwak głośności tesli przeniesiony do miksera.
+  - bugfix: Muzyka otoczenia znowu gra, szum statku nie blokuje już jej kanału.
+  - bugfix: Prom nad planetą zatrzymuje się sam na czas mapowania powierzchni i wyboru
+      lądowiska, więc nie trzeba wlatywać nad planetę kilka razy.
+  - bugfix: Wyciągnięcie pasożyta operacją na głowie naprawdę uwalnia nosiciela od
+      horrora.
+  - bugfix: 'Medibot nie zagłusza już ambulatorium: kwestie z dźwiękiem najwyżej co
+      20 s, leczenie ogłaszane raz na pacjenta.'
+  - bugfix: Dowódca drużyny jest wybierany według stopnia, a w opisie postaci wyższy
+      stopień naprawdę jest wyższy.
+  - rscadd: Roślinę na łopatce można wyrzucić do kosza, worka na śmieci albo kompostownika,
+      a roślinę w tacy wyrwać ręką (prawy przycisk) albo kultywatorem.
+  - tweak: Pager drużyny startuje w kieszeni.
+  - imageadd: Pojedyncza kałuża ma nowy kształt (z Space Station 14).
+  - config: Polskie stopnie marynarki (config/ranks/marynarka.txt), także w wersji
+      angielskiej.
+  - tweak: Historia Mięsacza jest krótsza, a Jajoczłowiek i Kałamarnicoczłowiek mają
+      opis, historię i cechy w oknie postaci.
+  - rscadd: 'Program PDA „Prawo kosmiczne” podpowiada formę kary: mandat, areszt,
+      GenPop, gułag z punktami albo dożywocie z wygnaniem cyfrowym.'
+  - tweak: W preferencjach postaci wybiera się funkcję na okręcie zamiast konkretnej
+      drużyny.
+  - rscadd: Lądowanie promu na planecie można oglądać na żywo w Spess.tv i na telewizorach.
+  - rscadd: 'Stos korowy wyjęty z ciała zapisuje umysł: można z niego sklonować osobę
+      albo zapisać kopię rekordu na pustym stosie w konsoli klonowania.'
+  - tweak: W oknie wyboru języka żaden przycisk nie jest już podświetlony jako domyślny.
+  - bugfix: 'Supermateria w prawie pustej komorze nie nakręca się już sama: przy małej
+      ilości gazu grzeje go, wydziela plazmę i tlen oraz zyskuje moc proporcjonalnie
+      mniej, więc delaminujący kryształ da się opanować chłodziwem.'
+  - imageadd: 'Nowe sprite''y dowództwa: mundury, kurtki, czapki, berety, peleryny,
+      hardsuit Kapitana, torba, karty ID, PDA i szafki Kapitana, Starszego Oficera
+      i Oficerów Pokładowych. Nowa peleryna CMO.'
+  - tweak: Kapitan zaczyna rundę we własnym mundurze, czapce i napierśniku, Starszy
+      Oficer we własnym mundurze i kurtce galowej, a Oficerowie Pokładowi w berecie
+      Oficera Pokładowego.
+  - rscadd: Oficerska czapka kapitana.
+  - tweak: 'Pudełka kompresyjne Kapitana i Starszego Oficera bez spódniczki, korony,
+      morskiego kombinezonu i brązowych butów; buty wojskowe i zapasowa kurtka XO
+      w szafkach. Kurtki kapitana: fikuśna i galowa, stara kurtka usunięta z szafki.'
+  - tweak: Pudełko kompresyjne Komendanta ma oba berety Komendanta zamiast duplikatu
+      munduru.
+  - spellcheck: Peleryna Komendanta zamiast płaszcza Komendanta.
+  - imageadd: Kurtki zimowe Kapitana, Starszego Oficera i Oficera Pokładowego (zapinane
+      Alt+klikiem), poprawione cieniowanie hardsuita i peleryny kapitana.
+  - tweak: Peleryny przykrywają plecak i torbę.
+  - code_imp: 'Planety: ruina główna zostaje zapisana po wczytaniu (losowo padający
+      test lądowisk).'
+  - rscadd: 'Gotowanie krok po kroku: przepisy z kolejnymi krokami w naczyniach (patelnia,
+      rondel, naczynie żaroodporne, koszyk do frytkownicy, ruszt, miska, deska do
+      krojenia).'
+  - rscadd: Piekarnik, grill, frytkownica i pola płyty grillowej mają ogień i minutnik
+      (Alt+klik).
+  - rscadd: 'Jakość dań: kroki dodatkowe i dobry sprzęt dają lepsze danie, droższe
+      w restauracji robotów i z mocniejszymi bonusami. Przypalone albo źle zrobione
+      danie może zatruć.'
+  - rscadd: 'Konsola zamówień kuchni i baru: składniki i trunki promem albo ekspresem,
+      płaci budżet usług, kucharz ma bon na 10 darmowych produktów.'
+  - balance: Sprzęt kuchenny rozgrzewa się po włączeniu (20 s, z najlepszym laserem
+      5 s), a lepszy laser przyspiesza gotowanie.
+  - balance: Ogień kuchenki ustala temperaturę zupy. Domyślnie średni, przy którym
+      zupa się nie przypala.
+  - imageadd: Naczynia i ikony menu z ParadiseSS13/Paradise (CC BY-SA 3.0).
+  - rscadd: '439 przepisów krokowych i prawie 200 nowych dań z Paradise: słodycze,
+      lody na patyku, sushi, arepy, pizze, sałatki, kebaby i inne.'
+  - rscadd: Mikser lodów, misa do lodów, foremki na cukierki z plastiku, mata do sushi
+      i patyczki do lodów z procesora.
+  - rscadd: Ocet, wasabi, serek śmietankowy i sos pieczeniowy w spiżarni konsoli zamówień
+      kuchni.
+  - balance: Nasze dania robi się teraz krok po kroku w naczyniach. Dania gotowane
+      krokowo zniknęły z craftingu na stole.
+  - imageadd: Sprite'y dań, miksera lodów, foremek i maty do sushi z ParadiseSS13/Paradise
+      (CC BY-SA 3.0).
+  - rscadd: 'Płyta grillowa to grill i kuchenka w jednym: cztery pola na patelnię,
+      rondel albo garnek z zupą, każde z minutnikiem, ogień jeden dla całej płyty
+      (Alt+klik).'
+  - bugfix: 'Książka kucharska: bez zera przy nazwach, zakładki się zawijają, przepisy
+      nie mieszają się przy zmianie zakładki.'
+  - rscadd: 'Browar w drewnianej beczce: Alt+klik wybiera trunek z przepisu (piwa,
+      wina, mocne trunki, miód pitny), plony wrzucasz do beczki, płyny wlewasz. Bez
+      przepisu beczka robi wino z owoców jak dotąd.'
+  - rscadd: 'Polskie trunki z browaru: kwas chlebowy, kompot, wiśniówka, śliwowica,
+      żubrówka, krupnik.'
+  - rscadd: Beczkę z trunkiem z browaru można sprzedać przez zaopatrzenie.
+  - rscadd: Przepisy browaru w Książce kucharskiej w PDA.
+  - rscadd: 81 drinków z tg (m.in. Negroni, Spritz, Old Fashioned, Sazerac, French
+      75, Daiquiri, Moscow Mule, Sangria, koktajle mleczne i smoothie) z efektami
+      i własnymi szklankami.
+  - rscadd: 'Nowe bazy w dyspenserach baru: amaretto, bitter, curaçao, aperitivo,
+      maraschino, likier ziołowy, shochu, rumy, piwo ryżowe, mocne piwo, yūyake, ekstrakt
+      miętowy, oranżada melonowa, Sol Dry.'
+  - imageadd: Sprite'y szklanek drinków z tgstation/tgstation (CC BY-SA 3.0).
+  - bugfix: Beczka browaru nie zużywa wysypanych owoców, nie startuje bez przepisu
+      i nie przelewa trunku ponad pojemność.
+  - bugfix: Martwe ciało nie słyszy już strzałów i wybuchów okrętu ani nim nie trzęsie
+      (do zghostowania tak było).
+  - balance: Ból, rany i utrata krwi nie zatrzymują już serca przez szybkie tętno.
+      Zatrzymanie krążenia z tempa powoduje tylko przedawkowanie stymulantów albo
+      wychłodzenie, a gracz dostaje wcześniej ostrzeżenie.
+  - rscadd: Podpowiedź ekranowa i opis przy badaniu mówią, czy obiekt jest piętro
+      niżej albo wyżej.
+  - bugfix: 'Atlas: barierki na dachu nad wlotem hangaru desantowca, z którego łatwo
+      było spaść piętro niżej.'
+  sh4dow321:
+  - bugfix: Zapętlony alarm przegrzania reaktora (i inne pętle alarmów statku) cichnie
+      też u graczy, którzy w międzyczasie zginęli albo opuścili statek.
+  - bugfix: Akwarianie mają stały alert wycieku wody, gdy klosz jest pęknięty albo
+      pancerz wgnieciony.
+  - tweak: Ogłoszenia głosowe SI mają głośność wyrównaną do ogłoszeń statku.
+  - bugfix: Malowanie karty ID na wzór działu uzbrojenia nie robi już niewidzialnej
+      karty.
+  - bugfix: Gracz zabrany martwy z innego okrętu nie słyszy już jego walki ani nie
+      czuje jego wstrząsów.
+  - bugfix: Ogłoszenia na cały statek z konsoli zgłoszeń działają z polskimi znakami,
+      linkami i dłuższym tekstem (wcześniej konsola po cichu je kasowała).
+  - bugfix: Link „strona wiki” w powitaniu stanowiska prowadzi na stronę stanowiska
+      na wiki Aquili, a nie do wyszukiwarki BeeStation.
+  - bugfix: Ogłoszenia głosowe AI (VOX) są sprawdzane filtrem zakazanych słów.
+  - bugfix: Pilot albo pasażer wyrzucony poza myśliwiec przestaje nim sterować.
+  - bugfix: Ofiara horroru dostaje komunikację z horrorem.
+  - bugfix: Po EMP konsola medyczna nie pokazuje graczy z wyłączonymi czujnikami kombinezonu.
+  - bugfix: Misja „Odbij kwaterę” nie psuje już startu trybu overmapy.
+  - bugfix: Abordażyści nie przeskakują w losowe miejsce, gdy wchodzą na drabinę bez
+      drugiego końca.
+  - bugfix: Oględziny martwych zwierząt pokazują poprawny opis.
+  - bugfix: APC telekomunikacji na Atlantis ma polską nazwę.
+  - code_imp: Poprawione runtime'y z rund 6585–6593 (nanity, flak, sygnały, cień światła
+      na promie, sieć kamer, lobby, radar, drabiny, mysz w dłoni, lampy).
+  tralezab, MrMelbert:
+  - rscadd: Postacie zapamiętują niezwykłe zdarzenia (operacje, bomby, śmierć na ich
+      oczach, poślizgi, podpalenia, wielkie wygrane, medale i wiele innych). Wspomnienia
+      z oceną wartości historii są w oknie „Notatki”.
+  - rscadd: 'Ważne wspomnienia: numer konta, kod sejfu z zapasową kartą kapitana,
+      uczulenia, pamiątka rodzinna, ulubione papierosy i trunek, wyrok więźnia.'
+  - rscadd: Dłutem można wyryć wspomnienie w ścianie (prawy przycisk albo intencja
+      rozbrajania). Ryciny z technicznych i więzienia wracają w kolejnych rundach.
+  - rscadd: 'Zestaw do tatuażu: wytatuuj komuś swoje wspomnienie. Więźniowie z przewozu
+      mają tatuaże z poprzednich rund.'
+  - rscadd: Zmiennokształtny po wchłonięciu ofiary czyta jej wspomnienia.
+  - imageadd: Ikony dłuta, zestawu do tatuażu i rycin w ścianach z tgstation.
+'2026-11-26':
+  Joker66613:
+  - rscadd: Na planetach (wulkanicznej, lodowej, księżycu, skalistej, wysypisku) i
+      w polach asteroid pojawiają się złoża gazu z mieszanką zależną od planety. Georadarowy
+      skaner pokazuje ich skład.
+  - rscadd: 'Ekstraktor gazu: postawiony z płytki na złożu tłoczy gaz do rury (50
+      mol/s, do 4500 kPa, 1 kW z sieci albo ogniwa). Wydobycie rozwściecza faunę jak
+      wiertło. Płytka w protolacie inżynierii i cargo, skrzynia w zamówieniach inżynierii.'
+  sh4dow321:
+  - config: 'Tryb Infiltracji jest ciągły: runda nie kończy się w chwili śmierci wszystkich
+      infiltratorów.'
+  - config: Link do zasad prowadzi do zasad na wiki Aquili, a odwołania od banów na
+      Discorda serwera.

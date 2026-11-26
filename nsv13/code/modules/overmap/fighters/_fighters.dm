@@ -92,7 +92,7 @@ Been a mess since 2018, we'll fix it someday (probably)
 /obj/structure/overmap/small_craft/start_piloting(mob/living/carbon/user, position)
 	. = ..()
 	if(.)
-		RegisterSignal(src, COMSIG_MOB_OVERMAP_CHANGE, PROC_REF(pilot_overmap_change))
+		RegisterSignal(user, COMSIG_MOB_OVERMAP_CHANGE, PROC_REF(pilot_overmap_change)) // AQ EDIT - sygnał wysyła mob, nie statek
 		RegisterSignal(user, COMSIG_MOB_DEATH, PROC_REF(pilot_death))
 
 /obj/structure/overmap/small_craft/key_down(key, client/user)
@@ -661,12 +661,16 @@ Been a mess since 2018, we'll fix it someday (probably)
 	mobs_in_ship |= user
 	user.last_overmap = src //Allows update_overmap to function properly when the pilot leaves their fighter
 	if((user.client?.prefs.toggles & PREFTOGGLE_SOUND_AMBIENCE) && user.can_hear_ambience() && engines_active()) //Disable ambient sounds to shut up the noises.
-		SEND_SOUND(user, sound('nsv13/sound/effects/fighters/cockpit.ogg', repeat = TRUE, wait = 0, volume = 50, channel=CHANNEL_SHIP_ALERT))
+		user.play_mixed_sound(sound('nsv13/sound/effects/fighters/cockpit.ogg', repeat = TRUE, wait = 0, volume = 50, channel=CHANNEL_SHIP_ALERT), VOLUME_PREF_SHIP_ALERTS) // AQ EDIT - mikser dźwięku
 
 /obj/structure/overmap/small_craft/stop_piloting(mob/living/M, eject_mob=TRUE, force=FALSE)
+	// AQ EDIT START - przed eject(): wysiadanie samo zmienia overmapę moba i odpalałoby drugie stop_piloting()
+	UnregisterSignal(M, COMSIG_MOB_OVERMAP_CHANGE)
 	if(eject_mob && !eject(M, force))
+		if(LAZYFIND(operators, M))
+			RegisterSignal(M, COMSIG_MOB_OVERMAP_CHANGE, PROC_REF(pilot_overmap_change)) // nie wysiadł: pilnujemy dalej
 		return FALSE
-	UnregisterSignal(src, COMSIG_MOB_OVERMAP_CHANGE)
+	// AQ EDIT END
 	UnregisterSignal(M, COMSIG_MOB_DEATH)
 	M.stop_sound_channel(CHANNEL_SHIP_ALERT)
 	M.remove_verb(overmap_verbs)
@@ -691,9 +695,9 @@ Been a mess since 2018, we'll fix it someday (probably)
 	M.forceMove(get_turf(src))
 	return TRUE
 
-/obj/structure/overmap/small_craft/proc/pilot_overmap_change(mob/living/M, obj/structure/overmap/newOM) // in case we get forceMoved outside of the ship somehow
+/obj/structure/overmap/small_craft/proc/pilot_overmap_change(mob/living/M, mob/living/sender, obj/structure/overmap/newOM) // AQ EDIT - update_overmap() wysyła (src, src, OM), więc drugi argument to mob // in case we get forceMoved outside of the ship somehow
 	SIGNAL_HANDLER
-	if(newOM != src)
+	if(newOM != src && M.loc != src) // AQ EDIT - w środku myśliwca stojącego w hangarze update_overmap() daje okręt-matkę
 		INVOKE_ASYNC(src, PROC_REF(stop_piloting), M, FALSE, TRUE)
 
 /obj/structure/overmap/small_craft/proc/pilot_death(mob/living/M)

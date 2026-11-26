@@ -1,6 +1,9 @@
 // AQUILA - Eldritch Horror, port of Yogstation#13033 with the later horror fixes
 // (#13234, #13610, #14314, #14511, #15488, #15490, #15641, #15917, #16548, #19032, #20439, #20936, #21326, #19619, #22996)
 
+/// AQUILA - koszt zdolności Stłum opór (horror_abilities_and_upgrades.dm)
+#define HORROR_SUPPRESS_COST 50
+
 /mob/living/simple_animal/horror
 	name = "pradawny horror"
 	desc = "Twoje oczy ledwo pojmują, na co patrzą."
@@ -82,6 +85,7 @@
 	add_ability(/datum/action/innate/horror/make_chems)
 	add_ability(/datum/action/innate/horror/scan_host)
 	add_ability(/datum/action/innate/horror/give_back_control)
+	add_ability(/datum/action/innate/horror/suppress_resistance)
 	RefreshAbilities()
 
 	var/datum/atom_hud/hud = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED]
@@ -275,7 +279,7 @@
 					var/link = FOLLOW_LINK(M, src)
 					to_chat(M, "[link] [rendered]")
 		to_chat(src, "<span class='changeling'><i>[real_name] bełkocze:</i> [input]</span>")
-		add_verb(victim, /mob/living/proc/horror_comm)
+		victim.add_verb(/mob/living/proc/horror_comm)
 		talk_to_horror_action.Grant(victim)
 
 /mob/living/proc/horror_comm()
@@ -588,7 +592,7 @@
 	victim.unset_machine()
 
 	var/mob/living/V = victim
-	remove_verb(V, /mob/living/proc/horror_comm)
+	V.remove_verb(/mob/living/proc/horror_comm)
 	talk_to_horror_action.Remove(victim)
 
 	for(var/obj/item/horrortentacle/T in victim)
@@ -796,7 +800,7 @@
 		bonding = FALSE
 		controlling = TRUE
 
-		remove_verb(victim, /mob/living/proc/horror_comm)
+		victim.remove_verb(/mob/living/proc/horror_comm)
 		talk_to_horror_action.Remove(victim)
 		GrantControlActions()
 
@@ -805,6 +809,28 @@
 			victim.apply_status_effect(/datum/status_effect/agent_pinpointer/horror)
 			for(var/datum/status_effect/agent_pinpointer/horror/status in victim.status_effects)
 				status.scan_target = target.current
+
+/// AQUILA - Stłum opór: o ile odsuwa odzyskanie ciała przez nosiciela
+#define HORROR_SUPPRESS_DELAY (20 SECONDS)
+
+/// Odsuwa trwający opór nosiciela o HORROR_SUPPRESS_DELAY za HORROR_SUPPRESS_COST chemikaliów
+/mob/living/simple_animal/horror/proc/suppress_resistance()
+	if(!controlling || !victim || !host_brain)
+		return FALSE
+	if(!host_brain.resist_timer)
+		to_chat(victim, "<span class='warning'>Umysł nosiciela teraz się nie opiera.</span>")
+		return FALSE
+	if(!use_chemicals(HORROR_SUPPRESS_COST))
+		to_chat(victim, "<span class='warning'>Potrzebujesz [HORROR_SUPPRESS_COST] chemikaliów.</span>")
+		return FALSE
+	var/left = timeleft(host_brain.resist_timer)
+	deltimer(host_brain.resist_timer)
+	host_brain.resist_timer = addtimer(CALLBACK(host_brain, TYPE_PROC_REF(/mob/living/captive_brain, return_control)), left + HORROR_SUPPRESS_DELAY, TIMER_STOPPABLE)
+	to_chat(victim, "<span class='velvet'>Zalewasz korę nosiciela chemikaliami i tłumisz jego opór.</span>")
+	to_chat(host_brain, "<span class='danger'>Coś zalewa twój umysł i opór słabnie. Wolność się oddala.</span>")
+	return TRUE
+
+#undef HORROR_SUPPRESS_DELAY
 
 /mob/living/carbon/proc/release_control()
 	var/mob/living/simple_animal/horror/B = has_horror_inside()
@@ -831,7 +857,7 @@
 
 	controlling = FALSE
 	UnregisterSignal(victim, COMSIG_MOB_APPLY_DAMGE)
-	add_verb(victim, /mob/living/proc/horror_comm)
+	victim.add_verb(/mob/living/proc/horror_comm)
 	RemoveControlActions()
 	RefreshAbilities()
 	talk_to_horror_action.Grant(victim)

@@ -1,8 +1,9 @@
 /datum/unit_test/adjustable_clothing/Run()
 	var/list/failing = list()
-	var/list/valid_states = icon_states('icons/mob/clothing/uniform.dmi')
+	var/list/default_states = icon_states('icons/mob/clothing/uniform.dmi')
 	for(var/obj/item/clothing/under/path as() in subtypesof(/obj/item/clothing/under))
 		if(initial(path.can_adjust))
+			var/list/valid_states = initial(path.worn_icon) ? icon_states(initial(path.worn_icon)) : default_states // AQ EDIT - sprawdzaj plik, z którego postać rysuje mundur (worn_icon)
 			//Check for adjustable clothing
 			//Get the item colour
 			var/icon_name = initial(path.worn_icon_state)

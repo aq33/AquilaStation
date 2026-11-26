@@ -75,6 +75,8 @@
 /obj/effect/temp_visual/flak/proc/on_entered(datum/source, atom/movable/AM) //Here, we check if the bullet that hit us is from a friendly ship. If it's from an enemy ship, we explode as we've been flak'd down.
 	SIGNAL_HANDLER
 
+	if(QDELETED(AM)) // AQ EDIT - pocisk zniszczony przez wcześniejszy flak na tym kaflu (rundy 6585, 6587)
+		return
 	if(!isprojectile(AM) && !istype(AM, /obj/structure/overmap))
 		return
 	//Distance from the "center" of the flak effect.

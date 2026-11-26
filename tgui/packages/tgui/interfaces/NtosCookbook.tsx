@@ -16,6 +16,7 @@ type Ingredient = {
   name: string;
   amount: number;
   reagent: boolean;
+  unit?: string;
 };
 
 type CookRecipe = {
@@ -28,6 +29,7 @@ type CookRecipe = {
   category: string | null;
   learned: boolean;
   amount?: number;
+  steps?: string[];
 };
 
 type Data = {
@@ -36,22 +38,28 @@ type Data = {
 
 const METHOD_ORDER = [
   'Stół',
+  'Krok po kroku',
   'Procesor',
   'Mikrofalówka',
   'Grill',
   'Piekarnik',
   'Krojenie',
   'Mieszanki',
+  'Browar',
 ];
 
 const METHOD_HINTS: Record<string, string> = {
   Stół: 'Połóż składniki na stole i wybierz danie w menu craftingu.',
+  'Krok po kroku':
+    'Wkładaj składniki po kolei do naczynia i gotuj je na maszynie. Alt+klik na maszynie ustawia ogień i minutnik. Kroki dodatkowe poprawiają jakość dania.',
   Procesor: 'Wrzuć składnik do procesora kuchennego i go włącz.',
   Mikrofalówka: 'Włóż do mikrofalówki i włącz.',
   Grill: 'Połóż na rozgrzanym grillu i poczekaj, nie dłużej, bo się spali.',
   Piekarnik: 'Połóż na blasze w piekarniku i poczekaj.',
   Krojenie: 'Użyj narzędzia na składniku, najlepiej leżącym na stole.',
   Mieszanki: 'Wlej składniki do jednego zbiornika (miski, zlewki).',
+  Browar:
+    'Alt+klik na drewnianej beczce wybiera trunek. Plony liczą się w jednostkach (zwykły plon to 5 j.), płyny wlewasz do otwartej beczki.',
 };
 
 const byName = (a: CookRecipe, b: CookRecipe) => a.name.localeCompare(b.name);
@@ -59,7 +67,9 @@ const byName = (a: CookRecipe, b: CookRecipe) => a.name.localeCompare(b.name);
 const listIngredients = (ingredients: Ingredient[]) =>
   ingredients
     .map((i) =>
-      i.reagent ? `${i.amount} j. ${i.name}` : `${i.amount}× ${i.name}`,
+      i.reagent || i.unit
+        ? `${i.amount} ${i.unit || 'j.'} ${i.name}`
+        : `${i.amount}× ${i.name}`,
     )
     .join(', ');
 
@@ -75,7 +85,8 @@ export const NtosCookbook = (props) => {
   const needle = query.trim().toLowerCase();
   const matches = (r: CookRecipe) =>
     r.name.toLowerCase().includes(needle) ||
-    r.ingredients.some((i) => i.name.toLowerCase().includes(needle));
+    r.ingredients.some((i) => i.name.toLowerCase().includes(needle)) ||
+    (r.steps || []).some((s) => s.toLowerCase().includes(needle));
 
   return (
     <NtosWindow width={520} height={640}>
@@ -92,9 +103,10 @@ export const NtosCookbook = (props) => {
           <SearchResults recipes={recipes.filter(matches)} methods={methods} />
         ) : (
           <>
-            <Tabs fluid>
+            <Tabs style={{ flexWrap: 'wrap' }}>
               {methods.map((m) => (
                 <Tabs.Tab
+                  style={{ whiteSpace: 'nowrap' }}
                   key={m}
                   selected={tab === m}
                   onClick={() => setTab(m)}
@@ -188,21 +200,32 @@ const RecipeRow = (props: { recipe: CookRecipe }) => {
       <Box bold>
         {recipe.amount ? `${recipe.amount}× ` : ''}
         {recipe.name}
-        {recipe.learned && (
+        {!!recipe.learned && (
           <Box inline color="average" ml={1} style={{ fontWeight: 'normal' }}>
             (trzeba się nauczyć)
           </Box>
         )}
       </Box>
       {!!recipe.desc && <Box color="label">{recipe.desc}</Box>}
-      <Box mt={0.5}>
-        <Box inline color="good">
-          Z:
-        </Box>{' '}
-        {listIngredients(recipe.ingredients)}
-      </Box>
+      {recipe.ingredients.length > 0 && (
+        <Box mt={0.5}>
+          <Box inline color="good">
+            Z:
+          </Box>{' '}
+          {listIngredients(recipe.ingredients)}
+        </Box>
+      )}
       {recipe.tools.length > 0 && (
         <Box color="label">Potrzebne: {recipe.tools.join(', ')}</Box>
+      )}
+      {!!recipe.steps && (
+        <Box mt={0.5}>
+          {recipe.steps.map((stepText, index) => (
+            <Box key={index}>
+              {index + 1}. {stepText}
+            </Box>
+          ))}
+        </Box>
       )}
     </Box>
   );

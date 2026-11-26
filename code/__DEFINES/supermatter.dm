@@ -33,6 +33,7 @@
 #define THERMAL_RELEASE_MODIFIER 5         //Higher == less heat released during reaction, not to be confused with the above values
 #define PLASMA_RELEASE_MODIFIER 750        //Higher == less plasma released by reaction
 #define OXYGEN_RELEASE_MODIFIER 325        //Higher == less oxygen released at high temperature/power
+#define SUPERMATTER_FULL_REACTION_MOLES 5  // AQ EDIT - pobrane mole, od których kryształ grzeje gaz, wydziela plazmę i tlen oraz zyskuje moc w pełni (mniej gazu = proporcjonalnie mniej)
 
 #define REACTION_POWER_MODIFIER 0.55       //Higher == more overall power
 
