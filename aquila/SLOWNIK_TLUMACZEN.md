@@ -697,6 +697,10 @@ Nazwy gazów są widoczne w skanerach, kanistrach i oknach TGUI. Jeśli nazwa ga
 | fuel input / moderator input / waste output (HFR) | wlot paliwa / wlot moderatora / wylot odpadów | m; nowe (HFR) |
 | interface (HFR) | panel sterowania | m; nowe (HFR) |
 | iron content | zawartość żelaza | ż; nowe (HFR) |
+| oxygen regenerator | regenerator tlenu | m; nowe (plan maszynowni E11) |
+| biogas plant | biogazownia | ż; nowe (plan maszynowni E20) |
+| biogas | biogaz | m; nowe |
+| sewage | ścieki | mn; nowe (kanalizacja statku, z sedesów i odpływów) |
 | air | powietrze | n; istniejące |
 | pressure | ciśnienie | n; istniejące (75×) |
 | output pressure | ciśnienie wyjściowe | n; istniejące (TGUI) |
