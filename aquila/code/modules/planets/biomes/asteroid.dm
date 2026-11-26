@@ -114,6 +114,7 @@
 		/obj/structure/vein/asteroid/classtwo/rare = 3,
 		/obj/structure/vein/asteroid/classthree = 5,
 		/obj/structure/vein/asteroid/classthree/rare = 1,
+		/obj/structure/vein/gas/asteroid = 4,
 	)
 	mob_spawn_list = list(
 		/mob/living/basic/mining/goliath = 25,
@@ -143,6 +144,7 @@
 		/obj/structure/vein/asteroid = 10,
 		/obj/structure/vein/asteroid/classtwo = 15,
 		/obj/structure/vein/asteroid/classthree = 12,
+		/obj/structure/vein/gas/asteroid = 5,
 	)
 	mob_spawn_list = list(
 		/mob/living/basic/carp = 25,
