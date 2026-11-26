@@ -501,10 +501,14 @@
 /datum/reagent/fingerprint_nanites/proc/aq_donor_print()
 	return islist(data) ? data["donor_print"] : null
 
+/// Nowy dawca. Lista data bywa współdzielona między porcjami (trans_id_to() przekazuje ją bez kopii), więc zapis idzie do kopii.
+/// Inny dawca niż dotąd znaczy nową dawkę: odciski zmienią się jeszcze raz (jednorazowo).
 /datum/reagent/fingerprint_nanites/proc/aq_set_donor_print(print)
-	if(!islist(data))
-		data = list()
-	data["donor_print"] = print
+	var/list/new_data = islist(data) ? data.Copy() : list()
+	if(new_data["donor_print"] != print)
+		applied = FALSE
+	new_data["donor_print"] = print
+	data = new_data
 
 /// Dawca z krwi w tym samym pojemniku poza ciałem
 /datum/reagent/fingerprint_nanites/proc/aq_learn_donor()
@@ -525,15 +529,17 @@
 	aq_teach_fingerprint_nanites(mix_data)
 
 /// Nanoboty dolane do krwi trafiają na koniec listy, więc przy przelewaniu krew idzie pierwsza: uczy je, zanim porcja nanobotów zostanie skopiowana
+/// Tylko gdy nanoboty nie mają jeszcze dawcy: po zmieszaniu krew w pojemniku zachowuje DNA pierwszej porcji,
+/// a nanoboty pamiętają dawcę ostatnio dolanej krwi
 /datum/reagent/blood/intercept_reagents_transfer(datum/reagents/target, amount, copy_only)
 	. = ..()
-	aq_teach_fingerprint_nanites(data)
+	aq_teach_fingerprint_nanites(data, only_if_unknown = TRUE)
 
-/datum/reagent/blood/proc/aq_teach_fingerprint_nanites(list/blood_data)
+/datum/reagent/blood/proc/aq_teach_fingerprint_nanites(list/blood_data, only_if_unknown = FALSE)
 	if(aq_reagents_in_body(holder))
 		return
 	var/datum/reagent/fingerprint_nanites/nanites = holder?.has_reagent(/datum/reagent/fingerprint_nanites)
-	if(!nanites)
+	if(!nanites || (only_if_unknown && nanites.aq_donor_print()))
 		return
 	var/print = aq_blood_donor_print(blood_data, holder)
 	if(print)
@@ -635,6 +641,9 @@
 	var/turf/step_turf = get_turf(owner)
 	if(!step_turf || !target_turf)
 		return FALSE
+	// Zapisany cel zawsze, także gdy postać przesunięto w trakcie i cel wypadł z dwóch pól od niej
+	if(aq_holy_salt_on(target_turf))
+		return TRUE
 	for(var/i in 1 to 2)
 		if(step_turf == target_turf)
 			break
