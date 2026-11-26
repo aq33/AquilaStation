@@ -130,7 +130,8 @@
 	if(!owner || owner.stat == DEAD)
 		return
 	if(ruptured)
-		owner.blood_volume = max(0, owner.blood_volume - 1.5)
+		if(!HAS_TRAIT(owner, TRAIT_AQ_QUICKCLOT)) // Szybkie krzepnięcie wstrzymuje krwotok, pęknięcia nie leczy
+			owner.blood_volume = max(0, owner.blood_volume - 1.5)
 		return
 	if(organ_flags & ORGAN_FAILING || owner.blood_volume >= BLOOD_VOLUME_OKAY || world.time < next_release)
 		return

@@ -187,7 +187,7 @@
 		qdel(src)
 		return
 	var/final_bleed_rate = bleed_rate - get_held_reduction()
-	if(final_bleed_rate <= 0)
+	if(final_bleed_rate <= 0 || HAS_TRAIT(owner, TRAIT_AQ_QUICKCLOT)) // Szybkie krzepnięcie wstrzymuje utratę krwi, ran nie leczy
 		return
 	owner.bleed(min(MAX_BLEED_RATE, final_bleed_rate))
 
