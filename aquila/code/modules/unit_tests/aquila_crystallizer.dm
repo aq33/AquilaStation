@@ -3,8 +3,21 @@
 
 /// AQUILA - Crystallizer recipes use registered gases, and a recipe held in its temperature window turns gas into its product
 /datum/unit_test/aquila_crystallizer
+	/// Air of the test room before the test, put back after the machines are gone (their Destroy() lets their gas out)
+	var/list/saved_air = list()
+
+/datum/unit_test/aquila_crystallizer/Destroy()
+	var/list/to_restore = saved_air
+	saved_air = null
+	. = ..()
+	for(var/turf/open/room_turf as anything in to_restore)
+		room_turf.air.copy_from(to_restore[room_turf])
+		room_turf.air_update_turf()
 
 /datum/unit_test/aquila_crystallizer/Run()
+	for(var/turf/open/room_turf in block(run_loc_floor_bottom_left, run_loc_floor_top_right))
+		saved_air[room_turf] = room_turf.air.copy()
+
 	// Every recipe uses gases we have and makes something that exists
 	var/list/expected = list("diamond", "plasma_sheet", "ammonia_crystal", "fuel_basic", "fuel_advanced", "fuel_exotic", "crystal_shard")
 	for(var/recipe_id in expected)
@@ -114,16 +127,12 @@
 	// A destroyed crystallizer lets its gas out instead of deleting it
 	var/obj/machinery/atmospherics/components/binary/crystallizer/doomed = allocate(/obj/machinery/atmospherics/components/binary/crystallizer)
 	var/turf/open/doomed_turf = get_turf(doomed)
-	var/datum/gas_mixture/original_air = doomed_turf.air.copy()
 	var/plasma_before = doomed_turf.air.get_moles(GAS_PLASMA)
 	doomed.internal.set_moles(GAS_PLASMA, 20)
 	doomed.internal.set_temperature(T20C)
 	qdel(doomed)
 	TEST_ASSERT(doomed_turf.air.get_moles(GAS_PLASMA) >= plasma_before + 19.99, "A destroyed crystallizer deleted the gas inside it")
-	doomed_turf.air.copy_from(original_air)
 	crystallizer.set_on(FALSE)
-	// gaz z wnętrza wyleciałby do pokoju testowego przy usuwaniu maszyny i zabrudził atmosferę kolejnym testom
-	crystallizer.internal.remove(crystallizer.internal.total_moles())
 
 	// Losing power stops the crystallizer: power_change() keeps is_operational in step with NOPOWER
 	crystallizer.machine_stat |= EMPED // powered() is FALSE while EMPED, whatever the test area has
