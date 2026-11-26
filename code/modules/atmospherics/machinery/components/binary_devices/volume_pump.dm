@@ -20,6 +20,8 @@
 
 	var/transfer_rate = MAX_TRANSFER_RATE
 	var/overclocked = FALSE
+	var/aq_max_rate = MAX_TRANSFER_RATE // AQ EDIT - limit z instancji (pompy wysokiego przepływu)
+	var/aq_stall_pressure = 9000 // AQ EDIT - limit z instancji (pompy wysokiego przepływu)
 
 	var/frequency = 0
 	var/id = null
@@ -40,7 +42,7 @@
 
 /obj/machinery/atmospherics/components/binary/volume_pump/AltClick(mob/user)
 	if(can_interact(user))
-		transfer_rate = MAX_TRANSFER_RATE
+		transfer_rate = aq_max_rate // AQ EDIT - limit z instancji (pompy wysokiego przepływu)
 		balloon_alert(user, "Ustawiasz przepływ na [transfer_rate] L/s.")
 		update_icon()
 		ui_update()
@@ -65,7 +67,7 @@
 	var/input_starting_pressure = air1.return_pressure()
 	var/output_starting_pressure = air2.return_pressure()
 
-	if((input_starting_pressure < 0.01) || ((output_starting_pressure > 9000))&&!overclocked)
+	if((input_starting_pressure < 0.01) || ((output_starting_pressure > aq_stall_pressure))&&!overclocked) // AQ EDIT - limit z instancji (pompy wysokiego przepływu)
 		return
 
 	if(overclocked && (output_starting_pressure-input_starting_pressure > 1000))//Overclocked pumps can only force gas a certain amount.
@@ -120,7 +122,7 @@
 	var/data = list()
 	data["on"] = on
 	data["rate"] = round(transfer_rate)
-	data["max_rate"] = round(MAX_TRANSFER_RATE)
+	data["max_rate"] = round(aq_max_rate) // AQ EDIT - limit z instancji (pompy wysokiego przepływu)
 	return data
 
 /obj/machinery/atmospherics/components/binary/volume_pump/atmos_init()
@@ -139,13 +141,13 @@
 		if("rate")
 			var/rate = params["rate"]
 			if(rate == "max")
-				rate = MAX_TRANSFER_RATE
+				rate = aq_max_rate // AQ EDIT - limit z instancji (pompy wysokiego przepływu)
 				. = TRUE
 			else if(text2num(rate) != null)
 				rate = text2num(rate)
 				. = TRUE
 			if(.)
-				transfer_rate = clamp(rate, 0, MAX_TRANSFER_RATE)
+				transfer_rate = clamp(rate, 0, aq_max_rate) // AQ EDIT - limit z instancji (pompy wysokiego przepływu)
 				investigate_log("was set to [transfer_rate] L/s by [key_name(usr)]", INVESTIGATE_ATMOS)
 	if(.)
 		update_icon()
