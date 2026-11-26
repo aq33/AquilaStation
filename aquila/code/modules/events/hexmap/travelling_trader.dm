@@ -3,8 +3,10 @@
 // include bomb cherries, gatfruit seeds, neurotoxin kegs, hostile animals, an infinite pizza box and thermal or arm
 // implants. Ours keeps the chef, gardener, bartender and collector (no animal or organ trade) and pays with a credit
 // holochip plus, sometimes, one harmless item of the trade. The chef asks for a common dish from a short list (not any
-// recipe, some need lavaland parts), the gardener for plants the botanists can grow, the bartender for a mixed drink.
-// The trader stands on a free safe turf of a safe room, away from doors (event spawn landmarks first), talks without sleeping, and his speech is written anew in Polish.
+// recipe, some need lavaland parts), the gardener for plants the botanists can grow, the bartender for a mixed drink
+// made only from dispenser drinks, and the collector for nothing the old Vendotron sells. The trader stands on a free
+// safe turf of a safe room, away from doors (event spawn landmarks first), cannot be swapped with or stripped, leaves
+// by himself after 15 minutes even when the event is gone, talks without sleeping, and his speech is written anew in Polish.
 
 /datum/round_event_control/aquila_hex_travelling_trader
 	name = "Wędrowny handlarz"
@@ -67,8 +69,8 @@
 /datum/round_event/aquila_hex_travelling_trader/end()
 	if(QDELETED(trader))
 		return
-	trader.visible_message("<b>[trader]</b> traci cierpliwość.")
-	QDEL_NULL(trader)
+	trader.lose_patience()
+	trader = null
 
 /datum/round_event/aquila_hex_travelling_trader/Destroy()
 	if(trader)
@@ -103,6 +105,8 @@
 	var/list/reward_items = list()
 	/// Handlarz jeszcze czeka na rzecz
 	var/active = TRUE
+	/// Po jakim czasie handlarz sam znika (także gdy event już nie działa)
+	var/lifetime = 15 MINUTES
 	COOLDOWN_DECLARE(talk_cooldown)
 	COOLDOWN_DECLARE(refusal_cooldown)
 
@@ -111,14 +115,29 @@
 	add_atom_colour("#570d6b", FIXED_COLOUR_PRIORITY)
 	set_light(1, -0.7, "#AAD84B")
 	ADD_TRAIT(src, TRAIT_PIERCEIMMUNE, type)
+	ADD_TRAIT(src, TRAIT_NOMOBSWAP, type)
+	real_name = trader_name
+	name = trader_name
 	if(trader_outfit)
 		equipOutfit(trader_outfit, TRUE)
-	for(var/obj/item/worn in get_equipped_items())
+	// Strój zawodu nie wpisuje imienia na kartę, bo handlarz nie ma przydziału
+	var/obj/item/card/id/card = wear_id?.GetID()
+	if(card)
+		card.registered_name = real_name
+		card.update_label()
+	for(var/obj/item/worn in get_equipped_items(TRUE))
 		ADD_TRAIT(worn, TRAIT_NODROP, type)
 		worn.resistance_flags |= INDESTRUCTIBLE
 	requested_item ||= pick_request()
-	real_name = trader_name
-	name = trader_name
+	addtimer(CALLBACK(src, PROC_REF(lose_patience)), lifetime)
+
+/// Czas minął: handlarz znika bez zapłaty
+/mob/living/carbon/human/dummy/aquila_hex_trader/proc/lose_patience()
+	if(QDELETED(src))
+		return
+	active = FALSE
+	visible_message("<b>[src]</b> traci cierpliwość.")
+	qdel(src)
 
 /mob/living/carbon/human/dummy/aquila_hex_trader/Destroy()
 	var/turf/T = get_turf(src)
@@ -270,8 +289,19 @@
 	return "Przynieś mi trzydzieści jednostek napoju zwanego [requested_name()]."
 
 /mob/living/carbon/human/dummy/aquila_hex_trader/bartender/pick_request()
-	var/static/list/dispenser_drinks = list(
-		/datum/reagent/consumable/ethanol,
+	var/list/mixed = easy_drinks()
+	return length(mixed) ? pick(mixed) : /datum/reagent/consumable/ethanol/beer
+
+/**
+ * Drinki, które barman zmiesza w jednym kroku z tego, co ma pod ręką: każdy składnik reakcji jest w dystrybutorze
+ * napojów, dystrybutorze alkoholi albo w kuchennej lodówce (mleko, śmietanka, cukier), bez katalizatorów,
+ * specjalnych naczyń i podgrzewania. Same napoje z dystrybutorów się nie liczą.
+ */
+/mob/living/carbon/human/dummy/aquila_hex_trader/bartender/proc/easy_drinks()
+	var/static/list/drinks
+	if(drinks)
+		return drinks
+	var/static/list/dispenser_drinks = typecacheof(list(
 		/datum/reagent/consumable/ethanol/beer,
 		/datum/reagent/consumable/ethanol/kahlua,
 		/datum/reagent/consumable/ethanol/whiskey,
@@ -291,14 +321,47 @@
 		/datum/reagent/consumable/ethanol/triple_sec,
 		/datum/reagent/consumable/ethanol/sake,
 		/datum/reagent/consumable/ethanol/applejack,
-	)
-	var/list/mixed = list()
+	), only_root_path = TRUE)
+	var/static/list/soft_ingredients = typecacheof(list(
+		/datum/reagent/water,
+		/datum/reagent/consumable/ice,
+		/datum/reagent/consumable/coffee,
+		/datum/reagent/consumable/cream,
+		/datum/reagent/consumable/tea,
+		/datum/reagent/consumable/icetea,
+		/datum/reagent/consumable/space_cola,
+		/datum/reagent/consumable/spacemountainwind,
+		/datum/reagent/consumable/dr_gibb,
+		/datum/reagent/consumable/space_up,
+		/datum/reagent/consumable/tonic,
+		/datum/reagent/consumable/sodawater,
+		/datum/reagent/consumable/lemon_lime,
+		/datum/reagent/consumable/sugar,
+		/datum/reagent/consumable/pineapplejuice,
+		/datum/reagent/consumable/orangejuice,
+		/datum/reagent/consumable/grenadine,
+		/datum/reagent/consumable/limejuice,
+		/datum/reagent/consumable/tomatojuice,
+		/datum/reagent/consumable/lemonjuice,
+		/datum/reagent/consumable/menthol,
+		/datum/reagent/consumable/milk,
+	), only_root_path = TRUE)
+	drinks = list()
 	for(var/reagent in GLOB.chemical_reactions_list)
 		for(var/datum/chemical_reaction/reaction as anything in GLOB.chemical_reactions_list[reagent])
+			if(length(reaction.required_catalysts) || reaction.required_container || reaction.required_other || reaction.is_cold_recipe || reaction.required_temp > T20C)
+				continue
+			var/easy = length(reaction.required_reagents) > 0
+			for(var/ingredient in reaction.required_reagents)
+				if(!dispenser_drinks[ingredient] && !soft_ingredients[ingredient])
+					easy = FALSE
+					break
+			if(!easy)
+				continue
 			for(var/result in reaction.results)
-				if(ispath(result, /datum/reagent/consumable/ethanol) && !(result in dispenser_drinks))
-					mixed |= result
-	return length(mixed) ? pick(mixed) : /datum/reagent/consumable/ethanol/beer
+				if(ispath(result, /datum/reagent/consumable/ethanol) && result != /datum/reagent/consumable/ethanol && !dispenser_drinks[result])
+					drinks |= result
+	return drinks
 
 /mob/living/carbon/human/dummy/aquila_hex_trader/bartender/check_item(obj/item/supplied)
 	return istype(supplied, /obj/item/reagent_containers) && supplied.reagents?.has_reagent(requested_item, 30)
@@ -316,7 +379,11 @@
 	return "Daj mi przedmiot zwany [requested_name()], a nie pożałujesz."
 
 /mob/living/carbon/human/dummy/aquila_hex_trader/collector/pick_request()
-	return pick(
+	return pick(request_pool())
+
+/// Przedmioty, o które prosi kolekcjoner: nic, co sprzedaje stary Vendotron, żeby nie dało się kupić zlecenia w automacie
+/mob/living/carbon/human/dummy/aquila_hex_trader/collector/proc/request_pool()
+	return list(
 		/obj/item/clothing/gloves/color/yellow,
 		/obj/item/instrument/saxophone,
 		/obj/item/relic,
@@ -325,8 +392,6 @@
 		/obj/item/clothing/shoes/wheelys,
 		/obj/item/slime_extract/green,
 		/obj/item/clothing/head/crown,
-		/obj/item/toy/eightball,
-		/obj/item/clothing/head/collectable/tophat,
 	)
 
 /mob/living/carbon/human/dummy/aquila_hex_trader/collector/check_item(obj/item/supplied)

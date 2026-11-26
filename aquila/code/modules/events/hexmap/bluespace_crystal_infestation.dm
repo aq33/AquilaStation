@@ -2,10 +2,12 @@
 // Eris puts its bluespace crystal structure in a random (usually maintenance) area, feeds its bluespace entropy system
 // and pulls nearby things to the nest; the event is hidden. We have no entropy, so ours is a nest on a free safe
 // maintenance turf (our shared helper) that, while it still holds crystals, sends up to four loose items and living
-// beings around it to random free safe turfs of the ship (never space or dangerous rooms) every 1.5-2.5 minutes, at
-// most 15 times. Cutting it with wirecutters or a mining tool gives one-use bluespace shards: a separate item that
-// teleports like our crystal when crushed or thrown, but has no materials, research points or machine part use, so
-// it is no source of real bluespace crystals. The crew gets a short announcement with the area.
+// beings around it to random free safe turfs of the ship (never space, dangerous or closed rooms such as the brig)
+// every 1.5-2.5 minutes, at most 15 times. It leaves alone the cuffed, anyone being pulled, hostile creatures and
+// anyone carrying a bag of holding; the landing turfs are drawn once per pulse. Cutting it with wirecutters or a mining
+// tool gives one-use bluespace shards: a separate item that, crushed or thrown, makes a plain bluespace jump of up to
+// 8 turfs (like our crystal), but has no materials, research points or machine part use, so it is no source of real
+// bluespace crystals. The crew gets a short announcement with the area.
 
 /datum/round_event_control/aquila_hex_bluespace_crystal_infestation
 	name = "Gniazdo kryształów bluespace"
@@ -87,8 +89,31 @@
 	COOLDOWN_START(src, next_pulse, rand(90, 150) SECONDS)
 	pulse()
 
-/// Przerzuca do pulse_max_targets luźnych przedmiotów i żywych istot z okolicy w losowe bezpieczne miejsca okrętu; zwraca, ile przerzuciło
-/obj/structure/aquila_bluespace_nest/proc/pulse()
+/// Czy puls może przerzucić tę rzecz: luźny przedmiot albo istota, ale nie skuty, ciągnięty, wrogi stwór ani nic z torbą przechowywania
+/obj/structure/aquila_bluespace_nest/proc/can_throw(atom/movable/thing)
+	if(thing == src || thing.anchored || !isturf(thing.loc))
+		return FALSE
+	if(!isliving(thing) && !isitem(thing))
+		return FALSE
+	if(thing.pulledby)
+		return FALSE
+	if(isliving(thing))
+		var/mob/living/being = thing
+		if(being.restrained())
+			return FALSE
+		// Wrogie stwory: każdy stwór bez gracza spoza frakcji neutralnej (karpie, pająki, roje), żeby gniazdo nie roznosiło ich po okręcie
+		if(ishostile(being) || (!being.mind && (isanimal(being) || isbasicmob(being)) && !(FACTION_NEUTRAL in being.faction)))
+			return FALSE
+	var/static/list/bag_cache = typecacheof(/obj/item/storage/backpack/holding)
+	if(bag_cache[thing.type] || length(typecache_filter_list(thing.GetAllContents(), bag_cache)))
+		return FALSE
+	return TRUE
+
+/**
+ * Przerzuca do pulse_max_targets luźnych przedmiotów i żywych istot z okolicy w bezpieczne miejsca okrętu; zwraca, ile przerzuciło.
+ * destinations - pola lądowania (domyślnie losowane raz na puls przez aquila_hex_safe_teleport_turfs()), każde dla jednej rzeczy.
+ */
+/obj/structure/aquila_bluespace_nest/proc/pulse(list/destinations)
 	. = 0
 	pulses_left--
 	var/turf/center = get_turf(src)
@@ -96,19 +121,18 @@
 		return
 	var/list/targets = list()
 	for(var/atom/movable/thing in range(pulse_range, center))
-		if(thing == src || thing.anchored || !isturf(thing.loc))
-			continue
-		if(isliving(thing) || isitem(thing))
+		if(can_throw(thing))
 			targets += thing
 	if(!length(targets))
 		return
+	destinations = destinations ? destinations.Copy() : aquila_hex_safe_teleport_turfs(min(length(targets), pulse_max_targets))
+	if(!length(destinations))
+		return
 	playsound(center, 'sound/effects/phasein.ogg', 40, TRUE)
 	for(var/atom/movable/thing as anything in shuffle(targets))
-		if(. >= pulse_max_targets)
+		if(. >= pulse_max_targets || !length(destinations))
 			break
-		var/turf/destination = aquila_hex_safe_teleport_turf()
-		if(!destination)
-			break
+		var/turf/destination = popleft(destinations)
 		if(do_teleport(thing, destination, 0, asoundin = 'sound/effects/phasein.ogg', channel = TELEPORT_CHANNEL_BLUESPACE))
 			.++
 			if(isliving(thing))

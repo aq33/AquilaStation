@@ -3,8 +3,10 @@
 // list of oddities with random prices, including guns, armour, implants and wizard items, and hitting or emagging it
 // can turn it into a hostile mob or set off spiders, cannons and bombs. Ours never breaks the hull: it lands in a
 // supply pod without an explosion on a free safe turf of a safe room, away from doors so it blocks no passage. Its
-// stock is drawn from our own harmless odd items (no weapons, armour, implants, access or precious materials) at
-// prices of 30-600 credits with a random +-30%, it runs on its own battery and it has none of the punishments.
+// stock is drawn from our own harmless odd items (no weapons, armour, implants, access, precious materials, machine
+// parts or anything else that speeds up research or the economy) at prices of 30-400 credits with a random +-30%.
+// Everyone pays the full price (no department discount) and silicons cannot buy at all, so nobody gets it for free.
+// It runs on its own battery and has none of the punishments.
 
 /datum/round_event_control/aquila_hex_old_vendotron
 	name = "Stary Vendotron"
@@ -50,6 +52,7 @@
 	vend_reply = "Dziękuję. Zwrotów nie przyjmuję."
 	default_price = 100
 	extra_price = 300
+	payment_department = NO_FREEBIES
 	/// Typ => cena bazowa, z której losuje się zapas
 	var/static/list/stock_prices = list(
 		/obj/item/toy/crayon/rainbow = 30,
@@ -66,15 +69,8 @@
 		/obj/item/tank/internals/emergency_oxygen/double = 120,
 		/obj/item/clothing/shoes/magboots = 400,
 		/obj/item/bikehorn/rubberducky = 150,
-		/obj/item/stock_parts/micro_laser/ultra = 200,
-		/obj/item/stock_parts/manipulator/pico = 200,
-		/obj/item/stock_parts/scanning_module/phasic = 200,
-		/obj/item/stock_parts/capacitor/super = 200,
-		/obj/item/stock_parts/cell/high = 150,
-		/obj/item/slime_extract/grey = 120,
 		/obj/item/dice/d20 = 50,
 		/obj/item/storage/box/actionfigure = 150,
-		/obj/item/storage/box/monkeycubes = 150,
 		/obj/item/clothing/head/collectable/tophat = 120,
 		/obj/item/toy/cards/deck = 40,
 		/obj/item/toy/eightball = 60,
@@ -88,7 +84,6 @@
 		/obj/item/reagent_containers/food/drinks/bottle/wine = 90,
 		/obj/item/reagent_containers/food/drinks/bottle/grappa = 120,
 		/obj/item/clothing/suit/hooded/wintercoat = 100,
-		/obj/item/stack/ore/bluespace_crystal = 450,
 		/obj/item/clothing/gloves/color/fyellow = 200,
 	)
 	/// Wylosowane ceny zapasu (typ => cena)
@@ -117,3 +112,21 @@
 /// Własna bateria: działa także w kapsule i w pomieszczeniu bez zasilania
 /obj/machinery/vending/aquila_old_vendotron/powered(chan = -1)
 	return TRUE
+
+/// Silikony nie kupują: automat nie ma złącza dla SI, a darmowe zakupy przez SI omijałyby ceny
+/obj/machinery/vending/aquila_old_vendotron/ui_status(mob/user, datum/ui_state/state)
+	if(issilicon(user))
+		return UI_CLOSE
+	return ..()
+
+/obj/machinery/vending/aquila_old_vendotron/ui_act(action, params)
+	if(issilicon(usr))
+		return TRUE
+	return ..()
+
+/obj/machinery/vending/aquila_old_vendotron/attack_ai(mob/user)
+	to_chat(user, "<span class='warning'>[src] nie ma złącza dla sztucznej inteligencji. Kupić można tylko osobiście, z kartą.</span>")
+	return FALSE
+
+/obj/machinery/vending/aquila_old_vendotron/attack_robot(mob/user)
+	return attack_ai(user)

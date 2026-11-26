@@ -35,6 +35,40 @@
 /proc/aquila_hex_unsafe_area_type(area_type)
 	return !area_type || aquila_hex_unsafe_area_typecache()[area_type]
 
+/**
+ * Typecache obszarów, do których eventy nie wrzucają rzeczy ani ludzi (kapsuły, goście, prezenty, teleport):
+ * niebezpieczne obszary z aquila_hex_unsafe_area_typecache() i zamknięte pomieszczenia: bryg i cele, gabinety
+ * dowództwa, magazyn EVA, bezpieczny magazyn techniczny, teleporter, ksenobiologia, wirusologia i komora spalania toksyn.
+ */
+/proc/aquila_hex_closed_area_typecache()
+	var/static/list/closed_areas
+	if(!closed_areas)
+		var/list/unsafe_areas = aquila_hex_unsafe_area_typecache()
+		closed_areas = unsafe_areas.Copy()
+		var/list/extra = typecacheof(list(
+			/area/security/brig,
+			/area/security/prison,
+			/area/security/warden,
+			/area/security/execution,
+			/area/crew_quarters/heads,
+			/area/nsv/crew_quarters/heads,
+			/area/ai_monitored/storage/eva,
+			/area/storage/eva,
+			/area/storage/tech,
+			/area/teleporter,
+			/area/gateway,
+			/area/science/xenobiology,
+			/area/medical/virology,
+			/area/science/mixing/chamber,
+		))
+		for(var/area_type in extra)
+			closed_areas[area_type] = TRUE
+	return closed_areas
+
+/// Czy do obszaru tego typu event nie może niczego wrzucić (niebezpieczny albo zamknięty)
+/proc/aquila_hex_closed_area_type(area_type)
+	return !area_type || aquila_hex_closed_area_typecache()[area_type]
+
 /// Obszar tuneli technicznych statku, w którym może się coś pojawić (bez paneli słonecznych, utylizacji, zagród szlamów, pokoju FTL i podstacji)
 /proc/aquila_hex_maint_area_ok(area/A)
 	var/static/list/excluded_areas = typecacheof(list(
@@ -186,20 +220,22 @@
 
 /**
  * Do amount wolnych i bezpiecznych pól w jednym losowym pomieszczeniu statku (bez tuneli technicznych i obszarów
- * z aquila_hex_unsafe_area_typecache()), na które może spaść kapsuła albo pojawić się gość. Zwraca listę pól
+ * z aquila_hex_closed_area_typecache()), na które może spaść kapsuła albo pojawić się gość. Zwraca listę pól
  * z jednego pomieszczenia, które ma ich co najmniej amount; pustą listę, gdy takiego nie ma.
- * dense - pola dla czegoś gęstego (aquila_hex_dense_spot_ok()).
+ * dense - pola dla czegoś gęstego (aquila_hex_dense_spot_ok()); area_choices - typy obszarów do wyboru (domyślnie obszary
+ * statku, wtedy tylko pola na poziomach statku; podane wprost biorą pola z każdego poziomu).
  */
-/proc/aquila_hex_room_turfs(amount = 1, dense = FALSE)
+/proc/aquila_hex_room_turfs(amount = 1, dense = FALSE, list/area_choices)
 	. = list()
-	var/list/area_types = GLOB.the_station_areas.Copy()
+	var/list/choices = area_choices || GLOB.the_station_areas
+	var/list/area_types = choices.Copy()
 	while(length(area_types))
 		var/area_type = pick_n_take(area_types)
-		if(aquila_hex_unsafe_area_type(area_type) || ispath(area_type, /area/maintenance) || ispath(area_type, /area/space))
+		if(aquila_hex_closed_area_type(area_type) || ispath(area_type, /area/maintenance) || ispath(area_type, /area/space))
 			continue
 		var/list/turfs = list()
 		for(var/turf/T as anything in get_area_turfs(area_type))
-			if(!is_station_level(T.z) || isspaceturf(T))
+			if((!area_choices && !is_station_level(T.z)) || isspaceturf(T))
 				continue
 			if(dense ? aquila_hex_dense_spot_ok(T) : aquila_hex_free_safe_turf(T))
 				turfs += T
@@ -208,12 +244,28 @@
 				. += pick_n_take(turfs)
 			return
 
-/// Losowe wolne i bezpieczne pole statku (nie kosmos, nie niebezpieczny obszar) do teleportu; null, gdy nie znalazł
+/// Losowe wolne i bezpieczne pole statku (nie kosmos, nie niebezpieczny ani zamknięty obszar) do teleportu; null, gdy nie znalazł
 /proc/aquila_hex_safe_teleport_turf()
-	for(var/attempt in 1 to 15)
-		var/turf/T = aquila_hex_random_ship_turf(aquila_hex_unsafe_area_typecache())
-		if(aquila_hex_free_safe_turf(T))
-			return T
+	var/list/turfs = aquila_hex_safe_teleport_turfs(1)
+	return length(turfs) ? turfs[1] : null
+
+/**
+ * Do amount wolnych i bezpiecznych pól statku do teleportu, każde z innego losowego obszaru (bez kosmosu i obszarów
+ * z aquila_hex_closed_area_typecache()). Sprawdza najwyżej 15 obszarów, w każdym pola w losowej kolejności do pierwszego dobrego.
+ */
+/proc/aquila_hex_safe_teleport_turfs(amount = 1)
+	. = list()
+	var/list/area_types = GLOB.the_station_areas.Copy()
+	var/areas_checked = 0
+	while(length(area_types) && length(.) < amount && areas_checked < 15)
+		var/area_type = pick_n_take(area_types)
+		if(aquila_hex_closed_area_type(area_type) || ispath(area_type, /area/space))
+			continue
+		areas_checked++
+		for(var/turf/open/T as anything in shuffle(get_area_turfs(area_type)))
+			if(istype(T) && !isspaceturf(T) && is_station_level(T.z) && aquila_hex_free_safe_turf(T))
+				. += T
+				break
 
 /// Pole kosmosu kilka pól od burty statku (od min_dist do max_dist), na którym można coś postawić; null, gdy żadna burta nie ma wolnego kosmosu
 /proc/aquila_hex_space_spot_near_hull(min_dist = 2, max_dist = 4, list/side_order)

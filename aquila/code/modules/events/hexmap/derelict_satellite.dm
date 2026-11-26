@@ -127,7 +127,7 @@
 /obj/structure/aquila_derelict_satellite/deconstruct(disassembled = TRUE)
 	if(!(flags_1 & NODECONSTRUCT_1))
 		drop_salvage(FALSE)
-	qdel(src)
+	return ..()
 
 /// Rdzeń danych satelity: punkty badań w analizatorze destrukcyjnym albo eksport przez ładownię
 /obj/item/aquila_satellite_data_core

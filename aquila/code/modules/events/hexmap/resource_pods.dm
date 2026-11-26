@@ -3,8 +3,9 @@
 // four styles (Syndicate loot, Nanotrasen, a trade company, a cult inquisition) with style-specific crates. Ours lands
 // the pods without any explosion on free safe floor of one safe room (our shared room finder), in three styles
 // (Nanotrasen, goods seized from the Syndicate, a passing trade caravan) with the same crates for all of them: our
-// resource caches and a few plain supply crates, nothing magic or from the uplink. The announcement comes once the
-// pods are on their way.
+// resource caches and a few plain supply crates with fixed contents (no grenades, toxins or anything from the uplink).
+// The pods are bluespace pods, so they vanish after landing and leave no pod to clean up. The announcement comes once
+// the pods are on their way.
 
 /datum/round_event_control/aquila_hex_resource_pods
 	name = "Kapsuły z zasobami"
@@ -62,6 +63,7 @@
 /datum/round_event/aquila_hex_resource_pods/proc/launch_pod(turf/landing)
 	var/obj/structure/closet/supplypod/pod = new(null, pod_style())
 	pod.explosionSize = list(0, 0, 0, 0)
+	pod.bluespace = TRUE
 	make_crate().forceMove(pod)
 	return new /obj/effect/pod_landingzone(landing, pod)
 
@@ -73,21 +75,25 @@
 			return STYLE_CENTCOM
 	return STYLE_STANDARD
 
-/// Skrzynia z kapsuły: zwykle surowce, czasem zapasy z ładowni
-/datum/round_event/aquila_hex_resource_pods/proc/make_crate()
-	RETURN_TYPE(/obj/structure/closet/crate)
-	if(prob(65))
-		return new /obj/structure/closet/crate/aquila_resource_cache
-	var/static/list/supply_packs = list(
+/// Paczki z ładowni, które mogą przylecieć w kapsule: stała zawartość, bez granatów i toksyn
+/datum/round_event/aquila_hex_resource_pods/proc/supply_packs()
+	var/static/list/packs = list(
 		/datum/supply_pack/emergency/internals,
-		/datum/supply_pack/medical/supplies,
+		/datum/supply_pack/medical/basickits,
 		/datum/supply_pack/organic/food,
-		/datum/supply_pack/service/janitor,
+		/datum/supply_pack/service/lightbulbs,
 	)
-	var/datum/supply_pack/pack = SSshuttle.supply_packs[pick(supply_packs)]
+	return packs
+
+/// Skrzynia z kapsuły: zwykle surowce, czasem zapasy z ładowni (pack_type wymusza paczkę)
+/datum/round_event/aquila_hex_resource_pods/proc/make_crate(pack_type)
+	RETURN_TYPE(/obj/structure/closet/crate)
+	if(!pack_type && prob(65))
+		return new /obj/structure/closet/crate/wooden/aquila_resource_cache
+	var/datum/supply_pack/pack = SSshuttle.supply_packs[pack_type || pick(supply_packs())]
 	var/obj/structure/closet/crate/crate = pack?.generate(null)
 	if(!istype(crate))
-		return new /obj/structure/closet/crate/aquila_resource_cache
+		return new /obj/structure/closet/crate/wooden/aquila_resource_cache
 	crate.locked = FALSE
 	crate.update_icon()
 	return crate
