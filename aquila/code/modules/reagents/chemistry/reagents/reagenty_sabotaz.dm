@@ -257,6 +257,8 @@
 	var/datum/reagents/stash
 	/// Ile jednostek uwalnia się na tick
 	var/per_tick = 0
+	/// Uwolnione, ale jeszcze nieprzelane: holder odrzuca porcje reagentu poniżej CHEMICAL_VOLUME_ROUNDING (0,01 j.), więc drobne porcje czekają, aż urosną
+	var/pending = 0
 
 /datum/status_effect/aq_extended_release/on_creation(mob/living/new_owner, datum/reagents/pill_contents, release_time = 2 MINUTES)
 	stash = pill_contents
@@ -272,9 +274,18 @@
 		qdel(src)
 		return
 	// Bez minimalnej porcji: 1 j. leku też ma schodzić przez cały czas uwalniania. Resztka po błędach zaokrągleń idzie z ostatnią porcją.
-	var/amount = per_tick
+	pending += per_tick
+	var/amount = pending
 	if(stash.total_volume - amount < 0.001)
 		amount = stash.total_volume
+	else
+		// Każdy reagent porcji musi mieć co najmniej 0,01 j., inaczej holder by go zgubił: czekamy, aż porcja urośnie
+		var/smallest = stash.total_volume
+		for(var/datum/reagent/bit as anything in stash.reagent_list)
+			smallest = min(smallest, bit.volume)
+		if(amount * smallest / stash.total_volume < CHEMICAL_VOLUME_ROUNDING)
+			return
+	pending = 0
 	// Jak pill/attack(): reakcja połknięcia (mutagen, święcona woda itp.) przed przelaniem, ale bez smaku co tick
 	var/part = amount / stash.total_volume
 	SEND_SIGNAL(owner, COMSIG_ATOM_EXPOSE_REAGENTS, stash.reagent_list, stash, INGEST, part, FALSE)

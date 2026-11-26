@@ -155,6 +155,25 @@
 	belly.purge_contents()
 	patient.reagents.clear_reagents()
 
+	// Bardzo mała dawka (0,5 j. leku, 10 j. polimeru) do pustego żołądka: porcje poniżej 0,01 j. nie mogą przepadać
+	pill = allocate(/obj/item/reagent_containers/pill)
+	pill.reagents.add_reagent(/datum/reagent/consumable/glucose_polymer, 10)
+	pill.reagents.add_reagent(/datum/reagent/medicine/salbutamol, 0.5)
+	TEST_ASSERT(pill.attack(patient, patient), "Swallowing a tiny polymer pill failed")
+	release = patient.has_status_effect(/datum/status_effect/aq_extended_release)
+	for(var/i in 1 to 30)
+		release.tick()
+	TEST_ASSERT(!QDELETED(release), "A 0.5 u polymer pill ran out after 60 s of its 120 s")
+	for(var/i in 1 to 35)
+		if(QDELETED(release))
+			break
+		release.tick()
+	TEST_ASSERT(QDELETED(release), "A 0.5 u polymer pill did not end after its time")
+	var/tiny = belly.reagents.get_reagent_amount(/datum/reagent/medicine/salbutamol)
+	TEST_ASSERT(abs(tiny - 0.5) < 0.02, "A 0.5 u polymer pill delivered [tiny] u of 0.5 to an empty stomach")
+	belly.purge_contents()
+	patient.reagents.clear_reagents()
+
 	// Uwalniana porcja dostaje reakcję połknięcia: kwas siarkowy połknięty (INGEST) zadaje obrażenia fizyczne
 	var/brute_before = patient.getBruteLoss()
 	pill = allocate(/obj/item/reagent_containers/pill)
