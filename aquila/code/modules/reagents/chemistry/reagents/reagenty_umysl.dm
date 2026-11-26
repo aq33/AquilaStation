@@ -109,6 +109,8 @@ GLOBAL_LIST_EMPTY(aq_sdgf_cloned)
 
 /datum/reagent/aq_locutogen/aq_on_created()
 	. = ..()
+	// trans_id_to() przekazuje tę samą listę data: własna kopia, żeby nagranie w jednym pojemniku nie trafiło do drugiego
+	data = islist(data) ? data.Copy() : list("phrase" = null)
 	aq_listen()
 
 /datum/reagent/aq_locutogen/Destroy()

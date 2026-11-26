@@ -34,6 +34,18 @@
 	drunk.on_mob_life(listener)
 	TEST_ASSERT(!listener.reagents.has_reagent(/datum/reagent/aq_locutogen), "Locutogen stayed in the blood after replaying the phrase")
 
+	// Lokutogen rozlany przez trans_id_to(): każdy pojemnik nagrywa własne zdanie
+	var/obj/item/reagent_containers/glass/beaker/left = allocate(/obj/item/reagent_containers/glass/beaker)
+	var/obj/item/reagent_containers/glass/beaker/right = allocate(/obj/item/reagent_containers/glass/beaker)
+	left.reagents.add_reagent(/datum/reagent/aq_locutogen, 10, list("phrase" = null))
+	left.reagents.trans_id_to(right, /datum/reagent/aq_locutogen, 5)
+	var/datum/reagent/aq_locutogen/left_half = left.reagents.get_reagent(/datum/reagent/aq_locutogen)
+	var/datum/reagent/aq_locutogen/right_half = right.reagents.get_reagent(/datum/reagent/aq_locutogen)
+	TEST_ASSERT(left_half.aq_ear == left && right_half?.aq_ear == right, "Locutogen split by trans_id_to does not listen in both beakers")
+	right.Hear("Prawe zdanie", speaker, null, "Prawe zdanie", null, list(), list())
+	left.Hear("Lewe zdanie", speaker, null, "Lewe zdanie", null, list(), list())
+	TEST_ASSERT(left_half.data["phrase"] == "Lewe zdanie" && right_half.data["phrase"] == "Prawe zdanie", "Split locutogen shares one recording ([left_half.data["phrase"]] / [right_half.data["phrase"]])")
+
 	// Lokutogen z prawdziwej syntezy rozłożonej w czasie: produkt pierwszego kroku nasłuchuje, zanim przyjdzie następny krok
 	var/obj/item/reagent_containers/glass/beaker/flask = allocate(/obj/item/reagent_containers/glass/beaker)
 	flask.reagents.add_reagent(/datum/reagent/medicine/inacusiate, 10)
@@ -154,6 +166,7 @@
 	// Klucz limitu jest stały dla gracza: z umysłu, także gdy ciało nie ma ckey (duch wyszedł)
 	var/mob/living/carbon/human/ghosted = allocate(/mob/living/carbon/human)
 	ghosted.mind_initialize()
+	allocated += ghosted.mind
 	ghosted.mind.key = "Gracz Testowy"
 	TEST_ASSERT(!ghosted.ckey && aq_sdgf_key(ghosted) == ckey("Gracz Testowy"), "The SDGF limit key of a body without a client is [aq_sdgf_key(ghosted)], not the player's ckey")
 
