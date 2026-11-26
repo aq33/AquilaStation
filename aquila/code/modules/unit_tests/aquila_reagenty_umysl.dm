@@ -34,6 +34,16 @@
 	drunk.on_mob_life(listener)
 	TEST_ASSERT(!listener.reagents.has_reagent(/datum/reagent/aq_locutogen), "Locutogen stayed in the blood after replaying the phrase")
 
+	// Lokutogen z syntezy rozłożonej w czasie: produkt dodany bez danych, nasłuch startuje w kroku i na końcu reakcji
+	var/obj/item/reagent_containers/glass/beaker/flask = allocate(/obj/item/reagent_containers/glass/beaker)
+	flask.reagents.add_reagent(/datum/reagent/aq_locutogen, 5)
+	var/datum/reagent/aq_locutogen/brewed = flask.reagents.get_reagent(/datum/reagent/aq_locutogen)
+	TEST_ASSERT(!brewed.aq_ear, "Locutogen added without data already listens, the synthesis check proves nothing")
+	var/datum/chemical_reaction/aq_locutogen/synthesis = new()
+	synthesis.reaction_step(flask.reagents, null, 1, 1, 5)
+	TEST_ASSERT(brewed.aq_ear == flask, "Locutogen made by a timed reaction does not listen in its flask")
+	qdel(synthesis)
+
 	// Solipsizyna: inni ludzie zasłonięci, głuchota, po wypłukaniu wszystko wraca
 	var/mob/living/carbon/human/loner = allocate(/mob/living/carbon/human)
 	var/mob/living/carbon/human/other = allocate(/mob/living/carbon/human)
@@ -86,6 +96,8 @@
 
 	// Randonium: tylko niegroźne reagenty z listy
 	var/mob/living/carbon/human/gambler = allocate(/mob/living/carbon/human)
+	// bez reakcji: mleko z kawą dałyby latte, której nie ma na liście
+	gambler.reagents.flags |= NO_REACT
 	gambler.reagents.add_reagent(/datum/reagent/aq_randonium, 10)
 	var/datum/reagent/aq_randonium/randonium = gambler.reagents.get_reagent(/datum/reagent/aq_randonium)
 	for(var/i in 1 to 12)
@@ -137,6 +149,12 @@
 	TEST_ASSERT(!length(copy.get_equipped_items(TRUE)) && !copy.wear_id, "The copy came with clothes or an ID")
 	TEST_ASSERT(!copy.mind, "A copy without a ghost got a mind")
 	TEST_ASSERT(!aq_sdgf_grow_clone(original, null), "SDGF grew a second copy of the same player")
+
+	// Klucz limitu jest stały dla gracza: z umysłu, także gdy ciało nie ma ckey (duch wyszedł)
+	var/mob/living/carbon/human/ghosted = allocate(/mob/living/carbon/human)
+	ghosted.mind_initialize()
+	ghosted.mind.key = "Gracz Testowy"
+	TEST_ASSERT(!ghosted.ckey && aq_sdgf_key(ghosted) == ckey("Gracz Testowy"), "The SDGF limit key of a body without a client is [aq_sdgf_key(ghosted)], not the player's ckey")
 
 	// Za mała dawka: komórki wtapiają się w ciało i leczą
 	var/mob/living/carbon/human/small = allocate(/mob/living/carbon/human)
