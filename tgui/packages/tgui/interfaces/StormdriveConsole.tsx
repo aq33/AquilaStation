@@ -14,12 +14,14 @@ import {
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
+import { CoreEjectionData, CoreEjectionSection } from './common/CoreEjection';
 
 type Data = {
   bz: any;
   co2: any;
   constricted_plasma: any;
   control_rod_percent: any;
+  core_ejection?: CoreEjectionData | null;
   fuel_mix: any;
   gas_records: any;
   heat: any;
@@ -73,6 +75,7 @@ export const StormdriveConsole = (props) => {
   return (
     <Window theme="ntos" width={560} height={600}>
       <Window.Content scrollable>
+        <CoreEjectionSection ejection={data.core_ejection} />
         <Section>
           <Section title="Ustawienia wstępne:">
             <>

@@ -130,3 +130,20 @@
 	contains = list(/obj/structure/toilet/unanchored, /obj/structure/toilet/unanchored, /obj/structure/toilet/unanchored)
 	crate_name = "skrzynia z toaletami"
 	crate_type = /obj/structure/closet/crate/large
+
+// AQUILA - wyrzut rdzenia: komplet prętów paliwowych do ponownego uruchomienia RBMK po wyrzucie (napęd burzowy ma swój rdzeń, supermateria odłamek)
+/datum/supply_pack/engine/rbmk_fuel_rods
+	name = "Skrzynia z prętami paliwowymi RBMK"
+	desc = "Pięć prętów paliwowych z uranem-238, pełny załadunek reaktora RBMK, np. po awaryjnym wyrzucie rdzenia. Do otwarcia wymaga dostępu Głównego Inżyniera."
+	cost = 50000 // więcej niż 5 prętów plutonowych na eksport (5 x 9000), żeby zamawianie nie dawało zysku
+	access = ACCESS_CE
+	contains = list(
+		/obj/item/fuel_rod,
+		/obj/item/fuel_rod,
+		/obj/item/fuel_rod,
+		/obj/item/fuel_rod,
+		/obj/item/fuel_rod,
+	)
+	crate_name = "skrzynia z prętami paliwowymi RBMK"
+	crate_type = /obj/structure/closet/crate/secure/engineering
+	dangerous = TRUE

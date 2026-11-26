@@ -23,7 +23,7 @@
 	if(liquids?.liquid_group && !liquids.fire_state && exposed_temperature >= FIRE_MINIMUM_TEMPERATURE_TO_EXIST) // AQ EDIT - ciecze z Monke: zapłon palnej kałuży
 		liquids.liquid_group.ignite_turf(src)
 
-	var/has_fuel = (air.get_moles(GAS_PLASMA) + air.get_moles(GAS_CONSTRICTED_PLASMA)) > 0.5 || air.get_moles(GAS_TRITIUM) > 0.5
+	var/has_fuel = (air.get_moles(GAS_PLASMA) + air.get_moles(GAS_CONSTRICTED_PLASMA)) > 0.5 || air.get_moles(GAS_TRITIUM) > 0.5 || air.aq_fire_fuel_moles(exposed_temperature) > 0.5 // AQ EDIT - zapłon każdego paliwa z danych gazu, aquila/code/modules/atmospherics/gasmixtures/generic_fire.dm
 
 	if(active_hotspot)
 		if(soh)
@@ -182,7 +182,7 @@
 		return
 
 	//Not enough / nothing to burn
-	if(!location.air || (INSUFFICIENT(GAS_PLASMA) && INSUFFICIENT(GAS_TRITIUM)) && INSUFFICIENT(GAS_CONSTRICTED_PLASMA) || INSUFFICIENT(GAS_O2))
+	if(!location.air || (INSUFFICIENT(GAS_PLASMA) && INSUFFICIENT(GAS_TRITIUM)) && INSUFFICIENT(GAS_CONSTRICTED_PLASMA) && location.air.aq_fire_fuel_moles(temperature) < 0.5 || INSUFFICIENT(GAS_O2)) // AQ EDIT - każde paliwo z danych gazu
 		qdel(src)
 		return
 
