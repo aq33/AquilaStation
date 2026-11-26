@@ -15,6 +15,226 @@
 	},
 /turf/open/floor/monotile/dark,
 /area/bridge/cic)
+"aac" = (
+/obj/machinery/status_display/evac/north,
+/obj/machinery/big_broadcast_camera,
+/turf/open/floor/wood,
+/area/hallway/nsv/deck1/hallway)
+"aad" = (
+/obj/structure/ethernet_cable{
+	icon_state = "1-2"
+	},
+/obj/structure/ethernet_cable,
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 4
+	},
+/turf/open/floor/circuit/telecomms/server,
+/area/comms)
+"aae" = (
+/obj/structure/ethernet_cable,
+/turf/open/floor/circuit/telecomms/server,
+/area/comms)
+"aaf" = (
+/obj/machinery/ai/data_core/primary,
+/obj/structure/ethernet_cable,
+/turf/open/floor/circuit/telecomms/server,
+/area/comms)
+"aag" = (
+/obj/structure/ethernet_cable,
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 1
+	},
+/turf/open/floor/circuit/telecomms/server,
+/area/comms)
+"aah" = (
+/obj/structure/ethernet_cable{
+	icon_state = "1-4"
+	},
+/obj/structure/ethernet_cable,
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 6
+	},
+/turf/open/floor/circuit/telecomms/server,
+/area/comms)
+"aai" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/ethernet_cable,
+/obj/machinery/server_chiller{
+	dir = 5
+	},
+/turf/open/floor/circuit/telecomms/server,
+/area/comms)
+"aaj" = (
+/obj/structure/ethernet_cable{
+	icon_state = "4-8"
+	},
+/obj/structure/ethernet_cable,
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 4
+	},
+/turf/open/floor/circuit/telecomms/server,
+/area/comms)
+"aak" = (
+/obj/structure/ethernet_cable{
+	icon_state = "2-4-8"
+	},
+/obj/structure/ethernet_cable,
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 4
+	},
+/turf/open/floor/circuit/telecomms/server,
+/area/comms)
+"aal" = (
+/obj/structure/ethernet_cable{
+	icon_state = "1-4-8"
+	},
+/obj/structure/ethernet_cable,
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 4
+	},
+/turf/open/floor/circuit/telecomms/server,
+/area/comms)
+"aam" = (
+/obj/structure/ethernet_cable{
+	icon_state = "4-8"
+	},
+/obj/structure/ethernet_cable,
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 9
+	},
+/turf/open/floor/circuit/telecomms/server,
+/area/comms)
+"aan" = (
+/obj/structure/ethernet_cable,
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 9
+	},
+/turf/open/floor/circuit/telecomms/server,
+/area/comms)
+"aao" = (
+/obj/structure/ethernet_cable{
+	icon_state = "0-2"
+	},
+/obj/structure/ethernet_cable,
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 5
+	},
+/turf/open/floor/circuit/telecomms/server,
+/area/comms)
+"aap" = (
+/obj/structure/ethernet_cable{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple,
+/turf/open/floor/circuit/telecomms/server,
+/area/comms)
+"aaq" = (
+/obj/structure/ethernet_cable,
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 5
+	},
+/turf/open/floor/circuit/telecomms/server,
+/area/comms)
+"aar" = (
+/obj/structure/ethernet_cable{
+	icon_state = "1-8"
+	},
+/obj/structure/ethernet_cable,
+/obj/machinery/atmospherics/pipe/heat_exchanging/junction,
+/turf/open/floor/circuit/telecomms/server,
+/area/comms)
+"aas" = (
+/obj/structure/ethernet_cable,
+/obj/machinery/atmospherics/components/unary/tank/toxins,
+/turf/open/floor/circuit/telecomms/server,
+/area/comms)
+"aat" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/ai/server_cabinet/prefilled,
+/obj/structure/ethernet_cable,
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 4
+	},
+/turf/open/floor/circuit/telecomms/server,
+/area/comms)
+"aau" = (
+/obj/machinery/ai/data_core,
+/obj/structure/ethernet_cable,
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 4
+	},
+/turf/open/floor/circuit/telecomms/server,
+/area/comms)
+"aav" = (
+/obj/structure/ethernet_cable,
+/obj/machinery/rack_creator,
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 4
+	},
+/turf/open/floor/circuit/telecomms/server,
+/area/comms)
+"aaw" = (
+/obj/structure/ethernet_cable,
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 4
+	},
+/turf/open/floor/circuit/telecomms/server,
+/area/comms)
+"aax" = (
+/obj/structure/ethernet_cable{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 1
+	},
+/turf/open/floor/circuit/telecomms/server,
+/area/comms)
+"aay" = (
+/obj/structure/ethernet_cable{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 10
+	},
+/turf/open/floor/circuit/telecomms/server,
+/area/comms)
+"aaz" = (
+/obj/structure/ethernet_cable,
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 10
+	},
+/turf/open/floor/circuit/telecomms/server,
+/area/comms)
+"aaA" = (
+/obj/structure/ethernet_cable,
+/obj/machinery/atmospherics/pipe/heat_exchanging/manifold,
+/turf/open/floor/circuit/telecomms/server,
+/area/comms)
+"aaB" = (
+/obj/structure/ethernet_cable,
+/obj/machinery/atmospherics/pipe/simple/general/visible{
+	dir = 9
+	},
+/turf/open/floor/circuit/telecomms/server,
+/area/comms)
+"aaC" = (
+/obj/structure/ethernet_cable{
+	icon_state = "0-2"
+	},
+/obj/structure/ethernet_cable,
+/obj/machinery/atmospherics/pipe/manifold/general{
+	dir = 8
+	},
+/turf/open/floor/circuit/telecomms/server,
+/area/comms)
+"aaD" = (
+/obj/machinery/door/airlock/ship/hatch,
+/turf/open/floor/plating,
+/area/comms)
 "abB" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 8
@@ -536,13 +756,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/hydroponics/garden/abandoned)
-"aHb" = (
-/obj/machinery/ai/data_core,
-/obj/structure/ethernet_cable{
-	icon_state = "0-2"
-	},
-/turf/open/floor/circuit/telecomms/server,
-/area/comms)
 "aHA" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
@@ -1869,13 +2082,6 @@
 /obj/structure/closet/firecloset,
 /turf/open/floor/plating,
 /area/maintenance/nsv/deck1/port/aft)
-"bOX" = (
-/obj/machinery/ai/data_core/primary,
-/obj/structure/ethernet_cable{
-	icon_state = "0-2"
-	},
-/turf/open/floor/circuit/telecomms/server,
-/area/comms)
 "bPd" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
@@ -2604,16 +2810,6 @@
 "cvE" = (
 /turf/closed/wall/steel,
 /area/medical/virology)
-"cwd" = (
-/obj/machinery/door/airlock/ship/engineering{
-	name = "Serwerownia SI";
-	req_one_access_txt = "61"
-	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/comms)
 "cwk" = (
 /obj/structure/closet/secure_closet/bridge,
 /obj/effect/turf_decal/stripes/line{
@@ -6275,12 +6471,6 @@
 	},
 /turf/open/floor/monotile/dark,
 /area/bridge/cic)
-"gdx" = (
-/obj/structure/ethernet_cable{
-	icon_state = "1-4"
-	},
-/turf/open/floor/circuit/telecomms/server,
-/area/comms)
 "gdT" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -7461,13 +7651,6 @@
 "hjJ" = (
 /obj/machinery/telecomms/server/presets/security,
 /turf/open/floor/circuit/red/telecomms,
-/area/comms)
-"hjK" = (
-/obj/machinery/ai/server_cabinet/prefilled,
-/obj/structure/ethernet_cable{
-	icon_state = "0-2"
-	},
-/turf/open/floor/circuit/telecomms/server,
 /area/comms)
 "hkO" = (
 /turf/closed/wall/r_wall,
@@ -9771,12 +9954,6 @@
 /obj/machinery/door/airlock/ship/public,
 /turf/open/floor/plating,
 /area/maintenance/department/medical)
-"jGS" = (
-/obj/structure/ethernet_cable{
-	icon_state = "4-8"
-	},
-/turf/open/floor/circuit/telecomms/server,
-/area/comms)
 "jHN" = (
 /obj/machinery/holopad,
 /turf/open/floor/monotile/dark,
@@ -10475,17 +10652,6 @@
 	},
 /turf/open/floor/carpet/royalblack,
 /area/crew_quarters/heads/captain)
-"klR" = (
-/obj/machinery/door/airlock/ship/engineering{
-	name = "Serwerownia SI";
-	req_one_access_txt = "61"
-	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/orange/hidden,
-/turf/open/floor/plating,
-/area/comms)
 "kmC" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
@@ -11081,11 +11247,6 @@
 	},
 /turf/open/floor/monotile/light,
 /area/medical/surgery)
-"kLm" = (
-/obj/machinery/power/apc/auto_name/south,
-/obj/structure/cable,
-/turf/open/floor/monotile/light,
-/area/medical/medbay/central)
 "kLs" = (
 /obj/effect/decal/cleanable/plasma,
 /turf/open/floor/carpet/police,
@@ -11849,10 +12010,6 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/monotile/dark,
 /area/hydroponics/garden/abandoned)
-"lyP" = (
-/obj/machinery/rack_creator,
-/turf/open/floor/circuit/telecomms/server,
-/area/comms)
 "lyX" = (
 /obj/structure/table/wood/bar,
 /obj/machinery/door/firedoor/border_only{
@@ -11865,15 +12022,6 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
-"lzi" = (
-/obj/structure/chair/office{
-	dir = 4
-	},
-/obj/structure/chair/office{
-	dir = 4
-	},
-/turf/open/floor/engine,
-/area/bridge/cic)
 "lzv" = (
 /obj/docking_port/stationary{
 	dheight = 1;
@@ -13631,12 +13779,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/tech/grid,
 /area/quartermaster/warehouse)
-"nBu" = (
-/obj/structure/ethernet_cable{
-	icon_state = "1-4-8"
-	},
-/turf/open/floor/circuit/telecomms/server,
-/area/comms)
 "nBO" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -17412,12 +17554,6 @@
 	},
 /turf/open/floor/monotile/steel,
 /area/hallway/nsv/deck1/hallway)
-"rqF" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/turf/open/floor/monotile/dark,
-/area/medical/chemistry)
 "rqN" = (
 /obj/structure/railing/corner{
 	dir = 4
@@ -17433,12 +17569,6 @@
 	},
 /turf/open/floor/plasteel/techmaint,
 /area/engine/engineering)
-"rrk" = (
-/obj/structure/ethernet_cable{
-	icon_state = "1-8"
-	},
-/turf/open/floor/circuit/telecomms/server,
-/area/comms)
 "rrr" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
 	dir = 8
@@ -17586,12 +17716,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/monotile/dark,
 /area/nsv/hanger/deck2)
-"rwn" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/circuit/telecomms/server,
-/area/comms)
 "rws" = (
 /obj/machinery/power/apc/auto_name/east,
 /obj/structure/cable,
@@ -17667,12 +17791,6 @@
 /obj/structure/table/optable,
 /turf/open/floor/monotile/light,
 /area/medical/surgery)
-"rDf" = (
-/obj/structure/ethernet_cable{
-	icon_state = "1-2"
-	},
-/turf/open/floor/circuit/telecomms/server,
-/area/comms)
 "rDs" = (
 /obj/machinery/atmospherics/pipe/simple/orange/hidden,
 /turf/closed/wall/steel,
@@ -17964,12 +18082,6 @@
 /obj/machinery/duct,
 /turf/open/floor/monotile/steel,
 /area/medical/genetics)
-"rTB" = (
-/obj/structure/ethernet_cable{
-	icon_state = "2-4-8"
-	},
-/turf/open/floor/circuit/telecomms/server,
-/area/comms)
 "rTN" = (
 /obj/structure/dresser,
 /obj/machinery/camera/autoname{
@@ -18539,10 +18651,6 @@
 	},
 /turf/open/floor/plasteel/techmaint,
 /area/maintenance/department/medical)
-"svM" = (
-/obj/machinery/server_chiller,
-/turf/open/floor/circuit/telecomms/server,
-/area/comms)
 "swi" = (
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
@@ -44708,7 +44816,7 @@ cMI
 kRI
 kRI
 kRI
-klR
+kRI
 kRI
 kRI
 kRI
@@ -44965,7 +45073,7 @@ mpi
 mpi
 mpi
 mpi
-cwd
+mpi
 mpi
 mpi
 mpi
@@ -45215,11 +45323,11 @@ soj
 soj
 ivz
 ivz
-uhk
-uhk
-uhk
-uhk
-uhk
+aaf
+aap
+aax
+aag
+aaq
 mJk
 tuH
 tuH
@@ -45472,11 +45580,11 @@ oRJ
 oRJ
 ivz
 ivz
-rwn
-bOX
-gdx
-svM
-uhk
+aat
+aae
+aah
+aaq
+aaw
 xfv
 tuH
 tuH
@@ -45729,11 +45837,11 @@ toY
 toY
 ivz
 ivz
-uhk
-uhk
-jGS
-uhk
-uhk
+aau
+aae
+aaj
+aaw
+aaw
 xfv
 jdy
 jvZ
@@ -45986,11 +46094,11 @@ toY
 toY
 ivz
 ivz
-uhk
-uhk
-rTB
-rDf
-rDf
+aav
+aae
+aak
+aad
+aad
 csY
 nJj
 tuH
@@ -46243,11 +46351,11 @@ toY
 toY
 ivz
 ivz
-uhk
-hjK
-nBu
-uhk
-uhk
+aay
+aao
+aal
+aaw
+aaw
 mJk
 abN
 jvZ
@@ -46500,11 +46608,11 @@ toY
 toY
 ivz
 ivz
-uhk
-uhk
-jGS
-uhk
-uhk
+aae
+aaz
+aam
+aaw
+aaw
 xfv
 tuH
 tuH
@@ -46757,11 +46865,11 @@ toY
 ivz
 ivz
 ivz
-rwn
-aHb
-rrk
-lyP
-uhk
+aai
+aaC
+aar
+aaA
+aaw
 xfv
 tuH
 tuH
@@ -47014,11 +47122,11 @@ ivz
 ivz
 mUn
 vfB
-uhk
-uhk
-uhk
-uhk
-uhk
+aas
+aaB
+aae
+aaz
+aan
 mJk
 tuH
 tuH
@@ -47278,7 +47386,7 @@ mJk
 mJk
 mJk
 mJk
-mJk
+aaD
 mJk
 edO
 rDs
@@ -57805,7 +57913,7 @@ fNS
 qti
 gdw
 pcH
-lzi
+kHI
 uAj
 mqY
 qWR
@@ -60383,7 +60491,7 @@ qti
 iYC
 gXz
 qti
-oOJ
+aac
 aYO
 qyH
 myL
@@ -67329,7 +67437,7 @@ dVL
 hqB
 lZA
 qvB
-rqF
+qvB
 unh
 voe
 wvB
