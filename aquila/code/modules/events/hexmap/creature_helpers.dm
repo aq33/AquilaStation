@@ -104,6 +104,24 @@
 			return FALSE
 	return TRUE
 
+/**
+ * Stwory eventu (weakrefy z creature_refs, żywe i martwe) znikają w obłoku dymu, gdy event się kończy; lista zostaje
+ * wyczyszczona. Mob, którym steruje gracz, zostaje. Zwraca, ile stworów zniknęło.
+ */
+/proc/aquila_hex_vanish_creatures(list/datum/weakref/creature_refs)
+	. = 0
+	for(var/datum/weakref/creature_ref as anything in creature_refs)
+		var/mob/living/creature = creature_ref?.resolve()
+		if(QDELETED(creature) || creature.key)
+			continue
+		var/turf/creature_turf = get_turf(creature)
+		if(creature_turf)
+			new /obj/effect/temp_visual/small_smoke/halfsecond(creature_turf)
+			creature.visible_message("<span class='warning'>[capitalize(creature.name)] rozpływa się w powietrzu.</span>")
+		qdel(creature)
+		.++
+	creature_refs?.Cut()
+
 /// Klucz pierwszego kandydata z listy (zdejmuje ich po kolei), który nadal ma klucz; null, gdy nikt nie został
 /proc/aquila_hex_take_candidate_key(list/candidates)
 	while(length(candidates))

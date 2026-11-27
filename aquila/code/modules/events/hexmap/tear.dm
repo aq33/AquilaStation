@@ -4,11 +4,11 @@
 // faithless) plus a hellhound leader, one every 2 s; BlueMoon lets out five random hostile mobs. Ours keeps Paradise's
 // flow without breaking anything: only the lights flicker, the tear stands on a free safe floor of a safe room and lets
 // its 4-9 creatures and the leader out one by one onto free floor next to it (never onto a mob or a door), then closes;
-// it also closes on its own after 90 s and when the event ends. We had no hellhound, so there is a small new basic mob
-// drawn with the existing hound sprite (aquila/icons/planets/ruins/ramzi_hound.dmi, from Shiptest, CC BY-SA 3.0) in
+// it also closes on its own after 90 s and when the event ends, and then the creatures that are still around vanish.
+// We had no hellhound, so there is a small new basic mob drawn with the existing hound sprite (aquila/icons/planets/ruins/ramzi_hound.dmi, from Shiptest, CC BY-SA 3.0) in
 // red; it does not come from gold slime cores and is not playable. Every creature from a tear shares one faction and
 // gets a hunting AI that never attacks obstacles, so none of them breaks windows or walls. The tear sprite is the
-// existing bag of holding tear (icons/effects/96x96.dmi). The crew is warned once the tear is about to open.
+// existing bag of holding tear (icons/effects/96x96.dmi). The crew is warned once the tear has opened.
 
 /// Frakcja stworów z rozdarć i portali zaświatów (nie walczą ze sobą)
 #define AQUILA_HEX_RIFT_FACTION "aquila_hex_rift"
@@ -24,7 +24,7 @@
 /datum/round_event/aquila_hex_tear
 	fakeable = FALSE
 	startWhen = 1
-	announceWhen = 3
+	announceWhen = -1 // ogłoszenie idzie z open_tear(), gdy rozdarcie już się otworzyło
 	endWhen = 60 // 2 min: rozdarcie i tak zamyka się samo wcześniej
 	/// Pole, na którym otworzy się rozdarcie
 	var/turf/tear_turf
@@ -34,6 +34,10 @@
 	var/datum/weakref/tear_ref
 	/// Tytuł ogłoszenia
 	var/announce_title = "Alarm anomalii"
+	/// Stwory z rozdarcia (weakrefy, ta sama lista co spawned_refs rozdarcia); znikają na końcu eventu
+	var/list/datum/weakref/creature_refs = list()
+	/// Timer otwarcia rozdarcia (koniec eventu przed otwarciem je odwołuje)
+	var/open_timer
 
 /datum/round_event/aquila_hex_tear/setup()
 	var/list/room = aquila_hex_room_turfs(1)
@@ -48,7 +52,7 @@
 	for(var/obj/machinery/light/light in range(8, tear_turf))
 		INVOKE_ASYNC(light, TYPE_PROC_REF(/obj/machinery/light, flicker))
 	notify_ghosts("W [get_area_name(tear_turf, TRUE)] zaraz otworzy się [initial(tear_type.name)].", source = tear_turf, action = NOTIFY_JUMP, flashwindow = FALSE, header = initial(tear_type.name))
-	addtimer(CALLBACK(src, PROC_REF(open_tear)), 4 SECONDS)
+	open_timer = addtimer(CALLBACK(src, PROC_REF(open_tear)), 4 SECONDS, TIMER_STOPPABLE)
 
 /datum/round_event/aquila_hex_tear/announce(fake)
 	if(!tear_turf)
@@ -60,19 +64,35 @@
 	return "Czujniki wykryły rozdarcie w tkance czasoprzestrzeni na pokładzie. Przewidywane miejsce: [area_name]. Coś próbuje przez nie przejść. Ochrona do wskazanego pomieszczenia, reszta załogi z dala."
 
 /datum/round_event/aquila_hex_tear/end()
+	close_and_clear()
+
+/datum/round_event/aquila_hex_tear/kill()
+	close_and_clear()
+	return ..()
+
+/// Zamyka rozdarcie, a stwory, które z niego wyszły, znikają
+/datum/round_event/aquila_hex_tear/proc/close_and_clear()
+	if(open_timer)
+		deltimer(open_timer)
+		open_timer = null
 	var/obj/effect/aquila_hex_tear/tear = tear_ref?.resolve()
+	tear_ref = null
 	if(!QDELETED(tear))
 		tear.close()
+	aquila_hex_vanish_creatures(creature_refs)
 
-/// Otwiera rozdarcie na wybranym polu (jeśli dalej jest wolne); zwraca rozdarcie
+/// Otwiera rozdarcie na wybranym polu (jeśli dalej jest wolne) i ostrzega załogę; zwraca rozdarcie
 /datum/round_event/aquila_hex_tear/proc/open_tear()
 	if(!tear_turf || !aquila_hex_free_safe_turf(tear_turf))
 		log_game("[type]: the tear turf got blocked before the tear opened.")
+		tear_turf = null
 		return null
 	var/obj/effect/aquila_hex_tear/tear = new tear_type(tear_turf)
 	tear_ref = WEAKREF(tear)
+	tear.spawned_refs = creature_refs
 	message_admins("[tear.name] otwiera się w [ADMIN_VERBOSEJMP(tear_turf)] i wypuści [tear.spawn_max] stworów.")
 	log_game("[type]: [tear] opened at [AREACOORD(tear_turf)], [tear.spawn_max] creatures.")
+	announce(FALSE)
 	return tear
 
 /**
@@ -128,7 +148,7 @@
 	addtimer(CALLBACK(src, PROC_REF(close)), lifespan)
 
 /obj/effect/aquila_hex_tear/Destroy()
-	spawned_refs.Cut()
+	spawned_refs = null // lista należy do eventu, który po niej sprząta stwory
 	return ..()
 
 /// Wypuszcza kolejnego stwora; po ostatnim rozdarcie po chwili się zamyka

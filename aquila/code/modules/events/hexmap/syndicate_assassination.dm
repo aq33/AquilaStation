@@ -2,8 +2,9 @@
 // Bubber picks a living human crew member who is not Syndicate, announces the hit as the Syndicate and 20-40 s later
 // drops a Syndicate pod with five troopers (swords, SMGs, shotguns, stormtroopers) right on the victim's turf.
 // Ours announces with our Polish lines, drops two to four thugs with knives or pistols (our basic Syndicate troopers,
-// which do not smash obstacles) and never lands on the victim: the pod lands three to six tiles away on a free safe
-// floor outside closed rooms, with no landing explosion, so the victim can run or call security. If the victim hides
+// which do not smash obstacles) and never lands on the victim: the pod (a bluespace one, it vanishes after landing)
+// lands three to six tiles away on a free safe floor outside closed rooms with a clear line to the victim (no wall or
+// window between), with no landing explosion, so the victim can run or call security. If the victim hides
 // in a closed room, dies or leaves the ship before the pod comes, the pod lands where the victim was last seen. No
 // "hammers" variant and no fake victims (our events are not faked by the fake announcement event).
 
@@ -83,7 +84,7 @@
 /datum/round_event/aquila_hex_syndicate_assassination/proc/launch(turf/landing)
 	return new /obj/effect/pod_landingzone(landing, make_pod())
 
-/// Kapsuła Syndykatu bez wybuchu przy lądowaniu, z oprychami
+/// Kapsuła Syndykatu bez wybuchu przy lądowaniu, która znika po otwarciu, z oprychami
 /datum/round_event/aquila_hex_syndicate_assassination/proc/make_pod()
 	var/static/list/thug_types = list(
 		/mob/living/basic/trooper/syndicate/melee,
@@ -91,6 +92,7 @@
 	)
 	var/obj/structure/closet/supplypod/pod = new(null, STYLE_SYNDICATE)
 	pod.explosionSize = list(0, 0, 0, 0)
+	pod.bluespace = TRUE
 	for(var/i in 1 to thug_count)
 		var/thug_type = pick(thug_types)
 		var/mob/living/basic/trooper/syndicate/thug = new thug_type(pod)
@@ -118,18 +120,30 @@
 		if(aquila_hex_assassination_landing(victim))
 			return victim
 
-/// Wolne bezpieczne pole 3-6 pól od celu, poza zamkniętymi i niebezpiecznymi obszarami (nigdy na celu); null, gdy brak
-/proc/aquila_hex_assassination_landing(mob/living/victim)
+/**
+ * Wolne bezpieczne pole 3-6 pól od celu, z którego widać cel (bez ścian i okien po drodze, aquila_hex_clear_line()),
+ * poza zamkniętymi i niebezpiecznymi obszarami (nigdy na celu); null, gdy brak. station_only - tylko obszary statku.
+ */
+/proc/aquila_hex_assassination_landing(mob/living/victim, station_only = TRUE)
 	var/turf/center = get_turf(victim)
 	if(!center)
 		return null
 	var/list/spots = list()
 	for(var/turf/T as anything in RANGE_TURFS(6, center))
-		if(get_dist(T, center) < 3 || isspaceturf(T))
-			continue
-		var/area/turf_area = get_area(T)
-		if(!turf_area || !(turf_area.type in GLOB.the_station_areas) || aquila_hex_closed_area_type(turf_area.type))
-			continue
-		if(aquila_hex_free_safe_turf(T))
+		if(aquila_hex_assassination_spot_ok(T, center, station_only))
 			spots += T
 	return length(spots) ? pick(spots) : null
+
+/// Czy kapsuła zamachowców może wylądować na polu T przy celu stojącym na center
+/proc/aquila_hex_assassination_spot_ok(turf/T, turf/center, station_only = TRUE)
+	if(!isturf(T) || !isturf(center) || isspaceturf(T))
+		return FALSE
+	var/dist = get_dist(T, center)
+	if(dist < 3 || dist > 6)
+		return FALSE
+	var/area/turf_area = get_area(T)
+	if(!turf_area || aquila_hex_closed_area_type(turf_area.type))
+		return FALSE
+	if(station_only && !(turf_area.type in GLOB.the_station_areas))
+		return FALSE
+	return aquila_hex_free_safe_turf(T) && aquila_hex_clear_line(T, center, 6)

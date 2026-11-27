@@ -2,7 +2,7 @@
 // Monkestation polls ghosts with its own abandoned IPC preference, makes a human in a safe maintenance turf, turns it into
 // an IPC and gives it 4-8 ion laws to follow, a special synthetic heart and an arm doorjack implant that emags airlocks.
 // Ours is our IPC species with our own antagonist datum and a ghost role preference of its own (poll through our shared
-// hex ghost poll: preference, the all-antagonists and ghost role bans, the ghost role switch, next candidate when the
+// hex ghost poll: preference, its own ban and the all-antagonists and ghost role bans, the ghost role switch, next candidate when the
 // chosen one left). The goal is kept simple: two corrupted directives from our ion law generator and surviving the
 // shift. No doorjack (an emag in an arm) and no special heart: it wakes with an old maintenance ID (tunnel access only),
 // a grey jumpsuit and a small welding tool to patch itself up, a bit damaged, on a free safe maintenance floor.
@@ -21,7 +21,7 @@
 	fakeable = FALSE
 
 /datum/round_event/ghost_role/aquila_hex_abandoned_ipc/spawn_role()
-	var/list/candidates = aquila_hex_poll_ghost_role(src, list(BAN_ROLE_ALL_ANTAGONISTS, BAN_ROLE_ALL_GHOST), /datum/role_preference/midround_ghost/aquila_abandoned_ipc)
+	var/list/candidates = aquila_hex_poll_ghost_role(src, list(ROLE_ABANDONED_IPC, BAN_ROLE_ALL_ANTAGONISTS, BAN_ROLE_ALL_GHOST), /datum/role_preference/midround_ghost/aquila_abandoned_ipc)
 	var/player_key = aquila_hex_take_candidate_key(candidates)
 	if(!player_key) // nikt się nie zgłosił albo zgłoszeni wyszli w trakcie ankiety
 		return NOT_ENOUGH_PLAYERS
@@ -50,8 +50,8 @@
 	var/datum/mind/player_mind = new /datum/mind(player_key)
 	player_mind.active = TRUE
 	player_mind.transfer_to(robot)
-	player_mind.assigned_role = "Porzucony IPC"
-	player_mind.special_role = "Abandoned IPC"
+	player_mind.assigned_role = "Ghost Role" // rola ducha w exp_specialmap: czas gry jako rola specjalna, dynamic nie robi z niej zdrajcy
+	player_mind.special_role = ROLE_ABANDONED_IPC
 	player_mind.add_antag_datum(/datum/antagonist/aquila_hex_abandoned_ipc)
 	return robot
 
@@ -72,7 +72,8 @@
 	name = "Porzucony IPC"
 	roundend_category = "porzucone IPC"
 	antagpanel_category = "Other"
-	show_in_antagpanel = FALSE
+	show_in_antagpanel = TRUE
+	banning_key = ROLE_ABANDONED_IPC
 	show_name_in_check_antagonists = TRUE
 	/// Uszkodzone dyrektywy (prawa jonowe), których robot się trzyma
 	var/list/directives = list()
@@ -100,3 +101,4 @@
 /datum/role_preference/midround_ghost/aquila_abandoned_ipc
 	name = "Porzucony IPC"
 	antag_datum = /datum/antagonist/aquila_hex_abandoned_ipc
+	description = "Budzisz się w tunelach technicznych okrętu jako porzucony, poobijany robot IPC z dwiema uszkodzonymi dyrektywami. Trzymasz się ich i próbujesz przetrwać do końca zmiany."
