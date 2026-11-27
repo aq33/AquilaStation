@@ -1991,3 +1991,16 @@
       enzym bólu, obskurytol, fulguracyna, rozrusznik radiomagnetyczny i inne.'
   - rscadd: 'Pirotechnika z warunkiem: trijodek azotu, fotofosfid, argina i punktualit.'
   - rscadd: 'SDGF: kopia ciała dla ducha, najwyżej jedna na gracza na rundę.'
+  - rscadd: 'Mapa FTL: 76 nowych losowych eventów przypiętych do terenów kafli (wiadomości
+      i komunikaty, awarie okrętu, nowe anomalie, kosmiczna fauna za oknem, znaleziska
+      i goście, plagi, Syndykat i rozdarcia wymiarów).'
+  - rscadd: 'Nowe stwory kosmiczne: koi, muszki, meduzy, płaszczki, rekiny i wieloryby
+      przelatujące obok kadłuba.'
+  - rscadd: 'Nowe role duchów: żywy smar, porzucony cyborg Syndykatu, meteor zmiennokształtnego
+      i porzucony IPC (z nową preferencją).'
+  - rscadd: 'Nowe plagi: słoneczne larwy, żywy kabel, dzikie szlamy, larwy obcych,
+      mimity, oczny horror, kosmiczny dzik, pleśń i złośliwy narząd.'
+  - imageadd: Sprite'y kosmicznej fauny i plag z Paradise, VOREStation, Baystation12,
+      vgstation13, tegustation-bay12 i BeeStation.
+  - bugfix: Usunięta burza słoneczna nie zostawia paneli słonecznych na pięciokrotnej
+      mocy.
