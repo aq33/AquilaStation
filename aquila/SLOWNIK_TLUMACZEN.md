@@ -2852,6 +2852,58 @@ Nazwa rasy w nawiasie to mianownik z sekcji 04 §6, małą literą (przegląd sp
 | Yellow Crayon Powder (`/colorful_reagent/powder/yellow/crayon`) | Proszek z żółtej kredki | m; nowe |
 | Yellow Powder (`/colorful_reagent/powder/yellow`) | Żółty proszek | m; nowe |
 
+### A.14 Reagenty z przeglądu 246 kodów (2026-11)
+
+Plan: `raport/reagenty_02_plan_portu.md`. Pliki: `aquila/code/modules/reagents/chemistry/reagents/reagenty_*.dm`.
+
+| Oryginał | Polski | Uwagi |
+|---|---|---|
+| Osteodaxon (`/medicine/osteodaxon`) | Osteodaksyn | nowe; plik: `reagenty_medycyna.dm` |
+| Sanguirite (`/medicine/sanguirite`) | Sangwiryt | nowe; plik: `reagenty_medycyna.dm` |
+| Quick Clot (`/medicine/quickclot`) | Szybkie krzepnięcie | nowe; plik: `reagenty_medycyna.dm` |
+| Peridaxon (`/medicine/peridaxon`) | Perydaksyna | nowe; plik: `reagenty_medycyna.dm` |
+| Bupropion (`/medicine/bupropion`) | Bupropion | nowe; plik: `reagenty_medycyna.dm` |
+| Naltrexone (`/medicine/naltrexone`) | Naltreksan | nowe; plik: `reagenty_medycyna.dm` |
+| Aminazine (`/medicine/aminazine`) | Aminazyna | nowe; plik: `reagenty_medycyna.dm` |
+| Addictol (`/medicine/addictol`) | Addyktol | nowe; plik: `reagenty_medycyna.dm` |
+| Smelling Salts (`/medicine/ammonium_bicarbonate`) | Sole trzeźwiące | nowe; plik: `reagenty_medycyna.dm` |
+| Ignisol (`/medicine/ignisol`) | Ignizol | nowe; plik: `reagenty_medycyna.dm` |
+| Metabolism-Inhibiting Toxin (`/toxin/metabolism_inhibitor`) | Toksyna hamująca metabolizm | nowe; plik: `reagenty_medycyna.dm` |
+| Equalizone (`/medicine/equalizone`) | Equalizon | nowe; plik: `reagenty_medycyna.dm` |
+| Microplastics (`/toxin/microplastics`) | Mikroplastik | nowe; plik: `reagenty_medycyna.dm` |
+| Dermagen (`/medicine/dermagen`) | Dermagen | nowe; plik: `reagenty_medycyna.dm` |
+| Superglue (`/superglue`) | Superklej | nowe; plik: `reagenty_narzedzia.dm` |
+| Silicate (`/silicate`) | Krzemian | nowe; plik: `reagenty_narzedzia.dm` |
+| Concrete (`/concrete`) | Beton | nowe; plik: `reagenty_narzedzia.dm` |
+| Matter Deconstructor (`/matter_deconstructor`) | Dekonstruktor materii | nowe; plik: `reagenty_narzedzia.dm` |
+| Grass Gro (`/grassgro`) | Trawo-gro | nowe; plik: `reagenty_narzedzia.dm` |
+| Genesis Serum (`/genesis`) | Serum genezy | nowe; plik: `reagenty_narzedzia.dm` |
+| Silver Nitrate (`/silver_nitrate`) | Azotan srebra | nowe; plik: `reagenty_narzedzia.dm` |
+| Fingerprint Nanites (`/fingerprint_nanites`) | Odciskowe nanoboty | nowe; plik: `reagenty_narzedzia.dm` |
+| Holy Salt (`/holy_salt`) | Sól święcona | nowe; plik: `reagenty_narzedzia.dm` |
+| Obscuritol (`/obscuritol`) | Obskurytol | nowe; plik: `reagenty_sabotaz.dm` |
+| Radiomagnetic Disruptor (`/toxin/radiomagnetic_disruptor`) | Rozrusznik radiomagnetyczny | nowe; plik: `reagenty_sabotaz.dm` |
+| Fulguracin (`/fulguracin`) | Fulguracyna | nowe; plik: `reagenty_sabotaz.dm` |
+| Cardox (`/toxin/cardox`) | Kardoks | nowe; plik: `reagenty_sabotaz.dm` |
+| Malaxitol (`/malaxitol`) | Malaksytol | nowe; plik: `reagenty_sabotaz.dm` |
+| Booster Enzyme (`/medicine/booster_enzyme`) | Enzym wzmacniający | nowe; plik: `reagenty_sabotaz.dm` |
+| Glucose Polymer (`/consumable/glucose_polymer`) | Polimer glukozy | nowe; plik: `reagenty_sabotaz.dm` |
+| Cordiolis Hepatico (`/medicine/cordiolis_hepatico`) | Kordiolis hepatyczny | nowe; plik: `reagenty_sabotaz.dm` |
+| Class-A Amnestics (`/aq_amnestics`) | Amnestyki klasy A | nowe; plik: `reagenty_umysl.dm` |
+| Locutogen (`/aq_locutogen`) | Lokutogen | nowe; plik: `reagenty_umysl.dm` |
+| Solipsizine (`/aq_solipsizine`) | Solipsizyna | nowe; plik: `reagenty_umysl.dm` |
+| Pain Enzyme (`/aq_pain_enzyme`) | Enzym bólu | nowe; plik: `reagenty_umysl.dm` |
+| Brain Hurting Juice (`/toxin/aq_brain_hurting_juice`) | Sok bolących mózgów | nowe; plik: `reagenty_umysl.dm` |
+| Hyperpsychotic Drug (`/toxin/aq_hyperpsy`) | Lek hiperpsychotyczny | nowe; plik: `reagenty_umysl.dm` |
+| Randonium (`/aq_randonium`) | Randonium | nowe; plik: `reagenty_umysl.dm` |
+| Splitting Poison (`/toxin/aq_splitting_poison`) | Rozłupująca trucizna | nowe; plik: `reagenty_umysl.dm` |
+| Energetic Nanobots (`/aq_energetic_nanobots`) | Nanoboty energetyczne | nowe; plik: `reagenty_umysl.dm` |
+| Synthetic-Derived Growth Factor (`/aq_sdgf`) | Syntetyczny czynnik wzrostu | nowe; plik: `reagenty_umysl.dm` |
+| Nitrogen Triiodide (`/aq_nitrogen_triiodide`) | Trijodek azotu | nowe; plik: `reagenty_umysl.dm` |
+| Photophosphide (`/aq_photophosphide`) | Fotofosfid | nowe; plik: `reagenty_umysl.dm` |
+| Argine (`/aq_argine`) | Argina | nowe; plik: `reagenty_umysl.dm` |
+| Punctualite (`/aq_punctualite`) | Punktualit | nowe; plik: `reagenty_umysl.dm` |
+
 ## Część B. Medycyna
 
 ### B.1 Rodzaje obrażeń i parametry zdrowia

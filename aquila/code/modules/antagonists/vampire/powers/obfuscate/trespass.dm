@@ -12,6 +12,8 @@
 	prefire_message = "Wybierz cel."
 	//target_range = 2
 	var/turf/target_turf // We need to decide where we're going based on where we clicked. It's not actually the tile we clicked.
+	/// Czas rozwiania w mgłę zamiast wyliczonego z poziomu, null = z poziomu (test soli święconej ustawia 0)
+	var/aq_mist_delay
 	level_current = 1
 
 /datum/action/vampire/targeted/trespass/two
@@ -75,7 +77,7 @@
 	puff.set_up(3, 0, my_turf)
 	puff.start()
 
-	var/mist_delay = max(5, 20 - level_current * 2.5) // Level up and do this faster.
+	var/mist_delay = isnull(aq_mist_delay) ? max(5, 20 - level_current * 2.5) : aq_mist_delay // Level up and do this faster.
 
 	// Freeze Me
 	user.Stun(mist_delay, ignore_canstun = TRUE)
@@ -86,7 +88,9 @@
 	// Wait...
 	sleep(mist_delay / 2)
 	// Move & Freeze
-	if(isturf(target_turf))
+	if(isturf(target_turf) && aq_salt_on_path()) // sól święcona rozsypana w trakcie (reagents/chemistry/reagents/reagenty_narzedzia.dm)
+		owner.balloon_alert(owner, "sól święcona zagradza drogę.")
+	else if(isturf(target_turf))
 		do_teleport(owner, target_turf, no_effects=TRUE, channel = TELEPORT_CHANNEL_QUANTUM) // in teleport.dm?
 	user.Stun(mist_delay / 2, ignore_canstun = TRUE)
 
@@ -102,5 +106,5 @@
 	// Effect Destination
 	playsound(get_turf(owner), 'sound/magic/summon_karp.ogg', 60, 1)
 	puff = new /datum/effect_system/steam_spread()
-	puff.set_up(3, 0, target_turf)
+	puff.set_up(3, 0, get_turf(owner)) // tam, gdzie mgła naprawdę się zebrała (sól mogła ją zatrzymać)
 	puff.start()

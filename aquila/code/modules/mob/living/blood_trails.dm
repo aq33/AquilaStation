@@ -43,6 +43,8 @@
 		return
 	if(HAS_TRAIT(src, TRAIT_NO_BLOOD) || HAS_TRAIT(src, TRAIT_NO_BLEEDING) || IS_IN_STASIS(src) || !blood_volume)
 		return
+	if(HAS_TRAIT(src, TRAIT_AQ_QUICKCLOT)) // Szybkie krzepnięcie (reagenty_medycyna.dm): ciągnięty pacjent też nie traci krwi
+		return
 
 	var/base_bleed_rate = aq_trail_bleed_rate()
 	var/base_brute = getBruteLoss()

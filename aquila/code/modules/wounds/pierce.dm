@@ -27,7 +27,7 @@
 /datum/wound/pierce/proc/on_limb_hit(damage)
 	if(victim.stat == DEAD || damage < WOUND_MINIMUM_DAMAGE || HAS_TRAIT(victim, TRAIT_NO_BLOOD) || !victim.blood_volume)
 		return
-	if(!prob(internal_bleeding_chance + damage))
+	if(!prob(internal_bleeding_chance + damage) || HAS_TRAIT(victim, TRAIT_AQ_QUICKCLOT)) // Szybkie krzepnięcie
 		return
 	var/blood_lost = sqrt(damage) * internal_bleeding_coefficient * pick(0.75, 1, 1.25, 1.5)
 	victim.blood_volume = max(victim.blood_volume - blood_lost, 0)
