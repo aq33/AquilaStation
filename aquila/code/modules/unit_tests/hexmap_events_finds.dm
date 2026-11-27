@@ -452,10 +452,22 @@
 
 	var/obj/item/wrench/loose = allocate(/obj/item/wrench, side)
 	TEST_ASSERT(nest.can_throw(loose), "The nest may not throw a loose wrench")
+	// Zasięg pulsu przechodzi przez ściany, więc w pełnym przebiegu mogą w nim leżeć rzeczy z innych testów:
+	// puls dostaje pole lądowania dla każdej rzeczy w zasięgu, żeby wynik nie zależał od losowania
+	var/list/in_range = list()
+	for(var/atom/movable/thing in range(nest.pulse_range, nest))
+		if(nest.can_throw(thing))
+			in_range += thing
+	var/list/landings = list()
+	for(var/i in 1 to length(in_range))
+		landings += landing
+	var/saved_max = nest.pulse_max_targets
+	nest.pulse_max_targets = length(in_range)
 	var/pulses = nest.pulses_left
-	var/moved = nest.pulse(list(landing))
+	var/moved = nest.pulse(landings)
+	nest.pulse_max_targets = saved_max
 	TEST_ASSERT_EQUAL(nest.pulses_left, pulses - 1, "The pulse was not counted")
-	TEST_ASSERT_EQUAL(moved, 1, "The pulse threw [moved] things to one landing turf")
+	TEST_ASSERT_EQUAL(moved, length(in_range), "The pulse threw [moved] of [length(in_range)] things in range")
 	TEST_ASSERT_EQUAL(get_turf(loose), landing, "The pulse did not throw the wrench to the landing turf")
 
 	var/mob/living/carbon/human/user = allocate(/mob/living/carbon/human, floor)
