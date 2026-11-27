@@ -3403,6 +3403,8 @@
 #include "code\modules\unit_tests\aquila_swarmer.dm"
 #endif
 // ROJOWCE: koniec
+// Komora testowa: rozwój antagonistów (AQ#725)
+#include "code\modules\test_chamber\kits\pr_725_rozwoj_antagonistow.dm"
 // Profiler byond-tracy: MUSI być ostatnim include'em całego builda (BYOND inicjuje zmienne statyczne od końca,
 // więc ta rusza pierwsza, przed Master i mapą). Opis: tools/tracy/README.md
 #include "code\modules\tracy\tracy.dm"
