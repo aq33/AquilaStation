@@ -3378,7 +3378,12 @@
 
 // ROZWÓJ ANTAGONISTÓW: drobne porty (porywacz, ksenomorf, pradawny horror)
 #include "code\modules\antagonists\abductor\glands_tg.dm"
+#include "code\datums\components\shrink.dm"
+#include "code\modules\antagonists\abductor\abductor_gear_tg.dm"
+#ifdef UNIT_TESTS
 #include "code\modules\unit_tests\aquila_abductor_glands_tg.dm"
+#include "code\modules\unit_tests\aquila_abductor_gear_tg.dm"
+#endif
 // ROZWÓJ ANTAGONISTÓW: drobne - koniec
 // Profiler byond-tracy: MUSI być ostatnim include'em całego builda (BYOND inicjuje zmienne statyczne od końca,
 // więc ta rusza pierwsza, przed Master i mapą). Opis: tools/tracy/README.md

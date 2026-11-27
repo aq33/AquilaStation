@@ -1281,7 +1281,7 @@
 			stop_pulling()
 	if(!(mobility_flags & MOBILITY_UI))
 		unset_machine()
-	density = !lying
+	density = !lying && !HAS_TRAIT(src, TRAIT_UNDENSE) // AQ EDIT - zmniejszony mob (aquila/code/datums/components/shrink.dm)
 	var/changed = lying != lying_prev // AQ EDIT - było ==, przez co każde update_mobility() (np. z updatehealth() co Life) resetowało move_delay w trakcie chodzenia
 	if(lying)
 		if(!lying_prev)
