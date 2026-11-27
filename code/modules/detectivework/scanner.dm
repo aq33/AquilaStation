@@ -96,7 +96,7 @@
 
 			var/mob/living/carbon/human/H = A
 			if(!H.gloves)
-				fingerprints += rustg_hash_string(RUSTG_HASH_MD5, H.dna.uni_identity)
+				fingerprints += H.aq_fingerprint() // AQ EDIT - odciskowe nanoboty, aquila/code/modules/reagents/chemistry/reagents/reagenty_narzedzia.dm
 
 		else if(!ismob(A))
 

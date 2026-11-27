@@ -32,6 +32,7 @@ GLOBAL_LIST_INIT(aq_painkillers, list(
 	/datum/reagent/consumable/ethanol/painkiller = 25,
 	/datum/reagent/medicine/sal_acid = 20,
 	/datum/reagent/consumable/capsaicin = 10, // ostre: endorfiny (moduł potrzeb, aquila/code/modules/needs/)
+	/datum/reagent/medicine/osteodaxon = 15, // lekko łagodzi ból, także nieopatrzonego złamania (reagents/chemistry/reagents/reagenty_medycyna.dm)
 ))
 
 /mob/living/carbon/human

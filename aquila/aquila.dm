@@ -1535,6 +1535,7 @@
 // Komora testowa - zestawy PR-ów niżej (usuwać razem z plikiem zestawu po przetestowaniu)
 #include "code\modules\test_chamber\kits\pr_720_eventy_mapy.dm"
 #include "code\modules\test_chamber\kits\pr_695_dowodztwo.dm"
+#include "code\modules\test_chamber\kits\pr_717_reagenty.dm"
 #include "code\modules\test_chamber\kits\pr_700_mikser_dzwieku.dm"
 #include "code\modules\test_chamber\kits\pr_709_maszynownia_rury.dm"
 #include "code\modules\test_chamber\kits\pr_714_maszynownia_turbina.dm"
@@ -1911,6 +1912,10 @@
 
 // AquilaMed 5 (raport/medycyna5_01_plan.md): potrzebuje ran, bólu, taśmy policyjnej i instalacji chemicznej z bloków wyżej
 #include "code\modules\reagents\chemistry\reagents\med5_reagents.dm"
+#include "code\modules\reagents\chemistry\reagents\reagenty_medycyna.dm"
+#include "code\modules\reagents\chemistry\reagents\reagenty_narzedzia.dm"
+#include "code\modules\reagents\chemistry\reagents\reagenty_sabotaz.dm"
+#include "code\modules\reagents\chemistry\reagents\reagenty_umysl.dm"
 #include "code\modules\reagents\addiction\addiction.dm"
 #include "code\modules\medical\asthma.dm"
 #include "code\modules\medical\autoclave.dm"
@@ -2849,6 +2854,10 @@
 #include "code\modules\unit_tests\aquila_bleeding.dm"
 #include "code\modules\unit_tests\aquila_medycyna4.dm"
 #include "code\modules\unit_tests\aquila_medycyna5.dm"
+#include "code\modules\unit_tests\aquila_reagenty_medycyna.dm"
+#include "code\modules\unit_tests\aquila_reagenty_narzedzia.dm"
+#include "code\modules\unit_tests\aquila_reagenty_sabotaz.dm"
+#include "code\modules\unit_tests\aquila_reagenty_umysl.dm"
 #include "code\modules\unit_tests\aquila_medycyna6.dm"
 #include "code\modules\unit_tests\aquila_blood_trails.dm"
 #include "code\modules\unit_tests\aquila_blood_types.dm"

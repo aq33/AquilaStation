@@ -638,6 +638,8 @@
 #define TRAIT_BLOOD_FOUNTAIN "bloody_fountain"
 /// from coagulant reagents, this doesn't affect the bleeding itself but does affect the bleed warning messages
 #define TRAIT_COAGULATING "coagulating"
+/// AQUILA - Szybkie krzepnięcie w krwi (reagents/chemistry/reagents/reagenty_medycyna.dm): rany i krwotoki wewnętrzne nie tracą krwi, póki działa
+#define TRAIT_AQ_QUICKCLOT "aq_quickclot"
 /// Their eyes glow an unnatural red colour. Currently used to set special examine text on humans. Does not guarantee the mob's eyes are coloured red, nor that there is any visible glow on their character sprite.
 #define TRAIT_UNNATURAL_RED_GLOWY_EYES "unnatural_red_glowy_eyes"
 /// This atom is a secluded location, which is counted as out of bounds.
