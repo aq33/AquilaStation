@@ -138,5 +138,29 @@
 	cell.timer_end(forced = TRUE)
 	TEST_ASSERT_EQUAL(cell_security.fields["criminal"], "Paroled", "Zatrzymanie zegara nie dało zwolnienia warunkowego")
 
+	// Kaucja: stawka za minutę wyroku, nie przy dożywociu ani alarmie bojowym; wpłata zwalnia warunkowo
+	var/list/bail_records = make_records("Testowy Poręczony")
+	var/datum/data/record/bail_security = bail_records[2]
+	var/obj/item/card/id/prisoner/bail_card = allocate(/obj/item/card/id/prisoner, run_loc_floor_bottom_left, 600, "Drobny wandalizm", "Testowy Poręczony")
+	var/old_level = GLOB.security_level
+	GLOB.security_level = SEC_LEVEL_GREEN
+	TEST_ASSERT_EQUAL(aq_bail_for_card(bail_card), 200, "Kaucja za 10 minut wyroku")
+	GLOB.security_level = SEC_LEVEL_RED
+	TEST_ASSERT(isnull(aq_bail_for_card(bail_card)), "Kaucja przyjęta przy alarmie bojowym")
+	GLOB.security_level = SEC_LEVEL_GREEN
+	var/obj/item/card/id/prisoner/life_card = allocate(/obj/item/card/id/prisoner, run_loc_floor_bottom_left, 3600, "Zabójstwo", "Testowy Dożywotni")
+	TEST_ASSERT(isnull(aq_bail_for_card(life_card)), "Kaucja za dożywocie")
+	aq_release_on_bail(bail_card, "Testowy Poręczyciel")
+	TEST_ASSERT(bail_card.served_time >= bail_card.sentence, "Kaucja nie zakończyła wyroku")
+	TEST_ASSERT_EQUAL(bail_security.fields["criminal"], "Paroled", "Kaucja nie dała zwolnienia warunkowego")
+	cell.prisoner_name = "Testowy Poręczony"
+	cell.set_timer(2 MINUTES)
+	cell.timer_start()
+	TEST_ASSERT(aq_bail_for_timer(cell) >= 20, "Brak kaucji za celę z zegarem")
+	cell.release_on_bail("Testowy Poręczyciel")
+	TEST_ASSERT(!cell.timing, "Kaucja nie zatrzymała zegara")
+	TEST_ASSERT_EQUAL(bail_security.fields["criminal"], "Paroled", "Kaucja za celę nie dała zwolnienia warunkowego")
+	GLOB.security_level = old_level
+
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL

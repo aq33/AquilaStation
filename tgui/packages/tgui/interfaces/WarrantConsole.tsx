@@ -20,6 +20,17 @@ import { Window } from '../layouts';
 
 type Data = {
   records: WarrantRecord[];
+  /** AQUILA: kaucje za osadzonych */
+  bails?: Bail[];
+  bail_blocked?: BooleanLike;
+  can_set_bail?: BooleanLike;
+};
+
+type Bail = {
+  ref: string;
+  name: string;
+  where: string;
+  amount: number;
 };
 
 type WarrantRecord = {
@@ -73,12 +84,19 @@ export const WarrantConsole = (props) => {
       <Window.Content>
         <Stack fill>
           <Stack.Item grow={2}>
-            <RecordList
-              selectedRef={selectedRecord?.crew_ref}
-              onSelect={(ref) =>
-                setSelectedRef(ref === selectedRef ? undefined : ref)
-              }
-            />
+            <Stack fill vertical>
+              <Stack.Item grow>
+                <RecordList
+                  selectedRef={selectedRecord?.crew_ref}
+                  onSelect={(ref) =>
+                    setSelectedRef(ref === selectedRef ? undefined : ref)
+                  }
+                />
+              </Stack.Item>
+              <Stack.Item>
+                <BailList />
+              </Stack.Item>
+            </Stack>
           </Stack.Item>
           {selectedRecord && (
             <Stack.Item grow={3}>
@@ -283,6 +301,53 @@ const CitationManager = (props: { citation: Citation; crew_ref: string }) => {
         )}
       </LabeledList>
     </Collapsible>
+  );
+};
+
+/** AQUILA: kaucje za osadzonych w GenPopie i w celach z zegarem */
+const BailList = (props) => {
+  const { act, data } = useBackend<Data>();
+  const { bails = [], bail_blocked, can_set_bail } = data;
+  return (
+    <Section title="Kaucje">
+      {bail_blocked ? (
+        <NoticeBox>Przy alarmie bojowym kaucji się nie przyjmuje.</NoticeBox>
+      ) : !bails.length ? (
+        <Box color="label">Nikt nie czeka na kaucję.</Box>
+      ) : (
+        <Table>
+          {bails.map((bail) => (
+            <Table.Row key={bail.ref} className="candystripe">
+              <Table.Cell>
+                {bail.name}
+                <Box color="label">{bail.where}</Box>
+              </Table.Cell>
+              <Table.Cell collapsing>{bail.amount} cr</Table.Cell>
+              <Table.Cell collapsing>
+                <Button.Confirm
+                  icon="credit-card"
+                  tooltip="Z konta karty"
+                  confirmContent="Na pewno?"
+                  onClick={() => act('pay_bail', { ref: bail.ref })}
+                />
+                <Button
+                  icon="money-bill"
+                  tooltip="Holożetonem z ręki"
+                  onClick={() => act('bail_holochip', { ref: bail.ref })}
+                />
+                {!!can_set_bail && (
+                  <Button
+                    icon="pen"
+                    tooltip="Zmień kaucję (Naczelnik)"
+                    onClick={() => act('set_bail', { ref: bail.ref })}
+                  />
+                )}
+              </Table.Cell>
+            </Table.Row>
+          ))}
+        </Table>
+      )}
+    </Section>
   );
 };
 

@@ -16,6 +16,8 @@
 	var/end_warned = FALSE
 	/// Kto i za co ułaskawił (zwolnienie wymuszone przez ułaskawienie, nie przez „zatrzymaj”)
 	var/pardon_text
+	/// Status po zwolnieniu wymuszonym (kaucja daje zwolnienie warunkowe); null = zwykłe reguły
+	var/release_status
 
 /obj/machinery/door_timer/proc/cell_label()
 	return id ? "cela [id]" : "cela"
@@ -53,7 +55,7 @@
 	end_warned = FALSE
 	if(!name)
 		return
-	var/new_status = forced && !pardon_text ? "Paroled" : "Discharged"
+	var/new_status = release_status || (forced && !pardon_text ? "Paroled" : "Discharged")
 	var/reason = pardon_text || (forced ? "zwolnienie przed końcem wyroku" : "koniec wyroku")
 	var/datum/data/record/record = prisoner_record()
 	if(record)
@@ -61,6 +63,8 @@
 	prisoner_name = null
 	prisoner_crimes = null
 	pardon_text = null
+	release_status = null
+	bail_override = null
 
 /// Wstrzymuje odliczanie, drzwi zostają zamknięte (więzień w ambulatorium, przesłuchanie)
 /obj/machinery/door_timer/proc/pause_timer()
