@@ -10,6 +10,8 @@
 	/// Z BLOOD_AMOUNT_PER_DECAL (20) buty dostawały tyle, ile wynosi próg śladu (BLOOD_LOSS_IN_SPREAD), więc kupa nigdy nie zostawiała śladów.
 	/// 60: wdepnięcie daje butom BLOOD_GAIN_PER_STEP (40), czyli kilka brązowych śladów.
 	bloodiness = 60
+	/// Grudka rozdeptana w plamę albo od razu biegunka: dalsze wdepnięcia już jej nie zmieniają
+	var/squashed = FALSE
 
 // Zwykła kupa nie jest śliska: wdepnięcie (także w biegu) brudzi buty i zostawia ślady. Ślizga się tylko biegunka.
 
@@ -17,7 +19,35 @@
 /obj/effect/decal/cleanable/feces/proc/make_diarrhea()
 	random_icon_states = list("diarrhea1", "diarrhea2")
 	icon_state = pick(random_icon_states)
+	squashed = TRUE
 	AddComponent(/datum/component/slippery, BLOOD_SLIPPERY_KNOCKDOWN, NO_SLIP_WHEN_WALKING)
+
+/// Wdepnięcie w grudkę rozgniata ją w plamę (nie śliską jak biegunka). Ślady butów robi już on_entered z cleanable.
+/obj/effect/decal/cleanable/feces/on_entered(datum/source, atom/movable/O)
+	. = ..()
+	if(!squashed && can_squash(O))
+		squash(O)
+
+/obj/effect/decal/cleanable/feces/proc/can_squash(atom/movable/O)
+	if(!isliving(O))
+		return FALSE
+	var/mob/living/walker = O
+	if((walker.movement_type & (FLYING|FLOATING)) || HAS_TRAIT(walker, TRAIT_LIGHT_STEP) || walker.mob_size < MOB_SIZE_HUMAN)
+		return FALSE
+	return TRUE
+
+/obj/effect/decal/cleanable/feces/proc/squash(mob/living/walker)
+	squashed = TRUE
+	name = "rozdeptane odchody"
+	desc = "Ktoś w to wdepnął i rozsmarował po podłodze. Ślady prowadzą dalej."
+	random_icon_states = list("diarrhea1", "diarrhea2")
+	icon_state = pick(random_icon_states)
+	if(walker && !walker.censors_bodily_functions())
+		to_chat(walker, "<span class='warning'>Wdeptujesz w kupę i rozgniatasz ją na podłodze.</span>")
+
+/// Fioletowy kopczyk felinida nie ma sprite'u plamy, więc zostaje kopczykiem (ślady i tak zostawia)
+/obj/effect/decal/cleanable/feces/felinid/squash(mob/living/walker)
+	squashed = TRUE
 
 /// Kupa, która faktycznie leży na T: nowa zlewa się w Initialize z leżącą już kupą tego samego typu i znika
 /obj/effect/decal/cleanable/feces/proc/surviving_decal(turf/T)
