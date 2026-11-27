@@ -101,6 +101,7 @@ GLOBAL_LIST_EMPTY(hex_terrains)
 		/datum/round_event_control/aquila_hex_mimite_infestation,
 	)
 	antags = list(
+		/datum/round_event_control/aquila_hex_abandoned_ipc,
 		/datum/round_event_control/spawn_swarmer,
 		/datum/round_event_control/aquila_rogue_drone,
 		/datum/round_event_control/morph,
@@ -204,6 +205,8 @@ GLOBAL_LIST_EMPTY(hex_terrains)
 		/datum/round_event_control/aquila_hex_solar_flare,
 		/datum/round_event_control/aquila_hex_solar_storm,
 		/datum/round_event_control/aquila_hex_emp_storm,
+		/datum/round_event_control/aquila_hex_tear,
+		/datum/round_event_control/aquila_hex_demon_incursion,
 	)
 	antags = list(
 		/datum/round_event_control/pulse_demon,
@@ -301,6 +304,7 @@ GLOBAL_LIST_EMPTY(hex_terrains)
 		/datum/round_event_control/aquila_hex_hivebots,
 		/datum/round_event_control/aquila_hex_mystery_gift,
 		/datum/round_event_control/aquila_hex_travelling_trader,
+		/datum/round_event_control/aquila_hex_tear_honk,
 	)
 	antags = list(
 		/datum/round_event_control/aquila_chrono_legionnaire,
@@ -345,12 +349,15 @@ GLOBAL_LIST_EMPTY(hex_terrains)
 	desc = "Miny Syndykatu przy bazach i bramie."
 	events = list(
 		/datum/round_event_control/aquila_hex_intercepted_contraband,
+		/datum/round_event_control/aquila_hex_syndie_bombsquad,
+		/datum/round_event_control/aquila_hex_syndicate_assassination,
 	)
 	antags = list(
 		/datum/round_event_control/operative,
 		/datum/round_event_control/infiltrators,
 		/datum/round_event_control/portal_storm_syndicate,
 		/datum/round_event_control/aquila_hex_derelict_syndicate_cyborg,
+		/datum/round_event_control/aquila_hex_sleeper_agent,
 	)
 
 /datum/hex_terrain/signal
