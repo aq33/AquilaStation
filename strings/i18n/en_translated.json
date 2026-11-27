@@ -35546,5 +35546,7 @@
 "Odpala 7 eventów: przebudzenie uśpionych agentów (audycja liczbowa, wymaga graczy z preferencją), saperów Syndykatu z bombą (rozbrojenie: przetnij przewód uzbrajający według legendy w planach okrętu), zamach Syndykatu, porzuconego IPC (rola ducha), rozdarcie wymiarów z ogarami, rozdarcie klaunów i inwazję demonów (zniszcz wszystkie portale). Stwory znikają z końcem eventu.": "Fires 7 events: sleeper agents awakening (a number broadcast, needs players with the preference), Syndicate sappers with a bomb (defuse: cut the arming wire according to the legend in the ship blueprints), a Syndicate assassination attempt, an abandoned IPC (ghost role), a dimensional tear with hounds, a clown tear and a demon incursion (destroy all portals). The creatures vanish when the event ends.",
 "<span class='notice'>Odpalone eventy: [length(fired) ? jointext(fired, \", \") : \"brak\"].</span>": "<span class='notice'>Fired events: [length(fired) ? jointext(fired, \", \") : \"brak\"].</span>",
 "<span class='warning'>Nie wystartowały: [jointext(skipped, \", \")].</span>": "<span class='warning'>Did not start: [jointext(skipped, \", \")].</span>",
-"Spam na faksie": "Fax Spam"
+"Spam na faksie": "Fax Spam",
+"Odpalić teraz wszystkie eventy etapu na całym okręcie? Część z nich daje role antagonistów albo stwory, a wpływa na wszystkich graczy w rundzie.": "Fire all events of this stage on the whole ship now? Some of them give antagonist roles or creatures and affect every player in the round.",
+"<span class='notice'>Eventów nie odpalono, zostały tylko narzędzia.</span>": "<span class='notice'>No events were fired, only the tools are left.</span>"
 }

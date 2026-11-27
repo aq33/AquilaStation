@@ -1,5 +1,5 @@
 // aq33/AquilaStation#720 - eventy z kafli mapy FTL (aquila/code/modules/events/hexmap/, pule w aquila/code/modules/overmap/hexmap/hex_terrain.dm)
-// Osiem zestawów, po jednym na etap: każdy kładzie narzędzia do obsługi eventów i od razu odpala wszystkie eventy etapu
+// Osiem zestawów, po jednym na etap: każdy kładzie narzędzia do obsługi eventów i po potwierdzeniu odpala wszystkie eventy etapu
 // tak, jak robi to wejście okrętu na kafel (bez minuty startu, z minimum graczy). Eventy działają na całym okręcie, nie tylko w komorze.
 
 /datum/test_chamber_kit/pr_720_eventy
@@ -8,6 +8,10 @@
 	var/list/events = list()
 
 /datum/test_chamber_kit/pr_720_eventy/setup(list/spawned, list/turfs, turf/center, mob/user)
+	// Eventy działają na całym okręcie (część zmienia graczy w antagonistów), więc zestaw pyta przed odpaleniem
+	if(user && tgui_alert(user, "Odpalić teraz wszystkie eventy etapu na całym okręcie? Część z nich daje role antagonistów albo stwory, a wpływa na wszystkich graczy w rundzie.", "Komora testowa", list("Tak", "Nie")) != "Tak")
+		to_chat(user, "<span class='notice'>Eventów nie odpalono, zostały tylko narzędzia.</span>")
+		return
 	var/list/fired = list()
 	var/list/skipped = list()
 	for(var/path in events)
@@ -18,6 +22,7 @@
 		control.hex_triggered = TRUE
 		var/datum/round_event/started = control.runEvent()
 		control.hex_triggered = FALSE
+		control.occurrences = max(0, control.occurrences - 1) // test w komorze nie zużywa limitu wystąpień eventu w rundzie
 		if(started)
 			fired += control.name
 		else
