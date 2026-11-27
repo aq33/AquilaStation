@@ -210,5 +210,38 @@
 			security_forms++
 	TEST_ASSERT(security_forms >= 10, "Za mało formularzy Żandarmerii: [security_forms]")
 
+	// Skrzynka skarg: skarga dostaje numer i trafia na listę; czyta ją tylko dowództwo i prawnik
+	var/obj/machinery/complaint_box/box = allocate(/obj/machinery/complaint_box, run_loc_floor_bottom_left)
+	var/complaints_before = length(GLOB.aq_complaints)
+	var/number = box.add_complaint("Testowa skarga", "Treść testowej skargi na Żandarmerię.", officer)
+	TEST_ASSERT_EQUAL(length(GLOB.aq_complaints), complaints_before + 1, "Skarga nie trafiła na listę")
+	TEST_ASSERT_EQUAL(GLOB.aq_complaints[length(GLOB.aq_complaints)]["number"], number, "Skarga ma zły numer")
+	TEST_ASSERT(!box.can_read(officer), "Osoba bez dostępu czyta skargi")
+	GLOB.aq_complaints.len = complaints_before
+
+	// Stopnie: progi ze stażu do automatycznego limitu, ręczne awanse i degradacje ze statystyk
+	var/list/ladder = GLOB.aq_rank_ladders["Żandarm"]
+	TEST_ASSERT_EQUAL(aq_rank_index_from_stats(ladder, list()), 1, "Nowy Żandarm nie zaczyna od najniższego stopnia")
+	TEST_ASSERT_EQUAL(aq_rank_index_from_stats(ladder, list("rounds" = 50, "arrests" = 50)), 2, "Staż nie dał automatycznego awansu albo dał ponad próg")
+	TEST_ASSERT_EQUAL(aq_rank_index_from_stats(ladder, list("rounds" = 50, "arrests" = 50, "rank_up_sec" = 1)), 3, "Ręczny awans nie podniósł stopnia ponad próg")
+	TEST_ASSERT_EQUAL(aq_rank_index_from_stats(ladder, list("rounds" = 50, "arrests" = 50, "rank_down_sec" = 5)), 1, "Degradacja zeszła poniżej najniższego stopnia")
+	var/datum/mind/test_mind = new("aquila_test_ranks")
+	test_mind.name = "Testowy Bosman"
+	test_mind.aq_rank_job = "Żandarm"
+	test_mind.aq_rank_index = 2
+	TEST_ASSERT_EQUAL(aq_change_rank(test_mind, 1, "Testowy Komendant"), "st. bosm.", "Awans nie dał następnego stopnia")
+	TEST_ASSERT_EQUAL(test_mind.aquila_stats["rank_up_sec"], 1, "Awans nie trafił do statystyk postaci")
+	TEST_ASSERT(isnull(aq_change_rank(test_mind, 1, "Testowy Komendant")), "Awans ponad najwyższy stopień")
+	TEST_ASSERT_EQUAL(aq_change_rank(test_mind, -1, "Testowy Komendant"), "bosm.", "Degradacja nie obniżyła stopnia")
+
+	// Kartoteka między rundami: wyrok od 15 minut trafia do zapisu, krótszy nie
+	SSticker.minds += test_mind
+	TEST_ASSERT(!aq_record_sentence("Testowy Bosman", "Drobny wandalizm", 5 MINUTES), "Krótki wyrok trafił do kartoteki")
+	TEST_ASSERT(aq_record_sentence("Testowy Bosman", "Zabójstwo", 60 MINUTES), "Dożywocie nie trafiło do kartoteki")
+	var/list/history = GLOB.aq_round_sentences["aquilatestranks|Testowy Bosman"]
+	TEST_ASSERT(length(history) == 1 && findtext(history[1], "dożywocie"), "Zły wpis w kartotece: [json_encode(history)]")
+	GLOB.aq_round_sentences -= "aquilatestranks|Testowy Bosman"
+	SSticker.minds -= test_mind
+
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL

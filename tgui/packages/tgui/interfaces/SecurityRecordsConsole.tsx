@@ -94,6 +94,8 @@ type Data = {
   active_ref?: string | null;
   general?: General | null;
   security?: SecurityRecord | null;
+  /** AQUILA: trwały stopień osoby (service_ranks.dm) */
+  service_rank?: { rank: string; can_change: BooleanLike } | null;
 };
 
 const STATUS_COLORS = {
@@ -603,6 +605,8 @@ enum SECURETAB {
 
 const SecurityData = (props: { security: SecurityRecord }) => {
   const { security } = props;
+  const { act, data } = useBackend<Data>();
+  const { service_rank } = data;
   const [tab, setTab] = useState(SECURETAB.Crimes);
   return (
     <>
@@ -614,6 +618,32 @@ const SecurityData = (props: { security: SecurityRecord }) => {
           >
             {security.notes}
           </LabeledList.Item>
+          {!!service_rank && (
+            <LabeledList.Item
+              label="Stopień"
+              buttons={
+                !!service_rank.can_change && (
+                  <>
+                    <Button.Confirm
+                      icon="arrow-up"
+                      tooltip="Awansuj"
+                      confirmContent="Awans?"
+                      onClick={() => act('rank_up')}
+                    />
+                    <Button.Confirm
+                      icon="arrow-down"
+                      color="bad"
+                      tooltip="Degraduj"
+                      confirmContent="Degradacja?"
+                      onClick={() => act('rank_down')}
+                    />
+                  </>
+                )
+              }
+            >
+              {service_rank.rank}
+            </LabeledList.Item>
+          )}
           <LabeledList.Item label="Przeszłość">
             <ChoiceButton choice="View Past Security" icon="book">
               Pokaż

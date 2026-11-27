@@ -607,6 +607,7 @@
 			playsound(loc, 'sound/machines/ping.ogg', 50, 1)
 
 	var/obj/item/card/id/id = new /obj/item/card/id/prisoner(get_turf(src), desired_sentence * 0.1, desired_crime, desired_name)
+	aq_record_sentence(desired_name, desired_crime, desired_sentence) // AQ EDIT - kartoteka między rundami (aquila/code/modules/security/criminal_history.dm)
 	// AQ EDIT - tłumaczenie, dożywocie zamiast 600 min
 	var/sentence_text = desired_sentence >= MAX_TIMER ? "dożywocie" : "[desired_sentence / 600] min"
 	Radio.talk_into(src, "Więzień [id.registered_name] został osadzony za: [desired_crime]. Wyrok: [sentence_text].")

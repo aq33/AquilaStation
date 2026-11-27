@@ -40,6 +40,7 @@
 	if(!. || !prisoner_name)
 		return
 	end_warned = FALSE
+	aq_record_sentence(prisoner_name, prisoner_crimes, timer_duration)
 	var/datum/data/record/record = prisoner_record()
 	if(record)
 		GLOB.data_core.set_criminal_status(record, "Incarcerated", "Zegar celi ([cell_label()])", prisoner_crimes ? "[prisoner_crimes], [DisplayTimeText(timer_duration, 1)]" : DisplayTimeText(timer_duration, 1))
