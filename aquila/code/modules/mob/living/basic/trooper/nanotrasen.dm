@@ -117,6 +117,15 @@
 	. = ..()
 	AddComponent(/datum/component/ai_retaliate_advanced, CALLBACK(src, PROC_REF(ai_retaliate_behaviour)))
 
+/// AQUILA: pokojowy odpowiednik z pistoletem (obsada ruin w układach NT, planet_ruin_garrison.dm)
+/mob/living/basic/trooper/nanotrasen/ranged/peaceful
+	desc = "Funkcjonariusz prywatnych sił ochrony Nanotrasen."
+	ai_controller = /datum/ai_controller/basic_controller/trooper/ranged/peaceful
+
+/mob/living/basic/trooper/nanotrasen/ranged/peaceful/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/ai_retaliate_advanced, CALLBACK(src, PROC_REF(ai_retaliate_behaviour)))
+
 /// Tells the officers around that someone attacked us
 /mob/living/basic/trooper/nanotrasen/proc/ai_retaliate_behaviour(mob/living/attacker)
 	if (!istype(attacker))

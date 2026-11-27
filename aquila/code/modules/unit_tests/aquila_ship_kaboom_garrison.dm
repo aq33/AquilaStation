@@ -36,7 +36,10 @@
 
 	// Blok NT: ochrona strzela dopiero zaatakowana; próżniowi zostają, bo ochrona NT nie ma skafandrów
 	TEST_ASSERT_EQUAL(planet_garrison_ruin(spots, "solgov", 100, "test"), 2, "Wrong number of humans replaced for SolGov")
-	TEST_ASSERT(locate(/mob/living/basic/trooper/nanotrasen/ranged/smg/peaceful) in spots[1], "A Syndicate gunner in SolGov space did not become NT security")
+	var/mob/living/basic/trooper/nanotrasen/ranged/gunner = locate() in spots[1]
+	TEST_ASSERT(gunner?.type == /mob/living/basic/trooper/nanotrasen/ranged/peaceful, "A Syndicate pistol gunner in SolGov space did not become NT security with a pistol ([gunner?.type])")
+	TEST_ASSERT(istype(gunner.ai_controller, /datum/ai_controller/basic_controller/trooper/ranged/peaceful), "NT security in a ruin attacks on sight instead of only when attacked")
+	TEST_ASSERT(locate(/mob/living/basic/trooper/nanotrasen/ranged/smg/peaceful) in spots[3], "A shotgun trooper in SolGov space did not get the closest NT weapon")
 	TEST_ASSERT(locate(/mob/living/basic/trooper/syndicate/ranged/space) in spots[2], "A space trooper was replaced by NT security without a suit")
 
 /datum/unit_test/planet_ruin_garrison/Destroy()

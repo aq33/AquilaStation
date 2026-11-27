@@ -1,9 +1,10 @@
 // AQUILA - obsada ruin na planecie zależna od frakcji, która trzyma układ. Ruiny mają ludzi wpisanych na sztywno w mapę
 // (piraci, Syndykat, Rosjanie, ochrona NT). Po wczytaniu ruiny w układzie Syndykatu, piratów albo bloku NT ludzie z mapy
-// zamieniają się (z szansą PLANET_GARRISON_CHANCE, cała ruina naraz) na żołnierzy tej frakcji, z tą samą bronią
-// (wręcz, broń krótka, pistolet maszynowy, strzelba) i w wersji próżniowej, jeśli oryginał jej potrzebował. W układach
-// NT, SolGov i WhiteRapids siedzi ochrona NT, która strzela dopiero zaatakowana. Układy niczyje i wrogie zostają
-// z obsadą z mapy, fauna i automaty zawsze zostają.
+// zamieniają się (z szansą PLANET_GARRISON_CHANCE, cała ruina naraz) na żołnierzy tej frakcji z tym samym rodzajem
+// broni (wręcz, broń krótka, pistolet maszynowy, strzelba) i w wersji próżniowej, jeśli oryginał jej potrzebował.
+// Frakcja bez danej broni daje najbliższą broń dystansową: piraci mają tylko laser, ochrona NT nie ma strzelby
+// (dostaje pistolet maszynowy). W układach NT, SolGov i WhiteRapids siedzi ochrona NT, która strzela dopiero zaatakowana.
+// Układy niczyje i wrogie zostają z obsadą z mapy, fauna i automaty zawsze zostają.
 
 /// Szansa, że ruina w układzie frakcji jest obsadzona przez tę frakcję (reszta zostaje dzikimi lokatorami z mapy)
 #define PLANET_GARRISON_CHANCE 75
@@ -43,6 +44,7 @@
 				"shotgun" = /mob/living/basic/trooper/syndicate/ranged/shotgun,
 			)
 		if("pirate")
+			// Piraci strzelają tylko z lasera (nie ma pirackich sprite'ów z inną bronią)
 			table = space ? list(
 				"melee" = /mob/living/basic/trooper/pirate/melee/space,
 				"ranged" = /mob/living/basic/trooper/pirate/ranged/space,
@@ -59,9 +61,9 @@
 				return null
 			table = list(
 				"melee" = /mob/living/basic/trooper/nanotrasen/peaceful,
-				"ranged" = /mob/living/basic/trooper/nanotrasen/ranged/smg/peaceful,
+				"ranged" = /mob/living/basic/trooper/nanotrasen/ranged/peaceful,
 				"smg" = /mob/living/basic/trooper/nanotrasen/ranged/smg/peaceful,
-				"shotgun" = /mob/living/basic/trooper/nanotrasen/ranged/smg/peaceful,
+				"shotgun" = /mob/living/basic/trooper/nanotrasen/ranged/smg/peaceful, // ochrona NT nie ma strzelby
 			)
 	if(!table)
 		return null
