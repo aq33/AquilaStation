@@ -1164,6 +1164,7 @@
 #include "code\modules\overmap\ai_tuning.dm"
 #include "code\modules\overmap\ship_power.dm"
 #include "code\modules\overmap\ship_thrusters.dm"
+#include "code\modules\overmap\ship_kaboom_cinematic.dm"
 #include "code\modules\overmap\ship_sensor_array.dm"
 #include "code\modules\overmap\shield_cloak.dm"
 #include "code\modules\overmap\ftl_calibration.dm"
