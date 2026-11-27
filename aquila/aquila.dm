@@ -1758,6 +1758,7 @@
 #include "code\modules\shuttle\computer.dm"
 #include "code\modules\shuttle\shuttle_console_ui.dm"
 #include "code\modules\shuttle\syndicate.dm"
+#include "code\modules\security_levels\alert_sop.dm"
 #include "code\modules\shuttle\pirate.dm"
 #include "code\modules\spells\spell_types\godhand.dm"
 #include "code\modules\spells\spell_types\touch_attacks.dm"
