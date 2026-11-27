@@ -3274,6 +3274,8 @@
 // Komora testowa
 #include "code\modules\test_chamber\kits\pr_719_reaktor_fuzyjny.dm"
 // HFR: koniec
+// Komora testowa
+#include "code\modules\test_chamber\kits\pr_721_wybuch_okretu.dm"
 
 // Profiler byond-tracy: MUSI być ostatnim include'em całego builda (BYOND inicjuje zmienne statyczne od końca,
 // więc ta rusza pierwsza, przed Master i mapą). Opis: tools/tracy/README.md
