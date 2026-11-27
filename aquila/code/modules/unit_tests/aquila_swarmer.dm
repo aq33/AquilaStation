@@ -36,5 +36,26 @@
 	TEST_ASSERT(!event.valid_turf(spot), "A turf with a shell on it still counts as free")
 	TEST_ASSERT(!event.valid_turf(run_loc_floor_bottom_left), "The unit test room counted as maintenance or cargo")
 
+/// AQUILA - swarmers leave the ship's systems alone: engines, ship consoles, guns and ship ammunition, but still eat other items
+/datum/unit_test/aquila_swarmer_ship_protection
+
+/datum/unit_test/aquila_swarmer_ship_protection/Run()
+	var/mob/living/simple_animal/hostile/swarmer/swarmer = allocate(/mob/living/simple_animal/hostile/swarmer)
+	var/list/protected = list(
+		allocate(/obj/machinery/ship_thruster),
+		allocate(/obj/machinery/computer/ship/helm),
+		allocate(/obj/item/ship_weapon/ammunition/broadside_shell),
+		allocate(/obj/item/powder_bag),
+	)
+	for(var/atom/movable/thing as anything in protected)
+		TEST_ASSERT(!thing.swarmer_act(swarmer), "A swarmer tried to take apart [thing.type]")
+		TEST_ASSERT(!QDELETED(thing), "A swarmer took apart [thing.type]")
+	TEST_ASSERT_EQUAL(swarmer.resources, 0, "A swarmer got resources from a protected ship system")
+
+	var/obj/item/wrench/wrench = allocate(/obj/item/wrench)
+	wrench.swarmer_act(swarmer)
+	TEST_ASSERT(QDELETED(wrench), "A swarmer no longer eats ordinary items")
+	TEST_ASSERT_EQUAL(swarmer.resources, 1, "Eating a wrench gave the wrong amount of resources")
+
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL

@@ -35941,5 +35941,10 @@
 "[initial(reagent_path.name)] (z krwi)": "[initial(reagent_path.name)] (from blood)",
 "Event rojowca nie znalazł bezpiecznego pola w tunelach serwisowych ani w ładowni, nic się nie pojawiło.": "The swarmer event found no safe spot in maintenance or cargo, nothing appeared.",
 "Event rojowca stawia skorupę w [ADMIN_VERBOSEJMP(spot)].": "The swarmer event places a shell at [ADMIN_VERBOSEJMP(spot)].",
-"<br><br>Nasze czujniki dalekiego zasięgu wykryły na pokładzie waszego okrętu dziwny sygnał. Jego źródło jest w okolicy: [A?.name]. Zalecamy natychmiastowe sprawdzenie ładunku i tuneli serwisowych, bo mogło się z nimi coś przedostać.": "<br><br>Our long-range sensors have picked up a strange signal aboard your ship. Its source is near: [A?.name]. We recommend checking your cargo and maintenance tunnels immediately, as something may have come aboard with them."
+"<br><br>Nasze czujniki dalekiego zasięgu wykryły na pokładzie waszego okrętu dziwny sygnał. Jego źródło jest w okolicy: [A?.name]. Zalecamy natychmiastowe sprawdzenie ładunku i tuneli serwisowych, bo mogło się z nimi coś przedostać.": "<br><br>Our long-range sensors have picked up a strange signal aboard your ship. Its source is near: [A?.name]. We recommend checking your cargo and maintenance tunnels immediately, as something may have come aboard with them.",
+"Ten reaktor należy zachować, przyda się w przyszłości naszym panom. Przerywanie.": "This reactor must be preserved, it will serve our masters in the future. Aborting.",
+"Ten silnik okrętu należy zachować, przyda się w przyszłości naszym panom. Przerywanie.": "This ship engine must be preserved, it will serve our masters in the future. Aborting.",
+"Tę konsolę okrętu należy zachować, przyda się w przyszłości naszym panom. Przerywanie.": "This ship console must be preserved, it will serve our masters in the future. Aborting.",
+"To uzbrojenie okrętu należy zachować, przyda się w przyszłości naszym panom. Przerywanie.": "This ship weaponry must be preserved, it will serve our masters in the future. Aborting.",
+"Tę amunicję okrętową należy zachować, przyda się w przyszłości naszym panom. Przerywanie.": "This ship ammunition must be preserved, it will serve our masters in the future. Aborting."
 }
