@@ -1,8 +1,8 @@
-// Drobiazgi 27.11: pot, kupa rozdeptana w plamę, nieśmiertelniki i tablica pamięci, SOP alarmów, pager w kieszeni, kamera Sabre, naprawa w depocie
+// aq33/AquilaStation#724 - drobiazgi 27.11: pot, kupa rozdeptana w plamę, nieśmiertelniki i tablica pamięci, SOP alarmów, pager w kieszeni, kamera Sabre, naprawa w depocie
 
-/datum/test_chamber_kit/pr_drobiazgi_2711
+/datum/test_chamber_kit/pr_724
 	name = "Drobiazgi 27.11: pot, nieśmiertelniki, SOP"
-	pr = "aq33/AquilaStation#PR_NUMBER"
+	pr = "aq33/AquilaStation#724"
 	description = "1) Sprintuj do zadyszki: nad głową mignie kropla potu, oględziny pokażą „spocona” albo „zlana potem”. Szmatą poza combat mode otrzyj pot z siebie i z kogoś: szmata nasiąka potem. Wylej go do zlewki i podgrzej (ponad 374 K): zostaje sól. Prysznic zmywa pot. \
 		2) Postaw kupę (Fion albo admin spawn odchodów) i wejdź na nią: grudka zmienia się w nieśliską plamę, buty zostawiają brązowe ślady. Biegunka zostaje śliska. \
 		3) Załóż człowiekowi z zestawu kombinezon i identyfikator, zabij go (admin: Kill), przeciągnij go na siebie i w oknie przeszukiwania kliknij przy identyfikatorze „Zdejmij nieśmiertelnik”. Zbuduj tablicę pamięci (10 arkuszy żelaza, spawarka, menu tworzenia → Misc) i przyłóż do niej nieśmiertelnik: imię jest w opisie tablicy. Drugi raz z tego identyfikatora nieśmiertelnika nie zdejmiesz. \
