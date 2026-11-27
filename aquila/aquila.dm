@@ -1772,6 +1772,7 @@
 #include "code\modules\squads\squad_pointers.dm"
 #include "code\modules\squads\squad_pager_pda.dm"
 #include "code\modules\squads\squad_pager_xo.dm"
+#include "code\modules\squads\squad_pager_overhead.dm"
 #include "code\modules\squads\squad_custom.dm"
 #include "code\modules\squads\squad_gear_crime.dm"
 #include "code\modules\squads\squad_tts.dm"
