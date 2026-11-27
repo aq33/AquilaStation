@@ -33,6 +33,8 @@
 	..()
 
 /datum/brain_trauma/severe/aphasia/on_lose()
+	if(QDELETED(owner)) // AQ EDIT - usuwany mob nie ma już holdera języków, a jego odtworzenie to runtime
+		return ..()
 	owner.remove_blocked_language(subtypesof(/datum/language/), LANGUAGE_APHASIA)
 	owner.remove_language(/datum/language/aphasia, TRUE, TRUE, LANGUAGE_APHASIA)
 	..()

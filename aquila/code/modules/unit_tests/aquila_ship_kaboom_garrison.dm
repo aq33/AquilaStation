@@ -77,5 +77,17 @@
 	TEST_ASSERT_EQUAL(kaboom.ship_state, "frigate", "An unknown ship sprite did not fall back to the frigate")
 	qdel(kaboom)
 
+/// AQUILA - usunięcie moba z afazją: zdejmowanie blokady języków nie może odtwarzać holdera języków na usuwanym mobie
+/// (runtime „Langauge holder added to a qdeleting thing”, losowo w teście reagentów z ciężką traumą)
+/datum/unit_test/aphasia_owner_qdel
+
+/datum/unit_test/aphasia_owner_qdel/Run()
+	var/mob/living/carbon/human/patient = new(run_loc_floor_bottom_left)
+	var/datum/brain_trauma/trauma = patient.gain_trauma(/datum/brain_trauma/severe/aphasia, TRAUMA_RESILIENCE_ABSOLUTE)
+	TEST_ASSERT(trauma, "The human did not get aphasia")
+	var/runtimes_before = GLOB.total_runtimes
+	qdel(patient)
+	TEST_ASSERT_EQUAL(GLOB.total_runtimes, runtimes_before, "Deleting a human with aphasia caused a runtime")
+
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL
