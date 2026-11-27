@@ -20,5 +20,5 @@
 		/mob/living/carbon/human = 1,
 		/obj/item/squad_pager = 2,
 		/obj/item/modular_computer/tablet/pda = 1,
-		/obj/effect/decal/cleanable/feces = 2,
+		/obj/effect/decal/cleanable/feces = 1,
 	)

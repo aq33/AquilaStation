@@ -35820,5 +35820,7 @@
 "Ściąga standardowych procedur: co robić przy którym stanie okrętu.": "Alert SOP",
 "Zdejmij nieśmiertelnik": "A cheat sheet of standard procedures: what to do under each ship condition.",
 "text: 'Zdejmij nieśmiertelnik',": "Take dog tags",
-"<span class='notice'>Wybito na nim: <b>[fallen_name]</b>[fallen_assignment ? \", [fallen_assignment]\" : \"\"].</span>": "<span class='notice'>Stamped on them: <b>[fallen_name]</b>[fallen_assignment ? \", [fallen_assignment]\" : \"\"].</span>"
+"<span class='notice'>Wybito na nim: <b>[fallen_name]</b>[fallen_assignment ? \", [fallen_assignment]\" : \"\"].</span>": "<span class='notice'>Stamped on them: <b>[fallen_name]</b>[fallen_assignment ? \", [fallen_assignment]\" : \"\"].</span>",
+"Drobiazgi 27.11: pot, nieśmiertelniki, SOP": "Odds and ends 27.11: sweat, dog tags, SOP",
+"1) Sprintuj do zadyszki: nad głową mignie kropla potu, oględziny pokażą „spocona” albo „zlana potem”. Szmatą poza combat mode otrzyj pot z siebie i z kogoś: szmata nasiąka potem. Wylej go do zlewki i podgrzej (ponad 374 K): zostaje sól. Prysznic zmywa pot. \\": "1) Sprint until out of breath: a sweat drop flashes above your head and examining shows \"sweaty\" or \"drenched in sweat\". Outside combat mode wipe sweat off yourself and someone else with a rag: the rag soaks it up. Pour it into a beaker and heat it (above 374 K): salt is left. A shower washes sweat off. \\"
 }
