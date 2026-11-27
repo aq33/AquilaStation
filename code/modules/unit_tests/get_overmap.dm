@@ -19,7 +19,7 @@
 	var/mob/living/carbon/human/dummy = null
 
 /datum/unit_test/fighter_pilot_overmap/Run()
-	for(var/obj/structure/overmap/small_craft/combat/light/OM as() in SSstar_system.find_main_overmap().overmaps_in_ship)
+	for(var/obj/structure/overmap/small_craft/combat/light/OM in SSstar_system.find_main_overmap().overmaps_in_ship) // AQ EDIT - bez as(): pętla brała Sabre z hangaru, a test go usuwał (wybuch wnętrza na stacji)
 		fighter = OM
 		break
 
@@ -79,7 +79,7 @@
 	var/obj/structure/overmap/small_craft/combat/light/fighter = null
 
 /datum/unit_test/fighter_docking/Run()
-	for(var/obj/structure/overmap/small_craft/combat/light/OM as() in SSstar_system.find_main_overmap().overmaps_in_ship)
+	for(var/obj/structure/overmap/small_craft/combat/light/OM in SSstar_system.find_main_overmap().overmaps_in_ship) // AQ EDIT - bez as(): pętla brała Sabre z hangaru, a test go usuwał (wybuch wnętrza na stacji)
 		fighter = OM
 		break
 

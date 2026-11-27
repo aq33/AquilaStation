@@ -3,6 +3,7 @@
 #define ENGINE_CHOICE_TESLA "tesla"
 #define ENGINE_CHOICE_STORMDRIVE "stormdrive"
 #define ENGINE_CHOICE_SUPERMATTER "supermatter"
+#define ENGINE_CHOICE_HFR "hfr"
 /// Tag preferowanego silnika w tabeli preferencji. Zapis i odczyt robi moduł, core go nie zna (jak PREFERENCE_TAG_GAME_LANGUAGE)
 #define PREFERENCE_TAG_PREFERRED_ENGINE "91"
 // Pola slotu silnika (GLOB.engine_choice_slots, engine_choice_snapshot())

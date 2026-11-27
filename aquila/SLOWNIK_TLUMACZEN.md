@@ -686,6 +686,26 @@ Nazwy gazów są widoczne w skanerach, kanistrach i oknach TGUI. Jeśli nazwa ga
 | Methane | metan | m; nowe (plan maszynowni E8) |
 | swamp gas | gaz bagienny | m; nowe (bańka gazu bagiennego na planetach dżungli) |
 | electrolyzer | elektrolizer | m; nowe (plan maszynowni E6) |
+| crystallizer | krystalizator | m; nowe (plan maszynowni E14) |
+| gas condenser | kondensator gazu | m; nowe (plan maszynowni E15), skrapla gaz w płyn |
+| ammonia crystals | kryształy amoniaku | mn; nowe (krystalizator), lp. „kryształ amoniaku” |
+| fuel pellet (standard / advanced / exotic) | pellet paliwowy (standardowy / zaawansowany / egzotyczny) | m; istniejące (exodrony) |
+| masterwork / supreme / good / decent / average / okay / poor / ugly / cracked / terrible (jakość z krystalizatora) | mistrzowski / znakomity / dobry / przyzwoity / przeciętny / znośny / słaby / brzydki / pęknięty / fatalny | przymiotniki w rodzaju męskim (wszystkie produkty są rodzaju męskiego) |
+| Helium | hel | m; nowe (plan maszynowni E17, produkt fuzji HFR) |
+| Hypertorus Fusion Reactor (HFR) | hipertoroidalny reaktor fuzyjny (HFR), hipertorus | m; nowe (plan maszynowni E17) |
+| fusion level | poziom fuzji | m; nowe (HFR) |
+| fusion mix | mieszanka fuzji / komora fuzji | ż; nowe (HFR) |
+| moderator (HFR) | moderator | m; nowe (HFR) |
+| heating conductor | przewodnik ciepła | m; nowe (HFR) |
+| magnetic constrictor | zwężacz magnetyczny | m; nowe (HFR) |
+| current damper | tłumik prądu | m; nowe (HFR) |
+| fuel input / moderator input / waste output (HFR) | wlot paliwa / wlot moderatora / wylot odpadów | m; nowe (HFR) |
+| interface (HFR) | panel sterowania | m; nowe (HFR) |
+| iron content | zawartość żelaza | ż; nowe (HFR) |
+| oxygen regenerator | regenerator tlenu | m; nowe (plan maszynowni E11) |
+| biogas plant | biogazownia | ż; nowe (plan maszynowni E20) |
+| biogas | biogaz | m; nowe |
+| sewage | ścieki | mn; nowe (kanalizacja statku, z sedesów i odpływów) |
 | air | powietrze | n; istniejące |
 | pressure | ciśnienie | n; istniejące (75×) |
 | output pressure | ciśnienie wyjściowe | n; istniejące (TGUI) |
@@ -709,6 +729,10 @@ Nazwy gazów są widoczne w skanerach, kanistrach i oknach TGUI. Jeśli nazwa ga
 | pipe sparker | iskrownik rurowy | m; nowe |
 | high-flow (pump, filter) | wysokiego przepływu | nowe; pompa ciśnieniowa w tej wersji: „pompa wysokiego ciśnienia” |
 | reinforced pipe / burst pipe | rura wzmocniona / pęknięta | ż; nowe |
+| gas turbine (blade turbine, Goon) | turbina gazowa | ż; nowe (plan maszynowni E16); stara turbina spalinowa z tg zostaje „turbiną” |
+| turbine blade / stator | łopatki turbiny / stator turbiny | lm / m; nowe |
+| stator load | obciążenie statora | n; nowe (J na obrót) |
+| overspeed / stall | nadobroty / zdławienie | nowe |
 | gas filter | filtr gazów | m; istniejące (TGUI) |
 | gas mixer | mieszacz gazów | m; nowe |
 | connector port | port przyłączeniowy | m; istniejące („Port” w TGUI) |
@@ -3883,6 +3907,8 @@ Oznaczenia w kolumnie uwag:
 | killer tomato | pomidor zabójca | m; nowe |
 | eyeball | gałka oczna | ż; nowe |
 | goldfish / fish | złota rybka / ryba | ż; nowe |
+| bleak (fish) | ukleja | ż; nowe (ryba Akwarianina) |
+| bare metal (Aquarian armour) | goły metal | m; nowe |
 
 ### 8b. Wrogie moby, megafauna, Lavaland
 
@@ -4444,6 +4470,7 @@ Nazwy obszarów są w większości przetłumaczone. Nowe nazwy budujemy z tych k
 | helm / helm console | ster / konsola steru | m / ż; istniejące „ster” |
 | helmsman | sternik | m; nowe |
 | tactical console | konsola taktyczna | ż; istniejące (STEROWANIE TAKTYCZNE) |
+| tactical screen | ekran taktyczny | m; okno z trybami Rozpoznanie (Recon), Ogień (Fire), Podgląd (View) |
 | navigation | nawigacja | ż; istniejące (dane nawigacyjne) |
 | DRADIS | DRADIS | m; istniejące (DRADIS-u) |
 | cargo DRADIS | DRADIS ładunkowy | m; istniejące |
