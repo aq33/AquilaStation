@@ -30,6 +30,7 @@
 	RegisterSignal(parent, COMSIG_PARENT_EXAMINE, PROC_REF(on_examine))
 	RegisterSignal(parent, COMSIG_ITEM_ATTACK_SELF, PROC_REF(on_attack_self))
 	RegisterSignal(parent, COMSIG_ITEM_PRE_ATTACK_SECONDARY, PROC_REF(on_pre_attack_secondary))
+	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY, PROC_REF(on_attackby))
 	// Spy PDAs can't be blown up by PDA bombs, like in tg
 	if(istype(parent, /obj/item/modular_computer/tablet))
 		var/obj/item/modular_computer/tablet/tablet = parent
@@ -41,6 +42,7 @@
 		COMSIG_PARENT_EXAMINE,
 		COMSIG_ITEM_ATTACK_SELF,
 		COMSIG_ITEM_PRE_ATTACK_SECONDARY,
+		COMSIG_PARENT_ATTACKBY,
 	))
 	if(istype(parent, /obj/item/modular_computer/tablet))
 		var/obj/item/modular_computer/tablet/tablet = parent
@@ -59,6 +61,7 @@
 	examine_list += "<span class='notice'>Rozpoznajesz w tym swój <i>uplink szpiega</i>.</span>"
 	examine_list += "<span class='notice'>- <b>Użyj w ręce</b>, żeby zobaczyć listę zleceń.</span>"
 	examine_list += "<span class='notice'>- Kliknij nim <b>[user.secondary_click_text()]</b> na cel zlecenia, żeby go ukraść.</span>"
+	examine_list += "<span class='notice'>- <b>Przyłóż do niego zdjęcie</b>, żeby wysłać je do zlecenia na zdjęcie.</span>"
 
 /datum/component/spy_uplink/proc/on_attack_self(obj/item/source, mob/user)
 	SIGNAL_HANDLER
@@ -81,6 +84,20 @@
 	if(!try_steal(target, user))
 		return NONE
 	return COMPONENT_SECONDARY_CANCEL_ATTACK_CHAIN
+
+/// AQUILA - zlecenie na zdjęcie: zdjęcie przyłożone do uplinku idzie do zleceń jak kliknięty cel
+/datum/component/spy_uplink/proc/on_attackby(obj/item/source, obj/item/attacking, mob/living/user, params)
+	SIGNAL_HANDLER
+
+	if(!try_photo(attacking, user))
+		return NONE
+	return COMPONENT_NO_AFTERATTACK
+
+/// Zdjęcie przyłożone do uplinku: TRUE, gdy pasuje do zlecenia i ruszyło wysyłanie
+/datum/component/spy_uplink/proc/try_photo(obj/item/photo/photo, mob/living/user)
+	if(!istype(photo) || !isliving(user) || !IS_SPY(user))
+		return FALSE
+	return try_steal(photo, user)
 
 /// Checks if the passed atom is something that can be stolen according to one of the active bounties.
 /// If so, starts the stealing process.

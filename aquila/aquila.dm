@@ -413,6 +413,7 @@
 #include "code\modules\antagonists\spy\spy_bounty.dm"
 #include "code\modules\antagonists\spy\spy_bounty_handler.dm"
 #include "code\modules\antagonists\spy\spy_uplink.dm"
+#include "code\modules\antagonists\spy\spy_bounty_photo.dm"
 #include "code\modules\antagonists\devil\sintouched\objectives.dm"
 #include "code\modules\antagonists\hijacked_ai\hijacked_ai.dm"
 #include "code\modules\antagonists\horror\horror.dm"
@@ -3134,6 +3135,7 @@
 #include "code\modules\unit_tests\aquila_zmimic.dm"
 #include "code\modules\unit_tests\aquila_zgloszenia_gracza_2511.dm"
 #include "code\modules\unit_tests\aquila_rev_capture.dm"
+#include "code\modules\unit_tests\aquila_spy_photo.dm"
 #endif
 
 // Heretyk z tg (osobny plik z includami)

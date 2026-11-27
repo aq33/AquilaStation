@@ -35993,5 +35993,16 @@
 "<span class='warning'>Do nadania sygnału zostało około [round(time_left() / (1 SECONDS))] s.</span>": "<span class='warning'>About [round(time_left() / (1 SECONDS))] s left until the signal is broadcast.</span>",
 "<span class='warning'>To nasz przekaźnik. Musimy go bronić, a nie rozbierać.</span>": "<span class='warning'>This is our relay. We must defend it, not take it apart.</span>",
 "nadaje za [round(swarm.relay.time_left() / (1 SECONDS))] s": "broadcasting in [round(swarm.relay.time_left() / (1 SECONDS))] s",
-" Na koniec zmiany liczy się też skucie w brygu albo w areszcie rewolucji.": " At the end of the shift, being cuffed in the brig or in revolutionary custody also counts."
+" Na koniec zmiany liczy się też skucie w brygu albo w areszcie rewolucji.": " At the end of the shift, being cuffed in the brig or in revolutionary custody also counts.",
+"Zdjęcie: [crewmember.real_name]": "Photo: [crewmember.real_name]",
+"Zrób aparatem zdjęcie osoby [crewmember.real_name], póki żyje, i przyłóż je do uplinku.": "Take a camera photo of [crewmember.real_name] while they are alive, and hold it up to the uplink.",
+"Zdjęcie: [crewmember.real_name] [required_area_text]": "Photo: [crewmember.real_name] [required_area_text]",
+"Zrób aparatem zdjęcie osoby [crewmember.real_name], póki żyje, kiedy jest [required_area_text], i przyłóż je do uplinku.": "Take a camera photo of [crewmember.real_name] while they are alive and [required_area_text], and hold it up to the uplink.",
+"w dziale ochrony": "in Security",
+"w inżynierii": "in Engineering",
+"w dziale medycznym": "in Medical",
+"w dziale naukowym": "in Science",
+"w dziale zaopatrzenia": "in Supply",
+"w dziale uzbrojenia": "in Munitions",
+"<span class='notice'>- <b>Przyłóż do niego zdjęcie</b>, żeby wysłać je do zlecenia na zdjęcie.</span>": "<span class='notice'>- <b>Hold a photo up to it</b> to send it in for a photo bounty.</span>"
 }
