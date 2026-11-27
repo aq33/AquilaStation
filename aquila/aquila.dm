@@ -1161,6 +1161,7 @@
 #include "code\modules\planets\drill\gas_vein.dm"
 #include "code\modules\planets\drill\gas_extractor.dm"
 #include "code\modules\overmap\sabre_shuttle.dm"
+#include "code\modules\overmap\sabre_camera.dm"
 #include "code\modules\overmap\sabre_pod_rescue.dm"
 #include "code\modules\overmap\custom_shuttle_overmap.dm"
 #include "code\modules\overmap\ai_tuning.dm"

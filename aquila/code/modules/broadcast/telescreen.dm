@@ -13,6 +13,7 @@
 
 /obj/machinery/computer/security/telescreen/entertainment/Initialize(mapload)
 	. = ..()
+	network |= CAMERANET_NETWORK_SABRE
 	default_networks = network.Copy()
 	RegisterSignal(SSdcs, COMSIG_GLOB_NETWORK_BROADCAST_UPDATED, PROC_REF(on_network_broadcast_updated))
 	speakers = new(src)
