@@ -1979,3 +1979,15 @@
       infiltratorów.'
   - config: Link do zasad prowadzi do zasad na wiki Aquili, a odwołania od banów na
       Discorda serwera.
+'2026-11-27':
+  Joker66613:
+  - rscadd: '45 nowych reagentów z innych serwerów: leki na złamania, krzepnięcie,
+      narządy i nałogi, sole trzeźwiące, Ignizol, Equalizon, Dermagen i inne.'
+  - rscadd: 'Szybkie krzepnięcie w medipenie: na kilka minut wstrzymuje krwawienie,
+      także wewnętrzne, ale ran nie leczy.'
+  - rscadd: 'Chemia użytkowa: superklej (też na rany), krzemian do okien, beton, dekonstruktor
+      materii, trawa, serum genezy, azotan srebra, odciskowe nanoboty i sól święcona.'
+  - rscadd: 'Chemia dla antagonistów i sabotażu: amnestyki, lokutogen, solipsizyna,
+      enzym bólu, obskurytol, fulguracyna, rozrusznik radiomagnetyczny i inne.'
+  - rscadd: 'Pirotechnika z warunkiem: trijodek azotu, fotofosfid, argina i punktualit.'
+  - rscadd: 'SDGF: kopia ciała dla ducha, najwyżej jedna na gracza na rundę.'
