@@ -97,6 +97,13 @@
 			"colour": "yellow",
 			"icon": "poo",
 			"sentence": 3000
+		},
+		{
+			"name": "Uchylanie się od grzywny",
+			"tooltip": "Niezapłacenie mandatu w terminie bez odwołania do Kapitana, Komendanta albo prawnika.",
+			"colour": "yellow",
+			"icon": "file-invoice-dollar",
+			"sentence": 3000
 		}
 	],
 	"Występki": [

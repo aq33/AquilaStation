@@ -80,5 +80,36 @@
 		if(istype(leftover, /obj/item/card/id/prisoner) || istype(leftover, /obj/item/paper))
 			qdel(leftover)
 
+	// Mandat po terminie: niespłacony daje wykroczenie i „do aresztowania”, spłacony nic nie zmienia, osadzony zostaje osadzonym
+	var/list/fined_records = make_records("Testowy Dłużnik")
+	var/datum/data/record/fined = fined_records[2]
+	var/datum/data/crime/citation = GLOB.data_core.createCrimeEntry("Drobny wandalizm", "", "Testowy Żandarm", station_time_timestamp(), 100)
+	GLOB.data_core.addCitation(fined.fields["id"], citation)
+	citation.paid = 100
+	TEST_ASSERT(!GLOB.data_core.aq_citation_deadline(fined.fields["id"], citation.dataId), "Spłacony mandat uznany za zaległy")
+	TEST_ASSERT_EQUAL(fined.fields["criminal"], "None", "Spłacony mandat zmienił status")
+	citation.paid = 50
+	TEST_ASSERT(GLOB.data_core.aq_citation_deadline(fined.fields["id"], citation.dataId), "Częściowo spłacony mandat nie jest zaległy")
+	TEST_ASSERT_EQUAL(fined.fields["criminal"], "Arrest", "Zaległy mandat nie wystawił nakazu")
+	var/list/fined_crimes = fined.fields["crim"]
+	TEST_ASSERT_EQUAL(length(fined_crimes), 1, "Zaległy mandat nie dopisał wykroczenia")
+	GLOB.data_core.set_criminal_status(fined, "Incarcerated", "Testowy Żandarm", announce = FALSE)
+	GLOB.data_core.aq_citation_deadline(fined.fields["id"], citation.dataId)
+	TEST_ASSERT_EQUAL(fined.fields["criminal"], "Incarcerated", "Zaległy mandat cofnął osadzonego do poszukiwanego")
+
+	// Alarm śmierci: zgon nosiciela daje jeden komunikat na kanały Żandarmerii i Medyczny
+	var/mob/living/carbon/human/victim = allocate(/mob/living/carbon/human, run_loc_floor_bottom_left)
+	victim.real_name = "Testowy Nieboszczyk"
+	var/obj/item/implant/security_down/crew/alarm = new
+	TEST_ASSERT(alarm.implant(victim, null, TRUE, TRUE), "Implant alarmu śmierci się nie wszczepił")
+	victim.death()
+	var/before = length(announcements)
+	var/death_message = flush_death_alarms()
+	TEST_ASSERT(findtext(death_message, "Testowy Nieboszczyk"), "Alarm śmierci nie podał imienia: [death_message]")
+	TEST_ASSERT_EQUAL(length(announcements), before + 1, "Liczba komunikatów alarmu śmierci")
+	channels = announcements[length(announcements)][2]
+	TEST_ASSERT((RADIO_CHANNEL_SECURITY in channels) && (RADIO_CHANNEL_MEDICAL in channels), "Alarm śmierci nie poszedł na kanały Żandarmerii i Medyczny")
+	TEST_ASSERT(isnull(flush_death_alarms()), "Pusta kolejka alarmów nadała komunikat")
+
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL
