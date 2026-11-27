@@ -149,7 +149,7 @@
 	if(!length(active_wireweed))
 		active_wireweed = controlled_wireweed.Copy()
 	var/list/candidates = list()
-	for(var/obj/structure/fleshmind/wireweed/wireweed as anything in active_wireweed)
+	for(var/obj/structure/fleshmind/wireweed/wireweed as anything in active_wireweed.Copy()) // kopia, bo pętla usuwa z listy
 		var/turf/wireweed_turf = get_turf(wireweed)
 		var/found = FALSE
 		if(isopenturf(wireweed_turf))
@@ -444,6 +444,26 @@
 		/obj/machinery/computer/shuttle_flight,
 		/obj/machinery/computer/cryopod,
 		/obj/machinery/computer/emergency_shuttle,
+		/obj/machinery/computer/reactor,
+		/obj/machinery/computer/ams,
+		/obj/machinery/computer/anti_air,
+		/obj/machinery/computer/deckgun,
+		/obj/machinery/computer/laser_pd,
+		/obj/machinery/computer/boarding_guns,
+		/obj/machinery/computer/ammo_sorter,
+		/obj/machinery/computer/iff_console,
+		/obj/machinery/computer/ai_control_console,
+		/obj/machinery/computer/ai_overclocking,
+		/obj/machinery/computer/ai_resource_distribution,
+		/obj/machinery/computer/ai_server_console,
+		/obj/machinery/computer/sts_bsa_control,
+		/obj/machinery/computer/secondary_ship_id_console,
+		/obj/machinery/computer/monitor,
+		/obj/machinery/computer/station_alert,
+		/obj/machinery/computer/atmos_control,
+		/obj/machinery/computer/telecomms,
+		/obj/machinery/computer/teleporter,
+		/obj/machinery/computer/rdconsole,
 	))
 	if(!istype(machine) || QDELETED(machine) || machine.GetComponent(/datum/component/machine_corruption))
 		return FALSE

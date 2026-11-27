@@ -36122,5 +36122,7 @@
 "Czat roju": "Flesh Chat",
 "Wysyła wiadomość do wszystkich świadomych członków roju.": "Sends a message to all other sentient members of the swarm.",
 "Wiadomość do roju.": "Send a message to the swarm.",
-"<span class='purple'><b>UMYSŁ Z CIAŁA ([owner.real_name]):</b> [message]</span>": "<span class='purple'><b>FLESHMIND ([owner.real_name]):</b> [message]</span>"
+"<span class='purple'><b>UMYSŁ Z CIAŁA ([owner.real_name]):</b> [message]</span>": "<span class='purple'><b>FLESHMIND ([owner.real_name]):</b> [message]</span>",
+"<span class='warning'>Przed tobą musi być wolne pole z przewodami!</span>": "<span class='warning'>There must be a free tile with wireweed in front of you!</span>",
+"Buduje ścianę albo drzwi z przewodów na polu przed tobą (na przewodach).": "Creates a wireweed wall or door on the tile in front of you (on wireweed)."
 }

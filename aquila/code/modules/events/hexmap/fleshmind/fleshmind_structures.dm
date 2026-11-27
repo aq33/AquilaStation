@@ -33,7 +33,7 @@
 	desc = "Dziwna, pulsująca masa organicznych przewodów. Da się je przeciąć przecinakiem."
 	icon = 'aquila/icons/fleshmind/wireweed_floor.dmi'
 	icon_state = "wires-0"
-	layer = TURF_DECAL_LAYER
+	layer = BELOW_OPEN_DOOR_LAYER
 	max_integrity = 40
 	/// Przewody w wentylacji
 	var/vent_burrow = FALSE

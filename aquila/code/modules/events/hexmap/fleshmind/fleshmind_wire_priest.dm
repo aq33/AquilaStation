@@ -384,10 +384,15 @@
 	if(!(locate(/obj/structure/fleshmind/wireweed) in user_turf))
 		to_chat(user, "<span class='warning'>Musisz stać na przewodach!</span>")
 		return
-	if(locate(/obj/structure/fleshmind/structure) in user_turf)
+	// Ściany i drzwi rosną na polu przed kapłanem, żeby nie zamurował samego siebie
+	var/turf/build_turf = is_wall ? get_step(user_turf, user.dir) : user_turf
+	if(is_wall && (!isopenturf(build_turf) || is_blocked_turf(build_turf, TRUE) || (locate(/mob/living) in build_turf) || !(locate(/obj/structure/fleshmind/wireweed) in build_turf)))
+		to_chat(user, "<span class='warning'>Przed tobą musi być wolne pole z przewodami!</span>")
+		return
+	if(locate(/obj/structure/fleshmind/structure) in build_turf)
 		to_chat(user, "<span class='warning'>Tu już coś stoi!</span>")
 		return
-	var/obj/built = is_wall ? controller.spawn_wall(user_turf, picked_type) : controller.spawn_structure(user_turf, picked_type)
+	var/obj/built = is_wall ? controller.spawn_wall(build_turf, picked_type) : controller.spawn_structure(build_turf, picked_type)
 	if(!built)
 		to_chat(user, "<span class='warning'>Rój nie ma sił na kolejną strukturę!</span>")
 		return
@@ -395,7 +400,7 @@
 
 /datum/action/innate/fleshmind_create_structure/basic
 	name = "Zbuduj ścianę albo drzwi"
-	desc = "Buduje ścianę albo drzwi z przewodów tam, gdzie stoisz (na przewodach)."
+	desc = "Buduje ścianę albo drzwi z przewodów na polu przed tobą (na przewodach)."
 	icon_icon = 'aquila/icons/fleshmind/fleshmind_structures.dmi'
 	button_icon_state = "wireweed_wall"
 	cooldown_time = 5 SECONDS

@@ -817,6 +817,10 @@
 		new_place = get_ranged_target_turf(start, angle2dir(angle), rand(2, 4))
 	if(!new_place || new_place.density || isgroundlessturf(new_place) || is_blocked_turf(new_place, TRUE))
 		return null
+	// Tylko po prostej bez ścian, okien i zamkniętych drzwi i nigdy do zamkniętego obszaru (bryg, mostek, rdzeń SI...)
+	var/area/new_area = get_area(new_place)
+	if(aquila_hex_closed_area_type(new_area?.type) || !aquila_hex_clear_line(start, new_place, 5))
+		return null
 	if(!can_see(new_place, target_turf, FLESHMIND_VIEW_RANGE))
 		return null
 	return new_place

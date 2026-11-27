@@ -146,7 +146,7 @@
 	whip_mob(user)
 	user.adjustBruteLoss(10)
 	INVOKE_ASYNC(parent_machinery, TYPE_PROC_REF(/atom/movable, say), pick(interact_phrases))
-	return COMPONENT_CANCEL_ATTACK_CHAIN
+	return COMPONENT_NO_ATTACK_HAND
 
 /datum/component/machine_corruption/proc/whip_mob(mob/living/user_to_throw)
 	var/obj/machinery/parent_machinery = parent
