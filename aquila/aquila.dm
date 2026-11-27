@@ -1794,6 +1794,7 @@
 #include "code\modules\security\space_law_catalog.dm"
 #include "code\modules\security\citationinator.dm"
 #include "code\modules\security\citation_deadline.dm"
+#include "code\game\machinery\doors\brigdoors.dm"
 #include "code\modules\security\undercover_id.dm"
 #include "code\modules\surgery\surgery_catalog.dm"
 #include "code\modules\surgery\surgery_progress.dm"

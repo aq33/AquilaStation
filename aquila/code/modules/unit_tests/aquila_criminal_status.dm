@@ -111,5 +111,32 @@
 	TEST_ASSERT((RADIO_CHANNEL_SECURITY in channels) && (RADIO_CHANNEL_MEDICAL in channels), "Alarm śmierci nie poszedł na kanały Żandarmerii i Medyczny")
 	TEST_ASSERT(isnull(flush_death_alarms()), "Pusta kolejka alarmów nadała komunikat")
 
+	// Zegar celi: start z osadzonym daje „w areszcie”, ostrzeżenie przed końcem, pauza trzyma czas, ułaskawienie zwalnia
+	var/list/cell_records = make_records("Testowy Osadzony")
+	var/datum/data/record/cell_security = cell_records[2]
+	var/obj/machinery/door_timer/cell = allocate(/obj/machinery/door_timer, run_loc_floor_bottom_left)
+	cell.set_machine_stat(NONE)
+	cell.prisoner_name = "Testowy Osadzony"
+	cell.prisoner_crimes = "Drobny wandalizm"
+	TEST_ASSERT(aq_sentence_for_crimes(list("Drobny wandalizm")) > 0, "Kodeks nie podał wyroku za drobny wandalizm")
+	cell.set_timer(2 MINUTES)
+	TEST_ASSERT(cell.timer_start(), "Zegar celi się nie uruchomił")
+	TEST_ASSERT_EQUAL(cell_security.fields["criminal"], "Incarcerated", "Start zegara nie ustawił statusu")
+	cell.set_timer(20 SECONDS)
+	cell.process()
+	TEST_ASSERT(cell.end_warned, "Zegar nie ostrzegł przed końcem wyroku")
+	TEST_ASSERT(cell.pause_timer(), "Zegar się nie zapauzował")
+	TEST_ASSERT(!cell.timing && cell.paused_left > 0 && cell.paused_left <= 20 SECONDS, "Pauza nie zachowała pozostałego czasu: [cell.paused_left]")
+	TEST_ASSERT(cell.resume_timer() && cell.timing, "Zegar nie wznowił odliczania")
+	TEST_ASSERT(cell.pardon(null), "Ułaskawienie nie zadziałało")
+	TEST_ASSERT_EQUAL(cell_security.fields["criminal"], "Discharged", "Ułaskawienie nie dało statusu po odbyciu kary")
+	TEST_ASSERT(isnull(cell.prisoner_name), "Po zwolnieniu zegar dalej pamięta osadzonego")
+	// Ręczne zatrzymanie przed końcem: zwolnienie warunkowe
+	cell.prisoner_name = "Testowy Osadzony"
+	cell.set_timer(2 MINUTES)
+	cell.timer_start()
+	cell.timer_end(forced = TRUE)
+	TEST_ASSERT_EQUAL(cell_security.fields["criminal"], "Paroled", "Zatrzymanie zegara nie dało zwolnienia warunkowego")
+
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL
