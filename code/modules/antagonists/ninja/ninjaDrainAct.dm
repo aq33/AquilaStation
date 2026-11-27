@@ -131,7 +131,7 @@
 	if(!do_after(ninja, 20 SECONDS, target = src, extra_checks = CALLBACK(src, PROC_REF(can_hack), ninja), progress = FALSE))
 		return
 	for(var/datum/data/record/target in GLOB.data_core.security)
-		target.fields["criminal"] = "Arrest" // AQ EDIT - status jak w konsoli rekordów, HUD-zie i secbotach (było "*Arrest*")
+		GLOB.data_core.set_criminal_status(target, "Arrest", "Nieznany", announce = FALSE) // AQ EDIT - status jak w konsoli rekordów, HUD-zie i secbotach (było "*Arrest*"); rdzeń kartoteki
 	for(var/mob/living/carbon/human/crewmember in GLOB.carbon_list)
 		crewmember.sec_hud_set_security_status()
 

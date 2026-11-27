@@ -599,7 +599,7 @@
 	if(desired_crime)
 		var/datum/data/record/R = find_record("name", desired_name, GLOB.data_core.general)
 		if(R)
-			R.fields["criminal"] = "Incarcerated"
+			GLOB.data_core.set_criminal_status(R, "Incarcerated", aq_record_author(user), desired_crime, announce = FALSE) // AQ EDIT - status w rekordzie ochrony (był ogólny, HUD go nie widział); radio niżej
 			var/crime = GLOB.data_core.createCrimeEntry(desired_crime, null, user.real_name, station_time_timestamp())
 			GLOB.data_core.addCrime(R.fields["id"], crime)
 			investigate_log("New Crime: <strong>[desired_crime]</strong> | Added to [R.fields["name"]] by [key_name(user)]", INVESTIGATE_RECORDS)
@@ -724,7 +724,7 @@
 				START_PROCESSING(SSobj, id)
 				var/datum/data/record/R = find_record("name", id.registered_name, GLOB.data_core.general)
 				if(R)
-					R.fields["criminal"] = "Incarcerated"
+					GLOB.data_core.set_criminal_status(R, "Incarcerated", aq_record_author(usr), "ucieczka więźnia", announce = FALSE) // rekord ochrony; radio niżej
 			// AQ EDIT END
 			Radio.talk_into(src, "Czas odbywania kary więźnia [id.registered_name] został zresetowany.")
 			investigate_log("[key_name(usr)] has reset the timer of [id] ([id.loc])", INVESTIGATE_RECORDS)
@@ -781,7 +781,7 @@ GLOBAL_LIST_EMPTY(prisoner_ids)
 
 		var/datum/data/record/R = find_record("name", registered_name, GLOB.data_core.general)
 		if(R)
-			R.fields["criminal"] = "Discharged"
+			GLOB.data_core.set_criminal_status(R, "Discharged", "Terminal GenPop", announce = FALSE) // AQ EDIT - status w rekordzie ochrony (był ogólny, HUD go nie widział)
 
 		if(isliving(loc))
 			to_chat(loc, "<span class='boldnotice'>Odbyłeś karę! Możesz teraz wyjść z więzienia przez bramki i odebrać swoje rzeczy.</span>")

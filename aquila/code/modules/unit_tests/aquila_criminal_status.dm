@@ -1,0 +1,84 @@
+// The upstream assert macros are #undef'd at the end of code/modules/unit_tests/_unit_tests.dm, so this modular test carries its own copies
+#define TEST_ASSERT(assertion, reason) if (!(assertion)) { return Fail("Assertion failed: [reason || "No reason"]") }
+#define TEST_ASSERT_EQUAL(a, b, message) if ((a) != (b)) { return Fail("Assertion failed: [message || "No message"]. Expected [b], got [a]") }
+
+/// AQUILA - wspólny rdzeń kartoteki (aquila/code/modules/security/criminal_status.dm):
+/// status ląduje w rekordzie ochrony (także gdy podano ogólny), dopisuje historię i ogłasza jeden komunikat na właściwych kanałach.
+/// Regresja: GenPop pisał „Incarcerated”/„Discharged” do rekordu ogólnego, więc HUD ochrony go nie widział.
+/datum/unit_test/aquila_criminal_status
+	var/list/announcements = list()
+	var/list/created_records = list()
+
+/datum/unit_test/aquila_criminal_status/proc/on_announce(datum/source, message, list/channels)
+	SIGNAL_HANDLER
+	announcements += list(list(message, channels.Copy()))
+
+/datum/unit_test/aquila_criminal_status/proc/make_records(name)
+	var/id = "aquila_test_[name]_[world.time]_[rand(1, 99999)]"
+	var/datum/data/record/general = new
+	general.fields["name"] = name
+	general.fields["id"] = id
+	GLOB.data_core.general += general
+	var/datum/data/record/security = new
+	security.fields["name"] = name
+	security.fields["id"] = id
+	security.fields["criminal"] = "None"
+	security.fields["crim"] = list()
+	security.fields["citation"] = list()
+	GLOB.data_core.security += security
+	created_records += general
+	created_records += security
+	return list(general, security)
+
+/datum/unit_test/aquila_criminal_status/Destroy()
+	UnregisterSignal(SSdcs, COMSIG_GLOB_AQ_SECURITY_ANNOUNCE)
+	for(var/datum/data/record/record as anything in created_records)
+		GLOB.data_core.general -= record
+		GLOB.data_core.security -= record
+		qdel(record)
+	created_records = null
+	return ..()
+
+/datum/unit_test/aquila_criminal_status/Run()
+	RegisterSignal(SSdcs, COMSIG_GLOB_AQ_SECURITY_ANNOUNCE, PROC_REF(on_announce))
+
+	// Rdzeń: rekord ogólny na wejściu, zmiana w rekordzie ochrony, historia i jedno ogłoszenie (Arrest idzie też do Dowództwa)
+	var/list/records = make_records("Testowy Podejrzany")
+	var/datum/data/record/general = records[1]
+	var/datum/data/record/security = records[2]
+	TEST_ASSERT(GLOB.data_core.set_criminal_status(general, "Arrest", "Testowy Żandarm", "kradzież"), "set_criminal_status nie zgłosił zmiany")
+	TEST_ASSERT_EQUAL(security.fields["criminal"], "Arrest", "Status nie trafił do rekordu ochrony")
+	TEST_ASSERT(isnull(general.fields["criminal"]), "Status trafił do rekordu ogólnego")
+	TEST_ASSERT(findtext(security.fields["com_1"], "kradzież"), "Historia rekordu nie ma powodu: [security.fields["com_1"]]")
+	TEST_ASSERT_EQUAL(length(announcements), 1, "Liczba ogłoszeń po zmianie statusu")
+	var/list/channels = announcements[1][2]
+	TEST_ASSERT((RADIO_CHANNEL_SECURITY in channels) && (RADIO_CHANNEL_COMMAND in channels), "Aresztowanie nie poszło na kanały Żandarmerii i Dowództwa")
+
+	// Ten sam status: bez zmiany i bez ogłoszenia; Monitor tylko na kanał Żandarmerii
+	TEST_ASSERT(!GLOB.data_core.set_criminal_status(security, "Arrest", "Testowy Żandarm"), "Powtórzony status liczy się jako zmiana")
+	TEST_ASSERT_EQUAL(length(announcements), 1, "Powtórzony status został ogłoszony")
+	GLOB.data_core.set_criminal_status(security, "Monitor", "Testowy Żandarm")
+	TEST_ASSERT_EQUAL(length(announcements), 2, "Liczba ogłoszeń po drugiej zmianie")
+	channels = announcements[2][2]
+	TEST_ASSERT(!(RADIO_CHANNEL_COMMAND in channels), "Obserwacja poszła do Dowództwa")
+	TEST_ASSERT(security.fields["com_2"], "Druga zmiana nie dopisała historii")
+
+	// Regresja GenPop: osadzenie przez terminal i koniec wyroku na karcie zmieniają rekord ochrony
+	var/list/prisoner_records = make_records("Testowy Więzień")
+	var/datum/data/record/prisoner_security = prisoner_records[2]
+	var/mob/living/carbon/human/officer = allocate(/mob/living/carbon/human, run_loc_floor_bottom_left)
+	var/obj/machinery/genpop_interface/genpop = allocate(/obj/machinery/genpop_interface, run_loc_floor_bottom_left)
+	genpop.desired_name = "Testowy Więzień"
+	genpop.print_id(officer, "Kradzież", 10 MINUTES)
+	TEST_ASSERT_EQUAL(prisoner_security.fields["criminal"], "Incarcerated", "GenPop nie ustawił statusu w rekordzie ochrony")
+	var/obj/item/card/id/prisoner/card = locate() in run_loc_floor_bottom_left
+	TEST_ASSERT(card, "GenPop nie wydrukował karty więźnia")
+	card.served_time = card.sentence
+	card.process(1)
+	TEST_ASSERT_EQUAL(prisoner_security.fields["criminal"], "Discharged", "Koniec wyroku nie ustawił statusu w rekordzie ochrony")
+	for(var/obj/item/leftover in run_loc_floor_bottom_left)
+		if(istype(leftover, /obj/item/card/id/prisoner) || istype(leftover, /obj/item/paper))
+			qdel(leftover)
+
+#undef TEST_ASSERT
+#undef TEST_ASSERT_EQUAL

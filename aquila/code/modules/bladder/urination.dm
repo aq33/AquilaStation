@@ -107,7 +107,7 @@
 	var/datum/data/crime/crime = GLOB.data_core.createCrimeEntry(crime_name, "Kamera nagrała tę osobę, gdy [action] w: [A?.name].", "Automatyczny system wykrywania wykroczeń", station_time_timestamp())
 	GLOB.data_core.addCrime(record.fields["id"], crime)
 	if(!(record.fields["criminal"] in list("Incarcerated", "Paroled")))
-		record.fields["criminal"] = "Arrest"
+		GLOB.data_core.set_criminal_status(record, "Arrest", "Automatyczny system wykrywania wykroczeń", crime_name)
 	log_game("[key_name(src)] was reported by camera [seen_by.c_tag] for [crime_name] at [AREACOORD(T)]")
 	if(ishuman(src)) // status widać na HUD-zie tej postaci
 		var/mob/living/carbon/human/H = src
