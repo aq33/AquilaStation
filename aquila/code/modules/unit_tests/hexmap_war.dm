@@ -811,9 +811,13 @@
 	var/datum/overmap_objective/aquila_retake_hq/mission = new
 	mission.target_system = hq
 	hq.alignment = "syndicate"
+	var/list/saved_objectives = SSovermap_mode.mode?.objectives?.Copy()
+	// Inna otwarta misja trzyma odbicie otwarte; w pełnym przebiegu wcześniejsze testy zamykają misje rundy, więc dajemy własną
+	var/datum/overmap_objective/other_open = new
+	if(SSovermap_mode.mode)
+		SSovermap_mode.mode.objectives = list(mission, other_open)
 	mission.check_completion()
 	var/open_status = mission.status
-	var/list/saved_objectives = SSovermap_mode.mode?.objectives?.Copy()
 	if(SSovermap_mode.mode)
 		SSovermap_mode.mode.objectives = list(mission)
 	mission.check_completion()
@@ -826,6 +830,7 @@
 		SSovermap_mode.mode.objectives = saved_objectives
 	hq.alignment = saved_alignment
 	qdel(mission)
+	qdel(other_open)
 	if(saved_objectives) // bez trybu overmapy nie ma innych misji do sprawdzenia
 		TEST_ASSERT_EQUAL(alone_status, 2, "The retake mission kept the round open with every other objective closed")
 	TEST_ASSERT_EQUAL(done_status, 1, "Retaking the headquarters did not complete the mission")

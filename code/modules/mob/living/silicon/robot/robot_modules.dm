@@ -269,6 +269,8 @@
 	var/mob/living/silicon/robot/R = loc
 	var/prev_lockcharge = R.lockcharge
 	sleep(1)
+	if(QDELETED(R)) // AQ EDIT - cyborg usunięty w trakcie animacji przemiany
+		return
 	flick("[cyborg_base_icon]_transform", R)
 	R.notransform = TRUE
 	R.SetLockdown(TRUE)
@@ -283,6 +285,8 @@
 	for(var/i in 1 to 4)
 		playsound(R, pick('sound/items/drill_use.ogg', 'sound/items/jaws_cut.ogg', 'sound/items/jaws_pry.ogg', 'sound/items/welder.ogg', 'sound/items/ratchet.ogg'), 80, 1, -1)
 		sleep(7)
+	if(QDELETED(R)) // AQ EDIT - cyborg usunięty w trakcie animacji przemiany
+		return
 	if(!prev_lockcharge)
 		R.SetLockdown(FALSE)
 	R.setDir(SOUTH)
