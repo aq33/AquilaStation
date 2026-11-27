@@ -35938,5 +35938,8 @@
 "Czujesz w ustach dziwny posmak: [initial(reagent_path.taste_description)].": "You get a strange aftertaste of [initial(reagent_path.taste_description)].",
 "<span class='boldnotice'>Potrzebujesz [HORROR_LEARNED_CHEM_USE] zgromadzonych chemikaliów, by użyć tej substancji!</span>": "<span class='boldnotice'>You need [HORROR_LEARNED_CHEM_USE] stored chemicals to use this chemical!</span>",
 "<span class='danger'>Wstrzykujesz [HORROR_LEARNED_CHEM_QUANTITY] jednostek [initial(reagent_path.name)] ze swoich zbiorników do krwiobiegu [victim].</span>": "<span class='danger'>You squirt [HORROR_LEARNED_CHEM_QUANTITY] units of [initial(reagent_path.name)] from your reservoirs into [victim]'s bloodstream.</span>",
-"[initial(reagent_path.name)] (z krwi)": "[initial(reagent_path.name)] (from blood)"
+"[initial(reagent_path.name)] (z krwi)": "[initial(reagent_path.name)] (from blood)",
+"Event rojowca nie znalazł bezpiecznego pola w tunelach serwisowych ani w ładowni, nic się nie pojawiło.": "The swarmer event found no safe spot in maintenance or cargo, nothing appeared.",
+"Event rojowca stawia skorupę w [ADMIN_VERBOSEJMP(spot)].": "The swarmer event places a shell at [ADMIN_VERBOSEJMP(spot)].",
+"<br><br>Nasze czujniki dalekiego zasięgu wykryły na pokładzie waszego okrętu dziwny sygnał. Jego źródło jest w okolicy: [A?.name]. Zalecamy natychmiastowe sprawdzenie ładunku i tuneli serwisowych, bo mogło się z nimi coś przedostać.": "<br><br>Our long-range sensors have picked up a strange signal aboard your ship. Its source is near: [A?.name]. We recommend checking your cargo and maintenance tunnels immediately, as something may have come aboard with them."
 }

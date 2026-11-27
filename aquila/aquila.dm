@@ -3389,6 +3389,11 @@
 #include "code\modules\unit_tests\aquila_horror_blood_chems.dm"
 #endif
 // ROZWÓJ ANTAGONISTÓW: drobne - koniec
+// ROJOWCE: skorupa bez bramy, ochrona systemów okrętu, przekaźnik sygnału
+#include "code\modules\antagonists\swarmer\swarmer_event.dm"
+#include "code\modules\unit_tests\aquila_swarmer.dm"
+#endif
+// ROJOWCE: koniec
 // Profiler byond-tracy: MUSI być ostatnim include'em całego builda (BYOND inicjuje zmienne statyczne od końca,
 // więc ta rusza pierwsza, przed Master i mapą). Opis: tools/tracy/README.md
 #include "code\modules\tracy\tracy.dm"
