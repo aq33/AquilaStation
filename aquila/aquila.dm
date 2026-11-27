@@ -3367,6 +3367,13 @@
 #include "code\modules\test_chamber\kits\pr_719_reaktor_fuzyjny.dm"
 // HFR: koniec
 
+// PRAWDZIWA FORMA ZMIENNOKSZTAŁTNEGO (port Goon Horror Form)
+#include "code\modules\antagonists\changeling\true_form.dm"
+#ifdef UNIT_TESTS
+#include "code\modules\unit_tests\aquila_changeling_true_form.dm"
+#endif
+// PRAWDZIWA FORMA: koniec
+
 // Profiler byond-tracy: MUSI być ostatnim include'em całego builda (BYOND inicjuje zmienne statyczne od końca,
 // więc ta rusza pierwsza, przed Master i mapą). Opis: tools/tracy/README.md
 #include "code\modules\tracy\tracy.dm"
