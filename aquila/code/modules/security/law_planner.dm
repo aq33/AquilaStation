@@ -68,6 +68,7 @@
 
 /// Skan twarzy: rekord z kartoteki, status i czas od skucia
 /obj/item/law_planner/proc/scan_suspect(mob/living/carbon/human/suspect)
+	suspect_name = null // nieudany skan nie zostawia poprzedniej osoby
 	var/face = suspect.get_face_name(null)
 	if(!face)
 		say("Błąd: nie da się odczytać twarzy.")
@@ -96,8 +97,7 @@
 		cell.prisoner_name = suspect_name
 	cell.prisoner_crimes = jointext(charges, ", ")
 	var/sentence = aq_sentence_for_crimes(charges)
-	if(sentence)
-		cell.set_timer(sentence)
+	cell.set_timer(sentence) // czas zawsze odpowiada zarzutom, także zerowy
 	cell.ui_update()
 	say("Wgrano do zegara ([cell.cell_label()]): [cell.prisoner_name || "bez imienia"], [cell.prisoner_crimes], [DisplayTimeText(sentence, 1)].")
 	return TRUE

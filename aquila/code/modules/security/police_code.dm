@@ -7,7 +7,7 @@ GLOBAL_VAR_INIT(aq_police_code_seed, "[rand(1, 999999)]")
 /datum/language/police_code
 	name = "Kod Żandarmerii"
 	desc = "Meldunki Żandarmerii nadawane kodami (np. „10-42 Bravo”). Kody zmieniają się co rundę i zna je tylko Żandarmeria."
-	key = "w"
+	key = "7"
 	default_priority = 0
 	flags = TONGUELESS_SPEECH | LANGUAGE_HIDE_ICON_IF_NOT_UNDERSTOOD
 	icon_state = "codespeak"

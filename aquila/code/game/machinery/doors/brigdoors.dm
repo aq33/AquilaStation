@@ -59,7 +59,7 @@
 	var/new_status = release_status || (forced && !pardon_text ? "Paroled" : "Discharged")
 	var/reason = pardon_text || (forced ? "zwolnienie przed końcem wyroku" : "koniec wyroku")
 	var/datum/data/record/record = prisoner_record()
-	if(record)
+	if(record && record.fields["criminal"] == "Incarcerated") // nowszy status (np. nowy nakaz) zostaje
 		GLOB.data_core.set_criminal_status(record, new_status, "Zegar celi ([cell_label()])", reason)
 	prisoner_name = null
 	prisoner_crimes = null
@@ -114,7 +114,7 @@
 	if(!picked || !can_interact(user))
 		return FALSE
 	var/name = choices[picked] == "manual" ? trim(tgui_input_text(user, "Imię i nazwisko osadzonego", "Zegar celi", max_length = MAX_NAME_LEN)) : picked
-	if(!name || !can_interact(user))
+	if(!name || !can_interact(user) || timing || !isnull(paused_left)) // ktoś mógł uruchomić zegar w trakcie dialogu
 		return FALSE
 	prisoner_name = name
 	return TRUE
@@ -128,10 +128,10 @@
 	var/list/picked = tgui_input_checkboxes(user, "Zarzuty", "Zegar celi", names, 0)
 	if(!length(picked) || !can_interact(user))
 		return FALSE
+	if(timing || !isnull(paused_left))
+		return FALSE
 	prisoner_crimes = jointext(picked, ", ")
-	var/sentence = aq_sentence_for_crimes(picked)
-	if(sentence && !timing)
-		set_timer(sentence)
+	set_timer(aq_sentence_for_crimes(picked)) // czas zawsze odpowiada wybranym zarzutom, także zerowy
 	return TRUE
 
 /// Alarm bojowy (czerwony i wyżej): zegar wolno uruchomić bez imienia, żeby nie blokować walki
@@ -150,6 +150,10 @@
 /obj/machinery/door_timer/ui_act(action, params)
 	switch(action)
 		if("start")
+			if(!isnull(paused_left)) // zapauzowany: wznowienie bez ponownego osadzenia i wpisu do kartoteki
+				. = resume_timer()
+				ui_update()
+				return
 			if(!prisoner_name && !combat_alert())
 				to_chat(usr, "<span class='warning'>Najpierw wpisz osadzonego.</span>")
 				return FALSE

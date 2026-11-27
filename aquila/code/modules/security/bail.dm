@@ -30,6 +30,8 @@
 /proc/aq_bail_for_timer(obj/machinery/door_timer/cell)
 	if(QDELETED(cell) || !cell.prisoner_name || !(cell.timing || !isnull(cell.paused_left)) || aq_bail_blocked())
 		return null
+	if(cell.machine_stat & (NOPOWER|BROKEN)) // zegar bez zasilania nie otworzy celi
+		return null
 	if(!isnull(cell.bail_override))
 		return cell.bail_override
 	var/left = isnull(cell.paused_left) ? cell.time_left() : cell.paused_left
@@ -106,6 +108,7 @@
 	if(isnull(amount) || !isliving(user) || issilicon(user))
 		to_chat(user, "<span class='warning'>Za tego więźnia nie można teraz wpłacić kaucji.</span>")
 		return FALSE
+	var/datum/bank_account/account
 	if(holochip)
 		var/obj/item/holochip/chip = user.is_holding_item_of_type(/obj/item/holochip)
 		if(!istype(chip) || chip.get_item_credit_value() < amount || !chip.spend(amount))
@@ -113,21 +116,30 @@
 			return FALSE
 	else
 		var/obj/item/card/id/card = user.get_idcard(TRUE)
-		var/datum/bank_account/account = card?.registered_account
+		account = card?.registered_account
 		if(!account || !account.adjust_money(-amount))
 			to_chat(user, "<span class='warning'>Brak środków na koncie karty (kaucja: [amount] kr).</span>")
 			playsound(src, 'sound/machines/terminal_error.ogg', 100, TRUE)
 			return FALSE
 		account.bank_card_talk("Wpłacono [amount] cr kaucji.")
-	var/datum/bank_account/sec = SSeconomy.get_dep_account(ACCOUNT_SEC)
-	sec?.adjust_money(amount)
 	var/payer = aq_record_author(user)
-	log_game("[key_name(user)] paid [amount] credits of bail for [target] at [loc_name(src)]")
 	if(istype(target, /obj/item/card/id/prisoner))
 		aq_release_on_bail(target, payer)
 	else
 		var/obj/machinery/door_timer/cell = target
-		cell.release_on_bail(payer)
+		if(!cell.release_on_bail(payer)) // zegar nie zwolnił więźnia: zwrot wpłaty
+			cell.pardon_text = null
+			cell.release_status = null
+			if(account)
+				account.adjust_money(amount)
+				account.bank_card_talk("Zwrócono [amount] cr kaucji.")
+			else
+				new /obj/item/holochip(drop_location(), amount)
+			to_chat(user, "<span class='warning'>Zegar celi nie zwolnił więźnia, kaucja wraca.</span>")
+			return FALSE
+	var/datum/bank_account/sec = SSeconomy.get_dep_account(ACCOUNT_SEC)
+	sec?.adjust_money(amount)
+	log_game("[key_name(user)] paid [amount] credits of bail for [target] at [loc_name(src)]")
 	playsound(src, "terminal_type", 25, 0)
 	add_fingerprint(user)
 	return TRUE

@@ -196,6 +196,34 @@
 	GLOB.data_core.set_criminal_status(warrant_security, "None", "Testowy Żandarm", announce = FALSE)
 	TEST_ASSERT(isnull(warrant.target_name), "Zmiana statusu nie unieważniła nakazu")
 	TEST_ASSERT(!warrant.grant_search_access(officer, door), "Unieważniony nakaz dalej otwiera drzwi")
+	// Regresja z review: rekord usunięty z kartoteki (bez sygnału zmiany statusu) też unieważnia dostęp
+	GLOB.data_core.set_criminal_status(warrant_security, "Search", "Testowy Żandarm", "kontrabanda", announce = FALSE)
+	warrant.load_warrant(warrant_security, get_area(door))
+	warrant.authorize("Testowy Kapitan")
+	GLOB.data_core.security -= warrant_security
+	TEST_ASSERT(!warrant.grant_search_access(officer, door), "Nakaz z usuniętego rekordu dalej otwiera drzwi")
+	GLOB.data_core.security += warrant_security
+
+	// Regresje z review: zarzuty bez wyroku zerują czas zegara; kaucja nie dla zegara bez zasilania;
+	// koniec kary w GenPopie nie kasuje nowego nakazu
+	cell.set_timer(5 MINUTES)
+	planner.charges = list("Sen na służbie") // przewinienie dyscyplinarne, wyrok 0
+	planner.load_timer(cell, officer)
+	TEST_ASSERT_EQUAL(cell.timer_duration, 0, "Zarzuty bez wyroku zostawiły stary czas zegara")
+	cell.prisoner_name = "Testowy Poręczony"
+	cell.set_timer(2 MINUTES)
+	cell.timer_start()
+	cell.set_machine_stat(NOPOWER)
+	TEST_ASSERT(isnull(aq_bail_for_timer(cell)), "Kaucja przyjmowana za zegar bez zasilania")
+	cell.set_machine_stat(NONE)
+	cell.timer_end(forced = TRUE)
+	var/list/rearrest_records = make_records("Testowy Recydywista")
+	var/datum/data/record/rearrest_security = rearrest_records[2]
+	var/obj/item/card/id/prisoner/rearrest_card = allocate(/obj/item/card/id/prisoner, run_loc_floor_bottom_left, 60, "Drobny wandalizm", "Testowy Recydywista")
+	GLOB.data_core.set_criminal_status(rearrest_security, "Arrest", "Testowy Żandarm", "nowe przestępstwo", announce = FALSE)
+	rearrest_card.served_time = rearrest_card.sentence
+	rearrest_card.process(1)
+	TEST_ASSERT_EQUAL(rearrest_security.fields["criminal"], "Arrest", "Koniec starej kary skasował nowy nakaz")
 
 	// Formularze kserokopiarki: poprawny JSON, unikalne kody, są formularze Żandarmerii
 	var/list/blanks = json_decode(file2text("config/blanks.json"))

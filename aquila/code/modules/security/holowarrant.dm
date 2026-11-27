@@ -162,6 +162,9 @@
 	SIGNAL_HANDLER
 	if(warrant_type != "Search" || !authorized_by || !search_area || !istype(target, /obj/machinery/door))
 		return FALSE
+	var/datum/data/record/record = record_ref?.resolve()
+	if(!record || !(record in GLOB.data_core.security) || record.fields["criminal"] != "Search") // rekord usunięty z kartoteki
+		return FALSE
 	return get_area(target) == search_area
 
 /// Powód ostatniej zmiany statusu z historii rekordu (wpis „… Powód: X”)

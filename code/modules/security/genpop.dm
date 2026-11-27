@@ -781,7 +781,8 @@ GLOBAL_LIST_EMPTY(prisoner_ids)
 		playsound(loc, 'sound/machines/ping.ogg', 50, 1)
 
 		var/datum/data/record/R = find_record("name", registered_name, GLOB.data_core.general)
-		if(R)
+		var/datum/data/record/sec_record = R && GLOB.data_core.aq_security_record_of(R) // AQ EDIT - nowszy status (np. nowy nakaz) zostaje
+		if(sec_record?.fields["criminal"] == "Incarcerated")
 			GLOB.data_core.set_criminal_status(R, "Discharged", "Terminal GenPop", announce = FALSE) // AQ EDIT - status w rekordzie ochrony (był ogólny, HUD go nie widział)
 
 		if(isliving(loc))
