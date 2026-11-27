@@ -1535,6 +1535,7 @@
 #include "code\modules\test_chamber\kits\test_subjects.dm"
 // Komora testowa - zestawy PR-ów niżej (usuwać razem z plikiem zestawu po przetestowaniu)
 #include "code\modules\test_chamber\kits\pr_720_eventy_mapy.dm"
+#include "code\modules\test_chamber\kits\pr_722_zandarmeria_kartoteka.dm"
 #include "code\modules\test_chamber\kits\pr_695_dowodztwo.dm"
 #include "code\modules\test_chamber\kits\pr_717_reagenty.dm"
 #include "code\modules\test_chamber\kits\pr_700_mikser_dzwieku.dm"
