@@ -53,15 +53,17 @@ GLOBAL_VAR_INIT(aq_criminal_history_saved, FALSE)
 /datum/datacore/manifest_inject(mob/living/carbon/human/H, client/C, force = FALSE, record_name, assignment_override)
 	. = ..()
 	if(H?.mind?.key)
-		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(aq_attach_criminal_history), record_name || H.real_name, ckey(H.mind.key)), 5 SECONDS)
+		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(aq_attach_criminal_history), record_name || H.real_name, ckey(H.mind.key), 6), 5 SECONDS)
 
 /// Dopisuje dawne wyroki do „Przeszłości” rekordu ochrony. Zwraca TRUE, gdy coś dopisał
-/proc/aq_attach_criminal_history(name, player_ckey)
+/proc/aq_attach_criminal_history(name, player_ckey, tries_left = 0)
 	var/list/entries = aq_criminal_history_load()["[player_ckey]|[name]"]
 	if(!islist(entries) || !length(entries))
 		return FALSE
 	var/datum/data/record/record = find_record("name", name, GLOB.data_core.security)
 	if(!record)
+		if(tries_left > 0) // zdjęcia do rekordu jeszcze się robią
+			addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(aq_attach_criminal_history), name, player_ckey, tries_left - 1), 5 SECONDS)
 		return FALSE
 	record.fields["past_records"] = "[record.fields["past_records"]]<br><b>Wyroki z poprzednich rund:</b><br>[jointext(entries, "<br>")]"
 	return TRUE

@@ -86,10 +86,13 @@ GLOBAL_LIST_INIT(aq_criminal_status_names, list(
 		message = "Kartoteka: [name] – [aq_criminal_status_name(new_status)] ([author])."
 		if(reason)
 			message += " Powód: [reason]."
-	var/list/channels = list(RADIO_CHANNEL_SECURITY)
-	if(new_status in AQ_CRIMINAL_STATUSES_TO_COMMAND)
-		channels += RADIO_CHANNEL_COMMAND
-	aq_security_announce(message, channels)
+	aq_security_announce(message, aq_criminal_status_channels(new_status))
+
+/// Kanały ogłoszenia zmiany statusu: aresztowanie i osadzenie także Dowództwu
+/proc/aq_criminal_status_channels(status)
+	. = list(RADIO_CHANNEL_SECURITY)
+	if(status in AQ_CRIMINAL_STATUSES_TO_COMMAND)
+		. += RADIO_CHANNEL_COMMAND
 
 /// Imię i stanowisko do pola „autor” z karty moba
 /proc/aq_record_author(mob/user)

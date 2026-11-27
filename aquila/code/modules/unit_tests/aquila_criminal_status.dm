@@ -8,6 +8,7 @@
 /datum/unit_test/aquila_criminal_status
 	var/list/announcements = list()
 	var/list/created_records = list()
+	var/old_security_level
 
 /datum/unit_test/aquila_criminal_status/proc/on_announce(datum/source, message, list/channels)
 	SIGNAL_HANDLER
@@ -31,6 +32,8 @@
 	return list(general, security)
 
 /datum/unit_test/aquila_criminal_status/Destroy()
+	if(!isnull(old_security_level))
+		GLOB.security_level = old_security_level
 	UnregisterSignal(SSdcs, COMSIG_GLOB_AQ_SECURITY_ANNOUNCE)
 	for(var/datum/data/record/record as anything in created_records)
 		GLOB.data_core.general -= record
@@ -143,6 +146,7 @@
 	var/datum/data/record/bail_security = bail_records[2]
 	var/obj/item/card/id/prisoner/bail_card = allocate(/obj/item/card/id/prisoner, run_loc_floor_bottom_left, 600, "Drobny wandalizm", "Testowy Poręczony")
 	var/old_level = GLOB.security_level
+	old_security_level = old_level
 	GLOB.security_level = SEC_LEVEL_GREEN
 	TEST_ASSERT_EQUAL(aq_bail_for_card(bail_card), 200, "Kaucja za 10 minut wyroku")
 	GLOB.security_level = SEC_LEVEL_RED
@@ -224,6 +228,40 @@
 	rearrest_card.served_time = rearrest_card.sentence
 	rearrest_card.process(1)
 	TEST_ASSERT_EQUAL(rearrest_security.fields["criminal"], "Arrest", "Koniec starej kary skasował nowy nakaz")
+
+	// Regresja z review: nieudany skan planera nie zostawia poprzedniej osoby
+	var/mob/living/carbon/human/known = allocate(/mob/living/carbon/human, run_loc_floor_bottom_left)
+	known.real_name = "Testowy Osadzony"
+	known.name = known.real_name
+	var/mob/living/carbon/human/stranger = allocate(/mob/living/carbon/human, run_loc_floor_bottom_left)
+	stranger.real_name = "Testowy Nieznajomy Bez Akt"
+	stranger.name = stranger.real_name
+	TEST_ASSERT(planner.scan_suspect(known), "Planer nie rozpoznał osoby z kartoteki")
+	TEST_ASSERT(!planner.scan_suspect(stranger), "Planer rozpoznał osobę bez akt")
+	TEST_ASSERT(isnull(planner.suspect_name), "Nieudany skan zostawił poprzednią osobę: [planner.suspect_name]")
+
+	// Regresja z review: „Uruchom” zapauzowanego zegara wymaga dostępu
+	cell.req_access = list(ACCESS_SECURITY)
+	cell.prisoner_name = "Testowy Osadzony"
+	cell.set_timer(2 MINUTES)
+	cell.timer_start()
+	cell.pause_timer()
+	TEST_ASSERT(!cell.ui_act("start", list()), "Zapauzowany zegar wznowiony bez dostępu")
+	TEST_ASSERT(!cell.timing && !isnull(cell.paused_left), "Zegar ruszył bez dostępu")
+
+	// Regresja z review: wpłata kaucji holożetonem pobiera kwotę i zwalnia, zegar bez zasilania niczego nie pobiera
+	var/obj/machinery/computer/warrant/desk = allocate(/obj/machinery/computer/warrant, run_loc_floor_top_right)
+	var/obj/item/holochip/chip = new(run_loc_floor_bottom_left, 2000)
+	officer.put_in_hands(chip)
+	cell.set_machine_stat(NOPOWER)
+	TEST_ASSERT(!desk.pay_bail(officer, cell, TRUE), "Kaucja pobrana za zegar bez zasilania")
+	TEST_ASSERT_EQUAL(chip.credits, 2000, "Zegar bez zasilania pobrał pieniądze")
+	cell.set_machine_stat(NONE)
+	var/bail_amount = aq_bail_for_timer(cell)
+	TEST_ASSERT(desk.pay_bail(officer, cell, TRUE), "Kaucja holożetonem nie przeszła")
+	TEST_ASSERT_EQUAL(chip.credits, 2000 - bail_amount, "Kaucja pobrała złą kwotę")
+	TEST_ASSERT(!cell.timing && isnull(cell.paused_left), "Kaucja nie zwolniła więźnia z celi")
+	qdel(chip)
 
 	// Formularze kserokopiarki: poprawny JSON, unikalne kody, są formularze Żandarmerii
 	var/list/blanks = json_decode(file2text("config/blanks.json"))

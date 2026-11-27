@@ -81,8 +81,7 @@
 /obj/machinery/door_timer/proc/resume_timer()
 	if(timing || isnull(paused_left))
 		return FALSE
-	set_timer(paused_left)
-	paused_left = null
+	paused_left = null // timer_duration ustawione przy pauzie, ewentualnie poprawione przyciskami czasu
 	activation_time = REALTIMEOFDAY
 	timing = TRUE
 	update_icon()
@@ -151,6 +150,11 @@
 	switch(action)
 		if("start")
 			if(!isnull(paused_left)) // zapauzowany: wznowienie bez ponownego osadzenia i wpisu do kartoteki
+				if(machine_stat & (NOPOWER|BROKEN))
+					return FALSE
+				if(!allowed(usr))
+					to_chat(usr, "<span class='warning'>Odmowa dostępu.</span>")
+					return FALSE
 				. = resume_timer()
 				ui_update()
 				return
@@ -192,7 +196,10 @@
 
 /obj/item/card/id/prisoner/process(delta_time)
 	. = ..()
-	if(end_warned || served_time >= sentence || (sentence - served_time) * 10 > BRIG_TIMER_WARNING)
+	if((sentence - served_time) * 10 > BRIG_TIMER_WARNING)
+		end_warned = FALSE // reset wyroku po ucieczce: ostrzeżenie znowu się należy
+		return
+	if(end_warned || served_time >= sentence)
 		return
 	end_warned = TRUE
 	aq_security_hud_message("GenPop: [registered_name] kończy wyrok za [DisplayTimeText((sentence - served_time) * 10, 1)].")

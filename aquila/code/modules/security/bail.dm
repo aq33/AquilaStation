@@ -83,6 +83,20 @@
 				return FALSE
 			if(action == "set_bail")
 				return set_bail(usr, target)
+			// osadzony albo kwota mogły się zmienić, gdy okno było otwarte
+			var/current_name
+			var/current_amount
+			if(istype(target, /obj/item/card/id/prisoner))
+				var/obj/item/card/id/prisoner/card = target
+				current_name = card.registered_name
+				current_amount = aq_bail_for_card(card)
+			else
+				var/obj/machinery/door_timer/cell = target
+				current_name = cell.prisoner_name
+				current_amount = aq_bail_for_timer(cell)
+			if(params["name"] != current_name || text2num("[params["amount"]]") != current_amount)
+				to_chat(usr, "<span class='warning'>Kaucja się zmieniła, sprawdź ją jeszcze raz.</span>")
+				return TRUE
 			return pay_bail(usr, target, action == "bail_holochip")
 	return ..()
 

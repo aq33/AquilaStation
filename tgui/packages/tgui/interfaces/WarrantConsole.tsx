@@ -328,12 +328,20 @@ const BailList = (props) => {
                   icon="credit-card"
                   tooltip="Z konta karty"
                   confirmContent="Na pewno?"
-                  onClick={() => act('pay_bail', { ref: bail.ref })}
+                  onClick={() => act('pay_bail', {
+                      ref: bail.ref,
+                      name: bail.name,
+                      amount: bail.amount,
+                    })}
                 />
                 <Button
                   icon="money-bill"
                   tooltip="Holożetonem z ręki"
-                  onClick={() => act('bail_holochip', { ref: bail.ref })}
+                  onClick={() => act('bail_holochip', {
+                      ref: bail.ref,
+                      name: bail.name,
+                      amount: bail.amount,
+                    })}
                 />
                 {!!can_set_bail && (
                   <Button

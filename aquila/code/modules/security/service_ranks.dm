@@ -87,10 +87,14 @@ GLOBAL_LIST_INIT(aq_rank_ladders, list(
 
 /// Umysł postaci z tej rundy po imieniu (rekord kartoteki nie ma ckey)
 /proc/aq_mind_by_name(name)
+	var/datum/mind/fallback
 	for(var/datum/mind/mind as anything in SSticker.minds)
-		if(mind?.name == name)
+		if(mind?.name != name)
+			continue
+		if(mind.aq_rank_job) // przy powtórzonym imieniu pierwszeństwo ma postać ze stopniem
 			return mind
-	return null
+		fallback ||= mind
+	return fallback
 
 // Stopień osobisty zamiast stopnia stanowiska w rozmowie i przez radio (stopień drużyny dalej wygrywa)
 /atom/movable/compose_rank(atom/movable/speaker)

@@ -75,6 +75,9 @@
 		if(!area_name || !user.is_holding(src))
 			return
 		where = areas[area_name]
+	if(!(record in GLOB.data_core.security) || !(record.fields["criminal"] in list("Arrest", "Search")))
+		to_chat(user, "<span class='warning'>Status w kartotece zmienił się w międzyczasie.</span>")
+		return
 	load_warrant(record, where)
 	to_chat(user, "<span class='notice'>Załadowano [warrant_title()]: [target_name]. Teraz potrzebna autoryzacja kartą.</span>")
 
@@ -172,7 +175,9 @@
 	var/counter = 1
 	var/last
 	while(record.fields["com_[counter]"])
-		last = record.fields["com_[counter]"]
+		var/comment = record.fields["com_[counter]"]
+		if(findtext(comment, " → ")) // wpis zmiany statusu z set_criminal_status()
+			last = comment
 		counter++
 	if(!last)
 		return null

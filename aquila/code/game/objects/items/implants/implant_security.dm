@@ -54,8 +54,10 @@ GLOBAL_LIST_EMPTY(aq_death_alarm_queue)
 	else
 		var/list/parts = list()
 		for(var/list/entry as anything in queue)
+			if(length(parts) >= 6) // limit długości wiadomości radiowej
+				break
 			parts += "[entry[1]] ([entry[2]])"
-		message = "Alarm śmierci: zgony ([length(queue)]): [parts.Join(", ")]."
+		message = "Alarm śmierci: zgony ([length(queue)]): [parts.Join(", ")][length(queue) > length(parts) ? " i inni" : ""]."
 	aq_security_announce(message, list(RADIO_CHANNEL_SECURITY, RADIO_CHANNEL_MEDICAL))
 	return message
 

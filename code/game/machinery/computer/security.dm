@@ -179,13 +179,14 @@
 		if(!sec_record)
 			continue
 
+		if(!GLOB.data_core.set_criminal_status(sec_record, status_to_set, "Obwód ([parent.get_creator()])", "ustawione przez obwód", announce = FALSE)) // jedno zbiorcze ogłoszenie niżej
+			continue
 		successful_set++
-		GLOB.data_core.set_criminal_status(sec_record, status_to_set, "Obwód ([parent.get_creator()])", "ustawione przez obwód", announce = FALSE) // jedno zbiorcze ogłoszenie niżej
 		names_of_entries += target["name"]
 
 	if(successful_set > 0)
 		investigate_log("[names_of_entries.Join(", ")] have been set to [status_to_set] by [parent.get_creator()].", INVESTIGATE_RECORDS)
-		aq_security_announce("Kartoteka: [names_of_entries.Join(", ")] – [aq_criminal_status_name(status_to_set)] (obwód).")
+		aq_security_announce("Kartoteka: [names_of_entries.Join(", ")] – [aq_criminal_status_name(status_to_set)] (obwód).", aq_criminal_status_channels(status_to_set))
 		if(successful_set > COMP_SECURITY_ARREST_AMOUNT_TO_FLAG)
 			message_admins("Wpisy ochrony ([successful_set]) zostały ustawione na [status_to_set] przez [parent.get_creator_admin()]. [ADMIN_COORDJMP(src)]")
 		for(var/mob/living/carbon/human/human in GLOB.carbon_list) // carbon_list ma też małpy (Pun Pun)

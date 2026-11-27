@@ -41,7 +41,7 @@ GLOBAL_VAR_INIT(aq_complaint_counter, 0)
 		to_chat(user, "<span class='warning'>Skrzynka nie działa.</span>")
 		return TRUE
 	var/obj/item/paper/paper = I
-	var/text = paper.get_raw_text()
+	var/text = trim(replacetext(strip_html_simple(paper.get_raw_text()), "/", " "))
 	if(length(trim(text)) < 10)
 		flick("complaintbox_deny", src)
 		to_chat(user, "<span class='warning'>Skrzynka odrzuca prawie pustą kartkę.</span>")
