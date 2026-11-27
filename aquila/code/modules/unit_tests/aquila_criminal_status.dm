@@ -162,5 +162,25 @@
 	TEST_ASSERT_EQUAL(bail_security.fields["criminal"], "Paroled", "Kaucja za celę nie dała zwolnienia warunkowego")
 	GLOB.security_level = old_level
 
+	// Planer zarzutów: wgrywa osadzonego, zarzuty i wyrok do stojącego zegara celi
+	var/obj/item/law_planner/planner = allocate(/obj/item/law_planner)
+	planner.charges = list("Drobny wandalizm")
+	planner.suspect_name = "Testowy Osadzony"
+	cell.req_access = null
+	TEST_ASSERT(planner.load_timer(cell, officer), "Planer nie wgrał zarzutów do zegara")
+	TEST_ASSERT_EQUAL(cell.prisoner_name, "Testowy Osadzony", "Planer nie wpisał osadzonego")
+	TEST_ASSERT_EQUAL(cell.timer_duration, aq_sentence_for_crimes(list("Drobny wandalizm")), "Planer nie ustawił wyroku")
+	cell.prisoner_name = null
+	cell.prisoner_crimes = null
+
+	// Kod Żandarmerii: te same słowa dają te same kody, różne słowa różne, format „10-42 Bravo”
+	var/datum/language/police_code/code = new
+	var/coded = code.scramble("potrzebne wsparcie w maszynowni")
+	TEST_ASSERT_EQUAL(code.scramble("potrzebne wsparcie w maszynowni"), coded, "Kod nie jest stały w rundzie")
+	TEST_ASSERT(coded != code.scramble("więzień uciekł z celi numer dwa"), "Różne meldunki dały ten sam kod")
+	var/regex/code_format = regex(@"^\d+-\d+ [A-Z][a-z]+")
+	TEST_ASSERT(code_format.Find(coded), "Kod ma zły format: [coded]")
+	qdel(code)
+
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL
