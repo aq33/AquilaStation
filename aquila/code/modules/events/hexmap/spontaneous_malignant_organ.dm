@@ -4,7 +4,8 @@
 // "tumours" in our code are the darkspawn thrall's and the living teratoma ghost role), so ours is one simple internal
 // organ in its own slot: a malignant tumour in the chest, the groin or the head. It goes through four stages of about
 // five minutes each (pain, nausea and toxins, weakness, then falls), shows on the health analyzer from stage two with
-// the treatment, and is removed like any organ by organ manipulation of its zone; no drug cures it. Only crew members
+// the treatment, and is removed like any organ by organ manipulation of its zone (a removed tumour is dead: it no longer
+// grows or does anything, even transplanted); no drug cures it. Only crew members
 // with a client, an organic body and no antagonist role can get it; no announcement, as in CHOMP.
 
 /// Szczelina narządu guza (jeden guz na osobę)
@@ -79,10 +80,17 @@
 	var/progress = 0
 	/// Ile razy guz rośnie w jednym stadium (150 to ok. 5 minut)
 	var/stage_length = 150
+	/// Guz wycięty z ciała: już nie rośnie i nie daje objawów, także po przeszczepie
+	var/dead = FALSE
+
+/obj/item/organ/aquila_hex_tumor/Remove(mob/living/carbon/M, special = 0)
+	if(!special)
+		dead = TRUE
+	return ..()
 
 /obj/item/organ/aquila_hex_tumor/on_life()
 	. = ..()
-	if(!owner || owner.stat == DEAD)
+	if(dead || !owner || owner.stat == DEAD)
 		return
 	if(stage < 4 && ++progress >= stage_length)
 		progress = 0
@@ -114,7 +122,7 @@
 				owner.Knockdown(2 SECONDS)
 
 /obj/item/organ/aquila_hex_tumor/aq_scan_line()
-	if(stage < 2)
+	if(dead || stage < 2)
 		return null
 	return "<b>Guz złośliwy ([strefa_pl(zone)]):</b> stadium [stage]/4. Usunąć operacją na organach ([strefa_pl(zone)])."
 

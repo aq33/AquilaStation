@@ -1,5 +1,6 @@
 // AQUILA - testy eventów z kafli mapy hex, etap E7 (nowe plagi i potwory): pule terenów, słoneczne larwy, żywy kabel,
-// dzikie szlamy, larwy obcych i pasożyt w ciele, mimity, oczny horror, kosmiczny dzik, pleśń i guz złośliwy
+// dzikie szlamy, larwy obcych i pasożyt w ciele, mimity, oczny horror, kosmiczny dzik, pleśń i guz złośliwy, granice rozrostu
+// plag i wysysanie prądu z APC
 // The upstream assert macros are #undef'd at the end of code/modules/unit_tests/_unit_tests.dm, so this modular test carries its own copies
 #define TEST_ASSERT(assertion, reason) if (!(assertion)) { return Fail("Assertion failed: [reason || "No reason"]") }
 
@@ -58,7 +59,7 @@
 				TEST_ASSERT((path in terrain.events) && !(path in terrain.antags), "[control.name] is not among the events of [id]")
 			else
 				TEST_ASSERT(!in_pool, "[control.name] is also in a pool of [id]")
-		TEST_ASSERT(hex_tile_environment_events()[path], "[control.name] still rolls as a plain ship event")
+		TEST_ASSERT(!hex_random_event_allowed(control), "[control.name] still rolls as a plain ship event")
 
 /// Solar grubs come one per vent, grow twice on drained power and no further, and bite through at most two cables
 /datum/unit_test/aquila_hex_plagues/grubs
@@ -92,6 +93,44 @@
 	TEST_ASSERT_EQUAL(aquila_hex_drain_area_power(null, 50), 0, "Power was drained from nowhere")
 	TEST_ASSERT(!length(event.spawn_grubs(null, 3)), "Grubs came out with no vents")
 	qdel(event)
+
+	// Ssanie z prawdziwego APC pomieszczenia: do 30% ogniwa i nie niżej, a w zamkniętym obszarze wcale
+	var/area/room = get_area(floor)
+	var/obj/machinery/power/apc/apc = room.get_apc()
+	if(!apc)
+		apc = allocate(/obj/machinery/power/apc, spot(4, 2))
+		apc.end_processing()
+		apc.area = room // APC postawione poza ładowaniem mapy nie przypisuje sobie obszaru
+	TEST_ASSERT(room.get_apc() == apc, "The test room has no APC of its own")
+	if(!apc.cell)
+		apc.cell = new /obj/item/stock_parts/cell/high(apc)
+	var/obj/item/stock_parts/cell/cell = apc.cell
+	var/old_charge = cell.charge
+	var/charge_floor = cell.maxcharge * 0.3
+	cell.charge = charge_floor + 20
+	var/drained_to_floor = aquila_hex_drain_area_power(grub, 50)
+	var/charge_left = cell.charge
+	var/drained_below = aquila_hex_drain_area_power(grub, 50)
+	cell.charge = cell.maxcharge
+	var/drained_full = aquila_hex_drain_area_power(grub, 50)
+
+	var/area/closed_area = GLOB.areas_by_type[/area/security/brig] || new /area/security/brig
+	var/turf/grub_turf = get_turf(grub)
+	closed_area.contents += grub_turf
+	grub_turf.change_area(room, closed_area)
+	var/area/apc_area = apc.area
+	apc.area = closed_area
+	cell.charge = cell.maxcharge
+	var/drained_closed = aquila_hex_drain_area_power(grub, 50)
+	apc.area = apc_area
+	room.contents += grub_turf
+	grub_turf.change_area(closed_area, room)
+	cell.charge = old_charge
+
+	TEST_ASSERT(abs(drained_to_floor - 20) < 0.01 && abs(charge_left - charge_floor) < 0.01, "The grub drained [drained_to_floor] from an APC 20 above 30% of its cell (left [charge_left] of [cell.maxcharge])")
+	TEST_ASSERT_EQUAL(drained_below, 0, "The grub drained an APC below 30% of its cell")
+	TEST_ASSERT_EQUAL(drained_full, 50, "The grub did not drain a charged APC")
+	TEST_ASSERT_EQUAL(drained_closed, 0, "The grub drained an APC in a closed area")
 
 /// The powercreeper grows from its root up to its limit, shocks a bare hand, is torn out in insulated gloves
 /// and withers when the root dies
@@ -131,6 +170,58 @@
 		qdel(orphan)
 	qdel(event)
 
+/// A plague spreads on its own: never through a wall, a window, a closed door or into a closed area, and never past
+/// its radius on a scene bigger than it
+/datum/unit_test/aquila_hex_plagues/spreader_limits
+
+/datum/unit_test/aquila_hex_plagues/spreader_limits/Run()
+	for(var/dx in 0 to 4)
+		for(var/dy in 0 to 2)
+			spot(dx, dy)
+	var/turf/center = spot(2, 1)
+	var/turf/wall_turf = spot(1, 1)
+	var/old_wall_type = wall_turf.type
+	var/list/old_baseturfs = wall_turf.baseturfs
+	wall_turf = wall_turf.ChangeTurf(/turf/closed/wall)
+	var/obj/structure/window/fulltile/window = allocate(/obj/structure/window/fulltile, spot(3, 1))
+	var/obj/machinery/door/airlock/door = allocate(/obj/machinery/door/airlock, spot(2, 2))
+	var/turf/closed_turf = spot(2, 0)
+	var/area/room = get_area(closed_turf)
+	var/area/closed_area = GLOB.areas_by_type[/area/security/brig] || new /area/security/brig
+	closed_area.contents += closed_turf
+	closed_turf.change_area(room, closed_area)
+
+	var/obj/structure/aquila_hex_spreader/powercreeper/root = new(center)
+	var/list/blocked = list("a wall" = wall_turf, "a window" = window.loc, "a closed door" = door.loc, "a closed area" = closed_turf)
+	var/list/grew_into = list()
+	for(var/obstacle in blocked)
+		if(root.can_grow_to(center, blocked[obstacle]))
+			grew_into += obstacle
+	var/grew_anywhere = FALSE
+	for(var/i in 1 to 20)
+		if(root.spread())
+			grew_anywhere = TRUE
+
+	room.contents += closed_turf
+	closed_turf.change_area(closed_area, room)
+	qdel(window)
+	qdel(door)
+	wall_turf = wall_turf.ChangeTurf(old_wall_type, old_baseturfs)
+	for(var/turf/T as anything in watched_turfs)
+		T.air_update_turf()
+	TEST_ASSERT(!length(grew_into), "The plague can grow into [english_list(grew_into)]")
+	TEST_ASSERT(!grew_anywhere, "The plague grew past a wall, a window, a closed door or into a closed area")
+	TEST_ASSERT(root.can_grow_to(center, closed_turf), "The plague cannot grow onto a free floor next to it")
+
+	root.max_pieces = 30
+	root.max_radius = 1
+	for(var/i in 1 to 60)
+		root.spread()
+	for(var/obj/structure/aquila_hex_spreader/piece as anything in root.pieces)
+		TEST_ASSERT(get_dist(piece, root) <= root.max_radius, "A plague piece grew [get_dist(piece, root)] tiles from its root past the radius of [root.max_radius]")
+	TEST_ASSERT_EQUAL(length(root.pieces), 9, "The plague did not fill the tiles within its radius")
+	qdel(root)
+
 /// Wild slimes are charged rabid babies that never grow or split
 /datum/unit_test/aquila_hex_plagues/wild_slimes
 
@@ -151,6 +242,10 @@
 	for(var/mob/living/simple_animal/slime/other in get_turf(slime))
 		count++
 	TEST_ASSERT_EQUAL(count, 1, "The wild slime split")
+	var/turf/slime_turf = get_turf(slime)
+	slime.death()
+	TEST_ASSERT(QDELETED(slime), "A dead wild slime left a body to process into extracts")
+	TEST_ASSERT(!(locate(/obj/item/slime_extract) in slime_turf), "A dead wild slime left an extract")
 	qdel(event)
 
 /// Larvae grow into broodlings; the parasitic one burrows into a human as a body egg that pest killer kills,
@@ -174,23 +269,57 @@
 
 	var/mob/living/carbon/human/host = allocate(/mob/living/carbon/human, spot(1, 0))
 	var/mob/living/basic/aquila_hex_larva/implanter/biter = allocate(/mob/living/basic/aquila_hex_larva/implanter, spot(0, 0))
-	TEST_ASSERT(biter.implant(host) && QDELETED(biter), "The parasitic larva did not burrow into the human")
+	TEST_ASSERT(biter.implant(host) && biter.burrowed && isnull(biter.loc), "The parasitic larva did not burrow into the human")
 	var/obj/item/organ/body_egg/aquila_hex_larva/egg = host.getorganslot("parasite_egg")
 	TEST_ASSERT(istype(egg), "The human has no larva inside")
+	TEST_ASSERT(HAS_TRAIT(host, TRAIT_XENO_HOST), "The larva host is not marked on the medical HUD")
+	TEST_ASSERT(!HAS_TRAIT(host, TRAIT_XENO_IMMUNE), "The larva gave its host immunity to facehuggers")
 	TEST_ASSERT(findtext(jointext(host.aq_organ_scan_lines(), ""), "Pasożyt w klatce piersiowej"), "The scanner does not show the larva")
 	var/mob/living/basic/aquila_hex_larva/implanter/second = allocate(/mob/living/basic/aquila_hex_larva/implanter, spot(0, 0))
 	TEST_ASSERT(!second.implant(host) && !QDELETED(second), "A second larva burrowed into the same human")
+
+	// Staza wstrzymuje wzrost, a przerwa w Life() żywiciela liczy się najwyżej jako jeden krok
+	host.SetStasis(TRUE)
+	var/grown_before = egg.grown_time
+	egg.last_growth -= 2 SECONDS
+	egg.on_life()
+	host.SetStasis(FALSE)
+	TEST_ASSERT_EQUAL(egg.grown_time, grown_before, "The larva grew while its host was in stasis")
+	egg.last_growth -= 2 MINUTES
+	egg.on_life()
+	TEST_ASSERT(egg.grown_time - grown_before <= egg.max_growth_step, "The time in stasis counted towards the growth of the larva")
+
+	// Operacja na organach klatki piersiowej wycina larwę, a wycięta larwa jest martwa
+	var/datum/surgery_operation/limb/organ_manipulation/internal/manip = GLOB.operations.operations_by_typepath[/datum/surgery_operation/limb/organ_manipulation/internal]
+	var/mob/living/carbon/human/surgeon = allocate(/mob/living/carbon/human, spot(2, 0))
+	var/obj/item/bodypart/chest = host.get_bodypart(BODY_ZONE_CHEST)
+	chest.add_surgical_state(SURGERY_BONE_SAWED)
+	TEST_ASSERT(egg in manip.get_removable_organs(chest, BODY_ZONE_CHEST), "Organ manipulation of the chest cannot reach the larva")
+	manip.on_success_remove_organ(chest, surgeon, egg, null)
+	TEST_ASSERT(!host.getorganslot("parasite_egg") && egg.dead && isturf(egg.loc), "The surgery did not take a dead larva out")
+	TEST_ASSERT(!HAS_TRAIT(host, TRAIT_XENO_HOST), "The host is still marked after the surgery")
+	qdel(egg)
+
+	// Środek na szkodniki zabija larwę w ciele
+	TEST_ASSERT(second.implant(host), "The parasitic larva did not burrow into the operated human")
+	egg = host.getorganslot("parasite_egg")
 	host.reagents.add_reagent(/datum/reagent/toxin/pestkiller, 5)
-	egg.egg_process()
+	egg.on_life()
 	TEST_ASSERT(QDELETED(egg) && !host.getorganslot("parasite_egg"), "Pest killer did not kill the larva inside")
 	host.reagents.clear_reagents()
 
-	TEST_ASSERT(second.implant(host), "The parasitic larva did not burrow into the cured human")
+	// Larwa wychodzi po 3 minutach życia żywiciela (Life() co 2 s), nie wcześniej
+	var/mob/living/basic/aquila_hex_larva/implanter/third = allocate(/mob/living/basic/aquila_hex_larva/implanter, spot(0, 0))
+	TEST_ASSERT(third.implant(host), "The parasitic larva did not burrow into the cured human")
 	egg = host.getorganslot("parasite_egg")
-	egg.growth = egg.hatch_growth - 1
 	var/brute_before = host.getBruteLoss()
-	egg.egg_process()
-	TEST_ASSERT(QDELETED(egg) && !host.getorganslot("parasite_egg"), "The grown larva did not leave the body")
+	var/lives = 0
+	while(!QDELETED(egg) && lives < 200)
+		egg.last_growth -= 2 SECONDS
+		egg.on_life()
+		lives++
+	TEST_ASSERT_EQUAL(lives * 2, 180, "The larva left the body after a wrong number of seconds")
+	TEST_ASSERT(!host.getorganslot("parasite_egg"), "The grown larva did not leave the body")
 	TEST_ASSERT(host.getBruteLoss() > brute_before, "The larva burst out without hurting the host")
 	TEST_ASSERT(locate(/mob/living/basic/aquila_hex_broodling) in get_turf(host), "No broodling came out of the host")
 	qdel(event)
@@ -208,13 +337,20 @@
 	var/list/mimites = event.spawn_mimites(list(floor), 3)
 	TEST_ASSERT_EQUAL(length(mimites), 1, "One vent let out a wrong number of mimites")
 	var/mob/living/basic/aquila_mimite/mimite = mimites[1]
+	var/list/own_look = list(mimite.name, mimite.desc, mimite.icon, mimite.icon_state, mimite.color, mimite.layer)
 	TEST_ASSERT(mimite.disguise(wrench), "The mimite did not copy the wrench")
 	TEST_ASSERT_EQUAL(mimite.name, wrench.name, "The mimite does not look like the wrench")
 	var/mob/living/carbon/human/victim = allocate(/mob/living/carbon/human, spot(0, 1))
 	mimite.attack_hand(victim)
-	TEST_ASSERT(isnull(mimite.form_ref) && mimite.name == initial(mimite.name), "The mimite stayed disguised after the ambush")
+	TEST_ASSERT(isnull(mimite.form_ref), "The mimite stayed disguised after the ambush")
+	var/list/restored_look = list(mimite.name, mimite.desc, mimite.icon, mimite.icon_state, mimite.color, mimite.layer)
+	TEST_ASSERT(own_look ~= restored_look, "The mimite did not get its own look back: [english_list(restored_look)] instead of [english_list(own_look)]")
 	TEST_ASSERT(victim.IsKnockdown(), "The ambush did not knock the victim down")
 	TEST_ASSERT(victim.reagents.has_reagent(/datum/reagent/toxin/morphvenom), "The ambush did not poison the victim")
+	var/obj/item/screwdriver/screwdriver = allocate(/obj/item/screwdriver, spot(1, 1))
+	TEST_ASSERT(mimite.disguise(screwdriver), "The mimite did not copy the screwdriver")
+	qdel(screwdriver)
+	TEST_ASSERT(isnull(mimite.form_ref) && mimite.icon_state == own_look[4], "The mimite stayed disguised as an item that is gone")
 
 	mimite.remaining_replications = 1
 	var/mob/living/basic/aquila_mimite/child = mimite.replicate()
@@ -236,6 +372,8 @@
 	var/mob/living/carbon/human/onlooker = allocate(/mob/living/carbon/human, spot(0, 0))
 	var/mob/living/carbon/human/welder = allocate(/mob/living/carbon/human, spot(0, 2))
 	welder.equip_to_slot_or_del(new /obj/item/clothing/glasses/welding(welder), ITEM_SLOT_EYES)
+	var/mob/living/carbon/human/behind_glass = allocate(/mob/living/carbon/human, spot(1, 1))
+	allocate(/obj/structure/window/fulltile, spot(2, 1))
 	var/mob/living/basic/aquila_eye_horror/horror = event.spawn_horror(spot(3, 1))
 	TEST_ASSERT(istype(horror), "No eye horror")
 	TEST_ASSERT(isnull(event.spawn_horror(null)), "An eye horror spawned nowhere")
@@ -243,6 +381,7 @@
 	var/list/flashed = horror.gaze()
 	TEST_ASSERT(onlooker in flashed, "The eye horror did not flash a bare-eyed onlooker")
 	TEST_ASSERT(!(welder in flashed), "The eye horror flashed through welding goggles")
+	TEST_ASSERT(!(behind_glass in flashed) && !behind_glass.hallucinating(), "The eye horror flashed someone behind a window")
 	TEST_ASSERT(onlooker.hallucinating(), "The flashed onlooker does not hallucinate")
 	qdel(event)
 
@@ -298,6 +437,17 @@
 	for(var/obj/structure/aquila_hex_spreader/orphan as anything in left)
 		TEST_ASSERT(orphan.withering && isnull(orphan.root), "A mold piece does not wither after the core died")
 		qdel(orphan)
+
+	// Elektryczna pleśń: EMP tylko z pękającego bąbla, rdzeń broni się samymi iskrami
+	var/obj/structure/aquila_hex_spreader/mold/sparky = new(spot(4, 1), null, /datum/aquila_hex_mold_type/electric)
+	var/obj/item/stock_parts/cell/high/cell = allocate(/obj/item/stock_parts/cell/high, spot(4, 0))
+	cell.charge = cell.maxcharge
+	sparky.mold_type.defend(sparky)
+	TEST_ASSERT_EQUAL(cell.charge, cell.maxcharge, "The electric mold core sent out an EMP when hit")
+	var/obj/structure/aquila_hex_spreader/mold_resin/bulb/sparky_bulb = new(spot(4, 2), sparky)
+	TEST_ASSERT(sparky_bulb.burst(), "The electric bulb did not burst")
+	TEST_ASSERT(cell.charge < cell.maxcharge, "The bursting electric bulb sent out no EMP")
+	qdel(sparky)
 	qdel(event)
 
 /// The malignant tumour grows in an organic zone, shows on the scanner from stage two and comes out like an organ
@@ -317,10 +467,30 @@
 	tumor.on_life()
 	TEST_ASSERT_EQUAL(tumor.stage, 2, "The tumour did not grow to stage two")
 	TEST_ASSERT(findtext(jointext(patient.aq_organ_scan_lines(), ""), "Guz złośliwy"), "The scanner does not show the tumour")
-	tumor.Remove(patient)
-	TEST_ASSERT(!patient.getorganslot("aquila_tumor"), "The tumour stayed in the body after removal")
-	qdel(tumor)
 	qdel(event)
+
+	// Operacja na organach wycina guza z każdej strefy, a wycięty guz jest martwy, także po przeszczepie
+	var/datum/surgery_operation/limb/organ_manipulation/internal/manip = GLOB.operations.operations_by_typepath[/datum/surgery_operation/limb/organ_manipulation/internal]
+	var/mob/living/carbon/human/surgeon = allocate(/mob/living/carbon/human, spot(2, 0))
+	for(var/zone in list(BODY_ZONE_CHEST, BODY_ZONE_PRECISE_GROIN, BODY_ZONE_HEAD))
+		var/mob/living/carbon/human/sick = allocate(/mob/living/carbon/human, spot(1, 0))
+		var/obj/item/organ/aquila_hex_tumor/growth = new
+		growth.zone = zone
+		growth.Insert(sick)
+		var/obj/item/bodypart/limb = sick.get_bodypart(check_zone(zone))
+		limb.add_surgical_state(SURGERY_BONE_SAWED)
+		TEST_ASSERT(growth in manip.get_removable_organs(limb, zone), "Organ manipulation of the [zone] cannot reach the tumour")
+		manip.on_success_remove_organ(limb, surgeon, growth, null)
+		TEST_ASSERT(!sick.getorganslot("aquila_tumor") && isturf(growth.loc), "The surgery did not take the tumour out of the [zone]")
+		TEST_ASSERT(growth.dead, "The tumour taken out of the [zone] is not dead")
+		growth.Insert(sick)
+		growth.stage = 2
+		growth.progress = growth.stage_length - 1
+		growth.on_life()
+		TEST_ASSERT(growth.stage == 2 && growth.progress == growth.stage_length - 1, "A transplanted dead tumour still grows")
+		TEST_ASSERT(!findtext(jointext(sick.aq_organ_scan_lines(), ""), "Guz złośliwy"), "The scanner shows a transplanted dead tumour")
+		growth.Remove(sick)
+		qdel(growth)
 
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL

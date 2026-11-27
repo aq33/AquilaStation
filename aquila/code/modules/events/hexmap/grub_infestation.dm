@@ -2,7 +2,7 @@
 // VORE larvae crawl inside powered machines, drain them through a hidden machine and, after 7 MW, balloon into vore
 // solargrubs that sit on cables, drain the powernet and APCs and may evolve into a solar moth. Ours is one basic mob
 // written from scratch with three growth stages on our grub sprites (tinted yellow): it drains the APC cell of the room it
-// is in (the APC recharges from the grid as usual), now and then bites through an exposed cable under it (at most two per
+// is in (never below 30% of the cell, never in dangerous or closed areas), now and then bites through an exposed cable under it (at most two per
 // grub, shock immune) and grows twice after draining enough. Stage three is the end: no moths, no vore, no breeding, so
 // the event lets out 3-6 larvae and never more. Big grubs bite back with a weak shock. The crew is warned 1.5-2 minutes
 // after the larvae come out of the vents, and about 10 minutes later the sensors name the rooms where some still live.

@@ -2,7 +2,8 @@
 // vg's powercreeper is a cable subtype that joins the powernet, turns room heat into power, spreads at 15-40% a tick
 // with no limit, zaps mobs next to it and shocks whoever cuts it. Ours is not a cable: it grows from one root on our shared
 // spreader (plague_helpers.dm), at most 30 pieces up to 7 tiles from the root, never through walls, windows, closed doors,
-// onto mobs or into dangerous areas. Instead of making power every piece drains the APC cell of its room. It shocks
+// onto mobs or into dangerous areas. Instead of making power every piece drains the APC cell of its room (never below 30%
+// of the cell, never in dangerous or closed areas). It shocks
 // whoever touches it or cuts it with a sharp tool or wirecutters and now and then whoever stands in it; insulated gloves
 // protect from both. Fire, a lit welder and an EMP burn a piece away without a shock. Killing the root stops the growth
 // and the rest withers in under half a minute. The crew is warned two minutes after it sprouts, if the root still lives.

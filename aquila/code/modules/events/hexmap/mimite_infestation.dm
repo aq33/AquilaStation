@@ -1,7 +1,8 @@
 // AQUILA - Plaga mimitów: z wentylacji wychodzą 3-4 mimity, które udają leżące obok przedmioty, rzucają się na tych, którzy je podniosą albo podejdą, i co kilka minut się powielają, ale nigdy ponad twardy limit (port z BeeStation/BeeStation-Hornet code/modules/events/mimite_infestation.dm i code/modules/mob/living/simple_animal/hostile/mimite.dm)
 // Bee's simple animal mimites copy any nearby object, ambush whoever touches them with knockdown and morph venom,
 // crawl through vents and replicate 3-5 times each (also into ranged and crate mimites) until the event ends after an
-// hour. Ours is a basic mob with Bee's sprite: it copies only loose items, ambushes with knockdown and 5 u of morph
+// hour. Ours is a basic mob with Bee's sprite: it copies only loose items (and drops the disguise when the copied item
+// is gone; its own look is saved before the disguise and restored whole), ambushes with knockdown and 5 u of morph
 // venom, and replicates every ~3 minutes while its own count lasts (2 for the first ones, one less for each generation).
 // On top of that no more than 12 mimites can ever exist in a round (GLOB.aquila_hex_mimites_made), so the plague has
 // a hard ceiling. No vent crawling (it walks), no ranged or crate mimites, no mimite HUD. The crew is warned after
@@ -101,6 +102,8 @@ GLOBAL_LIST_EMPTY(aquila_hex_mimites)
 	ai_controller = /datum/ai_controller/basic_controller/aquila_mimite
 	/// Przedmiot, który mimita teraz udaje
 	var/datum/weakref/form_ref
+	/// Własny wygląd mimity zapisany przed przebraniem
+	var/mutable_appearance/own_appearance
 	/// Ile razy ta mimita może się jeszcze powielić
 	var/remaining_replications = 2
 	/// Postęp do następnego powielenia (powiela się przy 350)
@@ -116,7 +119,11 @@ GLOBAL_LIST_EMPTY(aquila_hex_mimites)
 
 /mob/living/basic/aquila_mimite/Destroy()
 	GLOB.aquila_hex_mimites -= src
+	var/obj/item/form = form_ref?.resolve()
+	if(form)
+		UnregisterSignal(form, COMSIG_PARENT_QDELETING)
 	form_ref = null
+	own_appearance = null
 	return ..()
 
 /mob/living/basic/aquila_mimite/death(gibbed)
@@ -165,7 +172,9 @@ GLOBAL_LIST_EMPTY(aquila_hex_mimites)
 	if(!can_copy(target))
 		return FALSE
 	form_ref = WEAKREF(target)
+	RegisterSignal(target, COMSIG_PARENT_QDELETING, PROC_REF(on_form_deleted))
 	visible_message("<span class='warning'>[src] nagle wykręca się i zmienia kształt, stając się kopią [target]!</span>")
+	own_appearance = new(src)
 	appearance = target.appearance
 	transform = initial(transform)
 	pixel_x = base_pixel_x
@@ -180,21 +189,23 @@ GLOBAL_LIST_EMPTY(aquila_hex_mimites)
 /mob/living/basic/aquila_mimite/proc/restore()
 	if(!form_ref)
 		return FALSE
+	var/obj/item/form = form_ref.resolve()
+	if(form)
+		UnregisterSignal(form, COMSIG_PARENT_QDELETING)
 	form_ref = null
-	name = initial(name)
-	desc = initial(desc)
-	icon = initial(icon)
-	icon_state = initial(icon_state)
-	color = initial(color)
-	alpha = initial(alpha)
-	layer = initial(layer)
-	plane = initial(plane)
+	if(own_appearance)
+		appearance = own_appearance
+		own_appearance = null
 	density = initial(density)
-	cut_overlays()
 	visible_message("<span class='warning'>[src] nagle zapada się w sobie i staje się falującą czarną masą!</span>")
 	ai_controller?.set_blackboard_key(BB_AGGRO_RANGE, 4)
 	COOLDOWN_START(src, disguise_cooldown, 10 SECONDS)
 	return TRUE
+
+/// Udawany przedmiot zniknął: mimita zrzuca przebranie
+/mob/living/basic/aquila_mimite/proc/on_form_deleted(datum/source)
+	SIGNAL_HANDLER
+	restore()
 
 /// Zasadzka: kto dotknie przebranej mimity, zostaje przewrócony i ukąszony
 /mob/living/basic/aquila_mimite/attack_hand(mob/living/carbon/human/user, list/modifiers)

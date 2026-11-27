@@ -3,8 +3,10 @@
 // abominations, implanters burrow into a limb and burst out 2-4 minutes later as one of them. Ours keeps one abomination
 // (the broodling) and its sprites, rewritten as basic mobs: a plain larva grows into a broodling after 1.5-2.5 minutes,
 // a parasitic larva bites a human (a bio suit stops it) and becomes a body egg in the chest. The egg shows on the health
-// analyzer from the start, is removed by organ manipulation of the chest, and dies in 1-2 s when there are at least
-// 2 units of pest killer in the host's blood; otherwise it bursts out after about 3 minutes (25 brute) as one broodling.
+// analyzer from the start, is removed by organ manipulation of the chest (a removed larva is dead), and dies in 1-2 s
+// when there are at least 2 units of pest killer in the host's blood; otherwise it bursts out after 3 minutes of the
+// host's life (25 brute) as one broodling. Stasis and death of the host stop its growth. Unlike the xeno embryo it gives
+// the host no immunity to facehuggers (the core body egg's TRAIT_XENO_IMMUNE is taken away, the medical HUD stays).
 // Broodlings do not breed and a larva implants only once, so 3-5 larvae make at most 3-5 broodlings and nothing more.
 // A parasitic larva that finds no host in 5 minutes grows into a broodling as well. Announced after the larvae are out.
 
@@ -114,6 +116,8 @@
 	icon_state = "larva_implanter"
 	icon_living = "larva_implanter"
 	ai_controller = /datum/ai_controller/basic_controller/aquila_hex_larva/implanter
+	/// Larwa wgryzła się już w kogoś (mob czeka na usunięcie)
+	var/burrowed = FALSE
 
 /mob/living/basic/aquila_hex_larva/implanter/grow_delay()
 	return 5 MINUTES
@@ -125,7 +129,7 @@
 
 /// Wgryza się w człowieka i zamienia w larwę w jego ciele; zwraca TRUE, gdy się udało
 /mob/living/basic/aquila_hex_larva/implanter/proc/implant(mob/living/carbon/human/host)
-	if(QDELETED(host) || host.stat == DEAD || stat == DEAD || !Adjacent(host))
+	if(burrowed || QDELETED(host) || host.stat == DEAD || stat == DEAD || !Adjacent(host))
 		return FALSE
 	if(host.getorganslot("parasite_egg") || host.getarmor(BODY_ZONE_CHEST, "bio") >= 60)
 		return FALSE
@@ -138,7 +142,10 @@
 	host.apply_damage(10, BRUTE, BODY_ZONE_CHEST)
 	new /obj/item/organ/body_egg/aquila_hex_larva(host)
 	log_combat(src, host, "implanted an alien larva into")
-	qdel(src)
+	// larwa jest już w ciele; mob znika dopiero po skończonym ataku, który właśnie trwa
+	burrowed = TRUE
+	moveToNullspace()
+	QDEL_IN(src, 0)
 	return TRUE
 
 /datum/ai_controller/basic_controller/aquila_hex_larva
@@ -217,46 +224,61 @@
 	)
 
 /**
- * Larwa w ciele: rośnie około 3 minut i wychodzi jako pomiot. Wycina ją operacja na organach klatki piersiowej,
- * zabija środek na szkodniki we krwi żywiciela.
+ * Larwa w ciele: rośnie przez 3 minuty życia żywiciela i wychodzi jako pomiot. Wycina ją operacja na organach klatki
+ * piersiowej, zabija środek na szkodniki we krwi żywiciela; staza i śmierć żywiciela wstrzymują wzrost.
  */
 /obj/item/organ/body_egg/aquila_hex_larva
 	name = "larwa pasożyta"
 	desc = "Wijąca się larwa obcych, która zagnieździła się w czyimś ciele."
 	icon = 'aquila/icons/mob/plagues/plagues.dmi'
 	icon_state = "larva_dead"
-	/// Ile razy larwa już urosła (co Life() żywiciela, ok. 2 s)
-	var/growth = 0
-	/// Po ilu wzrostach larwa wychodzi z ciała
-	var/hatch_growth = 90
+	/// Ile czasu larwa już rosła w żywicielu
+	var/grown_time = 0
+	/// Po ilu czasie wzrostu larwa wychodzi z ciała
+	var/hatch_time = 3 MINUTES
+	/// Najwięcej czasu doliczanego za jednym razem (Life() żywiciela co ok. 2 s; dłuższa przerwa to staza albo śmierć)
+	var/max_growth_step = 4 SECONDS
+	/// Kiedy (world.time) larwa ostatnio rosła
+	var/last_growth
 	/// Larwa zginęła (wycięta albo otruta) i już nie urośnie
 	var/dead = FALSE
 
+/obj/item/organ/body_egg/aquila_hex_larva/Insert(mob/living/carbon/M, special = 0)
+	. = ..()
+	// rdzeniowe jajo daje odporność na przytulacze jak embrion obcego; larwa jej nie daje (HUD medyczny zostaje)
+	if(owner)
+		REMOVE_TRAIT(owner, TRAIT_XENO_IMMUNE, "xeno immune")
+	last_growth = world.time
+
 /obj/item/organ/body_egg/aquila_hex_larva/Remove(mob/living/carbon/M, special = 0)
-	dead = TRUE
-	STOP_PROCESSING(SSobj, src)
+	if(!special)
+		dead = TRUE
+		STOP_PROCESSING(SSobj, src)
 	return ..()
 
 /obj/item/organ/body_egg/aquila_hex_larva/on_find(mob/living/finder)
 	. = ..()
-	to_chat(finder, "<span class='warning'>Larwa wije się między narządami. [growth >= hatch_growth / 2 ? "Jest już duża i niespokojna." : "Jest jeszcze mała."]</span>")
+	to_chat(finder, "<span class='warning'>Larwa wije się między narządami. [grown_time >= hatch_time / 2 ? "Jest już duża i niespokojna." : "Jest jeszcze mała."]</span>")
 
 /obj/item/organ/body_egg/aquila_hex_larva/aq_scan_line()
 	if(dead)
 		return null
-	return "<b>Pasożyt w klatce piersiowej:</b> rosnąca larwa obcych ([round(growth / hatch_growth * 100)]%). Operacja na organach klatki piersiowej albo co najmniej 2 j. środka na szkodniki we krwi."
+	return "<b>Pasożyt w klatce piersiowej:</b> rosnąca larwa obcych ([round(grown_time / hatch_time * 100)]%). Operacja na organach klatki piersiowej albo co najmniej 2 j. środka na szkodniki we krwi."
 
 /obj/item/organ/body_egg/aquila_hex_larva/egg_process()
-	if(dead || !owner || owner.stat == DEAD)
+	// czas od ostatniego wzrostu; przerwa w Life() żywiciela (staza) liczy się najwyżej jako jeden krok
+	var/elapsed = clamp(world.time - last_growth, 0, max_growth_step)
+	last_growth = world.time
+	if(dead || !owner || owner.stat == DEAD || owner.IsInStasis())
 		return
 	if(owner.reagents?.has_reagent(/datum/reagent/toxin/pestkiller, 2))
 		kill_larva()
 		return
-	growth++
-	if(growth >= hatch_growth)
+	grown_time += elapsed
+	if(grown_time >= hatch_time)
 		hatch()
 		return
-	if(growth > hatch_growth * 0.5 && prob(4))
+	if(grown_time > hatch_time * 0.5 && prob(4))
 		to_chat(owner, "<span class='danger'>Coś wierci się w twojej klatce piersiowej!</span>")
 		owner.adjustBruteLoss(1)
 	else if(prob(3))

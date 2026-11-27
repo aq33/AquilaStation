@@ -3,7 +3,8 @@
 // victims, can grow and even moult into queens. We have no metroids, so ours are our xenobiology slimes on the horde
 // slime of E4 (slimes_spawn_horde.dm): babies of four "energetic" colours with a full electric charge (powerlevel 5, so
 // they shock whoever hits them), rabid from the start. Like the horde they never grow, split or turn into a new baby when
-// killed, so 3-6 slimes are all the event ever makes. Announced only after they are out; about ten minutes later the
+// killed, so 3-6 slimes are all the event ever makes. A dead wild slime melts away at once, so it yields no extracts
+// (no processor, no core removal). Announced only after they are out; about ten minutes later the
 // sensors name the rooms where some still live, as in CHOMP's end().
 
 /datum/round_event_control/aquila_hex_metroid_infestation
@@ -59,3 +60,15 @@
 	. = ..(mapload, pick("yellow", "dark blue", "bluespace", "cerulean"), FALSE)
 	rabid = TRUE
 	powerlevel = 5
+
+/// Martwy dziki szlam od razu się rozpływa: nie zostaje ciało, z którego procesor albo operacja wyjęłyby ekstrakty
+/mob/living/simple_animal/slime/aquila_hex_horde/wild/death(gibbed)
+	if(stat == DEAD)
+		return
+	. = ..()
+	if(QDELETED(src) || stat != DEAD)
+		return
+	cores = 0
+	if(!gibbed)
+		visible_message("<span class='warning'>[src] rozpływa się i znika bez śladu.</span>")
+	qdel(src)

@@ -4,8 +4,8 @@
 // atmos conditioners; five types (fire, fungal with its own disease, EMP, toxic, radioactive) with their own mobs, foams
 // and gases, a violet security level. Ours is cut down to a size that suits an event:
 // - three types: radioactive (radiation pulse, our glowing mice of E4), toxic (a small cloud of toxin, the broodlings of
-//   the larva plague) and electric (sparks and a light EMP, the solar grubs of the grub plague); no fire (it could burn
-//   the ship) and no fungal disease;
+//   the larva plague) and electric (sparks and a light EMP from a bursting bulb, only sparks from the core, the solar
+//   grubs of the grub plague); no fire (it could burn the ship) and no fungal disease;
 // - the core grows at most 30 pieces up to 5 tiles from itself on our shared spreader (plague_helpers.dm): never through
 //   walls, windows or closed doors, never onto mobs, doors or dangerous areas, never attacking doors or walls and never
 //   walling off space; it breaks no lights;
@@ -79,9 +79,13 @@
 	/// Stwory, które wypuszcza rdzeń
 	var/mob_type
 
-/// Co się dzieje, gdy pęka bąbel albo rdzeń się broni
+/// Co się dzieje, gdy pęka bąbel
 /datum/aquila_hex_mold_type/proc/burst(atom/source)
 	return
+
+/// Co się dzieje, gdy mocno uderzony rdzeń się broni (domyślnie to samo co pęknięcie bąbla)
+/datum/aquila_hex_mold_type/proc/defend(atom/source)
+	burst(source)
 
 /datum/aquila_hex_mold_type/radioactive
 	name = "radioaktywna"
@@ -126,6 +130,12 @@
 		return
 	do_sparks(3, TRUE, source_turf)
 	empulse(source_turf, 0, 2)
+
+/// Rdzeń elektrycznej pleśni sypie tylko iskrami: impuls EMP przy każdym ciosie wyłączałby sprzęt broniących się
+/datum/aquila_hex_mold_type/electric/defend(atom/source)
+	var/turf/source_turf = get_turf(source)
+	if(source_turf)
+		do_sparks(3, TRUE, source_turf)
 
 /**
  * Rdzeń pleśni: korzeń rozrostu. Wypuszcza stwory, broni się i trzyma przy życiu całą pleśń.
@@ -212,7 +222,7 @@
 		return
 	COOLDOWN_START(src, defense_cooldown, 10 SECONDS)
 	visible_message("<span class='danger'>[src] gwałtownie się kurczy i wyrzuca z siebie chmurę zarodników!</span>")
-	mold_type?.burst(src)
+	mold_type?.defend(src)
 
 /**
  * Pleśń na podłodze: kawałek rozrostu rdzenia.

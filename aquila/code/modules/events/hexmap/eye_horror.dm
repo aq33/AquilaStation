@@ -3,7 +3,7 @@
 // makes everyone who hears it hallucinate more and more; the event passes when it dies. Ours appears at once 2-4 tiles
 // from a random crew member outside maintenance, dangerous and closed areas (announced right after it is there) and is a basic
 // mob drawn with our eyeball sprite (bigger and bloodshot): it flies, bites, and every 12 seconds flashes everyone who
-// sees it within 5 tiles. The flash goes through our flash_act(), so sunglasses, welding goggles, a welding mask or
+// sees it within 5 tiles with a clear line (no walls, windows or closed doors in between). The flash goes through our flash_act(), so sunglasses, welding goggles, a welding mask or
 // helmet protect; whoever got flashed also hallucinates for up to a minute. It does not break walls or doors, comes
 // from no gold slime core and no ghost can take it over. No medals.
 
@@ -68,7 +68,8 @@
 		var/turf/center = get_turf(person)
 		var/list/spots = list()
 		for(var/turf/T as anything in aquila_hex_free_turfs_near(center, 25, 4))
-			if(get_dist(T, center) >= 2 && aquila_hex_free_safe_turf(T))
+			var/area/spot_area = get_area(T)
+			if(get_dist(T, center) >= 2 && aquila_hex_free_safe_turf(T) && !aquila_hex_closed_area_type(spot_area?.type))
 				spots += T
 		if(length(spots))
 			return pick(spots)
@@ -126,7 +127,7 @@
 	if(stat != DEAD && !QDELETED(src) && COOLDOWN_FINISHED(src, gaze_cooldown))
 		gaze()
 
-/// Błysk w każdego, kto widzi oko z gaze_range pól (ochrona oczu działa jak przy błysku lampy); zwraca listę oślepionych
+/// Błysk w każdego, kto widzi oko z gaze_range pól bez szyby ani ściany po drodze (ochrona oczu działa jak przy błysku lampy); zwraca listę oślepionych
 /mob/living/basic/aquila_eye_horror/proc/gaze()
 	. = list()
 	if(stat == DEAD || !isturf(loc))
@@ -134,6 +135,8 @@
 	COOLDOWN_START(src, gaze_cooldown, gaze_delay)
 	for(var/mob/living/carbon/victim in viewers(gaze_range, src))
 		if(victim.stat != CONSCIOUS || victim.is_blind())
+			continue
+		if(!aquila_hex_clear_line(get_turf(src), get_turf(victim), gaze_range))
 			continue
 		if(!victim.flash_act(1))
 			continue

@@ -118,19 +118,29 @@
 		return FALSE
 	return !is_blocked_turf(T, TRUE)
 
+/// Ułamek pełnego ogniwa APC, poniżej którego plagi przestają ssać prąd (pomieszczenie zostaje z zasilaniem)
+#define AQUILA_HEX_DRAIN_MIN_CHARGE 0.3
+
 /**
- * Wysysa do amount energii z ogniwa APC pomieszczenia, w którym stoi source; zwraca, ile wyssało (0, gdy pomieszczenie
- * nie ma APC z naładowanym ogniwem). APC doładowuje ogniwo z sieci jak przy każdym poborze, więc plaga z sieci żyje.
+ * Wysysa do amount energii z ogniwa APC pomieszczenia, w którym stoi source, ale nie poniżej 30% ładunku ogniwa;
+ * zwraca, ile wyssało. Nie ssie w niebezpiecznych i zamkniętych obszarach (aquila_hex_closed_area_type() obejmuje też
+ * aquila_hex_unsafe_area_type()) ani tam, gdzie nie ma APC z ogniwem.
  */
 /proc/aquila_hex_drain_area_power(atom/source, amount)
 	var/area/source_area = get_area(source)
-	var/obj/machinery/power/apc/apc = source_area?.get_apc()
-	var/obj/item/stock_parts/cell/cell = apc?.cell
-	if(!cell || cell.charge <= 0 || amount <= 0)
+	if(!source_area || amount <= 0 || aquila_hex_closed_area_type(source_area.type))
 		return 0
-	var/drained = min(amount, cell.charge)
+	var/obj/machinery/power/apc/apc = source_area.get_apc()
+	var/obj/item/stock_parts/cell/cell = apc?.cell
+	if(!cell)
+		return 0
+	var/drained = min(amount, cell.charge - cell.maxcharge * AQUILA_HEX_DRAIN_MIN_CHARGE)
+	if(drained <= 0)
+		return 0
 	cell.use(drained)
 	return drained
+
+#undef AQUILA_HEX_DRAIN_MIN_CHARGE
 
 /**
  * Stawia do count stworów typu mob_type na polach z listy (najwyżej per_turf na jednym polu); zwraca listę stworów.
