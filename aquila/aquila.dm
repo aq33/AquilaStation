@@ -839,6 +839,7 @@
 #include "code\modules\medical\mesh_package.dm"
 #include "code\modules\medical\patch_film.dm"
 #include "code\modules\medical\stasis_bodybag.dm"
+#include "code\modules\memorial\dogtags.dm"
 #include "code\modules\metacoin\metacoin.dm"
 #include "code\modules\metacoin\perks.dm"
 #include "code\modules\miasma\miasma_breath.dm"
