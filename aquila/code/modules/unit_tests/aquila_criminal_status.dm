@@ -182,5 +182,33 @@
 	TEST_ASSERT(code_format.Find(coded), "Kod ma zły format: [coded]")
 	qdel(code)
 
+	// Projektor nakazu: nakaz przeszukania po autoryzacji otwiera drzwi wybranego obszaru, zmiana statusu go unieważnia
+	var/list/warrant_records = make_records("Testowy Przeszukiwany")
+	var/datum/data/record/warrant_security = warrant_records[2]
+	GLOB.data_core.set_criminal_status(warrant_security, "Search", "Testowy Żandarm", "kontrabanda", announce = FALSE)
+	var/obj/item/holowarrant/warrant = allocate(/obj/item/holowarrant)
+	var/obj/machinery/door/airlock/door = allocate(/obj/machinery/door/airlock, run_loc_floor_top_right)
+	warrant.load_warrant(warrant_security, get_area(door))
+	TEST_ASSERT_EQUAL(warrant.reason, "kontrabanda", "Nakaz nie wziął powodu z historii rekordu")
+	TEST_ASSERT(!warrant.grant_search_access(officer, door), "Nieautoryzowany nakaz otwiera drzwi")
+	warrant.authorize("Testowy Kapitan")
+	TEST_ASSERT(warrant.grant_search_access(officer, door), "Autoryzowany nakaz przeszukania nie otwiera drzwi obszaru")
+	GLOB.data_core.set_criminal_status(warrant_security, "None", "Testowy Żandarm", announce = FALSE)
+	TEST_ASSERT(isnull(warrant.target_name), "Zmiana statusu nie unieważniła nakazu")
+	TEST_ASSERT(!warrant.grant_search_access(officer, door), "Unieważniony nakaz dalej otwiera drzwi")
+
+	// Formularze kserokopiarki: poprawny JSON, unikalne kody, są formularze Żandarmerii
+	var/list/blanks = json_decode(file2text("config/blanks.json"))
+	TEST_ASSERT(length(blanks), "config/blanks.json jest pusty albo uszkodzony")
+	var/list/codes = list()
+	var/security_forms = 0
+	for(var/list/blank as anything in blanks)
+		TEST_ASSERT(blank["code"] && blank["category"] && blank["name"] && length(blank["info"]), "Formularz bez kodu, kategorii, nazwy albo treści: [blank["code"]]")
+		TEST_ASSERT(!(blank["code"] in codes), "Powtórzony kod formularza: [blank["code"]]")
+		codes += blank["code"]
+		if(blank["category"] == "Żandarmeria")
+			security_forms++
+	TEST_ASSERT(security_forms >= 10, "Za mało formularzy Żandarmerii: [security_forms]")
+
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL

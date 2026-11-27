@@ -1798,6 +1798,7 @@
 #include "code\modules\security\bail.dm"
 #include "code\modules\security\law_planner.dm"
 #include "code\modules\security\police_code.dm"
+#include "code\modules\security\holowarrant.dm"
 #include "code\modules\security\undercover_id.dm"
 #include "code\modules\surgery\surgery_catalog.dm"
 #include "code\modules\surgery\surgery_progress.dm"
