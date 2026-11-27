@@ -4051,6 +4051,16 @@ Oznaczenia w kolumnie uwag:
 | transfusion (anomaly) | anomalia transfuzyjna | ż; nowe (Shiptest) |
 | chronograph (anomaly) | chronograf | m; nowe (Shiptest); efekt: przyspieszenie (accelerando) |
 | big / high (anomaly variants) | ogromna / silna anomalia … | nowe (Shiptest) |
+| bioscrambler (anomaly) | anomalia bioprzetasowania | ż; nowe (Bee, eventy mapy FTL) |
+| radioactive (anomaly) | anomalia radioaktywna | ż; nowe (Monke) |
+| storm (anomaly) | anomalia burzowa | ż; nowe (Monke) |
+| frost / glacial (anomaly) | anomalia mrozu | ż; nowe (Monke) |
+| phasing gas (anomaly) | fazująca anomalia gazowa | ż; nowe (TauCeti) |
+| Lifebringer (anomaly) | Dawczyni życia (anomalia Dawczyni życia) | ż; nowe (Monke) |
+| sanity disruptor (anomaly) | anomalia zakłócająca psychikę, zakłócacz psychiki | ż/m; nowe (Bee) |
+| blood (anomaly) | anomalia krwi | ż; nowe (Bee) |
+| dimensional (anomaly) | anomalia wymiarowa, niestabilność wymiarowa | ż; nowe (tg) |
+| cult portal | portal kultu | m; nowe (TauCeti) |
 | waste planet | planeta-śmietnisko | ż; nowe (planety, Shiptest) |
 | battlefield (planet) | pole bitwy | n; nowe (planety, Shiptest) |
 | automaton (Shiptest drones) | automat | m; nowe |
@@ -4130,6 +4140,12 @@ Oznaczenia w kolumnie uwag:
 | Rustle (clownana) | Szelest | m; nowe |
 | banana glutton | coś, co kiedyś było klaunem | n; istniejące (nasz mutant/blob) |
 | Space Dragon / Fire Breath / Wing Buffet | Kosmiczny smok / Ogniste tchnienie / Atak podmuchem | m / n / m; istniejące / nowe / istniejące |
+| hellhound / hellhound pack leader | piekielny ogar / przewodnik sfory piekielnych ogarów | m; nowe (event Rozdarcie wymiarów) |
+| dimensional tear / honkmensional tear (Honknomoly) | rozdarcie wymiarów / rozdarcie klaunów (honkomalia) | n / ż; nowe (eventy mapy FTL) |
+| demonic portal / demon incursion | demoniczny portal / inwazja demonów | m / ż; nowe |
+| sleeper agent / numbers station | uśpiony agent / stacja numeryczna | m / ż; nowe |
+| bomb squad (Syndicate) | oddział saperów Syndykatu | m; nowe |
+| abandoned IPC | porzucony IPC | m; nowe |
 
 ## 9. Obszary i pomieszczenia (nazwy `/area`)
 
