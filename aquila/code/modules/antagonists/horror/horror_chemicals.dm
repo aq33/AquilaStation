@@ -38,6 +38,7 @@
 			"cost" = initial(chem.chemuse),
 			"desc" = initial(chem.chem_desc),
 		))
+	chems += owner.learned_reagents_ui_data() // AQUILA - substancje nauczone z krwi nosiciela
 	data["chems"] = chems
 	return data
 
@@ -48,6 +49,9 @@
 	if(action != "use_chem")
 		return
 	var/chem_path = text2path(params["path"])
+	if(ispath(chem_path, /datum/reagent)) // AQUILA - substancja nauczona z krwi nosiciela
+		owner.inject_learned_reagent(chem_path)
+		return TRUE
 	if(!ispath(chem_path, /datum/horror_chem) || !(chem_path in owner.horror_chems))
 		return
 	owner.inject_horror_chem(chem_path)

@@ -35926,5 +35926,17 @@
 "Filtr krwi": "Blood Filter",
 "drzwi z żywicy": "resin door",
 "Gęsta żywica uformowana w przejście. Rozsuwa się tylko przed tymi, którzy słyszą ul.": "Thick resin shaped into a doorway. It only parts for those who hear the hive.",
-"Żywica ani drgnie. Bez więzi z ulem te drzwi się nie otworzą.": "The resin does not budge. Without a connection to the hive this door will not open."
+"Żywica ani drgnie. Bez więzi z ulem te drzwi się nie otworzą.": "The resin does not budge. Without a connection to the hive this door will not open.",
+"Nauka z krwi": "Learn Chemical from Blood",
+"Przeanalizuj substancję krążącą we krwi nosiciela i naucz się ją wytwarzać. Kosztuje 75 chemikaliów i lekko uszkadza mózg nosiciela. Możesz znać najwyżej 5 takich substancji.": "Analyze a chemical circulating in your host's blood and learn to produce it. Costs 75 chemicals and slightly damages the host's brain. You can know at most 5 such chemicals.",
+"Twoje gruczoły nie pomieszczą już żadnej nowej substancji.": "Your glands cannot hold any new chemical.",
+"Potrzebujesz [HORROR_LEARN_CHEM_COST] zgromadzonych chemikaliów, by przeanalizować krew.": "You need [HORROR_LEARN_CHEM_COST] stored chemicals to analyze the blood.",
+"We krwi nosiciela nie krąży nic, czego mógłbyś się nauczyć.": "Nothing in your host's blood is something you could learn.",
+"Której substancji z krwi nosiciela chcesz się nauczyć?": "Which chemical from your host's blood do you want to learn?",
+"Tej substancji nie ma już we krwi nosiciela.": "That chemical is no longer in your host's blood.",
+"Twoje gruczoły uczą się wytwarzać: [initial(reagent_path.name)].": "Your glands learn to produce: [initial(reagent_path.name)].",
+"Czujesz w ustach dziwny posmak: [initial(reagent_path.taste_description)].": "You get a strange aftertaste of [initial(reagent_path.taste_description)].",
+"<span class='boldnotice'>Potrzebujesz [HORROR_LEARNED_CHEM_USE] zgromadzonych chemikaliów, by użyć tej substancji!</span>": "<span class='boldnotice'>You need [HORROR_LEARNED_CHEM_USE] stored chemicals to use this chemical!</span>",
+"<span class='danger'>Wstrzykujesz [HORROR_LEARNED_CHEM_QUANTITY] jednostek [initial(reagent_path.name)] ze swoich zbiorników do krwiobiegu [victim].</span>": "<span class='danger'>You squirt [HORROR_LEARNED_CHEM_QUANTITY] units of [initial(reagent_path.name)] from your reservoirs into [victim]'s bloodstream.</span>",
+"[initial(reagent_path.name)] (z krwi)": "[initial(reagent_path.name)] (from blood)"
 }
