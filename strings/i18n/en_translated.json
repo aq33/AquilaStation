@@ -35992,5 +35992,6 @@
 "<span class='warning'>Przekaźnik nadał już sygnał.</span>": "<span class='warning'>The relay has already broadcast the signal.</span>",
 "<span class='warning'>Do nadania sygnału zostało około [round(time_left() / (1 SECONDS))] s.</span>": "<span class='warning'>About [round(time_left() / (1 SECONDS))] s left until the signal is broadcast.</span>",
 "<span class='warning'>To nasz przekaźnik. Musimy go bronić, a nie rozbierać.</span>": "<span class='warning'>This is our relay. We must defend it, not take it apart.</span>",
-"nadaje za [round(swarm.relay.time_left() / (1 SECONDS))] s": "broadcasting in [round(swarm.relay.time_left() / (1 SECONDS))] s"
+"nadaje za [round(swarm.relay.time_left() / (1 SECONDS))] s": "broadcasting in [round(swarm.relay.time_left() / (1 SECONDS))] s",
+" Na koniec zmiany liczy się też skucie w brygu albo w areszcie rewolucji.": " At the end of the shift, being cuffed in the brig or in revolutionary custody also counts."
 }

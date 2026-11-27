@@ -393,6 +393,7 @@
 #include "code\modules\antagonists\ert\ert.dm"
 #include "code\modules\antagonists\revolution\revolution_conversion.dm"
 #include "code\modules\antagonists\revolution\revolution_panel.dm"
+#include "code\modules\antagonists\revolution\revolution_capture.dm"
 #include "code\modules\antagonists\gang\_gang_defines.dm"
 #include "code\game\gamemodes\gangs\dominator.dm"
 #include "code\modules\antagonists\gang\gang_war.dm"
@@ -3132,6 +3133,7 @@
 #include "code\modules\unit_tests\aquila_memories.dm"
 #include "code\modules\unit_tests\aquila_zmimic.dm"
 #include "code\modules\unit_tests\aquila_zgloszenia_gracza_2511.dm"
+#include "code\modules\unit_tests\aquila_rev_capture.dm"
 #endif
 
 // Heretyk z tg (osobny plik z includami)
