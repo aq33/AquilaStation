@@ -1207,6 +1207,7 @@
 #include "code\modules\overmap\hexmap\hex_terrain.dm"
 #include "code\modules\overmap\hexmap\hex_events.dm"
 #include "code\modules\overmap\hexmap\war_core.dm"
+#include "code\modules\overmap\hexmap\depot_repair.dm"
 #include "code\modules\overmap\hexmap\war_staff.dm"
 #include "code\modules\overmap\hexmap\war_commanders.dm"
 #include "code\modules\overmap\hexmap\war_nemesis.dm"
