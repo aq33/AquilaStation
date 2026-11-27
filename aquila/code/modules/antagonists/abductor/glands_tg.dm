@@ -147,3 +147,14 @@
 	if(!length(candidates))
 		return /datum/species/human
 	return pick(candidates)
+
+/// Zmienia rasę właściciela gruczołu tak, żeby gruczoł nie zginął: set_species() wymienia serce na serce nowej rasy
+/// (regenerate_organs z replace_current), więc wcześniej gruczoł przemiany kasował się przy pierwszej aktywacji
+/proc/aquila_gland_set_species(obj/item/organ/heart/gland/gland, species)
+	var/mob/living/carbon/human/target = gland.owner
+	if(!ishuman(target))
+		return
+	gland.Remove(target, TRUE)
+	target.set_species(species)
+	if(!QDELETED(gland) && !QDELETED(target))
+		gland.Insert(target, TRUE, FALSE)

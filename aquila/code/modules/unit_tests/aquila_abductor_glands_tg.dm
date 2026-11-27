@@ -50,6 +50,7 @@
 	transform_gland.Insert(abductee)
 	transform_gland.activate()
 	TEST_ASSERT(abductee.dna.species.id in GLOB.roundstart_races, "Transform gland picked a non-playable species [abductee.dna.species.id]")
+	TEST_ASSERT(!QDELETED(transform_gland) && abductee.getorganslot(ORGAN_SLOT_HEART) == transform_gland, "Transform gland was lost when the new species replaced the organs")
 	transform_gland.Remove(abductee)
 	qdel(transform_gland)
 
