@@ -274,11 +274,17 @@
 	var/obj/item/bombcore/aquila_hex_squad/fizzle_core = fizzle_bomb.payload
 	fizzle_core.station_only = FALSE
 	fizzle_core.safe_radius = 2
+	// Stan pól sprzed detonacji: w pełnym przebiegu wcześniejsze testy zostawiają w pokoju inne podłogi albo ogień
+	var/list/turf_types_before = list()
+	var/list/fire_before = list()
+	for(var/turf/T as anything in block(run_loc_floor_bottom_left, run_loc_floor_top_right))
+		turf_types_before[T] = T.type
+		fire_before[T] = !!(locate(/obj/effect/hotspot) in T)
 	fizzle_core.detonate()
 	TEST_ASSERT(QDELETED(fizzle_bomb), "The bomb that fizzled is still there")
 	TEST_ASSERT(!QDELETED(tank), "The bomb blew up next to a fuel tank")
-	for(var/turf/T as anything in block(run_loc_floor_bottom_left, run_loc_floor_top_right))
-		TEST_ASSERT(istype(T, /turf/open/floor/plasteel) && !(locate(/obj/effect/hotspot) in T), "The bomb that fizzled damaged or set fire to [T.x],[T.y]")
+	for(var/turf/T as anything in turf_types_before)
+		TEST_ASSERT(T.type == turf_types_before[T] && (fire_before[T] || !(locate(/obj/effect/hotspot) in T)), "The bomb that fizzled damaged or set fire to [T.x],[T.y]")
 	qdel(tank)
 	qdel(event)
 

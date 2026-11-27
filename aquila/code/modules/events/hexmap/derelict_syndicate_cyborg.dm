@@ -78,6 +78,7 @@
 	roundend_category = "porzucone cyborgi Syndykatu"
 	antagpanel_category = "Other"
 	show_in_antagpanel = FALSE
+	banning_key = ROLE_OPERATIVE // ten sam ban co ankieta (operator Syndykatu)
 	show_name_in_check_antagonists = TRUE
 
 /datum/antagonist/aquila_hex_derelict_cyborg/on_gain()

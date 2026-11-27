@@ -182,6 +182,7 @@
 	roundend_category = "konstrukty z portalu kultu"
 	antagpanel_category = "Cult"
 	show_in_antagpanel = FALSE
+	banning_key = ROLE_CULTIST // ten sam ban co ankieta i kliknięcie w portal
 	show_name_in_check_antagonists = TRUE
 	/// Kult krwi jest na okręcie, ale nie ma już miejsca na tego konstrukta
 	var/cult_full = FALSE

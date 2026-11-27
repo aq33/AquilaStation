@@ -2965,6 +2965,7 @@
 #include "code\modules\unit_tests\aquila_fighter_component_destroy.dm"
 #include "code\modules\unit_tests\aquila_fleet_distress.dm"
 #include "code\modules\unit_tests\hexmap.dm"
+#include "code\modules\unit_tests\hexmap_test_room.dm"
 #include "code\modules\unit_tests\hexmap_events_comets.dm"
 #include "code\modules\unit_tests\hexmap_events_storms.dm"
 #include "code\modules\unit_tests\hexmap_events_bluespace.dm"

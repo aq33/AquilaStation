@@ -203,7 +203,10 @@
 	var/turf/open/floor/floor = run_loc_floor_bottom_left
 	var/floor_type = floor.type
 	var/obj/structure/chair/chair = allocate(/obj/structure/chair, floor)
-	var/obj/structure/window/fulltile/window = allocate(/obj/structure/window/fulltile, get_step(floor, NORTH))
+	var/turf/window_spot = get_step(floor, NORTH)
+	var/window_spot_type = window_spot.type
+	var/list/window_spot_baseturfs = window_spot.baseturfs
+	var/obj/structure/window/fulltile/window = allocate(/obj/structure/window/fulltile, window_spot)
 	var/turf/wall_spot = get_step(floor, EAST)
 	var/wall_spot_type = wall_spot.type
 	var/list/wall_spot_baseturfs = wall_spot.baseturfs
@@ -213,6 +216,8 @@
 		floor.ChangeTurf(floor_type)
 	if(wall_spot.type != wall_spot_type)
 		wall_spot.ChangeTurf(wall_spot_type, wall_spot_baseturfs)
+	if(window_spot.type != window_spot_type) // przemiana okna przerabia też podłogę pod nim
+		window_spot.ChangeTurf(window_spot_type, window_spot_baseturfs)
 	for(var/obj/structure/chair/leftover in floor)
 		qdel(leftover)
 	if(fail)

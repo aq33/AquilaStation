@@ -66,6 +66,7 @@
 	roundend_category = "duchy dawnych honków"
 	antagpanel_category = "Other"
 	show_in_antagpanel = FALSE
+	banning_key = BAN_ROLE_ALL_ANTAGONISTS // ankieta sprawdza ban na antagonistów i role ducha
 	show_name_in_check_antagonists = TRUE
 
 /datum/antagonist/aquila_hex_living_lube/on_gain()

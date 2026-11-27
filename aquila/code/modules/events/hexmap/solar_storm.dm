@@ -56,6 +56,10 @@ GLOBAL_LIST_EMPTY(aquila_hex_solar_storms)
 	set_solar_level(1) // stopped before end(): this storm stops boosting the panels, another one still running keeps its boost
 	return ..()
 
+/datum/round_event/aquila_hex_solar_storm/Destroy()
+	set_solar_level(1) // usunięta burza (np. przez qdel bez kill()) nie może dalej podbijać paneli
+	return ..()
+
 /// Ustawia udział tej burzy i liczy wspólny mnożnik paneli od nowa
 /datum/round_event/aquila_hex_solar_storm/proc/set_solar_level(level)
 	solar_level = level
