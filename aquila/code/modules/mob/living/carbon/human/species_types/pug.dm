@@ -224,6 +224,7 @@ GLOBAL_LIST_INIT(pug_coats, list(
 	if(!istype(pug) || !can_run_emote(user, TRUE, intentional))
 		return FALSE
 	dog.stamina?.adjust(-PUG_WOOF_STAMINA)
+	dog.exert(PUG_WOOF_STAMINA)
 	if(dog.stamina?.current > 0 && COOLDOWN_FINISHED(pug, woof_wheeze_cooldown))
 		return ..()
 	if(!COOLDOWN_FINISHED(pug, woof_wheeze_cooldown))

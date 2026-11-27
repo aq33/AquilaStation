@@ -65,6 +65,7 @@
 		return
 	if((stamina.current - cost) > STAMINA_MAXIMUM_TO_SWING)
 		stamina.adjust(-cost, TRUE)
+		exert(cost)
 
 // ---------------------------------------------------------------------------
 // Warstwa zgodności ze starym API (getStaminaLoss = brakująca stamina)

@@ -112,6 +112,7 @@
 	if(carbon_parent.has_movespeed_modifier(MOVESPEED_ID_BULKY_DRAGGING) || carbon_parent.has_movespeed_modifier(MOVESPEED_ID_HUMAN_CARRYING))
 		cost *= SPRINT_HAUL_MODIFIER
 	carbon_parent.stamina?.adjust(-cost)
+	carbon_parent.exert(cost)
 	carbon_parent.stamina?.block_regen(SPRINT_REGEN_DELAY)
 
 /datum/component/carbon_sprint/proc/on_sprint_key_down(datum/source)
@@ -296,6 +297,7 @@
 		end_dive()
 		return
 	carbon_parent.stamina?.adjust(-SPRINT_DIVE_COST)
+	carbon_parent.exert(SPRINT_DIVE_COST)
 	carbon_parent.stamina?.block_regen(SPRINT_REGEN_DELAY)
 
 ///Pierwsze zderzenie rzutu: ktoś (powalony), przeszkoda (wywrotka) albo podłoga (lądowanie)

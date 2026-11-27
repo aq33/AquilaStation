@@ -820,6 +820,7 @@
 #include "code\modules\hydroponics\grown\towercap.dm"
 #include "code\modules\hygiene\hygiene.dm"
 #include "code\modules\hygiene\hygienebot.dm"
+#include "code\modules\hygiene\sweat.dm"
 #include "code\modules\jobs\job_slots.dm"
 #include "code\modules\jobs\job_wiki_link.dm"
 #include "code\modules\jobs\ranks.dm"
