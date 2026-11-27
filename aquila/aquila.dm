@@ -483,6 +483,7 @@
 #include "code\modules\antagonists\traitor\objectives\steal.dm"
 #include "code\modules\antagonists\traitor\objectives\target_opt_in.dm"
 #include "code\modules\antagonists\traitor\equipment\Malf_Modules.dm"
+#include "code\modules\antagonists\traitor\equipment\malf_modules_tg.dm"
 #include "code\modules\antagonists\disease\disease_abilities.dm"
 #include "code\modules\antagonists\disease\disease_datum.dm"
 #include "code\modules\antagonists\disease\disease_disease.dm"
@@ -2670,6 +2671,7 @@
 #include "code\modules\unit_tests\_unit_test_weights.dm"
 
 #ifdef UNIT_TESTS
+#include "code\modules\unit_tests\aquila_malf_modules_tg.dm"
 #include "code\modules\unit_tests\aquila_dowodztwo_resprite.dm"
 #include "code\modules\unit_tests\aquila_cyborgi.dm"
 #include "code\modules\unit_tests\aquila_robotyka.dm"
