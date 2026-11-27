@@ -188,7 +188,7 @@
 /obj/item/organ/heart/gland/pop/activate()
 	to_chat(owner, "<span class='notice'>Nie czujesz się sobą.</span>")
 	randomize_human(owner)
-	var/species = pick(list(/datum/species/human, /datum/species/lizard, /datum/species/moth, /datum/species/fly))
+	var/species = aquila_gland_transform_species(owner) // AQ EDIT - tylko nasze rasy grywalne (gruczoł przemiany z tg)
 	owner.set_species(species)
 
 /obj/item/organ/heart/gland/ventcrawling

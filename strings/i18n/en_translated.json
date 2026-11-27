@@ -35889,5 +35889,11 @@
 "Ustala, pod jakim imieniem mówisz przez radio i głośniki.": "Sets the name you speak under over the radio and speakers.",
 "Pod jakim imieniem lub stanowiskiem mówić przez radio i głośniki? Zostaw puste, żeby wrócić do własnego.": "What name or title should you speak under over the radio and speakers? Leave it empty to return to your own.",
 "<span class='notice'>Mówisz znowu własnym głosem.</span>": "<span class='notice'>You speak with your own voice again.</span>",
-"<span class='notice'>Przez radio mówisz teraz jako: [new_voice].</span>": "<span class='notice'>You now speak over the radio as: [new_voice].</span>"
+"<span class='notice'>Przez radio mówisz teraz jako: [new_voice].</span>": "<span class='notice'>You now speak over the radio as: [new_voice].</span>",
+"anagraficzny elektroszyfrator": "anagraphic electro-scrambler",
+"Z jakiegoś powodu czujesz się jak VIP.": "You feel like a VIP for some reason.",
+"pseudojądrowy destabilizator krwi": "pseudonuclear hemo-destabilizer",
+"Przez chwilę czujesz, jak krew ci się rozgrzewa.": "You feel your blood heat up for a moment.",
+"kwantowa matryca deobserwacji": "quantic de-observation matrix",
+"Nagle jesteś zupełnie gdzie indziej!": "You suddenly find yourself somewhere else!"
 }

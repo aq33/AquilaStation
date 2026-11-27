@@ -3376,6 +3376,10 @@
 #endif
 // PRAWDZIWA FORMA: koniec
 
+// ROZWÓJ ANTAGONISTÓW: drobne porty (porywacz, ksenomorf, pradawny horror)
+#include "code\modules\antagonists\abductor\glands_tg.dm"
+#include "code\modules\unit_tests\aquila_abductor_glands_tg.dm"
+// ROZWÓJ ANTAGONISTÓW: drobne - koniec
 // Profiler byond-tracy: MUSI być ostatnim include'em całego builda (BYOND inicjuje zmienne statyczne od końca,
 // więc ta rusza pierwsza, przed Master i mapą). Opis: tools/tracy/README.md
 #include "code\modules\tracy\tracy.dm"
