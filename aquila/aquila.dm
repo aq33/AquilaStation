@@ -1537,6 +1537,7 @@
 // #include "code\modules\test_chamber\kits\pr_420_traitor_cele.dm"
 #include "code\modules\test_chamber\kits\test_subjects.dm"
 // Komora testowa - zestawy PR-ów niżej (usuwać razem z plikiem zestawu po przetestowaniu)
+#include "code\modules\test_chamber\kits\pr_drobiazgi_2711.dm"
 #include "code\modules\test_chamber\kits\pr_720_eventy_mapy.dm"
 #include "code\modules\test_chamber\kits\pr_695_dowodztwo.dm"
 #include "code\modules\test_chamber\kits\pr_717_reagenty.dm"
@@ -2814,6 +2815,7 @@
 #include "code\modules\unit_tests\aquila_planet_anomalies.dm"
 #include "code\modules\unit_tests\aquila_planet_review_fixes.dm"
 #include "code\modules\unit_tests\aquila_sabre_shuttle.dm"
+#include "code\modules\unit_tests\aquila_drobiazgi_2711.dm"
 #include "code\modules\unit_tests\aquila_sabre_tether.dm"
 #include "code\modules\unit_tests\aquila_overmap_explode_area.dm"
 #include "code\modules\unit_tests\aquila_custom_shuttle_overmap.dm"
