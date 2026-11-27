@@ -1355,6 +1355,7 @@
 #include "code\modules\overmap\modules\decoys.dm"
 #include "code\modules\overmap\modules\harpoon.dm"
 #include "code\modules\overmap\modules\antag_shuttles.dm"
+#include "code\modules\events\pirate_raider.dm"
 #include "code\modules\overmap\modules\ship_vfx.dm"
 #include "code\modules\overmap\modules\ship_vfx_combat.dm"
 #include "code\modules\overmap\tactical_screen.dm"
@@ -3136,6 +3137,7 @@
 #include "code\modules\unit_tests\aquila_zgloszenia_gracza_2511.dm"
 #include "code\modules\unit_tests\aquila_rev_capture.dm"
 #include "code\modules\unit_tests\aquila_spy_photo.dm"
+#include "code\modules\unit_tests\aquila_pirate_raider.dm"
 #endif
 
 // Heretyk z tg (osobny plik z includami)

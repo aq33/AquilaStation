@@ -36004,5 +36004,13 @@
 "w dziale naukowym": "in Science",
 "w dziale zaopatrzenia": "in Supply",
 "w dziale uzbrojenia": "in Munitions",
-"<span class='notice'>- <b>Przyłóż do niego zdjęcie</b>, żeby wysłać je do zlecenia na zdjęcie.</span>": "<span class='notice'>- <b>Hold a photo up to it</b> to send it in for a photo bounty.</span>"
+"<span class='notice'>- <b>Przyłóż do niego zdjęcie</b>, żeby wysłać je do zlecenia na zdjęcie.</span>": "<span class='notice'>- <b>Hold a photo up to it</b> to send it in for a photo bounty.</span>",
+"piracki rajder": "pirate raider",
+"Uzbrojony frachtowiec piratów z promem abordażowym w ładowni. Gdy podleci blisko, prom przybije do kadłuba.": "An armed pirate freighter with a boarding shuttle in its hold. Once it gets close, the shuttle will dock with your hull.",
+"Piracki rajder został zniszczony, zanim przybił do okrętu.": "The pirate raider was destroyed before it could dock with the ship.",
+"Piracki rajder zgubił ślad okrętu po skoku FTL.": "The pirate raider lost track of the ship after the FTL jump.",
+"Piracki rajder wypuścił prom abordażowy! Przygotujcie się na abordaż.": "The pirate raider has launched a boarding shuttle! Prepare to repel boarders.",
+"Prom piracki z rajdera nie znalazł wolnego portu przy okręcie i został w swojej bazie.": "The pirate shuttle from the raider found no free dock at the ship and stayed at its base.",
+"Do systemu wskoczył piracki rajder. Zniszczcie go albo wykonajcie skok FTL, zanim podleci i przybije prom abordażowy do kadłuba.": "A pirate raider has jumped into the system. Destroy it or make an FTL jump before it closes in and docks a boarding shuttle with the hull.",
+"Piraci przylatują rajderem na overmapie: [ADMIN_VERBOSEJMP(raider)].": "Pirates are arriving in a raider on the overmap: [ADMIN_VERBOSEJMP(raider)]."
 }
