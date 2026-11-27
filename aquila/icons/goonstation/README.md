@@ -7,5 +7,9 @@ i są udostępniane na licencji Creative Commons Attribution-NonCommercial-Share
 - `salvager.dmi`: reklamator, teleporter ręczny, spawarka łukowa, gogle S.A.V., plecak złomiarza,
   terminal M4GP13 (u nas S.R.O.K.A.), paczka maszyny, urządzenie dwukonstrukcyjne.
 - `salvager_lefthand.dmi`, `salvager_righthand.dmi`: sprite'y w dłoniach do tych przedmiotów.
+- `swarmer_relay.dmi`: przekaźnik roju, czyli przekaźnik sygnału Flockminda (`icons/misc/featherzone-160x160.dmi`,
+  stany `structure-relay`, `structure-relay-glow`, `structure-relay-sparks`), zmniejszony ze 160 do 96 pikseli
+  i ograniczony do palety.
+- `swarmer_relay_ui.dmi`: przycisk budowy przekaźnika w HUD rojowca (pierwsza klatka tego samego sprite'a, 32 piksele).
 
-Kod złomiarzy Aquili jest napisany od nowa i nie zawiera kodu Goonstation.
+Kod złomiarzy i przekaźnika rojowców Aquili jest napisany od nowa i nie zawiera kodu Goonstation.

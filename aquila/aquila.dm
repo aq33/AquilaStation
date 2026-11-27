@@ -3392,6 +3392,7 @@
 // ROJOWCE: skorupa bez bramy, ochrona systemów okrętu, przekaźnik sygnału
 #include "code\modules\antagonists\swarmer\swarmer_event.dm"
 #include "code\modules\antagonists\swarmer\swarmer_protection.dm"
+#include "code\modules\antagonists\swarmer\swarmer_relay.dm"
 #ifdef UNIT_TESTS
 #include "code\modules\unit_tests\aquila_swarmer.dm"
 #endif
