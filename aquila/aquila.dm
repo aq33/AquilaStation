@@ -3365,6 +3365,21 @@
 #include "code\modules\test_chamber\kits\pr_719_reaktor_fuzyjny.dm"
 // HFR: koniec
 
+// UMYSŁ Z CIAŁA (eventy mapy FTL, E9): rój z Bubberstation na kaflu anomalii grawitacyjnej
+#include "code\modules\events\hexmap\fleshmind\_fleshmind_defines.dm"
+#include "code\modules\events\hexmap\fleshmind\fleshmind_controller.dm"
+#include "code\modules\events\hexmap\fleshmind\fleshmind_structures.dm"
+#include "code\modules\events\hexmap\fleshmind\fleshmind_machine_corruption.dm"
+#include "code\modules\events\hexmap\fleshmind\fleshmind_mobs.dm"
+#include "code\modules\events\hexmap\fleshmind\fleshmind_tyrant.dm"
+#include "code\modules\events\hexmap\fleshmind\fleshmind_wire_priest.dm"
+#include "code\modules\events\hexmap\fleshmind\fleshmind_role_preference.dm"
+#include "code\modules\events\hexmap\fleshmind\fleshmind_event.dm"
+#ifdef UNIT_TESTS
+#include "code\modules\unit_tests\hexmap_events_fleshmind.dm"
+#endif
+// UMYSŁ Z CIAŁA: koniec
+
 // Profiler byond-tracy: MUSI być ostatnim include'em całego builda (BYOND inicjuje zmienne statyczne od końca,
 // więc ta rusza pierwsza, przed Master i mapą). Opis: tools/tracy/README.md
 #include "code\modules\tracy\tracy.dm"

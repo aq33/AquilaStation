@@ -69,6 +69,7 @@
 #define ROLE_BLOOD_WORM			"Blood Worm" //AQ - port z tgstation
 #define ROLE_BINGLE				"Bingle" //AQ - port z Monkestation
 #define ROLE_ABANDONED_IPC		"Abandoned IPC" //AQ - port z Monkestation
+#define ROLE_WIRE_PRIEST		"Wire Priest" //AQ - port z Bubberstation
 
 /// Roles that are antagonists, roundstart or not, and have passes to do.. antagonistry
 GLOBAL_LIST_INIT(antagonist_bannable_roles, list(
@@ -122,6 +123,7 @@ GLOBAL_LIST_INIT(antagonist_bannable_roles, list(
 	ROLE_BLOOD_WORM, //AQ
 	ROLE_BINGLE, //AQ
 	ROLE_ABANDONED_IPC, //AQ
+	ROLE_WIRE_PRIEST, //AQ
 ))
 //nsv13 - pvp + bloodling modes added here
 
