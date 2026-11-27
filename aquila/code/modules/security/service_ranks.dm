@@ -112,7 +112,7 @@ GLOBAL_LIST_INIT(aq_rank_ladders, list(
 // --- Konsola rekordów: stopień osoby, awans i degradacja (Komendant, Kapitan) ---
 
 /obj/machinery/computer/secure_data/proc/aq_can_change_rank(mob/user)
-	var/list/access = user?.get_idcard(TRUE)?.GetAccess() || list()
+	var/list/access = aq_user_access(user)
 	return (ACCESS_HOS in access) || (ACCESS_CAPTAIN in access)
 
 /obj/machinery/computer/secure_data/ui_data(mob/user)

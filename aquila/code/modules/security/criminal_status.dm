@@ -39,7 +39,7 @@ GLOBAL_LIST_INIT(aq_criminal_status_names, list(
 /datum/datacore/proc/aq_security_record_of(datum/data/record/record)
 	if(!record)
 		return null
-	if(record in security)
+	if(!(record in general)) // rekord ochrony (także spoza listy, np. z obwodu)
 		return record
 	return find_record("id", record.fields["id"], security)
 
@@ -99,6 +99,11 @@ GLOBAL_LIST_INIT(aq_criminal_status_names, list(
 	if(id?.registered_name)
 		return id.assignment ? "[id.registered_name], [id.assignment]" : id.registered_name
 	return user.name
+
+/// Dostępy z karty moba (ręka albo slot ID); pusta lista, gdy nie ma karty
+/proc/aq_user_access(mob/user)
+	var/obj/item/card/id/id = user?.get_idcard(TRUE)
+	return id ? id.GetAccess() : list()
 
 /// Pyta o powód dla statusów, które go wymagają. Zwraca "" gdy niepotrzebny, null gdy gracz anulował
 /proc/aq_ask_criminal_reason(mob/user, new_status)

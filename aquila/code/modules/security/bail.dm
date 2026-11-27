@@ -68,7 +68,7 @@
 		bails += list(list("ref" = REF(cell), "name" = cell.prisoner_name, "where" = cell.cell_label(), "amount" = amount))
 	data["bails"] = bails
 	data["bail_blocked"] = aq_bail_blocked()
-	data["can_set_bail"] = (ACCESS_ARMORY in (user.get_idcard(TRUE)?.GetAccess() || list()))
+	data["can_set_bail"] = (ACCESS_ARMORY in aq_user_access(user))
 	return data
 
 /obj/machinery/computer/warrant/ui_act(action, list/params, datum/tgui/ui)
@@ -85,7 +85,7 @@
 	return ..()
 
 /obj/machinery/computer/warrant/proc/set_bail(mob/user, datum/target)
-	if(!(ACCESS_ARMORY in (user.get_idcard(TRUE)?.GetAccess() || list())))
+	if(!(ACCESS_ARMORY in aq_user_access(user)))
 		to_chat(user, "<span class='warning'>Kaucję zmienia tylko Naczelnik.</span>")
 		return FALSE
 	var/amount = tgui_input_number(user, "Nowa kaucja (kr)", "Kaucja", 0, 100000, 0)
@@ -112,7 +112,8 @@
 			to_chat(user, "<span class='warning'>Potrzebujesz w ręce holożetonu na co najmniej [amount] kr.</span>")
 			return FALSE
 	else
-		var/datum/bank_account/account = user.get_idcard(TRUE)?.registered_account
+		var/obj/item/card/id/card = user.get_idcard(TRUE)
+		var/datum/bank_account/account = card?.registered_account
 		if(!account || !account.adjust_money(-amount))
 			to_chat(user, "<span class='warning'>Brak środków na koncie karty (kaucja: [amount] kr).</span>")
 			playsound(src, 'sound/machines/terminal_error.ogg', 100, TRUE)

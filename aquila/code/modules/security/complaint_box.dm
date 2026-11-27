@@ -70,7 +70,7 @@ GLOBAL_VAR_INIT(aq_complaint_counter, 0)
 /obj/machinery/complaint_box/proc/can_read(mob/user)
 	if(IsAdminGhost(user) || issilicon(user))
 		return TRUE
-	var/list/access = user.get_idcard(TRUE)?.GetAccess() || list()
+	var/list/access = aq_user_access(user)
 	return (ACCESS_CAPTAIN in access) || (ACCESS_HOP in access) || (ACCESS_HOS in access) || (ACCESS_LAWYER in access)
 
 /obj/machinery/complaint_box/ui_interact(mob/user, datum/tgui/ui)
