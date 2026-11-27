@@ -325,15 +325,15 @@ GLOBAL_LIST_INIT(pug_scents, list(
 	variant_list = "pug_coats"
 
 /datum/species/pug/get_species_description()
-	return "Czy mops naprawdę powinien być na stacji kosmicznej? Zupełnie się do kosmosu nie nadaje. \
+	return "Czy Fion naprawdę powinien być na stacji kosmicznej? Zupełnie się do kosmosu nie nadaje. \
 		To właściwie obciążenie dla firm... Och, spójrz tylko na te uszka!"
 
 /datum/species/pug/get_species_lore()
 	return list(
-		"Nikt już nie pamięta, który genetyk Nanotrasen uznał, że świat potrzebuje mopsów chodzących na dwóch nogach. \
-		Pamięta za to każdy, kto choć raz próbował z takim przebiec korytarz: mops biegnie dzielnie, aż pada z zadyszką.",
+		"Nikt już nie pamięta, który genetyk Nanotrasen uznał, że świat potrzebuje psów chodzących na dwóch nogach. \
+		Pamięta za to każdy, kto choć raz próbował z Fionem przebiec korytarz: Fion biegnie dzielnie, aż pada z zadyszką.",
 
-		"Mopsy szczekają, chrapią, kichają i świszczą. Mają za to nos, który wywęszy, kto dotykał drzwi, kubka albo trupa, \
+		"Fiony szczekają, chrapią, kichają i świszczą. Mają za to nos, który wywęszy, kto dotykał drzwi, kubka albo trupa, \
 		i nie potrafią się powstrzymać, gdy ktoś rzuca kością.",
 	)
 
