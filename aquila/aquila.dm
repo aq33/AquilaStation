@@ -3378,6 +3378,8 @@
 #ifdef UNIT_TESTS
 #include "code\modules\unit_tests\hexmap_events_fleshmind.dm"
 #endif
+// Komora testowa
+#include "code\modules\test_chamber\kits\pr_723_umysl_z_ciala.dm"
 // UMYSŁ Z CIAŁA: koniec
 
 // Profiler byond-tracy: MUSI być ostatnim include'em całego builda (BYOND inicjuje zmienne statyczne od końca,
