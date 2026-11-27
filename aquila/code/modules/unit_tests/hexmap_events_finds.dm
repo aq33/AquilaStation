@@ -446,6 +446,9 @@
 	TEST_ASSERT(nest.can_throw(pulled), "The nest may not throw a free person")
 	for(var/atom/movable/blocker as anything in list(cuffed, puller, pulled, carp, bag))
 		qdel(blocker)
+	// Po usuniętych ludziach zostają luźne rzeczy (np. kajdanki): puls losuje spośród wszystkich, więc zostaje sam klucz
+	for(var/obj/item/leftover in range(nest.pulse_range, nest))
+		qdel(leftover)
 
 	var/obj/item/wrench/loose = allocate(/obj/item/wrench, side)
 	TEST_ASSERT(nest.can_throw(loose), "The nest may not throw a loose wrench")
