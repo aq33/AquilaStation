@@ -212,7 +212,8 @@ GLOBAL_LIST_EMPTY(ship_kaboom_source)
 		animate(pixel_x = piece.pixel_x + dx * 1.3, pixel_y = piece.pixel_y + dy * 1.3, transform = matrix(ship_scale, MATRIX_SCALE) * matrix(angle + spins[i] * 1.8, MATRIX_ROTATE), time = 25 SECONDS)
 
 /datum/cinematic/nsv_kaboom/content()
-	animate(ship, pixel_x = ship.pixel_x + 40, time = 9 SECONDS, flags = ANIMATION_PARALLEL)
+	// Dryf kończy się przed wybuchem (6,1 s): wybuch i wrak biorą ship.pixel_x, a to już wartość końcowa
+	animate(ship, pixel_x = ship.pixel_x + 40, time = 6 SECONDS, flags = ANIMATION_PARALLEL)
 	sleep(1 SECONDS)
 	for(var/i in 1 to 3)
 		hit(i)

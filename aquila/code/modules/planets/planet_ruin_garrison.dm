@@ -4,7 +4,8 @@
 // broni (wręcz, broń krótka, pistolet maszynowy, strzelba) i w wersji próżniowej, jeśli oryginał jej potrzebował.
 // Frakcja bez danej broni daje najbliższą broń dystansową: piraci mają tylko laser, ochrona NT nie ma strzelby
 // (dostaje pistolet maszynowy). W układach NT, SolGov i WhiteRapids siedzi ochrona NT, która strzela dopiero zaatakowana.
-// Układy niczyje i wrogie zostają z obsadą z mapy, fauna i automaty zawsze zostają.
+// Układy niczyje i wrogie zostają z obsadą z mapy, fauna, automaty i postacie z własną nazwą, opisem albo frakcją
+// z mapy (np. pustelnicy) zawsze zostają.
 
 /// Szansa, że ruina w układzie frakcji jest obsadzona przez tę frakcję (reszta zostaje dzikimi lokatorami z mapy)
 #define PLANET_GARRISON_CHANCE 75
@@ -72,6 +73,25 @@
 		return null
 	return new_type
 
+/// Czy mapa zrobiła z żołnierza osobną postać ruiny (własna nazwa, opis albo frakcja, np. pustelnicy z pubbytown
+/// to piraci z frakcją hermit/mining). Takich nie podmieniamy: należą do fabuły ruiny, nie są zwykłą obsadą.
+/proc/planet_garrison_mapped_character(mob/living/basic/trooper/trooper)
+	// Mob z unique_name dostaje przy inicjalizacji numer w nazwie (/mob/living/Initialize)
+	if((!trooper.unique_name && trooper.name != initial(trooper.name)) || trooper.desc != initial(trooper.desc))
+		return TRUE
+	// Każdy żywy mob ma też we frakcji własną referencję (/mob/living/Initialize)
+	var/list/own_faction = trooper.faction - "[REF(trooper)]"
+	var/static/list/base_factions = list(
+		/mob/living/basic/trooper/pirate = "pirate",
+		/mob/living/basic/trooper/syndicate = FACTION_SYNDICATE,
+		/mob/living/basic/trooper/russian = "russian",
+		/mob/living/basic/trooper/nanotrasen = "nanotrasenprivate",
+	)
+	for(var/base_type in base_factions)
+		if(istype(trooper, base_type))
+			return length(own_faction) != 1 || !(base_factions[base_type] in own_faction)
+	return FALSE
+
 /// Zamienia ludzi z mapy ruiny na żołnierzy frakcji układu. Zwraca liczbę podmienionych.
 /proc/planet_garrison_ruin(list/turfs, owner, chance, log_name)
 	. = 0
@@ -79,7 +99,7 @@
 		return
 	for(var/turf/T as anything in turfs)
 		for(var/mob/living/basic/trooper/trooper in T)
-			if(trooper.stat == DEAD || trooper.client || trooper.mind)
+			if(trooper.stat == DEAD || trooper.client || trooper.mind || planet_garrison_mapped_character(trooper))
 				continue
 			var/new_type = planet_garrison_type(trooper, owner)
 			if(!new_type)

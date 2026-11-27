@@ -16,12 +16,16 @@
 /datum/unit_test/planet_ruin_garrison/Run()
 	var/turf/start = run_loc_floor_bottom_left
 	var/list/turf/spots = list()
-	for(var/i in 0 to 3)
+	for(var/i in 0 to 4)
 		spots += locate(start.x + i, start.y, start.z)
 	spawned += new /mob/living/basic/trooper/pirate/ranged(spots[1])
 	spawned += new /mob/living/basic/trooper/pirate/ranged/space(spots[2])
 	spawned += new /mob/living/basic/trooper/russian/ranged/trooper(spots[3])
 	spawned += new /mob/living/basic/cockroach(spots[4])
+	// Pustelnik z ruiny pubbytown: pirat, któremu mapa zmieniła frakcję
+	var/mob/living/basic/trooper/pirate/melee/hermit = new(spots[5])
+	hermit.faction = list("hermit", "mining")
+	spawned += hermit
 
 	// Układ niczyj: obsada z mapy zostaje
 	TEST_ASSERT_EQUAL(planet_garrison_ruin(spots, "unaligned", 100, "test"), 0, "An unaligned system changed the ruin crew")
@@ -33,6 +37,10 @@
 	TEST_ASSERT(locate(/mob/living/basic/trooper/syndicate/ranged/space) in spots[2], "A space pirate did not get a Syndicate space suit")
 	TEST_ASSERT(locate(/mob/living/basic/trooper/syndicate/ranged/shotgun) in spots[3], "A Russian with a shotgun did not keep the shotgun")
 	TEST_ASSERT(locate(/mob/living/basic/cockroach) in spots[4], "The ruin fauna was replaced")
+	TEST_ASSERT(!QDELETED(hermit) && hermit.loc == spots[5], "A hermit with a faction set by the map was replaced by the system faction")
+	hermit.faction = list("pirate")
+	hermit.name = "pustelnik"
+	TEST_ASSERT(planet_garrison_mapped_character(hermit), "A trooper renamed by the map does not count as a ruin character")
 
 	// Blok NT: ochrona strzela dopiero zaatakowana; próżniowi zostają, bo ochrona NT nie ma skafandrów
 	TEST_ASSERT_EQUAL(planet_garrison_ruin(spots, "solgov", 100, "test"), 2, "Wrong number of humans replaced for SolGov")
@@ -44,7 +52,7 @@
 
 /datum/unit_test/planet_ruin_garrison/Destroy()
 	var/turf/start = run_loc_floor_bottom_left
-	for(var/i in 0 to 3)
+	for(var/i in 0 to 4)
 		for(var/mob/living/basic/M in locate(start.x + i, start.y, start.z))
 			qdel(M)
 	spawned.Cut()
@@ -76,18 +84,6 @@
 	kaboom = new
 	TEST_ASSERT_EQUAL(kaboom.ship_state, "frigate", "An unknown ship sprite did not fall back to the frigate")
 	qdel(kaboom)
-
-/// AQUILA - usunięcie moba z afazją: zdejmowanie blokady języków nie może odtwarzać holdera języków na usuwanym mobie
-/// (runtime „Langauge holder added to a qdeleting thing”, losowo w teście reagentów z ciężką traumą)
-/datum/unit_test/aphasia_owner_qdel
-
-/datum/unit_test/aphasia_owner_qdel/Run()
-	var/mob/living/carbon/human/patient = new(run_loc_floor_bottom_left)
-	var/datum/brain_trauma/trauma = patient.gain_trauma(/datum/brain_trauma/severe/aphasia, TRAUMA_RESILIENCE_ABSOLUTE)
-	TEST_ASSERT(trauma, "The human did not get aphasia")
-	var/runtimes_before = GLOB.total_runtimes
-	qdel(patient)
-	TEST_ASSERT_EQUAL(GLOB.total_runtimes, runtimes_before, "Deleting a human with aphasia caused a runtime")
 
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL

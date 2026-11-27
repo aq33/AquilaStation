@@ -2815,6 +2815,7 @@
 #include "code\modules\unit_tests\aquila_custom_shuttle_overmap.dm"
 #include "code\modules\unit_tests\aquila_ship_thrusters.dm"
 #include "code\modules\unit_tests\aquila_ship_kaboom_garrison.dm"
+#include "code\modules\unit_tests\aquila_aphasia_qdel.dm"
 #include "code\modules\unit_tests\aquila_he_pipe_no_network.dm"
 #include "code\modules\unit_tests\aquila_ship_power.dm"
 #include "code\modules\unit_tests\aquila_ship_sensor_array.dm"
