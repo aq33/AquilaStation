@@ -3380,9 +3380,11 @@
 #include "code\modules\antagonists\abductor\glands_tg.dm"
 #include "code\datums\components\shrink.dm"
 #include "code\modules\antagonists\abductor\abductor_gear_tg.dm"
+#include "code\modules\mob\living\carbon\alien\resin_door.dm"
 #ifdef UNIT_TESTS
 #include "code\modules\unit_tests\aquila_abductor_glands_tg.dm"
 #include "code\modules\unit_tests\aquila_abductor_gear_tg.dm"
+#include "code\modules\unit_tests\aquila_xeno_resin_door.dm"
 #endif
 // ROZWÓJ ANTAGONISTÓW: drobne - koniec
 // Profiler byond-tracy: MUSI być ostatnim include'em całego builda (BYOND inicjuje zmienne statyczne od końca,
