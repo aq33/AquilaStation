@@ -5,7 +5,7 @@
 /// AQUILA - narzędzia detektywa, część 3 planu Żandarmerii (aquila/code/modules/detectivework/):
 /// czas śladu, zacieranie śladów, alkomat, BloodTrak, okulary śledcze, mikrofon pluskwy, lampa UV, tryb noir. Jedna scena.
 /datum/unit_test/aquila_detective_tools
-	/// Licznik nadań mikrofonu pluskwy (lista, żeby handler zmieniał tę samą)
+	/// Licznik nadań mikrofonu pluskwy albo oględzin (lista, żeby handler zmieniał tę samą)
 	var/list/transmission_counter
 
 /datum/unit_test/aquila_detective_tools/proc/count_transmission(datum/source)
@@ -83,11 +83,25 @@
 	qdel(gone)
 	suspect.run_examinate(gone)
 	TEST_ASSERT_EQUAL(suspect.aq_gaze_reports, reports_before + 1, "Nieudane oględziny trafiły do okularów")
-	// niewidomy ogląda ten sam, nieusunięty przedmiot: oględziny przechodzą, ale spojrzenia nie ma
+	// niewidomy ogląda odległy, nieusunięty przedmiot: baza przerywa oględziny (blind_examine_check), sygnału i spojrzenia nie ma
+	var/obj/item/pen/far_pen = allocate(/obj/item/pen, locate(center.x + 3, center.y, center.z))
+	var/list/examinations = list(0)
+	transmission_counter = examinations
+	RegisterSignal(suspect, COMSIG_MOB_EXAMINATE, PROC_REF(count_transmission))
 	suspect.eye_blind = 10
-	suspect.run_examinate(looked_at)
+	suspect.run_examinate(far_pen)
 	suspect.eye_blind = 0
+	UnregisterSignal(suspect, COMSIG_MOB_EXAMINATE)
+	TEST_ASSERT_EQUAL(examinations[1], 0, "Niewidomy obejrzał odległy przedmiot")
 	TEST_ASSERT_EQUAL(suspect.aq_gaze_reports, reports_before + 1, "Okulary pokazały spojrzenie niewidomego")
+	// z bliska niewidomy maca przedmiot (do_after w bazie, tu pominięte) i oględziny przechodzą: raport sam pomija ślepego
+	suspect.eye_blind = 10
+	var/blind_reports = suspect.aq_report_gaze(looked_at)
+	suspect.eye_blind = 0
+	TEST_ASSERT_EQUAL(blind_reports, 0, "Okulary pokazały spojrzenie niewidomego macającego przedmiot")
+	// ten sam odległy przedmiot oglądany normalnie trafia do okularów
+	suspect.run_examinate(far_pen)
+	TEST_ASSERT_EQUAL(suspect.aq_gaze_reports, reports_before + 2, "Oględziny odległego przedmiotu nie trafiły do okularów")
 
 	// Pluskwa: mikrofon na częstotliwości, którą da się nastawić na zwykłym radiu; nadaje tylko przez etui (bez podwójnych wiadomości)
 	var/obj/item/clothing/accessory/spy_bug/bug = allocate(/obj/item/clothing/accessory/spy_bug)
