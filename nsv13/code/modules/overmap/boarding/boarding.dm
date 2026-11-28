@@ -80,9 +80,9 @@
 	var/list/knpc_types = list()
 	switch(faction_selection)
 		if("syndicate")
-			knpc_types = list(/mob/living/carbon/human/ai_boarder/syndicate/pistol, /mob/living/carbon/human/ai_boarder/syndicate/smg, /mob/living/carbon/human/ai_boarder/syndicate/shotgun)
+			knpc_types = list(/mob/living/carbon/human/ai_boarder/syndicate/pistol, /mob/living/carbon/human/ai_boarder/syndicate/smg, /mob/living/carbon/human/ai_boarder/syndicate/shotgun, /mob/living/carbon/human/ai_boarder/syndicate/rifle) // AQ EDIT - abordażysta z karabinem bojowym
 		if("pirate")
-			knpc_types = list(/mob/living/carbon/human/ai_boarder/space_pirate/pistol, /mob/living/carbon/human/ai_boarder/space_pirate/auto_pistol)
+			knpc_types = list(/mob/living/carbon/human/ai_boarder/space_pirate/pistol, /mob/living/carbon/human/ai_boarder/space_pirate/auto_pistol, /mob/living/carbon/human/ai_boarder/space_pirate/rifle) // AQ EDIT - pirat z AKMS
 		if("greytide")
 			knpc_types = list(/mob/living/carbon/human/ai_boarder/assistant)
 		if("nanotrasen")

@@ -20,6 +20,8 @@
 		/obj/item/gun/energy/laser/retro = 650,
 		/obj/item/gun/ballistic/automatic/pistol = 1650,
 		/obj/item/ammo_box/magazine/m10mm = 399,
+		/obj/item/gun/ballistic/automatic/akms = 2200,
+		/obj/item/ammo_box/magazine/akms = 400,
 		/obj/item/storage/box/teargas = 400,
 		/obj/item/storage/box/salvager_distract = 350,
 		/obj/item/stack/barbed_wire = 350,
