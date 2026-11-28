@@ -64,6 +64,8 @@ GLOBAL_VAR_INIT(pirates_spawned, FALSE)
 	// If they selected "No way.", this spawns on the timeout, so we don't want to return for the answer check
 	if(!skip_answer_check && threat?.answered == PIRATE_RESPONSE_PAY)
 		return
+	if(aquila_send_pirate_raider()) // AQ EDIT - piraci przylatują rajderem na overmapie (aquila/code/modules/events/pirate_raider.dm)
+		return // AQ EDIT
 
 	var/list/candidates = pollGhostCandidates("Czy chcesz dołączyć do załogi piratów?", ROLE_SPACE_PIRATE, /datum/role_preference/midround_ghost/space_pirate, 15 SECONDS)
 	shuffle_inplace(candidates)

@@ -389,9 +389,11 @@
 #include "code\modules\antagonists\_common\antag_info.dm"
 #include "code\modules\antagonists\_common\antag_team.dm"
 #include "code\modules\antagonists\_common\antag_info_windows.dm"
+#include "code\modules\antagonists\exfiltration\exfiltration.dm"
 #include "code\modules\antagonists\ert\ert.dm"
 #include "code\modules\antagonists\revolution\revolution_conversion.dm"
 #include "code\modules\antagonists\revolution\revolution_panel.dm"
+#include "code\modules\antagonists\revolution\revolution_capture.dm"
 #include "code\modules\antagonists\gang\_gang_defines.dm"
 #include "code\game\gamemodes\gangs\dominator.dm"
 #include "code\modules\antagonists\gang\gang_war.dm"
@@ -411,6 +413,7 @@
 #include "code\modules\antagonists\spy\spy_bounty.dm"
 #include "code\modules\antagonists\spy\spy_bounty_handler.dm"
 #include "code\modules\antagonists\spy\spy_uplink.dm"
+#include "code\modules\antagonists\spy\spy_bounty_photo.dm"
 #include "code\modules\antagonists\devil\sintouched\objectives.dm"
 #include "code\modules\antagonists\hijacked_ai\hijacked_ai.dm"
 #include "code\modules\antagonists\horror\horror.dm"
@@ -482,6 +485,7 @@
 #include "code\modules\antagonists\traitor\objectives\steal.dm"
 #include "code\modules\antagonists\traitor\objectives\target_opt_in.dm"
 #include "code\modules\antagonists\traitor\equipment\Malf_Modules.dm"
+#include "code\modules\antagonists\traitor\equipment\malf_modules_tg.dm"
 #include "code\modules\antagonists\disease\disease_abilities.dm"
 #include "code\modules\antagonists\disease\disease_datum.dm"
 #include "code\modules\antagonists\disease\disease_disease.dm"
@@ -1352,6 +1356,7 @@
 #include "code\modules\overmap\modules\decoys.dm"
 #include "code\modules\overmap\modules\harpoon.dm"
 #include "code\modules\overmap\modules\antag_shuttles.dm"
+#include "code\modules\events\pirate_raider.dm"
 #include "code\modules\overmap\modules\ship_vfx.dm"
 #include "code\modules\overmap\modules\ship_vfx_combat.dm"
 #include "code\modules\overmap\tactical_screen.dm"
@@ -2670,6 +2675,7 @@
 #include "code\modules\unit_tests\_unit_test_weights.dm"
 
 #ifdef UNIT_TESTS
+#include "code\modules\unit_tests\aquila_malf_modules_tg.dm"
 #include "code\modules\unit_tests\aquila_dowodztwo_resprite.dm"
 #include "code\modules\unit_tests\aquila_cyborgi.dm"
 #include "code\modules\unit_tests\aquila_robotyka.dm"
@@ -2903,6 +2909,7 @@
 #include "code\modules\unit_tests\aquila_latejoin_department_colors.dm"
 #include "code\modules\unit_tests\aquila_exodrone.dm"
 #include "code\modules\unit_tests\aquila_traitor_objectives.dm"
+#include "code\modules\unit_tests\aquila_exfiltration.dm"
 #include "code\modules\unit_tests\aquila_logi_rund_26_10.dm"
 #include "code\modules\unit_tests\aquila_logi_rund_6552.dm"
 #include "code\modules\unit_tests\aquila_logi_rund_6581.dm"
@@ -3130,6 +3137,9 @@
 #include "code\modules\unit_tests\aquila_memories.dm"
 #include "code\modules\unit_tests\aquila_zmimic.dm"
 #include "code\modules\unit_tests\aquila_zgloszenia_gracza_2511.dm"
+#include "code\modules\unit_tests\aquila_rev_capture.dm"
+#include "code\modules\unit_tests\aquila_spy_photo.dm"
+#include "code\modules\unit_tests\aquila_pirate_raider.dm"
 #endif
 
 // Heretyk z tg (osobny plik z includami)
@@ -3367,6 +3377,36 @@
 #include "code\modules\test_chamber\kits\pr_719_reaktor_fuzyjny.dm"
 // HFR: koniec
 
+// PRAWDZIWA FORMA ZMIENNOKSZTAŁTNEGO (port Goon Horror Form)
+#include "code\modules\antagonists\changeling\true_form.dm"
+#ifdef UNIT_TESTS
+#include "code\modules\unit_tests\aquila_changeling_true_form.dm"
+#endif
+// PRAWDZIWA FORMA: koniec
+
+// ROZWÓJ ANTAGONISTÓW: drobne porty (porywacz, ksenomorf, pradawny horror)
+#include "code\modules\antagonists\abductor\glands_tg.dm"
+#include "code\datums\components\shrink.dm"
+#include "code\modules\antagonists\abductor\abductor_gear_tg.dm"
+#include "code\modules\mob\living\carbon\alien\resin_door.dm"
+#include "code\modules\antagonists\horror\horror_blood_chems.dm"
+#ifdef UNIT_TESTS
+#include "code\modules\unit_tests\aquila_abductor_glands_tg.dm"
+#include "code\modules\unit_tests\aquila_abductor_gear_tg.dm"
+#include "code\modules\unit_tests\aquila_xeno_resin_door.dm"
+#include "code\modules\unit_tests\aquila_horror_blood_chems.dm"
+#endif
+// ROZWÓJ ANTAGONISTÓW: drobne - koniec
+// ROJOWCE: skorupa bez bramy, ochrona systemów okrętu, przekaźnik sygnału
+#include "code\modules\antagonists\swarmer\swarmer_event.dm"
+#include "code\modules\antagonists\swarmer\swarmer_protection.dm"
+#include "code\modules\antagonists\swarmer\swarmer_relay.dm"
+#ifdef UNIT_TESTS
+#include "code\modules\unit_tests\aquila_swarmer.dm"
+#endif
+// ROJOWCE: koniec
+// Komora testowa: rozwój antagonistów (AQ#725)
+#include "code\modules\test_chamber\kits\pr_725_rozwoj_antagonistow.dm"
 // Profiler byond-tracy: MUSI być ostatnim include'em całego builda (BYOND inicjuje zmienne statyczne od końca,
 // więc ta rusza pierwsza, przed Master i mapą). Opis: tools/tracy/README.md
 #include "code\modules\tracy\tracy.dm"

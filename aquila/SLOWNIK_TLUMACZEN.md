@@ -1348,6 +1348,9 @@ Nazwy gazów są widoczne w skanerach, kanistrach i oknach TGUI. Jeśli nazwa ga
 | penlight | latarka diagnostyczna | ż; nowe |
 | seclite | latarka żandarmska | ż; istniejące |
 | flare | raca | ż; nowe |
+| extraction flare (exfiltration) | raca ewakuacyjna | ż; nowe (Paradise) |
+| extraction portal | portal ewakuacyjny | m; nowe |
+| writhing mass / Extraction Mass (changeling) | wijąca się masa / Masa ewakuacyjna | ż; nowe |
 | glowstick | świetlik chemiczny | m; nowe |
 | lantern | latarenka | ż; nowe |
 | umbrella | parasol | m; nowe |

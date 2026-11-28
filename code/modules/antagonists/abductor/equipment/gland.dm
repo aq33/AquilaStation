@@ -188,8 +188,7 @@
 /obj/item/organ/heart/gland/pop/activate()
 	to_chat(owner, "<span class='notice'>Nie czujesz się sobą.</span>")
 	randomize_human(owner)
-	var/species = pick(list(/datum/species/human, /datum/species/lizard, /datum/species/moth, /datum/species/fly))
-	owner.set_species(species)
+	aquila_gland_set_species(src, aquila_gland_transform_species(owner)) // AQ EDIT - tylko nasze rasy grywalne (gruczoł przemiany z tg), gruczoł przeżywa wymianę narządów
 
 /obj/item/organ/heart/gland/ventcrawling
 	true_name = "aktywator giętkiej chrząstki"

@@ -60,6 +60,8 @@
 	/// AQUILA - TGUI chemical menu
 	var/datum/horror_chem_menu/chem_menu
 	var/horror_chems = list(/datum/horror_chem/epinephrine,/datum/horror_chem/mannitol,/datum/horror_chem/bicaridine,/datum/horror_chem/kelotane,/datum/horror_chem/charcoal)
+	/// AQUILA - odczynniki nauczone z krwi nosiciela (horror_blood_chems.dm), typy /datum/reagent
+	var/list/learned_reagents = list()
 
 	var/leaving = FALSE
 	/// AQUILA - TRUE while the revive pulse charges, the chemicals are already spent
@@ -83,6 +85,7 @@
 	add_ability(/datum/action/innate/horror/take_control)
 	add_ability(/datum/action/innate/horror/leave_body)
 	add_ability(/datum/action/innate/horror/make_chems)
+	add_ability(/datum/action/innate/horror/learn_blood_chem) // AQUILA - nauka substancji z krwi nosiciela
 	add_ability(/datum/action/innate/horror/scan_host)
 	add_ability(/datum/action/innate/horror/give_back_control)
 	add_ability(/datum/action/innate/horror/suppress_resistance)
