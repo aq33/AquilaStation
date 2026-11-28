@@ -37,9 +37,13 @@
 	var/datum/component/forensics/D = AddComponent(/datum/component/forensics)
 	if(!D)
 		return FALSE
-	// krew zwykłą ścieżką czyszczenia: zdejmuje nakładkę „zakrwawiony”, a DNA zostaje utajone dla luminolu
+	// krew zwykłą ścieżką czyszczenia: zdejmuje nakładkę „zakrwawiony”, a DNA zostaje utajone dla luminolu.
+	// Ta ścieżka zmywa też ślady prochu, a zacieranie ich nie rusza (znikają według własnych zasad): zachowujemy je
+	var/list/residue_backup = D.gunshot_residue?.Copy()
 	SEND_SIGNAL(src, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_STRENGTH_BLOOD)
 	D = GetComponent(/datum/component/forensics) || AddComponent(/datum/component/forensics)
+	if(length(residue_backup))
+		D.gunshot_residue = residue_backup
 	D.wipe_fingerprints()
 	D.wipe_fibers()
 	LAZYSET(D.cleaning_residue, residue, world.time)
