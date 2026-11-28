@@ -1141,6 +1141,13 @@ Nazwy gazów są widoczne w skanerach, kanistrach i oknach TGUI. Jeśli nazwa ga
 | taser | paralizator | m; istniejące (8×); odrzucone: taser |
 | ion rifle | karabin jonowy | m; nowe |
 | pulse rifle | karabin pulsacyjny | m; istniejące (3×) |
+| military pulse rifle | wojskowy karabin pulsacyjny | m; nowe (M19C4) |
+| battle rifle | karabin bojowy | m; nowe |
+| anti-particle rifle | karabin antycząstkowy | m; nowe; pocisk: „drobina antymaterii” |
+| PDW (personal defense weapon) | PDW | m; skrót bez tłumaczenia („PDW P90K”) |
+| caseless round | nabój bezłuskowy | m; istniejące |
+| jam (broni) | zacięcie / broń się zacina | n; nowe |
+| fizzle (strzał) | przepalony strzał, pocisk rozpada się w powietrzu | m; nowe |
 | kinetic accelerator | kinetyczny akcelerator | m; istniejące („moduły kinetycznego akceleratora”) |
 | kinetic crusher | kinetyczny miażdżyciel | m; istniejące |
 | syringe gun | wyrzutnia strzykawek | ż; nowe |

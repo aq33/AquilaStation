@@ -3367,6 +3367,16 @@
 #include "code\modules\test_chamber\kits\pr_719_reaktor_fuzyjny.dm"
 // HFR: koniec
 
+// BRONIE Z PRZEGLĄDU KODÓW (raport/bronie_pancerze_02_plan_wdrozenia.md)
+#include "code\modules\projectiles\guns\bronie_wybrane.dm"
+#include "code\modules\projectiles\guns\bronie_wybrane_miejsca.dm"
+#ifdef UNIT_TESTS
+#include "code\modules\unit_tests\aquila_bronie_wybrane.dm"
+#endif
+// Komora testowa
+#include "code\modules\test_chamber\kits\pr_727_bronie.dm"
+// BRONIE Z PRZEGLĄDU: koniec
+
 // Profiler byond-tracy: MUSI być ostatnim include'em całego builda (BYOND inicjuje zmienne statyczne od końca,
 // więc ta rusza pierwsza, przed Master i mapą). Opis: tools/tracy/README.md
 #include "code\modules\tracy\tracy.dm"

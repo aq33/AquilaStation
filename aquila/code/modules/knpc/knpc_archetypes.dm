@@ -85,8 +85,8 @@
 	suit_store = /obj/item/tank/internals/oxygen
 	internals_slot = ITEM_SLOT_SUITSTORE
 	back = /obj/item/storage/backpack/duffelbag/syndie
-	r_hand = /obj/item/gun/ballistic/automatic/c20r
-	backpack_contents = list(/obj/item/ammo_box/magazine/smgm45 = 5, /obj/item/reagent_containers/hypospray/medipen/survival = 2, /obj/item/documents/syndicate/red = 1)
+	r_hand = /obj/item/gun/ballistic/automatic/m90/xm29
+	backpack_contents = list(/obj/item/ammo_box/magazine/m556 = 4, /obj/item/ammo_casing/a40mm = 2, /obj/item/reagent_containers/hypospray/medipen/survival = 2, /obj/item/documents/syndicate/red = 1)
 	tc = 0
 	can_be_admin_equipped = FALSE
 
