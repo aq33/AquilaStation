@@ -134,9 +134,3 @@ GLOBAL_LIST_INIT(surgery_catalog_sections, list(
 		var/multiplier = implements[implement] || 1
 		tools += list(list("name" = tool_name, "speed" = round(100 / multiplier, 1)))
 	return tools
-
-/// Nazwa zalecanego (pierwszego) narzędzia po polsku
-/datum/surgery_operation/proc/get_catalog_recommended_tool()
-	var/list/tools = get_catalog_tools()
-	var/list/first_tool = tools[1]
-	return first_tool["name"]
