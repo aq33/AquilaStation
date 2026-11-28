@@ -90,6 +90,12 @@ const ALTERNATE_ACTIONS: Record<string, AlternateAction> = {
     text: 'Ustaw czujniki',
   },
 
+  // AQUILA: nieśmiertelnik przy identyfikatorze zwłok (aquila/code/modules/memorial/dogtags.dm)
+  take_dogtag: {
+    icon: 'id-badge',
+    text: 'Zdejmij nieśmiertelnik',
+  },
+
   strip_accessory: {
     icon: 'ribbon',
     text: 'Zdejmij dodatek',

@@ -14,3 +14,7 @@
 #define CAMERANET_NETWORK_CURATOR "curator"
 /// Sieć kamery lądowiska: transmisja lądowania promu na planecie (planet_landing_broadcast.dm)
 #define CAMERANET_NETWORK_LANDING "landing"
+/// Sieć kamer pokładowych Sabre: stały kanał w Spess.tv i telewizorach rozrywkowych (sabre_camera.dm)
+#define CAMERANET_NETWORK_SABRE "sabre"
+/// Sieci zawsze dostępne w telewizorach rozrywkowych i Spess.tv, niezależnie od transmisji na żywo
+#define CAMERANET_PERMANENT_NETWORKS list(CAMERANET_NETWORK_THUNDERDOME, CAMERANET_NETWORK_SABRE)

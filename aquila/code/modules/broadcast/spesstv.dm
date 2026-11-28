@@ -13,7 +13,7 @@
 	size = 0
 	program_icon = "video"
 	alert_able = TRUE
-	network = list(CAMERANET_NETWORK_THUNDERDOME)
+	network = CAMERANET_PERMANENT_NETWORKS
 	/// Głośnik kanału rozrywkowego, istnieje, gdy program działa
 	var/obj/item/radio/entertainment/speakers/pda/radio
 	/// Odstęp między powiadomieniami o transmisjach
@@ -76,8 +76,8 @@
 		alert_pending = TRUE
 	else
 		network -= tv_show_id
-		network |= CAMERANET_NETWORK_THUNDERDOME
-		if(length(network) <= 1)
+		network |= CAMERANET_PERMANENT_NETWORKS
+		if(!length(network - CAMERANET_PERMANENT_NETWORKS))
 			alert_pending = FALSE
 	if(QDELETED(computer))
 		return

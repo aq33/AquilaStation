@@ -35,6 +35,11 @@
 	TEST_ASSERT_EQUAL(sabre.invisibility, INVISIBILITY_ABSTRACT, "The docked Sabre is visible in the hangar")
 	TEST_ASSERT_EQUAL(length(sabre.shuttle_exit_turfs()), 2, "The hatch should open onto two tiles")
 	TEST_ASSERT(length(sabre.interior_entry_points), "The Sabre has no entry points inside")
+	// Kamera pokładowa: stoi we wnętrzu i nadaje w stałej sieci Sabre (sabre_camera.dm)
+	var/obj/machinery/camera/sabre_onboard/onboard = shuttle_port.onboard_camera
+	TEST_ASSERT(istype(onboard), "The Sabre has no onboard camera")
+	TEST_ASSERT(istype(get_area(onboard), /area/shuttle/sabre), "The onboard camera isn't inside the Sabre")
+	TEST_ASSERT(CAMERANET_NETWORK_SABRE in onboard.network, "The onboard camera isn't on the Sabre network")
 	for(var/turf/T as anything in sabre.shuttle_exit_turfs())
 		TEST_ASSERT(!istype(T.loc, /area/shuttle/sabre), "An exit tile [COORD(T)] is inside the Sabre")
 	var/obj/machinery/computer/ship/helm/console/dropship/sabre/helm

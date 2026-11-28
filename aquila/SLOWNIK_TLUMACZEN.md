@@ -4646,10 +4646,10 @@ Nazwy obszarów są w większości przetłumaczone. Nowe nazwy budujemy z tych k
 | Psyphoza | Borowik | m; rasa (BeeStation), grzybowa; dawniej Psyfoza |
 | Diona / nymph / gestalt | Diona / nimfa / gestalt | ż / ż / m; rasa (BeeStation), l.mn. diony |
 | Sonus | Sonus | m; język borowików |
-| Pug (rasa) | Mops | m; rasa (Goonstation) |
+| Pug (rasa) | Fion | m; rasa (Goonstation), l.mn. Fiony |
 | Amphibian (rasa) | Żaba | ż; rasa (Goonstation) |
 | Sticky Tongue | Lepki język | m; akcja Żaby |
-| sleuth | węszenie | n; emotka Mopsa |
+| sleuth | węszenie | n; emotka Fiona |
 | coat | umaszczenie | n; wybór w oknie postaci |
 | Aquarian / dome | Akwarianin (l.mn. akwarianie) / klosz | m; nasza rasa (ryba w kloszu) |
 ## 25. Mechy: sloty, overclock, nowe podwozia i wyposażenie (2026-11)
