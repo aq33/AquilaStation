@@ -351,6 +351,9 @@
 		transform = M
 	if(movement_vector)
 		movement_vector.set_angle(new_angle)
+	// Odbicie wiązki hitscanu w locie (reflektor, pajęczyna): załamanie zaczyna nowy odcinek śladu, jak set_angle() w tg
+	if(hitscan && fired && beam_index && isturf(loc))
+		store_hitscan_collision(RETURN_PRECISE_POINT(src))
 	return TRUE
 
 /// Hitscan przelatuje całą drogę od razu; przy pauzie albo braku czasu w ticku dokończy w process()

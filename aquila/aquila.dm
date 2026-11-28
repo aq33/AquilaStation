@@ -2913,6 +2913,7 @@
 #include "code\modules\unit_tests\aquila_ghost_polls.dm"
 #include "code\modules\unit_tests\aquila_gq_lights.dm"
 #include "code\modules\unit_tests\aquila_gun_fire_without_params.dm"
+#include "code\modules\unit_tests\aquila_hitscan_reflect_tracer.dm"
 #include "code\modules\unit_tests\aquila_aphasia_qdel.dm"
 #include "code\modules\unit_tests\aquila_job_wiki_link.dm"
 #include "code\modules\unit_tests\aquila_relay_loop_stop.dm"
