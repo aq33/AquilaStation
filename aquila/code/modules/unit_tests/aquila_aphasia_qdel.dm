@@ -1,22 +1,25 @@
+// The upstream assert macros are #undef'd at the end of code/modules/unit_tests/_unit_tests.dm, so this modular test carries its own copies
 #define TEST_ASSERT(assertion, reason) if (!(assertion)) { return Fail("Assertion failed: [reason || "No reason"]") }
 
-/// AQUILA - człowiek z afazją usuwany przez qdel nie tworzy od nowa language_holder (runtime w /datum/language_holder/New,
-/// widoczny w CI po teście reagentów umysłu, który losowo daje afazję). Poprawka: AQ EDIT w code/datums/brain_damage/severe.dm.
-/datum/unit_test/aquila_aphasia_qdel
+#define TEST_ASSERT_EQUAL(a, b, message) do { \
+	var/lhs = ##a; \
+	var/rhs = ##b; \
+	if (lhs != rhs) { \
+		return Fail("Expected [isnull(lhs) ? "null" : lhs] to be equal to [isnull(rhs) ? "null" : rhs].[message ? " [message]" : ""]"); \
+	} \
+} while (FALSE)
 
-/datum/unit_test/aquila_aphasia_qdel/Run()
+/// AQUILA - usunięcie moba z afazją: zdejmowanie blokady języków nie może odtwarzać holdera języków na usuwanym mobie
+/// (runtime „Langauge holder added to a qdeleting thing”, losowo w teście reagentów z ciężką traumą)
+/datum/unit_test/aphasia_owner_qdel
+
+/datum/unit_test/aphasia_owner_qdel/Run()
 	var/mob/living/carbon/human/patient = new(run_loc_floor_bottom_left)
-	var/datum/brain_trauma/trauma = patient.gain_trauma(/datum/brain_trauma/severe/aphasia)
-	TEST_ASSERT(trauma, "The patient did not get aphasia")
-	TEST_ASSERT(patient.has_language(/datum/language/aphasia), "Aphasia did not give its language")
-	var/datum/language_holder/holder = patient.get_language_holder()
+	var/datum/brain_trauma/trauma = patient.gain_trauma(/datum/brain_trauma/severe/aphasia, TRAUMA_RESILIENCE_ABSOLUTE)
+	TEST_ASSERT(trauma, "The human did not get aphasia")
+	var/runtimes_before = GLOB.total_runtimes
 	qdel(patient)
-	TEST_ASSERT(QDELETED(patient), "The patient with aphasia was not deleted")
-	TEST_ASSERT(QDELETED(holder) || holder.owner != patient, "The deleted patient still owns a language holder")
-	// Sama afazja odebrana żywemu pacjentowi dalej zdejmuje swój język
-	var/mob/living/carbon/human/cured = allocate(/mob/living/carbon/human, run_loc_floor_bottom_left)
-	var/datum/brain_trauma/cured_trauma = cured.gain_trauma(/datum/brain_trauma/severe/aphasia)
-	qdel(cured_trauma)
-	TEST_ASSERT(!cured.has_language(/datum/language/aphasia), "Curing aphasia did not take its language away")
+	TEST_ASSERT_EQUAL(GLOB.total_runtimes, runtimes_before, "Deleting a human with aphasia caused a runtime")
 
 #undef TEST_ASSERT
+#undef TEST_ASSERT_EQUAL

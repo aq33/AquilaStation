@@ -1101,6 +1101,7 @@
 #include "code\modules\planets\planet_weather_types.dm"
 #include "code\modules\planets\greeble.dm"
 #include "code\modules\planets\planet_surface.dm"
+#include "code\modules\planets\planet_ruin_garrison.dm"
 #include "code\modules\planets\overmap_planet.dm"
 #include "code\modules\planets\planet_landing.dm"
 #include "code\modules\planets\planet_lifecycle.dm"
@@ -1165,6 +1166,7 @@
 #include "code\modules\overmap\ai_tuning.dm"
 #include "code\modules\overmap\ship_power.dm"
 #include "code\modules\overmap\ship_thrusters.dm"
+#include "code\modules\overmap\ship_kaboom_cinematic.dm"
 #include "code\modules\overmap\ship_sensor_array.dm"
 #include "code\modules\overmap\shield_cloak.dm"
 #include "code\modules\overmap\ftl_calibration.dm"
@@ -2813,6 +2815,8 @@
 #include "code\modules\unit_tests\aquila_overmap_explode_area.dm"
 #include "code\modules\unit_tests\aquila_custom_shuttle_overmap.dm"
 #include "code\modules\unit_tests\aquila_ship_thrusters.dm"
+#include "code\modules\unit_tests\aquila_ship_kaboom_garrison.dm"
+#include "code\modules\unit_tests\aquila_aphasia_qdel.dm"
 #include "code\modules\unit_tests\aquila_he_pipe_no_network.dm"
 #include "code\modules\unit_tests\aquila_ship_power.dm"
 #include "code\modules\unit_tests\aquila_ship_sensor_array.dm"
@@ -3366,6 +3370,8 @@
 // Komora testowa
 #include "code\modules\test_chamber\kits\pr_719_reaktor_fuzyjny.dm"
 // HFR: koniec
+// Komora testowa
+#include "code\modules\test_chamber\kits\pr_721_wybuch_okretu.dm"
 
 // Profiler byond-tracy: MUSI być ostatnim include'em całego builda (BYOND inicjuje zmienne statyczne od końca,
 // więc ta rusza pierwsza, przed Master i mapą). Opis: tools/tracy/README.md

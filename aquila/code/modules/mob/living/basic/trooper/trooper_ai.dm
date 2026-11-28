@@ -109,6 +109,16 @@
 		/datum/ai_planning_subtree/travel_to_point/and_clear_target/reinforce,
 	)
 
+/// Pistolet, strzela dopiero zaatakowany (ochrona NT w ruinach w układach NT)
+/datum/ai_controller/basic_controller/trooper/ranged/peaceful
+	planning_subtrees = list(
+		/datum/ai_planning_subtree/escape_captivity,
+		/datum/ai_planning_subtree/target_retaliate,
+		/datum/ai_planning_subtree/call_reinforcements,
+		/datum/ai_planning_subtree/basic_ranged_attack_subtree/trooper,
+		/datum/ai_planning_subtree/travel_to_point/and_clear_target/reinforce,
+	)
+
 /datum/ai_controller/basic_controller/trooper/ranged/shotgunner
 	planning_subtrees = list(
 		/datum/ai_planning_subtree/escape_captivity,
